@@ -1,7 +1,15 @@
 # Shorts tool
 
-`python3 tools/make_short.py spec.json out.mp4` builds a 1080x1920 YouTube Short: every frame rendered with Playwright (smooth 30 fps), voice from Piper TTS (voice downloads itself from the piper GitHub release on first use, about 60 MB), and a soft generated background track. Needs: `pip install --break-system-packages piper-tts numpy`, ffmpeg, the pre-installed Playwright Chromium, Poppins and Carlito fonts. About 90 seconds per video.
+`python3 tools/make_slides.py spec.json out.mp4` builds a 1080x1920 YouTube Short in the slideshow style: five full-screen slides of text, each on screen for two bars of a soft generated music track (5.3 seconds), no voiceover. Every frame is rendered with Playwright at 30 fps, so motion is smooth. Needs numpy, ffmpeg, the pre-installed Playwright Chromium, and the Poppins Bold and Carlito fonts. About 75 seconds per video.
 
-Spec fields: kicker, headline_html (one `<span>` for the accent number), cells (2 to 4 of label, value, kind "" | "bad" | "good"), fix, cta, footer, voice ("ryan-medium" or "lessac-medium"), voice_lines (exactly 5: headline, cells 1 and 2, cell 3, cell 4 plus fix, cta). Write numbers as words in voice_lines ("one ninety four", "fifteen and a half percent") so the voice reads them well. See example-spec.json.
+Spec: `theme` ("ink" or "paper"), `footer`, and `slides`, a list of five in this order:
 
-Upload: commit the mp4 under shorts/, confirm the raw URL serves it, then the Zapier YouTube "Upload Video" action with the raw URL as the video, privacy public, category 27 (Education) if available, tags from the pin, description = the pin description plus the listing link on its own line and "#Shorts".
+1. `hook`: `kicker`, `title_html` (one `<span>` around the accent number)
+2. `compare`: `kicker`, `left` and `right` as `{label, value, kind}`, `note`
+3. `stat`: `kicker`, `label`, `value`, `kind` ("" or "bad" or "good"), `sub`
+4. `fix`: `kicker`, `title`, `formula`, `sub`
+5. `cta`: `title`, `button` (the product name), `sub` ("Link in the description.")
+
+See example-slides-spec.json. Each slide teaches one number from the day's first pin; the product is named once, on the last slide. No em dashes anywhere.
+
+Upload: commit the mp4 as shorts/YYYY-MM-DD-slug.mp4, confirm with curl that the raw URL returns video/mp4, then run the Zapier YouTube "Upload Video" action with the raw URL as the video, privacy public, category Education, tags from the pin, and description = the pin description, the listing link on its own line, then "#Shorts".

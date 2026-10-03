@@ -1,0 +1,25 @@
+Service Pricing Calculator
+Copyright 2026 ProofNotFluff. All rights reserved.
+
+LICENSE
+You may use this workbook for your own personal use and for one business you own or operate. You may edit it and make copies for that use.
+You may not resell, share, give away, upload or redistribute the file or any part of it, in its original or edited form, or include it in another product.
+
+INFORMATION ONLY
+This workbook is a planning tool. It provides general information only and is not tax, legal, accounting or financial advice.
+Figures were verified on October 3, 2026 from the sources named in the Start Here tab (IRS Topic 554 and Schedule SE; SSA 2026 contribution and benefit base; IRS Announcement 2026-11). Tax rules, rates and limits change. Check them before you rely on them, and ask a qualified tax professional about your own situation.
+Example times, supplies and miles in the Trade Presets tab are starting points, not market prices or recommendations. Replace them with your own numbers.
+
+NO GUARANTEE
+Results depend on the numbers you enter. No result, income, profit or savings is guaranteed. You are responsible for your inputs, your prices and your business decisions.
+
+LIABILITY
+To the fullest extent the law allows, the seller's total liability for any claim related to this product is limited to the price you paid for it.
+
+DIGITAL DOWNLOAD
+This is a digital download; no physical item ships. If a file does not open or a formula does not work, message the shop on Etsy and it will be fixed or replaced.
+
+TRADEMARKS
+Microsoft Excel and Google Sheets are trademarks of their owners. This product is not affiliated with or endorsed by them.
+
+Made with AI assistance and reviewed and tested by the shop owner.

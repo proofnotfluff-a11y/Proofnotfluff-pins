@@ -1,0 +1,72 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Pop;src:url(file:///usr/share/fonts/truetype/google-fonts/Poppins-Bold.ttf)}
+@font-face{font-family:Car;src:url(file:///usr/share/fonts/truetype/crosextra/Carlito-Regular.ttf)}
+@font-face{font-family:Car;font-weight:bold;src:url(file:///usr/share/fonts/truetype/crosextra/Carlito-Bold.ttf)}
+@page{size:Letter;margin:0}
+*{box-sizing:border-box}
+body{margin:0;font-family:Car;color:#1D2433;font-size:12pt;line-height:1.4}
+.page{width:8.5in;height:11in;padding:.7in .75in;background:#F5F2EC;page-break-after:always;position:relative}
+.bars{display:flex;gap:6px;margin-bottom:18px}.bars i{display:block;width:44px;height:6px;border-radius:3px}
+h1{font-family:Pop;font-size:28pt;line-height:1.1;margin:0 0 6px}
+h2{font-family:Pop;font-size:14pt;margin:16px 0 4px;color:#C8502F}
+.sub{font-size:13pt;color:#4a4f5c;margin:0 0 18px}
+.big{display:flex;gap:14px;margin:16px 0}
+.card{flex:1;background:#fff;border-radius:10px;padding:14px 16px;border:1px solid #e3ddd2}
+.card b{display:block;font-family:Pop;font-size:24pt;line-height:1.1}
+.card span{font-size:10.5pt;color:#4a4f5c}
+.card.hot{background:#1D2433;color:#fff;border:none}.card.hot span{color:#cfd3dc}
+ol{padding-left:20px;margin:6px 0}li{margin:6px 0}
+.tab{font-weight:bold;background:#fff;border:1px solid #e3ddd2;border-radius:4px;padding:0 5px}
+.y{background:#FFF4CC;border:1px solid #e6d58f;padding:0 5px;border-radius:3px;color:#1F3FBF}
+.g{background:#E7F0EE;border:1px solid #c6dad6;padding:0 5px;border-radius:3px}
+.foot{position:absolute;bottom:.5in;left:.75in;right:.75in;font-size:9pt;color:#6b6f79}
+table{border-collapse:collapse;width:100%;font-size:11pt;background:#fff}
+td,th{border:1px solid #e3ddd2;padding:5px 8px;text-align:left}th{background:#1D2433;color:#fff;font-weight:bold}td:first-child{white-space:nowrap;font-weight:bold}
+</style></head><body>
+<div class="page">
+<div class="bars"><i style="background:#C8502F"></i><i style="background:#2E6B66"></i><i style="background:#6B4FA0"></i><i style="background:#2F5F9E"></i><i style="background:#8A6A1F"></i></div>
+<h1>Service Pricing Calculator</h1>
+<p class="sub">Start here. Ten minutes of setup, then every quote takes seconds.</p>
+<h2>The number most service owners get wrong</h2>
+<p>With the example numbers in the file ($52,000 take-home, 45 hours a week, 48 weeks), dividing pay by hours says you need $24 an hour. Once you count unpaid hours, monthly costs and self-employment tax, the real numbers are:</p>
+<div class="big">
+<div class="card"><b>$24.07</b><span>The rate you would guess</span></div>
+<div class="card"><b>$54.80</b><span>Break-even per paid hour</span></div>
+<div class="card hot"><b>$64.47</b><span>Target per paid hour, with 15% profit</span></div>
+</div>
+<p>Your numbers will differ. That is the point: tab 1 shows your own.</p>
+<h2>Set up once</h2>
+<ol>
+<li>Open <span class="tab">1 Your Numbers</span> and fill the <span class="y">yellow cells</span> with the pay you want, weeks and hours you really work, the share of hours you are paid for, and your monthly business costs.</li>
+<li>Open <span class="tab">2 Trade Presets</span> and keep the rows for your trade and change hours, people, supplies and miles to your real jobs. Add your own job types in the empty rows.</li>
+</ol>
+<h2>Every quote</h2>
+<ol start="3">
+<li>Open <span class="tab">3 Quote Builder</span> and pick the job from the dropdown. Type in an override cell only if this customer is different (bigger house, longer drive).</li>
+<li>Read your quote, the deposit to collect, and the profit inside it. Enter your current price to see whether it covers your pay goal and costs.</li>
+</ol>
+<p><span class="g">Green cells</span> are formulas and peach cells are your key results. Leave both alone; they update on their own.</p>
+<h2>Two tips</h2><ol><li>Type percentages with the % sign: 25%, not 25.</li><li>Not sure what share of your hours is paid? Start at 60% to 70% and adjust after a month of tracking.</li></ol>
+<div class="foot">Works in Excel and Google Sheets (sheets.google.com, File, Import, Upload). No add-ons, sign-up or survey. Page 1 of 2</div>
+</div>
+<div class="page">
+<div class="bars"><i style="background:#C8502F"></i><i style="background:#2E6B66"></i><i style="background:#6B4FA0"></i><i style="background:#2F5F9E"></i><i style="background:#8A6A1F"></i></div>
+<h2 style="margin-top:0">What each tab does</h2>
+<table>
+<tr><th>Tab</th><th>Use it to</th></tr>
+<tr><td>1 Your Numbers</td><td>Find your break-even and target rate per paid hour</td></tr>
+<tr><td>2 Trade Presets</td><td>Store your job types: hours, people, supplies, miles. Comes with 20 examples across cleaning, detailing, lawn care, photography, salon, handyman and pressure washing</td></tr>
+<tr><td>3 Quote Builder</td><td>Price one job, with drive time and vehicle cost included, rounded up to the next $5</td></tr>
+<tr><td>4 Price Sheet</td><td>See every job type priced at once, ready to print or turn into a service menu</td></tr>
+<tr><td>5 Job Tracker</td><td>Log finished jobs and see which ones beat your target and which fall below your floor</td></tr>
+</table>
+<h2>Two costs quotes usually leave out</h2>
+<p><b>Drive time.</b> An hour in the car is an hour you are not paid for unless the price covers it. The Quote Builder turns round-trip miles into drive time at your average speed and charges it at your break-even rate.</p>
+<p><b>Vehicle cost.</b> Fuel, wear, insurance and depreciation. The default is the IRS business standard mileage rate of 76 cents a mile (from July 1, 2026). If your vehicle payment is already in your monthly costs, use your real cost per mile instead so it is not counted twice.</p>
+<h2>Figures used, verified Oct 3, 2026</h2>
+<p>Self-employment tax 15.3% (12.4% Social Security plus 2.9% Medicare) on 92.35% of net profit, IRS Topic 554 and Schedule SE; Social Security portion up to the 2026 wage base of $184,500, SSA. Mileage 76 cents a mile from July 1, 2026, IRS Announcement 2026-11 (72.5 cents January to June 2026). Your income tax rate is your own estimate. The calculator simplifies taxes to give a planning number; your tax preparer can give you your exact figures.</p>
+<h2>Thank you</h2>
+<p>If this helped you price your work, a short Etsy review helps other service owners find it. If anything doesn't open or a number looks wrong, message me on Etsy and I'll fix it.</p>
+<div class="foot">Information only, not tax, legal or financial advice. No guarantee of results. Example times are starting points, not market prices. Made with AI assistance and reviewed and tested by the shop owner. Copyright ProofNotFluff. Page 2 of 2</div>
+</div>
+</body></html>

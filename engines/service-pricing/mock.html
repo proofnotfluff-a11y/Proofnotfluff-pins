@@ -1,0 +1,69 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Pop;src:url(file:///usr/share/fonts/truetype/google-fonts/Poppins-Bold.ttf)}
+@font-face{font-family:PopM;src:url(file:///usr/share/fonts/truetype/google-fonts/Poppins-Medium.ttf)}
+@font-face{font-family:Car;src:url(file:///usr/share/fonts/truetype/crosextra/Carlito-Regular.ttf)}
+*{box-sizing:border-box;margin:0}
+body{width:2000px;height:2000px;overflow:hidden;font-family:Car;color:#1D2433}
+.s{width:2000px;height:2000px;padding:110px;position:relative;display:flex;flex-direction:column}
+.paper{background:#F5F2EC}.ink{background:#1D2433;color:#fff}
+.bars{display:flex;gap:14px;margin-bottom:46px}.bars i{display:block;width:120px;height:16px;border-radius:8px}
+h1{font-family:Pop;font-size:118px;line-height:1.04;letter-spacing:-1px}
+h2{font-family:Pop;font-size:92px;line-height:1.08;letter-spacing:-1px}
+.lead{font-size:52px;line-height:1.3;margin-top:30px;color:#4a4f5c}.ink .lead{color:#cfd3dc}
+.acc{color:#C8502F}
+.shot{margin-top:56px;background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(29,36,51,.18);padding:26px;flex:1;display:flex;align-items:flex-start;justify-content:center;overflow:hidden}
+.shot img{max-width:100%;max-height:100%;object-fit:contain}
+.cards{display:flex;gap:34px;margin-top:64px}
+.card{flex:1;border-radius:24px;padding:44px 40px;background:#fff;border:3px solid #e3ddd2}
+.card b{display:block;font-family:Pop;font-size:120px;line-height:1}
+.card span{display:block;font-size:44px;margin-top:16px;color:#4a4f5c;line-height:1.2}
+.card.hot{background:#C8502F;border-color:#C8502F;color:#fff}.card.hot span{color:#fde7df}
+.foot{position:absolute;left:110px;right:110px;bottom:80px;display:flex;justify-content:space-between;font-size:40px;color:#6b6f79}
+.ink .foot{color:#aab0bd}
+.pill{display:inline-block;background:#2E6B66;color:#fff;font-family:PopM;font-size:40px;padding:14px 30px;border-radius:40px;margin-right:16px;margin-top:40px}
+ul{list-style:none;padding:0;margin-top:50px}li{font-size:62px;line-height:1.25;padding:34px 0 34px 90px;position:relative;border-bottom:2px solid #e3ddd2}
+li:before{content:"";position:absolute;left:0;top:36px;width:44px;height:44px;border-radius:12px;background:#C8502F}
+li small{display:block;font-size:46px;color:#5a5f6b}.ink li small{color:#b9bfcc}.ink li{border-bottom-color:#3a4256}
+.two{display:flex;gap:60px;margin-top:40px}.two>div{flex:1}
+</style></head><body>
+<div id="v1" class="s paper">
+ <div class="bars"><i style="background:#C8502F"></i><i style="background:#2E6B66"></i><i style="background:#6B4FA0"></i><i style="background:#2F5F9E"></i><i style="background:#8A6A1F"></i></div>
+ <h1>Pricing Calculator<br>for Service Businesses</h1>
+ <p class="lead">Your true hourly rate, a quote for every job, and a tracker that shows which jobs pay.</p>
+ <div class="cards">
+  <div class="card"><b>$24</b><span>the hourly rate most owners would guess</span></div>
+  <div class="card hot"><b>$55</b><span>the real break-even rate in the example</span></div>
+ </div>
+ <div><span class="pill">Excel + Google Sheets</span><span class="pill" style="background:#6B4FA0">7 trades, 20 example jobs</span></div>
+ <div class="shot" style="margin-top:44px;margin-bottom:70px;padding:18px"><img src="hi/quote_res.png" style="width:100%"></div>
+ <div class="foot"><span>ProofNotFluff</span><span>Instant download. No survey, no sign-up.</span></div>
+</div>
+<div id="v2" class="s paper">
+ <h2>Find your <span class="acc">true hourly rate</span></h2>
+ <p class="lead">Unpaid hours, monthly costs and self-employment tax, all counted.</p>
+ <div class="shot"><img src="hi/numbers.png"></div>
+</div>
+<div id="v3" class="s paper">
+ <h2>Quote any job <span class="acc">in seconds</span></h2>
+ <p class="lead">Pick the job. Drive time and vehicle cost are added for you, and the price rounds up to the next $5.</p>
+ <div class="shot"><img src="hi/quote.png"></div>
+</div>
+<div id="v4" class="s paper" style="justify-content:flex-start">
+ <h2>Every job, <span class="acc">priced at once</span></h2>
+ <p class="lead">Cleaning, detailing, lawn care, photography, salon, handyman and pressure washing. Change the examples to your jobs.</p>
+ <div class="shot" style="flex:none"><img src="hi/prices.png"></div>
+</div>
+<div id="v5" class="s ink">
+ <div class="bars"><i style="background:#C8502F"></i><i style="background:#2E6B66"></i><i style="background:#6B4FA0"></i><i style="background:#2F5F9E"></i><i style="background:#8A6A1F"></i></div>
+ <h2>What's inside</h2>
+ <ul style="color:#fff;margin-top:70px">
+  <li>Your Numbers<small>break-even and target rate per paid hour</small></li>
+  <li>Trade Presets<small>7 trades, 20 example jobs, 20 empty rows for yours</small></li>
+  <li>Quote Builder<small>one job priced, deposit and profit shown</small></li>
+  <li>Price Sheet<small>every job type priced, ready to print</small></li>
+  <li>Job Tracker<small>which jobs beat your target, which fall short</small></li>
+  <li>2-page Start Here guide<small>set up in about 10 minutes</small></li>
+ </ul>
+ <div class="foot"><span>Instant download. Works in Excel and Google Sheets.</span><span>No survey, no sign-up</span></div>
+</div>
+</body></html>

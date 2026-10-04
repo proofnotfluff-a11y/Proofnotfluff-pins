@@ -1,0 +1,8 @@
+{"theme":"ink","footer":"Written by a finance executive",
+ "slides":[
+  {"type":"hook","kicker":"SERVICE PRICING MATH","title_html":"A $40 hourly rate pays you about <span>$20</span>"},
+  {"type":"compare","kicker":"WHAT YOU QUOTE VS WHAT YOU KEEP","left":{"label":"Rate per billed hour","value":"$40","kind":""},"right":{"label":"Kept per hour worked","value":"$20","kind":"bad"},"note":"Before income tax. Half the rate is already gone."},
+  {"type":"stat","kicker":"THE BIGGEST LEAK","label":"If 1 of every 3 hours is quoting, driving and admin, each hour worked earns","value":"$26.67","kind":"bad","sub":"Then $500 a month of overhead over 150 hours takes $3.33, and 15.3% self-employment tax on 92.35% takes $3.30."},
+  {"type":"fix","kicker":"THE FIX","title":"Price from the hour you keep","formula":"($30 &divide; 0.859 + $3.33) &times; 1.5 = $57","sub":"To keep $30 an hour worked, the same business needs to bill about $57."},
+  {"type":"cta","title":"Your overhead, unpaid hours and tax, turned into a quote","button":"Service Pricing Calculator","sub":"On Etsy: etsy.com/shop/ProofNotFluff"}
+ ]}

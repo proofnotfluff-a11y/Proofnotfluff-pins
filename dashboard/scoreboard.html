@@ -630,6 +630,7 @@ boot();
 /* Isometric factory floor. Each scheduled agent is a worker at a station; workers animate only when
    the agent reports state "working" on the scoreboard's shared data. World units: one tile = 64 x 32 px. */
 const P=()=>window.__pnf;
+const fmt0=n=>Number(n||0).toLocaleString("en-US");
 const $=id=>document.getElementById(id);
 const cv=$("fx"),ctx=cv.getContext("2d"),stage=$("fxStage");
 const TW=64,TH=32;
@@ -650,6 +651,7 @@ const ZONES=[
   {id:"quest",label:"Quest Board",gx:.5,gy:8.5,w:4,d:3,tint:"#ECE6DA",agents:[]},
   {id:"break",label:"Break Room",gx:5.5,gy:8.5,w:5,d:3,tint:"#DDE8D8",agents:[]},
   {id:"dock",label:"Loading Dock",gx:11.5,gy:8.5,w:5,d:3,tint:"#D6D2CA",agents:[]},
+  {id:"rnd",label:"R&D Lab",gx:.5,gy:12.6,w:8.2,d:2.7,tint:"#D9E6F2",agents:["rnd"]},
   {id:"stores",label:"Storefronts",gx:17.3,gy:.4,w:3,d:11.4,tint:null,agents:[]}
 ];
 const ZBY=Object.fromEntries(ZONES.map(z=>[z.id,z]));
@@ -660,10 +662,11 @@ const WORKERS=[
   {id:"factory",name:"Fern",zone:"factory",hat:C.accent,shirt:"#D9704F",spots:[[7,2.5],[9.6,2.5],[12.4,2.5],[15,2.5]]},
   {id:"morning-promote",name:"Mo",zone:"promo",hat:C.purple,shirt:"#8466B8",spots:[[7.3,6.6],[9.6,6.2]]},
   {id:"afternoon-promote",name:"Ava",zone:"promo",hat:"#9A82D6",shirt:"#B39BE4",spots:[[8.6,6.9],[9.9,6.8]]},
-  {id:"optimizer",name:"Ozzy",zone:"control",hat:C.gold,shirt:"#B08B2E",spots:[[13.7,6.7],[15,6.5]]}
+  {id:"optimizer",name:"Ozzy",zone:"control",hat:C.gold,shirt:"#B08B2E",spots:[[13.7,6.7],[15,6.5]]},
+  {id:"rnd",name:"Remy",zone:"rnd",hat:"#B5487A",shirt:"#EEF1F6",spots:[[1.9,13.6],[4.6,14.75],[7.1,14.3]]}
 ];
-const BREAK_SPOTS=[[6.6,9.8],[7.6,10.6],[8.8,9.6],[9.6,10.7],[7.2,11.1],[8.3,10.2]];
-const SEATS=[[6.7,10.9],[7.5,10.9],[8.3,10.9],[9.1,10.9],[9.9,10.9],[6.3,10.2]];
+const BREAK_SPOTS=[[6.6,9.8],[7.6,10.6],[8.8,9.6],[9.6,10.7],[7.2,11.1],[8.3,10.2],[9.9,9.9]];
+const SEATS=[[6.7,10.9],[7.5,10.9],[8.3,10.9],[9.1,10.9],[9.9,10.9],[6.3,10.2],[10.1,10.2]];
 
 const iso=(gx,gy,z=0)=>[(gx-gy)*TW/2,(gx+gy)*TH/2-z];
 function poly(pts,fill,stroke,lw){ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.closePath();if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw||1.4;ctx.lineJoin="round";ctx.stroke()}}
@@ -680,8 +683,9 @@ function pill(t,x,y,size,bg,fg){ctx.font=`600 ${size}px Poppins, system-ui, sans
 
 /* ---------- time and agent state ---------- */
 function chicago(){const p=new Intl.DateTimeFormat("en-US",{timeZone:"America/Chicago",hour:"numeric",minute:"2-digit",hour12:false,weekday:"short"}).formatToParts(new Date());const g=k=>(p.find(x=>x.type===k)||{}).value;let h=+g("hour");if(h===24)h=0;return {h,m:+g("minute"),wd:g("weekday")}}
-function minutesOf(sched){const m=/(\d{1,2}):(\d{2})\s*(am|pm)/i.exec(sched||"");if(!m)return null;let h=+m[1]%12;if(m[3].toLowerCase()==="pm")h+=12;return h*60+ +m[2]}
-function nextShift(sched){const t=minutesOf(sched);if(t===null)return "";const c=chicago(),now=c.h*60+c.m;let diff=t-now;if(diff<=0)diff+=1440;const h=Math.floor(diff/60),m=diff%60;return h?`in ${h}h ${m}m`:`in ${m}m`}
+function timesOf(sched){return [...String(sched||"").matchAll(/(\d{1,2}):(\d{2})\s*(am|pm)/gi)].map(m=>{let h=+m[1]%12;if(m[3].toLowerCase()==="pm")h+=12;return h*60+ +m[2]})}
+function minutesOf(sched){const t=timesOf(sched);return t.length?t[0]:null}
+function nextShift(sched){const ts=timesOf(sched);if(!ts.length)return "";const c=chicago(),now=c.h*60+c.m;const diff=Math.min(...ts.map(t=>{let d=t-now;if(d<=0)d+=1440;return d}));const h=Math.floor(diff/60),m=diff%60;return h?`in ${h}h ${m}m`:`in ${m}m`}
 function agentDoc(id){const s=P()&&P().state;return s?(s.agents.find(a=>a.id===id)||null):null}
 function isWorking(a){if(!a||a.state!=="working")return false;const t=Date.parse(a.startedAt||"");return !t||Date.now()-t<3*3600e3}
 function nightFactor(){const c=chicago(),x=c.h+c.m/60;if(x>=21||x<5)return 1;if(x<7)return (7-x)/2;if(x>=19)return (x-19)/2;return 0}
@@ -710,7 +714,7 @@ let floaters=[],overlay=[];
 
 /* ---------- drawing ---------- */
 let W=0,H=0,dpr=1,scale=1,offX=0,offY=0,panFrac=.55,sceneW=0,drag=null,hover=null,selected=null,last=performance.now(),beltOff=0;
-const BOUNDS={x0:-420,x1:660,y0:-110,y1:520};
+const BOUNDS={x0:-540,x1:660,y0:-110,y1:520};
 function resize(){const r=stage.getBoundingClientRect();W=Math.max(300,r.width);const bw=BOUNDS.x1-BOUNDS.x0,bh=BOUNDS.y1-BOUNDS.y0;
   if(W<700){H=Math.round(Math.max(360,Math.min(innerHeight*.62,540)));scale=Math.max(H/bh,W/bw)}else{H=Math.round(Math.min(W/(bw/bh),innerHeight*.78));scale=Math.min(W/bw,H/bh)}
   sceneW=bw*scale;dpr=Math.min(2,window.devicePixelRatio||1);cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);cv.style.height=H+"px";
@@ -725,18 +729,21 @@ function drawFloor(){
   rect(16.9,0,.35,12.2,0,"#8B92A3",null);
   // building floor
   rect(0,0,16.9,12.2,0,C.floor,OUT,2);
+  rect(0,12.2,9.2,3.5,0,C.floor,OUT,2);
   ctx.strokeStyle=C.floorLine;ctx.lineWidth=1;
   for(let x=1;x<17;x++){const a=iso(x,0),b=iso(x,12.2);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke()}
   for(let y=1;y<12.2;y++){const a=iso(0,y),b=iso(16.9,y);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke()}
+  for(let x=1;x<9.2;x++){const a=iso(x,12.2),b=iso(x,15.7);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke()}
+  for(let y=13;y<15.7;y++){const a=iso(0,y),b=iso(9.2,y);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke()}
   for(const z of ZONES){if(!z.tint)continue;const hv=hover===z.id||selected===z.id;rect(z.gx,z.gy,z.w,z.d,0,z.tint,hv?C.accent:shade(z.tint,-.25),hv?3:1.5)}
   // walls
   const WH=58;
   poly([iso(0,0,0),iso(16.9,0,0),iso(16.9,0,WH),iso(0,0,WH)],C.wallL,OUT);
-  poly([iso(0,0,0),iso(0,12.2,0),iso(0,12.2,WH),iso(0,0,WH)],C.wallR,OUT);
+  poly([iso(0,0,0),iso(0,15.7,0),iso(0,15.7,WH),iso(0,0,WH)],C.wallR,OUT);
   const nf=nightFactor(),glass=nf>.5?"#F4D27A":shade("#9FC6E8",-nf*.4);
   for(let x=1.2;x<16;x+=2.6)poly([iso(x,0,18),iso(x+1.4,0,18),iso(x+1.4,0,46),iso(x,0,46)],glass,OUT);
-  for(let y=1.2;y<11.5;y+=2.6)poly([iso(0,y,18),iso(0,y+1.4,18),iso(0,y+1.4,46),iso(0,y,46)],glass,OUT);
-  poly([iso(0,0,WH),iso(16.9,0,WH),iso(16.9,-.25,WH),iso(-.25,-.25,WH),iso(-.25,12.2,WH),iso(0,12.2,WH)],C.wallTop,OUT);
+  for(let y=1.2;y<15;y+=2.6)poly([iso(0,y,18),iso(0,y+1.4,18),iso(0,y+1.4,46),iso(0,y,46)],glass,OUT);
+  poly([iso(0,0,WH),iso(16.9,0,WH),iso(16.9,-.25,WH),iso(-.25,-.25,WH),iso(-.25,15.7,WH),iso(0,15.7,WH)],C.wallTop,OUT);
 }
 
 function labelZone(z){const p=iso(z.gx+.25,z.gy+.25);ctx.font="600 12px Poppins, system-ui, sans-serif";const w=ctx.measureText(z.label).width;pill(z.label,p[0]+w/2+8,p[1]+16,12,"rgba(29,36,51,.86)","#F5F2EC")}
@@ -806,6 +813,12 @@ function objects(){
   add(16.95,9.6,1.8,1,()=>{block(17,9.6,1.6,1,30,["#F5F2EC","#DED8CC","#C9C2B4"]);block(18.6,9.7,.6,.8,22,["#C8502F","#A84227","#8C3720"]);const [wx,wy]=iso(17.4,10.6);ellipse(wx,wy,5,5,"#2A2F3D");const [w2x,w2y]=iso(18.8,10.5);ellipse(w2x,w2y,5,5,"#2A2F3D");const [lx,ly]=iso(17.8,10.1,24);text("PNF",lx,ly,10,"#C8502F",700,"center")});
   // Storefronts
   for(const s of STORES){const st=S?(S.stores.find(x=>x.id===s.id)||{}).status:"planned";add(17.8,s.gy,2,2,()=>drawStore(s,st||"planned"))}
+  // R&D lab: research desk with keyword bars, sticky-note idea board, test bench
+  const R=S&&S.meta&&S.meta.rnd||{};
+  o.push({depth:13.7,draw:()=>{block(.9,12.75,2.6,.12,40,["#F4F0E8","#DED8CC","#C9C2B4"],4);const ideas=Math.min(15,Number(R.backlog)||0);for(let i=0;i<ideas;i++){const gx=1.05+(i%5)*.48,z=38-Math.floor(i/5)*11;rect(gx,12.87,.34,.02,z,["#F7E98E","#F6B8C8","#BDE3F0"][i%3],OUT,.8)}const [x,y]=iso(2.2,12.8,52);pill(ideas?`${fmt0(R.backlog)} ideas scored`:"Idea board",x,y,10,"#1D2433","#F5F2EC")}});
+  o.push({depth:18.4,draw:()=>{block(3.4,13.4,2.4,.9,15,[C.woodL,C.wood,C.woodD]);block(3.7,13.45,1.6,.12,26,["#3A4256","#2B3243","#232939"],15);const top=(R.top||[]).slice(0,5);const hs=top.length?top.map(t=>Math.max(.15,Math.min(1,(Number(t.score)||0)/30))):[.35,.6,.45,.8,.5];hs.forEach((h,i)=>rect(3.85+i*.28,13.45,.16,.02,17+h*20,["#5FD3C1","#F2B33D","#E0694A","#9FC6E8","#5FD3C1"][i],null));const [x,y]=iso(4.5,13.4,48);text("eRank",x,y,8,"#9FB0C8",600,"center")}});
+  add(6.3,13.2,1.8,.7,()=>{block(6.3,13.2,1.8,.7,14,[C.metalL,C.metal,C.metalD]);const bub=isWorking(agentDoc("rnd"))&&!reduce;[["#5FD3C1",6.6],["#F2B33D",7.2],["#E0694A",7.75]].forEach(([c,gx],i)=>{const [x,y]=iso(gx,13.55,14);ctx.fillStyle=c;ctx.strokeStyle=OUT;ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(x-5,y);ctx.lineTo(x+5,y);ctx.lineTo(x+3,y-12);ctx.lineTo(x+3,y-17);ctx.lineTo(x-3,y-17);ctx.lineTo(x-3,y-12);ctx.closePath();ctx.fill();ctx.stroke();if(bub){const k=(t*.8+i*.33)%1;ellipse(x,y-18-k*12,1.8,1.8,`rgba(255,255,255,${.8*(1-k)})`)}})});
+  if(R.searchesToday!=null&&R.searchesDate===P().todayISO()){const [x,y]=iso(5.6,15.4,6);pill(`${fmt0(R.searchesToday)} of ${fmt0(R.searchesLimit||100)} eRank searches today`,x,y,9.5,"rgba(29,36,51,.86)","#C9CEDA")}
   // workers
   for(const w of crew)o.push({depth:w.x+w.y+.3,draw:()=>drawWorker(w)});
   return o;
@@ -869,6 +882,7 @@ function openPanel(id){
   else if(id==="factory"){sub="Researches, builds, gates and lists one product a day";body=agentBlock("factory")+nums([[fmt(t.listed),"Products listed"],[fmt(P().sumRange("listed",P().addDays(today,-6),today)),"Listed this week"]])+`<div class="row"><div class="k">On the line next</div><ul>${crewQ.slice(0,6).map(q=>`<li>${esc(q.title)}</li>`).join("")||"<li>Queue is empty</li>"}</ul></div>`}
   else if(id==="shop"){sub="Reads Etsy stats, comments and fixes listings";const wk=P().sumRange("etsyVisits",P().addDays(today,-6),today);body=agentBlock("shop-run")+nums([[fmt(wk),"Etsy visits, 7 days"],[fmt(t.favorites),"Favorites"],[fmt(t.orders),"Orders"],["$"+t.revenue.toFixed(2),"Revenue"]])+((S.meta.sources||[]).length?`<div class="row"><div class="k">Where visits come from (30 days)</div><ul>${S.meta.sources.map(s=>`<li>${esc(s.label)}: <b>${fmt(s.visits)}</b></li>`).join("")}</ul></div>`:"")}
   else if(id==="promo"){sub="Pins and Shorts, morning and afternoon";const top=[...S.shorts].sort((a,b)=>(b.views||0)-(a.views||0))[0];body=agentBlock("morning-promote")+agentBlock("afternoon-promote")+nums([[fmt(t.pins),"Pins published"],[fmt(t.shortViews),"Short views"]])+(top?`<div class="row"><div class="k">Top Short</div><div class="t">${esc(top.title)}: <b>${fmt(top.views)}</b> views</div></div>`:"")}
+  else if(id==="rnd"){sub="Finds what Etsy buyers search for and what reviews say is missing";const R=S.meta.rnd||{};const top=R.top||[];body=agentBlock("rnd")+nums([[R.searchesDate===today?fmt(R.searchesToday)+" / "+fmt(R.searchesLimit||100):"0 / "+fmt(R.searchesLimit||100),"eRank searches today"],[fmt(R.backlog||0),"Ideas scored and waiting"]])+`<div class="row"><div class="k">Top of the backlog</div><ul>${top.map(x=>`<li>${esc(x.name)}${x.score!=null?` <span style="color:var(--muted)">score ${esc(x.score)}</span>`:""}${x.note?`<br><span style="font-size:12.5px">${esc(x.note)}</span>`:""}</li>`).join("")||"<li>First sweep tonight.</li>"}</ul></div>`}
   else if(id==="control"){sub="Finds the weakest step each night and fixes one thing";body=agentBlock("optimizer")}
   else if(id==="quest"){sub="Things only Todd can do";const open=S.quests.filter(q=>!q.done&&(q.owner||"todd")==="todd").sort((a,b)=>(a.order||0)-(b.order||0));body=`<div class="row"><div class="k">${open.length} open</div><ul>${open.map(q=>`<li><b>${esc(q.title)}</b> <span style="color:var(--muted)">+${fmt(q.xp)} XP</span><br><span style="font-size:12.5px">${esc(q.detail||"")}</span></li>`).join("")||"<li>Nothing waiting on you.</li>"}</ul></div><div class="t" style="font-size:12.5px">Tick them off in the Stats tab, under Quests.</div>`}
   else if(id==="break"){sub="Where the crew waits between shifts";body=`<div class="row"><div class="k">Shift schedule</div><ul>${S.agents.slice().sort((a,b)=>(minutesOf(a.schedule)??0)-(minutesOf(b.schedule)??0)).map(a=>`<li><b>${esc(a.schedule||"")}</b> ${esc(a.name)} <span style="color:var(--muted)">(${esc(nextShift(a.schedule))})</span></li>`).join("")}</ul></div>`}

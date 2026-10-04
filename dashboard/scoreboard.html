@@ -652,6 +652,7 @@ const ZONES=[
   {id:"break",label:"Break Room",gx:5.5,gy:8.5,w:5,d:3,tint:"#DDE8D8",agents:[]},
   {id:"dock",label:"Loading Dock",gx:11.5,gy:8.5,w:5,d:3,tint:"#D6D2CA",agents:[]},
   {id:"rnd",label:"R&D Lab",gx:.5,gy:12.6,w:8.2,d:2.7,tint:"#D9E6F2",agents:["rnd"]},
+  {id:"coo",label:"COO Office",gx:9.6,gy:12.6,w:6.9,d:2.7,tint:"#F2E3D5",agents:["coo"]},
   {id:"stores",label:"Storefronts",gx:17.3,gy:.4,w:3,d:11.4,tint:null,agents:[]}
 ];
 const ZBY=Object.fromEntries(ZONES.map(z=>[z.id,z]));
@@ -665,10 +666,11 @@ const WORKERS=[
   {id:"afternoon-promote",name:"Ava",zone:"promo",hat:"#9A82D6",shirt:"#B39BE4",spots:[[8.6,6.9],[9.9,6.8]]},
   {id:"optimizer",name:"Ozzy",zone:"control",hat:C.gold,shirt:"#B08B2E",spots:[[13.7,6.7],[15,6.5]]},
   {id:"live",name:"Chip",zone:"control",hat:"#1D2433",shirt:"#C8502F",spots:[[12.3,7.3],[14.6,7.35],[16,6.3],[11.9,5.2]]},
+  {id:"coo",name:"Cora",zone:"coo",hat:"#1D2433",shirt:"#2F5F9E",spots:[[11.4,15.1],[13.2,14.6],[15.4,14.7]]},
   {id:"rnd",name:"Remy",zone:"rnd",hat:"#B5487A",shirt:"#EEF1F6",spots:[[1.9,13.6],[4.6,14.75],[7.1,14.3]]}
 ];
-const BREAK_SPOTS=[[6.6,9.8],[7.6,10.6],[8.8,9.6],[9.6,10.7],[7.2,11.1],[8.3,10.2],[9.9,9.9],[6.9,10.1],[8.0,9.3]];
-const SEATS=[[6.7,10.9],[7.5,10.9],[8.3,10.9],[9.1,10.9],[9.9,10.9],[6.3,10.2],[10.1,10.2],[9.6,10.3],[6.6,11.2]];
+const BREAK_SPOTS=[[6.6,9.8],[7.6,10.6],[8.8,9.6],[9.6,10.7],[7.2,11.1],[8.3,10.2],[9.9,9.9],[6.9,10.1],[8.0,9.3],[9.3,9.4]];
+const SEATS=[[6.7,10.9],[7.5,10.9],[8.3,10.9],[9.1,10.9],[9.9,10.9],[6.3,10.2],[10.1,10.2],[9.6,10.3],[6.6,11.2],[7.4,11.2]];
 
 const iso=(gx,gy,z=0)=>[(gx-gy)*TW/2,(gx+gy)*TH/2-z];
 function poly(pts,fill,stroke,lw){ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.closePath();if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw||1.4;ctx.lineJoin="round";ctx.stroke()}}
@@ -716,7 +718,7 @@ let floaters=[],overlay=[];
 
 /* ---------- drawing ---------- */
 let W=0,H=0,dpr=1,scale=1,offX=0,offY=0,panFrac=.55,sceneW=0,drag=null,hover=null,selected=null,last=performance.now(),beltOff=0;
-const BOUNDS={x0:-540,x1:660,y0:-110,y1:520};
+const BOUNDS={x0:-540,x1:660,y0:-110,y1:560};
 function resize(){const r=stage.getBoundingClientRect();W=Math.max(300,r.width);const bw=BOUNDS.x1-BOUNDS.x0,bh=BOUNDS.y1-BOUNDS.y0;
   if(W<700){H=Math.round(Math.max(360,Math.min(innerHeight*.62,540)));scale=Math.max(H/bh,W/bw)}else{H=Math.round(Math.min(W/(bw/bh),innerHeight*.78));scale=Math.min(W/bw,H/bh)}
   sceneW=bw*scale;dpr=Math.min(2,window.devicePixelRatio||1);cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);cv.style.height=H+"px";
@@ -731,12 +733,12 @@ function drawFloor(){
   rect(16.9,0,.35,12.2,0,"#8B92A3",null);
   // building floor
   rect(0,0,16.9,12.2,0,C.floor,OUT,2);
-  rect(0,12.2,9.2,3.5,0,C.floor,OUT,2);
+  rect(0,12.2,16.9,3.5,0,C.floor,OUT,2);
   ctx.strokeStyle=C.floorLine;ctx.lineWidth=1;
   for(let x=1;x<17;x++){const a=iso(x,0),b=iso(x,12.2);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke()}
   for(let y=1;y<12.2;y++){const a=iso(0,y),b=iso(16.9,y);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke()}
-  for(let x=1;x<9.2;x++){const a=iso(x,12.2),b=iso(x,15.7);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke()}
-  for(let y=13;y<15.7;y++){const a=iso(0,y),b=iso(9.2,y);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke()}
+  for(let x=1;x<16.9;x++){const a=iso(x,12.2),b=iso(x,15.7);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke()}
+  for(let y=13;y<15.7;y++){const a=iso(0,y),b=iso(16.9,y);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke()}
   for(const z of ZONES){if(!z.tint)continue;const hv=hover===z.id||selected===z.id;rect(z.gx,z.gy,z.w,z.d,0,z.tint,hv?C.accent:shade(z.tint,-.25),hv?3:1.5)}
   // walls
   const WH=58;
@@ -820,6 +822,11 @@ function objects(){
   o.push({depth:13.7,draw:()=>{block(.9,12.75,2.6,.12,40,["#F4F0E8","#DED8CC","#C9C2B4"],4);const ideas=Math.min(15,Number(R.backlog)||0);for(let i=0;i<ideas;i++){const gx=1.05+(i%5)*.48,z=38-Math.floor(i/5)*11;rect(gx,12.87,.34,.02,z,["#F7E98E","#F6B8C8","#BDE3F0"][i%3],OUT,.8)}const [x,y]=iso(2.2,12.8,52);pill(ideas?`${fmt0(R.backlog)} ideas scored`:"Idea board",x,y,10,"#1D2433","#F5F2EC")}});
   o.push({depth:18.4,draw:()=>{block(3.4,13.4,2.4,.9,15,[C.woodL,C.wood,C.woodD]);block(3.7,13.45,1.6,.12,26,["#3A4256","#2B3243","#232939"],15);const top=(R.top||[]).slice(0,5);const hs=top.length?top.map(t=>Math.max(.15,Math.min(1,(Number(t.score)||0)/30))):[.35,.6,.45,.8,.5];hs.forEach((h,i)=>rect(3.85+i*.28,13.45,.16,.02,17+h*20,["#5FD3C1","#F2B33D","#E0694A","#9FC6E8","#5FD3C1"][i],null));const [x,y]=iso(4.5,13.4,48);text("eRank",x,y,8,"#9FB0C8",600,"center")}});
   add(6.3,13.2,1.8,.7,()=>{block(6.3,13.2,1.8,.7,14,[C.metalL,C.metal,C.metalD]);const bub=isWorking(agentDoc("rnd"))&&!reduce;[["#5FD3C1",6.6],["#F2B33D",7.2],["#E0694A",7.75]].forEach(([c,gx],i)=>{const [x,y]=iso(gx,13.55,14);ctx.fillStyle=c;ctx.strokeStyle=OUT;ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(x-5,y);ctx.lineTo(x+5,y);ctx.lineTo(x+3,y-12);ctx.lineTo(x+3,y-17);ctx.lineTo(x-3,y-17);ctx.lineTo(x-3,y-12);ctx.closePath();ctx.fill();ctx.stroke();if(bub){const k=(t*.8+i*.33)%1;ellipse(x,y-18-k*12,1.8,1.8,`rgba(255,255,255,${.8*(1-k)})`)}})});
+  // COO office: strategy board, executive desk, plant
+  const CO=S&&S.meta&&S.meta.coo||{};
+  o.push({depth:23.2,draw:()=>{block(10.2,12.75,3.4,.12,42,["#F4F0E8","#DED8CC","#C9C2B4"],4);const [ax,ay]=iso(10.6,12.81,30),[bx,by]=iso(13.1,12.81,38);ctx.strokeStyle="#C8502F";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(bx,by);ctx.stroke();ellipse(bx,by,4,4,"#C8502F");for(let i=0;i<3;i++){rect(10.5+i*.9,12.87,.5,.02,20+i*6,["#F7E98E","#BDE3F0","#F6B8C8"][i],OUT,.8)}const [x,y]=iso(11.9,12.8,56);pill(CO.memoDate?"Memo "+CO.memoDate:"Strategy board",x,y-8,10,"#1D2433","#F5F2EC")}});
+  o.push({depth:25.5,draw:()=>{block(12.4,13.05,2.6,.75,15,["#8C6A4A","#76583C","#5F4630"]);block(12.8,13.1,.9,.1,22,["#3A4256","#2B3243","#232939"],15);rect(13.9,13.2,.5,.4,15.5,"#F5F2EC",OUT,1)}});
+  add(16,13.1,.5,.5,()=>{block(16.05,13.15,.4,.4,14,["#B07A50","#956541","#7D5435"]);const [x,y]=iso(16.25,13.35,22);ellipse(x,y-8,13,11,"#6F9C5E",OUT)});
   if(R.searchesToday!=null&&R.searchesDate===P().todayISO()){const [x,y]=iso(5.6,15.4,6);pill(`${fmt0(R.searchesToday)} of ${fmt0(R.searchesLimit||100)} eRank searches today`,x,y,9.5,"rgba(29,36,51,.86)","#C9CEDA")}
   // workers
   for(const w of crew)o.push({depth:w.x+w.y+.3,draw:()=>drawWorker(w)});
@@ -885,6 +892,7 @@ function openPanel(id){
   else if(id==="shop"){sub="Reads Etsy stats, comments and fixes listings";const wk=P().sumRange("etsyVisits",P().addDays(today,-6),today);body=agentBlock("shop-run")+nums([[fmt(wk),"Etsy visits, 7 days"],[fmt(t.favorites),"Favorites"],[fmt(t.orders),"Orders"],["$"+t.revenue.toFixed(2),"Revenue"]])+((S.meta.sources||[]).length?`<div class="row"><div class="k">Where visits come from (30 days)</div><ul>${S.meta.sources.map(s=>`<li>${esc(s.label)}: <b>${fmt(s.visits)}</b></li>`).join("")}</ul></div>`:"")}
   else if(id==="promo"){sub="Pins and Shorts, morning and afternoon";const top=[...S.shorts].sort((a,b)=>(b.views||0)-(a.views||0))[0];body=agentBlock("morning-promote")+agentBlock("afternoon-promote")+nums([[fmt(t.pins),"Pins published"],[fmt(t.shortViews),"Short views"]])+(top?`<div class="row"><div class="k">Top Short</div><div class="t">${esc(top.title)}: <b>${fmt(top.views)}</b> views</div></div>`:"")}
   else if(id==="rnd"){sub="Finds what Etsy buyers search for and what reviews say is missing";const R=S.meta.rnd||{};const top=R.top||[];body=agentBlock("rnd")+nums([[R.searchesDate===today?fmt(R.searchesToday)+" / "+fmt(R.searchesLimit||100):"0 / "+fmt(R.searchesLimit||100),"eRank searches today"],[fmt(R.backlog||0),"Ideas scored and waiting"]])+`<div class="row"><div class="k">Top of the backlog</div><ul>${top.map(x=>`<li>${esc(x.name)}${x.score!=null?` <span style="color:var(--muted)">score ${esc(x.score)}</span>`:""}${x.note?`<br><span style="font-size:12.5px">${esc(x.note)}</span>`:""}</li>`).join("")||"<li>First sweep tonight.</li>"}</ul></div>`}
+  else if(id==="coo"){sub="Reviews the whole operation twice a week, fixes the process and proposes where the business goes next";const CO=S.meta.coo||{};body=agentBlock("coo")+(CO.headline?`<div class="row"><div class="k">Latest memo${CO.memoDate?" · "+esc(CO.memoDate):""}</div><div class="t"><b>${esc(CO.headline)}</b></div>${CO.constraint?`<div class="t">Constraint: ${esc(CO.constraint)}</div>`:""}</div>`:`<div class="row"><div class="t">First review Monday at 5:45 am.</div></div>`)+((CO.changes||[]).length?`<div class="row"><div class="k">Changed</div><ul>${CO.changes.map(c=>`<li>${esc(c)}</li>`).join("")}</ul></div>`:"")+((CO.proposals||[]).length?`<div class="row"><div class="k">Waiting for your tick on the quest board</div><ul>${CO.proposals.map(c=>`<li>${esc(c)}</li>`).join("")}</ul></div>`:"")}
   else if(id==="control"){sub="Ozzy fixes the weakest step each night; Chip works whatever you ask for in chat";body=agentBlock("optimizer")+agentBlock("live")}
   else if(id==="quest"){sub="Things only Todd can do";const open=S.quests.filter(q=>!q.done&&(q.owner||"todd")==="todd").sort((a,b)=>(a.order||0)-(b.order||0));body=`<div class="row"><div class="k">${open.length} open</div><ul>${open.map(q=>`<li><b>${esc(q.title)}</b> <span style="color:var(--muted)">+${fmt(q.xp)} XP</span><br><span style="font-size:12.5px">${esc(q.detail||"")}</span></li>`).join("")||"<li>Nothing waiting on you.</li>"}</ul></div><div class="t" style="font-size:12.5px">Tick them off in the Stats tab, under Quests.</div>`}
   else if(id==="break"){sub="Where the crew waits between shifts";body=`<div class="row"><div class="k">Shift schedule</div><ul>${S.agents.slice().sort((a,b)=>(minutesOf(a.schedule)??0)-(minutesOf(b.schedule)??0)).map(a=>`<li><b>${esc(a.schedule||"")}</b> ${esc(a.name)} <span style="color:var(--muted)">${a.schedule?`(${esc(nextShift(a.schedule))})`:"(on call)"}</span></li>`).join("")}</ul></div>`}

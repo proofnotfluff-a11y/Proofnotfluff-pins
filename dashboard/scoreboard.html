@@ -1,0 +1,536 @@
+<title>ProofNotFluff Scoreboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Carlito:wght@400;700&display=swap">
+<style>
+/* Layout: a game HUD on the brand's paper and ink. Level + XP up top, then the scoreboard,
+   where traffic comes from, what the crew shipped, quests and achievements, crew and stores, run log. */
+:root{
+  --page:#F5F2EC; --card:#FBF9F5; --ink:#1D2433; --ink-2:#4A5163; --muted:#7C8191;
+  --line:#E3DED3; --line-2:#CFC8BA; --hud:#1D2433; --hud-ink:#F5F2EC; --hud-muted:#A9AFBF;
+  --accent:#C8502F; --accent-ink:#FFFFFF; --good:#1E7B3A; --warn:#9A6B00; --bad:#B23A2A;
+  --s-listed:#C8502F; --s-pins:#00897A; --s-shorts:#6B4FA0; --s-posts:#A87C0C; --s-visits:#2F5F9E;
+  --bar-teal:#2E6B66; --bar-purple:#6B4FA0; --bar-blue:#2F5F9E; --bar-gold:#8A6A1F;
+  --lock:#D9D3C6; --chip:#EFEADF;
+  --display:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Carlito","Calibri",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:10px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --page:#151A25; --card:#1F2635; --ink:#EEF0F5; --ink-2:#C2C7D3; --muted:#8A91A3;
+  --line:#2C3446; --line-2:#3A4358; --hud:#0F131C; --hud-ink:#F5F2EC; --hud-muted:#9AA1B3;
+  --accent:#E0694A; --accent-ink:#151A25; --good:#3DBA62; --warn:#E0B341; --bad:#F07A66;
+  --s-listed:#E0694A; --s-pins:#2FA394; --s-shorts:#9A82D6; --s-posts:#B98A1E; --s-visits:#6E9BE0;
+  --lock:#323A4D; --chip:#283043; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --page:#151A25; --card:#1F2635; --ink:#EEF0F5; --ink-2:#C2C7D3; --muted:#8A91A3;
+  --line:#2C3446; --line-2:#3A4358; --hud:#0F131C; --hud-ink:#F5F2EC; --hud-muted:#9AA1B3;
+  --accent:#E0694A; --accent-ink:#151A25; --good:#3DBA62; --warn:#E0B341; --bad:#F07A66;
+  --s-listed:#E0694A; --s-pins:#2FA394; --s-shorts:#9A82D6; --s-posts:#B98A1E; --s-visits:#6E9BE0;
+  --lock:#323A4D; --chip:#283043; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--page);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:16px 48px;display:grid;gap:18px}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:17px;font-weight:600}
+h3{font-size:14px;font-weight:600}
+.eyebrow{font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;min-width:0}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.sec-head p{margin:0;color:var(--muted);font-size:13px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:18px}
+
+/* HUD */
+.hud{background:var(--hud);color:var(--hud-ink);border-radius:14px;padding:22px;display:grid;gap:18px;position:relative;overflow:hidden}
+.bars{display:flex;gap:6px}.bars i{display:block;width:26px;height:5px;border-radius:3px}
+.bars i:nth-child(1){background:#C8502F}.bars i:nth-child(2){background:#2E6B66}.bars i:nth-child(3){background:#6B4FA0}.bars i:nth-child(4){background:#2F5F9E}.bars i:nth-child(5){background:#8A6A1F}
+.hud-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.02em}
+.fresh{font-size:12px;color:var(--hud-muted)}
+.hud-main{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.badge{width:96px;height:108px;position:relative;display:grid;place-items:center}
+.badge svg{position:absolute;inset:0}
+.badge b{position:relative;font-family:var(--display);font-size:38px;font-weight:700;color:#FFFFFF;line-height:1}
+.badge small{position:absolute;bottom:20px;font-family:var(--display);font-size:9px;letter-spacing:.14em;color:#FFFFFF;opacity:.85}
+.lvl-name{font-family:var(--display);font-size:clamp(24px,4vw,34px);font-weight:700;line-height:1.1}
+.lvl-sub{color:var(--hud-muted);font-size:14px;margin-top:4px}
+.xp{margin-top:14px;display:grid;gap:6px}
+.xp-track{height:14px;border-radius:8px;background:rgba(245,242,236,.12);overflow:hidden;position:relative}
+.xp-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,#C8502F,#E0874F);width:0;transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.xp-row{display:flex;justify-content:space-between;font-size:13px;color:var(--hud-muted);gap:8px;flex-wrap:wrap}
+.xp-row b{color:var(--hud-ink);font-weight:700}
+.streaks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:10px}
+.streak{background:rgba(245,242,236,.07);border:1px solid rgba(245,242,236,.12);border-radius:10px;padding:12px 14px;display:flex;gap:12px;align-items:center}
+.streak svg{flex:none}
+.streak .v{font-family:var(--display);font-size:22px;font-weight:700;line-height:1}
+.streak .l{font-size:12px;color:var(--hud-muted)}
+.mainq{border-top:1px solid rgba(245,242,236,.12);padding-top:14px;display:grid;gap:8px}
+.mainq-title{font-family:var(--display);font-weight:600;font-size:15px}
+.mainq ul{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.mainq li{display:flex;gap:10px;align-items:baseline;font-size:14px;color:var(--hud-ink)}
+.pill{display:inline-block;font-family:var(--display);font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.hud .pill.open{background:rgba(224,105,74,.22);color:#F3A58C}
+.hud .pill.fixed{background:rgba(61,186,98,.2);color:#8FE0A6}
+.hud .pill.watch{background:rgba(224,179,65,.2);color:#F0CF7C}
+
+/* Scoreboard tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:12px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:grid;gap:4px;min-width:0}
+.tile .v{font-family:var(--display);font-size:28px;font-weight:700;line-height:1.1}
+.tile .d{font-size:12.5px;color:var(--muted)}
+.tile .spark{height:28px;margin-top:4px}
+
+/* Charts */
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.axis text,.lbl{fill:var(--muted);font-family:var(--body);font-size:11px}
+.grid line{stroke:var(--line);stroke-width:1}
+.base{stroke:var(--line-2);stroke-width:1}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-2);margin-top:8px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--page);font-size:12.5px;padding:8px 10px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.18);z-index:20;max-width:260px;line-height:1.35}
+.tip b{font-family:var(--display);font-weight:600}
+.src-row{display:grid;grid-template-columns:minmax(0,150px) 1fr 36px;gap:10px;align-items:center;font-size:13.5px;padding-block:5px}
+.src-row .t{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink-2)}
+.src-row .track{height:12px;background:var(--chip);border-radius:6px;overflow:hidden}
+.src-row .fill{height:100%;border-radius:6px;background:var(--s-visits)}
+.src-row .n{text-align:right;font-family:var(--display);font-weight:600}
+.src-row .note{grid-column:2/4;font-size:12px;color:var(--bad);margin-top:-3px}
+.funnel{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,90px),1fr));gap:8px;margin-top:14px}
+.fstep{border:1px solid var(--line);border-radius:8px;padding:10px 12px;position:relative}
+.fstep .v{font-family:var(--display);font-size:22px;font-weight:700}
+.fstep .l{font-size:12px;color:var(--muted)}
+.fstep .c{font-size:11.5px;color:var(--ink-2)}
+.short-row{display:grid;grid-template-columns:minmax(0,1fr) 44%;gap:12px;align-items:center;padding-block:5px;font-size:13.5px}
+.short-row a{color:var(--ink);text-decoration:none;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.short-row a:hover{text-decoration:underline}
+.short-row .bar{display:flex;align-items:center;gap:8px}
+.short-row .bar i{display:block;height:12px;border-radius:0 4px 4px 0;background:var(--s-shorts);min-width:2px}
+.short-row .bar span{font-family:var(--display);font-weight:600;font-size:13px}
+
+/* Quests and achievements */
+.quest{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;padding:12px 0;border-top:1px solid var(--line)}
+.quest:first-of-type{border-top:0}
+.qbox{width:24px;height:24px;border-radius:7px;border:2px solid var(--line-2);background:transparent;display:grid;place-items:center;cursor:pointer;padding:0;color:var(--accent-ink)}
+.qbox:focus-visible,.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.qbox[disabled]{cursor:default}
+.quest.done .qbox{background:var(--good);border-color:var(--good)}
+.quest .qt{font-weight:700;font-size:14.5px}
+.quest.done .qt{color:var(--muted);text-decoration:line-through}
+.quest .qd{font-size:13px;color:var(--ink-2);margin-top:2px}
+.xpchip{font-family:var(--display);font-size:11px;font-weight:600;background:var(--chip);color:var(--ink-2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.quest.done .xpchip{background:transparent;color:var(--good)}
+.ach{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,150px),1fr));gap:10px}
+.a{border:1px solid var(--line);border-radius:10px;padding:12px;display:grid;gap:6px;align-content:start}
+.a .ico{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:var(--accent);color:#FFFFFF}
+.a.locked .ico{background:var(--lock);color:var(--muted)}
+.a .an{font-family:var(--display);font-weight:600;font-size:13px;line-height:1.2}
+.a .ad{font-size:12px;color:var(--muted);line-height:1.3}
+.a .ap{height:5px;background:var(--chip);border-radius:3px;overflow:hidden}
+.a .ap i{display:block;height:100%;background:var(--accent);border-radius:3px}
+.a.locked .an{color:var(--ink-2)}
+
+/* Crew, stores, log */
+.crew{display:grid;gap:10px}
+.agent{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:12px;border:1px solid var(--line);border-radius:10px}
+.dot{width:10px;height:10px;border-radius:50%;margin-top:5px;background:var(--muted)}
+.dot.ok{background:var(--good)}.dot.partial{background:var(--warn)}.dot.failed{background:var(--bad)}
+.agent .an{font-weight:700;font-size:14.5px;display:flex;gap:8px;flex-wrap:wrap;align-items:baseline}
+.agent .meta{font-size:12px;color:var(--muted)}
+.agent .last{font-size:13px;color:var(--ink-2);margin-top:3px}
+.stores{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px}
+.store{border:1px solid var(--line);border-radius:10px;padding:12px;display:grid;gap:4px}
+.store .sn{font-family:var(--display);font-weight:600;font-size:14px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.store .sd{font-size:12.5px;color:var(--ink-2)}
+.store a{color:var(--accent);font-size:12.5px}
+.st-live{background:color-mix(in srgb,var(--good) 18%,transparent);color:var(--good)}
+.st-setup{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.st-planned,.st-held{background:var(--chip);color:var(--muted)}
+.log{display:grid;gap:0;max-height:420px;overflow:auto}
+.log .day{font-family:var(--display);font-size:12px;font-weight:600;color:var(--muted);padding:10px 0 4px;position:sticky;top:0;background:var(--card)}
+.entry{display:grid;grid-template-columns:62px 1fr;gap:10px;padding:6px 0;font-size:13.5px;border-top:1px solid var(--line)}
+.entry .tm{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+.entry .who{font-weight:700}
+.entry .xpg{color:var(--good);font-family:var(--display);font-size:11px;font-weight:600;margin-left:6px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{font-family:var(--display);font-size:12px;font-weight:600;border:1px solid var(--line-2);background:transparent;color:var(--ink-2);padding:5px 10px;border-radius:999px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--page);border-color:var(--ink)}
+.empty{color:var(--muted);font-size:13.5px;padding:8px 0}
+.notice{border:1px dashed var(--line-2);border-radius:10px;padding:14px;color:var(--ink-2);font-size:14px}
+.rules{font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 16px}
+.rules b{color:var(--ink-2);font-weight:700}
+.levelup{position:fixed;inset:auto 16px 24px auto;background:var(--accent);color:#FFFFFF;padding:12px 16px;border-radius:10px;font-family:var(--display);font-weight:600;box-shadow:0 10px 24px rgba(0,0,0,.2);z-index:30}
+@media (max-width:560px){.hud-main{grid-template-columns:1fr}.badge{width:80px;height:90px}.badge b{font-size:32px}.src-row{grid-template-columns:minmax(0,110px) 1fr 30px}}
+@media (prefers-reduced-motion:reduce){.xp-fill{transition:none}}
+</style>
+
+<div class="wrap">
+  <header class="hud" aria-label="Shop level">
+    <div class="hud-top">
+      <div style="display:grid;gap:8px"><div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><div class="brand">PROOFNOTFLUFF SCOREBOARD</div></div>
+      <div class="fresh" id="fresh">Loading the shop's numbers…</div>
+    </div>
+    <div class="hud-main">
+      <div class="badge" aria-hidden="true">
+        <svg viewBox="0 0 96 108"><path d="M48 3 90 27v54L48 105 6 81V27z" fill="#C8502F"/><path d="M48 12 82 31.5v45L48 96 14 76.5v-45z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/></svg>
+        <b id="lvlNum">1</b><small>LEVEL</small>
+      </div>
+      <div style="min-width:0">
+        <div class="lvl-name" id="lvlName">Open sign</div>
+        <div class="lvl-sub" id="lvlSub">Every visit, pin, Short, listing and sale earns XP.</div>
+        <div class="xp">
+          <div class="xp-track" role="progressbar" aria-label="XP toward next level" id="xpBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="xp-fill" id="xpFill"></div></div>
+          <div class="xp-row"><span><b class="num" id="xpNow">0</b> XP</span><span id="xpNext"></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="streaks" id="streaks"></div>
+    <div class="mainq" id="mainq"></div>
+  </header>
+
+  <section aria-label="Scoreboard">
+    <div class="tiles" id="tiles"></div>
+  </section>
+
+  <div class="grid2">
+    <section class="card">
+      <div class="sec-head"><h2>Etsy visits by day</h2><p id="visitsNote">Etsy Stats, all sources</p></div>
+      <div class="chart" id="visitsChart"></div>
+    </section>
+    <section class="card">
+      <div class="sec-head"><h2>What the crew shipped</h2><p>Listings, pins, Shorts and posts per day</p></div>
+      <div class="chart" id="outputChart"></div>
+      <div class="legend" id="outputLegend"></div>
+    </section>
+  </div>
+
+  <div class="grid2">
+    <section class="card">
+      <div class="sec-head"><h2>Where visits come from</h2><p id="srcNote">Last 30 days</p></div>
+      <div id="sources"></div>
+      <div class="funnel" id="funnel"></div>
+    </section>
+    <section class="card">
+      <div class="sec-head"><h2>Shorts leaderboard</h2><p id="shortsNote">Views per Short</p></div>
+      <div id="shorts"></div>
+    </section>
+  </div>
+
+  <div class="grid2">
+    <section class="card">
+      <div class="sec-head"><h2>Quests</h2><div class="tabs" role="group" aria-label="Quest filter"><button type="button" id="qt-todd" aria-pressed="true">Yours</button><button type="button" id="qt-crew" aria-pressed="false">Crew</button><button type="button" id="qt-done" aria-pressed="false">Done</button></div></div>
+      <div id="quests"></div>
+    </section>
+    <section class="card">
+      <div class="sec-head"><h2>Achievements</h2><p id="achCount"></p></div>
+      <div class="ach" id="ach"></div>
+    </section>
+  </div>
+
+  <div class="grid3">
+    <section class="card">
+      <div class="sec-head"><h2>The crew</h2><p>Scheduled agents</p></div>
+      <div class="crew" id="crew"></div>
+    </section>
+    <section class="card">
+      <div class="sec-head"><h2>Storefronts</h2><p>Where products sell</p></div>
+      <div class="stores" id="stores"></div>
+    </section>
+    <section class="card">
+      <div class="sec-head"><h2>Run log</h2><p>Newest first</p></div>
+      <div class="log" id="log"></div>
+    </section>
+  </div>
+
+  <section class="card">
+    <div class="sec-head"><h2>How XP works</h2></div>
+    <div class="rules" id="rules"></div>
+  </section>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+(function(){
+"use strict";
+const TZ="America/Chicago";
+const XP={visit:3,favorite:10,order:100,review:50,listed:50,pin:5,short:10,post:5,shortViews:50};
+const LEVELS=[[0,"Open sign"],[250,"First shelf"],[600,"Market stall"],[1100,"Corner shop"],[1800,"Main Street"],[2700,"Busy counter"],[4000,"Local favorite"],[6000,"Rising star"],[9000,"Bestseller"],[13000,"Flagship"],[18000,"Department store"]];
+const SERIES=[["listed","Listed","--s-listed"],["pins","Pins","--s-pins"],["shorts","Shorts","--s-shorts"],["posts","Posts","--s-posts"]];
+const state={days:{},shorts:[],agents:[],stores:[],quests:[],log:[],meta:{},loaded:new Set(),canWrite:false,qtab:"todd",db:null,lastLevel:null};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt=n=>Number(n||0).toLocaleString("en-US");
+const n0=v=>typeof v==="number"&&isFinite(v)?v:0;
+
+function todayISO(){return new Intl.DateTimeFormat("en-CA",{timeZone:TZ,year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date())}
+function addDays(iso,k){const d=new Date(iso+"T12:00:00Z");d.setUTCDate(d.getUTCDate()+k);return d.toISOString().slice(0,10)}
+function shortDate(iso){const d=new Date(iso+"T12:00:00Z");return d.toLocaleDateString("en-US",{month:"short",day:"numeric",timeZone:"UTC"})}
+function dow(iso){return new Date(iso+"T12:00:00Z").toLocaleDateString("en-US",{weekday:"short",timeZone:"UTC"})}
+
+/* ---------- derived numbers ---------- */
+function totals(){
+  const t={visits:0,favorites:0,orders:0,revenue:0,reviews:0,listed:0,pins:0,shorts:0,posts:0};
+  for(const d of Object.values(state.days)){for(const k in t)t[k]+=n0(d[k==="visits"?"etsyVisits":k])}
+  t.shortViews=state.shorts.reduce((s,x)=>s+n0(x.views),0);
+  return t;
+}
+function questXP(){return state.quests.filter(q=>q.done).reduce((s,q)=>s+n0(q.xp),0)}
+function computeXP(t){
+  return t.visits*XP.visit+t.favorites*XP.favorite+t.orders*XP.order+t.reviews*XP.review+t.listed*XP.listed+t.pins*XP.pin+t.shorts*XP.short+t.posts*XP.post+Math.floor(t.shortViews/XP.shortViews)+questXP();
+}
+function levelFor(xp){let i=0;while(i+1<LEVELS.length&&xp>=LEVELS[i+1][0])i++;return i}
+function streak(field){
+  // consecutive days with field>0, ending today (or yesterday when today has none yet)
+  let day=todayISO(),count=0;
+  const v=iso=>n0((state.days[iso]||{})[field]);
+  if(!v(day))day=addDays(day,-1);
+  while(v(day)>0){count++;day=addDays(day,-1)}
+  return count;
+}
+function daysSinceLastSale(){
+  const sold=Object.values(state.days).filter(d=>n0(d.orders)>0).map(d=>d.date).sort();
+  if(!sold.length)return null;
+  const last=sold[sold.length-1];
+  return Math.round((new Date(todayISO()+"T12:00:00Z")-new Date(last+"T12:00:00Z"))/864e5);
+}
+function sumRange(field,from,to){let s=0;for(const d of Object.values(state.days)){if(d.date>=from&&d.date<=to)s+=n0(d[field])}return s}
+
+/* ---------- HUD ---------- */
+function renderHUD(){
+  const t=totals(),xp=computeXP(t),li=levelFor(xp);
+  const [base,name]=LEVELS[li],next=LEVELS[li+1];
+  $("lvlNum").textContent=li+1;$("lvlName").textContent=name;
+  $("xpNow").textContent=fmt(xp);
+  if(next){
+    const pct=Math.max(0,Math.min(100,(xp-base)/(next[0]-base)*100));
+    $("xpFill").style.width=pct.toFixed(1)+"%";$("xpBar").setAttribute("aria-valuenow",Math.round(pct));
+    $("xpNext").innerHTML=`<b class="num">${fmt(next[0]-xp)}</b> XP to level ${li+2}, ${esc(next[1])}`;
+  }else{$("xpFill").style.width="100%";$("xpNext").textContent="Top level reached"}
+  const first=state.days[Object.keys(state.days).sort()[0]];
+  $("lvlSub").textContent=first?`Day ${Math.round((new Date(todayISO()+"T12:00:00Z")-new Date(first.date+"T12:00:00Z"))/864e5)+1} since the first listing went live.`:"Every visit, pin, Short, listing and sale earns XP.";
+  if(state.loaded.size>=7){if(state.lastLevel!==null&&li>state.lastLevel)toast(`Level up: ${li+1}, ${name}`);state.lastLevel=li}
+
+  const ds=daysSinceLastSale();
+  const flame='<svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 3c1.5 4.5 6 6.8 6 12.3A6 6 0 0 1 8 15.3c0-2.7 1.5-4.6 3-6 .3 2 1.3 3.2 2.4 3.7C13.6 9.6 12.7 6.2 14 3z" fill="#E0874F"/></svg>';
+  const box='<svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect x="5" y="9" width="18" height="14" rx="2" fill="#2E6B66"/><path d="M5 9l3-4h12l3 4" fill="none" stroke="#5FA59E" stroke-width="2"/></svg>';
+  const tag='<svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M4 14 14 4h10v10L14 24z" fill="#8A6A1F"/><circle cx="19" cy="9" r="2" fill="#1D2433"/></svg>';
+  $("streaks").innerHTML=[
+    [box,streak("listed"),"day listing streak","A new listing goes live each day"],
+    [flame,streak("pins"),"day promo streak","Pins published each day"],
+    [tag,ds===null?"None yet":ds,ds===null?"first sale still open":"days since the last sale",""]
+  ].map(([ic,v,l,ti])=>`<div class="streak" title="${esc(ti)}">${ic}<div><div class="v num">${esc(v)}</div><div class="l">${esc(l)}</div></div></div>`).join("");
+
+  const mq=state.meta.mainQuest;
+  if(mq&&mq.title){
+    $("mainq").innerHTML=`<div class="eyebrow" style="color:var(--hud-muted)">Main quest</div><div class="mainq-title">${esc(mq.title)}</div><ul>${(mq.blockers||[]).map(b=>`<li><span class="pill ${esc(b.status||"open")}">${esc(b.status||"open")}</span><span>${esc(b.text)}</span></li>`).join("")}</ul>`;
+  }else $("mainq").innerHTML="";
+
+  const as=state.meta.statsAsOf;
+  $("fresh").textContent=as?`Etsy numbers as of ${as}. Updated by the crew each run.`:"Waiting for the first scoreboard update.";
+}
+function toast(msg){const el=document.createElement("div");el.className="levelup";el.textContent=msg;document.body.appendChild(el);setTimeout(()=>el.remove(),4200)}
+
+/* ---------- tiles ---------- */
+function sparkPath(vals,w,h){
+  if(!vals.length)return"";const mx=Math.max(1,...vals);const step=vals.length>1?w/(vals.length-1):0;
+  return vals.map((v,i)=>`${i?"L":"M"}${(i*step).toFixed(1)},${(h-2-(v/mx)*(h-6)).toFixed(1)}`).join("");
+}
+function renderTiles(){
+  const t=totals(),today=todayISO();
+  const wk=sumRange("etsyVisits",addDays(today,-6),today),prev=sumRange("etsyVisits",addDays(today,-13),addDays(today,-7));
+  const last14=[];for(let i=13;i>=0;i--){const d=state.days[addDays(today,-i)];last14.push(d?n0(d.etsyVisits):0)}
+  const sp=sparkPath(last14,150,28);
+  const live=n0(state.meta.listingsLive)||t.listed;
+  const delta=wk-prev;
+  const tiles=[
+    ["Etsy visits, 7 days",fmt(wk),`${delta>=0?"+":""}${delta} vs the 7 days before`,sp],
+    ["Listings live",fmt(live),`${fmt(t.listed)} listed since launch`],
+    ["Orders",fmt(t.orders),t.orders?`$${t.revenue.toFixed(2)} revenue`:"First sale unlocks +100 XP"],
+    ["Favorites",fmt(t.favorites),"Etsy weighs these in search"],
+    ["Short views",fmt(t.shortViews),`${fmt(state.shorts.length)} Shorts published`],
+    ["Pins published",fmt(t.pins),`${fmt(t.posts)} posts on LinkedIn and X`]
+  ];
+  $("tiles").innerHTML=tiles.map(([l,v,d,s])=>`<div class="tile"><div class="eyebrow">${esc(l)}</div><div class="v num">${esc(v)}</div><div class="d">${esc(d)}</div>${s?`<svg class="spark" viewBox="0 0 150 28" preserveAspectRatio="none" aria-hidden="true"><path d="${s}" fill="none" stroke="var(--s-visits)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>`:""}</div>`).join("");
+}
+
+/* ---------- charts ---------- */
+function windowDays(n){
+  const keys=Object.keys(state.days).sort();if(!keys.length)return[];
+  const end=todayISO()>keys[keys.length-1]?todayISO():keys[keys.length-1];
+  const start=keys[0]>addDays(end,-(n-1))?keys[0]:addDays(end,-(n-1));
+  const out=[];for(let d=start;d<=end;d=addDays(d,1))out.push(d);return out;
+}
+function niceStep(v){if(v<=1)return 1;const p=Math.pow(10,Math.floor(Math.log10(v)));const m=v/p;return (m<=1?1:m<=2?2:m<=5?5:10)*p}
+function niceMax(v){if(v<=4)return 4;const p=Math.pow(10,Math.floor(Math.log10(v)));const m=v/p;return (m<=2?2:m<=5?5:10)*p}
+const tip=$("tip");
+function showTip(e,html){tip.innerHTML=html;tip.hidden=false;const pad=14;let x=e.clientX+pad,y=e.clientY+pad;const r=tip.getBoundingClientRect();if(x+r.width>innerWidth-8)x=e.clientX-r.width-pad;if(y+r.height>innerHeight-8)y=e.clientY-r.height-pad;tip.style.left=x+"px";tip.style.top=y+"px"}
+function hideTip(){tip.hidden=true}
+function bindTips(root){root.querySelectorAll("[data-tip]").forEach(el=>{el.addEventListener("pointermove",e=>showTip(e,el.getAttribute("data-tip")));el.addEventListener("pointerleave",hideTip)})}
+
+function barChart(el,days,stackKeys,opts){
+  const W=Math.max(280,Math.round(el.clientWidth||560)),H=W<420?200:220,L=30,R=8,T=12,B=28,iw=W-L-R,ih=H-T-B;
+  if(!days.length){el.innerHTML='<div class="empty">No days recorded yet. The first scheduled run adds one.</div>';return}
+  const totalsPer=days.map(d=>{const r=state.days[d];return r?stackKeys.reduce((s,[k])=>s+n0(r[k]),0):null});
+  const raw=Math.max(1,...totalsPer.map(v=>v||0));const step=niceStep(raw/4);const ymax=Math.ceil(raw/step)*step;const ticks=Math.round(ymax/step);
+  const slot=iw/days.length,bw=Math.max(4,Math.min(26,slot-6));
+  let g='<g class="grid">';
+  for(let i=0;i<=ticks;i++){const v=ymax*i/ticks,y=T+ih-ih*i/ticks;g+=`<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}"/>`;g+=`<text class="lbl" x="${L-6}" y="${y+3.5}" text-anchor="end">${fmt(v)}</text>`}
+  g+="</g>";
+  let bars="",hits="",xl="";const every=Math.ceil(days.length/Math.max(3,Math.floor(iw/70)));
+  days.forEach((d,i)=>{
+    const cx=L+slot*i+slot/2,r=state.days[d];
+    if(i%every===0||i===days.length-1)xl+=`<text class="lbl" x="${cx}" y="${H-8}" text-anchor="middle">${shortDate(d)}</text>`;
+    if(!r){bars+=`<text class="lbl" x="${cx}" y="${T+ih-4}" text-anchor="middle" opacity=".6">·</text>`;return}
+    let y=T+ih;const parts=[];
+    stackKeys.forEach(([k,label,col],si)=>{const v=n0(r[k]);if(v<=0)return;const h=ih*v/ymax;y-=h;parts.push({y,h,col,si});});
+    parts.forEach((p,pi)=>{const top=pi===parts.length-1;const gap=pi>0?2:0;const hh=Math.max(1,p.h-gap);
+      bars+=top?`<path d="${roundTop(cx-bw/2,p.y,bw,hh,Math.min(4,hh/2))}" fill="var(${p.col})"/>`:`<rect x="${cx-bw/2}" y="${p.y}" width="${bw}" height="${hh}" fill="var(${p.col})"/>`});
+    const lines=stackKeys.map(([k,label])=>`${label}: <b>${fmt(n0(r[k]))}</b>`).join("<br>");
+    const note=r.note?`<br><span style="opacity:.8">${esc(r.note)}</span>`:"";
+    hits+=`<rect x="${L+slot*i}" y="${T}" width="${slot}" height="${ih}" fill="transparent" data-tip="${esc(`<b>${dow(d)} ${shortDate(d)}</b><br>${lines}${note}`)}"/>`;
+  });
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${esc(opts.label)}">${g}<line class="base" x1="${L}" x2="${W-R}" y1="${T+ih}" y2="${T+ih}"/>${bars}${xl}${hits}</svg>`;
+  bindTips(el);
+}
+function roundTop(x,y,w,h,r){return `M${x},${y+h}V${y+r}Q${x},${y} ${x+r},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${y+h}Z`}
+function renderCharts(){
+  barChart($("visitsChart"),windowDays(28),[["etsyVisits","Etsy visits","--s-visits"]],{label:"Etsy visits per day"});
+  barChart($("outputChart"),windowDays(28),SERIES,{label:"Listings, pins, Shorts and posts per day"});
+  $("outputLegend").innerHTML=SERIES.map(([k,l,c])=>`<span><i style="background:var(${c})"></i>${l}</span>`).join("");
+  const as=state.meta.statsAsOf;$("visitsNote").textContent=as?`Etsy Stats, all sources. Today stays partial until evening.`:"Etsy Stats, all sources";
+}
+
+/* ---------- sources, funnel, shorts ---------- */
+function renderSources(){
+  const src=state.meta.sources||[];
+  if(!src.length){$("sources").innerHTML='<div class="empty">Traffic sources appear after the first Monday review.</div>';$("funnel").innerHTML="";return}
+  const mx=Math.max(1,...src.map(s=>n0(s.visits)));
+  $("srcNote").textContent=state.meta.sourcesWindow||"Last 30 days";
+  $("sources").innerHTML=src.map(s=>`<div class="src-row"><div class="t" title="${esc(s.label)}">${esc(s.label)}</div><div class="track"><div class="fill" style="width:${(n0(s.visits)/mx*100).toFixed(1)}%"></div></div><div class="n num">${fmt(s.visits)}</div>${s.note?`<div class="note">${esc(s.note)}</div>`:""}</div>`).join("");
+  const f=state.meta.funnel||[];
+  $("funnel").innerHTML=f.map((s,i)=>{const prev=i?n0(f[i-1].value):null;const c=i&&prev?`${Math.round(n0(s.value)/prev*100)}% of ${String(f[i-1].label).toLowerCase()}`:"";
+    return `<div class="fstep"><div class="l">${esc(s.label)}</div><div class="v num">${fmt(s.value)}</div>${c?`<div class="c">${esc(c)}</div>`:""}</div>`}).join("");
+}
+function renderShorts(){
+  const list=[...state.shorts].sort((a,b)=>n0(b.views)-n0(a.views));
+  if(!list.length){$("shorts").innerHTML='<div class="empty">No Shorts recorded yet.</div>';return}
+  const mx=Math.max(1,...list.map(s=>n0(s.views)));
+  const asof=state.meta.shortsAsOf;$("shortsNote").textContent=asof?`Views as of ${asof}`:"Views per Short";
+  $("shorts").innerHTML=list.map(s=>{const w=Math.max(1,n0(s.views)/mx*78);
+    const title=esc(s.title);const link=s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener" title="${title}">${title}</a>`:`<span title="${title}" style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${title}</span>`;
+    return `<div class="short-row">${link}<div class="bar" data-tip="${esc(`<b>${esc(s.title)}</b><br>${fmt(s.views)} views · posted ${shortDate(s.date)}${s.product?"<br>Product #"+esc(s.product):""}`)}"><i style="width:${w.toFixed(1)}%"></i><span class="num">${fmt(s.views)}</span></div></div>`}).join("");
+  bindTips($("shorts"));
+}
+
+/* ---------- quests & achievements ---------- */
+function renderQuests(){
+  const tab=state.qtab;
+  let list=state.quests.filter(q=>tab==="done"?q.done:(!q.done&&(q.owner||"todd")===tab));
+  list.sort((a,b)=>n0(a.order)-n0(b.order));
+  ["todd","crew","done"].forEach(k=>$("qt-"+k).setAttribute("aria-pressed",String(k===tab)));
+  if(!list.length){$("quests").innerHTML=`<div class="empty">${tab==="done"?"Nothing finished yet. Tick a quest when it's done.":"No open quests here."}</div>`;return}
+  const check='<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5 5.5 10.5 11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  $("quests").innerHTML=list.map(q=>`<div class="quest ${q.done?"done":""}"><button type="button" class="qbox" data-q="${esc(q.id)}" aria-label="${q.done?"Mark not done":"Mark done"}: ${esc(q.title)}" ${state.canWrite?"":"disabled"}>${q.done?check:""}</button><div style="min-width:0"><div class="qt">${esc(q.title)}</div>${q.detail?`<div class="qd">${esc(q.detail)}</div>`:""}</div><span class="xpchip">+${fmt(q.xp)} XP</span></div>`).join("");
+  $("quests").querySelectorAll("button[data-q]").forEach(b=>b.addEventListener("click",()=>toggleQuest(b.getAttribute("data-q"),b)));
+}
+async function toggleQuest(id,btn){
+  const q=state.quests.find(x=>x.id===id);if(!q||!state.db||!state.canWrite)return;
+  btn.disabled=true;
+  try{await state.db.doc("quests/"+id).update({done:!q.done,doneAt:!q.done?new Date().toISOString():null})}
+  catch(e){if(e&&e.code==="invalid_argument"){state.canWrite=false;renderQuests()}}
+  finally{btn.disabled=!state.canWrite}
+}
+const ICONS={
+  store:'<path d="M4 9h16l-1.5-5h-13zM5 9v10h14V9M10 19v-5h4v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>',
+  stack:'<path d="M12 3 21 8l-9 5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>',
+  pin:'<path d="M12 21v-6M7 4h10l-1.5 5 3 3h-13l3-3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>',
+  play:'<rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9v6l5-3z" fill="currentColor"/>',
+  eye:'<path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="2.6" fill="currentColor"/>',
+  search:'<circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15 15l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+  heart:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>',
+  coin:'<circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v10M9.5 9.5c0-1 1-1.5 2.5-1.5s2.5.6 2.5 1.7c0 2.6-5 1.4-5 4.1 0 1.1 1 1.7 2.5 1.7s2.5-.5 2.5-1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
+  star:'<path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>',
+  flame:'<path d="M12 3c1.3 3.9 5.2 5.9 5.2 10.6A5.2 5.2 0 0 1 6.8 13.6c0-2.3 1.3-4 2.6-5.2.3 1.7 1.1 2.8 2.1 3.2-.2-3-1-5.9.5-8.6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>',
+  crowd:'<circle cx="8" cy="9" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="16.5" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M2.5 19c.8-3 3-4.5 5.5-4.5s4.7 1.5 5.5 4.5M14 15c2.6-.6 5.6.6 6.5 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>'
+};
+function achievements(){
+  const t=totals(),today=todayISO();
+  const wkVisits=sumRange("etsyVisits",addDays(today,-6),today);
+  const bestShort=Math.max(0,...state.shorts.map(s=>n0(s.views)));
+  const searchVisits=n0((state.meta.sources||[]).find(s=>s.key==="search")?.visits)||n0(state.meta.searchVisitsEver);
+  const maxListStreak=(()=>{let best=0,cur=0;const ks=Object.keys(state.days).sort();if(!ks.length)return 0;for(let d=ks[0];d<=today;d=addDays(d,1)){if(n0((state.days[d]||{}).listed)>0){cur++;best=Math.max(best,cur)}else cur=0}return best})();
+  return [
+    ["store","Open for business","First listing live",t.listed,1],
+    ["stack","Baker's dozen","13 listings live",t.listed,13],
+    ["pin","Pin wall","50 pins published",t.pins,50],
+    ["play","On air","First Short published",state.shorts.length,1],
+    ["eye","1K club","One Short past 1,000 views",bestShort,1000],
+    ["search","Found in search","First visit from Etsy search",searchVisits,1],
+    ["heart","Bookmarked","First favorite",t.favorites,1],
+    ["coin","First sale","The first order",t.orders,1],
+    ["star","Five stars","First review on a new product",t.reviews,1],
+    ["crowd","Crowd","100 Etsy visits in 7 days",wkVisits,100],
+    ["flame","Week of launches","7-day listing streak",maxListStreak,7],
+    ["coin","First $100","$100 in revenue",Math.floor(t.revenue),100]
+  ];
+}
+function renderAch(){
+  const list=achievements();let got=0;
+  $("ach").innerHTML=list.map(([ic,name,desc,v,goal])=>{const ok=v>=goal;if(ok)got++;const pct=Math.min(100,v/goal*100);
+    return `<div class="a ${ok?"":"locked"}"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">${ICONS[ic]}</svg></div><div class="an">${esc(name)}</div><div class="ad">${esc(desc)}</div>${ok?`<div class="ad" style="color:var(--good);font-weight:700">Unlocked</div>`:`<div class="ap" aria-label="${esc(name)} progress"><i style="width:${pct.toFixed(1)}%"></i></div><div class="ad num">${fmt(Math.min(v,goal))} / ${fmt(goal)}</div>`}</div>`}).join("");
+  $("achCount").textContent=`${got} of ${list.length} unlocked`;
+}
+
+/* ---------- crew, stores, log ---------- */
+function renderCrew(){
+  const list=[...state.agents].sort((a,b)=>n0(a.order)-n0(b.order));
+  $("crew").innerHTML=list.length?list.map(a=>`<div class="agent"><span class="dot ${esc(a.lastStatus||"")}" aria-hidden="true"></span><div style="min-width:0"><div class="an">${esc(a.name)}<span class="meta">${esc(a.schedule||"")}${a.where?" · "+esc(a.where):""}</span></div><div class="meta">${esc(a.role||"")}</div><div class="last">${a.lastRun?`<b>${esc(a.lastRun)}:</b> `:""}${esc(a.lastNote||"No run reported yet.")}</div></div></div>`).join(""):'<div class="empty">No agents registered yet.</div>';
+}
+function renderStores(){
+  const list=[...state.stores].sort((a,b)=>n0(a.order)-n0(b.order));
+  $("stores").innerHTML=list.length?list.map(s=>`<div class="store"><div class="sn">${esc(s.name)}<span class="pill st-${esc(s.status)}">${esc(s.status)}</span></div><div class="sd">${esc(s.detail||"")}</div>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">Open</a>`:""}</div>`).join(""):'<div class="empty">No storefronts yet.</div>';
+}
+function mins(t){const m=/^(\d{1,2}):(\d{2})\s*(am|pm)$/i.exec(String(t||"").trim());if(!m)return -1;let h=+m[1]%12;if(m[3].toLowerCase()==="pm")h+=12;return h*60+ +m[2]}
+function renderLog(){
+  const days=[...state.log].sort((a,b)=>a.id<b.id?1:-1);
+  if(!days.length){$("log").innerHTML='<div class="empty">Each scheduled run adds a line here.</div>';return}
+  $("log").innerHTML=days.map(d=>{const es=[...(d.entries||[])].sort((a,b)=>mins(b.t)-mins(a.t));
+    return `<div class="day">${dow(d.id)} ${shortDate(d.id)}</div>`+es.map(e=>`<div class="entry"><span class="tm">${esc(e.t||"")}</span><span><span class="who">${esc(e.agent||"")}</span> ${esc(e.text||"")}${e.xp?`<span class="xpg">+${fmt(e.xp)} XP</span>`:""}</span></div>`).join("")}).join("");
+}
+function renderRules(){
+  $("rules").innerHTML=[["Etsy visit",XP.visit],["Favorite",XP.favorite],["Order",XP.order],["Review",XP.review],["New listing",XP.listed],["Pin",XP.pin],["Short",XP.short],["Post",XP.post],[`Every ${XP.shortViews} Short views`,1],["Quest","shown on each"]].map(([k,v])=>`<span>${esc(k)} <b>${typeof v==="number"?"+"+v+" XP":esc(v)}</b></span>`).join("")+`<span>Levels: ${LEVELS.map((l,i)=>`${i+1} ${esc(l[1])} (${fmt(l[0])})`).join(", ")}</span>`;
+}
+
+function renderAll(){renderHUD();renderTiles();renderCharts();renderSources();renderShorts();renderQuests();renderAch();renderCrew();renderStores();renderLog();renderRules()}
+let rz=0;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(state.loaded.size)renderCharts()},150)});
+let pending=false;function schedule(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;renderAll()})}
+
+["todd","crew","done"].forEach(k=>$("qt-"+k).addEventListener("click",()=>{state.qtab=k;renderQuests()}));
+renderRules();renderHUD();
+
+async function boot(){
+  const claude=window.claude;
+  const db=claude&&claude.use?await claude.use("db"):null;
+  if(!db){$("fresh").textContent="Open this page while signed in to claude.ai to load the shop's numbers.";
+    $("tiles").innerHTML='<div class="notice">The scoreboard reads its numbers from the shop\'s shared data. Sign in to see them.</div>';return}
+  state.db=db;
+  try{const user=await claude.use("user");if(user){const c=await user.can("data.write");state.canWrite=c===null?true:!!c}}catch(e){state.canWrite=false}
+  const subs=[
+    ["days",snap=>{const m={};snap.docs.forEach(d=>{const v=d.data();if(v)m[d.id]={...v,date:v.date||d.id}});state.days=m}],
+    ["shorts",snap=>{state.shorts=snap.docs.map(d=>({id:d.id,...d.data()}))}],
+    ["agents",snap=>{state.agents=snap.docs.map(d=>({id:d.id,...d.data()}))}],
+    ["stores",snap=>{state.stores=snap.docs.map(d=>({id:d.id,...d.data()}))}],
+    ["quests",snap=>{state.quests=snap.docs.map(d=>({id:d.id,...d.data()}))}],
+    ["log",snap=>{state.log=snap.docs.map(d=>({id:d.id,...d.data()}))}],
+    ["meta",snap=>{const s=snap.docs.find(d=>d.id==="shop");state.meta=s?{...s.data()}:{}}]
+  ];
+  for(const [col,fn] of subs){
+    db.collection(col).onSnapshot(s=>{fn(s);state.loaded.add(col);schedule()},e=>{$("fresh").textContent="Live updates paused. Reload the page to reconnect."});
+  }
+}
+boot();
+})();
+</script>

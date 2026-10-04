@@ -4,5 +4,5 @@
   {"type":"compare","kicker":"WHAT CHANGED","left":{"label":"Old 3% host fee","value":"$194","kind":""},"right":{"label":"New 15.5% host fee","value":"$169","kind":"bad"},"note":"Same $200 night. $25 less in your account."},
   {"type":"stat","kicker":"THE COMMON MISTAKE","label":"Raise the price 12.5% to $225, and you get","value":"$190","kind":"bad","sub":"Still $4 short every night. On a 60% occupied cabin that is about $900 a year."},
   {"type":"fix","kicker":"THE FIX","title":"Divide, don't add","formula":"$194 &divide; 0.845 = $230","sub":"Take the payout you want and divide by 0.845. Then check the result against your market."},
-  {"type":"cta","title":"Every season, event and discount, priced the same way","button":"STR Nightly Pricing Worksheet","sub":"Link in the description."}
+  {"type":"cta","title":"Every season, event and discount, priced the same way","button":"STR Nightly Pricing Worksheet","sub":"On Etsy: etsy.com/shop/ProofNotFluff"}
  ]}

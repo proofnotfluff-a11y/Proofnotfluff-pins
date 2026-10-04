@@ -107,8 +107,20 @@ def render(page_html, nframes, workdir):
         b.close()
     return fdir
 
+# YouTube made links in Shorts descriptions unclickable (Aug 31, 2023), so a CTA that points
+# to the description sends viewers nowhere. Every CTA ends on a route that works.
+CTA_SUB = "On Etsy: etsy.com/shop/ProofNotFluff"
+
+def fix_cta(spec):
+    for s in spec["slides"]:
+        if s.get("type") == "cta":
+            sub = s.get("sub", "")
+            if not sub or "description" in sub.lower() or "link below" in sub.lower():
+                s["sub"] = CTA_SUB
+    return spec
+
 def main(spec_path, out):
-    spec = json.load(open(spec_path)); work = os.path.join(HERE, "work"); os.makedirs(work, exist_ok=True)
+    spec = fix_cta(json.load(open(spec_path))); work = os.path.join(HERE, "work"); os.makedirs(work, exist_ok=True)
     total = len(spec["slides"]) * SLIDE
     fdir = render(html(spec), int(total * FPS), work)
     mp = os.path.join(work, "music.wav"); music(total, mp)

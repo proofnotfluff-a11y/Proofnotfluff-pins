@@ -8,7 +8,7 @@ Spec: `theme` ("ink" or "paper"), `footer`, and `slides`, a list of five in this
 2. `compare`: `kicker`, `left` and `right` as `{label, value, kind}`, `note`
 3. `stat`: `kicker`, `label`, `value`, `kind` ("" or "bad" or "good"), `sub`
 4. `fix`: `kicker`, `title`, `formula`, `sub`
-5. `cta`: `title`, `button` (the product name), `sub` ("Link in the description.")
+5. `cta`: `title`, `button` (the product name), `sub` ("On Etsy: etsy.com/shop/ProofNotFluff", typed out because searching the shop name on Etsy only shows a small "did you mean the shop" link. Never point to the description: YouTube made Shorts description links unclickable in 2023. The tool rewrites any CTA that does.)
 
 See example-slides-spec.json. Each slide teaches one number from the day's first pin; the product is named once, on the last slide. No em dashes anywhere.
 

@@ -1,0 +1,19 @@
+{
+  "product_id": "13",
+  "product": "Service Pricing Calculator",
+  "tab": "Hourly rate",
+  "audience": "Cleaners, detailers, lawn care",
+  "hook": "A $40 hourly rate pays you about <b>$20</b>",
+  "hook_say": "Here is what a $40 hourly rate really pays a service business owner.",
+  "rows": [
+    {"label": "Rate you quote per billed hour", "value": "$40", "input": true, "say": "You quote $40 an hour", "why": "Start with the rate you quote: $40 for every hour you bill."},
+    {"label": "Unbilled hours (quotes, driving, admin)", "value": "1 in 3", "input": true, "say": "1 in 3 hours isn't billed", "why": "Quoting, driving and admin eat about 1 of every 3 hours you work, and nobody pays for those."},
+    {"label": "Overhead per month", "value": "$500", "input": true, "say": "$500 a month in overhead", "why": "Add $500 a month of overhead: insurance, supplies, phone, software."},
+    {"label": "Hours worked per month", "value": "150", "input": true, "say": "150 hours worked a month", "why": "Spread that over 150 working hours a month."},
+    {"label": "Self-employment tax", "value": "15.3% on 92.35%", "say": "", "why": ""},
+    {"label": "Kept per hour worked", "value": "$20.04", "result": true, "kind": "bad", "say": "You keep about $20 an hour", "why": "After unpaid hours, overhead and self-employment tax, you keep about $20 for every hour worked. Half the rate is gone before income tax."}
+  ],
+  "fix": {"label": "To keep $30 an hour, bill", "value": "$57", "say": "To keep $30, bill about $57", "why": "To keep $30 an hour worked, the same business needs to bill about $57. The calculator does this math for your numbers."},
+  "cta": {"title": "Service Pricing Calculator", "button": "Instant download", "sub": "On Etsy: etsy.com/shop/ProofNotFluff", "say": "Run your own numbers"},
+  "note": "Example numbers. Your own go in the calculator."
+}

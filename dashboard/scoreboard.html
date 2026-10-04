@@ -165,8 +165,95 @@ h3{font-size:14px;font-weight:600}
 .levelup{position:fixed;inset:auto 16px 24px auto;background:var(--accent);color:#FFFFFF;padding:12px 16px;border-radius:10px;font-family:var(--display);font-weight:600;box-shadow:0 10px 24px rgba(0,0,0,.2);z-index:30}
 @media (max-width:560px){.hud-main{grid-template-columns:1fr}.badge{width:80px;height:90px}.badge b{font-size:32px}.src-row{grid-template-columns:minmax(0,110px) 1fr 30px}}
 @media (prefers-reduced-motion:reduce){.xp-fill{transition:none}}
+
+/* ---------- Factory floor (game view) ---------- */
+.topbar{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:14px 0;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.topbar .brand2{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.02em;display:flex;align-items:center;gap:10px}
+.topbar .brand2 .bars i{width:18px;height:4px}
+.viewtabs{display:flex;gap:6px}
+.viewtabs button{font-family:var(--display);font-size:13px;font-weight:600;border:1px solid var(--line-2);background:transparent;color:var(--ink-2);padding:7px 14px;border-radius:999px;cursor:pointer}
+.viewtabs button[aria-pressed="true"]{background:var(--ink);color:var(--page);border-color:var(--ink)}
+.viewtabs button:focus-visible,.chipbtn:focus-visible,.fx-close:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.fxv{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:12px 40px;display:grid;gap:12px}
+.fx-hud{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
+.fx-level{display:flex;align-items:center;gap:12px;background:#1D2433;color:#F5F2EC;border-radius:12px;padding:10px 14px;flex:1 1 300px;min-width:0}
+.fx-level .hex{width:42px;height:46px;flex:none;position:relative;display:grid;place-items:center}
+.fx-level .hex svg{position:absolute;inset:0}
+.fx-level .hex b{position:relative;font-family:var(--display);font-weight:700;font-size:19px;color:#fff}
+.fx-level .ln{font-family:var(--display);font-weight:700;font-size:16px;line-height:1.1}
+.fx-level .xpt{height:8px;border-radius:5px;background:rgba(245,242,236,.14);overflow:hidden;margin-top:6px}
+.fx-level .xpt i{display:block;height:100%;background:linear-gradient(90deg,#C8502F,#E0874F);border-radius:5px;transition:width .8s}
+.fx-level .xs{font-size:12px;color:#A9AFBF;margin-top:4px}
+.fx-stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 14px;display:grid;align-content:center;min-width:104px;flex:1 1 104px}
+.fx-stat .v{font-family:var(--display);font-weight:700;font-size:20px;line-height:1.1;font-variant-numeric:tabular-nums}
+.fx-stat .l{font-size:11.5px;color:var(--muted)}
+.fx-stage{position:relative;border-radius:14px;overflow:hidden;background:#1A2030;border:1px solid var(--line)}
+.fx-stage canvas{display:block;width:100%;touch-action:pan-y}
+.fx-drag{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);background:rgba(15,19,28,.78);color:#F5F2EC;font-size:12px;padding:6px 12px;border-radius:999px;pointer-events:none;white-space:nowrap}
+.fx-drag[hidden]{display:none}
+#statsView .hud-top .bars{display:none}
+.fx-clock{position:absolute;left:12px;top:10px;background:rgba(15,19,28,.72);color:#F5F2EC;font-family:var(--display);font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;pointer-events:none}
+.fx-hint{position:absolute;right:12px;top:10px;background:rgba(15,19,28,.72);color:#C9CEDA;font-size:12px;padding:5px 10px;border-radius:999px;pointer-events:none}
+.fx-panel{position:absolute;top:10px;right:10px;bottom:10px;width:min(340px,calc(100% - 20px));background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,.28);display:flex;flex-direction:column;overflow:hidden;z-index:4}
+.fx-panel[hidden]{display:none!important}
+.fx-ph{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;padding:14px 14px 8px}
+.fx-ph h3{font-size:16px}
+.fx-ph .sub{font-size:12.5px;color:var(--muted);margin-top:2px}
+.fx-close{border:1px solid var(--line-2);background:transparent;color:var(--ink-2);border-radius:8px;width:30px;height:30px;cursor:pointer;font-size:16px;line-height:1;flex:none}
+.fx-pb{padding:4px 14px 14px;overflow:auto;display:grid;gap:12px;align-content:start}
+.fx-pb .row{display:grid;gap:4px}
+.fx-pb .k{font-family:var(--display);font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.fx-pb .t{font-size:14px;color:var(--ink-2)}
+.fx-pb .nums{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.fx-pb .num{border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.fx-pb .num b{display:block;font-family:var(--display);font-size:18px;font-variant-numeric:tabular-nums}
+.fx-pb .num span{font-size:11.5px;color:var(--muted)}
+.fx-pb ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:13.5px;color:var(--ink-2)}
+.statepill{display:inline-block;font-family:var(--display);font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--chip);color:var(--muted)}
+.statepill.working{background:color-mix(in srgb,var(--good) 20%,transparent);color:var(--good)}
+.statepill.failed{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.fx-ticker{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 12px;min-width:0;overflow:hidden}
+.fx-ticker .tk{font-family:var(--display);font-size:10.5px;font-weight:700;letter-spacing:.08em;color:var(--accent);flex:none}
+.fx-ticker .tl{font-size:13.5px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.fx-chips{display:flex;gap:8px;flex-wrap:wrap}
+.chipbtn{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:7px 10px;cursor:pointer;font-size:13px;text-align:left}
+.chipbtn i{width:10px;height:10px;border-radius:50%;flex:none}
+.chipbtn .cs{font-size:11.5px;color:var(--muted)}
+.chipbtn.on{border-color:var(--accent)}
+@media (max-width:640px){.fx-panel{position:fixed;left:8px;right:8px;top:auto;bottom:8px;width:auto;max-height:62vh}.fx-hint{display:none}}
+.fxv[hidden]{display:none!important}
 </style>
 
+<div class="topbar">
+  <div class="brand2"><span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>PROOFNOTFLUFF</div>
+  <div class="viewtabs" role="group" aria-label="View"><button type="button" id="vt-factory" aria-pressed="true">Factory floor</button><button type="button" id="vt-stats" aria-pressed="false">Stats</button></div>
+</div>
+<section class="fxv" id="factoryView" aria-label="Factory floor">
+  <div class="fx-hud">
+    <div class="fx-level">
+      <div class="hex" aria-hidden="true"><svg viewBox="0 0 42 46"><path d="M21 1 40 12v22L21 45 2 34V12z" fill="#C8502F"/></svg><b id="fxLvl">1</b></div>
+      <div style="min-width:0;flex:1"><div class="ln" id="fxLvlName">Open sign</div><div class="xpt"><i id="fxXp" style="width:0%"></i></div><div class="xs" id="fxXpTxt">Loading…</div></div>
+    </div>
+    <div class="fx-stat"><div class="v" id="fxVisits">0</div><div class="l">Etsy visits, 7 days</div></div>
+    <div class="fx-stat"><div class="v" id="fxListings">0</div><div class="l">Listings live</div></div>
+    <div class="fx-stat"><div class="v" id="fxOrders">0</div><div class="l">Orders</div></div>
+    <div class="fx-stat"><div class="v" id="fxCoins">$0</div><div class="l">Revenue</div></div>
+    <div class="fx-stat"><div class="v" id="fxShorts">0</div><div class="l">Short views</div></div>
+  </div>
+  <div class="fx-stage" id="fxStage">
+    <canvas id="fx" role="img" aria-label="Isometric factory floor showing each scheduled agent as a worker at its station"></canvas>
+    <div class="fx-clock" id="fxClock">Chicago</div>
+    <div class="fx-hint">Tap a station</div>
+    <div class="fx-drag" id="fxDrag" hidden>Drag sideways to look around</div>
+    <aside class="fx-panel" id="fxPanel" hidden aria-live="polite">
+      <div class="fx-ph"><div style="min-width:0"><h3 id="fxPTitle">Station</h3><div class="sub" id="fxPSub"></div></div><button type="button" class="fx-close" id="fxClose" aria-label="Close panel">×</button></div>
+      <div class="fx-pb" id="fxPBody"></div>
+    </aside>
+  </div>
+  <div class="fx-ticker"><span class="tk">LIVE</span><span class="tl" id="fxTicker">Waiting for the crew's first report.</span></div>
+  <div class="fx-chips" id="fxChips" role="group" aria-label="Stations"></div>
+</section>
+<section id="statsView" hidden>
 <div class="wrap">
   <header class="hud" aria-label="Shop level">
     <div class="hud-top">
@@ -250,6 +337,7 @@ h3{font-size:14px;font-weight:600}
     <div class="rules" id="rules"></div>
   </section>
 </div>
+</section>
 <div class="tip" id="tip" hidden></div>
 
 <script>
@@ -504,7 +592,9 @@ function renderRules(){
   $("rules").innerHTML=[["Etsy visit",XP.visit],["Favorite",XP.favorite],["Order",XP.order],["Review",XP.review],["New listing",XP.listed],["Pin",XP.pin],["Short",XP.short],["Post",XP.post],[`Every ${XP.shortViews} Short views`,1],["Quest","shown on each"]].map(([k,v])=>`<span>${esc(k)} <b>${typeof v==="number"?"+"+v+" XP":esc(v)}</b></span>`).join("")+`<span>Levels: ${LEVELS.map((l,i)=>`${i+1} ${esc(l[1])} (${fmt(l[0])})`).join(", ")}</span>`;
 }
 
-function renderAll(){renderHUD();renderTiles();renderCharts();renderSources();renderShorts();renderQuests();renderAch();renderCrew();renderStores();renderLog();renderRules()}
+function renderAll(){renderHUD();renderTiles();renderCharts();renderSources();renderShorts();renderQuests();renderAch();renderCrew();renderStores();renderLog();renderRules();if(window.__pnfFactory)window.__pnfFactory.update()}
+window.__pnf={state,totals,computeXP,levelFor,LEVELS,todayISO,addDays,sumRange,fmt,esc};
+window.__pnfStatsResize=()=>{if(state.loaded.size)renderCharts()};
 let rz=0;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(state.loaded.size)renderCharts()},150)});
 let pending=false;function schedule(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;renderAll()})}
 
@@ -534,3 +624,291 @@ async function boot(){
 boot();
 })();
 </script>
+<script>
+(function(){
+"use strict";
+/* Isometric factory floor. Each scheduled agent is a worker at a station; workers animate only when
+   the agent reports state "working" on the scoreboard's shared data. World units: one tile = 64 x 32 px. */
+const P=()=>window.__pnf;
+const $=id=>document.getElementById(id);
+const cv=$("fx"),ctx=cv.getContext("2d"),stage=$("fxStage");
+const TW=64,TH=32;
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const OUT="#2A2F3D";
+const C={floor:"#D9D3C8",floorLine:"#CBC4B7",wallL:"#E8E2D6",wallR:"#DCD5C7",wallTop:"#F4F0E8",street:"#4A5061",streetLine:"#E8D9A8",grass:"#7FA36B",
+  wood:"#B98552",woodD:"#93683F",woodL:"#D2A272",metal:"#A9B1BF",metalD:"#7D8698",metalL:"#C9CFD9",screen:"#20283A",screenOn:"#5FD3C1",
+  teal:"#2E6B66",purple:"#6B4FA0",blue:"#2F5F9E",gold:"#8A6A1F",accent:"#C8502F",cream:"#F5F2EC",box:"#C99A5B",boxD:"#A57A43",boxL:"#DDB57E"};
+const shade=(hex,f)=>{const n=parseInt(hex.slice(1),16);let r=n>>16,g=n>>8&255,b=n&255;const m=v=>Math.max(0,Math.min(255,Math.round(f<0?v*(1+f):v+(255-v)*f)));return "#"+((1<<24)|(m(r)<<16)|(m(g)<<8)|m(b)).toString(16).slice(1)};
+
+/* ---------- world layout ---------- */
+const ZONES=[
+  {id:"rule",label:"Rule Desk",gx:.5,gy:.5,w:4,d:3,tint:"#CFE2DE",agents:["rule-desk"]},
+  {id:"factory",label:"Product Factory",gx:5.5,gy:.5,w:11,d:3,tint:"#F1DCD2",agents:["factory"]},
+  {id:"shop",label:"Shop Office",gx:.5,gy:4.5,w:4,d:3.2,tint:"#D5DFEE",agents:["shop-run"]},
+  {id:"promo",label:"Promo Studio",gx:5.5,gy:4.5,w:5,d:3.2,tint:"#E3DBF0",agents:["morning-promote","afternoon-promote"]},
+  {id:"control",label:"Control Room",gx:11.5,gy:4.5,w:5,d:3.2,tint:"#EEE4C9",agents:["optimizer"]},
+  {id:"quest",label:"Quest Board",gx:.5,gy:8.5,w:4,d:3,tint:"#ECE6DA",agents:[]},
+  {id:"break",label:"Break Room",gx:5.5,gy:8.5,w:5,d:3,tint:"#DDE8D8",agents:[]},
+  {id:"dock",label:"Loading Dock",gx:11.5,gy:8.5,w:5,d:3,tint:"#D6D2CA",agents:[]},
+  {id:"stores",label:"Storefronts",gx:17.3,gy:.4,w:3,d:11.4,tint:null,agents:[]}
+];
+const ZBY=Object.fromEntries(ZONES.map(z=>[z.id,z]));
+const STORES=[{id:"etsy",name:"Etsy",gy:.8,color:"#E8743B"},{id:"instagram",name:"Instagram",gy:3.6,color:"#C13584"},{id:"kdp",name:"Amazon KDP",gy:6.4,color:"#2B3A55"},{id:"email",name:"Email",gy:9.2,color:"#2E6B66"}];
+const WORKERS=[
+  {id:"rule-desk",name:"Rex",zone:"rule",hat:C.teal,shirt:"#3E8A83",spots:[[2.1,2.2],[3.4,1.8]]},
+  {id:"shop-run",name:"Sam",zone:"shop",hat:C.blue,shirt:"#4A79B8",spots:[[2.3,6.6],[1.4,6.2]]},
+  {id:"factory",name:"Fern",zone:"factory",hat:C.accent,shirt:"#D9704F",spots:[[7,2.5],[9.6,2.5],[12.4,2.5],[15,2.5]]},
+  {id:"morning-promote",name:"Mo",zone:"promo",hat:C.purple,shirt:"#8466B8",spots:[[7.3,6.6],[9.6,6.2]]},
+  {id:"afternoon-promote",name:"Ava",zone:"promo",hat:"#9A82D6",shirt:"#B39BE4",spots:[[8.6,6.9],[9.9,6.8]]},
+  {id:"optimizer",name:"Ozzy",zone:"control",hat:C.gold,shirt:"#B08B2E",spots:[[13.7,6.7],[15,6.5]]}
+];
+const BREAK_SPOTS=[[6.6,9.8],[7.6,10.6],[8.8,9.6],[9.6,10.7],[7.2,11.1],[8.3,10.2]];
+const SEATS=[[6.7,10.9],[7.5,10.9],[8.3,10.9],[9.1,10.9],[9.9,10.9],[6.3,10.2]];
+
+const iso=(gx,gy,z=0)=>[(gx-gy)*TW/2,(gx+gy)*TH/2-z];
+function poly(pts,fill,stroke,lw){ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.closePath();if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw||1.4;ctx.lineJoin="round";ctx.stroke()}}
+function rect(gx,gy,w,d,z,fill,stroke,lw){poly([iso(gx,gy,z),iso(gx+w,gy,z),iso(gx+w,gy+d,z),iso(gx,gy+d,z)],fill,stroke,lw)}
+function block(gx,gy,w,d,h,col,z0=0,stroke=OUT){
+  const top=typeof col==="string"?col:col[0],left=typeof col==="string"?shade(col,-.18):col[1],right=typeof col==="string"?shade(col,-.32):col[2];
+  poly([iso(gx,gy+d,z0),iso(gx+w,gy+d,z0),iso(gx+w,gy+d,z0+h),iso(gx,gy+d,z0+h)],left,stroke);
+  poly([iso(gx+w,gy,z0),iso(gx+w,gy+d,z0),iso(gx+w,gy+d,z0+h),iso(gx+w,gy,z0+h)],right,stroke);
+  rect(gx,gy,w,d,z0+h,top,stroke);
+}
+function ellipse(x,y,rx,ry,fill,stroke){ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,Math.PI*2);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=1.4;ctx.stroke()}}
+function text(t,x,y,size,color,weight,align){ctx.font=`${weight||600} ${size}px Poppins, system-ui, sans-serif`;ctx.fillStyle=color;ctx.textAlign=align||"left";ctx.textBaseline="middle";ctx.fillText(t,x,y)}
+function pill(t,x,y,size,bg,fg){ctx.font=`600 ${size}px Poppins, system-ui, sans-serif`;const w=ctx.measureText(t).width+size*1.2,h=size*1.8;ctx.beginPath();ctx.roundRect(x-w/2,y-h/2,w,h,h/2);ctx.fillStyle=bg;ctx.fill();text(t,x,y+.5,size,fg,600,"center");return w}
+
+/* ---------- time and agent state ---------- */
+function chicago(){const p=new Intl.DateTimeFormat("en-US",{timeZone:"America/Chicago",hour:"numeric",minute:"2-digit",hour12:false,weekday:"short"}).formatToParts(new Date());const g=k=>(p.find(x=>x.type===k)||{}).value;let h=+g("hour");if(h===24)h=0;return {h,m:+g("minute"),wd:g("weekday")}}
+function minutesOf(sched){const m=/(\d{1,2}):(\d{2})\s*(am|pm)/i.exec(sched||"");if(!m)return null;let h=+m[1]%12;if(m[3].toLowerCase()==="pm")h+=12;return h*60+ +m[2]}
+function nextShift(sched){const t=minutesOf(sched);if(t===null)return "";const c=chicago(),now=c.h*60+c.m;let diff=t-now;if(diff<=0)diff+=1440;const h=Math.floor(diff/60),m=diff%60;return h?`in ${h}h ${m}m`:`in ${m}m`}
+function agentDoc(id){const s=P()&&P().state;return s?(s.agents.find(a=>a.id===id)||null):null}
+function isWorking(a){if(!a||a.state!=="working")return false;const t=Date.parse(a.startedAt||"");return !t||Date.now()-t<3*3600e3}
+function nightFactor(){const c=chicago(),x=c.h+c.m/60;if(x>=21||x<5)return 1;if(x<7)return (7-x)/2;if(x>=19)return (x-19)/2;return 0}
+
+/* ---------- workers ---------- */
+const crew=WORKERS.map((w,i)=>{const b=BREAK_SPOTS[i%BREAK_SPOTS.length];return {...w,x:b[0],y:b[1],tx:b[0],ty:b[1],phase:Math.random()*6,spot:0,wait:0,mode:"idle",facing:1}});
+function pickTarget(w,dt){
+  const a=agentDoc(w.id),working=isWorking(a),night=nightFactor()>.6;
+  w.mode=working?"work":(night?"sleep":"idle");
+  const near=Math.hypot(w.tx-w.x,w.ty-w.y)<.05;
+  if(!near)return;
+  w.wait-=dt;if(w.wait>0)return;
+  if(w.mode==="work"){w.spot=(w.spot+1)%w.spots.length;[w.tx,w.ty]=w.spots[w.spot];w.wait=w.id==="factory"?2.6:4+Math.random()*3}
+  else if(w.mode==="sleep"){const i=WORKERS.findIndex(x=>x.id===w.id);[w.tx,w.ty]=SEATS[i%SEATS.length];w.wait=30}
+  else{const s=BREAK_SPOTS[Math.floor(Math.random()*BREAK_SPOTS.length)];w.tx=s[0]+(Math.random()-.5)*.5;w.ty=s[1]+(Math.random()-.5)*.5;w.wait=3+Math.random()*5}
+}
+function stepCrew(dt){for(const w of crew){pickTarget(w,dt);const dx=w.tx-w.x,dy=w.ty-w.y,dist=Math.hypot(dx,dy),sp=(w.mode==="work"?2.4:1.3)*dt;if(dist>.02){const k=Math.min(1,sp/dist);w.x+=dx*k;w.y+=dy*k;w.facing=(dx-dy)>=0?1:-1;w.walking=true}else w.walking=false;w.phase+=dt*(w.walking?9:2)}}
+
+/* ---------- conveyor boxes ---------- */
+const BELT=[[6.2,2.95],[16.4,2.95],[16.4,9.2]];
+let boxes=[],boxTimer=0;
+function beltPos(t){const L1=BELT[1][0]-BELT[0][0],L2=BELT[2][1]-BELT[1][1],s=t*(L1+L2);if(s<=L1)return [BELT[0][0]+s,BELT[0][1]];return [BELT[1][0],BELT[1][1]+(s-L1)]}
+function stepBoxes(dt,working){boxTimer-=dt;if(working&&boxTimer<=0){boxes.push({t:0});boxTimer=3.2}if(!working&&boxes.length<3&&boxTimer<=0){boxes.push({t:Math.random()*.9,still:true});boxTimer=.1}
+  for(const b of boxes)if(working||!b.still)b.t+=dt*.055;boxes=boxes.filter(b=>{if(b.t>=1){floaters.push({gx:16.4,gy:9.4,z:30,txt:"Shipped",t:0});return false}return true})}
+let floaters=[],overlay=[];
+
+/* ---------- drawing ---------- */
+let W=0,H=0,dpr=1,scale=1,offX=0,offY=0,panFrac=.55,sceneW=0,drag=null,hover=null,selected=null,last=performance.now(),beltOff=0;
+const BOUNDS={x0:-420,x1:660,y0:-110,y1:520};
+function resize(){const r=stage.getBoundingClientRect();W=Math.max(300,r.width);const bw=BOUNDS.x1-BOUNDS.x0,bh=BOUNDS.y1-BOUNDS.y0;
+  if(W<700){H=Math.round(Math.max(360,Math.min(innerHeight*.62,540)));scale=Math.max(H/bh,W/bw)}else{H=Math.round(Math.min(W/(bw/bh),innerHeight*.78));scale=Math.min(W/bw,H/bh)}
+  sceneW=bw*scale;dpr=Math.min(2,window.devicePixelRatio||1);cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);cv.style.height=H+"px";
+  offY=(H-bh*scale)/2-BOUNDS.y0*scale;applyPan();$("fxDrag").hidden=sceneW-W<2||dragged}
+function applyPan(){const extra=sceneW-W;offX=(extra>0?-extra*panFrac:(W-sceneW)/2)-BOUNDS.x0*scale}
+let dragged=false;
+
+function drawFloor(){
+  // street outside
+  rect(16.9,0,4.2,12.2,0,C.street,null);
+  for(let y=.6;y<12;y+=1.4)rect(19.05,y,.1,.7,0,C.streetLine,null);
+  rect(16.9,0,.35,12.2,0,"#8B92A3",null);
+  // building floor
+  rect(0,0,16.9,12.2,0,C.floor,OUT,2);
+  ctx.strokeStyle=C.floorLine;ctx.lineWidth=1;
+  for(let x=1;x<17;x++){const a=iso(x,0),b=iso(x,12.2);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke()}
+  for(let y=1;y<12.2;y++){const a=iso(0,y),b=iso(16.9,y);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke()}
+  for(const z of ZONES){if(!z.tint)continue;const hv=hover===z.id||selected===z.id;rect(z.gx,z.gy,z.w,z.d,0,z.tint,hv?C.accent:shade(z.tint,-.25),hv?3:1.5)}
+  // walls
+  const WH=58;
+  poly([iso(0,0,0),iso(16.9,0,0),iso(16.9,0,WH),iso(0,0,WH)],C.wallL,OUT);
+  poly([iso(0,0,0),iso(0,12.2,0),iso(0,12.2,WH),iso(0,0,WH)],C.wallR,OUT);
+  const nf=nightFactor(),glass=nf>.5?"#F4D27A":shade("#9FC6E8",-nf*.4);
+  for(let x=1.2;x<16;x+=2.6)poly([iso(x,0,18),iso(x+1.4,0,18),iso(x+1.4,0,46),iso(x,0,46)],glass,OUT);
+  for(let y=1.2;y<11.5;y+=2.6)poly([iso(0,y,18),iso(0,y+1.4,18),iso(0,y+1.4,46),iso(0,y,46)],glass,OUT);
+  poly([iso(0,0,WH),iso(16.9,0,WH),iso(16.9,-.25,WH),iso(-.25,-.25,WH),iso(-.25,12.2,WH),iso(0,12.2,WH)],C.wallTop,OUT);
+}
+
+function labelZone(z){const p=iso(z.gx+.25,z.gy+.25);ctx.font="600 12px Poppins, system-ui, sans-serif";const w=ctx.measureText(z.label).width;pill(z.label,p[0]+w/2+8,p[1]+16,12,"rgba(29,36,51,.86)","#F5F2EC")}
+
+function drawWorker(w){
+  const a=agentDoc(w.id),[sx,sy]=iso(w.x,w.y),bob=w.walking?Math.abs(Math.sin(w.phase))*2.2:(w.mode==="work"?Math.abs(Math.sin(w.phase*2.2))*1.5:0);
+  ellipse(sx,sy,11,5,"rgba(0,0,0,.18)");
+  const legA=w.walking?Math.sin(w.phase)*3.5:0;
+  ctx.fillStyle="#3B4152";ctx.fillRect(sx-5,sy-12+legA*.2,4,12-Math.max(0,legA));ctx.fillRect(sx+1,sy-12-legA*.2,4,12-Math.max(0,-legA));
+  const by=sy-12-bob;
+  ctx.beginPath();ctx.roundRect(sx-8,by-17,16,19,5);ctx.fillStyle=w.shirt;ctx.fill();ctx.strokeStyle=OUT;ctx.lineWidth=1.4;ctx.stroke();
+  // arms
+  const arm=w.mode==="work"?Math.sin(w.phase*3)*4:(w.walking?Math.sin(w.phase)*3:0);
+  ctx.strokeStyle=shade(w.shirt,-.25);ctx.lineWidth=4;ctx.lineCap="round";
+  ctx.beginPath();ctx.moveTo(sx-8,by-12);ctx.lineTo(sx-11,by-3+arm);ctx.stroke();ctx.beginPath();ctx.moveTo(sx+8,by-12);ctx.lineTo(sx+11,by-3-arm);ctx.stroke();
+  // head
+  ellipse(sx,by-25,8.5,8.5,"#F0C9A0",OUT);
+  if(w.mode==="sleep"){ctx.strokeStyle=OUT;ctx.lineWidth=1.3;ctx.beginPath();ctx.moveTo(sx-4.5,by-25);ctx.lineTo(sx-1.5,by-25);ctx.moveTo(sx+1.5,by-25);ctx.lineTo(sx+4.5,by-25);ctx.stroke()}
+  else{ctx.fillStyle=OUT;ctx.fillRect(sx-4+w.facing,by-27,2,2.5);ctx.fillRect(sx+2+w.facing,by-27,2,2.5)}
+  // hard hat
+  ctx.beginPath();ctx.arc(sx,by-28,9,Math.PI,0);ctx.closePath();ctx.fillStyle=w.hat;ctx.fill();ctx.strokeStyle=OUT;ctx.lineWidth=1.4;ctx.stroke();
+  ctx.fillStyle=w.hat;ctx.fillRect(sx-11,by-29,22,3);ctx.strokeRect(sx-11,by-29,22,3);
+  // status
+  if(w.mode==="work"){const task=(a&&a.task)||"Working",tt=task.length>30?task.slice(0,29)+"…":task;overlay.push(()=>bubble(sx,by-46,tt,"#FFFFFF",OUT));sparks(sx+12,by-8)}
+  else if(w.mode==="sleep"){const t=performance.now()/1000;for(let i=0;i<2;i++){const k=(t*.6+i*.5)%1;text("z",sx+8+k*10,by-36-k*16,10+i*2,`rgba(245,242,236,${1-k})`,700)}}
+  if(a&&a.lastStatus==="failed"&&w.mode!=="work")overlay.push(()=>pill("needs a look",sx,by-48,10,"#B23A2A","#fff"));
+}
+function bubble(x,y,t,bg,fg){ctx.font="600 11px Poppins, system-ui, sans-serif";const w=ctx.measureText(t).width+16;ctx.beginPath();ctx.roundRect(x-w/2,y-11,w,22,8);ctx.fillStyle=bg;ctx.fill();ctx.strokeStyle=fg;ctx.lineWidth=1.3;ctx.stroke();ctx.beginPath();ctx.moveTo(x-5,y+11);ctx.lineTo(x,y+17);ctx.lineTo(x+5,y+11);ctx.fillStyle=bg;ctx.fill();text(t,x,y,11,"#1D2433",600,"center")}
+function sparks(x,y){if(reduce)return;const t=performance.now()/120;for(let i=0;i<3;i++){const a=t+i*2.1,r=4+((t+i)%3);ctx.fillStyle=["#F2B33D","#E0694A","#5FD3C1"][i];ctx.fillRect(x+Math.cos(a)*r,y+Math.sin(a)*r,2.5,2.5)}}
+
+/* objects: each returns {depth, draw} */
+function objects(){
+  const S=P()&&P().state,t=performance.now()/1000,o=[];
+  const add=(gx,gy,w,d,fn)=>o.push({depth:gx+w+gy+d,draw:fn});
+  const facWorking=isWorking(agentDoc("factory"));
+  // Rule desk: desk, monitor, radar
+  add(1,1.2,1.8,.8,()=>{block(1,1.2,1.8,.8,14,[C.woodL,C.wood,C.woodD]);block(1.4,1.25,.9,.12,22,[C.metalL,C.metal,C.metalD],14);rect(1.45,1.25,.8,.04,30,C.screenOn,null)});
+  add(3.3,1,.3,.3,()=>{block(3.3,1,.3,.3,46,[C.metalL,C.metal,C.metalD]);const [x,y]=iso(3.45,1.15,62);const sx=reduce?1:Math.cos(t*1.3);ellipse(x,y,15*Math.abs(sx)+3,9,"#E9EEF5",OUT);ellipse(x,y,3,3,C.accent)});
+  // Factory line
+  add(6.2,1,1.4,.9,()=>{block(6.2,1,1.4,.9,16,[C.woodL,C.wood,C.woodD]);block(6.5,1.05,.8,.1,20,[C.metalL,C.metal,C.metalD],16);for(let i=0;i<4;i++)rect(6.6+i*.15,1.05,.09,.04,20+[8,14,6,11][i],["#5FD3C1","#F2B33D","#E0694A","#9FC6E8"][i],null)});
+  add(8.8,1,1.6,.9,()=>{block(8.8,1,1.6,.9,18,[C.metalL,C.metal,C.metalD]);const [x,y]=iso(9.6,1.45,18);const ang=facWorking&&!reduce?Math.sin(t*3)*.6:-.3;ctx.strokeStyle=C.accent;ctx.lineWidth=5;ctx.lineCap="round";ctx.beginPath();ctx.moveTo(x,y);const ex=x+Math.cos(ang-1.2)*26,ey=y+Math.sin(ang-1.2)*26;ctx.lineTo(ex,ey);ctx.lineTo(ex+Math.cos(ang)*18,ey+Math.sin(ang)*18);ctx.stroke();ellipse(x,y,5,3,C.metalD,OUT)});
+  add(11.6,.9,1.6,1.6,()=>{block(11.6,1,.25,1.4,44,[C.metalL,C.metal,C.metalD]);block(13,1,.25,1.4,44,[C.metalL,C.metal,C.metalD]);block(11.6,1,1.65,1.4,8,["#3A4256","#2B3243","#232939"],44);const [x,y]=iso(12.4,1.7,49);ellipse(x,y,4,4,facWorking?"#5FD3C1":"#7D8698",OUT);const [lx,ly]=iso(12.4,1,26);pill("QA",lx,ly,9,"#1D2433","#F5F2EC")});
+  add(14.4,1,1.4,.9,()=>{block(14.4,1,1.4,.9,16,[C.woodL,C.wood,C.woodD]);block(14.6,1.1,.45,.45,10,[C.boxL,C.box,C.boxD],16);block(15.15,1.15,.4,.4,8,[C.boxL,C.box,C.boxD],16)});
+  // conveyor (drawn flat, low)
+  o.push({depth:4.2,draw:()=>{rect(6,2.7,10.7,.5,6,"#4B5265",OUT);block(6,2.7,10.7,.5,6,["#5A6276","#464D5F","#3A4050"]);block(16.15,3.2,.5,6.3,6,["#5A6276","#464D5F","#3A4050"]);ctx.strokeStyle="#8C93A6";ctx.lineWidth=1.2;for(let x=6+(beltOff%0.6);x<16.6;x+=.6){const a=iso(x,2.72,6),b=iso(x,3.18,6);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke()}for(let y=3.2+(beltOff%0.6);y<9.5;y+=.6){const a=iso(16.17,y,6),b=iso(16.63,y,6);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke()}}});
+  for(const b of boxes){const [gx,gy]=beltPos(b.t);add(gx-.18,gy-.18,.36,.36,()=>block(gx-.18,gy-.18,.36,.36,12,[C.boxL,C.box,C.boxD],6))}
+  // Shop office
+  add(1.2,5.4,2.2,.9,()=>{block(1.2,5.4,2.2,.9,16,[C.woodL,C.wood,C.woodD]);block(1.5,5.45,.7,.1,20,[C.metalL,C.metal,C.metalD],16);block(2.4,5.45,.7,.1,20,[C.metalL,C.metal,C.metalD],16);const vis=S?P().sumRange("etsyVisits",P().addDays(P().todayISO(),-6),P().todayISO()):0;const [x,y]=iso(1.85,5.5,28);text(String(vis),x,y,10,"#5FD3C1",700,"center")});
+  add(.8,6.6,.6,.6,()=>block(.8,6.6,.6,.6,30,[C.metalL,C.metal,C.metalD]));
+  // Promo studio: tripod camera, ring light, pin board
+  add(7.2,5.5,.4,.4,()=>{const [x,y]=iso(7.4,5.7);ctx.strokeStyle=OUT;ctx.lineWidth=2;for(const dx of[-7,0,7]){ctx.beginPath();ctx.moveTo(x,y-26);ctx.lineTo(x+dx,y);ctx.stroke()}block(7.25,5.55,.3,.3,10,["#3A4256","#2B3243","#232939"],26);const on=isWorking(agentDoc("morning-promote"))||isWorking(agentDoc("afternoon-promote"));ellipse(x+8,y-32,2.5,2.5,on&&Math.sin(t*4)>0?"#E0694A":"#7D8698")});
+  add(9.4,5,.3,.3,()=>{const [x,y]=iso(9.55,5.15);ctx.strokeStyle=OUT;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x,y-34);ctx.stroke();ctx.beginPath();ctx.arc(x,y-46,11,0,Math.PI*2);ctx.strokeStyle="#F7E7B4";ctx.lineWidth=4;ctx.stroke()});
+  add(6.2,4.6,2.2,.12,()=>{block(6.2,4.6,2.2,.12,36,["#D9B98A","#C29E6C","#A9895A"],6);const pins=Math.min(18,S?P().totals().pins:0);for(let i=0;i<pins;i++){const gx=6.35+(i%6)*.32,z=34-Math.floor(i/6)*9;rect(gx,4.72,.2,.02,z,["#E0694A","#2E6B66","#6B4FA0","#2F5F9E","#8A6A1F"][i%5],OUT,.8)}});
+  // Control room
+  add(12.4,4.6,2.6,.12,()=>{block(12.4,4.6,2.6,.12,40,["#2B3243","#232939","#1C2130"],4);drawScreenGraph()});
+  add(12.6,5.6,2.4,.8,()=>{block(12.6,5.6,2.4,.8,15,[C.metalL,C.metal,C.metalD]);for(let i=0;i<5;i++){const [x,y]=iso(12.9+i*.42,5.8,15);ellipse(x,y,2.5,1.5,["#5FD3C1","#F2B33D","#E0694A","#9FC6E8","#5FD3C1"][(i+Math.floor(t*2))%5])}});
+  // Quest board
+  add(1,8.6,2.4,.12,()=>{block(1,8.6,2.4,.12,40,["#C9A06A","#B08955","#94723F"],4);const open=S?S.quests.filter(q=>!q.done&&(q.owner||"todd")==="todd").length:0;for(let i=0;i<Math.min(open,10);i++){const gx=1.2+(i%5)*.42,z=36-Math.floor(i/5)*13;rect(gx,4.7+3.92,.3,.02,z,"#F7E98E",OUT,.8)}const [x,y]=iso(2.2,8.7,52);pill(open?`${open} open for Todd`:"All clear",x,y,10,open?"#C8502F":"#1E7B3A","#fff")});
+  add(1.6,9.8,1.6,.8,()=>{block(1.6,9.8,1.6,.8,15,[C.woodL,C.wood,C.woodD]);block(1.9,9.85,.5,.1,14,[C.metalL,C.metal,C.metalD],15)});
+  // Break room
+  add(6,10.6,4.4,.8,()=>block(6,10.6,4.4,.8,12,["#7E9AC2","#6A84AB","#566E93"]));
+  add(6,9,.6,.5,()=>{block(6,9,.6,.5,26,["#555C6E","#444A5A","#373C4A"]);const [x,y]=iso(6.3,9.25,30);if(!reduce)for(let i=0;i<2;i++){const k=(t*.5+i*.5)%1;ellipse(x+Math.sin(k*6)*2,y-k*14,2,2,`rgba(255,255,255,${.5*(1-k)})`)}});
+  add(9.9,9,.5,.5,()=>{block(9.95,9.05,.4,.4,14,["#B07A50","#956541","#7D5435"]);const [x,y]=iso(10.15,9.25,22);ellipse(x,y-6,12,10,"#6F9C5E",OUT)});
+  // Dock: pallets of product boxes, one box per listing
+  add(12,9,4,2.4,()=>{const n=S?(Number(S.meta.listingsLive)||P().totals().listed):0;let i=0;for(let p=0;p<4;p++){const gx=12.2+(p%2)*1.7,gy=9.2+Math.floor(p/2)*1.2;block(gx,gy,1.3,.9,4,["#B48A57","#9A7447","#7F5F3A"]);for(let k=0;k<5&&i<n;k++,i++){const lx=gx+(k%2)*.62+.05,ly=gy+.05,z=4+Math.floor(k/2)*13;block(lx,ly+(k===4?.2:0),.58,.8,13,[C.boxL,C.box,C.boxD],z)}}const [x,y]=iso(13.9,9,46);pill(`${n} products live`,x,y,10,"#1D2433","#F5F2EC")});
+  // Truck at the dock door
+  add(16.95,9.6,1.8,1,()=>{block(17,9.6,1.6,1,30,["#F5F2EC","#DED8CC","#C9C2B4"]);block(18.6,9.7,.6,.8,22,["#C8502F","#A84227","#8C3720"]);const [wx,wy]=iso(17.4,10.6);ellipse(wx,wy,5,5,"#2A2F3D");const [w2x,w2y]=iso(18.8,10.5);ellipse(w2x,w2y,5,5,"#2A2F3D");const [lx,ly]=iso(17.8,10.1,24);text("PNF",lx,ly,10,"#C8502F",700,"center")});
+  // Storefronts
+  for(const s of STORES){const st=S?(S.stores.find(x=>x.id===s.id)||{}).status:"planned";add(17.8,s.gy,2,2,()=>drawStore(s,st||"planned"))}
+  // workers
+  for(const w of crew)o.push({depth:w.x+w.y+.3,draw:()=>drawWorker(w)});
+  return o;
+}
+function drawScreenGraph(){const S=P()&&P().state;if(!S)return;const vals=[];for(let i=13;i>=0;i--){const d=S.days[P().addDays(P().todayISO(),-i)];vals.push(d?Number(d.etsyVisits)||0:0)}const mx=Math.max(1,...vals);ctx.strokeStyle="#5FD3C1";ctx.lineWidth=2;ctx.beginPath();vals.forEach((v,i)=>{const gx=12.55+i*(2.3/13),[x,y]=iso(gx,4.6,10+(v/mx)*24);i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.stroke();const [tx,ty]=iso(12.6,4.6,40);text("visits, 14 days",tx+4,ty+6,8,"#9FB0C8",600)}
+function drawStore(s,status){
+  const gx=17.8,gy=s.gy,live=status==="live",setup=status==="setup";
+  if(!live&&!setup){ctx.setLineDash([5,4]);rect(gx,gy,2,2,0,"rgba(255,255,255,.06)","#B9BFCC",1.4);ctx.setLineDash([]);const [x,y]=iso(gx+1,gy+1,6);pill(s.name+" · planned",x,y,9.5,"rgba(29,36,51,.86)","#C9CEDA");return}
+  block(gx,gy,2,2,44,[shade(s.color,.55),shade(s.color,.15),s.color]);
+  rect(gx,gy,2,2,44,shade(s.color,.6),OUT);
+  const nf=nightFactor(),win=live?(nf>.5?"#F7D97A":"#BFE0F2"):"#9AA1B3";
+  poly([iso(gx+.4,gy+2,10),iso(gx+1.6,gy+2,10),iso(gx+1.6,gy+2,30),iso(gx+.4,gy+2,30)],win,OUT);
+  if(setup){ctx.strokeStyle="#F2B33D";ctx.lineWidth=2;for(let i=0;i<4;i++){const a=iso(gx+2,gy+i*.5,0),b=iso(gx+2,gy+i*.5+.5,44);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke()}}
+  const [x,y]=iso(gx+1,gy+1,58);pill(s.name+(setup?" · setting up":""),x,y,10,live?s.color:"#5A6276","#fff");
+}
+
+function drawFloaters(dt){for(const f of floaters){f.t+=dt;const [x,y]=iso(f.gx,f.gy,f.z+f.t*24);ctx.globalAlpha=Math.max(0,1-f.t/2);pill(f.txt,x,y,11,"#1E7B3A","#fff");ctx.globalAlpha=1}floaters=floaters.filter(f=>f.t<2)}
+
+function frame(now){
+  const dt=Math.min(.05,(now-last)/1000);last=now;
+  if(document.hidden||$("factoryView").hidden){requestAnimationFrame(frame);return}
+  const facWorking=isWorking(agentDoc("factory"));
+  if(!reduce){stepCrew(dt);stepBoxes(dt,facWorking);if(facWorking)beltOff+=dt*.9}else{for(const w of crew){pickTarget(w,dt);w.x=w.tx;w.y=w.ty}}
+  ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
+  const nf=nightFactor();
+  const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,nf>.5?"#121827":"#26324A");g.addColorStop(1,nf>.5?"#0D111B":"#1A2030");ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  ctx.setTransform(dpr*scale,0,0,dpr*scale,dpr*offX,dpr*offY);
+  drawFloor();
+  overlay=[];const objs=objects().sort((a,b)=>a.depth-b.depth);for(const ob of objs)ob.draw();
+  for(const z of ZONES)if(z.tint)labelZone(z);
+  for(const f of overlay)f();
+  drawFloaters(dt);
+  if(nf>0){ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle=`rgba(12,18,40,${.38*nf})`;ctx.fillRect(0,0,W,H)}
+  requestAnimationFrame(frame);
+}
+
+/* ---------- interaction ---------- */
+function toWorld(e){const r=cv.getBoundingClientRect(),px=(e.clientX-r.left-offX)/scale,py=(e.clientY-r.top-offY)/scale;const gx=(px/(TW/2)+py/(TH/2))/2,gy=(py/(TH/2)-px/(TW/2))/2;return [gx,gy]}
+function zoneAt(e){const [gx,gy]=toWorld(e);for(const z of ZONES){if(gx>=z.gx&&gx<=z.gx+z.w&&gy>=z.gy&&gy<=z.gy+z.d)return z.id}return null}
+cv.addEventListener("pointerdown",e=>{drag={x:e.clientX,f:panFrac,moved:false,on:true}});
+cv.addEventListener("pointerup",()=>{if(drag)drag.on=false});
+cv.addEventListener("pointercancel",()=>{drag=null});
+cv.addEventListener("pointermove",e=>{if(drag&&drag.on){const extra=sceneW-W,dx=e.clientX-drag.x;if(Math.abs(dx)>6)drag.moved=true;if(extra>0&&drag.moved){panFrac=Math.max(0,Math.min(1,drag.f-dx/extra));applyPan();if(!dragged){dragged=true;$("fxDrag").hidden=true}}}const z=zoneAt(e);if(z!==hover){hover=z;cv.style.cursor=z?"pointer":"default"}});
+cv.addEventListener("pointerleave",()=>{hover=null});
+cv.addEventListener("click",e=>{const wasDrag=drag&&drag.moved;drag=null;if(wasDrag)return;const z=zoneAt(e);if(z)openPanel(z);else closePanel()});
+$("fxClose").addEventListener("click",closePanel);
+addEventListener("keydown",e=>{if(e.key==="Escape")closePanel()});
+function closePanel(){selected=null;$("fxPanel").hidden=true;renderChips()}
+
+function agentBlock(id){
+  const a=agentDoc(id)||{};const w=WORKERS.find(x=>x.id===id)||{};const esc=P().esc;const working=isWorking(a);
+  const st=working?"working":(a.lastStatus==="failed"?"failed":"idle");
+  return `<div class="row"><div class="k">${esc(w.name||"")} · ${esc(a.name||id)}</div><div><span class="statepill ${st}">${working?"Working now":st==="failed"?"Last run failed":"Idle"}</span> <span class="t" style="font-size:12.5px">${esc(a.schedule||"")}${a.schedule?" · next shift "+esc(nextShift(a.schedule)):""}</span></div>${working&&a.task?`<div class="t">Now: ${esc(a.task)}</div>`:""}<div class="t">${a.lastRun?`<b>${esc(a.lastRun)}:</b> `:""}${esc(a.lastNote||"No report yet.")}</div></div>`;
+}
+function nums(list){return `<div class="nums">${list.map(([v,l])=>`<div class="num"><b>${P().esc(v)}</b><span>${P().esc(l)}</span></div>`).join("")}</div>`}
+function openPanel(id){
+  const S=P().state,esc=P().esc,fmt=P().fmt,t=P().totals(),today=P().todayISO();selected=id;const z=ZBY[id];
+  let sub="",body="";
+  const crewQ=S.quests.filter(q=>(q.owner||"todd")==="crew"&&!q.done).sort((a,b)=>(a.order||0)-(b.order||0));
+  if(id==="rule"){sub="Watches official numbers every morning";const ev=(S.meta.events||[]);body=agentBlock("rule-desk")+nums([["34","Official numbers watched"],[String(S.quests.filter(q=>q.id.startsWith("breaking-")&&!q.done).length),"Breaking updates open"]])+(ev.length?`<div class="row"><div class="k">Coming up</div><ul>${ev.map(e=>`<li><b>${esc(e.date)}</b> ${esc(e.label)}</li>`).join("")}</ul></div>`:"")}
+  else if(id==="factory"){sub="Researches, builds, gates and lists one product a day";body=agentBlock("factory")+nums([[fmt(t.listed),"Products listed"],[fmt(P().sumRange("listed",P().addDays(today,-6),today)),"Listed this week"]])+`<div class="row"><div class="k">On the line next</div><ul>${crewQ.slice(0,6).map(q=>`<li>${esc(q.title)}</li>`).join("")||"<li>Queue is empty</li>"}</ul></div>`}
+  else if(id==="shop"){sub="Reads Etsy stats, comments and fixes listings";const wk=P().sumRange("etsyVisits",P().addDays(today,-6),today);body=agentBlock("shop-run")+nums([[fmt(wk),"Etsy visits, 7 days"],[fmt(t.favorites),"Favorites"],[fmt(t.orders),"Orders"],["$"+t.revenue.toFixed(2),"Revenue"]])+((S.meta.sources||[]).length?`<div class="row"><div class="k">Where visits come from (30 days)</div><ul>${S.meta.sources.map(s=>`<li>${esc(s.label)}: <b>${fmt(s.visits)}</b></li>`).join("")}</ul></div>`:"")}
+  else if(id==="promo"){sub="Pins and Shorts, morning and afternoon";const top=[...S.shorts].sort((a,b)=>(b.views||0)-(a.views||0))[0];body=agentBlock("morning-promote")+agentBlock("afternoon-promote")+nums([[fmt(t.pins),"Pins published"],[fmt(t.shortViews),"Short views"]])+(top?`<div class="row"><div class="k">Top Short</div><div class="t">${esc(top.title)}: <b>${fmt(top.views)}</b> views</div></div>`:"")}
+  else if(id==="control"){sub="Finds the weakest step each night and fixes one thing";body=agentBlock("optimizer")}
+  else if(id==="quest"){sub="Things only Todd can do";const open=S.quests.filter(q=>!q.done&&(q.owner||"todd")==="todd").sort((a,b)=>(a.order||0)-(b.order||0));body=`<div class="row"><div class="k">${open.length} open</div><ul>${open.map(q=>`<li><b>${esc(q.title)}</b> <span style="color:var(--muted)">+${fmt(q.xp)} XP</span><br><span style="font-size:12.5px">${esc(q.detail||"")}</span></li>`).join("")||"<li>Nothing waiting on you.</li>"}</ul></div><div class="t" style="font-size:12.5px">Tick them off in the Stats tab, under Quests.</div>`}
+  else if(id==="break"){sub="Where the crew waits between shifts";body=`<div class="row"><div class="k">Shift schedule</div><ul>${S.agents.slice().sort((a,b)=>(minutesOf(a.schedule)??0)-(minutesOf(b.schedule)??0)).map(a=>`<li><b>${esc(a.schedule||"")}</b> ${esc(a.name)} <span style="color:var(--muted)">(${esc(nextShift(a.schedule))})</span></li>`).join("")}</ul></div>`}
+  else if(id==="dock"){sub="Every product the factory has shipped";body=nums([[fmt(Number(S.meta.listingsLive)||t.listed),"Products live"],[fmt(t.orders),"Orders"]])+`<div class="row"><div class="k">Recent</div><ul>${recentLog(5)}</ul></div>`}
+  else if(id==="stores"){sub="Where products sell";body=`<div class="row"><ul>${S.stores.slice().sort((a,b)=>(a.order||0)-(b.order||0)).map(s=>`<li><b>${esc(s.name)}</b> <span class="statepill ${s.status==="live"?"working":""}">${esc(s.status)}</span><br><span style="font-size:12.5px">${esc(s.detail||"")}</span></li>`).join("")}</ul></div>`}
+  $("fxPTitle").textContent=z.label;$("fxPSub").textContent=sub;$("fxPBody").innerHTML=body;$("fxPanel").hidden=false;renderChips();
+}
+function recentLog(n){const S=P().state,esc=P().esc;const days=[...S.log].sort((a,b)=>a.id<b.id?1:-1);const out=[];for(const d of days){for(const e of (d.entries||[]).slice().reverse()){out.push(`<li><b>${esc(e.agent||"")}</b> ${esc(e.text||"")}</li>`);if(out.length>=n)return out.join("")}}return out.join("")||"<li>No runs logged yet.</li>"}
+
+function renderChips(){
+  if(!P())return;const S=P().state;
+  $("fxChips").innerHTML=ZONES.map(z=>{const ids=z.agents;let dot="#9AA1B3",sub="";if(ids.length){const as=ids.map(agentDoc).filter(Boolean);const w=as.some(isWorking);dot=w?"#1E7B3A":(as.some(a=>a.lastStatus==="failed")?"#B23A2A":"#9AA1B3");sub=w?"working":(as[0]&&as[0].schedule?"next "+nextShift(as[0].schedule):"")}else if(z.id==="quest"){const n=S.quests.filter(q=>!q.done&&(q.owner||"todd")==="todd").length;sub=n?n+" open":"clear";dot=n?"#C8502F":"#1E7B3A"}
+    return `<button type="button" class="chipbtn${selected===z.id?" on":""}" data-z="${z.id}"><i style="background:${dot}"></i><span>${P().esc(z.label)}${sub?`<br><span class="cs">${P().esc(sub)}</span>`:""}</span></button>`}).join("");
+  $("fxChips").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>openPanel(b.getAttribute("data-z"))));
+}
+
+/* ---------- HUD and live updates ---------- */
+let lastRuns={};
+function update(){
+  const p=P();if(!p)return;const S=p.state,t=p.totals(),xp=p.computeXP(t),li=p.levelFor(xp),L=p.LEVELS;
+  $("fxLvl").textContent=li+1;$("fxLvlName").textContent=L[li][1];
+  const next=L[li+1];$("fxXp").style.width=(next?Math.min(100,(xp-L[li][0])/(next[0]-L[li][0])*100):100).toFixed(1)+"%";
+  $("fxXpTxt").textContent=next?`${p.fmt(xp)} XP · ${p.fmt(next[0]-xp)} to ${next[1]}`:`${p.fmt(xp)} XP`;
+  const today=p.todayISO();$("fxVisits").textContent=p.fmt(p.sumRange("etsyVisits",p.addDays(today,-6),today));
+  $("fxListings").textContent=p.fmt(Number(S.meta.listingsLive)||t.listed);$("fxOrders").textContent=p.fmt(t.orders);$("fxCoins").textContent="$"+t.revenue.toFixed(0);$("fxShorts").textContent=p.fmt(t.shortViews);
+  // ticker: newest log entry
+  const days=[...S.log].sort((a,b)=>a.id<b.id?1:-1);const d0=days[0];if(d0&&d0.entries&&d0.entries.length){const e=d0.entries[d0.entries.length-1];$("fxTicker").textContent=`${e.t?e.t+" · ":""}${e.agent}: ${e.text}`}
+  // celebrate finished runs
+  for(const a of S.agents){const prev=lastRuns[a.id];if(prev!==undefined&&prev!==a.lastRun&&a.lastRun){const w=crew.find(c=>c.id===a.id);if(w)floaters.push({gx:w.x,gy:w.y,z:60,txt:"Run done",t:0})}lastRuns[a.id]=a.lastRun}
+  renderChips();if(selected)openPanel(selected);
+}
+function tickClock(){const c=chicago();const h12=((c.h+11)%12)+1;$("fxClock").textContent=`Chicago ${c.wd} ${h12}:${String(c.m).padStart(2,"0")} ${c.h<12?"am":"pm"}${nightFactor()>.6?" · night shift":""}`}
+window.__pnfFactory={update};
+addEventListener("resize",()=>{resize()});
+resize();tickClock();setInterval(()=>{tickClock();renderChips()},30000);
+requestAnimationFrame(frame);
+/* view tabs */
+function setView(v){$("factoryView").hidden=v!=="factory";$("statsView").hidden=v!=="stats";$("vt-factory").setAttribute("aria-pressed",String(v==="factory"));$("vt-stats").setAttribute("aria-pressed",String(v==="stats"));try{localStorage.setItem("pnf-view",v)}catch(e){}if(v==="factory")resize();else if(window.__pnfStatsResize)window.__pnfStatsResize()}
+$("vt-factory").addEventListener("click",()=>setView("factory"));$("vt-stats").addEventListener("click",()=>setView("stats"));
+let v0="factory";try{v0=localStorage.getItem("pnf-view")||"factory"}catch(e){}if(location.hash==="#stats")v0="stats";setView(v0);
+})();
+</script>
+

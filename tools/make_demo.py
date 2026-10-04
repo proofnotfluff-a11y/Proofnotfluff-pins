@@ -66,31 +66,34 @@ def lint(spec):
 
 def timeline(spec, pace, walkthrough):
     """Start times in seconds for each row, the fix, the end card, and the captions."""
-    t = 1.6 if not walkthrough else 3.0          # hook and empty sheet are on screen first
+    read = lambda txt: len(txt or "") / 15.0       # seconds a caption needs on screen (about 15 characters a second)
     ev, caps = [], []
+    t = 1.6
     if walkthrough:
-        caps.append([0.0, spec.get("hook_say") or re.sub("<[^>]+>", "", spec["hook"])])
+        hs = spec.get("hook_say") or re.sub("<[^>]+>", "", spec["hook"])
+        caps.append([0.0, hs]); t = max(3.0, read(hs) + 0.6)
     for r in spec["rows"]:
         if r.get("input"):
             dur = 0.55 * pace + 0.04 * len(str(r["value"]))
             ev.append({"t": t, "d": dur, "kind": "input"})
             say = (r.get("why") if walkthrough else None) or r.get("say") or r["label"]
             caps.append([t - 0.15, say])
-            t += dur + 0.35 * pace
+            t += max(dur + 0.35 * pace, read(say) + 0.3 if walkthrough else 0)
         elif r.get("result"):
             t += 0.25 * pace
             ev.append({"t": t, "d": 0.9, "kind": "result"})
             say = (r.get("why") if walkthrough else None) or r.get("say") or r["label"]
             caps.append([t, say])
-            t += 0.9 + 1.0 * pace
+            t += max(0.9 + 1.0 * pace, read(say) + 0.5 if walkthrough else 0)
         else:  # a fixed row (shown filled from the start)
             ev.append({"t": 0, "d": 0, "kind": "fixed"})
     fix_t = None
     if spec.get("fix"):
         fix_t = t
         f = spec["fix"]
-        caps.append([t, (f.get("why") if walkthrough else None) or f.get("say") or f["label"]])
-        t += 1.0 + 1.3 * pace
+        fsay = (f.get("why") if walkthrough else None) or f.get("say") or f["label"]
+        caps.append([t, fsay])
+        t += max(1.0 + 1.3 * pace, read(fsay) + 0.5 if walkthrough else 0)
     cta_t = t
     caps.append([t, spec.get("cta", {}).get("say", "")])
     total = t + (2.6 if not walkthrough else 5.0)
@@ -204,7 +207,7 @@ window.renderAt=function(t){{
     const x=a[0]+(curTarget[0]-a[0])*k,y=a[1]+(curTarget[1]-a[1])*k;cur.style.transform='translate('+x+'px,'+y+'px)'}}
   else cur.style.transform='translate(-200px,-200px)';
   let cap='';D.caps.forEach(c=>{{if(t>=c[0])cap=c[1]}});const ce=document.getElementById('cap');ce.textContent=cap;ce.style.visibility=cap?'visible':'hidden';
-  const en=document.getElementById('end');en.style.opacity=Math.max(0,Math.min(1,(t-D.ctaT)/0.45));
+  const en=document.getElementById('end');en.style.opacity=Math.max(0,Math.min(1,(t-D.ctaT)/0.25));
 }};
 window.renderAt(0);
 </script></body></html>"""
@@ -228,6 +231,10 @@ def render(page_html, fmt, total, work):
 def main(spec_path, out, fmt_name="short"):
     spec = json.load(open(spec_path)); lint(spec)
     fmt = FORMATS[fmt_name]; wide = fmt_name == "walkthrough"
+    if fmt_name == "listing":  # the buyer is already on Etsy: no shop address, no call to leave
+        spec.setdefault("cta", {})["sub"] = spec.get("listing_cta_sub", "Instant digital download")
+        spec["cta"]["say"] = ""
+
     ev, caps, fix_t, cta_t, total = timeline(spec, fmt["pace"], wide)
     if total > fmt["max"]:
         if fmt_name == "listing":  # Etsy's 15 s cap: shorten the end card first, then refuse

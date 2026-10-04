@@ -21,3 +21,15 @@ Upload: commit the mp4 as shorts/YYYY-MM-DD-slug.mp4, confirm with curl that the
 Turns a Short's spec into an Etsy listing video: the hook, the first stat or compare slide (else the fix), and the CTA, 4.6 s each (13.8 s), 1080 x 2160 (1:2), no audio track. The CTA line becomes "Instant digital download" (set `listing_cta_sub` in the spec to change it), since the viewer is already on Etsy. Content sits in the middle third, so it still reads when Etsy crops the gallery frame.
 
 Etsy's rules, checked Oct 4, 2026 (help.etsy.com, "How to Add Listing Videos"): 3 to 15 seconds, sound removed, 100 MB max, 1080 px recommended, 2:1 or 1:2, up to 2 videos per listing. The script refuses output that breaks the length or size limit.
+
+## Product demo videos: make_demo.py (the main promo format from Oct 4, 2026)
+
+`python3 make_demo.py spec.json out.mp4 --format short|walkthrough|listing`
+
+Shows the product's calculator on screen from frame one, types the inputs in, reveals the result cell (count-up), then an optional "fix" result and an Etsy end card. Captions are burned in; music from make_slides. Every frame is rendered from a timeline, so motion is exact.
+
+- `short`: 1080x1920, about 10 to 15 s. YouTube Short, Instagram Reel, Pinterest video pin. Text stays out of the right 150 px and the bottom band where the platform buttons and titles sit.
+- `walkthrough`: 1920x1080, paced to reading speed (about 15 characters a second), uses each row's `why` caption. Upload as a regular YouTube video; every Short's related-video link points to it, and line one of its description is the listing URL.
+- `listing`: 1080x2160, no audio, 15 s max, end card says "Instant digital download". Etsy listing video.
+
+Spec fields are documented at the top of make_demo.py; an example is promo/specs/demo-13-hourly-rate.json. The tool refuses specs with em dashes, banned words, no result row, more than 7 rows, or a CTA that points to an unclickable link. Every number must come from the product's own files and the CMO review checks this before anything posts.

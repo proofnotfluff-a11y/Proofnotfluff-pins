@@ -646,7 +646,7 @@ const ZONES=[
   {id:"rule",label:"Rule Desk",gx:.5,gy:.5,w:4,d:3,tint:"#CFE2DE",agents:["rule-desk"]},
   {id:"factory",label:"Product Factory",gx:5.5,gy:.5,w:11,d:3,tint:"#F1DCD2",agents:["factory","builder"]},
   {id:"shop",label:"Shop Office",gx:.5,gy:4.5,w:4,d:3.2,tint:"#D5DFEE",agents:["shop-run"]},
-  {id:"promo",label:"Promo Studio",gx:5.5,gy:4.5,w:5,d:3.2,tint:"#E3DBF0",agents:["morning-promote","afternoon-promote"]},
+  {id:"promo",label:"Promo Studio",gx:5.5,gy:4.5,w:5,d:3.2,tint:"#E3DBF0",agents:["cmo","morning-promote","afternoon-promote"]},
   {id:"control",label:"Control Room",gx:11.5,gy:4.5,w:5,d:3.2,tint:"#EEE4C9",agents:["optimizer","live"]},
   {id:"quest",label:"Quest Board",gx:.5,gy:8.5,w:4,d:3,tint:"#ECE6DA",agents:[]},
   {id:"break",label:"Break Room",gx:5.5,gy:8.5,w:5,d:3,tint:"#DDE8D8",agents:[]},
@@ -662,6 +662,7 @@ const WORKERS=[
   {id:"shop-run",name:"Sam",zone:"shop",hat:C.blue,shirt:"#4A79B8",spots:[[2.3,6.6],[1.4,6.2]]},
   {id:"factory",name:"Fern",zone:"factory",hat:C.accent,shirt:"#D9704F",spots:[[7,2.5],[9.6,2.5],[12.4,2.5],[15,2.5]]},
   {id:"builder",name:"Bea",zone:"factory",hat:"#E0874F",shirt:"#7A8B5C",spots:[[8.2,2.2],[10.6,2.2],[13.6,2.3]]},
+  {id:"cmo",name:"Max",zone:"promo",hat:"#1D2433",shirt:"#C8502F",spots:[[6.6,7.3],[8.4,5.6],[9.8,7.4]]},
   {id:"morning-promote",name:"Mo",zone:"promo",hat:C.purple,shirt:"#8466B8",spots:[[7.3,6.6],[9.6,6.2]]},
   {id:"afternoon-promote",name:"Ava",zone:"promo",hat:"#9A82D6",shirt:"#B39BE4",spots:[[8.6,6.9],[9.9,6.8]]},
   {id:"optimizer",name:"Ozzy",zone:"control",hat:C.gold,shirt:"#B08B2E",spots:[[13.7,6.7],[15,6.5]]},
@@ -669,8 +670,8 @@ const WORKERS=[
   {id:"coo",name:"Cora",zone:"coo",hat:"#1D2433",shirt:"#2F5F9E",spots:[[11.4,15.1],[13.2,14.6],[15.4,14.7]]},
   {id:"rnd",name:"Remy",zone:"rnd",hat:"#B5487A",shirt:"#EEF1F6",spots:[[1.9,13.6],[4.6,14.75],[7.1,14.3]]}
 ];
-const BREAK_SPOTS=[[6.6,9.8],[7.6,10.6],[8.8,9.6],[9.6,10.7],[7.2,11.1],[8.3,10.2],[9.9,9.9],[6.9,10.1],[8.0,9.3],[9.3,9.4]];
-const SEATS=[[6.7,10.9],[7.5,10.9],[8.3,10.9],[9.1,10.9],[9.9,10.9],[6.3,10.2],[10.1,10.2],[9.6,10.3],[6.6,11.2],[7.4,11.2]];
+const BREAK_SPOTS=[[6.6,9.8],[7.6,10.6],[8.8,9.6],[9.6,10.7],[7.2,11.1],[8.3,10.2],[9.9,9.9],[6.9,10.1],[8.0,9.3],[9.3,9.4],[6.2,9.6]];
+const SEATS=[[6.7,10.9],[7.5,10.9],[8.3,10.9],[9.1,10.9],[9.9,10.9],[6.3,10.2],[10.1,10.2],[9.6,10.3],[6.6,11.2],[7.4,11.2],[8.2,11.2]];
 
 const iso=(gx,gy,z=0)=>[(gx-gy)*TW/2,(gx+gy)*TH/2-z];
 function poly(pts,fill,stroke,lw){ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.closePath();if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw||1.4;ctx.lineJoin="round";ctx.stroke()}}
@@ -890,7 +891,7 @@ function openPanel(id){
   if(id==="rule"){sub="Watches official numbers every morning";const ev=(S.meta.events||[]);body=agentBlock("rule-desk")+nums([["34","Official numbers watched"],[String(S.quests.filter(q=>q.id.startsWith("breaking-")&&!q.done).length),"Breaking updates open"]])+(ev.length?`<div class="row"><div class="k">Coming up</div><ul>${ev.map(e=>`<li><b>${esc(e.date)}</b> ${esc(e.label)}</li>`).join("")}</ul></div>`:"")}
   else if(id==="factory"){sub="Bea builds and packs products in the cloud; Fern lists them on Etsy";body=agentBlock("builder")+agentBlock("factory")+nums([[fmt(t.listed),"Products listed"],[fmt(P().sumRange("listed",P().addDays(today,-6),today)),"Listed this week"]])+`<div class="row"><div class="k">On the line next</div><ul>${crewQ.slice(0,6).map(q=>`<li>${esc(q.title)}</li>`).join("")||"<li>Queue is empty</li>"}</ul></div>`}
   else if(id==="shop"){sub="Reads Etsy stats, comments and fixes listings";const wk=P().sumRange("etsyVisits",P().addDays(today,-6),today);body=agentBlock("shop-run")+nums([[fmt(wk),"Etsy visits, 7 days"],[fmt(t.favorites),"Favorites"],[fmt(t.orders),"Orders"],["$"+t.revenue.toFixed(2),"Revenue"]])+((S.meta.sources||[]).length?`<div class="row"><div class="k">Where visits come from (30 days)</div><ul>${S.meta.sources.map(s=>`<li>${esc(s.label)}: <b>${fmt(s.visits)}</b></li>`).join("")}</ul></div>`:"")}
-  else if(id==="promo"){sub="Pins and Shorts, morning and afternoon";const top=[...S.shorts].sort((a,b)=>(b.views||0)-(a.views||0))[0];body=agentBlock("morning-promote")+agentBlock("afternoon-promote")+nums([[fmt(t.pins),"Pins published"],[fmt(t.shortViews),"Short views"]])+(top?`<div class="row"><div class="k">Top Short</div><div class="t">${esc(top.title)}: <b>${fmt(top.views)}</b> views</div></div>`:"")}
+  else if(id==="promo"){sub="Max the CMO plans and checks every piece; Mo and Ava publish it";const CM=S.meta.cmo||{};const top=[...S.shorts].sort((a,b)=>(b.views||0)-(a.views||0))[0];body=agentBlock("cmo")+(CM.theme?`<div class="row"><div class="k">This week's story</div><div class="t"><b>${esc(CM.theme)}</b></div>${(CM.slots||[]).length?`<ul>${CM.slots.map(x=>`<li>${esc(x.slot==="am"?"Morning":"Afternoon")}: ${esc(x.hook||x.product||"")} <span class="statepill ${x.status==="published"?"working":""}">${esc(x.status||"")}</span></li>`).join("")}</ul>`:""}${CM.yesterday?`<div class="t" style="font-size:12.5px">Yesterday: ${esc(CM.yesterday)}</div>`:""}</div>`:`<div class="row"><div class="t">First slate tomorrow at 5:20 am.</div></div>`)+agentBlock("morning-promote")+agentBlock("afternoon-promote")+nums([[fmt(t.pins),"Pins published"],[fmt(t.shortViews),"Short views"]])+(top?`<div class="row"><div class="k">Top Short</div><div class="t">${esc(top.title)}: <b>${fmt(top.views)}</b> views</div></div>`:"")}
   else if(id==="rnd"){sub="Finds what Etsy buyers search for and what reviews say is missing";const R=S.meta.rnd||{};const top=R.top||[];body=agentBlock("rnd")+nums([[R.searchesDate===today?fmt(R.searchesToday)+" / "+fmt(R.searchesLimit||100):"0 / "+fmt(R.searchesLimit||100),"eRank searches today"],[fmt(R.backlog||0),"Ideas scored and waiting"]])+`<div class="row"><div class="k">Top of the backlog</div><ul>${top.map(x=>`<li>${esc(x.name)}${x.score!=null?` <span style="color:var(--muted)">score ${esc(x.score)}</span>`:""}${x.note?`<br><span style="font-size:12.5px">${esc(x.note)}</span>`:""}</li>`).join("")||"<li>First sweep tonight.</li>"}</ul></div>`}
   else if(id==="coo"){sub="Reviews the whole operation twice a week, fixes the process and proposes where the business goes next";const CO=S.meta.coo||{};body=agentBlock("coo")+(CO.headline?`<div class="row"><div class="k">Latest memo${CO.memoDate?" · "+esc(CO.memoDate):""}</div><div class="t"><b>${esc(CO.headline)}</b></div>${CO.constraint?`<div class="t">Constraint: ${esc(CO.constraint)}</div>`:""}</div>`:`<div class="row"><div class="t">First review Monday at 5:45 am.</div></div>`)+((CO.changes||[]).length?`<div class="row"><div class="k">Changed</div><ul>${CO.changes.map(c=>`<li>${esc(c)}</li>`).join("")}</ul></div>`:"")+((CO.proposals||[]).length?`<div class="row"><div class="k">Waiting for your tick on the quest board</div><ul>${CO.proposals.map(c=>`<li>${esc(c)}</li>`).join("")}</ul></div>`:"")}
   else if(id==="control"){sub="Ozzy fixes the weakest step each night; Chip works whatever you ask for in chat";body=agentBlock("optimizer")+agentBlock("live")}

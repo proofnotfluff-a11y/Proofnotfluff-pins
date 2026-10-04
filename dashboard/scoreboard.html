@@ -647,7 +647,7 @@ const ZONES=[
   {id:"factory",label:"Product Factory",gx:5.5,gy:.5,w:11,d:3,tint:"#F1DCD2",agents:["factory"]},
   {id:"shop",label:"Shop Office",gx:.5,gy:4.5,w:4,d:3.2,tint:"#D5DFEE",agents:["shop-run"]},
   {id:"promo",label:"Promo Studio",gx:5.5,gy:4.5,w:5,d:3.2,tint:"#E3DBF0",agents:["morning-promote","afternoon-promote"]},
-  {id:"control",label:"Control Room",gx:11.5,gy:4.5,w:5,d:3.2,tint:"#EEE4C9",agents:["optimizer"]},
+  {id:"control",label:"Control Room",gx:11.5,gy:4.5,w:5,d:3.2,tint:"#EEE4C9",agents:["optimizer","live"]},
   {id:"quest",label:"Quest Board",gx:.5,gy:8.5,w:4,d:3,tint:"#ECE6DA",agents:[]},
   {id:"break",label:"Break Room",gx:5.5,gy:8.5,w:5,d:3,tint:"#DDE8D8",agents:[]},
   {id:"dock",label:"Loading Dock",gx:11.5,gy:8.5,w:5,d:3,tint:"#D6D2CA",agents:[]},
@@ -663,10 +663,11 @@ const WORKERS=[
   {id:"morning-promote",name:"Mo",zone:"promo",hat:C.purple,shirt:"#8466B8",spots:[[7.3,6.6],[9.6,6.2]]},
   {id:"afternoon-promote",name:"Ava",zone:"promo",hat:"#9A82D6",shirt:"#B39BE4",spots:[[8.6,6.9],[9.9,6.8]]},
   {id:"optimizer",name:"Ozzy",zone:"control",hat:C.gold,shirt:"#B08B2E",spots:[[13.7,6.7],[15,6.5]]},
+  {id:"live",name:"Chip",zone:"control",hat:"#1D2433",shirt:"#C8502F",spots:[[12.3,7.3],[14.6,7.35],[16,6.3],[11.9,5.2]]},
   {id:"rnd",name:"Remy",zone:"rnd",hat:"#B5487A",shirt:"#EEF1F6",spots:[[1.9,13.6],[4.6,14.75],[7.1,14.3]]}
 ];
-const BREAK_SPOTS=[[6.6,9.8],[7.6,10.6],[8.8,9.6],[9.6,10.7],[7.2,11.1],[8.3,10.2],[9.9,9.9]];
-const SEATS=[[6.7,10.9],[7.5,10.9],[8.3,10.9],[9.1,10.9],[9.9,10.9],[6.3,10.2],[10.1,10.2]];
+const BREAK_SPOTS=[[6.6,9.8],[7.6,10.6],[8.8,9.6],[9.6,10.7],[7.2,11.1],[8.3,10.2],[9.9,9.9],[6.9,10.1]];
+const SEATS=[[6.7,10.9],[7.5,10.9],[8.3,10.9],[9.1,10.9],[9.9,10.9],[6.3,10.2],[10.1,10.2],[9.6,10.3]];
 
 const iso=(gx,gy,z=0)=>[(gx-gy)*TW/2,(gx+gy)*TH/2-z];
 function poly(pts,fill,stroke,lw){ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.closePath();if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw||1.4;ctx.lineJoin="round";ctx.stroke()}}
@@ -883,9 +884,9 @@ function openPanel(id){
   else if(id==="shop"){sub="Reads Etsy stats, comments and fixes listings";const wk=P().sumRange("etsyVisits",P().addDays(today,-6),today);body=agentBlock("shop-run")+nums([[fmt(wk),"Etsy visits, 7 days"],[fmt(t.favorites),"Favorites"],[fmt(t.orders),"Orders"],["$"+t.revenue.toFixed(2),"Revenue"]])+((S.meta.sources||[]).length?`<div class="row"><div class="k">Where visits come from (30 days)</div><ul>${S.meta.sources.map(s=>`<li>${esc(s.label)}: <b>${fmt(s.visits)}</b></li>`).join("")}</ul></div>`:"")}
   else if(id==="promo"){sub="Pins and Shorts, morning and afternoon";const top=[...S.shorts].sort((a,b)=>(b.views||0)-(a.views||0))[0];body=agentBlock("morning-promote")+agentBlock("afternoon-promote")+nums([[fmt(t.pins),"Pins published"],[fmt(t.shortViews),"Short views"]])+(top?`<div class="row"><div class="k">Top Short</div><div class="t">${esc(top.title)}: <b>${fmt(top.views)}</b> views</div></div>`:"")}
   else if(id==="rnd"){sub="Finds what Etsy buyers search for and what reviews say is missing";const R=S.meta.rnd||{};const top=R.top||[];body=agentBlock("rnd")+nums([[R.searchesDate===today?fmt(R.searchesToday)+" / "+fmt(R.searchesLimit||100):"0 / "+fmt(R.searchesLimit||100),"eRank searches today"],[fmt(R.backlog||0),"Ideas scored and waiting"]])+`<div class="row"><div class="k">Top of the backlog</div><ul>${top.map(x=>`<li>${esc(x.name)}${x.score!=null?` <span style="color:var(--muted)">score ${esc(x.score)}</span>`:""}${x.note?`<br><span style="font-size:12.5px">${esc(x.note)}</span>`:""}</li>`).join("")||"<li>First sweep tonight.</li>"}</ul></div>`}
-  else if(id==="control"){sub="Finds the weakest step each night and fixes one thing";body=agentBlock("optimizer")}
+  else if(id==="control"){sub="Ozzy fixes the weakest step each night; Chip works whatever you ask for in chat";body=agentBlock("optimizer")+agentBlock("live")}
   else if(id==="quest"){sub="Things only Todd can do";const open=S.quests.filter(q=>!q.done&&(q.owner||"todd")==="todd").sort((a,b)=>(a.order||0)-(b.order||0));body=`<div class="row"><div class="k">${open.length} open</div><ul>${open.map(q=>`<li><b>${esc(q.title)}</b> <span style="color:var(--muted)">+${fmt(q.xp)} XP</span><br><span style="font-size:12.5px">${esc(q.detail||"")}</span></li>`).join("")||"<li>Nothing waiting on you.</li>"}</ul></div><div class="t" style="font-size:12.5px">Tick them off in the Stats tab, under Quests.</div>`}
-  else if(id==="break"){sub="Where the crew waits between shifts";body=`<div class="row"><div class="k">Shift schedule</div><ul>${S.agents.slice().sort((a,b)=>(minutesOf(a.schedule)??0)-(minutesOf(b.schedule)??0)).map(a=>`<li><b>${esc(a.schedule||"")}</b> ${esc(a.name)} <span style="color:var(--muted)">(${esc(nextShift(a.schedule))})</span></li>`).join("")}</ul></div>`}
+  else if(id==="break"){sub="Where the crew waits between shifts";body=`<div class="row"><div class="k">Shift schedule</div><ul>${S.agents.slice().sort((a,b)=>(minutesOf(a.schedule)??0)-(minutesOf(b.schedule)??0)).map(a=>`<li><b>${esc(a.schedule||"")}</b> ${esc(a.name)} <span style="color:var(--muted)">${a.schedule?`(${esc(nextShift(a.schedule))})`:"(on call)"}</span></li>`).join("")}</ul></div>`}
   else if(id==="dock"){sub="Every product the factory has shipped";body=nums([[fmt(Number(S.meta.listingsLive)||t.listed),"Products live"],[fmt(t.orders),"Orders"]])+`<div class="row"><div class="k">Recent</div><ul>${recentLog(5)}</ul></div>`}
   else if(id==="stores"){sub="Where products sell";body=`<div class="row"><ul>${S.stores.slice().sort((a,b)=>(a.order||0)-(b.order||0)).map(s=>`<li><b>${esc(s.name)}</b> <span class="statepill ${s.status==="live"?"working":""}">${esc(s.status)}</span><br><span style="font-size:12.5px">${esc(s.detail||"")}</span></li>`).join("")}</ul></div>`}
   $("fxPTitle").textContent=z.label;$("fxPSub").textContent=sub;$("fxPBody").innerHTML=body;$("fxPanel").hidden=false;renderChips();

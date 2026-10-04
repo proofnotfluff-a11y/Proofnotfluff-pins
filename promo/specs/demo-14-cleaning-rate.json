@@ -1,0 +1,64 @@
+{
+  "product_id": "14",
+  "product": "Cleaning Business Starter Kit",
+  "tab": "2 Your Numbers",
+  "audience": "House cleaners",
+  "hook": "$22 an hour to clean? Try <b>$55</b>",
+  "hook_say": "Here is why a $22 hourly guess underprices house cleaning by about $33 an hour.",
+  "rows": [
+    {
+      "label": "Take-home pay you want per year",
+      "value": "$48,000",
+      "input": true,
+      "say": "You want to take home $48,000",
+      "why": "Start with what you want to keep for yourself: $48,000 a year after taxes."
+    },
+    {
+      "label": "Hours you work per year, all of it",
+      "value": "2,160",
+      "input": true,
+      "say": "2,160 hours a year, all of it",
+      "why": "48 weeks at 45 hours a week is 2,160 hours, counting texts, quotes, invoicing, laundry and supply runs."
+    },
+    {
+      "label": "Share spent cleaning or driving to jobs",
+      "value": "70%",
+      "input": true,
+      "say": "Only 70% is cleaning or job driving",
+      "why": "Only about 70% of those hours are cleaning or driving to jobs, the hours a quote can charge for."
+    },
+    {
+      "label": "Business costs per month",
+      "value": "$505",
+      "input": true,
+      "say": "$505 a month in costs",
+      "why": "Add $505 a month for insurance, supplies, equipment, phone, apps, marketing and fees."
+    },
+    {
+      "label": "The guess: pay divided by all hours",
+      "value": "$22.22",
+      "say": "The guess: $22 an hour",
+      "why": "Divide pay by every hour worked and you get $22.22. That leaves out costs, taxes and unpaid hours."
+    },
+    {
+      "label": "Break-even rate per cleaning hour",
+      "value": "$46.98",
+      "result": true,
+      "kind": "bad",
+      "say": "Break-even is $46.98",
+      "why": "Add self-employment tax, an estimated 12% income tax and your costs, spread over billable hours only: break-even is $46.98 per cleaning hour."
+    }
+  ],
+  "fix": {
+    "label": "Target rate with 15% profit",
+    "value": "$55.27",
+    "say": "Target: about $55 an hour",
+    "why": "Build in a 15% profit margin and the target is $55.27 per cleaning hour. The Quote Builder prices every house from this."
+  },
+  "cta": {
+    "title": "Cleaning Business Starter Kit",
+    "button": "Instant download",
+    "sub": "On Etsy: etsy.com/shop/ProofNotFluff",
+    "say": "Run your own numbers"
+  }
+}

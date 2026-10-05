@@ -33,3 +33,10 @@ Shows the product's calculator on screen from frame one, types the inputs in, re
 - `listing`: 1080x2160, no audio, 15 s max, end card says "Instant digital download". Etsy listing video.
 
 Spec fields are documented at the top of make_demo.py; an example is promo/specs/demo-13-hourly-rate.json. The tool refuses specs with em dashes, banned words, no result row, more than 7 rows, or a CTA that points to an unclickable link. Every number must come from the product's own files and the CMO review checks this before anything posts.
+
+## legal_scan.py (Legal desk first pass)
+
+```
+python3 tools/legal_scan.py <product.zip | folder> [--listing listing.md] [--tier high|medium|low]
+```
+Unpacks nested zips and checks every file for: Todd's personal details in text or metadata, promise wording ("guarantee", "pass any ATS", "IRS-approved"), words to read in context ("certified", "official"), em dashes and banned words, review comments and tracked changes, hidden sheets, cached error cells, a missing short notice or Terms of Use, no as-of date, and (with --listing) the required listing lines. Exit code 1 means a high finding. It never clears a product by itself: the reviewer still reads every page against legal/README.md.

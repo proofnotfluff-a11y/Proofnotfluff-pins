@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//root/.ccr/README.md)",
+      "Bash(grep -n -i * /root/.ccr/README.md)",
+      "Bash(curl -sS \"$HTTPS_PROXY/__agentproxy/status\")",
+      "Bash(python3 tools/etsy_oauth.py me)",
+      "Bash(python3 tools/etsy_oauth.py token)"
+    ]
+  }
+}

@@ -86,7 +86,7 @@ def validate(p):
     for line in REQUIRED_LINES:
         if line not in p["description"]: errs.append(f"description is missing: {line}")
     for field in ("title", "description"):
-        if "—" in p[field]: errs.append(f"em dash in {field}")
+        if chr(0x2014) in p[field]: errs.append(f"em dash in {field}")
     if len(p["title"].split()) > 15: print(f"warning: title is {len(p['title'].split())} words; the COO title format asks for under 15", file=sys.stderr)
     if p["category"].lower() not in CATEGORY_TAXONOMY: errs.append(f"category '{p['category']}' is not in the ledger category rule")
     return errs

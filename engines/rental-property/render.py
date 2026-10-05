@@ -146,7 +146,7 @@ table.sheet{{font-size:9.5pt}}
 </ul>
 <h2>Small things that save time</h2>
 <ul>
-<li>Yellow cells, including every row of the Log, are for typing. The Rent Roll, Property P&amp;L and Monthly tabs are locked against accidental typing (Review &gt; Unprotect Sheet, no password).</li>
+<li>Yellow cells, including the first 1,000 rows of the Log, are for typing. The Rent Roll, Property P&amp;L and Monthly tabs are locked against accidental typing (Review &gt; Unprotect Sheet, no password).</li>
 <li>Formulas read the Log down to row 5,000. Keep adding rows under the last one, and sort by date whenever you like.</li>
 <li>The Property P&amp;L shows a count of Log rows with an amount but no property or category, so nothing goes missing.</li>
 <li>Late fees, pet rent or a kept deposit go under Other rental income.</li>

@@ -368,7 +368,7 @@ lines = [
     ("The file opens with a worked example: a duplex and a single-family house, January to October 2026. On the Rent Roll for October, one door is Paid, one paid $600 of $1,100, and one has paid nothing. Status and the lease countdown use today's date, so both unpaid sample doors may show LATE when you open it. To start fresh, delete the sample rows on Setup and Log. Every formula keeps working on a blank file.", 11, False, INK),
     ("", 6, False, INK),
     ("Good to know", 13, True, ACC),
-    ("Yellow cells, including every row of the Log, are for typing. White cells on Rent Roll, Property P&L and Monthly are formulas and are locked so they can't be typed over by accident (Review > Unprotect Sheet if you want to change them; no password).", 11, False, INK),
+    ("Yellow cells, including the first 1,000 rows of the Log, are for typing. White cells on Rent Roll, Property P&L and Monthly are formulas and are locked so they can't be typed over by accident (Review > Unprotect Sheet if you want to change them; no password).", 11, False, INK),
     ("Formulas read Log rows down to row 5,000, so keep adding rows below the last one. Sorting the Log by date is fine.", 11, False, INK),
     ("Mortgage interest is an expense. Principal and capital improvements are not expenses; they lower cash flow only. Depreciation (Schedule E line 18) is left to your tax preparer.", 11, False, INK),
     ("Security deposits are tracked on their own rows and left out of income. IRS Publication 527: don't include a deposit in income if you plan to return it.", 11, False, INK),

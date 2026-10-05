@@ -1,6 +1,6 @@
 # Listing: Rental Property Spreadsheet for 1 to 10 Doors
 
-Scoreboard idea: small-landlord-rental-spreadsheet (R&D score 24; phrase "rental property spreadsheet", 240 eRank searches, 954 competing listings). Built by the cloud builder Oct 5, 2026.
+Scoreboard idea: small-landlord-rental-spreadsheet (R&D score 24; phrase "rental property spreadsheet", 240 eRank searches, 954 competing listings). Built by the cloud builder Oct 5, 2026 (rebuilt and gated 3:10 pm run).
 
 ## Title (89 characters)
 Rental Property Spreadsheet for 1 to 10 Doors, Landlord Rent Tracker, Excel Google Sheets
@@ -39,9 +39,9 @@ WHAT IT DOES
 - Security deposits stay out of income (IRS Publication 527, checked October 5, 2026).
 
 BUILT TO FIX WHAT BUYERS OF OTHER RENTAL SPREADSHEETS COMPLAIN ABOUT
-- Hard to set up: one Setup tab, typed once, then a five-minute walkthrough in the Start Here guide. Yellow cells are for typing; formula tabs are locked against accidental typing (no password).
+- Hard to set up: one Setup tab, typed once, then a five-minute walkthrough in the Start Here guide. Yellow cells are for typing; formula tabs are locked in Excel against accidental typing (no password).
 - Can't find or open the file, phone trouble: one workbook, plus a Start Here page that says exactly which file to open on a computer, in Google Sheets, or on a phone, and how to download from Etsy (the Etsy app can't download files; a browser can).
-- Not what was expected: sized for 1 to 10 doors instead of a 50-unit company workbook. Every tab is shown in the photos with the real sample numbers.
+- Not what was expected: sized for 1 to 10 doors instead of a 50-unit company workbook. The Rent Roll, Property P&L and Monthly tabs are shown in the photos with the real sample numbers.
 
 WHAT'S INSIDE
 - Rental-Property-Spreadsheet-1-to-10-Doors.xlsx with 9 tabs: Start Here, Setup, Log, Rent Roll, Property P&L, Monthly, Categories, Terms, Thank You

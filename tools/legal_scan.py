@@ -122,6 +122,7 @@ def scan(root, listing=None, tier="medium"):
         for p in SOFT:
             for m in re.finditer(p, t, re.I):
                 ctx = t[max(0, m.start() - 40): m.end() + 40].replace("\n", " ")
+                if re.search(r"professional\s+and\s+the\s+official\s+source", ctx, re.I): continue  # clause library wording
                 findings.append(("low", rel, f"check context of '{m.group(0)}': ...{ctx.strip()}..."))
         if EMDASH in t: findings.append(("low", rel, f"{t.count(chr(0x2014))} em dash(es)"))
         for w in BANNED:

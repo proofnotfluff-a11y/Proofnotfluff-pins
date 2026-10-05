@@ -124,7 +124,8 @@ def page(spec, fmt, ev, caps, fix_t, cta_t, total):
 .wrap{{position:absolute;inset:0;display:grid;grid-template-columns:{'760px 1fr' if wide else '1fr'};align-content:{'center' if wide else 'start'};gap:{'70px' if wide else '0'};padding:{'150px 110px 120px' if wide else '200px 150px 0 70px'}}}
 .left{{display:flex;flex-direction:column;{'justify-content:center' if wide else ''}}}
 .sheetwrap{{{'align-self:center' if wide else 'margin-top:10px'}}}
-.capslot{{height:{'auto' if wide else '120px'};margin-top:{'48px' if wide else '30px'};display:flex;align-items:{'flex-start' if wide else 'center'}}}
+.capslot{{height:{'auto' if wide else '120px'};margin-top:{'48px' if wide else '30px'};display:flex;align-items:{'flex-start' if wide else 'center'}}}{'' if wide else 'body .wrap{padding-top:150px} body h1{font-size:76px} body .capslot{height:104px;margin-top:22px} body .row{padding:9px 0} body .cell{height:70px} body .grid{padding:10px 24px 12px} body .fix{margin:12px 24px 18px;padding:16px 26px} body .fix .fv{font-size:58px} body .foot{bottom:330px}'}
+.row.inp .cell{{background:#FFF4CC;color:#1F4E9E}}
 """
     return f"""<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{{font-family:P;src:url(file://{F}/google-fonts/Poppins-Bold.ttf);font-weight:700}}

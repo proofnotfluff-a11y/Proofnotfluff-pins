@@ -73,7 +73,11 @@ def access_token():
     cmd_refresh(); return json.load(open(ACCESS))["access_token"]
 
 def get(path):
-    c, t = call(f"{API}{path}", headers={"Authorization": f"Bearer {access_token()}"})
+    h = {"Authorization": f"Bearer {access_token()}"}
+    # When openapi.etsy.com is not on the environment's API credential, send x-api-key ourselves (keystring:shared_secret).
+    sec = os.environ.get("ETSY_SHARED_SECRET", "").strip()
+    if sec: h["x-api-key"] = f"{keystring()}:{sec}"
+    c, t = call(f"{API}{path}", headers=h)
     return c, t
 
 def cmd_me():

@@ -10,6 +10,8 @@ Runs only in a cloud session on Todd's Default environment (see tools/etsy_oauth
         with --publish sets it active ($0.20 listing fee). Without --publish it stays a draft for review.
   python3 tools/etsy_list.py publish LISTING_ID           sets an existing draft active
   python3 tools/etsy_list.py show LISTING_ID              read-only: state, title, price, images, files, url
+  python3 tools/etsy_list.py retitle LISTING_ID "New title"   changes ONLY the title of a live listing (Todd-approved
+        retitles only; log the old and new title in the ledger's Listing edits first). Prints old and new title.
 
 Field defaults (who_made, when_made, is_supply, should_auto_renew, return_policy_id) are copied from --like
 (default: the newest live listing, #16, 4588972193) so every listing matches what Etsy already accepted.
@@ -155,6 +157,16 @@ def cmd_publish(lid):
     if l.get("state") != "active": die(f"publish returned state {l.get('state')}")
     print(f"PUBLISHED https://www.etsy.com/listing/{lid}")
 
+def cmd_retitle(lid, title):
+    title = title.strip()
+    if not title or len(title) > 140: die("title missing or over 140 characters")
+    if chr(0x2014) in title: die("em dash in title")
+    if len(title.split()) > 15: print(f"warning: {len(title.split())} words; the COO title format asks for under 15", file=sys.stderr)
+    old = get_listing(lid).get("title"); sid = shop_id()
+    l = ok(*req("PATCH", f"/shops/{sid}/listings/{lid}", form={"title": title}), "retitle")
+    if l.get("title") != title: die(f"Etsy returned a different title: {l.get('title')}")
+    print(json.dumps({"listing_id": lid, "old": old, "new": title}))
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     if not a: die(__doc__)
@@ -169,4 +181,5 @@ if __name__ == "__main__":
         cmd_create(args[0], args[1], args[2:], video, like or LIKE_DEFAULT, pub)
     elif a[0] == "publish": cmd_publish(a[1])
     elif a[0] == "show": cmd_show(a[1])
+    elif a[0] == "retitle": cmd_retitle(a[1], a[2])
     else: die(__doc__)

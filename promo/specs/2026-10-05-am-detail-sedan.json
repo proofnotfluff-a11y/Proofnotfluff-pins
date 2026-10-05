@@ -1,0 +1,21 @@
+{
+  "product_id": "13",
+  "product": "Service Pricing Calculator",
+  "tab": "4 Price Sheet",
+  "audience": "Mobile auto detailers",
+  "series": "$40 hourly rate follow-up 2 of 3 (detailers)",
+  "hook": "Full sedan detail: the guess says $96. The math says <b>$345</b>",
+  "hook_say": "Here is why pricing a full sedan detail from a $24 hourly guess misses by about $250.",
+  "rows": [
+    {"label": "Hours on site, full detail, sedan", "value": "4", "input": true, "say": "4 hours on the car", "why": "A full sedan detail in the calculator's presets takes 4 hours on site for one person."},
+    {"label": "Round-trip miles to the job", "value": "20", "input": true, "say": "A 20-mile round trip", "why": "Mobile means driving: a 20-mile round trip at 30 mph adds 40 minutes nobody pays for unless you price it, plus 76 cents a mile."},
+    {"label": "Supplies per job", "value": "$20", "input": true, "say": "$20 in supplies", "why": "Chemicals, towels and pads for one full detail: $20."},
+    {"label": "The guess: $24.07 an hour x 4 hours", "value": "$96", "say": "The guess: $96", "why": "Divide $52,000 of take-home pay by every hour worked in a year and you get $24.07. Times 4 hours, that prices the detail at $96, with no drive time, supplies, costs or tax."},
+    {"label": "Break-even rate per paid hour", "value": "$54.80", "say": "Break-even is $54.80 an hour", "why": "Add self-employment tax, an estimated 12% income tax and $545 a month of business costs, then spread it over paid hours only, since only 65% of hours worked get billed: break-even is $54.80 an hour."},
+    {"label": "Price floor, zero profit", "value": "$291", "result": true, "kind": "bad", "say": "The floor is $291", "why": "4 hours on site plus 40 minutes of driving at $54.80, plus $15.20 of mileage and $20 of supplies: $291 just to break even."}
+  ],
+  "fix": {"label": "Quote with 15% profit", "value": "$345", "say": "Quote about $345", "why": "Build in a 15% profit margin and round up to the next $5: $345 for the full sedan detail. The Price Sheet does this for every job type at once."},
+  "cta": {"title": "Service Pricing Calculator", "button": "Instant download", "sub": "On Etsy: etsy.com/shop/ProofNotFluff", "say": "Run your own numbers"},
+  "note": "Example numbers from the calculator's presets. Yours go in the yellow cells.",
+  "sources": "Product #13 Service-Pricing-Calculator.xlsx built from engines/service-pricing/build.py and recalculated Oct 4, 2026 (0 errors): 1 Your Numbers B5 to B8, B24, B38, B41; 2 Trade Presets row 10; 4 Price Sheet row 9. Mileage 76 cents: IRS Announcement 2026-11, in the product file."
+}

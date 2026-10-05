@@ -1,0 +1,21 @@
+{
+  "product_id": "13",
+  "product": "Service Pricing Calculator",
+  "tab": "4 Price Sheet",
+  "audience": "Lawn care crews",
+  "series": "$40 hourly rate follow-up 3 of 3 (lawn care)",
+  "hook": "2-person spring cleanup: the guess says $193. The math says <b>$595</b>",
+  "hook_say": "Here is why a spring cleanup priced from a $24 hourly guess comes in about $400 low.",
+  "rows": [
+    {"label": "Hours on site, spring cleanup", "value": "4", "input": true, "say": "4 hours on site", "why": "A spring cleanup in the calculator's presets takes 4 hours on site."},
+    {"label": "People on the job", "value": "2", "input": true, "say": "2 people", "why": "Two people work it, so every hour on site and on the road counts twice."},
+    {"label": "Round-trip miles, supplies", "value": "10 mi, $20", "input": true, "say": "10 miles, $20 of supplies", "why": "A 10-mile round trip at 30 mph adds 20 minutes per person, plus 76 cents a mile and $20 of bags and supplies."},
+    {"label": "The guess: $24.07 an hour x 8 person-hours", "value": "$193", "say": "The guess: $193", "why": "Divide $52,000 of take-home pay by every hour worked in a year and you get $24.07. Times 2 people for 4 hours, that prices the job at $193, with no drive time, supplies, costs or tax."},
+    {"label": "Break-even rate per paid hour", "value": "$54.80", "say": "Break-even is $54.80 an hour", "why": "Add self-employment tax, an estimated 12% income tax and $545 a month of business costs, then spread it over paid hours only, since only 65% of hours worked get billed: break-even is $54.80 an hour."},
+    {"label": "Price floor, zero profit", "value": "$502", "result": true, "kind": "bad", "say": "The floor is $502", "why": "8 person-hours on site plus 40 minutes of crew driving at $54.80, plus $7.60 of mileage and $20 of supplies: $502 just to break even."}
+  ],
+  "fix": {"label": "Quote with 15% profit", "value": "$595", "say": "Quote about $595", "why": "Build in a 15% profit margin and round up to the next $5: $595 for the cleanup. The Price Sheet does this for every job type at once."},
+  "cta": {"title": "Service Pricing Calculator", "button": "Instant download", "sub": "On Etsy: etsy.com/shop/ProofNotFluff", "say": "Run your own numbers"},
+  "note": "Example numbers from the calculator's presets. Yours go in the yellow cells.",
+  "sources": "Product #13 Service-Pricing-Calculator.xlsx built from engines/service-pricing/build.py and recalculated Oct 4, 2026 (0 errors): 1 Your Numbers B5 to B8, B24, B38, B41; 2 Trade Presets row 13; 4 Price Sheet row 12. Mileage 76 cents: IRS Announcement 2026-11, in the product file."
+}

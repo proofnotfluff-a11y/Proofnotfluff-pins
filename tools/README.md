@@ -40,3 +40,7 @@ Spec fields are documented at the top of make_demo.py; an example is promo/specs
 python3 tools/legal_scan.py <product.zip | folder> [--listing listing.md] [--tier high|medium|low]
 ```
 Unpacks nested zips and checks every file for: Todd's personal details in text or metadata, promise wording ("guarantee", "pass any ATS", "IRS-approved"), words to read in context ("certified", "official"), em dashes and banned words, review comments and tracked changes, hidden sheets, cached error cells, a missing short notice or Terms of Use, no as-of date, and (with --listing) the required listing lines. Exit code 1 means a high finding. It never clears a product by itself: the reviewer still reads every page against legal/README.md.
+
+## etsy_oauth.py (Etsy API connection; cloud session on the Default environment only)
+
+`link` prints the approval URL; Todd approves; `exchange CODE STATE` stores the refresh token in the private vault repo (`/home/claude/proofnotfluff-vault/etsy.json`); `me` is the read-only test and records user_id and shop_id; `refresh` rotates the token (commit and push the vault after every refresh). The keystring comes from the ETSY_KEYSTRING environment variable and the x-api-key header is added by the environment's API credential, so neither appears in the repo or the output.

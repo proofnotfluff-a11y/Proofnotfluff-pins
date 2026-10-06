@@ -24,6 +24,9 @@ spec.json:
 "trim": true cuts the sheet's canvas and card frame off a one-card crop (use it whenever
 the crop is a single card). Marks draw an accent outline; a label sits beside the card
 when there is room, else on the outline.
+More types: "steps" (three numbered steps, each {head, text, shot, crop}) and "list" (one or two
+columns {head, items, mark: "check" | "x"}, for "Is this for you?" and "How you get it").
+A cover may carry "badges": up to three short pills such as "Excel + Google Sheets".
 crop and box values are fractions (left, top, right, bottom): crop of the source PNG,
 box of the cropped area. Output files: 1-<type>.png, 2-<type>.png, ... in order.
 Open every image with the Read tool afterwards; check every number against the product.
@@ -212,14 +215,24 @@ def cover(spec, im, base, formats):
     a1, d1 = tf.getmetrics(); a2, d2 = sf.getmetrics()
     h = len(wrap(probe, spec["title"], tf, S - 2 * M)) * int((a1 + d1) * 0.98) + 22 + \
         len(wrap(probe, spec["sub"], sf, S - 2 * M)) * int((a2 + d2) * 1.12)
-    top = 266 + h + 70
-    if top > 900:
+    badges = spec.get("badges") or []
+    top = 266 + h + 70 + (96 if badges else 0)
+    if top > 1000:
         sys.exit("cover title and sub are too long; keep them to 2 + 2 lines")
     d.rectangle([0, 0, S, top + 150], fill=INK)
     bars(d, M, 120)
     d.text((M, 196), spec["eyebrow"], font=font("Bold", 44), fill=ACCENT_ON_INK)
     y = text_block(d, (M, 266), spec["title"], tf, (255, 255, 255), S - 2 * M, 0.98, max_lines=3)
-    text_block(d, (M, y + 22), spec["sub"], sf, ON_INK_SOFT, S - 2 * M, 1.12, max_lines=3)
+    y = text_block(d, (M, y + 22), spec["sub"], sf, ON_INK_SOFT, S - 2 * M, 1.12, max_lines=3)
+    if badges:  # "Excel + Google Sheets", "Instant download", one key feature
+        bf = font("Medium", 36); x = M; by = y + 26
+        for b in badges:
+            bw = d.textlength(b, font=bf) + 52
+            d.rounded_rectangle([x, by, x + bw, by + 62], radius=31, outline=ON_INK_SOFT, width=3)
+            d.text((x + 26, by + 9), b, font=bf, fill=(255, 255, 255))
+            x += bw + 18
+        if x > S - M:
+            sys.exit("cover badges run past the margin; use fewer or shorter badges")
     shot = load_crop(base, spec["shot"], spec["crop"])
     place_shot(im, shot, (M, top, S - M, S - 170), marks=spec.get("marks"))
     footer(im, formats)
@@ -277,6 +290,72 @@ def inside(spec, im, base, formats):
     footer(im, formats)
 
 
+def header(d, spec):
+    bars(d, M, 120)
+    d.text((M, 196), spec["eyebrow"], font=font("Bold", 44), fill=ACCENT)
+    y = text_block(d, (M, 266), spec["title"], font("Bold", 88), INK, S - 2 * M, 0.98, max_lines=2)
+    if spec.get("sub"):
+        y = text_block(d, (M, y + 14), spec["sub"], font("Regular", 44), INK2, S - 2 * M, 1.12, max_lines=2)
+    return y
+
+
+def steps_image(spec, im, base, formats):
+    """How it works in three steps: one row per step, number and words on the left, the real
+    screenshot of that step on the right, so every screenshot is big enough to read."""
+    d = ImageDraw.Draw(im)
+    y = header(d, spec) + 60
+    steps = spec["steps"]
+    n = len(steps); gap = 34
+    rh = (S - 190 - y - gap * (n - 1)) // n
+    tw = 640
+    for i, st in enumerate(steps):
+        y0 = y + i * (rh + gap)
+        d.ellipse([M, y0 + 10, M + 84, y0 + 94], fill=ACCENT)
+        num = str(i + 1); nf = font("Bold", 50)
+        d.text((M + 42 - d.textlength(num, font=nf) / 2, y0 + 16), num, font=nf, fill=(255, 255, 255))
+        ty = text_block(d, (M + 112, y0 + 14), st["head"], font("Bold", 50), INK, tw - 112, 1.0, max_lines=2)
+        text_block(d, (M + 112, ty + 6), st["text"], font("Regular", 38), INK2, tw - 112, 1.15, max_lines=3)
+        if st.get("shot"):
+            place_shot(im, load_crop(base, st["shot"], st["crop"], st.get("trim", True)),
+                       (M + tw + 40, y0, S - M, y0 + rh), pad=16, radius=22, fit="contain")
+            d = ImageDraw.Draw(im)
+    footer(im, formats)
+
+
+def xmark(d, x, y, r=26):
+    d.ellipse([x, y, x + 2 * r, y + 2 * r], fill=(226, 221, 211))
+    k = r * 0.55
+    d.line([(x + r - k, y + r - k), (x + r + k, y + r + k)], fill=MUTED, width=7)
+    d.line([(x + r - k, y + r + k), (x + r + k, y + r - k)], fill=MUTED, width=7)
+
+
+def list_image(spec, im, base, formats):
+    """One or two columns of plain statements: "Made for" / "Not for", or compatibility and
+    download facts. Each column: {head, items, mark: "check" | "x"}."""
+    d = ImageDraw.Draw(im)
+    y0 = header(d, spec) + 80
+    cols_ = spec["columns"]; n = len(cols_); gap = 70
+    cw = (S - 2 * M - gap * (n - 1)) // n
+    f = font("Regular", 42); hf = font("Bold", 50)
+    a, de = f.getmetrics(); lh = int((a + de) * 1.12)
+    probe = ImageDraw.Draw(Image.new("RGB", (10, 10)))
+    need = max(150 + sum(len(wrap(probe, it, f, cw - 190)) * lh + 34 for it in c["items"]) + 40 for c in cols_)
+    bottom = min(S - 190, y0 + max(need, 600))
+    for i, col in enumerate(cols_):
+        x0 = M + i * (cw + gap)
+        box = (x0, y0, x0 + cw, bottom)
+        shadow_card(im, box, radius=28)
+        d = ImageDraw.Draw(im)
+        d.text((x0 + 56, y0 + 50), col["head"], font=hf, fill=TEAL if col.get("mark", "check") == "check" else INK2)
+        yy = y0 + 150
+        for it in col["items"]:
+            (check if col.get("mark", "check") == "check" else xmark)(d, x0 + 56, yy + 2, r=26)
+            yy = text_block(d, (x0 + 136, yy), it, f, INK, cw - 190, 1.12, max_lines=3) + 34
+            if yy > S - 220:
+                sys.exit(f"list column '{col['head']}' runs past the card; cut items or words")
+    footer(im, formats)
+
+
 def to_landscape(im, ratio=(4, 3)):
     """Etsy shows the first photo at 4:3 in search and crops to a square in some grids
     (eRank photo guidelines, Nov 2025). The design is drawn on a 2000 px square and then
@@ -301,7 +380,7 @@ def main():
     formats = spec.get("formats", "Excel, Google Sheets, LibreOffice | Instant download")
     for i, img in enumerate(spec["images"], 1):
         im = Image.new("RGBA", (S, S), CANVAS + (255,))
-        {"cover": cover, "shot": shot_image, "inside": inside}[img["type"]](img, im, base, formats)
+        {"cover": cover, "shot": shot_image, "inside": inside, "steps": steps_image, "list": list_image}[img["type"]](img, im, base, formats)
         im = to_landscape(im.convert("RGB"))
         p = os.path.join(out, f"{i}-{img['type']}.png")
         im.save(p, optimize=True)

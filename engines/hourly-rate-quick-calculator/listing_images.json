@@ -12,6 +12,11 @@
         0.049,
         1,
         0.29
+      ],
+      "badges": [
+        "Excel + Google Sheets",
+        "Instant download",
+        "One tab, two minutes"
       ]
     },
     {
@@ -56,6 +61,57 @@
         0.375
       ],
       "trim": true
+    },
+    {
+      "type": "list",
+      "eyebrow": "IS THIS FOR YOU?",
+      "title": "For anyone who sets their own rate.",
+      "columns": [
+        {
+          "head": "Made for",
+          "mark": "check",
+          "items": [
+            "Freelancers, consultants and anyone billing by the hour",
+            "Checking what a rate pays once tax and costs come out",
+            "A quick price for one job"
+          ]
+        },
+        {
+          "head": "Want more?",
+          "mark": "check",
+          "items": [
+            "Quotes for 20 trade jobs, a price sheet and a job tracker: the Service Pricing Calculator",
+            "Cleaning business? The Cleaning Business Starter Kit"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "eyebrow": "HOW YOU GET IT",
+      "title": "Instant download. Opens in Excel or Google Sheets.",
+      "columns": [
+        {
+          "head": "What you get",
+          "mark": "check",
+          "items": [
+            "One calculator tab, a Start Here tab and a Terms tab",
+            "Start Here guide as a PDF, US Letter and A4",
+            "Works in Excel for Windows and Mac, Google Sheets and LibreOffice",
+            "No macros, no add-ons, no sign-up"
+          ]
+        },
+        {
+          "head": "How to download",
+          "mark": "check",
+          "items": [
+            "Buy, then open Etsy in a web browser",
+            "Go to You, then Purchases, and download",
+            "The Etsy app can't download digital files",
+            "Message the shop on Etsy if anything won't open"
+          ]
+        }
+      ]
     },
     {
       "type": "inside",

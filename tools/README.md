@@ -48,3 +48,8 @@ Unpacks nested zips and checks every file for: Todd's personal details in text o
 ## etsy_list.py (list a packed product through the Etsy API; Default environment only)
 
 `inspect` and `taxonomy` and `show` are read-only. `check listing.md` validates the builder's listing.md (title length, 13 tags of 20 characters, price ladder, AI disclosure and digital-download lines, no em dashes, category in the ledger rule) without calling Etsy. `create listing.md product.zip img1..img5 [--video mp4] [--publish]` makes a draft, uploads images, the digital file and the optional video, and publishes only with `--publish`. who_made, when_made and the other required fields are copied from the newest live listing so new listings match what Etsy already accepted. The scheduled API lister (agents/api-lister.md) runs it after each Legal desk run.
+
+## wb_style.py and render_xlsx.py (workbook design system, Oct 6)
+- `tools/wb_style.py` builds every Excel and Google Sheets product to `design/WORKBOOK_STANDARD.md` (Arial, paper canvas, yellow inputs with blue numbers, ink result card, Start Here first and Terms last, validation and no-password protection on every input). Call `audit(wb)` before saving; it must return an empty list.
+- `python3 tools/render_xlsx.py <file.xlsx> <out_dir> [--print] [--keep-pdf]` recalculates the workbook in LibreOffice, reports error values (exit 1 if any) and writes one PNG per sheet (or per printed page with --print). Open every PNG with the Read tool before shipping. `--print --keep-pdf` also gives per-sheet PDFs (the Start Here PDFs in a download come from this).
+- Reference build: `engines/hourly-rate-quick-calculator/build_xlsx.py`.

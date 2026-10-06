@@ -3,7 +3,7 @@
 
 Usage: python3 tools/listing_images.py <spec.json> <out_dir>
 
-Every image is 2000 x 2000 and shows the real product: screenshots come from
+Every image is 2667 x 2000 (4:3, Etsy's search shape) with the design in the centred 2000 px square, and shows the real product: screenshots come from
 tools/render_xlsx.py PNGs (render at --dpi 220 for crisp crops). Nothing is mocked up.
 
 spec.json:
@@ -277,6 +277,20 @@ def inside(spec, im, base, formats):
     footer(im, formats)
 
 
+def to_landscape(im, ratio=(4, 3)):
+    """Etsy shows the first photo at 4:3 in search and crops to a square in some grids
+    (eRank photo guidelines, Nov 2025). The design is drawn on a 2000 px square and then
+    widened to 2667 x 2000 by stretching its outer edge columns (canvas or the ink band), so
+    the 4:3 view shows everything and a centred square crop still loses nothing."""
+    w = round(im.height * ratio[0] / ratio[1])
+    pad = (w - im.width) // 2
+    out = Image.new("RGB", (w, im.height))
+    out.paste(im.crop((0, 0, 1, im.height)).resize((pad, im.height)), (0, 0))
+    out.paste(im, (pad, 0))
+    out.paste(im.crop((im.width - 1, 0, im.width, im.height)).resize((w - pad - im.width, im.height)), (pad + im.width, 0))
+    return out
+
+
 def main():
     if len(sys.argv) != 3:
         sys.exit(__doc__)
@@ -288,8 +302,9 @@ def main():
     for i, img in enumerate(spec["images"], 1):
         im = Image.new("RGBA", (S, S), CANVAS + (255,))
         {"cover": cover, "shot": shot_image, "inside": inside}[img["type"]](img, im, base, formats)
+        im = to_landscape(im.convert("RGB"))
         p = os.path.join(out, f"{i}-{img['type']}.png")
-        im.convert("RGB").save(p, optimize=True)
+        im.save(p, optimize=True)
         print(p)
 
 

@@ -1,0 +1,12 @@
+{
+ "xlsx": "True-Profit-System-for-Etsy-Sellers.xlsx",
+ "sheet": "3 Pricing",
+ "crop": [0, 0.04, 0.47, 0.247],
+ "dpi": 220,
+ "eyebrow": "PRICING CALCULATOR FOR ETSY SELLERS",
+ "states": [
+  {"caption": "Want $8 profit a candle? List at {I15}.", "hold": 3.0},
+  {"set": {"D14": 12}, "caption": "Want $12 instead? List at {I15}.", "hold": 3.6},
+  {"set": {"D14": 12, "D17": 0}, "caption": "Free shipping too? List at {I15}.", "hold": 3.6}
+ ]
+}

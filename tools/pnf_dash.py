@@ -11,6 +11,7 @@ All rows inside the card zone share one height (GRID_ROW) so two card columns ca
 side by side without one column squeezing the other. Nothing here needs a macro, a chart
 object, a table, data bars or a dynamic array.
 """
+from copy import copy
 from openpyxl.formatting.rule import FormulaRule
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 
@@ -208,8 +209,9 @@ class Card:
         c.alignment = Alignment(horizontal="right", vertical="center", indent=1)  # inset from the box edge
         c.border = Border(left=side("input_line"), right=side("input_line"), top=side("input_line"), bottom=side("input_line"))
         if self.extra:
+            box = copy(c.border)  # a StyleProxy can't be assigned back directly
             self._divider(r)
-            self.ws[f"{self.value}{r}"].border = c.border
+            self.ws[f"{self.value}{r}"].border = box
         return r
 
     def calc(self, text, formula, fmt, bold=False, total=False, color="ink", tint=None, label_color="ink"):

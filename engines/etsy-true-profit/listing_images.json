@@ -1,0 +1,231 @@
+{
+ "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+ "images": [
+  {
+   "type": "cover",
+   "eyebrow": "PRICING CALCULATOR FOR ETSY SELLERS",
+   "title": "Know your true profit on every Etsy sale.",
+   "sub": "Every fee, every listing, every payout, explained to the cent.",
+   "shot": "r/04-3-Pricing.png",
+   "crop": [
+    0,
+    0.05,
+    0.47,
+    0.345
+   ],
+   "badges": [
+    "Excel + Google Sheets",
+    "Instant download",
+    "Payout check to $0.00"
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "WORKED EXAMPLE",
+   "title": "Want $8 profit a candle? List at $22.01.",
+   "sub": "Or $27.48 if the sale comes through Offsite Ads. The price is solved backwards from every fee.",
+   "shot": "r/04-3-Pricing.png",
+   "crop": [
+    0.221,
+    0.12,
+    0.468,
+    0.335
+   ],
+   "trim": true
+  },
+  {
+   "type": "steps",
+   "eyebrow": "HOW IT WORKS",
+   "title": "Three steps to your real numbers.",
+   "steps": [
+    {
+     "head": "Set your fees once",
+     "text": "Etsy's US fees are filled in. Pick your Offsite Ads tier.",
+     "shot": "r/02-1-Setup.png",
+     "crop": [
+      0.216,
+      0.142,
+      0.47,
+      0.36
+     ]
+    },
+    {
+     "head": "Enter your listings",
+     "text": "Price and costs. Each one gets OK, WATCH or REPRICE.",
+     "shot": "r/03-2-Listings.png",
+     "crop": [
+      0,
+      0.126,
+      0.46,
+      0.195
+     ]
+    },
+    {
+     "head": "Check every payout",
+     "text": "Log orders and deposits. The balance must read $0.00.",
+     "shot": "r/06-5-Payouts.png",
+     "crop": [
+      0,
+      0.05,
+      0.55,
+      0.093
+     ]
+    }
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "LISTINGS",
+   "title": "Net profit, margin and a flag on every listing.",
+   "sub": "After transaction, processing, listing and Offsite Ads fees. Red means reprice.",
+   "shot": "r/03-2-Listings.png",
+   "crop": [
+    0,
+    0.03,
+    1,
+    0.195
+   ],
+   "trim": false
+  },
+  {
+   "type": "shot",
+   "eyebrow": "OFFSITE ADS CHECK",
+   "title": "See what one ad sale does to your margin.",
+   "sub": "At a 15% ad fee, four of five sample listings should opt out or reprice.",
+   "shot": "r/03-2-Listings.png",
+   "crop": [
+    0,
+    0.372,
+    1,
+    0.505
+   ],
+   "trim": false
+  },
+  {
+   "type": "shot",
+   "eyebrow": "PAYOUT RECONCILIATION",
+   "title": "Explain every deposit to the cent.",
+   "sub": "Enter the deposit and its dates. The sheet pulls every fee and shows the variance.",
+   "shot": "r/06-5-Payouts.png",
+   "crop": [
+    0,
+    0.035,
+    1,
+    0.287
+   ],
+   "trim": false
+  },
+  {
+   "type": "shot",
+   "eyebrow": "DASHBOARD",
+   "title": "Your true profit, on one screen.",
+   "sub": "Plus profit by month, where the fees went, best and worst listings and your tax reserve.",
+   "shot": "r/07-6-Dashboard.png",
+   "crop": [
+    0,
+    0.03,
+    1,
+    0.135
+   ],
+   "trim": false
+  },
+  {
+   "type": "list",
+   "eyebrow": "IS THIS FOR YOU?",
+   "title": "Made for Etsy sellers who ship.",
+   "columns": [
+    {
+     "head": "Made for",
+     "mark": "check",
+     "items": [
+      "Handmade and physical product shops on Etsy",
+      "Sellers who want profit, not just sales",
+      "Shops deciding on Offsite Ads",
+      "Anyone whose deposits never match the sales"
+     ]
+    },
+    {
+     "head": "Not for",
+     "mark": "x",
+     "items": [
+      "Digital download shops (no shipping or materials)",
+      "Tax filing or bookkeeping software",
+      "Shops outside the US, unless you type in your own fee rates"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "HOW YOU GET IT",
+   "title": "Instant download. Opens in Excel or Google Sheets.",
+   "columns": [
+    {
+     "head": "What you get",
+     "mark": "check",
+     "items": [
+      "One workbook, six working tabs",
+      "Start Here guide as a PDF, US Letter and A4",
+      "Works in Excel for Windows and Mac, Google Sheets and LibreOffice",
+      "No macros, no add-ons, no sign-up"
+     ]
+    },
+    {
+     "head": "How to download",
+     "mark": "check",
+     "items": [
+      "Buy, then open Etsy in a web browser",
+      "Go to You, then Purchases, and download",
+      "The Etsy app can't download digital files",
+      "Message the shop on Etsy if anything won't open"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "inside",
+   "eyebrow": "ONE DOWNLOAD",
+   "title": "What's inside",
+   "tabs": [
+    {
+     "name": "3 Pricing",
+     "shot": "r/04-3-Pricing.png",
+     "crop": [
+      0,
+      0,
+      0.47,
+      0.45
+     ]
+    },
+    {
+     "name": "1 Setup",
+     "shot": "r/02-1-Setup.png",
+     "crop": [
+      0,
+      0,
+      0.47,
+      0.55
+     ]
+    },
+    {
+     "name": "6 Dashboard",
+     "shot": "r/07-6-Dashboard.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.3
+     ]
+    }
+   ],
+   "items": [
+    "Etsy US fee table, checked Oct 6, 2026",
+    "True profit per listing with flags",
+    "Reverse pricing: profit or margin",
+    "Order log and payout reconciliation",
+    "Offsite Ads check and tax reserve",
+    "Start Here PDF in Letter and A4"
+   ]
+  }
+ ]
+}

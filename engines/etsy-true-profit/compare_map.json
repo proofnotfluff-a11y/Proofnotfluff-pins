@@ -1,0 +1,1347 @@
+{
+ "tolerance": 0.005,
+ "inputs": {
+  "target": {
+   "old": "Setup!C7",
+   "new": "'1 Setup'!D17"
+  },
+  "tier": {
+   "old": "Setup!C20",
+   "new": "'1 Setup'!D19"
+  },
+  "tx_fee": {
+   "old": "Setup!C11",
+   "new": "'1 Setup'!I14"
+  },
+  "proc_rate": {
+   "old": "Setup!C13",
+   "new": "'1 Setup'!I16"
+  },
+  "proc_fixed": {
+   "old": "Setup!C14",
+   "new": "'1 Setup'!I17"
+  },
+  "listing_fee": {
+   "old": "Setup!C12",
+   "new": "'1 Setup'!I15"
+  },
+  "ads_cap": {
+   "old": "Setup!C18",
+   "new": "'1 Setup'!I21"
+  },
+  "l1_C": {
+   "old": "Listings!A5",
+   "new": "'2 Listings'!C16"
+  },
+  "l1_D": {
+   "old": "Listings!B5",
+   "new": "'2 Listings'!D16"
+  },
+  "l1_E": {
+   "old": "Listings!C5",
+   "new": "'2 Listings'!E16"
+  },
+  "l1_F": {
+   "old": "Listings!D5",
+   "new": "'2 Listings'!F16"
+  },
+  "l1_G": {
+   "old": "Listings!E5",
+   "new": "'2 Listings'!G16"
+  },
+  "l1_H": {
+   "old": "Listings!F5",
+   "new": "'2 Listings'!H16"
+  },
+  "l1_I": {
+   "old": "Listings!G5",
+   "new": "'2 Listings'!I16"
+  },
+  "l1_J": {
+   "old": "Listings!H5",
+   "new": "'2 Listings'!J16"
+  },
+  "l2_D": {
+   "old": "Listings!B6",
+   "new": "'2 Listings'!D17"
+  },
+  "l2_G": {
+   "old": "Listings!E6",
+   "new": "'2 Listings'!G17"
+  },
+  "l2_J": {
+   "old": "Listings!H6",
+   "new": "'2 Listings'!J17"
+  },
+  "ads_share": {
+   "old": "AdsShock!D4",
+   "new": "'2 Listings'!C43"
+  },
+  "pa_profit": {
+   "old": "Pricing!C6",
+   "new": "'3 Pricing'!D14"
+  },
+  "pa_cogs": {
+   "old": "Pricing!C7",
+   "new": "'3 Pricing'!D15"
+  },
+  "pa_labor": {
+   "old": "Pricing!C8",
+   "new": "'3 Pricing'!D16"
+  },
+  "pa_shipc": {
+   "old": "Pricing!C9",
+   "new": "'3 Pricing'!D17"
+  },
+  "pa_ship": {
+   "old": "Pricing!C10",
+   "new": "'3 Pricing'!D18"
+  },
+  "pa_pack": {
+   "old": "Pricing!C11",
+   "new": "'3 Pricing'!D19"
+  },
+  "pb_cogs": {
+   "old": "Pricing!C21",
+   "new": "'3 Pricing'!D26"
+  },
+  "pb_shipc": {
+   "old": "Pricing!C23",
+   "new": "'3 Pricing'!D28"
+  },
+  "pb_pack": {
+   "old": "Pricing!C25",
+   "new": "'3 Pricing'!D30"
+  },
+  "month": {
+   "old": "Orders!C5",
+   "new": "'4 Orders'!C8"
+  },
+  "o1_qty": {
+   "old": "Orders!D10",
+   "new": "'4 Orders'!F16"
+  },
+  "o1_item": {
+   "old": "Orders!E10",
+   "new": "'4 Orders'!G16"
+  },
+  "o1_tax": {
+   "old": "Orders!G10",
+   "new": "'4 Orders'!I16"
+  },
+  "o1_ads": {
+   "old": "Orders!H10",
+   "new": "'4 Orders'!J16"
+  },
+  "o3_sku": {
+   "old": "Orders!C12",
+   "new": "'4 Orders'!E18"
+  },
+  "o2_date": {
+   "old": "Orders!A11",
+   "new": "'4 Orders'!C17"
+  },
+  "dep1": {
+   "old": "Payouts!B15",
+   "new": "'5 Payouts'!D25"
+  },
+  "dep1_other": {
+   "old": "Payouts!J15",
+   "new": "'5 Payouts'!L25"
+  },
+  "dep2_adj": {
+   "old": "Payouts!K16",
+   "new": "'5 Payouts'!M26"
+  },
+  "first_month": {
+   "old": "Dashboard!C11",
+   "new": "'6 Dashboard'!D23"
+  },
+  "tax_rate": {
+   "old": "Dashboard!C47",
+   "new": "'6 Dashboard'!E66"
+  },
+  "tax_have": {
+   "old": "Dashboard!C50",
+   "new": "'6 Dashboard'!E69"
+  }
+ },
+ "outputs": {
+  "ads_rate": {
+   "old": "Setup!C21",
+   "new": "'1 Setup'!I23"
+  },
+  "L5_K": {
+   "old": "Listings!I5",
+   "new": "'2 Listings'!K16"
+  },
+  "L5_L": {
+   "old": "Listings!J5",
+   "new": "'2 Listings'!L16"
+  },
+  "L5_M": {
+   "old": "Listings!K5",
+   "new": "'2 Listings'!M16"
+  },
+  "L5_N": {
+   "old": "Listings!L5",
+   "new": "'2 Listings'!N16"
+  },
+  "L5_O": {
+   "old": "Listings!M5",
+   "new": "'2 Listings'!O16"
+  },
+  "L5_P": {
+   "old": "Listings!N5",
+   "new": "'2 Listings'!P16"
+  },
+  "L5_Q": {
+   "old": "Listings!O5",
+   "new": "'2 Listings'!Q16"
+  },
+  "L5_R": {
+   "old": "Listings!P5",
+   "new": "'2 Listings'!R16"
+  },
+  "L5_S": {
+   "old": "Listings!Q5",
+   "new": "'2 Listings'!S16"
+  },
+  "L5_T": {
+   "old": "Listings!R5",
+   "new": "'2 Listings'!T16"
+  },
+  "L6_K": {
+   "old": "Listings!I6",
+   "new": "'2 Listings'!K17"
+  },
+  "L6_L": {
+   "old": "Listings!J6",
+   "new": "'2 Listings'!L17"
+  },
+  "L6_M": {
+   "old": "Listings!K6",
+   "new": "'2 Listings'!M17"
+  },
+  "L6_N": {
+   "old": "Listings!L6",
+   "new": "'2 Listings'!N17"
+  },
+  "L6_O": {
+   "old": "Listings!M6",
+   "new": "'2 Listings'!O17"
+  },
+  "L6_P": {
+   "old": "Listings!N6",
+   "new": "'2 Listings'!P17"
+  },
+  "L6_Q": {
+   "old": "Listings!O6",
+   "new": "'2 Listings'!Q17"
+  },
+  "L6_R": {
+   "old": "Listings!P6",
+   "new": "'2 Listings'!R17"
+  },
+  "L6_S": {
+   "old": "Listings!Q6",
+   "new": "'2 Listings'!S17"
+  },
+  "L6_T": {
+   "old": "Listings!R6",
+   "new": "'2 Listings'!T17"
+  },
+  "L7_K": {
+   "old": "Listings!I7",
+   "new": "'2 Listings'!K18"
+  },
+  "L7_L": {
+   "old": "Listings!J7",
+   "new": "'2 Listings'!L18"
+  },
+  "L7_M": {
+   "old": "Listings!K7",
+   "new": "'2 Listings'!M18"
+  },
+  "L7_N": {
+   "old": "Listings!L7",
+   "new": "'2 Listings'!N18"
+  },
+  "L7_O": {
+   "old": "Listings!M7",
+   "new": "'2 Listings'!O18"
+  },
+  "L7_P": {
+   "old": "Listings!N7",
+   "new": "'2 Listings'!P18"
+  },
+  "L7_Q": {
+   "old": "Listings!O7",
+   "new": "'2 Listings'!Q18"
+  },
+  "L7_R": {
+   "old": "Listings!P7",
+   "new": "'2 Listings'!R18"
+  },
+  "L7_S": {
+   "old": "Listings!Q7",
+   "new": "'2 Listings'!S18"
+  },
+  "L7_T": {
+   "old": "Listings!R7",
+   "new": "'2 Listings'!T18"
+  },
+  "L8_K": {
+   "old": "Listings!I8",
+   "new": "'2 Listings'!K19"
+  },
+  "L8_L": {
+   "old": "Listings!J8",
+   "new": "'2 Listings'!L19"
+  },
+  "L8_M": {
+   "old": "Listings!K8",
+   "new": "'2 Listings'!M19"
+  },
+  "L8_N": {
+   "old": "Listings!L8",
+   "new": "'2 Listings'!N19"
+  },
+  "L8_O": {
+   "old": "Listings!M8",
+   "new": "'2 Listings'!O19"
+  },
+  "L8_P": {
+   "old": "Listings!N8",
+   "new": "'2 Listings'!P19"
+  },
+  "L8_Q": {
+   "old": "Listings!O8",
+   "new": "'2 Listings'!Q19"
+  },
+  "L8_R": {
+   "old": "Listings!P8",
+   "new": "'2 Listings'!R19"
+  },
+  "L8_S": {
+   "old": "Listings!Q8",
+   "new": "'2 Listings'!S19"
+  },
+  "L8_T": {
+   "old": "Listings!R8",
+   "new": "'2 Listings'!T19"
+  },
+  "L9_K": {
+   "old": "Listings!I9",
+   "new": "'2 Listings'!K20"
+  },
+  "L9_L": {
+   "old": "Listings!J9",
+   "new": "'2 Listings'!L20"
+  },
+  "L9_M": {
+   "old": "Listings!K9",
+   "new": "'2 Listings'!M20"
+  },
+  "L9_N": {
+   "old": "Listings!L9",
+   "new": "'2 Listings'!N20"
+  },
+  "L9_O": {
+   "old": "Listings!M9",
+   "new": "'2 Listings'!O20"
+  },
+  "L9_P": {
+   "old": "Listings!N9",
+   "new": "'2 Listings'!P20"
+  },
+  "L9_Q": {
+   "old": "Listings!O9",
+   "new": "'2 Listings'!Q20"
+  },
+  "L9_R": {
+   "old": "Listings!P9",
+   "new": "'2 Listings'!R20"
+  },
+  "L9_S": {
+   "old": "Listings!Q9",
+   "new": "'2 Listings'!S20"
+  },
+  "L9_T": {
+   "old": "Listings!R9",
+   "new": "'2 Listings'!T20"
+  },
+  "A8_D": {
+   "old": "AdsShock!B8",
+   "new": "'2 Listings'!D46"
+  },
+  "A8_E": {
+   "old": "AdsShock!C8",
+   "new": "'2 Listings'!E46"
+  },
+  "A8_F": {
+   "old": "AdsShock!D8",
+   "new": "'2 Listings'!F46"
+  },
+  "A8_G": {
+   "old": "AdsShock!E8",
+   "new": "'2 Listings'!G46"
+  },
+  "A8_H": {
+   "old": "AdsShock!F8",
+   "new": "'2 Listings'!H46"
+  },
+  "A8_I": {
+   "old": "AdsShock!G8",
+   "new": "'2 Listings'!I46"
+  },
+  "A8_J": {
+   "old": "AdsShock!H8",
+   "new": "'2 Listings'!J46"
+  },
+  "A8_K": {
+   "old": "AdsShock!I8",
+   "new": "'2 Listings'!K46"
+  },
+  "A8_L": {
+   "old": "AdsShock!J8",
+   "new": "'2 Listings'!L46"
+  },
+  "A9_D": {
+   "old": "AdsShock!B9",
+   "new": "'2 Listings'!D47"
+  },
+  "A9_E": {
+   "old": "AdsShock!C9",
+   "new": "'2 Listings'!E47"
+  },
+  "A9_F": {
+   "old": "AdsShock!D9",
+   "new": "'2 Listings'!F47"
+  },
+  "A9_G": {
+   "old": "AdsShock!E9",
+   "new": "'2 Listings'!G47"
+  },
+  "A9_H": {
+   "old": "AdsShock!F9",
+   "new": "'2 Listings'!H47"
+  },
+  "A9_I": {
+   "old": "AdsShock!G9",
+   "new": "'2 Listings'!I47"
+  },
+  "A9_J": {
+   "old": "AdsShock!H9",
+   "new": "'2 Listings'!J47"
+  },
+  "A9_K": {
+   "old": "AdsShock!I9",
+   "new": "'2 Listings'!K47"
+  },
+  "A9_L": {
+   "old": "AdsShock!J9",
+   "new": "'2 Listings'!L47"
+  },
+  "A10_D": {
+   "old": "AdsShock!B10",
+   "new": "'2 Listings'!D48"
+  },
+  "A10_E": {
+   "old": "AdsShock!C10",
+   "new": "'2 Listings'!E48"
+  },
+  "A10_F": {
+   "old": "AdsShock!D10",
+   "new": "'2 Listings'!F48"
+  },
+  "A10_G": {
+   "old": "AdsShock!E10",
+   "new": "'2 Listings'!G48"
+  },
+  "A10_H": {
+   "old": "AdsShock!F10",
+   "new": "'2 Listings'!H48"
+  },
+  "A10_I": {
+   "old": "AdsShock!G10",
+   "new": "'2 Listings'!I48"
+  },
+  "A10_J": {
+   "old": "AdsShock!H10",
+   "new": "'2 Listings'!J48"
+  },
+  "A10_K": {
+   "old": "AdsShock!I10",
+   "new": "'2 Listings'!K48"
+  },
+  "A10_L": {
+   "old": "AdsShock!J10",
+   "new": "'2 Listings'!L48"
+  },
+  "A11_D": {
+   "old": "AdsShock!B11",
+   "new": "'2 Listings'!D49"
+  },
+  "A11_E": {
+   "old": "AdsShock!C11",
+   "new": "'2 Listings'!E49"
+  },
+  "A11_F": {
+   "old": "AdsShock!D11",
+   "new": "'2 Listings'!F49"
+  },
+  "A11_G": {
+   "old": "AdsShock!E11",
+   "new": "'2 Listings'!G49"
+  },
+  "A11_H": {
+   "old": "AdsShock!F11",
+   "new": "'2 Listings'!H49"
+  },
+  "A11_I": {
+   "old": "AdsShock!G11",
+   "new": "'2 Listings'!I49"
+  },
+  "A11_J": {
+   "old": "AdsShock!H11",
+   "new": "'2 Listings'!J49"
+  },
+  "A11_K": {
+   "old": "AdsShock!I11",
+   "new": "'2 Listings'!K49"
+  },
+  "A11_L": {
+   "old": "AdsShock!J11",
+   "new": "'2 Listings'!L49"
+  },
+  "A12_D": {
+   "old": "AdsShock!B12",
+   "new": "'2 Listings'!D50"
+  },
+  "A12_E": {
+   "old": "AdsShock!C12",
+   "new": "'2 Listings'!E50"
+  },
+  "A12_F": {
+   "old": "AdsShock!D12",
+   "new": "'2 Listings'!F50"
+  },
+  "A12_G": {
+   "old": "AdsShock!E12",
+   "new": "'2 Listings'!G50"
+  },
+  "A12_H": {
+   "old": "AdsShock!F12",
+   "new": "'2 Listings'!H50"
+  },
+  "A12_I": {
+   "old": "AdsShock!G12",
+   "new": "'2 Listings'!I50"
+  },
+  "A12_J": {
+   "old": "AdsShock!H12",
+   "new": "'2 Listings'!J50"
+  },
+  "A12_K": {
+   "old": "AdsShock!I12",
+   "new": "'2 Listings'!K50"
+  },
+  "A12_L": {
+   "old": "AdsShock!J12",
+   "new": "'2 Listings'!L50"
+  },
+  "ads_D30": {
+   "old": "AdsShock!D30",
+   "new": "'2 Listings'!E43"
+  },
+  "ads_D31": {
+   "old": "AdsShock!D31",
+   "new": "'2 Listings'!I43"
+  },
+  "ads_D32": {
+   "old": "AdsShock!D32",
+   "new": "'2 Listings'!M43"
+  },
+  "ads_D33": {
+   "old": "AdsShock!D33",
+   "new": "'2 Listings'!Q43"
+  },
+  "pr_C13": {
+   "old": "Pricing!C13",
+   "new": "'3 Pricing'!I15"
+  },
+  "pr_C14": {
+   "old": "Pricing!C14",
+   "new": "'3 Pricing'!I16"
+  },
+  "pr_C15": {
+   "old": "Pricing!C15",
+   "new": "'3 Pricing'!I17"
+  },
+  "pr_C16": {
+   "old": "Pricing!C16",
+   "new": "'3 Pricing'!I18"
+  },
+  "pr_C27": {
+   "old": "Pricing!C27",
+   "new": "'3 Pricing'!I29"
+  },
+  "pr_C28": {
+   "old": "Pricing!C28",
+   "new": "'3 Pricing'!I30"
+  },
+  "pr_C29": {
+   "old": "Pricing!C29",
+   "new": "'3 Pricing'!I31"
+  },
+  "pr_C20": {
+   "old": "Pricing!C20",
+   "new": "'3 Pricing'!D25"
+  },
+  "om_D6": {
+   "old": "Orders!D6",
+   "new": "'4 Orders'!E8"
+  },
+  "om_E6": {
+   "old": "Orders!E6",
+   "new": "'4 Orders'!F8"
+  },
+  "om_F6": {
+   "old": "Orders!F6",
+   "new": "'4 Orders'!I8"
+  },
+  "om_G6": {
+   "old": "Orders!G6",
+   "new": "'4 Orders'!L8"
+  },
+  "om_H6": {
+   "old": "Orders!H6",
+   "new": "'4 Orders'!N8"
+  },
+  "om_I6": {
+   "old": "Orders!I6",
+   "new": "'4 Orders'!P8"
+  },
+  "om_J6": {
+   "old": "Orders!J6",
+   "new": "'4 Orders'!R8"
+  },
+  "O10_K": {
+   "old": "Orders!I10",
+   "new": "'4 Orders'!K16"
+  },
+  "O10_L": {
+   "old": "Orders!J10",
+   "new": "'4 Orders'!L16"
+  },
+  "O10_M": {
+   "old": "Orders!K10",
+   "new": "'4 Orders'!M16"
+  },
+  "O10_N": {
+   "old": "Orders!L10",
+   "new": "'4 Orders'!N16"
+  },
+  "O10_O": {
+   "old": "Orders!M10",
+   "new": "'4 Orders'!O16"
+  },
+  "O10_P": {
+   "old": "Orders!N10",
+   "new": "'4 Orders'!P16"
+  },
+  "O10_Q": {
+   "old": "Orders!O10",
+   "new": "'4 Orders'!Q16"
+  },
+  "O10_R": {
+   "old": "Orders!P10",
+   "new": "'4 Orders'!R16"
+  },
+  "O10_S": {
+   "old": "Orders!Q10",
+   "new": "'4 Orders'!S16"
+  },
+  "O10_T": {
+   "old": "Orders!R10",
+   "new": "'4 Orders'!T16"
+  },
+  "O11_K": {
+   "old": "Orders!I11",
+   "new": "'4 Orders'!K17"
+  },
+  "O11_L": {
+   "old": "Orders!J11",
+   "new": "'4 Orders'!L17"
+  },
+  "O11_M": {
+   "old": "Orders!K11",
+   "new": "'4 Orders'!M17"
+  },
+  "O11_N": {
+   "old": "Orders!L11",
+   "new": "'4 Orders'!N17"
+  },
+  "O11_O": {
+   "old": "Orders!M11",
+   "new": "'4 Orders'!O17"
+  },
+  "O11_P": {
+   "old": "Orders!N11",
+   "new": "'4 Orders'!P17"
+  },
+  "O11_Q": {
+   "old": "Orders!O11",
+   "new": "'4 Orders'!Q17"
+  },
+  "O11_R": {
+   "old": "Orders!P11",
+   "new": "'4 Orders'!R17"
+  },
+  "O11_S": {
+   "old": "Orders!Q11",
+   "new": "'4 Orders'!S17"
+  },
+  "O11_T": {
+   "old": "Orders!R11",
+   "new": "'4 Orders'!T17"
+  },
+  "O12_K": {
+   "old": "Orders!I12",
+   "new": "'4 Orders'!K18"
+  },
+  "O12_L": {
+   "old": "Orders!J12",
+   "new": "'4 Orders'!L18"
+  },
+  "O12_M": {
+   "old": "Orders!K12",
+   "new": "'4 Orders'!M18"
+  },
+  "O12_N": {
+   "old": "Orders!L12",
+   "new": "'4 Orders'!N18"
+  },
+  "O12_O": {
+   "old": "Orders!M12",
+   "new": "'4 Orders'!O18"
+  },
+  "O12_P": {
+   "old": "Orders!N12",
+   "new": "'4 Orders'!P18"
+  },
+  "O12_Q": {
+   "old": "Orders!O12",
+   "new": "'4 Orders'!Q18"
+  },
+  "O12_R": {
+   "old": "Orders!P12",
+   "new": "'4 Orders'!R18"
+  },
+  "O12_S": {
+   "old": "Orders!Q12",
+   "new": "'4 Orders'!S18"
+  },
+  "O12_T": {
+   "old": "Orders!R12",
+   "new": "'4 Orders'!T18"
+  },
+  "O29_K": {
+   "old": "Orders!I29",
+   "new": "'4 Orders'!K35"
+  },
+  "O29_L": {
+   "old": "Orders!J29",
+   "new": "'4 Orders'!L35"
+  },
+  "O29_M": {
+   "old": "Orders!K29",
+   "new": "'4 Orders'!M35"
+  },
+  "O29_N": {
+   "old": "Orders!L29",
+   "new": "'4 Orders'!N35"
+  },
+  "O29_O": {
+   "old": "Orders!M29",
+   "new": "'4 Orders'!O35"
+  },
+  "O29_P": {
+   "old": "Orders!N29",
+   "new": "'4 Orders'!P35"
+  },
+  "O29_Q": {
+   "old": "Orders!O29",
+   "new": "'4 Orders'!Q35"
+  },
+  "O29_R": {
+   "old": "Orders!P29",
+   "new": "'4 Orders'!R35"
+  },
+  "O29_S": {
+   "old": "Orders!Q29",
+   "new": "'4 Orders'!S35"
+  },
+  "O29_T": {
+   "old": "Orders!R29",
+   "new": "'4 Orders'!T35"
+  },
+  "P15_G": {
+   "old": "Payouts!E15",
+   "new": "'5 Payouts'!G25"
+  },
+  "P15_H": {
+   "old": "Payouts!F15",
+   "new": "'5 Payouts'!H25"
+  },
+  "P15_I": {
+   "old": "Payouts!G15",
+   "new": "'5 Payouts'!I25"
+  },
+  "P15_J": {
+   "old": "Payouts!H15",
+   "new": "'5 Payouts'!J25"
+  },
+  "P15_K": {
+   "old": "Payouts!I15",
+   "new": "'5 Payouts'!K25"
+  },
+  "P15_N": {
+   "old": "Payouts!L15",
+   "new": "'5 Payouts'!N25"
+  },
+  "P15_O": {
+   "old": "Payouts!M15",
+   "new": "'5 Payouts'!O25"
+  },
+  "P15_P": {
+   "old": "Payouts!N15",
+   "new": "'5 Payouts'!P25"
+  },
+  "P16_G": {
+   "old": "Payouts!E16",
+   "new": "'5 Payouts'!G26"
+  },
+  "P16_H": {
+   "old": "Payouts!F16",
+   "new": "'5 Payouts'!H26"
+  },
+  "P16_I": {
+   "old": "Payouts!G16",
+   "new": "'5 Payouts'!I26"
+  },
+  "P16_J": {
+   "old": "Payouts!H16",
+   "new": "'5 Payouts'!J26"
+  },
+  "P16_K": {
+   "old": "Payouts!I16",
+   "new": "'5 Payouts'!K26"
+  },
+  "P16_N": {
+   "old": "Payouts!L16",
+   "new": "'5 Payouts'!N26"
+  },
+  "P16_O": {
+   "old": "Payouts!M16",
+   "new": "'5 Payouts'!O26"
+  },
+  "P16_P": {
+   "old": "Payouts!N16",
+   "new": "'5 Payouts'!P26"
+  },
+  "pay_bal": {
+   "old": "Payouts!F11",
+   "new": "'5 Payouts'!C8"
+  },
+  "pay_status": {
+   "old": "Payouts!G11",
+   "new": "'5 Payouts'!F8"
+  },
+  "db_C4": {
+   "old": "Dashboard!C4",
+   "new": "'6 Dashboard'!E14"
+  },
+  "db_C5": {
+   "old": "Dashboard!C5",
+   "new": "'6 Dashboard'!E15"
+  },
+  "db_C6": {
+   "old": "Dashboard!C6",
+   "new": "'6 Dashboard'!E16"
+  },
+  "db_C7": {
+   "old": "Dashboard!C7",
+   "new": "'6 Dashboard'!E17"
+  },
+  "db_C29": {
+   "old": "Dashboard!C29",
+   "new": "'6 Dashboard'!E43"
+  },
+  "db_C30": {
+   "old": "Dashboard!C30",
+   "new": "'6 Dashboard'!E44"
+  },
+  "db_C31": {
+   "old": "Dashboard!C31",
+   "new": "'6 Dashboard'!E45"
+  },
+  "db_C32": {
+   "old": "Dashboard!C32",
+   "new": "'6 Dashboard'!E46"
+  },
+  "db_C33": {
+   "old": "Dashboard!C33",
+   "new": "'6 Dashboard'!E47"
+  },
+  "db_C34": {
+   "old": "Dashboard!C34",
+   "new": "'6 Dashboard'!E48"
+  },
+  "db_C49": {
+   "old": "Dashboard!C49",
+   "new": "'6 Dashboard'!E68"
+  },
+  "db_C51": {
+   "old": "Dashboard!C51",
+   "new": "'6 Dashboard'!E70"
+  },
+  "m1_C": {
+   "old": "Dashboard!B13",
+   "new": "'6 Dashboard'!C26"
+  },
+  "m1_D": {
+   "old": "Dashboard!C13",
+   "new": "'6 Dashboard'!D26"
+  },
+  "m1_E": {
+   "old": "Dashboard!D13",
+   "new": "'6 Dashboard'!E26"
+  },
+  "m1_I": {
+   "old": "Dashboard!E13",
+   "new": "'6 Dashboard'!I26"
+  },
+  "m1_J": {
+   "old": "Dashboard!F13",
+   "new": "'6 Dashboard'!J26"
+  },
+  "m2_C": {
+   "old": "Dashboard!B14",
+   "new": "'6 Dashboard'!C27"
+  },
+  "m2_D": {
+   "old": "Dashboard!C14",
+   "new": "'6 Dashboard'!D27"
+  },
+  "m2_E": {
+   "old": "Dashboard!D14",
+   "new": "'6 Dashboard'!E27"
+  },
+  "m2_I": {
+   "old": "Dashboard!E14",
+   "new": "'6 Dashboard'!I27"
+  },
+  "m2_J": {
+   "old": "Dashboard!F14",
+   "new": "'6 Dashboard'!J27"
+  },
+  "m3_C": {
+   "old": "Dashboard!B15",
+   "new": "'6 Dashboard'!C28"
+  },
+  "m3_D": {
+   "old": "Dashboard!C15",
+   "new": "'6 Dashboard'!D28"
+  },
+  "m3_E": {
+   "old": "Dashboard!D15",
+   "new": "'6 Dashboard'!E28"
+  },
+  "m3_I": {
+   "old": "Dashboard!E15",
+   "new": "'6 Dashboard'!I28"
+  },
+  "m3_J": {
+   "old": "Dashboard!F15",
+   "new": "'6 Dashboard'!J28"
+  },
+  "m4_C": {
+   "old": "Dashboard!B16",
+   "new": "'6 Dashboard'!C29"
+  },
+  "m4_D": {
+   "old": "Dashboard!C16",
+   "new": "'6 Dashboard'!D29"
+  },
+  "m4_E": {
+   "old": "Dashboard!D16",
+   "new": "'6 Dashboard'!E29"
+  },
+  "m4_I": {
+   "old": "Dashboard!E16",
+   "new": "'6 Dashboard'!I29"
+  },
+  "m4_J": {
+   "old": "Dashboard!F16",
+   "new": "'6 Dashboard'!J29"
+  },
+  "m5_C": {
+   "old": "Dashboard!B17",
+   "new": "'6 Dashboard'!C30"
+  },
+  "m5_D": {
+   "old": "Dashboard!C17",
+   "new": "'6 Dashboard'!D30"
+  },
+  "m5_E": {
+   "old": "Dashboard!D17",
+   "new": "'6 Dashboard'!E30"
+  },
+  "m5_I": {
+   "old": "Dashboard!E17",
+   "new": "'6 Dashboard'!I30"
+  },
+  "m5_J": {
+   "old": "Dashboard!F17",
+   "new": "'6 Dashboard'!J30"
+  },
+  "m6_C": {
+   "old": "Dashboard!B18",
+   "new": "'6 Dashboard'!C31"
+  },
+  "m6_D": {
+   "old": "Dashboard!C18",
+   "new": "'6 Dashboard'!D31"
+  },
+  "m6_E": {
+   "old": "Dashboard!D18",
+   "new": "'6 Dashboard'!E31"
+  },
+  "m6_I": {
+   "old": "Dashboard!E18",
+   "new": "'6 Dashboard'!I31"
+  },
+  "m6_J": {
+   "old": "Dashboard!F18",
+   "new": "'6 Dashboard'!J31"
+  },
+  "m7_C": {
+   "old": "Dashboard!B19",
+   "new": "'6 Dashboard'!C32"
+  },
+  "m7_D": {
+   "old": "Dashboard!C19",
+   "new": "'6 Dashboard'!D32"
+  },
+  "m7_E": {
+   "old": "Dashboard!D19",
+   "new": "'6 Dashboard'!E32"
+  },
+  "m7_I": {
+   "old": "Dashboard!E19",
+   "new": "'6 Dashboard'!I32"
+  },
+  "m7_J": {
+   "old": "Dashboard!F19",
+   "new": "'6 Dashboard'!J32"
+  },
+  "m8_C": {
+   "old": "Dashboard!B20",
+   "new": "'6 Dashboard'!C33"
+  },
+  "m8_D": {
+   "old": "Dashboard!C20",
+   "new": "'6 Dashboard'!D33"
+  },
+  "m8_E": {
+   "old": "Dashboard!D20",
+   "new": "'6 Dashboard'!E33"
+  },
+  "m8_I": {
+   "old": "Dashboard!E20",
+   "new": "'6 Dashboard'!I33"
+  },
+  "m8_J": {
+   "old": "Dashboard!F20",
+   "new": "'6 Dashboard'!J33"
+  },
+  "m9_C": {
+   "old": "Dashboard!B21",
+   "new": "'6 Dashboard'!C34"
+  },
+  "m9_D": {
+   "old": "Dashboard!C21",
+   "new": "'6 Dashboard'!D34"
+  },
+  "m9_E": {
+   "old": "Dashboard!D21",
+   "new": "'6 Dashboard'!E34"
+  },
+  "m9_I": {
+   "old": "Dashboard!E21",
+   "new": "'6 Dashboard'!I34"
+  },
+  "m9_J": {
+   "old": "Dashboard!F21",
+   "new": "'6 Dashboard'!J34"
+  },
+  "m10_C": {
+   "old": "Dashboard!B22",
+   "new": "'6 Dashboard'!C35"
+  },
+  "m10_D": {
+   "old": "Dashboard!C22",
+   "new": "'6 Dashboard'!D35"
+  },
+  "m10_E": {
+   "old": "Dashboard!D22",
+   "new": "'6 Dashboard'!E35"
+  },
+  "m10_I": {
+   "old": "Dashboard!E22",
+   "new": "'6 Dashboard'!I35"
+  },
+  "m10_J": {
+   "old": "Dashboard!F22",
+   "new": "'6 Dashboard'!J35"
+  },
+  "m11_C": {
+   "old": "Dashboard!B23",
+   "new": "'6 Dashboard'!C36"
+  },
+  "m11_D": {
+   "old": "Dashboard!C23",
+   "new": "'6 Dashboard'!D36"
+  },
+  "m11_E": {
+   "old": "Dashboard!D23",
+   "new": "'6 Dashboard'!E36"
+  },
+  "m11_I": {
+   "old": "Dashboard!E23",
+   "new": "'6 Dashboard'!I36"
+  },
+  "m11_J": {
+   "old": "Dashboard!F23",
+   "new": "'6 Dashboard'!J36"
+  },
+  "m12_C": {
+   "old": "Dashboard!B24",
+   "new": "'6 Dashboard'!C37"
+  },
+  "m12_D": {
+   "old": "Dashboard!C24",
+   "new": "'6 Dashboard'!D37"
+  },
+  "m12_E": {
+   "old": "Dashboard!D24",
+   "new": "'6 Dashboard'!E37"
+  },
+  "m12_I": {
+   "old": "Dashboard!E24",
+   "new": "'6 Dashboard'!I37"
+  },
+  "m12_J": {
+   "old": "Dashboard!F24",
+   "new": "'6 Dashboard'!J37"
+  },
+  "bw1_C": {
+   "old": "Dashboard!B39",
+   "new": "'6 Dashboard'!C56"
+  },
+  "bw1_D": {
+   "old": "Dashboard!C39",
+   "new": "'6 Dashboard'!D56"
+  },
+  "bw1_I": {
+   "old": "Dashboard!E39",
+   "new": "'6 Dashboard'!I56"
+  },
+  "bw1_K": {
+   "old": "Dashboard!F39",
+   "new": "'6 Dashboard'!K56"
+  },
+  "bw2_C": {
+   "old": "Dashboard!B40",
+   "new": "'6 Dashboard'!C57"
+  },
+  "bw2_D": {
+   "old": "Dashboard!C40",
+   "new": "'6 Dashboard'!D57"
+  },
+  "bw2_I": {
+   "old": "Dashboard!E40",
+   "new": "'6 Dashboard'!I57"
+  },
+  "bw2_K": {
+   "old": "Dashboard!F40",
+   "new": "'6 Dashboard'!K57"
+  },
+  "bw3_C": {
+   "old": "Dashboard!B41",
+   "new": "'6 Dashboard'!C58"
+  },
+  "bw3_D": {
+   "old": "Dashboard!C41",
+   "new": "'6 Dashboard'!D58"
+  },
+  "bw3_I": {
+   "old": "Dashboard!E41",
+   "new": "'6 Dashboard'!I58"
+  },
+  "bw3_K": {
+   "old": "Dashboard!F41",
+   "new": "'6 Dashboard'!K58"
+  },
+  "bw4_C": {
+   "old": "Dashboard!B42",
+   "new": "'6 Dashboard'!C59"
+  },
+  "bw4_D": {
+   "old": "Dashboard!C42",
+   "new": "'6 Dashboard'!D59"
+  },
+  "bw4_I": {
+   "old": "Dashboard!E42",
+   "new": "'6 Dashboard'!I59"
+  },
+  "bw4_K": {
+   "old": "Dashboard!F42",
+   "new": "'6 Dashboard'!K59"
+  },
+  "bw5_C": {
+   "old": "Dashboard!B43",
+   "new": "'6 Dashboard'!C60"
+  },
+  "bw5_D": {
+   "old": "Dashboard!C43",
+   "new": "'6 Dashboard'!D60"
+  },
+  "bw5_I": {
+   "old": "Dashboard!E43",
+   "new": "'6 Dashboard'!I60"
+  },
+  "bw5_K": {
+   "old": "Dashboard!F43",
+   "new": "'6 Dashboard'!K60"
+  }
+ },
+ "cases": [
+  {
+   "name": "example"
+  },
+  {
+   "name": "high prices and margin",
+   "set": {
+    "target": 0.4,
+    "l1_D": 38,
+    "l2_D": 20,
+    "pa_profit": 15,
+    "pb_cogs": 14,
+    "ads_share": 0.45,
+    "o1_item": 96,
+    "o1_qty": 4,
+    "tax_rate": 0.3
+   }
+  },
+  {
+   "name": "low prices, a loss",
+   "set": {
+    "l1_D": 9,
+    "l1_E": 12,
+    "l2_D": 5,
+    "pa_profit": 1,
+    "pa_cogs": 0.5,
+    "o1_item": 5,
+    "o1_qty": 1,
+    "dep1": 200,
+    "tax_have": 500
+   }
+  },
+  {
+   "name": "blank key inputs",
+   "set": {
+    "l1_C": null,
+    "l1_D": null,
+    "pa_profit": null,
+    "pa_cogs": null,
+    "month": null,
+    "first_month": null,
+    "dep1": null,
+    "tax_rate": null
+   }
+  },
+  {
+   "name": "edited fees and tier",
+   "set": {
+    "tier": "$10K or more",
+    "tx_fee": 0.07,
+    "proc_rate": 0.035,
+    "proc_fixed": 0.3,
+    "listing_fee": 0.25,
+    "ads_cap": 5,
+    "l1_J": "Y",
+    "o1_ads": "Y",
+    "o1_tax": 2.5,
+    "o3_sku": "Room Spray 4 oz",
+    "dep1_other": 50,
+    "dep2_adj": -3.25,
+    "first_month": "2026-06"
+   }
+  },
+  {
+   "name": "edge: 95% target margin, zero shipping, late date",
+   "set": {
+    "target": 0.95,
+    "pb_shipc": 0,
+    "pa_shipc": 0,
+    "l1_G": 0,
+    "o2_date": 46200,
+    "first_month": "2026-12",
+    "ads_share": 1
+   }
+  },
+  {
+   "name": "edge: zero share and big orders",
+   "set": {
+    "ads_share": 0,
+    "o1_qty": 40,
+    "o1_item": 960,
+    "o1_ads": "Y",
+    "l1_D": 1000,
+    "l1_J": "Y"
+   }
+  }
+ ],
+ "intended": [
+  {
+   "case": "edge: 95% target margin, zero shipping, late date",
+   "outputs": [
+    "pr_C27",
+    "pr_C28",
+    "pr_C29"
+   ],
+   "why": "v1 showed a negative list price when the target margin plus fee rates reach 100%; v3 leaves it blank and says no price reaches this margin"
+  },
+  {
+   "case": "blank key inputs",
+   "outputs": [
+    "m1_C",
+    "m2_C",
+    "m3_C",
+    "m4_C",
+    "m5_C",
+    "m6_C",
+    "m7_C",
+    "m8_C",
+    "m9_C",
+    "m10_C",
+    "m11_C",
+    "m12_C"
+   ],
+   "why": "v1 filled a blank first month with 0 and 2000-01 onward in LibreOffice (#VALUE! in Excel); v3 leaves the month labels blank"
+  }
+ ]
+}

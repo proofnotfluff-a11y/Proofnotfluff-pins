@@ -225,7 +225,7 @@ class Card:
                 self.ws[f"{k}{r}"].fill = fill(tint)
         return r
 
-    def bar(self, text, formula, fmt, max_ref, color, width=14, bold=False):
+    def bar(self, text, formula, fmt, max_ref, color, width=11, bold=False):
         """label | value | in-cell bar (needs an extra column)."""
         r = self.calc(text, formula, fmt, bold=bold)
         b = self.ws[f"{self.extra}{r}"]

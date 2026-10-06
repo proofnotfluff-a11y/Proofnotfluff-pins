@@ -180,6 +180,16 @@ Todd approved the v3 standard Oct 6, 2026 ("apply this standard to all existing 
 6. Listing images: render at `--dpi 220` or more, write `engines/<slug>/listing_images.json` (cover, three detail shots, what's inside; reference: the #20 spec) and run `python3 tools/listing_images.py`. Open all five; every number on them must match the product.
 7. Compare every number in the listing, the pin and the Start Here example against the rendered values.
 
+8. Misses the #13 gate review caught (check these before asking for review):
+   - Working tabs are numbered when there are more than three ("1 Your Numbers"); every cross-sheet reference and the compare map use the new names.
+   - Labels fit their column: about 28 characters in a 31-wide label column, 22 in a 24-wide one. Card sub lines fit on one line. Validation titles are 32 characters or less (pass prompt_title).
+   - Rows in the card zone are shared by both columns: never give one card a tall row (merge two grid rows instead) and give every gap row an explicit height.
+   - Each table column gets its own stop error naming the allowed range, not a generic one.
+   - Long tables print with fitToHeight = 1 or with the header row repeated (print_title_rows); no printed page of bare rows.
+   - Percent inputs that take decimals use 0.0%; whole-number inputs use whole validation and say so in the prompt.
+   - pack_product.py loads with rich_text=True, so the PDFs keep bold lead-ins and the colour strip. Open one PDF page to confirm.
+   - Listing copy (repo listing.md) carries the same sources, dates, tab names and file list as the new workbook.
+
 ## 16. What bad looks like
 
 Fail a workbook that shows any of these:

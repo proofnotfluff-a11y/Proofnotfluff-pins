@@ -22,6 +22,7 @@ import etsy_oauth as eo
 
 API = eo.API
 LIKE_DEFAULT = "4588972193"
+CURRENT_PRICE = 2.99  # Todd, Oct 6, 3:23 pm: every product $2.99 while the shop gets established; change only on his word
 PRICE_LADDER = [2.99, 4.99, 6.99, 8.99, 11.99, 12.99, 14.99, 19.99, 24.99, 49.00]
 AI_LINE = "Made with AI assistance and reviewed and tested by the shop owner."
 REQUIRED_LINES = [AI_LINE, "Digital download. No physical item ships."]
@@ -85,6 +86,11 @@ def validate(p):
     if len(p["tags"]) > 13: errs.append(f"{len(p['tags'])} tags (max 13)")
     errs += [f"tag over 20 characters: {t}" for t in p["tags"] if len(t) > 20]
     if p["price"] not in PRICE_LADDER: errs.append(f"price {p['price']} is not on the ledger price ladder")
+    if CURRENT_PRICE is not None and p["price"] != CURRENT_PRICE:
+        errs.append(f"price {p['price']} but the ledger PRICE rule (Todd, Oct 6) puts every product at ${CURRENT_PRICE}")
+    low = p["description"].lower()
+    for bad in ("founding price", "then $", "real price", "regular price", "was $"):
+        if bad in low: errs.append(f"description names a former or future price ('{bad}'); the ledger PRICE rule forbids it")
     for line in REQUIRED_LINES:
         if line not in p["description"]: errs.append(f"description is missing: {line}")
     for field in ("title", "description"):

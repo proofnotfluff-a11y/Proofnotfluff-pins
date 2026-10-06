@@ -10,14 +10,12 @@ income tracker, freelancer template, invoice tracker, payment tracker, self empl
 Bookkeeping Templates (ledger category rule: a money workbook for a business goes in Bookkeeping Templates, never Personal Finance Templates)
 
 ## Price
-$6.99 founding price (shows $4.89 in the 30% shop sale); real price $8.99 after 10 sales. Offers off. No variations.
+List price: $2.99 (ledger PRICE rule, Todd Oct 6). Offers off. No variations.
 
 ## Attributes
 Digital download; file type XLSX and PDF; software Microsoft Excel, Google Sheets; orientation landscape; made with AI assistance ("With an AI generator" radio where Etsy asks).
 
 ## Description
-Founding price for the first 10 buyers, then $8.99.
-
 A freelance income tracker for Excel and Google Sheets: type one row each time you send an invoice or get paid, and the Dashboard shows what came in this year, month by month, what clients still owe you, your top clients and how much to set aside at a rate you choose. Made for freelancers, contractors and side hustles who found full bookkeeping templates too much.
 
 WHAT IT DOES
@@ -55,7 +53,7 @@ How many rows? 300 in the log, 25 clients and 8 payment methods.
 Made with AI assistance and reviewed and tested by the shop owner.
 
 Information only, not legal, tax, financial or other professional advice.
-Digital download; no physical item ships.
+Digital download. No physical item ships.
 File problems are fixed on request through Etsy messages.
 
 ## Pinterest board

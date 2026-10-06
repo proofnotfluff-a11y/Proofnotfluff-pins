@@ -1,0 +1,12 @@
+{
+ "xlsx": "Freelance-Income-Tracker.xlsx",
+ "sheet": "Dashboard",
+ "crop": [0, 0.012, 1, 0.282],
+ "dpi": 220,
+ "eyebrow": "FREELANCE INCOME TRACKER",
+ "states": [
+  {"caption": "Every payment logged once: {C7} received.", "hold": 3.2},
+  {"set": {"Income Log!H38": 46300}, "caption": "A client pays. Type the date: {C7} received.", "hold": 3.6},
+  {"set": {"Income Log!H38": 46300, "D16": 0.3}, "caption": "Set aside 30% instead? {D22} for the year.", "hold": 3.6}
+ ]
+}

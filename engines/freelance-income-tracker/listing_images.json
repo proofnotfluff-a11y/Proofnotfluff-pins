@@ -1,0 +1,229 @@
+{
+ "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+ "images": [
+  {
+   "type": "cover",
+   "eyebrow": "FREELANCE INCOME TRACKER",
+   "title": "Every payment in one place. Your year at a glance.",
+   "sub": "Log each invoice once. See what came in, what is owed and what to set aside.",
+   "shot": "r/02-Dashboard.png",
+   "crop": [
+    0,
+    0,
+    1,
+    0.282
+   ],
+   "badges": [
+    "Excel + Google Sheets",
+    "Instant download",
+    "One log, six columns"
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "WORKED EXAMPLE",
+   "title": "$15,570 received in 2026, month by month.",
+   "sub": "Income counts in the month the money arrived. Months that hit your goal turn green.",
+   "shot": "r/02-Dashboard.png",
+   "crop": [
+    0.47,
+    0.097,
+    1,
+    0.282
+   ],
+   "trim": true
+  },
+  {
+   "type": "steps",
+   "eyebrow": "HOW IT WORKS",
+   "title": "Three steps, no setup.",
+   "steps": [
+    {
+     "head": "List your clients",
+     "text": "Type names over the examples.",
+     "shot": "r/04-Clients.png",
+     "crop": [
+      0,
+      0.094,
+      0.607,
+      0.1945
+     ]
+    },
+    {
+     "head": "Log each invoice",
+     "text": "Leave Paid on blank until it's paid.",
+     "shot": "r/03-Income-Log.png",
+     "crop": [
+      0,
+      0.024,
+      0.522,
+      0.046
+     ]
+    },
+    {
+     "head": "Read your year",
+     "text": "Received, owed and set-aside update.",
+     "shot": "r/02-Dashboard.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.095
+     ]
+    }
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "ONE ENTRY TAB",
+   "title": "One row per invoice. Status fills in.",
+   "sub": "Six yellow columns. Paid, owed or late is worked out for you, with a Rows to fix check.",
+   "shot": "r/03-Income-Log.png",
+   "crop": [
+    0,
+    0,
+    1,
+    0.075
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "OWED TO YOU",
+   "title": "See who still owes you, and for how long.",
+   "sub": "Unpaid rows list themselves. Late ones turn red after the days you choose.",
+   "shot": "r/02-Dashboard.png",
+   "crop": [
+    0,
+    0.41,
+    1,
+    0.557
+   ],
+   "trim": true
+  },
+  {
+   "type": "shot",
+   "eyebrow": "SET ASIDE AT YOUR RATE",
+   "title": "Split by the IRS payment periods.",
+   "sub": "Your own set-aside rate on income received, with each period's due date. Checked Oct 6, 2026.",
+   "shot": "r/02-Dashboard.png",
+   "crop": [
+    0,
+    0.285,
+    0.455,
+    0.406
+   ],
+   "trim": true
+  },
+  {
+   "type": "shot",
+   "eyebrow": "TOP CLIENTS",
+   "title": "Know which clients pay the bills.",
+   "sub": "Received, still owed and share of the year for every client.",
+   "shot": "r/04-Clients.png",
+   "crop": [
+    0,
+    0,
+    1,
+    0.233
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "IS THIS FOR YOU?",
+   "title": "For anyone paid by clients.",
+   "columns": [
+    {
+     "head": "Made for",
+     "mark": "check",
+     "items": [
+      "Freelancers, contractors and side hustles",
+      "Tracking invoices, payments and who still owes you",
+      "Knowing how much to set aside, at your own rate",
+      "Anyone who found bookkeeping templates too much"
+     ]
+    },
+    {
+     "head": "Not for",
+     "mark": "x",
+     "items": [
+      "Expenses and profit (pair it with an expense tracker)",
+      "Payroll, sales tax or filing a tax return",
+      "Tax advice: it uses the rate you type"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "HOW YOU GET IT",
+   "title": "Instant download. Opens in Excel or Google Sheets.",
+   "columns": [
+    {
+     "head": "What you get",
+     "mark": "check",
+     "items": [
+      "Dashboard, Income Log, Clients, Start Here and Terms tabs",
+      "Start Here guide as a PDF, US Letter and A4",
+      "Made for Excel (Windows and Mac) and Google Sheets; opens in LibreOffice",
+      "No macros, no add-ons, no sign-up"
+     ]
+    },
+    {
+     "head": "How to download",
+     "mark": "check",
+     "items": [
+      "Buy, then open Etsy in a web browser",
+      "Go to You, then Purchases, and download",
+      "The Etsy app can't download digital files",
+      "Message the shop on Etsy if anything won't open"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "inside",
+   "eyebrow": "ONE DOWNLOAD",
+   "title": "What's inside",
+   "tabs": [
+    {
+     "name": "Start Here",
+     "shot": "r/01-Start-Here.png",
+     "crop": [
+      0,
+      0,
+      0.356,
+      0.36
+     ]
+    },
+    {
+     "name": "Dashboard",
+     "shot": "r/02-Dashboard.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.41
+     ]
+    },
+    {
+     "name": "Income Log",
+     "shot": "r/03-Income-Log.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.07
+     ]
+    }
+   ],
+   "items": [
+    "Income received, month by month",
+    "Still owed, with late invoices flagged",
+    "Set-aside by IRS payment period",
+    "Top clients and share of income",
+    "300-row log with a Rows to fix check",
+    "Start Here PDF in US Letter and A4"
+   ]
+  }
+ ]
+}

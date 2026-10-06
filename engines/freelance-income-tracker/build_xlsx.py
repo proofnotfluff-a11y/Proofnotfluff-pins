@@ -29,6 +29,7 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else "Freelance-Income-Tracker.xlsx"
 USD0, USD2, PCT, INT, DATE = S.FMT["usd0"], S.FMT["usd2"], S.FMT["pct"], S.FMT["int"], S.FMT["date"]
 YEAR_FMT = "0"
 HERE = os.path.dirname(os.path.abspath(__file__))
+TAX_SOURCES = ('IRS Topic 554 (Self-Employment Tax), the IRS page "Pay as you go, so you won\'t owe" and the 2026 Form 1040-ES')
 
 # ---------------------------------------------------------------- example data (a freelance designer, 2026)
 d = dt.datetime
@@ -280,7 +281,7 @@ A.eyebrow("YOUR YEAR")
 y = A.input("Tax year to show", EX_YEAR, YEAR_FMT, name="TaxYear", validation=("whole", 2000, 2100),
             prompt="The calendar year to total, for example 2026. Old rows stay in the log.", prompt_title="Tax year to show")
 rt = A.input("Share you set aside for tax", EX_RATE, PCT, name="SetAsideRate", validation=("decimal", 0, 0.9),
-             prompt="Your own rate, for example 25%. This file does not tell you what rate to use. See Notes and sources.")
+             prompt="Type your own rate. 25% is only the example's made-up number, not a suggestion. This file does not tell you what rate to use.")
 gl = A.input("Monthly income goal", EX_GOAL, USD0, name="MonthlyGoal", validation=("decimal", 0, None),
              prompt="The income you want each month, in dollars. Example: 2000. Type 0 if you have no goal.")
 lt = A.input("Days before an invoice is late", EX_LATE, INT, name="LateAfterDays", validation=("whole", 1, 365),
@@ -320,7 +321,7 @@ B.close()
 # second row of cards
 row2 = max(A.end, B.end) + 2
 C = D.Card(ws, row2, "B", "C", "D", "E", wb=wb)
-C.title("Set aside by IRS payment period", "Your set-aside rate times income received in each period.")
+C.title("Set aside by IRS payment period", "Your rate times income received in each period. Estimates only, not tax advice: see Notes and sources and the Terms tab.")
 C.eyebrow("ESTIMATED TAX PERIODS")
 PERIODS = [  # start month, end month (exclusive, may roll into next year), label start, due month/day, due year offset
     (1, 4, "Jan 1 to Mar 31", 4, 15, 0),
@@ -423,14 +424,16 @@ NOTES = [
     ("Set-aside rate", "You choose it; this file does not tell you what rate to use. For reference, US self-employment tax "
      "alone is 15.3% (12.4% Social Security plus 2.9% Medicare), generally on 92.35% of net earnings, and you usually owe it "
      "once net earnings reach $400, per IRS Topic 554 (irs.gov/taxtopics/tc554, page updated Sep 24, 2026, checked Oct 6, 2026). "
-     "Income tax comes on top. The set-aside here is on income received, before business expenses."),
+     "Income tax comes on top. The set-aside here is on income received, before business expenses. "
+     "The 12.4% Social Security part applies only up to $184,500 of 2026 earnings (SSA, checked Oct 6, 2026)."),
     ("Payment periods", "The IRS estimated tax periods are Jan 1 to Mar 31 (due Apr 15), Apr 1 to May 31 (due Jun 15), "
      "Jun 1 to Aug 31 (due Sep 15) and Sep 1 to Dec 31 (due Jan 15 of the next year). A due date on a Saturday, Sunday or legal "
      "holiday moves to the next business day. Source: IRS, Pay as you go, so you won't owe (irs.gov, page updated "
      "Sep 25, 2026, checked Oct 6, 2026)."),
     ("Expenses", "This file tracks income only. Pair it with an expense tracker to see profit."),
     ("Any currency", "The maths works in any currency. Select the money cells and pick your symbol under Format, Number."),
-    ("Before you rely on a number", S.SHORT_NOTICE.format(date="Oct 6, 2026").replace("Terms of Use page", "Terms tab")),
+    ("Before you rely on a number", S.SHORT_NOTICE.format(date="Oct 6, 2026").replace("Terms of Use page", "Terms tab")
+     + " " + S.TAX_TIER_CLAUSE.format(date="October 6, 2026", sources=TAX_SOURCES)),
 ]
 r = n_top
 D.h(ws, r, 12); r += 1
@@ -526,7 +529,7 @@ S.page_break_before(sh, r)
 r = sh_card(sh, r, "The example", [(None,
     f"A freelance designer with six clients logged {len(ROWS)} rows. {money(EX_REC)} arrived in {EX_YEAR} across {EX_MONTHS} months, "
     f"including a December 2025 invoice paid in January, which counts in January. Three invoices with no Paid on date add up to "
-    f"{money(EX_OWED)} still owed. At a 25% set-aside rate that is {money(EX_REC * EX_RATE)} to set aside. Clear the example rows "
+    f"{money(EX_OWED)} still owed. At the example's made-up 25% set-aside rate (not a suggested rate) that is {money(EX_REC * EX_RATE)} to set aside. Clear the example rows "
     "and type your own.", "para")])
 r = sh_card(sh, r, "Good to know", [
     (None, "Formulas keep working. Every total reads all 300 log rows, so a row typed anywhere in the log is counted. "
@@ -538,7 +541,8 @@ r = sh_card(sh, r, "Good to know", [
            "no sign-up. Made for Excel and Google Sheets; it also opens in LibreOffice.", "para"),
     (None, "Clearing the example. Select the yellow cells in the log and press Delete. Keep the header rows.", "para"),
 ])
-r = sh_card(sh, r, "Before you rely on a number", [(None, S.SHORT_NOTICE.format(date="Oct 6, 2026"), "note")])
+r = sh_card(sh, r, "Before you rely on a number", [(None, S.SHORT_NOTICE.format(date="Oct 6, 2026") + " "
+           + S.TAX_TIER_CLAUSE.format(date="October 6, 2026", sources=TAX_SOURCES), "note")])
 SH_LAST = r - 1
 D.paint_canvas(sh, SH_LAST, "Z")
 S.finish_sheet(sh, PRODUCT, SH_LAST, span=("A", "G"), tab_color="teal",

@@ -527,6 +527,12 @@ SHORT_NOTICE = ("For general information and planning only. This is not legal, t
                 "based on the numbers you enter. Figures were checked on {date} and can change. See the Terms of Use "
                 "page before you rely on anything here.")
 
+# High tier tax clause (legal/README.md section 4): goes right after SHORT_NOTICE on Start Here and in the
+# workbook's own notice whenever a product cites a tax rate, deadline or IRS/SSA rule.
+TAX_TIER_CLAUSE = ("This summarizes federal rules as of {date} from {sources}. State and local rules can add to or change "
+                   "them. It is not tax, legal or HR advice. Before you file, pay or decide, confirm with the agency or a "
+                   "licensed CPA, enrolled agent or employment attorney.")
+
 
 def start_here_tab(wb, product, tagline, what_it_does, steps, as_of, notice, sections=(),
                    legend_samples=(60000, 1152, 74.65), title="Start Here", position=0,

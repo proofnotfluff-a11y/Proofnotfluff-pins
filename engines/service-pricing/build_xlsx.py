@@ -26,6 +26,8 @@ import datetime as dt  # noqa: E402
 
 PRODUCT = "Service Pricing Calculator"
 CHECKED = "Oct 6, 2026"
+TAX_SOURCES = ("IRS Topic No. 554 (Self-Employment Tax), Schedule SE, the IRS Standard Mileage Rates page (IR-2026-29) "
+               "and SSA's Contribution and Benefit Base page")
 AS_OF = f"Figures checked {CHECKED}"
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = sys.argv[1] if len(sys.argv) > 1 else "Service-Pricing-Calculator.xlsx"
@@ -214,7 +216,8 @@ NOTES = [
      "them each year."),
     ("Before you rely on a number", "For general information and planning only. This is not legal, tax, financial, medical or other "
      "professional advice, and using it doesn't create a professional relationship. Results are estimates based on the "
-     f"numbers you enter. Figures were checked on {CHECKED} and can change. See the Terms tab."),
+     f"numbers you enter. Figures were checked on {CHECKED} and can change. See the Terms tab. "
+     + S.TAX_TIER_CLAUSE.format(date="October 6, 2026", sources=TAX_SOURCES)),
 ]
 n_end = notes_card(yn, n_top, NOTES)
 S.page_break_before(yn, n_top)
@@ -601,7 +604,8 @@ r = sh_card(sh, r, "Good to know", [
 r = sh_card(sh, r, "Before you rely on a number", [(None,
     "For general information and planning only. This is not legal, tax, financial, medical or other professional advice, and using it "
     "doesn't create a professional relationship. Results are estimates based on the numbers you enter. Figures were checked "
-    f"on {CHECKED} and can change. See the Terms tab before you rely on anything here.", "note")])
+    f"on {CHECKED} and can change. See the Terms tab before you rely on anything here. "
+    + S.TAX_TIER_CLAUSE.format(date="October 6, 2026", sources=TAX_SOURCES), "note")])
 D.paint_canvas(sh, r - 1, "Z")
 S.finish_sheet(sh, PRODUCT, r - 1, span=("A", "G"), tab_color="teal")
 

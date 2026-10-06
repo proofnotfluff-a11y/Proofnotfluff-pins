@@ -13,7 +13,15 @@ RETITLES (before PICK, for each entry in meta/lister.retitles with status "pendi
 2. python3 tools/etsy_list.py retitle <listingId> "<exact title from the entry>". The tool refuses titles over 140 characters or with an em dash and confirms Etsy saved the exact text. Never change tags, price, photos or anything else, and never retitle a listing the list does not name.
 3. show again and confirm the new title and state "active".
 4. Update meta/lister pinned to its version: that entry {status:"done", oldTitle, doneAt:<ISO>} and append to ledgerInbox "Listing edits: <Mon D> | <product> | title | <old title> | <new title> (RETITLE NOW, Todd)". A failure sets the entry {status:"failed", error} and Todd gets one line.
-Then carry on with PICK; a run with nothing on the shelf still does its retitles first.
+Then carry on with DESCRIPTION FIXES; a run with nothing on the shelf still does its retitles first.
+
+DESCRIPTION FIXES (after RETITLES, for each entry in meta/lister.descriptionFixes with status "pending", in order)
+These are correction edits Todd ordered (Oct 6, 4:25 pm: the old "founding price" lines must go now that every product is $2.99). Each entry is {listingId, product, phrase}.
+1. python3 tools/etsy_list.py strip-line <listingId> "<phrase>" --dry-run and read what it would remove. It must be only the line(s) carrying that phrase, nothing else.
+2. python3 tools/etsy_list.py strip-line <listingId> "<phrase>". The tool removes at most 2 lines under 300 characters, never touches title, tags, price, photos or files, and confirms Etsy no longer shows the phrase. "absent" means the line is already gone: mark the entry done.
+3. Update meta/lister pinned to its version: that entry {status:"done", removed:<the removed text>, doneAt:<ISO>} and append to ledgerInbox "Listing edits: <Mon D> | <product> | description | removed '<phrase>' line (founding price retired; $2.99 rule)". A failure or refusal sets the entry {status:"failed", error} and Todd gets one line.
+Never edit a listing that descriptionFixes does not name, and never add text to a description here.
+Then carry on with PICK.
 
 PICK
 List the ideas collection. Take ideas with status "packed" and legal.status "cleared", oldest packedAt first, up to 5 this run. Claim each with update {status:"listing", listingBy:"api-lister", listingAt:<ISO>} pinned to its version; a failed pin means another run has it, skip it. Never take an idea whose legal.status is not "cleared". If nothing qualifies, set agents/api-lister idle with lastNote "Nothing cleared on the shelf" and stop.

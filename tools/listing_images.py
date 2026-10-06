@@ -83,18 +83,19 @@ def bars(draw, x, y, w=96, h=16, gap=18):
         draw.rounded_rectangle([x + i * (w + gap), y, x + i * (w + gap) + w, y + h], radius=h // 2, fill=c)
 
 
-def _plain(px_line):
+def _plain(px_line, strict=False):
     """True when a pixel row or column is one flat color: canvas, a frame line or blank card.
     The outer 4% at each end is ignored so a sliver of a neighbouring card at the crop edge
-    doesn't count, but a short line of text anywhere else does."""
+    doesn't count, but a short line of text anywhere else does. strict=True allows no stray
+    pixel at all (used on full-resolution lines to keep glyph tips)."""
     n = len(px_line)
-    cut = max(1, int(n * 0.04))
+    cut = 0 if strict else max(1, int(n * 0.04))  # strict lines already sit inside the card
     core = px_line[cut:n - cut] or px_line
     ref = sorted(core)[len(core) // 2]
     if not any(max(abs(ref[i] - k[i]) for i in range(3)) <= 3 for k in (CANVAS, CARD, FRAME, (239, 235, 228))):
         return False  # a flat tinted band (a status pill, a total row) is content, never trimmed
     off = sum(1 for c in core if max(abs(c[i] - ref[i]) for i in range(3)) > 6)
-    return off <= max(1, len(core) // 500)
+    return off == 0 if strict else off <= max(1, len(core) // 500)
 
 
 def trim(im, keep=70):
@@ -116,6 +117,16 @@ def trim(im, keep=70):
         while r > l and _plain(cols(r)): r -= 1
         if (t, b, l, r) == before:
             break
+    # The sampled test above can call a row plain when only the tip of a tall glyph (the arms of
+    # a "Y") is in it. Walk each edge back out, checking every pixel, until the next row or column
+    # out is truly empty, so no letter ever loses its top or bottom.
+    full_row = lambda y: [px[x, y] for x in range(l, r + 1)]
+    full_col = lambda x: [px[x, y] for y in range(t, b + 1)]
+    strict = lambda line: _plain(line, strict=True)
+    while t > 0 and not strict(full_row(t - 1)): t -= 1
+    while b < H - 1 and not strict(full_row(b + 1)): b += 1
+    while l > 0 and not strict(full_col(l - 1)): l -= 1
+    while r < W - 1 and not strict(full_col(r + 1)): r += 1
     inner = im.crop((l, t, r + 1, b + 1))
     out = Image.new("RGB", (inner.width + 2 * keep, inner.height + 2 * keep), CARD)
     out.paste(inner, (keep, keep))

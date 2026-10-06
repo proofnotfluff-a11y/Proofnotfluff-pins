@@ -12,9 +12,13 @@ Runs only in a cloud session on Todd's Default environment (see tools/etsy_oauth
   python3 tools/etsy_list.py show LISTING_ID              read-only: state, title, price, images, files, url
   python3 tools/etsy_list.py retitle LISTING_ID "New title"   changes ONLY the title of a live listing (Todd-approved
         retitles only; log the old and new title in the ledger's Listing edits first). Prints old and new title.
+  python3 tools/etsy_list.py strip-line LISTING_ID "phrase" [--dry-run]   correction edit: deletes the description
+        line(s) containing the phrase (at most 2 lines, each under 300 characters); nothing else changes
 
 Field defaults (who_made, when_made, is_supply, should_auto_renew, return_policy_id) are copied from --like
-(default: the newest live listing, #16, 4588972193) so every listing matches what Etsy already accepted.
+(default: a "Like: LISTING_ID" line under listing.md's ## Category, else #16, 4588972193) so every listing
+matches what Etsy already accepted. Category: when the category name matches several Etsy nodes, the one the
+like-listing uses wins; a "Like:" line in listing.md puts a trade edition in its parent listing's exact category.
 """
 import json, mimetypes, os, re, sys, time, uuid, urllib.parse, urllib.request
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -72,11 +76,13 @@ def parse(md_path):
     md = open(md_path, encoding="utf-8").read()
     title = section(md, "Title").splitlines()[0].strip()
     tags = [t.strip() for t in section(md, "Tags").replace("\n", ",").split(",") if t.strip()]
-    cat = section(md, "Category").split("(")[0].strip()
+    cat_sec = section(md, "Category")
+    cat = cat_sec.splitlines()[0].split("(")[0].strip() if cat_sec else ""
+    lm = re.search(r"^Like:\s*(\d+)", cat_sec, re.M)  # an edition sits in its parent listing's exact category
     pm = re.search(r"List price:\s*\$([0-9]+(?:\.[0-9]{2})?)", section(md, "Price"))
     rp = re.search(r"Real price[^$]*\$([0-9]+(?:\.[0-9]{2})?)", section(md, "Price"))
     desc = section(md, "Description")
-    return {"title": title, "tags": tags, "category": cat, "price": float(pm.group(1)) if pm else None,
+    return {"title": title, "tags": tags, "category": cat, "like": lm.group(1) if lm else None, "price": float(pm.group(1)) if pm else None,
             "realPrice": float(rp.group(1)) if rp else None, "description": desc,
             "pinFacts": [re.sub(r"^\d+\.\s*", "", l).strip() for l in section(md, "Pin facts").splitlines() if l.strip()],
             "board": section(md, "Pinterest board").splitlines()[0].strip() if section(md, "Pinterest board") else ""}
@@ -125,16 +131,23 @@ def cmd_show(lid):
                       "files": [f.get("filename") for f in files.get("results", [])], "url": l.get("url")}, indent=1))
 
 # ---------- create and publish ----------
-def cmd_create(md, zip_path, images, video=None, like=LIKE_DEFAULT, publish=False):
+def cmd_create(md, zip_path, images, video=None, like=None, publish=False):
     p = parse(md); errs = validate(p)
     if errs: die("listing.md failed checks:\n- " + "\n- ".join(errs))
     if not (1 <= len(images) <= 20): die("need 1 to 20 images (Etsy's per-listing limit is 20)")
     for f in [zip_path] + images + ([video] if video else []):
         if not os.path.exists(f): die(f"missing file: {f}")
     if os.path.getsize(zip_path) > 20 * 1024 * 1024: die("digital file over Etsy's 20 MB limit")
+    if like is None: like = p.get("like") or LIKE_DEFAULT
     base = get_listing(like); sid = shop_id()
     tax = taxonomy(CATEGORY_TAXONOMY[p["category"].lower()])
-    if len(tax) != 1: die(f"taxonomy for '{p['category']}' matched {len(tax)} nodes: {tax}; pass the right one by hand")
+    if p.get("like") and like == p["like"] and base.get("taxonomy_id"):
+        # listing.md names its parent listing (Category "Like:" line): use that listing's exact category
+        tax = [t for t in tax if t["id"] == base["taxonomy_id"]] or [{"id": base["taxonomy_id"], "path": f"same as listing {like}"}]
+    elif len(tax) > 1 and base.get("taxonomy_id") in [t["id"] for t in tax]:
+        tax = [t for t in tax if t["id"] == base["taxonomy_id"]]  # several nodes share the name: take the one the model listing uses
+    if len(tax) != 1: die(f"taxonomy for '{p['category']}' matched {len(tax)} nodes: {tax}; add a 'Like: <listing id>' line under ## Category naming a listing in the right category")
+    print(f"category: {tax[0]['path']} ({tax[0]['id']})")
     form = {"quantity": 999, "title": p["title"], "description": p["description"], "price": f"{p['price']:.2f}",
             "who_made": base["who_made"], "when_made": base["when_made"], "taxonomy_id": tax[0]["id"], "type": "download",
             "is_supply": str(bool(base.get("is_supply"))).lower(), "should_auto_renew": str(bool(base.get("should_auto_renew", True))).lower(),
@@ -173,6 +186,31 @@ def cmd_retitle(lid, title):
     if l.get("title") != title: die(f"Etsy returned a different title: {l.get('title')}")
     print(json.dumps({"listing_id": lid, "old": old, "new": title}))
 
+def strip_lines(desc, phrase):
+    """Remove every line of desc that contains phrase (case-insensitive), plus a blank line left
+    doubled by the removal. Returns (new_desc, removed_lines)."""
+    lines = desc.split("\n"); keep, removed = [], []
+    for ln in lines:
+        (removed if phrase.lower() in ln.lower() else keep).append(ln)
+    out = "\n".join(keep)
+    while "\n\n\n" in out: out = out.replace("\n\n\n", "\n\n")
+    return out.strip("\n"), removed
+
+def cmd_strip_line(lid, phrase, dry=False):
+    """Correction edit: delete the description line(s) containing phrase. Refuses when the phrase is
+    missing (nothing to do), when it matches more than 2 lines, or when a removed line is longer than
+    300 characters (a whole paragraph would go). Never changes title, tags, price, photos or files."""
+    l = get_listing(lid); desc = l.get("description") or ""
+    new, removed = strip_lines(desc, phrase)
+    if not removed: print(json.dumps({"listing_id": lid, "status": "absent", "phrase": phrase})); return
+    if len(removed) > 2: die(f"phrase matches {len(removed)} lines; fix by hand: {removed}")
+    if any(len(r) > 300 for r in removed): die(f"a matching line is over 300 characters; fix by hand: {removed}")
+    if dry: print(json.dumps({"listing_id": lid, "status": "dry-run", "remove": removed})); return
+    sid = shop_id()
+    r = ok(*req("PATCH", f"/shops/{sid}/listings/{lid}", form={"description": new}), "strip-line")
+    if phrase.lower() in (r.get("description") or "").lower(): die("Etsy still shows the phrase after the edit")
+    print(json.dumps({"listing_id": lid, "status": "done", "removed": removed}))
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     if not a: die(__doc__)
@@ -184,8 +222,9 @@ if __name__ == "__main__":
         args = a[1:]; video = like = None; pub = "--publish" in args; args = [x for x in args if x != "--publish"]
         if "--video" in args: i = args.index("--video"); video = args[i + 1]; del args[i:i + 2]
         if "--like" in args: i = args.index("--like"); like = args[i + 1]; del args[i:i + 2]
-        cmd_create(args[0], args[1], args[2:], video, like or LIKE_DEFAULT, pub)
+        cmd_create(args[0], args[1], args[2:], video, like, pub)
     elif a[0] == "publish": cmd_publish(a[1])
     elif a[0] == "show": cmd_show(a[1])
     elif a[0] == "retitle": cmd_retitle(a[1], a[2])
+    elif a[0] == "strip-line": cmd_strip_line(a[1], a[2], dry="--dry-run" in a)
     else: die(__doc__)

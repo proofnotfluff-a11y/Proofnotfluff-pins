@@ -1,0 +1,301 @@
+{
+ "updated": "2026-10-06",
+ "pages": [
+  {
+   "slug": "house-cleaning-price-calculator",
+   "kind": "service",
+   "title": "House Cleaning Price Calculator: Price Every Clean So It Pays You | ProofNotFluff",
+   "desc": "Free house cleaning price calculator. Enter your pay goal, hours and costs to get your break-even rate, your target rate and a quote for any clean, drive time included.",
+   "eyebrow": "Free calculator",
+   "h1": "House Cleaning Price Calculator",
+   "lede": "Find what a clean has to cost so it pays you: your break-even rate, your target rate and a quote for the job, with drive time and self-employment tax counted. Free, no sign-up.",
+   "card": "Break-even rate, target rate and a quote for any clean, drive time included.",
+   "defaults": {
+    "takeHome": "52,000",
+    "weeks": "48",
+    "hours": "45",
+    "paidShare": "65",
+    "monthlyCosts": "545",
+    "incomeTax": "12",
+    "margin": "15",
+    "perMile": "0.76",
+    "mph": "30"
+   },
+   "costs_hint": "Insurance, phone, apps, marketing, equipment, fees",
+   "presets": [
+    [
+     "Standard clean, 2 bed",
+     2.5,
+     1,
+     8,
+     15
+    ],
+    [
+     "Deep clean, 2 bed",
+     5,
+     1,
+     15,
+     15
+    ],
+    [
+     "Move-out clean, 3 bed",
+     7,
+     1,
+     20,
+     15
+    ]
+   ],
+   "method": [
+    "Most cleaners divide the pay they want by the hours they work. That leaves out three things: the hours nobody pays for (driving, quoting, invoicing), the business costs that run every month, and self-employment tax.",
+    "This calculator grosses your take-home up for self-employment tax (15.3% on 92.35% of profit) and your income tax estimate, adds a year of business costs, and spreads the total over the hours customers actually pay for. That is your break-even rate. Your margin on top gives the target rate.",
+    "A job's price floor is your time on site and your drive time at the break-even rate, plus vehicle cost per mile and supplies. The quote adds your margin and rounds up to the next $5."
+   ],
+   "example": "A $52,000 take-home goal with a 12% income tax estimate needs $70,394 of profit before tax. Add $6,540 a year of business costs and you need $76,934 of revenue. At 48 weeks of 45 hours with 65% paid, that is 1,404 paid hours: a break-even rate of $54.80 and a target of $64.47 with a 15% margin. Pay divided by all hours would say $24.07. A standard 2-bed clean (2.5 hours on site, a 15-mile round trip, $8 of supplies) has a $183.79 price floor and quotes at $220, with $36.21 of profit inside it.",
+   "cta": {
+    "title": "Price every job at once",
+    "bullets": [
+     "The full Service Pricing Calculator workbook uses this same maths for Excel and Google Sheets:",
+     "a quote builder, a printable price sheet for every job type, a job tracker that flags jobs below your floor, and 20 example jobs across 7 trades. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://www.etsy.com/listing/4587962930"
+   },
+   "faq": [
+    [
+     "How much should I charge to clean a house?",
+     "There is no single right price, because it depends on your pay goal, your costs and how many of your hours customers pay for. Enter yours above and the calculator shows the lowest price that covers them and a quote with your margin."
+    ],
+    [
+     "Why is my break-even rate so much higher than my pay divided by my hours?",
+     "Because part of every week is unpaid (driving, quoting, admin), your business costs keep running, and as a self-employed cleaner you pay both halves of Social Security and Medicare. Each of those raises the rate every paid hour has to carry."
+    ],
+    [
+     "Does it work for deep cleans and move-outs?",
+     "Yes. Pick an example job or type your own hours, crew size, supplies and miles. The example jobs are starting points, not market prices."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
+    ]
+   ],
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29). Checked Oct 6, 2026."
+  },
+  {
+   "slug": "pressure-washing-price-calculator",
+   "kind": "service",
+   "cta_pending_listing": true,
+   "title": "Pressure Washing Price Calculator: Quote Driveways, House Washes and More | ProofNotFluff",
+   "desc": "Free pressure washing price calculator. Get your break-even rate, target rate and a quote for driveways, soft washes, roofs, decks and storefronts, drive time included.",
+   "eyebrow": "Free calculator",
+   "h1": "Pressure Washing Price Calculator",
+   "lede": "Quote driveways, house washes, roofs, decks and storefronts from your own numbers: break-even rate, target rate and a job quote with drive time and self-employment tax counted. Free, no sign-up.",
+   "card": "Quote driveways, soft washes, roofs and decks from your own numbers.",
+   "defaults": {
+    "takeHome": "55,000",
+    "weeks": "44",
+    "hours": "45",
+    "paidShare": "65",
+    "monthlyCosts": "755",
+    "incomeTax": "12",
+    "margin": "15",
+    "perMile": "0.76",
+    "mph": "30"
+   },
+   "costs_hint": "Insurance, equipment and rig, hoses and tips, marketing, apps, fees",
+   "presets": [
+    [
+     "Driveway: 2-car concrete driveway",
+     1.5,
+     1,
+     12,
+     20
+    ],
+    [
+     "Driveway: 3-car driveway with walkway",
+     2.5,
+     1,
+     18,
+     20
+    ],
+    [
+     "Patio and pavers: Paver patio, clean only",
+     3,
+     1,
+     20,
+     20
+    ],
+    [
+     "Patio and pavers: Paver clean, re-sand and seal",
+     6,
+     2,
+     180,
+     40
+    ],
+    [
+     "House wash: 1-story house, soft wash",
+     2.5,
+     1,
+     30,
+     20
+    ],
+    [
+     "House wash: 2-story house, soft wash",
+     3,
+     1,
+     45,
+     20
+    ],
+    [
+     "Roof: Roof soft wash, 1-story",
+     2,
+     2,
+     70,
+     20
+    ],
+    [
+     "Gutters: Gutter face brightening",
+     1.5,
+     1,
+     15,
+     20
+    ],
+    [
+     "Deck: Deck clean, brighten, 300 sq ft",
+     3,
+     1,
+     30,
+     20
+    ],
+    [
+     "Deck: Deck clean and stain, 300 sq ft",
+     7,
+     1,
+     150,
+     40
+    ],
+    [
+     "Fence: Wood fence, 150 ft, one side",
+     3,
+     1,
+     25,
+     20
+    ],
+    [
+     "Pool deck: Concrete pool deck",
+     2,
+     1,
+     15,
+     20
+    ],
+    [
+     "Commercial: Storefront and sidewalk",
+     2,
+     1,
+     15,
+     25
+    ],
+    [
+     "Commercial: Dumpster pad",
+     1.5,
+     1,
+     20,
+     25
+    ],
+    [
+     "Commercial: Drive-thru lane",
+     3,
+     1,
+     25,
+     25
+    ]
+   ],
+   "method": [
+    "Most owners price a driveway by what the last company charged. That misses the hours nobody pays for (driving, quoting, rain days), the equipment that wears out, and self-employment tax.",
+    "This calculator grosses your take-home up for self-employment tax (15.3% on 92.35% of profit) and your income tax estimate, adds a year of business costs, and spreads the total over the hours customers actually pay for. That is your break-even rate; your margin on top gives the target rate.",
+    "A job's price floor is your crew's time on site and drive time at the break-even rate, plus vehicle cost per mile and supplies. The quote adds your margin and rounds up to the next $5."
+   ],
+   "example": "A $55,000 take-home goal with a 12% income tax estimate needs $74,455 of profit before tax. Add $9,060 a year of business costs and you need $83,515 of revenue. At 44 weeks of 45 hours with 65% paid, that is 1,287 paid hours: a break-even rate of $64.89 and a target of $76.34 with a 15% margin. Pay divided by all hours would say $27.78. A 2-car concrete driveway (1.5 hours on site, a 20-mile round trip, $12 of supplies) has a $167.80 price floor and quotes at $200, so a $100 driveway price falls $67.80 short.",
+   "cta": {
+    "title": "Price every job at once",
+    "bullets": [
+     "The Pressure Washing Pricing Calculator workbook uses this same maths for Excel and Google Sheets:",
+     "15 example jobs from driveways to drive-thru lanes, a quote builder, a printable price sheet and a job tracker. $2.99, instant download."
+    ],
+    "button": "See it in the Etsy shop",
+    "url": "https://proofnotfluff.etsy.com"
+   },
+   "faq": [
+    [
+     "How much should I charge to pressure wash a driveway?",
+     "It depends on your pay goal, costs and travel. With the example numbers a 2-car concrete driveway needs $200 to pay its share; enter your own numbers to see yours."
+    ],
+    [
+     "Should I price by the square foot or by the hour?",
+     "Square-foot prices hide how long a job takes you. This calculator prices from time, crew, supplies and travel; for square-foot pricing, enter the hours a job of that size takes you."
+    ],
+    [
+     "Does it handle two-person jobs?",
+     "Yes. Set people on the job to 2 and both people's time on site and drive time are counted."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
+    ]
+   ],
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29). Checked Oct 6, 2026."
+  },
+  {
+   "slug": "hourly-rate-calculator",
+   "kind": "hourly",
+   "title": "Hourly Rate Calculator for Freelancers and Self-Employed | ProofNotFluff",
+   "desc": "Free hourly rate calculator. Enter the take-home pay you want, your tax set-aside, expenses and billable hours to get your minimum hourly rate, and test any rate before you quote it.",
+   "eyebrow": "Free calculator",
+   "h1": "Hourly Rate Calculator",
+   "lede": "Find the hourly rate that pays you what you want after tax and costs, then test any rate before you quote it. Free, no sign-up.",
+   "card": "Your minimum hourly rate, and what any rate really pays you.",
+   "defaults": {
+    "takeHome": "60,000",
+    "taxRate": "25",
+    "expenses": "6,000",
+    "weeks": "48",
+    "hours": "40",
+    "billableShare": "60",
+    "checkRate": "40"
+   },
+   "method": [
+    "Your take-home is grossed up for the tax you set aside, then a year of business expenses is added. That is the revenue you need.",
+    "Spread that revenue over the hours a client actually pays for (your working hours times your billable share) and you have your minimum hourly rate. The rate card rounds it up to the next $5.",
+    "To test a rate, the calculator multiplies it by your billable hours, takes out expenses and your tax set-aside on any profit, and divides what is left by every hour you work."
+   ],
+   "example": "A $60,000 take-home with a 25% tax set-aside and $6,000 of expenses needs $86,000 of revenue. At 48 weeks of 40 hours with 60% billable, that is 1,152 billable hours, so the minimum rate is $74.65 (rate card $75). Charging $40 an hour brings in $46,080 and leaves $30,060 after expenses and tax: $15.66 for every hour worked, $29,940 short of the goal.",
+   "cta": {
+    "title": "Keep it, change it, quote with it",
+    "bullets": [
+     "The Hourly Rate Quick Calculator is this calculator as a one-tab Excel and Google Sheets workbook,",
+     "with a job quote section, a rate card and a Start Here guide. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://www.etsy.com/listing/4589695837"
+   },
+   "faq": [
+    [
+     "How do I calculate my hourly rate as a freelancer?",
+     "Start from the take-home you want, add the tax you set aside and your business expenses, then divide by the hours clients actually pay for, not every hour you work."
+    ],
+    [
+     "What share of my hours is billable?",
+     "Many self-employed people bill 50% to 70% of their working hours; the rest goes to admin, sales and travel. Track a few weeks to find yours."
+    ],
+    [
+     "What tax set-aside rate should I use?",
+     "Ask your tax preparer. A set-aside rate is a savings habit, not a tax calculation."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is a planning estimate based on the numbers you enter."
+    ]
+   ],
+   "sources": "Tax set-aside is your own estimate; ask your tax preparer. Checked Oct 6, 2026."
+  }
+ ]
+}

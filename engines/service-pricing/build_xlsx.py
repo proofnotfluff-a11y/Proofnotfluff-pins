@@ -96,6 +96,10 @@ TEXT = dict(
     hours_hint="Hours each person spends on the job, editing included.", addon_eg="mulch",
     apps="Excel, Google Sheets, Numbers and LibreOffice", weeks_hint=None,
     presets_note="Example starting points, not market prices. Change every number to match your real jobs.",
+    numbers_sub="Your pay goal, real hours, costs and taxes, turned into the rate every quote starts from.",
+    quote_sub="Pick a job, adjust it for this customer, and read your price.",
+    ps_sub="Price floor covers your pay, costs and taxes with zero profit. Your price adds your margin, rounded up to $5.",
+    example_extra="",  # an extra worked-example sentence after the quote (editions: one the Legal desk asked for)
 )
 VERSION = EDITION.get("version", "3")
 if EDITION:
@@ -106,6 +110,12 @@ if EDITION:
     QUOTE_JOB = EDITION["quote_job"]
     CURRENT_PRICE = EDITION.get("current_price", CURRENT_PRICE)
     DEPOSIT = EDITION.get("deposit", DEPOSIT)
+    # Legal desk, Oct 6 (pressure washing round 1, checklist line 23): every result area points to the Terms tab.
+    # Editions get these by default so round 1 passes; #13's own build keeps its cleared wording.
+    TEXT.update(numbers_sub="Your pay, hours, costs and taxes, turned into your quote rate. Estimates only, see the Terms tab.",
+                quote_sub="Pick a job, adjust it for this customer, and read your price. Estimates only, see the Terms tab.",
+                ps_sub="Price floor covers your pay, costs and taxes with zero profit. Your price adds your margin, rounded up to $5. "
+                       "Estimates only, not professional advice: see the Terms tab.")
     TEXT.update(EDITION.get("text", {}))
     assert len(PRESETS) <= N_PRESETS and len(JOBS) <= N_JOBS
 _qp = [p for p in PRESETS if f"{p[0]} - {p[1]}" == QUOTE_JOB]
@@ -155,7 +165,7 @@ def notes_card(ws, top, notes, span=("C", "J"), frame_span=("B", "K")):
 # =====================================================================  Your Numbers
 yn = wb.create_sheet("1 Your Numbers")
 S.set_widths(yn, GRID)
-D.page_header(yn, "Your Numbers", "Your pay goal, real hours, costs and taxes, turned into the rate every quote starts from.", AS_OF)
+D.page_header(yn, "Your Numbers", TEXT["numbers_sub"], AS_OF)
 TOP = 11
 
 A = D.Card(yn, TOP, "B", "C", "D", "E", wb=wb)
@@ -312,7 +322,7 @@ def preset(col, job_cell):
 # =====================================================================  Quote Builder
 qb = wb.create_sheet("3 Quote Builder")
 S.set_widths(qb, GRID)
-D.page_header(qb, "Quote Builder", "Pick a job, adjust it for this customer, and read your price.", AS_OF)
+D.page_header(qb, "Quote Builder", TEXT["quote_sub"], AS_OF)
 
 # job picker, full width
 r = 11
@@ -476,7 +486,7 @@ cols_ps = [
     dict(col="G", head="Per hour worked", kind="calc", fmt=USD2, align="right", formula=ps_formula("hour")),
 ]
 ps_first, ps_last, ps_end = D.table_card(ps, PS_TOP, "B", "H", cols_ps, N_PRESETS, title="Your prices",
-                                         sub="Price floor covers your pay, costs and taxes with zero profit. Your price adds your margin, rounded up to $5.")
+                                         sub=TEXT["ps_sub"])
 assert ps_first == ps_first_holder["first"], (ps_first, ps_first_holder)
 for r in range(ps_first, ps_last + 1):
     ps[f"C{r}"].font = D.f(10, False, "ink2")
@@ -630,7 +640,8 @@ r = sh_card(sh, r, "The example", [(None,
     f"Add {money(_costs_y, False)} a year of business costs and you need {money(_profit + _costs_y, False)} of revenue. "
     f"At {EX['weeks']} weeks of {EX['hours']} hours with {EX['paid_share']*100:.0f}% paid, that is {_paid:,.0f} paid hours: a break-even rate of {money(BE_X)} and a target "
     f"of {money(TARGET_X)} with a {EX['margin']*100:.0f}% margin. Pay divided by all hours would say {money(GUESS_X)}, "
-    f"{money(TARGET_X - GUESS_X)} too low. {TEXT['example_job']} then quotes at {money(QUOTE_X, False)}.", "para")])
+    f"{money(TARGET_X - GUESS_X)} too low. {TEXT['example_job']} then quotes at {money(QUOTE_X, False)}."
+    + (f" {TEXT['example_extra']}" if TEXT["example_extra"] else ""), "para")])
 r = sh_card(sh, r, "Good to know", [
     (None, "Google Sheets. Upload the .xlsx to Google Drive, open it, then File, Save as Google Sheets. Every formula is a plain "
            f"formula that works in {TEXT['apps']}. No macros, no add-ons, no sign-up.", "para"),

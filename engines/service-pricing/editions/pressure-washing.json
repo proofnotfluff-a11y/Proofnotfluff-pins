@@ -233,7 +233,8 @@
     ],
     "hours_hint": "Hours each person spends on site, setup and cleanup included.",
     "addon_eg": "extra sealer or a dump fee",
-    "apps": "Excel, Google Sheets and LibreOffice"
+    "apps": "Excel, Google Sheets and LibreOffice",
+    "example_extra": "Change the 2-story soft wash to a 40-mile round trip instead of the 20-mile preset and its $355 price becomes $420."
   },
   "version": "1"
 }

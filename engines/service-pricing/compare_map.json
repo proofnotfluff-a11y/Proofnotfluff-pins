@@ -1,0 +1,397 @@
+{
+ "tolerance": 0.005,
+ "inputs": {
+  "take_home": {
+   "old": "'1 Your Numbers'!B5",
+   "new": "'Your Numbers'!D14"
+  },
+  "weeks": {
+   "old": "'1 Your Numbers'!B6",
+   "new": "'Your Numbers'!D15"
+  },
+  "hours": {
+   "old": "'1 Your Numbers'!B7",
+   "new": "'Your Numbers'!D16"
+  },
+  "paid_share": {
+   "old": "'1 Your Numbers'!B8",
+   "new": "'Your Numbers'!D17"
+  },
+  "insurance": {
+   "old": "'1 Your Numbers'!B13",
+   "new": "'Your Numbers'!D24"
+  },
+  "marketing": {
+   "old": "'1 Your Numbers'!B16",
+   "new": "'Your Numbers'!D27"
+  },
+  "vehicle_pmt": {
+   "old": "'1 Your Numbers'!B21",
+   "new": "'Your Numbers'!D32"
+  },
+  "se": {
+   "old": "'1 Your Numbers'!B28",
+   "new": "'Your Numbers'!I34"
+  },
+  "se_base": {
+   "old": "'1 Your Numbers'!B29",
+   "new": "'Your Numbers'!I35"
+  },
+  "income": {
+   "old": "'1 Your Numbers'!B30",
+   "new": "'Your Numbers'!I36"
+  },
+  "margin": {
+   "old": "'1 Your Numbers'!B31",
+   "new": "'Your Numbers'!I37"
+  },
+  "per_mile": {
+   "old": "'1 Your Numbers'!B32",
+   "new": "'Your Numbers'!I38"
+  },
+  "mph": {
+   "old": "'1 Your Numbers'!B33",
+   "new": "'Your Numbers'!I39"
+  },
+  "job": {
+   "old": "'3 Quote Builder'!B4",
+   "new": "'Quote Builder'!D14"
+  },
+  "ov_hours": {
+   "old": "'3 Quote Builder'!D8",
+   "new": "'Quote Builder'!D20"
+  },
+  "ov_people": {
+   "old": "'3 Quote Builder'!D9",
+   "new": "'Quote Builder'!D21"
+  },
+  "ov_supplies": {
+   "old": "'3 Quote Builder'!D10",
+   "new": "'Quote Builder'!D22"
+  },
+  "ov_miles": {
+   "old": "'3 Quote Builder'!D11",
+   "new": "'Quote Builder'!D23"
+  },
+  "addons": {
+   "old": "'3 Quote Builder'!D12",
+   "new": "'Quote Builder'!D25"
+  },
+  "deposit": {
+   "old": "'3 Quote Builder'!D13",
+   "new": "'Quote Builder'!D26"
+  },
+  "current": {
+   "old": "'3 Quote Builder'!D14",
+   "new": "'Quote Builder'!D32"
+  },
+  "p1_hours": {
+   "old": "'2 Trade Presets'!D6",
+   "new": "'Trade Presets'!E11"
+  },
+  "p8_people": {
+   "old": "'2 Trade Presets'!E13",
+   "new": "'Trade Presets'!F18"
+  },
+  "p21_trade": {
+   "old": "'2 Trade Presets'!B26",
+   "new": "'Trade Presets'!C31"
+  },
+  "p21_job": {
+   "old": "'2 Trade Presets'!C26",
+   "new": "'Trade Presets'!D31"
+  },
+  "p21_hours": {
+   "old": "'2 Trade Presets'!D26",
+   "new": "'Trade Presets'!E31"
+  },
+  "p21_people": {
+   "old": "'2 Trade Presets'!E26",
+   "new": "'Trade Presets'!F31"
+  },
+  "p21_sup": {
+   "old": "'2 Trade Presets'!F26",
+   "new": "'Trade Presets'!G31"
+  },
+  "p21_miles": {
+   "old": "'2 Trade Presets'!G26",
+   "new": "'Trade Presets'!H31"
+  },
+  "j3_price": {
+   "old": "'5 Job Tracker'!D8",
+   "new": "'Job Tracker'!F18"
+  },
+  "j3_hrs": {
+   "old": "'5 Job Tracker'!E8",
+   "new": "'Job Tracker'!G18"
+  },
+  "j3_drive": {
+   "old": "'5 Job Tracker'!F8",
+   "new": "'Job Tracker'!H18"
+  },
+  "j3_miles": {
+   "old": "'5 Job Tracker'!G8",
+   "new": "'Job Tracker'!I18"
+  },
+  "j3_sup": {
+   "old": "'5 Job Tracker'!H8",
+   "new": "'Job Tracker'!J18"
+  }
+ },
+ "outputs": {
+  "paid_hours": {
+   "old": "'1 Your Numbers'!B9",
+   "new": "'Your Numbers'!D18"
+  },
+  "costs_month": {
+   "old": "'1 Your Numbers'!B24",
+   "new": "'Your Numbers'!D35"
+  },
+  "costs_year": {
+   "old": "'1 Your Numbers'!B25",
+   "new": "'Your Numbers'!D36"
+  },
+  "profit_pre_tax": {
+   "old": "'1 Your Numbers'!B36",
+   "new": "'Your Numbers'!I16"
+  },
+  "revenue": {
+   "old": "'1 Your Numbers'!B37",
+   "new": "'Your Numbers'!I18"
+  },
+  "break_even": {
+   "old": "'1 Your Numbers'!B38",
+   "new": "'Your Numbers'!I21"
+  },
+  "target": {
+   "old": "'1 Your Numbers'!B39",
+   "new": "'Your Numbers'!I23"
+  },
+  "guess_gap": {
+   "old": "'1 Your Numbers'!B42",
+   "new": "'Your Numbers'!H7"
+  },
+  "q_hours": {
+   "old": "'3 Quote Builder'!B17",
+   "new": "'Quote Builder'!I21"
+  },
+  "q_people": {
+   "old": "'3 Quote Builder'!B18",
+   "new": "'Quote Builder'!I22"
+  },
+  "q_supplies": {
+   "old": "'3 Quote Builder'!B19",
+   "new": "'Quote Builder'!I23"
+  },
+  "q_miles": {
+   "old": "'3 Quote Builder'!B20",
+   "new": "'Quote Builder'!I24"
+  },
+  "q_drive": {
+   "old": "'3 Quote Builder'!B21",
+   "new": "'Quote Builder'!I25"
+  },
+  "q_labor": {
+   "old": "'3 Quote Builder'!B22",
+   "new": "'Quote Builder'!I27"
+  },
+  "q_drive_cost": {
+   "old": "'3 Quote Builder'!B23",
+   "new": "'Quote Builder'!I28"
+  },
+  "q_vehicle": {
+   "old": "'3 Quote Builder'!B24",
+   "new": "'Quote Builder'!I29"
+  },
+  "q_floor": {
+   "old": "'3 Quote Builder'!B26",
+   "new": "'Quote Builder'!I32"
+  },
+  "quote": {
+   "old": "'3 Quote Builder'!B29",
+   "new": "'Quote Builder'!I34"
+  },
+  "deposit_due": {
+   "old": "'3 Quote Builder'!B30",
+   "new": "'Quote Builder'!I35"
+  },
+  "q_profit": {
+   "old": "'3 Quote Builder'!B31",
+   "new": "'Quote Builder'!I36"
+  },
+  "q_per_hour": {
+   "old": "'3 Quote Builder'!B32",
+   "new": "'Quote Builder'!I37"
+  },
+  "q_now": {
+   "old": "'3 Quote Builder'!B34",
+   "new": "'Quote Builder'!D33"
+  },
+  "q_check": {
+   "old": "'3 Quote Builder'!B35",
+   "new": "'Quote Builder'!C34"
+  },
+  "ps1_floor": {
+   "old": "'4 Price Sheet'!C5",
+   "new": "'Price Sheet'!E11"
+  },
+  "ps1_price": {
+   "old": "'4 Price Sheet'!D5",
+   "new": "'Price Sheet'!F11"
+  },
+  "ps1_hour": {
+   "old": "'4 Price Sheet'!E5",
+   "new": "'Price Sheet'!G11"
+  },
+  "ps8_floor": {
+   "old": "'4 Price Sheet'!C12",
+   "new": "'Price Sheet'!E18"
+  },
+  "ps8_price": {
+   "old": "'4 Price Sheet'!D12",
+   "new": "'Price Sheet'!F18"
+  },
+  "ps8_hour": {
+   "old": "'4 Price Sheet'!E12",
+   "new": "'Price Sheet'!G18"
+  },
+  "ps12_price": {
+   "old": "'4 Price Sheet'!D16",
+   "new": "'Price Sheet'!F22"
+  },
+  "ps13_hour": {
+   "old": "'4 Price Sheet'!E17",
+   "new": "'Price Sheet'!G23"
+  },
+  "ps21_trade": {
+   "old": "'4 Price Sheet'!A25",
+   "new": "'Price Sheet'!C31"
+  },
+  "ps21_price": {
+   "old": "'4 Price Sheet'!D25",
+   "new": "'Price Sheet'!F31"
+  },
+  "ps21_hour": {
+   "old": "'4 Price Sheet'!E25",
+   "new": "'Price Sheet'!G31"
+  },
+  "jt_revenue": {
+   "old": "'5 Job Tracker'!B3",
+   "new": "'Job Tracker'!C8"
+  },
+  "jt_profit": {
+   "old": "'5 Job Tracker'!D3",
+   "new": "'Job Tracker'!E8"
+  },
+  "jt_per_hour": {
+   "old": "'5 Job Tracker'!B4",
+   "new": "'Job Tracker'!F8"
+  },
+  "jt_below": {
+   "old": "'5 Job Tracker'!D4",
+   "new": "'Job Tracker'!J8"
+  },
+  "jt1_cost": {
+   "old": "'5 Job Tracker'!I6",
+   "new": "'Job Tracker'!K16"
+  },
+  "jt1_profit": {
+   "old": "'5 Job Tracker'!J6",
+   "new": "'Job Tracker'!L16"
+  },
+  "jt1_hour": {
+   "old": "'5 Job Tracker'!K6",
+   "new": "'Job Tracker'!M16"
+  },
+  "jt1_check": {
+   "old": "'5 Job Tracker'!L6",
+   "new": "'Job Tracker'!N16"
+  },
+  "jt3_check": {
+   "old": "'5 Job Tracker'!L8",
+   "new": "'Job Tracker'!N18"
+  },
+  "jt3_hour": {
+   "old": "'5 Job Tracker'!K8",
+   "new": "'Job Tracker'!M18"
+  }
+ },
+ "cases": [
+  {
+   "name": "example"
+  },
+  {
+   "name": "high earner",
+   "set": {
+    "take_home": 120000,
+    "income": 0.22,
+    "margin": 0.25,
+    "insurance": 400,
+    "marketing": 650,
+    "paid_share": 0.75
+   }
+  },
+  {
+   "name": "part-time",
+   "set": {
+    "weeks": 40,
+    "hours": 25,
+    "paid_share": 0.5,
+    "per_mile": 0.6,
+    "mph": 40
+   }
+  },
+  {
+   "name": "override this quote",
+   "set": {
+    "ov_hours": 4,
+    "ov_people": 2,
+    "ov_miles": 0,
+    "ov_supplies": 35,
+    "addons": 50,
+    "deposit": 0.5,
+    "current": 400
+   }
+  },
+  {
+   "name": "wedding job, no current price",
+   "set": {
+    "job": "Photography - Wedding, 8 hours",
+    "current": null
+   }
+  },
+  {
+   "name": "edit presets, add a job, log a job",
+   "set": {
+    "p1_hours": 3.5,
+    "p8_people": 3,
+    "p21_trade": "Window cleaning",
+    "p21_job": "Storefront, monthly",
+    "p21_hours": 1.25,
+    "p21_people": 1,
+    "p21_sup": 4,
+    "p21_miles": 12,
+    "job": "Window cleaning - Storefront, monthly",
+    "j3_price": 90,
+    "j3_hrs": 1.5,
+    "j3_drive": 0.4,
+    "j3_miles": 12,
+    "j3_sup": 4
+   }
+  },
+  {
+   "name": "vehicle payment instead of mileage",
+   "set": {
+    "per_mile": 0,
+    "vehicle_pmt": 450,
+    "mph": 20
+   }
+  },
+  {
+   "name": "blank pay goal",
+   "set": {
+    "take_home": null
+   }
+  }
+ ]
+}

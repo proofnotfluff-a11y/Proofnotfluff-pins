@@ -199,11 +199,11 @@ class Card:
             else:
                 cell.border = Border(bottom=side(style), top=cell.border.top)
 
-    def input(self, text, value, fmt, name=None, validation=None, prompt=None, prompt_title=None):
+    def input(self, text, value, fmt, name=None, validation=None, prompt=None, prompt_title=None, allow_blank=False):
         r = self._row()
         self._label(r, text)
         c = S.input_cell(self.ws, f"{self.value}{r}", value, fmt, name=name, wb=self.wb, validation=validation,
-                         prompt=prompt, prompt_title=prompt_title or text[:32])
+                         prompt=prompt, prompt_title=prompt_title or text[:32], allow_blank=allow_blank)
         c.fill = fill("input_fill"); c.font = f(10, True, "input_text")
         c.alignment = Alignment(horizontal="right", vertical="center", indent=1)  # inset from the box edge
         c.border = Border(left=side("input_line"), right=side("input_line"), top=side("input_line"), bottom=side("input_line"))
@@ -268,3 +268,98 @@ def highlight_rule(ws, cell_range, formula):
     """Tint a row (for example the billable share the buyer typed)."""
     ws.conditional_formatting.add(cell_range, FormulaRule(
         formula=[formula], font=Font(bold=True, color=T["ink"]), fill=PatternFill("solid", bgColor=T["input_fill"])))
+
+
+# ---------------------------------------------------------------- tables and stat strips
+def table_card(ws, top, left, right, columns, nrows, title=None, sub=None, wb=None, row_height=None):
+    """A full-width card holding a data table.
+    columns: list of dicts {col, head, kind: "input"|"calc"|"text"|"muted", fmt, align, validation, prompt,
+             allow_blank, values: list (inputs and text), formula: callable(row) -> str (calc)}
+    Header labels are small caps over an ink rule; body rows are hairline-divided. Input cells
+    are yellow with blue numbers and unlocked; one validation rule covers each input column.
+    Returns (first_body_row, last_body_row, end_row)."""
+    from openpyxl.worksheet.datavalidation import DataValidation
+    rh = row_height or GRID_ROW
+    span = cols(columns[0]["col"], columns[-1]["col"])
+    r = top
+    h(ws, r, 12); r += 1
+    if title:
+        c = ws[f"{span[0]}{r}"]; c.value = title; c.font = f(12, True); c.alignment = Alignment(vertical="center")
+        ws.merge_cells(f"{span[0]}{r}:{span[-1]}{r}"); h(ws, r, 24); r += 1
+        if sub:
+            c = ws[f"{span[0]}{r}"]; c.value = sub; c.font = f(9, False, "muted"); c.alignment = Alignment(vertical="top")
+            ws.merge_cells(f"{span[0]}{r}:{span[-1]}{r}"); h(ws, r, 18); r += 1
+        h(ws, r, 8); r += 1
+    head = r
+    for col in columns:
+        c = ws[f"{col['col']}{head}"]; c.value = col["head"].upper(); c.font = f(8, True, "muted")
+        c.alignment = Alignment(horizontal=col.get("align", "left"), vertical="bottom", wrap_text=True,
+                                indent=1 if col.get("kind") == "input" and col.get("align", "left") == "right" else 0)
+    for k in span:
+        ws[f"{k}{head}"].border = Border(bottom=side("ink"))
+    h(ws, head, 30)
+    first = head + 1
+    last = first + nrows - 1
+    for i in range(nrows):
+        rr = first + i
+        h(ws, rr, rh)
+        for col in columns:
+            c = ws[f"{col['col']}{rr}"]
+            kind = col.get("kind", "calc")
+            vals = col.get("values") or []
+            if kind == "calc":
+                c.value = col["formula"](rr)
+            elif i < len(vals):
+                c.value = vals[i]
+            if col.get("fmt"):
+                c.number_format = col["fmt"]
+            align = col.get("align", "left")
+            if kind == "input":
+                c.fill = fill("input_fill"); c.font = f(10, True, "input_text")
+                c.protection = c.protection.copy(locked=False)
+                c.alignment = Alignment(horizontal=align, vertical="center", indent=1)
+                c.border = Border(bottom=side("FFFFFF"), right=side("FFFFFF"))
+            else:
+                c.font = f(10, col.get("bold", False), "muted" if kind == "muted" else "ink")
+                c.alignment = Alignment(horizontal=align, vertical="center", indent=1 if kind == "muted" else 0)
+                c.border = Border(bottom=side("hair"))
+    for col in columns:
+        if col.get("kind") == "input" and col.get("validation"):
+            v = col["validation"]
+            rng = f"{col['col']}{first}:{col['col']}{last}"
+            if v[0] == "list_range":
+                dv = DataValidation(type="list", formula1=v[1], allow_blank=True)
+            elif v[0] == "list":
+                dv = DataValidation(type="list", formula1='"' + ",".join(v[1]) + '"', allow_blank=True)
+            else:
+                kind, lo, hi = v
+                if lo is not None and hi is not None:
+                    dv = DataValidation(type=kind, operator="between", formula1=str(lo), formula2=str(hi), allow_blank=True)
+                elif lo is not None:
+                    dv = DataValidation(type=kind, operator="greaterThanOrEqual", formula1=str(lo), allow_blank=True)
+                else:
+                    dv = DataValidation(type=kind, allow_blank=True)
+            dv.showErrorMessage = True; dv.errorStyle = "stop"; dv.errorTitle = "Check this cell"
+            dv.error = col.get("error", "Enter a value that fits this column.")[:255]
+            if col.get("prompt"):
+                dv.showInputMessage = True; dv.promptTitle = col["head"][:32]; dv.prompt = col["prompt"][:255]
+            ws.add_data_validation(dv); dv.add(rng)
+    end = last + 1
+    h(ws, end, 14)
+    left_pad, right_pad = cols(left, span[0])[0], cols(span[-1], right)[-1]
+    frame(ws, top, end, left_pad, right_pad)
+    return first, last, end
+
+
+def stat_strip(ws, top, stats):
+    """A row of small headline numbers inside one card: stats = [(cell_span "C:D", eyebrow, formula, fmt)].
+    Two rows: eyebrow (8 pt muted caps) and the number (18 pt bold). Returns the next row."""
+    h(ws, top, 18); h(ws, top + 1, 34)
+    for span, eyebrow, formula, fmt in stats:
+        a, z = span.split(":")
+        e = ws[f"{a}{top}"]; e.value = eyebrow.upper(); e.font = f(8, True, "muted"); e.alignment = Alignment(vertical="bottom")
+        v = ws[f"{a}{top + 1}"]; v.value = formula; v.number_format = fmt; v.font = f(18, True)
+        v.alignment = Alignment(horizontal="left", vertical="center")
+        if a != z:
+            ws.merge_cells(f"{a}{top}:{z}{top}"); ws.merge_cells(f"{a}{top + 1}:{z}{top + 1}")
+    return top + 2

@@ -365,7 +365,7 @@ def _default_error(kind, lo, hi, options):
 
 
 def input_cell(ws, cell, value, fmt, name=None, wb=None, validation=None, prompt_title=None,
-               prompt=None, error=None, align="right"):
+               prompt=None, error=None, align="right", allow_blank=False):
     """Yellow cell, blue text, thin border, unlocked. validation=(kind, lo, hi) or (list, options)."""
     c = ws[cell]; c.value = value; c.number_format = fmt
     c.font = font(SIZE["value"], color="input_text"); c.fill = fill("input_fill")
@@ -374,10 +374,12 @@ def input_cell(ws, cell, value, fmt, name=None, wb=None, validation=None, prompt
     c.protection = c.protection.copy(locked=False)
     if validation:
         if validation[0] == "list":
-            add_validation(ws, cell, "list", options=validation[1], prompt_title=prompt_title, prompt=prompt, error=error)
+            add_validation(ws, cell, "list", options=validation[1], prompt_title=prompt_title, prompt=prompt, error=error,
+                           allow_blank=allow_blank)
         else:
             kind, lo, hi = validation
-            add_validation(ws, cell, kind, lo, hi, prompt_title=prompt_title, prompt=prompt, error=error)
+            add_validation(ws, cell, kind, lo, hi, prompt_title=prompt_title, prompt=prompt, error=error,
+                           allow_blank=allow_blank)
     if name and wb is not None:
         define_name(wb, name, ws, cell)
     return c

@@ -81,13 +81,17 @@ def bars(draw, x, y, w=96, h=16, gap=18):
 
 
 def _plain(px_line):
-    """True when a pixel row or column is (98%+) one flat color: canvas, a frame line or
-    blank card. The 2% slack lets a sliver of a neighbouring card at the crop edge go."""
-    ref = sorted(px_line)[len(px_line) // 2]
+    """True when a pixel row or column is one flat color: canvas, a frame line or blank card.
+    The outer 4% at each end is ignored so a sliver of a neighbouring card at the crop edge
+    doesn't count, but a short line of text anywhere else does."""
+    n = len(px_line)
+    cut = max(1, int(n * 0.04))
+    core = px_line[cut:n - cut] or px_line
+    ref = sorted(core)[len(core) // 2]
     if not any(max(abs(ref[i] - k[i]) for i in range(3)) <= 3 for k in (CANVAS, CARD, FRAME, (239, 235, 228))):
         return False  # a flat tinted band (a status pill, a total row) is content, never trimmed
-    off = sum(1 for c in px_line if max(abs(c[i] - ref[i]) for i in range(3)) > 6)
-    return off <= len(px_line) * 0.02
+    off = sum(1 for c in core if max(abs(c[i] - ref[i]) for i in range(3)) > 6)
+    return off <= max(1, len(core) // 500)
 
 
 def trim(im, keep=70):

@@ -1,0 +1,104 @@
+{
+  "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+  "images": [
+    {
+      "type": "cover",
+      "eyebrow": "SERVICE BUSINESS PRICING CALCULATOR",
+      "title": "Price every job so it actually pays you.",
+      "sub": "Your true hourly rate, a quote for any job, and which jobs made money.",
+      "shot": "r/02-Your-Numbers.png",
+      "crop": [
+        0,
+        0.052,
+        1,
+        0.3
+      ]
+    },
+    {
+      "type": "shot",
+      "eyebrow": "QUOTE BUILDER",
+      "title": "Quote any job in seconds.",
+      "sub": "Pick a job, adjust it for this customer, and read your price and your profit.",
+      "shot": "r/04-Quote-Builder.png",
+      "crop": [
+        0,
+        0.06,
+        0.465,
+        0.57
+      ]
+    },
+    {
+      "type": "shot",
+      "eyebrow": "YOUR TRUE HOURLY RATE",
+      "title": "Why your rate is $64.47, not $24.07.",
+      "sub": "Unpaid hours, monthly costs and self-employment tax, added back line by line.",
+      "shot": "r/02-Your-Numbers.png",
+      "crop": [
+        0.47,
+        0.115,
+        1,
+        0.365
+      ],
+      "trim": true
+    },
+    {
+      "type": "shot",
+      "eyebrow": "PRICE SHEET",
+      "title": "A price for every job, ready to print.",
+      "sub": "20 presets across 7 trades. Change the times to yours and the prices follow.",
+      "shot": "r/05-Price-Sheet.png",
+      "crop": [
+        0,
+        0.05,
+        1,
+        0.266
+      ],
+      "trim": true
+    },
+    {
+      "type": "inside",
+      "eyebrow": "ONE DOWNLOAD",
+      "title": "What's inside",
+      "tabs": [
+        {
+          "name": "Your Numbers",
+          "shot": "r/02-Your-Numbers.png",
+          "crop": [
+            0,
+            0,
+            1,
+            0.45
+          ]
+        },
+        {
+          "name": "Quote Builder",
+          "shot": "r/04-Quote-Builder.png",
+          "crop": [
+            0,
+            0,
+            0.465,
+            0.55
+          ]
+        },
+        {
+          "name": "Job Tracker",
+          "shot": "r/06-Job-Tracker.png",
+          "crop": [
+            0,
+            0,
+            0.62,
+            0.12
+          ]
+        }
+      ],
+      "items": [
+        "Target and break-even rate per paid hour",
+        "Quotes with per-customer changes",
+        "Price sheet for every job type",
+        "Job tracker: profit on every job",
+        "20 presets across 7 trades",
+        "Start Here PDF in Letter and A4"
+      ]
+    }
+  ]
+}

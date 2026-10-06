@@ -14,6 +14,11 @@ Runs only in a cloud session on Todd's Default environment (see tools/etsy_oauth
         retitles only; log the old and new title in the ledger's Listing edits first). Prints old and new title.
   python3 tools/etsy_list.py strip-line LISTING_ID "phrase" [--dry-run]   correction edit: deletes the description
         line(s) containing the phrase (at most 2 lines, each under 300 characters); nothing else changes
+  python3 tools/etsy_list.py bundle-price N               the price for an N-product bundle (N x $2.99 less 20%, rounded down)
+
+Bundles: listing.md's ## Price section carries "List price: $7.17" and "Bundle: 3 products (#5, #6, #7)";
+check then requires exactly bundle_price(3). The description may say "$8.97 if bought separately" (true: each
+part is $2.99) but never a strike-through, sale or "was" price.
 
 Field defaults (who_made, when_made, is_supply, should_auto_renew, return_policy_id) are copied from --like
 (default: a "Like: LISTING_ID" line under listing.md's ## Category, else #16, 4588972193) so every listing
@@ -27,6 +32,13 @@ import etsy_oauth as eo
 API = eo.API
 LIKE_DEFAULT = "4588972193"
 CURRENT_PRICE = 2.99  # Todd, Oct 6, 3:23 pm: every product $2.99 while the shop gets established; change only on his word
+BUNDLE_DISCOUNT = 0.20  # Todd, Oct 6, 4:44 pm: a bundle of N products = N x $2.99 less 20%
+
+def bundle_price(n, each=CURRENT_PRICE, off=BUNDLE_DISCOUNT):
+    """Price for an n-product bundle, rounded DOWN to the cent so "20% off" is always true
+    (3 x $2.99 = $8.97, less 20% = $7.176, listed at $7.17)."""
+    import math
+    return math.floor(round(n * each * (1 - off) * 100, 6)) / 100
 PRICE_LADDER = [2.99, 4.99, 6.99, 8.99, 11.99, 12.99, 14.99, 19.99, 24.99, 49.00]
 AI_LINE = "Made with AI assistance and reviewed and tested by the shop owner."
 REQUIRED_LINES = [AI_LINE, "Digital download. No physical item ships."]
@@ -81,8 +93,9 @@ def parse(md_path):
     lm = re.search(r"^Like:\s*(\d+)", cat_sec, re.M)  # an edition sits in its parent listing's exact category
     pm = re.search(r"List price:\s*\$([0-9]+(?:\.[0-9]{2})?)", section(md, "Price"))
     rp = re.search(r"Real price[^$]*\$([0-9]+(?:\.[0-9]{2})?)", section(md, "Price"))
+    bm = re.search(r"^Bundle:\s*(\d+)\s*products?", section(md, "Price"), re.M | re.I)  # "Bundle: 3 products (#5, #6, #7)"
     desc = section(md, "Description")
-    return {"title": title, "tags": tags, "category": cat, "like": lm.group(1) if lm else None, "price": float(pm.group(1)) if pm else None,
+    return {"title": title, "tags": tags, "category": cat, "like": lm.group(1) if lm else None, "bundle": int(bm.group(1)) if bm else 0, "price": float(pm.group(1)) if pm else None,
             "realPrice": float(rp.group(1)) if rp else None, "description": desc,
             "pinFacts": [re.sub(r"^\d+\.\s*", "", l).strip() for l in section(md, "Pin facts").splitlines() if l.strip()],
             "board": section(md, "Pinterest board").splitlines()[0].strip() if section(md, "Pinterest board") else ""}
@@ -91,9 +104,15 @@ def validate(p):
     if not p["title"] or len(p["title"]) > 140: errs.append(f"title missing or over 140 characters ({len(p['title'])})")
     if len(p["tags"]) > 13: errs.append(f"{len(p['tags'])} tags (max 13)")
     errs += [f"tag over 20 characters: {t}" for t in p["tags"] if len(t) > 20]
-    if p["price"] not in PRICE_LADDER: errs.append(f"price {p['price']} is not on the ledger price ladder")
-    if CURRENT_PRICE is not None and p["price"] != CURRENT_PRICE:
-        errs.append(f"price {p['price']} but the ledger PRICE rule (Todd, Oct 6) puts every product at ${CURRENT_PRICE}")
+    if p.get("bundle"):
+        want = bundle_price(p["bundle"])
+        if p["bundle"] < 2: errs.append("a bundle needs at least 2 products")
+        if p["price"] != want:
+            errs.append(f"bundle of {p['bundle']} must list at ${want:.2f} ({p['bundle']} x ${CURRENT_PRICE} less {BUNDLE_DISCOUNT:.0%}, rounded down), not {p['price']}")
+    else:
+        if p["price"] not in PRICE_LADDER: errs.append(f"price {p['price']} is not on the ledger price ladder")
+        if CURRENT_PRICE is not None and p["price"] != CURRENT_PRICE:
+            errs.append(f"price {p['price']} but the ledger PRICE rule (Todd, Oct 6) puts every product at ${CURRENT_PRICE}")
     low = p["description"].lower()
     for bad in ("founding price", "then $", "real price", "regular price", "was $"):
         if bad in low: errs.append(f"description names a former or future price ('{bad}'); the ledger PRICE rule forbids it")
@@ -226,5 +245,6 @@ if __name__ == "__main__":
     elif a[0] == "publish": cmd_publish(a[1])
     elif a[0] == "show": cmd_show(a[1])
     elif a[0] == "retitle": cmd_retitle(a[1], a[2])
+    elif a[0] == "bundle-price": print(f"{bundle_price(int(a[1])):.2f}")
     elif a[0] == "strip-line": cmd_strip_line(a[1], a[2], dry="--dry-run" in a)
     else: die(__doc__)

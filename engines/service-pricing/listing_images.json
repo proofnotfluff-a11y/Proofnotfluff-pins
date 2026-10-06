@@ -6,7 +6,7 @@
       "eyebrow": "SERVICE BUSINESS PRICING CALCULATOR",
       "title": "Price every job so it actually pays you.",
       "sub": "Your true hourly rate, a quote for any job, and which jobs made money.",
-      "shot": "r/02-Your-Numbers.png",
+      "shot": "r/02-1-Your-Numbers.png",
       "crop": [
         0,
         0.052,
@@ -19,11 +19,11 @@
       "eyebrow": "QUOTE BUILDER",
       "title": "Quote any job in seconds.",
       "sub": "Pick a job, adjust it for this customer, and read your price and your profit.",
-      "shot": "r/04-Quote-Builder.png",
+      "shot": "r/04-3-Quote-Builder.png",
       "crop": [
         0,
         0.06,
-        0.465,
+        0.48,
         0.57
       ]
     },
@@ -32,7 +32,7 @@
       "eyebrow": "YOUR TRUE HOURLY RATE",
       "title": "Why your rate is $64.47, not $24.07.",
       "sub": "Unpaid hours, monthly costs and self-employment tax, added back line by line.",
-      "shot": "r/02-Your-Numbers.png",
+      "shot": "r/02-1-Your-Numbers.png",
       "crop": [
         0.47,
         0.115,
@@ -46,7 +46,7 @@
       "eyebrow": "PRICE SHEET",
       "title": "A price for every job, ready to print.",
       "sub": "20 presets across 7 trades. Change the times to yours and the prices follow.",
-      "shot": "r/05-Price-Sheet.png",
+      "shot": "r/05-4-Price-Sheet.png",
       "crop": [
         0,
         0.05,
@@ -61,33 +61,33 @@
       "title": "What's inside",
       "tabs": [
         {
-          "name": "Your Numbers",
-          "shot": "r/02-Your-Numbers.png",
+          "name": "1 Your Numbers",
+          "shot": "r/02-1-Your-Numbers.png",
           "crop": [
             0,
             0,
             1,
-            0.45
+            0.56
           ]
         },
         {
-          "name": "Quote Builder",
-          "shot": "r/04-Quote-Builder.png",
+          "name": "3 Quote Builder",
+          "shot": "r/04-3-Quote-Builder.png",
           "crop": [
             0,
             0,
-            0.465,
-            0.55
+            0.48,
+            0.62
           ]
         },
         {
-          "name": "Job Tracker",
-          "shot": "r/06-Job-Tracker.png",
+          "name": "4 Price Sheet",
+          "shot": "r/05-4-Price-Sheet.png",
           "crop": [
             0,
             0,
-            0.62,
-            0.12
+            1,
+            0.42
           ]
         }
       ],

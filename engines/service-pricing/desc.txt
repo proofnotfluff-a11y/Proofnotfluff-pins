@@ -17,14 +17,14 @@ BUILT FROM WHAT BUYERS OF OTHER CALCULATORS ASKED FOR
 - Made for service businesses: 20 example jobs across 7 trades (house cleaning, mobile auto detailing, lawn care, photography, hair and salon, handyman, pressure washing), plus 20 empty rows for your own
 
 WHAT'S INSIDE
-- Service-Pricing-Calculator.xlsx with 5 working tabs: Your Numbers, Trade Presets, Quote Builder, Price Sheet, Job Tracker
-- 2-page Start Here guide (PDF)
+- Service-Pricing-Calculator.xlsx with 5 working tabs: 1 Your Numbers, 2 Trade Presets, 3 Quote Builder, 4 Price Sheet, 5 Job Tracker
+- Start Here guide as a PDF in US Letter and A4
 - License and disclaimer
 
 FORMATS
-Works in Microsoft Excel and Google Sheets (upload the file to Google Sheets with File, Import). No macros or add-ons. Example numbers are included so you can see how it works; replace them with your own.
+Works in Microsoft Excel and Google Sheets (upload the file to Google Drive, open it, then File, Save as Google Sheets). No macros or add-ons. Example numbers are included so you can see how it works; replace them with your own.
 
-Figures checked Oct 3, 2026: self-employment tax 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE); IRS business mileage rate 76 cents from July 1, 2026 (Announcement 2026-11). Example trade times are starting points, not market prices.
+Figures checked Oct 6, 2026: self-employment tax 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE); IRS business mileage rate 76 cents from July 1, 2026 (IRS news release IR-2026-29). Example trade times are starting points, not market prices.
 
 Made with AI assistance and reviewed and tested by the shop owner.
 

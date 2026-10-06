@@ -14,6 +14,6 @@ A trade edition is a separate product, not a copy. Etsy treats near-duplicates a
 1. Presets: replace the 20 mixed-trade rows with 15 to 20 jobs for that one trade, with that trade's pricing unit (see the ledger Pipeline spec for each trade).
 2. Trade logic: add the one or two calculations that trade prices by (per square foot, vehicle size multiplier, lot size, editing hours, chair rental vs commission, materials markup, surface type).
 3. Words: tab names, labels, examples, guide and images use the trade's own terms.
-4. Figures: re-verify self-employment tax (IRS Topic 554) and the IRS mileage rate (76 cents from July 1, 2026, Announcement 2026-11) on the build date; cite trade-specific numbers with a dated source.
+4. Figures: re-verify self-employment tax (IRS Topic 554) and the IRS mileage rate (76 cents from July 1, 2026, IRS news release IR-2026-29) on the build date; cite trade-specific numbers with a dated source.
 5. Listing: title leads with the trade phrase ("Cleaning Business Pricing Calculator ..."), 13 trade tags, trade-specific images, review complaints mined for that trade.
 Keep the review page, the license, the AI disclosure line and the quality gate.

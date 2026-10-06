@@ -43,7 +43,7 @@ def main():
     from pypdf import PdfReader, PdfWriter
     pdfs = {}
     for label, size in (("Letter", 1), ("A4", 9)):
-        wb = openpyxl.load_workbook(a.xlsx)
+        wb = openpyxl.load_workbook(a.xlsx, rich_text=True)  # keep bold lead-ins and the colour strip
         if "Start Here" not in wb.sheetnames:
             sys.exit("the workbook has no 'Start Here' sheet")
         for ws in wb.worksheets:

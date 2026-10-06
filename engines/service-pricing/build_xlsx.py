@@ -111,7 +111,7 @@ def notes_card(ws, top, notes, span=("C", "J"), frame_span=("B", "K")):
 
 
 # =====================================================================  Your Numbers
-yn = wb.create_sheet("Your Numbers")
+yn = wb.create_sheet("1 Your Numbers")
 S.set_widths(yn, GRID)
 D.page_header(yn, "Your Numbers", "Your pay goal, real hours, costs and taxes, turned into the rate every quote starts from.", AS_OF)
 TOP = 11
@@ -122,10 +122,11 @@ TH = A.input("Take-home pay you want per year", EX["take_home"], USD0, name="Tak
              prompt="What you want to keep for yourself in a year, after tax. Example: 52000.")
 WK = A.input("Weeks you work per year", EX["weeks"], INT, name="WeeksPerYear", validation=("decimal", 1, 52),
              prompt="52 minus vacation, holidays and sick weeks. Example: 48.")
-HW = A.input("Hours you work per week, all of it", EX["hours"], INT, name="HoursPerWeek", validation=("decimal", 1, 100),
-             prompt="Include driving, quoting, texts, invoicing and shopping for supplies. Example: 45.")
+HW = A.input("Hours you work per week, all of it", EX["hours"], INT, name="HoursPerWeek", validation=("whole", 1, 100),
+             prompt="Whole hours. Include driving, quoting, texts, invoicing and shopping for supplies. Example: 45.",
+             prompt_title="Hours per week")
 PS = A.input("Share of those hours you are paid for", EX["paid_share"], PCT, name="PaidShare", validation=("decimal", 0.05, 1),
-             prompt="Paid hours divided by all hours. Not sure? Try 60% to 70%.")
+             prompt="Paid hours divided by all hours. Not sure? Try 60% to 70%.", prompt_title="Paid share of hours")
 PH = A.calc("Paid hours per year", f"=D{WK}*D{HW}*D{PS}", INT, bold=True)
 A.close()
 
@@ -170,7 +171,7 @@ SE = T2.input("Self-employment tax rate", EX["se"], PCT1, name="SETaxRate", vali
               prompt="15.3%: 12.4% Social Security plus 2.9% Medicare. IRS Topic 554 and Schedule SE, checked " + CHECKED + ".")
 SB = T2.input("SE tax applies to", EX["se_base"], PCT2, name="SETaxBase", validation=("decimal", 0, 1),
               prompt="IRS Schedule SE applies self-employment tax to 92.35% of net profit.")
-IT = T2.input("Income tax rate, estimate", EX["income"], PCT, name="IncomeTaxRate", validation=("decimal", 0, 0.5),
+IT = T2.input("Income tax rate, estimate", EX["income"], PCT1, name="IncomeTaxRate", validation=("decimal", 0, 0.5),
               prompt="Federal plus state, as an effective rate. An estimate: ask your tax preparer for yours.")
 MG = T2.input("Profit margin in quotes", EX["margin"], PCT, name="ProfitMargin", validation=("decimal", 0, 0.9),
               prompt="Built into every quote for slow months, new equipment and growth. Example: 15%.")
@@ -185,11 +186,11 @@ yn[f"I{b_profit}"] = f"=IFERROR($D${TH}/(1-$I${SE}*$I${SB}-$I${IT}),0)"
 yn[f"I{b_tax_row}"] = f"=I{b_profit}-I{b_th}"
 yn[f"I{b_tg}"] = f"=IFERROR(I{b_be}/(1-$I${MG}),0)"
 yn[f"I{b_mg_row}"] = f"=I{b_tg}-I{b_be}"
-BE = f"'Your Numbers'!$I${b_be}"
-TG = f"'Your Numbers'!$I${b_tg}"
-CPMR = f"'Your Numbers'!$I${CPM}"
-SPDR = f"'Your Numbers'!$I${SPD}"
-MGR = f"'Your Numbers'!$I${MG}"
+BE = f"'1 Your Numbers'!$I${b_be}"
+TG = f"'1 Your Numbers'!$I${b_tg}"
+CPMR = f"'1 Your Numbers'!$I${CPM}"
+SPDR = f"'1 Your Numbers'!$I${SPD}"
+MGR = f"'1 Your Numbers'!$I${MG}"
 
 # tiles
 GUESS = f'IFERROR($D${TH}/($D${WK}*$D${HW}),0)'
@@ -211,36 +212,39 @@ NOTES = [
      f"from January 1 to June 30, 2026. Checked {CHECKED}. Use your own cost per mile if you track it."),
     ("Income tax", "Your own estimate of your effective federal plus state rate. Ask your tax preparer. Rates change; check "
      "them each year."),
-    ("Before you rely on a number", "For general information and planning only. This is not legal, tax, financial or other "
+    ("Before you rely on a number", "For general information and planning only. This is not legal, tax, financial, medical or other "
      "professional advice, and using it doesn't create a professional relationship. Results are estimates based on the "
      f"numbers you enter. Figures were checked on {CHECKED} and can change. See the Terms tab."),
 ]
 n_end = notes_card(yn, n_top, NOTES)
 S.page_break_before(yn, n_top)
 D.h(yn, n_end + 1, 14)
+for rr in range(1, n_end + 1):  # every row gets an explicit height (gaps between cards)
+    if yn.row_dimensions[rr].height is None:
+        D.h(yn, rr, D.GRID_ROW)
 D.paint_canvas(yn, n_end + 1, "Z")
 S.finish_sheet(yn, PRODUCT, n_end + 1, span=("A", "L"), freeze="A11", tab_color="accent")
 
 # =====================================================================  Trade Presets
-tp = wb.create_sheet("Trade Presets")
+tp = wb.create_sheet("2 Trade Presets")
 S.set_widths(tp, {"A": 3, "B": 2, "C": 22, "D": 28, "E": 11, "F": 9, "G": 11, "H": 11, "I": 40, "J": 40, "K": 2, "L": 3})
 D.page_header(tp, "Trade Presets", "Example starting points, not market prices. Change every number to match your real jobs.",
               "Add your own in the empty rows", span=("B", "K"), side_cols=2)
 cols_tp = [
     dict(col="C", head="Trade", kind="input", values=[p[0] for p in PRESETS], validation=("textLength", 0, 40),
-         prompt="Your trade, for example House cleaning. Up to 40 characters."),
+         prompt="Your trade, for example House cleaning. Up to 40 characters.", error="Up to 40 characters."),
     dict(col="D", head="Job type", kind="input", values=[p[1] for p in PRESETS], validation=("textLength", 0, 40),
-         prompt="What the customer buys, for example Deep clean, 2 bed. A row shows up in the dropdowns once this is filled."),
+         prompt="What the customer buys, for example Deep clean, 2 bed. A row shows up in the dropdowns once this is filled.", error="Up to 40 characters."),
     dict(col="E", head="Hours per person", kind="input", fmt=NUM2.replace(".00", ".0#"), align="right",
-         values=[p[2] for p in PRESETS], validation=("decimal", 0, 500), prompt="Hours each person spends on the job, editing included."),
+         values=[p[2] for p in PRESETS], validation=("decimal", 0, 500), prompt="Hours each person spends on the job, editing included.", error="Enter hours from 0 to 500, for example 2.5."),
     dict(col="F", head="People", kind="input", fmt=INT, align="right", values=[p[3] for p in PRESETS],
-         validation=("whole", 1, 50), prompt="How many people work the job."),
+         validation=("whole", 1, 50), prompt="How many people work the job.", error="Enter a whole number from 1 to 50."),
     dict(col="G", head="Supplies", kind="input", fmt=USD0, align="right", values=[p[4] for p in PRESETS],
-         validation=("decimal", 0, None), prompt="Supplies used up on this one job, in dollars."),
+         validation=("decimal", 0, None), prompt="Supplies used up on this one job, in dollars.", error="Enter 0 or more dollars."),
     dict(col="H", head="Miles round trip", kind="input", fmt=INT, align="right", values=[p[5] for p in PRESETS],
-         validation=("decimal", 0, None), prompt="Miles there and back. 0 if clients come to you."),
+         validation=("decimal", 0, None), prompt="Miles there and back. 0 if clients come to you.", error="Enter 0 or more miles."),
     dict(col="I", head="Notes", kind="input", values=[p[6] or "" for p in PRESETS], validation=("textLength", 0, 80),
-         prompt="Anything worth remembering about this job."),
+         prompt="Anything worth remembering about this job.", error="Up to 80 characters."),
     dict(col="J", head="Name in the dropdowns", kind="muted", formula=lambda r: f'=IF(D{r}="","",C{r}&" - "&D{r})'),
 ]
 cols_tp[-1]["kind"] = "calc"
@@ -253,7 +257,8 @@ for r in range(tp_first, tp_last + 1):
 D.paint_canvas(tp, tp_end + 1, "Z")
 S.finish_sheet(tp, PRODUCT, tp_end + 1, span=("A", "L"), freeze=f"A{tp_first}", tab_color="teal")
 tp.page_setup.orientation = "landscape"
-TP = "'Trade Presets'!"
+tp.page_setup.fitToHeight = 1
+TP = "'2 Trade Presets'!"
 LIST = f"{TP}$J${tp_first}:$J${tp_last}"
 
 
@@ -262,7 +267,7 @@ def preset(col, job_cell):
 
 
 # =====================================================================  Quote Builder
-qb = wb.create_sheet("Quote Builder")
+qb = wb.create_sheet("3 Quote Builder")
 S.set_widths(qb, GRID)
 D.page_header(qb, "Quote Builder", "Pick a job, adjust it for this customer, and read your price.", AS_OF)
 
@@ -377,11 +382,14 @@ D.tile(qb, 6, "G", "K", "PROFIT IN THIS QUOTE", f"=$I${c_pf}", USD2,
 D.h(qb, 10, 14)
 QB_LAST = max(L2.end, R1.end) + 1
 D.h(qb, QB_LAST, 14)
+for rr in range(1, QB_LAST):
+    if qb.row_dimensions[rr].height is None:
+        D.h(qb, rr, D.GRID_ROW)
 D.paint_canvas(qb, QB_LAST, "Z")
 S.finish_sheet(qb, PRODUCT, QB_LAST, span=("A", "L"), freeze="A11", tab_color="accent")
 
 # =====================================================================  Price Sheet
-ps = wb.create_sheet("Price Sheet")
+ps = wb.create_sheet("4 Price Sheet")
 S.set_widths(ps, {"A": 3, "B": 2, "C": 22, "D": 34, "E": 14, "F": 14, "G": 16, "H": 2, "I": 3})
 D.page_header(ps, "Price Sheet", "Every job in Trade Presets, priced with your numbers. Print it as your service menu.", AS_OF,
               span=("B", "H"), side_cols=3)
@@ -431,11 +439,12 @@ for r in range(ps_first, ps_last + 1):
     ps[f"C{r}"].font = D.f(10, False, "ink2")
 D.paint_canvas(ps, ps_end + 1, "Z")
 S.finish_sheet(ps, PRODUCT, ps_end + 1, span=("A", "I"), freeze=f"A{ps_first}", tab_color="blue")
+ps.page_setup.fitToHeight = 1
 
 # =====================================================================  Job Tracker
-jt = wb.create_sheet("Job Tracker")
+jt = wb.create_sheet("5 Job Tracker")
 S.set_widths(jt, {"A": 3, "B": 2, "C": 13, "D": 16, "E": 44, "F": 11, "G": 10, "H": 9, "I": 8, "J": 10, "K": 13, "L": 14,
-                  "M": 12, "N": 15, "O": 2, "P": 3})
+                  "M": 12, "N": 16, "O": 2, "P": 3})
 D.page_header(jt, "Job Tracker", "Log each finished job and see what it really paid you.", "Two example rows: replace them",
               span=("B", "O"), side_cols=4)
 JT_TOP_TABLE = 11
@@ -474,37 +483,38 @@ def jt_calc(kind):
 
 cols_jt = [
     dict(col="C", head="Date", kind="input", fmt=DATE, values=[j[0] for j in JOBS], validation=("date", "DATE(2000,1,1)", "DATE(2100,12,31)"),
-         prompt="The day you finished the job, for example 10/1/2026."),
+         prompt="The day you finished the job, for example 10/1/2026.", error="Enter a date, for example 10/1/2026."),
     dict(col="D", head="Client", kind="input", values=[j[1] for j in JOBS], validation=("textLength", 0, 40),
-         prompt="A name or a short label you will recognise."),
+         prompt="A name or a short label you will recognise.", error="Up to 40 characters."),
     dict(col="E", head="Job", kind="input", values=[j[2] for j in JOBS], validation=("list_range", LIST),
          prompt="Pick from the list. It comes from the Trade Presets tab.", error="Pick a job from the list, or add one on the Trade Presets tab."),
     dict(col="F", head="Price charged", kind="input", fmt=USD0, align="right", values=[j[3] for j in JOBS],
-         validation=("decimal", 0, None), prompt="What the customer paid, before any tip."),
+         validation=("decimal", 0, None), prompt="What the customer paid, before any tip.", error="Enter 0 or more dollars."),
     dict(col="G", head="Hours on site", kind="input", fmt=NUM1, align="right", values=[j[4] for j in JOBS],
-         validation=("decimal", 0, 1000), prompt="Hours on site for everyone added up. Two people for 3 hours is 6."),
+         validation=("decimal", 0, 1000), prompt="Hours on site for everyone added up. Two people for 3 hours is 6.", error="Enter hours from 0 to 1,000."),
     dict(col="H", head="Drive hours", kind="input", fmt=NUM1, align="right", values=[j[5] for j in JOBS],
-         validation=("decimal", 0, 1000), prompt="Driving time for everyone added up."),
+         validation=("decimal", 0, 1000), prompt="Driving time for everyone added up.", error="Enter hours from 0 to 1,000."),
     dict(col="I", head="Miles", kind="input", fmt=INT, align="right", values=[j[6] for j in JOBS],
-         validation=("decimal", 0, None), prompt="Round-trip miles driven."),
+         validation=("decimal", 0, None), prompt="Round-trip miles driven.", error="Enter 0 or more miles."),
     dict(col="J", head="Supplies", kind="input", fmt=USD0, align="right", values=[j[7] for j in JOBS],
-         validation=("decimal", 0, None), prompt="Supplies used on this job, in dollars."),
+         validation=("decimal", 0, None), prompt="Supplies used on this job, in dollars.", error="Enter 0 or more dollars."),
     dict(col="K", head="Cost at break-even", kind="calc", fmt=USD2, align="right", formula=jt_calc("cost")),
     dict(col="L", head="Profit over break-even", kind="calc", fmt=USD2, align="right", formula=jt_calc("profit")),
-    dict(col="M", head="Earned per hour", kind="calc", fmt=USD2, align="right", formula=jt_calc("hour")),
+    dict(col="M", head="Per hour", kind="calc", fmt=USD2, align="right", formula=jt_calc("hour")),
     dict(col="N", head="Check", kind="calc", formula=jt_calc("check")),
 ]
 f1, f2, jt_end = D.table_card(jt, JT_TOP_TABLE, "B", "O", cols_jt, N_JOBS, title="Finished jobs",
                               sub="Yellow columns are yours. Cost at break-even uses your break-even rate and cost per mile from Your Numbers.")
 assert (f1, f2) == (jt_first, jt_last), (f1, f2, jt_first, jt_last)
 for r in range(jt_first, jt_last + 1):
-    jt[f"N{r}"].alignment = Alignment(horizontal="left", vertical="center", indent=1)
+    jt[f"N{r}"].alignment = Alignment(horizontal="left", vertical="center", indent=2)
 for word, color, tint in (("Below floor", "accent", "accent_tint"), ("Under target", "gold", "input_fill"), ("On target", "teal", "teal_tint")):
     jt.conditional_formatting.add(f"N{jt_first}:N{jt_last}", FormulaRule(formula=[f'$N{jt_first}="{word}"'],
                                   font=Font(color=D.T[color], bold=True), fill=PatternFill("solid", bgColor=D.T[tint]), stopIfTrue=True))
 D.paint_canvas(jt, jt_end + 1, "Z")
 S.finish_sheet(jt, PRODUCT, jt_end + 1, span=("A", "P"), freeze=f"A{jt_first}", tab_color="gold")
 jt.page_setup.orientation = "landscape"
+jt.print_title_rows = f"{jt_first - 1}:{jt_first - 1}"  # column heads repeat on every printed page
 
 # =====================================================================  Start Here and Terms (card style, from #20)
 SH_GRID = {"A": 3, "B": 2, "C": 8, "D": 62, "E": 18, "F": 2, "G": 3}
@@ -553,7 +563,7 @@ def sh_card(sh, top, title, rows):
 
 sh = wb.create_sheet("Start Here", 0)
 S.set_widths(sh, SH_GRID)
-D.page_header(sh, PRODUCT, "Start here. Five tabs, about ten minutes to set up.", f"Checked {CHECKED}", span=("B", "F"), side_cols=2)
+D.page_header(sh, PRODUCT, "Start here. Five working tabs, about ten minutes to set up.", f"Checked {CHECKED}", span=("B", "F"), side_cols=2)
 r = 6
 r = sh_card(sh, r, "What it does", [(None,
     "Most service owners divide the pay they want by the hours they work. That leaves out the hours nobody pays for "
@@ -589,7 +599,7 @@ r = sh_card(sh, r, "Good to know", [
            "your own.", "para"),
 ])
 r = sh_card(sh, r, "Before you rely on a number", [(None,
-    "For general information and planning only. This is not legal, tax, financial or other professional advice, and using it "
+    "For general information and planning only. This is not legal, tax, financial, medical or other professional advice, and using it "
     "doesn't create a professional relationship. Results are estimates based on the numbers you enter. Figures were checked "
     f"on {CHECKED} and can change. See the Terms tab before you rely on anything here.", "note")])
 D.paint_canvas(sh, r - 1, "Z")
@@ -610,7 +620,6 @@ S.page_break_before(tm, r)
 r = sh_card(tm, r, "Terms of Use and disclaimer", [(None, p, "para") for p in paras])
 r = sh_card(tm, r, "A small ask", [
     (None, "If this calculator helped you price your work, a short review on Etsy helps other service owners find it. Thank you.", "para"),
-    (None, "If a file won't open or a number looks wrong, message the shop on Etsy and it will be fixed.", "para"),
 ])
 D.paint_canvas(tm, r - 1, "Z")
 S.finish_sheet(tm, PRODUCT, r - 1, span=("A", "G"), tab_color="note")

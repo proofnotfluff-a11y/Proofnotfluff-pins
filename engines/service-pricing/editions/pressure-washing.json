@@ -1,0 +1,239 @@
+{
+  "slug": "pressure-washing",
+  "product": "Pressure Washing Pricing Calculator",
+  "example": {
+    "take_home": 55000,
+    "weeks": 44,
+    "hours": 45,
+    "paid_share": 0.65
+  },
+  "costs": [
+    [
+      "General liability insurance",
+      150
+    ],
+    [
+      "Phone and internet",
+      90
+    ],
+    [
+      "Software and booking apps",
+      50
+    ],
+    [
+      "Signs, door hangers, website",
+      150
+    ],
+    [
+      "Equipment, rig and trailer",
+      200
+    ],
+    [
+      "Hoses, tips, fittings, PPE",
+      60
+    ],
+    [
+      "Accounting and payment fees",
+      40
+    ],
+    [
+      "Licenses and permits",
+      15
+    ],
+    [
+      "Vehicle payment",
+      0
+    ],
+    [
+      "Other",
+      0
+    ],
+    [
+      "Other",
+      0
+    ]
+  ],
+  "presets": [
+    [
+      "Driveway",
+      "2-car concrete driveway",
+      1.5,
+      1,
+      12,
+      20,
+      "Surface cleaner plus pre-treat"
+    ],
+    [
+      "Driveway",
+      "3-car driveway with walkway",
+      2.5,
+      1,
+      18,
+      20,
+      null
+    ],
+    [
+      "Patio and pavers",
+      "Paver patio, clean only",
+      3,
+      1,
+      20,
+      20,
+      "Bill re-sanding and sealing as add-ons"
+    ],
+    [
+      "Patio and pavers",
+      "Paver clean, re-sand and seal",
+      6,
+      2,
+      180,
+      40,
+      "Two visits: wash, then seal once dry"
+    ],
+    [
+      "House wash",
+      "1-story house, soft wash",
+      2.5,
+      1,
+      30,
+      20,
+      "Soft wash mix and surfactant in supplies"
+    ],
+    [
+      "House wash",
+      "2-story house, soft wash",
+      3,
+      1,
+      45,
+      20,
+      null
+    ],
+    [
+      "Roof",
+      "Roof soft wash, 1-story",
+      2,
+      2,
+      70,
+      20,
+      null
+    ],
+    [
+      "Gutters",
+      "Gutter face brightening",
+      1.5,
+      1,
+      15,
+      20,
+      null
+    ],
+    [
+      "Deck",
+      "Deck clean, brighten, 300 sq ft",
+      3,
+      1,
+      30,
+      20,
+      null
+    ],
+    [
+      "Deck",
+      "Deck clean and stain, 300 sq ft",
+      7,
+      1,
+      150,
+      40,
+      "Two visits: wash, then stain once dry"
+    ],
+    [
+      "Fence",
+      "Wood fence, 150 ft, one side",
+      3,
+      1,
+      25,
+      20,
+      null
+    ],
+    [
+      "Pool deck",
+      "Concrete pool deck",
+      2,
+      1,
+      15,
+      20,
+      null
+    ],
+    [
+      "Commercial",
+      "Storefront and sidewalk",
+      2,
+      1,
+      15,
+      25,
+      "Often early morning"
+    ],
+    [
+      "Commercial",
+      "Dumpster pad",
+      1.5,
+      1,
+      20,
+      25,
+      "Degreaser in supplies"
+    ],
+    [
+      "Commercial",
+      "Drive-thru lane",
+      3,
+      1,
+      25,
+      25,
+      null
+    ]
+  ],
+  "jobs": [
+    [
+      "2026-10-01",
+      "Example client",
+      "Driveway - 2-car concrete driveway",
+      100,
+      1.5,
+      0.67,
+      20,
+      12
+    ],
+    [
+      "2026-10-02",
+      "Example client",
+      "House wash - 1-story house, soft wash",
+      300,
+      2.5,
+      0.67,
+      20,
+      30
+    ]
+  ],
+  "quote_job": "Driveway - 2-car concrete driveway",
+  "current_price": 100,
+  "deposit": 0.25,
+  "text": {
+    "trade_eg": "House wash",
+    "job_eg": "2-story house, soft wash",
+    "audience": "pressure washing owners",
+    "what_it_does": "Most pressure washing owners price a driveway by what the last company charged. That leaves out the hours nobody pays for (driving, quoting, rain days), the equipment that wears out, and self-employment tax. This workbook adds all of it back, gives you the hourly rate every quote should start from, prices driveways, house washes, roofs, decks and storefronts in seconds, and shows which finished jobs really made money.",
+    "example_job": "A 2-car concrete driveway",
+    "more": [
+      [
+        "Service Pricing Calculator: the same engine with presets for 7 trades",
+        "https://www.etsy.com/listing/4587962930"
+      ],
+      [
+        "Hourly Rate Quick Calculator: the one-tab version",
+        "https://www.etsy.com/listing/4589695837"
+      ]
+    ],
+    "hours_hint": "Hours each person spends on site, setup and cleanup included.",
+    "addon_eg": "extra sealer or a dump fee",
+    "apps": "Excel, Google Sheets and LibreOffice"
+  },
+  "version": "1"
+}

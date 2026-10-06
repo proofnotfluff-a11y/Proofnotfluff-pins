@@ -1,0 +1,12 @@
+{
+  "xlsx": "Pressure-Washing-Pricing-Calculator.xlsx",
+  "sheet": "3 Quote Builder",
+  "crop": [0, 0.062, 0.468, 0.380],
+  "dpi": 220,
+  "eyebrow": "PRESSURE WASHING PRICING CALCULATOR",
+  "states": [
+    {"caption": "Pick a job. A 2-car driveway: {I34}.", "hold": 3.0},
+    {"set": {"D14": "House wash - 2-story house, soft wash"}, "caption": "2-story soft wash instead? {I34}.", "hold": 3.6},
+    {"set": {"D14": "House wash - 2-story house, soft wash", "D23": 40}, "caption": "Customer 40 miles round trip? {I34}.", "hold": 3.6}
+  ]
+}

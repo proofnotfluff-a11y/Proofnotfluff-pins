@@ -7,7 +7,12 @@ answers match. Fixes in v3: the mileage source now cites IRS news release IR-202
 an announcement number the IRS page does not use); sheets are protected without a password;
 full Terms of Use tab.
 
-Usage: python3 engines/service-pricing/build_xlsx.py out.xlsx
+Usage: python3 engines/service-pricing/build_xlsx.py out.xlsx [--edition engines/service-pricing/editions/<trade>.json]
+
+Trade editions (Oct 6, 2026): an edition JSON swaps in a trade's own product name, example, monthly
+costs, job presets, tracker rows, quote job and wording, while every formula, tab and check stays
+the tested #13 engine. Each edition must differ in substance (presets, costs, example, copy,
+photos), never keywords alone. Without --edition the build is #13 exactly (compare_map proves it).
 """
 import math
 import os
@@ -30,7 +35,15 @@ TAX_SOURCES = ("IRS Topic No. 554 (Self-Employment Tax), Schedule SE, the IRS St
                "and SSA's Contribution and Benefit Base page")
 AS_OF = f"Figures checked {CHECKED}"
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = sys.argv[1] if len(sys.argv) > 1 else "Service-Pricing-Calculator.xlsx"
+_args = sys.argv[1:]
+EDITION = {}
+if "--edition" in _args:
+    _i = _args.index("--edition")
+    import json as _json
+    EDITION = _json.load(open(_args[_i + 1], encoding="utf-8"))
+    del _args[_i:_i + 2]
+OUT = _args[0] if _args else "Service-Pricing-Calculator.xlsx"
+PRODUCT = EDITION.get("product", PRODUCT)
 USD0, USD2, PCT, INT, NUM1, NUM2 = (S.FMT[k] for k in ("usd0", "usd2", "pct", "int", "num1", "num2"))
 PCT1, PCT2, DATE = "0.0%", "0.00%", S.FMT["date"]
 HRS2 = '#,##0.00 "hrs"'
@@ -71,6 +84,33 @@ JOBS = [(dt.datetime(2026, 10, 1), "Example client", "House cleaning - Standard 
 QUOTE_JOB = "House cleaning - Standard clean, 2 bed"
 CURRENT_PRICE = 150
 DEPOSIT = 0.25
+TEXT = dict(
+    trade_eg="House cleaning", job_eg="Deep clean, 2 bed", audience="service owners",
+    what_it_does=("Most service owners divide the pay they want by the hours they work. That leaves out the hours nobody pays for "
+                  "(driving, quoting, invoicing), the costs that run every month, and self-employment tax. This workbook adds all three "
+                  "back, gives you the rate every quote should start from, prices any job in seconds, and shows which finished jobs "
+                  "really made money."),
+    example_job="A standard 2-bed clean",
+    more=[["Cleaning Business Starter Kit: pricing calculator, client intake, checklists", "https://www.etsy.com/listing/4588330888"],
+          ["Hourly Rate Quick Calculator: the one-tab version", "https://www.etsy.com/listing/4589695837"]],
+    hours_hint="Hours each person spends on the job, editing included.", addon_eg="mulch",
+    apps="Excel, Google Sheets, Numbers and LibreOffice", weeks_hint=None,
+    presets_note="Example starting points, not market prices. Change every number to match your real jobs.",
+)
+VERSION = EDITION.get("version", "3")
+if EDITION:
+    EX.update(EDITION.get("example", {}))
+    COSTS = [tuple(c) for c in EDITION.get("costs", COSTS)]
+    PRESETS = [tuple(p) for p in EDITION["presets"]]
+    JOBS = [(dt.datetime.strptime(j[0], "%Y-%m-%d"), *j[1:]) for j in EDITION["jobs"]]
+    QUOTE_JOB = EDITION["quote_job"]
+    CURRENT_PRICE = EDITION.get("current_price", CURRENT_PRICE)
+    DEPOSIT = EDITION.get("deposit", DEPOSIT)
+    TEXT.update(EDITION.get("text", {}))
+    assert len(PRESETS) <= N_PRESETS and len(JOBS) <= N_JOBS
+_qp = [p for p in PRESETS if f"{p[0]} - {p[1]}" == QUOTE_JOB]
+if len(_qp) != 1:
+    sys.exit(f"quote job '{QUOTE_JOB}' must match exactly one preset 'Trade - Job type'")
 
 # the example's answers, computed the same way the workbook does, so every sentence matches the file
 _profit = EX["take_home"] / (1 - EX["se"] * EX["se_base"] - EX["income"])
@@ -79,7 +119,7 @@ _paid = EX["weeks"] * EX["hours"] * EX["paid_share"]
 BE_X = (_profit + _costs_y) / _paid
 TARGET_X = BE_X / (1 - EX["margin"])
 GUESS_X = EX["take_home"] / (EX["weeks"] * EX["hours"])
-_h, _p, _s, _m = 2.5, 1, 8, 15
+_h, _p, _s, _m = _qp[0][2], _qp[0][3], _qp[0][4], _qp[0][5]
 _drive = _m / EX["mph"]
 FLOOR_X = (_h * _p + _drive * _p) * BE_X + _m * EX["per_mile"] + _s
 QUOTE_X = math.ceil((FLOOR_X / (1 - EX["margin"])) / 5 - 1e-9) * 5
@@ -89,7 +129,7 @@ def money(x, cents=True):
     return f"${x:,.2f}" if cents else f"${x:,.0f}"
 
 
-wb = S.new_workbook(PRODUCT, version="3")
+wb = S.new_workbook(PRODUCT, version=VERSION)
 GRID = {"A": 3, "B": 2, "C": 31, "D": 14, "E": 2, "F": 3, "G": 2, "H": 24, "I": 12, "J": 17, "K": 2, "L": 3}
 
 
@@ -121,9 +161,9 @@ TOP = 11
 A = D.Card(yn, TOP, "B", "C", "D", "E", wb=wb)
 A.title("Pay and time", "Type over the yellow cells. Every other number updates.")
 TH = A.input("Take-home pay you want per year", EX["take_home"], USD0, name="TakeHome", validation=("decimal", 0, None),
-             prompt="What you want to keep for yourself in a year, after tax. Example: 52000.")
+             prompt=f"What you want to keep for yourself in a year, after tax. Example: {EX['take_home']}.")
 WK = A.input("Weeks you work per year", EX["weeks"], INT, name="WeeksPerYear", validation=("decimal", 1, 52),
-             prompt="52 minus vacation, holidays and sick weeks. Example: 48.")
+             prompt=TEXT.get("weeks_hint") or f"52 minus vacation, holidays and sick weeks. Example: {EX['weeks']}.")
 HW = A.input("Hours you work per week, all of it", EX["hours"], INT, name="HoursPerWeek", validation=("whole", 1, 100),
              prompt="Whole hours. Include driving, quoting, texts, invoicing and shopping for supplies. Example: 45.",
              prompt_title="Hours per week")
@@ -231,15 +271,15 @@ S.finish_sheet(yn, PRODUCT, n_end + 1, span=("A", "L"), freeze="A11", tab_color=
 # =====================================================================  Trade Presets
 tp = wb.create_sheet("2 Trade Presets")
 S.set_widths(tp, {"A": 3, "B": 2, "C": 22, "D": 28, "E": 11, "F": 9, "G": 11, "H": 11, "I": 40, "J": 40, "K": 2, "L": 3})
-D.page_header(tp, "Trade Presets", "Example starting points, not market prices. Change every number to match your real jobs.",
+D.page_header(tp, "Trade Presets", TEXT["presets_note"],
               "Add your own in the empty rows", span=("B", "K"), side_cols=2)
 cols_tp = [
     dict(col="C", head="Trade", kind="input", values=[p[0] for p in PRESETS], validation=("textLength", 0, 40),
-         prompt="Your trade, for example House cleaning. Up to 40 characters.", error="Up to 40 characters."),
+         prompt=f"Your trade, for example {TEXT['trade_eg']}. Up to 40 characters.", error="Up to 40 characters."),
     dict(col="D", head="Job type", kind="input", values=[p[1] for p in PRESETS], validation=("textLength", 0, 40),
-         prompt="What the customer buys, for example Deep clean, 2 bed. A row shows up in the dropdowns once this is filled.", error="Up to 40 characters."),
+         prompt=f"What the customer buys, for example {TEXT['job_eg']}. A row shows up in the dropdowns once this is filled.", error="Up to 40 characters."),
     dict(col="E", head="Hours per person", kind="input", fmt=NUM2.replace(".00", ".0#"), align="right",
-         values=[p[2] for p in PRESETS], validation=("decimal", 0, 500), prompt="Hours each person spends on the job, editing included.", error="Enter hours from 0 to 500, for example 2.5."),
+         values=[p[2] for p in PRESETS], validation=("decimal", 0, 500), prompt=TEXT["hours_hint"], error="Enter hours from 0 to 500, for example 2.5."),
     dict(col="F", head="People", kind="input", fmt=INT, align="right", values=[p[3] for p in PRESETS],
          validation=("whole", 1, 50), prompt="How many people work the job.", error="Enter a whole number from 1 to 50."),
     dict(col="G", head="Supplies", kind="input", fmt=USD0, align="right", values=[p[4] for p in PRESETS],
@@ -313,7 +353,7 @@ OM = L1.input("Round-trip miles", None, INT, validation=("decimal", 0, None), al
               prompt="Blank uses the preset. Type a number to change it for this quote only.")
 L1.eyebrow("EXTRAS")
 AO = L1.input("Add-ons billed at cost", 0, USD2, name="AddOns", validation=("decimal", 0, None),
-              prompt="Materials, parking or fees you pass through at cost, for example mulch. No margin is added.")
+              prompt=f"Materials, parking or fees you pass through at cost, for example {TEXT['addon_eg']}. No margin is added.")
 DP = L1.input("Deposit to collect", DEPOSIT, PCT, name="Deposit", validation=("decimal", 0, 1),
               prompt="Share of the quote you collect at booking. Example: 25%.")
 L1.close()
@@ -568,11 +608,7 @@ sh = wb.create_sheet("Start Here", 0)
 S.set_widths(sh, SH_GRID)
 D.page_header(sh, PRODUCT, "Start here. Five working tabs, about ten minutes to set up.", f"Checked {CHECKED}", span=("B", "F"), side_cols=2)
 r = 6
-r = sh_card(sh, r, "What it does", [(None,
-    "Most service owners divide the pay they want by the hours they work. That leaves out the hours nobody pays for "
-    "(driving, quoting, invoicing), the costs that run every month, and self-employment tax. This workbook adds all three "
-    "back, gives you the rate every quote should start from, prices any job in seconds, and shows which finished jobs "
-    "really made money.", "para")])
+r = sh_card(sh, r, "What it does", [(None, TEXT["what_it_does"], "para")])
 r = sh_card(sh, r, "Five steps", [
     (1, "Your Numbers. Type your pay goal, the hours you really work and your monthly costs. Your target rate is the dark tile at the top.", "num"),
     (2, "Trade Presets. Change the hours, supplies and miles to match your real jobs, or add your own job types in the empty rows.", "num"),
@@ -581,23 +617,23 @@ r = sh_card(sh, r, "Five steps", [
     (5, "Job Tracker. Log finished jobs to see your real profit and what each one paid per hour.", "num"),
 ])
 r = sh_card(sh, r, "How to read the cells", [
-    ((52000, USD0), "Yellow cells with blue numbers are yours to change. Type over the example. Each one shows a hint when you select it.", "chip-in"),
-    ((1404, INT), "Plain numbers are formulas. They update on their own and are locked so a stray keystroke can't break them.", "chip-calc"),
+    ((EX['take_home'], USD0), "Yellow cells with blue numbers are yours to change. Type over the example. Each one shows a hint when you select it.", "chip-in"),
+    ((round(_paid), INT), "Plain numbers are formulas. They update on their own and are locked so a stray keystroke can't break them.", "chip-calc"),
     ((round(TARGET_X, 2), USD2), "Dark tiles are your answers. They sit at the top of Your Numbers and Quote Builder and stay on screen as you scroll.", "chip-key"),
     (None, "Each tab is protected without a password. To change anything else, use Review, Unprotect Sheet in Excel, or Data, "
            "Protect sheets and ranges in Google Sheets.", "note"),
 ])
 S.page_break_before(sh, r)
 r = sh_card(sh, r, "The example", [(None,
-    f"A {money(EX['take_home'], False)} take-home goal, with 15.3% self-employment tax and a 12% income tax estimate, needs "
+    f"A {money(EX['take_home'], False)} take-home goal, with {EX['se']*100:.1f}% self-employment tax and a {EX['income']*100:.0f}% income tax estimate, needs "
     f"{money(_profit, False)} of profit before tax. "
     f"Add {money(_costs_y, False)} a year of business costs and you need {money(_profit + _costs_y, False)} of revenue. "
-    f"At 48 weeks of 45 hours with 65% paid, that is {_paid:,.0f} paid hours: a break-even rate of {money(BE_X)} and a target "
-    f"of {money(TARGET_X)} with a 15% margin. Pay divided by all hours would say {money(GUESS_X)}, "
-    f"{money(TARGET_X - GUESS_X)} too low. A standard 2-bed clean then quotes at {money(QUOTE_X, False)}.", "para")])
+    f"At {EX['weeks']} weeks of {EX['hours']} hours with {EX['paid_share']*100:.0f}% paid, that is {_paid:,.0f} paid hours: a break-even rate of {money(BE_X)} and a target "
+    f"of {money(TARGET_X)} with a {EX['margin']*100:.0f}% margin. Pay divided by all hours would say {money(GUESS_X)}, "
+    f"{money(TARGET_X - GUESS_X)} too low. {TEXT['example_job']} then quotes at {money(QUOTE_X, False)}.", "para")])
 r = sh_card(sh, r, "Good to know", [
     (None, "Google Sheets. Upload the .xlsx to Google Drive, open it, then File, Save as Google Sheets. Every formula is a plain "
-           "formula that works in Excel, Google Sheets, Numbers and LibreOffice. No macros, no add-ons, no sign-up.", "para"),
+           f"formula that works in {TEXT['apps']}. No macros, no add-ons, no sign-up.", "para"),
     (None, "Presets. The trade times are starting points so you can see how it works, not market prices. Replace them with "
            "your own.", "para"),
 ])
@@ -611,19 +647,18 @@ S.finish_sheet(sh, PRODUCT, r - 1, span=("A", "G"), tab_color="teal")
 
 tm = wb.create_sheet("Terms")
 S.set_widths(tm, SH_GRID)
-D.page_header(tm, "Terms of Use", f"{PRODUCT}, version 3. Read this before you rely on a number.", f"Checked {CHECKED}",
+D.page_header(tm, "Terms of Use", f"{PRODUCT}, version {VERSION}. Read this before you rely on a number.", f"Checked {CHECKED}",
               span=("B", "F"), side_cols=2)
 paras = open(os.path.join(HERE, "LICENSE-AND-DISCLAIMER.txt"), encoding="utf-8").read().strip().split("\n\n")[1:]
 r = 6
 r = sh_card(tm, r, "More from the shop", [
-    (None, ("Cleaning Business Starter Kit: pricing calculator, client intake, checklists", "https://www.etsy.com/listing/4588330888"), "link"),
-    (None, ("Hourly Rate Quick Calculator: the one-tab version", "https://www.etsy.com/listing/4589695837"), "link"),
+    *[(None, (t, u), "link") for t, u in TEXT["more"]],
     (None, ("Everything in the shop: etsy.com/shop/ProofNotFluff", "https://www.etsy.com/shop/ProofNotFluff"), "link"),
 ])
 S.page_break_before(tm, r)
 r = sh_card(tm, r, "Terms of Use and disclaimer", [(None, p, "para") for p in paras])
 r = sh_card(tm, r, "A small ask", [
-    (None, "If this calculator helped you price your work, a short review on Etsy helps other service owners find it. Thank you.", "para"),
+    (None, f"If this calculator helped you price your work, a short review on Etsy helps other {TEXT['audience']} find it. Thank you.", "para"),
 ])
 D.paint_canvas(tm, r - 1, "Z")
 S.finish_sheet(tm, PRODUCT, r - 1, span=("A", "G"), tab_color="note")

@@ -1,625 +1,625 @@
 [
-  {
-    "id": "irs-business-mileage-rate",
-    "name": "IRS standard mileage rate, business (self-employed and business)",
-    "value": "76 cents per mile from July 1, 2026 (was 72.5 cents per mile Jan 1 to Jun 30, 2026)",
-    "applies_to": "Miles driven July 1 to Dec 31, 2026 (Announcement 2026-11, IRB 2026-29, July 13, 2026)",
-    "source_url": "https://www.irs.gov/tax-professionals/standard-mileage-rates",
-    "source_phrase": "Self-employed and business: 76 cents/mile",
-    "next_change_window": "2027 rate is usually released in late December (2026 rate came in IR-2025-128 on Dec 29, 2025). Mid-year changes are rare (this was the first since 2022).",
-    "next_change_date": null,
-    "affects": [
-      "mileage log / deduction calculators",
-      "self-employed tax planners",
-      "STR host expense trackers",
-      "Etsy seller bookkeeping templates"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": [
-      "#12 Craft Fair workbook (uses 72.5 cents, STALE)",
-      "#13 Service Pricing Calculator (76 cents, current)"
-    ]
-  },
-  {
-    "id": "irs-standard-deduction-2026",
-    "name": "IRS standard deduction, tax year 2026",
-    "value": "Single (and MFS) $16,100; Married filing jointly $32,200",
-    "applies_to": "Tax year 2026 (Rev. Proc. 2025-32, IR-2025-103, Oct 9, 2025)",
-    "source_url": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill",
-    "source_phrase": "the standard deduction rises to $16,100 for tax year 2026",
-    "next_change_window": "Tax year 2027 inflation adjustments are usually released in October or November (the 2026 release came Oct 9, 2025). Not yet released as of Oct 4, 2026.",
-    "next_change_date": null,
-    "affects": [
-      "income tax estimators",
-      "quarterly estimated tax planners",
-      "self-employed budget templates"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": []
-  },
-  {
-    "id": "irs-tax-brackets-single-2026",
-    "name": "IRS 2026 marginal rate thresholds, single filers",
-    "value": "10% up to $12,400; 12% over $12,400; 22% over $50,400; 24% over $105,700; 32% over $201,775; 35% over $256,225; 37% over $640,600 (MFJ top rate over $768,700)",
-    "applies_to": "Tax year 2026 (Rev. Proc. 2025-32)",
-    "source_url": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill",
-    "source_phrase": "top tax rate remains 37% for individual single taxpayers with incomes greater than $640,600",
-    "next_change_window": "Same as standard deduction: tax year 2027 Rev. Proc. usually October or November.",
-    "next_change_date": null,
-    "affects": [
-      "income tax estimators",
-      "quarterly estimated tax planners",
-      "S corp vs sole prop calculators"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": []
-  },
-  {
-    "id": "self-employment-tax-rate",
-    "name": "Self-employment tax rate",
-    "value": "15.3% total = 12.4% Social Security (OASDI, up to the wage base) + 2.9% Medicare (no cap)",
-    "applies_to": "Ongoing (statutory; no annual change)",
-    "source_url": "https://www.irs.gov/businesses/small-businesses-self-employed/self-employment-tax-social-security-and-medicare-taxes",
-    "source_phrase": "The self-employment tax rate is 15.3%.",
-    "next_change_window": "Only changes by legislation. Note: this IRS page still shows the 2024 wage base example ($168,600); use SSA for the current base.",
-    "next_change_date": null,
-    "affects": [
-      "self-employed tax calculators",
-      "quarterly estimated tax planners",
-      "Etsy seller and STR host profit calculators"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": [
-      "#13",
-      "#14"
-    ]
-  },
-  {
-    "id": "ssa-wage-base-2026",
-    "name": "Social Security contribution and benefit base (taxable maximum)",
-    "value": "$184,500 (2025 was $176,100)",
-    "applies_to": "Earnings in calendar year 2026",
-    "source_url": "https://www.ssa.gov/news/en/press/releases/2025-10-24.html",
-    "source_phrase": "slated to increase to $184,500 from $176,100",
-    "next_change_window": "2027 base is announced together with the 2027 COLA, which follows the September CPI release.",
-    "next_change_date": "2026-10-14 (expected, not posted by SSA; BLS releases September 2026 CPI that day)",
-    "affects": [
-      "self-employed tax calculators",
-      "payroll templates",
-      "S corp salary planners"
-    ],
-    "verified": true,
-    "checked": "2026-10-05",
-    "live_listings": [
-      "#8",
-      "#13"
-    ]
-  },
-  {
-    "id": "ssa-cola-2026",
-    "name": "Social Security cost-of-living adjustment (COLA)",
-    "value": "2.8%",
-    "applies_to": "Benefits for 2026 (announced Oct 24, 2025)",
-    "source_url": "https://www.ssa.gov/news/en/press/releases/2025-10-24.html",
-    "source_phrase": "will increase 2.8 percent in 2026",
-    "next_change_window": "2027 COLA is announced when BLS publishes September CPI. SSA's COLA page does not yet post a 2027 announcement date. Last year's announcement (Oct 24, 2025) was later than usual.",
-    "next_change_date": "2026-10-14 (expected; based on BLS September 2026 CPI release date, not an SSA-posted date)",
-    "affects": [
-      "retirement / side-income planners",
-      "budget templates for retirees selling on Etsy or hosting"
-    ],
-    "verified": true,
-    "checked": "2026-10-05",
-    "live_listings": []
-  },
-  {
-    "id": "bls-cpi-september-2026-release",
-    "name": "BLS CPI release date for September 2026 CPI (drives 2027 COLA and wage base)",
-    "value": "Wednesday Oct 14, 2026, 8:30 AM ET",
-    "applies_to": "September 2026 reference month",
-    "source_url": "https://www.bls.gov/schedule/news_release/cpi.htm",
-    "source_phrase": "September 2026 | Oct. 14, 2026 | 08:30 AM",
-    "next_change_window": "Following releases on the same page: October 2026 CPI on Nov 10, 2026; November 2026 CPI on Dec 10, 2026. December 2026 CPI date not shown on the page as fetched.",
-    "next_change_date": "2026-10-14",
-    "affects": [
-      "any product indexed to CPI (COLA, state minimum wages, pricing escalators)"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": []
-  },
-  {
-    "id": "federal-minimum-wage",
-    "name": "Federal minimum wage (FLSA)",
-    "value": "$7.25 per hour",
-    "applies_to": "Current",
-    "source_url": "https://www.dol.gov/agencies/whd/minimum-wage/state",
-    "source_phrase": "must pay the current Federal minimum wage of $7.25 per hour",
-    "next_change_window": "Only by Congress; no change scheduled. DOL state page last updated July 1, 2026.",
-    "next_change_date": null,
-    "affects": [
-      "payroll templates",
-      "STR cleaner / contractor pay planners",
-      "small business hiring calculators"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": [
-      "#8"
-    ]
-  },
-  {
-    "id": "dol-state-minimum-wage-page",
-    "name": "DOL State Minimum Wage Laws page (master list of state rates)",
-    "value": "Lists each state's current rate; only Michigan's entry names a Jan 1, 2027 increase ($15.00). 30 states plus DC above federal; 13 at $7.25 (incl. IA, ID, IN, KS, KY, NC, ND, NH, OK, PA, TX, UT, WI); AL, GA, LA, MS, SC, TN, WY no law or below federal.",
-    "applies_to": "Page updated July 1, 2026",
-    "source_url": "https://www.dol.gov/agencies/whd/minimum-wage/state",
-    "source_phrase": "scheduled to increase on January 1, 2027 to $15.00 per hour",
-    "next_change_window": "DOL usually refreshes after Jan 1 and July 1 changes. State labor departments publish indexed rates first (mostly Aug to Oct).",
-    "next_change_date": null,
-    "affects": [
-      "payroll templates",
-      "small business hiring calculators",
-      "multi-state employer checklists"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": [
-      "#8"
-    ]
-  },
-  {
-    "id": "state-min-wage-ca-2027",
-    "name": "California minimum wage 2027",
-    "value": "$17.40 per hour",
-    "applies_to": "Effective Jan 1, 2027 (announced Aug 13, 2026)",
-    "source_url": "https://www.dir.ca.gov/DIRNews/2026/2026-66.html",
-    "source_phrase": "California's statewide minimum wage will increase to $17.40 per hour",
-    "next_change_window": "Indexed annually; announced by Aug 1 each year.",
-    "next_change_date": "2027-01-01",
-    "affects": [
-      "payroll templates",
-      "small business hiring calculators"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": []
-  },
-  {
-    "id": "state-min-wage-wa-2027",
-    "name": "Washington minimum wage 2027",
-    "value": "$17.73 per hour",
-    "applies_to": "Effective Jan 1, 2027 (announced Sept 30, 2026)",
-    "source_url": "https://www.lni.wa.gov/news-events/article/26-17",
-    "source_phrase": "Washington's minimum wage rises to $17.73 an hour in 2027",
-    "next_change_window": "Indexed annually; announced by Sept 30.",
-    "next_change_date": "2027-01-01",
-    "affects": [
-      "payroll templates",
-      "small business hiring calculators"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": []
-  },
-  {
-    "id": "state-min-wage-ct-2027",
-    "name": "Connecticut minimum wage 2027",
-    "value": "$17.48 per hour",
-    "applies_to": "Effective Jan 1, 2027 (announced Aug 5, 2026)",
-    "source_url": "https://portal.ct.gov/governor/news/press-releases/2026/08-2026/governor-lamont-announces-minimum-wage-will-increase",
-    "source_phrase": "Minimum Wage Will Increase to $17.48 on January 1, 2027",
-    "next_change_window": "Indexed annually to ECI; announced by Oct 15.",
-    "next_change_date": "2027-01-01",
-    "affects": [
-      "payroll templates",
-      "small business hiring calculators"
-    ],
-    "verified": true,
-    "checked": "2026-10-05",
-    "live_listings": []
-  },
-  {
-    "id": "state-min-wage-nj-2027",
-    "name": "New Jersey minimum wage 2027 (most employers)",
-    "value": "$16.48 per hour",
-    "applies_to": "Effective Jan 1, 2027 (announced Sept 29, 2026)",
-    "source_url": "https://www.nj.gov/labor/lwdhome/press/2026/20260929_min_wage.shtml",
-    "source_phrase": "increase by $0.56 to $16.48 per hour for most employees",
-    "next_change_window": "Indexed annually; announced around late September or October.",
-    "next_change_date": "2027-01-01",
-    "affects": [
-      "payroll templates",
-      "small business hiring calculators"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": []
-  },
-  {
-    "id": "state-min-wage-me-2027",
-    "name": "Maine minimum wage 2027",
-    "value": "$15.70 per hour",
-    "applies_to": "Effective Jan 1, 2027 (announced Sept 18, 2026)",
-    "source_url": "https://www.maine.gov/labor/news_events/article.shtml?id=13362373",
-    "source_phrase": "Maine's Minimum Wage to Increase to $15.70 Per Hour",
-    "next_change_window": "Indexed annually; announced in September.",
-    "next_change_date": "2027-01-01",
-    "affects": [
-      "payroll templates",
-      "small business hiring calculators"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": []
-  },
-  {
-    "id": "state-min-wage-mn-2027",
-    "name": "Minnesota minimum wage 2027",
-    "value": "$11.87 per hour (90-day under-20 training wage $9.68)",
-    "applies_to": "Effective Jan 1, 2027 (announced Aug 19, 2026)",
-    "source_url": "https://dli.mn.gov/news/minimum-wage-rate-adjusted-inflation-jan-1-2027",
-    "source_phrase": "$11.87 an hour for all employers in the state",
-    "next_change_window": "Indexed annually; announced in August.",
-    "next_change_date": "2027-01-01",
-    "affects": [
-      "payroll templates",
-      "small business hiring calculators"
-    ],
-    "verified": true,
-    "checked": "2026-10-05",
-    "live_listings": []
-  },
-  {
-    "id": "state-min-wage-oh-2027",
-    "name": "Ohio minimum wage 2027",
-    "value": "$11.40 per hour non-tipped; $5.70 tipped",
-    "applies_to": "Effective Jan 1, 2027 (announced Sept 30, 2026)",
-    "source_url": "https://com.ohio.gov/about-us/media-center/news/Ohio-Minimum-Wage-to-Increase-in-2027",
-    "source_phrase": "$11.40 per hour for non-tipped employees and $5.70 per hour for tipped employees",
-    "next_change_window": "Indexed annually; announced by Sept 30.",
-    "next_change_date": "2027-01-01",
-    "affects": [
-      "payroll templates",
-      "small business hiring calculators"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": []
-  },
-  {
-    "id": "state-min-wage-co-2027",
-    "name": "Colorado minimum wage 2027",
-    "value": "$15.71 per hour (tipped $12.69)",
-    "applies_to": "2027; release says 'in 2027' without naming the day (Colorado's annual change is Jan 1). Announced Aug 13, 2026.",
-    "source_url": "https://cdle.colorado.gov/press-releases/press-release-colorado-minimum-wage-will-increase-to-1571/hour-in-2027",
-    "source_phrase": "Colorado Minimum Wage will Increase to $15.71/hour in 2027",
-    "next_change_window": "Indexed annually; announced in August.",
-    "next_change_date": "2027-01-01",
-    "affects": [
-      "payroll templates",
-      "small business hiring calculators"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": []
-  },
-  {
-    "id": "state-min-wage-mi-2027",
-    "name": "Michigan minimum wage 2027",
-    "value": "$15.00 per hour (2026: $13.73)",
-    "applies_to": "Effective Jan 1, 2027 (statutory schedule, SB 8)",
-    "source_url": "https://www.michigan.gov/leo/bureaus-agencies/ber/wage-and-hour/min-wage",
-    "source_phrase": "Effective January 1, 2027 ... the minimum wage rate is $15.00 per hour",
-    "next_change_window": "After 2027, adjusted annually by formula.",
-    "next_change_date": "2027-01-01",
-    "affects": [
-      "payroll templates",
-      "small business hiring calculators"
-    ],
-    "verified": true,
-    "checked": "2026-10-05",
-    "live_listings": []
-  },
-  {
-    "id": "state-min-wage-ri-2027",
-    "name": "Rhode Island minimum wage 2027",
-    "value": "$17.00 per hour (2026: $16.00)",
-    "applies_to": "Effective Jan 1, 2027 (statutory)",
-    "source_url": "https://dlt.ri.gov/regulation-and-safety/labor-standards/minimum-wage",
-    "source_phrase": "Commencing January 1, 2027: $17.00 per hour",
-    "next_change_window": "Set by legislation.",
-    "next_change_date": "2027-01-01",
-    "affects": [
-      "payroll templates",
-      "small business hiring calculators"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": []
-  },
-  {
-    "id": "state-min-wage-va-2027",
-    "name": "Virginia minimum wage 2027",
-    "value": "$13.75 per hour (2026: $12.77; $15.00 on Jan 1, 2028)",
-    "applies_to": "Effective Jan 1, 2027 (SB1/HB1 signed, release Apr 9, 2026)",
-    "source_url": "https://www.governor.virginia.gov/newsroom/news-releases/2026/april-releases/name-1116004-en.html",
-    "source_phrase": "increase the minimum wage to $13.75 per hour on January 1, 2027",
-    "next_change_window": "Set by legislation; next step Jan 1, 2028.",
-    "next_change_date": "2027-01-01",
-    "affects": [
-      "payroll templates",
-      "small business hiring calculators"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": []
-  },
-  {
-    "id": "state-min-wage-ne-2027",
-    "name": "Nebraska minimum wage 2027",
-    "value": "UNVERIFIED: CPI-indexed increase effective Jan 1, 2027 is stated, but no dollar amount published yet (2026 rate $15.00)",
-    "applies_to": "Effective Jan 1, 2027",
-    "source_url": "https://dol.nebraska.gov/PressRelease/Details/338",
-    "source_phrase": "will increase based on the cost-of-living increase as measured by the Consumer Price Index",
-    "next_change_window": "Check Nebraska DOL press releases in Q4 2026.",
-    "next_change_date": "2027-01-01",
-    "affects": [
-      "payroll templates",
-      "small business hiring calculators"
-    ],
-    "verified": false,
-    "checked": "2026-10-05",
-    "live_listings": []
-  },
-  {
-    "id": "futa-rate-wage-base",
-    "name": "FUTA tax rate, wage base, and effective rate after credit",
-    "value": "6.0% on the first $7,000 per employee; up to 5.4% credit; 0.6% effective rate (so $42 per employee at the $7,000 cap, by arithmetic) when full credit applies",
-    "applies_to": "Ongoing (statutory); credit reduction states pay more",
-    "source_url": "https://www.irs.gov/taxtopics/tc759",
-    "source_phrase": "the FUTA tax rate after credit is 0.6%",
-    "next_change_window": "Rate and base change only by legislation. Credit reduction states are announced by DOL after the Nov 10 deadline each year (IRS FUTA credit reduction page).",
-    "next_change_date": "2026-11-10 (credit reduction determination deadline; announcement follows)",
-    "affects": [
-      "payroll templates",
-      "first-hire cost calculators",
-      "STR employer checklists"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": [
-      "#8 Payroll Guide"
-    ]
-  },
-  {
-    "id": "usps-forever-stamp-price",
-    "name": "USPS First-Class Mail Forever stamp price",
-    "value": "82 cents (up from 78 cents)",
-    "applies_to": "Since July 12, 2026 (confirmed on USPS letter rate history page)",
-    "source_url": "https://about.usps.com/newsroom/national-releases/2026/0409-usps-recommends-new-prices-for-july.htm",
-    "source_phrase": "Forever stamp from 78 cents to 82 cents",
-    "next_change_window": "Mailing services price changes are filed with the PRC about 90 days ahead; USPS kept stamps flat in January 2026 and raised them in July.",
-    "next_change_date": null,
-    "affects": [
-      "Etsy seller shipping calculators",
-      "thank-you card / mailer cost templates",
-      "small business postage budgets"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": [
-      "#7"
-    ]
-  },
-  {
-    "id": "usps-january-2027-price-change",
-    "name": "USPS January 2027 price change (filed or announced?)",
-    "value": "UNVERIFIED: no January 2027 price filing found on USPS newsroom (about.usps.com, news.usps.com) or in PRC search results as of Oct 4, 2026",
-    "applies_to": "January 2027",
-    "source_url": "https://about.usps.com/newsroom/national-releases/2025/1114-usps-recommends-new-competitive-prices-for-2026.pdf",
-    "source_phrase": "the price of a First-Class Mail stamp will not change",
-    "next_change_window": "Last cycle, January shipping prices were announced Nov 14, 2025 for a Jan 18, 2026 effective date (and stamps did not change). Expect a filing around mid-November 2026 if USPS follows the same pattern.",
-    "next_change_date": null,
-    "affects": [
-      "Etsy seller shipping calculators",
-      "small business postage budgets"
-    ],
-    "verified": false,
-    "checked": "2026-10-05",
-    "live_listings": []
-  },
-  {
-    "id": "usps-holiday-temporary-rates-2026",
-    "name": "USPS 2026 holiday temporary price change (shipping products)",
-    "value": "In effect 12 a.m. CT Oct 4, 2026 until 12 a.m. CT Jan 17, 2027 on Priority Mail Express, Priority Mail, Ground Advantage, Parcel Select (PRC Docket CP2026-10)",
-    "applies_to": "Oct 4, 2026 to Jan 17, 2027",
-    "source_url": "https://about.usps.com/newsroom/national-releases/2026/0825-usps-announces-temporary-price-change-for-2026-holiday-shipping-season.htm",
-    "source_phrase": "remain in place until 12 a.m. CT on Jan. 17, 2027",
-    "next_change_window": "Ends Jan 17, 2027.",
-    "next_change_date": "2027-01-17",
-    "affects": [
-      "Etsy seller shipping calculators",
-      "holiday shipping guides"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": [
-      "#7 (check its USPS rates against holiday pricing)"
-    ]
-  },
-  {
-    "id": "usps-transportation-time-limited-increase",
-    "name": "USPS transportation-related time-limited price change",
-    "value": "8% increase on Priority Mail Express, Priority Mail, Ground Advantage, Parcel Select; stamps excluded",
-    "applies_to": "Midnight CT Apr 26, 2026 to midnight CT Jan 17, 2027",
-    "source_url": "https://about.usps.com/newsroom/national-releases/2026/0325-usps-announces-transportation-related-time-limited-price-change.htm",
-    "source_phrase": "a time-limited price change to better align its costs of transportation",
-    "next_change_window": "Ends Jan 17, 2027.",
-    "next_change_date": "2027-01-17",
-    "affects": [
-      "Etsy seller shipping calculators",
-      "small business postage budgets"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": [
-      "#7"
-    ]
-  },
-  {
-    "id": "etsy-listing-fee",
-    "name": "Etsy listing fee",
-    "value": "$0.20 USD per listing",
-    "applies_to": "Current",
-    "source_url": "https://help.etsy.com/hc/en-us/articles/360035902374-Etsy-Fee-Basics",
-    "source_phrase": "The listing fee is a flat rate charge of $0.20 USD per listing.",
-    "next_change_window": "No fixed schedule; Etsy announces changes via Seller Handbook and the Fees & Payments Policy. Policy page shows 'Last updated on Oct 5, 2026' with no change notice found.",
-    "next_change_date": null,
-    "affects": [
-      "Etsy fee / profit calculators",
-      "Etsy pricing templates"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": [
-      "#5"
-    ]
-  },
-  {
-    "id": "etsy-transaction-fee",
-    "name": "Etsy transaction fee",
-    "value": "6.5% of the total order amount (item price plus shipping and gift wrap)",
-    "applies_to": "Current",
-    "source_url": "https://help.etsy.com/hc/en-us/articles/360035902374-Etsy-Fee-Basics",
-    "source_phrase": "Etsy charges 6.5% of the total order amount",
-    "next_change_window": "No fixed schedule. Watch etsy.com/legal/fees.",
-    "next_change_date": null,
-    "affects": [
-      "Etsy fee / profit calculators",
-      "Etsy pricing templates"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": [
-      "#5 Etsy Profit Calculator",
-      "#7 Shipping True-Cost Calculator",
-      "#12 Craft Fair workbook"
-    ]
-  },
-  {
-    "id": "etsy-payment-processing-us",
-    "name": "Etsy Payments processing fee, US bank account",
-    "value": "3% + $0.25 USD per order",
-    "applies_to": "Current, shops with a US bank account",
-    "source_url": "https://help.etsy.com/hc/en-us/articles/115015628847-What-are-Payment-Processing-Fees-for-Selling-on-Etsy",
-    "source_phrase": "3% + 0.25 USD",
-    "next_change_window": "No fixed schedule.",
-    "next_change_date": null,
-    "affects": [
-      "Etsy fee / profit calculators",
-      "Etsy pricing templates"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": [
-      "#5",
-      "#7"
-    ]
-  },
-  {
-    "id": "etsy-offsite-ads-fee",
-    "name": "Etsy Offsite Ads fee",
-    "value": "15% if under $10,000 sales in prior 365 days; 12% once a shop reaches $10,000",
-    "applies_to": "Current",
-    "source_url": "https://www.etsy.com/legal/fees/",
-    "source_phrase": "you will pay a fee of 15%",
-    "next_change_window": "No fixed schedule.",
-    "next_change_date": null,
-    "affects": [
-      "Etsy fee / profit calculators"
-    ],
-    "verified": true,
-    "checked": "2026-10-05",
-    "live_listings": [
-      "#5"
-    ]
-  },
-  {
-    "id": "airbnb-split-fee-host",
-    "name": "Airbnb split-fee structure, host share",
-    "value": "Host 3% (4% for Brazil and Mexico listings); guest fee 14.1% to 16.5% of booking subtotal",
-    "applies_to": "Current for hosts not yet migrated; Airbnb is moving home hosts to the single fee",
-    "source_url": "https://www.airbnb.com/help/article/1857",
-    "source_phrase": "Most hosts pay a 3% service fee, but some pay more.",
-    "next_change_window": "Being phased out. Airbnb's Jul 7, 2026 (updated Aug 24, 2026) Resource Center post set price-adjust deadlines of Sept 15, 2026 (outside EEA) and Oct 13, 2026 (EEA and Switzerland).",
-    "next_change_date": "2026-10-13 (EEA/Switzerland price-adjust deadline)",
-    "affects": [
-      "STR pricing calculators",
-      "STR host profit / payout templates"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": [
-      "#9"
-    ]
-  },
-  {
-    "id": "airbnb-host-only-fee",
-    "name": "Airbnb single (host-only) service fee",
-    "value": "15.5% for most hosts (others typically 14% to 16%; 16% for Brazil and Mexico)",
-    "applies_to": "Current; applies to reservations made after a host switches to the single fee",
-    "source_url": "https://www.airbnb.com/help/article/1857",
-    "source_phrase": "Most hosts pay 15.5%, remaining hosts typically pay 14%-16%",
-    "next_change_window": "No fixed schedule.",
-    "next_change_date": null,
-    "affects": [
-      "STR pricing calculators",
-      "STR host profit / payout templates"
-    ],
-    "verified": true,
-    "checked": "2026-10-06",
-    "live_listings": [
-      "#9 STR Nightly Pricing Worksheet"
-    ]
-  },
-  {
-    "id": "irs-estimated-tax-2026-q4",
-    "name": "IRS 2026 estimated tax, 4th payment due date",
-    "value": "Jan 15, 2027 (Friday). Not required if 2026 return filed by Feb 1, 2027 with full payment.",
-    "applies_to": "Tax year 2026 (Q1 Apr 15, Q2 Jun 15, Q3 Sept 15, 2026)",
-    "source_url": "https://www.irs.gov/pub/irs-pdf/f1040es.pdf",
-    "source_phrase": "4th payment ... Jan. 15, 2027",
-    "next_change_window": "Fixed by rule.",
-    "next_change_date": "2027-01-15",
-    "affects": [
-      "quarterly estimated tax planners",
-      "self-employed tax calendars",
-      "Etsy seller and STR host tax calendars"
-    ],
-    "verified": true,
-    "checked": "2026-10-05",
-    "live_listings": []
-  },
-  {
-    "id": "irs-estimated-tax-2027-dates",
-    "name": "IRS 2027 estimated tax due dates",
-    "value": "UNVERIFIED: 2027 Form 1040-ES not yet published. Expected by rule: Apr 15, 2027; Jun 15, 2027; Sept 15, 2027; Jan 18, 2028 (Jan 15, 2028 is a Saturday and Jan 17 is MLK Day)",
-    "applies_to": "Tax year 2027",
-    "source_url": "https://www.irs.gov/publications/p509",
-    "source_phrase": "Payments are due on the 15th day of the 4th, 6th, and 9th months",
-    "next_change_window": "2027 Form 1040-ES is usually posted in December or January; confirm dates there.",
-    "next_change_date": null,
-    "affects": [
-      "quarterly estimated tax planners",
-      "self-employed tax calendars"
-    ],
-    "verified": false,
-    "checked": "2026-10-05",
-    "live_listings": []
-  }
+ {
+  "id": "irs-business-mileage-rate",
+  "name": "IRS standard mileage rate, business (self-employed and business)",
+  "value": "76 cents per mile from July 1, 2026 (was 72.5 cents per mile Jan 1 to Jun 30, 2026)",
+  "applies_to": "Miles driven July 1 to Dec 31, 2026 (Announcement 2026-11, IRB 2026-29, July 13, 2026)",
+  "source_url": "https://www.irs.gov/tax-professionals/standard-mileage-rates",
+  "source_phrase": "Self-employed and business: 76 cents/mile",
+  "next_change_window": "2027 rate is usually released in late December (2026 rate came in IR-2025-128 on Dec 29, 2025). Mid-year changes are rare (this was the first since 2022).",
+  "next_change_date": null,
+  "affects": [
+   "mileage log / deduction calculators",
+   "self-employed tax planners",
+   "STR host expense trackers",
+   "Etsy seller bookkeeping templates"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": [
+   "#12 Craft Fair workbook (uses 72.5 cents, STALE)",
+   "#13 Service Pricing Calculator (76 cents, current)"
+  ]
+ },
+ {
+  "id": "irs-standard-deduction-2026",
+  "name": "IRS standard deduction, tax year 2026",
+  "value": "Single (and MFS) $16,100; Married filing jointly $32,200",
+  "applies_to": "Tax year 2026 (Rev. Proc. 2025-32, IR-2025-103, Oct 9, 2025)",
+  "source_url": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill",
+  "source_phrase": "the standard deduction rises to $16,100 for tax year 2026",
+  "next_change_window": "Tax year 2027 inflation adjustments are usually released in October or November (the 2026 release came Oct 9, 2025). Not yet released as of Oct 4, 2026.",
+  "next_change_date": null,
+  "affects": [
+   "income tax estimators",
+   "quarterly estimated tax planners",
+   "self-employed budget templates"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": []
+ },
+ {
+  "id": "irs-tax-brackets-single-2026",
+  "name": "IRS 2026 marginal rate thresholds, single filers",
+  "value": "10% up to $12,400; 12% over $12,400; 22% over $50,400; 24% over $105,700; 32% over $201,775; 35% over $256,225; 37% over $640,600 (MFJ top rate over $768,700)",
+  "applies_to": "Tax year 2026 (Rev. Proc. 2025-32)",
+  "source_url": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill",
+  "source_phrase": "top tax rate remains 37% for individual single taxpayers with incomes greater than $640,600",
+  "next_change_window": "Same as standard deduction: tax year 2027 Rev. Proc. usually October or November.",
+  "next_change_date": null,
+  "affects": [
+   "income tax estimators",
+   "quarterly estimated tax planners",
+   "S corp vs sole prop calculators"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": []
+ },
+ {
+  "id": "self-employment-tax-rate",
+  "name": "Self-employment tax rate",
+  "value": "15.3% total = 12.4% Social Security (OASDI, up to the wage base) + 2.9% Medicare (no cap)",
+  "applies_to": "Ongoing (statutory; no annual change)",
+  "source_url": "https://www.irs.gov/businesses/small-businesses-self-employed/self-employment-tax-social-security-and-medicare-taxes",
+  "source_phrase": "The self-employment tax rate is 15.3%.",
+  "next_change_window": "Only changes by legislation. Note: this IRS page still shows the 2024 wage base example ($168,600); use SSA for the current base.",
+  "next_change_date": null,
+  "affects": [
+   "self-employed tax calculators",
+   "quarterly estimated tax planners",
+   "Etsy seller and STR host profit calculators"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": [
+   "#13",
+   "#14"
+  ]
+ },
+ {
+  "id": "ssa-wage-base-2026",
+  "name": "Social Security contribution and benefit base (taxable maximum)",
+  "value": "$184,500 (2025 was $176,100)",
+  "applies_to": "Earnings in calendar year 2026",
+  "source_url": "https://www.ssa.gov/news/en/press/releases/2025-10-24.html",
+  "source_phrase": "slated to increase to $184,500 from $176,100",
+  "next_change_window": "2027 base is announced together with the 2027 COLA, which follows the September CPI release.",
+  "next_change_date": "2026-10-14 (expected, not posted by SSA; BLS releases September 2026 CPI that day)",
+  "affects": [
+   "self-employed tax calculators",
+   "payroll templates",
+   "S corp salary planners"
+  ],
+  "verified": true,
+  "checked": "2026-10-05",
+  "live_listings": [
+   "#8",
+   "#13"
+  ]
+ },
+ {
+  "id": "ssa-cola-2026",
+  "name": "Social Security cost-of-living adjustment (COLA)",
+  "value": "2.8%",
+  "applies_to": "Benefits for 2026 (announced Oct 24, 2025)",
+  "source_url": "https://www.ssa.gov/news/en/press/releases/2025-10-24.html",
+  "source_phrase": "will increase 2.8 percent in 2026",
+  "next_change_window": "2027 COLA is announced when BLS publishes September CPI. SSA's COLA page does not yet post a 2027 announcement date. Last year's announcement (Oct 24, 2025) was later than usual.",
+  "next_change_date": "2026-10-14 (expected; based on BLS September 2026 CPI release date, not an SSA-posted date)",
+  "affects": [
+   "retirement / side-income planners",
+   "budget templates for retirees selling on Etsy or hosting"
+  ],
+  "verified": true,
+  "checked": "2026-10-05",
+  "live_listings": []
+ },
+ {
+  "id": "bls-cpi-september-2026-release",
+  "name": "BLS CPI release date for September 2026 CPI (drives 2027 COLA and wage base)",
+  "value": "Wednesday Oct 14, 2026, 8:30 AM ET",
+  "applies_to": "September 2026 reference month",
+  "source_url": "https://www.bls.gov/schedule/news_release/cpi.htm",
+  "source_phrase": "September 2026 | Oct. 14, 2026 | 08:30 AM",
+  "next_change_window": "Following releases on the same page: October 2026 CPI on Nov 10, 2026; November 2026 CPI on Dec 10, 2026. December 2026 CPI date not shown on the page as fetched.",
+  "next_change_date": "2026-10-14",
+  "affects": [
+   "any product indexed to CPI (COLA, state minimum wages, pricing escalators)"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": []
+ },
+ {
+  "id": "federal-minimum-wage",
+  "name": "Federal minimum wage (FLSA)",
+  "value": "$7.25 per hour",
+  "applies_to": "Current",
+  "source_url": "https://www.dol.gov/agencies/whd/minimum-wage/state",
+  "source_phrase": "must pay the current Federal minimum wage of $7.25 per hour",
+  "next_change_window": "Only by Congress; no change scheduled. DOL state page last updated July 1, 2026.",
+  "next_change_date": null,
+  "affects": [
+   "payroll templates",
+   "STR cleaner / contractor pay planners",
+   "small business hiring calculators"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": [
+   "#8"
+  ]
+ },
+ {
+  "id": "dol-state-minimum-wage-page",
+  "name": "DOL State Minimum Wage Laws page (master list of state rates)",
+  "value": "Lists each state's current rate; only Michigan's entry names a Jan 1, 2027 increase ($15.00). 30 states plus DC above federal; 13 at $7.25 (incl. IA, ID, IN, KS, KY, NC, ND, NH, OK, PA, TX, UT, WI); AL, GA, LA, MS, SC, TN, WY no law or below federal.",
+  "applies_to": "Page updated July 1, 2026",
+  "source_url": "https://www.dol.gov/agencies/whd/minimum-wage/state",
+  "source_phrase": "scheduled to increase on January 1, 2027 to $15.00 per hour",
+  "next_change_window": "DOL usually refreshes after Jan 1 and July 1 changes. State labor departments publish indexed rates first (mostly Aug to Oct).",
+  "next_change_date": null,
+  "affects": [
+   "payroll templates",
+   "small business hiring calculators",
+   "multi-state employer checklists"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": [
+   "#8"
+  ]
+ },
+ {
+  "id": "state-min-wage-ca-2027",
+  "name": "California minimum wage 2027",
+  "value": "$17.40 per hour",
+  "applies_to": "Effective Jan 1, 2027 (announced Aug 13, 2026)",
+  "source_url": "https://www.dir.ca.gov/DIRNews/2026/2026-66.html",
+  "source_phrase": "California's statewide minimum wage will increase to $17.40 per hour",
+  "next_change_window": "Indexed annually; announced by Aug 1 each year.",
+  "next_change_date": "2027-01-01",
+  "affects": [
+   "payroll templates",
+   "small business hiring calculators"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": []
+ },
+ {
+  "id": "state-min-wage-wa-2027",
+  "name": "Washington minimum wage 2027",
+  "value": "$17.73 per hour",
+  "applies_to": "Effective Jan 1, 2027 (announced Sept 30, 2026)",
+  "source_url": "https://www.lni.wa.gov/news-events/article/26-17",
+  "source_phrase": "Washington's minimum wage rises to $17.73 an hour in 2027",
+  "next_change_window": "Indexed annually; announced by Sept 30.",
+  "next_change_date": "2027-01-01",
+  "affects": [
+   "payroll templates",
+   "small business hiring calculators"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": []
+ },
+ {
+  "id": "state-min-wage-ct-2027",
+  "name": "Connecticut minimum wage 2027",
+  "value": "$17.48 per hour",
+  "applies_to": "Effective Jan 1, 2027 (announced Aug 5, 2026)",
+  "source_url": "https://portal.ct.gov/governor/news/press-releases/2026/08-2026/governor-lamont-announces-minimum-wage-will-increase",
+  "source_phrase": "Minimum Wage Will Increase to $17.48 on January 1, 2027",
+  "next_change_window": "Indexed annually to ECI; announced by Oct 15.",
+  "next_change_date": "2027-01-01",
+  "affects": [
+   "payroll templates",
+   "small business hiring calculators"
+  ],
+  "verified": true,
+  "checked": "2026-10-05",
+  "live_listings": []
+ },
+ {
+  "id": "state-min-wage-nj-2027",
+  "name": "New Jersey minimum wage 2027 (most employers)",
+  "value": "$16.48 per hour",
+  "applies_to": "Effective Jan 1, 2027 (announced Sept 29, 2026)",
+  "source_url": "https://www.nj.gov/labor/lwdhome/press/2026/20260929_min_wage.shtml",
+  "source_phrase": "increase by $0.56 to $16.48 per hour for most employees",
+  "next_change_window": "Indexed annually; announced around late September or October.",
+  "next_change_date": "2027-01-01",
+  "affects": [
+   "payroll templates",
+   "small business hiring calculators"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": []
+ },
+ {
+  "id": "state-min-wage-me-2027",
+  "name": "Maine minimum wage 2027",
+  "value": "$15.70 per hour",
+  "applies_to": "Effective Jan 1, 2027 (announced Sept 18, 2026)",
+  "source_url": "https://www.maine.gov/labor/news_events/article.shtml?id=13362373",
+  "source_phrase": "Maine's Minimum Wage to Increase to $15.70 Per Hour",
+  "next_change_window": "Indexed annually; announced in September.",
+  "next_change_date": "2027-01-01",
+  "affects": [
+   "payroll templates",
+   "small business hiring calculators"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": []
+ },
+ {
+  "id": "state-min-wage-mn-2027",
+  "name": "Minnesota minimum wage 2027",
+  "value": "$11.87 per hour (90-day under-20 training wage $9.68)",
+  "applies_to": "Effective Jan 1, 2027 (announced Aug 19, 2026)",
+  "source_url": "https://dli.mn.gov/news/minimum-wage-rate-adjusted-inflation-jan-1-2027",
+  "source_phrase": "$11.87 an hour for all employers in the state",
+  "next_change_window": "Indexed annually; announced in August.",
+  "next_change_date": "2027-01-01",
+  "affects": [
+   "payroll templates",
+   "small business hiring calculators"
+  ],
+  "verified": true,
+  "checked": "2026-10-05",
+  "live_listings": []
+ },
+ {
+  "id": "state-min-wage-oh-2027",
+  "name": "Ohio minimum wage 2027",
+  "value": "$11.40 per hour non-tipped; $5.70 tipped",
+  "applies_to": "Effective Jan 1, 2027 (announced Sept 30, 2026)",
+  "source_url": "https://com.ohio.gov/about-us/media-center/news/Ohio-Minimum-Wage-to-Increase-in-2027",
+  "source_phrase": "$11.40 per hour for non-tipped employees and $5.70 per hour for tipped employees",
+  "next_change_window": "Indexed annually; announced by Sept 30.",
+  "next_change_date": "2027-01-01",
+  "affects": [
+   "payroll templates",
+   "small business hiring calculators"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": []
+ },
+ {
+  "id": "state-min-wage-co-2027",
+  "name": "Colorado minimum wage 2027",
+  "value": "$15.71 per hour (tipped $12.69)",
+  "applies_to": "2027; release says 'in 2027' without naming the day (Colorado's annual change is Jan 1). Announced Aug 13, 2026.",
+  "source_url": "https://cdle.colorado.gov/press-releases/press-release-colorado-minimum-wage-will-increase-to-1571/hour-in-2027",
+  "source_phrase": "Colorado Minimum Wage will Increase to $15.71/hour in 2027",
+  "next_change_window": "Indexed annually; announced in August.",
+  "next_change_date": "2027-01-01",
+  "affects": [
+   "payroll templates",
+   "small business hiring calculators"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": []
+ },
+ {
+  "id": "state-min-wage-mi-2027",
+  "name": "Michigan minimum wage 2027",
+  "value": "$15.00 per hour (2026: $13.73)",
+  "applies_to": "Effective Jan 1, 2027 (statutory schedule, SB 8)",
+  "source_url": "https://www.michigan.gov/leo/bureaus-agencies/ber/wage-and-hour/min-wage",
+  "source_phrase": "Effective January 1, 2027 ... the minimum wage rate is $15.00 per hour",
+  "next_change_window": "After 2027, adjusted annually by formula.",
+  "next_change_date": "2027-01-01",
+  "affects": [
+   "payroll templates",
+   "small business hiring calculators"
+  ],
+  "verified": true,
+  "checked": "2026-10-05",
+  "live_listings": []
+ },
+ {
+  "id": "state-min-wage-ri-2027",
+  "name": "Rhode Island minimum wage 2027",
+  "value": "$17.00 per hour (2026: $16.00)",
+  "applies_to": "Effective Jan 1, 2027 (statutory)",
+  "source_url": "https://dlt.ri.gov/regulation-and-safety/labor-standards/minimum-wage",
+  "source_phrase": "Commencing January 1, 2027: $17.00 per hour",
+  "next_change_window": "Set by legislation.",
+  "next_change_date": "2027-01-01",
+  "affects": [
+   "payroll templates",
+   "small business hiring calculators"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": []
+ },
+ {
+  "id": "state-min-wage-va-2027",
+  "name": "Virginia minimum wage 2027",
+  "value": "$13.75 per hour (2026: $12.77; $15.00 on Jan 1, 2028)",
+  "applies_to": "Effective Jan 1, 2027 (SB1/HB1 signed, release Apr 9, 2026)",
+  "source_url": "https://www.governor.virginia.gov/newsroom/news-releases/2026/april-releases/name-1116004-en.html",
+  "source_phrase": "increase the minimum wage to $13.75 per hour on January 1, 2027",
+  "next_change_window": "Set by legislation; next step Jan 1, 2028.",
+  "next_change_date": "2027-01-01",
+  "affects": [
+   "payroll templates",
+   "small business hiring calculators"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": []
+ },
+ {
+  "id": "state-min-wage-ne-2027",
+  "name": "Nebraska minimum wage 2027",
+  "value": "UNVERIFIED: CPI-indexed increase effective Jan 1, 2027 is stated, but no dollar amount published yet (2026 rate $15.00)",
+  "applies_to": "Effective Jan 1, 2027",
+  "source_url": "https://dol.nebraska.gov/PressRelease/Details/338",
+  "source_phrase": "will increase based on the cost-of-living increase as measured by the Consumer Price Index",
+  "next_change_window": "Check Nebraska DOL press releases in Q4 2026.",
+  "next_change_date": "2027-01-01",
+  "affects": [
+   "payroll templates",
+   "small business hiring calculators"
+  ],
+  "verified": false,
+  "checked": "2026-10-05",
+  "live_listings": []
+ },
+ {
+  "id": "futa-rate-wage-base",
+  "name": "FUTA tax rate, wage base, and effective rate after credit",
+  "value": "6.0% on the first $7,000 per employee; up to 5.4% credit; 0.6% effective rate (so $42 per employee at the $7,000 cap, by arithmetic) when full credit applies",
+  "applies_to": "Ongoing (statutory); credit reduction states pay more",
+  "source_url": "https://www.irs.gov/taxtopics/tc759",
+  "source_phrase": "the FUTA tax rate after credit is 0.6%",
+  "next_change_window": "Rate and base change only by legislation. Credit reduction states are announced by DOL after the Nov 10 deadline each year (IRS FUTA credit reduction page).",
+  "next_change_date": "2026-11-10 (credit reduction determination deadline; announcement follows)",
+  "affects": [
+   "payroll templates",
+   "first-hire cost calculators",
+   "STR employer checklists"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": [
+   "#8 Payroll Guide"
+  ]
+ },
+ {
+  "id": "usps-forever-stamp-price",
+  "name": "USPS First-Class Mail Forever stamp price",
+  "value": "82 cents (up from 78 cents)",
+  "applies_to": "Since July 12, 2026 (confirmed on USPS letter rate history page)",
+  "source_url": "https://about.usps.com/newsroom/national-releases/2026/0409-usps-recommends-new-prices-for-july.htm",
+  "source_phrase": "Forever stamp from 78 cents to 82 cents",
+  "next_change_window": "Mailing services price changes are filed with the PRC about 90 days ahead; USPS kept stamps flat in January 2026 and raised them in July.",
+  "next_change_date": null,
+  "affects": [
+   "Etsy seller shipping calculators",
+   "thank-you card / mailer cost templates",
+   "small business postage budgets"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": [
+   "#7"
+  ]
+ },
+ {
+  "id": "usps-january-2027-price-change",
+  "name": "USPS January 2027 price change (filed or announced?)",
+  "value": "UNVERIFIED: no January 2027 price filing found on USPS newsroom (about.usps.com, news.usps.com) or in PRC search results as of Oct 4, 2026",
+  "applies_to": "January 2027",
+  "source_url": "https://about.usps.com/newsroom/national-releases/2025/1114-usps-recommends-new-competitive-prices-for-2026.pdf",
+  "source_phrase": "the price of a First-Class Mail stamp will not change",
+  "next_change_window": "Last cycle, January shipping prices were announced Nov 14, 2025 for a Jan 18, 2026 effective date (and stamps did not change). Expect a filing around mid-November 2026 if USPS follows the same pattern.",
+  "next_change_date": null,
+  "affects": [
+   "Etsy seller shipping calculators",
+   "small business postage budgets"
+  ],
+  "verified": false,
+  "checked": "2026-10-05",
+  "live_listings": []
+ },
+ {
+  "id": "usps-holiday-temporary-rates-2026",
+  "name": "USPS 2026 holiday temporary price change (shipping products)",
+  "value": "In effect 12 a.m. CT Oct 4, 2026 until 12 a.m. CT Jan 17, 2027 on Priority Mail Express, Priority Mail, Ground Advantage, Parcel Select (PRC Docket CP2026-10)",
+  "applies_to": "Oct 4, 2026 to Jan 17, 2027",
+  "source_url": "https://about.usps.com/newsroom/national-releases/2026/0825-usps-announces-temporary-price-change-for-2026-holiday-shipping-season.htm",
+  "source_phrase": "remain in place until 12 a.m. CT on Jan. 17, 2027",
+  "next_change_window": "Ends Jan 17, 2027.",
+  "next_change_date": "2027-01-17",
+  "affects": [
+   "Etsy seller shipping calculators",
+   "holiday shipping guides"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": [
+   "#7 (check its USPS rates against holiday pricing)"
+  ]
+ },
+ {
+  "id": "usps-transportation-time-limited-increase",
+  "name": "USPS transportation-related time-limited price change",
+  "value": "8% increase on Priority Mail Express, Priority Mail, Ground Advantage, Parcel Select; stamps excluded",
+  "applies_to": "Midnight CT Apr 26, 2026 to midnight CT Jan 17, 2027",
+  "source_url": "https://about.usps.com/newsroom/national-releases/2026/0325-usps-announces-transportation-related-time-limited-price-change.htm",
+  "source_phrase": "a time-limited price change to better align its costs of transportation",
+  "next_change_window": "Ends Jan 17, 2027.",
+  "next_change_date": "2027-01-17",
+  "affects": [
+   "Etsy seller shipping calculators",
+   "small business postage budgets"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": [
+   "#7"
+  ]
+ },
+ {
+  "id": "etsy-listing-fee",
+  "name": "Etsy listing fee",
+  "value": "$0.20 USD per listing",
+  "applies_to": "Current",
+  "source_url": "https://help.etsy.com/hc/en-us/articles/360035902374-Etsy-Fee-Basics",
+  "source_phrase": "The listing fee is a flat rate charge of $0.20 USD per listing.",
+  "next_change_window": "No fixed schedule; Etsy announces changes via Seller Handbook and the Fees & Payments Policy. Policy page shows 'Last updated on Oct 5, 2026' with no change notice found.",
+  "next_change_date": null,
+  "affects": [
+   "Etsy fee / profit calculators",
+   "Etsy pricing templates"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": [
+   "#5"
+  ]
+ },
+ {
+  "id": "etsy-transaction-fee",
+  "name": "Etsy transaction fee",
+  "value": "6.5% of the total order amount (item price plus shipping and gift wrap)",
+  "applies_to": "Current",
+  "source_url": "https://help.etsy.com/hc/en-us/articles/360035902374-Etsy-Fee-Basics",
+  "source_phrase": "Etsy charges 6.5% of the total order amount",
+  "next_change_window": "No fixed schedule. Watch etsy.com/legal/fees.",
+  "next_change_date": null,
+  "affects": [
+   "Etsy fee / profit calculators",
+   "Etsy pricing templates"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": [
+   "#5 Etsy Profit Calculator",
+   "#7 Shipping True-Cost Calculator",
+   "#12 Craft Fair workbook"
+  ]
+ },
+ {
+  "id": "etsy-payment-processing-us",
+  "name": "Etsy Payments processing fee, US bank account",
+  "value": "3% + $0.25 USD per order",
+  "applies_to": "Current, shops with a US bank account",
+  "source_url": "https://help.etsy.com/hc/en-us/articles/115015628847-What-are-Payment-Processing-Fees-for-Selling-on-Etsy",
+  "source_phrase": "3% + 0.25 USD",
+  "next_change_window": "No fixed schedule.",
+  "next_change_date": null,
+  "affects": [
+   "Etsy fee / profit calculators",
+   "Etsy pricing templates"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": [
+   "#5",
+   "#7"
+  ]
+ },
+ {
+  "id": "etsy-offsite-ads-fee",
+  "name": "Etsy Offsite Ads fee",
+  "value": "15% if under $10,000 sales in prior 365 days; 12% once a shop reaches $10,000",
+  "applies_to": "Current",
+  "source_url": "https://www.etsy.com/legal/fees/",
+  "source_phrase": "you will pay a fee of 15%",
+  "next_change_window": "No fixed schedule.",
+  "next_change_date": null,
+  "affects": [
+   "Etsy fee / profit calculators"
+  ],
+  "verified": true,
+  "checked": "2026-10-05",
+  "live_listings": [
+   "#5"
+  ]
+ },
+ {
+  "id": "airbnb-split-fee-host",
+  "name": "Airbnb split-fee structure, host share",
+  "value": "Host 3% (4% for Brazil and Mexico listings); guest fee 14.1% to 16.5% of booking subtotal",
+  "applies_to": "Current for hosts not yet migrated; Airbnb is moving home hosts to the single fee",
+  "source_url": "https://www.airbnb.com/help/article/1857",
+  "source_phrase": "Most hosts pay a 3% service fee, but some pay more.",
+  "next_change_window": "Being phased out. Airbnb's Jul 7, 2026 (updated Aug 24, 2026) Resource Center post set price-adjust deadlines of Sept 15, 2026 (outside EEA) and Oct 13, 2026 (EEA and Switzerland).",
+  "next_change_date": "2026-10-13 (EEA/Switzerland price-adjust deadline)",
+  "affects": [
+   "STR pricing calculators",
+   "STR host profit / payout templates"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": [
+   "#9"
+  ]
+ },
+ {
+  "id": "airbnb-host-only-fee",
+  "name": "Airbnb single (host-only) service fee",
+  "value": "15.5% for most hosts (others typically 14% to 16%; 16% for Brazil and Mexico)",
+  "applies_to": "Current; applies to reservations made after a host switches to the single fee",
+  "source_url": "https://www.airbnb.com/help/article/1857",
+  "source_phrase": "Most hosts pay 15.5%, remaining hosts typically pay 14%-16%",
+  "next_change_window": "No fixed schedule.",
+  "next_change_date": null,
+  "affects": [
+   "STR pricing calculators",
+   "STR host profit / payout templates"
+  ],
+  "verified": true,
+  "checked": "2026-10-06",
+  "live_listings": [
+   "#9 STR Nightly Pricing Worksheet"
+  ]
+ },
+ {
+  "id": "irs-estimated-tax-2026-q4",
+  "name": "IRS 2026 estimated tax, 4th payment due date",
+  "value": "Jan 15, 2027 (Friday). Not required if 2026 return filed by Feb 1, 2027 with full payment.",
+  "applies_to": "Tax year 2026 (Q1 Apr 15, Q2 Jun 15, Q3 Sept 15, 2026)",
+  "source_url": "https://www.irs.gov/pub/irs-pdf/f1040es.pdf",
+  "source_phrase": "4th payment ... Jan. 15, 2027",
+  "next_change_window": "Fixed by rule.",
+  "next_change_date": "2027-01-15",
+  "affects": [
+   "quarterly estimated tax planners",
+   "self-employed tax calendars",
+   "Etsy seller and STR host tax calendars"
+  ],
+  "verified": true,
+  "checked": "2026-10-05",
+  "live_listings": []
+ },
+ {
+  "id": "irs-estimated-tax-2027-dates",
+  "name": "IRS 2027 estimated tax due dates",
+  "value": "UNVERIFIED: 2027 Form 1040-ES not yet published. Expected by rule: Apr 15, 2027; Jun 15, 2027; Sept 15, 2027; Jan 18, 2028 (Jan 15, 2028 is a Saturday and Jan 17 is MLK Day)",
+  "applies_to": "Tax year 2027",
+  "source_url": "https://www.irs.gov/publications/p509",
+  "source_phrase": "Payments are due on the 15th day of the 4th, 6th, and 9th months",
+  "next_change_window": "2027 Form 1040-ES is usually posted in December or January; confirm dates there.",
+  "next_change_date": null,
+  "affects": [
+   "quarterly estimated tax planners",
+   "self-employed tax calendars"
+  ],
+  "verified": false,
+  "checked": "2026-10-05",
+  "live_listings": []
+ }
 ]

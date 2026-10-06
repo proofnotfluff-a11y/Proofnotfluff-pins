@@ -203,7 +203,7 @@ for i in range(CAP):
     for j, v in enumerate(vals):
         c = ch.cell(r, 2 + j, v if v != "" else None); inp(c)
     ch.cell(r, 9, f'=IF(OR($B{r}="",$F{r}<>"Y",$D{r}=""),0,$D{r}*IFERROR(VLOOKUP($E{r},{FREQ_RNG},2,FALSE),0))').number_format = "0"
-    ch.cell(r, 10, f'=$I{r}*IF($G{r}="Y",{WEIGHT},1)').number_format = "0"
+    ch.cell(r, 10, f'=$I{r}*IF($G{r}="Y",IF(ISNUMBER({WEIGHT}),MAX(1,{WEIGHT}),1),1)').number_format = "0"
     ch.cell(r, 12, f'=IF(AND($J{r}>0,{NPEOPLE}>0),IF(OR(AND($H{r}<>"",COUNTIF({NM},$H{r})>0),AND($G{r}="Y",{ROT}="Yes")),1000000,0)+$J{r}+ROW()/10000000,-ROW())').font = font(8, c="A0A4AE")
     ch.cell(r, 11, f'=IF(ISNA(MATCH({i+1},Math!$C${M0}:$C${M1},0)),"",INDEX(Math!$AE${M0}:$AE${M1},MATCH({i+1},Math!$C${M0}:$C${M1},0)))')
     ch.cell(r, 11).font = font(11, True)
@@ -338,7 +338,8 @@ pc["A4"] = "Week number to print (leave blank for this week):"; pc["A4"].font = 
 pc["A4"].alignment = Alignment(horizontal="right")
 c = pc["B4"]; inp(c); c.alignment = Alignment(horizontal="center")
 pc["C4"] = '="Calendar week "&P4&", rotation week "&Q4'; pc["C4"].font = font(9, c=GREY)
-pc["P4"] = f'=IF(B4<>"",MAX(1,INT(B4)),MAX(1,INT((TODAY()-{START})/7)+1))'
+pc["P4"] = f'=IF(ISNUMBER(B4),MAX(1,INT(B4)),MAX(1,INT((TODAY()-{START})/7)+1))'
+dvwk = DataValidation(type="whole", operator="between", formula1="1", formula2="520", allow_blank=True, showErrorMessage=True, errorStyle="stop", error="Type a week number, like 2, or leave it blank."); pc.add_data_validation(dvwk); dvwk.add("B4")
 pc["Q4"] = f"=MOD(P4-1,MAX(1,{NPEOPLE}))+1"
 for a in ("P4", "Q4"): pc[a].font = font(8, c="A0A4AE")
 header(pc, 6, ["Minutes this week", "Minutes", "Jobs"])

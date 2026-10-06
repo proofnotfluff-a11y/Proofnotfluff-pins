@@ -150,7 +150,7 @@ doc = f"""<html><head><meta charset='utf-8'><style>{CSS_DOC}</style></head><body
 <li>Etsy Help, "Downloading a Digital Item": help.etsy.com</li></ul>
 <p>The minutes for each chore are ProofNotFluff's starting estimates for planning, not survey figures.</p>
 <h2>Terms of Use</h2>
-<p>Your purchase gives you a personal license for yourself or one business you own. No resale, sharing or redistribution. Information and planning only, not professional advice. Results are estimates based on your inputs. Provided "as is"; to the extent the law allows, liability is limited to the price you paid. Microsoft Excel, Google Sheets and Etsy are trademarks of their owners; ProofNotFluff isn't affiliated with them. The full Terms are in LICENSE-AND-DISCLAIMER.txt and on the Terms tab. Made with AI assistance and reviewed and tested by the shop owner.</p>
+<p>Your purchase gives you a personal license for yourself or one business you own. No resale, sharing or redistribution. Information and planning only, not professional advice. Results are estimates based on your inputs. Provided "as is"; to the extent the law allows, liability is limited to the price you paid. Microsoft Excel, Google Sheets, Canva and Etsy are trademarks of their owners. ProofNotFluff isn't affiliated with, sponsored or endorsed by them. The full Terms are in LICENSE-AND-DISCLAIMER.txt and on the Terms tab. Made with AI assistance and reviewed and tested by the shop owner.</p>
 <h2>Thank you</h2>
 <p class='big'>If the chart helps your home, a short review on Etsy helps other people find it.</p>
 <p style='font-size:15px'>If anything doesn't open or looks wrong, message me on Etsy and I'll fix it.</p>
@@ -194,7 +194,7 @@ imgs = f"""<html><head><meta charset='utf-8'><style>{CSS_IMG}</style></head><bod
 <div style='margin-top:30px'>{chart_list(S, 0)}</div>
 <div class='foot'>Sample week of October 12, 2026. One box per time a job is due.</div></div>
 
-<div class='v' id='v5'><div class='k' style='margin-top:0'>WHAT'S INSIDE</div><h2 style='margin-top:20px'>4 files, not 40.<br>No Canva to glitch.</h2>
+<div class='v' id='v5'><div class='k' style='margin-top:0'>WHAT'S INSIDE</div><h2 style='margin-top:20px'>4 files, not 40.<br>No design app needed.</h2>
 <ul class='big'><li><b>1 workbook</b> for Excel and Google Sheets, 9 tabs</li><li><b>{NLIST} chores</b> already listed with minutes and how often</li><li><b>Up to 4 people</b>, even or custom shares like 60/40</li><li><b>Weekly rotation</b> for the jobs nobody wants</li><li><b>Printable chart</b>, one page, grouped by person</li><li><b>Start Here guide</b> PDF, US Letter and A4</li><li><b>Terms of Use</b> text file</li></ul>
 <div class='foot'>Digital download. No physical item ships. Made with AI assistance and reviewed and tested by the shop owner.</div></div>
 </body></html>"""

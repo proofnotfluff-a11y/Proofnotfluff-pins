@@ -32,7 +32,7 @@ WHAT IT DOES
 
 BUILT TO FIX WHAT BUYERS OF OTHER CHORE CHARTS COMPLAIN ABOUT
 - Bundles too big, too many pages and files: 4 files, one workbook. One layout, not several versions of the same chart.
-- Canva glitches and files that won't open: no Canva and no editing app to learn. A plain .xlsx and PDFs.
+- Files that need a design app, or won't open: no Canva account and no editing app to learn. A plain .xlsx and PDFs.
 - Blank forms you fill in yourself, templates that need full editing: 42 chores are already listed with starting minutes and how often. You type names and a start date, and set Include to N for what your home doesn't have (and Y for any chore you add).
 - Made for families with kids: made for adults who share a home, 1 to 4 people, couples and roommates.
 
@@ -53,7 +53,7 @@ Made with AI assistance and reviewed and tested by the shop owner.
 Information and planning tool only, not legal, tax, financial or other professional advice. Results are estimates based on your inputs.
 Digital download. No physical item ships.
 File problems fixed on request through Etsy messages.
-Not affiliated with or endorsed by Microsoft or Google.
+Microsoft Excel, Google Sheets, Canva and Etsy are trademarks of their owners. ProofNotFluff isn't affiliated with, sponsored or endorsed by them.
 
 ## Pinterest board
 Family Planning and Organizing (1138144205771248844)

@@ -11,3 +11,5 @@ Rebuild (about 2 minutes):
 How it works: Math tab ranks chores (pinned and rotating "Nobody wants it" jobs first, then by weighted minutes), and for each of 4 pattern weeks assigns each job to the person with the lowest load divided by share (greedy, biggest first). Rotating jobs move by MOD(rank, people) each week. The Printable Chart is one portrait list grouped by person (LibreOffice ignores dynamic print areas, so no multi-column layout).
 
 Sources checked Oct 5, 2026: BLS ATUS 2025 results (bls.gov/news.release/atus.nr0.htm, released June 25, 2026); Etsy Help "Downloading a Digital Item".
+
+Oct 6, 10:26 am, cloud builder: v2 after the Legal desk FIX (P4 ISNUMBER and B4 validation, weight-blank J formula, listing Canva wording, Canva in the trademark line, image 05 headline). Gate PASS round 1. Zip sha256 13b8b080...09e8.

@@ -2,7 +2,7 @@
 
 Every Excel and Google Sheets product the shop sells is built to this standard, with `tools/wb_style.py`. A reviewer fails a workbook against it; a builder follows it without judgment calls. Nothing here needs a macro, a form control, an Excel table, a slicer, a sparkline or a dynamic array: everything renders the same in Excel for Windows, Excel for Mac and Google Sheets.
 
-Reference build: #20 Hourly Rate Quick Calculator v3, built by `engines/hourly-rate-quick-calculator/build_xlsx.py` with `tools/pnf_dash.py`. Copy its structure for every new calculator.
+Reference builds: #20 Hourly Rate Quick Calculator v3 (one working tab), `engines/hourly-rate-quick-calculator/build_xlsx.py`, and #13 Service Pricing Calculator v3 (five numbered working tabs), `engines/service-pricing/build_xlsx.py`. #13 shows the multi-tab patterns: data tables with `pnf_dash.table_card` (one validation per input column, column-specific error text, landscape, fit to one page or repeat the header row when printing), a headline `stat_strip` over a log, a full-width picker card with a list dropdown, and the preset-plus-override pattern (blank override cells use the preset, and the build card says which one was used). Copy the closer of the two for every new workbook.
 
 ## 0. Version 3: the dashboard layout (Oct 6, 2026; overrides sections 2, 5 and 9 wherever they differ)
 

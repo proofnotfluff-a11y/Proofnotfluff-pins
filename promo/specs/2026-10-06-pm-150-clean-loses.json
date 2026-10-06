@@ -1,0 +1,23 @@
+{
+  "product_id": "13",
+  "product": "Service Pricing Calculator",
+  "tab": "3 Quote Builder",
+  "audience": "Service businesses",
+  "hookId": "H02",
+  "series": "20-mile drive Short follow-up 1 of 3 (drive time on a small job)",
+  "hook": "Charging $150 for a 2.5-hour clean? You lose <b>$33.79</b>",
+  "hook_say": "Here is what a $150 price on a 2.5-hour job really pays once the drive is counted.",
+  "rows": [
+    {"label": "Hours on site, 1 person", "value": "2.5", "input": true, "say": "A 2.5-hour job, 1 person", "why": "The calculator's first example: a standard clean of a 2-bedroom home, 2.5 hours on site, one person, $8 of supplies."},
+    {"label": "Round-trip miles", "value": "15", "input": true, "say": "15 miles round trip", "why": "A 15-mile round trip at 30 mph is 30 minutes behind the wheel."},
+    {"label": "Your price now", "value": "$150", "input": true, "say": "You charge $150", "why": "Type the price you charge today: $150."},
+    {"label": "Drive time at your break-even rate", "value": "$27.40", "say": "30 minutes of driving: $27.40", "why": "Your break-even rate is $54.80 per paid hour, from $52,000 of take-home pay, $545 a month of costs and the taxes, spread over paid hours only. Half an hour of driving costs $27.40."},
+    {"label": "Vehicle cost, 76 cents a mile", "value": "$11.40", "say": "Mileage: $11.40", "why": "15 miles at the IRS rate of 76 cents a mile is $11.40."},
+    {"label": "Price floor, zero profit", "value": "$183.79", "say": "Your floor is $183.79", "why": "Labor on site, drive time, mileage and supplies: $183.79 just to break even."},
+    {"label": "At $150 you make", "value": "-$33.79", "result": true, "kind": "bad", "say": "At $150 you lose $33.79", "why": "At $150 the job pays $33.79 less than it costs you. The check line says it in plain words: below your floor."}
+  ],
+  "fix": {"label": "Quote, rounded up to the next $5", "value": "$220", "say": "Quote about $220", "why": "With a 15% profit margin, rounded up to the next $5, the quote is $220. The Price Sheet does this for every job type at once."},
+  "cta": {"title": "Service Pricing Calculator", "button": "Instant download", "sub": "On Etsy: etsy.com/shop/ProofNotFluff", "say": "Run your own numbers"},
+  "note": "Example numbers from the calculator. Yours go in the yellow cells.",
+  "sources": "Product #13 Service-Pricing-Calculator.xlsx built from engines/service-pricing/build.py and recalculated in LibreOffice Oct 6, 2026: 3 Quote Builder B8 to B11, D14 150, B21 0.5 h, B23 27.40, B24 11.40, B26 183.79, B29 220, B34 -33.79, B35 check text; 1 Your Numbers B5 52,000, B24 545, B32 76 cents, B33 30 mph, B38 54.80."
+}

@@ -1,0 +1,21 @@
+{
+  "product_id": "9",
+  "product": "STR Nightly Pricing Worksheet",
+  "tab": "Fee-Reset Check",
+  "audience": "Airbnb hosts",
+  "hookId": "H01",
+  "hook": "Same $185 night, new 15.5% fee: <b>$4,625</b> a year gone",
+  "hook_say": "Here is what Airbnb's single 15.5% host fee takes from a $185 night if you change nothing.",
+  "rows": [
+    {"label": "Your nightly rate", "value": "$185", "input": true, "say": "A $185 night", "why": "Start with the nightly rate you charged under the split fee: $185."},
+    {"label": "Host fee before, split fee", "value": "3%", "input": true, "say": "You paid 3% before", "why": "Under the split fee most hosts paid 3% and guests paid their own service fee."},
+    {"label": "Host fee now, single fee", "value": "15.5%", "input": true, "say": "Now you pay 15.5%", "why": "From September 15, 2026, independent hosts outside the EEA pay a single 15.5% host fee. The sheet tells you to check the current fee for your listing."},
+    {"label": "Booked nights per year", "value": "200", "input": true, "say": "200 nights a year", "why": "Use last year's booked nights. The example uses 200."},
+    {"label": "Payout per night, before vs now", "value": "$179.45 to $156.33", "say": "Payout: $179.45 down to $156.33", "why": "Your payout per night drops from $179.45 to $156.33, 12.9% less on every booking."},
+    {"label": "Payout lost per year", "value": "$4,625", "result": true, "kind": "bad", "say": "$4,625 a year gone", "why": "Over 200 nights, changing nothing costs $4,625 a year."}
+  ],
+  "fix": {"label": "Set your nightly rate to", "value": "$213", "say": "Raise to $213", "why": "Divide the old payout by 1 minus the new fee and round up: $213 keeps your $179.45 payout per night."},
+  "cta": {"title": "STR Nightly Pricing Worksheet", "button": "Instant download", "sub": "On Etsy: etsy.com/shop/ProofNotFluff", "say": "Run your own numbers"},
+  "note": "Example numbers from the worksheet. Check your own fee in Airbnb.",
+  "sources": "Product #9 STR-Nightly-Pricing-Worksheet.xlsx from Drive folder 09 zip, recalculated in LibreOffice Oct 6, 2026: Fee-Reset Check B5 185, B6 3%, B7 15.5% (note C7: single 15.5% host fee from Sep 15, 2026 outside the EEA, per Airbnb 'Simplifying service fees on Airbnb' and Help Center article 1857, read Sep 29, 2026), B8 200, B11 179.45, B12 156.325 (shown 156.33 in B23), B14 12.9%, B15 4,625, B19 213."
+}

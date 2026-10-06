@@ -1,0 +1,60 @@
+{
+  "product_id": "14",
+  "product": "Cleaning Business Starter Kit",
+  "tab": "4 Quote Builder",
+  "audience": "House cleaners",
+  "hookId": "H01",
+  "series": "Cleaning $22 vs $55 Short follow-up 1 of 3 (recurring discount angle)",
+  "hook": "Every 2 weeks at $245? Only <b>$18.61</b> is profit",
+  "hook_say": "Here is how much of a $245 every-2-weeks clean is profit once the 10% recurring discount comes off.",
+  "rows": [
+    {
+      "label": "Home",
+      "value": "1,800 sq ft",
+      "input": true,
+      "say": "1,800 sq ft, 3 bed, 2.5 bath, 1 pet",
+      "why": "The kit's example home: 1,800 square feet, 3 bedrooms, 2 full and 1 half bath, 1 pet, an inside fridge and 8 interior windows."
+    },
+    {
+      "label": "Cleaners, round-trip miles",
+      "value": "2, 16 mi",
+      "input": true,
+      "say": "2 cleaners, 16 miles round trip",
+      "why": "You plus one paid helper, 16 miles round trip. Your hours cost your break-even rate, the helper's hours cost the helper rate."
+    },
+    {
+      "label": "One-time price, rounded up",
+      "value": "$270",
+      "say": "One-time price: $270",
+      "why": "Timed by square feet and by room count, the larger one wins, priced at your numbers and rounded up to the next $5: $270 for a one-time standard clean."
+    },
+    {
+      "label": "Every 2 weeks, 10% off",
+      "value": "$245",
+      "say": "Every 2 weeks, 10% off: $245",
+      "why": "Take 10% off for an every-2-weeks client and the visit price is $245."
+    },
+    {
+      "label": "Price floor, zero profit",
+      "value": "$226.39",
+      "say": "Your floor is $226.39",
+      "why": "Labor, the helper, vehicle cost at 76 cents a mile and supplies: $226.39 just to cover your pay goal, costs and taxes."
+    },
+    {
+      "label": "Profit per visit beyond your floor",
+      "value": "$18.61",
+      "result": true,
+      "kind": "bad",
+      "say": "Profit: $18.61 a visit",
+      "why": "That leaves $18.61 of profit per visit. The kit's check line flags it: above your floor, but under your target margin at this frequency. Change the discount or the minutes and watch the line."
+    }
+  ],
+  "cta": {
+    "title": "Cleaning Business Starter Kit",
+    "button": "Instant download",
+    "sub": "On Etsy: etsy.com/shop/ProofNotFluff",
+    "say": "Run your own numbers"
+  },
+  "note": "Example numbers from the kit. Yours go in the yellow cells.",
+  "sources": "Product #14 Cleaning-Business-Pricing-and-Planner.xlsx from Drive folder 14 zip (Oct 4 build), recalculated in LibreOffice Oct 6, 2026: 4 Quote Builder B7 to B20 and B25, B27 (inputs), B53 270, B54 10%, B55 245, B50 226.39, B59 18.61, B61 check text; 2 Your Numbers B32 76 cents."
+}

@@ -19,6 +19,7 @@ PACK ON THE SHELF (the scoreboard artifact's asset store; zip files are not acce
 - base64 -w0 product.zip > product.zip.b64.txt
 - Upload with the Artifact tool, url https://claude.ai/artifact/N9eKZy7Pv39njSe4izVgbE, asset: true: the five PNG images in one call (file_paths, in order), then product.zip.b64.txt in its own call, then listing.md in its own call. Keep each returned id.
 - Update the idea (pin its version): {status:"packed", packedAt:<ISO>, shelf:{zipB64:<id>, zipName:"<file>.zip", zipSha256:<sha256 of the zip>, images:[<5 ids in order>], listing:<id>}, listingTitle:<title>}.
+- Hand-off: once the idea is "packed", fire the Legal desk once (Claude_Code_Remote fire_trigger trig_01ME3CU1Cg6b4Ecm9aSfjRfK, no text) so it reviews now; at most once per run, nothing else.
 
 FINISH
 - Scoreboard: update agents/builder {state:"idle", lastRun:"<like Sun Oct 4, 3:10 pm>", lastStatus:"ok"|"partial"|"failed", lastNote:<one plain sentence>}; append to log/<today> entries {t, agent:"Cloud builder", text:<one sentence>, xp:0} (create the doc if missing).

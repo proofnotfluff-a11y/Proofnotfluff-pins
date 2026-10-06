@@ -2,7 +2,25 @@
 
 Every Excel and Google Sheets product the shop sells is built to this standard, with `tools/wb_style.py`. A reviewer fails a workbook against it; a builder follows it without judgment calls. Nothing here needs a macro, a form control, an Excel table, a slicer, a sparkline or a dynamic array: everything renders the same in Excel for Windows, Excel for Mac and Google Sheets.
 
-Reference build: #20 Hourly Rate Quick Calculator v2, built by `engines/hourly-rate-quick-calculator/build_xlsx.py`. Copy its structure for every new calculator.
+Reference build: #20 Hourly Rate Quick Calculator v3, built by `engines/hourly-rate-quick-calculator/build_xlsx.py` with `tools/pnf_dash.py`. Copy its structure for every new calculator.
+
+## 0. Version 3: the dashboard layout (Oct 6, 2026; overrides sections 2, 5 and 9 wherever they differ)
+
+Todd's bar: it must look like a world-class model builder and a product designer made it. v2's single long list with a note on every row failed that bar. Every working tab is now a dashboard built with `tools/pnf_dash.py`:
+
+- **Canvas and cards.** Warm canvas F3F1EC behind white cards with a hairline frame E2DDD3. Content never sits on the bare canvas except the page header.
+- **Page header** (rows 1 to 5): title 20 pt bold, brand at the right, the five-bar strip, a one-line promise of what the tab does, the as-of date at the right.
+- **Answer tiles** (rows 6 to 9, frozen): two tiles side by side. Left: the main answer on ink, 28 pt white, with one sub line. Right: the answer to "what does my current choice really pay", on white, its number colored teal or accent by a conditional rule, with a sub line that says how far from the goal in words.
+- **Two card columns** on one grid: A 3 | B 2 | C 31 | D 14 | E 2 | F 3 | G 2 | H 24 | I 12 | J 17 | K 2 | L 3. Left column: the inputs card first ("Your numbers"), then the scenario checker. Right column: "How it's built" (the derivation as a short, readable sum with a total rule) and a sensitivity card. Full-width cards below for anything that needs both halves (a quote) and for Notes and sources.
+- **One row height** (21 pt) for every row in the card zone so the two columns never squeeze each other. Card top and bottom padding is one row.
+- **Inside a card**: title 12 pt bold, one muted 9 pt sub line, small-caps eyebrow labels (8 pt bold muted, uppercase) to group rows, hairline dividers EFEBE4 under each row, an ink rule on top of total rows, a soft tint F6F3EE on the key total.
+- **No per-row notes.** Explanations live in each input's validation message (shown when the cell is selected), in the card sub line, and in the Notes and sources card. The worksheet reads like a product, not a memo.
+- **Inputs**: fill FFF6D6, border E3C978, bold blue 1F4E9E numbers, unlocked, validated, named.
+- **In-cell bars** (REPT of a full block in a colored 9 pt font, indent 1) to show proportions: where each unit of money goes, sensitivity tables. No chart objects.
+- **Status in words and color**: a pill row or sub line written by formula ("Short of your take-home goal by $29,940 a year"), colored by a conditional rule that ignores blanks.
+- **Blank-safe**: clear every input and the tab still shows zero error values and no misleading status text. Stress-test blank, extreme and changed inputs with `render_xlsx.py` before shipping.
+- **Print**: page breaks between cards so no card splits across pages.
+- **Start Here and Terms** use the same card language in one column (A 3 | B 2 | C 8 | D 62 | E 18 | F 2 | G 3): What it does, Three steps (accent numbers), How to read the cells (input chip, plain number, dark answer chip), The example, Good to know, Before you rely on a number; Terms carries the links and the full Terms of Use with bold lead-ins.
 
 ## 1. Tab structure
 

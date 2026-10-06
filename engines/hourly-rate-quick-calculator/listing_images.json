@@ -1,0 +1,106 @@
+{
+  "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+  "images": [
+    {
+      "type": "cover",
+      "eyebrow": "HOURLY RATE CALCULATOR",
+      "title": "Find the hourly rate that pays you what you want.",
+      "sub": "Type six numbers. Get your rate, your real pay and a job quote.",
+      "shot": "r/02-Calculator.png",
+      "crop": [
+        0,
+        0.049,
+        1,
+        0.29
+      ]
+    },
+    {
+      "type": "shot",
+      "eyebrow": "SEE WHERE EVERY DOLLAR GOES",
+      "title": "Every number shows its work.",
+      "sub": "Your take-home, grossed up for tax and costs, spread over the hours a client pays for.",
+      "shot": "r/02-Calculator.png",
+      "crop": [
+        0.465,
+        0.105,
+        1,
+        0.31
+      ],
+      "trim": true
+    },
+    {
+      "type": "shot",
+      "eyebrow": "TEST A RATE BEFORE YOU QUOTE IT",
+      "title": "See what $40 an hour really pays.",
+      "sub": "Costs and tax come out first, then a plain-words verdict against your goal.",
+      "shot": "r/02-Calculator.png",
+      "crop": [
+        0,
+        0.265,
+        0.465,
+        0.41
+      ],
+      "marks": [],
+      "trim": true
+    },
+    {
+      "type": "shot",
+      "eyebrow": "START IN TWO MINUTES",
+      "title": "One tab, nine yellow cells.",
+      "sub": "A Start Here page walks you through it. Letter and A4 PDFs included.",
+      "shot": "r/01-Start-Here.png",
+      "crop": [
+        0,
+        0,
+        0.356,
+        0.375
+      ],
+      "trim": true
+    },
+    {
+      "type": "inside",
+      "eyebrow": "ONE DOWNLOAD",
+      "title": "What's inside",
+      "tabs": [
+        {
+          "name": "Start Here",
+          "shot": "r/01-Start-Here.png",
+          "crop": [
+            0,
+            0,
+            0.356,
+            0.47
+          ]
+        },
+        {
+          "name": "Calculator",
+          "shot": "r/02-Calculator.png",
+          "crop": [
+            0,
+            0,
+            1,
+            0.51
+          ]
+        },
+        {
+          "name": "Terms",
+          "shot": "r/03-Terms.png",
+          "crop": [
+            0,
+            0,
+            0.356,
+            0.53
+          ]
+        }
+      ],
+      "items": [
+        "Minimum hourly rate, rounded for your rate card",
+        "Rate checker with a plain-words verdict",
+        "Rates at 50% to 80% of hours billed",
+        "Quick job quote with materials markup",
+        "Start Here PDF in US Letter and A4",
+        "Works in Excel, Google Sheets, LibreOffice"
+      ]
+    }
+  ]
+}

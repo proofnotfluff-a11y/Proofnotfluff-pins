@@ -170,10 +170,15 @@ Avoid them in calculators; a sorted table reads faster and prints the same every
 
 ## 15. Build and review flow
 
-1. Build with `wb_style.py`; call `audit(wb)` before saving (it checks tab order, gridlines, protection, fonts, unlocked formulas, inputs without validation, em dashes).
-2. `python3 tools/render_xlsx.py product.xlsx out/` and `--print`; open every PNG with the Read tool. Zero error values.
-3. `python3 tools/legal_scan.py` on the zip.
-4. Compare every number in the listing, the pin and the Start Here example against the rendered values.
+Todd approved the v3 standard Oct 6, 2026 ("apply this standard to all existing and future products"). Every new workbook and every rebuild follows these steps; the gate reviewer fails anything that skips one.
+
+1. Build with an engine script, `engines/<slug>/build_xlsx.py`, using `pnf_dash.py` and `wb_style.py`; call `audit(wb)` before saving. Commit the engine so the next fix is a rebuild, not a hand edit.
+2. `python3 tools/render_xlsx.py product.xlsx out/` and again with `--print`; open every PNG with the Read tool. Zero error values.
+3. Stress test: save copies with every input blank, with extreme inputs (very large, zero, 100%) and with a changed realistic set; render each. Zero error values and no misleading status text in any of them.
+4. Rebuilds of a live product only: write `engines/<slug>/compare_map.json` (inputs, outputs, at least four cases) and run `python3 tools/compare_xlsx.py old.xlsx new.xlsx compare_map.json`. Every output must match; a deliberate fix goes in the map's "intended" list with its reason and is named in the listing's change note.
+5. Pack with `python3 tools/pack_product.py product.xlsx LICENSE-AND-DISCLAIMER.txt <new folder> --tier <tier>`: Letter and A4 Start Here PDFs, metadata, zip, legal_scan (0 high), base64 for the shelf.
+6. Listing images: render at `--dpi 220` or more, write `engines/<slug>/listing_images.json` (cover, three detail shots, what's inside; reference: the #20 spec) and run `python3 tools/listing_images.py`. Open all five; every number on them must match the product.
+7. Compare every number in the listing, the pin and the Start Here example against the rendered values.
 
 ## 16. What bad looks like
 

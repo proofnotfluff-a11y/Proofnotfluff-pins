@@ -205,6 +205,7 @@ class Card:
         c = S.input_cell(self.ws, f"{self.value}{r}", value, fmt, name=name, wb=self.wb, validation=validation,
                          prompt=prompt, prompt_title=prompt_title or text[:32])
         c.fill = fill("input_fill"); c.font = f(10, True, "input_text")
+        c.alignment = Alignment(horizontal="right", vertical="center", indent=1)  # inset from the box edge
         c.border = Border(left=side("input_line"), right=side("input_line"), top=side("input_line"), bottom=side("input_line"))
         if self.extra:
             self._divider(r)

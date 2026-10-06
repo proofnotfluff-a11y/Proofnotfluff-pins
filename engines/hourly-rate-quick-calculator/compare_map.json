@@ -1,0 +1,152 @@
+{
+  "tolerance": 0.005,
+  "inputs": {
+    "take_home": {
+      "old": "Calculator!C5",
+      "new": "Calculator!D15"
+    },
+    "tax_rate": {
+      "old": "Calculator!C6",
+      "new": "Calculator!D16"
+    },
+    "expenses": {
+      "old": "Calculator!C7",
+      "new": "Calculator!D17"
+    },
+    "weeks": {
+      "old": "Calculator!C10",
+      "new": "Calculator!D19"
+    },
+    "hours": {
+      "old": "Calculator!C11",
+      "new": "Calculator!D20"
+    },
+    "billable": {
+      "old": "Calculator!C12",
+      "new": "Calculator!D21"
+    },
+    "check_rate": {
+      "old": "Calculator!C26",
+      "new": "Calculator!D27"
+    },
+    "quote_hours": {
+      "old": "Calculator!C42",
+      "new": "Calculator!D41"
+    },
+    "materials": {
+      "old": "Calculator!C43",
+      "new": "Calculator!D42"
+    },
+    "markup": {
+      "old": "Calculator!C44",
+      "new": "Calculator!D43"
+    }
+  },
+  "outputs": {
+    "hours_worked": {
+      "old": "Calculator!C15",
+      "new": "Calculator!I19"
+    },
+    "billable_hours": {
+      "old": "Calculator!C16",
+      "new": "Calculator!I20"
+    },
+    "revenue_needed": {
+      "old": "Calculator!C18",
+      "new": "Calculator!I17"
+    },
+    "min_rate": {
+      "old": "Calculator!C19",
+      "new": "Calculator!I21"
+    },
+    "per_hr_pay": {
+      "old": "Calculator!C21",
+      "new": "Calculator!I23"
+    },
+    "per_hr_tax": {
+      "old": "Calculator!C22",
+      "new": "Calculator!I24"
+    },
+    "per_hr_costs": {
+      "old": "Calculator!C23",
+      "new": "Calculator!I25"
+    },
+    "check_revenue": {
+      "old": "Calculator!C27",
+      "new": "Calculator!D28"
+    },
+    "check_keep": {
+      "old": "Calculator!C30",
+      "new": "Calculator!D31"
+    },
+    "keep_per_hour": {
+      "old": "Calculator!C31",
+      "new": "Calculator!D32"
+    },
+    "rate_at_50": {
+      "old": "Calculator!C36",
+      "new": "Calculator!I31"
+    },
+    "rate_at_80": {
+      "old": "Calculator!C39",
+      "new": "Calculator!I34"
+    },
+    "quote_labor": {
+      "old": "Calculator!C45",
+      "new": "Calculator!I41"
+    },
+    "quote_total": {
+      "old": "Calculator!C47",
+      "new": "Calculator!I43"
+    }
+  },
+  "cases": [
+    {
+      "name": "example"
+    },
+    {
+      "name": "high earner",
+      "set": {
+        "take_home": 140000,
+        "tax_rate": 0.33,
+        "expenses": 22000,
+        "billable": 0.75,
+        "check_rate": 120
+      }
+    },
+    {
+      "name": "part-time",
+      "set": {
+        "weeks": 40,
+        "hours": 20,
+        "billable": 0.5,
+        "quote_hours": 3.5,
+        "materials": 0
+      }
+    },
+    {
+      "name": "no expenses, no markup",
+      "set": {
+        "expenses": 0,
+        "markup": 0,
+        "check_rate": 95
+      }
+    },
+    {
+      "name": "rate below costs",
+      "set": {
+        "check_rate": 5
+      }
+    }
+  ],
+  "intended": [
+    {
+      "case": "rate below costs",
+      "outputs": [
+        "check_keep",
+        "keep_per_hour"
+      ],
+      "why": "v1 subtracted a negative tax on a loss; v3 taxes only a profit"
+    }
+  ]
+}

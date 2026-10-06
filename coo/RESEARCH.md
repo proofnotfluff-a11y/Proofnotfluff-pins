@@ -63,3 +63,6 @@ One finding per line. Tag: CONFIRMED (two independent sources, or one primary so
 - From D1 and D2: pins stay static, one new image per pin, never the same image twice to the same URL; judge pin clicks at 90 days, not 7. Promote runs already make new images; check date Jan 3, 2027 for Pinterest as a channel.
 - From D5: TikTok Business account with the bio link, reposting the three 700+ view demo Shorts. Needs Todd's account and his phone (no API path). Proposal Oct 5.
 - From D4: Kit free plan is enough for the lead magnet (form email delivery, no sequence). Already approved by Todd Oct 4; waits on his account.
+
+## Tue Oct 6, 2026 (daily run; no new web research, Monday is the deep run)
+- Internal observation, not a finding: the API lister listed 2 products in about 10 minutes on Oct 5 with zero Chrome page loads, while the Chrome factory lost 2 of 3 runs the same day. Listing throughput now depends on R&D supply and legal clearance speed, not on Etsy's page cap. Source: scoreboard log 2026-10-05 and list_triggers run statuses, read 2026-10-06.

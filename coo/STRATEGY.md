@@ -1,90 +1,91 @@
-# COO strategy (rewritten every run; this version Mon Oct 5, 2026, 11:20 am, first run)
+# COO strategy (rewritten every run; this version Tue Oct 6, 2026, 5:30 am, daily run 2)
 
 ## Goal ladder
 | Rung | Status | What has to be true (listings x visits per listing per day x conversion x price) |
 |---|---|---|
-| First order | not reached; expected about Oct 30 if nothing changes | 50 cumulative visits at a 2% conversion; shop is at 18 visits in 9 days (2 a day) |
-| $100 a month | target Nov 30 | 12 orders a month at about $8 = 0.4 a day = 21 visits a day at 2%: 100 listings at 0.21 visits each (today 0.14), so volume alone is not enough unless new listings sit on searched phrases |
-| $1,000 a month | target Jan 31, 2027 | 125 orders = 4.2 a day = 210 visits a day: 100 listings at 2.1 visits each (15x today), or 40 listings plus Etsy Ads that break even |
-| $10,000 a month | no date | 2,100 visits a day; needs owned channels (email, Pinterest at scale) and a higher average order (bundles $24.99, custom book $49) |
-| $100,000 a month | no date | 21,000 visits a day; not an Etsy-search business at $8 an order; a product line plus a list plus other storefronts |
+| First order | not reached; 0 orders on 32 visits in 8 recorded days (Sep 27 to Oct 4) | about 50 cumulative visits at 2%; at 2.3 visits a day that is about Oct 12, sooner if #16 to #18 (800 to 2,200 search phrases) draw search visits |
+| $100 a month | target Nov 30 | 12 orders a month at about $8 = 600 visits a month = 20 a day; 100 listings at 0.20 visits each (today 0.14 to 0.22), so only listings on searched phrases get there |
+| $1,000 a month | target Jan 31, 2027 | 125 orders = 210 visits a day: 100 listings at 2.1 visits each (10x today) or 40 listings plus Etsy Ads at break-even |
+| $10,000 a month | no date | 2,100 visits a day; owned channels (email, Pinterest at scale) and a higher average order (bundles $24.99, custom book $49) |
+| $100,000 a month | no date | 21,000 visits a day; a product line plus a list plus other storefronts, not an Etsy-search business at $8 |
 
-Honest distance: $1M a year is about 340 orders a day. Today: 0 orders, 15 live listings (#1 to #14 and #16; #15 is an unpublished draft), 20 listing views and 0 favorites in 30 days.
+Honest distance: $1M a year is about 340 orders a day. Today: 0 orders, 17 live listings (#1 to #14, #16, #17, #18; #15 is a draft since Oct 4), about 2.3 visits a day, 0 favorites.
 
 ## The constraint this week
-Visits per listing from Etsy search: 3 search visits in 30 days across 14 listings (0.007 per listing per day), because 11 of 14 listings sit on title phrases with under 100 eRank searches a month (keyword audit, products/1 to 14, Oct 5). Rank does not fix it: #4 is rank 1 on page 1 for "self evaluation" (Unknown searches) and still gets nothing. Reach without a path is the second problem: 2,834 Short views on 9 Shorts sent 0 Etsy visits because Shorts links do not click and the related-video link waits on Todd's phone verification (RESEARCH C6).
+Visits per listing from Etsy search: 3 search visits in 30 days across the first 14 listings (0.007 per listing per day) because 11 of 14 sit on title phrases under 100 eRank searches a month. The first real test of the fix is live now: #16 (2,178 searches), #17 (1,623) and #18 (817) listed Oct 5 under the demand floor and the title format; their first 14 days (to Oct 19) decide whether volume on searched phrases moves visits. Second problem unchanged: 2,834 Short views with no clickable path until the related-video links are set (5 QUEUED lines wait on the shop run).
 
-## Scorecard (Sep 29 to Oct 5 vs Sep 22 to 28; Etsy Stats lag, Oct 4 partial, Oct 5 not yet read)
+## Scorecard (Sep 29 to Oct 5 vs Sep 22 to 28; Etsy Stats lag, Oct 5 Etsy numbers not yet written by the shop run)
 | Metric | now | before |
 |---|---|---|
-| Listings live | 15 | 2 |
-| Listings added | 13 | 2 |
-| Etsy visits | 14 | 1 |
-| Visits per listing per day | 0.17 (14 / 7 / about 12 average listings) | not meaningful |
-| Etsy search visits | 3 in 30 days | 0 |
+| Listings live | 17 (plus #15 draft) | 2 |
+| Listings added | 15 | 2 |
+| Etsy visits | 14 (Sep 29 to Oct 4, 6 days recorded) | 1 |
+| Visits per listing per day | 0.22 (14 / 6 days / 10.8 average listings) | not meaningful |
+| Etsy search visits | 3 in 30 days (weekly split not recorded) | 0 |
 | Favorites | 0 | 0 |
 | Orders, revenue | 0, $0 | 0, $0 |
-| Conversion (orders / listing views) | 0 / 20 | 0 / 0 |
-| Short views | 2,834 on 10 Shorts (3 past 700: $40 hourly 999, cleaning $22 vs $55 924, 20-mile 712) | 0 |
-| Pins | 28 | 0 |
-| Reels, posts | 3 Reels, 7 posts (views not recorded: Instagram insights permission missing, Typefully connector timed out this run) | 0 |
-| Products with any visit | not recorded per product (only shop totals on the scoreboard) | not recorded |
+| Conversion (orders / listing views, 30 days) | 0 / 20 | 0 / 0 |
+| Short views | 2,834 on 9 Shorts as of Oct 5 am (3 past 700); the 2 Oct 5 Shorts not yet counted | 0 |
+| Pins | 30 | 0 |
+| Reels, posts | 4 Reels (views not readable); 3 posts published, 1 scheduled Oct 6 8 am (no analytics in the Typefully tool) | 0 |
+| Products with any visit | not recorded (first per-product stats Mon Oct 12) | not recorded |
 
 ## Unit economics
-- Visits per listing per day 0.14 (18 visits / 9 days / 14 listings). Search share of visits 17% (3 of 18). Listing views to favorites 0 of 20. Favorites to orders: no data. Average order value: no data; plan at $8 (founding price shows $4.89, real prices $12.99 to $19.99).
-- Headroom: listings (15 to 100 by early November is Todd's plan) and visits per listing (the 5 listings on 1,000+ phrases, #2, #10, #11 and the new #16 at 2,178, are the only ones that can draw search traffic at all). Binding today: visits per listing. Conversion cannot be judged until about 100 visits.
-- Fee check at the founding price: $4.89 sale leaves about $3.90 after 6.5% plus $0.25 plus 3% processing; at $12.99 about $11.35. The first 10 sales of each new product earn a third of the real price (Todd's rule; see proposal 2).
+- Visits per listing per day 0.14 to 0.22 depending on window (32 visits / 8 days / 14 average listings = 0.29 is inflated by the Sep 29 spike of 5). Search share 17% (3 of 18 in 30 days). Views to favorites 0 of 20. Favorites to orders: no data. Average order value: no data; plan at $8 (founding $4.89 shown, real $8.99 to $19.99). Fee check: $4.89 leaves about $3.90; $12.99 about $11.35.
+- Headroom: listings 17 to 100 (Todd's plan, early November); visits per listing is the unknown that #16 to #18 will answer by Oct 19. Binding today: visits per listing from search. Conversion cannot be judged before about 100 visits.
+- Supply math for the volume bet: 3 builder runs and 3 factory runs a day can only ship what R&D leaves "ready"; R&D produced 4 build-ready ideas in 2 days (target 3 to 5 per run, 10+ waiting) and the ready backlog this morning is 1 plus a chore chart in a legal fix. If R&D stays at 2 a day, the ceiling is about 60 listings by Nov 2, not 100.
 
 ## Bets in flight
 | Bet | Started | Metric now | Check date | Owner |
 |---|---|---|---|---|
-| Volume: about 100 live listings by early November, factory 3x a day | Oct 4 | 15 live, 2 added today (#16 listed, cleaning schedule packed for legal) | Nov 2 | factory, builder, R&D |
-| Demand floor 100+ and keyword audit; retitles to "better" phrases from Oct 17 | Oct 5 | 11 of 14 under 100; #16 is the first listing built under the floor | Oct 19 (#16 first 14 days), Nov 7 (retitles 21 days) | R&D, shop run |
-| Title format: under 15 words, noun first (COO change 1) | Oct 5 | 0 listings in the format | Nov 7 | factory, Listing Lab |
-| Demo Short series on service pricing | Oct 4 | 3 Shorts past 700 views, 0 Etsy visits; related-video link blocked on Todd | Oct 12 | CMO, promote runs |
-| Pinterest, 5 fresh pins a day | Oct 1 | 1 visit in 30 days from 28 pins; clicks not readable | Nov 2 interim, Jan 3 (90 days) | promote runs |
-| Instagram Reels, 1 a day | Oct 4 | 3 Reels, insights permission missing | Oct 19: readable or fix the permission | morning promote |
-| LinkedIn and X through Typefully | Oct 1 | 0 visits; trial ends Oct 17 | Oct 16 (Todd's decision) | shop run |
-| Founding price $6.99 under the 30% sale | Oct 3 | 0 orders | Oct 28 (sale ends; Todd decides) | Todd |
-| Listing videos, 2 listings per morning run | Oct 4 | 0 listings carry one (shop run has not started) | Nov 2 | shop run |
-| Legal desk gate | Oct 5 | first run 12:35 pm; 1 packed product waiting | Oct 8: hours from packed to cleared | legal desk |
-| Etsy API listing path (no Chrome page loads) | Oct 4 | app approved; OAuth step is Todd's | Oct 12 | Todd, shop run |
-| Nightly optimizer, one fix a night | Oct 4 | 1 run, 1 fix (Short follow-ups) | Oct 19: fixes that moved a number | optimizer |
+| Volume: about 100 live listings by early November | Oct 4 | 17 live (+3 Oct 5), 1 draft, 1 packed waiting for the 7:50 am lister, ready backlog 1 | Nov 2 | factory, builder, R&D |
+| Demand floor 100+ and keyword audit; retitles to "better" phrases from Oct 17 | Oct 5 | #16, #17, #18 are the first listings built under the floor; 5 retitles done Oct 5 at Todd's word | Oct 19 (first 14 days of #16 to #18), Nov 7 (retitles) | R&D, shop run, lister |
+| Title format: under 15 words, noun first | Oct 5 | 3 new listings plus 5 retitles in the format | Nov 7 | factory, lister, Listing Lab |
+| Demo Short series on service pricing | Oct 4 | 3 Shorts past 700 views, 0 Etsy visits; 5 related-video lines queued for the shop run | Oct 12 | CMO, promote runs, shop run |
+| Pinterest, 5 fresh pins a day | Oct 1 | 30 pins, 1 visit in 30 days, clicks not readable | Nov 2 interim, Jan 3 | promote runs |
+| Instagram Reels, 1 to 2 a day | Oct 4 | 4 Reels, insights permission missing | Oct 19 | morning promote |
+| LinkedIn and X through Typefully | Oct 1 | 3 posts, 0 visits; trial ends Oct 17 | Oct 16 (Todd) | shop run |
+| Founding price $6.99 under the 30% sale | Oct 3 | 0 orders on 6 founding listings | Oct 28 (Todd) | Todd |
+| Listing videos, 2 listings per morning run | Oct 4 | 0 listings carry one; now 7th in the shop run's Etsy order | Nov 2 | shop run |
+| Legal desk gate | Oct 5 | 3 shelf items cleared in 2.5 to 6 hours each; 2 live corrections queued (#14, #16); 1 FIX returned (chore chart) | Oct 8 | legal desk |
+| Etsy API listing path | Oct 5 | live: #17 and #18 listed by API; the 5:51 pm cron gap left the rental spreadsheet 14 hours; hand-off now fires the lister after each clear | Oct 12 | lister, legal desk |
+| Nightly optimizer, one fix a night | Oct 4 | 2 runs, 2 fixes (Short follow-ups, #15 publish queue) | Oct 19 | optimizer |
+| Shop run Etsy order (COO change, Oct 6) | Oct 6 | 8 QUEUED items vs 10 page loads | Oct 7: #15 live, #12 fixed; Oct 8: #14 and #16 corrections done | shop run |
 
 ## What we know (confirmed mechanisms, RESEARCH.md line ids)
-- A1: titles under 15 words, noun first, keywords in tags and attributes; search reads the whole listing. Applied as COO change 1.
-- A6 and A7: Etsy Ads is where Etsy pushes; Etsy itself says ads work only once listings get interest. Keep off until Oct 31 (Todd).
-- A4 and A5: AI-agent traffic is under 1% of Etsy and checkout happens on the listing page. Nothing to do but make the first 160 characters of each description say what the file is and who it is for.
-- C2: Pinterest's rule needs a person choosing each pin. Open question to Todd.
-- C6: the only Short-to-Etsy path is the related-video link. Blocked on Todd's phone verification; every Short until then is reach without a path.
-- C7 and C9: verification gates and per-run output checks are what made Anthropic's own shop agent profitable; a green run with zero output is a failure. Crew health check added below.
-- D1: a new image per pin keeps 64% of distribution, the same image drops to 11%; judge Pinterest at 90 days.
-- D5: TikTok Business gives a clickable bio link on day one but has no API path for us. Proposal 1.
+- A1: titles under 15 words, noun first, keywords in tags and attributes. Applied as COO change 1 (Oct 5); 8 listings now carry it.
+- A6 and A7: Etsy Ads only after listings show interest; Todd's call after the retitles have two weeks of data.
+- A4 and A5: AI-agent traffic under 1% of Etsy and checkout on the listing page; first 160 characters of each description must say what the file is and who it is for.
+- C2: Pinterest's rule needs a person choosing each pin. Open question to Todd (ask-pinterest-rule).
+- C6: the only Short-to-Etsy path is the related-video link; 5 lines queued, YouTube advanced features approved Oct 5.
+- C7 and C9: verification gates and per-run output checks made Anthropic's own shop agent profitable; a green run with zero output is a failure. Crew health below.
+- D1: a new image per pin keeps 64% of distribution; judge Pinterest at 90 days.
+- D5: TikTok Business gives a clickable bio link on day one. Proposal 1.
 
-## Crew health (Oct 5)
-- COO's own 5:45 am run failed (Fable out); this run is the first. Fable's limit hit Oct 4 and Oct 5; the Opus fallback worked in every run that tried it.
-- R&D lab partial at 10:31 am (Etsy page cap; 5 re-check ideas wait for the 4:40 pm run). Backlog 3 ready: expense tracker 817 searches, chore chart 351, landlord spreadsheet 240.
-- #15 Simple Paycheck Budget: Etsy draft 4588647939 unpublished since Oct 4 6:20 pm (over 24 hours), waiting on Todd. Quest publish-15 added.
-- Packed and waiting: no-overwhelm-cleaning-schedule (10:10 am) for the Legal desk's first run at 12:35 pm. Nothing over 48 hours.
-- Not readable from the cloud: Instagram insights (permission), Pinterest clicks, Typefully analytics (connector timed out this run). Measurement gap: visits are shop totals only; per-product visits are not on the scoreboard. Directive: the Monday shop run writes products/<id>.stats {views, visits, favorites, window} from Etsy Stats within its page cap.
-- eRank budget summed to 105 of 100 a day after the factory went to 3 runs. Fixed (COO change 2).
+## Crew health (Oct 6, 5:30 am)
+- Factory (Todd's PC): 2 of 3 runs failed Oct 5 (1:20 pm and 6:20 pm, no output); the 8:20 am run listed #16. The 6:20 pm run claimed the scholarship tracker and died, so the idea sat in "building" 11 hours; released to "ready" this run. Not 3 in a row yet; if 8:20 am fails too, Todd should open the task's run history in the desktop app (the COO cannot touch PC-bound tasks). R&D lab 11:40 am also failed and 4:40 pm was partial.
+- #15 Simple Paycheck Budget: draft since Oct 4 6:20 pm (36 hours), second in the shop run's Etsy order this morning.
+- Packed and waiting: rental property spreadsheet, cleared 6:00 pm Oct 5, waits for the 7:50 am lister (the clear landed 9 minutes after the lister's last cron run; the hand-off rule now covers this). Chore chart returned to the builder at 12:01 am with 2 formula fixes; builder 10:10 am.
+- Legal corrections queued for live listings: #14 (tier high) and #16; both in the shop run's order (one today, one tomorrow under the two-edits-per-run rule).
+- Supply: ready backlog 1 (target 10+). R&D is the factory's feeder and is itself PC-bound and page-capped; its 11:40 am run must land 3+ ready ideas today or the builder's 3:10 pm and 10:10 pm runs idle.
+- Not readable from the cloud: Instagram insights, Pinterest clicks, Typefully analytics, Oct 5 Etsy stats (written by the 6:50 am shop run). Zero-output runs that were correct: rule desk (13 sources, no changes), lister 5:51 pm (nothing cleared).
+- eRank: 67 of 100 used Oct 5 (R&D 50, factory under 10); split held.
 
-## COO changes this run (also logged in the ledger)
-1. TITLE FORMAT directive for new listings and the Listing Lab's first test (A1).
-2. eRank budget: R&D 55 (Monday audit inside it), factory 10 x 3, 15 reserve.
-3. Build pick order among "ready" ideas: highest searches divided by competing listings first; 300+ searches preferred; 100 to 299 only with under 1,000 competing listings.
+## COO changes this run (logged under COO CHANGES in /areas/digital-products-plan.md)
+1. Ledger split: Pipeline and COO CHANGES moved from the ledger (46,640 to 35,425 bytes) to the plan file (4,613 to about 17,000); pointer line names the six runs that read it.
+2. SHOP RUN ETSY ORDER: stats, publish #15, FIX NOW #12, legal #14, offers off #17 and #18, legal #16, listing videos, the rest.
+3. Scholarship tracker released from a dead factory claim; factory scoreboard state cleared.
 
-## Proposals waiting on Todd (scoreboard approve quests)
-1. approve-tiktok-business: open a TikTok Business account (clickable bio link to the shop from day one, D5) and post the three 700+ view demo Shorts from his phone, one a week; no API path exists, so this costs Todd about 5 minutes a week. Metric: Etsy visits from "social" in Stats; check Nov 2. Recommendation: yes, it is the only channel where the demo format has a working link today.
-2. approve-real-price-test: the next 6 new listings alternate founding price ($6.99) and real price ($12.99 to $14.99, no founding line); compare visits, favorites and orders per listing over 21 days. B2 and A14 say sub-$10 digital products earn almost nothing and the founding price makes the first order worth $3.90. Metric: favorites per 100 visits by price group; check Oct 30. Recommendation: yes, because there is no conversion data at any price yet and this creates it at zero cost.
-
-## Open questions for Todd (ask quests)
-- ask-pinterest-rule: Pinterest's developer guideline says the end user must choose each pin to be published (C2). Options: (a) Todd ticks a daily "approve today's pins" quest (1 minute a day, the promote runs publish only after the tick); (b) keep the current flow at 5 unique pins a day and accept the account risk. Recommendation: (a).
-- youtube-advanced (existing quest, now first in order): phone verification unlocks the related-video link, the only clickable path from 2,834 Short views.
-- publish-15: publish Etsy draft 4588647939 (Simple Paycheck Budget), built Oct 4.
+## Proposals waiting on Todd (scoreboard approve quests; retire if unticked by Oct 19)
+1. approve-tiktok-business (Oct 5): TikTok Business account, clickable bio link, Todd posts the three 700+ view demo Shorts from his phone. Metric: Etsy visits from "social", Nov 2.
+2. approve-real-price-test (Oct 5): next 6 listings alternate founding and real price. Metric: favorites per 100 visits by price group, Oct 30.
+3. ask-pinterest-rule (Oct 5): daily one-tap pin approval vs the current flow. Recommendation: the approval quest.
 
 ## What we stopped and why
-- Nothing stopped this run. Retired proposals: none yet (14-day rule starts Oct 5).
+- Nothing stopped this run. No proposal retired (14-day clock from Oct 5).
 
-## Next run (Tue Oct 6, 5:00 am)
-- Read the Legal desk's first three runs: hours from packed to cleared, any BLOCK. Read #16's first-day visits when the shop run writes Oct 5 stats. Check the 4:40 pm R&D run reached Todd's top 5. Confirm the eRank split held. If Todd ticked an approve quest, implement it and log it.
+## Open questions for Todd
+- ask-pinterest-rule (above). publish-15 is now handled by the shop run's order, so Todd need not do it by hand unless the run reports the draft stayed unpublished.
+
+## Next run (Wed Oct 7, 5:00 am)
+- Read Oct 5 and Oct 6 Etsy stats: did #16 to #18 get any visit in their first 2 days? Confirm #15 published and #12 fixed (shop run log line), rental spreadsheet listed by the 7:50 am lister, chore chart repacked, scholarship tracker packed. Count factory runs that failed Oct 6; at 3 in a row tell Todd again with the run ids. Count ready ideas after both R&D runs; if under 3, propose a cloud research helper for the R&D lab (eRank stays on the PC, but complaint mining from public review pages and spec writing can run in the cloud). Check meta/lister.ledgerInbox and move any lines.

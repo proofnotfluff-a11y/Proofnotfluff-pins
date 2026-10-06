@@ -39,6 +39,6 @@ FINISH
 - Update meta/shop (get it, pin the version) with legal:{lastRun:"<like Mon Oct 5, 12:35 pm>", liveAudited:<live products with a legal doc>, liveTotal:<live products>, cleared:<count>, queued:<count>, blocked:<count>, shelfCleared:<cleared shelf items this run>, note:<one sentence>}.
 - Scoreboard: update agents/legal {state:"idle", lastRun, lastStatus:"ok"|"partial"|"failed", lastNote:<one plain sentence>}; append to log/<today> entries {t, agent:"Legal desk", text:<one sentence>, xp:0}. Never write buyers' or other people's names or text to the scoreboard.
 - Hand-off: if you cleared at least one shelf item this run, fire the API lister once now (Claude_Code_Remote fire_trigger trig_01DW4BdnSAKp949MM9nBJ25y, no text) so it lists today instead of waiting for its morning sweep. Fire it at most once per run and never anything else.
-- Repo: commit and push only tool or README fixes, if you made any (git push origin HEAD:main). Product files never go in the repo.
+- Repo: commit and push only tool, README, engine or edition JSON fixes, if you made any (git push origin HEAD:main). Product zips, PDFs and built workbooks never go in the repo.
 - Ledger: read it again right before writing; add ONE decision-log line of at most two sentences ("<date> <time> legal: #<id> clear | queued <n> fixes | blocked ...; model <x>").
 - Voice: plain, direct, no em dashes, no invented people. Message Todd only for a BLOCK, a high-severity problem on a live listing, or a failure: one SendUserMessage line each. Otherwise deliver nothing.

@@ -1,0 +1,33 @@
+{
+ "xlsx": "Service-Pricing-Calculator.xlsx",
+ "sheet": "3 Quote Builder",
+ "crop": [
+  0,
+  0.062,
+  0.468,
+  0.38
+ ],
+ "dpi": 220,
+ "eyebrow": "SERVICE BUSINESS PRICING CALCULATOR",
+ "states": [
+  {
+   "caption": "Pick a job. Your quote is ready: {I34}.",
+   "hold": 3.0
+  },
+  {
+   "set": {
+    "D14": "House cleaning - Deep clean, 2 bed"
+   },
+   "caption": "Deep clean instead? Now {I34}.",
+   "hold": 3.6
+  },
+  {
+   "set": {
+    "D14": "House cleaning - Deep clean, 2 bed",
+    "D23": 40
+   },
+   "caption": "Customer 40 miles round trip? {I34}.",
+   "hold": 3.6
+  }
+ ]
+}

@@ -122,7 +122,7 @@ def cmd_show(lid):
 def cmd_create(md, zip_path, images, video=None, like=LIKE_DEFAULT, publish=False):
     p = parse(md); errs = validate(p)
     if errs: die("listing.md failed checks:\n- " + "\n- ".join(errs))
-    if not (1 <= len(images) <= 10): die("need 1 to 10 images")
+    if not (1 <= len(images) <= 20): die("need 1 to 20 images (Etsy's per-listing limit is 20)")
     for f in [zip_path] + images + ([video] if video else []):
         if not os.path.exists(f): die(f"missing file: {f}")
     if os.path.getsize(zip_path) > 20 * 1024 * 1024: die("digital file over Etsy's 20 MB limit")

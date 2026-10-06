@@ -1,0 +1,33 @@
+{
+ "xlsx": "Hourly-Rate-Quick-Calculator.xlsx",
+ "sheet": "Calculator",
+ "crop": [
+  0,
+  0.049,
+  1,
+  0.252
+ ],
+ "dpi": 220,
+ "eyebrow": "HOURLY RATE CALCULATOR",
+ "states": [
+  {
+   "caption": "Your numbers in. Your rate: {I21} an hour.",
+   "hold": 3.0
+  },
+  {
+   "set": {
+    "D15": 75000
+   },
+   "caption": "Want $75,000 a year? It moves to {I21}.",
+   "hold": 3.6
+  },
+  {
+   "set": {
+    "D15": 75000,
+    "D21": 0.5
+   },
+   "caption": "Only half your hours get billed? You need {I21}.",
+   "hold": 3.6
+  }
+ ]
+}

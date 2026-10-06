@@ -25,7 +25,7 @@ Spec (every number must come from the product's own files; the CMO checks this):
      "say": "You keep about $20"}
   ],
   "fix": {"label": "To keep $30 an hour, bill", "value": "$57", "say": "..."},   optional second result
-  "cta": {"title": "Service Pricing Calculator", "sub": "On Etsy: etsy.com/shop/ProofNotFluff"},
+  "cta": {"title": "Service Pricing Calculator", "sub": "On Etsy: proofnotfluff.etsy.com"},
   "note": "Sample numbers"                          optional small line under the sheet
 }
 """

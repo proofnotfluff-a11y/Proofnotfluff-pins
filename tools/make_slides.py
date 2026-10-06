@@ -8,7 +8,7 @@ Spec: {"theme":"ink"|"paper", "footer": str, "slides":[{"type":"hook"|"stat"|"co
  fix:     kicker, title, formula, sub
  cta:     title, button, sub
 """
-import json, os, subprocess, sys, wave, shutil, math
+import json, re, os, subprocess, sys, wave, shutil, math
 import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__)); FPS = 30; W, H = 1080, 1920; FONTS = "/usr/share/fonts/truetype"
 BPM = 90; BAR = 60 / BPM * 4; SLIDE = 2 * BAR  # 5.33 s per slide
@@ -109,7 +109,9 @@ def render(page_html, nframes, workdir):
 
 # YouTube made links in Shorts descriptions unclickable (Aug 31, 2023), so a CTA that points
 # to the description sends viewers nowhere. Every CTA ends on a route that works.
-CTA_SUB = "On Etsy: etsy.com/shop/ProofNotFluff"
+CTA_SUB = "On Etsy: proofnotfluff.etsy.com"
+# Oct 6, 2026: Todd joined Etsy Share & Save; proofnotfluff.etsy.com is the shop's tracked link
+# (Shop Manager, Marketing, Share & Save), so every CTA shows it instead of etsy.com/shop/ProofNotFluff.
 
 def fix_cta(spec):
     for s in spec["slides"]:
@@ -117,6 +119,8 @@ def fix_cta(spec):
             sub = s.get("sub", "")
             if not sub or "description" in sub.lower() or "link below" in sub.lower():
                 s["sub"] = CTA_SUB
+            elif "etsy.com/shop/proofnotfluff" in sub.lower():
+                s["sub"] = re.sub(r"(?i)(https?://)?(www\.)?etsy\.com/shop/proofnotfluff", "proofnotfluff.etsy.com", sub)
     return spec
 
 def main(spec_path, out):

@@ -1,0 +1,5 @@
+*.zip
+*.b64.txt
+out/
+pkg/
+img/

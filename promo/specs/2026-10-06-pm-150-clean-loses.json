@@ -14,7 +14,7 @@
     {"label": "Drive time at your break-even rate", "value": "$27.40", "say": "30 minutes of driving: $27.40", "why": "Your break-even rate is $54.80 per paid hour, from $52,000 of take-home pay, $545 a month of costs and the taxes, spread over paid hours only. Half an hour of driving costs $27.40."},
     {"label": "Vehicle cost, 76 cents a mile", "value": "$11.40", "say": "Mileage: $11.40", "why": "15 miles at the IRS rate of 76 cents a mile is $11.40."},
     {"label": "Price floor, zero profit", "value": "$183.79", "say": "Your floor is $183.79", "why": "Labor on site, drive time, mileage and supplies: $183.79 just to break even."},
-    {"label": "At $150 you make", "value": "-$33.79", "result": true, "kind": "bad", "say": "At $150 you lose $33.79", "why": "At $150 the job pays $33.79 less than it costs you. The check line says it in plain words: below your floor."}
+    {"label": "At $150 you make", "value": "-$33.79", "result": true, "kind": "bad", "say": "Floor $183.79, so $150 loses $33.79", "why": "At $150 the job pays $33.79 less than it costs you. The check line says it in plain words: below your floor."}
   ],
   "fix": {"label": "Quote, rounded up to the next $5", "value": "$220", "say": "Quote about $220", "why": "With a 15% profit margin, rounded up to the next $5, the quote is $220. The Price Sheet does this for every job type at once."},
   "cta": {"title": "Service Pricing Calculator", "button": "Instant download", "sub": "On Etsy: etsy.com/shop/ProofNotFluff", "say": "Run your own numbers"},

@@ -21,7 +21,7 @@ E = html.escape
 HEAD = """<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title><meta name="description" content="{desc}">
-<link rel="canonical" href="{url}">{robots}<meta property="og:title" content="{title}"><meta property="og:description" content="{desc}">
+<link rel="canonical" href="{url}">{robots}{analytics}<meta property="og:title" content="{title}"><meta property="og:description" content="{desc}">
 <meta property="og:type" content="website"><meta property="og:url" content="{url}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
@@ -171,7 +171,7 @@ def page_html(p):
             f'<section class="block"><h2>A worked example</h2><p>{E(p["example"])}</p></section>'
             f'{cta(p)}{faq_block(p["faq"])}')
     robots = '<meta name="robots" content="noindex, nofollow">' if p.get("draft") else ""
-    return (HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=SHOP, ld=ld_json(p, url), bodycls=' class="has-mbar"', robots=robots) + body +
+    return (HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=SHOP, ld=ld_json(p, url), bodycls=' class="has-mbar"', robots=robots, analytics=analytics_tag()) + body +
             FOOT.format(rel=rel, script=script, sources=E(p["sources"])))
 
 
@@ -183,8 +183,87 @@ def index_html(pages):
             f'<div class="tools">{cards}</div>')
     return (HEAD.format(title="Free pricing calculators for service businesses | ProofNotFluff",
                         desc="Free hourly rate and job pricing calculators for cleaners, pressure washing, freelancers and other service businesses.",
-                        url=BASE, rel="", shop=SHOP, ld="", bodycls="", robots="") + body +
+                        url=BASE, rel="", shop=SHOP, ld="", bodycls="", robots="", analytics=analytics_tag()) + body +
             FOOT.format(rel="", script="", sources="IRS Topic 554 (self-employment tax) and IRS standard mileage rates, checked Oct 6, 2026."))
+
+
+LISTING = "https://proofnotfluff.etsy.com/listing/{id}"   # Share & Save shop domain, so the click is credited and the referrer is ours
+
+
+def analytics_tag():
+    """GA4 tag when site/analytics.json holds {"ga4": "G-XXXX"}; empty until Todd pastes the id."""
+    f = os.path.join(ROOT, "site", "analytics.json")
+    if not os.path.exists(f):
+        return ""
+    ga = json.load(open(f)).get("ga4", "")
+    if not ga:
+        return ""
+    return (f'<script async src="https://www.googletagmanager.com/gtag/js?id={E(ga)}"></script>'
+            f'<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag("js",new Date());gtag("config","{E(ga)}",{{anonymize_ip:true}});</script>')
+
+
+def load_links():
+    f = os.path.join(ROOT, "site", "links.json")
+    return json.load(open(f, encoding="utf-8")) if os.path.exists(f) else {"shop": SHOP, "groups": [], "products": [], "gumroad": []}
+
+
+def product_url(p):
+    if p.get("channel") == "gumroad":
+        sep = "&" if "?" in p["url"] else "?"
+        return f'{p["url"]}{sep}utm_source=proofnotfluff&utm_medium=hub&utm_campaign={E(p.get("slug", "premium"))}'
+    return LISTING.format(id=p["listing"])
+
+
+def hub_html(links, pages):
+    """docs/go/: the one link every bio points to. Free value first, then the shop, then every product by audience."""
+    url = BASE + "go/"
+    live = [p for p in pages if not p.get("draft")]
+    by = {p["id"]: p for p in links["products"]}
+    calc = "".join(f'<a class="hubbtn" href="../{p["slug"]}/"><b>{E(p["h1"])}</b><span>{E(p["card"])}</span></a>' for p in live)
+    prem = "".join(f'<a class="hubbtn prem" href="{E(product_url(p))}" rel="noopener"><b>{E(p["name"])}</b><span>{E(p.get("tagline", "Premium workbook"))} · ${p.get("price", "")}</span></a>'
+                   for p in links.get("gumroad", []))
+    groups = ""
+    for g in links["groups"]:
+        rows = "".join(f'<a class="hubbtn" href="{E(product_url(by[i]))}" rel="noopener"><b>{E(by[i]["name"])}</b><span>$2.99 on Etsy</span></a>' for i in g["ids"] if i in by)
+        if rows:
+            groups += f'<h2 class="hubh">{E(g["title"])}</h2><div class="hublist">{rows}</div>'
+    body = ('<section class="hub"><p class="eyebrow">ProofNotFluff</p><h1>Calculators that show their work</h1>'
+            '<p class="lede">Free tools first. Every paid workbook is $2.99 on Etsy and uses the same maths.</p>'
+            f'{"<h2 class=hubh>Free calculators</h2><div class=hublist>" + calc + "</div>" if calc else ""}'
+            f'{"<h2 class=hubh>Premium workbooks</h2><div class=hublist>" + prem + "</div>" if prem else ""}'
+            f'<div class="hublist"><a class="hubbtn shop" href="{E(links.get("shop", SHOP))}" rel="noopener"><b>The whole shop on Etsy</b><span>Every tool, $2.99 each</span></a></div>'
+            f'{groups}</section>')
+    return (HEAD.format(title="ProofNotFluff: free calculators and $2.99 tools", desc="Free pricing and money calculators, and the Excel and Google Sheets workbooks behind them.",
+                        url=url, rel="../", shop=SHOP, ld="", bodycls=' class="hubpage"', robots="", analytics=analytics_tag()) + body +
+            FOOT.format(rel="../", script="", sources="Prices as listed on Etsy; checked " + links.get("updated", "") + "."))
+
+
+def redirect_html(target, label):
+    """docs/go/<key>/: a short link for captions and pins that lands on the product and leaves our referrer."""
+    return (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow">'
+            f'<meta http-equiv="refresh" content="0; url={E(target)}"><title>{E(label)}</title>'
+            f'<script>location.replace({json.dumps(target)});</script></head>'
+            f'<body style="font:16px system-ui;padding:24px"><p>Taking you to <a href="{E(target)}">{E(label)}</a>.</p></body></html>')
+
+
+def write_hub_and_redirects(pages):
+    links = load_links()
+    go = os.path.join(DOCS, "go"); os.makedirs(go, exist_ok=True)
+    open(os.path.join(go, "index.html"), "w", encoding="utf-8").write(hub_html(links, pages))
+    keys = {"shop": (links.get("shop", SHOP), "the ProofNotFluff shop on Etsy")}
+    for p in links["products"]:
+        keys[str(p["id"])] = (product_url(p), p["name"])
+    for p in links.get("gumroad", []):
+        keys[p["slug"]] = (product_url(p), p["name"])
+    for p in pages:
+        if not p.get("draft"):
+            keys["free-" + p["slug"]] = (BASE + p["slug"] + "/", p["h1"])
+    for k, (target, label) in keys.items():
+        d = os.path.join(go, k); os.makedirs(d, exist_ok=True)
+        open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(redirect_html(target, label))
+    print("hub + %d short links" % len(keys))
+    return BASE + "go/"
+
 
 
 def main():
@@ -196,7 +275,8 @@ def main():
         print("wrote", p["slug"])
     live = [p for p in pages if not p.get("draft")]
     open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(index_html(live))
-    urls = [BASE] + [BASE + p["slug"] + "/" for p in live]
+    write_hub_and_redirects(pages)
+    urls = [BASE, BASE + "go/"] + [BASE + p["slug"] + "/" for p in live]
     open(os.path.join(DOCS, "sitemap.xml"), "w").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
         "".join(f"  <url><loc>{u}</loc><lastmod>{spec['updated']}</lastmod></url>\n" for u in urls) + "</urlset>\n")

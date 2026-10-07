@@ -1,0 +1,215 @@
+{
+ "updated": "2026-10-07",
+ "shop": "https://proofnotfluff.etsy.com",
+ "gumroad": [],
+ "groups": [
+  {
+   "title": "Service businesses and trades",
+   "key": "service",
+   "ids": [
+    13,
+    14,
+    20,
+    22,
+    23
+   ]
+  },
+  {
+   "title": "Freelancers and side hustles",
+   "key": "freelance",
+   "ids": [
+    21,
+    18,
+    16,
+    15
+   ]
+  },
+  {
+   "title": "Etsy sellers, makers and small business",
+   "key": "sellers",
+   "ids": [
+    5,
+    6,
+    7,
+    12,
+    8
+   ]
+  },
+  {
+   "title": "Short-term rental hosts",
+   "key": "hosts",
+   "ids": [
+    9,
+    10,
+    19
+   ]
+  },
+  {
+   "title": "Career and family",
+   "key": "life",
+   "ids": [
+    2,
+    3,
+    4,
+    11,
+    17
+   ]
+  }
+ ],
+ "products": [
+  {
+   "id": 2,
+   "name": "ATS-Tested Resume Templates",
+   "audience": "career",
+   "channel": "etsy",
+   "listing": "4584019905"
+  },
+  {
+   "id": 3,
+   "name": "30-60-90 Day Plan Template",
+   "audience": "career",
+   "channel": "etsy",
+   "listing": "4584239988"
+  },
+  {
+   "id": 4,
+   "name": "Self-Evaluation Writing Kit",
+   "audience": "career",
+   "channel": "etsy",
+   "listing": "4584686011"
+  },
+  {
+   "id": 5,
+   "name": "Pricing Calculator for Etsy Sellers (true profit and fees)",
+   "audience": "etsy sellers",
+   "channel": "etsy",
+   "listing": "4584721212"
+  },
+  {
+   "id": 6,
+   "name": "Inventory Spreadsheet with Reorder Planner",
+   "audience": "small business",
+   "channel": "etsy",
+   "listing": "4585004344"
+  },
+  {
+   "id": 7,
+   "name": "Etsy and eBay Shipping Cost Calculator",
+   "audience": "small business",
+   "channel": "etsy",
+   "listing": "4585097496"
+  },
+  {
+   "id": 8,
+   "name": "First-Time Employer Payroll and Benefits Setup Guide",
+   "audience": "small business",
+   "channel": "etsy",
+   "listing": "4585136994"
+  },
+  {
+   "id": 9,
+   "name": "Pricing Calculator for Airbnb and VRBO Hosts",
+   "audience": "short-term rental hosts",
+   "channel": "etsy",
+   "listing": "4585252476"
+  },
+  {
+   "id": 10,
+   "name": "Airbnb Welcome Book Template",
+   "audience": "short-term rental hosts",
+   "channel": "etsy",
+   "listing": "4586177932"
+  },
+  {
+   "id": 11,
+   "name": "End of Life Planner and Emergency Binder",
+   "audience": "families",
+   "channel": "etsy",
+   "listing": "4586816994"
+  },
+  {
+   "id": 12,
+   "name": "Craft Fair Profit Calculator and Break-Even Worksheet",
+   "audience": "makers",
+   "channel": "etsy",
+   "listing": "4586813952"
+  },
+  {
+   "id": 13,
+   "name": "Pricing Calculator for Service Businesses",
+   "audience": "service businesses",
+   "channel": "etsy",
+   "listing": "4587962930"
+  },
+  {
+   "id": 14,
+   "name": "Cleaning Business Starter Kit",
+   "audience": "cleaning businesses",
+   "channel": "etsy",
+   "listing": "4588330888"
+  },
+  {
+   "id": 15,
+   "name": "Paycheck Budget Spreadsheet",
+   "audience": "budgeting",
+   "channel": "etsy",
+   "listing": "4588647939"
+  },
+  {
+   "id": 16,
+   "name": "Debt Payoff Tracker Spreadsheet with Payment Log",
+   "audience": "personal finance",
+   "channel": "etsy",
+   "listing": "4588972193"
+  },
+  {
+   "id": 17,
+   "name": "Cleaning Schedule Printable",
+   "audience": "home and family",
+   "channel": "etsy",
+   "listing": "4589301456"
+  },
+  {
+   "id": 18,
+   "name": "Business Expense Tracker Spreadsheet",
+   "audience": "self-employed and small business",
+   "channel": "etsy",
+   "listing": "4589291725"
+  },
+  {
+   "id": 19,
+   "name": "Rental Property Spreadsheet for 1 to 10 Doors",
+   "audience": "small landlords",
+   "channel": "etsy",
+   "listing": "4589671970"
+  },
+  {
+   "id": 20,
+   "name": "Pricing Calculator for Freelancers",
+   "audience": "freelancers, consultants, solo service businesses",
+   "channel": "etsy",
+   "listing": "4589695837"
+  },
+  {
+   "id": 21,
+   "name": "Freelance Income Tracker Spreadsheet",
+   "audience": "freelancers, contractors and side hustles",
+   "channel": "etsy",
+   "listing": "4589995309"
+  },
+  {
+   "id": 22,
+   "name": "Pressure Washing Pricing Calculator",
+   "audience": "pressure washing owner-operators and small crews",
+   "channel": "etsy",
+   "listing": "4590258713"
+  },
+  {
+   "id": 23,
+   "name": "Junk Removal Pricing Calculator",
+   "audience": "junk removal owner-operators and hauling crews",
+   "channel": "etsy",
+   "listing": "4590270056"
+  }
+ ]
+}

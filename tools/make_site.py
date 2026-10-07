@@ -191,15 +191,21 @@ LISTING = "https://proofnotfluff.etsy.com/listing/{id}"   # Share & Save shop do
 
 
 def analytics_tag():
-    """GA4 tag when site/analytics.json holds {"ga4": "G-XXXX"}; empty until Todd pastes the id."""
+    """Analytics tag from site/analytics.json: {"ga4": "G-XXXX"} or {"cloudflare": "<beacon token>"} (either or both);
+    empty until Todd pastes one. Cloudflare Web Analytics is cookie-free, so no consent banner is needed for it."""
     f = os.path.join(ROOT, "site", "analytics.json")
     if not os.path.exists(f):
         return ""
-    ga = json.load(open(f)).get("ga4", "")
-    if not ga:
-        return ""
-    return (f'<script async src="https://www.googletagmanager.com/gtag/js?id={E(ga)}"></script>'
-            f'<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag("js",new Date());gtag("config","{E(ga)}",{{anonymize_ip:true}});</script>')
+    cfg = json.load(open(f))
+    out = ""
+    ga = cfg.get("ga4", "")
+    if ga:
+        out += (f'<script async src="https://www.googletagmanager.com/gtag/js?id={E(ga)}"></script>'
+                f'<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag("js",new Date());gtag("config","{E(ga)}",{{anonymize_ip:true}});</script>')
+    cf = cfg.get("cloudflare", "")
+    if cf:
+        out += f'<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon=\'{{"token": "{E(cf)}"}}\'></script>'
+    return out
 
 
 def load_links():

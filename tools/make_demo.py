@@ -85,8 +85,12 @@ def timeline(spec, pace, walkthrough):
             say = (r.get("why") if walkthrough else None) or r.get("say") or r["label"]
             caps.append([t, say])
             t += max(0.9 + 1.0 * pace, read(say) + 0.5 if walkthrough else 0)
-        else:  # a fixed row (shown filled from the start)
-            ev.append({"t": 0, "d": 0, "kind": "fixed"})
+        else:  # a fixed row: shown from the start, or counted up once the inputs above it are in
+            last_in = [e for e in ev if e["kind"] == "input"]
+            if last_in:
+                ev.append({"t": last_in[-1]["t"] + last_in[-1]["d"] + 0.15, "d": 0.5, "kind": "derived"})
+            else:
+                ev.append({"t": 0, "d": 0, "kind": "fixed"})
     fix_t = None
     if spec.get("fix"):
         fix_t = t
@@ -184,7 +188,7 @@ function fmtN(p,x){{let s=x.toFixed(p.dec);if(p.comma){{const [a,b]=s.split('.')
 function cellCenter(i){{const c=rows[i].querySelector('.cell').getBoundingClientRect();return [c.left+c.width*0.78,c.top+c.height*0.62]}}
 window.renderAt=function(t){{
   document.getElementById('pg').style.width=Math.min(100,t/D.total*100)+'%';
-  let curTarget=null,prevTarget=null,moveStart=0;
+  let curTarget=null,prevTarget=null,moveStart=0,hideCur=false;
   D.ev.forEach((e,i)=>{{
     const r=rows[i],cell=r.querySelector('.cell'),v=r.querySelector('.v'),val=D.vals[i];
     cell.classList.remove('act','typing');
@@ -199,12 +203,15 @@ window.renderAt=function(t){{
       else{{r.classList.add('on');const p=parseNum(val);const k=ease((t-e.t)/e.d);v.textContent=p?fmtN(p,p.n*k):val;
         const pop=t-e.t<0.35?1+0.06*Math.sin((t-e.t)/0.35*Math.PI):1;cell.style.transform='scale('+pop+')';}}
       if(t>=e.t-0.45){{prevTarget=curTarget;curTarget=cellCenter(i);moveStart=e.t-0.45}}
+    }} else if(e.kind==='derived'){{
+      if(t<e.t)v.textContent='';else{{const p=parseNum(val);const k=ease((t-e.t)/e.d);v.textContent=p?fmtN(p,p.n*k):val;}}
     }} else {{ v.textContent=val; }}
+    if(e.kind==='result'&&t>=e.t+0.3)hideCur=true;
   }});
   const fx=document.getElementById('fix');
   if(fx&&D.fixT!==null){{const k=ease((t-D.fixT)/0.6);fx.style.opacity=k;fx.style.transform='translateY('+(20*(1-k))+'px)'}}
   const cur=document.getElementById('cur');
-  if(curTarget){{const k=ease((t-moveStart)/0.45);const a=prevTarget||[curTarget[0]+260,curTarget[1]+340];
+  if(curTarget&&!hideCur){{const k=ease((t-moveStart)/0.45);const a=prevTarget||[curTarget[0]+260,curTarget[1]+340];
     const x=a[0]+(curTarget[0]-a[0])*k,y=a[1]+(curTarget[1]-a[1])*k;cur.style.transform='translate('+x+'px,'+y+'px)'}}
   else cur.style.transform='translate(-200px,-200px)';
   let cap='';D.caps.forEach(c=>{{if(t>=c[0])cap=c[1]}});const ce=document.getElementById('cap');ce.textContent=cap;ce.style.visibility=cap?'visible':'hidden';

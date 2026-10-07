@@ -1,0 +1,3789 @@
+{
+ "tolerance": 0.005,
+ "inputs": {
+  "hourly": {
+   "old": "'Parcel-Cost Builder'!B4",
+   "new": "'1 Parcel Costs'!G14"
+  },
+  "usps_div": {
+   "old": "'Dim-Weight Checker'!B4",
+   "new": "'2 Dim Weight'!E14"
+  },
+  "thresh": {
+   "old": "'Dim-Weight Checker'!B5",
+   "new": "'2 Dim Weight'!E15"
+  },
+  "ups_div": {
+   "old": "'Dim-Weight Checker'!B6",
+   "new": "'2 Dim Weight'!E16"
+  },
+  "fuel": {
+   "old": "'Service Comparison'!B4",
+   "new": "'4 Services'!E14"
+  },
+  "fixed_fee": {
+   "old": "'Dashboard'!B4",
+   "new": "'5 Dashboard'!F19"
+  },
+  "aov": {
+   "old": "'Free-Shipping Simulator'!C6",
+   "new": "'3 Free Shipping'!D14"
+  },
+  "ship": {
+   "old": "'Free-Shipping Simulator'!C7",
+   "new": "'3 Free Shipping'!D15"
+  },
+  "tc_override": {
+   "old": "'Free-Shipping Simulator'!C9",
+   "new": "'3 Free Shipping'!D17"
+  },
+  "margin": {
+   "old": "'Free-Shipping Simulator'!C11",
+   "new": "'3 Free Shipping'!D19"
+  },
+  "lift": {
+   "old": "'Free-Shipping Simulator'!C12",
+   "new": "'3 Free Shipping'!D20"
+  },
+  "thr1": {
+   "old": "'Free-Shipping Simulator'!D21",
+   "new": "'3 Free Shipping'!H27"
+  },
+  "share1": {
+   "old": "'Free-Shipping Simulator'!D22",
+   "new": "'3 Free Shipping'!H28"
+  },
+  "avgq1": {
+   "old": "'Free-Shipping Simulator'!D23",
+   "new": "'3 Free Shipping'!H29"
+  },
+  "thr2": {
+   "old": "'Free-Shipping Simulator'!E21",
+   "new": "'3 Free Shipping'!I27"
+  },
+  "share2": {
+   "old": "'Free-Shipping Simulator'!E22",
+   "new": "'3 Free Shipping'!I28"
+  },
+  "avgq2": {
+   "old": "'Free-Shipping Simulator'!E23",
+   "new": "'3 Free Shipping'!I29"
+  },
+  "thr3": {
+   "old": "'Free-Shipping Simulator'!F21",
+   "new": "'3 Free Shipping'!J27"
+  },
+  "share3": {
+   "old": "'Free-Shipping Simulator'!F22",
+   "new": "'3 Free Shipping'!J28"
+  },
+  "avgq3": {
+   "old": "'Free-Shipping Simulator'!F23",
+   "new": "'3 Free Shipping'!J29"
+  },
+  "p1_name": {
+   "old": "'Parcel-Cost Builder'!A8",
+   "new": "'1 Parcel Costs'!C22"
+  },
+  "p1_sale": {
+   "old": "'Parcel-Cost Builder'!B8",
+   "new": "'1 Parcel Costs'!D22"
+  },
+  "p1_ship": {
+   "old": "'Parcel-Cost Builder'!C8",
+   "new": "'1 Parcel Costs'!E22"
+  },
+  "p1_zone": {
+   "old": "'Parcel-Cost Builder'!D8",
+   "new": "'1 Parcel Costs'!F22"
+  },
+  "p1_service": {
+   "old": "'Parcel-Cost Builder'!E8",
+   "new": "'1 Parcel Costs'!G22"
+  },
+  "p1_override": {
+   "old": "'Parcel-Cost Builder'!F8",
+   "new": "'1 Parcel Costs'!H22"
+  },
+  "p1_box": {
+   "old": "'Parcel-Cost Builder'!H8",
+   "new": "'1 Parcel Costs'!J22"
+  },
+  "p1_filler": {
+   "old": "'Parcel-Cost Builder'!I8",
+   "new": "'1 Parcel Costs'!K22"
+  },
+  "p1_tape": {
+   "old": "'Parcel-Cost Builder'!J8",
+   "new": "'1 Parcel Costs'!L22"
+  },
+  "p1_label": {
+   "old": "'Parcel-Cost Builder'!K8",
+   "new": "'1 Parcel Costs'!M22"
+  },
+  "p1_minutes": {
+   "old": "'Parcel-Cost Builder'!L8",
+   "new": "'1 Parcel Costs'!N22"
+  },
+  "p1_len": {
+   "old": "'Dim-Weight Checker'!B8",
+   "new": "'2 Dim Weight'!D24"
+  },
+  "p1_wid": {
+   "old": "'Dim-Weight Checker'!C8",
+   "new": "'2 Dim Weight'!E24"
+  },
+  "p1_hgt": {
+   "old": "'Dim-Weight Checker'!D8",
+   "new": "'2 Dim Weight'!F24"
+  },
+  "p1_oz": {
+   "old": "'Dim-Weight Checker'!E8",
+   "new": "'2 Dim Weight'!G24"
+  },
+  "p1_quoteA": {
+   "old": "'Service Comparison'!I8",
+   "new": "'4 Services'!K33"
+  },
+  "p1_quoteB": {
+   "old": "'Service Comparison'!J8",
+   "new": "'4 Services'!L33"
+  },
+  "p1_feepct": {
+   "old": "'Dashboard'!D17",
+   "new": "'5 Dashboard'!F27"
+  },
+  "p1_cost": {
+   "old": "'Dashboard'!E17",
+   "new": "'5 Dashboard'!G27"
+  },
+  "p2_name": {
+   "old": "'Parcel-Cost Builder'!A9",
+   "new": "'1 Parcel Costs'!C23"
+  },
+  "p2_sale": {
+   "old": "'Parcel-Cost Builder'!B9",
+   "new": "'1 Parcel Costs'!D23"
+  },
+  "p2_ship": {
+   "old": "'Parcel-Cost Builder'!C9",
+   "new": "'1 Parcel Costs'!E23"
+  },
+  "p2_zone": {
+   "old": "'Parcel-Cost Builder'!D9",
+   "new": "'1 Parcel Costs'!F23"
+  },
+  "p2_service": {
+   "old": "'Parcel-Cost Builder'!E9",
+   "new": "'1 Parcel Costs'!G23"
+  },
+  "p2_override": {
+   "old": "'Parcel-Cost Builder'!F9",
+   "new": "'1 Parcel Costs'!H23"
+  },
+  "p2_box": {
+   "old": "'Parcel-Cost Builder'!H9",
+   "new": "'1 Parcel Costs'!J23"
+  },
+  "p2_filler": {
+   "old": "'Parcel-Cost Builder'!I9",
+   "new": "'1 Parcel Costs'!K23"
+  },
+  "p2_tape": {
+   "old": "'Parcel-Cost Builder'!J9",
+   "new": "'1 Parcel Costs'!L23"
+  },
+  "p2_label": {
+   "old": "'Parcel-Cost Builder'!K9",
+   "new": "'1 Parcel Costs'!M23"
+  },
+  "p2_minutes": {
+   "old": "'Parcel-Cost Builder'!L9",
+   "new": "'1 Parcel Costs'!N23"
+  },
+  "p2_len": {
+   "old": "'Dim-Weight Checker'!B9",
+   "new": "'2 Dim Weight'!D25"
+  },
+  "p2_wid": {
+   "old": "'Dim-Weight Checker'!C9",
+   "new": "'2 Dim Weight'!E25"
+  },
+  "p2_hgt": {
+   "old": "'Dim-Weight Checker'!D9",
+   "new": "'2 Dim Weight'!F25"
+  },
+  "p2_oz": {
+   "old": "'Dim-Weight Checker'!E9",
+   "new": "'2 Dim Weight'!G25"
+  },
+  "p2_quoteA": {
+   "old": "'Service Comparison'!I9",
+   "new": "'4 Services'!K34"
+  },
+  "p2_quoteB": {
+   "old": "'Service Comparison'!J9",
+   "new": "'4 Services'!L34"
+  },
+  "p2_feepct": {
+   "old": "'Dashboard'!D18",
+   "new": "'5 Dashboard'!F28"
+  },
+  "p2_cost": {
+   "old": "'Dashboard'!E18",
+   "new": "'5 Dashboard'!G28"
+  },
+  "p3_name": {
+   "old": "'Parcel-Cost Builder'!A10",
+   "new": "'1 Parcel Costs'!C24"
+  },
+  "p3_sale": {
+   "old": "'Parcel-Cost Builder'!B10",
+   "new": "'1 Parcel Costs'!D24"
+  },
+  "p3_ship": {
+   "old": "'Parcel-Cost Builder'!C10",
+   "new": "'1 Parcel Costs'!E24"
+  },
+  "p3_zone": {
+   "old": "'Parcel-Cost Builder'!D10",
+   "new": "'1 Parcel Costs'!F24"
+  },
+  "p3_service": {
+   "old": "'Parcel-Cost Builder'!E10",
+   "new": "'1 Parcel Costs'!G24"
+  },
+  "p3_override": {
+   "old": "'Parcel-Cost Builder'!F10",
+   "new": "'1 Parcel Costs'!H24"
+  },
+  "p3_box": {
+   "old": "'Parcel-Cost Builder'!H10",
+   "new": "'1 Parcel Costs'!J24"
+  },
+  "p3_filler": {
+   "old": "'Parcel-Cost Builder'!I10",
+   "new": "'1 Parcel Costs'!K24"
+  },
+  "p3_tape": {
+   "old": "'Parcel-Cost Builder'!J10",
+   "new": "'1 Parcel Costs'!L24"
+  },
+  "p3_label": {
+   "old": "'Parcel-Cost Builder'!K10",
+   "new": "'1 Parcel Costs'!M24"
+  },
+  "p3_minutes": {
+   "old": "'Parcel-Cost Builder'!L10",
+   "new": "'1 Parcel Costs'!N24"
+  },
+  "p3_len": {
+   "old": "'Dim-Weight Checker'!B10",
+   "new": "'2 Dim Weight'!D26"
+  },
+  "p3_wid": {
+   "old": "'Dim-Weight Checker'!C10",
+   "new": "'2 Dim Weight'!E26"
+  },
+  "p3_hgt": {
+   "old": "'Dim-Weight Checker'!D10",
+   "new": "'2 Dim Weight'!F26"
+  },
+  "p3_oz": {
+   "old": "'Dim-Weight Checker'!E10",
+   "new": "'2 Dim Weight'!G26"
+  },
+  "p3_quoteA": {
+   "old": "'Service Comparison'!I10",
+   "new": "'4 Services'!K35"
+  },
+  "p3_quoteB": {
+   "old": "'Service Comparison'!J10",
+   "new": "'4 Services'!L35"
+  },
+  "p3_feepct": {
+   "old": "'Dashboard'!D19",
+   "new": "'5 Dashboard'!F29"
+  },
+  "p3_cost": {
+   "old": "'Dashboard'!E19",
+   "new": "'5 Dashboard'!G29"
+  },
+  "p4_name": {
+   "old": "'Parcel-Cost Builder'!A11",
+   "new": "'1 Parcel Costs'!C25"
+  },
+  "p4_sale": {
+   "old": "'Parcel-Cost Builder'!B11",
+   "new": "'1 Parcel Costs'!D25"
+  },
+  "p4_ship": {
+   "old": "'Parcel-Cost Builder'!C11",
+   "new": "'1 Parcel Costs'!E25"
+  },
+  "p4_zone": {
+   "old": "'Parcel-Cost Builder'!D11",
+   "new": "'1 Parcel Costs'!F25"
+  },
+  "p4_service": {
+   "old": "'Parcel-Cost Builder'!E11",
+   "new": "'1 Parcel Costs'!G25"
+  },
+  "p4_override": {
+   "old": "'Parcel-Cost Builder'!F11",
+   "new": "'1 Parcel Costs'!H25"
+  },
+  "p4_box": {
+   "old": "'Parcel-Cost Builder'!H11",
+   "new": "'1 Parcel Costs'!J25"
+  },
+  "p4_filler": {
+   "old": "'Parcel-Cost Builder'!I11",
+   "new": "'1 Parcel Costs'!K25"
+  },
+  "p4_tape": {
+   "old": "'Parcel-Cost Builder'!J11",
+   "new": "'1 Parcel Costs'!L25"
+  },
+  "p4_label": {
+   "old": "'Parcel-Cost Builder'!K11",
+   "new": "'1 Parcel Costs'!M25"
+  },
+  "p4_minutes": {
+   "old": "'Parcel-Cost Builder'!L11",
+   "new": "'1 Parcel Costs'!N25"
+  },
+  "p4_len": {
+   "old": "'Dim-Weight Checker'!B11",
+   "new": "'2 Dim Weight'!D27"
+  },
+  "p4_wid": {
+   "old": "'Dim-Weight Checker'!C11",
+   "new": "'2 Dim Weight'!E27"
+  },
+  "p4_hgt": {
+   "old": "'Dim-Weight Checker'!D11",
+   "new": "'2 Dim Weight'!F27"
+  },
+  "p4_oz": {
+   "old": "'Dim-Weight Checker'!E11",
+   "new": "'2 Dim Weight'!G27"
+  },
+  "p4_quoteA": {
+   "old": "'Service Comparison'!I11",
+   "new": "'4 Services'!K36"
+  },
+  "p4_quoteB": {
+   "old": "'Service Comparison'!J11",
+   "new": "'4 Services'!L36"
+  },
+  "p4_feepct": {
+   "old": "'Dashboard'!D20",
+   "new": "'5 Dashboard'!F30"
+  },
+  "p4_cost": {
+   "old": "'Dashboard'!E20",
+   "new": "'5 Dashboard'!G30"
+  },
+  "p5_name": {
+   "old": "'Parcel-Cost Builder'!A12",
+   "new": "'1 Parcel Costs'!C26"
+  },
+  "p5_sale": {
+   "old": "'Parcel-Cost Builder'!B12",
+   "new": "'1 Parcel Costs'!D26"
+  },
+  "p5_ship": {
+   "old": "'Parcel-Cost Builder'!C12",
+   "new": "'1 Parcel Costs'!E26"
+  },
+  "p5_zone": {
+   "old": "'Parcel-Cost Builder'!D12",
+   "new": "'1 Parcel Costs'!F26"
+  },
+  "p5_service": {
+   "old": "'Parcel-Cost Builder'!E12",
+   "new": "'1 Parcel Costs'!G26"
+  },
+  "p5_override": {
+   "old": "'Parcel-Cost Builder'!F12",
+   "new": "'1 Parcel Costs'!H26"
+  },
+  "p5_box": {
+   "old": "'Parcel-Cost Builder'!H12",
+   "new": "'1 Parcel Costs'!J26"
+  },
+  "p5_filler": {
+   "old": "'Parcel-Cost Builder'!I12",
+   "new": "'1 Parcel Costs'!K26"
+  },
+  "p5_tape": {
+   "old": "'Parcel-Cost Builder'!J12",
+   "new": "'1 Parcel Costs'!L26"
+  },
+  "p5_label": {
+   "old": "'Parcel-Cost Builder'!K12",
+   "new": "'1 Parcel Costs'!M26"
+  },
+  "p5_minutes": {
+   "old": "'Parcel-Cost Builder'!L12",
+   "new": "'1 Parcel Costs'!N26"
+  },
+  "p5_len": {
+   "old": "'Dim-Weight Checker'!B12",
+   "new": "'2 Dim Weight'!D28"
+  },
+  "p5_wid": {
+   "old": "'Dim-Weight Checker'!C12",
+   "new": "'2 Dim Weight'!E28"
+  },
+  "p5_hgt": {
+   "old": "'Dim-Weight Checker'!D12",
+   "new": "'2 Dim Weight'!F28"
+  },
+  "p5_oz": {
+   "old": "'Dim-Weight Checker'!E12",
+   "new": "'2 Dim Weight'!G28"
+  },
+  "p5_quoteA": {
+   "old": "'Service Comparison'!I12",
+   "new": "'4 Services'!K37"
+  },
+  "p5_quoteB": {
+   "old": "'Service Comparison'!J12",
+   "new": "'4 Services'!L37"
+  },
+  "p5_feepct": {
+   "old": "'Dashboard'!D21",
+   "new": "'5 Dashboard'!F31"
+  },
+  "p5_cost": {
+   "old": "'Dashboard'!E21",
+   "new": "'5 Dashboard'!G31"
+  },
+  "p6_name": {
+   "old": "'Parcel-Cost Builder'!A13",
+   "new": "'1 Parcel Costs'!C27"
+  },
+  "p6_sale": {
+   "old": "'Parcel-Cost Builder'!B13",
+   "new": "'1 Parcel Costs'!D27"
+  },
+  "p6_ship": {
+   "old": "'Parcel-Cost Builder'!C13",
+   "new": "'1 Parcel Costs'!E27"
+  },
+  "p6_zone": {
+   "old": "'Parcel-Cost Builder'!D13",
+   "new": "'1 Parcel Costs'!F27"
+  },
+  "p6_service": {
+   "old": "'Parcel-Cost Builder'!E13",
+   "new": "'1 Parcel Costs'!G27"
+  },
+  "p6_override": {
+   "old": "'Parcel-Cost Builder'!F13",
+   "new": "'1 Parcel Costs'!H27"
+  },
+  "p6_box": {
+   "old": "'Parcel-Cost Builder'!H13",
+   "new": "'1 Parcel Costs'!J27"
+  },
+  "p6_filler": {
+   "old": "'Parcel-Cost Builder'!I13",
+   "new": "'1 Parcel Costs'!K27"
+  },
+  "p6_tape": {
+   "old": "'Parcel-Cost Builder'!J13",
+   "new": "'1 Parcel Costs'!L27"
+  },
+  "p6_label": {
+   "old": "'Parcel-Cost Builder'!K13",
+   "new": "'1 Parcel Costs'!M27"
+  },
+  "p6_minutes": {
+   "old": "'Parcel-Cost Builder'!L13",
+   "new": "'1 Parcel Costs'!N27"
+  },
+  "p6_len": {
+   "old": "'Dim-Weight Checker'!B13",
+   "new": "'2 Dim Weight'!D29"
+  },
+  "p6_wid": {
+   "old": "'Dim-Weight Checker'!C13",
+   "new": "'2 Dim Weight'!E29"
+  },
+  "p6_hgt": {
+   "old": "'Dim-Weight Checker'!D13",
+   "new": "'2 Dim Weight'!F29"
+  },
+  "p6_oz": {
+   "old": "'Dim-Weight Checker'!E13",
+   "new": "'2 Dim Weight'!G29"
+  },
+  "p6_quoteA": {
+   "old": "'Service Comparison'!I13",
+   "new": "'4 Services'!K38"
+  },
+  "p6_quoteB": {
+   "old": "'Service Comparison'!J13",
+   "new": "'4 Services'!L38"
+  },
+  "p6_feepct": {
+   "old": "'Dashboard'!D22",
+   "new": "'5 Dashboard'!F32"
+  },
+  "p6_cost": {
+   "old": "'Dashboard'!E22",
+   "new": "'5 Dashboard'!G32"
+  },
+  "p7_name": {
+   "old": "'Parcel-Cost Builder'!A14",
+   "new": "'1 Parcel Costs'!C28"
+  },
+  "p7_sale": {
+   "old": "'Parcel-Cost Builder'!B14",
+   "new": "'1 Parcel Costs'!D28"
+  },
+  "p7_ship": {
+   "old": "'Parcel-Cost Builder'!C14",
+   "new": "'1 Parcel Costs'!E28"
+  },
+  "p7_zone": {
+   "old": "'Parcel-Cost Builder'!D14",
+   "new": "'1 Parcel Costs'!F28"
+  },
+  "p7_service": {
+   "old": "'Parcel-Cost Builder'!E14",
+   "new": "'1 Parcel Costs'!G28"
+  },
+  "p7_override": {
+   "old": "'Parcel-Cost Builder'!F14",
+   "new": "'1 Parcel Costs'!H28"
+  },
+  "p7_box": {
+   "old": "'Parcel-Cost Builder'!H14",
+   "new": "'1 Parcel Costs'!J28"
+  },
+  "p7_filler": {
+   "old": "'Parcel-Cost Builder'!I14",
+   "new": "'1 Parcel Costs'!K28"
+  },
+  "p7_tape": {
+   "old": "'Parcel-Cost Builder'!J14",
+   "new": "'1 Parcel Costs'!L28"
+  },
+  "p7_label": {
+   "old": "'Parcel-Cost Builder'!K14",
+   "new": "'1 Parcel Costs'!M28"
+  },
+  "p7_minutes": {
+   "old": "'Parcel-Cost Builder'!L14",
+   "new": "'1 Parcel Costs'!N28"
+  },
+  "p7_len": {
+   "old": "'Dim-Weight Checker'!B14",
+   "new": "'2 Dim Weight'!D30"
+  },
+  "p7_wid": {
+   "old": "'Dim-Weight Checker'!C14",
+   "new": "'2 Dim Weight'!E30"
+  },
+  "p7_hgt": {
+   "old": "'Dim-Weight Checker'!D14",
+   "new": "'2 Dim Weight'!F30"
+  },
+  "p7_oz": {
+   "old": "'Dim-Weight Checker'!E14",
+   "new": "'2 Dim Weight'!G30"
+  },
+  "p7_quoteA": {
+   "old": "'Service Comparison'!I14",
+   "new": "'4 Services'!K39"
+  },
+  "p7_quoteB": {
+   "old": "'Service Comparison'!J14",
+   "new": "'4 Services'!L39"
+  },
+  "p7_feepct": {
+   "old": "'Dashboard'!D23",
+   "new": "'5 Dashboard'!F33"
+  },
+  "p7_cost": {
+   "old": "'Dashboard'!E23",
+   "new": "'5 Dashboard'!G33"
+  },
+  "p8_name": {
+   "old": "'Parcel-Cost Builder'!A15",
+   "new": "'1 Parcel Costs'!C29"
+  },
+  "p8_sale": {
+   "old": "'Parcel-Cost Builder'!B15",
+   "new": "'1 Parcel Costs'!D29"
+  },
+  "p8_ship": {
+   "old": "'Parcel-Cost Builder'!C15",
+   "new": "'1 Parcel Costs'!E29"
+  },
+  "p8_zone": {
+   "old": "'Parcel-Cost Builder'!D15",
+   "new": "'1 Parcel Costs'!F29"
+  },
+  "p8_service": {
+   "old": "'Parcel-Cost Builder'!E15",
+   "new": "'1 Parcel Costs'!G29"
+  },
+  "p8_override": {
+   "old": "'Parcel-Cost Builder'!F15",
+   "new": "'1 Parcel Costs'!H29"
+  },
+  "p8_box": {
+   "old": "'Parcel-Cost Builder'!H15",
+   "new": "'1 Parcel Costs'!J29"
+  },
+  "p8_filler": {
+   "old": "'Parcel-Cost Builder'!I15",
+   "new": "'1 Parcel Costs'!K29"
+  },
+  "p8_tape": {
+   "old": "'Parcel-Cost Builder'!J15",
+   "new": "'1 Parcel Costs'!L29"
+  },
+  "p8_label": {
+   "old": "'Parcel-Cost Builder'!K15",
+   "new": "'1 Parcel Costs'!M29"
+  },
+  "p8_minutes": {
+   "old": "'Parcel-Cost Builder'!L15",
+   "new": "'1 Parcel Costs'!N29"
+  },
+  "p8_len": {
+   "old": "'Dim-Weight Checker'!B15",
+   "new": "'2 Dim Weight'!D31"
+  },
+  "p8_wid": {
+   "old": "'Dim-Weight Checker'!C15",
+   "new": "'2 Dim Weight'!E31"
+  },
+  "p8_hgt": {
+   "old": "'Dim-Weight Checker'!D15",
+   "new": "'2 Dim Weight'!F31"
+  },
+  "p8_oz": {
+   "old": "'Dim-Weight Checker'!E15",
+   "new": "'2 Dim Weight'!G31"
+  },
+  "p8_quoteA": {
+   "old": "'Service Comparison'!I15",
+   "new": "'4 Services'!K40"
+  },
+  "p8_quoteB": {
+   "old": "'Service Comparison'!J15",
+   "new": "'4 Services'!L40"
+  },
+  "p8_feepct": {
+   "old": "'Dashboard'!D24",
+   "new": "'5 Dashboard'!F34"
+  },
+  "p8_cost": {
+   "old": "'Dashboard'!E24",
+   "new": "'5 Dashboard'!G34"
+  },
+  "p9_name": {
+   "old": "'Parcel-Cost Builder'!A16",
+   "new": "'1 Parcel Costs'!C30"
+  },
+  "p9_sale": {
+   "old": "'Parcel-Cost Builder'!B16",
+   "new": "'1 Parcel Costs'!D30"
+  },
+  "p9_ship": {
+   "old": "'Parcel-Cost Builder'!C16",
+   "new": "'1 Parcel Costs'!E30"
+  },
+  "p9_zone": {
+   "old": "'Parcel-Cost Builder'!D16",
+   "new": "'1 Parcel Costs'!F30"
+  },
+  "p9_service": {
+   "old": "'Parcel-Cost Builder'!E16",
+   "new": "'1 Parcel Costs'!G30"
+  },
+  "p9_override": {
+   "old": "'Parcel-Cost Builder'!F16",
+   "new": "'1 Parcel Costs'!H30"
+  },
+  "p9_box": {
+   "old": "'Parcel-Cost Builder'!H16",
+   "new": "'1 Parcel Costs'!J30"
+  },
+  "p9_filler": {
+   "old": "'Parcel-Cost Builder'!I16",
+   "new": "'1 Parcel Costs'!K30"
+  },
+  "p9_tape": {
+   "old": "'Parcel-Cost Builder'!J16",
+   "new": "'1 Parcel Costs'!L30"
+  },
+  "p9_label": {
+   "old": "'Parcel-Cost Builder'!K16",
+   "new": "'1 Parcel Costs'!M30"
+  },
+  "p9_minutes": {
+   "old": "'Parcel-Cost Builder'!L16",
+   "new": "'1 Parcel Costs'!N30"
+  },
+  "p9_len": {
+   "old": "'Dim-Weight Checker'!B16",
+   "new": "'2 Dim Weight'!D32"
+  },
+  "p9_wid": {
+   "old": "'Dim-Weight Checker'!C16",
+   "new": "'2 Dim Weight'!E32"
+  },
+  "p9_hgt": {
+   "old": "'Dim-Weight Checker'!D16",
+   "new": "'2 Dim Weight'!F32"
+  },
+  "p9_oz": {
+   "old": "'Dim-Weight Checker'!E16",
+   "new": "'2 Dim Weight'!G32"
+  },
+  "p9_quoteA": {
+   "old": "'Service Comparison'!I16",
+   "new": "'4 Services'!K41"
+  },
+  "p9_quoteB": {
+   "old": "'Service Comparison'!J16",
+   "new": "'4 Services'!L41"
+  },
+  "p9_feepct": {
+   "old": "'Dashboard'!D25",
+   "new": "'5 Dashboard'!F35"
+  },
+  "p9_cost": {
+   "old": "'Dashboard'!E25",
+   "new": "'5 Dashboard'!G35"
+  },
+  "p10_name": {
+   "old": "'Parcel-Cost Builder'!A17",
+   "new": "'1 Parcel Costs'!C31"
+  },
+  "p10_sale": {
+   "old": "'Parcel-Cost Builder'!B17",
+   "new": "'1 Parcel Costs'!D31"
+  },
+  "p10_ship": {
+   "old": "'Parcel-Cost Builder'!C17",
+   "new": "'1 Parcel Costs'!E31"
+  },
+  "p10_zone": {
+   "old": "'Parcel-Cost Builder'!D17",
+   "new": "'1 Parcel Costs'!F31"
+  },
+  "p10_service": {
+   "old": "'Parcel-Cost Builder'!E17",
+   "new": "'1 Parcel Costs'!G31"
+  },
+  "p10_override": {
+   "old": "'Parcel-Cost Builder'!F17",
+   "new": "'1 Parcel Costs'!H31"
+  },
+  "p10_box": {
+   "old": "'Parcel-Cost Builder'!H17",
+   "new": "'1 Parcel Costs'!J31"
+  },
+  "p10_filler": {
+   "old": "'Parcel-Cost Builder'!I17",
+   "new": "'1 Parcel Costs'!K31"
+  },
+  "p10_tape": {
+   "old": "'Parcel-Cost Builder'!J17",
+   "new": "'1 Parcel Costs'!L31"
+  },
+  "p10_label": {
+   "old": "'Parcel-Cost Builder'!K17",
+   "new": "'1 Parcel Costs'!M31"
+  },
+  "p10_minutes": {
+   "old": "'Parcel-Cost Builder'!L17",
+   "new": "'1 Parcel Costs'!N31"
+  },
+  "p10_len": {
+   "old": "'Dim-Weight Checker'!B17",
+   "new": "'2 Dim Weight'!D33"
+  },
+  "p10_wid": {
+   "old": "'Dim-Weight Checker'!C17",
+   "new": "'2 Dim Weight'!E33"
+  },
+  "p10_hgt": {
+   "old": "'Dim-Weight Checker'!D17",
+   "new": "'2 Dim Weight'!F33"
+  },
+  "p10_oz": {
+   "old": "'Dim-Weight Checker'!E17",
+   "new": "'2 Dim Weight'!G33"
+  },
+  "p10_quoteA": {
+   "old": "'Service Comparison'!I17",
+   "new": "'4 Services'!K42"
+  },
+  "p10_quoteB": {
+   "old": "'Service Comparison'!J17",
+   "new": "'4 Services'!L42"
+  },
+  "p10_feepct": {
+   "old": "'Dashboard'!D26",
+   "new": "'5 Dashboard'!F36"
+  },
+  "p10_cost": {
+   "old": "'Dashboard'!E26",
+   "new": "'5 Dashboard'!G36"
+  },
+  "p11_name": {
+   "old": "'Parcel-Cost Builder'!A18",
+   "new": "'1 Parcel Costs'!C32"
+  },
+  "p11_sale": {
+   "old": "'Parcel-Cost Builder'!B18",
+   "new": "'1 Parcel Costs'!D32"
+  },
+  "p11_ship": {
+   "old": "'Parcel-Cost Builder'!C18",
+   "new": "'1 Parcel Costs'!E32"
+  },
+  "p11_zone": {
+   "old": "'Parcel-Cost Builder'!D18",
+   "new": "'1 Parcel Costs'!F32"
+  },
+  "p11_service": {
+   "old": "'Parcel-Cost Builder'!E18",
+   "new": "'1 Parcel Costs'!G32"
+  },
+  "p11_override": {
+   "old": "'Parcel-Cost Builder'!F18",
+   "new": "'1 Parcel Costs'!H32"
+  },
+  "p11_box": {
+   "old": "'Parcel-Cost Builder'!H18",
+   "new": "'1 Parcel Costs'!J32"
+  },
+  "p11_filler": {
+   "old": "'Parcel-Cost Builder'!I18",
+   "new": "'1 Parcel Costs'!K32"
+  },
+  "p11_tape": {
+   "old": "'Parcel-Cost Builder'!J18",
+   "new": "'1 Parcel Costs'!L32"
+  },
+  "p11_label": {
+   "old": "'Parcel-Cost Builder'!K18",
+   "new": "'1 Parcel Costs'!M32"
+  },
+  "p11_minutes": {
+   "old": "'Parcel-Cost Builder'!L18",
+   "new": "'1 Parcel Costs'!N32"
+  },
+  "p11_len": {
+   "old": "'Dim-Weight Checker'!B18",
+   "new": "'2 Dim Weight'!D34"
+  },
+  "p11_wid": {
+   "old": "'Dim-Weight Checker'!C18",
+   "new": "'2 Dim Weight'!E34"
+  },
+  "p11_hgt": {
+   "old": "'Dim-Weight Checker'!D18",
+   "new": "'2 Dim Weight'!F34"
+  },
+  "p11_oz": {
+   "old": "'Dim-Weight Checker'!E18",
+   "new": "'2 Dim Weight'!G34"
+  },
+  "p11_quoteA": {
+   "old": "'Service Comparison'!I18",
+   "new": "'4 Services'!K43"
+  },
+  "p11_quoteB": {
+   "old": "'Service Comparison'!J18",
+   "new": "'4 Services'!L43"
+  },
+  "p11_feepct": {
+   "old": "'Dashboard'!D27",
+   "new": "'5 Dashboard'!F37"
+  },
+  "p11_cost": {
+   "old": "'Dashboard'!E27",
+   "new": "'5 Dashboard'!G37"
+  },
+  "p12_name": {
+   "old": "'Parcel-Cost Builder'!A19",
+   "new": "'1 Parcel Costs'!C33"
+  },
+  "p12_sale": {
+   "old": "'Parcel-Cost Builder'!B19",
+   "new": "'1 Parcel Costs'!D33"
+  },
+  "p12_ship": {
+   "old": "'Parcel-Cost Builder'!C19",
+   "new": "'1 Parcel Costs'!E33"
+  },
+  "p12_zone": {
+   "old": "'Parcel-Cost Builder'!D19",
+   "new": "'1 Parcel Costs'!F33"
+  },
+  "p12_service": {
+   "old": "'Parcel-Cost Builder'!E19",
+   "new": "'1 Parcel Costs'!G33"
+  },
+  "p12_override": {
+   "old": "'Parcel-Cost Builder'!F19",
+   "new": "'1 Parcel Costs'!H33"
+  },
+  "p12_box": {
+   "old": "'Parcel-Cost Builder'!H19",
+   "new": "'1 Parcel Costs'!J33"
+  },
+  "p12_filler": {
+   "old": "'Parcel-Cost Builder'!I19",
+   "new": "'1 Parcel Costs'!K33"
+  },
+  "p12_tape": {
+   "old": "'Parcel-Cost Builder'!J19",
+   "new": "'1 Parcel Costs'!L33"
+  },
+  "p12_label": {
+   "old": "'Parcel-Cost Builder'!K19",
+   "new": "'1 Parcel Costs'!M33"
+  },
+  "p12_minutes": {
+   "old": "'Parcel-Cost Builder'!L19",
+   "new": "'1 Parcel Costs'!N33"
+  },
+  "p12_len": {
+   "old": "'Dim-Weight Checker'!B19",
+   "new": "'2 Dim Weight'!D35"
+  },
+  "p12_wid": {
+   "old": "'Dim-Weight Checker'!C19",
+   "new": "'2 Dim Weight'!E35"
+  },
+  "p12_hgt": {
+   "old": "'Dim-Weight Checker'!D19",
+   "new": "'2 Dim Weight'!F35"
+  },
+  "p12_oz": {
+   "old": "'Dim-Weight Checker'!E19",
+   "new": "'2 Dim Weight'!G35"
+  },
+  "p12_quoteA": {
+   "old": "'Service Comparison'!I19",
+   "new": "'4 Services'!K44"
+  },
+  "p12_quoteB": {
+   "old": "'Service Comparison'!J19",
+   "new": "'4 Services'!L44"
+  },
+  "p12_feepct": {
+   "old": "'Dashboard'!D28",
+   "new": "'5 Dashboard'!F38"
+  },
+  "p12_cost": {
+   "old": "'Dashboard'!E28",
+   "new": "'5 Dashboard'!G38"
+  },
+  "p30_name": {
+   "old": "'Parcel-Cost Builder'!A37",
+   "new": "'1 Parcel Costs'!C51"
+  },
+  "p30_sale": {
+   "old": "'Parcel-Cost Builder'!B37",
+   "new": "'1 Parcel Costs'!D51"
+  },
+  "p30_ship": {
+   "old": "'Parcel-Cost Builder'!C37",
+   "new": "'1 Parcel Costs'!E51"
+  },
+  "p30_zone": {
+   "old": "'Parcel-Cost Builder'!D37",
+   "new": "'1 Parcel Costs'!F51"
+  },
+  "p30_service": {
+   "old": "'Parcel-Cost Builder'!E37",
+   "new": "'1 Parcel Costs'!G51"
+  },
+  "p30_override": {
+   "old": "'Parcel-Cost Builder'!F37",
+   "new": "'1 Parcel Costs'!H51"
+  },
+  "p30_box": {
+   "old": "'Parcel-Cost Builder'!H37",
+   "new": "'1 Parcel Costs'!J51"
+  },
+  "p30_filler": {
+   "old": "'Parcel-Cost Builder'!I37",
+   "new": "'1 Parcel Costs'!K51"
+  },
+  "p30_tape": {
+   "old": "'Parcel-Cost Builder'!J37",
+   "new": "'1 Parcel Costs'!L51"
+  },
+  "p30_label": {
+   "old": "'Parcel-Cost Builder'!K37",
+   "new": "'1 Parcel Costs'!M51"
+  },
+  "p30_minutes": {
+   "old": "'Parcel-Cost Builder'!L37",
+   "new": "'1 Parcel Costs'!N51"
+  },
+  "p30_len": {
+   "old": "'Dim-Weight Checker'!B37",
+   "new": "'2 Dim Weight'!D53"
+  },
+  "p30_wid": {
+   "old": "'Dim-Weight Checker'!C37",
+   "new": "'2 Dim Weight'!E53"
+  },
+  "p30_hgt": {
+   "old": "'Dim-Weight Checker'!D37",
+   "new": "'2 Dim Weight'!F53"
+  },
+  "p30_oz": {
+   "old": "'Dim-Weight Checker'!E37",
+   "new": "'2 Dim Weight'!G53"
+  },
+  "p30_quoteA": {
+   "old": "'Service Comparison'!I37",
+   "new": "'4 Services'!K62"
+  },
+  "p30_quoteB": {
+   "old": "'Service Comparison'!J37",
+   "new": "'4 Services'!L62"
+  },
+  "p30_feepct": {
+   "old": "'Dashboard'!D46",
+   "new": "'5 Dashboard'!F56"
+  },
+  "p30_cost": {
+   "old": "'Dashboard'!E46",
+   "new": "'5 Dashboard'!G56"
+  }
+ },
+ "outputs": {
+  "p1_postage": {
+   "old": "'Parcel-Cost Builder'!G8",
+   "new": "'1 Parcel Costs'!I22"
+  },
+  "p1_labor": {
+   "old": "'Parcel-Cost Builder'!M8",
+   "new": "'1 Parcel Costs'!O22"
+  },
+  "p1_true": {
+   "old": "'Parcel-Cost Builder'!N8",
+   "new": "'1 Parcel Costs'!P22"
+  },
+  "p1_short": {
+   "old": "'Parcel-Cost Builder'!O8",
+   "new": "'1 Parcel Costs'!Q22"
+  },
+  "p1_flag": {
+   "old": "'Parcel-Cost Builder'!P8",
+   "new": "'1 Parcel Costs'!R22"
+  },
+  "p1_share": {
+   "old": "'Parcel-Cost Builder'!Q8",
+   "new": "'1 Parcel Costs'!S22"
+  },
+  "p1_d_name": {
+   "old": "'Dim-Weight Checker'!A8",
+   "new": "'2 Dim Weight'!C24"
+  },
+  "p1_d_lb": {
+   "old": "'Dim-Weight Checker'!F8",
+   "new": "'2 Dim Weight'!H24"
+  },
+  "p1_d_cubic": {
+   "old": "'Dim-Weight Checker'!G8",
+   "new": "'2 Dim Weight'!I24"
+  },
+  "p1_d_over": {
+   "old": "'Dim-Weight Checker'!H8",
+   "new": "'2 Dim Weight'!J24"
+  },
+  "p1_d_uspsdim": {
+   "old": "'Dim-Weight Checker'!I8",
+   "new": "'2 Dim Weight'!K24"
+  },
+  "p1_d_uspsbill": {
+   "old": "'Dim-Weight Checker'!J8",
+   "new": "'2 Dim Weight'!L24"
+  },
+  "p1_d_upsdim": {
+   "old": "'Dim-Weight Checker'!K8",
+   "new": "'2 Dim Weight'!M24"
+  },
+  "p1_d_upsbill": {
+   "old": "'Dim-Weight Checker'!L8",
+   "new": "'2 Dim Weight'!N24"
+  },
+  "p1_d_uspsflag": {
+   "old": "'Dim-Weight Checker'!M8",
+   "new": "'2 Dim Weight'!O24"
+  },
+  "p1_d_upsflag": {
+   "old": "'Dim-Weight Checker'!N8",
+   "new": "'2 Dim Weight'!P24"
+  },
+  "p1_s_usps": {
+   "old": "'Service Comparison'!B8",
+   "new": "'4 Services'!D33"
+  },
+  "p1_s_ups": {
+   "old": "'Service Comparison'!C8",
+   "new": "'4 Services'!E33"
+  },
+  "p1_s_zone": {
+   "old": "'Service Comparison'!D8",
+   "new": "'4 Services'!F33"
+  },
+  "p1_s_gacom": {
+   "old": "'Service Comparison'!E8",
+   "new": "'4 Services'!G33"
+  },
+  "p1_s_garet": {
+   "old": "'Service Comparison'!F8",
+   "new": "'4 Services'!H33"
+  },
+  "p1_s_pri": {
+   "old": "'Service Comparison'!G8",
+   "new": "'4 Services'!I33"
+  },
+  "p1_s_upsgs": {
+   "old": "'Service Comparison'!H8",
+   "new": "'4 Services'!J33"
+  },
+  "p1_s_cheap": {
+   "old": "'Service Comparison'!K8",
+   "new": "'4 Services'!M33"
+  },
+  "p1_s_cheapname": {
+   "old": "'Service Comparison'!L8",
+   "new": "'4 Services'!N33"
+  },
+  "p1_s_saved": {
+   "old": "'Service Comparison'!M8",
+   "new": "'4 Services'!O33"
+  },
+  "p1_b_name": {
+   "old": "'Dashboard'!A17",
+   "new": "'5 Dashboard'!C27"
+  },
+  "p1_b_sale": {
+   "old": "'Dashboard'!B17",
+   "new": "'5 Dashboard'!D27"
+  },
+  "p1_b_ship": {
+   "old": "'Dashboard'!C17",
+   "new": "'5 Dashboard'!E27"
+  },
+  "p1_b_true": {
+   "old": "'Dashboard'!F17",
+   "new": "'5 Dashboard'!H27"
+  },
+  "p1_b_fees": {
+   "old": "'Dashboard'!G17",
+   "new": "'5 Dashboard'!I27"
+  },
+  "p1_b_net": {
+   "old": "'Dashboard'!H17",
+   "new": "'5 Dashboard'!J27"
+  },
+  "p1_b_margin": {
+   "old": "'Dashboard'!I17",
+   "new": "'5 Dashboard'!K27"
+  },
+  "p1_b_shipflag": {
+   "old": "'Dashboard'!J17",
+   "new": "'5 Dashboard'!L27"
+  },
+  "p1_b_flag": {
+   "old": "'Dashboard'!K17",
+   "new": "'5 Dashboard'!M27"
+  },
+  "p2_postage": {
+   "old": "'Parcel-Cost Builder'!G9",
+   "new": "'1 Parcel Costs'!I23"
+  },
+  "p2_labor": {
+   "old": "'Parcel-Cost Builder'!M9",
+   "new": "'1 Parcel Costs'!O23"
+  },
+  "p2_true": {
+   "old": "'Parcel-Cost Builder'!N9",
+   "new": "'1 Parcel Costs'!P23"
+  },
+  "p2_short": {
+   "old": "'Parcel-Cost Builder'!O9",
+   "new": "'1 Parcel Costs'!Q23"
+  },
+  "p2_flag": {
+   "old": "'Parcel-Cost Builder'!P9",
+   "new": "'1 Parcel Costs'!R23"
+  },
+  "p2_share": {
+   "old": "'Parcel-Cost Builder'!Q9",
+   "new": "'1 Parcel Costs'!S23"
+  },
+  "p2_d_name": {
+   "old": "'Dim-Weight Checker'!A9",
+   "new": "'2 Dim Weight'!C25"
+  },
+  "p2_d_lb": {
+   "old": "'Dim-Weight Checker'!F9",
+   "new": "'2 Dim Weight'!H25"
+  },
+  "p2_d_cubic": {
+   "old": "'Dim-Weight Checker'!G9",
+   "new": "'2 Dim Weight'!I25"
+  },
+  "p2_d_over": {
+   "old": "'Dim-Weight Checker'!H9",
+   "new": "'2 Dim Weight'!J25"
+  },
+  "p2_d_uspsdim": {
+   "old": "'Dim-Weight Checker'!I9",
+   "new": "'2 Dim Weight'!K25"
+  },
+  "p2_d_uspsbill": {
+   "old": "'Dim-Weight Checker'!J9",
+   "new": "'2 Dim Weight'!L25"
+  },
+  "p2_d_upsdim": {
+   "old": "'Dim-Weight Checker'!K9",
+   "new": "'2 Dim Weight'!M25"
+  },
+  "p2_d_upsbill": {
+   "old": "'Dim-Weight Checker'!L9",
+   "new": "'2 Dim Weight'!N25"
+  },
+  "p2_d_uspsflag": {
+   "old": "'Dim-Weight Checker'!M9",
+   "new": "'2 Dim Weight'!O25"
+  },
+  "p2_d_upsflag": {
+   "old": "'Dim-Weight Checker'!N9",
+   "new": "'2 Dim Weight'!P25"
+  },
+  "p2_s_usps": {
+   "old": "'Service Comparison'!B9",
+   "new": "'4 Services'!D34"
+  },
+  "p2_s_ups": {
+   "old": "'Service Comparison'!C9",
+   "new": "'4 Services'!E34"
+  },
+  "p2_s_zone": {
+   "old": "'Service Comparison'!D9",
+   "new": "'4 Services'!F34"
+  },
+  "p2_s_gacom": {
+   "old": "'Service Comparison'!E9",
+   "new": "'4 Services'!G34"
+  },
+  "p2_s_garet": {
+   "old": "'Service Comparison'!F9",
+   "new": "'4 Services'!H34"
+  },
+  "p2_s_pri": {
+   "old": "'Service Comparison'!G9",
+   "new": "'4 Services'!I34"
+  },
+  "p2_s_upsgs": {
+   "old": "'Service Comparison'!H9",
+   "new": "'4 Services'!J34"
+  },
+  "p2_s_cheap": {
+   "old": "'Service Comparison'!K9",
+   "new": "'4 Services'!M34"
+  },
+  "p2_s_cheapname": {
+   "old": "'Service Comparison'!L9",
+   "new": "'4 Services'!N34"
+  },
+  "p2_s_saved": {
+   "old": "'Service Comparison'!M9",
+   "new": "'4 Services'!O34"
+  },
+  "p2_b_name": {
+   "old": "'Dashboard'!A18",
+   "new": "'5 Dashboard'!C28"
+  },
+  "p2_b_sale": {
+   "old": "'Dashboard'!B18",
+   "new": "'5 Dashboard'!D28"
+  },
+  "p2_b_ship": {
+   "old": "'Dashboard'!C18",
+   "new": "'5 Dashboard'!E28"
+  },
+  "p2_b_true": {
+   "old": "'Dashboard'!F18",
+   "new": "'5 Dashboard'!H28"
+  },
+  "p2_b_fees": {
+   "old": "'Dashboard'!G18",
+   "new": "'5 Dashboard'!I28"
+  },
+  "p2_b_net": {
+   "old": "'Dashboard'!H18",
+   "new": "'5 Dashboard'!J28"
+  },
+  "p2_b_margin": {
+   "old": "'Dashboard'!I18",
+   "new": "'5 Dashboard'!K28"
+  },
+  "p2_b_shipflag": {
+   "old": "'Dashboard'!J18",
+   "new": "'5 Dashboard'!L28"
+  },
+  "p2_b_flag": {
+   "old": "'Dashboard'!K18",
+   "new": "'5 Dashboard'!M28"
+  },
+  "p3_postage": {
+   "old": "'Parcel-Cost Builder'!G10",
+   "new": "'1 Parcel Costs'!I24"
+  },
+  "p3_labor": {
+   "old": "'Parcel-Cost Builder'!M10",
+   "new": "'1 Parcel Costs'!O24"
+  },
+  "p3_true": {
+   "old": "'Parcel-Cost Builder'!N10",
+   "new": "'1 Parcel Costs'!P24"
+  },
+  "p3_short": {
+   "old": "'Parcel-Cost Builder'!O10",
+   "new": "'1 Parcel Costs'!Q24"
+  },
+  "p3_flag": {
+   "old": "'Parcel-Cost Builder'!P10",
+   "new": "'1 Parcel Costs'!R24"
+  },
+  "p3_share": {
+   "old": "'Parcel-Cost Builder'!Q10",
+   "new": "'1 Parcel Costs'!S24"
+  },
+  "p3_d_name": {
+   "old": "'Dim-Weight Checker'!A10",
+   "new": "'2 Dim Weight'!C26"
+  },
+  "p3_d_lb": {
+   "old": "'Dim-Weight Checker'!F10",
+   "new": "'2 Dim Weight'!H26"
+  },
+  "p3_d_cubic": {
+   "old": "'Dim-Weight Checker'!G10",
+   "new": "'2 Dim Weight'!I26"
+  },
+  "p3_d_over": {
+   "old": "'Dim-Weight Checker'!H10",
+   "new": "'2 Dim Weight'!J26"
+  },
+  "p3_d_uspsdim": {
+   "old": "'Dim-Weight Checker'!I10",
+   "new": "'2 Dim Weight'!K26"
+  },
+  "p3_d_uspsbill": {
+   "old": "'Dim-Weight Checker'!J10",
+   "new": "'2 Dim Weight'!L26"
+  },
+  "p3_d_upsdim": {
+   "old": "'Dim-Weight Checker'!K10",
+   "new": "'2 Dim Weight'!M26"
+  },
+  "p3_d_upsbill": {
+   "old": "'Dim-Weight Checker'!L10",
+   "new": "'2 Dim Weight'!N26"
+  },
+  "p3_d_uspsflag": {
+   "old": "'Dim-Weight Checker'!M10",
+   "new": "'2 Dim Weight'!O26"
+  },
+  "p3_d_upsflag": {
+   "old": "'Dim-Weight Checker'!N10",
+   "new": "'2 Dim Weight'!P26"
+  },
+  "p3_s_usps": {
+   "old": "'Service Comparison'!B10",
+   "new": "'4 Services'!D35"
+  },
+  "p3_s_ups": {
+   "old": "'Service Comparison'!C10",
+   "new": "'4 Services'!E35"
+  },
+  "p3_s_zone": {
+   "old": "'Service Comparison'!D10",
+   "new": "'4 Services'!F35"
+  },
+  "p3_s_gacom": {
+   "old": "'Service Comparison'!E10",
+   "new": "'4 Services'!G35"
+  },
+  "p3_s_garet": {
+   "old": "'Service Comparison'!F10",
+   "new": "'4 Services'!H35"
+  },
+  "p3_s_pri": {
+   "old": "'Service Comparison'!G10",
+   "new": "'4 Services'!I35"
+  },
+  "p3_s_upsgs": {
+   "old": "'Service Comparison'!H10",
+   "new": "'4 Services'!J35"
+  },
+  "p3_s_cheap": {
+   "old": "'Service Comparison'!K10",
+   "new": "'4 Services'!M35"
+  },
+  "p3_s_cheapname": {
+   "old": "'Service Comparison'!L10",
+   "new": "'4 Services'!N35"
+  },
+  "p3_s_saved": {
+   "old": "'Service Comparison'!M10",
+   "new": "'4 Services'!O35"
+  },
+  "p3_b_name": {
+   "old": "'Dashboard'!A19",
+   "new": "'5 Dashboard'!C29"
+  },
+  "p3_b_sale": {
+   "old": "'Dashboard'!B19",
+   "new": "'5 Dashboard'!D29"
+  },
+  "p3_b_ship": {
+   "old": "'Dashboard'!C19",
+   "new": "'5 Dashboard'!E29"
+  },
+  "p3_b_true": {
+   "old": "'Dashboard'!F19",
+   "new": "'5 Dashboard'!H29"
+  },
+  "p3_b_fees": {
+   "old": "'Dashboard'!G19",
+   "new": "'5 Dashboard'!I29"
+  },
+  "p3_b_net": {
+   "old": "'Dashboard'!H19",
+   "new": "'5 Dashboard'!J29"
+  },
+  "p3_b_margin": {
+   "old": "'Dashboard'!I19",
+   "new": "'5 Dashboard'!K29"
+  },
+  "p3_b_shipflag": {
+   "old": "'Dashboard'!J19",
+   "new": "'5 Dashboard'!L29"
+  },
+  "p3_b_flag": {
+   "old": "'Dashboard'!K19",
+   "new": "'5 Dashboard'!M29"
+  },
+  "p4_postage": {
+   "old": "'Parcel-Cost Builder'!G11",
+   "new": "'1 Parcel Costs'!I25"
+  },
+  "p4_labor": {
+   "old": "'Parcel-Cost Builder'!M11",
+   "new": "'1 Parcel Costs'!O25"
+  },
+  "p4_true": {
+   "old": "'Parcel-Cost Builder'!N11",
+   "new": "'1 Parcel Costs'!P25"
+  },
+  "p4_short": {
+   "old": "'Parcel-Cost Builder'!O11",
+   "new": "'1 Parcel Costs'!Q25"
+  },
+  "p4_flag": {
+   "old": "'Parcel-Cost Builder'!P11",
+   "new": "'1 Parcel Costs'!R25"
+  },
+  "p4_share": {
+   "old": "'Parcel-Cost Builder'!Q11",
+   "new": "'1 Parcel Costs'!S25"
+  },
+  "p4_d_name": {
+   "old": "'Dim-Weight Checker'!A11",
+   "new": "'2 Dim Weight'!C27"
+  },
+  "p4_d_lb": {
+   "old": "'Dim-Weight Checker'!F11",
+   "new": "'2 Dim Weight'!H27"
+  },
+  "p4_d_cubic": {
+   "old": "'Dim-Weight Checker'!G11",
+   "new": "'2 Dim Weight'!I27"
+  },
+  "p4_d_over": {
+   "old": "'Dim-Weight Checker'!H11",
+   "new": "'2 Dim Weight'!J27"
+  },
+  "p4_d_uspsdim": {
+   "old": "'Dim-Weight Checker'!I11",
+   "new": "'2 Dim Weight'!K27"
+  },
+  "p4_d_uspsbill": {
+   "old": "'Dim-Weight Checker'!J11",
+   "new": "'2 Dim Weight'!L27"
+  },
+  "p4_d_upsdim": {
+   "old": "'Dim-Weight Checker'!K11",
+   "new": "'2 Dim Weight'!M27"
+  },
+  "p4_d_upsbill": {
+   "old": "'Dim-Weight Checker'!L11",
+   "new": "'2 Dim Weight'!N27"
+  },
+  "p4_d_uspsflag": {
+   "old": "'Dim-Weight Checker'!M11",
+   "new": "'2 Dim Weight'!O27"
+  },
+  "p4_d_upsflag": {
+   "old": "'Dim-Weight Checker'!N11",
+   "new": "'2 Dim Weight'!P27"
+  },
+  "p4_s_usps": {
+   "old": "'Service Comparison'!B11",
+   "new": "'4 Services'!D36"
+  },
+  "p4_s_ups": {
+   "old": "'Service Comparison'!C11",
+   "new": "'4 Services'!E36"
+  },
+  "p4_s_zone": {
+   "old": "'Service Comparison'!D11",
+   "new": "'4 Services'!F36"
+  },
+  "p4_s_gacom": {
+   "old": "'Service Comparison'!E11",
+   "new": "'4 Services'!G36"
+  },
+  "p4_s_garet": {
+   "old": "'Service Comparison'!F11",
+   "new": "'4 Services'!H36"
+  },
+  "p4_s_pri": {
+   "old": "'Service Comparison'!G11",
+   "new": "'4 Services'!I36"
+  },
+  "p4_s_upsgs": {
+   "old": "'Service Comparison'!H11",
+   "new": "'4 Services'!J36"
+  },
+  "p4_s_cheap": {
+   "old": "'Service Comparison'!K11",
+   "new": "'4 Services'!M36"
+  },
+  "p4_s_cheapname": {
+   "old": "'Service Comparison'!L11",
+   "new": "'4 Services'!N36"
+  },
+  "p4_s_saved": {
+   "old": "'Service Comparison'!M11",
+   "new": "'4 Services'!O36"
+  },
+  "p4_b_name": {
+   "old": "'Dashboard'!A20",
+   "new": "'5 Dashboard'!C30"
+  },
+  "p4_b_sale": {
+   "old": "'Dashboard'!B20",
+   "new": "'5 Dashboard'!D30"
+  },
+  "p4_b_ship": {
+   "old": "'Dashboard'!C20",
+   "new": "'5 Dashboard'!E30"
+  },
+  "p4_b_true": {
+   "old": "'Dashboard'!F20",
+   "new": "'5 Dashboard'!H30"
+  },
+  "p4_b_fees": {
+   "old": "'Dashboard'!G20",
+   "new": "'5 Dashboard'!I30"
+  },
+  "p4_b_net": {
+   "old": "'Dashboard'!H20",
+   "new": "'5 Dashboard'!J30"
+  },
+  "p4_b_margin": {
+   "old": "'Dashboard'!I20",
+   "new": "'5 Dashboard'!K30"
+  },
+  "p4_b_shipflag": {
+   "old": "'Dashboard'!J20",
+   "new": "'5 Dashboard'!L30"
+  },
+  "p4_b_flag": {
+   "old": "'Dashboard'!K20",
+   "new": "'5 Dashboard'!M30"
+  },
+  "p5_postage": {
+   "old": "'Parcel-Cost Builder'!G12",
+   "new": "'1 Parcel Costs'!I26"
+  },
+  "p5_labor": {
+   "old": "'Parcel-Cost Builder'!M12",
+   "new": "'1 Parcel Costs'!O26"
+  },
+  "p5_true": {
+   "old": "'Parcel-Cost Builder'!N12",
+   "new": "'1 Parcel Costs'!P26"
+  },
+  "p5_short": {
+   "old": "'Parcel-Cost Builder'!O12",
+   "new": "'1 Parcel Costs'!Q26"
+  },
+  "p5_flag": {
+   "old": "'Parcel-Cost Builder'!P12",
+   "new": "'1 Parcel Costs'!R26"
+  },
+  "p5_share": {
+   "old": "'Parcel-Cost Builder'!Q12",
+   "new": "'1 Parcel Costs'!S26"
+  },
+  "p5_d_name": {
+   "old": "'Dim-Weight Checker'!A12",
+   "new": "'2 Dim Weight'!C28"
+  },
+  "p5_d_lb": {
+   "old": "'Dim-Weight Checker'!F12",
+   "new": "'2 Dim Weight'!H28"
+  },
+  "p5_d_cubic": {
+   "old": "'Dim-Weight Checker'!G12",
+   "new": "'2 Dim Weight'!I28"
+  },
+  "p5_d_over": {
+   "old": "'Dim-Weight Checker'!H12",
+   "new": "'2 Dim Weight'!J28"
+  },
+  "p5_d_uspsdim": {
+   "old": "'Dim-Weight Checker'!I12",
+   "new": "'2 Dim Weight'!K28"
+  },
+  "p5_d_uspsbill": {
+   "old": "'Dim-Weight Checker'!J12",
+   "new": "'2 Dim Weight'!L28"
+  },
+  "p5_d_upsdim": {
+   "old": "'Dim-Weight Checker'!K12",
+   "new": "'2 Dim Weight'!M28"
+  },
+  "p5_d_upsbill": {
+   "old": "'Dim-Weight Checker'!L12",
+   "new": "'2 Dim Weight'!N28"
+  },
+  "p5_d_uspsflag": {
+   "old": "'Dim-Weight Checker'!M12",
+   "new": "'2 Dim Weight'!O28"
+  },
+  "p5_d_upsflag": {
+   "old": "'Dim-Weight Checker'!N12",
+   "new": "'2 Dim Weight'!P28"
+  },
+  "p5_s_usps": {
+   "old": "'Service Comparison'!B12",
+   "new": "'4 Services'!D37"
+  },
+  "p5_s_ups": {
+   "old": "'Service Comparison'!C12",
+   "new": "'4 Services'!E37"
+  },
+  "p5_s_zone": {
+   "old": "'Service Comparison'!D12",
+   "new": "'4 Services'!F37"
+  },
+  "p5_s_gacom": {
+   "old": "'Service Comparison'!E12",
+   "new": "'4 Services'!G37"
+  },
+  "p5_s_garet": {
+   "old": "'Service Comparison'!F12",
+   "new": "'4 Services'!H37"
+  },
+  "p5_s_pri": {
+   "old": "'Service Comparison'!G12",
+   "new": "'4 Services'!I37"
+  },
+  "p5_s_upsgs": {
+   "old": "'Service Comparison'!H12",
+   "new": "'4 Services'!J37"
+  },
+  "p5_s_cheap": {
+   "old": "'Service Comparison'!K12",
+   "new": "'4 Services'!M37"
+  },
+  "p5_s_cheapname": {
+   "old": "'Service Comparison'!L12",
+   "new": "'4 Services'!N37"
+  },
+  "p5_s_saved": {
+   "old": "'Service Comparison'!M12",
+   "new": "'4 Services'!O37"
+  },
+  "p5_b_name": {
+   "old": "'Dashboard'!A21",
+   "new": "'5 Dashboard'!C31"
+  },
+  "p5_b_sale": {
+   "old": "'Dashboard'!B21",
+   "new": "'5 Dashboard'!D31"
+  },
+  "p5_b_ship": {
+   "old": "'Dashboard'!C21",
+   "new": "'5 Dashboard'!E31"
+  },
+  "p5_b_true": {
+   "old": "'Dashboard'!F21",
+   "new": "'5 Dashboard'!H31"
+  },
+  "p5_b_fees": {
+   "old": "'Dashboard'!G21",
+   "new": "'5 Dashboard'!I31"
+  },
+  "p5_b_net": {
+   "old": "'Dashboard'!H21",
+   "new": "'5 Dashboard'!J31"
+  },
+  "p5_b_margin": {
+   "old": "'Dashboard'!I21",
+   "new": "'5 Dashboard'!K31"
+  },
+  "p5_b_shipflag": {
+   "old": "'Dashboard'!J21",
+   "new": "'5 Dashboard'!L31"
+  },
+  "p5_b_flag": {
+   "old": "'Dashboard'!K21",
+   "new": "'5 Dashboard'!M31"
+  },
+  "p6_postage": {
+   "old": "'Parcel-Cost Builder'!G13",
+   "new": "'1 Parcel Costs'!I27"
+  },
+  "p6_labor": {
+   "old": "'Parcel-Cost Builder'!M13",
+   "new": "'1 Parcel Costs'!O27"
+  },
+  "p6_true": {
+   "old": "'Parcel-Cost Builder'!N13",
+   "new": "'1 Parcel Costs'!P27"
+  },
+  "p6_short": {
+   "old": "'Parcel-Cost Builder'!O13",
+   "new": "'1 Parcel Costs'!Q27"
+  },
+  "p6_flag": {
+   "old": "'Parcel-Cost Builder'!P13",
+   "new": "'1 Parcel Costs'!R27"
+  },
+  "p6_share": {
+   "old": "'Parcel-Cost Builder'!Q13",
+   "new": "'1 Parcel Costs'!S27"
+  },
+  "p6_d_name": {
+   "old": "'Dim-Weight Checker'!A13",
+   "new": "'2 Dim Weight'!C29"
+  },
+  "p6_d_lb": {
+   "old": "'Dim-Weight Checker'!F13",
+   "new": "'2 Dim Weight'!H29"
+  },
+  "p6_d_cubic": {
+   "old": "'Dim-Weight Checker'!G13",
+   "new": "'2 Dim Weight'!I29"
+  },
+  "p6_d_over": {
+   "old": "'Dim-Weight Checker'!H13",
+   "new": "'2 Dim Weight'!J29"
+  },
+  "p6_d_uspsdim": {
+   "old": "'Dim-Weight Checker'!I13",
+   "new": "'2 Dim Weight'!K29"
+  },
+  "p6_d_uspsbill": {
+   "old": "'Dim-Weight Checker'!J13",
+   "new": "'2 Dim Weight'!L29"
+  },
+  "p6_d_upsdim": {
+   "old": "'Dim-Weight Checker'!K13",
+   "new": "'2 Dim Weight'!M29"
+  },
+  "p6_d_upsbill": {
+   "old": "'Dim-Weight Checker'!L13",
+   "new": "'2 Dim Weight'!N29"
+  },
+  "p6_d_uspsflag": {
+   "old": "'Dim-Weight Checker'!M13",
+   "new": "'2 Dim Weight'!O29"
+  },
+  "p6_d_upsflag": {
+   "old": "'Dim-Weight Checker'!N13",
+   "new": "'2 Dim Weight'!P29"
+  },
+  "p6_s_usps": {
+   "old": "'Service Comparison'!B13",
+   "new": "'4 Services'!D38"
+  },
+  "p6_s_ups": {
+   "old": "'Service Comparison'!C13",
+   "new": "'4 Services'!E38"
+  },
+  "p6_s_zone": {
+   "old": "'Service Comparison'!D13",
+   "new": "'4 Services'!F38"
+  },
+  "p6_s_gacom": {
+   "old": "'Service Comparison'!E13",
+   "new": "'4 Services'!G38"
+  },
+  "p6_s_garet": {
+   "old": "'Service Comparison'!F13",
+   "new": "'4 Services'!H38"
+  },
+  "p6_s_pri": {
+   "old": "'Service Comparison'!G13",
+   "new": "'4 Services'!I38"
+  },
+  "p6_s_upsgs": {
+   "old": "'Service Comparison'!H13",
+   "new": "'4 Services'!J38"
+  },
+  "p6_s_cheap": {
+   "old": "'Service Comparison'!K13",
+   "new": "'4 Services'!M38"
+  },
+  "p6_s_cheapname": {
+   "old": "'Service Comparison'!L13",
+   "new": "'4 Services'!N38"
+  },
+  "p6_s_saved": {
+   "old": "'Service Comparison'!M13",
+   "new": "'4 Services'!O38"
+  },
+  "p6_b_name": {
+   "old": "'Dashboard'!A22",
+   "new": "'5 Dashboard'!C32"
+  },
+  "p6_b_sale": {
+   "old": "'Dashboard'!B22",
+   "new": "'5 Dashboard'!D32"
+  },
+  "p6_b_ship": {
+   "old": "'Dashboard'!C22",
+   "new": "'5 Dashboard'!E32"
+  },
+  "p6_b_true": {
+   "old": "'Dashboard'!F22",
+   "new": "'5 Dashboard'!H32"
+  },
+  "p6_b_fees": {
+   "old": "'Dashboard'!G22",
+   "new": "'5 Dashboard'!I32"
+  },
+  "p6_b_net": {
+   "old": "'Dashboard'!H22",
+   "new": "'5 Dashboard'!J32"
+  },
+  "p6_b_margin": {
+   "old": "'Dashboard'!I22",
+   "new": "'5 Dashboard'!K32"
+  },
+  "p6_b_shipflag": {
+   "old": "'Dashboard'!J22",
+   "new": "'5 Dashboard'!L32"
+  },
+  "p6_b_flag": {
+   "old": "'Dashboard'!K22",
+   "new": "'5 Dashboard'!M32"
+  },
+  "p7_postage": {
+   "old": "'Parcel-Cost Builder'!G14",
+   "new": "'1 Parcel Costs'!I28"
+  },
+  "p7_labor": {
+   "old": "'Parcel-Cost Builder'!M14",
+   "new": "'1 Parcel Costs'!O28"
+  },
+  "p7_true": {
+   "old": "'Parcel-Cost Builder'!N14",
+   "new": "'1 Parcel Costs'!P28"
+  },
+  "p7_short": {
+   "old": "'Parcel-Cost Builder'!O14",
+   "new": "'1 Parcel Costs'!Q28"
+  },
+  "p7_flag": {
+   "old": "'Parcel-Cost Builder'!P14",
+   "new": "'1 Parcel Costs'!R28"
+  },
+  "p7_share": {
+   "old": "'Parcel-Cost Builder'!Q14",
+   "new": "'1 Parcel Costs'!S28"
+  },
+  "p7_d_name": {
+   "old": "'Dim-Weight Checker'!A14",
+   "new": "'2 Dim Weight'!C30"
+  },
+  "p7_d_lb": {
+   "old": "'Dim-Weight Checker'!F14",
+   "new": "'2 Dim Weight'!H30"
+  },
+  "p7_d_cubic": {
+   "old": "'Dim-Weight Checker'!G14",
+   "new": "'2 Dim Weight'!I30"
+  },
+  "p7_d_over": {
+   "old": "'Dim-Weight Checker'!H14",
+   "new": "'2 Dim Weight'!J30"
+  },
+  "p7_d_uspsdim": {
+   "old": "'Dim-Weight Checker'!I14",
+   "new": "'2 Dim Weight'!K30"
+  },
+  "p7_d_uspsbill": {
+   "old": "'Dim-Weight Checker'!J14",
+   "new": "'2 Dim Weight'!L30"
+  },
+  "p7_d_upsdim": {
+   "old": "'Dim-Weight Checker'!K14",
+   "new": "'2 Dim Weight'!M30"
+  },
+  "p7_d_upsbill": {
+   "old": "'Dim-Weight Checker'!L14",
+   "new": "'2 Dim Weight'!N30"
+  },
+  "p7_d_uspsflag": {
+   "old": "'Dim-Weight Checker'!M14",
+   "new": "'2 Dim Weight'!O30"
+  },
+  "p7_d_upsflag": {
+   "old": "'Dim-Weight Checker'!N14",
+   "new": "'2 Dim Weight'!P30"
+  },
+  "p7_s_usps": {
+   "old": "'Service Comparison'!B14",
+   "new": "'4 Services'!D39"
+  },
+  "p7_s_ups": {
+   "old": "'Service Comparison'!C14",
+   "new": "'4 Services'!E39"
+  },
+  "p7_s_zone": {
+   "old": "'Service Comparison'!D14",
+   "new": "'4 Services'!F39"
+  },
+  "p7_s_gacom": {
+   "old": "'Service Comparison'!E14",
+   "new": "'4 Services'!G39"
+  },
+  "p7_s_garet": {
+   "old": "'Service Comparison'!F14",
+   "new": "'4 Services'!H39"
+  },
+  "p7_s_pri": {
+   "old": "'Service Comparison'!G14",
+   "new": "'4 Services'!I39"
+  },
+  "p7_s_upsgs": {
+   "old": "'Service Comparison'!H14",
+   "new": "'4 Services'!J39"
+  },
+  "p7_s_cheap": {
+   "old": "'Service Comparison'!K14",
+   "new": "'4 Services'!M39"
+  },
+  "p7_s_cheapname": {
+   "old": "'Service Comparison'!L14",
+   "new": "'4 Services'!N39"
+  },
+  "p7_s_saved": {
+   "old": "'Service Comparison'!M14",
+   "new": "'4 Services'!O39"
+  },
+  "p7_b_name": {
+   "old": "'Dashboard'!A23",
+   "new": "'5 Dashboard'!C33"
+  },
+  "p7_b_sale": {
+   "old": "'Dashboard'!B23",
+   "new": "'5 Dashboard'!D33"
+  },
+  "p7_b_ship": {
+   "old": "'Dashboard'!C23",
+   "new": "'5 Dashboard'!E33"
+  },
+  "p7_b_true": {
+   "old": "'Dashboard'!F23",
+   "new": "'5 Dashboard'!H33"
+  },
+  "p7_b_fees": {
+   "old": "'Dashboard'!G23",
+   "new": "'5 Dashboard'!I33"
+  },
+  "p7_b_net": {
+   "old": "'Dashboard'!H23",
+   "new": "'5 Dashboard'!J33"
+  },
+  "p7_b_margin": {
+   "old": "'Dashboard'!I23",
+   "new": "'5 Dashboard'!K33"
+  },
+  "p7_b_shipflag": {
+   "old": "'Dashboard'!J23",
+   "new": "'5 Dashboard'!L33"
+  },
+  "p7_b_flag": {
+   "old": "'Dashboard'!K23",
+   "new": "'5 Dashboard'!M33"
+  },
+  "p8_postage": {
+   "old": "'Parcel-Cost Builder'!G15",
+   "new": "'1 Parcel Costs'!I29"
+  },
+  "p8_labor": {
+   "old": "'Parcel-Cost Builder'!M15",
+   "new": "'1 Parcel Costs'!O29"
+  },
+  "p8_true": {
+   "old": "'Parcel-Cost Builder'!N15",
+   "new": "'1 Parcel Costs'!P29"
+  },
+  "p8_short": {
+   "old": "'Parcel-Cost Builder'!O15",
+   "new": "'1 Parcel Costs'!Q29"
+  },
+  "p8_flag": {
+   "old": "'Parcel-Cost Builder'!P15",
+   "new": "'1 Parcel Costs'!R29"
+  },
+  "p8_share": {
+   "old": "'Parcel-Cost Builder'!Q15",
+   "new": "'1 Parcel Costs'!S29"
+  },
+  "p8_d_name": {
+   "old": "'Dim-Weight Checker'!A15",
+   "new": "'2 Dim Weight'!C31"
+  },
+  "p8_d_lb": {
+   "old": "'Dim-Weight Checker'!F15",
+   "new": "'2 Dim Weight'!H31"
+  },
+  "p8_d_cubic": {
+   "old": "'Dim-Weight Checker'!G15",
+   "new": "'2 Dim Weight'!I31"
+  },
+  "p8_d_over": {
+   "old": "'Dim-Weight Checker'!H15",
+   "new": "'2 Dim Weight'!J31"
+  },
+  "p8_d_uspsdim": {
+   "old": "'Dim-Weight Checker'!I15",
+   "new": "'2 Dim Weight'!K31"
+  },
+  "p8_d_uspsbill": {
+   "old": "'Dim-Weight Checker'!J15",
+   "new": "'2 Dim Weight'!L31"
+  },
+  "p8_d_upsdim": {
+   "old": "'Dim-Weight Checker'!K15",
+   "new": "'2 Dim Weight'!M31"
+  },
+  "p8_d_upsbill": {
+   "old": "'Dim-Weight Checker'!L15",
+   "new": "'2 Dim Weight'!N31"
+  },
+  "p8_d_uspsflag": {
+   "old": "'Dim-Weight Checker'!M15",
+   "new": "'2 Dim Weight'!O31"
+  },
+  "p8_d_upsflag": {
+   "old": "'Dim-Weight Checker'!N15",
+   "new": "'2 Dim Weight'!P31"
+  },
+  "p8_s_usps": {
+   "old": "'Service Comparison'!B15",
+   "new": "'4 Services'!D40"
+  },
+  "p8_s_ups": {
+   "old": "'Service Comparison'!C15",
+   "new": "'4 Services'!E40"
+  },
+  "p8_s_zone": {
+   "old": "'Service Comparison'!D15",
+   "new": "'4 Services'!F40"
+  },
+  "p8_s_gacom": {
+   "old": "'Service Comparison'!E15",
+   "new": "'4 Services'!G40"
+  },
+  "p8_s_garet": {
+   "old": "'Service Comparison'!F15",
+   "new": "'4 Services'!H40"
+  },
+  "p8_s_pri": {
+   "old": "'Service Comparison'!G15",
+   "new": "'4 Services'!I40"
+  },
+  "p8_s_upsgs": {
+   "old": "'Service Comparison'!H15",
+   "new": "'4 Services'!J40"
+  },
+  "p8_s_cheap": {
+   "old": "'Service Comparison'!K15",
+   "new": "'4 Services'!M40"
+  },
+  "p8_s_cheapname": {
+   "old": "'Service Comparison'!L15",
+   "new": "'4 Services'!N40"
+  },
+  "p8_s_saved": {
+   "old": "'Service Comparison'!M15",
+   "new": "'4 Services'!O40"
+  },
+  "p8_b_name": {
+   "old": "'Dashboard'!A24",
+   "new": "'5 Dashboard'!C34"
+  },
+  "p8_b_sale": {
+   "old": "'Dashboard'!B24",
+   "new": "'5 Dashboard'!D34"
+  },
+  "p8_b_ship": {
+   "old": "'Dashboard'!C24",
+   "new": "'5 Dashboard'!E34"
+  },
+  "p8_b_true": {
+   "old": "'Dashboard'!F24",
+   "new": "'5 Dashboard'!H34"
+  },
+  "p8_b_fees": {
+   "old": "'Dashboard'!G24",
+   "new": "'5 Dashboard'!I34"
+  },
+  "p8_b_net": {
+   "old": "'Dashboard'!H24",
+   "new": "'5 Dashboard'!J34"
+  },
+  "p8_b_margin": {
+   "old": "'Dashboard'!I24",
+   "new": "'5 Dashboard'!K34"
+  },
+  "p8_b_shipflag": {
+   "old": "'Dashboard'!J24",
+   "new": "'5 Dashboard'!L34"
+  },
+  "p8_b_flag": {
+   "old": "'Dashboard'!K24",
+   "new": "'5 Dashboard'!M34"
+  },
+  "p9_postage": {
+   "old": "'Parcel-Cost Builder'!G16",
+   "new": "'1 Parcel Costs'!I30"
+  },
+  "p9_labor": {
+   "old": "'Parcel-Cost Builder'!M16",
+   "new": "'1 Parcel Costs'!O30"
+  },
+  "p9_true": {
+   "old": "'Parcel-Cost Builder'!N16",
+   "new": "'1 Parcel Costs'!P30"
+  },
+  "p9_short": {
+   "old": "'Parcel-Cost Builder'!O16",
+   "new": "'1 Parcel Costs'!Q30"
+  },
+  "p9_flag": {
+   "old": "'Parcel-Cost Builder'!P16",
+   "new": "'1 Parcel Costs'!R30"
+  },
+  "p9_share": {
+   "old": "'Parcel-Cost Builder'!Q16",
+   "new": "'1 Parcel Costs'!S30"
+  },
+  "p9_d_name": {
+   "old": "'Dim-Weight Checker'!A16",
+   "new": "'2 Dim Weight'!C32"
+  },
+  "p9_d_lb": {
+   "old": "'Dim-Weight Checker'!F16",
+   "new": "'2 Dim Weight'!H32"
+  },
+  "p9_d_cubic": {
+   "old": "'Dim-Weight Checker'!G16",
+   "new": "'2 Dim Weight'!I32"
+  },
+  "p9_d_over": {
+   "old": "'Dim-Weight Checker'!H16",
+   "new": "'2 Dim Weight'!J32"
+  },
+  "p9_d_uspsdim": {
+   "old": "'Dim-Weight Checker'!I16",
+   "new": "'2 Dim Weight'!K32"
+  },
+  "p9_d_uspsbill": {
+   "old": "'Dim-Weight Checker'!J16",
+   "new": "'2 Dim Weight'!L32"
+  },
+  "p9_d_upsdim": {
+   "old": "'Dim-Weight Checker'!K16",
+   "new": "'2 Dim Weight'!M32"
+  },
+  "p9_d_upsbill": {
+   "old": "'Dim-Weight Checker'!L16",
+   "new": "'2 Dim Weight'!N32"
+  },
+  "p9_d_uspsflag": {
+   "old": "'Dim-Weight Checker'!M16",
+   "new": "'2 Dim Weight'!O32"
+  },
+  "p9_d_upsflag": {
+   "old": "'Dim-Weight Checker'!N16",
+   "new": "'2 Dim Weight'!P32"
+  },
+  "p9_s_usps": {
+   "old": "'Service Comparison'!B16",
+   "new": "'4 Services'!D41"
+  },
+  "p9_s_ups": {
+   "old": "'Service Comparison'!C16",
+   "new": "'4 Services'!E41"
+  },
+  "p9_s_zone": {
+   "old": "'Service Comparison'!D16",
+   "new": "'4 Services'!F41"
+  },
+  "p9_s_gacom": {
+   "old": "'Service Comparison'!E16",
+   "new": "'4 Services'!G41"
+  },
+  "p9_s_garet": {
+   "old": "'Service Comparison'!F16",
+   "new": "'4 Services'!H41"
+  },
+  "p9_s_pri": {
+   "old": "'Service Comparison'!G16",
+   "new": "'4 Services'!I41"
+  },
+  "p9_s_upsgs": {
+   "old": "'Service Comparison'!H16",
+   "new": "'4 Services'!J41"
+  },
+  "p9_s_cheap": {
+   "old": "'Service Comparison'!K16",
+   "new": "'4 Services'!M41"
+  },
+  "p9_s_cheapname": {
+   "old": "'Service Comparison'!L16",
+   "new": "'4 Services'!N41"
+  },
+  "p9_s_saved": {
+   "old": "'Service Comparison'!M16",
+   "new": "'4 Services'!O41"
+  },
+  "p9_b_name": {
+   "old": "'Dashboard'!A25",
+   "new": "'5 Dashboard'!C35"
+  },
+  "p9_b_sale": {
+   "old": "'Dashboard'!B25",
+   "new": "'5 Dashboard'!D35"
+  },
+  "p9_b_ship": {
+   "old": "'Dashboard'!C25",
+   "new": "'5 Dashboard'!E35"
+  },
+  "p9_b_true": {
+   "old": "'Dashboard'!F25",
+   "new": "'5 Dashboard'!H35"
+  },
+  "p9_b_fees": {
+   "old": "'Dashboard'!G25",
+   "new": "'5 Dashboard'!I35"
+  },
+  "p9_b_net": {
+   "old": "'Dashboard'!H25",
+   "new": "'5 Dashboard'!J35"
+  },
+  "p9_b_margin": {
+   "old": "'Dashboard'!I25",
+   "new": "'5 Dashboard'!K35"
+  },
+  "p9_b_shipflag": {
+   "old": "'Dashboard'!J25",
+   "new": "'5 Dashboard'!L35"
+  },
+  "p9_b_flag": {
+   "old": "'Dashboard'!K25",
+   "new": "'5 Dashboard'!M35"
+  },
+  "p10_postage": {
+   "old": "'Parcel-Cost Builder'!G17",
+   "new": "'1 Parcel Costs'!I31"
+  },
+  "p10_labor": {
+   "old": "'Parcel-Cost Builder'!M17",
+   "new": "'1 Parcel Costs'!O31"
+  },
+  "p10_true": {
+   "old": "'Parcel-Cost Builder'!N17",
+   "new": "'1 Parcel Costs'!P31"
+  },
+  "p10_short": {
+   "old": "'Parcel-Cost Builder'!O17",
+   "new": "'1 Parcel Costs'!Q31"
+  },
+  "p10_flag": {
+   "old": "'Parcel-Cost Builder'!P17",
+   "new": "'1 Parcel Costs'!R31"
+  },
+  "p10_share": {
+   "old": "'Parcel-Cost Builder'!Q17",
+   "new": "'1 Parcel Costs'!S31"
+  },
+  "p10_d_name": {
+   "old": "'Dim-Weight Checker'!A17",
+   "new": "'2 Dim Weight'!C33"
+  },
+  "p10_d_lb": {
+   "old": "'Dim-Weight Checker'!F17",
+   "new": "'2 Dim Weight'!H33"
+  },
+  "p10_d_cubic": {
+   "old": "'Dim-Weight Checker'!G17",
+   "new": "'2 Dim Weight'!I33"
+  },
+  "p10_d_over": {
+   "old": "'Dim-Weight Checker'!H17",
+   "new": "'2 Dim Weight'!J33"
+  },
+  "p10_d_uspsdim": {
+   "old": "'Dim-Weight Checker'!I17",
+   "new": "'2 Dim Weight'!K33"
+  },
+  "p10_d_uspsbill": {
+   "old": "'Dim-Weight Checker'!J17",
+   "new": "'2 Dim Weight'!L33"
+  },
+  "p10_d_upsdim": {
+   "old": "'Dim-Weight Checker'!K17",
+   "new": "'2 Dim Weight'!M33"
+  },
+  "p10_d_upsbill": {
+   "old": "'Dim-Weight Checker'!L17",
+   "new": "'2 Dim Weight'!N33"
+  },
+  "p10_d_uspsflag": {
+   "old": "'Dim-Weight Checker'!M17",
+   "new": "'2 Dim Weight'!O33"
+  },
+  "p10_d_upsflag": {
+   "old": "'Dim-Weight Checker'!N17",
+   "new": "'2 Dim Weight'!P33"
+  },
+  "p10_s_usps": {
+   "old": "'Service Comparison'!B17",
+   "new": "'4 Services'!D42"
+  },
+  "p10_s_ups": {
+   "old": "'Service Comparison'!C17",
+   "new": "'4 Services'!E42"
+  },
+  "p10_s_zone": {
+   "old": "'Service Comparison'!D17",
+   "new": "'4 Services'!F42"
+  },
+  "p10_s_gacom": {
+   "old": "'Service Comparison'!E17",
+   "new": "'4 Services'!G42"
+  },
+  "p10_s_garet": {
+   "old": "'Service Comparison'!F17",
+   "new": "'4 Services'!H42"
+  },
+  "p10_s_pri": {
+   "old": "'Service Comparison'!G17",
+   "new": "'4 Services'!I42"
+  },
+  "p10_s_upsgs": {
+   "old": "'Service Comparison'!H17",
+   "new": "'4 Services'!J42"
+  },
+  "p10_s_cheap": {
+   "old": "'Service Comparison'!K17",
+   "new": "'4 Services'!M42"
+  },
+  "p10_s_cheapname": {
+   "old": "'Service Comparison'!L17",
+   "new": "'4 Services'!N42"
+  },
+  "p10_s_saved": {
+   "old": "'Service Comparison'!M17",
+   "new": "'4 Services'!O42"
+  },
+  "p10_b_name": {
+   "old": "'Dashboard'!A26",
+   "new": "'5 Dashboard'!C36"
+  },
+  "p10_b_sale": {
+   "old": "'Dashboard'!B26",
+   "new": "'5 Dashboard'!D36"
+  },
+  "p10_b_ship": {
+   "old": "'Dashboard'!C26",
+   "new": "'5 Dashboard'!E36"
+  },
+  "p10_b_true": {
+   "old": "'Dashboard'!F26",
+   "new": "'5 Dashboard'!H36"
+  },
+  "p10_b_fees": {
+   "old": "'Dashboard'!G26",
+   "new": "'5 Dashboard'!I36"
+  },
+  "p10_b_net": {
+   "old": "'Dashboard'!H26",
+   "new": "'5 Dashboard'!J36"
+  },
+  "p10_b_margin": {
+   "old": "'Dashboard'!I26",
+   "new": "'5 Dashboard'!K36"
+  },
+  "p10_b_shipflag": {
+   "old": "'Dashboard'!J26",
+   "new": "'5 Dashboard'!L36"
+  },
+  "p10_b_flag": {
+   "old": "'Dashboard'!K26",
+   "new": "'5 Dashboard'!M36"
+  },
+  "p11_postage": {
+   "old": "'Parcel-Cost Builder'!G18",
+   "new": "'1 Parcel Costs'!I32"
+  },
+  "p11_labor": {
+   "old": "'Parcel-Cost Builder'!M18",
+   "new": "'1 Parcel Costs'!O32"
+  },
+  "p11_true": {
+   "old": "'Parcel-Cost Builder'!N18",
+   "new": "'1 Parcel Costs'!P32"
+  },
+  "p11_short": {
+   "old": "'Parcel-Cost Builder'!O18",
+   "new": "'1 Parcel Costs'!Q32"
+  },
+  "p11_flag": {
+   "old": "'Parcel-Cost Builder'!P18",
+   "new": "'1 Parcel Costs'!R32"
+  },
+  "p11_share": {
+   "old": "'Parcel-Cost Builder'!Q18",
+   "new": "'1 Parcel Costs'!S32"
+  },
+  "p11_d_name": {
+   "old": "'Dim-Weight Checker'!A18",
+   "new": "'2 Dim Weight'!C34"
+  },
+  "p11_d_lb": {
+   "old": "'Dim-Weight Checker'!F18",
+   "new": "'2 Dim Weight'!H34"
+  },
+  "p11_d_cubic": {
+   "old": "'Dim-Weight Checker'!G18",
+   "new": "'2 Dim Weight'!I34"
+  },
+  "p11_d_over": {
+   "old": "'Dim-Weight Checker'!H18",
+   "new": "'2 Dim Weight'!J34"
+  },
+  "p11_d_uspsdim": {
+   "old": "'Dim-Weight Checker'!I18",
+   "new": "'2 Dim Weight'!K34"
+  },
+  "p11_d_uspsbill": {
+   "old": "'Dim-Weight Checker'!J18",
+   "new": "'2 Dim Weight'!L34"
+  },
+  "p11_d_upsdim": {
+   "old": "'Dim-Weight Checker'!K18",
+   "new": "'2 Dim Weight'!M34"
+  },
+  "p11_d_upsbill": {
+   "old": "'Dim-Weight Checker'!L18",
+   "new": "'2 Dim Weight'!N34"
+  },
+  "p11_d_uspsflag": {
+   "old": "'Dim-Weight Checker'!M18",
+   "new": "'2 Dim Weight'!O34"
+  },
+  "p11_d_upsflag": {
+   "old": "'Dim-Weight Checker'!N18",
+   "new": "'2 Dim Weight'!P34"
+  },
+  "p11_s_usps": {
+   "old": "'Service Comparison'!B18",
+   "new": "'4 Services'!D43"
+  },
+  "p11_s_ups": {
+   "old": "'Service Comparison'!C18",
+   "new": "'4 Services'!E43"
+  },
+  "p11_s_zone": {
+   "old": "'Service Comparison'!D18",
+   "new": "'4 Services'!F43"
+  },
+  "p11_s_gacom": {
+   "old": "'Service Comparison'!E18",
+   "new": "'4 Services'!G43"
+  },
+  "p11_s_garet": {
+   "old": "'Service Comparison'!F18",
+   "new": "'4 Services'!H43"
+  },
+  "p11_s_pri": {
+   "old": "'Service Comparison'!G18",
+   "new": "'4 Services'!I43"
+  },
+  "p11_s_upsgs": {
+   "old": "'Service Comparison'!H18",
+   "new": "'4 Services'!J43"
+  },
+  "p11_s_cheap": {
+   "old": "'Service Comparison'!K18",
+   "new": "'4 Services'!M43"
+  },
+  "p11_s_cheapname": {
+   "old": "'Service Comparison'!L18",
+   "new": "'4 Services'!N43"
+  },
+  "p11_s_saved": {
+   "old": "'Service Comparison'!M18",
+   "new": "'4 Services'!O43"
+  },
+  "p11_b_name": {
+   "old": "'Dashboard'!A27",
+   "new": "'5 Dashboard'!C37"
+  },
+  "p11_b_sale": {
+   "old": "'Dashboard'!B27",
+   "new": "'5 Dashboard'!D37"
+  },
+  "p11_b_ship": {
+   "old": "'Dashboard'!C27",
+   "new": "'5 Dashboard'!E37"
+  },
+  "p11_b_true": {
+   "old": "'Dashboard'!F27",
+   "new": "'5 Dashboard'!H37"
+  },
+  "p11_b_fees": {
+   "old": "'Dashboard'!G27",
+   "new": "'5 Dashboard'!I37"
+  },
+  "p11_b_net": {
+   "old": "'Dashboard'!H27",
+   "new": "'5 Dashboard'!J37"
+  },
+  "p11_b_margin": {
+   "old": "'Dashboard'!I27",
+   "new": "'5 Dashboard'!K37"
+  },
+  "p11_b_shipflag": {
+   "old": "'Dashboard'!J27",
+   "new": "'5 Dashboard'!L37"
+  },
+  "p11_b_flag": {
+   "old": "'Dashboard'!K27",
+   "new": "'5 Dashboard'!M37"
+  },
+  "p12_postage": {
+   "old": "'Parcel-Cost Builder'!G19",
+   "new": "'1 Parcel Costs'!I33"
+  },
+  "p12_labor": {
+   "old": "'Parcel-Cost Builder'!M19",
+   "new": "'1 Parcel Costs'!O33"
+  },
+  "p12_true": {
+   "old": "'Parcel-Cost Builder'!N19",
+   "new": "'1 Parcel Costs'!P33"
+  },
+  "p12_short": {
+   "old": "'Parcel-Cost Builder'!O19",
+   "new": "'1 Parcel Costs'!Q33"
+  },
+  "p12_flag": {
+   "old": "'Parcel-Cost Builder'!P19",
+   "new": "'1 Parcel Costs'!R33"
+  },
+  "p12_share": {
+   "old": "'Parcel-Cost Builder'!Q19",
+   "new": "'1 Parcel Costs'!S33"
+  },
+  "p12_d_name": {
+   "old": "'Dim-Weight Checker'!A19",
+   "new": "'2 Dim Weight'!C35"
+  },
+  "p12_d_lb": {
+   "old": "'Dim-Weight Checker'!F19",
+   "new": "'2 Dim Weight'!H35"
+  },
+  "p12_d_cubic": {
+   "old": "'Dim-Weight Checker'!G19",
+   "new": "'2 Dim Weight'!I35"
+  },
+  "p12_d_over": {
+   "old": "'Dim-Weight Checker'!H19",
+   "new": "'2 Dim Weight'!J35"
+  },
+  "p12_d_uspsdim": {
+   "old": "'Dim-Weight Checker'!I19",
+   "new": "'2 Dim Weight'!K35"
+  },
+  "p12_d_uspsbill": {
+   "old": "'Dim-Weight Checker'!J19",
+   "new": "'2 Dim Weight'!L35"
+  },
+  "p12_d_upsdim": {
+   "old": "'Dim-Weight Checker'!K19",
+   "new": "'2 Dim Weight'!M35"
+  },
+  "p12_d_upsbill": {
+   "old": "'Dim-Weight Checker'!L19",
+   "new": "'2 Dim Weight'!N35"
+  },
+  "p12_d_uspsflag": {
+   "old": "'Dim-Weight Checker'!M19",
+   "new": "'2 Dim Weight'!O35"
+  },
+  "p12_d_upsflag": {
+   "old": "'Dim-Weight Checker'!N19",
+   "new": "'2 Dim Weight'!P35"
+  },
+  "p12_s_usps": {
+   "old": "'Service Comparison'!B19",
+   "new": "'4 Services'!D44"
+  },
+  "p12_s_ups": {
+   "old": "'Service Comparison'!C19",
+   "new": "'4 Services'!E44"
+  },
+  "p12_s_zone": {
+   "old": "'Service Comparison'!D19",
+   "new": "'4 Services'!F44"
+  },
+  "p12_s_gacom": {
+   "old": "'Service Comparison'!E19",
+   "new": "'4 Services'!G44"
+  },
+  "p12_s_garet": {
+   "old": "'Service Comparison'!F19",
+   "new": "'4 Services'!H44"
+  },
+  "p12_s_pri": {
+   "old": "'Service Comparison'!G19",
+   "new": "'4 Services'!I44"
+  },
+  "p12_s_upsgs": {
+   "old": "'Service Comparison'!H19",
+   "new": "'4 Services'!J44"
+  },
+  "p12_s_cheap": {
+   "old": "'Service Comparison'!K19",
+   "new": "'4 Services'!M44"
+  },
+  "p12_s_cheapname": {
+   "old": "'Service Comparison'!L19",
+   "new": "'4 Services'!N44"
+  },
+  "p12_s_saved": {
+   "old": "'Service Comparison'!M19",
+   "new": "'4 Services'!O44"
+  },
+  "p12_b_name": {
+   "old": "'Dashboard'!A28",
+   "new": "'5 Dashboard'!C38"
+  },
+  "p12_b_sale": {
+   "old": "'Dashboard'!B28",
+   "new": "'5 Dashboard'!D38"
+  },
+  "p12_b_ship": {
+   "old": "'Dashboard'!C28",
+   "new": "'5 Dashboard'!E38"
+  },
+  "p12_b_true": {
+   "old": "'Dashboard'!F28",
+   "new": "'5 Dashboard'!H38"
+  },
+  "p12_b_fees": {
+   "old": "'Dashboard'!G28",
+   "new": "'5 Dashboard'!I38"
+  },
+  "p12_b_net": {
+   "old": "'Dashboard'!H28",
+   "new": "'5 Dashboard'!J38"
+  },
+  "p12_b_margin": {
+   "old": "'Dashboard'!I28",
+   "new": "'5 Dashboard'!K38"
+  },
+  "p12_b_shipflag": {
+   "old": "'Dashboard'!J28",
+   "new": "'5 Dashboard'!L38"
+  },
+  "p12_b_flag": {
+   "old": "'Dashboard'!K28",
+   "new": "'5 Dashboard'!M38"
+  },
+  "p30_postage": {
+   "old": "'Parcel-Cost Builder'!G37",
+   "new": "'1 Parcel Costs'!I51"
+  },
+  "p30_labor": {
+   "old": "'Parcel-Cost Builder'!M37",
+   "new": "'1 Parcel Costs'!O51"
+  },
+  "p30_true": {
+   "old": "'Parcel-Cost Builder'!N37",
+   "new": "'1 Parcel Costs'!P51"
+  },
+  "p30_short": {
+   "old": "'Parcel-Cost Builder'!O37",
+   "new": "'1 Parcel Costs'!Q51"
+  },
+  "p30_flag": {
+   "old": "'Parcel-Cost Builder'!P37",
+   "new": "'1 Parcel Costs'!R51"
+  },
+  "p30_share": {
+   "old": "'Parcel-Cost Builder'!Q37",
+   "new": "'1 Parcel Costs'!S51"
+  },
+  "p30_d_name": {
+   "old": "'Dim-Weight Checker'!A37",
+   "new": "'2 Dim Weight'!C53"
+  },
+  "p30_d_lb": {
+   "old": "'Dim-Weight Checker'!F37",
+   "new": "'2 Dim Weight'!H53"
+  },
+  "p30_d_cubic": {
+   "old": "'Dim-Weight Checker'!G37",
+   "new": "'2 Dim Weight'!I53"
+  },
+  "p30_d_over": {
+   "old": "'Dim-Weight Checker'!H37",
+   "new": "'2 Dim Weight'!J53"
+  },
+  "p30_d_uspsdim": {
+   "old": "'Dim-Weight Checker'!I37",
+   "new": "'2 Dim Weight'!K53"
+  },
+  "p30_d_uspsbill": {
+   "old": "'Dim-Weight Checker'!J37",
+   "new": "'2 Dim Weight'!L53"
+  },
+  "p30_d_upsdim": {
+   "old": "'Dim-Weight Checker'!K37",
+   "new": "'2 Dim Weight'!M53"
+  },
+  "p30_d_upsbill": {
+   "old": "'Dim-Weight Checker'!L37",
+   "new": "'2 Dim Weight'!N53"
+  },
+  "p30_d_uspsflag": {
+   "old": "'Dim-Weight Checker'!M37",
+   "new": "'2 Dim Weight'!O53"
+  },
+  "p30_d_upsflag": {
+   "old": "'Dim-Weight Checker'!N37",
+   "new": "'2 Dim Weight'!P53"
+  },
+  "p30_s_usps": {
+   "old": "'Service Comparison'!B37",
+   "new": "'4 Services'!D62"
+  },
+  "p30_s_ups": {
+   "old": "'Service Comparison'!C37",
+   "new": "'4 Services'!E62"
+  },
+  "p30_s_zone": {
+   "old": "'Service Comparison'!D37",
+   "new": "'4 Services'!F62"
+  },
+  "p30_s_gacom": {
+   "old": "'Service Comparison'!E37",
+   "new": "'4 Services'!G62"
+  },
+  "p30_s_garet": {
+   "old": "'Service Comparison'!F37",
+   "new": "'4 Services'!H62"
+  },
+  "p30_s_pri": {
+   "old": "'Service Comparison'!G37",
+   "new": "'4 Services'!I62"
+  },
+  "p30_s_upsgs": {
+   "old": "'Service Comparison'!H37",
+   "new": "'4 Services'!J62"
+  },
+  "p30_s_cheap": {
+   "old": "'Service Comparison'!K37",
+   "new": "'4 Services'!M62"
+  },
+  "p30_s_cheapname": {
+   "old": "'Service Comparison'!L37",
+   "new": "'4 Services'!N62"
+  },
+  "p30_s_saved": {
+   "old": "'Service Comparison'!M37",
+   "new": "'4 Services'!O62"
+  },
+  "p30_b_name": {
+   "old": "'Dashboard'!A46",
+   "new": "'5 Dashboard'!C56"
+  },
+  "p30_b_sale": {
+   "old": "'Dashboard'!B46",
+   "new": "'5 Dashboard'!D56"
+  },
+  "p30_b_ship": {
+   "old": "'Dashboard'!C46",
+   "new": "'5 Dashboard'!E56"
+  },
+  "p30_b_true": {
+   "old": "'Dashboard'!F46",
+   "new": "'5 Dashboard'!H56"
+  },
+  "p30_b_fees": {
+   "old": "'Dashboard'!G46",
+   "new": "'5 Dashboard'!I56"
+  },
+  "p30_b_net": {
+   "old": "'Dashboard'!H46",
+   "new": "'5 Dashboard'!J56"
+  },
+  "p30_b_margin": {
+   "old": "'Dashboard'!I46",
+   "new": "'5 Dashboard'!K56"
+  },
+  "p30_b_shipflag": {
+   "old": "'Dashboard'!J46",
+   "new": "'5 Dashboard'!L56"
+  },
+  "p30_b_flag": {
+   "old": "'Dashboard'!K46",
+   "new": "'5 Dashboard'!M56"
+  },
+  "avg_true": {
+   "old": "'Parcel-Cost Builder'!N38",
+   "new": "'1 Parcel Costs'!P52"
+  },
+  "avg_short": {
+   "old": "'Parcel-Cost Builder'!O38",
+   "new": "'1 Parcel Costs'!Q52"
+  },
+  "avg_share": {
+   "old": "'Parcel-Cost Builder'!Q38",
+   "new": "'1 Parcel Costs'!S52"
+  },
+  "sc_cheap_total": {
+   "old": "'Service Comparison'!K38",
+   "new": "'4 Services'!C7"
+  },
+  "sc_saved_total": {
+   "old": "'Service Comparison'!M38",
+   "new": "'4 Services'!L7"
+  },
+  "db_losing": {
+   "old": "'Dashboard'!B7",
+   "new": "'5 Dashboard'!J7"
+  },
+  "db_under": {
+   "old": "'Dashboard'!D7",
+   "new": "'5 Dashboard'!C13"
+  },
+  "db_avgtrue": {
+   "old": "'Dashboard'!F7",
+   "new": "'5 Dashboard'!D13"
+  },
+  "db_avgshort": {
+   "old": "'Dashboard'!H7",
+   "new": "'5 Dashboard'!F13"
+  },
+  "db_shipcost": {
+   "old": "'Dashboard'!B10",
+   "new": "'5 Dashboard'!H13"
+  },
+  "db_collected": {
+   "old": "'Dashboard'!D10",
+   "new": "'5 Dashboard'!J13"
+  },
+  "db_netship": {
+   "old": "'Dashboard'!F10",
+   "new": "'5 Dashboard'!C7"
+  },
+  "db_share": {
+   "old": "'Dashboard'!H10",
+   "new": "'5 Dashboard'!L13"
+  },
+  "db_tot_true": {
+   "old": "'Dashboard'!F47",
+   "new": "'5 Dashboard'!H57"
+  },
+  "db_tot_fees": {
+   "old": "'Dashboard'!G47",
+   "new": "'5 Dashboard'!I57"
+  },
+  "db_tot_net": {
+   "old": "'Dashboard'!H47",
+   "new": "'5 Dashboard'!J57"
+  },
+  "fs_tc": {
+   "old": "'Free-Shipping Simulator'!C8",
+   "new": "'3 Free Shipping'!D16"
+  },
+  "fs_tcused": {
+   "old": "'Free-Shipping Simulator'!C10",
+   "new": "'3 Free Shipping'!D18"
+  },
+  "fs_profit_order": {
+   "old": "'Free-Shipping Simulator'!C15",
+   "new": "'3 Free Shipping'!J14"
+  },
+  "fs_cost": {
+   "old": "'Free-Shipping Simulator'!C16",
+   "new": "'3 Free Shipping'!J16"
+  },
+  "fs_breakeven": {
+   "old": "'Free-Shipping Simulator'!C17",
+   "new": "'3 Free Shipping'!J18"
+  },
+  "fs_recommendation": {
+   "old": "'Free-Shipping Simulator'!C36",
+   "new": "'3 Free Shipping'!C42"
+  },
+  "fs_avgo_today": {
+   "old": "'Free-Shipping Simulator'!C24",
+   "new": "'3 Free Shipping'!D30"
+  },
+  "fs_avgo_s1": {
+   "old": "'Free-Shipping Simulator'!D24",
+   "new": "'3 Free Shipping'!H30"
+  },
+  "fs_avgo_s2": {
+   "old": "'Free-Shipping Simulator'!E24",
+   "new": "'3 Free Shipping'!I30"
+  },
+  "fs_avgo_s3": {
+   "old": "'Free-Shipping Simulator'!F24",
+   "new": "'3 Free Shipping'!J30"
+  },
+  "fs_orders_today": {
+   "old": "'Free-Shipping Simulator'!C25",
+   "new": "'3 Free Shipping'!D31"
+  },
+  "fs_orders_s1": {
+   "old": "'Free-Shipping Simulator'!D25",
+   "new": "'3 Free Shipping'!H31"
+  },
+  "fs_orders_s2": {
+   "old": "'Free-Shipping Simulator'!E25",
+   "new": "'3 Free Shipping'!I31"
+  },
+  "fs_orders_s3": {
+   "old": "'Free-Shipping Simulator'!F25",
+   "new": "'3 Free Shipping'!J31"
+  },
+  "fs_qual_today": {
+   "old": "'Free-Shipping Simulator'!C26",
+   "new": "'3 Free Shipping'!D32"
+  },
+  "fs_qual_s1": {
+   "old": "'Free-Shipping Simulator'!D26",
+   "new": "'3 Free Shipping'!H32"
+  },
+  "fs_qual_s2": {
+   "old": "'Free-Shipping Simulator'!E26",
+   "new": "'3 Free Shipping'!I32"
+  },
+  "fs_qual_s3": {
+   "old": "'Free-Shipping Simulator'!F26",
+   "new": "'3 Free Shipping'!J32"
+  },
+  "fs_other_today": {
+   "old": "'Free-Shipping Simulator'!C27",
+   "new": "'3 Free Shipping'!D33"
+  },
+  "fs_other_s1": {
+   "old": "'Free-Shipping Simulator'!D27",
+   "new": "'3 Free Shipping'!H33"
+  },
+  "fs_other_s2": {
+   "old": "'Free-Shipping Simulator'!E27",
+   "new": "'3 Free Shipping'!I33"
+  },
+  "fs_other_s3": {
+   "old": "'Free-Shipping Simulator'!F27",
+   "new": "'3 Free Shipping'!J33"
+  },
+  "fs_rev_today": {
+   "old": "'Free-Shipping Simulator'!C28",
+   "new": "'3 Free Shipping'!D34"
+  },
+  "fs_rev_s1": {
+   "old": "'Free-Shipping Simulator'!D28",
+   "new": "'3 Free Shipping'!H34"
+  },
+  "fs_rev_s2": {
+   "old": "'Free-Shipping Simulator'!E28",
+   "new": "'3 Free Shipping'!I34"
+  },
+  "fs_rev_s3": {
+   "old": "'Free-Shipping Simulator'!F28",
+   "new": "'3 Free Shipping'!J34"
+  },
+  "fs_coll_today": {
+   "old": "'Free-Shipping Simulator'!C29",
+   "new": "'3 Free Shipping'!D35"
+  },
+  "fs_coll_s1": {
+   "old": "'Free-Shipping Simulator'!D29",
+   "new": "'3 Free Shipping'!H35"
+  },
+  "fs_coll_s2": {
+   "old": "'Free-Shipping Simulator'!E29",
+   "new": "'3 Free Shipping'!I35"
+  },
+  "fs_coll_s3": {
+   "old": "'Free-Shipping Simulator'!F29",
+   "new": "'3 Free Shipping'!J35"
+  },
+  "fs_parc_today": {
+   "old": "'Free-Shipping Simulator'!C30",
+   "new": "'3 Free Shipping'!D36"
+  },
+  "fs_parc_s1": {
+   "old": "'Free-Shipping Simulator'!D30",
+   "new": "'3 Free Shipping'!H36"
+  },
+  "fs_parc_s2": {
+   "old": "'Free-Shipping Simulator'!E30",
+   "new": "'3 Free Shipping'!I36"
+  },
+  "fs_parc_s3": {
+   "old": "'Free-Shipping Simulator'!F30",
+   "new": "'3 Free Shipping'!J36"
+  },
+  "fs_profit_today": {
+   "old": "'Free-Shipping Simulator'!C31",
+   "new": "'3 Free Shipping'!D37"
+  },
+  "fs_profit_s1": {
+   "old": "'Free-Shipping Simulator'!D31",
+   "new": "'3 Free Shipping'!H37"
+  },
+  "fs_profit_s2": {
+   "old": "'Free-Shipping Simulator'!E31",
+   "new": "'3 Free Shipping'!I37"
+  },
+  "fs_profit_s3": {
+   "old": "'Free-Shipping Simulator'!F31",
+   "new": "'3 Free Shipping'!J37"
+  },
+  "fs_per_today": {
+   "old": "'Free-Shipping Simulator'!C32",
+   "new": "'3 Free Shipping'!D38"
+  },
+  "fs_per_s1": {
+   "old": "'Free-Shipping Simulator'!D32",
+   "new": "'3 Free Shipping'!H38"
+  },
+  "fs_per_s2": {
+   "old": "'Free-Shipping Simulator'!E32",
+   "new": "'3 Free Shipping'!I38"
+  },
+  "fs_per_s3": {
+   "old": "'Free-Shipping Simulator'!F32",
+   "new": "'3 Free Shipping'!J38"
+  },
+  "fs_chg_today": {
+   "old": "'Free-Shipping Simulator'!C33",
+   "new": "'3 Free Shipping'!D39"
+  },
+  "fs_chg_s1": {
+   "old": "'Free-Shipping Simulator'!D33",
+   "new": "'3 Free Shipping'!H39"
+  },
+  "fs_chg_s2": {
+   "old": "'Free-Shipping Simulator'!E33",
+   "new": "'3 Free Shipping'!I39"
+  },
+  "fs_chg_s3": {
+   "old": "'Free-Shipping Simulator'!F33",
+   "new": "'3 Free Shipping'!J39"
+  },
+  "fs_verdict_today": {
+   "old": "'Free-Shipping Simulator'!C34",
+   "new": "'3 Free Shipping'!D40"
+  },
+  "fs_verdict_s1": {
+   "old": "'Free-Shipping Simulator'!D34",
+   "new": "'3 Free Shipping'!H40"
+  },
+  "fs_verdict_s2": {
+   "old": "'Free-Shipping Simulator'!E34",
+   "new": "'3 Free Shipping'!I40"
+  },
+  "fs_verdict_s3": {
+   "old": "'Free-Shipping Simulator'!F34",
+   "new": "'3 Free Shipping'!J40"
+  }
+ },
+ "cases": [
+  {
+   "name": "example"
+  },
+  {
+   "name": "high",
+   "set": {
+    "hourly": 45,
+    "p1_zone": 8,
+    "p6_oz": 300,
+    "p6_zone": 9,
+    "lift": 0.3,
+    "aov": 120,
+    "ship": 12,
+    "p3_minutes": 60,
+    "fixed_fee": 1.2,
+    "p2_feepct": 0.2,
+    "thr3": 150,
+    "share3": 0.4,
+    "avgq3": 180
+   }
+  },
+  {
+   "name": "low",
+   "set": {
+    "hourly": 0,
+    "fuel": 0,
+    "p1_zone": 1,
+    "p2_zone": 1,
+    "p3_zone": 2,
+    "p10_zone": 1,
+    "margin": 0.05,
+    "lift": 0,
+    "p4_oz": 1,
+    "fixed_fee": 0,
+    "p5_cost": 0
+   }
+  },
+  {
+   "name": "blank key inputs",
+   "set": {
+    "p1_zone": null,
+    "hourly": null,
+    "p2_oz": null,
+    "p3_len": null,
+    "aov": null,
+    "margin": null,
+    "p4_feepct": null,
+    "share2": null
+   }
+  },
+  {
+   "name": "overrides and edits",
+   "set": {
+    "p1_override": 7.5,
+    "p2_service": "USPS Priority Commercial",
+    "p5_service": "Your quote A",
+    "p5_quoteA": 6.2,
+    "p7_service": "UPS Ground Saver",
+    "p8_quoteB": 5.1,
+    "p9_service": "Your quote B",
+    "p9_quoteB": 9.99,
+    "tc_override": 10,
+    "usps_div": 166,
+    "p11_name": "Notebook",
+    "p11_sale": 15,
+    "p11_ship": 5,
+    "p11_zone": 6,
+    "p11_service": "Cheapest",
+    "p11_box": 0.4,
+    "p11_minutes": 2,
+    "p11_len": 9,
+    "p11_wid": 7,
+    "p11_hgt": 1,
+    "p11_oz": 11,
+    "p11_feepct": 0.095,
+    "p11_cost": 4
+   }
+  },
+  {
+   "name": "edge",
+   "set": {
+    "p6_len": 30,
+    "p6_wid": 30,
+    "p6_hgt": 30,
+    "p6_oz": 1100,
+    "p7_zone": 9,
+    "p8_oz": 0.5,
+    "thresh": 500,
+    "ups_div": 400,
+    "thr1": 0,
+    "share1": 1,
+    "avgq1": 0,
+    "margin": 0.95,
+    "p30_name": "Last row",
+    "p30_zone": 3,
+    "p30_len": 20,
+    "p30_wid": 20,
+    "p30_hgt": 20,
+    "p30_oz": 160,
+    "p30_ship": 0
+   }
+  },
+  {
+   "name": "quote picked but blank",
+   "set": {
+    "p2_service": "Your quote A",
+    "p3_service": "Your quote B",
+    "p4_service": "UPS Ground Saver",
+    "p4_zone": 9
+   }
+  },
+  {
+   "name": "blank shop",
+   "set": {
+    "p1_name": null,
+    "p2_name": null,
+    "p3_name": null,
+    "p4_name": null,
+    "p5_name": null,
+    "p6_name": null,
+    "p7_name": null,
+    "p8_name": null,
+    "p9_name": null,
+    "p10_name": null
+   }
+  }
+ ],
+ "intended": [
+  {
+   "case": "example",
+   "outputs": [
+    "p1_flag",
+    "p1_d_over",
+    "p1_d_uspsflag",
+    "p1_d_upsflag",
+    "p1_b_shipflag",
+    "p1_b_flag",
+    "p2_flag",
+    "p2_d_over",
+    "p2_d_uspsflag",
+    "p2_d_upsflag",
+    "p2_b_shipflag",
+    "p3_flag",
+    "p3_d_over",
+    "p3_d_uspsflag",
+    "p3_d_upsflag",
+    "p3_b_shipflag",
+    "p4_flag",
+    "p4_d_over",
+    "p4_d_uspsflag",
+    "p4_d_upsflag",
+    "p4_b_shipflag",
+    "p5_flag",
+    "p5_d_over",
+    "p5_d_uspsflag",
+    "p5_d_upsflag",
+    "p5_b_shipflag",
+    "p6_flag",
+    "p6_d_over",
+    "p6_d_uspsflag",
+    "p6_d_upsflag",
+    "p6_b_shipflag",
+    "p7_flag",
+    "p7_d_over",
+    "p7_d_uspsflag",
+    "p7_d_upsflag",
+    "p7_b_shipflag",
+    "p8_flag",
+    "p8_d_over",
+    "p8_d_uspsflag",
+    "p8_d_upsflag",
+    "p8_b_shipflag",
+    "p9_flag",
+    "p9_d_over",
+    "p9_d_uspsflag",
+    "p9_d_upsflag",
+    "p9_b_shipflag",
+    "p10_flag",
+    "p10_d_over",
+    "p10_d_uspsflag",
+    "p10_d_upsflag",
+    "p10_b_shipflag",
+    "fs_verdict_s1",
+    "fs_verdict_s2",
+    "fs_verdict_s3"
+   ],
+   "why": "sentence case only, same status word"
+  },
+  {
+   "case": "example",
+   "outputs": [
+    "fs_verdict_today"
+   ],
+   "why": "baseline column now reads Today"
+  },
+  {
+   "case": "high",
+   "outputs": [
+    "p1_flag",
+    "p1_d_over",
+    "p1_d_uspsflag",
+    "p1_d_upsflag",
+    "p1_b_shipflag",
+    "p1_b_flag",
+    "p2_flag",
+    "p2_d_over",
+    "p2_d_uspsflag",
+    "p2_d_upsflag",
+    "p2_b_shipflag",
+    "p2_b_flag",
+    "p3_flag",
+    "p3_d_over",
+    "p3_d_uspsflag",
+    "p3_d_upsflag",
+    "p3_b_shipflag",
+    "p3_b_flag",
+    "p4_flag",
+    "p4_d_over",
+    "p4_d_uspsflag",
+    "p4_d_upsflag",
+    "p4_b_shipflag",
+    "p5_flag",
+    "p5_d_over",
+    "p5_d_uspsflag",
+    "p5_d_upsflag",
+    "p5_b_shipflag",
+    "p6_flag",
+    "p6_d_over",
+    "p6_d_uspsflag",
+    "p6_d_upsflag",
+    "p6_b_shipflag",
+    "p6_b_flag",
+    "p7_flag",
+    "p7_d_over",
+    "p7_d_uspsflag",
+    "p7_d_upsflag",
+    "p7_b_shipflag",
+    "p8_flag",
+    "p8_d_over",
+    "p8_d_uspsflag",
+    "p8_d_upsflag",
+    "p8_b_shipflag",
+    "p9_flag",
+    "p9_d_over",
+    "p9_d_uspsflag",
+    "p9_d_upsflag",
+    "p9_b_shipflag",
+    "p10_flag",
+    "p10_d_over",
+    "p10_d_uspsflag",
+    "p10_d_upsflag",
+    "p10_b_shipflag",
+    "fs_verdict_s1",
+    "fs_verdict_s2",
+    "fs_verdict_s3"
+   ],
+   "why": "sentence case only, same status word"
+  },
+  {
+   "case": "high",
+   "outputs": [
+    "fs_verdict_today"
+   ],
+   "why": "baseline column now reads Today"
+  },
+  {
+   "case": "low",
+   "outputs": [
+    "p1_flag",
+    "p1_d_over",
+    "p1_d_uspsflag",
+    "p1_d_upsflag",
+    "p1_b_shipflag",
+    "p2_flag",
+    "p2_d_over",
+    "p2_d_uspsflag",
+    "p2_d_upsflag",
+    "p2_b_shipflag",
+    "p3_flag",
+    "p3_d_over",
+    "p3_d_uspsflag",
+    "p3_d_upsflag",
+    "p3_b_shipflag",
+    "p4_flag",
+    "p4_d_over",
+    "p4_d_uspsflag",
+    "p4_d_upsflag",
+    "p4_b_shipflag",
+    "p5_flag",
+    "p5_d_over",
+    "p5_d_uspsflag",
+    "p5_d_upsflag",
+    "p5_b_shipflag",
+    "p6_flag",
+    "p6_d_over",
+    "p6_d_uspsflag",
+    "p6_d_upsflag",
+    "p6_b_shipflag",
+    "p7_flag",
+    "p7_d_over",
+    "p7_d_uspsflag",
+    "p7_d_upsflag",
+    "p7_b_shipflag",
+    "p8_flag",
+    "p8_d_over",
+    "p8_d_uspsflag",
+    "p8_d_upsflag",
+    "p8_b_shipflag",
+    "p9_flag",
+    "p9_d_over",
+    "p9_d_uspsflag",
+    "p9_d_upsflag",
+    "p9_b_shipflag",
+    "p10_flag",
+    "p10_d_over",
+    "p10_d_uspsflag",
+    "p10_d_upsflag",
+    "p10_b_shipflag",
+    "fs_verdict_s1",
+    "fs_verdict_s2",
+    "fs_verdict_s3"
+   ],
+   "why": "sentence case only, same status word"
+  },
+  {
+   "case": "low",
+   "outputs": [
+    "fs_verdict_today"
+   ],
+   "why": "baseline column now reads Today"
+  },
+  {
+   "case": "blank key inputs",
+   "outputs": [
+    "p1_flag",
+    "p1_d_over",
+    "p1_d_uspsflag",
+    "p1_d_upsflag",
+    "p1_b_shipflag",
+    "p2_flag",
+    "p2_d_over",
+    "p2_b_shipflag",
+    "p3_flag",
+    "p3_b_shipflag",
+    "p4_flag",
+    "p4_d_over",
+    "p4_d_uspsflag",
+    "p4_d_upsflag",
+    "p4_b_shipflag",
+    "p5_flag",
+    "p5_d_over",
+    "p5_d_uspsflag",
+    "p5_d_upsflag",
+    "p5_b_shipflag",
+    "p6_flag",
+    "p6_d_over",
+    "p6_d_uspsflag",
+    "p6_d_upsflag",
+    "p6_b_shipflag",
+    "p7_flag",
+    "p7_d_over",
+    "p7_d_uspsflag",
+    "p7_d_upsflag",
+    "p7_b_shipflag",
+    "p8_flag",
+    "p8_d_over",
+    "p8_d_uspsflag",
+    "p8_d_upsflag",
+    "p8_b_shipflag",
+    "p9_flag",
+    "p9_d_over",
+    "p9_d_uspsflag",
+    "p9_d_upsflag",
+    "p9_b_shipflag",
+    "p10_flag",
+    "p10_d_over",
+    "p10_d_uspsflag",
+    "p10_d_upsflag",
+    "p10_b_shipflag",
+    "fs_verdict_s1",
+    "fs_verdict_s2",
+    "fs_verdict_s3"
+   ],
+   "why": "sentence case only, same status word"
+  },
+  {
+   "case": "blank key inputs",
+   "outputs": [
+    "fs_verdict_today"
+   ],
+   "why": "baseline column now reads Today"
+  },
+  {
+   "case": "overrides and edits",
+   "outputs": [
+    "p1_flag",
+    "p1_d_over",
+    "p1_d_uspsflag",
+    "p1_d_upsflag",
+    "p1_b_shipflag",
+    "p1_b_flag",
+    "p2_flag",
+    "p2_d_over",
+    "p2_d_uspsflag",
+    "p2_d_upsflag",
+    "p2_b_shipflag",
+    "p3_flag",
+    "p3_d_over",
+    "p3_d_uspsflag",
+    "p3_d_upsflag",
+    "p3_b_shipflag",
+    "p4_flag",
+    "p4_d_over",
+    "p4_d_uspsflag",
+    "p4_d_upsflag",
+    "p4_b_shipflag",
+    "p5_flag",
+    "p5_d_over",
+    "p5_d_uspsflag",
+    "p5_d_upsflag",
+    "p5_b_shipflag",
+    "p6_flag",
+    "p6_d_over",
+    "p6_d_uspsflag",
+    "p6_d_upsflag",
+    "p6_b_shipflag",
+    "p7_flag",
+    "p7_d_over",
+    "p7_d_uspsflag",
+    "p7_d_upsflag",
+    "p7_b_shipflag",
+    "p7_b_flag",
+    "p8_flag",
+    "p8_d_over",
+    "p8_d_uspsflag",
+    "p8_d_upsflag",
+    "p8_b_shipflag",
+    "p9_flag",
+    "p9_d_over",
+    "p9_d_uspsflag",
+    "p9_d_upsflag",
+    "p9_b_shipflag",
+    "p10_flag",
+    "p10_d_over",
+    "p10_d_uspsflag",
+    "p10_d_upsflag",
+    "p10_b_shipflag",
+    "p11_flag",
+    "p11_d_over",
+    "p11_d_uspsflag",
+    "p11_d_upsflag",
+    "p11_b_shipflag",
+    "fs_verdict_s1",
+    "fs_verdict_s2",
+    "fs_verdict_s3"
+   ],
+   "why": "sentence case only, same status word"
+  },
+  {
+   "case": "overrides and edits",
+   "outputs": [
+    "fs_verdict_today"
+   ],
+   "why": "baseline column now reads Today"
+  },
+  {
+   "case": "edge",
+   "outputs": [
+    "p1_flag",
+    "p1_d_over",
+    "p1_d_uspsflag",
+    "p1_d_upsflag",
+    "p1_b_shipflag",
+    "p1_b_flag",
+    "p2_flag",
+    "p2_d_over",
+    "p2_d_uspsflag",
+    "p2_d_upsflag",
+    "p2_b_shipflag",
+    "p3_flag",
+    "p3_d_over",
+    "p3_d_uspsflag",
+    "p3_d_upsflag",
+    "p3_b_shipflag",
+    "p4_flag",
+    "p4_d_over",
+    "p4_d_uspsflag",
+    "p4_d_upsflag",
+    "p4_b_shipflag",
+    "p5_flag",
+    "p5_d_over",
+    "p5_d_uspsflag",
+    "p5_d_upsflag",
+    "p5_b_shipflag",
+    "p6_flag",
+    "p6_d_over",
+    "p6_d_uspsflag",
+    "p6_d_upsflag",
+    "p6_b_shipflag",
+    "p7_flag",
+    "p7_d_over",
+    "p7_d_uspsflag",
+    "p7_d_upsflag",
+    "p7_b_shipflag",
+    "p8_flag",
+    "p8_d_over",
+    "p8_d_uspsflag",
+    "p8_d_upsflag",
+    "p8_b_shipflag",
+    "p9_flag",
+    "p9_d_over",
+    "p9_d_uspsflag",
+    "p9_d_upsflag",
+    "p9_b_shipflag",
+    "p10_flag",
+    "p10_d_over",
+    "p10_d_uspsflag",
+    "p10_d_upsflag",
+    "p10_b_shipflag",
+    "p30_flag",
+    "p30_d_over",
+    "p30_d_uspsflag",
+    "p30_d_upsflag",
+    "p30_b_shipflag",
+    "p30_b_flag",
+    "fs_verdict_s1",
+    "fs_verdict_s2",
+    "fs_verdict_s3"
+   ],
+   "why": "sentence case only, same status word"
+  },
+  {
+   "case": "edge",
+   "outputs": [
+    "fs_verdict_today"
+   ],
+   "why": "baseline column now reads Today"
+  },
+  {
+   "case": "quote picked but blank",
+   "outputs": [
+    "p1_flag",
+    "p1_d_over",
+    "p1_d_uspsflag",
+    "p1_d_upsflag",
+    "p1_b_shipflag",
+    "p1_b_flag",
+    "p2_flag",
+    "p2_d_over",
+    "p2_d_uspsflag",
+    "p2_d_upsflag",
+    "p2_b_shipflag",
+    "p3_flag",
+    "p3_d_over",
+    "p3_d_uspsflag",
+    "p3_d_upsflag",
+    "p3_b_shipflag",
+    "p4_flag",
+    "p4_d_over",
+    "p4_d_uspsflag",
+    "p4_d_upsflag",
+    "p4_b_shipflag",
+    "p5_flag",
+    "p5_d_over",
+    "p5_d_uspsflag",
+    "p5_d_upsflag",
+    "p5_b_shipflag",
+    "p6_flag",
+    "p6_d_over",
+    "p6_d_uspsflag",
+    "p6_d_upsflag",
+    "p6_b_shipflag",
+    "p7_flag",
+    "p7_d_over",
+    "p7_d_uspsflag",
+    "p7_d_upsflag",
+    "p7_b_shipflag",
+    "p8_flag",
+    "p8_d_over",
+    "p8_d_uspsflag",
+    "p8_d_upsflag",
+    "p8_b_shipflag",
+    "p9_flag",
+    "p9_d_over",
+    "p9_d_uspsflag",
+    "p9_d_upsflag",
+    "p9_b_shipflag",
+    "p10_flag",
+    "p10_d_over",
+    "p10_d_uspsflag",
+    "p10_d_upsflag",
+    "p10_b_shipflag",
+    "fs_verdict_s1",
+    "fs_verdict_s2",
+    "fs_verdict_s3"
+   ],
+   "why": "sentence case only, same status word"
+  },
+  {
+   "case": "quote picked but blank",
+   "outputs": [
+    "fs_verdict_today"
+   ],
+   "why": "baseline column now reads Today"
+  },
+  {
+   "case": "blank shop",
+   "outputs": [
+    "fs_recommendation"
+   ],
+   "why": "names the new tab 1 instead of the old tab name; same advice"
+  },
+  {
+   "case": "blank shop",
+   "outputs": [
+    "fs_verdict_today"
+   ],
+   "why": "baseline column now reads Today"
+  },
+  {
+   "case": "blank shop",
+   "outputs": [
+    "fs_verdict_s1",
+    "fs_verdict_s2",
+    "fs_verdict_s3"
+   ],
+   "why": "verdict stays blank until there is a parcel cost (v1 still printed a verdict with no parcel cost)"
+  }
+ ]
+}

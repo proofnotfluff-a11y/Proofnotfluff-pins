@@ -1,0 +1,247 @@
+{
+ "base": "/home/claude/work7/r300",
+ "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+ "images": [
+  {
+   "type": "cover",
+   "eyebrow": "SHIPPING COST CALCULATOR",
+   "title": "What does one parcel really cost you?",
+   "sub": "Postage, box, filler, tape, label and packing time, for every product, against the shipping you charge.",
+   "shot": "02-1-Parcel-Costs.png",
+   "crop": [
+    0,
+    0.0061,
+    1,
+    0.3906
+   ],
+   "badges": [
+    "Excel + Google Sheets",
+    "Instant download",
+    "USPS and UPS rates"
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "THE WORKED EXAMPLE",
+   "title": "$4.95 charged. $13.19 to send.",
+   "sub": "The sample mug: $9.95 of postage plus the box, filler, tape, label and 6 minutes of packing. 7 of the 10 sample products charge less than their parcel costs.",
+   "shot": "02-1-Parcel-Costs.png",
+   "crop": [
+    0,
+    0.0569,
+    1,
+    0.3353
+   ]
+  },
+  {
+   "type": "steps",
+   "eyebrow": "HOW IT WORKS",
+   "title": "Three steps, about 20 minutes.",
+   "steps": [
+    {
+     "head": "List your products",
+     "text": "Prices, zone, packaging and packing minutes.",
+     "shot": "02-1-Parcel-Costs.png",
+     "crop": [
+      0,
+      0.2121,
+      0.7,
+      0.3243
+     ]
+    },
+    {
+     "head": "Type box sizes and weights",
+     "text": "See the weight each carrier really bills.",
+     "shot": "03-2-Dim-Weight.png",
+     "crop": [
+      0,
+      0.2355,
+      0.615,
+      0.3567
+     ]
+    },
+    {
+     "head": "Read the answers",
+     "text": "True cost, cheapest service, profit per order.",
+     "shot": "06-5-Dashboard.png",
+     "crop": [
+      0,
+      0.0535,
+      1,
+      0.167
+     ]
+    }
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "DASHBOARD",
+   "title": "Which products lose money once shipping is counted.",
+   "sub": "Sample shop: one of each costs $139.51 to ship and brings in $93.60 of shipping. The mug loses $0.47 an order.",
+   "shot": "06-5-Dashboard.png",
+   "crop": [
+    0,
+    0.0056,
+    1,
+    0.4255
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "DIM WEIGHT",
+   "title": "A 2.5 lb wreath billed as 15 lb.",
+   "sub": "Its box is over a cubic foot, so USPS bills dim weight: a $21.15 label instead of $11.57. UPS and FedEx apply dim weight to every box.",
+   "shot": "03-2-Dim-Weight.png",
+   "crop": [
+    0,
+    0.005999999999999999,
+    1,
+    0.4111
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "SERVICES",
+   "title": "Every product on every service, cheapest first.",
+   "sub": "USPS Ground Advantage, Priority Mail and UPS Ground Saver at each zone and billable weight, plus your own quotes.",
+   "shot": "05-4-Services.png",
+   "crop": [
+    0,
+    0.0201,
+    1,
+    0.2027
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "FREE SHIPPING",
+   "title": "Should you offer free shipping over $35, $50 or $75?",
+   "sub": "Built from your own order history. On the sample shop, free shipping over $75 earns about $396 more per 100 orders.",
+   "shot": "04-3-Free-Shipping.png",
+   "crop": [
+    0,
+    0,
+    1,
+    0.2597
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "IS THIS FOR YOU?",
+   "title": "Made for sellers who ship physical products.",
+   "columns": [
+    {
+     "head": "Made for",
+     "mark": "check",
+     "items": [
+      "Etsy, eBay and online shops shipping in the US",
+      "Sellers who charge shipping and want to know it covers the parcel",
+      "Deciding on a free-shipping threshold",
+      "Up to 30 products per copy"
+     ]
+    },
+    {
+     "head": "Not for",
+     "mark": "x",
+     "items": [
+      "Printing labels or buying postage",
+      "International shipping rates",
+      "Accounting, tax or financial advice"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "HOW YOU GET IT",
+   "title": "Instant download. Opens in Excel or Google Sheets.",
+   "columns": [
+    {
+     "head": "What you get",
+     "mark": "check",
+     "items": [
+      "The workbook with a 10-product sample shop",
+      "Start Here guide as a PDF, US Letter and A4",
+      "Built for Excel and Google Sheets",
+      "No macros, no add-ons, no sign-up"
+     ]
+    },
+    {
+     "head": "How to download",
+     "mark": "check",
+     "items": [
+      "Buy, then open Etsy in a web browser",
+      "Go to You, then Purchases, and download",
+      "The Etsy app can't download digital files",
+      "Message the shop on Etsy if anything won't open"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "inside",
+   "eyebrow": "ONE DOWNLOAD",
+   "title": "What's inside",
+   "tabs": [
+    {
+     "name": "1 Parcel Costs",
+     "shot": "02-1-Parcel-Costs.png",
+     "crop": [
+      0,
+      0,
+      0.244,
+      0.4047
+     ]
+    },
+    {
+     "name": "2 Dim Weight",
+     "shot": "03-2-Dim-Weight.png",
+     "crop": [
+      0,
+      0,
+      0.266,
+      0.4141
+     ]
+    },
+    {
+     "name": "3 Free Shipping",
+     "shot": "04-3-Free-Shipping.png",
+     "crop": [
+      0,
+      0,
+      0.65,
+      0.5278
+     ]
+    },
+    {
+     "name": "4 Services",
+     "shot": "05-4-Services.png",
+     "crop": [
+      0,
+      0,
+      0.381,
+      0.2101
+     ]
+    },
+    {
+     "name": "5 Dashboard",
+     "shot": "06-5-Dashboard.png",
+     "crop": [
+      0,
+      0,
+      0.357,
+      0.4285
+     ]
+    }
+   ],
+   "items": [
+    "True cost per parcel, packing time included",
+    "Dim weight for USPS, UPS and FedEx",
+    "USPS and UPS rate tables you can update",
+    "Free-shipping threshold simulator",
+    "Profit per order after fees and shipping",
+    "Start Here PDF in Letter and A4"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+{
+ "xlsx": "Shipping-True-Cost-Calculator.xlsx",
+ "sheet": "1 Parcel Costs",
+ "crop": [0, 0.003, 1, 0.3353],
+ "dpi": 220,
+ "eyebrow": "SHIPPING TRUE-COST CALCULATOR",
+ "states": [
+  {"caption": "Sample mug: {E22} shipping charged, {P22} to send.", "hold": 3.4},
+  {"set": {"G14": 30},
+   "caption": "Count packing at $30 an hour: the mug costs {P22}.", "hold": 3.6},
+  {"set": {"G14": 30, "E22": 15.95},
+   "caption": "Charge {E22} shipping: the mug is covered, {L7} products still short.", "hold": 3.8}
+ ]
+}

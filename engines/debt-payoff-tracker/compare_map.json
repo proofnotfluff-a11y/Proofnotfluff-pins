@@ -1,0 +1,986 @@
+{
+ "tolerance": 0.005,
+ "inputs": {
+  "monthly": {
+   "old": "Debts!D4",
+   "new": "'1 Dashboard'!D15"
+  },
+  "plan": {
+   "old": "Dashboard!N1",
+   "new": "'1 Dashboard'!D19"
+  },
+  "name1": {
+   "old": "Debts!B8",
+   "new": "'2 Debts'!D17"
+  },
+  "bal1": {
+   "old": "Debts!D8",
+   "new": "'2 Debts'!F17"
+  },
+  "asof1": {
+   "old": "Debts!E8",
+   "new": "'2 Debts'!G17"
+  },
+  "apr1": {
+   "old": "Debts!F8",
+   "new": "'2 Debts'!H17"
+  },
+  "min1": {
+   "old": "Debts!G8",
+   "new": "'2 Debts'!I17"
+  },
+  "name2": {
+   "old": "Debts!B9",
+   "new": "'2 Debts'!D18"
+  },
+  "bal2": {
+   "old": "Debts!D9",
+   "new": "'2 Debts'!F18"
+  },
+  "asof2": {
+   "old": "Debts!E9",
+   "new": "'2 Debts'!G18"
+  },
+  "apr2": {
+   "old": "Debts!F9",
+   "new": "'2 Debts'!H18"
+  },
+  "min2": {
+   "old": "Debts!G9",
+   "new": "'2 Debts'!I18"
+  },
+  "name3": {
+   "old": "Debts!B10",
+   "new": "'2 Debts'!D19"
+  },
+  "bal3": {
+   "old": "Debts!D10",
+   "new": "'2 Debts'!F19"
+  },
+  "asof3": {
+   "old": "Debts!E10",
+   "new": "'2 Debts'!G19"
+  },
+  "apr3": {
+   "old": "Debts!F10",
+   "new": "'2 Debts'!H19"
+  },
+  "min3": {
+   "old": "Debts!G10",
+   "new": "'2 Debts'!I19"
+  },
+  "name4": {
+   "old": "Debts!B11",
+   "new": "'2 Debts'!D20"
+  },
+  "bal4": {
+   "old": "Debts!D11",
+   "new": "'2 Debts'!F20"
+  },
+  "asof4": {
+   "old": "Debts!E11",
+   "new": "'2 Debts'!G20"
+  },
+  "apr4": {
+   "old": "Debts!F11",
+   "new": "'2 Debts'!H20"
+  },
+  "min4": {
+   "old": "Debts!G11",
+   "new": "'2 Debts'!I20"
+  },
+  "name5": {
+   "old": "Debts!B12",
+   "new": "'2 Debts'!D21"
+  },
+  "bal5": {
+   "old": "Debts!D12",
+   "new": "'2 Debts'!F21"
+  },
+  "asof5": {
+   "old": "Debts!E12",
+   "new": "'2 Debts'!G21"
+  },
+  "apr5": {
+   "old": "Debts!F12",
+   "new": "'2 Debts'!H21"
+  },
+  "min5": {
+   "old": "Debts!G12",
+   "new": "'2 Debts'!I21"
+  },
+  "name6": {
+   "old": "Debts!B13",
+   "new": "'2 Debts'!D22"
+  },
+  "bal6": {
+   "old": "Debts!D13",
+   "new": "'2 Debts'!F22"
+  },
+  "asof6": {
+   "old": "Debts!E13",
+   "new": "'2 Debts'!G22"
+  },
+  "apr6": {
+   "old": "Debts!F13",
+   "new": "'2 Debts'!H22"
+  },
+  "min6": {
+   "old": "Debts!G13",
+   "new": "'2 Debts'!I22"
+  },
+  "logdate1": {
+   "old": "'Payment Log'!A5",
+   "new": "'3 Payment Log'!C17"
+  },
+  "logdebt1": {
+   "old": "'Payment Log'!B5",
+   "new": "'3 Payment Log'!D17"
+  },
+  "logamt1": {
+   "old": "'Payment Log'!C5",
+   "new": "'3 Payment Log'!E17"
+  },
+  "logdate2": {
+   "old": "'Payment Log'!A6",
+   "new": "'3 Payment Log'!C18"
+  },
+  "logdebt2": {
+   "old": "'Payment Log'!B6",
+   "new": "'3 Payment Log'!D18"
+  },
+  "logamt2": {
+   "old": "'Payment Log'!C6",
+   "new": "'3 Payment Log'!E18"
+  },
+  "logdate3": {
+   "old": "'Payment Log'!A7",
+   "new": "'3 Payment Log'!C19"
+  },
+  "logdebt3": {
+   "old": "'Payment Log'!B7",
+   "new": "'3 Payment Log'!D19"
+  },
+  "logamt3": {
+   "old": "'Payment Log'!C7",
+   "new": "'3 Payment Log'!E19"
+  },
+  "logdate4": {
+   "old": "'Payment Log'!A8",
+   "new": "'3 Payment Log'!C20"
+  },
+  "logdebt4": {
+   "old": "'Payment Log'!B8",
+   "new": "'3 Payment Log'!D20"
+  },
+  "logamt4": {
+   "old": "'Payment Log'!C8",
+   "new": "'3 Payment Log'!E20"
+  },
+  "logdate5": {
+   "old": "'Payment Log'!A9",
+   "new": "'3 Payment Log'!C21"
+  },
+  "logdebt5": {
+   "old": "'Payment Log'!B9",
+   "new": "'3 Payment Log'!D21"
+  },
+  "logamt5": {
+   "old": "'Payment Log'!C9",
+   "new": "'3 Payment Log'!E21"
+  },
+  "logdate6": {
+   "old": "'Payment Log'!A10",
+   "new": "'3 Payment Log'!C22"
+  },
+  "logdebt6": {
+   "old": "'Payment Log'!B10",
+   "new": "'3 Payment Log'!D22"
+  },
+  "logamt6": {
+   "old": "'Payment Log'!C10",
+   "new": "'3 Payment Log'!E22"
+  },
+  "logdate7": {
+   "old": "'Payment Log'!A11",
+   "new": "'3 Payment Log'!C23"
+  },
+  "logdebt7": {
+   "old": "'Payment Log'!B11",
+   "new": "'3 Payment Log'!D23"
+  },
+  "logamt7": {
+   "old": "'Payment Log'!C11",
+   "new": "'3 Payment Log'!E23"
+  },
+  "logdate8": {
+   "old": "'Payment Log'!A12",
+   "new": "'3 Payment Log'!C24"
+  },
+  "logdebt8": {
+   "old": "'Payment Log'!B12",
+   "new": "'3 Payment Log'!D24"
+  },
+  "logamt8": {
+   "old": "'Payment Log'!C12",
+   "new": "'3 Payment Log'!E24"
+  },
+  "logdate9": {
+   "old": "'Payment Log'!A13",
+   "new": "'3 Payment Log'!C25"
+  },
+  "logdebt9": {
+   "old": "'Payment Log'!B13",
+   "new": "'3 Payment Log'!D25"
+  },
+  "logamt9": {
+   "old": "'Payment Log'!C13",
+   "new": "'3 Payment Log'!E25"
+  },
+  "logdate10": {
+   "old": "'Payment Log'!A14",
+   "new": "'3 Payment Log'!C26"
+  },
+  "logdebt10": {
+   "old": "'Payment Log'!B14",
+   "new": "'3 Payment Log'!D26"
+  },
+  "logamt10": {
+   "old": "'Payment Log'!C14",
+   "new": "'3 Payment Log'!E26"
+  },
+  "logdate11": {
+   "old": "'Payment Log'!A15",
+   "new": "'3 Payment Log'!C27"
+  },
+  "logdebt11": {
+   "old": "'Payment Log'!B15",
+   "new": "'3 Payment Log'!D27"
+  },
+  "logamt11": {
+   "old": "'Payment Log'!C15",
+   "new": "'3 Payment Log'!E27"
+  },
+  "logdate12": {
+   "old": "'Payment Log'!A16",
+   "new": "'3 Payment Log'!C28"
+  },
+  "logdebt12": {
+   "old": "'Payment Log'!B16",
+   "new": "'3 Payment Log'!D28"
+  },
+  "logamt12": {
+   "old": "'Payment Log'!C16",
+   "new": "'3 Payment Log'!E28"
+  },
+  "logdate13": {
+   "old": "'Payment Log'!A17",
+   "new": "'3 Payment Log'!C29"
+  },
+  "logdebt13": {
+   "old": "'Payment Log'!B17",
+   "new": "'3 Payment Log'!D29"
+  },
+  "logamt13": {
+   "old": "'Payment Log'!C17",
+   "new": "'3 Payment Log'!E29"
+  },
+  "logdate14": {
+   "old": "'Payment Log'!A18",
+   "new": "'3 Payment Log'!C30"
+  },
+  "logdebt14": {
+   "old": "'Payment Log'!B18",
+   "new": "'3 Payment Log'!D30"
+  },
+  "logamt14": {
+   "old": "'Payment Log'!C18",
+   "new": "'3 Payment Log'!E30"
+  }
+ },
+ "outputs": {
+  "owed": {
+   "old": "Dashboard!B6",
+   "new": "'1 Dashboard'!D25"
+  },
+  "paid": {
+   "old": "Dashboard!C6",
+   "new": "'1 Dashboard'!D26"
+  },
+  "interest_since": {
+   "old": "Dashboard!D6",
+   "new": "'1 Dashboard'!D27"
+  },
+  "paid_off": {
+   "old": "Dashboard!E6",
+   "new": "'1 Dashboard'!D28"
+  },
+  "log_fix": {
+   "old": "Dashboard!F6",
+   "new": "'1 Dashboard'!D29"
+  },
+  "monthly_status": {
+   "old": "Dashboard!B3",
+   "new": "'1 Dashboard'!C17"
+  },
+  "sum_minimums": {
+   "old": "Debts!F4",
+   "new": "'2 Debts'!F8"
+  },
+  "snow_date": {
+   "old": "Dashboard!C9",
+   "new": "'1 Dashboard'!I15"
+  },
+  "snow_months": {
+   "old": "Dashboard!C10",
+   "new": "'4 Snowball Plan'!C8"
+  },
+  "snow_interest": {
+   "old": "Dashboard!C11",
+   "new": "'1 Dashboard'!I16"
+  },
+  "snow_saved": {
+   "old": "Dashboard!C12",
+   "new": "'1 Dashboard'!I17"
+  },
+  "aval_date": {
+   "old": "Dashboard!D9",
+   "new": "'1 Dashboard'!I19"
+  },
+  "aval_months": {
+   "old": "Dashboard!D10",
+   "new": "'5 Avalanche Plan'!C8"
+  },
+  "aval_interest": {
+   "old": "Dashboard!D11",
+   "new": "'1 Dashboard'!I20"
+  },
+  "aval_saved": {
+   "old": "Dashboard!D12",
+   "new": "'1 Dashboard'!I21"
+  },
+  "min_date": {
+   "old": "Dashboard!E9",
+   "new": "'1 Dashboard'!I23"
+  },
+  "min_interest": {
+   "old": "Dashboard!E11",
+   "new": "'1 Dashboard'!I24"
+  },
+  "counted_total": {
+   "old": "'Payment Log'!H4",
+   "new": "'3 Payment Log'!C8"
+  },
+  "log_fix_rows": {
+   "old": "'Payment Log'!H5",
+   "new": "'3 Payment Log'!F8"
+  },
+  "next_debt1": {
+   "old": "Dashboard!B18",
+   "new": "'1 Dashboard'!C44"
+  },
+  "next_bal1": {
+   "old": "Dashboard!C18",
+   "new": "'1 Dashboard'!D44"
+  },
+  "next_pay1": {
+   "old": "Dashboard!D18",
+   "new": "'1 Dashboard'!H44"
+  },
+  "next_off1": {
+   "old": "Dashboard!E18",
+   "new": "'1 Dashboard'!I44"
+  },
+  "paid1": {
+   "old": "Debts!H8",
+   "new": "'2 Debts'!J17"
+  },
+  "int1": {
+   "old": "Debts!I8",
+   "new": "'2 Debts'!K17"
+  },
+  "today1": {
+   "old": "Debts!J8",
+   "new": "'2 Debts'!L17"
+  },
+  "status1": {
+   "old": "Debts!K8",
+   "new": "'2 Debts'!M17"
+  },
+  "snow_order1": {
+   "old": "Debts!L8",
+   "new": "'2 Debts'!N17"
+  },
+  "aval_order1": {
+   "old": "Debts!M8",
+   "new": "'2 Debts'!O17"
+  },
+  "min_months1": {
+   "old": "Debts!N8",
+   "new": "'2 Debts'!P17"
+  },
+  "min_int1": {
+   "old": "Debts!O8",
+   "new": "'2 Debts'!Q17"
+  },
+  "snow_paidoff1": {
+   "old": "'Snowball Plan'!H4",
+   "new": "'4 Snowball Plan'!J14"
+  },
+  "aval_paidoff1": {
+   "old": "'Avalanche Plan'!H4",
+   "new": "'5 Avalanche Plan'!J14"
+  },
+  "next_debt2": {
+   "old": "Dashboard!B19",
+   "new": "'1 Dashboard'!C45"
+  },
+  "next_bal2": {
+   "old": "Dashboard!C19",
+   "new": "'1 Dashboard'!D45"
+  },
+  "next_pay2": {
+   "old": "Dashboard!D19",
+   "new": "'1 Dashboard'!H45"
+  },
+  "next_off2": {
+   "old": "Dashboard!E19",
+   "new": "'1 Dashboard'!I45"
+  },
+  "paid2": {
+   "old": "Debts!H9",
+   "new": "'2 Debts'!J18"
+  },
+  "int2": {
+   "old": "Debts!I9",
+   "new": "'2 Debts'!K18"
+  },
+  "today2": {
+   "old": "Debts!J9",
+   "new": "'2 Debts'!L18"
+  },
+  "status2": {
+   "old": "Debts!K9",
+   "new": "'2 Debts'!M18"
+  },
+  "snow_order2": {
+   "old": "Debts!L9",
+   "new": "'2 Debts'!N18"
+  },
+  "aval_order2": {
+   "old": "Debts!M9",
+   "new": "'2 Debts'!O18"
+  },
+  "min_months2": {
+   "old": "Debts!N9",
+   "new": "'2 Debts'!P18"
+  },
+  "min_int2": {
+   "old": "Debts!O9",
+   "new": "'2 Debts'!Q18"
+  },
+  "snow_paidoff2": {
+   "old": "'Snowball Plan'!I4",
+   "new": "'4 Snowball Plan'!K14"
+  },
+  "aval_paidoff2": {
+   "old": "'Avalanche Plan'!I4",
+   "new": "'5 Avalanche Plan'!K14"
+  },
+  "next_debt3": {
+   "old": "Dashboard!B20",
+   "new": "'1 Dashboard'!C46"
+  },
+  "next_bal3": {
+   "old": "Dashboard!C20",
+   "new": "'1 Dashboard'!D46"
+  },
+  "next_pay3": {
+   "old": "Dashboard!D20",
+   "new": "'1 Dashboard'!H46"
+  },
+  "next_off3": {
+   "old": "Dashboard!E20",
+   "new": "'1 Dashboard'!I46"
+  },
+  "paid3": {
+   "old": "Debts!H10",
+   "new": "'2 Debts'!J19"
+  },
+  "int3": {
+   "old": "Debts!I10",
+   "new": "'2 Debts'!K19"
+  },
+  "today3": {
+   "old": "Debts!J10",
+   "new": "'2 Debts'!L19"
+  },
+  "status3": {
+   "old": "Debts!K10",
+   "new": "'2 Debts'!M19"
+  },
+  "snow_order3": {
+   "old": "Debts!L10",
+   "new": "'2 Debts'!N19"
+  },
+  "aval_order3": {
+   "old": "Debts!M10",
+   "new": "'2 Debts'!O19"
+  },
+  "min_months3": {
+   "old": "Debts!N10",
+   "new": "'2 Debts'!P19"
+  },
+  "min_int3": {
+   "old": "Debts!O10",
+   "new": "'2 Debts'!Q19"
+  },
+  "snow_paidoff3": {
+   "old": "'Snowball Plan'!J4",
+   "new": "'4 Snowball Plan'!L14"
+  },
+  "aval_paidoff3": {
+   "old": "'Avalanche Plan'!J4",
+   "new": "'5 Avalanche Plan'!L14"
+  },
+  "next_debt4": {
+   "old": "Dashboard!B21",
+   "new": "'1 Dashboard'!C47"
+  },
+  "next_bal4": {
+   "old": "Dashboard!C21",
+   "new": "'1 Dashboard'!D47"
+  },
+  "next_pay4": {
+   "old": "Dashboard!D21",
+   "new": "'1 Dashboard'!H47"
+  },
+  "next_off4": {
+   "old": "Dashboard!E21",
+   "new": "'1 Dashboard'!I47"
+  },
+  "paid4": {
+   "old": "Debts!H11",
+   "new": "'2 Debts'!J20"
+  },
+  "int4": {
+   "old": "Debts!I11",
+   "new": "'2 Debts'!K20"
+  },
+  "today4": {
+   "old": "Debts!J11",
+   "new": "'2 Debts'!L20"
+  },
+  "status4": {
+   "old": "Debts!K11",
+   "new": "'2 Debts'!M20"
+  },
+  "snow_order4": {
+   "old": "Debts!L11",
+   "new": "'2 Debts'!N20"
+  },
+  "aval_order4": {
+   "old": "Debts!M11",
+   "new": "'2 Debts'!O20"
+  },
+  "min_months4": {
+   "old": "Debts!N11",
+   "new": "'2 Debts'!P20"
+  },
+  "min_int4": {
+   "old": "Debts!O11",
+   "new": "'2 Debts'!Q20"
+  },
+  "snow_paidoff4": {
+   "old": "'Snowball Plan'!K4",
+   "new": "'4 Snowball Plan'!M14"
+  },
+  "aval_paidoff4": {
+   "old": "'Avalanche Plan'!K4",
+   "new": "'5 Avalanche Plan'!M14"
+  },
+  "next_debt5": {
+   "old": "Dashboard!B22",
+   "new": "'1 Dashboard'!C48"
+  },
+  "next_bal5": {
+   "old": "Dashboard!C22",
+   "new": "'1 Dashboard'!D48"
+  },
+  "next_pay5": {
+   "old": "Dashboard!D22",
+   "new": "'1 Dashboard'!H48"
+  },
+  "next_off5": {
+   "old": "Dashboard!E22",
+   "new": "'1 Dashboard'!I48"
+  },
+  "paid5": {
+   "old": "Debts!H12",
+   "new": "'2 Debts'!J21"
+  },
+  "int5": {
+   "old": "Debts!I12",
+   "new": "'2 Debts'!K21"
+  },
+  "today5": {
+   "old": "Debts!J12",
+   "new": "'2 Debts'!L21"
+  },
+  "status5": {
+   "old": "Debts!K12",
+   "new": "'2 Debts'!M21"
+  },
+  "snow_order5": {
+   "old": "Debts!L12",
+   "new": "'2 Debts'!N21"
+  },
+  "aval_order5": {
+   "old": "Debts!M12",
+   "new": "'2 Debts'!O21"
+  },
+  "min_months5": {
+   "old": "Debts!N12",
+   "new": "'2 Debts'!P21"
+  },
+  "min_int5": {
+   "old": "Debts!O12",
+   "new": "'2 Debts'!Q21"
+  },
+  "snow_paidoff5": {
+   "old": "'Snowball Plan'!L4",
+   "new": "'4 Snowball Plan'!N14"
+  },
+  "aval_paidoff5": {
+   "old": "'Avalanche Plan'!L4",
+   "new": "'5 Avalanche Plan'!N14"
+  },
+  "next_debt6": {
+   "old": "Dashboard!B23",
+   "new": "'1 Dashboard'!C49"
+  },
+  "next_bal6": {
+   "old": "Dashboard!C23",
+   "new": "'1 Dashboard'!D49"
+  },
+  "next_pay6": {
+   "old": "Dashboard!D23",
+   "new": "'1 Dashboard'!H49"
+  },
+  "next_off6": {
+   "old": "Dashboard!E23",
+   "new": "'1 Dashboard'!I49"
+  },
+  "paid6": {
+   "old": "Debts!H13",
+   "new": "'2 Debts'!J22"
+  },
+  "int6": {
+   "old": "Debts!I13",
+   "new": "'2 Debts'!K22"
+  },
+  "today6": {
+   "old": "Debts!J13",
+   "new": "'2 Debts'!L22"
+  },
+  "status6": {
+   "old": "Debts!K13",
+   "new": "'2 Debts'!M22"
+  },
+  "snow_order6": {
+   "old": "Debts!L13",
+   "new": "'2 Debts'!N22"
+  },
+  "aval_order6": {
+   "old": "Debts!M13",
+   "new": "'2 Debts'!O22"
+  },
+  "min_months6": {
+   "old": "Debts!N13",
+   "new": "'2 Debts'!P22"
+  },
+  "min_int6": {
+   "old": "Debts!O13",
+   "new": "'2 Debts'!Q22"
+  },
+  "snow_paidoff6": {
+   "old": "'Snowball Plan'!M4",
+   "new": "'4 Snowball Plan'!O14"
+  },
+  "aval_paidoff6": {
+   "old": "'Avalanche Plan'!M4",
+   "new": "'5 Avalanche Plan'!O14"
+  },
+  "next_pay_total": {
+   "old": "Dashboard!D43",
+   "new": "'1 Dashboard'!H69"
+  },
+  "next_bal_total": {
+   "old": "Dashboard!C43",
+   "new": "'1 Dashboard'!D69"
+  },
+  "counted1": {
+   "old": "'Payment Log'!E5",
+   "new": "'3 Payment Log'!G17"
+  },
+  "counted2": {
+   "old": "'Payment Log'!E6",
+   "new": "'3 Payment Log'!G18"
+  },
+  "counted3": {
+   "old": "'Payment Log'!E7",
+   "new": "'3 Payment Log'!G19"
+  },
+  "counted4": {
+   "old": "'Payment Log'!E8",
+   "new": "'3 Payment Log'!G20"
+  },
+  "counted5": {
+   "old": "'Payment Log'!E9",
+   "new": "'3 Payment Log'!G21"
+  },
+  "counted6": {
+   "old": "'Payment Log'!E10",
+   "new": "'3 Payment Log'!G22"
+  },
+  "counted7": {
+   "old": "'Payment Log'!E11",
+   "new": "'3 Payment Log'!G23"
+  },
+  "counted8": {
+   "old": "'Payment Log'!E12",
+   "new": "'3 Payment Log'!G24"
+  },
+  "counted9": {
+   "old": "'Payment Log'!E13",
+   "new": "'3 Payment Log'!G25"
+  },
+  "counted10": {
+   "old": "'Payment Log'!E14",
+   "new": "'3 Payment Log'!G26"
+  },
+  "counted11": {
+   "old": "'Payment Log'!E15",
+   "new": "'3 Payment Log'!G27"
+  },
+  "counted12": {
+   "old": "'Payment Log'!E16",
+   "new": "'3 Payment Log'!G28"
+  },
+  "counted13": {
+   "old": "'Payment Log'!E17",
+   "new": "'3 Payment Log'!G29"
+  },
+  "counted14": {
+   "old": "'Payment Log'!E18",
+   "new": "'3 Payment Log'!G30"
+  },
+  "plan_balance_m1": {
+   "old": "'Snowball Plan'!E10",
+   "new": "'4 Snowball Plan'!G21"
+  },
+  "plan_interest_m1": {
+   "old": "'Snowball Plan'!F10",
+   "new": "'4 Snowball Plan'!H21"
+  },
+  "plan_balance_m2": {
+   "old": "'Snowball Plan'!E11",
+   "new": "'4 Snowball Plan'!G22"
+  },
+  "plan_interest_m2": {
+   "old": "'Snowball Plan'!F11",
+   "new": "'4 Snowball Plan'!H22"
+  },
+  "plan_balance_m12": {
+   "old": "'Snowball Plan'!E21",
+   "new": "'4 Snowball Plan'!G32"
+  },
+  "plan_interest_m12": {
+   "old": "'Snowball Plan'!F21",
+   "new": "'4 Snowball Plan'!H32"
+  },
+  "plan_balance_m24": {
+   "old": "'Snowball Plan'!E33",
+   "new": "'4 Snowball Plan'!G44"
+  },
+  "plan_interest_m24": {
+   "old": "'Snowball Plan'!F33",
+   "new": "'4 Snowball Plan'!H44"
+  },
+  "plan_balance_m40": {
+   "old": "'Snowball Plan'!E49",
+   "new": "'4 Snowball Plan'!G60"
+  },
+  "plan_interest_m40": {
+   "old": "'Snowball Plan'!F49",
+   "new": "'4 Snowball Plan'!H60"
+  },
+  "plan_balance_m60": {
+   "old": "'Snowball Plan'!E69",
+   "new": "'4 Snowball Plan'!G80"
+  },
+  "plan_interest_m60": {
+   "old": "'Snowball Plan'!F69",
+   "new": "'4 Snowball Plan'!H80"
+  }
+ },
+ "cases": [
+  {
+   "name": "example",
+   "set": {
+    "plan": "Snowball"
+   }
+  },
+  {
+   "name": "high: $3,000 a month",
+   "set": {
+    "plan": "Snowball",
+    "monthly": 3000
+   }
+  },
+  {
+   "name": "low: $900 a month",
+   "set": {
+    "plan": "Snowball",
+    "monthly": 900
+   }
+  },
+  {
+   "name": "below minimums: $500",
+   "set": {
+    "plan": "Snowball",
+    "monthly": 500
+   }
+  },
+  {
+   "name": "blank monthly amount",
+   "set": {
+    "plan": "Snowball",
+    "monthly": null
+   }
+  },
+  {
+   "name": "store card paid off by a logged $900",
+   "set": {
+    "plan": "Snowball",
+    "logdate13": 46300,
+    "logdebt13": "Store card",
+    "logamt13": 900
+   }
+  },
+  {
+   "name": "new Visa statement Sep 1",
+   "set": {
+    "plan": "Snowball",
+    "bal1": 4500,
+    "asof1": 46266
+   }
+  },
+  {
+   "name": "personal loan as-of in the future",
+   "set": {
+    "plan": "Snowball",
+    "asof5": 46357
+   }
+  },
+  {
+   "name": "0% student loan, car minimum below interest",
+   "set": {
+    "plan": "Snowball",
+    "apr4": 0,
+    "min3": 50
+   }
+  },
+  {
+   "name": "as-of older than 120 months",
+   "set": {
+    "plan": "Snowball",
+    "asof3": 42005
+   }
+  },
+  {
+   "name": "log errors: unknown debt, missing amount, future date",
+   "set": {
+    "plan": "Snowball",
+    "logdate13": 46296,
+    "logdebt13": "Boat",
+    "logamt13": 50,
+    "logdate14": 46297,
+    "logdebt14": "Visa card",
+    "logamt14": null
+   }
+  },
+  {
+   "name": "sixth debt added",
+   "set": {
+    "plan": "Snowball",
+    "name6": "Medical bill",
+    "bal6": 600,
+    "asof6": 46280,
+    "apr6": 0,
+    "min6": 25,
+    "logdate13": 46296,
+    "logdebt13": "Medical bill",
+    "logamt13": 25
+   }
+  },
+  {
+   "name": "every debt cleared",
+   "set": {
+    "plan": "Snowball",
+    "name1": null,
+    "name2": null,
+    "name3": null,
+    "name4": null,
+    "name5": null,
+    "bal1": null,
+    "bal2": null,
+    "bal3": null,
+    "bal4": null,
+    "bal5": null,
+    "asof1": null,
+    "asof2": null,
+    "asof3": null,
+    "asof4": null,
+    "asof5": null
+   }
+  },
+  {
+   "name": "high APR, huge balance",
+   "set": {
+    "plan": "Snowball",
+    "bal1": 250000,
+    "apr1": 0.36,
+    "min1": 2000,
+    "monthly": 5000
+   }
+  }
+ ],
+ "intended": [
+  {
+   "case": "below minimums: $500",
+   "outputs": [
+    "monthly_status"
+   ],
+   "why": "The monthly amount moved from Debts!D4 to the Dashboard's Your plan card, so the message no longer names cell D4."
+  },
+  {
+   "case": "blank monthly amount",
+   "outputs": [
+    "monthly_status"
+   ],
+   "why": "The monthly amount moved from Debts!D4 to the Dashboard's Your plan card, so the message no longer names cell D4."
+  },
+  {
+   "case": "as-of older than 120 months",
+   "outputs": [
+    "next_off1",
+    "next_off2",
+    "next_off3",
+    "next_off4",
+    "next_off5"
+   ],
+   "why": "v2 said Done for a debt whose balance reads Update as-of; v3 says Update as-of."
+  }
+ ]
+}

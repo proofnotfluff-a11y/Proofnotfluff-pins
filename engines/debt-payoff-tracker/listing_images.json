@@ -1,0 +1,231 @@
+{
+ "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+ "images": [
+  {
+   "type": "cover",
+   "eyebrow": "DEBT PAYOFF TRACKER",
+   "title": "Log the payment you made. See your debt-free month.",
+   "sub": "Snowball and Avalanche side by side, from your real balances.",
+   "shot": "r/02-1-Dashboard.png",
+   "crop": [
+    0,
+    0.035,
+    1,
+    0.235
+   ],
+   "badges": [
+    "Excel + Google Sheets",
+    "Instant download",
+    "Real payment log"
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "WORKED EXAMPLE",
+   "title": "Five debts, $1,100 a month: debt-free February 2030.",
+   "sub": "Example as of Oct 7, 2026. Avalanche saves $268 of interest over Snowball.",
+   "shot": "r/02-1-Dashboard.png",
+   "crop": [
+    0.47,
+    0.085,
+    1,
+    0.232
+   ],
+   "trim": true
+  },
+  {
+   "type": "steps",
+   "eyebrow": "HOW IT WORKS",
+   "title": "Three steps, then one row per payment.",
+   "steps": [
+    {
+     "head": "Type your debts",
+     "text": "Balance, statement date, APR and minimum.",
+     "shot": "r/03-2-Debts.png",
+     "crop": [
+      0,
+      0.155,
+      0.43,
+      0.255
+     ]
+    },
+    {
+     "head": "Set your plan",
+     "text": "Your monthly amount, Avalanche or Snowball.",
+     "shot": "r/02-1-Dashboard.png",
+     "crop": [
+      0,
+      0.085,
+      0.47,
+      0.177
+     ]
+    },
+    {
+     "head": "Log each payment",
+     "text": "Date, debt, amount. Balances update.",
+     "shot": "r/04-3-Payment-Log.png",
+     "crop": [
+      0,
+      0.0118,
+      0.62,
+      0.01705
+     ]
+    }
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "NEXT MONTH",
+   "title": "Exactly what to pay each debt next month.",
+   "sub": "Every minimum paid; the extra goes to the debt marked 1.",
+   "shot": "r/02-1-Dashboard.png",
+   "crop": [
+    0,
+    0.338,
+    1,
+    0.47
+   ],
+   "trim": false
+  },
+  {
+   "type": "shot",
+   "eyebrow": "YOUR DEBTS",
+   "title": "Today's balance for every debt, from your log.",
+   "sub": "Type a new statement balance and date and the tracker resets to it.",
+   "shot": "r/03-2-Debts.png",
+   "crop": [
+    0,
+    0.052,
+    0.682,
+    0.262
+   ],
+   "trim": false
+  },
+  {
+   "type": "shot",
+   "eyebrow": "PAYMENT LOG",
+   "title": "A place for the payment you actually made.",
+   "sub": "Counted? shows which rows count and flags anything missing.",
+   "shot": "r/04-3-Payment-Log.png",
+   "crop": [
+    0,
+    0.0,
+    1,
+    0.026
+   ],
+   "trim": false
+  },
+  {
+   "type": "shot",
+   "eyebrow": "THE MATHS, MONTH BY MONTH",
+   "title": "Every month of both plans, in plain formulas.",
+   "sub": "Interest at APR / 12, every minimum paid, paid-off money rolled forward.",
+   "shot": "r/05-4-Snowball-Plan.png",
+   "crop": [
+    0,
+    0.062,
+    0.13,
+    0.135
+   ],
+   "trim": false
+  },
+  {
+   "type": "list",
+   "eyebrow": "IS THIS FOR YOU?",
+   "title": "Made for paying off debt you can see.",
+   "columns": [
+    {
+     "head": "Made for",
+     "mark": "check",
+     "items": [
+      "Credit cards, store cards, car, student and personal loans",
+      "Choosing between Snowball and Avalanche with real numbers",
+      "Tracking the payments you actually make",
+      "Up to 25 debts and 1,000 logged payments"
+     ]
+    },
+    {
+     "head": "Not for",
+     "mark": "x",
+     "items": [
+      "Linking to your bank or card accounts",
+      "Budgeting your whole paycheck",
+      "Financial, credit or tax advice"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "HOW YOU GET IT",
+   "title": "Instant download. Opens in Excel or Google Sheets.",
+   "columns": [
+    {
+     "head": "What you get",
+     "mark": "check",
+     "items": [
+      "One workbook: dashboard, debts, payment log and the plan maths",
+      "Printable debt list, payment log and progress chart, Letter and A4",
+      "Start Here guide as a PDF, Letter and A4",
+      "No macros, no add-ons, no sign-up"
+     ]
+    },
+    {
+     "head": "How to download",
+     "mark": "check",
+     "items": [
+      "Buy, then open Etsy in a web browser",
+      "Go to You, then Purchases, and download",
+      "The Etsy app can't download digital files",
+      "Message the shop on Etsy if anything won't open"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "inside",
+   "eyebrow": "ONE DOWNLOAD",
+   "title": "What's inside",
+   "tabs": [
+    {
+     "name": "1 Dashboard",
+     "shot": "r/02-1-Dashboard.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.335
+     ]
+    },
+    {
+     "name": "2 Debts",
+     "shot": "r/03-2-Debts.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.5
+     ]
+    },
+    {
+     "name": "3 Payment Log",
+     "shot": "r/04-3-Payment-Log.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.03
+     ]
+    }
+   ],
+   "items": [
+    "Debt-free month with Snowball and Avalanche",
+    "Owed today from your payment log",
+    "What to pay each debt next month",
+    "Interest still to pay, and saved",
+    "Printable pages in Letter and A4",
+    "Start Here PDF in Letter and A4"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "xlsx": "Debt-Payoff-Tracker.xlsx",
+ "sheet": "1 Dashboard",
+ "crop": [
+  0,
+  0.035,
+  1,
+  0.212
+ ],
+ "dpi": 220,
+ "eyebrow": "DEBT PAYOFF TRACKER",
+ "states": [
+  {
+   "caption": "Five debts, $1,100 a month: debt-free {C7}.",
+   "hold": 3.4
+  },
+  {
+   "set": {
+    "D15": 1500
+   },
+   "caption": "Find $400 more a month? Debt-free {C7}.",
+   "hold": 3.8
+  },
+  {
+   "set": {
+    "D15": 1500,
+    "D19": "Snowball"
+   },
+   "caption": "Prefer Snowball? Same month, {I16} of interest.",
+   "hold": 3.8
+  }
+ ]
+}

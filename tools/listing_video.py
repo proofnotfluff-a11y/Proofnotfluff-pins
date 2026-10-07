@@ -46,6 +46,13 @@ def fmt_value(v, nf):
         return ""
     if isinstance(v, str):
         return v
+    if hasattr(v, "strftime"):  # dates: "mmmm yyyy" -> February 2030, "mmm yyyy" -> Feb 2030, else Feb 1, 2030
+        f0 = (nf or "").lower()
+        if "mmmm" in f0 and "d" not in f0:
+            return v.strftime("%B %Y")
+        if "mmm" in f0 and "d" not in f0:
+            return v.strftime("%b %Y")
+        return f"{v:%b} {v.day}, {v.year}"
     nf = (nf or "General").split(";")[0]
     dec = 0
     m = re.search(r"0\.(0+)", nf)

@@ -4,3 +4,5 @@
 - `RESEARCH.md`: what the COO has found about what wins right now, one line per finding with source URL and date; "unconfirmed" until two sources or one primary source agree.
 
 The COO's prompt is `agents/coo.md`. Every agent's prompt lives in `agents/` so the COO can audit them; the header of each file says whether the task runs in the cloud (the COO may edit it) or on Todd's PC (editable only from the desktop app).
+
+- CONSTITUTION.md: the fixed rules no agent may change (Oct 7). EVOLUTION.md: the self-improvement loop (objective, experiments, authority, cadence). OPPORTUNITIES.md: one-page cases for adjacent areas. The scout files its findings in ../scout/FINDINGS.md.

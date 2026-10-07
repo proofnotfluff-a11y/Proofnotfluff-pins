@@ -33,6 +33,7 @@ import json, os, re, subprocess, sys, shutil, html as H
 import make_slides as ms
 
 HERE = os.path.dirname(os.path.abspath(__file__)); FPS = 30
+VOICE = None   # --voice <name|none> on the command line beats the spec's "voice" and PNF_VOICE
 FORMATS = {
     "short":       {"W": 1080, "H": 1920, "pace": 1.0, "audio": True,  "max": 60},
     "walkthrough": {"W": 1920, "H": 1080, "pace": 2.6, "audio": True,  "max": 180},
@@ -64,27 +65,31 @@ def lint(spec):
         sys.exit("spec refused: " + "; ".join(problems))
 
 
-def timeline(spec, pace, walkthrough):
-    """Start times in seconds for each row, the fix, the end card, and the captions."""
+def timeline(spec, pace, walkthrough, speech=None):
+    """Start times in seconds for each row, the fix, the end card, and the captions.
+    speech(text) returns the narration length in seconds when a voice is on (0 when silent); a row then
+    stays on screen at least as long as its line is spoken, in every format."""
     read = lambda txt: len(txt or "") / 15.0       # seconds a caption needs on screen (about 15 characters a second)
+    spoken = speech or (lambda txt: 0.0)
+    hold = lambda txt: max(read(txt) + 0.3 if walkthrough else 0.0, spoken(txt) + 0.25 if spoken(txt) else 0.0)
     ev, caps = [], []
     t = 1.6
     if walkthrough:
         hs = spec.get("hook_say") or re.sub("<[^>]+>", "", spec["hook"])
-        caps.append([0.0, hs]); t = max(3.0, read(hs) + 0.6)
+        caps.append([0.0, hs]); t = max(3.0, read(hs) + 0.6, spoken(hs) + 0.5)
     for r in spec["rows"]:
         if r.get("input"):
             dur = 0.55 * pace + 0.04 * len(str(r["value"]))
             ev.append({"t": t, "d": dur, "kind": "input"})
             say = (r.get("why") if walkthrough else None) or r.get("say") or r["label"]
             caps.append([t - 0.15, say])
-            t += max(dur + 0.35 * pace, read(say) + 0.3 if walkthrough else 0)
+            t += max(dur + 0.35 * pace, hold(say))
         elif r.get("result"):
             t += 0.25 * pace
             ev.append({"t": t, "d": 0.9, "kind": "result"})
             say = (r.get("why") if walkthrough else None) or r.get("say") or r["label"]
             caps.append([t, say])
-            t += max(0.9 + 1.0 * pace, read(say) + 0.5 if walkthrough else 0)
+            t += max(0.9 + 1.0 * pace, hold(say) + (0.2 if walkthrough else 0))
         else:  # a fixed row: shown from the start, or counted up once the inputs above it are in
             last_in = [e for e in ev if e["kind"] == "input"]
             if last_in:
@@ -97,10 +102,11 @@ def timeline(spec, pace, walkthrough):
         f = spec["fix"]
         fsay = (f.get("why") if walkthrough else None) or f.get("say") or f["label"]
         caps.append([t, fsay])
-        t += max(1.0 + 1.3 * pace, read(fsay) + 0.5 if walkthrough else 0)
+        t += max(1.0 + 1.3 * pace, hold(fsay) + (0.2 if walkthrough else 0))
     cta_t = t
-    caps.append([t, spec.get("cta", {}).get("say", "")])
-    total = t + (2.6 if not walkthrough else 5.0)
+    csay = spec.get("cta", {}).get("say", "")
+    caps.append([t, csay])
+    total = t + max(2.6 if not walkthrough else 5.0, spoken(csay) + 0.8 if spoken(csay) else 0)
     return ev, caps, fix_t, cta_t, total
 
 
@@ -243,7 +249,23 @@ def main(spec_path, out, fmt_name="short"):
         spec.setdefault("cta", {})["sub"] = spec.get("listing_cta_sub", "Instant digital download")
         spec["cta"]["say"] = ""
 
-    ev, caps, fix_t, cta_t, total = timeline(spec, fmt["pace"], wide)
+    voice = VOICE if VOICE is not None else spec.get("voice", os.environ.get("PNF_VOICE", "none"))
+    if fmt_name == "listing":
+        voice = "none"
+    work = os.path.join(HERE, "work_demo"); os.makedirs(work, exist_ok=True)
+    clips = {}
+    speech = None
+    if voice != "none":
+        import voice as vo
+        vdir = os.path.join(work, "voice"); shutil.rmtree(vdir, ignore_errors=True); os.makedirs(vdir)
+        def speech(txt):
+            if not txt:
+                return 0.0
+            if txt not in clips:
+                path = os.path.join(vdir, f"c{len(clips):02d}.wav")
+                clips[txt] = (path, vo.say(txt, path, voice=voice))
+            return clips[txt][1]
+    ev, caps, fix_t, cta_t, total = timeline(spec, fmt["pace"], wide, speech)
     if total > fmt["max"]:
         if fmt_name == "listing":  # Etsy's 15 s cap: shorten the end card first, then refuse
             total = min(total, fmt["max"])
@@ -251,11 +273,12 @@ def main(spec_path, out, fmt_name="short"):
                 sys.exit(f"listing video needs {cta_t + 1.2:.1f}s; Etsy allows 15. Use fewer input rows.")
         else:
             sys.exit(f"{total:.1f}s is over the {fmt['max']}s limit for {fmt_name}")
-    work = os.path.join(HERE, "work_demo"); os.makedirs(work, exist_ok=True)
     fdir, n = render(page(spec, fmt, ev, caps, fix_t, cta_t, total), fmt, total, work)
     cmd = ["ffmpeg", "-y", "-loglevel", "error"]
     if fmt["audio"]:
         mp = os.path.join(work, "music.wav"); ms.music(total, mp)
+        if voice != "none":
+            mp = mix_narration(mp, caps, clips, total, os.path.join(work, "mix.wav"))
         cmd += ["-i", mp, "-framerate", str(FPS), "-i", os.path.join(fdir, "f%05d.png"), "-map", "1:v", "-map", "0:a",
                 "-c:a", "aac", "-b:a", "160k"]
     else:
@@ -264,11 +287,40 @@ def main(spec_path, out, fmt_name="short"):
     subprocess.run(cmd, check=True)
     shutil.rmtree(fdir, ignore_errors=True)
     print(json.dumps({"out": out, "format": fmt_name, "seconds": round(total, 1), "size": [fmt["W"], fmt["H"]], "frames": n,
-                      "captions": [c[1] for c in caps if c[1]]}))
+                      "voice": voice, "captions": [c[1] for c in caps if c[1]]}))
+
+
+def mix_narration(music_wav, caps, clips, total, out_wav, duck=0.22, sr=44100):
+    """Lay each spoken caption at its start time over the music (music held at `duck` of its level)."""
+    import numpy as np, soundfile as sf
+    music, msr = sf.read(music_wav, dtype="float32")
+    if music.ndim > 1:
+        music = music.mean(axis=1)
+    if msr != sr:
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", music_wav, "-ar", str(sr), "-ac", "1", music_wav + ".44k.wav"], check=True)
+        music, msr = sf.read(music_wav + ".44k.wav", dtype="float32")
+    n = int(total * sr)
+    track = np.zeros(n, dtype="float32")
+    track[:min(n, len(music))] = music[:n] * duck
+    for start, txt in caps:
+        if not txt or txt not in clips:
+            continue
+        clip, _ = sf.read(clips[txt][0], dtype="float32")
+        if clip.ndim > 1:
+            clip = clip.mean(axis=1)
+        i = int(max(0.0, start) * sr); j = min(n, i + len(clip))
+        track[i:j] += clip[:j - i] * 0.95
+    peak = float(np.abs(track).max() or 1.0)
+    if peak > 0.98:
+        track *= 0.98 / peak
+    sf.write(out_wav, track, sr)
+    return out_wav
 
 
 if __name__ == "__main__":
     a = sys.argv[1:]; f = "short"
     if "--format" in a:
         i = a.index("--format"); f = a[i + 1]; del a[i:i + 2]
+    if "--voice" in a:
+        i = a.index("--voice"); VOICE = a[i + 1]; del a[i:i + 2]
     main(a[0], a[1], f)

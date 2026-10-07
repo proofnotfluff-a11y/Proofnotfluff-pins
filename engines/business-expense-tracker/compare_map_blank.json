@@ -1,0 +1,372 @@
+{
+ "tolerance": 0.005,
+ "inputs": {
+  "year": {
+   "old": "Summary!C3",
+   "new": "Summary!D13"
+  },
+  "r1_date": {
+   "old": "Entries!A5",
+   "new": "Entries!C16"
+  },
+  "r1_what": {
+   "old": "Entries!B5",
+   "new": "Entries!D16"
+  },
+  "r1_cat": {
+   "old": "Entries!D5",
+   "new": "Entries!F16"
+  },
+  "r1_amt": {
+   "old": "Entries!E5",
+   "new": "Entries!G16"
+  },
+  "r2_date": {
+   "old": "Entries!A6",
+   "new": "Entries!C17"
+  },
+  "r2_what": {
+   "old": "Entries!B6",
+   "new": "Entries!D17"
+  },
+  "r2_cat": {
+   "old": "Entries!D6",
+   "new": "Entries!F17"
+  },
+  "r2_amt": {
+   "old": "Entries!E6",
+   "new": "Entries!G17"
+  },
+  "r9_date": {
+   "old": "Entries!A13",
+   "new": "Entries!C24"
+  },
+  "r9_what": {
+   "old": "Entries!B13",
+   "new": "Entries!D24"
+  },
+  "r9_cat": {
+   "old": "Entries!D13",
+   "new": "Entries!F24"
+  },
+  "r9_amt": {
+   "old": "Entries!E13",
+   "new": "Entries!G24"
+  },
+  "r32_date": {
+   "old": "Entries!A36",
+   "new": "Entries!C47"
+  },
+  "r32_what": {
+   "old": "Entries!B36",
+   "new": "Entries!D47"
+  },
+  "r32_cat": {
+   "old": "Entries!D36",
+   "new": "Entries!F47"
+  },
+  "r32_amt": {
+   "old": "Entries!E36",
+   "new": "Entries!G47"
+  },
+  "r33_date": {
+   "old": "Entries!A37",
+   "new": "Entries!C48"
+  },
+  "r33_what": {
+   "old": "Entries!B37",
+   "new": "Entries!D48"
+  },
+  "r33_cat": {
+   "old": "Entries!D37",
+   "new": "Entries!F48"
+  },
+  "r33_amt": {
+   "old": "Entries!E37",
+   "new": "Entries!G48"
+  },
+  "cat_advertising": {
+   "old": "Categories!B10",
+   "new": "Categories!D20"
+  },
+  "cat_sales": {
+   "old": "Categories!B6",
+   "new": "Categories!D16"
+  }
+ },
+ "outputs": {
+  "sales_year": {
+   "old": "Summary!O10",
+   "new": "Summary!P24"
+  },
+  "sales_jan": {
+   "old": "Summary!C10",
+   "new": "Summary!D24"
+  },
+  "sales_feb": {
+   "old": "Summary!D10",
+   "new": "Summary!E24"
+  },
+  "sales_mar": {
+   "old": "Summary!E10",
+   "new": "Summary!F24"
+  },
+  "sales_dec": {
+   "old": "Summary!N10",
+   "new": "Summary!O24"
+  },
+  "other_inc_year": {
+   "old": "Summary!O11",
+   "new": "Summary!P25"
+  },
+  "refunds_year": {
+   "old": "Summary!O12",
+   "new": "Summary!P26"
+  },
+  "refunds_jan": {
+   "old": "Summary!C12",
+   "new": "Summary!D26"
+  },
+  "refunds_feb": {
+   "old": "Summary!D12",
+   "new": "Summary!E26"
+  },
+  "refunds_mar": {
+   "old": "Summary!E12",
+   "new": "Summary!F26"
+  },
+  "refunds_dec": {
+   "old": "Summary!N12",
+   "new": "Summary!O26"
+  },
+  "income_after_refunds_year": {
+   "old": "Summary!O13",
+   "new": "Summary!P27"
+  },
+  "income_after_refunds_jan": {
+   "old": "Summary!C13",
+   "new": "Summary!D27"
+  },
+  "income_after_refunds_feb": {
+   "old": "Summary!D13",
+   "new": "Summary!E27"
+  },
+  "income_after_refunds_mar": {
+   "old": "Summary!E13",
+   "new": "Summary!F27"
+  },
+  "income_after_refunds_dec": {
+   "old": "Summary!N13",
+   "new": "Summary!O27"
+  },
+  "inventory_year": {
+   "old": "Summary!O16",
+   "new": "Summary!P29"
+  },
+  "inventory_jan": {
+   "old": "Summary!C16",
+   "new": "Summary!D29"
+  },
+  "inventory_feb": {
+   "old": "Summary!D16",
+   "new": "Summary!E29"
+  },
+  "inventory_mar": {
+   "old": "Summary!E16",
+   "new": "Summary!F29"
+  },
+  "inventory_dec": {
+   "old": "Summary!N16",
+   "new": "Summary!O29"
+  },
+  "exp_line_01_year": {
+   "old": "Summary!O19",
+   "new": "Summary!P31"
+  },
+  "exp_line_02_year": {
+   "old": "Summary!O20",
+   "new": "Summary!P32"
+  },
+  "exp_line_03_year": {
+   "old": "Summary!O21",
+   "new": "Summary!P33"
+  },
+  "exp_line_04_year": {
+   "old": "Summary!O22",
+   "new": "Summary!P34"
+  },
+  "exp_line_05_year": {
+   "old": "Summary!O23",
+   "new": "Summary!P35"
+  },
+  "exp_line_06_year": {
+   "old": "Summary!O24",
+   "new": "Summary!P36"
+  },
+  "exp_line_07_year": {
+   "old": "Summary!O25",
+   "new": "Summary!P37"
+  },
+  "exp_line_08_year": {
+   "old": "Summary!O26",
+   "new": "Summary!P38"
+  },
+  "exp_line_09_year": {
+   "old": "Summary!O27",
+   "new": "Summary!P39"
+  },
+  "exp_line_10_year": {
+   "old": "Summary!O28",
+   "new": "Summary!P40"
+  },
+  "exp_line_11_year": {
+   "old": "Summary!O29",
+   "new": "Summary!P41"
+  },
+  "exp_line_12_year": {
+   "old": "Summary!O30",
+   "new": "Summary!P42"
+  },
+  "exp_line_13_year": {
+   "old": "Summary!O31",
+   "new": "Summary!P43"
+  },
+  "exp_line_14_year": {
+   "old": "Summary!O32",
+   "new": "Summary!P44"
+  },
+  "exp_line_15_year": {
+   "old": "Summary!O33",
+   "new": "Summary!P45"
+  },
+  "exp_line_16_year": {
+   "old": "Summary!O34",
+   "new": "Summary!P46"
+  },
+  "exp_line_17_year": {
+   "old": "Summary!O35",
+   "new": "Summary!P47"
+  },
+  "exp_line_18_year": {
+   "old": "Summary!O36",
+   "new": "Summary!P48"
+  },
+  "exp_line_19_year": {
+   "old": "Summary!O37",
+   "new": "Summary!P49"
+  },
+  "total_exp_year": {
+   "old": "Summary!O38",
+   "new": "Summary!P50"
+  },
+  "total_exp_jan": {
+   "old": "Summary!C38",
+   "new": "Summary!D50"
+  },
+  "total_exp_feb": {
+   "old": "Summary!D38",
+   "new": "Summary!E50"
+  },
+  "total_exp_mar": {
+   "old": "Summary!E38",
+   "new": "Summary!F50"
+  },
+  "total_exp_dec": {
+   "old": "Summary!N38",
+   "new": "Summary!O50"
+  },
+  "profit_year": {
+   "old": "Summary!O40",
+   "new": "Summary!P51"
+  },
+  "profit_jan": {
+   "old": "Summary!C40",
+   "new": "Summary!D51"
+  },
+  "profit_feb": {
+   "old": "Summary!D40",
+   "new": "Summary!E51"
+  },
+  "profit_mar": {
+   "old": "Summary!E40",
+   "new": "Summary!F51"
+  },
+  "profit_dec": {
+   "old": "Summary!N40",
+   "new": "Summary!O51"
+  },
+  "equipment_year": {
+   "old": "Summary!O44",
+   "new": "Summary!P54"
+  },
+  "draws_year": {
+   "old": "Summary!O45",
+   "new": "Summary!P55"
+  },
+  "transfers_year": {
+   "old": "Summary!O46",
+   "new": "Summary!P56"
+  },
+  "chk_no_category": {
+   "old": "Summary!C49",
+   "new": "Summary!D62"
+  },
+  "chk_no_date": {
+   "old": "Summary!C50",
+   "new": "Summary!D63"
+  },
+  "chk_not_on_list": {
+   "old": "Summary!C51",
+   "new": "Summary!D64"
+  },
+  "chk_outside_year": {
+   "old": "Summary!C52",
+   "new": "Summary!D65"
+  },
+  "tile_profit": {
+   "old": "Summary!L6",
+   "new": "Summary!C7"
+  },
+  "tile_income": {
+   "old": "Summary!C6",
+   "new": "Summary!K7"
+  },
+  "strip_inventory": {
+   "old": "Summary!F6",
+   "new": "Summary!K13"
+  },
+  "strip_expenses": {
+   "old": "Summary!I6",
+   "new": "Summary!N13"
+  }
+ },
+ "cases": [
+  {
+   "name": "blank file as shipped"
+  },
+  {
+   "name": "blank file, first rows typed",
+   "set": {
+    "r1_date": 46030,
+    "r1_what": "Sale",
+    "r1_cat": "Sales and services",
+    "r1_amt": 120,
+    "r2_date": 46031,
+    "r2_what": "Fees",
+    "r2_cat": "Commissions and fees",
+    "r2_amt": 9.5,
+    "r9_amt": 40
+   }
+  },
+  {
+   "name": "blank file, last year",
+   "set": {
+    "year": 2025,
+    "r1_date": 45700,
+    "r1_cat": "Supplies",
+    "r1_amt": 30
+   }
+  }
+ ],
+ "intended": []
+}

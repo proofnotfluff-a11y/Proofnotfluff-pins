@@ -1,0 +1,229 @@
+{
+ "base": "/home/claude/work18/r300b",
+ "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+ "images": [
+  {
+   "type": "cover",
+   "eyebrow": "BUSINESS EXPENSE TRACKER",
+   "title": "Type in one tab. Your profit adds itself up.",
+   "sub": "Income, expenses by Schedule C line and profit for every month and the year.",
+   "shot": "03-Summary.png",
+   "crop": [
+    0,
+    0.035,
+    1,
+    0.2952
+   ],
+   "badges": [
+    "Excel + Google Sheets",
+    "Instant download",
+    "Schedule C categories"
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "THE WORKED EXAMPLE",
+   "title": "A $165 January loss, a $1,386 quarter.",
+   "sub": "Example candle shop: a $413 wax order and $350 rent land in January. January to March shows $1,386 of profit before the inventory count.",
+   "shot": "03-Summary.png",
+   "crop": [
+    0,
+    0.145,
+    1,
+    0.49
+   ]
+  },
+  {
+   "type": "steps",
+   "eyebrow": "HOW IT WORKS",
+   "title": "Three steps, about five minutes.",
+   "steps": [
+    {
+     "head": "Check the year",
+     "text": "Blank shows this year. Type one to look back.",
+     "shot": "03-Summary.png",
+     "crop": [
+      0,
+      0.085,
+      0.42,
+      0.135
+     ]
+    },
+    {
+     "head": "Type each money in or out",
+     "text": "Date, what it was, category, amount.",
+     "shot": "02-Entries.png",
+     "crop": [
+      0,
+      0.0113,
+      0.637,
+      0.01712
+     ]
+    },
+    {
+     "head": "Read your profit",
+     "text": "Every month and the year, filled in for you.",
+     "shot": "03-Summary.png",
+     "crop": [
+      0,
+      0.035,
+      0.42,
+      0.08
+     ]
+    }
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "ENTRIES TAB",
+   "title": "One row per money in or money out.",
+   "sub": "Pick the category from the list. Counts as tells you where each row lands. 1,000 rows.",
+   "shot": "02-Entries.png",
+   "crop": [
+    0,
+    0.0005,
+    1,
+    0.02555
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "CHECKS",
+   "title": "It tells you when a row is missing something.",
+   "sub": "Rows with no date, no category or a name not on the list are flagged, so you can fix them before the totals are complete.",
+   "shot": "03-Summary.png",
+   "crop": [
+    0,
+    0.493,
+    0.44,
+    0.602
+   ],
+   "trim": true
+  },
+  {
+   "type": "shot",
+   "eyebrow": "PROFIT BY MONTH",
+   "title": "See the loss months at a glance.",
+   "sub": "Example: January -$165, February $943, March $608 before the inventory count. Accent bars are losses.",
+   "shot": "03-Summary.png",
+   "crop": [
+    0.462,
+    0.493,
+    1,
+    0.648
+   ],
+   "trim": true
+  },
+  {
+   "type": "shot",
+   "eyebrow": "CATEGORIES TAB",
+   "title": "26 categories, each with a plain-words note.",
+   "sub": "Named after the IRS 2025 Schedule C expense lines, checked Oct 7, 2026. Rename any of them and the Summary follows.",
+   "shot": "04-Categories.png",
+   "crop": [
+    0,
+    0.1,
+    1,
+    0.415
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "IS THIS FOR YOU?",
+   "title": "Made for one-person businesses.",
+   "columns": [
+    {
+     "head": "Made for",
+     "mark": "check",
+     "items": [
+      "Makers, Etsy sellers, freelancers and side hustles",
+      "Self-employed people who file Schedule C",
+      "Anyone who wants profit by month without learning software",
+      "Handing clean totals to a tax preparer"
+     ]
+    },
+    {
+     "head": "Not for",
+     "mark": "x",
+     "items": [
+      "Payroll, invoicing or bank syncing",
+      "Depreciation, home office or inventory counts",
+      "Tax filing or tax advice"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "HOW YOU GET IT",
+   "title": "Instant download. Opens in Excel or Google Sheets.",
+   "columns": [
+    {
+     "head": "What you get",
+     "mark": "check",
+     "items": [
+      "A blank tracker and a filled-in example",
+      "Start Here guide as a PDF, US Letter and A4",
+      "Made for Excel; checked in Google Sheets and LibreOffice",
+      "No macros, no add-ons, no sign-up"
+     ]
+    },
+    {
+     "head": "How to download",
+     "mark": "check",
+     "items": [
+      "Buy, then open Etsy in a web browser",
+      "Go to You, then Purchases, and download",
+      "The Etsy app can't download digital files",
+      "Message the shop on Etsy if anything won't open"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "inside",
+   "eyebrow": "ONE DOWNLOAD",
+   "title": "What's inside",
+   "tabs": [
+    {
+     "name": "Summary",
+     "shot": "03-Summary.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.49
+     ]
+    },
+    {
+     "name": "Entries",
+     "shot": "02-Entries.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.045
+     ]
+    },
+    {
+     "name": "Categories",
+     "shot": "04-Categories.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.45
+     ]
+    }
+   ],
+   "items": [
+    "Profit before the inventory count, every month",
+    "19 expense categories named after Schedule C lines",
+    "Checks for rows missing a date or category",
+    "Equipment, draws and transfers kept out of profit",
+    "Blank file plus a worked example",
+    "Start Here PDF in Letter and A4"
+   ]
+  }
+ ]
+}

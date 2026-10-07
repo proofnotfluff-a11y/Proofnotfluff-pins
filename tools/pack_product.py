@@ -3,6 +3,7 @@
 
 Usage: python3 tools/pack_product.py <product.xlsx> <LICENSE-AND-DISCLAIMER.txt> <out_dir>
                                      [--tier low|medium|high] [--listing listing.md]
+                                     [--extra other.xlsx ...] [--name Zip-Name]
 
 Steps (each one fails loudly):
   1. Start Here PDFs: copies of the workbook set to US Letter and to A4, rendered with
@@ -14,6 +15,9 @@ Steps (each one fails loudly):
      zipped with zip -X into <out_dir>/<workbook name>.zip (must be under 10 MB).
   4. tools/legal_scan.py on the zip (any high finding fails the pack).
   5. <zip>.b64.txt for the scoreboard asset store, and the sha256 printed for the idea doc.
+--extra adds more files to the zip as they are (for example a blank copy beside a filled-in
+example workbook; each extra .xlsx must render with zero error values). --name sets the zip's
+file name (default: the workbook's name). Both are optional; without them nothing changes.
 The out_dir must be new or empty (no deleting inside the repo or anyone's folders).
 """
 import argparse, hashlib, os, shutil, subprocess, sys
@@ -32,12 +36,13 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("xlsx"); ap.add_argument("license"); ap.add_argument("out")
     ap.add_argument("--tier", default="medium"); ap.add_argument("--listing")
+    ap.add_argument("--extra", action="append", default=[]); ap.add_argument("--name")
     a = ap.parse_args()
     out = os.path.abspath(a.out)
     if os.path.exists(out) and os.listdir(out):
         sys.exit(f"{out} is not empty; use a new folder")
     os.makedirs(out, exist_ok=True)
-    name = os.path.splitext(os.path.basename(a.xlsx))[0]
+    name = a.name or os.path.splitext(os.path.basename(a.xlsx))[0]
 
     import openpyxl
     from pypdf import PdfReader, PdfWriter
@@ -62,6 +67,12 @@ def main():
     ship = os.path.join(out, "ship"); os.makedirs(ship)
     shutil.copy(a.xlsx, os.path.join(ship, os.path.basename(a.xlsx)))
     shutil.copy(a.license, os.path.join(ship, "LICENSE-AND-DISCLAIMER.txt"))
+    for x in a.extra:
+        if x.endswith(".xlsx"):
+            r = run([sys.executable, os.path.join(HERE, "render_xlsx.py"), x, os.path.join(out, "check", "extra-" + os.path.basename(x))], ok=(0, 1))
+            if "ERROR VALUES: 0" not in r.stdout:
+                sys.exit(r.stdout)
+        shutil.copy(x, os.path.join(ship, os.path.basename(x)))
     for label, p in pdfs.items():
         w = PdfWriter(clone_from=PdfReader(p))
         w.add_metadata({"/Author": "ProofNotFluff", "/Creator": "ProofNotFluff", "/Producer": "ProofNotFluff",

@@ -1,0 +1,15 @@
+{
+ "xlsx": "Business-Expense-Tracker-EXAMPLE.xlsx",
+ "sheet": "Summary",
+ "crop": [0, 0.003, 1, 0.2952],
+ "dpi": 220,
+ "eyebrow": "BUSINESS EXPENSE TRACKER",
+ "states": [
+  {"caption": "Example shop, January to March: {C7} profit.", "hold": 3.2},
+  {"set": {"Entries!C47": 46118, "Entries!D47": "April sales", "Entries!F47": "Sales and services", "Entries!G47": 900},
+   "caption": "Log a $900 April sale: profit {C7}.", "hold": 3.6},
+  {"set": {"Entries!C47": 46118, "Entries!D47": "April sales", "Entries!F47": "Sales and services", "Entries!G47": 900,
+           "Entries!C48": 46125, "Entries!D48": "Wax order", "Entries!F48": "Inventory and materials for resale", "Entries!G48": 400},
+   "caption": "Then a $400 wax order: profit {C7}.", "hold": 3.6}
+ ]
+}

@@ -1,0 +1,227 @@
+{
+ "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+ "images": [
+  {
+   "type": "cover",
+   "eyebrow": "CRAFT FAIR PROFIT CALCULATOR",
+   "title": "Know your break-even before you pay the booth fee.",
+   "sub": "Every cost of the day, what each piece really earns, and the pieces it takes to cover the show.",
+   "shot": "r/02-1-Show-Costs.png",
+   "crop": [
+    0,
+    0.035,
+    1,
+    0.37
+   ],
+   "badges": [
+    "Excel + Google Sheets",
+    "Instant download",
+    "Break-even in pieces"
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "THE WORKED EXAMPLE",
+   "title": "A $150 booth costs $315.60. 51 pieces cover it.",
+   "sub": "Example show: $705.84 of sales to break even, 4.71x the booth fee, above the 3x rule.",
+   "shot": "r/04-3-Break-Even.png",
+   "crop": [
+    0,
+    0.047,
+    1,
+    0.28
+   ]
+  },
+  {
+   "type": "steps",
+   "eyebrow": "HOW IT WORKS",
+   "title": "Three steps to your number.",
+   "steps": [
+    {
+     "head": "Type the show's costs",
+     "text": "Booth, miles, parking, display, card fee.",
+     "shot": "r/02-1-Show-Costs.png",
+     "crop": [
+      0,
+      0.0,
+      1,
+      0.105
+     ]
+    },
+    {
+     "head": "List what you sell",
+     "text": "Materials, minutes, price and mix.",
+     "shot": "r/03-2-Products.png",
+     "crop": [
+      0,
+      0.25,
+      0.47,
+      0.36
+     ]
+    },
+    {
+     "head": "Read your break-even",
+     "text": "Pieces to sell and the 3x check.",
+     "shot": "r/04-3-Break-Even.png",
+     "crop": [
+      0,
+      0.045,
+      1,
+      0.11
+     ]
+    }
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "SHOW COSTS",
+   "title": "The booth fee is less than half the day.",
+   "sub": "Example: $150 booth, $165.60 more in extras, miles at 76 cents, meals, display share and other costs.",
+   "shot": "r/02-1-Show-Costs.png",
+   "crop": [
+    0.47,
+    0.115,
+    1,
+    0.306
+   ],
+   "trim": true
+  },
+  {
+   "type": "shot",
+   "eyebrow": "PRODUCTS",
+   "title": "What each piece really earns.",
+   "sub": "Materials, your time, packaging and the card fee, blended by your sales mix. Example: $6.24 a piece.",
+   "shot": "r/03-2-Products.png",
+   "crop": [
+    0,
+    0.04,
+    1,
+    0.36
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "PROFIT AND WHAT-IF",
+   "title": "Pieces for your profit, at any booth fee.",
+   "sub": "Example: 99 pieces for $300 on top, bring 149. A $400 booth needs 91 pieces to break even.",
+   "shot": "r/04-3-Break-Even.png",
+   "crop": [
+    0,
+    0.28,
+    1,
+    0.55
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "SHOW LOG",
+   "title": "Log each show. Keep the ones that pay.",
+   "sub": "Profit, profit per hour and a 3x check for every show you do this season.",
+   "shot": "r/05-4-Show-Log.png",
+   "crop": [
+    0,
+    0.0655,
+    0.67,
+    0.34
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "IS THIS FOR YOU?",
+   "title": "Made for makers who sell in person.",
+   "columns": [
+    {
+     "head": "Made for",
+     "mark": "check",
+     "items": [
+      "Craft fair, holiday market and pop-up sellers",
+      "Makers deciding whether a juried show is worth it",
+      "Sellers with up to 15 products at the table",
+      "Anyone who has had a busy show that still lost money"
+     ]
+    },
+    {
+     "head": "Not for",
+     "mark": "x",
+     "items": [
+      "Online-only shops with no in-person sales",
+      "Bookkeeping or tax filing",
+      "Sales tax or permit advice for your state"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "HOW YOU GET IT",
+   "title": "Instant download. Opens in Excel or Google Sheets.",
+   "columns": [
+    {
+     "head": "What you get",
+     "mark": "check",
+     "items": [
+      "One workbook, four working tabs",
+      "Start Here guide as a PDF, US Letter and A4",
+      "Works in Excel for Windows and Mac, Google Sheets and LibreOffice",
+      "No macros, no add-ons, no sign-up"
+     ]
+    },
+    {
+     "head": "How to download",
+     "mark": "check",
+     "items": [
+      "Buy, then open Etsy in a web browser",
+      "Go to You, then Purchases, and download",
+      "The Etsy app can't download digital files",
+      "Message the shop on Etsy if anything won't open"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "inside",
+   "eyebrow": "ONE DOWNLOAD",
+   "title": "What's inside",
+   "tabs": [
+    {
+     "name": "1 Show Costs",
+     "shot": "r/02-1-Show-Costs.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.48
+     ]
+    },
+    {
+     "name": "2 Products",
+     "shot": "r/03-2-Products.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.6
+     ]
+    },
+    {
+     "name": "3 Break-Even",
+     "shot": "r/04-3-Break-Even.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.395
+     ]
+    }
+   ],
+   "items": [
+    "Every cost of a show day in one total",
+    "Card reader fee as a cost per $1 of sales",
+    "Up to 15 products priced and blended by mix",
+    "Break-even, 3x rule and profit targets",
+    "What-if table for six booth fees",
+    "Show log with profit per hour"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "xlsx": "Craft-Fair-Profit-Calculator.xlsx",
+ "sheet": "3 Break-Even",
+ "crop": [0, 0.047, 1, 0.28],
+ "dpi": 220,
+ "eyebrow": "CRAFT FAIR BREAK-EVEN CALCULATOR",
+ "states": [
+  {"caption": "{I14} pieces pay for the day: {I15} of sales.", "hold": 3.0},
+  {"set": {"1 Show Costs!D18": 300}, "caption": "A $300 juried booth? Now {I14} pieces to break even.", "hold": 3.6},
+  {"set": {"1 Show Costs!D18": 300, "2 Products!G25": 26}, "caption": "Candles at $26 instead of $22? Down to {I14} pieces.", "hold": 3.6}
+ ]
+}

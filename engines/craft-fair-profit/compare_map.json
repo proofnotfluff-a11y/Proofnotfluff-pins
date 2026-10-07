@@ -1,0 +1,717 @@
+{
+ "tolerance": 0.005,
+ "inputs": {
+  "hours": {
+   "old": "'Show Costs'!C6",
+   "new": "'1 Show Costs'!D16"
+  },
+  "booth": {
+   "old": "'Show Costs'!C9",
+   "new": "'1 Show Costs'!D18"
+  },
+  "extras": {
+   "old": "'Show Costs'!C10",
+   "new": "'1 Show Costs'!D19"
+  },
+  "miles": {
+   "old": "'Show Costs'!C11",
+   "new": "'1 Show Costs'!D20"
+  },
+  "cpm": {
+   "old": "'Show Costs'!C12",
+   "new": "'1 Show Costs'!D21"
+  },
+  "parking": {
+   "old": "'Show Costs'!C14",
+   "new": "'1 Show Costs'!D22"
+  },
+  "lodging": {
+   "old": "'Show Costs'!C15",
+   "new": "'1 Show Costs'!D23"
+  },
+  "meals": {
+   "old": "'Show Costs'!C16",
+   "new": "'1 Show Costs'!D24"
+  },
+  "helper": {
+   "old": "'Show Costs'!C17",
+   "new": "'1 Show Costs'!D25"
+  },
+  "display": {
+   "old": "'Show Costs'!C18",
+   "new": "'1 Show Costs'!D26"
+  },
+  "shows": {
+   "old": "'Show Costs'!C19",
+   "new": "'1 Show Costs'!D27"
+  },
+  "other": {
+   "old": "'Show Costs'!C21",
+   "new": "'1 Show Costs'!D28"
+  },
+  "card_pct": {
+   "old": "'Show Costs'!C26",
+   "new": "'1 Show Costs'!I29"
+  },
+  "card_fee": {
+   "old": "'Show Costs'!C27",
+   "new": "'1 Show Costs'!I30"
+  },
+  "card_share": {
+   "old": "'Show Costs'!C28",
+   "new": "'1 Show Costs'!I31"
+  },
+  "avg_sale": {
+   "old": "'Show Costs'!C29",
+   "new": "'1 Show Costs'!I32"
+  },
+  "tax": {
+   "old": "'Show Costs'!C34",
+   "new": "'1 Show Costs'!D34"
+  },
+  "rate": {
+   "old": "Products!B3",
+   "new": "'2 Products'!D14"
+  },
+  "p1_mat": {
+   "old": "Products!B6",
+   "new": "'2 Products'!D24"
+  },
+  "p1_min": {
+   "old": "Products!C6",
+   "new": "'2 Products'!E24"
+  },
+  "p1_pack": {
+   "old": "Products!D6",
+   "new": "'2 Products'!F24"
+  },
+  "p1_price": {
+   "old": "Products!E6",
+   "new": "'2 Products'!G24"
+  },
+  "p1_mix": {
+   "old": "Products!F6",
+   "new": "'2 Products'!H24"
+  },
+  "p2_mat": {
+   "old": "Products!B7",
+   "new": "'2 Products'!D25"
+  },
+  "p2_min": {
+   "old": "Products!C7",
+   "new": "'2 Products'!E25"
+  },
+  "p2_pack": {
+   "old": "Products!D7",
+   "new": "'2 Products'!F25"
+  },
+  "p2_price": {
+   "old": "Products!E7",
+   "new": "'2 Products'!G25"
+  },
+  "p2_mix": {
+   "old": "Products!F7",
+   "new": "'2 Products'!H25"
+  },
+  "p3_mat": {
+   "old": "Products!B8",
+   "new": "'2 Products'!D26"
+  },
+  "p3_min": {
+   "old": "Products!C8",
+   "new": "'2 Products'!E26"
+  },
+  "p3_pack": {
+   "old": "Products!D8",
+   "new": "'2 Products'!F26"
+  },
+  "p3_price": {
+   "old": "Products!E8",
+   "new": "'2 Products'!G26"
+  },
+  "p3_mix": {
+   "old": "Products!F8",
+   "new": "'2 Products'!H26"
+  },
+  "p4_mat": {
+   "old": "Products!B9",
+   "new": "'2 Products'!D27"
+  },
+  "p4_min": {
+   "old": "Products!C9",
+   "new": "'2 Products'!E27"
+  },
+  "p4_pack": {
+   "old": "Products!D9",
+   "new": "'2 Products'!F27"
+  },
+  "p4_price": {
+   "old": "Products!E9",
+   "new": "'2 Products'!G27"
+  },
+  "p4_mix": {
+   "old": "Products!F9",
+   "new": "'2 Products'!H27"
+  },
+  "p5_mat": {
+   "old": "Products!B10",
+   "new": "'2 Products'!D28"
+  },
+  "p5_min": {
+   "old": "Products!C10",
+   "new": "'2 Products'!E28"
+  },
+  "p5_pack": {
+   "old": "Products!D10",
+   "new": "'2 Products'!F28"
+  },
+  "p5_price": {
+   "old": "Products!E10",
+   "new": "'2 Products'!G28"
+  },
+  "p5_mix": {
+   "old": "Products!F10",
+   "new": "'2 Products'!H28"
+  },
+  "p1_name": {
+   "old": "Products!A6",
+   "new": "'2 Products'!C24"
+  },
+  "target": {
+   "old": "'Break-Even'!C19",
+   "new": "'3 Break-Even'!D14"
+  },
+  "cushion": {
+   "old": "'Break-Even'!D23",
+   "new": "'3 Break-Even'!D15"
+  },
+  "wf1_fee": {
+   "old": "'Break-Even'!B27",
+   "new": "'3 Break-Even'!C38"
+  },
+  "wf2_fee": {
+   "old": "'Break-Even'!B28",
+   "new": "'3 Break-Even'!C39"
+  },
+  "wf3_fee": {
+   "old": "'Break-Even'!B29",
+   "new": "'3 Break-Even'!C40"
+  },
+  "wf4_fee": {
+   "old": "'Break-Even'!B30",
+   "new": "'3 Break-Even'!C41"
+  },
+  "wf5_fee": {
+   "old": "'Break-Even'!B31",
+   "new": "'3 Break-Even'!C42"
+  },
+  "wf6_fee": {
+   "old": "'Break-Even'!B32",
+   "new": "'3 Break-Even'!C43"
+  },
+  "log_fee": {
+   "old": "'Show Log'!C5",
+   "new": "'4 Show Log'!E16"
+  },
+  "log_other": {
+   "old": "'Show Log'!D5",
+   "new": "'4 Show Log'!F16"
+  },
+  "log_hours": {
+   "old": "'Show Log'!E5",
+   "new": "'4 Show Log'!G16"
+  },
+  "log_units": {
+   "old": "'Show Log'!F5",
+   "new": "'4 Show Log'!H16"
+  },
+  "log_gross": {
+   "old": "'Show Log'!G5",
+   "new": "'4 Show Log'!I16"
+  },
+  "log_card": {
+   "old": "'Show Log'!H5",
+   "new": "'4 Show Log'!J16"
+  }
+ },
+ "outputs": {
+  "sc_travel": {
+   "old": "'Show Costs'!C13",
+   "new": "'1 Show Costs'!I16"
+  },
+  "sc_display_share": {
+   "old": "'Show Costs'!C20",
+   "new": "'1 Show Costs'!I21"
+  },
+  "sc_total": {
+   "old": "'Show Costs'!C23",
+   "new": "'1 Show Costs'!I23"
+  },
+  "sc_card_cost": {
+   "old": "'Show Costs'!C31",
+   "new": "'1 Show Costs'!I33"
+  },
+  "sc_pretax": {
+   "old": "'Show Costs'!C35",
+   "new": "'1 Show Costs'!D35"
+  },
+  "p1_labor": {
+   "old": "Products!G6",
+   "new": "'2 Products'!I24"
+  },
+  "p1_unit": {
+   "old": "Products!H6",
+   "new": "'2 Products'!J24"
+  },
+  "p1_card": {
+   "old": "Products!I6",
+   "new": "'2 Products'!K24"
+  },
+  "p1_contrib": {
+   "old": "Products!J6",
+   "new": "'2 Products'!L24"
+  },
+  "p1_margin": {
+   "old": "Products!K6",
+   "new": "'2 Products'!M24"
+  },
+  "p1_x2": {
+   "old": "Products!L6",
+   "new": "'2 Products'!N24"
+  },
+  "p1_check": {
+   "old": "Products!M6",
+   "new": "'2 Products'!O24"
+  },
+  "p2_labor": {
+   "old": "Products!G7",
+   "new": "'2 Products'!I25"
+  },
+  "p2_unit": {
+   "old": "Products!H7",
+   "new": "'2 Products'!J25"
+  },
+  "p2_card": {
+   "old": "Products!I7",
+   "new": "'2 Products'!K25"
+  },
+  "p2_contrib": {
+   "old": "Products!J7",
+   "new": "'2 Products'!L25"
+  },
+  "p2_margin": {
+   "old": "Products!K7",
+   "new": "'2 Products'!M25"
+  },
+  "p2_x2": {
+   "old": "Products!L7",
+   "new": "'2 Products'!N25"
+  },
+  "p2_check": {
+   "old": "Products!M7",
+   "new": "'2 Products'!O25"
+  },
+  "p3_labor": {
+   "old": "Products!G8",
+   "new": "'2 Products'!I26"
+  },
+  "p3_unit": {
+   "old": "Products!H8",
+   "new": "'2 Products'!J26"
+  },
+  "p3_card": {
+   "old": "Products!I8",
+   "new": "'2 Products'!K26"
+  },
+  "p3_contrib": {
+   "old": "Products!J8",
+   "new": "'2 Products'!L26"
+  },
+  "p3_margin": {
+   "old": "Products!K8",
+   "new": "'2 Products'!M26"
+  },
+  "p3_x2": {
+   "old": "Products!L8",
+   "new": "'2 Products'!N26"
+  },
+  "p3_check": {
+   "old": "Products!M8",
+   "new": "'2 Products'!O26"
+  },
+  "p4_labor": {
+   "old": "Products!G9",
+   "new": "'2 Products'!I27"
+  },
+  "p4_unit": {
+   "old": "Products!H9",
+   "new": "'2 Products'!J27"
+  },
+  "p4_card": {
+   "old": "Products!I9",
+   "new": "'2 Products'!K27"
+  },
+  "p4_contrib": {
+   "old": "Products!J9",
+   "new": "'2 Products'!L27"
+  },
+  "p4_margin": {
+   "old": "Products!K9",
+   "new": "'2 Products'!M27"
+  },
+  "p4_x2": {
+   "old": "Products!L9",
+   "new": "'2 Products'!N27"
+  },
+  "p4_check": {
+   "old": "Products!M9",
+   "new": "'2 Products'!O27"
+  },
+  "p5_labor": {
+   "old": "Products!G10",
+   "new": "'2 Products'!I28"
+  },
+  "p5_unit": {
+   "old": "Products!H10",
+   "new": "'2 Products'!J28"
+  },
+  "p5_card": {
+   "old": "Products!I10",
+   "new": "'2 Products'!K28"
+  },
+  "p5_contrib": {
+   "old": "Products!J10",
+   "new": "'2 Products'!L28"
+  },
+  "p5_margin": {
+   "old": "Products!K10",
+   "new": "'2 Products'!M28"
+  },
+  "p5_x2": {
+   "old": "Products!L10",
+   "new": "'2 Products'!N28"
+  },
+  "p5_check": {
+   "old": "Products!M10",
+   "new": "'2 Products'!O28"
+  },
+  "blend_price": {
+   "old": "Products!E23",
+   "new": "'2 Products'!C8"
+  },
+  "blend_cost": {
+   "old": "Products!E24",
+   "new": "'2 Products'!D8"
+  },
+  "blend_contrib": {
+   "old": "Products!E25",
+   "new": "'2 Products'!H8"
+  },
+  "mix_total": {
+   "old": "Products!F22",
+   "new": "'2 Products'!D15"
+  },
+  "mix_check": {
+   "old": "Products!E26",
+   "new": "'2 Products'!C16"
+  },
+  "be_units": {
+   "old": "'Break-Even'!C10",
+   "new": "'3 Break-Even'!I14"
+  },
+  "be_sales": {
+   "old": "'Break-Even'!C11",
+   "new": "'3 Break-Even'!I15"
+  },
+  "be_per_hour": {
+   "old": "'Break-Even'!C12",
+   "new": "'3 Break-Even'!I16"
+  },
+  "be_minutes": {
+   "old": "'Break-Even'!C13",
+   "new": "'3 Break-Even'!I17"
+  },
+  "be_multiple": {
+   "old": "'Break-Even'!C14",
+   "new": "'3 Break-Even'!I19"
+  },
+  "be_three_x": {
+   "old": "'Break-Even'!C15",
+   "new": "'3 Break-Even'!I20"
+  },
+  "be_units_3x": {
+   "old": "'Break-Even'!C16",
+   "new": "'3 Break-Even'!I21"
+  },
+  "be_t_units": {
+   "old": "'Break-Even'!C20",
+   "new": "'3 Break-Even'!D27"
+  },
+  "be_t_sales": {
+   "old": "'Break-Even'!C21",
+   "new": "'3 Break-Even'!D28"
+  },
+  "be_t_per_hour": {
+   "old": "'Break-Even'!C22",
+   "new": "'3 Break-Even'!D29"
+  },
+  "be_bring": {
+   "old": "'Break-Even'!C23",
+   "new": "'3 Break-Even'!D30"
+  },
+  "be_total": {
+   "old": "'Break-Even'!C4",
+   "new": "'3 Break-Even'!D17"
+  },
+  "be_contrib": {
+   "old": "'Break-Even'!C5",
+   "new": "'3 Break-Even'!D18"
+  },
+  "be_price": {
+   "old": "'Break-Even'!C6",
+   "new": "'3 Break-Even'!D19"
+  },
+  "wf1_cost": {
+   "old": "'Break-Even'!C27",
+   "new": "'3 Break-Even'!D38"
+  },
+  "wf1_units": {
+   "old": "'Break-Even'!D27",
+   "new": "'3 Break-Even'!H38"
+  },
+  "wf1_sales": {
+   "old": "'Break-Even'!E27",
+   "new": "'3 Break-Even'!I38"
+  },
+  "wf2_cost": {
+   "old": "'Break-Even'!C28",
+   "new": "'3 Break-Even'!D39"
+  },
+  "wf2_units": {
+   "old": "'Break-Even'!D28",
+   "new": "'3 Break-Even'!H39"
+  },
+  "wf2_sales": {
+   "old": "'Break-Even'!E28",
+   "new": "'3 Break-Even'!I39"
+  },
+  "wf3_cost": {
+   "old": "'Break-Even'!C29",
+   "new": "'3 Break-Even'!D40"
+  },
+  "wf3_units": {
+   "old": "'Break-Even'!D29",
+   "new": "'3 Break-Even'!H40"
+  },
+  "wf3_sales": {
+   "old": "'Break-Even'!E29",
+   "new": "'3 Break-Even'!I40"
+  },
+  "wf4_cost": {
+   "old": "'Break-Even'!C30",
+   "new": "'3 Break-Even'!D41"
+  },
+  "wf4_units": {
+   "old": "'Break-Even'!D30",
+   "new": "'3 Break-Even'!H41"
+  },
+  "wf4_sales": {
+   "old": "'Break-Even'!E30",
+   "new": "'3 Break-Even'!I41"
+  },
+  "wf5_cost": {
+   "old": "'Break-Even'!C31",
+   "new": "'3 Break-Even'!D42"
+  },
+  "wf5_units": {
+   "old": "'Break-Even'!D31",
+   "new": "'3 Break-Even'!H42"
+  },
+  "wf5_sales": {
+   "old": "'Break-Even'!E31",
+   "new": "'3 Break-Even'!I42"
+  },
+  "wf6_cost": {
+   "old": "'Break-Even'!C32",
+   "new": "'3 Break-Even'!D43"
+  },
+  "wf6_units": {
+   "old": "'Break-Even'!D32",
+   "new": "'3 Break-Even'!H43"
+  },
+  "wf6_sales": {
+   "old": "'Break-Even'!E32",
+   "new": "'3 Break-Even'!I43"
+  },
+  "log_fees": {
+   "old": "'Show Log'!I5",
+   "new": "'4 Show Log'!K16"
+  },
+  "log_cogs": {
+   "old": "'Show Log'!J5",
+   "new": "'4 Show Log'!L16"
+  },
+  "log_profit": {
+   "old": "'Show Log'!K5",
+   "new": "'4 Show Log'!M16"
+  },
+  "log_per_hour": {
+   "old": "'Show Log'!L5",
+   "new": "'4 Show Log'!N16"
+  },
+  "log_check": {
+   "old": "'Show Log'!M5",
+   "new": "'4 Show Log'!O16"
+  },
+  "season_gross": {
+   "old": "'Show Log'!G18",
+   "new": "'4 Show Log'!C8"
+  },
+  "season_profit": {
+   "old": "'Show Log'!K18",
+   "new": "'4 Show Log'!E8"
+  },
+  "season_per_hour": {
+   "old": "'Show Log'!L18",
+   "new": "'4 Show Log'!I8"
+  }
+ },
+ "cases": [
+  {
+   "name": "example",
+   "set": {
+    "cpm": 0.76,
+    "log_other": 165.6
+   }
+  },
+  {
+   "name": "high",
+   "set": {
+    "cpm": 0.9,
+    "log_other": 900,
+    "booth": 600,
+    "extras": 120,
+    "miles": 300,
+    "lodging": 180,
+    "meals": 60,
+    "helper": 150,
+    "display": 1500,
+    "shows": 4,
+    "other": 40,
+    "card_share": 0.9,
+    "avg_sale": 80,
+    "rate": 35,
+    "p1_price": 12,
+    "p2_price": 30,
+    "target": 1000,
+    "cushion": 2,
+    "log_fee": 600,
+    "log_gross": 2400,
+    "log_card": 2100
+   }
+  },
+  {
+   "name": "low",
+   "set": {
+    "cpm": 0.76,
+    "log_other": 165.6,
+    "booth": 25,
+    "extras": 0,
+    "miles": 0,
+    "parking": 0,
+    "meals": 0,
+    "display": 0,
+    "other": 0,
+    "card_share": 0.3,
+    "avg_sale": 15,
+    "rate": 10,
+    "target": 50
+   }
+  },
+  {
+   "name": "blank booth fee",
+   "set": {
+    "cpm": 0.76,
+    "log_other": 165.6,
+    "booth": null,
+    "log_fee": null
+   }
+  },
+  {
+   "name": "blank mix",
+   "set": {
+    "cpm": 0.76,
+    "log_other": 165.6,
+    "p1_mix": null,
+    "p2_mix": null,
+    "p3_mix": null,
+    "p4_mix": null,
+    "p5_mix": null
+   }
+  },
+  {
+   "name": "mix off 100",
+   "set": {
+    "cpm": 0.76,
+    "log_other": 165.6,
+    "p1_mix": 0.3
+   }
+  },
+  {
+   "name": "price below costs",
+   "set": {
+    "cpm": 0.76,
+    "log_other": 165.6,
+    "p1_price": 2,
+    "p2_price": 5,
+    "p3_price": 3,
+    "p4_price": 1,
+    "p5_price": 10
+   }
+  },
+  {
+   "name": "zero hours and shows",
+   "set": {
+    "cpm": 0.76,
+    "log_other": 165.6,
+    "hours": 0,
+    "shows": 0,
+    "log_hours": 0,
+    "avg_sale": 0,
+    "card_share": 0
+   }
+  },
+  {
+   "name": "price, no name",
+   "set": {
+    "cpm": 0.76,
+    "log_other": 165.6,
+    "p1_name": null
+   }
+  }
+ ],
+ "intended": [
+  {
+   "case": "blank mix",
+   "outputs": [
+    "mix_check"
+   ],
+   "why": "v1 said 'fix column F' with no mix typed; v3 asks for a Mix share (the Mix column is no longer F)"
+  },
+  {
+   "case": "mix off 100",
+   "outputs": [
+    "mix_check"
+   ],
+   "why": "v1 named column F; in v3 the Mix column is H, so the message names the Mix column"
+  },
+  {
+   "case": "price, no name",
+   "outputs": [
+    "p1_check"
+   ],
+   "why": "v1 compared a price with a blank x2 price and said 'below formula'; v3 shows nothing until the row has a name"
+  }
+ ],
+ "notes": "Every case sets cost per mile to 76 cents and the Show Log example's other costs to 165.60 in both files: v1's Drive copy carries 72.5 cents and 163.50; the shop run moved the live file to 76 cents on Oct 6, 2026 (IR-2026-29), and v3 ships with 0.76 and 165.60 as its example."
+}

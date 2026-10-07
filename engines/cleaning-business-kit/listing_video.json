@@ -1,0 +1,34 @@
+{
+ "xlsx": "Cleaning-Business-Pricing-and-Planner.xlsx",
+ "sheet": "4 Quote Builder",
+ "crop": [
+  0,
+  0.0345,
+  1,
+  0.215
+ ],
+ "dpi": 220,
+ "eyebrow": "CLEANING BUSINESS STARTER KIT",
+ "states": [
+  {
+   "caption": "1,800 sq ft every 2 weeks: {I44} a visit.",
+   "hold": 3.2
+  },
+  {
+   "set": {
+    "D24": 2600
+   },
+   "caption": "A 2,600 sq ft home? {I44} a visit.",
+   "hold": 3.6
+  },
+  {
+   "set": {
+    "D24": 2600,
+    "D16": "Weekly"
+   },
+   "caption": "Weekly? {I44}, only {I48} over your floor.",
+   "hold": 3.6
+  }
+ ],
+ "formats": "Excel, Google Sheets  |  Fillable PDF forms  |  Instant download"
+}

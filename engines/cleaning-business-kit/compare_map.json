@@ -1,0 +1,1607 @@
+{
+ "tolerance": 0.005,
+ "inputs": {
+  "take_home": {
+   "old": "'2 Your Numbers'!B5",
+   "new": "'1 Your Numbers'!D14"
+  },
+  "weeks": {
+   "old": "'2 Your Numbers'!B6",
+   "new": "'1 Your Numbers'!D15"
+  },
+  "hours": {
+   "old": "'2 Your Numbers'!B7",
+   "new": "'1 Your Numbers'!D16"
+  },
+  "share": {
+   "old": "'2 Your Numbers'!B8",
+   "new": "'1 Your Numbers'!D17"
+  },
+  "se": {
+   "old": "'2 Your Numbers'!B28",
+   "new": "'1 Your Numbers'!D24"
+  },
+  "se_base": {
+   "old": "'2 Your Numbers'!B29",
+   "new": "'1 Your Numbers'!D25"
+  },
+  "income": {
+   "old": "'2 Your Numbers'!B30",
+   "new": "'1 Your Numbers'!D26"
+  },
+  "margin": {
+   "old": "'2 Your Numbers'!B31",
+   "new": "'1 Your Numbers'!D27"
+  },
+  "per_mile": {
+   "old": "'2 Your Numbers'!B32",
+   "new": "'1 Your Numbers'!D28"
+  },
+  "mph": {
+   "old": "'2 Your Numbers'!B33",
+   "new": "'1 Your Numbers'!D29"
+  },
+  "helper_pay": {
+   "old": "'2 Your Numbers'!B34",
+   "new": "'1 Your Numbers'!D30"
+  },
+  "payroll": {
+   "old": "'2 Your Numbers'!B35",
+   "new": "'1 Your Numbers'!D31"
+  },
+  "cost1": {
+   "old": "'2 Your Numbers'!B13",
+   "new": "'1 Your Numbers'!D38"
+  },
+  "cost2": {
+   "old": "'2 Your Numbers'!B14",
+   "new": "'1 Your Numbers'!D39"
+  },
+  "cost3": {
+   "old": "'2 Your Numbers'!B15",
+   "new": "'1 Your Numbers'!D40"
+  },
+  "cost4": {
+   "old": "'2 Your Numbers'!B16",
+   "new": "'1 Your Numbers'!D41"
+  },
+  "cost5": {
+   "old": "'2 Your Numbers'!B17",
+   "new": "'1 Your Numbers'!D42"
+  },
+  "cost6": {
+   "old": "'2 Your Numbers'!B18",
+   "new": "'1 Your Numbers'!D43"
+  },
+  "cost7": {
+   "old": "'2 Your Numbers'!B19",
+   "new": "'1 Your Numbers'!D44"
+  },
+  "cost8": {
+   "old": "'2 Your Numbers'!B20",
+   "new": "'1 Your Numbers'!D45"
+  },
+  "cost9": {
+   "old": "'2 Your Numbers'!B21",
+   "new": "'1 Your Numbers'!D46"
+  },
+  "cost10": {
+   "old": "'2 Your Numbers'!B22",
+   "new": "'1 Your Numbers'!D47"
+  },
+  "cost11": {
+   "old": "'2 Your Numbers'!B23",
+   "new": "'1 Your Numbers'!D48"
+  },
+  "biz0": {
+   "old": "'1 Business Info'!B4",
+   "new": "'1 Your Numbers'!D56"
+  },
+  "biz1": {
+   "old": "'1 Business Info'!B5",
+   "new": "'1 Your Numbers'!D58"
+  },
+  "biz2": {
+   "old": "'1 Business Info'!B6",
+   "new": "'1 Your Numbers'!D60"
+  },
+  "biz3": {
+   "old": "'1 Business Info'!B7",
+   "new": "'1 Your Numbers'!D62"
+  },
+  "biz4": {
+   "old": "'1 Business Info'!B8",
+   "new": "'1 Your Numbers'!D64"
+  },
+  "biz5": {
+   "old": "'1 Business Info'!B9",
+   "new": "'1 Your Numbers'!D66"
+  },
+  "biz6": {
+   "old": "'1 Business Info'!B10",
+   "new": "'1 Your Numbers'!D68"
+  },
+  "notice": {
+   "old": "'1 Business Info'!B11",
+   "new": "'1 Your Numbers'!D72"
+  },
+  "fee": {
+   "old": "'1 Business Info'!B12",
+   "new": "'1 Your Numbers'!D74"
+  },
+  "valid": {
+   "old": "'1 Business Info'!B13",
+   "new": "'1 Your Numbers'!D76"
+  },
+  "supplies_line": {
+   "old": "'1 Business Info'!B14",
+   "new": "'1 Your Numbers'!D70"
+  },
+  "sqft_min": {
+   "old": "'3 Cleaning Rates'!B5",
+   "new": "'2 Cleaning Rates'!D10"
+  },
+  "room0": {
+   "old": "'3 Cleaning Rates'!B8",
+   "new": "'2 Cleaning Rates'!D12"
+  },
+  "room1": {
+   "old": "'3 Cleaning Rates'!B9",
+   "new": "'2 Cleaning Rates'!D13"
+  },
+  "room2": {
+   "old": "'3 Cleaning Rates'!B10",
+   "new": "'2 Cleaning Rates'!D14"
+  },
+  "room3": {
+   "old": "'3 Cleaning Rates'!B11",
+   "new": "'2 Cleaning Rates'!D15"
+  },
+  "room4": {
+   "old": "'3 Cleaning Rates'!B12",
+   "new": "'2 Cleaning Rates'!D16"
+  },
+  "room5": {
+   "old": "'3 Cleaning Rates'!B13",
+   "new": "'2 Cleaning Rates'!D17"
+  },
+  "pet_min": {
+   "old": "'3 Cleaning Rates'!B14",
+   "new": "'2 Cleaning Rates'!D18"
+  },
+  "sv_mult0": {
+   "old": "'3 Cleaning Rates'!B18",
+   "new": "'2 Cleaning Rates'!D26"
+  },
+  "sv_sup0": {
+   "old": "'3 Cleaning Rates'!C18",
+   "new": "'2 Cleaning Rates'!E26"
+  },
+  "cd_mult0": {
+   "old": "'3 Cleaning Rates'!B25",
+   "new": "'2 Cleaning Rates'!D37"
+  },
+  "disc0": {
+   "old": "'3 Cleaning Rates'!B32",
+   "new": "'2 Cleaning Rates'!D48"
+  },
+  "sv_mult1": {
+   "old": "'3 Cleaning Rates'!B19",
+   "new": "'2 Cleaning Rates'!D27"
+  },
+  "sv_sup1": {
+   "old": "'3 Cleaning Rates'!C19",
+   "new": "'2 Cleaning Rates'!E27"
+  },
+  "cd_mult1": {
+   "old": "'3 Cleaning Rates'!B26",
+   "new": "'2 Cleaning Rates'!D38"
+  },
+  "disc1": {
+   "old": "'3 Cleaning Rates'!B33",
+   "new": "'2 Cleaning Rates'!D49"
+  },
+  "sv_mult2": {
+   "old": "'3 Cleaning Rates'!B20",
+   "new": "'2 Cleaning Rates'!D28"
+  },
+  "sv_sup2": {
+   "old": "'3 Cleaning Rates'!C20",
+   "new": "'2 Cleaning Rates'!E28"
+  },
+  "cd_mult2": {
+   "old": "'3 Cleaning Rates'!B27",
+   "new": "'2 Cleaning Rates'!D39"
+  },
+  "disc2": {
+   "old": "'3 Cleaning Rates'!B34",
+   "new": "'2 Cleaning Rates'!D50"
+  },
+  "sv_mult3": {
+   "old": "'3 Cleaning Rates'!B21",
+   "new": "'2 Cleaning Rates'!D29"
+  },
+  "sv_sup3": {
+   "old": "'3 Cleaning Rates'!C21",
+   "new": "'2 Cleaning Rates'!E29"
+  },
+  "cd_mult3": {
+   "old": "'3 Cleaning Rates'!B28",
+   "new": "'2 Cleaning Rates'!D40"
+  },
+  "disc3": {
+   "old": "'3 Cleaning Rates'!B35",
+   "new": "'2 Cleaning Rates'!D51"
+  },
+  "min_charge": {
+   "old": "'3 Cleaning Rates'!B38",
+   "new": "'2 Cleaning Rates'!D57"
+  },
+  "typ_miles": {
+   "old": "'3 Cleaning Rates'!B39",
+   "new": "'2 Cleaning Rates'!D58"
+  },
+  "ad_name0": {
+   "old": "'3 Cleaning Rates'!A43",
+   "new": "'2 Cleaning Rates'!C66"
+  },
+  "ad_min0": {
+   "old": "'3 Cleaning Rates'!B43",
+   "new": "'2 Cleaning Rates'!D66"
+  },
+  "ad_sup0": {
+   "old": "'3 Cleaning Rates'!C43",
+   "new": "'2 Cleaning Rates'!E66"
+  },
+  "ad_name1": {
+   "old": "'3 Cleaning Rates'!A44",
+   "new": "'2 Cleaning Rates'!C67"
+  },
+  "ad_min1": {
+   "old": "'3 Cleaning Rates'!B44",
+   "new": "'2 Cleaning Rates'!D67"
+  },
+  "ad_sup1": {
+   "old": "'3 Cleaning Rates'!C44",
+   "new": "'2 Cleaning Rates'!E67"
+  },
+  "ad_name2": {
+   "old": "'3 Cleaning Rates'!A45",
+   "new": "'2 Cleaning Rates'!C68"
+  },
+  "ad_min2": {
+   "old": "'3 Cleaning Rates'!B45",
+   "new": "'2 Cleaning Rates'!D68"
+  },
+  "ad_sup2": {
+   "old": "'3 Cleaning Rates'!C45",
+   "new": "'2 Cleaning Rates'!E68"
+  },
+  "ad_name3": {
+   "old": "'3 Cleaning Rates'!A46",
+   "new": "'2 Cleaning Rates'!C69"
+  },
+  "ad_min3": {
+   "old": "'3 Cleaning Rates'!B46",
+   "new": "'2 Cleaning Rates'!D69"
+  },
+  "ad_sup3": {
+   "old": "'3 Cleaning Rates'!C46",
+   "new": "'2 Cleaning Rates'!E69"
+  },
+  "ad_name4": {
+   "old": "'3 Cleaning Rates'!A47",
+   "new": "'2 Cleaning Rates'!C70"
+  },
+  "ad_min4": {
+   "old": "'3 Cleaning Rates'!B47",
+   "new": "'2 Cleaning Rates'!D70"
+  },
+  "ad_sup4": {
+   "old": "'3 Cleaning Rates'!C47",
+   "new": "'2 Cleaning Rates'!E70"
+  },
+  "ad_name5": {
+   "old": "'3 Cleaning Rates'!A48",
+   "new": "'2 Cleaning Rates'!C71"
+  },
+  "ad_min5": {
+   "old": "'3 Cleaning Rates'!B48",
+   "new": "'2 Cleaning Rates'!D71"
+  },
+  "ad_sup5": {
+   "old": "'3 Cleaning Rates'!C48",
+   "new": "'2 Cleaning Rates'!E71"
+  },
+  "ad_name6": {
+   "old": "'3 Cleaning Rates'!A49",
+   "new": "'2 Cleaning Rates'!C72"
+  },
+  "ad_min6": {
+   "old": "'3 Cleaning Rates'!B49",
+   "new": "'2 Cleaning Rates'!D72"
+  },
+  "ad_sup6": {
+   "old": "'3 Cleaning Rates'!C49",
+   "new": "'2 Cleaning Rates'!E72"
+  },
+  "ad_name7": {
+   "old": "'3 Cleaning Rates'!A50",
+   "new": "'2 Cleaning Rates'!C73"
+  },
+  "ad_min7": {
+   "old": "'3 Cleaning Rates'!B50",
+   "new": "'2 Cleaning Rates'!D73"
+  },
+  "ad_sup7": {
+   "old": "'3 Cleaning Rates'!C50",
+   "new": "'2 Cleaning Rates'!E73"
+  },
+  "ad_name8": {
+   "old": "'3 Cleaning Rates'!A51",
+   "new": "'2 Cleaning Rates'!C74"
+  },
+  "ad_min8": {
+   "old": "'3 Cleaning Rates'!B51",
+   "new": "'2 Cleaning Rates'!D74"
+  },
+  "ad_sup8": {
+   "old": "'3 Cleaning Rates'!C51",
+   "new": "'2 Cleaning Rates'!E74"
+  },
+  "ad_name9": {
+   "old": "'3 Cleaning Rates'!A52",
+   "new": "'2 Cleaning Rates'!C75"
+  },
+  "ad_min9": {
+   "old": "'3 Cleaning Rates'!B52",
+   "new": "'2 Cleaning Rates'!D75"
+  },
+  "ad_sup9": {
+   "old": "'3 Cleaning Rates'!C52",
+   "new": "'2 Cleaning Rates'!E75"
+  },
+  "ps_size0": {
+   "old": "'5 Price Sheet'!A5",
+   "new": "'3 Price Sheet'!C11"
+  },
+  "ps_size1": {
+   "old": "'5 Price Sheet'!A6",
+   "new": "'3 Price Sheet'!C12"
+  },
+  "ps_size2": {
+   "old": "'5 Price Sheet'!A7",
+   "new": "'3 Price Sheet'!C13"
+  },
+  "ps_size3": {
+   "old": "'5 Price Sheet'!A8",
+   "new": "'3 Price Sheet'!C14"
+  },
+  "ps_size4": {
+   "old": "'5 Price Sheet'!A9",
+   "new": "'3 Price Sheet'!C15"
+  },
+  "ps_size5": {
+   "old": "'5 Price Sheet'!A10",
+   "new": "'3 Price Sheet'!C16"
+  },
+  "client": {
+   "old": "'4 Quote Builder'!B5",
+   "new": "'4 Quote Builder'!D63"
+  },
+  "qdate": {
+   "old": "'4 Quote Builder'!B6",
+   "new": "'4 Quote Builder'!D65"
+  },
+  "sqft": {
+   "old": "'4 Quote Builder'!B7",
+   "new": "'4 Quote Builder'!D24"
+  },
+  "q_room0": {
+   "old": "'4 Quote Builder'!B8",
+   "new": "'4 Quote Builder'!D25"
+  },
+  "q_room1": {
+   "old": "'4 Quote Builder'!B9",
+   "new": "'4 Quote Builder'!D26"
+  },
+  "q_room2": {
+   "old": "'4 Quote Builder'!B10",
+   "new": "'4 Quote Builder'!D27"
+  },
+  "q_room3": {
+   "old": "'4 Quote Builder'!B11",
+   "new": "'4 Quote Builder'!D28"
+  },
+  "q_room4": {
+   "old": "'4 Quote Builder'!B12",
+   "new": "'4 Quote Builder'!D29"
+  },
+  "q_room5": {
+   "old": "'4 Quote Builder'!B13",
+   "new": "'4 Quote Builder'!D30"
+  },
+  "pets": {
+   "old": "'4 Quote Builder'!B14",
+   "new": "'4 Quote Builder'!D31"
+  },
+  "condition": {
+   "old": "'4 Quote Builder'!B15",
+   "new": "'4 Quote Builder'!D18"
+  },
+  "service": {
+   "old": "'4 Quote Builder'!B16",
+   "new": "'4 Quote Builder'!D14"
+  },
+  "freq": {
+   "old": "'4 Quote Builder'!B17",
+   "new": "'4 Quote Builder'!D16"
+  },
+  "cleaners": {
+   "old": "'4 Quote Builder'!B18",
+   "new": "'4 Quote Builder'!D33"
+  },
+  "helpers": {
+   "old": "'4 Quote Builder'!B19",
+   "new": "'4 Quote Builder'!D34"
+  },
+  "miles": {
+   "old": "'4 Quote Builder'!B20",
+   "new": "'4 Quote Builder'!D35"
+  },
+  "qty0": {
+   "old": "'4 Quote Builder'!B24",
+   "new": "'4 Quote Builder'!D41"
+  },
+  "qty1": {
+   "old": "'4 Quote Builder'!B25",
+   "new": "'4 Quote Builder'!D42"
+  },
+  "qty2": {
+   "old": "'4 Quote Builder'!B26",
+   "new": "'4 Quote Builder'!D43"
+  },
+  "qty3": {
+   "old": "'4 Quote Builder'!B27",
+   "new": "'4 Quote Builder'!D44"
+  },
+  "qty4": {
+   "old": "'4 Quote Builder'!B28",
+   "new": "'4 Quote Builder'!D45"
+  },
+  "qty5": {
+   "old": "'4 Quote Builder'!B29",
+   "new": "'4 Quote Builder'!D46"
+  },
+  "qty6": {
+   "old": "'4 Quote Builder'!B30",
+   "new": "'4 Quote Builder'!D47"
+  },
+  "qty7": {
+   "old": "'4 Quote Builder'!B31",
+   "new": "'4 Quote Builder'!D48"
+  },
+  "qty8": {
+   "old": "'4 Quote Builder'!B32",
+   "new": "'4 Quote Builder'!D49"
+  },
+  "qty9": {
+   "old": "'4 Quote Builder'!B33",
+   "new": "'4 Quote Builder'!D50"
+  },
+  "cl0_A": {
+   "old": "'6 Client List'!A6",
+   "new": "'5 Client List'!C16"
+  },
+  "cl0_B": {
+   "old": "'6 Client List'!B6",
+   "new": "'5 Client List'!D16"
+  },
+  "cl0_C": {
+   "old": "'6 Client List'!C6",
+   "new": "'5 Client List'!E16"
+  },
+  "cl0_D": {
+   "old": "'6 Client List'!D6",
+   "new": "'5 Client List'!F16"
+  },
+  "cl0_E": {
+   "old": "'6 Client List'!E6",
+   "new": "'5 Client List'!G16"
+  },
+  "cl0_F": {
+   "old": "'6 Client List'!F6",
+   "new": "'5 Client List'!H16"
+  },
+  "cl1_A": {
+   "old": "'6 Client List'!A7",
+   "new": "'5 Client List'!C17"
+  },
+  "cl1_B": {
+   "old": "'6 Client List'!B7",
+   "new": "'5 Client List'!D17"
+  },
+  "cl1_C": {
+   "old": "'6 Client List'!C7",
+   "new": "'5 Client List'!E17"
+  },
+  "cl1_D": {
+   "old": "'6 Client List'!D7",
+   "new": "'5 Client List'!F17"
+  },
+  "cl1_E": {
+   "old": "'6 Client List'!E7",
+   "new": "'5 Client List'!G17"
+  },
+  "cl1_F": {
+   "old": "'6 Client List'!F7",
+   "new": "'5 Client List'!H17"
+  },
+  "cl2_A": {
+   "old": "'6 Client List'!A8",
+   "new": "'5 Client List'!C18"
+  },
+  "cl2_B": {
+   "old": "'6 Client List'!B8",
+   "new": "'5 Client List'!D18"
+  },
+  "cl2_C": {
+   "old": "'6 Client List'!C8",
+   "new": "'5 Client List'!E18"
+  },
+  "cl2_D": {
+   "old": "'6 Client List'!D8",
+   "new": "'5 Client List'!F18"
+  },
+  "cl2_E": {
+   "old": "'6 Client List'!E8",
+   "new": "'5 Client List'!G18"
+  },
+  "cl2_F": {
+   "old": "'6 Client List'!F8",
+   "new": "'5 Client List'!H18"
+  },
+  "jl0_A": {
+   "old": "'7 Job Log'!A6",
+   "new": "'6 Job Log'!C38"
+  },
+  "jl0_B": {
+   "old": "'7 Job Log'!B6",
+   "new": "'6 Job Log'!D38"
+  },
+  "jl0_C": {
+   "old": "'7 Job Log'!C6",
+   "new": "'6 Job Log'!E38"
+  },
+  "jl0_D": {
+   "old": "'7 Job Log'!D6",
+   "new": "'6 Job Log'!F38"
+  },
+  "jl0_E": {
+   "old": "'7 Job Log'!E6",
+   "new": "'6 Job Log'!G38"
+  },
+  "jl0_F": {
+   "old": "'7 Job Log'!F6",
+   "new": "'6 Job Log'!H38"
+  },
+  "jl0_G": {
+   "old": "'7 Job Log'!G6",
+   "new": "'6 Job Log'!I38"
+  },
+  "jl0_H": {
+   "old": "'7 Job Log'!H6",
+   "new": "'6 Job Log'!J38"
+  },
+  "jl0_I": {
+   "old": "'7 Job Log'!I6",
+   "new": "'6 Job Log'!K38"
+  },
+  "jl1_A": {
+   "old": "'7 Job Log'!A7",
+   "new": "'6 Job Log'!C39"
+  },
+  "jl1_B": {
+   "old": "'7 Job Log'!B7",
+   "new": "'6 Job Log'!D39"
+  },
+  "jl1_C": {
+   "old": "'7 Job Log'!C7",
+   "new": "'6 Job Log'!E39"
+  },
+  "jl1_D": {
+   "old": "'7 Job Log'!D7",
+   "new": "'6 Job Log'!F39"
+  },
+  "jl1_E": {
+   "old": "'7 Job Log'!E7",
+   "new": "'6 Job Log'!G39"
+  },
+  "jl1_F": {
+   "old": "'7 Job Log'!F7",
+   "new": "'6 Job Log'!H39"
+  },
+  "jl1_G": {
+   "old": "'7 Job Log'!G7",
+   "new": "'6 Job Log'!I39"
+  },
+  "jl1_H": {
+   "old": "'7 Job Log'!H7",
+   "new": "'6 Job Log'!J39"
+  },
+  "jl1_I": {
+   "old": "'7 Job Log'!I7",
+   "new": "'6 Job Log'!K39"
+  },
+  "jl2_A": {
+   "old": "'7 Job Log'!A8",
+   "new": "'6 Job Log'!C40"
+  },
+  "jl2_B": {
+   "old": "'7 Job Log'!B8",
+   "new": "'6 Job Log'!D40"
+  },
+  "jl2_C": {
+   "old": "'7 Job Log'!C8",
+   "new": "'6 Job Log'!E40"
+  },
+  "jl2_D": {
+   "old": "'7 Job Log'!D8",
+   "new": "'6 Job Log'!F40"
+  },
+  "jl2_E": {
+   "old": "'7 Job Log'!E8",
+   "new": "'6 Job Log'!G40"
+  },
+  "jl2_F": {
+   "old": "'7 Job Log'!F8",
+   "new": "'6 Job Log'!H40"
+  },
+  "jl2_G": {
+   "old": "'7 Job Log'!G8",
+   "new": "'6 Job Log'!I40"
+  },
+  "jl2_H": {
+   "old": "'7 Job Log'!H8",
+   "new": "'6 Job Log'!J40"
+  },
+  "jl2_I": {
+   "old": "'7 Job Log'!I8",
+   "new": "'6 Job Log'!K40"
+  },
+  "year": {
+   "old": "'8 Money by Month'!B3",
+   "new": "'6 Job Log'!D14"
+  },
+  "mm_other0": {
+   "old": "'8 Money by Month'!H6",
+   "new": "'6 Job Log'!J17"
+  },
+  "mm_other1": {
+   "old": "'8 Money by Month'!H7",
+   "new": "'6 Job Log'!J18"
+  },
+  "mm_other2": {
+   "old": "'8 Money by Month'!H8",
+   "new": "'6 Job Log'!J19"
+  },
+  "mm_other3": {
+   "old": "'8 Money by Month'!H9",
+   "new": "'6 Job Log'!J20"
+  },
+  "mm_other4": {
+   "old": "'8 Money by Month'!H10",
+   "new": "'6 Job Log'!J21"
+  },
+  "mm_other5": {
+   "old": "'8 Money by Month'!H11",
+   "new": "'6 Job Log'!J22"
+  },
+  "mm_other6": {
+   "old": "'8 Money by Month'!H12",
+   "new": "'6 Job Log'!J23"
+  },
+  "mm_other7": {
+   "old": "'8 Money by Month'!H13",
+   "new": "'6 Job Log'!J24"
+  },
+  "mm_other8": {
+   "old": "'8 Money by Month'!H14",
+   "new": "'6 Job Log'!J25"
+  },
+  "mm_other9": {
+   "old": "'8 Money by Month'!H15",
+   "new": "'6 Job Log'!J26"
+  },
+  "mm_other10": {
+   "old": "'8 Money by Month'!H16",
+   "new": "'6 Job Log'!J27"
+  },
+  "mm_other11": {
+   "old": "'8 Money by Month'!H17",
+   "new": "'6 Job Log'!J28"
+  }
+ },
+ "outputs": {
+  "billable_hours": {
+   "old": "'2 Your Numbers'!B9",
+   "new": "'1 Your Numbers'!D18"
+  },
+  "costs_month": {
+   "old": "'2 Your Numbers'!B24",
+   "new": "'1 Your Numbers'!D49"
+  },
+  "costs_year": {
+   "old": "'2 Your Numbers'!B25",
+   "new": "'1 Your Numbers'!D50"
+  },
+  "helper_cost": {
+   "old": "'2 Your Numbers'!B36",
+   "new": "'1 Your Numbers'!D32"
+  },
+  "profit_needed": {
+   "old": "'2 Your Numbers'!B39",
+   "new": "'1 Your Numbers'!I16"
+  },
+  "revenue_needed": {
+   "old": "'2 Your Numbers'!B40",
+   "new": "'1 Your Numbers'!I18"
+  },
+  "break_even": {
+   "old": "'2 Your Numbers'!B41",
+   "new": "'1 Your Numbers'!I21"
+  },
+  "target": {
+   "old": "'2 Your Numbers'!B42",
+   "new": "'1 Your Numbers'!I23"
+  },
+  "guess": {
+   "old": "'2 Your Numbers'!B44",
+   "new": "'1 Your Numbers'!I30"
+  },
+  "gap": {
+   "old": "'2 Your Numbers'!B45",
+   "new": "'1 Your Numbers'!I31"
+  },
+  "visits0": {
+   "old": "'3 Cleaning Rates'!C32",
+   "new": "'2 Cleaning Rates'!E48"
+  },
+  "visits1": {
+   "old": "'3 Cleaning Rates'!C33",
+   "new": "'2 Cleaning Rates'!E49"
+  },
+  "visits2": {
+   "old": "'3 Cleaning Rates'!C34",
+   "new": "'2 Cleaning Rates'!E50"
+  },
+  "visits3": {
+   "old": "'3 Cleaning Rates'!C35",
+   "new": "'2 Cleaning Rates'!E51"
+  },
+  "ad_price0": {
+   "old": "'3 Cleaning Rates'!D43",
+   "new": "'2 Cleaning Rates'!F66"
+  },
+  "ad_price1": {
+   "old": "'3 Cleaning Rates'!D44",
+   "new": "'2 Cleaning Rates'!F67"
+  },
+  "ad_price2": {
+   "old": "'3 Cleaning Rates'!D45",
+   "new": "'2 Cleaning Rates'!F68"
+  },
+  "ad_price3": {
+   "old": "'3 Cleaning Rates'!D46",
+   "new": "'2 Cleaning Rates'!F69"
+  },
+  "ad_price4": {
+   "old": "'3 Cleaning Rates'!D47",
+   "new": "'2 Cleaning Rates'!F70"
+  },
+  "ad_price5": {
+   "old": "'3 Cleaning Rates'!D48",
+   "new": "'2 Cleaning Rates'!F71"
+  },
+  "ad_price6": {
+   "old": "'3 Cleaning Rates'!D49",
+   "new": "'2 Cleaning Rates'!F72"
+  },
+  "ad_price7": {
+   "old": "'3 Cleaning Rates'!D50",
+   "new": "'2 Cleaning Rates'!F73"
+  },
+  "ad_price8": {
+   "old": "'3 Cleaning Rates'!D51",
+   "new": "'2 Cleaning Rates'!F74"
+  },
+  "ad_price9": {
+   "old": "'3 Cleaning Rates'!D52",
+   "new": "'2 Cleaning Rates'!F75"
+  },
+  "ps_B0": {
+   "old": "'5 Price Sheet'!B5",
+   "new": "'3 Price Sheet'!D11"
+  },
+  "ps_C0": {
+   "old": "'5 Price Sheet'!C5",
+   "new": "'3 Price Sheet'!E11"
+  },
+  "ps_D0": {
+   "old": "'5 Price Sheet'!D5",
+   "new": "'3 Price Sheet'!F11"
+  },
+  "ps_E0": {
+   "old": "'5 Price Sheet'!E5",
+   "new": "'3 Price Sheet'!G11"
+  },
+  "ps_F0": {
+   "old": "'5 Price Sheet'!F5",
+   "new": "'3 Price Sheet'!H11"
+  },
+  "ps_B1": {
+   "old": "'5 Price Sheet'!B6",
+   "new": "'3 Price Sheet'!D12"
+  },
+  "ps_C1": {
+   "old": "'5 Price Sheet'!C6",
+   "new": "'3 Price Sheet'!E12"
+  },
+  "ps_D1": {
+   "old": "'5 Price Sheet'!D6",
+   "new": "'3 Price Sheet'!F12"
+  },
+  "ps_E1": {
+   "old": "'5 Price Sheet'!E6",
+   "new": "'3 Price Sheet'!G12"
+  },
+  "ps_F1": {
+   "old": "'5 Price Sheet'!F6",
+   "new": "'3 Price Sheet'!H12"
+  },
+  "ps_B2": {
+   "old": "'5 Price Sheet'!B7",
+   "new": "'3 Price Sheet'!D13"
+  },
+  "ps_C2": {
+   "old": "'5 Price Sheet'!C7",
+   "new": "'3 Price Sheet'!E13"
+  },
+  "ps_D2": {
+   "old": "'5 Price Sheet'!D7",
+   "new": "'3 Price Sheet'!F13"
+  },
+  "ps_E2": {
+   "old": "'5 Price Sheet'!E7",
+   "new": "'3 Price Sheet'!G13"
+  },
+  "ps_F2": {
+   "old": "'5 Price Sheet'!F7",
+   "new": "'3 Price Sheet'!H13"
+  },
+  "ps_B3": {
+   "old": "'5 Price Sheet'!B8",
+   "new": "'3 Price Sheet'!D14"
+  },
+  "ps_C3": {
+   "old": "'5 Price Sheet'!C8",
+   "new": "'3 Price Sheet'!E14"
+  },
+  "ps_D3": {
+   "old": "'5 Price Sheet'!D8",
+   "new": "'3 Price Sheet'!F14"
+  },
+  "ps_E3": {
+   "old": "'5 Price Sheet'!E8",
+   "new": "'3 Price Sheet'!G14"
+  },
+  "ps_F3": {
+   "old": "'5 Price Sheet'!F8",
+   "new": "'3 Price Sheet'!H14"
+  },
+  "ps_B4": {
+   "old": "'5 Price Sheet'!B9",
+   "new": "'3 Price Sheet'!D15"
+  },
+  "ps_C4": {
+   "old": "'5 Price Sheet'!C9",
+   "new": "'3 Price Sheet'!E15"
+  },
+  "ps_D4": {
+   "old": "'5 Price Sheet'!D9",
+   "new": "'3 Price Sheet'!F15"
+  },
+  "ps_E4": {
+   "old": "'5 Price Sheet'!E9",
+   "new": "'3 Price Sheet'!G15"
+  },
+  "ps_F4": {
+   "old": "'5 Price Sheet'!F9",
+   "new": "'3 Price Sheet'!H15"
+  },
+  "ps_B5": {
+   "old": "'5 Price Sheet'!B10",
+   "new": "'3 Price Sheet'!D16"
+  },
+  "ps_C5": {
+   "old": "'5 Price Sheet'!C10",
+   "new": "'3 Price Sheet'!E16"
+  },
+  "ps_D5": {
+   "old": "'5 Price Sheet'!D10",
+   "new": "'3 Price Sheet'!F16"
+  },
+  "ps_E5": {
+   "old": "'5 Price Sheet'!E10",
+   "new": "'3 Price Sheet'!G16"
+  },
+  "ps_F5": {
+   "old": "'5 Price Sheet'!F10",
+   "new": "'3 Price Sheet'!H16"
+  },
+  "ps_addon0": {
+   "old": "'5 Price Sheet'!A13",
+   "new": "'3 Price Sheet'!C24"
+  },
+  "ps_addon_price0": {
+   "old": "'5 Price Sheet'!C13",
+   "new": "'3 Price Sheet'!D24"
+  },
+  "ps_addon1": {
+   "old": "'5 Price Sheet'!A14",
+   "new": "'3 Price Sheet'!C25"
+  },
+  "ps_addon_price1": {
+   "old": "'5 Price Sheet'!C14",
+   "new": "'3 Price Sheet'!D25"
+  },
+  "ps_addon2": {
+   "old": "'5 Price Sheet'!A15",
+   "new": "'3 Price Sheet'!C26"
+  },
+  "ps_addon_price2": {
+   "old": "'5 Price Sheet'!C15",
+   "new": "'3 Price Sheet'!D26"
+  },
+  "ps_addon3": {
+   "old": "'5 Price Sheet'!A16",
+   "new": "'3 Price Sheet'!C27"
+  },
+  "ps_addon_price3": {
+   "old": "'5 Price Sheet'!C16",
+   "new": "'3 Price Sheet'!D27"
+  },
+  "ps_addon4": {
+   "old": "'5 Price Sheet'!A17",
+   "new": "'3 Price Sheet'!C28"
+  },
+  "ps_addon_price4": {
+   "old": "'5 Price Sheet'!C17",
+   "new": "'3 Price Sheet'!D28"
+  },
+  "ps_addon5": {
+   "old": "'5 Price Sheet'!A18",
+   "new": "'3 Price Sheet'!C29"
+  },
+  "ps_addon_price5": {
+   "old": "'5 Price Sheet'!C18",
+   "new": "'3 Price Sheet'!D29"
+  },
+  "ps_addon6": {
+   "old": "'5 Price Sheet'!A19",
+   "new": "'3 Price Sheet'!C30"
+  },
+  "ps_addon_price6": {
+   "old": "'5 Price Sheet'!C19",
+   "new": "'3 Price Sheet'!D30"
+  },
+  "ps_addon7": {
+   "old": "'5 Price Sheet'!A20",
+   "new": "'3 Price Sheet'!C31"
+  },
+  "ps_addon_price7": {
+   "old": "'5 Price Sheet'!C20",
+   "new": "'3 Price Sheet'!D31"
+  },
+  "ps_addon8": {
+   "old": "'5 Price Sheet'!A21",
+   "new": "'3 Price Sheet'!C32"
+  },
+  "ps_addon_price8": {
+   "old": "'5 Price Sheet'!C21",
+   "new": "'3 Price Sheet'!D32"
+  },
+  "ps_addon9": {
+   "old": "'5 Price Sheet'!A22",
+   "new": "'3 Price Sheet'!C33"
+  },
+  "ps_addon_price9": {
+   "old": "'5 Price Sheet'!C22",
+   "new": "'3 Price Sheet'!D33"
+  },
+  "ps_footer": {
+   "old": "'5 Price Sheet'!A24",
+   "new": "'3 Price Sheet'!C37"
+  },
+  "ps_title": {
+   "old": "'5 Price Sheet'!A1",
+   "new": "'3 Price Sheet'!C7"
+  },
+  "q_x_sq": {
+   "old": "'4 Quote Builder'!B37",
+   "new": "'4 Quote Builder'!I26"
+  },
+  "q_x_rm": {
+   "old": "'4 Quote Builder'!B38",
+   "new": "'4 Quote Builder'!I27"
+  },
+  "q_x_bs": {
+   "old": "'4 Quote Builder'!B39",
+   "new": "'4 Quote Builder'!I28"
+  },
+  "q_x_cm": {
+   "old": "'4 Quote Builder'!B40",
+   "new": "'4 Quote Builder'!I29"
+  },
+  "q_x_sm": {
+   "old": "'4 Quote Builder'!B41",
+   "new": "'4 Quote Builder'!I30"
+  },
+  "q_x_ah": {
+   "old": "'4 Quote Builder'!B42",
+   "new": "'4 Quote Builder'!I31"
+  },
+  "q_x_tp": {
+   "old": "'4 Quote Builder'!B43",
+   "new": "'4 Quote Builder'!I32"
+  },
+  "q_x_ck": {
+   "old": "'4 Quote Builder'!B44",
+   "new": "'4 Quote Builder'!I33"
+  },
+  "q_x_dr": {
+   "old": "'4 Quote Builder'!B45",
+   "new": "'4 Quote Builder'!I34"
+  },
+  "q_x_lr": {
+   "old": "'4 Quote Builder'!B46",
+   "new": "'4 Quote Builder'!I36"
+  },
+  "q_x_lc": {
+   "old": "'4 Quote Builder'!B47",
+   "new": "'4 Quote Builder'!I37"
+  },
+  "q_x_vc": {
+   "old": "'4 Quote Builder'!B48",
+   "new": "'4 Quote Builder'!I38"
+  },
+  "q_x_su": {
+   "old": "'4 Quote Builder'!B49",
+   "new": "'4 Quote Builder'!I39"
+  },
+  "q_x_fl": {
+   "old": "'4 Quote Builder'!B50",
+   "new": "'4 Quote Builder'!I40"
+  },
+  "q_x_one": {
+   "old": "'4 Quote Builder'!B53",
+   "new": "'4 Quote Builder'!I42"
+  },
+  "q_x_dis": {
+   "old": "'4 Quote Builder'!B54",
+   "new": "'4 Quote Builder'!I43"
+  },
+  "q_x_vis": {
+   "old": "'4 Quote Builder'!B55",
+   "new": "'4 Quote Builder'!I44"
+  },
+  "q_x_dp": {
+   "old": "'4 Quote Builder'!B56",
+   "new": "'4 Quote Builder'!I45"
+  },
+  "q_x_vm": {
+   "old": "'4 Quote Builder'!B57",
+   "new": "'4 Quote Builder'!I46"
+  },
+  "q_x_rv": {
+   "old": "'4 Quote Builder'!B58",
+   "new": "'4 Quote Builder'!I47"
+  },
+  "q_x_pv": {
+   "old": "'4 Quote Builder'!B59",
+   "new": "'4 Quote Builder'!I48"
+  },
+  "q_x_eh": {
+   "old": "'4 Quote Builder'!B60",
+   "new": "'4 Quote Builder'!I49"
+  },
+  "qdeep_x_sm": {
+   "old": "'4 Quote Builder'!C41",
+   "new": "'4 Quote Builder'!J30"
+  },
+  "qdeep_x_ah": {
+   "old": "'4 Quote Builder'!C42",
+   "new": "'4 Quote Builder'!J31"
+  },
+  "qdeep_x_tp": {
+   "old": "'4 Quote Builder'!C43",
+   "new": "'4 Quote Builder'!J32"
+  },
+  "qdeep_x_ck": {
+   "old": "'4 Quote Builder'!C44",
+   "new": "'4 Quote Builder'!J33"
+  },
+  "qdeep_x_dr": {
+   "old": "'4 Quote Builder'!C45",
+   "new": "'4 Quote Builder'!J34"
+  },
+  "qdeep_x_lr": {
+   "old": "'4 Quote Builder'!C46",
+   "new": "'4 Quote Builder'!J36"
+  },
+  "qdeep_x_lc": {
+   "old": "'4 Quote Builder'!C47",
+   "new": "'4 Quote Builder'!J37"
+  },
+  "qdeep_x_vc": {
+   "old": "'4 Quote Builder'!C48",
+   "new": "'4 Quote Builder'!J38"
+  },
+  "qdeep_x_su": {
+   "old": "'4 Quote Builder'!C49",
+   "new": "'4 Quote Builder'!J39"
+  },
+  "qdeep_x_fl": {
+   "old": "'4 Quote Builder'!C50",
+   "new": "'4 Quote Builder'!J40"
+  },
+  "q_check": {
+   "old": "'4 Quote Builder'!B61",
+   "new": "'4 Quote Builder'!C56"
+  },
+  "quote_name": {
+   "old": "'4 Quote Builder'!A64",
+   "new": "'4 Quote Builder'!C67"
+  },
+  "quote_contact": {
+   "old": "'4 Quote Builder'!A65",
+   "new": "'4 Quote Builder'!C68"
+  },
+  "quote_for": {
+   "old": "'4 Quote Builder'!A66",
+   "new": "'4 Quote Builder'!C69"
+  },
+  "quote_home": {
+   "old": "'4 Quote Builder'!A67",
+   "new": "'4 Quote Builder'!C70"
+  },
+  "quote_price": {
+   "old": "'4 Quote Builder'!A68",
+   "new": "'4 Quote Builder'!C71"
+  },
+  "quote_addons": {
+   "old": "'4 Quote Builder'!A69",
+   "new": "'4 Quote Builder'!C72"
+  },
+  "quote_supplies": {
+   "old": "'4 Quote Builder'!A70",
+   "new": "'4 Quote Builder'!C73"
+  },
+  "quote_cancel": {
+   "old": "'4 Quote Builder'!A71",
+   "new": "'4 Quote Builder'!C74"
+  },
+  "quote_valid": {
+   "old": "'4 Quote Builder'!A72",
+   "new": "'4 Quote Builder'!C75"
+  },
+  "cl0_visits": {
+   "old": "'6 Client List'!G6",
+   "new": "'5 Client List'!I16"
+  },
+  "cl0_rev": {
+   "old": "'6 Client List'!H6",
+   "new": "'5 Client List'!J16"
+  },
+  "cl1_visits": {
+   "old": "'6 Client List'!G7",
+   "new": "'5 Client List'!I17"
+  },
+  "cl1_rev": {
+   "old": "'6 Client List'!H7",
+   "new": "'5 Client List'!J17"
+  },
+  "cl2_visits": {
+   "old": "'6 Client List'!G8",
+   "new": "'5 Client List'!I18"
+  },
+  "cl2_rev": {
+   "old": "'6 Client List'!H8",
+   "new": "'5 Client List'!J18"
+  },
+  "cl_rev": {
+   "old": "'6 Client List'!C3",
+   "new": "'5 Client List'!C8"
+  },
+  "cl_count": {
+   "old": "'6 Client List'!G3",
+   "new": "'5 Client List'!F8"
+  },
+  "jl0_J": {
+   "old": "'7 Job Log'!J6",
+   "new": "'6 Job Log'!L38"
+  },
+  "jl0_K": {
+   "old": "'7 Job Log'!K6",
+   "new": "'6 Job Log'!M38"
+  },
+  "jl0_L": {
+   "old": "'7 Job Log'!L6",
+   "new": "'6 Job Log'!N38"
+  },
+  "jl0_M": {
+   "old": "'7 Job Log'!M6",
+   "new": "'6 Job Log'!O38"
+  },
+  "jl0_N": {
+   "old": "'7 Job Log'!N6",
+   "new": "'6 Job Log'!P38"
+  },
+  "jl1_J": {
+   "old": "'7 Job Log'!J7",
+   "new": "'6 Job Log'!L39"
+  },
+  "jl1_K": {
+   "old": "'7 Job Log'!K7",
+   "new": "'6 Job Log'!M39"
+  },
+  "jl1_L": {
+   "old": "'7 Job Log'!L7",
+   "new": "'6 Job Log'!N39"
+  },
+  "jl1_M": {
+   "old": "'7 Job Log'!M7",
+   "new": "'6 Job Log'!O39"
+  },
+  "jl1_N": {
+   "old": "'7 Job Log'!N7",
+   "new": "'6 Job Log'!P39"
+  },
+  "jl2_J": {
+   "old": "'7 Job Log'!J8",
+   "new": "'6 Job Log'!L40"
+  },
+  "jl2_K": {
+   "old": "'7 Job Log'!K8",
+   "new": "'6 Job Log'!M40"
+  },
+  "jl2_L": {
+   "old": "'7 Job Log'!L8",
+   "new": "'6 Job Log'!N40"
+  },
+  "jl2_M": {
+   "old": "'7 Job Log'!M8",
+   "new": "'6 Job Log'!O40"
+  },
+  "jl2_N": {
+   "old": "'7 Job Log'!N8",
+   "new": "'6 Job Log'!P40"
+  },
+  "jl_below": {
+   "old": "'7 Job Log'!H3",
+   "new": "'6 Job Log'!K8"
+  },
+  "mm8_A": {
+   "old": "'8 Money by Month'!A14",
+   "new": "'6 Job Log'!C25"
+  },
+  "mm8_B": {
+   "old": "'8 Money by Month'!B14",
+   "new": "'6 Job Log'!D25"
+  },
+  "mm8_C": {
+   "old": "'8 Money by Month'!C14",
+   "new": "'6 Job Log'!E25"
+  },
+  "mm8_D": {
+   "old": "'8 Money by Month'!D14",
+   "new": "'6 Job Log'!F25"
+  },
+  "mm8_E": {
+   "old": "'8 Money by Month'!E14",
+   "new": "'6 Job Log'!G25"
+  },
+  "mm8_F": {
+   "old": "'8 Money by Month'!F14",
+   "new": "'6 Job Log'!H25"
+  },
+  "mm8_G": {
+   "old": "'8 Money by Month'!G14",
+   "new": "'6 Job Log'!I25"
+  },
+  "mm8_I": {
+   "old": "'8 Money by Month'!I14",
+   "new": "'6 Job Log'!K25"
+  },
+  "mm8_J": {
+   "old": "'8 Money by Month'!J14",
+   "new": "'6 Job Log'!L25"
+  },
+  "mm8_K": {
+   "old": "'8 Money by Month'!K14",
+   "new": "'6 Job Log'!M25"
+  },
+  "mm8_L": {
+   "old": "'8 Money by Month'!L14",
+   "new": "'6 Job Log'!N25"
+  },
+  "mm9_A": {
+   "old": "'8 Money by Month'!A15",
+   "new": "'6 Job Log'!C26"
+  },
+  "mm9_B": {
+   "old": "'8 Money by Month'!B15",
+   "new": "'6 Job Log'!D26"
+  },
+  "mm9_C": {
+   "old": "'8 Money by Month'!C15",
+   "new": "'6 Job Log'!E26"
+  },
+  "mm9_D": {
+   "old": "'8 Money by Month'!D15",
+   "new": "'6 Job Log'!F26"
+  },
+  "mm9_E": {
+   "old": "'8 Money by Month'!E15",
+   "new": "'6 Job Log'!G26"
+  },
+  "mm9_F": {
+   "old": "'8 Money by Month'!F15",
+   "new": "'6 Job Log'!H26"
+  },
+  "mm9_G": {
+   "old": "'8 Money by Month'!G15",
+   "new": "'6 Job Log'!I26"
+  },
+  "mm9_I": {
+   "old": "'8 Money by Month'!I15",
+   "new": "'6 Job Log'!K26"
+  },
+  "mm9_J": {
+   "old": "'8 Money by Month'!J15",
+   "new": "'6 Job Log'!L26"
+  },
+  "mm9_K": {
+   "old": "'8 Money by Month'!K15",
+   "new": "'6 Job Log'!M26"
+  },
+  "mm9_L": {
+   "old": "'8 Money by Month'!L15",
+   "new": "'6 Job Log'!N26"
+  },
+  "mm10_A": {
+   "old": "'8 Money by Month'!A16",
+   "new": "'6 Job Log'!C27"
+  },
+  "mm10_B": {
+   "old": "'8 Money by Month'!B16",
+   "new": "'6 Job Log'!D27"
+  },
+  "mm10_C": {
+   "old": "'8 Money by Month'!C16",
+   "new": "'6 Job Log'!E27"
+  },
+  "mm10_D": {
+   "old": "'8 Money by Month'!D16",
+   "new": "'6 Job Log'!F27"
+  },
+  "mm10_E": {
+   "old": "'8 Money by Month'!E16",
+   "new": "'6 Job Log'!G27"
+  },
+  "mm10_F": {
+   "old": "'8 Money by Month'!F16",
+   "new": "'6 Job Log'!H27"
+  },
+  "mm10_G": {
+   "old": "'8 Money by Month'!G16",
+   "new": "'6 Job Log'!I27"
+  },
+  "mm10_I": {
+   "old": "'8 Money by Month'!I16",
+   "new": "'6 Job Log'!K27"
+  },
+  "mm10_J": {
+   "old": "'8 Money by Month'!J16",
+   "new": "'6 Job Log'!L27"
+  },
+  "mm10_K": {
+   "old": "'8 Money by Month'!K16",
+   "new": "'6 Job Log'!M27"
+  },
+  "mm10_L": {
+   "old": "'8 Money by Month'!L16",
+   "new": "'6 Job Log'!N27"
+  },
+  "mm_year_B": {
+   "old": "'8 Money by Month'!B18",
+   "new": "'6 Job Log'!D29"
+  },
+  "mm_year_C": {
+   "old": "'8 Money by Month'!C18",
+   "new": "'6 Job Log'!E29"
+  },
+  "mm_year_D": {
+   "old": "'8 Money by Month'!D18",
+   "new": "'6 Job Log'!F29"
+  },
+  "mm_year_E": {
+   "old": "'8 Money by Month'!E18",
+   "new": "'6 Job Log'!G29"
+  },
+  "mm_year_F": {
+   "old": "'8 Money by Month'!F18",
+   "new": "'6 Job Log'!H29"
+  },
+  "mm_year_G": {
+   "old": "'8 Money by Month'!G18",
+   "new": "'6 Job Log'!I29"
+  },
+  "mm_year_H": {
+   "old": "'8 Money by Month'!H18",
+   "new": "'6 Job Log'!J29"
+  },
+  "mm_year_I": {
+   "old": "'8 Money by Month'!I18",
+   "new": "'6 Job Log'!K29"
+  },
+  "mm_year_J": {
+   "old": "'8 Money by Month'!J18",
+   "new": "'6 Job Log'!L29"
+  },
+  "mm_year_K": {
+   "old": "'8 Money by Month'!K18",
+   "new": "'6 Job Log'!M29"
+  },
+  "mm_year_L": {
+   "old": "'8 Money by Month'!L18",
+   "new": "'6 Job Log'!N29"
+  }
+ },
+ "cases": [
+  {
+   "name": "example"
+  },
+  {
+   "name": "high",
+   "set": {
+    "take_home": 120000,
+    "hours": 55,
+    "share": 0.8,
+    "sqft": 4200,
+    "q_room0": 5,
+    "q_room1": 4,
+    "q_room4": 2,
+    "q_room5": 3,
+    "pets": 3,
+    "cleaners": 3,
+    "helpers": 2,
+    "miles": 40,
+    "condition": "Heavy buildup",
+    "service": "Deep clean",
+    "freq": "Weekly",
+    "qty0": 1,
+    "qty2": 1,
+    "qty4": 1
+   }
+  },
+  {
+   "name": "low",
+   "set": {
+    "take_home": 20000,
+    "weeks": 30,
+    "sqft": 600,
+    "q_room0": 1,
+    "q_room1": 1,
+    "q_room2": 0,
+    "q_room5": 0,
+    "pets": 0,
+    "cleaners": 1,
+    "helpers": 0,
+    "miles": 4,
+    "freq": "One time",
+    "qty1": null,
+    "qty3": null
+   }
+  },
+  {
+   "name": "blank take-home and square feet",
+   "set": {
+    "take_home": null,
+    "sqft": null,
+    "cost1": null,
+    "per_mile": null
+   }
+  },
+  {
+   "name": "edits: discounts, minimum, add-on, months, a new job and client",
+   "set": {
+    "disc2": 0.3,
+    "disc3": 0.35,
+    "min_charge": 300,
+    "ad_name8": "Garage sweep",
+    "ad_min8": 25,
+    "ad_sup8": 3,
+    "qty8": 1,
+    "mm_other9": 150,
+    "mm_other0": 75,
+    "sv_mult1": 2,
+    "cd_mult2": 1.4,
+    "condition": "Needs extra work",
+    "jl2_A": 46300,
+    "jl2_B": "New client",
+    "jl2_C": "Move-in or move-out (empty home)",
+    "jl2_D": 520,
+    "jl2_E": 9,
+    "jl2_F": 4.5,
+    "jl2_G": 1,
+    "jl2_H": 22,
+    "jl2_I": 25,
+    "cl2_A": "New client",
+    "cl2_D": "Weekly",
+    "cl2_F": 160,
+    "margin": 0.25,
+    "payroll": 0.2
+   }
+  },
+  {
+   "name": "edge: blank team, speed and weeks",
+   "set": {
+    "cleaners": null,
+    "helpers": null,
+    "mph": null,
+    "weeks": null,
+    "miles": 0,
+    "condition": "Well kept",
+    "service": "Light touch-up",
+    "freq": "Monthly",
+    "jl0_E": null,
+    "jl1_E": 0,
+    "jl1_G": 0.5
+   }
+  },
+  {
+   "name": "edge: helpers equal cleaners, one-time move-out",
+   "set": {
+    "cleaners": 3,
+    "helpers": 3,
+    "service": "Move-in or move-out (empty home)",
+    "freq": "One time",
+    "year": 2027,
+    "typ_miles": 0
+   }
+  },
+  {
+   "name": "empty home",
+   "set": {
+    "sqft": null,
+    "q_room0": 0,
+    "q_room1": 0,
+    "q_room2": 0,
+    "q_room3": 0,
+    "q_room4": 0,
+    "q_room5": 0,
+    "pets": 0
+   }
+  }
+ ],
+ "intended": [
+  {
+   "case": "empty home",
+   "outputs": [
+    "q_check"
+   ],
+   "why": "v2 ran the floor check on an empty home; v3 asks for the home first."
+  }
+ ]
+}

@@ -1,0 +1,242 @@
+{
+ "formats": "Excel, Google Sheets  |  Fillable PDF forms  |  Instant download",
+ "images": [
+  {
+   "type": "cover",
+   "eyebrow": "CLEANING BUSINESS STARTER KIT",
+   "title": "Price every clean so it actually pays you.",
+   "sub": "Your rate per cleaning hour, a quote for every home, and the forms to run the visit.",
+   "shot": "r/02-1-Your-Numbers.png",
+   "crop": [
+    0,
+    0.008,
+    1,
+    0.165
+   ],
+   "badges": [
+    "Excel + Google Sheets",
+    "Instant download",
+    "10 fillable PDF pages"
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "WORKED EXAMPLE",
+   "title": "1,800 sq ft every 2 weeks: $245 a visit.",
+   "sub": "3 bed, 2.5 bath, one pet, you and one helper. First deep clean $385, and $18.61 over your floor every visit.",
+   "shot": "r/05-4-Quote-Builder.png",
+   "crop": [
+    0,
+    0.038,
+    1,
+    0.165
+   ]
+  },
+  {
+   "type": "steps",
+   "eyebrow": "HOW IT WORKS",
+   "title": "Three steps to a price you can defend.",
+   "steps": [
+    {
+     "head": "Type your numbers",
+     "text": "Pay goal, real hours, monthly costs.",
+     "shot": "r/02-1-Your-Numbers.png",
+     "crop": [
+      0,
+      0.079,
+      0.46,
+      0.162
+     ]
+    },
+    {
+     "head": "Enter the home",
+     "text": "Square feet, rooms, pets and your team.",
+     "shot": "r/05-4-Quote-Builder.png",
+     "crop": [
+      0,
+      0.17,
+      0.46,
+      0.2405
+     ]
+    },
+    {
+     "head": "Read your price",
+     "text": "Price per visit and the first deep clean.",
+     "shot": "r/05-4-Quote-Builder.png",
+     "crop": [
+      0,
+      0.039,
+      0.46,
+      0.087
+     ]
+    }
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "YOUR RATE PER CLEANING HOUR",
+   "title": "Why your rate is $55.27, not $22.22.",
+   "sub": "Unpaid hours, monthly costs and self-employment tax, added back line by line.",
+   "shot": "r/02-1-Your-Numbers.png",
+   "crop": [
+    0.47,
+    0.079,
+    1,
+    0.277
+   ],
+   "trim": true
+  },
+  {
+   "type": "shot",
+   "eyebrow": "QUOTE BUILDER",
+   "title": "Every dollar of the quote, traced.",
+   "sub": "Time by square feet and by rooms, your team's labor, the trip and supplies, then your margin.",
+   "shot": "r/05-4-Quote-Builder.png",
+   "crop": [
+    0.47,
+    0.17,
+    1,
+    0.467
+   ],
+   "trim": true
+  },
+  {
+   "type": "shot",
+   "eyebrow": "PRICE SHEET",
+   "title": "A price menu for your website or posts.",
+   "sub": "Six home sizes, five services, priced with your numbers. Change a rate and every price follows.",
+   "shot": "r/04-3-Price-Sheet.png",
+   "crop": [
+    0,
+    0.065,
+    0.455,
+    0.244
+   ],
+   "trim": true
+  },
+  {
+   "type": "shot",
+   "eyebrow": "JOB LOG AND MONEY BY MONTH",
+   "title": "What every visit earned, and what to set aside.",
+   "sub": "Log a finished visit and see profit over break-even, flagged in color, plus monthly tax set-asides.",
+   "shot": "r/07-6-Job-Log.png",
+   "crop": [
+    0,
+    0.0158,
+    1,
+    0.1103
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "FILLABLE PDF FORMS",
+   "title": "Run the visit with the same numbers.",
+   "sub": "Client intake, walkthrough, three checklists, a quote and a visit log. Type in them or print them.",
+   "shot": "r/forms-03.png",
+   "crop": [
+    0,
+    0,
+    1,
+    0.56
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "IS THIS FOR YOU?",
+   "title": "Made for house cleaners who run the business.",
+   "columns": [
+    {
+     "head": "Made for",
+     "mark": "check",
+     "items": [
+      "Solo cleaners and small teams with helpers",
+      "Quoting homes by square feet and rooms",
+      "Weekly, every 2 weeks and monthly clients",
+      "Knowing what to set aside for tax each month"
+     ]
+    },
+    {
+     "head": "Not for",
+     "mark": "x",
+     "items": [
+      "Commercial or janitorial contract bids",
+      "Payroll, tax filing or legal advice",
+      "Teams that need shared online booking"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "HOW YOU GET IT",
+   "title": "Instant download. Opens in Excel or Google Sheets.",
+   "columns": [
+    {
+     "head": "What you get",
+     "mark": "check",
+     "items": [
+      "One workbook, six working tabs",
+      "Fillable PDF forms, US Letter and A4",
+      "Start Here guide as a PDF, Letter and A4",
+      "No macros, no add-ons, no sign-up"
+     ]
+    },
+    {
+     "head": "How to download",
+     "mark": "check",
+     "items": [
+      "Buy, then open Etsy in a web browser",
+      "Go to You, then Purchases, and download",
+      "The Etsy app can't download digital files",
+      "Message the shop on Etsy if anything won't open"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "inside",
+   "eyebrow": "ONE DOWNLOAD",
+   "title": "What's inside",
+   "tabs": [
+    {
+     "name": "1 Your Numbers",
+     "shot": "r/02-1-Your-Numbers.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.32
+     ]
+    },
+    {
+     "name": "3 Price Sheet",
+     "shot": "r/04-3-Price-Sheet.png",
+     "crop": [
+      0,
+      0,
+      0.455,
+      0.5
+     ]
+    },
+    {
+     "name": "4 Quote Builder",
+     "shot": "r/05-4-Quote-Builder.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.42
+     ]
+    }
+   ],
+   "items": [
+    "Target and break-even rate per cleaning hour",
+    "Quotes by square feet and rooms",
+    "Recurring discount floor check",
+    "Price sheet, client list, job log",
+    "Monthly tax set-asides",
+    "10 fillable PDF pages, Letter and A4"
+   ]
+  }
+ ]
+}

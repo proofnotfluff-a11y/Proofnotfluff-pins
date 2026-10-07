@@ -36,7 +36,7 @@ def ensure_model():
     try:
         import kokoro_onnx, soundfile  # noqa: F401
     except ImportError:
-        subprocess.run([sys.executable, "-m", "pip", "install", "-q", "--break-system-packages", "kokoro-onnx", "soundfile"], check=True)
+        subprocess.run([sys.executable, "-m", "pip", "install", "-q", "--break-system-packages", "kokoro-onnx==0.4.9", "soundfile==0.13.1"], check=True)
 
 
 _K = None
@@ -55,7 +55,9 @@ def clean(text):
     """Spoken form: dollar amounts and percents read naturally; no markup."""
     import re
     t = re.sub(r"<[^>]+>", "", text or "")
-    t = t.replace("&", " and ").replace("/", " per ").replace("x ", " times ")
+    t = t.replace("&", " and ")
+    t = re.sub(r"(?<=\d)\s*/\s*(?=[a-z\d])", " per ", t)      # 120/hour -> 120 per hour; leaves "and/or" alone
+    t = re.sub(r"(?<=\d)\s*[xX]\s*(?=\$?\d)", " times ", t)   # 3 x $2.99 -> 3 times 2.99; leaves "tax" alone
     t = re.sub(r"\$(\d[\d,]*)(\.(\d\d))?", lambda m: f"{m.group(1).replace(',', '')} dollars" + (f" and {int(m.group(3))} cents" if m.group(3) and int(m.group(3)) else ""), t)
     t = t.replace("%", " percent")
     return re.sub(r"\s+", " ", t).strip()

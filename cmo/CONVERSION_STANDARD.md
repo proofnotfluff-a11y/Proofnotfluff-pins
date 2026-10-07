@@ -5,21 +5,21 @@ Binds the CMO, both promote runs, the shop run's X and LinkedIn posts, and any r
 ## 1. The funnel, and the one link
 Every piece exists to move one person one step: see the product solve their problem, click, land where they can buy or where they can use the free version and then buy. Nothing is published "for reach".
 
-The hub, https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/, is the single bio link on every platform (Instagram, TikTok, YouTube channel, Pinterest profile, X, LinkedIn). It leads with the free calculators, then the shop, then every product by audience. Short links for captions and descriptions: `/go/<product id>/` (Etsy listing through the Share & Save domain, so Etsy credits the click and shows our referrer), `/go/free-<page slug>/` (a free calculator page), `/go/shop/`, and `/go/<gumroad slug>/` for premium products (UTM tagged). The builder regenerates them with tools/make_site.py from site/links.json; the COO keeps links.json in step with the products collection.
+The hub, https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/, is the single bio link on every platform (Instagram, TikTok, YouTube channel, Pinterest profile, X, LinkedIn). It leads with the free calculators, then the shop, then every product by audience. Short links for captions and descriptions: `/go/<product id>/` (an Etsy product resolves to its listing through the Share & Save domain, so Etsy credits the click and shows our referrer; a premium product resolves to its Gumroad URL with UTM), `/go/free-<page slug>/` (a free calculator page) and `/go/shop/`. The builder regenerates them with tools/make_site.py from site/links.json; the COO keeps links.json in step with the products collection.
 
 Which link each piece carries:
-- Pinterest pins: the product's listing on the Share & Save domain (https://proofnotfluff.etsy.com/listing/<id>), or the free page when the slate says the pin sells the free tool. Never the shop page.
-- YouTube Short: description line one is the product's short link, line two the matching free page when one exists; the related-video link goes to the product's walkthrough. Links in Short descriptions do not click on phones, so the spoken and captioned CTA says the free calculator's name and "link in the description or in the bio".
+- Pinterest pins: the product's own link (the listing on the Share & Save domain, https://proofnotfluff.etsy.com/listing/<id>; a premium product's Gumroad URL), or the free page when the slate says the pin sells the free tool. Never the shop page.
+- YouTube Short: description line one is the product's short link, line two the matching free page when one exists; the related-video link goes to the product's walkthrough. Links in Short descriptions do not click on phones, so the spoken close works without a link (below).
 - YouTube walkthrough (regular video): description line one is the product's short link; the first line of the video names the free page.
-- Instagram Reel and TikTok: "Link in bio" (the hub). Until the TikTok account is a business account, the TikTok caption says "Search ProofNotFluff on Etsy" instead.
+- Instagram Reel: the caption ends "Link in bio: proofnotfluff.etsy.com" (the ledger's INSTAGRAM line, Todd's wording); the bio link itself points at the hub, which leads with the free tools and the shop. TikTok: the caption says "Search ProofNotFluff on Etsy" (ledger TIKTOK VIA BUFFER line) until the account is a business account with a bio link.
 - X: the post carries no link; the reply-to-self carries the short link. LinkedIn: the link goes in the first comment, never in the post body. Both end with the hub.
 - Email (once Kit exists): every email links one product and one free page.
 
 ## 2. What a converting piece looks like (the demo format, tools/make_demo.py)
 - Frame one shows the product and the hook. The hook is one true number from the product's own files, in the buyer's words ("A $40 hourly rate pays you about $20"). No question openers, no "did you know".
 - The body is the product doing the work: inputs typed, the result revealed, one fix that changes the number. Seven rows or fewer.
-- Narration: every "say" line is spoken (tools/voice.py, the brand voice in the ledger PROMO STUDIO line) and captioned, so it works muted and with sound. Lines are short, plain, numbers read naturally. Walkthroughs use the "why" lines.
-- The close names the product once and the free page once, then the platform's link path. One CTA, never two.
+- Narration: every "say" line is spoken (tools/voice.py, the brand voice in the ledger PROMO STUDIO line) and captioned, so it works muted and with sound; the voice is generated from the caption text itself, and make_demo.py prints the spoken lines, so the reviewer checks those lines, not the audio. Lines are short, plain, numbers read naturally. Walkthroughs use the "why" lines.
+- The close is the same spoken line on every platform, because Shorts, Reels and TikToks cannot carry a tap-able link: "Search ProofNotFluff for the free <calculator name> and the full workbook." (or "... for the full workbook" when no free page exists). The caption or description then carries the platform's link path. One CTA, never two.
 - Length: Shorts and Reels 15 to 40 seconds; walkthroughs 60 to 180 seconds with chapters in the description; pins one headline, one number, the product drawn, no stock photos.
 - Proof over polish: real inputs, real outputs, the Terms line where a claim needs it. Nothing the product cannot show.
 

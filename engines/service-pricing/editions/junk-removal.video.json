@@ -1,0 +1,12 @@
+{
+  "xlsx": "Junk-Removal-Pricing-Calculator.xlsx",
+  "sheet": "3 Quote Builder",
+  "crop": [0, 0.062, 0.468, 0.360],
+  "dpi": 220,
+  "eyebrow": "JUNK REMOVAL PRICING CALCULATOR",
+  "states": [
+    {"caption": "Pick a job. A half truck load: {I34}.", "hold": 3.0},
+    {"set": {"D14": "Truck loads - Full truck load"}, "caption": "Full truck load instead? {I34}.", "hold": 3.6},
+    {"set": {"D14": "Truck loads - Full truck load", "D23": 60}, "caption": "Customer 60 miles round trip? {I34}.", "hold": 3.6}
+  ]
+}

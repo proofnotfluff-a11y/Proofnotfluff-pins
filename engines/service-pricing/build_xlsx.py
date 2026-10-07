@@ -175,7 +175,7 @@ TH = A.input("Take-home pay you want per year", EX["take_home"], USD0, name="Tak
 WK = A.input("Weeks you work per year", EX["weeks"], INT, name="WeeksPerYear", validation=("decimal", 1, 52),
              prompt=TEXT.get("weeks_hint") or f"52 minus vacation, holidays and sick weeks. Example: {EX['weeks']}.")
 HW = A.input("Hours you work per week, all of it", EX["hours"], INT, name="HoursPerWeek", validation=("whole", 1, 100),
-             prompt="Whole hours. Include driving, quoting, texts, invoicing and shopping for supplies. Example: 45.",
+             prompt=f"Whole hours. Include driving, quoting, texts, invoicing and shopping for supplies. Example: {EX['hours']}.",
              prompt_title="Hours per week")
 PS = A.input("Share of those hours you are paid for", EX["paid_share"], PCT, name="PaidShare", validation=("decimal", 0.05, 1),
              prompt="Paid hours divided by all hours. Not sure? Try 60% to 70%.", prompt_title="Paid share of hours")
@@ -295,7 +295,7 @@ cols_tp = [
     dict(col="G", head="Supplies", kind="input", fmt=USD0, align="right", values=[p[4] for p in PRESETS],
          validation=("decimal", 0, None), prompt="Supplies used up on this one job, in dollars.", error="Enter 0 or more dollars."),
     dict(col="H", head="Miles round trip", kind="input", fmt=INT, align="right", values=[p[5] for p in PRESETS],
-         validation=("decimal", 0, None), prompt="Miles there and back. 0 if clients come to you.", error="Enter 0 or more miles."),
+         validation=("decimal", 0, None), prompt=TEXT.get("miles_hint") or "Miles there and back. 0 if clients come to you.", error="Enter 0 or more miles."),
     dict(col="I", head="Notes", kind="input", values=[p[6] or "" for p in PRESETS], validation=("textLength", 0, 80),
          prompt="Anything worth remembering about this job.", error="Up to 80 characters."),
     dict(col="J", head="Name in the dropdowns", kind="muted", formula=lambda r: f'=IF(D{r}="","",C{r}&" - "&D{r})'),
@@ -498,7 +498,7 @@ ps.page_setup.fitToHeight = 1
 jt = wb.create_sheet("5 Job Tracker")
 S.set_widths(jt, {"A": 3, "B": 2, "C": 13, "D": 16, "E": 44, "F": 11, "G": 10, "H": 9, "I": 8, "J": 10, "K": 13, "L": 14,
                   "M": 12, "N": 16, "O": 2, "P": 3})
-D.page_header(jt, "Job Tracker", "Log each finished job and see what it really paid you.", "Two example rows: replace them",
+D.page_header(jt, "Job Tracker", TEXT.get("jt_sub") or "Log each finished job and see what it really paid you.", "Two example rows: replace them",
               span=("B", "O"), side_cols=4)
 JT_TOP_TABLE = 11
 jt_first = JT_TOP_TABLE + 5
@@ -660,7 +660,8 @@ tm = wb.create_sheet("Terms")
 S.set_widths(tm, SH_GRID)
 D.page_header(tm, "Terms of Use", f"{PRODUCT}, version {VERSION}. Read this before you rely on a number.", f"Checked {CHECKED}",
               span=("B", "F"), side_cols=2)
-paras = open(os.path.join(HERE, "LICENSE-AND-DISCLAIMER.txt"), encoding="utf-8").read().strip().split("\n\n")[1:]
+_lic = os.path.join(HERE, "editions", f"{EDITION['slug']}.LICENSE.txt") if EDITION else os.path.join(HERE, "LICENSE-AND-DISCLAIMER.txt")
+paras = open(_lic, encoding="utf-8").read().strip().split("\n\n")[1:]
 r = 6
 r = sh_card(tm, r, "More from the shop", [
     *[(None, (t, u), "link") for t, u in TEXT["more"]],

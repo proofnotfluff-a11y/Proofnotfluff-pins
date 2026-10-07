@@ -1,0 +1,280 @@
+{
+  "slug": "junk-removal",
+  "product": "Junk Removal Pricing Calculator",
+  "example": {
+    "take_home": 60000,
+    "weeks": 48,
+    "hours": 50,
+    "paid_share": 0.6
+  },
+  "costs": [
+    [
+      "General liability insurance",
+      150
+    ],
+    [
+      "Phone and internet",
+      90
+    ],
+    [
+      "Software and booking apps",
+      50
+    ],
+    [
+      "Ads, yard signs, website",
+      200
+    ],
+    [
+      "Dollies, straps, tarps, PPE",
+      60
+    ],
+    [
+      "Trailer and equipment",
+      100
+    ],
+    [
+      "Accounting and payment fees",
+      40
+    ],
+    [
+      "Licenses and permits",
+      25
+    ],
+    [
+      "Storage or yard space",
+      0
+    ],
+    [
+      "Vehicle payment",
+      0
+    ],
+    [
+      "Other",
+      0
+    ]
+  ],
+  "presets": [
+    [
+      "Single items",
+      "Couch or sectional",
+      0.75,
+      2,
+      25,
+      30,
+      "Dump fee in supplies"
+    ],
+    [
+      "Single items",
+      "Mattress and box spring",
+      0.5,
+      2,
+      30,
+      30,
+      "Recycling or disposal fee in supplies"
+    ],
+    [
+      "Single items",
+      "Upright piano",
+      1.5,
+      3,
+      60,
+      30,
+      null
+    ],
+    [
+      "Appliances",
+      "Refrigerator or freezer",
+      0.75,
+      2,
+      40,
+      30,
+      "Refrigerant removal fee in supplies"
+    ],
+    [
+      "Appliances",
+      "Washer and dryer pair",
+      0.75,
+      2,
+      30,
+      30,
+      null
+    ],
+    [
+      "Truck loads",
+      "Minimum load, 1/8 truck",
+      0.5,
+      2,
+      20,
+      30,
+      "Dump fee in supplies"
+    ],
+    [
+      "Truck loads",
+      "Quarter truck load",
+      1,
+      2,
+      40,
+      30,
+      null
+    ],
+    [
+      "Truck loads",
+      "Half truck load",
+      1.5,
+      2,
+      75,
+      30,
+      null
+    ],
+    [
+      "Truck loads",
+      "Three-quarter truck load",
+      2,
+      2,
+      110,
+      30,
+      null
+    ],
+    [
+      "Truck loads",
+      "Full truck load",
+      2.5,
+      2,
+      150,
+      30,
+      "Heavy loads cost more at the scale"
+    ],
+    [
+      "Cleanouts",
+      "Garage cleanout, 2-car",
+      4,
+      2,
+      225,
+      50,
+      "Two dump runs: miles include both"
+    ],
+    [
+      "Cleanouts",
+      "Basement cleanout",
+      5,
+      2,
+      225,
+      50,
+      "Two dump runs: miles include both"
+    ],
+    [
+      "Cleanouts",
+      "Estate cleanout, 3-bed",
+      10,
+      3,
+      600,
+      120,
+      "Two days, four dump runs in the miles"
+    ],
+    [
+      "Debris",
+      "Remodel debris, half load",
+      2,
+      2,
+      120,
+      30,
+      "Heavy material: check the scale fee"
+    ],
+    [
+      "Debris",
+      "Yard debris, half load",
+      1.5,
+      2,
+      50,
+      30,
+      "Green waste drop-off fee in supplies"
+    ],
+    [
+      "Debris",
+      "Carpet removal, 3 rooms",
+      3,
+      2,
+      60,
+      30,
+      null
+    ],
+    [
+      "Demolition",
+      "Hot tub removal",
+      2.5,
+      3,
+      120,
+      30,
+      "Cut up on site, then haul"
+    ],
+    [
+      "Demolition",
+      "Shed tear-down and haul",
+      5,
+      2,
+      180,
+      50,
+      "Two dump runs: miles include both"
+    ],
+    [
+      "Commercial",
+      "Office furniture, 10 desks",
+      3,
+      3,
+      150,
+      30,
+      "Often after hours"
+    ]
+  ],
+  "jobs": [
+    [
+      "2026-10-01",
+      "Example client",
+      "Truck loads - Quarter truck load",
+      375,
+      2,
+      2,
+      30,
+      40
+    ],
+    [
+      "2026-10-02",
+      "Example client",
+      "Cleanouts - Garage cleanout, 2-car",
+      750,
+      8,
+      3.33,
+      50,
+      225
+    ]
+  ],
+  "quote_job": "Truck loads - Half truck load",
+  "current_price": 350,
+  "deposit": 0.25,
+  "text": {
+    "trade_eg": "Truck loads",
+    "job_eg": "Half truck load",
+    "audience": "junk removal owners",
+    "what_it_does": "A half-load price copied from another hauler leaves out the hours nobody pays for (driving, estimates, slow weeks), the dump fees and the second person on the truck, and self-employment tax. This workbook adds all of it back, gives you the hourly rate every quote should start from, prices single items, truck loads, cleanouts and tear-downs in seconds, and shows which finished jobs really made money.",
+    "example_job": "A half truck load",
+    "more": [
+      [
+        "Service Pricing Calculator: the same engine with presets for 7 trades",
+        "https://www.etsy.com/listing/4587962930"
+      ],
+      [
+        "Hourly Rate Quick Calculator: the one-tab version",
+        "https://www.etsy.com/listing/4589695837"
+      ]
+    ],
+    "hours_hint": "Hours each person spends on the job: loading, sweeping up and waiting at the dump.",
+    "addon_eg": "a tire or paint disposal fee",
+    "apps": "Excel, Google Sheets and LibreOffice",
+    "weeks_hint": "52 minus vacation, holidays and weeks with no bookings. Example: 48.",
+    "example_extra": "Change the half load to a 60-mile round trip instead of the 30-mile preset and its $485 price becomes $660.",
+    "ps_sub": "Price floor: your pay, costs and taxes, zero profit. Your price adds your margin, up to the next $5. Estimates only, see Terms.",
+    "miles_hint": "Shop to the job, to the dump and back. Add each extra dump run. Example: 30.",
+    "jt_sub": "Log each finished job and see what it really paid you. Estimates only, see the Terms tab."
+  },
+  "version": "1"
+}

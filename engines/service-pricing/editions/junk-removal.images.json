@@ -1,0 +1,217 @@
+{
+ "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+ "images": [
+  {
+   "type": "cover",
+   "eyebrow": "JUNK REMOVAL PRICING CALCULATOR",
+   "title": "Price every haul so it actually pays you.",
+   "sub": "Your true hourly rate, a quote for any load, and which jobs made money.",
+   "shot": "r/02-1-Your-Numbers.png",
+   "crop": [
+    0,
+    0.034,
+    1,
+    0.2405
+   ],
+   "badges": [
+    "Excel + Google Sheets",
+    "Instant download",
+    "19 junk removal jobs"
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "QUOTE BUILDER",
+   "title": "Quote a half truck load in seconds.",
+   "sub": "Pick the job, adjust it for this customer, and read your price and your profit.",
+   "shot": "r/04-3-Quote-Builder.png",
+   "crop": [
+    0,
+    0.06,
+    0.48,
+    0.57
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "YOUR TRUE HOURLY RATE",
+   "title": "Why your rate is $73.37, not $25.00.",
+   "sub": "Tax, monthly costs and margin, spread over the hours you're paid for.",
+   "shot": "r/02-1-Your-Numbers.png",
+   "crop": [
+    0.47,
+    0.115,
+    1,
+    0.365
+   ],
+   "trim": true
+  },
+  {
+   "type": "steps",
+   "eyebrow": "HOW IT WORKS",
+   "title": "Three steps to a price you can defend.",
+   "steps": [
+    {
+     "head": "Type your numbers",
+     "text": "Pay goal, real hours, monthly costs.",
+     "shot": "r/02-1-Your-Numbers.png",
+     "crop": [
+      0,
+      0.115,
+      0.47,
+      0.24
+     ]
+    },
+    {
+     "head": "Pick the job",
+     "text": "Use the preset or change crew, dump fee or miles.",
+     "shot": "r/04-3-Quote-Builder.png",
+     "crop": [
+      0,
+      0.222,
+      0.212,
+      0.39
+     ]
+    },
+    {
+     "head": "Read your price",
+     "text": "Quote, deposit and profit, worked out for you.",
+     "shot": "r/04-3-Quote-Builder.png",
+     "crop": [
+      0,
+      0.06,
+      0.212,
+      0.135
+     ]
+    }
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "PRICE SHEET",
+   "title": "A price for every job, ready to print.",
+   "sub": "Single items, truck loads, cleanouts, debris and tear-downs. Change the times and prices follow.",
+   "shot": "r/05-4-Price-Sheet.png",
+   "crop": [
+    0,
+    0.0544,
+    1,
+    0.362
+   ],
+   "trim": true
+  },
+  {
+   "type": "list",
+   "eyebrow": "IS THIS FOR YOU?",
+   "title": "Made for junk removal owners.",
+   "columns": [
+    {
+     "head": "Made for",
+     "mark": "check",
+     "items": [
+      "Owner-operators and 2 to 3 person hauling crews",
+      "Owners who drive to every job and the dump and want that time paid",
+      "Pricing by the item, by the load or by the job",
+      "Checking whether today's half-load price really pays"
+     ]
+    },
+    {
+     "head": "Not for",
+     "mark": "x",
+     "items": [
+      "Dumpster or roll-off rental pricing",
+      "Payroll, tax filing or legal advice",
+      "Teams that need shared online booking or dispatch"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "CHECK YOUR CURRENT PRICE",
+   "title": "Is your $350 half load paying you?",
+   "sub": "Type today's price and see it against your floor and your quote.",
+   "shot": "r/04-3-Quote-Builder.png",
+   "crop": [
+    0,
+    0.405,
+    0.212,
+    0.535
+   ],
+   "trim": true
+  },
+  {
+   "type": "list",
+   "eyebrow": "HOW YOU GET IT",
+   "title": "Instant download. Opens in Excel or Google Sheets.",
+   "columns": [
+    {
+     "head": "What you get",
+     "mark": "check",
+     "items": [
+      "One workbook, five working tabs",
+      "Start Here guide as a PDF, US Letter and A4",
+      "Works in Excel for Windows and Mac, Google Sheets and LibreOffice",
+      "No macros, no add-ons, no sign-up"
+     ]
+    },
+    {
+     "head": "How to download",
+     "mark": "check",
+     "items": [
+      "Buy, then open Etsy in a web browser",
+      "Go to You, then Purchases, and download",
+      "The Etsy app can't download digital files",
+      "Message the shop on Etsy if anything won't open"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "inside",
+   "eyebrow": "ONE DOWNLOAD",
+   "title": "What's inside",
+   "tabs": [
+    {
+     "name": "1 Your Numbers",
+     "shot": "r/02-1-Your-Numbers.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.56
+     ]
+    },
+    {
+     "name": "3 Quote Builder",
+     "shot": "r/04-3-Quote-Builder.png",
+     "crop": [
+      0,
+      0,
+      0.48,
+      0.62
+     ]
+    },
+    {
+     "name": "4 Price Sheet",
+     "shot": "r/05-4-Price-Sheet.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.42
+     ]
+    }
+   ],
+   "items": [
+    "Target and break-even rate per paid hour",
+    "Quotes with per-customer changes",
+    "Price sheet for every job type",
+    "Job tracker: profit on every job",
+    "19 jobs from couches to cleanouts",
+    "Start Here PDF in Letter and A4"
+   ]
+  }
+ ],
+ "base": "/tmp/claude-0/-home-claude/61996479-e7ce-5e61-bc4a-87de7652661e/scratchpad/jr/li"
+}

@@ -26,7 +26,8 @@
       "label": "Quote at 30 miles round trip",
       "value": "$485",
       "say": "At 30 miles: $485",
-      "why": "At the preset 30-mile round trip, the price floor is $409.62 and the quote, with a 15% profit margin rounded up to the next $5, is $485."
+      "why": "At the preset 30-mile round trip, the price floor is $409.62 and the quote, with a 15% profit margin rounded up to the next $5, is $485.",
+      "result": true
     },
     {
       "label": "Round-trip miles",
@@ -39,7 +40,8 @@
       "label": "Price floor at 60 miles",
       "value": "$557.14",
       "say": "The floor jumps to $557.14",
-      "why": "Labor on site $187.09, drive time $249.45, vehicle $45.60 and supplies $75: the floor rises from $409.62 to $557.14."
+      "why": "Labor on site $187.09, drive time $249.45, vehicle $45.60 and supplies $75: the floor rises from $409.62 to $557.14.",
+      "result": true
     },
     {
       "label": "Quote at 60 miles round trip",
@@ -54,7 +56,7 @@
     "title": "Junk Removal Pricing Calculator",
     "button": "Instant download",
     "sub": "On Etsy: proofnotfluff.etsy.com",
-    "say": "Run your own numbers"
+    "say": "Search ProofNotFluff for the full workbook"
   },
   "note": "Example numbers from the calculator. Yours go in the yellow cells.",
   "sources": "Product #23 Junk Removal Pricing Calculator: engines/service-pricing/build_xlsx.py --edition editions/junk-removal.json (the listed edition's repo build, commit d27a999, legal fixes 847b8e4), recalculated in LibreOffice Oct 7, 2026, 5:40 am, at the preset 30 miles and again with 3 Quote Builder D23 = 60. Preset: I21 1.5, I22 2, I23 75, I24 30, I32 409.62, I34 485. At 60 miles: I25 2 h, I27 187.09, I28 249.45, I29 45.60, I32 557.14, I34 660. 1 Your Numbers: I21 62.36 break-even, I37 15% margin, I38 76 cents, I39 30 mph."

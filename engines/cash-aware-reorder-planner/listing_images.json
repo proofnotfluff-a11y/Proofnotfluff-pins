@@ -1,0 +1,241 @@
+{
+ "base": "/home/claude/work6/kit",
+ "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+ "images": [
+  {
+   "type": "cover",
+   "eyebrow": "INVENTORY REORDER PLANNER SPREADSHEET",
+   "title": "Know what to reorder, and whether you can pay for it.",
+   "sub": "Stock status for every SKU, order quantities, a cash check and purchase orders by supplier.",
+   "shot": "r/02-1-Your-Shop.png",
+   "crop": [
+    0,
+    0,
+    1,
+    0.248
+   ],
+   "badges": [
+    "Excel + Google Sheets",
+    "Instant download",
+    "Purchase orders included"
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "THE WORKED EXAMPLE",
+   "title": "Short on cash? It picks what to buy now.",
+   "sub": "Example shop: $2,793.90 of stock wanted, $1,500 usable. $1,497.50 ordered now, $1,296.40 deferred.",
+   "shot": "r/02-1-Your-Shop.png",
+   "crop": [
+    0.47,
+    0.082,
+    1,
+    0.246
+   ],
+   "trim": true
+  },
+  {
+   "type": "steps",
+   "eyebrow": "HOW IT WORKS",
+   "title": "Three steps to this week's orders.",
+   "steps": [
+    {
+     "head": "Type your SKUs",
+     "text": "Cost, price, lead time, stock, daily sales.",
+     "shot": "r/03-2-SKU-List.png",
+     "crop": [
+      0,
+      0.137,
+      0.42,
+      0.233
+     ]
+    },
+    {
+     "head": "Set your cash",
+     "text": "Cash for stock, bills due first, your rules.",
+     "shot": "r/02-1-Your-Shop.png",
+     "crop": [
+      0,
+      0.082,
+      0.48,
+      0.17
+     ]
+    },
+    {
+     "head": "Send the orders",
+     "text": "One purchase order per supplier.",
+     "shot": "r/05-4-Purchase-Orders.png",
+     "crop": [
+      0,
+      0.09,
+      0.5,
+      0.17
+     ]
+    }
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "CASH CHECK",
+   "title": "Order now, part order, or defer.",
+   "sub": "Cover quantities are funded first in rank order, then top-ups with the cash left.",
+   "shot": "r/06-5-Cash-Check.png",
+   "crop": [
+    0,
+    0.05,
+    0.5105,
+    0.252
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "EVERY SKU",
+   "title": "Every SKU gets a status.",
+   "sub": "OK, REORDER, STOCKOUT RISK, OVERSTOCK or DEAD, from days of stock against lead time.",
+   "shot": "r/03-2-SKU-List.png",
+   "crop": [
+    0,
+    0.045,
+    0.79,
+    0.3424
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "REORDER PLAN",
+   "title": "How many to order, ranked.",
+   "sub": "7 SKUs need $2,793.90 of stock. Rank = profit per day divided by days of stock left.",
+   "shot": "r/04-3-Reorder-Plan.png",
+   "crop": [
+    0,
+    0.05,
+    0.68,
+    0.37
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "PURCHASE ORDERS",
+   "title": "One purchase order per supplier.",
+   "sub": "Filled in for you: Northwind $795.20, Fieldstone $1,286.30, Harbor $712.40.",
+   "shot": "r/05-4-Purchase-Orders.png",
+   "crop": [
+    0,
+    0.046,
+    1,
+    0.26
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "DEAD STOCK",
+   "title": "Find the cash stuck on your shelves.",
+   "sub": "$124.50 in dead stock and $663 in slow movers, each with one action. A 10%, 25% and 50% markdown ladder sits alongside.",
+   "shot": "r/07-6-Dead-Stock.png",
+   "crop": [
+    0,
+    0.05,
+    0.428,
+    0.37
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "IS THIS FOR YOU?",
+   "title": "Made for small shops that buy stock.",
+   "columns": [
+    {
+     "head": "Made for",
+     "mark": "check",
+     "items": [
+      "Etsy and online shops holding physical stock",
+      "Up to 30 SKUs and 6 suppliers",
+      "Owners who reorder weekly to monthly",
+      "Anyone whose cash runs out before the reorder list does"
+     ]
+    },
+    {
+     "head": "Not for",
+     "mark": "x",
+     "items": [
+      "Print on demand or digital products",
+      "Live sync with Etsy, Shopify or a warehouse",
+      "Accounting, tax or financial advice"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "HOW YOU GET IT",
+   "title": "Instant download. Opens in Excel or Google Sheets.",
+   "columns": [
+    {
+     "head": "What you get",
+     "mark": "check",
+     "items": [
+      "One workbook, six working tabs",
+      "Start Here guide as a PDF, US Letter and A4",
+      "Works in Excel for Windows and Mac, Google Sheets and LibreOffice",
+      "No macros, no add-ons, no sign-up"
+     ]
+    },
+    {
+     "head": "How to download",
+     "mark": "check",
+     "items": [
+      "Buy, then open Etsy in a web browser",
+      "Go to You, then Purchases, and download",
+      "The Etsy app can't download digital files",
+      "Message the shop on Etsy if anything won't open"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "inside",
+   "eyebrow": "ONE DOWNLOAD",
+   "title": "What's inside",
+   "tabs": [
+    {
+     "name": "1 Your Shop",
+     "shot": "r/02-1-Your-Shop.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.35
+     ]
+    },
+    {
+     "name": "5 Cash Check",
+     "shot": "r/06-5-Cash-Check.png",
+     "crop": [
+      0,
+      0,
+      0.5105,
+      0.252
+     ]
+    },
+    {
+     "name": "4 Purchase Orders",
+     "shot": "r/05-4-Purchase-Orders.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.27
+     ]
+    }
+   ],
+   "items": [
+    "Status for up to 30 SKUs",
+    "Reorder points and order quantities",
+    "Cash check: buy now or defer",
+    "Purchase orders for 6 suppliers",
+    "Dead stock markdown ladder",
+    "Start Here PDF in Letter and A4"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "xlsx": "Cash-Aware-Reorder-Planner.xlsx",
+ "sheet": "1 Your Shop",
+ "crop": [0, 0, 1, 0.248],
+ "dpi": 220,
+ "eyebrow": "INVENTORY REORDER PLANNER SPREADSHEET",
+ "states": [
+  {"caption": "{D20} of usable cash. The plan wants {I19}.", "hold": 3.0},
+  {"set": {"D18": 3300}, "caption": "Cash $3,300? Now it's affordable: {I22} ordered now.", "hold": 3.6},
+  {"set": {"D24": 0.3}, "caption": "Busier month ahead (+30%)? The plan grows to {I19}.", "hold": 3.6}
+ ]
+}

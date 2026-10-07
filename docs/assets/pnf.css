@@ -77,3 +77,5 @@ section.block .cta p{color:#c9cfdb}
 .hubbtn b{display:block;font-size:17px;line-height:1.3}.hubbtn span{display:block;color:var(--muted);font-size:13.5px;margin-top:3px}
 .hubbtn:hover{border-color:var(--accent)}.hubbtn.shop{background:var(--ink);color:#fff;border-color:var(--ink)}.hubbtn.shop span{color:#c9cfdb}
 .hubbtn.prem{border-color:var(--teal);background:var(--teal-tint)}
+.btn.soon{background:#6b7180;cursor:default}
+.card details{margin-top:14px}.card details summary{cursor:pointer;font-weight:600}

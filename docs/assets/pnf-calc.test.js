@@ -34,9 +34,23 @@ check("PW profit in quote", p.quoteProfit, 32.20);
 const p2 = P.service({ takeHome: 55000, weeks: 44, hours: 45, paidShare: 65, incomeTax: 12, margin: 15, monthlyCosts: 755,
   perMile: 0.76, mph: 30, jobHours: 3, people: 1, supplies: 45, miles: 40 });
 check("PW 2-story soft wash, 40 miles", p2.quote, 420);
+// Premium 13-Week E-commerce Cash Flow, lite. Expected values from the workbook (3 Cash Flow, ending cash row)
+// built with one channel paid in the week of sale (0-day lag, 0% fees) and the PO paid in full in its week.
+const c1 = P.cashflow({ openingCash: 20000, weeklyIn: 53700, weeklyOut: 32000, poAmount: 117000, poWeek: 4 });
+check("cash flow lite example lowest", c1.lowest, -10200);
+check("cash flow lite example low week", c1.lowWeek, 4);
+check("cash flow lite example gap", c1.gap, 10200);
+check("cash flow lite example week 13", c1.end13, 185100);
+const c2 = P.cashflow({ openingCash: 120000, weeklyIn: 53700, weeklyOut: 32000, poAmount: 117000, poWeek: 7 });
+check("cash flow lite PO week 7 lowest", c2.lowest, 141700);
+check("cash flow lite PO week 7 low week", c2.lowWeek, 1);
+const c3 = P.cashflow({ openingCash: 50000, weeklyIn: 30000, weeklyOut: 45000, poAmount: 60000, poWeek: 13 });
+check("cash flow lite burn lowest", c3.lowest, -205000);
+check("cash flow lite burn gap", c3.gap, 205000);
 // blank inputs never produce NaN or Infinity
 const b = P.service({});
 const bh = P.hourly({});
-const bad = [...Object.values(b), ...Object.values(bh)].filter(v => !isFinite(v));
+const bc = P.cashflow({});
+const bad = [...Object.values(b), ...Object.values(bh), ...Object.values(bc)].filter(v => !isFinite(v));
 if (bad.length) { fails++; console.log("FAIL blank inputs give non-finite values"); } else console.log("ok   blank inputs stay finite");
 process.exit(fails ? 1 : 0);

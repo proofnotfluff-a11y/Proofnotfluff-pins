@@ -68,8 +68,9 @@ def cta(page):
     c = page["cta"]
     bullets = " ".join(E(b) for b in c["bullets"])
     return (f'<section class="block"><div class="cta"><div><h2>{E(c["title"])}</h2><p>{bullets}</p></div>'
-            f'<div><a class="btn" href="{E(c["url"])}">{E(c["button"])}</a><br>'
-            f'<a class="btn ghost" href="{SHOP}">All ProofNotFluff tools</a></div></div></section>')
+            + (f'<div><a class="btn" href="{E(c["url"])}">{E(c["button"])}</a><br>' if c.get("url")
+               else f'<div><span class="btn soon" aria-disabled="true">{E(c["button"])}</span><br>')
+            + f'<a class="btn ghost" href="{SHOP}">All ProofNotFluff tools</a></div></div></section>')
 
 
 def service_page(p):
@@ -161,10 +162,42 @@ def hourly_page(p):
     return form, results, script
 
 
+def cashflow_page(p):
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>Where you start</legend>
+{field("openingCash", "Cash in the bank today", d["openingCash"], "All operating accounts together", pre="$")}
+</fieldset>
+<fieldset><legend>A normal week</legend>
+{field("weeklyIn", "Cash in per week, after fees", d["weeklyIn"], "Payouts that reach your bank, not sales", pre="$")}
+{field("weeklyOut", "Fixed costs and ads per week", d["weeklyOut"], "Payroll, rent, software, ad spend", pre="$")}
+</fieldset>
+<fieldset><legend>One purchase order</legend>
+{field("poAmount", "PO payment", d["poAmount"], "Balance plus freight, or the whole PO", pre="$")}
+{field("poWeek", "Week it is due, 1 to 13", d["poWeek"])}
+</fieldset></form>"""
+    weeks = "".join(f'<li><span>Week {t}</span><span data-out="end{t}" data-fmt="money0">$0</span></li>' for t in range(1, 14))
+    results = f"""<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Lowest cash in 13 weeks</div><div class="val" data-out="lowest" data-fmt="money0">$0</div><div class="sub"><span data-out="lowWeek" data-fmt="week">Week 1</span></div></div>
+<div class="tile"><div class="lab">Cash needed to stay above $0</div><div class="val" data-out="gap" data-fmt="money0">$0</div></div>
+</div>
+<div class="callout warn" data-show-if="gap > 0">Cash goes below zero. Cover <b data-out="gap" data-fmt="money0">$0</b> before that week, or move the PO.</div>
+<div class="callout" data-show-if="gap < 0.01">Cash stays above zero in all 13 weeks.</div>
+<details><summary>Ending cash, week by week</summary><ul class="lines">{weeks}</ul></details>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Lowest <b data-out="lowest" data-fmt="money0">$0</b></span><span>Needed <b data-out="gap" data-fmt="money0">$0</b></span></div>"""
+    script = '<script>PNF.wire(document.getElementById("calc"),PNF.cashflow);</script>'
+    return form, results, script
+
+
+PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashflow_page}
+
+
 def page_html(p):
     url = BASE + p["slug"] + "/"
     rel = "../"
-    form, results, script = (service_page if p["kind"] == "service" else hourly_page)(p)
+    form, results, script = PAGE_KINDS[p["kind"]](p)
     body = (f'<p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{E(p["lede"])}</p>'
             f'<div class="grid">{form}{results}</div>'
             f'<section class="block"><h2>How it works</h2>{"".join(f"<p>{E(x)}</p>" for x in p["method"])}</section>'

@@ -1,5 +1,6 @@
 /* ProofNotFluff free calculators. The maths is the same as the paid workbooks:
-   hourly: engines/hourly-rate-quick-calculator (#20); service: engines/service-pricing (#13 and its trade editions).
+   hourly: engines/hourly-rate-quick-calculator (#20); service: engines/service-pricing (#13 and its trade editions);
+   cashflow: the premium 13-Week E-commerce Cash Flow workbook's ending-cash row.
    Tested against the workbooks' own example outputs in docs/assets/pnf-calc.test.js. */
 (function (root) {
   "use strict";
@@ -52,6 +53,22 @@
     };
   }
 
+  // Premium 13-Week E-commerce Cash Flow, lite: one weekly cash-in and cash-out figure and one PO payment.
+  // Same maths as the workbook's ending-cash row with a single channel paid the week of the sale.
+  function cashflow(i) {
+    var open = num(i.openingCash), cin = num(i.weeklyIn), cout = num(i.weeklyOut);
+    var po = num(i.poAmount), wk = Math.round(num(i.poWeek));
+    var r = {}, cash = open, low = Infinity, lowWeek = 1;
+    for (var t = 1; t <= 13; t++) {
+      cash += cin - cout - (t === wk ? po : 0);
+      r["end" + t] = cash;
+      if (cash < low - 1e-9) { low = cash; lowWeek = t; }
+    }
+    r.lowest = low; r.lowWeek = lowWeek; r.gap = Math.max(0, -low); r.end13 = cash; r.perWeek = cin - cout;
+    r.poInWindow = (wk >= 1 && wk <= 13) ? 1 : 0;
+    return r;
+  }
+
   function money(x, cents) {
     var neg = x < 0; x = Math.abs(x);
     var s = cents === false ? Math.round(x).toLocaleString("en-US")
@@ -72,7 +89,7 @@
       outs.forEach(function (el) {
         var key = el.getAttribute("data-out"), fmt = el.getAttribute("data-fmt") || "money";
         var v = r[key];
-        el.textContent = fmt === "int" ? Math.round(v).toLocaleString("en-US")
+        el.textContent = fmt === "week" ? "Week " + v : fmt === "int" ? Math.round(v).toLocaleString("en-US")
                        : fmt === "hrs" ? v.toFixed(2) + " hrs"
                        : fmt === "money0" ? money(v, false) : money(v);
         el.classList.toggle("neg", v < 0);
@@ -88,6 +105,6 @@
     render();
   }
 
-  var api = { hourly: hourly, service: service, money: money, ceilTo: ceilTo, wire: wire };
+  var api = { hourly: hourly, service: service, cashflow: cashflow, money: money, ceilTo: ceilTo, wire: wire };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;
 })(this);

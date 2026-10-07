@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-06",
+ "updated": "2026-10-07",
  "pages": [
   {
    "slug": "house-cleaning-price-calculator",
@@ -296,6 +296,62 @@
     ]
    ],
    "sources": "Tax set-aside is your own estimate; ask your tax preparer. Checked Oct 6, 2026."
+  },
+  {
+   "slug": "ecommerce-13-week-cash-flow-calculator",
+   "kind": "cashflow",
+   "draft": true,
+   "title": "13 Week Cash Flow Calculator for Ecommerce | ProofNotFluff",
+   "desc": "Free 13 week cash flow calculator for ecommerce brands. Enter cash today, weekly payouts, weekly costs and one purchase order to see your lowest cash week and the cash you need to cover it.",
+   "eyebrow": "Free calculator",
+   "h1": "13 Week Cash Flow Calculator for Ecommerce",
+   "lede": "See the week your cash bottoms out and how much you need to cover it, before a purchase order lands. Free, no sign-up.",
+   "card": "Your lowest cash week in the next 13, and the cash needed to cover it.",
+   "defaults": {
+    "openingCash": "20,000",
+    "weeklyIn": "53,700",
+    "weeklyOut": "32,000",
+    "poAmount": "117,000",
+    "poWeek": "4"
+   },
+   "method": [
+    "Each week starts with last week's ending cash, adds the payouts that reach your bank and takes out your fixed costs and ad spend. In the week the purchase order is due, its payment comes out too.",
+    "The lowest ending cash across the 13 weeks is your low point. If it is below zero, the cash needed is the amount that keeps that week at zero.",
+    "This free version uses one weekly figure for cash in and one purchase order paid in a single week. Real brands wait days or weeks for each channel to pay out and pay POs as a deposit and a balance; the full workbook models both."
+   ],
+   "example": "Say a brand starts with $20,000 and collects $53,700 a week after fees while paying $32,000 a week in payroll, fixed costs and ads. That adds $21,700 a week, so cash reaches $85,100 by week 3. A $117,000 PO balance due in week 4 takes it to -$10,200, so the brand needs $10,200 more by then, or a later due date. By week 13 cash is back to $185,100. The weekly figures are the week 1 numbers from example 1 of the 13-Week E-commerce Cash Flow workbook; the starting cash and due week are changed to show a squeeze.",
+   "cta": {
+    "title": "The full 13-week cash flow",
+    "bullets": [
+     "The 13-Week E-commerce Cash Flow workbook models each channel's payout lag (Amazon, TikTok Shop, your own store, retail), six POs as deposit plus balance and freight,",
+     "factoring cost in dollars, a credit line, side-by-side scenarios and a PO planner, for Excel and Google Sheets."
+    ],
+    "button": "Coming soon",
+    "url": ""
+   },
+   "faq": [
+    [
+     "What is a 13 week cash flow?",
+     "A week-by-week plan of the cash coming in and going out over the next quarter, so you can see the lowest week before it happens. Thirteen weeks is one quarter."
+    ],
+    [
+     "Why can a profitable store run out of cash?",
+     "Sales are recorded when they happen, but payouts arrive later and inventory is paid for before it sells. Growing sales and big purchase orders widen that gap."
+    ],
+    [
+     "Should I use sales or payouts for cash in?",
+     "Payouts: the money that reaches your bank after fees and refunds, in the week it arrives."
+    ],
+    [
+     "What if the lowest week is below zero?",
+     "You need that much cash, credit or a later payment date by that week. Moving a PO's due date is often the first lever to test."
+    ],
+    [
+     "Is this financial advice?",
+     "No. It is a planning estimate based on the numbers you enter."
+    ]
+   ],
+   "sources": "No rates or fees are assumed: every figure is yours. Page checked Oct 7, 2026."
   }
  ]
 }

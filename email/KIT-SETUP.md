@@ -9,7 +9,7 @@ Sign-up page (goes live once the form ID is in it):
 https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/free-cleaning-price-cheat-sheet/
 
 ## Step 1. Account basics (Kit, Settings)
-- Sender name: ProofNotFluff. Sender email: outlandiastays@gmail.com or another address you read (replies land there; agents never reply).
+- Sender name: ProofNotFluff. Sender email: proofnotfluff@gmail.com (the address your Kit account uses) or another inbox you read (replies land there; agents never reply).
 - Mailing address: Kit requires a physical postal address in every email footer (US CAN-SPAM rule). A P.O. box or a virtual mailbox works if you'd rather not show a home address. This one is your call.
 
 ## Step 2. Create the form

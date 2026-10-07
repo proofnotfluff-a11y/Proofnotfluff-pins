@@ -7,6 +7,8 @@ Each page is one search phrase with a working calculator whose maths is the paid
 (docs/assets/pnf-calc.js, tested by `node docs/assets/pnf-calc.test.js`), a worked example
 with the workbook's own numbers, a short method, an FAQ (FAQPage structured data) and one
 link to the matching Etsy listing. Shop links use the Share & Save address proofnotfluff.etsy.com.
+A page whose spec carries "draft": true is written with a noindex tag and left off the index page
+and the sitemap until the Legal desk clears it and removes the flag (agents/legal-desk.md, SITE PAGES).
 """
 import html, json, os, sys
 
@@ -19,7 +21,7 @@ E = html.escape
 HEAD = """<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title><meta name="description" content="{desc}">
-<link rel="canonical" href="{url}"><meta property="og:title" content="{title}"><meta property="og:description" content="{desc}">
+<link rel="canonical" href="{url}">{robots}<meta property="og:title" content="{title}"><meta property="og:description" content="{desc}">
 <meta property="og:type" content="website"><meta property="og:url" content="{url}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
@@ -33,7 +35,7 @@ HEAD = """<!doctype html>
 FOOT = """</main>
 <footer><div class="wrap">
 <p>Estimates for planning only, based on the numbers you enter. Not tax, legal or financial advice. {sources}</p>
-<p>Made by ProofNotFluff. Calculators run in your browser; nothing you type is sent anywhere.</p>
+<p>Made by ProofNotFluff with AI assistance, reviewed and tested by the shop owner. Calculators run in your browser; nothing you type is sent anywhere.</p>
 </div></footer>
 <script src="{rel}assets/pnf-calc.js"></script>
 {script}
@@ -168,7 +170,8 @@ def page_html(p):
             f'<section class="block"><h2>How it works</h2>{"".join(f"<p>{E(x)}</p>" for x in p["method"])}</section>'
             f'<section class="block"><h2>A worked example</h2><p>{E(p["example"])}</p></section>'
             f'{cta(p)}{faq_block(p["faq"])}')
-    return (HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=SHOP, ld=ld_json(p, url), bodycls=' class="has-mbar"') + body +
+    robots = '<meta name="robots" content="noindex, nofollow">' if p.get("draft") else ""
+    return (HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=SHOP, ld=ld_json(p, url), bodycls=' class="has-mbar"', robots=robots) + body +
             FOOT.format(rel=rel, script=script, sources=E(p["sources"])))
 
 
@@ -180,7 +183,7 @@ def index_html(pages):
             f'<div class="tools">{cards}</div>')
     return (HEAD.format(title="Free pricing calculators for service businesses | ProofNotFluff",
                         desc="Free hourly rate and job pricing calculators for cleaners, pressure washing, freelancers and other service businesses.",
-                        url=BASE, rel="", shop=SHOP, ld="", bodycls="") + body +
+                        url=BASE, rel="", shop=SHOP, ld="", bodycls="", robots="") + body +
             FOOT.format(rel="", script="", sources="IRS Topic 554 (self-employment tax) and IRS standard mileage rates, checked Oct 6, 2026."))
 
 
@@ -191,8 +194,9 @@ def main():
         out = os.path.join(DOCS, p["slug"]); os.makedirs(out, exist_ok=True)
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page_html(p))
         print("wrote", p["slug"])
-    open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(index_html(pages))
-    urls = [BASE] + [BASE + p["slug"] + "/" for p in pages]
+    live = [p for p in pages if not p.get("draft")]
+    open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(index_html(live))
+    urls = [BASE] + [BASE + p["slug"] + "/" for p in live]
     open(os.path.join(DOCS, "sitemap.xml"), "w").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
         "".join(f"  <url><loc>{u}</loc><lastmod>{spec['updated']}</lastmod></url>\n" for u in urls) + "</urlset>\n")

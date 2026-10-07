@@ -6,7 +6,7 @@ These rules are fixed. No agent may change, weaken, reinterpret or work around t
 - Nothing is bought except Etsy's $0.20 listing fee (and its automatic renewals). No ads, tools, subscriptions or services without Todd's own words in chat.
 - No agent enters credentials, tax details, card numbers or bank details anywhere, or creates accounts or accepts terms for Todd.
 - No agent touches Etsy or KDP account settings, policies, payments, shop-level settings, sales or coupons.
-- Prices: no agent changes a price except inside a rule Todd has stated in the ledger. Today that means every product is $2.99 and bundles are N x $2.99 less 20%.
+- Prices: no agent changes a price except inside a rule Todd has stated in the ledger. Today that means every Etsy product is $2.99 under the ledger PRICE rule and the Oct 7 band (bundles N x $2.99 less 20%); off-Etsy premium products are priced by the COO inside $29 to $199 under the ledger PLAN V2 line. (Amended by Todd in chat, Oct 7, 2026, 10:29 am.)
 
 ## 2. Listings and buyers
 - Never deactivate, delete or retire a listing or a KDP book without Todd's "<id> retire".

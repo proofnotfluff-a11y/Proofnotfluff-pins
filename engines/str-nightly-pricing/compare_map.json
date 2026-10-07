@@ -1,0 +1,2359 @@
+{
+ "tolerance": 0.005,
+ "inputs": {
+  "name": {
+   "old": "Setup!B5",
+   "new": "'1 Your Property'!D15"
+  },
+  "base": {
+   "old": "Setup!B6",
+   "new": "'1 Your Property'!D16"
+  },
+  "cleaning": {
+   "old": "Setup!B7",
+   "new": "'1 Your Property'!D17"
+  },
+  "min_stay": {
+   "old": "Setup!B8",
+   "new": "'1 Your Property'!D18"
+  },
+  "market": {
+   "old": "Setup!B9",
+   "new": "'1 Your Property'!D19"
+  },
+  "weekly": {
+   "old": "'Length-of-Stay Discounts'!B5",
+   "new": "'1 Your Property'!D21"
+  },
+  "monthly": {
+   "old": "'Length-of-Stay Discounts'!B6",
+   "new": "'1 Your Property'!D22"
+  },
+  "floor": {
+   "old": "'Length-of-Stay Discounts'!B7",
+   "new": "'1 Your Property'!D23"
+  },
+  "hist_jan": {
+   "old": "'Seasonality Curve'!B8",
+   "new": "'2 Seasonality'!I16"
+  },
+  "hist_feb": {
+   "old": "'Seasonality Curve'!B9",
+   "new": "'2 Seasonality'!I17"
+  },
+  "hist_mar": {
+   "old": "'Seasonality Curve'!B10",
+   "new": "'2 Seasonality'!I18"
+  },
+  "hist_apr": {
+   "old": "'Seasonality Curve'!B11",
+   "new": "'2 Seasonality'!I19"
+  },
+  "hist_may": {
+   "old": "'Seasonality Curve'!B12",
+   "new": "'2 Seasonality'!I20"
+  },
+  "hist_jun": {
+   "old": "'Seasonality Curve'!B13",
+   "new": "'2 Seasonality'!I21"
+  },
+  "hist_jul": {
+   "old": "'Seasonality Curve'!B14",
+   "new": "'2 Seasonality'!I22"
+  },
+  "hist_aug": {
+   "old": "'Seasonality Curve'!B15",
+   "new": "'2 Seasonality'!I23"
+  },
+  "hist_sep": {
+   "old": "'Seasonality Curve'!B16",
+   "new": "'2 Seasonality'!I24"
+  },
+  "hist_oct": {
+   "old": "'Seasonality Curve'!B17",
+   "new": "'2 Seasonality'!I25"
+  },
+  "hist_nov": {
+   "old": "'Seasonality Curve'!B18",
+   "new": "'2 Seasonality'!I26"
+  },
+  "hist_dec": {
+   "old": "'Seasonality Curve'!B19",
+   "new": "'2 Seasonality'!I27"
+  },
+  "lake_jul": {
+   "old": "Setup!E19",
+   "new": "'2 Seasonality'!G22"
+  },
+  "ev1_name": {
+   "old": "'Event Premiums'!A8",
+   "new": "'3 Events'!C16"
+  },
+  "ev1_first": {
+   "old": "'Event Premiums'!B8",
+   "new": "'3 Events'!D16"
+  },
+  "ev1_last": {
+   "old": "'Event Premiums'!C8",
+   "new": "'3 Events'!E16"
+  },
+  "ev1_prem": {
+   "old": "'Event Premiums'!E8",
+   "new": "'3 Events'!G16"
+  },
+  "ev1_booked": {
+   "old": "'Event Premiums'!F8",
+   "new": "'3 Events'!H16"
+  },
+  "ev2_name": {
+   "old": "'Event Premiums'!A9",
+   "new": "'3 Events'!C17"
+  },
+  "ev2_first": {
+   "old": "'Event Premiums'!B9",
+   "new": "'3 Events'!D17"
+  },
+  "ev2_last": {
+   "old": "'Event Premiums'!C9",
+   "new": "'3 Events'!E17"
+  },
+  "ev2_prem": {
+   "old": "'Event Premiums'!E9",
+   "new": "'3 Events'!G17"
+  },
+  "ev2_booked": {
+   "old": "'Event Premiums'!F9",
+   "new": "'3 Events'!H17"
+  },
+  "ev3_name": {
+   "old": "'Event Premiums'!A10",
+   "new": "'3 Events'!C18"
+  },
+  "ev3_first": {
+   "old": "'Event Premiums'!B10",
+   "new": "'3 Events'!D18"
+  },
+  "ev3_last": {
+   "old": "'Event Premiums'!C10",
+   "new": "'3 Events'!E18"
+  },
+  "ev3_prem": {
+   "old": "'Event Premiums'!E10",
+   "new": "'3 Events'!G18"
+  },
+  "ev3_booked": {
+   "old": "'Event Premiums'!F10",
+   "new": "'3 Events'!H18"
+  },
+  "fee_old_rate": {
+   "old": "'Fee-Reset Check'!B5",
+   "new": "'5 Fee Reset'!D15"
+  },
+  "fee_old": {
+   "old": "'Fee-Reset Check'!B6",
+   "new": "'5 Fee Reset'!D16"
+  },
+  "fee_new": {
+   "old": "'Fee-Reset Check'!B7",
+   "new": "'5 Fee Reset'!D17"
+  },
+  "booked_nights": {
+   "old": "'Fee-Reset Check'!B8",
+   "new": "'5 Fee Reset'!D19"
+  },
+  "beach_jan": {
+   "old": "Setup!B13",
+   "new": "'2 Seasonality'!D16"
+  },
+  "mountain_jan": {
+   "old": "Setup!C13",
+   "new": "'2 Seasonality'!E16"
+  },
+  "urban_jan": {
+   "old": "Setup!D13",
+   "new": "'2 Seasonality'!F16"
+  },
+  "lake_jan": {
+   "old": "Setup!E13",
+   "new": "'2 Seasonality'!G16"
+  },
+  "rural_jan": {
+   "old": "Setup!F13",
+   "new": "'2 Seasonality'!H16"
+  },
+  "beach_feb": {
+   "old": "Setup!B14",
+   "new": "'2 Seasonality'!D17"
+  },
+  "mountain_feb": {
+   "old": "Setup!C14",
+   "new": "'2 Seasonality'!E17"
+  },
+  "urban_feb": {
+   "old": "Setup!D14",
+   "new": "'2 Seasonality'!F17"
+  },
+  "lake_feb": {
+   "old": "Setup!E14",
+   "new": "'2 Seasonality'!G17"
+  },
+  "rural_feb": {
+   "old": "Setup!F14",
+   "new": "'2 Seasonality'!H17"
+  },
+  "beach_mar": {
+   "old": "Setup!B15",
+   "new": "'2 Seasonality'!D18"
+  },
+  "mountain_mar": {
+   "old": "Setup!C15",
+   "new": "'2 Seasonality'!E18"
+  },
+  "urban_mar": {
+   "old": "Setup!D15",
+   "new": "'2 Seasonality'!F18"
+  },
+  "lake_mar": {
+   "old": "Setup!E15",
+   "new": "'2 Seasonality'!G18"
+  },
+  "rural_mar": {
+   "old": "Setup!F15",
+   "new": "'2 Seasonality'!H18"
+  },
+  "beach_apr": {
+   "old": "Setup!B16",
+   "new": "'2 Seasonality'!D19"
+  },
+  "mountain_apr": {
+   "old": "Setup!C16",
+   "new": "'2 Seasonality'!E19"
+  },
+  "urban_apr": {
+   "old": "Setup!D16",
+   "new": "'2 Seasonality'!F19"
+  },
+  "lake_apr": {
+   "old": "Setup!E16",
+   "new": "'2 Seasonality'!G19"
+  },
+  "rural_apr": {
+   "old": "Setup!F16",
+   "new": "'2 Seasonality'!H19"
+  },
+  "beach_may": {
+   "old": "Setup!B17",
+   "new": "'2 Seasonality'!D20"
+  },
+  "mountain_may": {
+   "old": "Setup!C17",
+   "new": "'2 Seasonality'!E20"
+  },
+  "urban_may": {
+   "old": "Setup!D17",
+   "new": "'2 Seasonality'!F20"
+  },
+  "lake_may": {
+   "old": "Setup!E17",
+   "new": "'2 Seasonality'!G20"
+  },
+  "rural_may": {
+   "old": "Setup!F17",
+   "new": "'2 Seasonality'!H20"
+  },
+  "beach_jun": {
+   "old": "Setup!B18",
+   "new": "'2 Seasonality'!D21"
+  },
+  "mountain_jun": {
+   "old": "Setup!C18",
+   "new": "'2 Seasonality'!E21"
+  },
+  "urban_jun": {
+   "old": "Setup!D18",
+   "new": "'2 Seasonality'!F21"
+  },
+  "lake_jun": {
+   "old": "Setup!E18",
+   "new": "'2 Seasonality'!G21"
+  },
+  "rural_jun": {
+   "old": "Setup!F18",
+   "new": "'2 Seasonality'!H21"
+  },
+  "beach_jul": {
+   "old": "Setup!B19",
+   "new": "'2 Seasonality'!D22"
+  },
+  "mountain_jul": {
+   "old": "Setup!C19",
+   "new": "'2 Seasonality'!E22"
+  },
+  "urban_jul": {
+   "old": "Setup!D19",
+   "new": "'2 Seasonality'!F22"
+  },
+  "rural_jul": {
+   "old": "Setup!F19",
+   "new": "'2 Seasonality'!H22"
+  },
+  "beach_aug": {
+   "old": "Setup!B20",
+   "new": "'2 Seasonality'!D23"
+  },
+  "mountain_aug": {
+   "old": "Setup!C20",
+   "new": "'2 Seasonality'!E23"
+  },
+  "urban_aug": {
+   "old": "Setup!D20",
+   "new": "'2 Seasonality'!F23"
+  },
+  "lake_aug": {
+   "old": "Setup!E20",
+   "new": "'2 Seasonality'!G23"
+  },
+  "rural_aug": {
+   "old": "Setup!F20",
+   "new": "'2 Seasonality'!H23"
+  },
+  "beach_sep": {
+   "old": "Setup!B21",
+   "new": "'2 Seasonality'!D24"
+  },
+  "mountain_sep": {
+   "old": "Setup!C21",
+   "new": "'2 Seasonality'!E24"
+  },
+  "urban_sep": {
+   "old": "Setup!D21",
+   "new": "'2 Seasonality'!F24"
+  },
+  "lake_sep": {
+   "old": "Setup!E21",
+   "new": "'2 Seasonality'!G24"
+  },
+  "rural_sep": {
+   "old": "Setup!F21",
+   "new": "'2 Seasonality'!H24"
+  },
+  "beach_oct": {
+   "old": "Setup!B22",
+   "new": "'2 Seasonality'!D25"
+  },
+  "mountain_oct": {
+   "old": "Setup!C22",
+   "new": "'2 Seasonality'!E25"
+  },
+  "urban_oct": {
+   "old": "Setup!D22",
+   "new": "'2 Seasonality'!F25"
+  },
+  "lake_oct": {
+   "old": "Setup!E22",
+   "new": "'2 Seasonality'!G25"
+  },
+  "rural_oct": {
+   "old": "Setup!F22",
+   "new": "'2 Seasonality'!H25"
+  },
+  "beach_nov": {
+   "old": "Setup!B23",
+   "new": "'2 Seasonality'!D26"
+  },
+  "mountain_nov": {
+   "old": "Setup!C23",
+   "new": "'2 Seasonality'!E26"
+  },
+  "urban_nov": {
+   "old": "Setup!D23",
+   "new": "'2 Seasonality'!F26"
+  },
+  "lake_nov": {
+   "old": "Setup!E23",
+   "new": "'2 Seasonality'!G26"
+  },
+  "rural_nov": {
+   "old": "Setup!F23",
+   "new": "'2 Seasonality'!H26"
+  },
+  "beach_dec": {
+   "old": "Setup!B24",
+   "new": "'2 Seasonality'!D27"
+  },
+  "mountain_dec": {
+   "old": "Setup!C24",
+   "new": "'2 Seasonality'!E27"
+  },
+  "urban_dec": {
+   "old": "Setup!D24",
+   "new": "'2 Seasonality'!F27"
+  },
+  "lake_dec": {
+   "old": "Setup!E24",
+   "new": "'2 Seasonality'!G27"
+  },
+  "rural_dec": {
+   "old": "Setup!F24",
+   "new": "'2 Seasonality'!H27"
+  }
+ },
+ "outputs": {
+  "curve_status": {
+   "old": "'Seasonality Curve'!B4",
+   "new": "'2 Seasonality'!C8"
+  },
+  "starter_jan": {
+   "old": "'Seasonality Curve'!C8",
+   "new": "'2 Seasonality'!J16"
+  },
+  "mult_jan": {
+   "old": "'Seasonality Curve'!E8",
+   "new": "'2 Seasonality'!L16"
+  },
+  "base_jan": {
+   "old": "'Seasonality Curve'!F8",
+   "new": "'2 Seasonality'!M16"
+  },
+  "los_C_jan": {
+   "old": "'Length-of-Stay Discounts'!C10",
+   "new": "'4 Stay Discounts'!E16"
+  },
+  "los_D_jan": {
+   "old": "'Length-of-Stay Discounts'!D10",
+   "new": "'4 Stay Discounts'!F16"
+  },
+  "los_E_jan": {
+   "old": "'Length-of-Stay Discounts'!E10",
+   "new": "'4 Stay Discounts'!G16"
+  },
+  "los_F_jan": {
+   "old": "'Length-of-Stay Discounts'!F10",
+   "new": "'4 Stay Discounts'!H16"
+  },
+  "los_G_jan": {
+   "old": "'Length-of-Stay Discounts'!G10",
+   "new": "'4 Stay Discounts'!I16"
+  },
+  "los_H_jan": {
+   "old": "'Length-of-Stay Discounts'!H10",
+   "new": "'4 Stay Discounts'!J16"
+  },
+  "los_I_jan": {
+   "old": "'Length-of-Stay Discounts'!I10",
+   "new": "'4 Stay Discounts'!K16"
+  },
+  "los_J_jan": {
+   "old": "'Length-of-Stay Discounts'!J10",
+   "new": "'4 Stay Discounts'!L16"
+  },
+  "los_K_jan": {
+   "old": "'Length-of-Stay Discounts'!K10",
+   "new": "'4 Stay Discounts'!M16"
+  },
+  "los_L_jan": {
+   "old": "'Length-of-Stay Discounts'!L10",
+   "new": "'4 Stay Discounts'!N16"
+  },
+  "rt_B_jan": {
+   "old": "'12-Month Rate Table'!B9",
+   "new": "'6 Rate Table'!D16"
+  },
+  "rt_C_jan": {
+   "old": "'12-Month Rate Table'!C9",
+   "new": "'6 Rate Table'!E16"
+  },
+  "rt_D_jan": {
+   "old": "'12-Month Rate Table'!D9",
+   "new": "'6 Rate Table'!F16"
+  },
+  "rt_E_jan": {
+   "old": "'12-Month Rate Table'!E9",
+   "new": "'6 Rate Table'!G16"
+  },
+  "rt_F_jan": {
+   "old": "'12-Month Rate Table'!F9",
+   "new": "'6 Rate Table'!H16"
+  },
+  "rt_G_jan": {
+   "old": "'12-Month Rate Table'!G9",
+   "new": "'6 Rate Table'!I16"
+  },
+  "rt_H_jan": {
+   "old": "'12-Month Rate Table'!H9",
+   "new": "'6 Rate Table'!J16"
+  },
+  "starter_feb": {
+   "old": "'Seasonality Curve'!C9",
+   "new": "'2 Seasonality'!J17"
+  },
+  "mult_feb": {
+   "old": "'Seasonality Curve'!E9",
+   "new": "'2 Seasonality'!L17"
+  },
+  "base_feb": {
+   "old": "'Seasonality Curve'!F9",
+   "new": "'2 Seasonality'!M17"
+  },
+  "los_C_feb": {
+   "old": "'Length-of-Stay Discounts'!C11",
+   "new": "'4 Stay Discounts'!E17"
+  },
+  "los_D_feb": {
+   "old": "'Length-of-Stay Discounts'!D11",
+   "new": "'4 Stay Discounts'!F17"
+  },
+  "los_E_feb": {
+   "old": "'Length-of-Stay Discounts'!E11",
+   "new": "'4 Stay Discounts'!G17"
+  },
+  "los_F_feb": {
+   "old": "'Length-of-Stay Discounts'!F11",
+   "new": "'4 Stay Discounts'!H17"
+  },
+  "los_G_feb": {
+   "old": "'Length-of-Stay Discounts'!G11",
+   "new": "'4 Stay Discounts'!I17"
+  },
+  "los_H_feb": {
+   "old": "'Length-of-Stay Discounts'!H11",
+   "new": "'4 Stay Discounts'!J17"
+  },
+  "los_I_feb": {
+   "old": "'Length-of-Stay Discounts'!I11",
+   "new": "'4 Stay Discounts'!K17"
+  },
+  "los_J_feb": {
+   "old": "'Length-of-Stay Discounts'!J11",
+   "new": "'4 Stay Discounts'!L17"
+  },
+  "los_K_feb": {
+   "old": "'Length-of-Stay Discounts'!K11",
+   "new": "'4 Stay Discounts'!M17"
+  },
+  "los_L_feb": {
+   "old": "'Length-of-Stay Discounts'!L11",
+   "new": "'4 Stay Discounts'!N17"
+  },
+  "rt_B_feb": {
+   "old": "'12-Month Rate Table'!B10",
+   "new": "'6 Rate Table'!D17"
+  },
+  "rt_C_feb": {
+   "old": "'12-Month Rate Table'!C10",
+   "new": "'6 Rate Table'!E17"
+  },
+  "rt_D_feb": {
+   "old": "'12-Month Rate Table'!D10",
+   "new": "'6 Rate Table'!F17"
+  },
+  "rt_E_feb": {
+   "old": "'12-Month Rate Table'!E10",
+   "new": "'6 Rate Table'!G17"
+  },
+  "rt_F_feb": {
+   "old": "'12-Month Rate Table'!F10",
+   "new": "'6 Rate Table'!H17"
+  },
+  "rt_G_feb": {
+   "old": "'12-Month Rate Table'!G10",
+   "new": "'6 Rate Table'!I17"
+  },
+  "rt_H_feb": {
+   "old": "'12-Month Rate Table'!H10",
+   "new": "'6 Rate Table'!J17"
+  },
+  "starter_mar": {
+   "old": "'Seasonality Curve'!C10",
+   "new": "'2 Seasonality'!J18"
+  },
+  "mult_mar": {
+   "old": "'Seasonality Curve'!E10",
+   "new": "'2 Seasonality'!L18"
+  },
+  "base_mar": {
+   "old": "'Seasonality Curve'!F10",
+   "new": "'2 Seasonality'!M18"
+  },
+  "los_C_mar": {
+   "old": "'Length-of-Stay Discounts'!C12",
+   "new": "'4 Stay Discounts'!E18"
+  },
+  "los_D_mar": {
+   "old": "'Length-of-Stay Discounts'!D12",
+   "new": "'4 Stay Discounts'!F18"
+  },
+  "los_E_mar": {
+   "old": "'Length-of-Stay Discounts'!E12",
+   "new": "'4 Stay Discounts'!G18"
+  },
+  "los_F_mar": {
+   "old": "'Length-of-Stay Discounts'!F12",
+   "new": "'4 Stay Discounts'!H18"
+  },
+  "los_G_mar": {
+   "old": "'Length-of-Stay Discounts'!G12",
+   "new": "'4 Stay Discounts'!I18"
+  },
+  "los_H_mar": {
+   "old": "'Length-of-Stay Discounts'!H12",
+   "new": "'4 Stay Discounts'!J18"
+  },
+  "los_I_mar": {
+   "old": "'Length-of-Stay Discounts'!I12",
+   "new": "'4 Stay Discounts'!K18"
+  },
+  "los_J_mar": {
+   "old": "'Length-of-Stay Discounts'!J12",
+   "new": "'4 Stay Discounts'!L18"
+  },
+  "los_K_mar": {
+   "old": "'Length-of-Stay Discounts'!K12",
+   "new": "'4 Stay Discounts'!M18"
+  },
+  "los_L_mar": {
+   "old": "'Length-of-Stay Discounts'!L12",
+   "new": "'4 Stay Discounts'!N18"
+  },
+  "rt_B_mar": {
+   "old": "'12-Month Rate Table'!B11",
+   "new": "'6 Rate Table'!D18"
+  },
+  "rt_C_mar": {
+   "old": "'12-Month Rate Table'!C11",
+   "new": "'6 Rate Table'!E18"
+  },
+  "rt_D_mar": {
+   "old": "'12-Month Rate Table'!D11",
+   "new": "'6 Rate Table'!F18"
+  },
+  "rt_E_mar": {
+   "old": "'12-Month Rate Table'!E11",
+   "new": "'6 Rate Table'!G18"
+  },
+  "rt_F_mar": {
+   "old": "'12-Month Rate Table'!F11",
+   "new": "'6 Rate Table'!H18"
+  },
+  "rt_G_mar": {
+   "old": "'12-Month Rate Table'!G11",
+   "new": "'6 Rate Table'!I18"
+  },
+  "rt_H_mar": {
+   "old": "'12-Month Rate Table'!H11",
+   "new": "'6 Rate Table'!J18"
+  },
+  "starter_apr": {
+   "old": "'Seasonality Curve'!C11",
+   "new": "'2 Seasonality'!J19"
+  },
+  "mult_apr": {
+   "old": "'Seasonality Curve'!E11",
+   "new": "'2 Seasonality'!L19"
+  },
+  "base_apr": {
+   "old": "'Seasonality Curve'!F11",
+   "new": "'2 Seasonality'!M19"
+  },
+  "los_C_apr": {
+   "old": "'Length-of-Stay Discounts'!C13",
+   "new": "'4 Stay Discounts'!E19"
+  },
+  "los_D_apr": {
+   "old": "'Length-of-Stay Discounts'!D13",
+   "new": "'4 Stay Discounts'!F19"
+  },
+  "los_E_apr": {
+   "old": "'Length-of-Stay Discounts'!E13",
+   "new": "'4 Stay Discounts'!G19"
+  },
+  "los_F_apr": {
+   "old": "'Length-of-Stay Discounts'!F13",
+   "new": "'4 Stay Discounts'!H19"
+  },
+  "los_G_apr": {
+   "old": "'Length-of-Stay Discounts'!G13",
+   "new": "'4 Stay Discounts'!I19"
+  },
+  "los_H_apr": {
+   "old": "'Length-of-Stay Discounts'!H13",
+   "new": "'4 Stay Discounts'!J19"
+  },
+  "los_I_apr": {
+   "old": "'Length-of-Stay Discounts'!I13",
+   "new": "'4 Stay Discounts'!K19"
+  },
+  "los_J_apr": {
+   "old": "'Length-of-Stay Discounts'!J13",
+   "new": "'4 Stay Discounts'!L19"
+  },
+  "los_K_apr": {
+   "old": "'Length-of-Stay Discounts'!K13",
+   "new": "'4 Stay Discounts'!M19"
+  },
+  "los_L_apr": {
+   "old": "'Length-of-Stay Discounts'!L13",
+   "new": "'4 Stay Discounts'!N19"
+  },
+  "rt_B_apr": {
+   "old": "'12-Month Rate Table'!B12",
+   "new": "'6 Rate Table'!D19"
+  },
+  "rt_C_apr": {
+   "old": "'12-Month Rate Table'!C12",
+   "new": "'6 Rate Table'!E19"
+  },
+  "rt_D_apr": {
+   "old": "'12-Month Rate Table'!D12",
+   "new": "'6 Rate Table'!F19"
+  },
+  "rt_E_apr": {
+   "old": "'12-Month Rate Table'!E12",
+   "new": "'6 Rate Table'!G19"
+  },
+  "rt_F_apr": {
+   "old": "'12-Month Rate Table'!F12",
+   "new": "'6 Rate Table'!H19"
+  },
+  "rt_G_apr": {
+   "old": "'12-Month Rate Table'!G12",
+   "new": "'6 Rate Table'!I19"
+  },
+  "rt_H_apr": {
+   "old": "'12-Month Rate Table'!H12",
+   "new": "'6 Rate Table'!J19"
+  },
+  "starter_may": {
+   "old": "'Seasonality Curve'!C12",
+   "new": "'2 Seasonality'!J20"
+  },
+  "mult_may": {
+   "old": "'Seasonality Curve'!E12",
+   "new": "'2 Seasonality'!L20"
+  },
+  "base_may": {
+   "old": "'Seasonality Curve'!F12",
+   "new": "'2 Seasonality'!M20"
+  },
+  "los_C_may": {
+   "old": "'Length-of-Stay Discounts'!C14",
+   "new": "'4 Stay Discounts'!E20"
+  },
+  "los_D_may": {
+   "old": "'Length-of-Stay Discounts'!D14",
+   "new": "'4 Stay Discounts'!F20"
+  },
+  "los_E_may": {
+   "old": "'Length-of-Stay Discounts'!E14",
+   "new": "'4 Stay Discounts'!G20"
+  },
+  "los_F_may": {
+   "old": "'Length-of-Stay Discounts'!F14",
+   "new": "'4 Stay Discounts'!H20"
+  },
+  "los_G_may": {
+   "old": "'Length-of-Stay Discounts'!G14",
+   "new": "'4 Stay Discounts'!I20"
+  },
+  "los_H_may": {
+   "old": "'Length-of-Stay Discounts'!H14",
+   "new": "'4 Stay Discounts'!J20"
+  },
+  "los_I_may": {
+   "old": "'Length-of-Stay Discounts'!I14",
+   "new": "'4 Stay Discounts'!K20"
+  },
+  "los_J_may": {
+   "old": "'Length-of-Stay Discounts'!J14",
+   "new": "'4 Stay Discounts'!L20"
+  },
+  "los_K_may": {
+   "old": "'Length-of-Stay Discounts'!K14",
+   "new": "'4 Stay Discounts'!M20"
+  },
+  "los_L_may": {
+   "old": "'Length-of-Stay Discounts'!L14",
+   "new": "'4 Stay Discounts'!N20"
+  },
+  "rt_B_may": {
+   "old": "'12-Month Rate Table'!B13",
+   "new": "'6 Rate Table'!D20"
+  },
+  "rt_C_may": {
+   "old": "'12-Month Rate Table'!C13",
+   "new": "'6 Rate Table'!E20"
+  },
+  "rt_D_may": {
+   "old": "'12-Month Rate Table'!D13",
+   "new": "'6 Rate Table'!F20"
+  },
+  "rt_E_may": {
+   "old": "'12-Month Rate Table'!E13",
+   "new": "'6 Rate Table'!G20"
+  },
+  "rt_F_may": {
+   "old": "'12-Month Rate Table'!F13",
+   "new": "'6 Rate Table'!H20"
+  },
+  "rt_G_may": {
+   "old": "'12-Month Rate Table'!G13",
+   "new": "'6 Rate Table'!I20"
+  },
+  "rt_H_may": {
+   "old": "'12-Month Rate Table'!H13",
+   "new": "'6 Rate Table'!J20"
+  },
+  "starter_jun": {
+   "old": "'Seasonality Curve'!C13",
+   "new": "'2 Seasonality'!J21"
+  },
+  "mult_jun": {
+   "old": "'Seasonality Curve'!E13",
+   "new": "'2 Seasonality'!L21"
+  },
+  "base_jun": {
+   "old": "'Seasonality Curve'!F13",
+   "new": "'2 Seasonality'!M21"
+  },
+  "los_C_jun": {
+   "old": "'Length-of-Stay Discounts'!C15",
+   "new": "'4 Stay Discounts'!E21"
+  },
+  "los_D_jun": {
+   "old": "'Length-of-Stay Discounts'!D15",
+   "new": "'4 Stay Discounts'!F21"
+  },
+  "los_E_jun": {
+   "old": "'Length-of-Stay Discounts'!E15",
+   "new": "'4 Stay Discounts'!G21"
+  },
+  "los_F_jun": {
+   "old": "'Length-of-Stay Discounts'!F15",
+   "new": "'4 Stay Discounts'!H21"
+  },
+  "los_G_jun": {
+   "old": "'Length-of-Stay Discounts'!G15",
+   "new": "'4 Stay Discounts'!I21"
+  },
+  "los_H_jun": {
+   "old": "'Length-of-Stay Discounts'!H15",
+   "new": "'4 Stay Discounts'!J21"
+  },
+  "los_I_jun": {
+   "old": "'Length-of-Stay Discounts'!I15",
+   "new": "'4 Stay Discounts'!K21"
+  },
+  "los_J_jun": {
+   "old": "'Length-of-Stay Discounts'!J15",
+   "new": "'4 Stay Discounts'!L21"
+  },
+  "los_K_jun": {
+   "old": "'Length-of-Stay Discounts'!K15",
+   "new": "'4 Stay Discounts'!M21"
+  },
+  "los_L_jun": {
+   "old": "'Length-of-Stay Discounts'!L15",
+   "new": "'4 Stay Discounts'!N21"
+  },
+  "rt_B_jun": {
+   "old": "'12-Month Rate Table'!B14",
+   "new": "'6 Rate Table'!D21"
+  },
+  "rt_C_jun": {
+   "old": "'12-Month Rate Table'!C14",
+   "new": "'6 Rate Table'!E21"
+  },
+  "rt_D_jun": {
+   "old": "'12-Month Rate Table'!D14",
+   "new": "'6 Rate Table'!F21"
+  },
+  "rt_E_jun": {
+   "old": "'12-Month Rate Table'!E14",
+   "new": "'6 Rate Table'!G21"
+  },
+  "rt_F_jun": {
+   "old": "'12-Month Rate Table'!F14",
+   "new": "'6 Rate Table'!H21"
+  },
+  "rt_G_jun": {
+   "old": "'12-Month Rate Table'!G14",
+   "new": "'6 Rate Table'!I21"
+  },
+  "rt_H_jun": {
+   "old": "'12-Month Rate Table'!H14",
+   "new": "'6 Rate Table'!J21"
+  },
+  "starter_jul": {
+   "old": "'Seasonality Curve'!C14",
+   "new": "'2 Seasonality'!J22"
+  },
+  "mult_jul": {
+   "old": "'Seasonality Curve'!E14",
+   "new": "'2 Seasonality'!L22"
+  },
+  "base_jul": {
+   "old": "'Seasonality Curve'!F14",
+   "new": "'2 Seasonality'!M22"
+  },
+  "los_C_jul": {
+   "old": "'Length-of-Stay Discounts'!C16",
+   "new": "'4 Stay Discounts'!E22"
+  },
+  "los_D_jul": {
+   "old": "'Length-of-Stay Discounts'!D16",
+   "new": "'4 Stay Discounts'!F22"
+  },
+  "los_E_jul": {
+   "old": "'Length-of-Stay Discounts'!E16",
+   "new": "'4 Stay Discounts'!G22"
+  },
+  "los_F_jul": {
+   "old": "'Length-of-Stay Discounts'!F16",
+   "new": "'4 Stay Discounts'!H22"
+  },
+  "los_G_jul": {
+   "old": "'Length-of-Stay Discounts'!G16",
+   "new": "'4 Stay Discounts'!I22"
+  },
+  "los_H_jul": {
+   "old": "'Length-of-Stay Discounts'!H16",
+   "new": "'4 Stay Discounts'!J22"
+  },
+  "los_I_jul": {
+   "old": "'Length-of-Stay Discounts'!I16",
+   "new": "'4 Stay Discounts'!K22"
+  },
+  "los_J_jul": {
+   "old": "'Length-of-Stay Discounts'!J16",
+   "new": "'4 Stay Discounts'!L22"
+  },
+  "los_K_jul": {
+   "old": "'Length-of-Stay Discounts'!K16",
+   "new": "'4 Stay Discounts'!M22"
+  },
+  "los_L_jul": {
+   "old": "'Length-of-Stay Discounts'!L16",
+   "new": "'4 Stay Discounts'!N22"
+  },
+  "rt_B_jul": {
+   "old": "'12-Month Rate Table'!B15",
+   "new": "'6 Rate Table'!D22"
+  },
+  "rt_C_jul": {
+   "old": "'12-Month Rate Table'!C15",
+   "new": "'6 Rate Table'!E22"
+  },
+  "rt_D_jul": {
+   "old": "'12-Month Rate Table'!D15",
+   "new": "'6 Rate Table'!F22"
+  },
+  "rt_E_jul": {
+   "old": "'12-Month Rate Table'!E15",
+   "new": "'6 Rate Table'!G22"
+  },
+  "rt_F_jul": {
+   "old": "'12-Month Rate Table'!F15",
+   "new": "'6 Rate Table'!H22"
+  },
+  "rt_G_jul": {
+   "old": "'12-Month Rate Table'!G15",
+   "new": "'6 Rate Table'!I22"
+  },
+  "rt_H_jul": {
+   "old": "'12-Month Rate Table'!H15",
+   "new": "'6 Rate Table'!J22"
+  },
+  "starter_aug": {
+   "old": "'Seasonality Curve'!C15",
+   "new": "'2 Seasonality'!J23"
+  },
+  "mult_aug": {
+   "old": "'Seasonality Curve'!E15",
+   "new": "'2 Seasonality'!L23"
+  },
+  "base_aug": {
+   "old": "'Seasonality Curve'!F15",
+   "new": "'2 Seasonality'!M23"
+  },
+  "los_C_aug": {
+   "old": "'Length-of-Stay Discounts'!C17",
+   "new": "'4 Stay Discounts'!E23"
+  },
+  "los_D_aug": {
+   "old": "'Length-of-Stay Discounts'!D17",
+   "new": "'4 Stay Discounts'!F23"
+  },
+  "los_E_aug": {
+   "old": "'Length-of-Stay Discounts'!E17",
+   "new": "'4 Stay Discounts'!G23"
+  },
+  "los_F_aug": {
+   "old": "'Length-of-Stay Discounts'!F17",
+   "new": "'4 Stay Discounts'!H23"
+  },
+  "los_G_aug": {
+   "old": "'Length-of-Stay Discounts'!G17",
+   "new": "'4 Stay Discounts'!I23"
+  },
+  "los_H_aug": {
+   "old": "'Length-of-Stay Discounts'!H17",
+   "new": "'4 Stay Discounts'!J23"
+  },
+  "los_I_aug": {
+   "old": "'Length-of-Stay Discounts'!I17",
+   "new": "'4 Stay Discounts'!K23"
+  },
+  "los_J_aug": {
+   "old": "'Length-of-Stay Discounts'!J17",
+   "new": "'4 Stay Discounts'!L23"
+  },
+  "los_K_aug": {
+   "old": "'Length-of-Stay Discounts'!K17",
+   "new": "'4 Stay Discounts'!M23"
+  },
+  "los_L_aug": {
+   "old": "'Length-of-Stay Discounts'!L17",
+   "new": "'4 Stay Discounts'!N23"
+  },
+  "rt_B_aug": {
+   "old": "'12-Month Rate Table'!B16",
+   "new": "'6 Rate Table'!D23"
+  },
+  "rt_C_aug": {
+   "old": "'12-Month Rate Table'!C16",
+   "new": "'6 Rate Table'!E23"
+  },
+  "rt_D_aug": {
+   "old": "'12-Month Rate Table'!D16",
+   "new": "'6 Rate Table'!F23"
+  },
+  "rt_E_aug": {
+   "old": "'12-Month Rate Table'!E16",
+   "new": "'6 Rate Table'!G23"
+  },
+  "rt_F_aug": {
+   "old": "'12-Month Rate Table'!F16",
+   "new": "'6 Rate Table'!H23"
+  },
+  "rt_G_aug": {
+   "old": "'12-Month Rate Table'!G16",
+   "new": "'6 Rate Table'!I23"
+  },
+  "rt_H_aug": {
+   "old": "'12-Month Rate Table'!H16",
+   "new": "'6 Rate Table'!J23"
+  },
+  "starter_sep": {
+   "old": "'Seasonality Curve'!C16",
+   "new": "'2 Seasonality'!J24"
+  },
+  "mult_sep": {
+   "old": "'Seasonality Curve'!E16",
+   "new": "'2 Seasonality'!L24"
+  },
+  "base_sep": {
+   "old": "'Seasonality Curve'!F16",
+   "new": "'2 Seasonality'!M24"
+  },
+  "los_C_sep": {
+   "old": "'Length-of-Stay Discounts'!C18",
+   "new": "'4 Stay Discounts'!E24"
+  },
+  "los_D_sep": {
+   "old": "'Length-of-Stay Discounts'!D18",
+   "new": "'4 Stay Discounts'!F24"
+  },
+  "los_E_sep": {
+   "old": "'Length-of-Stay Discounts'!E18",
+   "new": "'4 Stay Discounts'!G24"
+  },
+  "los_F_sep": {
+   "old": "'Length-of-Stay Discounts'!F18",
+   "new": "'4 Stay Discounts'!H24"
+  },
+  "los_G_sep": {
+   "old": "'Length-of-Stay Discounts'!G18",
+   "new": "'4 Stay Discounts'!I24"
+  },
+  "los_H_sep": {
+   "old": "'Length-of-Stay Discounts'!H18",
+   "new": "'4 Stay Discounts'!J24"
+  },
+  "los_I_sep": {
+   "old": "'Length-of-Stay Discounts'!I18",
+   "new": "'4 Stay Discounts'!K24"
+  },
+  "los_J_sep": {
+   "old": "'Length-of-Stay Discounts'!J18",
+   "new": "'4 Stay Discounts'!L24"
+  },
+  "los_K_sep": {
+   "old": "'Length-of-Stay Discounts'!K18",
+   "new": "'4 Stay Discounts'!M24"
+  },
+  "los_L_sep": {
+   "old": "'Length-of-Stay Discounts'!L18",
+   "new": "'4 Stay Discounts'!N24"
+  },
+  "rt_B_sep": {
+   "old": "'12-Month Rate Table'!B17",
+   "new": "'6 Rate Table'!D24"
+  },
+  "rt_C_sep": {
+   "old": "'12-Month Rate Table'!C17",
+   "new": "'6 Rate Table'!E24"
+  },
+  "rt_D_sep": {
+   "old": "'12-Month Rate Table'!D17",
+   "new": "'6 Rate Table'!F24"
+  },
+  "rt_E_sep": {
+   "old": "'12-Month Rate Table'!E17",
+   "new": "'6 Rate Table'!G24"
+  },
+  "rt_F_sep": {
+   "old": "'12-Month Rate Table'!F17",
+   "new": "'6 Rate Table'!H24"
+  },
+  "rt_G_sep": {
+   "old": "'12-Month Rate Table'!G17",
+   "new": "'6 Rate Table'!I24"
+  },
+  "rt_H_sep": {
+   "old": "'12-Month Rate Table'!H17",
+   "new": "'6 Rate Table'!J24"
+  },
+  "starter_oct": {
+   "old": "'Seasonality Curve'!C17",
+   "new": "'2 Seasonality'!J25"
+  },
+  "mult_oct": {
+   "old": "'Seasonality Curve'!E17",
+   "new": "'2 Seasonality'!L25"
+  },
+  "base_oct": {
+   "old": "'Seasonality Curve'!F17",
+   "new": "'2 Seasonality'!M25"
+  },
+  "los_C_oct": {
+   "old": "'Length-of-Stay Discounts'!C19",
+   "new": "'4 Stay Discounts'!E25"
+  },
+  "los_D_oct": {
+   "old": "'Length-of-Stay Discounts'!D19",
+   "new": "'4 Stay Discounts'!F25"
+  },
+  "los_E_oct": {
+   "old": "'Length-of-Stay Discounts'!E19",
+   "new": "'4 Stay Discounts'!G25"
+  },
+  "los_F_oct": {
+   "old": "'Length-of-Stay Discounts'!F19",
+   "new": "'4 Stay Discounts'!H25"
+  },
+  "los_G_oct": {
+   "old": "'Length-of-Stay Discounts'!G19",
+   "new": "'4 Stay Discounts'!I25"
+  },
+  "los_H_oct": {
+   "old": "'Length-of-Stay Discounts'!H19",
+   "new": "'4 Stay Discounts'!J25"
+  },
+  "los_I_oct": {
+   "old": "'Length-of-Stay Discounts'!I19",
+   "new": "'4 Stay Discounts'!K25"
+  },
+  "los_J_oct": {
+   "old": "'Length-of-Stay Discounts'!J19",
+   "new": "'4 Stay Discounts'!L25"
+  },
+  "los_K_oct": {
+   "old": "'Length-of-Stay Discounts'!K19",
+   "new": "'4 Stay Discounts'!M25"
+  },
+  "los_L_oct": {
+   "old": "'Length-of-Stay Discounts'!L19",
+   "new": "'4 Stay Discounts'!N25"
+  },
+  "rt_B_oct": {
+   "old": "'12-Month Rate Table'!B18",
+   "new": "'6 Rate Table'!D25"
+  },
+  "rt_C_oct": {
+   "old": "'12-Month Rate Table'!C18",
+   "new": "'6 Rate Table'!E25"
+  },
+  "rt_D_oct": {
+   "old": "'12-Month Rate Table'!D18",
+   "new": "'6 Rate Table'!F25"
+  },
+  "rt_E_oct": {
+   "old": "'12-Month Rate Table'!E18",
+   "new": "'6 Rate Table'!G25"
+  },
+  "rt_F_oct": {
+   "old": "'12-Month Rate Table'!F18",
+   "new": "'6 Rate Table'!H25"
+  },
+  "rt_G_oct": {
+   "old": "'12-Month Rate Table'!G18",
+   "new": "'6 Rate Table'!I25"
+  },
+  "rt_H_oct": {
+   "old": "'12-Month Rate Table'!H18",
+   "new": "'6 Rate Table'!J25"
+  },
+  "starter_nov": {
+   "old": "'Seasonality Curve'!C18",
+   "new": "'2 Seasonality'!J26"
+  },
+  "mult_nov": {
+   "old": "'Seasonality Curve'!E18",
+   "new": "'2 Seasonality'!L26"
+  },
+  "base_nov": {
+   "old": "'Seasonality Curve'!F18",
+   "new": "'2 Seasonality'!M26"
+  },
+  "los_C_nov": {
+   "old": "'Length-of-Stay Discounts'!C20",
+   "new": "'4 Stay Discounts'!E26"
+  },
+  "los_D_nov": {
+   "old": "'Length-of-Stay Discounts'!D20",
+   "new": "'4 Stay Discounts'!F26"
+  },
+  "los_E_nov": {
+   "old": "'Length-of-Stay Discounts'!E20",
+   "new": "'4 Stay Discounts'!G26"
+  },
+  "los_F_nov": {
+   "old": "'Length-of-Stay Discounts'!F20",
+   "new": "'4 Stay Discounts'!H26"
+  },
+  "los_G_nov": {
+   "old": "'Length-of-Stay Discounts'!G20",
+   "new": "'4 Stay Discounts'!I26"
+  },
+  "los_H_nov": {
+   "old": "'Length-of-Stay Discounts'!H20",
+   "new": "'4 Stay Discounts'!J26"
+  },
+  "los_I_nov": {
+   "old": "'Length-of-Stay Discounts'!I20",
+   "new": "'4 Stay Discounts'!K26"
+  },
+  "los_J_nov": {
+   "old": "'Length-of-Stay Discounts'!J20",
+   "new": "'4 Stay Discounts'!L26"
+  },
+  "los_K_nov": {
+   "old": "'Length-of-Stay Discounts'!K20",
+   "new": "'4 Stay Discounts'!M26"
+  },
+  "los_L_nov": {
+   "old": "'Length-of-Stay Discounts'!L20",
+   "new": "'4 Stay Discounts'!N26"
+  },
+  "rt_B_nov": {
+   "old": "'12-Month Rate Table'!B19",
+   "new": "'6 Rate Table'!D26"
+  },
+  "rt_C_nov": {
+   "old": "'12-Month Rate Table'!C19",
+   "new": "'6 Rate Table'!E26"
+  },
+  "rt_D_nov": {
+   "old": "'12-Month Rate Table'!D19",
+   "new": "'6 Rate Table'!F26"
+  },
+  "rt_E_nov": {
+   "old": "'12-Month Rate Table'!E19",
+   "new": "'6 Rate Table'!G26"
+  },
+  "rt_F_nov": {
+   "old": "'12-Month Rate Table'!F19",
+   "new": "'6 Rate Table'!H26"
+  },
+  "rt_G_nov": {
+   "old": "'12-Month Rate Table'!G19",
+   "new": "'6 Rate Table'!I26"
+  },
+  "rt_H_nov": {
+   "old": "'12-Month Rate Table'!H19",
+   "new": "'6 Rate Table'!J26"
+  },
+  "starter_dec": {
+   "old": "'Seasonality Curve'!C19",
+   "new": "'2 Seasonality'!J27"
+  },
+  "mult_dec": {
+   "old": "'Seasonality Curve'!E19",
+   "new": "'2 Seasonality'!L27"
+  },
+  "base_dec": {
+   "old": "'Seasonality Curve'!F19",
+   "new": "'2 Seasonality'!M27"
+  },
+  "los_C_dec": {
+   "old": "'Length-of-Stay Discounts'!C21",
+   "new": "'4 Stay Discounts'!E27"
+  },
+  "los_D_dec": {
+   "old": "'Length-of-Stay Discounts'!D21",
+   "new": "'4 Stay Discounts'!F27"
+  },
+  "los_E_dec": {
+   "old": "'Length-of-Stay Discounts'!E21",
+   "new": "'4 Stay Discounts'!G27"
+  },
+  "los_F_dec": {
+   "old": "'Length-of-Stay Discounts'!F21",
+   "new": "'4 Stay Discounts'!H27"
+  },
+  "los_G_dec": {
+   "old": "'Length-of-Stay Discounts'!G21",
+   "new": "'4 Stay Discounts'!I27"
+  },
+  "los_H_dec": {
+   "old": "'Length-of-Stay Discounts'!H21",
+   "new": "'4 Stay Discounts'!J27"
+  },
+  "los_I_dec": {
+   "old": "'Length-of-Stay Discounts'!I21",
+   "new": "'4 Stay Discounts'!K27"
+  },
+  "los_J_dec": {
+   "old": "'Length-of-Stay Discounts'!J21",
+   "new": "'4 Stay Discounts'!L27"
+  },
+  "los_K_dec": {
+   "old": "'Length-of-Stay Discounts'!K21",
+   "new": "'4 Stay Discounts'!M27"
+  },
+  "los_L_dec": {
+   "old": "'Length-of-Stay Discounts'!L21",
+   "new": "'4 Stay Discounts'!N27"
+  },
+  "rt_B_dec": {
+   "old": "'12-Month Rate Table'!B20",
+   "new": "'6 Rate Table'!D27"
+  },
+  "rt_C_dec": {
+   "old": "'12-Month Rate Table'!C20",
+   "new": "'6 Rate Table'!E27"
+  },
+  "rt_D_dec": {
+   "old": "'12-Month Rate Table'!D20",
+   "new": "'6 Rate Table'!F27"
+  },
+  "rt_E_dec": {
+   "old": "'12-Month Rate Table'!E20",
+   "new": "'6 Rate Table'!G27"
+  },
+  "rt_F_dec": {
+   "old": "'12-Month Rate Table'!F20",
+   "new": "'6 Rate Table'!H27"
+  },
+  "rt_G_dec": {
+   "old": "'12-Month Rate Table'!G20",
+   "new": "'6 Rate Table'!I27"
+  },
+  "rt_H_dec": {
+   "old": "'12-Month Rate Table'!H20",
+   "new": "'6 Rate Table'!J27"
+  },
+  "hist_avg": {
+   "old": "'Seasonality Curve'!B20",
+   "new": "'2 Seasonality'!I28"
+  },
+  "used_avg": {
+   "old": "'Seasonality Curve'!D20",
+   "new": "'2 Seasonality'!K28"
+  },
+  "mult_avg": {
+   "old": "'Seasonality Curve'!E20",
+   "new": "'2 Seasonality'!L28"
+  },
+  "base_avg": {
+   "old": "'Seasonality Curve'!F20",
+   "new": "'2 Seasonality'!M28"
+  },
+  "lake_avg": {
+   "old": "Setup!E25",
+   "new": "'2 Seasonality'!G28"
+  },
+  "starter_avg": {
+   "old": "Setup!G25",
+   "new": "'2 Seasonality'!J28"
+  },
+  "los_count_D": {
+   "old": "'Length-of-Stay Discounts'!D22",
+   "new": "'4 Stay Discounts'!F28"
+  },
+  "los_count_G": {
+   "old": "'Length-of-Stay Discounts'!G22",
+   "new": "'4 Stay Discounts'!I28"
+  },
+  "los_count_K": {
+   "old": "'Length-of-Stay Discounts'!K22",
+   "new": "'4 Stay Discounts'!M28"
+  },
+  "ev1_D": {
+   "old": "'Event Premiums'!D8",
+   "new": "'3 Events'!F16"
+  },
+  "ev1_G": {
+   "old": "'Event Premiums'!G8",
+   "new": "'3 Events'!I16"
+  },
+  "ev1_H": {
+   "old": "'Event Premiums'!H8",
+   "new": "'3 Events'!J16"
+  },
+  "ev1_I": {
+   "old": "'Event Premiums'!I8",
+   "new": "'3 Events'!K16"
+  },
+  "ev1_J": {
+   "old": "'Event Premiums'!J8",
+   "new": "'3 Events'!L16"
+  },
+  "ev1_K": {
+   "old": "'Event Premiums'!K8",
+   "new": "'3 Events'!M16"
+  },
+  "ev1_L": {
+   "old": "'Event Premiums'!L8",
+   "new": "'3 Events'!N16"
+  },
+  "ew1_A": {
+   "old": "'12-Month Rate Table'!A24",
+   "new": "'6 Rate Table'!C35"
+  },
+  "ew1_B": {
+   "old": "'12-Month Rate Table'!B24",
+   "new": "'6 Rate Table'!D35"
+  },
+  "ew1_C": {
+   "old": "'12-Month Rate Table'!C24",
+   "new": "'6 Rate Table'!E35"
+  },
+  "ew1_D": {
+   "old": "'12-Month Rate Table'!D24",
+   "new": "'6 Rate Table'!F35"
+  },
+  "ew1_E": {
+   "old": "'12-Month Rate Table'!E24",
+   "new": "'6 Rate Table'!G35"
+  },
+  "ew1_F": {
+   "old": "'12-Month Rate Table'!F24",
+   "new": "'6 Rate Table'!H35"
+  },
+  "ew1_G": {
+   "old": "'12-Month Rate Table'!G24",
+   "new": "'6 Rate Table'!I35"
+  },
+  "ew1_H": {
+   "old": "'12-Month Rate Table'!H24",
+   "new": "'6 Rate Table'!J35"
+  },
+  "ev2_D": {
+   "old": "'Event Premiums'!D9",
+   "new": "'3 Events'!F17"
+  },
+  "ev2_G": {
+   "old": "'Event Premiums'!G9",
+   "new": "'3 Events'!I17"
+  },
+  "ev2_H": {
+   "old": "'Event Premiums'!H9",
+   "new": "'3 Events'!J17"
+  },
+  "ev2_I": {
+   "old": "'Event Premiums'!I9",
+   "new": "'3 Events'!K17"
+  },
+  "ev2_J": {
+   "old": "'Event Premiums'!J9",
+   "new": "'3 Events'!L17"
+  },
+  "ev2_K": {
+   "old": "'Event Premiums'!K9",
+   "new": "'3 Events'!M17"
+  },
+  "ev2_L": {
+   "old": "'Event Premiums'!L9",
+   "new": "'3 Events'!N17"
+  },
+  "ew2_A": {
+   "old": "'12-Month Rate Table'!A25",
+   "new": "'6 Rate Table'!C36"
+  },
+  "ew2_B": {
+   "old": "'12-Month Rate Table'!B25",
+   "new": "'6 Rate Table'!D36"
+  },
+  "ew2_C": {
+   "old": "'12-Month Rate Table'!C25",
+   "new": "'6 Rate Table'!E36"
+  },
+  "ew2_D": {
+   "old": "'12-Month Rate Table'!D25",
+   "new": "'6 Rate Table'!F36"
+  },
+  "ew2_E": {
+   "old": "'12-Month Rate Table'!E25",
+   "new": "'6 Rate Table'!G36"
+  },
+  "ew2_F": {
+   "old": "'12-Month Rate Table'!F25",
+   "new": "'6 Rate Table'!H36"
+  },
+  "ew2_G": {
+   "old": "'12-Month Rate Table'!G25",
+   "new": "'6 Rate Table'!I36"
+  },
+  "ew2_H": {
+   "old": "'12-Month Rate Table'!H25",
+   "new": "'6 Rate Table'!J36"
+  },
+  "ev3_D": {
+   "old": "'Event Premiums'!D10",
+   "new": "'3 Events'!F18"
+  },
+  "ev3_G": {
+   "old": "'Event Premiums'!G10",
+   "new": "'3 Events'!I18"
+  },
+  "ev3_H": {
+   "old": "'Event Premiums'!H10",
+   "new": "'3 Events'!J18"
+  },
+  "ev3_I": {
+   "old": "'Event Premiums'!I10",
+   "new": "'3 Events'!K18"
+  },
+  "ev3_J": {
+   "old": "'Event Premiums'!J10",
+   "new": "'3 Events'!L18"
+  },
+  "ev3_K": {
+   "old": "'Event Premiums'!K10",
+   "new": "'3 Events'!M18"
+  },
+  "ev3_L": {
+   "old": "'Event Premiums'!L10",
+   "new": "'3 Events'!N18"
+  },
+  "ew3_A": {
+   "old": "'12-Month Rate Table'!A26",
+   "new": "'6 Rate Table'!C37"
+  },
+  "ew3_B": {
+   "old": "'12-Month Rate Table'!B26",
+   "new": "'6 Rate Table'!D37"
+  },
+  "ew3_C": {
+   "old": "'12-Month Rate Table'!C26",
+   "new": "'6 Rate Table'!E37"
+  },
+  "ew3_D": {
+   "old": "'12-Month Rate Table'!D26",
+   "new": "'6 Rate Table'!F37"
+  },
+  "ew3_E": {
+   "old": "'12-Month Rate Table'!E26",
+   "new": "'6 Rate Table'!G37"
+  },
+  "ew3_F": {
+   "old": "'12-Month Rate Table'!F26",
+   "new": "'6 Rate Table'!H37"
+  },
+  "ew3_G": {
+   "old": "'12-Month Rate Table'!G26",
+   "new": "'6 Rate Table'!I37"
+  },
+  "ew3_H": {
+   "old": "'12-Month Rate Table'!H26",
+   "new": "'6 Rate Table'!J37"
+  },
+  "ev4_D": {
+   "old": "'Event Premiums'!D11",
+   "new": "'3 Events'!F19"
+  },
+  "ev4_G": {
+   "old": "'Event Premiums'!G11",
+   "new": "'3 Events'!I19"
+  },
+  "ev4_H": {
+   "old": "'Event Premiums'!H11",
+   "new": "'3 Events'!J19"
+  },
+  "ev4_I": {
+   "old": "'Event Premiums'!I11",
+   "new": "'3 Events'!K19"
+  },
+  "ev4_J": {
+   "old": "'Event Premiums'!J11",
+   "new": "'3 Events'!L19"
+  },
+  "ev4_K": {
+   "old": "'Event Premiums'!K11",
+   "new": "'3 Events'!M19"
+  },
+  "ev4_L": {
+   "old": "'Event Premiums'!L11",
+   "new": "'3 Events'!N19"
+  },
+  "ew4_A": {
+   "old": "'12-Month Rate Table'!A27",
+   "new": "'6 Rate Table'!C38"
+  },
+  "ew4_B": {
+   "old": "'12-Month Rate Table'!B27",
+   "new": "'6 Rate Table'!D38"
+  },
+  "ew4_C": {
+   "old": "'12-Month Rate Table'!C27",
+   "new": "'6 Rate Table'!E38"
+  },
+  "ew4_D": {
+   "old": "'12-Month Rate Table'!D27",
+   "new": "'6 Rate Table'!F38"
+  },
+  "ew4_E": {
+   "old": "'12-Month Rate Table'!E27",
+   "new": "'6 Rate Table'!G38"
+  },
+  "ew4_F": {
+   "old": "'12-Month Rate Table'!F27",
+   "new": "'6 Rate Table'!H38"
+  },
+  "ew4_G": {
+   "old": "'12-Month Rate Table'!G27",
+   "new": "'6 Rate Table'!I38"
+  },
+  "ew4_H": {
+   "old": "'12-Month Rate Table'!H27",
+   "new": "'6 Rate Table'!J38"
+  },
+  "ev5_D": {
+   "old": "'Event Premiums'!D12",
+   "new": "'3 Events'!F20"
+  },
+  "ev5_G": {
+   "old": "'Event Premiums'!G12",
+   "new": "'3 Events'!I20"
+  },
+  "ev5_H": {
+   "old": "'Event Premiums'!H12",
+   "new": "'3 Events'!J20"
+  },
+  "ev5_I": {
+   "old": "'Event Premiums'!I12",
+   "new": "'3 Events'!K20"
+  },
+  "ev5_J": {
+   "old": "'Event Premiums'!J12",
+   "new": "'3 Events'!L20"
+  },
+  "ev5_K": {
+   "old": "'Event Premiums'!K12",
+   "new": "'3 Events'!M20"
+  },
+  "ev5_L": {
+   "old": "'Event Premiums'!L12",
+   "new": "'3 Events'!N20"
+  },
+  "ew5_A": {
+   "old": "'12-Month Rate Table'!A28",
+   "new": "'6 Rate Table'!C39"
+  },
+  "ew5_B": {
+   "old": "'12-Month Rate Table'!B28",
+   "new": "'6 Rate Table'!D39"
+  },
+  "ew5_C": {
+   "old": "'12-Month Rate Table'!C28",
+   "new": "'6 Rate Table'!E39"
+  },
+  "ew5_D": {
+   "old": "'12-Month Rate Table'!D28",
+   "new": "'6 Rate Table'!F39"
+  },
+  "ew5_E": {
+   "old": "'12-Month Rate Table'!E28",
+   "new": "'6 Rate Table'!G39"
+  },
+  "ew5_F": {
+   "old": "'12-Month Rate Table'!F28",
+   "new": "'6 Rate Table'!H39"
+  },
+  "ew5_G": {
+   "old": "'12-Month Rate Table'!G28",
+   "new": "'6 Rate Table'!I39"
+  },
+  "ew5_H": {
+   "old": "'12-Month Rate Table'!H28",
+   "new": "'6 Rate Table'!J39"
+  },
+  "ev6_D": {
+   "old": "'Event Premiums'!D13",
+   "new": "'3 Events'!F21"
+  },
+  "ev6_G": {
+   "old": "'Event Premiums'!G13",
+   "new": "'3 Events'!I21"
+  },
+  "ev6_H": {
+   "old": "'Event Premiums'!H13",
+   "new": "'3 Events'!J21"
+  },
+  "ev6_I": {
+   "old": "'Event Premiums'!I13",
+   "new": "'3 Events'!K21"
+  },
+  "ev6_J": {
+   "old": "'Event Premiums'!J13",
+   "new": "'3 Events'!L21"
+  },
+  "ev6_K": {
+   "old": "'Event Premiums'!K13",
+   "new": "'3 Events'!M21"
+  },
+  "ev6_L": {
+   "old": "'Event Premiums'!L13",
+   "new": "'3 Events'!N21"
+  },
+  "ew6_A": {
+   "old": "'12-Month Rate Table'!A29",
+   "new": "'6 Rate Table'!C40"
+  },
+  "ew6_B": {
+   "old": "'12-Month Rate Table'!B29",
+   "new": "'6 Rate Table'!D40"
+  },
+  "ew6_C": {
+   "old": "'12-Month Rate Table'!C29",
+   "new": "'6 Rate Table'!E40"
+  },
+  "ew6_D": {
+   "old": "'12-Month Rate Table'!D29",
+   "new": "'6 Rate Table'!F40"
+  },
+  "ew6_E": {
+   "old": "'12-Month Rate Table'!E29",
+   "new": "'6 Rate Table'!G40"
+  },
+  "ew6_F": {
+   "old": "'12-Month Rate Table'!F29",
+   "new": "'6 Rate Table'!H40"
+  },
+  "ew6_G": {
+   "old": "'12-Month Rate Table'!G29",
+   "new": "'6 Rate Table'!I40"
+  },
+  "ew6_H": {
+   "old": "'12-Month Rate Table'!H29",
+   "new": "'6 Rate Table'!J40"
+  },
+  "ev7_D": {
+   "old": "'Event Premiums'!D14",
+   "new": "'3 Events'!F22"
+  },
+  "ev7_G": {
+   "old": "'Event Premiums'!G14",
+   "new": "'3 Events'!I22"
+  },
+  "ev7_H": {
+   "old": "'Event Premiums'!H14",
+   "new": "'3 Events'!J22"
+  },
+  "ev7_I": {
+   "old": "'Event Premiums'!I14",
+   "new": "'3 Events'!K22"
+  },
+  "ev7_J": {
+   "old": "'Event Premiums'!J14",
+   "new": "'3 Events'!L22"
+  },
+  "ev7_K": {
+   "old": "'Event Premiums'!K14",
+   "new": "'3 Events'!M22"
+  },
+  "ev7_L": {
+   "old": "'Event Premiums'!L14",
+   "new": "'3 Events'!N22"
+  },
+  "ew7_A": {
+   "old": "'12-Month Rate Table'!A30",
+   "new": "'6 Rate Table'!C41"
+  },
+  "ew7_B": {
+   "old": "'12-Month Rate Table'!B30",
+   "new": "'6 Rate Table'!D41"
+  },
+  "ew7_C": {
+   "old": "'12-Month Rate Table'!C30",
+   "new": "'6 Rate Table'!E41"
+  },
+  "ew7_D": {
+   "old": "'12-Month Rate Table'!D30",
+   "new": "'6 Rate Table'!F41"
+  },
+  "ew7_E": {
+   "old": "'12-Month Rate Table'!E30",
+   "new": "'6 Rate Table'!G41"
+  },
+  "ew7_F": {
+   "old": "'12-Month Rate Table'!F30",
+   "new": "'6 Rate Table'!H41"
+  },
+  "ew7_G": {
+   "old": "'12-Month Rate Table'!G30",
+   "new": "'6 Rate Table'!I41"
+  },
+  "ew7_H": {
+   "old": "'12-Month Rate Table'!H30",
+   "new": "'6 Rate Table'!J41"
+  },
+  "ev8_D": {
+   "old": "'Event Premiums'!D15",
+   "new": "'3 Events'!F23"
+  },
+  "ev8_G": {
+   "old": "'Event Premiums'!G15",
+   "new": "'3 Events'!I23"
+  },
+  "ev8_H": {
+   "old": "'Event Premiums'!H15",
+   "new": "'3 Events'!J23"
+  },
+  "ev8_I": {
+   "old": "'Event Premiums'!I15",
+   "new": "'3 Events'!K23"
+  },
+  "ev8_J": {
+   "old": "'Event Premiums'!J15",
+   "new": "'3 Events'!L23"
+  },
+  "ev8_K": {
+   "old": "'Event Premiums'!K15",
+   "new": "'3 Events'!M23"
+  },
+  "ev8_L": {
+   "old": "'Event Premiums'!L15",
+   "new": "'3 Events'!N23"
+  },
+  "ew8_A": {
+   "old": "'12-Month Rate Table'!A31",
+   "new": "'6 Rate Table'!C42"
+  },
+  "ew8_B": {
+   "old": "'12-Month Rate Table'!B31",
+   "new": "'6 Rate Table'!D42"
+  },
+  "ew8_C": {
+   "old": "'12-Month Rate Table'!C31",
+   "new": "'6 Rate Table'!E42"
+  },
+  "ew8_D": {
+   "old": "'12-Month Rate Table'!D31",
+   "new": "'6 Rate Table'!F42"
+  },
+  "ew8_E": {
+   "old": "'12-Month Rate Table'!E31",
+   "new": "'6 Rate Table'!G42"
+  },
+  "ew8_F": {
+   "old": "'12-Month Rate Table'!F31",
+   "new": "'6 Rate Table'!H42"
+  },
+  "ew8_G": {
+   "old": "'12-Month Rate Table'!G31",
+   "new": "'6 Rate Table'!I42"
+  },
+  "ew8_H": {
+   "old": "'12-Month Rate Table'!H31",
+   "new": "'6 Rate Table'!J42"
+  },
+  "ev9_D": {
+   "old": "'Event Premiums'!D16",
+   "new": "'3 Events'!F24"
+  },
+  "ev9_G": {
+   "old": "'Event Premiums'!G16",
+   "new": "'3 Events'!I24"
+  },
+  "ev9_H": {
+   "old": "'Event Premiums'!H16",
+   "new": "'3 Events'!J24"
+  },
+  "ev9_I": {
+   "old": "'Event Premiums'!I16",
+   "new": "'3 Events'!K24"
+  },
+  "ev9_J": {
+   "old": "'Event Premiums'!J16",
+   "new": "'3 Events'!L24"
+  },
+  "ev9_K": {
+   "old": "'Event Premiums'!K16",
+   "new": "'3 Events'!M24"
+  },
+  "ev9_L": {
+   "old": "'Event Premiums'!L16",
+   "new": "'3 Events'!N24"
+  },
+  "ew9_A": {
+   "old": "'12-Month Rate Table'!A32",
+   "new": "'6 Rate Table'!C43"
+  },
+  "ew9_B": {
+   "old": "'12-Month Rate Table'!B32",
+   "new": "'6 Rate Table'!D43"
+  },
+  "ew9_C": {
+   "old": "'12-Month Rate Table'!C32",
+   "new": "'6 Rate Table'!E43"
+  },
+  "ew9_D": {
+   "old": "'12-Month Rate Table'!D32",
+   "new": "'6 Rate Table'!F43"
+  },
+  "ew9_E": {
+   "old": "'12-Month Rate Table'!E32",
+   "new": "'6 Rate Table'!G43"
+  },
+  "ew9_F": {
+   "old": "'12-Month Rate Table'!F32",
+   "new": "'6 Rate Table'!H43"
+  },
+  "ew9_G": {
+   "old": "'12-Month Rate Table'!G32",
+   "new": "'6 Rate Table'!I43"
+  },
+  "ew9_H": {
+   "old": "'12-Month Rate Table'!H32",
+   "new": "'6 Rate Table'!J43"
+  },
+  "ev10_D": {
+   "old": "'Event Premiums'!D17",
+   "new": "'3 Events'!F25"
+  },
+  "ev10_G": {
+   "old": "'Event Premiums'!G17",
+   "new": "'3 Events'!I25"
+  },
+  "ev10_H": {
+   "old": "'Event Premiums'!H17",
+   "new": "'3 Events'!J25"
+  },
+  "ev10_I": {
+   "old": "'Event Premiums'!I17",
+   "new": "'3 Events'!K25"
+  },
+  "ev10_J": {
+   "old": "'Event Premiums'!J17",
+   "new": "'3 Events'!L25"
+  },
+  "ev10_K": {
+   "old": "'Event Premiums'!K17",
+   "new": "'3 Events'!M25"
+  },
+  "ev10_L": {
+   "old": "'Event Premiums'!L17",
+   "new": "'3 Events'!N25"
+  },
+  "ew10_A": {
+   "old": "'12-Month Rate Table'!A33",
+   "new": "'6 Rate Table'!C44"
+  },
+  "ew10_B": {
+   "old": "'12-Month Rate Table'!B33",
+   "new": "'6 Rate Table'!D44"
+  },
+  "ew10_C": {
+   "old": "'12-Month Rate Table'!C33",
+   "new": "'6 Rate Table'!E44"
+  },
+  "ew10_D": {
+   "old": "'12-Month Rate Table'!D33",
+   "new": "'6 Rate Table'!F44"
+  },
+  "ew10_E": {
+   "old": "'12-Month Rate Table'!E33",
+   "new": "'6 Rate Table'!G44"
+  },
+  "ew10_F": {
+   "old": "'12-Month Rate Table'!F33",
+   "new": "'6 Rate Table'!H44"
+  },
+  "ew10_G": {
+   "old": "'12-Month Rate Table'!G33",
+   "new": "'6 Rate Table'!I44"
+  },
+  "ew10_H": {
+   "old": "'12-Month Rate Table'!H33",
+   "new": "'6 Rate Table'!J44"
+  },
+  "ev_nights": {
+   "old": "'Event Premiums'!K18",
+   "new": "'3 Events'!M26"
+  },
+  "ev_uplift": {
+   "old": "'Event Premiums'!L18",
+   "new": "'3 Events'!N26"
+  },
+  "ew_total": {
+   "old": "'12-Month Rate Table'!H34",
+   "new": "'6 Rate Table'!J45"
+  },
+  "pay_old": {
+   "old": "'Fee-Reset Check'!B11",
+   "new": "'5 Fee Reset'!I15"
+  },
+  "pay_now": {
+   "old": "'Fee-Reset Check'!B12",
+   "new": "'5 Fee Reset'!I16"
+  },
+  "lost_night": {
+   "old": "'Fee-Reset Check'!B13",
+   "new": "'5 Fee Reset'!I17"
+  },
+  "share_lost": {
+   "old": "'Fee-Reset Check'!B14",
+   "new": "'5 Fee Reset'!I18"
+  },
+  "lost_year": {
+   "old": "'Fee-Reset Check'!B15",
+   "new": "'5 Fee Reset'!I19"
+  },
+  "raise_exact": {
+   "old": "'Fee-Reset Check'!B18",
+   "new": "'5 Fee Reset'!I21"
+  },
+  "raise_set": {
+   "old": "'Fee-Reset Check'!B19",
+   "new": "'5 Fee Reset'!I22"
+  },
+  "pay_at_set": {
+   "old": "'Fee-Reset Check'!B20",
+   "new": "'5 Fee Reset'!I23"
+  },
+  "guest_paid": {
+   "old": "'Fee-Reset Check'!B21",
+   "new": "'5 Fee Reset'!I24"
+  },
+  "result": {
+   "old": "'Fee-Reset Check'!B23",
+   "new": "'5 Fee Reset'!C32"
+  },
+  "setup_base": {
+   "old": "'Fee-Reset Check'!B27",
+   "new": "'5 Fee Reset'!D25"
+  },
+  "gap": {
+   "old": "'Fee-Reset Check'!B28",
+   "new": "'5 Fee Reset'!D26"
+  },
+  "reset_status": {
+   "old": "'Fee-Reset Check'!B29",
+   "new": "'5 Fee Reset'!D27"
+  },
+  "rt_peak": {
+   "old": "'12-Month Rate Table'!A6",
+   "new": "'6 Rate Table'!C8"
+  },
+  "rt_low": {
+   "old": "'12-Month Rate Table'!C6",
+   "new": "'6 Rate Table'!D8"
+  },
+  "rt_floor_months": {
+   "old": "'12-Month Rate Table'!E6",
+   "new": "'6 Rate Table'!G8"
+  },
+  "rt_fee": {
+   "old": "'12-Month Rate Table'!G6",
+   "new": "'6 Rate Table'!I8"
+  },
+  "rt_title": {
+   "old": "'12-Month Rate Table'!A1",
+   "new": "'6 Rate Table'!B2"
+  },
+  "beach_avg": {
+   "old": "Setup!B25",
+   "new": "'2 Seasonality'!D28"
+  },
+  "mountain_avg": {
+   "old": "Setup!C25",
+   "new": "'2 Seasonality'!E28"
+  },
+  "urban_avg": {
+   "old": "Setup!D25",
+   "new": "'2 Seasonality'!F28"
+  },
+  "rural_avg": {
+   "old": "Setup!F25",
+   "new": "'2 Seasonality'!H28"
+  }
+ },
+ "cases": [
+  {
+   "name": "example"
+  },
+  {
+   "name": "high: $400 base, $200 floor, deep discounts",
+   "set": {
+    "base": 400,
+    "floor": 200,
+    "weekly": 0.25,
+    "monthly": 0.4,
+    "fee_old_rate": 300,
+    "booked_nights": 300,
+    "ev1_prem": 1.0
+   }
+  },
+  {
+   "name": "low: $60 base, no floor, no discounts",
+   "set": {
+    "base": 60,
+    "floor": 0,
+    "weekly": 0,
+    "monthly": 0,
+    "fee_old_rate": 60,
+    "fee_old": 0,
+    "booked_nights": 0
+   }
+  },
+  {
+   "name": "blank history, lake starter curve",
+   "set": {
+    "hist_jan": null,
+    "hist_feb": null,
+    "hist_mar": null,
+    "hist_apr": null,
+    "hist_may": null,
+    "hist_jun": null,
+    "hist_jul": null,
+    "hist_aug": null,
+    "hist_sep": null,
+    "hist_oct": null,
+    "hist_nov": null,
+    "hist_dec": null,
+    "market": "lake",
+    "lake_jul": 1.8
+   }
+  },
+  {
+   "name": "no market and no history",
+   "set": {
+    "hist_jan": null,
+    "hist_feb": null,
+    "hist_mar": null,
+    "hist_apr": null,
+    "hist_may": null,
+    "hist_jun": null,
+    "hist_jul": null,
+    "hist_aug": null,
+    "hist_sep": null,
+    "hist_oct": null,
+    "hist_nov": null,
+    "hist_dec": null,
+    "market": null
+   }
+  },
+  {
+   "name": "edits: one month missing, festival 2 nights booked, floor $140",
+   "set": {
+    "hist_mar": null,
+    "ev1_booked": 2,
+    "ev1_prem": 0.6,
+    "floor": 140
+   }
+  },
+  {
+   "name": "floor $140 on the example",
+   "set": {
+    "floor": 140
+   }
+  },
+  {
+   "name": "base reset to $213",
+   "set": {
+    "base": 213
+   }
+  },
+  {
+   "name": "edge: reversed event dates, event with no dates, new event",
+   "set": {
+    "ev2_last": 46670,
+    "ev3_first": null,
+    "ev3_last": null,
+    "ev2_booked": 9
+   }
+  },
+  {
+   "name": "blank key inputs: base and old rate cleared",
+   "set": {
+    "base": null,
+    "fee_old_rate": null
+   }
+  },
+  {
+   "name": "every curve and history cell blank",
+   "set": {
+    "hist_jan": null,
+    "hist_feb": null,
+    "hist_mar": null,
+    "hist_apr": null,
+    "hist_may": null,
+    "hist_jun": null,
+    "hist_jul": null,
+    "hist_aug": null,
+    "hist_sep": null,
+    "hist_oct": null,
+    "hist_nov": null,
+    "hist_dec": null,
+    "beach_jan": null,
+    "mountain_jan": null,
+    "urban_jan": null,
+    "lake_jan": null,
+    "rural_jan": null,
+    "beach_feb": null,
+    "mountain_feb": null,
+    "urban_feb": null,
+    "lake_feb": null,
+    "rural_feb": null,
+    "beach_mar": null,
+    "mountain_mar": null,
+    "urban_mar": null,
+    "lake_mar": null,
+    "rural_mar": null,
+    "beach_apr": null,
+    "mountain_apr": null,
+    "urban_apr": null,
+    "lake_apr": null,
+    "rural_apr": null,
+    "beach_may": null,
+    "mountain_may": null,
+    "urban_may": null,
+    "lake_may": null,
+    "rural_may": null,
+    "beach_jun": null,
+    "mountain_jun": null,
+    "urban_jun": null,
+    "lake_jun": null,
+    "rural_jun": null,
+    "beach_jul": null,
+    "mountain_jul": null,
+    "urban_jul": null,
+    "lake_jul": null,
+    "rural_jul": null,
+    "beach_aug": null,
+    "mountain_aug": null,
+    "urban_aug": null,
+    "lake_aug": null,
+    "rural_aug": null,
+    "beach_sep": null,
+    "mountain_sep": null,
+    "urban_sep": null,
+    "lake_sep": null,
+    "rural_sep": null,
+    "beach_oct": null,
+    "mountain_oct": null,
+    "urban_oct": null,
+    "lake_oct": null,
+    "rural_oct": null,
+    "beach_nov": null,
+    "mountain_nov": null,
+    "urban_nov": null,
+    "lake_nov": null,
+    "rural_nov": null,
+    "beach_dec": null,
+    "mountain_dec": null,
+    "urban_dec": null,
+    "lake_dec": null,
+    "rural_dec": null
+   }
+  }
+ ],
+ "intended": [
+  {
+   "case": "blank key inputs: base and old rate cleared",
+   "outputs": [
+    "result",
+    "reset_status",
+    "rt_fee"
+   ],
+   "why": "v1 showed \"Raise to $0 to keep $0.00 payout per night\" and a RESET status with nothing typed; v3 asks for the rate before the change and leaves the status blank until both rates are in"
+  },
+  {
+   "case": "every curve and history cell blank",
+   "outputs": [
+    "mult_jan",
+    "mult_feb",
+    "mult_mar",
+    "mult_apr",
+    "mult_may",
+    "mult_jun",
+    "mult_jul",
+    "mult_aug",
+    "mult_sep",
+    "mult_oct",
+    "mult_nov",
+    "mult_dec",
+    "rt_B_jan",
+    "rt_B_feb",
+    "rt_B_mar",
+    "rt_B_apr",
+    "rt_B_may",
+    "rt_B_jun",
+    "rt_B_jul",
+    "rt_B_aug",
+    "rt_B_sep",
+    "rt_B_oct",
+    "rt_B_nov",
+    "rt_B_dec",
+    "beach_avg",
+    "mountain_avg",
+    "urban_avg",
+    "lake_avg",
+    "rural_avg"
+   ],
+   "why": "v1 showed #DIV/0! with every starter and history cell cleared (Excel evaluates every AND argument); v3 shows a blank"
+  },
+  {
+   "case": "no market and no history",
+   "outputs": [
+    "mult_jan",
+    "mult_feb",
+    "mult_mar",
+    "mult_apr",
+    "mult_may",
+    "mult_jun",
+    "mult_jul",
+    "mult_aug",
+    "mult_sep",
+    "mult_oct",
+    "mult_nov",
+    "mult_dec",
+    "rt_B_jan",
+    "rt_B_feb",
+    "rt_B_mar",
+    "rt_B_apr",
+    "rt_B_may",
+    "rt_B_jun",
+    "rt_B_jul",
+    "rt_B_aug",
+    "rt_B_sep",
+    "rt_B_oct",
+    "rt_B_nov",
+    "rt_B_dec"
+   ],
+   "why": "v1 showed #DIV/0! in every multiplier when the market type and the history were both blank; v3 shows a blank"
+  }
+ ]
+}

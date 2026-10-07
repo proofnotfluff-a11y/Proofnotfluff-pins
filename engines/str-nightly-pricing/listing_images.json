@@ -1,0 +1,226 @@
+{
+ "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+ "images": [
+  {
+   "type": "cover",
+   "eyebrow": "AIRBNB AND VRBO NIGHTLY RATE SPREADSHEET",
+   "title": "A nightly rate for every month of the year.",
+   "sub": "Seasonality, event premiums, long-stay discounts with a floor, and the 15.5% host fee reset.",
+   "shot": "r/02-1-Your-Property.png",
+   "crop": [
+    0,
+    0.064,
+    0.475,
+    0.37
+   ],
+   "badges": [
+    "Excel + Google Sheets",
+    "Instant download",
+    "12-month rate table"
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "THE WORKED EXAMPLE",
+   "title": "Your 12 rates, ready to copy.",
+   "sub": "Example cabin: July peaks at $242. April and November hold at the $115 floor.",
+   "shot": "r/07-6-Rate-Table.png",
+   "crop": [
+    0,
+    0.05,
+    1,
+    0.33
+   ]
+  },
+  {
+   "type": "steps",
+   "eyebrow": "HOW IT WORKS",
+   "title": "Three steps to a priced year.",
+   "steps": [
+    {
+     "head": "Type your numbers",
+     "text": "Base rate, discounts, your floor.",
+     "shot": "r/02-1-Your-Property.png",
+     "crop": [
+      0,
+      0.14,
+      0.215,
+      0.365
+     ]
+    },
+    {
+     "head": "Add your history",
+     "text": "12 months of revenue, or a starter curve.",
+     "shot": "r/03-2-Seasonality.png",
+     "crop": [
+      0,
+      0.13,
+      0.6,
+      0.41
+     ]
+    },
+    {
+     "head": "Copy your rates",
+     "text": "One table for your listing calendar.",
+     "shot": "r/07-6-Rate-Table.png",
+     "crop": [
+      0,
+      0.05,
+      1,
+      0.2
+     ]
+    }
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "SEASONALITY",
+   "title": "Your last 12 months set the shape.",
+   "sub": "Each month divided by the average: July 1.31x, November 0.56x. No history? Five starter curves.",
+   "shot": "r/03-2-Seasonality.png",
+   "crop": [
+    0,
+    0.06,
+    0.605,
+    0.41
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "STAY DISCOUNTS",
+   "title": "Catch discounts that go under your floor.",
+   "sub": "A 10% weekly discount would bill $103.50 a night in April. The $115 floor is charged instead.",
+   "shot": "r/05-4-Stay-Discounts.png",
+   "crop": [
+    0,
+    0.06,
+    0.64,
+    0.425
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "HOST FEE RESET",
+   "title": "Reset for the 15.5% host fee.",
+   "sub": "Example: $185 becomes $213 to keep the $179.45 payout. Changing nothing costs $4,625 over 200 nights.",
+   "shot": "r/06-5-Fee-Reset.png",
+   "crop": [
+    0,
+    0.055,
+    0.47,
+    0.385
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "EVENTS",
+   "title": "Price festival and holiday weeks.",
+   "sub": "Three example events add $683 if those nights book. Only booked nights count.",
+   "shot": "r/04-3-Events.png",
+   "crop": [
+    0,
+    0.06,
+    0.63,
+    0.39
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "IS THIS FOR YOU?",
+   "title": "Made for hosts who set their own prices.",
+   "columns": [
+    {
+     "head": "Made for",
+     "mark": "check",
+     "items": [
+      "Airbnb and VRBO hosts with one to a few listings",
+      "Seasonal markets: beach, mountain, lake, rural, urban",
+      "Hosts who give weekly or monthly discounts",
+      "Anyone who hasn't repriced for the single host fee"
+     ]
+    },
+    {
+     "head": "Not for",
+     "mark": "x",
+     "items": [
+      "Live market data or competitor rates",
+      "Automatic sync with Airbnb or VRBO",
+      "Tax, permit or legal advice"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "HOW YOU GET IT",
+   "title": "Instant download. Opens in Excel or Google Sheets.",
+   "columns": [
+    {
+     "head": "What you get",
+     "mark": "check",
+     "items": [
+      "One workbook, six working tabs",
+      "Start Here guide as a PDF, US Letter and A4",
+      "Works in Excel for Windows and Mac, Google Sheets and LibreOffice",
+      "No macros, no add-ons, no sign-up"
+     ]
+    },
+    {
+     "head": "How to download",
+     "mark": "check",
+     "items": [
+      "Buy, then open Etsy in a web browser",
+      "Go to You, then Purchases, and download",
+      "The Etsy app can't download digital files",
+      "Message the shop on Etsy if anything won't open"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "inside",
+   "eyebrow": "ONE DOWNLOAD",
+   "title": "What's inside",
+   "tabs": [
+    {
+     "name": "1 Your Property",
+     "shot": "r/02-1-Your-Property.png",
+     "crop": [
+      0,
+      0,
+      0.475,
+      0.6
+     ]
+    },
+    {
+     "name": "2 Seasonality",
+     "shot": "r/03-2-Seasonality.png",
+     "crop": [
+      0,
+      0,
+      0.605,
+      0.6
+     ]
+    },
+    {
+     "name": "6 Rate Table",
+     "shot": "r/07-6-Rate-Table.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.5
+     ]
+    }
+   ],
+   "items": [
+    "A nightly rate for every month",
+    "Five starter curves by market type",
+    "Event premiums priced per window",
+    "Weekly and monthly discounts checked against a floor",
+    "Host fee reset calculator",
+    "Start Here PDF in Letter and A4"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "xlsx": "STR-Nightly-Pricing-Worksheet.xlsx",
+ "sheet": "1 Your Property",
+ "crop": [
+  0,
+  0.064,
+  0.475,
+  0.37
+ ],
+ "dpi": 220,
+ "eyebrow": "AIRBNB AND VRBO NIGHTLY RATE SPREADSHEET",
+ "states": [
+  {
+   "caption": "Your year priced: peak {I15}, lowest {I16}.",
+   "hold": 3.0
+  },
+  {
+   "set": {
+    "D23": 140
+   },
+   "caption": "Raise the floor to $140? {I17} months now hold at it.",
+   "hold": 3.6
+  },
+  {
+   "set": {
+    "D16": 213
+   },
+   "caption": "Base rate $213? The host fee check reads {H7}.",
+   "hold": 3.6
+  }
+ ]
+}

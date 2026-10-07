@@ -33,7 +33,7 @@ import json, os, re, subprocess, sys, shutil, html as H
 import make_slides as ms
 
 HERE = os.path.dirname(os.path.abspath(__file__)); FPS = 30
-VOICE = None   # --voice <name|none> on the command line beats the spec's "voice" and PNF_VOICE
+VOICE = None   # --voice <name|none> on the command line beats the spec's "voice" and PNF_VOICE; default am_michael (Todd, Oct 7)
 FORMATS = {
     "short":       {"W": 1080, "H": 1920, "pace": 1.0, "audio": True,  "max": 60},
     "walkthrough": {"W": 1920, "H": 1080, "pace": 2.6, "audio": True,  "max": 180},
@@ -249,7 +249,7 @@ def main(spec_path, out, fmt_name="short"):
         spec.setdefault("cta", {})["sub"] = spec.get("listing_cta_sub", "Instant digital download")
         spec["cta"]["say"] = ""
 
-    voice = VOICE if VOICE is not None else spec.get("voice", os.environ.get("PNF_VOICE", "none"))
+    voice = VOICE if VOICE is not None else spec.get("voice", os.environ.get("PNF_VOICE", "am_michael"))
     if fmt_name == "listing":
         voice = "none"
     work = os.path.join(HERE, "work_demo"); os.makedirs(work, exist_ok=True)

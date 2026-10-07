@@ -11,7 +11,7 @@ Usage:
 In code: from voice import say; seconds = say(text, "out.wav", voice="am_michael")
 
 Voices the crew may use (set in the spec as "voice", or PNF_VOICE in the environment; "none" keeps a
-video silent): am_michael, am_adam, af_heart, af_bella. Todd chose the brand voice; see the ledger
+video silent): am_michael, am_adam, af_heart, af_bella. Todd chose am_michael as the brand voice Oct 7; see the ledger
 PROMO STUDIO line. Every script line is still a caption, so a muted viewer loses nothing.
 """
 import os, sys, json, subprocess, urllib.request
@@ -21,7 +21,7 @@ CACHE = os.path.join(HERE, "work_voice")
 REL = "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/"
 FILES = {"kokoro-v1.0.onnx": 325_000_000, "voices-v1.0.bin": 28_000_000}
 VOICES = ["am_michael", "am_adam", "af_heart", "af_bella"]
-DEFAULT = os.environ.get("PNF_VOICE", "none")
+DEFAULT = os.environ.get("PNF_VOICE", "am_michael")  # the brand voice, Todd Oct 7 ("Michael is good"); the ledger PROMO STUDIO line is the record
 SR = 24000
 
 

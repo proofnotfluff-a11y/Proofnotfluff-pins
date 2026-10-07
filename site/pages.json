@@ -300,7 +300,7 @@
   {
    "slug": "ecommerce-13-week-cash-flow-calculator",
    "kind": "cashflow",
-   "draft": true,
+   "draft": false,
    "title": "13 Week Cash Flow Calculator for Ecommerce | ProofNotFluff",
    "desc": "Free 13 week cash flow calculator for ecommerce brands. Enter cash today, weekly payouts, weekly costs and one purchase order to see your lowest cash week and the cash you need to cover it.",
    "eyebrow": "Free calculator",
@@ -323,7 +323,7 @@
    "cta": {
     "title": "The full 13-week cash flow",
     "bullets": [
-     "The 13-Week E-commerce Cash Flow workbook models each channel's payout lag (Amazon, TikTok Shop, your own store, retail), six POs as deposit plus balance and freight,",
+     "The 13-Week E-commerce Cash Flow workbook models each channel's payout lag (Amazon, TikTok Shop, your own store, retail), up to six POs as deposit plus balance and freight,",
      "factoring cost in dollars, a credit line, side-by-side scenarios and a PO planner, for Excel and Google Sheets."
     ],
     "button": "Coming soon",

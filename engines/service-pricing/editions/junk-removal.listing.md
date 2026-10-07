@@ -53,5 +53,5 @@ Service Business Pricing
 
 ## Pin facts
 1. A half truck load priced at $350 is $59.62 below a $409.62 price floor in the example; the calculator quotes it at $485.
-2. Pay divided by all hours says $25.00 an hour; the real break-even rate is $62.36 once unpaid hours, costs and self-employment tax are counted.
-3. A 60-mile round trip turns a $485 half truck load into a $660 quote.
+2. In the example, pay divided by all hours says $25.00 an hour; the break-even rate is $62.36 once unpaid hours, costs and self-employment tax are counted.
+3. In the example, a 60-mile round trip turns a $485 half truck load into a $660 quote.

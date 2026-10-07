@@ -1,0 +1,61 @@
+{
+  "product_id": "23",
+  "product": "Junk Removal Pricing Calculator",
+  "tab": "3 Quote Builder",
+  "audience": "Junk removal owners",
+  "hookId": "H03",
+  "series": "New listing #23, Oct 7; H03 hidden cost (benchmark: 20-mile Short, 717 views)",
+  "hook": "A 60-mile round trip adds <b>$175</b> to a junk haul quote",
+  "hook_say": "Here is what a long drive to the job and the dump really adds to a half truck load.",
+  "rows": [
+    {
+      "label": "Job",
+      "value": "Half truck load",
+      "input": true,
+      "say": "Half truck load",
+      "why": "The calculator's example job: a half truck load, picked from the Trade Presets list."
+    },
+    {
+      "label": "Hours on site, people",
+      "value": "1.5 h, 2",
+      "input": true,
+      "say": "2 people, 1.5 hours",
+      "why": "Two people, an hour and a half on site each, with $75 of supplies and dump fees."
+    },
+    {
+      "label": "Quote at 30 miles round trip",
+      "value": "$485",
+      "say": "At 30 miles: $485",
+      "why": "At the preset 30-mile round trip, the price floor is $409.62 and the quote, with a 15% profit margin rounded up to the next $5, is $485."
+    },
+    {
+      "label": "Round-trip miles",
+      "value": "60 mi",
+      "input": true,
+      "say": "Now make it 60 miles",
+      "why": "Change the round trip to 60 miles. At 30 mph that is 2 hours of driving for each of the 2 people, plus $45.60 of vehicle cost at 76 cents a mile."
+    },
+    {
+      "label": "Price floor at 60 miles",
+      "value": "$557.14",
+      "say": "The floor jumps to $557.14",
+      "why": "Labor on site $187.09, drive time $249.45, vehicle $45.60 and supplies $75: the floor rises from $409.62 to $557.14."
+    },
+    {
+      "label": "Quote at 60 miles round trip",
+      "value": "$660",
+      "result": true,
+      "kind": "good",
+      "say": "Quote $660: the drive added $175",
+      "why": "The quote moves from $485 to $660. Price the half load the same as a nearby job and the extra drive comes out of your pay."
+    }
+  ],
+  "cta": {
+    "title": "Junk Removal Pricing Calculator",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Run your own numbers"
+  },
+  "note": "Example numbers from the calculator. Yours go in the yellow cells.",
+  "sources": "Product #23 Junk Removal Pricing Calculator: engines/service-pricing/build_xlsx.py --edition editions/junk-removal.json (the listed edition's repo build, commit d27a999, legal fixes 847b8e4), recalculated in LibreOffice Oct 7, 2026, 5:40 am, at the preset 30 miles and again with 3 Quote Builder D23 = 60. Preset: I21 1.5, I22 2, I23 75, I24 30, I32 409.62, I34 485. At 60 miles: I25 2 h, I27 187.09, I28 249.45, I29 45.60, I32 557.14, I34 660. 1 Your Numbers: I21 62.36 break-even, I37 15% margin, I38 76 cents, I39 30 mph."
+}

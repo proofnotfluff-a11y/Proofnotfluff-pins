@@ -1,0 +1,18 @@
+{
+  "product_id": "19",
+  "product": "Rental Property Spreadsheet, 1 to 10 Doors",
+  "tab": "Property P&L",
+  "audience": "Small landlords",
+  "hook": "Profit says <b>$4,844</b>. You kept $550",
+  "rows": [
+    {"label": "Rent received", "value": "$14,850", "input": true, "say": "Rent in: $14,850"},
+    {"label": "Expenses (Schedule E lines)", "value": "$10,006", "input": true, "say": "Expenses: $10,006"},
+    {"label": "Profit before depreciation", "value": "$4,844", "say": "Profit: $4,844"},
+    {"label": "Mortgage principal", "value": "$2,844", "input": true, "say": "Principal: $2,844"},
+    {"label": "Capital improvement", "value": "$1,450", "input": true, "say": "Improvement: $1,450"},
+    {"label": "Cash flow, what you kept", "value": "$550", "result": true, "kind": "bad", "say": "Kept: $550"}
+  ],
+  "cta": {"title": "Rental Property Spreadsheet", "button": "Instant download", "sub": "On Etsy: proofnotfluff.etsy.com"},
+  "note": "Sample property in the file: Oak Street House, 2026.",
+  "sources": "Product #19 (listing 4589671970) engines/rental-property/build_xlsx.py sample build, recalculated in LibreOffice Oct 7, 2026: Property P&L column D (Oak Street House) D9 14,850, D27 10,006, D28 4,844, D30 2,844, D31 1,450, D32 550; matches scoreboard products/19 pinFacts."
+}

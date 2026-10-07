@@ -1,0 +1,67 @@
+{
+  "product_id": "22",
+  "product": "Pressure Washing Pricing Calculator",
+  "tab": "3 Quote Builder",
+  "audience": "Pressure washing owners",
+  "hookId": "H02",
+  "series": "New listing #22, Oct 7; H02 lowball correction (benchmark: $22 vs $55 cleaning Short, 903 views)",
+  "hook": "Charging $100 to wash a driveway? You're <b>$67.80</b> short",
+  "hook_say": "Here is what a $100 driveway wash really pays once the drive, the rig and self-employment tax are counted.",
+  "rows": [
+    {
+      "label": "Job",
+      "value": "2-car driveway",
+      "input": true,
+      "say": "2-car concrete driveway",
+      "why": "The calculator's example job: a 2-car concrete driveway, picked from the Trade Presets list."
+    },
+    {
+      "label": "Hours on site, people",
+      "value": "1.5 h, 1",
+      "input": true,
+      "say": "1.5 hours, 1 person",
+      "why": "One person, an hour and a half on site, setup and cleanup included."
+    },
+    {
+      "label": "Supplies, round-trip miles",
+      "value": "$12, 20 mi",
+      "input": true,
+      "say": "$12 of supplies, 20 miles round trip",
+      "why": "$12 of supplies and a 20-mile round trip: 40 minutes of driving at 30 mph and $15.20 of vehicle cost at 76 cents a mile."
+    },
+    {
+      "label": "Your break-even per paid hour",
+      "value": "$64.89",
+      "say": "Break-even: $64.89 an hour",
+      "why": "Pay divided by all hours says $27.78 an hour. Count the unpaid hours, $755 a month of costs and self-employment tax, and break-even is $64.89 per paid hour."
+    },
+    {
+      "label": "Price floor, zero profit",
+      "value": "$167.80",
+      "say": "Your floor is $167.80",
+      "why": "Labor on site $97.34, drive time $43.26, vehicle $15.20 and supplies $12: $167.80 just to cover your pay goal, costs and taxes."
+    },
+    {
+      "label": "At $100 you are short by",
+      "value": "-$67.80",
+      "result": true,
+      "kind": "bad",
+      "say": "At $100 you're $67.80 short",
+      "why": "At $100 the job pays $67.80 less than it costs you. The check line says it in plain words: below your floor."
+    }
+  ],
+  "fix": {
+    "label": "Quote, rounded up to the next $5",
+    "value": "$200",
+    "say": "Quote about $200",
+    "why": "With a 15% profit margin, rounded up to the next $5, the quote is $200 with a $50 deposit. The Price Sheet does this for every job type at once."
+  },
+  "cta": {
+    "title": "Pressure Washing Pricing Calculator",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Run your own numbers"
+  },
+  "note": "Example numbers from the calculator. Yours go in the yellow cells.",
+  "sources": "Product #22 Pressure Washing Pricing Calculator: engines/service-pricing/build_xlsx.py --edition editions/pressure-washing.json (the listed edition's repo build; shelf workbook equals repo build per edition_delta), recalculated in LibreOffice Oct 7, 2026, 5:40 am. 3 Quote Builder: D14 job, I21 1.5, I22 1, I23 12, I24 20, I25 0.667 h, I27 97.34, I28 43.26, I29 15.20, I32 167.80, D32 100, D33 -67.80, I34 200, I35 50. 1 Your Numbers: I21 64.89, H8 $27.78 guess, D35 755, I38 76 cents, I39 30 mph."
+}

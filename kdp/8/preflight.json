@@ -1,0 +1,140 @@
+{
+  "pack": "/home/claude/proofnotfluff-pins/kdp/8",
+  "interior": "interior.pdf",
+  "cover": "cover.pdf",
+  "checks": {
+    "page_count": {
+      "value": 26,
+      "expected": 26,
+      "range_ok": true,
+      "ok": true
+    },
+    "trim_size": {
+      "all_612x792": true,
+      "bad_pages": [],
+      "ok": true
+    },
+    "margins_vector": {
+      "rule": "gutter 0.375 in (left on odd pages, right on even), 0.25 in elsewhere",
+      "violations": [],
+      "count": 0,
+      "ok": true
+    },
+    "margins_pixels_150dpi": {
+      "violations": [],
+      "count": 0,
+      "ok": true
+    },
+    "grayscale": {
+      "non_gray_pages": [],
+      "ok": true
+    },
+    "fonts_interior": {
+      "fonts": [
+        {
+          "name": "AAAAAA+Poppins-Medium",
+          "embedded": true
+        },
+        {
+          "name": "AAAAAA+Poppins-Bold",
+          "embedded": true
+        },
+        {
+          "name": "AAAAAA+Carlito-Italic",
+          "embedded": true
+        },
+        {
+          "name": "AAAAAA+Carlito-Regular",
+          "embedded": true
+        },
+        {
+          "name": "AAAAAA+Carlito-Bold",
+          "embedded": true
+        }
+      ],
+      "not_embedded": [],
+      "ok": true
+    },
+    "fonts_cover": {
+      "fonts": [
+        {
+          "name": "AAAAAA+Poppins-Medium",
+          "embedded": true
+        },
+        {
+          "name": "AAAAAA+Poppins-Bold",
+          "embedded": true
+        },
+        {
+          "name": "AAAAAA+Carlito-Regular",
+          "embedded": true
+        },
+        {
+          "name": "AAAAAA+Carlito-Italic",
+          "embedded": true
+        }
+      ],
+      "not_embedded": [],
+      "ok": true
+    },
+    "no_form_fields": {
+      "acroform": false,
+      "widget_annotations": 0,
+      "ok": true
+    },
+    "pdfinfo_form": "none",
+    "cover_size": {
+      "pages": 1,
+      "actual_pt": [
+        1246.22,
+        810.0
+      ],
+      "expected_pt": [
+        1246.22,
+        810.0
+      ],
+      "spine_in": 0.0586,
+      "spread_in": [
+        17.3086,
+        11.25
+      ],
+      "spine_text_allowed": false,
+      "ok": true
+    },
+    "copy_interior": {
+      "em_dash_or_banned": [],
+      "en_dashes": 0,
+      "ok": true
+    },
+    "copy_cover": {
+      "em_dash_or_banned": [],
+      "en_dashes": 0,
+      "ok": true
+    },
+    "etsy_line": {
+      "count_in_interior": 1,
+      "expected": 1,
+      "ok": true,
+      "other_etsy_mentions": 1
+    },
+    "amazon_review_ask": {
+      "present": true,
+      "ok": true
+    }
+  },
+  "renders": [
+    "contact-sheet.png",
+    "cover-1.png",
+    "page-01.png",
+    "page-02.png",
+    "page-05.png",
+    "page-07.png",
+    "page-13.png",
+    "page-17.png",
+    "page-18.png",
+    "page-19.png",
+    "page-24.png"
+  ],
+  "fonts_note": "Poppins and Carlito embedded",
+  "ok": true
+}

@@ -1124,6 +1124,95 @@
    ]
   },
   {
+   "slug": "debt-snowball-calculator",
+   "kind": "debt_payoff",
+   "draft": true,
+   "title": "Debt Snowball Calculator: Months and Interest, Smallest Balance First | ProofNotFluff",
+   "desc": "Free debt snowball calculator for up to five debts. Enter each balance, APR and minimum plus an extra monthly amount to see when each debt is paid off smallest balance first, the estimated interest, and how it compares with avalanche and minimums only.",
+   "eyebrow": "Free calculator",
+   "h1": "Debt Snowball Calculator",
+   "lede": "Pay the smallest balance first, then roll its payment into the next one. Enter up to five debts to see the month each one is paid off and the estimated interest, next to avalanche and minimums only. Free, no sign-up.",
+   "card": "Debt snowball: the month each debt is paid off and the estimated interest.",
+   "defaults": {
+    "debts": [
+     [
+      "4,751.76",
+      "24.99",
+      "145"
+     ],
+     [
+      "854.32",
+      "26.99",
+      "40"
+     ],
+     [
+      "10,748.15",
+      "7.4",
+      "329"
+     ],
+     [
+      "18,658.05",
+      "5.5",
+      "205"
+     ],
+     [
+      "3,142.59",
+      "12.9",
+      "112"
+     ]
+    ],
+    "extra": "269"
+   },
+   "method": [
+    "Each month every balance grows by its APR divided by 12, rounded to the cent, and every minimum is paid. The minimums plus your extra amount are paid every month.",
+    "Snowball sends the money left after minimums to the smallest balance first. When that debt is paid off, its minimum moves to the next smallest, so the payment grows as each debt goes. The order is set from today's balances. The plan runs up to 20 years.",
+    "Avalanche is the same plan with the highest APR first. Minimums only pays each minimum and nothing else, with no roll-over. All interest figures are estimates."
+   ],
+   "example": "The workbook's example has five debts: a credit card at $4,751.76 and 24.99% APR with a $145 minimum, a store card at $854.32 and 26.99% ($40), a car loan at $10,748.15 and 7.4% ($329), a student loan at $18,658.05 and 5.5% ($205) and a personal loan at $3,142.59 and 12.9% ($112). That is $38,154.87 owed and $831 of minimums. At $1,100 a month, the minimums plus $269, the snowball pays off the store card in month 3, the personal loan in month 11, the credit card in month 19, the car loan in month 25 and the student loan in month 40, with about $5,234 of interest. Minimums only takes 119 months and about $11,093, so the snowball saves about $5,859. Avalanche also takes 40 months with about $4,965, about $268 less than the snowball. These are estimates from the Debt Payoff Tracker workbook's example, balances as of October 2026.",
+   "cta": {
+    "title": "Run your snowball on the real balances, payment by payment",
+    "bullets": [
+     "The Debt Payoff Tracker uses this same maths for Excel and Google Sheets, for up to 25 debts:",
+     "a payment log that updates each balance, both plans month by month, what to pay each debt next month, and owed over time. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4588972193"
+   },
+   "faq": [
+    [
+     "What is the debt snowball method?",
+     "You pay every minimum, then put all the extra money on the smallest balance. When it is paid off, its minimum joins the extra for the next smallest balance, so each payoff makes the next one faster."
+    ],
+    [
+     "Is snowball or avalanche cheaper?",
+     "Avalanche, which pays the highest APR first, usually costs less interest. Snowball clears the first debts sooner. The calculator shows both on the same monthly payment so you can see the difference in dollars."
+    ],
+    [
+     "Why does the snowball order use today's balances?",
+     "The order is set once from the balances you enter, smallest first, the same way the workbook does it. A tie goes to the debt listed first."
+    ],
+    [
+     "How exact are these numbers?",
+     "They are estimates. The calculator adds APR divided by 12 each month and assumes no new charges, fees or rate changes. Your lender's statements will differ."
+    ],
+    [
+     "Is this financial advice?",
+     "No. It is planning math based on the numbers you enter."
+    ]
+   ],
+   "sources": "Every default is the example in the Debt Payoff Tracker workbook (built and recalculated Oct 7, 2026). Estimates for planning only.",
+   "number_sources": [
+    "Balances 4,751.76, 854.32, 10,748.15, 18,658.05, 3,142.59: recalculated 2 Debts L17:L21 (statement balance less logged payments plus interest to Oct 7, 2026; TODAY-dependent, stable through October 2026).",
+    "APRs and minimums: engine DEBTS_EX; 2 Debts H17:I21. $831: 1 Dashboard D16. $269 extra: 1 Dashboard D15 1,100 less D16 (C17 'Extra each month: $269.00').",
+    "$38,154.87 owed: 1 Dashboard H7.",
+    "Avalanche 40 months, $4,965.45: 1 Dashboard J19, I20; 5 Avalanche Plan C8, F8. Snowball 40 months, $5,233.73: 1 Dashboard J15, I16; 4 Snowball Plan C8, F8.",
+    "Minimums only 119 months, $11,092.68: 1 Dashboard J23, I24. Avalanche saving $6,127.23: 1 Dashboard I21.",
+    "Per-debt payoff months: 4 Snowball Plan J14:N14 (19, 3, 25, 40, 11); 5 Avalanche Plan J14:N14 (15, 3, 25, 40, 18); 2 Debts P17:P21 (56, 30, 37, 119, 34).",
+    "Snowball saving $5,858.95 = minimums-only interest $11,092.68 less snowball interest $5,233.73 (1 Dashboard I24, I16). Avalanche $268.28 less than snowball = I16 less I20."
+   ],
+   "focus": "snowball"
+  },
+  {
    "slug": "shipping-cost-calculator",
    "kind": "shipping_cost",
    "draft": true,

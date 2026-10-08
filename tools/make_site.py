@@ -367,14 +367,26 @@ def debt_payoff_page(p):
 <fieldset><legend>Each month</legend>
 {field("extra", "Extra on top of the minimums", d["extra"], "The minimums are added for you", pre="$")}
 </fieldset></form>"""
-    results = """<div class="sticky"><div class="card" aria-live="polite">
+    sno = p.get("focus") == "snowball"
+    # A snowball page leads with smallest-balance-first; the default page leads with highest-APR-first.
+    lead, other = (("sno", "Snowball"), ("ava", "Avalanche")) if sno else (("ava", "Avalanche"), ("sno", "Snowball"))
+    plan_rows = {"ava": ("Avalanche, highest APR first", "avaMonths", "avaInt", "avaNever"),
+                 "sno": ("Snowball, smallest balance first", "snoMonths", "snoInt", "snoNever")}
+    def plan_tr(key):
+        name, mo, it, nv = plan_rows[key]
+        return (f'<tr><th scope="row">{name}</th><td data-out="{mo}" data-fmt="int" data-never="20+ yrs" data-never-if="{nv}">0</td>'
+                f'<td data-out="{it}" data-fmt="money0" data-never="n/a" data-never-if="{nv}">$0</td></tr>')
+    L = lead[0]
+    compare = ('<div class="callout" data-show-if="avaVsSno > 0.5">Avalanche estimate on the same payment: about '
+               '<b data-out="avaVsSno" data-fmt="money0">$0</b> less interest than snowball. Snowball clears its first debt sooner.</div>') if sno else ""
+    results = f"""<div class="sticky"><div class="card" aria-live="polite">
 <div class="tiles">
-<div class="tile key"><div class="lab">Avalanche, months to pay off</div><div class="val" data-out="avaMonths" data-fmt="int" data-never="20+ years" data-never-if="avaNever">0</div><div class="sub">Interest about <span data-out="avaInt" data-fmt="money0" data-never="n/a" data-never-if="avaNever">$0</span></div></div>
+<div class="tile key"><div class="lab">{lead[1]}, months to pay off</div><div class="val" data-out="{L}Months" data-fmt="int" data-never="20+ years" data-never-if="{L}Never">0</div><div class="sub">Interest about <span data-out="{L}Int" data-fmt="money0" data-never="n/a" data-never-if="{L}Never">$0</span></div></div>
 <div class="tile"><div class="lab">Minimums only, months</div><div class="val" data-out="minMonths" data-fmt="int" data-never="Never" data-never-if="minNever">0</div><div class="sub">Interest about <span data-out="minInt" data-fmt="money0" data-never="n/a" data-never-if="minNever">$0</span></div></div>
 </div>
 <table class="mt"><thead><tr><th scope="col">Plan</th><th scope="col">Months</th><th scope="col">Interest (est.)</th></tr></thead><tbody>
-<tr><th scope="row">Avalanche, highest APR first</th><td data-out="avaMonths" data-fmt="int" data-never="20+ yrs" data-never-if="avaNever">0</td><td data-out="avaInt" data-fmt="money0" data-never="n/a" data-never-if="avaNever">$0</td></tr>
-<tr><th scope="row">Snowball, smallest balance first</th><td data-out="snoMonths" data-fmt="int" data-never="20+ yrs" data-never-if="snoNever">0</td><td data-out="snoInt" data-fmt="money0" data-never="n/a" data-never-if="snoNever">$0</td></tr>
+{plan_tr(lead[0])}
+{plan_tr(other[0])}
 <tr><th scope="row">Minimums only, no roll-over</th><td data-out="minMonths" data-fmt="int" data-never="Never" data-never-if="minNever">0</td><td data-out="minInt" data-fmt="money0" data-never="n/a" data-never-if="minNever">$0</td></tr>
 </tbody></table>
 <ul class="lines">
@@ -383,16 +395,17 @@ def debt_payoff_page(p):
 <li><span>Extra each month</span><span data-out="extra">$0</span></li>
 <li class="total"><span>Paid each month in both plans</span><span data-out="monthly">$0</span></li>
 </ul>
-<div class="callout" data-show-if="savedOk > 0">Avalanche estimate: <b data-out="avaSaved" data-fmt="money0">$0</b> less interest than minimums only.</div>
+<div class="callout" data-show-if="savedOk > 0">{lead[1]} estimate: <b data-out="{L}Saved" data-fmt="money0">$0</b> less interest than minimums only.</div>
+{compare}
 <div class="callout warn" data-show-if="minNever > 0">At least one minimum does not cover its monthly interest, so on minimums only that balance keeps growing.</div>
-<div class="callout warn" data-show-if="avaNever > 0">At this payment the plans run past 20 years. Try a larger extra amount.</div>
+<div class="callout warn" data-show-if="{L}Never > 0">At this payment the plans run past 20 years. Try a larger extra amount.</div>
 <div class="callout warn" data-show-if="empty > 0">Type a balance for at least one debt.</div>
 <details><summary>When each debt is paid off</summary>
-<table class="mt"><thead><tr><th scope="col">Debt</th><th scope="col">Avalanche</th><th scope="col">Snowball</th><th scope="col">Minimums</th></tr></thead><tbody>""" + "".join(
-        f'<tr><th scope="row">Debt {k}</th><td data-out="ava{k}" data-fmt="text">-</td><td data-out="sno{k}" data-fmt="text">-</td><td data-out="min{k}" data-fmt="text">-</td></tr>'
-        for k in range(1, 6)) + """</tbody></table></details>
+<table class="mt"><thead><tr><th scope="col">Debt</th><th scope="col">{lead[1]}</th><th scope="col">{other[1]}</th><th scope="col">Minimums</th></tr></thead><tbody>""" + "".join(
+        f'<tr><th scope="row">Debt {k}</th><td data-out="{lead[0]}{k}" data-fmt="text">-</td><td data-out="{other[0]}{k}" data-fmt="text">-</td><td data-out="min{k}" data-fmt="text">-</td></tr>'
+        for k in range(1, 6)) + f"""</tbody></table></details>
 </div></div>
-<div class="mbar" aria-hidden="true"><span>Avalanche <b data-out="avaMonths" data-fmt="int" data-never="20+ yrs" data-never-if="avaNever">0</b> mo</span><span>Minimums <b data-out="minMonths" data-fmt="int" data-never="Never" data-never-if="minNever">0</b> mo</span></div>"""
+<div class="mbar" aria-hidden="true"><span>{lead[1]} <b data-out="{L}Months" data-fmt="int" data-never="20+ yrs" data-never-if="{L}Never">0</b> mo</span><span>Minimums <b data-out="minMonths" data-fmt="int" data-never="Never" data-never-if="minNever">0</b> mo</span></div>"""
     script = """<script>
 (function(){var f=document.getElementById("calc");
 /* Maths: PNF.debtPayoff in assets/pnf-calc.js, the plan grids and minimums-only columns of engines/debt-payoff-tracker (#16). */

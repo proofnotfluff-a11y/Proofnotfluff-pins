@@ -137,6 +137,11 @@ check("#16 edge 2: minimums only months", d2.minMonths, 56);
 check("#16 edge 2: minimums only interest", d2.minInt, 6249.99213131759);
 { const ok = offs(d2, "ava") === "Month 20,Month 36,-,Month 44,-" && offs(d2, "sno") === "Month 14,Month 37,-,Month 44,-" && offs(d2, "min") === "Month 20,Month 56,-,Month 55,-";
   if (!ok) fails++; console.log(`${ok ? "ok  " : "FAIL"} #16 edge 2: per-debt months ${offs(d2, "ava")} / ${offs(d2, "sno")} / ${offs(d2, "min")}`); }
+// snowball page (debt-snowball-calculator): saving vs minimums and the gap to avalanche, from 1 Dashboard I16, I20, I24
+check("#16 snowball saved vs minimums", dp.snoSaved, 5858.9491379297);
+check("#16 avalanche less interest than snowball", dp.avaVsSno, 268.28);
+check("#16 edge: snowball saving blank when minimums never end", d1.snoSaved, 0);
+check("#16 edge 2: snowball saved vs minimums", d2.snoSaved, 1521.56213131759);
 const d3 = P.debtPayoff(debtIn([[50000, 29.99, 1250.5]], 0));
 check("#16 a plan past 240 months flags 20+ years", d3.avaNever, 1);
 // #7 Shipping True-Cost Calculator: Ceramic Mug 12 oz, 1 Parcel Costs row 22 (recalculated Oct 7, 2026)

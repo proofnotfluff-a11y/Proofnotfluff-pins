@@ -1,0 +1,39 @@
+{
+ "xlsx": "Profit-and-Loss-EXAMPLE.xlsx",
+ "sheet": "2 Statement",
+ "crop": [
+  0,
+  0.003,
+  1,
+  0.16
+ ],
+ "dpi": 220,
+ "eyebrow": "PROFIT AND LOSS TEMPLATE",
+ "states": [
+  {
+   "caption": "Example shop, January to September: {C7} net profit.",
+   "hold": 3.2
+  },
+  {
+   "set": {
+    "1 Entries!C155": 46290,
+    "1 Entries!D155": "Craft fair sales",
+    "1 Entries!F155": "Sales and services",
+    "1 Entries!G155": 600
+   },
+   "caption": "Log a $600 September sale: September is now {G7}.",
+   "hold": 3.6
+  },
+  {
+   "set": {
+    "1 Entries!C155": 46290,
+    "1 Entries!D155": "Craft fair sales",
+    "1 Entries!F155": "Sales and services",
+    "1 Entries!G155": 600,
+    "2 Statement!G15": "Aug"
+   },
+   "caption": "Pick August: {C7} for January to August.",
+   "hold": 3.6
+  }
+ ]
+}

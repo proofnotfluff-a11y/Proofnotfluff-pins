@@ -1,0 +1,242 @@
+{
+ "base": "/tmp/claude-0/-home-claude-proofnotfluff-pins/4e60d5a3-ea6e-5243-90c0-8283391d8118/scratchpad/pl2/r220",
+ "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+ "images": [
+  {
+   "type": "cover",
+   "eyebrow": "PROFIT AND LOSS TEMPLATE",
+   "title": "Log it once. Your P&L builds itself.",
+   "sub": "Monthly and year-to-date profit and loss statement, exact to the cent.",
+   "shot": "03-2-Statement.png",
+   "crop": [
+    0,
+    0.0,
+    1,
+    0.16
+   ],
+   "badges": [
+    "Excel + Google Sheets",
+    "Instant download",
+    "Monthly + year to date"
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "THE WORKED EXAMPLE",
+   "title": "$5,814.34 net profit, January to September.",
+   "sub": "Example T-shirt shop: $29,240.00 net revenue, $10,750.00 cost of goods sold after two stock counts, $18,490.00 gross profit.",
+   "shot": "03-2-Statement.png",
+   "crop": [
+    0,
+    0.17,
+    1,
+    0.31
+   ]
+  },
+  {
+   "type": "steps",
+   "eyebrow": "HOW IT WORKS",
+   "title": "Three steps.",
+   "steps": [
+    {
+     "head": "Log money in and out",
+     "text": "Date, what it was, category, amount.",
+     "shot": "02-1-Entries.png",
+     "crop": [
+      0,
+      0.0105,
+      0.78,
+      0.0159
+     ]
+    },
+    {
+     "head": "Pick the month",
+     "text": "Blank shows this month. Stock counts optional.",
+     "shot": "03-2-Statement.png",
+     "crop": [
+      0,
+      0.083,
+      1,
+      0.155
+     ]
+    },
+    {
+     "head": "Read your profit",
+     "text": "Month and year to date, filled in for you.",
+     "shot": "03-2-Statement.png",
+     "crop": [
+      0,
+      0.035,
+      1,
+      0.082
+     ]
+    }
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "STATEMENT TAB",
+   "title": "Every expense line, then net profit.",
+   "sub": "Operating expenses by Schedule C line, net profit, gross and net margin, and what is logged but kept out of profit.",
+   "shot": "03-2-Statement.png",
+   "crop": [
+    0,
+    0.296,
+    1,
+    0.535
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "ENTRIES TAB",
+   "title": "One row per money in or money out.",
+   "sub": "Pick the category from the list; Counts as shows where each row lands. 1,000 rows, totals read every row.",
+   "shot": "02-1-Entries.png",
+   "crop": [
+    0,
+    0.0,
+    1,
+    0.03
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "MONTH BY MONTH",
+   "title": "The whole year side by side.",
+   "sub": "Every category for every month, with net revenue, cost of goods and gross profit rows.",
+   "shot": "04-3-Month-by-Month.png",
+   "crop": [
+    0,
+    0.088,
+    0.56,
+    0.33
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "NET PROFIT BY MONTH",
+   "title": "See the loss months at a glance.",
+   "sub": "Example: January -$61.99, August $1,361.91, September $513.01. Accent bars are losses.",
+   "shot": "04-3-Month-by-Month.png",
+   "crop": [
+    0,
+    0.532,
+    0.5,
+    0.74
+   ],
+   "trim": true
+  },
+  {
+   "type": "shot",
+   "eyebrow": "CHECKS",
+   "title": "It flags rows that are missing something.",
+   "sub": "Rows with no date, no category or a name not on the list are counted, so the totals are complete before you rely on them.",
+   "shot": "03-2-Statement.png",
+   "crop": [
+    0,
+    0.548,
+    1,
+    0.647
+   ],
+   "trim": true
+  },
+  {
+   "type": "list",
+   "eyebrow": "IS THIS FOR YOU?",
+   "title": "Made for small business owners.",
+   "columns": [
+    {
+     "head": "Made for",
+     "mark": "check",
+     "items": [
+      "Makers, shops, freelancers and side businesses",
+      "Owners who file Schedule C",
+      "A monthly P&L without accounting software",
+      "Clean totals for a lender or tax preparer"
+     ]
+    },
+    {
+     "head": "Not for",
+     "mark": "x",
+     "items": [
+      "Payroll, invoicing or bank syncing",
+      "Depreciation or home office maths",
+      "Tax filing or tax advice"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "HOW YOU GET IT",
+   "title": "Instant download. Opens in Excel or Google Sheets.",
+   "columns": [
+    {
+     "head": "What you get",
+     "mark": "check",
+     "items": [
+      "A blank template and a filled-in example",
+      "Start Here guide as a PDF, US Letter and A4",
+      "Made for Excel; checked in Google Sheets and LibreOffice",
+      "No macros, no add-ons, no sign-up"
+     ]
+    },
+    {
+     "head": "How to download",
+     "mark": "check",
+     "items": [
+      "Buy, then open Etsy in a web browser",
+      "Go to You, then Purchases, and download",
+      "The Etsy app can't download digital files",
+      "Message the shop on Etsy if anything won't open"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "inside",
+   "eyebrow": "ONE DOWNLOAD",
+   "title": "What's inside",
+   "tabs": [
+    {
+     "name": "Statement",
+     "shot": "03-2-Statement.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.5
+     ]
+    },
+    {
+     "name": "Entries",
+     "shot": "02-1-Entries.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.045
+     ]
+    },
+    {
+     "name": "Month by Month",
+     "shot": "04-3-Month-by-Month.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.5
+     ]
+    }
+   ],
+   "items": [
+    "P&L for any month and the year to date",
+    "Gross and net margin, exact to the cent",
+    "22 cost and expense lines named after Schedule C",
+    "Optional stock counts for true cost of goods sold",
+    "Blank template plus a worked example",
+    "Start Here PDF in Letter and A4"
+   ]
+  }
+ ]
+}

@@ -450,9 +450,52 @@ PNF.wire(f,M);window.PNF_MODEL=M;})();</script>"""
     return form, results, script
 
 
+def reorder_point_page(p):
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>How fast it sells</legend>
+{field("daily", "Units sold per day", d["daily"], "Units sold in the last 30 days, divided by 30")}
+{field("lead", "Supplier lead time, days", d["lead"], "From placing an order to having it on your shelf")}
+</fieldset>
+<fieldset><legend>Your cushion and rhythm</legend>
+{field("safety", "Safety stock", d["safety"], "Extra on top of lead-time sales. Raise it for suppliers that run late", suf="%")}
+{field("cycle", "Days between your orders", d["cycle"], "How often you order from this supplier")}
+</fieldset>
+<fieldset><legend>Where you are now</legend>
+{field("onHand", "Units on hand", d["onHand"])}
+{field("onOrder", "Units already on order", d["onOrder"], "Ordered but not arrived yet")}
+{field("unitCost", "Unit cost", d["unitCost"], "What you pay the supplier per unit", pre="$")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Reorder point</div><div class="val"><span data-out="rop" data-fmt="dec1">0.0</span> units</div><div class="sub" data-out="statusText" data-fmt="text">-</div></div>
+<div class="tile"><div class="lab"><span data-show-if="orderNow > 0">Order now</span><span data-show-if="orderNow < 1">Next order</span></div><div class="val"><span data-out="units" data-fmt="int">0</span> units</div><div class="sub"><span data-out="orderCost">$0</span> at your unit cost</div></div>
+</div>
+<ul class="lines">
+<li><span>Sales while an order is on its way</span><span><span data-out="rop" data-fmt="dec1">0.0</span> units</span></li>
+<li><span>Order up to</span><span><span data-out="upTo" data-fmt="dec1">0.0</span> units</span></li>
+<li><span>Days of stock on hand</span><span data-out="days" data-fmt="dec1">0.0</span></li>
+<li class="total"><span>Days until you reach the reorder point</span><span data-out="untilShow" data-fmt="dec1">0.0</span></li>
+</ul>
+<div class="callout warn" data-show-if="risk > 0">On hand lasts <b data-out="days" data-fmt="dec1">0.0</b> days, <b data-out="shortDays" data-fmt="dec1">0.0</b> fewer than your lead time, and nothing is on order. Order <b data-out="units" data-fmt="int">0</b> units now, and ask about faster shipping.</div>
+<div class="callout warn" data-show-if="atRop > 0">On hand plus on order is at or under the reorder point. Ordering <b data-out="units" data-fmt="int">0</b> units brings you back up to <b data-out="upTo" data-fmt="dec1">0.0</b>.</div>
+<div class="callout" data-show-if="soon > 0">You reach the reorder point in about <b data-out="untilShow" data-fmt="dec1">0.0</b> days. Plan about <b data-out="orderCost">$0</b> for that order.</div>
+<div class="callout" data-show-if="later > 0">More than 30 days of stock above the reorder point. No order needed this month.</div>
+<div class="callout warn" data-show-if="noSales > 0">Type units sold per day above zero. With no sales there is nothing to plan from.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Reorder at <b data-out="rop" data-fmt="dec1">0.0</b></span><span>Order <b data-out="units" data-fmt="int">0</b></span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.reorderPoint in assets/pnf-calc.js, the 2 SKU List tab of engines/cash-aware-reorder-planner (#6). */
+var M=PNF.reorderPoint;
+PNF.wire(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
 PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashflow_page,
               "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
-              "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page}
+              "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
+              "reorder_point": reorder_point_page}
 
 
 def page_html(p):

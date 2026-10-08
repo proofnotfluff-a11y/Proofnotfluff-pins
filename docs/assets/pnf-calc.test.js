@@ -158,11 +158,30 @@ check("#7 edge: $0 hourly, parcel (engine P22)", sh2.parcel, 14.75);
 check("#7 edge: $0 hourly, shortfall (engine Q22, Covered)", sh2.shortfall, 3.2);
 check("#7 edge: 13.25% fee on shipping (engine I27 less 13.25% x $19 and $0.45)", sh2.fees, 5.345875 - 0.1325 * 19 - 0.45);
 check("#7 edge: covered after fees", sh2.isUnder, 0);
+// #6 Cash-Aware Reorder Planner, 2 SKU List rows (recalculated workbook, Oct 8, 2026): safety 20%, 14 days between orders
+const R12 = P.reorderPoint({ daily: 6, lead: 7, safety: 20, cycle: 14, onHand: 46, onOrder: 0, unitCost: 2.6 });
+check("#6 SKU-012 reorder point (Q)", R12.rop, 50.4);
+check("#6 SKU-012 order up to (R)", R12.upTo, 151.2);
+check("#6 SKU-012 days of stock (P)", R12.days, 7.6667);
+check("#6 SKU-012 days until reorder (W)", R12.until, -0.7333);
+check("#6 SKU-012 REORDER, order cost (X)", R12.status === "REORDER" ? R12.orderCost : -1, 275.6);
+const R1 = P.reorderPoint({ daily: 1.4, lead: 21, safety: 20, cycle: 14, onHand: 48, onOrder: 0, unitCost: 6.5 });
+check("#6 SKU-001 reorder point (Q)", R1.rop, 35.28);
+check("#6 SKU-001 days until reorder (W)", R1.until, 9.0857);
+check("#6 SKU-001 OK, next order cost within 30 days (X)", R1.status === "OK" ? R1.orderCost : -1, 156);
+const R2 = P.reorderPoint({ daily: 1.8, lead: 21, safety: 20, cycle: 14, onHand: 30, onOrder: 0, unitCost: 7.2 });
+check("#6 SKU-002 STOCKOUT RISK, order cost (X)", R2.status === "STOCKOUT RISK" ? R2.orderCost : -1, 331.2);
+check("#6 SKU-002 order up to (R)", R2.upTo, 75.6);
+const R11 = P.reorderPoint({ daily: 3.5, lead: 7, safety: 20, cycle: 14, onHand: 24, onOrder: 48, unitCost: 5.6 });
+check("#6 SKU-011 on order keeps it OK, days until reorder (W)", R11.status === "OK" ? R11.until : -1, 12.1714);
+check("#6 SKU-011 next order cost within 30 days (X)", R11.orderCost, 330.4);
+const R0 = P.reorderPoint({ daily: 0, lead: 21, safety: 20, cycle: 14, onHand: 6, onOrder: 0, unitCost: 17 });
+check("#6 SKU-005 no sales: reorder point 0 (Q)", R0.status === "NO SALES" ? R0.rop : -1, 0);
 // blank inputs never produce NaN or Infinity
 const b = P.service({});
 const bh = P.hourly({});
 const bc = P.cashflow({});
-const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({})]
+const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({})]
   .flatMap(o => Object.values(o)).filter(v => typeof v === "number");
 const bad = [...Object.values(b), ...Object.values(bh), ...Object.values(bc), ...more].filter(v => !isFinite(v));
 if (bad.length) { fails++; console.log("FAIL blank inputs give non-finite values"); } else console.log("ok   blank inputs stay finite");

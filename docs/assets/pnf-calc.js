@@ -3,7 +3,7 @@
    cashflow: the premium 13-Week E-commerce Cash Flow workbook's ending-cash row;
    etsyFees: engines/etsy-true-profit (#5); craftFair: engines/craft-fair-profit (#12);
    strNightly: engines/str-nightly-pricing (#9); debtPayoff: engines/debt-payoff-tracker (#16);
-   shippingCost: engines/shipping-true-cost (#7).
+   shippingCost: engines/shipping-true-cost (#7); reorderPoint: engines/cash-aware-reorder-planner (#6).
    Tested against the workbooks' own example outputs in docs/assets/pnf-calc.test.js. */
 (function (root) {
   "use strict";
@@ -223,6 +223,30 @@
       before: shortfall < -0.005 ? 1 : 0, postageShare: parcel > 0 ? postage / parcel : 0, underPer100: -net * 100 };
   }
 
+  // #6 Cash-Aware Reorder Planner, one SKU: the 2 SKU List reorder point, order-up-to, days of stock, status and
+  // days-until-reorder columns, and the units the 30-day order cost uses. Overstock at 120 days, the workbook default.
+  function reorderPoint(i) {
+    var daily = num(i.daily), lead = num(i.lead), safety = num(i.safety) / 100, cycle = num(i.cycle);
+    var onHand = num(i.onHand), onOrder = num(i.onOrder), cost = num(i.unitCost), over = 120;
+    var sales = daily > 0;
+    var rop = sales ? daily * lead * (1 + safety) : 0;
+    var upTo = sales ? daily * (lead + cycle) * (1 + safety) : 0;
+    var days = sales ? onHand / daily : 0;
+    var until = sales ? (onHand + onOrder - rop) / daily : 0;
+    var status = !sales ? "NO SALES" : (days < lead && onOrder === 0) ? "STOCKOUT RISK"
+               : (onHand + onOrder <= rop) ? "REORDER" : (days >= over) ? "OVERSTOCK" : "OK";
+    var orderNow = (status === "REORDER" || status === "STOCKOUT RISK");
+    var units = orderNow ? Math.max(0, Math.ceil(upTo - onHand - onOrder - 1e-9))
+              : (sales && until <= 30) ? Math.ceil(upTo - rop - 1e-9) : 0;
+    var words = { "NO SALES": "No sales to plan from", "STOCKOUT RISK": "Order now: stock runs out before an order lands",
+                  "REORDER": "Order now: you are at your reorder point", "OVERSTOCK": "Overstocked: 120+ days of stock",
+                  "OK": "OK for now" }[status];
+    return { rop: rop, upTo: upTo, days: days, until: until, status: status, statusText: words,
+      orderNow: orderNow ? 1 : 0, soon: (!orderNow && sales && until <= 30) ? 1 : 0, later: (!orderNow && sales && until > 30) ? 1 : 0,
+      noSales: sales ? 0 : 1, units: units, orderCost: units * cost, untilShow: Math.max(0, until),
+      shortDays: sales && days < lead ? lead - days : 0, risk: status === "STOCKOUT RISK" ? 1 : 0, atRop: status === "REORDER" ? 1 : 0 };
+  }
+
   function money(x, cents) {
     var neg = x < 0; x = Math.abs(x);
     var s = cents === false ? Math.round(x).toLocaleString("en-US")
@@ -246,6 +270,7 @@
         el.textContent = fmt === "text" ? String(v) : fmt === "mult" ? v.toFixed(2) + "x"
                        : fmt === "week" ? "Week " + v : fmt === "int" ? Math.round(v).toLocaleString("en-US")
                        : fmt === "hrs" ? v.toFixed(2) + " hrs"
+                       : fmt === "dec1" ? (Math.round(v * 10) / 10).toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 })
                        : fmt === "money0" ? money(v, false) : money(v);
         el.classList.toggle("neg", v < 0);
       });
@@ -280,7 +305,7 @@
   }
 
   var api = { hourly: hourly, service: service, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
-    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, num: num, money: money, ceilTo: ceilTo,
+    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;
 })(this);

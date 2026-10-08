@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-07",
+  "updated": "2026-10-08",
   "pages": [
     {
       "slug": "house-cleaning-price-calculator",
@@ -1204,6 +1204,74 @@
         "$13.19 true cost per parcel, -$8.24 shortfall: 1 Parcel Costs P22, Q22 ('Under-recovered').",
         "9.5% fee: engine FEES (5 Dashboard F27, 'Etsy: 6.5% transaction plus 3% processing'); re-checked Oct 7, 2026 on etsy.com/legal/fees (6.5%, includes shipping, updated Oct 5, 2026) and Etsy Help 115015628847 (3% + $0.25, includes shipping).",
         "$0.47 = 9.5% x 4.95 (the shipping share of 5 Dashboard's fee formula F x (D + E)); $13.66 and -$8.71 follow; $14.58 = 13.19 / 0.905 rounded up to the cent."
+      ]
+    },
+    {
+      "slug": "inventory-reorder-point-calculator",
+      "kind": "reorder_point",
+      "draft": true,
+      "title": "Reorder Point Calculator for Small Shops: When to Reorder and How Much | ProofNotFluff",
+      "desc": "Free reorder point calculator for small businesses. Type daily sales, supplier lead time and safety stock to see the stock level to reorder at, how many units to order, and how many days you have left.",
+      "eyebrow": "Free calculator",
+      "h1": "Reorder Point Calculator",
+      "lede": "Know when to reorder before you run out. Type how fast one product sells and how long your supplier takes, and see the reorder point, how many units to order and how many days you have. Free, no sign-up.",
+      "card": "The stock level to reorder at, and how many units to order, for one product.",
+      "defaults": {
+        "daily": "6",
+        "lead": "7",
+        "safety": "20",
+        "cycle": "14",
+        "onHand": "46",
+        "onOrder": "0",
+        "unitCost": "2.60"
+      },
+      "method": [
+        "Reorder point = units sold per day x supplier lead time in days x (1 + safety stock). It is the stock that covers the sales you expect while an order is on its way, plus a cushion.",
+        "Order up to = units sold per day x (lead time + days between your orders) x (1 + safety stock). When you order, you order enough to get back up to this level: order up to minus on hand minus on order, rounded up to a whole unit.",
+        "The status reads Order now when on hand plus on order is at or under the reorder point, or when on hand runs out before an order could land and nothing is on order. Days until you reach the reorder point = (on hand + on order - reorder point) / units sold per day. Over 120 days of stock reads as overstocked, the workbook's default."
+      ],
+      "example": "Take the goat milk soap bar in the workbook's sample shop: it sells 6 a day, the supplier takes 7 days, safety stock is 20% and the shop orders every 14 days. The reorder point is 6 x 7 x 1.2 = 50.4 bars, and with 46 on hand and none on order it is time to order. Order up to is 6 x 21 x 1.2 = 151.2, so the order is 106 bars, $275.60 at $2.60 each. The shop's speckled mug sells 1.4 a day with a 21-day lead time: its reorder point is 35.28 mugs, so 48 on hand reaches it in about 9.1 days, and the next order is 24 mugs, $156. These are the sample shop's numbers in the Cash-Aware Reorder Planner workbook.",
+      "cta": {
+        "title": "Every product, every supplier, and the cash to pay for it",
+        "bullets": [
+          "The Cash-Aware Reorder Planner uses this same maths for Excel and Google Sheets:",
+          "up to 30 products, a reorder plan in priority order, purchase orders grouped by supplier, a cash check that funds the most urgent orders first, and a dead stock list. $2.99, instant download."
+        ],
+        "button": "Get the workbook on Etsy",
+        "url": "https://proofnotfluff.etsy.com/listing/4585004344"
+      },
+      "faq": [
+        [
+          "How do you calculate a reorder point?",
+          "Multiply the units you sell per day by your supplier's lead time in days, then add a safety stock cushion. Selling 6 a day with a 7-day lead time and 20% safety stock gives 6 x 7 x 1.2 = 50.4 units."
+        ],
+        [
+          "What is safety stock?",
+          "A cushion on top of the sales you expect while an order is on its way, written here as a percent of those sales. Raise it for a supplier that often runs late or a product whose sales jump around."
+        ],
+        [
+          "How many units should I order?",
+          "Enough to get back up to your order-up-to level: the sales you expect over the lead time plus the days until your next order, with the same cushion, minus what you have on hand and on order."
+        ],
+        [
+          "How do I find units sold per day?",
+          "Count the units sold in the last 30 days and divide by 30. A product that sold 42 units last month sells 1.4 a day."
+        ],
+        [
+          "Does this work for products with seasonal sales?",
+          "Use your recent daily sales and check again before your busy season. The workbook adds a trend adjustment that raises or lowers daily sales for the season ahead."
+        ],
+        [
+          "Is this financial advice?",
+          "No. It is a planning estimate based on the numbers you enter. Check minimum order quantities, price breaks and lead times with your supplier."
+        ]
+      ],
+      "sources": "Every default is the sample shop's soap bar in the Cash-Aware Reorder Planner workbook (built and recalculated Oct 8, 2026); the formulas are the workbook's own 2 SKU List columns. No outside rates are used.",
+      "number_sources": [
+        "SKU-012: 6 a day, 7-day lead, 46 on hand, $2.60: engines/cash-aware-reorder-planner SKUS; safety 20%, 14 days between orders: EX.",
+        "50.4 reorder point, 151.2 order up to, REORDER, $275.60: recalculated 2 SKU List Q, R, T, X for SKU-012 (Oct 8, 2026).",
+        "SKU-001: 35.28 reorder point, 9.0857 days until reorder, $156 (24 x $6.50): 2 SKU List Q, W, X for SKU-001.",
+        "Overstock at 120 days: engine EX over=120 (1 Your Shop)."
       ]
     }
   ]

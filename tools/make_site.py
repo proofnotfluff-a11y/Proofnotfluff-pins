@@ -586,5 +586,31 @@ def main():
             sys.exit(f"em dash in {p['slug']}")
 
 
-if __name__ == "__main__":
+def add_product(argv):
+    """make_site.py add <id> <listing id> <group key> "<name>" "<audience>": adds a newly listed Etsy product to
+    site/links.json (hub card plus /go/<id>/) and rebuilds the site. Every run that lists a product runs it, and
+    every promote run runs it before using a /go/<id>/ link that docs/go/<id>/ lacks."""
+    pid, listing, group, name, audience = int(argv[0]), str(argv[1]), argv[2], argv[3], argv[4]
+    f = os.path.join(ROOT, "site", "links.json")
+    d = json.load(open(f, encoding="utf-8"))
+    keys = [g["key"] for g in d["groups"]]
+    if group not in keys:
+        sys.exit(f"group must be one of {keys}")
+    if not listing.isdigit():
+        sys.exit("listing id must be digits only")
+    if chr(0x2014) in name + audience:
+        sys.exit("em dash in name or audience")
+    d["products"] = [p for p in d["products"] if p["id"] != pid] + [
+        {"id": pid, "name": name, "audience": audience, "channel": "etsy", "listing": listing}]
+    for g in d["groups"]:
+        g["ids"] = [i for i in g["ids"] if i != pid] + ([pid] if g["key"] == group else [])
+    open(f, "w", encoding="utf-8").write(json.dumps(d, indent=1, ensure_ascii=False) + "\n")
     main()
+    print(f"added #{pid}: {BASE}go/{pid}/")
+
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1 and sys.argv[1] == "add":
+        add_product(sys.argv[2:])
+    else:
+        main()

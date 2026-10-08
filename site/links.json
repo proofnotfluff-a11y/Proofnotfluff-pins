@@ -52,7 +52,8 @@
     3,
     4,
     11,
-    17
+    17,
+    24
    ]
   }
  ],
@@ -210,6 +211,13 @@
    "audience": "junk removal owner-operators and hauling crews",
    "channel": "etsy",
    "listing": "4590270056"
+  },
+  {
+   "id": 24,
+   "name": "Fair Share Chore Chart for Couples and Roommates",
+   "audience": "couples and roommates sharing a home",
+   "channel": "etsy",
+   "listing": "4590737811"
   }
  ]
 }

@@ -17,8 +17,9 @@ Fixes in v3 (declared in compare_map.json "intended" where an answer changes):
 - A blank Offsite Ads tier now uses the 15% rate (v1 fell to 12%).
 - Payouts holds 26 deposit rows (a year of twice-monthly deposits; v1 had 40) so printing has no bare pages.
 - Payouts example note said 12 orders; Sep 1 to 14 holds 13.
-- Fees re-checked on Etsy's Fees & Payments Policy (updated Oct 5, 2026) and help pages,
-  and the IRS estimated tax due dates, Oct 6, 2026; full Terms of Use tab; every tab
+- Fees re-checked on Etsy's Fees & Payments Policy (updated Oct 5, 2026), Etsy Payments Policy and help pages,
+  and the IRS estimated tax due dates, Oct 8, 2026 (fix loop round: Offsite Ads opt-out is shop-wide, so the
+  decision reads REPRICE FOR ADS; unsourced percent hints dropped; Payouts prints 10 deposits so A4 has no bare page); full Terms of Use tab; every tab
   protected without a password; validation and an input message on every input.
 
 Usage: python3 engines/etsy-true-profit/build_xlsx.py out.xlsx
@@ -38,7 +39,7 @@ from openpyxl.styles import Alignment, Border, Font, PatternFill  # noqa: E402
 from openpyxl.worksheet.datavalidation import DataValidation  # noqa: E402
 
 PRODUCT = "True Profit System for Etsy Sellers"
-CHECKED = "Oct 6, 2026"
+CHECKED = "Oct 8, 2026"
 AS_OF = f"Fees checked {CHECKED}"
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = sys.argv[1] if len(sys.argv) > 1 else "True-Profit-System-for-Etsy-Sellers.xlsx"
@@ -69,7 +70,7 @@ FEES = [  # name, label, value, fmt, applies to, prompt, validation
      "12% once a shop reaches $10K in any 365 days; from then on Offsite Ads are required for the life of the shop. Checked " + CHECKED + ".",
      ("decimal", 0, 0.5)),
     ("AdsThreshold", "Offsite Ads threshold", 10000, USD0, "sales in 365 days",
-     "Under this in 365 days: 15% and you can opt out. At or over it: 12% and you can't. Checked " + CHECKED + ".",
+     "Under this in 365 days: 15% and you can opt the whole shop out. At or over it: 12% and you can't. Checked " + CHECKED + ".",
      ("decimal", 0, None)),
     ("AdsCap", "Offsite Ads cap per order", 100, USD0, "most per order",
      "The Offsite Ads fee on one order never goes over this. Etsy help, checked " + CHECKED + ".",
@@ -157,7 +158,7 @@ su.merge_cells(f"C{SN}:D{SN}")
 CUR = A.input("Currency", CURRENCY, TXT, name="Currency", validation=("textLength", 0, 10),
               prompt="A label only, for example USD. To change the symbol on money cells, use Format, Number.")
 TM = A.input("Target profit margin", TARGET, PCT1, name="TargetMargin", validation=("decimal", 0, 0.9),
-             prompt="Net profit divided by revenue (item plus shipping charged). 30% is a common floor for handmade goods. Type a percent.")
+             prompt="Net profit divided by revenue (item plus shipping charged). Type a percent, for example 30%.")
 A.eyebrow("OFFSITE ADS")
 TIER = A.input("Your Offsite Ads tier", "Under $10K", TXT, name="AdsTier", validation=("list", ["Under $10K", "$10K or more"]),
                prompt="Under $10K if your shop has never made $10,000 in any 365 days. Otherwise $10K or more.",
@@ -191,7 +192,8 @@ n_top = max(A.end, B.end) + 2
 SU_NOTES = [
     ("Where the fees come from", "Etsy's Fees & Payments Policy (etsy.com/legal/fees, updated Oct 5, 2026): $0.20 listing fee, "
      "auto-renewed at $0.20 after each sale of a multi-quantity listing; 6.5% transaction fee on item price plus shipping and gift wrap, "
-     "not on US sales tax. Etsy help, Payment processing fees: US shops pay 3% plus $0.25, on the total including shipping and sales tax. "
+     "not on US sales tax. Etsy Payments Policy (etsy.com/legal/etsy-payments, updated Jul 31, 2026), section 9B: a US bank account pays "
+     "3% plus $0.25 an order; Etsy help says it is charged on the total including shipping and any sales tax. "
      f"Etsy help, How Etsy's Offsite Ads Work: 15%, or 12% once a shop reaches $10,000 in 365 days, at most $100 an order. Checked {CHECKED}."),
     ("Outside the US", "Processing fees vary by the country of your bank account, and some countries add a regulatory operating fee. "
      "Type your own rates into the fee table."),
@@ -252,7 +254,7 @@ def lc(kind):
 money_in = dict(fmt=USD2, align="right", validation=("decimal", 0, None), error="Enter 0 or more, in dollars, for example 6.10.")
 cols_l = [
     dict(col="C", head="Listing or SKU", kind="input", values=[x[0] for x in LISTINGS], validation=("textLength", 0, 40),
-         prompt="A short name you will recognise. It feeds the SKU list on the Orders tab.", error="Up to 40 characters."),
+         prompt="A short name you will recognize. It feeds the SKU list on the Orders tab.", error="Up to 40 characters."),
     dict(col="D", head="List price", kind="input", values=[x[1] for x in LISTINGS], prompt="Your listing price for one item, in dollars.", **money_in),
     dict(col="E", head="Materials", kind="input", values=[x[2] for x in LISTINGS], prompt="Materials for one item, in dollars.", **money_in),
     dict(col="F", head="Labor cost", kind="input", values=[x[3] for x in LISTINGS],
@@ -293,7 +295,7 @@ D.h(li, a_top, 12)
 r = a_top + 1
 t = li[f"C{r}"]; t.value = "Offsite Ads check"; t.font = D.f(12, True); li.merge_cells(f"C{r}:T{r}"); D.h(li, r, 24); r += 1
 t = li[f"C{r}"]; t.value = ("What one ad-attributed sale does to each listing, and your blended margin at the share of orders that come "
-                            "through Offsite Ads. Find your share in Shop Manager, Stats, Offsite Ads.")
+                            "through Offsite Ads. Find your share in Shop Manager, Marketing, Offsite Ads.")
 t.font = D.f(9, False, "muted"); t.alignment = Alignment(vertical="top", wrap_text=True); li.merge_cells(f"C{r}:T{r}"); D.h(li, r, 18); r += 1
 D.h(li, r, 8); r += 1
 STRIP = r
@@ -303,11 +305,11 @@ D.stat_strip(li, STRIP, [
     ("E:H", "Blended margin, no ad sales", "", PCT1),
     ("I:L", "At your ad share", "", PCT1),
     ("M:P", "If every sale were an ad sale", "", PCT1),
-    ("Q:T", "Listings to opt out or reprice", "", INT),
+    ("Q:T", "Listings to reprice for ads", "", INT),
 ])
 SHARE = f"C{STRIP + 1}"
 c = S.input_cell(li, SHARE, 0.3, PCT1, name="AdsShare", wb=wb, validation=("decimal", 0, 1),
-                 prompt_title="Share via Offsite Ads", prompt="Share of your orders that come through Offsite Ads. Most shops land between 10% and 40%. Type a percent.")
+                 prompt_title="Share via Offsite Ads", prompt="Share of your orders that come through Offsite Ads, from Shop Manager, Marketing, Offsite Ads. Type a percent.")
 c.font = D.f(18, True, "input_text"); c.fill = D.fill("input_fill"); c.alignment = Alignment(horizontal="left", vertical="center", indent=1)
 for k in ("C", "D"):
     cc = li[f"{k}{STRIP + 1}"]; cc.fill = D.fill("input_fill")
@@ -334,7 +336,7 @@ def ac(kind):
             "m1": f"={g}IF(D{rr}>0,H{rr}/D{rr},0))",
             "pts": f"={g}(I{rr}-F{rr})*100)",
             "chg": f"={g}-G{rr})",
-            "dec": f'={g}IF(I{rr}<{TG}-0.05,"OPT OUT OR REPRICE",IF(I{rr}<{TG},"WATCH","OK")))',
+            "dec": f'={g}IF(I{rr}<{TG}-0.05,"REPRICE FOR ADS",IF(I{rr}<{TG},"WATCH","OK")))',
         }[kind]
     return fn
 
@@ -365,7 +367,7 @@ for rr in range(a_first, a_last + 1):
     li.merge_cells(f"L{rr}:T{rr}")
     for k in D.cols("C", "T"):
         li[f"{k}{rr}"].border = Border(bottom=D.side("hair"))
-word_rules(li, f"L{a_first}:T{a_last}", f"$L{a_first}", (("OPT OUT OR REPRICE", "accent", "accent_tint"), ("WATCH", "gold", "input_fill"), ("OK", "teal", "teal_tint")))
+word_rules(li, f"L{a_first}:T{a_last}", f"$L{a_first}", (("REPRICE FOR ADS", "accent", "accent_tint"), ("WATCH", "gold", "input_fill"), ("OK", "teal", "teal_tint")))
 for formula, color in ((f'AND($I{a_first}<>"",$I{a_first}<{TG}-0.05)', "accent"),
                        (f'AND($I{a_first}<>"",$I{a_first}<{TG},$I{a_first}>={TG}-0.05)', "gold"),
                        (f'AND($I{a_first}<>"",$I{a_first}>={TG})', "teal")):
@@ -375,12 +377,13 @@ SV = STRIP + 1
 li[f"E{SV}"] = f'=IF(SUM({AD["D"]})>0,SUM({AD["E"]})/SUM({AD["D"]}),0)'
 li[f"I{SV}"] = f'=IF(SUM({AD["D"]})>0,(SUM({AD["E"]})-$C${SV}*SUM({AD["G"]}))/SUM({AD["D"]}),0)'
 li[f"M{SV}"] = f'=IF(SUM({AD["D"]})>0,SUM({AD["H"]})/SUM({AD["D"]}),0)'
-li[f"Q{SV}"] = f'=COUNTIF({AD["L"]},"OPT OUT OR REPRICE")'
+li[f"Q{SV}"] = f'=COUNTIF({AD["L"]},"REPRICE FOR ADS")'
 D.status_rule(li, f"Q{SV}", f"Q{SV}>0", fill_tint=False)
 a_note = a_last + 1
 cc = li[f"C{a_note}"]
-cc.value = ("Decision rule: a listing that turns red here should be opted out of Offsite Ads (possible only under $10K in sales) or "
-            "repriced at the Pricing tab's ad-sale price. Blended margins weight every listing equally; the Orders tab has your real mix.")
+cc.value = ("Decision rule: a listing that turns red here loses too much on an ad sale. Reprice it toward the Pricing tab's ad-sale price. "
+            "Opting out of Offsite Ads covers the whole shop, not one listing, and only under $10K in sales. Blended margins weight every "
+            "listing equally; the Orders tab has your real mix.")
 cc.font = D.f(9, False, "muted"); cc.alignment = Alignment(vertical="center", wrap_text=True); li.merge_cells(f"C{a_note}:T{a_note}")
 D.h(li, a_note, 32)
 a_end = a_note + 1
@@ -449,7 +452,7 @@ rb27 = RB.calc("List price, no Offsite Ads", f'=IF({DEN_B}<=0,"",{FIXED_B}/{DEN_
 rb28 = RB.calc("List price if an ad sale", f'=IF({DEN_B2}<=0,"",{FIXED_B}/{DEN_B2}-$D${B23})', USD2, bold=True)
 rb29 = RB.calc("Net profit per unit, no ads", f'=IF(I{rb27}="","",(I{rb27}+$D${B23})*$D${B20})', USD2)
 pill = RB.text(f'=IF({DEN_B}<=0,"No price reaches this margin: fees and margin take all of it",IF({DEN_B2}<=0,"An ad sale cannot reach this margin at any price",'
-               f'IF(I{rb27}="","","Round up, never down: "&TEXT(I{rb27},"$#,##0.00")&" becomes "&TEXT(CEILING(I{rb27},0.5),"$#,##0.00")&" or "&TEXT(CEILING(I{rb27},1),"$#,##0"))))', size=9, color="ink2", bold=True)
+               f'IF(I{rb27}="","",IF(I{rb27}<=0,"","Round up, never down: "&TEXT(I{rb27},"$#,##0.00")&" becomes "&TEXT(CEILING(I{rb27},0.5),"$#,##0.00")&" or "&TEXT(CEILING(I{rb27},1),"$#,##0")))))', size=9, color="ink2", bold=True)
 pr[f"H{pill}"].alignment = Alignment(horizontal="left", vertical="center", wrap_text=True)
 RB.close()
 D.status_rule(pr, f"H{pill}:J{pill}", f"OR({DEN_B}<=0,{DEN_B2}<=0)", good="ink2", fill_tint=False)
@@ -680,7 +683,7 @@ fill_heights(po, p_note_end)
 D.paint_canvas(po, p_note_end + 1, "Z")
 S.finish_sheet(po, PRODUCT, p_note_end + 1, span=("A", "R"), freeze="A10", tab_color="gold")
 po.page_setup.orientation = "landscape"
-po.print_area = [f"A1:R{p_first + 13}", f"A{p_note_top}:R{p_note_end + 1}"]  # 14 deposit rows print; the rest stay on screen
+po.print_area = [f"A1:R{p_first + 9}", f"A{p_note_top}:R{p_note_end + 1}"]  # 10 deposit rows print (all A4 landscape holds on one page); the rest stay on screen
 PAY_BAL = "'5 Payouts'!$C$8"
 PAY_STATUS = "'5 Payouts'!$F$8"
 
@@ -800,7 +803,7 @@ BW_END = r
 TX = D.Card(db, BW_END + 2, "B", "C", "E", "L", extra="K", wb=wb)
 TX.title("Tax reserve", "Set money aside as you earn it, not in April.")
 t_rate = TX.input("Share of net profit to set aside", 0.25, PCT, name="TaxReserveRate", validation=("decimal", 0, 0.6),
-                  prompt="25% to 30% is a common starting point for self-employment plus income tax. Your tax preparer can give you a real number.",
+                  prompt="Type a percent, for example 25%. Your tax preparer can give you a real number for self-employment plus income tax.",
                   prompt_title="Tax set-aside share")
 t_np = TX.calc("Net profit, all logged orders", f"=E{k_pro}", USD2)
 t_res = TX.calc("Reserve you should have set aside", f"=MAX(0,E{t_rate}*E{t_np})", USD2, bold=True)
@@ -852,12 +855,12 @@ DB_NOTES = [
     ("True profit", "Revenue (item plus shipping charged) less every Etsy fee on the order and the listing's own costs times quantity. "
      "Sales tax is not revenue: Etsy collects it and pays it to the state."),
     ("Tax", "The reserve and the quarterly dates are an organizer, not tax advice. "
-     + S.TAX_TIER_CLAUSE.format(date="October 6, 2026", sources=TAX_SOURCES)),
+     + S.TAX_TIER_CLAUSE.format(date="October 8, 2026", sources=TAX_SOURCES)),
     ("Before you rely on a number", NOTICE),
 ]
 n_top = Q_END + 2
 n_end = rich_notes(db, n_top, DB_NOTES, span=("C", "K"), frame_span=("B", "L"))
-S.page_break_before(db, n_top)
+
 
 # helper: margin rank keys for the best and worst table (v1 kept these on the Listings tab)
 h_top = n_end + 2
@@ -900,6 +903,7 @@ for col in ("D", "K"):
 fill_heights(db, DB_LAST)
 D.paint_canvas(db, DB_LAST, "Z")
 S.finish_sheet(db, PRODUCT, DB_LAST, span=("A", "M"), freeze="A11", tab_color="purple")
+db.print_area = f"A1:M{n_end + 1}"  # the helper keys stay on screen only
 
 # =====================================================================  Start Here and Terms
 SH_GRID = {"A": 3, "B": 2, "C": 8, "D": 62, "E": 18, "F": 2, "G": 3}
@@ -956,7 +960,7 @@ r = sh_card(sh, r, "What it does", [(None,
     "fees; the list price that hits the profit or margin you want; every order's true profit; and a payout check that explains "
     "each deposit to the cent. The workbook opens with a sample candle shop filled in, so you can see what right looks like first.", "para")])
 r = sh_card(sh, r, "Six steps", [
-    (1, "Setup. Type your target margin and pick your Offsite Ads tier. The fee table holds Etsy's US fees, checked Oct 6, 2026.", "num"),
+    (1, f"Setup. Type your target margin and pick your Offsite Ads tier. The fee table holds Etsy's US fees, checked " + CHECKED + ".", "num"),
     (2, "Listings. One row per listing: price, materials, labor, shipping and packaging. Flags say OK, WATCH or REPRICE.", "num"),
     (3, "Pricing. Type the profit or margin you want and read the list price, with and without an Offsite Ads sale.", "num"),
     (4, "Orders. Log the orders behind one deposit from your Etsy order page. Fees and true profit work out per order.", "num"),
@@ -976,17 +980,18 @@ r = sh_card(sh, r, "The example", [(None,
     "The Wax Melt 6-Pack, marked as an Offsite Ads sale, keeps 15.8%: REPRICE. To keep $8 a unit on the candle, list it at $22.01, "
     "or $27.48 if the sale comes through Offsite Ads. September's 20 orders bring $856.00 of sales, $126.11 of Etsy fees (14.7%) "
     "and $268.44 of true profit (31.4%). The $412.57 deposit on Sep 16 reconciles to the cent.", "para")])
+S.page_break_before(sh, r)
 r = sh_card(sh, r, "Good to know", [
     (None, "Google Sheets. Upload the .xlsx to Google Drive, open it, then File, Save as Google Sheets. Check that the SKU dropdown "
-           "on the Orders tab works. Every formula is a plain formula that works in Excel, Google Sheets, Numbers and LibreOffice. "
-           "No macros, no add-ons, no sign-up.", "para"),
+           "on the Orders tab works. Built for Excel and Google Sheets, checked in LibreOffice and Google Sheets. Plain formulas only: "
+           "no macros, no add-ons, no sign-up.", "para"),
     (None, "Starting fresh. Type over the sample rows with your own, or clear the yellow cells. The formulas stay.", "para"),
     (None, "Outside the US. Payment processing fees depend on your bank's country. Type your own rates on the Setup tab.", "para"),
-    (None, "Printing. Orders prints its first 25 rows and Payouts its first 14 deposits. To print more, select the rows and "
+    (None, "Printing. Orders prints its first 25 rows and Payouts its first 10 deposits. To print more, select the rows and "
            "print the selection.", "para"),
 ])
 r = sh_card(sh, r, "Before you rely on a number", [(None, NOTICE + " "
-    + S.TAX_TIER_CLAUSE.format(date="October 6, 2026", sources=TAX_SOURCES), "note")])
+    + S.TAX_TIER_CLAUSE.format(date="October 8, 2026", sources=TAX_SOURCES), "note")])
 D.paint_canvas(sh, r - 1, "Z")
 S.finish_sheet(sh, PRODUCT, r - 1, span=("A", "G"), tab_color="teal")
 

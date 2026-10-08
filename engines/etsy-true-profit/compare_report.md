@@ -59,7 +59,7 @@
 | example | A8_I | 0.1821 | 0.1821 | yes |
 | example | A8_J | -15 | -15 | yes |
 | example | A8_K | -4.425 | -4.425 | yes |
-| example | A8_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| example | A8_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | example | A9_D | 16 | 16 | yes |
 | example | A9_E | 4.93 | 4.93 | yes |
 | example | A9_F | 0.3081 | 0.3081 | yes |
@@ -68,7 +68,7 @@
 | example | A9_I | 0.1581 | 0.1581 | yes |
 | example | A9_J | -15 | -15 | yes |
 | example | A9_K | -2.4 | -2.4 | yes |
-| example | A9_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| example | A9_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | example | A10_D | 50.5 | 50.5 | yes |
 | example | A10_E | 22.4525 | 22.4525 | yes |
 | example | A10_F | 0.4446 | 0.4446 | yes |
@@ -86,7 +86,7 @@
 | example | A11_I | 0.2142 | 0.2142 | yes |
 | example | A11_J | -15 | -15 | yes |
 | example | A11_K | -9 | -9 | yes |
-| example | A11_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| example | A11_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | example | A12_D | 20.5 | 20.5 | yes |
 | example | A12_E | 5.9025 | 5.9025 | yes |
 | example | A12_F | 0.2879 | 0.2879 | yes |
@@ -95,7 +95,7 @@
 | example | A12_I | 0.1379 | 0.1379 | yes |
 | example | A12_J | -15 | -15 | yes |
 | example | A12_K | -3.075 | -3.075 | yes |
-| example | A12_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| example | A12_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | example | ads_D30 | 0.3679 | 0.3679 | yes |
 | example | ads_D31 | 0.3229 | 0.3229 | yes |
 | example | ads_D32 | 0.2179 | 0.2179 | yes |
@@ -342,7 +342,7 @@
 | high prices and margin | A10_I | 0.2946 | 0.2946 | yes |
 | high prices and margin | A10_J | -15 | -15 | yes |
 | high prices and margin | A10_K | -7.575 | -7.575 | yes |
-| high prices and margin | A10_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| high prices and margin | A10_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | high prices and margin | A11_D | 60 | 60 | yes |
 | high prices and margin | A11_E | 21.85 | 21.85 | yes |
 | high prices and margin | A11_F | 0.3642 | 0.3642 | yes |
@@ -351,7 +351,7 @@
 | high prices and margin | A11_I | 0.2142 | 0.2142 | yes |
 | high prices and margin | A11_J | -15 | -15 | yes |
 | high prices and margin | A11_K | -9 | -9 | yes |
-| high prices and margin | A11_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| high prices and margin | A11_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | high prices and margin | A12_D | 20.5 | 20.5 | yes |
 | high prices and margin | A12_E | 5.9025 | 5.9025 | yes |
 | high prices and margin | A12_F | 0.2879 | 0.2879 | yes |
@@ -360,7 +360,7 @@
 | high prices and margin | A12_I | 0.1379 | 0.1379 | yes |
 | high prices and margin | A12_J | -15 | -15 | yes |
 | high prices and margin | A12_K | -3.075 | -3.075 | yes |
-| high prices and margin | A12_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| high prices and margin | A12_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | high prices and margin | ads_D30 | 0.4274 | 0.4274 | yes |
 | high prices and margin | ads_D31 | 0.3599 | 0.3599 | yes |
 | high prices and margin | ads_D32 | 0.2774 | 0.2774 | yes |
@@ -589,7 +589,7 @@
 | low prices, a loss | A8_I | -0.8174 | -0.8174 | yes |
 | low prices, a loss | A8_J | -15 | -15 | yes |
 | low prices, a loss | A8_K | -2.175 | -2.175 | yes |
-| low prices, a loss | A8_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| low prices, a loss | A8_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | low prices, a loss | A9_D | 9 | 9 | yes |
 | low prices, a loss | A9_E | -1.405 | -1.405 | yes |
 | low prices, a loss | A9_F | -0.1561 | -0.1561 | yes |
@@ -598,7 +598,7 @@
 | low prices, a loss | A9_I | -0.3061 | -0.3061 | yes |
 | low prices, a loss | A9_J | -15 | -15 | yes |
 | low prices, a loss | A9_K | -1.35 | -1.35 | yes |
-| low prices, a loss | A9_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| low prices, a loss | A9_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | low prices, a loss | A10_D | 50.5 | 50.5 | yes |
 | low prices, a loss | A10_E | 22.4525 | 22.4525 | yes |
 | low prices, a loss | A10_F | 0.4446 | 0.4446 | yes |
@@ -616,7 +616,7 @@
 | low prices, a loss | A11_I | 0.2142 | 0.2142 | yes |
 | low prices, a loss | A11_J | -15 | -15 | yes |
 | low prices, a loss | A11_K | -9 | -9 | yes |
-| low prices, a loss | A11_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| low prices, a loss | A11_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | low prices, a loss | A12_D | 20.5 | 20.5 | yes |
 | low prices, a loss | A12_E | 5.9025 | 5.9025 | yes |
 | low prices, a loss | A12_F | 0.2879 | 0.2879 | yes |
@@ -625,7 +625,7 @@
 | low prices, a loss | A12_I | 0.1379 | 0.1379 | yes |
 | low prices, a loss | A12_J | -15 | -15 | yes |
 | low prices, a loss | A12_K | -3.075 | -3.075 | yes |
-| low prices, a loss | A12_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| low prices, a loss | A12_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | low prices, a loss | ads_D30 | 0.2532 | 0.2532 | yes |
 | low prices, a loss | ads_D31 | 0.2082 | 0.2082 | yes |
 | low prices, a loss | ads_D32 | 0.1032 | 0.1032 | yes |
@@ -863,7 +863,7 @@
 | blank key inputs | A9_I | 0.1581 | 0.1581 | yes |
 | blank key inputs | A9_J | -15 | -15 | yes |
 | blank key inputs | A9_K | -2.4 | -2.4 | yes |
-| blank key inputs | A9_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| blank key inputs | A9_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | blank key inputs | A10_D | 50.5 | 50.5 | yes |
 | blank key inputs | A10_E | 22.4525 | 22.4525 | yes |
 | blank key inputs | A10_F | 0.4446 | 0.4446 | yes |
@@ -881,7 +881,7 @@
 | blank key inputs | A11_I | 0.2142 | 0.2142 | yes |
 | blank key inputs | A11_J | -15 | -15 | yes |
 | blank key inputs | A11_K | -9 | -9 | yes |
-| blank key inputs | A11_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| blank key inputs | A11_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | blank key inputs | A12_D | 20.5 | 20.5 | yes |
 | blank key inputs | A12_E | 5.9025 | 5.9025 | yes |
 | blank key inputs | A12_F | 0.2879 | 0.2879 | yes |
@@ -890,7 +890,7 @@
 | blank key inputs | A12_I | 0.1379 | 0.1379 | yes |
 | blank key inputs | A12_J | -15 | -15 | yes |
 | blank key inputs | A12_K | -3.075 | -3.075 | yes |
-| blank key inputs | A12_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| blank key inputs | A12_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | blank key inputs | ads_D30 | 0.3751 | 0.3751 | yes |
 | blank key inputs | ads_D31 | 0.3301 | 0.3301 | yes |
 | blank key inputs | ads_D32 | 0.2251 | 0.2251 | yes |
@@ -1119,7 +1119,7 @@
 | edited fees and tier | A8_I | 0.1987 | 0.1987 | yes |
 | edited fees and tier | A8_J | -12 | -12 | yes |
 | edited fees and tier | A8_K | -3.54 | -3.54 | yes |
-| edited fees and tier | A8_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| edited fees and tier | A8_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | edited fees and tier | A9_D | 16 | 16 | yes |
 | edited fees and tier | A9_E | 4.67 | 4.67 | yes |
 | edited fees and tier | A9_F | 0.2919 | 0.2919 | yes |
@@ -1128,7 +1128,7 @@
 | edited fees and tier | A9_I | 0.1719 | 0.1719 | yes |
 | edited fees and tier | A9_J | -12 | -12 | yes |
 | edited fees and tier | A9_K | -1.92 | -1.92 | yes |
-| edited fees and tier | A9_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| edited fees and tier | A9_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | edited fees and tier | A10_D | 50.5 | 50.5 | yes |
 | edited fees and tier | A10_E | 21.8475 | 21.8475 | yes |
 | edited fees and tier | A10_F | 0.4326 | 0.4326 | yes |
@@ -1155,7 +1155,7 @@
 | edited fees and tier | A12_I | 0.153 | 0.153 | yes |
 | edited fees and tier | A12_J | -12 | -12 | yes |
 | edited fees and tier | A12_K | -2.46 | -2.46 | yes |
-| edited fees and tier | A12_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| edited fees and tier | A12_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | edited fees and tier | ads_D30 | 0.3551 | 0.3551 | yes |
 | edited fees and tier | ads_D31 | 0.3246 | 0.3246 | yes |
 | edited fees and tier | ads_D32 | 0.2535 | 0.2535 | yes |
@@ -1384,7 +1384,7 @@
 | edge: 95% target margin, zero shipping, late date | A8_I | 0.0508 | 0.0508 | yes |
 | edge: 95% target margin, zero shipping, late date | A8_J | -15 | -15 | yes |
 | edge: 95% target margin, zero shipping, late date | A8_K | -3.6 | -3.6 | yes |
-| edge: 95% target margin, zero shipping, late date | A8_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| edge: 95% target margin, zero shipping, late date | A8_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | edge: 95% target margin, zero shipping, late date | A9_D | 16 | 16 | yes |
 | edge: 95% target margin, zero shipping, late date | A9_E | 4.93 | 4.93 | yes |
 | edge: 95% target margin, zero shipping, late date | A9_F | 0.3081 | 0.3081 | yes |
@@ -1393,7 +1393,7 @@
 | edge: 95% target margin, zero shipping, late date | A9_I | 0.1581 | 0.1581 | yes |
 | edge: 95% target margin, zero shipping, late date | A9_J | -15 | -15 | yes |
 | edge: 95% target margin, zero shipping, late date | A9_K | -2.4 | -2.4 | yes |
-| edge: 95% target margin, zero shipping, late date | A9_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| edge: 95% target margin, zero shipping, late date | A9_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | edge: 95% target margin, zero shipping, late date | A10_D | 50.5 | 50.5 | yes |
 | edge: 95% target margin, zero shipping, late date | A10_E | 22.4525 | 22.4525 | yes |
 | edge: 95% target margin, zero shipping, late date | A10_F | 0.4446 | 0.4446 | yes |
@@ -1402,7 +1402,7 @@
 | edge: 95% target margin, zero shipping, late date | A10_I | 0.2946 | 0.2946 | yes |
 | edge: 95% target margin, zero shipping, late date | A10_J | -15 | -15 | yes |
 | edge: 95% target margin, zero shipping, late date | A10_K | -7.575 | -7.575 | yes |
-| edge: 95% target margin, zero shipping, late date | A10_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| edge: 95% target margin, zero shipping, late date | A10_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | edge: 95% target margin, zero shipping, late date | A11_D | 60 | 60 | yes |
 | edge: 95% target margin, zero shipping, late date | A11_E | 21.85 | 21.85 | yes |
 | edge: 95% target margin, zero shipping, late date | A11_F | 0.3642 | 0.3642 | yes |
@@ -1411,7 +1411,7 @@
 | edge: 95% target margin, zero shipping, late date | A11_I | 0.2142 | 0.2142 | yes |
 | edge: 95% target margin, zero shipping, late date | A11_J | -15 | -15 | yes |
 | edge: 95% target margin, zero shipping, late date | A11_K | -9 | -9 | yes |
-| edge: 95% target margin, zero shipping, late date | A11_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| edge: 95% target margin, zero shipping, late date | A11_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | edge: 95% target margin, zero shipping, late date | A12_D | 20.5 | 20.5 | yes |
 | edge: 95% target margin, zero shipping, late date | A12_E | 5.9025 | 5.9025 | yes |
 | edge: 95% target margin, zero shipping, late date | A12_F | 0.2879 | 0.2879 | yes |
@@ -1420,7 +1420,7 @@
 | edge: 95% target margin, zero shipping, late date | A12_I | 0.1379 | 0.1379 | yes |
 | edge: 95% target margin, zero shipping, late date | A12_J | -15 | -15 | yes |
 | edge: 95% target margin, zero shipping, late date | A12_K | -3.075 | -3.075 | yes |
-| edge: 95% target margin, zero shipping, late date | A12_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| edge: 95% target margin, zero shipping, late date | A12_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | edge: 95% target margin, zero shipping, late date | ads_D30 | 0.3506 | 0.3506 | yes |
 | edge: 95% target margin, zero shipping, late date | ads_D31 | 0.2006 | 0.2006 | yes |
 | edge: 95% target margin, zero shipping, late date | ads_D32 | 0.2006 | 0.2006 | yes |
@@ -1658,7 +1658,7 @@
 | edge: zero share and big orders | A9_I | 0.1581 | 0.1581 | yes |
 | edge: zero share and big orders | A9_J | -15 | -15 | yes |
 | edge: zero share and big orders | A9_K | -2.4 | -2.4 | yes |
-| edge: zero share and big orders | A9_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| edge: zero share and big orders | A9_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | edge: zero share and big orders | A10_D | 50.5 | 50.5 | yes |
 | edge: zero share and big orders | A10_E | 22.4525 | 22.4525 | yes |
 | edge: zero share and big orders | A10_F | 0.4446 | 0.4446 | yes |
@@ -1676,7 +1676,7 @@
 | edge: zero share and big orders | A11_I | 0.2142 | 0.2142 | yes |
 | edge: zero share and big orders | A11_J | -15 | -15 | yes |
 | edge: zero share and big orders | A11_K | -9 | -9 | yes |
-| edge: zero share and big orders | A11_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| edge: zero share and big orders | A11_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | edge: zero share and big orders | A12_D | 20.5 | 20.5 | yes |
 | edge: zero share and big orders | A12_E | 5.9025 | 5.9025 | yes |
 | edge: zero share and big orders | A12_F | 0.2879 | 0.2879 | yes |
@@ -1685,7 +1685,7 @@
 | edge: zero share and big orders | A12_I | 0.1379 | 0.1379 | yes |
 | edge: zero share and big orders | A12_J | -15 | -15 | yes |
 | edge: zero share and big orders | A12_K | -3.075 | -3.075 | yes |
-| edge: zero share and big orders | A12_L | OPT OUT OR REPRICE | OPT OUT OR REPRICE | yes |
+| edge: zero share and big orders | A12_L | OPT OUT OR REPRICE | REPRICE FOR ADS | intended: Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged |
 | edge: zero share and big orders | ads_D30 | 0.8227 | 0.8227 | yes |
 | edge: zero share and big orders | ads_D31 | 0.8227 | 0.8227 | yes |
 | edge: zero share and big orders | ads_D32 | 0.7168 | 0.7168 | yes |
@@ -1856,4 +1856,4 @@
 | edge: zero share and big orders | bw5_I | 8 oz Soy Candle | 8 oz Soy Candle | yes |
 | edge: zero share and big orders | bw5_K | 0.7887 | 0.7887 | yes |
 
-7 cases x 265 outputs: ALL MATCH (14 intended differences, listed above)
+7 cases x 265 outputs: ALL MATCH (39 intended differences, listed above)

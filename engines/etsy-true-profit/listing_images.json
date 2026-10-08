@@ -1,5 +1,5 @@
 {
- "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+ "formats": "Excel + Google Sheets  |  Instant download",
  "images": [
   {
    "type": "cover",
@@ -77,13 +77,13 @@
    "type": "shot",
    "eyebrow": "LISTINGS",
    "title": "Net profit, margin and a flag on every listing.",
-   "sub": "After transaction, processing, listing and Offsite Ads fees. Red means reprice.",
+   "sub": "Revenue, every Etsy fee, net profit, margin and the flag, one row per listing. Red means reprice.",
    "shot": "r/03-2-Listings.png",
    "crop": [
-    0,
-    0.03,
+    0.463,
+    0.122,
     1,
-    0.195
+    0.19
    ],
    "trim": false
   },
@@ -91,12 +91,12 @@
    "type": "shot",
    "eyebrow": "OFFSITE ADS CHECK",
    "title": "See what one ad sale does to your margin.",
-   "sub": "At a 15% ad fee, four of five sample listings should opt out or reprice.",
+   "sub": "At a 15% ad fee, four of five sample listings should be repriced for ad sales.",
    "shot": "r/03-2-Listings.png",
    "crop": [
     0,
-    0.372,
-    1,
+    0.4,
+    0.7,
     0.505
    ],
    "trim": false
@@ -166,7 +166,7 @@
      "items": [
       "One workbook, six working tabs",
       "Start Here guide as a PDF, US Letter and A4",
-      "Works in Excel for Windows and Mac, Google Sheets and LibreOffice",
+      "Built for Excel and Google Sheets",
       "No macros, no add-ons, no sign-up"
      ]
     },
@@ -219,7 +219,7 @@
     }
    ],
    "items": [
-    "Etsy US fee table, checked Oct 6, 2026",
+    "Etsy US fee table, checked Oct 8, 2026",
     "True profit per listing with flags",
     "Reverse pricing: profit or margin",
     "Order log and payout reconciliation",

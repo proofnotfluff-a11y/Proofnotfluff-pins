@@ -1,5 +1,5 @@
 # Listing
-#5, https://www.etsy.com/listing/4584721212 (v3 redesign Oct 6, 2026; title, tags and price stay as they are live)
+#5, https://www.etsy.com/listing/4584721212 (v3 redesign Oct 6, 2026, fix round Oct 8, 2026; title, tags and price stay as they are live)
 
 # Title
 Pricing Calculator for Etsy Sellers, True Profit and Fee Spreadsheet, Excel Google Sheets (unchanged)
@@ -18,7 +18,7 @@ WHAT IT DOES
 - Reverse pricing: type the profit or margin you want and read the list price, with and without an Offsite Ads sale (example: $8 profit on a candle means listing at $22.01, or $27.48 if the sale comes through Offsite Ads)
 - Order log: fees, net payout and true profit on every order, with a month summary
 - Payout reconciliation: enter a deposit and its dates, the sheet pulls every fee for that period, and the balance must read $0.00
-- Offsite Ads check: what one ad sale does to each listing and your blended margin at your ad share
+- Offsite Ads check: what one ad sale does to each listing and your blended margin at your ad share, flagging listings to reprice for ad sales
 - Dashboard: true profit by month, where the fees went, best and worst listings, a tax reserve and the IRS quarterly dates
 
 WHAT'S INSIDE
@@ -26,10 +26,10 @@ WHAT'S INSIDE
 - Start Here guide as a PDF in US Letter and A4
 - LICENSE-AND-DISCLAIMER.txt
 
-TESTED COMPATIBILITY
-Works in Microsoft Excel for Windows and Mac, Google Sheets (upload the file to Google Drive, open it, then File, Save as Google Sheets) and LibreOffice. No macros or add-ons. A sample candle shop is filled in so you can see how it works; replace it with your own.
+FORMATS
+Built for Excel and Google Sheets, checked in LibreOffice and Google Sheets (upload the file to Google Drive, open it, then File, Save as Google Sheets). No macros or add-ons. A sample candle shop is filled in so you can see how it works; replace it with your own.
 
-Fees checked Oct 6, 2026 against Etsy's Fees & Payments Policy (updated Oct 5, 2026), Etsy's payment processing and Offsite Ads help pages, and the IRS estimated tax page. Etsy's US fees are filled in; sellers outside the US type their own processing rates.
+Fees checked Oct 8, 2026 against Etsy's Fees & Payments Policy (updated Oct 5, 2026), the Etsy Payments Policy (updated Jul 31, 2026), Etsy's Offsite Ads help page, and the IRS estimated tax page. Etsy's US fees are filled in; sellers outside the US type their own processing rates.
 
 HOW YOU GET IT
 Instant download. Download from a web browser on your computer or phone (Etsy, You, Purchases); the Etsy app can't download digital files.
@@ -44,11 +44,16 @@ Digital download. No physical item ships.
 File problems fixed on request through Etsy messages.
 Not affiliated with or endorsed by Etsy.
 
-# Change note (v3, Oct 6, 2026)
-Rebuilt to the v3 dashboard design with the same inputs, formulas and sample shop (tools/compare_xlsx.py: 7 cases x 265 outputs match, 14 declared differences). Fixed: a blank first month on the Dashboard no longer fills the monthly table with error values; Pricing no longer shows a negative list price when fees and margin reach 100%; Payouts says "No deposits entered yet" instead of "Reconciled" when empty; the tax reserve no longer goes negative; a blank Offsite Ads tier now uses the 15% rate; the Payouts example now says 13 orders (it said 12). Added a full Terms tab, validation and an input message on every input, and sheet protection without a password. Files renamed: Etsy-True-Profit-System.xlsx becomes True-Profit-System-for-Etsy-Sellers.xlsx; the Quick Start PDF becomes Start-Here-Letter.pdf and Start-Here-A4.pdf.
+# Google Sheets check
+Drive QA file "QA #5 v3 functions Oct 6 2026" (1qRP5c0mceUdvICO7RIRJjluQbKXWunSMCQ0n82SXgOA, QA folder 1qoGZklAqCicGEF7LvOBzpGGeFSbRmhat), uploaded with Sheets conversion Oct 6, 2026, re-read Oct 8, 2026: SUMIF, SUMIFS with date criteria, LARGE, SMALL, MIN, MAX, ROUND, ABS, COUNT, DATE with VALUE, LEFT and RIGHT month rollover, ROW, AND, INDEX/MATCH on LARGE keys, CEILING 0.5, COUNTIF "?*" and a cross-sheet list validation all return the expected values. The workbook's other functions (IF, IFERROR, SUM, TEXT, REPT, COUNTIF) are on the shared QA sheet.
+
+# Change note (v3, Oct 6, 2026; fix round Oct 8, 2026)
+Rebuilt to the v3 dashboard design with the same inputs, formulas and sample shop (tools/compare_xlsx.py: 7 cases x 265 outputs match, 39 declared differences). Fixed: a blank first month on the Dashboard no longer fills the monthly table with error values; Pricing no longer shows a negative list price when fees and margin reach 100%; Payouts says "No deposits entered yet" instead of "Reconciled" when empty; the tax reserve no longer goes negative; a blank Offsite Ads tier now uses the 15% rate; the Payouts example now says 13 orders (it said 12). Offsite Ads opt-out covers the whole shop, so the Offsite Ads check now flags REPRICE FOR ADS instead of OPT OUT OR REPRICE. Added a full Terms tab, validation and an input message on every input, and sheet protection without a password. Files renamed: Etsy-True-Profit-System.xlsx becomes True-Profit-System-for-Etsy-Sellers.xlsx; the Quick Start PDF becomes Start-Here-Letter.pdf and Start-Here-A4.pdf.
 
 # Description edits for the shop run (live text is from a WebFetch summary, so match the sentence, not every character)
 - The sentence listing the seven tabs ("Setup, Listing True-Profit Calculator, Reverse Pricing Calculator, Order Log, Payout Reconciliation, Offsite Ads Shock Model, and Dashboard + Tax Reserve") becomes: "Start Here, six working tabs (1 Setup, 2 Listings with the Offsite Ads check, 3 Pricing, 4 Orders, 5 Payouts, 6 Dashboard with the tax reserve) and a Terms tab."
 - "a 2-page quick-start" becomes "a Start Here guide as a PDF in US Letter and A4".
 - If the description names the file Etsy-True-Profit-System.xlsx or Etsy-True-Profit-Quick-Start.pdf, replace them with True-Profit-System-for-Etsy-Sellers.xlsx and Start-Here-Letter.pdf / Start-Here-A4.pdf.
-- If "verified September 2026" appears, it becomes "checked Oct 6, 2026".
+- If "verified September 2026" appears, it becomes "checked Oct 8, 2026".
+- If the description says it works in Numbers, or lists tested apps, that sentence becomes: "Built for Excel and Google Sheets, checked in LibreOffice and Google Sheets."
+- If the description tells sellers to opt a listing out of Offsite Ads, that phrase becomes "reprice it for ad sales (opting out covers the whole shop)".

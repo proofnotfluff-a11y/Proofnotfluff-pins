@@ -1342,6 +1342,83 @@
     "m12_C"
    ],
    "why": "v1 filled a blank first month with 0 and 2000-01 onward in LibreOffice (#VALUE! in Excel); v3 leaves the month labels blank"
+  },
+  {
+   "case": "example",
+   "outputs": [
+    "A8_L",
+    "A9_L",
+    "A10_L",
+    "A11_L",
+    "A12_L"
+   ],
+   "why": "Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged"
+  },
+  {
+   "case": "high prices and margin",
+   "outputs": [
+    "A8_L",
+    "A9_L",
+    "A10_L",
+    "A11_L",
+    "A12_L"
+   ],
+   "why": "Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged"
+  },
+  {
+   "case": "low prices, a loss",
+   "outputs": [
+    "A8_L",
+    "A9_L",
+    "A10_L",
+    "A11_L",
+    "A12_L"
+   ],
+   "why": "Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged"
+  },
+  {
+   "case": "blank key inputs",
+   "outputs": [
+    "A8_L",
+    "A9_L",
+    "A10_L",
+    "A11_L",
+    "A12_L"
+   ],
+   "why": "Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged"
+  },
+  {
+   "case": "edited fees and tier",
+   "outputs": [
+    "A8_L",
+    "A9_L",
+    "A10_L",
+    "A11_L",
+    "A12_L"
+   ],
+   "why": "Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged"
+  },
+  {
+   "case": "edge: 95% target margin, zero shipping, late date",
+   "outputs": [
+    "A8_L",
+    "A9_L",
+    "A10_L",
+    "A11_L",
+    "A12_L"
+   ],
+   "why": "Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged"
+  },
+  {
+   "case": "edge: zero share and big orders",
+   "outputs": [
+    "A8_L",
+    "A9_L",
+    "A10_L",
+    "A11_L",
+    "A12_L"
+   ],
+   "why": "Offsite Ads opt-out covers the whole shop, not one listing (help.etsy.com, How Etsy's Offsite Ads Work, checked Oct 8, 2026), so the Offsite Ads check's red decision now reads REPRICE FOR ADS instead of OPT OUT OR REPRICE; the threshold test is unchanged"
   }
  ]
 }

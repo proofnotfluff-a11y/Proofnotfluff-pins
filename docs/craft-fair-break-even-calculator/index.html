@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Craft Fair Break-Even Calculator: Pieces to Cover Your Booth Fee | ProofNotFluff</title><meta name="description" content="Free craft fair break-even calculator. Enter your booth fee, other show costs, average price, cost per piece and card fees to see how many pieces you must sell to break even and to make the profit you want.">
+<link rel="canonical" href="https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/craft-fair-break-even-calculator/"><meta name="robots" content="noindex, nofollow"><meta property="og:title" content="Craft Fair Break-Even Calculator: Pieces to Cover Your Booth Fee | ProofNotFluff"><meta property="og:description" content="Free craft fair break-even calculator. Enter your booth fee, other show costs, average price, cost per piece and card fees to see how many pieces you must sell to break even and to make the profit you want.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/craft-fair-break-even-calculator/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/pnf.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Craft Fair Break-Even Calculator", "url": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/craft-fair-break-even-calculator/", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "ProofNotFluff"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many items do I need to sell to cover a booth fee?", "acceptedAnswer": {"@type": "Answer", "text": "Divide what the whole day costs by what each piece earns after its own cost and card fees, then round up. Count the whole day, not only the booth: in the example, other costs add $165.60 to a $150 booth."}}, {"@type": "Question", "name": "Should my making time be in the cost per piece?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, if you want the day to pay you for it. Leave it out and break-even only covers materials and fees."}}, {"@type": "Question", "name": "What card fee should I use?", "acceptedAnswer": {"@type": "Answer", "text": "The one your reader charges. As of Oct 7, 2026, Square's Free plan in the US charges 2.6% plus 15 cents for tap, dip or swipe payments."}}, {"@type": "Question", "name": "Do sales include sales tax?", "acceptedAnswer": {"@type": "Answer", "text": "No. Use prices before sales tax. Tax you collect at a show is owed to the state, not earned."}}, {"@type": "Question", "name": "Is this financial advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. It is a planning estimate based on the numbers you enter."}}]}</script>
+</head><body class="has-mbar">
+<header class="top"><div class="wrap"><div><a class="brand" href="../">ProofNotFluff</a><div class="bars"><i></i><i></i><i></i><i></i><i></i></div></div>
+<nav class="top"><a href="../">Free calculators</a><a href="https://proofnotfluff.etsy.com">Etsy shop</a></nav></div></header>
+<main class="wrap"><p class="eyebrow">Free calculator</p><h1>Craft Fair Break-Even Calculator</h1><p class="lede">How many pieces you must sell to cover the booth fee and the rest of the day, and how many it takes to make it worth going. Free, no sign-up.</p><div class="grid"><form class="card" id="calc" novalidate>
+<fieldset><legend>The show</legend>
+<div class="row"><label for="booth">Booth fee<small>From the show&#x27;s application</small></label><div class="field has-pre"><span class=pre>$</span><input id="booth" data-in="booth" type="text" inputmode="decimal" value="150" autocomplete="off"></div></div>
+<div class="row"><label for="other">Other costs of the day<small>Travel, parking, meals, extras, a share of your tent and display</small></label><div class="field has-pre"><span class=pre>$</span><input id="other" data-in="other" type="text" inputmode="decimal" value="165.60" autocomplete="off"></div></div>
+</fieldset>
+<fieldset><legend>What you sell</legend>
+<div class="row"><label for="price">Average price per piece<small>Before sales tax</small></label><div class="field has-pre"><span class=pre>$</span><input id="price" data-in="price" type="text" inputmode="decimal" value="13.84" autocomplete="off"></div></div>
+<div class="row"><label for="cpp">Cost per piece<small>Materials, packaging and your making time</small></label><div class="field has-pre"><span class=pre>$</span><input id="cpp" data-in="cpp" type="text" inputmode="decimal" value="7.30" autocomplete="off"></div></div>
+</fieldset>
+<fieldset><legend>Card payments</legend>
+<div class="row"><label for="cardPct">Card fee, percent<small>Match your reader</small></label><div class="field has-suf"><input id="cardPct" data-in="cardPct" type="text" inputmode="decimal" value="2.6" autocomplete="off"><span class=suf>%</span></div></div>
+<div class="row"><label for="cardFlat">Card fee, per payment<small>The flat part, if your reader has one</small></label><div class="field has-pre"><span class=pre>$</span><input id="cardFlat" data-in="cardFlat" type="text" inputmode="decimal" value="0.15" autocomplete="off"></div></div>
+<div class="row"><label for="cardShare">Share of sales paid by card<small>Cash has no fee</small></label><div class="field has-suf"><input id="cardShare" data-in="cardShare" type="text" inputmode="decimal" value="70" autocomplete="off"><span class=suf>%</span></div></div>
+<div class="row"><label for="avgSale">Average spend per customer<small>Spreads the flat fee over a sale</small></label><div class="field has-pre"><span class=pre>$</span><input id="avgSale" data-in="avgSale" type="text" inputmode="decimal" value="30" autocomplete="off"></div></div>
+</fieldset>
+<fieldset><legend>Your goal</legend>
+<div class="row"><label for="target">Profit you want from the day<small>On top of every cost</small></label><div class="field has-pre"><span class=pre>$</span><input id="target" data-in="target" type="text" inputmode="decimal" value="300" autocomplete="off"></div></div>
+</fieldset></form><div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Pieces to break even</div><div class="val" data-out="bePieces" data-fmt="int" data-never="Never">0</div><div class="sub" data-show-if="never < 1"><span data-out="beSales">$0</span> in sales</div></div>
+<div class="tile"><div class="lab">Pieces for your profit</div><div class="val" data-out="tgtPieces" data-fmt="int" data-never="Never">0</div><div class="sub" data-show-if="never < 1"><span data-out="tgtSales">$0</span> in sales</div></div>
+</div>
+<ul class="lines">
+<li><span>Booth fee</span><span data-out="booth">$0</span></li>
+<li><span>Other costs of the day</span><span data-out="other">$0</span></li>
+<li class="total"><span>What the day costs</span><span data-out="total">$0</span></li>
+<li><span>Average price per piece</span><span data-out="price">$0</span></li>
+<li><span>Cost per piece</span><span data-out="cpp">$0</span></li>
+<li><span>Card fee per piece</span><span data-out="cardPer">$0</span></li>
+<li class="total"><span>Each piece earns</span><span data-out="contrib">$0</span></li>
+<li data-show-if="never < 1"><span>Profit at <span data-out="tgtPieces" data-fmt="int">0</span> pieces</span><span data-out="tgtProfit">$0</span></li>
+</ul>
+<div class="callout warn" data-show-if="never > 0">Each piece earns nothing after its cost and the card fee, so no number of sales covers the day. Raise the price or cut the cost per piece.</div>
+<div class="callout" data-show-if="never < 1">The booth fee is <b data-pct="boothShare">0%</b> of what this day costs.</div>
+<p class="asof">Card fee example as of Oct 7, 2026, from <a href="https://squareup.com/help/us/en/article/5068-fees-and-pricing" rel="noopener">Square&#x27;s US fees page</a>. Square&#x27;s Free plan, tap, dip or swipe: 2.6% plus 15 cents. Type your own reader&#x27;s rates.</p>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Break even <b data-out="bePieces" data-fmt="int" data-never="Never">0</b> pieces</span><span>Goal <b data-out="tgtPieces" data-fmt="int" data-never="Never">0</b> pieces</span></div></div><section class="block"><h2>How it works</h2><p>What the day costs is the booth fee plus everything else the show takes: travel, parking, meals, organizer extras and a share of the tent and display you reuse.</p><p>Each piece earns its price minus its own cost and its share of card fees. The card fee per dollar of sales is the share paid by card times the percent fee plus the flat fee spread over an average customer&#x27;s spend.</p><p>Pieces to break even is the day&#x27;s cost divided by what each piece earns, rounded up to a whole piece. Pieces for your profit adds the profit you want to the day&#x27;s cost first.</p></section><section class="block"><h2>A worked example</h2><p>A $150 booth fee becomes a $315.60 day once organizer extras, travel, parking, meals and a share of the display add $165.60. With an average price of $13.84, a cost of $7.30 a piece and 70% of sales by card on a 2.6% plus 15 cent reader, each piece earns $6.24. The day needs 51 pieces, $705.84 of sales, to break even, and 99 pieces, $1,370.16 of sales, to clear $300 of profit. These are the example show and products inside the Craft Fair Profit Calculator workbook.</p></section><section class="block"><div class="cta"><div><h2>Plan every show of the season</h2><p>The Craft Fair Profit Calculator workbook uses this same maths for Excel and Google Sheets: every cost of the day itemized, up to 15 products with their own costs and sales mix, how many pieces to bring, a what-if table for six booth fees and a log for every show. $2.99, instant download.</p></div><div><a class="btn" href="https://proofnotfluff.etsy.com/listing/4586813952">Get the workbook on Etsy</a><br><a class="btn ghost" href="https://proofnotfluff.etsy.com">All ProofNotFluff tools</a></div></div></section><section class="block"><h2>Questions</h2><details><summary>How many items do I need to sell to cover a booth fee?</summary><p>Divide what the whole day costs by what each piece earns after its own cost and card fees, then round up. Count the whole day, not only the booth: in the example, other costs add $165.60 to a $150 booth.</p></details><details><summary>Should my making time be in the cost per piece?</summary><p>Yes, if you want the day to pay you for it. Leave it out and break-even only covers materials and fees.</p></details><details><summary>What card fee should I use?</summary><p>The one your reader charges. As of Oct 7, 2026, Square&#x27;s Free plan in the US charges 2.6% plus 15 cents for tap, dip or swipe payments.</p></details><details><summary>Do sales include sales tax?</summary><p>No. Use prices before sales tax. Tax you collect at a show is owed to the state, not earned.</p></details><details><summary>Is this financial advice?</summary><p>No. It is a planning estimate based on the numbers you enter.</p></details></section></main>
+<footer><div class="wrap">
+<p>Estimates for planning only, based on the numbers you enter. Not tax, legal or financial advice. Card fee example: Square, Fees and pricing (squareup.com/help/us/en/article/5068-fees-and-pricing), checked Oct 7, 2026. No other rates are assumed: every figure is yours.</p>
+<p>Made by ProofNotFluff with AI assistance, reviewed and tested by the shop owner. Calculators run in your browser; nothing you type is sent anywhere.</p>
+</div></footer>
+<script src="../assets/pnf-calc.js"></script>
+<script>
+function pnfNum(v){var n=parseFloat(String(v).replace(/[$,%\s]/g,""));return isFinite(n)?n:0;}
+function pnfAfter(f,M){function go(){var v={};f.querySelectorAll("[data-in]").forEach(function(e){v[e.getAttribute("data-in")]=e.value;});var r=M(v);
+document.querySelectorAll("[data-pct]").forEach(function(e){var x=r[e.getAttribute("data-pct")];e.textContent=(isFinite(x)?(x*100).toFixed(1):"0.0")+"%";e.classList.toggle("neg",x<0);});
+document.querySelectorAll("[data-never]").forEach(function(e){if(r.never){e.textContent=e.getAttribute("data-never");e.classList.add("neg");}});}
+f.querySelectorAll("select").forEach(function(s){s.addEventListener("change",function(){f.dispatchEvent(new Event("input"));});});
+f.addEventListener("input",go);go();}
+(function(){var f=document.getElementById("calc");
+/* Same maths as the Break-Even tab of engines/craft-fair-profit (#12): card cost per $1 = card share x (percent + flat / average spend);
+   pieces round up to whole pieces. */
+function M(i){var booth=pnfNum(i.booth),other=pnfNum(i.other),price=pnfNum(i.price),cpp=pnfNum(i.cpp),target=pnfNum(i.target);
+var avg=pnfNum(i.avgSale),perDollar=pnfNum(i.cardShare)/100*(pnfNum(i.cardPct)/100+(avg>0?pnfNum(i.cardFlat)/avg:0));
+var total=booth+other,cardPer=price*perDollar,contrib=price-cpp-cardPer,ok=contrib>1e-9;
+var be=ok?Math.max(0,Math.ceil(total/contrib-1e-9)):0,tg=ok?Math.max(0,Math.ceil((total+target)/contrib-1e-9)):0;
+return {booth:booth,other:other,total:total,price:price,cpp:cpp,cardPer:cardPer,contrib:contrib,bePieces:be,beSales:be*price,
+tgtPieces:tg,tgtSales:tg*price,tgtProfit:ok?tg*contrib-total:0,boothShare:total>0?booth/total:0,never:ok?0:1};}
+PNF.wire(f,M);pnfAfter(f,M);window.PNF_MODEL=M;})();</script>
+</body></html>

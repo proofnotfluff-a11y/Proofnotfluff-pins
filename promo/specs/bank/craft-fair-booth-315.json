@@ -1,0 +1,124 @@
+{
+  "product_id": "12",
+  "listing_id": "4586813952",
+  "product": "Craft Fair Profit Calculator",
+  "tab": "1 Show Costs",
+  "audience": "Craft fair makers",
+  "hookId": "bank",
+  "series": "Promo bank, built Oct 7, 2026 for CMO review",
+  "voice": "am_michael",
+  "hook": "A $150 booth fee is really <b>$315.60</b> for the day",
+  "hook_say": "Here is what a $150 craft fair booth really costs once the drive, meals and display come in, and how many pieces pay for it.",
+  "rows": [
+    {
+      "label": "Booth fee",
+      "value": "$150",
+      "input": true,
+      "say": "Booth fee: $150",
+      "why": "The calculator's example show: a $150 booth fee for a 7-hour day."
+    },
+    {
+      "label": "Miles, meals, extras, display",
+      "value": "$165.60",
+      "input": true,
+      "say": "Miles, meals and extras: $165.60",
+      "why": "60 miles round trip at 76 cents is $45.60, plus $25 organizer extras, $10 parking, $20 meals, $15 other and a $50 share of this year's display."
+    },
+    {
+      "label": "What the day really costs",
+      "value": "$315.60",
+      "result": true,
+      "kind": "bad",
+      "say": "The day costs $315.60",
+      "why": "Total fixed show cost: $315.60. The booth fee is only 48% of it."
+    },
+    {
+      "label": "Each piece clears",
+      "value": "$6.24",
+      "result": true,
+      "say": "Each piece clears $6.24",
+      "why": "Across the five example products, a blended piece sells for $13.84 and clears $6.24 after materials, making time, packaging and the card fee."
+    },
+    {
+      "label": "Pieces to break even",
+      "value": "51",
+      "result": true,
+      "kind": "bad",
+      "say": "51 pieces just to break even",
+      "why": "$315.60 divided by $6.24, rounded up: 51 pieces, or $705.84 of sales, before the day makes a cent."
+    },
+    {
+      "label": "Soy candle price",
+      "value": "$26",
+      "input": true,
+      "say": "Price the candle at $26, not $22",
+      "why": "The candle sits under the x2 price check at $22. Raise it to $26."
+    }
+  ],
+  "fix": {
+    "label": "Pieces to break even now",
+    "value": "44",
+    "say": "Now 44 pieces",
+    "why": "Same day, same costs: the break-even drops from 51 pieces to 44."
+  },
+  "cta": {
+    "title": "Craft Fair Profit Calculator",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Search ProofNotFluff for the full workbook."
+  },
+  "note": "Example numbers from the calculator. Yours go in the yellow cells.",
+  "sources": [
+    {
+      "number": "$150",
+      "source": "1 Show Costs D18 (booth fee, example input)"
+    },
+    {
+      "number": "$165.60",
+      "source": "1 Show Costs H7, costs on top of the booth fee: I15 25 + I16 45.60 (D20 60 mi x D21 0.76) + I17 10 + I19 20 + I21 50 (D26 300 / D27 6) + I22 15"
+    },
+    {
+      "number": "$315.60",
+      "source": "1 Show Costs I23 and C7, total fixed show cost"
+    },
+    {
+      "number": "48%",
+      "source": "1 Show Costs C8, 'The $150 booth fee is 48% of it'"
+    },
+    {
+      "number": "$6.24",
+      "source": "2 Products H8 = 6.237672, contribution per piece (blended by the Mix column); 3 Break-Even D18"
+    },
+    {
+      "number": "$13.84",
+      "source": "2 Products C8, blended price per piece"
+    },
+    {
+      "number": "51",
+      "source": "3 Break-Even I14 and C7, pieces you must sell"
+    },
+    {
+      "number": "$705.84",
+      "source": "3 Break-Even I15, sales that means"
+    },
+    {
+      "number": "$22, $26",
+      "source": "2 Products G25 (soy candle price 22, example); O25 'below formula'; state 2 sets G25 = 26"
+    },
+    {
+      "number": "44",
+      "source": "3 Break-Even I14 with 2 Products G25 = 26 (sales I15 $652.96)"
+    },
+    {
+      "number": "7-hour day, 60 miles, 76 cents",
+      "source": "1 Show Costs D16, D20, D21"
+    }
+  ],
+  "sources_build": "Built from the repo engine with python3 engines/craft-fair-profit/build_xlsx.py and recalculated in LibreOffice headless (tools/render_xlsx.py, 0 error values) on Oct 7, 2026",
+  "post": {
+    "short_title": "A $150 craft fair booth really costs $315.60",
+    "youtube_description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/12/\nA $150 booth fee, plus miles, meals, extras and a share of your display: $315.60 for the day. At $6.24 a piece that is 51 pieces to break even. Price the candle at $26 and it drops to 44. Example numbers from the Craft Fair Profit Calculator; yours go in the yellow cells.\n\n#Shorts",
+    "reel_caption": "The booth fee is $150. The day costs $315.60. At $6.24 a piece, that is 51 pieces before you make a cent. One price change takes it to 44.\n\nLink in bio: proofnotfluff.etsy.com\n\n#craftfair #makersmarket #handmadebusiness #craftfairprep",
+    "tiktok_caption": "$150 booth, $315.60 day, 51 pieces to break even. Search ProofNotFluff on Etsy. #craftfair #makersmarket #handmadebusiness #craftfairprep"
+  }
+}

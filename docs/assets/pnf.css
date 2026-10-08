@@ -79,3 +79,7 @@ section.block .cta p{color:#c9cfdb}
 .hubbtn.prem{border-color:var(--teal);background:var(--teal-tint)}
 .btn.soon{background:#6b7180;cursor:default}
 .card details{margin-top:14px}.card details summary{cursor:pointer;font-weight:600}
+
+/* fee and rate source note inside a results card (etsy_fees, craft_fair) */
+[hidden]{display:none!important}
+.asof{margin:14px 0 0;font-size:12.5px;line-height:1.45;color:var(--muted)}.asof a{color:var(--teal)}

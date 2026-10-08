@@ -1,0 +1,105 @@
+{
+  "product_id": "5",
+  "listing_id": "4584721212",
+  "product": "Pricing Calculator for Etsy Sellers",
+  "tab": "3 Pricing",
+  "audience": "Etsy sellers",
+  "hookId": "bank",
+  "series": "Promo bank, built Oct 7, 2026 for CMO review",
+  "voice": "am_michael",
+  "hook": "An Offsite Ads sale needs <b>$27.48</b> to keep the same $8",
+  "hook_say": "Here is the list price that keeps $8 profit on a candle, and the price it needs when the sale comes through Offsite Ads.",
+  "rows": [
+    {
+      "label": "Profit you want per sale",
+      "value": "$8",
+      "input": true,
+      "say": "You want $8 profit on a candle",
+      "why": "The calculator's example: $8 of net profit per candle."
+    },
+    {
+      "label": "Materials, labor, packaging",
+      "value": "$10.20",
+      "input": true,
+      "say": "$10.20 of materials, labor and packaging",
+      "why": "Materials $6.10, labor $3 and packaging $1.10."
+    },
+    {
+      "label": "Shipping charged, actual cost",
+      "value": "$5.50, $6.25",
+      "input": true,
+      "say": "Shipping: charge $5.50, it costs $6.25",
+      "why": "The buyer pays $5.50 shipping; the label costs $6.25."
+    },
+    {
+      "label": "Etsy fees at that price",
+      "value": "$3.06",
+      "why": "Transaction fee 6.5%, processing 3% plus 25 cents and the 20 cent listing fee: $3.06."
+    },
+    {
+      "label": "List price, no Offsite Ads",
+      "value": "$22.01",
+      "result": true,
+      "say": "List at $22.01",
+      "why": "Solved backwards from the profit: list at $22.01 to keep $8."
+    },
+    {
+      "label": "List price, Offsite Ads sale",
+      "value": "$27.48",
+      "result": true,
+      "kind": "bad",
+      "say": "Through Offsite Ads it needs $27.48",
+      "why": "Offsite Ads takes 15% of item plus shipping in the under $10K tier. The same $8 needs a $27.48 list price."
+    }
+  ],
+  "fix": {
+    "label": "Ad sale at $27.48 still keeps",
+    "value": "$8",
+    "say": "Price for it and an ad sale still keeps $8",
+    "why": "Price with the ad fee in mind and an Offsite Ads sale still leaves the $8 you set."
+  },
+  "cta": {
+    "title": "Pricing Calculator for Etsy Sellers",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Search ProofNotFluff for the full workbook."
+  },
+  "note": "Example numbers from the calculator. Yours go in the yellow cells.",
+  "sources": [
+    {
+      "number": "$8",
+      "source": "3 Pricing D14, net profit you want per unit (example input); I20"
+    },
+    {
+      "number": "$10.20",
+      "source": "3 Pricing D15 6.10 + D16 3 + D19 1.10; I21 'Materials, labor, packaging' 10.2"
+    },
+    {
+      "number": "$5.50, $6.25",
+      "source": "3 Pricing D17 5.50, D18 6.25"
+    },
+    {
+      "number": "$3.06",
+      "source": "3 Pricing I23 = 3.0638, Etsy fees at the no-ads price"
+    },
+    {
+      "number": "6.5%, 3% plus 25 cents, 20 cents, 15%",
+      "source": "1 Setup I14, I16, I17, I15, I23 (fees checked Oct 6, 2026); D19 tier 'Under $10K'"
+    },
+    {
+      "number": "$22.01",
+      "source": "3 Pricing I15 = 22.0138, list price, no Offsite Ads; C7"
+    },
+    {
+      "number": "$27.48",
+      "source": "3 Pricing I16 = 27.4801, list price if an ad sale; C8"
+    }
+  ],
+  "sources_build": "Built from the repo engine with python3 engines/etsy-true-profit/build_xlsx.py and recalculated in LibreOffice headless (tools/render_xlsx.py, 0 error values) on Oct 7, 2026",
+  "post": {
+    "short_title": "An Offsite Ads sale needs $27.48 to keep $8",
+    "youtube_description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/5/\nA candle with $10.20 of materials, labor and packaging. To keep $8 after Etsy's fees, list at $22.01. If the sale comes through Offsite Ads (15% in the under $10K tier), the same $8 needs $27.48. Example numbers from the Pricing Calculator for Etsy Sellers; fees checked Oct 6, 2026.\n\n#Shorts",
+    "reel_caption": "Same candle, same $8 profit. A normal sale needs $22.01. An Offsite Ads sale needs $27.48. Know both before you set the price.\n\nLink in bio: proofnotfluff.etsy.com\n\n#etsyseller #etsyfees #etsytips #pricingstrategy",
+    "tiktok_caption": "$8 profit: $22.01 normally, $27.48 through Offsite Ads. Search ProofNotFluff on Etsy. #etsyseller #etsyfees #etsytips #pricingstrategy"
+  }
+}

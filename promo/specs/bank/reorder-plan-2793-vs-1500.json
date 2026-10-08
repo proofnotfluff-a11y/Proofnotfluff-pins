@@ -1,0 +1,115 @@
+{
+  "product_id": "6",
+  "listing_id": "4585004344",
+  "product": "Inventory Reorder Planner",
+  "tab": "1 Your Shop",
+  "audience": "Product sellers",
+  "hookId": "bank",
+  "series": "Promo bank, built Oct 7, 2026 for CMO review",
+  "voice": "am_michael",
+  "hook": "The reorder plan wants <b>$2,793.90</b>. Usable cash: $1,500",
+  "hook_say": "Here is what happens when the reorder plan costs more than the cash you can spend, and how the planner splits the order.",
+  "rows": [
+    {
+      "label": "Cash available for stock",
+      "value": "$1,800",
+      "input": true,
+      "say": "You have $1,800 for stock",
+      "why": "The planner's sample shop has $1,800 it can put into stock."
+    },
+    {
+      "label": "Bills due before stock lands",
+      "value": "$300",
+      "input": true,
+      "say": "$300 of bills come first",
+      "why": "$300 of bills fall due before the order arrives."
+    },
+    {
+      "label": "Usable cash for this order",
+      "value": "$1,500",
+      "why": "That leaves $1,500 of usable cash."
+    },
+    {
+      "label": "Recommended order",
+      "value": "$2,793.90",
+      "result": true,
+      "kind": "bad",
+      "say": "The plan wants $2,793.90",
+      "why": "Reorder points, safety stock and 14 days between orders across 16 SKUs: the plan wants $2,793.90."
+    },
+    {
+      "label": "Shortfall",
+      "value": "$1,293.90",
+      "result": true,
+      "kind": "bad",
+      "say": "$1,293.90 short",
+      "why": "That is $1,293.90 more than the usable cash."
+    },
+    {
+      "label": "Order now, most urgent first",
+      "value": "$1,497.50",
+      "result": true,
+      "kind": "good",
+      "say": "Order $1,497.50 now, most urgent first",
+      "why": "The Cash Check ranks every SKU by stockout risk and days of stock and funds the top of the list: $1,497.50 now."
+    }
+  ],
+  "fix": {
+    "label": "Deferred to the next order",
+    "value": "$1,296.40",
+    "say": "$1,296.40 waits for the next order",
+    "why": "The rest, $1,296.40, moves to the next cycle, with $2.50 of cash left."
+  },
+  "cta": {
+    "title": "Inventory Spreadsheet with Reorder Planner",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Search ProofNotFluff for the full workbook."
+  },
+  "note": "Example numbers from the planner. Yours go in the yellow cells.",
+  "sources": [
+    {
+      "number": "$1,800",
+      "source": "1 Your Shop D18, cash available for stock (example input)"
+    },
+    {
+      "number": "$300",
+      "source": "1 Your Shop D19, bills due before stock lands"
+    },
+    {
+      "number": "$1,500",
+      "source": "1 Your Shop D20 and I20, usable cash"
+    },
+    {
+      "number": "$2,793.90",
+      "source": "1 Your Shop I19 and H7, recommended order; 5 Cash Check C8"
+    },
+    {
+      "number": "$1,293.90",
+      "source": "1 Your Shop I21, shortfall; 5 Cash Check M8"
+    },
+    {
+      "number": "$1,497.50",
+      "source": "1 Your Shop I22, order now, funded; 5 Cash Check G8 and I46"
+    },
+    {
+      "number": "$1,296.40",
+      "source": "1 Your Shop I23, deferred to next cycle; 5 Cash Check I8 and K46"
+    },
+    {
+      "number": "$2.50",
+      "source": "5 Cash Check P8, cash left after ordering"
+    },
+    {
+      "number": "16 SKUs, 14 days",
+      "source": "1 Your Shop I40 (All SKUs 16), D23 (days between orders 14)"
+    }
+  ],
+  "sources_build": "Built from the repo engine with python3 engines/cash-aware-reorder-planner/build_xlsx.py and recalculated in LibreOffice headless (tools/render_xlsx.py, 0 error values) on Oct 7, 2026. As-of date is the typed sample date 2026-09-28 (1 Your Shop D16), so these figures do not drift with the calendar.",
+  "post": {
+    "short_title": "The reorder wants $2,793.90. You have $1,500",
+    "youtube_description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/6/\n$1,800 for stock, $300 of bills due first: $1,500 to spend. The reorder plan wants $2,793.90, $1,293.90 short. The Cash Check funds the most urgent SKUs first, $1,497.50 now, and defers $1,296.40 to the next order. Example numbers from the Inventory Spreadsheet with Reorder Planner.\n\n#Shorts",
+    "reel_caption": "The reorder plan wants $2,793.90 and only $1,500 is free. Order the $1,497.50 that is most at risk of selling out, and push $1,296.40 to the next order.\n\nLink in bio: proofnotfluff.etsy.com\n\n#inventorymanagement #smallbusiness #etsyseller #shopifyseller",
+    "tiktok_caption": "Reorder plan $2,793.90, cash $1,500. Here is the split. Search ProofNotFluff on Etsy. #inventorymanagement #smallbusiness #etsyseller #shopifyseller"
+  }
+}

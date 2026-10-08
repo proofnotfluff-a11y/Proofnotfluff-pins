@@ -1,0 +1,114 @@
+{
+  "product_id": "9",
+  "listing_id": "4585252476",
+  "product": "Airbnb and VRBO Pricing",
+  "tab": "2 Seasonality",
+  "audience": "Airbnb and VRBO hosts",
+  "hookId": "bank",
+  "series": "Promo bank, built Oct 7, 2026 for CMO review",
+  "voice": "am_michael",
+  "hook": "A $185 base rate means <b>$242</b> a night in July",
+  "hook_say": "Here is how one $185 base rate turns into a July rate and a November rate from your own last 12 months, and what your floor does.",
+  "rows": [
+    {
+      "label": "Base nightly rate",
+      "value": "$185",
+      "input": true,
+      "say": "Base rate: $185 a night",
+      "why": "The calculator's example cabin: a $185 base nightly rate, its average-month rate."
+    },
+    {
+      "label": "July revenue, last year",
+      "value": "$5,600",
+      "input": true,
+      "say": "July brought in $5,600",
+      "why": "Your last 12 months set the shape of the year. July brought in $5,600 against a $4,275 monthly average."
+    },
+    {
+      "label": "July multiplier",
+      "value": "1.31x",
+      "why": "$5,600 over $4,275 is a 1.31x month."
+    },
+    {
+      "label": "July nightly rate",
+      "value": "$242",
+      "result": true,
+      "kind": "good",
+      "say": "Price July nights at $242",
+      "why": "$185 times 1.31: $242 a night in July."
+    },
+    {
+      "label": "November revenue, last year",
+      "value": "$2,400",
+      "input": true,
+      "say": "November brought in $2,400",
+      "why": "November brought in $2,400, a 0.56x month."
+    },
+    {
+      "label": "November nightly rate",
+      "value": "$104",
+      "result": true,
+      "kind": "bad",
+      "say": "November works out to $104",
+      "why": "$185 times 0.56: $104 a night in November."
+    }
+  ],
+  "fix": {
+    "label": "Your $115 floor holds November at",
+    "value": "$115",
+    "say": "Your $115 floor holds it at $115",
+    "why": "Set a floor and no month goes under it: November is priced at $115."
+  },
+  "cta": {
+    "title": "Pricing Calculator for Airbnb and VRBO Hosts",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Search ProofNotFluff for the full workbook."
+  },
+  "note": "Example numbers from the calculator. Yours go in the yellow cells.",
+  "sources": [
+    {
+      "number": "$185",
+      "source": "1 Your Property D16, base nightly rate (example input); 2 Seasonality M8"
+    },
+    {
+      "number": "$5,600",
+      "source": "2 Seasonality I22, July, your last 12 months (example input)"
+    },
+    {
+      "number": "$4,275",
+      "source": "2 Seasonality I28, average month"
+    },
+    {
+      "number": "1.31x",
+      "source": "2 Seasonality L22 = 1.3099, F8 'July 1.31x'"
+    },
+    {
+      "number": "$242",
+      "source": "2 Seasonality M22; 1 Your Property I15 (peak month rate, July)"
+    },
+    {
+      "number": "$2,400",
+      "source": "2 Seasonality I26, November, your last 12 months"
+    },
+    {
+      "number": "0.56x",
+      "source": "2 Seasonality L26 = 0.5614, J8 'November 0.56x'"
+    },
+    {
+      "number": "$104",
+      "source": "2 Seasonality M26, November base nightly rate"
+    },
+    {
+      "number": "$115",
+      "source": "1 Your Property D23 floor per night; 4 Stay Discounts E26 (November, floor applied) 115, F26 'AT FLOOR'"
+    }
+  ],
+  "sources_build": "Built from the repo engine with python3 engines/str-nightly-pricing/build_xlsx.py and recalculated in LibreOffice headless (tools/render_xlsx.py, 0 error values) on Oct 7, 2026",
+  "post": {
+    "short_title": "A $185 base rate means $242 a night in July",
+    "youtube_description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/9/\nOne $185 base rate, shaped by your own last 12 months: July brought in $5,600, so July nights price at $242. November brought in $2,400, which works out to $104, and a $115 floor holds it at $115. Example numbers from the Pricing Calculator for Airbnb and VRBO Hosts.\n\n#Shorts",
+    "reel_caption": "Same cabin, same $185 base rate. Your own last 12 months say July is worth $242 a night and November $104. A $115 floor keeps the quiet month from going too low.\n\nLink in bio: proofnotfluff.etsy.com\n\n#airbnbhost #vrbohost #shorttermrental #airbnbtips",
+    "tiktok_caption": "$185 base rate: $242 in July, $104 in November, floor $115. Search ProofNotFluff on Etsy. #airbnbhost #vrbohost #shorttermrental #airbnbtips"
+  }
+}

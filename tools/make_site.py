@@ -191,7 +191,140 @@ def cashflow_page(p):
     return form, results, script
 
 
-PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashflow_page}
+# Shared by the etsy_fees and craft_fair kinds: their maths lives on the page (same formulas as the
+# engines named in each model), and PNF.wire renders it. pnfAfter() runs after each render for the
+# outputs wire has no format for: data-pct (percent) and data-never (a break-even that cannot happen).
+AFTER_JS = """function pnfNum(v){var n=parseFloat(String(v).replace(/[$,%\\s]/g,""));return isFinite(n)?n:0;}
+function pnfAfter(f,M){function go(){var v={};f.querySelectorAll("[data-in]").forEach(function(e){v[e.getAttribute("data-in")]=e.value;});var r=M(v);
+document.querySelectorAll("[data-pct]").forEach(function(e){var x=r[e.getAttribute("data-pct")];e.textContent=(isFinite(x)?(x*100).toFixed(1):"0.0")+"%";e.classList.toggle("neg",x<0);});
+document.querySelectorAll("[data-never]").forEach(function(e){if(r.never){e.textContent=e.getAttribute("data-never");e.classList.add("neg");}});}
+f.querySelectorAll("select").forEach(function(s){s.addEventListener("change",function(){f.dispatchEvent(new Event("input"));});});
+f.addEventListener("input",go);go();}"""
+
+
+def asof_note(p):
+    a = p["asof"]
+    links = " and ".join(f'<a href="{E(u)}" rel="noopener">{E(t)}</a>' for t, u in a["from"])
+    return f'<p class="asof">{E(a["lead"])} {E(a["date"])}, from {links}. {E(a.get("tail", ""))}</p>'
+
+
+def etsy_fees_page(p):
+    d, f = p["defaults"], p["fees"]
+    ads = "".join(f'<option value="{v}"{" selected" if v == d["adsRate"] else ""}>{E(t)}</option>' for v, t in p["ads_options"])
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>The sale</legend>
+{field("price", "Item price", d["price"], "What the buyer pays for the item", pre="$")}
+{field("ship", "Shipping you charge", d["ship"], "0 for free shipping", pre="$")}
+{field("tax", "Sales tax the buyer paid", d["tax"], "Processing is charged on it too. 0 if unsure", pre="$")}
+</fieldset>
+<fieldset><legend>Your costs</legend>
+{field("cost", "Item cost", d["cost"], "Materials, packaging and your making time", pre="$")}
+{field("label", "Shipping label cost", d["label"], "What postage really costs you", pre="$")}
+</fieldset>
+<fieldset><legend>Offsite Ads</legend>
+<div class="row pick"><label for="adsRate">Did this sale come through an Offsite Ad?<small>Etsy charges the fee only on orders it attributes to its ads.</small></label>
+<div class="field"><select id="adsRate" data-in="adsRate">{ads}</select></div></div>
+</fieldset>
+<fieldset><legend>Etsy's US fees</legend>
+{field("tfRate", "Transaction fee", f["tfRate"], "On item price plus shipping, not on US sales tax", suf="%")}
+{field("procRate", "Payment processing, percent", f["procRate"], "On the total paid, tax included", suf="%")}
+{field("procFixed", "Payment processing, per order", f["procFixed"], "Outside the US? Type your rates", pre="$")}
+{field("listFee", "Listing fee", f["listFee"], "Charged again when a listing renews after a sale", pre="$")}
+</fieldset></form>"""
+    results = f"""<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Profit per sale</div><div class="val" data-out="profit">$0</div><div class="sub"><span data-pct="margin">0%</span> of what the buyer paid you</div></div>
+<div class="tile"><div class="lab">Etsy pays you</div><div class="val" data-out="payout">$0</div><div class="sub">Before your costs</div></div>
+</div>
+<ul class="lines">
+<li><span>Item plus shipping</span><span data-out="revenue">$0</span></li>
+<li><span>Transaction fee</span><span data-out="tf">$0</span></li>
+<li><span>Payment processing</span><span data-out="pf">$0</span></li>
+<li><span>Listing fee</span><span data-out="lf">$0</span></li>
+<li><span>Offsite Ads fee</span><span data-out="ads">$0</span></li>
+<li class="total"><span>Etsy fees, <span data-pct="feeShare">0%</span> of the sale</span><span data-out="fees">$0</span></li>
+<li><span>Item cost</span><span data-out="cost">$0</span></li>
+<li><span>Shipping label</span><span data-out="label">$0</span></li>
+<li class="total"><span>Profit</span><span data-out="profit">$0</span></li>
+</ul>
+<div class="callout warn" data-show-if="profit < 0">This sale loses <b data-out="loss">$0</b> after fees and costs.</div>
+<div class="callout" data-show-if="adsOff > 0">If this sale came through an Offsite Ad at 15%, the fee would be <b data-out="adsIf">$0</b> and profit <b data-out="profitIfAds">$0</b>.</div>
+<div class="callout" data-show-if="adsOff < 1">Offsite Ads took <b data-out="ads">$0</b> of this sale.</div>
+{asof_note(p)}
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Profit <b data-out="profit">$0</b></span><span>Fees <b data-out="fees">$0</b></span></div>"""
+    script = """<script>
+""" + AFTER_JS + """
+(function(){var f=document.getElementById("calc"),CAP=""" + json.dumps(p["ads_cap"]) + """;
+/* Same per-sale maths as the Listings tab of engines/etsy-true-profit (#5), with sales tax added to the processing base
+   and each fee rounded to the cent so the lines add up to the total shown. */
+function M(i){var price=pnfNum(i.price),ship=pnfNum(i.ship),tax=pnfNum(i.tax),cost=pnfNum(i.cost),label=pnfNum(i.label);
+function c(x){return Math.round(x*100+1e-6)/100;}
+var rate=pnfNum(i.adsRate)/100,rev=price+ship,tf=c(pnfNum(i.tfRate)/100*rev),pf=c(pnfNum(i.procRate)/100*(rev+tax)+pnfNum(i.procFixed)),lf=c(pnfNum(i.listFee));
+var ads=c(Math.min(rate*rev,CAP)),fees=tf+pf+lf+ads,payout=rev-fees,profit=payout-cost-label,adsIf=c(Math.min(0.15*rev,CAP));
+return {revenue:rev,tf:tf,pf:pf,lf:lf,ads:ads,fees:fees,payout:payout,cost:cost,label:label,profit:profit,loss:-profit,
+margin:rev>0?profit/rev:0,feeShare:rev>0?fees/rev:0,adsOff:rate>0?0:1,adsIf:adsIf,profitIfAds:profit-adsIf};}
+PNF.wire(f,M);pnfAfter(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
+def craft_fair_page(p):
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>The show</legend>
+{field("booth", "Booth fee", d["booth"], "From the show's application", pre="$")}
+{field("other", "Other costs of the day", d["other"], "Travel, parking, meals, extras, a share of your tent and display", pre="$")}
+</fieldset>
+<fieldset><legend>What you sell</legend>
+{field("price", "Average price per piece", d["price"], "Before sales tax", pre="$")}
+{field("cpp", "Cost per piece", d["cpp"], "Materials, packaging and your making time", pre="$")}
+</fieldset>
+<fieldset><legend>Card payments</legend>
+{field("cardPct", "Card fee, percent", d["cardPct"], "Match your reader", suf="%")}
+{field("cardFlat", "Card fee, per payment", d["cardFlat"], "The flat part, if your reader has one", pre="$")}
+{field("cardShare", "Share of sales paid by card", d["cardShare"], "Cash has no fee", suf="%")}
+{field("avgSale", "Average spend per customer", d["avgSale"], "Spreads the flat fee over a sale", pre="$")}
+</fieldset>
+<fieldset><legend>Your goal</legend>
+{field("target", "Profit you want from the day", d["target"], "On top of every cost", pre="$")}
+</fieldset></form>"""
+    results = f"""<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Pieces to break even</div><div class="val" data-out="bePieces" data-fmt="int" data-never="Never">0</div><div class="sub" data-show-if="never < 1"><span data-out="beSales">$0</span> in sales</div></div>
+<div class="tile"><div class="lab">Pieces for your profit</div><div class="val" data-out="tgtPieces" data-fmt="int" data-never="Never">0</div><div class="sub" data-show-if="never < 1"><span data-out="tgtSales">$0</span> in sales</div></div>
+</div>
+<ul class="lines">
+<li><span>Booth fee</span><span data-out="booth">$0</span></li>
+<li><span>Other costs of the day</span><span data-out="other">$0</span></li>
+<li class="total"><span>What the day costs</span><span data-out="total">$0</span></li>
+<li><span>Average price per piece</span><span data-out="price">$0</span></li>
+<li><span>Cost per piece</span><span data-out="cpp">$0</span></li>
+<li><span>Card fee per piece</span><span data-out="cardPer">$0</span></li>
+<li class="total"><span>Each piece earns</span><span data-out="contrib">$0</span></li>
+<li data-show-if="never < 1"><span>Profit at <span data-out="tgtPieces" data-fmt="int">0</span> pieces</span><span data-out="tgtProfit">$0</span></li>
+</ul>
+<div class="callout warn" data-show-if="never > 0">Each piece earns nothing after its cost and the card fee, so no number of sales covers the day. Raise the price or cut the cost per piece.</div>
+<div class="callout" data-show-if="never < 1">The booth fee is <b data-pct="boothShare">0%</b> of what this day costs.</div>
+{asof_note(p)}
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Break even <b data-out="bePieces" data-fmt="int" data-never="Never">0</b> pieces</span><span>Goal <b data-out="tgtPieces" data-fmt="int" data-never="Never">0</b> pieces</span></div>"""
+    script = """<script>
+""" + AFTER_JS + """
+(function(){var f=document.getElementById("calc");
+/* Same maths as the Break-Even tab of engines/craft-fair-profit (#12): card cost per $1 = card share x (percent + flat / average spend);
+   pieces round up to whole pieces. */
+function M(i){var booth=pnfNum(i.booth),other=pnfNum(i.other),price=pnfNum(i.price),cpp=pnfNum(i.cpp),target=pnfNum(i.target);
+var avg=pnfNum(i.avgSale),perDollar=pnfNum(i.cardShare)/100*(pnfNum(i.cardPct)/100+(avg>0?pnfNum(i.cardFlat)/avg:0));
+var total=booth+other,cardPer=price*perDollar,contrib=price-cpp-cardPer,ok=contrib>1e-9;
+var be=ok?Math.max(0,Math.ceil(total/contrib-1e-9)):0,tg=ok?Math.max(0,Math.ceil((total+target)/contrib-1e-9)):0;
+return {booth:booth,other:other,total:total,price:price,cpp:cpp,cardPer:cardPer,contrib:contrib,bePieces:be,beSales:be*price,
+tgtPieces:tg,tgtSales:tg*price,tgtProfit:ok?tg*contrib-total:0,boothShare:total>0?booth/total:0,never:ok?0:1};}
+PNF.wire(f,M);pnfAfter(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
+PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashflow_page,
+              "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page}
 
 
 def page_html(p):

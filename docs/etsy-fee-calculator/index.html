@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Etsy Fee Calculator: Fees, Payout and Profit per Sale | ProofNotFluff</title><meta name="description" content="Free Etsy fee calculator for US sellers. Enter your price, shipping and costs to see the transaction fee, payment processing, listing fee, Offsite Ads, your payout and your profit on one sale.">
+<link rel="canonical" href="https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/etsy-fee-calculator/"><meta name="robots" content="noindex, nofollow"><meta property="og:title" content="Etsy Fee Calculator: Fees, Payout and Profit per Sale | ProofNotFluff"><meta property="og:description" content="Free Etsy fee calculator for US sellers. Enter your price, shipping and costs to see the transaction fee, payment processing, listing fee, Offsite Ads, your payout and your profit on one sale.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/etsy-fee-calculator/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/pnf.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Etsy Fee Calculator", "url": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/etsy-fee-calculator/", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "ProofNotFluff"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What fees does Etsy take from a sale?", "acceptedAnswer": {"@type": "Answer", "text": "For a US seller: a 6.5% transaction fee on the item price plus shipping, payment processing of 3% plus $0.25 on the total the buyer paid, and a $0.20 listing fee. Orders Etsy attributes to Offsite Ads add 15% or 12%, up to $100."}}, {"@type": "Question", "name": "Does Etsy charge fees on shipping?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The transaction fee and payment processing both apply to the shipping you charge, so moving shipping into the item price does not change those two fees."}}, {"@type": "Question", "name": "Why is a listing fee counted on every sale?", "acceptedAnswer": {"@type": "Answer", "text": "A listing costs $0.20 to publish, and a listing with more than one in stock renews for another $0.20 after each sale. So each sale carries one listing fee."}}, {"@type": "Question", "name": "I sell from outside the US. Does this work?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, if you type your own rates. Etsy's payment processing fee depends on the country of your bank account."}}, {"@type": "Question", "name": "Is this tax or financial advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. It is a planning estimate based on the numbers you enter."}}]}</script>
+</head><body class="has-mbar">
+<header class="top"><div class="wrap"><div><a class="brand" href="../">ProofNotFluff</a><div class="bars"><i></i><i></i><i></i><i></i><i></i></div></div>
+<nav class="top"><a href="../">Free calculators</a><a href="https://proofnotfluff.etsy.com">Etsy shop</a></nav></div></header>
+<main class="wrap"><p class="eyebrow">Free calculator</p><h1>Etsy Fee Calculator</h1><p class="lede">See every Etsy fee on one sale, what Etsy pays you, and what you keep after your costs. With or without an Offsite Ads order. Free, no sign-up.</p><div class="grid"><form class="card" id="calc" novalidate>
+<fieldset><legend>The sale</legend>
+<div class="row"><label for="price">Item price<small>What the buyer pays for the item</small></label><div class="field has-pre"><span class=pre>$</span><input id="price" data-in="price" type="text" inputmode="decimal" value="24.00" autocomplete="off"></div></div>
+<div class="row"><label for="ship">Shipping you charge<small>0 for free shipping</small></label><div class="field has-pre"><span class=pre>$</span><input id="ship" data-in="ship" type="text" inputmode="decimal" value="5.50" autocomplete="off"></div></div>
+<div class="row"><label for="tax">Sales tax the buyer paid<small>Processing is charged on it too. 0 if unsure</small></label><div class="field has-pre"><span class=pre>$</span><input id="tax" data-in="tax" type="text" inputmode="decimal" value="0" autocomplete="off"></div></div>
+</fieldset>
+<fieldset><legend>Your costs</legend>
+<div class="row"><label for="cost">Item cost<small>Materials, packaging and your making time</small></label><div class="field has-pre"><span class=pre>$</span><input id="cost" data-in="cost" type="text" inputmode="decimal" value="10.20" autocomplete="off"></div></div>
+<div class="row"><label for="label">Shipping label cost<small>What postage really costs you</small></label><div class="field has-pre"><span class=pre>$</span><input id="label" data-in="label" type="text" inputmode="decimal" value="6.25" autocomplete="off"></div></div>
+</fieldset>
+<fieldset><legend>Offsite Ads</legend>
+<div class="row pick"><label for="adsRate">Did this sale come through an Offsite Ad?<small>Etsy charges the fee only on orders it attributes to its ads.</small></label>
+<div class="field"><select id="adsRate" data-in="adsRate"><option value="0" selected>No, a normal sale</option><option value="15">Yes: 15% (shop under $10,000 in sales over 365 days)</option><option value="12">Yes: 12% (shop at $10,000 or more)</option></select></div></div>
+</fieldset>
+<fieldset><legend>Etsy's US fees</legend>
+<div class="row"><label for="tfRate">Transaction fee<small>On item price plus shipping, not on US sales tax</small></label><div class="field has-suf"><input id="tfRate" data-in="tfRate" type="text" inputmode="decimal" value="6.5" autocomplete="off"><span class=suf>%</span></div></div>
+<div class="row"><label for="procRate">Payment processing, percent<small>On the total paid, tax included</small></label><div class="field has-suf"><input id="procRate" data-in="procRate" type="text" inputmode="decimal" value="3" autocomplete="off"><span class=suf>%</span></div></div>
+<div class="row"><label for="procFixed">Payment processing, per order<small>Outside the US? Type your rates</small></label><div class="field has-pre"><span class=pre>$</span><input id="procFixed" data-in="procFixed" type="text" inputmode="decimal" value="0.25" autocomplete="off"></div></div>
+<div class="row"><label for="listFee">Listing fee<small>Charged again when a listing renews after a sale</small></label><div class="field has-pre"><span class=pre>$</span><input id="listFee" data-in="listFee" type="text" inputmode="decimal" value="0.20" autocomplete="off"></div></div>
+</fieldset></form><div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Profit per sale</div><div class="val" data-out="profit">$0</div><div class="sub"><span data-pct="margin">0%</span> of what the buyer paid you</div></div>
+<div class="tile"><div class="lab">Etsy pays you</div><div class="val" data-out="payout">$0</div><div class="sub">Before your costs</div></div>
+</div>
+<ul class="lines">
+<li><span>Item plus shipping</span><span data-out="revenue">$0</span></li>
+<li><span>Transaction fee</span><span data-out="tf">$0</span></li>
+<li><span>Payment processing</span><span data-out="pf">$0</span></li>
+<li><span>Listing fee</span><span data-out="lf">$0</span></li>
+<li><span>Offsite Ads fee</span><span data-out="ads">$0</span></li>
+<li class="total"><span>Etsy fees, <span data-pct="feeShare">0%</span> of the sale</span><span data-out="fees">$0</span></li>
+<li><span>Item cost</span><span data-out="cost">$0</span></li>
+<li><span>Shipping label</span><span data-out="label">$0</span></li>
+<li class="total"><span>Profit</span><span data-out="profit">$0</span></li>
+</ul>
+<div class="callout warn" data-show-if="profit < 0">This sale loses <b data-out="loss">$0</b> after fees and costs.</div>
+<div class="callout" data-show-if="adsOff > 0">If this sale came through an Offsite Ad at 15%, the fee would be <b data-out="adsIf">$0</b> and profit <b data-out="profitIfAds">$0</b>.</div>
+<div class="callout" data-show-if="adsOff < 1">Offsite Ads took <b data-out="ads">$0</b> of this sale.</div>
+<p class="asof">US fees as of Oct 7, 2026, from <a href="https://www.etsy.com/legal/fees" rel="noopener">Etsy&#x27;s fee page</a> and <a href="https://help.etsy.com/hc/articles/115015628847" rel="noopener">Etsy&#x27;s payment processing page</a>. Every rate is editable if Etsy changes one.</p>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Profit <b data-out="profit">$0</b></span><span>Fees <b data-out="fees">$0</b></span></div></div><section class="block"><h2>How it works</h2><p>Etsy charges a 6.5% transaction fee on the item price plus the shipping you charge, but not on US sales tax. Payment processing for a US bank account is 3% of everything the buyer paid, sales tax included, plus $0.25 an order. Each sale also carries a $0.20 listing fee, because a listing with more than one in stock renews for $0.20 after each sale.</p><p>If Etsy attributes the order to one of its Offsite Ads, it adds 15% of the item price plus shipping, or 12% once a shop has made $10,000 or more in sales over the prior 365 days. That fee never goes over $100 on one order.</p><p>Each fee is rounded to the cent. What is left after the fees is your payout. Take away the item cost and the shipping label and you have the profit on the sale. Margin is that profit divided by the item price plus shipping.</p></section><section class="block"><h2>A worked example</h2><p>Take an 8 oz soy candle listed at $24 with $5.50 shipping charged, $10.20 of materials, packaging and making time, and a $6.25 label. Etsy&#x27;s fees come to $3.26: $1.92 transaction fee, $1.14 payment processing and the $0.20 listing fee. Etsy pays out $26.24 and the sale makes $9.79, a 33.2% margin. If the same order came through an Offsite Ad at 15%, another $4.43 comes off and profit drops to $5.36. These are the inputs for the 8 oz candle in the example shop inside the True Profit System for Etsy Sellers workbook, which shows $9.80 because it does not round each fee to the cent.</p></section><section class="block"><div class="cta"><div><h2>Every listing, every order, every payout</h2><p>The True Profit System for Etsy Sellers workbook uses this same maths for Excel and Google Sheets: true profit and an OK, WATCH or REPRICE flag on every listing, the list price that hits the profit you want, an order log, a payout check to the cent and a tax reserve. $2.99, instant download.</p></div><div><a class="btn" href="https://proofnotfluff.etsy.com/listing/4584721212">Get the workbook on Etsy</a><br><a class="btn ghost" href="https://proofnotfluff.etsy.com">All ProofNotFluff tools</a></div></div></section><section class="block"><h2>Questions</h2><details><summary>What fees does Etsy take from a sale?</summary><p>For a US seller: a 6.5% transaction fee on the item price plus shipping, payment processing of 3% plus $0.25 on the total the buyer paid, and a $0.20 listing fee. Orders Etsy attributes to Offsite Ads add 15% or 12%, up to $100.</p></details><details><summary>Does Etsy charge fees on shipping?</summary><p>Yes. The transaction fee and payment processing both apply to the shipping you charge, so moving shipping into the item price does not change those two fees.</p></details><details><summary>Why is a listing fee counted on every sale?</summary><p>A listing costs $0.20 to publish, and a listing with more than one in stock renews for another $0.20 after each sale. So each sale carries one listing fee.</p></details><details><summary>I sell from outside the US. Does this work?</summary><p>Yes, if you type your own rates. Etsy&#x27;s payment processing fee depends on the country of your bank account.</p></details><details><summary>Is this tax or financial advice?</summary><p>No. It is a planning estimate based on the numbers you enter.</p></details></section></main>
+<footer><div class="wrap">
+<p>Estimates for planning only, based on the numbers you enter. Not tax, legal or financial advice. Etsy Fees &amp; Payments Policy (etsy.com/legal/fees, last updated Oct 5, 2026) and Etsy Help, What are Payment Processing Fees for Selling on Etsy? Both checked Oct 7, 2026. ProofNotFluff is not affiliated with or endorsed by Etsy.</p>
+<p>Made by ProofNotFluff with AI assistance, reviewed and tested by the shop owner. Calculators run in your browser; nothing you type is sent anywhere.</p>
+</div></footer>
+<script src="../assets/pnf-calc.js"></script>
+<script>
+function pnfNum(v){var n=parseFloat(String(v).replace(/[$,%\s]/g,""));return isFinite(n)?n:0;}
+function pnfAfter(f,M){function go(){var v={};f.querySelectorAll("[data-in]").forEach(function(e){v[e.getAttribute("data-in")]=e.value;});var r=M(v);
+document.querySelectorAll("[data-pct]").forEach(function(e){var x=r[e.getAttribute("data-pct")];e.textContent=(isFinite(x)?(x*100).toFixed(1):"0.0")+"%";e.classList.toggle("neg",x<0);});
+document.querySelectorAll("[data-never]").forEach(function(e){if(r.never){e.textContent=e.getAttribute("data-never");e.classList.add("neg");}});}
+f.querySelectorAll("select").forEach(function(s){s.addEventListener("change",function(){f.dispatchEvent(new Event("input"));});});
+f.addEventListener("input",go);go();}
+(function(){var f=document.getElementById("calc"),CAP=100;
+/* Same per-sale maths as the Listings tab of engines/etsy-true-profit (#5), with sales tax added to the processing base
+   and each fee rounded to the cent so the lines add up to the total shown. */
+function M(i){var price=pnfNum(i.price),ship=pnfNum(i.ship),tax=pnfNum(i.tax),cost=pnfNum(i.cost),label=pnfNum(i.label);
+function c(x){return Math.round(x*100+1e-6)/100;}
+var rate=pnfNum(i.adsRate)/100,rev=price+ship,tf=c(pnfNum(i.tfRate)/100*rev),pf=c(pnfNum(i.procRate)/100*(rev+tax)+pnfNum(i.procFixed)),lf=c(pnfNum(i.listFee));
+var ads=c(Math.min(rate*rev,CAP)),fees=tf+pf+lf+ads,payout=rev-fees,profit=payout-cost-label,adsIf=c(Math.min(0.15*rev,CAP));
+return {revenue:rev,tf:tf,pf:pf,lf:lf,ads:ads,fees:fees,payout:payout,cost:cost,label:label,profit:profit,loss:-profit,
+margin:rev>0?profit/rev:0,feeShare:rev>0?fees/rev:0,adsOff:rate>0?0:1,adsIf:adsIf,profitIfAds:profit-adsIf};}
+PNF.wire(f,M);pnfAfter(f,M);window.PNF_MODEL=M;})();</script>
+</body></html>

@@ -1,0 +1,13 @@
+{
+ "xlsx": "Inventory-Tracker-EXAMPLE.xlsx",
+ "sheet": "3 Dashboard",
+ "crop": [0, 0.0, 1, 0.0688],
+ "dpi": 220,
+ "eyebrow": "INVENTORY TRACKER",
+ "size": [1920, 1440],
+ "states": [
+  {"caption": "Example shop: {C7} of stock at cost, {H7} items to reorder.", "hold": 3.4},
+  {"set": {"D14": 46266, "D15": 46295}, "caption": "Pick September: {D20} profit from {D17} units sold.", "hold": 3.8},
+  {"set": {"D14": 46266, "D15": 46295, "1 Items!K16": 30}, "caption": "Raise the lavender reorder point to 30: now {H7} to reorder.", "hold": 3.8}
+ ]
+}

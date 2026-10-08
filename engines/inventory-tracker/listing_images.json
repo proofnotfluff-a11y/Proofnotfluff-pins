@@ -1,0 +1,230 @@
+{
+ "base": "/tmp/claude-0/-home-claude-proofnotfluff-pins/ea487648-a76b-5852-9845-25c1ae6281af/scratchpad/inv/kitsrc",
+ "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+ "images": [
+  {
+   "type": "cover",
+   "eyebrow": "INVENTORY TRACKER",
+   "title": "Know what's on the shelf and what it earns.",
+   "sub": "Stock on hand, reorder alerts, unit cost and profit per unit, from one simple log.",
+   "shot": "04-3-Dashboard.png",
+   "crop": [
+    0,
+    0,
+    1,
+    0.0688
+   ],
+   "badges": [
+    "Excel + Google Sheets",
+    "Instant download",
+    "Reorder alerts"
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "THE WORKED EXAMPLE",
+   "title": "$4,023.60 profit on $7,262.00 of sales.",
+   "sub": "Example candle and soap maker, July to September: 504 units sold, top sellers ranked, any date range you pick.",
+   "shot": "04-3-Dashboard.png",
+   "crop": [
+    0,
+    0.0282,
+    0.455,
+    0.0688
+   ],
+   "trim": true
+  },
+  {
+   "type": "steps",
+   "eyebrow": "HOW IT WORKS",
+   "title": "Three steps.",
+   "steps": [
+    {
+     "head": "List your items",
+     "text": "Unit cost, price, fees, reorder point.",
+     "shot": "02-1-Items.png",
+     "crop": [
+      0,
+      0.0605,
+      0.4,
+      0.0975
+     ]
+    },
+    {
+     "head": "Log each stock move",
+     "text": "Made, sold, returned, damaged.",
+     "shot": "03-2-Stock-Log.png",
+     "crop": [
+      0,
+      0.0565,
+      0.395,
+      0.0835
+     ]
+    },
+    {
+     "head": "Read the dashboard",
+     "text": "Stock value and what to reorder.",
+     "shot": "04-3-Dashboard.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.027
+     ]
+    }
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "ITEMS TAB",
+   "title": "Unit cost and profit per unit, item by item.",
+   "sub": "Materials, labor and packaging add up to unit cost; price less cost and fees is profit per unit. Status flags what to reorder.",
+   "shot": "02-1-Items.png",
+   "crop": [
+    0,
+    0.04,
+    0.862,
+    0.1186
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "REORDER ALERTS",
+   "title": "5 items at or under their reorder point.",
+   "sub": "You set the reorder point per item. The dashboard lists what to restock, with units on hand beside each one.",
+   "shot": "04-3-Dashboard.png",
+   "crop": [
+    0,
+    0.0707,
+    0.455,
+    0.1116
+   ],
+   "trim": true
+  },
+  {
+   "type": "shot",
+   "eyebrow": "STOCK LOG TAB",
+   "title": "One row per stock move.",
+   "sub": "Pick the SKU and the type; stock change, sale value and profit fill in on their own. 2,000 rows, every one counted.",
+   "shot": "03-2-Stock-Log.png",
+   "crop": [
+    0,
+    0,
+    1,
+    0.163
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "MONEY IN STOCK",
+   "title": "$824.60 of stock on hand, at cost.",
+   "sub": "See which items tie up the most cash, from units on hand times unit cost.",
+   "shot": "04-3-Dashboard.png",
+   "crop": [
+    0.465,
+    0.0955,
+    1,
+    0.1272
+   ],
+   "trim": true
+  },
+  {
+   "type": "list",
+   "eyebrow": "IS THIS FOR YOU?",
+   "title": "Made for small product businesses.",
+   "columns": [
+    {
+     "head": "Made for",
+     "mark": "check",
+     "items": [
+      "Makers, resellers and small shops",
+      "Up to 150 items and 2,000 stock moves",
+      "Knowing unit cost and profit per unit",
+      "A reorder alert without inventory software"
+     ]
+    },
+    {
+     "head": "Not for",
+     "mark": "x",
+     "items": [
+      "Barcode scanning or store syncing",
+      "Multiple warehouses or variants by size",
+      "Accounting, tax or payroll"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "HOW YOU GET IT",
+   "title": "Instant download. Opens in Excel or Google Sheets.",
+   "columns": [
+    {
+     "head": "What you get",
+     "mark": "check",
+     "items": [
+      "A blank tracker and a filled-in example",
+      "Start Here guide as a PDF, US Letter and A4",
+      "Made for Excel; checked in Google Sheets and LibreOffice",
+      "No macros, no add-ons, no sign-up"
+     ]
+    },
+    {
+     "head": "How to download",
+     "mark": "check",
+     "items": [
+      "Buy, then open Etsy in a web browser",
+      "Go to You, then Purchases, and download",
+      "The Etsy app can't download digital files",
+      "Message the shop on Etsy if anything won't open"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "inside",
+   "eyebrow": "ONE DOWNLOAD",
+   "title": "What's inside",
+   "tabs": [
+    {
+     "name": "Dashboard",
+     "shot": "04-3-Dashboard.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.13
+     ]
+    },
+    {
+     "name": "Items",
+     "shot": "02-1-Items.png",
+     "crop": [
+      0,
+      0,
+      0.45,
+      0.1
+     ]
+    },
+    {
+     "name": "Stock Log",
+     "shot": "03-2-Stock-Log.png",
+     "crop": [
+      0,
+      0,
+      0.6,
+      0.1
+     ]
+    }
+   ],
+   "items": [
+    "Units on hand and stock value at cost",
+    "Reorder alerts at the point you set",
+    "Unit cost: materials, labor, packaging",
+    "Profit per unit and profit from sales",
+    "Blank tracker plus a worked example",
+    "Start Here PDF in Letter and A4"
+   ]
+  }
+ ]
+}

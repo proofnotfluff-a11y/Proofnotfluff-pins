@@ -17,3 +17,10 @@ Each builder or promote run that passes only on round 2 adds its findings here; 
 - Oct 7, cloud builder, premium 13-Week E-commerce Cash Flow (round 2 PASS, Fable). Round 1 findings: (1) a planner that tests a shifted payment window must never call a week "safe" when part of the payment slides past the model horizon; drop or flag those candidates; (2) on blank input, scenario labels built by string concatenation ("PO "&k) and "safer" tints must be gated on the inputs existing, and a tint must only show on a strict improvement; (3) worked examples should make every bridge line non-zero that the copy talks about, or the headline effect is invisible in the file the buyer opens first; (4) tab counts in Start Here copy: say "working tabs".
 
 - Oct 7, Legal desk, premium 13-Week E-commerce Cash Flow shelf gate (round 2 CLEAR, Fable). Round 1 finding: a High-tier (or premium) money product needs the tier clause plus a "licensed CPA or financial professional" line on Start Here page 1, in Terms/LICENSE and in the listing block (legal_scan flags it high); and the liability cap should say "the price you paid", not a fixed dollar figure. Builders: add both by default.
+
+## Oct 7, 10:10 pm cloud builder (Profit and Loss Template, round 2 PASS on Fable)
+- Card sub lines longer than the merged span clip on screen and in every listing image and video frame: keep a Card.title sub under about 55 characters on the C:G grid.
+- Status tiles must not show a result driven only by optional inputs (stock counts) when no entries exist in the period: gate optional adjustments on "at least one entry in the period".
+- Listing image crops of a 1,000-row log must be short and wide (header plus 4 to 6 rows); a tall crop shrinks to unreadable text.
+- Start Here: put a page break before "Before you rely on a number" when the card would split across pages.
+- Long tables printed landscape on 2+ pages need print_title_rows (Categories tabs included).

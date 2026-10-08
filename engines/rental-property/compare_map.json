@@ -1,0 +1,2574 @@
+{
+ "tolerance": 0.005,
+ "inputs": {
+  "prop1": {
+   "old": "Setup!A7",
+   "new": "'1 Setup'!D16"
+  },
+  "prop2": {
+   "old": "Setup!A8",
+   "new": "'1 Setup'!D17"
+  },
+  "prop3": {
+   "old": "Setup!A9",
+   "new": "'1 Setup'!D18"
+  },
+  "prop4": {
+   "old": "Setup!A10",
+   "new": "'1 Setup'!D19"
+  },
+  "prop5": {
+   "old": "Setup!A11",
+   "new": "'1 Setup'!D20"
+  },
+  "prop6": {
+   "old": "Setup!A12",
+   "new": "'1 Setup'!D21"
+  },
+  "prop7": {
+   "old": "Setup!A13",
+   "new": "'1 Setup'!D22"
+  },
+  "prop8": {
+   "old": "Setup!A14",
+   "new": "'1 Setup'!D23"
+  },
+  "prop9": {
+   "old": "Setup!A15",
+   "new": "'1 Setup'!D24"
+  },
+  "prop10": {
+   "old": "Setup!A16",
+   "new": "'1 Setup'!D25"
+  },
+  "door1_id": {
+   "old": "Setup!D7",
+   "new": "'1 Setup'!C33"
+  },
+  "door1_prop": {
+   "old": "Setup!E7",
+   "new": "'1 Setup'!D33"
+  },
+  "door1_tenant": {
+   "old": "Setup!F7",
+   "new": "'1 Setup'!E33"
+  },
+  "door1_rent": {
+   "old": "Setup!G7",
+   "new": "'1 Setup'!F33"
+  },
+  "door1_due": {
+   "old": "Setup!H7",
+   "new": "'1 Setup'!G33"
+  },
+  "door1_grace": {
+   "old": "Setup!I7",
+   "new": "'1 Setup'!H33"
+  },
+  "door1_lease": {
+   "old": "Setup!J7",
+   "new": "'1 Setup'!I33"
+  },
+  "door1_dep": {
+   "old": "Setup!K7",
+   "new": "'1 Setup'!J33"
+  },
+  "door2_id": {
+   "old": "Setup!D8",
+   "new": "'1 Setup'!C34"
+  },
+  "door2_prop": {
+   "old": "Setup!E8",
+   "new": "'1 Setup'!D34"
+  },
+  "door2_tenant": {
+   "old": "Setup!F8",
+   "new": "'1 Setup'!E34"
+  },
+  "door2_rent": {
+   "old": "Setup!G8",
+   "new": "'1 Setup'!F34"
+  },
+  "door2_due": {
+   "old": "Setup!H8",
+   "new": "'1 Setup'!G34"
+  },
+  "door2_grace": {
+   "old": "Setup!I8",
+   "new": "'1 Setup'!H34"
+  },
+  "door2_lease": {
+   "old": "Setup!J8",
+   "new": "'1 Setup'!I34"
+  },
+  "door2_dep": {
+   "old": "Setup!K8",
+   "new": "'1 Setup'!J34"
+  },
+  "door3_id": {
+   "old": "Setup!D9",
+   "new": "'1 Setup'!C35"
+  },
+  "door3_prop": {
+   "old": "Setup!E9",
+   "new": "'1 Setup'!D35"
+  },
+  "door3_tenant": {
+   "old": "Setup!F9",
+   "new": "'1 Setup'!E35"
+  },
+  "door3_rent": {
+   "old": "Setup!G9",
+   "new": "'1 Setup'!F35"
+  },
+  "door3_due": {
+   "old": "Setup!H9",
+   "new": "'1 Setup'!G35"
+  },
+  "door3_grace": {
+   "old": "Setup!I9",
+   "new": "'1 Setup'!H35"
+  },
+  "door3_lease": {
+   "old": "Setup!J9",
+   "new": "'1 Setup'!I35"
+  },
+  "door3_dep": {
+   "old": "Setup!K9",
+   "new": "'1 Setup'!J35"
+  },
+  "door4_id": {
+   "old": "Setup!D10",
+   "new": "'1 Setup'!C36"
+  },
+  "door4_prop": {
+   "old": "Setup!E10",
+   "new": "'1 Setup'!D36"
+  },
+  "door4_tenant": {
+   "old": "Setup!F10",
+   "new": "'1 Setup'!E36"
+  },
+  "door4_rent": {
+   "old": "Setup!G10",
+   "new": "'1 Setup'!F36"
+  },
+  "door4_due": {
+   "old": "Setup!H10",
+   "new": "'1 Setup'!G36"
+  },
+  "door4_grace": {
+   "old": "Setup!I10",
+   "new": "'1 Setup'!H36"
+  },
+  "door4_lease": {
+   "old": "Setup!J10",
+   "new": "'1 Setup'!I36"
+  },
+  "door4_dep": {
+   "old": "Setup!K10",
+   "new": "'1 Setup'!J36"
+  },
+  "r1_date": {
+   "old": "Log!A6",
+   "new": "'2 Log'!C16"
+  },
+  "r1_prop": {
+   "old": "Log!B6",
+   "new": "'2 Log'!D16"
+  },
+  "r1_door": {
+   "old": "Log!C6",
+   "new": "'2 Log'!E16"
+  },
+  "r1_cat": {
+   "old": "Log!D6",
+   "new": "'2 Log'!F16"
+  },
+  "r1_amt": {
+   "old": "Log!E6",
+   "new": "'2 Log'!G16"
+  },
+  "r2_date": {
+   "old": "Log!A7",
+   "new": "'2 Log'!C17"
+  },
+  "r2_prop": {
+   "old": "Log!B7",
+   "new": "'2 Log'!D17"
+  },
+  "r2_door": {
+   "old": "Log!C7",
+   "new": "'2 Log'!E17"
+  },
+  "r2_cat": {
+   "old": "Log!D7",
+   "new": "'2 Log'!F17"
+  },
+  "r2_amt": {
+   "old": "Log!E7",
+   "new": "'2 Log'!G17"
+  },
+  "r9_date": {
+   "old": "Log!A14",
+   "new": "'2 Log'!C24"
+  },
+  "r9_prop": {
+   "old": "Log!B14",
+   "new": "'2 Log'!D24"
+  },
+  "r9_door": {
+   "old": "Log!C14",
+   "new": "'2 Log'!E24"
+  },
+  "r9_cat": {
+   "old": "Log!D14",
+   "new": "'2 Log'!F24"
+  },
+  "r9_amt": {
+   "old": "Log!E14",
+   "new": "'2 Log'!G24"
+  },
+  "r62_date": {
+   "old": "Log!A67",
+   "new": "'2 Log'!C77"
+  },
+  "r62_prop": {
+   "old": "Log!B67",
+   "new": "'2 Log'!D77"
+  },
+  "r62_door": {
+   "old": "Log!C67",
+   "new": "'2 Log'!E77"
+  },
+  "r62_cat": {
+   "old": "Log!D67",
+   "new": "'2 Log'!F77"
+  },
+  "r62_amt": {
+   "old": "Log!E67",
+   "new": "'2 Log'!G77"
+  },
+  "r89_date": {
+   "old": "Log!A94",
+   "new": "'2 Log'!C104"
+  },
+  "r89_prop": {
+   "old": "Log!B94",
+   "new": "'2 Log'!D104"
+  },
+  "r89_door": {
+   "old": "Log!C94",
+   "new": "'2 Log'!E104"
+  },
+  "r89_cat": {
+   "old": "Log!D94",
+   "new": "'2 Log'!F104"
+  },
+  "r89_amt": {
+   "old": "Log!E94",
+   "new": "'2 Log'!G104"
+  },
+  "r90_date": {
+   "old": "Log!A95",
+   "new": "'2 Log'!C105"
+  },
+  "r90_prop": {
+   "old": "Log!B95",
+   "new": "'2 Log'!D105"
+  },
+  "r90_door": {
+   "old": "Log!C95",
+   "new": "'2 Log'!E105"
+  },
+  "r90_cat": {
+   "old": "Log!D95",
+   "new": "'2 Log'!F105"
+  },
+  "r90_amt": {
+   "old": "Log!E95",
+   "new": "'2 Log'!G105"
+  },
+  "r91_date": {
+   "old": "Log!A96",
+   "new": "'2 Log'!C106"
+  },
+  "r91_prop": {
+   "old": "Log!B96",
+   "new": "'2 Log'!D106"
+  },
+  "r91_door": {
+   "old": "Log!C96",
+   "new": "'2 Log'!E106"
+  },
+  "r91_cat": {
+   "old": "Log!D96",
+   "new": "'2 Log'!F106"
+  },
+  "r91_amt": {
+   "old": "Log!E96",
+   "new": "'2 Log'!G106"
+  },
+  "rr_month": {
+   "old": "'Rent Roll'!E5",
+   "new": "'3 Rent Roll'!D13"
+  },
+  "pl_year": {
+   "old": "'Property P&L'!B5",
+   "new": "'4 Property P&L'!D13"
+  },
+  "pl_pick": {
+   "old": "'Property P&L'!E5",
+   "new": "'4 Property P&L'!D15"
+  },
+  "mo_pick": {
+   "old": "Monthly!B5",
+   "new": "'5 Monthly'!D13"
+  },
+  "cat_repairs": {
+   "old": "Categories!A17",
+   "new": "'6 Categories'!D27"
+  }
+ },
+ "outputs": {
+  "rr1_A": {
+   "old": "'Rent Roll'!A8",
+   "new": "'3 Rent Roll'!C23"
+  },
+  "rr1_B": {
+   "old": "'Rent Roll'!B8",
+   "new": "'3 Rent Roll'!D23"
+  },
+  "rr1_C": {
+   "old": "'Rent Roll'!C8",
+   "new": "'3 Rent Roll'!E23"
+  },
+  "rr1_D": {
+   "old": "'Rent Roll'!D8",
+   "new": "'3 Rent Roll'!F23"
+  },
+  "rr1_E": {
+   "old": "'Rent Roll'!E8",
+   "new": "'3 Rent Roll'!G23"
+  },
+  "rr1_F": {
+   "old": "'Rent Roll'!F8",
+   "new": "'3 Rent Roll'!H23"
+  },
+  "rr1_G": {
+   "old": "'Rent Roll'!G8",
+   "new": "'3 Rent Roll'!I23"
+  },
+  "rr1_H": {
+   "old": "'Rent Roll'!H8",
+   "new": "'3 Rent Roll'!J23"
+  },
+  "rr1_I": {
+   "old": "'Rent Roll'!I8",
+   "new": "'3 Rent Roll'!K23"
+  },
+  "rr1_J": {
+   "old": "'Rent Roll'!J8",
+   "new": "'3 Rent Roll'!L23"
+  },
+  "rr2_A": {
+   "old": "'Rent Roll'!A9",
+   "new": "'3 Rent Roll'!C24"
+  },
+  "rr2_B": {
+   "old": "'Rent Roll'!B9",
+   "new": "'3 Rent Roll'!D24"
+  },
+  "rr2_C": {
+   "old": "'Rent Roll'!C9",
+   "new": "'3 Rent Roll'!E24"
+  },
+  "rr2_D": {
+   "old": "'Rent Roll'!D9",
+   "new": "'3 Rent Roll'!F24"
+  },
+  "rr2_E": {
+   "old": "'Rent Roll'!E9",
+   "new": "'3 Rent Roll'!G24"
+  },
+  "rr2_F": {
+   "old": "'Rent Roll'!F9",
+   "new": "'3 Rent Roll'!H24"
+  },
+  "rr2_G": {
+   "old": "'Rent Roll'!G9",
+   "new": "'3 Rent Roll'!I24"
+  },
+  "rr2_H": {
+   "old": "'Rent Roll'!H9",
+   "new": "'3 Rent Roll'!J24"
+  },
+  "rr2_I": {
+   "old": "'Rent Roll'!I9",
+   "new": "'3 Rent Roll'!K24"
+  },
+  "rr2_J": {
+   "old": "'Rent Roll'!J9",
+   "new": "'3 Rent Roll'!L24"
+  },
+  "rr3_A": {
+   "old": "'Rent Roll'!A10",
+   "new": "'3 Rent Roll'!C25"
+  },
+  "rr3_B": {
+   "old": "'Rent Roll'!B10",
+   "new": "'3 Rent Roll'!D25"
+  },
+  "rr3_C": {
+   "old": "'Rent Roll'!C10",
+   "new": "'3 Rent Roll'!E25"
+  },
+  "rr3_D": {
+   "old": "'Rent Roll'!D10",
+   "new": "'3 Rent Roll'!F25"
+  },
+  "rr3_E": {
+   "old": "'Rent Roll'!E10",
+   "new": "'3 Rent Roll'!G25"
+  },
+  "rr3_F": {
+   "old": "'Rent Roll'!F10",
+   "new": "'3 Rent Roll'!H25"
+  },
+  "rr3_G": {
+   "old": "'Rent Roll'!G10",
+   "new": "'3 Rent Roll'!I25"
+  },
+  "rr3_H": {
+   "old": "'Rent Roll'!H10",
+   "new": "'3 Rent Roll'!J25"
+  },
+  "rr3_I": {
+   "old": "'Rent Roll'!I10",
+   "new": "'3 Rent Roll'!K25"
+  },
+  "rr3_J": {
+   "old": "'Rent Roll'!J10",
+   "new": "'3 Rent Roll'!L25"
+  },
+  "rr4_A": {
+   "old": "'Rent Roll'!A11",
+   "new": "'3 Rent Roll'!C26"
+  },
+  "rr4_B": {
+   "old": "'Rent Roll'!B11",
+   "new": "'3 Rent Roll'!D26"
+  },
+  "rr4_C": {
+   "old": "'Rent Roll'!C11",
+   "new": "'3 Rent Roll'!E26"
+  },
+  "rr4_D": {
+   "old": "'Rent Roll'!D11",
+   "new": "'3 Rent Roll'!F26"
+  },
+  "rr4_E": {
+   "old": "'Rent Roll'!E11",
+   "new": "'3 Rent Roll'!G26"
+  },
+  "rr4_F": {
+   "old": "'Rent Roll'!F11",
+   "new": "'3 Rent Roll'!H26"
+  },
+  "rr4_G": {
+   "old": "'Rent Roll'!G11",
+   "new": "'3 Rent Roll'!I26"
+  },
+  "rr4_H": {
+   "old": "'Rent Roll'!H11",
+   "new": "'3 Rent Roll'!J26"
+  },
+  "rr4_I": {
+   "old": "'Rent Roll'!I11",
+   "new": "'3 Rent Roll'!K26"
+  },
+  "rr4_J": {
+   "old": "'Rent Roll'!J11",
+   "new": "'3 Rent Roll'!L26"
+  },
+  "rr_tot_D": {
+   "old": "'Rent Roll'!D18",
+   "new": "'3 Rent Roll'!F33"
+  },
+  "rr_tot_E": {
+   "old": "'Rent Roll'!E18",
+   "new": "'3 Rent Roll'!G33"
+  },
+  "rr_tot_F": {
+   "old": "'Rent Roll'!F18",
+   "new": "'3 Rent Roll'!H33"
+  },
+  "rr_tot_J": {
+   "old": "'Rent Roll'!J18",
+   "new": "'3 Rent Roll'!L33"
+  },
+  "rr_summary": {
+   "old": "'Rent Roll'!A20",
+   "new": "'3 Rent Roll'!C34"
+  },
+  "pl_C7": {
+   "old": "'Property P&L'!C7",
+   "new": "'4 Property P&L'!F23"
+  },
+  "pl_D7": {
+   "old": "'Property P&L'!D7",
+   "new": "'4 Property P&L'!G23"
+  },
+  "pl_E7": {
+   "old": "'Property P&L'!E7",
+   "new": "'4 Property P&L'!H23"
+  },
+  "pl_F7": {
+   "old": "'Property P&L'!F7",
+   "new": "'4 Property P&L'!I23"
+  },
+  "pl_G7": {
+   "old": "'Property P&L'!G7",
+   "new": "'4 Property P&L'!J23"
+  },
+  "pl_H7": {
+   "old": "'Property P&L'!H7",
+   "new": "'4 Property P&L'!K23"
+  },
+  "pl_I7": {
+   "old": "'Property P&L'!I7",
+   "new": "'4 Property P&L'!L23"
+  },
+  "pl_J7": {
+   "old": "'Property P&L'!J7",
+   "new": "'4 Property P&L'!M23"
+  },
+  "pl_K7": {
+   "old": "'Property P&L'!K7",
+   "new": "'4 Property P&L'!N23"
+  },
+  "pl_L7": {
+   "old": "'Property P&L'!L7",
+   "new": "'4 Property P&L'!O23"
+  },
+  "pl_N7": {
+   "old": "'Property P&L'!N7",
+   "new": "'4 Property P&L'!D23"
+  },
+  "pl_C9": {
+   "old": "'Property P&L'!C9",
+   "new": "'4 Property P&L'!F25"
+  },
+  "pl_D9": {
+   "old": "'Property P&L'!D9",
+   "new": "'4 Property P&L'!G25"
+  },
+  "pl_E9": {
+   "old": "'Property P&L'!E9",
+   "new": "'4 Property P&L'!H25"
+  },
+  "pl_F9": {
+   "old": "'Property P&L'!F9",
+   "new": "'4 Property P&L'!I25"
+  },
+  "pl_G9": {
+   "old": "'Property P&L'!G9",
+   "new": "'4 Property P&L'!J25"
+  },
+  "pl_H9": {
+   "old": "'Property P&L'!H9",
+   "new": "'4 Property P&L'!K25"
+  },
+  "pl_I9": {
+   "old": "'Property P&L'!I9",
+   "new": "'4 Property P&L'!L25"
+  },
+  "pl_J9": {
+   "old": "'Property P&L'!J9",
+   "new": "'4 Property P&L'!M25"
+  },
+  "pl_K9": {
+   "old": "'Property P&L'!K9",
+   "new": "'4 Property P&L'!N25"
+  },
+  "pl_L9": {
+   "old": "'Property P&L'!L9",
+   "new": "'4 Property P&L'!O25"
+  },
+  "pl_M9": {
+   "old": "'Property P&L'!M9",
+   "new": "'4 Property P&L'!E25"
+  },
+  "pl_N9": {
+   "old": "'Property P&L'!N9",
+   "new": "'4 Property P&L'!D25"
+  },
+  "pl_C10": {
+   "old": "'Property P&L'!C10",
+   "new": "'4 Property P&L'!F26"
+  },
+  "pl_D10": {
+   "old": "'Property P&L'!D10",
+   "new": "'4 Property P&L'!G26"
+  },
+  "pl_E10": {
+   "old": "'Property P&L'!E10",
+   "new": "'4 Property P&L'!H26"
+  },
+  "pl_F10": {
+   "old": "'Property P&L'!F10",
+   "new": "'4 Property P&L'!I26"
+  },
+  "pl_G10": {
+   "old": "'Property P&L'!G10",
+   "new": "'4 Property P&L'!J26"
+  },
+  "pl_H10": {
+   "old": "'Property P&L'!H10",
+   "new": "'4 Property P&L'!K26"
+  },
+  "pl_I10": {
+   "old": "'Property P&L'!I10",
+   "new": "'4 Property P&L'!L26"
+  },
+  "pl_J10": {
+   "old": "'Property P&L'!J10",
+   "new": "'4 Property P&L'!M26"
+  },
+  "pl_K10": {
+   "old": "'Property P&L'!K10",
+   "new": "'4 Property P&L'!N26"
+  },
+  "pl_L10": {
+   "old": "'Property P&L'!L10",
+   "new": "'4 Property P&L'!O26"
+  },
+  "pl_M10": {
+   "old": "'Property P&L'!M10",
+   "new": "'4 Property P&L'!E26"
+  },
+  "pl_N10": {
+   "old": "'Property P&L'!N10",
+   "new": "'4 Property P&L'!D26"
+  },
+  "pl_C11": {
+   "old": "'Property P&L'!C11",
+   "new": "'4 Property P&L'!F27"
+  },
+  "pl_D11": {
+   "old": "'Property P&L'!D11",
+   "new": "'4 Property P&L'!G27"
+  },
+  "pl_E11": {
+   "old": "'Property P&L'!E11",
+   "new": "'4 Property P&L'!H27"
+  },
+  "pl_F11": {
+   "old": "'Property P&L'!F11",
+   "new": "'4 Property P&L'!I27"
+  },
+  "pl_G11": {
+   "old": "'Property P&L'!G11",
+   "new": "'4 Property P&L'!J27"
+  },
+  "pl_H11": {
+   "old": "'Property P&L'!H11",
+   "new": "'4 Property P&L'!K27"
+  },
+  "pl_I11": {
+   "old": "'Property P&L'!I11",
+   "new": "'4 Property P&L'!L27"
+  },
+  "pl_J11": {
+   "old": "'Property P&L'!J11",
+   "new": "'4 Property P&L'!M27"
+  },
+  "pl_K11": {
+   "old": "'Property P&L'!K11",
+   "new": "'4 Property P&L'!N27"
+  },
+  "pl_L11": {
+   "old": "'Property P&L'!L11",
+   "new": "'4 Property P&L'!O27"
+  },
+  "pl_M11": {
+   "old": "'Property P&L'!M11",
+   "new": "'4 Property P&L'!E27"
+  },
+  "pl_N11": {
+   "old": "'Property P&L'!N11",
+   "new": "'4 Property P&L'!D27"
+  },
+  "pl_C27": {
+   "old": "'Property P&L'!C27",
+   "new": "'4 Property P&L'!F43"
+  },
+  "pl_D27": {
+   "old": "'Property P&L'!D27",
+   "new": "'4 Property P&L'!G43"
+  },
+  "pl_E27": {
+   "old": "'Property P&L'!E27",
+   "new": "'4 Property P&L'!H43"
+  },
+  "pl_F27": {
+   "old": "'Property P&L'!F27",
+   "new": "'4 Property P&L'!I43"
+  },
+  "pl_G27": {
+   "old": "'Property P&L'!G27",
+   "new": "'4 Property P&L'!J43"
+  },
+  "pl_H27": {
+   "old": "'Property P&L'!H27",
+   "new": "'4 Property P&L'!K43"
+  },
+  "pl_I27": {
+   "old": "'Property P&L'!I27",
+   "new": "'4 Property P&L'!L43"
+  },
+  "pl_J27": {
+   "old": "'Property P&L'!J27",
+   "new": "'4 Property P&L'!M43"
+  },
+  "pl_K27": {
+   "old": "'Property P&L'!K27",
+   "new": "'4 Property P&L'!N43"
+  },
+  "pl_L27": {
+   "old": "'Property P&L'!L27",
+   "new": "'4 Property P&L'!O43"
+  },
+  "pl_M27": {
+   "old": "'Property P&L'!M27",
+   "new": "'4 Property P&L'!E43"
+  },
+  "pl_N27": {
+   "old": "'Property P&L'!N27",
+   "new": "'4 Property P&L'!D43"
+  },
+  "pl_C28": {
+   "old": "'Property P&L'!C28",
+   "new": "'4 Property P&L'!F44"
+  },
+  "pl_D28": {
+   "old": "'Property P&L'!D28",
+   "new": "'4 Property P&L'!G44"
+  },
+  "pl_E28": {
+   "old": "'Property P&L'!E28",
+   "new": "'4 Property P&L'!H44"
+  },
+  "pl_F28": {
+   "old": "'Property P&L'!F28",
+   "new": "'4 Property P&L'!I44"
+  },
+  "pl_G28": {
+   "old": "'Property P&L'!G28",
+   "new": "'4 Property P&L'!J44"
+  },
+  "pl_H28": {
+   "old": "'Property P&L'!H28",
+   "new": "'4 Property P&L'!K44"
+  },
+  "pl_I28": {
+   "old": "'Property P&L'!I28",
+   "new": "'4 Property P&L'!L44"
+  },
+  "pl_J28": {
+   "old": "'Property P&L'!J28",
+   "new": "'4 Property P&L'!M44"
+  },
+  "pl_K28": {
+   "old": "'Property P&L'!K28",
+   "new": "'4 Property P&L'!N44"
+  },
+  "pl_L28": {
+   "old": "'Property P&L'!L28",
+   "new": "'4 Property P&L'!O44"
+  },
+  "pl_M28": {
+   "old": "'Property P&L'!M28",
+   "new": "'4 Property P&L'!E44"
+  },
+  "pl_N28": {
+   "old": "'Property P&L'!N28",
+   "new": "'4 Property P&L'!D44"
+  },
+  "pl_C30": {
+   "old": "'Property P&L'!C30",
+   "new": "'4 Property P&L'!F46"
+  },
+  "pl_D30": {
+   "old": "'Property P&L'!D30",
+   "new": "'4 Property P&L'!G46"
+  },
+  "pl_E30": {
+   "old": "'Property P&L'!E30",
+   "new": "'4 Property P&L'!H46"
+  },
+  "pl_F30": {
+   "old": "'Property P&L'!F30",
+   "new": "'4 Property P&L'!I46"
+  },
+  "pl_G30": {
+   "old": "'Property P&L'!G30",
+   "new": "'4 Property P&L'!J46"
+  },
+  "pl_H30": {
+   "old": "'Property P&L'!H30",
+   "new": "'4 Property P&L'!K46"
+  },
+  "pl_I30": {
+   "old": "'Property P&L'!I30",
+   "new": "'4 Property P&L'!L46"
+  },
+  "pl_J30": {
+   "old": "'Property P&L'!J30",
+   "new": "'4 Property P&L'!M46"
+  },
+  "pl_K30": {
+   "old": "'Property P&L'!K30",
+   "new": "'4 Property P&L'!N46"
+  },
+  "pl_L30": {
+   "old": "'Property P&L'!L30",
+   "new": "'4 Property P&L'!O46"
+  },
+  "pl_M30": {
+   "old": "'Property P&L'!M30",
+   "new": "'4 Property P&L'!E46"
+  },
+  "pl_N30": {
+   "old": "'Property P&L'!N30",
+   "new": "'4 Property P&L'!D46"
+  },
+  "pl_C31": {
+   "old": "'Property P&L'!C31",
+   "new": "'4 Property P&L'!F47"
+  },
+  "pl_D31": {
+   "old": "'Property P&L'!D31",
+   "new": "'4 Property P&L'!G47"
+  },
+  "pl_E31": {
+   "old": "'Property P&L'!E31",
+   "new": "'4 Property P&L'!H47"
+  },
+  "pl_F31": {
+   "old": "'Property P&L'!F31",
+   "new": "'4 Property P&L'!I47"
+  },
+  "pl_G31": {
+   "old": "'Property P&L'!G31",
+   "new": "'4 Property P&L'!J47"
+  },
+  "pl_H31": {
+   "old": "'Property P&L'!H31",
+   "new": "'4 Property P&L'!K47"
+  },
+  "pl_I31": {
+   "old": "'Property P&L'!I31",
+   "new": "'4 Property P&L'!L47"
+  },
+  "pl_J31": {
+   "old": "'Property P&L'!J31",
+   "new": "'4 Property P&L'!M47"
+  },
+  "pl_K31": {
+   "old": "'Property P&L'!K31",
+   "new": "'4 Property P&L'!N47"
+  },
+  "pl_L31": {
+   "old": "'Property P&L'!L31",
+   "new": "'4 Property P&L'!O47"
+  },
+  "pl_M31": {
+   "old": "'Property P&L'!M31",
+   "new": "'4 Property P&L'!E47"
+  },
+  "pl_N31": {
+   "old": "'Property P&L'!N31",
+   "new": "'4 Property P&L'!D47"
+  },
+  "pl_C32": {
+   "old": "'Property P&L'!C32",
+   "new": "'4 Property P&L'!F48"
+  },
+  "pl_D32": {
+   "old": "'Property P&L'!D32",
+   "new": "'4 Property P&L'!G48"
+  },
+  "pl_E32": {
+   "old": "'Property P&L'!E32",
+   "new": "'4 Property P&L'!H48"
+  },
+  "pl_F32": {
+   "old": "'Property P&L'!F32",
+   "new": "'4 Property P&L'!I48"
+  },
+  "pl_G32": {
+   "old": "'Property P&L'!G32",
+   "new": "'4 Property P&L'!J48"
+  },
+  "pl_H32": {
+   "old": "'Property P&L'!H32",
+   "new": "'4 Property P&L'!K48"
+  },
+  "pl_I32": {
+   "old": "'Property P&L'!I32",
+   "new": "'4 Property P&L'!L48"
+  },
+  "pl_J32": {
+   "old": "'Property P&L'!J32",
+   "new": "'4 Property P&L'!M48"
+  },
+  "pl_K32": {
+   "old": "'Property P&L'!K32",
+   "new": "'4 Property P&L'!N48"
+  },
+  "pl_L32": {
+   "old": "'Property P&L'!L32",
+   "new": "'4 Property P&L'!O48"
+  },
+  "pl_M32": {
+   "old": "'Property P&L'!M32",
+   "new": "'4 Property P&L'!E48"
+  },
+  "pl_N32": {
+   "old": "'Property P&L'!N32",
+   "new": "'4 Property P&L'!D48"
+  },
+  "pl_C34": {
+   "old": "'Property P&L'!C34",
+   "new": "'4 Property P&L'!F50"
+  },
+  "pl_D34": {
+   "old": "'Property P&L'!D34",
+   "new": "'4 Property P&L'!G50"
+  },
+  "pl_E34": {
+   "old": "'Property P&L'!E34",
+   "new": "'4 Property P&L'!H50"
+  },
+  "pl_F34": {
+   "old": "'Property P&L'!F34",
+   "new": "'4 Property P&L'!I50"
+  },
+  "pl_G34": {
+   "old": "'Property P&L'!G34",
+   "new": "'4 Property P&L'!J50"
+  },
+  "pl_H34": {
+   "old": "'Property P&L'!H34",
+   "new": "'4 Property P&L'!K50"
+  },
+  "pl_I34": {
+   "old": "'Property P&L'!I34",
+   "new": "'4 Property P&L'!L50"
+  },
+  "pl_J34": {
+   "old": "'Property P&L'!J34",
+   "new": "'4 Property P&L'!M50"
+  },
+  "pl_K34": {
+   "old": "'Property P&L'!K34",
+   "new": "'4 Property P&L'!N50"
+  },
+  "pl_L34": {
+   "old": "'Property P&L'!L34",
+   "new": "'4 Property P&L'!O50"
+  },
+  "pl_M34": {
+   "old": "'Property P&L'!M34",
+   "new": "'4 Property P&L'!E50"
+  },
+  "pl_N34": {
+   "old": "'Property P&L'!N34",
+   "new": "'4 Property P&L'!D50"
+  },
+  "pl_C35": {
+   "old": "'Property P&L'!C35",
+   "new": "'4 Property P&L'!F51"
+  },
+  "pl_D35": {
+   "old": "'Property P&L'!D35",
+   "new": "'4 Property P&L'!G51"
+  },
+  "pl_E35": {
+   "old": "'Property P&L'!E35",
+   "new": "'4 Property P&L'!H51"
+  },
+  "pl_F35": {
+   "old": "'Property P&L'!F35",
+   "new": "'4 Property P&L'!I51"
+  },
+  "pl_G35": {
+   "old": "'Property P&L'!G35",
+   "new": "'4 Property P&L'!J51"
+  },
+  "pl_H35": {
+   "old": "'Property P&L'!H35",
+   "new": "'4 Property P&L'!K51"
+  },
+  "pl_I35": {
+   "old": "'Property P&L'!I35",
+   "new": "'4 Property P&L'!L51"
+  },
+  "pl_J35": {
+   "old": "'Property P&L'!J35",
+   "new": "'4 Property P&L'!M51"
+  },
+  "pl_K35": {
+   "old": "'Property P&L'!K35",
+   "new": "'4 Property P&L'!N51"
+  },
+  "pl_L35": {
+   "old": "'Property P&L'!L35",
+   "new": "'4 Property P&L'!O51"
+  },
+  "pl_M35": {
+   "old": "'Property P&L'!M35",
+   "new": "'4 Property P&L'!E51"
+  },
+  "pl_N35": {
+   "old": "'Property P&L'!N35",
+   "new": "'4 Property P&L'!D51"
+  },
+  "pl_C13": {
+   "old": "'Property P&L'!C13",
+   "new": "'4 Property P&L'!F29"
+  },
+  "pl_D13": {
+   "old": "'Property P&L'!D13",
+   "new": "'4 Property P&L'!G29"
+  },
+  "pl_E13": {
+   "old": "'Property P&L'!E13",
+   "new": "'4 Property P&L'!H29"
+  },
+  "pl_F13": {
+   "old": "'Property P&L'!F13",
+   "new": "'4 Property P&L'!I29"
+  },
+  "pl_G13": {
+   "old": "'Property P&L'!G13",
+   "new": "'4 Property P&L'!J29"
+  },
+  "pl_H13": {
+   "old": "'Property P&L'!H13",
+   "new": "'4 Property P&L'!K29"
+  },
+  "pl_I13": {
+   "old": "'Property P&L'!I13",
+   "new": "'4 Property P&L'!L29"
+  },
+  "pl_J13": {
+   "old": "'Property P&L'!J13",
+   "new": "'4 Property P&L'!M29"
+  },
+  "pl_K13": {
+   "old": "'Property P&L'!K13",
+   "new": "'4 Property P&L'!N29"
+  },
+  "pl_L13": {
+   "old": "'Property P&L'!L13",
+   "new": "'4 Property P&L'!O29"
+  },
+  "pl_M13": {
+   "old": "'Property P&L'!M13",
+   "new": "'4 Property P&L'!E29"
+  },
+  "pl_N13": {
+   "old": "'Property P&L'!N13",
+   "new": "'4 Property P&L'!D29"
+  },
+  "pl_C14": {
+   "old": "'Property P&L'!C14",
+   "new": "'4 Property P&L'!F30"
+  },
+  "pl_D14": {
+   "old": "'Property P&L'!D14",
+   "new": "'4 Property P&L'!G30"
+  },
+  "pl_E14": {
+   "old": "'Property P&L'!E14",
+   "new": "'4 Property P&L'!H30"
+  },
+  "pl_F14": {
+   "old": "'Property P&L'!F14",
+   "new": "'4 Property P&L'!I30"
+  },
+  "pl_G14": {
+   "old": "'Property P&L'!G14",
+   "new": "'4 Property P&L'!J30"
+  },
+  "pl_H14": {
+   "old": "'Property P&L'!H14",
+   "new": "'4 Property P&L'!K30"
+  },
+  "pl_I14": {
+   "old": "'Property P&L'!I14",
+   "new": "'4 Property P&L'!L30"
+  },
+  "pl_J14": {
+   "old": "'Property P&L'!J14",
+   "new": "'4 Property P&L'!M30"
+  },
+  "pl_K14": {
+   "old": "'Property P&L'!K14",
+   "new": "'4 Property P&L'!N30"
+  },
+  "pl_L14": {
+   "old": "'Property P&L'!L14",
+   "new": "'4 Property P&L'!O30"
+  },
+  "pl_M14": {
+   "old": "'Property P&L'!M14",
+   "new": "'4 Property P&L'!E30"
+  },
+  "pl_N14": {
+   "old": "'Property P&L'!N14",
+   "new": "'4 Property P&L'!D30"
+  },
+  "pl_C15": {
+   "old": "'Property P&L'!C15",
+   "new": "'4 Property P&L'!F31"
+  },
+  "pl_D15": {
+   "old": "'Property P&L'!D15",
+   "new": "'4 Property P&L'!G31"
+  },
+  "pl_E15": {
+   "old": "'Property P&L'!E15",
+   "new": "'4 Property P&L'!H31"
+  },
+  "pl_F15": {
+   "old": "'Property P&L'!F15",
+   "new": "'4 Property P&L'!I31"
+  },
+  "pl_G15": {
+   "old": "'Property P&L'!G15",
+   "new": "'4 Property P&L'!J31"
+  },
+  "pl_H15": {
+   "old": "'Property P&L'!H15",
+   "new": "'4 Property P&L'!K31"
+  },
+  "pl_I15": {
+   "old": "'Property P&L'!I15",
+   "new": "'4 Property P&L'!L31"
+  },
+  "pl_J15": {
+   "old": "'Property P&L'!J15",
+   "new": "'4 Property P&L'!M31"
+  },
+  "pl_K15": {
+   "old": "'Property P&L'!K15",
+   "new": "'4 Property P&L'!N31"
+  },
+  "pl_L15": {
+   "old": "'Property P&L'!L15",
+   "new": "'4 Property P&L'!O31"
+  },
+  "pl_M15": {
+   "old": "'Property P&L'!M15",
+   "new": "'4 Property P&L'!E31"
+  },
+  "pl_N15": {
+   "old": "'Property P&L'!N15",
+   "new": "'4 Property P&L'!D31"
+  },
+  "pl_C16": {
+   "old": "'Property P&L'!C16",
+   "new": "'4 Property P&L'!F32"
+  },
+  "pl_D16": {
+   "old": "'Property P&L'!D16",
+   "new": "'4 Property P&L'!G32"
+  },
+  "pl_E16": {
+   "old": "'Property P&L'!E16",
+   "new": "'4 Property P&L'!H32"
+  },
+  "pl_F16": {
+   "old": "'Property P&L'!F16",
+   "new": "'4 Property P&L'!I32"
+  },
+  "pl_G16": {
+   "old": "'Property P&L'!G16",
+   "new": "'4 Property P&L'!J32"
+  },
+  "pl_H16": {
+   "old": "'Property P&L'!H16",
+   "new": "'4 Property P&L'!K32"
+  },
+  "pl_I16": {
+   "old": "'Property P&L'!I16",
+   "new": "'4 Property P&L'!L32"
+  },
+  "pl_J16": {
+   "old": "'Property P&L'!J16",
+   "new": "'4 Property P&L'!M32"
+  },
+  "pl_K16": {
+   "old": "'Property P&L'!K16",
+   "new": "'4 Property P&L'!N32"
+  },
+  "pl_L16": {
+   "old": "'Property P&L'!L16",
+   "new": "'4 Property P&L'!O32"
+  },
+  "pl_M16": {
+   "old": "'Property P&L'!M16",
+   "new": "'4 Property P&L'!E32"
+  },
+  "pl_N16": {
+   "old": "'Property P&L'!N16",
+   "new": "'4 Property P&L'!D32"
+  },
+  "pl_C17": {
+   "old": "'Property P&L'!C17",
+   "new": "'4 Property P&L'!F33"
+  },
+  "pl_D17": {
+   "old": "'Property P&L'!D17",
+   "new": "'4 Property P&L'!G33"
+  },
+  "pl_E17": {
+   "old": "'Property P&L'!E17",
+   "new": "'4 Property P&L'!H33"
+  },
+  "pl_F17": {
+   "old": "'Property P&L'!F17",
+   "new": "'4 Property P&L'!I33"
+  },
+  "pl_G17": {
+   "old": "'Property P&L'!G17",
+   "new": "'4 Property P&L'!J33"
+  },
+  "pl_H17": {
+   "old": "'Property P&L'!H17",
+   "new": "'4 Property P&L'!K33"
+  },
+  "pl_I17": {
+   "old": "'Property P&L'!I17",
+   "new": "'4 Property P&L'!L33"
+  },
+  "pl_J17": {
+   "old": "'Property P&L'!J17",
+   "new": "'4 Property P&L'!M33"
+  },
+  "pl_K17": {
+   "old": "'Property P&L'!K17",
+   "new": "'4 Property P&L'!N33"
+  },
+  "pl_L17": {
+   "old": "'Property P&L'!L17",
+   "new": "'4 Property P&L'!O33"
+  },
+  "pl_M17": {
+   "old": "'Property P&L'!M17",
+   "new": "'4 Property P&L'!E33"
+  },
+  "pl_N17": {
+   "old": "'Property P&L'!N17",
+   "new": "'4 Property P&L'!D33"
+  },
+  "pl_C18": {
+   "old": "'Property P&L'!C18",
+   "new": "'4 Property P&L'!F34"
+  },
+  "pl_D18": {
+   "old": "'Property P&L'!D18",
+   "new": "'4 Property P&L'!G34"
+  },
+  "pl_E18": {
+   "old": "'Property P&L'!E18",
+   "new": "'4 Property P&L'!H34"
+  },
+  "pl_F18": {
+   "old": "'Property P&L'!F18",
+   "new": "'4 Property P&L'!I34"
+  },
+  "pl_G18": {
+   "old": "'Property P&L'!G18",
+   "new": "'4 Property P&L'!J34"
+  },
+  "pl_H18": {
+   "old": "'Property P&L'!H18",
+   "new": "'4 Property P&L'!K34"
+  },
+  "pl_I18": {
+   "old": "'Property P&L'!I18",
+   "new": "'4 Property P&L'!L34"
+  },
+  "pl_J18": {
+   "old": "'Property P&L'!J18",
+   "new": "'4 Property P&L'!M34"
+  },
+  "pl_K18": {
+   "old": "'Property P&L'!K18",
+   "new": "'4 Property P&L'!N34"
+  },
+  "pl_L18": {
+   "old": "'Property P&L'!L18",
+   "new": "'4 Property P&L'!O34"
+  },
+  "pl_M18": {
+   "old": "'Property P&L'!M18",
+   "new": "'4 Property P&L'!E34"
+  },
+  "pl_N18": {
+   "old": "'Property P&L'!N18",
+   "new": "'4 Property P&L'!D34"
+  },
+  "pl_C19": {
+   "old": "'Property P&L'!C19",
+   "new": "'4 Property P&L'!F35"
+  },
+  "pl_D19": {
+   "old": "'Property P&L'!D19",
+   "new": "'4 Property P&L'!G35"
+  },
+  "pl_E19": {
+   "old": "'Property P&L'!E19",
+   "new": "'4 Property P&L'!H35"
+  },
+  "pl_F19": {
+   "old": "'Property P&L'!F19",
+   "new": "'4 Property P&L'!I35"
+  },
+  "pl_G19": {
+   "old": "'Property P&L'!G19",
+   "new": "'4 Property P&L'!J35"
+  },
+  "pl_H19": {
+   "old": "'Property P&L'!H19",
+   "new": "'4 Property P&L'!K35"
+  },
+  "pl_I19": {
+   "old": "'Property P&L'!I19",
+   "new": "'4 Property P&L'!L35"
+  },
+  "pl_J19": {
+   "old": "'Property P&L'!J19",
+   "new": "'4 Property P&L'!M35"
+  },
+  "pl_K19": {
+   "old": "'Property P&L'!K19",
+   "new": "'4 Property P&L'!N35"
+  },
+  "pl_L19": {
+   "old": "'Property P&L'!L19",
+   "new": "'4 Property P&L'!O35"
+  },
+  "pl_M19": {
+   "old": "'Property P&L'!M19",
+   "new": "'4 Property P&L'!E35"
+  },
+  "pl_N19": {
+   "old": "'Property P&L'!N19",
+   "new": "'4 Property P&L'!D35"
+  },
+  "pl_C20": {
+   "old": "'Property P&L'!C20",
+   "new": "'4 Property P&L'!F36"
+  },
+  "pl_D20": {
+   "old": "'Property P&L'!D20",
+   "new": "'4 Property P&L'!G36"
+  },
+  "pl_E20": {
+   "old": "'Property P&L'!E20",
+   "new": "'4 Property P&L'!H36"
+  },
+  "pl_F20": {
+   "old": "'Property P&L'!F20",
+   "new": "'4 Property P&L'!I36"
+  },
+  "pl_G20": {
+   "old": "'Property P&L'!G20",
+   "new": "'4 Property P&L'!J36"
+  },
+  "pl_H20": {
+   "old": "'Property P&L'!H20",
+   "new": "'4 Property P&L'!K36"
+  },
+  "pl_I20": {
+   "old": "'Property P&L'!I20",
+   "new": "'4 Property P&L'!L36"
+  },
+  "pl_J20": {
+   "old": "'Property P&L'!J20",
+   "new": "'4 Property P&L'!M36"
+  },
+  "pl_K20": {
+   "old": "'Property P&L'!K20",
+   "new": "'4 Property P&L'!N36"
+  },
+  "pl_L20": {
+   "old": "'Property P&L'!L20",
+   "new": "'4 Property P&L'!O36"
+  },
+  "pl_M20": {
+   "old": "'Property P&L'!M20",
+   "new": "'4 Property P&L'!E36"
+  },
+  "pl_N20": {
+   "old": "'Property P&L'!N20",
+   "new": "'4 Property P&L'!D36"
+  },
+  "pl_C21": {
+   "old": "'Property P&L'!C21",
+   "new": "'4 Property P&L'!F37"
+  },
+  "pl_D21": {
+   "old": "'Property P&L'!D21",
+   "new": "'4 Property P&L'!G37"
+  },
+  "pl_E21": {
+   "old": "'Property P&L'!E21",
+   "new": "'4 Property P&L'!H37"
+  },
+  "pl_F21": {
+   "old": "'Property P&L'!F21",
+   "new": "'4 Property P&L'!I37"
+  },
+  "pl_G21": {
+   "old": "'Property P&L'!G21",
+   "new": "'4 Property P&L'!J37"
+  },
+  "pl_H21": {
+   "old": "'Property P&L'!H21",
+   "new": "'4 Property P&L'!K37"
+  },
+  "pl_I21": {
+   "old": "'Property P&L'!I21",
+   "new": "'4 Property P&L'!L37"
+  },
+  "pl_J21": {
+   "old": "'Property P&L'!J21",
+   "new": "'4 Property P&L'!M37"
+  },
+  "pl_K21": {
+   "old": "'Property P&L'!K21",
+   "new": "'4 Property P&L'!N37"
+  },
+  "pl_L21": {
+   "old": "'Property P&L'!L21",
+   "new": "'4 Property P&L'!O37"
+  },
+  "pl_M21": {
+   "old": "'Property P&L'!M21",
+   "new": "'4 Property P&L'!E37"
+  },
+  "pl_N21": {
+   "old": "'Property P&L'!N21",
+   "new": "'4 Property P&L'!D37"
+  },
+  "pl_C22": {
+   "old": "'Property P&L'!C22",
+   "new": "'4 Property P&L'!F38"
+  },
+  "pl_D22": {
+   "old": "'Property P&L'!D22",
+   "new": "'4 Property P&L'!G38"
+  },
+  "pl_E22": {
+   "old": "'Property P&L'!E22",
+   "new": "'4 Property P&L'!H38"
+  },
+  "pl_F22": {
+   "old": "'Property P&L'!F22",
+   "new": "'4 Property P&L'!I38"
+  },
+  "pl_G22": {
+   "old": "'Property P&L'!G22",
+   "new": "'4 Property P&L'!J38"
+  },
+  "pl_H22": {
+   "old": "'Property P&L'!H22",
+   "new": "'4 Property P&L'!K38"
+  },
+  "pl_I22": {
+   "old": "'Property P&L'!I22",
+   "new": "'4 Property P&L'!L38"
+  },
+  "pl_J22": {
+   "old": "'Property P&L'!J22",
+   "new": "'4 Property P&L'!M38"
+  },
+  "pl_K22": {
+   "old": "'Property P&L'!K22",
+   "new": "'4 Property P&L'!N38"
+  },
+  "pl_L22": {
+   "old": "'Property P&L'!L22",
+   "new": "'4 Property P&L'!O38"
+  },
+  "pl_M22": {
+   "old": "'Property P&L'!M22",
+   "new": "'4 Property P&L'!E38"
+  },
+  "pl_N22": {
+   "old": "'Property P&L'!N22",
+   "new": "'4 Property P&L'!D38"
+  },
+  "pl_C23": {
+   "old": "'Property P&L'!C23",
+   "new": "'4 Property P&L'!F39"
+  },
+  "pl_D23": {
+   "old": "'Property P&L'!D23",
+   "new": "'4 Property P&L'!G39"
+  },
+  "pl_E23": {
+   "old": "'Property P&L'!E23",
+   "new": "'4 Property P&L'!H39"
+  },
+  "pl_F23": {
+   "old": "'Property P&L'!F23",
+   "new": "'4 Property P&L'!I39"
+  },
+  "pl_G23": {
+   "old": "'Property P&L'!G23",
+   "new": "'4 Property P&L'!J39"
+  },
+  "pl_H23": {
+   "old": "'Property P&L'!H23",
+   "new": "'4 Property P&L'!K39"
+  },
+  "pl_I23": {
+   "old": "'Property P&L'!I23",
+   "new": "'4 Property P&L'!L39"
+  },
+  "pl_J23": {
+   "old": "'Property P&L'!J23",
+   "new": "'4 Property P&L'!M39"
+  },
+  "pl_K23": {
+   "old": "'Property P&L'!K23",
+   "new": "'4 Property P&L'!N39"
+  },
+  "pl_L23": {
+   "old": "'Property P&L'!L23",
+   "new": "'4 Property P&L'!O39"
+  },
+  "pl_M23": {
+   "old": "'Property P&L'!M23",
+   "new": "'4 Property P&L'!E39"
+  },
+  "pl_N23": {
+   "old": "'Property P&L'!N23",
+   "new": "'4 Property P&L'!D39"
+  },
+  "pl_C24": {
+   "old": "'Property P&L'!C24",
+   "new": "'4 Property P&L'!F40"
+  },
+  "pl_D24": {
+   "old": "'Property P&L'!D24",
+   "new": "'4 Property P&L'!G40"
+  },
+  "pl_E24": {
+   "old": "'Property P&L'!E24",
+   "new": "'4 Property P&L'!H40"
+  },
+  "pl_F24": {
+   "old": "'Property P&L'!F24",
+   "new": "'4 Property P&L'!I40"
+  },
+  "pl_G24": {
+   "old": "'Property P&L'!G24",
+   "new": "'4 Property P&L'!J40"
+  },
+  "pl_H24": {
+   "old": "'Property P&L'!H24",
+   "new": "'4 Property P&L'!K40"
+  },
+  "pl_I24": {
+   "old": "'Property P&L'!I24",
+   "new": "'4 Property P&L'!L40"
+  },
+  "pl_J24": {
+   "old": "'Property P&L'!J24",
+   "new": "'4 Property P&L'!M40"
+  },
+  "pl_K24": {
+   "old": "'Property P&L'!K24",
+   "new": "'4 Property P&L'!N40"
+  },
+  "pl_L24": {
+   "old": "'Property P&L'!L24",
+   "new": "'4 Property P&L'!O40"
+  },
+  "pl_M24": {
+   "old": "'Property P&L'!M24",
+   "new": "'4 Property P&L'!E40"
+  },
+  "pl_N24": {
+   "old": "'Property P&L'!N24",
+   "new": "'4 Property P&L'!D40"
+  },
+  "pl_C25": {
+   "old": "'Property P&L'!C25",
+   "new": "'4 Property P&L'!F41"
+  },
+  "pl_D25": {
+   "old": "'Property P&L'!D25",
+   "new": "'4 Property P&L'!G41"
+  },
+  "pl_E25": {
+   "old": "'Property P&L'!E25",
+   "new": "'4 Property P&L'!H41"
+  },
+  "pl_F25": {
+   "old": "'Property P&L'!F25",
+   "new": "'4 Property P&L'!I41"
+  },
+  "pl_G25": {
+   "old": "'Property P&L'!G25",
+   "new": "'4 Property P&L'!J41"
+  },
+  "pl_H25": {
+   "old": "'Property P&L'!H25",
+   "new": "'4 Property P&L'!K41"
+  },
+  "pl_I25": {
+   "old": "'Property P&L'!I25",
+   "new": "'4 Property P&L'!L41"
+  },
+  "pl_J25": {
+   "old": "'Property P&L'!J25",
+   "new": "'4 Property P&L'!M41"
+  },
+  "pl_K25": {
+   "old": "'Property P&L'!K25",
+   "new": "'4 Property P&L'!N41"
+  },
+  "pl_L25": {
+   "old": "'Property P&L'!L25",
+   "new": "'4 Property P&L'!O41"
+  },
+  "pl_M25": {
+   "old": "'Property P&L'!M25",
+   "new": "'4 Property P&L'!E41"
+  },
+  "pl_N25": {
+   "old": "'Property P&L'!N25",
+   "new": "'4 Property P&L'!D41"
+  },
+  "pl_C26": {
+   "old": "'Property P&L'!C26",
+   "new": "'4 Property P&L'!F42"
+  },
+  "pl_D26": {
+   "old": "'Property P&L'!D26",
+   "new": "'4 Property P&L'!G42"
+  },
+  "pl_E26": {
+   "old": "'Property P&L'!E26",
+   "new": "'4 Property P&L'!H42"
+  },
+  "pl_F26": {
+   "old": "'Property P&L'!F26",
+   "new": "'4 Property P&L'!I42"
+  },
+  "pl_G26": {
+   "old": "'Property P&L'!G26",
+   "new": "'4 Property P&L'!J42"
+  },
+  "pl_H26": {
+   "old": "'Property P&L'!H26",
+   "new": "'4 Property P&L'!K42"
+  },
+  "pl_I26": {
+   "old": "'Property P&L'!I26",
+   "new": "'4 Property P&L'!L42"
+  },
+  "pl_J26": {
+   "old": "'Property P&L'!J26",
+   "new": "'4 Property P&L'!M42"
+  },
+  "pl_K26": {
+   "old": "'Property P&L'!K26",
+   "new": "'4 Property P&L'!N42"
+  },
+  "pl_L26": {
+   "old": "'Property P&L'!L26",
+   "new": "'4 Property P&L'!O42"
+  },
+  "pl_M26": {
+   "old": "'Property P&L'!M26",
+   "new": "'4 Property P&L'!E42"
+  },
+  "pl_N26": {
+   "old": "'Property P&L'!N26",
+   "new": "'4 Property P&L'!D42"
+  },
+  "pl_unlabeled": {
+   "old": "'Property P&L'!B37",
+   "new": "'4 Property P&L'!D58"
+  },
+  "mo_9_1": {
+   "old": "Monthly!B9",
+   "new": "'5 Monthly'!D23"
+  },
+  "mo_9_2": {
+   "old": "Monthly!C9",
+   "new": "'5 Monthly'!D24"
+  },
+  "mo_9_3": {
+   "old": "Monthly!D9",
+   "new": "'5 Monthly'!D25"
+  },
+  "mo_9_4": {
+   "old": "Monthly!E9",
+   "new": "'5 Monthly'!D26"
+  },
+  "mo_9_5": {
+   "old": "Monthly!F9",
+   "new": "'5 Monthly'!D27"
+  },
+  "mo_9_6": {
+   "old": "Monthly!G9",
+   "new": "'5 Monthly'!D28"
+  },
+  "mo_9_7": {
+   "old": "Monthly!H9",
+   "new": "'5 Monthly'!D29"
+  },
+  "mo_9_8": {
+   "old": "Monthly!I9",
+   "new": "'5 Monthly'!D30"
+  },
+  "mo_9_9": {
+   "old": "Monthly!J9",
+   "new": "'5 Monthly'!D31"
+  },
+  "mo_9_10": {
+   "old": "Monthly!K9",
+   "new": "'5 Monthly'!D32"
+  },
+  "mo_9_11": {
+   "old": "Monthly!L9",
+   "new": "'5 Monthly'!D33"
+  },
+  "mo_9_12": {
+   "old": "Monthly!M9",
+   "new": "'5 Monthly'!D34"
+  },
+  "mo_9_year": {
+   "old": "Monthly!N9",
+   "new": "'5 Monthly'!D35"
+  },
+  "mo_10_1": {
+   "old": "Monthly!B10",
+   "new": "'5 Monthly'!E23"
+  },
+  "mo_10_2": {
+   "old": "Monthly!C10",
+   "new": "'5 Monthly'!E24"
+  },
+  "mo_10_3": {
+   "old": "Monthly!D10",
+   "new": "'5 Monthly'!E25"
+  },
+  "mo_10_4": {
+   "old": "Monthly!E10",
+   "new": "'5 Monthly'!E26"
+  },
+  "mo_10_5": {
+   "old": "Monthly!F10",
+   "new": "'5 Monthly'!E27"
+  },
+  "mo_10_6": {
+   "old": "Monthly!G10",
+   "new": "'5 Monthly'!E28"
+  },
+  "mo_10_7": {
+   "old": "Monthly!H10",
+   "new": "'5 Monthly'!E29"
+  },
+  "mo_10_8": {
+   "old": "Monthly!I10",
+   "new": "'5 Monthly'!E30"
+  },
+  "mo_10_9": {
+   "old": "Monthly!J10",
+   "new": "'5 Monthly'!E31"
+  },
+  "mo_10_10": {
+   "old": "Monthly!K10",
+   "new": "'5 Monthly'!E32"
+  },
+  "mo_10_11": {
+   "old": "Monthly!L10",
+   "new": "'5 Monthly'!E33"
+  },
+  "mo_10_12": {
+   "old": "Monthly!M10",
+   "new": "'5 Monthly'!E34"
+  },
+  "mo_10_year": {
+   "old": "Monthly!N10",
+   "new": "'5 Monthly'!E35"
+  },
+  "mo_11_1": {
+   "old": "Monthly!B11",
+   "new": "'5 Monthly'!F23"
+  },
+  "mo_11_2": {
+   "old": "Monthly!C11",
+   "new": "'5 Monthly'!F24"
+  },
+  "mo_11_3": {
+   "old": "Monthly!D11",
+   "new": "'5 Monthly'!F25"
+  },
+  "mo_11_4": {
+   "old": "Monthly!E11",
+   "new": "'5 Monthly'!F26"
+  },
+  "mo_11_5": {
+   "old": "Monthly!F11",
+   "new": "'5 Monthly'!F27"
+  },
+  "mo_11_6": {
+   "old": "Monthly!G11",
+   "new": "'5 Monthly'!F28"
+  },
+  "mo_11_7": {
+   "old": "Monthly!H11",
+   "new": "'5 Monthly'!F29"
+  },
+  "mo_11_8": {
+   "old": "Monthly!I11",
+   "new": "'5 Monthly'!F30"
+  },
+  "mo_11_9": {
+   "old": "Monthly!J11",
+   "new": "'5 Monthly'!F31"
+  },
+  "mo_11_10": {
+   "old": "Monthly!K11",
+   "new": "'5 Monthly'!F32"
+  },
+  "mo_11_11": {
+   "old": "Monthly!L11",
+   "new": "'5 Monthly'!F33"
+  },
+  "mo_11_12": {
+   "old": "Monthly!M11",
+   "new": "'5 Monthly'!F34"
+  },
+  "mo_11_year": {
+   "old": "Monthly!N11",
+   "new": "'5 Monthly'!F35"
+  },
+  "mo_12_1": {
+   "old": "Monthly!B12",
+   "new": "'5 Monthly'!G23"
+  },
+  "mo_12_2": {
+   "old": "Monthly!C12",
+   "new": "'5 Monthly'!G24"
+  },
+  "mo_12_3": {
+   "old": "Monthly!D12",
+   "new": "'5 Monthly'!G25"
+  },
+  "mo_12_4": {
+   "old": "Monthly!E12",
+   "new": "'5 Monthly'!G26"
+  },
+  "mo_12_5": {
+   "old": "Monthly!F12",
+   "new": "'5 Monthly'!G27"
+  },
+  "mo_12_6": {
+   "old": "Monthly!G12",
+   "new": "'5 Monthly'!G28"
+  },
+  "mo_12_7": {
+   "old": "Monthly!H12",
+   "new": "'5 Monthly'!G29"
+  },
+  "mo_12_8": {
+   "old": "Monthly!I12",
+   "new": "'5 Monthly'!G30"
+  },
+  "mo_12_9": {
+   "old": "Monthly!J12",
+   "new": "'5 Monthly'!G31"
+  },
+  "mo_12_10": {
+   "old": "Monthly!K12",
+   "new": "'5 Monthly'!G32"
+  },
+  "mo_12_11": {
+   "old": "Monthly!L12",
+   "new": "'5 Monthly'!G33"
+  },
+  "mo_12_12": {
+   "old": "Monthly!M12",
+   "new": "'5 Monthly'!G34"
+  },
+  "mo_12_year": {
+   "old": "Monthly!N12",
+   "new": "'5 Monthly'!G35"
+  },
+  "mo_13_1": {
+   "old": "Monthly!B13",
+   "new": "'5 Monthly'!H23"
+  },
+  "mo_13_2": {
+   "old": "Monthly!C13",
+   "new": "'5 Monthly'!H24"
+  },
+  "mo_13_3": {
+   "old": "Monthly!D13",
+   "new": "'5 Monthly'!H25"
+  },
+  "mo_13_4": {
+   "old": "Monthly!E13",
+   "new": "'5 Monthly'!H26"
+  },
+  "mo_13_5": {
+   "old": "Monthly!F13",
+   "new": "'5 Monthly'!H27"
+  },
+  "mo_13_6": {
+   "old": "Monthly!G13",
+   "new": "'5 Monthly'!H28"
+  },
+  "mo_13_7": {
+   "old": "Monthly!H13",
+   "new": "'5 Monthly'!H29"
+  },
+  "mo_13_8": {
+   "old": "Monthly!I13",
+   "new": "'5 Monthly'!H30"
+  },
+  "mo_13_9": {
+   "old": "Monthly!J13",
+   "new": "'5 Monthly'!H31"
+  },
+  "mo_13_10": {
+   "old": "Monthly!K13",
+   "new": "'5 Monthly'!H32"
+  },
+  "mo_13_11": {
+   "old": "Monthly!L13",
+   "new": "'5 Monthly'!H33"
+  },
+  "mo_13_12": {
+   "old": "Monthly!M13",
+   "new": "'5 Monthly'!H34"
+  },
+  "mo_13_year": {
+   "old": "Monthly!N13",
+   "new": "'5 Monthly'!H35"
+  },
+  "mo_14_1": {
+   "old": "Monthly!B14",
+   "new": "'5 Monthly'!I23"
+  },
+  "mo_14_2": {
+   "old": "Monthly!C14",
+   "new": "'5 Monthly'!I24"
+  },
+  "mo_14_3": {
+   "old": "Monthly!D14",
+   "new": "'5 Monthly'!I25"
+  },
+  "mo_14_4": {
+   "old": "Monthly!E14",
+   "new": "'5 Monthly'!I26"
+  },
+  "mo_14_5": {
+   "old": "Monthly!F14",
+   "new": "'5 Monthly'!I27"
+  },
+  "mo_14_6": {
+   "old": "Monthly!G14",
+   "new": "'5 Monthly'!I28"
+  },
+  "mo_14_7": {
+   "old": "Monthly!H14",
+   "new": "'5 Monthly'!I29"
+  },
+  "mo_14_8": {
+   "old": "Monthly!I14",
+   "new": "'5 Monthly'!I30"
+  },
+  "mo_14_9": {
+   "old": "Monthly!J14",
+   "new": "'5 Monthly'!I31"
+  },
+  "mo_14_10": {
+   "old": "Monthly!K14",
+   "new": "'5 Monthly'!I32"
+  },
+  "mo_14_11": {
+   "old": "Monthly!L14",
+   "new": "'5 Monthly'!I33"
+  },
+  "mo_14_12": {
+   "old": "Monthly!M14",
+   "new": "'5 Monthly'!I34"
+  },
+  "mo_14_year": {
+   "old": "Monthly!N14",
+   "new": "'5 Monthly'!I35"
+  },
+  "cat0": {
+   "old": "Categories!A6",
+   "new": "'6 Categories'!D16"
+  },
+  "cat1": {
+   "old": "Categories!A7",
+   "new": "'6 Categories'!D17"
+  },
+  "cat2": {
+   "old": "Categories!A8",
+   "new": "'6 Categories'!D18"
+  },
+  "cat3": {
+   "old": "Categories!A9",
+   "new": "'6 Categories'!D19"
+  },
+  "cat4": {
+   "old": "Categories!A10",
+   "new": "'6 Categories'!D20"
+  },
+  "cat5": {
+   "old": "Categories!A11",
+   "new": "'6 Categories'!D21"
+  },
+  "cat6": {
+   "old": "Categories!A12",
+   "new": "'6 Categories'!D22"
+  },
+  "cat7": {
+   "old": "Categories!A13",
+   "new": "'6 Categories'!D23"
+  },
+  "cat8": {
+   "old": "Categories!A14",
+   "new": "'6 Categories'!D24"
+  },
+  "cat9": {
+   "old": "Categories!A15",
+   "new": "'6 Categories'!D25"
+  },
+  "cat10": {
+   "old": "Categories!A16",
+   "new": "'6 Categories'!D26"
+  },
+  "cat11": {
+   "old": "Categories!A17",
+   "new": "'6 Categories'!D27"
+  },
+  "cat12": {
+   "old": "Categories!A18",
+   "new": "'6 Categories'!D28"
+  },
+  "cat13": {
+   "old": "Categories!A19",
+   "new": "'6 Categories'!D29"
+  },
+  "cat14": {
+   "old": "Categories!A20",
+   "new": "'6 Categories'!D30"
+  },
+  "cat15": {
+   "old": "Categories!A21",
+   "new": "'6 Categories'!D31"
+  },
+  "cat16": {
+   "old": "Categories!A22",
+   "new": "'6 Categories'!D32"
+  },
+  "cat17": {
+   "old": "Categories!A23",
+   "new": "'6 Categories'!D33"
+  },
+  "cat18": {
+   "old": "Categories!A24",
+   "new": "'6 Categories'!D34"
+  },
+  "cat19": {
+   "old": "Categories!A25",
+   "new": "'6 Categories'!D35"
+  }
+ },
+ "cases": [
+  {
+   "name": "example"
+  },
+  {
+   "name": "high amounts",
+   "set": {
+    "r1_amt": 250000,
+    "r9_amt": 999999.99,
+    "door1_rent": 25000,
+    "door3_dep": 50000
+   }
+  },
+  {
+   "name": "low amounts",
+   "set": {
+    "r1_amt": 0.01,
+    "r2_amt": 0,
+    "r9_amt": 0.01,
+    "door2_rent": 0.5
+   }
+  },
+  {
+   "name": "blank key inputs",
+   "set": {
+    "rr_month": null,
+    "pl_year": null,
+    "door1_rent": null
+   }
+  },
+  {
+   "name": "another month and year",
+   "set": {
+    "rr_month": 46054,
+    "pl_year": 2025,
+    "pl_pick": "Oak Street House"
+   }
+  },
+  {
+   "name": "monthly one property",
+   "set": {
+    "mo_pick": "Oak Street House",
+    "pl_pick": null
+   }
+  },
+  {
+   "name": "new property, door and rows",
+   "set": {
+    "prop3": "Elm Cottage",
+    "door4_id": "ELM",
+    "door4_prop": "Elm Cottage",
+    "door4_tenant": "Tenant D",
+    "door4_rent": 900,
+    "door4_due": 15,
+    "door4_grace": 2,
+    "door4_lease": 46100,
+    "door4_dep": 900,
+    "r90_date": 46296,
+    "r90_prop": "Elm Cottage",
+    "r90_door": "ELM",
+    "r90_cat": "Rent",
+    "r90_amt": 450,
+    "r91_date": 46300,
+    "r91_prop": "Elm Cottage",
+    "r91_cat": "Repairs",
+    "r91_amt": 210
+   }
+  },
+  {
+   "name": "rows missing property or category",
+   "set": {
+    "r2_prop": null,
+    "r9_cat": null,
+    "r62_door": null
+   }
+  },
+  {
+   "name": "renamed category",
+   "set": {
+    "cat_repairs": "Repairs and fixes"
+   }
+  },
+  {
+   "name": "due day 31 in a short month",
+   "set": {
+    "door1_due": 31,
+    "rr_month": 46327
+   }
+  },
+  {
+   "name": "setup and some log rows cleared",
+   "set": {
+    "prop1": null,
+    "prop2": null,
+    "prop3": null,
+    "prop4": null,
+    "prop5": null,
+    "prop6": null,
+    "prop7": null,
+    "prop8": null,
+    "prop9": null,
+    "prop10": null,
+    "door1_id": null,
+    "door1_prop": null,
+    "door1_tenant": null,
+    "door1_rent": null,
+    "door1_due": null,
+    "door1_grace": null,
+    "door1_lease": null,
+    "door1_dep": null,
+    "door2_id": null,
+    "door2_prop": null,
+    "door2_tenant": null,
+    "door2_rent": null,
+    "door2_due": null,
+    "door2_grace": null,
+    "door2_lease": null,
+    "door2_dep": null,
+    "door3_id": null,
+    "door3_prop": null,
+    "door3_tenant": null,
+    "door3_rent": null,
+    "door3_due": null,
+    "door3_grace": null,
+    "door3_lease": null,
+    "door3_dep": null,
+    "door4_id": null,
+    "door4_prop": null,
+    "door4_tenant": null,
+    "door4_rent": null,
+    "door4_due": null,
+    "door4_grace": null,
+    "door4_lease": null,
+    "door4_dep": null,
+    "r1_date": null,
+    "r1_prop": null,
+    "r1_door": null,
+    "r1_cat": null,
+    "r1_amt": null,
+    "r2_date": null,
+    "r2_prop": null,
+    "r2_door": null,
+    "r2_cat": null,
+    "r2_amt": null,
+    "r9_date": null,
+    "r9_prop": null,
+    "r9_door": null,
+    "r9_cat": null,
+    "r9_amt": null,
+    "r62_date": null,
+    "r62_prop": null,
+    "r62_door": null,
+    "r62_cat": null,
+    "r62_amt": null,
+    "r89_date": null,
+    "r89_prop": null,
+    "r89_door": null,
+    "r89_cat": null,
+    "r89_amt": null,
+    "r90_date": null,
+    "r90_prop": null,
+    "r90_door": null,
+    "r90_cat": null,
+    "r90_amt": null,
+    "r91_date": null,
+    "r91_prop": null,
+    "r91_door": null,
+    "r91_cat": null,
+    "r91_amt": null,
+    "rr_month": null,
+    "pl_year": null,
+    "pl_pick": null,
+    "mo_pick": null
+   }
+  },
+  {
+   "name": "door with no rent typed",
+   "set": {
+    "door1_rent": null,
+    "rr_month": 46327
+   }
+  }
+ ],
+ "intended": [
+  {
+   "case": "blank key inputs",
+   "outputs": [
+    "rr1_E",
+    "rr1_G",
+    "rr2_E",
+    "rr2_F",
+    "rr2_G",
+    "rr3_G",
+    "rr_tot_E",
+    "rr_tot_F",
+    "rr_summary",
+    "pl_C9",
+    "pl_D9",
+    "pl_M9",
+    "pl_N9",
+    "pl_C10",
+    "pl_M10",
+    "pl_N10",
+    "pl_C11",
+    "pl_D11",
+    "pl_M11",
+    "pl_N11",
+    "pl_C27",
+    "pl_D27",
+    "pl_M27",
+    "pl_N27",
+    "pl_C28",
+    "pl_D28",
+    "pl_M28",
+    "pl_N28",
+    "pl_C30",
+    "pl_D30",
+    "pl_M30",
+    "pl_N30",
+    "pl_D31",
+    "pl_M31",
+    "pl_C32",
+    "pl_D32",
+    "pl_M32",
+    "pl_N32",
+    "pl_D14",
+    "pl_M14",
+    "pl_C15",
+    "pl_M15",
+    "pl_N15",
+    "pl_C17",
+    "pl_D17",
+    "pl_M17",
+    "pl_N17",
+    "pl_C18",
+    "pl_M18",
+    "pl_N18",
+    "pl_C20",
+    "pl_D20",
+    "pl_M20",
+    "pl_N20",
+    "pl_C22",
+    "pl_D22",
+    "pl_M22",
+    "pl_N22",
+    "pl_D23",
+    "pl_M23",
+    "pl_C24",
+    "pl_D24",
+    "pl_M24",
+    "pl_N24",
+    "pl_C25",
+    "pl_M25",
+    "pl_N25",
+    "mo_9_1",
+    "mo_9_2",
+    "mo_9_3",
+    "mo_9_4",
+    "mo_9_5",
+    "mo_9_6",
+    "mo_9_7",
+    "mo_9_8",
+    "mo_9_9",
+    "mo_9_10",
+    "mo_9_year",
+    "mo_10_1",
+    "mo_10_2",
+    "mo_10_3",
+    "mo_10_4",
+    "mo_10_5",
+    "mo_10_6",
+    "mo_10_7",
+    "mo_10_8",
+    "mo_10_9",
+    "mo_10_year",
+    "mo_11_1",
+    "mo_11_2",
+    "mo_11_3",
+    "mo_11_4",
+    "mo_11_5",
+    "mo_11_6",
+    "mo_11_7",
+    "mo_11_8",
+    "mo_11_9",
+    "mo_11_10",
+    "mo_11_year",
+    "mo_12_1",
+    "mo_12_2",
+    "mo_12_3",
+    "mo_12_4",
+    "mo_12_5",
+    "mo_12_6",
+    "mo_12_7",
+    "mo_12_8",
+    "mo_12_9",
+    "mo_12_year",
+    "mo_13_1",
+    "mo_13_2",
+    "mo_13_3",
+    "mo_13_4",
+    "mo_13_5",
+    "mo_13_6",
+    "mo_13_7",
+    "mo_13_8",
+    "mo_13_9",
+    "mo_13_10",
+    "mo_13_year",
+    "mo_14_1",
+    "mo_14_2",
+    "mo_14_3",
+    "mo_14_4",
+    "mo_14_5",
+    "mo_14_6",
+    "mo_14_7",
+    "mo_14_8",
+    "mo_14_9",
+    "mo_14_10",
+    "mo_14_11",
+    "mo_14_12",
+    "mo_14_year",
+    "pl_N7"
+   ],
+   "why": "v1 read a blank Rent Roll month and a blank P&L year as dates in 1899 and 1900 (Excel shows error values on the door rows for the blank month); v2 checks this month and shows this year when those cells are blank."
+  },
+  {
+   "case": "setup and some log rows cleared",
+   "outputs": [
+    "mo_9_1",
+    "mo_9_2",
+    "mo_9_3",
+    "mo_9_4",
+    "mo_9_5",
+    "mo_9_6",
+    "mo_9_7",
+    "mo_9_8",
+    "mo_9_9",
+    "mo_9_10",
+    "mo_9_year",
+    "mo_10_1",
+    "mo_10_2",
+    "mo_10_3",
+    "mo_10_4",
+    "mo_10_5",
+    "mo_10_6",
+    "mo_10_7",
+    "mo_10_8",
+    "mo_10_9",
+    "mo_10_year",
+    "mo_11_1",
+    "mo_11_2",
+    "mo_11_3",
+    "mo_11_4",
+    "mo_11_5",
+    "mo_11_6",
+    "mo_11_7",
+    "mo_11_8",
+    "mo_11_9",
+    "mo_11_10",
+    "mo_11_year",
+    "mo_12_1",
+    "mo_12_2",
+    "mo_12_3",
+    "mo_12_4",
+    "mo_12_5",
+    "mo_12_6",
+    "mo_12_7",
+    "mo_12_8",
+    "mo_12_9",
+    "mo_12_year",
+    "mo_13_1",
+    "mo_13_2",
+    "mo_13_3",
+    "mo_13_4",
+    "mo_13_5",
+    "mo_13_6",
+    "mo_13_7",
+    "mo_13_8",
+    "mo_13_9",
+    "mo_13_10",
+    "mo_13_year",
+    "mo_14_1",
+    "mo_14_2",
+    "mo_14_3",
+    "mo_14_4",
+    "mo_14_5",
+    "mo_14_6",
+    "mo_14_7",
+    "mo_14_8",
+    "mo_14_9",
+    "mo_14_10",
+    "mo_14_11",
+    "mo_14_12",
+    "mo_14_year"
+   ],
+   "why": "Same rule: this case also clears the P&L year, so v1 shows the year 1900 (all zeros) and v2 shows this year from the log rows left."
+  },
+  {
+   "case": "door with no rent typed",
+   "outputs": [
+    "rr1_H"
+   ],
+   "why": "v1 showed Paid for a door with no monthly rent and nothing received; v2 says No rent set."
+  },
+  {
+   "case": "example",
+   "outputs": [
+    "pl_N7"
+   ],
+   "why": "Column header label only: v2 reads 'Selected: <property>' so the picked column is not mistaken for that property's own column (gate review). No number changes."
+  },
+  {
+   "case": "high amounts",
+   "outputs": [
+    "pl_N7"
+   ],
+   "why": "Column header label only: v2 reads 'Selected: <property>' so the picked column is not mistaken for that property's own column (gate review). No number changes."
+  },
+  {
+   "case": "low amounts",
+   "outputs": [
+    "pl_N7"
+   ],
+   "why": "Column header label only: v2 reads 'Selected: <property>' so the picked column is not mistaken for that property's own column (gate review). No number changes."
+  },
+  {
+   "case": "another month and year",
+   "outputs": [
+    "pl_N7"
+   ],
+   "why": "Column header label only: v2 reads 'Selected: <property>' so the picked column is not mistaken for that property's own column (gate review). No number changes."
+  },
+  {
+   "case": "new property, door and rows",
+   "outputs": [
+    "pl_N7"
+   ],
+   "why": "Column header label only: v2 reads 'Selected: <property>' so the picked column is not mistaken for that property's own column (gate review). No number changes."
+  },
+  {
+   "case": "rows missing property or category",
+   "outputs": [
+    "pl_N7"
+   ],
+   "why": "Column header label only: v2 reads 'Selected: <property>' so the picked column is not mistaken for that property's own column (gate review). No number changes."
+  },
+  {
+   "case": "renamed category",
+   "outputs": [
+    "pl_N7"
+   ],
+   "why": "Column header label only: v2 reads 'Selected: <property>' so the picked column is not mistaken for that property's own column (gate review). No number changes."
+  },
+  {
+   "case": "due day 31 in a short month",
+   "outputs": [
+    "pl_N7"
+   ],
+   "why": "Column header label only: v2 reads 'Selected: <property>' so the picked column is not mistaken for that property's own column (gate review). No number changes."
+  },
+  {
+   "case": "door with no rent typed",
+   "outputs": [
+    "pl_N7"
+   ],
+   "why": "Column header label only: v2 reads 'Selected: <property>' so the picked column is not mistaken for that property's own column (gate review). No number changes."
+  }
+ ]
+}

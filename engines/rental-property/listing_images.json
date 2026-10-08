@@ -1,0 +1,246 @@
+{
+ "base": "/tmp/claude-0/-home-claude/64fdab78-435c-5813-b605-2f28a83e6562/scratchpad/r300",
+ "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+ "images": [
+  {
+   "type": "cover",
+   "eyebrow": "RENTAL PROPERTY SPREADSHEET",
+   "title": "See who paid, and what each rental really kept.",
+   "sub": "A rent roll with LATE flags, a P&L on Schedule E lines and monthly cash flow, for 1 to 10 doors.",
+   "shot": "04-3-Rent-Roll.png",
+   "crop": [
+    0,
+    0,
+    0.605,
+    0.4865
+   ],
+   "badges": [
+    "Excel + Google Sheets",
+    "Instant download",
+    "1 to 10 doors"
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "THE WORKED EXAMPLE",
+   "title": "$4,844 of profit, but only $550 kept.",
+   "sub": "Example 2026: Oak Street House makes $4,844 of profit before depreciation, but $2,844 of mortgage principal and a $1,450 water heater leave $550 in cash.",
+   "shot": "05-4-Property-P-L.png",
+   "crop": [
+    0.512,
+    0.5015,
+    0.994,
+    0.6358
+   ],
+   "trim": true
+  },
+  {
+   "type": "steps",
+   "eyebrow": "HOW IT WORKS",
+   "title": "Three steps, typed once.",
+   "steps": [
+    {
+     "head": "Add your doors",
+     "text": "Rent, due day, grace days, lease end, deposit.",
+     "shot": "02-1-Setup.png",
+     "crop": [
+      0,
+      0.3185,
+      0.99,
+      0.428
+     ]
+    },
+    {
+     "head": "Log every dollar",
+     "text": "Pick property, door and category from lists.",
+     "shot": "03-2-Log.png",
+     "crop": [
+      0,
+      0.0045,
+      0.985,
+      0.02
+     ]
+    },
+    {
+     "head": "Read the answers",
+     "text": "Rent roll, P&L and monthly cash flow.",
+     "shot": "04-3-Rent-Roll.png",
+     "crop": [
+      0,
+      0.058,
+      0.605,
+      0.127
+     ]
+    }
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "RENT ROLL",
+   "title": "Paid, Partial, Due or LATE for every door.",
+   "sub": "Example October: $1,750 of $3,900 received, $2,150 still owed. LATE uses today's date, the due day and grace days. Leases ending within 60 days are flagged.",
+   "shot": "04-3-Rent-Roll.png",
+   "crop": [
+    0,
+    0.2268,
+    0.605,
+    0.4865
+   ],
+   "trim": true
+  },
+  {
+   "type": "shot",
+   "eyebrow": "PROPERTY P&L",
+   "title": "One column per property, on Schedule E lines.",
+   "sub": "Example 2026, all properties: $36,900 in, $23,331 of expenses, $13,569 profit before depreciation and $6,683 of cash flow.",
+   "shot": "05-4-Property-P-L.png",
+   "crop": [
+    0,
+    0.1633,
+    0.994,
+    0.4923
+   ],
+   "trim": true
+  },
+  {
+   "type": "shot",
+   "eyebrow": "MONTHLY",
+   "title": "Every month's cash flow, with a running total.",
+   "sub": "Example: June dips to -$3,128 when the property tax and insurance bills land, and the year still ends $6,683 ahead. Accent bars are months that lost cash.",
+   "shot": "06-5-Monthly.png",
+   "crop": [
+    0,
+    0.2248,
+    0.532,
+    0.4964
+   ],
+   "trim": true
+  },
+  {
+   "type": "shot",
+   "eyebrow": "SETUP",
+   "title": "Type your doors once.",
+   "sub": "Up to 10 properties and 10 doors. Every dropdown and every tab follows what you type here.",
+   "shot": "02-1-Setup.png",
+   "crop": [
+    0,
+    0.3185,
+    0.99,
+    0.5158
+   ],
+   "trim": true
+  },
+  {
+   "type": "shot",
+   "eyebrow": "CATEGORIES",
+   "title": "20 categories on the Schedule E line names.",
+   "sub": "Matched to IRS Schedule E (Form 1040) 2025 Part I, checked Oct 7, 2026. Principal, improvements and deposits stay out of profit.",
+   "shot": "07-6-Categories.png",
+   "crop": [
+    0,
+    0.1129,
+    0.99,
+    0.49
+   ],
+   "trim": true
+  },
+  {
+   "type": "list",
+   "eyebrow": "IS THIS FOR YOU?",
+   "title": "Made for small landlords.",
+   "columns": [
+    {
+     "head": "Made for",
+     "mark": "check",
+     "items": [
+      "Landlords with 1 to 10 doors",
+      "Long-term rentals: houses, duplexes, small buildings",
+      "Seeing late rent and cash flow without software",
+      "Handing clean totals to a tax preparer"
+     ]
+    },
+    {
+     "head": "Not for",
+     "mark": "x",
+     "items": [
+      "Property managers with dozens of units",
+      "Depreciation or filing your tax return",
+      "Collecting rent or tenant screening"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "HOW YOU GET IT",
+   "title": "Instant download. Opens in Excel or Google Sheets.",
+   "columns": [
+    {
+     "head": "What you get",
+     "mark": "check",
+     "items": [
+      "One workbook with a worked example",
+      "Start Here guide as a PDF, US Letter and A4",
+      "Made for Excel; checked in Google Sheets and LibreOffice",
+      "No macros, no add-ons, no sign-up"
+     ]
+    },
+    {
+     "head": "How to download",
+     "mark": "check",
+     "items": [
+      "Buy, then open Etsy in a web browser",
+      "Go to You, then Purchases, and download",
+      "The Etsy app can't download digital files",
+      "Message the shop on Etsy if anything won't open"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "inside",
+   "eyebrow": "ONE DOWNLOAD",
+   "title": "What's inside",
+   "tabs": [
+    {
+     "name": "3 Rent Roll",
+     "shot": "04-3-Rent-Roll.png",
+     "crop": [
+      0,
+      0,
+      0.605,
+      0.49
+     ]
+    },
+    {
+     "name": "4 Property P&L",
+     "shot": "05-4-Property-P-L.png",
+     "crop": [
+      0,
+      0,
+      0.994,
+      0.49
+     ]
+    },
+    {
+     "name": "5 Monthly",
+     "shot": "06-5-Monthly.png",
+     "crop": [
+      0,
+      0,
+      0.532,
+      0.5
+     ]
+    }
+   ],
+   "items": [
+    "Rent roll with Paid, Partial, Due and LATE",
+    "Lease heads-up 60 days ahead",
+    "P&L per property on Schedule E lines",
+    "Cash flow after principal and improvements",
+    "Deposits kept out of income",
+    "Start Here PDF in Letter and A4"
+   ]
+  }
+ ]
+}

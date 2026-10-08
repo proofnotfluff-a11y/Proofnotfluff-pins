@@ -1,22 +1,24 @@
 TERMS OF USE AND DISCLAIMER
-ProofNotFluff | Rental Property Spreadsheet for 1 to 10 Doors | Version 1, October 5, 2026
+ProofNotFluff | Rental Property Spreadsheet for 1 to 10 Doors | Version 2, October 7, 2026
 
 License. Your purchase gives you a personal license to use this product for yourself or one business you own. You may edit it and print it for that use. You may not resell, share, give away, upload or redistribute it, in original or edited form, or use it to make a competing product.
 
-Ownership. The design, text and formulas belong to ProofNotFluff. Buying the product doesn't transfer ownership. Copyright 2026 ProofNotFluff. All rights reserved.
+Ownership. The design, text and formulas belong to ProofNotFluff. Buying the product doesn't transfer ownership.
 
 Information only. This product shares general information and tools for planning. It is not legal, tax, accounting, financial, employment, medical or other professional advice, and it doesn't create a client relationship of any kind. Your situation may differ. For decisions that matter, check with a qualified professional and the official source.
 
-Accuracy. Rates, rules and figures were checked against the sources named in the product on the date above (IRS Schedule E (Form 1040) 2025, the Instructions for Schedule E, and IRS Publication 527). Laws, prices and platform rules change, and state and local rules vary. You're responsible for confirming anything you rely on.
+Tax categories. The category names follow the Part I expense lines on the IRS 2025 Schedule E (Form 1040), and the deposit rules follow IRS Publication 527 (2025), as of October 7, 2026 (irs.gov/pub/irs-pdf/f1040se.pdf, irs.gov/instructions/i1040se and irs.gov/publications/p527). State and local rules can add to or change them. It is not tax, legal or HR advice. Before you file, pay or decide, confirm with the agency or a licensed CPA, enrolled agent or employment attorney.
 
-Estimates. Calculations depend on the numbers you enter and simplify real-world conditions. They are estimates, not promises of any result, income, savings, approval or outcome. Calculations are estimates for planning and depend on your inputs. They aren't accounting, tax or financial advice. Check fees, rates and interest against your own statements and the provider's current terms.
+Accuracy. Rates, rules and figures were checked against the sources named in the product on the date above, including the Schedule E line names, the repairs and improvements rule in the Schedule E instructions and the security deposit rules in Publication 527. Laws, forms and platform rules change, and state and local rules vary. You're responsible for confirming anything you rely on.
 
-No warranty. The product is provided "as is", without warranties of any kind, to the extent the law allows. No guarantee of results.
+Estimates. Totals depend on the numbers you enter and simplify real-world conditions. They are estimates, not promises of any result, income, savings, approval or outcome.
+
+No warranty. The product is provided "as is", without warranties of any kind, to the extent the law allows.
 
 Limit of liability. To the extent the law allows, ProofNotFluff is not liable for any loss or damage from using or relying on this product, and its total liability for any claim is limited to the price you paid for it. Nothing here limits rights you have under consumer protection laws that can't be waived.
 
-Trademarks. Microsoft Excel, Google Sheets and Etsy are trademarks of their owners. ProofNotFluff isn't affiliated with, sponsored or endorsed by them.
+Trademarks. Etsy, Microsoft Excel, Google Sheets, Google Drive, Apple Numbers and LibreOffice are trademarks of their owners. ProofNotFluff isn't affiliated with, sponsored or endorsed by them.
 
 AI assistance. This product was made with AI assistance and reviewed and tested by the shop owner.
 
-Help. This is a digital download; no physical item ships. If a file won't open or something looks wrong, send a message through Etsy and it will be fixed.
+Help. If a file won't open or something looks wrong, send a message through Etsy and it will be fixed. This is a digital download; no physical item ships.

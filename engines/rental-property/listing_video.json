@@ -1,0 +1,15 @@
+{
+ "xlsx": "Rental-Property-Spreadsheet-1-to-10-Doors.xlsx",
+ "sheet": "3 Rent Roll",
+ "crop": [0, 0.003, 0.605, 0.47],
+ "dpi": 220,
+ "eyebrow": "RENTAL PROPERTY SPREADSHEET",
+ "states": [
+  {"caption": "Example October: {C7} still owed, {I7} doors LATE.", "hold": 3.2},
+  {"set": {"'2 Log'!C105": 46300, "'2 Log'!D105": "Maple Duplex", "'2 Log'!E105": "MAPLE-B", "'2 Log'!F105": "Rent", "'2 Log'!G105": 500},
+   "caption": "Log MAPLE-B's last $500: {C7} still owed.", "hold": 3.6},
+  {"set": {"'2 Log'!C105": 46300, "'2 Log'!D105": "Maple Duplex", "'2 Log'!E105": "MAPLE-B", "'2 Log'!F105": "Rent", "'2 Log'!G105": 500,
+           "'2 Log'!C106": 46301, "'2 Log'!D106": "Oak Street House", "'2 Log'!E106": "OAK", "'2 Log'!F106": "Rent", "'2 Log'!G106": 1650},
+   "caption": "Then OAK pays $1,650: {C7} owed, {I7} LATE.", "hold": 3.6}
+ ]
+}

@@ -185,7 +185,9 @@ class Flow:
         self.L, self.R, self.top, self.bottom = page_margins(page_no)
         self.W = self.R - self.L
         self.y = self.top
-        self.floor = self.bottom
+        # content stops 8 pt above the bottom margin so bottom-anchored boxes
+        # clear the footer rule by the same air as the page top
+        self.floor = self.bottom + 8
 
     # geometry helpers
     def need(self, h, what=""):
@@ -338,12 +340,19 @@ class Flow:
             xs.append(xs[-1] + self.W * w / total)
         c = self.c
         top = self.y
-        # header
+        # header; every label must fit its column (shrinks to 5.2 pt, then fails)
         c.setFillGray(0.9)
         c.rect(self.L, top - head_h, self.W, head_h, stroke=0, fill=1)
         for i, hdr in enumerate(headers):
             if hdr:
-                draw_label(c, hdr, xs[i] + 4, top - head_h + 4.6, size=6.1, gray=0.2)
+                colw = xs[i + 1] - xs[i] - 8
+                size = 6.1
+                while label_width(hdr, size=size) > colw and size > 5.2:
+                    size -= 0.1
+                if label_width(hdr, size=size) > colw:
+                    raise Overflow(f"page {self.page_no}: header '{hdr}' is "
+                                   f"{label_width(hdr, size=size):.0f}pt in a {colw:.0f}pt column")
+                draw_label(c, hdr, xs[i] + 4, top - head_h + 4.6, size=size, gray=0.2)
         # rows
         c.setStrokeGray(0.7)
         c.setLineWidth(0.45)
@@ -581,13 +590,13 @@ def build_cover(path, pages, title_lines, subtitle, kicker, back_hook,
     back_x0 = bleed
     spine_x0 = bleed + 8.5 * PT
     front_x0 = spine_x0 + spine_pt
-    c.setFillColorRGB(*ink)
-    c.rect(spine_x0, 0, spine_pt, H, stroke=0, fill=1)
+    # The spine stays the same paper color as both covers: no hard edge for a
+    # thin spine to drift across (KDP spine shift tolerance).
     if spine_text and spine_pt >= 0.25 * PT:
         c.saveState()
         c.translate(spine_x0 + spine_pt / 2 + 3, H / 2)
         c.rotate(-90)
-        c.setFillColorRGB(1, 1, 1)
+        c.setFillColorRGB(*ink)
         c.setFont("Head", 11)
         c.drawCentredString(0, 0, spine_text)
         c.restoreState()

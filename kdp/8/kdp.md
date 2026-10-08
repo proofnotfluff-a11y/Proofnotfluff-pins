@@ -56,7 +56,7 @@ This summarizes federal rules as of October 6, 2026 from IRS, SSA, USCIS and HHS
 $12.99 on Amazon.com (matching prices elsewhere, no expanded distribution)
 
 ## KDP questions
-- AI-generated content: Yes. Text and images were AI-generated and reviewed by the publisher.
+- AI-generated content: Yes. Text: AI-generated, entire work, edited by the publisher. Images: none (the cover is vector type and shapes). Translations: none.
 - Low-content book: No.
 - Adult content: No.
 - ISBN: free KDP ISBN.

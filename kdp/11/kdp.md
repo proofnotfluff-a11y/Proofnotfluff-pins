@@ -6,13 +6,13 @@ Built from the legally cleared v1.1 digital binder (legal/reviews/11-2026-10-06.
 Everything They'll Need
 
 ## Subtitle
-End of Life Planner and Emergency Binder: What My Family Would Need to Know, All in One Place
+End of Life Planner and Emergency Binder
 
 ## Author (pen name)
 ProofNotFluff
 
 ## Description (paste as plain paragraphs; no links)
-If something happened to you tomorrow, could your family find the will, the passwords, the insurance policies and the person to call first? Most families can't. This binder fixes that in a few evenings, by hand, one page at a time.
+If something happened to you tomorrow, could your family find the will, the passwords, the insurance policies and the person to call first? Most people haven't written it down. This binder fixes that in a few evenings, by hand, one page at a time.
 
 Everything They'll Need is a 42-page organizer you write in. It is not a will and not a legal document. It is the map your family would need on the hardest week of their lives: who to call, where things are, what you want, and what to do next.
 
@@ -59,8 +59,8 @@ This is an organizer, not a legal document. It is not a will, trust, power of at
 $14.99 on Amazon.com (matching prices elsewhere, no expanded distribution)
 
 ## KDP questions
-- AI-generated content: Yes. Text and images were AI-generated and reviewed by the publisher.
-- Low-content book: Yes (planner and journal style book: most pages are forms, lines and checkboxes for the reader to fill in).
+- AI-generated content: Yes. Text: AI-generated, entire work, edited by the publisher. Images: none (the cover is vector type and shapes). Translations: none.
+- Low-content book: No (the book carries instructional text on 30+ pages, and a free KDP ISBN is not available to low-content books).
 - Adult content: No.
 - ISBN: free KDP ISBN.
 - Interior: black and white, white paper, 8.5 x 11 in, no bleed. Cover finish: matte.

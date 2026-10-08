@@ -542,7 +542,7 @@ def p16_insurance(c, n):
              "Homeowners or renters", "Auto", "Umbrella", "Pet", "Other"]
     avail = f.y - f.floor - 15
     row_h = min(34, avail / len(types))
-    f.table(["Type", "Company", "Policy # (last 4) and where", "Agent or phone", "Beneficiary or notes"],
+    f.table(["Type", "Company", "Policy # (last 4), where", "Agent or phone", "Beneficiary or notes"],
             [2.0, 1.8, 2.0, 1.6, 2.0], labels=types, row_h=row_h)
 
 
@@ -574,9 +574,9 @@ def p18_bills(c, n):
     f.note("Ideas: phone, streaming, software, gym, memberships, newspapers, meal kits, cloud "
            "storage, donations, charities, app subscriptions billed through Apple or Google.",
            title="IDEAS", at_bottom=True)
-    f.table(["Bill or subscription", "Paid from (card or bank, last 4)", "About how much",
+    f.table(["Bill or subscription", "Paid from (last 4)", "How much",
              "Autopay", "Keep", "Cancel", "Notes"],
-            [2.4, 2.0, 1.2, 0.7, 0.6, 0.7, 1.6], fill=True, row_h=23, checks=(3, 4, 5))
+            [2.4, 1.7, 1.1, 0.8, 0.65, 0.8, 1.75], fill=True, row_h=23, checks=(3, 4, 5))
 
 
 def p19_taxes(c, n):
@@ -743,7 +743,7 @@ def p25_email(c, n):
     f.subhead("Email accounts", size=11.5)
     f.table(["Email address", "Used for", "Recovery phone or email"], [2.6, 2.2, 2.4], nrows=3, row_h=23)
     f.subhead("Online accounts", size=11.5)
-    f.table(["Service", "Username or email", "Keep", "Close", "Memorialize", "Notes (download photos first, etc.)"],
+    f.table(["Service", "Username or email", "Keep", "Close", "Memorialize", "Notes (e.g. download photos first)"],
             [1.8, 2.2, 0.6, 0.6, 0.9, 2.4], fill=True, row_h=23, checks=(2, 3, 4), reserve=72)
     f.fields([
         [("Where my photos and videos are stored", 1), ("Who should get copies", 1)],

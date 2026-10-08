@@ -350,7 +350,7 @@ def title_page(c, doc):
     # legal block at the bottom
     f = P.Flow(c, 1)
     f.L, f.R, f.W = L, R, W
-    f.floor = BOTTOM
+    f.floor = BOTTOM + 8
     f.y = y
     f.note(SHORT_NOTICE + "\n" + TIER_CLAUSE, title="BEFORE YOU RELY ON THIS BOOK", size=8.0,
            at_bottom=True)
@@ -540,6 +540,7 @@ def story():
                "Voluntary Classification Settlement Program (Form 8952) lets you reclassify with reduced back "
                "taxes. Both are worth a conversation with a CPA first.",
                title="What happens if you get it wrong"),
+          PB(),
           h2("Worksheet 2: the W-2 vs 1099 decision checklist"),
           para("Ten yes/no questions about the working relationship. Count the yes answers. \"Yes\" points to "
                "employee every time, on purpose: the test is built to be hard to talk yourself out of.")]

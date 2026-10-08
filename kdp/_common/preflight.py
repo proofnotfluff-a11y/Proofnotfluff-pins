@@ -72,6 +72,28 @@ def check_vectors(interior):
     return viol
 
 
+def check_overlaps(interior, tol=0.8):
+    """Chars on the same baseline must not overprint: a glyph whose x0 sits
+    more than tol pt left of the previous glyph's x1 is flagged (catches
+    table headers that run into the next column)."""
+    hits = []
+    with pdfplumber.open(interior) as pdf:
+        for i, page in enumerate(pdf.pages):
+            lines = {}
+            for ch in page.chars:
+                if not ch.get("text", "").strip():
+                    continue
+                lines.setdefault(round(ch["bottom"], 1), []).append(ch)
+            for base, chars in lines.items():
+                chars.sort(key=lambda c: c["x0"])
+                for a, b in zip(chars, chars[1:]):
+                    if b["x0"] < a["x1"] - tol:
+                        hits.append({"page": i + 1, "baseline": base,
+                                     "chars": a["text"] + "|" + b["text"],
+                                     "overlap_pt": round(a["x1"] - b["x0"], 2)})
+    return hits
+
+
 def check_pixels(interior, outdir):
     """Render at 150 dpi and confirm the margin strips are pure white and the
     page is grayscale."""
@@ -221,6 +243,12 @@ def main():
         "rule": "gutter 0.375 in (left on odd pages, right on even), 0.25 in elsewhere",
         "violations": viol[:40], "count": len(viol), "ok": not viol}
     ok_all &= not viol
+
+    overlaps = check_overlaps(interior)
+    report["checks"]["glyph_overlaps"] = {"rule": "same baseline, x0 < previous x1 - 0.8 pt",
+                                          "hits": overlaps[:40], "count": len(overlaps),
+                                          "ok": not overlaps}
+    ok_all &= not overlaps
 
     pviol, not_gray = check_pixels(interior, os.path.join(pack, "render"))
     report["checks"]["margins_pixels_150dpi"] = {"violations": pviol[:40], "count": len(pviol),

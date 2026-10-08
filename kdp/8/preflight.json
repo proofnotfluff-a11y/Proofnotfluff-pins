@@ -20,6 +20,12 @@
       "count": 0,
       "ok": true
     },
+    "glyph_overlaps": {
+      "rule": "same baseline, x0 < previous x1 - 0.8 pt",
+      "hits": [],
+      "count": 0,
+      "ok": true
+    },
     "margins_pixels_150dpi": {
       "violations": [],
       "count": 0,
@@ -127,12 +133,8 @@
     "cover-1.png",
     "page-01.png",
     "page-02.png",
-    "page-05.png",
+    "page-06.png",
     "page-07.png",
-    "page-13.png",
-    "page-17.png",
-    "page-18.png",
-    "page-19.png",
     "page-24.png"
   ],
   "fonts_note": "Poppins and Carlito embedded",

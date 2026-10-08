@@ -1,4 +1,4 @@
-# Cleaning Business Starter Kit (#14), v3 redesign, Oct 7, 2026
+# Cleaning Business Starter Kit (#14), v3 redesign, Oct 8, 2026
 
 Live listing: https://www.etsy.com/listing/4588330888 (title, tags, price and category unchanged by the redesign).
 
@@ -21,15 +21,15 @@ Example (from the file): a $48,000 take-home goal needs about $47 per cleaning h
 
 How you get it: Instant download. Download from a web browser on your computer or phone (Etsy, You, Purchases); the Etsy app can't download digital files.
 
-## Closing block (unchanged from legal/14, dates now Oct 7)
+## Closing block (unchanged from legal/14, dates now Oct 8)
 Made with AI assistance and reviewed and tested by the shop owner.
 Information and planning tool only, not legal, tax, financial or other professional advice. Results are estimates based on your inputs.
 Digital download. No physical item ships.
 File problems fixed on request through Etsy messages.
-This summarizes federal rules as of October 7, 2026 from IRS Tax Topics 554 and 751, the IRS Standard Mileage Rates page and the SSA wage base page. State and local rules can add to or change them. These are sample forms to adapt, not legal documents written for your state or business. Have a local attorney review any agreement before you use it with clients.
+This summarizes federal rules as of October 8, 2026 from IRS Tax Topics 554 and 751, the IRS Standard Mileage Rates page and the SSA wage base page. State and local rules can add to or change them. These are sample forms to adapt, not legal documents written for your state or business. Have a local attorney review any agreement before you use it with clients.
 Not affiliated with or endorsed by Microsoft or Google.
 
-## Sources (checked Oct 7, 2026)
+## Sources (checked Oct 8, 2026)
 - Self-employment tax 15.3% on 92.35% of net earnings: IRS Tax Topic 554, irs.gov/taxtopics/tc554
 - Employer Social Security 6.2% and Medicare 1.45%: IRS Tax Topic 751, irs.gov/taxtopics/tc751
 - Business standard mileage rate 76 cents a mile for Jul 1 to Dec 31, 2026 (72.5 cents Jan 1 to Jun 30): IRS Standard Mileage Rates page, Internal Revenue Bulletin 2026-29 (July 13, 2026)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""#14 Cleaning Business Starter Kit, workbook version 3 (dashboard design, Oct 7, 2026).
+"""#14 Cleaning Business Starter Kit, workbook version 3 (dashboard design, Oct 7 to 8, 2026).
 
 Same inputs, example and formulas as v2 (Oct 6, 2026, the Legal desk build), rebuilt to
 design/WORKBOOK_STANDARD.md section 0 with tools/pnf_dash.py. tools/compare_xlsx.py with
@@ -34,8 +34,8 @@ from openpyxl.worksheet.datavalidation import DataValidation  # noqa: E402
 
 PRODUCT = "Cleaning Business Starter Kit"
 VERSION = "3"
-CHECKED = "Oct 7, 2026"
-CHECKED_LONG = "October 7, 2026"
+CHECKED = "Oct 8, 2026"
+CHECKED_LONG = "October 8, 2026"
 TAX_SOURCES = ("IRS Tax Topic 554 (Self-employment tax), IRS Tax Topic 751 (Social Security and Medicare withholding rates), "
                "the IRS Standard Mileage Rates page (Internal Revenue Bulletin 2026-29) and the SSA Contribution and Benefit Base page")
 FORMS_CLAUSE = ("These are sample forms to adapt, not legal documents written for your state or business. Have a local attorney "
@@ -206,7 +206,7 @@ WK = A.input("Weeks you work per year", EX["weeks"], INT, name="WeeksPerYear", v
 HW = A.input("Hours you work per week, all of it", EX["hours"], INT, name="HoursPerWeek", validation=("decimal", 1, 100),
              prompt="Include driving, walkthroughs, texts, invoicing, laundry and supply runs. From 1 to 100. Example: 45.",
              prompt_title="Hours per week, all of it")
-SH = A.input("Share cleaning or driving to jobs", EX["share"], PCT, name="BillableShare", validation=("decimal", 0.05, 1),
+SH = A.input("Share cleaning or driving to jobs", EX["share"], PCT1, name="BillableShare", validation=("decimal", 0.05, 1),
              prompt="Share of those hours spent cleaning or driving to jobs (every quote charges for the drive). Not sure? Try 65% to 75%.",
              prompt_title="Billable share of hours")
 BH = A.calc("Billable hours per year", f"=D{WK}*D{HW}*D{SH}", INT, bold=True)
@@ -245,7 +245,7 @@ SB = T2.input("SE tax applies to", EX["se_base"], PCT2, name="SETaxBase", valida
               prompt="IRS Topic 554: self-employment tax generally applies to 92.35% of net earnings. From 0% to 100%.")
 IT = T2.input("Income tax rate, estimate", EX["income"], PCT1, name="IncomeTaxRate", validation=("decimal", 0, 0.5),
               prompt="Federal plus state, as an effective rate. An estimate: ask your tax preparer for yours. From 0% to 50%.")
-MG = T2.input("Profit margin in quotes", EX["margin"], PCT, name="ProfitMargin", validation=("decimal", 0, 0.9),
+MG = T2.input("Profit margin in quotes", EX["margin"], PCT1, name="ProfitMargin", validation=("decimal", 0, 0.9),
               prompt="Built into every quote for slow months, new equipment and growth. From 0% to 90%. Example: 15%.")
 CPM = T2.input("Vehicle cost per mile", EX["per_mile"], USD2, name="CostPerMile", validation=("decimal", 0, 5),
                prompt=f"IRS business rate 76 cents a mile for Jul 1 to Dec 31, 2026 (IRS Bulletin 2026-29), checked {CHECKED}. Or your own cost.")
@@ -253,7 +253,7 @@ SPD = T2.input("Speed between jobs, mph", EX["mph"], INT, name="DriveSpeed", val
                prompt="Average driving speed between jobs. Turns miles into drive time. From 1 to 90. Example: 25.")
 HP = T2.input("Helper pay per hour", EX["helper_pay"], USD2, name="HelperPay", validation=("decimal", 0, 200),
               prompt="What you pay a helper per hour. Leave as is if you clean alone. From $0 to $200.")
-PR = T2.input("Payroll cost on helper pay", EX["payroll"], PCT, name="PayrollCost", validation=("decimal", 0, 1),
+PR = T2.input("Payroll cost on helper pay", EX["payroll"], PCT1, name="PayrollCost", validation=("decimal", 0, 1),
               prompt="At least 7.65% employer Social Security and Medicare (IRS Topic 751), plus unemployment tax and workers' comp. Ask your payroll provider.",
               prompt_title="Payroll cost on top of pay")
 HC = T2.calc("Helper cost per hour", f"=D{HP}*(1+D{PR})", USD2, bold=True)
@@ -383,7 +383,7 @@ cd_first, cd_last, cd_end = D.table_card(cr, sv_end + 2, "B", "G", cond_cols, 4,
                                          sub="How the home looks at the walkthrough.")
 freq_cols = [
     dict(col="C", head="How often", kind="text", values=[f[0] for f in FREQS]),
-    dict(col="D", head="Discount", kind="input", fmt=PCT, align="right", values=[f[1] for f in FREQS],
+    dict(col="D", head="Discount", kind="input", fmt=PCT1, align="right", values=[f[1] for f in FREQS],
          validation=("decimal", 0, 0.9), prompt="Comes off the one-time price. Type a percent, for example 10%. From 0% to 90%.",
          error="Enter a percent from 0% to 90%."),
     dict(col="E", head="Visits per month", kind="calc", fmt=NUM2, align="right", formula=lambda rr: FREQS[rr - fr_first_holder[0]][2]),
@@ -898,6 +898,7 @@ jl_cols = [
 g1, g2, jl_end = D.table_card(jl, JL_TOP, "B", "Q", jl_cols, N_JOBS, title="Finished visits",
                               sub="Yellow columns are yours. Cost uses your break-even rate for your hours and the helper cost for helper hours.")
 assert (g1, g2) == (jl_first, jl_last), (g1, g2, jl_first, jl_last)
+jl[f"O{jl_first - 1}"].alignment = Alignment(horizontal="left", vertical="bottom", wrap_text=True, indent=1)
 for rr in range(jl_first, jl_last + 1):
     jl[f"O{rr}"].alignment = Alignment(horizontal="left", vertical="center", indent=1)
     jl[f"P{rr}"].font = D.f(10, False, "muted")
@@ -995,7 +996,7 @@ r = sh_card(sh, r, "Good to know", [
     (None, "Two time estimates. The Quote Builder times each home by square feet and by room count and uses the larger, so a small "
            "home with many bathrooms or a large open home with few rooms is not underquoted.", "para"),
     (None, "Google Sheets. Upload the .xlsx to Google Drive, open it, then File, Save as Google Sheets. Every formula is a plain "
-           "formula that works in Excel and Google Sheets. No macros, no add-ons, no sign-up and no outside links.", "para"),
+           "formula that works in Excel and Google Sheets. No macros, no add-ons and no sign-up.", "para"),
     (None, "Example numbers. Minutes, multipliers, discounts and add-on times are examples, not market prices. Time a few of your "
            "own cleans and replace them.", "para"),
 ])

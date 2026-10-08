@@ -177,11 +177,23 @@ check("#6 SKU-011 on order keeps it OK, days until reorder (W)", R11.status === 
 check("#6 SKU-011 next order cost within 30 days (X)", R11.orderCost, 330.4);
 const R0 = P.reorderPoint({ daily: 0, lead: 21, safety: 20, cycle: 14, onHand: 6, onOrder: 0, unitCost: 17 });
 check("#6 SKU-005 no sales: reorder point 0 (Q)", R0.status === "NO SALES" ? R0.rop : -1, 0);
+// STR break-even nights (lite page; expected values worked by hand in Python, Oct 8, 2026)
+const B1 = P.strBreakEven({ fixed: 2400, rate: 185, cleanKept: 20, stay: 3, fee: 15.5 });
+check("STR break-even: payout per booked night", B1.perNight, 162.99167);
+check("STR break-even: exact nights", B1.exact, 14.72468);
+check("STR break-even: nights a month", B1.nights, 15);
+check("STR break-even: occupancy", B1.occupancy, 0.49315);
+check("STR break-even: rate to break even at half the month", B1.rateAtHalf, 178.86574);
+const B2 = P.strBreakEven({ fixed: 3800, rate: 140, cleanKept: 0, stay: 2, fee: 15.5 });
+check("STR break-even: no cleaning kept, nights", B2.nights, 33);
+check("STR break-even: more nights than a month flagged", B2.over, 1);
+const B3 = P.strBreakEven({ fixed: 1500, rate: 0, cleanKept: 0, stay: 3, fee: 15.5 });
+check("STR break-even: zero payout can never break even", B3.never, 1);
 // blank inputs never produce NaN or Infinity
 const b = P.service({});
 const bh = P.hourly({});
 const bc = P.cashflow({});
-const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({})]
+const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({})]
   .flatMap(o => Object.values(o)).filter(v => typeof v === "number");
 const bad = [...Object.values(b), ...Object.values(bh), ...Object.values(bc), ...more].filter(v => !isFinite(v));
 if (bad.length) { fails++; console.log("FAIL blank inputs give non-finite values"); } else console.log("ok   blank inputs stay finite");

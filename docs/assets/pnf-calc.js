@@ -3,7 +3,8 @@
    cashflow: the premium 13-Week E-commerce Cash Flow workbook's ending-cash row;
    etsyFees: engines/etsy-true-profit (#5); craftFair: engines/craft-fair-profit (#12);
    strNightly: engines/str-nightly-pricing (#9); debtPayoff: engines/debt-payoff-tracker (#16);
-   shippingCost: engines/shipping-true-cost (#7); reorderPoint: engines/cash-aware-reorder-planner (#6).
+   shippingCost: engines/shipping-true-cost (#7); reorderPoint: engines/cash-aware-reorder-planner (#6);
+   strBreakEven: the #9 fee stack (engines/str-nightly-pricing), break-even nights for the STR lite page.
    Tested against the workbooks' own example outputs in docs/assets/pnf-calc.test.js. */
 (function (root) {
   "use strict";
@@ -247,6 +248,23 @@
       shortDays: sales && days < lead ? lead - days : 0, risk: status === "STOCKOUT RISK" ? 1 : 0, atRop: status === "REORDER" ? 1 : 0 };
   }
 
+  // STR break-even nights (free lite page; fee stack from engines/str-nightly-pricing #9: the platform fee comes off the nightly rate)
+  function strBreakEven(i) {
+    var fixed = num(i.fixed), rate = num(i.rate), kept = num(i.cleanKept), stay = num(i.stay), fee = num(i.fee) / 100;
+    var month = 365 / 12;
+    var perStayClean = stay > 0 ? kept / stay : 0;
+    var perNight = rate * (1 - fee) + perStayClean;
+    var exact = perNight > 0 ? fixed / perNight : 0;
+    var nights = perNight > 0 ? Math.ceil(exact - 1e-9) : 0;
+    var half = month / 2;
+    var rateAtHalf = (1 - fee) > 0 ? Math.max(0, (fixed / half - perStayClean) / (1 - fee)) : 0;
+    var never = perNight <= 0 && fixed > 0 ? 1 : 0;
+    var over = !never && nights > month ? 1 : 0;
+    return { perNight: perNight, exact: exact, nights: nights, occupancy: month > 0 ? nights / month : 0,
+      stays: stay > 0 ? nights / stay : 0, perStay: perNight * stay, feePerNight: rate * fee, cleanPerNight: perStayClean,
+      rateAtHalf: rateAtHalf, never: never, over: over, ok: (!never && !over && fixed > 0) ? 1 : 0, noCosts: fixed > 0 ? 0 : 1 };
+  }
+
   function money(x, cents) {
     var neg = x < 0; x = Math.abs(x);
     var s = cents === false ? Math.round(x).toLocaleString("en-US")
@@ -305,7 +323,7 @@
   }
 
   var api = { hourly: hourly, service: service, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
-    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, num: num, money: money, ceilTo: ceilTo,
+    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;
 })(this);

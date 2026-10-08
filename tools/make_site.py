@@ -492,10 +492,48 @@ PNF.wire(f,M);window.PNF_MODEL=M;})();</script>"""
     return form, results, script
 
 
+def str_breakeven_page(p):
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>What the place costs</legend>
+{field("fixed", "Fixed costs per month", d["fixed"], "Mortgage or rent, utilities, internet, insurance, software: what you pay booked or not", pre="$")}
+</fieldset>
+<fieldset><legend>What a booking pays</legend>
+{field("rate", "Nightly rate", d["rate"], "What the guest is charged per night before fees", pre="$")}
+{field("fee", "Platform fee you pay", d["fee"], "Airbnb's single host fee: 15.5% for most hosts", suf="%")}
+{field("stay", "Average stay", d["stay"], "Nights per booking")}
+{field("cleanKept", "Cleaning fee you keep", d["cleanKept"], "Per stay, after your cleaner and any platform cut. 0 if it all goes to cleaning", pre="$")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Break-even nights</div><div class="val"><span data-out="nights" data-fmt="int">0</span> nights</div><div class="sub">a month, <span data-pct="occupancy">0%</span> of an average month</div></div>
+<div class="tile"><div class="lab">Each booked night pays</div><div class="val" data-out="perNight">$0</div><div class="sub">after the platform fee</div></div>
+</div>
+<ul class="lines">
+<li><span>Nightly rate after the platform fee</span><span data-out="rateNet">$0</span></li>
+<li><span>Cleaning fee kept, per night</span><span data-out="cleanPerNight">$0</span></li>
+<li><span>Each booked night pays</span><span data-out="perNight">$0</span></li>
+<li><span>Exact nights to cover fixed costs</span><span data-out="exact" data-fmt="dec1">0.0</span></li>
+<li class="total"><span>Rate to break even at half the month booked</span><span data-out="rateAtHalf">$0</span></li>
+</ul>
+<div class="callout" data-show-if="ok > 0">Book <b data-out="nights" data-fmt="int">0</b> nights a month, about <b data-out="stays" data-fmt="dec1">0.0</b> stays, and the place pays for itself. Every night after that is profit before taxes.</div>
+<div class="callout warn" data-show-if="over > 0">That is more nights than a month has. At this rate the place can't cover its fixed costs; the rate for half the month booked is shown above.</div>
+<div class="callout warn" data-show-if="never > 0">Each booked night pays nothing after fees, so no number of nights covers the costs. Check the nightly rate and fee.</div>
+<div class="callout warn" data-show-if="noCosts > 0">Type your fixed costs per month to see the break-even nights.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Break even <b data-out="nights" data-fmt="int">0</b> nights</span><span>Per night <b data-out="perNight">$0</b></span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.strBreakEven in assets/pnf-calc.js; the platform fee comes off the nightly rate as in engines/str-nightly-pricing (#9). */
+function M(i){var r=PNF.strBreakEven(i);r.rateNet=PNF.num(i.rate)-r.feePerNight;return r;}
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
 PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashflow_page,
               "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
               "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
-              "reorder_point": reorder_point_page}
+              "reorder_point": reorder_point_page, "str_breakeven": str_breakeven_page}
 
 
 def page_html(p):

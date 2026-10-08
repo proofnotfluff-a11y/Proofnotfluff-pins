@@ -1,1278 +1,1340 @@
 {
-  "updated": "2026-10-08",
-  "pages": [
-    {
-      "slug": "house-cleaning-price-calculator",
-      "kind": "service",
-      "title": "House Cleaning Price Calculator: Price Every Clean So It Pays You | ProofNotFluff",
-      "desc": "Free house cleaning price calculator. Enter your pay goal, hours and costs to get your break-even rate, your target rate and a quote for any clean, drive time included.",
-      "eyebrow": "Free calculator",
-      "h1": "House Cleaning Price Calculator",
-      "lede": "Find what a clean has to cost so it pays you: your break-even rate, your target rate and a quote for the job, with drive time and self-employment tax counted. Free, no sign-up.",
-      "card": "Break-even rate, target rate and a quote for any clean, drive time included.",
-      "defaults": {
-        "takeHome": "52,000",
-        "weeks": "48",
-        "hours": "45",
-        "paidShare": "65",
-        "monthlyCosts": "545",
-        "incomeTax": "12",
-        "margin": "15",
-        "perMile": "0.76",
-        "mph": "30"
-      },
-      "costs_hint": "Insurance, phone, apps, marketing, equipment, fees",
-      "presets": [
-        [
-          "Standard clean, 2 bed",
-          2.5,
-          1,
-          8,
-          15
-        ],
-        [
-          "Deep clean, 2 bed",
-          5,
-          1,
-          15,
-          15
-        ],
-        [
-          "Move-out clean, 3 bed",
-          7,
-          1,
-          20,
-          15
-        ]
-      ],
-      "method": [
-        "Most cleaners divide the pay they want by the hours they work. That leaves out three things: the hours nobody pays for (driving, quoting, invoicing), the business costs that run every month, and self-employment tax.",
-        "This calculator grosses your take-home up for self-employment tax (15.3% on 92.35% of profit) and your income tax estimate, adds a year of business costs, and spreads the total over the hours customers actually pay for. That is your break-even rate. Your margin on top gives the target rate.",
-        "A job's price floor is your time on site and your drive time at the break-even rate, plus vehicle cost per mile and supplies. The quote adds your margin and rounds up to the next $5."
-      ],
-      "example": "A $52,000 take-home goal with a 12% income tax estimate needs $70,394 of profit before tax. Add $6,540 a year of business costs and you need $76,934 of revenue. At 48 weeks of 45 hours with 65% paid, that is 1,404 paid hours: a break-even rate of $54.80 and a target of $64.47 with a 15% margin. Pay divided by all hours would say $24.07. A standard 2-bed clean (2.5 hours on site, a 15-mile round trip, $8 of supplies) has a $183.79 price floor and quotes at $220, with $36.21 of profit inside it.",
-      "cta": {
-        "title": "Price every job at once",
-        "bullets": [
-          "The full Service Pricing Calculator workbook uses this same maths for Excel and Google Sheets:",
-          "a quote builder, a printable price sheet for every job type, a job tracker that flags jobs below your floor, and 20 example jobs across 7 trades. $2.99, instant download."
-        ],
-        "button": "Get the workbook on Etsy",
-        "url": "https://www.etsy.com/listing/4587962930"
-      },
-      "faq": [
-        [
-          "How much should I charge to clean a house?",
-          "There is no single right price, because it depends on your pay goal, your costs and how many of your hours customers pay for. Enter yours above and the calculator shows the lowest price that covers them and a quote with your margin."
-        ],
-        [
-          "Why is my break-even rate so much higher than my pay divided by my hours?",
-          "Because part of every week is unpaid (driving, quoting, admin), your business costs keep running, and as a self-employed cleaner you pay both halves of Social Security and Medicare. Each of those raises the rate every paid hour has to carry."
-        ],
-        [
-          "Does it work for deep cleans and move-outs?",
-          "Yes. Pick an example job or type your own hours, crew size, supplies and miles. The example jobs are starting points, not market prices."
-        ],
-        [
-          "Is this tax advice?",
-          "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
-        ]
-      ],
-      "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29). Checked Oct 6, 2026."
-    },
-    {
-      "slug": "pressure-washing-price-calculator",
-      "kind": "service",
-      "cta_pending_listing": true,
-      "title": "Pressure Washing Price Calculator: Quote Driveways, House Washes and More | ProofNotFluff",
-      "desc": "Free pressure washing price calculator. Get your break-even rate, target rate and a quote for driveways, soft washes, roofs, decks and storefronts, drive time included.",
-      "eyebrow": "Free calculator",
-      "h1": "Pressure Washing Price Calculator",
-      "lede": "Quote driveways, house washes, roofs, decks and storefronts from your own numbers: break-even rate, target rate and a job quote with drive time and self-employment tax counted. Free, no sign-up.",
-      "card": "Quote driveways, soft washes, roofs and decks from your own numbers.",
-      "defaults": {
-        "takeHome": "55,000",
-        "weeks": "44",
-        "hours": "45",
-        "paidShare": "65",
-        "monthlyCosts": "755",
-        "incomeTax": "12",
-        "margin": "15",
-        "perMile": "0.76",
-        "mph": "30"
-      },
-      "costs_hint": "Insurance, equipment and rig, hoses and tips, marketing, apps, fees",
-      "presets": [
-        [
-          "Driveway: 2-car concrete driveway",
-          1.5,
-          1,
-          12,
-          20
-        ],
-        [
-          "Driveway: 3-car driveway with walkway",
-          2.5,
-          1,
-          18,
-          20
-        ],
-        [
-          "Patio and pavers: Paver patio, clean only",
-          3,
-          1,
-          20,
-          20
-        ],
-        [
-          "Patio and pavers: Paver clean, re-sand and seal",
-          6,
-          2,
-          180,
-          40
-        ],
-        [
-          "House wash: 1-story house, soft wash",
-          2.5,
-          1,
-          30,
-          20
-        ],
-        [
-          "House wash: 2-story house, soft wash",
-          3,
-          1,
-          45,
-          20
-        ],
-        [
-          "Roof: Roof soft wash, 1-story",
-          2,
-          2,
-          70,
-          20
-        ],
-        [
-          "Gutters: Gutter face brightening",
-          1.5,
-          1,
-          15,
-          20
-        ],
-        [
-          "Deck: Deck clean, brighten, 300 sq ft",
-          3,
-          1,
-          30,
-          20
-        ],
-        [
-          "Deck: Deck clean and stain, 300 sq ft",
-          7,
-          1,
-          150,
-          40
-        ],
-        [
-          "Fence: Wood fence, 150 ft, one side",
-          3,
-          1,
-          25,
-          20
-        ],
-        [
-          "Pool deck: Concrete pool deck",
-          2,
-          1,
-          15,
-          20
-        ],
-        [
-          "Commercial: Storefront and sidewalk",
-          2,
-          1,
-          15,
-          25
-        ],
-        [
-          "Commercial: Dumpster pad",
-          1.5,
-          1,
-          20,
-          25
-        ],
-        [
-          "Commercial: Drive-thru lane",
-          3,
-          1,
-          25,
-          25
-        ]
-      ],
-      "method": [
-        "Most owners price a driveway by what the last company charged. That misses the hours nobody pays for (driving, quoting, rain days), the equipment that wears out, and self-employment tax.",
-        "This calculator grosses your take-home up for self-employment tax (15.3% on 92.35% of profit) and your income tax estimate, adds a year of business costs, and spreads the total over the hours customers actually pay for. That is your break-even rate; your margin on top gives the target rate.",
-        "A job's price floor is your crew's time on site and drive time at the break-even rate, plus vehicle cost per mile and supplies. The quote adds your margin and rounds up to the next $5."
-      ],
-      "example": "A $55,000 take-home goal with a 12% income tax estimate needs $74,455 of profit before tax. Add $9,060 a year of business costs and you need $83,515 of revenue. At 44 weeks of 45 hours with 65% paid, that is 1,287 paid hours: a break-even rate of $64.89 and a target of $76.34 with a 15% margin. Pay divided by all hours would say $27.78. A 2-car concrete driveway (1.5 hours on site, a 20-mile round trip, $12 of supplies) has a $167.80 price floor and quotes at $200, so a $100 driveway price falls $67.80 short.",
-      "cta": {
-        "title": "Price every job at once",
-        "bullets": [
-          "The Pressure Washing Pricing Calculator workbook uses this same maths for Excel and Google Sheets:",
-          "15 example jobs from driveways to drive-thru lanes, a quote builder, a printable price sheet and a job tracker. $2.99, instant download."
-        ],
-        "button": "See it in the Etsy shop",
-        "url": "https://proofnotfluff.etsy.com"
-      },
-      "faq": [
-        [
-          "How much should I charge to pressure wash a driveway?",
-          "It depends on your pay goal, costs and travel. With the example numbers a 2-car concrete driveway needs $200 to pay its share; enter your own numbers to see yours."
-        ],
-        [
-          "Should I price by the square foot or by the hour?",
-          "Square-foot prices hide how long a job takes you. This calculator prices from time, crew, supplies and travel; for square-foot pricing, enter the hours a job of that size takes you."
-        ],
-        [
-          "Does it handle two-person jobs?",
-          "Yes. Set people on the job to 2 and both people's time on site and drive time are counted."
-        ],
-        [
-          "Is this tax advice?",
-          "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
-        ]
-      ],
-      "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29). Checked Oct 6, 2026."
-    },
-    {
-      "slug": "hourly-rate-calculator",
-      "kind": "hourly",
-      "title": "Hourly Rate Calculator for Freelancers and Self-Employed | ProofNotFluff",
-      "desc": "Free hourly rate calculator. Enter the take-home pay you want, your tax set-aside, expenses and billable hours to get your minimum hourly rate, and test any rate before you quote it.",
-      "eyebrow": "Free calculator",
-      "h1": "Hourly Rate Calculator",
-      "lede": "Find the hourly rate that pays you what you want after tax and costs, then test any rate before you quote it. Free, no sign-up.",
-      "card": "Your minimum hourly rate, and what any rate really pays you.",
-      "defaults": {
-        "takeHome": "60,000",
-        "taxRate": "25",
-        "expenses": "6,000",
-        "weeks": "48",
-        "hours": "40",
-        "billableShare": "60",
-        "checkRate": "40"
-      },
-      "method": [
-        "Your take-home is grossed up for the tax you set aside, then a year of business expenses is added. That is the revenue you need.",
-        "Spread that revenue over the hours a client actually pays for (your working hours times your billable share) and you have your minimum hourly rate. The rate card rounds it up to the next $5.",
-        "To test a rate, the calculator multiplies it by your billable hours, takes out expenses and your tax set-aside on any profit, and divides what is left by every hour you work."
-      ],
-      "example": "A $60,000 take-home with a 25% tax set-aside and $6,000 of expenses needs $86,000 of revenue. At 48 weeks of 40 hours with 60% billable, that is 1,152 billable hours, so the minimum rate is $74.65 (rate card $75). Charging $40 an hour brings in $46,080 and leaves $30,060 after expenses and tax: $15.66 for every hour worked, $29,940 short of the goal.",
-      "cta": {
-        "title": "Keep it, change it, quote with it",
-        "bullets": [
-          "The Hourly Rate Quick Calculator is this calculator as a one-tab Excel and Google Sheets workbook,",
-          "with a job quote section, a rate card and a Start Here guide. $2.99, instant download."
-        ],
-        "button": "Get the workbook on Etsy",
-        "url": "https://www.etsy.com/listing/4589695837"
-      },
-      "faq": [
-        [
-          "How do I calculate my hourly rate as a freelancer?",
-          "Start from the take-home you want, add the tax you set aside and your business expenses, then divide by the hours clients actually pay for, not every hour you work."
-        ],
-        [
-          "What share of my hours is billable?",
-          "Many self-employed people bill 50% to 70% of their working hours; the rest goes to admin, sales and travel. Track a few weeks to find yours."
-        ],
-        [
-          "What tax set-aside rate should I use?",
-          "Ask your tax preparer. A set-aside rate is a savings habit, not a tax calculation."
-        ],
-        [
-          "Is this tax advice?",
-          "No. It is a planning estimate based on the numbers you enter."
-        ]
-      ],
-      "sources": "Tax set-aside is your own estimate; ask your tax preparer. Checked Oct 6, 2026."
-    },
-    {
-      "slug": "ecommerce-13-week-cash-flow-calculator",
-      "kind": "cashflow",
-      "draft": false,
-      "title": "13 Week Cash Flow Calculator for Ecommerce | ProofNotFluff",
-      "desc": "Free 13 week cash flow calculator for ecommerce brands. Enter cash today, weekly payouts, weekly costs and one purchase order to see your lowest cash week and the cash you need to cover it.",
-      "eyebrow": "Free calculator",
-      "h1": "13 Week Cash Flow Calculator for Ecommerce",
-      "lede": "See the week your cash bottoms out and how much you need to cover it, before a purchase order lands. Free, no sign-up.",
-      "card": "Your lowest cash week in the next 13, and the cash needed to cover it.",
-      "defaults": {
-        "openingCash": "20,000",
-        "weeklyIn": "53,700",
-        "weeklyOut": "32,000",
-        "poAmount": "117,000",
-        "poWeek": "4"
-      },
-      "method": [
-        "Each week starts with last week's ending cash, adds the payouts that reach your bank and takes out your fixed costs and ad spend. In the week the purchase order is due, its payment comes out too.",
-        "The lowest ending cash across the 13 weeks is your low point. If it is below zero, the cash needed is the amount that keeps that week at zero.",
-        "This free version uses one weekly figure for cash in and one purchase order paid in a single week. Real brands wait days or weeks for each channel to pay out and pay POs as a deposit and a balance; the full workbook models both."
-      ],
-      "example": "Say a brand starts with $20,000 and collects $53,700 a week after fees while paying $32,000 a week in payroll, fixed costs and ads. That adds $21,700 a week, so cash reaches $85,100 by week 3. A $117,000 PO balance due in week 4 takes it to -$10,200, so the brand needs $10,200 more by then, or a later due date. By week 13 cash is back to $185,100. The weekly figures are the week 1 numbers from example 1 of the 13-Week E-commerce Cash Flow workbook; the starting cash and due week are changed to show a squeeze.",
-      "cta": {
-        "title": "The full 13-week cash flow",
-        "bullets": [
-          "The 13-Week E-commerce Cash Flow workbook models each channel's payout lag (Amazon, TikTok Shop, your own store, retail), up to six POs as deposit plus balance and freight,",
-          "factoring cost in dollars, a credit line, side-by-side scenarios and a PO planner, for Excel and Google Sheets."
-        ],
-        "button": "Coming soon",
-        "url": ""
-      },
-      "faq": [
-        [
-          "What is a 13 week cash flow?",
-          "A week-by-week plan of the cash coming in and going out over the next quarter, so you can see the lowest week before it happens. Thirteen weeks is one quarter."
-        ],
-        [
-          "Why can a profitable store run out of cash?",
-          "Sales are recorded when they happen, but payouts arrive later and inventory is paid for before it sells. Growing sales and big purchase orders widen that gap."
-        ],
-        [
-          "Should I use sales or payouts for cash in?",
-          "Payouts: the money that reaches your bank after fees and refunds, in the week it arrives."
-        ],
-        [
-          "What if the lowest week is below zero?",
-          "You need that much cash, credit or a later payment date by that week. Moving a PO's due date is often the first lever to test."
-        ],
-        [
-          "Is this financial advice?",
-          "No. It is a planning estimate based on the numbers you enter."
-        ]
-      ],
-      "sources": "No rates or fees are assumed: every figure is yours. Page checked Oct 7, 2026."
-    },
-    {
-      "slug": "etsy-fee-calculator",
-      "kind": "etsy_fees",
-      "draft": true,
-      "title": "Etsy Fee Calculator: Fees, Payout and Profit per Sale | ProofNotFluff",
-      "desc": "Free Etsy fee calculator for US sellers. Enter your price, shipping and costs to see the transaction fee, payment processing, listing fee, Offsite Ads, your payout and your profit on one sale.",
-      "eyebrow": "Free calculator",
-      "h1": "Etsy Fee Calculator",
-      "lede": "See every Etsy fee on one sale, what Etsy pays you, and what you keep after your costs. With or without an Offsite Ads order. Free, no sign-up.",
-      "card": "Every Etsy fee on one sale, your payout and your profit, Offsite Ads included.",
-      "defaults": {
-        "price": "24.00",
-        "ship": "5.50",
-        "tax": "0",
-        "cost": "10.20",
-        "label": "6.25",
-        "adsRate": "0"
-      },
-      "fees": {
-        "tfRate": "6.5",
-        "procRate": "3",
-        "procFixed": "0.25",
-        "listFee": "0.20"
-      },
-      "ads_options": [
-        [
-          "0",
-          "No, a normal sale"
-        ],
-        [
-          "15",
-          "Yes: 15% (shop under $10,000 in sales over 365 days)"
-        ],
-        [
-          "12",
-          "Yes: 12% (shop at $10,000 or more)"
-        ]
-      ],
-      "ads_cap": 100,
-      "asof": {
-        "lead": "US fees as of",
-        "date": "Oct 7, 2026",
-        "from": [
-          [
-            "Etsy's fee page",
-            "https://www.etsy.com/legal/fees"
-          ],
-          [
-            "Etsy's payment processing page",
-            "https://help.etsy.com/hc/articles/115015628847"
-          ]
-        ],
-        "tail": "Every rate is editable if Etsy changes one."
-      },
-      "method": [
-        "Etsy charges a 6.5% transaction fee on the item price plus the shipping you charge, but not on US sales tax. Payment processing for a US bank account is 3% of everything the buyer paid, sales tax included, plus $0.25 an order. Each sale also carries a $0.20 listing fee, because a listing with more than one in stock renews for $0.20 after each sale.",
-        "If Etsy attributes the order to one of its Offsite Ads, it adds 15% of the item price plus shipping, or 12% once a shop has made $10,000 or more in sales over the prior 365 days. That fee never goes over $100 on one order.",
-        "Each fee is rounded to the cent. What is left after the fees is your payout. Take away the item cost and the shipping label and you have the profit on the sale. Margin is that profit divided by the item price plus shipping."
-      ],
-      "example": "Take an 8 oz soy candle listed at $24 with $5.50 shipping charged, $10.20 of materials, packaging and making time, and a $6.25 label. Etsy's fees come to $3.26: $1.92 transaction fee, $1.14 payment processing and the $0.20 listing fee. Etsy pays out $26.24 and the sale makes $9.79, a 33.2% margin. If the same order came through an Offsite Ad at 15%, another $4.43 comes off and profit drops to $5.36. These are the inputs for the 8 oz candle in the example shop inside the True Profit System for Etsy Sellers workbook, which shows $9.80 because it does not round each fee to the cent.",
-      "cta": {
-        "title": "Every listing, every order, every payout",
-        "bullets": [
-          "The True Profit System for Etsy Sellers workbook uses this same maths for Excel and Google Sheets:",
-          "true profit and an OK, WATCH or REPRICE flag on every listing, the list price that hits the profit you want, an order log, a payout check to the cent and a tax reserve. $2.99, instant download."
-        ],
-        "button": "Get the workbook on Etsy",
-        "url": "https://proofnotfluff.etsy.com/listing/4584721212"
-      },
-      "faq": [
-        [
-          "What fees does Etsy take from a sale?",
-          "For a US seller: a 6.5% transaction fee on the item price plus shipping, payment processing of 3% plus $0.25 on the total the buyer paid, and a $0.20 listing fee. Orders Etsy attributes to Offsite Ads add 15% or 12%, up to $100."
-        ],
-        [
-          "Does Etsy charge fees on shipping?",
-          "Yes. The transaction fee and payment processing both apply to the shipping you charge, so moving shipping into the item price does not change those two fees."
-        ],
-        [
-          "Why is a listing fee counted on every sale?",
-          "A listing costs $0.20 to publish, and a listing with more than one in stock renews for another $0.20 after each sale. So each sale carries one listing fee."
-        ],
-        [
-          "I sell from outside the US. Does this work?",
-          "Yes, if you type your own rates. Etsy's payment processing fee depends on the country of your bank account."
-        ],
-        [
-          "Is this tax or financial advice?",
-          "No. It is a planning estimate based on the numbers you enter."
-        ]
-      ],
-      "sources": "Etsy Fees & Payments Policy (etsy.com/legal/fees, last updated Oct 5, 2026) and Etsy Help, What are Payment Processing Fees for Selling on Etsy? Both checked Oct 7, 2026. ProofNotFluff is not affiliated with or endorsed by Etsy."
-    },
-    {
-      "slug": "craft-fair-break-even-calculator",
-      "kind": "craft_fair",
-      "draft": true,
-      "title": "Craft Fair Break-Even Calculator: Pieces to Cover Your Booth Fee | ProofNotFluff",
-      "desc": "Free craft fair break-even calculator. Enter your booth fee, other show costs, average price, cost per piece and card fees to see how many pieces you must sell to break even and to make the profit you want.",
-      "eyebrow": "Free calculator",
-      "h1": "Craft Fair Break-Even Calculator",
-      "lede": "How many pieces you must sell to cover the booth fee and the rest of the day, and how many it takes to make it worth going. Free, no sign-up.",
-      "card": "Pieces to sell to cover your booth fee and the whole day, and to hit your profit.",
-      "defaults": {
-        "booth": "150",
-        "other": "165.60",
-        "price": "13.84",
-        "cpp": "7.30",
-        "cardPct": "2.6",
-        "cardFlat": "0.15",
-        "cardShare": "70",
-        "avgSale": "30",
-        "target": "300"
-      },
-      "asof": {
-        "lead": "Card fee example as of",
-        "date": "Oct 7, 2026",
-        "from": [
-          [
-            "Square's US fees page",
-            "https://squareup.com/help/us/en/article/5068-fees-and-pricing"
-          ]
-        ],
-        "tail": "Square's Free plan, tap, dip or swipe: 2.6% plus 15 cents. Type your own reader's rates."
-      },
-      "method": [
-        "What the day costs is the booth fee plus everything else the show takes: travel, parking, meals, organizer extras and a share of the tent and display you reuse.",
-        "Each piece earns its price minus its own cost and its share of card fees. The card fee per dollar of sales is the share paid by card times the percent fee plus the flat fee spread over an average customer's spend.",
-        "Pieces to break even is the day's cost divided by what each piece earns, rounded up to a whole piece. Pieces for your profit adds the profit you want to the day's cost first."
-      ],
-      "example": "A $150 booth fee becomes a $315.60 day once organizer extras, travel, parking, meals and a share of the display add $165.60. With an average price of $13.84, a cost of $7.30 a piece and 70% of sales by card on a 2.6% plus 15 cent reader, each piece earns $6.24. The day needs 51 pieces, $705.84 of sales, to break even, and 99 pieces, $1,370.16 of sales, to clear $300 of profit. These are the example show and products inside the Craft Fair Profit Calculator workbook.",
-      "cta": {
-        "title": "Plan every show of the season",
-        "bullets": [
-          "The Craft Fair Profit Calculator workbook uses this same maths for Excel and Google Sheets:",
-          "every cost of the day itemized, up to 15 products with their own costs and sales mix, how many pieces to bring, a what-if table for six booth fees and a log for every show. $2.99, instant download."
-        ],
-        "button": "Get the workbook on Etsy",
-        "url": "https://proofnotfluff.etsy.com/listing/4586813952"
-      },
-      "faq": [
-        [
-          "How many items do I need to sell to cover a booth fee?",
-          "Divide what the whole day costs by what each piece earns after its own cost and card fees, then round up. Count the whole day, not only the booth: in the example, other costs add $165.60 to a $150 booth."
-        ],
-        [
-          "Should my making time be in the cost per piece?",
-          "Yes, if you want the day to pay you for it. Leave it out and break-even only covers materials and fees."
-        ],
-        [
-          "What card fee should I use?",
-          "The one your reader charges. As of Oct 7, 2026, Square's Free plan in the US charges 2.6% plus 15 cents for tap, dip or swipe payments."
-        ],
-        [
-          "Do sales include sales tax?",
-          "No. Use prices before sales tax. Tax you collect at a show is owed to the state, not earned."
-        ],
-        [
-          "Is this financial advice?",
-          "No. It is a planning estimate based on the numbers you enter."
-        ]
-      ],
-      "sources": "Card fee example: Square, Fees and pricing (squareup.com/help/us/en/article/5068-fees-and-pricing), checked Oct 7, 2026. No other rates are assumed: every figure is yours."
-    },
-    {
-      "slug": "lawn-care-price-calculator",
-      "kind": "service",
-      "draft": true,
-      "title": "Lawn Care Price Calculator: Price Mowing and Spring Cleanups So They Pay You | ProofNotFluff",
-      "desc": "Free lawn care price calculator. Enter your pay goal, hours and costs to get your break-even rate, your target rate and a quote for a weekly mow, a spring cleanup or a mulch install, drive time included.",
-      "eyebrow": "Free calculator",
-      "h1": "Lawn Care Price Calculator",
-      "lede": "Price a weekly mow, a spring cleanup or a mulch job from your own numbers: break-even rate, target rate and a quote with crew time, drive time and self-employment tax counted. Free, no sign-up.",
-      "card": "Quote mowing, spring cleanups and mulch jobs from your own numbers, crew and drive time included.",
-      "defaults": {
-        "takeHome": "52,000",
-        "weeks": "48",
-        "hours": "45",
-        "paidShare": "65",
-        "monthlyCosts": "545",
-        "incomeTax": "12",
-        "margin": "15",
-        "perMile": "0.76",
-        "mph": "30"
-      },
-      "costs_hint": "Insurance, mower and equipment upkeep, phone, apps, marketing, fees",
-      "presets": [
-        [
-          "Weekly mow, small yard",
-          0.75,
-          1,
-          3,
-          10
-        ],
-        [
-          "Spring cleanup",
-          4,
-          2,
-          20,
-          10
-        ],
-        [
-          "Mulch install, labor only",
-          5,
-          2,
-          0,
-          10
-        ]
-      ],
-      "preset_default": 1,
-      "method": [
-        "Most lawn care owners price a cut or a cleanup by what the next company charges, or by pay divided by hours. That leaves out the hours nobody pays for (driving, quoting, rain days), the equipment and costs that run every month, and self-employment tax.",
-        "This calculator grosses your take-home up for self-employment tax (15.3% on 92.35% of profit) and your income tax estimate, adds a year of business costs, and spreads the total over the hours customers actually pay for. That is your break-even rate. Your margin on top gives the target rate.",
-        "A job's price floor is every crew member's time on site and drive time at the break-even rate, plus vehicle cost per mile and supplies such as fuel, blades and bags. The quote adds your margin and rounds up to the next $5."
-      ],
-      "example": "A $52,000 take-home goal with a 12% income tax estimate needs $70,394 of profit before tax. Add $6,540 a year of business costs and you need $76,934 of revenue. At 48 weeks of 45 hours with 65% paid, that is 1,404 paid hours: a break-even rate of $54.80 and a target of $64.47 with a 15% margin. Pay divided by all hours would say $24.07. A 2-person spring cleanup (4 hours on site each, a 10-mile round trip, $20 of supplies) has a $502.50 price floor and quotes at $595, with $92.50 of profit inside it. A weekly mow of a small yard (45 minutes on site, a 10-mile round trip, $3 of fuel and blades) has a $69.96 floor and quotes at $85.",
-      "cta": {
-        "title": "Price every job at once",
-        "bullets": [
-          "The full Service Pricing Calculator workbook uses this same maths for Excel and Google Sheets:",
-          "a quote builder, a printable price sheet for every job type, a job tracker that flags jobs below your floor, and 20 example jobs across 7 trades, lawn care among them. $2.99, instant download."
-        ],
-        "button": "Get the workbook on Etsy",
-        "url": "https://proofnotfluff.etsy.com/listing/4587962930"
-      },
-      "faq": [
-        [
-          "How much should I charge to mow a lawn?",
-          "It depends on your pay goal, your costs, your drive and how long the yard takes you. With the example numbers a small yard that takes 45 minutes needs $85 to pay its share. Enter your own numbers to see yours."
-        ],
-        [
-          "How do I price a spring cleanup with a crew?",
-          "Pick the spring cleanup example or type your own hours and set people on the job to your crew size. Every person's time on site and drive time is counted, so a 2-person job costs twice the labor of a solo one."
-        ],
-        [
-          "Should I charge per cut or per month?",
-          "This calculator prices one visit. For a monthly or seasonal plan, multiply the per-visit quote by the number of visits in that period."
-        ],
-        [
-          "Is this tax advice?",
-          "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
-        ]
-      ],
-      "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29). Checked Oct 6, 2026."
-    },
-    {
-      "slug": "auto-detailing-price-calculator",
-      "kind": "service",
-      "draft": true,
-      "title": "Auto Detailing Price Calculator: Price Every Detail So It Pays You | ProofNotFluff",
-      "desc": "Free mobile auto detailing price calculator. Enter your pay goal, hours and costs to get your break-even rate, your target rate and a quote for an interior detail, a full sedan detail or an SUV, drive time included.",
-      "eyebrow": "Free calculator",
-      "h1": "Auto Detailing Price Calculator",
-      "lede": "Price an interior detail, a full sedan detail or an SUV from your own numbers: break-even rate, target rate and a quote with drive time and self-employment tax counted. Free, no sign-up.",
-      "card": "Quote interior and full details for sedans and SUVs, drive time included.",
-      "defaults": {
-        "takeHome": "52,000",
-        "weeks": "48",
-        "hours": "45",
-        "paidShare": "65",
-        "monthlyCosts": "545",
-        "incomeTax": "12",
-        "margin": "15",
-        "perMile": "0.76",
-        "mph": "30"
-      },
-      "costs_hint": "Insurance, polishers and equipment, phone, apps, marketing, fees",
-      "presets": [
-        [
-          "Interior detail, sedan",
-          2.5,
-          1,
-          12,
-          20
-        ],
-        [
-          "Full detail, sedan",
-          4,
-          1,
-          20,
-          20
-        ],
-        [
-          "Full detail, SUV or truck",
-          5,
-          1,
-          25,
-          20
-        ]
-      ],
-      "preset_default": 1,
-      "method": [
-        "Most detailers price a package by what other shops post, or by pay divided by hours. That leaves out the hours nobody pays for (driving to the car, quoting, texting customers), the costs that run every month, and self-employment tax.",
-        "This calculator grosses your take-home up for self-employment tax (15.3% on 92.35% of profit) and your income tax estimate, adds a year of business costs, and spreads the total over the hours customers actually pay for. That is your break-even rate. Your margin on top gives the target rate.",
-        "A job's price floor is your time on the car and your drive time at the break-even rate, plus vehicle cost per mile and supplies such as chemicals, towels and pads. The quote adds your margin and rounds up to the next $5."
-      ],
-      "example": "A $52,000 take-home goal with a 12% income tax estimate needs $70,394 of profit before tax. Add $6,540 a year of business costs and you need $76,934 of revenue. At 48 weeks of 45 hours with 65% paid, that is 1,404 paid hours: a break-even rate of $54.80 and a target of $64.47 with a 15% margin. Pay divided by all hours would say $24.07. A full sedan detail (4 hours on site, a 20-mile round trip, $20 of supplies) has a $290.91 price floor and quotes at $345, with $54.09 of profit inside it. An interior-only sedan detail (2.5 hours, $12 of supplies) quotes at $240, and a full SUV or truck detail (5 hours, $25 of supplies) at $415.",
-      "cta": {
-        "title": "Price every job at once",
-        "bullets": [
-          "The full Service Pricing Calculator workbook uses this same maths for Excel and Google Sheets:",
-          "a quote builder, a printable price sheet for every job type, a job tracker that flags jobs below your floor, and 20 example jobs across 7 trades, mobile auto detailing among them. $2.99, instant download."
-        ],
-        "button": "Get the workbook on Etsy",
-        "url": "https://proofnotfluff.etsy.com/listing/4587962930"
-      },
-      "faq": [
-        [
-          "How much should I charge for a full detail?",
-          "It depends on your pay goal, your costs, your drive and how long the car takes you. With the example numbers a 4-hour full sedan detail needs $345 to pay its share. Enter your own numbers to see yours."
-        ],
-        [
-          "Does it count the drive to the customer?",
-          "Yes. Round-trip miles become drive time at your average speed, priced at your break-even rate, plus vehicle cost per mile. A 20-mile round trip at 30 mph adds 40 minutes."
-        ],
-        [
-          "How do I price SUVs and trucks?",
-          "Pick the SUV or truck example (5 hours, $25 of supplies) or type the hours and supplies a bigger vehicle takes you. The example jobs are starting points, not market prices."
-        ],
-        [
-          "Is this tax advice?",
-          "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
-        ]
-      ],
-      "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29). Checked Oct 6, 2026."
-    },
-    {
-      "slug": "junk-removal-price-calculator",
-      "kind": "service",
-      "draft": true,
-      "title": "Junk Removal Price Calculator: Quote Truck Loads, Single Items and Cleanouts | ProofNotFluff",
-      "desc": "Free junk removal price calculator. Get your break-even rate, target rate and a quote for single items, truck loads, cleanouts and tear-downs, with crew time, drive time and dump fees counted.",
-      "eyebrow": "Free calculator",
-      "h1": "Junk Removal Price Calculator",
-      "lede": "Quote a couch, a half truck load or a garage cleanout from your own numbers: break-even rate, target rate and a job quote with the second person on the truck, drive time and self-employment tax counted. Free, no sign-up.",
-      "card": "Quote single items, truck loads and cleanouts, crew, dump fees and drive time included.",
-      "defaults": {
-        "takeHome": "60,000",
-        "weeks": "48",
-        "hours": "50",
-        "paidShare": "60",
-        "monthlyCosts": "715",
-        "incomeTax": "12",
-        "margin": "15",
-        "perMile": "0.76",
-        "mph": "30"
-      },
-      "costs_hint": "Insurance, trailer and equipment, dollies and straps, ads, apps, fees",
-      "presets": [
-        [
-          "Single items: Couch or sectional",
-          0.75,
-          2,
-          25,
-          30
-        ],
-        [
-          "Single items: Mattress and box spring",
-          0.5,
-          2,
-          30,
-          30
-        ],
-        [
-          "Single items: Upright piano",
-          1.5,
-          3,
-          60,
-          30
-        ],
-        [
-          "Appliances: Refrigerator or freezer",
-          0.75,
-          2,
-          40,
-          30
-        ],
-        [
-          "Appliances: Washer and dryer pair",
-          0.75,
-          2,
-          30,
-          30
-        ],
-        [
-          "Truck loads: Minimum load, 1/8 truck",
-          0.5,
-          2,
-          20,
-          30
-        ],
-        [
-          "Truck loads: Quarter truck load",
-          1,
-          2,
-          40,
-          30
-        ],
-        [
-          "Truck loads: Half truck load",
-          1.5,
-          2,
-          75,
-          30
-        ],
-        [
-          "Truck loads: Three-quarter truck load",
-          2,
-          2,
-          110,
-          30
-        ],
-        [
-          "Truck loads: Full truck load",
-          2.5,
-          2,
-          150,
-          30
-        ],
-        [
-          "Cleanouts: Garage cleanout, 2-car",
-          4,
-          2,
-          225,
-          50
-        ],
-        [
-          "Cleanouts: Basement cleanout",
-          5,
-          2,
-          225,
-          50
-        ],
-        [
-          "Cleanouts: Estate cleanout, 3-bed",
-          10,
-          3,
-          600,
-          120
-        ],
-        [
-          "Debris: Remodel debris, half load",
-          2,
-          2,
-          120,
-          30
-        ],
-        [
-          "Debris: Yard debris, half load",
-          1.5,
-          2,
-          50,
-          30
-        ],
-        [
-          "Debris: Carpet removal, 3 rooms",
-          3,
-          2,
-          60,
-          30
-        ],
-        [
-          "Demolition: Hot tub removal",
-          2.5,
-          3,
-          120,
-          30
-        ],
-        [
-          "Demolition: Shed tear-down and haul",
-          5,
-          2,
-          180,
-          50
-        ],
-        [
-          "Commercial: Office furniture, 10 desks",
-          3,
-          3,
-          150,
-          30
-        ]
-      ],
-      "preset_default": 7,
-      "method": [
-        "A load price copied from another hauler leaves out the hours nobody pays for (driving, estimates, slow weeks), the dump fees, the second person on the truck, and self-employment tax.",
-        "This calculator grosses your take-home up for self-employment tax (15.3% on 92.35% of profit) and your income tax estimate, adds a year of business costs, and spreads the total over the hours customers actually pay for. That is your break-even rate. Your margin on top gives the target rate.",
-        "A job's price floor is every crew member's time on site and drive time at the break-even rate, plus vehicle cost per mile and supplies, with dump and disposal fees counted as supplies. Count the miles to the dump and back, and each extra dump run. The quote adds your margin and rounds up to the next $5."
-      ],
-      "example": "A $60,000 take-home goal with a 12% income tax estimate needs $81,223 of profit before tax. Add $8,580 a year of business costs and you need $89,803 of revenue. At 48 weeks of 50 hours with 60% paid, that is 1,440 paid hours: a break-even rate of $62.36 and a target of $73.37 with a 15% margin. Pay divided by all hours would say $25.00. A half truck load (2 people, 1.5 hours on site each, a 30-mile round trip, $75 of supplies and dump fees) has a $409.62 price floor and quotes at $485, with $75.38 of profit inside it. Make it a 60-mile round trip and the floor rises to $557.14 and the quote to $660.",
-      "cta": {
-        "title": "Price every job at once",
-        "bullets": [
-          "The Junk Removal Pricing Calculator workbook uses this same maths for Excel and Google Sheets:",
-          "19 example jobs from single items to estate cleanouts, a quote builder, a printable price sheet and a job tracker. $2.99, instant download."
-        ],
-        "button": "Get the workbook on Etsy",
-        "url": "https://proofnotfluff.etsy.com/listing/4590270056"
-      },
-      "faq": [
-        [
-          "How much should I charge for a half truck load?",
-          "It depends on your pay goal, your costs, your crew, your drive and your dump fees. With the example numbers a half load for 2 people needs $485 to pay its share. Enter your own numbers to see yours."
-        ],
-        [
-          "Where do dump fees go?",
-          "Put dump, recycling and disposal fees in supplies for the job. Put the extra miles for each dump run in round-trip miles."
-        ],
-        [
-          "Does it count the second person on the truck?",
-          "Yes. Set people on the job to your crew size and every person's time on site and drive time is counted."
-        ],
-        [
-          "Is this tax advice?",
-          "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
-        ]
-      ],
-      "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29). Checked Oct 6, 2026."
-    },
-    {
-      "slug": "airbnb-nightly-rate-calculator",
-      "kind": "str_nightly",
-      "draft": true,
-      "title": "Airbnb Nightly Rate Calculator: Seasonal Rates With a Floor | ProofNotFluff",
-      "desc": "Free Airbnb and VRBO nightly rate calculator. Turn one base rate and last year's months into a nightly rate for every month, held at a floor you set, with what each night pays after the host fee.",
-      "eyebrow": "Free calculator",
-      "h1": "Airbnb Nightly Rate Calculator",
-      "lede": "One base rate, shaped by your own last 12 months: a nightly rate for every month, a floor no month goes under, and what each night pays after the platform fee. Free, no sign-up.",
-      "card": "A nightly rate for every month from one base rate, held at your floor.",
-      "defaults": {
-        "base": "185",
-        "floor": "115",
-        "cleaning": "120",
-        "minStay": "2",
-        "fee": "15.5"
-      },
-      "curves": [
-        [
-          "Example cabin, last year",
-          [
-            4800,
-            5200,
-            3900,
-            2600,
-            3100,
-            4400,
-            5600,
-            5300,
-            4300,
-            4700,
-            2400,
-            5000
-          ]
-        ],
-        [
-          "Starter curve: beach",
-          [
-            0.7,
-            0.75,
-            0.9,
-            0.95,
-            1.05,
-            1.3,
-            1.45,
-            1.35,
-            1.05,
-            0.85,
-            0.75,
-            0.9
-          ]
-        ],
-        [
-          "Starter curve: mountain",
-          [
-            1.15,
-            1.2,
-            0.9,
-            0.7,
-            0.75,
-            1.05,
-            1.25,
-            1.2,
-            1.0,
-            1.05,
-            0.6,
-            1.15
-          ]
-        ],
-        [
-          "Starter curve: urban",
-          [
-            0.85,
-            0.85,
-            1.0,
-            1.05,
-            1.1,
-            1.1,
-            1.0,
-            0.95,
-            1.1,
-            1.15,
-            0.95,
-            0.9
-          ]
-        ],
-        [
-          "Starter curve: lake",
-          [
-            0.6,
-            0.6,
-            0.7,
-            0.85,
-            1.1,
-            1.4,
-            1.55,
-            1.45,
-            1.15,
-            0.9,
-            0.8,
-            0.9
-          ]
-        ],
-        [
-          "Starter curve: rural",
-          [
-            0.75,
-            0.75,
-            0.85,
-            1.0,
-            1.1,
-            1.2,
-            1.25,
-            1.2,
-            1.15,
-            1.15,
-            0.8,
-            0.8
-          ]
-        ]
-      ],
-      "method": [
-        "Each month's season multiplier is that month's revenue last year divided by the average month. A month that brought in 31% more than average is a 1.31x month.",
-        "A month's nightly rate is your base rate times its multiplier, rounded to the dollar. If that comes out under your floor, the floor is charged instead and the month is tagged Floor.",
-        "After fee is the nightly rate minus the platform fee you type, per night. The shortest stay line adds your cleaning fee to your minimum stay in the quietest month, before any platform fee."
-      ],
-      "example": "Take the fictional mountain cabin in the workbook's example: a $185 base nightly rate, a $115 floor, a $120 cleaning fee and a 2-night minimum. Its last 12 months averaged $4,275 a month. July brought in $5,600, a 1.31x month, so July nights price at $242. November brought in $2,400, a 0.56x month, which works out to $104, and the floor holds it at $115. April is held at the floor too. At a 15.5% host fee a $242 July night pays out $204.49, and a 2-night November stay comes to $350 with cleaning, before platform fees. These are the example cabin's numbers in the Pricing Calculator for Airbnb and VRBO Hosts workbook.",
-      "cta": {
-        "title": "Price the whole year, events and long stays included",
-        "bullets": [
-          "The Pricing Calculator for Airbnb and VRBO Hosts uses this same maths for Excel and Google Sheets:",
-          "your 12 monthly rates, weekly and monthly discounts checked against your floor, event pricing, and the rate that keeps your payout under the single host fee. $2.99, instant download."
-        ],
-        "button": "Get the workbook on Etsy",
-        "url": "https://proofnotfluff.etsy.com/listing/4585252476"
-      },
-      "faq": [
-        [
-          "How do I set seasonal prices for an Airbnb?",
-          "Compare each month of last year with your average month. That multiplier times your base rate is the month's rate, and a floor keeps a quiet month from going too low."
-        ],
-        [
-          "What is a floor rate?",
-          "The lowest nightly rate you will take, set from your own costs: cleaning, utilities, wear and your time. It is your judgment, not a computed number."
-        ],
-        [
-          "I have no booking history. What do I use?",
-          "Pick a starter curve for your kind of market, then replace it with your own months once you have a year of bookings. Starter curves are rough shapes, not market data."
-        ],
-        [
-          "Does the platform fee change my nightly rates?",
-          "Not here. The rates are what you list; the After fee column shows what each night pays out at the fee you type. Other platforms set their own fees."
-        ],
-        [
-          "Is this financial advice?",
-          "No. It is a planning estimate based on the numbers you enter."
-        ]
-      ],
-      "sources": "Every default is the example cabin in the Pricing Calculator for Airbnb and VRBO Hosts workbook (built and recalculated Oct 7, 2026). Host fee: Airbnb Help Center article 1857, as checked for that workbook on Oct 6, 2026. ProofNotFluff is not affiliated with Airbnb or VRBO.",
-      "number_sources": [
-        "$185 base, $120 cleaning, 2-night minimum, $115 floor: engines/str-nightly-pricing EX dict; recalculated 1 Your Property D16, D17, D18, D23.",
-        "Monthly revenue 4,800 to 5,000 (avg 4,275): engine HISTORY; 2 Seasonality I16:I27, I28.",
-        "July 1.31x, $242; November 0.56x, $104 held at $115; April 113 held at $115; 2 months at floor: 2 Seasonality L22, M22, L26, M26; 4 Stay Discounts D19, E19, D26, E26, F28.",
-        "15.5% host fee: engine EX fee_new, 5 Fee Reset D17 (Airbnb article 1857, checked Oct 6, 2026 by the engine; not re-fetched here).",
-        "Starter curves: engine CURVES (2 Seasonality D:H).",
-        "$204.49 = 242 x (1 - 0.155), the 5 Fee Reset payout formula; $350 = 2 x 115 + 120."
-      ]
-    },
-    {
-      "slug": "debt-payoff-calculator",
-      "kind": "debt_payoff",
-      "draft": true,
-      "title": "Debt Payoff Calculator: Avalanche vs Snowball vs Minimums | ProofNotFluff",
-      "desc": "Free debt payoff calculator for up to five debts. Enter each balance, APR and minimum plus an extra monthly amount to compare months to pay off and estimated interest for avalanche, snowball and minimums only.",
-      "eyebrow": "Free calculator",
-      "h1": "Debt Payoff Calculator",
-      "lede": "Up to five debts, three ways to pay them: highest APR first, smallest balance first, or minimums only. See the months and the estimated interest for each. Free, no sign-up.",
-      "card": "Months to pay off and estimated interest: avalanche, snowball and minimums only.",
-      "defaults": {
-        "debts": [
-          [
-            "4,751.76",
-            "24.99",
-            "145"
-          ],
-          [
-            "854.32",
-            "26.99",
-            "40"
-          ],
-          [
-            "10,748.15",
-            "7.4",
-            "329"
-          ],
-          [
-            "18,658.05",
-            "5.5",
-            "205"
-          ],
-          [
-            "3,142.59",
-            "12.9",
-            "112"
-          ]
-        ],
-        "extra": "269"
-      },
-      "method": [
-        "Each month every balance grows by its APR divided by 12, rounded to the cent, and every minimum is paid. The minimums plus your extra amount are paid every month in both plans.",
-        "Avalanche sends the money left after minimums to the highest APR first. Snowball sends it to the smallest balance first. The order is set from today's balances, and when a debt is paid off its minimum moves to the next one. Each plan runs up to 20 years.",
-        "Minimums only pays each minimum and nothing else, with no roll-over, so each debt runs on its own schedule. If a minimum does not cover a month's interest, that balance never comes down. All interest figures are estimates."
-      ],
-      "example": "The workbook's example has five debts: a credit card at $4,751.76 and 24.99% APR with a $145 minimum, a store card at $854.32 and 26.99% ($40), a car loan at $10,748.15 and 7.4% ($329), a student loan at $18,658.05 and 5.5% ($205) and a personal loan at $3,142.59 and 12.9% ($112). That is $38,154.87 owed and $831 of minimums. Minimums only takes 119 months and about $11,093 of interest. At $1,100 a month, the minimums plus $269, avalanche takes 40 months and about $4,965 of interest, and snowball also takes 40 months with about $5,234. These are estimates from the Debt Payoff Tracker workbook's example, balances as of October 2026.",
-      "cta": {
-        "title": "Track the real balances, payment by payment",
-        "bullets": [
-          "The Debt Payoff Tracker uses this same maths for Excel and Google Sheets, for up to 25 debts:",
-          "a payment log that updates each balance, both plans month by month, what to pay each debt next month, and owed over time. $2.99, instant download."
-        ],
-        "button": "Get the workbook on Etsy",
-        "url": "https://proofnotfluff.etsy.com/listing/4588972193"
-      },
-      "faq": [
-        [
-          "What is the difference between avalanche and snowball?",
-          "Both pay every minimum and put the rest on one debt at a time. Avalanche picks the highest APR first, which usually costs less interest. Snowball picks the smallest balance first, so the first debt is gone sooner."
-        ],
-        [
-          "Why does minimums only take so long?",
-          "Part of each minimum goes to interest, and when a debt is paid off its minimum is not moved to the others. On a high APR card most of a small minimum can go to interest."
-        ],
-        [
-          "How exact are these numbers?",
-          "They are estimates. The calculator adds APR divided by 12 each month and assumes no new charges, fees or rate changes. Your lender's statements will differ."
-        ],
-        [
-          "Is this financial advice?",
-          "No. It is planning math based on the numbers you enter."
-        ]
-      ],
-      "sources": "Every default is the example in the Debt Payoff Tracker workbook (built and recalculated Oct 7, 2026). Estimates for planning only.",
-      "number_sources": [
-        "Balances 4,751.76, 854.32, 10,748.15, 18,658.05, 3,142.59: recalculated 2 Debts L17:L21 (statement balance less logged payments plus interest to Oct 7, 2026; TODAY-dependent, stable through October 2026).",
-        "APRs and minimums: engine DEBTS_EX; 2 Debts H17:I21. $831: 1 Dashboard D16. $269 extra: 1 Dashboard D15 1,100 less D16 (C17 'Extra each month: $269.00').",
-        "$38,154.87 owed: 1 Dashboard H7.",
-        "Avalanche 40 months, $4,965.45: 1 Dashboard J19, I20; 5 Avalanche Plan C8, F8. Snowball 40 months, $5,233.73: 1 Dashboard J15, I16; 4 Snowball Plan C8, F8.",
-        "Minimums only 119 months, $11,092.68: 1 Dashboard J23, I24. Avalanche saving $6,127.23: 1 Dashboard I21.",
-        "Per-debt payoff months: 4 Snowball Plan J14:N14 (19, 3, 25, 40, 11); 5 Avalanche Plan J14:N14 (15, 3, 25, 40, 18); 2 Debts P17:P21 (56, 30, 37, 119, 34)."
-      ]
-    },
-    {
-      "slug": "shipping-cost-calculator",
-      "kind": "shipping_cost",
-      "draft": true,
-      "title": "Shipping Cost Calculator for Etsy and eBay Sellers: True Cost per Parcel | ProofNotFluff",
-      "desc": "Free shipping cost calculator for online sellers. Add the box, filler, tape, label paper, your packing time and the fees on the shipping you charge to the label cost, and see if your shipping charge covers it.",
-      "eyebrow": "Free calculator",
-      "h1": "Shipping Cost Calculator",
-      "lede": "The label is only part of it. Add the box, filler, tape, your packing time and the fees on the shipping you charge, and see if what the buyer pays covers the parcel. Free, no sign-up.",
-      "card": "The true cost of one parcel against the shipping you charge, fees included.",
-      "defaults": {
-        "charged": "4.95",
-        "postage": "9.95",
-        "box": "0.85",
-        "filler": "0.45",
-        "tape": "0.08",
-        "labelPaper": "0.06",
-        "minutes": "6",
-        "hourly": "18",
-        "feePct": "9.5"
-      },
-      "asof": {
-        "lead": "Etsy US fees as of",
-        "date": "Oct 7, 2026",
-        "from": [
-          [
-            "Etsy's fee page",
-            "https://www.etsy.com/legal/fees"
-          ],
-          [
-            "Etsy's payment processing page",
-            "https://help.etsy.com/hc/articles/115015628847"
-          ]
-        ],
-        "tail": "The $0.25 per-order part of processing is charged whether or not you charge shipping, so it is not counted here."
-      },
-      "method": [
-        "The parcel cost is the label you paid plus the box or mailer, filler, tape and label paper, plus your packing minutes at your hourly rate.",
-        "Marketplaces take a fee on the shipping you charge too. For a US Etsy seller that is the 6.5% transaction fee plus 3% payment processing, 9.5% of the shipping charge. Add it to the parcel cost and you have the true cost per order.",
-        "Over or under is the shipping you charge minus that true cost. Break-even shipping is the parcel cost divided by 1 minus the fee percent, rounded up to the cent."
-      ],
-      "example": "A 12 oz ceramic mug ships with $4.95 charged. The label cost $9.95, the box 85 cents, filler 45 cents, tape 8 cents and label paper 6 cents, and packing takes 6 minutes at $18 an hour, $1.80. The parcel costs $13.19, $8.24 more than the buyer paid. Etsy's 9.5% on the $4.95 adds 47 cents, so each order is $8.71 short. Shipping of $14.58 would cover it. These are the sample mug's numbers in the Etsy and eBay Shipping Cost Calculator workbook.",
-      "cta": {
-        "title": "Every product, every service, every parcel",
-        "bullets": [
-          "The Etsy and eBay Shipping Cost Calculator uses this same maths for Excel and Google Sheets:",
-          "up to 30 products, dimensional weight, services side by side, a free-shipping test against your own orders and net profit per order after fees. $2.99, instant download."
-        ],
-        "button": "Get the workbook on Etsy",
-        "url": "https://proofnotfluff.etsy.com/listing/4585097496"
-      },
-      "faq": [
-        [
-          "What goes into the true cost of shipping?",
-          "The label, the box or mailer, filler, tape, label paper or ink, the minutes it takes you to pack, and the marketplace fees on the shipping you charge."
-        ],
-        [
-          "Does Etsy charge fees on shipping?",
-          "Yes. For US sellers the 6.5% transaction fee and the 3% payment processing fee both apply to the shipping you charge, as of Oct 7, 2026. Processing also has a $0.25 part per order that applies with or without shipping."
-        ],
-        [
-          "Where does the label cost come from?",
-          "What you paid for the label, from your label platform or receipt. The calculator does not look up carrier rates."
-        ],
-        [
-          "What if I offer free shipping?",
-          "Type 0 for the shipping you charge. The whole parcel cost then comes out of the item price, and there is no fee on shipping."
-        ],
-        [
-          "Is this tax or financial advice?",
-          "No. It is a planning estimate based on the numbers you enter."
-        ]
-      ],
-      "sources": "Etsy Fees & Payments Policy (etsy.com/legal/fees, last updated Oct 5, 2026) and Etsy Help, What are Payment Processing Fees for Selling on Etsy? Both checked Oct 7, 2026. No carrier rate is assumed: the label cost is yours. ProofNotFluff is not affiliated with or endorsed by Etsy.",
-      "number_sources": [
-        "$4.95 charged, $0.85 box, $0.45 filler, $0.08 tape, $0.06 label, 6 minutes: engine PRODUCTS row 1 (Ceramic Mug 12 oz); recalculated 1 Parcel Costs E22, J22:N22.",
-        "$9.95 label: 1 Parcel Costs I22 (postage used; cheapest service from tab 4 at zone 5). Shown on the page only as a typed example input, not as a carrier rate.",
-        "$18 an hour: engine HOURLY; 1 Parcel Costs G14. $1.80 packing: O22.",
-        "$13.19 true cost per parcel, -$8.24 shortfall: 1 Parcel Costs P22, Q22 ('Under-recovered').",
-        "9.5% fee: engine FEES (5 Dashboard F27, 'Etsy: 6.5% transaction plus 3% processing'); re-checked Oct 7, 2026 on etsy.com/legal/fees (6.5%, includes shipping, updated Oct 5, 2026) and Etsy Help 115015628847 (3% + $0.25, includes shipping).",
-        "$0.47 = 9.5% x 4.95 (the shipping share of 5 Dashboard's fee formula F x (D + E)); $13.66 and -$8.71 follow; $14.58 = 13.19 / 0.905 rounded up to the cent."
-      ]
-    },
-    {
-      "slug": "inventory-reorder-point-calculator",
-      "kind": "reorder_point",
-      "draft": true,
-      "title": "Reorder Point Calculator for Small Shops: When to Reorder and How Much | ProofNotFluff",
-      "desc": "Free reorder point calculator for small businesses. Type daily sales, supplier lead time and safety stock to see the stock level to reorder at, how many units to order, and how many days you have left.",
-      "eyebrow": "Free calculator",
-      "h1": "Reorder Point Calculator",
-      "lede": "Know when to reorder before you run out. Type how fast one product sells and how long your supplier takes, and see the reorder point, how many units to order and how many days you have. Free, no sign-up.",
-      "card": "The stock level to reorder at, and how many units to order, for one product.",
-      "defaults": {
-        "daily": "6",
-        "lead": "7",
-        "safety": "20",
-        "cycle": "14",
-        "onHand": "46",
-        "onOrder": "0",
-        "unitCost": "2.60"
-      },
-      "method": [
-        "Reorder point = units sold per day x supplier lead time in days x (1 + safety stock). It is the stock that covers the sales you expect while an order is on its way, plus a cushion.",
-        "Order up to = units sold per day x (lead time + days between your orders) x (1 + safety stock). When you order, you order enough to get back up to this level: order up to minus on hand minus on order, rounded up to a whole unit.",
-        "The status reads Order now when on hand plus on order is at or under the reorder point, or when on hand runs out before an order could land and nothing is on order. Days until you reach the reorder point = (on hand + on order - reorder point) / units sold per day. Over 120 days of stock reads as overstocked, the workbook's default."
-      ],
-      "example": "Take the goat milk soap bar in the workbook's sample shop: it sells 6 a day, the supplier takes 7 days, safety stock is 20% and the shop orders every 14 days. The reorder point is 6 x 7 x 1.2 = 50.4 bars, and with 46 on hand and none on order it is time to order. Order up to is 6 x 21 x 1.2 = 151.2, so the order is 106 bars, $275.60 at $2.60 each. The shop's speckled mug sells 1.4 a day with a 21-day lead time: its reorder point is 35.28 mugs, so 48 on hand reaches it in about 9.1 days, and the next order is 24 mugs, $156. These are the sample shop's numbers in the Cash-Aware Reorder Planner workbook.",
-      "cta": {
-        "title": "Every product, every supplier, and the cash to pay for it",
-        "bullets": [
-          "The Cash-Aware Reorder Planner uses this same maths for Excel and Google Sheets:",
-          "up to 30 products, a reorder plan in priority order, purchase orders grouped by supplier, a cash check that funds the most urgent orders first, and a dead stock list. $2.99, instant download."
-        ],
-        "button": "Get the workbook on Etsy",
-        "url": "https://proofnotfluff.etsy.com/listing/4585004344"
-      },
-      "faq": [
-        [
-          "How do you calculate a reorder point?",
-          "Multiply the units you sell per day by your supplier's lead time in days, then add a safety stock cushion. Selling 6 a day with a 7-day lead time and 20% safety stock gives 6 x 7 x 1.2 = 50.4 units."
-        ],
-        [
-          "What is safety stock?",
-          "A cushion on top of the sales you expect while an order is on its way, written here as a percent of those sales. Raise it for a supplier that often runs late or a product whose sales jump around."
-        ],
-        [
-          "How many units should I order?",
-          "Enough to get back up to your order-up-to level: the sales you expect over the lead time plus the days until your next order, with the same cushion, minus what you have on hand and on order."
-        ],
-        [
-          "How do I find units sold per day?",
-          "Count the units sold in the last 30 days and divide by 30. A product that sold 42 units last month sells 1.4 a day."
-        ],
-        [
-          "Does this work for products with seasonal sales?",
-          "Use your recent daily sales and check again before your busy season. The workbook adds a trend adjustment that raises or lowers daily sales for the season ahead."
-        ],
-        [
-          "Is this financial advice?",
-          "No. It is a planning estimate based on the numbers you enter. Check minimum order quantities, price breaks and lead times with your supplier."
-        ]
-      ],
-      "sources": "Every default is the sample shop's soap bar in the Cash-Aware Reorder Planner workbook (built and recalculated Oct 8, 2026); the formulas are the workbook's own 2 SKU List columns. No outside rates are used.",
-      "number_sources": [
-        "SKU-012: 6 a day, 7-day lead, 46 on hand, $2.60: engines/cash-aware-reorder-planner SKUS; safety 20%, 14 days between orders: EX.",
-        "50.4 reorder point, 151.2 order up to, REORDER, $275.60: recalculated 2 SKU List Q, R, T, X for SKU-012 (Oct 8, 2026).",
-        "SKU-001: 35.28 reorder point, 9.0857 days until reorder, $156 (24 x $6.50): 2 SKU List Q, W, X for SKU-001.",
-        "Overstock at 120 days: engine EX over=120 (1 Your Shop)."
-      ]
-    }
-  ]
+ "updated": "2026-10-08",
+ "pages": [
+  {
+   "slug": "house-cleaning-price-calculator",
+   "kind": "service",
+   "title": "House Cleaning Price Calculator: Price Every Clean So It Pays You | ProofNotFluff",
+   "desc": "Free house cleaning price calculator. Enter your pay goal, hours and costs to get your break-even rate, your target rate and a quote for any clean, drive time included.",
+   "eyebrow": "Free calculator",
+   "h1": "House Cleaning Price Calculator",
+   "lede": "Find what a clean has to cost so it pays you: your break-even rate, your target rate and a quote for the job, with drive time and self-employment tax counted. Free, no sign-up.",
+   "card": "Break-even rate, target rate and a quote for any clean, drive time included.",
+   "defaults": {
+    "takeHome": "52,000",
+    "weeks": "48",
+    "hours": "45",
+    "paidShare": "65",
+    "monthlyCosts": "545",
+    "incomeTax": "12",
+    "margin": "15",
+    "perMile": "0.76",
+    "mph": "30"
+   },
+   "costs_hint": "Insurance, phone, apps, marketing, equipment, fees",
+   "presets": [
+    [
+     "Standard clean, 2 bed",
+     2.5,
+     1,
+     8,
+     15
+    ],
+    [
+     "Deep clean, 2 bed",
+     5,
+     1,
+     15,
+     15
+    ],
+    [
+     "Move-out clean, 3 bed",
+     7,
+     1,
+     20,
+     15
+    ]
+   ],
+   "method": [
+    "Most cleaners divide the pay they want by the hours they work. That leaves out three things: the hours nobody pays for (driving, quoting, invoicing), the business costs that run every month, and self-employment tax.",
+    "This calculator grosses your take-home up for self-employment tax (15.3% on 92.35% of profit) and your income tax estimate, adds a year of business costs, and spreads the total over the hours customers actually pay for. That is your break-even rate. Your margin on top gives the target rate.",
+    "A job's price floor is your time on site and your drive time at the break-even rate, plus vehicle cost per mile and supplies. The quote adds your margin and rounds up to the next $5."
+   ],
+   "example": "A $52,000 take-home goal with a 12% income tax estimate needs $70,394 of profit before tax. Add $6,540 a year of business costs and you need $76,934 of revenue. At 48 weeks of 45 hours with 65% paid, that is 1,404 paid hours: a break-even rate of $54.80 and a target of $64.47 with a 15% margin. Pay divided by all hours would say $24.07. A standard 2-bed clean (2.5 hours on site, a 15-mile round trip, $8 of supplies) has a $183.79 price floor and quotes at $220, with $36.21 of profit inside it.",
+   "cta": {
+    "title": "Price every job at once",
+    "bullets": [
+     "The full Service Pricing Calculator workbook uses this same maths for Excel and Google Sheets:",
+     "a quote builder, a printable price sheet for every job type, a job tracker that flags jobs below your floor, and 20 example jobs across 7 trades. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://www.etsy.com/listing/4587962930"
+   },
+   "faq": [
+    [
+     "How much should I charge to clean a house?",
+     "There is no single right price, because it depends on your pay goal, your costs and how many of your hours customers pay for. Enter yours above and the calculator shows the lowest price that covers them and a quote with your margin."
+    ],
+    [
+     "Why is my break-even rate so much higher than my pay divided by my hours?",
+     "Because part of every week is unpaid (driving, quoting, admin), your business costs keep running, and as a self-employed cleaner you pay both halves of Social Security and Medicare. Each of those raises the rate every paid hour has to carry."
+    ],
+    [
+     "Does it work for deep cleans and move-outs?",
+     "Yes. Pick an example job or type your own hours, crew size, supplies and miles. The example jobs are starting points, not market prices."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
+    ]
+   ],
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29). Checked Oct 6, 2026."
+  },
+  {
+   "slug": "pressure-washing-price-calculator",
+   "kind": "service",
+   "cta_pending_listing": true,
+   "title": "Pressure Washing Price Calculator: Quote Driveways, House Washes and More | ProofNotFluff",
+   "desc": "Free pressure washing price calculator. Get your break-even rate, target rate and a quote for driveways, soft washes, roofs, decks and storefronts, drive time included.",
+   "eyebrow": "Free calculator",
+   "h1": "Pressure Washing Price Calculator",
+   "lede": "Quote driveways, house washes, roofs, decks and storefronts from your own numbers: break-even rate, target rate and a job quote with drive time and self-employment tax counted. Free, no sign-up.",
+   "card": "Quote driveways, soft washes, roofs and decks from your own numbers.",
+   "defaults": {
+    "takeHome": "55,000",
+    "weeks": "44",
+    "hours": "45",
+    "paidShare": "65",
+    "monthlyCosts": "755",
+    "incomeTax": "12",
+    "margin": "15",
+    "perMile": "0.76",
+    "mph": "30"
+   },
+   "costs_hint": "Insurance, equipment and rig, hoses and tips, marketing, apps, fees",
+   "presets": [
+    [
+     "Driveway: 2-car concrete driveway",
+     1.5,
+     1,
+     12,
+     20
+    ],
+    [
+     "Driveway: 3-car driveway with walkway",
+     2.5,
+     1,
+     18,
+     20
+    ],
+    [
+     "Patio and pavers: Paver patio, clean only",
+     3,
+     1,
+     20,
+     20
+    ],
+    [
+     "Patio and pavers: Paver clean, re-sand and seal",
+     6,
+     2,
+     180,
+     40
+    ],
+    [
+     "House wash: 1-story house, soft wash",
+     2.5,
+     1,
+     30,
+     20
+    ],
+    [
+     "House wash: 2-story house, soft wash",
+     3,
+     1,
+     45,
+     20
+    ],
+    [
+     "Roof: Roof soft wash, 1-story",
+     2,
+     2,
+     70,
+     20
+    ],
+    [
+     "Gutters: Gutter face brightening",
+     1.5,
+     1,
+     15,
+     20
+    ],
+    [
+     "Deck: Deck clean, brighten, 300 sq ft",
+     3,
+     1,
+     30,
+     20
+    ],
+    [
+     "Deck: Deck clean and stain, 300 sq ft",
+     7,
+     1,
+     150,
+     40
+    ],
+    [
+     "Fence: Wood fence, 150 ft, one side",
+     3,
+     1,
+     25,
+     20
+    ],
+    [
+     "Pool deck: Concrete pool deck",
+     2,
+     1,
+     15,
+     20
+    ],
+    [
+     "Commercial: Storefront and sidewalk",
+     2,
+     1,
+     15,
+     25
+    ],
+    [
+     "Commercial: Dumpster pad",
+     1.5,
+     1,
+     20,
+     25
+    ],
+    [
+     "Commercial: Drive-thru lane",
+     3,
+     1,
+     25,
+     25
+    ]
+   ],
+   "method": [
+    "Most owners price a driveway by what the last company charged. That misses the hours nobody pays for (driving, quoting, rain days), the equipment that wears out, and self-employment tax.",
+    "This calculator grosses your take-home up for self-employment tax (15.3% on 92.35% of profit) and your income tax estimate, adds a year of business costs, and spreads the total over the hours customers actually pay for. That is your break-even rate; your margin on top gives the target rate.",
+    "A job's price floor is your crew's time on site and drive time at the break-even rate, plus vehicle cost per mile and supplies. The quote adds your margin and rounds up to the next $5."
+   ],
+   "example": "A $55,000 take-home goal with a 12% income tax estimate needs $74,455 of profit before tax. Add $9,060 a year of business costs and you need $83,515 of revenue. At 44 weeks of 45 hours with 65% paid, that is 1,287 paid hours: a break-even rate of $64.89 and a target of $76.34 with a 15% margin. Pay divided by all hours would say $27.78. A 2-car concrete driveway (1.5 hours on site, a 20-mile round trip, $12 of supplies) has a $167.80 price floor and quotes at $200, so a $100 driveway price falls $67.80 short.",
+   "cta": {
+    "title": "Price every job at once",
+    "bullets": [
+     "The Pressure Washing Pricing Calculator workbook uses this same maths for Excel and Google Sheets:",
+     "15 example jobs from driveways to drive-thru lanes, a quote builder, a printable price sheet and a job tracker. $2.99, instant download."
+    ],
+    "button": "See it in the Etsy shop",
+    "url": "https://proofnotfluff.etsy.com"
+   },
+   "faq": [
+    [
+     "How much should I charge to pressure wash a driveway?",
+     "It depends on your pay goal, costs and travel. With the example numbers a 2-car concrete driveway needs $200 to pay its share; enter your own numbers to see yours."
+    ],
+    [
+     "Should I price by the square foot or by the hour?",
+     "Square-foot prices hide how long a job takes you. This calculator prices from time, crew, supplies and travel; for square-foot pricing, enter the hours a job of that size takes you."
+    ],
+    [
+     "Does it handle two-person jobs?",
+     "Yes. Set people on the job to 2 and both people's time on site and drive time are counted."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
+    ]
+   ],
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29). Checked Oct 6, 2026."
+  },
+  {
+   "slug": "hourly-rate-calculator",
+   "kind": "hourly",
+   "title": "Hourly Rate Calculator for Freelancers and Self-Employed | ProofNotFluff",
+   "desc": "Free hourly rate calculator. Enter the take-home pay you want, your tax set-aside, expenses and billable hours to get your minimum hourly rate, and test any rate before you quote it.",
+   "eyebrow": "Free calculator",
+   "h1": "Hourly Rate Calculator",
+   "lede": "Find the hourly rate that pays you what you want after tax and costs, then test any rate before you quote it. Free, no sign-up.",
+   "card": "Your minimum hourly rate, and what any rate really pays you.",
+   "defaults": {
+    "takeHome": "60,000",
+    "taxRate": "25",
+    "expenses": "6,000",
+    "weeks": "48",
+    "hours": "40",
+    "billableShare": "60",
+    "checkRate": "40"
+   },
+   "method": [
+    "Your take-home is grossed up for the tax you set aside, then a year of business expenses is added. That is the revenue you need.",
+    "Spread that revenue over the hours a client actually pays for (your working hours times your billable share) and you have your minimum hourly rate. The rate card rounds it up to the next $5.",
+    "To test a rate, the calculator multiplies it by your billable hours, takes out expenses and your tax set-aside on any profit, and divides what is left by every hour you work."
+   ],
+   "example": "A $60,000 take-home with a 25% tax set-aside and $6,000 of expenses needs $86,000 of revenue. At 48 weeks of 40 hours with 60% billable, that is 1,152 billable hours, so the minimum rate is $74.65 (rate card $75). Charging $40 an hour brings in $46,080 and leaves $30,060 after expenses and tax: $15.66 for every hour worked, $29,940 short of the goal.",
+   "cta": {
+    "title": "Keep it, change it, quote with it",
+    "bullets": [
+     "The Hourly Rate Quick Calculator is this calculator as a one-tab Excel and Google Sheets workbook,",
+     "with a job quote section, a rate card and a Start Here guide. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://www.etsy.com/listing/4589695837"
+   },
+   "faq": [
+    [
+     "How do I calculate my hourly rate as a freelancer?",
+     "Start from the take-home you want, add the tax you set aside and your business expenses, then divide by the hours clients actually pay for, not every hour you work."
+    ],
+    [
+     "What share of my hours is billable?",
+     "Many self-employed people bill 50% to 70% of their working hours; the rest goes to admin, sales and travel. Track a few weeks to find yours."
+    ],
+    [
+     "What tax set-aside rate should I use?",
+     "Ask your tax preparer. A set-aside rate is a savings habit, not a tax calculation."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is a planning estimate based on the numbers you enter."
+    ]
+   ],
+   "sources": "Tax set-aside is your own estimate; ask your tax preparer. Checked Oct 6, 2026."
+  },
+  {
+   "slug": "ecommerce-13-week-cash-flow-calculator",
+   "kind": "cashflow",
+   "draft": false,
+   "title": "13 Week Cash Flow Calculator for Ecommerce | ProofNotFluff",
+   "desc": "Free 13 week cash flow calculator for ecommerce brands. Enter cash today, weekly payouts, weekly costs and one purchase order to see your lowest cash week and the cash you need to cover it.",
+   "eyebrow": "Free calculator",
+   "h1": "13 Week Cash Flow Calculator for Ecommerce",
+   "lede": "See the week your cash bottoms out and how much you need to cover it, before a purchase order lands. Free, no sign-up.",
+   "card": "Your lowest cash week in the next 13, and the cash needed to cover it.",
+   "defaults": {
+    "openingCash": "20,000",
+    "weeklyIn": "53,700",
+    "weeklyOut": "32,000",
+    "poAmount": "117,000",
+    "poWeek": "4"
+   },
+   "method": [
+    "Each week starts with last week's ending cash, adds the payouts that reach your bank and takes out your fixed costs and ad spend. In the week the purchase order is due, its payment comes out too.",
+    "The lowest ending cash across the 13 weeks is your low point. If it is below zero, the cash needed is the amount that keeps that week at zero.",
+    "This free version uses one weekly figure for cash in and one purchase order paid in a single week. Real brands wait days or weeks for each channel to pay out and pay POs as a deposit and a balance; the full workbook models both."
+   ],
+   "example": "Say a brand starts with $20,000 and collects $53,700 a week after fees while paying $32,000 a week in payroll, fixed costs and ads. That adds $21,700 a week, so cash reaches $85,100 by week 3. A $117,000 PO balance due in week 4 takes it to -$10,200, so the brand needs $10,200 more by then, or a later due date. By week 13 cash is back to $185,100. The weekly figures are the week 1 numbers from example 1 of the 13-Week E-commerce Cash Flow workbook; the starting cash and due week are changed to show a squeeze.",
+   "cta": {
+    "title": "The full 13-week cash flow",
+    "bullets": [
+     "The 13-Week E-commerce Cash Flow workbook models each channel's payout lag (Amazon, TikTok Shop, your own store, retail), up to six POs as deposit plus balance and freight,",
+     "factoring cost in dollars, a credit line, side-by-side scenarios and a PO planner, for Excel and Google Sheets."
+    ],
+    "button": "Coming soon",
+    "url": ""
+   },
+   "faq": [
+    [
+     "What is a 13 week cash flow?",
+     "A week-by-week plan of the cash coming in and going out over the next quarter, so you can see the lowest week before it happens. Thirteen weeks is one quarter."
+    ],
+    [
+     "Why can a profitable store run out of cash?",
+     "Sales are recorded when they happen, but payouts arrive later and inventory is paid for before it sells. Growing sales and big purchase orders widen that gap."
+    ],
+    [
+     "Should I use sales or payouts for cash in?",
+     "Payouts: the money that reaches your bank after fees and refunds, in the week it arrives."
+    ],
+    [
+     "What if the lowest week is below zero?",
+     "You need that much cash, credit or a later payment date by that week. Moving a PO's due date is often the first lever to test."
+    ],
+    [
+     "Is this financial advice?",
+     "No. It is a planning estimate based on the numbers you enter."
+    ]
+   ],
+   "sources": "No rates or fees are assumed: every figure is yours. Page checked Oct 7, 2026."
+  },
+  {
+   "slug": "etsy-fee-calculator",
+   "kind": "etsy_fees",
+   "draft": true,
+   "title": "Etsy Fee Calculator: Fees, Payout and Profit per Sale | ProofNotFluff",
+   "desc": "Free Etsy fee calculator for US sellers. Enter your price, shipping and costs to see the transaction fee, payment processing, listing fee, Offsite Ads, your payout and your profit on one sale.",
+   "eyebrow": "Free calculator",
+   "h1": "Etsy Fee Calculator",
+   "lede": "See every Etsy fee on one sale, what Etsy pays you, and what you keep after your costs. With or without an Offsite Ads order. Free, no sign-up.",
+   "card": "Every Etsy fee on one sale, your payout and your profit, Offsite Ads included.",
+   "defaults": {
+    "price": "24.00",
+    "ship": "5.50",
+    "tax": "0",
+    "cost": "10.20",
+    "label": "6.25",
+    "adsRate": "0"
+   },
+   "fees": {
+    "tfRate": "6.5",
+    "procRate": "3",
+    "procFixed": "0.25",
+    "listFee": "0.20"
+   },
+   "ads_options": [
+    [
+     "0",
+     "No, a normal sale"
+    ],
+    [
+     "15",
+     "Yes: 15% (shop under $10,000 in sales over 365 days)"
+    ],
+    [
+     "12",
+     "Yes: 12% (shop at $10,000 or more)"
+    ]
+   ],
+   "ads_cap": 100,
+   "asof": {
+    "lead": "US fees as of",
+    "date": "Oct 7, 2026",
+    "from": [
+     [
+      "Etsy's fee page",
+      "https://www.etsy.com/legal/fees"
+     ],
+     [
+      "Etsy's payment processing page",
+      "https://help.etsy.com/hc/articles/115015628847"
+     ]
+    ],
+    "tail": "Every rate is editable if Etsy changes one."
+   },
+   "method": [
+    "Etsy charges a 6.5% transaction fee on the item price plus the shipping you charge, but not on US sales tax. Payment processing for a US bank account is 3% of everything the buyer paid, sales tax included, plus $0.25 an order. Each sale also carries a $0.20 listing fee, because a listing with more than one in stock renews for $0.20 after each sale.",
+    "If Etsy attributes the order to one of its Offsite Ads, it adds 15% of the item price plus shipping, or 12% once a shop has made $10,000 or more in sales over the prior 365 days. That fee never goes over $100 on one order.",
+    "Each fee is rounded to the cent. What is left after the fees is your payout. Take away the item cost and the shipping label and you have the profit on the sale. Margin is that profit divided by the item price plus shipping."
+   ],
+   "example": "Take an 8 oz soy candle listed at $24 with $5.50 shipping charged, $10.20 of materials, packaging and making time, and a $6.25 label. Etsy's fees come to $3.26: $1.92 transaction fee, $1.14 payment processing and the $0.20 listing fee. Etsy pays out $26.24 and the sale makes $9.79, a 33.2% margin. If the same order came through an Offsite Ad at 15%, another $4.43 comes off and profit drops to $5.36. These are the inputs for the 8 oz candle in the example shop inside the True Profit System for Etsy Sellers workbook, which shows $9.80 because it does not round each fee to the cent.",
+   "cta": {
+    "title": "Every listing, every order, every payout",
+    "bullets": [
+     "The True Profit System for Etsy Sellers workbook uses this same maths for Excel and Google Sheets:",
+     "true profit and an OK, WATCH or REPRICE flag on every listing, the list price that hits the profit you want, an order log, a payout check to the cent and a tax reserve. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4584721212"
+   },
+   "faq": [
+    [
+     "What fees does Etsy take from a sale?",
+     "For a US seller: a 6.5% transaction fee on the item price plus shipping, payment processing of 3% plus $0.25 on the total the buyer paid, and a $0.20 listing fee. Orders Etsy attributes to Offsite Ads add 15% or 12%, up to $100."
+    ],
+    [
+     "Does Etsy charge fees on shipping?",
+     "Yes. The transaction fee and payment processing both apply to the shipping you charge, so moving shipping into the item price does not change those two fees."
+    ],
+    [
+     "Why is a listing fee counted on every sale?",
+     "A listing costs $0.20 to publish, and a listing with more than one in stock renews for another $0.20 after each sale. So each sale carries one listing fee."
+    ],
+    [
+     "I sell from outside the US. Does this work?",
+     "Yes, if you type your own rates. Etsy's payment processing fee depends on the country of your bank account."
+    ],
+    [
+     "Is this tax or financial advice?",
+     "No. It is a planning estimate based on the numbers you enter."
+    ]
+   ],
+   "sources": "Etsy Fees & Payments Policy (etsy.com/legal/fees, last updated Oct 5, 2026) and Etsy Help, What are Payment Processing Fees for Selling on Etsy? Both checked Oct 7, 2026. ProofNotFluff is not affiliated with or endorsed by Etsy."
+  },
+  {
+   "slug": "craft-fair-break-even-calculator",
+   "kind": "craft_fair",
+   "draft": true,
+   "title": "Craft Fair Break-Even Calculator: Pieces to Cover Your Booth Fee | ProofNotFluff",
+   "desc": "Free craft fair break-even calculator. Enter your booth fee, other show costs, average price, cost per piece and card fees to see how many pieces you must sell to break even and to make the profit you want.",
+   "eyebrow": "Free calculator",
+   "h1": "Craft Fair Break-Even Calculator",
+   "lede": "How many pieces you must sell to cover the booth fee and the rest of the day, and how many it takes to make it worth going. Free, no sign-up.",
+   "card": "Pieces to sell to cover your booth fee and the whole day, and to hit your profit.",
+   "defaults": {
+    "booth": "150",
+    "other": "165.60",
+    "price": "13.84",
+    "cpp": "7.30",
+    "cardPct": "2.6",
+    "cardFlat": "0.15",
+    "cardShare": "70",
+    "avgSale": "30",
+    "target": "300"
+   },
+   "asof": {
+    "lead": "Card fee example as of",
+    "date": "Oct 7, 2026",
+    "from": [
+     [
+      "Square's US fees page",
+      "https://squareup.com/help/us/en/article/5068-fees-and-pricing"
+     ]
+    ],
+    "tail": "Square's Free plan, tap, dip or swipe: 2.6% plus 15 cents. Type your own reader's rates."
+   },
+   "method": [
+    "What the day costs is the booth fee plus everything else the show takes: travel, parking, meals, organizer extras and a share of the tent and display you reuse.",
+    "Each piece earns its price minus its own cost and its share of card fees. The card fee per dollar of sales is the share paid by card times the percent fee plus the flat fee spread over an average customer's spend.",
+    "Pieces to break even is the day's cost divided by what each piece earns, rounded up to a whole piece. Pieces for your profit adds the profit you want to the day's cost first."
+   ],
+   "example": "A $150 booth fee becomes a $315.60 day once organizer extras, travel, parking, meals and a share of the display add $165.60. With an average price of $13.84, a cost of $7.30 a piece and 70% of sales by card on a 2.6% plus 15 cent reader, each piece earns $6.24. The day needs 51 pieces, $705.84 of sales, to break even, and 99 pieces, $1,370.16 of sales, to clear $300 of profit. These are the example show and products inside the Craft Fair Profit Calculator workbook.",
+   "cta": {
+    "title": "Plan every show of the season",
+    "bullets": [
+     "The Craft Fair Profit Calculator workbook uses this same maths for Excel and Google Sheets:",
+     "every cost of the day itemized, up to 15 products with their own costs and sales mix, how many pieces to bring, a what-if table for six booth fees and a log for every show. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4586813952"
+   },
+   "faq": [
+    [
+     "How many items do I need to sell to cover a booth fee?",
+     "Divide what the whole day costs by what each piece earns after its own cost and card fees, then round up. Count the whole day, not only the booth: in the example, other costs add $165.60 to a $150 booth."
+    ],
+    [
+     "Should my making time be in the cost per piece?",
+     "Yes, if you want the day to pay you for it. Leave it out and break-even only covers materials and fees."
+    ],
+    [
+     "What card fee should I use?",
+     "The one your reader charges. As of Oct 7, 2026, Square's Free plan in the US charges 2.6% plus 15 cents for tap, dip or swipe payments."
+    ],
+    [
+     "Do sales include sales tax?",
+     "No. Use prices before sales tax. Tax you collect at a show is owed to the state, not earned."
+    ],
+    [
+     "Is this financial advice?",
+     "No. It is a planning estimate based on the numbers you enter."
+    ]
+   ],
+   "sources": "Card fee example: Square, Fees and pricing (squareup.com/help/us/en/article/5068-fees-and-pricing), checked Oct 7, 2026. No other rates are assumed: every figure is yours."
+  },
+  {
+   "slug": "lawn-care-price-calculator",
+   "kind": "service",
+   "draft": true,
+   "title": "Lawn Care Price Calculator: Price Mowing and Spring Cleanups So They Pay You | ProofNotFluff",
+   "desc": "Free lawn care price calculator. Enter your pay goal, hours and costs to get your break-even rate, your target rate and a quote for a weekly mow, a spring cleanup or a mulch install, drive time included.",
+   "eyebrow": "Free calculator",
+   "h1": "Lawn Care Price Calculator",
+   "lede": "Price a weekly mow, a spring cleanup or a mulch job from your own numbers: break-even rate, target rate and a quote with crew time, drive time and self-employment tax counted. Free, no sign-up.",
+   "card": "Quote mowing, spring cleanups and mulch jobs from your own numbers, crew and drive time included.",
+   "defaults": {
+    "takeHome": "52,000",
+    "weeks": "48",
+    "hours": "45",
+    "paidShare": "65",
+    "monthlyCosts": "545",
+    "incomeTax": "12",
+    "margin": "15",
+    "perMile": "0.76",
+    "mph": "30"
+   },
+   "costs_hint": "Insurance, mower and equipment upkeep, phone, apps, marketing, fees",
+   "presets": [
+    [
+     "Weekly mow, small yard",
+     0.75,
+     1,
+     3,
+     10
+    ],
+    [
+     "Spring cleanup",
+     4,
+     2,
+     20,
+     10
+    ],
+    [
+     "Mulch install, labor only",
+     5,
+     2,
+     0,
+     10
+    ]
+   ],
+   "preset_default": 1,
+   "method": [
+    "Most lawn care owners price a cut or a cleanup by what the next company charges, or by pay divided by hours. That leaves out the hours nobody pays for (driving, quoting, rain days), the equipment and costs that run every month, and self-employment tax.",
+    "This calculator grosses your take-home up for self-employment tax (15.3% on 92.35% of profit) and your income tax estimate, adds a year of business costs, and spreads the total over the hours customers actually pay for. That is your break-even rate. Your margin on top gives the target rate.",
+    "A job's price floor is every crew member's time on site and drive time at the break-even rate, plus vehicle cost per mile and supplies such as fuel, blades and bags. The quote adds your margin and rounds up to the next $5."
+   ],
+   "example": "A $52,000 take-home goal with a 12% income tax estimate needs $70,394 of profit before tax. Add $6,540 a year of business costs and you need $76,934 of revenue. At 48 weeks of 45 hours with 65% paid, that is 1,404 paid hours: a break-even rate of $54.80 and a target of $64.47 with a 15% margin. Pay divided by all hours would say $24.07. A 2-person spring cleanup (4 hours on site each, a 10-mile round trip, $20 of supplies) has a $502.50 price floor and quotes at $595, with $92.50 of profit inside it. A weekly mow of a small yard (45 minutes on site, a 10-mile round trip, $3 of fuel and blades) has a $69.96 floor and quotes at $85.",
+   "cta": {
+    "title": "Price every job at once",
+    "bullets": [
+     "The full Service Pricing Calculator workbook uses this same maths for Excel and Google Sheets:",
+     "a quote builder, a printable price sheet for every job type, a job tracker that flags jobs below your floor, and 20 example jobs across 7 trades, lawn care among them. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4587962930"
+   },
+   "faq": [
+    [
+     "How much should I charge to mow a lawn?",
+     "It depends on your pay goal, your costs, your drive and how long the yard takes you. With the example numbers a small yard that takes 45 minutes needs $85 to pay its share. Enter your own numbers to see yours."
+    ],
+    [
+     "How do I price a spring cleanup with a crew?",
+     "Pick the spring cleanup example or type your own hours and set people on the job to your crew size. Every person's time on site and drive time is counted, so a 2-person job costs twice the labor of a solo one."
+    ],
+    [
+     "Should I charge per cut or per month?",
+     "This calculator prices one visit. For a monthly or seasonal plan, multiply the per-visit quote by the number of visits in that period."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
+    ]
+   ],
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29). Checked Oct 6, 2026."
+  },
+  {
+   "slug": "auto-detailing-price-calculator",
+   "kind": "service",
+   "draft": true,
+   "title": "Auto Detailing Price Calculator: Price Every Detail So It Pays You | ProofNotFluff",
+   "desc": "Free mobile auto detailing price calculator. Enter your pay goal, hours and costs to get your break-even rate, your target rate and a quote for an interior detail, a full sedan detail or an SUV, drive time included.",
+   "eyebrow": "Free calculator",
+   "h1": "Auto Detailing Price Calculator",
+   "lede": "Price an interior detail, a full sedan detail or an SUV from your own numbers: break-even rate, target rate and a quote with drive time and self-employment tax counted. Free, no sign-up.",
+   "card": "Quote interior and full details for sedans and SUVs, drive time included.",
+   "defaults": {
+    "takeHome": "52,000",
+    "weeks": "48",
+    "hours": "45",
+    "paidShare": "65",
+    "monthlyCosts": "545",
+    "incomeTax": "12",
+    "margin": "15",
+    "perMile": "0.76",
+    "mph": "30"
+   },
+   "costs_hint": "Insurance, polishers and equipment, phone, apps, marketing, fees",
+   "presets": [
+    [
+     "Interior detail, sedan",
+     2.5,
+     1,
+     12,
+     20
+    ],
+    [
+     "Full detail, sedan",
+     4,
+     1,
+     20,
+     20
+    ],
+    [
+     "Full detail, SUV or truck",
+     5,
+     1,
+     25,
+     20
+    ]
+   ],
+   "preset_default": 1,
+   "method": [
+    "Most detailers price a package by what other shops post, or by pay divided by hours. That leaves out the hours nobody pays for (driving to the car, quoting, texting customers), the costs that run every month, and self-employment tax.",
+    "This calculator grosses your take-home up for self-employment tax (15.3% on 92.35% of profit) and your income tax estimate, adds a year of business costs, and spreads the total over the hours customers actually pay for. That is your break-even rate. Your margin on top gives the target rate.",
+    "A job's price floor is your time on the car and your drive time at the break-even rate, plus vehicle cost per mile and supplies such as chemicals, towels and pads. The quote adds your margin and rounds up to the next $5."
+   ],
+   "example": "A $52,000 take-home goal with a 12% income tax estimate needs $70,394 of profit before tax. Add $6,540 a year of business costs and you need $76,934 of revenue. At 48 weeks of 45 hours with 65% paid, that is 1,404 paid hours: a break-even rate of $54.80 and a target of $64.47 with a 15% margin. Pay divided by all hours would say $24.07. A full sedan detail (4 hours on site, a 20-mile round trip, $20 of supplies) has a $290.91 price floor and quotes at $345, with $54.09 of profit inside it. An interior-only sedan detail (2.5 hours, $12 of supplies) quotes at $240, and a full SUV or truck detail (5 hours, $25 of supplies) at $415.",
+   "cta": {
+    "title": "Price every job at once",
+    "bullets": [
+     "The full Service Pricing Calculator workbook uses this same maths for Excel and Google Sheets:",
+     "a quote builder, a printable price sheet for every job type, a job tracker that flags jobs below your floor, and 20 example jobs across 7 trades, mobile auto detailing among them. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4587962930"
+   },
+   "faq": [
+    [
+     "How much should I charge for a full detail?",
+     "It depends on your pay goal, your costs, your drive and how long the car takes you. With the example numbers a 4-hour full sedan detail needs $345 to pay its share. Enter your own numbers to see yours."
+    ],
+    [
+     "Does it count the drive to the customer?",
+     "Yes. Round-trip miles become drive time at your average speed, priced at your break-even rate, plus vehicle cost per mile. A 20-mile round trip at 30 mph adds 40 minutes."
+    ],
+    [
+     "How do I price SUVs and trucks?",
+     "Pick the SUV or truck example (5 hours, $25 of supplies) or type the hours and supplies a bigger vehicle takes you. The example jobs are starting points, not market prices."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
+    ]
+   ],
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29). Checked Oct 6, 2026."
+  },
+  {
+   "slug": "junk-removal-price-calculator",
+   "kind": "service",
+   "draft": true,
+   "title": "Junk Removal Price Calculator: Quote Truck Loads, Single Items and Cleanouts | ProofNotFluff",
+   "desc": "Free junk removal price calculator. Get your break-even rate, target rate and a quote for single items, truck loads, cleanouts and tear-downs, with crew time, drive time and dump fees counted.",
+   "eyebrow": "Free calculator",
+   "h1": "Junk Removal Price Calculator",
+   "lede": "Quote a couch, a half truck load or a garage cleanout from your own numbers: break-even rate, target rate and a job quote with the second person on the truck, drive time and self-employment tax counted. Free, no sign-up.",
+   "card": "Quote single items, truck loads and cleanouts, crew, dump fees and drive time included.",
+   "defaults": {
+    "takeHome": "60,000",
+    "weeks": "48",
+    "hours": "50",
+    "paidShare": "60",
+    "monthlyCosts": "715",
+    "incomeTax": "12",
+    "margin": "15",
+    "perMile": "0.76",
+    "mph": "30"
+   },
+   "costs_hint": "Insurance, trailer and equipment, dollies and straps, ads, apps, fees",
+   "presets": [
+    [
+     "Single items: Couch or sectional",
+     0.75,
+     2,
+     25,
+     30
+    ],
+    [
+     "Single items: Mattress and box spring",
+     0.5,
+     2,
+     30,
+     30
+    ],
+    [
+     "Single items: Upright piano",
+     1.5,
+     3,
+     60,
+     30
+    ],
+    [
+     "Appliances: Refrigerator or freezer",
+     0.75,
+     2,
+     40,
+     30
+    ],
+    [
+     "Appliances: Washer and dryer pair",
+     0.75,
+     2,
+     30,
+     30
+    ],
+    [
+     "Truck loads: Minimum load, 1/8 truck",
+     0.5,
+     2,
+     20,
+     30
+    ],
+    [
+     "Truck loads: Quarter truck load",
+     1,
+     2,
+     40,
+     30
+    ],
+    [
+     "Truck loads: Half truck load",
+     1.5,
+     2,
+     75,
+     30
+    ],
+    [
+     "Truck loads: Three-quarter truck load",
+     2,
+     2,
+     110,
+     30
+    ],
+    [
+     "Truck loads: Full truck load",
+     2.5,
+     2,
+     150,
+     30
+    ],
+    [
+     "Cleanouts: Garage cleanout, 2-car",
+     4,
+     2,
+     225,
+     50
+    ],
+    [
+     "Cleanouts: Basement cleanout",
+     5,
+     2,
+     225,
+     50
+    ],
+    [
+     "Cleanouts: Estate cleanout, 3-bed",
+     10,
+     3,
+     600,
+     120
+    ],
+    [
+     "Debris: Remodel debris, half load",
+     2,
+     2,
+     120,
+     30
+    ],
+    [
+     "Debris: Yard debris, half load",
+     1.5,
+     2,
+     50,
+     30
+    ],
+    [
+     "Debris: Carpet removal, 3 rooms",
+     3,
+     2,
+     60,
+     30
+    ],
+    [
+     "Demolition: Hot tub removal",
+     2.5,
+     3,
+     120,
+     30
+    ],
+    [
+     "Demolition: Shed tear-down and haul",
+     5,
+     2,
+     180,
+     50
+    ],
+    [
+     "Commercial: Office furniture, 10 desks",
+     3,
+     3,
+     150,
+     30
+    ]
+   ],
+   "preset_default": 7,
+   "method": [
+    "A load price copied from another hauler leaves out the hours nobody pays for (driving, estimates, slow weeks), the dump fees, the second person on the truck, and self-employment tax.",
+    "This calculator grosses your take-home up for self-employment tax (15.3% on 92.35% of profit) and your income tax estimate, adds a year of business costs, and spreads the total over the hours customers actually pay for. That is your break-even rate. Your margin on top gives the target rate.",
+    "A job's price floor is every crew member's time on site and drive time at the break-even rate, plus vehicle cost per mile and supplies, with dump and disposal fees counted as supplies. Count the miles to the dump and back, and each extra dump run. The quote adds your margin and rounds up to the next $5."
+   ],
+   "example": "A $60,000 take-home goal with a 12% income tax estimate needs $81,223 of profit before tax. Add $8,580 a year of business costs and you need $89,803 of revenue. At 48 weeks of 50 hours with 60% paid, that is 1,440 paid hours: a break-even rate of $62.36 and a target of $73.37 with a 15% margin. Pay divided by all hours would say $25.00. A half truck load (2 people, 1.5 hours on site each, a 30-mile round trip, $75 of supplies and dump fees) has a $409.62 price floor and quotes at $485, with $75.38 of profit inside it. Make it a 60-mile round trip and the floor rises to $557.14 and the quote to $660.",
+   "cta": {
+    "title": "Price every job at once",
+    "bullets": [
+     "The Junk Removal Pricing Calculator workbook uses this same maths for Excel and Google Sheets:",
+     "19 example jobs from single items to estate cleanouts, a quote builder, a printable price sheet and a job tracker. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4590270056"
+   },
+   "faq": [
+    [
+     "How much should I charge for a half truck load?",
+     "It depends on your pay goal, your costs, your crew, your drive and your dump fees. With the example numbers a half load for 2 people needs $485 to pay its share. Enter your own numbers to see yours."
+    ],
+    [
+     "Where do dump fees go?",
+     "Put dump, recycling and disposal fees in supplies for the job. Put the extra miles for each dump run in round-trip miles."
+    ],
+    [
+     "Does it count the second person on the truck?",
+     "Yes. Set people on the job to your crew size and every person's time on site and drive time is counted."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
+    ]
+   ],
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29). Checked Oct 6, 2026."
+  },
+  {
+   "slug": "airbnb-nightly-rate-calculator",
+   "kind": "str_nightly",
+   "draft": true,
+   "title": "Airbnb Nightly Rate Calculator: Seasonal Rates With a Floor | ProofNotFluff",
+   "desc": "Free Airbnb and VRBO nightly rate calculator. Turn one base rate and last year's months into a nightly rate for every month, held at a floor you set, with what each night pays after the host fee.",
+   "eyebrow": "Free calculator",
+   "h1": "Airbnb Nightly Rate Calculator",
+   "lede": "One base rate, shaped by your own last 12 months: a nightly rate for every month, a floor no month goes under, and what each night pays after the platform fee. Free, no sign-up.",
+   "card": "A nightly rate for every month from one base rate, held at your floor.",
+   "defaults": {
+    "base": "185",
+    "floor": "115",
+    "cleaning": "120",
+    "minStay": "2",
+    "fee": "15.5"
+   },
+   "curves": [
+    [
+     "Example cabin, last year",
+     [
+      4800,
+      5200,
+      3900,
+      2600,
+      3100,
+      4400,
+      5600,
+      5300,
+      4300,
+      4700,
+      2400,
+      5000
+     ]
+    ],
+    [
+     "Starter curve: beach",
+     [
+      0.7,
+      0.75,
+      0.9,
+      0.95,
+      1.05,
+      1.3,
+      1.45,
+      1.35,
+      1.05,
+      0.85,
+      0.75,
+      0.9
+     ]
+    ],
+    [
+     "Starter curve: mountain",
+     [
+      1.15,
+      1.2,
+      0.9,
+      0.7,
+      0.75,
+      1.05,
+      1.25,
+      1.2,
+      1.0,
+      1.05,
+      0.6,
+      1.15
+     ]
+    ],
+    [
+     "Starter curve: urban",
+     [
+      0.85,
+      0.85,
+      1.0,
+      1.05,
+      1.1,
+      1.1,
+      1.0,
+      0.95,
+      1.1,
+      1.15,
+      0.95,
+      0.9
+     ]
+    ],
+    [
+     "Starter curve: lake",
+     [
+      0.6,
+      0.6,
+      0.7,
+      0.85,
+      1.1,
+      1.4,
+      1.55,
+      1.45,
+      1.15,
+      0.9,
+      0.8,
+      0.9
+     ]
+    ],
+    [
+     "Starter curve: rural",
+     [
+      0.75,
+      0.75,
+      0.85,
+      1.0,
+      1.1,
+      1.2,
+      1.25,
+      1.2,
+      1.15,
+      1.15,
+      0.8,
+      0.8
+     ]
+    ]
+   ],
+   "method": [
+    "Each month's season multiplier is that month's revenue last year divided by the average month. A month that brought in 31% more than average is a 1.31x month.",
+    "A month's nightly rate is your base rate times its multiplier, rounded to the dollar. If that comes out under your floor, the floor is charged instead and the month is tagged Floor.",
+    "After fee is the nightly rate minus the platform fee you type, per night. The shortest stay line adds your cleaning fee to your minimum stay in the quietest month, before any platform fee."
+   ],
+   "example": "Take the fictional mountain cabin in the workbook's example: a $185 base nightly rate, a $115 floor, a $120 cleaning fee and a 2-night minimum. Its last 12 months averaged $4,275 a month. July brought in $5,600, a 1.31x month, so July nights price at $242. November brought in $2,400, a 0.56x month, which works out to $104, and the floor holds it at $115. April is held at the floor too. At a 15.5% host fee a $242 July night pays out $204.49, and a 2-night November stay comes to $350 with cleaning, before platform fees. These are the example cabin's numbers in the Pricing Calculator for Airbnb and VRBO Hosts workbook.",
+   "cta": {
+    "title": "Price the whole year, events and long stays included",
+    "bullets": [
+     "The Pricing Calculator for Airbnb and VRBO Hosts uses this same maths for Excel and Google Sheets:",
+     "your 12 monthly rates, weekly and monthly discounts checked against your floor, event pricing, and the rate that keeps your payout under the single host fee. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4585252476"
+   },
+   "faq": [
+    [
+     "How do I set seasonal prices for an Airbnb?",
+     "Compare each month of last year with your average month. That multiplier times your base rate is the month's rate, and a floor keeps a quiet month from going too low."
+    ],
+    [
+     "What is a floor rate?",
+     "The lowest nightly rate you will take, set from your own costs: cleaning, utilities, wear and your time. It is your judgment, not a computed number."
+    ],
+    [
+     "I have no booking history. What do I use?",
+     "Pick a starter curve for your kind of market, then replace it with your own months once you have a year of bookings. Starter curves are rough shapes, not market data."
+    ],
+    [
+     "Does the platform fee change my nightly rates?",
+     "Not here. The rates are what you list; the After fee column shows what each night pays out at the fee you type. Other platforms set their own fees."
+    ],
+    [
+     "Is this financial advice?",
+     "No. It is a planning estimate based on the numbers you enter."
+    ]
+   ],
+   "sources": "Every default is the example cabin in the Pricing Calculator for Airbnb and VRBO Hosts workbook (built and recalculated Oct 7, 2026). Host fee: Airbnb Help Center article 1857, as checked for that workbook on Oct 6, 2026. ProofNotFluff is not affiliated with Airbnb or VRBO.",
+   "number_sources": [
+    "$185 base, $120 cleaning, 2-night minimum, $115 floor: engines/str-nightly-pricing EX dict; recalculated 1 Your Property D16, D17, D18, D23.",
+    "Monthly revenue 4,800 to 5,000 (avg 4,275): engine HISTORY; 2 Seasonality I16:I27, I28.",
+    "July 1.31x, $242; November 0.56x, $104 held at $115; April 113 held at $115; 2 months at floor: 2 Seasonality L22, M22, L26, M26; 4 Stay Discounts D19, E19, D26, E26, F28.",
+    "15.5% host fee: engine EX fee_new, 5 Fee Reset D17 (Airbnb article 1857, checked Oct 6, 2026 by the engine; not re-fetched here).",
+    "Starter curves: engine CURVES (2 Seasonality D:H).",
+    "$204.49 = 242 x (1 - 0.155), the 5 Fee Reset payout formula; $350 = 2 x 115 + 120."
+   ]
+  },
+  {
+   "slug": "debt-payoff-calculator",
+   "kind": "debt_payoff",
+   "draft": true,
+   "title": "Debt Payoff Calculator: Avalanche vs Snowball vs Minimums | ProofNotFluff",
+   "desc": "Free debt payoff calculator for up to five debts. Enter each balance, APR and minimum plus an extra monthly amount to compare months to pay off and estimated interest for avalanche, snowball and minimums only.",
+   "eyebrow": "Free calculator",
+   "h1": "Debt Payoff Calculator",
+   "lede": "Up to five debts, three ways to pay them: highest APR first, smallest balance first, or minimums only. See the months and the estimated interest for each. Free, no sign-up.",
+   "card": "Months to pay off and estimated interest: avalanche, snowball and minimums only.",
+   "defaults": {
+    "debts": [
+     [
+      "4,751.76",
+      "24.99",
+      "145"
+     ],
+     [
+      "854.32",
+      "26.99",
+      "40"
+     ],
+     [
+      "10,748.15",
+      "7.4",
+      "329"
+     ],
+     [
+      "18,658.05",
+      "5.5",
+      "205"
+     ],
+     [
+      "3,142.59",
+      "12.9",
+      "112"
+     ]
+    ],
+    "extra": "269"
+   },
+   "method": [
+    "Each month every balance grows by its APR divided by 12, rounded to the cent, and every minimum is paid. The minimums plus your extra amount are paid every month in both plans.",
+    "Avalanche sends the money left after minimums to the highest APR first. Snowball sends it to the smallest balance first. The order is set from today's balances, and when a debt is paid off its minimum moves to the next one. Each plan runs up to 20 years.",
+    "Minimums only pays each minimum and nothing else, with no roll-over, so each debt runs on its own schedule. If a minimum does not cover a month's interest, that balance never comes down. All interest figures are estimates."
+   ],
+   "example": "The workbook's example has five debts: a credit card at $4,751.76 and 24.99% APR with a $145 minimum, a store card at $854.32 and 26.99% ($40), a car loan at $10,748.15 and 7.4% ($329), a student loan at $18,658.05 and 5.5% ($205) and a personal loan at $3,142.59 and 12.9% ($112). That is $38,154.87 owed and $831 of minimums. Minimums only takes 119 months and about $11,093 of interest. At $1,100 a month, the minimums plus $269, avalanche takes 40 months and about $4,965 of interest, and snowball also takes 40 months with about $5,234. These are estimates from the Debt Payoff Tracker workbook's example, balances as of October 2026.",
+   "cta": {
+    "title": "Track the real balances, payment by payment",
+    "bullets": [
+     "The Debt Payoff Tracker uses this same maths for Excel and Google Sheets, for up to 25 debts:",
+     "a payment log that updates each balance, both plans month by month, what to pay each debt next month, and owed over time. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4588972193"
+   },
+   "faq": [
+    [
+     "What is the difference between avalanche and snowball?",
+     "Both pay every minimum and put the rest on one debt at a time. Avalanche picks the highest APR first, which usually costs less interest. Snowball picks the smallest balance first, so the first debt is gone sooner."
+    ],
+    [
+     "Why does minimums only take so long?",
+     "Part of each minimum goes to interest, and when a debt is paid off its minimum is not moved to the others. On a high APR card most of a small minimum can go to interest."
+    ],
+    [
+     "How exact are these numbers?",
+     "They are estimates. The calculator adds APR divided by 12 each month and assumes no new charges, fees or rate changes. Your lender's statements will differ."
+    ],
+    [
+     "Is this financial advice?",
+     "No. It is planning math based on the numbers you enter."
+    ]
+   ],
+   "sources": "Every default is the example in the Debt Payoff Tracker workbook (built and recalculated Oct 7, 2026). Estimates for planning only.",
+   "number_sources": [
+    "Balances 4,751.76, 854.32, 10,748.15, 18,658.05, 3,142.59: recalculated 2 Debts L17:L21 (statement balance less logged payments plus interest to Oct 7, 2026; TODAY-dependent, stable through October 2026).",
+    "APRs and minimums: engine DEBTS_EX; 2 Debts H17:I21. $831: 1 Dashboard D16. $269 extra: 1 Dashboard D15 1,100 less D16 (C17 'Extra each month: $269.00').",
+    "$38,154.87 owed: 1 Dashboard H7.",
+    "Avalanche 40 months, $4,965.45: 1 Dashboard J19, I20; 5 Avalanche Plan C8, F8. Snowball 40 months, $5,233.73: 1 Dashboard J15, I16; 4 Snowball Plan C8, F8.",
+    "Minimums only 119 months, $11,092.68: 1 Dashboard J23, I24. Avalanche saving $6,127.23: 1 Dashboard I21.",
+    "Per-debt payoff months: 4 Snowball Plan J14:N14 (19, 3, 25, 40, 11); 5 Avalanche Plan J14:N14 (15, 3, 25, 40, 18); 2 Debts P17:P21 (56, 30, 37, 119, 34)."
+   ]
+  },
+  {
+   "slug": "shipping-cost-calculator",
+   "kind": "shipping_cost",
+   "draft": true,
+   "title": "Shipping Cost Calculator for Etsy and eBay Sellers: True Cost per Parcel | ProofNotFluff",
+   "desc": "Free shipping cost calculator for online sellers. Add the box, filler, tape, label paper, your packing time and the fees on the shipping you charge to the label cost, and see if your shipping charge covers it.",
+   "eyebrow": "Free calculator",
+   "h1": "Shipping Cost Calculator",
+   "lede": "The label is only part of it. Add the box, filler, tape, your packing time and the fees on the shipping you charge, and see if what the buyer pays covers the parcel. Free, no sign-up.",
+   "card": "The true cost of one parcel against the shipping you charge, fees included.",
+   "defaults": {
+    "charged": "4.95",
+    "postage": "9.95",
+    "box": "0.85",
+    "filler": "0.45",
+    "tape": "0.08",
+    "labelPaper": "0.06",
+    "minutes": "6",
+    "hourly": "18",
+    "feePct": "9.5"
+   },
+   "asof": {
+    "lead": "Etsy US fees as of",
+    "date": "Oct 7, 2026",
+    "from": [
+     [
+      "Etsy's fee page",
+      "https://www.etsy.com/legal/fees"
+     ],
+     [
+      "Etsy's payment processing page",
+      "https://help.etsy.com/hc/articles/115015628847"
+     ]
+    ],
+    "tail": "The $0.25 per-order part of processing is charged whether or not you charge shipping, so it is not counted here."
+   },
+   "method": [
+    "The parcel cost is the label you paid plus the box or mailer, filler, tape and label paper, plus your packing minutes at your hourly rate.",
+    "Marketplaces take a fee on the shipping you charge too. For a US Etsy seller that is the 6.5% transaction fee plus 3% payment processing, 9.5% of the shipping charge. Add it to the parcel cost and you have the true cost per order.",
+    "Over or under is the shipping you charge minus that true cost. Break-even shipping is the parcel cost divided by 1 minus the fee percent, rounded up to the cent."
+   ],
+   "example": "A 12 oz ceramic mug ships with $4.95 charged. The label cost $9.95, the box 85 cents, filler 45 cents, tape 8 cents and label paper 6 cents, and packing takes 6 minutes at $18 an hour, $1.80. The parcel costs $13.19, $8.24 more than the buyer paid. Etsy's 9.5% on the $4.95 adds 47 cents, so each order is $8.71 short. Shipping of $14.58 would cover it. These are the sample mug's numbers in the Etsy and eBay Shipping Cost Calculator workbook.",
+   "cta": {
+    "title": "Every product, every service, every parcel",
+    "bullets": [
+     "The Etsy and eBay Shipping Cost Calculator uses this same maths for Excel and Google Sheets:",
+     "up to 30 products, dimensional weight, services side by side, a free-shipping test against your own orders and net profit per order after fees. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4585097496"
+   },
+   "faq": [
+    [
+     "What goes into the true cost of shipping?",
+     "The label, the box or mailer, filler, tape, label paper or ink, the minutes it takes you to pack, and the marketplace fees on the shipping you charge."
+    ],
+    [
+     "Does Etsy charge fees on shipping?",
+     "Yes. For US sellers the 6.5% transaction fee and the 3% payment processing fee both apply to the shipping you charge, as of Oct 7, 2026. Processing also has a $0.25 part per order that applies with or without shipping."
+    ],
+    [
+     "Where does the label cost come from?",
+     "What you paid for the label, from your label platform or receipt. The calculator does not look up carrier rates."
+    ],
+    [
+     "What if I offer free shipping?",
+     "Type 0 for the shipping you charge. The whole parcel cost then comes out of the item price, and there is no fee on shipping."
+    ],
+    [
+     "Is this tax or financial advice?",
+     "No. It is a planning estimate based on the numbers you enter."
+    ]
+   ],
+   "sources": "Etsy Fees & Payments Policy (etsy.com/legal/fees, last updated Oct 5, 2026) and Etsy Help, What are Payment Processing Fees for Selling on Etsy? Both checked Oct 7, 2026. No carrier rate is assumed: the label cost is yours. ProofNotFluff is not affiliated with or endorsed by Etsy.",
+   "number_sources": [
+    "$4.95 charged, $0.85 box, $0.45 filler, $0.08 tape, $0.06 label, 6 minutes: engine PRODUCTS row 1 (Ceramic Mug 12 oz); recalculated 1 Parcel Costs E22, J22:N22.",
+    "$9.95 label: 1 Parcel Costs I22 (postage used; cheapest service from tab 4 at zone 5). Shown on the page only as a typed example input, not as a carrier rate.",
+    "$18 an hour: engine HOURLY; 1 Parcel Costs G14. $1.80 packing: O22.",
+    "$13.19 true cost per parcel, -$8.24 shortfall: 1 Parcel Costs P22, Q22 ('Under-recovered').",
+    "9.5% fee: engine FEES (5 Dashboard F27, 'Etsy: 6.5% transaction plus 3% processing'); re-checked Oct 7, 2026 on etsy.com/legal/fees (6.5%, includes shipping, updated Oct 5, 2026) and Etsy Help 115015628847 (3% + $0.25, includes shipping).",
+    "$0.47 = 9.5% x 4.95 (the shipping share of 5 Dashboard's fee formula F x (D + E)); $13.66 and -$8.71 follow; $14.58 = 13.19 / 0.905 rounded up to the cent."
+   ]
+  },
+  {
+   "slug": "inventory-reorder-point-calculator",
+   "kind": "reorder_point",
+   "draft": true,
+   "title": "Reorder Point Calculator for Small Shops: When to Reorder and How Much | ProofNotFluff",
+   "desc": "Free reorder point calculator for small businesses. Type daily sales, supplier lead time and safety stock to see the stock level to reorder at, how many units to order, and how many days you have left.",
+   "eyebrow": "Free calculator",
+   "h1": "Reorder Point Calculator",
+   "lede": "Know when to reorder before you run out. Type how fast one product sells and how long your supplier takes, and see the reorder point, how many units to order and how many days you have. Free, no sign-up.",
+   "card": "The stock level to reorder at, and how many units to order, for one product.",
+   "defaults": {
+    "daily": "6",
+    "lead": "7",
+    "safety": "20",
+    "cycle": "14",
+    "onHand": "46",
+    "onOrder": "0",
+    "unitCost": "2.60"
+   },
+   "method": [
+    "Reorder point = units sold per day x supplier lead time in days x (1 + safety stock). It is the stock that covers the sales you expect while an order is on its way, plus a cushion.",
+    "Order up to = units sold per day x (lead time + days between your orders) x (1 + safety stock). When you order, you order enough to get back up to this level: order up to minus on hand minus on order, rounded up to a whole unit.",
+    "The status reads Order now when on hand plus on order is at or under the reorder point, or when on hand runs out before an order could land and nothing is on order. Days until you reach the reorder point = (on hand + on order - reorder point) / units sold per day. Over 120 days of stock reads as overstocked, the workbook's default."
+   ],
+   "example": "Take the goat milk soap bar in the workbook's sample shop: it sells 6 a day, the supplier takes 7 days, safety stock is 20% and the shop orders every 14 days. The reorder point is 6 x 7 x 1.2 = 50.4 bars, and with 46 on hand and none on order it is time to order. Order up to is 6 x 21 x 1.2 = 151.2, so the order is 106 bars, $275.60 at $2.60 each. The shop's speckled mug sells 1.4 a day with a 21-day lead time: its reorder point is 35.28 mugs, so 48 on hand reaches it in about 9.1 days, and the next order is 24 mugs, $156. These are the sample shop's numbers in the Cash-Aware Reorder Planner workbook.",
+   "cta": {
+    "title": "Every product, every supplier, and the cash to pay for it",
+    "bullets": [
+     "The Cash-Aware Reorder Planner uses this same maths for Excel and Google Sheets:",
+     "up to 30 products, a reorder plan in priority order, purchase orders grouped by supplier, a cash check that funds the most urgent orders first, and a dead stock list. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4585004344"
+   },
+   "faq": [
+    [
+     "How do you calculate a reorder point?",
+     "Multiply the units you sell per day by your supplier's lead time in days, then add a safety stock cushion. Selling 6 a day with a 7-day lead time and 20% safety stock gives 6 x 7 x 1.2 = 50.4 units."
+    ],
+    [
+     "What is safety stock?",
+     "A cushion on top of the sales you expect while an order is on its way, written here as a percent of those sales. Raise it for a supplier that often runs late or a product whose sales jump around."
+    ],
+    [
+     "How many units should I order?",
+     "Enough to get back up to your order-up-to level: the sales you expect over the lead time plus the days until your next order, with the same cushion, minus what you have on hand and on order."
+    ],
+    [
+     "How do I find units sold per day?",
+     "Count the units sold in the last 30 days and divide by 30. A product that sold 42 units last month sells 1.4 a day."
+    ],
+    [
+     "Does this work for products with seasonal sales?",
+     "Use your recent daily sales and check again before your busy season. The workbook adds a trend adjustment that raises or lowers daily sales for the season ahead."
+    ],
+    [
+     "Is this financial advice?",
+     "No. It is a planning estimate based on the numbers you enter. Check minimum order quantities, price breaks and lead times with your supplier."
+    ]
+   ],
+   "sources": "Every default is the sample shop's soap bar in the Cash-Aware Reorder Planner workbook (built and recalculated Oct 8, 2026); the formulas are the workbook's own 2 SKU List columns. No outside rates are used.",
+   "number_sources": [
+    "SKU-012: 6 a day, 7-day lead, 46 on hand, $2.60: engines/cash-aware-reorder-planner SKUS; safety 20%, 14 days between orders: EX.",
+    "50.4 reorder point, 151.2 order up to, REORDER, $275.60: recalculated 2 SKU List Q, R, T, X for SKU-012 (Oct 8, 2026).",
+    "SKU-001: 35.28 reorder point, 9.0857 days until reorder, $156 (24 x $6.50): 2 SKU List Q, W, X for SKU-001.",
+    "Overstock at 120 days: engine EX over=120 (1 Your Shop)."
+   ]
+  },
+  {
+   "slug": "airbnb-break-even-nights-calculator",
+   "kind": "str_breakeven",
+   "draft": true,
+   "title": "Airbnb Break Even Calculator: Nights a Month to Cover Your Costs | ProofNotFluff",
+   "desc": "Free Airbnb break even calculator. Type your monthly fixed costs, nightly rate, platform fee, average stay and the cleaning fee you keep to see how many booked nights a month cover your costs.",
+   "eyebrow": "Free calculator",
+   "h1": "Airbnb Break Even Calculator",
+   "lede": "How many booked nights a month does your rental need to pay for itself? Type five numbers and see the break-even nights, the share of the month that is, and what each booked night pays after the platform fee. Free, no sign-up.",
+   "card": "The booked nights a month that cover a short-term rental's fixed costs.",
+   "defaults": {
+    "fixed": "2,400",
+    "rate": "185",
+    "fee": "15.5",
+    "stay": "3",
+    "cleanKept": "20"
+   },
+   "method": [
+    "Each booked night pays the nightly rate less the platform fee, plus the cleaning fee you keep spread over the average stay. With a $185 rate and a 15.5% fee, the night pays $156.33; $20 kept per 3-night stay adds $6.67.",
+    "Break-even nights are your fixed costs per month divided by what each booked night pays, rounded up to a whole night. The share of the month uses an average month of 365 / 12 = 30.4 days.",
+    "The rate to break even at half the month booked works backwards: fixed costs over 15.2 nights, less the cleaning fee kept per night, divided by (1 minus the platform fee).",
+    "Variable costs per stay, such as supplies and the cleaner, belong in the cleaning fee you keep: type what is left after them. Taxes, repairs and your time are not in this number."
+   ],
+   "example": "Take a fictional cabin with $2,400 of fixed costs a month, a $185 nightly rate (the base rate in the example of our Airbnb and VRBO pricing workbook), Airbnb's 15.5% single host fee, 3-night average stays and $20 kept from each cleaning fee. Each booked night pays $156.33 + $6.67 = $162.99. $2,400 / $162.99 = 14.7, so the cabin breaks even at 15 booked nights a month, 49% of an average month. To break even with half the month booked, the nightly rate would need to be $178.87.",
+   "cta": {
+    "title": "Price every month so you clear that line",
+    "bullets": [
+     "The Pricing Calculator for Airbnb and VRBO Hosts works in Excel and Google Sheets:",
+     "a nightly rate for each of your 12 months from your own history, a floor no month goes under, stay discounts checked against that floor, event pricing, and the rate that keeps your payout whole under the 15.5% host fee. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4585252476"
+   },
+   "faq": [
+    [
+     "How do I calculate break-even occupancy for an Airbnb?",
+     "Divide your fixed costs per month by what one booked night pays after the platform fee, then divide those nights by the 30.4 days in an average month. $2,400 of costs at $162.99 a night is 15 nights, about 49% occupancy."
+    ],
+    [
+     "What counts as a fixed cost?",
+     "Anything you pay whether the place is booked or not: mortgage or rent, utilities, internet, insurance, software and any loan payment on furniture."
+    ],
+    [
+     "Does the platform fee come off the cleaning fee too?",
+     "This page takes the fee off the nightly rate. If your platform also takes a share of the cleaning fee, count that in the cleaning fee you keep."
+    ],
+    [
+     "What host fee does Airbnb charge?",
+     "Airbnb's single host service fee is 15.5% for most hosts and 16% for listings in Brazil and Mexico (Airbnb Resource Center, checked Oct 8, 2026). Type the fee your own payouts show."
+    ],
+    [
+     "Is break-even the same as profit?",
+     "No. Break-even covers the fixed costs you type. Income tax, repairs, furnishing and your own time come on top, so most hosts aim well above it."
+    ]
+   ],
+   "sources": "Airbnb single host service fee 15.5% (16% in Brazil and Mexico): Airbnb Resource Center, Simplifying service fees on Airbnb (updated Aug 24, 2026), checked Oct 8, 2026. The cabin's costs and cleaning figures are fictional; the $185 rate is the example base rate in the Pricing Calculator for Airbnb and VRBO Hosts workbook.",
+   "number_sources": [
+    "15.5% host fee: airbnb.com/resources/hosting-homes/a/simplifying-service-fees-on-airbnb-771, read Oct 8, 2026.",
+    "$185 base rate: engines/str-nightly-pricing EX base.",
+    "Results: PNF.strBreakEven, tests in docs/assets/pnf-calc.test.js (Oct 8, 2026)."
+   ]
+  }
+ ]
 }

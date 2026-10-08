@@ -1,0 +1,115 @@
+{
+  "product_id": "16",
+  "listing_id": "4588972193",
+  "product": "Debt Payoff Tracker",
+  "tab": "1 Dashboard",
+  "audience": "Paying off debt",
+  "hookId": "H07",
+  "series": "New listing #16 (Oct 5), CMO slate Oct 8 am; bank spec verified Oct 7, rechecked Oct 8 (fresh build, LibreOffice recalc, same cells)",
+  "voice": "am_michael",
+  "hook": "$269 more a month: paid off in <b>40 months</b>, not 119",
+  "hook_say": "Here is what $269 more a month does to five debts on minimum payments.",
+  "rows": [
+    {
+      "label": "Debts on tab 2",
+      "value": "5 debts",
+      "input": true,
+      "say": "Five debts, about $38,155 owed",
+      "why": "The tracker's example: a Visa card, a store card, a car loan, a student loan and a personal loan, about $38,155 owed today."
+    },
+    {
+      "label": "Sum of your minimums",
+      "value": "$831",
+      "why": "The five minimum payments add up to $831 a month."
+    },
+    {
+      "label": "Minimums only: debt-free in",
+      "value": "119 months",
+      "result": true,
+      "kind": "bad",
+      "say": "Minimums only: 119 months",
+      "why": "Pay only the minimums, with no roll-over, and the last debt clears in 119 months."
+    },
+    {
+      "label": "Interest, minimums only (est.)",
+      "value": "$11,093",
+      "result": true,
+      "kind": "bad",
+      "say": "About $11,093 of interest",
+      "why": "Estimated interest still to pay on minimums only: $11,093."
+    },
+    {
+      "label": "Monthly amount for all debts",
+      "value": "$1,100",
+      "input": true,
+      "say": "Pay $1,100 a month instead",
+      "why": "Set $1,100 a month for all debts: every minimum plus $269 extra, and each paid-off debt's money rolls on."
+    },
+    {
+      "label": "Avalanche: debt-free in",
+      "value": "40 months",
+      "result": true,
+      "kind": "good",
+      "say": "Avalanche: 40 months",
+      "why": "Avalanche pays the highest APR first. Debt-free in 40 months."
+    }
+  ],
+  "fix": {
+    "label": "Interest saved vs minimums only (est.)",
+    "value": "$6,127",
+    "say": "About $6,127 less interest",
+    "why": "Estimated interest drops to $4,965, about $6,127 less than minimums only."
+  },
+  "cta": {
+    "title": "Debt Payoff Tracker",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Search ProofNotFluff for the full workbook."
+  },
+  "note": "Example numbers from the tracker. Estimates, for planning only.",
+  "sources": [
+    {
+      "number": "5 debts",
+      "source": "2 Debts rows 17 to 21; 1 Dashboard D28 '0 of 5'"
+    },
+    {
+      "number": "$38,155",
+      "source": "1 Dashboard H7 / D25 = 38,154.87, owed today (estimate), recalculated Oct 7, 2026 (uses TODAY)"
+    },
+    {
+      "number": "$831",
+      "source": "1 Dashboard D16, sum of your minimums"
+    },
+    {
+      "number": "119 months",
+      "source": "1 Dashboard J23 'in 119 months' (minimums only, no extra, no roll-over; I23 Sep 2036)"
+    },
+    {
+      "number": "$11,093",
+      "source": "1 Dashboard I24 = 11,092.68, interest still to pay (est.), minimums only"
+    },
+    {
+      "number": "$1,100",
+      "source": "1 Dashboard D15, monthly amount for all debts (example input); C17 'Extra each month: $269.00'"
+    },
+    {
+      "number": "40 months",
+      "source": "1 Dashboard J19 'in 40 months' (Avalanche; I19 Feb 2030)"
+    },
+    {
+      "number": "$4,965",
+      "source": "1 Dashboard I20 = 4,965.45, Avalanche interest still to pay (est.)"
+    },
+    {
+      "number": "$6,127",
+      "source": "1 Dashboard I21 = 6,127.23, saved vs minimums only (Avalanche)"
+    }
+  ],
+  "sources_build": "Built from the repo engine with python3 engines/debt-payoff-tracker/build_xlsx.py and recalculated in LibreOffice headless (tools/render_xlsx.py, 0 error values) on Oct 7, 2026. The tracker counts from TODAY(); month counts hold for any October 2026 date; owed-today shifts by cents a day.",
+  "post": {
+    "short_title": "$269 more a month: 5 debts paid off in 40 months, not 119 #Shorts",
+    "youtube_description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/16/\nFive debts, about $38,155 owed, $831 of minimums. Minimums only: 119 months and about $11,093 of interest. Pay $1,100 a month ($269 more), highest APR first: 40 months and about $6,127 less interest. Example numbers from the Debt Payoff Tracker; estimates for planning only, not financial advice.\n\n#Shorts",
+    "reel_caption": "Five debts on minimum payments: 119 months. Add $269 a month and pay the highest APR first: 40 months, about $6,127 less interest. Example numbers from the Debt Payoff Tracker, estimates for planning only.\n\nLink in bio: proofnotfluff.etsy.com\n\n#debtpayoff #debtfreejourney #avalanchemethod #budgeting",
+    "tiktok_caption": "$269 more a month: 40 months instead of 119. Example numbers from the Debt Payoff Tracker. Search ProofNotFluff on Etsy. #debtpayoff #debtfreejourney #avalanchemethod #budgeting"
+  }
+}

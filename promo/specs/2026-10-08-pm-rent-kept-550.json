@@ -1,0 +1,97 @@
+{
+  "product_id": "19",
+  "listing_id": "4589671970",
+  "product": "Rental Property Spreadsheet",
+  "tab": "4 Property P&L",
+  "audience": "Small landlords",
+  "hookId": "H01",
+  "series": "New listing #19 (Oct 6), CMO slate Oct 8 pm; H01 your price pays less than you think",
+  "voice": "am_michael",
+  "hook": "$14,850 of rent came in. The house kept <b>$550</b>",
+  "hook_say": "Here is what one rental house really kept from a year of rent.",
+  "rows": [
+    {
+      "label": "Rent received, Oak Street House",
+      "value": "$14,850",
+      "input": true,
+      "say": "Rent in: $14,850",
+      "why": "The spreadsheet's sample year for one house, Oak Street: $14,850 of rent logged on the 2 Log tab."
+    },
+    {
+      "label": "Expenses, Schedule E lines",
+      "value": "$10,006",
+      "input": true,
+      "say": "Expenses: $10,006",
+      "why": "Mortgage interest, property taxes, insurance, repairs and the other Schedule E lines add up to $10,006."
+    },
+    {
+      "label": "Profit before depreciation",
+      "value": "$4,844",
+      "result": true,
+      "say": "Profit on paper: $4,844",
+      "why": "Rent minus those expenses: $4,844 of profit before depreciation."
+    },
+    {
+      "label": "Mortgage principal",
+      "value": "$2,844",
+      "input": true,
+      "say": "Principal paid: $2,844",
+      "why": "Mortgage principal is not an expense, but the cash still leaves: $2,844."
+    },
+    {
+      "label": "Capital improvement",
+      "value": "$1,450",
+      "input": true,
+      "say": "One improvement: $1,450",
+      "why": "A $1,450 capital improvement is cash out too, even though it is not a repair expense."
+    },
+    {
+      "label": "Cash flow, what you kept",
+      "value": "$550",
+      "result": true,
+      "kind": "bad",
+      "say": "What the house kept: $550",
+      "why": "After principal and the improvement, the house kept $550 for the year. The P&L tab shows both numbers side by side for every property."
+    }
+  ],
+  "cta": {
+    "title": "Rental Property Spreadsheet",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Search ProofNotFluff for the full workbook."
+  },
+  "note": "Sample property in the file. Estimates for organizing, not tax advice.",
+  "sources": [
+    {
+      "number": "$14,850",
+      "source": "4 Property P&L G25 (Rent) and G27 (Total money in), Oak Street House"
+    },
+    {
+      "number": "$10,006",
+      "source": "4 Property P&L G43, total expenses (Schedule E lines)"
+    },
+    {
+      "number": "$4,844",
+      "source": "4 Property P&L G44, profit before depreciation"
+    },
+    {
+      "number": "$2,844",
+      "source": "4 Property P&L G46, mortgage principal"
+    },
+    {
+      "number": "$1,450",
+      "source": "4 Property P&L G47, capital improvement"
+    },
+    {
+      "number": "$550",
+      "source": "4 Property P&L G48, cash flow (what you kept); O59 550"
+    }
+  ],
+  "sources_build": "python3 engines/rental-property/build_xlsx.py, recalculated in LibreOffice headless with tools/render_xlsx.py Oct 8, 2026, 5:35 am, 0 error values; matches products/19 pinFacts and promo/specs/listing-19-rental-cash.json.",
+  "post": {
+    "short_title": "$14,850 of rent came in. The house kept $550 #Shorts",
+    "youtube_description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/19/\nOne sample rental, one year: $14,850 of rent, $10,006 of Schedule E expenses, $4,844 of profit before depreciation. Then $2,844 of mortgage principal and a $1,450 improvement leave $550 of cash. Example numbers from the Rental Property Spreadsheet (1 to 10 doors); for organizing, not tax advice.\n\n#Shorts",
+    "reel_caption": "Profit says $4,844. The bank account says $550. Mortgage principal and a $1,450 improvement are not expenses, but the cash still leaves. Example numbers from the Rental Property Spreadsheet.\n\nLink in bio: proofnotfluff.etsy.com\n\n#landlord #rentalproperty #realestateinvesting #landlordtips",
+    "tiktok_caption": "$14,850 of rent, $550 kept. Example numbers from the Rental Property Spreadsheet. Search ProofNotFluff on Etsy. #landlord #rentalproperty #realestateinvesting #landlordtips"
+  }
+}

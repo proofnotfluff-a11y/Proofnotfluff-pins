@@ -1,0 +1,132 @@
+{
+  "product_id": "9",
+  "listing_id": "4585252476",
+  "product": "Airbnb and VRBO Pricing",
+  "tab": "2 Seasonality",
+  "audience": "Airbnb and VRBO hosts",
+  "series": "Walkthrough for the bank Short str-july-242-november-104.json, built Oct 7, 2026 for CMO review",
+  "short_spec": "promo/specs/bank/str-july-242-november-104.json",
+  "voice": "am_michael",
+  "hook": "A $185 base rate means <b>$242</b> a night in July",
+  "hook_say": "This video shows how to set Airbnb and VRBO nightly rates by season, using one base rate and your own last 12 months of revenue.",
+  "rows": [
+    {
+      "label": "Base nightly rate",
+      "value": "$185",
+      "input": true,
+      "say": "Base rate: $185 a night",
+      "why": "Start with the base nightly rate, the price for an average month. The example cabin uses $185."
+    },
+    {
+      "label": "July revenue, last year",
+      "value": "$5,600",
+      "input": true,
+      "say": "July brought in $5,600",
+      "why": "Next, type in what each month brought in over the last 12 months. July brought in $5,600, and the average month was $4,275."
+    },
+    {
+      "label": "July multiplier",
+      "value": "1.31x",
+      "why": "Divide July by the average month and July runs at 1.31 times normal. That multiplier sets the July price.",
+      "result": true
+    },
+    {
+      "label": "July nightly rate",
+      "value": "$242",
+      "result": true,
+      "kind": "good",
+      "say": "Price July nights at $242",
+      "why": "$185 times 1.31 is $242 a night for July. The busy month is priced for the demand it already has."
+    },
+    {
+      "label": "November revenue, last year",
+      "value": "$2,400",
+      "input": true,
+      "say": "November brought in $2,400",
+      "why": "November brought in only $2,400, so it runs at 0.56 times an average month."
+    },
+    {
+      "label": "November nightly rate",
+      "value": "$104",
+      "result": true,
+      "kind": "bad",
+      "say": "November works out to $104",
+      "why": "The same math puts November at $104 a night, and April lands at $113. Both are low enough to need a limit."
+    }
+  ],
+  "fix": {
+    "label": "Your $115 floor holds November at",
+    "value": "$115",
+    "say": "Your $115 floor holds it at $115",
+    "why": "That limit is the floor. Set it at $115 and no month is priced below it: November and April both hold at $115."
+  },
+  "cta": {
+    "title": "Pricing Calculator for Airbnb and VRBO Hosts",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Search ProofNotFluff for the full workbook."
+  },
+  "note": "Example numbers from the calculator. Yours go in the yellow cells.",
+  "sources": [
+    {
+      "number": "$185",
+      "source": "1 Your Property D16, base nightly rate (example input); 2 Seasonality M8"
+    },
+    {
+      "number": "$5,600",
+      "source": "2 Seasonality I22, July, your last 12 months (example input)"
+    },
+    {
+      "number": "$4,275",
+      "source": "2 Seasonality I28, average month"
+    },
+    {
+      "number": "1.31x",
+      "source": "2 Seasonality L22 = 1.3099, F8 'July 1.31x'"
+    },
+    {
+      "number": "$242",
+      "source": "2 Seasonality M22; 1 Your Property I15 (peak month rate, July)"
+    },
+    {
+      "number": "$2,400",
+      "source": "2 Seasonality I26, November, your last 12 months"
+    },
+    {
+      "number": "0.56x",
+      "source": "2 Seasonality L26 = 0.5614, J8 'November 0.56x'"
+    },
+    {
+      "number": "$104",
+      "source": "2 Seasonality M26, November base nightly rate"
+    },
+    {
+      "number": "$115",
+      "source": "1 Your Property D23 floor per night; 4 Stay Discounts E26 (November, floor applied) 115, F26 'AT FLOOR'"
+    },
+    {
+      "number": "April $113",
+      "source": "2 Seasonality M19 113 (multiplier L19 0.608)"
+    },
+    {
+      "number": "November and April hold at $115",
+      "source": "4 Stay Discounts E19 115 and E26 115, F19 and F26 'AT FLOOR'; 1 Your Property I17 2 months held at floor, I16 lowest month rate 115 April"
+    }
+  ],
+  "sources_build": "Built from the repo engine with python3 engines/str-nightly-pricing/build_xlsx.py and recalculated in LibreOffice headless (tools/render_xlsx.py, 0 error values) on Oct 7, 2026. New numbers in the walkthrough lines were read the same way from a fresh build recalculated Oct 7, 2026.",
+  "post": {
+    "title": "Airbnb Seasonal Pricing: Set Nightly Rates From Your Last 12 Months",
+    "description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/9/\n\n0:00 Base nightly rate\n0:18 Your last 12 months\n0:31 July: $242 a night\n0:53 November: $104 a night\n1:12 Setting a floor\n\nA $185 base rate and the example cabin's last 12 months put July at $242 a night and November at $104. A $115 floor keeps every month at or above $115. Example numbers from the Pricing Calculator for Airbnb and VRBO Hosts; yours go in the yellow cells.",
+    "tags": [
+      "airbnb pricing",
+      "airbnb seasonal pricing",
+      "vrbo pricing",
+      "short term rental pricing",
+      "airbnb nightly rate",
+      "airbnb host tips",
+      "str pricing calculator"
+    ],
+    "render_seconds": 88.5,
+    "chapters_from": "caption start times in make_demo.py's walkthrough timeline for this spec (voice am_michael)"
+  }
+}

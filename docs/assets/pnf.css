@@ -83,3 +83,29 @@ section.block .cta p{color:#c9cfdb}
 /* fee and rate source note inside a results card (etsy_fees, craft_fair) */
 [hidden]{display:none!important}
 .asof{margin:14px 0 0;font-size:12.5px;line-height:1.45;color:var(--muted)}.asof a{color:var(--teal)}
+
+/* month grid, results tables and the debts grid (str_nightly, debt_payoff) */
+.fsnote{margin:0 0 6px;color:var(--muted);font-size:13px}
+.duo{display:grid;grid-template-columns:1fr 1fr;column-gap:18px}
+.duo .row{grid-template-columns:1fr 104px}
+.duo .row:last-child,.duo .row:nth-last-child(2){border-bottom:0}
+table.mt{width:100%;border-collapse:collapse;margin:14px 0 0;font-size:15px}
+table.mt th,table.mt td{padding:6px 0;border-bottom:1px solid #f0ece4;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+table.mt th:first-child,table.mt td:first-child{text-align:left}
+table.mt th[scope=row]{font-weight:400;white-space:normal}
+table.mt thead th{font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);padding-top:0}
+table.mt td+td,table.mt th+th{padding-left:10px}
+table.mt b{font-weight:700}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#7a5a0c;background:var(--input);border:1px solid var(--input-line);border-radius:6px;padding:0 5px;margin-left:4px;vertical-align:1px}
+.tag:empty{display:none}
+.debts{display:grid;gap:8px}
+.drow{display:grid;grid-template-columns:62px 1.25fr .85fr 1fr;gap:8px;align-items:center}
+.drow.dhead{font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.drow.dhead div{text-align:right}
+.dname{font-size:15px}
+.drow .field input{padding-left:8px;padding-right:8px}
+.drow .field.has-pre input{padding-left:20px}.drow .field.has-suf input{padding-right:22px}
+.drow .field .pre{left:8px}.drow .field .suf{right:8px}
+@media(max-width:560px){.drow{grid-template-columns:1.4fr .9fr 1fr;gap:4px 6px}.drow .dname{grid-column:1/-1;font-size:13px;font-weight:700;color:var(--ink2);margin-top:4px}.drow.dhead div:first-child{display:none}.drow .field input{font-size:15px}.debts{gap:6px}}
+@media(max-width:400px){.duo{column-gap:12px}.duo .row{grid-template-columns:1fr 92px}}
+@media(max-width:420px){table.mt{font-size:14px}table.mt td+td,table.mt th+th{padding-left:7px}table.mt thead th{font-size:10.5px;letter-spacing:.04em}.tag{font-size:10px;padding:0 4px;margin-left:3px}}

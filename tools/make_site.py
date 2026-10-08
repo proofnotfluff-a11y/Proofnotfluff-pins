@@ -191,17 +191,6 @@ def cashflow_page(p):
     return form, results, script
 
 
-# Shared by the etsy_fees and craft_fair kinds: their maths lives on the page (same formulas as the
-# engines named in each model), and PNF.wire renders it. pnfAfter() runs after each render for the
-# outputs wire has no format for: data-pct (percent) and data-never (a break-even that cannot happen).
-AFTER_JS = """function pnfNum(v){var n=parseFloat(String(v).replace(/[$,%\\s]/g,""));return isFinite(n)?n:0;}
-function pnfAfter(f,M){function go(){var v={};f.querySelectorAll("[data-in]").forEach(function(e){v[e.getAttribute("data-in")]=e.value;});var r=M(v);
-document.querySelectorAll("[data-pct]").forEach(function(e){var x=r[e.getAttribute("data-pct")];e.textContent=(isFinite(x)?(x*100).toFixed(1):"0.0")+"%";e.classList.toggle("neg",x<0);});
-document.querySelectorAll("[data-never]").forEach(function(e){if(r.never){e.textContent=e.getAttribute("data-never");e.classList.add("neg");}});}
-f.querySelectorAll("select").forEach(function(s){s.addEventListener("change",function(){f.dispatchEvent(new Event("input"));});});
-f.addEventListener("input",go);go();}"""
-
-
 def asof_note(p):
     a = p["asof"]
     links = " and ".join(f'<a href="{E(u)}" rel="noopener">{E(t)}</a>' for t, u in a["from"])
@@ -254,17 +243,10 @@ def etsy_fees_page(p):
 </div></div>
 <div class="mbar" aria-hidden="true"><span>Profit <b data-out="profit">$0</b></span><span>Fees <b data-out="fees">$0</b></span></div>"""
     script = """<script>
-""" + AFTER_JS + """
 (function(){var f=document.getElementById("calc"),CAP=""" + json.dumps(p["ads_cap"]) + """;
-/* Same per-sale maths as the Listings tab of engines/etsy-true-profit (#5), with sales tax added to the processing base
-   and each fee rounded to the cent so the lines add up to the total shown. */
-function M(i){var price=pnfNum(i.price),ship=pnfNum(i.ship),tax=pnfNum(i.tax),cost=pnfNum(i.cost),label=pnfNum(i.label);
-function c(x){return Math.round(x*100+1e-6)/100;}
-var rate=pnfNum(i.adsRate)/100,rev=price+ship,tf=c(pnfNum(i.tfRate)/100*rev),pf=c(pnfNum(i.procRate)/100*(rev+tax)+pnfNum(i.procFixed)),lf=c(pnfNum(i.listFee));
-var ads=c(Math.min(rate*rev,CAP)),fees=tf+pf+lf+ads,payout=rev-fees,profit=payout-cost-label,adsIf=c(Math.min(0.15*rev,CAP));
-return {revenue:rev,tf:tf,pf:pf,lf:lf,ads:ads,fees:fees,payout:payout,cost:cost,label:label,profit:profit,loss:-profit,
-margin:rev>0?profit/rev:0,feeShare:rev>0?fees/rev:0,adsOff:rate>0?0:1,adsIf:adsIf,profitIfAds:profit-adsIf};}
-PNF.wire(f,M);pnfAfter(f,M);window.PNF_MODEL=M;})();</script>"""
+/* Maths: PNF.etsyFees in assets/pnf-calc.js, the Listings tab of engines/etsy-true-profit (#5). */
+function M(i){return PNF.etsyFees(i,CAP);}
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
     return form, results, script
 
 
@@ -309,22 +291,168 @@ def craft_fair_page(p):
 </div></div>
 <div class="mbar" aria-hidden="true"><span>Break even <b data-out="bePieces" data-fmt="int" data-never="Never">0</b> pieces</span><span>Goal <b data-out="tgtPieces" data-fmt="int" data-never="Never">0</b> pieces</span></div>"""
     script = """<script>
-""" + AFTER_JS + """
 (function(){var f=document.getElementById("calc");
-/* Same maths as the Break-Even tab of engines/craft-fair-profit (#12): card cost per $1 = card share x (percent + flat / average spend);
-   pieces round up to whole pieces. */
-function M(i){var booth=pnfNum(i.booth),other=pnfNum(i.other),price=pnfNum(i.price),cpp=pnfNum(i.cpp),target=pnfNum(i.target);
-var avg=pnfNum(i.avgSale),perDollar=pnfNum(i.cardShare)/100*(pnfNum(i.cardPct)/100+(avg>0?pnfNum(i.cardFlat)/avg:0));
-var total=booth+other,cardPer=price*perDollar,contrib=price-cpp-cardPer,ok=contrib>1e-9;
-var be=ok?Math.max(0,Math.ceil(total/contrib-1e-9)):0,tg=ok?Math.max(0,Math.ceil((total+target)/contrib-1e-9)):0;
-return {booth:booth,other:other,total:total,price:price,cpp:cpp,cardPer:cardPer,contrib:contrib,bePieces:be,beSales:be*price,
-tgtPieces:tg,tgtSales:tg*price,tgtProfit:ok?tg*contrib-total:0,boothShare:total>0?booth/total:0,never:ok?0:1};}
-PNF.wire(f,M);pnfAfter(f,M);window.PNF_MODEL=M;})();</script>"""
+/* Maths: PNF.craftFair in assets/pnf-calc.js, the Break-Even tab of engines/craft-fair-profit (#12). */
+var M=PNF.craftFair;
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
+MONTHS3 = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+
+def str_nightly_page(p):
+    d = p["defaults"]
+    curves = p["curves"]   # [[label, [12 values]], ...]; the first one is the default
+    opts = "".join(f'<option value="{i}">{E(c[0])}</option>' for i, c in enumerate(curves))
+    months = "".join(field(f"h{m + 1}", MONTHS3[m], f"{curves[0][1][m]:,}") for m in range(12))
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>Your listing</legend>
+{field("base", "Base nightly rate", d["base"], "Your rate for an average month", pre="$")}
+{field("floor", "Floor per night", d["floor"], "The lowest rate you take. No month goes under it", pre="$")}
+{field("cleaning", "Cleaning fee", d["cleaning"], "Per stay", pre="$")}
+{field("minStay", "Minimum stay", d["minStay"], "Nights")}
+{field("fee", "Platform fee you pay", d["fee"], "Airbnb's single host fee: 15.5% for most hosts", suf="%")}
+</fieldset>
+<fieldset><legend>The shape of your year</legend>
+<div class="row pick"><label for="curve">Start from<small>Last year's revenue by month, or a starter curve if you have no history. Only the shape counts: each month against the average month.</small></label>
+<div class="field"><select id="curve">{opts}</select></div></div>
+<div class="duo">{months}</div>
+</fieldset></form>"""
+    rows = "".join(f'<tr><th scope="row">{MONTHS3[m]}</th><td data-out="mult{m + 1}" data-fmt="mult">1.00x</td>'
+                   f'<td><b data-out="night{m + 1}" data-fmt="money0">$0</b> <span class="tag" data-out="flag{m + 1}" data-fmt="text"></span></td>'
+                   f'<td data-out="pay{m + 1}">$0</td></tr>' for m in range(12))
+    results = f"""<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Busiest month</div><div class="val" data-out="hiNight" data-fmt="money0">$0</div><div class="sub"><span data-out="hiMonth" data-fmt="text">-</span>, <span data-out="hiMult" data-fmt="mult">1.00x</span> your base rate</div></div>
+<div class="tile"><div class="lab">Quietest month</div><div class="val" data-out="loNight" data-fmt="money0">$0</div><div class="sub"><span data-out="loMonth" data-fmt="text">-</span><span data-show-if="loHeld > 0">: <span data-out="loBase" data-fmt="money0">$0</span> before your floor</span><span data-show-if="loHeld < 1">, <span data-out="loMult" data-fmt="mult">1.00x</span> your base rate</span></div></div>
+</div>
+<table class="mt"><thead><tr><th scope="col">Month</th><th scope="col">Season</th><th scope="col">Nightly rate</th><th scope="col">After fee</th></tr></thead><tbody>{rows}</tbody></table>
+<ul class="lines">
+<li><span>Months held at your floor</span><span data-out="atFloor" data-fmt="int">0</span></li>
+<li><span>Shortest stay in <span data-out="loMonth" data-fmt="text">-</span>, <span data-out="minStay" data-fmt="int">0</span> nights</span><span data-out="stayNights" data-fmt="money0">$0</span></li>
+<li><span>Cleaning fee</span><span data-out="cleaning" data-fmt="money0">$0</span></li>
+<li class="total"><span>That stay, before platform fees</span><span data-out="stayTotal" data-fmt="money0">$0</span></li>
+</ul>
+<div class="callout warn" data-show-if="valid < 1">Type at least one month above zero to shape the year.</div>
+<div class="callout warn" data-show-if="hasZero > 0">A month at 0 prices at your floor. A quiet month still needs a small number.</div>
+<div class="callout" data-show-if="atFloor > 0">Your floor lifts <b data-out="atFloor" data-fmt="int">0</b> of 12 months. Without it, <span data-out="loMonth" data-fmt="text">-</span> would price at <b data-out="loBase" data-fmt="money0">$0</b>.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Busiest <b data-out="hiNight" data-fmt="money0">$0</b></span><span>Quietest <b data-out="loNight" data-fmt="money0">$0</b></span></div>"""
+    curves_js = json.dumps([c[1] for c in curves])
+    script = f"""<script>
+(function(){{var f=document.getElementById("calc"),C={curves_js};
+/* Maths: PNF.strNightly in assets/pnf-calc.js, the 2 Seasonality and 4 Stay Discounts tabs of engines/str-nightly-pricing (#9). */
+document.getElementById("curve").addEventListener("change",function(e){{var v=C[+e.target.value];
+for(var m=1;m<=12;m++)document.getElementById("h"+m).value=v[m-1].toLocaleString("en-US");
+f.dispatchEvent(new Event("input"));}});
+PNF.wire(f,PNF.strNightly);window.PNF_MODEL=PNF.strNightly;}})();</script>"""
+    return form, results, script
+
+
+def debt_payoff_page(p):
+    d = p["defaults"]
+    rows = ""
+    for k in range(1, 6):
+        b, a, m = d["debts"][k - 1] if k <= len(d["debts"]) else ("", "", "")
+        rows += (f'<div class="drow"><div class="dname">Debt {k}</div>'
+                 f'<div class="field has-pre"><span class=pre>$</span><input id="b{k}" data-in="b{k}" type="text" inputmode="decimal" value="{b}" autocomplete="off" aria-label="Debt {k} balance"></div>'
+                 f'<div class="field has-suf"><input id="a{k}" data-in="a{k}" type="text" inputmode="decimal" value="{a}" autocomplete="off" aria-label="Debt {k} APR"><span class=suf>%</span></div>'
+                 f'<div class="field has-pre"><span class=pre>$</span><input id="m{k}" data-in="m{k}" type="text" inputmode="decimal" value="{m}" autocomplete="off" aria-label="Debt {k} minimum payment"></div></div>')
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>Your debts</legend>
+<p class="fsnote">Up to five. Leave a balance at 0 to skip a row.</p>
+<div class="debts"><div class="drow dhead" aria-hidden="true"><div></div><div>Balance</div><div>APR</div><div>Minimum</div></div>{rows}</div>
+</fieldset>
+<fieldset><legend>Each month</legend>
+{field("extra", "Extra on top of the minimums", d["extra"], "The minimums are added for you", pre="$")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Avalanche, months to pay off</div><div class="val" data-out="avaMonths" data-fmt="int" data-never="20+ years" data-never-if="avaNever">0</div><div class="sub">Interest about <span data-out="avaInt" data-fmt="money0" data-never="n/a" data-never-if="avaNever">$0</span></div></div>
+<div class="tile"><div class="lab">Minimums only, months</div><div class="val" data-out="minMonths" data-fmt="int" data-never="Never" data-never-if="minNever">0</div><div class="sub">Interest about <span data-out="minInt" data-fmt="money0" data-never="n/a" data-never-if="minNever">$0</span></div></div>
+</div>
+<table class="mt"><thead><tr><th scope="col">Plan</th><th scope="col">Months</th><th scope="col">Interest (est.)</th></tr></thead><tbody>
+<tr><th scope="row">Avalanche, highest APR first</th><td data-out="avaMonths" data-fmt="int" data-never="20+ yrs" data-never-if="avaNever">0</td><td data-out="avaInt" data-fmt="money0" data-never="n/a" data-never-if="avaNever">$0</td></tr>
+<tr><th scope="row">Snowball, smallest balance first</th><td data-out="snoMonths" data-fmt="int" data-never="20+ yrs" data-never-if="snoNever">0</td><td data-out="snoInt" data-fmt="money0" data-never="n/a" data-never-if="snoNever">$0</td></tr>
+<tr><th scope="row">Minimums only, no roll-over</th><td data-out="minMonths" data-fmt="int" data-never="Never" data-never-if="minNever">0</td><td data-out="minInt" data-fmt="money0" data-never="n/a" data-never-if="minNever">$0</td></tr>
+</tbody></table>
+<ul class="lines">
+<li><span>Owed today</span><span data-out="owed">$0</span></li>
+<li><span>Minimums add up to</span><span data-out="minSum">$0</span></li>
+<li><span>Extra each month</span><span data-out="extra">$0</span></li>
+<li class="total"><span>Paid each month in both plans</span><span data-out="monthly">$0</span></li>
+</ul>
+<div class="callout" data-show-if="savedOk > 0">Avalanche estimate: <b data-out="avaSaved" data-fmt="money0">$0</b> less interest than minimums only.</div>
+<div class="callout warn" data-show-if="minNever > 0">At least one minimum does not cover its monthly interest, so on minimums only that balance keeps growing.</div>
+<div class="callout warn" data-show-if="avaNever > 0">At this payment the plans run past 20 years. Try a larger extra amount.</div>
+<div class="callout warn" data-show-if="empty > 0">Type a balance for at least one debt.</div>
+<details><summary>When each debt is paid off</summary>
+<table class="mt"><thead><tr><th scope="col">Debt</th><th scope="col">Avalanche</th><th scope="col">Snowball</th><th scope="col">Minimums</th></tr></thead><tbody>""" + "".join(
+        f'<tr><th scope="row">Debt {k}</th><td data-out="ava{k}" data-fmt="text">-</td><td data-out="sno{k}" data-fmt="text">-</td><td data-out="min{k}" data-fmt="text">-</td></tr>'
+        for k in range(1, 6)) + """</tbody></table></details>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Avalanche <b data-out="avaMonths" data-fmt="int" data-never="20+ yrs" data-never-if="avaNever">0</b> mo</span><span>Minimums <b data-out="minMonths" data-fmt="int" data-never="Never" data-never-if="minNever">0</b> mo</span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.debtPayoff in assets/pnf-calc.js, the plan grids and minimums-only columns of engines/debt-payoff-tracker (#16). */
+var M=PNF.debtPayoff;
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
+def shipping_cost_page(p):
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>What the buyer pays</legend>
+{field("charged", "Shipping you charge", d["charged"], "0 for free shipping", pre="$")}
+</fieldset>
+<fieldset><legend>What the parcel costs you</legend>
+{field("postage", "Label you paid", d["postage"], "From your label receipt", pre="$")}
+{field("box", "Box or mailer", d["box"], pre="$")}
+{field("filler", "Filler", d["filler"], "Wrap, tissue or peanuts", pre="$")}
+{field("tape", "Tape", d["tape"], "A $34 roll that seals 400 parcels is 8.5 cents", pre="$")}
+{field("labelPaper", "Label paper or ink", d["labelPaper"], pre="$")}
+</fieldset>
+<fieldset><legend>Your packing time</legend>
+{field("minutes", "Minutes to pack one order", d["minutes"], "Time yourself twice and use the average")}
+{field("hourly", "Your hourly rate", d["hourly"], "What an hour of your time is worth", pre="$")}
+</fieldset>
+<fieldset><legend>Fees on the shipping you charge</legend>
+{field("feePct", "Marketplace fees on shipping", d["feePct"], "Etsy US: 6.5% transaction plus 3% processing. Type yours for other sites", suf="%")}
+</fieldset></form>"""
+    results = f"""<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">True cost per order</div><div class="val" data-out="total">$0</div><div class="sub">Parcel <span data-out="parcel">$0</span> plus <span data-out="fees">$0</span> of fees</div></div>
+<div class="tile"><div class="lab">Over or under per order</div><div class="val" data-out="net">$0</div><div class="sub">Shipping charged minus true cost</div></div>
+</div>
+<ul class="lines">
+<li><span>Label</span><span data-out="postage">$0</span></li>
+<li><span>Box, filler, tape and label paper</span><span data-out="materials">$0</span></li>
+<li><span>Packing time</span><span data-out="labor">$0</span></li>
+<li class="total"><span>Parcel cost</span><span data-out="parcel">$0</span></li>
+<li><span>Over or under before fees</span><span data-out="shortfall">$0</span></li>
+<li><span>Fees on the shipping you charge</span><span data-out="fees">$0</span></li>
+<li class="total"><span>True cost per order</span><span data-out="total">$0</span></li>
+<li><span>Shipping you charge</span><span data-out="charged">$0</span></li>
+<li class="total"><span>Over or under per order</span><span data-out="net">$0</span></li>
+</ul>
+<div class="callout warn" data-show-if="isUnder > 0">Each order is <b data-out="under">$0</b> short, <b data-out="underPer100" data-fmt="money0">$0</b> over 100 orders. Shipping of <b data-out="breakEven">$0</b> covers the parcel and its fees.</div>
+<div class="callout" data-show-if="isUnder < 1">The shipping you charge covers the parcel and its fees. Break-even shipping: <b data-out="breakEven">$0</b>.</div>
+{asof_note(p)}
+</div></div>
+<div class="mbar" aria-hidden="true"><span>True cost <b data-out="total">$0</b></span><span>Per order <b data-out="net">$0</b></span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.shippingCost in assets/pnf-calc.js, the 1 Parcel Costs tab of engines/shipping-true-cost (#7). */
+var M=PNF.shippingCost;
+PNF.wire(f,M);window.PNF_MODEL=M;})();</script>"""
     return form, results, script
 
 
 PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashflow_page,
-              "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page}
+              "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
+              "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page}
 
 
 def page_html(p):

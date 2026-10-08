@@ -1,0 +1,123 @@
+{
+  "product_id": "5",
+  "listing_id": "4584721212",
+  "product": "Pricing Calculator for Etsy Sellers",
+  "tab": "3 Pricing",
+  "audience": "Etsy sellers",
+  "series": "Walkthrough for the bank Short etsy-offsite-ads-27-48.json, built Oct 7, 2026 for CMO review",
+  "short_spec": "promo/specs/bank/etsy-offsite-ads-27-48.json",
+  "voice": "am_michael",
+  "hook": "An Offsite Ads sale needs <b>$27.48</b> to keep the same $8",
+  "hook_say": "This video shows how to price an Etsy item so you keep the same profit, and the higher price it needs when the sale comes through Offsite Ads.",
+  "rows": [
+    {
+      "label": "Profit you want per sale",
+      "value": "$8",
+      "input": true,
+      "say": "You want $8 profit on a candle",
+      "why": "Start with the profit you want to keep from each sale. The example is a candle, and the goal is $8 of net profit."
+    },
+    {
+      "label": "Materials, labor, packaging",
+      "value": "$10.20",
+      "input": true,
+      "say": "$10.20 of materials, labor and packaging",
+      "why": "Then what the candle costs you to make and pack: $6.10 of materials, $3 of labor and $1.10 of packaging. $10.20 in all."
+    },
+    {
+      "label": "Shipping charged, actual cost",
+      "value": "$5.50, $6.25",
+      "input": true,
+      "say": "Shipping: charge $5.50, it costs $6.25",
+      "why": "Shipping goes in as two numbers: the $5.50 the buyer pays, and the $6.25 the label really costs. The 75 cent gap comes out of your profit."
+    },
+    {
+      "label": "Etsy fees at that price",
+      "value": "$3.06",
+      "why": "Etsy's fees take a share of item plus shipping: 6.5% transaction, 3% plus 25 cents processing, and the 20 cent listing fee. At the list price the sheet finds next, that is $3.06.",
+      "result": true
+    },
+    {
+      "label": "List price, no Offsite Ads",
+      "value": "$22.01",
+      "result": true,
+      "say": "List at $22.01",
+      "why": "Because the fees grow with the price, the sheet solves backwards from your profit. List at $22.01 and you keep $8."
+    },
+    {
+      "label": "List price, Offsite Ads sale",
+      "value": "$27.48",
+      "result": true,
+      "kind": "bad",
+      "say": "Through Offsite Ads it needs $27.48",
+      "why": "An Offsite Ads sale adds 15% of item plus shipping for shops under $10,000 in sales over the past year. To keep the same $8 on that sale, the list price is $27.48."
+    }
+  ],
+  "fix": {
+    "label": "Ad sale at $27.48 still keeps",
+    "value": "$8",
+    "say": "Price for it and an ad sale still keeps $8",
+    "why": "Price for the ad fee and an Offsite Ads sale still leaves the $8 you set. Price for the regular sale only, and the ad fee comes out of your $8."
+  },
+  "cta": {
+    "title": "Pricing Calculator for Etsy Sellers",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Search ProofNotFluff for the full workbook."
+  },
+  "note": "Example numbers from the calculator. Yours go in the yellow cells.",
+  "sources": [
+    {
+      "number": "$8",
+      "source": "3 Pricing D14, net profit you want per unit (example input); I20"
+    },
+    {
+      "number": "$10.20",
+      "source": "3 Pricing D15 6.10 + D16 3 + D19 1.10; I21 'Materials, labor, packaging' 10.2"
+    },
+    {
+      "number": "$5.50, $6.25",
+      "source": "3 Pricing D17 5.50, D18 6.25"
+    },
+    {
+      "number": "$3.06",
+      "source": "3 Pricing I23 = 3.0638, Etsy fees at the no-ads price"
+    },
+    {
+      "number": "6.5%, 3% plus 25 cents, 20 cents, 15%",
+      "source": "1 Setup I14, I16, I17, I15, I23 (fees checked Oct 6, 2026); D19 tier 'Under $10K'"
+    },
+    {
+      "number": "$22.01",
+      "source": "3 Pricing I15 = 22.0138, list price, no Offsite Ads; C7"
+    },
+    {
+      "number": "$27.48",
+      "source": "3 Pricing I16 = 27.4801, list price if an ad sale; C8"
+    },
+    {
+      "number": "75 cent gap",
+      "source": "3 Pricing I22 0.75, shipping cost not covered"
+    },
+    {
+      "number": "under $10,000 in sales over the past year",
+      "source": "1 Setup H18 'Offsite Ads, under $10K', I20 10000 'sales in 365 days', D19 'Under $10K'"
+    }
+  ],
+  "sources_build": "Built from the repo engine with python3 engines/etsy-true-profit/build_xlsx.py and recalculated in LibreOffice headless (tools/render_xlsx.py, 0 error values) on Oct 7, 2026. New numbers in the walkthrough lines were read the same way from a fresh build recalculated Oct 7, 2026.",
+  "post": {
+    "title": "Etsy Offsite Ads Fee: How to Price So an Ad Sale Keeps Your Profit",
+    "description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/5/\n\n0:00 Profit you want per sale\n0:18 Costs and shipping\n0:45 Etsy fees\n1:03 List price without ads\n1:13 List price for an Offsite Ads sale\n\nTo keep $8 on a candle after Etsy's fees, the list price is $22.01. If the sale comes through Offsite Ads, the same $8 needs $27.48. Example numbers from the Pricing Calculator for Etsy Sellers; yours go in the yellow cells.",
+    "tags": [
+      "etsy offsite ads",
+      "etsy offsite ads fee",
+      "etsy pricing calculator",
+      "etsy fees",
+      "how to price on etsy",
+      "etsy seller tips",
+      "etsy profit"
+    ],
+    "render_seconds": 105.7,
+    "chapters_from": "caption start times in make_demo.py's walkthrough timeline for this spec (voice am_michael)"
+  }
+}

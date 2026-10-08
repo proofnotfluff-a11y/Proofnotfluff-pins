@@ -871,6 +871,340 @@
         ]
       ],
       "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29). Checked Oct 6, 2026."
+    },
+    {
+      "slug": "airbnb-nightly-rate-calculator",
+      "kind": "str_nightly",
+      "draft": true,
+      "title": "Airbnb Nightly Rate Calculator: Seasonal Rates With a Floor | ProofNotFluff",
+      "desc": "Free Airbnb and VRBO nightly rate calculator. Turn one base rate and last year's months into a nightly rate for every month, held at a floor you set, with what each night pays after the host fee.",
+      "eyebrow": "Free calculator",
+      "h1": "Airbnb Nightly Rate Calculator",
+      "lede": "One base rate, shaped by your own last 12 months: a nightly rate for every month, a floor no month goes under, and what each night pays after the platform fee. Free, no sign-up.",
+      "card": "A nightly rate for every month from one base rate, held at your floor.",
+      "defaults": {
+        "base": "185",
+        "floor": "115",
+        "cleaning": "120",
+        "minStay": "2",
+        "fee": "15.5"
+      },
+      "curves": [
+        [
+          "Example cabin, last year",
+          [
+            4800,
+            5200,
+            3900,
+            2600,
+            3100,
+            4400,
+            5600,
+            5300,
+            4300,
+            4700,
+            2400,
+            5000
+          ]
+        ],
+        [
+          "Starter curve: beach",
+          [
+            0.7,
+            0.75,
+            0.9,
+            0.95,
+            1.05,
+            1.3,
+            1.45,
+            1.35,
+            1.05,
+            0.85,
+            0.75,
+            0.9
+          ]
+        ],
+        [
+          "Starter curve: mountain",
+          [
+            1.15,
+            1.2,
+            0.9,
+            0.7,
+            0.75,
+            1.05,
+            1.25,
+            1.2,
+            1.0,
+            1.05,
+            0.6,
+            1.15
+          ]
+        ],
+        [
+          "Starter curve: urban",
+          [
+            0.85,
+            0.85,
+            1.0,
+            1.05,
+            1.1,
+            1.1,
+            1.0,
+            0.95,
+            1.1,
+            1.15,
+            0.95,
+            0.9
+          ]
+        ],
+        [
+          "Starter curve: lake",
+          [
+            0.6,
+            0.6,
+            0.7,
+            0.85,
+            1.1,
+            1.4,
+            1.55,
+            1.45,
+            1.15,
+            0.9,
+            0.8,
+            0.9
+          ]
+        ],
+        [
+          "Starter curve: rural",
+          [
+            0.75,
+            0.75,
+            0.85,
+            1.0,
+            1.1,
+            1.2,
+            1.25,
+            1.2,
+            1.15,
+            1.15,
+            0.8,
+            0.8
+          ]
+        ]
+      ],
+      "method": [
+        "Each month's season multiplier is that month's revenue last year divided by the average month. A month that brought in 31% more than average is a 1.31x month.",
+        "A month's nightly rate is your base rate times its multiplier, rounded to the dollar. If that comes out under your floor, the floor is charged instead and the month is tagged Floor.",
+        "After fee is the nightly rate minus the platform fee you type, per night. The shortest stay line adds your cleaning fee to your minimum stay in the quietest month, before any platform fee."
+      ],
+      "example": "Take the fictional mountain cabin in the workbook's example: a $185 base nightly rate, a $115 floor, a $120 cleaning fee and a 2-night minimum. Its last 12 months averaged $4,275 a month. July brought in $5,600, a 1.31x month, so July nights price at $242. November brought in $2,400, a 0.56x month, which works out to $104, and the floor holds it at $115. April is held at the floor too. At a 15.5% host fee a $242 July night pays out $204.49, and a 2-night November stay comes to $350 with cleaning, before platform fees. These are the example cabin's numbers in the Pricing Calculator for Airbnb and VRBO Hosts workbook.",
+      "cta": {
+        "title": "Price the whole year, events and long stays included",
+        "bullets": [
+          "The Pricing Calculator for Airbnb and VRBO Hosts uses this same maths for Excel and Google Sheets:",
+          "your 12 monthly rates, weekly and monthly discounts checked against your floor, event pricing, and the rate that keeps your payout under the single host fee. $2.99, instant download."
+        ],
+        "button": "Get the workbook on Etsy",
+        "url": "https://proofnotfluff.etsy.com/listing/4585252476"
+      },
+      "faq": [
+        [
+          "How do I set seasonal prices for an Airbnb?",
+          "Compare each month of last year with your average month. That multiplier times your base rate is the month's rate, and a floor keeps a quiet month from going too low."
+        ],
+        [
+          "What is a floor rate?",
+          "The lowest nightly rate you will take, set from your own costs: cleaning, utilities, wear and your time. It is your judgment, not a computed number."
+        ],
+        [
+          "I have no booking history. What do I use?",
+          "Pick a starter curve for your kind of market, then replace it with your own months once you have a year of bookings. Starter curves are rough shapes, not market data."
+        ],
+        [
+          "Does the platform fee change my nightly rates?",
+          "Not here. The rates are what you list; the After fee column shows what each night pays out at the fee you type. Other platforms set their own fees."
+        ],
+        [
+          "Is this financial advice?",
+          "No. It is a planning estimate based on the numbers you enter."
+        ]
+      ],
+      "sources": "Every default is the example cabin in the Pricing Calculator for Airbnb and VRBO Hosts workbook (built and recalculated Oct 7, 2026). Host fee: Airbnb Help Center article 1857, as checked for that workbook on Oct 6, 2026. ProofNotFluff is not affiliated with Airbnb or VRBO.",
+      "number_sources": [
+        "$185 base, $120 cleaning, 2-night minimum, $115 floor: engines/str-nightly-pricing EX dict; recalculated 1 Your Property D16, D17, D18, D23.",
+        "Monthly revenue 4,800 to 5,000 (avg 4,275): engine HISTORY; 2 Seasonality I16:I27, I28.",
+        "July 1.31x, $242; November 0.56x, $104 held at $115; April 113 held at $115; 2 months at floor: 2 Seasonality L22, M22, L26, M26; 4 Stay Discounts D19, E19, D26, E26, F28.",
+        "15.5% host fee: engine EX fee_new, 5 Fee Reset D17 (Airbnb article 1857, checked Oct 6, 2026 by the engine; not re-fetched here).",
+        "Starter curves: engine CURVES (2 Seasonality D:H).",
+        "$204.49 = 242 x (1 - 0.155), the 5 Fee Reset payout formula; $350 = 2 x 115 + 120."
+      ]
+    },
+    {
+      "slug": "debt-payoff-calculator",
+      "kind": "debt_payoff",
+      "draft": true,
+      "title": "Debt Payoff Calculator: Avalanche vs Snowball vs Minimums | ProofNotFluff",
+      "desc": "Free debt payoff calculator for up to five debts. Enter each balance, APR and minimum plus an extra monthly amount to compare months to pay off and estimated interest for avalanche, snowball and minimums only.",
+      "eyebrow": "Free calculator",
+      "h1": "Debt Payoff Calculator",
+      "lede": "Up to five debts, three ways to pay them: highest APR first, smallest balance first, or minimums only. See the months and the estimated interest for each. Free, no sign-up.",
+      "card": "Months to pay off and estimated interest: avalanche, snowball and minimums only.",
+      "defaults": {
+        "debts": [
+          [
+            "4,751.76",
+            "24.99",
+            "145"
+          ],
+          [
+            "854.32",
+            "26.99",
+            "40"
+          ],
+          [
+            "10,748.15",
+            "7.4",
+            "329"
+          ],
+          [
+            "18,658.05",
+            "5.5",
+            "205"
+          ],
+          [
+            "3,142.59",
+            "12.9",
+            "112"
+          ]
+        ],
+        "extra": "269"
+      },
+      "method": [
+        "Each month every balance grows by its APR divided by 12, rounded to the cent, and every minimum is paid. The minimums plus your extra amount are paid every month in both plans.",
+        "Avalanche sends the money left after minimums to the highest APR first. Snowball sends it to the smallest balance first. The order is set from today's balances, and when a debt is paid off its minimum moves to the next one. Each plan runs up to 20 years.",
+        "Minimums only pays each minimum and nothing else, with no roll-over, so each debt runs on its own schedule. If a minimum does not cover a month's interest, that balance never comes down. All interest figures are estimates."
+      ],
+      "example": "The workbook's example has five debts: a credit card at $4,751.76 and 24.99% APR with a $145 minimum, a store card at $854.32 and 26.99% ($40), a car loan at $10,748.15 and 7.4% ($329), a student loan at $18,658.05 and 5.5% ($205) and a personal loan at $3,142.59 and 12.9% ($112). That is $38,154.87 owed and $831 of minimums. Minimums only takes 119 months and about $11,093 of interest. At $1,100 a month, the minimums plus $269, avalanche takes 40 months and about $4,965 of interest, and snowball also takes 40 months with about $5,234. These are estimates from the Debt Payoff Tracker workbook's example, balances as of October 2026.",
+      "cta": {
+        "title": "Track the real balances, payment by payment",
+        "bullets": [
+          "The Debt Payoff Tracker uses this same maths for Excel and Google Sheets, for up to 25 debts:",
+          "a payment log that updates each balance, both plans month by month, what to pay each debt next month, and owed over time. $2.99, instant download."
+        ],
+        "button": "Get the workbook on Etsy",
+        "url": "https://proofnotfluff.etsy.com/listing/4588972193"
+      },
+      "faq": [
+        [
+          "What is the difference between avalanche and snowball?",
+          "Both pay every minimum and put the rest on one debt at a time. Avalanche picks the highest APR first, which usually costs less interest. Snowball picks the smallest balance first, so the first debt is gone sooner."
+        ],
+        [
+          "Why does minimums only take so long?",
+          "Part of each minimum goes to interest, and when a debt is paid off its minimum is not moved to the others. On a high APR card most of a small minimum can go to interest."
+        ],
+        [
+          "How exact are these numbers?",
+          "They are estimates. The calculator adds APR divided by 12 each month and assumes no new charges, fees or rate changes. Your lender's statements will differ."
+        ],
+        [
+          "Is this financial advice?",
+          "No. It is planning math based on the numbers you enter."
+        ]
+      ],
+      "sources": "Every default is the example in the Debt Payoff Tracker workbook (built and recalculated Oct 7, 2026). Estimates for planning only.",
+      "number_sources": [
+        "Balances 4,751.76, 854.32, 10,748.15, 18,658.05, 3,142.59: recalculated 2 Debts L17:L21 (statement balance less logged payments plus interest to Oct 7, 2026; TODAY-dependent, stable through October 2026).",
+        "APRs and minimums: engine DEBTS_EX; 2 Debts H17:I21. $831: 1 Dashboard D16. $269 extra: 1 Dashboard D15 1,100 less D16 (C17 'Extra each month: $269.00').",
+        "$38,154.87 owed: 1 Dashboard H7.",
+        "Avalanche 40 months, $4,965.45: 1 Dashboard J19, I20; 5 Avalanche Plan C8, F8. Snowball 40 months, $5,233.73: 1 Dashboard J15, I16; 4 Snowball Plan C8, F8.",
+        "Minimums only 119 months, $11,092.68: 1 Dashboard J23, I24. Avalanche saving $6,127.23: 1 Dashboard I21.",
+        "Per-debt payoff months: 4 Snowball Plan J14:N14 (19, 3, 25, 40, 11); 5 Avalanche Plan J14:N14 (15, 3, 25, 40, 18); 2 Debts P17:P21 (56, 30, 37, 119, 34)."
+      ]
+    },
+    {
+      "slug": "shipping-cost-calculator",
+      "kind": "shipping_cost",
+      "draft": true,
+      "title": "Shipping Cost Calculator for Etsy and eBay Sellers: True Cost per Parcel | ProofNotFluff",
+      "desc": "Free shipping cost calculator for online sellers. Add the box, filler, tape, label paper, your packing time and the fees on the shipping you charge to the label cost, and see if your shipping charge covers it.",
+      "eyebrow": "Free calculator",
+      "h1": "Shipping Cost Calculator",
+      "lede": "The label is only part of it. Add the box, filler, tape, your packing time and the fees on the shipping you charge, and see if what the buyer pays covers the parcel. Free, no sign-up.",
+      "card": "The true cost of one parcel against the shipping you charge, fees included.",
+      "defaults": {
+        "charged": "4.95",
+        "postage": "9.95",
+        "box": "0.85",
+        "filler": "0.45",
+        "tape": "0.08",
+        "labelPaper": "0.06",
+        "minutes": "6",
+        "hourly": "18",
+        "feePct": "9.5"
+      },
+      "asof": {
+        "lead": "Etsy US fees as of",
+        "date": "Oct 7, 2026",
+        "from": [
+          [
+            "Etsy's fee page",
+            "https://www.etsy.com/legal/fees"
+          ],
+          [
+            "Etsy's payment processing page",
+            "https://help.etsy.com/hc/articles/115015628847"
+          ]
+        ],
+        "tail": "The $0.25 per-order part of processing is charged whether or not you charge shipping, so it is not counted here."
+      },
+      "method": [
+        "The parcel cost is the label you paid plus the box or mailer, filler, tape and label paper, plus your packing minutes at your hourly rate.",
+        "Marketplaces take a fee on the shipping you charge too. For a US Etsy seller that is the 6.5% transaction fee plus 3% payment processing, 9.5% of the shipping charge. Add it to the parcel cost and you have the true cost per order.",
+        "Over or under is the shipping you charge minus that true cost. Break-even shipping is the parcel cost divided by 1 minus the fee percent, rounded up to the cent."
+      ],
+      "example": "A 12 oz ceramic mug ships with $4.95 charged. The label cost $9.95, the box 85 cents, filler 45 cents, tape 8 cents and label paper 6 cents, and packing takes 6 minutes at $18 an hour, $1.80. The parcel costs $13.19, $8.24 more than the buyer paid. Etsy's 9.5% on the $4.95 adds 47 cents, so each order is $8.71 short. Shipping of $14.58 would cover it. These are the sample mug's numbers in the Etsy and eBay Shipping Cost Calculator workbook.",
+      "cta": {
+        "title": "Every product, every service, every parcel",
+        "bullets": [
+          "The Etsy and eBay Shipping Cost Calculator uses this same maths for Excel and Google Sheets:",
+          "up to 30 products, dimensional weight, services side by side, a free-shipping test against your own orders and net profit per order after fees. $2.99, instant download."
+        ],
+        "button": "Get the workbook on Etsy",
+        "url": "https://proofnotfluff.etsy.com/listing/4585097496"
+      },
+      "faq": [
+        [
+          "What goes into the true cost of shipping?",
+          "The label, the box or mailer, filler, tape, label paper or ink, the minutes it takes you to pack, and the marketplace fees on the shipping you charge."
+        ],
+        [
+          "Does Etsy charge fees on shipping?",
+          "Yes. For US sellers the 6.5% transaction fee and the 3% payment processing fee both apply to the shipping you charge, as of Oct 7, 2026. Processing also has a $0.25 part per order that applies with or without shipping."
+        ],
+        [
+          "Where does the label cost come from?",
+          "What you paid for the label, from your label platform or receipt. The calculator does not look up carrier rates."
+        ],
+        [
+          "What if I offer free shipping?",
+          "Type 0 for the shipping you charge. The whole parcel cost then comes out of the item price, and there is no fee on shipping."
+        ],
+        [
+          "Is this tax or financial advice?",
+          "No. It is a planning estimate based on the numbers you enter."
+        ]
+      ],
+      "sources": "Etsy Fees & Payments Policy (etsy.com/legal/fees, last updated Oct 5, 2026) and Etsy Help, What are Payment Processing Fees for Selling on Etsy? Both checked Oct 7, 2026. No carrier rate is assumed: the label cost is yours. ProofNotFluff is not affiliated with or endorsed by Etsy.",
+      "number_sources": [
+        "$4.95 charged, $0.85 box, $0.45 filler, $0.08 tape, $0.06 label, 6 minutes: engine PRODUCTS row 1 (Ceramic Mug 12 oz); recalculated 1 Parcel Costs E22, J22:N22.",
+        "$9.95 label: 1 Parcel Costs I22 (postage used; cheapest service from tab 4 at zone 5). Shown on the page only as a typed example input, not as a carrier rate.",
+        "$18 an hour: engine HOURLY; 1 Parcel Costs G14. $1.80 packing: O22.",
+        "$13.19 true cost per parcel, -$8.24 shortfall: 1 Parcel Costs P22, Q22 ('Under-recovered').",
+        "9.5% fee: engine FEES (5 Dashboard F27, 'Etsy: 6.5% transaction plus 3% processing'); re-checked Oct 7, 2026 on etsy.com/legal/fees (6.5%, includes shipping, updated Oct 5, 2026) and Etsy Help 115015628847 (3% + $0.25, includes shipping).",
+        "$0.47 = 9.5% x 4.95 (the shipping share of 5 Dashboard's fee formula F x (D + E)); $13.66 and -$8.71 follow; $14.58 = 13.19 / 0.905 rounded up to the cent."
+      ]
     }
   ]
 }

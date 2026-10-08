@@ -1,0 +1,149 @@
+{
+  "product_id": "12",
+  "listing_id": "4586813952",
+  "product": "Craft Fair Profit Calculator",
+  "tab": "1 Show Costs",
+  "audience": "Craft fair makers",
+  "series": "Walkthrough for the bank Short craft-fair-booth-315.json, built Oct 7, 2026 for CMO review",
+  "short_spec": "promo/specs/bank/craft-fair-booth-315.json",
+  "voice": "am_michael",
+  "hook": "A $150 booth fee is really <b>$315.60</b> for the day",
+  "hook_say": "This video shows what a $150 craft fair booth really costs for the day, and how many pieces you need to sell to cover it.",
+  "rows": [
+    {
+      "label": "Booth fee",
+      "value": "$150",
+      "input": true,
+      "say": "Booth fee: $150",
+      "why": "Start with the booth fee, the number every maker sees first. The example show charges $150 for a 7-hour selling day."
+    },
+    {
+      "label": "Miles, meals, extras, display",
+      "value": "$165.60",
+      "input": true,
+      "say": "Miles, meals and extras: $165.60",
+      "why": "Then the costs that ride along with it: 60 miles at 76 cents, organizer extras, parking, meals, and $50 as this show's share of a $300 display. Together, $165.60."
+    },
+    {
+      "label": "What the day really costs",
+      "value": "$315.60",
+      "result": true,
+      "kind": "bad",
+      "say": "The day costs $315.60",
+      "why": "So the day really costs $315.60. The booth fee is only 48% of it, which is why pricing against the booth fee alone sets your target too low."
+    },
+    {
+      "label": "Each piece clears",
+      "value": "$6.24",
+      "result": true,
+      "say": "Each piece clears $6.24",
+      "why": "Next, what one sale leaves you. Across the five example products, an average piece sells for $13.84 and clears $6.24 after materials, making time at $20 an hour, packaging and the card fee."
+    },
+    {
+      "label": "Pieces to break even",
+      "value": "51",
+      "result": true,
+      "kind": "bad",
+      "say": "51 pieces just to break even",
+      "why": "Divide the day's cost by what each piece clears and you get 51 pieces, or $705.84 in sales, before the show earns anything. That is about 7.3 pieces every selling hour."
+    },
+    {
+      "label": "Soy candle price",
+      "value": "$26",
+      "input": true,
+      "say": "Price the candle at $26, not $22",
+      "why": "The price check flags the soy candle. At $22 it sits below materials plus labor doubled, which is $23. Raise it to $26."
+    }
+  ],
+  "fix": {
+    "label": "Pieces to break even now",
+    "value": "44",
+    "say": "Now 44 pieces",
+    "why": "Same show, same costs, one price change: the break-even drops from 51 pieces to 44. Run this before you pay for the booth, not after."
+  },
+  "cta": {
+    "title": "Craft Fair Profit Calculator",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Search ProofNotFluff for the full workbook."
+  },
+  "note": "Example numbers from the calculator. Yours go in the yellow cells.",
+  "sources": [
+    {
+      "number": "$150",
+      "source": "1 Show Costs D18 (booth fee, example input)"
+    },
+    {
+      "number": "$165.60",
+      "source": "1 Show Costs H7, costs on top of the booth fee: I15 25 + I16 45.60 (D20 60 mi x D21 0.76) + I17 10 + I19 20 + I21 50 (D26 300 / D27 6) + I22 15"
+    },
+    {
+      "number": "$315.60",
+      "source": "1 Show Costs I23 and C7, total fixed show cost"
+    },
+    {
+      "number": "48%",
+      "source": "1 Show Costs C8, 'The $150 booth fee is 48% of it'"
+    },
+    {
+      "number": "$6.24",
+      "source": "2 Products H8 = 6.237672, contribution per piece (blended by the Mix column); 3 Break-Even D18"
+    },
+    {
+      "number": "$13.84",
+      "source": "2 Products C8, blended price per piece"
+    },
+    {
+      "number": "51",
+      "source": "3 Break-Even I14 and C7, pieces you must sell"
+    },
+    {
+      "number": "$705.84",
+      "source": "3 Break-Even I15, sales that means"
+    },
+    {
+      "number": "$22, $26",
+      "source": "2 Products G25 (soy candle price 22, example); O25 'below formula'; state 2 sets G25 = 26"
+    },
+    {
+      "number": "44",
+      "source": "3 Break-Even I14 with 2 Products G25 = 26 (sales I15 $652.96)"
+    },
+    {
+      "number": "7-hour day, 60 miles, 76 cents",
+      "source": "1 Show Costs D16, D20, D21"
+    },
+    {
+      "number": "$50 share of a $300 display",
+      "source": "1 Show Costs D26 300 / D27 6 shows = I21 50"
+    },
+    {
+      "number": "$20 an hour making time",
+      "source": "2 Products D14, your hourly rate for making"
+    },
+    {
+      "number": "$23 (candle materials plus labor doubled)",
+      "source": "2 Products N25 = (D25 6.50 + I25 5) x 2 = 23; O25 'below formula'"
+    },
+    {
+      "number": "about 7.3 pieces an hour",
+      "source": "3 Break-Even C8 'about 7.3 pieces an hour'; I16 7.2857"
+    }
+  ],
+  "sources_build": "Built from the repo engine with python3 engines/craft-fair-profit/build_xlsx.py and recalculated in LibreOffice headless (tools/render_xlsx.py, 0 error values) on Oct 7, 2026. New numbers in the walkthrough lines were read the same way from a fresh build recalculated Oct 7, 2026.",
+  "post": {
+    "title": "Craft Fair Booth Fee Break-Even: How Many Pieces You Need to Sell",
+    "description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/12/\n\n0:00 What a $150 booth really costs\n0:18 Costs on top of the booth fee\n0:36 What the day really costs\n0:49 What each piece clears\n1:08 Pieces to break even\n1:24 One price change: 51 pieces to 44\n\nA $150 booth fee turns into $315.60 once miles, meals, extras and a share of your display are counted. At $6.24 cleared per piece, that is 51 pieces before the show earns anything, and raising the candle from $22 to $26 brings it to 44. Example numbers from the Craft Fair Profit Calculator; yours go in the yellow cells.",
+    "tags": [
+      "craft fair booth fee",
+      "craft fair break even",
+      "craft fair pricing",
+      "craft show profit calculator",
+      "makers market",
+      "handmade business",
+      "craft fair tips"
+    ],
+    "render_seconds": 111.6,
+    "chapters_from": "caption start times in make_demo.py's walkthrough timeline for this spec (voice am_michael)"
+  }
+}

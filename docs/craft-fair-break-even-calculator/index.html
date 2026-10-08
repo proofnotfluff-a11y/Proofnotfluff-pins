@@ -53,20 +53,8 @@
 </div></footer>
 <script src="../assets/pnf-calc.js"></script>
 <script>
-function pnfNum(v){var n=parseFloat(String(v).replace(/[$,%\s]/g,""));return isFinite(n)?n:0;}
-function pnfAfter(f,M){function go(){var v={};f.querySelectorAll("[data-in]").forEach(function(e){v[e.getAttribute("data-in")]=e.value;});var r=M(v);
-document.querySelectorAll("[data-pct]").forEach(function(e){var x=r[e.getAttribute("data-pct")];e.textContent=(isFinite(x)?(x*100).toFixed(1):"0.0")+"%";e.classList.toggle("neg",x<0);});
-document.querySelectorAll("[data-never]").forEach(function(e){if(r.never){e.textContent=e.getAttribute("data-never");e.classList.add("neg");}});}
-f.querySelectorAll("select").forEach(function(s){s.addEventListener("change",function(){f.dispatchEvent(new Event("input"));});});
-f.addEventListener("input",go);go();}
 (function(){var f=document.getElementById("calc");
-/* Same maths as the Break-Even tab of engines/craft-fair-profit (#12): card cost per $1 = card share x (percent + flat / average spend);
-   pieces round up to whole pieces. */
-function M(i){var booth=pnfNum(i.booth),other=pnfNum(i.other),price=pnfNum(i.price),cpp=pnfNum(i.cpp),target=pnfNum(i.target);
-var avg=pnfNum(i.avgSale),perDollar=pnfNum(i.cardShare)/100*(pnfNum(i.cardPct)/100+(avg>0?pnfNum(i.cardFlat)/avg:0));
-var total=booth+other,cardPer=price*perDollar,contrib=price-cpp-cardPer,ok=contrib>1e-9;
-var be=ok?Math.max(0,Math.ceil(total/contrib-1e-9)):0,tg=ok?Math.max(0,Math.ceil((total+target)/contrib-1e-9)):0;
-return {booth:booth,other:other,total:total,price:price,cpp:cpp,cardPer:cardPer,contrib:contrib,bePieces:be,beSales:be*price,
-tgtPieces:tg,tgtSales:tg*price,tgtProfit:ok?tg*contrib-total:0,boothShare:total>0?booth/total:0,never:ok?0:1};}
-PNF.wire(f,M);pnfAfter(f,M);window.PNF_MODEL=M;})();</script>
+/* Maths: PNF.craftFair in assets/pnf-calc.js, the Break-Even tab of engines/craft-fair-profit (#12). */
+var M=PNF.craftFair;
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>
 </body></html>

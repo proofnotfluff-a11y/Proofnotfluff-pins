@@ -57,20 +57,8 @@
 </div></footer>
 <script src="../assets/pnf-calc.js"></script>
 <script>
-function pnfNum(v){var n=parseFloat(String(v).replace(/[$,%\s]/g,""));return isFinite(n)?n:0;}
-function pnfAfter(f,M){function go(){var v={};f.querySelectorAll("[data-in]").forEach(function(e){v[e.getAttribute("data-in")]=e.value;});var r=M(v);
-document.querySelectorAll("[data-pct]").forEach(function(e){var x=r[e.getAttribute("data-pct")];e.textContent=(isFinite(x)?(x*100).toFixed(1):"0.0")+"%";e.classList.toggle("neg",x<0);});
-document.querySelectorAll("[data-never]").forEach(function(e){if(r.never){e.textContent=e.getAttribute("data-never");e.classList.add("neg");}});}
-f.querySelectorAll("select").forEach(function(s){s.addEventListener("change",function(){f.dispatchEvent(new Event("input"));});});
-f.addEventListener("input",go);go();}
 (function(){var f=document.getElementById("calc"),CAP=100;
-/* Same per-sale maths as the Listings tab of engines/etsy-true-profit (#5), with sales tax added to the processing base
-   and each fee rounded to the cent so the lines add up to the total shown. */
-function M(i){var price=pnfNum(i.price),ship=pnfNum(i.ship),tax=pnfNum(i.tax),cost=pnfNum(i.cost),label=pnfNum(i.label);
-function c(x){return Math.round(x*100+1e-6)/100;}
-var rate=pnfNum(i.adsRate)/100,rev=price+ship,tf=c(pnfNum(i.tfRate)/100*rev),pf=c(pnfNum(i.procRate)/100*(rev+tax)+pnfNum(i.procFixed)),lf=c(pnfNum(i.listFee));
-var ads=c(Math.min(rate*rev,CAP)),fees=tf+pf+lf+ads,payout=rev-fees,profit=payout-cost-label,adsIf=c(Math.min(0.15*rev,CAP));
-return {revenue:rev,tf:tf,pf:pf,lf:lf,ads:ads,fees:fees,payout:payout,cost:cost,label:label,profit:profit,loss:-profit,
-margin:rev>0?profit/rev:0,feeShare:rev>0?fees/rev:0,adsOff:rate>0?0:1,adsIf:adsIf,profitIfAds:profit-adsIf};}
-PNF.wire(f,M);pnfAfter(f,M);window.PNF_MODEL=M;})();</script>
+/* Maths: PNF.etsyFees in assets/pnf-calc.js, the Listings tab of engines/etsy-true-profit (#5). */
+function M(i){return PNF.etsyFees(i,CAP);}
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>
 </body></html>

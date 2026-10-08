@@ -1,0 +1,149 @@
+{
+  "product_id": "7",
+  "listing_id": "4585097496",
+  "product": "Shipping Cost Calculator",
+  "tab": "1 Parcel Costs",
+  "audience": "Etsy and eBay sellers",
+  "series": "Walkthrough for the bank Short shipping-mug-13-19.json, built Oct 7, 2026 for CMO review",
+  "short_spec": "promo/specs/bank/shipping-mug-13-19.json",
+  "voice": "am_michael",
+  "hook": "$4.95 shipping on a mug that costs <b>$13.19</b> to send",
+  "hook_say": "This video shows the true cost of shipping one 12 ounce mug from an Etsy or eBay shop, and what to charge so shipping stops eating the sale.",
+  "rows": [
+    {
+      "label": "Ceramic mug, 12 oz",
+      "value": "Zone 5",
+      "input": true,
+      "say": "A 12 ounce mug to zone 5",
+      "why": "The example product is a 12 ounce ceramic mug that sells for $19. Packed, it weighs 18 ounces in an 8 by 6 by 6 inch box, going to zone 5."
+    },
+    {
+      "label": "Shipping you charge",
+      "value": "$4.95",
+      "input": true,
+      "say": "You charge $4.95 shipping",
+      "why": "The listing charges the buyer $4.95 for shipping. This is the number the sheet tests against the real cost."
+    },
+    {
+      "label": "Postage, cheapest service",
+      "value": "$9.95",
+      "why": "The sheet bills the box at 2 pounds and checks each service at zone 5. The cheapest is USPS Ground Advantage Commercial at $9.95, against $14.10 at the post office counter.",
+      "result": true
+    },
+    {
+      "label": "Box, filler, tape, label",
+      "value": "$1.44",
+      "why": "Packing materials count too: an 85 cent box, 45 cents of filler, 8 cents of tape and a 6 cent label. That is $1.44 a parcel.",
+      "result": true
+    },
+    {
+      "label": "Packing, 6 min at $18 an hour",
+      "value": "$1.80",
+      "why": "And your time. Six minutes of packing at $18 an hour is $1.80, a cost that never shows up on a label.",
+      "result": true
+    },
+    {
+      "label": "True cost per parcel",
+      "value": "$13.19",
+      "result": true,
+      "kind": "bad",
+      "say": "True cost: $13.19",
+      "why": "Add postage, materials and packing time: $13.19 to send one mug. Postage is about 75% of it."
+    },
+    {
+      "label": "Short on every parcel",
+      "value": "$8.24",
+      "result": true,
+      "kind": "bad",
+      "say": "You are $8.24 short on every one",
+      "why": "The buyer paid $4.95, so every mug that ships is $8.24 short. On a $19 mug, that comes straight out of the price."
+    }
+  ],
+  "fix": {
+    "label": "Charge $13.95 shipping",
+    "value": "Covered",
+    "say": "Charge $13.95 and the mug is covered",
+    "why": "Charge $13.95 for shipping and the check reads Covered, with 76 cents to spare on every parcel."
+  },
+  "cta": {
+    "title": "Etsy and eBay Shipping Cost Calculator",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Search ProofNotFluff for the full workbook."
+  },
+  "note": "Example numbers from the calculator. Yours go in the yellow cells.",
+  "sources": [
+    {
+      "number": "12 oz mug, zone 5",
+      "source": "1 Parcel Costs C22 'Ceramic Mug 12 oz', F22 5, G22 Cheapest"
+    },
+    {
+      "number": "$4.95",
+      "source": "1 Parcel Costs E22, shipping charged (example input)"
+    },
+    {
+      "number": "$9.95",
+      "source": "1 Parcel Costs I22, postage used (cheapest service from 4 Services)"
+    },
+    {
+      "number": "$1.44",
+      "source": "1 Parcel Costs J22 0.85 + K22 0.45 + L22 0.08 + M22 0.06"
+    },
+    {
+      "number": "6 min, $18 an hour, $1.80",
+      "source": "1 Parcel Costs N22 6, G14 18, O22 1.80"
+    },
+    {
+      "number": "$13.19",
+      "source": "1 Parcel Costs P22, true cost per parcel"
+    },
+    {
+      "number": "$8.24",
+      "source": "1 Parcel Costs Q22 = -8.24, shortfall; R22 'Under-recovered'"
+    },
+    {
+      "number": "$13.95, Covered, 76 cents",
+      "source": "1 Parcel Costs with E22 = 13.95: Q22 0.76, R22 'Covered'"
+    },
+    {
+      "number": "$19 sale price",
+      "source": "1 Parcel Costs D22, sale price"
+    },
+    {
+      "number": "18 ounces, 8 by 6 by 6 inch box",
+      "source": "2 Dim Weight D24 8, E24 6, F24 6, G24 18 oz"
+    },
+    {
+      "number": "bills at 2 pounds",
+      "source": "2 Dim Weight L24 'USPS bills (lb)' 2; 4 Services D33 2"
+    },
+    {
+      "number": "USPS Ground Advantage Commercial $9.95",
+      "source": "4 Services G33 9.95, N33 'USPS GA Commercial' (cheapest service)"
+    },
+    {
+      "number": "$14.10 at the counter",
+      "source": "4 Services H33 14.10, USPS GA Retail, zone 5"
+    },
+    {
+      "number": "about 75%",
+      "source": "1 Parcel Costs S22 = 0.7544, postage share"
+    }
+  ],
+  "sources_build": "Built from the repo engine with python3 engines/shipping-true-cost/build_xlsx.py and recalculated in LibreOffice headless (tools/render_xlsx.py, 0 error values) on Oct 7, 2026. New numbers in the walkthrough lines were read the same way from a fresh build recalculated Oct 7, 2026.",
+  "post": {
+    "title": "Etsy Shipping Cost Calculator: What It Really Costs to Ship One Mug",
+    "description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/7/\n\n0:00 The example mug\n0:22 Shipping charged and postage\n0:48 Packing materials and time\n1:11 True cost per parcel\n1:22 The shortfall and the fix\n\nA 12 ounce mug charged $4.95 shipping really costs $13.19 to send once postage, box, filler, tape, label and packing time are counted. That leaves every parcel $8.24 short. Example numbers from the Etsy and eBay Shipping Cost Calculator; yours go in the yellow cells.",
+    "tags": [
+      "etsy shipping cost",
+      "etsy shipping calculator",
+      "ebay shipping cost",
+      "shipping cost calculator",
+      "how to price shipping on etsy",
+      "etsy seller tips",
+      "small business shipping"
+    ],
+    "render_seconds": 108.8,
+    "chapters_from": "caption start times in make_demo.py's walkthrough timeline for this spec (voice am_michael)"
+  }
+}

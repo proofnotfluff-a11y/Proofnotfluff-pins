@@ -14,6 +14,11 @@
 //   ENTRY   when at least 2 page-1 organic listings are under 180 days old: a new listing can still reach page 1.
 //   PASS = PROOF and ENTRY and not FLOOD. Anything else is FAIL. Record the whole result on the idea as
 //   buyerProof, and say in the idea why our product is different from the badged listings on page 1.
+//
+// GAP fields (Oct 9, 2026, research/GAP-SWEEP.md): each card's shop review count "(1,234)" or "(2.3k)" and its
+// shown price. weakShops = page-1 organic listings whose shop has under 50 reviews (a weak shop made page 1, so
+// can we); medianReviews and minPrice describe the wall. gap = PASS and weakShops >= 3. Set
+// window.PNF_ERANK = {searches, clicks, kd} first and the result carries it, so one object is the whole record.
 (() => {
   const ANCHOR_ID = 4590270056, ANCHOR_MS = Date.parse("2026-10-07T07:54:00Z"), PER_DAY = 575000;
   const OURS = (window.PNF_OURS || []).map(String);
@@ -29,7 +34,11 @@
     const badge = (t.match(/Bestseller|Popular now|Etsy's Pick|Star Seller/i) || [""])[0];
     const shop = (t.match(/From shop\s+([A-Za-z0-9]+)/) || [])[1] || "";
     const title = ((c.querySelector("h3,h2") || {}).innerText || "").trim().slice(0, 70);
-    rows.push({ pos: rows.length + 1, id: +id, age: ageDays(+id), ad, badge, shop, title, ours: OURS.includes(id) });
+    const rv = t.match(/\(([\d.,]+)\s*(k)?\)/i);
+    const reviews = rv ? Math.round(parseFloat(rv[1].replace(/,/g, "")) * (rv[2] ? 1000 : 1)) : null;
+    const pr = t.match(/\$\s?([\d,]+\.\d{2})/);
+    const price = pr ? parseFloat(pr[1].replace(/,/g, "")) : null;
+    rows.push({ pos: rows.length + 1, id: +id, age: ageDays(+id), ad, badge, shop, title, reviews, price, ours: OURS.includes(id) });
   }
   const org = rows.filter(r => !r.ad);
   const n = org.length || 1;
@@ -41,7 +50,16 @@
   const under180 = org.filter(r => r.age < 180).length;
   const entry = under180 >= 2;
   const shops = new Set(org.map(r => r.shop).filter(Boolean)).size;
+  const revs = org.map(r => r.reviews).filter(v => v !== null).sort((a, b) => a - b);
+  const prices = org.map(r => r.price).filter(v => v !== null).sort((a, b) => a - b);
+  const weakShops = org.filter(r => r.reviews !== null && r.reviews < 50).length;
+  const medianReviews = revs.length ? revs[Math.floor(revs.length / 2)] : null;
+  const pass = proof && entry && !flood;
   return {
+    erank: window.PNF_ERANK || null,
+    weakShops, reviewsRead: revs.length, medianReviews,
+    minPrice: prices.length ? prices[0] : null, medianPrice: prices.length ? prices[Math.floor(prices.length / 2)] : null,
+    gap: pass && weakShops >= 3,
     phrase: new URLSearchParams(location.search).get("q"),
     checkedAt: new Date().toISOString(),
     signedIn: !/\bSign in\b/.test(document.body.innerText.slice(0, 400)),
@@ -52,6 +70,6 @@
           !proof ? `no buyer proof: ${badged} badged, ${over180} older than 180 days` : "",
           !entry ? `no entry: only ${under180} page-1 organic listings are under 180 days old` : ""].filter(Boolean).join("; "),
     ours: rows.filter(r => r.ours).map(r => ({ pos: r.pos, id: r.id, ad: r.ad })),
-    top: org.slice(0, 12).map(r => `${r.pos}. ${r.age === 9999 ? "old" : r.age + "d"} ${r.badge ? "[" + r.badge + "] " : ""}${r.shop}: ${r.title}`),
+    top: org.slice(0, 12).map(r => `${r.pos}. ${r.age === 9999 ? "old" : r.age + "d"} ${r.badge ? "[" + r.badge + "] " : ""}${r.reviews === null ? "" : r.reviews + "rv "}${r.price === null ? "" : "$" + r.price + " "}${r.shop}: ${r.title}`),
   };
 })()

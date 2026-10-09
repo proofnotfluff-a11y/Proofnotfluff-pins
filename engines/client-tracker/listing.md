@@ -48,7 +48,7 @@ What's inside
 - 6 tabs in each workbook: Start Here, 1 Today, 2 Clients, 3 Jobs, 4 Services, Terms
 - Room for 300 clients, 1,000 jobs and quotes and 30 services per file
 
-Tested compatibility: made for Microsoft Excel 2016 and later (.xlsx); upload the same file to Google Sheets. Recalculated in LibreOffice as the example, a blank copy and stress copies (300 clients, 1,000 jobs, a $99,999 quote, as-of dates years early and late) with no error cells (Oct 9, 2026). No macros, no add-ons, no sign-up.
+Compatibility: made for Microsoft Excel 2016 and later (.xlsx); upload the same file to Google Sheets. Recalculated in LibreOffice as the example, a blank copy and stress copies (300 clients, 1,000 jobs, a $99,999 quote, as-of dates years early and late) with no error cells (Oct 9, 2026). No macros, no add-ons, no sign-up.
 
 Instant download. Download from a web browser on your computer or phone (Etsy, You, Purchases); the Etsy app can't download digital files.
 
@@ -60,9 +60,9 @@ FAQ
 
 Made with AI assistance and reviewed and tested by the shop owner.
 Not affiliated with or endorsed by Microsoft, Google or Etsy.
-Information only, not tax, legal or financial advice; no guarantee of results.
+Information and planning tool only, not legal, tax, financial or other professional advice. Results are estimates based on your inputs.
 Digital download. No physical item ships.
-File problems are fixed on request through Etsy messages.
+File problems fixed on request through Etsy messages.
 
 ## Google Sheets check
 Checked Oct 9, 2026 by Drive upload with Sheets conversion (QA folder 1qoGZklAqCicGEF7LvOBzpGGeFSbRmhat, file "QA client tracker formula forms Oct 9 2026"): the formula forms new to the shop (SUMPRODUCT(MAX()), SUMPRODUCT(LARGE()) with ROW(), ISNA(MATCH()), N(), DATE/YEAR/MONTH, REPT bars) computed the same values in Google Sheets as in LibreOffice: Today month start, open-quote rank and amount, due key, last job date and last service per client, and every Jobs check line.
@@ -73,4 +73,4 @@ Service Business Pricing
 ## Pin facts (from the product's own files)
 1. In the example file, the Today tab shows 5 follow-ups due on October 9, 2026 (2 overdue, 3 due today), each with the service the client last asked about.
 2. The example cleaning business has 3 open quotes worth $720 and $515 of finished work still unpaid, both on the Today tab before any filtering.
-3. One client brings $1,010 of the example's $5,150 revenue to date, about 20%; the Top clients card ranks all 14 with bars.
+3. One client brings $1,010 of the example's $5,150 revenue to date, about 20%; the Top clients card ranks the top 8 with bars.

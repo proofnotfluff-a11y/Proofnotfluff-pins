@@ -355,7 +355,7 @@
   {
    "slug": "etsy-fee-calculator",
    "kind": "etsy_fees",
-   "draft": true,
+   "draft": false,
    "title": "Etsy Fee Calculator: Fees, Payout and Profit per Sale | ProofNotFluff",
    "desc": "Free Etsy fee calculator for US sellers. Enter your price, shipping and costs to see the transaction fee, payment processing, listing fee, Offsite Ads, your payout and your profit on one sale.",
    "eyebrow": "Free calculator",
@@ -448,7 +448,7 @@
   {
    "slug": "craft-fair-break-even-calculator",
    "kind": "craft_fair",
-   "draft": true,
+   "draft": false,
    "title": "Craft Fair Break-Even Calculator: Pieces to Cover Your Booth Fee | ProofNotFluff",
    "desc": "Free craft fair break-even calculator. Enter your booth fee, other show costs, average price, cost per piece and card fees to see how many pieces you must sell to break even and to make the profit you want.",
    "eyebrow": "Free calculator",
@@ -600,7 +600,7 @@
   {
    "slug": "auto-detailing-price-calculator",
    "kind": "service",
-   "draft": true,
+   "draft": false,
    "title": "Auto Detailing Price Calculator: Price Every Detail So It Pays You | ProofNotFluff",
    "desc": "Free mobile auto detailing price calculator. Enter your pay goal, hours and costs to get your break-even rate, your target rate and a quote for an interior detail, a full sedan detail or an SUV, drive time included.",
    "eyebrow": "Free calculator",
@@ -681,7 +681,7 @@
   {
    "slug": "junk-removal-price-calculator",
    "kind": "service",
-   "draft": true,
+   "draft": false,
    "title": "Junk Removal Price Calculator: Quote Truck Loads, Single Items and Cleanouts | ProofNotFluff",
    "desc": "Free junk removal price calculator. Get your break-even rate, target rate and a quote for single items, truck loads, cleanouts and tear-downs, with crew time, drive time and dump fees counted.",
    "eyebrow": "Free calculator",

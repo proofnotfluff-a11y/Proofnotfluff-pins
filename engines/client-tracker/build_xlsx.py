@@ -44,6 +44,10 @@ VERSION = "1"
 CHECKED = "Oct 9, 2026"
 CHECKED_LONG = "October 9, 2026"
 AS_OF = f"Version {VERSION}, {CHECKED}"
+PRIVACY_LINE = ("If you collect client information, you're responsible for keeping it secure and following the "
+                "privacy laws that apply to you.")
+NOTICE_TEXT = S.SHORT_NOTICE.format(date=CHECKED_LONG).replace("Terms of Use page", "Terms tab") + " " + PRIVACY_LINE
+TAB_NOTICE = " Estimates only. Not professional advice. See the Terms tab."
 HERE = os.path.dirname(os.path.abspath(__file__))
 args = sys.argv[1:]
 BLANK = "--blank" in args
@@ -327,7 +331,7 @@ cols_cl = [
 ]
 f1, f2, cl_end = D.table_card(cl, C_TOP, "B", "Q", cols_cl, N_CLIENTS, title="Your clients",
                               sub=f"Yellow columns are yours; white columns are formulas and stay put when you clear the yellow cells. "
-                                  f"{SHIP_CLIENTS} rows. Days to next and the follow-up flag count from the as-of date on the Today tab.")
+                                  f"{SHIP_CLIENTS} rows. Days to next and the follow-up flag count from the as-of date on the Today tab. " + PRIVACY_LINE + TAB_NOTICE)
 assert (f1, f2) == (C_FIRST, C_LAST), (f1, f2)
 left_cells(cl, C_FIRST, C_LAST, ("C", "D", "E", "F", "I"), color="input_text", bold=True)
 left_cells(cl, C_FIRST, C_LAST, ("N",), size=9, color="ink2")
@@ -409,7 +413,7 @@ cols_jb = [
     dict(col="L", head="Check", kind="calc", formula=f_jcheck),
 ]
 g1, g2, jb_end = D.table_card(jb, J_TOP, "B", "M", cols_jb, N_JOBS, title="Your jobs and quotes",
-                              sub=f"Yellow columns are yours; white columns fill in on their own. {SHIP_JOBS:,} rows, all read by the totals.")
+                              sub=f"Yellow columns are yours; white columns fill in on their own. {SHIP_JOBS:,} rows, all read by the totals." + TAB_NOTICE)
 assert (g1, g2) == (J_FIRST, J_LAST), (g1, g2)
 left_cells(jb, J_FIRST, J_LAST, ("D", "E", "G", "H", "I"), color="input_text", bold=True)
 left_cells(jb, J_FIRST, J_LAST, ("J",), size=9, color="ink2")
@@ -462,7 +466,7 @@ cols_sv = [
     dict(col="G", head="Revenue to date", kind="calc", fmt=USD2, align="right", formula=f_srev),
 ]
 s1, s2, sv_end = D.table_card(sv, S_TOP, "B", "H", cols_sv, N_SERVICES, title="Your services",
-                              sub=f"Yellow columns are yours; white columns fill in on their own. {N_SERVICES} rows.")
+                              sub=f"Yellow columns are yours; white columns fill in on their own. {N_SERVICES} rows." + TAB_NOTICE)
 assert (s1, s2) == (S_FIRST, S_LAST), (s1, s2)
 left_cells(sv, S_FIRST, S_LAST, ("C",), color="input_text", bold=True)
 D.paint_canvas(sv, sv_end + 1, "Z")
@@ -609,7 +613,7 @@ NOTES = [
     ("Last asked about", "The service on the client's most recent row on the Jobs tab, whatever its status, so you know what "
      "to talk about when you call."),
     ("Any currency", "The maths works in any currency. Select the money cells and pick your symbol under Format, Number."),
-    ("Before you rely on a number", S.SHORT_NOTICE.format(date=CHECKED).replace("Terms of Use page", "Terms tab")),
+    ("Before you rely on a number", NOTICE_TEXT),
 ]
 r = N_TOP_TD
 D.h(td, r, 12); r += 1
@@ -752,7 +756,7 @@ r = sh_card(sh, r, "Good to know", [
            "Done when the job is finished. Only Done rows count as revenue, and a Done job with Paid set to No stays in Unpaid "
            "until you change it to Yes.", "para"),
 ])
-r = sh_card(sh, r, "Before you rely on a number", [(None, S.SHORT_NOTICE.format(date=CHECKED).replace("Terms of Use page", "Terms tab"), "note")])
+r = sh_card(sh, r, "Before you rely on a number", [(None, NOTICE_TEXT, "note")])
 SH_LAST = r - 1
 D.paint_canvas(sh, SH_LAST, "Z")
 S.finish_sheet(sh, PRODUCT, SH_LAST, span=("A", "G"), tab_color="teal",
@@ -779,6 +783,15 @@ TM_LAST = r - 1
 D.paint_canvas(tm, TM_LAST, "Z")
 S.finish_sheet(tm, PRODUCT, TM_LAST, span=("A", "G"), tab_color="note")
 
+# Legal desk, Oct 9: the table notes on Clients, Jobs and Services carry the on-screen notice (and the privacy line
+# on Clients), so they wrap and the row grows to fit.
+for _ws, _c0, _c1 in ((cl, "C", "P"), (jb, "C", "L"), (sv, "C", "G")):
+    for _row in range(11, 15):
+        _cell = _ws[f"C{_row}"]
+        if isinstance(_cell.value, str) and _cell.value.startswith("Yellow columns are yours"):
+            _cell.alignment = Alignment(vertical="top", wrap_text=True)
+            _w = sum(S.width_of(_ws, k) for k in D.cols(_c0, _c1))
+            D.h(_ws, _row, S.text_height(_cell.value, _w, 9) + 4)
 wb.active = 0
 problems = [p for p in S.audit(wb) if "input without validation" not in p]
 if problems:

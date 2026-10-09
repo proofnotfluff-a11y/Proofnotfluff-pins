@@ -1365,7 +1365,7 @@
   {
    "slug": "airbnb-break-even-nights-calculator",
    "kind": "str_breakeven",
-   "draft": true,
+   "draft": false,
    "title": "Airbnb Break Even Calculator: Nights a Month to Cover Your Costs | ProofNotFluff",
    "desc": "Free Airbnb break even calculator. Type your monthly fixed costs, nightly rate, platform fee, average stay and the cleaning fee you keep to see how many booked nights a month cover your costs.",
    "eyebrow": "Free calculator",
@@ -1410,14 +1410,14 @@
     ],
     [
      "What host fee does Airbnb charge?",
-     "Airbnb's single host service fee is 15.5% for most hosts and 16% for listings in Brazil and Mexico (Airbnb Resource Center, checked Oct 8, 2026). Type the fee your own payouts show."
+     "Airbnb's single host service fee is 15.5% for most hosts and 16% for listings in Brazil and Mexico (Airbnb Help Center, article 1857, checked Oct 9, 2026). Hosts still on the split fee pay less and guests pay the rest. Type the fee your own payouts show."
     ],
     [
      "Is break-even the same as profit?",
-     "No. Break-even covers the fixed costs you type. Income tax, repairs, furnishing and your own time come on top, so most hosts aim well above it."
+     "No. Break-even covers the fixed costs you type. Income tax, repairs, furnishing and your own time come on top, so treat break-even as a floor, not a target."
     ]
    ],
-   "sources": "Airbnb single host service fee 15.5% (16% in Brazil and Mexico): Airbnb Resource Center, Simplifying service fees on Airbnb (updated Aug 24, 2026), checked Oct 8, 2026. The cabin's costs and cleaning figures are fictional; the $185 rate is the example base rate in the Pricing Calculator for Airbnb and VRBO Hosts workbook.",
+   "sources": "Airbnb single host service fee: most hosts pay 15.5%, listings in Brazil and Mexico 16% (Airbnb Help Center, Airbnb service fees, article 1857, checked Oct 9, 2026). The cabin's costs and cleaning figures are fictional; the $185 rate is the example base rate in the Pricing Calculator for Airbnb and VRBO Hosts workbook.",
    "number_sources": [
     "15.5% host fee: airbnb.com/resources/hosting-homes/a/simplifying-service-fees-on-airbnb-771, read Oct 8, 2026.",
     "$185 base rate: engines/str-nightly-pricing EX base.",

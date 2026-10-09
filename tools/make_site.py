@@ -529,7 +529,7 @@ def str_breakeven_page(p):
 <li><span>Exact nights to cover fixed costs</span><span data-out="exact" data-fmt="dec1">0.0</span></li>
 <li class="total"><span>Rate to break even at half the month booked</span><span data-out="rateAtHalf">$0</span></li>
 </ul>
-<div class="callout" data-show-if="ok > 0">Book <b data-out="nights" data-fmt="int">0</b> nights a month, about <b data-out="stays" data-fmt="dec1">0.0</b> stays, and the place pays for itself. Every night after that is profit before taxes.</div>
+<div class="callout" data-show-if="ok > 0">Book <b data-out="nights" data-fmt="int">0</b> nights a month, about <b data-out="stays" data-fmt="dec1">0.0</b> stays, and the place pays for itself. Every night after that adds to what you keep, before taxes, repairs and your time.</div>
 <div class="callout warn" data-show-if="over > 0">That is more nights than a month has. At this rate the place can't cover its fixed costs; the rate for half the month booked is shown above.</div>
 <div class="callout warn" data-show-if="never > 0">Each booked night pays nothing after fees, so no number of nights covers the costs. Check the nightly rate and fee.</div>
 <div class="callout warn" data-show-if="noCosts > 0">Type your fixed costs per month to see the break-even nights.</div>

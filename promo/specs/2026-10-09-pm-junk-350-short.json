@@ -1,0 +1,78 @@
+{
+  "product_id": "23",
+  "listing_id": "4590270056",
+  "product": "Junk Removal Pricing Calculator",
+  "tab": "3 Quote Builder",
+  "audience": "Junk removal owners",
+  "hookId": "H02",
+  "series": "Flagship #23 (SALES FIRST, Oct 8); H02 lowball correction (benchmark: $22 vs $55 cleaning Short, 900 views); CMO slate Oct 9 pm",
+  "voice": "am_michael",
+  "hook": "Charging $350 for a half truck load? You're <b>$59.62</b> short",
+  "hook_say": "Here is what a $350 half truck load really pays two people once the drive, the truck and taxes are counted.",
+  "rows": [
+    {
+      "label": "Job",
+      "value": "Half truck load",
+      "input": true,
+      "say": "Half truck load",
+      "why": "The calculator's example job: a half truck load, picked from the Trade Presets list."
+    },
+    {
+      "label": "Hours on site, people",
+      "value": "1.5 h, 2",
+      "input": true,
+      "say": "2 people, 1.5 hours",
+      "why": "Two people, an hour and a half on site each, $75 of supplies and dump fees, a 30-mile round trip."
+    },
+    {
+      "label": "Your current price for this job",
+      "value": "$350",
+      "input": true,
+      "say": "You charge $350",
+      "why": "Type today's price into the check line."
+    },
+    {
+      "label": "Price floor, zero profit",
+      "value": "$409.62",
+      "result": true,
+      "say": "Your floor is $409.62",
+      "why": "Labor on site $187.09, drive time $124.73, vehicle $22.80 and supplies $75, all at the $62.36 break-even rate."
+    },
+    {
+      "label": "Profit at your current price",
+      "value": "-$59.62",
+      "result": true,
+      "kind": "bad",
+      "say": "At $350 you're $59.62 short",
+      "why": "At $350 the job pays $59.62 less than it costs you. The check line says it plainly: below your floor."
+    }
+  ],
+  "fix": {
+    "label": "Quote, rounded up to $5",
+    "value": "$485",
+    "say": "Quote $485",
+    "why": "With a 15% profit margin, rounded up to the next $5, the quote is $485: $75.38 of profit and a $121.25 deposit."
+  },
+  "cta": {
+    "title": "Junk Removal Pricing Calculator",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Search ProofNotFluff for the full workbook."
+  },
+  "note": "Example numbers from the calculator. Yours go in the yellow cells.",
+  "sources": [
+    {"number": "Half truck load, 1.5 h, 2 people, $75, 30 mi", "source": "3 Quote Builder D14, I21 to I24 (presets)"},
+    {"number": "$350", "source": "3 Quote Builder D32 (example current price)"},
+    {"number": "$409.62", "source": "3 Quote Builder I32 409.617; I27 187.09, I28 124.73, I29 22.80, I30 75"},
+    {"number": "-$59.62", "source": "3 Quote Builder D33 -59.617; D34 'Below your floor'"},
+    {"number": "$62.36", "source": "1 Your Numbers I21 62.363"},
+    {"number": "$485, $75.38, $121.25", "source": "3 Quote Builder I34 485, I36 75.383, I35 121.25; 1 Your Numbers I37 15%"}
+  ],
+  "sources_build": "python3 engines/service-pricing/build_xlsx.py --edition editions/junk-removal.json (the listed #23 edition), recalculated in LibreOffice headless Oct 9, 2026, 5:40 am; matches products/23 pinFacts.",
+  "post": {
+    "short_title": "Charging $350 for a half truck load? You're $59.62 short #Shorts",
+    "youtube_description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/23/\nA half truck load, 2 people, 1.5 hours, a 30-mile round trip and $75 of supplies and dump fees. At the $62.36 break-even rate the floor is $409.62, so $350 is $59.62 short. With a 15% margin the quote is $485. Example numbers from the Junk Removal Pricing Calculator; estimates, yours go in the yellow cells.\n\n#Shorts",
+    "reel_caption": "Charging $350 for a half truck load? You're $59.62 short. Two people, 1.5 hours, a 30-mile round trip and $75 of dump fees put the floor at $409.62. With a 15% margin, quote $485. Example numbers from the Junk Removal Pricing Calculator.\n\nLink in bio: proofnotfluff.etsy.com\n\n#junkremoval #junkremovalbusiness #haulingbusiness #pricingstrategy",
+    "tiktok_caption": "Charging $350 for a half truck load? You're $59.62 short. Example numbers from the Junk Removal Pricing Calculator. Search ProofNotFluff on Etsy. #junkremoval #junkremovalbusiness #haulingbusiness #pricingstrategy"
+  }
+}

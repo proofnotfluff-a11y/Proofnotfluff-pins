@@ -86,5 +86,10 @@ Finished work reaching the three flagship listings before paid visits land. 16 l
 6. Done Oct 9: paste-lister-prompt (the lister ran the new prompt at 7:53 am).
 7. Older: ask-pinterest-rule, ask-services, approve-tiktok-business and approve-real-price-test (retire Oct 19 if unticked), legal-returns-policy, legal-family-copies, messages-24h, note-to-buyers-browser.
 
+## Moves under Todd's Oct 9 go-ahead ("yes, let's move")
+- tools/etsy_list.py apply-pack and the LEGAL PACKS prompt draft: the API lister applies 2 queued packs a run (file, photos, video, description; never title, tags, price) once Todd pastes it and adds the 12:50 pm run (quest paste-lister-prompt-packs). With the shop run's 2, the 16-pack backlog clears in about 3 days instead of 8. meta/lister.packOrder: #18, #19, #16, #13, #14, #5, #9, #7, #6; the shop run keeps the Drive-file packs and the flagship packs.
+- The Gumroad kit (zip, cover, 10 gallery images, demo, listing copy) was handed to Todd in chat so the upload is one unzip away.
+- Ads budget stays $5 a day until the Oct 16 numbers: no money moves on the COO's word, and zero conversion data means a raise now would only buy a faster answer to the wrong question.
+
 ## Next run (Sat Oct 10, 5:00 am)
 Read Oct 9 Etsy visits and whether days/2026-10-10.ads exists (the ads test must be switched on by the Oct 10 shop run); confirm flagship/22 and flagship/23 packs from the builder's Oct 9 runs; count Legal desk page clears (target 4 at 7:35 am); if the shop run ships under 2 packs again, draft the lister update tool (file swap, images, description through the Etsy API) and open a paste quest for it. Sun Oct 11: scout run. Mon Oct 12: deep run, Marketplace Insights on the flagship and the 7 real-demand phrases, premium segment decision (STR and home services), net profit, memo.

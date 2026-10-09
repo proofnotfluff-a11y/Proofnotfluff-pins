@@ -11,46 +11,46 @@
   "hook_say": "Here is what a $350 half truck load really pays two people once the drive, the truck and taxes are counted.",
   "rows": [
     {
-      "label": "Job",
+      "label": "The job",
       "value": "Half truck load",
       "input": true,
       "say": "Half truck load",
       "why": "The calculator's example job: a half truck load, picked from the Trade Presets list."
     },
     {
-      "label": "Hours on site, people",
-      "value": "1.5 h, 2",
+      "label": "Crew and time on site",
+      "value": "2 people, 1.5 hrs",
       "input": true,
       "say": "2 people, 1.5 hours",
       "why": "Two people, an hour and a half on site each, $75 of supplies and dump fees, a 30-mile round trip."
     },
     {
-      "label": "Your current price for this job",
+      "label": "What you charge now",
       "value": "$350",
       "input": true,
       "say": "You charge $350",
       "why": "Type today's price into the check line."
     },
     {
-      "label": "Price floor, zero profit",
+      "label": "Break-even price (no profit)",
       "value": "$409.62",
       "result": true,
-      "say": "Your floor is $409.62",
+      "say": "It costs you $409.62 to do",
       "why": "Labor on site $187.09, drive time $124.73, vehicle $22.80 and supplies $75, all at the $62.36 break-even rate."
     },
     {
-      "label": "Profit at your current price",
+      "label": "What you lose on this job",
       "value": "-$59.62",
       "result": true,
       "kind": "bad",
-      "say": "At $350 you're $59.62 short",
+      "say": "So at $350 you lose $59.62",
       "why": "At $350 the job pays $59.62 less than it costs you. The check line says it plainly: below your floor."
     }
   ],
   "fix": {
-    "label": "Quote, rounded up to $5",
+    "label": "Price that pays you",
     "value": "$485",
-    "say": "Quote $485",
+    "say": "Charge $485 and you make a profit",
     "why": "With a 15% profit margin, rounded up to the next $5, the quote is $485: $75.38 of profit and a $121.25 deposit."
   },
   "cta": {
@@ -61,12 +61,30 @@
   },
   "note": "Example numbers from the calculator. Yours go in the yellow cells.",
   "sources": [
-    {"number": "Half truck load, 1.5 h, 2 people, $75, 30 mi", "source": "3 Quote Builder D14, I21 to I24 (presets)"},
-    {"number": "$350", "source": "3 Quote Builder D32 (example current price)"},
-    {"number": "$409.62", "source": "3 Quote Builder I32 409.617; I27 187.09, I28 124.73, I29 22.80, I30 75"},
-    {"number": "-$59.62", "source": "3 Quote Builder D33 -59.617; D34 'Below your floor'"},
-    {"number": "$62.36", "source": "1 Your Numbers I21 62.363"},
-    {"number": "$485, $75.38, $121.25", "source": "3 Quote Builder I34 485, I36 75.383, I35 121.25; 1 Your Numbers I37 15%"}
+    {
+      "number": "Half truck load, 1.5 h, 2 people, $75, 30 mi",
+      "source": "3 Quote Builder D14, I21 to I24 (presets)"
+    },
+    {
+      "number": "$350",
+      "source": "3 Quote Builder D32 (example current price)"
+    },
+    {
+      "number": "$409.62",
+      "source": "3 Quote Builder I32 409.617; I27 187.09, I28 124.73, I29 22.80, I30 75"
+    },
+    {
+      "number": "-$59.62",
+      "source": "3 Quote Builder D33 -59.617; D34 'Below your floor'"
+    },
+    {
+      "number": "$62.36",
+      "source": "1 Your Numbers I21 62.363"
+    },
+    {
+      "number": "$485, $75.38, $121.25",
+      "source": "3 Quote Builder I34 485, I36 75.383, I35 121.25; 1 Your Numbers I37 15%"
+    }
   ],
   "sources_build": "python3 engines/service-pricing/build_xlsx.py --edition editions/junk-removal.json (the listed #23 edition), recalculated in LibreOffice headless Oct 9, 2026, 5:40 am; matches products/23 pinFacts.",
   "post": {

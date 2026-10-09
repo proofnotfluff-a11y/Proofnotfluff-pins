@@ -543,10 +543,56 @@ PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
     return form, results, script
 
 
+def rental_cash_flow_page(p):
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>The period</legend>
+{field("months", "Months these figures cover", d["months"], "12 for a full year; fewer for the year so far")}
+</fieldset>
+<fieldset><legend>Money in</legend>
+{field("income", "Rent and other rental income", d["income"], "Rent collected plus late fees and pet rent. Leave out security deposits you plan to return", pre="$")}
+</fieldset>
+<fieldset><legend>Money out</legend>
+{field("expenses", "Operating expenses", d["expenses"], "Property tax, insurance, repairs, utilities you pay, management, supplies, travel", pre="$")}
+{field("interest", "Mortgage interest", d["interest"], "The interest part of your payments, from the lender's statements", pre="$")}
+{field("principal", "Mortgage principal", d["principal"], "The part of each payment that pays down the loan", pre="$")}
+{field("improve", "Capital improvements", d["improve"], "Upgrades like a new roof or water heater, not repairs", pre="$")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Cash flow (what you kept)</div><div class="val" data-out="cash">$0</div><div class="sub"><span data-out="cashMonth">$0</span> a month on average</div></div>
+<div class="tile"><div class="lab">Profit before depreciation</div><div class="val" data-out="profit">$0</div><div class="sub">money in less expenses and interest</div></div>
+</div>
+<ul class="lines">
+<li><span>Rent and other rental income</span><span data-out="income">$0</span></li>
+<li><span>Less operating expenses</span><span data-out="expenses">$0</span></li>
+<li><span>Less mortgage interest</span><span data-out="interest">$0</span></li>
+<li><span>Profit before depreciation</span><span data-out="profit">$0</span></li>
+<li><span>Less mortgage principal</span><span data-out="principal">$0</span></li>
+<li><span>Less capital improvements</span><span data-out="improve">$0</span></li>
+<li class="total"><span>Cash flow (what you kept)</span><span data-out="cash">$0</span></li>
+<li><span>Kept from each dollar of rent</span><span data-pct="keptShare">0%</span></li>
+</ul>
+<div class="callout" data-show-if="pos > 0">You kept <b data-out="cash">$0</b> after every payment, about <b data-out="cashMonth">$0</b> a month.</div>
+<div class="callout warn" data-show-if="gap > 0">The property shows a profit of <b data-out="profit">$0</b>, but principal and improvements took more than that, so cash went down by <b data-out="down">$0</b>.</div>
+<div class="callout warn" data-show-if="neg > 0">Money out was more than money in: cash went down by <b data-out="down">$0</b> over the period.</div>
+<div class="callout warn" data-show-if="noMonths > 0">Type how many months these figures cover to see the monthly average.</div>
+<div class="callout warn" data-show-if="noIncome > 0">Type the rent you collected to see your cash flow.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Cash flow <b data-out="cash">$0</b></span><span>A month <b data-out="cashMonth">$0</b></span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.rentalCashFlow in assets/pnf-calc.js, the 4 Property P&L rows of engines/rental-property (#19). */
+var M=PNF.rentalCashFlow;
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
 PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashflow_page,
               "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
               "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
-              "reorder_point": reorder_point_page, "str_breakeven": str_breakeven_page}
+              "reorder_point": reorder_point_page, "str_breakeven": str_breakeven_page,
+              "rental_cash_flow": rental_cash_flow_page}
 
 
 def page_html(p):

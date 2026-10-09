@@ -194,11 +194,27 @@ check("STR break-even: no cleaning kept, nights", B2.nights, 33);
 check("STR break-even: more nights than a month flagged", B2.over, 1);
 const B3 = P.strBreakEven({ fixed: 1500, rate: 0, cleanKept: 0, stay: 3, fee: 15.5 });
 check("STR break-even: zero payout can never break even", B3.never, 1);
+// #19 Rental Property Spreadsheet, 4 Property P&L (example log, 2026; engine asserts oak 4844/2844/1450/550, all 13569/6683)
+const RC1 = P.rentalCashFlow({ income: 14850, expenses: 5200, interest: 4806, principal: 2844, improve: 1450, months: 9 });
+check("#19 Oak Street House profit before depreciation", RC1.profit, 4844);
+check("#19 Oak Street House cash flow", RC1.cash, 550);
+check("#19 Oak Street House cash flow per month", RC1.cashMonth, 61.11111);
+const RC2 = P.rentalCashFlow({ income: 22050, expenses: 7817, interest: 5508, principal: 2592, improve: 0, months: 10 });
+check("#19 Maple Duplex profit before depreciation", RC2.profit, 8725);
+check("#19 Maple Duplex cash flow", RC2.cash, 6133);
+const RC3 = P.rentalCashFlow({ income: 36900, expenses: 13017, interest: 10314, principal: 5436, improve: 1450, months: 10 });
+check("#19 all properties profit", RC3.profit, 13569);
+check("#19 all properties cash flow", RC3.cash, 6683);
+const RC4 = P.rentalCashFlow({ income: 14850, expenses: 5200, interest: 4806, principal: 2844, improve: 3000, months: 9 });
+check("#19 profit but negative cash flow flagged", RC4.gap, 1);
+check("#19 negative cash flow", RC4.cash, -1000);
+check("#19 cash went down by", RC4.down, 1000);
+check("#19 profit case is not the loss callout", RC4.neg, 0);
 // blank inputs never produce NaN or Infinity
 const b = P.service({});
 const bh = P.hourly({});
 const bc = P.cashflow({});
-const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({})]
+const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({})]
   .flatMap(o => Object.values(o)).filter(v => typeof v === "number");
 const bad = [...Object.values(b), ...Object.values(bh), ...Object.values(bc), ...more].filter(v => !isFinite(v));
 if (bad.length) { fails++; console.log("FAIL blank inputs give non-finite values"); } else console.log("ok   blank inputs stay finite");

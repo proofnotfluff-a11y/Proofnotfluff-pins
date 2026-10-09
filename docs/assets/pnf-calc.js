@@ -4,7 +4,8 @@
    etsyFees: engines/etsy-true-profit (#5); craftFair: engines/craft-fair-profit (#12);
    strNightly: engines/str-nightly-pricing (#9); debtPayoff: engines/debt-payoff-tracker (#16);
    shippingCost: engines/shipping-true-cost (#7); reorderPoint: engines/cash-aware-reorder-planner (#6);
-   strBreakEven: the #9 fee stack (engines/str-nightly-pricing), break-even nights for the STR lite page.
+   strBreakEven: the #9 fee stack (engines/str-nightly-pricing), break-even nights for the STR lite page;
+   rentalCashFlow: engines/rental-property (#19), 4 Property P&L profit and cash flow rows.
    Tested against the workbooks' own example outputs in docs/assets/pnf-calc.test.js. */
 (function (root) {
   "use strict";
@@ -265,6 +266,22 @@
       rateAtHalf: rateAtHalf, never: never, over: over, ok: (!never && !over && fixed > 0) ? 1 : 0, noCosts: fixed > 0 ? 0 : 1 };
   }
 
+  // #19 Rental Property Spreadsheet, 4 Property P&L: profit before depreciation = money in less Schedule E expenses
+  // (mortgage interest included); cash flow = profit less mortgage principal and capital improvements.
+  function rentalCashFlow(i) {
+    var income = num(i.income), expenses = num(i.expenses), interest = num(i.interest);
+    var principal = num(i.principal), improve = num(i.improve), months = Math.round(num(i.months));
+    var profit = income - expenses - interest;
+    var cash = profit - principal - improve;
+    var m = months > 0 ? months : 0;
+    return { income: income, expenses: expenses, interest: interest, principal: principal, improve: improve, months: m,
+      outTotal: expenses + interest + principal + improve, notExpense: principal + improve,
+      profit: profit, cash: cash, cashMonth: m > 0 ? cash / m : 0, profitMonth: m > 0 ? profit / m : 0,
+      keptShare: income > 0 ? cash / income : 0, down: cash < 0 ? -cash : 0,
+      pos: income > 0 && cash > 0 ? 1 : 0, neg: income > 0 && cash < 0 && profit <= 0 ? 1 : 0, even: income > 0 && cash === 0 ? 1 : 0,
+      gap: income > 0 && profit > 0 && cash < 0 ? 1 : 0, noIncome: income > 0 ? 0 : 1, noMonths: income > 0 && m === 0 ? 1 : 0 };
+  }
+
   function money(x, cents) {
     var neg = x < 0; x = Math.abs(x);
     var s = cents === false ? Math.round(x).toLocaleString("en-US")
@@ -323,7 +340,7 @@
   }
 
   var api = { hourly: hourly, service: service, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
-    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, num: num, money: money, ceilTo: ceilTo,
+    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;
 })(this);

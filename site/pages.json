@@ -1424,6 +1424,69 @@
     "$185 base rate: engines/str-nightly-pricing EX base.",
     "Results: PNF.strBreakEven, tests in docs/assets/pnf-calc.test.js (Oct 8, 2026)."
    ]
+  },
+  {
+   "slug": "rental-property-cash-flow-calculator",
+   "kind": "rental_cash_flow",
+   "draft": true,
+   "title": "Rental Property Cash Flow Calculator: What You Kept After Every Payment | ProofNotFluff",
+   "desc": "Free rental property cash flow calculator. Enter rent, operating expenses, mortgage interest, principal and improvements to see profit before depreciation, the cash you kept, and the monthly average.",
+   "eyebrow": "Free calculator",
+   "h1": "Rental Property Cash Flow Calculator",
+   "lede": "A rental can show a profit and still leave you with less cash, because principal and improvements are paid in cash but aren't expenses. Enter one property's figures for a year, or the year so far, to see both numbers side by side. Free, no sign-up.",
+   "card": "A rental's profit before depreciation and the cash you actually kept.",
+   "segment": "landlords",
+   "product": "19",
+   "defaults": {
+    "months": "9",
+    "income": "14,850",
+    "expenses": "5,200",
+    "interest": "4,806",
+    "principal": "2,844",
+    "improve": "1,450"
+   },
+   "method": [
+    "Profit before depreciation is the rent and other rental income you collected, less operating expenses and mortgage interest. Those are the expense lines on IRS Schedule E.",
+    "Cash flow takes that profit and also subtracts mortgage principal and capital improvements. IRS Publication 527 (2025) says you can't deduct mortgage principal payments and must capitalize improvements, so neither lowers profit, but both still leave your bank account.",
+    "The monthly average is cash flow divided by the months you entered. Depreciation is left out because it is not cash; your tax preparer works it out. All figures are estimates from the numbers you type."
+   ],
+   "example": "The Rental Property Spreadsheet's sample single-family house, Oak Street House, is fictional. From January to September 2026 its log shows $14,850 of rent (nine months at $1,650), $5,200 of operating expenses ($3,720 property tax, $1,140 insurance, $240 repairs, $62 supplies and $38 of travel), $4,806 of mortgage interest, $2,844 of mortgage principal and a $1,450 capital improvement. Profit before depreciation is $14,850 less $5,200 less $4,806, or $4,844. Take away the $2,844 of principal and the $1,450 improvement and the cash kept is $550, about $61 a month. A $4,844 profit and $550 kept: that gap is why the workbook shows both.",
+   "cta": {
+    "title": "Track every door and see both numbers all year",
+    "bullets": [
+     "The Rental Property Spreadsheet for 1 to 10 Doors uses this same maths in Excel and Google Sheets:",
+     "one log for every dollar in or out, a rent roll that flags late and partial rent, a profit and cash flow column for each property on the Schedule E line names, and a monthly view. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4589671970"
+   },
+   "faq": [
+    [
+     "What is rental property cash flow?",
+     "The money a rental leaves you with after every payment it needs: operating expenses, mortgage interest, mortgage principal and improvements. It is what you kept, not what you earned on paper."
+    ],
+    [
+     "Why is my cash flow lower than my profit?",
+     "Mortgage principal and capital improvements are paid in cash but are not expenses on Schedule E. IRS Publication 527 (2025) says you can't deduct principal payments and must capitalize improvements. So they lower cash flow without lowering profit."
+    ],
+    [
+     "Should I include security deposits?",
+     "Leave out a deposit you plan to return; it isn't income when you receive it. IRS Publication 527 (2025) says a deposit meant as the tenant's last month of rent is advance rent and counts as income when you receive it, so include that one."
+    ],
+    [
+     "Is depreciation included?",
+     "No. Depreciation lowers taxable profit but is not money leaving your account, so it is left out of both numbers here. Your tax preparer works it out."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is planning arithmetic on the numbers you type. Check how each item is treated with a tax professional."
+    ]
+   ],
+   "sources": "IRS Publication 527 (2025), Residential Rental Property: mortgage interest deductible, principal payments not deductible, improvements capitalized, advance rent and security deposits; checked Oct 8, 2026. Example figures are the fictional sample house in the Rental Property Spreadsheet for 1 to 10 Doors workbook.",
+   "number_sources": [
+    "Oak Street House 2026 log in engines/rental-property/build_xlsx.py LOGROWS: Rent 14,850 (9 x 1,650); Taxes 3,720 (1,860 x 2); Insurance 1,140; Repairs 240; Supplies 62; Auto and travel 38 (operating expenses 5,200); Mortgage interest 4,806; Mortgage principal 2,844; Capital improvement 1,450.",
+    "Engine asserts oak_profit 4,844, oak_principal 2,844, oak_improve 1,450, oak_cash 550 (4 Property P&L, Profit and Cash flow rows). $61.11 a month = 550 / 9."
+   ]
   }
  ]
 }

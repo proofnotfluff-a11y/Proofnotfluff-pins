@@ -185,7 +185,7 @@ h1{{font-family:P;font-size:{int(84*s)}px;line-height:1.08;letter-spacing:-1px}}
 .note{{font-size:{int(24*s)}px;color:#8A91A3;margin-top:{int(14*s)}px}}
 .cap{{display:inline-block;background:#fff;color:#1D2433;font-family:CB;font-size:{int(46*s) if not wide else 40}px;line-height:1.25;padding:{int(18*s)}px {int(28*s)}px;border-radius:{int(18*s)}px;box-shadow:0 10px 30px rgba(0,0,0,.25)}}
 .cursor{{position:absolute;width:{int(46*s)}px;height:{int(46*s)}px;left:0;top:0;z-index:20;transform:translate(-200px,-200px)}}
-.end{{position:absolute;inset:0;background:#121722;display:flex;flex-direction:column;justify-content:center;align-items:{'center' if wide else 'flex-start'};padding:0 {int(90*s)}px;opacity:0;z-index:30;text-align:{'center' if wide else 'left'}}}
+.end{{position:absolute;inset:0;background:#121722;display:flex;flex-direction:column;justify-content:center;align-items:{'center' if wide else 'flex-start'};padding:{'0 '+str(int(90*s))+'px' if wide else '0 160px 0 '+str(int(90*s))+'px'};opacity:0;z-index:30;text-align:{'center' if wide else 'left'}}}
 .end h2{{font-family:P;font-size:{int(80*s)}px;line-height:1.1;margin-bottom:{int(30*s)}px}}
 .end .btn{{display:inline-block;background:#C8502F;color:#fff;font-family:P;font-size:{int(40*s)}px;padding:{int(24*s)}px {int(44*s)}px;border-radius:60px;margin-bottom:{int(28*s)}px}}
 .end .sub{{font-size:{int(44*s)}px;color:#E8EBF1}}

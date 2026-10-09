@@ -24,3 +24,7 @@ Each builder or promote run that passes only on round 2 adds its findings here; 
 - Listing image crops of a 1,000-row log must be short and wide (header plus 4 to 6 rows); a tall crop shrinks to unreadable text.
 - Start Here: put a page break before "Before you rely on a number" when the card would split across pages.
 - Long tables printed landscape on 2+ pages need print_title_rows (Categories tabs included).
+
+## Oct 9, 4:10 pm promote (round 2 PASS)
+- Round 1 FAIL: (1) pin repeated the morning Short's numbers (same product, same day); (2) short end-card title reached x=975, inside the right 150 px (tools/make_demo.py now pads the short end card 160 px on the right); (3) slate hook opened with a question, which CONVERSION_STANDARD section 2 bans. Round 2: Reel caption said "$75 of dump fees" where the source is supplies and dump fees.
+- Cold viewer residuals (round 2, not blocking: every line and takeaway read correctly): "15 percent profit" read as markup ($471) not margin; "Quote Builder" badge unexplained; tiny "yellow cells" note unreadable on a phone; viewers want one line on what the floor includes; "the rig" is jargon; "Search ProofNotFluff" should say "on Etsy" on the end card.

@@ -26,7 +26,14 @@
     var checkRevenue = check * billable;
     var profit = checkRevenue - expenses;
     var keep = profit - Math.max(0, profit) * tax;
+    // Quick quote (workbook rows 41 to 43): labor at the rate-card rate, materials with markup.
+    var rateCard = ceilTo(rate, 5);
+    var quoteLabor = num(i.jobHours) * rateCard, quoteMaterials = num(i.materials) * (1 + num(i.markup) / 100);
+    // Bill more of your week (workbook I31:I34): the rate needed at 50%, 60%, 70% and 80% billed.
+    var at = function (s) { return worked * s > 0 ? revenue / (worked * s) : 0; };
     return {
+      quoteLabor: quoteLabor, quoteMaterials: quoteMaterials, quote: quoteLabor + quoteMaterials,
+      rateAt50: at(0.5), rateAt60: at(0.6), rateAt70: at(0.7), rateAt80: at(0.8),
       revenue: revenue, worked: worked, billable: billable, rate: rate, rateCard: ceilTo(rate, 5),
       taxSetAside: tax < 1 ? takeHome / (1 - tax) - takeHome : 0,
       checkRevenue: checkRevenue, keep: keep, keepPerHour: worked > 0 ? keep / worked : 0,

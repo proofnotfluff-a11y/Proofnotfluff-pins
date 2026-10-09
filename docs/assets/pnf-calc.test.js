@@ -224,6 +224,24 @@ check("#18 January loss flagged", BE2.neg, 1);
 const BE3 = P.businessExpense({ sales: 0, fees: 50, months: 0 });
 check("#18 no income flagged", BE3.noIncome, 1);
 check("#18 no income gives no share", BE3.expShare, 0);
+// #20 Quick quote and "Bill more of your week", values from the recalculated #20 workbook (Oct 9) with these inputs
+const hq = P.hourly({ takeHome: 60000, taxRate: 25, expenses: 6000, weeks: 48, hours: 40, billableShare: 60, checkRate: 40, jobHours: 12, materials: 150, markup: 15 });
+check("#20 quote labor (I41)", hq.quoteLabor, 900);
+check("#20 materials with markup (I42)", hq.quoteMaterials, 172.5);
+check("#20 quote total (I43)", hq.quote, 1072.5);
+check("#20 rate at 50% billed (I31)", hq.rateAt50, 89.58);
+check("#20 rate at 80% billed (I34)", hq.rateAt80, 55.99);
+const hb = P.hourly({ takeHome: 45000, taxRate: 22, expenses: 3600, weeks: 46, hours: 35, billableShare: 55, checkRate: 50, jobHours: 20, materials: 0, markup: 0 });
+check("#20 case B minimum rate (I21)", hb.rate, 69.22);
+check("#20 case B take-home at $50 (D31)", hb.keep, 31726.5);
+check("#20 case B per hour worked (D32)", hb.keepPerHour, 19.71);
+check("#20 case B quote, 20 h at $70 (I43)", hb.quote, 1400);
+check("#20 case B rate at 70% billed (I33)", hb.rateAt70, 54.39);
+const hc = P.hourly({ takeHome: 90000, taxRate: 30, expenses: 12000, weeks: 44, hours: 45, billableShare: 70, checkRate: 120, jobHours: 2.5, materials: 80, markup: 25 });
+check("#20 case C minimum rate (I21)", hc.rate, 101.42);
+check("#20 case C take-home at $120 (D31)", hc.keep, 108024);
+check("#20 case C quote, 2.5 h at $105 plus $100 (I43)", hc.quote, 362.5);
+check("#20 case C rate at 60% billed (I32)", hc.rateAt60, 118.33);
 // blank inputs never produce NaN or Infinity
 const b = P.service({});
 const bh = P.hourly({});

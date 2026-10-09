@@ -129,6 +129,26 @@ PNF.wire(f,PNF.service);}})();</script>"""
 
 def hourly_page(p):
     d = p["defaults"]
+    quote_fs = quote_out = ""
+    if p.get("quote"):  # #20's Quick quote card (rows 41 to 43) and its billable-share table (I31:I34)
+        quote_fs = f"""
+<fieldset><legend>Quote one project</legend>
+{field("jobHours", "Billable hours for the project", d["jobHours"], "Your best estimate")}
+{field("materials", "Materials and other project costs", d["materials"], "Stock, prints, software for this client, travel", pre="$")}
+{field("markup", "Markup on those costs", d["markup"], "0 to pass costs through", suf="%")}
+</fieldset>"""
+        quote_out = """
+<ul class="lines">
+<li><span>Project labor at your rate card</span><span data-out="quoteLabor" data-fmt="money2">$0</span></li>
+<li><span>Costs with markup</span><span data-out="quoteMaterials" data-fmt="money2">$0</span></li>
+<li class="total"><span>Project quote</span><span data-out="quote" data-fmt="money2">$0</span></li>
+</ul>
+<details><summary>The rate you need if you bill more of your week</summary><ul class="lines">
+<li><span>50% of your hours billed</span><span data-out="rateAt50">$0</span></li>
+<li><span>60% of your hours billed</span><span data-out="rateAt60">$0</span></li>
+<li><span>70% of your hours billed</span><span data-out="rateAt70">$0</span></li>
+<li><span>80% of your hours billed</span><span data-out="rateAt80">$0</span></li>
+</ul></details>"""
     form = f"""<form class="card" id="calc" novalidate>
 <fieldset><legend>What you want to take home</legend>
 {field("takeHome", "Take-home pay you want per year", d["takeHome"], "After tax", pre="$")}
@@ -142,8 +162,8 @@ def hourly_page(p):
 </fieldset>
 <fieldset><legend>Check a rate you are considering</legend>
 {field("checkRate", "Hourly rate to check", d["checkRate"], pre="$")}
-</fieldset></form>"""
-    results = """<div class="sticky"><div class="card" aria-live="polite">
+</fieldset>{quote_fs}</form>"""
+    results = f"""<div class="sticky"><div class="card" aria-live="polite">
 <div class="tiles">
 <div class="tile key"><div class="lab">Your minimum hourly rate</div><div class="val" data-out="rate">$0</div><div class="sub">Rate card: <span data-out="rateCard" data-fmt="money0">$0</span> an hour</div></div>
 <div class="tile"><div class="lab">Billable hours a year</div><div class="val" data-out="billable" data-fmt="int">0</div></div>
@@ -155,7 +175,7 @@ def hourly_page(p):
 <li><span>Per hour you actually work</span><span data-out="keepPerHour">$0</span></li>
 </ul>
 <div class="callout warn" data-show-if="shortBy > 0">That rate leaves you <b data-out="shortBy" data-fmt="money0">$0</b> a year short of your goal.</div>
-<div class="callout" data-show-if="shortBy < 0.01">That rate meets your take-home goal.</div>
+<div class="callout" data-show-if="shortBy < 0.01">That rate meets your take-home goal.</div>{quote_out}
 </div></div>
 <div class="mbar" aria-hidden="true"><span>Minimum rate <b data-out="rate">$0</b></span><span>At your rate <b data-out="keepPerHour">$0</b>/hr</span></div>"""
     script = '<script>PNF.wire(document.getElementById("calc"),PNF.hourly);</script>'

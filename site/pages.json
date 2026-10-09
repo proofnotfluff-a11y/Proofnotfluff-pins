@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-08",
+ "updated": "2026-10-09",
  "pages": [
   {
    "slug": "house-cleaning-price-calculator",
@@ -1557,6 +1557,72 @@
     "engines/business-expense-tracker/build_xlsx.py ROWS, example workbook built and recalculated Oct 9, 2026 (0 error values): Summary Year column P24 4,233 sales, P26 24 refunds, P27 4,209, P29 837.9, P31 45, P32 14, P33 292.41, P36 31, P38 150, P41 1,125, P43 96.25, P44 50, P46 38.5, P49 142.59, P50 1,984.75, P51 1,386.35, P54 329, P55 500; January D29 412.6, D41 350, D51 -164.76.",
     "Everything else 269.50 = 31 + 150 + 50 + 38.50. Expenses per month 661.58 = 1,984.75 / 3."
    ]
+  },
+  {
+   "slug": "freelance-hourly-rate-calculator",
+   "kind": "hourly",
+   "draft": true,
+   "quote": true,
+   "title": "Freelance Hourly Rate Calculator: Your Rate, Your Real Pay and a Project Quote | ProofNotFluff",
+   "desc": "Free freelance hourly rate calculator. Enter the take-home you want, your tax set-aside, expenses and billable hours to get your minimum rate, test any rate, and quote a project.",
+   "eyebrow": "Free calculator",
+   "h1": "Freelance Hourly Rate Calculator",
+   "lede": "Work out the hourly rate a freelance business needs, see what the rate you charge now really pays per hour worked, and turn your rate into a project quote. Free, no sign-up.",
+   "card": "Your freelance rate, what your current rate really pays, and a project quote.",
+   "defaults": {
+    "takeHome": "60,000",
+    "taxRate": "25",
+    "expenses": "6,000",
+    "weeks": "48",
+    "hours": "40",
+    "billableShare": "60",
+    "checkRate": "40",
+    "jobHours": "12",
+    "materials": "150",
+    "markup": "15"
+   },
+   "method": [
+    "The gap between the rate a freelancer charges and the pay they keep comes from two places: the hours no client pays for (pitching, email, invoicing, learning) and the tax and costs that come out before anything is yours.",
+    "This calculator grosses your take-home up for the tax share you set aside, adds a year of business expenses, and spreads that revenue over the hours a client actually pays for: your working hours times your billable share. That is your minimum hourly rate; the rate card rounds it up to the next $5.",
+    "To test a rate, it multiplies the rate by your billable hours, takes out expenses and your tax set-aside on any profit, and divides what is left by every hour you work. A project quote is its billable hours at your rate-card rate, plus any project costs with your markup."
+   ],
+   "example": "A $60,000 take-home with a 25% tax set-aside and $6,000 of expenses needs $86,000 of revenue. At 48 weeks of 40 hours with 60% billable, that is 1,152 billable hours out of 1,920 worked, so the minimum rate is $74.65 (rate card $75). Charging $40 an hour brings in $46,080 and leaves $30,060 after expenses and tax: $15.66 for every hour worked, $29,940 short of the goal. A 12-hour project at $75 is $900 of labor; $150 of project costs with a 15% markup adds $172.50, for a $1,072.50 quote. Billing 80% of your hours instead of 60% would bring the minimum rate down to $55.99.",
+   "cta": {
+    "title": "Keep it, change it, quote with it",
+    "bullets": [
+     "The Hourly Rate Quick Calculator is this calculator as a one-tab Excel and Google Sheets workbook,",
+     "with the same quick quote, the billable-share table, a rate card and a Start Here guide. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4589695837"
+   },
+   "faq": [
+    [
+     "How do I calculate my freelance hourly rate?",
+     "Start from the take-home you want, add the tax you set aside and a year of business expenses, then divide by the hours clients actually pay for, not every hour you work. With the example numbers that is $86,000 over 1,152 billable hours, or $74.65 an hour."
+    ],
+    [
+     "Why is my rate so much higher than my old salary divided by hours?",
+     "A salary comes with paid time off, no unbilled admin and an employer who covers the business costs. As a freelancer you pay those from your rate, and only the billable share of your week earns it."
+    ],
+    [
+     "What billable share should I use?",
+     "Track a few weeks of your own time and divide the hours a client paid for by all hours worked. The example's 60% is a starting point, not a benchmark. The table under the results shows the rate you would need at 50%, 60%, 70% and 80% billed."
+    ],
+    [
+     "How do I turn the rate into a project price?",
+     "Estimate the billable hours the project takes, multiply by your rate-card rate, and add any costs you pass on with your markup. The example's 12-hour project with $150 of costs quotes at $1,072.50."
+    ],
+    [
+     "What tax set-aside rate should I use?",
+     "Ask your tax preparer. A set-aside rate is a savings habit you choose, not a tax calculation, and this calculator does not tell you which rate to use."
+    ],
+    [
+     "Is this tax or financial advice?",
+     "No. It is a planning estimate based on the numbers you enter."
+    ]
+   ],
+   "sources": "Tax set-aside is your own estimate; ask your tax preparer. Maths from the Hourly Rate Quick Calculator workbook, recalculated Oct 9, 2026."
   }
  ]
 }

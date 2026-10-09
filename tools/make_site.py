@@ -485,7 +485,7 @@ def reorder_point_page(p):
 <div class="tile"><div class="lab"><span data-show-if="orderNow > 0">Order now</span><span data-show-if="orderNow < 1">Next order</span></div><div class="val"><span data-out="units" data-fmt="int">0</span> units</div><div class="sub"><span data-out="orderCost">$0</span> at your unit cost</div></div>
 </div>
 <ul class="lines">
-<li><span>Sales while an order is on its way</span><span><span data-out="rop" data-fmt="dec1">0.0</span> units</span></li>
+<li><span>Sales while an order is on its way, plus cushion</span><span><span data-out="rop" data-fmt="dec1">0.0</span> units</span></li>
 <li><span>Order up to</span><span><span data-out="upTo" data-fmt="dec1">0.0</span> units</span></li>
 <li><span>Days of stock on hand</span><span data-out="days" data-fmt="dec1">0.0</span></li>
 <li class="total"><span>Days until you reach the reorder point</span><span data-out="untilShow" data-fmt="dec1">0.0</span></li>

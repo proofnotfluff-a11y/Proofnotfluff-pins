@@ -1297,7 +1297,7 @@
   {
    "slug": "inventory-reorder-point-calculator",
    "kind": "reorder_point",
-   "draft": true,
+   "draft": false,
    "title": "Reorder Point Calculator for Small Shops: When to Reorder and How Much | ProofNotFluff",
    "desc": "Free reorder point calculator for small businesses. Type daily sales, supplier lead time and safety stock to see the stock level to reorder at, how many units to order, and how many days you have left.",
    "eyebrow": "Free calculator",
@@ -1323,7 +1323,7 @@
     "title": "Every product, every supplier, and the cash to pay for it",
     "bullets": [
      "The Cash-Aware Reorder Planner uses this same maths for Excel and Google Sheets:",
-     "up to 30 products, a reorder plan in priority order, purchase orders grouped by supplier, a cash check that funds the most urgent orders first, and a dead stock list. $2.99, instant download."
+     "up to 30 products, a reorder plan in priority order, purchase orders grouped by supplier, a cash check that shows what to order now and what to defer when cash is short, and a dead stock list. $2.99, instant download."
     ],
     "button": "Get the workbook on Etsy",
     "url": "https://proofnotfluff.etsy.com/listing/4585004344"

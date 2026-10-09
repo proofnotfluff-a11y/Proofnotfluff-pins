@@ -34,7 +34,7 @@ Instant download. Download from a web browser on your computer or phone (Etsy, Y
 
 FAQ
 Does it connect to my Etsy shop? No. You type your stock counts and daily sales; nothing syncs.
-Where do I find daily sales? On Etsy, Shop Manager, Stats shows each listing's orders for the period you pick (checked Oct 7, 2026). Units sold in the last 30 days divided by 30 is the daily figure.
+Where do I find daily sales? On Etsy, Shop Manager, Stats shows each listing's orders for the period you pick (checked Oct 8, 2026). Etsy counts orders, and an order can hold more than one unit, so check quantities for your best sellers. Units sold in the last 30 days divided by 30 is the daily figure.
 Does it know my supplier minimums? No. Check minimums and price breaks before you send a purchase order.
 
 Made with AI assistance and reviewed and tested by the shop owner.
@@ -43,7 +43,7 @@ Digital download. No physical item ships.
 File problems fixed on request through Etsy messages.
 
 # Change note
-Version 3 (Oct 7, 2026): redesigned to the v3 dashboard (6 numbered working tabs, Start Here and Terms tabs); same inputs, maths and example, proved by tools/compare_xlsx.py on 9 cases x 634 outputs. Fixes: a sold-out SKU (0 days of stock) no longer ranks last for funding; with the as-of date blank, days since last sale and the run-out date stay blank instead of showing -46,000 days and a 1900 date; a SKU to order with no supplier now shows blank and is counted on 4 Purchase Orders; the cash verdict and dead-stock advice are in sentence case; the unsourced inventory-turns benchmark and the Amazon and eBay menu paths are gone, and the Etsy Stats path is cited and dated.
+Version 3 (Oct 8, 2026): redesigned to the v3 dashboard (6 numbered working tabs, Start Here and Terms tabs); same inputs, maths and example, proved by tools/compare_xlsx.py on 9 cases x 635 outputs. Fixes: a sold-out SKU (0 days of stock) no longer ranks last for funding; with the as-of date blank, days since last sale and the run-out date stay blank instead of showing -46,000 days and a 1900 date; a SKU to order with no supplier now shows blank and is counted on 4 Purchase Orders; the cash verdict and dead-stock advice are in sentence case; the unsourced inventory-turns benchmark and the Amazon and eBay menu paths are gone, and the Etsy Stats path is cited and dated.
 
 # Description edits for the redesign swap (shop run)
 The live description was not readable from this run (Etsy page fetch not permitted), so the shop run checks it once in the editor:

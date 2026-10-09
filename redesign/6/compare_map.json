@@ -1,0 +1,3962 @@
+{
+ "tolerance": 0.005,
+ "inputs": {
+  "shop": {
+   "old": "Setup!C6",
+   "new": "'1 Your Shop'!D15"
+  },
+  "as_of": {
+   "old": "Setup!C7",
+   "new": "'1 Your Shop'!D16"
+  },
+  "cash": {
+   "old": "Setup!C10",
+   "new": "'1 Your Shop'!D18"
+  },
+  "bills": {
+   "old": "Setup!C11",
+   "new": "'1 Your Shop'!D19"
+  },
+  "safety": {
+   "old": "Setup!C15",
+   "new": "'1 Your Shop'!D22"
+  },
+  "cycle": {
+   "old": "Setup!C16",
+   "new": "'1 Your Shop'!D23"
+  },
+  "trend": {
+   "old": "Setup!C17",
+   "new": "'1 Your Shop'!D24"
+  },
+  "dead": {
+   "old": "Setup!C18",
+   "new": "'1 Your Shop'!D25"
+  },
+  "over": {
+   "old": "Setup!C19",
+   "new": "'1 Your Shop'!D26"
+  },
+  "small": {
+   "old": "Setup!C20",
+   "new": "'1 Your Shop'!D27"
+  },
+  "lead": {
+   "old": "Setup!C21",
+   "new": "'1 Your Shop'!D28"
+  },
+  "sup1": {
+   "old": "Setup!C24",
+   "new": "'1 Your Shop'!D34"
+  },
+  "sup2": {
+   "old": "Setup!C25",
+   "new": "'1 Your Shop'!D35"
+  },
+  "sup3": {
+   "old": "Setup!C26",
+   "new": "'1 Your Shop'!D36"
+  },
+  "sup4": {
+   "old": "Setup!C27",
+   "new": "'1 Your Shop'!D37"
+  },
+  "sup5": {
+   "old": "Setup!C28",
+   "new": "'1 Your Shop'!D38"
+  },
+  "sup6": {
+   "old": "Setup!C29",
+   "new": "'1 Your Shop'!D39"
+  },
+  "r1_sku": {
+   "old": "'SKU Master'!A6",
+   "new": "'2 SKU List'!C16"
+  },
+  "r1_prod": {
+   "old": "'SKU Master'!B6",
+   "new": "'2 SKU List'!D16"
+  },
+  "r1_sup": {
+   "old": "'SKU Master'!C6",
+   "new": "'2 SKU List'!E16"
+  },
+  "r1_cost": {
+   "old": "'SKU Master'!D6",
+   "new": "'2 SKU List'!F16"
+  },
+  "r1_price": {
+   "old": "'SKU Master'!E6",
+   "new": "'2 SKU List'!G16"
+  },
+  "r1_fees": {
+   "old": "'SKU Master'!F6",
+   "new": "'2 SKU List'!H16"
+  },
+  "r1_lead": {
+   "old": "'SKU Master'!G6",
+   "new": "'2 SKU List'!I16"
+  },
+  "r1_onhand": {
+   "old": "'SKU Master'!H6",
+   "new": "'2 SKU List'!J16"
+  },
+  "r1_onorder": {
+   "old": "'SKU Master'!I6",
+   "new": "'2 SKU List'!K16"
+  },
+  "r1_daily": {
+   "old": "'SKU Master'!J6",
+   "new": "'2 SKU List'!L16"
+  },
+  "r1_last": {
+   "old": "'SKU Master'!K6",
+   "new": "'2 SKU List'!M16"
+  },
+  "r2_sku": {
+   "old": "'SKU Master'!A7",
+   "new": "'2 SKU List'!C17"
+  },
+  "r2_prod": {
+   "old": "'SKU Master'!B7",
+   "new": "'2 SKU List'!D17"
+  },
+  "r2_sup": {
+   "old": "'SKU Master'!C7",
+   "new": "'2 SKU List'!E17"
+  },
+  "r2_cost": {
+   "old": "'SKU Master'!D7",
+   "new": "'2 SKU List'!F17"
+  },
+  "r2_price": {
+   "old": "'SKU Master'!E7",
+   "new": "'2 SKU List'!G17"
+  },
+  "r2_fees": {
+   "old": "'SKU Master'!F7",
+   "new": "'2 SKU List'!H17"
+  },
+  "r2_lead": {
+   "old": "'SKU Master'!G7",
+   "new": "'2 SKU List'!I17"
+  },
+  "r2_onhand": {
+   "old": "'SKU Master'!H7",
+   "new": "'2 SKU List'!J17"
+  },
+  "r2_onorder": {
+   "old": "'SKU Master'!I7",
+   "new": "'2 SKU List'!K17"
+  },
+  "r2_daily": {
+   "old": "'SKU Master'!J7",
+   "new": "'2 SKU List'!L17"
+  },
+  "r2_last": {
+   "old": "'SKU Master'!K7",
+   "new": "'2 SKU List'!M17"
+  },
+  "r3_sku": {
+   "old": "'SKU Master'!A8",
+   "new": "'2 SKU List'!C18"
+  },
+  "r3_prod": {
+   "old": "'SKU Master'!B8",
+   "new": "'2 SKU List'!D18"
+  },
+  "r3_sup": {
+   "old": "'SKU Master'!C8",
+   "new": "'2 SKU List'!E18"
+  },
+  "r3_cost": {
+   "old": "'SKU Master'!D8",
+   "new": "'2 SKU List'!F18"
+  },
+  "r3_price": {
+   "old": "'SKU Master'!E8",
+   "new": "'2 SKU List'!G18"
+  },
+  "r3_fees": {
+   "old": "'SKU Master'!F8",
+   "new": "'2 SKU List'!H18"
+  },
+  "r3_lead": {
+   "old": "'SKU Master'!G8",
+   "new": "'2 SKU List'!I18"
+  },
+  "r3_onhand": {
+   "old": "'SKU Master'!H8",
+   "new": "'2 SKU List'!J18"
+  },
+  "r3_onorder": {
+   "old": "'SKU Master'!I8",
+   "new": "'2 SKU List'!K18"
+  },
+  "r3_daily": {
+   "old": "'SKU Master'!J8",
+   "new": "'2 SKU List'!L18"
+  },
+  "r3_last": {
+   "old": "'SKU Master'!K8",
+   "new": "'2 SKU List'!M18"
+  },
+  "r4_sku": {
+   "old": "'SKU Master'!A9",
+   "new": "'2 SKU List'!C19"
+  },
+  "r4_prod": {
+   "old": "'SKU Master'!B9",
+   "new": "'2 SKU List'!D19"
+  },
+  "r4_sup": {
+   "old": "'SKU Master'!C9",
+   "new": "'2 SKU List'!E19"
+  },
+  "r4_cost": {
+   "old": "'SKU Master'!D9",
+   "new": "'2 SKU List'!F19"
+  },
+  "r4_price": {
+   "old": "'SKU Master'!E9",
+   "new": "'2 SKU List'!G19"
+  },
+  "r4_fees": {
+   "old": "'SKU Master'!F9",
+   "new": "'2 SKU List'!H19"
+  },
+  "r4_lead": {
+   "old": "'SKU Master'!G9",
+   "new": "'2 SKU List'!I19"
+  },
+  "r4_onhand": {
+   "old": "'SKU Master'!H9",
+   "new": "'2 SKU List'!J19"
+  },
+  "r4_onorder": {
+   "old": "'SKU Master'!I9",
+   "new": "'2 SKU List'!K19"
+  },
+  "r4_daily": {
+   "old": "'SKU Master'!J9",
+   "new": "'2 SKU List'!L19"
+  },
+  "r4_last": {
+   "old": "'SKU Master'!K9",
+   "new": "'2 SKU List'!M19"
+  },
+  "r5_sku": {
+   "old": "'SKU Master'!A10",
+   "new": "'2 SKU List'!C20"
+  },
+  "r5_prod": {
+   "old": "'SKU Master'!B10",
+   "new": "'2 SKU List'!D20"
+  },
+  "r5_sup": {
+   "old": "'SKU Master'!C10",
+   "new": "'2 SKU List'!E20"
+  },
+  "r5_cost": {
+   "old": "'SKU Master'!D10",
+   "new": "'2 SKU List'!F20"
+  },
+  "r5_price": {
+   "old": "'SKU Master'!E10",
+   "new": "'2 SKU List'!G20"
+  },
+  "r5_fees": {
+   "old": "'SKU Master'!F10",
+   "new": "'2 SKU List'!H20"
+  },
+  "r5_lead": {
+   "old": "'SKU Master'!G10",
+   "new": "'2 SKU List'!I20"
+  },
+  "r5_onhand": {
+   "old": "'SKU Master'!H10",
+   "new": "'2 SKU List'!J20"
+  },
+  "r5_onorder": {
+   "old": "'SKU Master'!I10",
+   "new": "'2 SKU List'!K20"
+  },
+  "r5_daily": {
+   "old": "'SKU Master'!J10",
+   "new": "'2 SKU List'!L20"
+  },
+  "r5_last": {
+   "old": "'SKU Master'!K10",
+   "new": "'2 SKU List'!M20"
+  },
+  "r6_sku": {
+   "old": "'SKU Master'!A11",
+   "new": "'2 SKU List'!C21"
+  },
+  "r6_prod": {
+   "old": "'SKU Master'!B11",
+   "new": "'2 SKU List'!D21"
+  },
+  "r6_sup": {
+   "old": "'SKU Master'!C11",
+   "new": "'2 SKU List'!E21"
+  },
+  "r6_cost": {
+   "old": "'SKU Master'!D11",
+   "new": "'2 SKU List'!F21"
+  },
+  "r6_price": {
+   "old": "'SKU Master'!E11",
+   "new": "'2 SKU List'!G21"
+  },
+  "r6_fees": {
+   "old": "'SKU Master'!F11",
+   "new": "'2 SKU List'!H21"
+  },
+  "r6_lead": {
+   "old": "'SKU Master'!G11",
+   "new": "'2 SKU List'!I21"
+  },
+  "r6_onhand": {
+   "old": "'SKU Master'!H11",
+   "new": "'2 SKU List'!J21"
+  },
+  "r6_onorder": {
+   "old": "'SKU Master'!I11",
+   "new": "'2 SKU List'!K21"
+  },
+  "r6_daily": {
+   "old": "'SKU Master'!J11",
+   "new": "'2 SKU List'!L21"
+  },
+  "r6_last": {
+   "old": "'SKU Master'!K11",
+   "new": "'2 SKU List'!M21"
+  },
+  "r7_sku": {
+   "old": "'SKU Master'!A12",
+   "new": "'2 SKU List'!C22"
+  },
+  "r7_prod": {
+   "old": "'SKU Master'!B12",
+   "new": "'2 SKU List'!D22"
+  },
+  "r7_sup": {
+   "old": "'SKU Master'!C12",
+   "new": "'2 SKU List'!E22"
+  },
+  "r7_cost": {
+   "old": "'SKU Master'!D12",
+   "new": "'2 SKU List'!F22"
+  },
+  "r7_price": {
+   "old": "'SKU Master'!E12",
+   "new": "'2 SKU List'!G22"
+  },
+  "r7_fees": {
+   "old": "'SKU Master'!F12",
+   "new": "'2 SKU List'!H22"
+  },
+  "r7_lead": {
+   "old": "'SKU Master'!G12",
+   "new": "'2 SKU List'!I22"
+  },
+  "r7_onhand": {
+   "old": "'SKU Master'!H12",
+   "new": "'2 SKU List'!J22"
+  },
+  "r7_onorder": {
+   "old": "'SKU Master'!I12",
+   "new": "'2 SKU List'!K22"
+  },
+  "r7_daily": {
+   "old": "'SKU Master'!J12",
+   "new": "'2 SKU List'!L22"
+  },
+  "r7_last": {
+   "old": "'SKU Master'!K12",
+   "new": "'2 SKU List'!M22"
+  },
+  "r8_sku": {
+   "old": "'SKU Master'!A13",
+   "new": "'2 SKU List'!C23"
+  },
+  "r8_prod": {
+   "old": "'SKU Master'!B13",
+   "new": "'2 SKU List'!D23"
+  },
+  "r8_sup": {
+   "old": "'SKU Master'!C13",
+   "new": "'2 SKU List'!E23"
+  },
+  "r8_cost": {
+   "old": "'SKU Master'!D13",
+   "new": "'2 SKU List'!F23"
+  },
+  "r8_price": {
+   "old": "'SKU Master'!E13",
+   "new": "'2 SKU List'!G23"
+  },
+  "r8_fees": {
+   "old": "'SKU Master'!F13",
+   "new": "'2 SKU List'!H23"
+  },
+  "r8_lead": {
+   "old": "'SKU Master'!G13",
+   "new": "'2 SKU List'!I23"
+  },
+  "r8_onhand": {
+   "old": "'SKU Master'!H13",
+   "new": "'2 SKU List'!J23"
+  },
+  "r8_onorder": {
+   "old": "'SKU Master'!I13",
+   "new": "'2 SKU List'!K23"
+  },
+  "r8_daily": {
+   "old": "'SKU Master'!J13",
+   "new": "'2 SKU List'!L23"
+  },
+  "r8_last": {
+   "old": "'SKU Master'!K13",
+   "new": "'2 SKU List'!M23"
+  },
+  "r9_sku": {
+   "old": "'SKU Master'!A14",
+   "new": "'2 SKU List'!C24"
+  },
+  "r9_prod": {
+   "old": "'SKU Master'!B14",
+   "new": "'2 SKU List'!D24"
+  },
+  "r9_sup": {
+   "old": "'SKU Master'!C14",
+   "new": "'2 SKU List'!E24"
+  },
+  "r9_cost": {
+   "old": "'SKU Master'!D14",
+   "new": "'2 SKU List'!F24"
+  },
+  "r9_price": {
+   "old": "'SKU Master'!E14",
+   "new": "'2 SKU List'!G24"
+  },
+  "r9_fees": {
+   "old": "'SKU Master'!F14",
+   "new": "'2 SKU List'!H24"
+  },
+  "r9_lead": {
+   "old": "'SKU Master'!G14",
+   "new": "'2 SKU List'!I24"
+  },
+  "r9_onhand": {
+   "old": "'SKU Master'!H14",
+   "new": "'2 SKU List'!J24"
+  },
+  "r9_onorder": {
+   "old": "'SKU Master'!I14",
+   "new": "'2 SKU List'!K24"
+  },
+  "r9_daily": {
+   "old": "'SKU Master'!J14",
+   "new": "'2 SKU List'!L24"
+  },
+  "r9_last": {
+   "old": "'SKU Master'!K14",
+   "new": "'2 SKU List'!M24"
+  },
+  "r10_sku": {
+   "old": "'SKU Master'!A15",
+   "new": "'2 SKU List'!C25"
+  },
+  "r10_prod": {
+   "old": "'SKU Master'!B15",
+   "new": "'2 SKU List'!D25"
+  },
+  "r10_sup": {
+   "old": "'SKU Master'!C15",
+   "new": "'2 SKU List'!E25"
+  },
+  "r10_cost": {
+   "old": "'SKU Master'!D15",
+   "new": "'2 SKU List'!F25"
+  },
+  "r10_price": {
+   "old": "'SKU Master'!E15",
+   "new": "'2 SKU List'!G25"
+  },
+  "r10_fees": {
+   "old": "'SKU Master'!F15",
+   "new": "'2 SKU List'!H25"
+  },
+  "r10_lead": {
+   "old": "'SKU Master'!G15",
+   "new": "'2 SKU List'!I25"
+  },
+  "r10_onhand": {
+   "old": "'SKU Master'!H15",
+   "new": "'2 SKU List'!J25"
+  },
+  "r10_onorder": {
+   "old": "'SKU Master'!I15",
+   "new": "'2 SKU List'!K25"
+  },
+  "r10_daily": {
+   "old": "'SKU Master'!J15",
+   "new": "'2 SKU List'!L25"
+  },
+  "r10_last": {
+   "old": "'SKU Master'!K15",
+   "new": "'2 SKU List'!M25"
+  },
+  "r11_sku": {
+   "old": "'SKU Master'!A16",
+   "new": "'2 SKU List'!C26"
+  },
+  "r11_prod": {
+   "old": "'SKU Master'!B16",
+   "new": "'2 SKU List'!D26"
+  },
+  "r11_sup": {
+   "old": "'SKU Master'!C16",
+   "new": "'2 SKU List'!E26"
+  },
+  "r11_cost": {
+   "old": "'SKU Master'!D16",
+   "new": "'2 SKU List'!F26"
+  },
+  "r11_price": {
+   "old": "'SKU Master'!E16",
+   "new": "'2 SKU List'!G26"
+  },
+  "r11_fees": {
+   "old": "'SKU Master'!F16",
+   "new": "'2 SKU List'!H26"
+  },
+  "r11_lead": {
+   "old": "'SKU Master'!G16",
+   "new": "'2 SKU List'!I26"
+  },
+  "r11_onhand": {
+   "old": "'SKU Master'!H16",
+   "new": "'2 SKU List'!J26"
+  },
+  "r11_onorder": {
+   "old": "'SKU Master'!I16",
+   "new": "'2 SKU List'!K26"
+  },
+  "r11_daily": {
+   "old": "'SKU Master'!J16",
+   "new": "'2 SKU List'!L26"
+  },
+  "r11_last": {
+   "old": "'SKU Master'!K16",
+   "new": "'2 SKU List'!M26"
+  },
+  "r12_sku": {
+   "old": "'SKU Master'!A17",
+   "new": "'2 SKU List'!C27"
+  },
+  "r12_prod": {
+   "old": "'SKU Master'!B17",
+   "new": "'2 SKU List'!D27"
+  },
+  "r12_sup": {
+   "old": "'SKU Master'!C17",
+   "new": "'2 SKU List'!E27"
+  },
+  "r12_cost": {
+   "old": "'SKU Master'!D17",
+   "new": "'2 SKU List'!F27"
+  },
+  "r12_price": {
+   "old": "'SKU Master'!E17",
+   "new": "'2 SKU List'!G27"
+  },
+  "r12_fees": {
+   "old": "'SKU Master'!F17",
+   "new": "'2 SKU List'!H27"
+  },
+  "r12_lead": {
+   "old": "'SKU Master'!G17",
+   "new": "'2 SKU List'!I27"
+  },
+  "r12_onhand": {
+   "old": "'SKU Master'!H17",
+   "new": "'2 SKU List'!J27"
+  },
+  "r12_onorder": {
+   "old": "'SKU Master'!I17",
+   "new": "'2 SKU List'!K27"
+  },
+  "r12_daily": {
+   "old": "'SKU Master'!J17",
+   "new": "'2 SKU List'!L27"
+  },
+  "r12_last": {
+   "old": "'SKU Master'!K17",
+   "new": "'2 SKU List'!M27"
+  },
+  "r13_sku": {
+   "old": "'SKU Master'!A18",
+   "new": "'2 SKU List'!C28"
+  },
+  "r13_prod": {
+   "old": "'SKU Master'!B18",
+   "new": "'2 SKU List'!D28"
+  },
+  "r13_sup": {
+   "old": "'SKU Master'!C18",
+   "new": "'2 SKU List'!E28"
+  },
+  "r13_cost": {
+   "old": "'SKU Master'!D18",
+   "new": "'2 SKU List'!F28"
+  },
+  "r13_price": {
+   "old": "'SKU Master'!E18",
+   "new": "'2 SKU List'!G28"
+  },
+  "r13_fees": {
+   "old": "'SKU Master'!F18",
+   "new": "'2 SKU List'!H28"
+  },
+  "r13_lead": {
+   "old": "'SKU Master'!G18",
+   "new": "'2 SKU List'!I28"
+  },
+  "r13_onhand": {
+   "old": "'SKU Master'!H18",
+   "new": "'2 SKU List'!J28"
+  },
+  "r13_onorder": {
+   "old": "'SKU Master'!I18",
+   "new": "'2 SKU List'!K28"
+  },
+  "r13_daily": {
+   "old": "'SKU Master'!J18",
+   "new": "'2 SKU List'!L28"
+  },
+  "r13_last": {
+   "old": "'SKU Master'!K18",
+   "new": "'2 SKU List'!M28"
+  },
+  "r14_sku": {
+   "old": "'SKU Master'!A19",
+   "new": "'2 SKU List'!C29"
+  },
+  "r14_prod": {
+   "old": "'SKU Master'!B19",
+   "new": "'2 SKU List'!D29"
+  },
+  "r14_sup": {
+   "old": "'SKU Master'!C19",
+   "new": "'2 SKU List'!E29"
+  },
+  "r14_cost": {
+   "old": "'SKU Master'!D19",
+   "new": "'2 SKU List'!F29"
+  },
+  "r14_price": {
+   "old": "'SKU Master'!E19",
+   "new": "'2 SKU List'!G29"
+  },
+  "r14_fees": {
+   "old": "'SKU Master'!F19",
+   "new": "'2 SKU List'!H29"
+  },
+  "r14_lead": {
+   "old": "'SKU Master'!G19",
+   "new": "'2 SKU List'!I29"
+  },
+  "r14_onhand": {
+   "old": "'SKU Master'!H19",
+   "new": "'2 SKU List'!J29"
+  },
+  "r14_onorder": {
+   "old": "'SKU Master'!I19",
+   "new": "'2 SKU List'!K29"
+  },
+  "r14_daily": {
+   "old": "'SKU Master'!J19",
+   "new": "'2 SKU List'!L29"
+  },
+  "r14_last": {
+   "old": "'SKU Master'!K19",
+   "new": "'2 SKU List'!M29"
+  },
+  "r15_sku": {
+   "old": "'SKU Master'!A20",
+   "new": "'2 SKU List'!C30"
+  },
+  "r15_prod": {
+   "old": "'SKU Master'!B20",
+   "new": "'2 SKU List'!D30"
+  },
+  "r15_sup": {
+   "old": "'SKU Master'!C20",
+   "new": "'2 SKU List'!E30"
+  },
+  "r15_cost": {
+   "old": "'SKU Master'!D20",
+   "new": "'2 SKU List'!F30"
+  },
+  "r15_price": {
+   "old": "'SKU Master'!E20",
+   "new": "'2 SKU List'!G30"
+  },
+  "r15_fees": {
+   "old": "'SKU Master'!F20",
+   "new": "'2 SKU List'!H30"
+  },
+  "r15_lead": {
+   "old": "'SKU Master'!G20",
+   "new": "'2 SKU List'!I30"
+  },
+  "r15_onhand": {
+   "old": "'SKU Master'!H20",
+   "new": "'2 SKU List'!J30"
+  },
+  "r15_onorder": {
+   "old": "'SKU Master'!I20",
+   "new": "'2 SKU List'!K30"
+  },
+  "r15_daily": {
+   "old": "'SKU Master'!J20",
+   "new": "'2 SKU List'!L30"
+  },
+  "r15_last": {
+   "old": "'SKU Master'!K20",
+   "new": "'2 SKU List'!M30"
+  },
+  "r16_sku": {
+   "old": "'SKU Master'!A21",
+   "new": "'2 SKU List'!C31"
+  },
+  "r16_prod": {
+   "old": "'SKU Master'!B21",
+   "new": "'2 SKU List'!D31"
+  },
+  "r16_sup": {
+   "old": "'SKU Master'!C21",
+   "new": "'2 SKU List'!E31"
+  },
+  "r16_cost": {
+   "old": "'SKU Master'!D21",
+   "new": "'2 SKU List'!F31"
+  },
+  "r16_price": {
+   "old": "'SKU Master'!E21",
+   "new": "'2 SKU List'!G31"
+  },
+  "r16_fees": {
+   "old": "'SKU Master'!F21",
+   "new": "'2 SKU List'!H31"
+  },
+  "r16_lead": {
+   "old": "'SKU Master'!G21",
+   "new": "'2 SKU List'!I31"
+  },
+  "r16_onhand": {
+   "old": "'SKU Master'!H21",
+   "new": "'2 SKU List'!J31"
+  },
+  "r16_onorder": {
+   "old": "'SKU Master'!I21",
+   "new": "'2 SKU List'!K31"
+  },
+  "r16_daily": {
+   "old": "'SKU Master'!J21",
+   "new": "'2 SKU List'!L31"
+  },
+  "r16_last": {
+   "old": "'SKU Master'!K21",
+   "new": "'2 SKU List'!M31"
+  },
+  "r17_sku": {
+   "old": "'SKU Master'!A22",
+   "new": "'2 SKU List'!C32"
+  },
+  "r17_prod": {
+   "old": "'SKU Master'!B22",
+   "new": "'2 SKU List'!D32"
+  },
+  "r17_sup": {
+   "old": "'SKU Master'!C22",
+   "new": "'2 SKU List'!E32"
+  },
+  "r17_cost": {
+   "old": "'SKU Master'!D22",
+   "new": "'2 SKU List'!F32"
+  },
+  "r17_price": {
+   "old": "'SKU Master'!E22",
+   "new": "'2 SKU List'!G32"
+  },
+  "r17_fees": {
+   "old": "'SKU Master'!F22",
+   "new": "'2 SKU List'!H32"
+  },
+  "r17_lead": {
+   "old": "'SKU Master'!G22",
+   "new": "'2 SKU List'!I32"
+  },
+  "r17_onhand": {
+   "old": "'SKU Master'!H22",
+   "new": "'2 SKU List'!J32"
+  },
+  "r17_onorder": {
+   "old": "'SKU Master'!I22",
+   "new": "'2 SKU List'!K32"
+  },
+  "r17_daily": {
+   "old": "'SKU Master'!J22",
+   "new": "'2 SKU List'!L32"
+  },
+  "r17_last": {
+   "old": "'SKU Master'!K22",
+   "new": "'2 SKU List'!M32"
+  }
+ },
+ "outputs": {
+  "sku1_adj": {
+   "old": "'SKU Master'!L6",
+   "new": "'2 SKU List'!N16"
+  },
+  "sku1_margin": {
+   "old": "'SKU Master'!M6",
+   "new": "'2 SKU List'!O16"
+  },
+  "sku1_days": {
+   "old": "'SKU Master'!N6",
+   "new": "'2 SKU List'!P16"
+  },
+  "sku1_rop": {
+   "old": "'SKU Master'!O6",
+   "new": "'2 SKU List'!Q16"
+  },
+  "sku1_out": {
+   "old": "'SKU Master'!P6",
+   "new": "'2 SKU List'!R16"
+  },
+  "sku1_since": {
+   "old": "'SKU Master'!Q6",
+   "new": "'2 SKU List'!S16"
+  },
+  "sku1_status": {
+   "old": "'SKU Master'!R6",
+   "new": "'2 SKU List'!T16"
+  },
+  "sku1_value": {
+   "old": "'SKU Master'!S6",
+   "new": "'2 SKU List'!U16"
+  },
+  "sku1_stockout": {
+   "old": "'SKU Master'!T6",
+   "new": "'2 SKU List'!V16"
+  },
+  "sku1_until": {
+   "old": "'SKU Master'!U6",
+   "new": "'2 SKU List'!W16"
+  },
+  "sku1_due30": {
+   "old": "'SKU Master'!V6",
+   "new": "'2 SKU List'!X16"
+  },
+  "sku1_cogs": {
+   "old": "'SKU Master'!X6",
+   "new": "'2 SKU List'!Y16"
+  },
+  "sku2_adj": {
+   "old": "'SKU Master'!L7",
+   "new": "'2 SKU List'!N17"
+  },
+  "sku2_margin": {
+   "old": "'SKU Master'!M7",
+   "new": "'2 SKU List'!O17"
+  },
+  "sku2_days": {
+   "old": "'SKU Master'!N7",
+   "new": "'2 SKU List'!P17"
+  },
+  "sku2_rop": {
+   "old": "'SKU Master'!O7",
+   "new": "'2 SKU List'!Q17"
+  },
+  "sku2_out": {
+   "old": "'SKU Master'!P7",
+   "new": "'2 SKU List'!R17"
+  },
+  "sku2_since": {
+   "old": "'SKU Master'!Q7",
+   "new": "'2 SKU List'!S17"
+  },
+  "sku2_status": {
+   "old": "'SKU Master'!R7",
+   "new": "'2 SKU List'!T17"
+  },
+  "sku2_value": {
+   "old": "'SKU Master'!S7",
+   "new": "'2 SKU List'!U17"
+  },
+  "sku2_stockout": {
+   "old": "'SKU Master'!T7",
+   "new": "'2 SKU List'!V17"
+  },
+  "sku2_until": {
+   "old": "'SKU Master'!U7",
+   "new": "'2 SKU List'!W17"
+  },
+  "sku2_due30": {
+   "old": "'SKU Master'!V7",
+   "new": "'2 SKU List'!X17"
+  },
+  "sku2_cogs": {
+   "old": "'SKU Master'!X7",
+   "new": "'2 SKU List'!Y17"
+  },
+  "sku3_adj": {
+   "old": "'SKU Master'!L8",
+   "new": "'2 SKU List'!N18"
+  },
+  "sku3_margin": {
+   "old": "'SKU Master'!M8",
+   "new": "'2 SKU List'!O18"
+  },
+  "sku3_days": {
+   "old": "'SKU Master'!N8",
+   "new": "'2 SKU List'!P18"
+  },
+  "sku3_rop": {
+   "old": "'SKU Master'!O8",
+   "new": "'2 SKU List'!Q18"
+  },
+  "sku3_out": {
+   "old": "'SKU Master'!P8",
+   "new": "'2 SKU List'!R18"
+  },
+  "sku3_since": {
+   "old": "'SKU Master'!Q8",
+   "new": "'2 SKU List'!S18"
+  },
+  "sku3_status": {
+   "old": "'SKU Master'!R8",
+   "new": "'2 SKU List'!T18"
+  },
+  "sku3_value": {
+   "old": "'SKU Master'!S8",
+   "new": "'2 SKU List'!U18"
+  },
+  "sku3_stockout": {
+   "old": "'SKU Master'!T8",
+   "new": "'2 SKU List'!V18"
+  },
+  "sku3_until": {
+   "old": "'SKU Master'!U8",
+   "new": "'2 SKU List'!W18"
+  },
+  "sku3_due30": {
+   "old": "'SKU Master'!V8",
+   "new": "'2 SKU List'!X18"
+  },
+  "sku3_cogs": {
+   "old": "'SKU Master'!X8",
+   "new": "'2 SKU List'!Y18"
+  },
+  "sku4_adj": {
+   "old": "'SKU Master'!L9",
+   "new": "'2 SKU List'!N19"
+  },
+  "sku4_margin": {
+   "old": "'SKU Master'!M9",
+   "new": "'2 SKU List'!O19"
+  },
+  "sku4_days": {
+   "old": "'SKU Master'!N9",
+   "new": "'2 SKU List'!P19"
+  },
+  "sku4_rop": {
+   "old": "'SKU Master'!O9",
+   "new": "'2 SKU List'!Q19"
+  },
+  "sku4_out": {
+   "old": "'SKU Master'!P9",
+   "new": "'2 SKU List'!R19"
+  },
+  "sku4_since": {
+   "old": "'SKU Master'!Q9",
+   "new": "'2 SKU List'!S19"
+  },
+  "sku4_status": {
+   "old": "'SKU Master'!R9",
+   "new": "'2 SKU List'!T19"
+  },
+  "sku4_value": {
+   "old": "'SKU Master'!S9",
+   "new": "'2 SKU List'!U19"
+  },
+  "sku4_stockout": {
+   "old": "'SKU Master'!T9",
+   "new": "'2 SKU List'!V19"
+  },
+  "sku4_until": {
+   "old": "'SKU Master'!U9",
+   "new": "'2 SKU List'!W19"
+  },
+  "sku4_due30": {
+   "old": "'SKU Master'!V9",
+   "new": "'2 SKU List'!X19"
+  },
+  "sku4_cogs": {
+   "old": "'SKU Master'!X9",
+   "new": "'2 SKU List'!Y19"
+  },
+  "sku5_adj": {
+   "old": "'SKU Master'!L10",
+   "new": "'2 SKU List'!N20"
+  },
+  "sku5_margin": {
+   "old": "'SKU Master'!M10",
+   "new": "'2 SKU List'!O20"
+  },
+  "sku5_days": {
+   "old": "'SKU Master'!N10",
+   "new": "'2 SKU List'!P20"
+  },
+  "sku5_rop": {
+   "old": "'SKU Master'!O10",
+   "new": "'2 SKU List'!Q20"
+  },
+  "sku5_out": {
+   "old": "'SKU Master'!P10",
+   "new": "'2 SKU List'!R20"
+  },
+  "sku5_since": {
+   "old": "'SKU Master'!Q10",
+   "new": "'2 SKU List'!S20"
+  },
+  "sku5_status": {
+   "old": "'SKU Master'!R10",
+   "new": "'2 SKU List'!T20"
+  },
+  "sku5_value": {
+   "old": "'SKU Master'!S10",
+   "new": "'2 SKU List'!U20"
+  },
+  "sku5_stockout": {
+   "old": "'SKU Master'!T10",
+   "new": "'2 SKU List'!V20"
+  },
+  "sku5_until": {
+   "old": "'SKU Master'!U10",
+   "new": "'2 SKU List'!W20"
+  },
+  "sku5_due30": {
+   "old": "'SKU Master'!V10",
+   "new": "'2 SKU List'!X20"
+  },
+  "sku5_cogs": {
+   "old": "'SKU Master'!X10",
+   "new": "'2 SKU List'!Y20"
+  },
+  "sku6_adj": {
+   "old": "'SKU Master'!L11",
+   "new": "'2 SKU List'!N21"
+  },
+  "sku6_margin": {
+   "old": "'SKU Master'!M11",
+   "new": "'2 SKU List'!O21"
+  },
+  "sku6_days": {
+   "old": "'SKU Master'!N11",
+   "new": "'2 SKU List'!P21"
+  },
+  "sku6_rop": {
+   "old": "'SKU Master'!O11",
+   "new": "'2 SKU List'!Q21"
+  },
+  "sku6_out": {
+   "old": "'SKU Master'!P11",
+   "new": "'2 SKU List'!R21"
+  },
+  "sku6_since": {
+   "old": "'SKU Master'!Q11",
+   "new": "'2 SKU List'!S21"
+  },
+  "sku6_status": {
+   "old": "'SKU Master'!R11",
+   "new": "'2 SKU List'!T21"
+  },
+  "sku6_value": {
+   "old": "'SKU Master'!S11",
+   "new": "'2 SKU List'!U21"
+  },
+  "sku6_stockout": {
+   "old": "'SKU Master'!T11",
+   "new": "'2 SKU List'!V21"
+  },
+  "sku6_until": {
+   "old": "'SKU Master'!U11",
+   "new": "'2 SKU List'!W21"
+  },
+  "sku6_due30": {
+   "old": "'SKU Master'!V11",
+   "new": "'2 SKU List'!X21"
+  },
+  "sku6_cogs": {
+   "old": "'SKU Master'!X11",
+   "new": "'2 SKU List'!Y21"
+  },
+  "sku7_adj": {
+   "old": "'SKU Master'!L12",
+   "new": "'2 SKU List'!N22"
+  },
+  "sku7_margin": {
+   "old": "'SKU Master'!M12",
+   "new": "'2 SKU List'!O22"
+  },
+  "sku7_days": {
+   "old": "'SKU Master'!N12",
+   "new": "'2 SKU List'!P22"
+  },
+  "sku7_rop": {
+   "old": "'SKU Master'!O12",
+   "new": "'2 SKU List'!Q22"
+  },
+  "sku7_out": {
+   "old": "'SKU Master'!P12",
+   "new": "'2 SKU List'!R22"
+  },
+  "sku7_since": {
+   "old": "'SKU Master'!Q12",
+   "new": "'2 SKU List'!S22"
+  },
+  "sku7_status": {
+   "old": "'SKU Master'!R12",
+   "new": "'2 SKU List'!T22"
+  },
+  "sku7_value": {
+   "old": "'SKU Master'!S12",
+   "new": "'2 SKU List'!U22"
+  },
+  "sku7_stockout": {
+   "old": "'SKU Master'!T12",
+   "new": "'2 SKU List'!V22"
+  },
+  "sku7_until": {
+   "old": "'SKU Master'!U12",
+   "new": "'2 SKU List'!W22"
+  },
+  "sku7_due30": {
+   "old": "'SKU Master'!V12",
+   "new": "'2 SKU List'!X22"
+  },
+  "sku7_cogs": {
+   "old": "'SKU Master'!X12",
+   "new": "'2 SKU List'!Y22"
+  },
+  "sku8_adj": {
+   "old": "'SKU Master'!L13",
+   "new": "'2 SKU List'!N23"
+  },
+  "sku8_margin": {
+   "old": "'SKU Master'!M13",
+   "new": "'2 SKU List'!O23"
+  },
+  "sku8_days": {
+   "old": "'SKU Master'!N13",
+   "new": "'2 SKU List'!P23"
+  },
+  "sku8_rop": {
+   "old": "'SKU Master'!O13",
+   "new": "'2 SKU List'!Q23"
+  },
+  "sku8_out": {
+   "old": "'SKU Master'!P13",
+   "new": "'2 SKU List'!R23"
+  },
+  "sku8_since": {
+   "old": "'SKU Master'!Q13",
+   "new": "'2 SKU List'!S23"
+  },
+  "sku8_status": {
+   "old": "'SKU Master'!R13",
+   "new": "'2 SKU List'!T23"
+  },
+  "sku8_value": {
+   "old": "'SKU Master'!S13",
+   "new": "'2 SKU List'!U23"
+  },
+  "sku8_stockout": {
+   "old": "'SKU Master'!T13",
+   "new": "'2 SKU List'!V23"
+  },
+  "sku8_until": {
+   "old": "'SKU Master'!U13",
+   "new": "'2 SKU List'!W23"
+  },
+  "sku8_due30": {
+   "old": "'SKU Master'!V13",
+   "new": "'2 SKU List'!X23"
+  },
+  "sku8_cogs": {
+   "old": "'SKU Master'!X13",
+   "new": "'2 SKU List'!Y23"
+  },
+  "sku9_adj": {
+   "old": "'SKU Master'!L14",
+   "new": "'2 SKU List'!N24"
+  },
+  "sku9_margin": {
+   "old": "'SKU Master'!M14",
+   "new": "'2 SKU List'!O24"
+  },
+  "sku9_days": {
+   "old": "'SKU Master'!N14",
+   "new": "'2 SKU List'!P24"
+  },
+  "sku9_rop": {
+   "old": "'SKU Master'!O14",
+   "new": "'2 SKU List'!Q24"
+  },
+  "sku9_out": {
+   "old": "'SKU Master'!P14",
+   "new": "'2 SKU List'!R24"
+  },
+  "sku9_since": {
+   "old": "'SKU Master'!Q14",
+   "new": "'2 SKU List'!S24"
+  },
+  "sku9_status": {
+   "old": "'SKU Master'!R14",
+   "new": "'2 SKU List'!T24"
+  },
+  "sku9_value": {
+   "old": "'SKU Master'!S14",
+   "new": "'2 SKU List'!U24"
+  },
+  "sku9_stockout": {
+   "old": "'SKU Master'!T14",
+   "new": "'2 SKU List'!V24"
+  },
+  "sku9_until": {
+   "old": "'SKU Master'!U14",
+   "new": "'2 SKU List'!W24"
+  },
+  "sku9_due30": {
+   "old": "'SKU Master'!V14",
+   "new": "'2 SKU List'!X24"
+  },
+  "sku9_cogs": {
+   "old": "'SKU Master'!X14",
+   "new": "'2 SKU List'!Y24"
+  },
+  "sku10_adj": {
+   "old": "'SKU Master'!L15",
+   "new": "'2 SKU List'!N25"
+  },
+  "sku10_margin": {
+   "old": "'SKU Master'!M15",
+   "new": "'2 SKU List'!O25"
+  },
+  "sku10_days": {
+   "old": "'SKU Master'!N15",
+   "new": "'2 SKU List'!P25"
+  },
+  "sku10_rop": {
+   "old": "'SKU Master'!O15",
+   "new": "'2 SKU List'!Q25"
+  },
+  "sku10_out": {
+   "old": "'SKU Master'!P15",
+   "new": "'2 SKU List'!R25"
+  },
+  "sku10_since": {
+   "old": "'SKU Master'!Q15",
+   "new": "'2 SKU List'!S25"
+  },
+  "sku10_status": {
+   "old": "'SKU Master'!R15",
+   "new": "'2 SKU List'!T25"
+  },
+  "sku10_value": {
+   "old": "'SKU Master'!S15",
+   "new": "'2 SKU List'!U25"
+  },
+  "sku10_stockout": {
+   "old": "'SKU Master'!T15",
+   "new": "'2 SKU List'!V25"
+  },
+  "sku10_until": {
+   "old": "'SKU Master'!U15",
+   "new": "'2 SKU List'!W25"
+  },
+  "sku10_due30": {
+   "old": "'SKU Master'!V15",
+   "new": "'2 SKU List'!X25"
+  },
+  "sku10_cogs": {
+   "old": "'SKU Master'!X15",
+   "new": "'2 SKU List'!Y25"
+  },
+  "sku11_adj": {
+   "old": "'SKU Master'!L16",
+   "new": "'2 SKU List'!N26"
+  },
+  "sku11_margin": {
+   "old": "'SKU Master'!M16",
+   "new": "'2 SKU List'!O26"
+  },
+  "sku11_days": {
+   "old": "'SKU Master'!N16",
+   "new": "'2 SKU List'!P26"
+  },
+  "sku11_rop": {
+   "old": "'SKU Master'!O16",
+   "new": "'2 SKU List'!Q26"
+  },
+  "sku11_out": {
+   "old": "'SKU Master'!P16",
+   "new": "'2 SKU List'!R26"
+  },
+  "sku11_since": {
+   "old": "'SKU Master'!Q16",
+   "new": "'2 SKU List'!S26"
+  },
+  "sku11_status": {
+   "old": "'SKU Master'!R16",
+   "new": "'2 SKU List'!T26"
+  },
+  "sku11_value": {
+   "old": "'SKU Master'!S16",
+   "new": "'2 SKU List'!U26"
+  },
+  "sku11_stockout": {
+   "old": "'SKU Master'!T16",
+   "new": "'2 SKU List'!V26"
+  },
+  "sku11_until": {
+   "old": "'SKU Master'!U16",
+   "new": "'2 SKU List'!W26"
+  },
+  "sku11_due30": {
+   "old": "'SKU Master'!V16",
+   "new": "'2 SKU List'!X26"
+  },
+  "sku11_cogs": {
+   "old": "'SKU Master'!X16",
+   "new": "'2 SKU List'!Y26"
+  },
+  "sku12_adj": {
+   "old": "'SKU Master'!L17",
+   "new": "'2 SKU List'!N27"
+  },
+  "sku12_margin": {
+   "old": "'SKU Master'!M17",
+   "new": "'2 SKU List'!O27"
+  },
+  "sku12_days": {
+   "old": "'SKU Master'!N17",
+   "new": "'2 SKU List'!P27"
+  },
+  "sku12_rop": {
+   "old": "'SKU Master'!O17",
+   "new": "'2 SKU List'!Q27"
+  },
+  "sku12_out": {
+   "old": "'SKU Master'!P17",
+   "new": "'2 SKU List'!R27"
+  },
+  "sku12_since": {
+   "old": "'SKU Master'!Q17",
+   "new": "'2 SKU List'!S27"
+  },
+  "sku12_status": {
+   "old": "'SKU Master'!R17",
+   "new": "'2 SKU List'!T27"
+  },
+  "sku12_value": {
+   "old": "'SKU Master'!S17",
+   "new": "'2 SKU List'!U27"
+  },
+  "sku12_stockout": {
+   "old": "'SKU Master'!T17",
+   "new": "'2 SKU List'!V27"
+  },
+  "sku12_until": {
+   "old": "'SKU Master'!U17",
+   "new": "'2 SKU List'!W27"
+  },
+  "sku12_due30": {
+   "old": "'SKU Master'!V17",
+   "new": "'2 SKU List'!X27"
+  },
+  "sku12_cogs": {
+   "old": "'SKU Master'!X17",
+   "new": "'2 SKU List'!Y27"
+  },
+  "sku13_adj": {
+   "old": "'SKU Master'!L18",
+   "new": "'2 SKU List'!N28"
+  },
+  "sku13_margin": {
+   "old": "'SKU Master'!M18",
+   "new": "'2 SKU List'!O28"
+  },
+  "sku13_days": {
+   "old": "'SKU Master'!N18",
+   "new": "'2 SKU List'!P28"
+  },
+  "sku13_rop": {
+   "old": "'SKU Master'!O18",
+   "new": "'2 SKU List'!Q28"
+  },
+  "sku13_out": {
+   "old": "'SKU Master'!P18",
+   "new": "'2 SKU List'!R28"
+  },
+  "sku13_since": {
+   "old": "'SKU Master'!Q18",
+   "new": "'2 SKU List'!S28"
+  },
+  "sku13_status": {
+   "old": "'SKU Master'!R18",
+   "new": "'2 SKU List'!T28"
+  },
+  "sku13_value": {
+   "old": "'SKU Master'!S18",
+   "new": "'2 SKU List'!U28"
+  },
+  "sku13_stockout": {
+   "old": "'SKU Master'!T18",
+   "new": "'2 SKU List'!V28"
+  },
+  "sku13_until": {
+   "old": "'SKU Master'!U18",
+   "new": "'2 SKU List'!W28"
+  },
+  "sku13_due30": {
+   "old": "'SKU Master'!V18",
+   "new": "'2 SKU List'!X28"
+  },
+  "sku13_cogs": {
+   "old": "'SKU Master'!X18",
+   "new": "'2 SKU List'!Y28"
+  },
+  "sku14_adj": {
+   "old": "'SKU Master'!L19",
+   "new": "'2 SKU List'!N29"
+  },
+  "sku14_margin": {
+   "old": "'SKU Master'!M19",
+   "new": "'2 SKU List'!O29"
+  },
+  "sku14_days": {
+   "old": "'SKU Master'!N19",
+   "new": "'2 SKU List'!P29"
+  },
+  "sku14_rop": {
+   "old": "'SKU Master'!O19",
+   "new": "'2 SKU List'!Q29"
+  },
+  "sku14_out": {
+   "old": "'SKU Master'!P19",
+   "new": "'2 SKU List'!R29"
+  },
+  "sku14_since": {
+   "old": "'SKU Master'!Q19",
+   "new": "'2 SKU List'!S29"
+  },
+  "sku14_status": {
+   "old": "'SKU Master'!R19",
+   "new": "'2 SKU List'!T29"
+  },
+  "sku14_value": {
+   "old": "'SKU Master'!S19",
+   "new": "'2 SKU List'!U29"
+  },
+  "sku14_stockout": {
+   "old": "'SKU Master'!T19",
+   "new": "'2 SKU List'!V29"
+  },
+  "sku14_until": {
+   "old": "'SKU Master'!U19",
+   "new": "'2 SKU List'!W29"
+  },
+  "sku14_due30": {
+   "old": "'SKU Master'!V19",
+   "new": "'2 SKU List'!X29"
+  },
+  "sku14_cogs": {
+   "old": "'SKU Master'!X19",
+   "new": "'2 SKU List'!Y29"
+  },
+  "sku15_adj": {
+   "old": "'SKU Master'!L20",
+   "new": "'2 SKU List'!N30"
+  },
+  "sku15_margin": {
+   "old": "'SKU Master'!M20",
+   "new": "'2 SKU List'!O30"
+  },
+  "sku15_days": {
+   "old": "'SKU Master'!N20",
+   "new": "'2 SKU List'!P30"
+  },
+  "sku15_rop": {
+   "old": "'SKU Master'!O20",
+   "new": "'2 SKU List'!Q30"
+  },
+  "sku15_out": {
+   "old": "'SKU Master'!P20",
+   "new": "'2 SKU List'!R30"
+  },
+  "sku15_since": {
+   "old": "'SKU Master'!Q20",
+   "new": "'2 SKU List'!S30"
+  },
+  "sku15_status": {
+   "old": "'SKU Master'!R20",
+   "new": "'2 SKU List'!T30"
+  },
+  "sku15_value": {
+   "old": "'SKU Master'!S20",
+   "new": "'2 SKU List'!U30"
+  },
+  "sku15_stockout": {
+   "old": "'SKU Master'!T20",
+   "new": "'2 SKU List'!V30"
+  },
+  "sku15_until": {
+   "old": "'SKU Master'!U20",
+   "new": "'2 SKU List'!W30"
+  },
+  "sku15_due30": {
+   "old": "'SKU Master'!V20",
+   "new": "'2 SKU List'!X30"
+  },
+  "sku15_cogs": {
+   "old": "'SKU Master'!X20",
+   "new": "'2 SKU List'!Y30"
+  },
+  "sku16_adj": {
+   "old": "'SKU Master'!L21",
+   "new": "'2 SKU List'!N31"
+  },
+  "sku16_margin": {
+   "old": "'SKU Master'!M21",
+   "new": "'2 SKU List'!O31"
+  },
+  "sku16_days": {
+   "old": "'SKU Master'!N21",
+   "new": "'2 SKU List'!P31"
+  },
+  "sku16_rop": {
+   "old": "'SKU Master'!O21",
+   "new": "'2 SKU List'!Q31"
+  },
+  "sku16_out": {
+   "old": "'SKU Master'!P21",
+   "new": "'2 SKU List'!R31"
+  },
+  "sku16_since": {
+   "old": "'SKU Master'!Q21",
+   "new": "'2 SKU List'!S31"
+  },
+  "sku16_status": {
+   "old": "'SKU Master'!R21",
+   "new": "'2 SKU List'!T31"
+  },
+  "sku16_value": {
+   "old": "'SKU Master'!S21",
+   "new": "'2 SKU List'!U31"
+  },
+  "sku16_stockout": {
+   "old": "'SKU Master'!T21",
+   "new": "'2 SKU List'!V31"
+  },
+  "sku16_until": {
+   "old": "'SKU Master'!U21",
+   "new": "'2 SKU List'!W31"
+  },
+  "sku16_due30": {
+   "old": "'SKU Master'!V21",
+   "new": "'2 SKU List'!X31"
+  },
+  "sku16_cogs": {
+   "old": "'SKU Master'!X21",
+   "new": "'2 SKU List'!Y31"
+  },
+  "sku17_adj": {
+   "old": "'SKU Master'!L22",
+   "new": "'2 SKU List'!N32"
+  },
+  "sku17_margin": {
+   "old": "'SKU Master'!M22",
+   "new": "'2 SKU List'!O32"
+  },
+  "sku17_days": {
+   "old": "'SKU Master'!N22",
+   "new": "'2 SKU List'!P32"
+  },
+  "sku17_rop": {
+   "old": "'SKU Master'!O22",
+   "new": "'2 SKU List'!Q32"
+  },
+  "sku17_out": {
+   "old": "'SKU Master'!P22",
+   "new": "'2 SKU List'!R32"
+  },
+  "sku17_since": {
+   "old": "'SKU Master'!Q22",
+   "new": "'2 SKU List'!S32"
+  },
+  "sku17_status": {
+   "old": "'SKU Master'!R22",
+   "new": "'2 SKU List'!T32"
+  },
+  "sku17_value": {
+   "old": "'SKU Master'!S22",
+   "new": "'2 SKU List'!U32"
+  },
+  "sku17_stockout": {
+   "old": "'SKU Master'!T22",
+   "new": "'2 SKU List'!V32"
+  },
+  "sku17_until": {
+   "old": "'SKU Master'!U22",
+   "new": "'2 SKU List'!W32"
+  },
+  "sku17_due30": {
+   "old": "'SKU Master'!V22",
+   "new": "'2 SKU List'!X32"
+  },
+  "sku17_cogs": {
+   "old": "'SKU Master'!X22",
+   "new": "'2 SKU List'!Y32"
+  },
+  "rp1_qty": {
+   "old": "'Reorder Planner'!I6",
+   "new": "'3 Reorder Plan'!K16"
+  },
+  "rp1_ocost": {
+   "old": "'Reorder Planner'!K6",
+   "new": "'3 Reorder Plan'!M16"
+  },
+  "rp1_prio": {
+   "old": "'Reorder Planner'!N6",
+   "new": "'3 Reorder Plan'!P16"
+  },
+  "rp1_rank": {
+   "old": "'Reorder Planner'!O6",
+   "new": "'3 Reorder Plan'!Q16"
+  },
+  "rp1_cover": {
+   "old": "'Reorder Planner'!P6",
+   "new": "'3 Reorder Plan'!R16"
+  },
+  "rp2_qty": {
+   "old": "'Reorder Planner'!I7",
+   "new": "'3 Reorder Plan'!K17"
+  },
+  "rp2_ocost": {
+   "old": "'Reorder Planner'!K7",
+   "new": "'3 Reorder Plan'!M17"
+  },
+  "rp2_prio": {
+   "old": "'Reorder Planner'!N7",
+   "new": "'3 Reorder Plan'!P17"
+  },
+  "rp2_rank": {
+   "old": "'Reorder Planner'!O7",
+   "new": "'3 Reorder Plan'!Q17"
+  },
+  "rp2_cover": {
+   "old": "'Reorder Planner'!P7",
+   "new": "'3 Reorder Plan'!R17"
+  },
+  "rp3_qty": {
+   "old": "'Reorder Planner'!I8",
+   "new": "'3 Reorder Plan'!K18"
+  },
+  "rp3_ocost": {
+   "old": "'Reorder Planner'!K8",
+   "new": "'3 Reorder Plan'!M18"
+  },
+  "rp3_prio": {
+   "old": "'Reorder Planner'!N8",
+   "new": "'3 Reorder Plan'!P18"
+  },
+  "rp3_rank": {
+   "old": "'Reorder Planner'!O8",
+   "new": "'3 Reorder Plan'!Q18"
+  },
+  "rp3_cover": {
+   "old": "'Reorder Planner'!P8",
+   "new": "'3 Reorder Plan'!R18"
+  },
+  "rp4_qty": {
+   "old": "'Reorder Planner'!I9",
+   "new": "'3 Reorder Plan'!K19"
+  },
+  "rp4_ocost": {
+   "old": "'Reorder Planner'!K9",
+   "new": "'3 Reorder Plan'!M19"
+  },
+  "rp4_prio": {
+   "old": "'Reorder Planner'!N9",
+   "new": "'3 Reorder Plan'!P19"
+  },
+  "rp4_rank": {
+   "old": "'Reorder Planner'!O9",
+   "new": "'3 Reorder Plan'!Q19"
+  },
+  "rp4_cover": {
+   "old": "'Reorder Planner'!P9",
+   "new": "'3 Reorder Plan'!R19"
+  },
+  "rp5_qty": {
+   "old": "'Reorder Planner'!I10",
+   "new": "'3 Reorder Plan'!K20"
+  },
+  "rp5_ocost": {
+   "old": "'Reorder Planner'!K10",
+   "new": "'3 Reorder Plan'!M20"
+  },
+  "rp5_prio": {
+   "old": "'Reorder Planner'!N10",
+   "new": "'3 Reorder Plan'!P20"
+  },
+  "rp5_rank": {
+   "old": "'Reorder Planner'!O10",
+   "new": "'3 Reorder Plan'!Q20"
+  },
+  "rp5_cover": {
+   "old": "'Reorder Planner'!P10",
+   "new": "'3 Reorder Plan'!R20"
+  },
+  "rp6_qty": {
+   "old": "'Reorder Planner'!I11",
+   "new": "'3 Reorder Plan'!K21"
+  },
+  "rp6_ocost": {
+   "old": "'Reorder Planner'!K11",
+   "new": "'3 Reorder Plan'!M21"
+  },
+  "rp6_prio": {
+   "old": "'Reorder Planner'!N11",
+   "new": "'3 Reorder Plan'!P21"
+  },
+  "rp6_rank": {
+   "old": "'Reorder Planner'!O11",
+   "new": "'3 Reorder Plan'!Q21"
+  },
+  "rp6_cover": {
+   "old": "'Reorder Planner'!P11",
+   "new": "'3 Reorder Plan'!R21"
+  },
+  "rp7_qty": {
+   "old": "'Reorder Planner'!I12",
+   "new": "'3 Reorder Plan'!K22"
+  },
+  "rp7_ocost": {
+   "old": "'Reorder Planner'!K12",
+   "new": "'3 Reorder Plan'!M22"
+  },
+  "rp7_prio": {
+   "old": "'Reorder Planner'!N12",
+   "new": "'3 Reorder Plan'!P22"
+  },
+  "rp7_rank": {
+   "old": "'Reorder Planner'!O12",
+   "new": "'3 Reorder Plan'!Q22"
+  },
+  "rp7_cover": {
+   "old": "'Reorder Planner'!P12",
+   "new": "'3 Reorder Plan'!R22"
+  },
+  "rp8_qty": {
+   "old": "'Reorder Planner'!I13",
+   "new": "'3 Reorder Plan'!K23"
+  },
+  "rp8_ocost": {
+   "old": "'Reorder Planner'!K13",
+   "new": "'3 Reorder Plan'!M23"
+  },
+  "rp8_prio": {
+   "old": "'Reorder Planner'!N13",
+   "new": "'3 Reorder Plan'!P23"
+  },
+  "rp8_rank": {
+   "old": "'Reorder Planner'!O13",
+   "new": "'3 Reorder Plan'!Q23"
+  },
+  "rp8_cover": {
+   "old": "'Reorder Planner'!P13",
+   "new": "'3 Reorder Plan'!R23"
+  },
+  "rp9_qty": {
+   "old": "'Reorder Planner'!I14",
+   "new": "'3 Reorder Plan'!K24"
+  },
+  "rp9_ocost": {
+   "old": "'Reorder Planner'!K14",
+   "new": "'3 Reorder Plan'!M24"
+  },
+  "rp9_prio": {
+   "old": "'Reorder Planner'!N14",
+   "new": "'3 Reorder Plan'!P24"
+  },
+  "rp9_rank": {
+   "old": "'Reorder Planner'!O14",
+   "new": "'3 Reorder Plan'!Q24"
+  },
+  "rp9_cover": {
+   "old": "'Reorder Planner'!P14",
+   "new": "'3 Reorder Plan'!R24"
+  },
+  "rp10_qty": {
+   "old": "'Reorder Planner'!I15",
+   "new": "'3 Reorder Plan'!K25"
+  },
+  "rp10_ocost": {
+   "old": "'Reorder Planner'!K15",
+   "new": "'3 Reorder Plan'!M25"
+  },
+  "rp10_prio": {
+   "old": "'Reorder Planner'!N15",
+   "new": "'3 Reorder Plan'!P25"
+  },
+  "rp10_rank": {
+   "old": "'Reorder Planner'!O15",
+   "new": "'3 Reorder Plan'!Q25"
+  },
+  "rp10_cover": {
+   "old": "'Reorder Planner'!P15",
+   "new": "'3 Reorder Plan'!R25"
+  },
+  "rp11_qty": {
+   "old": "'Reorder Planner'!I16",
+   "new": "'3 Reorder Plan'!K26"
+  },
+  "rp11_ocost": {
+   "old": "'Reorder Planner'!K16",
+   "new": "'3 Reorder Plan'!M26"
+  },
+  "rp11_prio": {
+   "old": "'Reorder Planner'!N16",
+   "new": "'3 Reorder Plan'!P26"
+  },
+  "rp11_rank": {
+   "old": "'Reorder Planner'!O16",
+   "new": "'3 Reorder Plan'!Q26"
+  },
+  "rp11_cover": {
+   "old": "'Reorder Planner'!P16",
+   "new": "'3 Reorder Plan'!R26"
+  },
+  "rp12_qty": {
+   "old": "'Reorder Planner'!I17",
+   "new": "'3 Reorder Plan'!K27"
+  },
+  "rp12_ocost": {
+   "old": "'Reorder Planner'!K17",
+   "new": "'3 Reorder Plan'!M27"
+  },
+  "rp12_prio": {
+   "old": "'Reorder Planner'!N17",
+   "new": "'3 Reorder Plan'!P27"
+  },
+  "rp12_rank": {
+   "old": "'Reorder Planner'!O17",
+   "new": "'3 Reorder Plan'!Q27"
+  },
+  "rp12_cover": {
+   "old": "'Reorder Planner'!P17",
+   "new": "'3 Reorder Plan'!R27"
+  },
+  "rp13_qty": {
+   "old": "'Reorder Planner'!I18",
+   "new": "'3 Reorder Plan'!K28"
+  },
+  "rp13_ocost": {
+   "old": "'Reorder Planner'!K18",
+   "new": "'3 Reorder Plan'!M28"
+  },
+  "rp13_prio": {
+   "old": "'Reorder Planner'!N18",
+   "new": "'3 Reorder Plan'!P28"
+  },
+  "rp13_rank": {
+   "old": "'Reorder Planner'!O18",
+   "new": "'3 Reorder Plan'!Q28"
+  },
+  "rp13_cover": {
+   "old": "'Reorder Planner'!P18",
+   "new": "'3 Reorder Plan'!R28"
+  },
+  "rp14_qty": {
+   "old": "'Reorder Planner'!I19",
+   "new": "'3 Reorder Plan'!K29"
+  },
+  "rp14_ocost": {
+   "old": "'Reorder Planner'!K19",
+   "new": "'3 Reorder Plan'!M29"
+  },
+  "rp14_prio": {
+   "old": "'Reorder Planner'!N19",
+   "new": "'3 Reorder Plan'!P29"
+  },
+  "rp14_rank": {
+   "old": "'Reorder Planner'!O19",
+   "new": "'3 Reorder Plan'!Q29"
+  },
+  "rp14_cover": {
+   "old": "'Reorder Planner'!P19",
+   "new": "'3 Reorder Plan'!R29"
+  },
+  "rp15_qty": {
+   "old": "'Reorder Planner'!I20",
+   "new": "'3 Reorder Plan'!K30"
+  },
+  "rp15_ocost": {
+   "old": "'Reorder Planner'!K20",
+   "new": "'3 Reorder Plan'!M30"
+  },
+  "rp15_prio": {
+   "old": "'Reorder Planner'!N20",
+   "new": "'3 Reorder Plan'!P30"
+  },
+  "rp15_rank": {
+   "old": "'Reorder Planner'!O20",
+   "new": "'3 Reorder Plan'!Q30"
+  },
+  "rp15_cover": {
+   "old": "'Reorder Planner'!P20",
+   "new": "'3 Reorder Plan'!R30"
+  },
+  "rp16_qty": {
+   "old": "'Reorder Planner'!I21",
+   "new": "'3 Reorder Plan'!K31"
+  },
+  "rp16_ocost": {
+   "old": "'Reorder Planner'!K21",
+   "new": "'3 Reorder Plan'!M31"
+  },
+  "rp16_prio": {
+   "old": "'Reorder Planner'!N21",
+   "new": "'3 Reorder Plan'!P31"
+  },
+  "rp16_rank": {
+   "old": "'Reorder Planner'!O21",
+   "new": "'3 Reorder Plan'!Q31"
+  },
+  "rp16_cover": {
+   "old": "'Reorder Planner'!P21",
+   "new": "'3 Reorder Plan'!R31"
+  },
+  "rp17_qty": {
+   "old": "'Reorder Planner'!I22",
+   "new": "'3 Reorder Plan'!K32"
+  },
+  "rp17_ocost": {
+   "old": "'Reorder Planner'!K22",
+   "new": "'3 Reorder Plan'!M32"
+  },
+  "rp17_prio": {
+   "old": "'Reorder Planner'!N22",
+   "new": "'3 Reorder Plan'!P32"
+  },
+  "rp17_rank": {
+   "old": "'Reorder Planner'!O22",
+   "new": "'3 Reorder Plan'!Q32"
+  },
+  "rp17_cover": {
+   "old": "'Reorder Planner'!P22",
+   "new": "'3 Reorder Plan'!R32"
+  },
+  "rp_total": {
+   "old": "'Reorder Planner'!C3",
+   "new": "'3 Reorder Plan'!C8"
+  },
+  "rp_count": {
+   "old": "'Reorder Planner'!E3",
+   "new": "'3 Reorder Plan'!E8"
+  },
+  "rp8_sup": {
+   "old": "'Reorder Planner'!C13",
+   "new": "'3 Reorder Plan'!E23"
+  },
+  "rp_afford": {
+   "old": "'Reorder Planner'!L3",
+   "new": "'3 Reorder Plan'!N8"
+  },
+  "cc1_sku": {
+   "old": "'Cash Check'!B12",
+   "new": "'5 Cash Check'!D16"
+  },
+  "cc1_cover": {
+   "old": "'Cash Check'!J12",
+   "new": "'5 Cash Check'!Q16"
+  },
+  "cc1_coverf": {
+   "old": "'Cash Check'!L12",
+   "new": "'5 Cash Check'!S16"
+  },
+  "cc1_topf": {
+   "old": "'Cash Check'!M12",
+   "new": "'5 Cash Check'!T16"
+  },
+  "cc1_nowq": {
+   "old": "'Cash Check'!N12",
+   "new": "'5 Cash Check'!H16"
+  },
+  "cc1_nowc": {
+   "old": "'Cash Check'!O12",
+   "new": "'5 Cash Check'!I16"
+  },
+  "cc1_defq": {
+   "old": "'Cash Check'!P12",
+   "new": "'5 Cash Check'!J16"
+  },
+  "cc1_defc": {
+   "old": "'Cash Check'!Q12",
+   "new": "'5 Cash Check'!K16"
+  },
+  "cc1_dec": {
+   "old": "'Cash Check'!R12",
+   "new": "'5 Cash Check'!G16"
+  },
+  "cc2_sku": {
+   "old": "'Cash Check'!B13",
+   "new": "'5 Cash Check'!D17"
+  },
+  "cc2_cover": {
+   "old": "'Cash Check'!J13",
+   "new": "'5 Cash Check'!Q17"
+  },
+  "cc2_coverf": {
+   "old": "'Cash Check'!L13",
+   "new": "'5 Cash Check'!S17"
+  },
+  "cc2_topf": {
+   "old": "'Cash Check'!M13",
+   "new": "'5 Cash Check'!T17"
+  },
+  "cc2_nowq": {
+   "old": "'Cash Check'!N13",
+   "new": "'5 Cash Check'!H17"
+  },
+  "cc2_nowc": {
+   "old": "'Cash Check'!O13",
+   "new": "'5 Cash Check'!I17"
+  },
+  "cc2_defq": {
+   "old": "'Cash Check'!P13",
+   "new": "'5 Cash Check'!J17"
+  },
+  "cc2_defc": {
+   "old": "'Cash Check'!Q13",
+   "new": "'5 Cash Check'!K17"
+  },
+  "cc2_dec": {
+   "old": "'Cash Check'!R13",
+   "new": "'5 Cash Check'!G17"
+  },
+  "cc3_sku": {
+   "old": "'Cash Check'!B14",
+   "new": "'5 Cash Check'!D18"
+  },
+  "cc3_cover": {
+   "old": "'Cash Check'!J14",
+   "new": "'5 Cash Check'!Q18"
+  },
+  "cc3_coverf": {
+   "old": "'Cash Check'!L14",
+   "new": "'5 Cash Check'!S18"
+  },
+  "cc3_topf": {
+   "old": "'Cash Check'!M14",
+   "new": "'5 Cash Check'!T18"
+  },
+  "cc3_nowq": {
+   "old": "'Cash Check'!N14",
+   "new": "'5 Cash Check'!H18"
+  },
+  "cc3_nowc": {
+   "old": "'Cash Check'!O14",
+   "new": "'5 Cash Check'!I18"
+  },
+  "cc3_defq": {
+   "old": "'Cash Check'!P14",
+   "new": "'5 Cash Check'!J18"
+  },
+  "cc3_defc": {
+   "old": "'Cash Check'!Q14",
+   "new": "'5 Cash Check'!K18"
+  },
+  "cc3_dec": {
+   "old": "'Cash Check'!R14",
+   "new": "'5 Cash Check'!G18"
+  },
+  "cc4_sku": {
+   "old": "'Cash Check'!B15",
+   "new": "'5 Cash Check'!D19"
+  },
+  "cc4_cover": {
+   "old": "'Cash Check'!J15",
+   "new": "'5 Cash Check'!Q19"
+  },
+  "cc4_coverf": {
+   "old": "'Cash Check'!L15",
+   "new": "'5 Cash Check'!S19"
+  },
+  "cc4_topf": {
+   "old": "'Cash Check'!M15",
+   "new": "'5 Cash Check'!T19"
+  },
+  "cc4_nowq": {
+   "old": "'Cash Check'!N15",
+   "new": "'5 Cash Check'!H19"
+  },
+  "cc4_nowc": {
+   "old": "'Cash Check'!O15",
+   "new": "'5 Cash Check'!I19"
+  },
+  "cc4_defq": {
+   "old": "'Cash Check'!P15",
+   "new": "'5 Cash Check'!J19"
+  },
+  "cc4_defc": {
+   "old": "'Cash Check'!Q15",
+   "new": "'5 Cash Check'!K19"
+  },
+  "cc4_dec": {
+   "old": "'Cash Check'!R15",
+   "new": "'5 Cash Check'!G19"
+  },
+  "cc5_sku": {
+   "old": "'Cash Check'!B16",
+   "new": "'5 Cash Check'!D20"
+  },
+  "cc5_cover": {
+   "old": "'Cash Check'!J16",
+   "new": "'5 Cash Check'!Q20"
+  },
+  "cc5_coverf": {
+   "old": "'Cash Check'!L16",
+   "new": "'5 Cash Check'!S20"
+  },
+  "cc5_topf": {
+   "old": "'Cash Check'!M16",
+   "new": "'5 Cash Check'!T20"
+  },
+  "cc5_nowq": {
+   "old": "'Cash Check'!N16",
+   "new": "'5 Cash Check'!H20"
+  },
+  "cc5_nowc": {
+   "old": "'Cash Check'!O16",
+   "new": "'5 Cash Check'!I20"
+  },
+  "cc5_defq": {
+   "old": "'Cash Check'!P16",
+   "new": "'5 Cash Check'!J20"
+  },
+  "cc5_defc": {
+   "old": "'Cash Check'!Q16",
+   "new": "'5 Cash Check'!K20"
+  },
+  "cc5_dec": {
+   "old": "'Cash Check'!R16",
+   "new": "'5 Cash Check'!G20"
+  },
+  "cc6_sku": {
+   "old": "'Cash Check'!B17",
+   "new": "'5 Cash Check'!D21"
+  },
+  "cc6_cover": {
+   "old": "'Cash Check'!J17",
+   "new": "'5 Cash Check'!Q21"
+  },
+  "cc6_coverf": {
+   "old": "'Cash Check'!L17",
+   "new": "'5 Cash Check'!S21"
+  },
+  "cc6_topf": {
+   "old": "'Cash Check'!M17",
+   "new": "'5 Cash Check'!T21"
+  },
+  "cc6_nowq": {
+   "old": "'Cash Check'!N17",
+   "new": "'5 Cash Check'!H21"
+  },
+  "cc6_nowc": {
+   "old": "'Cash Check'!O17",
+   "new": "'5 Cash Check'!I21"
+  },
+  "cc6_defq": {
+   "old": "'Cash Check'!P17",
+   "new": "'5 Cash Check'!J21"
+  },
+  "cc6_defc": {
+   "old": "'Cash Check'!Q17",
+   "new": "'5 Cash Check'!K21"
+  },
+  "cc6_dec": {
+   "old": "'Cash Check'!R17",
+   "new": "'5 Cash Check'!G21"
+  },
+  "cc7_sku": {
+   "old": "'Cash Check'!B18",
+   "new": "'5 Cash Check'!D22"
+  },
+  "cc7_cover": {
+   "old": "'Cash Check'!J18",
+   "new": "'5 Cash Check'!Q22"
+  },
+  "cc7_coverf": {
+   "old": "'Cash Check'!L18",
+   "new": "'5 Cash Check'!S22"
+  },
+  "cc7_topf": {
+   "old": "'Cash Check'!M18",
+   "new": "'5 Cash Check'!T22"
+  },
+  "cc7_nowq": {
+   "old": "'Cash Check'!N18",
+   "new": "'5 Cash Check'!H22"
+  },
+  "cc7_nowc": {
+   "old": "'Cash Check'!O18",
+   "new": "'5 Cash Check'!I22"
+  },
+  "cc7_defq": {
+   "old": "'Cash Check'!P18",
+   "new": "'5 Cash Check'!J22"
+  },
+  "cc7_defc": {
+   "old": "'Cash Check'!Q18",
+   "new": "'5 Cash Check'!K22"
+  },
+  "cc7_dec": {
+   "old": "'Cash Check'!R18",
+   "new": "'5 Cash Check'!G22"
+  },
+  "cc8_sku": {
+   "old": "'Cash Check'!B19",
+   "new": "'5 Cash Check'!D23"
+  },
+  "cc8_cover": {
+   "old": "'Cash Check'!J19",
+   "new": "'5 Cash Check'!Q23"
+  },
+  "cc8_coverf": {
+   "old": "'Cash Check'!L19",
+   "new": "'5 Cash Check'!S23"
+  },
+  "cc8_topf": {
+   "old": "'Cash Check'!M19",
+   "new": "'5 Cash Check'!T23"
+  },
+  "cc8_nowq": {
+   "old": "'Cash Check'!N19",
+   "new": "'5 Cash Check'!H23"
+  },
+  "cc8_nowc": {
+   "old": "'Cash Check'!O19",
+   "new": "'5 Cash Check'!I23"
+  },
+  "cc8_defq": {
+   "old": "'Cash Check'!P19",
+   "new": "'5 Cash Check'!J23"
+  },
+  "cc8_defc": {
+   "old": "'Cash Check'!Q19",
+   "new": "'5 Cash Check'!K23"
+  },
+  "cc8_dec": {
+   "old": "'Cash Check'!R19",
+   "new": "'5 Cash Check'!G23"
+  },
+  "cc9_sku": {
+   "old": "'Cash Check'!B20",
+   "new": "'5 Cash Check'!D24"
+  },
+  "cc9_cover": {
+   "old": "'Cash Check'!J20",
+   "new": "'5 Cash Check'!Q24"
+  },
+  "cc9_coverf": {
+   "old": "'Cash Check'!L20",
+   "new": "'5 Cash Check'!S24"
+  },
+  "cc9_topf": {
+   "old": "'Cash Check'!M20",
+   "new": "'5 Cash Check'!T24"
+  },
+  "cc9_nowq": {
+   "old": "'Cash Check'!N20",
+   "new": "'5 Cash Check'!H24"
+  },
+  "cc9_nowc": {
+   "old": "'Cash Check'!O20",
+   "new": "'5 Cash Check'!I24"
+  },
+  "cc9_defq": {
+   "old": "'Cash Check'!P20",
+   "new": "'5 Cash Check'!J24"
+  },
+  "cc9_defc": {
+   "old": "'Cash Check'!Q20",
+   "new": "'5 Cash Check'!K24"
+  },
+  "cc9_dec": {
+   "old": "'Cash Check'!R20",
+   "new": "'5 Cash Check'!G24"
+  },
+  "cc10_sku": {
+   "old": "'Cash Check'!B21",
+   "new": "'5 Cash Check'!D25"
+  },
+  "cc10_cover": {
+   "old": "'Cash Check'!J21",
+   "new": "'5 Cash Check'!Q25"
+  },
+  "cc10_coverf": {
+   "old": "'Cash Check'!L21",
+   "new": "'5 Cash Check'!S25"
+  },
+  "cc10_topf": {
+   "old": "'Cash Check'!M21",
+   "new": "'5 Cash Check'!T25"
+  },
+  "cc10_nowq": {
+   "old": "'Cash Check'!N21",
+   "new": "'5 Cash Check'!H25"
+  },
+  "cc10_nowc": {
+   "old": "'Cash Check'!O21",
+   "new": "'5 Cash Check'!I25"
+  },
+  "cc10_defq": {
+   "old": "'Cash Check'!P21",
+   "new": "'5 Cash Check'!J25"
+  },
+  "cc10_defc": {
+   "old": "'Cash Check'!Q21",
+   "new": "'5 Cash Check'!K25"
+  },
+  "cc10_dec": {
+   "old": "'Cash Check'!R21",
+   "new": "'5 Cash Check'!G25"
+  },
+  "cc_rec": {
+   "old": "'Cash Check'!D4",
+   "new": "'5 Cash Check'!C8"
+  },
+  "cc_usable": {
+   "old": "'Cash Check'!D5",
+   "new": "'5 Cash Check'!F8"
+  },
+  "cc_short": {
+   "old": "'Cash Check'!D6",
+   "new": "'5 Cash Check'!M8"
+  },
+  "cc_verdict": {
+   "old": "'Cash Check'!D7",
+   "new": "'5 Cash Check'!C13"
+  },
+  "cc_now": {
+   "old": "'Cash Check'!D8",
+   "new": "'5 Cash Check'!G8"
+  },
+  "cc_deferred": {
+   "old": "'Cash Check'!D9",
+   "new": "'5 Cash Check'!I8"
+  },
+  "cc_left": {
+   "old": "'Cash Check'!D10",
+   "new": "'5 Cash Check'!P8"
+  },
+  "ds1_since": {
+   "old": "'Dead Stock'!G11",
+   "new": "'6 Dead Stock'!L16"
+  },
+  "ds1_flag": {
+   "old": "'Dead Stock'!I11",
+   "new": "'6 Dead Stock'!E16"
+  },
+  "ds1_trap": {
+   "old": "'Dead Stock'!J11",
+   "new": "'6 Dead Stock'!F16"
+  },
+  "ds1_b10": {
+   "old": "'Dead Stock'!L11",
+   "new": "'6 Dead Stock'!O16"
+  },
+  "ds1_b25": {
+   "old": "'Dead Stock'!N11",
+   "new": "'6 Dead Stock'!Q16"
+  },
+  "ds1_b50": {
+   "old": "'Dead Stock'!P11",
+   "new": "'6 Dead Stock'!S16"
+  },
+  "ds1_rec": {
+   "old": "'Dead Stock'!Q11",
+   "new": "'6 Dead Stock'!G16"
+  },
+  "ds2_since": {
+   "old": "'Dead Stock'!G12",
+   "new": "'6 Dead Stock'!L17"
+  },
+  "ds2_flag": {
+   "old": "'Dead Stock'!I12",
+   "new": "'6 Dead Stock'!E17"
+  },
+  "ds2_trap": {
+   "old": "'Dead Stock'!J12",
+   "new": "'6 Dead Stock'!F17"
+  },
+  "ds2_b10": {
+   "old": "'Dead Stock'!L12",
+   "new": "'6 Dead Stock'!O17"
+  },
+  "ds2_b25": {
+   "old": "'Dead Stock'!N12",
+   "new": "'6 Dead Stock'!Q17"
+  },
+  "ds2_b50": {
+   "old": "'Dead Stock'!P12",
+   "new": "'6 Dead Stock'!S17"
+  },
+  "ds2_rec": {
+   "old": "'Dead Stock'!Q12",
+   "new": "'6 Dead Stock'!G17"
+  },
+  "ds3_since": {
+   "old": "'Dead Stock'!G13",
+   "new": "'6 Dead Stock'!L18"
+  },
+  "ds3_flag": {
+   "old": "'Dead Stock'!I13",
+   "new": "'6 Dead Stock'!E18"
+  },
+  "ds3_trap": {
+   "old": "'Dead Stock'!J13",
+   "new": "'6 Dead Stock'!F18"
+  },
+  "ds3_b10": {
+   "old": "'Dead Stock'!L13",
+   "new": "'6 Dead Stock'!O18"
+  },
+  "ds3_b25": {
+   "old": "'Dead Stock'!N13",
+   "new": "'6 Dead Stock'!Q18"
+  },
+  "ds3_b50": {
+   "old": "'Dead Stock'!P13",
+   "new": "'6 Dead Stock'!S18"
+  },
+  "ds3_rec": {
+   "old": "'Dead Stock'!Q13",
+   "new": "'6 Dead Stock'!G18"
+  },
+  "ds4_since": {
+   "old": "'Dead Stock'!G14",
+   "new": "'6 Dead Stock'!L19"
+  },
+  "ds4_flag": {
+   "old": "'Dead Stock'!I14",
+   "new": "'6 Dead Stock'!E19"
+  },
+  "ds4_trap": {
+   "old": "'Dead Stock'!J14",
+   "new": "'6 Dead Stock'!F19"
+  },
+  "ds4_b10": {
+   "old": "'Dead Stock'!L14",
+   "new": "'6 Dead Stock'!O19"
+  },
+  "ds4_b25": {
+   "old": "'Dead Stock'!N14",
+   "new": "'6 Dead Stock'!Q19"
+  },
+  "ds4_b50": {
+   "old": "'Dead Stock'!P14",
+   "new": "'6 Dead Stock'!S19"
+  },
+  "ds4_rec": {
+   "old": "'Dead Stock'!Q14",
+   "new": "'6 Dead Stock'!G19"
+  },
+  "ds5_since": {
+   "old": "'Dead Stock'!G15",
+   "new": "'6 Dead Stock'!L20"
+  },
+  "ds5_flag": {
+   "old": "'Dead Stock'!I15",
+   "new": "'6 Dead Stock'!E20"
+  },
+  "ds5_trap": {
+   "old": "'Dead Stock'!J15",
+   "new": "'6 Dead Stock'!F20"
+  },
+  "ds5_b10": {
+   "old": "'Dead Stock'!L15",
+   "new": "'6 Dead Stock'!O20"
+  },
+  "ds5_b25": {
+   "old": "'Dead Stock'!N15",
+   "new": "'6 Dead Stock'!Q20"
+  },
+  "ds5_b50": {
+   "old": "'Dead Stock'!P15",
+   "new": "'6 Dead Stock'!S20"
+  },
+  "ds5_rec": {
+   "old": "'Dead Stock'!Q15",
+   "new": "'6 Dead Stock'!G20"
+  },
+  "ds6_since": {
+   "old": "'Dead Stock'!G16",
+   "new": "'6 Dead Stock'!L21"
+  },
+  "ds6_flag": {
+   "old": "'Dead Stock'!I16",
+   "new": "'6 Dead Stock'!E21"
+  },
+  "ds6_trap": {
+   "old": "'Dead Stock'!J16",
+   "new": "'6 Dead Stock'!F21"
+  },
+  "ds6_b10": {
+   "old": "'Dead Stock'!L16",
+   "new": "'6 Dead Stock'!O21"
+  },
+  "ds6_b25": {
+   "old": "'Dead Stock'!N16",
+   "new": "'6 Dead Stock'!Q21"
+  },
+  "ds6_b50": {
+   "old": "'Dead Stock'!P16",
+   "new": "'6 Dead Stock'!S21"
+  },
+  "ds6_rec": {
+   "old": "'Dead Stock'!Q16",
+   "new": "'6 Dead Stock'!G21"
+  },
+  "ds7_since": {
+   "old": "'Dead Stock'!G17",
+   "new": "'6 Dead Stock'!L22"
+  },
+  "ds7_flag": {
+   "old": "'Dead Stock'!I17",
+   "new": "'6 Dead Stock'!E22"
+  },
+  "ds7_trap": {
+   "old": "'Dead Stock'!J17",
+   "new": "'6 Dead Stock'!F22"
+  },
+  "ds7_b10": {
+   "old": "'Dead Stock'!L17",
+   "new": "'6 Dead Stock'!O22"
+  },
+  "ds7_b25": {
+   "old": "'Dead Stock'!N17",
+   "new": "'6 Dead Stock'!Q22"
+  },
+  "ds7_b50": {
+   "old": "'Dead Stock'!P17",
+   "new": "'6 Dead Stock'!S22"
+  },
+  "ds7_rec": {
+   "old": "'Dead Stock'!Q17",
+   "new": "'6 Dead Stock'!G22"
+  },
+  "ds8_since": {
+   "old": "'Dead Stock'!G18",
+   "new": "'6 Dead Stock'!L23"
+  },
+  "ds8_flag": {
+   "old": "'Dead Stock'!I18",
+   "new": "'6 Dead Stock'!E23"
+  },
+  "ds8_trap": {
+   "old": "'Dead Stock'!J18",
+   "new": "'6 Dead Stock'!F23"
+  },
+  "ds8_b10": {
+   "old": "'Dead Stock'!L18",
+   "new": "'6 Dead Stock'!O23"
+  },
+  "ds8_b25": {
+   "old": "'Dead Stock'!N18",
+   "new": "'6 Dead Stock'!Q23"
+  },
+  "ds8_b50": {
+   "old": "'Dead Stock'!P18",
+   "new": "'6 Dead Stock'!S23"
+  },
+  "ds8_rec": {
+   "old": "'Dead Stock'!Q18",
+   "new": "'6 Dead Stock'!G23"
+  },
+  "ds9_since": {
+   "old": "'Dead Stock'!G19",
+   "new": "'6 Dead Stock'!L24"
+  },
+  "ds9_flag": {
+   "old": "'Dead Stock'!I19",
+   "new": "'6 Dead Stock'!E24"
+  },
+  "ds9_trap": {
+   "old": "'Dead Stock'!J19",
+   "new": "'6 Dead Stock'!F24"
+  },
+  "ds9_b10": {
+   "old": "'Dead Stock'!L19",
+   "new": "'6 Dead Stock'!O24"
+  },
+  "ds9_b25": {
+   "old": "'Dead Stock'!N19",
+   "new": "'6 Dead Stock'!Q24"
+  },
+  "ds9_b50": {
+   "old": "'Dead Stock'!P19",
+   "new": "'6 Dead Stock'!S24"
+  },
+  "ds9_rec": {
+   "old": "'Dead Stock'!Q19",
+   "new": "'6 Dead Stock'!G24"
+  },
+  "ds10_since": {
+   "old": "'Dead Stock'!G20",
+   "new": "'6 Dead Stock'!L25"
+  },
+  "ds10_flag": {
+   "old": "'Dead Stock'!I20",
+   "new": "'6 Dead Stock'!E25"
+  },
+  "ds10_trap": {
+   "old": "'Dead Stock'!J20",
+   "new": "'6 Dead Stock'!F25"
+  },
+  "ds10_b10": {
+   "old": "'Dead Stock'!L20",
+   "new": "'6 Dead Stock'!O25"
+  },
+  "ds10_b25": {
+   "old": "'Dead Stock'!N20",
+   "new": "'6 Dead Stock'!Q25"
+  },
+  "ds10_b50": {
+   "old": "'Dead Stock'!P20",
+   "new": "'6 Dead Stock'!S25"
+  },
+  "ds10_rec": {
+   "old": "'Dead Stock'!Q20",
+   "new": "'6 Dead Stock'!G25"
+  },
+  "ds11_since": {
+   "old": "'Dead Stock'!G21",
+   "new": "'6 Dead Stock'!L26"
+  },
+  "ds11_flag": {
+   "old": "'Dead Stock'!I21",
+   "new": "'6 Dead Stock'!E26"
+  },
+  "ds11_trap": {
+   "old": "'Dead Stock'!J21",
+   "new": "'6 Dead Stock'!F26"
+  },
+  "ds11_b10": {
+   "old": "'Dead Stock'!L21",
+   "new": "'6 Dead Stock'!O26"
+  },
+  "ds11_b25": {
+   "old": "'Dead Stock'!N21",
+   "new": "'6 Dead Stock'!Q26"
+  },
+  "ds11_b50": {
+   "old": "'Dead Stock'!P21",
+   "new": "'6 Dead Stock'!S26"
+  },
+  "ds11_rec": {
+   "old": "'Dead Stock'!Q21",
+   "new": "'6 Dead Stock'!G26"
+  },
+  "ds12_since": {
+   "old": "'Dead Stock'!G22",
+   "new": "'6 Dead Stock'!L27"
+  },
+  "ds12_flag": {
+   "old": "'Dead Stock'!I22",
+   "new": "'6 Dead Stock'!E27"
+  },
+  "ds12_trap": {
+   "old": "'Dead Stock'!J22",
+   "new": "'6 Dead Stock'!F27"
+  },
+  "ds12_b10": {
+   "old": "'Dead Stock'!L22",
+   "new": "'6 Dead Stock'!O27"
+  },
+  "ds12_b25": {
+   "old": "'Dead Stock'!N22",
+   "new": "'6 Dead Stock'!Q27"
+  },
+  "ds12_b50": {
+   "old": "'Dead Stock'!P22",
+   "new": "'6 Dead Stock'!S27"
+  },
+  "ds12_rec": {
+   "old": "'Dead Stock'!Q22",
+   "new": "'6 Dead Stock'!G27"
+  },
+  "ds13_since": {
+   "old": "'Dead Stock'!G23",
+   "new": "'6 Dead Stock'!L28"
+  },
+  "ds13_flag": {
+   "old": "'Dead Stock'!I23",
+   "new": "'6 Dead Stock'!E28"
+  },
+  "ds13_trap": {
+   "old": "'Dead Stock'!J23",
+   "new": "'6 Dead Stock'!F28"
+  },
+  "ds13_b10": {
+   "old": "'Dead Stock'!L23",
+   "new": "'6 Dead Stock'!O28"
+  },
+  "ds13_b25": {
+   "old": "'Dead Stock'!N23",
+   "new": "'6 Dead Stock'!Q28"
+  },
+  "ds13_b50": {
+   "old": "'Dead Stock'!P23",
+   "new": "'6 Dead Stock'!S28"
+  },
+  "ds13_rec": {
+   "old": "'Dead Stock'!Q23",
+   "new": "'6 Dead Stock'!G28"
+  },
+  "ds14_since": {
+   "old": "'Dead Stock'!G24",
+   "new": "'6 Dead Stock'!L29"
+  },
+  "ds14_flag": {
+   "old": "'Dead Stock'!I24",
+   "new": "'6 Dead Stock'!E29"
+  },
+  "ds14_trap": {
+   "old": "'Dead Stock'!J24",
+   "new": "'6 Dead Stock'!F29"
+  },
+  "ds14_b10": {
+   "old": "'Dead Stock'!L24",
+   "new": "'6 Dead Stock'!O29"
+  },
+  "ds14_b25": {
+   "old": "'Dead Stock'!N24",
+   "new": "'6 Dead Stock'!Q29"
+  },
+  "ds14_b50": {
+   "old": "'Dead Stock'!P24",
+   "new": "'6 Dead Stock'!S29"
+  },
+  "ds14_rec": {
+   "old": "'Dead Stock'!Q24",
+   "new": "'6 Dead Stock'!G29"
+  },
+  "ds15_since": {
+   "old": "'Dead Stock'!G25",
+   "new": "'6 Dead Stock'!L30"
+  },
+  "ds15_flag": {
+   "old": "'Dead Stock'!I25",
+   "new": "'6 Dead Stock'!E30"
+  },
+  "ds15_trap": {
+   "old": "'Dead Stock'!J25",
+   "new": "'6 Dead Stock'!F30"
+  },
+  "ds15_b10": {
+   "old": "'Dead Stock'!L25",
+   "new": "'6 Dead Stock'!O30"
+  },
+  "ds15_b25": {
+   "old": "'Dead Stock'!N25",
+   "new": "'6 Dead Stock'!Q30"
+  },
+  "ds15_b50": {
+   "old": "'Dead Stock'!P25",
+   "new": "'6 Dead Stock'!S30"
+  },
+  "ds15_rec": {
+   "old": "'Dead Stock'!Q25",
+   "new": "'6 Dead Stock'!G30"
+  },
+  "ds16_since": {
+   "old": "'Dead Stock'!G26",
+   "new": "'6 Dead Stock'!L31"
+  },
+  "ds16_flag": {
+   "old": "'Dead Stock'!I26",
+   "new": "'6 Dead Stock'!E31"
+  },
+  "ds16_trap": {
+   "old": "'Dead Stock'!J26",
+   "new": "'6 Dead Stock'!F31"
+  },
+  "ds16_b10": {
+   "old": "'Dead Stock'!L26",
+   "new": "'6 Dead Stock'!O31"
+  },
+  "ds16_b25": {
+   "old": "'Dead Stock'!N26",
+   "new": "'6 Dead Stock'!Q31"
+  },
+  "ds16_b50": {
+   "old": "'Dead Stock'!P26",
+   "new": "'6 Dead Stock'!S31"
+  },
+  "ds16_rec": {
+   "old": "'Dead Stock'!Q26",
+   "new": "'6 Dead Stock'!G31"
+  },
+  "ds17_since": {
+   "old": "'Dead Stock'!G27",
+   "new": "'6 Dead Stock'!L32"
+  },
+  "ds17_flag": {
+   "old": "'Dead Stock'!I27",
+   "new": "'6 Dead Stock'!E32"
+  },
+  "ds17_trap": {
+   "old": "'Dead Stock'!J27",
+   "new": "'6 Dead Stock'!F32"
+  },
+  "ds17_b10": {
+   "old": "'Dead Stock'!L27",
+   "new": "'6 Dead Stock'!O32"
+  },
+  "ds17_b25": {
+   "old": "'Dead Stock'!N27",
+   "new": "'6 Dead Stock'!Q32"
+  },
+  "ds17_b50": {
+   "old": "'Dead Stock'!P27",
+   "new": "'6 Dead Stock'!S32"
+  },
+  "ds17_rec": {
+   "old": "'Dead Stock'!Q27",
+   "new": "'6 Dead Stock'!G32"
+  },
+  "ds_dead": {
+   "old": "'Dead Stock'!D4",
+   "new": "'6 Dead Stock'!C8"
+  },
+  "ds_slow": {
+   "old": "'Dead Stock'!D5",
+   "new": "'6 Dead Stock'!E8"
+  },
+  "ds_at25": {
+   "old": "'Dead Stock'!D6",
+   "new": "'6 Dead Stock'!G8"
+  },
+  "ds_at50": {
+   "old": "'Dead Stock'!D7",
+   "new": "'6 Dead Stock'!H8"
+  },
+  "dash_inv": {
+   "old": "Dashboard!B5",
+   "new": "'1 Your Shop'!I15"
+  },
+  "dash_dead": {
+   "old": "Dashboard!D5",
+   "new": "'1 Your Shop'!I16"
+  },
+  "dash_rec": {
+   "old": "Dashboard!F5",
+   "new": "'1 Your Shop'!I19"
+  },
+  "dash_usable": {
+   "old": "Dashboard!H5",
+   "new": "'1 Your Shop'!I20"
+  },
+  "dash_now": {
+   "old": "Dashboard!B11",
+   "new": "'1 Your Shop'!I22"
+  },
+  "dash_def": {
+   "old": "Dashboard!D11",
+   "new": "'1 Your Shop'!I23"
+  },
+  "dash_due30": {
+   "old": "Dashboard!F11",
+   "new": "'1 Your Shop'!I24"
+  },
+  "dash_turns": {
+   "old": "Dashboard!H11",
+   "new": "'1 Your Shop'!I27"
+  },
+  "dash_cogs": {
+   "old": "Dashboard!D34",
+   "new": "'1 Your Shop'!I26"
+  },
+  "dash_selldays": {
+   "old": "Dashboard!D36",
+   "new": "'1 Your Shop'!I28"
+  },
+  "dash_st0_n": {
+   "old": "Dashboard!C15",
+   "new": "'1 Your Shop'!I34"
+  },
+  "dash_st0_v": {
+   "old": "Dashboard!D15",
+   "new": "'1 Your Shop'!J34"
+  },
+  "dash_st1_n": {
+   "old": "Dashboard!C16",
+   "new": "'1 Your Shop'!I35"
+  },
+  "dash_st1_v": {
+   "old": "Dashboard!D16",
+   "new": "'1 Your Shop'!J35"
+  },
+  "dash_st2_n": {
+   "old": "Dashboard!C17",
+   "new": "'1 Your Shop'!I36"
+  },
+  "dash_st2_v": {
+   "old": "Dashboard!D17",
+   "new": "'1 Your Shop'!J36"
+  },
+  "dash_st3_n": {
+   "old": "Dashboard!C18",
+   "new": "'1 Your Shop'!I37"
+  },
+  "dash_st3_v": {
+   "old": "Dashboard!D18",
+   "new": "'1 Your Shop'!J37"
+  },
+  "dash_st4_n": {
+   "old": "Dashboard!C19",
+   "new": "'1 Your Shop'!I38"
+  },
+  "dash_st4_v": {
+   "old": "Dashboard!D19",
+   "new": "'1 Your Shop'!J38"
+  },
+  "dash_st5_n": {
+   "old": "Dashboard!C20",
+   "new": "'1 Your Shop'!I39"
+  },
+  "dash_st5_v": {
+   "old": "Dashboard!D20",
+   "new": "'1 Your Shop'!J39"
+  },
+  "dash_st6_n": {
+   "old": "Dashboard!C21",
+   "new": "'1 Your Shop'!I40"
+  },
+  "dash_st6_v": {
+   "old": "Dashboard!D21",
+   "new": "'1 Your Shop'!J40"
+  },
+  "top1_sku": {
+   "old": "Dashboard!B26",
+   "new": "'1 Your Shop'!D47"
+  },
+  "top1_prod": {
+   "old": "Dashboard!C26",
+   "new": "'1 Your Shop'!C47"
+  },
+  "top1_status": {
+   "old": "Dashboard!D26",
+   "new": "'1 Your Shop'!H47"
+  },
+  "top1_value": {
+   "old": "Dashboard!E26",
+   "new": "'1 Your Shop'!I47"
+  },
+  "top2_sku": {
+   "old": "Dashboard!B27",
+   "new": "'1 Your Shop'!D48"
+  },
+  "top2_prod": {
+   "old": "Dashboard!C27",
+   "new": "'1 Your Shop'!C48"
+  },
+  "top2_status": {
+   "old": "Dashboard!D27",
+   "new": "'1 Your Shop'!H48"
+  },
+  "top2_value": {
+   "old": "Dashboard!E27",
+   "new": "'1 Your Shop'!I48"
+  },
+  "top3_sku": {
+   "old": "Dashboard!B28",
+   "new": "'1 Your Shop'!D49"
+  },
+  "top3_prod": {
+   "old": "Dashboard!C28",
+   "new": "'1 Your Shop'!C49"
+  },
+  "top3_status": {
+   "old": "Dashboard!D28",
+   "new": "'1 Your Shop'!H49"
+  },
+  "top3_value": {
+   "old": "Dashboard!E28",
+   "new": "'1 Your Shop'!I49"
+  },
+  "top4_sku": {
+   "old": "Dashboard!B29",
+   "new": "'1 Your Shop'!D50"
+  },
+  "top4_prod": {
+   "old": "Dashboard!C29",
+   "new": "'1 Your Shop'!C50"
+  },
+  "top4_status": {
+   "old": "Dashboard!D29",
+   "new": "'1 Your Shop'!H50"
+  },
+  "top4_value": {
+   "old": "Dashboard!E29",
+   "new": "'1 Your Shop'!I50"
+  },
+  "top5_sku": {
+   "old": "Dashboard!B30",
+   "new": "'1 Your Shop'!D51"
+  },
+  "top5_prod": {
+   "old": "Dashboard!C30",
+   "new": "'1 Your Shop'!C51"
+  },
+  "top5_status": {
+   "old": "Dashboard!D30",
+   "new": "'1 Your Shop'!H51"
+  },
+  "top5_value": {
+   "old": "Dashboard!E30",
+   "new": "'1 Your Shop'!I51"
+  },
+  "po1_1_sku": {
+   "old": "'Reorder Planner'!A43",
+   "new": "'4 Purchase Orders'!C16"
+  },
+  "po1_1_qty": {
+   "old": "'Reorder Planner'!C43",
+   "new": "'4 Purchase Orders'!E16"
+  },
+  "po1_1_cost": {
+   "old": "'Reorder Planner'!E43",
+   "new": "'4 Purchase Orders'!G16"
+  },
+  "po1_2_sku": {
+   "old": "'Reorder Planner'!A44",
+   "new": "'4 Purchase Orders'!C17"
+  },
+  "po1_2_qty": {
+   "old": "'Reorder Planner'!C44",
+   "new": "'4 Purchase Orders'!E17"
+  },
+  "po1_2_cost": {
+   "old": "'Reorder Planner'!E44",
+   "new": "'4 Purchase Orders'!G17"
+  },
+  "po1_3_sku": {
+   "old": "'Reorder Planner'!A45",
+   "new": "'4 Purchase Orders'!C18"
+  },
+  "po1_3_qty": {
+   "old": "'Reorder Planner'!C45",
+   "new": "'4 Purchase Orders'!E18"
+  },
+  "po1_3_cost": {
+   "old": "'Reorder Planner'!E45",
+   "new": "'4 Purchase Orders'!G18"
+  },
+  "po1_4_sku": {
+   "old": "'Reorder Planner'!A46",
+   "new": "'4 Purchase Orders'!C19"
+  },
+  "po1_4_qty": {
+   "old": "'Reorder Planner'!C46",
+   "new": "'4 Purchase Orders'!E19"
+  },
+  "po1_4_cost": {
+   "old": "'Reorder Planner'!E46",
+   "new": "'4 Purchase Orders'!G19"
+  },
+  "po1_total": {
+   "old": "'Reorder Planner'!E53",
+   "new": "'4 Purchase Orders'!G26"
+  },
+  "po2_1_sku": {
+   "old": "'Reorder Planner'!A57",
+   "new": "'4 Purchase Orders'!K16"
+  },
+  "po2_1_qty": {
+   "old": "'Reorder Planner'!C57",
+   "new": "'4 Purchase Orders'!M16"
+  },
+  "po2_1_cost": {
+   "old": "'Reorder Planner'!E57",
+   "new": "'4 Purchase Orders'!O16"
+  },
+  "po2_2_sku": {
+   "old": "'Reorder Planner'!A58",
+   "new": "'4 Purchase Orders'!K17"
+  },
+  "po2_2_qty": {
+   "old": "'Reorder Planner'!C58",
+   "new": "'4 Purchase Orders'!M17"
+  },
+  "po2_2_cost": {
+   "old": "'Reorder Planner'!E58",
+   "new": "'4 Purchase Orders'!O17"
+  },
+  "po2_3_sku": {
+   "old": "'Reorder Planner'!A59",
+   "new": "'4 Purchase Orders'!K18"
+  },
+  "po2_3_qty": {
+   "old": "'Reorder Planner'!C59",
+   "new": "'4 Purchase Orders'!M18"
+  },
+  "po2_3_cost": {
+   "old": "'Reorder Planner'!E59",
+   "new": "'4 Purchase Orders'!O18"
+  },
+  "po2_4_sku": {
+   "old": "'Reorder Planner'!A60",
+   "new": "'4 Purchase Orders'!K19"
+  },
+  "po2_4_qty": {
+   "old": "'Reorder Planner'!C60",
+   "new": "'4 Purchase Orders'!M19"
+  },
+  "po2_4_cost": {
+   "old": "'Reorder Planner'!E60",
+   "new": "'4 Purchase Orders'!O19"
+  },
+  "po2_total": {
+   "old": "'Reorder Planner'!E67",
+   "new": "'4 Purchase Orders'!O26"
+  },
+  "po3_1_sku": {
+   "old": "'Reorder Planner'!A71",
+   "new": "'4 Purchase Orders'!C34"
+  },
+  "po3_1_qty": {
+   "old": "'Reorder Planner'!C71",
+   "new": "'4 Purchase Orders'!E34"
+  },
+  "po3_1_cost": {
+   "old": "'Reorder Planner'!E71",
+   "new": "'4 Purchase Orders'!G34"
+  },
+  "po3_2_sku": {
+   "old": "'Reorder Planner'!A72",
+   "new": "'4 Purchase Orders'!C35"
+  },
+  "po3_2_qty": {
+   "old": "'Reorder Planner'!C72",
+   "new": "'4 Purchase Orders'!E35"
+  },
+  "po3_2_cost": {
+   "old": "'Reorder Planner'!E72",
+   "new": "'4 Purchase Orders'!G35"
+  },
+  "po3_3_sku": {
+   "old": "'Reorder Planner'!A73",
+   "new": "'4 Purchase Orders'!C36"
+  },
+  "po3_3_qty": {
+   "old": "'Reorder Planner'!C73",
+   "new": "'4 Purchase Orders'!E36"
+  },
+  "po3_3_cost": {
+   "old": "'Reorder Planner'!E73",
+   "new": "'4 Purchase Orders'!G36"
+  },
+  "po3_4_sku": {
+   "old": "'Reorder Planner'!A74",
+   "new": "'4 Purchase Orders'!C37"
+  },
+  "po3_4_qty": {
+   "old": "'Reorder Planner'!C74",
+   "new": "'4 Purchase Orders'!E37"
+  },
+  "po3_4_cost": {
+   "old": "'Reorder Planner'!E74",
+   "new": "'4 Purchase Orders'!G37"
+  },
+  "po3_total": {
+   "old": "'Reorder Planner'!E81",
+   "new": "'4 Purchase Orders'!G44"
+  },
+  "po4_1_sku": {
+   "old": "'Reorder Planner'!A85",
+   "new": "'4 Purchase Orders'!K34"
+  },
+  "po4_1_qty": {
+   "old": "'Reorder Planner'!C85",
+   "new": "'4 Purchase Orders'!M34"
+  },
+  "po4_1_cost": {
+   "old": "'Reorder Planner'!E85",
+   "new": "'4 Purchase Orders'!O34"
+  },
+  "po4_2_sku": {
+   "old": "'Reorder Planner'!A86",
+   "new": "'4 Purchase Orders'!K35"
+  },
+  "po4_2_qty": {
+   "old": "'Reorder Planner'!C86",
+   "new": "'4 Purchase Orders'!M35"
+  },
+  "po4_2_cost": {
+   "old": "'Reorder Planner'!E86",
+   "new": "'4 Purchase Orders'!O35"
+  },
+  "po4_3_sku": {
+   "old": "'Reorder Planner'!A87",
+   "new": "'4 Purchase Orders'!K36"
+  },
+  "po4_3_qty": {
+   "old": "'Reorder Planner'!C87",
+   "new": "'4 Purchase Orders'!M36"
+  },
+  "po4_3_cost": {
+   "old": "'Reorder Planner'!E87",
+   "new": "'4 Purchase Orders'!O36"
+  },
+  "po4_4_sku": {
+   "old": "'Reorder Planner'!A88",
+   "new": "'4 Purchase Orders'!K37"
+  },
+  "po4_4_qty": {
+   "old": "'Reorder Planner'!C88",
+   "new": "'4 Purchase Orders'!M37"
+  },
+  "po4_4_cost": {
+   "old": "'Reorder Planner'!E88",
+   "new": "'4 Purchase Orders'!O37"
+  },
+  "po4_total": {
+   "old": "'Reorder Planner'!E95",
+   "new": "'4 Purchase Orders'!O44"
+  },
+  "po5_1_sku": {
+   "old": "'Reorder Planner'!A99",
+   "new": "'4 Purchase Orders'!C52"
+  },
+  "po5_1_qty": {
+   "old": "'Reorder Planner'!C99",
+   "new": "'4 Purchase Orders'!E52"
+  },
+  "po5_1_cost": {
+   "old": "'Reorder Planner'!E99",
+   "new": "'4 Purchase Orders'!G52"
+  },
+  "po5_2_sku": {
+   "old": "'Reorder Planner'!A100",
+   "new": "'4 Purchase Orders'!C53"
+  },
+  "po5_2_qty": {
+   "old": "'Reorder Planner'!C100",
+   "new": "'4 Purchase Orders'!E53"
+  },
+  "po5_2_cost": {
+   "old": "'Reorder Planner'!E100",
+   "new": "'4 Purchase Orders'!G53"
+  },
+  "po5_3_sku": {
+   "old": "'Reorder Planner'!A101",
+   "new": "'4 Purchase Orders'!C54"
+  },
+  "po5_3_qty": {
+   "old": "'Reorder Planner'!C101",
+   "new": "'4 Purchase Orders'!E54"
+  },
+  "po5_3_cost": {
+   "old": "'Reorder Planner'!E101",
+   "new": "'4 Purchase Orders'!G54"
+  },
+  "po5_4_sku": {
+   "old": "'Reorder Planner'!A102",
+   "new": "'4 Purchase Orders'!C55"
+  },
+  "po5_4_qty": {
+   "old": "'Reorder Planner'!C102",
+   "new": "'4 Purchase Orders'!E55"
+  },
+  "po5_4_cost": {
+   "old": "'Reorder Planner'!E102",
+   "new": "'4 Purchase Orders'!G55"
+  },
+  "po5_total": {
+   "old": "'Reorder Planner'!E109",
+   "new": "'4 Purchase Orders'!G62"
+  },
+  "po6_1_sku": {
+   "old": "'Reorder Planner'!A113",
+   "new": "'4 Purchase Orders'!K52"
+  },
+  "po6_1_qty": {
+   "old": "'Reorder Planner'!C113",
+   "new": "'4 Purchase Orders'!M52"
+  },
+  "po6_1_cost": {
+   "old": "'Reorder Planner'!E113",
+   "new": "'4 Purchase Orders'!O52"
+  },
+  "po6_2_sku": {
+   "old": "'Reorder Planner'!A114",
+   "new": "'4 Purchase Orders'!K53"
+  },
+  "po6_2_qty": {
+   "old": "'Reorder Planner'!C114",
+   "new": "'4 Purchase Orders'!M53"
+  },
+  "po6_2_cost": {
+   "old": "'Reorder Planner'!E114",
+   "new": "'4 Purchase Orders'!O53"
+  },
+  "po6_3_sku": {
+   "old": "'Reorder Planner'!A115",
+   "new": "'4 Purchase Orders'!K54"
+  },
+  "po6_3_qty": {
+   "old": "'Reorder Planner'!C115",
+   "new": "'4 Purchase Orders'!M54"
+  },
+  "po6_3_cost": {
+   "old": "'Reorder Planner'!E115",
+   "new": "'4 Purchase Orders'!O54"
+  },
+  "po6_4_sku": {
+   "old": "'Reorder Planner'!A116",
+   "new": "'4 Purchase Orders'!K55"
+  },
+  "po6_4_qty": {
+   "old": "'Reorder Planner'!C116",
+   "new": "'4 Purchase Orders'!M55"
+  },
+  "po6_4_cost": {
+   "old": "'Reorder Planner'!E116",
+   "new": "'4 Purchase Orders'!O55"
+  },
+  "po6_total": {
+   "old": "'Reorder Planner'!E123",
+   "new": "'4 Purchase Orders'!O62"
+  }
+ },
+ "cases": [
+  {
+   "name": "example"
+  },
+  {
+   "name": "high: cash $3,300, trend +30%",
+   "set": {
+    "cash": 3300,
+    "trend": 0.3
+   }
+  },
+  {
+   "name": "low: cash $400, bills $350, safety 50%",
+   "set": {
+    "cash": 400,
+    "bills": 350,
+    "safety": 0.5
+   }
+  },
+  {
+   "name": "blank as-of date",
+   "set": {
+    "as_of": null
+   }
+  },
+  {
+   "name": "edit: candles on order 0, patch set no supplier",
+   "set": {
+    "r11_onorder": 0,
+    "r8_sup": null
+   }
+  },
+  {
+   "name": "edge: tote bags sold out",
+   "set": {
+    "r7_onhand": 0
+   }
+  },
+  {
+   "name": "edit: new SKU row 17, dead lot over small-lot line",
+   "set": {
+    "r17_sku": "SKU-017",
+    "r17_prod": "Test Item",
+    "r17_sup": "Harbor Wholesale",
+    "r17_cost": 2,
+    "r17_price": 10,
+    "r17_fees": 1,
+    "r17_lead": null,
+    "r17_onhand": 3,
+    "r17_onorder": 0,
+    "r17_daily": 1.5,
+    "r17_last": 46290,
+    "r15_onhand": 40,
+    "small": 10,
+    "dead": 120
+   }
+  },
+  {
+   "name": "extreme: trend +500%, safety 200%, cycle 365, cash 1,000,000",
+   "set": {
+    "trend": 5,
+    "safety": 2,
+    "cycle": 365,
+    "cash": 1000000
+   }
+  },
+  {
+   "name": "every input blank",
+   "set": {
+    "shop": null,
+    "as_of": null,
+    "cash": null,
+    "bills": null,
+    "safety": null,
+    "cycle": null,
+    "trend": null,
+    "dead": null,
+    "over": null,
+    "small": null,
+    "lead": null,
+    "sup1": null,
+    "sup2": null,
+    "sup3": null,
+    "sup4": null,
+    "sup5": null,
+    "sup6": null,
+    "r1_sku": null,
+    "r1_prod": null,
+    "r1_sup": null,
+    "r1_cost": null,
+    "r1_price": null,
+    "r1_fees": null,
+    "r1_lead": null,
+    "r1_onhand": null,
+    "r1_onorder": null,
+    "r1_daily": null,
+    "r1_last": null,
+    "r2_sku": null,
+    "r2_prod": null,
+    "r2_sup": null,
+    "r2_cost": null,
+    "r2_price": null,
+    "r2_fees": null,
+    "r2_lead": null,
+    "r2_onhand": null,
+    "r2_onorder": null,
+    "r2_daily": null,
+    "r2_last": null,
+    "r3_sku": null,
+    "r3_prod": null,
+    "r3_sup": null,
+    "r3_cost": null,
+    "r3_price": null,
+    "r3_fees": null,
+    "r3_lead": null,
+    "r3_onhand": null,
+    "r3_onorder": null,
+    "r3_daily": null,
+    "r3_last": null,
+    "r4_sku": null,
+    "r4_prod": null,
+    "r4_sup": null,
+    "r4_cost": null,
+    "r4_price": null,
+    "r4_fees": null,
+    "r4_lead": null,
+    "r4_onhand": null,
+    "r4_onorder": null,
+    "r4_daily": null,
+    "r4_last": null,
+    "r5_sku": null,
+    "r5_prod": null,
+    "r5_sup": null,
+    "r5_cost": null,
+    "r5_price": null,
+    "r5_fees": null,
+    "r5_lead": null,
+    "r5_onhand": null,
+    "r5_onorder": null,
+    "r5_daily": null,
+    "r5_last": null,
+    "r6_sku": null,
+    "r6_prod": null,
+    "r6_sup": null,
+    "r6_cost": null,
+    "r6_price": null,
+    "r6_fees": null,
+    "r6_lead": null,
+    "r6_onhand": null,
+    "r6_onorder": null,
+    "r6_daily": null,
+    "r6_last": null,
+    "r7_sku": null,
+    "r7_prod": null,
+    "r7_sup": null,
+    "r7_cost": null,
+    "r7_price": null,
+    "r7_fees": null,
+    "r7_lead": null,
+    "r7_onhand": null,
+    "r7_onorder": null,
+    "r7_daily": null,
+    "r7_last": null,
+    "r8_sku": null,
+    "r8_prod": null,
+    "r8_sup": null,
+    "r8_cost": null,
+    "r8_price": null,
+    "r8_fees": null,
+    "r8_lead": null,
+    "r8_onhand": null,
+    "r8_onorder": null,
+    "r8_daily": null,
+    "r8_last": null,
+    "r9_sku": null,
+    "r9_prod": null,
+    "r9_sup": null,
+    "r9_cost": null,
+    "r9_price": null,
+    "r9_fees": null,
+    "r9_lead": null,
+    "r9_onhand": null,
+    "r9_onorder": null,
+    "r9_daily": null,
+    "r9_last": null,
+    "r10_sku": null,
+    "r10_prod": null,
+    "r10_sup": null,
+    "r10_cost": null,
+    "r10_price": null,
+    "r10_fees": null,
+    "r10_lead": null,
+    "r10_onhand": null,
+    "r10_onorder": null,
+    "r10_daily": null,
+    "r10_last": null,
+    "r11_sku": null,
+    "r11_prod": null,
+    "r11_sup": null,
+    "r11_cost": null,
+    "r11_price": null,
+    "r11_fees": null,
+    "r11_lead": null,
+    "r11_onhand": null,
+    "r11_onorder": null,
+    "r11_daily": null,
+    "r11_last": null,
+    "r12_sku": null,
+    "r12_prod": null,
+    "r12_sup": null,
+    "r12_cost": null,
+    "r12_price": null,
+    "r12_fees": null,
+    "r12_lead": null,
+    "r12_onhand": null,
+    "r12_onorder": null,
+    "r12_daily": null,
+    "r12_last": null,
+    "r13_sku": null,
+    "r13_prod": null,
+    "r13_sup": null,
+    "r13_cost": null,
+    "r13_price": null,
+    "r13_fees": null,
+    "r13_lead": null,
+    "r13_onhand": null,
+    "r13_onorder": null,
+    "r13_daily": null,
+    "r13_last": null,
+    "r14_sku": null,
+    "r14_prod": null,
+    "r14_sup": null,
+    "r14_cost": null,
+    "r14_price": null,
+    "r14_fees": null,
+    "r14_lead": null,
+    "r14_onhand": null,
+    "r14_onorder": null,
+    "r14_daily": null,
+    "r14_last": null,
+    "r15_sku": null,
+    "r15_prod": null,
+    "r15_sup": null,
+    "r15_cost": null,
+    "r15_price": null,
+    "r15_fees": null,
+    "r15_lead": null,
+    "r15_onhand": null,
+    "r15_onorder": null,
+    "r15_daily": null,
+    "r15_last": null,
+    "r16_sku": null,
+    "r16_prod": null,
+    "r16_sup": null,
+    "r16_cost": null,
+    "r16_price": null,
+    "r16_fees": null,
+    "r16_lead": null,
+    "r16_onhand": null,
+    "r16_onorder": null,
+    "r16_daily": null,
+    "r16_last": null,
+    "r17_sku": null,
+    "r17_prod": null,
+    "r17_sup": null,
+    "r17_cost": null,
+    "r17_price": null,
+    "r17_fees": null,
+    "r17_lead": null,
+    "r17_onhand": null,
+    "r17_onorder": null,
+    "r17_daily": null,
+    "r17_last": null
+   }
+  }
+ ],
+ "intended": [
+  {
+   "case": "example",
+   "outputs": [
+    "rp_afford"
+   ],
+   "why": "v3 names the tab (NO: see 5 Cash Check) and says Nothing to order when the order is $0 (v1 said YES with nothing to order)"
+  },
+  {
+   "case": "example",
+   "outputs": [
+    "cc_verdict"
+   ],
+   "why": "v3 writes the cash verdict in sentence case and names the rows to order (v1: all capitals)"
+  },
+  {
+   "case": "example",
+   "outputs": [
+    "ds5_rec",
+    "ds9_rec",
+    "ds15_rec"
+   ],
+   "why": "v3 writes the dead-stock recommendation in sentence case (v1: all capitals); same rule and same choice"
+  },
+  {
+   "case": "high: cash $3,300, trend +30%",
+   "outputs": [
+    "rp_afford"
+   ],
+   "why": "v3 names the tab (NO: see 5 Cash Check) and says Nothing to order when the order is $0 (v1 said YES with nothing to order)"
+  },
+  {
+   "case": "high: cash $3,300, trend +30%",
+   "outputs": [
+    "cc_verdict"
+   ],
+   "why": "v3 writes the cash verdict in sentence case and names the rows to order (v1: all capitals)"
+  },
+  {
+   "case": "high: cash $3,300, trend +30%",
+   "outputs": [
+    "ds5_rec",
+    "ds15_rec"
+   ],
+   "why": "v3 writes the dead-stock recommendation in sentence case (v1: all capitals); same rule and same choice"
+  },
+  {
+   "case": "low: cash $400, bills $350, safety 50%",
+   "outputs": [
+    "rp_afford"
+   ],
+   "why": "v3 names the tab (NO: see 5 Cash Check) and says Nothing to order when the order is $0 (v1 said YES with nothing to order)"
+  },
+  {
+   "case": "low: cash $400, bills $350, safety 50%",
+   "outputs": [
+    "cc_verdict"
+   ],
+   "why": "v3 writes the cash verdict in sentence case and names the rows to order (v1: all capitals)"
+  },
+  {
+   "case": "low: cash $400, bills $350, safety 50%",
+   "outputs": [
+    "ds5_rec",
+    "ds9_rec",
+    "ds15_rec"
+   ],
+   "why": "v3 writes the dead-stock recommendation in sentence case (v1: all capitals); same rule and same choice"
+  },
+  {
+   "case": "blank as-of date",
+   "outputs": [
+    "sku1_since",
+    "sku1_stockout",
+    "sku2_since",
+    "sku2_stockout",
+    "sku3_since",
+    "sku3_stockout",
+    "sku4_since",
+    "sku4_stockout",
+    "sku5_since",
+    "sku6_since",
+    "sku6_stockout",
+    "sku7_since",
+    "sku7_stockout",
+    "sku8_since",
+    "sku8_stockout",
+    "sku9_since",
+    "sku9_stockout",
+    "sku10_since",
+    "sku10_stockout",
+    "sku11_since",
+    "sku11_stockout",
+    "sku12_since",
+    "sku12_stockout",
+    "sku13_since",
+    "sku13_stockout",
+    "sku14_since",
+    "sku14_stockout",
+    "sku15_since",
+    "sku16_since",
+    "sku16_stockout",
+    "ds1_since",
+    "ds2_since",
+    "ds3_since",
+    "ds4_since",
+    "ds5_since",
+    "ds6_since",
+    "ds7_since",
+    "ds8_since",
+    "ds9_since",
+    "ds10_since",
+    "ds11_since",
+    "ds12_since",
+    "ds13_since",
+    "ds14_since",
+    "ds15_since",
+    "ds16_since"
+   ],
+   "why": "v1 showed about -46,000 days since last sale and a 1900 stockout date with no as-of date; v3 leaves both blank until the date is typed"
+  },
+  {
+   "case": "blank as-of date",
+   "outputs": [
+    "rp_afford"
+   ],
+   "why": "v3 names the tab (NO: see 5 Cash Check) and says Nothing to order when the order is $0 (v1 said YES with nothing to order)"
+  },
+  {
+   "case": "blank as-of date",
+   "outputs": [
+    "cc_verdict"
+   ],
+   "why": "v3 writes the cash verdict in sentence case and names the rows to order (v1: all capitals)"
+  },
+  {
+   "case": "blank as-of date",
+   "outputs": [
+    "ds9_rec"
+   ],
+   "why": "v3 writes the dead-stock recommendation in sentence case (v1: all capitals); same rule and same choice"
+  },
+  {
+   "case": "edit: candles on order 0, patch set no supplier",
+   "outputs": [
+    "rp_afford"
+   ],
+   "why": "v3 names the tab (NO: see 5 Cash Check) and says Nothing to order when the order is $0 (v1 said YES with nothing to order)"
+  },
+  {
+   "case": "edit: candles on order 0, patch set no supplier",
+   "outputs": [
+    "cc_verdict"
+   ],
+   "why": "v3 writes the cash verdict in sentence case and names the rows to order (v1: all capitals)"
+  },
+  {
+   "case": "edit: candles on order 0, patch set no supplier",
+   "outputs": [
+    "ds5_rec",
+    "ds9_rec",
+    "ds15_rec"
+   ],
+   "why": "v3 writes the dead-stock recommendation in sentence case (v1: all capitals); same rule and same choice"
+  },
+  {
+   "case": "edge: tote bags sold out",
+   "outputs": [
+    "rp2_rank",
+    "rp4_rank",
+    "rp7_prio",
+    "rp7_rank",
+    "rp8_rank",
+    "rp10_rank",
+    "rp12_rank",
+    "rp14_rank",
+    "cc1_sku",
+    "cc1_cover",
+    "cc1_coverf",
+    "cc1_topf",
+    "cc1_nowq",
+    "cc1_nowc",
+    "cc2_sku",
+    "cc2_cover",
+    "cc2_coverf",
+    "cc2_topf",
+    "cc2_nowq",
+    "cc2_nowc",
+    "cc2_defq",
+    "cc2_defc",
+    "cc3_sku",
+    "cc3_topf",
+    "cc3_nowq",
+    "cc3_nowc",
+    "cc3_defq",
+    "cc3_defc",
+    "cc4_sku",
+    "cc4_cover",
+    "cc4_coverf",
+    "cc4_nowq",
+    "cc4_nowc",
+    "cc4_defq",
+    "cc4_defc",
+    "cc5_sku",
+    "cc5_cover",
+    "cc5_coverf",
+    "cc5_nowq",
+    "cc5_nowc",
+    "cc5_defq",
+    "cc5_defc",
+    "cc6_sku",
+    "cc6_cover",
+    "cc6_coverf",
+    "cc6_nowq",
+    "cc6_nowc",
+    "cc6_defq",
+    "cc6_defc",
+    "cc7_sku",
+    "cc7_cover",
+    "cc7_coverf",
+    "cc7_nowq",
+    "cc7_nowc",
+    "cc7_defq",
+    "cc7_defc",
+    "cc7_dec",
+    "cc_now",
+    "cc_deferred",
+    "cc_left",
+    "dash_now",
+    "dash_def"
+   ],
+   "why": "v1 gave a sold-out SKU (0 days of stock) a priority of 0, ranking it last; v3 counts days of stock as at least half a day, so the sold-out tote bags rank first and 5 Cash Check funds them first"
+  },
+  {
+   "case": "edge: tote bags sold out",
+   "outputs": [
+    "rp_afford"
+   ],
+   "why": "v3 names the tab (NO: see 5 Cash Check) and says Nothing to order when the order is $0 (v1 said YES with nothing to order)"
+  },
+  {
+   "case": "edge: tote bags sold out",
+   "outputs": [
+    "cc_verdict"
+   ],
+   "why": "v3 writes the cash verdict in sentence case and names the rows to order (v1: all capitals)"
+  },
+  {
+   "case": "edge: tote bags sold out",
+   "outputs": [
+    "ds5_rec",
+    "ds9_rec",
+    "ds15_rec"
+   ],
+   "why": "v3 writes the dead-stock recommendation in sentence case (v1: all capitals); same rule and same choice"
+  },
+  {
+   "case": "edit: new SKU row 17, dead lot over small-lot line",
+   "outputs": [
+    "rp_afford"
+   ],
+   "why": "v3 names the tab (NO: see 5 Cash Check) and says Nothing to order when the order is $0 (v1 said YES with nothing to order)"
+  },
+  {
+   "case": "edit: new SKU row 17, dead lot over small-lot line",
+   "outputs": [
+    "cc_verdict"
+   ],
+   "why": "v3 writes the cash verdict in sentence case and names the rows to order (v1: all capitals)"
+  },
+  {
+   "case": "edit: new SKU row 17, dead lot over small-lot line",
+   "outputs": [
+    "ds5_rec",
+    "ds9_rec",
+    "ds15_rec"
+   ],
+   "why": "v3 writes the dead-stock recommendation in sentence case (v1: all capitals); same rule and same choice"
+  },
+  {
+   "case": "extreme: trend +500%, safety 200%, cycle 365, cash 1,000,000",
+   "outputs": [
+    "rp_afford"
+   ],
+   "why": "v3 names the tab (NO: see 5 Cash Check) and says Nothing to order when the order is $0 (v1 said YES with nothing to order)"
+  },
+  {
+   "case": "extreme: trend +500%, safety 200%, cycle 365, cash 1,000,000",
+   "outputs": [
+    "cc_verdict"
+   ],
+   "why": "v3 writes the cash verdict in sentence case and names the rows to order (v1: all capitals)"
+  },
+  {
+   "case": "extreme: trend +500%, safety 200%, cycle 365, cash 1,000,000",
+   "outputs": [
+    "ds5_rec",
+    "ds15_rec"
+   ],
+   "why": "v3 writes the dead-stock recommendation in sentence case (v1: all capitals); same rule and same choice"
+  },
+  {
+   "case": "every input blank",
+   "outputs": [
+    "rp_afford"
+   ],
+   "why": "v3 names the tab (NO: see 5 Cash Check) and says Nothing to order when the order is $0 (v1 said YES with nothing to order)"
+  },
+  {
+   "case": "every input blank",
+   "outputs": [
+    "cc_verdict"
+   ],
+   "why": "v3 writes the cash verdict in sentence case and names the rows to order (v1: all capitals)"
+  },
+  {
+   "case": "edit: candles on order 0, patch set no supplier",
+   "outputs": [
+    "rp8_sup"
+   ],
+   "why": "v1 showed 0 as the supplier; v3 leaves it blank and 4 Purchase Orders counts the line (compare_xlsx treats 0 and blank as equal, so this row prints yes)"
+  }
+ ]
+}

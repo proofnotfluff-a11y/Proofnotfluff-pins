@@ -15,6 +15,11 @@ Runs only in a cloud session on Todd's Default environment (see tools/etsy_oauth
   python3 tools/etsy_list.py strip-line LISTING_ID "phrase" [--dry-run]   correction edit: deletes the description
         line(s) containing the phrase (at most 2 lines, each under 300 characters); nothing else changes
   python3 tools/etsy_list.py bundle-price N               the price for an N-product bundle (N x $2.99 less 20%, rounded down)
+  python3 tools/etsy_list.py apply-pack LISTING_ID [--zip new.zip] [--images img1.png ... imgN.png] [--video v.mp4]
+        [--description desc.txt] [--alt "alt text"] [--dry-run]   correction edit from a scoreboard legal/<id> pack:
+        swaps the digital file (new file uploaded first, old files deleted after), replaces every photo (new photos
+        uploaded at ranks 1..N first, old photos deleted after), replaces the video, sets the description. Never
+        touches title, tags, price, category, attributes or state. --dry-run prints the plan and calls nothing.
 
 Bundles: listing.md's ## Price section carries "List price: $7.17" and "Bundle: 3 products (#5, #6, #7)";
 check then requires exactly bundle_price(3). The description may say "$8.97 if bought separately" (true: each
@@ -230,6 +235,98 @@ def cmd_strip_line(lid, phrase, dry=False):
     if phrase.lower() in (r.get("description") or "").lower(): die("Etsy still shows the phrase after the edit")
     print(json.dumps({"listing_id": lid, "status": "done", "removed": removed}))
 
+# ---------- correction edits from a legal/<id> pack ----------
+def description_errors(desc):
+    errs = []
+    low = desc.lower()
+    for bad in ("founding price", "then $", "real price", "regular price", "was $"):
+        if bad in low: errs.append(f"description names a former or future price ('{bad}'); the ledger PRICE rule forbids it")
+    for line in REQUIRED_LINES:
+        if line not in desc: errs.append(f"description is missing: {line}")
+    if chr(0x2014) in desc: errs.append("em dash in description")
+    if len(desc) < 200: errs.append("description under 200 characters")
+    return errs
+
+def listing_videos(sid, lid):
+    c, t = req("GET", f"/shops/{sid}/listings/{lid}/videos")
+    if c != 200: return []
+    try: return json.loads(t).get("results", [])
+    except Exception: return []
+
+def cmd_apply_pack(lid, zip_path=None, images=None, video=None, desc_path=None, alt=None, dry=False):
+    """One correction edit on a live listing. Order of operations keeps the listing whole at every step:
+    description first (one PATCH); new photos uploaded at ranks 1..N, then the old photo ids deleted; the new
+    digital file uploaded, confirmed present, then the old file ids deleted; the new video uploaded, then the
+    old video deleted. A failure stops before any deletion, so the worst case is extra files, never missing ones."""
+    images = images or []
+    if not (zip_path or images or video or desc_path): die("nothing to apply: give --zip, --images, --video or --description")
+    if images and not (1 <= len(images) <= 20): die("need 1 to 20 images (Etsy's per-listing limit is 20)")
+    for f in ([zip_path] if zip_path else []) + images + ([video] if video else []) + ([desc_path] if desc_path else []):
+        if not os.path.exists(f): die(f"missing file: {f}")
+    if zip_path and os.path.getsize(zip_path) > 20 * 1024 * 1024: die("digital file over Etsy's 20 MB limit")
+    desc = open(desc_path, encoding="utf-8").read().strip() if desc_path else None
+    if desc is not None:
+        errs = description_errors(desc)
+        if errs: die("description failed checks:\n- " + "\n- ".join(errs))
+    l = get_listing(lid); sid = shop_id()
+    if l.get("state") != "active": die(f"listing {lid} is {l.get('state')}, not active; apply-pack edits live listings only")
+    old_images = [i.get("listing_image_id") for i in (l.get("images") or [])]
+    old_files = ok(*req("GET", f"/shops/{sid}/listings/{lid}/files"), "files").get("results", [])
+    old_videos = listing_videos(sid, lid)
+    alt = (alt or l.get("title") or "")[:250]
+    plan = {"listing_id": lid, "title": l.get("title"), "price": l.get("price"),
+            "description": "replace" if desc is not None else "keep",
+            "images": {"old": len(old_images), "new": len(images)} if images else "keep",
+            "file": {"old": [f.get("filename") for f in old_files], "new": os.path.basename(zip_path)} if zip_path else "keep",
+            "video": {"old": len(old_videos), "new": os.path.basename(video)} if video else "keep"}
+    if dry: print(json.dumps({"status": "dry-run", "plan": plan}, indent=1)); return
+    done = {"listing_id": lid}
+    if desc is not None:
+        r = ok(*req("PATCH", f"/shops/{sid}/listings/{lid}", form={"description": desc}), "description")
+        if (r.get("description") or "").strip()[:80] != desc[:80]: die("Etsy returned a different description after the edit")
+        done["description"] = "replaced"
+    if images:
+        new_ids = []
+        for i, img in enumerate(images, 1):
+            body, ct = multipart({"rank": i, "alt_text": alt}, "image", img)
+            r = ok(*req("POST", f"/shops/{sid}/listings/{lid}/images", body=body, ctype=ct), f"image {i}")
+            new_ids.append(r.get("listing_image_id"))
+        for iid in old_images:
+            if iid in new_ids: continue
+            c, t = req("DELETE", f"/shops/{sid}/listings/{lid}/images/{iid}")
+            if c not in (200, 204): die(f"old image {iid} not deleted (HTTP {c}); new photos are up, delete the old ones by hand: {t[:200]}")
+        now = get_listing(lid).get("images") or []
+        done["images"] = {"uploaded": len(new_ids), "deleted": len([i for i in old_images if i not in new_ids]), "now": len(now)}
+        if len(now) != len(images): die(f"listing shows {len(now)} photos, expected {len(images)}; check the editor")
+    if zip_path:
+        body, ct = multipart({"name": os.path.basename(zip_path), "rank": 1}, "file", zip_path, "application/zip")
+        r = ok(*req("POST", f"/shops/{sid}/listings/{lid}/files", body=body, ctype=ct), "digital file")
+        new_fid = r.get("listing_file_id")
+        files = ok(*req("GET", f"/shops/{sid}/listings/{lid}/files"), "files after upload").get("results", [])
+        if new_fid not in [f.get("listing_file_id") for f in files]: die("new file not found after upload; old files kept")
+        for f in old_files:
+            fid = f.get("listing_file_id")
+            if fid == new_fid: continue
+            c, t = req("DELETE", f"/shops/{sid}/listings/{lid}/files/{fid}")
+            if c not in (200, 204): die(f"old file {fid} not deleted (HTTP {c}); the new file is up, delete the old one by hand: {t[:200]}")
+        files = ok(*req("GET", f"/shops/{sid}/listings/{lid}/files"), "files after delete").get("results", [])
+        done["file"] = {"now": [f.get("filename") for f in files]}
+        if len(files) != 1: die(f"listing has {len(files)} files after the swap, expected 1; check the editor")
+    if video:
+        body, ct = multipart({"name": os.path.basename(video)}, "video", video, "video/mp4")
+        c, t = req("POST", f"/shops/{sid}/listings/{lid}/videos", body=body, ctype=ct)
+        if c in (200, 201):
+            try: vid = json.loads(t).get("video_id")
+            except Exception: vid = None
+            for v in old_videos:
+                if v.get("video_id") and v.get("video_id") != vid:
+                    req("DELETE", f"/shops/{sid}/listings/{lid}/videos/{v['video_id']}")
+            done["video"] = "replaced"
+        else:
+            done["video"] = f"refused (HTTP {c}): {t[:160]}"
+    done["status"] = "done"
+    print(json.dumps(done, indent=1))
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     if not a: die(__doc__)
@@ -247,4 +344,19 @@ if __name__ == "__main__":
     elif a[0] == "retitle": cmd_retitle(a[1], a[2])
     elif a[0] == "bundle-price": print(f"{bundle_price(int(a[1])):.2f}")
     elif a[0] == "strip-line": cmd_strip_line(a[1], a[2], dry="--dry-run" in a)
+    elif a[0] == "apply-pack":
+        args = a[2:]; dry = "--dry-run" in args; args = [x for x in args if x != "--dry-run"]
+        zip_path = video = desc_path = alt = None; images = []
+        i = 0
+        while i < len(args):
+            k = args[i]
+            if k == "--zip": zip_path = args[i + 1]; i += 2
+            elif k == "--video": video = args[i + 1]; i += 2
+            elif k == "--description": desc_path = args[i + 1]; i += 2
+            elif k == "--alt": alt = args[i + 1]; i += 2
+            elif k == "--images":
+                i += 1
+                while i < len(args) and not args[i].startswith("--"): images.append(args[i]); i += 1
+            else: die(f"unknown option {k}")
+        cmd_apply_pack(a[1], zip_path, images, video, desc_path, alt, dry)
     else: die(__doc__)

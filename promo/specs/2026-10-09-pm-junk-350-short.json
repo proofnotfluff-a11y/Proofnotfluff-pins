@@ -2,7 +2,7 @@
   "product_id": "23",
   "listing_id": "4590270056",
   "product": "Junk Removal Pricing Calculator",
-  "tab": "3 Quote Builder",
+  "tab": "Quote Builder",
   "audience": "Junk removal owners",
   "hookId": "H02",
   "series": "Flagship #23 (SALES FIRST, Oct 8); H02 lowball correction (benchmark: $22 vs $55 cleaning Short, 900 views); CMO slate Oct 9 pm",
@@ -48,9 +48,9 @@
     }
   ],
   "fix": {
-    "label": "Price that pays you",
+    "label": "Price with a 15% profit",
     "value": "$485",
-    "say": "Charge $485 and you make a profit",
+    "say": "Charge $485 for a 15 percent profit",
     "why": "With a 15% profit margin, rounded up to the next $5, the quote is $485: $75.38 of profit and a $121.25 deposit."
   },
   "cta": {

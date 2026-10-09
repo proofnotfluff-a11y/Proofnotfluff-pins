@@ -61,6 +61,19 @@ def lint(spec):
         problems.append("CTA points to an unclickable description link")
     if len(spec["rows"]) > 7:
         problems.append("more than 7 rows will not read on a phone")
+    # Plain words for a stranger (Todd, Oct 9: "Debts on tab 2: 5 debts" made no sense on TikTok).
+    jargon = re.compile(r"\b(tab|tabs|cell|cells|sheet|column|preset)\b|\b[A-Z]{1,2}[0-9]{1,3}\b", re.I)
+    if re.match(r"\s*[0-9]", str(spec.get("tab", ""))):
+        problems.append(f"tab chip '{spec['tab']}' carries the workbook's tab number: name what it is, e.g. 'Quote Builder'")
+    rows = spec["rows"] + ([spec["fix"]] if spec.get("fix") else [])
+    for r in rows:
+        lab, val = str(r.get("label", "")), str(r.get("value", ""))
+        if jargon.search(lab) or jargon.search(val):
+            problems.append(f"workbook jargon a viewer cannot read: '{lab}: {val}' (say what it is, not where it lives)")
+        if re.search(r"[0-9.]+ ?h, ?[0-9]", val):
+            problems.append(f"squeezed code value '{val}': write it out, e.g. '2 people, 1.5 hrs'")
+        if r is not spec.get("fix") and len(lab) > 34:
+            problems.append(f"label over 34 characters wraps on a phone: '{lab}'")
     if problems:
         sys.exit("spec refused: " + "; ".join(problems))
 

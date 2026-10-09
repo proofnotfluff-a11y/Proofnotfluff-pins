@@ -11,8 +11,8 @@
   "hook_say": "Here is how long five debts take on minimum payments only, and what $1,100 a month on the Avalanche plan changes.",
   "rows": [
     {
-      "label": "Debts on tab 2",
-      "value": "5 debts",
+      "label": "What you owe today",
+      "value": "$38,155, 5 debts",
       "input": true,
       "say": "Five debts, about $38,155 owed",
       "why": "The tracker's example: a Visa card, a store card, a car loan, a student loan and a personal loan, about $38,155 owed today."

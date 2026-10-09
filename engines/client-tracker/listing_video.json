@@ -1,0 +1,13 @@
+{
+ "xlsx": "Client-Tracker-EXAMPLE.xlsx",
+ "sheet": "1 Today",
+ "crop": [0, 0.0, 1, 0.0738],
+ "dpi": 220,
+ "eyebrow": "CLIENT TRACKER",
+ "size": [1920, 1440],
+ "states": [
+  {"caption": "Example cleaning business: {C7} follow-ups due, {I7} in open quotes.", "hold": 3.4},
+  {"set": {"J14": 46315}, "caption": "Move the as-of date to Oct 20: now {C7} follow-ups due, most overdue first.", "hold": 3.8},
+  {"set": {"3 Jobs!G50": "Booked"}, "caption": "Mark the deep clean quote Booked: open quotes drop to {I7}.", "hold": 3.8}
+ ]
+}

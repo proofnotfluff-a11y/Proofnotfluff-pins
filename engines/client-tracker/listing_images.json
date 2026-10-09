@@ -1,0 +1,118 @@
+{
+ "base": "/tmp/claude-0/-home-claude/3ea7b64d-e75d-5dd8-8e49-ea1efe5d1ba9/scratchpad/ct/kitsrc/r",
+ "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+ "images": [
+  {
+   "type": "cover",
+   "eyebrow": "CLIENT TRACKER",
+   "title": "Know who to follow up today.",
+   "sub": "Follow-ups due, open quotes, unpaid jobs and your top clients, from one client list and one job log.",
+   "shot": "02-1-Today.png",
+   "crop": [0, 0, 1, 0.153],
+   "badges": ["Excel + Google Sheets", "Instant download", "Follow-ups due today"]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "THE WORKED EXAMPLE",
+   "title": "5 follow-ups due, $720 in open quotes.",
+   "sub": "Example cleaning business, July to October: 2 overdue and 3 due today, 3 quotes waiting, $670 of jobs done so far this month.",
+   "shot": "02-1-Today.png",
+   "crop": [0, 0.0258, 1, 0.153]
+  },
+  {
+   "type": "steps",
+   "eyebrow": "HOW IT WORKS",
+   "title": "Three steps.",
+   "steps": [
+    {"head": "List your clients", "text": "Name, type, source, next contact date.", "shot": "03-2-Clients.png", "crop": [0, 0.1258, 0.445, 0.299]},
+    {"head": "Log each job and quote", "text": "Client, service, amount, status, paid.", "shot": "04-3-Jobs.png", "crop": [0, 0.0922, 0.5118, 0.2535]},
+    {"head": "Open Today each morning", "text": "Who to call, what is quoted and unpaid.", "shot": "02-1-Today.png", "crop": [0, 0, 1, 0.0524]}
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "TODAY TAB",
+   "title": "Who to call, most overdue first.",
+   "sub": "Type the as-of date. The list shows days overdue and the service each client last asked about, so you know what to say.",
+   "shot": "02-1-Today.png",
+   "crop": [0, 0.0562, 0.5498, 0.153],
+   "trim": true
+  },
+  {
+   "type": "shot",
+   "eyebrow": "CLIENTS TAB",
+   "title": "Every client flagged in words.",
+   "sub": "Jobs done, revenue, unpaid, last job and last asked about fill in on their own. The flag reads Due today, Overdue 3 days or Not yet.",
+   "shot": "03-2-Clients.png",
+   "crop": [0.3005, 0.168, 0.7462, 0.405]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "JOBS TAB",
+   "title": "One row per job or quote.",
+   "sub": "Pick the client and the service, type the amount and the status. Usual price, unpaid amount and a check column fill in.",
+   "shot": "04-3-Jobs.png",
+   "crop": [0, 0.0475, 1, 0.3195]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "TOP CLIENTS",
+   "title": "$1,010 from the top client, 20% of revenue.",
+   "sub": "Done jobs ranked by client, with in-cell bars against the top client.",
+   "shot": "02-1-Today.png",
+   "crop": [0, 0.1591, 0.5498, 0.2376],
+   "trim": true
+  },
+  {
+   "type": "list",
+   "eyebrow": "IS THIS FOR YOU?",
+   "title": "Made for one or two person service businesses.",
+   "columns": [
+    {"head": "Made for", "mark": "check", "items": [
+     "Cleaning, lawn care, pressure washing, detailing",
+     "Handyman, pet sitting, photography",
+     "Up to 300 clients and 1,000 jobs and quotes",
+     "Knowing who to follow up each morning"]},
+    {"head": "Not for", "mark": "x", "items": [
+     "Automatic reminders, email or texting",
+     "Invoicing, payments or bookkeeping",
+     "Sales teams with a shared pipeline"]}
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "HOW YOU GET IT",
+   "title": "Instant download. Opens in Excel or Google Sheets.",
+   "columns": [
+    {"head": "What you get", "mark": "check", "items": [
+     "A blank tracker and a filled-in example",
+     "Start Here guide as a PDF, US Letter and A4",
+     "Made for Excel; upload the same file to Google Sheets",
+     "No macros, no add-ons, no sign-up"]},
+    {"head": "How to download", "mark": "check", "items": [
+     "Buy, then open Etsy in a web browser",
+     "Go to You, then Purchases, and download",
+     "The Etsy app can't download digital files",
+     "Message the shop on Etsy if anything won't open"]}
+   ]
+  },
+  {
+   "type": "inside",
+   "eyebrow": "ONE DOWNLOAD",
+   "title": "What's inside",
+   "tabs": [
+    {"name": "Today", "shot": "02-1-Today.png", "crop": [0, 0, 0.5498, 0.153]},
+    {"name": "Clients", "shot": "03-2-Clients.png", "crop": [0, 0, 0.3005, 0.405]},
+    {"name": "Jobs", "shot": "04-3-Jobs.png", "crop": [0, 0, 0.5118, 0.3195]}
+   ],
+   "items": [
+    "Follow-ups due, most overdue first",
+    "Open quotes ranked by value",
+    "This month: jobs, revenue, unpaid, leads",
+    "Top clients and where they come from",
+    "Blank tracker plus a worked example",
+    "Start Here PDF in Letter and A4"
+   ]
+  }
+ ]
+}

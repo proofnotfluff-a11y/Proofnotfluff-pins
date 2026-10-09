@@ -200,11 +200,12 @@ class Card:
             else:
                 cell.border = Border(bottom=side(style), top=cell.border.top)
 
-    def input(self, text, value, fmt, name=None, validation=None, prompt=None, prompt_title=None, allow_blank=False):
+    def input(self, text, value, fmt, name=None, validation=None, prompt=None, prompt_title=None, allow_blank=False, error=None):
+        """error: the stop message in plain English (default: wb_style's range text)."""
         r = self._row()
         self._label(r, text)
         c = S.input_cell(self.ws, f"{self.value}{r}", value, fmt, name=name, wb=self.wb, validation=validation,
-                         prompt=prompt, prompt_title=prompt_title or text[:32], allow_blank=allow_blank)
+                         prompt=prompt, prompt_title=prompt_title or text[:32], allow_blank=allow_blank, error=error)
         c.fill = fill("input_fill"); c.font = f(10, True, "input_text")
         c.alignment = Alignment(horizontal="right", vertical="center", indent=1)  # inset from the box edge
         c.border = Border(left=side("input_line"), right=side("input_line"), top=side("input_line"), bottom=side("input_line"))

@@ -56,6 +56,9 @@ def lint(spec):
         problems.append("no result row: the demo must reveal an answer")
     if not any(r.get("input") for r in spec["rows"]):
         problems.append("no input rows")
+    csay = spec.get("cta", {}).get("say", "")
+    if "workbook" in csay.lower() and not spec.get("cta", {}).get("what"):
+        problems.append("the close says 'workbook' but cta.what is missing: the end card must say what it is, e.g. 'The full workbook for Excel and Google Sheets'")
     sub = spec.get("cta", {}).get("sub", "")
     if "description" in sub.lower() or "link below" in sub.lower():
         problems.append("CTA points to an unclickable description link")
@@ -182,10 +185,12 @@ h1{{font-family:P;font-size:{int(84*s)}px;line-height:1.08;letter-spacing:-1px}}
 .note{{font-size:{int(24*s)}px;color:#8A91A3;margin-top:{int(14*s)}px}}
 .cap{{display:inline-block;background:#fff;color:#1D2433;font-family:CB;font-size:{int(46*s) if not wide else 40}px;line-height:1.25;padding:{int(18*s)}px {int(28*s)}px;border-radius:{int(18*s)}px;box-shadow:0 10px 30px rgba(0,0,0,.25)}}
 .cursor{{position:absolute;width:{int(46*s)}px;height:{int(46*s)}px;left:0;top:0;z-index:20;transform:translate(-200px,-200px)}}
-.end{{position:absolute;inset:0;background:rgba(18,23,34,.94);display:flex;flex-direction:column;justify-content:center;align-items:{'center' if wide else 'flex-start'};padding:0 {int(90*s)}px;opacity:0;z-index:30;text-align:{'center' if wide else 'left'}}}
+.end{{position:absolute;inset:0;background:#121722;display:flex;flex-direction:column;justify-content:center;align-items:{'center' if wide else 'flex-start'};padding:0 {int(90*s)}px;opacity:0;z-index:30;text-align:{'center' if wide else 'left'}}}
 .end h2{{font-family:P;font-size:{int(80*s)}px;line-height:1.1;margin-bottom:{int(30*s)}px}}
 .end .btn{{display:inline-block;background:#C8502F;color:#fff;font-family:P;font-size:{int(40*s)}px;padding:{int(24*s)}px {int(44*s)}px;border-radius:60px;margin-bottom:{int(28*s)}px}}
 .end .sub{{font-size:{int(44*s)}px;color:#E8EBF1}}
+.end .say{{font-family:CB;font-size:{int(48*s)}px;line-height:1.25;color:#F2A385;margin-bottom:{int(36*s)}px}}
+.end .what{{font-size:{int(42*s)}px;line-height:1.3;color:#E8EBF1;margin-bottom:{int(34*s)}px}}
 .foot{{position:absolute;bottom:{70 if not wide else 50}px;left:80px;font-family:P;font-size:{int(26*s)}px;letter-spacing:1px;color:#9AA3B5;z-index:31}}
 </style></head><body>
 <div class="prog"><i id="pg"></i></div>
@@ -196,7 +201,7 @@ h1{{font-family:P;font-size:{int(84*s)}px;line-height:1.08;letter-spacing:-1px}}
   <div class="grid">{''.join(rows_html)}</div>{fix_html}</div>{f'<div class="note">{H.escape(spec["note"])}</div>' if spec.get("note") else ''}</div>
 </div>
 <svg class="cursor" id="cur" viewBox="0 0 24 24"><path d="M4 2l16 9.5-7 1.6-3.6 6.4z" fill="#fff" stroke="#1D2433" stroke-width="1.6" stroke-linejoin="round"/></svg>
-<div class="end" id="end"><h2>{H.escape(cta.get("title", spec["product"]))}</h2><div class="btn">{H.escape(cta.get("button", "Instant download"))}</div><div class="sub">{H.escape(cta.get("sub", CTA_SUB))}</div></div>
+<div class="end" id="end">{f'<div class="say">{H.escape(cta["say"])}</div>' if cta.get("say") else ''}<h2>{H.escape(cta.get("title", spec["product"]))}</h2>{f'<div class="what">{H.escape(cta["what"])}</div>' if cta.get("what") else ''}<div class="btn">{H.escape(cta.get("button", "Instant download"))}</div><div class="sub">{H.escape(cta.get("sub", CTA_SUB))}</div></div>
 <div class="foot">PROOFNOTFLUFF</div>
 <script>
 const D={json.dumps(data)};
@@ -234,7 +239,7 @@ window.renderAt=function(t){{
     const x=a[0]+(curTarget[0]-a[0])*k,y=a[1]+(curTarget[1]-a[1])*k;cur.style.transform='translate('+x+'px,'+y+'px)'}}
   else cur.style.transform='translate(-200px,-200px)';
   let cap='';D.caps.forEach(c=>{{if(t>=c[0])cap=c[1]}});const ce=document.getElementById('cap');ce.textContent=cap;ce.style.visibility=cap?'visible':'hidden';
-  const en=document.getElementById('end');en.style.opacity=Math.max(0,Math.min(1,(t-D.ctaT)/0.25));
+  const en=document.getElementById('end');en.style.opacity=Math.max(0,Math.min(1,(t-D.ctaT)/0.25));if(t>=D.ctaT)ce.style.visibility='hidden';
 }};
 window.renderAt(0);
 </script></body></html>"""

@@ -32,7 +32,7 @@ Shows the product's calculator on screen from frame one, types the inputs in, re
 - `walkthrough`: 1920x1080, paced to reading speed (about 15 characters a second), uses each row's `why` caption. Upload as a regular YouTube video; every Short's related-video link points to it, and line one of its description is the listing URL.
 - `listing`: 1080x2160, no audio, 15 s max, end card says "Instant digital download". Etsy listing video.
 
-Spec fields are documented at the top of make_demo.py; an example is promo/specs/demo-13-hourly-rate.json. The tool refuses specs with em dashes, banned words, no result row, more than 7 rows, or a CTA that points to an unclickable link. Every number must come from the product's own files and the CMO review checks this before anything posts.
+Spec fields are documented at the top of make_demo.py; an example is promo/specs/demo-13-hourly-rate.json. The end card is opaque and shows cta.say as text, the product name and cta.what (required when the close says "workbook"; e.g. "The full workbook for Excel and Google Sheets"). The tool refuses specs with em dashes, banned words, no result row, more than 7 rows, or a CTA that points to an unclickable link. Every number must come from the product's own files and the CMO review checks this before anything posts.
 
 ## legal_scan.py (Legal desk first pass)
 

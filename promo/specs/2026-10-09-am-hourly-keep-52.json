@@ -8,7 +8,7 @@
   "series": "Flagship #20 (SALES FIRST, Oct 8); H01 lead pattern (benchmark: $40 hourly Short, 1,001 views); CMO slate Oct 9 am",
   "voice": "am_michael",
   "hook": "You bill $74.65 an hour. You keep <b>$52.08</b>",
-  "hook_say": "Here is where one billed hour really goes, if you want to take home $60,000 a year.",
+  "hook_say": "Here is where one billed hour really goes on a $60,000 take-home. The free hourly rate calculator runs the same maths on your numbers.",
   "rows": [
     {
       "label": "Take-home pay you want per year",
@@ -62,12 +62,30 @@
   },
   "note": "Example numbers from the calculator. Estimates, not tax advice.",
   "sources": [
-    {"number": "$60,000", "source": "Calculator D15 (example input)"},
-    {"number": "25%, $6,000", "source": "Calculator D16, D17; I17 revenue needed 86,000"},
-    {"number": "1,152 of 1,920", "source": "Calculator I20 1,152, I19 1,920; D19 48 weeks, D20 40 hours, D21 60%"},
-    {"number": "$74.65", "source": "Calculator I21 / C7 74.6528; C8 'Rounded up for your rate card: $75 an hour'"},
-    {"number": "$52.08", "source": "Calculator I23 52.0833 (take-home); I24 17.36 tax, I25 5.21 expenses"},
-    {"number": "$55.99", "source": "Calculator I34 55.9896 (80% of your hours billed)"}
+    {
+      "number": "$60,000",
+      "source": "Calculator D15 (example input)"
+    },
+    {
+      "number": "25%, $6,000",
+      "source": "Calculator D16, D17; I17 revenue needed 86,000"
+    },
+    {
+      "number": "1,152 of 1,920",
+      "source": "Calculator I20 1,152, I19 1,920; D19 48 weeks, D20 40 hours, D21 60%"
+    },
+    {
+      "number": "$74.65",
+      "source": "Calculator I21 / C7 74.6528; C8 'Rounded up for your rate card: $75 an hour'"
+    },
+    {
+      "number": "$52.08",
+      "source": "Calculator I23 52.0833 (take-home); I24 17.36 tax, I25 5.21 expenses"
+    },
+    {
+      "number": "$55.99",
+      "source": "Calculator I34 55.9896 (80% of your hours billed)"
+    }
   ],
   "sources_build": "python3 engines/hourly-rate-quick-calculator/build_xlsx.py, recalculated in LibreOffice headless Oct 9, 2026, 5:40 am; matches products/20 pinFacts.",
   "post": {
@@ -75,5 +93,9 @@
     "youtube_description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/20/\nFree hourly rate calculator: https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/free-hourly-rate-calculator/\nWant $60,000 a year? With 25% set aside for tax, $6,000 of costs and clients paying for 60% of your hours, the minimum rate is $74.65 an hour, and you keep $52.08 of each billed hour. Bill 80% of your hours and the rate you need drops to $55.99. Example numbers from the Hourly Rate Quick Calculator; estimates, not tax advice.\n\n#Shorts",
     "reel_caption": "You bill $74.65 an hour and keep $52.08 of it. A $60,000 take-home, 25% set aside for tax, $6,000 of costs, clients paying for 60% of your hours. Bill 80% and the rate you need drops to $55.99. Example numbers from the Hourly Rate Quick Calculator, estimates only.\n\nLink in bio: proofnotfluff.etsy.com\n\n#freelancer #hourlyrate #pricingstrategy #smallbusiness",
     "tiktok_caption": "You bill $74.65 an hour. You keep $52.08. Example numbers from the Hourly Rate Quick Calculator. Search ProofNotFluff on Etsy. #freelancer #hourlyrate #pricingstrategy #smallbusiness"
+  },
+  "walkthrough": {
+    "title": "How to calculate your hourly rate as a freelancer: $60,000 take-home needs $74.65 an hour",
+    "description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/20/\nFree hourly rate calculator: https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/free-hourly-rate-calculator/\nA $60,000 take-home, 25% set aside for tax and $6,000 of yearly costs need $86,000 of revenue. At 48 weeks of 40 hours with 60% billable, clients pay for 1,152 hours, so the minimum rate is $74.65 an hour, and each billed hour splits into $52.08 take-home, $17.36 tax set-aside and $5.21 of expenses. Bill 80% of your hours and the rate you need is $55.99. Example numbers from the Hourly Rate Quick Calculator; estimates, not tax advice."
   }
 }

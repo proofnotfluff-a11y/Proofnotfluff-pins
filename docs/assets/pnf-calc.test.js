@@ -210,11 +210,25 @@ check("#19 profit but negative cash flow flagged", RC4.gap, 1);
 check("#19 negative cash flow", RC4.cash, -1000);
 check("#19 cash went down by", RC4.down, 1000);
 check("#19 profit case is not the loss callout", RC4.neg, 0);
+// #18 One-Tab Business Expense Tracker, Summary tab (example workbook recalculated Oct 9, 2026: Year P27 4209, P29 837.9, P50 1984.75, P51 1386.35; Jan D51 -164.76)
+const BE1 = P.businessExpense({ sales: 4233, otherIncome: 0, refunds: 24, inventory: 837.9, fees: 292.41, rent: 1125, supplies: 96.25, ads: 45, car: 14, otherExp: 142.59, more: 269.5, equipment: 329, draw: 500, months: 3 });
+check("#18 income after refunds, Jan to Mar", BE1.income, 4209);
+check("#18 total expenses, Jan to Mar", BE1.expenses, 1984.75);
+check("#18 profit before inventory count, Jan to Mar", BE1.profit, 1386.35);
+check("#18 expenses per month", BE1.expMonth, 661.58333);
+check("#18 logged but kept out of profit", BE1.offProfit, 829);
+const BE2 = P.businessExpense({ sales: 858, refunds: 24, inventory: 412.6, fees: 81.51, rent: 350, supplies: 96.25, otherExp: 58.4, draw: 500, months: 1 });
+check("#18 January expenses", BE2.expenses, 586.16);
+check("#18 January loss", BE2.profit, -164.76);
+check("#18 January loss flagged", BE2.neg, 1);
+const BE3 = P.businessExpense({ sales: 0, fees: 50, months: 0 });
+check("#18 no income flagged", BE3.noIncome, 1);
+check("#18 no income gives no share", BE3.expShare, 0);
 // blank inputs never produce NaN or Infinity
 const b = P.service({});
 const bh = P.hourly({});
 const bc = P.cashflow({});
-const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({})]
+const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({}), P.businessExpense({})]
   .flatMap(o => Object.values(o)).filter(v => typeof v === "number");
 const bad = [...Object.values(b), ...Object.values(bh), ...Object.values(bc), ...more].filter(v => !isFinite(v));
 if (bad.length) { fails++; console.log("FAIL blank inputs give non-finite values"); } else console.log("ok   blank inputs stay finite");

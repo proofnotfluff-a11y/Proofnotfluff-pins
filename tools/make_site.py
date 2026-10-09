@@ -588,11 +588,67 @@ PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
     return form, results, script
 
 
+def business_expense_page(p):
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>The period</legend>
+{field("months", "Months these figures cover", d["months"], "1 for a month, 3 for a quarter, 12 for a year")}
+</fieldset>
+<fieldset><legend>Money in</legend>
+{field("sales", "Sales and services", d["sales"], "What customers paid you, before fees", pre="$")}
+{field("otherIncome", "Other business income", d["otherIncome"], "Business income that is not a sale", pre="$")}
+{field("refunds", "Refunds given to customers", d["refunds"], "Money you paid back. It comes off income", pre="$")}
+</fieldset>
+<fieldset><legend>Stock you sell</legend>
+{field("inventory", "Inventory and materials for resale", d["inventory"], "Stock and materials that become what you sell", pre="$")}
+</fieldset>
+<fieldset><legend>Business expenses</legend>
+{field("fees", "Commissions and selling fees", d["fees"], "Marketplace and payment fees on your sales", pre="$")}
+{field("rent", "Rent or lease", d["rent"], "Studio, booth, storage, leased equipment", pre="$")}
+{field("supplies", "Supplies", d["supplies"], "Used up in the business, not part of what you sell", pre="$")}
+{field("ads", "Advertising", d["ads"], "Ads, promoted listings, flyers", pre="$")}
+{field("car", "Car and truck expenses", d["car"], "Business driving costs, parking, tolls", pre="$")}
+{field("otherExp", "Other expenses", d["otherExp"], "Software, subscriptions, bank fees, shipping labels", pre="$")}
+{field("more", "Everything else", d["more"], "Insurance, accountant, licenses, utilities, travel, the full bill for business meals", pre="$")}
+</fieldset>
+<fieldset><legend>Logged, but not in profit</legend>
+{field("equipment", "Equipment over a few hundred dollars", d["equipment"], "Your preparer decides on depreciation", pre="$")}
+{field("draw", "Owner draw or personal", d["draw"], "Money you paid yourself", pre="$")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Business expenses</div><div class="val" data-out="expenses">$0</div><div class="sub"><span data-out="expMonth">$0</span> a month on average</div></div>
+<div class="tile"><div class="lab">Profit before inventory count</div><div class="val" data-out="profit">$0</div><div class="sub"><span data-out="profitMonth">$0</span> a month</div></div>
+</div>
+<ul class="lines">
+<li><span>Income after refunds</span><span data-out="income">$0</span></li>
+<li><span>Less inventory and materials</span><span data-out="inventory">$0</span></li>
+<li><span>Less business expenses</span><span data-out="expenses">$0</span></li>
+<li class="total"><span>Profit before inventory count</span><span data-out="profit">$0</span></li>
+<li><span>Expenses per dollar of income</span><span data-pct="expShare">0%</span></li>
+<li><span>Logged but kept out of profit</span><span data-out="offProfit">$0</span></li>
+</ul>
+<div class="callout" data-show-if="pos > 0">After stock and expenses you kept <b data-out="profit">$0</b> of <b data-out="income">$0</b>, before your preparer adjusts for inventory still on hand.</div>
+<div class="callout warn" data-show-if="neg > 0">Stock and expenses were more than income: a loss of <b data-out="loss">$0</b> for the period. One big stock order or a rent month can do this; look at a longer period too.</div>
+<div class="callout" data-show-if="hasOff > 0">Equipment and owner draws (<b data-out="offProfit">$0</b>) are logged for your records but not counted as expenses here.</div>
+<div class="callout warn" data-show-if="noMonths > 0">Type how many months these figures cover to see the monthly averages.</div>
+<div class="callout warn" data-show-if="noIncome > 0">Type your sales to see your profit.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Expenses <b data-out="expenses">$0</b></span><span>Profit <b data-out="profit">$0</b></span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.businessExpense in assets/pnf-calc.js, the Summary tab of engines/business-expense-tracker (#18). */
+var M=PNF.businessExpense;
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
 PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashflow_page,
               "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
               "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
               "reorder_point": reorder_point_page, "str_breakeven": str_breakeven_page,
-              "rental_cash_flow": rental_cash_flow_page}
+              "rental_cash_flow": rental_cash_flow_page,
+              "business_expense": business_expense_page}
 
 
 def page_html(p):

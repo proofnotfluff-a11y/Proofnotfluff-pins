@@ -1486,6 +1486,77 @@
     "Oak Street House 2026 log in engines/rental-property/build_xlsx.py LOGROWS: Rent 14,850 (9 x 1,650); Taxes 3,720 (1,860 x 2); Insurance 1,140; Repairs 240; Supplies 62; Auto and travel 38 (operating expenses 5,200); Mortgage interest 4,806; Mortgage principal 2,844; Capital improvement 1,450.",
     "Engine asserts oak_profit 4,844, oak_principal 2,844, oak_improve 1,450, oak_cash 550 (4 Property P&L, Profit and Cash flow rows). $61.11 a month = 550 / 9."
    ]
+  },
+  {
+   "slug": "business-expense-tracker-calculator",
+   "kind": "business_expense",
+   "draft": true,
+   "title": "Business Expense Calculator: Total Your Expenses and See Profit | ProofNotFluff",
+   "desc": "Free business expense calculator for small businesses and the self-employed. Add up expenses by Schedule C category, see profit before the inventory count and your monthly average.",
+   "eyebrow": "Free calculator",
+   "h1": "Business Expense Calculator",
+   "lede": "Add up a month, a quarter or a year of business expenses in the categories IRS Schedule C uses, and see what is left as profit after stock and expenses. Equipment and money you paid yourself are kept out, the way a preparer would expect. Free, no sign-up.",
+   "card": "Total your expenses by Schedule C category and see profit before the inventory count.",
+   "segment": "small-business",
+   "product": "18",
+   "defaults": {
+    "months": "3",
+    "sales": "4,233",
+    "otherIncome": "0",
+    "refunds": "24",
+    "inventory": "837.90",
+    "fees": "292.41",
+    "rent": "1,125",
+    "supplies": "96.25",
+    "ads": "45",
+    "car": "14",
+    "otherExp": "142.59",
+    "more": "269.50",
+    "equipment": "329",
+    "draw": "500"
+   },
+   "method": [
+    "Income after refunds is sales and other business income, less refunds you gave customers. Refunds are Schedule C line 2, returns and allowances, so they come off income rather than counting as an expense.",
+    "Business expenses add up every expense line you type. Inventory and materials for resale are kept apart because Schedule C handles them in Part III, cost of goods sold. Profit before inventory count is income after refunds, less inventory and materials, less expenses. Your preparer adjusts it for stock still on hand at year end.",
+    "Equipment and owner draws are logged but left out. The 2025 Schedule C instructions say items whose usefulness extends well beyond a year are generally recovered through depreciation, which your preparer works out, and money you pay yourself is not a business expense. Monthly averages divide by the months you enter. All figures are estimates from the numbers you type."
+   ],
+   "example": "The One-Tab Business Expense Tracker's sample business is a fictional one-person candle shop. From January to March 2026 its entries show $4,233 of sales and $24 of refunds, so $4,209 of income after refunds. Wax, wicks and fragrance oils for resale come to $837.90. Business expenses total $1,984.75: $292.41 of selling fees, $1,125 of studio rent and a market booth fee, $96.25 of labels and boxes, $45 of promoted listings, $14 of parking and tolls, $142.59 of shipping labels and software, and $269.50 of insurance, an accountant, a city license and a $38.50 business lunch entered at the full bill. Profit before the inventory count is $1,386.35, while expenses average $661.58 a month. The $329 pouring pot set and the $500 the owner paid herself are logged but kept out of profit. January alone shows a $164.76 loss, because a $412.60 wax order and $350 of rent landed in the same month.",
+   "cta": {
+    "title": "Log every expense once and get the year by Schedule C line",
+    "bullets": [
+     "The One-Tab Business Expense Tracker uses this same maths in Excel and Google Sheets:",
+     "one Entries tab with 26 categories, most named for Schedule C lines, a Summary that fills itself in month by month for the year, and checks for missing dates or categories. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4589291725"
+   },
+   "faq": [
+    [
+     "What counts as a business expense?",
+     "Costs of running the business: selling fees, rent, supplies, advertising, business driving, software, insurance, an accountant, licenses and similar. Stock you resell, equipment you will depreciate and money you pay yourself are tracked separately."
+    ],
+    [
+     "Why is inventory not an expense here?",
+     "Stock and materials that become what you sell go through cost of goods sold, Part III of Schedule C. Only what you sold counts against profit, so your preparer adjusts for what is still on the shelf at year end. This calculator shows profit before that adjustment."
+    ],
+    [
+     "How do I enter business meals?",
+     "Enter the full bill. The 2025 Schedule C instructions say that in most cases only 50% of business meals is deductible; your preparer applies the limit."
+    ],
+    [
+     "Why is my equipment left out?",
+     "The 2025 Schedule C instructions say items whose usefulness extends substantially beyond a year are generally recovered through depreciation. Log the purchase so your preparer can decide how to handle it."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is planning arithmetic on the numbers you type. Your tax preparer decides the final line for each item."
+    ]
+   ],
+   "sources": "IRS Instructions for Schedule C (Form 1040) (2025): line 2 returns and allowances, Part III cost of goods sold, line 22 items recovered through depreciation, line 24b meals (50% in most cases); checked Oct 9, 2026. Example figures are the fictional candle shop in the One-Tab Business Expense Tracker workbook.",
+   "number_sources": [
+    "engines/business-expense-tracker/build_xlsx.py ROWS, example workbook built and recalculated Oct 9, 2026 (0 error values): Summary Year column P24 4,233 sales, P26 24 refunds, P27 4,209, P29 837.9, P31 45, P32 14, P33 292.41, P36 31, P38 150, P41 1,125, P43 96.25, P44 50, P46 38.5, P49 142.59, P50 1,984.75, P51 1,386.35, P54 329, P55 500; January D29 412.6, D41 350, D51 -164.76.",
+    "Everything else 269.50 = 31 + 150 + 50 + 38.50. Expenses per month 661.58 = 1,984.75 / 3."
+   ]
   }
  ]
 }

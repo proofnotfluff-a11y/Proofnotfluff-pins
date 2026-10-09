@@ -6,6 +6,7 @@
    shippingCost: engines/shipping-true-cost (#7); reorderPoint: engines/cash-aware-reorder-planner (#6);
    strBreakEven: the #9 fee stack (engines/str-nightly-pricing), break-even nights for the STR lite page;
    rentalCashFlow: engines/rental-property (#19), 4 Property P&L profit and cash flow rows.
+   businessExpense: engines/business-expense-tracker (#18), Summary tab income, expenses and profit rows.
    Tested against the workbooks' own example outputs in docs/assets/pnf-calc.test.js. */
 (function (root) {
   "use strict";
@@ -339,8 +340,27 @@
     f.addEventListener("input", go); go();
   }
 
+  // #18 One-Tab Business Expense Tracker: Summary tab, Income after refunds, Total expenses,
+  // Profit before inventory count, and the rows logged but kept out of profit.
+  function businessExpense(i) {
+    var sales = num(i.sales), other = num(i.otherIncome), refunds = num(i.refunds), inv = num(i.inventory);
+    var lines = [num(i.fees), num(i.rent), num(i.supplies), num(i.ads), num(i.car), num(i.otherExp), num(i.more)];
+    var expenses = lines.reduce(function (a, b) { return a + b; }, 0);
+    var equipment = num(i.equipment), draw = num(i.draw), months = Math.round(num(i.months));
+    var income = sales + other - refunds;
+    var profit = income - inv - expenses;
+    var m = months > 0 ? months : 0;
+    var costs = inv + expenses;
+    return { income: income, refunds: refunds, inventory: inv, expenses: expenses, costs: costs, profit: profit, months: m,
+      expMonth: m > 0 ? expenses / m : 0, profitMonth: m > 0 ? profit / m : 0, costsMonth: m > 0 ? costs / m : 0,
+      expShare: income > 0 ? expenses / income : 0, kept: income > 0 ? profit / income : 0,
+      offProfit: equipment + draw, equipment: equipment, draw: draw, loss: profit < 0 ? -profit : 0,
+      pos: income > 0 && profit > 0 ? 1 : 0, neg: income > 0 && profit < 0 ? 1 : 0,
+      noIncome: income > 0 ? 0 : 1, noMonths: income > 0 && m === 0 ? 1 : 0, hasOff: equipment + draw > 0 ? 1 : 0 };
+  }
+
   var api = { hourly: hourly, service: service, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
-    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, num: num, money: money, ceilTo: ceilTo,
+    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;
 })(this);

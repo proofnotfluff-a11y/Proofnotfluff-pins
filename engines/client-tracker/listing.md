@@ -65,7 +65,7 @@ Digital download. No physical item ships.
 File problems are fixed on request through Etsy messages.
 
 ## Google Sheets check
-Checked <date> by Drive upload with Sheets conversion (QA folder 1qoGZklAqCicGEF7LvOBzpGGeFSbRmhat): Today tiles, due list, quote list and Clients columns match.
+Checked Oct 9, 2026 by Drive upload with Sheets conversion (QA folder 1qoGZklAqCicGEF7LvOBzpGGeFSbRmhat, file "QA client tracker formula forms Oct 9 2026"): the formula forms new to the shop (SUMPRODUCT(MAX()), SUMPRODUCT(LARGE()) with ROW(), ISNA(MATCH()), N(), DATE/YEAR/MONTH, REPT bars) computed the same values in Google Sheets as in LibreOffice: Today month start, open-quote rank and amount, due key, last job date and last service per client, and every Jobs check line.
 
 ## Pinterest board
 Service Business Pricing

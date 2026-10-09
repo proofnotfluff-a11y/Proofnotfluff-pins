@@ -11,7 +11,8 @@
     14,
     20,
     22,
-    23
+    23,
+    27
    ]
   },
   {
@@ -33,7 +34,8 @@
     7,
     12,
     8,
-    25
+    25,
+    26
    ]
   },
   {
@@ -226,6 +228,20 @@
    "audience": "makers, resellers and small product shops",
    "channel": "etsy",
    "listing": "4591585227"
+  },
+  {
+   "id": 26,
+   "name": "Cake Order Form and Order Tracker",
+   "audience": "home bakers and cake businesses",
+   "channel": "etsy",
+   "listing": "4592080840"
+  },
+  {
+   "id": 27,
+   "name": "Client Tracker for Service Businesses",
+   "audience": "service businesses",
+   "channel": "etsy",
+   "listing": "4592088235"
   }
  ]
 }

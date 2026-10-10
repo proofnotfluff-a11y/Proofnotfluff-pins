@@ -182,6 +182,21 @@ check("#6 SKU-011 on order keeps it OK, days until reorder (W)", R11.status === 
 check("#6 SKU-011 next order cost within 30 days (X)", R11.orderCost, 330.4);
 const R0 = P.reorderPoint({ daily: 0, lead: 21, safety: 20, cycle: 14, onHand: 6, onOrder: 0, unitCost: 17 });
 check("#6 SKU-005 no sales: reorder point 0 (Q)", R0.status === "NO SALES" ? R0.rop : -1, 0);
+// #6 inventory turnover (expected values from the recalculated sample shop, Oct 10, 2026: 1 Your Shop I15, I26:I28; 2 SKU List P, U, Y)
+const T1 = P.inventoryTurnover({ cogsYear: 70404.85, stockValue: 3368.9, daily: 0.9, onHand: 130 });
+check("#6 shop inventory turns a year (I27)", T1.turns, 20.89847);
+check("#6 shop days to sell through stock (I28)", T1.days, 17.46539);
+check("#6 SKU-009 days of stock (P)", T1.pDays, 144.44444);
+check("#6 SKU-009 OVERSTOCK at 120 days", T1.overstock, 1);
+const T2 = P.inventoryTurnover({ cogsYear: 678.9, stockValue: 93, daily: 0.6, onHand: 30 });
+check("#6 SKU-003 turns (Y / U)", T2.turns, 7.3);
+check("#6 SKU-003 product turns match the shop maths", T2.pTurns, 7.3);
+check("#6 SKU-003 days of stock (P)", T2.pDays, 50);
+check("#6 SKU-003 not overstock", T2.overstock, 0);
+const T3 = P.inventoryTurnover({ cogsYear: 0, stockValue: 0, daily: 0, onHand: 6 });
+check("#6 SKU-005 no sales: turns 0, no error", T3.turns, 0);
+check("#6 SKU-005 flagged no sales", T3.noSales, 1);
+check("#6 blank stock value flagged", T3.noStock, 1);
 // STR break-even nights (lite page; expected values worked by hand in Python, Oct 8, 2026)
 const B1 = P.strBreakEven({ fixed: 2400, rate: 185, cleanKept: 20, stay: 3, fee: 15.5 });
 check("STR break-even: payout per booked night", B1.perNight, 162.99167);

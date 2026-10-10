@@ -525,6 +525,46 @@ PNF.wire(f,M);window.PNF_MODEL=M;})();</script>"""
     return form, results, script
 
 
+def inventory_turnover_page(p):
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>Your whole shop</legend>
+{field("cogsYear", "Cost of goods sold, last 12 months", d["cogsYear"], "What the units you sold cost you, not what you sold them for", pre="$")}
+{field("stockValue", "Stock on hand, valued at cost", d["stockValue"], "Units on hand x what you paid per unit, for every product", pre="$")}
+</fieldset>
+<fieldset><legend>Check one product</legend>
+{field("daily", "Units sold per day", d["daily"], "Units sold in the last 30 days, divided by 30")}
+{field("onHand", "Units on hand", d["onHand"])}
+{field("overDays", "Overstock at this many days of stock", d["overDays"], "The workbook's default is 120")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Inventory turns a year</div><div class="val"><span data-out="turns" data-fmt="dec1">0.0</span></div><div class="sub">Cost of goods sold / stock at cost</div></div>
+<div class="tile"><div class="lab">Days to sell through your stock</div><div class="val"><span data-out="days" data-fmt="dec1">0.0</span></div><div class="sub">365 / turns</div></div>
+</div>
+<ul class="lines">
+<li><span>Cost of goods sold per day</span><span data-out="perDay">$0</span></li>
+<li><span>Cost of goods sold per month</span><span data-out="perMonth">$0</span></li>
+<li><span>This product: days of stock</span><span data-out="pDays" data-fmt="dec1">0.0</span></li>
+<li><span>This product: turns a year</span><span data-out="pTurns" data-fmt="dec1">0.0</span></li>
+<li class="total"><span>This product</span><span data-out="statusText" data-fmt="text">-</span></li>
+</ul>
+<div class="callout warn" data-show-if="noStock > 0">Type your stock value at cost above zero to see your turns.</div>
+<div class="callout warn" data-show-if="noCogs > 0">Type your cost of goods sold for the last 12 months to see your turns.</div>
+<div class="callout warn" data-show-if="overstock > 0">This product has <b data-out="pDays" data-fmt="dec1">0.0</b> days of stock, at or over your <b data-out="over" data-fmt="int">0</b>-day line. Stop reordering it until it sells down.</div>
+<div class="callout" data-show-if="okP > 0">This product has <b data-out="pDays" data-fmt="dec1">0.0</b> days of stock, under your <b data-out="over" data-fmt="int">0</b>-day overstock line.</div>
+<div class="callout warn" data-show-if="noSales > 0">Type units sold per day above zero to check a product. With no sales, its stock is not turning at all.</div>
+<div class="callout warn" data-show-if="soldOut > 0">No units on hand: this product is sold out. Check its reorder point.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Turns <b data-out="turns" data-fmt="dec1">0.0</b></span><span>Days <b data-out="days" data-fmt="dec1">0.0</b></span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.inventoryTurnover in assets/pnf-calc.js, the 1 Your Shop turnover rows and 2 SKU List of engines/cash-aware-reorder-planner (#6). */
+var M=PNF.inventoryTurnover;
+PNF.wire(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
 def str_breakeven_page(p):
     d = p["defaults"]
     form = f"""<form class="card" id="calc" novalidate>
@@ -703,7 +743,8 @@ PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashfl
               "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
               "reorder_point": reorder_point_page, "str_breakeven": str_breakeven_page,
               "rental_cash_flow": rental_cash_flow_page,
-              "business_expense": business_expense_page, "se_tax": se_tax_page}
+              "business_expense": business_expense_page, "se_tax": se_tax_page,
+              "inventory_turnover": inventory_turnover_page}
 
 
 def page_html(p):

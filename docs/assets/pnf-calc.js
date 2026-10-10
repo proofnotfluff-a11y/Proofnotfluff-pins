@@ -4,6 +4,7 @@
    etsyFees: engines/etsy-true-profit (#5); craftFair: engines/craft-fair-profit (#12);
    strNightly: engines/str-nightly-pricing (#9); debtPayoff: engines/debt-payoff-tracker (#16);
    shippingCost: engines/shipping-true-cost (#7); reorderPoint: engines/cash-aware-reorder-planner (#6);
+   inventoryTurnover: engines/cash-aware-reorder-planner (#6), 1 Your Shop turnover rows and 2 SKU List days of stock;
    strBreakEven: the #9 fee stack (engines/str-nightly-pricing), break-even nights for the STR lite page;
    rentalCashFlow: engines/rental-property (#19), 4 Property P&L profit and cash flow rows.
    businessExpense: engines/business-expense-tracker (#18), Summary tab income, expenses and profit rows.
@@ -385,8 +386,27 @@
       capped: owes && earnings > room ? 1 : 0, under: net > 0 && !owes ? 1 : 0, noNet: net > 0 ? 0 : 1, pos: se > 0 ? 1 : 0 };
   }
 
+  // #6 Cash-Aware Reorder Planner (engines/cash-aware-reorder-planner): 1 Your Shop TURNOVER rows
+  // (turns = cost of goods a year / stock value at cost; days = 365 / turns) and 2 SKU List days of stock (P),
+  // with the OVERSTOCK rule (days of stock at or above the overstock days, 120 by default).
+  function inventoryTurnover(i) {
+    var cogs = Math.max(0, num(i.cogsYear)), stock = Math.max(0, num(i.stockValue)), daily = Math.max(0, num(i.daily)), onHand = Math.max(0, num(i.onHand));
+    var over = num(i.overDays) > 0 ? num(i.overDays) : 120;
+    var turns = stock > 0 ? cogs / stock : 0;
+    var days = turns > 0 ? 365 / turns : 0;
+    var pDays = daily > 0 ? onHand / daily : 0;
+    var pTurns = daily > 0 && onHand > 0 ? 365 * daily / onHand : 0;
+    var overstock = daily > 0 && onHand > 0 && pDays >= over ? 1 : 0;
+    var noSales = daily > 0 ? 0 : 1;
+    var status = noSales ? "No sales" : onHand <= 0 ? "Sold out" : overstock ? "Overstock: stop reordering" : "OK";
+    return { turns: turns, days: days, perDay: cogs / 365, perMonth: cogs / 12, pDays: pDays, pTurns: pTurns,
+      over: over, overstock: overstock, noSales: noSales, soldOut: !noSales && onHand <= 0 ? 1 : 0,
+      okP: !noSales && onHand > 0 && !overstock ? 1 : 0, statusText: status,
+      noStock: stock > 0 ? 0 : 1, noCogs: stock > 0 && cogs <= 0 ? 1 : 0, shopOk: stock > 0 && cogs > 0 ? 1 : 0 };
+  }
+
   var api = { seTax: seTax, hourly: hourly, service: service, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
-    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, num: num, money: money, ceilTo: ceilTo,
+    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;
 })(this);

@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-09",
+ "updated": "2026-10-10",
  "pages": [
   {
    "slug": "house-cleaning-price-calculator",
@@ -1773,6 +1773,74 @@
    "number_sources": [
     "engines/service-pricing/build_xlsx.py EX and COSTS ($545 a month); storefront job from engines/service-pricing/compare_map.json case 'edit presets, add a job, log a job' (1.25 h, 1 person, $4, 12 miles); the two house jobs are new starting points.",
     "node docs/assets/pnf-calc.test.js: break-even 54.80; floors 103.53, 196.72, 483.83; quotes 125, 235, 570."
+   ]
+  },
+  {
+   "slug": "inventory-turnover-calculator",
+   "kind": "inventory_turnover",
+   "draft": true,
+   "title": "Inventory Turnover Calculator for Small Shops: Turns a Year and Days of Stock | ProofNotFluff",
+   "desc": "Free inventory turnover calculator for small businesses. Type your cost of goods sold and your stock value at cost to see how many times your stock turns a year and how many days it takes to sell through, then check one product for overstock.",
+   "eyebrow": "Free calculator",
+   "h1": "Inventory Turnover Calculator",
+   "lede": "See how fast your stock turns into sales. Type what the goods you sold cost you and what your shelves hold at cost, and see your turns a year and your days to sell through. Then check one product against an overstock line. Free, no sign-up.",
+   "card": "Inventory turns a year, days to sell through, and an overstock check for one product.",
+   "segment": "small-business",
+   "product": "6",
+   "defaults": {
+    "cogsYear": "70,404.85",
+    "stockValue": "3,368.90",
+    "daily": "0.9",
+    "onHand": "130",
+    "overDays": "120"
+   },
+   "method": [
+    "Inventory turns = cost of goods sold for a year / the value of your stock at cost. Use cost on both sides: what you paid for the units you sold, and what you paid for the units still on hand. Mixing in sale prices makes the number look better than it is.",
+    "Days to sell through = 365 / turns. It is how long your current stock would last at the pace you sold over the year.",
+    "For one product, days of stock = units on hand / units sold per day, and its turns a year = 365 x units sold per day / units on hand. A product at or over your overstock line (120 days by default, the workbook's setting) reads Overstock: stop reordering it until it sells down.",
+    "The workbook works out cost of goods a year from each product's current daily sales x unit cost x 365, so its turns follow your recent pace. This page takes your last 12 months instead. Read the direction over time rather than one number: falling turns with rising stock value means cash is piling up on shelves."
+   ],
+   "example": "Take the sample shop in the Cash-Aware Reorder Planner workbook: 16 products holding $3,368.90 of stock at cost, with cost of goods sold of $70,404.85 a year at its current pace. That is 70,404.85 / 3,368.90 = 20.9 turns a year, or 365 / 20.9 = 17.5 days to sell through. One product tells a different story: the quilted pot holders have 130 on hand and sell 0.9 a day, which is 144.4 days of stock and about 2.5 turns a year, over the 120-day line, so the workbook marks them Overstock. The ceramic ring dish, 30 on hand at 0.6 a day, has 50 days of stock and turns 7.3 times a year. These are the sample shop's numbers in the workbook.",
+   "cta": {
+    "title": "Every product, every supplier, and the cash to pay for it",
+    "bullets": [
+     "The Cash-Aware Reorder Planner runs this turnover check for your whole shop in Excel and Google Sheets:",
+     "up to 30 products with days of stock and status for each, a reorder plan in priority order, purchase orders by supplier, a cash check for what to order now and what to defer, and a dead stock list. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4585004344"
+   },
+   "faq": [
+    [
+     "How do you calculate inventory turnover?",
+     "Divide your cost of goods sold for a year by the value of your stock at cost. A shop with $70,404.85 of cost of goods sold and $3,368.90 of stock at cost turns its stock 20.9 times a year."
+    ],
+    [
+     "How do I turn inventory turnover into days?",
+     "Divide 365 by your turns. At 20.9 turns a year, stock lasts about 17.5 days on the shelf."
+    ],
+    [
+     "What is a good inventory turnover?",
+     "It depends on what you sell and how you buy it. Compare your own number month to month: rising turns mean stock sells faster, and falling turns with growing stock mean cash is sitting on shelves."
+    ],
+    [
+     "Should I use cost or sale price?",
+     "Cost, on both sides. Cost of goods sold is what you paid for the units you sold, and stock value is what you paid for the units still on hand."
+    ],
+    [
+     "What does overstock mean here?",
+     "A product with more days of stock than your overstock line, 120 days by default. At 0.9 sold a day, 130 on hand lasts 144.4 days, so the advice is to stop reordering it until it sells down."
+    ],
+    [
+     "Is this financial or accounting advice?",
+     "No. It is a planning estimate from the numbers you enter. Your bookkeeper or tax preparer decides how inventory is valued in your books."
+    ]
+   ],
+   "sources": "Every default is the sample shop in the Cash-Aware Reorder Planner workbook (built and recalculated Oct 10, 2026); the formulas are the workbook's own 1 Your Shop turnover rows and 2 SKU List columns. No outside rates are used.",
+   "number_sources": [
+    "$3,368.90 stock value at cost, $70,404.85 yearly cost of goods sold, 20.8985 turns, 17.4654 days: recalculated 1 Your Shop I15, I26, I27, I28 (Oct 10, 2026).",
+    "SKU-009 pot holders: 130 on hand, 0.9 a day, 144.44 days of stock, OVERSTOCK at 120: 2 SKU List J, N, P and engine EX over=120.",
+    "SKU-003 ring dish: 30 on hand, 0.6 a day, 50 days, $678.90 / $93.00 = 7.3 turns: 2 SKU List J, N, P, U, Y."
    ]
   }
  ]

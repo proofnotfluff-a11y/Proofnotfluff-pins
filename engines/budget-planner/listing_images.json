@@ -1,0 +1,228 @@
+{
+ "base": "/tmp/claude-0/-home-claude-proofnotfluff-pins/b719cba6-919b-51b2-b9f8-9cac0bbb7979/scratchpad/bp/r1",
+ "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+ "images": [
+  {
+   "type": "cover",
+   "eyebrow": "BUDGET PLANNER SPREADSHEET",
+   "title": "See what's left to spend this month.",
+   "sub": "A plain monthly budget: plan once, log the month, read the answer.",
+   "shot": "04-3-Month.png",
+   "crop": [
+    0,
+    0,
+    1,
+    0.1272
+   ],
+   "badges": [
+    "Excel + Google Sheets",
+    "Instant download",
+    "No password"
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "THE WORKED EXAMPLE",
+   "title": "Every line against its plan.",
+   "sub": "Example September: Electric came in at $127.44 against $120.00, so it shows Over plan and -$7.44 left. Every bill, spend and saving gets a row like this.",
+   "shot": "04-3-Month.png",
+   "crop": [
+    0,
+    0.168,
+    1,
+    0.33
+   ]
+  },
+  {
+   "type": "steps",
+   "eyebrow": "HOW IT WORKS",
+   "title": "Three steps.",
+   "steps": [
+    {
+     "head": "Plan once",
+     "text": "Pay, bills, spending, savings.",
+     "shot": "02-1-Setup.png",
+     "crop": [
+      0,
+      0.035,
+      1,
+      0.08
+     ]
+    },
+    {
+     "head": "Log the month",
+     "text": "What came in, what went out.",
+     "shot": "03-2-Actuals.png",
+     "crop": [
+      0,
+      0.09,
+      0.575,
+      0.2
+     ]
+    },
+    {
+     "head": "Read the answer",
+     "text": "Left to spend, line by line.",
+     "shot": "04-3-Month.png",
+     "crop": [
+      0,
+      0.03,
+      1,
+      0.08
+     ]
+    }
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "SETUP TAB",
+   "title": "Plan once, on any pay schedule.",
+   "sub": "Example: $1,950.00 every 2 weeks and $1,400.00 twice a month become $7,275.00 a month, with $931.00 left to plan.",
+   "shot": "02-1-Setup.png",
+   "crop": [
+    0,
+    0,
+    1,
+    0.265
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "BILLS BY DUE DATE",
+   "title": "Every bill in due-date order.",
+   "sub": "Sorted by the due day you type on Setup. A bill shows Paid once its actual is in for the month.",
+   "shot": "04-3-Month.png",
+   "crop": [
+    0,
+    0.54,
+    1,
+    0.69
+   ],
+   "trim": true
+  },
+  {
+   "type": "shot",
+   "eyebrow": "ACTUALS TAB",
+   "title": "Type what really happened.",
+   "sub": "One column per month. Paid every 2 weeks, the example household got a third paycheck in January: $8,830.00 came in.",
+   "shot": "03-2-Actuals.png",
+   "crop": [
+    0,
+    0.085,
+    0.575,
+    0.29
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "YEAR TAB",
+   "title": "The whole year at a glance.",
+   "sub": "Example, January to September: $66,225 in, $56,912 out, $9,313 left over. Bars show each month against the plan.",
+   "shot": "05-4-Year.png",
+   "crop": [
+    0,
+    0,
+    0.52,
+    0.43
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "IS THIS FOR YOU?",
+   "title": "Made for a plain monthly budget.",
+   "columns": [
+    {
+     "head": "Made for",
+     "mark": "check",
+     "items": [
+      "Anyone who wants one simple monthly budget",
+      "Paid weekly, every 2 weeks, twice a month or monthly",
+      "Households with bills on different due days",
+      "Excel or Google Sheets users, no add-ons"
+     ]
+    },
+    {
+     "head": "Not for",
+     "mark": "x",
+     "items": [
+      "Bank syncing or automatic imports",
+      "Business bookkeeping or taxes",
+      "Investment or debt advice"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "HOW YOU GET IT",
+   "title": "Instant download. Opens in Excel or Google Sheets.",
+   "columns": [
+    {
+     "head": "What you get",
+     "mark": "check",
+     "items": [
+      "A blank planner and a filled-in example",
+      "Start Here guide as a PDF, US Letter and A4",
+      "Made for Excel; checked in Google Sheets and LibreOffice",
+      "No macros, no passwords, no sign-up"
+     ]
+    },
+    {
+     "head": "How to download",
+     "mark": "check",
+     "items": [
+      "Buy, then open Etsy in a web browser",
+      "Go to You, then Purchases, and download",
+      "The Etsy app can't download digital files",
+      "Message the shop on Etsy if anything won't open"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "inside",
+   "eyebrow": "ONE DOWNLOAD",
+   "title": "What's inside",
+   "tabs": [
+    {
+     "name": "Setup",
+     "shot": "02-1-Setup.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.5
+     ]
+    },
+    {
+     "name": "Month",
+     "shot": "04-3-Month.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.5
+     ]
+    },
+    {
+     "name": "Year",
+     "shot": "05-4-Year.png",
+     "crop": [
+      0,
+      0,
+      0.52,
+      0.45
+     ]
+    }
+   ],
+   "items": [
+    "Left to spend for any month you pick",
+    "Every line against its plan, over-plan lines flagged",
+    "Bills in due-date order with paid status",
+    "Any pay schedule turned into a monthly amount",
+    "Blank planner plus a worked example",
+    "Start Here PDF in Letter and A4"
+   ]
+  }
+ ]
+}

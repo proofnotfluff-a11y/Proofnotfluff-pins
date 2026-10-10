@@ -1,0 +1,36 @@
+{
+ "xlsx": "Budget-Planner-EXAMPLE.xlsx",
+ "sheet": "3 Month",
+ "crop": [
+  0,
+  0.003,
+  1,
+  0.16
+ ],
+ "dpi": 220,
+ "eyebrow": "BUDGET PLANNER SPREADSHEET",
+ "size": [
+  2160,
+  1080
+ ],
+ "states": [
+  {
+   "caption": "Example September: {C7} left to spend.",
+   "hold": 3.4
+  },
+  {
+   "set": {
+    "2 Actuals!M37": 946.4
+   },
+   "caption": "Groceries $100 higher: {C7}, over the plan.",
+   "hold": 3.6
+  },
+  {
+   "set": {
+    "3 Month!E14": "Jun"
+   },
+   "caption": "Pick June: {C7} left to spend.",
+   "hold": 3.6
+  }
+ ]
+}

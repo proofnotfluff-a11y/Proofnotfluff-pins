@@ -1,0 +1,119 @@
+{
+  "product_id": "20",
+  "listing_id": "4589695837",
+  "product": "Hourly Rate Quick Calculator",
+  "tab": "Calculator",
+  "audience": "Freelancers and solo service businesses",
+  "hookId": "H02",
+  "series": "Flagship #20 (SALES FIRST, Oct 8); H02 lowball correction on the $40 rate (benchmark: $40 hourly Short, 1,001 views); CMO slate Oct 10 pm",
+  "voice": "am_michael",
+  "hook": "$40 an hour leaves you <b>$29,940</b> short",
+  "hook_say": "Charge $40 an hour and you end the year $29,940 short of a $60,000 take-home.",
+  "rows": [
+    {
+      "label": "Take-home pay you want",
+      "value": "$60,000 a year",
+      "input": true,
+      "say": "You want $60,000 a year",
+      "why": "The calculator's example goal: $60,000 a year after tax and costs."
+    },
+    {
+      "label": "The rate you charge",
+      "value": "$40 an hour",
+      "input": true,
+      "say": "You charge $40 an hour",
+      "why": "Type any rate into the check line. The example checks $40."
+    },
+    {
+      "label": "Hours clients pay for",
+      "value": "1,152 hrs a year",
+      "input": true,
+      "say": "Clients pay for 1,152 hours a year",
+      "why": "48 weeks of 40 hours is 1,920 hours worked. At 60% billable, clients pay for 1,152 of them."
+    },
+    {
+      "label": "Money in at $40 an hour",
+      "value": "$46,080",
+      "result": true,
+      "say": "That brings in $46,080",
+      "why": "$40 times 1,152 paid hours."
+    },
+    {
+      "label": "Costs and tax set-aside",
+      "value": "-$16,020",
+      "result": true,
+      "say": "Costs and tax take $16,020",
+      "why": "$6,000 of yearly business costs plus a 25% tax set-aside of $10,020."
+    },
+    {
+      "label": "What you take home",
+      "value": "$30,060",
+      "result": true,
+      "say": "You take home $30,060",
+      "why": "$46,080 less $16,020. That is $15.66 for each hour you actually work."
+    },
+    {
+      "label": "Short of your $60,000",
+      "value": "-$29,940",
+      "result": true,
+      "kind": "bad",
+      "say": "So you are $29,940 short",
+      "why": "The check line says it plainly: short of your take-home goal by $29,940 a year."
+    }
+  ],
+  "fix": {
+    "label": "Hourly rate for $60,000",
+    "value": "$74.65",
+    "say": "You need $74.65 an hour",
+    "why": "$86,000 of revenue needed over 1,152 paid hours: $74.65 an hour, $75 on a rate card."
+  },
+  "cta": {
+    "title": "Hourly Rate Quick Calculator",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Search ProofNotFluff for the free hourly rate calculator and the full workbook.",
+    "what": "Free calculator online. Full workbook $2.99 for Excel and Google Sheets"
+  },
+  "note": "Example numbers from the calculator. Estimates, not tax advice.",
+  "sources": [
+    {
+      "number": "$60,000",
+      "source": "Calculator D15 (example input)"
+    },
+    {
+      "number": "$40",
+      "source": "Calculator D27 (example rate to check)"
+    },
+    {
+      "number": "1,152 hrs",
+      "source": "Calculator I20 1,152; I19 1,920; D19 48, D20 40, D21 60%"
+    },
+    {
+      "number": "$46,080",
+      "source": "Calculator D28"
+    },
+    {
+      "number": "-$16,020",
+      "source": "Calculator D29 -6,000 + D30 -10,020"
+    },
+    {
+      "number": "$30,060",
+      "source": "Calculator D31; D32 $15.66 per hour worked"
+    },
+    {
+      "number": "-$29,940",
+      "source": "Calculator C33 'Short of your take-home goal by $29,940 a year'; H8"
+    },
+    {
+      "number": "$74.65",
+      "source": "Calculator I21 74.6528, I17 86,000"
+    }
+  ],
+  "sources_build": "python3 engines/hourly-rate-quick-calculator/build_xlsx.py (the listed #20 build), recalculated in LibreOffice headless Oct 10, 2026, 5:40 am; matches products/20 pinFacts ($30,060, $15.66, $74.65).",
+  "post": {
+    "short_title": "$40 an hour leaves you $29,940 short #Shorts",
+    "youtube_description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/20/\nhttps://proofnotfluff-a11y.github.io/Proofnotfluff-pins/hourly-rate-calculator/\nA $60,000 take-home goal, $6,000 of yearly costs, a 25% tax set-aside, and clients paying for 1,152 of your 1,920 hours. At $40 an hour you bring in $46,080 and take home $30,060: $29,940 short. The rate that gets there is $74.65. Example numbers from the Hourly Rate Quick Calculator; estimates, not tax advice.\n\n#Shorts",
+    "reel_caption": "$40 an hour leaves you $29,940 short of a $60,000 year. Clients pay for 1,152 hours, so $40 brings in $46,080; costs and a 25% tax set-aside leave $30,060. The rate that gets you there: $74.65. Example numbers from the Hourly Rate Quick Calculator.\n\nLink in bio: proofnotfluff.etsy.com\n\n#freelancetips #hourlyrate #smallbusinesstips #pricingstrategy",
+    "tiktok_caption": "$40 an hour leaves you $29,940 short of a $60,000 year. Example numbers from the Hourly Rate Quick Calculator. Search ProofNotFluff on Etsy. #freelancetips #hourlyrate #smallbusinesstips #pricingstrategy"
+  }
+}

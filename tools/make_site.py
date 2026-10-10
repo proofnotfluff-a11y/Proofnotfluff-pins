@@ -663,12 +663,47 @@ PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
     return form, results, script
 
 
+def se_tax_page(p):
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>Your self-employment year</legend>
+{field("net", "Net profit from self-employment", d["net"], "Income from clients and sales less business expenses (Schedule C line 31)", pre="$")}
+{field("wages", "W-2 wages from a job, if any", d["wages"], "Box 3 of your W-2s. They use up part of the Social Security limit", pre="$")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Self-employment tax</div><div class="val" data-out="se">$0</div><div class="sub"><span data-pct="share">0%</span> of your net profit</div></div>
+<div class="tile"><div class="lab">A quarter of it</div><div class="val" data-out="quarter">$0</div><div class="sub">to set aside for each estimated payment</div></div>
+</div>
+<ul class="lines">
+<li><span>Net profit</span><span data-out="net">$0</span></li>
+<li><span>Net earnings (92.35% of profit)</span><span data-out="earnings">$0</span></li>
+<li><span>Social Security part, 12.4%</span><span data-out="ssPart">$0</span></li>
+<li><span>Medicare part, 2.9%</span><span data-out="medPart">$0</span></li>
+<li class="total"><span>Self-employment tax</span><span data-out="se">$0</span></li>
+<li><span>Half you can deduct from income</span><span data-out="half">$0</span></li>
+<li><span>About a month</span><span data-out="month">$0</span></li>
+</ul>
+<div class="callout" data-show-if="pos > 0">Self-employment tax of <b data-out="se">$0</b> comes before any income tax. Setting aside <b data-out="month">$0</b> a month covers it.</div>
+<div class="callout" data-show-if="capped > 0">Part of your earnings is above the 2026 Social Security limit of $184,500 (less your W-2 wages), so only the 2.9% Medicare part applies to that part.</div>
+<div class="callout warn" data-show-if="under > 0">Net earnings under $400 (92.35% of profit): no self-employment tax is due for the year.</div>
+<div class="callout warn" data-show-if="noNet > 0">Type your net profit to see your self-employment tax. A loss means none is due.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>SE tax <b data-out="se">$0</b></span><span>A quarter <b data-out="quarter">$0</b></span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.seTax in assets/pnf-calc.js, Schedule SE with the 2026 Social Security wage base. */
+var M=PNF.seTax;
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
 PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashflow_page,
               "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
               "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
               "reorder_point": reorder_point_page, "str_breakeven": str_breakeven_page,
               "rental_cash_flow": rental_cash_flow_page,
-              "business_expense": business_expense_page}
+              "business_expense": business_expense_page, "se_tax": se_tax_page}
 
 
 def page_html(p):

@@ -242,11 +242,33 @@ check("#20 case C minimum rate (I21)", hc.rate, 101.42);
 check("#20 case C take-home at $120 (D31)", hc.keep, 108024);
 check("#20 case C quote, 2.5 h at $105 plus $100 (I43)", hc.quote, 362.5);
 check("#20 case C rate at 60% billed (I32)", hc.rateAt60, 118.33);
+// Self-employment tax (Schedule SE arithmetic; hand-computed Oct 9, 2026 with the 2026 wage base $184,500)
+const SE1 = P.seTax({ net: 15570, wages: 0 });  // #21 example: $15,570 received in 2026, treated as net profit
+check("SE tax on #21's $15,570", SE1.se, 2199.97);
+check("SE net earnings 92.35%", SE1.earnings, 14378.90);
+check("SE deductible half", SE1.half, 1099.99);
+check("SE a quarter", SE1.quarter, 549.99);
+const SE2 = P.seTax({ net: 70394, wages: 0 });  // #13 example profit before tax ($70,394): 15.3% x 92.35% = 14.13%
+check("SE tax on #13's $70,394 profit", SE2.se, 70394 * 0.153 * 0.9235);
+const SE3 = P.seTax({ net: 250000, wages: 0 });
+check("SE Social Security capped at $184,500", SE3.ssPart, 22878);
+check("SE tax above the wage base", SE3.se, 29573.38);
+check("SE above base flagged", SE3.capped, 1);
+const SE4 = P.seTax({ net: 100000, wages: 150000 });
+check("SE with $150,000 of W-2 wages", SE4.se, 6956.15);
+const SE5 = P.seTax({ net: 400, wages: 0 });
+check("SE under $400 of net earnings owes nothing", SE5.se, 0);
+check("SE under $400 flagged", SE5.under, 1);
+check("SE loss owes nothing", P.seTax({ net: -500 }).se, 0);
+// Window cleaning page: #13 engine with the compare_map storefront job (1.25 h, 1 person, $4, 12 miles)
+const W1 = P.service({ takeHome: 52000, weeks: 48, hours: 45, paidShare: 65, incomeTax: 12, margin: 15, monthlyCosts: 545,
+  perMile: 0.76, mph: 30, jobHours: 1.25, people: 1, supplies: 4, miles: 12 });
+console.log("info window storefront floor", W1.floor.toFixed(2), "quote", W1.quote);
 // blank inputs never produce NaN or Infinity
 const b = P.service({});
 const bh = P.hourly({});
 const bc = P.cashflow({});
-const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({}), P.businessExpense({})]
+const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({}), P.businessExpense({}), P.seTax({})]
   .flatMap(o => Object.values(o)).filter(v => typeof v === "number");
 const bad = [...Object.values(b), ...Object.values(bh), ...Object.values(bc), ...more].filter(v => !isFinite(v));
 if (bad.length) { fails++; console.log("FAIL blank inputs give non-finite values"); } else console.log("ok   blank inputs stay finite");

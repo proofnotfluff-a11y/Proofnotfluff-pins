@@ -7,6 +7,8 @@
    strBreakEven: the #9 fee stack (engines/str-nightly-pricing), break-even nights for the STR lite page;
    rentalCashFlow: engines/rental-property (#19), 4 Property P&L profit and cash flow rows.
    businessExpense: engines/business-expense-tracker (#18), Summary tab income, expenses and profit rows.
+   seTax: Schedule SE arithmetic (the SE_RATE and SE_BASE the #13 engine grosses up for), with the 2026 Social Security
+   wage base; links #21 (Freelance Income Tracker), whose set-aside notes cite the same IRS and SSA figures.
    Tested against the workbooks' own example outputs in docs/assets/pnf-calc.test.js. */
 (function (root) {
   "use strict";
@@ -366,7 +368,24 @@
       noIncome: income > 0 ? 0 : 1, noMonths: income > 0 && m === 0 ? 1 : 0, hasOff: equipment + draw > 0 ? 1 : 0 };
   }
 
-  var api = { hourly: hourly, service: service, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
+  // Self-employment tax, Schedule SE: net earnings = 92.35% of net profit; none owed under $400 of net earnings;
+  // 12.4% Social Security on net earnings up to the 2026 wage base less W-2 wages already taxed, 2.9% Medicare on all.
+  // Half is an adjustment to income. Additional Medicare Tax (0.9%, Form 8959) is not included.
+  var SS_BASE_2026 = 184500;
+  function seTax(i) {
+    var net = num(i.net), wages = Math.max(0, num(i.wages));
+    var earnings = net > 0 ? net * SE_BASE : 0;
+    var owes = earnings >= 400 ? 1 : 0;
+    var room = Math.max(0, SS_BASE_2026 - wages);
+    var ssPart = owes ? 0.124 * Math.min(earnings, room) : 0;
+    var medPart = owes ? 0.029 * earnings : 0;
+    var se = ssPart + medPart;
+    return { net: net, earnings: earnings, ssPart: ssPart, medPart: medPart, se: se, half: se / 2,
+      quarter: se / 4, month: se / 12, share: net > 0 ? se / net : 0, room: room,
+      capped: owes && earnings > room ? 1 : 0, under: net > 0 && !owes ? 1 : 0, noNet: net > 0 ? 0 : 1, pos: se > 0 ? 1 : 0 };
+  }
+
+  var api = { seTax: seTax, hourly: hourly, service: service, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
     strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;

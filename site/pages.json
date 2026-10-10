@@ -1623,6 +1623,157 @@
     ]
    ],
    "sources": "Tax set-aside is your own estimate; ask your tax preparer. Maths from the Hourly Rate Quick Calculator workbook, recalculated Oct 9, 2026."
+  },
+  {
+   "slug": "self-employment-tax-calculator",
+   "kind": "se_tax",
+   "draft": true,
+   "title": "Self-Employment Tax Calculator 2026: Your Schedule SE Number in Seconds | ProofNotFluff",
+   "desc": "Free self-employment tax calculator for 2026. Enter your net profit and any W-2 wages to see your Schedule SE tax, the half you can deduct, and how much to set aside each quarter.",
+   "eyebrow": "Free calculator",
+   "h1": "Self-Employment Tax Calculator",
+   "lede": "Freelancers, contractors and side hustlers pay Social Security and Medicare on their own profit. Enter your net profit for 2026 to see the self-employment tax, the half you can deduct, and a quarter of it to set aside for each estimated payment. Free, no sign-up.",
+   "card": "Your 2026 self-employment tax, the deductible half and a quarterly set-aside.",
+   "segment": "freelancers",
+   "product": "21",
+   "defaults": {
+    "net": "15,570",
+    "wages": "0"
+   },
+   "method": [
+    "Self-employment tax is 15.3%: 12.4% for Social Security and 2.9% for Medicare. It is charged on your net earnings, which are 92.35% of your net profit, and you owe it once net earnings reach $400 (IRS Topic 554 and Schedule SE).",
+    "The 12.4% Social Security part stops at $184,500 of 2026 earnings (SSA). W-2 wages you earned at a job count toward that limit first, so the calculator takes them off before it applies 12.4%. The 2.9% Medicare part has no limit.",
+    "Half of the tax is an adjustment to income on your Form 1040, so it lowers your income tax but not the self-employment tax itself. The quarterly figure is the tax divided by four. Income tax comes on top, and the 0.9% Additional Medicare Tax on high earners is not included."
+   ],
+   "example": "The Freelance Income Tracker's fictional sample designer received $15,570 in 2026. Say none of it went to business expenses, so net profit is $15,570. Net earnings are 92.35% of that, $14,378.90. Social Security at 12.4% is $1,782.98 and Medicare at 2.9% is $416.99, so the self-employment tax is $2,199.97, about 14.1% of profit. Half of it, $1,099.99, comes off income on the 1040. A quarter of it, $549.99, is the set-aside for each of the four 2026 estimated payments (Apr 15, Jun 15 and Sep 15, 2026 and Jan 15, 2027), before any income tax.",
+   "cta": {
+    "title": "Track what came in and what to set aside",
+    "bullets": [
+     "The Freelance Income Tracker for Excel and Google Sheets logs every invoice and payment in one tab:",
+     "income by month, what clients still owe you, and a set-aside at the rate you choose, split into the four IRS payment periods with their due dates. $2.99, instant download."
+    ],
+    "button": "Get the tracker on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4589995309"
+   },
+   "faq": [
+    [
+     "How much is self-employment tax in 2026?",
+     "15.3% of your net earnings, which are 92.35% of your net profit. That works out to about 14.1% of profit. Above $184,500 of earnings only the 2.9% Medicare part applies."
+    ],
+    [
+     "Do I pay self-employment tax if I also have a W-2 job?",
+     "Yes, on your self-employment profit. Your W-2 wages use up part of the $184,500 Social Security limit first, so if wages plus self-employment earnings pass that limit, less of your profit gets the 12.4% part."
+    ],
+    [
+     "Is there a minimum before I owe it?",
+     "Yes. If your net earnings (92.35% of net profit) are under $400 for the year, no self-employment tax is due (IRS Topic 554)."
+    ],
+    [
+     "Is self-employment tax the same as income tax?",
+     "No. It is Social Security and Medicare for people who work for themselves. Income tax is separate and comes on top. Half of the self-employment tax is deducted from income before income tax is figured."
+    ],
+    [
+     "When do I pay it?",
+     "Through estimated tax payments. For 2026 they are due Apr 15, Jun 15 and Sep 15, 2026 and Jan 15, 2027 (IRS Form 1040-ES). Your total estimated payment also has to cover income tax."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is the Schedule SE arithmetic on the numbers you type. Farm income, church employee income and the Additional Medicare Tax are not covered. Check your own return with a tax professional."
+    ]
+   ],
+   "sources": "IRS Topic 554 and Schedule SE: 15.3% on 92.35% of net profit, $400 minimum (checked Oct 6, 2026). IRS Self-employment tax page: 12.4% Social Security plus 2.9% Medicare (checked Oct 8, 2026). SSA: 2026 contribution and benefit base $184,500 (press release Oct 24, 2025; checked Oct 7, 2026). IRS 2026 Form 1040-ES due dates (checked Oct 7, 2026). Example figures are the fictional sample in the Freelance Income Tracker workbook.",
+   "number_sources": [
+    "engines/freelance-income-tracker/listing.md and products/21 pinFacts: $15,570 received in 2026.",
+    "research/rule-watch.json self-employment-tax-rate (Oct 8), ssa-wage-base-2026 (Oct 7), irs-estimated-tax-2026-q4 (Oct 7).",
+    "docs/assets/pnf-calc.test.js SE checks: 2,199.97 / 14,378.90 / 1,099.99 / 549.99."
+   ]
+  },
+  {
+   "slug": "window-cleaning-price-calculator",
+   "kind": "service",
+   "draft": true,
+   "title": "Window Cleaning Price Calculator: Quote Storefronts and Homes So They Pay You | ProofNotFluff",
+   "desc": "Free window cleaning price calculator. Enter your pay goal, hours and costs to get your break-even rate, your target rate and a quote for a storefront route stop or a house, drive time included.",
+   "eyebrow": "Free calculator",
+   "h1": "Window Cleaning Price Calculator",
+   "lede": "Price a monthly storefront, an outside-only house or a full inside-and-out job from your own numbers: break-even rate, target rate and a quote with drive time and self-employment tax counted. Free, no sign-up.",
+   "card": "Quote storefront routes and houses from your own costs, drive time included.",
+   "segment": "home-services",
+   "product": "13",
+   "defaults": {
+    "takeHome": "52,000",
+    "weeks": "48",
+    "hours": "45",
+    "paidShare": "65",
+    "monthlyCosts": "545",
+    "incomeTax": "12",
+    "margin": "15",
+    "perMile": "0.76",
+    "mph": "30"
+   },
+   "costs_hint": "Insurance, ladders, poles and squeegees, phone, apps, marketing, fees",
+   "presets": [
+    [
+     "Storefront, monthly",
+     1.25,
+     1,
+     4,
+     12
+    ],
+    [
+     "House, outside only, 1 story",
+     2.5,
+     1,
+     8,
+     20
+    ],
+    [
+     "House, inside and out, 2 story",
+     3.5,
+     2,
+     12,
+     20
+    ]
+   ],
+   "preset_default": 0,
+   "method": [
+    "Many window cleaners price by the pane or by what a competitor charges. Both leave out the hours nobody pays for (driving, quoting, rain days, invoicing), the costs that run every month, and self-employment tax.",
+    "This calculator grosses your take-home up for self-employment tax (15.3% on 92.35% of profit) and your income tax estimate, adds a year of business costs, and spreads the total over the hours customers actually pay for. That is your break-even rate. Your margin on top gives the target rate.",
+    "A job's price floor is everyone's time on site and drive time at the break-even rate, plus vehicle cost per mile and supplies such as solution and scrim. The quote adds your margin and rounds up to the next $5."
+   ],
+   "example": "A $52,000 take-home goal with a 12% income tax estimate needs $70,394 of profit before tax. Add $6,540 a year of business costs and you need $76,934 of revenue. At 48 weeks of 45 hours with 65% paid, that is 1,404 paid hours: a break-even rate of $54.80 and a target of $64.47 with a 15% margin. A monthly storefront stop (1.25 hours, a 12-mile round trip, $4 of supplies) has a $103.53 price floor and quotes at $125, with $21.47 of profit inside it. An outside-only one-story house (2.5 hours, 20 miles, $8 of supplies) quotes at $235, and an inside-and-out two-story house with two people (3.5 hours each, $12 of supplies) at $570. These jobs are starting points, not market prices.",
+   "cta": {
+    "title": "Price every job at once",
+    "bullets": [
+     "The full Service Pricing Calculator workbook uses this same maths for Excel and Google Sheets:",
+     "a quote builder, a printable price sheet with 40 job rows you can fill with your own window jobs, a job tracker that flags jobs below your floor, and 20 example jobs across 7 trades. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4587962930"
+   },
+   "faq": [
+    [
+     "How much should I charge to clean a storefront's windows?",
+     "It depends on your pay goal, your costs, the drive and how long the stop takes you. With the example numbers a 1.25-hour monthly storefront 12 miles round trip needs $125 to pay its share. Enter your own numbers to see yours."
+    ],
+    [
+     "Should I price by the pane or by the hour?",
+     "Either works if the per-pane price comes back to your break-even rate. Time a few jobs, type the hours here, and divide the quote by the panes to get a per-pane price that pays you."
+    ],
+    [
+     "Does it count the drive?",
+     "Yes. Round-trip miles become drive time at your average speed, priced at your break-even rate for everyone on the job, plus vehicle cost per mile. A 12-mile round trip at 30 mph adds 24 minutes."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
+    ]
+   ],
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE; checked Oct 8, 2026). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29; checked Oct 9, 2026).",
+   "number_sources": [
+    "engines/service-pricing/build_xlsx.py EX and COSTS ($545 a month); storefront job from engines/service-pricing/compare_map.json case 'edit presets, add a job, log a job' (1.25 h, 1 person, $4, 12 miles); the two house jobs are new starting points.",
+    "node docs/assets/pnf-calc.test.js: break-even 54.80; floors 103.53, 196.72, 483.83; quotes 125, 235, 570."
+   ]
   }
  ]
 }

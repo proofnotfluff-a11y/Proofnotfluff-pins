@@ -172,6 +172,10 @@ E_TOP = 11
 E_FIRST = E_TOP + 5
 E_LAST = E_FIRST + N_ROWS - 1
 E_CHECK_LAST = E_FIRST + 4999
+# bounded entry ranges: whole columns would include Entries C8 (which reads the Statement) and loop
+RG_C = f"{ENT}!$C${E_FIRST}:$C${E_CHECK_LAST}"
+RG_F = f"{ENT}!$F${E_FIRST}:$F${E_CHECK_LAST}"
+RG_G = f"{ENT}!$G${E_FIRST}:$G${E_CHECK_LAST}"
 C_TOP = 11
 C_FIRST = C_TOP + 5
 C_LAST = C_FIRST + len(CATS) - 1
@@ -218,9 +222,9 @@ for rr in (r_y, r_m):
     st[f"G{rr}"].alignment = Alignment(horizontal="center", vertical="center")
 Y = f"$H${r_y}"
 M = f"$H${r_m}"
-hy = st[f"H{r_y}"]; hy.value = f'=IF($G${r_y}="",YEAR(TODAY()),$G${r_y})'; hy.number_format = YEAR_FMT
+hy = st[f"H{r_y}"]; hy.value = f'=IF(ISNUMBER($G${r_y}),$G${r_y},YEAR(TODAY()))'; hy.number_format = YEAR_FMT
 hm = st[f"H{r_m}"]
-hm.value = f'=IF($G${r_m}="",IF({Y}=YEAR(TODAY()),MONTH(TODAY()),12),MATCH($G${r_m},{ARR_MON},0))'
+hm.value = f'=IF($G${r_m}="",IF({Y}=YEAR(TODAY()),MONTH(TODAY()),12),IFERROR(MATCH($G${r_m},{ARR_MON},0),IF({Y}=YEAR(TODAY()),MONTH(TODAY()),12)))'
 hm.number_format = INT
 for c in (hy, hm):
     c.font = D.f(9, False, "muted"); c.alignment = Alignment(horizontal="center", vertical="center")
@@ -243,8 +247,8 @@ D.status_rule(st, f"C{r_ps}", f"OR({STOCK_ONE},AND({BOTH},NOT({HAS_YTD})))", fil
 
 
 def sumifs(i, m_from, m_to_excl):
-    return (f'IF({catref(i)}="",0,SUMIFS({ENT}!$G:$G,{ENT}!$F:$F,{catref(i)},'
-            f'{ENT}!$C:$C,">="&DATE({Y},{m_from},1),{ENT}!$C:$C,"<"&DATE({Y},{m_to_excl},1)))')
+    return (f'IF({catref(i)}="",0,SUMIFS({RG_G},{RG_F},{catref(i)},'
+            f'{RG_C},">="&DATE({Y},{m_from},1),{RG_C},"<"&DATE({Y},{m_to_excl},1)))')
 
 
 # ---- the statement card
@@ -378,7 +382,7 @@ pill = K.text(f'=IF(COUNT({EA})=0,"No entries yet",IF({FIX}>0,{FIX}&IF({FIX}=1,"
               f'IF(G{k4}>0,"Every row is counted. "&G{k4}&IF(G{k4}=1," row is"," rows are")&" in other years, which is fine","Every row is counted")))',
               size=10, color="ink", bold=True, height=D.GRID_ROW * 2)
 st[f"C{pill}"].alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
-K.text("The checks read the first 5,000 entry rows. Totals read every row.", size=9, color="muted")
+K.text(f"The checks and totals read entry rows {E_FIRST} to {E_CHECK_LAST:,}.", size=9, color="muted")
 K.close()
 D.status_rule(st, f"C{pill}:G{pill}", f"{FIX}>0")
 S.page_break_before(st, K.top)
@@ -490,8 +494,8 @@ def m_cat(i, negative=False, muted=False):
     sign = "-" if negative else ""
     cr = catref(i)
     rr = m_row(f'=IF({cr}="","",{cr})',
-               lambda k, m: (f'={sign}IF({cr}="",0,SUMIFS({ENT}!$G:$G,{ENT}!$F:$F,{cr},{ENT}!$C:$C,">="&DATE({YM},{m},1),'
-                             f'{ENT}!$C:$C,"<"&DATE({YM},{m + 1},1)))'), muted=muted)
+               lambda k, m: (f'={sign}IF({cr}="",0,SUMIFS({RG_G},{RG_F},{cr},{RG_C},">="&DATE({YM},{m},1),'
+                             f'{RG_C},"<"&DATE({YM},{m + 1},1)))'), muted=muted)
     MROW[i] = rr
     return rr
 
@@ -626,7 +630,7 @@ cols_en = [
     dict(col="I", head="Counts as", kind="calc", formula=counts_as),
 ]
 f1, f2, en_end = D.table_card(en, E_TOP, "B", "J", cols_en, N_ROWS, title="Your entries",
-                              sub=f"Yellow columns are yours. Counts as fills in on its own. {N_ROWS:,} rows; the totals read every row.")
+                              sub=f"Yellow columns are yours. Counts as fills in on its own. {N_ROWS:,} rows; the totals read rows {E_FIRST} to {E_CHECK_LAST:,}.")
 assert (f1, f2) == (E_FIRST, E_LAST), (f1, f2)
 for rr in range(E_FIRST, E_LAST + 1):
     en[f"I{rr}"].font = D.f(9, False, "ink2"); en[f"I{rr}"].alignment = Alignment(horizontal="left", vertical="center", indent=1)
@@ -787,12 +791,12 @@ r = sh_card(sh, r, "Which file to open", [
     (None, "See it filled in first. Open Profit-and-Loss-EXAMPLE.xlsx, then use the blank template for your own business.", "para"),
 ])
 r = sh_card(sh, r, "Good to know", [
-    (None, "Exact numbers. Every total shows dollars and cents, so the statement matches your bank and your preparer's figures.", "para"),
+    (None, "Exact numbers. Every total shows dollars and cents, so you can check the statement against your bank statement and your preparer's figures.", "para"),
     (None, "Any language setting. The formulas use no text-format codes, so they work the same in Excel set to other languages "
            "and in Google Sheets.", "para"),
     (None, "Print the statement. File, Print on the Statement tab prints the statement on a page of its own, ready to hand to a lender or preparer.", "para"),
-    (None, f"Room for a busy year. The Entries tab has {N_ROWS:,} rows and every total reads the whole column. Start a fresh copy "
-           "each year.", "para"),
+    (None, f"Room for a busy year. The Entries tab has {N_ROWS:,} rows and every total reads rows {E_FIRST} to {E_CHECK_LAST:,}, so you "
+           "can add rows below them after you unprotect the tab (see How to read the cells). Start a fresh copy each year.", "para"),
     (None, "Kept out of profit. Equipment, owner draws and transfers between your own accounts are logged but kept out of "
            "profit. Depreciation and home office use are not calculated here; hand those to your tax preparer.", "para"),
 ])

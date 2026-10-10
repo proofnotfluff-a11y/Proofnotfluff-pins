@@ -1,6 +1,6 @@
 # Listing: Profit and Loss Template (scoreboard idea profit-and-loss-template)
 
-New listing (replaces nothing). Built by the cloud builder, Oct 8, 2026. Buyer evidence: page-1 check PASS Oct 7 (10 badged, 33 older than 180 days, 33% under 60 days), 621 US searches a month (eRank, Oct 7).
+New listing (replaces nothing). Built by the cloud builder, Oct 8, 2026; Legal desk fix list applied Oct 10, 2026 (bounded total ranges, wording). Buyer evidence: page-1 check PASS Oct 7 (10 badged, 33 older than 180 days, 33% under 60 days), 621 US searches a month (eRank, Oct 7).
 
 ## Title (98 characters, 13 words)
 Profit and Loss Template, Monthly P&L Statement Spreadsheet, Small Business, Excel Google Sheets
@@ -47,7 +47,7 @@ What's inside
 - LICENSE-AND-DISCLAIMER.txt
 - 6 tabs in each workbook: Start Here, 1 Entries, 2 Statement, 3 Month by Month, 4 Categories, Terms
 
-Tested compatibility: made for Microsoft Excel (.xlsx); upload the same file to Google Sheets. Recalculated in LibreOffice as the example, a blank copy and stress copies with no error cells; its formula types checked in Google Sheets by Drive upload with Sheets conversion (Oct 7 and Oct 8, 2026). No macros, no add-ons, no sign-up.
+Tested compatibility: made for Microsoft Excel (.xlsx); upload the same file to Google Sheets. Recalculated in LibreOffice as the example, a blank copy and stress copies with no error cells; its formula types checked in Google Sheets by Drive upload with Sheets conversion (Oct 7, Oct 8 and Oct 10, 2026). No macros, no add-ons, no sign-up.
 
 Instant download. Download from a web browser on your computer or phone (Etsy, You, Purchases); the Etsy app can't download digital files.
 
@@ -60,9 +60,9 @@ FAQ
 Made with AI assistance and reviewed and tested by the shop owner.
 This summarizes federal rules as of October 8, 2026 from the IRS 2025 Schedule C (Form 1040) and its instructions. State and local rules can add to or change them.
 Not affiliated with or endorsed by Microsoft or Google.
-Information only, not tax, legal or financial advice; no guarantee of results.
+Information and planning tool only, not legal, tax, financial or other professional advice. Results are estimates based on your inputs.
 Digital download. No physical item ships.
-File problems are fixed on request through Etsy messages.
+File problems fixed on request through Etsy messages.
 
 ## Pinterest board
 Etsy Seller Profit and Pricing (1138144205771245807)

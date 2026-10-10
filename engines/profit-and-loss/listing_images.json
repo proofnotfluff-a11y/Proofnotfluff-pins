@@ -90,7 +90,7 @@
    "type": "shot",
    "eyebrow": "ENTRIES TAB",
    "title": "One row per money in or money out.",
-   "sub": "Pick the category from the list; Counts as shows where each row lands. 1,000 rows, totals read every row.",
+   "sub": "Pick the category from the list; Counts as shows where each row lands. 1,000 rows; totals read rows 16 to 5,015.",
    "shot": "02-1-Entries.png",
    "crop": [
     0,

@@ -78,7 +78,7 @@
      "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
     ]
    ],
-   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29). Checked Oct 6, 2026."
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS Standard Mileage Rates page, irs.gov/tax-professionals/standard-mileage-rates). Checked Oct 6, 2026."
   },
   {
    "slug": "pressure-washing-price-calculator",
@@ -241,7 +241,7 @@
      "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
     ]
    ],
-   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29). Checked Oct 6, 2026."
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS Standard Mileage Rates page, irs.gov/tax-professionals/standard-mileage-rates). Checked Oct 6, 2026."
   },
   {
    "slug": "hourly-rate-calculator",
@@ -519,7 +519,7 @@
   {
    "slug": "lawn-care-price-calculator",
    "kind": "service",
-   "draft": true,
+   "draft": false,
    "title": "Lawn Care Price Calculator: Price Mowing and Spring Cleanups So They Pay You | ProofNotFluff",
    "desc": "Free lawn care price calculator. Enter your pay goal, hours and costs to get your break-even rate, your target rate and a quote for a weekly mow, a spring cleanup or a mulch install, drive time included.",
    "eyebrow": "Free calculator",
@@ -595,7 +595,7 @@
      "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
     ]
    ],
-   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29). Checked Oct 6, 2026."
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS Standard Mileage Rates page, irs.gov/tax-professionals/standard-mileage-rates). Checked Oct 6, 2026."
   },
   {
    "slug": "auto-detailing-price-calculator",
@@ -676,7 +676,7 @@
      "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
     ]
    ],
-   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29). Checked Oct 6, 2026."
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS Standard Mileage Rates page, irs.gov/tax-professionals/standard-mileage-rates). Checked Oct 6, 2026."
   },
   {
    "slug": "junk-removal-price-calculator",
@@ -869,12 +869,12 @@
      "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
     ]
    ],
-   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29). Checked Oct 6, 2026."
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS Standard Mileage Rates page, irs.gov/tax-professionals/standard-mileage-rates). Checked Oct 6, 2026."
   },
   {
    "slug": "airbnb-nightly-rate-calculator",
    "kind": "str_nightly",
-   "draft": true,
+   "draft": false,
    "title": "Airbnb Nightly Rate Calculator: Seasonal Rates With a Floor | ProofNotFluff",
    "desc": "Free Airbnb and VRBO nightly rate calculator. Turn one base rate and last year's months into a nightly rate for every month, held at a floor you set, with what each night pays after the host fee.",
    "eyebrow": "Free calculator",
@@ -1002,7 +1002,7 @@
     "title": "Price the whole year, events and long stays included",
     "bullets": [
      "The Pricing Calculator for Airbnb and VRBO Hosts uses this same maths for Excel and Google Sheets:",
-     "your 12 monthly rates, weekly and monthly discounts checked against your floor, event pricing, and the rate that keeps your payout under the single host fee. $2.99, instant download."
+     "your 12 monthly rates, weekly and monthly discounts checked against your floor, event pricing, and the base rate that keeps your old payout per night once you move to the single host fee. $2.99, instant download."
     ],
     "button": "Get the workbook on Etsy",
     "url": "https://proofnotfluff.etsy.com/listing/4585252476"
@@ -1042,7 +1042,7 @@
   {
    "slug": "debt-payoff-calculator",
    "kind": "debt_payoff",
-   "draft": true,
+   "draft": false,
    "title": "Debt Payoff Calculator: Avalanche vs Snowball vs Minimums | ProofNotFluff",
    "desc": "Free debt payoff calculator for up to five debts. Enter each balance, APR and minimum plus an extra monthly amount to compare months to pay off and estimated interest for avalanche, snowball and minimums only.",
    "eyebrow": "Free calculator",
@@ -1112,7 +1112,7 @@
      "No. It is planning math based on the numbers you enter."
     ]
    ],
-   "sources": "Every default is the example in the Debt Payoff Tracker workbook (built and recalculated Oct 7, 2026). Estimates for planning only.",
+   "sources": "Every default is the example in the Debt Payoff Tracker workbook (built and recalculated Oct 7, 2026).",
    "number_sources": [
     "Balances 4,751.76, 854.32, 10,748.15, 18,658.05, 3,142.59: recalculated 2 Debts L17:L21 (statement balance less logged payments plus interest to Oct 7, 2026; TODAY-dependent, stable through October 2026).",
     "APRs and minimums: engine DEBTS_EX; 2 Debts H17:I21. $831: 1 Dashboard D16. $269 extra: 1 Dashboard D15 1,100 less D16 (C17 'Extra each month: $269.00').",
@@ -1125,7 +1125,7 @@
   {
    "slug": "debt-snowball-calculator",
    "kind": "debt_payoff",
-   "draft": true,
+   "draft": false,
    "title": "Debt Snowball Calculator: Months and Interest, Smallest Balance First | ProofNotFluff",
    "desc": "Free debt snowball calculator for up to five debts. Enter each balance, APR and minimum plus an extra monthly amount to see when each debt is paid off smallest balance first, the estimated interest, and how it compares with avalanche and minimums only.",
    "eyebrow": "Free calculator",
@@ -1199,7 +1199,7 @@
      "No. It is planning math based on the numbers you enter."
     ]
    ],
-   "sources": "Every default is the example in the Debt Payoff Tracker workbook (built and recalculated Oct 7, 2026). Estimates for planning only.",
+   "sources": "Every default is the example in the Debt Payoff Tracker workbook (built and recalculated Oct 7, 2026).",
    "number_sources": [
     "Balances 4,751.76, 854.32, 10,748.15, 18,658.05, 3,142.59: recalculated 2 Debts L17:L21 (statement balance less logged payments plus interest to Oct 7, 2026; TODAY-dependent, stable through October 2026).",
     "APRs and minimums: engine DEBTS_EX; 2 Debts H17:I21. $831: 1 Dashboard D16. $269 extra: 1 Dashboard D15 1,100 less D16 (C17 'Extra each month: $269.00').",
@@ -1214,7 +1214,7 @@
   {
    "slug": "shipping-cost-calculator",
    "kind": "shipping_cost",
-   "draft": true,
+   "draft": false,
    "title": "Shipping Cost Calculator for Etsy and eBay Sellers: True Cost per Parcel | ProofNotFluff",
    "desc": "Free shipping cost calculator for online sellers. Add the box, filler, tape, label paper, your packing time and the fees on the shipping you charge to the label cost, and see if your shipping charge covers it.",
    "eyebrow": "Free calculator",
@@ -1284,7 +1284,7 @@
      "No. It is a planning estimate based on the numbers you enter."
     ]
    ],
-   "sources": "Etsy Fees & Payments Policy (etsy.com/legal/fees, last updated Oct 5, 2026) and Etsy Help, What are Payment Processing Fees for Selling on Etsy? Both checked Oct 7, 2026. No carrier rate is assumed: the label cost is yours. ProofNotFluff is not affiliated with or endorsed by Etsy.",
+   "sources": "Etsy Fees & Payments Policy (etsy.com/legal/fees, last updated Oct 5, 2026) and Etsy Help, What are Payment Processing Fees for Selling on Etsy? Both checked Oct 7, 2026. No carrier rate is assumed: the label cost is yours. ProofNotFluff is not affiliated with or endorsed by Etsy or eBay.",
    "number_sources": [
     "$4.95 charged, $0.85 box, $0.45 filler, $0.08 tape, $0.06 label, 6 minutes: engine PRODUCTS row 1 (Ceramic Mug 12 oz); recalculated 1 Parcel Costs E22, J22:N22.",
     "$9.95 label: 1 Parcel Costs I22 (postage used; cheapest service from tab 4 at zone 5). Shown on the page only as a typed example input, not as a carrier rate.",
@@ -1561,7 +1561,7 @@
   {
    "slug": "freelance-hourly-rate-calculator",
    "kind": "hourly",
-   "draft": true,
+   "draft": false,
    "quote": true,
    "title": "Freelance Hourly Rate Calculator: Your Rate, Your Real Pay and a Project Quote | ProofNotFluff",
    "desc": "Free freelance hourly rate calculator. Enter the take-home you want, your tax set-aside, expenses and billable hours to get your minimum rate, test any rate, and quote a project.",
@@ -1769,7 +1769,7 @@
      "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
     ]
    ],
-   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE; checked Oct 8, 2026). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS news release IR-2026-29; checked Oct 9, 2026).",
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE; checked Oct 8, 2026). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS Standard Mileage Rates page, irs.gov/tax-professionals/standard-mileage-rates; checked Oct 9, 2026).",
    "number_sources": [
     "engines/service-pricing/build_xlsx.py EX and COSTS ($545 a month); storefront job from engines/service-pricing/compare_map.json case 'edit presets, add a job, log a job' (1.25 h, 1 person, $4, 12 miles); the two house jobs are new starting points.",
     "node docs/assets/pnf-calc.test.js: break-even 54.80; floors 103.53, 196.72, 483.83; quotes 125, 235, 570."

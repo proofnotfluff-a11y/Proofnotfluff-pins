@@ -1,0 +1,111 @@
+{
+  "product_id": "22",
+  "listing_id": "4590258713",
+  "product": "Pressure Washing Pricing Calculator",
+  "tab": "Quote Builder",
+  "audience": "Pressure washing owners",
+  "hookId": "H03",
+  "series": "Flagship #22 (SALES FIRST, Oct 8); H03 the cost nobody quotes (benchmark: 20-mile Short, 717 views); CMO slate Oct 10 am",
+  "voice": "am_michael",
+  "hook": "The drive to a paver seal job costs <b>$203.44</b>",
+  "hook_say": "The drive to this paver job costs you $203.44.",
+  "rows": [
+    {
+      "label": "The paver job",
+      "value": "Wash and seal",
+      "input": true,
+      "say": "A paver clean, re-sand and seal",
+      "why": "The paver clean, re-sand and seal preset from the Trade Presets list. Its note says two visits: wash, then seal once dry."
+    },
+    {
+      "label": "Crew and time on site",
+      "value": "2 people, 6 hrs",
+      "input": true,
+      "say": "2 people, 6 hours on site",
+      "why": "Two people, six hours on site each, from the preset."
+    },
+    {
+      "label": "Round-trip miles",
+      "value": "40 miles",
+      "input": true,
+      "say": "40 miles of driving",
+      "why": "40 round-trip miles for this job, from the preset. At 30 mph that is 1.33 hours of driving for each person."
+    },
+    {
+      "label": "Sealer, sand and supplies",
+      "value": "$180",
+      "input": true,
+      "say": "$180 of sealer and sand",
+      "why": "Supplies for this job, from the preset."
+    },
+    {
+      "label": "Labor on site",
+      "value": "$778.69",
+      "result": true,
+      "say": "The work on site costs $778.69",
+      "why": "12 person-hours at the $64.89 break-even rate."
+    },
+    {
+      "label": "Drive time and van, 40 miles",
+      "value": "$203.44",
+      "result": true,
+      "kind": "bad",
+      "say": "The drive costs $203.44",
+      "why": "Drive time for two people at the break-even rate, $173.04, plus the van at 76 cents a mile, $30.40."
+    },
+    {
+      "label": "Price floor, zero profit",
+      "value": "$1,162.13",
+      "result": true,
+      "say": "Add $180 of supplies: $1,162.13",
+      "why": "Labor $778.69 plus the drive $203.44 plus supplies $180. Below this, the job loses money."
+    }
+  ],
+  "fix": {
+    "label": "Price with a 15% margin",
+    "value": "$1,370",
+    "say": "Quote $1,370 for a 15 percent margin",
+    "why": "With a 15% margin (profit as a share of the price), rounded up to the next $5, the quote is $1,370: $207.87 of profit and a $342.50 deposit."
+  },
+  "cta": {
+    "title": "Pressure Washing Pricing Calculator",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Search ProofNotFluff for the free pressure washing price calculator and the full workbook.",
+    "what": "Free calculator online. Full workbook $2.99 for Excel and Google Sheets"
+  },
+  "note": "Example numbers from the calculator. Yours go in the yellow cells.",
+  "sources": [
+    {
+      "number": "Paver clean, re-sand and seal: 6 hrs, 2 people, $180, 40 mi",
+      "source": "2 Trade Presets row 'Patio and pavers - Paver clean, re-sand and seal'; 3 Quote Builder D14 set to it, I21 6, I22 2, I23 180, I24 40, I25 1.333"
+    },
+    {
+      "number": "$778.69",
+      "source": "3 Quote Builder I27 778.692"
+    },
+    {
+      "number": "$203.44",
+      "source": "3 Quote Builder I28 173.043 + I29 30.40"
+    },
+    {
+      "number": "$1,162.13",
+      "source": "3 Quote Builder I32 1162.134; 4 Price Sheet E14 1162.134"
+    },
+    {
+      "number": "$1,370, $207.87, $342.50",
+      "source": "3 Quote Builder I34 1370, I36 207.866, I35 342.50; 4 Price Sheet F14 1370"
+    },
+    {
+      "number": "$64.89, 76 cents, 30 mph",
+      "source": "1 Your Numbers I21 64.891, I38 0.76, I39 30"
+    }
+  ],
+  "sources_build": "python3 engines/service-pricing/build_xlsx.py --edition engines/service-pricing/editions/pressure-washing.json (the listed #22 edition), Quote Builder job set to the paver preset, recalculated in LibreOffice headless Oct 10, 2026, 5:40 am; Price Sheet row 14 matches.",
+  "post": {
+    "short_title": "The drive to a paver seal job costs $203.44 #Shorts",
+    "youtube_description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/22/\nhttps://proofnotfluff-a11y.github.io/Proofnotfluff-pins/pressure-washing-price-calculator/\nA paver clean, re-sand and seal: 2 people, 6 hours on site, 40 round-trip miles, $180 of supplies. At the $64.89 break-even rate, drive time and the van add $203.44, so the floor is $1,162.13. With a 15% margin the quote is $1,370. Example numbers from the Pressure Washing Pricing Calculator; estimates, yours go in the yellow cells.\n\n#Shorts",
+    "reel_caption": "The drive to a paver seal job costs $203.44. Two people, 6 hours on site, 40 round-trip miles and $180 of sealer and sand put the floor at $1,162.13. With a 15% margin, quote $1,370. Example numbers from the Pressure Washing Pricing Calculator.\n\nLink in bio: proofnotfluff.etsy.com\n\n#pressurewashing #pressurewashingbusiness #paversealing #pricingstrategy",
+    "tiktok_caption": "The drive to a paver seal job costs $203.44. Example numbers from the Pressure Washing Pricing Calculator. Search ProofNotFluff on Etsy. #pressurewashing #pressurewashingbusiness #paversealing #pricingstrategy"
+  }
+}

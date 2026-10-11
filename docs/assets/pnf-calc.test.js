@@ -322,11 +322,31 @@ const EC3 = P.employerCost({ wage: 15, hours: 10, weeks: 20, sutaRate: 2.85, sut
 check("part-time $3,000 a year: FUTA on all of it", EC3.futa, 18);
 check("part-time: SUTA on all of it", EC3.suta, 85.50);
 check("blank wage: no cost shown", P.employerCost({}).trueHourly, 0);
+// Startup cost pages: profit per job from the recalculated workbooks (#14 Quote Builder "Profit per visit" $18.61 on the
+// $245 every-2-weeks visit, $505 a month of business costs; junk removal edition half truck load "Profit in this quote"
+// $75.38 on $485, $715 a month; pressure washing edition example job $32.20 on $200, $755 a month)
+const SC = P.startupCost({ s1: 600, s2: 250, s3: 400, s4: 300, s5: 0, monthly: 505, months: 3, profitJob: 18.61, jobsWeek: 10 });
+check("#14 one-time spend", SC.oneTime, 1550);
+check("#14 cushion, 3 months of $505", SC.cushion, 1515);
+check("#14 cash to start", SC.cash, 3065);
+check("#14 visits to earn back $1,550 at $18.61", SC.jobs, 84);
+check("#14 weeks at 10 visits a week", SC.weeks, 9);
+const SJ = P.startupCost({ s1: 4000, s2: 400, s3: 600, s4: 500, s5: 0, monthly: 715, months: 3, profitJob: 75.38, jobsWeek: 6 });
+check("#23 cash to start", SJ.cash, 7645);
+check("#23 half loads to earn back $5,500 at $75.38", SJ.jobs, 73);
+check("#23 weeks at 6 jobs a week", SJ.weeks, 13);
+const SP = P.startupCost({ s1: 3000, s2: 0, s3: 0, s4: 0, s5: 0, monthly: 755, months: 2, profitJob: 32.20, jobsWeek: 0 });
+check("PW cash to start", SP.cash, 4510);
+check("PW jobs to earn back $3,000 at $32.20", SP.jobs, 94);
+check("PW no pace typed: weeks 0", SP.weeks, 0);
+check("exact multiple: $300 at $75 is 4 jobs", P.startupCost({ s1: 300, profitJob: 75 }).jobs, 4);
+check("zero profit: no job count", P.startupCost({ s1: 1000, profitJob: 0 }).jobs, 0);
+check("zero profit flag", P.startupCost({ s1: 1000, profitJob: 0 }).noProfit, 1);
 // blank inputs never produce NaN or Infinity
 const b = P.service({});
 const bh = P.hourly({});
 const bc = P.cashflow({});
-const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({}), P.businessExpense({}), P.seTax({}), P.profitMargin({}), P.employerCost({})]
+const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({}), P.businessExpense({}), P.seTax({}), P.profitMargin({}), P.employerCost({}), P.startupCost({})]
   .flatMap(o => Object.values(o)).filter(v => typeof v === "number");
 const bad = [...Object.values(b), ...Object.values(bh), ...Object.values(bc), ...more].filter(v => !isFinite(v));
 if (bad.length) { fails++; console.log("FAIL blank inputs give non-finite values"); } else console.log("ok   blank inputs stay finite");

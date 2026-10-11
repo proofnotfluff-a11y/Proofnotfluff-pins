@@ -837,6 +837,47 @@ PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
     return form, results, script
 
 
+def startup_cost_page(p):
+    d, lines = p["defaults"], p["lines"]
+    one = "".join(field(f"s{i + 1}", lab, d[f"s{i + 1}"], hint, pre="$") for i, (lab, hint) in enumerate(lines))
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>One-time spend before the first job</legend>
+{one}
+</fieldset>
+<fieldset><legend>Cash cushion</legend>
+{field("monthly", "Business costs per month", d["monthly"], p["monthly_hint"], pre="$")}
+{field("months", "Months of costs to keep on hand", d["months"], "Whole months, your choice. The example uses " + d["months"])}
+</fieldset>
+<fieldset><legend>Earning it back</legend>
+{field("profitJob", p["profit_label"], d["profitJob"], p["profit_hint"], pre="$")}
+{field("jobsWeek", p["pace_label"], d["jobsWeek"], "Leave 0 if you are not sure yet")}
+</fieldset></form>"""
+    results = f"""<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Cash to start</div><div class="val" data-out="cash" data-fmt="money0">$0</div><div class="sub">One-time spend plus the cushion</div></div>
+<div class="tile"><div class="lab">{E(p["jobs_tile"])}</div><div class="val"><span data-out="jobs" data-fmt="int" data-never="No profit to pay it" data-never-if="noProfit">0</span></div><div class="sub">To earn back the one-time spend</div></div>
+</div>
+<ul class="lines">
+<li><span>One-time spend</span><span data-out="oneTime" data-fmt="money0">$0</span></li>
+<li><span>Cushion: <span data-out="months" data-fmt="int">0</span> months of <span data-out="monthly" data-fmt="money0">$0</span></span><span data-out="cushion" data-fmt="money0">$0</span></li>
+<li class="total"><span>Cash to start</span><span data-out="cash" data-fmt="money0">$0</span></li>
+<li><span>{E(p["profit_label"])}</span><span data-out="profit">$0</span></li>
+<li><span>{E(p["jobs_tile"])}</span><span data-out="jobs" data-fmt="int">0</span></li>
+<li><span>Weeks at your pace</span><span data-out="weeks" data-fmt="int">0</span></li>
+</ul>
+<div class="callout" data-show-if="pace > 0">At your pace the one-time spend is paid back in about <b data-out="weeks" data-fmt="int">0</b> weeks of work, after you have paid yourself, your monthly costs and the tax on your pay.</div>
+<div class="callout warn" data-show-if="noProfit > 0">Type the profit in one job. If your quote has no profit above your break-even, nothing pays the startup spend back. Check your prices first.</div>
+<div class="callout warn" data-show-if="none > 0">Type what you will spend before the first job to see the cash you need.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Cash to start <b data-out="cash" data-fmt="money0">$0</b></span><span>To earn back <b data-out="jobs" data-fmt="int">0</b></span></div>"""
+    script = f"""<script>
+(function(){{var f=document.getElementById("calc");
+/* Maths: PNF.startupCost in assets/pnf-calc.js; monthly costs and profit per job from {p["engine_ref"]}. */
+var M=PNF.startupCost;
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;}})();</script>"""
+    return form, results, script
+
+
 PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashflow_page,
               "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
               "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
@@ -845,7 +886,8 @@ PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashfl
               "business_expense": business_expense_page, "se_tax": se_tax_page,
               "inventory_turnover": inventory_turnover_page,
               "profit_margin": profit_margin_page,
-              "employer_cost": employer_cost_page}
+              "employer_cost": employer_cost_page,
+              "startup_cost": startup_cost_page}
 
 
 def page_html(p):

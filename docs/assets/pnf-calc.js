@@ -450,8 +450,26 @@
       hasExtras: ok && extras > 0 ? 1 : 0, pos: ok };
   }
 
+  // Startup cost pages (#14 Cleaning Business Starter Kit, #23 Junk Removal and #22 Pressure Washing editions of the
+  // service-pricing engine): the one-time spend you type, plus a cushion of the workbook's "Total per month" business
+  // costs, and the jobs it takes to earn the one-time spend back from the profit in each quote (Quote Builder "Profit
+  // per visit" or "Profit in this quote": the price after your pay at the break-even rate, costs and taxes).
+  function startupCost(i) {
+    var lines = ["s1", "s2", "s3", "s4", "s5"].map(function (k) { return Math.max(0, num(i[k])); });
+    var oneTime = lines.reduce(function (a, b) { return a + b; }, 0);
+    var monthly = Math.max(0, num(i.monthly)), months = Math.max(0, Math.round(num(i.months)));
+    var profit = num(i.profitJob), perWeek = Math.max(0, num(i.jobsWeek));
+    var cushion = monthly * months, cash = oneTime + cushion;
+    var canPay = profit > 0 && oneTime > 0 ? 1 : 0;
+    var jobs = canPay ? Math.ceil(oneTime / profit - 1e-9) : 0;
+    var weeks = canPay && perWeek > 0 ? Math.ceil(jobs / perWeek - 1e-9) : 0;
+    return { oneTime: oneTime, cushion: cushion, cash: cash, monthly: monthly, months: months, profit: Math.max(0, profit),
+      jobs: jobs, weeks: weeks, ok: canPay, noProfit: oneTime > 0 && profit <= 0 ? 1 : 0, none: oneTime > 0 ? 0 : 1,
+      noPace: canPay && perWeek <= 0 ? 1 : 0, pace: canPay && perWeek > 0 ? 1 : 0 };
+  }
+
   var api = { seTax: seTax, hourly: hourly, service: service, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
-    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, num: num, money: money, ceilTo: ceilTo,
+    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;
 })(this);

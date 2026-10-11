@@ -2011,6 +2011,194 @@
     "research/rule-watch.json ssa-wage-base-2026 and futa-rate-wage-base.",
     "docs/assets/pnf-calc.test.js #8 checks."
    ]
+  },
+  {
+   "slug": "cleaning-business-startup-cost-calculator",
+   "kind": "startup_cost",
+   "draft": true,
+   "product": "14",
+   "segment": "home-services",
+   "title": "Cleaning Business Startup Cost Calculator: Cash to Start and Visits to Earn It Back | ProofNotFluff",
+   "desc": "Free cleaning business startup cost calculator. Add your one-time spend and a cushion of monthly costs to see the cash you need to start, then how many cleaning visits it takes to earn the spend back.",
+   "eyebrow": "Free calculator",
+   "h1": "Cleaning Business Startup Cost Calculator",
+   "lede": "Add up what you spend before the first clean, keep a few months of running costs on hand, and see the cash you need to start and how many visits it takes to earn the spend back. Free, no sign-up.",
+   "card": "Cash you need to start a cleaning business and the visits it takes to earn it back.",
+   "defaults": {
+    "s1": "600",
+    "s2": "250",
+    "s3": "400",
+    "s4": "300",
+    "s5": "0",
+    "monthly": "505",
+    "months": "3",
+    "profitJob": "18.61",
+    "jobsWeek": "10"
+   },
+   "lines": [
+    [
+     "Vacuums, mops and tools",
+     "What you buy before the first clean"
+    ],
+    [
+     "Starting stock of products and cloths",
+     "Your first order of cleaning products, paper goods and cloths"
+    ],
+    [
+     "Insurance, bond and licenses paid up front",
+     "Deposits or first payments due before you start"
+    ],
+    [
+     "Website, signs and first ads",
+     "Your launch spend"
+    ],
+    [
+     "Other",
+     "Anything else, or 0"
+    ]
+   ],
+   "monthly_hint": "Insurance, products, apps, ads and fees that run every month, busy or slow",
+   "profit_label": "Profit in one visit",
+   "profit_hint": "Your price minus the price floor that pays you, your helper, your costs and the tax on your pay. The free price calculator or the workbook's Quote Builder shows it",
+   "pace_label": "Visits a week, once you are booked",
+   "jobs_tile": "Visits to earn it back",
+   "engine_ref": "engines/cleaning-business-kit (#14) 1 Your Numbers \"Total per month\" and 4 Quote Builder \"Profit per visit\"",
+   "method": [
+    "Startup cost has two parts. The one-time spend is what you buy or pay before the first clean: equipment, a first stock of products, insurance or bond payments due up front, licenses, and your launch ads. The cushion is a few months of the costs that run every month, kept on hand while your client list grows.",
+    "Cash to start is the one-time spend plus the cushion. The cushion is not spent if visits cover your costs, so the calculator earns back only the one-time spend.",
+    "Each visit earns it back with its profit: the price minus the price floor. The floor already pays you at your break-even rate, pays your helper, covers your monthly costs and sets aside self-employment and income tax, so what is left over is free to repay the startup spend. Visits to earn it back is the one-time spend divided by the profit in one visit, rounded up. Weeks at your pace divides that by the visits you clean in a week, rounded up."
+   ],
+   "example": "The Cleaning Business Starter Kit's example has $505 a month of business costs and a 1,800 sq ft home cleaned every 2 weeks by the owner and one helper for $245 a visit, with $18.61 of profit inside that price after both people are paid. The startup amounts here are example figures we chose to show the maths, not prices: $600 of tools, $250 of starting stock, $400 of up-front insurance and licenses and $300 of launch ads make $1,550 of one-time spend. Add 3 months of $505 and the cash to start is $3,065. At $18.61 a visit it takes 84 visits to earn back the $1,550, about 9 weeks at 10 visits a week. Raise the visit price by $10 and type 28.61 to see the count drop to 55.",
+   "cta": {
+    "title": "Price the visits that pay it back",
+    "bullets": [
+     "The Cleaning Business Starter Kit for Excel and Google Sheets works out your break-even and target rate per cleaning hour, prices a home by square feet or rooms with a helper and pets, and logs every job with money by month.",
+     "It also has 10 fillable forms: client intake, walkthrough, checklists, a quote and a visit log. $2.99, instant download."
+    ],
+    "button": "Get the kit on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4588330888"
+   },
+   "faq": [
+    [
+     "How much does it cost to start a cleaning business?",
+     "It depends on what you already own, your insurance and license costs where you live, and how much you spend on launch ads. Type your own quotes into the calculator. The example on this page totals $3,065 with a 3-month cushion, but those startup amounts are examples, not prices."
+    ],
+    [
+     "Why keep months of costs on hand?",
+     "New cleaners often have more costs than visits for the first months. A cushion of monthly costs pays insurance, products and apps while the client list fills up. How many months is your choice."
+    ],
+    [
+     "What is profit in one visit?",
+     "The price of the visit minus its price floor. The floor pays you at your break-even rate, pays any helper, covers your monthly costs and the tax on your pay. Only what is left over pays back startup spend."
+    ],
+    [
+     "Why are so many visits needed?",
+     "Recurring visits are usually priced with a discount, so the profit in each one is small. A higher price, fewer drive miles or a first deep clean at a higher price all shorten the count. Type a different profit to see the effect."
+    ],
+    [
+     "Is this tax or financial advice?",
+     "No. It is a planning estimate from the numbers you type. Your own quotes, your insurer and your local license office decide the real costs."
+    ]
+   ],
+   "sources": "No outside rates are used on this page. Monthly costs ($505) and profit per visit ($18.61 on a $245 visit) are the example in the Cleaning Business Starter Kit workbook, version 3, recalculated Oct 11, 2026. Startup amounts are example figures, not market prices.",
+   "number_sources": [
+    "engines/cleaning-business-kit/build_xlsx.py recalculated in LibreOffice Oct 11: 1 Your Numbers C49 Total per month 505; 4 Quote Builder H44 Price per visit 245, H48 Profit per visit 18.6056.",
+    "docs/assets/pnf-calc.test.js startupCost checks."
+   ]
+  },
+  {
+   "slug": "junk-removal-startup-cost-calculator",
+   "kind": "startup_cost",
+   "draft": true,
+   "product": "23",
+   "segment": "home-services",
+   "title": "Junk Removal Business Startup Cost Calculator: Cash to Start and Jobs to Earn It Back | ProofNotFluff",
+   "desc": "Free junk removal business startup cost calculator. Add your truck or trailer, tools, up-front insurance and launch ads plus a cushion of monthly costs to see the cash you need and how many jobs it takes to earn it back.",
+   "eyebrow": "Free calculator",
+   "h1": "Junk Removal Business Startup Cost Calculator",
+   "lede": "Add up the truck or trailer, the tools and the up-front insurance, keep a few months of running costs on hand, and see the cash you need to start a junk removal business and how many jobs it takes to earn the spend back. Free, no sign-up.",
+   "card": "Cash to start a junk removal business and the jobs it takes to earn it back.",
+   "defaults": {
+    "s1": "4,000",
+    "s2": "400",
+    "s3": "600",
+    "s4": "500",
+    "s5": "0",
+    "monthly": "715",
+    "months": "3",
+    "profitJob": "75.38",
+    "jobsWeek": "6"
+   },
+   "lines": [
+    [
+     "Truck or trailer, or the down payment",
+     "What you pay before the first job. 0 if you already own it"
+    ],
+    [
+     "Dollies, straps, tarps and PPE",
+     "Tools and safety gear"
+    ],
+    [
+     "Insurance and licenses paid up front",
+     "Deposits or first payments due before you start"
+    ],
+    [
+     "Website, signs and first ads",
+     "Your launch spend"
+    ],
+    [
+     "Other",
+     "Anything else, or 0"
+    ]
+   ],
+   "monthly_hint": "Insurance, phone, apps, ads, equipment and fees that run every month, busy or slow",
+   "profit_label": "Profit in one job",
+   "profit_hint": "Your quote minus the price floor that pays your crew, your costs and the tax on your pay. The free junk removal price calculator shows it",
+   "pace_label": "Jobs a week, once you are booked",
+   "jobs_tile": "Jobs to earn it back",
+   "engine_ref": "engines/service-pricing junk-removal edition (#23) 1 Your Numbers \"Total per month\" and 3 Quote Builder \"Profit in this quote\"",
+   "method": [
+    "Startup cost has two parts. The one-time spend is what you buy or pay before the first haul: the truck or trailer (or its down payment), dollies, straps and safety gear, insurance or licenses due up front, and your launch ads. The cushion is a few months of the costs that run every month, kept on hand while bookings grow.",
+    "Cash to start is the one-time spend plus the cushion. The cushion is not spent if jobs cover your costs, so the calculator earns back only the one-time spend.",
+    "Each job earns it back with its profit: the quote minus the price floor. The floor already pays every person on the truck at your break-even rate, counts drive time, vehicle miles and dump fees, covers your monthly costs and sets aside self-employment and income tax, so what is left over is free to repay the startup spend. Jobs to earn it back is the one-time spend divided by the profit in one job, rounded up. Weeks at your pace divides that by your jobs a week, rounded up."
+   ],
+   "example": "The Junk Removal Pricing Calculator's example has $715 a month of business costs and a half truck load (2 people, 1.5 hours on site each, a 30-mile round trip, $75 of supplies and dump fees) quoted at $485, with $75.38 of profit inside it. The startup amounts here are example figures we chose to show the maths, not prices: $4,000 toward a trailer, $400 of tools and gear, $600 of up-front insurance and licenses and $500 of launch ads make $5,500 of one-time spend. Add 3 months of $715 and the cash to start is $7,645. At $75.38 a job it takes 73 half loads to earn back the $5,500, about 13 weeks at 6 jobs a week. Already own the truck? Type 0 in the first box and the count drops to 20.",
+   "cta": {
+    "title": "Quote the jobs that pay it back",
+    "bullets": [
+     "The Junk Removal Pricing Calculator workbook for Excel and Google Sheets works out your break-even and target rate and prices single items, truck loads, cleanouts and tear-downs with crew, drive time and dump fees counted.",
+     "It has 19 example jobs, a quote builder, a printable price sheet and a job tracker. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4590270056"
+   },
+   "faq": [
+    [
+     "How much does it cost to start a junk removal business?",
+     "Most of it is the truck or trailer, so the answer depends on what you already own and whether you buy, finance or lease. Type your own quotes into the calculator. The example on this page totals $7,645 with a 3-month cushion, but those startup amounts are examples, not prices."
+    ],
+    [
+     "What if I finance the truck?",
+     "Put the down payment in the first box and the monthly payment in your monthly business costs. The cushion then covers the payments too."
+    ],
+    [
+     "What is profit in one job?",
+     "The quote minus the job's price floor. The floor pays every person on the truck at your break-even rate, counts drive time, miles and dump fees, and covers your monthly costs and the tax on your pay. Only what is left over pays back startup spend."
+    ],
+    [
+     "Why keep months of costs on hand?",
+     "Bookings can be slow at first while insurance, phone, ads and payments still come due. A cushion of monthly costs pays them while you build the calendar. How many months is your choice."
+    ],
+    [
+     "Is this tax or financial advice?",
+     "No. It is a planning estimate from the numbers you type. Your own quotes, your insurer and your local license office decide the real costs."
+    ]
+   ],
+   "sources": "No outside rates are used on this page. Monthly costs ($715) and profit per job ($75.38 on a $485 half truck load) are the example in the Junk Removal Pricing Calculator workbook, recalculated Oct 11, 2026. Startup amounts are example figures, not market prices.",
+   "number_sources": [
+    "engines/service-pricing/build_xlsx.py with editions/junk-removal.json recalculated in LibreOffice Oct 11: 1 Your Numbers C35 Total per month 715; 3 Quote Builder H34 Quote 485, H36 Profit in this quote 75.3831.",
+    "docs/assets/pnf-calc.test.js startupCost checks."
+   ]
   }
  ]
 }

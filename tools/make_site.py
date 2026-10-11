@@ -738,13 +738,67 @@ PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
     return form, results, script
 
 
+def profit_margin_page(p):
+    d, f = p["defaults"], p["fees"]
+    ads = "".join(f'<option value="{v}"{" selected" if v == d["adsRate"] else ""}>{E(t)}</option>' for v, t in p["ads_options"])
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>The margin you want</legend>
+{field("target", "Target profit margin", d["target"], "Profit as a share of item price plus shipping", suf="%")}
+</fieldset>
+<fieldset><legend>Your costs for one item</legend>
+{field("materials", "Materials", d["materials"], "What goes into one item", pre="$")}
+{field("labor", "Labor", d["labor"], "What you pay yourself per item", pre="$")}
+{field("packaging", "Packaging", d["packaging"], "Box, mailer, tissue, tape, insert card", pre="$")}
+{field("label", "Shipping label", d["label"], "What postage really costs you", pre="$")}
+{field("ship", "Shipping you charge the buyer", d["ship"], "0 for free shipping", pre="$")}
+</fieldset>
+<fieldset><legend>Offsite Ads</legend>
+<div class="row pick"><label for="adsRate">Your Offsite Ads rate<small>Used only for the ad-sale price. Etsy charges it on orders it attributes to its ads.</small></label>
+<div class="field"><select id="adsRate" data-in="adsRate">{ads}</select></div></div>
+</fieldset>
+<fieldset><legend>Etsy's US fees</legend>
+{field("tfRate", "Transaction fee", f["tfRate"], "On item price plus shipping", suf="%")}
+{field("procRate", "Payment processing, percent", f["procRate"], "On the total the buyer paid", suf="%")}
+{field("procFixed", "Payment processing, per order", f["procFixed"], "Outside the US? Type your rates", pre="$")}
+{field("listFee", "Listing fee", f["listFee"], "One per sale, when a listing renews after it sells", pre="$")}
+</fieldset></form>"""
+    results = f"""<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">List price for your margin</div><div class="val"><span data-out="price" data-never="No price works" data-never-if="none">$0</span></div><div class="sub">Plus the shipping you charge</div></div>
+<div class="tile"><div class="lab">Profit per sale</div><div class="val" data-out="profit">$0</div><div class="sub">After Etsy fees and your costs</div></div>
+</div>
+<ul class="lines">
+<li><span>Item price plus shipping</span><span data-out="revenue">$0</span></li>
+<li><span>Etsy fees, no Offsite Ads</span><span data-out="fees">$0</span></li>
+<li><span>Materials, labor, packaging</span><span data-out="costs">$0</span></li>
+<li><span>Shipping label</span><span data-out="label">$0</span></li>
+<li class="total"><span>Profit</span><span data-out="profit">$0</span></li>
+<li><span>List price if the sale is an Offsite Ads order</span><span data-out="adPrice" data-never="None" data-never-if="adBlank">$0</span></li>
+<li><span>Extra price an ad sale needs</span><span data-out="adGap">$0</span></li>
+</ul>
+<div class="callout" data-show-if="show > 0">Round up, never down: <b data-out="price">$0</b> becomes <b data-out="roundHalf">$0</b> or <b data-out="roundOne" data-fmt="money0">$0</b>.</div>
+<div class="callout warn" data-show-if="none > 0">No price reaches this margin: Etsy's fee rates and your margin take all of it. Lower the margin or the costs.</div>
+<div class="callout warn" data-show-if="adNone > 0">An Offsite Ads sale cannot reach this margin at any price.</div>
+<div class="callout warn" data-show-if="neg > 0">The shipping you charge already covers this margin. Check your shipping and costs.</div>
+{asof_note(p)}
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Price <b data-out="price">$0</b></span><span>Profit <b data-out="profit">$0</b></span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.profitMargin in assets/pnf-calc.js, 3 Pricing "Your price for that margin" of engines/etsy-true-profit (#5). */
+var M=PNF.profitMargin;
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
 PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashflow_page,
               "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
               "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
               "reorder_point": reorder_point_page, "str_breakeven": str_breakeven_page,
               "rental_cash_flow": rental_cash_flow_page,
               "business_expense": business_expense_page, "se_tax": se_tax_page,
-              "inventory_turnover": inventory_turnover_page}
+              "inventory_turnover": inventory_turnover_page,
+              "profit_margin": profit_margin_page}
 
 
 def page_html(p):

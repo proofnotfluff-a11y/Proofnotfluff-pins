@@ -279,11 +279,33 @@ check("SE loss owes nothing", P.seTax({ net: -500 }).se, 0);
 const W1 = P.service({ takeHome: 52000, weeks: 48, hours: 45, paidShare: 65, incomeTax: 12, margin: 15, monthlyCosts: 545,
   perMile: 0.76, mph: 30, jobHours: 1.25, people: 1, supplies: 4, miles: 12 });
 console.log("info window storefront floor", W1.floor.toFixed(2), "quote", W1.quote);
+// Profit margin page: #5 engine, 3 Pricing "Your price for that margin" (I29, I30, I31), recalculated in LibreOffice Oct 10, 2026
+const FEES5 = { tfRate: 6.5, procRate: 3, procFixed: 0.25, listFee: 0.2 };
+const PM1 = P.profitMargin({ ...FEES5, target: 30, materials: 9.8, labor: 4, ship: 6.5, label: 7.4, packaging: 1.6, adsRate: 15 });
+check("#5 example: list price for a 30% margin (I29)", PM1.price, 31.92975);
+check("#5 example: ad-sale price (I30)", PM1.adPrice, 44.5989);
+check("#5 example: net profit per unit (I31)", PM1.profit, 11.52893);
+check("#5 example: round up to $0.50", PM1.roundHalf, 32);
+const PM2 = P.profitMargin({ ...FEES5, target: 40, materials: 5, labor: 2, ship: 0, label: 4.5, packaging: 0.8, adsRate: 12 });
+check("#5 40% margin, free shipping, $10K tier: price", PM2.price, 25.24752);
+check("#5 40% margin: ad-sale price at 12%", PM2.adPrice, 33.11688);
+check("#5 40% margin: net profit", PM2.profit, 10.09901);
+const PM3 = P.profitMargin({ ...FEES5, target: 20, materials: 12, labor: 0, ship: 8, label: 9.1, packaging: 2, adsRate: 15 });
+check("#5 20% margin: price", PM3.price, 25.40426);
+check("#5 20% margin: ad-sale price", PM3.adPrice, 34.43243);
+check("#5 20% margin: net profit", PM3.profit, 6.68085);
+const PM4 = P.profitMargin({ ...FEES5, target: 76, materials: 9.8, labor: 4, ship: 6.5, label: 7.4, packaging: 1.6, adsRate: 15 });
+check("#5 76% margin: price (I29)", PM4.price, 153.84483);
+check("#5 76% margin: no ad-sale price (I30 blank)", PM4.adNone, 1);
+check("#5 76% margin: net profit (I31)", PM4.profit, 121.86207);
+const PM5 = P.profitMargin({ ...FEES5, target: 95, materials: 9.8 });
+check("#5 95% margin: no price works", PM5.none, 1);
+check("#5 95% margin: price 0, no Infinity", PM5.price, 0);
 // blank inputs never produce NaN or Infinity
 const b = P.service({});
 const bh = P.hourly({});
 const bc = P.cashflow({});
-const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({}), P.businessExpense({}), P.seTax({})]
+const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({}), P.businessExpense({}), P.seTax({}), P.profitMargin({})]
   .flatMap(o => Object.values(o)).filter(v => typeof v === "number");
 const bad = [...Object.values(b), ...Object.values(bh), ...Object.values(bc), ...more].filter(v => !isFinite(v));
 if (bad.length) { fails++; console.log("FAIL blank inputs give non-finite values"); } else console.log("ok   blank inputs stay finite");

@@ -6,6 +6,7 @@
    shippingCost: engines/shipping-true-cost (#7); reorderPoint: engines/cash-aware-reorder-planner (#6);
    inventoryTurnover: engines/cash-aware-reorder-planner (#6), 1 Your Shop turnover rows and 2 SKU List days of stock;
    strBreakEven: the #9 fee stack (engines/str-nightly-pricing), break-even nights for the STR lite page;
+   profitMargin: engines/etsy-true-profit (#5), 3 Pricing tab, the list price for a target margin;
    rentalCashFlow: engines/rental-property (#19), 4 Property P&L profit and cash flow rows.
    businessExpense: engines/business-expense-tracker (#18), Summary tab income, expenses and profit rows.
    seTax: Schedule SE arithmetic (the SE_RATE and SE_BASE the #13 engine grosses up for), with the 2026 Social Security
@@ -405,8 +406,26 @@
       noStock: stock > 0 ? 0 : 1, noCogs: stock > 0 && cogs <= 0 ? 1 : 0, shopOk: stock > 0 && cogs > 0 ? 1 : 0 };
   }
 
+
+  // #5 True Profit System for Etsy Sellers, 3 Pricing tab "Your price for that margin": price plus shipping =
+  // (materials + labor + label + packaging + listing fee + fixed processing) / (1 - transaction - processing - margin),
+  // less the shipping charged; the ad-sale price adds the Offsite Ads rate to the rates. A blank price means no price works.
+  function profitMargin(i) {
+    var t = num(i.target) / 100, mat = num(i.materials), lab = num(i.labor), ship = num(i.ship), label = num(i.label),
+        pack = num(i.packaging), ar = num(i.adsRate) / 100, tf = num(i.tfRate) / 100, pr = num(i.procRate) / 100,
+        pfx = num(i.procFixed), lf = num(i.listFee);
+    var fixed = mat + lab + label + pack + lf + pfx, den = 1 - tf - pr - t, den2 = den - ar;
+    var ok = den > 0 ? 1 : 0, adOk = den2 > 0 ? 1 : 0;
+    var price = ok ? fixed / den - ship : 0, adPrice = adOk ? fixed / den2 - ship : 0;
+    var rev = price + ship, fees = ok ? rev * (tf + pr) + lf + pfx : 0, profit = ok ? rev * t : 0;
+    return { ok: ok, none: ok ? 0 : 1, adOk: adOk, adNone: ok && !adOk ? 1 : 0, adBlank: adOk ? 0 : 1, price: price, adPrice: adPrice,
+      adGap: ok && adOk ? adPrice - price : 0, profit: profit, revenue: rev, fees: fees, costs: mat + lab + pack,
+      label: label, ship: ship, shipGap: label - ship, target: t, fixed: fixed, roundHalf: ok ? ceilTo(price, 0.5) : 0,
+      roundOne: ok ? ceilTo(price, 1) : 0, neg: ok && price <= 0 ? 1 : 0, show: ok && price > 0 ? 1 : 0 };
+  }
+
   var api = { seTax: seTax, hourly: hourly, service: service, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
-    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, num: num, money: money, ceilTo: ceilTo,
+    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;
 })(this);

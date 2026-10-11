@@ -25,10 +25,10 @@
       "why": "Type any rate into the check line. Here it is $60."
     },
     {
-      "label": "Hours clients pay for",
+      "label": "Paid hours (60% of 1,920 worked)",
       "value": "1,152 hrs a year",
       "input": true,
-      "say": "Clients pay for 1,152 hours a year",
+      "say": "Clients pay for 1,152 of your 1,920 hours",
       "why": "48 weeks of 40 hours is 1,920 hours worked. At 60% billable, clients pay for 1,152 of them."
     },
     {
@@ -39,7 +39,7 @@
       "why": "$60 times 1,152 paid hours."
     },
     {
-      "label": "Costs and tax set-aside",
+      "label": "$6,000 costs + 25% tax set-aside",
       "value": "-$21,780",
       "result": true,
       "say": "Costs and tax take $21,780",

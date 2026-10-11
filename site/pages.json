@@ -1627,7 +1627,7 @@
   {
    "slug": "self-employment-tax-calculator",
    "kind": "se_tax",
-   "draft": true,
+   "draft": false,
    "title": "Self-Employment Tax Calculator 2026: Your Schedule SE Number in Seconds | ProofNotFluff",
    "desc": "Free self-employment tax calculator for 2026. Enter your net profit and any W-2 wages to see your Schedule SE tax, the half you can deduct, and how much to set aside each quarter.",
    "eyebrow": "Free calculator",
@@ -1681,7 +1681,7 @@
      "No. It is the Schedule SE arithmetic on the numbers you type. Farm income, church employee income and the Additional Medicare Tax are not covered. Check your own return with a tax professional."
     ]
    ],
-   "sources": "IRS Topic 554 and Schedule SE: 15.3% on 92.35% of net profit, $400 minimum (checked Oct 6, 2026). IRS Self-employment tax page: 12.4% Social Security plus 2.9% Medicare (checked Oct 8, 2026). SSA: 2026 contribution and benefit base $184,500 (press release Oct 24, 2025; checked Oct 7, 2026). IRS 2026 Form 1040-ES due dates (checked Oct 7, 2026). Example figures are the fictional sample in the Freelance Income Tracker workbook.",
+   "sources": "IRS Topic 554 and Schedule SE: 15.3% on 92.35% of net profit, $400 minimum. IRS Topic 554: 12.4% Social Security plus 2.9% Medicare. SSA Contribution and Benefit Base page: 2026 base $184,500. IRS Estimated tax FAQ and 2026 Form 1040-ES: due dates Apr 15, Jun 15 and Sep 15, 2026 and Jan 15, 2027. All checked Oct 11, 2026. Example figures are the fictional sample in the Freelance Income Tracker workbook.",
    "number_sources": [
     "engines/freelance-income-tracker/listing.md and products/21 pinFacts: $15,570 received in 2026.",
     "research/rule-watch.json self-employment-tax-rate (Oct 8), ssa-wage-base-2026 (Oct 7), irs-estimated-tax-2026-q4 (Oct 7).",
@@ -1691,7 +1691,7 @@
   {
    "slug": "window-cleaning-price-calculator",
    "kind": "service",
-   "draft": true,
+   "draft": false,
    "title": "Window Cleaning Price Calculator: Quote Storefronts and Homes So They Pay You | ProofNotFluff",
    "desc": "Free window cleaning price calculator. Enter your pay goal, hours and costs to get your break-even rate, your target rate and a quote for a storefront route stop or a house, drive time included.",
    "eyebrow": "Free calculator",
@@ -1769,7 +1769,7 @@
      "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
     ]
    ],
-   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE; checked Oct 8, 2026). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS Standard Mileage Rates page, irs.gov/tax-professionals/standard-mileage-rates; checked Oct 9, 2026).",
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE; checked Oct 11, 2026). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS Standard Mileage Rates page, irs.gov/tax-professionals/standard-mileage-rates; checked Oct 11, 2026).",
    "number_sources": [
     "engines/service-pricing/build_xlsx.py EX and COSTS ($545 a month); storefront job from engines/service-pricing/compare_map.json case 'edit presets, add a job, log a job' (1.25 h, 1 person, $4, 12 miles); the two house jobs are new starting points.",
     "node docs/assets/pnf-calc.test.js: break-even 54.80; floors 103.53, 196.72, 483.83; quotes 125, 235, 570."
@@ -1778,7 +1778,7 @@
   {
    "slug": "inventory-turnover-calculator",
    "kind": "inventory_turnover",
-   "draft": true,
+   "draft": false,
    "title": "Inventory Turnover Calculator for Small Shops: Turns a Year and Days of Stock | ProofNotFluff",
    "desc": "Free inventory turnover calculator for small businesses. Type your cost of goods sold and your stock value at cost to see how many times your stock turns a year and how many days it takes to sell through, then check one product for overstock.",
    "eyebrow": "Free calculator",
@@ -1829,7 +1829,7 @@
     ],
     [
      "What does overstock mean here?",
-     "A product with more days of stock than your overstock line, 120 days by default. At 0.9 sold a day, 130 on hand lasts 144.4 days, so the advice is to stop reordering it until it sells down."
+     "A product with more days of stock than your overstock line, 120 days by default. At 0.9 sold a day, 130 on hand lasts 144.4 days, so it reads Overstock: stop reordering it until it sells down."
     ],
     [
      "Is this financial or accounting advice?",
@@ -1846,7 +1846,7 @@
   {
    "slug": "profit-margin-calculator",
    "kind": "profit_margin",
-   "draft": true,
+   "draft": false,
    "product": "5",
    "title": "Profit Margin Calculator for Etsy Sellers: Price for Your Margin | ProofNotFluff",
    "desc": "Free profit margin calculator for Etsy sellers. Type the margin you want and your costs to get the list price that hits it after Etsy's fees, with and without an Offsite Ads sale.",
@@ -1881,7 +1881,7 @@
    ],
    "asof": {
     "lead": "US fees as of",
-    "date": "Oct 10, 2026",
+    "date": "Oct 11, 2026",
     "from": [
      [
       "Etsy Fee Basics",
@@ -1939,7 +1939,7 @@
      "No. It is a planning estimate based on the numbers you enter."
     ]
    ],
-   "sources": "Etsy Help: Etsy Fee Basics, What are Payment Processing Fees for Selling on Etsy?, and How Etsy's Offsite Ads Work, all checked Oct 10, 2026. Planning estimates only, not tax or financial advice. ProofNotFluff is not affiliated with or endorsed by Etsy."
+   "sources": "Etsy Help: Etsy Fee Basics, What are Payment Processing Fees for Selling on Etsy?, and How Etsy's Offsite Ads Work, all checked Oct 11, 2026. Planning estimates only, not tax or financial advice. ProofNotFluff is not affiliated with or endorsed by Etsy."
   }
  ]
 }

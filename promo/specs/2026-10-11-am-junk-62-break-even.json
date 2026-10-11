@@ -1,0 +1,119 @@
+{
+  "product_id": "23",
+  "listing_id": "4590270056",
+  "product": "Junk Removal Pricing Calculator",
+  "tab": "Your Numbers",
+  "audience": "Junk removal owners",
+  "hookId": "H01",
+  "series": "Flagship #23 (SALES FIRST, Oct 8); H01 rate pays less than you think, the mechanic of the $40 hourly Shorts (1,001 and 96 views); CMO slate Oct 11 am",
+  "voice": "am_michael",
+  "hook": "Junk removal needs <b>$62.36</b> an hour, not $25",
+  "hook_say": "$60,000 a year over 2,400 hours looks like $25 an hour. Break-even is $62.36.",
+  "rows": [
+    {
+      "label": "Take-home pay you want",
+      "value": "$60,000 a year",
+      "input": true,
+      "say": "You want $60,000 a year",
+      "why": "The calculator's example goal: $60,000 a year of take-home pay."
+    },
+    {
+      "label": "Hours you work",
+      "value": "2,400 hrs a year",
+      "input": true,
+      "say": "You work 2,400 hours a year",
+      "why": "50 hours a week for 48 weeks, counting quoting, driving and admin."
+    },
+    {
+      "label": "The usual guess",
+      "value": "$25 an hour",
+      "result": true,
+      "kind": "bad",
+      "say": "So it feels like $25 an hour",
+      "why": "$60,000 divided by all 2,400 hours. The calculator flags this as the usual guess."
+    },
+    {
+      "label": "Hours customers pay for",
+      "value": "1,440 hrs a year",
+      "input": true,
+      "say": "But customers pay for 1,440 of those hours",
+      "why": "60% of the hours you work are paid; the rest is quoting, driving and admin."
+    },
+    {
+      "label": "Tax on your pay",
+      "value": "$21,223 a year",
+      "result": true,
+      "say": "Tax adds $21,223",
+      "why": "Self-employment tax of 15.3% on 92.35% of profit, plus a 12% income tax estimate."
+    },
+    {
+      "label": "Insurance, ads and other costs",
+      "value": "$8,580 a year",
+      "input": true,
+      "say": "Costs add $8,580",
+      "why": "$715 a month: insurance, phone, ads, dollies and tarps, trailer, fees, permits."
+    },
+    {
+      "label": "Break-even per paid hour",
+      "value": "$62.36",
+      "result": true,
+      "say": "Break-even is $62.36 an hour",
+      "why": "$89,803 of revenue needed over 1,440 paid hours."
+    }
+  ],
+  "fix": {
+    "label": "Rate with a 15% profit margin",
+    "value": "$73.37",
+    "say": "Quote $73.37 for a 15 percent margin",
+    "why": "Break-even $62.36 with a 15% profit margin (15% of the price is profit): $73.37 per paid hour, the rate every quote starts from."
+  },
+  "cta": {
+    "title": "Junk Removal Pricing Calculator",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Search ProofNotFluff for the free junk removal price calculator and the full workbook.",
+    "what": "Free calculator online. Full workbook $2.99 for Excel and Google Sheets"
+  },
+  "note": "Example numbers from the calculator. Estimates, not tax advice.",
+  "sources": [
+    {
+      "number": "$60,000",
+      "source": "Your Numbers D14 (example input)"
+    },
+    {
+      "number": "2,400 hrs",
+      "source": "Your Numbers D16 50 x D15 48 (H8's divisor)"
+    },
+    {
+      "number": "$25",
+      "source": "Your Numbers H8 'The guess: $25.00 an hour, your pay divided by all hours'"
+    },
+    {
+      "number": "1,440 hrs",
+      "source": "Your Numbers D18 1,440 (D17 60%)"
+    },
+    {
+      "number": "$21,223",
+      "source": "Your Numbers I15 21,223.28 (I34 15.3%, I35 92.35%, I36 12%)"
+    },
+    {
+      "number": "$8,580",
+      "source": "Your Numbers D36 8,580 (D35 715 a month)"
+    },
+    {
+      "number": "$62.36",
+      "source": "Your Numbers I21 62.363; I18 89,803.28; C8 'Break-even $62.36'"
+    },
+    {
+      "number": "$73.37",
+      "source": "Your Numbers I23 73.369 (I37 15%)"
+    }
+  ],
+  "sources_build": "python3 engines/service-pricing/build_xlsx.py --edition editions/junk-removal.json (the listed #23 edition), recalculated in LibreOffice headless Oct 11, 2026, 5:35 am; matches products/23 pinFacts ($25.00 guess, $62.36 break-even).",
+  "post": {
+    "short_title": "Junk removal needs $62.36 an hour, not $25 #Shorts",
+    "youtube_description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/23/\nhttps://proofnotfluff-a11y.github.io/Proofnotfluff-pins/junk-removal-price-calculator/\nA $60,000 take-home over 50 hours a week for 48 weeks looks like $25 an hour. But customers pay for 1,440 of those 2,400 hours, tax adds $21,223 and costs add $8,580, so break-even is $62.36 per paid hour and the quote rate with a 15% profit margin is $73.37. Example numbers from the Junk Removal Pricing Calculator; estimates, not tax advice.\n\n#Shorts",
+    "reel_caption": "Junk removal: $60,000 a year over 2,400 hours looks like $25 an hour. Customers pay for 1,440 of them, tax adds $21,223 and costs add $8,580, so break-even is $62.36 an hour. Example numbers from the Junk Removal Pricing Calculator.\n\nLink in bio: proofnotfluff.etsy.com\n\n#junkremoval #junkremovalbusiness #smallbusinesstips #pricingstrategy",
+    "tiktok_caption": "Junk removal needs $62.36 an hour to break even, not $25. Example numbers from the Junk Removal Pricing Calculator. Search ProofNotFluff on Etsy. #junkremoval #junkremovalbusiness #smallbusinesstips #pricingstrategy"
+  }
+}

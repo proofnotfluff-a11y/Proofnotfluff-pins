@@ -1427,7 +1427,7 @@
   {
    "slug": "rental-property-cash-flow-calculator",
    "kind": "rental_cash_flow",
-   "draft": true,
+   "draft": false,
    "title": "Rental Property Cash Flow Calculator: What You Kept After Every Payment | ProofNotFluff",
    "desc": "Free rental property cash flow calculator. Enter rent, operating expenses, mortgage interest, principal and improvements to see profit before depreciation, the cash you kept, and the monthly average.",
    "eyebrow": "Free calculator",
@@ -1490,7 +1490,7 @@
   {
    "slug": "business-expense-tracker-calculator",
    "kind": "business_expense",
-   "draft": true,
+   "draft": false,
    "title": "Business Expense Calculator: Total Your Expenses and See Profit | ProofNotFluff",
    "desc": "Free business expense calculator for small businesses and the self-employed. Add up expenses by Schedule C category, see profit before the inventory count and your monthly average.",
    "eyebrow": "Free calculator",

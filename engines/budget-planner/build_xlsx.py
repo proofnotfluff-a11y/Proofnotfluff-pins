@@ -278,6 +278,7 @@ n_end = notes_card(st, N_TOP, "B", "K", "C", "J", [
     ("Take-home", "Use pay after tax and deductions, the amount that lands in your account."),
     ("Changing lines", "Rename, add or clear any yellow cell. The Actuals, Month and Year tabs follow the names here, line for line."),
     ("Any currency", "The maths works in any currency. Select the money cells and pick your symbol under Format, Number."),
+    ("Before you rely on a number", "Results are estimates based on the numbers you enter, not professional advice. See the Terms tab."),
 ])
 SET_LAST = n_end + 1
 D.h(st, SET_LAST, 14)
@@ -635,7 +636,8 @@ mn_end = notes_card(mo, MN_TOP, "B", "K", "C", "J", [
     ("Income left after everything out", "What came in that month minus everything that went out. Until you log income for the "
      "month, it uses your planned income."),
     ("Not in the plan", "A line with no plan amount but money logged against it. Add a plan on Setup if it comes back."),
-    ("Before you rely on a number", S.SHORT_NOTICE.format(date=CHECKED).replace("Terms of Use page", "Terms tab")),
+    ("Before you rely on a number", S.SHORT_NOTICE.format(date=CHECKED).replace("Terms of Use page", "Terms tab")
+     + " " + S.MONEY_TIER_CLAUSE),
 ], title="How the numbers work")
 MO_LAST = mn_end + 1
 D.h(mo, MO_LAST, 14)
@@ -797,11 +799,16 @@ r = sh_card(sh, r, "What it does", [(None,
     "you save on the Setup tab. Each month, type what came in and what went out on the Actuals tab. The Month tab shows what "
     "is left to spend, every line against its plan, and your bills in due-date order. The Year tab lines up all twelve months.",
     "para")])
+# legal desk Oct 11: the short notice and the money tier clause sit on page 1 of the Start Here PDF
+r = sh_card(sh, r, "Before you rely on a number", [
+    (None, S.SHORT_NOTICE.format(date=CHECKED).replace("Terms of Use page", "Terms tab") + " " + S.MONEY_TIER_CLAUSE, "para"),
+])
 r = sh_card(sh, r, "Three steps", [
     (1, "Setup tab. Type each paycheck and how often it comes, then your bills, spending and savings. Left to plan shows what has no job yet.", "num"),
     (2, "Actuals tab. As the month goes, type what came in and what went out under that month. Blank means nothing yet.", "num"),
     (3, "Month tab. Pick the month (blank shows this month). Read Left to spend in the dark tile and check the lines marked Over plan.", "num"),
 ])
+S.page_break_before(sh, r)
 r = sh_card(sh, r, "How to read the cells", [
     ((1950, MONEY), "Yellow cells with blue numbers are yours to type in. Each one shows a hint when you select it.", "chip-in"),
     ((7275, MONEY), "Plain numbers are formulas. They update on their own and are locked so a stray keystroke can't break them.", "chip-calc"),
@@ -810,7 +817,7 @@ r = sh_card(sh, r, "How to read the cells", [
     (None, "Nothing is locked for good: each tab is protected without a password, so you can still change anything. To edit a "
            "formula cell, use Review, Unprotect Sheet in Excel, or Data, Protect sheets and ranges in Google Sheets.", "note"),
 ])
-S.page_break_before(sh, r)
+
 EX1 = EXAMPLE[1]
 ex_text = (f"Budget-Planner-EXAMPLE.xlsx holds January to September 2026 for a made-up household. Two paychecks ($1,950.00 "
            f"every 2 weeks and $1,400.00 twice a month) and $250.00 of side income come to {money(EX1['inc_plan'])} a month. Bills, "
@@ -826,6 +833,7 @@ r = sh_card(sh, r, "Which file to open", [
     (None, "See it filled in first. Open Budget-Planner-EXAMPLE.xlsx. Budget-Planner.xlsx has the same line names with every "
            "amount empty, so there is no sample data to clear.", "para"),
 ])
+S.page_break_before(sh, r)
 r = sh_card(sh, r, "Good to know", [
     (None, "Any pay schedule. Paid weekly, every 2 weeks, twice a month or monthly? Pick it on Setup and the plan uses the monthly "
            "amount. In a month with a third paycheck, type what really came in on Actuals.", "para"),
@@ -835,7 +843,6 @@ r = sh_card(sh, r, "Good to know", [
     (None, "Start a fresh copy each year. Save the file under a new name in January and clear the Actuals tab.", "para"),
     (None, "Related tools. For a budget built around each paycheck, see the shop's paycheck budget; for paying debts down, the debt payoff tracker.", "para"),
 ])
-r = sh_card(sh, r, "Before you rely on a number", [(None, S.SHORT_NOTICE.format(date=CHECKED).replace("Terms of Use page", "Terms tab"), "note")])
 SH_LAST = r - 1
 D.paint_canvas(sh, SH_LAST, "Z")
 S.finish_sheet(sh, PRODUCT, SH_LAST, span=("A", "G"), tab_color="teal",

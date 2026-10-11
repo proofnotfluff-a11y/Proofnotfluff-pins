@@ -70,7 +70,7 @@ CATS = [
     ("Expense", "Contract labor", "Line 11, Contract labor", "People you paid who are not employees, for work other than making products."),
     ("Expense", "Employee benefit programs", "Line 14, Employee benefit programs", "Benefit programs for employees (not your own)."),
     ("Expense", "Insurance (other than health)", "Line 15, Insurance (other than health)", "Business liability, product or property insurance."),
-    ("Expense", "Interest", "Lines 16a and 16b, Interest", "Interest on business loans and business credit cards."),
+    ("Expense", "Interest", "Lines 16a and 16b, Interest (16a to 16c on the 2026 draft form)", "Interest on business loans and business credit cards."),
     ("Expense", "Legal and professional services", "Line 17, Legal and professional services", "Accountant, tax preparer, lawyer, bookkeeper."),
     ("Expense", "Office expense", "Line 18, Office expense", "Postage, printer ink, small office items."),
     ("Expense", "Rent or lease: vehicles, equipment", "Line 20a, Vehicles, machinery, and equipment", "Leased vehicles, machines or equipment."),
@@ -763,11 +763,15 @@ r = sh_card(sh, r, "What it does", [(None,
     "The Statement tab turns it into a profit and loss statement for the month you pick and for January to that month: net "
     "revenue, cost of goods sold, gross profit, operating expenses by Schedule C line and net profit, exact to the cent. The "
     "Month by Month tab shows the whole year side by side.", "para")])
+# legal desk Oct 11: the short notice and the tax tier clause sit on page 1 of the Start Here PDF
+r = sh_card(sh, r, "Before you rely on a number", [(None, S.SHORT_NOTICE.format(date=CHECKED).replace("Terms of Use page", "Terms tab") + " "
+           + S.TAX_TIER_CLAUSE.format(date=CHECKED_LONG, sources=SOURCES), "para")])
 r = sh_card(sh, r, "Three steps", [
     (1, "Entries tab. One row per money in or money out: date, what it was, category from the list, amount as a positive number.", "num"),
     (2, "Statement tab. Pick the year and month at the top. Leave them blank for this month. Stock counts are optional.", "num"),
     (3, "Statement tab. Read your net profit in the dark tile, the full statement below it, and check that Problems to fix reads 0.", "num"),
 ])
+S.page_break_before(sh, r)
 r = sh_card(sh, r, "How to read the cells", [
     ((1100, USD2), "Yellow cells with blue numbers are yours to type in. Each one shows a hint when you select it.", "chip-in"),
     ((3400, USD2), "Plain numbers are formulas. They update on their own and are locked so a stray keystroke can't break them.", "chip-calc"),
@@ -776,7 +780,6 @@ r = sh_card(sh, r, "How to read the cells", [
     (None, "Each tab is protected without a password, so you can still change anything. To edit a locked cell, use Review, "
            "Unprotect Sheet in Excel, or Data, Protect sheets and ranges in Google Sheets.", "note"),
 ])
-S.page_break_before(sh, r)
 ex_text = (f"Profit-and-Loss-EXAMPLE.xlsx holds January to September 2026 of a made-up one-person T-shirt printing shop. "
            f"September shows {money(EX_MON['rev'])} of net revenue and {money(EX_MON['np'])} of net profit. January to September "
            f"shows {money(EX_YTD['rev'])} of net revenue, {money(EX_YTD['cogs'])} cost of goods sold after the two stock counts "
@@ -790,6 +793,7 @@ r = sh_card(sh, r, "Which file to open", [
            "and open it in the Google Sheets app, or open it in Excel for Mac or iPad.", "para"),
     (None, "See it filled in first. Open Profit-and-Loss-EXAMPLE.xlsx, then use the blank template for your own business.", "para"),
 ])
+S.page_break_before(sh, r)
 r = sh_card(sh, r, "Good to know", [
     (None, "Exact numbers. Every total shows dollars and cents, so you can check the statement against your bank statement and your preparer's figures.", "para"),
     (None, "Any language setting. The formulas use no text-format codes, so they work the same in Excel set to other languages "
@@ -800,9 +804,6 @@ r = sh_card(sh, r, "Good to know", [
     (None, "Kept out of profit. Equipment, owner draws and transfers between your own accounts are logged but kept out of "
            "profit. Depreciation and home office use are not calculated here; hand those to your tax preparer.", "para"),
 ])
-S.page_break_before(sh, r)
-r = sh_card(sh, r, "Before you rely on a number", [(None, S.SHORT_NOTICE.format(date=CHECKED).replace("Terms of Use page", "Terms tab") + " "
-           + S.TAX_TIER_CLAUSE.format(date=CHECKED_LONG, sources=SOURCES), "note")])
 SH_LAST = r - 1
 D.paint_canvas(sh, SH_LAST, "Z")
 S.finish_sheet(sh, PRODUCT, SH_LAST, span=("A", "G"), tab_color="teal",

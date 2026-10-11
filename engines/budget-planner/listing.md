@@ -59,10 +59,10 @@ FAQ
 - Does it connect to my bank? No. You type the amounts, which keeps your bank details out of it.
 
 Made with AI assistance and reviewed and tested by the shop owner.
-Not affiliated with or endorsed by Microsoft, Google or Etsy.
-Information only, not tax, legal or financial advice; no guarantee of results.
+Information and planning tool only, not legal, tax, financial or other professional advice. Results are estimates based on your inputs.
 Digital download. No physical item ships.
-File problems are fixed on request through Etsy messages.
+File problems fixed on request through Etsy messages.
+Not affiliated with or endorsed by Microsoft, Google or Etsy.
 
 ## Google Sheets check
 Checked Oct 10, 2026 by Drive upload with Sheets conversion (QA folder 1qoGZklAqCicGEF7LvOBzpGGeFSbRmhat, file "QA budget planner functions Oct 10 2026"): the formula forms new to the shop (CHOOSE(MATCH()) over an array constant for pay schedules, SMALL() over a day-plus-row key, INT and ROUND to recover the row, COUNT(INDEX(range,0,n)), N(), INDEX over a month-name array constant, SUMPRODUCT over a blank test, REPT bars) computed the same values in Google Sheets as in LibreOffice.

@@ -534,6 +534,13 @@ TAX_TIER_CLAUSE = ("This summarizes federal rules as of {date} from {sources}. S
                    "licensed CPA, enrolled agent or employment attorney.")
 
 
+# Medium tier money clause (legal/README.md section 4): goes right after SHORT_NOTICE on Start Here (page 1 of
+# the Start Here PDF) and in the main result tab's notice for pricing, profit, budget, debt and shipping tools.
+MONEY_TIER_CLAUSE = ("Calculations are estimates for planning and depend on your inputs. They aren't accounting, tax or "
+                     "financial advice. Check fees, rates and interest against your own statements and the provider's "
+                     "current terms.")
+
+
 def start_here_tab(wb, product, tagline, what_it_does, steps, as_of, notice, sections=(),
                    legend_samples=(60000, 1152, 74.65), title="Start Here", position=0,
                    calculator_tab="Calculator"):

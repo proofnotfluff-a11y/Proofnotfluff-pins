@@ -831,7 +831,7 @@ r = sh_card(sh, r, "Good to know", [
            "amount. In a month with a third paycheck, type what really came in on Actuals.", "para"),
     (None, "Your own lines. Rename, clear or add any line on Setup: 4 income lines, 12 bills, 15 spending lines and 6 savings lines. "
            "The other tabs follow.", "para"),
-    (None, "Yearly costs. Give a yearly bill such as car registration the Yearly setting and the plan holds a twelfth of it each month.", "para"),
+    (None, "Yearly costs. Add a yearly cost such as car registration as an everyday spending line with the Yearly setting, and the plan holds a twelfth of it each month.", "para"),
     (None, "Start a fresh copy each year. Save the file under a new name in January and clear the Actuals tab.", "para"),
     (None, "Related tools. For a budget built around each paycheck, see the shop's paycheck budget; for paying debts down, the debt payoff tracker.", "para"),
 ])

@@ -424,8 +424,34 @@
       roundOne: ok ? ceilTo(price, 1) : 0, neg: ok && price <= 0 ? 1 : 0, show: ok && price > 0 ? 1 : 0 };
   }
 
+  // #8 First-Time Employer Payroll and Benefits Setup Guide, Section 6 "What Maria costs on top of her pay" and
+  // "The true hourly cost of a $20-an-hour employee": employer Social Security 6.2% (to the 2026 wage base) and
+  // Medicare 1.45%, FUTA at the net rate on the first $7,000, state unemployment at your rate on your state's wage
+  // base, workers' comp per $100 of wages, then payroll software and a monthly benefit spread over the hours worked.
+  function employerCost(i) {
+    var wage = Math.max(0, num(i.wage)), hrs = Math.max(0, num(i.hours)), wks = Math.min(52, Math.max(0, num(i.weeks)));
+    var suta = Math.max(0, num(i.sutaRate)) / 100, sutaBase = Math.max(0, num(i.sutaBase)), comp = Math.max(0, num(i.compRate)) / 100;
+    var futa = Math.max(0, num(i.futaRate)) / 100, benefit = Math.max(0, num(i.benefit)), software = Math.max(0, num(i.software));
+    var hoursYear = hrs * wks, pay = wage * hoursYear, weekPay = wage * hrs;
+    var ss = 0.062 * Math.min(pay, SS_BASE_2026), med = 0.0145 * pay;
+    var futaYear = futa * Math.min(pay, 7000), sutaYear = suta * Math.min(pay, sutaBase), compYear = comp * pay;
+    var taxes = ss + med + futaYear + sutaYear + compYear, extras = software + benefit * 12;
+    var ok = hoursYear > 0 && wage > 0 ? 1 : 0;
+    var per = function (x) { return ok ? x / hoursYear : 0; };
+    var trueHourly = ok ? wage + per(taxes) : 0, allIn = ok ? wage + per(taxes + extras) : 0;
+    return { ok: ok, none: ok ? 0 : 1, hoursYear: hoursYear, pay: pay, weekPay: weekPay,
+      ss: ss, med: med, fica: ss + med, futa: futaYear, suta: sutaYear, comp: compYear, taxes: taxes,
+      softwareYear: software, benefitYear: benefit * 12, extras: extras, totalYear: pay + taxes + extras,
+      ficaHr: per(ss + med), futaHr: per(futaYear), sutaHr: per(sutaYear), compHr: per(compYear),
+      softwareHr: per(software), benefitHr: per(benefit * 12), trueHourly: trueHourly, allIn: allIn,
+      over: ok ? (trueHourly - wage) / wage : 0, overAll: ok ? (allIn - wage) / wage : 0,
+      weekFica: 0.0765 * weekPay, weekFuta: futa * Math.min(weekPay, 7000), weekSuta: suta * Math.min(weekPay, sutaBase),
+      weekComp: comp * weekPay, futaWeeks: ok && weekPay > 0 ? Math.min(wks, Math.ceil(7000 / weekPay - 1e-9)) : 0,
+      hasExtras: ok && extras > 0 ? 1 : 0, pos: ok };
+  }
+
   var api = { seTax: seTax, hourly: hourly, service: service, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
-    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, num: num, money: money, ceilTo: ceilTo,
+    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;
 })(this);

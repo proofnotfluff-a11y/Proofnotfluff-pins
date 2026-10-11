@@ -791,6 +791,52 @@ PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
     return form, results, script
 
 
+def employer_cost_page(p):
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>The job</legend>
+{field("wage", "Hourly wage", d["wage"], "What you will pay per hour, before anything is taken out", pre="$")}
+{field("hours", "Hours a week", d["hours"], "Average paid hours in a week")}
+{field("weeks", "Weeks a year", d["weeks"], "52 for a year-round employee")}
+</fieldset>
+<fieldset><legend>Your state and insurance</legend>
+{field("sutaRate", "State unemployment rate", d["sutaRate"], "Your new-employer rate from your state's letter. The default is the guide's Ohio example", suf="%")}
+{field("sutaBase", "State unemployment wage base", d["sutaBase"], "Wages per employee per year the rate applies to", pre="$")}
+{field("compRate", "Workers' comp per $100 of wages", d["compRate"], "From your quote. Physical work costs several dollars, office work under $1", pre="$")}
+{field("futaRate", "FUTA rate after the state credit", d["futaRate"], "0.6% in most states, on the first $7,000", suf="%")}
+</fieldset>
+<fieldset><legend>Extras, if any</legend>
+{field("software", "Payroll software per employee per year", d["software"], "Your provider's fees divided by your employees", pre="$")}
+{field("benefit", "Benefit allowance per month", d["benefit"], "For example a health reimbursement allowance. 0 if none", pre="$")}
+</fieldset></form>"""
+    results = f"""<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">True hourly cost</div><div class="val" data-out="trueHourly">$0</div><div class="sub"><span data-pct="over">0%</span> on top of the wage, before extras</div></div>
+<div class="tile"><div class="lab">All in, with extras</div><div class="val" data-out="allIn">$0</div><div class="sub">per hour worked</div></div>
+</div>
+<ul class="lines">
+<li><span>Wages a year</span><span data-out="pay">$0</span></li>
+<li><span>Social Security and Medicare match, 7.65%</span><span data-out="fica">$0</span></li>
+<li><span>FUTA (federal unemployment)</span><span data-out="futa">$0</span></li>
+<li><span>State unemployment</span><span data-out="suta">$0</span></li>
+<li><span>Workers' comp</span><span data-out="comp">$0</span></li>
+<li class="total"><span>Taxes and insurance on top of wages</span><span data-out="taxes">$0</span></li>
+<li><span>Payroll software and benefit</span><span data-out="extras">$0</span></li>
+<li class="total"><span>Total cost a year</span><span data-out="totalYear">$0</span></li>
+<li><span>Hours a year</span><span data-out="hoursYear" data-fmt="int">0</span></li>
+</ul>
+<div class="callout" data-show-if="pos > 0">At <b data-out="wage">$0</b> an hour the employee costs you <b data-out="trueHourly">$0</b> an hour in pay, taxes and insurance. FUTA is used up in the first <b data-out="futaWeeks" data-fmt="int">0</b> weeks of the year, so those weeks cost more.</div>
+<div class="callout warn" data-show-if="none > 0">Type an hourly wage, hours a week and weeks a year to see the cost.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>True cost <b data-out="trueHourly">$0</b></span><span>All in <b data-out="allIn">$0</b></span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.employerCost in assets/pnf-calc.js, Section 6 true hourly cost of kdp/8 (#8 First-Time Employer guide). */
+var M=function(v){var r=PNF.employerCost(v);r.wage=PNF.num(v.wage);return r;};
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
 PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashflow_page,
               "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
               "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
@@ -798,7 +844,8 @@ PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashfl
               "rental_cash_flow": rental_cash_flow_page,
               "business_expense": business_expense_page, "se_tax": se_tax_page,
               "inventory_turnover": inventory_turnover_page,
-              "profit_margin": profit_margin_page}
+              "profit_margin": profit_margin_page,
+              "employer_cost": employer_cost_page}
 
 
 def page_html(p):

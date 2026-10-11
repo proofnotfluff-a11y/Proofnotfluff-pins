@@ -301,11 +301,32 @@ check("#5 76% margin: net profit (I31)", PM4.profit, 121.86207);
 const PM5 = P.profitMargin({ ...FEES5, target: 95, materials: 9.8 });
 check("#5 95% margin: no price works", PM5.none, 1);
 check("#5 95% margin: price 0, no Infinity", PM5.price, 0);
+// #8 First-Time Employer guide, Section 6 (hand-checked in legal/reviews/8-2026-10-06.md): $20 an hour, 30 hours a week,
+// 52 weeks (1,560 hours), Ohio example 2.85% on $9,000, workers' comp $4 per $100, FUTA 0.6% net, Gusto $804 / 3, $300 a month
+const EC = P.employerCost({ wage: 20, hours: 30, weeks: 52, sutaRate: 2.85, sutaBase: 9000, compRate: 4, futaRate: 0.6, software: 268, benefit: 300 });
+check("#8 week 1 SS + Medicare match ($37.20 + $8.70)", EC.weekFica, 45.90);
+check("#8 week 1 FUTA", EC.weekFuta, 3.60);
+check("#8 week 1 SUTA", EC.weekSuta, 17.10);
+check("#8 week 1 workers' comp", EC.weekComp, 24.00);
+check("#8 FUTA a year ($42)", EC.futa, 42);
+check("#8 SUTA a year ($256.50)", EC.suta, 256.50);
+check("#8 SS + Medicare match per hour", EC.ficaHr, 1.53);
+check("#8 true hourly cost before software and benefits", EC.trueHourly, 22.5213);
+check("#8 software per hour", EC.softwareHr, 0.1718);
+check("#8 benefit per hour", EC.benefitHr, 2.3077);
+check("#8 true hourly cost, all in", EC.allIn, 25.0008);
+const EC2 = P.employerCost({ wage: 100, hours: 40, weeks: 52, sutaRate: 2.85, sutaBase: 9000, compRate: 0.5, futaRate: 0.6 });
+check("high wage: SS stops at $184,500 (pay $208,000)", EC2.ss, 0.062 * 184500);
+check("high wage: Medicare has no cap", EC2.med, 0.0145 * 208000);
+const EC3 = P.employerCost({ wage: 15, hours: 10, weeks: 20, sutaRate: 2.85, sutaBase: 9000, compRate: 4, futaRate: 0.6 });
+check("part-time $3,000 a year: FUTA on all of it", EC3.futa, 18);
+check("part-time: SUTA on all of it", EC3.suta, 85.50);
+check("blank wage: no cost shown", P.employerCost({}).trueHourly, 0);
 // blank inputs never produce NaN or Infinity
 const b = P.service({});
 const bh = P.hourly({});
 const bc = P.cashflow({});
-const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({}), P.businessExpense({}), P.seTax({}), P.profitMargin({})]
+const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({}), P.businessExpense({}), P.seTax({}), P.profitMargin({}), P.employerCost({})]
   .flatMap(o => Object.values(o)).filter(v => typeof v === "number");
 const bad = [...Object.values(b), ...Object.values(bh), ...Object.values(bc), ...more].filter(v => !isFinite(v));
 if (bad.length) { fails++; console.log("FAIL blank inputs give non-finite values"); } else console.log("ok   blank inputs stay finite");

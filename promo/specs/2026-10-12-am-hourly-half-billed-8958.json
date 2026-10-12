@@ -19,8 +19,8 @@
       "why": "The calculator's example goal: $60,000 a year after tax and costs."
     },
     {
-      "label": "Tax (25%) + business costs",
-      "value": "$26,000 a year",
+      "label": "Tax set-aside + yearly costs",
+      "value": "$20,000 + $6,000",
       "input": true,
       "say": "Add $26,000 for tax and business costs",
       "why": "A 25% tax set-aside on the take-home is $20,000, plus $6,000 of yearly business costs."
@@ -68,7 +68,7 @@
     "say": "Search ProofNotFluff for the free hourly rate calculator and the full workbook.",
     "what": "Free calculator online. Full workbook $2.99 for Excel and Google Sheets"
   },
-  "note": "Example numbers from the calculator with 50% billable typed in. Estimates, not tax advice.",
+  "note": "Example numbers from the calculator with clients paying for 50% of hours. Estimates, not tax advice.",
   "sources": [
     {
       "number": "$60,000",

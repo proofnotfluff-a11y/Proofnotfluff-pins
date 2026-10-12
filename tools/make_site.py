@@ -1039,6 +1039,81 @@ PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
     return form, results, script
 
 
+def unit_cost_page(p):
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>What one unit costs you</legend>
+{field("materials", "Materials per unit", d["materials"], "Everything that goes into one unit, for example wax, wick and jar", pre="$")}
+{field("labor", "Labor per unit", d["labor"], "What making one unit costs in time, yours or a helper's. 0 to leave it out", pre="$")}
+{field("packaging", "Packaging and other per unit", d["packaging"], "Label, box, tissue, insert card", pre="$")}
+</fieldset>
+<fieldset><legend>What it sells for</legend>
+{field("price", "Selling price", d["price"], "What the buyer pays for one unit", pre="$")}
+{field("feePct", "Selling and payment fees", d["feePct"], "Your fees as a share of the price. 0 if none", suf="%")}
+{field("onHand", "Units on hand", d["onHand"], "Optional. Gives the money tied up in this item")}
+</fieldset></form>"""
+    results = f"""<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Profit per unit</div><div class="val" data-out="ppu">$0</div><div class="sub">Margin <span data-pct="margin">0%</span> of the price</div></div>
+<div class="tile"><div class="lab">Unit cost</div><div class="val" data-out="uc">$0</div><div class="sub">Materials, labor and packaging</div></div>
+</div>
+<ul class="lines">
+<li><span>Selling price</span><span data-out="price">$0</span></li>
+<li><span>Unit cost</span><span data-out="uc">$0</span></li>
+<li><span>Fees</span><span data-out="fees">$0</span></li>
+<li class="total"><span>Profit per unit</span><span data-out="ppu">$0</span></li>
+<li><span>Stock value at cost (<span data-out="onHand" data-fmt="int">0</span> units)</span><span data-out="stockValue">$0</span></li>
+</ul>
+<div class="callout" data-show-if="pos > 0">Each sale keeps <b data-out="ppu">$0</b> after the unit cost and fees: <b data-pct="margin">0%</b> of the price.</div>
+<div class="callout warn" data-show-if="neg > 0">At this price each sale loses <b data-out="loss">$0</b> or breaks even. The unit cost and fees take the whole price.</div>
+<div class="callout warn" data-show-if="noPrice > 0">Type the selling price to see the profit per unit.</div>
+<div class="callout warn" data-show-if="none > 0">Type what one unit costs you and what it sells for.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Profit <b data-out="ppu">$0</b></span><span>Unit cost <b data-out="uc">$0</b></span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.unitCost in assets/pnf-calc.js, 1 Items of engines/inventory-tracker (#25). */
+var M=function(i){var r=PNF.unitCost(i);r.price=Math.max(0,PNF.num(i.price));return r;};
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
+def chore_split_page(p):
+    d = p["defaults"]
+    rows = ""
+    for k, n in (("a", 1), ("b", 2), ("c", 3)):
+        rows += field(k, f"Person {n}: minutes a week", d[k], "Leave blank if only two people share the home" if n == 3 else "Add up the chores this person does in a normal week")
+        rows += field(k + "Share", f"Person {n}: share of the work", d[k + "Share"], "Optional, for example 60 and 40. Blank for an even split", suf="%")
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>Who does what now</legend>
+{rows}
+</fieldset></form>"""
+    li = "".join(f"""<li class="total"{sh}><span>Person {n}, now</span><span><span data-out="{k}Hours" data-fmt="hrs">0</span> a week</span></li>
+<li{sh}><span>Fair target</span><span><span data-out="{k}Target" data-fmt="dec1">0</span> min</span></li>
+<li{sh}><span>Over (+) or under (-) target</span><span><span data-out="{k}Diff" data-fmt="dec1">0</span> min</span></li>"""
+                 for k, n, sh in (("a", 1, ""), ("b", 2, ""), ("c", 3, ' data-show-if="cOn > 0"')))
+    results = f"""<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Minutes to move each week</div><div class="val"><span data-out="move" data-fmt="dec1">0</span> min</div><div class="sub">From the person furthest over to the one furthest under</div></div>
+<div class="tile"><div class="lab">Whole home</div><div class="val"><span data-out="total" data-fmt="int">0</span> min</div><div class="sub"><span data-out="hours" data-fmt="hrs">0</span> a week</div></div>
+</div>
+<ul class="lines">
+{li}
+</ul>
+<div class="callout" data-show-if="even > 0">The split is within 15 minutes a week of fair. Nothing big to move.</div>
+<div class="callout warn" data-show-if="uneven > 0">Move about <b data-out="move" data-fmt="dec1">0</b> minutes of chores a week from the person furthest over to the person furthest under.</div>
+<div class="callout warn" data-show-if="mixed > 0">Type a share for everyone or leave them all blank. Using an even split for now.</div>
+<div class="callout warn" data-show-if="none > 0">Type the weekly chore minutes for at least two people.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Move <b data-out="move" data-fmt="dec1">0</b> min</span><span>Total <b data-out="total" data-fmt="int">0</b> min</span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.choreSplit in assets/pnf-calc.js, Fair Split tab of engines/fair-share-chore-chart (#24). */
+var M=PNF.choreSplit;
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
 PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashflow_page,
               "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
               "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
@@ -1051,7 +1126,9 @@ PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashfl
               "startup_cost": startup_cost_page,
               "budget": budget_page,
               "profit_loss": profit_loss_page,
-              "cake": cake_page}
+              "cake": cake_page,
+              "unit_cost": unit_cost_page,
+              "chore_split": chore_split_page}
 
 
 def page_html(p):

@@ -2502,6 +2502,132 @@
     "engines/cake-order-form/build_xlsx.py example recalculated in LibreOffice Oct 12: 2 Order Form I15 74, I17 444, I20 98, I21 28, I22 0, I25 570, I27 285, I28 285. Order date 11/10 and tax 8.25%: I22 108.40, I24 55.97, I25 734.37, I27 367.19. 6 in round party buttercream pickup: I17 60, I25 158.",
     "docs/assets/pnf-calc.test.js cakeQuote checks."
    ]
+  },
+  {
+   "slug": "unit-cost-calculator",
+   "kind": "unit_cost",
+   "draft": true,
+   "product": "25",
+   "segment": "makers",
+   "title": "Unit Cost Calculator: Cost Per Unit, Profit Per Unit and Stock Value | ProofNotFluff",
+   "desc": "Free unit cost calculator for makers and small product shops. Type materials, labor and packaging per unit, your price and fee rate, and get the unit cost, profit per unit, margin and stock value.",
+   "eyebrow": "Free calculator",
+   "h1": "Unit Cost Calculator",
+   "lede": "Type what one unit costs you in materials, labor and packaging, then your selling price and fee rate. The calculator gives the unit cost, the profit each sale keeps, the margin and, if you add your stock count, the money tied up in that item. Free, no sign-up.",
+   "card": "Unit cost from materials, labor and packaging, profit per unit after fees, margin and stock value at cost.",
+   "defaults": {
+    "materials": "4.20",
+    "labor": "2.00",
+    "packaging": "1.30",
+    "price": "24.00",
+    "feePct": "10",
+    "onHand": "26"
+   },
+   "method": [
+    "Unit cost is materials plus labor plus packaging and other costs for one unit. Labor is what making one unit costs in time, whether you pay yourself or a helper; type 0 to leave it out, but the profit then includes your own pay.",
+    "Fees are the selling price times your fee rate: marketplace, payment and card fees as one share of the price. Profit per unit is the price less the unit cost less the fees. The margin is that profit as a share of the price.",
+    "Stock value at cost is the units on hand times the unit cost: the money you have already spent on stock that has not sold yet. A negative count is treated as 0. This is the same arithmetic as the Items tab of the Small Business Inventory Tracker."
+   ],
+   "example": "The Inventory Tracker's example is a made-up candle and soap maker. Its lavender soy candle uses $4.20 of materials, $2.00 of labor and $1.30 of packaging, so one candle costs $7.50 to make. It sells for $24.00 and the shop pays 10% in fees, which is $2.40, so each sale keeps $14.10, a 58.8% margin. With 26 candles on the shelf, $195.00 is tied up in that one item. The citrus candle costs $12.50 a unit, sells for $38.00 and keeps $21.70. A $5.00 lip balm with a $1.70 unit cost keeps $2.80.",
+   "cta": {
+    "title": "Track unit cost, stock and profit for every item",
+    "bullets": [
+     "The Small Business Inventory Tracker for Excel and Google Sheets works out the unit cost and profit per unit for up to 150 items, keeps units on hand from one stock log, and flags each item at your reorder point.",
+     "A dashboard shows stock value at cost, items to reorder, top sellers and sales and profit for any date range. It includes a filled-in example. $2.99, instant download."
+    ],
+    "button": "Get the inventory tracker on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4591585227"
+   },
+   "faq": [
+    [
+     "How do I calculate cost per unit?",
+     "Add up everything that goes into one unit: materials, the labor to make it, and the packaging. If you buy materials in bulk, divide the bulk price by the number of units it makes. That total is your unit cost."
+    ],
+    [
+     "Should I include my own labor in the unit cost?",
+     "If you want the profit figure to be money left after paying yourself, yes. Put a per-unit amount for your time in Labor. If you leave it at 0, the profit per unit is also your pay."
+    ],
+    [
+     "What fee rate should I type?",
+     "The total share of the price your selling and payment fees take. Check your own marketplace and payment processor for your rates. Type 0 if you sell in person for cash."
+    ],
+    [
+     "What is a good profit margin per unit?",
+     "It depends on your product, your volume and your other costs, like rent, ads and software, which come out of this profit. The calculator shows the margin so you can compare items side by side."
+    ],
+    [
+     "Why does stock value matter?",
+     "It is money you have already spent that comes back only when the stock sells. Seeing it per item shows where your cash is sitting."
+    ]
+   ],
+   "sources": "No outside rates are used on this page. The method and the example (lavender candle: $7.50 unit cost, $14.10 profit per unit, $195.00 stock value) are the Small Business Inventory Tracker workbook's Items tab, recalculated Oct 12, 2026. Your fee rate is your own.",
+   "number_sources": [
+    "engines/inventory-tracker/build_xlsx.py example recalculated in LibreOffice Oct 12: 1 Items L16 7.5, M16 14.1, O16 26, P16 195; L18 12.5, M18 21.7; M25 2.8, P25 45.9.",
+    "docs/assets/pnf-calc.test.js unitCost checks."
+   ]
+  },
+  {
+   "slug": "chore-split-calculator",
+   "kind": "chore_split",
+   "draft": true,
+   "product": "24",
+   "segment": "home",
+   "title": "Chore Split Calculator: Is Your Chore Split Fair? Split Chores by Minutes | ProofNotFluff",
+   "desc": "Free chore split calculator for couples and roommates. Type the minutes of chores each person does in a week and get each person's fair target, who is over or under, and how many minutes to move.",
+   "eyebrow": "Free calculator",
+   "h1": "Chore Split Calculator",
+   "lede": "Count chores in minutes, not in jobs. Type the minutes of chores each person does in a normal week, and a share if you agreed on something other than an even split. The calculator gives each person's fair target and how many minutes a week to move. Free, no sign-up.",
+   "card": "Each person's fair target in minutes, who is over or under, and the minutes to move each week.",
+   "defaults": {
+    "a": "469",
+    "aShare": "",
+    "b": "478",
+    "bShare": "",
+    "c": "",
+    "cShare": ""
+   },
+   "method": [
+    "For each chore, minutes a week is the minutes it takes each time times how often it happens in a week. Cooking dinner for 40 minutes, 5 times a week, is 200 minutes; taking the bins out once is 5. Add up each person's chores to get their weekly minutes.",
+    "The whole home's minutes are everyone's minutes added together. Each person's fair target is the whole home's minutes times their share: half each for two people on an even split, a third each for three. If you type shares, type one for everyone; they are scaled to 100%.",
+    "Over or under is each person's minutes less their target. The minutes to move is the smaller of the biggest overage and the biggest shortfall: moving that much evens out the two people furthest apart. This page uses clock minutes; the Fair Share Chore Chart also lets you weight the jobs nobody wants."
+   ],
+   "example": "The Fair Share Chore Chart's example home has 35 chores that take 947 minutes a week, about 15.8 hours. Cook dinner alone is 200 minutes a week, and taking the bins to the curb is 5, so two people with the same number of jobs can be far apart in time. The chart's week 1 gives Alex 469 minutes and Jordan 478. On an even split each person's target is 473.5 minutes, so Alex is 4.5 under and Jordan 4.5 over: close to fair. If Jordan were doing 600 of 900 minutes and Alex 300, about 150 minutes a week, roughly two and a half hours, should move to Alex.",
+   "cta": {
+    "title": "Let the sheet hand out the chores for you",
+    "bullets": [
+     "The Fair Share Chore Chart for Excel and Google Sheets splits your own chore list between 1 to 4 adults by minutes, on an even split or the shares you set, and rotates the jobs nobody wants each week.",
+     "A printable weekly chart and a Fair Split tab show who does what and how close each person is to fair. It comes with a filled-in example home of 35 chores. $2.99, instant download."
+    ],
+    "button": "Get the chore chart on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4590737811"
+   },
+   "faq": [
+    [
+     "How do you split chores fairly?",
+     "Count time, not jobs. Give each chore a rough number of minutes and how often it happens, add up each person's weekly minutes, and compare them with a fair target. An even split gives each person the same share of the total."
+    ],
+    [
+     "What if one of us works longer hours?",
+     "Agree on a share, for example 60 and 40, and type it for both people. The fair target then follows that split instead of an even one."
+    ],
+    [
+     "How do I count the minutes for a chore?",
+     "Use a rough average for one time, then multiply by how often it happens in a week. Daily is 7 times, weekly is once, every two weeks is half. Guesses are fine; the point is to compare."
+    ],
+    [
+     "What about the chores nobody wants?",
+     "This page counts clock minutes only. The Fair Share Chore Chart can give those jobs extra weight and rotate them, so the person who takes them does fewer minutes of everything else."
+    ],
+    [
+     "Does this work for roommates?",
+     "Yes. Type up to three people here. Leave Person 3 blank for a couple."
+    ]
+   ],
+   "sources": "No outside figures are used on this page. The method and the example (35 chores, 947 minutes a week; Alex 469 and Jordan 478 minutes in week 1) are the Fair Share Chore Chart workbook's Chores and Fair Split tabs, recalculated Oct 12, 2026.",
+   "number_sources": [
+    "engines/fair-share-chore-chart/build_xlsx.py example recalculated in LibreOffice Oct 12: Fair Split F7 468.85, F8 478.08, F11 946.92, H11 35 jobs; with --shares 60,40: F7 566.92, F8 380; with --names Alex,Jordan,Sam: F7 313.46, F8 314.62, F9 318.85.",
+    "docs/assets/pnf-calc.test.js choreSplit checks."
+   ]
   }
  ]
 }

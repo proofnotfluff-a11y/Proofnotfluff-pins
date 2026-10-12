@@ -397,11 +397,44 @@ const CKm = P.cakeQuote({ style: "party", t1: "6 in round", pps: 4.5, minCake: 6
 check("#26 minimum cake price applies", CKm.cake, 60);
 check("#26 pickup total", CKm.total, 158);
 check("blank cake quote: none flag", P.cakeQuote({}).none, 1);
+// #25 Inventory Tracker, 1 Items recalculated in LibreOffice Oct 12 (example candle and soap maker)
+const UC = P.unitCost({ materials: 4.2, labor: 2, packaging: 1.3, price: 24, feePct: 10, onHand: 26 });
+check("#25 lavender unit cost (L16)", UC.uc, 7.5);
+check("#25 lavender profit per unit (M16)", UC.ppu, 14.1);
+check("#25 lavender stock value (P16)", UC.stockValue, 195);
+check("#25 lavender margin", UC.margin, 0.5875);
+const UCc = P.unitCost({ materials: 7.6, labor: 3, packaging: 1.9, price: 38, feePct: 10, onHand: 11 });
+check("#25 citrus profit per unit (M18)", UCc.ppu, 21.7);
+check("#25 citrus stock value (P18)", UCc.stockValue, 137.5);
+const UCl = P.unitCost({ materials: 0.9, labor: 0.5, packaging: 0.3, price: 5, feePct: 10, onHand: 27 });
+check("#25 lip balm profit per unit (M25)", UCl.ppu, 2.8);
+check("#25 lip balm stock value (P25)", UCl.stockValue, 45.9);
+const UCn = P.unitCost({ materials: 4.2, labor: 2, packaging: 1.3, price: 8, feePct: 10, onHand: -3 });
+check("#25 price under cost: loss per unit", UCn.loss, 0.3);
+check("#25 negative stock counts as 0 (workbook MAX(0, on hand))", UCn.stockValue, 0);
+check("blank unit cost: none flag", P.unitCost({}).none, 1);
+// #24 Fair Share Chore Chart, Fair Split tab recalculated in LibreOffice Oct 12 (real minutes a week, column F)
+const CS = P.choreSplit({ a: 468.846153846154, b: 478.076923076923 });
+check("#24 whole home minutes (F11)", CS.total, 946.923076923077);
+check("#24 even split target", CS.aTarget, 473.461538461538);
+check("#24 Alex under target", CS.aDiff, -4.615384615384);
+check("#24 minutes to move", CS.move, 4.615384615384);
+check("#24 even within 15 min", CS.even, 1);
+const CS6 = P.choreSplit({ a: 566.923076923077, aShare: 60, b: 380, bShare: 40 });
+check("#24 60/40 target for Alex", CS6.aTarget, 568.153846153846);
+check("#24 60/40 Jordan over", CS6.bDiff, 1.230769230769);
+const CS3 = P.choreSplit({ a: 313.461538461538, b: 314.615384615385, c: 318.846153846154 });
+check("#24 three people: target each", CS3.aTarget, 315.641025641026);
+check("#24 three people: Sam over", CS3.cDiff, 3.205128205128);
+const CSu = P.choreSplit({ a: 300, b: 600, aShare: 50 });
+check("#24 one share typed: even split used", CSu.useShares, 0);
+check("#24 uneven: move 150", CSu.move, 150);
+check("blank chore split: none flag", P.choreSplit({}).none, 1);
 // blank inputs never produce NaN or Infinity
 const b = P.service({});
 const bh = P.hourly({});
 const bc = P.cashflow({});
-const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({}), P.businessExpense({}), P.seTax({}), P.profitMargin({}), P.employerCost({}), P.startupCost({}), P.budgetPlan({}), P.profitLoss({}), P.cakeQuote({})]
+const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({}), P.businessExpense({}), P.seTax({}), P.profitMargin({}), P.employerCost({}), P.startupCost({}), P.budgetPlan({}), P.profitLoss({}), P.cakeQuote({}), P.unitCost({}), P.choreSplit({}), P.choreSplit({ a: 0, b: 0 })]
   .flatMap(o => Object.values(o)).filter(v => typeof v === "number");
 const bad = [...Object.values(b), ...Object.values(bh), ...Object.values(bc), ...more].filter(v => !isFinite(v));
 if (bad.length) { fails++; console.log("FAIL blank inputs give non-finite values"); } else console.log("ok   blank inputs stay finite");

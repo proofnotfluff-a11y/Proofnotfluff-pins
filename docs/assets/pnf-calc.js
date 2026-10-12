@@ -12,6 +12,7 @@
    seTax: Schedule SE arithmetic (the SE_RATE and SE_BASE the #13 engine grosses up for), with the 2026 Social Security
    wage base; links #21 (Freelance Income Tracker), whose set-aside notes cite the same IRS and SSA figures.
    profitLoss: engines/profit-and-loss (#28), 2 Statement; cakeQuote: engines/cake-order-form (#26), 2 Order Form.
+   unitCost: engines/inventory-tracker (#25), 1 Items; choreSplit: engines/fair-share-chore-chart (#24), Fair Split.
    Tested against the workbooks' own example outputs in docs/assets/pnf-calc.test.js. */
 (function (root) {
   "use strict";
@@ -531,8 +532,50 @@
       minUsed: servings > 0 && cake > base ? 1 : 0, rushOn: rushOn, none: servings > 0 ? 0 : 1, ok: servings > 0 ? 1 : 0 };
   }
 
+
+  // #25 Small Business Inventory Tracker, 1 Items: Unit cost = materials + labor + packaging and other; Profit per unit =
+  // price - unit cost - price x fee rate; Stock value = units on hand (never below 0) x unit cost. Margin is profit per
+  // unit as a share of the price, as the Dashboard's Profit margin is profit over sales.
+  function unitCost(i) {
+    var m = Math.max(0, num(i.materials)), l = Math.max(0, num(i.labor)), p = Math.max(0, num(i.packaging));
+    var price = Math.max(0, num(i.price)), feeRate = Math.max(0, num(i.feePct)) / 100;
+    var uc = m + l + p, fees = price * feeRate, ppu = price - uc - fees, onHand = Math.max(0, num(i.onHand));
+    var hasPrice = price > 0 ? 1 : 0, any = uc > 0 || price > 0 ? 1 : 0;
+    return { uc: uc, fees: fees, ppu: hasPrice ? ppu : 0, margin: hasPrice ? ppu / price : 0, costShare: hasPrice ? uc / price : 0,
+      stockValue: onHand * uc, onHand: onHand, loss: hasPrice && ppu < 0 ? -ppu : 0,
+      pos: hasPrice && ppu > 0 ? 1 : 0, neg: hasPrice && ppu <= 0 ? 1 : 0, noPrice: any && !hasPrice ? 1 : 0, none: any ? 0 : 1 };
+  }
+
+  // #24 Fair Share Chore Chart, Fair Split tab: fair target = whole-home minutes x each person's share (shares typed
+  // for everyone are scaled to 100%, otherwise an even split, as Setup's "Shares" rule), over (+) or under (-) target =
+  // assigned - target, hours a week = minutes / 60. This page uses clock minutes; the workbook also weights
+  // "nobody wants it" jobs. Up to 3 people here (the workbook takes 4).
+  function choreSplit(i) {
+    var ks = ["a", "b", "c"], mins = [], shares = [], people = 0;
+    ks.forEach(function (k) {
+      var on = !blank(i[k]); mins.push(on ? Math.max(0, num(i[k])) : null); shares.push(on ? Math.max(0, num(i[k + "Share"])) : 0);
+      if (on) people++;
+    });
+    var total = 0, typed = 0, sumShare = 0;
+    ks.forEach(function (k, n) { if (mins[n] !== null) { total += mins[n]; if (shares[n] > 0) { typed++; sumShare += shares[n]; } } });
+    var useShares = people > 0 && typed === people ? 1 : 0, out = { total: total, hours: total / 60, people: people, useShares: useShares,
+      mixed: typed > 0 && typed < people ? 1 : 0 };
+    var maxOver = 0, maxUnder = 0;
+    ks.forEach(function (k, n) {
+      var on = mins[n] !== null, sh = on ? (useShares ? shares[n] / sumShare : 1 / people) : 0;
+      var t = total * sh, d = on ? mins[n] - t : 0;
+      out[k + "Fair"] = sh; out[k + "Target"] = t; out[k + "Diff"] = d; out[k + "Over"] = d > 0 ? d : 0; out[k + "Under"] = d < 0 ? -d : 0;
+      out[k + "Hours"] = on ? mins[n] / 60 : 0; out[k + "On"] = on ? 1 : 0;
+      if (d > maxOver) maxOver = d; if (-d > maxUnder) maxUnder = -d;
+    });
+    out.move = Math.min(maxOver, maxUnder); out.gap = maxOver;
+    out.even = people > 1 && total > 0 && maxOver < 15 ? 1 : 0; out.uneven = people > 1 && total > 0 && maxOver >= 15 ? 1 : 0;
+    out.none = people > 1 && total > 0 ? 0 : 1;
+    return out;
+  }
+
   var api = { seTax: seTax, hourly: hourly, service: service, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
-    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, profitLoss: profitLoss, cakeQuote: cakeQuote, cakeSizes: CAKE_SIZES, num: num, money: money, ceilTo: ceilTo,
+    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, profitLoss: profitLoss, cakeQuote: cakeQuote, unitCost: unitCost, choreSplit: choreSplit, cakeSizes: CAKE_SIZES, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;
 })(this);

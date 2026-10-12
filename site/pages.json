@@ -2015,7 +2015,7 @@
   {
    "slug": "cleaning-business-startup-cost-calculator",
    "kind": "startup_cost",
-   "draft": true,
+   "draft": false,
    "product": "14",
    "segment": "home-services",
    "title": "Cleaning Business Startup Cost Calculator: Cash to Start and Visits to Earn It Back | ProofNotFluff",
@@ -2073,7 +2073,7 @@
     "title": "Price the visits that pay it back",
     "bullets": [
      "The Cleaning Business Starter Kit for Excel and Google Sheets works out your break-even and target rate per cleaning hour, prices a home by square feet or rooms with a helper and pets, and logs every job with money by month.",
-     "It also has 10 fillable forms: client intake, walkthrough, checklists, a quote and a visit log. $2.99, instant download."
+     "It also has fillable PDF forms in Letter and A4: client intake, walkthrough, three cleaning checklists, a quote and a visit log. $2.99, instant download."
     ],
     "button": "Get the kit on Etsy",
     "url": "https://proofnotfluff.etsy.com/listing/4588330888"
@@ -2109,7 +2109,7 @@
   {
    "slug": "junk-removal-startup-cost-calculator",
    "kind": "startup_cost",
-   "draft": true,
+   "draft": false,
    "product": "23",
    "segment": "home-services",
    "title": "Junk Removal Business Startup Cost Calculator: Cash to Start and Jobs to Earn It Back | ProofNotFluff",
@@ -2203,7 +2203,7 @@
   {
    "slug": "pressure-washing-startup-cost-calculator",
    "kind": "startup_cost",
-   "draft": true,
+   "draft": false,
    "product": "22",
    "segment": "home-services",
    "title": "Pressure Washing Business Startup Cost Calculator: Cash to Start and Jobs to Earn It Back | ProofNotFluff",
@@ -2297,7 +2297,7 @@
   {
    "slug": "monthly-budget-calculator",
    "kind": "budget",
-   "draft": true,
+   "draft": false,
    "product": "29",
    "segment": "personal-finance",
    "title": "Monthly Budget Calculator: Turn Every Paycheck Into a Month and See What Is Left | ProofNotFluff",
@@ -2322,7 +2322,7 @@
     "Yearly costs such as a car registration are spread across the year: the full amount divided by 12 joins everyday spending, so the month the bill arrives is already paid for.",
     "Planned out each month is bills plus everyday spending plus savings and extra debt payments. Left to plan is take-home income minus planned out. A positive number is money with no job yet; a negative one means the plan spends more than comes in. Each line also shows its share of take-home pay."
    ],
-   "example": "The Budget Planner Spreadsheet's example is a made-up two-earner household. Paycheck 1 is $1,950 every 2 weeks, which is $4,225 a month. Paycheck 2 is $1,400 twice a month, $2,800, and side income adds $250, so take-home is $7,275 a month. Bills come to $3,049 (42% of take-home), everyday spending to $2,325 plus a $240 yearly car registration, which is $20 a month, and savings and extra debt payments to $950. Planned out is $6,344, which leaves $931 a month to plan. Change paycheck 1 to Twice a month and the left-to-plan figure drops by $325, the third paycheck that 26 pay days a year bring.",
+   "example": "The Budget Planner Spreadsheet's example is a made-up two-earner household. Paycheck 1 is $1,950 every 2 weeks, which is $4,225 a month. Paycheck 2 is $1,400 twice a month, $2,800, and side income adds $250, so take-home is $7,275 a month. Bills come to $3,049 (42% of take-home), everyday spending to $2,325 plus a $240 yearly car registration, which is $20 a month, and savings and extra debt payments to $950. Planned out is $6,344, which leaves $931 a month to plan. Change paycheck 1 to Twice a month and the left-to-plan figure drops by $325, because 26 pay days a year bring two more paychecks than 24.",
    "cta": {
     "title": "Track the month you planned",
     "bullets": [

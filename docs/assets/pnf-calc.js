@@ -11,6 +11,7 @@
    businessExpense: engines/business-expense-tracker (#18), Summary tab income, expenses and profit rows.
    seTax: Schedule SE arithmetic (the SE_RATE and SE_BASE the #13 engine grosses up for), with the 2026 Social Security
    wage base; links #21 (Freelance Income Tracker), whose set-aside notes cite the same IRS and SSA figures.
+   profitLoss: engines/profit-and-loss (#28), 2 Statement; cakeQuote: engines/cake-order-form (#26), 2 Order Form.
    Tested against the workbooks' own example outputs in docs/assets/pnf-calc.test.js. */
 (function (root) {
   "use strict";
@@ -485,8 +486,53 @@
       pos: income > 0 && left >= 0 ? 1 : 0, neg: income > 0 && left < 0 ? 1 : 0, none: income > 0 ? 0 : 1 };
   }
 
+  // #28 Profit and Loss Template: 2 Statement rows Net revenue, Cost of goods sold (with the optional stock counts,
+  // used only when both are typed, as the Statement's "Change in stock on hand" row), Gross profit, Total operating
+  // expenses, Net profit, Gross margin and Net margin. Equipment, owner draws and transfers stay out, as in the workbook.
+  function blank(v) { return v === undefined || v === null || String(v).replace(/[$,\s]/g, "") === ""; }
+  function profitLoss(i) {
+    var sales = num(i.sales), other = num(i.other), refunds = Math.abs(num(i.refunds));
+    var revenue = sales + other - refunds;
+    var goods = num(i.goods), stockOn = !blank(i.stock0) && !blank(i.stock1) ? 1 : 0;
+    var stockChange = stockOn ? num(i.stock0) - num(i.stock1) : 0;
+    var cogs = goods + stockChange, gross = revenue - cogs, expenses = num(i.expenses), net = gross - expenses;
+    var any = sales !== 0 || other !== 0 || refunds !== 0 || goods !== 0 || expenses !== 0;
+    return { revenue: revenue, refunds: refunds, goods: goods, stockChange: stockChange, stockOn: stockOn, cogs: cogs,
+      gross: gross, expenses: expenses, net: net, loss: net < 0 ? -net : 0,
+      grossMargin: revenue !== 0 ? gross / revenue : 0, netMargin: revenue !== 0 ? net / revenue : 0,
+      pos: any && revenue !== 0 && net >= 0 ? 1 : 0, neg: any && net < 0 ? 1 : 0, noRev: any && revenue === 0 ? 1 : 0, none: any ? 0 : 1 };
+  }
+
+  // #26 Cake Order Form and Order Tracker: 2 Order Form "How it's built" card. Servings per tier from the Price List's
+  // size table (Wilton serving guide, 2-layer cakes, as the workbook ships it), cake price = servings x price per
+  // serving with the minimum cake price, delivery = base + miles x per mile, rush fee = rush % of cake + extras when
+  // the event is fewer days out than the rush window, sales tax on the subtotal, deposit = total x deposit %.
+  var CAKE_SIZES = { "6 in round": [12, 12], "8 in round": [20, 24], "9 in round": [24, 32], "10 in round": [28, 38],
+    "12 in round": [40, 56], "14 in round": [63, 78], "16 in round": [77, 100], "6 in square": [12, 18], "8 in square": [20, 32],
+    "10 in square": [30, 50], "12 in square": [48, 72], "14 in square": [63, 98], "16 in square": [80, 128],
+    "7 x 11 in sheet": [24, 32], "9 x 13 in sheet": [36, 50], "11 x 15 in sheet": [54, 74], "12 x 18 in sheet": [72, 98],
+    "6 in heart": [8, 14], "8 in heart": [18, 22], "9 in heart": [20, 28], "10 in heart": [24, 38], "12 in heart": [24, 56],
+    "14 in heart": [48, 72], "16 in heart": [64, 94] };
+  function r2(x) { return Math.round((x + (x >= 0 ? 1e-9 : -1e-9)) * 100) / 100; }
+  function cakeQuote(i) {
+    var col = i.style === "party" ? 0 : 1, servings = 0;
+    ["t1", "t2", "t3", "t4"].forEach(function (k) { var z = CAKE_SIZES[i[k]]; if (z) servings += z[col]; });
+    var pps = Math.max(0, num(i.pps)), minCake = Math.max(0, num(i.minCake));
+    var base = servings * pps, cake = servings > 0 ? Math.max(minCake, base) : 0;
+    var extras = Math.max(0, num(i.extras));
+    var delivery = i.method === "delivery" ? Math.max(0, num(i.delivBase)) + Math.max(0, num(i.miles)) * Math.max(0, num(i.perMile)) : 0;
+    var rushDays = num(i.rushDays), days = num(i.days);
+    var rushOn = !blank(i.days) && rushDays > 0 && days < rushDays ? 1 : 0;
+    var rush = rushOn ? r2(num(i.rushPct) / 100 * (cake + extras)) : 0;
+    var sub = cake + extras + delivery + rush, tax = r2(sub * num(i.taxRate) / 100), total = sub + tax;
+    var deposit = r2(total * num(i.depositPct) / 100);
+    return { servings: servings, base: base, cake: cake, extras: extras, delivery: delivery, rush: rush, sub: sub, tax: tax,
+      total: total, deposit: deposit, balance: total - deposit, perServing: servings > 0 ? total / servings : 0,
+      minUsed: servings > 0 && cake > base ? 1 : 0, rushOn: rushOn, none: servings > 0 ? 0 : 1, ok: servings > 0 ? 1 : 0 };
+  }
+
   var api = { seTax: seTax, hourly: hourly, service: service, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
-    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, num: num, money: money, ceilTo: ceilTo,
+    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, profitLoss: profitLoss, cakeQuote: cakeQuote, cakeSizes: CAKE_SIZES, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;
 })(this);

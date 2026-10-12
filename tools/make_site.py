@@ -930,6 +930,115 @@ PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
     return form, results, script
 
 
+def profit_loss_page(p):
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>Money in, for the period</legend>
+{field("sales", "Sales and services", d["sales"], "Everything customers paid you, before fees", pre="$")}
+{field("other", "Other business income", d["other"], "Fee refunds, rebates and other business income that is not a sale. 0 if none", pre="$")}
+{field("refunds", "Refunds given to customers", d["refunds"], "Type it as a positive number; it subtracts", pre="$")}
+</fieldset>
+<fieldset><legend>Cost of goods sold</legend>
+{field("goods", "Stock, materials and product labor bought", d["goods"], "Blanks or stock for resale, materials that go into what you sell, people paid to make it", pre="$")}
+{field("stock0", "Stock on hand at the start", d["stock0"], "Optional. What unsold stock cost you at the start of the period", pre="$")}
+{field("stock1", "Stock on hand at the end", d["stock1"], "Optional. Fill in both counts or leave both blank", pre="$")}
+</fieldset>
+<fieldset><legend>Operating expenses</legend>
+{field("expenses", "Total operating expenses", d["expenses"], "Fees, ads, rent, insurance, software, shipping labels, supplies. Leave out equipment, owner pay and transfers", pre="$")}
+</fieldset></form>"""
+    results = f"""<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Net profit</div><div class="val" data-out="net">$0</div><div class="sub">Net margin <span data-pct="netMargin">0%</span> of net revenue</div></div>
+<div class="tile"><div class="lab">Gross profit</div><div class="val" data-out="gross">$0</div><div class="sub">Gross margin <span data-pct="grossMargin">0%</span></div></div>
+</div>
+<ul class="lines">
+<li class="total"><span>Net revenue</span><span data-out="revenue">$0</span></li>
+<li><span>Stock, materials and labor bought</span><span data-out="goods">$0</span></li>
+<li><span>Change in stock on hand</span><span data-out="stockChange">$0</span></li>
+<li class="total"><span>Cost of goods sold</span><span data-out="cogs">$0</span></li>
+<li class="total"><span>Gross profit</span><span data-out="gross">$0</span></li>
+<li><span>Operating expenses</span><span data-out="expenses">$0</span></li>
+<li class="total"><span>Net profit</span><span data-out="net">$0</span></li>
+</ul>
+<div class="callout" data-show-if="pos > 0">The business kept <b data-out="net">$0</b> after the cost of goods and expenses: <b data-pct="netMargin">0%</b> of every dollar of net revenue.</div>
+<div class="callout warn" data-show-if="neg > 0">This period shows a loss of <b data-out="loss">$0</b>. Costs and expenses were more than net revenue.</div>
+<div class="callout warn" data-show-if="noRev > 0">Type your sales for the period to see margins.</div>
+<div class="callout warn" data-show-if="none > 0">Type your sales, costs and expenses for one month or the year to date.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Net profit <b data-out="net">$0</b></span><span>Revenue <b data-out="revenue">$0</b></span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.profitLoss in assets/pnf-calc.js, 2 Statement of engines/profit-and-loss (#28). */
+var M=PNF.profitLoss;
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
+CAKE_SIZE_ORDER = ["6 in round", "8 in round", "9 in round", "10 in round", "12 in round", "14 in round", "16 in round",
+                   "6 in square", "8 in square", "10 in square", "12 in square", "14 in square", "16 in square",
+                   "7 x 11 in sheet", "9 x 13 in sheet", "11 x 15 in sheet", "12 x 18 in sheet",
+                   "6 in heart", "8 in heart", "9 in heart", "10 in heart", "12 in heart", "14 in heart", "16 in heart"]
+
+
+def cake_page(p):
+    d = p["defaults"]
+
+    def pick(key, label, hint, opts, cur):
+        o = "".join(f'<option value="{E(v)}"{" selected" if v == cur else ""}>{E(t)}</option>' for v, t in opts)
+        return (f'<div class="row pick"><label for="{key}">{E(label)}<small>{E(hint)}</small></label>'
+                f'<div class="field"><select id="{key}" data-in="{key}">{o}</select></div></div>')
+    sizes = [("", "None")] + [(z, z) for z in CAKE_SIZE_ORDER]
+    tiers = "".join(pick(f"t{n}", f"Tier {n}", "Biggest tier first" if n == 1 else "None if the cake has fewer tiers", sizes, d[f"t{n}"])
+                    for n in range(1, 5))
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>The cake</legend>
+{pick("style", "Serving style", "Wedding slices are about 1 x 2 in, party slices about 1.5 x 2 in", [("wedding", "Wedding"), ("party", "Party")], d["style"])}
+{tiers}
+{field("pps", "Your price per serving", d["pps"], "What you charge per slice for this finish, for example buttercream or fondant", pre="$")}
+{field("minCake", "Minimum cake price", d["minCake"], "Small cakes price up to this. 0 for no minimum", pre="$")}
+{field("extras", "Extras, total", d["extras"], "Sugar flowers, toppers, box and board, setup", pre="$")}
+</fieldset>
+<fieldset><legend>Delivery, rush, tax and deposit</legend>
+{pick("method", "Pickup or delivery", "Delivery adds the base fee plus the miles", [("delivery", "Delivery"), ("pickup", "Pickup")], d["method"])}
+{field("miles", "Delivery miles, one way", d["miles"], "", suf="mi")}
+{field("delivBase", "Delivery base fee", d["delivBase"], "Charged on every delivery before mileage", pre="$")}
+{field("perMile", "Delivery per mile", d["perMile"], "", pre="$")}
+{field("days", "Days from order to event", d["days"], "Leave blank to skip the rush check")}
+{field("rushDays", "Rush when fewer days than", d["rushDays"], "0 turns rush fees off")}
+{field("rushPct", "Rush fee, % of cake and extras", d["rushPct"], "", suf="%")}
+{field("taxRate", "Sales tax rate, if you charge it", d["taxRate"], "Check your own state and local rules", suf="%")}
+{field("depositPct", "Deposit to book", d["depositPct"], "The share of the total that holds the date", suf="%")}
+</fieldset></form>"""
+    results = f"""<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Quote total</div><div class="val" data-out="total">$0</div><div class="sub"><span data-out="servings" data-fmt="int">0</span> servings</div></div>
+<div class="tile"><div class="lab">Deposit to book</div><div class="val" data-out="deposit">$0</div><div class="sub">Balance <span data-out="balance">$0</span> at the event</div></div>
+</div>
+<ul class="lines">
+<li><span>Servings from the tiers</span><span data-out="servings" data-fmt="int">0</span></li>
+<li class="total"><span>Cake price</span><span data-out="cake">$0</span></li>
+<li><span>Extras</span><span data-out="extras">$0</span></li>
+<li><span>Delivery</span><span data-out="delivery">$0</span></li>
+<li><span>Rush fee</span><span data-out="rush">$0</span></li>
+<li class="total"><span>Subtotal</span><span data-out="sub">$0</span></li>
+<li><span>Sales tax</span><span data-out="tax">$0</span></li>
+<li class="total"><span>Total</span><span data-out="total">$0</span></li>
+<li><span>Deposit to book</span><span data-out="deposit">$0</span></li>
+<li><span>Balance due at the event</span><span data-out="balance">$0</span></li>
+</ul>
+<div class="callout" data-show-if="minUsed > 0">The servings at your price come to <b data-out="base">$0</b>, so the cake is priced up to your minimum cake price.</div>
+<div class="callout warn" data-show-if="rushOn > 0">Rush fee applied: the event is inside your rush window.</div>
+<div class="callout warn" data-show-if="none > 0">Pick at least one tier size to see the quote.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Total <b data-out="total">$0</b></span><span>Deposit <b data-out="deposit">$0</b></span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.cakeQuote in assets/pnf-calc.js, 2 Order Form "How it's built" of engines/cake-order-form (#26). */
+var M=PNF.cakeQuote;
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
 PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashflow_page,
               "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
               "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
@@ -940,7 +1049,9 @@ PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashfl
               "profit_margin": profit_margin_page,
               "employer_cost": employer_cost_page,
               "startup_cost": startup_cost_page,
-              "budget": budget_page}
+              "budget": budget_page,
+              "profit_loss": profit_loss_page,
+              "cake": cake_page}
 
 
 def page_html(p):

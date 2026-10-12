@@ -362,11 +362,46 @@ const BW = P.budgetPlan({ pay1: 500, freq1: "weekly", bills: 2500 });
 check("weekly pay: 52/12 a month", BW.income, 2166.666667);
 check("over plan shows the gap", BW.over, 333.333333);
 check("blank budget: no income flag", P.budgetPlan({}).none, 1);
+// #28 Profit and Loss Template, 2 Statement recalculated in LibreOffice Oct 12 (example file, Sep 2026)
+const PLy = P.profitLoss({ sales: 29500, other: 40, refunds: 300, goods: 11000, stock0: 1200, stock1: 1450, expenses: 12675.66 });
+check("#28 YTD net revenue", PLy.revenue, 29240);
+check("#28 YTD cost of goods sold with counts", PLy.cogs, 10750);
+check("#28 YTD gross profit", PLy.gross, 18490);
+check("#28 YTD net profit", PLy.net, 5814.34);
+check("#28 YTD net margin", PLy.netMargin, 0.198848837);
+const PLs = P.profitLoss({ sales: 3400, refunds: 75, goods: 1260, expenses: 1551.99 });
+check("#28 September net profit", PLs.net, 513.01);
+check("#28 September gross margin", PLs.grossMargin, 0.621052632);
+const PLb = P.profitLoss({ sales: 29500, other: 40, refunds: 300, goods: 11000, stock0: 1200, stock1: "", expenses: 12675.66 });
+check("#28 one count blank: counts ignored (workbook with counts cleared)", PLb.net, 5564.34);
+const PLa = P.profitLoss({ sales: 4550, goods: 1800, expenses: 1388.09 });
+check("#28 August net margin", PLa.netMargin, 0.299320879);
+check("blank P&L: none flag", P.profitLoss({}).none, 1);
+// #26 Cake Order Form, 2 Order Form recalculated in LibreOffice Oct 12
+const CK = P.cakeQuote({ style: "wedding", t1: "10 in round", t2: "8 in round", t3: "6 in round", pps: 6, minCake: 60, extras: 98,
+  method: "delivery", delivBase: 10, miles: 18, perMile: 1, days: 36, rushDays: 7, rushPct: 20, taxRate: 0, depositPct: 50 });
+check("#26 servings", CK.servings, 74);
+check("#26 cake price", CK.cake, 444);
+check("#26 delivery", CK.delivery, 28);
+check("#26 total", CK.total, 570);
+check("#26 deposit", CK.deposit, 285);
+const CKr = P.cakeQuote({ style: "wedding", t1: "10 in round", t2: "8 in round", t3: "6 in round", pps: 6, minCake: 60, extras: 98,
+  method: "delivery", delivBase: 10, miles: 18, perMile: 1, days: 4, rushDays: 7, rushPct: 20, taxRate: 8.25, depositPct: 50 });
+check("#26 rush fee, 4 days out", CKr.rush, 108.4);
+check("#26 sales tax 8.25%", CKr.tax, 55.97);
+check("#26 total with rush and tax", CKr.total, 734.37);
+check("#26 deposit with rush and tax", CKr.deposit, 367.19);
+check("#26 balance with rush and tax", CKr.balance, 367.18);
+const CKm = P.cakeQuote({ style: "party", t1: "6 in round", pps: 4.5, minCake: 60, extras: 98, method: "pickup", miles: 18, delivBase: 10, perMile: 1,
+  days: 36, rushDays: 7, rushPct: 20, taxRate: 0, depositPct: 50 });
+check("#26 minimum cake price applies", CKm.cake, 60);
+check("#26 pickup total", CKm.total, 158);
+check("blank cake quote: none flag", P.cakeQuote({}).none, 1);
 // blank inputs never produce NaN or Infinity
 const b = P.service({});
 const bh = P.hourly({});
 const bc = P.cashflow({});
-const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({}), P.businessExpense({}), P.seTax({}), P.profitMargin({}), P.employerCost({}), P.startupCost({}), P.budgetPlan({})]
+const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({}), P.businessExpense({}), P.seTax({}), P.profitMargin({}), P.employerCost({}), P.startupCost({}), P.budgetPlan({}), P.profitLoss({}), P.cakeQuote({})]
   .flatMap(o => Object.values(o)).filter(v => typeof v === "number");
 const bad = [...Object.values(b), ...Object.values(bh), ...Object.values(bc), ...more].filter(v => !isFinite(v));
 if (bad.length) { fails++; console.log("FAIL blank inputs give non-finite values"); } else console.log("ok   blank inputs stay finite");

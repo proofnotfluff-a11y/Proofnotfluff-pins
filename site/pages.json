@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-11",
+ "updated": "2026-10-12",
  "pages": [
   {
    "slug": "house-cleaning-price-calculator",
@@ -2358,6 +2358,149 @@
    "number_sources": [
     "engines/budget-planner/build_xlsx.py recalculated in LibreOffice Oct 12: 1 Setup E15 Take-home income 7275, E16 Bills 3049, E17 Everyday spending 2345, E18 Savings and extra debt 950, E19 Planned out 6344, E20 Left to plan 931; H28 Paycheck 1 per month 4225; I15 Bills share 0.4191.",
     "docs/assets/pnf-calc.test.js budgetPlan checks."
+   ]
+  },
+  {
+   "slug": "profit-and-loss-calculator",
+   "kind": "profit_loss",
+   "draft": true,
+   "product": "28",
+   "segment": "small-business",
+   "title": "Profit and Loss Calculator: Net Profit, Gross Profit and Margins for One Month or the Year | ProofNotFluff",
+   "desc": "Free profit and loss calculator for a small business. Type your sales, refunds, cost of goods and expenses to see net revenue, gross profit, net profit and both margins.",
+   "eyebrow": "Free calculator",
+   "h1": "Profit and Loss Calculator",
+   "lede": "Type one month or the year to date: sales, refunds, what you spent on stock and materials, and your expenses. The calculator lays them out as a profit and loss statement and shows your net profit and margins. Free, no sign-up.",
+   "card": "Net revenue, gross profit, net profit and both margins for one month or the year to date.",
+   "defaults": {
+    "sales": "29,500",
+    "other": "40",
+    "refunds": "300",
+    "goods": "11,000",
+    "stock0": "1,200",
+    "stock1": "1,450",
+    "expenses": "12,675.66"
+   },
+   "method": [
+    "A profit and loss statement runs top to bottom. Net revenue is sales plus other business income less refunds given to customers.",
+    "Cost of goods sold is what you spent on stock for resale, materials that go into what you sell and labor paid to make it. If you count the stock you have not sold yet at the start and end of the period, the change is added in: stock at the start plus purchases less stock at the end. Fill in both counts or neither; with one blank, the counts are left out.",
+    "Gross profit is net revenue less cost of goods sold. Net profit is gross profit less operating expenses such as selling fees, ads, rent, insurance, software and shipping labels. Each margin is that profit divided by net revenue.",
+    "Equipment you will keep for years, money you pay yourself and transfers between your own accounts are not operating expenses, so leave them out. The workbook logs them in their own rows, kept out of profit."
+   ],
+   "example": "The Profit and Loss Template's example is a made-up one-person T-shirt printing shop, January to September 2026. Sales were $29,500 and other income $40, less $300 of refunds, so net revenue is $29,240. Blank shirts, ink and a helper for custom orders cost $11,000; stock counts of $1,200 on January 1 and $1,450 at the end of September lower cost of goods sold by $250 to $10,750. Gross profit is $18,490. Operating expenses come to $12,675.66, which leaves $5,814.34 of net profit, a 19.9% net margin. September alone shows $3,325 of net revenue and $513.01 of net profit. The $1,850 heat press, the owner's $1,500 a month and a $2,000 card payoff are logged but kept out of profit.",
+   "cta": {
+    "title": "Build this statement from every sale and expense",
+    "bullets": [
+     "The Profit and Loss Template for Excel and Google Sheets turns one log of money in and money out into a monthly and year-to-date statement with 22 cost and expense lines, % of revenue on every line and a Month by Month tab for the whole year.",
+     "It has an Entries tab with 1,000 rows, a Checks box for rows missing a date or category, a filled-in example and a Start Here guide. $2.99, instant download."
+    ],
+    "button": "Get the template on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4592931854"
+   },
+   "faq": [
+    [
+     "What is the difference between gross profit and net profit?",
+     "Gross profit is net revenue less the cost of the goods you sold. Net profit takes the operating expenses off as well: fees, ads, rent, insurance, software and the rest. Gross profit shows whether your products earn their keep; net profit shows what the business kept."
+    ],
+    [
+     "Do I need to count my stock?",
+     "No. Leave both counts blank and cost of goods sold is what you bought in the period. If you sell physical products and buy ahead, counting stock at the start and end gives a truer cost, because stock you bought but have not sold yet is not a cost of this period."
+    ],
+    [
+     "Should I include what I pay myself?",
+     "No. For a sole proprietor, money you take out is an owner draw, not an expense, so it stays out of profit. Net profit is what the business earned before you pay yourself."
+    ],
+    [
+     "What about a big equipment purchase?",
+     "Leave it out of operating expenses. Equipment you keep for years is usually depreciated or expensed under rules your tax preparer applies. The workbook logs it in its own row, kept out of profit."
+    ],
+    [
+     "Can I use it for one month or a whole year?",
+     "Either. Type the totals for any period, one month, a quarter or the year to date. The paid workbook builds both the month and the year to date from one log."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is a planning estimate from the numbers you type. Your tax preparer decides what is deductible and how it goes on your return."
+    ]
+   ],
+   "sources": "No outside rates are used on this page. The example (net revenue $29,240.00, net profit $5,814.34, September $513.01) is the made-up shop in the Profit and Loss Template workbook, recalculated Oct 12, 2026; the workbook names its lines after the IRS 2025 Schedule C (Form 1040), checked in the workbook Oct 8, 2026.",
+   "number_sources": [
+    "engines/profit-and-loss/build_xlsx.py example recalculated in LibreOffice Oct 12: 2 Statement H27 29500, H28 40, H29 -300, H30 29240, H32:H34 8900+1150+950, H35 -250, H36 10750, H37 18490, H58 12675.66, H59 5814.34, H61 0.1988; G30 3325, G59 513.01. Counts cleared: H59 5564.34. Month Aug: G59 1361.91, G61 0.2993.",
+    "docs/assets/pnf-calc.test.js profitLoss checks."
+   ]
+  },
+  {
+   "slug": "cake-pricing-calculator",
+   "kind": "cake",
+   "draft": true,
+   "product": "26",
+   "segment": "makers",
+   "title": "Cake Pricing Calculator: Quote a Custom Cake by the Serving, With Deposit and Delivery | ProofNotFluff",
+   "desc": "Free cake pricing calculator for home bakers. Pick the tier sizes, type your price per serving, extras and delivery, and get the cake price, total, deposit and balance.",
+   "eyebrow": "Free calculator",
+   "h1": "Cake Pricing Calculator",
+   "lede": "Pick the tier sizes and serving style, type your price per serving, then extras, delivery and your deposit. The calculator counts the servings and gives the quote total, the deposit to book and the balance. Free, no sign-up.",
+   "card": "Servings from the tier sizes, the cake price, the quote total and the deposit to book.",
+   "defaults": {
+    "style": "wedding",
+    "t1": "10 in round",
+    "t2": "8 in round",
+    "t3": "6 in round",
+    "t4": "",
+    "pps": "6.00",
+    "minCake": "60",
+    "extras": "98",
+    "method": "delivery",
+    "miles": "18",
+    "delivBase": "10",
+    "perMile": "1.00",
+    "days": "36",
+    "rushDays": "7",
+    "rushPct": "20",
+    "taxRate": "0",
+    "depositPct": "50"
+   },
+   "method": [
+    "Servings come from the size of each tier. The calculator uses the serving table in the Cake Order Form workbook, which takes its counts from Wilton's serving guide for 2-layer cakes: wedding slices about 1 x 2 in, party slices about 1.5 x 2 in. A 10 in round gives 38 wedding servings or 28 party servings.",
+    "Cake price is servings times your price per serving. If that comes to less than your minimum cake price, the cake is priced up to the minimum.",
+    "Delivery is your base fee plus the one-way miles times your per-mile fee. A rush fee is a percent of the cake and extras, added when the event is fewer days out than your rush window. Sales tax, if you charge it, is figured on the subtotal. The deposit is a percent of the total; the rest is due at the event."
+   ],
+   "example": "The Cake Order Form's example is a made-up home bakery quoting a three-tier wedding cake: 10 in, 8 in and 6 in round in fondant. That is 38 + 24 + 12 = 74 wedding servings, and at $6.00 a serving the cake is $444.00. Twelve sugar flowers, fresh flowers arranged and a cake box and board add $98.00. Delivery is 18 miles one way: a $10.00 base fee plus $1.00 a mile is $28.00. The event is 36 days out, so no rush fee, and no sales tax is charged. The total is $570.00, with a $285.00 deposit to book and $285.00 due on the event date. Change the days to 4 and the 20% rush fee adds $108.40.",
+   "cta": {
+    "title": "Quote, print and track every cake order",
+    "bullets": [
+     "The Cake Order Form and Order Tracker for Excel and Google Sheets quotes from your own Price List: 24 cake sizes with party and wedding servings, up to 6 extras per order, delivery, rush fee, tax, deposit and balance, plus a one-page order summary to print for the customer.",
+     "An Order Log keeps every order, deposit and balance with a plain-words status. It includes a filled-in example and a cups-to-millilitres card. $2.99, instant download."
+    ],
+    "button": "Get the order form on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4592080840"
+   },
+   "faq": [
+    [
+     "How do I price a cake by the serving?",
+     "Count the servings the tiers give, then multiply by your price per serving. Pick the size first, look up its servings, and add the tiers together. A minimum cake price keeps small cakes worth baking."
+    ],
+    [
+     "What is the difference between wedding and party servings?",
+     "Slice size. Wedding servings are cut about 1 x 2 in, party servings about 1.5 x 2 in, both from a 2-layer cake, so the same cake gives more wedding servings. A 10 in round gives 38 wedding servings or 28 party servings."
+    ],
+    [
+     "How much deposit should I take for a cake?",
+     "That is your call; many bakers ask for part of the total to hold the date. Type your own percent. The calculator shows the deposit and the balance due at the event."
+    ],
+    [
+     "When should I charge a rush fee?",
+     "When an order comes in too close to the event for your normal schedule. Set the rush window in days and the fee as a percent of the cake and extras; it is only added inside that window."
+    ],
+    [
+     "Do I have to charge sales tax on cakes?",
+     "It depends on your state and local rules. Type 0 if you don't charge it, or your rate if you do, and check with your state's tax agency."
+    ]
+   ],
+   "sources": "No outside rates are used on this page. Servings per size are the Cake Order Form workbook's table, taken from Wilton's cake serving guide (2-layer cakes), checked in the workbook Oct 9, 2026. The example ($570.00 total, $285.00 deposit) is the made-up bakery in that workbook, recalculated Oct 12, 2026.",
+   "number_sources": [
+    "engines/cake-order-form/build_xlsx.py example recalculated in LibreOffice Oct 12: 2 Order Form I15 74, I17 444, I20 98, I21 28, I22 0, I25 570, I27 285, I28 285. Order date 11/10 and tax 8.25%: I22 108.40, I24 55.97, I25 734.37, I27 367.19. 6 in round party buttercream pickup: I17 60, I25 158.",
+    "docs/assets/pnf-calc.test.js cakeQuote checks."
    ]
   }
  ]

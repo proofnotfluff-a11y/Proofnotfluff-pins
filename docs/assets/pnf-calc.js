@@ -468,8 +468,25 @@
       noPace: canPay && perWeek <= 0 ? 1 : 0, pace: canPay && perWeek > 0 ? 1 : 0 };
   }
 
+  // #29 Budget Planner Spreadsheet: 1 Setup "Your month at a glance" (Take-home income, Bills, Everyday spending,
+  // Savings and extra debt, Planned out each month, Left to plan). Per month = amount x how often, as the Setup tab does.
+  var PER_MONTH = { monthly: 1, twice: 2, biweekly: 26 / 12, weekly: 52 / 12, quarterly: 1 / 3, yearly: 1 / 12 };
+  function budgetPlan(i) {
+    var f1 = PER_MONTH[i.freq1] || 1, f2 = PER_MONTH[i.freq2] || 1;
+    var pay1 = Math.max(0, num(i.pay1)) * f1, pay2 = Math.max(0, num(i.pay2)) * f2, other = Math.max(0, num(i.other));
+    var income = pay1 + pay2 + other;
+    var bills = Math.max(0, num(i.bills)), spend = Math.max(0, num(i.spend)), yearlyMonth = Math.max(0, num(i.yearly)) / 12;
+    var save = Math.max(0, num(i.save));
+    var everyday = spend + yearlyMonth, out = bills + everyday + save, left = income - out;
+    var share = function (x) { return income > 0 ? x / income : 0; };
+    return { pay1: pay1, pay2: pay2, other: other, income: income, bills: bills, spend: spend, yearlyMonth: yearlyMonth,
+      everyday: everyday, save: save, out: out, left: left, over: left < 0 ? -left : 0,
+      billsShare: share(bills), everydayShare: share(everyday), saveShare: share(save), leftShare: share(left),
+      pos: income > 0 && left >= 0 ? 1 : 0, neg: income > 0 && left < 0 ? 1 : 0, none: income > 0 ? 0 : 1 };
+  }
+
   var api = { seTax: seTax, hourly: hourly, service: service, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
-    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, num: num, money: money, ceilTo: ceilTo,
+    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;
 })(this);

@@ -878,6 +878,58 @@ PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;}})();</script>"""
     return form, results, script
 
 
+def budget_page(p):
+    d = p["defaults"]
+    freqs = [("weekly", "Weekly"), ("biweekly", "Every 2 weeks"), ("twice", "Twice a month"), ("monthly", "Monthly"),
+             ("quarterly", "Every 3 months"), ("yearly", "Yearly")]
+
+    def pick(key, label, hint):
+        opts = "".join(f'<option value="{v}"{" selected" if v == d[key] else ""}>{E(t)}</option>' for v, t in freqs)
+        return (f'<div class="row pick"><label for="{key}">{E(label)}<small>{E(hint)}</small></label>'
+                f'<div class="field"><select id="{key}" data-in="{key}">{opts}</select></div></div>')
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>Take-home pay</legend>
+{field("pay1", "Paycheck 1", d["pay1"], "After tax and deductions, the amount that lands in the bank", pre="$")}
+{pick("freq1", "How often paycheck 1 comes", "Every 2 weeks is 26 paychecks a year, not 24")}
+{field("pay2", "Paycheck 2", d["pay2"], "A second job or a partner's pay. 0 if none", pre="$")}
+{pick("freq2", "How often paycheck 2 comes", "Pick how it is paid; the calculator turns it into a month")}
+{field("other", "Other income per month", d["other"], "Side income, child support or benefits. 0 if none", pre="$")}
+</fieldset>
+<fieldset><legend>Where it goes each month</legend>
+{field("bills", "Bills", d["bills"], "Rent or mortgage, car payment, insurance, utilities, phone, internet, loans", pre="$")}
+{field("spend", "Everyday spending", d["spend"], "Groceries, gas, eating out, household, kids, pets, fun", pre="$")}
+{field("yearly", "Yearly costs, the full amount", d["yearly"], "Registration, memberships, gifts paid once a year. Spread over 12 months", pre="$")}
+{field("save", "Savings and extra debt payments", d["save"], "Emergency fund, retirement, sinking funds, extra on a loan", pre="$")}
+</fieldset></form>"""
+    results = f"""<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Left to plan each month</div><div class="val" data-out="left">$0</div><div class="sub"><span data-pct="leftShare">0%</span> of take-home with no job yet</div></div>
+<div class="tile"><div class="lab">Take-home per month</div><div class="val" data-out="income">$0</div><div class="sub">Every paycheck turned into a month</div></div>
+</div>
+<ul class="lines">
+<li><span>Paycheck 1 per month</span><span data-out="pay1">$0</span></li>
+<li><span>Paycheck 2 per month</span><span data-out="pay2">$0</span></li>
+<li><span>Other income</span><span data-out="other">$0</span></li>
+<li class="total"><span>Take-home income</span><span data-out="income">$0</span></li>
+<li><span>Bills, <span data-pct="billsShare">0%</span></span><span data-out="bills">$0</span></li>
+<li><span>Everyday spending with yearly costs, <span data-pct="everydayShare">0%</span></span><span data-out="everyday">$0</span></li>
+<li><span>Savings and extra debt, <span data-pct="saveShare">0%</span></span><span data-out="save">$0</span></li>
+<li class="total"><span>Planned out each month</span><span data-out="out">$0</span></li>
+<li class="total"><span>Left to plan</span><span data-out="left">$0</span></li>
+</ul>
+<div class="callout" data-show-if="pos > 0">Give the <b data-out="left">$0</b> left over a job: more savings, an extra debt payment or a line you forgot. A plan with $0 left to plan spends every dollar on purpose.</div>
+<div class="callout warn" data-show-if="neg > 0">This plan spends <b data-out="over">$0</b> a month more than comes in. Trim a line or add income until Left to plan is 0 or more.</div>
+<div class="callout warn" data-show-if="none > 0">Type your take-home pay and how often it comes to see your month.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Left to plan <b data-out="left">$0</b></span><span>Income <b data-out="income">$0</b></span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.budgetPlan in assets/pnf-calc.js, 1 Setup "Your month at a glance" of engines/budget-planner (#29). */
+var M=PNF.budgetPlan;
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
 PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashflow_page,
               "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
               "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
@@ -887,7 +939,8 @@ PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashfl
               "inventory_turnover": inventory_turnover_page,
               "profit_margin": profit_margin_page,
               "employer_cost": employer_cost_page,
-              "startup_cost": startup_cost_page}
+              "startup_cost": startup_cost_page,
+              "budget": budget_page}
 
 
 def page_html(p):

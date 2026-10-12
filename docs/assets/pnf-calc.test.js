@@ -339,14 +339,34 @@ const SP = P.startupCost({ s1: 3000, s2: 0, s3: 0, s4: 0, s5: 0, monthly: 755, m
 check("PW cash to start", SP.cash, 4510);
 check("PW jobs to earn back $3,000 at $32.20", SP.jobs, 94);
 check("PW no pace typed: weeks 0", SP.weeks, 0);
+// #22 pressure washing startup page example: $4,500 one-time, 3 months of $755, $32.20 on the $200 driveway, 8 a week
+const SW = P.startupCost({ s1: 3000, s2: 500, s3: 600, s4: 400, s5: 0, monthly: 755, months: 3, profitJob: 32.20, jobsWeek: 8 });
+check("#22 cash to start", SW.cash, 6765);
+check("#22 driveways to earn back $4,500 at $32.20", SW.jobs, 140);
+check("#22 weeks at 8 jobs a week", SW.weeks, 18);
+check("#22 machine already owned: jobs", P.startupCost({ s1: 0, s2: 500, s3: 600, s4: 400, profitJob: 32.20 }).jobs, 47);
 check("exact multiple: $300 at $75 is 4 jobs", P.startupCost({ s1: 300, profitJob: 75 }).jobs, 4);
 check("zero profit: no job count", P.startupCost({ s1: 1000, profitJob: 0 }).jobs, 0);
 check("zero profit flag", P.startupCost({ s1: 1000, profitJob: 0 }).noProfit, 1);
+// #29 Budget Planner Spreadsheet example, 1 Setup "Your month at a glance" recalculated Oct 12: take-home 7,275,
+// bills 3,049, everyday spending 2,345 (2,325 monthly lines plus $240 car registration a year), savings 950, out 6,344,
+// left to plan 931
+const BP = P.budgetPlan({ pay1: 1950, freq1: "biweekly", pay2: 1400, freq2: "twice", other: 250, bills: 3049, spend: 2325, yearly: 240, save: 950 });
+check("#29 paycheck 1 every 2 weeks per month", BP.pay1, 4225);
+check("#29 take-home income per month", BP.income, 7275);
+check("#29 everyday spending with yearly costs", BP.everyday, 2345);
+check("#29 planned out each month", BP.out, 6344);
+check("#29 left to plan", BP.left, 931);
+check("#29 bills share of take-home", BP.billsShare, 0.419106529209622);
+const BW = P.budgetPlan({ pay1: 500, freq1: "weekly", bills: 2500 });
+check("weekly pay: 52/12 a month", BW.income, 2166.666667);
+check("over plan shows the gap", BW.over, 333.333333);
+check("blank budget: no income flag", P.budgetPlan({}).none, 1);
 // blank inputs never produce NaN or Infinity
 const b = P.service({});
 const bh = P.hourly({});
 const bc = P.cashflow({});
-const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({}), P.businessExpense({}), P.seTax({}), P.profitMargin({}), P.employerCost({}), P.startupCost({})]
+const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({}), P.businessExpense({}), P.seTax({}), P.profitMargin({}), P.employerCost({}), P.startupCost({}), P.budgetPlan({})]
   .flatMap(o => Object.values(o)).filter(v => typeof v === "number");
 const bad = [...Object.values(b), ...Object.values(bh), ...Object.values(bc), ...more].filter(v => !isFinite(v));
 if (bad.length) { fails++; console.log("FAIL blank inputs give non-finite values"); } else console.log("ok   blank inputs stay finite");

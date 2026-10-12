@@ -2199,6 +2199,166 @@
     "engines/service-pricing/build_xlsx.py with editions/junk-removal.json recalculated in LibreOffice Oct 11: 1 Your Numbers C35 Total per month 715; 3 Quote Builder H34 Quote 485, H36 Profit in this quote 75.3831.",
     "docs/assets/pnf-calc.test.js startupCost checks."
    ]
+  },
+  {
+   "slug": "pressure-washing-startup-cost-calculator",
+   "kind": "startup_cost",
+   "draft": true,
+   "product": "22",
+   "segment": "home-services",
+   "title": "Pressure Washing Business Startup Cost Calculator: Cash to Start and Jobs to Earn It Back | ProofNotFluff",
+   "desc": "Free pressure washing business startup cost calculator. Add your machine, surface cleaner, hoses, up-front insurance and launch ads plus a cushion of monthly costs to see the cash you need and how many jobs it takes to earn it back.",
+   "eyebrow": "Free calculator",
+   "h1": "Pressure Washing Business Startup Cost Calculator",
+   "lede": "Add up the machine, the gear and the up-front insurance, keep a few months of running costs on hand, and see the cash you need to start a pressure washing business and how many jobs it takes to earn the spend back. Free, no sign-up.",
+   "card": "Cash to start a pressure washing business and the jobs it takes to earn it back.",
+   "defaults": {
+    "s1": "3,000",
+    "s2": "500",
+    "s3": "600",
+    "s4": "400",
+    "s5": "0",
+    "monthly": "755",
+    "months": "3",
+    "profitJob": "32.20",
+    "jobsWeek": "8"
+   },
+   "lines": [
+    [
+     "Pressure washer, surface cleaner and rig",
+     "Machine, surface cleaner, pump or soft wash setup, tank or trailer. 0 if you already own it"
+    ],
+    [
+     "Hoses, tips, chemicals and PPE",
+     "Your first set of gear and a starting stock of cleaning mix"
+    ],
+    [
+     "Insurance and licenses paid up front",
+     "Deposits or first payments due before you start"
+    ],
+    [
+     "Website, signs, door hangers and first ads",
+     "Your launch spend"
+    ],
+    [
+     "Other",
+     "Anything else, or 0"
+    ]
+   ],
+   "monthly_hint": "Insurance, phone, apps, ads, equipment wear and fees that run every month, busy or slow",
+   "profit_label": "Profit in one job",
+   "profit_hint": "Your quote minus the price floor that pays you, your costs and the tax on your pay. The free pressure washing price calculator shows it",
+   "pace_label": "Jobs a week, once you are booked",
+   "jobs_tile": "Jobs to earn it back",
+   "engine_ref": "engines/service-pricing pressure-washing edition (#22) 1 Your Numbers \"Total per month\" and 3 Quote Builder \"Profit in this quote\"",
+   "method": [
+    "Startup cost has two parts. The one-time spend is what you buy or pay before the first job: the pressure washer and surface cleaner (or a soft wash setup), hoses, tips, chemicals and safety gear, insurance or licenses due up front, and your launch ads. The cushion is a few months of the costs that run every month, kept on hand while bookings grow.",
+    "Cash to start is the one-time spend plus the cushion. The cushion is not spent if jobs cover your costs, so the calculator earns back only the one-time spend.",
+    "Each job earns it back with its profit: the quote minus the price floor. The floor already pays you at your break-even rate for the time on site and the drive, counts vehicle miles and supplies, covers your monthly costs and sets aside self-employment and income tax, so what is left over is free to repay the startup spend. Jobs to earn it back is the one-time spend divided by the profit in one job, rounded up. Weeks at your pace divides that by your jobs a week, rounded up."
+   ],
+   "example": "The Pressure Washing Pricing Calculator's example has $755 a month of business costs and a 2-car concrete driveway (1 person, 1.5 hours on site, a 20-mile round trip, $12 of supplies) quoted at $200, with $32.20 of profit inside it. The startup amounts here are example figures we chose to show the maths, not prices: $3,000 for the machine, surface cleaner and rig, $500 of hoses, tips, chemicals and gear, $600 of up-front insurance and licenses and $400 of launch ads make $4,500 of one-time spend. Add 3 months of $755 and the cash to start is $6,765. At $32.20 a driveway it takes 140 jobs to earn back the $4,500, about 18 weeks at 8 jobs a week. Already own the machine? Type 0 in the first box and the count drops to 47.",
+   "cta": {
+    "title": "Quote the jobs that pay it back",
+    "bullets": [
+     "The Pressure Washing Pricing Calculator workbook for Excel and Google Sheets works out your break-even and target rate and prices driveways, house washes, roofs, decks and storefronts with drive time, miles and supplies counted.",
+     "It has 15 example jobs, a quote builder, a printable price sheet and a job tracker. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4590258713"
+   },
+   "faq": [
+    [
+     "How much does it cost to start a pressure washing business?",
+     "Most of it is the machine and rig, so the answer depends on what you already own and whether you buy new, used or a trailer setup. Type your own quotes into the calculator. The example on this page totals $6,765 with a 3-month cushion, but those startup amounts are examples, not prices."
+    ],
+    [
+     "What if I finance the equipment?",
+     "Put the down payment in the first box and the monthly payment in your monthly business costs. The cushion then covers the payments too."
+    ],
+    [
+     "What is profit in one job?",
+     "The quote minus the job's price floor. The floor pays you at your break-even rate for the time on site and the drive, counts miles and supplies, and covers your monthly costs and the tax on your pay. Only what is left over pays back startup spend."
+    ],
+    [
+     "Why does a driveway take so many jobs?",
+     "A small job carries a small profit once your pay, drive and costs are counted. House washes, roofs and add-ons such as sealing usually carry more. Type the profit from a bigger job to see the count drop."
+    ],
+    [
+     "Is this tax or financial advice?",
+     "No. It is a planning estimate from the numbers you type. Your own quotes, your insurer and your local license office decide the real costs."
+    ]
+   ],
+   "sources": "No outside rates are used on this page. Monthly costs ($755) and profit per job ($32.20 on a $200 2-car driveway) are the example in the Pressure Washing Pricing Calculator workbook, recalculated Oct 12, 2026. Startup amounts are example figures, not market prices.",
+   "number_sources": [
+    "engines/service-pricing/build_xlsx.py with editions/pressure-washing.json recalculated in LibreOffice Oct 12: 1 Your Numbers D35 Total per month 755; 3 Quote Builder I34 Quote 200, I36 Profit in this quote 32.2029.",
+    "docs/assets/pnf-calc.test.js startupCost checks."
+   ]
+  },
+  {
+   "slug": "monthly-budget-calculator",
+   "kind": "budget",
+   "draft": true,
+   "product": "29",
+   "segment": "personal-finance",
+   "title": "Monthly Budget Calculator: Turn Every Paycheck Into a Month and See What Is Left | ProofNotFluff",
+   "desc": "Free monthly budget calculator. Type your take-home pay and how often it comes, your bills, everyday spending, yearly costs and savings, and see your monthly income and the dollars left to plan.",
+   "eyebrow": "Free calculator",
+   "h1": "Monthly Budget Calculator",
+   "lede": "Type what you take home and how often it comes, then your bills, spending and savings. The calculator turns every paycheck into a monthly amount and shows the dollars left to plan. Free, no sign-up.",
+   "card": "Your take-home pay per month and the dollars left to plan after bills, spending and savings.",
+   "defaults": {
+    "pay1": "1,950",
+    "freq1": "biweekly",
+    "pay2": "1,400",
+    "freq2": "twice",
+    "other": "250",
+    "bills": "3,049",
+    "spend": "2,325",
+    "yearly": "240",
+    "save": "950"
+   },
+   "method": [
+    "A budget only works in one unit, so every paycheck is turned into a monthly amount first. Weekly pay comes 52 times a year, so a month holds 52 / 12 of it. Every 2 weeks comes 26 times a year, so a month holds 26 / 12, a bit more than 2. Twice a month is exactly 2, every 3 months is a third, and yearly is a twelfth.",
+    "Yearly costs such as a car registration are spread across the year: the full amount divided by 12 joins everyday spending, so the month the bill arrives is already paid for.",
+    "Planned out each month is bills plus everyday spending plus savings and extra debt payments. Left to plan is take-home income minus planned out. A positive number is money with no job yet; a negative one means the plan spends more than comes in. Each line also shows its share of take-home pay."
+   ],
+   "example": "The Budget Planner Spreadsheet's example is a made-up two-earner household. Paycheck 1 is $1,950 every 2 weeks, which is $4,225 a month. Paycheck 2 is $1,400 twice a month, $2,800, and side income adds $250, so take-home is $7,275 a month. Bills come to $3,049 (42% of take-home), everyday spending to $2,325 plus a $240 yearly car registration, which is $20 a month, and savings and extra debt payments to $950. Planned out is $6,344, which leaves $931 a month to plan. Change paycheck 1 to Twice a month and the left-to-plan figure drops by $325, the third paycheck that 26 pay days a year bring.",
+   "cta": {
+    "title": "Track the month you planned",
+    "bullets": [
+     "The Budget Planner Spreadsheet for Excel and Google Sheets holds every paycheck, bill, spending line and savings goal, then shows each month against its plan with Over plan flagged in words and your bills in due-date order.",
+     "It has a Setup tab, an Actuals tab, a Month view, a Year view, a filled-in example and a blank copy. $2.99, instant download."
+    ],
+    "button": "Get the planner on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4592917337"
+   },
+   "faq": [
+    [
+     "How do I budget when I am paid every 2 weeks?",
+     "Multiply one paycheck by 26 and divide by 12. That is your monthly income, a little more than two paychecks. Two months a year hold a third paycheck; budgeting on the monthly figure spreads it across the year instead of spending it twice."
+    ],
+    [
+     "Should I use take-home pay or gross pay?",
+     "Take-home pay, the amount that reaches your bank after tax, insurance and retirement deductions. That is the money you can actually plan."
+    ],
+    [
+     "What goes in bills and what goes in everyday spending?",
+     "Bills are fixed amounts with a due date: rent or mortgage, car payment, insurance, utilities, phone, internet and loan payments. Everyday spending changes month to month: groceries, gas, eating out, household items, kids, pets and fun."
+    ],
+    [
+     "What should I do with the money left to plan?",
+     "Give it a job before the month starts: more in savings, an extra debt payment or a line you left out. A plan where every dollar has a job is often called a zero-based budget."
+    ],
+    [
+     "Is this financial advice?",
+     "No. It is a planning estimate from the numbers you type. Your bank statements and pay stubs show what really comes in and goes out."
+    ]
+   ],
+   "sources": "No outside rates are used on this page. The example (take-home $7,275, planned out $6,344, $931 left to plan) is the made-up household in the Budget Planner Spreadsheet workbook, recalculated Oct 12, 2026. Pay frequencies use 52 weeks and 26 two-week periods in a year.",
+   "number_sources": [
+    "engines/budget-planner/build_xlsx.py recalculated in LibreOffice Oct 12: 1 Setup E15 Take-home income 7275, E16 Bills 3049, E17 Everyday spending 2345, E18 Savings and extra debt 950, E19 Planned out 6344, E20 Left to plan 931; H28 Paycheck 1 per month 4225; I15 Bills share 0.4191.",
+    "docs/assets/pnf-calc.test.js budgetPlan checks."
+   ]
   }
  ]
 }

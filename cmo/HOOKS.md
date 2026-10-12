@@ -2,22 +2,25 @@
 
 Every spec and slate video carries a hookId from this file; the promote runs write it into scoreboard shorts/<slug>. Score = YouTube views per Short tagged with the pattern, from the YouTube Data API (videos.list statistics). Rescored every Monday. A pattern with 3+ pieces under the median of all our Shorts is retired. Benchmark: the $40 hourly rate Short (1,002 views on Oct 6).
 
-Last scored: Tue Oct 6, 2026, 5:30 am (first build; 11 Shorts, median 39 views). Pieces before Oct 6 were tagged after the fact by the CMO from their titles.
+Last scored: Mon Oct 12, 2026, 5:50 am (YouTube Data API through Zapier; 23 Shorts, median 30 views). Pieces before Oct 6 were tagged after the fact by the CMO from their titles.
+
+Oct 12 rescore note: views fell for every pattern after Oct 4 (the 3 Shorts past 700 views all ran Oct 3 and 4), so pattern scores are confounded by date. The 3-under-the-median rule is applied as written: H01 has 3 Shorts under 30 (4, 8, 11) and is retired for Shorts; H03 has 2 (7, 17) and is on watch. Since Oct 8, broad-scope Shorts median 46 views (46, 155, 8, 97, 23) vs trade-scope 11 (18, 7, 11): the audience scope rule stays.
 
 | id | pattern | example in our voice (real product numbers) | platforms | pieces | views per piece | status |
 |---|---|---|---|---|---|---|
-| H01 | Your price pays less than you think: a rate, visit or night, then the smaller number it really keeps | "Every 2 weeks at $245? Only $18.61 is profit" (#14 Quote Builder) | YT Short, Reel, pin | 2 (svc-40-hourly 1,002; str-fee 36) | 519 | active, lead pattern |
-| H02 | The lowball correction: name the low price, show the loss or the real rate | "Charging $150 for a 2.5-hour clean? You lose $33.79" (#13 Quote Builder) | YT Short, Reel | 1 (cleaning-22-vs-55 903) | 903 | active, lead pattern |
-| H03 | The cost nobody quotes: one hidden cost line and what it adds to a job | "A 20-mile round trip adds $52 to the job" (#13) | YT Short, pin | 1 (svc-20-mile 717) | 717 | active |
-| H04 | Guess vs math on one named trade job | "Full sedan detail: the guess says $96. The math says $345" (#13) | YT Short, Reel | 2 (detail-sedan 1; lawn-spring-cleanup 39) | 20 | watch: trade-specific framing lost to the generic H01 to H03 on Oct 5; one more under the median retires it |
+| H01 | Your price pays less than you think: a rate, visit or night, then the smaller number it really keeps | "Every 2 weeks at $245? Only $18.61 is profit" (#14 Quote Builder) | YT Short, Reel, pin | 6 (svc-40-hourly 1,001; str-fee 36; biweekly 4; rent-kept-550 155; hourly-keep-52 8; junk-62 11) | 203 | RETIRED Oct 12 for Shorts (3 pieces under the median 30); pins may still use it |
+| H02 | The lowball correction: name the low price, show the loss or the real rate | "Charging $150 for a 2.5-hour clean? You lose $33.79" (#13 Quote Builder) | YT Short, Reel | 6 (cleaning-22-vs-55 901; 150-clean 41; driveway-100 18; junk-350 0; hourly-40 97; hourly-60 23) | 180 | active, lead pattern (2 under the median) |
+| H03 | The cost nobody quotes: one hidden cost line and what it adds to a job | "A 20-mile round trip adds $52 to the job" (#13) | YT Short, pin | 3 (svc-20-mile 717; junk-60-mile 17; paver-drive 7) | 247 | watch: 2 under the median; one more retires it |
+| H04 | Guess vs math on one named trade job | "Full sedan detail: the guess says $96. The math says $345" (#13) | YT Short, Reel | 2 (detail-sedan 9; lawn-spring-cleanup 40) | 25 | watch: one more under the median retires it |
 | H05 | Rule of thumb with a count ("takes 51 pieces", "112 units", "90 seconds") | "A $150 booth fee takes 51 pieces to break even" (#12) | pin | 3 (booth-51 3; reorder-112 11; star-90s 30) | 15 | RETIRED Oct 6 (3 pieces under the median 39) |
 | H06 | The rule people get wrong (myth plus the document that settles it) | "Your will does not control your 401(k)" (#11) | YT Short, pin | 1 (binder-401k 61) | 61 | active, families only |
-| H07 | Small change, big saving | "Shrink the box 2 inches, pay $11.57 instead of $21.15" (#7) | YT Short, pin | 1 (ship-dim-weight 64) | 64 | active |
+| H07 | Small change, big saving | "Shrink the box 2 inches, pay $11.57 instead of $21.15" (#7) | YT Short, pin | 2 (ship-dim-weight 63; debt-269-more 46) | 55 | active |
 | H08 | Contrarian rule: reject a pricing rule sellers repeat, show the numbers (from FEED.md) | "The 3x rule says $450 on a $150 booth. Your costs may say more" (#12, after its mileage fix) | YT Short, Reel | 0 | not recorded | new, test |
 | H09 | Guess the price: show the job, ask for a guess, reveal last (from FEED.md) | "1,800 sq ft, 3 bed, 2.5 bath, every 2 weeks. What would you charge? The kit says $245" (#14) | Reel, YT Short | 0 | not recorded | new, test on Instagram (comments) |
 | H10 | Big total in frame one (from FEED.md) | "$38,154.87 of debt, $1,100 a month: debt-free in 40 months" (#16 sample) | YT Short, pin | 0 | not recorded | new, test |
 | H11 | Cost vs value gap: what it costs to make next to what it must sell for (from FEED.md) | "$6.10 of materials, $8 profit wanted: list it at $22.01" (#5 Pricing tab) | pin, Reel | 0 | not recorded | new, test |
 | H12 | Cross-niche overlap: one number for two buyer groups (from FEED.md) | "Airbnb hosts: the 15.5% fee takes $4,625 a year at 200 nights" aimed at hosts who also run a cleaning side business | pin | 0 | not recorded | new, low priority |
+| H13 | Verdict first: one condition, one rate, answer in line one (from FEED.md Oct 12) | "Bill half your hours and you need $89.58 an hour" (#20 Calculator, 50% billable) | YT Short, Reel, pin | 0 (first: Oct 12 am) | not recorded | new, test |
 
 ## Audience scope rule (Optimizer, Sun Oct 11, 9:10 pm; YouTube Data API videos.list pulled the same night)
 Evidence, every Short published Oct 5 to Oct 11 (views as of Oct 11, 9:15 pm):

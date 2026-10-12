@@ -1,39 +1,25 @@
-# Feed study, week of Oct 5, 2026 (written Tue Oct 6 by the CMO run)
+# What is winning in the feed (CMO, rewritten Mon Oct 12, 2026)
 
-Method: YouTube Data API v3 via the Zapier YouTube "Make API GET Request" read action only (search.list with order=viewCount, type=video, videoDuration=short, publishedAfter=2026-07-01, regionCode=US, relevanceLanguage=en, maxResults=10; then one videos.list call for statistics and duration), plus two WebSearch queries. Run date: 2026-10-06. Search phrases: "how to price cleaning business", "small business pricing", "etsy seller tips", "airbnb host pricing", "budget spreadsheet", "debt payoff", "service business pricing", "how much to charge". No scraping, no login, no browser, no Instagram pages. We did not watch any video: format, hook and first 2 seconds are inferred from title/description unless stated. Note: region and language filters leaked a lot of non-US, non-English results (cleaning and service pricing searches were mostly Indian business-idea clips); two non-English picks are kept because the pricing mechanism is directly on point. "Short" in the API means under 4 minutes, so a few picks run past 60 s. View counts are as of Oct 6, 2026.
+Source: YouTube Data API search through Zapier (order=viewCount, published after Sep 1, 2026, region US, English), then videos.list for views and length, read Oct 12, 5:45 am Chicago. Official read routes only: no scraping, no logins, no Instagram pages. "First 2 seconds" is not recorded: the API returns titles, descriptions and stats, not frames, and we do not open other creators' videos in a browser. Hooks are in our own words. We take the mechanism, never the content.
 
-| # | URL | published date | views | platform | format (inferred) | length (s) | hook in our own words | first 2 seconds (inferred from title/description) | number on screen | why it worked |
-|---|-----|----------------|-------|----------|-------------------|------------|-----------------------|---------------------------------------------------|------------------|---------------|
-| 1 | https://www.youtube.com/shorts/_8vHMKTXocE | 2026-07-26 | 5,182,612 | YouTube Shorts | talking head over product/kitchen footage | 58 | A home baker says selling out is not her signal to charge more, and explains why | Creator on camera with the product, a contrarian pricing statement as the opening caption | likely a cookie price per box (inferred) | Contrarian take on a rule every seller has heard ("sold out means raise prices"); it splits the comments, which drives reach (about 3,000 comments, 276k likes) |
-| 2 | https://www.youtube.com/shorts/OYNOPwmfq90 | 2026-09-17 | 4,704,308 | YouTube Shorts (Portuguese) | talking head plus artwork B-roll | 69 | An artist asks what one piece of his work is actually worth, after years of trading art for favors | Finished artwork shown with a money question as the caption | likely the price he lands on (inferred) | The "how much should I charge" pain is universal to makers; a personal story of underpricing (bartering paintings for gym fees) makes it relatable across languages |
-| 3 | https://www.youtube.com/shorts/QSvidEwkMJg | 2026-07-01 | 610,125 | YouTube Shorts | talking head list | 118 | Five cheap habits from someone carrying a six-figure debt load | Creator on camera with the debt total as a text overlay | yes, the debt total in the title | A specific, large, personal dollar figure in the first frame creates instant stakes; numbered list promises a clear payoff |
-| 4 | https://www.youtube.com/shorts/Nb1ojgKlISU | 2026-07-22 | 551,010 | YouTube Shorts | product slideshow, item then price reveal | 44 | Look at each handmade piece and guess or react to its price | First crochet item on screen with a "price" prompt | yes, a price per item (inferred) | Price reveal is a built-in guessing game; it asks viewers to comment a favorite, which turns watching into participation |
-| 5 | https://www.youtube.com/shorts/jRn7nR_tKoU | 2026-09-25 | 490,307 | YouTube Shorts | screen or talking-head breakdown of a quote | 78 | A detailer walks through what goes into the price of an unusual job | The large job itself on screen (an aircraft), with "prices explained" framing | likely a quote total and line items (inferred) | Showing the math behind a big service quote satisfies curiosity and makes the price feel earned; an unusual job gets the click |
-| 6 | https://www.youtube.com/shorts/K96gSGNYsLk | 2026-07-12 | 317,320 | YouTube Shorts | call-in show clip, talking heads | 150 | A caller asks if selling the family home is the right move to clear debt | Host reacting to a caller's high-stakes question | likely the debt and home equity figures (inferred) | A real person facing a big money decision; viewers judge the choice. Large existing audience helps |
-| 7 | https://www.youtube.com/shorts/D64YbAf8qKI | 2026-08-10 | 120,152 | YouTube Shorts (Telugu) | talking head explainer | 60 | Why a proper deep clean cannot be done for the low price customers expect | Creator with a "stop" caption and the low price customers assume | yes, the price range customers expect | Speaks to the cleaner's pain (clients who lowball) and to the customer's question at once; breaks the price into labor, equipment and chemicals |
-| 8 | https://www.youtube.com/shorts/VW54xXKqcFA | 2026-07-10 | 130,325 | YouTube Shorts | haul / product demo | 42 | Cheap store items that a maker can turn into sellable products | Store shelf of cheap items with a surprise reaction caption | likely the item cost (inferred) | Cost vs selling-value gap is a margin story without saying "margin"; seasonal timing (back to school) and a cheap, specific source |
-| 9 | https://www.youtube.com/shorts/eJ8LJlZHC3E | 2026-07-24 | 41,842 | YouTube Shorts | talking head or screen recording | 63 | A short-term rental host shows how she is clearing card debt with the business | Host on camera or a card balance on screen (inferred) | likely a balance or payoff figure (inferred) | Crosses two of our buyer groups (hosts and debt payoff); real numbers from a real host business |
-| 10 | https://www.youtube.com/shorts/nMwB0Lts1Ng | 2026-07-01 | 5,179 | YouTube Shorts | screen demo of a filled-in spreadsheet | 72 | A month of real household numbers walked through in the creator's own sheet | The spreadsheet already filled in, totals visible (inferred) | yes, monthly budget totals | Low views but the closest format to our product: the sheet is the star, real numbers fill it, and social proof (users of the sheet) sits in the caption. Kept as a format reference, not a reach reference |
+Searches: "how to price your services hourly rate", "cleaning business pricing", "etsy seller pricing profit", "budget spreadsheet", "airbnb host pricing". Instagram hashtag reads: not run (the Instagram connection lacks the insights permission noted Oct 6).
 
-Median views of the 10 picks: 403,814.
+| # | URL | date | views | platform | format | length | hook in our words | number on screen (from title or description) | why it worked |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | https://youtube.com/watch?v=jRn7nR_tKoU | Sep 25 | 592,053 | YouTube Short-length | price explainer | 1:18 | what an unusual job really costs, line by line | a job price | curiosity about a price nobody knows; the price is the whole story |
+| 2 | https://youtube.com/watch?v=vCfE1zqNsYM | Sep 23 | 25,928 | YouTube | spreadsheet tutorial | 64:28 | set up a budget around each paycheck, start to finish | not recorded | the product is on screen the whole time; long search-intent tutorial |
+| 3 | https://youtube.com/watch?v=etMpQGdmtAY | Sep 5 | 17,513 | YouTube | budget with me | 34:21 | one real monthly salary split into every bill | a monthly salary | one concrete number in the title, a monthly ritual people repeat |
+| 4 | https://youtube.com/watch?v=LVBdpCaV1cA | Sep 29 | 16,436 | YouTube | niche list | 21:04 | which digital products still sell this year | not recorded | sellers researching, not buyers: skip as a model for us |
+| 5 | https://youtube.com/watch?v=Kdh9v7Jmy-A | Sep 14 | 14,660 | YouTube | workshop | 59:28 | start a cleaning business by working one model through, pricing included | not recorded | search intent ("how to start"), worked model, captions on |
+| 6 | https://youtube.com/watch?v=jqrfs86LBtY | Sep 7 | 9,462 | YouTube | host tips | 12:49 | four steps to a fully booked rental | a step count | promise plus a count; host channel with a steady weekly slot |
+| 7 | https://youtube.com/watch?v=Ku_2LKK5pw4 | Sep 27 | 8,028 | YouTube | talking explainer | 10:42 | the hourly rate trap for trades | not recorded | names a trap the viewer is in; 57 comments, people argue rates |
+| 8 | https://youtube.com/watch?v=sZmmSuulVkQ | Oct 5 | 7,761 | YouTube Short | verdict first | 0:32 | should a trade charge by the hour? the answer comes first | one rate fails | answers the question in line one, then one reason with numbers |
+| 9 | https://youtube.com/watch?v=EajyvqEX-xs | Oct 1 | 6,403 | YouTube Short | price list | 0:50 | a trip fee plus a flat price per task, read out item by item | $125 trip fee, $45, $25 | concrete prices read aloud; viewer can copy the method today |
+| 10 | https://youtube.com/watch?v=oaP3w6771Aw | Sep 2 | 5,891 | YouTube Short | host story | 1:09 | a guest is charged for a late checkout | a fee | conflict plus money; 33 comments |
 
-## Mechanisms we take
-
-- Contrarian pricing rule: open by rejecting a pricing rule sellers repeat to each other, then show the reason in numbers. Splits the audience and pulls comments.
-- One real job, priced on screen: take a single specific job (one deep clean, one listing, one weekend booking) and break the quote into its parts, so the total feels earned rather than guessed.
-- Big specific number in frame one: put a single concrete dollar figure on screen in the first second (a debt total, a quote, a nightly rate). A number is the hook, not a sentence about numbers.
-- Guess the price: show the item or job first and reveal the price last; ask viewers to guess or pick in the comments before the reveal.
-- The lowball problem: name the price customers expect, then show what the work actually costs at that price. Speaks to the seller's frustration and educates the buyer at once.
-- Cost vs value gap: show what something costs to make next to what it sells for. Margin shown, never lectured.
-- Tool as the star: a filled-in sheet or calculator with real numbers on screen, totals visible from the start, beats a talking head explaining the tool.
-- Cross-niche overlap: one video that hits two buyer groups (a host paying off debt, a cleaner budgeting) reaches both audiences.
-
-## Sources
-
-Search results surfaced by WebSearch on 2026-10-06. Only titles and links were seen; article bodies were not read, so no specific claims are taken from them.
-
-- Mean CEO, Short-Form Video Marketing Trends, June 2026: https://blog.mean.ceo/short-form-video-marketing-trends-june-2026/
-- ClipSpeed, The First Second of Your Video: How Hooks Drive 90% of Retention: https://www.clipspeed.ai/blog/hook-first-second-video-retention.html
-- Eliro, How to Write Hooks That Stop the Scroll (2026 Guide): https://eliro.pro/blog/short-form-video-hooks-script-guide-2026
-- OpusClip, The Anatomy of a Viral TikTok in 2026: What 13.5M Clips Reveal: https://www.opus.pro/blog/anatomy-of-a-viral-tiktok-2026
-- Nestscale, 5 Viral Small Businesses on TikTok in 2026: https://nestscale.com/?p=47223
+## Mechanisms we use (not content)
+- Verdict first (8, 9): the first line answers a pricing question with a number. New hook H13 in HOOKS.md.
+- One number in the title (1, 3, 9): every winner with a number puts it in the title, not only on screen. Our Short titles already do.
+- Search-intent long form (2, 5): tutorials of a working sheet earn views for weeks. Supports the weekly 3 to 5 minute walkthrough.
+- Same creator, steady slot (8, 9 and 6 are channels posting several pricing pieces a week): consistency on one topic, which our flagship rate theme matches.
+- Skip: seller-research videos (4) reach other sellers, not buyers.

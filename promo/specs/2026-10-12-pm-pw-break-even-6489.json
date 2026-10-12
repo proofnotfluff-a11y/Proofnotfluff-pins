@@ -1,0 +1,109 @@
+{
+  "product_id": "22",
+  "listing_id": "4590258713",
+  "product": "Pressure Washing Pricing Calculator",
+  "tab": "Your Numbers",
+  "audience": "Anyone who quotes jobs by the hour",
+  "hookId": "H02",
+  "scope": "broad",
+  "series": "Flagship #22 (SALES FIRST); audience scope rule (money first, trade only in the product line); week of Oct 12 theme; CMO slate Oct 12 pm",
+  "voice": "am_michael",
+  "hook": "$27.78 an hour looks fine. Break-even is <b>$64.89</b>",
+  "hook_say": "Your pay over all your hours looks like $27.78 an hour. Count unpaid hours, tax and costs, and break-even is $64.89.",
+  "rows": [
+    {
+      "label": "Take-home pay you want",
+      "value": "$55,000 a year",
+      "input": true,
+      "say": "You want to take home $55,000 a year",
+      "why": "The calculator's example: $55,000 a year of take-home pay."
+    },
+    {
+      "label": "Hours you work (44 wks x 45)",
+      "value": "1,980 hrs a year",
+      "input": true,
+      "say": "You work 1,980 hours a year",
+      "why": "44 weeks of 45 hours, counting driving, quoting and setup."
+    },
+    {
+      "label": "Pay over all your hours",
+      "value": "$27.78 an hour",
+      "result": true,
+      "say": "That looks like $27.78 an hour",
+      "why": "$55,000 divided by 1,980 hours. This is the usual guess."
+    },
+    {
+      "label": "Hours customers pay for (65%)",
+      "value": "1,287 hrs a year",
+      "input": true,
+      "say": "Customers pay for only 1,287 of them",
+      "why": "65% of 1,980 hours. The rest is travel, quotes and admin."
+    },
+    {
+      "label": "Tax + business costs",
+      "value": "$28,515 a year",
+      "input": true,
+      "say": "Tax and costs add $28,515",
+      "why": "About $19,455 of self-employment and income tax plus $9,060 of yearly costs ($755 a month)."
+    },
+    {
+      "label": "Break-even per paid hour",
+      "value": "$64.89 an hour",
+      "result": true,
+      "kind": "bad",
+      "say": "So break-even is $64.89 an hour",
+      "why": "$83,515 of revenue needed over 1,287 paid hours."
+    }
+  ],
+  "fix": {
+    "label": "Rate where 15% of the price is profit",
+    "value": "$76.34",
+    "say": "Price it so 15% of each dollar is profit: $76.34 an hour",
+    "why": "Break-even divided by 0.85, so 15% of every dollar of the price is profit. The calculator's target rate per paid hour."
+  },
+  "cta": {
+    "title": "Pressure Washing Pricing Calculator",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Search ProofNotFluff for the free pressure washing price calculator and the full workbook.",
+    "what": "Free calculator online. Full workbook $2.99 for Excel and Google Sheets"
+  },
+  "note": "Example numbers from the calculator. Tax is an estimate, not tax advice.",
+  "sources": [
+    {
+      "number": "$55,000",
+      "source": "1 Your Numbers D14 55,000"
+    },
+    {
+      "number": "1,980 hrs",
+      "source": "D15 44 weeks x D16 45 hours"
+    },
+    {
+      "number": "$27.78",
+      "source": "1 Your Numbers H8 'The guess: $27.78 an hour, your pay divided by all hours'"
+    },
+    {
+      "number": "1,287 hrs",
+      "source": "D17 65%, D18 1,287 paid hours; I20 1,287"
+    },
+    {
+      "number": "$28,515",
+      "source": "I15 19,454.67 tax (SE and income) + I17 9,060 costs (D36; D35 755 a month)"
+    },
+    {
+      "number": "$64.89",
+      "source": "I21 64.891 break-even per paid hour (I18 83,514.67 / 1,287); C8 'Break-even $64.89'"
+    },
+    {
+      "number": "$76.34",
+      "source": "I23 76.342 target rate per paid hour (I37 15% margin); C7 76.34"
+    }
+  ],
+  "sources_build": "python3 engines/service-pricing/build_xlsx.py --edition engines/service-pricing/editions/pressure-washing.json (the listed #22 edition; build prints example 64.89 76.34 27.78), recalculated in LibreOffice headless Oct 12, 2026, 5:40 am.",
+  "post": {
+    "short_title": "$27.78 an hour looks fine. Break-even is $64.89 #Shorts",
+    "youtube_description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/22/\nhttps://proofnotfluff-a11y.github.io/Proofnotfluff-pins/pressure-washing-price-calculator/\n$55,000 of take-home over 1,980 hours looks like $27.78 an hour. Customers pay for 1,287 of those hours, and tax plus $9,060 of yearly costs come on top, so break-even is $64.89 per paid hour. Priced so 15% of each dollar is profit, the rate is $76.34. Example numbers from the Pressure Washing Pricing Calculator; tax is an estimate, not tax advice.\n\n#Shorts",
+    "reel_caption": "$27.78 an hour looks fine. Break-even is $64.89. Customers pay for 1,287 of your 1,980 hours, and tax and costs add $28,515 a year. Priced so 15% of each dollar is profit, the rate is $76.34. Example numbers from the Pressure Washing Pricing Calculator.\n\nLink in bio: proofnotfluff.etsy.com\n\n#smallbusinesstips #pricingstrategy #pressurewashing #hourlyrate",
+    "tiktok_caption": "$27.78 an hour looks fine. Break-even is $64.89 once unpaid hours, tax and costs count. Example numbers from the Pressure Washing Pricing Calculator. Search ProofNotFluff on Etsy. #smallbusinesstips #pricingstrategy #pressurewashing #hourlyrate"
+  }
+}

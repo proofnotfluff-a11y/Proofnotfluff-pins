@@ -1,0 +1,109 @@
+{
+  "product_id": "20",
+  "listing_id": "4589695837",
+  "product": "Hourly Rate Quick Calculator",
+  "tab": "Calculator",
+  "audience": "Freelancers and solo service businesses",
+  "hookId": "H13",
+  "scope": "broad",
+  "series": "Flagship #20 (SALES FIRST); week of Oct 12 theme: the rate that covers your unpaid hours; CMO slate Oct 12 am",
+  "voice": "am_michael",
+  "hook": "Bill half your hours and you need <b>$89.58</b> an hour",
+  "hook_say": "If clients pay for only half your hours, a $60,000 take-home needs $89.58 an hour.",
+  "rows": [
+    {
+      "label": "Take-home pay you want",
+      "value": "$60,000 a year",
+      "input": true,
+      "say": "You want to take home $60,000 a year",
+      "why": "The calculator's example goal: $60,000 a year after tax and costs."
+    },
+    {
+      "label": "Tax (25%) + business costs",
+      "value": "$26,000 a year",
+      "input": true,
+      "say": "Add $26,000 for tax and business costs",
+      "why": "A 25% tax set-aside on the take-home is $20,000, plus $6,000 of yearly business costs."
+    },
+    {
+      "label": "Money you must bring in",
+      "value": "$86,000 a year",
+      "result": true,
+      "say": "So you must bring in $86,000",
+      "why": "$60,000 plus $20,000 of tax set-aside plus $6,000 of costs."
+    },
+    {
+      "label": "Hours you work (48 wks x 40)",
+      "value": "1,920 hrs a year",
+      "input": true,
+      "say": "You work 1,920 hours a year",
+      "why": "48 weeks of 40 hours. Admin, quotes, travel and email all count as work."
+    },
+    {
+      "label": "Hours clients pay for (50%)",
+      "value": "960 hrs a year",
+      "input": true,
+      "say": "Clients pay for half of them, 960 hours",
+      "why": "Type your own share. Here clients pay for 50% of the hours you work."
+    },
+    {
+      "label": "Hourly rate you need",
+      "value": "$89.58 an hour",
+      "result": true,
+      "kind": "bad",
+      "say": "You need $89.58 an hour",
+      "why": "$86,000 spread over 960 paid hours is $89.58 an hour."
+    }
+  ],
+  "fix": {
+    "label": "Rate needed if clients pay for 80%",
+    "value": "$55.99",
+    "say": "If clients pay for 80% of your hours, the rate you need drops to $55.99",
+    "why": "Same goal, tax and costs over 1,536 paid hours: $55.99 an hour. The calculator shows 50, 60, 70 and 80% side by side."
+  },
+  "cta": {
+    "title": "Hourly Rate Quick Calculator",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Search ProofNotFluff for the free hourly rate calculator and the full workbook.",
+    "what": "Free calculator online. Full workbook $2.99 for Excel and Google Sheets"
+  },
+  "note": "Example numbers from the calculator with 50% billable typed in. Estimates, not tax advice.",
+  "sources": [
+    {
+      "number": "$60,000",
+      "source": "Calculator D15 (example input)"
+    },
+    {
+      "number": "$26,000 ($20,000 + $6,000)",
+      "source": "Calculator I15 20,000 (25% set-aside, D16) + I16 6,000 (D17)"
+    },
+    {
+      "number": "$86,000",
+      "source": "Calculator I17 86,000"
+    },
+    {
+      "number": "1,920 hrs",
+      "source": "Calculator I19 1,920 (D19 48 x D20 40)"
+    },
+    {
+      "number": "960 hrs",
+      "source": "Calculator I20 960 with D21 set to 50%"
+    },
+    {
+      "number": "$89.58",
+      "source": "Calculator I21 89.583 with D21 = 50%; also I31 '50% of your hours billed' 89.583 in the example"
+    },
+    {
+      "number": "$55.99",
+      "source": "Calculator I34 '80% of your hours billed' 55.990 (I21 with D21 = 80%)"
+    }
+  ],
+  "sources_build": "python3 engines/hourly-rate-quick-calculator/build_xlsx.py (the listed #20 build), D21 set to 0.5 and 0.8 with openpyxl, recalculated in LibreOffice headless Oct 12, 2026, 5:35 am.",
+  "post": {
+    "short_title": "Bill half your hours and you need $89.58 an hour #Shorts",
+    "youtube_description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/20/\nhttps://proofnotfluff-a11y.github.io/Proofnotfluff-pins/hourly-rate-calculator/\nA $60,000 take-home goal, a 25% tax set-aside and $6,000 of yearly costs means bringing in $86,000. You work 1,920 hours a year, but if clients pay for only half of them, that is 960 paid hours: $89.58 an hour. Get clients to pay for 80% of your hours and the rate drops to $55.99. Example numbers from the Hourly Rate Quick Calculator; estimates, not tax advice.\n\n#Shorts",
+    "reel_caption": "Bill half your hours and you need $89.58 an hour to take home $60,000. Tax and costs push the target to $86,000, and clients pay for 960 of your 1,920 hours. Get to 80% paid hours and the rate drops to $55.99. Example numbers from the Hourly Rate Quick Calculator.\n\nLink in bio: proofnotfluff.etsy.com\n\n#freelancetips #hourlyrate #pricingstrategy #smallbusinesstips",
+    "tiktok_caption": "Bill half your hours and you need $89.58 an hour to take home $60,000. Example numbers from the Hourly Rate Quick Calculator. Search ProofNotFluff on Etsy. #freelancetips #hourlyrate #pricingstrategy #smallbusinesstips"
+  }
+}

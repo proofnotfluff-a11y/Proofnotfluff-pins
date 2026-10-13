@@ -9,6 +9,7 @@
   "series": "Flagship #20 (SALES FIRST); week of Oct 12 theme day 2; H02 lowball correction in the 'looks fine' frame (no question opener, per CONVERSION_STANDARD); CMO slate Oct 13 pm",
   "voice": "am_michael",
   "hook": "$40 an hour looks fine. You need <b>$74.65</b>",
+  "hook_say_short": "$40 an hour looks fine. You need $74.65.",
   "hook_say": "$40 an hour looks fine. But if clients pay for 60% of your hours, a $60,000 take-home needs $74.65.",
   "rows": [
     {
@@ -66,7 +67,7 @@
     "button": "Instant download",
     "sub": "On Etsy: proofnotfluff.etsy.com",
     "say": "Search ProofNotFluff for the free hourly rate calculator and the full workbook.",
-    "what": "Free calculator online. Full workbook $2.99 for Excel and Google Sheets"
+    "what": "Free calculator on the web: search ProofNotFluff. Full workbook $2.99 on Etsy for Excel and Google Sheets"
   },
   "note": "Example numbers from the calculator. Estimates, not tax advice.",
   "sources": [

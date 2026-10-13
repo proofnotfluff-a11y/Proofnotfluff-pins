@@ -29,7 +29,7 @@ SR = 48000
 MOODS = ["calm", "upbeat", "playful", "driving", "tension"]
 
 TARGET_LUFS = -14.0       # the whole video, integrated (YouTube's playback reference)
-CEILING_DBTP = -1.5       # limiter ceiling; AAC adds a little, the file stays under -1 dBTP
+CEILING_DBTP = -2.0       # limiter ceiling; AAC adds up to about 1 dB on long videos, the file stays under -1 dBTP
 VOICE_LUFS = -15.0        # every narration line is set to this before the master
 MUSIC_UNDER_LU = 14.0     # music this far under the voice while it speaks (the low end of the 14 to 18 LU band)
 MUSIC_GAP_LU = 6.0        # and this far under it in the pauses
@@ -188,7 +188,8 @@ def tonic_hz(track, octave=6):
 # ------------------------------------------------------------------------------------- cut to picture
 def runs(track, reveal, cta, total):
     """Video-time runs of track audio: (video_start, track_start, seconds). B's downbeat lands on `reveal`; A loops
-    under everything before it (its last bar is the fill into B), B loops after it, and the ending starts at `cta`."""
+    under everything before it (its last bar is the fill into B), B loops after it, and the ending starts at `cta`
+    (make_demo passes the moment after the closing line, so the ending chord and the logo are heard in the clear)."""
     bar = track["bar_s"]
     sec = {s[0]: s for s in track["sections"]}
     a0, b0, nA, nB = sec["A"][1], sec["B"][1], sec["A"][2], sec["B"][2]
@@ -259,7 +260,7 @@ def voice_space(x):
     return lfilter(b, a, x, axis=0)
 
 
-def duck(voice, under_db, gap_db, frame=0.01, look=0.12, hold=0.28, attack=0.05, release=0.35):
+def duck(voice, under_db, gap_db, frame=0.01, look=0.1, hold=0.2, attack=0.05, release=0.25):
     """Gain in dB for every sample of the music: `under_db` while the voice speaks (from `look` before a word to
     `hold` after it), `gap_db` in the pauses, moving down fast and back up slowly."""
     hop = int(frame * SR)
@@ -404,7 +405,7 @@ def sfx_whoosh(seconds=0.45):
     return y / np.abs(y).max()
 
 
-SFX_PEAK = {"tick": 0.022, "pop": 0.17, "chime": 0.11, "whoosh": 0.07}
+SFX_PEAK = {"tick": 0.035, "pop": 0.17, "chime": 0.11, "whoosh": 0.07}
 
 
 def sfx_bus(events, n, track):
@@ -439,13 +440,15 @@ def sfx_bus(events, n, track):
 
 
 # ------------------------------------------------------------------------------------------------ mix
-def mix(track, total, reveal, cta, out_wav, voice=(), sfx=(), logo=True):
+def mix(track, total, reveal, cta, out_wav, voice=(), sfx=(), logo=True, button=None):
     """Write the finished soundtrack. voice: (start, wav) lines already passed through prepare(); sfx: (kind, time).
-    With no voice the music is the soundtrack and goes straight to the master level. Returns measurements."""
+    `button` is where the music's ending and the sonic logo land (default: `cta`, the end card). With no voice the
+    music is the soundtrack and goes straight to the master level. Returns measurements."""
     ensure()
     import soundfile as sf
     n = int(round(total * SR))
-    music, rs = bed(track, reveal, cta, total)
+    button = cta if button is None else button
+    music, rs = bed(track, reveal, button, total)
     v = np.zeros(n)
     for start, path in voice:
         x = decode(path, channels=1).astype(np.float64)
@@ -468,7 +471,7 @@ def mix(track, total, reveal, cta, out_wav, voice=(), sfx=(), logo=True):
     if logo and track.get("logo"):
         lg = decode(os.path.join(MUSIC, track["logo"]))
         lg = lg * 10 ** ((VOICE_LUFS - LOGO_UNDER_LU - lufs(lg)) / 20.0)
-        i = int(round(cta * SR))
+        i = int(round(button * SR))
         j = min(n, i + len(lg))
         if j > i:
             fx[i:j] += lg[:j - i]

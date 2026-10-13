@@ -39,8 +39,8 @@ Spec (every number must come from the product's own files; the CMO checks this):
 }
 
 The key reveal is the result row that shows the headline's <b> number (else the first "bad" result, else the last
-result). The music's lift lands on it, every reveal lands on a beat, and the music ends on the end card. Sound
-choices and their sources: tools/soundtrack.py.
+result). The music's lift lands on it, every reveal lands on a beat, and the music's ending chord and the sonic logo
+land right after the spoken close. Sound choices and their sources: tools/soundtrack.py.
 """
 import json, math, os, re, subprocess, sys, shutil, html as H
 import make_slides as ms
@@ -53,6 +53,7 @@ FORMATS = {
     "listing":     {"W": 1080, "H": 2160, "pace": 0.8, "audio": False, "max": 15},
 }
 GAP = {"short": 0.3, "walkthrough": 0.45, "listing": 0.0}      # pause between narration lines
+RING = 1.6                                                       # seconds the ending chord and the logo ring before the cut
 SPEED = {"short": 1.12, "walkthrough": 1.0, "listing": 1.0}    # narration speed (Kokoro)
 CTA_SUB = ms.CTA_SUB
 BANNED = ["honestly", "genuinely", "straightforward", "delve", "unlock", "elevate", "seamless", "game-changer", "effortless", "supercharge"]
@@ -166,7 +167,7 @@ def timeline(spec, fmt_name, speech=None):
             t += max(dur + 0.3 * pace, hold(say))
         elif r.get("result"):
             t += 0.2 * pace
-            lead = 0.3 if (i == key and speech) else 0.0   # the number and the music land first, then the voice
+            lead = 0.6 if (i == key and speech) else 0.0   # the number and the music's lift land first, then the voice
             ev.append({"t": t, "d": 0.9, "kind": "result", "row": i, "key": i == key, "glow": GLOW.get(r.get("kind", ""), GLOW[""])})
             lines.append(line(t + lead, say))
             t += max(0.9 + 0.9 * pace, lead + hold(say) + (0.2 if walk else 0))
@@ -185,10 +186,15 @@ def timeline(spec, fmt_name, speech=None):
         t += max(1.0 + 1.2 * pace, 0.15 + hold(fsay) + (0.2 if walk else 0))
     cta_t = t
     csay = spec.get("cta", {}).get("say", "")
-    lead = 0.35 if speech else 0.0                     # the sonic logo's first notes, then the voice
+    lead = 0.35 if speech else 0.0                     # the whoosh into the end card, then the voice
     lines.append(line(t + lead, csay))
-    end_hold = max(2.4 if not walk else 5.0, lead + spoken(csay) + 0.9 if spoken(csay) else 0)
-    return {"ev": ev, "lines": lines, "fix_t": fix_t, "cta_t": cta_t, "end_hold": end_hold, "total": cta_t + end_hold, "key": key}
+    if spoken(csay):   # the music keeps going under the close; its ending chord and the logo land after the last word
+        button = t + lead + spoken(csay) + 0.2
+        end_hold = max(2.4 if not walk else 5.0, button - t + RING)
+    else:
+        button, end_hold = t, (2.4 if not walk else 5.0)
+    return {"ev": ev, "lines": lines, "fix_t": fix_t, "cta_t": cta_t, "button": button, "end_hold": end_hold,
+            "total": cta_t + end_hold, "key": key}
 
 
 def sync(tl, beat, min_gap=0.15):
@@ -227,7 +233,14 @@ def sync(tl, beat, min_gap=0.15):
         if tl["fix_t"] is not None and tl["fix_t"] >= T - 1e-6:
             tl["fix_t"] += d
         tl["cta_t"] += d
-    tl["total"] = tl["cta_t"] + tl["end_hold"]
+    close = [l for l in lines if l["t"] >= tl["cta_t"] - 1e-6 and l["dur"]]
+    if close:   # the ending chord on the first beat after the closing line
+        end_voice = max(l["t"] + l["dur"] for l in close)
+        tl["button"] = phase + math.ceil((end_voice + 0.12 - phase) / beat - 1e-9) * beat
+        tl["total"] = max(tl["cta_t"] + 2.4, tl["button"] + RING)
+    else:
+        tl["button"] = tl["cta_t"]
+        tl["total"] = tl["cta_t"] + tl["end_hold"]
     tl["beat"] = beat
     return tl
 
@@ -242,8 +255,6 @@ def camera_plan(tl):
                 plan.append([round(e["t"] + 1.5, 3), "over"])   # step back so the whole model is seen with its answer
     if tl["fix_t"] is not None:   # the fix opens under the sheet while the camera pulls back: problem and fix in one frame
         plan.append([round(tl["fix_t"] - 0.4, 3), "over"])
-        if tl["cta_t"] - tl["fix_t"] >= 3.6:   # a long fix line: after 2 s, move in on the fix card itself
-            plan.append([round(tl["fix_t"] + 2.0, 3), "fix"])
     plan.sort(key=lambda p: p[0])
     out = []
     for i, p in enumerate(plan):
@@ -283,8 +294,8 @@ def page(spec, fmt_name, tl, palette="ink"):
     cta = spec.get("cta", {})
     caps = [[round(l["t"], 3), cap_html(l["text"])] for l in tl["lines"] if l["cap"]]
     data = {"ev": tl["ev"], "caps": caps, "fixT": tl["fix_t"], "ctaT": tl["cta_t"], "total": tl["total"],
-            "vals": [str(r["value"]) for r in spec["rows"]], "cam": camera_plan(tl), "hookMax": 186 if short else 0,
-            "capMax": 168 if short else (0 if wide else 104),
+            "vals": [str(r["value"]) for r in spec["rows"]], "cam": camera_plan(tl), "hookMax": 160 if short else 0,
+            "capMax": 152 if short else (0 if wide else 104), "buttonT": tl.get("button", tl["cta_t"]),
             "pad": 18, "halo": 58}
     hook = spec["hook"]  # trusted spec text; <b> marks the key number
     tab_html = '<span class="tab">' + H.escape(spec["tab"]) + '</span>' if spec.get("tab") else ""
@@ -329,7 +340,7 @@ h1 b{{color:{P['hook']};background-image:linear-gradient(transparent 66%,{P['mar
 .fix{{background:#2E6B66;color:#fff;border-radius:{int(18*s)}px;padding:{int(22*s)}px {int(26*s)}px;display:flex;align-items:center;justify-content:space-between;gap:20px}}
 .fix .lab{{font-size:{int(34*s)}px;line-height:1.2}} .fix .fv{{font-family:P;font-size:{int(64*s)}px}}
 .note{{font-size:{int(24*s)}px;color:#8A91A3}}
-.cap{{display:inline-block;background:#fff;color:#1D2433;font-family:CB;line-height:1.24;box-shadow:0 10px 30px rgba(0,0,0,.25);visibility:hidden}} .cap b{{color:#C8502F}}
+.cap{{display:inline-block;background:#fff;color:#1D2433;font-family:CB;line-height:1.24;box-shadow:0 10px 30px rgba(0,0,0,.25);visibility:hidden;text-wrap:balance}} .cap b{{color:#C8502F}}
 .cursor{{position:absolute;width:{int(58*s)}px;height:{int(58*s)}px;left:0;top:0;z-index:21;transform:translate(-300px,-300px);filter:drop-shadow(0 4px 6px rgba(0,0,0,.35))}}
 .halo{{position:absolute;left:0;top:0;width:{int(58*s)}px;height:{int(58*s)}px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.34) 0,rgba(255,255,255,.12) 55%,rgba(255,255,255,0) 72%);z-index:20;transform:translate(-300px,-300px)}}
 .ripple{{position:absolute;left:0;top:0;border:4px solid #C8502F;border-radius:50%;z-index:20;opacity:0}}
@@ -344,19 +355,19 @@ h1 b{{color:{P['hook']};background-image:linear-gradient(transparent 66%,{P['mar
 """
     if short:
         layout = """
-.prog{top:196px;left:70px;right:150px}
-.aud{position:absolute;left:70px;right:150px;top:222px;font-size:28px}
-h1{position:absolute;left:70px;right:110px;top:268px;font-size:76px}
-.view{position:absolute;left:70px;top:478px;width:860px;height:584px;overflow:hidden}
-.view.scroll{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 26px,#000 calc(100% - 26px),transparent 100%)}
+.prog{top:226px;left:70px;right:150px}
+.aud{position:absolute;left:70px;right:150px;top:274px;font-size:26px}
+h1{position:absolute;left:70px;right:110px;top:310px;font-size:72px}
+.view{position:absolute;left:70px;top:482px;width:860px;height:576px;overflow:hidden}
+.view.scroll{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 10px,#000 calc(100% - 10px),transparent 100%)}
 .cam{position:absolute;left:0;top:0;width:860px;transform-origin:0 0}
 .row{padding:9px 0} .cell{height:70px} .grid{padding:10px 24px 12px}
 .fixwrap{overflow:hidden} .fix{margin:6px 24px 20px;padding:16px 26px} .fix .fv{font-size:58px}
-.capband{position:absolute;left:70px;width:860px;top:1074px;height:168px;display:flex;align-items:center;justify-content:center;text-align:center}
-.cap{font-size:50px;padding:16px 28px;border-radius:18px;max-width:860px}
-.note{position:absolute;left:70px;right:150px;top:1252px}
-.end{padding:290px 150px 690px 90px}
-.foot{left:70px;top:1546px}
+.capband{position:absolute;left:70px;width:860px;top:1066px;height:152px;display:flex;align-items:center;justify-content:center;text-align:center}
+.cap{font-size:48px;padding:14px 28px;border-radius:18px;max-width:860px}
+.note{position:absolute;left:70px;right:150px;top:1226px}
+.end{padding:300px 150px 690px 90px}
+.foot{left:70px;top:1272px}
 """
         body = (f'<div class="prog"><i id="pg"></i></div><div class="aud">{H.escape(spec.get("audience", ""))}</div><h1>{hook}</h1>'
                 f'<div class="view" id="view"><div class="cam" id="cam">{sheet}</div></div>'
@@ -407,11 +418,22 @@ function init(){   // measured on the first frame, after the fonts have loaded (
   ready=true;
 }
 function seg(t){let k=0;for(let i=0;i<D.cam.length;i++)if(t>=D.cam[i][0])k=i;return k}
+function edges(){   // sheet-space y of every edge between blocks: the sheet top, each row's top and bottom, the sheet bottom
+  const b=[0,rows[0].offsetTop];rows.forEach(r=>b.push(r.offsetTop+r.offsetHeight));b.push(cam.offsetHeight);
+  return [...new Set(b.map(v=>Math.round(v)))].sort((x,y)=>x-y);
+}
 function target(f){
-  const Hs=cam.offsetHeight;const sO=Math.min(1,(VH-D.pad)/Hs);
-  if(f==='over')return {s:sO,cy:Hs/2};
-  const el=f==='fix'?fixwrap:rows[f];
-  return {s:1,cy:el.offsetTop+el.offsetHeight/2};
+  const Hs=cam.offsetHeight+(fixwrap&&D.fixT!==null?fixH-fixwrap.offsetHeight:0);   // the height the sheet ends at, so a pull-back never stalls
+  if(f==='over')return {s:Math.min(1,(VH-D.pad)/Hs),cy:cam.offsetHeight/2};
+  // a row: grow the window by whole blocks around it until it fills the view, so no row is ever cut through its text
+  const E=edges(),r=rows[f],mid=r.offsetTop+r.offsetHeight/2;
+  let top=Math.round(r.offsetTop),bot=Math.round(r.offsetTop+r.offsetHeight);
+  for(let g=0;g<40&&bot-top<VH;g++){
+    const up=E.filter(v=>v<top).pop(),dn=E.find(v=>v>bot);
+    if(up===undefined&&dn===undefined)break;
+    if(dn===undefined||(up!==undefined&&mid-top<=bot-mid))top=up;else bot=dn;
+  }
+  return {s:Math.min(1,VH/(bot-top)),cy:(top+bot)/2};
 }
 function drift(k,t){
   if(k===0){const T1=D.cam.length>1?D.cam[1][0]:D.total;return 0.965+0.035*Math.min(1,t/Math.max(0.5,T1))}
@@ -436,7 +458,7 @@ function dim(t){
 }
 function cellPoint(i){const c=rows[i].querySelector('.cell').getBoundingClientRect();return [c.left+c.width*0.78,c.top+c.height*0.62]}
 function sheetAt(t){
-  let tgt=null,prev=null,moveStart=0,clickT=null,lastRes=null;
+  let tgt=null,prev=null,moveStart=0,clickT=null,lastRes=null,doneT=null;
   D.ev.forEach((e,i)=>{
     const r=rows[i],cell=r.querySelector('.cell'),v=r.querySelector('.v'),val=D.vals[i];
     cell.classList.remove('act','typing');cell.style.transform='';cell.style.filter='';cell.style.boxShadow='';
@@ -445,7 +467,7 @@ function sheetAt(t){
       v.textContent=t<e.t?'':val.slice(0,Math.round(k*val.length));
       if(t>=e.t-0.45&&t<e.t+e.d+0.25)cell.classList.add('act');
       if(t>=e.t&&t<e.t+e.d)cell.classList.add('typing');
-      if(t>=e.t-0.45){prev=tgt;tgt=i;moveStart=e.t-0.45;clickT=e.t;lastRes=null}
+      if(t>=e.t-0.45){prev=tgt;tgt=i;moveStart=e.t-0.45;clickT=e.t;lastRes=null;doneT=e.t+e.d+0.35}
     }else if(e.kind==='result'){
       if(t<e.t){v.textContent='';r.classList.remove('on')}
       else{r.classList.add('on');const p=parseNum(val);const k=ease((t-e.t)/e.d);v.textContent=p?fmtN(p,p.n*k):val;
@@ -453,7 +475,7 @@ function sheetAt(t){
         cell.style.transform='scale('+(a<0.38?1+amp*Math.sin(a/0.38*Math.PI):1)+')';
         if(a<0.3)cell.style.filter='brightness('+(1+0.45*(1-a/0.3))+')';
         if(e.key){const g=Math.min(1,a/0.7);cell.style.boxShadow='0 0 0 '+(4+20*ease(g))+'px rgba('+e.glow+','+(0.5*(1-g)+0.16)+')'}}
-      if(t>=e.t-0.45){prev=tgt;tgt=i;moveStart=e.t-0.45;clickT=null;lastRes=e}
+      if(t>=e.t-0.45){prev=tgt;tgt=i;moveStart=e.t-0.45;clickT=null;lastRes=e;doneT=null}
     }else if(e.kind==='derived'){
       if(t<e.t)v.textContent='';else{const p=parseNum(val);const k=ease((t-e.t)/e.d);v.textContent=p?fmtN(p,p.n*k):val;}
     }else{v.textContent=val}
@@ -462,7 +484,7 @@ function sheetAt(t){
     if(fixwrap){fixwrap.style.height=(fixH*k)+'px';fx.style.opacity=k;fx.style.transform='translateY('+(16*(1-k))+'px)';
       const a=t-D.fixT;fx.style.filter=(a>=0&&a<0.35)?'brightness('+(1+0.35*(1-a/0.35))+')':''}
     else{fx.style.opacity=k;fx.style.transform='translateY('+(20*(1-k))+'px)'}}
-  return {tgt,prev,moveStart,clickT,hide:lastRes!==null&&t>=lastRes.t+0.3};
+  return {tgt,prev,moveStart,clickT,doneT,hide:lastRes!==null&&t>=lastRes.t+0.3};
 }
 function pointer(t,c){
   const off='translate(-300px,-300px)';
@@ -470,6 +492,7 @@ function pointer(t,c){
   const b=cellPoint(c.tgt);const k=ease((t-c.moveStart)/0.45);const a=c.prev!==null?cellPoint(c.prev):[b[0]+260,b[1]+340];
   const x=a[0]+(b[0]-a[0])*k,y=a[1]+(b[1]-a[1])*k,hs=D.halo;
   cur.style.transform='translate('+x+'px,'+y+'px)';halo.style.transform='translate('+(x-hs/2)+'px,'+(y-hs/2)+'px)';
+  const fade=c.doneT!==null&&t>c.doneT?1-ease((t-c.doneT)/0.2):1;cur.style.opacity=halo.style.opacity=fade;
   if(c.clickT!==null&&t>=c.clickT&&t<c.clickT+0.4){const g=(t-c.clickT)/0.4;const r=10+38*ease(g);rip.style.opacity=0.75*(1-g);
     rip.style.width=rip.style.height=(2*r)+'px';rip.style.transform='translate('+(x-r)+'px,'+(y-r)+'px)'}else rip.style.opacity=0;
 }
@@ -479,7 +502,7 @@ function caption(t){
   if(capEl.dataset.k!==String(k)){capEl.innerHTML=D.caps[k][1];capEl.dataset.k=String(k);capEl.style.fontSize='';
     const room=D.capMax;let fs=parseFloat(getComputedStyle(capEl).fontSize);   // long lines shrink to fit their band
     while(room&&capEl.offsetHeight>room-2&&fs>28){fs-=2;capEl.style.fontSize=fs+'px'}}
-  const u=ease((t-D.caps[k][0])/0.16);capEl.style.visibility='visible';capEl.style.opacity=u;capEl.style.transform='translateY('+(12*(1-u))+'px)';
+  const u=ease((t-D.caps[k][0])/0.14);capEl.style.visibility='visible';capEl.style.opacity=0.5+0.5*u;capEl.style.transform='translateY('+(8*(1-u))+'px)';
 }
 const endIn=document.querySelector('.end .endin');
 function endcard(t){
@@ -487,7 +510,7 @@ function endcard(t){
   if(endIn)endIn.style.transform='scale('+(1+0.03*Math.max(0,Math.min(1,a/Math.max(1,D.total-D.ctaT))))+')';
   endItems.forEach((el,i)=>{const u=ease((a-0.05-0.07*i)/0.35);el.style.opacity=u;
     let tr='translateY('+(26*(1-u))+'px)';
-    if(el.classList.contains('btn')){const b=a-0.26;if(b>0&&b<0.32)tr+=' scale('+(1+0.07*Math.sin(b/0.32*Math.PI))+')'}
+    if(el.classList.contains('btn')){const b=t-D.buttonT-0.26;if(b>0&&b<0.32)tr+=' scale('+(1+0.07*Math.sin(b/0.32*Math.PI))+')'}
     el.style.transform=tr});
 }
 window.renderAt=function(t){
@@ -605,7 +628,7 @@ def main(spec_path, out, fmt_name="short"):
         wav = os.path.join(work, "mix.wav")
         lines = [(l["t"], clips[l["text"]][0]) for l in tl["lines"] if l["text"] in clips]
         key_t = tl["ev"][tl["key"]]["t"]
-        sound = st.mix(track, total, key_t, tl["cta_t"], wav, voice=lines, sfx=sfx_events(spec, tl))
+        sound = st.mix(track, total, key_t, tl["cta_t"], wav, voice=lines, sfx=sfx_events(spec, tl), button=tl["button"])
         st.record(track["id"], out, spec.get("mood"), palette, key)
         cmd += ["-i", wav, "-framerate", str(FPS), "-i", os.path.join(fdir, "f%05d.png"), "-map", "1:v", "-map", "0:a",
                 "-c:a", "aac", "-b:a", "192k", "-ar", "48000"]
@@ -620,7 +643,7 @@ def main(spec_path, out, fmt_name="short"):
                       "moments": {"hook_spoken_to": round(tl["lines"][0]["dur"] if tl["lines"] and tl["lines"][0]["t"] == 0.0 else 0.0, 2),
                                   "key_reveal": round(tl["ev"][tl["key"]]["t"], 2),
                                   "fix": round(tl["fix_t"], 2) if tl["fix_t"] is not None else None,
-                                  "end_card": round(tl["cta_t"], 2)},
+                                  "end_card": round(tl["cta_t"], 2), "ending": round(tl["button"], 2)},
                       "spoken": [l["text"] for l in tl["lines"] if l["text"] and l["text"] in clips],
                       "captions": [l["text"] for l in tl["lines"] if l["text"] and l["cap"]]}))
 

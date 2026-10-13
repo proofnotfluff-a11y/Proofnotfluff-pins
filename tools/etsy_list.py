@@ -34,7 +34,7 @@ Field defaults (who_made, when_made, is_supply, should_auto_renew, return_policy
 matches what Etsy already accepted. Category: when the category name matches several Etsy nodes, the one the
 like-listing uses wins; a "Like:" line in listing.md puts a trade edition in its parent listing's exact category.
 """
-import json, mimetypes, os, re, sys, time, uuid, urllib.parse, urllib.request
+import html, json, mimetypes, os, re, sys, time, uuid, urllib.parse, urllib.request
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import etsy_oauth as eo
 
@@ -170,10 +170,12 @@ def apply_desc_ops(desc, ops):
         old = o.get("old", "")
         if kind not in ("replace", "remove") or not old:
             errs.append(f"op {i}: unknown op or empty target"); continue
-        n = out.count(old)
-        if n != 1:
-            errs.append(f"op {i}: target found {n} times, need exactly 1: {old[:60]!r}"); continue
-        out = out.replace(old, o.get("new", "") if kind == "replace" else "", 1)
+        pat = (r"(?<![A-Za-z0-9])" if old[:1].isalnum() else "") + re.escape(old) + (r"(?![A-Za-z0-9])" if old[-1:].isalnum() else "")
+        hits = list(re.finditer(pat, out))
+        if len(hits) != 1:
+            errs.append(f"op {i}: target found {len(hits)} times as whole words, need exactly 1: {old[:60]!r}"); continue
+        m = hits[0]
+        out = out[:m.start()] + (o.get("new", "") if kind == "replace" else "") + out[m.end():]
     return (desc, errs) if errs else (out, [])
 
 def cmd_desc_ops(lid, ops_path, out_path):
@@ -288,10 +290,13 @@ def listing_videos(sid, lid):
 
 def cmd_apply_pack(lid, zip_path=None, images=None, video=None, desc_path=None, alt=None, dry=False, files=None, keep_old=False):
     """One correction edit on a live listing. Order of operations keeps the listing whole at every step:
-    description first (one PATCH); new photos uploaded at ranks 1..N, then the old photo ids deleted; the new
+    new photos uploaded at ranks 1..N, then the old photo ids deleted (at Etsy's 20-photo limit one old photo is
+    deleted to make room before the next upload, so at least one photo always stays); the new
     digital files uploaded, confirmed present, then the old file ids deleted (whenever the listing is at Etsy's
     5-file limit during the swap, one old file is deleted to make room before the next upload, so at least one
-    file always stays); with keep_old the new files are only added; the new video uploaded, then the old video deleted.
+    file always stays); with keep_old the new files are only added; the new video uploaded, then the old video deleted; the
+    description LAST, only after every file and photo step succeeded, read back and put back to the old text if
+    Etsy did not save it (ROLLBACK FAILED is printed if even that does not hold).
     A failure stops the run, and the listing never has zero files or zero photos."""
     images = images or []
     files = list(files or [])
@@ -326,28 +331,50 @@ def cmd_apply_pack(lid, zip_path=None, images=None, video=None, desc_path=None, 
     if dry: print(json.dumps({"status": "dry-run", "plan": plan, "preflight": "ok"}, indent=1)); return
     done = {"listing_id": lid}
     old_desc = l.get("description") or ""
+    _apply_media(lid, sid, l, images, alt, old_images, files, keep_old, old_files, video, old_videos, done)
     if desc is not None:
-        r = ok(*req("PATCH", f"/shops/{sid}/listings/{lid}", form={"description": desc}), "description")
-        if (r.get("description") or "").strip()[:80] != desc[:80]: die("Etsy returned a different description after the edit")
+        _set_description(lid, sid, desc, old_desc)
         done["description"] = "replaced"
-    try:
-        _apply_media(lid, sid, l, images, alt, old_images, files, keep_old, old_files, video, old_videos, done)
-    except BaseException:
-        if desc is not None:
-            req("PATCH", f"/shops/{sid}/listings/{lid}", form={"description": old_desc})
-            print(json.dumps({"rollback": "description restored to the old text after a later step failed"}))
-        raise
     done["status"] = "done"
     print(json.dumps(done, indent=1))
+
+def _norm(t):
+    return re.sub(r"\s+", " ", html.unescape(t or "")).strip()
+
+def _set_description(lid, sid, desc, old_desc):
+    """PATCH the description, then read it back. On any failure or mismatch, put the old text back and verify it."""
+    try:
+        c, t = req("PATCH", f"/shops/{sid}/listings/{lid}", form={"description": desc})
+        saved = get_listing(lid).get("description") if c in (200, 201) else None
+        if c in (200, 201) and _norm(saved) == _norm(desc): return
+        why = f"HTTP {c}" if c not in (200, 201) else "Etsy saved a different description"
+    except BaseException as e:
+        why = f"error {e!r}"[:200]
+    try:
+        req("PATCH", f"/shops/{sid}/listings/{lid}", form={"description": old_desc})
+        back = get_listing(lid).get("description")
+    except BaseException:
+        back = None
+    if back is not None and _norm(back) == _norm(old_desc):
+        die(f"description not changed ({why}); the old description is back in place; files and photos were already applied")
+    print(json.dumps({"ROLLBACK FAILED": "the description may be neither the new nor the old text; check it by hand in the editor", "why": why}))
+    die("ROLLBACK FAILED: check the listing description by hand")
 
 def _apply_media(lid, sid, l, images, alt, old_images, files, keep_old, old_files, video, old_videos, done):
     if images:
         new_ids = []
+        remaining_old_imgs = list(old_images)
+        count = len(remaining_old_imgs)
         for i, img in enumerate(images, 1):
+            if count >= 20 and remaining_old_imgs:
+                iid = remaining_old_imgs.pop()  # the last-ranked old photo makes room; photo 1 stays until the end
+                c, t = req("DELETE", f"/shops/{sid}/listings/{lid}/images/{iid}")
+                if c not in (200, 204): die(f"listing at 20 photos and old photo {iid} not deleted (HTTP {c}): {t[:200]}")
+                count -= 1
             body, ct = multipart({"rank": i, "alt_text": alt}, "image", img)
             r = ok(*req("POST", f"/shops/{sid}/listings/{lid}/images", body=body, ctype=ct), f"image {i}")
-            new_ids.append(r.get("listing_image_id"))
-        for iid in old_images:
+            new_ids.append(r.get("listing_image_id")); count += 1
+        for iid in remaining_old_imgs:
             if iid in new_ids: continue
             c, t = req("DELETE", f"/shops/{sid}/listings/{lid}/images/{iid}")
             if c not in (200, 204): die(f"old image {iid} not deleted (HTTP {c}); new photos are up, delete the old ones by hand: {t[:200]}")

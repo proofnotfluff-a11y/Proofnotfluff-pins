@@ -2870,7 +2870,7 @@
   {
    "slug": "junk-removal-pricing-calculator-by-truck-load",
    "kind": "service",
-   "draft": true,
+   "draft": false,
    "product": "23",
    "segment": "home-services",
    "title": "Junk Removal Price Per Truck Load Calculator: 1/8 to Full Load Prices | ProofNotFluff",

@@ -1,0 +1,242 @@
+{
+ "base": "/tmp/claude-0/-home-claude-proofnotfluff-pins/220bbd6a-abb6-5d17-a11e-b5e10c265f00/scratchpad/bt/hi",
+ "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+ "images": [
+  {
+   "type": "cover",
+   "eyebrow": "BUDGET TRACKER SPREADSHEET",
+   "title": "Type each purchase once. See what's left.",
+   "sub": "A spend-first budget tracker: log it, and every total builds itself.",
+   "shot": "04-3-Month.png",
+   "crop": [
+    0,
+    0,
+    1,
+    0.192
+   ],
+   "badges": [
+    "Excel + Google Sheets",
+    "Instant download",
+    "No password"
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "THE WORKED EXAMPLE",
+   "title": "Every category against its budget.",
+   "sub": "Example September: Eating out came to $214.00 against a $200.00 budget, so it shows Over budget and -$14.00 left. Groceries: $501.42 of $550.00.",
+   "shot": "04-3-Month.png",
+   "crop": [
+    0,
+    0.373,
+    1,
+    0.47
+   ]
+  },
+  {
+   "type": "steps",
+   "eyebrow": "HOW IT WORKS",
+   "title": "Three steps.",
+   "steps": [
+    {
+     "head": "Set your budget",
+     "text": "One amount per category.",
+     "shot": "02-1-Budget.png",
+     "crop": [
+      0,
+      0.03,
+      1,
+      0.1
+     ]
+    },
+    {
+     "head": "Log each purchase",
+     "text": "Date, what, category, amount.",
+     "shot": "03-2-Transactions.png",
+     "crop": [
+      0,
+      0.011,
+      1,
+      0.021
+     ]
+    },
+    {
+     "head": "Read the month",
+     "text": "Left to spend, by category.",
+     "shot": "04-3-Month.png",
+     "crop": [
+      0,
+      0.03,
+      1,
+      0.075
+     ]
+    }
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "TRANSACTIONS TAB",
+   "title": "One log. Type it once.",
+   "sub": "Pick the category from a dropdown. Counts as fills in on its own and flags any row missing a date or category. Room for 1,000 rows.",
+   "shot": "03-2-Transactions.png",
+   "crop": [
+    0,
+    0,
+    1,
+    0.024
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "BUDGET TAB",
+   "title": "Set a budget once.",
+   "sub": "Example: $4,500.00 of income, $3,965.00 budgeted for bills, everyday spending and savings, $535.00 left to budget.",
+   "shot": "02-1-Budget.png",
+   "crop": [
+    0,
+    0,
+    1,
+    0.205
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "BIGGEST SPENDS",
+   "title": "See where the money went.",
+   "sub": "The five biggest everyday spends of the month, pulled from the log on their own.",
+   "shot": "04-3-Month.png",
+   "crop": [
+    0,
+    0.578,
+    1,
+    0.676
+   ],
+   "trim": true
+  },
+  {
+   "type": "shot",
+   "eyebrow": "YEAR TAB",
+   "title": "Every category, month by month.",
+   "sub": "Example, July to September: $13,485 in, $11,575 out, $1,910 left over.",
+   "shot": "05-4-Year.png",
+   "crop": [
+    0,
+    0,
+    1,
+    0.3
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "OUT AGAINST THE BUDGET",
+   "title": "Which months went over.",
+   "sub": "Example: August went $13.78 over the budget; July and September came in under it.",
+   "shot": "05-4-Year.png",
+   "crop": [
+    0,
+    0.52,
+    1,
+    0.685
+   ],
+   "trim": true
+  },
+  {
+   "type": "list",
+   "eyebrow": "IS THIS FOR YOU?",
+   "title": "Made for tracking every purchase.",
+   "columns": [
+    {
+     "head": "Made for",
+     "mark": "check",
+     "items": [
+      "Anyone who wants to see where the money goes",
+      "Logging purchases as they happen",
+      "A monthly budget by category",
+      "Excel or Google Sheets users, phone too"
+     ]
+    },
+    {
+     "head": "Not for",
+     "mark": "x",
+     "items": [
+      "Bank syncing or automatic imports",
+      "Business bookkeeping or taxes",
+      "Investment or debt advice"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "HOW YOU GET IT",
+   "title": "Instant download. Opens in Excel or Google Sheets.",
+   "columns": [
+    {
+     "head": "What you get",
+     "mark": "check",
+     "items": [
+      "A blank tracker and a filled-in example",
+      "Start Here guide as a PDF, US Letter and A4",
+      "Made for Excel; checked in Google Sheets and LibreOffice",
+      "No macros, no passwords, no sign-up"
+     ]
+    },
+    {
+     "head": "How to download",
+     "mark": "check",
+     "items": [
+      "Buy, then open Etsy in a web browser",
+      "Go to You, then Purchases, and download",
+      "The Etsy app can't download digital files",
+      "Message the shop on Etsy if anything won't open"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "inside",
+   "eyebrow": "ONE DOWNLOAD",
+   "title": "What's inside",
+   "tabs": [
+    {
+     "name": "Budget",
+     "shot": "02-1-Budget.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.5
+     ]
+    },
+    {
+     "name": "Month",
+     "shot": "04-3-Month.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.5
+     ]
+    },
+    {
+     "name": "Year",
+     "shot": "05-4-Year.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.45
+     ]
+    }
+   ],
+   "items": [
+    "Left to spend for any month you pick",
+    "Every category against its budget, overs flagged",
+    "Your five biggest everyday spends",
+    "Twelve months side by side",
+    "Blank tracker plus a worked example",
+    "Start Here PDF in Letter and A4"
+   ]
+  }
+ ]
+}

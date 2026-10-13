@@ -1,0 +1,13 @@
+{
+ "xlsx": "Budget-Tracker-EXAMPLE.xlsx",
+ "sheet": "3 Month",
+ "crop": [0, 0.003, 1, 0.13],
+ "dpi": 220,
+ "eyebrow": "BUDGET TRACKER SPREADSHEET",
+ "size": [2160, 1080],
+ "states": [
+  {"caption": "Example September: {C7} left to spend.", "hold": 3.4},
+  {"set": {"2 Transactions!C115": 46293, "2 Transactions!D115": "Grocery store", "2 Transactions!E115": "Groceries", "2 Transactions!F115": 250}, "caption": "Log a $250 grocery run: {C7}, over budget.", "hold": 3.6},
+  {"set": {"3 Month!E14": "Aug"}, "caption": "Pick August: {C7}, a month that went over.", "hold": 3.6}
+ ]
+}

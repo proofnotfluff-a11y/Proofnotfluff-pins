@@ -430,11 +430,31 @@ const CSu = P.choreSplit({ a: 300, b: 600, aShare: 50 });
 check("#24 one share typed: even split used", CSu.useShares, 0);
 check("#24 uneven: move 150", CSu.move, 150);
 check("blank chore split: none flag", P.choreSplit({}).none, 1);
+// #27 Client Tracker, 1 Today recalculated in LibreOffice Oct 12 (example house cleaner, as-of Oct 9, 2026):
+// D31:D33 1,010 / 635 / 600, J24 revenue 5,150 (so everyone else 2,905), J25 unpaid 515, I7 open quotes 720, C39 "Top client: 20%".
+const CM = P.clientMix({ c1: 1010, c2: 635, c3: 600, rest: 2905, unpaid: 515, quotes: 720 });
+check("#27 revenue, done jobs (J24)", CM.total, 5150);
+check("#27 top client share (C39 rounds to 20%)", CM.topPct, 20);
+check("#27 top client share exact", CM.topShare, 0.196117);
+check("#27 top three share", CM.top3Share, 0.435922);
+check("#27 revenue without the top client", CM.withoutTop, 4140);
+check("#27 unpaid balance (J25)", CM.unpaid, 515);
+check("#27 collected", CM.collected, 4635);
+check("#27 open quotes (I7)", CM.quotes, 720);
+check("#27 second bar vs top (D32/D31)", CM.secondVsTop, 0.628713);
+const CMs = P.clientMix({ c1: 600, c2: 1010, c3: 635, rest: 2905 });
+check("#27 order typed does not matter: top", CMs.top, 1010);
+check("#27 order typed does not matter: share", CMs.topPct, 20);
+const CM1 = P.clientMix({ c1: 1200, unpaid: 2000 });
+check("#27 one client: 100%", CM1.topPct, 100);
+check("#27 one client: big flag", CM1.big, 1);
+check("#27 unpaid capped at revenue", CM1.unpaid, 1200);
+check("blank client mix: none flag", P.clientMix({}).none, 1);
 // blank inputs never produce NaN or Infinity
 const b = P.service({});
 const bh = P.hourly({});
 const bc = P.cashflow({});
-const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({}), P.businessExpense({}), P.seTax({}), P.profitMargin({}), P.employerCost({}), P.startupCost({}), P.budgetPlan({}), P.profitLoss({}), P.cakeQuote({}), P.unitCost({}), P.choreSplit({}), P.choreSplit({ a: 0, b: 0 })]
+const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}), P.shippingCost({}), P.reorderPoint({}), P.strBreakEven({}), P.rentalCashFlow({}), P.businessExpense({}), P.seTax({}), P.profitMargin({}), P.employerCost({}), P.startupCost({}), P.budgetPlan({}), P.profitLoss({}), P.cakeQuote({}), P.unitCost({}), P.choreSplit({}), P.choreSplit({ a: 0, b: 0 }), P.clientMix({}), P.clientMix({ unpaid: 50 })]
   .flatMap(o => Object.values(o)).filter(v => typeof v === "number");
 const bad = [...Object.values(b), ...Object.values(bh), ...Object.values(bc), ...more].filter(v => !isFinite(v));
 if (bad.length) { fails++; console.log("FAIL blank inputs give non-finite values"); } else console.log("ok   blank inputs stay finite");

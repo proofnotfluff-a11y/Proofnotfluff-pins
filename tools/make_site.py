@@ -1114,6 +1114,49 @@ PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
     return form, results, script
 
 
+def client_mix_page(p):
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>Revenue from done jobs, by client</legend>
+{field("c1", "Your biggest client", d["c1"], "Paid or not, every finished job for that client", pre="$")}
+{field("c2", "Second client", d["c2"], "Any order works. The calculator ranks them", pre="$")}
+{field("c3", "Third client", d["c3"], "0 if you only have two", pre="$")}
+{field("rest", "Everyone else, together", d["rest"], "All your other clients added up", pre="$")}
+</fieldset>
+<fieldset><legend>Money still out</legend>
+{field("unpaid", "Unpaid on finished jobs", d["unpaid"], "Optional. Done but not paid yet", pre="$")}
+{field("quotes", "Open quotes", d["quotes"], "Optional. Quoted, waiting on an answer", pre="$")}
+</fieldset></form>"""
+    results = f"""<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Top client share</div><div class="val" data-pct="topShare">0%</div><div class="sub">Of revenue from done jobs</div></div>
+<div class="tile"><div class="lab">Top three clients</div><div class="val" data-pct="top3Share">0%</div><div class="sub">Of the same revenue</div></div>
+</div>
+<ul class="lines">
+<li><span>Revenue, done jobs</span><span data-out="total">$0</span></li>
+<li><span>Top client</span><span data-out="top">$0</span></li>
+<li><span>Second client (<span data-pct="secondVsTop">0%</span> of the top)</span><span data-out="second">$0</span></li>
+<li><span>Third client (<span data-pct="thirdVsTop">0%</span> of the top)</span><span data-out="third">$0</span></li>
+<li class="total"><span>Revenue without the top client</span><span data-out="withoutTop">$0</span></li>
+<li><span>Unpaid on done jobs (<span data-pct="unpaidShare">0%</span>)</span><span data-out="unpaid">$0</span></li>
+<li><span>Collected</span><span data-out="collected">$0</span></li>
+<li><span>Open quotes, not counted above</span><span data-out="quotes">$0</span></li>
+</ul>
+<div class="callout warn" data-show-if="big > 0">One client brings half or more of this revenue. If they stopped booking, revenue from these jobs would drop to <b data-out="withoutTop">$0</b>.</div>
+<div class="callout" data-show-if="mid > 0">Your top client brings <b data-pct="topShare">0%</b> of this revenue. Without them it would be <b data-out="withoutTop">$0</b>.</div>
+<div class="callout" data-show-if="spread > 0">No single client brings a quarter of this revenue. Losing the biggest one would leave <b data-out="withoutTop">$0</b>.</div>
+<div class="callout warn" data-show-if="overUnpaid > 0">Unpaid is more than the revenue typed. Showing all of it as unpaid.</div>
+<div class="callout warn" data-show-if="none > 0">Type the revenue from your biggest client and everyone else.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Top client <b data-pct="topShare">0%</b></span><span>Revenue <b data-out="total">$0</b></span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.clientMix in assets/pnf-calc.js, 1 Today of engines/client-tracker (#27). */
+var M=PNF.clientMix;
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
 PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashflow_page,
               "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
               "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
@@ -1128,7 +1171,8 @@ PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashfl
               "profit_loss": profit_loss_page,
               "cake": cake_page,
               "unit_cost": unit_cost_page,
-              "chore_split": chore_split_page}
+              "chore_split": chore_split_page,
+              "client_mix": client_mix_page}
 
 
 def page_html(p):

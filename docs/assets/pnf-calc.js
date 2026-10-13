@@ -12,7 +12,8 @@
    seTax: Schedule SE arithmetic (the SE_RATE and SE_BASE the #13 engine grosses up for), with the 2026 Social Security
    wage base; links #21 (Freelance Income Tracker), whose set-aside notes cite the same IRS and SSA figures.
    profitLoss: engines/profit-and-loss (#28), 2 Statement; cakeQuote: engines/cake-order-form (#26), 2 Order Form.
-   unitCost: engines/inventory-tracker (#25), 1 Items; choreSplit: engines/fair-share-chore-chart (#24), Fair Split.
+   unitCost: engines/inventory-tracker (#25), 1 Items; choreSplit: engines/fair-share-chore-chart (#24), Fair Split;
+   clientMix: engines/client-tracker (#27), 1 Today.
    Tested against the workbooks' own example outputs in docs/assets/pnf-calc.test.js. */
 (function (root) {
   "use strict";
@@ -574,8 +575,26 @@
     return out;
   }
 
+  // #27 Client Tracker for Service Businesses, 1 Today: revenue counts Done jobs only; "Top clients by revenue" ranks
+  // clients biggest first and compares each bar to the top client; the note under it is "Top client: X% of revenue to
+  // date" (top client revenue over all Done revenue); Unpaid balance = Done jobs marked unpaid; Open quotes = Quoted rows.
+  // This page takes the three biggest clients and everyone else as one number; it sorts the three, as the workbook does.
+  function clientMix(i) {
+    var c = [Math.max(0, num(i.c1)), Math.max(0, num(i.c2)), Math.max(0, num(i.c3))].sort(function (a, b) { return b - a; });
+    var rest = Math.max(0, num(i.rest)), unpaid = Math.max(0, num(i.unpaid)), quotes = Math.max(0, num(i.quotes));
+    var total = c[0] + c[1] + c[2] + rest, top3 = c[0] + c[1] + c[2], has = total > 0 ? 1 : 0;
+    var topShare = has ? c[0] / total : 0;
+    return { top: c[0], second: c[1], third: c[2], rest: rest, total: total, top3: top3,
+      topShare: topShare, topPct: Math.round(topShare * 100), top3Share: has ? top3 / total : 0,
+      withoutTop: total - c[0], secondVsTop: c[0] > 0 ? c[1] / c[0] : 0, thirdVsTop: c[0] > 0 ? c[2] / c[0] : 0,
+      unpaid: has ? Math.min(unpaid, total) : 0, collected: has ? total - Math.min(unpaid, total) : 0,
+      unpaidShare: has ? Math.min(unpaid, total) / total : 0, quotes: quotes, overUnpaid: has && unpaid > total ? 1 : 0,
+      big: has && topShare >= 0.5 ? 1 : 0, mid: has && topShare >= 0.25 && topShare < 0.5 ? 1 : 0,
+      spread: has && topShare < 0.25 ? 1 : 0, none: has ? 0 : 1 };
+  }
+
   var api = { seTax: seTax, hourly: hourly, service: service, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
-    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, profitLoss: profitLoss, cakeQuote: cakeQuote, unitCost: unitCost, choreSplit: choreSplit, cakeSizes: CAKE_SIZES, num: num, money: money, ceilTo: ceilTo,
+    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, profitLoss: profitLoss, cakeQuote: cakeQuote, unitCost: unitCost, choreSplit: choreSplit, clientMix: clientMix, cakeSizes: CAKE_SIZES, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;
 })(this);

@@ -2,7 +2,7 @@
   "product_id": "23",
   "listing_id": "4590270056",
   "product": "Junk Removal Pricing Calculator",
-  "tab": "Your Numbers",
+  "tab": "",
   "audience": "Anyone who quotes jobs by the hour",
   "hookId": "H02",
   "scope": "broad",
@@ -19,7 +19,7 @@
       "why": "The calculator's example: $60,000 a year of take-home pay."
     },
     {
-      "label": "Hours you work (48 wks x 50)",
+      "label": "Hours you work (48 wks x 50 hrs)",
       "value": "2,400 hrs a year",
       "input": true,
       "say": "You work 2,400 hours a year",
@@ -40,14 +40,14 @@
       "why": "60% of 2,400 hours. The rest is driving, quotes and admin."
     },
     {
-      "label": "Tax + business costs",
+      "label": "Tax ($21,223) + costs ($8,580)",
       "value": "$29,803 a year",
       "input": true,
       "say": "Tax and costs add $29,803",
       "why": "About $21,223 of self-employment and income tax plus $8,580 of yearly costs ($715 a month)."
     },
     {
-      "label": "Break-even per paid hour",
+      "label": "Pay + tax + costs per paid hour",
       "value": "$62.36 an hour",
       "result": true,
       "kind": "bad",

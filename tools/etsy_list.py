@@ -15,9 +15,13 @@ Runs only in a cloud session on Todd's Default environment (see tools/etsy_oauth
   python3 tools/etsy_list.py strip-line LISTING_ID "phrase" [--dry-run]   correction edit: deletes the description
         line(s) containing the phrase (at most 2 lines, each under 300 characters); nothing else changes
   python3 tools/etsy_list.py bundle-price N               the price for an N-product bundle (N x $2.99 less 20%, rounded down)
-  python3 tools/etsy_list.py apply-pack LISTING_ID [--zip new.zip] [--images img1.png ... imgN.png] [--video v.mp4]
-        [--description desc.txt] [--alt "alt text"] [--dry-run]   correction edit from a scoreboard legal/<id> pack:
-        swaps the digital file (new file uploaded first, old files deleted after), replaces every photo (new photos
+  python3 tools/etsy_list.py desc-ops LISTING_ID ops.json desc.txt   read-only: applies exact description edits
+        (replace, remove: target exactly once; append) to the live description and writes desc.txt for apply-pack
+  python3 tools/etsy_list.py apply-pack LISTING_ID [--zip new.zip | --files f1 [f2 ... f5]] [--keep-old-files]
+        [--images img1.png ... imgN.png] [--video v.mp4] [--description desc.txt] [--alt "alt text"] [--dry-run]
+        correction edit from a scoreboard legal/<id> pack: swaps the digital files (every new file uploaded first, old
+        files deleted after; --files takes 1 to 5 files for listings that ship several, --zip is the one-file form;
+        --keep-old-files only adds the new files and deletes nothing), replaces every photo (new photos
         uploaded at ranks 1..N first, old photos deleted after), replaces the video, sets the description. Never
         touches title, tags, price, category, attributes or state. --dry-run prints the plan and calls nothing.
 
@@ -152,7 +156,36 @@ def cmd_show(lid):
     files = ok(*req("GET", f"/shops/{sid}/listings/{lid}/files"), "files")
     print(json.dumps({"state": l.get("state"), "title": l.get("title"), "price": l.get("price"), "tags": l.get("tags"),
                       "images": len(l.get("images") or []), "videos": len(l.get("videos") or []),
-                      "files": [f.get("filename") for f in files.get("results", [])], "url": l.get("url")}, indent=1))
+                      "files": [f.get("filename") for f in files.get("results", [])], "url": l.get("url"),
+                      "description": l.get("description")}, indent=1, ensure_ascii=False))
+
+def apply_desc_ops(desc, ops):
+    """Apply exact description edits in order. replace and remove need their target exactly once (whole text,
+    case-sensitive); append adds text at the end. Returns (new_text, errors); any error means no change."""
+    errs = []; out = desc
+    for i, o in enumerate(ops, 1):
+        kind = o.get("op")
+        if kind == "append":
+            out = out + o.get("text", ""); continue
+        old = o.get("old", "")
+        if kind not in ("replace", "remove") or not old:
+            errs.append(f"op {i}: unknown op or empty target"); continue
+        n = out.count(old)
+        if n != 1:
+            errs.append(f"op {i}: target found {n} times, need exactly 1: {old[:60]!r}"); continue
+        out = out.replace(old, o.get("new", "") if kind == "replace" else "", 1)
+    return (desc, errs) if errs else (out, [])
+
+def cmd_desc_ops(lid, ops_path, out_path):
+    """Read-only on Etsy: fetch the live description, apply the ops file, write the result for apply-pack."""
+    ops = json.load(open(ops_path, encoding="utf-8"))
+    desc = get_listing(lid).get("description") or ""
+    new, errs = apply_desc_ops(desc, ops)
+    if errs: die("description ops refused, nothing written:\n- " + "\n- ".join(errs))
+    bad = description_errors(new)
+    if bad: die("result fails the description checks, nothing written:\n- " + "\n- ".join(bad))
+    open(out_path, "w", encoding="utf-8").write(new)
+    print(json.dumps({"status": "ok", "listing_id": lid, "old_chars": len(desc), "new_chars": len(new), "out": out_path}, indent=1))
 
 # ---------- create and publish ----------
 def cmd_create(md, zip_path, images, video=None, like=None, publish=False):
@@ -253,17 +286,25 @@ def listing_videos(sid, lid):
     try: return json.loads(t).get("results", [])
     except Exception: return []
 
-def cmd_apply_pack(lid, zip_path=None, images=None, video=None, desc_path=None, alt=None, dry=False):
+def cmd_apply_pack(lid, zip_path=None, images=None, video=None, desc_path=None, alt=None, dry=False, files=None, keep_old=False):
     """One correction edit on a live listing. Order of operations keeps the listing whole at every step:
     description first (one PATCH); new photos uploaded at ranks 1..N, then the old photo ids deleted; the new
-    digital file uploaded, confirmed present, then the old file ids deleted; the new video uploaded, then the
-    old video deleted. A failure stops before any deletion, so the worst case is extra files, never missing ones."""
+    digital files uploaded, confirmed present, then the old file ids deleted (whenever the listing is at Etsy's
+    5-file limit during the swap, one old file is deleted to make room before the next upload, so at least one
+    file always stays); with keep_old the new files are only added; the new video uploaded, then the old video deleted.
+    A failure stops the run, and the listing never has zero files or zero photos."""
     images = images or []
-    if not (zip_path or images or video or desc_path): die("nothing to apply: give --zip, --images, --video or --description")
+    files = list(files or [])
+    if zip_path and files: die("give --zip or --files, not both")
+    if zip_path: files = [zip_path]
+    if not (files or images or video or desc_path): die("nothing to apply: give --zip, --files, --images, --video or --description")
+    if files and not (1 <= len(files) <= 5): die("need 1 to 5 digital files (Etsy's per-listing limit is 5)")
+    if len(set(os.path.basename(f) for f in files)) != len(files): die("two digital files share a name")
     if images and not (1 <= len(images) <= 20): die("need 1 to 20 images (Etsy's per-listing limit is 20)")
-    for f in ([zip_path] if zip_path else []) + images + ([video] if video else []) + ([desc_path] if desc_path else []):
+    for f in files + images + ([video] if video else []) + ([desc_path] if desc_path else []):
         if not os.path.exists(f): die(f"missing file: {f}")
-    if zip_path and os.path.getsize(zip_path) > 20 * 1024 * 1024: die("digital file over Etsy's 20 MB limit")
+    for f in files:
+        if os.path.getsize(f) > 20 * 1024 * 1024: die(f"digital file over Etsy's 20 MB limit: {f}")
     desc = open(desc_path, encoding="utf-8").read().strip() if desc_path else None
     if desc is not None:
         errs = description_errors(desc)
@@ -277,14 +318,29 @@ def cmd_apply_pack(lid, zip_path=None, images=None, video=None, desc_path=None, 
     plan = {"listing_id": lid, "title": l.get("title"), "price": l.get("price"),
             "description": "replace" if desc is not None else "keep",
             "images": {"old": len(old_images), "new": len(images)} if images else "keep",
-            "file": {"old": [f.get("filename") for f in old_files], "new": os.path.basename(zip_path)} if zip_path else "keep",
+            "file": {"old": [f.get("filename") for f in old_files], "new": [os.path.basename(f) for f in files], "oldFiles": "kept" if keep_old else "deleted"} if files else "keep",
             "video": {"old": len(old_videos), "new": os.path.basename(video)} if video else "keep"}
-    if dry: print(json.dumps({"status": "dry-run", "plan": plan}, indent=1)); return
+    # preflight: every check that can fail runs before the first write, and in --dry-run too
+    if files and keep_old and len(old_files) + len(files) > 5:
+        die(f"Etsy holds 5 files per listing: {len(old_files)} old + {len(files)} new; nothing changed")
+    if dry: print(json.dumps({"status": "dry-run", "plan": plan, "preflight": "ok"}, indent=1)); return
     done = {"listing_id": lid}
+    old_desc = l.get("description") or ""
     if desc is not None:
         r = ok(*req("PATCH", f"/shops/{sid}/listings/{lid}", form={"description": desc}), "description")
         if (r.get("description") or "").strip()[:80] != desc[:80]: die("Etsy returned a different description after the edit")
         done["description"] = "replaced"
+    try:
+        _apply_media(lid, sid, l, images, alt, old_images, files, keep_old, old_files, video, old_videos, done)
+    except BaseException:
+        if desc is not None:
+            req("PATCH", f"/shops/{sid}/listings/{lid}", form={"description": old_desc})
+            print(json.dumps({"rollback": "description restored to the old text after a later step failed"}))
+        raise
+    done["status"] = "done"
+    print(json.dumps(done, indent=1))
+
+def _apply_media(lid, sid, l, images, alt, old_images, files, keep_old, old_files, video, old_videos, done):
     if images:
         new_ids = []
         for i, img in enumerate(images, 1):
@@ -298,20 +354,43 @@ def cmd_apply_pack(lid, zip_path=None, images=None, video=None, desc_path=None, 
         now = get_listing(lid).get("images") or []
         done["images"] = {"uploaded": len(new_ids), "deleted": len([i for i in old_images if i not in new_ids]), "now": len(now)}
         if len(now) != len(images): die(f"listing shows {len(now)} photos, expected {len(images)}; check the editor")
-    if zip_path:
-        body, ct = multipart({"name": os.path.basename(zip_path), "rank": 1}, "file", zip_path, "application/zip")
-        r = ok(*req("POST", f"/shops/{sid}/listings/{lid}/files", body=body, ctype=ct), "digital file")
-        new_fid = r.get("listing_file_id")
-        files = ok(*req("GET", f"/shops/{sid}/listings/{lid}/files"), "files after upload").get("results", [])
-        if new_fid not in [f.get("listing_file_id") for f in files]: die("new file not found after upload; old files kept")
-        for f in old_files:
-            fid = f.get("listing_file_id")
-            if fid == new_fid: continue
+    if files and keep_old:
+        if len(old_files) + len(files) > 5: die(f"Etsy holds 5 files per listing: {len(old_files)} old + {len(files)} new; nothing uploaded")
+        new_fids = []
+        for rank, fpath in enumerate(files, len(old_files) + 1):
+            mime = "application/pdf" if fpath.lower().endswith(".pdf") else "application/zip"
+            body, ct = multipart({"name": os.path.basename(fpath), "rank": rank}, "file", fpath, mime)
+            r = ok(*req("POST", f"/shops/{sid}/listings/{lid}/files", body=body, ctype=ct), f"digital file {rank}")
+            new_fids.append(r.get("listing_file_id"))
+        now_files = ok(*req("GET", f"/shops/{sid}/listings/{lid}/files"), "files after upload").get("results", [])
+        done["file"] = {"now": [f.get("filename") for f in now_files], "oldFiles": "kept"}
+        if len(now_files) != len(old_files) + len(files): die(f"listing has {len(now_files)} files, expected {len(old_files) + len(files)}; check the editor")
+    elif files:
+        # Etsy holds at most 5 files per listing. Upload each new file first; only when the listing is full,
+        # delete one old file to make room, so the listing never has zero files at any step.
+        remaining_old = [f.get("listing_file_id") for f in old_files]
+        count = len(remaining_old)
+        new_fids = []
+        for rank, fpath in enumerate(files, 1):
+            if count >= 5 and remaining_old:
+                fid = remaining_old.pop(0)
+                c, t = req("DELETE", f"/shops/{sid}/listings/{lid}/files/{fid}")
+                if c not in (200, 204): die(f"listing full and old file {fid} not deleted (HTTP {c}); {len(new_fids)} new files are up: {t[:200]}")
+                count -= 1
+            mime = "application/pdf" if fpath.lower().endswith(".pdf") else "application/zip"
+            body, ct = multipart({"name": os.path.basename(fpath), "rank": rank}, "file", fpath, mime)
+            r = ok(*req("POST", f"/shops/{sid}/listings/{lid}/files", body=body, ctype=ct), f"digital file {rank}")
+            new_fids.append(r.get("listing_file_id")); count += 1
+        now_files = ok(*req("GET", f"/shops/{sid}/listings/{lid}/files"), "files after upload").get("results", [])
+        present = [f.get("listing_file_id") for f in now_files]
+        if any(fid not in present for fid in new_fids): die("a new file was not found after upload; remaining old files kept")
+        for fid in remaining_old:
+            if fid in new_fids: continue
             c, t = req("DELETE", f"/shops/{sid}/listings/{lid}/files/{fid}")
-            if c not in (200, 204): die(f"old file {fid} not deleted (HTTP {c}); the new file is up, delete the old one by hand: {t[:200]}")
-        files = ok(*req("GET", f"/shops/{sid}/listings/{lid}/files"), "files after delete").get("results", [])
-        done["file"] = {"now": [f.get("filename") for f in files]}
-        if len(files) != 1: die(f"listing has {len(files)} files after the swap, expected 1; check the editor")
+            if c not in (200, 204): die(f"old file {fid} not deleted (HTTP {c}); the new files are up, delete the old one by hand: {t[:200]}")
+        now_files = ok(*req("GET", f"/shops/{sid}/listings/{lid}/files"), "files after delete").get("results", [])
+        done["file"] = {"now": [f.get("filename") for f in now_files]}
+        if len(now_files) != len(files): die(f"listing has {len(now_files)} files after the swap, expected {len(files)}; check the editor")
     if video:
         body, ct = multipart({"name": os.path.basename(video)}, "video", video, "video/mp4")
         c, t = req("POST", f"/shops/{sid}/listings/{lid}/videos", body=body, ctype=ct)
@@ -324,8 +403,6 @@ def cmd_apply_pack(lid, zip_path=None, images=None, video=None, desc_path=None, 
             done["video"] = "replaced"
         else:
             done["video"] = f"refused (HTTP {c}): {t[:160]}"
-    done["status"] = "done"
-    print(json.dumps(done, indent=1))
 
 if __name__ == "__main__":
     a = sys.argv[1:]
@@ -344,13 +421,18 @@ if __name__ == "__main__":
     elif a[0] == "retitle": cmd_retitle(a[1], a[2])
     elif a[0] == "bundle-price": print(f"{bundle_price(int(a[1])):.2f}")
     elif a[0] == "strip-line": cmd_strip_line(a[1], a[2], dry="--dry-run" in a)
+    elif a[0] == "desc-ops": cmd_desc_ops(a[1], a[2], a[3])
     elif a[0] == "apply-pack":
         args = a[2:]; dry = "--dry-run" in args; args = [x for x in args if x != "--dry-run"]
-        zip_path = video = desc_path = alt = None; images = []
+        keep_old = "--keep-old-files" in args; args = [x for x in args if x != "--keep-old-files"]
+        zip_path = video = desc_path = alt = None; images = []; files = []
         i = 0
         while i < len(args):
             k = args[i]
             if k == "--zip": zip_path = args[i + 1]; i += 2
+            elif k == "--files":
+                i += 1
+                while i < len(args) and not args[i].startswith("--"): files.append(args[i]); i += 1
             elif k == "--video": video = args[i + 1]; i += 2
             elif k == "--description": desc_path = args[i + 1]; i += 2
             elif k == "--alt": alt = args[i + 1]; i += 2
@@ -358,5 +440,5 @@ if __name__ == "__main__":
                 i += 1
                 while i < len(args) and not args[i].startswith("--"): images.append(args[i]); i += 1
             else: die(f"unknown option {k}")
-        cmd_apply_pack(a[1], zip_path, images, video, desc_path, alt, dry)
+        cmd_apply_pack(a[1], zip_path, images, video, desc_path, alt, dry, files, keep_old)
     else: die(__doc__)

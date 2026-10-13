@@ -59,10 +59,11 @@ FAQ
 - Does it connect to my bank? No. You type the amounts, which keeps your bank details out of it.
 
 Made with AI assistance and reviewed and tested by the shop owner.
-
-Information only, not tax, legal or financial advice; no guarantee of results.
+Information and planning tool only, not legal, tax, financial or other professional advice. Results are estimates based on your inputs.
+Calculations are estimates for planning and depend on your inputs. They aren't accounting, tax or financial advice.
 Digital download. No physical item ships.
-File problems are fixed on request through Etsy messages.
+File problems fixed on request through Etsy messages.
+Not affiliated with or endorsed by Microsoft or Google.
 
 ## Google Sheets check
 Checked Oct 13, 2026 by Drive upload with Sheets conversion (QA folder 1qoGZklAqCicGEF7LvOBzpGGeFSbRmhat, file "QA budget tracker functions Oct 13 2026"): the formula forms new to the shop (LARGE over an amount-plus-row key column, INDEX and MATCH on that key, MATCH and INDEX over month array constants with UPPER, SUMPRODUCT with COUNTIF over a range for the fix count and the duplicate-name count, SUMIFS on whole columns between two DATE bounds, DATE with month 13) computed the same values in Google Sheets as in LibreOffice.

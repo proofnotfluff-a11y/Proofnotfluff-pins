@@ -2695,7 +2695,7 @@
   {
    "slug": "contractor-hourly-rate-calculator",
    "kind": "hourly",
-   "draft": true,
+   "draft": false,
    "quote": true,
    "product": "20",
    "segment": "home-services",
@@ -2784,7 +2784,7 @@
   {
    "slug": "pressure-washing-price-per-square-foot-calculator",
    "kind": "service_sqft",
-   "draft": true,
+   "draft": false,
    "product": "22",
    "segment": "home-services",
    "title": "Pressure Washing Price Per Square Foot Calculator: Your Own Per-Sq-Ft Price | ProofNotFluff",

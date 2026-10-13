@@ -1,0 +1,22 @@
+name: IndexNow submit
+on:
+  push:
+    branches: [main]
+    paths: ["docs/sitemap.xml"]
+  workflow_dispatch:
+    inputs:
+      all:
+        description: "Submit every sitemap URL"
+        required: false
+        default: "false"
+permissions:
+  contents: read
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - run: python3 tools/indexnow_submit.py ${{ github.event.inputs.all == 'true' && '--all' || '' }}

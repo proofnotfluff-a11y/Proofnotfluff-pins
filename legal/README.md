@@ -9,6 +9,7 @@ Who uses this file:
 - **Cloud builder**: builds the Terms page from the clause library below, so most products pass on the first try.
 - **Factory**: when it builds a product itself (empty shelf), its reviewer subagent runs the checklist before Publish.
 - **CMO and promote runs**: follow the claims rules (section 3) for pins, Shorts and Reels.
+- **Anyone placing an affiliate link** (cloud builder, CMO, COO): section 7, from Oct 13, 2026.
 
 ---
 
@@ -180,3 +181,20 @@ High tier: add the tier clause's first two sentences as one extra line. A brand 
 - **BLOCK:** never listed, idea set to "skipped"; for a live product, a message to Todd recommending "<id> retire". The desk never retires anything itself.
 
 **Never:** touch Etsy, Chrome, eRank or Todd's computer; edit shop policies or settings (they become Todd quests); give Todd a firm legal conclusion; say anything is attorney-reviewed until Todd says it is.
+
+---
+
+## 7. Affiliate links and disclosures (from Oct 13, 2026)
+
+Todd approved the $0 affiliate groundwork on Oct 13 (affiliate/README.md). The desk checks every page, video description, email or post that carries an affiliate link against this list. A miss is a FIX; a link to a program that affiliate/REGISTRY.md does not show as "approved" is a BLOCK.
+
+1. **Where links may go:** the free calculator site (one disclosed "next step" block on the matching page), long-form YouTube walkthrough descriptions, and email once the list exists. Never inside a product file (Etsy downloads, KDP books, Gumroad kits), never in an Etsy listing or Etsy message, never in a pin (the pin points to the page and the page carries the link), never in a Short, Reel or TikTok caption.
+2. **Next to every affiliate link:** the words "(paid link)". At the top of the block, one plain sentence: "We earn a commission if you sign up through the links below." The FTC staff FAQ says "paid link" right next to an affiliate link should be adequate, that people may not understand "affiliate link", that "commissionable link" is probably not clear, that a disclosure at the bottom of a page may be missed, and that a single disclosure on a home page is not enough. So never rely on "affiliate link", "commissionable link", a footer or a separate disclosures page alone.
+3. **Video:** a walkthrough whose description carries an affiliate link says so in the video itself, out loud and on screen, before the recommendation (the FAQ: viewers easily miss disclosures in the description or at the end). The platform's paid-promotion setting goes on as well, never instead.
+4. **Experience claims:** "we use it" only for a program the registry marks as a bona fide user (eRank today). Every other product is described with facts from the vendor's own page and the date read, never "what we use", "our favorite" or an unexplained "best".
+5. **Numbers:** every price, payout or feature on the page comes from the vendor's official page, read within the last 30 days (the registry row's date).
+6. **Our own products:** a page that shows our products next to third-party tools says which ones are ours.
+7. **No synthetic person,** testimonial, invented result or first-person story; the narrator speaks as the brand.
+8. **Each program's own terms on top** (registry row): banned placements, brand-name bidding, coupon sites and any wording the program requires.
+
+Sources: FTC, "FTC's Endorsement Guides: What People Are Asking" (read Oct 13, 2026; https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking); Guides Concerning the Use of Endorsements and Testimonials in Advertising, 16 CFR Part 255 (revised 2023); Trade Regulation Rule on the Use of Consumer Reviews and Testimonials, 16 CFR Part 465.

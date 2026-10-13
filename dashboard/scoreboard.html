@@ -133,6 +133,43 @@ h3{font-size:14px;font-weight:600}
 .a .ap i{display:block;height:100%;background:var(--accent);border-radius:3px}
 .a.locked .an{color:var(--ink-2)}
 
+/* Pin pick: Todd picks each week's pins (Pinterest wants a person to choose every pin) */
+.pinpick .sec-head{margin-bottom:6px}
+.pp-week{display:grid;gap:12px;padding-top:14px;border-top:1px solid var(--line)}
+.pp-week:first-child{padding-top:4px;border-top:0}
+.pp-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.pp-head .t{font-family:var(--display);font-weight:600;font-size:15px}
+.pp-head .s,.pp-actions .s{font-size:12.5px;color:var(--muted)}
+.pp-day{display:grid;gap:8px}
+.pp-day+.pp-day{margin-top:6px}
+.pp-day h3{font-size:13px;color:var(--ink-2)}
+.pp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(44%,150px),1fr));gap:10px}
+.pp-pin{position:relative;display:grid;gap:5px;align-content:start;min-width:0;text-align:left;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px;cursor:pointer}
+.pp-pin:hover:not([disabled]){border-color:var(--line-2)}
+.pp-pin:focus-visible,.pickbanner:focus-visible,.pp-btn:focus-visible,.pp-more summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pp-pin[disabled]{cursor:default}
+.pp-img{aspect-ratio:2/3;border-radius:6px;overflow:hidden;background:var(--chip);display:grid;place-items:center}
+.pp-img img{width:100%;height:100%;object-fit:cover;display:block}
+.pp-img .ph{padding:10px;font-family:var(--display);font-weight:600;font-size:12px;line-height:1.3;color:var(--ink-2);text-align:center}
+.pp-flag{position:absolute;top:11px;left:11px;font-family:var(--display);font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--good);color:var(--card);box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.pp-flag.ok{left:auto;right:11px;width:24px;height:24px;padding:0;display:grid;place-items:center;border-radius:50%}
+.pp-meta{display:flex;justify-content:space-between;gap:6px;font-size:11.5px;color:var(--muted)}
+.pp-title{font-size:12.5px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pp-pin.drop{background:transparent;border-style:dashed}
+.pp-pin.drop .pp-img{opacity:.35;filter:grayscale(1)}
+.pp-pin.drop .pp-title{color:var(--muted)}
+.pp-pin.drop .pp-flag{background:var(--bad)}
+.pp-pin.done .pp-flag{background:var(--ink)}
+.pp-pin.skip .pp-flag{background:var(--ink-2)}
+.pp-pin.skip .pp-img{opacity:.55}
+.pp-actions{display:flex;gap:10px 14px;align-items:center;flex-wrap:wrap}
+.pp-week.waiting .pp-actions{position:sticky;bottom:0;z-index:2;margin:0 -18px -18px;padding:12px 18px max(12px,env(safe-area-inset-bottom,0px));background:var(--card);border-top:1px solid var(--line);border-radius:0 0 var(--r) var(--r)}
+.pp-btn{font-family:var(--display);font-size:13px;font-weight:600;border-radius:999px;padding:9px 18px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);cursor:pointer}
+.pp-btn.ghost{background:transparent;color:var(--ink-2);border-color:var(--line-2);padding:7px 14px}
+.pp-btn[disabled]{opacity:.5;cursor:default}
+.pp-more summary{cursor:pointer;font-family:var(--display);font-size:13px;font-weight:600;color:var(--ink-2);padding:2px 0;width:max-content}
+.pp-more[open] summary{margin-bottom:10px}
+
 /* Crew, stores, log */
 .crew{display:grid;gap:10px}
 .agent{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:12px;border:1px solid var(--line);border-radius:10px}
@@ -222,6 +259,10 @@ h3{font-size:14px;font-weight:600}
 .chipbtn.on{border-color:var(--accent)}
 @media (max-width:640px){.fx-panel{position:fixed;left:8px;right:8px;top:auto;bottom:8px;width:auto;max-height:62vh}.fx-hint{display:none}}
 .fxv[hidden]{display:none!important}
+.pickbanner{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;border:0;border-radius:12px;padding:12px 16px;background:var(--accent);color:var(--accent-ink);font-family:var(--body);font-size:14.5px;line-height:1.35;text-align:left;cursor:pointer}
+.pickbanner b{font-family:var(--display);font-weight:700}
+.pickbanner .go{flex:none;font-family:var(--display);font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px;border:1px solid currentColor}
+.pickbanner[hidden]{display:none!important}
 </style>
 
 <div class="topbar">
@@ -229,6 +270,7 @@ h3{font-size:14px;font-weight:600}
   <div class="viewtabs" role="group" aria-label="View"><button type="button" id="vt-factory" aria-pressed="true">Factory floor</button><button type="button" id="vt-stats" aria-pressed="false">Stats</button></div>
 </div>
 <section class="fxv" id="factoryView" aria-label="Factory floor">
+  <button type="button" class="pickbanner" id="pickBanner" hidden></button>
   <div class="fx-hud">
     <div class="fx-level">
       <div class="hex" aria-hidden="true"><svg viewBox="0 0 42 46"><path d="M21 1 40 12v22L21 45 2 34V12z" fill="#C8502F"/></svg><b id="fxLvl">1</b></div>
@@ -255,6 +297,10 @@ h3{font-size:14px;font-weight:600}
 </section>
 <section id="statsView" hidden>
 <div class="wrap">
+  <section class="card pinpick" id="pinPick" hidden aria-labelledby="ppTitle">
+    <div class="sec-head"><h2 id="ppTitle">Pins to pick</h2><p>Pinterest wants a person to choose every pin, so you pick a week at a time.</p></div>
+    <div id="ppBody"></div>
+  </section>
   <header class="hud" aria-label="Shop level">
     <div class="hud-top">
       <div style="display:grid;gap:8px"><div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><div class="brand">PROOFNOTFLUFF SCOREBOARD</div></div>
@@ -347,7 +393,7 @@ const TZ="America/Chicago";
 const XP={visit:3,favorite:10,order:100,review:50,listed:50,pin:5,short:10,post:5,shortViews:50};
 const LEVELS=[[0,"Open sign"],[250,"First shelf"],[600,"Market stall"],[1100,"Corner shop"],[1800,"Main Street"],[2700,"Busy counter"],[4000,"Local favorite"],[6000,"Rising star"],[9000,"Bestseller"],[13000,"Flagship"],[18000,"Department store"]];
 const SERIES=[["listed","Listed","--s-listed"],["pins","Pins","--s-pins"],["shorts","Shorts","--s-shorts"],["posts","Posts","--s-posts"]];
-const state={days:{},shorts:[],agents:[],stores:[],quests:[],log:[],meta:{},loaded:new Set(),canWrite:false,qtab:"todd",db:null,lastLevel:null};
+const state={days:{},shorts:[],agents:[],stores:[],quests:[],log:[],meta:{},pinweeks:[],ppOpen:{},ppSig:"",loaded:new Set(),canWrite:false,qtab:"todd",db:null,lastLevel:null};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fmt=n=>Number(n||0).toLocaleString("en-US");
@@ -592,7 +638,82 @@ function renderRules(){
   $("rules").innerHTML=[["Etsy visit",XP.visit],["Favorite",XP.favorite],["Order",XP.order],["Review",XP.review],["New listing",XP.listed],["Pin",XP.pin],["Short",XP.short],["Post",XP.post],[`Every ${XP.shortViews} Short views`,1],["Quest","shown on each"]].map(([k,v])=>`<span>${esc(k)} <b>${typeof v==="number"?"+"+v+" XP":esc(v)}</b></span>`).join("")+`<span>Levels: ${LEVELS.map((l,i)=>`${i+1} ${esc(l[1])} (${fmt(l[0])})`).join(", ")}</span>`;
 }
 
-function renderAll(){renderHUD();renderTiles();renderCharts();renderSources();renderShorts();renderQuests();renderAch();renderCrew();renderStores();renderLog();renderRules();if(window.__pnfFactory)window.__pnfFactory.update()}
+/* ---------- pin pick ---------- */
+/* The CMO lines up a week of pins as pinweeks/<first day> {from, to, status, pins:[{n, day, slot, product, title, thumb, ...}],
+   drops, published, skipped}. Todd drops pins and approves the week here (or ticks quests/approve-pins-<id>);
+   the promote runs publish only kept pins of an approved week, and record published or skipped. */
+const dayLabel=iso=>/^\d{4}-\d{2}-\d{2}$/.test(String(iso||""))?`${dow(iso)} ${shortDate(iso)}`:"";
+function questDone(id){const q=state.quests.find(x=>x.id===id);return !!(q&&q.done)}
+function weekApproved(w){return w.status==="approved"||questDone("approve-pins-"+w.id)}
+function pinState(w,p){const k=String(p.n);if(w.published&&w.published[k])return "done";if(w.skipped&&w.skipped[k])return "skip";if(w.drops&&w.drops[k])return "drop";return "keep"}
+function activeWeeks(){const today=todayISO();return state.pinweeks.filter(w=>w&&Array.isArray(w.pins)&&w.pins.length&&String(w.to||"")>=today).sort((a,b)=>String(a.from)<String(b.from)?-1:String(a.from)>String(b.from)?1:0)}
+function weekCounts(w){const c={keep:0,drop:0,done:0,skip:0};for(const p of w.pins)c[pinState(w,p)]++;return c}
+function ppSignature(weeks){return JSON.stringify([weeks,weeks.map(w=>questDone("approve-pins-"+w.id)),state.canWrite,state.ppOpen,todayISO()])}
+const writeChains={};
+function queueWrite(path,data){const prev=writeChains[path]||Promise.resolve();const next=prev.catch(()=>{}).then(()=>state.db.doc(path).update(data));writeChains[path]=next;return next}
+function ppWriteFailed(e){if(e&&e.code==="invalid_argument")state.canWrite=false;state.ppSig="";renderPins();renderQuests()}
+async function togglePin(wid,n){
+  const w=state.pinweeks.find(x=>x.id===wid);if(!w||!state.db||!state.canWrite)return;
+  const p=w.pins.find(x=>String(x.n)===String(n));if(!p)return;const s=pinState(w,p);if(s==="done"||s==="skip")return;
+  try{await queueWrite("pinweeks/"+wid,{drops:{[String(p.n)]:s!=="drop"}})}catch(e){ppWriteFailed(e)}
+}
+async function setWeekApproved(wid,on){
+  if(!state.db||!state.canWrite)return;const now=new Date().toISOString();
+  try{
+    await queueWrite("pinweeks/"+wid,on?{status:"approved",approvedAt:now}:{status:"waiting",approvedAt:null});
+    const q=state.quests.find(x=>x.id==="approve-pins-"+wid);
+    if(q&&!!q.done!==on)await queueWrite("quests/"+q.id,{done:on,doneAt:on?now:null});
+  }catch(e){ppWriteFailed(e)}
+}
+function pinTile(w,p){
+  const s=pinState(w,p),slot=p.slot==="pm"?"Afternoon":"Morning",k=String(p.n);
+  const prod=p.product!=null&&p.product!==""?"#"+p.product:"";
+  const tick='<svg width="12" height="12" viewBox="0 0 14 14"><path d="M2.5 7.5 5.5 10.5 11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const flag={keep:tick,drop:"Dropped",done:"Published",skip:"Skipped"}[s];
+  const why={keep:"Will publish. Activate to drop it.",drop:"Dropped. Activate to keep it.",done:"Already published.",skip:"Skipped: "+((w.skipped&&w.skipped[k])||"its run passed")+"."}[s];
+  const label=`Pin ${p.n}, ${dayLabel(p.day)} ${slot.toLowerCase()}${prod?", product "+prod:""}: ${p.title||""}. ${why}`;
+  const img=p.thumb?`<img src="/_blob/${encodeURIComponent(p.thumb)}" alt="" loading="lazy" decoding="async">`:`<span class="ph">${esc(p.title||"Pin "+p.n)}</span>`;
+  const off=s==="done"||s==="skip"||!state.canWrite;
+  return `<button type="button" class="pp-pin ${s}" data-w="${esc(w.id)}" data-n="${esc(k)}" aria-pressed="${s==="keep"||s==="done"}" aria-label="${esc(label)}"${off?" disabled":""}><span class="pp-img">${img}</span><span class="pp-flag${s==="keep"?" ok":""}" aria-hidden="true">${flag}</span><span class="pp-meta" aria-hidden="true"><span>${esc(k)} · ${slot}</span><span>${esc(prod)}</span></span><span class="pp-title" aria-hidden="true">${esc(p.title||"")}</span></button>`;
+}
+function weekBlock(w){
+  const ok=weekApproved(w),c=weekCounts(w);
+  const days=[...new Set(w.pins.map(p=>p.day))].sort();
+  const grid=days.map(d=>{const ps=w.pins.filter(p=>p.day===d).sort((a,b)=>(a.slot===b.slot?0:a.slot==="pm"?1:-1)||n0(a.n)-n0(b.n));
+    return `<div class="pp-day"><h3>${esc(dayLabel(d))}</h3><div class="pp-grid">${ps.map(p=>pinTile(w,p)).join("")}</div></div>`}).join("");
+  const parts=[`${fmt(w.pins.length)} pins`,`${fmt(c.keep)} to publish`];
+  if(c.drop)parts.push(`${fmt(c.drop)} dropped`);if(c.done)parts.push(`${fmt(c.done)} published`);if(c.skip)parts.push(`${fmt(c.skip)} skipped`);
+  const at=w.approvedAt?new Date(w.approvedAt):null;
+  const when=at&&!isNaN(at)?at.toLocaleString("en-US",{timeZone:TZ,weekday:"short",hour:"numeric",minute:"2-digit"}).replace(/\s?([AP])M$/,(m,a)=>" "+a.toLowerCase()+"m"):"";
+  const head=`<div class="pp-head"><div><div class="t">${esc(dayLabel(w.from))} to ${esc(dayLabel(w.to))}</div><div class="s">${esc(parts.join(" · "))}</div></div><span class="pill ${ok?"st-live":"st-setup"}">${ok?"Approved":"Waiting for you"}</span></div>`;
+  const dis=state.canWrite?"":" disabled";
+  const actions=ok
+    ?`<div class="pp-actions"><span class="s">${when?`Approved ${esc(when)}. `:""}You can still drop a pin until its run publishes it.</span><button type="button" class="pp-btn ghost" data-undo="${esc(w.id)}"${dis}>Undo approval</button></div>`
+    :`<div class="pp-actions"><button type="button" class="pp-btn" data-approve="${esc(w.id)}"${c.keep?dis:" disabled"}>${c.keep?`Approve ${fmt(c.keep)} pin${c.keep===1?"":"s"}`:"Every pin is dropped"}</button><span class="s">Tap a pin to drop it. Nothing posts until you approve; then the morning and afternoon runs publish the kept pins on their days.</span></div>`;
+  const body=ok?`<details class="pp-more" data-w="${esc(w.id)}"${state.ppOpen[w.id]?" open":""}><summary>Show the pins</summary>${grid}</details>`:grid;
+  return `<div class="pp-week ${ok?"ok":"waiting"}">${head}${body}${actions}</div>`;
+}
+function renderPins(){
+  const card=$("pinPick"),ban=$("pickBanner");if(!card||!ban)return;
+  const weeks=activeWeeks(),sig=ppSignature(weeks);
+  if(sig===state.ppSig)return;state.ppSig=sig;
+  const waiting=weeks.filter(w=>!weekApproved(w)&&weekCounts(w).keep>0);
+  if(waiting.length){const w=waiting[0];ban.innerHTML=`<span><b>${fmt(weekCounts(w).keep)} pins</b> for ${esc(dayLabel(w.from))} to ${esc(dayLabel(w.to))} wait for your pick, about 3 minutes</span><span class="go">Review</span>`;ban.hidden=false}else ban.hidden=true;
+  if(!weeks.length){card.hidden=true;$("ppBody").innerHTML="";return}
+  const f=document.activeElement,keep=f&&f.classList&&f.classList.contains("pp-pin")?[f.dataset.w,f.dataset.n]:null;
+  $("ppBody").innerHTML=weeks.map(weekBlock).join("")+(state.canWrite?"":`<div class="empty">Only the shop's owner can pick pins.</div>`);
+  card.hidden=false;
+  const body=$("ppBody");
+  body.querySelectorAll("button.pp-pin").forEach(b=>b.addEventListener("click",()=>togglePin(b.dataset.w,b.dataset.n)));
+  body.querySelectorAll("button[data-approve]").forEach(b=>b.addEventListener("click",()=>{b.disabled=true;setWeekApproved(b.dataset.approve,true)}));
+  body.querySelectorAll("button[data-undo]").forEach(b=>b.addEventListener("click",()=>{b.disabled=true;setWeekApproved(b.dataset.undo,false)}));
+  body.querySelectorAll("details.pp-more").forEach(d=>d.addEventListener("toggle",()=>{state.ppOpen[d.dataset.w]=d.open;state.ppSig=ppSignature(activeWeeks())}));
+  body.querySelectorAll(".pp-img img").forEach(img=>img.addEventListener("error",()=>{const ph=document.createElement("span");ph.className="ph";const t=img.closest(".pp-pin");ph.textContent=(t&&t.querySelector(".pp-title")&&t.querySelector(".pp-title").textContent)||"Pin";img.replaceWith(ph)},{once:true}));
+  if(keep){const b=body.querySelector(`button.pp-pin[data-w="${CSS.escape(keep[0])}"][data-n="${CSS.escape(keep[1])}"]`);if(b&&!b.disabled)b.focus({preventScroll:true})}
+}
+$("pickBanner").addEventListener("click",()=>{const b=$("vt-stats");if(b)b.click();requestAnimationFrame(()=>{const c=$("pinPick");if(c&&!c.hidden)c.scrollIntoView({block:"start",behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})})});
+
+function renderAll(){renderHUD();renderTiles();renderCharts();renderSources();renderShorts();renderQuests();renderPins();renderAch();renderCrew();renderStores();renderLog();renderRules();if(window.__pnfFactory)window.__pnfFactory.update()}
 window.__pnf={state,totals,computeXP,levelFor,LEVELS,todayISO,addDays,sumRange,fmt,esc};
 window.__pnfStatsResize=()=>{if(state.loaded.size)renderCharts()};
 let rz=0;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(state.loaded.size)renderCharts()},150)});
@@ -615,7 +736,8 @@ async function boot(){
     ["stores",snap=>{state.stores=snap.docs.map(d=>({id:d.id,...d.data()}))}],
     ["quests",snap=>{state.quests=snap.docs.map(d=>({id:d.id,...d.data()}))}],
     ["log",snap=>{state.log=snap.docs.map(d=>({id:d.id,...d.data()}))}],
-    ["meta",snap=>{const s=snap.docs.find(d=>d.id==="shop");state.meta=s?{...s.data()}:{}}]
+    ["meta",snap=>{const s=snap.docs.find(d=>d.id==="shop");state.meta=s?{...s.data()}:{}}],
+    ["pinweeks",snap=>{state.pinweeks=snap.docs.map(d=>({id:d.id,...d.data()}))}]
   ];
   for(const [col,fn] of subs){
     db.collection(col).onSnapshot(s=>{fn(s);state.loaded.add(col);schedule()},e=>{$("fresh").textContent="Live updates paused. Reload the page to reconnect."});

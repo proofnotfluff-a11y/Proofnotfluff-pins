@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
-"""ProofNotFluff product demo video: the product's calculator on screen from frame one, inputs typed in,
-the result cell revealed, burned-in captions, music, an Etsy end card.
+"""ProofNotFluff product demo video: the product's calculator on screen from frame one, the hook spoken over it,
+inputs typed in, the result revealed on the music's lift, burned-in captions, an Etsy end card with the sonic logo.
 
 Usage:
-  python3 make_demo.py spec.json out.mp4 [--format short|walkthrough|listing]
+  python3 make_demo.py spec.json out.mp4 [--format short|walkthrough|listing] [--voice <name|none>]
 
 Formats:
-  short        1080x1920, quick pace (about 10 to 15 s). YouTube Short, Instagram Reel, Pinterest video pin.
-  walkthrough  1920x1080, slow pace with the "why" captions (about 35 to 60 s). A regular YouTube video that
+  short        1080x1920. YouTube Short, Instagram and Facebook Reel, TikTok, Pinterest video pin. Everything that
+               matters sits between y=270 and y=1250 (the band no app covers): headline, the sheet under a camera
+               that follows the active row, captions under the sheet.
+  walkthrough  1920x1080, slower, with the "why" captions (about 35 to 60 s). A regular YouTube video that
                Shorts point to with the related-video link; its description carries the listing link.
   listing      1080x2160, quick pace, no audio, 15 s max. Etsy listing video (Etsy rules: 3 to 15 s, 1:2).
 
@@ -18,6 +20,13 @@ Spec (every number must come from the product's own files; the CMO checks this):
   "tab": "Hourly rate",                             optional, shown as the sheet tab
   "audience": "Cleaners, detailers, lawn care",     small line over the hook
   "hook": "A $40 hourly rate pays you about $20",   on screen from frame one (wrap the key number in <b>)
+  "hook_say_short": "A $40 rate pays you about $20", optional: what the Short says over frame one (default: the
+                                                    headline, or its first sentence when the whole one runs past 4 s)
+  "hook_say": "...",                                optional: the walkthrough's spoken opening
+  "mood": "tension",                                optional: calm, upbeat, playful, driving or tension; picks the
+                                                    music (default: any track, the one used longest ago)
+  "music": "red-ink",                               optional: one track id from tools/music/library.json
+  "palette": "ink",                                 optional: ink, night or plum (default: rotates)
   "rows": [
     {"label": "Rate you quote per hour", "value": "$40", "input": true,
      "say": "You quote $40 an hour", "why": "Longer caption used by the walkthrough"},
@@ -28,8 +37,12 @@ Spec (every number must come from the product's own files; the CMO checks this):
   "cta": {"title": "Service Pricing Calculator", "sub": "On Etsy: proofnotfluff.etsy.com"},
   "note": "Sample numbers"                          optional small line under the sheet
 }
+
+The key reveal is the result row that shows the headline's <b> number (else the first "bad" result, else the last
+result). The music's lift lands on it, every reveal lands on a beat, and the music ends on the end card. Sound
+choices and their sources: tools/soundtrack.py.
 """
-import json, os, re, subprocess, sys, shutil, html as H
+import json, math, os, re, subprocess, sys, shutil, html as H
 import make_slides as ms
 
 HERE = os.path.dirname(os.path.abspath(__file__)); FPS = 30
@@ -39,8 +52,19 @@ FORMATS = {
     "walkthrough": {"W": 1920, "H": 1080, "pace": 2.6, "audio": True,  "max": 180},
     "listing":     {"W": 1080, "H": 2160, "pace": 0.8, "audio": False, "max": 15},
 }
+GAP = {"short": 0.3, "walkthrough": 0.45, "listing": 0.0}      # pause between narration lines
+SPEED = {"short": 1.12, "walkthrough": 1.0, "listing": 1.0}    # narration speed (Kokoro)
 CTA_SUB = ms.CTA_SUB
 BANNED = ["honestly", "genuinely", "straightforward", "delve", "unlock", "elevate", "seamless", "game-changer", "effortless", "supercharge"]
+MOODS = ["calm", "upbeat", "playful", "driving", "tension"]
+# Three looks in one family (fonts, layout, and the red/green meaning stay fixed): YouTube's inauthentic-content
+# policy names videos that "look like they're made with a template", so the background and sheet bar rotate.
+PALETTES = {
+    "ink":   {"bg": "#1D2433", "end": "#121722", "bar": "#2E6B66", "hook": "#F08A66", "mark": "rgba(240,138,102,.30)", "aud": "#E9B49F"},
+    "night": {"bg": "#13213A", "end": "#0C1628", "bar": "#2F5F9E", "hook": "#F4B860", "mark": "rgba(244,184,96,.30)", "aud": "#A9C6EC"},
+    "plum":  {"bg": "#221A2F", "end": "#16101F", "bar": "#5E4596", "hook": "#F08A66", "mark": "rgba(240,138,102,.30)", "aud": "#D2C3F0"},
+}
+GLOW = {"bad": "200,80,47", "good": "46,107,102", "": "29,36,51"}
 
 
 def lint(spec):
@@ -64,6 +88,10 @@ def lint(spec):
         problems.append("CTA points to an unclickable description link")
     if len(spec["rows"]) > 7:
         problems.append("more than 7 rows will not read on a phone")
+    if spec.get("mood") and spec["mood"] not in MOODS:
+        problems.append(f"mood '{spec['mood']}' is not one of {', '.join(MOODS)}")
+    if spec.get("palette") and spec["palette"] not in PALETTES:
+        problems.append(f"palette '{spec['palette']}' is not one of {', '.join(PALETTES)}")
     # Plain words for a stranger (Todd, Oct 9: "Debts on tab 2: 5 debts" made no sense on TikTok).
     jargon = re.compile(r"\b(tab|tabs|cell|cells|sheet|column|preset)\b|\b[A-Z]{1,2}[0-9]{1,3}\b", re.I)
     if re.match(r"\s*[0-9]", str(spec.get("tab", ""))):
@@ -81,53 +109,161 @@ def lint(spec):
         sys.exit("spec refused: " + "; ".join(problems))
 
 
-def timeline(spec, pace, walkthrough, speech=None):
-    """Start times in seconds for each row, the fix, the end card, and the captions.
-    speech(text) returns the narration length in seconds when a voice is on (0 when silent); a row then
-    stays on screen at least as long as its line is spoken, in every format."""
+def strip(h):
+    return re.sub(r"<[^>]+>", "", h or "").strip()
+
+
+def key_row(spec):
+    """The result row the headline is about: its <b> number, else the first 'bad' result, else the last result."""
+    res = [i for i, r in enumerate(spec["rows"]) if r.get("result")]
+    m = re.search(r"<b>(.*?)</b>", spec.get("hook", ""))
+    if m:
+        want = re.sub(r"[^0-9.]", "", m.group(1))
+        for i in res:
+            if want and want in re.sub(r"[^0-9.]", "", str(spec["rows"][i]["value"])):
+                return i
+    bad = [i for i in res if spec["rows"][i].get("kind") == "bad"]
+    return bad[0] if bad else res[-1]
+
+
+def spoken_hook(spec, fmt_name, spoken):
+    if fmt_name == "walkthrough":
+        return spec.get("hook_say") or strip(spec["hook"])
+    if spec.get("hook_say_short"):
+        return spec["hook_say_short"]
+    full = strip(spec["hook"])
+    if spoken(full) <= 4.0:
+        return full
+    return re.split(r"(?<=[.!?])\s+", full)[0]   # say the first sentence; the headline still shows the rest
+
+
+def timeline(spec, fmt_name, speech=None):
+    """Start times in seconds for each row, the fix, the end card and the narration lines.
+    speech(text) returns a line's spoken length when a voice is on; a row then stays on screen at least as long
+    as its line is spoken. Returns a dict (see the end)."""
+    walk = fmt_name == "walkthrough"
+    pace = FORMATS[fmt_name]["pace"]
     read = lambda txt: len(txt or "") / 15.0       # seconds a caption needs on screen (about 15 characters a second)
     spoken = speech or (lambda txt: 0.0)
-    hold = lambda txt: max(read(txt) + 0.3 if walkthrough else 0.0, spoken(txt) + 0.25 if spoken(txt) else 0.0)
-    ev, caps = [], []
+    gap = GAP[fmt_name] if speech else 0.0
+    hold = lambda txt: max(read(txt) + 0.3 if walk else 0.0, spoken(txt) + gap if spoken(txt) else 0.0)
+    line = lambda t, txt, cap=True: {"t": t, "text": txt, "dur": spoken(txt), "cap": cap}
+    ev, lines = [], []
+    key = key_row(spec)
     t = 1.6
-    if walkthrough:
-        hs = spec.get("hook_say") or re.sub("<[^>]+>", "", spec["hook"])
-        caps.append([0.0, hs]); t = max(3.0, read(hs) + 0.6, spoken(hs) + 0.5)
-    for r in spec["rows"]:
+    if walk:
+        hs = spoken_hook(spec, fmt_name, spoken)
+        lines.append(line(0.0, hs)); t = max(3.0, read(hs) + 0.6, spoken(hs) + 0.5)
+    elif speech:                     # the Short says its hook over frame one; the headline is its caption
+        hs = spoken_hook(spec, fmt_name, spoken)
+        lines.append(line(0.0, hs, cap=False)); t = max(1.2, spoken(hs) + gap + 0.12)
+    for i, r in enumerate(spec["rows"]):
+        say = (r.get("why") if walk else None) or r.get("say") or r["label"]
         if r.get("input"):
-            dur = 0.55 * pace + 0.04 * len(str(r["value"]))
-            ev.append({"t": t, "d": dur, "kind": "input"})
-            say = (r.get("why") if walkthrough else None) or r.get("say") or r["label"]
-            caps.append([t - 0.15, say])
-            t += max(dur + 0.35 * pace, hold(say))
+            dur = (0.55 if walk else 0.5) * pace + 0.035 * len(str(r["value"]))
+            ev.append({"t": t, "d": dur, "kind": "input", "row": i})
+            lines.append(line(t - 0.12, say))
+            t += max(dur + 0.3 * pace, hold(say))
         elif r.get("result"):
-            t += 0.25 * pace
-            ev.append({"t": t, "d": 0.9, "kind": "result"})
-            say = (r.get("why") if walkthrough else None) or r.get("say") or r["label"]
-            caps.append([t, say])
-            t += max(0.9 + 1.0 * pace, hold(say) + (0.2 if walkthrough else 0))
+            t += 0.2 * pace
+            lead = 0.3 if (i == key and speech) else 0.0   # the number and the music land first, then the voice
+            ev.append({"t": t, "d": 0.9, "kind": "result", "row": i, "key": i == key, "glow": GLOW.get(r.get("kind", ""), GLOW[""])})
+            lines.append(line(t + lead, say))
+            t += max(0.9 + 0.9 * pace, lead + hold(say) + (0.2 if walk else 0))
         else:  # a fixed row: shown from the start, or counted up once the inputs above it are in
             last_in = [e for e in ev if e["kind"] == "input"]
             if last_in:
-                ev.append({"t": last_in[-1]["t"] + last_in[-1]["d"] + 0.15, "d": 0.5, "kind": "derived"})
+                ev.append({"t": last_in[-1]["t"] + last_in[-1]["d"] + 0.15, "d": 0.5, "kind": "derived", "row": i})
             else:
-                ev.append({"t": 0, "d": 0, "kind": "fixed"})
+                ev.append({"t": 0, "d": 0, "kind": "fixed", "row": i})
     fix_t = None
     if spec.get("fix"):
         fix_t = t
         f = spec["fix"]
-        fsay = (f.get("why") if walkthrough else None) or f.get("say") or f["label"]
-        caps.append([t, fsay])
-        t += max(1.0 + 1.3 * pace, hold(fsay) + (0.2 if walkthrough else 0))
+        fsay = (f.get("why") if walk else None) or f.get("say") or f["label"]
+        lines.append(line(t + 0.15, fsay))
+        t += max(1.0 + 1.2 * pace, 0.15 + hold(fsay) + (0.2 if walk else 0))
     cta_t = t
     csay = spec.get("cta", {}).get("say", "")
-    caps.append([t, csay])
-    total = t + max(2.6 if not walkthrough else 5.0, spoken(csay) + 0.8 if spoken(csay) else 0)
-    return ev, caps, fix_t, cta_t, total
+    lead = 0.35 if speech else 0.0                     # the sonic logo's first notes, then the voice
+    lines.append(line(t + lead, csay))
+    end_hold = max(2.4 if not walk else 5.0, lead + spoken(csay) + 0.9 if spoken(csay) else 0)
+    return {"ev": ev, "lines": lines, "fix_t": fix_t, "cta_t": cta_t, "end_hold": end_hold, "total": cta_t + end_hold, "key": key}
 
 
-def page(spec, fmt, ev, caps, fix_t, cta_t, total):
-    W, Hh = fmt["W"], fmt["H"]; wide = W > Hh
+def sync(tl, beat, min_gap=0.15):
+    """Put every reveal (each result, the fix, the end card) on the music's beat grid. Each one moves to the
+    nearest beat, or the next one when moving earlier would cut into the line before it; everything after it moves
+    with it, so nothing overlaps. The first reveal sets the grid."""
+    ev, lines = tl["ev"], tl["lines"]
+    hits = [("ev", i) for i, e in enumerate(ev) if e["kind"] == "result"]
+    if tl["fix_t"] is not None:
+        hits.append(("fix", None))
+    hits.append(("cta", None))
+    when = lambda h: ev[h[1]]["t"] if h[0] == "ev" else (tl["fix_t"] if h[0] == "fix" else tl["cta_t"])
+    hits.sort(key=when)
+    phase = None
+    for h in hits:
+        T = when(h)
+        if phase is None:
+            phase = T
+            continue
+        prev_voice = max([l["t"] + l["dur"] for l in lines if l["t"] < T - 1e-6] + [0.0])
+        own = min([l["t"] - T for l in lines if l["t"] >= T - 1e-6], default=0.0)
+        prev_vis = max([e["t"] + e["d"] for e in ev if e["t"] < T - 1e-6 and e["kind"] != "fixed"] + [0.0])
+        earliest = max(prev_voice + min_gap - own, prev_vis + 0.12)
+        cand = phase + round((T - phase) / beat) * beat
+        if cand < earliest - 1e-9:
+            cand = phase + math.ceil((earliest - phase) / beat - 1e-9) * beat
+        d = cand - T
+        if abs(d) < 1e-9:
+            continue
+        for e in ev:
+            if e["t"] >= T - 1e-6 and e["kind"] != "fixed":
+                e["t"] += d
+        for l in lines:
+            if l["t"] >= T - 1e-6:
+                l["t"] += d
+        if tl["fix_t"] is not None and tl["fix_t"] >= T - 1e-6:
+            tl["fix_t"] += d
+        tl["cta_t"] += d
+    tl["total"] = tl["cta_t"] + tl["end_hold"]
+    tl["beat"] = beat
+    return tl
+
+
+def camera_plan(tl):
+    """When the camera moves and what it frames: the whole sheet, a row, or the fix card."""
+    plan = [[0.0, "over"]]
+    for e in tl["ev"]:
+        if e["kind"] in ("input", "result"):
+            plan.append([max(0.05, round(e["t"] - 0.45, 3)), e["row"]])
+            if e.get("key") and tl["fix_t"] is None:
+                plan.append([round(e["t"] + 1.5, 3), "over"])   # step back so the whole model is seen with its answer
+    if tl["fix_t"] is not None:   # the fix opens under the sheet while the camera pulls back: problem and fix in one frame
+        plan.append([round(tl["fix_t"] - 0.4, 3), "over"])
+        if tl["cta_t"] - tl["fix_t"] >= 3.6:   # a long fix line: after 2 s, move in on the fix card itself
+            plan.append([round(tl["fix_t"] + 2.0, 3), "fix"])
+    plan.sort(key=lambda p: p[0])
+    out = []
+    for i, p in enumerate(plan):
+        nxt = plan[i + 1][0] if i + 1 < len(plan) else tl["cta_t"]
+        if i > 0 and p[1] == "over" and nxt - p[0] < 1.1:
+            continue
+        out.append(p)
+    return out
+
+
+def cap_html(txt):
+    """Caption text, escaped, with the numbers in bold so the eye finds them."""
+    s = H.escape(txt or "", quote=False)      # quote=False: an apostrophe stays a character, never "&#x27;" for the regex to split
+    return re.sub(r"(\$?\d[\d,]*(?:\.\d+)?%?)", r"<b>\1</b>", s)
+
+
+def page(spec, fmt_name, tl, palette="ink"):
+    fmt = FORMATS[fmt_name]
+    W, Hh = fmt["W"], fmt["H"]; wide = W > Hh; short = fmt_name == "short"
+    P = PALETTES[palette]
     F = ms.FONTS
     s = 1.0 if not wide else 0.78
     rows_html = []
@@ -142,107 +278,230 @@ def page(spec, fmt, ev, caps, fix_t, cta_t, total):
         f = spec["fix"]
         fix_html = (f'<div class="fix" id="fix"><div class="lab">{H.escape(f["label"])}</div>'
                     f'<div class="fv">{H.escape(str(f["value"]))}</div></div>')
+        if short:
+            fix_html = f'<div class="fixwrap" id="fixwrap">{fix_html}</div>'
     cta = spec.get("cta", {})
-    data = {"ev": ev, "caps": caps, "fixT": fix_t, "ctaT": cta_t, "total": total,
-            "vals": [str(r["value"]) for r in spec["rows"]]}
+    caps = [[round(l["t"], 3), cap_html(l["text"])] for l in tl["lines"] if l["cap"]]
+    data = {"ev": tl["ev"], "caps": caps, "fixT": tl["fix_t"], "ctaT": tl["cta_t"], "total": tl["total"],
+            "vals": [str(r["value"]) for r in spec["rows"]], "cam": camera_plan(tl), "hookMax": 186 if short else 0,
+            "capMax": 168 if short else (0 if wide else 104),
+            "pad": 18, "halo": 58}
     hook = spec["hook"]  # trusted spec text; <b> marks the key number
-    layout = f"""
-.wrap{{position:absolute;inset:0;display:grid;grid-template-columns:{'760px 1fr' if wide else '1fr'};align-content:{'center' if wide else 'start'};gap:{'70px' if wide else '0'};padding:{'150px 110px 120px' if wide else '200px 150px 0 70px'}}}
-.left{{display:flex;flex-direction:column;{'justify-content:center' if wide else ''}}}
-.sheetwrap{{{'align-self:center' if wide else 'margin-top:10px'}}}
-.capslot{{height:{'auto' if wide else '120px'};margin-top:{'48px' if wide else '30px'};display:flex;align-items:{'flex-start' if wide else 'center'}}}{'' if wide else 'body .wrap{padding-top:150px} body h1{font-size:76px} body .capslot{height:104px;margin-top:22px} body .row{padding:9px 0} body .cell{height:70px} body .grid{padding:10px 24px 12px} body .fix{margin:12px 24px 18px;padding:16px 26px} body .fix .fv{font-size:58px} body .foot{bottom:330px}'}
-.row.inp .cell{{background:#FFF4CC;color:#1F4E9E}}
-"""
-    return f"""<!doctype html><html><head><meta charset="utf-8"><style>
+    tab_html = '<span class="tab">' + H.escape(spec["tab"]) + '</span>' if spec.get("tab") else ""
+    sheet = (f'<div class="sheet"><div class="bar"><span class="t">{H.escape(spec["product"])}</span>{tab_html}</div>'
+             f'<div class="grid">{"".join(rows_html)}</div>{fix_html}</div>')
+    note = '<div class="note">' + H.escape(spec["note"]) + '</div>' if spec.get("note") else ""
+    say_html = '<div class="say e">' + H.escape(cta["say"]) + '</div>' if cta.get("say") else ""
+    what_html = '<div class="what e">' + H.escape(cta["what"]) + '</div>' if cta.get("what") else ""
+    end = (f'<div class="end" id="end"><div class="endin">{say_html}'
+           f'<h2 class="e">{H.escape(cta.get("title", spec["product"]))}</h2>{what_html}'
+           f'<div class="btn e">{H.escape(cta.get("button", "Instant download"))}</div>'
+           f'<div class="sub e">{H.escape(cta.get("sub", CTA_SUB))}</div></div></div>')
+    bars = ('<span class="bars"><i style="background:#C8502F"></i><i style="background:#2E6B66"></i><i style="background:#6B4FA0"></i>'
+            '<i style="background:#2F5F9E"></i><i style="background:#8A6A1F"></i></span>')
+    common = f"""
 @font-face{{font-family:P;src:url(file://{F}/google-fonts/Poppins-Bold.ttf);font-weight:700}}
 @font-face{{font-family:PM;src:url(file://{F}/google-fonts/Poppins-Medium.ttf)}}
 @font-face{{font-family:C;src:url(file://{F}/crosextra/Carlito-Regular.ttf)}}
 @font-face{{font-family:CB;src:url(file://{F}/crosextra/Carlito-Bold.ttf)}}
 *{{margin:0;padding:0;box-sizing:border-box}} html,body{{width:{W}px;height:{Hh}px;overflow:hidden}}
-body{{background:#1D2433;color:#fff;font-family:C;position:relative}}
-.prog{{position:absolute;top:{80 if not wide else 60}px;left:80px;right:80px;height:6px;background:rgba(255,255,255,.14);border-radius:3px}} .prog i{{display:block;height:100%;width:0;background:#C8502F;border-radius:3px}}
-.bars{{position:absolute;top:{110 if not wide else 84}px;left:80px;display:flex;gap:10px}} .bars i{{width:{int(52*s)}px;height:{int(10*s)}px;border-radius:5px;display:block}}
-{layout}
-.aud{{font-family:P;font-size:{int(30*s)}px;letter-spacing:3px;color:#E9B49F;text-transform:uppercase;margin-bottom:{int(18*s)}px}}
-h1{{font-family:P;font-size:{int(84*s)}px;line-height:1.08;letter-spacing:-1px}} h1 b{{color:#F08A66}}
+body{{background:{P['bg']};color:#fff;font-family:C;position:relative}}
+.prog{{position:absolute;height:6px;background:rgba(255,255,255,.14);border-radius:3px;z-index:32}} .prog i{{display:block;height:100%;width:0;background:#C8502F;border-radius:3px}}
+.aud{{font-family:P;letter-spacing:3px;color:{P['aud']};text-transform:uppercase}}
+h1{{font-family:P;line-height:1.08;letter-spacing:-1px}}
+h1 b{{color:{P['hook']};background-image:linear-gradient(transparent 66%,{P['mark']} 66%,{P['mark']} 94%,transparent 94%);background-repeat:no-repeat;background-size:0% 100%}}
 .sheet{{background:#FBF9F5;color:#1D2433;border-radius:{int(28*s)}px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.35)}}
-.bar{{display:flex;align-items:center;gap:14px;background:#2E6B66;color:#fff;padding:{int(22*s)}px {int(30*s)}px}}
+.bar{{display:flex;align-items:center;gap:14px;background:{P['bar']};color:#fff;padding:{int(22*s)}px {int(30*s)}px}}
 .bar .t{{font-family:P;font-size:{int(34*s)}px}} .bar .tab{{margin-left:auto;font-family:PM;font-size:{int(24*s)}px;background:rgba(255,255,255,.18);padding:6px 16px;border-radius:999px}}
 .grid{{padding:{int(14*s)}px {int(24*s)}px {int(20*s)}px}}
 .row{{display:grid;grid-template-columns:1fr {int(330*s)}px;align-items:center;gap:{int(20*s)}px;padding:{int(14*s)}px 0;border-bottom:2px solid #ECE6DA}}
 .row:last-child{{border-bottom:0}}
 .row .lab{{font-size:{int(34*s)}px;line-height:1.2;color:#3A4152}}
-.cell{{position:relative;height:{int(82*s)}px;border:3px solid #D9D2C3;border-radius:{int(14*s)}px;background:#fff;display:flex;align-items:center;justify-content:flex-end;padding:0 {int(22*s)}px;font-family:P;font-size:{int(44*s)}px;color:#1D2433;transition:none}}
+.cell{{position:relative;height:{int(82*s)}px;border:3px solid #D9D2C3;border-radius:{int(14*s)}px;background:#fff;display:flex;align-items:center;justify-content:flex-end;padding:0 {int(22*s)}px;font-family:P;font-size:{int(44*s)}px;color:#1D2433}}
 .cell.mid{{font-size:{int(36*s)}px}} .cell.long{{font-size:{int(28*s)}px}}
+.row.inp .cell{{background:#FFF4CC;color:#1F4E9E}}
 .row.fixed .cell{{background:#F2EEE6;color:#4A5163}}
 .row.res .cell{{background:#F2EEE6}}
 .row.res.on .cell{{background:#1D2433;color:#fff;border-color:#1D2433}} .row.res.bad.on .cell{{background:#C8502F;border-color:#C8502F}} .row.res.good.on .cell{{background:#2E6B66;border-color:#2E6B66}}
 .row.res.on .lab{{font-family:CB;color:#1D2433}}
 .cell.act{{border-color:#C8502F;box-shadow:0 0 0 6px rgba(200,80,47,.18)}}
 .caret{{display:none;width:4px;height:{int(46*s)}px;background:#C8502F;margin-left:4px}} .cell.typing .caret{{display:block}}
-.fix{{margin:{int(20*s)}px {int(24*s)}px {int(24*s)}px;background:#2E6B66;color:#fff;border-radius:{int(18*s)}px;padding:{int(22*s)}px {int(26*s)}px;display:flex;align-items:center;justify-content:space-between;gap:20px;opacity:0;transform:translateY(20px)}}
+.fix{{background:#2E6B66;color:#fff;border-radius:{int(18*s)}px;padding:{int(22*s)}px {int(26*s)}px;display:flex;align-items:center;justify-content:space-between;gap:20px}}
 .fix .lab{{font-size:{int(34*s)}px;line-height:1.2}} .fix .fv{{font-family:P;font-size:{int(64*s)}px}}
-.note{{font-size:{int(24*s)}px;color:#8A91A3;margin-top:{int(14*s)}px}}
-.cap{{display:inline-block;background:#fff;color:#1D2433;font-family:CB;font-size:{int(46*s) if not wide else 40}px;line-height:1.25;padding:{int(18*s)}px {int(28*s)}px;border-radius:{int(18*s)}px;box-shadow:0 10px 30px rgba(0,0,0,.25)}}
-.cursor{{position:absolute;width:{int(46*s)}px;height:{int(46*s)}px;left:0;top:0;z-index:20;transform:translate(-200px,-200px)}}
-.end{{position:absolute;inset:0;background:#121722;display:flex;flex-direction:column;justify-content:center;align-items:{'center' if wide else 'flex-start'};padding:{'0 '+str(int(90*s))+'px' if wide else '0 160px 0 '+str(int(90*s))+'px'};opacity:0;z-index:30;text-align:{'center' if wide else 'left'}}}
+.note{{font-size:{int(24*s)}px;color:#8A91A3}}
+.cap{{display:inline-block;background:#fff;color:#1D2433;font-family:CB;line-height:1.24;box-shadow:0 10px 30px rgba(0,0,0,.25);visibility:hidden}} .cap b{{color:#C8502F}}
+.cursor{{position:absolute;width:{int(58*s)}px;height:{int(58*s)}px;left:0;top:0;z-index:21;transform:translate(-300px,-300px);filter:drop-shadow(0 4px 6px rgba(0,0,0,.35))}}
+.halo{{position:absolute;left:0;top:0;width:{int(58*s)}px;height:{int(58*s)}px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.34) 0,rgba(255,255,255,.12) 55%,rgba(255,255,255,0) 72%);z-index:20;transform:translate(-300px,-300px)}}
+.ripple{{position:absolute;left:0;top:0;border:4px solid #C8502F;border-radius:50%;z-index:20;opacity:0}}
+.end{{position:absolute;inset:0;background:{P['end']};display:flex;flex-direction:column;justify-content:center;opacity:0;z-index:30}} .endin{{transform-origin:0 50%}}
 .end h2{{font-family:P;font-size:{int(80*s)}px;line-height:1.1;margin-bottom:{int(30*s)}px}}
 .end .btn{{display:inline-block;background:#C8502F;color:#fff;font-family:P;font-size:{int(40*s)}px;padding:{int(24*s)}px {int(44*s)}px;border-radius:60px;margin-bottom:{int(28*s)}px}}
 .end .sub{{font-size:{int(44*s)}px;color:#E8EBF1}}
 .end .say{{font-family:CB;font-size:{int(48*s)}px;line-height:1.25;color:#F2A385;margin-bottom:{int(36*s)}px}}
 .end .what{{font-size:{int(42*s)}px;line-height:1.3;color:#E8EBF1;margin-bottom:{int(34*s)}px}}
-.foot{{position:absolute;bottom:{70 if not wide else 50}px;left:80px;font-family:P;font-size:{int(26*s)}px;letter-spacing:1px;color:#9AA3B5;z-index:31}}
-</style></head><body>
-<div class="prog"><i id="pg"></i></div>
-<div class="bars"><i style="background:#C8502F"></i><i style="background:#2E6B66"></i><i style="background:#6B4FA0"></i><i style="background:#2F5F9E"></i><i style="background:#8A6A1F"></i></div>
-<div class="wrap">
-  <div class="left"><div class="aud">{H.escape(spec.get("audience",""))}</div><h1>{hook}</h1><div class="capslot"><span class="cap" id="cap"></span></div></div>
-  <div class="sheetwrap"><div class="sheet"><div class="bar"><span class="t">{H.escape(spec["product"])}</span>{f'<span class="tab">{H.escape(spec["tab"])}</span>' if spec.get("tab") else ''}</div>
-  <div class="grid">{''.join(rows_html)}</div>{fix_html}</div>{f'<div class="note">{H.escape(spec["note"])}</div>' if spec.get("note") else ''}</div>
-</div>
-<svg class="cursor" id="cur" viewBox="0 0 24 24"><path d="M4 2l16 9.5-7 1.6-3.6 6.4z" fill="#fff" stroke="#1D2433" stroke-width="1.6" stroke-linejoin="round"/></svg>
-<div class="end" id="end">{f'<div class="say">{H.escape(cta["say"])}</div>' if cta.get("say") else ''}<h2>{H.escape(cta.get("title", spec["product"]))}</h2>{f'<div class="what">{H.escape(cta["what"])}</div>' if cta.get("what") else ''}<div class="btn">{H.escape(cta.get("button", "Instant download"))}</div><div class="sub">{H.escape(cta.get("sub", CTA_SUB))}</div></div>
-<div class="foot">PROOFNOTFLUFF</div>
-<script>
-const D={json.dumps(data)};
+.foot{{position:absolute;font-family:P;font-size:{int(26*s)}px;letter-spacing:1px;color:#9AA3B5;z-index:31;display:flex;align-items:center;gap:18px}}
+.bars{{display:flex;gap:8px}} .bars i{{width:{int(40*s)}px;height:{int(9*s)}px;border-radius:5px;display:block}}
+"""
+    if short:
+        layout = """
+.prog{top:196px;left:70px;right:150px}
+.aud{position:absolute;left:70px;right:150px;top:222px;font-size:28px}
+h1{position:absolute;left:70px;right:110px;top:268px;font-size:76px}
+.view{position:absolute;left:70px;top:478px;width:860px;height:584px;overflow:hidden}
+.view.scroll{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 26px,#000 calc(100% - 26px),transparent 100%)}
+.cam{position:absolute;left:0;top:0;width:860px;transform-origin:0 0}
+.row{padding:9px 0} .cell{height:70px} .grid{padding:10px 24px 12px}
+.fixwrap{overflow:hidden} .fix{margin:6px 24px 20px;padding:16px 26px} .fix .fv{font-size:58px}
+.capband{position:absolute;left:70px;width:860px;top:1074px;height:168px;display:flex;align-items:center;justify-content:center;text-align:center}
+.cap{font-size:50px;padding:16px 28px;border-radius:18px;max-width:860px}
+.note{position:absolute;left:70px;right:150px;top:1252px}
+.end{padding:290px 150px 690px 90px}
+.foot{left:70px;top:1546px}
+"""
+        body = (f'<div class="prog"><i id="pg"></i></div><div class="aud">{H.escape(spec.get("audience", ""))}</div><h1>{hook}</h1>'
+                f'<div class="view" id="view"><div class="cam" id="cam">{sheet}</div></div>'
+                f'<div class="capband"><span class="cap" id="cap"></span></div>{note}')
+    else:
+        layout = f"""
+.prog{{top:{80 if not wide else 60}px;left:80px;right:80px}}
+.wrap{{position:absolute;inset:0;display:grid;grid-template-columns:{'760px 1fr' if wide else '1fr'};align-content:{'center' if wide else 'start'};gap:{'70px' if wide else '0'};padding:{'150px 110px 120px' if wide else '150px 150px 0 70px'}}}
+.left{{display:flex;flex-direction:column;{'justify-content:center' if wide else ''}}}
+.aud{{font-size:{int(30*s)}px;margin-bottom:{int(18*s)}px}}
+h1{{font-size:{int(84*s) if wide else 76}px}}
+.sheetwrap{{{'align-self:center' if wide else 'margin-top:10px'}}}
+.capslot{{height:{'auto' if wide else '104px'};margin-top:{'48px' if wide else '22px'};display:flex;align-items:{'flex-start' if wide else 'center'}}}
+.cap{{font-size:{40 if wide else int(46*s)}px;padding:{int(18*s)}px {int(28*s)}px;border-radius:{int(18*s)}px}}
+.fix{{margin:{int(20*s)}px {int(24*s)}px {int(24*s)}px;opacity:0;transform:translateY(20px)}}
+.note{{margin-top:{int(14*s)}px}}
+.endin{{transform-origin:{'50% 50%' if wide else '0 50%'}}}
+.end{{align-items:{'center' if wide else 'flex-start'};padding:{'0 '+str(int(90*s))+'px' if wide else '0 160px 0 '+str(int(90*s))+'px'};text-align:{'center' if wide else 'left'}}}
+.foot{{bottom:{70 if not wide else 50}px;left:80px}}
+{'' if wide else '.row{padding:9px 0} .cell{height:70px} .grid{padding:10px 24px 12px} .fix{margin:12px 24px 18px;padding:16px 26px} .fix .fv{font-size:58px} .foot{bottom:330px}'}
+"""
+        body = (f'<div class="prog"><i id="pg"></i></div><div class="wrap"><div class="left"><div class="aud">{H.escape(spec.get("audience", ""))}</div>'
+                f'<h1>{hook}</h1><div class="capslot"><span class="cap" id="cap"></span></div></div>'
+                f'<div class="sheetwrap">{sheet}{note}</div></div>')
+    cursor = ('<div class="halo" id="halo"></div><div class="ripple" id="rip"></div>'
+              '<svg class="cursor" id="cur" viewBox="0 0 24 24"><path d="M4 2l16 9.5-7 1.6-3.6 6.4z" fill="#fff" stroke="#1D2433" stroke-width="1.6" stroke-linejoin="round"/></svg>')
+    return (f'<!doctype html><html><head><meta charset="utf-8"><style>{common}{layout}</style></head><body>'
+            f'{body}{cursor}{end}<div class="foot">{bars}PROOFNOTFLUFF</div>'
+            f'<script>{JS.replace("__DATA__", json.dumps(data))}</script></body></html>')
+
+
+JS = r"""
+const D=__DATA__;
+const $=id=>document.getElementById(id);
 const rows=[...document.querySelectorAll('.row')];
 const ease=x=>x<0?0:x>1?1:1-Math.pow(1-x,3);
-function parseNum(v){{const m=/^([^0-9]*)([0-9][0-9,]*\\.?[0-9]*)(.*)$/.exec(v);if(!m)return null;const n=parseFloat(m[2].replace(/,/g,''));const dec=(m[2].split('.')[1]||'').length;return {{pre:m[1],n,dec,post:m[3],comma:m[2].includes(',')}}}}
-function fmtN(p,x){{let s=x.toFixed(p.dec);if(p.comma){{const [a,b]=s.split('.');s=a.replace(/\\B(?=(\\d{{3}})+(?!\\d))/g,',')+(b?'.'+b:'')}}return p.pre+s+p.post}}
-function cellCenter(i){{const c=rows[i].querySelector('.cell').getBoundingClientRect();return [c.left+c.width*0.78,c.top+c.height*0.62]}}
-window.renderAt=function(t){{
-  document.getElementById('pg').style.width=Math.min(100,t/D.total*100)+'%';
-  let curTarget=null,prevTarget=null,moveStart=0,hideCur=false;
-  D.ev.forEach((e,i)=>{{
+const easeIO=x=>x<0?0:x>1?1:(x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2);
+const view=$('view'),cam=$('cam'),fixwrap=$('fixwrap'),fx=$('fix'),cur=$('cur'),halo=$('halo'),rip=$('rip'),capEl=$('cap'),endEl=$('end');
+const hookB=document.querySelector('h1 b');
+const endItems=[...document.querySelectorAll('.end .e')];
+function parseNum(v){const m=/^([^0-9]*)([0-9][0-9,]*\.?[0-9]*)(.*)$/.exec(v);if(!m)return null;const n=parseFloat(m[2].replace(/,/g,''));const dec=(m[2].split('.')[1]||'').length;return {pre:m[1],n,dec,post:m[3],comma:m[2].includes(',')}}
+function fmtN(p,x){let s=x.toFixed(p.dec);if(p.comma){const [a,b]=s.split('.');s=a.replace(/\B(?=(\d{3})+(?!\d))/g,',')+(b?'.'+b:'')}return p.pre+s+p.post}
+let fixH=0,VW=0,VH=0,ready=false;
+function init(){   // measured on the first frame, after the fonts have loaded (render() waits for them)
+  if(D.hookMax){const h=document.querySelector('h1');let fs=parseFloat(getComputedStyle(h).fontSize);while(h.scrollHeight>D.hookMax&&fs>50){fs-=2;h.style.fontSize=fs+'px'}}
+  if(fixwrap){fixH=fixwrap.scrollHeight;fixwrap.style.height='0px'}
+  if(view){VW=view.clientWidth;VH=view.clientHeight}
+  ready=true;
+}
+function seg(t){let k=0;for(let i=0;i<D.cam.length;i++)if(t>=D.cam[i][0])k=i;return k}
+function target(f){
+  const Hs=cam.offsetHeight;const sO=Math.min(1,(VH-D.pad)/Hs);
+  if(f==='over')return {s:sO,cy:Hs/2};
+  const el=f==='fix'?fixwrap:rows[f];
+  return {s:1,cy:el.offsetTop+el.offsetHeight/2};
+}
+function drift(k,t){
+  if(k===0){const T1=D.cam.length>1?D.cam[1][0]:D.total;return 0.965+0.035*Math.min(1,t/Math.max(0.5,T1))}
+  return 1+0.012*ease((t-D.cam[k][0]-0.45)/3);
+}
+function camera(t){
+  if(!view)return;
+  const k=seg(t);const c=target(D.cam[k][1]);let s,cy;
+  if(k===0){s=c.s*drift(0,t);cy=c.cy}
+  else{const p=target(D.cam[k-1][1]);const ps=p.s*drift(k-1,D.cam[k][0]);const u=easeIO((t-D.cam[k][0])/0.45);
+    if(u>=1){s=c.s*drift(k,t);cy=c.cy}else{s=ps+(c.s-ps)*u;cy=p.cy+(c.cy-p.cy)*u}}
+  const Hs=cam.offsetHeight;
+  if(s*Hs>VH){const half=VH/(2*s);cy=Math.max(half,Math.min(Hs-half,cy))}else cy=Hs/2;
+  const cx=cam.offsetWidth/2;
+  cam.style.transform='translate('+(VW/2-s*cx)+'px,'+(VH/2-s*cy)+'px) scale('+s+')';
+  view.classList.toggle('scroll',s*Hs>VH+2);
+}
+function opFor(f,i){return f==='over'?1:(f===i?1:0.42)}
+function dim(t){
+  const k=seg(t);const f=D.cam[k][1];const pf=k>0?D.cam[k-1][1]:'over';const u=ease((t-D.cam[k][0])/0.3);
+  rows.forEach((r,i)=>{r.style.opacity=opFor(pf,i)+(opFor(f,i)-opFor(pf,i))*u});
+}
+function cellPoint(i){const c=rows[i].querySelector('.cell').getBoundingClientRect();return [c.left+c.width*0.78,c.top+c.height*0.62]}
+function sheetAt(t){
+  let tgt=null,prev=null,moveStart=0,clickT=null,lastRes=null;
+  D.ev.forEach((e,i)=>{
     const r=rows[i],cell=r.querySelector('.cell'),v=r.querySelector('.v'),val=D.vals[i];
-    cell.classList.remove('act','typing');
-    if(e.kind==='input'){{
+    cell.classList.remove('act','typing');cell.style.transform='';cell.style.filter='';cell.style.boxShadow='';
+    if(e.kind==='input'){
       const k=Math.max(0,Math.min(1,(t-e.t)/e.d));
       v.textContent=t<e.t?'':val.slice(0,Math.round(k*val.length));
       if(t>=e.t-0.45&&t<e.t+e.d+0.25)cell.classList.add('act');
       if(t>=e.t&&t<e.t+e.d)cell.classList.add('typing');
-      if(t>=e.t-0.45){{prevTarget=curTarget;curTarget=cellCenter(i);moveStart=e.t-0.45}}
-    }} else if(e.kind==='result'){{
-      if(t<e.t){{v.textContent='';r.classList.remove('on')}}
-      else{{r.classList.add('on');const p=parseNum(val);const k=ease((t-e.t)/e.d);v.textContent=p?fmtN(p,p.n*k):val;
-        const pop=t-e.t<0.35?1+0.06*Math.sin((t-e.t)/0.35*Math.PI):1;cell.style.transform='scale('+pop+')';}}
-      if(t>=e.t-0.45){{prevTarget=curTarget;curTarget=cellCenter(i);moveStart=e.t-0.45}}
-    }} else if(e.kind==='derived'){{
-      if(t<e.t)v.textContent='';else{{const p=parseNum(val);const k=ease((t-e.t)/e.d);v.textContent=p?fmtN(p,p.n*k):val;}}
-    }} else {{ v.textContent=val; }}
-    if(e.kind==='result'&&t>=e.t+0.3)hideCur=true;
-  }});
-  const fx=document.getElementById('fix');
-  if(fx&&D.fixT!==null){{const k=ease((t-D.fixT)/0.6);fx.style.opacity=k;fx.style.transform='translateY('+(20*(1-k))+'px)'}}
-  const cur=document.getElementById('cur');
-  if(curTarget&&!hideCur){{const k=ease((t-moveStart)/0.45);const a=prevTarget||[curTarget[0]+260,curTarget[1]+340];
-    const x=a[0]+(curTarget[0]-a[0])*k,y=a[1]+(curTarget[1]-a[1])*k;cur.style.transform='translate('+x+'px,'+y+'px)'}}
-  else cur.style.transform='translate(-200px,-200px)';
-  let cap='';D.caps.forEach(c=>{{if(t>=c[0])cap=c[1]}});const ce=document.getElementById('cap');ce.textContent=cap;ce.style.visibility=cap?'visible':'hidden';
-  const en=document.getElementById('end');en.style.opacity=Math.max(0,Math.min(1,(t-D.ctaT)/0.25));if(t>=D.ctaT)ce.style.visibility='hidden';
-}};
-window.renderAt(0);
-</script></body></html>"""
+      if(t>=e.t-0.45){prev=tgt;tgt=i;moveStart=e.t-0.45;clickT=e.t;lastRes=null}
+    }else if(e.kind==='result'){
+      if(t<e.t){v.textContent='';r.classList.remove('on')}
+      else{r.classList.add('on');const p=parseNum(val);const k=ease((t-e.t)/e.d);v.textContent=p?fmtN(p,p.n*k):val;
+        const a=t-e.t;const amp=e.key?0.13:0.06;
+        cell.style.transform='scale('+(a<0.38?1+amp*Math.sin(a/0.38*Math.PI):1)+')';
+        if(a<0.3)cell.style.filter='brightness('+(1+0.45*(1-a/0.3))+')';
+        if(e.key){const g=Math.min(1,a/0.7);cell.style.boxShadow='0 0 0 '+(4+20*ease(g))+'px rgba('+e.glow+','+(0.5*(1-g)+0.16)+')'}}
+      if(t>=e.t-0.45){prev=tgt;tgt=i;moveStart=e.t-0.45;clickT=null;lastRes=e}
+    }else if(e.kind==='derived'){
+      if(t<e.t)v.textContent='';else{const p=parseNum(val);const k=ease((t-e.t)/e.d);v.textContent=p?fmtN(p,p.n*k):val;}
+    }else{v.textContent=val}
+  });
+  if(fx&&D.fixT!==null){const k=ease((t-D.fixT)/0.5);
+    if(fixwrap){fixwrap.style.height=(fixH*k)+'px';fx.style.opacity=k;fx.style.transform='translateY('+(16*(1-k))+'px)';
+      const a=t-D.fixT;fx.style.filter=(a>=0&&a<0.35)?'brightness('+(1+0.35*(1-a/0.35))+')':''}
+    else{fx.style.opacity=k;fx.style.transform='translateY('+(20*(1-k))+'px)'}}
+  return {tgt,prev,moveStart,clickT,hide:lastRes!==null&&t>=lastRes.t+0.3};
+}
+function pointer(t,c){
+  const off='translate(-300px,-300px)';
+  if(c.tgt===null||c.hide||t>=D.ctaT){cur.style.transform=halo.style.transform=off;rip.style.opacity=0;return}
+  const b=cellPoint(c.tgt);const k=ease((t-c.moveStart)/0.45);const a=c.prev!==null?cellPoint(c.prev):[b[0]+260,b[1]+340];
+  const x=a[0]+(b[0]-a[0])*k,y=a[1]+(b[1]-a[1])*k,hs=D.halo;
+  cur.style.transform='translate('+x+'px,'+y+'px)';halo.style.transform='translate('+(x-hs/2)+'px,'+(y-hs/2)+'px)';
+  if(c.clickT!==null&&t>=c.clickT&&t<c.clickT+0.4){const g=(t-c.clickT)/0.4;const r=10+38*ease(g);rip.style.opacity=0.75*(1-g);
+    rip.style.width=rip.style.height=(2*r)+'px';rip.style.transform='translate('+(x-r)+'px,'+(y-r)+'px)'}else rip.style.opacity=0;
+}
+function caption(t){
+  let k=-1;D.caps.forEach((c,i)=>{if(t>=c[0])k=i});
+  if(k<0||t>=D.ctaT||!D.caps[k][1]){capEl.style.visibility='hidden';return}
+  if(capEl.dataset.k!==String(k)){capEl.innerHTML=D.caps[k][1];capEl.dataset.k=String(k);capEl.style.fontSize='';
+    const room=D.capMax;let fs=parseFloat(getComputedStyle(capEl).fontSize);   // long lines shrink to fit their band
+    while(room&&capEl.offsetHeight>room-2&&fs>28){fs-=2;capEl.style.fontSize=fs+'px'}}
+  const u=ease((t-D.caps[k][0])/0.16);capEl.style.visibility='visible';capEl.style.opacity=u;capEl.style.transform='translateY('+(12*(1-u))+'px)';
+}
+const endIn=document.querySelector('.end .endin');
+function endcard(t){
+  const a=t-D.ctaT;endEl.style.opacity=Math.max(0,Math.min(1,a/0.2));
+  if(endIn)endIn.style.transform='scale('+(1+0.03*Math.max(0,Math.min(1,a/Math.max(1,D.total-D.ctaT))))+')';
+  endItems.forEach((el,i)=>{const u=ease((a-0.05-0.07*i)/0.35);el.style.opacity=u;
+    let tr='translateY('+(26*(1-u))+'px)';
+    if(el.classList.contains('btn')){const b=a-0.26;if(b>0&&b<0.32)tr+=' scale('+(1+0.07*Math.sin(b/0.32*Math.PI))+')'}
+    el.style.transform=tr});
+}
+window.renderAt=function(t){
+  if(!ready)init();
+  $('pg').style.width=Math.min(100,t/D.total*100)+'%';
+  if(hookB)hookB.style.backgroundSize=(100*ease((t-0.15)/0.45))+'% 100%';
+  const c=sheetAt(t);
+  camera(t);
+  dim(t);
+  pointer(t,c);
+  caption(t);
+  endcard(t);
+};
+"""
 
 
 def render(page_html, fmt, total, work):
@@ -252,7 +511,7 @@ def render(page_html, fmt, total, work):
     n = int(total * FPS)
     with sync_playwright() as p:
         b = p.chromium.launch(); pg = b.new_page(viewport={"width": fmt["W"], "height": fmt["H"]})
-        pg.goto("file://" + hp); pg.wait_for_timeout(400)
+        pg.goto("file://" + hp); pg.evaluate("() => document.fonts.ready.then(() => document.fonts.size)"); pg.wait_for_timeout(300)
         for i in range(n):
             pg.evaluate("t=>window.renderAt(t)", i / FPS)
             pg.screenshot(path=os.path.join(fdir, f"f{i:05d}.png"))
@@ -260,9 +519,44 @@ def render(page_html, fmt, total, work):
     return fdir, n
 
 
+def sfx_events(spec, tl):
+    """Light keystrokes while a value types, a pop on each reveal, a chime on the fix, a whoosh into the end card."""
+    out = []
+    for e in tl["ev"]:
+        if e["kind"] == "input":
+            val = str(spec["rows"][e["row"]]["value"])
+            for k, ch in enumerate(val):
+                if ch != " ":
+                    out.append(("tick", e["t"] + e["d"] * (k + 0.5) / len(val)))
+        elif e["kind"] == "result":
+            out.append(("pop", e["t"]))
+    if tl["fix_t"] is not None:
+        out.append(("chime", tl["fix_t"]))
+    out.append(("whoosh", tl["cta_t"]))
+    return out
+
+
+def choose_palette(spec, fmt_name, key):
+    if spec.get("palette"):
+        return spec["palette"]
+    if fmt_name == "listing":
+        return "ink"
+    import soundtrack as st
+    log = st.used_log()
+    for u in reversed(log):
+        if u.get("spec") == key and u.get("palette") in PALETTES:
+            return u["palette"]          # the same spec keeps its look between the review render and the posted one
+    last = {}
+    for i, u in enumerate(log):
+        if u.get("palette") and u.get("spec") != key:
+            last[u["palette"]] = i
+    import hashlib
+    return min(PALETTES, key=lambda p: (last.get(p, -1), hashlib.sha1((key + p).encode()).hexdigest()))
+
+
 def main(spec_path, out, fmt_name="short"):
     spec = json.load(open(spec_path)); lint(spec)
-    fmt = FORMATS[fmt_name]; wide = fmt_name == "walkthrough"
+    fmt = FORMATS[fmt_name]
     if fmt_name == "listing":  # the buyer is already on Etsy: no shop address, no call to leave
         spec.setdefault("cta", {})["sub"] = spec.get("listing_cta_sub", "Instant digital download")
         spec["cta"]["say"] = ""
@@ -271,68 +565,64 @@ def main(spec_path, out, fmt_name="short"):
     if fmt_name == "listing":
         voice = "none"
     work = os.path.join(HERE, "work_demo"); os.makedirs(work, exist_ok=True)
+    key = os.path.splitext(os.path.basename(spec_path))[0]
+    st = track = None
+    if fmt["audio"] or voice != "none":
+        import soundtrack as st
+        st.ensure()
+    if fmt["audio"]:
+        track = st.pick(spec.get("mood"), spec.get("music"), key=key)
     clips = {}
     speech = None
     if voice != "none":
         import voice as vo
         vdir = os.path.join(work, "voice"); shutil.rmtree(vdir, ignore_errors=True); os.makedirs(vdir)
+        speed = float(spec.get("voice_speed", SPEED[fmt_name]))
         def speech(txt):
             if not txt:
                 return 0.0
             if txt not in clips:
                 path = os.path.join(vdir, f"c{len(clips):02d}.wav")
-                clips[txt] = (path, vo.say(txt, path, voice=voice))
+                vo.say(txt, path, voice=voice, speed=speed)
+                clips[txt] = (path, st.prepare(path))
             return clips[txt][1]
-    ev, caps, fix_t, cta_t, total = timeline(spec, fmt["pace"], wide, speech)
+    tl = timeline(spec, fmt_name, speech)
+    if track:
+        tl = sync(tl, 60.0 / track["bpm"])
+    total = tl["total"]
     if total > fmt["max"]:
         if fmt_name == "listing":  # Etsy's 15 s cap: shorten the end card first, then refuse
-            total = min(total, fmt["max"])
-            if cta_t > total - 1.2:
-                sys.exit(f"listing video needs {cta_t + 1.2:.1f}s; Etsy allows 15. Use fewer input rows.")
+            total = tl["total"] = min(total, fmt["max"])
+            if tl["cta_t"] > total - 1.2:
+                sys.exit(f"listing video needs {tl['cta_t'] + 1.2:.1f}s; Etsy allows 15. Use fewer input rows.")
         else:
             sys.exit(f"{total:.1f}s is over the {fmt['max']}s limit for {fmt_name}")
-    fdir, n = render(page(spec, fmt, ev, caps, fix_t, cta_t, total), fmt, total, work)
+    palette = choose_palette(spec, fmt_name, key)
+    fdir, n = render(page(spec, fmt_name, tl, palette), fmt, total, work)
     cmd = ["ffmpeg", "-y", "-loglevel", "error"]
+    sound = {}
     if fmt["audio"]:
-        mp = os.path.join(work, "music.wav"); ms.music(total, mp)
-        if voice != "none":
-            mp = mix_narration(mp, caps, clips, total, os.path.join(work, "mix.wav"))
-        cmd += ["-i", mp, "-framerate", str(FPS), "-i", os.path.join(fdir, "f%05d.png"), "-map", "1:v", "-map", "0:a",
-                "-c:a", "aac", "-b:a", "160k"]
+        wav = os.path.join(work, "mix.wav")
+        lines = [(l["t"], clips[l["text"]][0]) for l in tl["lines"] if l["text"] in clips]
+        key_t = tl["ev"][tl["key"]]["t"]
+        sound = st.mix(track, total, key_t, tl["cta_t"], wav, voice=lines, sfx=sfx_events(spec, tl))
+        st.record(track["id"], out, spec.get("mood"), palette, key)
+        cmd += ["-i", wav, "-framerate", str(FPS), "-i", os.path.join(fdir, "f%05d.png"), "-map", "1:v", "-map", "0:a",
+                "-c:a", "aac", "-b:a", "192k", "-ar", "48000"]
     else:
         cmd += ["-framerate", str(FPS), "-i", os.path.join(fdir, "f%05d.png"), "-an"]
     cmd += ["-c:v", "libx264", "-preset", "medium", "-crf", "19", "-pix_fmt", "yuv420p", "-t", f"{total:.2f}", "-movflags", "+faststart", out]
     subprocess.run(cmd, check=True)
     shutil.rmtree(fdir, ignore_errors=True)
     print(json.dumps({"out": out, "format": fmt_name, "seconds": round(total, 1), "size": [fmt["W"], fmt["H"]], "frames": n,
-                      "voice": voice, "captions": [c[1] for c in caps if c[1]]}))
-
-
-def mix_narration(music_wav, caps, clips, total, out_wav, duck=0.22, sr=44100):
-    """Lay each spoken caption at its start time over the music (music held at `duck` of its level)."""
-    import numpy as np, soundfile as sf
-    music, msr = sf.read(music_wav, dtype="float32")
-    if music.ndim > 1:
-        music = music.mean(axis=1)
-    if msr != sr:
-        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", music_wav, "-ar", str(sr), "-ac", "1", music_wav + ".44k.wav"], check=True)
-        music, msr = sf.read(music_wav + ".44k.wav", dtype="float32")
-    n = int(total * sr)
-    track = np.zeros(n, dtype="float32")
-    track[:min(n, len(music))] = music[:n] * duck
-    for start, txt in caps:
-        if not txt or txt not in clips:
-            continue
-        clip, _ = sf.read(clips[txt][0], dtype="float32")
-        if clip.ndim > 1:
-            clip = clip.mean(axis=1)
-        i = int(max(0.0, start) * sr); j = min(n, i + len(clip))
-        track[i:j] += clip[:j - i] * 0.95
-    peak = float(np.abs(track).max() or 1.0)
-    if peak > 0.98:
-        track *= 0.98 / peak
-    sf.write(out_wav, track, sr)
-    return out_wav
+                      "voice": voice, "music": track["id"] if track else None, "mood": spec.get("mood") or "any",
+                      "palette": palette, "sound": sound,
+                      "moments": {"hook_spoken_to": round(tl["lines"][0]["dur"] if tl["lines"] and tl["lines"][0]["t"] == 0.0 else 0.0, 2),
+                                  "key_reveal": round(tl["ev"][tl["key"]]["t"], 2),
+                                  "fix": round(tl["fix_t"], 2) if tl["fix_t"] is not None else None,
+                                  "end_card": round(tl["cta_t"], 2)},
+                      "spoken": [l["text"] for l in tl["lines"] if l["text"] and l["text"] in clips],
+                      "captions": [l["text"] for l in tl["lines"] if l["text"] and l["cap"]]}))
 
 
 if __name__ == "__main__":

@@ -51,6 +51,21 @@ def _kokoro():
     return _K
 
 
+def _money(m):
+    """$62.36 is said the way people say prices, "sixty-two thirty-six" (about a second shorter than "sixty-two
+    dollars and thirty-six cents"; the caption shows the exact figure). Whole dollars keep "dollars"; amounts of
+    $1,000 or more with cents keep the full form; $5.05 is "five oh five"; $0.50 is "50 cents"."""
+    d = int(m.group(1).replace(",", ""))
+    c = int(m.group(3)) if m.group(3) else 0
+    if not c:
+        return f"{d} dollars"
+    if d == 0:
+        return f"{c} cents"
+    if d >= 1000:
+        return f"{d} dollars and {c} cents"
+    return f"{d} oh {c}" if c < 10 else f"{d} {c}"
+
+
 def clean(text):
     """Spoken form: dollar amounts and percents read naturally; no markup."""
     import re
@@ -58,7 +73,7 @@ def clean(text):
     t = t.replace("&", " and ")
     t = re.sub(r"(?<=\d)\s*/\s*(?=[a-z\d])", " per ", t)      # 120/hour -> 120 per hour; leaves "and/or" alone
     t = re.sub(r"(?<=\d)\s*[xX]\s*(?=\$?\d)", " times ", t)   # 3 x $2.99 -> 3 times 2.99; leaves "tax" alone
-    t = re.sub(r"\$(\d[\d,]*)(\.(\d\d))?", lambda m: f"{m.group(1).replace(',', '')} dollars" + (f" and {int(m.group(3))} cents" if m.group(3) and int(m.group(3)) else ""), t)
+    t = re.sub(r"\$(\d[\d,]*)(\.(\d\d))?", _money, t)
     t = t.replace("%", " percent")
     return re.sub(r"\s+", " ", t).strip()
 

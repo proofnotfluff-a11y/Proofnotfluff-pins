@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """ProofNotFluff Short, slideshow style: full-screen slides with text, music only, every frame rendered.
 Usage: python3 make_slides.py spec.json out.mp4
+Music: a track from tools/music (soundtrack.py picks it: the spec's "music" id, else its "mood", else the track used
+longest ago); each slide lasts whole bars of it, the lift lands on the stat slide, the ending and the sonic logo
+on the call to action.
 Spec: {"theme":"ink"|"paper", "footer": str, "slides":[{"type":"hook"|"stat"|"compare"|"fix"|"cta", ...}]}
  hook:    kicker, title_html
  stat:    kicker, label, value, sub, kind ""|"bad"|"good"
@@ -11,37 +14,7 @@ Spec: {"theme":"ink"|"paper", "footer": str, "slides":[{"type":"hook"|"stat"|"co
 import json, re, os, subprocess, sys, wave, shutil, math
 import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__)); FPS = 30; W, H = 1080, 1920; FONTS = "/usr/share/fonts/truetype"
-BPM = 90; BAR = 60 / BPM * 4; SLIDE = 2 * BAR  # 5.33 s per slide
-
-def music(duration, path, sr=44100, seed=11):
-    rng = np.random.default_rng(seed); t = np.arange(int(duration * sr)) / sr
-    chords = [[146.83, 220.0, 293.66, 369.99], [123.47, 185.0, 246.94, 293.66], [98.0, 146.83, 196.0, 246.94], [110.0, 164.81, 220.0, 277.18]]
-    out = np.zeros_like(t); seg = SLIDE
-    for i in range(int(math.ceil(duration / seg)) + 1):
-        ch = chords[i % 4]; s = i * seg; e = min(s + seg, duration)
-        if s >= duration: break
-        idx = (t >= s) & (t < e); tt = t[idx] - s
-        env = np.minimum(tt / 0.9, 1) * np.minimum((e - s - tt) / 0.9, 1)
-        pad = np.zeros_like(tt)
-        for f in ch:
-            for k, a in ((1, 1.0), (2, 0.22), (3, 0.06)):
-                pad += a * np.sin(2 * np.pi * f * k * tt + rng.uniform(0, 6.28)) * (1 + 0.06 * np.sin(2 * np.pi * 0.2 * tt))
-        out[idx] += 0.12 * env * pad / 12
-        ii = idx.nonzero()[0]
-        for b in range(8):
-            bt = b * (60 / BPM)
-            if bt >= e - s: break
-            f = ch[[0, 2, 1, 3][b % 4]] * 2
-            m = (tt >= bt) & (tt < bt + 1.2); x = tt[m] - bt
-            out[ii[m]] += 0.06 * np.exp(-x * 3) * np.sin(2 * np.pi * f * x) * (1 - np.exp(-x * 300))
-            if b % 2 == 0:  # soft kick
-                m2 = (tt >= bt) & (tt < bt + 0.25); x2 = tt[m2] - bt
-                out[ii[m2]] += 0.18 * np.exp(-x2 * 18) * np.sin(2 * np.pi * (60 + 40 * np.exp(-x2 * 30)) * x2)
-    k = int(sr / 2200); out = np.convolve(out, np.ones(k) / k, mode="same")
-    out *= np.minimum(t / 1.0, 1) * np.minimum((duration - t) / 2.0, 1)
-    out = out / (np.max(np.abs(out)) + 1e-9) * 0.6
-    with wave.open(path, "wb") as w:
-        w.setnchannels(1); w.setsampwidth(2); w.setframerate(sr); w.writeframes((out * 32767).astype(np.int16).tobytes())
+SLIDE = 5.33  # seconds per slide; main() sets it to whole bars of the chosen track (about 5.3 s)
 
 def slide_html(s, i, theme):
     d = lambda k: f'style="animation-delay:{i*SLIDE + k:.2f}s"'
@@ -124,14 +97,26 @@ def fix_cta(spec):
     return spec
 
 def main(spec_path, out):
+    global SLIDE
     spec = fix_cta(json.load(open(spec_path))); work = os.path.join(HERE, "work"); os.makedirs(work, exist_ok=True)
-    total = len(spec["slides"]) * SLIDE
+    import soundtrack as st
+    st.ensure()
+    key = os.path.splitext(os.path.basename(spec_path))[0]
+    track = st.pick(spec.get("mood"), spec.get("music"), key=key)
+    SLIDE = max(2, round(5.33 / track["bar_s"])) * track["bar_s"]   # slides change on the bar line
+    n = len(spec["slides"]); total = n * SLIDE
     fdir = render(html(spec), int(total * FPS), work)
-    mp = os.path.join(work, "music.wav"); music(total, mp)
+    types = [x.get("type") for x in spec["slides"]]
+    lift = types.index("stat") if "stat" in types else min(2, n - 1)
+    cta = types.index("cta") if "cta" in types else n - 1
+    mp = os.path.join(work, "music.wav")
+    sound = st.mix(track, total, lift * SLIDE, cta * SLIDE, mp, sfx=[("whoosh", cta * SLIDE)])
+    st.record(track["id"], out, spec.get("mood"), None, key)
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", mp, "-framerate", str(FPS), "-i", os.path.join(fdir, "f%05d.png"),
                     "-map", "1:v", "-map", "0:a", "-c:v", "libx264", "-preset", "medium", "-crf", "19", "-pix_fmt", "yuv420p",
-                    "-c:a", "aac", "-b:a", "160k", "-t", f"{total:.2f}", "-movflags", "+faststart", out], check=True)
-    shutil.rmtree(fdir, ignore_errors=True); print(json.dumps({"out": out, "seconds": round(total, 1), "slides": len(spec["slides"])}))
+                    "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-t", f"{total:.2f}", "-movflags", "+faststart", out], check=True)
+    shutil.rmtree(fdir, ignore_errors=True)
+    print(json.dumps({"out": out, "seconds": round(total, 1), "slides": n, "music": track["id"], "sound": sound}))
 
 if __name__ == "__main__":
     main(sys.argv[1], sys.argv[2])

@@ -1,0 +1,786 @@
+{
+ "note": "Original tracks composed in tools/music/compose.py and rendered with the FluidR3 GM soundfont (MIT licence). No third-party recordings, samples or melodies, so no rights holder can claim them; free to use on every platform.",
+ "lufs": -16.0,
+ "tracks": [
+  {
+   "id": "ledger-lofi",
+   "title": "Ledger",
+   "moods": [
+    "calm"
+   ],
+   "bpm": 82,
+   "key": "F major",
+   "drums": "boombap",
+   "beats_per_bar": 4,
+   "bar_s": 2.926829,
+   "sections": [
+    [
+     "intro",
+     0,
+     2
+    ],
+    [
+     "A",
+     2,
+     8
+    ],
+    [
+     "B",
+     10,
+     8
+    ],
+    [
+     "out",
+     18,
+     2
+    ]
+   ],
+   "lifts_s": [
+    29.2683
+   ],
+   "out_s": 52.6829,
+   "music_ends_s": 58.54,
+   "seconds": 60.04,
+   "lufs": -16.0,
+   "file": "tracks/ledger-lofi.opus",
+   "logo": "tracks/ledger-lofi_logo.opus"
+  },
+  {
+   "id": "brass-tacks",
+   "title": "Brass Tacks",
+   "moods": [
+    "playful",
+    "driving"
+   ],
+   "bpm": 104,
+   "key": "E minor",
+   "drums": "funk",
+   "beats_per_bar": 4,
+   "bar_s": 2.307692,
+   "sections": [
+    [
+     "intro",
+     0,
+     2
+    ],
+    [
+     "A",
+     2,
+     8
+    ],
+    [
+     "B",
+     10,
+     8
+    ],
+    [
+     "out",
+     18,
+     2
+    ]
+   ],
+   "lifts_s": [
+    23.0769
+   ],
+   "out_s": 41.5385,
+   "music_ends_s": 46.15,
+   "seconds": 47.65,
+   "lufs": -16.2,
+   "file": "tracks/brass-tacks.opus",
+   "logo": "tracks/brass-tacks_logo.opus"
+  },
+  {
+   "id": "night-shift",
+   "title": "Night Shift",
+   "moods": [
+    "driving"
+   ],
+   "bpm": 122,
+   "key": "A minor",
+   "drums": "four",
+   "beats_per_bar": 4,
+   "bar_s": 1.967213,
+   "sections": [
+    [
+     "intro",
+     0,
+     2
+    ],
+    [
+     "A",
+     2,
+     8
+    ],
+    [
+     "B",
+     10,
+     8
+    ],
+    [
+     "out",
+     18,
+     2
+    ]
+   ],
+   "lifts_s": [
+    19.6721
+   ],
+   "out_s": 35.4098,
+   "music_ends_s": 39.34,
+   "seconds": 40.84,
+   "lufs": -16.0,
+   "file": "tracks/night-shift.opus",
+   "logo": "tracks/night-shift_logo.opus"
+  },
+  {
+   "id": "fine-print",
+   "title": "Fine Print",
+   "moods": [
+    "tension"
+   ],
+   "bpm": 96,
+   "key": "D minor",
+   "drums": "pulse",
+   "beats_per_bar": 4,
+   "bar_s": 2.5,
+   "sections": [
+    [
+     "intro",
+     0,
+     2
+    ],
+    [
+     "A",
+     2,
+     8
+    ],
+    [
+     "B",
+     10,
+     8
+    ],
+    [
+     "out",
+     18,
+     2
+    ]
+   ],
+   "lifts_s": [
+    25.0
+   ],
+   "out_s": 45.0,
+   "music_ends_s": 50.0,
+   "seconds": 51.5,
+   "lufs": -16.0,
+   "file": "tracks/fine-print.opus",
+   "logo": "tracks/fine-print_logo.opus"
+  },
+  {
+   "id": "clean-books",
+   "title": "Clean Books",
+   "moods": [
+    "upbeat",
+    "playful"
+   ],
+   "bpm": 100,
+   "key": "G major",
+   "drums": "light",
+   "beats_per_bar": 4,
+   "bar_s": 2.4,
+   "sections": [
+    [
+     "intro",
+     0,
+     2
+    ],
+    [
+     "A",
+     2,
+     8
+    ],
+    [
+     "B",
+     10,
+     8
+    ],
+    [
+     "out",
+     18,
+     2
+    ]
+   ],
+   "lifts_s": [
+    24.0
+   ],
+   "out_s": 43.2,
+   "music_ends_s": 48.0,
+   "seconds": 49.5,
+   "lufs": -16.0,
+   "file": "tracks/clean-books.opus",
+   "logo": "tracks/clean-books_logo.opus"
+  },
+  {
+   "id": "margin-call",
+   "title": "Margin Call",
+   "moods": [
+    "tension",
+    "driving"
+   ],
+   "bpm": 100,
+   "key": "B minor",
+   "drums": "pop",
+   "beats_per_bar": 4,
+   "bar_s": 2.4,
+   "sections": [
+    [
+     "intro",
+     0,
+     2
+    ],
+    [
+     "A",
+     2,
+     8
+    ],
+    [
+     "B",
+     10,
+     8
+    ],
+    [
+     "out",
+     18,
+     2
+    ]
+   ],
+   "lifts_s": [
+    24.0
+   ],
+   "out_s": 43.2,
+   "music_ends_s": 48.0,
+   "seconds": 49.5,
+   "lufs": -16.0,
+   "file": "tracks/margin-call.opus",
+   "logo": "tracks/margin-call_logo.opus"
+  },
+  {
+   "id": "steady-hands",
+   "title": "Steady Hands",
+   "moods": [
+    "calm"
+   ],
+   "bpm": 88,
+   "key": "C major",
+   "drums": "light",
+   "beats_per_bar": 4,
+   "bar_s": 2.727273,
+   "sections": [
+    [
+     "intro",
+     0,
+     2
+    ],
+    [
+     "A",
+     2,
+     8
+    ],
+    [
+     "B",
+     10,
+     8
+    ],
+    [
+     "out",
+     18,
+     2
+    ]
+   ],
+   "lifts_s": [
+    27.2727
+   ],
+   "out_s": 49.0909,
+   "music_ends_s": 54.55,
+   "seconds": 56.05,
+   "lufs": -16.0,
+   "file": "tracks/steady-hands.opus",
+   "logo": "tracks/steady-hands_logo.opus"
+  },
+  {
+   "id": "pocket-change",
+   "title": "Pocket Change",
+   "moods": [
+    "playful",
+    "upbeat"
+   ],
+   "bpm": 112,
+   "key": "C major",
+   "drums": "pop",
+   "beats_per_bar": 4,
+   "bar_s": 2.142857,
+   "sections": [
+    [
+     "intro",
+     0,
+     2
+    ],
+    [
+     "A",
+     2,
+     8
+    ],
+    [
+     "B",
+     10,
+     8
+    ],
+    [
+     "out",
+     18,
+     2
+    ]
+   ],
+   "lifts_s": [
+    21.4286
+   ],
+   "out_s": 38.5714,
+   "music_ends_s": 42.86,
+   "seconds": 44.36,
+   "lufs": -16.0,
+   "file": "tracks/pocket-change.opus",
+   "logo": "tracks/pocket-change_logo.opus"
+  },
+  {
+   "id": "breakeven",
+   "title": "Breakeven",
+   "moods": [
+    "tension"
+   ],
+   "bpm": 92,
+   "key": "E minor",
+   "drums": "cinema",
+   "beats_per_bar": 4,
+   "bar_s": 2.608696,
+   "sections": [
+    [
+     "intro",
+     0,
+     2
+    ],
+    [
+     "A",
+     2,
+     8
+    ],
+    [
+     "B",
+     10,
+     8
+    ],
+    [
+     "out",
+     18,
+     2
+    ]
+   ],
+   "lifts_s": [
+    26.087
+   ],
+   "out_s": 46.9565,
+   "music_ends_s": 52.17,
+   "seconds": 53.67,
+   "lufs": -16.0,
+   "file": "tracks/breakeven.opus",
+   "logo": "tracks/breakeven_logo.opus"
+  },
+  {
+   "id": "side-hustle",
+   "title": "Side Hustle",
+   "moods": [
+    "upbeat"
+   ],
+   "bpm": 118,
+   "key": "D major",
+   "drums": "pop",
+   "beats_per_bar": 4,
+   "bar_s": 2.033898,
+   "sections": [
+    [
+     "intro",
+     0,
+     2
+    ],
+    [
+     "A",
+     2,
+     8
+    ],
+    [
+     "B",
+     10,
+     8
+    ],
+    [
+     "out",
+     18,
+     2
+    ]
+   ],
+   "lifts_s": [
+    20.339
+   ],
+   "out_s": 36.6102,
+   "music_ends_s": 40.68,
+   "seconds": 42.18,
+   "lufs": -16.0,
+   "file": "tracks/side-hustle.opus",
+   "logo": "tracks/side-hustle_logo.opus"
+  },
+  {
+   "id": "quiet-math",
+   "title": "Quiet Math",
+   "moods": [
+    "calm"
+   ],
+   "bpm": 84,
+   "key": "E major",
+   "drums": "light",
+   "beats_per_bar": 4,
+   "bar_s": 2.857143,
+   "sections": [
+    [
+     "intro",
+     0,
+     2
+    ],
+    [
+     "A",
+     2,
+     8
+    ],
+    [
+     "B",
+     10,
+     8
+    ],
+    [
+     "out",
+     18,
+     2
+    ]
+   ],
+   "lifts_s": [
+    28.5714
+   ],
+   "out_s": 51.4286,
+   "music_ends_s": 57.14,
+   "seconds": 58.64,
+   "lufs": -16.0,
+   "file": "tracks/quiet-math.opus",
+   "logo": "tracks/quiet-math_logo.opus"
+  },
+  {
+   "id": "cash-flow",
+   "title": "Cash Flow",
+   "moods": [
+    "driving"
+   ],
+   "bpm": 140,
+   "key": "G minor",
+   "drums": "halftime",
+   "beats_per_bar": 4,
+   "bar_s": 1.714286,
+   "sections": [
+    [
+     "intro",
+     0,
+     2
+    ],
+    [
+     "A",
+     2,
+     8
+    ],
+    [
+     "B",
+     10,
+     8
+    ],
+    [
+     "out",
+     18,
+     2
+    ]
+   ],
+   "lifts_s": [
+    17.1429
+   ],
+   "out_s": 30.8571,
+   "music_ends_s": 34.29,
+   "seconds": 35.79,
+   "lufs": -16.1,
+   "file": "tracks/cash-flow.opus",
+   "logo": "tracks/cash-flow_logo.opus"
+  },
+  {
+   "id": "line-item",
+   "title": "Line Item",
+   "moods": [
+    "calm"
+   ],
+   "bpm": 92,
+   "key": "Bb major",
+   "drums": "brush",
+   "beats_per_bar": 4,
+   "bar_s": 2.608696,
+   "sections": [
+    [
+     "intro",
+     0,
+     2
+    ],
+    [
+     "A",
+     2,
+     8
+    ],
+    [
+     "B",
+     10,
+     8
+    ],
+    [
+     "out",
+     18,
+     2
+    ]
+   ],
+   "lifts_s": [
+    26.087
+   ],
+   "out_s": 46.9565,
+   "music_ends_s": 52.17,
+   "seconds": 53.67,
+   "lufs": -16.0,
+   "file": "tracks/line-item.opus",
+   "logo": "tracks/line-item_logo.opus"
+  },
+  {
+   "id": "red-ink",
+   "title": "Red Ink",
+   "moods": [
+    "tension"
+   ],
+   "bpm": 140,
+   "key": "C minor",
+   "drums": "halftime",
+   "beats_per_bar": 4,
+   "bar_s": 1.714286,
+   "sections": [
+    [
+     "intro",
+     0,
+     2
+    ],
+    [
+     "A",
+     2,
+     8
+    ],
+    [
+     "B",
+     10,
+     8
+    ],
+    [
+     "out",
+     18,
+     2
+    ]
+   ],
+   "lifts_s": [
+    17.1429
+   ],
+   "out_s": 30.8571,
+   "music_ends_s": 34.29,
+   "seconds": 35.79,
+   "lufs": -16.0,
+   "file": "tracks/red-ink.opus",
+   "logo": "tracks/red-ink_logo.opus"
+  },
+  {
+   "id": "tidy-sum",
+   "title": "Tidy Sum",
+   "moods": [
+    "upbeat",
+    "driving"
+   ],
+   "bpm": 116,
+   "key": "A major",
+   "drums": "pop",
+   "beats_per_bar": 4,
+   "bar_s": 2.068966,
+   "sections": [
+    [
+     "intro",
+     0,
+     2
+    ],
+    [
+     "A",
+     2,
+     8
+    ],
+    [
+     "B",
+     10,
+     8
+    ],
+    [
+     "out",
+     18,
+     2
+    ]
+   ],
+   "lifts_s": [
+    20.6897
+   ],
+   "out_s": 37.2414,
+   "music_ends_s": 41.38,
+   "seconds": 42.88,
+   "lufs": -16.0,
+   "file": "tracks/tidy-sum.opus",
+   "logo": "tracks/tidy-sum_logo.opus"
+  },
+  {
+   "id": "overhead",
+   "title": "Overhead",
+   "moods": [
+    "tension"
+   ],
+   "bpm": 104,
+   "key": "F# minor",
+   "drums": "pulse",
+   "beats_per_bar": 4,
+   "bar_s": 2.307692,
+   "sections": [
+    [
+     "intro",
+     0,
+     2
+    ],
+    [
+     "A",
+     2,
+     8
+    ],
+    [
+     "B",
+     10,
+     8
+    ],
+    [
+     "out",
+     18,
+     2
+    ]
+   ],
+   "lifts_s": [
+    23.0769
+   ],
+   "out_s": 41.5385,
+   "music_ends_s": 46.15,
+   "seconds": 47.65,
+   "lufs": -16.0,
+   "file": "tracks/overhead.opus",
+   "logo": "tracks/overhead_logo.opus"
+  },
+  {
+   "id": "fresh-start",
+   "title": "Fresh Start",
+   "moods": [
+    "upbeat"
+   ],
+   "bpm": 120,
+   "key": "F major",
+   "drums": "four",
+   "beats_per_bar": 4,
+   "bar_s": 2.0,
+   "sections": [
+    [
+     "intro",
+     0,
+     2
+    ],
+    [
+     "A",
+     2,
+     8
+    ],
+    [
+     "B",
+     10,
+     8
+    ],
+    [
+     "out",
+     18,
+     2
+    ]
+   ],
+   "lifts_s": [
+    20.0
+   ],
+   "out_s": 36.0,
+   "music_ends_s": 40.0,
+   "seconds": 41.5,
+   "lufs": -16.0,
+   "file": "tracks/fresh-start.opus",
+   "logo": "tracks/fresh-start_logo.opus"
+  },
+  {
+   "id": "spreadsheet-groove",
+   "title": "Spreadsheet Groove",
+   "moods": [
+    "calm",
+    "driving"
+   ],
+   "bpm": 90,
+   "key": "A minor",
+   "drums": "boombap",
+   "beats_per_bar": 4,
+   "bar_s": 2.666667,
+   "sections": [
+    [
+     "intro",
+     0,
+     2
+    ],
+    [
+     "A",
+     2,
+     8
+    ],
+    [
+     "B",
+     10,
+     8
+    ],
+    [
+     "out",
+     18,
+     2
+    ]
+   ],
+   "lifts_s": [
+    26.6667
+   ],
+   "out_s": 48.0,
+   "music_ends_s": 53.33,
+   "seconds": 54.83,
+   "lufs": -16.0,
+   "file": "tracks/spreadsheet-groove.opus",
+   "logo": "tracks/spreadsheet-groove_logo.opus"
+  }
+ ]
+}

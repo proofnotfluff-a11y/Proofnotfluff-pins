@@ -1944,7 +1944,7 @@
   {
    "slug": "employer-cost-calculator",
    "kind": "employer_cost",
-   "draft": true,
+   "draft": false,
    "product": "8",
    "segment": "small-business",
    "title": "Cost of an Employee Calculator: The True Hourly Cost of Your First Hire | ProofNotFluff",
@@ -1982,7 +1982,7 @@
    "faq": [
     [
      "How much does an employee cost on top of their wage?",
-     "For an hourly employee, usually 10% to 15% more for taxes and insurance alone: 7.65% for Social Security and Medicare, FUTA and state unemployment on the first part of their pay, and workers' comp. Physical work costs more because workers' comp costs more. Benefits and software come on top."
+     "In this page's example, taxes and insurance add 12.6% to a $20 wage: 7.65% for Social Security and Medicare, FUTA and state unemployment on the first part of their pay, and workers' comp. Your figure depends on your state and the work. Physical work costs more because workers' comp costs more. Benefits and software come on top."
     ],
     [
      "What is the employer's share of payroll taxes in 2026?",
@@ -2005,7 +2005,7 @@
      "No. It is a planning estimate based on the numbers you type. Your state and local rules, your workers' comp quote and your payroll provider's figures decide the real cost."
     ]
    ],
-   "sources": "IRS Tax Topic 751 (Social Security 6.2% and Medicare 1.45% employer share); SSA Contribution and Benefit Base (2026 wage base $184,500); IRS Tax Topic 759 (FUTA 6.0% on the first $7,000, credit up to 5.4%, 0.6% after credit). Federal figures checked Oct 6 to 8, 2026. Ohio example rate from the Ohio Department of Job and Family Services 2026 rate notice as used in the guide. Example figures are the guide's fictional sample business.",
+   "sources": "IRS Tax Topic 751 (Social Security 6.2% and Medicare 1.45% employer share; 2026 wage base $184,500); SSA Contribution and Benefit Base (2026 wage base $184,500); IRS Tax Topic 759 (FUTA 6.0% on the first $7,000, credit up to 5.4%, 0.6% after credit). Federal figures checked Oct 13, 2026. Ohio example: Ohio Department of Job and Family Services 2026 Rate Details (new employer rate 2.7% plus the 0.15% Technology and Customer Service Fee, $9,000 taxable wage base), checked Oct 13, 2026. Example figures are the guide's fictional sample business.",
    "number_sources": [
     "kdp/8/build.py Section 6 tables ($600 week, $22.52, $25.00) and legal/reviews/8-2026-10-06.md arithmetic re-run.",
     "research/rule-watch.json ssa-wage-base-2026 and futa-rate-wage-base.",
@@ -2363,7 +2363,7 @@
   {
    "slug": "profit-and-loss-calculator",
    "kind": "profit_loss",
-   "draft": true,
+   "draft": false,
    "product": "28",
    "segment": "small-business",
    "title": "Profit and Loss Calculator: Net Profit, Gross Profit and Margins for One Month or the Year | ProofNotFluff",
@@ -2432,7 +2432,7 @@
   {
    "slug": "cake-pricing-calculator",
    "kind": "cake",
-   "draft": true,
+   "draft": false,
    "product": "26",
    "segment": "makers",
    "title": "Cake Pricing Calculator: Quote a Custom Cake by the Serving, With Deposit and Delivery | ProofNotFluff",
@@ -2506,7 +2506,7 @@
   {
    "slug": "unit-cost-calculator",
    "kind": "unit_cost",
-   "draft": true,
+   "draft": false,
    "product": "25",
    "segment": "makers",
    "title": "Unit Cost Calculator: Cost Per Unit, Profit Per Unit and Stock Value | ProofNotFluff",
@@ -2569,7 +2569,7 @@
   {
    "slug": "chore-split-calculator",
    "kind": "chore_split",
-   "draft": true,
+   "draft": false,
    "product": "24",
    "segment": "home",
    "title": "Chore Split Calculator: Is Your Chore Split Fair? Split Chores by Minutes | ProofNotFluff",
@@ -2632,7 +2632,7 @@
   {
    "slug": "customer-concentration-calculator",
    "kind": "client_mix",
-   "draft": true,
+   "draft": false,
    "product": "27",
    "segment": "home-services",
    "title": "Customer Concentration Calculator: How Much of Your Revenue Is One Client? | ProofNotFluff",

@@ -458,4 +458,32 @@ const more = [P.etsyFees({}), P.craftFair({}), P.strNightly({}), P.debtPayoff({}
   .flatMap(o => Object.values(o)).filter(v => typeof v === "number");
 const bad = [...Object.values(b), ...Object.values(bh), ...Object.values(bc), ...more].filter(v => !isFinite(v));
 if (bad.length) { fails++; console.log("FAIL blank inputs give non-finite values"); } else console.log("ok   blank inputs stay finite");
+// #22 per square foot page: deck presets from the #22 workbook (4 Price Sheet rows 19 and 20; 3 Quote Builder with
+// the deck job and a $150 current price, recalculated Oct 13, 2026)
+const PWB = { takeHome: 55000, weeks: 44, hours: 45, paidShare: 65, incomeTax: 12, margin: 15, monthlyCosts: 755, perMile: 0.76, mph: 30 };
+const SQ1 = P.serviceSqft(Object.assign({}, PWB, { area: 300, jobHours: 3, people: 1, supplies: 30, miles: 20, checkPerSqFt: 0.5 }));
+check("#22 deck clean floor", SQ1.floor, 283.13);
+check("#22 deck clean quote", SQ1.quote, 335);
+check("#22 deck clean quote per sq ft", SQ1.perSqFt, 1.1167);
+check("#22 deck clean floor per sq ft", SQ1.floorPerSqFt, 0.9438);
+check("#22 deck clean at $0.50/sq ft vs floor", SQ1.checkGap, -133.13);
+check("#22 deck clean sq ft per person-hour", SQ1.sqftPerHour, 100);
+const SQ2 = P.serviceSqft(Object.assign({}, PWB, { area: 300, jobHours: 7, people: 1, supplies: 150, miles: 40 }));
+check("#22 deck stain floor", SQ2.floor, 721.16);
+check("#22 deck stain quote", SQ2.quote, 850);
+check("#22 deck stain per sq ft", SQ2.perSqFt, 2.8333);
+const SQ0 = P.serviceSqft(Object.assign({}, PWB, { area: "", jobHours: "", people: "", supplies: "", miles: "", checkPerSqFt: 0.5 }));
+check("#22 blank job gives 0 per sq ft", SQ0.perSqFt, 0);
+check("#22 blank job: no check warning", SQ0.checkShort, 0);
+if (![SQ0.perSqFt, SQ0.floorPerSqFt, SQ0.sqftPerHour, SQ0.checkGap].every(isFinite)) { fails++; console.log("FAIL sq ft blank non-finite"); }
+// contractor hourly page: the #20 workbook with contractor inputs (Calculator D15:D43 changed, recalculated Oct 13, 2026)
+const HC = P.hourly({ takeHome: 65000, taxRate: 25, expenses: 14000, weeks: 48, hours: 50, billableShare: 55, checkRate: 45, jobHours: 16, materials: 600, markup: 20 });
+check("contractor revenue needed", HC.revenue, 100666.67);
+check("contractor minimum rate", HC.rate, 76.26);
+check("contractor rate card", HC.rateCard, 80);
+check("contractor take-home at $45", HC.keep, 34050);
+check("contractor per hour worked at $45", HC.keepPerHour, 14.19);
+check("contractor short by", HC.shortBy, 30950);
+check("contractor job quote", HC.quote, 2000);
+check("contractor rate at 80% billed", HC.rateAt80, 52.43);
 process.exit(fails ? 1 : 0);

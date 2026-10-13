@@ -593,7 +593,25 @@
       spread: has && topShare < 0.25 ? 1 : 0, none: has ? 0 : 1 };
   }
 
-  var api = { seTax: seTax, hourly: hourly, service: service, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
+  // #22 Pressure Washing Pricing Calculator, per square foot view: the #13 engine's quote for one job (3 Quote Builder),
+  // divided by the job's area. "Check a per-sq-ft price" is the workbook's "Check your current price" (D32:D33)
+  // with the current price set to area times that rate. Workbook check: deck clean 300 sq ft, $335 quote, $283.13 floor.
+  function serviceSqft(i) {
+    var r = service(i), area = Math.max(0, num(i.area)), check = Math.max(0, num(i.checkPerSqFt));
+    var personHours = num(i.jobHours) * num(i.people);
+    r.area = area;
+    r.perSqFt = area > 0 ? r.quote / area : 0;
+    r.floorPerSqFt = area > 0 ? r.floor / area : 0;
+    r.sqftPerHour = personHours > 0 ? area / personHours : 0;
+    r.checkPrice = area * check;
+    r.checkGap = r.checkPrice - r.floor;
+    r.checkShort = area > 0 && check > 0 && r.checkGap < -0.005 ? 1 : 0;
+    r.checkOk = area > 0 && check > 0 && r.checkGap >= -0.005 ? 1 : 0;
+    r.checkLoss = r.checkGap < 0 ? -r.checkGap : 0;
+    return r;
+  }
+
+  var api = { seTax: seTax, hourly: hourly, service: service, serviceSqft: serviceSqft, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
     strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, profitLoss: profitLoss, cakeQuote: cakeQuote, unitCost: unitCost, choreSplit: choreSplit, clientMix: clientMix, cakeSizes: CAKE_SIZES, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;

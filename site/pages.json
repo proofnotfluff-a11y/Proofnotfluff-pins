@@ -2691,6 +2691,181 @@
     "engines/client-tracker/build_xlsx.py example recalculated in LibreOffice Oct 12: 1 Today D31:D33 1010/635/600, J24 5150, J25 515, I7 720, C39 'Top client: 20% of revenue to date'.",
     "docs/assets/pnf-calc.test.js clientMix checks."
    ]
+  },
+  {
+   "slug": "contractor-hourly-rate-calculator",
+   "kind": "hourly",
+   "draft": true,
+   "quote": true,
+   "product": "20",
+   "segment": "home-services",
+   "title": "Contractor Hourly Rate Calculator: The Rate Your Truck, Insurance and Unpaid Hours Need | ProofNotFluff",
+   "desc": "Free contractor hourly rate calculator. Enter the take-home you want, your tax set-aside, truck, insurance and tool costs and the hours customers pay for to get your minimum rate and a job quote.",
+   "eyebrow": "Free calculator",
+   "h1": "Contractor Hourly Rate Calculator",
+   "lede": "Work out the hourly rate a contracting business needs once the truck, insurance, tools and the hours nobody pays for (quoting, driving to supply houses, callbacks) are counted. Test the rate you charge now and turn your rate into a job quote. Free, no sign-up.",
+   "card": "Your contractor rate with truck, insurance and unpaid hours counted, plus a job quote.",
+   "defaults": {
+    "takeHome": "65,000",
+    "taxRate": "25",
+    "expenses": "14,000",
+    "weeks": "48",
+    "hours": "50",
+    "billableShare": "55",
+    "checkRate": "45",
+    "jobHours": "16",
+    "materials": "600",
+    "markup": "20"
+   },
+   "wording": {
+    "expenses": [
+     "Business expenses per year",
+     "Truck payment and fuel, insurance, tools, licenses, phone"
+    ],
+    "materials": [
+     "Materials for the job",
+     "Lumber, fixtures, parts, dump fees"
+    ],
+    "jobHours": [
+     "Billable hours for the job",
+     "Your best estimate"
+    ],
+    "quoteLegend": "Quote one job",
+    "projectLabor": "Job labor at your rate card",
+    "projectQuote": "Job quote"
+   },
+   "method": [
+    "A contractor's rate has to pay for more than the hours on the job. Estimates, driving to the supply house, invoicing and callbacks all take time no customer pays for, and the truck, insurance and tools cost money whether you work that week or not.",
+    "This calculator grosses your take-home up for the tax share you set aside, adds a year of business expenses, and spreads that revenue over the hours a customer actually pays for: your working hours times your billable share. That is your minimum hourly rate; the rate card rounds it up to the next $5.",
+    "To test a rate, it multiplies the rate by your billable hours, takes out expenses and your tax set-aside on any profit, and divides what is left by every hour you work. A job quote is its billable hours at your rate-card rate, plus materials with your markup."
+   ],
+   "example": "A contractor who wants $65,000 a year take-home, sets aside 25% for tax and spends $14,000 a year on the truck, insurance and tools needs $100,667 of revenue. At 48 weeks of 50 hours with 55% billable, that is 1,320 billable hours out of 2,400 worked, so the minimum rate is $76.26 (rate card $80). Charging $45 an hour brings in $59,400 and leaves $34,050 after expenses and tax: $14.19 for every hour worked, $30,950 short of the goal. A 16-hour job at $80 is $1,280 of labor; $600 of materials with a 20% markup adds $720, for a $2,000 quote. Billing 80% of your hours instead of 55% would bring the minimum rate down to $52.43.",
+   "cta": {
+    "title": "Keep it, change it, quote with it",
+    "bullets": [
+     "The Hourly Rate Quick Calculator is this calculator as a one-tab Excel and Google Sheets workbook,",
+     "with the same quick quote, the billable-share table, a rate card and a Start Here guide. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4589695837"
+   },
+   "faq": [
+    [
+     "How do I calculate my hourly rate as a contractor?",
+     "Start from the take-home you want, add the tax you set aside and a year of business expenses, then divide by the hours customers actually pay for. With the example numbers that is $100,667 over 1,320 billable hours, or $76.26 an hour."
+    ],
+    [
+     "Why is my rate so much higher than what I made as an employee?",
+     "An employer paid for the truck, the insurance, the tools and the hours spent driving and quoting. On your own you pay for all of that from your rate, and only the billable share of your week earns it."
+    ],
+    [
+     "What billable share should a contractor use?",
+     "Track a few weeks of your own time and divide the hours a customer paid for by all hours worked, quoting and driving included. The example's 55% is a starting point, not a benchmark. The table under the results shows the rate you would need at 50%, 60%, 70% and 80% billed."
+    ],
+    [
+     "Should I mark up materials?",
+     "That is your call. Many contractors add a markup to cover the time spent buying, hauling and returning materials; set it to 0 to pass materials through at cost. The example uses 20%."
+    ],
+    [
+     "What tax set-aside rate should I use?",
+     "Ask your tax preparer. A set-aside rate is a savings habit you choose, not a tax calculation, and this calculator does not tell you which rate to use."
+    ],
+    [
+     "Is this tax or financial advice?",
+     "No. It is a planning estimate based on the numbers you enter."
+    ]
+   ],
+   "sources": "No outside rates are used on this page; the tax set-aside is your own estimate. Maths from the Hourly Rate Quick Calculator workbook with the example's contractor inputs entered, recalculated Oct 13, 2026.",
+   "number_sources": [
+    "engines/hourly-rate-quick-calculator/build_xlsx.py with Calculator D15=65000, D16=25%, D17=14000, D19=48, D20=50, D21=55%, D27=45, D41=16, D42=600, D43=20%, recalculated in LibreOffice Oct 13: I17 100666.67, I19 2400, I20 1320, I21 76.26, D28 59400, D31 34050, D32 14.19, C33 short by $30,950, I41 1280, I42 720, I43 2000, I34 52.43.",
+    "docs/assets/pnf-calc.test.js contractor checks."
+   ]
+  },
+  {
+   "slug": "pressure-washing-price-per-square-foot-calculator",
+   "kind": "service_sqft",
+   "draft": true,
+   "product": "22",
+   "segment": "home-services",
+   "title": "Pressure Washing Price Per Square Foot Calculator: Your Own Per-Sq-Ft Price | ProofNotFluff",
+   "desc": "Free pressure washing price per square foot calculator. Enter the area, how long the job takes you, supplies and travel to get your price per sq ft, your floor per sq ft and a check on any per-sq-ft price.",
+   "eyebrow": "Free calculator",
+   "h1": "Pressure Washing Price Per Square Foot Calculator",
+   "lede": "Turn a job's area and the time it takes you into a price per square foot that pays your goal, your costs and self-employment tax. Check any per-sq-ft price against your floor before you quote it. Free, no sign-up.",
+   "card": "Your price per square foot from your own time, costs and travel, and a check on any per-sq-ft price.",
+   "defaults": {
+    "takeHome": "55,000",
+    "weeks": "44",
+    "hours": "45",
+    "paidShare": "65",
+    "monthlyCosts": "755",
+    "incomeTax": "12",
+    "margin": "15",
+    "perMile": "0.76",
+    "mph": "30",
+    "checkPerSqFt": "0.50"
+   },
+   "costs_hint": "Insurance, equipment and rig, hoses and tips, marketing, apps, fees",
+   "presets": [
+    [
+     "Deck clean and brighten, 300 sq ft",
+     300,
+     3,
+     1,
+     30,
+     20
+    ],
+    [
+     "Deck clean and stain, 300 sq ft",
+     300,
+     7,
+     1,
+     150,
+     40
+    ]
+   ],
+   "method": [
+    "A square-foot price is a job price divided by the area. It only pays you if the job price behind it does, so this calculator builds the job price first and divides second.",
+    "It grosses your take-home up for self-employment tax (15.3% on 92.35% of profit) and your income tax estimate, adds a year of business costs, and spreads the total over the hours customers pay for. That is your break-even rate per paid hour. The job's floor is the crew's time on site and drive time at that rate, plus vehicle cost per mile and supplies; the quote adds your margin and rounds up to the next $5.",
+    "Divide the quote by the area and you have your price per square foot for a job like this one. Your speed sets it: sq ft per person-hour shows how fast you have to work for a lower per-sq-ft price to cover the floor."
+   ],
+   "example": "The Pressure Washing Pricing Calculator's example business wants $55,000 take-home with a 12% income tax estimate and $755 a month of costs, works 44 weeks of 45 hours and is paid for 65% of them: a break-even rate of $64.89 per paid hour. A 300 sq ft deck clean and brighten takes 3 hours for one person, $30 of supplies and a 20-mile round trip. Its floor is $283.13 and it quotes at $335: $1.12 per square foot, with a floor of $0.94. Charging $0.50 a square foot would bring in $150, $133.13 under the floor. A clean and stain of the same deck (7 hours, $150 of supplies, 40 miles) quotes at $850, or $2.83 per square foot.",
+   "cta": {
+    "title": "Price every job at once",
+    "bullets": [
+     "The Pressure Washing Pricing Calculator workbook uses this same maths for Excel and Google Sheets:",
+     "15 example jobs from driveways to drive-thru lanes, a quote builder, a printable price sheet and a job tracker. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4590258713"
+   },
+   "faq": [
+    [
+     "How much should I charge per square foot for pressure washing?",
+     "It depends on how fast you clean, your pay goal, costs and travel. With the example numbers a 300 sq ft deck clean and brighten needs $1.12 a square foot to pay its share. Enter your own numbers to see yours."
+    ],
+    [
+     "Why is my per-sq-ft price different on every job?",
+     "Drive time, the trip and supplies cost about the same on a small job as on a big one, so they add more per square foot to a small job. Slower surfaces such as decks and pavers also take more time per square foot than open concrete."
+    ],
+    [
+     "How do I find my sq ft per hour?",
+     "Time a few jobs you have measured: divide the area by the hours on site, times the people on the job. The example deck is 300 sq ft in 3 person-hours, or 100 sq ft per person-hour."
+    ],
+    [
+     "Can I use this for driveways and house washes?",
+     "Yes. Enter the area and the hours that job takes you. The two example jobs are the ones the workbook's price sheet sizes in square feet; the workbook prices the other 13 job types by time."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
+    ]
+   ],
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS Standard Mileage Rates page, irs.gov/tax-professionals/standard-mileage-rates). Checked Oct 13, 2026. Example jobs and prices from the Pressure Washing Pricing Calculator workbook, recalculated Oct 13, 2026.",
+   "number_sources": [
+    "engines/service-pricing/build_xlsx.py --edition editions/pressure-washing.json recalculated in LibreOffice Oct 13: '1 Your Numbers' I21 64.89; '4 Price Sheet' E19 283.13 F19 335 (Deck clean, brighten, 300 sq ft), E20 721.16 F20 850 (Deck clean and stain, 300 sq ft); '3 Quote Builder' with the deck job and D32=150: D33 -133.13.",
+    "docs/assets/pnf-calc.test.js #22 sq ft checks."
+   ]
   }
  ]
 }

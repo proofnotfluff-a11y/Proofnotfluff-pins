@@ -129,19 +129,24 @@ PNF.wire(f,PNF.service);}})();</script>"""
 
 def hourly_page(p):
     d = p["defaults"]
+    w = {"expenses": ("Business expenses per year", "Software, insurance, equipment, fees"),
+         "materials": ("Materials and other project costs", "Stock, prints, software for this client, travel"),
+         "jobHours": ("Billable hours for the project", "Your best estimate"),
+         "quoteLegend": "Quote one project", "projectLabor": "Project labor at your rate card", "projectQuote": "Project quote"}
+    w.update(p.get("wording", {}))  # trade wording (contractor page); the maths and fields stay the same
     quote_fs = quote_out = ""
     if p.get("quote"):  # #20's Quick quote card (rows 41 to 43) and its billable-share table (I31:I34)
         quote_fs = f"""
-<fieldset><legend>Quote one project</legend>
-{field("jobHours", "Billable hours for the project", d["jobHours"], "Your best estimate")}
-{field("materials", "Materials and other project costs", d["materials"], "Stock, prints, software for this client, travel", pre="$")}
+<fieldset><legend>{E(w["quoteLegend"])}</legend>
+{field("jobHours", w["jobHours"][0], d["jobHours"], w["jobHours"][1])}
+{field("materials", w["materials"][0], d["materials"], w["materials"][1], pre="$")}
 {field("markup", "Markup on those costs", d["markup"], "0 to pass costs through", suf="%")}
 </fieldset>"""
-        quote_out = """
+        quote_out = f"""
 <ul class="lines">
-<li><span>Project labor at your rate card</span><span data-out="quoteLabor" data-fmt="money2">$0</span></li>
+<li><span>{E(w["projectLabor"])}</span><span data-out="quoteLabor" data-fmt="money2">$0</span></li>
 <li><span>Costs with markup</span><span data-out="quoteMaterials" data-fmt="money2">$0</span></li>
-<li class="total"><span>Project quote</span><span data-out="quote" data-fmt="money2">$0</span></li>
+<li class="total"><span>{E(w["projectQuote"])}</span><span data-out="quote" data-fmt="money2">$0</span></li>
 </ul>
 <details><summary>The rate you need if you bill more of your week</summary><ul class="lines">
 <li><span>50% of your hours billed</span><span data-out="rateAt50">$0</span></li>
@@ -153,7 +158,7 @@ def hourly_page(p):
 <fieldset><legend>What you want to take home</legend>
 {field("takeHome", "Take-home pay you want per year", d["takeHome"], "After tax", pre="$")}
 {field("taxRate", "Tax set-aside rate", d["taxRate"], "Share of profit you set aside for tax", suf="%")}
-{field("expenses", "Business expenses per year", d["expenses"], "Software, insurance, equipment, fees", pre="$")}
+{field("expenses", w["expenses"][0], d["expenses"], w["expenses"][1], pre="$")}
 </fieldset>
 <fieldset><legend>Your working time</legend>
 {field("weeks", "Weeks you work per year", d["weeks"])}
@@ -1157,7 +1162,66 @@ PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
     return form, results, script
 
 
-PAGE_KINDS = {"service": service_page, "hourly": hourly_page, "cashflow": cashflow_page,
+def service_sqft_page(p):
+    """#22 per square foot view: the #13 engine's job quote divided by the job's area (PNF.serviceSqft)."""
+    d = p["defaults"]
+    presets = p["presets"]  # [label, sq ft, hours, people, supplies, miles]: only jobs the workbook sizes
+    opts = "".join(f'<option value="{i}"{" selected" if i == 0 else ""}>{E(x[0])}</option>' for i, x in enumerate(presets))
+    q0 = presets[0]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>The job</legend>
+<div class="row pick"><label for="preset">Start from an example job<small>From the workbook's price sheet. Change any number.</small></label>
+<div class="field"><select id="preset">{opts}</select></div></div>
+{field("area", "Area to clean, in sq ft", q0[1], "Measure it: length times width")}
+{field("jobHours", "Hours on site per person", q0[2], "How long a job this size takes you")}
+{field("people", "People on the job", q0[3])}
+{field("supplies", "Supplies for this job", q0[4], "Chemicals, sealer, stain", pre="$")}
+{field("miles", "Round-trip miles", q0[5])}
+{field("checkPerSqFt", "A per-sq-ft price to check", d["checkPerSqFt"], "What you charge now, or a price you saw quoted", pre="$")}
+</fieldset>
+<fieldset><legend>Your year</legend>
+{field("takeHome", "Take-home pay you want", d["takeHome"], "What you keep after tax, per year", pre="$")}
+{field("weeks", "Weeks you work per year", d["weeks"], "52 minus vacation and rain weeks")}
+{field("hours", "Hours you work per week, all of it", d["hours"], "Driving, quoting and admin included")}
+{field("paidShare", "Share of those hours customers pay for", d["paidShare"], "Not sure? Try 60 to 70", suf="%")}
+</fieldset>
+<fieldset><legend>Costs and taxes</legend>
+{field("monthlyCosts", "Business costs per month", d["monthlyCosts"], p["costs_hint"], pre="$")}
+{field("incomeTax", "Income tax rate, your estimate", d["incomeTax"], "Self-employment tax of 15.3% is added for you", suf="%")}
+{field("margin", "Profit margin in quotes", d["margin"], "", suf="%")}
+{field("perMile", "Vehicle cost per mile", d["perMile"], "IRS business rate: 76 cents (Jul to Dec 2026)", pre="$")}
+{field("mph", "Average speed between jobs", d["mph"], "Miles per hour")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Your price per sq ft</div><div class="val" data-out="perSqFt">$0</div><div class="sub">For this job: <span data-out="quote" data-fmt="money0">$0</span></div></div>
+<div class="tile"><div class="lab">Floor per sq ft</div><div class="val" data-out="floorPerSqFt">$0</div><div class="sub">Zero profit</div></div>
+<div class="tile"><div class="lab">Sq ft per person-hour</div><div class="val" data-out="sqftPerHour" data-fmt="int">0</div><div class="sub">Your speed on this job</div></div>
+<div class="tile"><div class="lab">Break-even per paid hour</div><div class="val" data-out="breakEven">$0</div></div>
+</div>
+<ul class="lines">
+<li><span>Your time on site</span><span data-out="labor">$0</span></li>
+<li><span>Drive time</span><span data-out="driveCost">$0</span></li>
+<li><span>Vehicle</span><span data-out="vehicle">$0</span></li>
+<li><span>Supplies</span><span data-out="supplies">$0</span></li>
+<li class="total"><span>Price floor, zero profit</span><span data-out="floor">$0</span></li>
+<li><span>At the per-sq-ft price you are checking</span><span data-out="checkPrice">$0</span></li>
+</ul>
+<div class="callout warn" data-show-if="checkShort > 0">That per-sq-ft price comes to <b data-out="checkPrice">$0</b> for this job, <b data-out="checkLoss">$0</b> under your floor.</div>
+<div class="callout" data-show-if="checkOk > 0">That per-sq-ft price covers your floor on this job.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Per sq ft <b data-out="perSqFt">$0</b></span><span>Job <b data-out="quote" data-fmt="money0">$0</b></span></div>"""
+    presets_js = json.dumps([x[1:] for x in presets])
+    script = f"""<script>
+(function(){{var f=document.getElementById("calc"),P={presets_js};
+document.getElementById("preset").addEventListener("change",function(e){{var v=P[+e.target.value];
+["area","jobHours","people","supplies","miles"].forEach(function(k,i){{document.getElementById(k).value=v[i];}});
+f.dispatchEvent(new Event("input"));}});
+PNF.wire(f,PNF.serviceSqft);}})();</script>"""
+    return form, results, script
+
+
+PAGE_KINDS = {"service": service_page, "service_sqft": service_sqft_page, "hourly": hourly_page, "cashflow": cashflow_page,
               "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
               "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
               "reorder_point": reorder_point_page, "str_breakeven": str_breakeven_page,

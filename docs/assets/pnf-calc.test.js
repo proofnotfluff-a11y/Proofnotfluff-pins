@@ -14,6 +14,14 @@ check("#20 rate card", h.rateCard, 75);
 check("#20 revenue at $40", h.checkRevenue, 46080);
 check("#20 take-home at $40", h.keep, 30060);
 check("#20 per hour worked at $40", h.keepPerHour, 15.66);
+// #23 Junk Removal Pricing Calculator price sheet, truck loads (recalculated workbook, Oct 13, 2026)
+const JR = { takeHome: 60000, weeks: 48, hours: 50, paidShare: 60, incomeTax: 12, margin: 15, monthlyCosts: 715, perMile: 0.76, mph: 30 };
+[["1/8 load", 0.5, 20, 229.89, 275], ["1/4 load", 1, 40, 312.25, 370], ["1/2 load", 1.5, 75, 409.62, 485],
+ ["3/4 load", 2, 110, 506.98, 600], ["full load", 2.5, 150, 609.34, 720]].forEach(function (t) {
+  const r = P.service(Object.assign({}, JR, { jobHours: t[1], people: 2, supplies: t[2], miles: 30 }));
+  check("#23 " + t[0] + " floor", r.floor, t[3]);
+  check("#23 " + t[0] + " quote", r.quote, t[4]);
+});
 // #13 Service Pricing Calculator example
 const s = P.service({ takeHome: 52000, weeks: 48, hours: 45, paidShare: 65, incomeTax: 12, margin: 15, monthlyCosts: 545,
   perMile: 0.76, mph: 30, jobHours: 2.5, people: 1, supplies: 8, miles: 15 });

@@ -2866,6 +2866,110 @@
     "engines/service-pricing/build_xlsx.py --edition editions/pressure-washing.json recalculated in LibreOffice Oct 13: '1 Your Numbers' I21 64.89; '4 Price Sheet' E19 283.13 F19 335 (Deck clean, brighten, 300 sq ft), E20 721.16 F20 850 (Deck clean and stain, 300 sq ft); '3 Quote Builder' with the deck job and D32=150: D33 -133.13.",
     "docs/assets/pnf-calc.test.js #22 sq ft checks."
    ]
+  },
+  {
+   "slug": "junk-removal-pricing-calculator-by-truck-load",
+   "kind": "service",
+   "draft": true,
+   "product": "23",
+   "segment": "home-services",
+   "title": "Junk Removal Price Per Truck Load Calculator: 1/8 to Full Load Prices | ProofNotFluff",
+   "desc": "Free junk removal price per truck load calculator. Price a 1/8, quarter, half, three-quarter or full truck load from your own pay goal, crew, drive time and dump fees.",
+   "eyebrow": "Free calculator",
+   "h1": "Junk Removal Price Per Truck Load Calculator",
+   "lede": "Pick a load size, from a 1/8 minimum load to a full truck, and get the price that pays your goal, both people on the truck, the drive and the dump fee. Your break-even rate and the load's price floor come with it. Free, no sign-up.",
+   "card": "Your price for a 1/8, quarter, half, three-quarter or full truck load, crew, drive and dump fees counted.",
+   "defaults": {
+    "takeHome": "60,000",
+    "weeks": "48",
+    "hours": "50",
+    "paidShare": "60",
+    "monthlyCosts": "715",
+    "incomeTax": "12",
+    "margin": "15",
+    "perMile": "0.76",
+    "mph": "30"
+   },
+   "costs_hint": "Insurance, trailer and equipment, dollies and straps, ads, apps, fees",
+   "presets": [
+    [
+     "Minimum load, 1/8 truck",
+     0.5,
+     2,
+     20,
+     30
+    ],
+    [
+     "Quarter truck load",
+     1,
+     2,
+     40,
+     30
+    ],
+    [
+     "Half truck load",
+     1.5,
+     2,
+     75,
+     30
+    ],
+    [
+     "Three-quarter truck load",
+     2,
+     2,
+     110,
+     30
+    ],
+    [
+     "Full truck load",
+     2.5,
+     2,
+     150,
+     30
+    ]
+   ],
+   "preset_default": 2,
+   "method": [
+    "A load-size price list copied from another hauler only fits if your crew, your drive, your dump and your pay goal match theirs. This calculator builds each load's price from your own numbers instead.",
+    "It grosses your take-home up for self-employment tax (15.3% on 92.35% of profit) and your income tax estimate, adds a year of business costs, and spreads the total over the hours customers pay for. That is your break-even rate. A load's floor is every crew member's time on site and drive time at that rate, plus vehicle cost per mile and the supplies and dump fee for that load. The quote adds your margin and rounds up to the next $5.",
+    "Bigger loads take longer to load and cost more to dump, so the price does not scale in straight fractions: the drive and the trip cost about the same for a 1/8 load as for a full one."
+   ],
+   "example": "The Junk Removal Pricing Calculator's example business wants $60,000 take-home with a 12% income tax estimate and $715 a month of costs, works 48 weeks of 50 hours and is paid for 60% of them: a break-even rate of $62.36 per paid hour. With 2 people, a 30-mile round trip and the dump fee counted in supplies, its price sheet quotes a 1/8 minimum load at $275, a quarter load at $370, a half load at $485, a three-quarter load at $600 and a full truck at $720. The half load's floor is $409.62 (1.5 hours on site each and $75 of supplies and dump fees), so $485 leaves $75.38 of profit. A full load is 2.6 times the price of a 1/8 load, not 8 times, because the drive costs the same.",
+   "cta": {
+    "title": "Price every job at once",
+    "bullets": [
+     "The Junk Removal Pricing Calculator workbook uses this same maths for Excel and Google Sheets:",
+     "19 example jobs from single items to estate cleanouts, a quote builder, a printable price sheet and a job tracker. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4590270056"
+   },
+   "faq": [
+    [
+     "How much should I charge for a full truck load of junk?",
+     "It depends on your pay goal, costs, crew, drive and dump fees. With the example numbers a full load for 2 people, 2.5 hours on site each and $150 of supplies and dump fees quotes at $720. Enter your own numbers to see yours."
+    ],
+    [
+     "Why is a half load not half the price of a full load?",
+     "Drive time, the vehicle and the trip to the dump cost about the same whatever the load size, so small loads carry more of them. In the example a half load quotes at $485 and a full load at $720."
+    ],
+    [
+     "What is a minimum load?",
+     "The smallest job you take, often a 1/8 truck: a few bags or one bulky item. The example prices it at $275 so a short job still pays the drive and both people."
+    ],
+    [
+     "Where do dump fees go?",
+     "Put dump, recycling and disposal fees in supplies for the load. Put the extra miles for each dump run in round-trip miles."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
+    ]
+   ],
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, irs.gov/taxtopics/tc554). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS Standard Mileage Rates page, irs.gov/tax-professionals/standard-mileage-rates). Checked Oct 13, 2026. Load sizes and prices from the Junk Removal Pricing Calculator workbook price sheet, recalculated Oct 13, 2026.",
+   "number_sources": [
+    "engines/service-pricing/build_xlsx.py --edition engines/service-pricing/editions/junk-removal.json (4 Price Sheet rows 16 to 20, recalculated Oct 13, 2026)"
+   ]
   }
  ]
 }

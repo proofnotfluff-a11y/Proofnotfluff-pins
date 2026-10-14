@@ -179,13 +179,24 @@ def run():
                     # quest tick in the quest list approves too
                     page.click(f'#quests button[data-q="approve-pins-{wk}"]'); page.wait_for_timeout(400)
                     assert page.locator("#pinPick .pill").first.inner_text().strip().lower() == "approved", "quest tick did not approve"
+                    data = page.evaluate("window.__data")
+                    assert data["pinweeks"][wk]["status"] == "approved", "quest tick did not mirror to the pin week"
+                    # unticking the quest puts the week back to waiting, ticking approves again
+                    page.click("#qt-done"); page.wait_for_timeout(200)
+                    page.click(f'#quests button[data-q="approve-pins-{wk}"]'); page.wait_for_timeout(400)
+                    data = page.evaluate("window.__data")
+                    assert data["pinweeks"][wk]["status"] == "waiting" and data["quests"][f"approve-pins-{wk}"]["done"] is False, "untick did not mirror"
+                    assert page.locator("#pinPick .pill").first.inner_text().strip().lower() == "waiting for you"
+                    page.click("#qt-todd"); page.wait_for_timeout(200)
+                    page.click(f'#quests button[data-q="approve-pins-{wk}"]'); page.wait_for_timeout(400)
+                    assert page.evaluate("window.__data")["pinweeks"][wk]["status"] == "approved"
                     # write failure renders read-only
                     page.evaluate("window.__failWrites=true")
                     page.click("#ppBody details.pp-more summary") if page.locator('#ppBody button.pp-pin[data-n="6"]').is_hidden() else None
                     page.wait_for_timeout(200)
                     page.click('#ppBody button.pp-pin[data-n="6"]'); page.wait_for_timeout(400)
                     assert page.locator('#ppBody button.pp-pin[data-n="6"]').is_disabled(), "not read-only after refused write"
-                    assert "Only the shop's owner" in page.locator("#ppBody").inner_text()
+                    assert "read-only" in page.locator("#ppBody").inner_text()
                 if width == 390:
                     page.screenshot(path=f"{OUT}/{tag}-full.png", full_page=True)
                 ctx.close()

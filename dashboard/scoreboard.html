@@ -573,8 +573,13 @@ function renderQuests(){
 async function toggleQuest(id,btn){
   const q=state.quests.find(x=>x.id===id);if(!q||!state.db||!state.canWrite)return;
   btn.disabled=true;
-  try{await state.db.doc("quests/"+id).update({done:!q.done,doneAt:!q.done?new Date().toISOString():null})}
-  catch(e){if(e&&e.code==="invalid_argument"){state.canWrite=false;renderQuests()}}
+  const on=!q.done,now=new Date().toISOString();
+  try{
+    await queueWrite("quests/"+id,{done:on,doneAt:on?now:null});
+    /* a pin week's quest and its Approve button stay in step */
+    if(id.startsWith("approve-pins-")){const wid=id.slice(13);if(state.pinweeks.some(w=>w.id===wid))await queueWrite("pinweeks/"+wid,on?{status:"approved",approvedAt:now}:{status:"waiting",approvedAt:null})}
+  }
+  catch(e){if(e&&e.code==="invalid_argument"){state.canWrite=false;state.ppSig="";renderQuests();renderPins()}}
   finally{btn.disabled=!state.canWrite}
 }
 const ICONS={
@@ -672,7 +677,8 @@ function pinTile(w,p){
   const flag={keep:tick,drop:"Dropped",done:"Published",skip:"Skipped"}[s];
   const why={keep:"Will publish. Activate to drop it.",drop:"Dropped. Activate to keep it.",done:"Already published.",skip:"Skipped: "+((w.skipped&&w.skipped[k])||"its run passed")+"."}[s];
   const label=`Pin ${p.n}, ${dayLabel(p.day)} ${slot.toLowerCase()}${prod?", product "+prod:""}: ${p.title||""}. ${why}`;
-  const img=p.thumb?`<img src="/_blob/${encodeURIComponent(p.thumb)}" alt="" loading="lazy" decoding="async">`:`<span class="ph">${esc(p.title||"Pin "+p.n)}</span>`;
+  const t=String(p.thumb||""),src=/^(\/|https:\/\/)/.test(t)?t:(t?"/_blob/"+encodeURIComponent(t):"");
+  const img=src?`<img src="${esc(src)}" alt="" loading="lazy" decoding="async">`:`<span class="ph">${esc(p.title||"Pin "+p.n)}</span>`;
   const off=s==="done"||s==="skip"||!state.canWrite;
   return `<button type="button" class="pp-pin ${s}" data-w="${esc(w.id)}" data-n="${esc(k)}" aria-pressed="${s==="keep"||s==="done"}" aria-label="${esc(label)}"${off?" disabled":""}><span class="pp-img">${img}</span><span class="pp-flag${s==="keep"?" ok":""}" aria-hidden="true">${flag}</span><span class="pp-meta" aria-hidden="true"><span>${esc(k)} · ${slot}</span><span>${esc(prod)}</span></span><span class="pp-title" aria-hidden="true">${esc(p.title||"")}</span></button>`;
 }
@@ -701,7 +707,7 @@ function renderPins(){
   if(waiting.length){const w=waiting[0];ban.innerHTML=`<span><b>${fmt(weekCounts(w).keep)} pins</b> for ${esc(dayLabel(w.from))} to ${esc(dayLabel(w.to))} wait for your pick, about 3 minutes</span><span class="go">Review</span>`;ban.hidden=false}else ban.hidden=true;
   if(!weeks.length){card.hidden=true;$("ppBody").innerHTML="";return}
   const f=document.activeElement,keep=f&&f.classList&&f.classList.contains("pp-pin")?[f.dataset.w,f.dataset.n]:null;
-  $("ppBody").innerHTML=weeks.map(weekBlock).join("")+(state.canWrite?"":`<div class="empty">Only the shop's owner can pick pins.</div>`);
+  $("ppBody").innerHTML=weeks.map(weekBlock).join("")+(state.canWrite?"":`<div class="empty">This view is read-only, so pins can't be picked here.</div>`);
   card.hidden=false;
   const body=$("ppBody");
   body.querySelectorAll("button.pp-pin").forEach(b=>b.addEventListener("click",()=>togglePin(b.dataset.w,b.dataset.n)));

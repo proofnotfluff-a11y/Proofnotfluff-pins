@@ -2974,7 +2974,7 @@
   {
    "slug": "day-rate-calculator",
    "kind": "day_rate",
-   "draft": true,
+   "draft": false,
    "product": "20",
    "segment": "home-services",
    "title": "Day Rate Calculator: The Day Rate Your Year Needs, With Unbilled Days Counted | ProofNotFluff",
@@ -3044,7 +3044,7 @@
   {
    "slug": "cleaning-price-per-square-foot-calculator",
    "kind": "cleaning_sqft",
-   "draft": true,
+   "draft": false,
    "product": "14",
    "segment": "home-services",
    "title": "Cleaning Price Per Square Foot Calculator: Price a House Clean From Its Size | ProofNotFluff",

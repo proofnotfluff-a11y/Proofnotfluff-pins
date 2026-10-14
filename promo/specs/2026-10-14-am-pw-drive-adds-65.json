@@ -1,0 +1,104 @@
+{
+  "product_id": "22",
+  "listing_id": "4590258713",
+  "product": "Pressure Washing Pricing Calculator",
+  "tab": "",
+  "audience": "Anyone who quotes jobs and drives to them",
+  "hookId": "H03",
+  "scope": "broad",
+  "series": "Flagship #22 (SALES FIRST); week of Oct 12 theme day 3 (the rate that covers your unpaid hours: here the unpaid drive); H03 cost nobody quotes, broad scope; CMO slate Oct 14 am",
+  "voice": "am_michael",
+  "mood": "tension",
+  "hook": "A long drive adds <b>$65</b> to the same job",
+  "hook_say_short": "The drive adds $65 to this job.",
+  "hook_say": "A 3-hour job quoted at $355 looks fine. Put the house 40 miles away, round trip, and the drive adds $65 to the price.",
+  "rows": [
+    {
+      "label": "Time on the job",
+      "value": "3 hrs, 1 person",
+      "input": true,
+      "say": "A 3-hour job, one person",
+      "why": "The calculator's example job: a 2-story house wash, 3 hours on site for one person, $45 of supplies."
+    },
+    {
+      "label": "Quote with a 20-mile round trip",
+      "value": "$355",
+      "result": true,
+      "say": "20 miles round trip, you quote $355",
+      "why": "Your time at break-even, the drive, mileage and supplies, plus 15% profit, rounded up to $5."
+    },
+    {
+      "label": "Same job, 40-mile round trip",
+      "value": "1 hr 20 min driving",
+      "input": true,
+      "say": "Now it is 40 miles round trip",
+      "why": "40 miles at 30 miles an hour is 1 hour 20 minutes nobody pays you for."
+    },
+    {
+      "label": "Drive time + mileage, 40 miles",
+      "value": "$116.92",
+      "result": true,
+      "kind": "bad",
+      "say": "The drive now costs $116.92",
+      "why": "$86.52 of your time at break-even plus $30.40 of vehicle cost at 76 cents a mile."
+    },
+    {
+      "label": "Extra the far job needs",
+      "value": "$65",
+      "result": true,
+      "say": "The far job needs $65 more",
+      "why": "$420 minus $355, the same profit share. Charge $355 and you sit under the $356.59 price floor."
+    }
+  ],
+  "fix": {
+    "label": "Quote with a 40-mile round trip",
+    "value": "$420",
+    "say": "So quote it at $420, or add a $65 trip fee",
+    "why": "Set your own miles in the calculator and it quotes the trip for you."
+  },
+  "cta": {
+    "title": "Pressure Washing Pricing Calculator",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Search ProofNotFluff for the free pressure washing price calculator and the full workbook.",
+    "what": "Free calculator online. Full workbook $2.99 for Excel and Google Sheets"
+  },
+  "note": "Example numbers from the calculator. Estimates only.",
+  "sources": [
+    {
+      "number": "3 hrs, 1 person, $45",
+      "source": "2 Trade Presets row 16 'House wash - 2-story house, soft wash' E16 3, F16 1, G16 45, H16 20"
+    },
+    {
+      "number": "$355",
+      "source": "3 Quote Builder with D14 = 'House wash - 2-story house, soft wash', D23 blank (preset 20 mi): I34 355; 4 Price Sheet F16 355"
+    },
+    {
+      "number": "1 hr 20 min",
+      "source": "D23 = 40: I25 1.3333 hrs drive time per person (40 mi / I39 30 mph)"
+    },
+    {
+      "number": "$116.92",
+      "source": "D23 = 40: I28 86.52 drive time + I29 30.40 vehicle (I38 $0.76 a mile)"
+    },
+    {
+      "number": "$420",
+      "source": "D23 = 40: I34 420, C7 420"
+    },
+    {
+      "number": "$356.59",
+      "source": "D23 = 40: I32 356.594 price floor (why caption only)"
+    },
+    {
+      "number": "$65",
+      "source": "I34 at 40 mi (420) minus I34 at 20 mi (355)"
+    }
+  ],
+  "sources_build": "python3 engines/service-pricing/build_xlsx.py --edition engines/service-pricing/editions/pressure-washing.json (the listed #22 build), recalculated in LibreOffice headless Oct 14, 2026, 5:40 am; only D14 and D23 changed.",
+  "post": {
+    "short_title": "A long drive adds $65 to the same job #Shorts",
+    "youtube_description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/22/\nhttps://proofnotfluff-a11y.github.io/Proofnotfluff-pins/pressure-washing-price-calculator/\nA 3-hour job quoted at $355 with a 20-mile round trip. Move the house to a 40-mile round trip and the drive costs $116.92 in unpaid time and mileage, so the same job needs $65 more: quote $420 or add a trip fee. Example numbers from the Pressure Washing Pricing Calculator; estimates only.\n\n#Shorts",
+    "reel_caption": "A long drive adds $65 to the same job. On a 40-mile round trip the drive costs $116.92 in unpaid time and mileage, so a $355 quote becomes $420. Example numbers from the Pressure Washing Pricing Calculator.\n\nLink in bio: proofnotfluff.etsy.com\n\n#pressurewashing #smallbusinesstips #pricingstrategy #softwash",
+    "tiktok_caption": "A long drive adds $65 to the same job: $355 becomes $420 at 40 miles round trip. Example numbers from the Pressure Washing Pricing Calculator. Search ProofNotFluff on Etsy. #pressurewashing #smallbusinesstips #pricingstrategy #softwash"
+  }
+}

@@ -1221,7 +1221,108 @@ PNF.wire(f,PNF.serviceSqft);}})();</script>"""
     return form, results, script
 
 
-PAGE_KINDS = {"service": service_page, "service_sqft": service_sqft_page, "hourly": hourly_page, "cashflow": cashflow_page,
+def day_rate_page(p):
+    """#20 in days: the Hourly Rate Quick Calculator's Calculator tab with the week entered as days x hours (PNF.dayRate)."""
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>What you want to take home</legend>
+{field("takeHome", "Take-home pay you want per year", d["takeHome"], "After tax", pre="$")}
+{field("taxRate", "Tax set-aside rate", d["taxRate"], "Share of profit you set aside for tax", suf="%")}
+{field("expenses", "Business expenses per year", d["expenses"], p["expenses_hint"], pre="$")}
+</fieldset>
+<fieldset><legend>Your working time</legend>
+{field("weeks", "Weeks you work per year", d["weeks"], "52 minus holidays, sick days and time off")}
+{field("daysPerWeek", "Days you work per week", d["daysPerWeek"])}
+{field("hoursPerDay", "Hours in a working day", d["hoursPerDay"], "The length of a day you would bill as one day")}
+{field("billableShare", "Share of your working time a client pays for", d["billableShare"], "Quoting, travel, admin and gaps between jobs are the rest", suf="%")}
+</fieldset>
+<fieldset><legend>Check a day rate you are considering</legend>
+{field("checkDayRate", "Day rate to check", d["checkDayRate"], pre="$")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Your minimum day rate</div><div class="val" data-out="dayRate">$0</div><div class="sub">Per billed day</div></div>
+<div class="tile"><div class="lab">Hourly equivalent</div><div class="val" data-out="rate">$0</div><div class="sub">Rate card: <span data-out="rateCard" data-fmt="money0">$0</span> an hour</div></div>
+<div class="tile"><div class="lab">Billable days a year</div><div class="val" data-out="billableDays" data-fmt="dec1">0</div></div>
+<div class="tile"><div class="lab">Days you work a year</div><div class="val" data-out="daysWorked" data-fmt="int">0</div></div>
+</div>
+<ul class="lines">
+<li><span>Revenue you need</span><span data-out="revenue" data-fmt="money0">$0</span></li>
+<li class="total"><span>At the day rate you are checking, you keep</span><span data-out="keep" data-fmt="money0">$0</span></li>
+<li><span>Per day you actually work</span><span data-out="keepPerDay">$0</span></li>
+</ul>
+<div class="callout warn" data-show-if="shortBy > 0">That day rate leaves you <b data-out="shortBy" data-fmt="money0">$0</b> a year short of your goal.</div>
+<div class="callout" data-show-if="shortBy < 0.01">That day rate meets your take-home goal.</div>
+<details><summary>The day rate you need if you bill more of your time</summary><ul class="lines">
+<li><span>50% of your time billed</span><span data-out="dayAt50">$0</span></li>
+<li><span>60% of your time billed</span><span data-out="dayAt60">$0</span></li>
+<li><span>70% of your time billed</span><span data-out="dayAt70">$0</span></li>
+<li><span>80% of your time billed</span><span data-out="dayAt80">$0</span></li>
+</ul></details>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Day rate <b data-out="dayRate">$0</b></span><span>Hourly <b data-out="rate">$0</b></span></div>"""
+    script = '<script>PNF.wire(document.getElementById("calc"),PNF.dayRate);</script>'
+    return form, results, script
+
+
+def cleaning_sqft_page(p):
+    """#14 Price Sheet row: a home's price from its square feet (PNF.cleaningSqft)."""
+    d = p["defaults"]
+    sv = "".join(f'<option value="{i}"{" selected" if i == 0 else ""}>{E(t)}</option>' for i, t in
+                 enumerate(["Standard clean", "Deep clean", "Move-in or move-out (empty home)"]))
+    fq = "".join(f'<option value="{i}"{" selected" if i == 0 else ""}>{E(t)}</option>' for i, t in
+                 enumerate(["One time", "Monthly (5% off)", "Every 2 weeks (10% off)", "Weekly (15% off)"]))
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>The home</legend>
+{field("sqft", "Home size, in sq ft", d["sqft"], "From the listing or the client")}
+<div class="row pick"><label for="serviceType">Service<small>Deep takes 1.75 times as long, move-out 2 times</small></label>
+<div class="field"><select id="serviceType" data-in="serviceType">{sv}</select></div></div>
+<div class="row pick"><label for="freq">How often<small>The kit's example discounts. Change them in the workbook.</small></label>
+<div class="field"><select id="freq" data-in="freq">{fq}</select></div></div>
+{field("miles", "Round-trip miles", d["miles"])}
+</fieldset>
+<fieldset><legend>How fast you clean</legend>
+{field("minPer1000", "Person-minutes per 1,000 sq ft", d["minPer1000"], "Standard clean, one person. Time a few of your own")}
+{field("minCharge", "Minimum charge per visit", d["minCharge"], "No price goes below this", pre="$")}
+</fieldset>
+<fieldset><legend>Your year</legend>
+{field("takeHome", "Take-home pay you want", d["takeHome"], "What you keep after tax, per year", pre="$")}
+{field("weeks", "Weeks you work per year", d["weeks"], "52 minus vacation and slow weeks")}
+{field("hours", "Hours you work per week, all of it", d["hours"], "Driving, quoting and admin included")}
+{field("paidShare", "Share of those hours you are cleaning", d["paidShare"], "Not sure? Try 60 to 70", suf="%")}
+</fieldset>
+<fieldset><legend>Costs and taxes</legend>
+{field("monthlyCosts", "Business costs per month", d["monthlyCosts"], p["costs_hint"], pre="$")}
+{field("incomeTax", "Income tax rate, your estimate", d["incomeTax"], "Self-employment tax of 15.3% is added for you", suf="%")}
+{field("margin", "Profit margin in prices", d["margin"], "", suf="%")}
+{field("perMile", "Vehicle cost per mile", d["perMile"], "IRS business rate: 76 cents (Jul to Dec 2026)", pre="$")}
+{field("mph", "Average speed between jobs", d["mph"], "Miles per hour")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Your price per sq ft</div><div class="val" data-out="perSqFt" data-fmt="money3">$0</div><div class="sub">This visit: <span data-out="visit" data-fmt="money0">$0</span></div></div>
+<div class="tile"><div class="lab">Per 1,000 sq ft</div><div class="val" data-out="per1000">$0</div></div>
+<div class="tile"><div class="lab">One-time price</div><div class="val" data-out="oneTime" data-fmt="money0">$0</div><div class="sub">Before any discount</div></div>
+<div class="tile"><div class="lab">Break-even per clean hour</div><div class="val" data-out="breakEven">$0</div></div>
+</div>
+<ul class="lines">
+<li><span>Cleaning hours (<span data-out="cleanHours" data-fmt="hrs">0</span>) and drive time at break-even</span><span data-out="laborCost">$0</span></li>
+<li><span>Vehicle</span><span data-out="vehicle">$0</span></li>
+<li><span>Supplies for this service</span><span data-out="supplies">$0</span></li>
+<li class="total"><span>Price floor, zero profit</span><span data-out="floor">$0</span></li>
+<li><span>Floor per sq ft</span><span data-out="floorPerSqFt" data-fmt="money3">$0</span></li>
+</ul>
+<div class="callout" data-show-if="atMinimum > 0">This home prices at your minimum charge, so its per-sq-ft price is higher than a bigger home's.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Per sq ft <b data-out="perSqFt" data-fmt="money3">$0</b></span><span>Visit <b data-out="visit" data-fmt="money0">$0</b></span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+f.querySelectorAll("select").forEach(function(s){s.addEventListener("change",function(){f.dispatchEvent(new Event("input"));});});
+PNF.wire(f,PNF.cleaningSqft);})();</script>"""
+    return form, results, script
+
+
+PAGE_KINDS = {"day_rate": day_rate_page, "cleaning_sqft": cleaning_sqft_page, "service": service_page, "service_sqft": service_sqft_page, "hourly": hourly_page, "cashflow": cashflow_page,
               "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
               "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
               "reorder_point": reorder_point_page, "str_breakeven": str_breakeven_page,

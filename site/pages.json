@@ -2970,6 +2970,147 @@
    "number_sources": [
     "engines/service-pricing/build_xlsx.py --edition engines/service-pricing/editions/junk-removal.json (4 Price Sheet rows 16 to 20, recalculated Oct 13, 2026)"
    ]
+  },
+  {
+   "slug": "day-rate-calculator",
+   "kind": "day_rate",
+   "draft": true,
+   "product": "20",
+   "segment": "home-services",
+   "title": "Day Rate Calculator: The Day Rate Your Year Needs, With Unbilled Days Counted | ProofNotFluff",
+   "desc": "Free day rate calculator. Enter the take-home you want, your tax set-aside, business expenses, working days and the share of your time clients pay for to get your minimum day rate and test the rate you charge now.",
+   "eyebrow": "Free calculator",
+   "h1": "Day Rate Calculator",
+   "lede": "Work out the day rate that pays your take-home goal once taxes, business expenses and the days nobody pays for (quoting, travel, admin, gaps between jobs) are counted. Test the day rate you charge now. Free, no sign-up.",
+   "card": "Your minimum day rate from your take-home goal, expenses and billed share of your time, plus a check on any day rate.",
+   "defaults": {
+    "takeHome": "65,000",
+    "taxRate": "25",
+    "expenses": "14,000",
+    "weeks": "48",
+    "daysPerWeek": "5",
+    "hoursPerDay": "10",
+    "billableShare": "55",
+    "checkDayRate": "450"
+   },
+   "expenses_hint": "Truck or equipment, insurance, tools, software, licenses, phone",
+   "method": [
+    "A day rate has to pay for every day you work, not only the days a client books. Quotes, travel, buying supplies, admin and the gaps between jobs all take time, and expenses run whether a day is billed or not.",
+    "This calculator grosses your take-home up for the tax share you set aside, adds a year of business expenses, and spreads that revenue over the time clients actually pay for: your weeks times your days times the share of your time that is billed. Revenue divided by billed days is your minimum day rate; divided by billed hours it is the hourly equivalent, and the rate card rounds that hour up to the next $5.",
+    "To test a day rate, it multiplies the rate by your billed days, takes out expenses and your tax set-aside on any profit, and divides what is left by every day you work. It is the Hourly Rate Quick Calculator's maths with your week entered in days."
+   ],
+   "example": "A contractor who wants $65,000 a year take-home, sets aside 25% for tax and spends $14,000 a year on the truck, insurance and tools needs $100,667 of revenue. Working 48 weeks of five 10-hour days is 240 days, and with 55% of that time billed, clients pay for 132 days. The minimum day rate is $762.63, or $76.26 an hour (rate card $80). Charging $450 a day brings in $59,400 and leaves $34,050 after expenses and tax: $141.88 for every day worked, $30,950 short of the goal. Billing 80% of the time instead of 55% would bring the minimum day rate down to $524.31.",
+   "cta": {
+    "title": "Keep it, change it, quote with it",
+    "bullets": [
+     "The Hourly Rate Quick Calculator is the same maths as a one-tab Excel and Google Sheets workbook,",
+     "with a quick job quote, the billable-share table, a rate card and a Start Here guide. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4589695837"
+   },
+   "faq": [
+    [
+     "How do I calculate my day rate?",
+     "Add the tax you set aside to the take-home you want, add a year of business expenses, then divide by the days clients actually pay for. With the example numbers that is $100,667 over 132 billed days, or $762.63 a day."
+    ],
+    [
+     "Why is my day rate higher than my old daily pay?",
+     "An employer paid for the equipment, the insurance and the days spent on admin, travel and waiting for work. On your own you pay for all of that from your rate, and only the billed share of your days earns it."
+    ],
+    [
+     "What share of my time is billed?",
+     "Track a few weeks: divide the days or hours a client paid for by all the time you worked, quoting and travel included. The example's 55% is a starting point, not a benchmark. The table under the results shows the day rate at 50%, 60%, 70% and 80% billed."
+    ],
+    [
+     "Should I set a day rate or an hourly rate?",
+     "Both come from the same revenue. The calculator shows the hourly equivalent next to the day rate, so you can quote either way and get the same year."
+    ],
+    [
+     "What tax set-aside rate should I use?",
+     "Ask your tax preparer. A set-aside rate is a savings habit you choose, not a tax calculation, and this calculator does not tell you which rate to use."
+    ],
+    [
+     "Is this tax or financial advice?",
+     "No. It is a planning estimate based on the numbers you enter."
+    ]
+   ],
+   "sources": "No outside rates are used on this page; the tax set-aside is your own estimate. Maths from the Hourly Rate Quick Calculator workbook with the example's inputs entered as 5 days of 10 hours, recalculated Oct 13, 2026.",
+   "number_sources": [
+    "engines/hourly-rate-quick-calculator/build_xlsx.py, Calculator D15=65000, D16=25%, D17=14000, D19=48, D20=50 (5 x 10), D21=55%, D27=45 ($450 a day / 10), recalculated in LibreOffice Oct 13: I17 100666.67, I19 2400, I20 1320, I21 76.26 (x10 = 762.63), D28 59400, D31 34050, C33 short by $30,950. Second case D15=50000, D16=20%, D17=9000, D19=46, D20=32, D21=60%, D27=75: I21 80.96, D31 45792.",
+    "docs/assets/pnf-calc.test.js #20 day checks."
+   ]
+  },
+  {
+   "slug": "cleaning-price-per-square-foot-calculator",
+   "kind": "cleaning_sqft",
+   "draft": true,
+   "product": "14",
+   "segment": "home-services",
+   "title": "Cleaning Price Per Square Foot Calculator: Price a House Clean From Its Size | ProofNotFluff",
+   "desc": "Free cleaning price per square foot calculator. Enter the home's square feet, the service, how often and your own pay goal, costs and cleaning speed to get your price per sq ft and the visit price.",
+   "eyebrow": "Free calculator",
+   "h1": "Cleaning Price Per Square Foot Calculator",
+   "lede": "Turn a home's square feet into a cleaning price that pays your goal, your costs and self-employment tax, then read it per square foot. Pick standard, deep or move-out and how often. Free, no sign-up.",
+   "card": "Your house cleaning price per square foot from your own speed, pay goal and costs, for standard, deep and move-out cleans.",
+   "defaults": {
+    "sqft": "2,000",
+    "miles": "16",
+    "minPer1000": "90",
+    "minCharge": "120",
+    "takeHome": "48,000",
+    "weeks": "48",
+    "hours": "45",
+    "paidShare": "70",
+    "monthlyCosts": "505",
+    "incomeTax": "12",
+    "margin": "15",
+    "perMile": "0.76",
+    "mph": "25"
+   },
+   "costs_hint": "Insurance and bond, products, equipment, phone, booking app, marketing, fees",
+   "method": [
+    "A per-square-foot price only pays you if the visit price behind it does, so this calculator prices the visit first and divides by the home's size second.",
+    "It grosses your take-home up for self-employment tax (15.3% on 92.35% of profit) and your income tax estimate, adds a year of business costs and spreads the total over the hours you spend cleaning: your break-even rate per clean hour. A home's cleaning time is its square feet times your person-minutes per 1,000 sq ft, times 1.75 for a deep clean or 2 for a move-out. That time plus drive time at your break-even rate, plus vehicle cost per mile and supplies, is the floor. The price adds your margin, rounds up to the next $5 and never goes below your minimum charge.",
+    "A regular schedule takes its discount off the one-time price and rounds up to $5 again. This is one row of the Cleaning Business Starter Kit's price sheet, priced for one cleaner and an average home; the kit's Quote Builder also adds rooms, pets, condition, add-ons and a helper."
+   ],
+   "example": "The Cleaning Business Starter Kit's example business wants $48,000 take-home with a 12% income tax estimate and $505 a month of costs, works 48 weeks of 45 hours and cleans for 70% of them: a break-even rate of $46.98 per clean hour. A 2,000 sq ft home at 90 person-minutes per 1,000 sq ft is 3 hours of cleaning. With a 16-mile round trip and $8 of supplies the floor is $191.18, and a one-time standard clean prices at $225, or $112.50 per 1,000 sq ft. Every 2 weeks (10% off) it is $205. A deep clean of the same home is $360, about 18 cents a square foot. A 1,000 sq ft home prices at $145, about 15 cents a square foot, because the drive and supplies cost the same on a small home.",
+   "cta": {
+    "title": "Price every home, not just one",
+    "bullets": [
+     "The Cleaning Business Starter Kit for Excel and Google Sheets prints this price menu for six home sizes, prices a home by square feet or rooms with a helper and pets, and logs every job with money by month.",
+     "It also has fillable PDF forms in Letter and A4: client intake, walkthrough, three cleaning checklists, a quote and a visit log. $2.99, instant download."
+    ],
+    "button": "Get the kit on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4588330888"
+   },
+   "faq": [
+    [
+     "How much should I charge per square foot for house cleaning?",
+     "It depends on how fast you clean, your pay goal, costs and travel. With the example numbers a 2,000 sq ft standard clean prices at $225, or $112.50 per 1,000 sq ft. Enter your own numbers to see yours."
+    ],
+    [
+     "Why is the per-square-foot price higher on small homes?",
+     "The drive, the vehicle and the supplies cost about the same on a small home as on a big one, and the minimum charge sets a floor, so they add more per square foot to a small home."
+    ],
+    [
+     "How do I find my minutes per 1,000 square feet?",
+     "Time a few standard cleans of homes you know the size of: person-minutes on site, divided by square feet, times 1,000. The example's 90 minutes is a starting point to replace with your own times, not a market figure."
+    ],
+    [
+     "How much more should a deep clean or move-out cost?",
+     "In this calculator a deep clean takes 1.75 times as long as a standard clean with $15 of supplies, and a move-out 2 times with $20. Those are the kit's example settings; change them in the workbook to match your own times."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
+    ]
+   ],
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, Schedule SE). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS Standard Mileage Rates page and Internal Revenue Bulletin 2026-29). Checked Oct 13, 2026. Example from the Cleaning Business Starter Kit workbook, version 3, recalculated Oct 13, 2026.",
+   "number_sources": [
+    "engines/cleaning-business-kit/build_xlsx.py recalculated in LibreOffice Oct 13: '1 Your Numbers' I21 46.98; '3 Price Sheet' row 2,000 sq ft D 225, E 205, F 195, G 360, H 405; row 1,000 D 145; changed case D14=60000, D27=20%, '2 Cleaning Rates' D10=110, D57=150: 2,000 sq ft D 340, E 310, G 545.",
+    "docs/assets/pnf-calc.test.js #14 checks."
+   ]
   }
  ]
 }

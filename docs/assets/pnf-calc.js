@@ -14,6 +14,7 @@
    profitLoss: engines/profit-and-loss (#28), 2 Statement; cakeQuote: engines/cake-order-form (#26), 2 Order Form.
    unitCost: engines/inventory-tracker (#25), 1 Items; choreSplit: engines/fair-share-chore-chart (#24), Fair Split;
    clientMix: engines/client-tracker (#27), 1 Today.
+   dayRate: engines/hourly-rate-quick-calculator (#20) in days; cleaningSqft: engines/cleaning-business-kit (#14), 3 Price Sheet.
    Tested against the workbooks' own example outputs in docs/assets/pnf-calc.test.js. */
 (function (root) {
   "use strict";
@@ -319,7 +320,7 @@
         var v = r[key];
         el.textContent = fmt === "text" ? String(v) : fmt === "mult" ? v.toFixed(2) + "x"
                        : fmt === "week" ? "Week " + v : fmt === "int" ? Math.round(v).toLocaleString("en-US")
-                       : fmt === "hrs" ? v.toFixed(2) + " hrs"
+                       : fmt === "hrs" ? v.toFixed(2) + " hrs" : fmt === "money3" ? (v < 0 ? "-$" : "$") + Math.abs(v).toFixed(3)
                        : fmt === "dec1" ? (Math.round(v * 10) / 10).toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 })
                        : fmt === "money0" ? money(v, false) : money(v);
         el.classList.toggle("neg", v < 0);
@@ -611,7 +612,49 @@
     return r;
   }
 
-  var api = { seTax: seTax, hourly: hourly, service: service, serviceSqft: serviceSqft, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
+
+  // #20 Hourly Rate Quick Calculator, day-rate view: the same workbook maths (Calculator tab) with the working week
+  // entered as days times hours a day. Day rate = the workbook's minimum hourly rate (I21) times hours in a day;
+  // billable days = billable hours (I20) over hours a day; a day rate to check is the workbook's check rate (D27)
+  // times hours a day. Workbook check: $65,000, 25%, $14,000, 48 weeks of 5 x 10 hours, 55% billed: $76.26 an hour.
+  function dayRate(i) {
+    var days = Math.max(0, num(i.daysPerWeek)), hpd = Math.max(0, num(i.hoursPerDay));
+    var h = hourly({ takeHome: i.takeHome, taxRate: i.taxRate, expenses: i.expenses, weeks: i.weeks,
+      hours: days * hpd, billableShare: i.billableShare, checkRate: hpd > 0 ? num(i.checkDayRate) / hpd : 0 });
+    var at = function (s) { return h.worked * s > 0 ? h.revenue / (h.worked * s) * hpd : 0; };
+    return { revenue: h.revenue, worked: h.worked, billable: h.billable, rate: h.rate, rateCard: h.rateCard,
+      dayRate: h.rate * hpd, daysWorked: num(i.weeks) * days, billableDays: hpd > 0 ? h.billable / hpd : 0,
+      checkRevenue: h.checkRevenue, keep: h.keep, keepPerDay: num(i.weeks) * days > 0 ? h.keep / (num(i.weeks) * days) : 0,
+      keepPerHour: h.keepPerHour, shortBy: h.shortBy,
+      dayAt50: at(0.5), dayAt60: at(0.6), dayAt70: at(0.7), dayAt80: at(0.8) };
+  }
+
+  // #14 Cleaning Business Starter Kit, 3 Price Sheet, one row: home size in sq ft priced by the kit's formula,
+  // MAX(minimum, CEILING(((sqft/1000 x minutes per 1,000 sq ft / 60 x service multiplier + miles/mph) x break-even
+  // + miles x cost per mile + supplies) / (1 - margin), 5)); the frequency columns take the discount off the one-time
+  // price and round up to $5 again. Break-even per clean hour is 1 Your Numbers I21, the same as service().
+  // Workbook check: 2,000 sq ft one-time standard $225, every 2 weeks $205, deep $360 (Oct 8 example, recalculated).
+  var CLEAN_SERVICES = [[1, 8], [1.75, 15], [2, 20]]; // standard, deep, move-out: time multiplier, supplies per visit
+  var CLEAN_FREQ = [0, 0.05, 0.1, 0.15];              // one time, monthly, every 2 weeks, weekly
+  function cleaningSqft(i) {
+    var r = service(i), sqft = Math.max(0, num(i.sqft)), mins = Math.max(0, num(i.minPer1000));
+    var sv = CLEAN_SERVICES[Math.round(num(i.serviceType))] || CLEAN_SERVICES[0];
+    var disc = CLEAN_FREQ[Math.round(num(i.freq))] || 0;
+    var minC = Math.max(0, num(i.minCharge)), miles = Math.max(0, num(i.miles)), mph = num(i.mph), cpm = num(i.perMile);
+    var margin = num(i.margin) / 100;
+    var cleanHours = sqft / 1000 * mins / 60 * sv[0], driveHours = mph > 0 ? miles / mph : 0;
+    if (sqft <= 0) driveHours = 0; // the workbook's price sheet row stays blank until it has a home size
+    var floor = sqft > 0 ? (cleanHours + driveHours) * r.breakEven + miles * cpm + sv[1] : 0;
+    var one = sqft <= 0 ? 0 : margin < 1 ? Math.max(minC, ceilTo(floor / (1 - margin), 5)) : minC;
+    var visit = sqft <= 0 ? 0 : Math.max(minC, ceilTo(one * (1 - disc), 5));
+    return { breakEven: r.breakEven, target: r.target, cleanHours: cleanHours, driveHours: driveHours,
+      laborCost: (cleanHours + driveHours) * r.breakEven, vehicle: sqft > 0 ? miles * cpm : 0, supplies: sqft > 0 ? sv[1] : 0, floor: floor,
+      oneTime: one, visit: visit, perSqFt: sqft > 0 ? visit / sqft : 0, oneTimePerSqFt: sqft > 0 ? one / sqft : 0,
+      per1000: sqft > 0 ? visit / sqft * 1000 : 0, floorPerSqFt: sqft > 0 ? floor / sqft : 0,
+      atMinimum: sqft > 0 && visit <= minC + 0.001 ? 1 : 0, sqft: sqft };
+  }
+
+  var api = { seTax: seTax, hourly: hourly, service: service, serviceSqft: serviceSqft, dayRate: dayRate, cleaningSqft: cleaningSqft, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
     strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, profitLoss: profitLoss, cakeQuote: cakeQuote, unitCost: unitCost, choreSplit: choreSplit, clientMix: clientMix, cakeSizes: CAKE_SIZES, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;

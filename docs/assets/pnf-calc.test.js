@@ -494,4 +494,42 @@ check("contractor per hour worked at $45", HC.keepPerHour, 14.19);
 check("contractor short by", HC.shortBy, 30950);
 check("contractor job quote", HC.quote, 2000);
 check("contractor rate at 80% billed", HC.rateAt80, 52.43);
+
+// #20 day-rate view (Calculator tab recalculated in LibreOffice Oct 13, 2026, hours = days x hours a day)
+const DR1 = P.dayRate({ takeHome: 65000, taxRate: 25, expenses: 14000, weeks: 48, daysPerWeek: 5, hoursPerDay: 10, billableShare: 55, checkDayRate: 450 });
+check("#20 day: hourly rate I21", DR1.rate, 76.26);
+check("#20 day: day rate", DR1.dayRate, 762.63);
+check("#20 day: billable days", DR1.billableDays, 132);
+check("#20 day: keep at $450 a day D31", DR1.keep, 34050);
+check("#20 day: short by", DR1.shortBy, 30950);
+const DR2 = P.dayRate({ takeHome: 50000, taxRate: 20, expenses: 9000, weeks: 46, daysPerWeek: 4, hoursPerDay: 8, billableShare: 60, checkDayRate: 600 });
+check("#20 day 4x8: hourly I21", DR2.rate, 80.96);
+check("#20 day 4x8: day rate", DR2.dayRate, 647.64);
+check("#20 day 4x8: billable days", DR2.billableDays, 110.4);
+check("#20 day 4x8: keep at $600 D31", DR2.keep, 45792);
+const DR0 = P.dayRate({ takeHome: 65000, taxRate: 25, expenses: 14000, weeks: 0, daysPerWeek: 5, hoursPerDay: 10, billableShare: 55, checkDayRate: 450 });
+check("#20 day 0 weeks: day rate", DR0.dayRate, 0);
+check("#20 day 0 weeks: keep D31", DR0.keep, -14000);
+const DRb = P.dayRate({ takeHome: "", taxRate: "", expenses: "", weeks: "", daysPerWeek: "", hoursPerDay: "", billableShare: "", checkDayRate: "" });
+check("#20 day blank: day rate", DRb.dayRate, 0);
+// #14 Cleaning Business Starter Kit, 3 Price Sheet (recalculated in LibreOffice Oct 13, 2026)
+const CLN = { takeHome: 48000, weeks: 48, hours: 45, paidShare: 70, monthlyCosts: 505, incomeTax: 12, margin: 15, perMile: 0.76, mph: 25,
+  minPer1000: 90, miles: 16, minCharge: 120 };
+check("#14 break-even I21", P.cleaningSqft(Object.assign({}, CLN, { sqft: 2000 })).breakEven, 46.98);
+[[1000, 145, 135, 125, 215, 240], [1500, 185, 170, 160, 285, 325], [2000, 225, 205, 195, 360, 405],
+ [2500, 270, 245, 230, 435, 490], [3000, 310, 280, 265, 505, 575], [3500, 350, 315, 300, 580, 655]].forEach(function (t) {
+  const g = function (sv, fq) { return P.cleaningSqft(Object.assign({}, CLN, { sqft: t[0], serviceType: sv, freq: fq })).visit; };
+  check("#14 " + t[0] + " one-time", g(0, 0), t[1]); check("#14 " + t[0] + " every 2 weeks", g(0, 2), t[2]);
+  check("#14 " + t[0] + " weekly", g(0, 3), t[3]); check("#14 " + t[0] + " deep", g(1, 0), t[4]); check("#14 " + t[0] + " move-out", g(2, 0), t[5]);
+});
+check("#14 2,000 per sq ft every 2 weeks", P.cleaningSqft(Object.assign({}, CLN, { sqft: 2000, freq: 2 })).perSqFt, 0.1025);
+const CLN2 = Object.assign({}, CLN, { takeHome: 60000, margin: 20, minPer1000: 110, minCharge: 150 });
+[[1000, 205, 185, 315], [2000, 340, 310, 545], [3500, 535, 485, 895]].forEach(function (t) {
+  const g = function (sv, fq) { return P.cleaningSqft(Object.assign({}, CLN2, { sqft: t[0], serviceType: sv, freq: fq })).visit; };
+  check("#14 changed " + t[0] + " one-time", g(0, 0), t[1]); check("#14 changed " + t[0] + " every 2 weeks", g(0, 2), t[2]);
+  check("#14 changed " + t[0] + " deep", g(1, 0), t[3]);
+});
+check("#14 0 weeks: minimum charge", P.cleaningSqft(Object.assign({}, CLN, { weeks: 0, sqft: 3500 })).visit, 120);
+check("#14 blank: per sq ft", P.cleaningSqft({}).perSqFt, 0);
+
 process.exit(fails ? 1 : 0);

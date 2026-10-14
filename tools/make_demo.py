@@ -366,7 +366,7 @@ h1{position:absolute;left:70px;right:110px;top:310px;font-size:72px}
 .capband{position:absolute;left:70px;width:860px;top:1066px;height:152px;display:flex;align-items:center;justify-content:center;text-align:center}
 .cap{font-size:48px;padding:14px 28px;border-radius:18px;max-width:860px}
 .note{position:absolute;left:70px;right:150px;top:1226px}
-.end{padding:300px 150px 690px 90px}
+.end{padding:300px 180px 690px 90px}
 .foot{left:70px;top:1272px}
 """
         body = (f'<div class="prog"><i id="pg"></i></div><div class="aud">{H.escape(spec.get("audience", ""))}</div><h1>{hook}</h1>'
@@ -538,6 +538,12 @@ def render(page_html, fmt, total, work):
         for i in range(n):
             pg.evaluate("t=>window.renderAt(t)", i / FPS)
             pg.screenshot(path=os.path.join(fdir, f"f{i:05d}.png"))
+        if fmt["W"] == 1080 and fmt["H"] == 1920:   # Shorts: no end-card text in the right 150 px the app buttons cover
+            right = pg.evaluate("""() => Math.max(0, ...[...document.querySelectorAll('.end .e')].flatMap(e => {
+                const r = document.createRange(); r.selectNodeContents(e); return [...r.getClientRects()].map(q => q.right)}))""")
+            if right > fmt["W"] - 150:
+                b.close()
+                raise SystemExit(f"end card text reaches x={right:.0f}, inside the right 150 px: shorten cta.say, cta.what or cta.title")
         b.close()
     return fdir, n
 

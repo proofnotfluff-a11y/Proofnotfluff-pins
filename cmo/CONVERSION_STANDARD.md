@@ -1,7 +1,7 @@
 # Conversion standard for every post, pin and video (Todd, Oct 7, 2026: "fixated on the funnel ... content that can be linked back to our actual selling page ... quality top-notch and made for conversion")
 
 
-> **Oct 16 to Oct 29: the content format test in cmo/CONTENT_TEST.md binds every video (Todd, Oct 15): rotating formats F1 to F4, 15 to 22 s, frame one a big number and at most 6 words, and the pm slot on a broad money topic. Read it right after this file.**
+> **ON HOLD (Todd, Oct 15): the content format test in cmo/CONTENT_TEST.md does not start until Todd approves it after the deep research on what makes Reels work in our niche. Until then the slates run as before (SALES FIRST, current formats).**
 
 Binds the CMO, both promote runs, the shop run's X and LinkedIn posts, and any run that publishes anything. The ledger's safety rules (VERIFY BEFORE POSTING, no invented people, no em dashes, the banned words, the AI line on listings) sit on top of this.
 

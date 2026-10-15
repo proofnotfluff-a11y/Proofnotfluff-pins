@@ -1,4 +1,6 @@
-# Content format test, Oct 16 to Oct 29, 2026 (Todd, Oct 15)
+# Content format test (DRAFT, ON HOLD)
+
+**ON HOLD, Oct 15 (Todd: "Before you implement anything do a very deep research on what makes reels go viral"). Nothing here binds any run until Todd approves a version revised from that research.**
 
 Binds the CMO and both promote runs until the Oct 29 verdict. Read it every run, right after cmo/CONVERSION_STANDARD.md. The standard's safety rules still apply (true numbers from the product's files, no invented people, no AI people or faces, no engagement bait, no em dashes or banned words).
 

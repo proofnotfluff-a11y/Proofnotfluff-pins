@@ -19,48 +19,55 @@
       "label": "Everyday spending, September",
       "value": "$1,231.11",
       "input": true,
-      "say": "Everyday spending: $1,231.11",
-      "why": "Groceries, eating out, gas, household, fun and the rest, not rent or bills."
+      "say": "Here's one month of everyday spending: $1,231.",
+      "why": "Groceries, eating out, gas, household, fun and the rest, not rent or bills.",
+      "tts": "Here's one month of everyday spending. About twelve hundred and thirty bucks."
     },
     {
       "label": "Takeout, 5 orders",
       "value": "$214.00",
       "input": true,
-      "say": "Five takeout orders: $214",
+      "say": "Five takeout orders: $214.",
       "ask": "So takeout broke the budget?",
       "pause": 1.2,
-      "why": "The usual suspect."
+      "why": "The usual suspect.",
+      "tts": "Five takeout orders. Two hundred fourteen dollars.",
+      "ask_tts": "[short pause] So... takeout broke the budget?"
     },
     {
       "label": "Takeout over its $200 budget",
       "value": "$14",
       "result": true,
       "kind": "good",
-      "say": "Just $14 over its $200 budget",
-      "why": "$214 spent against a $200 takeout budget."
+      "say": "Nope. It was budgeted at $200, so it went over by $14. Fourteen.",
+      "why": "$214 spent against a $200 takeout budget.",
+      "tts": "Nope. It was budgeted at two hundred, so it went over by fourteen bucks. Fourteen."
     },
     {
       "label": "4 grocery trips + 1 clothes order",
       "value": "$581.41",
       "input": true,
-      "say": "Your five biggest: four grocery runs and one clothes order",
-      "why": "Four grocery trips ($141.07, $132.18, $118.64, $109.53) and one clothes order ($79.99)."
+      "say": "Now the five biggest checkouts: four grocery runs and one clothes order. $581.",
+      "why": "Four grocery trips ($141.07, $132.18, $118.64, $109.53) and one clothes order ($79.99).",
+      "tts": "Now look at the five biggest checkouts. Four grocery runs and one clothes order. Five hundred eighty-one dollars."
     },
     {
       "label": "Share of everyday spending",
       "value": "47%",
       "result": true,
       "kind": "bad",
-      "say": "That's 47% of everyday spending, in five swipes",
-      "why": "The tracker lists the five biggest everyday spends each month, so you see where the money really went."
+      "say": "That's 47% of everyday spending. In five swipes.",
+      "why": "The tracker lists the five biggest everyday spends each month, so you see where the money really went.",
+      "tts": "That's forty-seven percent of everyday spending. [short pause] In five swipes."
     }
   ],
   "cta": {
     "title": "Budget Tracker Spreadsheet",
     "button": "Free calculator",
     "sub": "proofnotfluff.com",
-    "say": "See your own big five free at ProofNotFluff dot com.",
-    "what": "Free online. Full tracker $2.99 on Etsy"
+    "say": "Find your big five free at ProofNotFluff dot com.",
+    "what": "Free online. Full tracker $2.99 on Etsy",
+    "tts": "Find your big five, free, at ProofNotFluff dot com."
   },
   "note": "Example month from the tracker. Your numbers will differ.",
   "sources": [
@@ -90,5 +97,8 @@
     "short_title": "Blame takeout? It was only $14 over budget #Shorts",
     "reel_caption": "Everyone blames takeout. In this example September, 5 takeout orders came to $214, just $14 over budget. The 5 biggest checkouts (4 grocery trips and a clothes order) came to $581.41: 47% of everyday spending, in five swipes. Example month from the Budget Tracker Spreadsheet.\n\nLink in bio: proofnotfluff.etsy.com\n\n#budgeting #budgettracker #moneytips #personalfinance",
     "tiktok_caption": "Blame takeout? In this example month it was only $14 over budget. The 5 biggest checkouts were 47% of everyday spending. Search ProofNotFluff on Etsy #budgeting #budgettracker #moneytips"
-  }
+  },
+  "hook_tts": "Five takeout orders. Guilty?",
+  "el_voice": "XrExE9yKIg1WjnnlVkGX",
+  "el_model": "eleven_v3"
 }

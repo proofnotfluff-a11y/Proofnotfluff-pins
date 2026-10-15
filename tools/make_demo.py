@@ -617,12 +617,21 @@ def main(spec_path, out, fmt_name="short"):
         import voice as vo
         vdir = os.path.join(work, "voice"); shutil.rmtree(vdir, ignore_errors=True); os.makedirs(vdir)
         speed = float(spec.get("voice_speed", SPEED[fmt_name]))
+        files = None
+        if voice.startswith("files:"):   # pre-made narration, e.g. ElevenLabs through Zapier (tools/el_voice.py)
+            fd = voice[6:]
+            files = {k: os.path.join(fd, v) for k, v in json.load(open(os.path.join(fd, "manifest.json"))).items()}
         def speech(txt):
             if not txt:
                 return 0.0
             if txt not in clips:
                 path = os.path.join(vdir, f"c{len(clips):02d}.wav")
-                vo.say(txt, path, voice=voice, speed=speed)
+                if files is not None:
+                    if txt not in files:
+                        sys.exit(f"no narration file for line: {txt}")
+                    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", files[txt], "-ac", "1", "-ar", "48000", path], check=True)
+                else:
+                    vo.say(txt, path, voice=voice, speed=speed)
                 clips[txt] = (path, st.prepare(path))
             return clips[txt][1]
     tl = timeline(spec, fmt_name, speech)

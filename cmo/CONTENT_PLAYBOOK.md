@@ -59,5 +59,18 @@ The old "$X looks fine, break-even is $Y" line may appear at most once a week, a
 3. tools/record_page.py: Playwright recording of the live free calculator being filled in, for F4.
 4. Instagram Private Replies (comment keyword to DM with the free page) once the messaging permission is confirmed.
 
+## 9. Voice and script (Todd, Oct 15: "The voices sound good and lets test them all. However, you need to make the scripts sound more human")
+**Voice.** ElevenLabs (Todd's Starter plan, through Zapier; tools/el_voice.py has the three steps) replaces the Kokoro voice once the sandbox can download the audio (zapier-dev-files.s3.amazonaws.com allowed in Todd's network settings). Until then render with Kokoro and say so in the slate. Model eleven_v3 (it reads the audio tags below). Test all five voices: rotate Chris iP95p4xoKVk53GoZ742B, Roger CwhRBWXzGAHq8TQ4Fs17, Eric cjVigY5qzO86Huf0OWal, Matilda XrExE9yKIg1WjnnlVkGX, Bill pqHfZKP75CvOlQylNhV4, a different one each video, so each gets about 3 to 4 videos over two weeks; the spec carries "el_voice" and the promote runs copy it into shorts/<slug>. Score them with the formulas (section 6) and keep the best one or two from the first verdict. Budget: Starter is about 30,000 characters a month; a script is about 500, so two videos a day fits with little room: no retakes beyond one per video, and no voice tests outside the slates.
+**Script.** Write it for the ear, the way a sharp friend who prices jobs would say it out loud, then let the screen carry the exact figures:
+1. Open with a reaction or a question, not a label: "Forty bucks an hour. Sounds fine, right?", "Where does a $355 house wash go?"
+2. Talk to one person. Contractions always (you're, that's, don't). Short sentences, mixed with one longer one. A one-word line for the number that hurts: "Fifteen."
+3. Say numbers the way people say them: "fifteen sixty-six", "sixty grand", "about a hundred ninety-five bucks", "two ninety-eight". Round the supporting numbers in speech ("about $195"); say the key number exactly once. The screen shows every exact figure.
+4. Turn points: "Except...", "Nope.", "Here's the thing.", "So you're at...", "What's left...". At most one per video of each.
+5. Say why in plain words once ("Quoting, driving, emails"), never a formula or a label like "Kept per hour worked".
+6. The "say" field is the caption and must read naturally; the optional "tts" field (also "hook_tts", "ask_tts") is what ElevenLabs reads: the same words, with numbers spelled the way they are spoken and at most two audio tags per video ([short pause], [sighs], [chuckles]). Never put a word in "tts" that the caption does not carry.
+7. No invented people, no outcome promises, no hype words; the facts still come only from the product's files.
+8. Read it out loud in your head at speed: if a line would make a real person stumble, rewrite it. The cold viewer also answers "Does this sound like a person talking?" and flags any line that sounds read off a spreadsheet.
+The three examples in promo/specs/examples/ carry these scripts (rewritten Oct 15).
+
 ## Verdicts
 (none yet)

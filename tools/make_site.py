@@ -1368,9 +1368,14 @@ def money(v):
 
 
 def nice_date(iso):
+    """Oct 14, 2026. A timestamp with a zone is shown as the Chicago calendar date."""
     import datetime as _dt
     try:
-        d = _dt.date.fromisoformat(iso[:10])
+        if "T" in iso and (iso.endswith("Z") or "+" in iso[10:] or "-" in iso[10:]):
+            from zoneinfo import ZoneInfo
+            d = _dt.datetime.fromisoformat(iso.replace("Z", "+00:00")).astimezone(ZoneInfo("America/Chicago")).date()
+        else:
+            d = _dt.date.fromisoformat(iso[:10])
     except ValueError:
         return iso
     return d.strftime("%b ") + str(d.day) + d.strftime(", %Y")

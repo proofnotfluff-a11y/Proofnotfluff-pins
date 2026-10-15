@@ -80,11 +80,21 @@ PREFIX = re.compile(r"^(?:(?:DDS|DIRECT DEVELOPER SERVICES|SELF[- ]CERT(?:IFICAT
                     r"EXPRESS PERMIT|EASY PERMIT|2019|CBC|CBRC|CHICAGO BUILDING (?:REHABILITATION )?CODE)[\s/,.:-]*)+", re.I)
 
 
+NOISE = re.compile(r"\s*\((?:[^()]*?\b(?:construction type|occupancy|use group|type [ivx]+[ab]?|sprinkl\w*|per plans|nfpa)\b[^()]*)\)", re.I)
+TAIL = re.compile(r"[;,.]?\s*\b(?:occupancy group|use group|construction type|as per plans|per plans)\b.*$", re.I)
+
+
 def clean_scope(desc, limit=150):
     d = re.sub(r"\s+", " ", (desc or "")).strip().rstrip(".")
     d = PREFIX.sub("", d).strip(" :-/.,")
+    d = NOISE.sub("", d)
+    first = re.split(r"(?<=[A-Za-z0-9)])\.\s+(?=[A-Za-z])", d, maxsplit=1)[0]
+    if len(first) >= 25:
+        d = first
+    d = TAIL.sub("", d).strip(" :-/.,;") or d
+    d = re.sub(r"^\d{1,2}[.)]\s+", "", d)
     d = d[:1].upper() + d[1:].lower() if d.isupper() or d[:1].islower() else d
-    d = re.sub(r"\b(\d+)\s*du\b", r"\1 dwelling units", d)
+    d = re.sub(r"\b(\d+)\s*du\b", r"\1-unit", d)
     return d if len(d) <= limit else d[:limit].rsplit(" ", 1)[0] + "..."
 
 

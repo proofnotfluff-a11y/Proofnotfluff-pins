@@ -9,6 +9,8 @@ with the workbook's own numbers, a short method, an FAQ (FAQPage structured data
 link to the matching Etsy listing. Shop links use the Share & Save address proofnotfluff.etsy.com.
 A page whose spec carries "draft": true is written with a noindex tag and left off the index page
 and the sitemap until the Legal desk clears it and removes the flag (agents/legal-desk.md, SITE PAGES).
+A permit leads page (kind "leads", data from permits/chicago/ via .github/workflows/permits-chicago.yml) also stays
+noindex and off the index, hub and sitemap until its spec has "kitForm" (the Kit waitlist form number).
 """
 import html, json, os, sys
 

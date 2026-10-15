@@ -1,4 +1,4 @@
-# Kit setup: free cleaning price cheat sheet (about 10 minutes, once)
+# Kit setup: free cleaning price cheat sheet and the Chicago leads waitlist (about 15 minutes, once)
 
 Everything below is ready to paste. Numbers come from the Service Pricing Calculator (#13) example, recalculated by docs/assets/pnf-calc.js (checked Oct 7, 2026). No em dashes, no invented people.
 
@@ -17,6 +17,12 @@ Grow, Landing Pages & Forms, Create new, Form, Inline, any template.
 - Name: Cleaning price cheat sheet
 - Settings, Incentive: turn ON "Send incentive email" (this is double opt-in, the safer default). Subject: Confirm and get your cheat sheet. Button text: Send me the cheat sheet. After confirming, redirect to: https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/downloads/cleaning-price-floor-cheat-sheet.pdf
 - Save. Copy the number in the form's address bar (app.kit.com/forms/designers/1234567/edit, the 1234567) and send it to the live chat. The agent puts it in the sign-up page and turns the page on.
+
+## Step 2b. Create the waitlist form (the Chicago permit leads pilot, Oct 14)
+Same place: Grow, Landing Pages & Forms, Create new, Form, Inline, any template.
+- Name: Chicago construction leads waitlist
+- Settings, Incentive: turn ON "Send incentive email" (double opt-in). Subject: Confirm your spot on the Chicago leads waitlist. Button text: Confirm my spot. After confirming, redirect to: https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/chicago-construction-cleaning-leads/
+- No sequence for this one. Save, copy its number the same way and send both numbers to the live chat. The agent puts this one in the leads page (site/pages.json "kitForm"), and the page can then go live once the Legal desk clears it.
 
 ## Step 3. Create the sequence
 Send, Sequences, New sequence. Name: Cleaning price welcome. Paste the three emails below. Then in the form's Settings, add "Subscribe to sequence: Cleaning price welcome" (or a Visual Automation: form joined, then sequence).

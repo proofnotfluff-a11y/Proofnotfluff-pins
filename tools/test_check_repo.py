@@ -9,7 +9,7 @@ check_repo.py runs this file as its gate-tests check, so the nightly optimizer a
 import json, os, random, re, shutil, string, subprocess, sys, tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data", "fiverr-kit"]
+CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data", "video-specs", "fiverr-kit"]
 rng = random.Random()
 # Key markers are assembled here so this file never matches the secrets check itself.
 KEY_BEGIN = "-----BEGIN " + "RSA PRIVATE " + "KEY-----"
@@ -106,6 +106,17 @@ def plants(tmp):
             d = json.loads(t); d["projects"][0]["scope"] = d["projects"][0].get("scope", "") + " Consultant reviewer: Planted Person"; return json.dumps(d)
         out.append(("permit-data", "a personal field in the permit sample", edit(sample, personal_key)))
         out.append(("permit-data", "a reviewer tag in a permit scope", edit(sample, person_tag)))
+
+    example = os.path.join("promo", "specs", "examples", "f2-spot-the-mistake-40-rate.json")
+    if os.path.exists(os.path.join(tmp, example)):
+        def old_close(_):
+            d = json.load(open(os.path.join(tmp, example), encoding="utf-8"))
+            d["cta"]["say"] = "Search ProofNotFluff for the free calculator and the full workbook."
+            return json.dumps(d)
+        def no_formula(_):
+            d = json.load(open(os.path.join(tmp, example), encoding="utf-8")); d.pop("formula", None); return json.dumps(d)
+        out.append(("video-specs", "a short with the old close", new_file(os.path.join("promo", "specs", "2026-10-16-zz-planted.json"), old_close(None))))
+        out.append(("video-specs", "a dated short without a formula", new_file(os.path.join("promo", "specs", "2026-10-17-zz-planted.json"), no_formula(None))))
 
     # Fiverr kit: plants keyed to the file's structure, not its wording, so copy edits never break these tests.
     gigs, replies = os.path.join("services", "fiverr", "gigs.md"), os.path.join("services", "fiverr", "replies.md")

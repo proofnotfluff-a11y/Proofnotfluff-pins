@@ -17,6 +17,8 @@ Checks
   secrets       no token or private key pattern in any tracked text file
   permit-data   permits/*/sample.json holds business-level fields only, and no scope text carries a
                 reviewer, consultant, architect, engineer or owner tag (where a person's name can follow)
+  video-specs   tools/spec_lint.py on every promo/specs/ spec: the content playbook's hard rules for Proof Check shorts
+                (make_demo.py refuses the same specs before rendering)
   fiverr-kit    tools/fiverr_kit.py: the paste-ready Fiverr copy in services/fiverr/ keeps to Fiverr's field limits
                 and our rules (AI-assisted, not-advice and license lines; no links, contacts, review bait or
                 off-Fiverr asks)
@@ -203,6 +205,20 @@ def check_permit_data():
     err("permit-data", "; ".join(bad)) if bad else ok("permit-data")
 
 
+def check_video_specs(files):
+    specs = [f for f in files if f.startswith("promo/specs/") and f.endswith(".json")]
+    spec = importlib.util.spec_from_file_location("spec_lint", os.path.join(ROOT, "tools", "spec_lint.py"))
+    sl = importlib.util.module_from_spec(spec); spec.loader.exec_module(sl)
+    bad = []
+    for f in specs:
+        try:
+            found = sl.problems(json.load(open(os.path.join(ROOT, f), encoding="utf-8")), f)
+        except Exception as e:
+            found = [f"does not parse ({str(e)[:60]})"]
+        bad += [f"{f}: {p}" for p in found[:2]]
+    err("video-specs", "; ".join(bad[:6])) if bad else ok("video-specs", f"{len(specs)} specs")
+
+
 def check_fiverr_kit():
     kit = os.path.join(ROOT, "services", "fiverr")
     if not os.path.isdir(kit):
@@ -234,7 +250,8 @@ def main():
     files = tracked()
     checks = [("json", lambda: check_json(files)), ("python", lambda: check_python(files)), ("calc-tests", check_calc),
               ("site-sync", lambda: check_site_sync(files)), ("drafts", check_drafts), ("em-dash", lambda: check_em_dash(files)),
-              ("secrets", lambda: check_secrets(files)), ("permit-data", check_permit_data), ("fiverr-kit", check_fiverr_kit),
+              ("secrets", lambda: check_secrets(files)), ("permit-data", check_permit_data), ("video-specs", lambda: check_video_specs(files)),
+              ("fiverr-kit", check_fiverr_kit),
               ("gate-tests", check_gate_tests)]
     for name, fn in checks:
         if only and name not in only:

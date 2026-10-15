@@ -590,6 +590,11 @@ def choose_palette(spec, fmt_name, key):
 
 def main(spec_path, out, fmt_name="short"):
     spec = json.load(open(spec_path)); lint(spec)
+    if fmt_name == "short":  # the content playbook's hard rules, in code before any reviewer sees the video
+        import spec_lint
+        found = spec_lint.problems(spec, spec_path)
+        if found:
+            sys.exit("spec refused (cmo/CONTENT_PLAYBOOK.md, tools/spec_lint.py): " + "; ".join(found))
     fmt = FORMATS[fmt_name]
     if fmt_name == "listing":  # the buyer is already on Etsy: no shop address, no call to leave
         spec.setdefault("cta", {})["sub"] = spec.get("listing_cta_sub", "Instant digital download")

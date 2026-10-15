@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>PNF #22: a long drive adds $65</title>
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Poppins"; src: url("assets/Poppins-Bold.ttf"); font-weight: 700; }
+      @font-face { font-family: "Carlito"; src: url("assets/Carlito-Regular.ttf"); font-weight: 400; }
+      @font-face { font-family: "Carlito"; src: url("assets/Carlito-Bold.ttf"); font-weight: 700; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; background: #221a2f; overflow: hidden; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #221a2f; font-family: "Carlito", sans-serif; color: #f5f2ec; }
+      .clip { position: absolute; inset: 0; }
+
+      /* main scene: everything inside x 60..930, y 270..1250 */
+      #glow { position: absolute; left: -200px; top: 380px; width: 1200px; height: 900px; border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(94,69,150,.55), rgba(34,26,47,0)); }
+      #bars { position: absolute; left: 60px; top: 236px; width: 870px; height: 10px; display: flex; gap: 10px; }
+      #bars i { flex: 1; border-radius: 5px; display: block; }
+      #kicker { position: absolute; left: 60px; top: 274px; width: 870px; font: 700 26px "Carlito"; letter-spacing: 3px; color: #d2c3f0; }
+      #headline { position: absolute; left: 60px; top: 312px; width: 870px; font: 700 72px/1.06 "Poppins"; letter-spacing: -1.5px; }
+      #headline .w { display: inline-block; }
+      #headline .acc { color: #f08a66; position: relative; }
+      #uline { position: absolute; left: 0; right: 0; bottom: -4px; height: 8px; border-radius: 4px; background: #f08a66; transform-origin: left center; }
+
+      #card { position: absolute; left: 60px; top: 482px; width: 870px; border-radius: 26px; overflow: hidden; background: #fbf8f2; color: #1d2433;
+        box-shadow: 0 30px 60px rgba(0,0,0,.35); }
+      #card-h { background: #5e4596; color: #fff; font: 700 32px "Poppins"; padding: 18px 34px; }
+      .row { position: relative; display: flex; justify-content: space-between; align-items: center; height: 78px; padding: 0 34px; border-top: 1px solid #e6e1d8; font-size: 31px; }
+      .row .v { font: 700 36px "Poppins"; font-variant-numeric: tabular-nums; padding: 6px 16px; border-radius: 12px; min-width: 120px; text-align: right; }
+      .row.input .v { background: #fdf1cc; color: #2f5f9e; font-size: 29px; }
+      .row.res .v { background: #1d2433; color: #fff; }
+      .row.bad .v { background: #c8502f; }
+      .row.key .v { background: #1d2433; color: #f4b860; }
+      #route { position: absolute; left: 34px; right: 34px; bottom: 10px; height: 8px; border-radius: 4px; background: #e6e1d8; }
+      #route-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; border-radius: 4px; background: #c8502f; transform-origin: left center; }
+      #route-van { position: absolute; top: -9px; left: 0; width: 26px; height: 26px; border-radius: 50%; background: #c8502f; border: 4px solid #fbf8f2; }
+      #route-mid { position: absolute; left: 50%; top: -6px; width: 4px; height: 20px; background: #1d2433; opacity: .5; }
+      #fix { display: flex; justify-content: space-between; align-items: center; height: 100px; padding: 0 34px; background: #2e6b66; color: #fff; font-size: 33px; }
+      #fix .v { font: 700 54px "Poppins"; font-variant-numeric: tabular-nums; }
+
+      #cap { position: absolute; left: 60px; top: 1066px; width: 870px; display: flex; justify-content: center; }
+      .cl { position: absolute; left: 0; width: 870px; text-align: center; }
+      .cl span.t { display: inline-block; background: #fff; color: #1d2433; font: 700 38px/1.25 "Poppins"; padding: 12px 24px; border-radius: 16px; max-width: 870px; }
+      .cl b { color: #c8502f; }
+      #note { position: absolute; left: 60px; top: 1226px; width: 870px; font-size: 22px; color: #b9aed0; }
+
+      /* end card */
+      #end { background: #16101f; }
+      #end-bars { position: absolute; left: 60px; top: 300px; width: 840px; height: 10px; display: flex; gap: 10px; }
+      #end-bars i { flex: 1; border-radius: 5px; display: block; }
+      #end-say { position: absolute; left: 60px; top: 360px; width: 840px; font: 700 40px/1.25 "Carlito"; color: #f08a66; }
+      #end-name { position: absolute; left: 60px; top: 520px; width: 840px; font: 700 76px/1.05 "Poppins"; color: #fff; }
+      #end-what { position: absolute; left: 60px; top: 720px; width: 840px; font: 400 36px/1.3 "Carlito"; color: #e8e2f4; }
+      #end-btn { position: absolute; left: 60px; top: 850px; padding: 22px 40px; border-radius: 40px; background: #c8502f; color: #fff; font: 700 38px "Poppins"; }
+      #end-url { position: absolute; left: 60px; top: 960px; width: 840px; font: 400 34px "Carlito"; color: #fff; }
+      #end-brand { position: absolute; left: 60px; top: 1060px; font: 700 24px "Poppins"; letter-spacing: 3px; color: #b9aed0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="31.45" data-width="1080" data-height="1920">
+      <audio id="mix" src="assets/mix.m4a" data-start="0" data-duration="31.45" data-volume="1" data-track-index="9"></audio>
+
+      <section id="scene" class="clip" data-start="0" data-duration="24.4" data-track-index="0">
+        <div id="glow"></div>
+        <div id="bars"><i style="background:#c8502f"></i><i style="background:#2e6b66"></i><i style="background:#6b4fa0"></i><i style="background:#2f5f9e"></i><i style="background:#8a6a1f"></i></div>
+        <div id="kicker">ANYONE WHO QUOTES JOBS AND DRIVES TO THEM</div>
+        <div id="headline"><span class="w">A</span> <span class="w">long</span> <span class="w">drive</span> <span class="w">adds</span> <span class="w acc" id="h65">$65<span id="uline"></span></span> <span class="w">to</span> <span class="w">the</span> <span class="w">same</span> <span class="w">job</span></div>
+
+        <div id="card">
+          <div id="card-h">Pressure Washing Pricing Calculator</div>
+          <div class="row input" id="r0"><span>Time on the job</span><span class="v" id="v0">3 hrs, 1 person</span></div>
+          <div class="row res" id="r1"><span>Quote with a 20-mile round trip</span><span class="v" id="v1">$355</span></div>
+          <div class="row input" id="r2"><span>Same job, 40-mile round trip</span><span class="v" id="v2">1 hr 20 min driving</span>
+            <div id="route"><div id="route-fill"></div><div id="route-mid"></div><div id="route-van"></div></div></div>
+          <div class="row res bad" id="r3"><span>Drive time + mileage, 40 miles</span><span class="v" id="v3">$116.92</span></div>
+          <div class="row res key" id="r4"><span>Extra the far job needs</span><span class="v" id="v4">$65</span></div>
+          <div id="fix"><span>Quote with a 40-mile round trip</span><span class="v" id="v5">$420</span></div>
+        </div>
+
+        <div id="cap">
+          <div class="cl" id="c1"><span class="t">A 3-hour job, one person</span></div>
+          <div class="cl" id="c2"><span class="t">20 miles round trip, you quote <b>$355</b></span></div>
+          <div class="cl" id="c3"><span class="t">Now it is 40 miles round trip</span></div>
+          <div class="cl" id="c4"><span class="t">The drive now costs <b>$116.92</b></span></div>
+          <div class="cl" id="c5"><span class="t">The far job needs <b>$65</b> more</span></div>
+          <div class="cl" id="c6"><span class="t">So quote it at <b>$420</b>, or add a <b>$65</b> trip fee</span></div>
+        </div>
+        <div id="note">Example numbers from the calculator. Estimates only.</div>
+      </section>
+
+      <section id="end" class="clip" data-start="24.225" data-duration="7.225" data-track-index="1">
+        <div id="end-bars"><i style="background:#c8502f"></i><i style="background:#2e6b66"></i><i style="background:#6b4fa0"></i><i style="background:#2f5f9e"></i><i style="background:#8a6a1f"></i></div>
+        <div id="end-say">Search ProofNotFluff for the free pressure washing price calculator and the full workbook.</div>
+        <div id="end-name">Pressure Washing Pricing Calculator</div>
+        <div id="end-what">Free calculator online. Full workbook $2.99 for Excel and Google Sheets</div>
+        <div id="end-btn">Instant download</div>
+        <div id="end-url">On Etsy: proofnotfluff.etsy.com</div>
+        <div id="end-brand">PROOFNOTFLUFF</div>
+      </section>
+    </div>
+
+    <script>
+      // Every time below comes from make_demo.py's timeline for this spec (voice lines and beat-synced reveals).
+      const T = { r0: 3.22, r1: 5.47, r2: 9.77, r3: 12.35, r4: 15.47, fix: 19.225, end: 24.225, button: 29.85 };
+      const CAP = [["#c1", 3.1, 5.4], ["#c2", 5.47, 9.6], ["#c3", 9.65, 12.3], ["#c4", 12.35, 15.4], ["#c5", 16.07, 19.2], ["#c6", 19.38, 24.2]];
+      const tl = gsap.timeline({ paused: true });
+
+      // Hook: words rise in, the $65 lands last with a punch and an underline sweep.
+      
+      
+      tl.fromTo("#headline .w:not(#h65)", { y: 10 }, { y: 0, duration: 0.35, stagger: 0.04, ease: "power3.out" }, 0);
+      tl.fromTo("#h65", { scale: 1 }, { scale: 1.18, duration: 0.22, yoyo: true, repeat: 1, ease: "power2.out" }, 0.9);
+      tl.fromTo("#uline", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power2.inOut" }, 1.0);
+      tl.fromTo("#glow", { opacity: 0.4, scale: 0.9 }, { opacity: 1, scale: 1.08, duration: 24, ease: "none" }, 0);
+
+      // The card: whole sheet visible from frame one (empty values), then each row fills on its beat.
+      tl.fromTo("#card", { y: 16 }, { y: 0, duration: 0.5, ease: "power3.out" }, 0);
+      ["#v0", "#v1", "#v2", "#v3", "#v4"].forEach(v => tl.set(v, { opacity: 0 }, 0));
+      tl.set("#fix", { opacity: 0 }, 0);
+      tl.set("#route", { opacity: 0 }, 0);
+
+      const pop = (sel, at) => tl.fromTo(sel, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2.2)" }, at);
+      const rowFocus = (row, at) => tl.fromTo(row, { backgroundColor: "rgba(244,184,96,0)" }, { backgroundColor: "rgba(244,184,96,.22)", duration: 0.25, yoyo: true, repeat: 1 }, at);
+      const count = (el, from, to, at, dur, fmt) => {
+        const s = { v: from };
+        tl.to(s, { v: to, duration: dur, ease: "power2.out", onUpdate: () => { el.textContent = fmt(s.v); } }, at);
+      };
+      const money0 = v => "$" + Math.round(v).toLocaleString("en-US");
+      const money2 = v => "$" + v.toFixed(2);
+
+      // Inputs type in
+      pop("#v0", T.r0); rowFocus("#r0", T.r0);
+      pop("#v2", T.r2); rowFocus("#r2", T.r2);
+      tl.to("#route", { opacity: 1, duration: 0.2 }, T.r2);
+      tl.fromTo("#route-fill", { scaleX: 0.5 }, { scaleX: 1, duration: 1.6, ease: "power1.inOut" }, T.r2 + 0.1);
+      tl.fromTo("#route-van", { x: 0.5 * 776 - 13 }, { x: 776 - 13, duration: 1.6, ease: "power1.inOut" }, T.r2 + 0.1);
+
+      // Results count up on the beat
+      const v1 = document.getElementById("v1"), v3 = document.getElementById("v3"), v4 = document.getElementById("v4"), v5 = document.getElementById("v5");
+      pop("#v1", T.r1); count(v1, 0, 355, T.r1, 0.8, money0); rowFocus("#r1", T.r1);
+      pop("#v3", T.r3); count(v3, 0, 116.92, T.r3, 0.9, money2); rowFocus("#r3", T.r3);
+      tl.fromTo("#r3", { x: 0 }, { x: 8, duration: 0.06, yoyo: true, repeat: 5, ease: "none" }, T.r3 + 0.9);
+
+      // Key reveal: the $65 punches in, the card leans toward it, a glow pulse
+      pop("#v4", T.r4); count(v4, 0, 65, T.r4, 0.7, money0);
+      tl.fromTo("#r4", { backgroundColor: "rgba(244,184,96,0)" }, { backgroundColor: "rgba(244,184,96,.35)", duration: 0.3 }, T.r4);
+      tl.fromTo("#v4", { boxShadow: "0 0 0 0 rgba(244,184,96,.0)" }, { boxShadow: "0 0 0 18px rgba(244,184,96,.0)", duration: 0.9, ease: "power1.out" }, T.r4 + 0.1);
+      
+      
+      tl.to("#r4", { backgroundColor: "rgba(244,184,96,.12)", duration: 0.4 }, T.r4 + 3.0);
+
+      // Fix: the green answer slides up and counts from the old quote to the new one
+      tl.fromTo("#fix", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, T.fix);
+      count(v5, 355, 420, T.fix + 0.1, 0.9, money0);
+      tl.fromTo("#v5", { scale: 1 }, { scale: 1.12, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out" }, T.fix + 1.0);
+
+      // Captions: each line slides up as its voice line starts and leaves as the next arrives
+      CAP.forEach(([sel, a, b]) => {
+        tl.fromTo(sel, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.22, ease: "power2.out" }, a);
+        tl.to(sel, { opacity: 0, y: -16, duration: 0.18, ease: "power2.in" }, b);
+      });
+
+      // End card: wipe up, then each line on its own beat; the button lands with the ending chord
+      tl.fromTo("#end", { yPercent: 100 }, { yPercent: 0, duration: 0.35, ease: "power3.out" }, T.end);
+      tl.fromTo("#end-bars i", { scaleX: 0 }, { scaleX: 1, transformOrigin: "left center", duration: 0.4, stagger: 0.05 }, T.end + 0.2);
+      tl.fromTo("#end-say", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 }, T.end + 0.35);
+      tl.fromTo("#end-name", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, T.end + 0.8);
+      tl.fromTo("#end-what", { opacity: 0 }, { opacity: 1, duration: 0.4 }, T.end + 1.4);
+      tl.fromTo("#end-url", { opacity: 0 }, { opacity: 1, duration: 0.4 }, T.end + 1.8);
+      tl.fromTo("#end-btn", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2.4)" }, T.button - 0.1);
+      tl.fromTo("#end-brand", { opacity: 0 }, { opacity: 1, duration: 0.4 }, T.button);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

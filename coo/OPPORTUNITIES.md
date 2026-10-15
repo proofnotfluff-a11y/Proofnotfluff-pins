@@ -29,7 +29,7 @@ The goal ladder, in off-Etsy terms: rung 1, the first $100 off Etsy (checkout an
 | A. Etsy as proving ground | The 7 listings on real US demand (#18, #19, #15, #16, #11, #10, #6) get the kits, the videos and the first price experiments as reviews land; no new generic listings; KDP print editions of the best | COO, crew | Under 3 orders with 300+ visits by Oct 31: Etsy becomes maintenance (no new listings, promote slots halved) | Oct 31 |
 | B. Owned traffic | The free calculator site: builder SITE PAGES at 7 to 14 pages a week from the COO's site queue, each cleared by the Legal desk before it is indexed, Search Console and Bing (Todd verifies), Kit capture once it exists, every page linking the matching paid product (Etsy or Gumroad) | Builder, Legal desk, COO, CMO | Under 50 page visits a week by Dec 1 after indexing: cut to 2 pages a week | Dec 1 |
 | C. Premium line off Etsy (faceless) | Three premium products on Gumroad, one per segment, $49 to $99, each with a lite page and a demo; Case 1 is the first build | Builder, Legal desk, CMO; Todd for the account and uploads | Per segment: under 5 sales at $29+ in 45 days; the line: under 10 sales total by Dec 15 | 45 days after each launch; Dec 15 |
-| D. Productized service | Finance setup or fractional FP&A for e-commerce brands, the crew building the models and Todd fronting | Todd decides first | Not started without Todd's words | Todd |
+| D. Productized service | Finance setup or fractional FP&A for e-commerce brands, the crew building the models and Todd fronting | Declined by Todd, Oct 15, 2026 ("No, keep it faceless") | Closed; do not propose again unless Todd raises it | Todd |
 | E. Hosted tool (recurring) | The winning segment's calculator as a web app with monthly billing (Case 3) | COO proposes after Phase 1; Todd approves the build in chat (it spends Lovable credits) | Not started without a Phase 1 winner and Todd's words | Dec 15 |
 | F. Permit leads pilot (Case 4) | Public building-permit data packaged for cleaning, window and pressure washing companies: the biggest open projects, the builder on each, the stage; free Chicago sample page plus a waitlist, then a paid weekly list | Live session builds, Legal desk clears, CMO promotes once live; Todd for the Kit form and the Gumroad upload | Under 50 waitlist sign-ups 45 days after the page goes live: the feed is dropped and the page stays as a free resource | 45 days after go-live |
 
@@ -53,6 +53,8 @@ Parked: Todd's other app is a different business with better economics (recurrin
 - Smallest test: one flagship (the 13-week e-commerce cash flow with inventory and factoring) at $79, the lite page on the site, a demo video, one promote piece a day for 6 weeks. Metric: sales and email signups. Check: 45 days after launch. Quest: approve-premium-line (approved by Todd's deferral, Oct 7, 9:54 am).
 
 ## Case 2: Productized finance service (Track D, Todd's call)
+
+Decision, Oct 15, 2026 (live chat, after 18 days at 0 sales): Todd answered "No, keep it faceless." Track D is closed; the case below stays as history.
 
 - What: a fixed-scope offer such as "finance setup for an e-commerce brand" (chart of accounts, channel P&L, cash flow, S&OP cadence, dashboards) at a fixed fee, or a fractional FP&A retainer. The crew builds every model and dashboard; Todd fronts the client.
 - Evidence: the eightx guide above ($3,000 to $10,000 a month retainers). A prior employer's restrictive covenant keeps one product category off the table for a year; everything else is open.

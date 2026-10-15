@@ -187,7 +187,7 @@ What you get:
 - Monthly profit and loss by channel: sales, discounts, returns, platform fees, product cost, shipping and ad spend
 - Contribution margin per order and per unit
 - Your best and worst products by margin (Standard and Premium)
-- Trend charts you update each month by pasting new exports
+- Monthly trends you update in minutes from each month's exports
 - A one-page summary of what the numbers say, and a short update guide
 
 How it works:
@@ -263,7 +263,7 @@ No, never. The reports you download from each platform are enough.
 Can I update it myself next month?
 ```
 ```
-Yes. Paste each month's exports, in the same report format, into the input tabs and the dashboard updates. The guide shows how.
+Yes. Each month, add that month's totals and product rows on the Inputs tab and the dashboard updates. The guide shows where each number comes from in your exports.
 ```
 ```
 My product costs are messy. Is that a problem?

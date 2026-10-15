@@ -3113,6 +3113,103 @@
    ]
   },
   {
+   "slug": "soft-wash-pricing-calculator",
+   "kind": "service",
+   "draft": true,
+   "product": "22",
+   "segment": "home-services",
+   "title": "Soft Wash Pricing Calculator: Price House and Roof Soft Washes | ProofNotFluff",
+   "desc": "Free soft wash pricing calculator. Price a 1-story or 2-story house wash, a roof soft wash or gutter brightening from your own pay goal, crew, chemicals and drive time.",
+   "eyebrow": "Free calculator",
+   "h1": "Soft Wash Pricing Calculator",
+   "lede": "Price a soft wash house wash, a roof soft wash or gutter brightening from your own numbers: the quote, its price floor and your break-even rate, with chemicals, drive time and self-employment tax counted. Free, no sign-up.",
+   "card": "Price house and roof soft washes from your own pay goal, crew, chemicals and drive.",
+   "defaults": {
+    "takeHome": "55,000",
+    "weeks": "44",
+    "hours": "45",
+    "paidShare": "65",
+    "monthlyCosts": "755",
+    "incomeTax": "12",
+    "margin": "15",
+    "perMile": "0.76",
+    "mph": "30"
+   },
+   "costs_hint": "Insurance, equipment and rig, hoses and tips, marketing, apps, fees",
+   "presets": [
+    [
+     "House wash: 1-story house, soft wash",
+     2.5,
+     1,
+     30,
+     20
+    ],
+    [
+     "House wash: 2-story house, soft wash",
+     3,
+     1,
+     45,
+     20
+    ],
+    [
+     "Roof: Roof soft wash, 1-story",
+     2,
+     2,
+     70,
+     20
+    ],
+    [
+     "Gutters: Gutter face brightening",
+     1.5,
+     1,
+     15,
+     20
+    ]
+   ],
+   "method": [
+    "A soft wash price copied from another company only fits if your crew, your drive, your chemical mix and your pay goal match theirs. This calculator builds the price from your own numbers instead.",
+    "It grosses your take-home up for self-employment tax (15.3% on 92.35% of profit) and your income tax estimate, adds a year of business costs, and spreads the total over the hours customers pay for. That is your break-even rate. A job's floor is each person's time on site and drive time at that rate, plus vehicle cost per mile and supplies; put the soft wash mix, surfactant and any downstreamer chemicals in supplies.",
+    "The quote adds your margin and rounds up to the next $5. The example roof wash takes two people, so both people's time and drive time count, which is why it costs more than a house wash of similar hours."
+   ],
+   "example": "The Pressure Washing Pricing Calculator's example business wants $55,000 take-home with a 12% income tax estimate and $755 a month of costs, works 44 weeks of 45 hours and is paid for 65% of them: a break-even rate of $64.89 per paid hour. A 1-story house soft wash (2.5 hours on site, $30 of soft wash mix and surfactant, a 20-mile round trip) has a $250.69 price floor and quotes at $295. A 2-story house (3 hours, $45 of supplies) quotes at $355, and at $420 when the round trip is 40 miles. A 1-story roof soft wash with 2 people for 2 hours each and $70 of supplies has a $431.29 floor and quotes at $510.",
+   "cta": {
+    "title": "Price every job at once",
+    "bullets": [
+     "The Pressure Washing Pricing Calculator workbook uses this same maths for Excel and Google Sheets:",
+     "15 example jobs from driveways and soft washes to drive-thru lanes, a quote builder, a printable price sheet and a job tracker. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4590258713"
+   },
+   "faq": [
+    [
+     "How much should I charge to soft wash a house?",
+     "It depends on your pay goal, costs, crew and drive. With the example numbers a 1-story house soft wash needs $295 and a 2-story $355. Enter your own numbers to see yours."
+    ],
+    [
+     "Why does a roof soft wash cost more than a house wash?",
+     "In the example the roof takes 2 people for 2 hours each and more chemical, so it carries twice the labor and drive time of a one-person job: $510 against $295 for a 1-story house."
+    ],
+    [
+     "Where do soft wash chemicals go?",
+     "Put the mix, surfactant and any other chemicals used on that job in supplies for the job."
+    ],
+    [
+     "Does drive distance change the price?",
+     "Yes. Drive time is paid at your break-even rate and each mile at your vehicle cost. In the example a 2-story soft wash goes from $355 to $420 when the round trip grows from 20 to 40 miles."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
+    ]
+   ],
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, irs.gov/taxtopics/tc554). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS Standard Mileage Rates page, irs.gov/tax-professionals/standard-mileage-rates). Checked Oct 14, 2026. Example jobs and prices from the Pressure Washing Pricing Calculator workbook price sheet, recalculated Oct 14, 2026.",
+   "number_sources": [
+    "engines/service-pricing/build_xlsx.py --edition editions/pressure-washing.json recalculated in LibreOffice Oct 14, 2026: '1 Your Numbers' I21 64.89; '4 Price Sheet' E15 250.69 F15 295, E16 298.13 F16 355, E17 431.29 F17 510, E18 170.80 F18 205; 2-story at 40 miles 420 (edition text example_extra).",
+    "docs/assets/pnf-calc.test.js soft wash checks."
+   ]
+  },
+  {
    "slug": "chicago-construction-cleaning-leads",
    "kind": "leads",
    "draft": true,

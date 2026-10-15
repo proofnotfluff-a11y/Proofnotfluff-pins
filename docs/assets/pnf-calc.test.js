@@ -42,6 +42,14 @@ check("PW profit in quote", p.quoteProfit, 32.20);
 const p2 = P.service({ takeHome: 55000, weeks: 44, hours: 45, paidShare: 65, incomeTax: 12, margin: 15, monthlyCosts: 755,
   perMile: 0.76, mph: 30, jobHours: 3, people: 1, supplies: 45, miles: 40 });
 check("PW 2-story soft wash, 40 miles", p2.quote, 420);
+// soft-wash-pricing-calculator page: #22 price sheet soft wash rows (recalculated workbook, Oct 14, 2026)
+const PWS = { takeHome: 55000, weeks: 44, hours: 45, paidShare: 65, incomeTax: 12, margin: 15, monthlyCosts: 755, perMile: 0.76, mph: 30 };
+[["1-story soft wash", 2.5, 1, 30, 250.69, 295], ["2-story soft wash", 3, 1, 45, 298.13, 355],
+ ["roof soft wash, 1-story", 2, 2, 70, 431.29, 510], ["gutter face brightening", 1.5, 1, 15, 170.80, 205]].forEach(function (t) {
+  const r = P.service(Object.assign({}, PWS, { jobHours: t[1], people: t[2], supplies: t[3], miles: 20 }));
+  check("PW " + t[0] + " floor", r.floor, t[4]);
+  check("PW " + t[0] + " quote", r.quote, t[5]);
+});
 // Premium 13-Week E-commerce Cash Flow, lite. Expected values from the workbook (3 Cash Flow, ending cash row)
 // built with one channel paid in the week of sale (0-day lag, 0% fees) and the PO paid in full in its week.
 const c1 = P.cashflow({ openingCash: 20000, weeklyIn: 53700, weeklyOut: 32000, poAmount: 117000, poWeek: 4 });

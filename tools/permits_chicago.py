@@ -84,8 +84,18 @@ NOISE = re.compile(r"\s*\((?:[^()]*?\b(?:construction type|occupancy|use group|t
 TAIL = re.compile(r"[;,.]?\s*\b(?:occupancy group|use group|construction type|as per plans|per plans)\b.*$", re.I)
 
 
+# Free-text permit descriptions can end with a plan reviewer's, consultant's or owner's name (Legal desk, Oct 15):
+# everything from the first such tag on is dropped before anything else, so no person's name reaches the page or the list.
+PERSON_TAG = re.compile(r"\b(?:plan\s+)?(?:reviewers?|consultants?|architects?|engineers?|owners?(?!['\u2019]s)|designers?|expeditors?|"
+                        r"prepared\s+by|drawn\s+by|designed\s+by|attn|c/o|contact|mr|mrs|ms|dr)\b\.?", re.I)
+
+
 def clean_scope(desc, limit=150):
-    d = re.sub(r"\s+", " ", (desc or "")).strip().rstrip(".")
+    d = re.sub(r"\s+", " ", (desc or "")).strip()
+    m = PERSON_TAG.search(d)
+    if m:
+        d = d[:m.start()]
+    d = d.strip().rstrip(".")
     d = PREFIX.sub("", d).strip(" :-/.,")
     d = NOISE.sub("", d)
     d = re.sub(r"^\d{1,2}[.)]\s+", "", d)

@@ -15,7 +15,8 @@ Checks
                 index and hub; live pages are in the sitemap without noindex
   em-dash       no em dash in anything public: docs/, site/, email/, promo/specs/, agents/
   secrets       no token or private key pattern in any tracked text file
-  permit-data   permits/*/sample.json holds business-level fields only
+  permit-data   permits/*/sample.json holds business-level fields only, and no scope text carries a
+                reviewer, consultant, architect, engineer or owner tag (where a person's name can follow)
 
 Usage: python3 tools/check_repo.py [--only name,name]
 """
@@ -30,6 +31,7 @@ SECRETS = [("github_token", r"gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]
 SECRET = re.compile("|".join(f"(?P<{k}>{v})" for k, v in SECRETS))
 BINARY = re.compile(r"\.(png|jpe?g|gif|webp|ico|mp4|mov|mp3|wav|m4a|zip|pdf|xlsx|xls|docx|pptx|ttf|otf|woff2?|parquet|npz|onnx|bin)$", re.I)
 PERSONAL_KEYS = re.compile(r"(phone|email|owner|contact_\d+|skip|ssn|dob)", re.I)
+PERSON_TAG = re.compile(r"\b(?:reviewers?|consultants?|architects?|engineers?|owners?(?!['\u2019]s)|designers?|expeditors?|prepared by|drawn by|designed by|attn|c/o)\b", re.I)
 
 results = []
 
@@ -190,6 +192,8 @@ def check_permit_data():
             keys = [k for k in p if PERSONAL_KEYS.search(k)]
             if keys:
                 bad.append(f"{os.path.relpath(f, ROOT)}: {keys}"); break
+            if PERSON_TAG.search(p.get("scope", "")):   # a tag that can carry a person's name (Legal desk, Oct 15)
+                bad.append(f"{os.path.relpath(f, ROOT)}: permit {p.get('permit')} scope has a reviewer, consultant or owner tag"); break
     err("permit-data", "; ".join(bad)) if bad else ok("permit-data")
 
 

@@ -1,0 +1,850 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light">
+<title>Price calculator</title>
+<style>
+:root {
+  --qc-brand: #1E6B5C; --qc-brand-text: #FFFFFF; --qc-brand-tint: #E9F0EF; --qc-focus: #1E6B5C;
+  --qc-accent: #F2C14E; --qc-accent-text: #1B2330; --qc-accent-tint: #FCF1D8;
+  --qc-bg: #F6F4EF; --qc-surface: #FFFFFF; --qc-text: #1B2330; --qc-muted: #555F6E; --qc-border: #D9D3C7;
+  --qc-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { margin: 0; background: var(--qc-bg); color: var(--qc-text); font-family: var(--qc-font); font-size: 16px; line-height: 1.5; }
+.qc { max-width: 1160px; margin: 0 auto; padding: 28px 24px 40px; }
+.qc-notice { margin: 0 0 18px; padding: 9px 14px; border: 1px solid var(--qc-accent); border-radius: 10px; background: var(--qc-accent-tint); color: var(--qc-text); font-size: 14px; font-weight: 700; }
+.qc-head { display: flex; align-items: center; gap: 12px; margin: 0 0 22px; }
+.qc-logo { width: 46px; height: 46px; object-fit: contain; border-radius: 10px; flex: none; }
+.qc-biz { margin: 0; font-size: 20px; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+.qc-grid { display: grid; grid-template-columns: minmax(0, 1fr) 344px; gap: 28px; align-items: start; }
+.qc-card { background: var(--qc-surface); border: 1px solid var(--qc-border); border-radius: 18px; }
+.qc-form { padding: 28px 28px 6px; }
+.qc-form h1 { margin: 0 0 6px; font-size: 30px; line-height: 1.15; letter-spacing: -0.02em; }
+.qc-intro { margin: 0 0 6px; color: var(--qc-muted); }
+.qc-step { min-width: 0; margin: 0; padding: 22px 0 22px; border: 0; border-top: 1px solid var(--qc-border); }
+.qc-step.qc-first { border-top: 0; padding-top: 16px; }
+.qc-step legend { float: left; width: 100%; display: flex; align-items: center; gap: 10px; margin: 0 0 12px; padding: 0; font-size: 17px; font-weight: 700; line-height: 1.3; }
+.qc-step legend + * { clear: both; }
+.qc-num { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--qc-brand); color: var(--qc-brand-text); font-size: 14px; font-weight: 700; }
+.qc-opts { display: grid; grid-template-columns: repeat(var(--qc-cols, 2), minmax(0, 1fr)); gap: 10px; }
+.qc-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.qc-pills > .qc-opt { flex: 1 1 auto; }
+.qc-opt { position: relative; display: block; cursor: pointer; }
+.qc-opt input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.qc-box { display: flex; align-items: flex-start; gap: 9px; height: 100%; min-height: 52px; padding: 13px 14px 13px 12px; border: 1.5px solid var(--qc-border); border-radius: 14px; background: var(--qc-surface); transition: border-color .15s ease, background-color .15s ease; }
+.qc-mark { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; margin-top: 1px; border: 2px solid #737B87; border-radius: 50%; background: #FFFFFF; }
+.qc-opt--check .qc-mark { border-radius: 6px; }
+.qc-opt:hover .qc-box { border-color: var(--qc-brand); }
+.qc-opt input:checked + .qc-box { border-color: var(--qc-brand); background: var(--qc-brand-tint); box-shadow: inset 0 0 0 1px var(--qc-brand); }
+.qc-opt input:checked + .qc-box .qc-mark { border-color: var(--qc-brand); background: var(--qc-brand); }
+.qc-opt input:checked + .qc-box .qc-mark::after { content: ""; width: 9px; height: 5px; border: solid var(--qc-brand-text); border-width: 0 0 2.5px 2.5px; transform: translateY(-1px) rotate(-45deg); }
+.qc-opt input:focus-visible + .qc-box { outline: 3px solid var(--qc-focus); outline-offset: 2px; }
+.qc-txt { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.qc-title { font-weight: 650; line-height: 1.3; }
+.qc-sub { margin-top: 2px; color: var(--qc-muted); font-size: 14px; line-height: 1.35; }
+.qc-tag { align-self: flex-start; margin-top: 6px; padding: 1px 9px; border-radius: 999px; background: var(--qc-accent); color: var(--qc-accent-text); font-size: 12.5px; font-weight: 700; line-height: 1.6; }
+.qc-plus { flex: none; margin-left: 8px; font-weight: 650; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.qc-result { position: sticky; top: 20px; overflow: hidden; }
+.qc-price-block { padding: 24px 26px 22px; background: var(--qc-brand); color: var(--qc-brand-text); }
+.qc-price-label { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.qc-price { margin: 4px 0 0; font-size: 58px; font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.qc-price.qc-bump { animation: qc-bump .28s ease-out; }
+@keyframes qc-bump { from { opacity: .45; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+.qc-per { margin: 6px 0 0; font-size: 16px; }
+.qc-detail { padding: 18px 26px 24px; }
+.qc-recap { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 14px; margin: 0 0 14px; font-size: 15px; }
+.qc-recap dt { color: var(--qc-muted); }
+.qc-recap dd { margin: 0; font-weight: 600; text-align: right; }
+.qc-facts { display: grid; gap: 8px; margin: 0 0 18px; padding: 14px 0 0; border-top: 1px solid var(--qc-border); list-style: none; font-size: 15px; }
+.qc-facts:empty { display: none; }
+.qc-facts li { display: flex; gap: 10px; align-items: flex-start; }
+.qc-facts li::before { content: ""; flex: none; width: 7px; height: 7px; margin-top: 8px; border-radius: 50%; background: var(--qc-brand); }
+.qc-cta { display: flex; align-items: center; justify-content: center; min-height: 50px; padding: 12px 18px; border-radius: 12px; background: var(--qc-brand); color: var(--qc-brand-text); font-size: 16px; font-weight: 700; text-align: center; text-decoration: none; }
+.qc-cta:hover { filter: brightness(1.08); }
+.qc-cta:focus-visible { outline: 3px solid var(--qc-focus); outline-offset: 3px; }
+.qc-note { margin: 14px 0 0; color: var(--qc-muted); font-size: 13.5px; line-height: 1.45; }
+.qc-off { padding: 24px 26px; }
+.qc-off h1 { margin: 0 0 6px; font-size: 22px; }
+.qc-off p { margin: 0; color: var(--qc-muted); }
+.qc-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; display: flex; align-items: center; gap: 12px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); background: var(--qc-brand); color: var(--qc-brand-text); box-shadow: 0 -6px 22px rgba(20, 24, 30, .22); }
+.qc-bar-price { font-size: 26px; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.qc-bar-per { flex: 1; min-width: 0; font-size: 14px; line-height: 1.3; }
+.qc-bar a { color: inherit; font-size: 15px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.qc-result { scroll-margin-top: 16px; }
+.qc-vh { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+@media (max-width: 880px) {
+  .qc-grid { grid-template-columns: minmax(0, 1fr); }
+  .qc-result { position: static; }
+}
+@media (max-width: 520px) {
+  .qc { padding: 16px 16px 28px; }
+  .qc-head { margin-bottom: 16px; }
+  .qc-form { padding: 22px 16px 4px; }
+  .qc-form h1 { font-size: 25px; }
+  .qc-opts { grid-template-columns: repeat(var(--qc-cols-phone, 1), minmax(0, 1fr)); }
+  .qc-box { gap: 9px; padding: 12px; }
+  .qc-title { font-size: 15.5px; }
+  .qc-price-block, .qc-detail { padding-left: 20px; padding-right: 20px; }
+  .qc-price { font-size: 50px; }
+}
+@media (min-width: 881px) { .qc-bar { display: none !important; } }
+@media (prefers-reduced-motion: reduce) {
+  .qc-box { transition: none; }
+  .qc-price.qc-bump { animation: none; }
+}
+</style>
+</head>
+<body>
+<div class="qc" id="qc">
+  <p class="qc-notice" id="qc-notice" role="note" hidden></p>
+  <header class="qc-head">
+    <img class="qc-logo" id="qc-logo" alt="" hidden>
+    <p class="qc-biz" id="qc-biz"></p>
+  </header>
+  <div class="qc-grid" id="qc-grid">
+    <form class="qc-card qc-form" id="qc-form" novalidate>
+      <h1 id="qc-heading">See your price</h1>
+      <p class="qc-intro" id="qc-intro"></p>
+      <div id="qc-steps"></div>
+    </form>
+    <section class="qc-card qc-result" id="qc-result" aria-labelledby="qc-price-label">
+      <div class="qc-price-block">
+        <h2 class="qc-price-label" id="qc-price-label">Your price</h2>
+        <div aria-live="polite" aria-atomic="true">
+          <p class="qc-price" id="qc-price"></p>
+          <p class="qc-per" id="qc-per"></p>
+        </div>
+      </div>
+      <div class="qc-detail">
+        <dl class="qc-recap" id="qc-recap"></dl>
+        <ul class="qc-facts" id="qc-facts"></ul>
+        <a class="qc-cta" id="qc-cta" hidden></a>
+        <p class="qc-note" id="qc-note"></p>
+      </div>
+    </section>
+  </div>
+  <div class="qc-bar" id="qc-bar" aria-hidden="true" hidden>
+    <span class="qc-bar-price" id="qc-bar-price"></span>
+    <span class="qc-bar-per" id="qc-bar-per"></span>
+    <a href="#qc-result" id="qc-bar-link" tabindex="-1"></a>
+  </div>
+  <noscript><div class="qc-card qc-off"><p>Turn on JavaScript in your browser to see prices.</p></div></noscript>
+</div>
+<script type="application/json" id="quote-config">
+{
+  "sample": "SAMPLE ONLY. Sample Cleaning Co. is a made-up business and every number in this file is made up. For an order, replace all of it with the buyer's own numbers (README.md, part 2).",
+  "business": {
+    "name": "Sample Cleaning Co.",
+    "logo": {
+      "file": "sample-logo.svg",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9IiMxRTZCNUMiLz48cGF0aCBkPSJNMjcgMTNjMS43IDEwLjMgNC4yIDEyLjggMTQuNSAxNC41QzMxLjIgMjkuMiAyOC43IDMxLjcgMjcgNDJjLTEuNy0xMC4zLTQuMi0xMi44LTE0LjUtMTQuNUMyMi44IDI1LjggMjUuMyAyMy4zIDI3IDEzeiIgZmlsbD0iI0ZGRkZGRiIvPjxwYXRoIGQ9Ik00NC41IDM2Yy44IDQuNiAxLjkgNS43IDYuNSA2LjUtNC42LjgtNS43IDEuOS02LjUgNi41LS44LTQuNi0xLjktNS43LTYuNS02LjUgNC42LS44IDUuNy0xLjkgNi41LTYuNXoiIGZpbGw9IiNGMkMxNEUiLz48L3N2Zz4=",
+      "alt": ""
+    },
+    "notice": "SAMPLE: made-up business and prices"
+  },
+  "colors": {
+    "brand": "#1E6B5C",
+    "brandText": "#FFFFFF",
+    "accent": "#F2C14E",
+    "accentText": "#1B2330",
+    "background": "#F6F4EF",
+    "surface": "#FFFFFF",
+    "text": "#1B2330",
+    "muted": "#555F6E",
+    "border": "#D9D3C7"
+  },
+  "text": {
+    "pageTitle": "Sample Cleaning Co. price calculator",
+    "heading": "See your cleaning price",
+    "intro": "Choose a clean, your home size and how far you are from us. Your price updates as you go.",
+    "serviceQuestion": "What do you need?",
+    "sizeQuestion": "How big is your home?",
+    "zoneQuestion": "How far are you from us?",
+    "frequencyQuestion": "How often?",
+    "extrasQuestion": "Add extras",
+    "priceLabel": "Your price",
+    "oneTime": "one-time clean",
+    "perVisit": "per visit, {frequency}",
+    "crewOne": "1 cleaner, about {hours} on site",
+    "crewMany": "Team of {people}, about {hours} on site",
+    "minimum": "Our minimum charge of {minimum} applies.",
+    "deposit": "Deposit to book: {deposit}",
+    "includes": "Supplies, equipment and travel are included.",
+    "note": "This is an estimate from the details you chose. We confirm the final price before we start."
+  },
+  "rates": {
+    "breakEvenPerHour": 52.7393617615689,
+    "marginPercent": 15,
+    "vehicleCostPerMile": 0.76,
+    "driveSpeedMph": 25
+  },
+  "pricing": {
+    "roundUpTo": 5,
+    "minimumCharge": 150,
+    "depositPercent": 0
+  },
+  "services": [
+    {
+      "name": "Standard clean",
+      "note": "Kitchen, baths, floors and dusting"
+    },
+    {
+      "name": "Deep clean",
+      "note": "Adds baseboards, fixtures and inside the microwave"
+    },
+    {
+      "name": "Move-out clean",
+      "note": "Empty home, inside cabinets and appliances"
+    }
+  ],
+  "jobs": [
+    {
+      "service": "Standard clean",
+      "size": "1 bedroom",
+      "hoursPerPerson": 2,
+      "people": 1,
+      "supplies": 8,
+      "miles": 16
+    },
+    {
+      "service": "Standard clean",
+      "size": "2 bedrooms",
+      "hoursPerPerson": 2.5,
+      "people": 1,
+      "supplies": 8,
+      "miles": 16
+    },
+    {
+      "service": "Standard clean",
+      "size": "3 bedrooms",
+      "hoursPerPerson": 1.75,
+      "people": 2,
+      "supplies": 10,
+      "miles": 16
+    },
+    {
+      "service": "Standard clean",
+      "size": "4 bedrooms",
+      "hoursPerPerson": 2.25,
+      "people": 2,
+      "supplies": 12,
+      "miles": 16
+    },
+    {
+      "service": "Deep clean",
+      "size": "1 bedroom",
+      "hoursPerPerson": 3.5,
+      "people": 1,
+      "supplies": 15,
+      "miles": 16
+    },
+    {
+      "service": "Deep clean",
+      "size": "2 bedrooms",
+      "hoursPerPerson": 2.5,
+      "people": 2,
+      "supplies": 15,
+      "miles": 16
+    },
+    {
+      "service": "Deep clean",
+      "size": "3 bedrooms",
+      "hoursPerPerson": 3.25,
+      "people": 2,
+      "supplies": 18,
+      "miles": 16
+    },
+    {
+      "service": "Deep clean",
+      "size": "4 bedrooms",
+      "hoursPerPerson": 4,
+      "people": 2,
+      "supplies": 22,
+      "miles": 16
+    },
+    {
+      "service": "Move-out clean",
+      "size": "1 bedroom",
+      "hoursPerPerson": 4,
+      "people": 1,
+      "supplies": 18,
+      "miles": 16
+    },
+    {
+      "service": "Move-out clean",
+      "size": "2 bedrooms",
+      "hoursPerPerson": 3,
+      "people": 2,
+      "supplies": 20,
+      "miles": 16
+    },
+    {
+      "service": "Move-out clean",
+      "size": "3 bedrooms",
+      "hoursPerPerson": 3.75,
+      "people": 2,
+      "supplies": 24,
+      "miles": 16
+    },
+    {
+      "service": "Move-out clean",
+      "size": "4 bedrooms",
+      "hoursPerPerson": 4.5,
+      "people": 2,
+      "supplies": 28,
+      "miles": 16
+    }
+  ],
+  "zones": [
+    {
+      "label": "Up to 8 miles",
+      "roundTripMiles": 16,
+      "tripFee": 0
+    },
+    {
+      "label": "8 to 15 miles",
+      "roundTripMiles": 30,
+      "tripFee": 0
+    },
+    {
+      "label": "15 to 25 miles",
+      "roundTripMiles": 50,
+      "tripFee": 0
+    }
+  ],
+  "frequencies": [
+    {
+      "label": "One time",
+      "discountPercent": 0
+    },
+    {
+      "label": "Monthly",
+      "discountPercent": 5
+    },
+    {
+      "label": "Every 2 weeks",
+      "discountPercent": 10
+    },
+    {
+      "label": "Weekly",
+      "discountPercent": 15
+    }
+  ],
+  "extras": [
+    {
+      "label": "Inside oven",
+      "price": 34
+    },
+    {
+      "label": "Inside fridge",
+      "price": 33
+    },
+    {
+      "label": "Baseboards, whole home",
+      "price": 43
+    }
+  ],
+  "defaults": {
+    "service": "Standard clean",
+    "size": "3 bedrooms",
+    "zone": "Up to 8 miles",
+    "frequency": "One time"
+  },
+  "booking": {
+    "label": "Request this clean",
+    "href": "#request-this-clean"
+  }
+}
+</script>
+<script id="quote-math">
+/* Quote maths. The same formulas as the pricing workbook this page was set up from.
+   Job floor (tab 3 Quote Builder): (hours on site per person x people + drive hours x people) x break-even rate
+   per paid hour, plus round-trip miles x vehicle cost per mile, plus supplies; drive hours = miles / average speed.
+   Price: CEILING((floor - add-ons) / (1 - margin) + add-ons, rounding step); add-ons (extras and any trip fee) are
+   billed at cost. The price is never under the minimum charge. A frequency discount comes off that price and the
+   result rounds up again, never under the minimum (the cleaning workbook's price per visit). Deposit: the price
+   times the deposit share, to the cent. */
+(function (root) {
+  "use strict";
+
+  function num(v) { var n = parseFloat(String(v).replace(/[$,%\s]/g, "")); return isFinite(n) ? n : 0; }
+  function ceilTo(x, step) { return Math.ceil(x / step - 1e-9) * step; }
+  function round2(x) { return Math.round((x + (x >= 0 ? 1e-9 : -1e-9)) * 100) / 100; }
+  function isNum(v) { return typeof v === "number" && isFinite(v); }
+  function list(v) { return Array.isArray(v) ? v : []; }
+
+  // One job at the break-even rate: the job lines of the workbook's Quote Builder.
+  function jobCost(be, perMile, mph, jobHours, people, supplies, miles) {
+    var drive = mph > 0 ? miles / mph : 0;
+    var labor = jobHours * people * be, driveCost = drive * people * be, vehicle = miles * perMile;
+    return { drive: drive, labor: labor, driveCost: driveCost, vehicle: vehicle, supplies: supplies,
+      base: labor + driveCost + vehicle + supplies };
+  }
+
+  // The price for one set of choices. pick: { job, zone, frequency, extras: [index, ...] } (indexes into the config).
+  function price(cfg, pick) {
+    pick = pick || {};
+    var r = cfg.rates || {}, p = cfg.pricing || {};
+    var job = list(cfg.jobs)[pick.job] || {};
+    var zone = list(cfg.zones)[pick.zone], freq = list(cfg.frequencies)[pick.frequency];
+    var be = num(r.breakEvenPerHour), margin = num(r.marginPercent) / 100;
+    var miles = zone ? num(zone.roundTripMiles) : num(job.miles);
+    var c = jobCost(be, num(r.vehicleCostPerMile), num(r.driveSpeedMph), num(job.hoursPerPerson), num(job.people),
+      num(job.supplies), miles);
+    var extras = 0, chosen = [];
+    list(pick.extras).forEach(function (k) {
+      var x = list(cfg.extras)[k];
+      if (x) { extras += num(x.price); chosen.push(String(x.label)); }
+    });
+    var tripFee = zone ? num(zone.tripFee) : 0, addOns = tripFee + extras;
+    var step = num(p.roundUpTo) > 0 ? num(p.roundUpTo) : 5;
+    var minC = Math.max(0, num(p.minimumCharge));
+    var quote = margin < 1 ? ceilTo(c.base / (1 - margin) + addOns, step) : 0;
+    var oneTime = Math.max(minC, quote);
+    var disc = freq ? num(freq.discountPercent) / 100 : 0;
+    var raw = ceilTo(oneTime * (1 - disc), step);
+    var final = Math.max(minC, raw);
+    return {
+      miles: miles, drive: c.drive, labor: c.labor, driveCost: c.driveCost, vehicle: c.vehicle, supplies: c.supplies,
+      tripFee: tripFee, extras: extras, extraLabels: chosen, addOns: addOns, floor: c.base + addOns,
+      quote: quote, oneTime: oneTime, discount: disc, price: final, deposit: round2(final * num(p.depositPercent) / 100),
+      atMinimum: minC > 0 && Math.abs(final - minC) < 1e-9 && (quote < minC - 1e-9 || raw < minC - 1e-9),
+      hoursPerPerson: num(job.hoursPerPerson), people: num(job.people), profit: final - c.base - addOns
+    };
+  }
+
+  // Services in display order, each with the indexes of its jobs.
+  function services(cfg) {
+    var out = [], seen = {};
+    list(cfg.services).forEach(function (s) {
+      var name = String(s && s.name || "");
+      if (name && !seen[name]) { seen[name] = { name: name, note: String(s.note || ""), jobs: [] }; out.push(seen[name]); }
+    });
+    list(cfg.jobs).forEach(function (j, k) {
+      var name = String(j && j.service || "");
+      if (!seen[name]) { seen[name] = { name: name, note: "", jobs: [] }; out.push(seen[name]); }
+      seen[name].jobs.push(k);
+    });
+    return out.filter(function (s) { return s.jobs.length; });
+  }
+
+  // Every problem with a config, as plain sentences. The page shows nothing but a short notice while any remain.
+  function check(cfg) {
+    var out = [];
+    function bad(m) { out.push(m); }
+    function inRange(v, lo, hi, loOpen, hiOpen) {
+      return isNum(v) && (loOpen ? v > lo : v >= lo) && (hi === undefined || (hiOpen ? v < hi : v <= hi));
+    }
+    if (!cfg || typeof cfg !== "object" || Array.isArray(cfg)) return ["the config is not a JSON object"];
+    var b = cfg.business || {};
+    if (!String(b.name || "").trim()) bad("business.name is empty");
+    var logo = b.logo && b.logo.src ? String(b.logo.src) : "";
+    if (logo && !/^data:image\/(png|jpeg|gif|webp|svg\+xml);base64,[A-Za-z0-9+\/=]+$/.test(logo) && !/^[A-Za-z0-9._-]+\.(png|jpe?g|gif|webp|svg)$/i.test(logo))
+      bad("business.logo.src must be a base64 data URI (data:image/...;base64,...) or a file name next to the page");
+    var r = cfg.rates || {};
+    if (!inRange(r.breakEvenPerHour, 0, undefined, true)) bad("rates.breakEvenPerHour must be a number above 0");
+    if (!inRange(r.marginPercent, 0, 100, false, true)) bad("rates.marginPercent must be from 0 to under 100");
+    if (!inRange(r.vehicleCostPerMile, 0)) bad("rates.vehicleCostPerMile must be 0 or more");
+    if (!inRange(r.driveSpeedMph, 0, undefined, true)) bad("rates.driveSpeedMph must be above 0");
+    var p = cfg.pricing || {};
+    if (!inRange(p.roundUpTo, 0, undefined, true)) bad("pricing.roundUpTo must be above 0 (5 matches the workbook)");
+    if (!inRange(p.minimumCharge, 0)) bad("pricing.minimumCharge must be 0 or more");
+    else if (isNum(p.roundUpTo) && p.roundUpTo > 0 && p.minimumCharge > 0 &&
+             Math.abs(p.minimumCharge / p.roundUpTo - Math.round(p.minimumCharge / p.roundUpTo)) > 1e-9)
+      bad("pricing.minimumCharge must be a multiple of pricing.roundUpTo");
+    if (p.depositPercent !== undefined && !inRange(p.depositPercent, 0, 100)) bad("pricing.depositPercent must be from 0 to 100");
+    var names = {};
+    list(cfg.services).forEach(function (s, k) {
+      if (!s || !String(s.name || "").trim()) bad("services[" + k + "].name is empty");
+      else names[s.name] = 1;
+    });
+    var jobs = list(cfg.jobs), pairs = {};
+    if (!jobs.length) bad("jobs is empty: add at least one job type");
+    jobs.forEach(function (j, k) {
+      var w = "jobs[" + k + "]";
+      if (!j || typeof j !== "object") { bad(w + " is not an object"); return; }
+      if (!String(j.service || "").trim()) bad(w + ".service is empty");
+      if (j.size !== undefined && typeof j.size !== "string") bad(w + ".size must be text");
+      if (!inRange(j.hoursPerPerson, 0, 500)) bad(w + ".hoursPerPerson must be from 0 to 500");
+      if (!(isNum(j.people) && Math.round(j.people) === j.people && j.people >= 1 && j.people <= 50)) bad(w + ".people must be a whole number from 1 to 50");
+      if (!inRange(j.supplies, 0)) bad(w + ".supplies must be 0 or more");
+      if (!inRange(j.miles, 0)) bad(w + ".miles must be 0 or more (round trip, the workbook's preset)");
+      if (list(cfg.services).length && !names[j.service]) bad(w + ".service '" + j.service + "' is not in services");
+      var key = String(j.service) + " | " + String(j.size || "");
+      if (pairs[key]) bad(w + " repeats the job '" + key + "'");
+      pairs[key] = 1;
+    });
+    list(cfg.zones).forEach(function (z, k) {
+      var w = "zones[" + k + "]";
+      if (!z || !String(z.label || "").trim()) bad(w + ".label is empty");
+      else {
+        if (!inRange(z.roundTripMiles, 0)) bad(w + ".roundTripMiles must be 0 or more");
+        if (z.tripFee !== undefined && !inRange(z.tripFee, 0)) bad(w + ".tripFee must be 0 or more");
+      }
+    });
+    list(cfg.frequencies).forEach(function (f, k) {
+      var w = "frequencies[" + k + "]";
+      if (!f || !String(f.label || "").trim()) bad(w + ".label is empty");
+      else if (!inRange(f.discountPercent, 0, 100, false, true)) bad(w + ".discountPercent must be from 0 to under 100");
+    });
+    if (list(cfg.frequencies).length && num(cfg.frequencies[0].discountPercent) !== 0) bad("frequencies[0] is the one-time option and takes no discount");
+    list(cfg.extras).forEach(function (x, k) {
+      var w = "extras[" + k + "]";
+      if (!x || !String(x.label || "").trim()) bad(w + ".label is empty");
+      else if (!inRange(x.price, 0)) bad(w + ".price must be 0 or more");
+    });
+    var c = cfg.colors || {};
+    Object.keys(c).forEach(function (k) {
+      if (!/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(String(c[k]))) bad("colors." + k + " must be a hex color like #1E6B5C");
+    });
+    var d = cfg.defaults || {};
+    var svc = services(cfg);
+    if (d.service !== undefined && !svc.some(function (s) { return s.name === d.service; })) bad("defaults.service is not a service");
+    if (d.size !== undefined && !jobs.some(function (j) { return j.size === d.size; })) bad("defaults.size is not a job size");
+    if (d.zone !== undefined && !list(cfg.zones).some(function (z) { return z.label === d.zone; })) bad("defaults.zone is not a zone label");
+    if (d.frequency !== undefined && !list(cfg.frequencies).some(function (f) { return f.label === d.frequency; })) bad("defaults.frequency is not a frequency label");
+    var bk = cfg.booking || {};
+    if (bk.href && /^\s*(javascript|data|vbscript):/i.test(String(bk.href))) bad("booking.href must be a web page, mailto: or sms: link");
+    if (bk.href && !String(bk.label || "").trim()) bad("booking.label is empty");
+    return out;
+  }
+
+  // Display helpers: whole dollars when the amount is whole, cents otherwise; hours as "1 hr 45 min".
+  function money(x) {
+    var v = round2(x), neg = v < 0, a = Math.abs(v), whole = Math.abs(a - Math.round(a)) < 1e-9;
+    var s = whole ? Math.round(a).toLocaleString("en-US")
+                  : a.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return (neg ? "-$" : "$") + s;
+  }
+  function duration(h) {
+    var m = Math.round(num(h) * 60 / 5) * 5, hr = Math.floor(m / 60), mn = m % 60;
+    if (!hr) return mn + " min";
+    return hr + " hr" + (mn ? " " + mn + " min" : "");
+  }
+  function fill(tpl, vals) {
+    return String(tpl || "").replace(/\{(\w+)\}/g, function (all, k) { return vals[k] !== undefined ? String(vals[k]) : all; });
+  }
+
+  // Colors: WCAG contrast ratio, and a mix of two colors for tints.
+  function rgb(hex) {
+    var h = String(hex).replace("#", "");
+    if (h.length === 3) h = h.replace(/(.)/g, "$1$1");
+    return [0, 2, 4].map(function (i) { return parseInt(h.substr(i, 2), 16); });
+  }
+  function luminance(hex) {
+    var c = rgb(hex).map(function (v) { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  }
+  function contrast(a, b) {
+    var x = luminance(a), y = luminance(b);
+    return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
+  }
+  function mix(a, b, t) {
+    var p = rgb(a), q = rgb(b);
+    return "#" + p.map(function (v, i) {
+      return ("0" + Math.round(v * t + q[i] * (1 - t)).toString(16)).slice(-2);
+    }).join("").toUpperCase();
+  }
+
+  var api = { num: num, ceilTo: ceilTo, round2: round2, jobCost: jobCost, price: price, services: services, check: check,
+    money: money, duration: duration, fill: fill, contrast: contrast, mix: mix };
+  if (typeof module !== "undefined" && module.exports) module.exports = api; else root.QuoteMath = api;
+})(this);
+</script>
+<script id="quote-ui">
+(function () {
+  "use strict";
+  var M = window.QuoteMath, doc = document;
+  function $(id) { return doc.getElementById(id); }
+  function el(tag, cls, text) {
+    var e = doc.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+
+  var DEFAULT_TEXT = {
+    heading: "See your price", intro: "", serviceQuestion: "What do you need?", sizeQuestion: "Size",
+    zoneQuestion: "How far are you from us?", frequencyQuestion: "How often?", extrasQuestion: "Extras",
+    priceLabel: "Your price", oneTime: "one-time price", perVisit: "per visit, {frequency}",
+    crewOne: "1 person, about {hours} on site", crewMany: "Crew of {people}, about {hours} on site",
+    minimum: "Our minimum charge of {minimum} applies.", deposit: "Deposit to book: {deposit}", includes: "",
+    note: "This is an estimate from the details you chose. We confirm the final price before we start.",
+    recapService: "Service", recapZone: "Distance", recapFrequency: "How often", recapExtras: "Extras",
+    save: "Save {percent}%", details: "See details", requestSubject: "Quote request", setup: "This price calculator is being set up. Please check back soon."
+  };
+
+  var cfg = null, problems;
+  try { cfg = JSON.parse($("quote-config").textContent); } catch (e) { problems = ["the config is not valid JSON: " + e.message]; }
+  if (!problems) problems = M.check(cfg);
+  var T = {}, k;
+  for (k in DEFAULT_TEXT) T[k] = DEFAULT_TEXT[k];
+  if (cfg && cfg.text) for (k in cfg.text) if (typeof cfg.text[k] === "string") T[k] = cfg.text[k];
+
+  if (problems.length) {
+    // Never show a price from a broken config: the crew's test lists these problems too.
+    if (window.console) console.error("Price calculator config problems:\n- " + problems.join("\n- "));
+    $("qc-grid").hidden = true;
+    var off = el("div", "qc-card qc-off");
+    off.appendChild(el("h1", "", T.setup));
+    $("qc").appendChild(off);
+    return;
+  }
+
+  // ---- brand: colors, font, logo, name, page title
+  var C = cfg.colors || {}, R = doc.documentElement.style;
+  var surface = C.surface || "#FFFFFF";
+  var brand = C.brand || "#1E6B5C", accent = C.accent || "#F2C14E";
+  function readable(bg) { return M.contrast("#FFFFFF", bg) >= M.contrast("#1B2330", bg) ? "#FFFFFF" : "#1B2330"; }
+  var set = {
+    "--qc-brand": brand, "--qc-brand-text": C.brandText || readable(brand), "--qc-brand-tint": M.mix(brand, surface, 0.1),
+    "--qc-focus": C.focus || brand, "--qc-accent": accent, "--qc-accent-text": C.accentText || readable(accent),
+    "--qc-accent-tint": M.mix(accent, surface, 0.22), "--qc-bg": C.background, "--qc-surface": surface,
+    "--qc-text": C.text, "--qc-muted": C.muted, "--qc-border": C.border
+  };
+  for (k in set) if (set[k]) R.setProperty(k, set[k]);
+  if (cfg.fontFamily) R.setProperty("--qc-font", String(cfg.fontFamily));
+  [["brandText on brand", set["--qc-brand-text"], brand], ["text on surface", C.text || "#1B2330", surface],
+   ["muted on surface", C.muted || "#555F6E", surface], ["accentText on accent", set["--qc-accent-text"], accent]]
+    .forEach(function (pair) {
+      var ratio = M.contrast(pair[1], pair[2]);
+      if (ratio < 4.5 && window.console) console.warn("Low contrast, " + pair[0] + ": " + ratio.toFixed(2) + ":1 (4.5:1 needed)");
+    });
+
+  var B = cfg.business;
+  doc.title = T.pageTitle || (B.name + " price calculator");
+  $("qc-biz").textContent = B.name;
+  if (B.logo && B.logo.src) {
+    $("qc-logo").src = B.logo.src;
+    $("qc-logo").alt = B.logo.alt || "";
+    $("qc-logo").hidden = false;
+  }
+  if (B.notice) { $("qc-notice").textContent = B.notice; $("qc-notice").hidden = false; }
+  $("qc-heading").textContent = T.heading;
+  $("qc-intro").textContent = T.intro;
+  $("qc-intro").hidden = !T.intro;
+  $("qc-price-label").textContent = T.priceLabel;
+
+  // ---- the questions
+  var SVC = M.services(cfg), ZONES = cfg.zones || [], FREQ = cfg.frequencies || [], EXTRAS = cfg.extras || [];
+  var D = cfg.defaults || {};
+  function indexOf(arr, test) { for (var i = 0; i < arr.length; i++) if (test(arr[i], i)) return i; return -1; }
+  var state = {
+    service: Math.max(0, indexOf(SVC, function (s) { return s.name === D.service; })),
+    zone: ZONES.length ? Math.max(0, indexOf(ZONES, function (z) { return z.label === D.zone; })) : null,
+    frequency: FREQ.length ? Math.max(0, indexOf(FREQ, function (f) { return f.label === D.frequency; })) : null,
+    extras: []
+  };
+  state.job = pickJob(state.service, D.size);
+
+  function pickJob(s, size) {
+    var jobs = SVC[s].jobs;
+    var hit = indexOf(jobs, function (j) { return cfg.jobs[j].size === size; });
+    return jobs[hit >= 0 ? hit : 0];
+  }
+
+  var steps = $("qc-steps");
+  function step(id, question) {
+    var fs = el("fieldset", "qc-step");
+    fs.id = id;
+    var lg = el("legend");
+    var n = el("span", "qc-num");
+    n.setAttribute("aria-hidden", "true");
+    lg.appendChild(n);
+    lg.appendChild(el("span", "", question));
+    fs.appendChild(lg);
+    steps.appendChild(fs);
+    return fs;
+  }
+  var uid = 0;
+  function option(type, name, checked, title, sub, tag, plus) {
+    var lab = el("label", "qc-opt" + (type === "checkbox" ? " qc-opt--check" : ""));
+    var inp = el("input");
+    inp.type = type; inp.name = name; inp.checked = checked; inp.id = "qc-in-" + (++uid);
+    lab.htmlFor = inp.id;
+    var box = el("span", "qc-box");
+    box.appendChild(el("span", "qc-mark"));
+    var txt = el("span", "qc-txt");
+    txt.appendChild(el("span", "qc-title", title));
+    if (sub) txt.appendChild(el("span", "qc-sub", sub));
+    if (tag) txt.appendChild(el("span", "qc-tag", tag));
+    box.appendChild(txt);
+    if (plus) box.appendChild(el("span", "qc-plus", plus));
+    lab.appendChild(inp);
+    lab.appendChild(box);
+    return { label: lab, input: inp };
+  }
+  // Columns: as many as there are options up to the cap, choosing the count that leaves the fewest empty cells
+  // in the last row. Phones always get one column of cards.
+  function cols(count, cap) {
+    if (count <= cap) return Math.max(1, count);
+    var best = cap;
+    for (var c = cap; c >= 2; c--) if ((c - count % c) % c < (best - count % best) % best) best = c;
+    return best;
+  }
+  // Cards (services, extras) sit in a grid; short answers (sizes, distances, how often) are pills that take the
+  // width of their words and wrap whole, so no label breaks mid-phrase.
+  function group(fs, kind, labels) {
+    var g = el("div", kind === "pills" ? "qc-pills" : "qc-opts");
+    if (kind !== "pills") g.style.setProperty("--qc-cols", String(cols(labels.length, kind === "extras" ? 2 : 3)));
+    fs.appendChild(g);
+    return g;
+  }
+
+  var fsService = step("qc-step-service", T.serviceQuestion), gService = group(fsService, "cards", SVC.map(function (s) { return s.name; }));
+  SVC.forEach(function (s, i) {
+    var o = option("radio", "qc-service", i === state.service, s.name, s.note);
+    o.input.addEventListener("change", function () {
+      var size = cfg.jobs[state.job].size;
+      state.service = i; state.job = pickJob(i, size);
+      buildSizes(); render();
+    });
+    gService.appendChild(o.label);
+  });
+
+  var fsSize = step("qc-step-size", T.sizeQuestion), gSize = null;
+  function buildSizes() {
+    if (gSize) fsSize.removeChild(gSize);
+    gSize = group(fsSize, "pills", SVC[state.service].jobs.map(function (j) { return cfg.jobs[j].size || SVC[state.service].name; }));
+    SVC[state.service].jobs.forEach(function (j) {
+      var o = option("radio", "qc-size", j === state.job, cfg.jobs[j].size || SVC[state.service].name);
+      o.input.addEventListener("change", function () { state.job = j; render(); });
+      gSize.appendChild(o.label);
+    });
+  }
+  buildSizes();
+
+  var fsZone = step("qc-step-zone", T.zoneQuestion), gZone = group(fsZone, "pills", ZONES.map(function (z) { return z.label; }));
+  ZONES.forEach(function (z, i) {
+    var o = option("radio", "qc-zone", i === state.zone, z.label);
+    o.input.addEventListener("change", function () { state.zone = i; render(); });
+    gZone.appendChild(o.label);
+  });
+
+  var fsFreq = step("qc-step-frequency", T.frequencyQuestion), gFreq = group(fsFreq, "pills", FREQ.map(function (f) { return f.label; }));
+  FREQ.forEach(function (f, i) {
+    var d = M.num(f.discountPercent);
+    var o = option("radio", "qc-frequency", i === state.frequency, f.label, "", d > 0 ? M.fill(T.save, { percent: d }) : "");
+    o.input.addEventListener("change", function () { state.frequency = i; render(); });
+    gFreq.appendChild(o.label);
+  });
+
+  var fsExtras = step("qc-step-extras", T.extrasQuestion), gExtras = group(fsExtras, "extras", EXTRAS.map(function (x) { return x.label; }));
+  EXTRAS.forEach(function (x, i) {
+    var o = option("checkbox", "qc-extra", false, x.label, "", "", "+" + M.money(M.num(x.price)));
+    o.input.addEventListener("change", function () {
+      state.extras = state.extras.filter(function (e) { return e !== i; });
+      if (o.input.checked) state.extras.push(i);
+      state.extras.sort(function (a, b) { return a - b; });
+      render();
+    });
+    gExtras.appendChild(o.label);
+  });
+
+  $("qc-form").addEventListener("submit", function (e) { e.preventDefault(); });
+
+  // ---- the result
+  var lastPrice = null;
+  function row(dl, term, value) {
+    dl.appendChild(el("dt", "", term));
+    dl.appendChild(el("dd", "", value));
+  }
+  function render() {
+    var job = cfg.jobs[state.job], svc = SVC[state.service];
+    fsService.hidden = SVC.length < 2;
+    fsSize.hidden = svc.jobs.length < 2 && !job.size;
+    fsZone.hidden = ZONES.length < 2;
+    fsFreq.hidden = FREQ.length < 2;
+    fsExtras.hidden = !EXTRAS.length;
+    var n = 0;
+    [fsService, fsSize, fsZone, fsFreq, fsExtras].forEach(function (fs) {
+      fs.classList.toggle("qc-first", !fs.hidden && n === 0);
+      if (!fs.hidden) fs.querySelector(".qc-num").textContent = String(++n);
+    });
+
+    var res = M.price(cfg, { job: state.job, zone: state.zone, frequency: state.frequency, extras: state.extras });
+    var freq = state.frequency !== null ? FREQ[state.frequency] : null;
+    var recurring = !!freq && state.frequency > 0;
+    var priceEl = $("qc-price");
+    priceEl.textContent = M.money(res.price);
+    $("qc-per").textContent = recurring ? M.fill(T.perVisit, { frequency: String(freq.label).toLowerCase() }) : T.oneTime;
+    if (lastPrice !== null && lastPrice !== res.price) {
+      priceEl.classList.remove("qc-bump");
+      void priceEl.offsetWidth;
+      priceEl.classList.add("qc-bump");
+    }
+    lastPrice = res.price;
+    $("qc-bar-price").textContent = priceEl.textContent;
+    $("qc-bar-per").textContent = $("qc-per").textContent;
+
+    var dl = $("qc-recap");
+    dl.textContent = "";
+    row(dl, T.recapService, job.size ? job.service + ", " + job.size : job.service);
+    if (ZONES.length) row(dl, T.recapZone, ZONES[state.zone].label);
+    if (freq) row(dl, T.recapFrequency, freq.label);
+    if (res.extraLabels.length) row(dl, T.recapExtras, res.extraLabels.join(", "));
+
+    var facts = $("qc-facts");
+    facts.textContent = "";
+    var crew = res.people > 1 ? T.crewMany : T.crewOne;
+    if (crew && res.hoursPerPerson > 0) facts.appendChild(el("li", "", M.fill(crew, { people: res.people, hours: M.duration(res.hoursPerPerson) })));
+    if (T.includes) facts.appendChild(el("li", "", T.includes));
+    if (M.num(cfg.pricing.depositPercent) > 0) facts.appendChild(el("li", "", M.fill(T.deposit, { deposit: M.money(res.deposit) })));
+    if (res.atMinimum && T.minimum) facts.appendChild(el("li", "", M.fill(T.minimum, { minimum: M.money(M.num(cfg.pricing.minimumCharge)) })));
+
+    var bk = cfg.booking || {}, cta = $("qc-cta");
+    if (bk.href) {
+      var parts = [job.size ? job.service + ", " + job.size : job.service];
+      if (ZONES.length) parts.push(T.recapZone + ": " + ZONES[state.zone].label);
+      if (freq) parts.push(T.recapFrequency + ": " + freq.label);
+      if (res.extraLabels.length) parts.push(T.recapExtras + ": " + res.extraLabels.join(", "));
+      parts.push(T.priceLabel + ": " + M.money(res.price) + " " + $("qc-per").textContent);
+      var summary = parts.join(". ") + ".";
+      var href = String(bk.href), sep = href.indexOf("?") >= 0 ? "&" : "?";
+      if (/^mailto:/i.test(href)) href += sep + "subject=" + encodeURIComponent(T.requestSubject) + "&body=" + encodeURIComponent(summary);
+      else if (/^sms:/i.test(href)) href += sep + "body=" + encodeURIComponent(summary);
+      cta.href = href;
+      cta.textContent = bk.label;
+      if (/^https?:/i.test(href)) { cta.target = "_blank"; cta.rel = "noopener"; }
+      cta.hidden = false;
+    } else cta.hidden = true;
+    $("qc-note").textContent = T.note;
+    $("qc-note").hidden = !T.note;
+    postHeight();
+  }
+
+  // ---- inside an iframe, tell the parent page how tall the calculator is (README, setup step 3)
+  function postHeight() {
+    if (window.parent === window) return;
+    try {
+      window.parent.postMessage({ type: "quote-calculator-height", height: Math.ceil(doc.body.getBoundingClientRect().height) }, "*");
+    } catch (e) { /* the parent page decides; nothing to do */ }
+  }
+  if (window.ResizeObserver) new ResizeObserver(postHeight).observe(doc.body);
+
+  // ---- on a phone, when the page is opened on its own (not in an iframe), a bar keeps the price in view
+  // until the result card scrolls into view. Screen readers get the price from the result card's live region.
+  var standalone = window.parent === window, resultSeen = false;
+  $("qc-bar-link").textContent = T.details;
+  function updateBar() { $("qc-bar").hidden = !standalone || resultSeen || window.innerWidth > 880; }
+  if (standalone && window.IntersectionObserver) {
+    new IntersectionObserver(function (entries) { resultSeen = entries[0].isIntersecting; updateBar(); }, { threshold: 0.15 })
+      .observe($("qc-result"));
+  }
+  window.addEventListener("resize", updateBar);
+  updateBar();
+  window.addEventListener("load", postHeight);
+
+  render();
+})();
+</script>
+</body>
+</html>

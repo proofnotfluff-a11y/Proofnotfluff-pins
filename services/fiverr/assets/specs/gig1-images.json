@@ -1,0 +1,23 @@
+{
+ "base": "../renders/gig1",
+ "footer": "Excel + Google Sheets  |  Built with your numbers",
+ "images": [
+  {"type": "cover", "name": "gig1-cover", "eyebrow": "13-WEEK CASH FLOW FORECAST",
+   "title": "See your lowest cash week before it hits.",
+   "sub": "Built for your brand, with your numbers.",
+   "badges": ["Shopify", "Amazon", "TikTok Shop"],
+   "shot": "02-1-Dashboard.png", "crop": [0, 0.048, 1, 0.325], "stamp": "SAMPLE DATA"},
+  {"type": "shot", "name": "gig1-dashboard", "eyebrow": "THE DASHBOARD",
+   "title": "Your lowest cash week, and how deep it goes.",
+   "sub": "Sample brand: cash bottoms at $22,520 in week 7, $27,480 under its $50,000 minimum.",
+   "shot": "02-1-Dashboard.png", "crop": [0, 0.048, 1, 0.263], "stamp": "SAMPLE DATA"},
+  {"type": "inside", "name": "gig1-whats-inside", "eyebrow": "WHAT YOU GET",
+   "title": "Your forecast, built with your numbers.",
+   "items": ["Weekly cash in by channel, timed to each platform's payout",
+             "Inventory orders as deposit and balance",
+             "Your lowest cash week on one dashboard",
+             "Order timing what-ifs (Standard, Premium)",
+             "A one-page summary and a guide to roll it forward each week"],
+   "shot": "04-3-Cash-Flow.png", "crop": [0, 0.125, 0.46, 0.435], "stamp": "SAMPLE DATA"}
+ ]
+}

@@ -1,0 +1,224 @@
+{
+  "sample": "SAMPLE ONLY. Sample Cleaning Co. is a made-up business and every number in this file is made up. For an order, replace all of it with the buyer's own numbers (README.md, part 2).",
+  "business": {
+    "name": "Sample Cleaning Co.",
+    "logo": {
+      "file": "sample-logo.svg",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9IiMxRTZCNUMiLz48cGF0aCBkPSJNMjcgMTNjMS43IDEwLjMgNC4yIDEyLjggMTQuNSAxNC41QzMxLjIgMjkuMiAyOC43IDMxLjcgMjcgNDJjLTEuNy0xMC4zLTQuMi0xMi44LTE0LjUtMTQuNUMyMi44IDI1LjggMjUuMyAyMy4zIDI3IDEzeiIgZmlsbD0iI0ZGRkZGRiIvPjxwYXRoIGQ9Ik00NC41IDM2Yy44IDQuNiAxLjkgNS43IDYuNSA2LjUtNC42LjgtNS43IDEuOS02LjUgNi41LS44LTQuNi0xLjktNS43LTYuNS02LjUgNC42LS44IDUuNy0xLjkgNi41LTYuNXoiIGZpbGw9IiNGMkMxNEUiLz48L3N2Zz4=",
+      "alt": ""
+    },
+    "notice": "SAMPLE: made-up business and prices"
+  },
+  "colors": {
+    "brand": "#1E6B5C",
+    "brandText": "#FFFFFF",
+    "accent": "#F2C14E",
+    "accentText": "#1B2330",
+    "background": "#F6F4EF",
+    "surface": "#FFFFFF",
+    "text": "#1B2330",
+    "muted": "#555F6E",
+    "border": "#D9D3C7"
+  },
+  "text": {
+    "pageTitle": "Sample Cleaning Co. price calculator",
+    "heading": "See your cleaning price",
+    "intro": "Choose a clean, your home size and how far you are from us. Your price updates as you go.",
+    "serviceQuestion": "What do you need?",
+    "sizeQuestion": "How big is your home?",
+    "zoneQuestion": "How far are you from us?",
+    "frequencyQuestion": "How often?",
+    "extrasQuestion": "Add extras",
+    "priceLabel": "Your price",
+    "oneTime": "one-time clean",
+    "perVisit": "per visit, {frequency}",
+    "crewOne": "1 cleaner, about {hours} on site",
+    "crewMany": "Team of {people}, about {hours} on site",
+    "minimum": "Our minimum charge of {minimum} applies.",
+    "deposit": "Deposit to book: {deposit}",
+    "includes": "Supplies, equipment and travel are included.",
+    "note": "This is an estimate from the details you chose. We confirm the final price before we start."
+  },
+  "rates": {
+    "breakEvenPerHour": 52.7393617615689,
+    "marginPercent": 15,
+    "vehicleCostPerMile": 0.76,
+    "driveSpeedMph": 25
+  },
+  "pricing": {
+    "roundUpTo": 5,
+    "minimumCharge": 150,
+    "depositPercent": 0
+  },
+  "services": [
+    {
+      "name": "Standard clean",
+      "note": "Kitchen, baths, floors and dusting"
+    },
+    {
+      "name": "Deep clean",
+      "note": "Adds baseboards, fixtures and inside the microwave"
+    },
+    {
+      "name": "Move-out clean",
+      "note": "Empty home, inside cabinets and appliances"
+    }
+  ],
+  "jobs": [
+    {
+      "service": "Standard clean",
+      "size": "1 bedroom",
+      "hoursPerPerson": 2,
+      "people": 1,
+      "supplies": 8,
+      "miles": 16
+    },
+    {
+      "service": "Standard clean",
+      "size": "2 bedrooms",
+      "hoursPerPerson": 2.5,
+      "people": 1,
+      "supplies": 8,
+      "miles": 16
+    },
+    {
+      "service": "Standard clean",
+      "size": "3 bedrooms",
+      "hoursPerPerson": 1.75,
+      "people": 2,
+      "supplies": 10,
+      "miles": 16
+    },
+    {
+      "service": "Standard clean",
+      "size": "4 bedrooms",
+      "hoursPerPerson": 2.25,
+      "people": 2,
+      "supplies": 12,
+      "miles": 16
+    },
+    {
+      "service": "Deep clean",
+      "size": "1 bedroom",
+      "hoursPerPerson": 3.5,
+      "people": 1,
+      "supplies": 15,
+      "miles": 16
+    },
+    {
+      "service": "Deep clean",
+      "size": "2 bedrooms",
+      "hoursPerPerson": 2.5,
+      "people": 2,
+      "supplies": 15,
+      "miles": 16
+    },
+    {
+      "service": "Deep clean",
+      "size": "3 bedrooms",
+      "hoursPerPerson": 3.25,
+      "people": 2,
+      "supplies": 18,
+      "miles": 16
+    },
+    {
+      "service": "Deep clean",
+      "size": "4 bedrooms",
+      "hoursPerPerson": 4,
+      "people": 2,
+      "supplies": 22,
+      "miles": 16
+    },
+    {
+      "service": "Move-out clean",
+      "size": "1 bedroom",
+      "hoursPerPerson": 4,
+      "people": 1,
+      "supplies": 18,
+      "miles": 16
+    },
+    {
+      "service": "Move-out clean",
+      "size": "2 bedrooms",
+      "hoursPerPerson": 3,
+      "people": 2,
+      "supplies": 20,
+      "miles": 16
+    },
+    {
+      "service": "Move-out clean",
+      "size": "3 bedrooms",
+      "hoursPerPerson": 3.75,
+      "people": 2,
+      "supplies": 24,
+      "miles": 16
+    },
+    {
+      "service": "Move-out clean",
+      "size": "4 bedrooms",
+      "hoursPerPerson": 4.5,
+      "people": 2,
+      "supplies": 28,
+      "miles": 16
+    }
+  ],
+  "zones": [
+    {
+      "label": "Up to 8 miles",
+      "roundTripMiles": 16,
+      "tripFee": 0
+    },
+    {
+      "label": "8 to 15 miles",
+      "roundTripMiles": 30,
+      "tripFee": 0
+    },
+    {
+      "label": "15 to 25 miles",
+      "roundTripMiles": 50,
+      "tripFee": 0
+    }
+  ],
+  "frequencies": [
+    {
+      "label": "One time",
+      "discountPercent": 0
+    },
+    {
+      "label": "Monthly",
+      "discountPercent": 5
+    },
+    {
+      "label": "Every 2 weeks",
+      "discountPercent": 10
+    },
+    {
+      "label": "Weekly",
+      "discountPercent": 15
+    }
+  ],
+  "extras": [
+    {
+      "label": "Inside oven",
+      "price": 34
+    },
+    {
+      "label": "Inside fridge",
+      "price": 33
+    },
+    {
+      "label": "Baseboards, whole home",
+      "price": 43
+    }
+  ],
+  "defaults": {
+    "service": "Standard clean",
+    "size": "3 bedrooms",
+    "zone": "Up to 8 miles",
+    "frequency": "One time"
+  },
+  "booking": {
+    "label": "Request this clean",
+    "href": "#request-this-clean"
+  }
+}

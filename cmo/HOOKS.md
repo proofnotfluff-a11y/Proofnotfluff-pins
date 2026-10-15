@@ -22,6 +22,9 @@ Oct 12 rescore note: views fell for every pattern after Oct 4 (the 3 Shorts past
 | H12 | Cross-niche overlap: one number for two buyer groups (from FEED.md) | "Airbnb hosts: the 15.5% fee takes $4,625 a year at 200 nights" aimed at hosts who also run a cleaning side business | pin | 0 | not recorded | new, low priority |
 | H13 | Verdict first: one condition, one rate, answer in line one (from FEED.md Oct 12) | "Bill half your hours and you need $89.58 an hour" (#20 Calculator, 50% billable) | YT Short, Reel, pin | 0 (first: Oct 12 am) | not recorded | new, test |
 
+## Formulas (from Oct 16)
+From Oct 16 every video also carries `formula` F1 Job Ticket, F2 Spot the Mistake, F3 Myth vs Math or F4 Run Your Numbers (cmo/CONTENT_PLAYBOOK.md). Score formulas the same way as hooks; a formula losing on views and engagement after about 8 posts is retired. hookId stays for continuity: use the formula id (F1 to F4) as hookId on new pieces.
+
 ## Audience scope rule (Optimizer, Sun Oct 11, 9:10 pm; YouTube Data API videos.list pulled the same night)
 Evidence, every Short published Oct 5 to Oct 11 (views as of Oct 11, 9:15 pm):
 - Narrow trade named in the hook (detailing 9, lawn 40, driveway wash 18, junk 60-mile 17, junk half load 0, paver drive 7, junk $62.36 11): 7 Shorts, 102 views, median 11.

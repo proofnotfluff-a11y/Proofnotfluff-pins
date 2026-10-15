@@ -1,0 +1,107 @@
+{
+  "formula": "F2 Spot the Mistake",
+  "series": "Proof Check",
+  "product_id": "20",
+  "listing_id": "4589695837",
+  "product": "Hourly Rate Quick Calculator",
+  "tab": "Calculator",
+  "audience": "PROOF CHECK · SPOT THE MISTAKE",
+  "hookId": "F2",
+  "scope": "broad",
+  "voice": "am_michael",
+  "mood": "playful",
+  "palette": "plum",
+  "hook": "$40 an hour. One mistake. You keep <b>$15.66</b>",
+  "hook_say_short": "This $40 rate has one mistake.",
+  "hook_say": "Here is a $40 hourly rate that looks like $76,800 a year. It has one mistake: it counts every hour as paid. See if you spot it before the reveal.",
+  "rows": [
+    {
+      "label": "Rate on the price list",
+      "value": "$40 an hour",
+      "input": true,
+      "say": "You charge $40 an hour",
+      "why": "The rate being checked."
+    },
+    {
+      "label": "Hours worked (48 wks x 40)",
+      "value": "1,920 hrs",
+      "input": true,
+      "say": "You work 1,920 hours a year",
+      "why": "48 weeks of 40 hours."
+    },
+    {
+      "label": "Looks like a year of",
+      "value": "$76,800",
+      "result": true,
+      "say": "That looks like $76,800",
+      "ask": "Spot the mistake?",
+      "pause": 1.4,
+      "why": "$40 times 1,920 hours. The mistake: it assumes clients pay for every hour."
+    },
+    {
+      "label": "Hours clients pay for (60%)",
+      "value": "1,152 hrs",
+      "input": true,
+      "say": "The mistake: clients only pay for 1,152 of them",
+      "why": "Quoting, driving and admin are work nobody pays for. The example bills 60% of hours."
+    },
+    {
+      "label": "Kept per hour worked",
+      "value": "$15.66",
+      "result": true,
+      "kind": "bad",
+      "say": "Take out tax and costs: you keep $15.66 per hour worked",
+      "why": "$46,080 of revenue, less $6,000 of costs and a 25% tax set-aside, leaves $30,060 over 1,920 hours worked."
+    }
+  ],
+  "fix": {
+    "label": "Hourly rate for $60,000 take-home",
+    "value": "$75",
+    "say": "To take home $60,000, charge $75",
+    "why": "$74.65 rounded up for a rate card: $86,000 of revenue needed over 1,152 paid hours."
+  },
+  "cta": {
+    "title": "Hourly Rate Quick Calculator",
+    "button": "Free calculator",
+    "sub": "proofnotfluff.com",
+    "say": "Check your own rate free at ProofNotFluff dot com.",
+    "what": "Free online. Full workbook $2.99 on Etsy"
+  },
+  "note": "Example numbers from the calculator. Estimates, not tax advice.",
+  "sources": [
+    {
+      "number": "$40, 1,920 hrs",
+      "source": "Calculator D27 40; I19 1,920 (D19 48 x D20 40)"
+    },
+    {
+      "number": "$76,800",
+      "source": "derived: D27 40 x I19 1,920 (the 'looks like' figure, not a workbook cell)"
+    },
+    {
+      "number": "1,152 hrs (60%)",
+      "source": "D21 0.6; I20 1,152"
+    },
+    {
+      "number": "$15.66",
+      "source": "H7 15.656 'Charge $40 an hour and you really keep' = D32 per hour you actually work"
+    },
+    {
+      "number": "$46,080, $6,000, $30,060",
+      "source": "D28 46,080; D29 -6,000; D30 -10,020; D31 30,060 (why caption only)"
+    },
+    {
+      "number": "$75",
+      "source": "C8 'Rounded up for your rate card: $75 an hour' (I21 74.653)"
+    },
+    {
+      "number": "25% tax set-aside, $6,000 costs",
+      "source": "Calculator D16 0.25, D17 6,000 (why caption)"
+    }
+  ],
+  "sources_build": "engines/hourly-rate-quick-calculator/build_xlsx.py (listed #20 build), example inputs unchanged, recalculated in LibreOffice Oct 15, 2026.",
+  "post": {
+    "short_title": "This $40 rate has one mistake. You keep $15.66 #Shorts",
+    "reel_caption": "$40 an hour over 1,920 hours looks like $76,800. Spot the mistake? Clients pay for only 1,152 of those hours, so after tax and costs you keep $15.66 for every hour you work. To take home $60,000, charge $75. Example numbers from the Hourly Rate Quick Calculator.\n\nLink in bio: proofnotfluff.etsy.com\n\n#freelancetips #hourlyrate #pricingstrategy #smallbusinesstips",
+    "tiktok_caption": "$40 an hour looks like $76,800 a year. One mistake and you keep $15.66 an hour. Search ProofNotFluff on Etsy #freelancetips #hourlyrate #pricingstrategy"
+  }
+}

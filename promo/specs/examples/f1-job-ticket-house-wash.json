@@ -1,0 +1,109 @@
+{
+  "formula": "F1 Job Ticket",
+  "series": "Proof Check",
+  "product_id": "22",
+  "listing_id": "4590258713",
+  "product": "Pressure Washing Pricing Calculator",
+  "tab": "Quote Builder",
+  "audience": "PROOF CHECK · ONE JOB, LINE BY LINE",
+  "hookId": "F1",
+  "scope": "trade",
+  "voice": "am_michael",
+  "mood": "driving",
+  "palette": "night",
+  "hook": "A $355 house wash. Profit: <b>$56.87</b>",
+  "hook_say_short": "Where a $355 job goes.",
+  "hook_say": "Say you quote $355 to soft wash a 2-story house. Here is where every dollar goes, line by line.",
+  "rows": [
+    {
+      "label": "3 hrs on site (at $64.89 an hour)",
+      "value": "$194.67",
+      "input": true,
+      "say": "Three hours on site, with your pay, tax and overhead: $194.67",
+      "why": "3 hours at the example's break-even rate of $64.89 an hour, which holds your pay, self-employment tax and monthly overhead (insurance, phone, ads). Trip costs and supplies are separate lines."
+    },
+    {
+      "label": "40 min of driving, same rate",
+      "value": "$43.26",
+      "input": true,
+      "say": "Forty minutes of driving: $43.26",
+      "why": "A 20-mile round trip at 30 mph is 40 minutes of your time, priced at the same break-even rate."
+    },
+    {
+      "label": "Van, 20 miles",
+      "value": "$15.20",
+      "input": true,
+      "say": "The van: $15.20",
+      "why": "20 miles at $0.76 a mile in the example."
+    },
+    {
+      "label": "Soap and supplies",
+      "value": "$45.00",
+      "input": true,
+      "say": "Soap and supplies: $45",
+      "why": "The example's supplies for a 2-story soft wash."
+    },
+    {
+      "label": "Break-even for this job",
+      "value": "$298.13",
+      "result": true,
+      "kind": "bad",
+      "say": "Break-even: $298.13",
+      "why": "Everything above added up. Charge less and the job pays you less than your goal."
+    }
+  ],
+  "fix": {
+    "label": "Profit left at a $355 quote",
+    "value": "$56.87",
+    "say": "Quote $355 and $56.87 is real profit",
+    "why": "$355 minus $298.13. Your pay is already inside the break-even, so this is profit on top."
+  },
+  "cta": {
+    "title": "Pressure Washing Pricing Calculator",
+    "button": "Free calculator",
+    "sub": "proofnotfluff.com",
+    "say": "Price your own job free at ProofNotFluff dot com.",
+    "what": "Free online. Full workbook $2.99 on Etsy"
+  },
+  "note": "Example numbers from the calculator. Estimates, not tax advice.",
+  "sources": [
+    {
+      "number": "$355, 3 hrs, 1 person, $45, 20 mi",
+      "source": "3 Quote Builder D14 'House wash - 2-story house, soft wash': I21 3, I22 1, I23 45, I24 20, I34 355"
+    },
+    {
+      "number": "$194.67",
+      "source": "I27 194.673 labor on site (3 hrs x I21 $64.89 break-even, 1 Your Numbers)"
+    },
+    {
+      "number": "$43.26 (40 min)",
+      "source": "I28 43.261 drive time; I25 0.667 hrs"
+    },
+    {
+      "number": "$15.20",
+      "source": "I29 15.2 vehicle (I38 $0.76 a mile)"
+    },
+    {
+      "number": "$45.00",
+      "source": "I30 45 supplies"
+    },
+    {
+      "number": "$298.13",
+      "source": "I32 298.134 price floor, zero profit"
+    },
+    {
+      "number": "$56.87",
+      "source": "I36 56.866 profit in this quote"
+    },
+    {
+      "number": "$64.89",
+      "source": "1 Your Numbers I21 64.891 break-even per paid hour"
+    }
+  ],
+  "sources_build": "engines/service-pricing/build_xlsx.py --edition editions/pressure-washing.json (example 64.89 76.34 27.78 167.8 200), D14 set to the house wash preset, recalculated in LibreOffice Oct 15, 2026.",
+  "post": {
+    "short_title": "Where a $355 house wash goes, line by line #Shorts",
+    "reel_caption": "Where a $355 house wash goes. 3 hours on site with your pay and tax: $194.67. 40 minutes of driving: $43.26. The van: $15.20. Soap: $45. Break-even: $298.13, so $56.87 is real profit. Example numbers from the Pressure Washing Pricing Calculator.\n\nLink in bio: proofnotfluff.etsy.com\n\n#pressurewashing #softwash #pricingstrategy #smallbusinesstips",
+    "tiktok_caption": "Where a $355 house wash goes, line by line. Break-even $298.13, profit $56.87. Search ProofNotFluff on Etsy #pressurewashing #softwash #pricingstrategy"
+  }
+}

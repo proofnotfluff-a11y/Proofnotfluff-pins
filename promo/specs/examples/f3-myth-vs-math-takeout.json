@@ -1,0 +1,94 @@
+{
+  "formula": "F3 Myth vs Math",
+  "series": "Proof Check",
+  "product_id": "30",
+  "listing_id": "4594768127",
+  "product": "Budget Tracker Spreadsheet",
+  "tab": "Month",
+  "audience": "PROOF CHECK · MYTH VS MATH",
+  "hookId": "F3",
+  "scope": "broad",
+  "voice": "am_michael",
+  "mood": "upbeat",
+  "palette": "ink",
+  "hook": "5 takeout orders: <b>$214</b>. Guilty?",
+  "hook_say_short": "Five takeout orders. Guilty?",
+  "hook_say": "Everyone blames takeout. In this example September, takeout went just $14 over its budget, while the five biggest checkouts made up almost half of everyday spending.",
+  "rows": [
+    {
+      "label": "Everyday spending, September",
+      "value": "$1,231.11",
+      "input": true,
+      "say": "Everyday spending: $1,231.11",
+      "why": "Groceries, eating out, gas, household, fun and the rest, not rent or bills."
+    },
+    {
+      "label": "Takeout, 5 orders",
+      "value": "$214.00",
+      "input": true,
+      "say": "Five takeout orders: $214",
+      "ask": "So takeout broke the budget?",
+      "pause": 1.2,
+      "why": "The usual suspect."
+    },
+    {
+      "label": "Takeout over its $200 budget",
+      "value": "$14",
+      "result": true,
+      "kind": "good",
+      "say": "Just $14 over its $200 budget",
+      "why": "$214 spent against a $200 takeout budget."
+    },
+    {
+      "label": "4 grocery trips + 1 clothes order",
+      "value": "$581.41",
+      "input": true,
+      "say": "Your five biggest: four grocery runs and one clothes order",
+      "why": "Four grocery trips ($141.07, $132.18, $118.64, $109.53) and one clothes order ($79.99)."
+    },
+    {
+      "label": "Share of everyday spending",
+      "value": "47%",
+      "result": true,
+      "kind": "bad",
+      "say": "That's 47% of everyday spending, in five swipes",
+      "why": "The tracker lists the five biggest everyday spends each month, so you see where the money really went."
+    }
+  ],
+  "cta": {
+    "title": "Budget Tracker Spreadsheet",
+    "button": "Free calculator",
+    "sub": "proofnotfluff.com",
+    "say": "See your own big five free at ProofNotFluff dot com.",
+    "what": "Free online. Full tracker $2.99 on Etsy"
+  },
+  "note": "Example month from the tracker. Your numbers will differ.",
+  "sources": [
+    {
+      "number": "$1,231.11",
+      "source": "3 Month E61 total everyday spending, September 2026"
+    },
+    {
+      "number": "$214.00, 5 orders, $14 over",
+      "source": "E48 214, H48 -14; 2 Transactions: 5 'Takeout and cafes' rows Sep 4, 11, 18, 24, 27"
+    },
+    {
+      "number": "$581.41",
+      "source": "C76 to C80 five biggest everyday spends: 141.07 + 132.18 + 118.64 + 109.53 + 79.99"
+    },
+    {
+      "number": "47%",
+      "source": "C81 'These five come to 47% of everyday spending this month' (581.41 / 1,231.11 = 47.2%)"
+    },
+    {
+      "number": "$200 takeout budget",
+      "source": "3 Month D48 200"
+    }
+  ],
+  "sources_build": "engines/budget-tracker/build_xlsx.py (listed #30 build, example Sep: out_b 3965, out_a 3797.41, left 167.59), recalculated in LibreOffice Oct 15, 2026.",
+  "post": {
+    "short_title": "Blame takeout? It was only $14 over budget #Shorts",
+    "reel_caption": "Everyone blames takeout. In this example September, 5 takeout orders came to $214, just $14 over budget. The 5 biggest checkouts (4 grocery trips and a clothes order) came to $581.41: 47% of everyday spending, in five swipes. Example month from the Budget Tracker Spreadsheet.\n\nLink in bio: proofnotfluff.etsy.com\n\n#budgeting #budgettracker #moneytips #personalfinance",
+    "tiktok_caption": "Blame takeout? In this example month it was only $14 over budget. The 5 biggest checkouts were 47% of everyday spending. Search ProofNotFluff on Etsy #budgeting #budgettracker #moneytips"
+  }
+}

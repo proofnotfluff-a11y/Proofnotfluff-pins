@@ -34,6 +34,8 @@ Spec (every number must come from the product's own files; the CMO checks this):
      "say": "You keep about $20"}
   ],
   "fix": {"label": "To keep $30 an hour, bill", "value": "$57", "say": "..."},   optional second result
+  A row may carry "ask" (a question spoken and captioned after it, e.g. "Spot the mistake?") and "pause" (seconds
+  held after the question, default 1.2): the Spot the Mistake and Job Ticket formulas in cmo/CONTENT_PLAYBOOK.md.
   "cta": {"title": "Service Pricing Calculator", "sub": "On Etsy: proofnotfluff.etsy.com"},
   "note": "Sample numbers"                          optional small line under the sheet
 }
@@ -177,6 +179,9 @@ def timeline(spec, fmt_name, speech=None):
                 ev.append({"t": last_in[-1]["t"] + last_in[-1]["d"] + 0.15, "d": 0.5, "kind": "derived", "row": i})
             else:
                 ev.append({"t": 0, "d": 0, "kind": "fixed", "row": i})
+        if r.get("ask") and not walk:   # Spot the Mistake / Guess: a spoken question after this row, then a held beat
+            lines.append(line(t, r["ask"]))
+            t += max(read(r["ask"]) if not speech else 0.0, spoken(r["ask"]) + gap) + float(r.get("pause", 1.2))
     fix_t = None
     if spec.get("fix"):
         fix_t = t
@@ -302,7 +307,7 @@ def page(spec, fmt_name, tl, palette="ink"):
     sheet = (f'<div class="sheet"><div class="bar"><span class="t">{H.escape(spec["product"])}</span>{tab_html}</div>'
              f'<div class="grid">{"".join(rows_html)}</div>{fix_html}</div>')
     note = '<div class="note">' + H.escape(spec["note"]) + '</div>' if spec.get("note") else ""
-    say_html = '<div class="say e">' + H.escape(cta["say"]) + '</div>' if cta.get("say") else ""
+    say_html = '<div class="say e">' + H.escape(re.sub(r"\s+dot com\b", ".com", cta["say"])) + '</div>' if cta.get("say") else ""   # spoken "dot com", shown ".com"
     what_html = '<div class="what e">' + H.escape(cta["what"]) + '</div>' if cta.get("what") else ""
     end = (f'<div class="end" id="end"><div class="endin">{say_html}'
            f'<h2 class="e">{H.escape(cta.get("title", spec["product"]))}</h2>{what_html}'

@@ -22,9 +22,12 @@ Usage: python3 tools/check_repo.py [--only name,name]
 import argparse, filecmp, glob, importlib.util, json, os, re, shutil, subprocess, sys, tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-EM = "—"
-SECRET = re.compile(r"ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|sk-ant-[A-Za-z0-9-]{10,}|AKIA[0-9A-Z]{16}|"
-                    r"xox[baprs]-[A-Za-z0-9-]{10,}|-----BEGIN [A-Z ]*PRIVATE KEY-----")
+EM = "\u2014"
+SECRETS = [("github_token", r"gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}"), ("anthropic_key", r"sk-ant-[A-Za-z0-9-]{10,}"),
+           ("aws_key", r"AKIA[0-9A-Z]{16}"), ("slack_token", r"xox[baprs]-[A-Za-z0-9-]{10,}"), ("private_key", r"-----BEGIN [A-Z ]*PRIVATE KEY-----"),
+           ("etsy_token", r"\b\d{5,12}\.[A-Za-z0-9_-]{40,}"),
+           ("etsy_key", r"(?i:ETSY_[A-Z_]*|keystring|shared[_-]?secret|refresh[_-]?token|access[_-]?token)[\"']?\s*[:=]\s*[\"']?[A-Za-z0-9]{10,}")]
+SECRET = re.compile("|".join(f"(?P<{k}>{v})" for k, v in SECRETS))
 BINARY = re.compile(r"\.(png|jpe?g|gif|webp|ico|mp4|mov|mp3|wav|m4a|zip|pdf|xlsx|xls|docx|pptx|ttf|otf|woff2?|parquet|npz|onnx|bin)$", re.I)
 PERSONAL_KEYS = re.compile(r"(phone|email|owner|contact_\d+|skip|ssn|dob)", re.I)
 
@@ -170,11 +173,12 @@ def check_secrets(files):
         try:
             if os.path.getsize(p) > 5_000_000:
                 continue
-            m = SECRET.search(open(p, encoding="utf-8", errors="ignore").read())
+            text = open(p, encoding="utf-8", errors="ignore").read()
         except OSError:
             continue
-        if m:
-            hits.append(f"{f} ({m.group(0)[:6]}...)")
+        m = SECRET.search(text)
+        if m:  # name the kind and line only; never print any character of the value
+            hits.append(f"{f} line {text.count(chr(10), 0, m.start()) + 1} ({m.lastgroup})")
     err("secrets", ", ".join(hits[:10])) if hits else ok("secrets")
 
 
@@ -207,7 +211,8 @@ def main():
     for status, name, detail in results:
         print(f"{status} {name}" + (f": {detail}" if status == "ERROR" else (f" ({detail})" if detail else "")))
     n = sum(1 for r in results if r[0] == "ERROR")
-    print(f"check_repo: {n} error{'s' if n != 1 else ''}")
+    partial = f" (partial run: only {', '.join(sorted(only))}; run the full check before pushing)" if only else ""
+    print(f"check_repo: {n} error{'s' if n != 1 else ''}{partial}")
     sys.exit(1 if n else 0)
 
 

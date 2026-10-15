@@ -10,3 +10,8 @@ Once Todd names the domain in chat, in this order:
 4. **Site** (crew): set BASE in tools/make_site.py to https://<domain>/ and rebuild every page (canonical links, sitemap, Open Graph URLs, /go/ redirects); put robots.txt and sitemap.xml at the site root; keep the IndexNow key file at the root and run the IndexNow workflow once.
 5. **Links** (crew): first open one old github.io page and one old /go/ link and confirm they land on the new domain (GitHub redirects the old address when a custom domain is set; check it, don't assume it). Then the hub becomes https://<domain>/go/ in cmo/CONVERSION_STANDARD.md, the CMO and promote prompts and the ledger FUNNEL line. Bio links can move at Todd's pace.
 6. **Search and analytics** (Todd, quests verify-search-console and adopt-cloudflare-web-analytics): a Search Console Domain property verified through Cloudflare DNS, Bing Webmaster imported from Search Console, and Cloudflare Web Analytics on the same Cloudflare account.
+
+## Status (Oct 15, 2026)
+- proofnotfluff.com bought by Todd in Cloudflare; GitHub domain check verified; apex A and AAAA plus www CNAME added as DNS only (steps 1 and 2 done).
+- Step 3 and 4 done by the live CMO session: docs/CNAME, BASE and IndexNow HOST set to https://proofnotfluff.com/, every page rebuilt. tools/etsy_oauth.py keeps the github.io callback (it is registered with Etsy); GitHub forwards it, and the OAuth app's redirect is changed only on Todd's word.
+- Waiting: certificate, then Todd ticks Enforce HTTPS; step 5 (old-link check, then the hub URL in the standard, prompts and ledger) once proofnotfluff.com serves.

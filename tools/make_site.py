@@ -16,7 +16,7 @@ import html, json, os, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOCS = os.path.join(ROOT, "docs")
-BASE = "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/"
+BASE = "https://proofnotfluff.com/"
 SHOP = "https://proofnotfluff.etsy.com"
 E = html.escape
 

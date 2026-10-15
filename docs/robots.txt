@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/sitemap.xml
+Sitemap: https://proofnotfluff.com/sitemap.xml

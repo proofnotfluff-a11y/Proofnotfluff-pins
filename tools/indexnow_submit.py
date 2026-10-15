@@ -11,8 +11,8 @@ scout finding indexnow-free-site).
 import json, re, subprocess, sys, time, urllib.request
 
 KEY = "cdccc9befa99e9cfa2a85549b2b1160d"
-HOST = "proofnotfluff-a11y.github.io"
-BASE = "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/"
+HOST = "proofnotfluff.com"
+BASE = "https://proofnotfluff.com/"
 KEY_URL = BASE + KEY + ".txt"
 
 def locs(text):

@@ -1,0 +1,207 @@
+#!/usr/bin/env python3
+"""Chicago permit leads pilot (Todd approved Oct 14, 2026; coo/OPPORTUNITIES.md Case 4).
+
+Runs in GitHub Actions (.github/workflows/permits-chicago.yml) because the cloud agents' network
+cannot reach data.cityofchicago.org. Pulls the City of Chicago Building Permits dataset, keeps big
+commercial and apartment projects with a business listed as general contractor, and writes only
+public, business-level fields to permits/chicago/:
+
+  sample.json        the projects the free sample page shows, plus counts and the source line
+  profile.json       column names, permit and contact type counts (tunes the filters; no names)
+  source-terms.txt   the City's data terms page as text, for the Legal desk
+
+Never written: owner names, any contact that is not a business acting as general contractor,
+phone numbers, emails. Subscribers do their own outreach; the crew never contacts anyone.
+
+Usage: python3 tools/permits_chicago.py [--days 365] [--min-cost 500000] [--top 25]
+"""
+import argparse, collections, datetime as dt, html.parser, json, os, re, sys, time, urllib.parse, urllib.request
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUT = os.path.join(ROOT, "permits", "chicago")
+DATASET = "ydr8-5enu"
+PORTAL = "https://data.cityofchicago.org"
+DATASET_PAGE = f"{PORTAL}/Buildings/Building-Permits/{DATASET}"
+TERMS_URL = "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+AREAS = "igwz-8jzy"   # Boundaries - Community Areas (area number to name)
+UA = {"User-Agent": "ProofNotFluff permit pilot (github.com/proofnotfluff-a11y/Proofnotfluff-pins)"}
+
+BUSINESS = re.compile(r"\b(LLC|L\.L\.C|INC|INCORPORATED|CORP|CORPORATION|CO|COMPANY|LTD|LP|LLP|PLLC|GROUP|BUILDERS?|"
+                      r"CONSTRUCTION|CONSTRUCTORS|CONTRACTING|CONTRACTORS?|DEVELOPMENT|DEVELOPERS|ENTERPRISES?|SERVICES|"
+                      r"PARTNERS|HOLDINGS|MANAGEMENT|RESTORATION|RENOVATIONS?|INTERIORS|BUILDING|HOMES|REALTY|PROPERTIES|"
+                      r"ASSOCIATES|INDUSTRIES|SOLUTIONS|SYSTEMS|BUILD)\b\.?")
+RESIDENTIAL_SMALL = re.compile(r"SINGLE[- ]FAMILY|\bSFR\b|\bS\.F\.R\b|TWO[- ]FLAT|\b2[- ]FLAT|THREE[- ]FLAT|\b3[- ]FLAT|COACH HOUSE|"
+                               r"\b(1|2|3|ONE|TWO|THREE)[- ]?(DWELLING UNITS?|DU|D\.U\.?|UNITS?)\b")
+UNITS = re.compile(r"(\d{1,4})\s*[- ]?\s*(?:RESIDENTIAL\s+)?(?:DWELLING UNITS?|D\.?U\.?S?\b|UNITS?\b|APARTMENTS?\b)")
+COMMERCIAL = re.compile(r"RETAIL|COMMERCIAL|OFFICE|RESTAURANT|HOTEL|SCHOOL|WAREHOUSE|INDUSTRIAL|MIXED[- ]USE|MEDICAL|"
+                        r"CLINIC|HOSPITAL|CHURCH|FITNESS|\bGYM\b|\bSTORE\b|\bBANK\b|\bLAB\b|LABORATORY|DATA CENTER|TENANT|"
+                        r"BUILD[- ]?OUT|CAFE|\bBAR\b|THEATER|THEATRE|UNIVERSITY|COLLEGE|LIBRARY|DAY ?CARE|MANUFACTURING|"
+                        r"DISTRIBUTION|SENIOR|ASSISTED LIVING|DORMITORY|STUDENT HOUSING|APARTMENT|MULTI[- ]?FAMILY|"
+                        r"\bMF\b|CONDOMINIUM|HIGH[- ]RISE|MID[- ]RISE")
+
+
+def get(url, params=None, tries=3, as_text=False):
+    if params:
+        url += "?" + urllib.parse.urlencode(params)
+    last = None
+    for i in range(tries):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=120) as r:
+                body = r.read().decode("utf-8", "replace")
+                return body if as_text else json.loads(body)
+        except Exception as e:  # network hiccup or 5xx: wait and retry
+            last = e
+            time.sleep(5 * (i + 1))
+    raise SystemExit(f"fetch failed: {url[:160]} ({last})")
+
+
+class Text(html.parser.HTMLParser):
+    def __init__(self):
+        super().__init__(); self.parts = []; self.skip = 0
+    def handle_starttag(self, tag, attrs):
+        if tag in ("script", "style", "noscript", "nav", "header", "footer"): self.skip += 1
+        if tag in ("p", "li", "h1", "h2", "h3", "h4", "br", "div", "tr"): self.parts.append("\n")
+    def handle_endtag(self, tag):
+        if tag in ("script", "style", "noscript", "nav", "header", "footer") and self.skip: self.skip -= 1
+    def handle_data(self, data):
+        if not self.skip: self.parts.append(data)
+
+
+def terms_text():
+    raw = get(TERMS_URL, as_text=True)
+    t = Text(); t.feed(raw)
+    lines = [re.sub(r"\s+", " ", x).strip() for x in "".join(t.parts).split("\n")]
+    lines = [x for x in lines if len(x) > 2]
+    return f"Source: {TERMS_URL}\nFetched: {dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')}\n\n" + "\n".join(lines)
+
+
+def clean_scope(desc, limit=150):
+    d = re.sub(r"\s+", " ", (desc or "")).strip().rstrip(".")
+    d = d.capitalize() if d.isupper() else d
+    return d if len(d) <= limit else d[:limit].rsplit(" ", 1)[0] + "..."
+
+
+def title_name(n):
+    n = re.sub(r"\s+", " ", n).strip()
+    keep = {"LLC", "INC", "LP", "LLP", "PLLC", "LTD", "USA", "II", "III", "IV", "JV"}
+    return " ".join(w if w.upper().strip(".,") in keep else w.capitalize() for w in n.split(" "))
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--days", type=int, default=365)
+    ap.add_argument("--min-cost", type=int, default=500000)
+    ap.add_argument("--top", type=int, default=25)
+    a = ap.parse_args()
+    os.makedirs(OUT, exist_ok=True)
+    now = dt.datetime.now(dt.timezone.utc)
+
+    meta = get(f"{PORTAL}/api/views/{DATASET}.json")
+    cols = [c.get("fieldName") for c in meta.get("columns", [])]
+    upd = meta.get("rowsUpdatedAt") or meta.get("viewLastModified")
+    upd_iso = dt.datetime.fromtimestamp(upd, dt.timezone.utc).isoformat(timespec="seconds") if upd else ""
+    need = {"issue_date", "permit_type", "work_description"}
+    missing = sorted(need - set(cols))
+    if missing:
+        raise SystemExit(f"dataset columns changed, missing {missing}; columns: {cols}")
+    cost_col = "reported_cost" if "reported_cost" in cols else None
+
+    since = (now - dt.timedelta(days=a.days)).strftime("%Y-%m-%dT00:00:00")
+    where = (f"issue_date >= '{since}' AND permit_type in('PERMIT - NEW CONSTRUCTION','PERMIT - RENOVATION/ALTERATION')"
+             + (f" AND {cost_col} >= {a.min_cost}" if cost_col else ""))
+    def pull(w):
+        out, offset = [], 0
+        while True:
+            page = get(f"{PORTAL}/resource/{DATASET}.json", {"$where": w, "$order": "issue_date DESC", "$limit": 5000, "$offset": offset})
+            out += page
+            if len(page) < 5000 or offset > 50000:
+                return out
+            offset += 5000
+
+    try:
+        rows = pull(where)
+    except SystemExit:
+        # reported_cost stored as text in some vintages: pull without the cost test and apply it here
+        where = f"issue_date >= '{since}' AND permit_type in('PERMIT - NEW CONSTRUCTION','PERMIT - RENOVATION/ALTERATION')"
+        rows = [r for r in pull(where) if cost_col and float(r.get(cost_col) or 0) >= a.min_cost]
+
+    areas = {}
+    for params in ({"$select": "area_numbe,community", "$limit": 200}, {"$limit": 200}):
+        try:
+            areas = {str(int(float(r.get("area_numbe") or r.get("area_num_1") or 0))): (r.get("community") or "").title()
+                     for r in get(f"{PORTAL}/resource/{AREAS}.json", params, tries=2)}
+            break
+        except SystemExit:
+            continue
+
+    ctype = collections.Counter(); ptype = collections.Counter(); reasons = collections.Counter()
+    kept = []
+    for r in rows:
+        ptype[r.get("permit_type", "")] += 1
+        desc = (r.get("work_description") or "").upper()
+        units = [int(m.group(1)) for m in UNITS.finditer(desc)]
+        maxu = max(units) if units else 0
+        if maxu and maxu < 4:
+            reasons["1 to 3 homes"] += 1; continue
+        if not maxu and RESIDENTIAL_SMALL.search(desc):
+            reasons["house or 2 to 3 flat"] += 1; continue
+        if not maxu and not COMMERCIAL.search(desc):
+            reasons["no commercial or apartment wording"] += 1; continue
+        gcs = []
+        for n in range(1, 16):
+            t = (r.get(f"contact_{n}_type") or "").upper()
+            nm = (r.get(f"contact_{n}_name") or "").strip()
+            if t:
+                ctype[t] += 1
+            if "GENERAL CONTRACTOR" in t and "OWNER" not in t and nm and BUSINESS.search(nm.upper()):
+                if title_name(nm) not in gcs:
+                    gcs.append(title_name(nm))
+        if not gcs:
+            reasons["no business listed as general contractor"] += 1; continue
+        addr = " ".join(x for x in [r.get("street_number", ""), r.get("street_direction", ""), (r.get("street_name") or "").title()] if x).strip()
+        ca = str(r.get("community_area") or "").split(".")[0]
+        cost = float(r.get(cost_col) or 0) if cost_col else 0
+        kept.append({
+            "permit": r.get("permit_") or r.get("permit_number") or r.get("id"),
+            "issued": (r.get("issue_date") or "")[:10],
+            "type": "New construction" if "NEW CONSTRUCTION" in (r.get("permit_type") or "") else "Renovation",
+            "scope": clean_scope(r.get("work_description")),
+            "units": maxu or None,
+            "cost": round(cost),
+            "address": addr,
+            "communityArea": areas.get(ca, ""),
+            "status": (r.get("permit_status") or "").title(),
+            "gc": gcs[:2],
+        })
+    kept.sort(key=lambda x: (-x["cost"], x["issued"]))
+    by_area = collections.Counter(k["communityArea"] for k in kept if k["communityArea"])
+    sample = {
+        "source": {
+            "name": "City of Chicago Data Portal, Building Permits", "url": DATASET_PAGE, "rowsUpdatedAt": upd_iso,
+            "fetchedAt": now.isoformat(timespec="seconds"),
+            "modified": (f"Filtered by ProofNotFluff: permits issued in the last {a.days} days, new construction or renovation, "
+                         f"reported cost ${a.min_cost:,} or more, apartment buildings of 4+ units or commercial work, "
+                         "with a business listed as general contractor; only project-level and business fields kept."),
+            "terms": TERMS_URL,
+        },
+        "window": {"from": since[:10], "to": now.strftime("%Y-%m-%d")},
+        "counts": {"fetched": len(rows), "kept": len(kept), "excluded": dict(reasons),
+                   "keptByType": dict(collections.Counter(k["type"] for k in kept)),
+                   "keptCost": sum(k["cost"] for k in kept), "topAreas": by_area.most_common(8)},
+        "projects": kept[: a.top],
+    }
+    profile = {"fetchedAt": sample["source"]["fetchedAt"], "rowsUpdatedAt": upd_iso, "columns": cols,
+               "permitTypes": dict(ptype), "contactTypes": dict(ctype.most_common(40)),
+               "license": (meta.get("license") or {}).get("name", ""), "attribution": meta.get("attribution", ""),
+               "where": where}
+    json.dump(sample, open(os.path.join(OUT, "sample.json"), "w"), indent=1)
+    json.dump(profile, open(os.path.join(OUT, "profile.json"), "w"), indent=1)
+    try:
+        open(os.path.join(OUT, "source-terms.txt"), "w").write(terms_text())
+    except SystemExit as e:
+        open(os.path.join(OUT, "source-terms.txt"), "w").write(f"Could not fetch {TERMS_URL}: {e}\n")
+    print(json.dumps({"fetched": len(rows), "kept": len(kept), "excluded": dict(reasons), "top3": [(k["cost"], k["type"], k["communityArea"]) for k in kept[:3]]}))
+
+
+if __name__ == "__main__":
+    main()

@@ -1543,6 +1543,60 @@ def product_url(p):
     return LISTING.format(id=p["listing"])
 
 
+def featured(links):
+    """The two newest products in dated promo specs (promo/specs/YYYY-MM-DD-*.json, today or earlier, Chicago):
+    the hub shows them first, so "link in bio" lands on the product the viewer just saw (Todd, Oct 15)."""
+    import datetime, glob, re
+    try:
+        from zoneinfo import ZoneInfo
+        today = datetime.datetime.now(ZoneInfo("America/Chicago")).date().isoformat()
+    except Exception:
+        today = datetime.date.today().isoformat()
+    specs = {}
+    for f in glob.glob(os.path.join(ROOT, "promo", "specs", "????-??-??-*.json")):
+        d = os.path.basename(f)[:10]
+        if re.match(r"\d{4}-\d{2}-\d{2}$", d) and d <= today:
+            specs.setdefault(d, []).append(f)
+    if not specs:
+        return []
+    by = {str(p["id"]): p for p in links["products"]}
+    by.update({p.get("slug", ""): p for p in links.get("gumroad", [])})
+    out, seen = [], set()
+    files = [f for d in sorted(specs, reverse=True) for f in sorted(specs[d], key=lambda x: ("-pm-" not in x, x))]
+    for f in files:
+        if len(out) >= 2:
+            break
+        try:
+            sp = json.load(open(f, encoding="utf-8"))
+        except Exception:
+            continue
+        pid = str(sp.get("product_id", ""))
+        if pid not in by or pid in seen:
+            continue
+        seen.add(pid)
+        lines = sp.get("post", {}).get("youtube_description", "").split("\n")
+        free = next((l.strip() for l in lines[1:3] if l.strip().startswith(BASE) and "/go/" not in l), "")
+        hook = re.sub(r"<[^>]+>", "", sp.get("hook", ""))
+        out.append({"product": by[pid], "hook": hook, "free": free})
+    return out
+
+
+def featured_html(links):
+    items = featured(links)
+    if not items:
+        return ""
+    cards = ""
+    for it in items:
+        p = it["product"]
+        price = "$2.99 on Etsy" if p.get("channel") != "gumroad" else f'${p.get("price", "")} on Gumroad'
+        cards += (f'<div class="hubfeat"><p class="hubfeat-hook">{E(it["hook"])}</p>'
+                  f'<a class="hubbtn shop" href="{E(product_url(p))}" rel="noopener"><b>{E(p["name"])}</b><span>Get the workbook: {E(price)}</span></a>')
+        if it["free"]:
+            cards += f'<a class="hubbtn" href="{E(it["free"])}"><b>Try the free calculator first</b><span>Same maths, in your browser</span></a>'
+        cards += '</div>'
+    return f'<h2 class="hubh">From our latest videos</h2><div class="hublist">{cards}</div>'
+
+
 def hub_html(links, pages):
     """docs/go/: the one link every bio points to. Free value first, then the shop, then every product by audience."""
     url = BASE + "go/"
@@ -1557,7 +1611,8 @@ def hub_html(links, pages):
         if rows:
             groups += f'<h2 class="hubh">{E(g["title"])}</h2><div class="hublist">{rows}</div>'
     body = ('<section class="hub"><p class="eyebrow">ProofNotFluff</p><h1>Calculators that show their work</h1>'
-            '<p class="lede">Free tools first. Every paid workbook is $2.99 on Etsy and uses the same maths.</p>'
+            '<p class="lede">Saw a video? It is right here. Every paid workbook is $2.99 on Etsy, and the free calculators use the same maths.</p>'
+            f'{featured_html(links)}'
             f'{"<h2 class=hubh>Free calculators</h2><div class=hublist>" + calc + "</div>" if calc else ""}'
             f'{"<h2 class=hubh>Premium workbooks</h2><div class=hublist>" + prem + "</div>" if prem else ""}'
             f'<div class="hublist"><a class="hubbtn shop" href="{E(links.get("shop", SHOP))}" rel="noopener"><b>The whole shop on Etsy</b><span>Every tool, $2.99 each</span></a></div>'

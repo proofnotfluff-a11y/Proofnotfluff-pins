@@ -35,7 +35,8 @@
     12,
     8,
     25,
-    26
+    26,
+    28
    ]
   },
   {
@@ -56,7 +57,9 @@
     4,
     11,
     17,
-    24
+    24,
+    29,
+    30
    ]
   }
  ],
@@ -242,6 +245,27 @@
    "audience": "service businesses",
    "channel": "etsy",
    "listing": "4592088235"
+  },
+  {
+   "id": 28,
+   "name": "Profit and Loss Template",
+   "audience": "small business",
+   "channel": "etsy",
+   "listing": "4592931854"
+  },
+  {
+   "id": 29,
+   "name": "Budget Planner Spreadsheet",
+   "audience": "households",
+   "channel": "etsy",
+   "listing": "4592917337"
+  },
+  {
+   "id": 30,
+   "name": "Budget Tracker Spreadsheet",
+   "audience": "households",
+   "channel": "etsy",
+   "listing": "4594768127"
   }
  ]
 }

@@ -10,3 +10,6 @@ Airbnb and VRBO Hosting 1138144205771245717; Etsy Seller Profit and Pricing 1138
 
 ## Fiverr (Oct 15, 2026)
 Order files: a private Drive folder, "ProofNotFluff Fiverr orders" (shared with no one; its id is in the memory plan file, not this public repo; one subfolder per order number; buyer files never leave it). Kit: repo services/fiverr/.
+
+## Design system (Oct 15, 2026)
+ProofNotFluff design system in Claude Design: https://claude.ai/artifact/JVnEj2N1KaTxoHMzMkQXHK (private to Todd). Built from this repo at 8586fa1: the site, image and workbook colors, Poppins, the PNF mark, 10 components and a cover. Any new Claude Design work for ProofNotFluff starts from it; when a palette value changes here, re-sync it there.

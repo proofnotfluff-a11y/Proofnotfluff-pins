@@ -11,6 +11,9 @@ import json, os, random, shutil, string, subprocess, sys, tempfile
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data"]
 rng = random.Random()
+# Key markers are assembled here so this file never matches the secrets check itself.
+KEY_BEGIN = "-----BEGIN " + "RSA PRIVATE " + "KEY-----"
+KEY_END = "-----END " + "RSA PRIVATE " + "KEY-----"
 
 
 def tracked():
@@ -84,7 +87,7 @@ def plants(tmp):
         "anthropic_key": lambda: "sk-" + "ant-" + rand(32),
         "aws_key": lambda: "AK" + "IA" + rand(16, string.ascii_uppercase + string.digits),
         "slack_token": lambda: "xo" + "xb-" + rand(24),
-        "private_key": lambda: "-----BEGIN " + "RSA PRIVATE KEY-----\n" + rand(64) + "\n-----END RSA PRIVATE KEY-----",
+        "private_key": lambda: KEY_BEGIN + "\n" + rand(64) + "\n" + KEY_END,
         "etsy_token": lambda: rand(9, string.digits) + "." + rand(48),
         "etsy_key": lambda: "ETSY_" + "KEYSTRING=" + rand(24),
     }
@@ -108,7 +111,7 @@ def plants(tmp):
 
 def leaked(value, output):
     """True if any 6-character piece of the value's random part shows up in the output."""
-    core = value.split("=", 1)[-1].replace("-----BEGIN RSA PRIVATE KEY-----", "").replace("-----END RSA PRIVATE KEY-----", "")
+    core = value.split("=", 1)[-1].replace(KEY_BEGIN, "").replace(KEY_END, "")
     core = "".join(ch for ch in core if ch.isalnum())
     return any(core[i:i + 6] in output for i in range(0, max(1, len(core) - 5)))
 

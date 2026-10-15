@@ -2,8 +2,8 @@
  "source": {
   "name": "City of Chicago Data Portal, Building Permits",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
-  "rowsUpdatedAt": "2026-10-14T12:09:04+00:00",
-  "fetchedAt": "2026-10-15T03:33:09+00:00",
+  "rowsUpdatedAt": "2026-10-15T12:07:08+00:00",
+  "fetchedAt": "2026-10-15T14:21:47+00:00",
   "modified": "Filtered by ProofNotFluff: permits issued in the last 365 days, new construction or renovation, reported cost $500,000 or more, still open (not complete, suspended, revoked or expired), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; only project-level and business fields kept.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
@@ -12,21 +12,21 @@
   "to": "2026-10-15"
  },
  "counts": {
-  "fetched": 1556,
-  "kept": 759,
+  "fetched": 1562,
+  "kept": 763,
   "excluded": {
-   "1 to 3 homes": 155,
-   "house or 2 to 3 flat": 185,
-   "no commercial or apartment wording": 292,
+   "no commercial or apartment wording": 291,
+   "house or 2 to 3 flat": 187,
+   "1 to 3 homes": 156,
    "no business listed as general contractor": 6,
    "closed, complete or suspended": 159
   },
   "keptByType": {
-   "New construction": 189,
-   "Renovation": 570
+   "New construction": 191,
+   "Renovation": 572
   },
-  "keptCost": 4067518396,
-  "keptUnits": 3379,
+  "keptCost": 4158974396,
+  "keptUnits": 3562,
   "topAreas": [
    [
     "Loop",
@@ -41,12 +41,12 @@
     82
    ],
    [
-    "Lincoln Park",
+    "West Town",
     40
    ],
    [
-    "West Town",
-    39
+    "Lincoln Park",
+    40
    ],
    [
     "Lake View",
@@ -292,6 +292,21 @@
    ]
   },
   {
+   "permit": "101061913",
+   "issued": "2025-10-16",
+   "type": "New construction",
+   "scope": "New construction of a 6-story residential building (110 dwelling units), at-grade parking lot (134 auto spaces + 40 bike spaces) and associated site...",
+   "units": 110,
+   "cost": 46770000,
+   "address": "4809 W 44th St",
+   "communityArea": "Garfield Ridge",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "The George Sollitt Construction Co"
+   ]
+  },
+  {
    "permit": "101086662",
    "issued": "2026-10-06",
    "type": "Renovation",
@@ -301,7 +316,7 @@
    "address": "225 W Randolph St",
    "communityArea": "Loop",
    "status": "Active",
-   "milestone": "Permit Issued (Fee Due)",
+   "milestone": "Inspections",
    "gc": [
     "Redmond Construction Corp."
    ]
@@ -457,6 +472,21 @@
    ]
   },
   {
+   "permit": "101061910",
+   "issued": "2025-10-22",
+   "type": "New construction",
+   "scope": "New construction of a 6-story residential building (73 dwelling units) to include 40 bike spaces",
+   "units": 73,
+   "cost": 29936000,
+   "address": "4442 S Cicero Ave",
+   "communityArea": "Garfield Ridge",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "The George Sollitt Construction Co"
+   ]
+  },
+  {
    "permit": "101089193",
    "issued": "2026-10-08",
    "type": "Renovation",
@@ -469,36 +499,6 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Clune Construction Company, L.P."
-   ]
-  },
-  {
-   "permit": "101078161",
-   "issued": "2026-09-16",
-   "type": "New construction",
-   "scope": "Full building permit for a 5-story mixed-use building with ground floor commercial and office space with 51 affordable dwelling units",
-   "units": null,
-   "cost": 28795046,
-   "address": "136 N Kedzie Ave",
-   "communityArea": "East Garfield Park",
-   "status": "Active",
-   "milestone": "Permit Issued (Fee Due)",
-   "gc": [
-    "Skender-Ashlaur Joint Venture LLC"
-   ]
-  },
-  {
-   "permit": "101069022",
-   "issued": "2026-01-27",
-   "type": "New construction",
-   "scope": "Full building permit for new 6 story, 71 dwelling unit apartment building with 24 outdoor parking spaces and rooftop terrace",
-   "units": 71,
-   "cost": 28000000,
-   "address": "5300 S Calumet Ave",
-   "communityArea": "Washington Park",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Ujamaa Construction, Inc."
    ]
   }
  ],

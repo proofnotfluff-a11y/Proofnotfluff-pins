@@ -192,6 +192,10 @@ def timeline(spec, fmt_name, speech=None):
     cta_t = t
     csay = spec.get("cta", {}).get("say", "")
     lead = 0.35 if speech else 0.0                     # the whoosh into the end card, then the voice
+    psay = (spec.get("pitch") or {}).get("say", "") if not walk else ""
+    if psay and speech:   # the product beat (Todd, Oct 15: say what the product is and who it is for) on the end card
+        lines.append(line(t + lead, psay))
+        lead += spoken(psay) + gap
     lines.append(line(t + lead, csay))
     if spoken(csay):   # the music keeps going under the close; its ending chord and the logo land after the last word
         button = t + lead + spoken(csay) + 0.2
@@ -309,6 +313,8 @@ def page(spec, fmt_name, tl, palette="ink"):
     note = '<div class="note">' + H.escape(spec["note"]) + '</div>' if spec.get("note") else ""
     say_html = '<div class="say e">' + H.escape(re.sub(r"\s+dot com\b", ".com", cta["say"])) + '</div>' if cta.get("say") else ""   # spoken "dot com", shown ".com"
     what_html = '<div class="what e">' + H.escape(cta["what"]) + '</div>' if cta.get("what") else ""
+    if cta.get("use"):   # what the product does, in plain words, under its name
+        what_html = '<div class="use e">' + H.escape(cta["use"]) + '</div>' + what_html
     end = (f'<div class="end" id="end"><div class="endin">{say_html}'
            f'<h2 class="e">{H.escape(cta.get("title", spec["product"]))}</h2>{what_html}'
            f'<div class="btn e">{H.escape(cta.get("button", "Instant download"))}</div>'
@@ -355,6 +361,7 @@ h1 b{{color:{P['hook']};background-image:linear-gradient(transparent 66%,{P['mar
 .end .sub{{font-size:{int(44*s)}px;color:#E8EBF1}}
 .end .say{{font-family:CB;font-size:{int(48*s)}px;line-height:1.25;color:#F2A385;margin-bottom:{int(36*s)}px}}
 .end .what{{font-size:{int(42*s)}px;line-height:1.3;color:#E8EBF1;margin-bottom:{int(34*s)}px}}
+.end .use{{font-size:{int(46*s)}px;line-height:1.3;color:#FFFFFF;font-weight:600;margin-bottom:{int(18*s)}px}}
 .foot{{position:absolute;font-family:P;font-size:{int(26*s)}px;letter-spacing:1px;color:#9AA3B5;z-index:31;display:flex;align-items:center;gap:18px}}
 .bars{{display:flex;gap:8px}} .bars i{{width:{int(40*s)}px;height:{int(9*s)}px;border-radius:5px;display:block}}
 """

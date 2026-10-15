@@ -5,7 +5,7 @@
   "listing_id": "4590258713",
   "product": "Pressure Washing Pricing Calculator",
   "tab": "Quote Builder",
-  "audience": "PROOF CHECK · ONE JOB, LINE BY LINE",
+  "audience": "PROOF CHECK · FOR PRESSURE WASHERS",
   "hookId": "F1",
   "scope": "trade",
   "voice": "am_michael",
@@ -70,7 +70,8 @@
     "sub": "proofnotfluff.com",
     "say": "Price your own job free at ProofNotFluff dot com.",
     "what": "Free online. Full workbook $2.99 on Etsy",
-    "tts": "Price your own job, free, at ProofNotFluff dot com."
+    "tts": "Price your own job, free, at ProofNotFluff dot com.",
+    "use": "Pick a job. It adds your time, drive and supplies and gives the quote."
   },
   "note": "Example numbers from the calculator. Estimates, not tax advice.",
   "sources": [
@@ -119,5 +120,9 @@
   },
   "hook_tts": "Where does a three fifty-five house wash actually go?",
   "el_voice": "CwhRBWXzGAHq8TQ4Fs17",
-  "el_model": "eleven_v3"
+  "el_model": "eleven_v3",
+  "pitch": {
+    "say": "That's our free pressure washing price calculator. Pick the job, and it adds up your time, the drive and supplies, and gives you the quote.",
+    "tts": "That's our free pressure washing price calculator. Pick the job... and it adds up your time, the drive, and supplies, and gives you the quote."
+  }
 }

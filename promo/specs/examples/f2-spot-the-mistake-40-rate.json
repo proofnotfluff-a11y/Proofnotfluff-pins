@@ -5,14 +5,14 @@
   "listing_id": "4589695837",
   "product": "Hourly Rate Quick Calculator",
   "tab": "Calculator",
-  "audience": "PROOF CHECK · SPOT THE MISTAKE",
+  "audience": "PROOF CHECK · FOR FREELANCERS",
   "hookId": "F2",
   "scope": "broad",
   "voice": "am_michael",
   "mood": "playful",
   "palette": "plum",
   "hook": "$40 an hour. One mistake. You keep <b>$15.66</b>",
-  "hook_say_short": "Forty bucks an hour. Sounds fine, right?",
+  "hook_say_short": "Freelancer? Forty bucks an hour sounds fine, right?",
   "hook_say": "Here is a $40 hourly rate that looks like $76,800 a year. It has one mistake: it counts every hour as paid. See if you spot it before the reveal.",
   "rows": [
     {
@@ -73,7 +73,8 @@
     "sub": "proofnotfluff.com",
     "say": "Check your rate free at ProofNotFluff dot com.",
     "what": "Free online. Full workbook $2.99 on Etsy",
-    "tts": "Check your rate, free, at ProofNotFluff dot com."
+    "tts": "Check your rate, free, at ProofNotFluff dot com.",
+    "use": "Type your income goal and hours. It shows the hourly rate you need."
   },
   "note": "Example numbers from the calculator. Estimates, not tax advice.",
   "sources": [
@@ -112,7 +113,11 @@
     "reel_caption": "$40 an hour over 1,920 hours looks like $76,800. Spot the mistake? Clients pay for only 1,152 of those hours, so after tax and costs you keep $15.66 for every hour you work. To take home $60,000, charge $75. Example numbers from the Hourly Rate Quick Calculator.\n\nLink in bio: proofnotfluff.etsy.com\n\n#freelancetips #hourlyrate #pricingstrategy #smallbusinesstips",
     "tiktok_caption": "$40 an hour looks like $76,800 a year. One mistake and you keep $15.66 an hour. Search ProofNotFluff on Etsy #freelancetips #hourlyrate #pricingstrategy"
   },
-  "hook_tts": "Forty bucks an hour. Sounds fine, right?",
+  "hook_tts": "Freelancer? Forty bucks an hour sounds fine, right?",
   "el_voice": "iP95p4xoKVk53GoZ742B",
-  "el_model": "eleven_v3"
+  "el_model": "eleven_v3",
+  "pitch": {
+    "say": "That's our free hourly rate calculator. Type in your income goal and your hours, and it shows the rate you need.",
+    "tts": "That's our free hourly rate calculator. Type in your income goal and your hours... and it shows the rate you actually need."
+  }
 }

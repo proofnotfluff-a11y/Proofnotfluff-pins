@@ -38,6 +38,9 @@ def lines(spec, fmt="short"):
     if spec.get("fix"):
         f = spec["fix"]; say = f.get("say") or f.get("label")
         out.append((say, f.get("tts") or say))
+    pt = spec.get("pitch") or {}
+    if pt.get("say"):
+        out.append((pt["say"], pt.get("tts") or pt["say"]))
     c = spec.get("cta", {})
     if c.get("say"):
         out.append((c["say"], c.get("tts") or c["say"]))

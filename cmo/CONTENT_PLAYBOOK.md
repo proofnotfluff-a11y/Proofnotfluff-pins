@@ -72,5 +72,11 @@ The old "$X looks fine, break-even is $Y" line may appear at most once a week, a
 8. Read it out loud in your head at speed: if a line would make a real person stumble, rewrite it. The cold viewer also answers "Does this sound like a person talking?" and flags any line that sounds read off a spreadsheet.
 The three examples in promo/specs/examples/ carry these scripts (rewritten Oct 15).
 
+## 10. Say what it is and who it is for (Todd, Oct 15, watching Proof Check #1: "I don't understand what the product is and what use case it's for")
+- The kicker names the viewer: `PROOF CHECK #<n> · FOR <WHO>` (FOR FREELANCERS, FOR PRESSURE WASHERS, FOR ANYONE ON A BUDGET). The spoken hook names them too when it fits in 8 words ("Freelancer? Forty bucks an hour sounds fine, right?").
+- Every video ends with a product beat before the close: spec "pitch" {"say", "tts"}, one sentence, spoken on the end card: "That's our free <calculator name>. <What you put in>, and it <what it gives you>." The end card shows cta.use, the same promise in one plain line ("Type your income goal and hours. It shows the hourly rate you need.").
+- The pitch must match what the free page really does (site/pages.json card line) and never promise a result.
+- tools/spec_lint.py refuses a spec without the FOR kicker, the pitch or cta.use. The cold viewer must be able to answer "What is the product and when would I use it?" in one sentence.
+
 ## Verdicts
 (none yet)

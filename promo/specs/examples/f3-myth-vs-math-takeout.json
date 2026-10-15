@@ -5,7 +5,7 @@
   "listing_id": "4594768127",
   "product": "Budget Tracker Spreadsheet",
   "tab": "Month",
-  "audience": "PROOF CHECK · MYTH VS MATH",
+  "audience": "PROOF CHECK · FOR ANYONE ON A BUDGET",
   "hookId": "F3",
   "scope": "broad",
   "voice": "am_michael",
@@ -67,7 +67,8 @@
     "sub": "proofnotfluff.com",
     "say": "Find your big five free at ProofNotFluff dot com.",
     "what": "Free online. Full tracker $2.99 on Etsy",
-    "tts": "Find your big five, free, at ProofNotFluff dot com."
+    "tts": "Find your big five, free, at ProofNotFluff dot com.",
+    "use": "Enter your pay, bills and spending. It shows what's left to plan."
   },
   "note": "Example month from the tracker. Your numbers will differ.",
   "sources": [
@@ -100,5 +101,9 @@
   },
   "hook_tts": "Five takeout orders. Guilty?",
   "el_voice": "XrExE9yKIg1WjnnlVkGX",
-  "el_model": "eleven_v3"
+  "el_model": "eleven_v3",
+  "pitch": {
+    "say": "That's our free monthly budget calculator. Put in your pay, bills and spending, and it shows what's left to plan.",
+    "tts": "That's our free monthly budget calculator. Put in your pay, bills, and spending... and it shows what's left to plan."
+  }
 }

@@ -59,7 +59,14 @@ def problems(spec, path=""):
     if spec.get("series") != "Proof Check":
         out.append(f"series is {spec.get('series')!r}, not 'Proof Check'")
     if not KICKER.match(spec.get("audience", "")):
-        out.append(f"kicker (audience) {spec.get('audience')!r} must read 'PROOF CHECK #<n> · <FORMULA NAME>'")
+        out.append(f"kicker (audience) {spec.get('audience')!r} must read 'PROOF CHECK #<n> · FOR <WHO>'")
+    # Todd, Oct 15, watching Proof Check #1: "I don't understand what the product is and what use case it's for".
+    if not re.search(r"· FOR [A-Z]", spec.get("audience", "")):
+        out.append("kicker must say who it is for: 'PROOF CHECK #<n> · FOR <WHO>' (e.g. FOR FREELANCERS, FOR CLEANING BUSINESSES)")
+    if not (spec.get("pitch") or {}).get("say"):
+        out.append("no pitch: the end card needs one spoken line saying what the product is and what you do with it")
+    if not spec.get("cta", {}).get("use"):
+        out.append("no cta.use: the end card needs one plain line saying what the product does for the viewer")
     hss = spec.get("hook_say_short", "")
     if not hss:
         out.append("no hook_say_short: frame one needs its spoken line")

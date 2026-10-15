@@ -28,14 +28,14 @@
       "why": "About $21,223 of self-employment and income tax plus $8,580 of yearly costs ($715 a month). Revenue needed: $89,803."
     },
     {
-      "label": "Hours paid for (60% of 2,400)",
+      "label": "Hours paid (60% of 2,400 worked)",
       "value": "1,440 hrs a year",
       "input": true,
       "say": "Customers pay for 1,440 of your 2,400 hours",
       "why": "48 weeks of 50 hours is 2,400. Only 60% is paid work; the rest is driving, quotes and admin."
     },
     {
-      "label": "Pay + tax + costs per paid hour",
+      "label": "Break-even per paid hour",
       "value": "$62.36 an hour",
       "result": true,
       "kind": "bad",
@@ -44,7 +44,7 @@
     }
   ],
   "fix": {
-    "label": "Break-even an hour, 75% paid",
+    "label": "Break-even, 1,800 hrs paid (75%)",
     "value": "$49.89",
     "say": "Get paid for 75% of your hours: $49.89",
     "why": "Same pay, tax and costs over 1,800 paid hours: $49.89 an hour. Fewer unpaid hours (batching jobs by area, quoting by phone) lower the rate every quote needs."

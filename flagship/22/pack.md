@@ -51,7 +51,7 @@ HOW YOU GET IT
 Instant download. Download from a web browser on your computer or phone (Etsy, You, Purchases); the Etsy app can't download digital files.
 
 THE SOURCES INSIDE THE FILE
-Self-employment tax 15.3% on 92.35% of net earnings (IRS Topic 554, page updated Sep 24, 2026). Vehicle cost defaults to the IRS business mileage rate of 76 cents a mile for July 1 to December 31, 2026 (IR-2026-29). Both re-checked on irs.gov Oct 9, 2026; change either to your own figure.
+Self-employment tax 15.3% on 92.35% of net earnings (IRS Topic 554). Vehicle cost defaults to the IRS business mileage rate of 76 cents a mile for July 1 to December 31, 2026 (IR-2026-29). Both as checked Oct 6, 2026, the date shown in the file; change either to your own figure.
 
 QUESTIONS
 Are the job prices market rates? No. The example times and supplies are starting points. Change them to your real jobs and every price follows.

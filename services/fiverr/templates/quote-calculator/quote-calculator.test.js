@@ -7,7 +7,8 @@
 // recalculated in LibreOffice on Oct 15, 2026 (tools/render_xlsx.py's office helpers), to the cent:
 //   engines/service-pricing (#13 general edition, the pressure washing and junk removal editions, and the sample
 //   cleaning workbook built from the same engine with made-up numbers), and engines/cleaning-business-kit (#14 price
-//   sheet, and its Quote Builder set to the same job for prices per visit).
+//   sheet, and its Quote Builder set to the same job for prices per visit). Helper rates: the gig 3 Fiverr workbook
+//   (the same engine with helper pay), recalculated in LibreOffice on Oct 15, 2026.
 "use strict";
 const fs = require("fs");
 const path = require("path");
@@ -138,6 +139,34 @@ if (TEMPLATE_MODE) {
   r = oneJob(BEJR, 30, J(10, 3, 600, 120));
   cents("Junk estate cleanout, 3 people, 120 miles: floor", r.floor, 3310.462236963495);
   cents("Junk estate cleanout: price", r.price, 3895);
+
+  // Helpers (gig 3 workbook, 2 Price Sheet): the owner at the break-even rate, each other person on the crew at the
+  // helper rate (helper pay plus the employer cost on top of wages), on site and driving.
+  const withHelper = (be, mph, job, hr) => {
+    const c = cfgWith(be, mph, { jobs: [job] });
+    if (hr !== undefined) c.rates.helperCostPerHour = hr;
+    return Q.price(c, { job: 0 });
+  };
+  // Junk removal edition numbers with helpers paid $22.50 an hour plus 15.5%: $25.9875 an hour.
+  r = withHelper(BEJR, 30, J(1.5, 3, 60, 30), 25.9875);
+  cents("helpers: upright piano, 3 people (2 helpers): floor", r.floor, 368.645966485922);
+  cents("helpers: upright piano, 3 people (2 helpers): price", r.price, 435);
+  r = withHelper(BEJR, 30, J(0.75, 2, 25, 30), 25.9875);
+  cents("helpers: couch, 2 people (1 helper): floor", r.floor, 202.414051540146);
+  cents("helpers: couch, 2 people (1 helper): price", r.price, 240);
+  r = withHelper(BEJR, 30, J(10, 3, 600, 120), 25.9875);
+  cents("helpers: estate cleanout, 3 people, 120 miles: floor", r.floor, 2291.93741232117);
+  cents("helpers: estate cleanout, 3 people, 120 miles: price", r.price, 2700);
+  // The sample cleaning business with one helper paid $18 an hour plus 12%: $20.16 an hour.
+  const BES = 52.7393617615689;
+  r = withHelper(BES, 25, J(1.75, 2, 10, 16), 20.16);
+  cents("helpers: standard clean, 3 bedrooms, 1 helper: floor", r.floor, 196.38947461015);
+  cents("helpers: standard clean, 3 bedrooms, 1 helper: price", r.price, 235);
+  cents("helpers: a 1-person job is the same with a helper rate", withHelper(BES, 25, J(2, 1, 8, 16), 20.16).floor, 159.391915050542);
+  result(withHelper(BES, 25, J(1.75, 2, 10, 16), BES).floor === withHelper(BES, 25, J(1.75, 2, 10, 16)).floor,
+    "helpers: a helper rate equal to the break-even rate changes nothing, to the last bit");
+  result(Q.check(Object.assign({}, cfg, { rates: Object.assign({}, cfg.rates, { helperCostPerHour: -1 }) }))
+    .some((m) => /helperCostPerHour/.test(m)), "the config check rejects a negative helper rate");
 
   // #14 Cleaning Business Starter Kit, 3 Price Sheet: one cleaner, 90 person-minutes per 1,000 sq ft times the service
   // multiplier, 16 typical miles, $120 minimum; every 2 weeks and weekly take 10% and 15% off the one-time price.

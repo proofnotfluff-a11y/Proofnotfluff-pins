@@ -1,0 +1,27 @@
+name: Repo checks
+# The code gate (Todd, Oct 15, 2026: code decides wherever it can, a model judges only where it must).
+# Runs tools/check_repo.py on every push to main; the nightly optimizer runs the same script first and
+# fixes any ERROR before anything else. Read-only: this workflow never commits.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: repo-checks-${{ github.sha }}
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run the checks
+        run: |
+          set -o pipefail
+          python3 tools/check_repo.py | tee check.txt
+      - name: Summary
+        if: always()
+        run: |
+          { echo "### Repo checks"; echo; sed 's/^/    /' check.txt 2>/dev/null || echo "no output"; } >> "$GITHUB_STEP_SUMMARY"

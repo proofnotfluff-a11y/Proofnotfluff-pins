@@ -13,10 +13,13 @@ Checks
                 docs/go/index.html is skipped because its featured block follows the calendar
   drafts        draft pages (and leads pages without a Kit form) carry noindex and stay out of the sitemap,
                 index and hub; live pages are in the sitemap without noindex
-  em-dash       no em dash in anything public: docs/, site/, email/, promo/specs/, agents/
+  em-dash       no em dash in anything public: docs/, site/, email/, promo/specs/, agents/, services/
   secrets       no token or private key pattern in any tracked text file
   permit-data   permits/*/sample.json holds business-level fields only, and no scope text carries a
                 reviewer, consultant, architect, engineer or owner tag (where a person's name can follow)
+  fiverr-kit    tools/fiverr_kit.py: the paste-ready Fiverr copy in services/fiverr/ keeps to Fiverr's field limits
+                and our rules (AI-assisted, not-advice and license lines; no links, contacts, review bait or
+                off-Fiverr asks)
   gate-tests    tools/test_check_repo.py plants a failure for every check above in a throwaway copy and
                 confirms each one is caught and no secret value is printed (Todd's Oct 15 note: the checks get
                 tested too). An ERROR here means the gate itself is broken: tell Todd, never edit the gate to clear it
@@ -157,7 +160,7 @@ def check_drafts():
 
 
 def check_em_dash(files):
-    roots = ("docs/", "site/", "email/", "promo/specs/", "agents/")
+    roots = ("docs/", "site/", "email/", "promo/specs/", "agents/", "services/")
     hits = []
     for f in files:
         if f.startswith(roots) and not BINARY.search(f):
@@ -200,6 +203,16 @@ def check_permit_data():
     err("permit-data", "; ".join(bad)) if bad else ok("permit-data")
 
 
+def check_fiverr_kit():
+    kit = os.path.join(ROOT, "services", "fiverr")
+    if not os.path.isdir(kit):
+        return ok("fiverr-kit", "no kit")
+    spec = importlib.util.spec_from_file_location("fiverr_kit", os.path.join(ROOT, "tools", "fiverr_kit.py"))
+    fk = importlib.util.module_from_spec(spec); spec.loader.exec_module(fk)
+    found = fk.problems(kit)
+    err("fiverr-kit", "; ".join(found[:8])) if found else ok("fiverr-kit")
+
+
 def check_gate_tests():
     test = os.path.join(ROOT, "tools", "test_check_repo.py")
     if not os.path.exists(test):
@@ -221,7 +234,8 @@ def main():
     files = tracked()
     checks = [("json", lambda: check_json(files)), ("python", lambda: check_python(files)), ("calc-tests", check_calc),
               ("site-sync", lambda: check_site_sync(files)), ("drafts", check_drafts), ("em-dash", lambda: check_em_dash(files)),
-              ("secrets", lambda: check_secrets(files)), ("permit-data", check_permit_data), ("gate-tests", check_gate_tests)]
+              ("secrets", lambda: check_secrets(files)), ("permit-data", check_permit_data), ("fiverr-kit", check_fiverr_kit),
+              ("gate-tests", check_gate_tests)]
     for name, fn in checks:
         if only and name not in only:
             continue

@@ -6,10 +6,10 @@ repo, and the secrets check must never print any part of a planted value. Nothin
 Usage: python3 tools/test_check_repo.py      exit 1 if any planted failure slips through
 check_repo.py runs this file as its gate-tests check, so the nightly optimizer and every push see a broken gate.
 """
-import json, os, random, shutil, string, subprocess, sys, tempfile
+import json, os, random, re, shutil, string, subprocess, sys, tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data"]
+CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data", "fiverr-kit"]
 rng = random.Random()
 # Key markers are assembled here so this file never matches the secrets check itself.
 KEY_BEGIN = "-----BEGIN " + "RSA PRIVATE " + "KEY-----"
@@ -106,6 +106,21 @@ def plants(tmp):
             d = json.loads(t); d["projects"][0]["scope"] = d["projects"][0].get("scope", "") + " Consultant reviewer: Planted Person"; return json.dumps(d)
         out.append(("permit-data", "a personal field in the permit sample", edit(sample, personal_key)))
         out.append(("permit-data", "a reviewer tag in a permit scope", edit(sample, person_tag)))
+
+    # Fiverr kit: plants keyed to the file's structure, not its wording, so copy edits never break these tests.
+    gigs, replies = os.path.join("services", "fiverr", "gigs.md"), os.path.join("services", "fiverr", "replies.md")
+    if os.path.exists(os.path.join(tmp, gigs)):
+        def long_title(t):  # the first title becomes 90+ characters with an ampersand
+            return re.sub(r"(\*\*Title\*\*\n```\n)[^\n]*", lambda m: m.group(1) + "I will plan & build " + "a very " * 12 + "long model", t, count=1)
+        def link_in_description(t):
+            return re.sub(r"(\*\*Description\*\*\n```\n)", lambda m: m.group(1) + "See www.example.com first. ", t, count=1)
+        def no_license(t):
+            return re.sub(r"stays? ProofNotFluff's", "come with it", re.sub(r"(?i)licen[cs]e", "copy", t))
+        out.append(("fiverr-kit", "an overlong gig title with &", edit(gigs, long_title)))
+        out.append(("fiverr-kit", "a web address in a gig description", edit(gigs, link_in_description)))
+        out.append(("fiverr-kit", "the license line removed", edit(gigs, no_license)))
+    if os.path.exists(os.path.join(tmp, replies)):
+        out.append(("fiverr-kit", "review bait in a reply", edit(replies, lambda t: t + "\n## Planted\n```\nPlease leave a 5-star review.\n```\n")))
     return out
 
 

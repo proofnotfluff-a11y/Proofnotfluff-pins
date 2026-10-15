@@ -1415,13 +1415,13 @@ def leads_page_html(p):
     near = d.get("nearFinish", [])
     since = nice_date(d["window"]["from"])
     asof = nice_date(src.get("rowsUpdatedAt") or src["fetchedAt"])
-    lede = (f'In the last 12 months the City of {p["city"]} issued permits for {kept:,} apartment and commercial projects over '
-            f'$500,000 that are still open: about {money(cost)} of work. Here are the biggest, the builders running the most of them, '
-            f'and the buildings with partial occupancy approved. {p["lede"]}')
+    lede = (f'In the last 12 months the City of {p["city"]} issued building permits for at least {kept:,} apartment and commercial '
+            f'projects over $500,000 that are still open, about {money(cost)} of work. Here are the biggest, the builders running the most '
+            f'of them, and the buildings with partial occupancy approved. {p["lede"]}')
     tiles = (f'<div class="tiles ld-tiles">'
              f'<div class="tile key"><div class="lab">Open big projects</div><div class="val">{kept:,}</div><div class="sub">permits issued since {E(since)}</div></div>'
              f'<div class="tile"><div class="lab">Work on the permits</div><div class="val">{money(cost)}</div><div class="sub">reported cost, as filed</div></div>'
-             f'<div class="tile"><div class="lab">New buildings</div><div class="val">{new_n:,}</div><div class="sub">{c.get("keptUnits", 0):,} new homes in apartment buildings</div></div>'
+             f'<div class="tile"><div class="lab">New buildings</div><div class="val">{new_n:,}</div><div class="sub">at least {c.get("keptUnits", 0):,} new apartments</div></div>'
              f'<div class="tile"><div class="lab">Partial occupancy</div><div class="val">{c.get("nearFinish", len(near)):,}</div><div class="sub">approved by the City</div></div></div>'
              f'<p class="asof">City data as of {E(asof)}. Refreshed every Monday.</p>')
     near_html = ""

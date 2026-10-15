@@ -510,6 +510,27 @@ check("contractor short by", HC.shortBy, 30950);
 check("contractor job quote", HC.quote, 2000);
 check("contractor rate at 80% billed", HC.rateAt80, 52.43);
 
+// handyman hourly page: the #20 workbook with handyman inputs (Calculator D15:D43 changed, recalculated in LibreOffice Oct 15, 2026)
+const HM = P.hourly({ takeHome: 55000, taxRate: 25, expenses: 9000, weeks: 48, hours: 45, billableShare: 55, checkRate: 50, jobHours: 3, materials: 85, markup: 15 });
+check("handyman revenue needed (I17)", HM.revenue, 82333.33);
+check("handyman billable hours (I20)", HM.billable, 1188);
+check("handyman minimum rate (I21)", HM.rate, 69.30);
+check("handyman rate card", HM.rateCard, 70);
+check("handyman take-home at $50 (D31)", HM.keep, 37800);
+check("handyman per hour worked (D32)", HM.keepPerHour, 17.5);
+check("handyman short by (C33)", HM.shortBy, 17200);
+check("handyman 3 h job quote (I43)", HM.quote, 307.75);
+check("handyman rate at 80% billed (I34)", HM.rateAt80, 47.65);
+const HM2 = P.hourly({ takeHome: 40000, taxRate: 20, expenses: 5000, weeks: 46, hours: 40, billableShare: 65, checkRate: 65, jobHours: 6, materials: 240, markup: 10 });
+check("handyman case B minimum rate (I21)", HM2.rate, 45.99);
+check("handyman case B take-home at $65 (D31)", HM2.keep, 58192);
+check("handyman case B above goal (C33)", -HM2.shortBy, 18192);
+check("handyman case B quote (I43)", HM2.quote, 564);
+const HM3 = P.hourly({ takeHome: 70000, taxRate: 28, expenses: 12000, weeks: 50, hours: 50, billableShare: 50, checkRate: 60, jobHours: 1.5, materials: 0, markup: 0 });
+check("handyman case C minimum rate (I21)", HM3.rate, 87.38);
+check("handyman case C take-home at $60 (D31)", HM3.keep, 45360);
+check("handyman case C quote, 1.5 h at $90 (I43)", HM3.quote, 135);
+
 // #20 day-rate view (Calculator tab recalculated in LibreOffice Oct 13, 2026, hours = days x hours a day)
 const DR1 = P.dayRate({ takeHome: 65000, taxRate: 25, expenses: 14000, weeks: 48, daysPerWeek: 5, hoursPerDay: 10, billableShare: 55, checkDayRate: 450 });
 check("#20 day: hourly rate I21", DR1.rate, 76.26);

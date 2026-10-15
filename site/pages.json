@@ -2782,6 +2782,95 @@
    ]
   },
   {
+   "slug": "handyman-hourly-rate-calculator",
+   "kind": "hourly",
+   "draft": true,
+   "quote": true,
+   "product": "20",
+   "segment": "home-services",
+   "title": "Handyman Hourly Rate Calculator: What to Charge Once Drive Time and Your Van Are Counted | ProofNotFluff",
+   "desc": "Free handyman hourly rate calculator. Enter the take-home you want, your tax set-aside, van, insurance and tool costs and the hours customers pay for to get your minimum rate and a small-job quote.",
+   "eyebrow": "Free calculator",
+   "h1": "Handyman Hourly Rate Calculator",
+   "lede": "Work out the hourly rate a handyman business needs once the van, insurance, tools and the hours nobody pays for (estimates, driving between small jobs, hardware store runs) are counted. Test the rate you charge now and turn your rate into a quote for one job. Free, no sign-up.",
+   "card": "Your handyman rate with the van, insurance and unpaid hours counted, plus a small-job quote.",
+   "defaults": {
+    "takeHome": "55,000",
+    "taxRate": "25",
+    "expenses": "9,000",
+    "weeks": "48",
+    "hours": "45",
+    "billableShare": "55",
+    "checkRate": "50",
+    "jobHours": "3",
+    "materials": "85",
+    "markup": "15"
+   },
+   "wording": {
+    "expenses": [
+     "Business expenses per year",
+     "Van or truck, fuel, insurance, tools, licenses, phone"
+    ],
+    "materials": [
+     "Materials for the job",
+     "Parts, hardware, caulk, paint, dump fees"
+    ],
+    "jobHours": [
+     "Billable hours for the job",
+     "Your best estimate, for example 3"
+    ],
+    "quoteLegend": "Quote one job",
+    "projectLabor": "Job labor at your rate card",
+    "projectQuote": "Job quote"
+   },
+   "method": [
+    "A handyman's day is many small jobs, so a big share of it goes to things no customer pays for: estimates, driving between jobs, hardware store runs and invoicing. The van, insurance and tools cost money whether you work that week or not.",
+    "This calculator grosses your take-home up for the tax share you set aside, adds a year of business expenses, and spreads that revenue over the hours a customer actually pays for: your working hours times your billable share. That is your minimum hourly rate; the rate card rounds it up to the next $5.",
+    "To test a rate, it multiplies the rate by your billable hours, takes out expenses and your tax set-aside on any profit, and divides what is left by every hour you work. A job quote is its billable hours at your rate-card rate, plus materials with your markup."
+   ],
+   "example": "A handyman who wants $55,000 a year take-home, sets aside 25% for tax and spends $9,000 a year on the van, insurance and tools needs $82,333 of revenue. At 48 weeks of 45 hours with 55% billable, that is 1,188 billable hours out of 2,160 worked, so the minimum rate is $69.30 (rate card $70). Charging $50 an hour brings in $59,400 and leaves $37,800 after expenses and tax: $17.50 for every hour worked, $17,200 short of the goal. A 3-hour job at $70 is $210 of labor; $85 of parts with a 15% markup adds $97.75, for a $307.75 quote. Billing 80% of your hours instead of 55% would bring the minimum rate down to $47.65.",
+   "cta": {
+    "title": "Keep it, change it, quote with it",
+    "bullets": [
+     "The Hourly Rate Quick Calculator is this calculator as a one-tab Excel and Google Sheets workbook,",
+     "with the same quick quote, the billable-share table, a rate card and a Start Here guide. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4589695837"
+   },
+   "faq": [
+    [
+     "How much should a handyman charge per hour?",
+     "Start from the take-home you want, add the tax you set aside and a year of business expenses, then divide by the hours customers actually pay for. With the example numbers that is $82,333 over 1,188 billable hours, or $69.30 an hour. Enter your own numbers to see yours."
+    ],
+    [
+     "Why does drive time matter so much for a handyman?",
+     "Small jobs mean more driving, estimates and store runs for each paid hour. In the example only 55% of a 45-hour week is billed, so every paid hour has to cover almost two hours of work."
+    ],
+    [
+     "Should I charge a minimum for small jobs?",
+     "Many handymen set a minimum charge so a 30-minute fix still covers the drive. One way to pick it is to price your shortest normal job with this calculator, drive time included in the billable hours."
+    ],
+    [
+     "Should I mark up parts and materials?",
+     "That is your call. A markup pays for the time spent buying, hauling and returning parts; set it to 0 to pass parts through at cost. The example uses 15%."
+    ],
+    [
+     "What tax set-aside rate should I use?",
+     "Ask your tax preparer. A set-aside rate is a savings habit you choose, not a tax calculation, and this calculator does not tell you which rate to use."
+    ],
+    [
+     "Is this tax or financial advice?",
+     "No. It is a planning estimate based on the numbers you enter."
+    ]
+   ],
+   "sources": "No outside rates are used on this page; the tax set-aside is your own estimate. Maths from the Hourly Rate Quick Calculator workbook with the example's handyman inputs entered, recalculated Oct 15, 2026.",
+   "number_sources": [
+    "engines/hourly-rate-quick-calculator/build_xlsx.py with Calculator D15=55000, D16=25%, D17=9000, D19=48, D20=45, D21=55%, D27=50, D41=3, D42=85, D43=15%, recalculated in LibreOffice Oct 15: I17 82333.33, I19 2160, I20 1188, I21 69.30, D28 59400, D31 37800, D32 17.50, C33 short by $17,200, I41 210, I42 97.75, I43 307.75, I34 47.65.",
+    "docs/assets/pnf-calc.test.js handyman checks."
+   ]
+  },
+  {
    "slug": "pressure-washing-price-per-square-foot-calculator",
    "kind": "service_sqft",
    "draft": false,

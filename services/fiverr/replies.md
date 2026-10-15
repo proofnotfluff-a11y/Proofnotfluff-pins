@@ -16,13 +16,18 @@ Yes, I can help with that. So I can point you to the right package, could you te
 Then I'll tell you which package fits, or send a custom offer if none does.
 ```
 
+## The buyer asks for work made without AI
+```
+Thanks for asking before you order. Here's how I work: AI tools do most of the build from your files, then every formula is tested, every number is checked against your files, and I review the finished file before I deliver it. I don't offer a version made without AI, so if that's a must, this service isn't the right fit, and I'd rather say so now.
+```
+
 ## Custom offer description
 ```
 [Gig name], built with your numbers: [what is included, in one line].
 
 Includes the Excel file (it also works in Google Sheets), a one-page summary of what the numbers show, and a short guide to keep it current. [N] revisions. Delivery [N] days after you send the files and answers the order asks for.
 
-License: you can use and edit the file in your business for good; the template and formulas behind it stay ProofNotFluff's. Planning tool only, not tax, legal or investment advice.
+License: once the order is complete, you can use and edit the file in your business with no time limit. The template and formulas stay ProofNotFluff's: no resale, and no sharing it as a template. Planning tool only, not tax, legal or investment advice.
 ```
 
 ## Order started
@@ -41,7 +46,7 @@ A rough number is fine. I'll mark anything estimated so you can change it later.
 
 ## The buyer offers a login
 ```
-Thanks, but I don't need logins or passwords, and I'd rather not have them.
+Thanks, but I don't need logins or passwords, and I'd rather not have them. If you've already sent one, please change that password now.
 
 A download works better: in [platform], export [report name] for [date range] and attach it here. If that's a hassle, a simple summary by month is fine too.
 ```
@@ -58,7 +63,7 @@ What's inside:
 
 What it shows: [one or two plain sentences with numbers from their file].
 
-You type only in the [input color] cells; everything else calculates. If something doesn't match how your business works, tell me here and I'll fix it within your revisions.
+You type only in the [input color] cells; everything else calculates. Your license and notes on using the numbers are on the Terms tab. If something doesn't match how your business works, tell me here and I'll fix it within your revisions.
 ```
 
 ## Revision received
@@ -71,14 +76,14 @@ Got it, thanks. I'll [change] and send the updated file by [day].
 That's a bit more than this package covers: [what is extra]. I can add it as a custom offer for [price], delivered [N] days after you accept. Want me to send it?
 ```
 
-## Polite decline (no reason given; also for any brand under the standing restriction)
+## Polite decline (no reason given; use it for every decline)
 ```
-Thanks for thinking of me, [first name]. This one isn't a fit for what I do, so I'll pass rather than do it halfway. I hope you find the right person for it.
+Thanks for thinking of me, [first name]. I'm not able to take this one on, so I'll pass. I hope you find the right person for it.
 ```
 
 ## Cancelling an order that came in anyway
 ```
-Thanks for the order, [first name]. This one isn't a fit for what I do, so I'm cancelling it through Fiverr so your payment comes back to you. Sorry for the trouble.
+Thanks for the order, [first name]. I'm not able to take this one on, so I've sent a cancellation request through Fiverr. Once you accept it, Fiverr refunds your payment. Sorry for the trouble.
 ```
 
 ## The buyer wants to talk off Fiverr
@@ -88,7 +93,7 @@ Happy to talk it through, but I keep all messages, files and payments here on Fi
 
 ## A tax, legal or investment question
 ```
-Good question. That one belongs with your accountant or attorney. What I can do is build the tool that shows the numbers, so that conversation is quicker.
+Good question. That one belongs with your accountant, attorney or a licensed financial adviser. What I can do is build the tool that shows the numbers, so that conversation is quicker.
 ```
 
 ## Running late
@@ -100,5 +105,5 @@ Quick update: I need [N] more day(s) to [reason in plain words]. I've sent a req
 ```
 Thanks again, [first name]. I hope the file earns its keep.
 
-If you have a minute, an honest review on the order page helps other owners decide. And if anything stops working as your numbers change, message me here.
+If you have a minute, an honest review on the order page helps other owners decide. And if a formula breaks, message me here.
 ```

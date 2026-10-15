@@ -48,11 +48,10 @@ What you get:
 How it works:
 1. You answer a few questions and send your sales exports or a summary
 2. I build and test the model: every formula checked, blank and extreme inputs tried
-3. You get the file, the summary and the guide
 
 I'm a finance leader with consumer-goods and e-commerce experience. I use AI-assisted tools, and every number is checked before delivery.
 
-Your license: use and edit your file in your business for good. The template and formulas behind it stay ProofNotFluff's.
+Your license: use and edit your file in your business, with no time limit. The template and formulas stay ProofNotFluff's: no resale, and no sharing it as a template.
 
 Planning tool only, not tax, legal or investment advice. I never need your bank or store logins.
 ```
@@ -87,7 +86,7 @@ What does your brand sell, and on which channels? List each channel and how ofte
 ```
 Required, free text with attachments:
 ```
-Your sales by channel for the last 13 weeks or 3 months. Exports or a simple summary are fine. Please don't send logins or passwords.
+Your sales by channel for the last 13 weeks or 3 months. Exports or a simple summary are fine. Please remove customer names, emails and addresses, and don't send logins or passwords.
 ```
 Required, free text:
 ```
@@ -129,13 +128,13 @@ That works. I build with your best estimates, mark them clearly, and you can cha
 Can it handle payout delays and reserves?
 ```
 ```
-Yes. Each channel gets its own payout timing, so cash lands in the week it really arrives.
+Yes. Each channel gets its own payout delay, and any reserve a platform holds back gets its own line, so cash shows in the week you expect it.
 ```
 ```
 Who owns the file?
 ```
 ```
-You get a permanent license to use and edit your file in your business, and your numbers stay yours. The template and formulas it is built on stay ProofNotFluff's, so those are licensed to you, not transferred.
+Your numbers stay yours. Once the order is complete, you can use and edit the file in your business with no time limit, and share it with your team, accountant or lender. The template and formulas stay ProofNotFluff's: licensed to you, not transferred, and not for resale.
 ```
 ```
 Is this financial advice?
@@ -147,7 +146,7 @@ No. It is a planning tool built from your numbers. For tax or legal questions, t
 Do you use AI?
 ```
 ```
-Yes, AI-assisted tools help me build faster. Every formula is tested and every number is checked before delivery, and I stand behind the work.
+Yes. AI tools do most of the build, working from your files. Every formula is tested and every number is checked against your files. I review the finished file before I deliver it, and I stand behind it. If you need work made without AI, message me before you order.
 ```
 
 **Gallery (services/fiverr/assets/)**: gig1-cover.png, gig1-dashboard.png, gig1-whats-inside.png (1280 x 769), gig1-demo.mp4 (30 to 45 s, 16:9), gig1-sample.pdf (3 pages, sample data marked SAMPLE).
@@ -194,11 +193,10 @@ What you get:
 How it works:
 1. You answer a few questions and send your sales, fee and ad exports
 2. I map every line, build the dashboard and tie the totals back to your exports
-3. You get the file, the summary and the guide
 
 I'm a finance leader with consumer-goods and e-commerce experience. I use AI-assisted tools, and every number is checked before delivery.
 
-Your license: use and edit your file in your business for good. The template and formulas behind it stay ProofNotFluff's.
+Your license: use and edit your file in your business, with no time limit. The template and formulas stay ProofNotFluff's: no resale, and no sharing it as a template.
 
 Planning tool only, not tax, legal or investment advice. Exports only; I never need your logins.
 ```
@@ -233,7 +231,7 @@ What does your brand sell, and on which channels?
 ```
 Required, free text with attachments:
 ```
-Exports for the last 3 to 6 months: sales by order or by product, platform fees or payout reports, and ad spend by channel. Please don't send logins or passwords.
+Exports for the last 3 to 6 months: sales by order or product, fee or payout reports, and ad spend by channel. Please remove customer names, emails and addresses. No logins or passwords.
 ```
 Required, free text:
 ```
@@ -265,7 +263,7 @@ No, never. The reports you download from each platform are enough.
 Can I update it myself next month?
 ```
 ```
-Yes. Paste the new exports into the input tabs and the dashboard updates. The guide shows how.
+Yes. Paste each month's exports, in the same report format, into the input tabs and the dashboard updates. The guide shows how.
 ```
 ```
 My product costs are messy. Is that a problem?
@@ -277,7 +275,7 @@ No. Send your best estimate per product. I flag the ones that drive the most mar
 Who owns the file?
 ```
 ```
-You get a permanent license to use and edit your file in your business, and your numbers stay yours. The template and formulas it is built on stay ProofNotFluff's, so those are licensed to you, not transferred.
+Your numbers stay yours. Once the order is complete, you can use and edit the file in your business with no time limit, and share it with your team, accountant or lender. The template and formulas stay ProofNotFluff's: licensed to you, not transferred, and not for resale.
 ```
 ```
 Is this financial advice?
@@ -289,7 +287,7 @@ No. It is a planning tool built from your numbers. For tax or legal questions, t
 Do you use AI?
 ```
 ```
-Yes, AI-assisted tools help me build faster. Every formula is tested and every number is checked before delivery, and I stand behind the work.
+Yes. AI tools do most of the build, working from your files. Every formula is tested and every number is checked against your files. I review the finished file before I deliver it, and I stand behind it. If you need work made without AI, message me before you order.
 ```
 
 **Gallery (services/fiverr/assets/)**: gig2-cover.png, gig2-dashboard.png, gig2-whats-inside.png, gig2-demo.mp4, gig2-sample.pdf (sample data marked SAMPLE).
@@ -335,11 +333,11 @@ What you get:
 How it works:
 1. You answer a few questions: crew, pay, costs, typical jobs, service area
 2. I build and test the calculator with your numbers
-3. You get the file and a short guide (Premium adds the website calculator and setup steps)
+3. You get the file and a short guide
 
 I'm a finance leader with consumer-goods and e-commerce experience. Every calculator starts from tested pricing engines; I use AI-assisted tools, and every number is checked before delivery.
 
-Your license: use and edit your files in your business for good. The template and formulas behind them stay ProofNotFluff's.
+Your license: use and edit your files in your business, with no time limit. The template, formulas and code stay ProofNotFluff's: no resale, and no sharing them as a template.
 
 Planning tool only, not tax, legal or investment advice.
 ```
@@ -414,13 +412,13 @@ Yes. The calculator shows where each of your current prices sits against your br
 How does the website calculator work?
 ```
 ```
-It is a single web page in your colors that customers fill in to see a price. You or your web person add it to your site, and I include the steps.
+It is a single web page in your colors that customers fill in to see an estimated price. You or your web person add it to your site, and I include the steps.
 ```
 ```
 Who owns the files?
 ```
 ```
-You get a permanent license to use and edit your files in your business, and your numbers stay yours. The template and formulas they are built on stay ProofNotFluff's, so those are licensed to you, not transferred.
+Your numbers stay yours. Once the order is complete, you can use and edit the files in your business with no time limit, and run the Premium calculator on your own website. The template, formulas and code stay ProofNotFluff's: licensed to you, not transferred, and not for resale.
 ```
 ```
 Is this financial advice?
@@ -432,7 +430,7 @@ No. It is a planning tool built from your numbers. For tax or legal questions, t
 Do you use AI?
 ```
 ```
-Yes, AI-assisted tools help me build faster. Every formula is tested and every number is checked before delivery, and I stand behind the work.
+Yes. AI tools do most of the build, working from your files. Every formula is tested and every number is checked against your files. I review the finished file before I deliver it, and I stand behind it. If you need work made without AI, message me before you order.
 ```
 
 **Gallery (services/fiverr/assets/)**: gig3-cover.png, gig3-quote.png, gig3-website-calculator.png, gig3-demo.mp4, gig3-sample.pdf (sample data marked SAMPLE).

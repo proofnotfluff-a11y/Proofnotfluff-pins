@@ -1575,7 +1575,9 @@ def featured(links):
             continue
         seen.add(pid)
         lines = sp.get("post", {}).get("youtube_description", "").split("\n")
-        free = next((l.strip() for l in lines[1:3] if l.strip().startswith(BASE) and "/go/" not in l), "")
+        old_base = "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/"
+        lines = [l.strip().replace(old_base, BASE) for l in lines]
+        free = next((l for l in lines[1:3] if l.startswith(BASE) and "/go/" not in l), "")
         hook = re.sub(r"<[^>]+>", "", sp.get("hook", ""))
         out.append({"product": by[pid], "hook": hook, "free": free})
     return out

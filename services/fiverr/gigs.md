@@ -1,6 +1,6 @@
 # The three Fiverr gigs (paste-ready)
 
-Every field sits in its own code block so it copies with one tap. Prices are proposals: Todd sets them. Category is locked once a gig publishes, so pick it in Fiverr's menu at setup: the finance area (forecasting and financial modeling) for gigs 1 and 2, and the closest pricing, Excel or Google Sheets option for gig 3. Gallery files (3 images, a demo video and a sample PDF per gig) are in services/fiverr/assets/; upload them in the order listed.
+Every field sits in its own code block so it copies with one tap. Prices are Todd's launch prices (approved Oct 15, 12:57 pm); only Todd changes them. Category is locked once a gig publishes, so pick it in Fiverr's menu at setup: the finance area (forecasting and financial modeling) for gigs 1 and 2, and the closest pricing, Excel or Google Sheets option for gig 3. Gallery files (3 images, a demo video and a sample PDF per gig) are in services/fiverr/assets/; upload them in the order listed.
 
 After any edit, run `python3 tools/fiverr_kit.py --stats`. It holds this file, profile.md and replies.md to Fiverr's field limits and our rules (README "Fiverr facts" and "Rules"), and the code gate runs it on every push.
 
@@ -50,14 +50,14 @@ How it works:
 2. I build and test the model: every formula checked, blank and extreme inputs tried
 3. You get the file, the summary and the guide
 
-I'm a former VP of Finance (consumer brands and e-commerce). I use AI-assisted tools, and every number is checked before delivery.
+I'm a finance leader with consumer-goods and e-commerce experience. I use AI-assisted tools, and every number is checked before delivery.
 
 Your license: use and edit your file in your business for good. The template and formulas behind it stay ProofNotFluff's.
 
 Planning tool only, not tax, legal or investment advice. I never need your bank or store logins.
 ```
 
-**Packages (proposed prices, Todd sets them)**
+**Packages (Todd's launch prices, Oct 15)**
 
 | | Basic | Standard | Premium |
 |---|---|---|---|
@@ -196,14 +196,14 @@ How it works:
 2. I map every line, build the dashboard and tie the totals back to your exports
 3. You get the file, the summary and the guide
 
-I'm a former VP of Finance who built the e-commerce finance function for a multi-channel consumer brand. I use AI-assisted tools, and every number is checked before delivery.
+I'm a finance leader with consumer-goods and e-commerce experience. I use AI-assisted tools, and every number is checked before delivery.
 
 Your license: use and edit your file in your business for good. The template and formulas behind it stay ProofNotFluff's.
 
 Planning tool only, not tax, legal or investment advice. Exports only; I never need your logins.
 ```
 
-**Packages (proposed prices, Todd sets them)**
+**Packages (Todd's launch prices, Oct 15)**
 
 | | Basic | Standard | Premium |
 |---|---|---|---|
@@ -330,21 +330,21 @@ What you get:
 - Your true hourly cost: your pay, taxes, overhead and the hours nobody pays for
 - A quote for any job: time on site, crew size, drive time, vehicle cost and supplies
 - A price sheet for your common jobs and a quote template for customers (Standard and Premium)
-- Premium: a quote calculator for your own website, in your colors
+- Premium: a quote calculator for your website, in your colors
 
 How it works:
 1. You answer a few questions: crew, pay, costs, typical jobs, service area
 2. I build and test the calculator with your numbers
 3. You get the file and a short guide (Premium adds the website calculator and setup steps)
 
-I'm a former VP of Finance, and every calculator starts from pricing engines I've already tested. I use AI-assisted tools, and every number is checked before delivery.
+I'm a finance leader with consumer-goods and e-commerce experience. Every calculator starts from tested pricing engines; I use AI-assisted tools, and every number is checked before delivery.
 
 Your license: use and edit your files in your business for good. The template and formulas behind them stay ProofNotFluff's.
 
 Planning tool only, not tax, legal or investment advice.
 ```
 
-**Packages (proposed prices, Todd sets them)**
+**Packages (Todd's launch prices, Oct 15)**
 
 | | Basic | Standard | Premium |
 |---|---|---|---|

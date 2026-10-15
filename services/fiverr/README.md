@@ -30,14 +30,14 @@ New sellers may run 4 active gigs; we start with these 3.
 | Profile picture, gallery images, demo videos, sample PDFs (assets/), the website calculator template (templates/) and the gig 2 engine | live session crew, Oct 15; images by tools/fiverr_images.py from real renders with sample data |
 | Terms and a review of everything here (terms.md) | a Legal desk reviewer (live session, Oct 15), before Todd publishes |
 | Seller account, ID and phone verification, W-9, payout, accepting Fiverr's terms | Todd |
-| Prices | Todd (gigs.md shows proposals) |
+| Prices | Todd (launch prices approved Oct 15, 12:57 pm; only he changes them) |
 | Creating the gigs from this kit | Todd, or the live session in his Chrome with his go-ahead for each publish |
 | Every message to a buyer | the crew drafts it, Todd sends it |
 | Building each order | the crew, through the live chat or the cloud builder |
 | Delivering in Fiverr | Todd uploads the delivery files and the delivery message the crew prepared |
 
 ## How an order runs
-1. Todd gets the order notice and pastes the buyer's answers (or drops their files) into a private Google Drive folder, "ProofNotFluff Fiverr orders/<order number>", then tells the live chat.
+1. Todd gets the order notice and pastes the buyer's answers (or drops their files) into a private Google Drive folder, "ProofNotFluff Fiverr orders/<order number>" (the parent folder exists in his Drive since Oct 15, id 1AfpiBi1HILBMMMaTEV6uroKRYqYNHcrt, shared with no one), then tells the live chat.
 2. The crew screens it: inside the gig's scope; not a supplement, vitamin or longevity brand (a standing restriction: decline with the template); no logins asked for or accepted.
 3. Build from the matching engine to design/WORKBOOK_STANDARD.md: the buyer's numbers in the input cells, every tab rendered and opened (tools/render_xlsx.py), blank, extreme and changed inputs tried, 0 error values, tools/legal_scan.py 0 high, then one reviewer subagent checks the maths against the buyer's own numbers.
 4. The delivery files and the delivery message go back to the order's Drive folder; Todd uploads them in Fiverr and sends the message.

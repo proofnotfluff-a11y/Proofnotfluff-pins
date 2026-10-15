@@ -10,7 +10,7 @@ Fiverr checks Todd's identity in private; buyers see the display name, picture, 
 
 **Profile picture**: services/fiverr/assets/profile-logo.png, the same PNF mark the other channels use (1080 x 1080; Fiverr's round crop keeps all of it).
 
-**Todd's OK needed on one line**: the description says "former VP of Finance". It is true and it is the strongest reason to buy, but it is a personal credential on a faceless brand. If Todd says no, swap that sentence for "Built by a finance leader with consumer-goods and e-commerce experience." and make the same change in each gig description.
+**Todd's call, Oct 15, 12:57 pm**: no "former VP of Finance" title on the profile or the gigs; the copy says "a finance leader with consumer-goods and e-commerce experience". Prices as proposed in gigs.md.
 
 ## Fields
 
@@ -28,7 +28,7 @@ Cash flow, profit and pricing models in Excel
 ```
 Finance tools for small brands and home service businesses, built with your own numbers.
 
-I'm a former VP of Finance. Before that I did FP&A at large consumer-goods companies, then built the e-commerce finance function for a multi-channel brand. I make 13-week cash flow forecasts, profit dashboards by channel and job pricing calculators in Excel and Google Sheets.
+I'm a finance leader with consumer-goods and e-commerce experience. I make 13-week cash flow forecasts, profit dashboards by channel and job pricing calculators in Excel and Google Sheets.
 
 I use AI-assisted tools, and every formula is tested and every number checked before delivery. Planning tools only, not tax, legal or investment advice.
 ```

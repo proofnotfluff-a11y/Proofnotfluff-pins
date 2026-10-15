@@ -7,3 +7,6 @@ Raw URL for PC runs: https://raw.githubusercontent.com/proofnotfluff-a11y/Proofn
 
 ## Pinterest boards
 Airbnb and VRBO Hosting 1138144205771245717; Etsy Seller Profit and Pricing 1138144205771245807; Hiring and Payroll 1138144205771245935; Resume and Job Search 1138144205771245936; New Job Plans and Reviews 1138144205771248843; Family Planning and Organizing 1138144205771248844; Service Business Pricing 1138144205771257779 (created Oct 4). Pin titles over 100 characters are rejected.
+
+## Fiverr (Oct 15, 2026)
+Order files: Drive folder "ProofNotFluff Fiverr orders" 1AfpiBi1HILBMMMaTEV6uroKRYqYNHcrt (Todd's My Drive, shared with no one; one subfolder per order number; buyer files never leave it for the repo, scoreboard or memory). Kit: repo services/fiverr/.

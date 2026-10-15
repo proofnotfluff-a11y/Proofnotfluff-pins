@@ -369,6 +369,9 @@ body { margin: 0; background: var(--qc-bg); color: var(--qc-text); font-family: 
 /* Quote maths. The same formulas as the pricing workbook this page was set up from.
    Job floor (tab 3 Quote Builder): (hours on site per person x people + drive hours x people) x break-even rate
    per paid hour, plus round-trip miles x vehicle cost per mile, plus supplies; drive hours = miles / average speed.
+   With a helper rate (rates.helperCostPerHour, the gig 3 workbook's helper pay plus employer cost), the first person
+   is the owner at the break-even rate and each other person a helper at the helper rate: each hour on site and each
+   drive hour adds helpers x (helper rate - break-even rate). Without one, every person costs the break-even rate.
    Price: CEILING((floor - add-ons) / (1 - margin) + add-ons, rounding step); add-ons (extras and any trip fee) are
    billed at cost. The price is never under the minimum charge. A frequency discount comes off that price and the
    result rounds up again, never under the minimum (the cleaning workbook's price per visit). Deposit: the price
@@ -382,10 +385,13 @@ body { margin: 0; background: var(--qc-bg); color: var(--qc-text); font-family: 
   function isNum(v) { return typeof v === "number" && isFinite(v); }
   function list(v) { return Array.isArray(v) ? v : []; }
 
-  // One job at the break-even rate: the job lines of the workbook's Quote Builder.
-  function jobCost(be, perMile, mph, jobHours, people, supplies, miles) {
+  // One job at the break-even rate: the job lines of the workbook's Quote Builder. helperRate (optional) prices each
+  // person after the first; left out, it is the break-even rate and adds exactly nothing.
+  function jobCost(be, perMile, mph, jobHours, people, supplies, miles, helperRate) {
     var drive = mph > 0 ? miles / mph : 0;
-    var labor = jobHours * people * be, driveCost = drive * people * be, vehicle = miles * perMile;
+    var extra = Math.max(0, people - 1) * ((helperRate === undefined ? be : helperRate) - be);
+    var labor = jobHours * people * be + jobHours * extra, driveCost = drive * people * be + drive * extra;
+    var vehicle = miles * perMile;
     return { drive: drive, labor: labor, driveCost: driveCost, vehicle: vehicle, supplies: supplies,
       base: labor + driveCost + vehicle + supplies };
   }
@@ -399,7 +405,7 @@ body { margin: 0; background: var(--qc-bg); color: var(--qc-text); font-family: 
     var be = num(r.breakEvenPerHour), margin = num(r.marginPercent) / 100;
     var miles = zone ? num(zone.roundTripMiles) : num(job.miles);
     var c = jobCost(be, num(r.vehicleCostPerMile), num(r.driveSpeedMph), num(job.hoursPerPerson), num(job.people),
-      num(job.supplies), miles);
+      num(job.supplies), miles, isNum(r.helperCostPerHour) ? r.helperCostPerHour : undefined);
     var extras = 0, chosen = [];
     list(pick.extras).forEach(function (k) {
       var x = list(cfg.extras)[k];
@@ -455,6 +461,7 @@ body { margin: 0; background: var(--qc-bg); color: var(--qc-text); font-family: 
     if (!inRange(r.marginPercent, 0, 100, false, true)) bad("rates.marginPercent must be from 0 to under 100");
     if (!inRange(r.vehicleCostPerMile, 0)) bad("rates.vehicleCostPerMile must be 0 or more");
     if (!inRange(r.driveSpeedMph, 0, undefined, true)) bad("rates.driveSpeedMph must be above 0");
+    if (r.helperCostPerHour !== undefined && !inRange(r.helperCostPerHour, 0)) bad("rates.helperCostPerHour must be 0 or more, or left out");
     var p = cfg.pricing || {};
     if (!inRange(p.roundUpTo, 0, undefined, true)) bad("pricing.roundUpTo must be above 0 (5 matches the workbook)");
     if (!inRange(p.minimumCharge, 0)) bad("pricing.minimumCharge must be 0 or more");

@@ -2,7 +2,7 @@
 
 One web page, `index.html`, that a buyer's customers fill in to see a price: the job, the size, how far they are, how often and any extras. It carries the buyer's name, logo and colors and nothing of ours. It runs entirely in the visitor's browser: no outside requests (its Content-Security-Policy blocks them), no cookies, nothing sent anywhere.
 
-Every price is the pricing workbook's own maths. The job lines are `service()` from `docs/assets/pnf-calc.js` (the #13 engine's 3 Quote Builder: floor, add-ons at cost, CEILING to $5, deposit), copied into the page's `<script id="quote-math">`; the minimum charge and the frequency discount follow the cleaning workbook (engines/cleaning-business-kit, 4 Quote Builder, price per visit). `quote-calculator.test.js` proves both against the recalculated workbooks to the cent.
+Every price is the pricing workbook's own maths. The job lines are `service()` from `docs/assets/pnf-calc.js` (the #13 engine's 3 Quote Builder: floor, add-ons at cost, CEILING to $5, deposit), copied into the page's `<script id="quote-math">`; the minimum charge and the frequency discount follow the cleaning workbook (engines/cleaning-business-kit, 4 Quote Builder, price per visit); an optional helper rate prices each person after the first like the gig 3 workbook. `quote-calculator.test.js` proves all three against the recalculated workbooks to the cent.
 
 Parts 1 to 4 are for the crew. Part 5 is written for the buyer's web person: paste it into the delivery.
 
@@ -29,6 +29,7 @@ Build and test the buyer's workbook first (services/fiverr/README.md, How an ord
 | `rates.breakEvenPerHour` | '1 Your Numbers' I21, Break-even per paid hour, with all its decimals (command 1). Rounded to cents it can move a price by $5. |
 | `rates.marginPercent` | '1 Your Numbers' I37 times 100 (15% is 15). |
 | `rates.vehicleCostPerMile`, `rates.driveSpeedMph` | '1 Your Numbers' I38 and I39. |
+| `rates.helperCostPerHour` (optional) | Only when the buyer pays helpers by the hour: the gig 3 workbook's "Each helper hour costs" on 1 Your Numbers (helper pay plus the employer cost on top of wages). Leave it out and every person on a crew costs the break-even rate, as in the #13 workbooks. |
 | `pricing.roundUpTo` | 5, the workbook's own rounding. Change it only if the workbook changes too. |
 | `pricing.minimumCharge` | The buyer's minimum per job, a multiple of `roundUpTo`; 0 for none. |
 | `pricing.depositPercent` | '3 Quote Builder' D26 times 100 if the buyer wants the deposit shown; 0 hides it. |
@@ -68,6 +69,7 @@ EOF
 
 - Drive hours = round-trip miles / average speed.
 - Floor = (hours on site per person x people + drive hours x people) x break-even rate + miles x cost per mile + supplies + extras and trip fee at cost.
+- With a helper rate: the first person is the owner at the break-even rate and each other person a helper, so the floor adds (hours on site + drive hours) x (people - 1) x (helper rate - break-even rate). Without one, nothing is added.
 - Price = (floor without the at-cost part) / (1 - margin) + the at-cost part, rounded up to the next $5, never under the minimum.
 - Per visit = that price less the frequency discount, rounded up to $5 again, never under the minimum.
 

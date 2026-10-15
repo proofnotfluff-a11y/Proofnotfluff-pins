@@ -58,9 +58,10 @@ FAQ
 - Does it connect to my bank? No. You type the amounts, which keeps your bank details out of it.
 
 Made with AI assistance and reviewed and tested by the shop owner.
-Information only, not tax, legal or financial advice; no guarantee of results.
+Information and planning tool only, not legal, tax, financial or other professional advice. Results are estimates based on your inputs.
 Digital download. No physical item ships.
-File problems are fixed on request through Etsy messages.
+File problems fixed on request through Etsy messages.
+Not affiliated with or endorsed by Microsoft or Google.
 
 ## Google Sheets check
 Checked Oct 14, 2026 by Drive upload with Sheets conversion (QA folder 1qoGZklAqCicGEF7LvOBzpGGeFSbRmhat, file "QA savings tracker functions Oct 14 2026"): the formula forms new to the shop (COUNTIFS with an expanding range and a "<"& date criterion for the first-deposit helper, SUMIFS on whole columns with "<="& a date cell, YEAR and MONTH month counts, DATE with a month offset below 1 and above 12, CEILING inside DATE, TEXT with "mmm yyyy" and "mmmm yyyy", TEXT with "$#,##0", COUNTIF with "?*" and "Needs*") computed the same values in Google Sheets as in LibreOffice.

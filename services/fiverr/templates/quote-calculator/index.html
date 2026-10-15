@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="color-scheme" content="light">
+<link rel="icon" href="data:,">
 <title>Price calculator</title>
 <style>
 :root {
@@ -103,7 +104,7 @@ body { margin: 0; background: var(--qc-bg); color: var(--qc-text); font-family: 
 </style>
 </head>
 <body>
-<div class="qc" id="qc">
+<main class="qc" id="qc">
   <p class="qc-notice" id="qc-notice" role="note" hidden></p>
   <header class="qc-head">
     <img class="qc-logo" id="qc-logo" alt="" hidden>
@@ -137,7 +138,7 @@ body { margin: 0; background: var(--qc-bg); color: var(--qc-text); font-family: 
     <a href="#qc-result" id="qc-bar-link" tabindex="-1"></a>
   </div>
   <noscript><div class="qc-card qc-off"><p>Turn on JavaScript in your browser to see prices.</p></div></noscript>
-</div>
+</main>
 <script type="application/json" id="quote-config">
 {
   "sample": "SAMPLE ONLY. Sample Cleaning Co. is a made-up business and every number in this file is made up. For an order, replace all of it with the buyer's own numbers (README.md, part 2).",

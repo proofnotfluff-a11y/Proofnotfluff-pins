@@ -1,0 +1,228 @@
+{
+ "base": "/tmp/claude-0/-home-claude-proofnotfluff-pins/e5415be8-8e26-5958-88d0-2e39a2269924/scratchpad/sv/hi",
+ "formats": "Excel, Google Sheets, LibreOffice  |  Instant download",
+ "images": [
+  {
+   "type": "cover",
+   "eyebrow": "SAVINGS TRACKER SPREADSHEET",
+   "title": "See when each savings goal is done.",
+   "sub": "Log each deposit once. Every goal shows saved, left and its plan.",
+   "shot": "04-3-Progress.png",
+   "crop": [
+    0,
+    0,
+    0.69,
+    0.197
+   ],
+   "badges": [
+    "Excel + Google Sheets",
+    "Instant download",
+    "No end date needed"
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "THE WORKED EXAMPLE",
+   "title": "Every goal, with its plan in words.",
+   "sub": "Holiday gifts needs $150 a month to make December but saves $100: Behind. No end date? See the finish month.",
+   "shot": "04-3-Progress.png",
+   "crop": [
+    0,
+    0.2,
+    0.69,
+    0.318
+   ]
+  },
+  {
+   "type": "steps",
+   "eyebrow": "HOW IT WORKS",
+   "title": "Three steps.",
+   "steps": [
+    {
+     "head": "List your goals",
+     "text": "Target, and a date if you want one.",
+     "shot": "02-1-Goals.png",
+     "crop": [
+      0,
+      0.128,
+      0.447,
+      0.232
+     ]
+    },
+    {
+     "head": "Log each deposit",
+     "text": "Date, goal, amount.",
+     "shot": "03-2-Deposits-shot.png",
+     "crop": [
+      0,
+      0.115,
+      1,
+      0.19
+     ]
+    },
+    {
+     "head": "Read your progress",
+     "text": "Saved, left, plan, status.",
+     "shot": "04-3-Progress.png",
+     "crop": [
+      0,
+      0.21,
+      0.69,
+      0.312
+     ]
+    }
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "GOALS TAB",
+   "title": "Goals and sinking funds, one list.",
+   "sub": "Example: 6 goals, $12,220 in targets, $5,990 saved, $6,230 still to save. A target date is optional on every goal.",
+   "shot": "02-1-Goals.png",
+   "crop": [
+    0,
+    0,
+    0.447,
+    0.275
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "DEPOSITS TAB",
+   "title": "One log. Type it once.",
+   "sub": "Pick the goal from a dropdown. Money taken out is a minus amount. Room for 1,000 rows.",
+   "shot": "03-2-Deposits-shot.png",
+   "crop": [
+    0,
+    0,
+    1,
+    0.4
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "THIS MONTH",
+   "title": "Your totals and this month.",
+   "sub": "Example October: $945.00 put in. Dated goals need $325 a month, and 1 goal is behind.",
+   "shot": "04-3-Progress.png",
+   "crop": [
+    0,
+    0.0,
+    0.69,
+    0.198
+   ]
+  },
+  {
+   "type": "shot",
+   "eyebrow": "THE LAST SIX MONTHS",
+   "title": "See your saving add up.",
+   "sub": "Example: $445 put in during May, $945 in September and October, and a $180 brake repair taken out in August.",
+   "shot": "04-3-Progress.png",
+   "crop": [
+    0,
+    0.468,
+    0.69,
+    0.587
+   ],
+   "trim": true
+  },
+  {
+   "type": "list",
+   "eyebrow": "IS THIS FOR YOU?",
+   "title": "Made for saving toward goals.",
+   "columns": [
+    {
+     "head": "Made for",
+     "mark": "check",
+     "items": [
+      "Emergency funds and sinking funds",
+      "Goals with or without an end date",
+      "Seeing if your pace gets you there",
+      "Excel or Google Sheets users, phone too"
+     ]
+    },
+    {
+     "head": "Not for",
+     "mark": "x",
+     "items": [
+      "Bank syncing or automatic imports",
+      "Interest or investment projections",
+      "Financial or investment advice"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "eyebrow": "HOW YOU GET IT",
+   "title": "Instant download. Opens in Excel or Google Sheets.",
+   "columns": [
+    {
+     "head": "What you get",
+     "mark": "check",
+     "items": [
+      "A blank tracker and a filled-in example",
+      "Start Here guide as a PDF, US Letter and A4",
+      "Made for Excel; checked in Google Sheets and LibreOffice",
+      "No macros, no passwords, no sign-up"
+     ]
+    },
+    {
+     "head": "How to download",
+     "mark": "check",
+     "items": [
+      "Buy, then open Etsy in a web browser",
+      "Go to You, then Purchases, and download",
+      "The Etsy app can't download digital files",
+      "Message the shop on Etsy if anything won't open"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "inside",
+   "eyebrow": "ONE DOWNLOAD",
+   "title": "What's inside",
+   "tabs": [
+    {
+     "name": "Goals",
+     "shot": "02-1-Goals.png",
+     "crop": [
+      0,
+      0,
+      0.447,
+      0.5
+     ]
+    },
+    {
+     "name": "Deposits",
+     "shot": "03-2-Deposits-shot.png",
+     "crop": [
+      0,
+      0,
+      1,
+      0.55
+     ]
+    },
+    {
+     "name": "Progress",
+     "shot": "04-3-Progress.png",
+     "crop": [
+      0,
+      0,
+      0.69,
+      0.45
+     ]
+    }
+   ],
+   "items": [
+    "Up to 20 goals and sinking funds",
+    "Monthly amount needed for dated goals",
+    "Finish month at your pace for open goals",
+    "On track or Behind, in words",
+    "Blank tracker plus a worked example",
+    "Start Here PDF in Letter and A4"
+   ]
+  }
+ ]
+}

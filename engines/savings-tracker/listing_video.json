@@ -1,0 +1,39 @@
+{
+ "xlsx": "Savings-Tracker-EXAMPLE.xlsx",
+ "sheet": "3 Progress",
+ "crop": [
+  0,
+  0.003,
+  0.69,
+  0.2
+ ],
+ "dpi": 220,
+ "eyebrow": "SAVINGS TRACKER SPREADSHEET",
+ "size": [
+  2160,
+  1080
+ ],
+ "states": [
+  {
+   "caption": "Example: {C7} saved, 1 goal behind.",
+   "hold": 3.4
+  },
+  {
+   "set": {
+    "1 Goals!E18": 46447
+   },
+   "caption": "Give Car repairs a March date: {I19} goals behind.",
+   "hold": 3.6
+  },
+  {
+   "set": {
+    "1 Goals!E18": 46447,
+    "2 Deposits!C46": 46309,
+    "2 Deposits!D46": "Holiday gifts",
+    "2 Deposits!E46": 200
+   },
+   "caption": "Add $200 to Holiday gifts: {H7} this month, {I19} behind.",
+   "hold": 3.6
+  }
+ ]
+}

@@ -15,12 +15,13 @@
    ],
    "shot": "03-2-Dashboard.png",
    "crop": [
-    0.6294,
+    0.0,
     0.0281,
     0.9975,
-    0.1076
+    0.2966
    ],
-   "stamp": "SAMPLE DATA"
+   "stamp": "SAMPLE DATA",
+   "fit": "width"
   },
   {
    "type": "shot",

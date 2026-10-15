@@ -95,12 +95,18 @@ def title_name(n):
     out = []
     for w in re.sub(r"\s+", " ", n).strip().split(" "):
         bare = re.sub(r"[^A-Za-z]", "", w).upper()
-        if bare in KEEP_UP or re.fullmatch(r"(?:[A-Za-z]\.){2,}", w.strip(",")):
+        if bare in KEEP_UP or re.fullmatch(r"(?:[A-Za-z]\.){2,}", w.strip(",")) or (1 < len(bare) <= 3 and not re.search(r"[AEIOUY]", bare)):
             out.append(w.upper())
         else:
             w = re.sub(r"[A-Za-z]+", lambda m: m.group(0).capitalize(), w.lower())
             out.append(re.sub(r"\bMc([a-z])", lambda m: "Mc" + m.group(1).upper(), w))
-    return " ".join(out)
+    return re.sub(r"\s+,", ",", " ".join(out))
+
+
+def street(r):
+    name = re.sub(r"[A-Za-z]+", lambda m: m.group(0).capitalize(), (r.get("street_name") or "").lower())
+    name = re.sub(r"(\d)(St|Nd|Rd|Th)\b", lambda m: m.group(1) + m.group(2).lower(), name)
+    return " ".join(x for x in [r.get("street_number", ""), r.get("street_direction", ""), name] if x).strip()
 
 
 def gc_key(n):
@@ -183,7 +189,7 @@ def main():
                     gcs.append(title_name(nm))
         if not gcs:
             reasons["no business listed as general contractor"] += 1; continue
-        addr = " ".join(x for x in [r.get("street_number", ""), r.get("street_direction", ""), (r.get("street_name") or "").title()] if x).strip()
+        addr = street(r)
         ca = str(r.get("community_area") or "").split(".")[0]
         cost = float(r.get(cost_col) or 0) if cost_col else 0
         kept.append({
@@ -221,8 +227,10 @@ def main():
         "counts": {"fetched": len(rows), "kept": len(kept), "excluded": dict(reasons),
                    "keptByType": dict(collections.Counter(k["type"] for k in kept)),
                    "keptCost": sum(k["cost"] for k in kept), "keptUnits": sum(k["units"] or 0 for k in kept if k["type"] == "New construction"),
-                   "topAreas": by_area.most_common(8), "topGCs": top_gcs},
+                   "topAreas": by_area.most_common(8), "topGCs": top_gcs,
+                   "nearFinish": sum(1 for k in kept if "OCCUPANCY PENDING" in k["milestone"].upper() or "PARTIAL OCCUPANCY" in k["milestone"].upper())},
         "projects": kept[: a.top],
+        "nearFinish": [k for k in kept if "OCCUPANCY PENDING" in k["milestone"].upper() or "PARTIAL OCCUPANCY" in k["milestone"].upper()][:10],
     }
     profile = {"fetchedAt": sample["source"]["fetchedAt"], "rowsUpdatedAt": upd_iso, "columns": cols,
                "permitTypes": dict(ptype), "contactTypes": dict(ctype.most_common(40)),

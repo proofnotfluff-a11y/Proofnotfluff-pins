@@ -3111,6 +3111,77 @@
     "engines/cleaning-business-kit/build_xlsx.py recalculated in LibreOffice Oct 13: '1 Your Numbers' I21 46.98; '3 Price Sheet' row 2,000 sq ft D 225, E 205, F 195, G 360, H 405; row 1,000 D 145; changed case D14=60000, D27=20%, '2 Cleaning Rates' D10=110, D57=150: 2,000 sq ft D 340, E 310, G 545.",
     "docs/assets/pnf-calc.test.js #14 checks."
    ]
+  },
+  {
+   "slug": "chicago-construction-cleaning-leads",
+   "kind": "leads",
+   "draft": true,
+   "segment": "home-services",
+   "city": "Chicago",
+   "data": "permits/chicago/sample.json",
+   "kitForm": "",
+   "price": "29",
+   "title": "Chicago Construction Cleaning Leads: Big Projects and Their Builders | ProofNotFluff",
+   "desc": "Free weekly sample of Chicago's biggest open building permits: apartment and commercial projects over $500,000, the general contractor on each, and the ones with partial occupancy approved.",
+   "eyebrow": "Free sample, updated every Monday",
+   "h1": "Chicago Construction Cleaning Leads",
+   "lede": "Cleaning, window cleaning and pressure washing companies: these are the builders to get in front of.",
+   "card": "The biggest open apartment and commercial projects in Chicago, who is building them, and which have partial occupancy approved.",
+   "method": [
+    "Start with the builders, not the buildings. A general contractor with several big jobs open hires subcontractors on each one, so getting on one builder's vendor list can put you in front of many projects.",
+    "Call the builder's main office and ask who buys cleaning for the project you name. Have the permit number and the address ready.",
+    "Send a one-page capability sheet the same day: what you clean, crew size, insurance, equipment and two references.",
+    "Watch the stage. Permit just issued is early, inspections under way means work is moving, and partial occupancy approved means the City has already cleared parts of the building for use."
+   ],
+   "links": [
+    [
+     "cleaning-price-per-square-foot-calculator",
+     "Cleaning price per square foot calculator"
+    ],
+    [
+     "hourly-rate-calculator",
+     "Hourly rate calculator"
+    ],
+    [
+     "window-cleaning-price-calculator",
+     "Window cleaning price calculator"
+    ],
+    [
+     "pressure-washing-price-per-square-foot-calculator",
+     "Pressure washing price per square foot calculator"
+    ]
+   ],
+   "cta": {
+    "title": "Get the full list every Monday",
+    "text": "Every open project over $500,000 in Chicago, new permits flagged each week, sorted by neighborhood and stage, the general contractor on each, and a pitch kit: a one-page capability sheet and an email you can adapt. It launches only if enough cleaning companies join the waitlist."
+   },
+   "faq": [
+    [
+     "Where does this data come from?",
+     "The City of Chicago Data Portal's Building Permits dataset, which the City updates daily, Monday to Saturday. We pull it every Monday and keep permits issued in the last 12 months for apartment buildings of 4 or more homes and commercial work with a reported cost of $500,000 or more that are still open and list a business as general contractor."
+    ],
+    [
+     "Why are some big projects missing?",
+     "Permits with no business listed as general contractor, owner-builder permits, houses and 2 to 3 flats, and permits marked complete, suspended or cancelled are left out. This free page shows a sample; the weekly list covers every project that passes the filter."
+    ],
+    [
+     "Is the reported cost the contract value?",
+     "No. It is the cost the applicant filed with the City for the permit. Treat it as a size signal, not a budget."
+    ],
+    [
+     "Do you contact the builders for me?",
+     "No. You make your own calls and emails. We never contact builders or anyone else on your behalf."
+    ],
+    [
+     "Does any builder here work with ProofNotFluff?",
+     "No. Builders appear because their names are on public City permits. None has endorsed or works with ProofNotFluff."
+    ],
+    [
+     "Will you cover other cities?",
+     "Chicago first. Other large cities publish permit data too, so the waitlist decides where we go next."
+    ]
+   ],
+   "sources": "City of Chicago Data Portal, Building Permits."
   }
  ]
 }

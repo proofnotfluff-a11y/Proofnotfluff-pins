@@ -1,0 +1,43 @@
+{
+ "base": "../renders/gig3",
+ "footer": "Excel + Google Sheets  |  Built with your numbers",
+ "images": [
+  {
+   "type": "cover",
+   "name": "gig3-cover",
+   "eyebrow": "JOB PRICING CALCULATOR",
+   "title": "Know your break-even before you quote.",
+   "sub": "For cleaning, pressure washing and junk removal.",
+   "badges": ["Excel + Google Sheets", "Price sheet", "Website calculator"],
+   "shot": "sample-your-numbers.png",
+   "crop": [0, 0.1, 1, 0.72],
+   "stamp": "SAMPLE DATA"
+  },
+  {
+   "type": "inside",
+   "name": "gig3-quote",
+   "eyebrow": "QUOTE BUILDER",
+   "title": "A quote for any job.",
+   "items": [
+    "Your break-even rate behind every price",
+    "Time on site, crew size and drive time",
+    "Vehicle, supplies and add-ons at cost",
+    "Your profit and your pay per hour worked",
+    "Today's price checked against your floor"
+   ],
+   "shot": "sample-quote-builder.png",
+   "crop": [0, 0.02, 1, 1],
+   "stamp": "SAMPLE DATA"
+  },
+  {
+   "type": "shot",
+   "name": "gig3-website-calculator",
+   "eyebrow": "PREMIUM: WEBSITE CALCULATOR",
+   "title": "Your prices on your own website.",
+   "sub": "In your colors, on computers and phones, from the same numbers as your calculator.",
+   "shot": "website-desktop-phone.png",
+   "crop": [0, 0, 1, 1],
+   "stamp": "SAMPLE DATA"
+  }
+ ]
+}

@@ -17,6 +17,9 @@ Checks
   secrets       no token or private key pattern in any tracked text file
   permit-data   permits/*/sample.json holds business-level fields only, and no scope text carries a
                 reviewer, consultant, architect, engineer or owner tag (where a person's name can follow)
+  gate-tests    tools/test_check_repo.py plants a failure for every check above in a throwaway copy and
+                confirms each one is caught and no secret value is printed (Todd's Oct 15 note: the checks get
+                tested too). An ERROR here means the gate itself is broken: tell Todd, never edit the gate to clear it
 
 Usage: python3 tools/check_repo.py [--only name,name]
 """
@@ -197,6 +200,20 @@ def check_permit_data():
     err("permit-data", "; ".join(bad)) if bad else ok("permit-data")
 
 
+def check_gate_tests():
+    test = os.path.join(ROOT, "tools", "test_check_repo.py")
+    if not os.path.exists(test):
+        return err("gate-tests", "tools/test_check_repo.py is missing, so nothing proves the checks above still catch anything")
+    r = subprocess.run([sys.executable, test], cwd=ROOT, capture_output=True, text=True, timeout=900)
+    lines = (r.stdout + r.stderr).strip().splitlines()
+    if r.returncode != 0:
+        fails = [l[5:] for l in lines if l.startswith("FAIL ")] or lines[-1:]
+        err("gate-tests", "the gate itself is broken (" + "; ".join(fails[:6]) + "); never edit tools/check_repo.py or "
+            "tools/test_check_repo.py to clear this, tell Todd")
+    else:
+        ok("gate-tests", (lines[-1].split(": ", 1)[-1] if lines else "passed"))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", default="")
@@ -204,7 +221,7 @@ def main():
     files = tracked()
     checks = [("json", lambda: check_json(files)), ("python", lambda: check_python(files)), ("calc-tests", check_calc),
               ("site-sync", lambda: check_site_sync(files)), ("drafts", check_drafts), ("em-dash", lambda: check_em_dash(files)),
-              ("secrets", lambda: check_secrets(files)), ("permit-data", check_permit_data)]
+              ("secrets", lambda: check_secrets(files)), ("permit-data", check_permit_data), ("gate-tests", check_gate_tests)]
     for name, fn in checks:
         if only and name not in only:
             continue

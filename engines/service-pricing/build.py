@@ -71,7 +71,7 @@ lines = [
     ("Most service owners divide the pay they want by the hours they work. That leaves out three things: hours you are not paid for (driving, quoting, invoicing, cleanup), business costs that keep running every month, and self-employment tax. Tab 1 adds all three back.", None),
     ("", None),
     ("Figures used, verified Oct 3, 2026", "h"),
-    ("Self-employment tax 15.3% (12.4% Social Security plus 2.9% Medicare) on 92.35% of net profit; Social Security part applies up to the 2026 wage base of $184,500. Sources: SSA contribution and benefit base; IRS Topic 554 and Schedule SE. The calculator applies 15.3% to all profit, so if your profit is above about $199,800 your real tax is a little lower.", None),
+    ("Self-employment tax 15.3% (12.4% Social Security plus 2.9% Medicare) on 92.35% of net profit; Social Security part applies up to the 2026 wage base of $184,500 ($192,300 for 2027 earnings per the SSA 2027 COLA Fact Sheet, checked Oct 15, 2026). Sources: SSA contribution and benefit base; IRS Topic 554 and Schedule SE. The calculator applies 15.3% to all profit, so if your profit is above about $199,800 your real tax is a little lower.", None),
     ("Vehicle cost per mile defaults to the IRS business standard mileage rate of 76 cents, effective July 1, 2026 (IRS Announcement 2026-11; it was 72.5 cents from January 1 to June 30, 2026). Change it to your own cost per mile if you track it.", None),
     ("The income tax rate is your own estimate. Ask your tax preparer for your effective rate. Tax rules and rates change; check them each year.", None),
     ("", None),

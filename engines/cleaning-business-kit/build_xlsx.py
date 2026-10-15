@@ -319,7 +319,7 @@ D.h(yn, 10, 14)
 n_top = r + 2
 NOTES = [
     ("Self-employment tax", "15.3% (12.4% Social Security plus 2.9% Medicare), generally on 92.35% of net earnings, per IRS Tax Topic 554 "
-     "(irs.gov/taxtopics/tc554). The Social Security part stops at the 2026 wage base of $184,500 (SSA Contribution and Benefit Base "
+     "(irs.gov/taxtopics/tc554). The Social Security part stops at the 2026 wage base of $184,500 ($192,300 for 2027 earnings, SSA 2027 COLA Fact Sheet, posted Oct 14, 2026, checked Oct 15, 2026; 2026 base: SSA Contribution and Benefit Base "
      "page, ssa.gov/oact/cola/cbb.html), so at high profits your real tax is lower. The planner does not take the income tax deduction "
      f"for one-half of self-employment tax, so it slightly overstates the income tax part and stays on the safe side. Checked {CHECKED}."),
     ("Vehicle cost per mile", "Defaults to the IRS business standard mileage rate of 76 cents a mile for July 1 to December 31, 2026 "

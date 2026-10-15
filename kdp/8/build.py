@@ -787,7 +787,7 @@ def story():
           grid(["Line", "Amount", "What it means"], [
               ["Gross pay", "$600.00", "Hours times rate before anything is taken out. 30 hours x $20."],
               ["Federal income tax withheld", "$30.00", "Estimated federal income tax, calculated from Maria's W-4 and the IRS tables. Illustrative amount; her real number depends on her W-4."],
-              ["Social Security (employee)", "$37.20", "6.2% of gross, up to the annual wage base ($184,500 in 2026). Maria's share of the 12.4% total."],
+              ["Social Security (employee)", "$37.20", "6.2% of gross, up to the annual wage base ($184,500 in 2026, $192,300 in 2027). Maria's share of the 12.4% total."],
               ["Medicare (employee)", "$8.70", "1.45% of gross, no cap. Maria's share of the 2.9% total."],
               ["Ohio income tax withheld", "$6.00", "State income tax from the state form and Ohio's tables. Illustrative."],
               ["City income tax withheld", "$15.00", "2.5% local tax where Blue Door operates. Many states have no local tax at all."],
@@ -828,7 +828,7 @@ def story():
                "months of the year, so January through March cost more than the rest."),
           Spacer(1, 6),
           para("Sources for every rate on these two pages: SSA Contribution and Benefit Base page (wage base "
-               "$184,500 for 2026); IRS Tax Topic 751 (6.2% and 1.45%); IRS Tax Topic 759 (FUTA 6.0%, $7,000, "
+               "$184,500 for 2026, $192,300 for 2027 per the SSA 2027 COLA Fact Sheet); IRS Tax Topic 751 (6.2% and 1.45%); IRS Tax Topic 759 (FUTA 6.0%, $7,000, "
                "5.4% credit); Ohio Department of Job and Family Services 2026 Rate Details and Ohio H.B. 96 "
                "(2.85% on $9,000). All checked " + AS_OF + ". The full list is on the Where the numbers come from page near the back.", "small"),
           h2("Your own employee, the same way"),

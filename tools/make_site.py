@@ -732,7 +732,7 @@ def se_tax_page(p):
 <li><span>About a month</span><span data-out="month">$0</span></li>
 </ul>
 <div class="callout" data-show-if="pos > 0">Self-employment tax of <b data-out="se">$0</b> comes before any income tax. Setting aside <b data-out="month">$0</b> a month covers it.</div>
-<div class="callout" data-show-if="capped > 0">Part of your earnings is above the 2026 Social Security limit of $184,500 (less your W-2 wages), so only the 2.9% Medicare part applies to that part.</div>
+<div class="callout" data-show-if="capped > 0">Part of your earnings is above the 2026 Social Security limit of $184,500 (less your W-2 wages), so only the 2.9% Medicare part applies to that part. For 2027 earnings the limit is $192,300.</div>
 <div class="callout warn" data-show-if="under > 0">Net earnings under $400 (92.35% of profit): no self-employment tax is due for the year.</div>
 <div class="callout warn" data-show-if="noNet > 0">Type your net profit to see your self-employment tax. A loss means none is due.</div>
 </div></div>

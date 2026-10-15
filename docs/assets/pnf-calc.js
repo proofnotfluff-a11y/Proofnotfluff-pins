@@ -376,6 +376,7 @@
 
   // Self-employment tax, Schedule SE: net earnings = 92.35% of net profit; none owed under $400 of net earnings;
   // 12.4% Social Security on net earnings up to the 2026 wage base less W-2 wages already taxed, 2.9% Medicare on all.
+  // The 2027 base is $192,300 (SSA 2027 COLA Fact Sheet, Oct 14, 2026); the page computes 2026 earnings.
   // Half is an adjustment to income. Additional Medicare Tax (0.9%, Form 8959) is not included.
   var SS_BASE_2026 = 184500;
   function seTax(i) {

@@ -1642,7 +1642,7 @@
    },
    "method": [
     "Self-employment tax is 15.3%: 12.4% for Social Security and 2.9% for Medicare. It is charged on your net earnings, which are 92.35% of your net profit, and you owe it once net earnings reach $400 (IRS Topic 554 and Schedule SE).",
-    "The 12.4% Social Security part stops at $184,500 of 2026 earnings (SSA). W-2 wages you earned at a job count toward that limit first, so the calculator takes them off before it applies 12.4%. The 2.9% Medicare part has no limit.",
+    "The 12.4% Social Security part stops at $184,500 of 2026 earnings (SSA). For 2027 earnings the limit rises to $192,300 (SSA, posted Oct 14, 2026). W-2 wages you earned at a job count toward that limit first, so the calculator takes them off before it applies 12.4%. The 2.9% Medicare part has no limit.",
     "Half of the tax is an adjustment to income on your Form 1040, so it lowers your income tax but not the self-employment tax itself. The quarterly figure is the tax divided by four. Income tax comes on top, and the 0.9% Additional Medicare Tax on high earners is not included."
    ],
    "example": "The Freelance Income Tracker's fictional sample designer received $15,570 in 2026. Say none of it went to business expenses, so net profit is $15,570. Net earnings are 92.35% of that, $14,378.90. Social Security at 12.4% is $1,782.98 and Medicare at 2.9% is $416.99, so the self-employment tax is $2,199.97, about 14.1% of profit. Half of it, $1,099.99, comes off income on the 1040. A quarter of it, $549.99, is the set-aside for each of the four 2026 estimated payments (Apr 15, Jun 15 and Sep 15, 2026 and Jan 15, 2027), before any income tax.",
@@ -1681,7 +1681,7 @@
      "No. It is the Schedule SE arithmetic on the numbers you type. Farm income, church employee income and the Additional Medicare Tax are not covered. Check your own return with a tax professional."
     ]
    ],
-   "sources": "IRS Topic 554 and Schedule SE: 15.3% on 92.35% of net profit, $400 minimum. IRS Topic 554: 12.4% Social Security plus 2.9% Medicare. SSA Contribution and Benefit Base page: 2026 base $184,500. IRS Estimated tax FAQ and 2026 Form 1040-ES: due dates Apr 15, Jun 15 and Sep 15, 2026 and Jan 15, 2027. All checked Oct 11, 2026. Example figures are the fictional sample in the Freelance Income Tracker workbook.",
+   "sources": "IRS Topic 554 and Schedule SE: 15.3% on 92.35% of net profit, $400 minimum. IRS Topic 554: 12.4% Social Security plus 2.9% Medicare. SSA Contribution and Benefit Base page: 2026 base $184,500. SSA 2027 COLA Fact Sheet (checked Oct 15, 2026): 2027 base $192,300. IRS Estimated tax FAQ and 2026 Form 1040-ES: due dates Apr 15, Jun 15 and Sep 15, 2026 and Jan 15, 2027. All checked Oct 11, 2026. Example figures are the fictional sample in the Freelance Income Tracker workbook.",
    "number_sources": [
     "engines/freelance-income-tracker/listing.md and products/21 pinFacts: $15,570 received in 2026.",
     "research/rule-watch.json self-employment-tax-rate (Oct 8), ssa-wage-base-2026 (Oct 7), irs-estimated-tax-2026-q4 (Oct 7).",
@@ -1965,7 +1965,7 @@
     "benefit": "0"
    },
    "method": [
-    "You match the employee's Social Security and Medicare: 6.2% of wages up to the $184,500 Social Security wage base for 2026, and 1.45% of all wages with no cap. Together that is 7.65% for most employees.",
+    "You match the employee's Social Security and Medicare: 6.2% of wages up to the $184,500 Social Security wage base for 2026 ($192,300 for 2027), and 1.45% of all wages with no cap. Together that is 7.65% for most employees.",
     "FUTA, the federal unemployment tax, is 6.0% of the first $7,000 each employee earns in a year, less a credit of up to 5.4% for paying state unemployment on time, so most employers pay 0.6%, or $42 per employee a year. A few states that owe the federal government get a smaller credit; your payroll provider knows if yours is one. State unemployment works the same way at your state's rate on your state's wage base. Both stop once an employee's pay for the year passes the wage base, so the first months of the year usually cost the most.",
     "Workers' comp is quoted per $100 of wages and depends on the work. The calculator adds the year's taxes and insurance, divides by the hours worked, and adds that to the wage. Payroll software and any benefit allowance are spread over the same hours for the all-in figure. Overtime, paid time off and benefits the employee pays for are not included."
    ],
@@ -2005,7 +2005,7 @@
      "No. It is a planning estimate based on the numbers you type. Your state and local rules, your workers' comp quote and your payroll provider's figures decide the real cost."
     ]
    ],
-   "sources": "IRS Tax Topic 751 (Social Security 6.2% and Medicare 1.45% employer share; 2026 wage base $184,500); SSA Contribution and Benefit Base (2026 wage base $184,500); IRS Tax Topic 759 (FUTA 6.0% on the first $7,000, credit up to 5.4%, 0.6% after credit). Federal figures checked Oct 13, 2026. Ohio example: Ohio Department of Job and Family Services 2026 Rate Details (new employer rate 2.7% plus the 0.15% Technology and Customer Service Fee, $9,000 taxable wage base), checked Oct 13, 2026. Example figures are the guide's fictional sample business.",
+   "sources": "IRS Tax Topic 751 (Social Security 6.2% and Medicare 1.45% employer share; 2026 wage base $184,500); SSA Contribution and Benefit Base (2026 wage base $184,500); SSA 2027 COLA Fact Sheet (2027 wage base $192,300, checked Oct 15, 2026); IRS Tax Topic 759 (FUTA 6.0% on the first $7,000, credit up to 5.4%, 0.6% after credit). Federal figures checked Oct 13, 2026. Ohio example: Ohio Department of Job and Family Services 2026 Rate Details (new employer rate 2.7% plus the 0.15% Technology and Customer Service Fee, $9,000 taxable wage base), checked Oct 13, 2026. Example figures are the guide's fictional sample business.",
    "number_sources": [
     "kdp/8/build.py Section 6 tables ($600 week, $22.52, $25.00) and legal/reviews/8-2026-10-06.md arithmetic re-run.",
     "research/rule-watch.json ssa-wage-base-2026 and futa-rate-wage-base.",

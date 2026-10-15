@@ -256,7 +256,7 @@ D.h(yn, 10, 14)
 n_top = max(C2.end, T2.end) + 2
 NOTES = [
     ("Self-employment tax", "15.3% (12.4% Social Security plus 2.9% Medicare) on 92.35% of net profit, per IRS Topic 554 and "
-     "Schedule SE. The Social Security part stops at the 2026 wage base of $184,500 (SSA, ssa.gov/OACT/COLA/cbb.html). "
+     "Schedule SE. The Social Security part stops at the 2026 wage base of $184,500 ($192,300 for 2027 earnings, SSA 2027 COLA Fact Sheet, posted Oct 14, 2026, checked Oct 15, 2026; 2026 base: SSA, ssa.gov/OACT/COLA/cbb.html). "
      "The calculator applies 15.3% to all profit, so above about $199,800 of profit your real tax is a little lower. "
      f"Checked {CHECKED}."),
     ("Vehicle cost per mile", "Defaults to the IRS business standard mileage rate of 76 cents a mile for July 1 to "

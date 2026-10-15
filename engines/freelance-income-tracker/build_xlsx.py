@@ -425,7 +425,7 @@ NOTES = [
      "alone is 15.3% (12.4% Social Security plus 2.9% Medicare), generally on 92.35% of net earnings, and you usually owe it "
      "once net earnings reach $400, per IRS Topic 554 (irs.gov/taxtopics/tc554, page updated Sep 24, 2026, checked Oct 6, 2026). "
      "Income tax comes on top. The set-aside here is on income received, before business expenses. "
-     "The 12.4% Social Security part applies only up to $184,500 of 2026 earnings (SSA, checked Oct 6, 2026)."),
+     "The 12.4% Social Security part applies only up to $184,500 of 2026 earnings (SSA, checked Oct 6, 2026) and $192,300 of 2027 earnings (SSA 2027 COLA Fact Sheet, checked Oct 15, 2026)."),
     ("Payment periods", "The IRS estimated tax periods are Jan 1 to Mar 31 (due Apr 15), Apr 1 to May 31 (due Jun 15), "
      "Jun 1 to Aug 31 (due Sep 15) and Sep 1 to Dec 31 (due Jan 15 of the next year). A due date on a Saturday, Sunday or legal "
      "holiday moves to the next business day. Source: IRS, Pay as you go, so you won't owe (irs.gov, page updated "

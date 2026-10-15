@@ -4,7 +4,7 @@ Todd, Oct 13, 2026, chose "Start $0 groundwork now": a program registry, a discl
 
 ## What exists (Oct 13)
 
-- **Registry:** affiliate/REGISTRY.md. Eight programs with payouts and conditions as each program publishes them, the source page and the date read.
+- **Registry:** affiliate/REGISTRY.md. Ten programs (Jobber and Housecall Pro added Oct 14 for the home-service pages) with payouts and conditions as each program publishes them, the source page and the date read.
 - **Disclosure standard:** legal/README.md section 7. The Legal desk checks every page, video description, email or post that carries an affiliate link against it.
 - **Account recovery plan:** the Google Sheet "ProofNotFluff account recovery plan" in Todd's Drive (file id 1yBi87NSYmUONk9hahm15itdJPFKzsjWOX8qhC3yiGjc). One row per account the business runs on: what it does, owner of record, how to export its content, and where its traffic goes if it disappears. Todd fills the sign-in, two-factor and backup-code columns once. No password, code or key is ever written there or anywhere in this repo.
 - **Todd's first application:** eRank (quest apply-erank-affiliate). The crew really uses eRank for keyword research, so its link may say so.

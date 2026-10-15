@@ -24,6 +24,7 @@ PORTAL = "https://data.cityofchicago.org"
 DATASET_PAGE = f"{PORTAL}/Buildings/Building-Permits/{DATASET}"
 TERMS_URL = "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
 AREAS = "igwz-8jzy"   # Boundaries - Community Areas (area number to name)
+CLOSED = {"COMPLETE", "COMPLETED", "SUSPENDED", "CANCELLED", "CANCELED", "REVOKED", "EXPIRED", "VOID", "WITHDRAWN", "CLOSED"}
 UA = {"User-Agent": "ProofNotFluff permit pilot (github.com/proofnotfluff-a11y/Proofnotfluff-pins)"}
 
 BUSINESS = re.compile(r"\b(LLC|L\.L\.C|INC|INCORPORATED|CORP|CORPORATION|CO|COMPANY|LTD|LP|LLP|PLLC|GROUP|BUILDERS?|"
@@ -75,16 +76,35 @@ def terms_text():
     return f"Source: {TERMS_URL}\nFetched: {dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')}\n\n" + "\n".join(lines)
 
 
+PREFIX = re.compile(r"^(?:(?:DDS|DIRECT DEVELOPER SERVICES|SELF[- ]CERT(?:IFICATION)?|SC|SPR|STANDARD PLAN REVIEW|EPR|"
+                    r"EXPRESS PERMIT|EASY PERMIT|2019|CBC|CBRC|CHICAGO BUILDING (?:REHABILITATION )?CODE)[\s/,.:-]*)+", re.I)
+
+
 def clean_scope(desc, limit=150):
     d = re.sub(r"\s+", " ", (desc or "")).strip().rstrip(".")
-    d = d.capitalize() if d.isupper() else d
+    d = PREFIX.sub("", d).strip(" :-/.,")
+    d = d[:1].upper() + d[1:].lower() if d.isupper() or d[:1].islower() else d
+    d = re.sub(r"\b(\d+)\s*du\b", r"\1 dwelling units", d)
     return d if len(d) <= limit else d[:limit].rsplit(" ", 1)[0] + "..."
 
 
+KEEP_UP = {"LLC", "LP", "LLP", "PLLC", "USA", "II", "III", "IV", "JV", "HVAC", "MEP", "GC", "DBA"}
+
+
 def title_name(n):
-    n = re.sub(r"\s+", " ", n).strip()
-    keep = {"LLC", "INC", "LP", "LLP", "PLLC", "LTD", "USA", "II", "III", "IV", "JV"}
-    return " ".join(w if w.upper().strip(".,") in keep else w.capitalize() for w in n.split(" "))
+    out = []
+    for w in re.sub(r"\s+", " ", n).strip().split(" "):
+        bare = re.sub(r"[^A-Za-z]", "", w).upper()
+        if bare in KEEP_UP or re.fullmatch(r"(?:[A-Za-z]\.){2,}", w.strip(",")):
+            out.append(w.upper())
+        else:
+            w = re.sub(r"[A-Za-z]+", lambda m: m.group(0).capitalize(), w.lower())
+            out.append(re.sub(r"\bMc([a-z])", lambda m: "Mc" + m.group(1).upper(), w))
+    return " ".join(out)
+
+
+def gc_key(n):
+    return re.sub(r"[^A-Z0-9]", "", re.sub(r"\b(LLC|L\.L\.C|INC|INCORPORATED|CORP|CORPORATION|CO|COMPANY|LTD)\b\.?", "", n.upper()))
 
 
 def main():
@@ -136,8 +156,13 @@ def main():
 
     ctype = collections.Counter(); ptype = collections.Counter(); reasons = collections.Counter()
     kept = []
+    status = collections.Counter(); milestone = collections.Counter()
     for r in rows:
         ptype[r.get("permit_type", "")] += 1
+        status[r.get("permit_status") or ""] += 1
+        milestone[r.get("permit_milestone") or ""] += 1
+        if (r.get("permit_status") or "").upper() in CLOSED:
+            reasons["closed, complete or suspended"] += 1; continue
         desc = (r.get("work_description") or "").upper()
         units = [int(m.group(1)) for m in UNITS.finditer(desc)]
         maxu = max(units) if units else 0
@@ -154,7 +179,7 @@ def main():
             if t:
                 ctype[t] += 1
             if "GENERAL CONTRACTOR" in t and "OWNER" not in t and nm and BUSINESS.search(nm.upper()):
-                if title_name(nm) not in gcs:
+                if gc_key(nm) not in [gc_key(g) for g in gcs]:
                     gcs.append(title_name(nm))
         if not gcs:
             reasons["no business listed as general contractor"] += 1; continue
@@ -171,27 +196,37 @@ def main():
             "address": addr,
             "communityArea": areas.get(ca, ""),
             "status": (r.get("permit_status") or "").title(),
+            "milestone": (r.get("permit_milestone") or "").title(),
             "gc": gcs[:2],
         })
     kept.sort(key=lambda x: (-x["cost"], x["issued"]))
     by_area = collections.Counter(k["communityArea"] for k in kept if k["communityArea"])
+    gc_n, gc_cost, gc_name = collections.Counter(), collections.Counter(), {}
+    for k in kept:
+        g = k["gc"][0]; key = gc_key(g)
+        gc_n[key] += 1; gc_cost[key] += k["cost"]; gc_name.setdefault(key, g)
+    top_gcs = [{"name": gc_name[key], "projects": n, "cost": gc_cost[key]} for key, n in
+               sorted(gc_n.items(), key=lambda kv: (-kv[1], -gc_cost[kv[0]]))[:12]]
     sample = {
         "source": {
             "name": "City of Chicago Data Portal, Building Permits", "url": DATASET_PAGE, "rowsUpdatedAt": upd_iso,
             "fetchedAt": now.isoformat(timespec="seconds"),
             "modified": (f"Filtered by ProofNotFluff: permits issued in the last {a.days} days, new construction or renovation, "
-                         f"reported cost ${a.min_cost:,} or more, apartment buildings of 4+ units or commercial work, "
-                         "with a business listed as general contractor; only project-level and business fields kept."),
+                         f"reported cost ${a.min_cost:,} or more, still open (not complete, suspended, revoked or expired), "
+                         "apartment buildings of 4+ units or commercial work, with a business listed as general contractor; "
+                         "only project-level and business fields kept."),
             "terms": TERMS_URL,
         },
         "window": {"from": since[:10], "to": now.strftime("%Y-%m-%d")},
         "counts": {"fetched": len(rows), "kept": len(kept), "excluded": dict(reasons),
                    "keptByType": dict(collections.Counter(k["type"] for k in kept)),
-                   "keptCost": sum(k["cost"] for k in kept), "topAreas": by_area.most_common(8)},
+                   "keptCost": sum(k["cost"] for k in kept), "keptUnits": sum(k["units"] or 0 for k in kept if k["type"] == "New construction"),
+                   "topAreas": by_area.most_common(8), "topGCs": top_gcs},
         "projects": kept[: a.top],
     }
     profile = {"fetchedAt": sample["source"]["fetchedAt"], "rowsUpdatedAt": upd_iso, "columns": cols,
                "permitTypes": dict(ptype), "contactTypes": dict(ctype.most_common(40)),
+               "statuses": dict(status.most_common()), "milestones": dict(milestone.most_common(30)),
                "license": (meta.get("license") or {}).get("name", ""), "attribution": meta.get("attribution", ""),
                "where": where}
     json.dump(sample, open(os.path.join(OUT, "sample.json"), "w"), indent=1)

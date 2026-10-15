@@ -88,12 +88,15 @@ def clean_scope(desc, limit=150):
     d = re.sub(r"\s+", " ", (desc or "")).strip().rstrip(".")
     d = PREFIX.sub("", d).strip(" :-/.,")
     d = NOISE.sub("", d)
-    first = re.split(r"(?<=[A-Za-z0-9)])\.\s+(?=[A-Za-z])", d, maxsplit=1)[0]
-    if len(first) >= 25:
-        d = first
-    d = TAIL.sub("", d).strip(" :-/.,;") or d
     d = re.sub(r"^\d{1,2}[.)]\s+", "", d)
-    d = d[:1].upper() + d[1:].lower() if d.isupper() or d[:1].islower() else d
+    parts, out = re.split(r"(?<=[A-Za-z0-9)])\.\s+(?=[A-Za-z0-9])", d), []
+    for part in parts:   # whole sentences until there is enough to say what the job is
+        part = TAIL.sub("", part).strip(" :-/.,;")
+        if part:
+            out.append(part.lower() if part.isupper() else part)
+        if len(". ".join(out)) >= 60:
+            break
+    d = ". ".join(x[:1].upper() + x[1:] for x in out) if out else d
     d = re.sub(r"\b(\d+)\s*du\b", r"\1-unit", d)
     return d if len(d) <= limit else d[:limit].rsplit(" ", 1)[0] + "..."
 

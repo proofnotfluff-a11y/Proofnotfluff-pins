@@ -3115,7 +3115,7 @@
   {
    "slug": "soft-wash-pricing-calculator",
    "kind": "service",
-   "draft": true,
+   "draft": false,
    "product": "22",
    "segment": "home-services",
    "title": "Soft Wash Pricing Calculator: Price House and Roof Soft Washes | ProofNotFluff",

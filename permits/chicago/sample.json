@@ -1,0 +1,416 @@
+{
+ "source": {
+  "name": "City of Chicago Data Portal, Building Permits",
+  "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
+  "rowsUpdatedAt": "2026-10-14T12:09:04+00:00",
+  "fetchedAt": "2026-10-15T03:22:42+00:00",
+  "modified": "Filtered by ProofNotFluff: permits issued in the last 365 days, new construction or renovation, reported cost $500,000 or more, apartment buildings of 4+ units or commercial work, with a business listed as general contractor; only project-level and business fields kept.",
+  "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+ },
+ "window": {
+  "from": "2025-10-15",
+  "to": "2026-10-15"
+ },
+ "counts": {
+  "fetched": 1556,
+  "kept": 875,
+  "excluded": {
+   "1 to 3 homes": 160,
+   "no commercial or apartment wording": 329,
+   "house or 2 to 3 flat": 186,
+   "no business listed as general contractor": 6
+  },
+  "keptByType": {
+   "New construction": 197,
+   "Renovation": 678
+  },
+  "keptCost": 4458323217,
+  "topAreas": [
+   [
+    "Loop",
+    171
+   ],
+   [
+    "Near North Side",
+    118
+   ],
+   [
+    "Near West Side",
+    105
+   ],
+   [
+    "West Town",
+    40
+   ],
+   [
+    "Lincoln Park",
+    40
+   ],
+   [
+    "Lake View",
+    40
+   ],
+   [
+    "Lower West Side",
+    22
+   ],
+   [
+    "Logan Square",
+    19
+   ]
+  ]
+ },
+ "projects": [
+  {
+   "permit": "101074828",
+   "issued": "2026-03-19",
+   "type": "New construction",
+   "scope": "Dds 2019 cbc: interior buildout of new 7-story casino, parking, and event center building and 34-story hotel tower. caissons and piles only permitted...",
+   "units": null,
+   "cost": 580000000,
+   "address": "705 W Chicago Ave",
+   "communityArea": "West Town",
+   "status": "Active",
+   "gc": [
+    "Gilbane Building Company, INC."
+   ]
+  },
+  {
+   "permit": "101076997",
+   "issued": "2026-07-14",
+   "type": "New construction",
+   "scope": "Dds 2019 cbc: full building permit for floors lower level 2 through roof, including 6th floor exterior amentity deck and pool. 46-story building...",
+   "units": 464,
+   "cost": 190000000,
+   "address": "931 N Halsted St",
+   "communityArea": "Near North Side",
+   "status": "Active",
+   "gc": [
+    "Onni Contracting (chicago) INC"
+   ]
+  },
+  {
+   "permit": "101084518",
+   "issued": "2026-09-16",
+   "type": "Renovation",
+   "scope": "Phase 3 of 3: interior alterations to existing 7-story office building to convert to a data center. work to include new equipment with associated mep...",
+   "units": null,
+   "cost": 151112046,
+   "address": "400 S La Salle St",
+   "communityArea": "Loop",
+   "status": "Active",
+   "gc": [
+    "Arco/murray National Construction Company LLC"
+   ]
+  },
+  {
+   "permit": "101072777",
+   "issued": "2025-12-17",
+   "type": "Renovation",
+   "scope": "Dds 2019 cbrc: interior alterations to floors b1, 1 and 3 thru 9 in an existing high-rise office building for google. work to include lower level...",
+   "units": null,
+   "cost": 85000000,
+   "address": "171 N La Salle St",
+   "communityArea": "Loop",
+   "status": "Active",
+   "gc": [
+    "Skender Construction LLC"
+   ]
+  },
+  {
+   "permit": "101082660",
+   "issued": "2026-07-06",
+   "type": "Renovation",
+   "scope": "Dds 2019 cbrc: renovation to existing lab/office building on floors 2, 4, 6, 7 and penthouse 1 for expansion of labs to include mechanical penthouse...",
+   "units": null,
+   "cost": 81315000,
+   "address": "710 N Fairbanks Ct",
+   "communityArea": "Near North Side",
+   "status": "Active",
+   "gc": [
+    "Skender Construction LLC"
+   ]
+  },
+  {
+   "permit": "101077376",
+   "issued": "2025-12-22",
+   "type": "Renovation",
+   "scope": "Self cert 2019 cbc: interior demolition of existing levels 14 and 15 of the galter pavilion. work includes removal of existing partitions, doors,...",
+   "units": null,
+   "cost": 62000000,
+   "address": "251 E Huron St",
+   "communityArea": "Near North Side",
+   "status": "Active",
+   "gc": [
+    "Power Construction Company, LLC"
+   ]
+  },
+  {
+   "permit": "101065267",
+   "issued": "2025-11-26",
+   "type": "New construction",
+   "scope": "Spr 2019 cbrc: construct new 1 story addition to an existing 1 story warehouse building per plans (use group f-1 construction type iib)",
+   "units": null,
+   "cost": 52000000,
+   "address": "1650 E 95Th St",
+   "communityArea": "South Deering",
+   "status": "Active",
+   "gc": [
+    "Triumph Design Build Corporation"
+   ]
+  },
+  {
+   "permit": "101081181",
+   "issued": "2026-07-06",
+   "type": "Renovation",
+   "scope": "Dds 2019 cbrc: phase 2 of 3: infrastructure upgrades. convert 7 story office building to a data center. reinforcement of existing floors....",
+   "units": null,
+   "cost": 51100000,
+   "address": "400 S La Salle St",
+   "communityArea": "Loop",
+   "status": "Phased Permitting",
+   "gc": [
+    "Arco/murray National Construction Company LLC"
+   ]
+  },
+  {
+   "permit": "101077075",
+   "issued": "2026-03-16",
+   "type": "Renovation",
+   "scope": "Dds 2019 cbrc: interior alterations to levels b2, b1, l1, and l2 for building shared amenity space. work to include select demolition, construction...",
+   "units": null,
+   "cost": 50118593,
+   "address": "100 W Randolph St",
+   "communityArea": "Loop",
+   "status": "Active",
+   "gc": [
+    "Skender Construction LLC"
+   ]
+  },
+  {
+   "permit": "101075068",
+   "issued": "2026-06-03",
+   "type": "Renovation",
+   "scope": "Direct developer services 2019 cbc. full building permit: mixed-use commercial 3 story building addition to united center and will include 266 off...",
+   "units": null,
+   "cost": 50000000,
+   "address": "1901 W Madison St",
+   "communityArea": "Near West Side",
+   "status": "Active",
+   "gc": [
+    "James Mchugh Construction Co"
+   ]
+  },
+  {
+   "permit": "101069926",
+   "issued": "2026-06-22",
+   "type": "Renovation",
+   "scope": "Dds 2019 cbrc: interior and exterior alterations to existing 17 story office building to convert it to a mixed-use building with ground floor retail...",
+   "units": 175,
+   "cost": 50000000,
+   "address": "19 S La Salle St",
+   "communityArea": "Loop",
+   "status": "Active",
+   "gc": [
+    "Power Construction Company, LLC"
+   ]
+  },
+  {
+   "permit": "101061913",
+   "issued": "2025-10-16",
+   "type": "New construction",
+   "scope": "Dds/ 2019 cbc: new construction of a 6-story residential building (110 dwelling units), at-grade parking lot (134 auto spaces + 40 bike spaces) and...",
+   "units": 110,
+   "cost": 46770000,
+   "address": "4809 W 44Th St",
+   "communityArea": "Garfield Ridge",
+   "status": "Suspended",
+   "gc": [
+    "The George Sollitt Construction Co"
+   ]
+  },
+  {
+   "permit": "101086662",
+   "issued": "2026-10-06",
+   "type": "Renovation",
+   "scope": "Self cert 2019 cbc: interior alterations to existing office floors 10 through 16 for buildout of golub capital office space as per plans (occupancy...",
+   "units": null,
+   "cost": 44919084,
+   "address": "225 W Randolph St",
+   "communityArea": "Loop",
+   "status": "Active",
+   "gc": [
+    "Redmond Construction Corp."
+   ]
+  },
+  {
+   "permit": "101073356",
+   "issued": "2026-03-25",
+   "type": "New construction",
+   "scope": "Dds / 2019 cbc: new construction of a 12-story residential building (199 units) w/ no basement to include ground parking (42 auto parking spaces +...",
+   "units": 199,
+   "cost": 44000000,
+   "address": "566 W Van Buren St",
+   "communityArea": "Near West Side",
+   "status": "Active",
+   "gc": [
+    "Clark Construction Group Chicago LLC"
+   ]
+  },
+  {
+   "permit": "101072657",
+   "issued": "2025-12-01",
+   "type": "Renovation",
+   "scope": "Dds 2019 cbc: interior renovation of south tower of existing hotel building. renovation of 798 guestrooms, guestroom corridors, elevator lobbies....",
+   "units": null,
+   "cost": 40000000,
+   "address": "2233 S Dr Martin L King Jr Dr",
+   "communityArea": "Near South Side",
+   "status": "Complete",
+   "gc": [
+    "Walsh Construction Company II, LLC"
+   ]
+  },
+  {
+   "permit": "101082901",
+   "issued": "2026-07-13",
+   "type": "Renovation",
+   "scope": "Dds 2019 cbrc: tenant build out in an existing warehouse for expansion of a food processing facility as per plans. (occupancy group: f1 / type ii-b...",
+   "units": null,
+   "cost": 39500000,
+   "address": "1400 W 44Th St",
+   "communityArea": "New City",
+   "status": "Active",
+   "gc": [
+    "Meridian Design Build, INC"
+   ]
+  },
+  {
+   "permit": "100994035",
+   "issued": "2026-04-09",
+   "type": "New construction",
+   "scope": "Dds cbc 2019 full building permit for 13-story building with 121 dwelling units and first floor garage.. sprinkler system under seperate permit....",
+   "units": 121,
+   "cost": 38000000,
+   "address": "1628 W Division St",
+   "communityArea": "West Town",
+   "status": "Active",
+   "gc": [
+    "Norcon, INC."
+   ]
+  },
+  {
+   "permit": "101036007",
+   "issued": "2026-03-18",
+   "type": "New construction",
+   "scope": "Dds 2019 cbc: new construction 7 story, 79ft, 78 unit multi-family residential building. 39 parking spaces (5 accessible spaces) provided in first...",
+   "units": 78,
+   "cost": 36887188,
+   "address": "955 N Larrabee St",
+   "communityArea": "Near North Side",
+   "status": "Active",
+   "gc": [
+    "At Mechanical LLC",
+    "At Mechanical, LLC"
+   ]
+  },
+  {
+   "permit": "101075727",
+   "issued": "2026-08-14",
+   "type": "Renovation",
+   "scope": "Dds 2019 cbrc: adaptive reuse of an existing 5 story commercial building to multi-family residential with a new 5 story addition. occupancy groups b,...",
+   "units": null,
+   "cost": 35971375,
+   "address": "3959 N Lincoln Ave",
+   "communityArea": "North Center",
+   "status": "Phased Permitting",
+   "gc": [
+    "Berglund Construction Company"
+   ]
+  },
+  {
+   "permit": "101077893",
+   "issued": "2026-04-17",
+   "type": "Renovation",
+   "scope": "Spr 2019 cbrc: alteration to existing warehouse building to make strcuctural repairs, repair docks, install new dock doors, construct new gearge...",
+   "units": null,
+   "cost": 35000000,
+   "address": "4343 W Ohio St",
+   "communityArea": "Humboldt Park",
+   "status": "Active",
+   "gc": [
+    "Merker LLC"
+   ]
+  },
+  {
+   "permit": "101074867",
+   "issued": "2026-01-28",
+   "type": "Renovation",
+   "scope": "Sc / 2019 cbc: initial tenant buildout on the 11th, 12th, and 13th floor of an existing office building for a business use non-hazardous laboratory...",
+   "units": null,
+   "cost": 33000000,
+   "address": "5207 S Harper Ave",
+   "communityArea": "Hyde Park",
+   "status": "Active",
+   "gc": [
+    "Power Construction Company, LLC"
+   ]
+  },
+  {
+   "permit": "101076906",
+   "issued": "2026-04-03",
+   "type": "New construction",
+   "scope": "Dds 2019 cbc: caissons (vertical penetration) only for new 7 story 91 du mixed use building. consultant reviewer: v3 companies of il",
+   "units": 91,
+   "cost": 31500000,
+   "address": "4006 N Sheridan Rd",
+   "communityArea": "Uptown",
+   "status": "Active",
+   "gc": [
+    "Macon Construction Group, INC."
+   ]
+  },
+  {
+   "permit": "101076730",
+   "issued": "2026-04-21",
+   "type": "Renovation",
+   "scope": "Dds 2019 cbc: addition of a 2-story athletic facility to existing school building to build indoor competition and practice gymnasiums with associated...",
+   "units": null,
+   "cost": 30000000,
+   "address": "3348 N Campbell Ave",
+   "communityArea": "North Center",
+   "status": "Active",
+   "gc": [
+    "Bulley & Andrews, L.l.c."
+   ]
+  },
+  {
+   "permit": "101080637",
+   "issued": "2026-07-10",
+   "type": "New construction",
+   "scope": "Spr 2019 cbc: phase 1c - cryoplant buildout for quantum computing facility. adjacent work under prior permits 101063081, 101065270, 101075599. (occ...",
+   "units": null,
+   "cost": 30000000,
+   "address": "3733 E 87Th St",
+   "communityArea": "South Chicago",
+   "status": "Active",
+   "gc": [
+    "Clayco INC."
+   ]
+  },
+  {
+   "permit": "101061910",
+   "issued": "2025-10-22",
+   "type": "New construction",
+   "scope": "Dds / 2019 cbc: new construction of a 6-story residential building (73 dwelling units) to include 40 bike spaces as per plans. (occupancy group: r-2...",
+   "units": 73,
+   "cost": 29936000,
+   "address": "4442 S Cicero Ave",
+   "communityArea": "Garfield Ridge",
+   "status": "Suspended",
+   "gc": [
+    "The George Sollitt Construction Co"
+   ]
+  }
+ ]
+}

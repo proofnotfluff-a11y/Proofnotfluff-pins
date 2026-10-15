@@ -2972,6 +2972,103 @@
    ]
   },
   {
+   "slug": "estate-cleanout-cost-calculator",
+   "kind": "service",
+   "draft": true,
+   "product": "23",
+   "segment": "home-services",
+   "title": "Estate Cleanout Cost Calculator: Price a Whole-House Cleanout | ProofNotFluff",
+   "desc": "Free estate cleanout cost calculator for junk removal crews. Price a whole-house cleanout from your crew size, hours on site, drive and dump runs, dump fees and your own pay goal.",
+   "eyebrow": "Free calculator",
+   "h1": "Estate Cleanout Cost Calculator",
+   "lede": "Price a whole-house estate cleanout from your crew, the hours on site, every dump run and the dump fees, built on the rate your own pay goal needs. You get the price floor, the quote and the profit inside it. Free, no sign-up.",
+   "card": "Your quote for an estate, basement or garage cleanout, with crew hours, dump runs and dump fees counted.",
+   "defaults": {
+    "takeHome": "60,000",
+    "weeks": "48",
+    "hours": "50",
+    "paidShare": "60",
+    "monthlyCosts": "715",
+    "incomeTax": "12",
+    "margin": "15",
+    "perMile": "0.76",
+    "mph": "30"
+   },
+   "costs_hint": "Insurance, trailer and equipment, dollies and straps, ads, apps, fees",
+   "presets": [
+    [
+     "Estate cleanout, 3-bed",
+     10,
+     3,
+     600,
+     120
+    ],
+    [
+     "Basement cleanout",
+     5,
+     2,
+     225,
+     50
+    ],
+    [
+     "Garage cleanout, 2-car",
+     4,
+     2,
+     225,
+     50
+    ],
+    [
+     "Shed tear-down and haul",
+     5,
+     2,
+     180,
+     50
+    ]
+   ],
+   "preset_default": 0,
+   "method": [
+    "An estate cleanout is several days of loading, many dump runs and a pile of dump fees, so a per-load price list misses most of the cost. This calculator builds the price from your own numbers instead.",
+    "It grosses your take-home up for self-employment tax (15.3% on 92.35% of profit) and your income tax estimate, adds a year of business costs, and spreads the total over the hours customers pay for. That is your break-even rate. The job's floor is every crew member's hours on site and drive time at that rate, plus vehicle cost per mile and the dump fees and supplies. The quote adds your margin and rounds up to the next $5.",
+    "Put every dump run in the round-trip miles. Drive time is paid for each person on the truck, so on a big cleanout it adds up fast."
+   ],
+   "example": "The Junk Removal Pricing Calculator's example business wants $60,000 take-home with a 12% income tax estimate and $715 a month of costs, works 48 weeks of 50 hours and is paid for 60% of them: a break-even rate of $62.36 per paid hour. Its 3-bedroom estate cleanout takes 3 people 10 hours each on site, 120 round-trip miles (two days and four dump runs) and $600 of dump fees and supplies. The floor is $3,310.46: $1,870.90 of crew time on site, $748.36 of drive time, $91.20 of vehicle cost and the $600. The quote is $3,895, which leaves $584.54 of profit. A 2-car garage cleanout quotes at $1,145 and a basement cleanout at $1,290.",
+   "cta": {
+    "title": "Price every job at once",
+    "bullets": [
+     "The Junk Removal Pricing Calculator workbook uses this same maths for Excel and Google Sheets:",
+     "19 example jobs from single items to estate cleanouts, a quote builder, a printable price sheet and a job tracker. $2.99, instant download."
+    ],
+    "button": "Get the workbook on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4590270056"
+   },
+   "faq": [
+    [
+     "How much does an estate cleanout cost?",
+     "It depends on the size of the house, your crew, the hours, the dump runs and your local dump fees. With the example numbers a 3-bedroom estate cleanout for 3 people, 10 hours each and $600 of dump fees quotes at $3,895. Enter your own numbers to see yours."
+    ],
+    [
+     "How do I count dump runs?",
+     "Add the miles for every trip to the dump and back to the round-trip miles, and put each dump or recycling fee in dump fees and supplies. The example's 120 miles cover two days and four dump runs."
+    ],
+    [
+     "Why is drive time charged for each person?",
+     "Everyone on the truck is paid while it drives. In the example 4 hours of driving for 3 people adds $748.36 to the floor."
+    ],
+    [
+     "Should I quote by the truck load instead?",
+     "Load pricing suits single pickups. A full-house cleanout runs over days with sorting and many dump runs, so pricing by crew hours keeps the slow parts paid for. The truck load calculator on this site prices single loads."
+    ],
+    [
+     "Is this tax advice?",
+     "No. It is a planning estimate. Ask your tax preparer for your real income tax rate."
+    ]
+   ],
+   "sources": "Self-employment tax: 15.3% on 92.35% of net profit (IRS Topic 554, irs.gov/taxtopics/tc554). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS Standard Mileage Rates page, irs.gov/tax-professionals/standard-mileage-rates). Checked Oct 15, 2026. Cleanout jobs and prices from the Junk Removal Pricing Calculator workbook price sheet, recalculated Oct 15, 2026.",
+   "number_sources": [
+    "engines/service-pricing/build_xlsx.py --edition engines/service-pricing/editions/junk-removal.json (4 Price Sheet rows 21 to 23 and 28, recalculated Oct 15, 2026)"
+   ]
+  },
+  {
    "slug": "day-rate-calculator",
    "kind": "day_rate",
    "draft": false,

@@ -22,6 +22,13 @@ const JR = { takeHome: 60000, weeks: 48, hours: 50, paidShare: 60, incomeTax: 12
   check("#23 " + t[0] + " floor", r.floor, t[3]);
   check("#23 " + t[0] + " quote", r.quote, t[4]);
 });
+// #23 cleanouts for the estate cleanout page (4 Price Sheet rows 21 to 23 and 28, recalculated Oct 15, 2026)
+[["garage cleanout", 4, 2, 225, 50, 969.79, 1145], ["basement cleanout", 5, 2, 225, 50, 1094.51, 1290],
+ ["estate cleanout 3-bed", 10, 3, 600, 120, 3310.46, 3895], ["shed tear-down", 5, 2, 180, 50, 1049.51, 1235]].forEach(function (t) {
+  const r = P.service(Object.assign({}, JR, { jobHours: t[1], people: t[2], supplies: t[3], miles: t[4] }));
+  check("#23 " + t[0] + " floor", r.floor, t[5]);
+  check("#23 " + t[0] + " quote", r.quote, t[6]);
+});
 // #13 Service Pricing Calculator example
 const s = P.service({ takeHome: 52000, weeks: 48, hours: 45, paidShare: 65, incomeTax: 12, margin: 15, monthlyCosts: 545,
   perMile: 0.76, mph: 30, jobHours: 2.5, people: 1, supplies: 8, miles: 15 });

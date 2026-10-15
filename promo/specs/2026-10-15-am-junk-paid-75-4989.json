@@ -1,0 +1,89 @@
+{
+  "product_id": "23",
+  "listing_id": "4590270056",
+  "product": "Junk Removal Pricing Calculator",
+  "tab": "",
+  "audience": "Anyone who quotes jobs by the hour",
+  "hookId": "H07",
+  "scope": "broad",
+  "series": "Flagship #23 (SALES FIRST); week of Oct 12 theme day 4; the fix side of the unpaid-hours theme (same example, paid share changed from 60% to 75% in the calculator); first H07 test on a flagship; CMO slate Oct 15 am",
+  "voice": "am_michael",
+  "mood": "upbeat",
+  "hook": "Fewer unpaid hours, break even at <b>$49.89</b>",
+  "hook_say_short": "Break-even drops to $49.89.",
+  "hook_say": "When customers pay for 60% of your hours, break-even is $62.36. Get them to pay for 75% and it drops to $49.89.",
+  "rows": [
+    {
+      "label": "Take-home pay you want",
+      "value": "$60,000 a year",
+      "input": true,
+      "say": "You want to take home $60,000 a year",
+      "why": "The calculator's example: $60,000 a year of take-home pay."
+    },
+    {
+      "label": "Tax ($21,223) + costs ($8,580)",
+      "value": "$29,803 a year",
+      "input": true,
+      "say": "Tax and costs add $29,803",
+      "why": "About $21,223 of self-employment and income tax plus $8,580 of yearly costs ($715 a month). Revenue needed: $89,803."
+    },
+    {
+      "label": "Hours paid for (60% of 2,400)",
+      "value": "1,440 hrs a year",
+      "input": true,
+      "say": "Customers pay for 1,440 of your 2,400 hours",
+      "why": "48 weeks of 50 hours is 2,400. Only 60% is paid work; the rest is driving, quotes and admin."
+    },
+    {
+      "label": "Pay + tax + costs per paid hour",
+      "value": "$62.36 an hour",
+      "result": true,
+      "kind": "bad",
+      "say": "So break-even is $62.36 an hour",
+      "why": "$89,803 of revenue needed over 1,440 paid hours."
+    }
+  ],
+  "fix": {
+    "label": "Break-even an hour, 75% paid",
+    "value": "$49.89",
+    "say": "Get paid for 75% of your hours: $49.89",
+    "why": "Same pay, tax and costs over 1,800 paid hours: $49.89 an hour. Fewer unpaid hours (batching jobs by area, quoting by phone) lower the rate every quote needs."
+  },
+  "cta": {
+    "title": "Junk Removal Pricing Calculator",
+    "button": "Instant download",
+    "sub": "On Etsy: proofnotfluff.etsy.com",
+    "say": "Search ProofNotFluff for the free junk removal price calculator and the full workbook.",
+    "what": "Free calculator online. Full workbook $2.99 for Excel and Google Sheets"
+  },
+  "note": "Example numbers from the calculator. Tax is an estimate, not tax advice.",
+  "sources": [
+    {
+      "number": "$60,000",
+      "source": "1 Your Numbers D14 60,000"
+    },
+    {
+      "number": "$29,803 ($21,223 + $8,580)",
+      "source": "I15 21,223.28 tax (SE and income) + I17 8,580 costs (D36; D35 715 a month); I18 89,803.28"
+    },
+    {
+      "number": "1,440 of 2,400 hrs",
+      "source": "D15 48 x D16 50 = 2,400; D17 60%, D18 1,440; I20 1,440"
+    },
+    {
+      "number": "$62.36",
+      "source": "I21 62.363 break-even per paid hour; C8 'Break-even $62.36'"
+    },
+    {
+      "number": "$49.89 (1,800 hrs)",
+      "source": "D17 = 75%: D18 1,800, I20 1,800, I21 49.891, C8 'Break-even $49.89' (recalculated)"
+    }
+  ],
+  "sources_build": "python3 engines/service-pricing/build_xlsx.py --edition engines/service-pricing/editions/junk-removal.json (the listed #23 edition; build prints example 62.36 73.37 25.0 409.62 485), recalculated in LibreOffice headless Oct 15, 2026, 5:35 am; then D17 set to 0.75 and recalculated: I21 49.891, I23 58.69, half truck load I34 410.",
+  "post": {
+    "short_title": "Fewer unpaid hours, break even at $49.89 an hour #Shorts",
+    "youtube_description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/23/\nhttps://proofnotfluff-a11y.github.io/Proofnotfluff-pins/junk-removal-price-calculator/\nA $60,000 take-home plus tax and $8,580 of yearly costs needs $89,803 of revenue. If customers pay for 1,440 of your 2,400 hours (60%), break-even is $62.36 per paid hour. Get them to pay for 75% (1,800 hours) and it drops to $49.89. Example numbers from the Junk Removal Pricing Calculator; tax is an estimate, not tax advice.\n\n#Shorts",
+    "reel_caption": "Fewer unpaid hours, break even at $49.89 an hour. When customers pay for 60% of your 2,400 hours, a $60,000 take-home needs $62.36 per paid hour. At 75% it is $49.89. Example numbers from the Junk Removal Pricing Calculator.\n\nLink in bio: proofnotfluff.etsy.com\n\n#smallbusinesstips #pricingstrategy #junkremoval #hourlyrate",
+    "tiktok_caption": "Fewer unpaid hours: break-even drops from $62.36 to $49.89 an hour. Example numbers from the Junk Removal Pricing Calculator. Search ProofNotFluff on Etsy. #smallbusinesstips #pricingstrategy #junkremoval #hourlyrate"
+  }
+}

@@ -1,0 +1,63 @@
+{
+ "base": "../renders/gig2",
+ "footer": "Excel + Google Sheets  |  Built with your numbers",
+ "images": [
+  {
+   "type": "cover",
+   "name": "gig2-cover",
+   "eyebrow": "PROFIT DASHBOARD BY CHANNEL",
+   "title": "See which channel actually makes you money.",
+   "sub": "Built from your own exports.",
+   "badges": [
+    "Shopify",
+    "Amazon",
+    "TikTok Shop"
+   ],
+   "shot": "03-2-Dashboard.png",
+   "crop": [
+    0.6294,
+    0.0281,
+    0.9975,
+    0.1076
+   ],
+   "stamp": "SAMPLE DATA"
+  },
+  {
+   "type": "shot",
+   "name": "gig2-dashboard",
+   "eyebrow": "THE DASHBOARD",
+   "title": "What each channel keeps after every cost.",
+   "sub": "Sample brand, Sep 2026: Amazon keeps $13,663 after ads, TikTok Shop loses $798.",
+   "shot": "03-2-Dashboard.png",
+   "crop": [
+    0.0,
+    0.0281,
+    0.9975,
+    0.1752
+   ],
+   "stamp": "SAMPLE DATA"
+  },
+  {
+   "type": "inside",
+   "name": "gig2-whats-inside",
+   "eyebrow": "WHAT YOU GET",
+   "title": "Your file, a summary and a guide.",
+   "items": [
+    "Monthly profit and loss by channel",
+    "Contribution margin per order and per unit",
+    "Best and worst products by margin (Standard, Premium)",
+    "Margin waterfall by channel (Premium)",
+    "Trend charts you update each month",
+    "A one-page summary and an update guide"
+   ],
+   "shot": "04-3-P-L-by-Channel.png",
+   "crop": [
+    0.0,
+    0.0255,
+    0.534,
+    0.1705
+   ],
+   "stamp": "SAMPLE DATA"
+  }
+ ]
+}

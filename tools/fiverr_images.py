@@ -163,7 +163,8 @@ def main():
         sys.exit(__doc__)
     spec_path, out = sys.argv[1], sys.argv[2]
     spec = json.load(open(spec_path, encoding="utf-8"))
-    base = spec.get("base") or os.path.dirname(os.path.abspath(spec_path))
+    here = os.path.dirname(os.path.abspath(spec_path))
+    base = os.path.join(here, spec["base"]) if spec.get("base") else here  # a relative base is relative to the spec
     os.makedirs(out, exist_ok=True)
     foot = spec.get("footer", "Excel + Google Sheets  |  Built with your numbers")
     for item in spec["images"]:

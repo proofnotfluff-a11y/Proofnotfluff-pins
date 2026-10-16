@@ -44,6 +44,10 @@ PIVOT_WHO = re.compile(r"· FOR [A-Z0-9 ,'&-]*(?:E-?COMMERCE|SHOPIFY|AMAZON|TIKT
                        r"|ONLINE (?:SELLERS|SHOPS|STORES|BRANDS)|PRODUCT (?:BRANDS|BUSINESSES|SELLERS)"
                        r"|(?:SMALL|CONSUMER|DTC) BRANDS)")
 SITE_WHAT = "Free online. No sign-up."
+# ElevenLabs narration on every Proof Check from Oct 16 (cmo/CONTENT_PLAYBOOK.md section 9; Todd, Oct 16: the offline
+# voice sounds robotic and every improvement must reach every task).
+EL_VOICES = {"iP95p4xoKVk53GoZ742B": "Chris", "CwhRBWXzGAHq8TQ4Fs17": "Roger", "cjVigY5qzO86Huf0OWal": "Eric",
+             "XrExE9yKIg1WjnnlVkGX": "Matilda", "pqHfZKP75CvOlQylNhV4": "Bill"}
 PREMIUM_WHAT = re.compile(r"^Free online\. Full [a-z0-9 -]+ \$(\d{2,3})$")
 REEL_SITE = "Free calculator: link in bio (proofnotfluff.com)"
 TIKTOK_SITE = "Free calculator at proofnotfluff.com"
@@ -88,6 +92,9 @@ def problems(spec, path=""):
     elif pivot and not PIVOT_WHO.search(spec.get("audience", "")):
         out.append(f"kicker {spec.get('audience')!r} must name an e-commerce audience from Oct 16 (FOR E-COMMERCE BRANDS, "
                    "FOR SHOPIFY SELLERS, FOR AMAZON SELLERS, FOR ETSY SELLERS, FOR ONLINE SELLERS...; coo/PIVOT.md)")
+    if pivot and spec.get("el_voice") not in EL_VOICES:
+        out.append(f"el_voice {spec.get('el_voice')!r} is not one of the five ElevenLabs voices "
+                   f"({', '.join(EL_VOICES.values())}); every Proof Check is narrated by ElevenLabs (tools/el_voice.py)")
     if not (spec.get("pitch") or {}).get("say"):
         out.append("no pitch: the end card needs one spoken line saying what the product is and what you do with it")
     if not spec.get("cta", {}).get("use"):

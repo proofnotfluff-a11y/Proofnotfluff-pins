@@ -14,6 +14,16 @@ The cloud runs reach ElevenLabs only through the Zapier MCP tool, so a render ta
        downloads every clip into tools/work_demo/el/<spec name>/ and writes manifest.json {caption text: file}.
        Then render with: python3 tools/make_demo.py spec.json out.mp4 --format short --voice files:<that folder>
 
+Walkthroughs: add --format walkthrough to both steps (the lines are then the hook and the "why" lines) and render
+with --format walkthrough --voice files:<that folder>-walkthrough.
+
+Rules (Todd, Oct 16: the Proof Check #2 Short sounded robotic after its clips were sped up 1.08x and silence-trimmed):
+  - never speed up, slow down, trim or otherwise process a clip: make_demo uses them as ElevenLabs returns them;
+  - fit the length with the script instead: "lines" prints est_seconds (about 12 spoken characters a second);
+    over 34 s of speech in a Short means shorter lines BEFORE any character is spent;
+  - every published Short and walkthrough is narrated this way; make_demo refuses a Kokoro voice on any spec that
+    carries "el_voice" (the offline voice is for tests only).
+
 The audio comes back on zapier-dev-files.s3.amazonaws.com, which the sandbox must be allowed to reach (Todd's
 network settings). If the download is refused, fall back to the Kokoro voice in the spec and say so in the slate.
 Voices on the account (premade, Oct 15): Chris iP95p4xoKVk53GoZ742B, Roger CwhRBWXzGAHq8TQ4Fs17, Eric
@@ -25,7 +35,16 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def lines(spec, fmt="short"):
-    """The spoken lines in make_demo's order for the short format, with their ElevenLabs text."""
+    """The spoken lines in make_demo's order, with their ElevenLabs text."""
+    if fmt == "walkthrough":   # the walkthrough speaks the hook and the "why" lines: take them from make_demo itself
+        import make_demo
+        tl = make_demo.timeline(spec, "walkthrough", speech=lambda t: 1.0 if t else 0.0)
+        seen, out = set(), []
+        for ln in tl["lines"]:
+            t = ln.get("text")
+            if t and t not in seen:
+                seen.add(t); out.append((t, t))
+        return [{"i": i, "text": t, "tts": s} for i, (t, s) in enumerate(out)]
     out = []
     hook = spec.get("hook_say_short") or ""
     if hook:
@@ -47,12 +66,12 @@ def lines(spec, fmt="short"):
     return [{"i": i, "text": t, "tts": s} for i, (t, s) in enumerate(out)]
 
 
-def fetch(spec_path, urls_path):
+def fetch(spec_path, urls_path, fmt="short"):
     spec = json.load(open(spec_path)); urls = json.load(open(urls_path))
-    key = os.path.splitext(os.path.basename(spec_path))[0]
+    key = os.path.splitext(os.path.basename(spec_path))[0] + ("-walkthrough" if fmt == "walkthrough" else "")
     d = os.path.join(HERE, "work_demo", "el", key); os.makedirs(d, exist_ok=True)
     man = {}
-    for ln in lines(spec):
+    for ln in lines(spec, fmt):
         u = urls.get(str(ln["i"]))
         if not u:
             sys.exit(f"no audio url for line {ln['i']}: {ln['text']}")
@@ -63,10 +82,22 @@ def fetch(spec_path, urls_path):
     print(d)
 
 
+CHARS_PER_SECOND = 12.0   # measured on the Oct 15 and 16 eleven_v3 renders (Chris, Roger)
+
+
 if __name__ == "__main__":
-    if len(sys.argv) >= 3 and sys.argv[1] == "lines":
-        print(json.dumps(lines(json.load(open(sys.argv[2]))), indent=1, ensure_ascii=False))
-    elif len(sys.argv) >= 4 and sys.argv[1] == "fetch":
-        fetch(sys.argv[2], sys.argv[3])
+    args = sys.argv[1:]
+    fmt = "short"
+    if "--format" in args:
+        i = args.index("--format"); fmt = args[i + 1]; del args[i:i + 2]
+    if len(args) >= 2 and args[0] == "lines":
+        L = lines(json.load(open(args[1])), fmt)
+        chars = sum(len(x["tts"]) for x in L)
+        est = round(sum(len(x["text"]) for x in L) / CHARS_PER_SECOND, 1)
+        print(json.dumps({"lines": L, "characters": chars, "est_seconds": est,
+                          "warning": ("over 34 s of speech: shorten the lines before spending characters"
+                                      if fmt == "short" and est > 34 else None)}, indent=1, ensure_ascii=False))
+    elif len(args) >= 3 and args[0] == "fetch":
+        fetch(args[1], args[2], fmt)
     else:
         sys.exit(__doc__)

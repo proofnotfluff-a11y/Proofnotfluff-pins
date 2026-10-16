@@ -610,6 +610,14 @@ def main(spec_path, out, fmt_name="short"):
     voice = VOICE if VOICE is not None else spec.get("voice", os.environ.get("PNF_VOICE", "am_michael"))
     if fmt_name == "listing":
         voice = "none"
+    # Todd, Oct 16: "the voice on this sounds too robotic ... All our marketing improvements need to be consistently
+    # rolled out across all tasks." A spec that names an ElevenLabs voice is narrated only from its ElevenLabs clips
+    # (tools/el_voice.py), never by the offline Kokoro voice; PNF_ALLOW_KOKORO=1 allows a local test render only.
+    if (spec.get("el_voice") and fmt_name in ("short", "walkthrough") and voice != "none"
+            and not voice.startswith("files:") and os.environ.get("PNF_ALLOW_KOKORO") != "1"):
+        sys.exit(f"voice refused: this spec names ElevenLabs voice {spec['el_voice']}; narrate it with tools/el_voice.py "
+                 "(lines, Zapier text_to_speech, fetch) and render with --voice files:<folder>, or publish the committed "
+                 "render named in the spec's \"render\" field. The Kokoro voice is for test renders only.")
     work = os.path.join(HERE, "work_demo"); os.makedirs(work, exist_ok=True)
     key = os.path.splitext(os.path.basename(spec_path))[0]
     st = track = None

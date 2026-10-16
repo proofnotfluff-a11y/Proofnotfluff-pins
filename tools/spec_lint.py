@@ -14,12 +14,14 @@ Rules (a spec with a "formula" key; from Oct 16, 2026 every dated short spec mus
   1.2 to 1.5 s; F2: the ask is "Spot the mistake?" and the next line starts "The mistake"; F3: the ask is a question;
   F4: the hook says "free calculator"; the close "<verb> free at ProofNotFluff dot com." spoken exactly once; end card
   button "Free calculator", sub "proofnotfluff.com", what "Free online. Full <thing> $2.99 on Etsy"; no em dash;
-  no invented people; Reel caption with "Link in bio: proofnotfluff.etsy.com" and 3 to 5 hashtags; TikTok caption
+  no invented people; no AI-sounding phrase (tools/voice_lint.py); Reel caption with "Link in bio: proofnotfluff.etsy.com" and 3 to 5 hashtags; TikTok caption
   with "Search ProofNotFluff on Etsy".
 
 Usage: python3 tools/spec_lint.py spec.json [spec.json ...]    one line per problem, exit 1 if any
 """
 import json, os, re, sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 FORMULAS = {"F1 Job Ticket": "F1", "F2 Spot the Mistake": "F2", "F3 Myth vs Math": "F3", "F4 Run Your Numbers": "F4"}
 START = "2026-10-16"  # from this date every dated short spec is a Proof Check episode
@@ -112,6 +114,10 @@ def problems(spec, path=""):
     m = PEOPLE.search(text)
     if m:
         out.append(f"an invented person ({m.group(0)!r}): examples are worked examples, 'Say you...'")
+    import voice_lint  # direct, human words (Todd's standing rule): tells of AI-written copy, in code
+    shown = spoken(spec) + [strip(spec.get("hook", ""))] + [str(v) for v in (spec.get("post") or {}).values()]
+    for name, words in voice_lint.tells("\n".join(shown)):
+        out.append(f"AI-sounding phrase: {name} ({words.strip()!r})")
     post = spec.get("post") or {}
     reel = post.get("reel_caption", "")
     if "Link in bio: proofnotfluff.etsy.com" not in reel:

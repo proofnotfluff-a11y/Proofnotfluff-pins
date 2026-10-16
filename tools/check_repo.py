@@ -19,6 +19,8 @@ Checks
                 reviewer, consultant, architect, engineer or owner tag (where a person's name can follow)
   video-specs   tools/spec_lint.py on every promo/specs/ spec: the content playbook's hard rules for Proof Check shorts
                 (make_demo.py refuses the same specs before rendering)
+  voice         tools/voice_lint.py on the free site's page text (site/pages.json) and the email copy (email/): no
+                AI-sounding phrase in anything public (the video specs and Fiverr copy get the same check in their own)
   fiverr-kit    tools/fiverr_kit.py: the paste-ready Fiverr copy in services/fiverr/ keeps to Fiverr's field limits
                 and our rules (AI-assisted, not-advice and license lines; no links, contacts, review bait or
                 off-Fiverr asks)
@@ -219,6 +221,20 @@ def check_video_specs(files):
     err("video-specs", "; ".join(bad[:6])) if bad else ok("video-specs", f"{len(specs)} specs")
 
 
+def check_voice(files):
+    spec = importlib.util.spec_from_file_location("voice_lint", os.path.join(ROOT, "tools", "voice_lint.py"))
+    vl = importlib.util.module_from_spec(spec); spec.loader.exec_module(vl)
+    bad = []
+    pages_f = os.path.join(ROOT, "site", "pages.json")
+    if os.path.exists(pages_f):
+        for p in json.load(open(pages_f, encoding="utf-8")).get("pages", []):
+            bad += [f"site page {p.get('slug')}: {n} ({w.strip()!r})" for n, w in vl.tells(json.dumps(p, ensure_ascii=False))]
+    for f in files:
+        if f.startswith("email/") and f.endswith((".md", ".txt", ".html")):
+            bad += [f"{f}: {n} ({w.strip()!r})" for n, w in vl.tells(open(os.path.join(ROOT, f), encoding="utf-8", errors="ignore").read())]
+    err("voice", "; ".join(bad[:8])) if bad else ok("voice")
+
+
 def check_fiverr_kit():
     kit = os.path.join(ROOT, "services", "fiverr")
     if not os.path.isdir(kit):
@@ -251,6 +267,7 @@ def main():
     checks = [("json", lambda: check_json(files)), ("python", lambda: check_python(files)), ("calc-tests", check_calc),
               ("site-sync", lambda: check_site_sync(files)), ("drafts", check_drafts), ("em-dash", lambda: check_em_dash(files)),
               ("secrets", lambda: check_secrets(files)), ("permit-data", check_permit_data), ("video-specs", lambda: check_video_specs(files)),
+              ("voice", lambda: check_voice(files)),
               ("fiverr-kit", check_fiverr_kit),
               ("gate-tests", check_gate_tests)]
     for name, fn in checks:

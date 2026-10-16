@@ -18,11 +18,15 @@ Our rules (README "Rules" and the Legal desk):
   - no links, web addresses, emails or phone numbers in anything pasted into Fiverr
   - no guarantee wording, no review bait (asking for a 5-star or positive review, or anything in exchange for one)
   - no off-Fiverr asks (other apps, other payment methods, "email me")
+  - no AI-sounding phrase (tools/voice_lint.py)
 
 Usage: python3 tools/fiverr_kit.py [kit folder] [--stats]
   prints one line per problem and exits 1 if there is any; --stats also prints every field's length
 """
 import os, re, sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import voice_lint  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 KIT = os.path.join(ROOT, "services", "fiverr")
@@ -85,6 +89,8 @@ def table(md, heading):
 
 
 def pasted_rules(where, text, problems):
+    for name, words in voice_lint.tells(text):
+        problems.append(f"{where}: AI-sounding phrase {name} ({words.strip()!r})")
     if CONTACT.search(text):
         problems.append(f"{where}: a link, web address, email or phone number ({CONTACT.search(text).group(0)!r})")
     if GUARANTEE.search(text):

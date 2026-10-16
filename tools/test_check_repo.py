@@ -9,7 +9,7 @@ check_repo.py runs this file as its gate-tests check, so the nightly optimizer a
 import json, os, random, re, shutil, string, subprocess, sys, tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data", "video-specs", "fiverr-kit"]
+CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data", "video-specs", "voice", "fiverr-kit"]
 rng = random.Random()
 # Key markers are assembled here so this file never matches the secrets check itself.
 KEY_BEGIN = "-----BEGIN " + "RSA PRIVATE " + "KEY-----"
@@ -117,6 +117,10 @@ def plants(tmp):
             d = json.load(open(os.path.join(tmp, example), encoding="utf-8")); d.pop("formula", None); return json.dumps(d)
         out.append(("video-specs", "a short with the old close", new_file(os.path.join("promo", "specs", "2026-10-16-zz-planted.json"), old_close(None))))
         out.append(("video-specs", "a dated short without a formula", new_file(os.path.join("promo", "specs", "2026-10-17-zz-planted.json"), no_formula(None))))
+
+    def planted_tell(text):
+        d = json.loads(text); d["pages"][0]["plantedNote"] = "Unlock your pricing potential."; return json.dumps(d)
+    out.append(("voice", "an AI-sounding phrase on a site page", edit(os.path.join("site", "pages.json"), planted_tell)))
 
     # Fiverr kit: plants keyed to the file's structure, not its wording, so copy edits never break these tests.
     gigs, replies = os.path.join("services", "fiverr", "gigs.md"), os.path.join("services", "fiverr", "replies.md")

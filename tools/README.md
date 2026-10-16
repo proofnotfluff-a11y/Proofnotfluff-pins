@@ -100,3 +100,7 @@ make_site.py also writes docs/go/index.html (the one bio link: free calculators,
 ## short_views.py (Optimizer, Oct 15, 2026)
 
 `python3 tools/short_views.py ids <shorts dir>` then `apply <shorts dir> <reply.json> <versions.json> <out.json> "<as of>"`: refreshes scoreboard shorts/<slug>.views from a YouTube Data API videos.list reply fetched in the cloud through the Zapier YouTube "Make API GET Request" action (url https://www.googleapis.com/youtube/v3/videos, querystring part=statistics, id=<ids>). It writes one ArtifactData batch of the changed Shorts and prints the rule flags (WALKTHROUGH past 100 views, FOLLOW-UPS past 500, MISSING ids). It replaces the shop run's YouTube Studio read, which has failed since Chrome's YouTube moved to a personal account (shorts views were frozen at Oct 11). `selftest` checks the logic.
+
+## voice_lint.py (Oct 15, 2026)
+
+`python3 tools/voice_lint.py <file> [...]`: the common tells of AI-written copy (vocabulary like "delve" and "seamless", filler like "it's worth noting", chatbot leftovers, "not just X, but Y", emoji), drawn from the patterns in Wikipedia's "Signs of AI writing" guide and narrowed so pricing and landscaping copy can still say "budget" or "landscape". spec_lint.py runs it on every spoken line and caption of a short, fiverr_kit.py on every pasted Fiverr field, and the code gate on the free site's page text and the email copy (the voice check). Every current page, spec, gig field and email passed when it was added.

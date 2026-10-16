@@ -2784,7 +2784,7 @@
   {
    "slug": "handyman-hourly-rate-calculator",
    "kind": "hourly",
-   "draft": true,
+   "draft": false,
    "quote": true,
    "product": "20",
    "segment": "home-services",
@@ -2849,7 +2849,7 @@
     ],
     [
      "Should I charge a minimum for small jobs?",
-     "Many handymen set a minimum charge so a 30-minute fix still covers the drive. One way to pick it is to price your shortest normal job with this calculator, drive time included in the billable hours."
+     "A minimum charge is one way to make sure a 30-minute fix still covers the drive. One way to pick one is to price your shortest normal job with this calculator, drive time included in the billable hours."
     ],
     [
      "Should I mark up parts and materials?",
@@ -3063,7 +3063,7 @@
   {
    "slug": "estate-cleanout-cost-calculator",
    "kind": "service",
-   "draft": true,
+   "draft": false,
    "product": "23",
    "segment": "home-services",
    "title": "Estate Cleanout Cost Calculator: Price a Whole-House Cleanout | ProofNotFluff",
@@ -3469,7 +3469,7 @@
   {
    "slug": "break-even-calculator",
    "kind": "break_even",
-   "draft": true,
+   "draft": false,
    "product": "28",
    "segment": "ecommerce-finance",
    "title": "Break Even Calculator: Monthly Break-Even Sales for a Small Business | ProofNotFluff",
@@ -3534,7 +3534,7 @@
   {
    "slug": "markup-calculator",
    "kind": "markup",
-   "draft": true,
+   "draft": false,
    "product": "25",
    "segment": "ecommerce-finance",
    "title": "Markup Calculator: Selling Price From Cost, Markup vs Margin | ProofNotFluff",

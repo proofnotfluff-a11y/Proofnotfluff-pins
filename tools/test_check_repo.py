@@ -115,8 +115,14 @@ def plants(tmp):
             return json.dumps(d)
         def no_formula(_):
             d = json.load(open(os.path.join(tmp, example), encoding="utf-8")); d.pop("formula", None); return json.dumps(d)
+        def etsy_after_pivot(_):  # e-commerce kicker, but the captions still send viewers to Etsy (coo/PIVOT.md)
+            d = json.load(open(os.path.join(tmp, example), encoding="utf-8"))
+            d["audience"] = "PROOF CHECK #9 · FOR SHOPIFY SELLERS"
+            d["cta"]["what"] = "Free online. No sign-up."
+            return json.dumps(d)
         out.append(("video-specs", "a short with the old close", new_file(os.path.join("promo", "specs", "2026-10-16-zz-planted.json"), old_close(None))))
         out.append(("video-specs", "a dated short without a formula", new_file(os.path.join("promo", "specs", "2026-10-17-zz-planted.json"), no_formula(None))))
+        out.append(("video-specs", "a pivot-era short whose captions send viewers to Etsy", new_file(os.path.join("promo", "specs", "2026-10-18-zz-planted.json"), etsy_after_pivot(None))))
 
     def planted_tell(text):
         d = json.loads(text); d["pages"][0]["plantedNote"] = "Unlock your pricing potential."; return json.dumps(d)

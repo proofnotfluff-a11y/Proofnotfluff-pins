@@ -17,6 +17,12 @@ Rules (a spec with a "formula" key; from Oct 16, 2026 every dated short spec mus
   no invented people; no AI-sounding phrase (tools/voice_lint.py); Reel caption with "Link in bio: proofnotfluff.etsy.com" and 3 to 5 hashtags; TikTok caption
   with "Search ProofNotFluff on Etsy".
 
+PIVOT (Todd's "Go", Oct 15, 9:55 pm; coo/PIVOT.md): a spec dated from Oct 16 points at the free site, not Etsy. Its
+  kicker names an e-commerce audience (FOR E-COMMERCE BRANDS, FOR SHOPIFY SELLERS, FOR AMAZON SELLERS...); end card
+  what "Free online. No sign-up." or, once the kit is live, "Free online. Full <thing> $<29 to 199>"; Reel caption
+  with "Free calculator: link in bio (proofnotfluff.com)"; TikTok caption with "Free calculator at proofnotfluff.com";
+  neither caption mentions Etsy.
+
 Usage: python3 tools/spec_lint.py spec.json [spec.json ...]    one line per problem, exit 1 if any
 """
 import json, os, re, sys
@@ -31,6 +37,15 @@ CTA_SAY = re.compile(r"^[A-Z][A-Za-z' ]+ free at ProofNotFluff dot com\.$")
 CTA_WHAT = re.compile(r"^Free online\. Full [a-z ]+ \$2\.99 on Etsy$")
 PEOPLE = re.compile(r"client of mine|a client I|\bI once\b|my customers? (?:told|said)|a shop owner I know|a friend of mine", re.I)
 HASHTAG = re.compile(r"(?<![\w&])#[A-Za-z]\w*")
+# The pivot (coo/PIVOT.md): from this date every dated short is for e-commerce brands and points at the free site.
+PIVOT = "2026-10-16"
+PIVOT_WHO = re.compile(r"· FOR [A-Z0-9 ,'&-]*(?:E-?COMMERCE|SHOPIFY|AMAZON|TIKTOK SHOP|ETSY SELLERS|WHOLESALE|RETAIL"
+                       r"|ONLINE (?:SELLERS|SHOPS|STORES|BRANDS)|PRODUCT (?:BRANDS|BUSINESSES|SELLERS)"
+                       r"|(?:SMALL|CONSUMER|DTC) BRANDS)")
+SITE_WHAT = "Free online. No sign-up."
+PREMIUM_WHAT = re.compile(r"^Free online\. Full [a-z0-9 -]+ \$(\d{2,3})$")
+REEL_SITE = "Free calculator: link in bio (proofnotfluff.com)"
+TIKTOK_SITE = "Free calculator at proofnotfluff.com"
 
 
 def strip(text):
@@ -55,6 +70,7 @@ def problems(spec, path=""):
             out.append(f"no formula: from {START} every short is a Proof Check episode (add formula and series, "
                        "cmo/CONTENT_PLAYBOOK.md section 2)")
         return out
+    pivot = bool(dated) and dated.group(1) >= PIVOT
     code = FORMULAS.get(formula)
     if not code:
         out.append(f"formula {formula!r} is not one of {', '.join(FORMULAS)}")
@@ -65,6 +81,9 @@ def problems(spec, path=""):
     # Todd, Oct 15, watching Proof Check #1: "I don't understand what the product is and what use case it's for".
     if not re.search(r"· FOR [A-Z]", spec.get("audience", "")):
         out.append("kicker must say who it is for: 'PROOF CHECK #<n> · FOR <WHO>' (e.g. FOR FREELANCERS, FOR CLEANING BUSINESSES)")
+    elif pivot and not PIVOT_WHO.search(spec.get("audience", "")):
+        out.append(f"kicker {spec.get('audience')!r} must name an e-commerce audience from Oct 16 (FOR E-COMMERCE BRANDS, "
+                   "FOR SHOPIFY SELLERS, FOR AMAZON SELLERS, FOR ETSY SELLERS, FOR ONLINE SELLERS...; coo/PIVOT.md)")
     if not (spec.get("pitch") or {}).get("say"):
         out.append("no pitch: the end card needs one spoken line saying what the product is and what you do with it")
     if not spec.get("cta", {}).get("use"):
@@ -103,8 +122,15 @@ def problems(spec, path=""):
         out.append(f"end card button {cta.get('button')!r} must be 'Free calculator'")
     if cta.get("sub") != "proofnotfluff.com":
         out.append(f"end card sub {cta.get('sub')!r} must be 'proofnotfluff.com'")
-    if not CTA_WHAT.match(cta.get("what", "")):
-        out.append(f"end card what {cta.get('what')!r} must read 'Free online. Full <workbook or tracker> $2.99 on Etsy'")
+    what = cta.get("what", "")
+    m = PREMIUM_WHAT.match(what)
+    premium_ok = bool(m) and 29 <= int(m.group(1)) <= 199
+    if pivot:
+        if what != SITE_WHAT and not premium_ok:
+            out.append(f"end card what {what!r} must read '{SITE_WHAT}' or, once the kit is live, "
+                       "'Free online. Full 13-week workbook $79' (coo/PIVOT.md)")
+    elif not CTA_WHAT.match(what) and what != SITE_WHAT and not premium_ok:
+        out.append(f"end card what {what!r} must read 'Free online. Full <workbook or tracker> $2.99 on Etsy'")
     said = sum(l.count("ProofNotFluff dot com") for l in spoken(spec))
     if said != 1:
         out.append(f"the close is spoken {said} times (exactly once, at the end)")
@@ -120,13 +146,23 @@ def problems(spec, path=""):
         out.append(f"AI-sounding phrase: {name} ({words.strip()!r})")
     post = spec.get("post") or {}
     reel = post.get("reel_caption", "")
-    if "Link in bio: proofnotfluff.etsy.com" not in reel:
-        out.append("the Reel caption lacks 'Link in bio: proofnotfluff.etsy.com'")
+    tiktok = post.get("tiktok_caption", "")
+    if pivot:
+        if REEL_SITE not in reel:
+            out.append(f"the Reel caption lacks '{REEL_SITE}' (coo/PIVOT.md)")
+        if TIKTOK_SITE not in tiktok:
+            out.append(f"the TikTok caption lacks '{TIKTOK_SITE}' (coo/PIVOT.md)")
+        for name, text in (("Reel", reel), ("TikTok", tiktok)):
+            if "etsy" in text.lower():
+                out.append(f"the {name} caption mentions Etsy: from Oct 16 videos send viewers to the free site (coo/PIVOT.md)")
+    else:
+        if "Link in bio: proofnotfluff.etsy.com" not in reel and REEL_SITE not in reel:
+            out.append("the Reel caption lacks 'Link in bio: proofnotfluff.etsy.com'")
+        if "Search ProofNotFluff on Etsy" not in tiktok and TIKTOK_SITE not in tiktok:
+            out.append("the TikTok caption lacks 'Search ProofNotFluff on Etsy'")
     tags = HASHTAG.findall(reel)
     if not 3 <= len(tags) <= 5:
         out.append(f"the Reel caption has {len(tags)} hashtags (3 to 5)")
-    if "Search ProofNotFluff on Etsy" not in post.get("tiktok_caption", ""):
-        out.append("the TikTok caption lacks 'Search ProofNotFluff on Etsy'")
     return out
 
 

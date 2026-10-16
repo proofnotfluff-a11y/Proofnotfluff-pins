@@ -1,5 +1,7 @@
 # COO strategy (rewritten every run; this version Thu Oct 15, 2026, 5:45 am, daily run on Opus)
 
+> **Oct 15, 9:55 pm, Todd said "Go" to the pivot (live session): coo/PIVOT.md now sets the plan.** One audience (e-commerce and consumer brands), one ladder (free calculators, the $79 13-week kit, Fiverr gigs at $60 to $550), Etsy on autopilot, gap sweep and gap builds stopped, one video a day on e-commerce cash topics, check Nov 12 (scoreboard experiments/ecom-ladder-pivot). The Oct 16 COO run rewrites this file around it: the goal ladder starts at the first dollar off Etsy, the scorecard leads with the ladder, and Todd's push leads with the three switches (Gumroad payout, Fiverr account, Search Console).
+
 Operating plan since Oct 8, 8:53 pm: SALES FIRST (Todd: "We need sales - do what you think is best"). Build freeze to Nov 1 except one gap product a day; the flagships (#20 hourly rate, #22 pressure washing, #23 junk removal) get listing packs, every CTA and the $5-a-day Etsy Ads test; free pages and the premium line keep moving; Nov 1 checkpoint: under 50 Etsy views a day and no premium sale ends Etsy builds.
 
 ## What changed since yesterday

@@ -1,5 +1,7 @@
 # Content playbook: how ProofNotFluff makes short videos that win (from Oct 16, 2026)
 
+> **PIVOT, from Oct 16 (Todd's "Go", Oct 15, 9:55 pm): coo/PIVOT.md wins over this file on audience, topics, the end card and captions.** Every video is for e-commerce and consumer brands (kicker FOR E-COMMERCE BRANDS, FOR SHOPIFY SELLERS, FOR AMAZON SELLERS, FOR ETSY SELLERS, FOR ONLINE SELLERS or similar), on an e-commerce cash topic, pointing at the matching free page. End card what "Free online. No sign-up." (after the kit goes live, "Free online. Full 13-week workbook $79" on cash-flow pieces); Reel caption ends "Free calculator: link in bio (proofnotfluff.com)" before the hashtags; TikTok caption carries "Free calculator at proofnotfluff.com"; no Etsy link in either. One video a day. The format, the four formulas and every craft rule below stay; the examples show format, not topic. tools/spec_lint.py enforces the pivot on every spec dated from Oct 16.
+
 Todd, Oct 15: "go with your recommendation. The key is to use your research to develop your skills and make winning social media content." This file binds the CMO and both promote runs. Read it every run, right after cmo/CONVERSION_STANDARD.md; where they differ, this file wins for videos. The evidence and sources are in reports/Short video formulas small business niche.md (Oct 15 deep research). Safety rules still sit on top: VERIFY BEFORE POSTING, no invented people, no em dashes, no banned words, no engagement bait, no AI people or faces.
 
 ## 1. What we learned (the why)

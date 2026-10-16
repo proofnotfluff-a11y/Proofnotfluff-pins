@@ -549,6 +549,40 @@
       pos: hasPrice && ppu > 0 ? 1 : 0, neg: hasPrice && ppu <= 0 ? 1 : 0, noPrice: any && !hasPrice ? 1 : 0, none: any ? 0 : 1 };
   }
 
+  // #25 Small Business Inventory Tracker, 1 Items, seen as a markup: price = unit cost x (1 + markup). Markup is profit
+  // over cost, gross margin is profit over price, and the profit per unit after fees is price - unit cost - price x
+  // fee rate, as the Items tab's Profit per unit. Lavender candle: $7.50 cost and 220% markup give its $24.00 price.
+  function markup(i) {
+    var cost = Math.max(0, num(i.unitCost)), mk = Math.max(-1, num(i.markupPct) / 100), feeRate = Math.max(0, num(i.feePct)) / 100;
+    var price = cost * (1 + mk), fees = price * feeRate, gp = price - cost, ppu = price - cost - fees;
+    var cp = Math.max(0, num(i.checkPrice)), hasCost = cost > 0 ? 1 : 0, checkOn = hasCost && cp > 0 ? 1 : 0;
+    var checkProfit = checkOn ? cp - cost - cp * feeRate : 0;
+    return { cost: cost, price: hasCost ? price : 0, fees: hasCost ? fees : 0, gp: hasCost ? gp : 0, ppu: hasCost ? ppu : 0,
+      markup: hasCost ? mk : 0, margin: hasCost && price > 0 ? gp / price : 0, netMargin: hasCost && price > 0 ? ppu / price : 0,
+      checkPrice: cp, checkMarkup: checkOn ? (cp - cost) / cost : 0, checkMargin: checkOn ? (cp - cost) / cp : 0,
+      checkProfit: checkProfit, checkOn: checkOn, checkLoss: checkOn && checkProfit <= 0 ? 1 : 0, checkGain: checkOn && checkProfit > 0 ? 1 : 0,
+      loss: hasCost && ppu < 0 ? -ppu : 0, pos: hasCost && ppu > 0 ? 1 : 0, neg: hasCost && ppu <= 0 ? 1 : 0, none: hasCost ? 0 : 1 };
+  }
+
+  // #28 Profit and Loss Template, 2 Statement, one month split in two: costs that rise with each sale (cost of goods
+  // sold, selling fees, shipping labels) and costs paid anyway (the other operating expenses). Contribution margin =
+  // 1 - variable / sales; break-even sales = fixed / contribution margin; profit = sales - variable - fixed, which is the
+  // Statement's Net profit. September of the example: $3,325, $2,040 and $771.99 give $513.01 and $1,997.56.
+  function breakEven(i) {
+    var sales = Math.max(0, num(i.sales)), variable = Math.max(0, num(i.variable)), fixed = Math.max(0, num(i.fixed));
+    var avg = Math.max(0, num(i.avgSale)), hasSales = sales > 0 ? 1 : 0;
+    var varShare = hasSales ? variable / sales : 0, cm = hasSales ? 1 - varShare : 0;
+    var never = hasSales && cm <= 0 ? 1 : 0, be = hasSales && cm > 0 ? fixed / cm : 0;
+    var profit = sales - variable - fixed, cushion = hasSales && !never ? sales - be : 0;
+    var orders = avg > 0 && be > 0 ? Math.ceil(be / avg - 1e-9) : 0, any = sales > 0 || variable > 0 || fixed > 0;
+    return { sales: sales, variable: variable, fixed: fixed, varShare: varShare, cm: cm, be: be, profit: profit,
+      loss: profit < 0 ? -profit : 0, cushion: cushion, short: cushion < 0 ? -cushion : 0,
+      cushionShare: hasSales && !never ? cushion / sales : 0, cmDollars: sales - variable, orders: orders,
+      ordersOn: avg > 0 && be > 0 ? 1 : 0, daily: be / 30.4, never: never,
+      above: hasSales && !never && cushion >= 0 ? 1 : 0, below: hasSales && !never && cushion < 0 ? 1 : 0,
+      noSales: any && !hasSales ? 1 : 0, none: any ? 0 : 1 };
+  }
+
   // #24 Fair Share Chore Chart, Fair Split tab: fair target = whole-home minutes x each person's share (shares typed
   // for everyone are scaled to 100%, otherwise an even split, as Setup's "Shares" rule), over (+) or under (-) target =
   // assigned - target, hours a week = minutes / 60. This page uses clock minutes; the workbook also weights
@@ -656,7 +690,7 @@
   }
 
   var api = { seTax: seTax, hourly: hourly, service: service, serviceSqft: serviceSqft, dayRate: dayRate, cleaningSqft: cleaningSqft, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
-    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, profitLoss: profitLoss, cakeQuote: cakeQuote, unitCost: unitCost, choreSplit: choreSplit, clientMix: clientMix, cakeSizes: CAKE_SIZES, num: num, money: money, ceilTo: ceilTo,
+    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, profitLoss: profitLoss, cakeQuote: cakeQuote, unitCost: unitCost, markup: markup, breakEven: breakEven, choreSplit: choreSplit, clientMix: clientMix, cakeSizes: CAKE_SIZES, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;
 })(this);

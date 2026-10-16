@@ -1324,6 +1324,87 @@ PNF.wire(f,PNF.cleaningSqft);})();</script>"""
     return form, results, script
 
 
+def markup_page(p):
+    """#25 Items tab seen as a markup (PNF.markup): price from unit cost and markup, margin, profit after fees."""
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>Your cost and markup</legend>
+{field("unitCost", "Unit cost", d["unitCost"], "Materials, labor and packaging for one unit", pre="$")}
+{field("markupPct", "Markup", d["markupPct"], "Profit as a share of your cost. 100% doubles the cost", suf="%")}
+{field("feePct", "Selling and payment fees", d["feePct"], "Your fees as a share of the price. 0 if none", suf="%")}
+</fieldset>
+<fieldset><legend>Check a price (optional)</legend>
+{field("checkPrice", "A price to check", d["checkPrice"], "What you charge now, or a price you are thinking about", pre="$")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Selling price</div><div class="val" data-out="price">$0</div><div class="sub">Cost plus <span data-pct="markup">0%</span> markup</div></div>
+<div class="tile"><div class="lab">Gross margin</div><div class="val" data-pct="margin">0%</div><div class="sub">Profit before fees, share of price</div></div>
+<div class="tile"><div class="lab">Profit per unit after fees</div><div class="val" data-out="ppu">$0</div><div class="sub"><span data-pct="netMargin">0%</span> of the price</div></div>
+</div>
+<ul class="lines">
+<li><span>Unit cost</span><span data-out="cost">$0</span></li>
+<li><span>Markup in dollars</span><span data-out="gp">$0</span></li>
+<li class="total"><span>Selling price</span><span data-out="price">$0</span></li>
+<li><span>Fees</span><span data-out="fees">$0</span></li>
+<li class="total"><span>Profit per unit after fees</span><span data-out="ppu">$0</span></li>
+</ul>
+<div class="callout" data-show-if="pos > 0">Each sale at <b data-out="price">$0</b> keeps <b data-out="ppu">$0</b> after the unit cost and fees.</div>
+<div class="callout warn" data-show-if="neg > 0">At this markup the fees and cost take the whole price: each sale loses <b data-out="loss">$0</b> or breaks even.</div>
+<div class="callout warn" data-show-if="none > 0">Type what one unit costs you to see the price.</div>
+<div class="callout" data-show-if="checkGain > 0">A <b data-out="checkPrice">$0</b> price is a <b data-pct="checkMarkup">0%</b> markup and a <b data-pct="checkMargin">0%</b> gross margin. It keeps <b data-out="checkProfit">$0</b> a unit after fees.</div>
+<div class="callout warn" data-show-if="checkLoss > 0">A <b data-out="checkPrice">$0</b> price keeps <b data-out="checkProfit">$0</b> a unit after cost and fees: no profit.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Price <b data-out="price">$0</b></span><span>Profit <b data-out="ppu">$0</b></span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.markup in assets/pnf-calc.js, 1 Items of engines/inventory-tracker (#25). */
+var M=function(i){return PNF.markup(i);};
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
+def break_even_page(p):
+    """#28 Statement month split into costs that rise with sales and costs paid anyway (PNF.breakEven)."""
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>One month of your business</legend>
+{field("sales", "Sales for the month", d["sales"], "Net revenue: sales less refunds", pre="$")}
+{field("variable", "Costs that rise with each sale", d["variable"], "Stock and materials, selling and payment fees, shipping labels", pre="$")}
+{field("fixed", "Costs you pay anyway", d["fixed"], "Rent, insurance, phone, software, ads and other monthly bills", pre="$")}
+</fieldset>
+<fieldset><legend>Orders (optional)</legend>
+{field("avgSale", "Average sale", d["avgSale"], "Sales divided by orders. Leave blank to skip", pre="$")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Break-even sales a month</div><div class="val" data-out="be" data-never="Never">$0</div><div class="sub">Zero profit, zero loss</div></div>
+<div class="tile"><div class="lab">Contribution margin</div><div class="val" data-pct="cm">0%</div><div class="sub">Of each sales dollar, after the costs that rise with it</div></div>
+<div class="tile"><div class="lab">Profit this month</div><div class="val" data-out="profit">$0</div></div>
+</div>
+<ul class="lines">
+<li><span>Sales</span><span data-out="sales">$0</span></li>
+<li><span>Costs that rise with each sale (<span data-pct="varShare">0%</span> of sales)</span><span data-out="variable">$0</span></li>
+<li class="total"><span>Left to cover the fixed costs</span><span data-out="cmDollars">$0</span></li>
+<li><span>Costs you pay anyway</span><span data-out="fixed">$0</span></li>
+<li class="total"><span>Profit this month</span><span data-out="profit">$0</span></li>
+<li data-show-if="ordersOn > 0"><span>Orders a month to break even</span><span data-out="orders" data-fmt="int">0</span></li>
+</ul>
+<div class="callout" data-show-if="above > 0">You are <b data-out="cushion">$0</b> above break-even: sales could drop <b data-pct="cushionShare">0%</b> before the month turns to a loss.</div>
+<div class="callout warn" data-show-if="below > 0">You are <b data-out="short">$0</b> short of break-even this month. Raise prices, cut a cost that rises with sales, or sell more.</div>
+<div class="callout warn" data-show-if="never > 0">The costs that rise with each sale take the whole sale, so more sales never cover the fixed costs. Raise prices or cut those costs first.</div>
+<div class="callout warn" data-show-if="noSales > 0">Type a month of sales to see your break-even.</div>
+<div class="callout warn" data-show-if="none > 0">Type your sales and costs for one month.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Break-even <b data-out="be" data-never="Never">$0</b></span><span>Profit <b data-out="profit">$0</b></span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.breakEven in assets/pnf-calc.js, 2 Statement of engines/profit-and-loss (#28). */
+var M=function(i){return PNF.breakEven(i);};
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
 PAGE_KINDS = {"day_rate": day_rate_page, "cleaning_sqft": cleaning_sqft_page, "service": service_page, "service_sqft": service_sqft_page, "hourly": hourly_page, "cashflow": cashflow_page,
               "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
               "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
@@ -1339,7 +1420,8 @@ PAGE_KINDS = {"day_rate": day_rate_page, "cleaning_sqft": cleaning_sqft_page, "s
               "cake": cake_page,
               "unit_cost": unit_cost_page,
               "chore_split": chore_split_page,
-              "client_mix": client_mix_page}
+              "client_mix": client_mix_page,
+              "markup": markup_page, "break_even": break_even_page}
 
 
 # ---------------------------------------------------------------- permit leads pilot (coo/OPPORTUNITIES.md Case 4)

@@ -568,4 +568,32 @@ const CLN2 = Object.assign({}, CLN, { takeHome: 60000, margin: 20, minPer1000: 1
 check("#14 0 weeks: minimum charge", P.cleaningSqft(Object.assign({}, CLN, { weeks: 0, sqft: 3500 })).visit, 120);
 check("#14 blank: per sq ft", P.cleaningSqft({}).perSqFt, 0);
 
+// #25 Inventory Tracker, 1 Items recalculated in LibreOffice Oct 16, seen as a markup (markup = (G - L) / L)
+const MK = P.markup({ unitCost: 7.5, markupPct: 220, feePct: 10, checkPrice: "" });
+check("#25 markup: lavender price G16", MK.price, 24);
+check("#25 markup: lavender profit per unit M16", MK.ppu, 14.1);
+check("#25 markup: lavender gross margin", MK.margin, 0.6875);
+check("#25 markup: lavender net margin", MK.netMargin, 0.5875);
+const MKc = P.markup({ unitCost: 12.5, markupPct: 204, feePct: 10, checkPrice: 38 });
+check("#25 markup: citrus price G18", MKc.price, 38);
+check("#25 markup: citrus profit per unit M18", MKc.ppu, 21.7);
+check("#25 markup: citrus check markup", MKc.checkMarkup, 2.04);
+const MKl = P.markup({ unitCost: 1.7, markupPct: 100, feePct: 10, checkPrice: 5 });
+check("#25 markup: lip balm check profit M25", MKl.checkProfit, 2.8);
+check("#25 markup: lip balm at 100% markup", MKl.price, 3.4);
+check("#25 markup: below cost loss", P.markup({ unitCost: 7.5, markupPct: -20, feePct: 10 }).loss, 2.1);
+check("blank markup: none flag", P.markup({}).none, 1);
+// #28 Profit and Loss Template, 2 Statement recalculated in LibreOffice Oct 16 (September G30, G36, G41, G57, G59)
+const BE = P.breakEven({ sales: 3325, variable: 2040, fixed: 771.99, avgSale: "" });
+check("#28 Sep net profit G59", BE.profit, 513.01);
+check("#28 Sep break-even sales", BE.be, 1997.56);
+check("#28 Sep contribution margin", BE.cm, 0.386466);
+check("#28 Sep cushion", BE.cushion, 1327.44);
+const BEa = P.breakEven({ sales: 4550, variable: 2495, fixed: 693.09, avgSale: 25 });
+check("#28 Aug net profit H59 (Aug)", BEa.profit, 1361.91);
+check("#28 Aug break-even sales", BEa.be, 1534.58);
+check("#28 Aug orders at $25", BEa.orders, 62);
+check("#28 variable over sales: never", P.breakEven({ sales: 1000, variable: 1000, fixed: 500 }).never, 1);
+check("blank break-even: none flag", P.breakEven({}).none, 1);
+
 process.exit(fails ? 1 : 0);

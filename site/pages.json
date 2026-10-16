@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-12",
+ "updated": "2026-10-16",
  "pages": [
   {
    "slug": "house-cleaning-price-calculator",
@@ -3465,6 +3465,132 @@
     ]
    ],
    "sources": "City of Chicago Data Portal, Building Permits."
+  },
+  {
+   "slug": "break-even-calculator",
+   "kind": "break_even",
+   "draft": true,
+   "product": "28",
+   "segment": "ecommerce-finance",
+   "title": "Break Even Calculator: Monthly Break-Even Sales for a Small Business | ProofNotFluff",
+   "desc": "Free break even calculator for small businesses. Type one month of sales, the costs that rise with each sale and the costs you pay anyway to get your break-even sales, contribution margin and cushion.",
+   "eyebrow": "Free calculator",
+   "h1": "Break Even Calculator",
+   "lede": "Type one month of sales, the costs that rise with each sale and the bills you pay anyway. The calculator gives the sales you need each month to break even, how much of each sales dollar is left to cover your bills, and how far above or below break-even you are. Free, no sign-up.",
+   "card": "Monthly break-even sales from your own sales and costs, with contribution margin and your cushion.",
+   "defaults": {
+    "sales": "3,325",
+    "variable": "2,040",
+    "fixed": "771.99",
+    "avgSale": ""
+   },
+   "method": [
+    "Split one month of costs in two. Costs that rise with each sale are the stock and materials in what you sold, selling and payment fees and shipping labels. Costs you pay anyway are rent, insurance, phone, software, ads and the other bills that stay about the same whatever you sell.",
+    "Contribution margin is the share of each sales dollar left after the costs that rise with it: one minus those costs divided by sales. Break-even sales are the costs you pay anyway divided by the contribution margin. At that level of sales the month ends at zero profit.",
+    "Profit for the month is sales less both kinds of cost, the same net profit a profit and loss statement shows. The cushion is how far your sales sit above break-even. Owner draws and big equipment purchases stay out, as they do on the statement."
+   ],
+   "example": "The Profit and Loss Template's example is a made-up one-person T-shirt shop. In September it had $3,325.00 of net revenue and a net profit of $513.01. Its costs that rise with each sale were $2,040.00: $1,260.00 of shirts and ink, $340.00 of selling fees and $440.00 of shipping labels. Its costs paid anyway came to $771.99: $450.00 rent, $42.00 insurance, $65.00 phone and internet, $29.99 software, $100.00 ads and $85.00 supplies. That leaves a 38.6% contribution margin and a break-even of $1,997.56 a month, so September sat $1,327.44 above it. August, with $4,550.00 of sales, broke even at $1,534.58.",
+   "cta": {
+    "title": "Get these numbers from every sale and expense",
+    "bullets": [
+     "The Profit and Loss Template for Excel and Google Sheets turns one log of money in and money out into a monthly and year-to-date statement with 22 cost and expense lines, % of revenue on every line and a Month by Month tab for the whole year.",
+     "It has an Entries tab with 1,000 rows, a Checks box for rows missing a date or category, a filled-in example and a Start Here guide. $2.99, instant download."
+    ],
+    "button": "Get the template on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4592931854"
+   },
+   "faq": [
+    [
+     "How do I calculate my break-even point?",
+     "Divide the costs you pay anyway by your contribution margin. In the example, $771.99 of monthly bills divided by a 38.6% contribution margin is $1,997.56 of sales a month."
+    ],
+    [
+     "What counts as a cost that rises with each sale?",
+     "Anything you spend more on when you sell more: the stock or materials in what you sold, marketplace and payment fees, shipping labels and packaging. Rent, insurance, software and most ad budgets stay the same, so they go in the other box."
+    ],
+    [
+     "How do I get break-even in number of sales?",
+     "Type your average sale: a month's sales divided by its number of orders. The calculator divides break-even sales by it and rounds up. With a $25.00 average sale, the example's August break-even is 62 orders."
+    ],
+    [
+     "Why does my break-even change from month to month?",
+     "Your mix changes. A month with a big custom order or higher fees changes the share of each dollar the costs take. Use a typical month, or run two months to see the range."
+    ],
+    [
+     "Should I include what I pay myself?",
+     "Not as a cost here. Owner draws stay out of profit, as on a profit and loss statement. If you want break-even to include your pay, add a monthly amount for yourself to the costs you pay anyway."
+    ],
+    [
+     "Is this tax or financial advice?",
+     "No. It is a planning estimate from the numbers you type."
+    ]
+   ],
+   "sources": "No outside rates are used on this page. The example (September net revenue $3,325.00, cost of goods sold $1,260.00, selling fees $340.00, shipping labels $440.00, other operating expenses $771.99, net profit $513.01; August net revenue $4,550.00, net profit $1,361.91) is the made-up shop in the Profit and Loss Template workbook, recalculated Oct 16, 2026. The split into costs that rise with sales and costs paid anyway is this page's.",
+   "number_sources": [
+    "engines/profit-and-loss/build_xlsx.py example recalculated in LibreOffice Oct 16, 2026: 2 Statement (September) G30 3325, G36 1260, G41 340, G57 469.99 (labels 440 plus software 29.99 in 1 Entries), G58 1551.99, G59 513.01. August from ex_pl(8, 8): rev 4550, cogs 1800, exp 1388.09 (fees 305, labels 390), np 1361.91.",
+    "docs/assets/pnf-calc.test.js breakEven checks."
+   ]
+  },
+  {
+   "slug": "markup-calculator",
+   "kind": "markup",
+   "draft": true,
+   "product": "25",
+   "segment": "ecommerce-finance",
+   "title": "Markup Calculator: Selling Price From Cost, Markup vs Margin | ProofNotFluff",
+   "desc": "Free markup calculator. Type your unit cost and markup to get the selling price, the gross margin it gives, and the profit per unit left after selling fees. Check any price's markup and margin.",
+   "eyebrow": "Free calculator",
+   "h1": "Markup Calculator",
+   "lede": "Type what one unit costs you and the markup you want. The calculator gives the selling price, the gross margin that markup works out to, and what each sale keeps after selling and payment fees. Check any price too. Free, no sign-up.",
+   "card": "Selling price from unit cost and markup, the margin it gives, and profit per unit after fees.",
+   "defaults": {
+    "unitCost": "7.50",
+    "markupPct": "220",
+    "feePct": "10",
+    "checkPrice": ""
+   },
+   "method": [
+    "Markup is the profit on a unit as a share of what the unit cost you. The selling price is the unit cost times one plus the markup: a $7.50 unit with a 100% markup sells for $15.00, and with a 220% markup for $24.00.",
+    "Gross margin is the same profit as a share of the price instead of the cost, so it is always smaller than the markup: markup divided by one plus the markup. A 100% markup is a 50% margin; a 220% markup is a 68.8% margin.",
+    "Fees are the price times your fee rate: marketplace, payment and card fees as one share of the price. Profit per unit after fees is the price less the unit cost less the fees, the same arithmetic as the Items tab of the Small Business Inventory Tracker."
+   ],
+   "example": "The Inventory Tracker's example is a made-up candle and soap maker. Its lavender soy candle costs $7.50 a unit to make ($4.20 materials, $2.00 labor, $1.30 packaging) and sells for $24.00: a 220% markup and a 68.8% gross margin. After 10% fees ($2.40) each sale keeps $14.10, 58.8% of the price. The citrus candle costs $12.50 and sells for $38.00, a 204% markup that keeps $21.70 after fees. The $5.00 lip balm costs $1.70, a 194.1% markup that keeps $2.80. At a 100% markup the same lip balm would sell for $3.40.",
+   "cta": {
+    "title": "Track cost, price and profit for every item",
+    "bullets": [
+     "The Small Business Inventory Tracker for Excel and Google Sheets works out the unit cost and profit per unit for up to 150 items, keeps units on hand from one stock log, and flags each item at your reorder point.",
+     "A dashboard shows stock value at cost, items to reorder, top sellers and sales and profit for any date range. It includes a filled-in example. $2.99, instant download."
+    ],
+    "button": "Get the inventory tracker on Etsy",
+    "url": "https://proofnotfluff.etsy.com/listing/4591585227"
+   },
+   "faq": [
+    [
+     "How do I calculate markup?",
+     "Take the price, subtract the unit cost, and divide by the unit cost. A candle that costs $7.50 and sells for $24.00 has $16.50 of markup: $16.50 divided by $7.50 is a 220% markup."
+    ],
+    [
+     "What is the difference between markup and margin?",
+     "Both use the same profit. Markup divides it by the cost; margin divides it by the price. That is why a 100% markup is only a 50% margin, a 200% markup is a 66.7% margin and a 300% markup is a 75% margin."
+    ],
+    [
+     "How do I turn a margin I want into a markup?",
+     "Divide the margin by one minus the margin. For a 60% margin: 0.6 divided by 0.4 is a 150% markup. Type that markup above to see the price."
+    ],
+    [
+     "Should fees come out before or after markup?",
+     "Markup and gross margin are usually figured before fees. Selling and payment fees are a share of the price, so they come out of the profit afterwards. The calculator shows both: the margin before fees and the profit per unit after them."
+    ],
+    [
+     "What markup should I use?",
+     "It depends on your product, your volume and your other costs, like rent, ads and software, which come out of this profit too. Use the profit per unit after fees to compare prices side by side."
+    ]
+   ],
+   "sources": "No outside rates are used on this page. The method and the example (lavender candle: $7.50 unit cost, $24.00 price, $14.10 profit per unit after 10% fees; citrus candle $12.50 and $38.00; lip balm $1.70 and $5.00) are the Small Business Inventory Tracker workbook's Items tab, recalculated Oct 16, 2026. Your fee rate is your own.",
+   "number_sources": [
+    "engines/inventory-tracker/build_xlsx.py example recalculated in LibreOffice Oct 16, 2026: 1 Items row 16 E-G 4.2, 2, 1.3, H 24, I 0.1, L 7.5, M 14.1; row 18 L 12.5, H 38, M 21.7; row 25 L 1.7, H 5, M 2.8. Markup = (H - L) / L.",
+    "docs/assets/pnf-calc.test.js markup checks."
+   ]
   }
  ]
 }

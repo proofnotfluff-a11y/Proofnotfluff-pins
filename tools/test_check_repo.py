@@ -124,6 +124,12 @@ def plants(tmp):
         out.append(("video-specs", "a dated short without a formula", new_file(os.path.join("promo", "specs", "2026-10-17-zz-planted.json"), no_formula(None))))
         out.append(("video-specs", "a pivot-era short whose captions send viewers to Etsy", new_file(os.path.join("promo", "specs", "2026-10-18-zz-planted.json"), etsy_after_pivot(None))))
 
+        def hype_hook(_):  # fake secrecy in the headline (playbook rule 11)
+            d = json.load(open(os.path.join(tmp, example), encoding="utf-8"))
+            d["hook_say"] = "The secret pricing math they don't want you to know. " + d.get("hook_say", "")
+            return json.dumps(d)
+        out.append(("video-specs", "a short with fake secrecy in its hook", new_file(os.path.join("promo", "specs", "examples", "zz-planted-hype.json"), hype_hook(None))))
+
     def planted_tell(text):
         d = json.loads(text); d["pages"][0]["plantedNote"] = "Unlock your pricing potential."; return json.dumps(d)
     out.append(("voice", "an AI-sounding phrase on a site page", edit(os.path.join("site", "pages.json"), planted_tell)))

@@ -14,7 +14,8 @@ Rules (a spec with a "formula" key; from Oct 16, 2026 every dated short spec mus
   1.2 to 1.5 s; F2: the ask is "Spot the mistake?" and the next line starts "The mistake"; F3: the ask is a question;
   F4: the hook says "free calculator"; the close "<verb> free at ProofNotFluff dot com." spoken exactly once; end card
   button "Free calculator", sub "proofnotfluff.com", what "Free online. Full <thing> $2.99 on Etsy"; no em dash;
-  no invented people; no AI-sounding phrase (tools/voice_lint.py); Reel caption with "Link in bio: proofnotfluff.etsy.com" and 3 to 5 hashtags; TikTok caption
+  no invented people; no AI-sounding phrase (tools/voice_lint.py); no hype or fake urgency ("secret", "stolen",
+  "last chance", "only 3 left"; playbook rule 11); Reel caption with "Link in bio: proofnotfluff.etsy.com" and 3 to 5 hashtags; TikTok caption
   with "Search ProofNotFluff on Etsy".
 
 PIVOT (Todd's "Go", Oct 15, 9:55 pm; coo/PIVOT.md): a spec dated from Oct 16 points at the free site, not Etsy. Its
@@ -46,6 +47,9 @@ SITE_WHAT = "Free online. No sign-up."
 PREMIUM_WHAT = re.compile(r"^Free online\. Full [a-z0-9 -]+ \$(\d{2,3})$")
 REEL_SITE = "Free calculator: link in bio (proofnotfluff.com)"
 TIKTOK_SITE = "Free calculator at proofnotfluff.com"
+# Honest framing (cmo/CONTENT_PLAYBOOK.md rule 11): no fake secrecy, no fake urgency or scarcity.
+HYPE = re.compile(r"\b(?:secrets?|stolen|leaked|they don't want you to know|last chance|act now|hurry|"
+                  r"only \d+ (?:left|spots?|copies)|before it's gone|limited time)\b", re.I)
 
 
 def strip(text):
@@ -144,6 +148,8 @@ def problems(spec, path=""):
     shown = spoken(spec) + [strip(spec.get("hook", ""))] + [str(v) for v in (spec.get("post") or {}).values()]
     for name, words in voice_lint.tells("\n".join(shown)):
         out.append(f"AI-sounding phrase: {name} ({words.strip()!r})")
+    for m in HYPE.finditer("\n".join(shown)):
+        out.append(f"hype or fake urgency ({m.group(0)!r}): frames stay honest, no secrecy or countdowns (cmo/CONTENT_PLAYBOOK.md rule 11)")
     post = spec.get("post") or {}
     reel = post.get("reel_caption", "")
     tiktok = post.get("tiktok_caption", "")

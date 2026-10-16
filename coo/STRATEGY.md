@@ -58,7 +58,7 @@ All three ladder switches are Todd's steps and all three are still open: the kit
 | price-299 | Oct 6 (Todd) | 0 orders on 10 visits this week | Nov 3 | todd |
 | permit-leads-pilot | Oct 14 (Todd) | parked until the Kit form exists | 45 days after go-live | todd |
 
-Closed today: demand-gate-v2, inconclusive (3 search visits in 30 days, under the 50-visit floor; gap builds stopped by the pivot).
+Stopped Oct 15 by the pivot: demand-gate-v2 (3 search visits in 30 days, under the 50-visit floor, so no verdict on the gate itself).
 
 ## What we know
 - A1: title format under 15 words, noun first; judged Nov 7.
@@ -76,7 +76,7 @@ Closed today: demand-gate-v2, inconclusive (3 search visits in 30 days, under th
 - Under the pivot the factory (3 runs) and R&D lab (2 runs) have no work unless assigned; both are PC-bound, so only Todd can change their schedules. They end within 2 minutes per PIVOT.md.
 
 ## What we stopped and why
-- demand-gate-v2 closed (above). Ledger lines for DEMAND FLOOR v2, KEYWORD AUDIT, SHORT SERIES, LISTING VIDEOS and the CMO walkthrough rule moved to archive-2: superseded by the pivot.
+- demand-gate-v2 stopped by the pivot (above). Ledger lines for DEMAND FLOOR v2, KEYWORD AUDIT, SHORT SERIES, LISTING VIDEOS and the CMO walkthrough rule moved to archive-2: superseded by the pivot.
 - Instagram carousel step: deferred to the Oct 29 zero-click review (Instagram has 0 recorded clicks).
 
 ## Open questions for Todd (ranked by expected profit, minutes)

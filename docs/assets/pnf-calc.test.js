@@ -596,4 +596,25 @@ check("#28 Aug orders at $25", BEa.orders, 62);
 check("#28 variable over sales: never", P.breakEven({ sales: 1000, variable: 1000, fixed: 500 }).never, 1);
 check("blank break-even: none flag", P.breakEven({}).none, 1);
 
+// #12 Craft Fair Profit Calculator, 2 Products recalculated in LibreOffice Oct 16 (rows 24, 25, 28; card cost per $1 0.0217)
+const HP = P.handmadePrice({ materials: 6.5, minutes: 15, rate: 20, packaging: 0.6, feePct: 2.17, price: 22 });
+check("#12 candle labor I25", HP.labor, 5);
+check("#12 candle unit cost J25", HP.uc, 12.1);
+check("#12 candle card cost K25", HP.fees, 0.4774);
+check("#12 candle contribution L25", HP.ppu, 9.4226);
+check("#12 candle margin M25", HP.margin, 0.4283);
+check("#12 candle x2 price N25", HP.x2, 23);
+check("#12 candle below formula O25", HP.below, 1);
+check("#12 candle lowest price", HP.floor, 12.3684);
+const HPs = P.handmadePrice({ materials: 1.6, minutes: 6, rate: 20, packaging: 0.25, feePct: 2.17, price: 8 });
+check("#12 soap unit cost J24", HPs.uc, 3.85); check("#12 soap contribution L24", HPs.ppu, 3.9764);
+check("#12 soap x2 price N24", HPs.x2, 7.2); check("#12 soap ok O24", HPs.ok, 1);
+const HPg = P.handmadePrice({ materials: 10.2, minutes: 30, rate: 20, packaging: 2.5, feePct: 2.17, price: 38 });
+check("#12 gift box unit cost J28", HPg.uc, 22.7); check("#12 gift box contribution L28", HPg.ppu, 14.4754);
+check("#12 gift box x2 price N28", HPg.x2, 40.4); check("#12 gift box below formula O28", HPg.below, 1);
+check("#12 changed: $0 rate drops labor", P.handmadePrice({ materials: 6.5, minutes: 15, rate: 0, packaging: 0.6, feePct: 2.17, price: 22 }).uc, 7.1);
+check("#12 price under cost: loss", P.handmadePrice({ materials: 6.5, minutes: 15, rate: 20, packaging: 0.6, feePct: 0, price: 10 }).loss, 2.1);
+check("blank handmade: none flag", P.handmadePrice({}).none, 1);
+check("handmade 100% fees stays finite", P.handmadePrice({ materials: 5, feePct: 100 }).floor, 500);
+
 process.exit(fails ? 1 : 0);

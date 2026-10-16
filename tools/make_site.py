@@ -1324,6 +1324,49 @@ PNF.wire(f,PNF.cleaningSqft);})();</script>"""
     return form, results, script
 
 
+def handmade_page(p):
+    """#12 2 Products, one row (PNF.handmadePrice): unit cost with your making time, the x2 check price, profit after fees."""
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>What one piece costs you</legend>
+{field("materials", "Materials per piece", d["materials"], "Everything that goes into one piece, for example wax, wick and tin", pre="$")}
+{field("minutes", "Minutes to make one", d["minutes"], "Your making time for one piece, in minutes")}
+{field("rate", "Your hourly rate for making", d["rate"], "What an hour of your making time is worth", pre="$")}
+{field("packaging", "Packaging per piece", d["packaging"], "Bag, box, label or tissue", pre="$")}
+</fieldset>
+<fieldset><legend>Fees and your price</legend>
+{field("feePct", "Fees on each sale", d["feePct"], "Card, payment or marketplace fees as a share of the price. 0 for cash", suf="%")}
+{field("price", "Your price", d["price"], "Optional. What you charge now, before sales tax", pre="$")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Formula price</div><div class="val" data-out="x2">$0</div><div class="sub">(Materials + labor) x 2</div></div>
+<div class="tile"><div class="lab">Unit cost</div><div class="val" data-out="uc">$0</div><div class="sub">Materials, packaging and your time</div></div>
+<div class="tile"><div class="lab">Lowest price</div><div class="val" data-out="floor">$0</div><div class="sub">Covers the unit cost and fees, no profit</div></div>
+</div>
+<ul class="lines">
+<li><span>Materials and packaging</span><span data-out="mp">$0</span></li>
+<li><span>Labor (your making time)</span><span data-out="labor">$0</span></li>
+<li class="total"><span>Unit cost</span><span data-out="uc">$0</span></li>
+<li><span>Profit at the formula price, after fees</span><span data-out="x2Profit">$0</span></li>
+<li><span>Fees at your price</span><span data-out="fees">$0</span></li>
+<li class="total"><span>Profit per piece at your price</span><span data-out="ppu">$0</span></li>
+</ul>
+<div class="callout" data-show-if="ok > 0">Your <b data-out="price">$0</b> price is at or above the formula price. Each sale keeps <b data-out="ppu">$0</b> after the unit cost and fees: <b data-pct="margin">0%</b> of the price, on top of paying your time.</div>
+<div class="callout warn" data-show-if="belowGain > 0">Your <b data-out="price">$0</b> price is below the <b data-out="x2">$0</b> formula price. It still keeps <b data-out="ppu">$0</b> a piece after your time and fees, but your hours are carrying part of the price.</div>
+<div class="callout warn" data-show-if="neg > 0">At <b data-out="price">$0</b> the unit cost and fees take the whole price: each sale loses <b data-out="loss">$0</b> or breaks even, so part of your making time goes unpaid.</div>
+<div class="callout" data-show-if="noPrice > 0">Type your price to check it against the formula price.</div>
+<div class="callout warn" data-show-if="none > 0">Type what one piece costs you in materials and time.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Formula <b data-out="x2">$0</b></span><span>Unit cost <b data-out="uc">$0</b></span></div>"""
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.handmadePrice in assets/pnf-calc.js, 2 Products of engines/craft-fair-profit (#12). */
+var M=function(i){var r=PNF.handmadePrice(i);r.mp=Math.max(0,PNF.num(i.materials))+Math.max(0,PNF.num(i.packaging));return r;};
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results, script
+
+
 def markup_page(p):
     """#25 Items tab seen as a markup (PNF.markup): price from unit cost and markup, margin, profit after fees."""
     d = p["defaults"]
@@ -1421,7 +1464,7 @@ PAGE_KINDS = {"day_rate": day_rate_page, "cleaning_sqft": cleaning_sqft_page, "s
               "unit_cost": unit_cost_page,
               "chore_split": chore_split_page,
               "client_mix": client_mix_page,
-              "markup": markup_page, "break_even": break_even_page}
+              "markup": markup_page, "handmade": handmade_page, "break_even": break_even_page}
 
 
 # ---------------------------------------------------------------- permit leads pilot (coo/OPPORTUNITIES.md Case 4)

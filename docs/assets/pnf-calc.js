@@ -12,7 +12,7 @@
    seTax: Schedule SE arithmetic (the SE_RATE and SE_BASE the #13 engine grosses up for), with the 2026 Social Security
    wage base; links #21 (Freelance Income Tracker), whose set-aside notes cite the same IRS and SSA figures.
    profitLoss: engines/profit-and-loss (#28), 2 Statement; cakeQuote: engines/cake-order-form (#26), 2 Order Form.
-   unitCost: engines/inventory-tracker (#25), 1 Items; choreSplit: engines/fair-share-chore-chart (#24), Fair Split;
+   unitCost: engines/inventory-tracker (#25), 1 Items; handmadePrice: engines/craft-fair-profit (#12), 2 Products; choreSplit: engines/fair-share-chore-chart (#24), Fair Split;
    clientMix: engines/client-tracker (#27), 1 Today.
    dayRate: engines/hourly-rate-quick-calculator (#20) in days; cleaningSqft: engines/cleaning-business-kit (#14), 3 Price Sheet.
    Tested against the workbooks' own example outputs in docs/assets/pnf-calc.test.js. */
@@ -549,6 +549,27 @@
       pos: hasPrice && ppu > 0 ? 1 : 0, neg: hasPrice && ppu <= 0 ? 1 : 0, noPrice: any && !hasPrice ? 1 : 0, none: any ? 0 : 1 };
   }
 
+  // #12 Craft Fair Profit Calculator, 2 Products, one row: Labor = minutes / 60 x your making rate; Unit cost =
+  // materials + packaging + labor; x2 price = (materials + labor) x 2 (CraftProfessional.com's craft pricing formula,
+  // shown as a check); Card cost = price x card cost per $1 of sales (tab 1); Contribution = price - unit cost - card
+  // cost; Margin = contribution / price; "below formula" when the price is under the x2 price. The lowest price that
+  // covers cost and fees is unit cost / (1 - fee rate). Soy candle: $6.50, 15 min at $20, $0.60, $22 give $12.10,
+  // $23.00 and $9.42 at 2.17% fees.
+  function handmadePrice(i) {
+    var m = Math.max(0, num(i.materials)), mins = Math.max(0, num(i.minutes)), rate = Math.max(0, num(i.rate));
+    var pk = Math.max(0, num(i.packaging)), feeRate = Math.min(0.99, Math.max(0, num(i.feePct)) / 100);
+    var price = Math.max(0, num(i.price)), labor = mins / 60 * rate, uc = m + pk + labor, x2 = (m + labor) * 2;
+    var hasCost = uc > 0 ? 1 : 0, hasPrice = price > 0 ? 1 : 0;
+    var fees = price * feeRate, ppu = price - uc - fees, floor = uc / (1 - feeRate);
+    var x2Profit = x2 - uc - x2 * feeRate;
+    var below = hasCost && hasPrice && price < x2 - 0.0001 ? 1 : 0, gain = hasPrice && ppu > 0 ? 1 : 0;
+    return { labor: labor, uc: uc, x2: hasCost ? x2 : 0, x2Profit: hasCost ? x2Profit : 0, x2Margin: hasCost && x2 > 0 ? x2Profit / x2 : 0,
+      floor: hasCost ? floor : 0, price: price, fees: hasPrice ? fees : 0, ppu: hasPrice ? ppu : 0, margin: hasPrice ? ppu / price : 0,
+      perHour: hasPrice && mins > 0 ? (ppu + labor) / (mins / 60) : 0, below: below, belowGain: below && gain ? 1 : 0, ok: hasCost && hasPrice && !below && gain ? 1 : 0,
+      loss: hasPrice && ppu < 0 ? -ppu : 0, neg: hasCost && hasPrice && ppu <= 0 ? 1 : 0,
+      noPrice: hasCost && !hasPrice ? 1 : 0, none: hasCost ? 0 : 1 };
+  }
+
   // #25 Small Business Inventory Tracker, 1 Items, seen as a markup: price = unit cost x (1 + markup). Markup is profit
   // over cost, gross margin is profit over price, and the profit per unit after fees is price - unit cost - price x
   // fee rate, as the Items tab's Profit per unit. Lavender candle: $7.50 cost and 220% markup give its $24.00 price.
@@ -690,7 +711,7 @@
   }
 
   var api = { seTax: seTax, hourly: hourly, service: service, serviceSqft: serviceSqft, dayRate: dayRate, cleaningSqft: cleaningSqft, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
-    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, profitLoss: profitLoss, cakeQuote: cakeQuote, unitCost: unitCost, markup: markup, breakEven: breakEven, choreSplit: choreSplit, clientMix: clientMix, cakeSizes: CAKE_SIZES, num: num, money: money, ceilTo: ceilTo,
+    strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, profitLoss: profitLoss, cakeQuote: cakeQuote, unitCost: unitCost, handmadePrice: handmadePrice, markup: markup, breakEven: breakEven, choreSplit: choreSplit, clientMix: clientMix, cakeSizes: CAKE_SIZES, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;
 })(this);

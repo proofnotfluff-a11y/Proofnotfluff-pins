@@ -1,0 +1,118 @@
+{
+  "formula": "F2 Spot the Mistake",
+  "series": "Proof Check",
+  "product_id": "free-inventory-reorder-point-calculator",
+  "workbook_id": "6",
+  "product": "Reorder Point Calculator",
+  "tab": "Free online",
+  "audience": "PROOF CHECK #2 · FOR ONLINE SELLERS",
+  "hookId": "F2",
+  "scope": "broad",
+  "voice": "am_michael",
+  "el_voice": "CwhRBWXzGAHq8TQ4Fs17",
+  "el_model": "eleven_v3",
+  "mood": "tension",
+  "palette": "ink",
+  "hook": "46 in stock. Reorder next week? <b>One mistake</b>",
+  "hook_say_short": "46 in stock. Reorder next week?",
+  "hook_tts": "Forty-six in stock. Reorder next week?",
+  "hook_say": "One product, 46 units on the shelf, selling 6 a day. It looks like a week of breathing room. It has one mistake.",
+  "rows": [
+    {
+      "label": "Units sold per day",
+      "value": "6 a day",
+      "input": true,
+      "say": "Say your best seller moves 6 a day.",
+      "tts": "Say your best seller moves six a day.",
+      "why": "The product's average daily sales over the last 30 days."
+    },
+    {
+      "label": "Units on the shelf now",
+      "value": "46 units",
+      "input": true,
+      "say": "You've got 46 on the shelf.",
+      "tts": "You've got forty-six on the shelf.",
+      "why": "Stock on hand, with nothing on order."
+    },
+    {
+      "label": "Days until you sell out (46 / 6)",
+      "value": "7.7 days",
+      "result": true,
+      "say": "That's almost 8 days. Order next week, right?",
+      "tts": "That's almost eight days. Order next week, right?",
+      "ask": "Spot the mistake?",
+      "ask_tts": "[short pause] Spot the mistake?",
+      "pause": 1.4,
+      "why": "46 units at 6 a day lasts 7.7 days."
+    },
+    {
+      "label": "Supplier delivery time",
+      "value": "7 days",
+      "input": true,
+      "say": "The mistake: your supplier takes 7 days.",
+      "tts": "The mistake? Your supplier takes seven days.",
+      "why": "Lead time: the days between placing an order and having the stock to sell."
+    },
+    {
+      "label": "Reorder at (42 + 20% buffer)",
+      "value": "50.4 units",
+      "result": true,
+      "kind": "bad",
+      "say": "6 a day for 7 days, plus 20%: reorder at 50. You have 46.",
+      "tts": "Six a day for seven days, plus twenty percent. Reorder at fifty. You have forty-six.",
+      "why": "Reorder point = daily sales x lead time x (1 + safety stock): 6 x 7 x 1.2 = 50.4. On hand is already under it."
+    }
+  ],
+  "fix": {
+    "label": "When to order",
+    "value": "Today, not next week",
+    "say": "So order today. Not next week.",
+    "tts": "So order today. Not next week.",
+    "why": "On hand (46) is already under the reorder point (50.4). An order placed next week lands about 14 days from now, but 46 units at 6 a day run out in 7.7 days. The calculator also sizes the order: 6 x (7 + 14 days to the next order) x 1.2 = 151.2, less 46 on hand, rounded up = 106 units at $2.60 each, $275.60."
+  },
+  "pitch": {
+    "say": "That's our free reorder point calculator. Type daily sales and lead time. It tells you when to reorder.",
+    "tts": "That's our free reorder point calculator. Type daily sales and lead time. It tells you when to reorder."
+  },
+  "cta": {
+    "title": "Reorder Point Calculator",
+    "button": "Free calculator",
+    "sub": "proofnotfluff.com",
+    "say": "Check your stock free at ProofNotFluff dot com.",
+    "tts": "Check your stock free at ProofNotFluff dot com.",
+    "what": "Free online. No sign-up.",
+    "use": "Type daily sales and lead time. It shows when to reorder."
+  },
+  "note": "Sample product from the free calculator. An estimate, not advice.",
+  "sources": [
+    {
+      "number": "6 a day, 46 units, 7 days, $2.60",
+      "source": "#6 workbook 2 SKU List row 27 (SKU-012 Goat Milk Soap Bar): N27 6, J27 46, I27 7, F27 2.60; free page defaults daily 6, onHand 46, lead 7, unitCost 2.60"
+    },
+    {
+      "number": "7.7 days",
+      "source": "2 SKU List P27 7.6667 (days of stock); PNF.reorderPoint days 7.667"
+    },
+    {
+      "number": "20% cushion, 14 days between orders",
+      "source": "1 Your Shop D22 0.2 (safety stock), D23 14 (days between orders); page defaults safety 20, cycle 14"
+    },
+    {
+      "number": "50.4 units",
+      "source": "2 SKU List Q27 50.4 (reorder point), T27 REORDER; PNF.reorderPoint rop 50.4, status REORDER"
+    },
+    {
+      "number": "106 units, $275.60",
+      "source": "2 SKU List R27 151.2 (order up to), X27 275.60 (order cost, 106 x 2.60); PNF.reorderPoint units 106, orderCost 275.6"
+    }
+  ],
+  "sources_build": "engines/cash-aware-reorder-planner/build_xlsx.py built and recalculated in LibreOffice Oct 16, 2026 (CMO run); docs/assets/pnf-calc.js reorderPoint run in node with the page defaults the same run.",
+  "post": {
+    "short_title": "46 in stock, reorder next week? One mistake #Shorts",
+    "description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/free-inventory-reorder-point-calculator/\nFree reorder point calculator for online sellers: type daily sales and supplier lead time, and it shows the stock level to reorder at and how many units to order.\n46 units selling 6 a day looks like 7.7 days of stock. But the supplier takes 7 days, so waiting a week means selling out before the order lands. With a 20% safety buffer the reorder point is 50.4 units (6 x 7 x 1.2), so the order is due today: enough for 3 weeks plus the buffer (151.2 units) less the 46 on hand, rounded up to 106 units at $2.60 each, $275.60. Example numbers from the free calculator's sample product. A planning estimate, not advice.\n\n#Shorts",
+    "reel_caption": "Reorder point calculator, worked example. 46 units selling 6 a day looks like almost 8 days of stock. Spot the mistake? The supplier takes 7 days, so wait a week and you sell out before the order lands. With a 20% safety buffer the reorder point is 50.4 units, and you have 46: order today. Example numbers from our free Reorder Point Calculator.\n\nFree calculator: link in bio (proofnotfluff.com)\n\n#inventorymanagement #ecommercetips #onlineseller #smallbusinesstips",
+    "tiktok_caption": "46 in stock, 6 sold a day, supplier takes 7 days. Reorder next week? One mistake: the reorder point is 50.4, so order today. Free calculator at proofnotfluff.com #inventorymanagement #ecommercetips #onlineseller"
+  },
+  "render": "promo/renders/2026-10-16-am-proof-check-2-short.mp4",
+  "render_note": "CMO render Oct 16, ElevenLabs Roger (eleven_v3), clips silence-trimmed and sped 1.08x (ffmpeg atempo) to fit 41.2 s; publish this file as rendered. Re-rendering would need the clips again (no Kokoro fallback unless the file is missing)."
+}

@@ -30,6 +30,13 @@ Todd, Oct 15, 2026, 9:55 pm, answering the live session's "Go with the pivot?": 
 - **Promote runs:** publish the approved slate and pins exactly as approved. Pivot captions follow this file, not the ledger's Etsy caption lines.
 - **Optimizer:** the weakest step on the ladder (free page visits, clicks to the kit and gigs), not on Etsy.
 
+## Product engine (Todd, Oct 16, 2:34 pm)
+Todd: "I think we should still build digital products but we need to be smarter about what we build and how we deliver it." Asked how, he chose "Scan niches now" and, for Etsy, "Only if the phrase passes".
+1. **Niche scan, this week.** E-commerce brands, short-term rental hosts and home-service businesses are scored side by side on real pain points: how often each comes up, money at stake (double weight), whether a file fixes it, crowding, free reach (double weight) and our edge. The live session runs it (report: reports/Digital product niche scan.md) and writes the winner into this file by Oct 23. Until then video topics, site pages and the kit stay on e-commerce as above, and no new paid product is started in any niche.
+2. **What gets built.** A product starts from a pain point people already ask about (questions, complaints, low-star reviews of what they use now), never from autocomplete mining or keyword volume alone (demand rules above).
+3. **Free first, paid second.** Each pain point gets a free calculator page and one video first. Its paid version ($9 to $29 on Gumroad, or folded into a bigger kit) is built when the free page shows use (30+ visits in 14 days in Cloudflare Web Analytics) or when the pain point leads the scan.
+4. **We deliver it.** proofnotfluff.com, Gumroad checkout, the Kit email signup (quest kit-form) and comment-to-DM on Reels (ManyChat, once Todd opens it; cmo/CONTENT_PLAYBOOK.md tool backlog item 4). Etsy gets a copy of a product built under this section only when its main phrase passes the page-1 check (plan file BUYER EVIDENCE GATE: tools/etsy_page1_check.js PASS checked in the last 14 days, $0.20 listing fee). That is the one exception to "nothing new is built or listed for Etsy" above.
+
 ## What this replaces
 - Ledger SALES FIRST: CTAs now point at a free e-commerce page or the premium product (pins already approved run as approved); its one-gap-product-a-day exception ends; its Nov 1 check is replaced by the Nov 12 check below.
 - Plan file: GAP SWEEP and its build rule, NICHE PRIORITY, FACTORY ORDER, PREMIUM EVIDENCE READS for the home-service and STR segments (held), and the Oct 15 broad-slot topic list (#30, #29, #16, #20).

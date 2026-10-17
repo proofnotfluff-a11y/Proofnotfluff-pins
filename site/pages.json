@@ -3595,7 +3595,7 @@
   {
    "slug": "handmade-product-pricing-calculator",
    "kind": "handmade",
-   "draft": true,
+   "draft": false,
    "product": "12",
    "segment": "makers",
    "title": "Handmade Product Pricing Calculator: Price Crafts With Your Time Paid | ProofNotFluff",

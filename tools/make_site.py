@@ -1551,8 +1551,11 @@ def leads_page_html(p):
              f'<p class="asof">City data as of {E(asof)}. Refreshed every Monday.</p>')
     near_html = ""
     if near:
+        n_near = c.get("nearFinish", len(near))
+        n_show = min(6, len(near))
+        near_note = f" (the {n_show} largest of {n_near} shown)" if n_near > n_show else ""
         near_html = ('<section class="block"><h2>Partial occupancy approved</h2>'
-                     '<p>The City has approved temporary or partial occupancy on these projects.</p>'
+                     f'<p>The City has approved temporary or partial occupancy on these projects{near_note}.</p>'
                      f'<div class="ld-list">{"".join(project_card(x) for x in near[:6])}</div></section>')
     gcs = "".join(f'<li><span class="ld-gname">{E(g["name"])}</span><span class="ld-gn">{g["projects"]}</span><span class="ld-gv">{money(g["cost"])}</span></li>'
                   for g in c.get("topGCs", [])[:10])

@@ -1,0 +1,534 @@
+{
+ "source": {
+  "name": "City of Chicago Data Portal, Food Inspections",
+  "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
+  "rowsUpdatedAt": "2026-10-17T09:07:12+00:00",
+  "fetchedAt": "2026-10-17T21:45:20+00:00",
+  "modified": "Filtered by ProofNotFluff: food inspections of the last 7 days at licensed food businesses (schools, day care, hospitals, senior meal sites and mobile vendors left out) that failed with pest violations, failed or passed with conditions with hood, grease or grease trap violations, had a license (pre-opening) inspection, or failed twice in 30 days. Violation notes are read only to set category labels; inspector notes are not republished. Business-level fields only.",
+  "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+ },
+ "window": {
+  "from": "2026-10-10",
+  "to": "2026-10-17"
+ },
+ "counts": {
+  "fetched": 1225,
+  "kept": 64,
+  "segments": {
+   "pests": 15,
+   "hoodGrease": 9,
+   "newOpening": 49,
+   "repeatFail": 6
+  },
+  "excluded": {
+   "institution or mobile vendor": 26,
+   "no lead segment (passed, or no buyer-relevant violation)": 46
+  },
+  "areas": [
+   [
+    "Loop",
+    9
+   ],
+   [
+    "Near West Side",
+    6
+   ],
+   [
+    "West Town",
+    5
+   ],
+   [
+    "North Lawndale",
+    5
+   ],
+   [
+    "West Elsdon",
+    3
+   ],
+   [
+    "South Lawndale",
+    3
+   ],
+   [
+    "Humboldt Park",
+    3
+   ],
+   [
+    "Lincoln Park",
+    3
+   ],
+   [
+    "McKinley Park",
+    2
+   ],
+   [
+    "Grand Boulevard",
+    2
+   ]
+  ]
+ },
+ "segments": {
+  "pests": [
+   {
+    "business": "Chicago's Home of Chicken & Waffles",
+    "address": "3947 S Dr Martin Luther King Jr Dr",
+    "communityArea": "Grand Boulevard",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "date": "2026-10-16",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Sugars Plus",
+    "address": "525 E 47th St",
+    "communityArea": "Grand Boulevard",
+    "facilityType": "Grocery Store",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-10-15",
+    "categories": [
+     "Cleaning and sanitation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Subway",
+    "address": "5131 S Pulaski Rd",
+    "communityArea": "West Elsdon",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-10-15",
+    "categories": [
+     "Pests"
+    ]
+   },
+   {
+    "business": "Dunkin Donuts",
+    "address": "5448 S Pulaski Rd",
+    "communityArea": "West Elsdon",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "date": "2026-10-15",
+    "categories": [
+     "Cleaning and sanitation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Viet NAM Restaurant",
+    "address": "1032 W Argyle St",
+    "communityArea": "Uptown",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "date": "2026-10-14",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Grease trap",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Taquizas Don Rafa 2",
+    "address": "3857 W 26th St",
+    "communityArea": "South Lawndale",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Short Form Complaint",
+    "date": "2026-10-14",
+    "categories": [
+     "Pests"
+    ]
+   },
+   {
+    "business": "THA Wing Lounge",
+    "address": "3652 W Chicago Ave",
+    "communityArea": "Humboldt Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "date": "2026-10-14",
+    "categories": [
+     "Cleaning and sanitation",
+     "Hood and ventilation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Strong Cardio & Nutricion",
+    "address": "3825 W 31st St",
+    "communityArea": "South Lawndale",
+    "facilityType": "",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "date": "2026-10-14",
+    "categories": [
+     "Cleaning and sanitation",
+     "Pests",
+     "Plumbing"
+    ]
+   },
+   {
+    "business": "Quericozon",
+    "address": "3420 W North Ave",
+    "communityArea": "Humboldt Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "License",
+    "date": "2026-10-14",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease trap",
+     "Pests",
+     "Plumbing"
+    ]
+   },
+   {
+    "business": "Morrison's Soul Food",
+    "address": "148 W 79th St",
+    "communityArea": "Greater Grand Crossing",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "date": "2026-10-14",
+    "categories": [
+     "Cleaning and sanitation",
+     "Hood and ventilation",
+     "Pests"
+    ]
+   }
+  ],
+  "hoodGrease": [
+   {
+    "business": "Chicago's Home of Chicken & Waffles",
+    "address": "3947 S Dr Martin Luther King Jr Dr",
+    "communityArea": "Grand Boulevard",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "date": "2026-10-16",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Viet NAM Restaurant",
+    "address": "1032 W Argyle St",
+    "communityArea": "Uptown",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "date": "2026-10-14",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Grease trap",
+     "Pests"
+    ]
+   },
+   {
+    "business": "THA Wing Lounge",
+    "address": "3652 W Chicago Ave",
+    "communityArea": "Humboldt Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "date": "2026-10-14",
+    "categories": [
+     "Cleaning and sanitation",
+     "Hood and ventilation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Quericozon",
+    "address": "3420 W North Ave",
+    "communityArea": "Humboldt Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "License",
+    "date": "2026-10-14",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease trap",
+     "Pests",
+     "Plumbing"
+    ]
+   },
+   {
+    "business": "Morrison's Soul Food",
+    "address": "148 W 79th St",
+    "communityArea": "Greater Grand Crossing",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "date": "2026-10-14",
+    "categories": [
+     "Cleaning and sanitation",
+     "Hood and ventilation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Concina Economica",
+    "address": "3140 W 47th St",
+    "communityArea": "Brighton Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-10-14",
+    "categories": [
+     "Cleaning and sanitation",
+     "Hood and ventilation",
+     "Plumbing"
+    ]
+   },
+   {
+    "business": "Mano Modern Cafe",
+    "address": "851 N Ashland Ave",
+    "communityArea": "West Town",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "date": "2026-10-13",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup"
+    ]
+   },
+   {
+    "business": "JJ Fish",
+    "address": "411 S Kedzie Ave",
+    "communityArea": "East Garfield Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "date": "2026-10-13",
+    "categories": [
+     "Cleaning and sanitation",
+     "Hood and ventilation",
+     "Plumbing"
+    ]
+   },
+   {
+    "business": "Chipotle Mexican Grill",
+    "address": "8 E Madison St",
+    "communityArea": "Loop",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "date": "2026-10-13",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Pests"
+    ]
+   }
+  ],
+  "newOpening": [
+   {
+    "business": "La Michoacana",
+    "address": "2740 W 59th St",
+    "communityArea": "Gage Park",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-10-16",
+    "categories": []
+   },
+   {
+    "business": "Iron Cafe",
+    "address": "3700 S Iron St",
+    "communityArea": "McKinley Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "License",
+    "date": "2026-10-16",
+    "categories": []
+   },
+   {
+    "business": "The Blackstone Hotel",
+    "address": "636 S Michigan Ave",
+    "communityArea": "Loop",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-10-15",
+    "categories": []
+   },
+   {
+    "business": "The Blackstone Hotel",
+    "address": "636 S Michigan Ave",
+    "communityArea": "Loop",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-10-15",
+    "categories": []
+   },
+   {
+    "business": "The Blackstone Hotel",
+    "address": "636 S Michigan Ave",
+    "communityArea": "Loop",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-10-15",
+    "categories": []
+   },
+   {
+    "business": "The Blackstone Hotel",
+    "address": "636 S Michigan Ave",
+    "communityArea": "Loop",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-10-15",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup"
+    ]
+   },
+   {
+    "business": "The Blackstone Hotel",
+    "address": "636 S Michigan Ave",
+    "communityArea": "Loop",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-10-15",
+    "categories": []
+   },
+   {
+    "business": "The Blackstone Hotel",
+    "address": "636 S Michigan Ave",
+    "communityArea": "Loop",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-10-15",
+    "categories": []
+   },
+   {
+    "business": "The Blackstone Hotel",
+    "address": "636 S Michigan Ave",
+    "communityArea": "Loop",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-10-15",
+    "categories": []
+   },
+   {
+    "business": "Plush PUP",
+    "address": "5344 N Cumberland Ave",
+    "communityArea": "O'Hare",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-10-15",
+    "categories": [
+     "Cleaning and sanitation"
+    ]
+   }
+  ],
+  "repeatFail": [
+   {
+    "business": "Viet NAM Restaurant",
+    "address": "1032 W Argyle St",
+    "communityArea": "Uptown",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "date": "2026-10-14",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Grease trap",
+     "Pests"
+    ]
+   },
+   {
+    "business": "THA Wing Lounge",
+    "address": "3652 W Chicago Ave",
+    "communityArea": "Humboldt Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "date": "2026-10-14",
+    "categories": [
+     "Cleaning and sanitation",
+     "Hood and ventilation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Strong Cardio & Nutricion",
+    "address": "3825 W 31st St",
+    "communityArea": "South Lawndale",
+    "facilityType": "",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "date": "2026-10-14",
+    "categories": [
+     "Cleaning and sanitation",
+     "Pests",
+     "Plumbing"
+    ]
+   },
+   {
+    "business": "Old Fashioned Donuts Inc",
+    "address": "11248 S Michigan Ave",
+    "communityArea": "Roseland",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "date": "2026-10-14",
+    "categories": []
+   },
+   {
+    "business": "Mano Modern Cafe",
+    "address": "851 N Ashland Ave",
+    "communityArea": "West Town",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "date": "2026-10-13",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup"
+    ]
+   },
+   {
+    "business": "JJ Fish",
+    "address": "411 S Kedzie Ave",
+    "communityArea": "East Garfield Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "date": "2026-10-13",
+    "categories": [
+     "Cleaning and sanitation",
+     "Hood and ventilation",
+     "Plumbing"
+    ]
+   }
+  ]
+ },
+ "segmentNames": {
+  "pests": "Failed with pests",
+  "hoodGrease": "Hood, grease or grease trap problems",
+  "newOpening": "About to open (license inspection)",
+  "repeatFail": "Repeat failures in 30 days"
+ }
+}

@@ -1,0 +1,34 @@
+name: Prediction-market paper tracker
+# Todd, Oct 17, 2026: "prediction markets, paper only". tools/pm_tracker.py follows the top Polymarket wallets
+# with paper money through the public Data API (no key, no account, no trading endpoint) and commits its
+# equity curve to pm/. The cloud agents' network cannot reach the API, so this runner does the reads.
+# Nothing here places a bet or holds a credential; real stakes are Todd's call on the paper record.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/pm_tracker.py", ".github/workflows/pm-tracker.yml"]
+  schedule:
+    - cron: "7 */6 * * *"   # every 6 hours
+permissions:
+  contents: write
+concurrency:
+  group: pm-tracker
+  cancel-in-progress: false
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/pm_tracker.py --selftest
+      - run: python3 tools/pm_tracker.py run
+      - name: Commit the paper record
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add pm
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "Paper tracker $(date -u +%Y-%m-%dT%H:%MZ)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done
+          exit 1

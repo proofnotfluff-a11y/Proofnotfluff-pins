@@ -29,3 +29,10 @@ These rules are fixed. No agent may change, weaken, reinterpret or work around t
 - No agent deletes a scheduled task. No run fires itself; only the hand-offs the ledger names fire anything.
 - Every new task inherits this file: its prompt names it and reads the ledger first.
 - [stated] lines in the ledger are Todd's words. Agents apply them; only Todd changes them.
+
+## 6. The venture engine (amended by Todd in chat, Oct 17, 2026, 1:02 pm; detail in coo/VENTURE.md)
+- Scope: the engine may probe public-data products, micro-tools with monthly billing, prediction markets on paper, and research cases on asset arbitrage and business models proven abroad, with cheap tests (a page with a waitlist, a paper tracker, a sourced case) and a verdict date. Every rule above still applies to every probe.
+- Money: $0 autonomous spend. Every dollar is a quest with the price and the expected effect, and Todd says yes to each one.
+- Prediction markets: no agent ever places a bet, opens an account, holds a wallet or key, moves money, or recommends an individual bet. Agents run paper only. Todd may stake up to about $200 of his own money, placed by him, only after the paper verdict is "kept" and a sourced case; the tracker's record is data, not advice.
+- Red team: Gemini (through Zapier, on Todd's key) reads and scores the plan; it never builds, posts, spends or edits a prompt.
+- The first win the engine optimizes is a $1,000 month by Jan 31, 2027, net of platform fees, stated in dollars in every memo.

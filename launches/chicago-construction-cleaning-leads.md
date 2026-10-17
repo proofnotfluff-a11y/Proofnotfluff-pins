@@ -12,17 +12,17 @@ Status as of Oct 17, 2026, 4:10 pm Chicago.
 - [x] Legal desk: CLEARED WITH FIXES (verify5/legal-review.md); repo fixes 1, 2, 3b, 5, 6, 7, 8 applied (commit a083c2c). Gumroad wording fixes 3a and 4 are Todd's (his account). Attorney note: the City's terms require users to indemnify the City.
 
 ## 2. The storefront (Gumroad, Todd's account)
-- [ ] Legal wording on Gumroad (Legal desk fixes 3a and 4): not affiliated with the City, AI line, City disclaimer, "of $500,000 or more ... issued in the last 12 months", "Renews monthly until you cancel", tier named Monthly.
+- [x] Legal wording on Gumroad (Legal desk fixes 3a and 4): checked on the live product page Oct 17, 4:40 pm (non-affiliation, AI line, City disclaimer, 12-month and $500,000-or-more scope, renewal line, tier named Monthly). Cover reworded to "of $500,000 or more" to match; Todd swaps it.
 - [x] Name, price ($29 a month), description: checked live Oct 17, 3:16 pm.
 - [x] Cover (1280 x 720, no weekly numbers) and thumbnail (600 x 600) uploaded by Todd; both passed the design director.
 - [x] Seller name shows ProofNotFluff (Todd, Oct 17, 4:16 pm screenshot).
-- [ ] Post-purchase content: members' page link and password, checked against the live members' page.
+- [x] Post-purchase content: members' page link https://proofnotfluff.com/chicago-leads-members/ and the password match the build (Todd's Content tab screenshot, Oct 17, 4:38 pm).
 
 ## 3. Buy and delivery path
 - [x] Site checkout links open https://proofnotfluff.gumroad.com/l/vpnaoq with utm tags (make_site build, Oct 17).
 - [x] Members' page opens with the password and the download produces the workbook (Playwright, Oct 17, design/v3 renders).
 - [x] Google Sheets: every formula and number format the workbook uses (COUNTIF across the numbered tab, SUM, MAX, ROUND, REPT, IFERROR, the $M and billion formats) converted and matched expected values in Sheets (Drive file 1miNdC8aFRtokywMQx2vPIIhKi4Z1sZDHEpeeaL1y68I, Oct 17, 4:06 pm).
-- [ ] One end-to-end look at the Gumroad receipt content as a buyer sees it (Todd's view or a $0 test the store allows).
+- [x] Buyer view checked: the Content tab is what Gumroad shows after purchase; the password opens the live members' page and the workbook downloads (Playwright, Oct 17).
 
 ## 4. Outreach
 - [ ] Email values filled from this week's live list and checked by the holdout.

@@ -1623,7 +1623,7 @@ def leads_page_html(p):
 
     areas = sorted({x.get("communityArea") for x in d["projects"] if x.get("communityArea")})
     opts = "".join(f'<option value="{E(a)}">{E(a)}</option>' for a in areas)
-    big_line = (f'The {n_big} biggest of {kept:,} open projects. Members get all {kept:,}, filtered by neighborhood and stage, plus the Excel file.')
+    big_line = (f'The {n_big} biggest of {kept:,} open projects. Members get all {kept:,}, with a neighborhood filter and near-finish and new tabs, plus the Excel file.')
     big_html = ('<section class="block"><h2>Biggest open projects</h2>'
                 '<div class="ld-filter" role="group" aria-label="Filter projects">'
                 '<button type="button" class="ld-chip" aria-pressed="true" data-f="all">All</button>'
@@ -1694,7 +1694,7 @@ io.observe(hero);io.observe(cta)})();</script>"""
             'Reported cost is the figure filed with the City, not a contract value. No contractor named here has endorsed or works with ProofNotFluff. '
             'Public information for planning sales calls; not legal or business advice and no promise of work.</p>'
             f'<p>{E(CITY_DISCLAIMER.get(p["city"], ""))}</p>'
-            '<p>Made by ProofNotFluff with AI assistance from public City data. The waitlist form sends your email address to Kit; nothing else you do on this page is sent anywhere.</p>'
+            '<p>Made by ProofNotFluff with AI assistance from public City data. The waitlist form sends your email address to Kit. The page counts visits with Cloudflare Web Analytics, which sets no cookies, and loads its heading font from Google Fonts.</p>'
             f'</div></footer>\n{sbar}\n{script}\n</body></html>')
     bodycls = ' class="ld-page' + (' has-sbar' if sbar else '') + '"'
     return (HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=SHOP, ld=ld, bodycls=bodycls,

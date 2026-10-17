@@ -33,7 +33,7 @@ Hi {Company} team,
 
 Your site says you do post-construction cleaning in the Chicago area, so this may be worth a minute.
 
-Each week we pull the City of Chicago's building permits and list the open apartment and commercial jobs with a reported cost of $500,000 or more, with the general contractor on each. This week's list has {permits} open permits at {addresses} addresses. {near} of them already have partial occupancy approved by the City, which means the work under that permit is close to done. One example: {example}.
+Each week we pull the City of Chicago's building permits and list the open apartment and commercial jobs with a reported cost of $500,000 or more, with the general contractor on each. This week's list has {permits} open permits at {addresses} addresses. {near} of them already have partial occupancy approved by the City, which usually means the work under that permit is close to done. One example: {example}.
 
 Free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/
 
@@ -43,7 +43,7 @@ https://proofnotfluff.gumroad.com/l/vpnaoq
 ProofNotFluff
 1718 Capitol Ave, Cheyenne, WY 82001
 
-This is a one-time email to businesses that advertise post-construction cleaning. Not interested? Reply "no thanks" and we won't email you again.
+This is a one-time advertisement for ProofNotFluff's paid list, sent to businesses that advertise post-construction cleaning. Not interested? Reply "no thanks" and we won't email you again.
 ```
 
 ## What the buyer gets (the crew builds it before the first send)

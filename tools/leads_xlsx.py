@@ -144,10 +144,16 @@ def project_sheet(wb, key, tagline, rows, list_date, tab, drop=(), stats=None):
         stats_.append(("Biggest single job", f'=MAX({rng("cost")})', MONEY_SHORT))
     # spread the numbers across the whole card, the description column taking the last share
     groups, k = [], len(stats_)
-    body = letters[:-1]
+    widths = [c[2] for c in cols]          # split the card into k equal widths, so the numbers sit evenly across it
+    total, acc, cuts = sum(widths), 0, []
+    for i, w in enumerate(widths):
+        acc += w
+        cuts.append(acc)
+    starts = [0] + [min(range(len(cuts)), key=lambda j: abs(cuts[j] - total * i / k)) + 1 for i in range(1, k)]
     for i in range(k):
-        a, z = body[i * len(body) // k], body[(i + 1) * len(body) // k - 1]
-        groups.append(f"{a}:{z}" if i < k - 1 else f"{a}:{letters[-1]}")
+        a = letters[starts[i]]
+        z = letters[starts[i + 1] - 1] if i < k - 1 else letters[-1]
+        groups.append(f"{a}:{z}")
     D.stat_strip(ws, 7, [(g, e, f_, fmt) for g, (e, f_, fmt) in zip(groups, stats_)])
     D.h(ws, 9, 10)
     D.frame(ws, 6, 9, "B", pad_r)
@@ -198,7 +204,7 @@ def project_sheet(wb, key, tagline, rows, list_date, tab, drop=(), stats=None):
 # ---------------------------------------------------------------- builders tab
 def builders_sheet(wb, rows, list_date):
     ws = wb.create_sheet(TABS["builders"])
-    S.set_widths(ws, {"A": 3, "B": 2, "C": 40, "D": 11, "E": 14, "F": 15, "G": 11, "H": 10, "I": 2, "J": 42, "K": 2, "L": 3})
+    S.set_widths(ws, {"A": 3, "B": 2, "C": 40, "D": 11, "E": 18, "F": 15, "G": 11, "H": 10, "I": 2, "J": 42, "K": 2, "L": 3})
     D.page_header(ws, "Builders with the most open work",
                   "One call to a builder's main office can cover many projects. A permit with two builders counts for each.",
                   list_date, span=("B", "K"), side_cols=3)
@@ -216,8 +222,8 @@ def builders_sheet(wb, rows, list_date):
     D.h(ws, 6, 10)
     D.stat_strip(ws, 7, [
         ("C:C", "Builders with open work", f'=COUNTIF(C{first}:C{last},"?*")', S.FMT["int"]),
-        ("D:F", "With 2 or more open permits", f'=COUNTIF(D{first}:D{last},">=2")', S.FMT["int"]),
-        ("G:J", "Builder-permits (two builders count twice)", f"=SUM(D{first}:D{last})", S.FMT["int"]),
+        ("D:G", "With 2 or more open permits", f'=COUNTIF(D{first}:D{last},">=2")', S.FMT["int"]),
+        ("H:J", "Builder-permits (two builders count twice)", f"=SUM(D{first}:D{last})", S.FMT["int"]),
     ])
     D.h(ws, 9, 10)
     D.frame(ws, 6, 9, "B", "K")
@@ -225,7 +231,7 @@ def builders_sheet(wb, rows, list_date):
     spec = [
         {"col": "C", "head": "Builder", "kind": "text", "values": [g for g, _ in items]},
         {"col": "D", "head": "Open permits", "kind": "text", "values": [a["n"] for _, a in items], "align": "right", "fmt": S.FMT["int"]},
-        {"col": "E", "head": "", "kind": "calc", "formula": lambda r: f'=IF(D{r}>=2,IFERROR(REPT("{D.BAR_CHAR}",MAX(0,ROUND(D{r}/{biggest}*12,0))),""),"")'},
+        {"col": "E", "head": "", "kind": "calc", "formula": lambda r: f'=IF(D{r}>=2,IFERROR(REPT("{D.BAR_CHAR}",MAX(0,ROUND(D{r}/{biggest}*16,0))),""),"")'},
         {"col": "F", "head": "Reported cost", "kind": "text", "values": [a["cost"] for _, a in items], "align": "right", "fmt": S.FMT["usd0"]},
         {"col": "G", "head": "Near finish", "kind": "text", "values": [a["near"] for _, a in items], "align": "right", "fmt": S.FMT["int"]},
         {"col": "H", "head": "New", "kind": "text", "values": [a["new"] for _, a in items], "align": "right", "fmt": S.FMT["int"]},
@@ -246,8 +252,9 @@ def builders_sheet(wb, rows, list_date):
                 ws[f"{c}{r}"].value = 0; ws[f"{c}{r}"].font = D.f(9, False, "muted")
         ws[f"F{r}"].alignment = Alignment(horizontal="right", vertical="center", indent=1)
         ws[f"J{r}"].font = D.f(10, False, "ink2"); ws[f"J{r}"].alignment = Alignment(vertical="center", wrap_text=True)
-    for c in "DFGH":
-        ws[f"{c}{f1 - 1}"].alignment = Alignment(horizontal="right", vertical="center", indent=1, wrap_text=True)
+    for c in "CDEFGHIJ":
+        hc = ws[f"{c}{f1 - 1}"]
+        hc.alignment = Alignment(horizontal="right" if c in "DFGH" else "left", vertical="bottom", indent=1 if c in "DFGH" else 0, wrap_text=True)
     if items:
         ws.auto_filter.ref = f"C{f1 - 1}:J{f2}"
     D.paint_canvas(ws, end + 1, "N")
@@ -278,14 +285,16 @@ def card(ws, top, title, rows, eyebrow=None, bg="card", line="frame"):
     for kind, val in rows:
         if kind == "num":
             n, text = val
-            L = ws[f"C{r}"]; L.value = n; L.font = D.f(16, True, "accent"); L.alignment = Alignment(horizontal="right", vertical="center", indent=1)
-            c = ws[f"E{r}"]; c.value = text; c.font = D.f(10); c.alignment = Alignment(vertical="center", wrap_text=True)
-            ws.merge_cells(f"E{r}:O{r}"); D.h(ws, r, max(S.text_height(text, TEXT_W - 24, 10) + 10, 30))
+            c = ws[f"C{r}"]
+            c.value = CellRichText(TextBlock(InlineFont(rFont=D.FONT, sz=16, b=True, color=D.T["accent"]), f"{n}   "),
+                                   TextBlock(InlineFont(rFont=D.FONT, sz=10, color=D.T["ink"]), text))
+            c.alignment = Alignment(vertical="center", wrap_text=True)
+            ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, max(S.text_height(text, TEXT_W, 10) + 12, 30))
         elif kind == "lead":
             lead, text = val
             L = ws[f"C{r}"]; L.value = lead; L.font = D.f(10, True); L.alignment = Alignment(vertical="top", wrap_text=True)
             c = ws[f"E{r}"]; c.value = text; c.font = D.f(10); c.alignment = Alignment(vertical="top", wrap_text=True)
-            ws.merge_cells(f"E{r}:O{r}"); D.h(ws, r, max(S.text_height(text, TEXT_W - 24, 10) + 4, 22))
+            ws.merge_cells(f"E{r}:O{r}"); D.h(ws, r, max(S.text_height(text, TEXT_W - 16, 10) + 6, 22))
             for k in INNER:
                 ws[f"{k}{r}"].border = Border(bottom=D.side("hair"))
         elif kind == "link":
@@ -295,11 +304,11 @@ def card(ws, top, title, rows, eyebrow=None, bg="card", line="frame"):
         elif kind == "rich":
             text = "".join(t for t, _, _ in val)
             c = ws[f"C{r}"]; c.value = rich(val); c.alignment = Alignment(vertical="top", wrap_text=True)
-            ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, S.text_height(text, TEXT_W, 10) + 8)
+            ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, S.text_height(text, TEXT_W + 8, 10) + 6)
         else:
             size, color = (9, "muted") if kind == "note" else (10, "ink")
             c = ws[f"C{r}"]; c.value = val; c.font = D.f(size, False, color); c.alignment = Alignment(vertical="top", wrap_text=True)
-            ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, S.text_height(val, TEXT_W, size) + 8)
+            ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, S.text_height(val, TEXT_W + 8, size) + 6)
         r += 1
     D.h(ws, r, 14)
     D.frame(ws, top, r, "B", "P", bg=bg, line=line)
@@ -329,7 +338,7 @@ def start_here(wb, rows, near, new, src, list_date, addresses):
     tiles = [("B", "D", "OPEN BIG PROJECTS", f'=COUNTIF({c_rng},">0")', S.FMT["int"], f"permits, at {addresses:,} addresses", True),
              ("F", "H", "REPORTED COST", f"=SUM({c_rng})", '"$"0.0,,," billion"', "filed with the permits", False),
              ("J", "L", "NEAR FINISH", f'=COUNTIF({s_rng},"Partial occupancy approved")', S.FMT["int"], "partial occupancy approved", False),
-             ("N", "P", "NEW THIS WEEK", f'=COUNTIF({newr},">0")', S.FMT["int"], "not on last week's list", False)]
+             ("N", "P", "NEW THIS WEEK", f'=COUNTIF({newr},">0")', S.FMT["int"], "issued in the last 7 days", False)]
     D.h(ws, 6, 10)
     for left, right, eb, fml, fmt, sub, dark in tiles:
         D.tile(ws, 7, left, right, eb, fml, fmt, sub, dark=dark, value_size=28 if dark else 20)
@@ -337,8 +346,7 @@ def start_here(wb, rows, near, new, src, list_date, addresses):
     r = card(ws, r, "Three steps", [
         ("num", (1, f"Start with {TABS['near']}. Those buildings are closest to a final clean.")),
         ("num", (2, f"Use {TABS['builders']} to find general contractors with several open jobs. One relationship can cover many projects.")),
-        ("num", (3, "Call the builder's main office, name the address and permit number, and ask who buys cleaning for that job. "
-                    f"Send your capability sheet the same day ({TABS['pitch']}).")),
+        ("num", (3, "Call the builder's office with the address and permit. Ask who buys cleaning, then send your capability sheet.")),
     ])
     r = card(ws, r, "How the list is made", [
         ("para", src.get("modified", "")),
@@ -351,7 +359,11 @@ def start_here(wb, rows, near, new, src, list_date, addresses):
         ("lead", ("Wording", "Descriptions are the City's own text, shortened, with typos left as filed.")),
         ("link", ("Source: City of Chicago Data Portal, Building Permits", src.get("url", ""))),
     ])
-    r = card(ws, r, "Before you rely on it", [("note", OUR_NOTICE), ("note", CITY_DISCLAIMER)])
+    r = card(ws, r, "Before you rely on it", [
+        ("note", "For general information and planning only. This is not legal, tax, financial or other professional advice, and using it "
+                 f"doesn't create a professional relationship. Figures come from City of Chicago records as of {list_date[8:]} and can change. "
+                 "See the Terms tab before you rely on anything here."),
+        ("note", OUR_NOTICE), ("note", CITY_DISCLAIMER)])
     finish_card_sheet(ws, r, "teal")
     return ws
 
@@ -368,12 +380,37 @@ def pitch_kit(wb, list_date):
     return ws
 
 
+def terms_text(date):
+    """The Terms of Use from the clause library, adapted for a monthly membership (Legal desk, Oct 17, 2026)."""
+    return [
+        f"ProofNotFluff | {PRODUCT} | Version 1, {date}",
+        "License. Your membership gives you a license to use this list for one business you own, for its own sales prospecting. You may edit "
+        "it and print it for that use. You may not resell, share, give away, upload or redistribute it, in original or edited form, or use it "
+        "to make a competing product.",
+        "Ownership. The selection, layout, text and formulas belong to ProofNotFluff. The permit records themselves are public City of Chicago "
+        "data. Buying a membership doesn't transfer ownership.",
+        "Accuracy. The list is built from City of Chicago permit records as of the date above. City data can be late, incomplete or wrong, and "
+        "permits change. Confirm anything you rely on with the builder or the City.",
+        "No promise of results. Reported costs, stages and counts are figures from City records, not contract values or forecasts. Nothing "
+        "here promises any work, contract, income or outcome.",
+        "Availability. The list depends on the City of Chicago publishing its permit data. If the City stops or changes that data, or asks us "
+        "to stop using it, the list may pause or end, and future charges will stop.",
+        "No warranty. The product is provided \"as is\", without warranties of any kind, to the extent the law allows.",
+        "Limit of liability. To the extent the law allows, ProofNotFluff is not liable for any loss or damage from using or relying on this "
+        "product, and its total liability for any claim is limited to the amount you paid for the most recent month of your membership. "
+        "Nothing here limits rights you have under consumer protection laws that can't be waived.",
+        "Trademarks. Microsoft Excel, Google Sheets and Gumroad are trademarks of their owners. ProofNotFluff isn't affiliated with, sponsored "
+        "or endorsed by them, or by the City of Chicago.",
+        "AI assistance. This product was made with AI assistance and reviewed and tested by the shop owner.",
+        "Help and cancelling. If the file won't open or something looks wrong, reply to your Gumroad receipt and it will be fixed. Cancel any "
+        "time from your Gumroad receipt or library; cancelling stops future charges.",
+    ]
+
+
 def terms(wb, src, list_date):
     ws = card_sheet(wb, "Terms", "Terms of Use", f"{PRODUCT}. Read this before you rely on the list.", list_date, "note")
     r = card(ws, 6, "City of Chicago data", [("para", CITY_DISCLAIMER), ("link", ("City of Chicago Data Terms of Use", src.get("terms", "")))])
-    r = card(ws, r, "ProofNotFluff", [("para", OUR_NOTICE),
-                                      ("para", "Licensed to one business for its own prospecting. Please don't resell or republish the list."),
-                                      ("para", "Questions about your membership? Reply to your Gumroad receipt.")])
+    r = card(ws, r, "ProofNotFluff", [("para", OUR_NOTICE)] + [("para", t) for t in terms_text(list_date[8:])])
     finish_card_sheet(ws, r, "note")
     return ws
 
@@ -391,7 +428,7 @@ def build(data, out, prev=None):
     wb = S.new_workbook(PRODUCT)
     project_sheet(wb, "near", "Partial occupancy approved: the City has cleared part of the building for use. Biggest first.",
                   near, list_date, "accent", drop=("stage",) + (() if any(p.get("units") for p in near) else ("units",)))
-    project_sheet(wb, "new", "Permits that were not on last week's list. Closest to a final clean first, then biggest.",
+    project_sheet(wb, "new", "Permits issued in the last 7 days. Closest to a final clean first, then biggest.",
                   new, list_date, None, drop=() if any(p.get("units") for p in new) else ("units",))
     project_sheet(wb, "all", "Every open permit that passed the filter, closest to a final clean first, then biggest.",
                   rows, list_date, None)

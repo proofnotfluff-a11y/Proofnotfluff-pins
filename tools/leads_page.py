@@ -171,16 +171,16 @@ PAGE = """<!doctype html>
 <p class="lm-eye">Members &middot; List of __ASOF__</p>
 <h1>Chicago Construction Cleaning Leads</h1>
 <form class="lm-gate" id="gate" novalidate>
-<label for="pw">Members' password <span>(in your Gumroad receipt)</span></label>
+<label for="pw">Members' password <span>(on your Gumroad purchase page)</span></label>
 <div class="lm-row"><div class="lm-pw"><input id="pw" type="password" autocomplete="current-password" required aria-describedby="err">
 <button type="button" class="lm-eyebtn" id="eye" aria-label="Show password" aria-pressed="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path id="eyeslash" d="M3 3l18 18" hidden/></svg></button></div>
 <button class="lm-go" type="submit">Open this week's list</button></div>
 <p class="lm-err" id="err" role="alert"></p>
-<ul class="lm-links"><li>Lost the password? It is in your Gumroad receipt. <a href="https://gumroad.com/library">Open your Gumroad library</a></li>
+<ul class="lm-links"><li>Lost the password? It is on your Gumroad purchase page, linked from your receipt email. <a href="https://gumroad.com/library">Open your Gumroad library</a></li>
 <li>Not a member yet? <a href="__FREE__">Get the full list: $29 a month</a></li></ul>
 </form>
 <div id="app" hidden></div>
-<p class="lm-legal">Public City of Chicago permit records, as of __ASOF__. This site provides applications using data that has been modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one's own risk. No builder listed has endorsed or works with ProofNotFluff. Licensed to one business for its own prospecting.</p>
+<p class="lm-legal">Public City of Chicago permit records, as of __ASOF__. This site provides applications using data that has been modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one's own risk. No builder listed has endorsed or works with ProofNotFluff. Licensed to one business for its own prospecting; no reselling or republishing. Provided as is, without warranties of any kind, to the extent the law allows, and ProofNotFluff's total liability for any claim is limited to the amount you paid for the most recent month of your membership. Made with AI assistance. Full terms are on the Terms tab of the Excel file.</p>
 <template id="pitch">__PITCH__</template>
 <footer class="lm-foot">List of __ASOF__. Questions about your membership? Reply to your Gumroad receipt.</footer>
 </main>
@@ -214,7 +214,7 @@ app.innerHTML=`<div class="lm-tiles">
 <div class="tile key"><div class="lab">Open permits</div><div class="val">${int(d.rows.length)}</div><div class="sub">${bigMoney(total)} reported</div></div>
 <div class="tile"><div class="lab">Addresses</div><div class="val">${int(d.addresses)}</div><div class="sub">big jobs carry several permits</div></div>
 <div class="tile"><div class="lab">Near finish</div><div class="val">${int(d.near)}</div><div class="sub">partial occupancy approved</div></div>
-<div class="tile"><div class="lab">New this week</div><div class="val">${int(d.newCount)}</div><div class="sub">not on last week's list</div></div></div>
+<div class="tile"><div class="lab">New this week</div><div class="val">${int(d.newCount)}</div><div class="sub">issued in the last 7 days</div></div></div>
 <div class="lm-dl"><button class="lm-go" type="button" id="dl"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Download this week's Excel file</button><small>Opens in Excel or Google Sheets &middot; list of ${esc(d.asOf)}</small></div>
 <div class="lm-tabs" role="tablist" aria-label="Lists">${tabs.map(([k,t,c])=>`<button type="button" role="tab" data-v="${k}" aria-selected="${k===st.view}">${t}<span class="c">${int(c)}</span></button>`).join("")}</div>
 <div class="lm-tools" id="tools"><div class="lm-sel"><label for="ar">Community area</label><select id="ar"><option value="">All areas</option>${areas.map(a=>`<option value="${esc(a)}">${esc(a)}</option>`).join("")}</select></div>
@@ -244,9 +244,9 @@ draw();app.hidden=false;}
 const pw=document.getElementById("pw"),eye=document.getElementById("eye");
 eye.onclick=()=>{const show=pw.type==="password";pw.type=show?"text":"password";eye.setAttribute("aria-pressed",String(show));eye.setAttribute("aria-label",show?"Hide password":"Show password");document.getElementById("eyeslash").hidden=!show;pw.focus();};
 document.getElementById("gate").onsubmit=async e=>{e.preventDefault();const err=document.getElementById("err");
-if(!pw.value.trim()){err.textContent="Type the password from your Gumroad receipt.";return;}err.textContent="Opening...";
+if(!pw.value.trim()){err.textContent="Type the password from your Gumroad purchase page.";return;}err.textContent="Opening...";
 try{const d=await unlock(pw.value.trim());err.textContent="";document.getElementById("gate").hidden=true;render(d);window.scrollTo(0,0);}
-catch(x){err.textContent="That password didn't open the list. Check your Gumroad receipt, or reply to it for help.";}};
+catch(x){err.textContent="That password didn't open the list. Check your Gumroad purchase page, or reply to your receipt for help.";}};
 </script></body></html>
 """
 

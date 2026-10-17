@@ -2,35 +2,35 @@
  "source": {
   "name": "City of Chicago Data Portal, Building Permits",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
-  "rowsUpdatedAt": "2026-10-15T12:07:08+00:00",
-  "fetchedAt": "2026-10-15T14:21:47+00:00",
+  "rowsUpdatedAt": "2026-10-17T12:18:17+00:00",
+  "fetchedAt": "2026-10-17T19:41:43+00:00",
   "modified": "Filtered by ProofNotFluff: permits issued in the last 365 days, new construction or renovation, reported cost $500,000 or more, still open (not complete, suspended, revoked or expired), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; only project-level and business fields kept.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
-  "from": "2025-10-15",
-  "to": "2026-10-15"
+  "from": "2025-10-17",
+  "to": "2026-10-17"
  },
  "counts": {
-  "fetched": 1562,
-  "kept": 763,
+  "fetched": 1560,
+  "kept": 764,
   "excluded": {
-   "no commercial or apartment wording": 291,
-   "house or 2 to 3 flat": 187,
-   "1 to 3 homes": 156,
+   "no commercial or apartment wording": 293,
+   "house or 2 to 3 flat": 188,
+   "1 to 3 homes": 153,
    "no business listed as general contractor": 6,
-   "closed, complete or suspended": 159
+   "closed, complete or suspended": 156
   },
   "keptByType": {
-   "New construction": 191,
-   "Renovation": 572
+   "New construction": 189,
+   "Renovation": 575
   },
-  "keptCost": 4158974396,
-  "keptUnits": 3562,
+  "keptCost": 4201977829,
+  "keptUnits": 3396,
   "topAreas": [
    [
     "Loop",
-    122
+    121
    ],
    [
     "Near North Side",
@@ -38,15 +38,15 @@
    ],
    [
     "Near West Side",
-    82
+    83
    ],
    [
     "West Town",
-    40
+    41
    ],
    [
     "Lincoln Park",
-    40
+    39
    ],
    [
     "Lake View",
@@ -54,7 +54,7 @@
    ],
    [
     "Lower West Side",
-    22
+    23
    ],
    [
     "Logan Square",
@@ -64,8 +64,13 @@
   "topGCs": [
    {
     "name": "Skender Construction LLC",
-    "projects": 22,
-    "cost": 293605418
+    "projects": 23,
+    "cost": 365255418
+   },
+   {
+    "name": "JC Anderson Inc",
+    "projects": 18,
+    "cost": 33738104
    },
    {
     "name": "Power Construction Company, LLC",
@@ -74,13 +79,8 @@
    },
    {
     "name": "Executive Construction, Inc.",
-    "projects": 17,
-    "cost": 42164700
-   },
-   {
-    "name": "JC Anderson Inc",
-    "projects": 17,
-    "cost": 32938104
+    "projects": 16,
+    "cost": 40414700
    },
    {
     "name": "Bulley & Andrews, L.L.C.",
@@ -113,17 +113,17 @@
     "cost": 46045440
    },
    {
-    "name": "James McHugh Construction Co",
-    "projects": 10,
-    "cost": 92790000
-   },
-   {
     "name": "Development Solutions, Inc",
     "projects": 10,
     "cost": 9581498
+   },
+   {
+    "name": "Arco/Murray National Construction Company LLC",
+    "projects": 9,
+    "cost": 240618662
    }
   ],
-  "nearFinish": 8
+  "nearFinish": 9
  },
  "projects": [
   {
@@ -197,6 +197,21 @@
    "communityArea": "Near North Side",
    "status": "Active",
    "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "Skender Construction LLC"
+   ]
+  },
+  {
+   "permit": "101082340",
+   "issued": "2026-10-16",
+   "type": "Renovation",
+   "scope": "Interior buildout to existing 24-story mixed-use, office building to convert into multi-family residential building with 320 residential units",
+   "units": 320,
+   "cost": 71650000,
+   "address": "500 N Michigan Ave",
+   "communityArea": "Near North Side",
+   "status": "Phased Permitting",
+   "milestone": "Permit Issued (Fee Due)",
    "gc": [
     "Skender Construction LLC"
    ]
@@ -289,21 +304,6 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Power Construction Company, LLC"
-   ]
-  },
-  {
-   "permit": "101061913",
-   "issued": "2025-10-16",
-   "type": "New construction",
-   "scope": "New construction of a 6-story residential building (110 dwelling units), at-grade parking lot (134 auto spaces + 40 bike spaces) and associated site...",
-   "units": 110,
-   "cost": 46770000,
-   "address": "4809 W 44th St",
-   "communityArea": "Garfield Ridge",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "The George Sollitt Construction Co"
    ]
   },
   {
@@ -503,6 +503,21 @@
   }
  ],
  "nearFinish": [
+  {
+   "permit": "101080622",
+   "issued": "2026-03-30",
+   "type": "New construction",
+   "scope": "First time build out of 23rd floor office space. Work to include construction of non-load bearing partitions, ceilings, finishes, and associated mep...",
+   "units": null,
+   "cost": 5279012,
+   "address": "333 W Wolf Point Plz",
+   "communityArea": "Near North Side",
+   "status": "Active",
+   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
+   "gc": [
+    "Skender Construction LLC"
+   ]
+  },
   {
    "permit": "101070208",
    "issued": "2025-11-04",

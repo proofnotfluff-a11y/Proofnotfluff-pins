@@ -32,7 +32,7 @@ Every Monday we pull the City of Chicago's building permits and list the open ap
 Free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/
 
 The full list is $29 a month, cancel any time. Your first list arrives within 2 days, then every Monday:
-{checkout link}
+https://proofnotfluff.gumroad.com/l/vpnaoq
 
 ProofNotFluff
 1718 Capitol Ave, Cheyenne, WY 82001

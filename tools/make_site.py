@@ -1479,7 +1479,8 @@ CITY_DISCLAIMER = {
 }
 STAGES = [("PARTIAL OCCUPANCY", "Partial occupancy approved", "hot"), ("OCCUPANCY PENDING", "Partial occupancy approved", "hot"),
           ("CERTIFICATE OF OCCUPANCY ISSUED", "Occupancy certificate issued", "done"),
-          ("INSPECTIONS", "Inspections under way", "mid"), ("PERMIT ISSUED", "Permit issued", "early")]
+          ("INSPECTIONS", "Inspections under way", "mid"), ("PERMIT ISSUED", "Permit issued", "early"),
+          ("SOME BUILDINGS FINALED", "Some buildings finaled", "hot"), ("PERMIT ACTIVE", "Permit active", "early")]   # Austin (no milestones)
 
 
 def is_live(p):
@@ -1544,18 +1545,18 @@ def stage(m):
     return (m or "Open").capitalize(), "mid"
 
 
-def project_card(x, pill=True):
+def project_card(x, pill=True, city="Chicago", permit_label="Permit"):
     lab, cls = stage(x.get("milestone"))
     gc = "; ".join(x.get("gc") or [])
     units = f' · {x["units"]:,} homes' if x.get("units") else ""
-    area = x.get("communityArea") or "Chicago"
+    area = x.get("communityArea") or city
     pill_html = f'<p class="ld-pill s-{cls}">{E(lab)}</p>' if pill else ""
     return (f'<article class="ld-proj" data-type="{"new" if x["type"].startswith("New") else "ren"}" data-area="{E(area)}">{pill_html}'
             f'<div class="ld-ptop"><span class="ld-cost">{money(x["cost"])}</span><span class="ld-type">{E(x["type"])}{units}</span></div>'
             f'<p class="ld-scope">{E(x["scope"])}</p>'
             f'<dl class="ld-meta"><div><dt>Builder</dt><dd>{E(gc)}</dd></div>'
             f'<div><dt>Where</dt><dd>{E(x.get("address") or "")}, {E(area)}</dd></div>'
-            f'<div><dt>Permit</dt><dd>{E(str(x.get("permit") or ""))}, issued {E(nice_date(x.get("issued", "")))}</dd></div></dl></article>')
+            f'<div><dt>{E(permit_label)}</dt><dd>{E(str(x.get("permit") or ""))}, issued {E(nice_date(x.get("issued", "")))}</dd></div></dl></article>')
 
 
 LOCK = ('<svg class="ld-lock" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2" '
@@ -1577,6 +1578,14 @@ def leads_page_html(p):
     price = E(str(p["price"]))
     buy_label = f"Get the full list: ${price} a month"
     checkout = p.get("checkout")
+    # per-city wording (Austin, Oct 17): every key is optional and defaults to the Chicago page's words
+    city = p["city"]
+    card = lambda x, pill=True: project_card(x, pill, city, p.get("permitLabel", "Permit"))
+    near_title = p.get("nearTitle", "Partial occupancy approved")
+    near_sub = p.get("nearSub", "partial occupancy approved")
+    near_text = p.get("nearText", "The City has approved temporary or partial occupancy on these projects, so a final clean is close.")
+    area_word, area_all, area_filter = (p.get("areaWord", "Neighborhood"), p.get("areaAll", "All neighborhoods"),
+                                        p.get("areaFilter", "a neighborhood filter"))
 
     def buy(cls="btn ld-btnbig", label=buy_label):
         return f'<a class="{cls}" href="{E(checkout)}" rel="noopener">{label}</a>' if checkout else ""
@@ -1593,7 +1602,7 @@ def leads_page_html(p):
              f'<div class="tile key"><div class="lab">Open projects</div><div class="val">{kept:,}</div><div class="sub">issued in the last 12 months, still open</div></div>'
              f'<div class="tile"><div class="lab">Reported cost</div><div class="val">{money(cost, True)}</div><div class="sub">as filed with the City</div></div>'
              f'<div class="tile"><div class="lab">New buildings</div><div class="val">{new_n:,}</div><div class="sub">at least {c.get("keptUnits", 0):,} new apartments</div></div>'
-             f'<div class="tile"><div class="lab">Near finish</div><div class="val">{n_near:,}</div><div class="sub">partial occupancy approved</div></div></div>'
+             f'<div class="tile"><div class="lab">Near finish</div><div class="val">{n_near:,}</div><div class="sub">{E(near_sub)}</div></div></div>'
              f'<p class="asof">City data as of {E(asof)}. Refreshed every Monday.</p>')
 
     # near finish: the most valuable segment for a final clean, so the free page shows 2 and holds the rest back (owner, Oct 17)
@@ -1607,10 +1616,10 @@ def leads_page_html(p):
             held_html = (f'<div class="ld-held">{LOCK}<p class="ld-heldtxt"><b>{held:,} more near-finish {noun} in the full list</b>'
                          '<span>With the builder, address and permit for each, every Monday.</span></p>'
                          f'{buy("btn ld-btnbig") if checkout else ""}</div>')
-        near_html = ('<section class="block" id="near"><h2>Partial occupancy approved</h2>'
-                     f'<p>The City has approved temporary or partial occupancy on these projects, so a final clean is close. '
+        near_html = (f'<section class="block" id="near"><h2>{E(near_title)}</h2>'
+                     f'<p>{E(near_text)} '
                      f'Here are {len(show)} of the {n_near:,} on this week\'s list.</p>'
-                     f'<div class="ld-list">{"".join(project_card(x, pill=False) for x in show)}{held_html}</div></section>')
+                     f'<div class="ld-list">{"".join(card(x, pill=False) for x in show)}{held_html}</div></section>')
 
     gcs = "".join(f'<li><span class="ld-gname">{E(g["name"])}</span><span class="ld-gn">{g["projects"]}<span class="ld-gu"> open jobs</span></span>'
                   f'<span class="ld-gv">{money(g["cost"])}</span></li>' for g in c.get("topGCs", [])[:10])
@@ -1623,17 +1632,17 @@ def leads_page_html(p):
 
     areas = sorted({x.get("communityArea") for x in d["projects"] if x.get("communityArea")})
     opts = "".join(f'<option value="{E(a)}">{E(a)}</option>' for a in areas)
-    big_line = (f'The {n_big} biggest of {kept:,} open projects. Members get all {kept:,}, with a neighborhood filter and near-finish and new tabs, plus the Excel file.')
+    big_line = (f'The {n_big} biggest of {kept:,} open projects. Members get all {kept:,}, with {area_filter} and near-finish and new tabs, plus the Excel file.')
     big_html = ('<section class="block"><h2>Biggest open projects</h2>'
                 '<div class="ld-filter" role="group" aria-label="Filter projects">'
                 '<button type="button" class="ld-chip" aria-pressed="true" data-f="all">All</button>'
                 '<button type="button" class="ld-chip" aria-pressed="false" data-f="new">New buildings</button>'
                 '<button type="button" class="ld-chip" aria-pressed="false" data-f="ren">Renovations</button>'
-                f'<label class="ld-area"><span class="sr">Neighborhood</span><select id="ldArea"><option value="">All neighborhoods</option>{opts}</select></label></div>'
+                f'<label class="ld-area"><span class="sr">{E(area_word)}</span><select id="ldArea"><option value="">{E(area_all)}</option>{opts}</select></label></div>'
                 f'<p class="ld-count" id="ldCount" aria-live="polite" data-all="{E(big_line)}">{E(big_line)}</p>'
-                f'<div class="ld-list" id="ldList">{"".join(project_card(x) for x in d["projects"])}</div>'
+                f'<div class="ld-list" id="ldList">{"".join(card(x) for x in d["projects"])}</div>'
                 '<p class="ld-empty" id="ldEmpty" hidden>No projects in this sample match. The weekly list covers every open project.</p>'
-                + (f'<div class="ld-after"><p>That is the top {n_big}. The full list has all {kept:,}, closest to a final clean first, with a neighborhood filter.</p>{buy()}</div>' if checkout else "")
+                + (f'<div class="ld-after"><p>That is the top {n_big}. The full list has all {kept:,}, closest to a final clean first, with {area_filter}.</p>{buy()}</div>' if checkout else "")
                 + '</section>')
     links = "".join(f'<li><a href="{rel}{E(l[0])}/">{E(l[1])}</a></li>' for l in p.get("links", []))
     method = ('<section class="block"><h2>How to use this list</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"])
@@ -1693,7 +1702,7 @@ io.observe(hero);io.observe(cta)})();</script>"""
             f'<p>Source: {E(src["name"])} ({E(src["url"])}), City data as of {E(asof)}, pulled {E(nice_date(src["fetchedAt"]))}. {E(src["modified"])} '
             'Reported cost is the figure filed with the City, not a contract value. No contractor named here has endorsed or works with ProofNotFluff. '
             'Public information for planning sales calls; not legal or business advice and no promise of work.</p>'
-            f'<p>{E(CITY_DISCLAIMER.get(p["city"], ""))}</p>'
+            f'<p>{E(p.get("disclaimer") or CITY_DISCLAIMER.get(p["city"], ""))}</p>'
             '<p>Made by ProofNotFluff with AI assistance from public City data. The waitlist form sends your email address to Kit. The page counts visits with Cloudflare Web Analytics, which sets no cookies, and loads its heading font from Google Fonts.</p>'
             f'</div></footer>\n{sbar}\n{script}\n</body></html>')
     bodycls = ' class="ld-page' + (' has-sbar' if sbar else '') + '"'
@@ -1879,6 +1888,9 @@ def main():
     spec = json.load(open(os.path.join(ROOT, "site", "pages.json"), encoding="utf-8"))
     pages = spec["pages"]
     for p in pages:
+        if p.get("kind") == "leads" and not os.path.isfile(os.path.join(ROOT, p["data"])):
+            print("skipped", p["slug"], "(no data yet)")
+            continue
         out = os.path.join(DOCS, p["slug"]); os.makedirs(out, exist_ok=True)
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page_html(p))
         print("wrote", p["slug"])

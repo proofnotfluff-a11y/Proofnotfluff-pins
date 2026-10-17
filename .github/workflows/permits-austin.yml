@@ -1,0 +1,43 @@
+name: Austin permit leads sample
+# Austin Construction Cleaning Leads (product #2 on the permit engine, Oct 17, 2026). The cloud agents cannot reach
+# data.austintexas.gov, so this runner pulls the City of Austin's Issued Construction Permits data and commits only the
+# filtered, business-level sample to permits/austin/ (tools/permits_austin.py says what is kept). Nothing here launches:
+# the free page stays a draft (noindex) until the launch checklist is complete.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/permits_austin.py", ".github/workflows/permits-austin.yml"]
+  schedule:
+    - cron: "35 11 * * 1"   # Mondays, after the Chicago run
+permissions:
+  contents: write
+concurrency:
+  group: permits-austin
+  cancel-in-progress: false
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/permits_chicago.py --selftest
+      - run: python3 tools/permits_austin.py --selftest
+      - run: python3 tools/permits_austin.py --full "$RUNNER_TEMP/austin-full.json"
+      # TODO (launch checklist, after Todd adds the AUSTIN_LEADS_PASSWORD secret): build the encrypted members' page and
+      # the encrypted review set, the same way permits-chicago.yml does:
+      #   python3 tools/leads_xlsx.py "$RUNNER_TEMP/austin-full.json" "$RUNNER_TEMP/leads.xlsx"   (needs the city parameter)
+      #   python3 tools/leads_page.py "$RUNNER_TEMP/austin-full.json" "$RUNNER_TEMP/leads.xlsx" docs/austin-leads-members/index.html
+      #   python3 tools/leads_page.py --review "$RUNNER_TEMP/austin-full.json" permits/austin/review.enc.json
+      # Until then the full list is never committed: it stays in the runner and is thrown away.
+      - name: Rebuild the site pages from the new sample
+        run: python3 tools/make_site.py
+      - name: Commit the sample
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add permits/austin docs
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "Austin permit sample $(date -u +%Y-%m-%d)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done
+          exit 1

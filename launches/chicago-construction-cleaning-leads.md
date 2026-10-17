@@ -7,14 +7,15 @@ Status as of Oct 17, 2026, 4:10 pm Chicago.
 ## 1. The product
 - [x] Built to standard: workbook rebuilt to WORKBOOK_STANDARD v3 (commit fa2a832); free and members' pages rebuilt to the director's list.
 - [x] Self-checks: check_repo 0 errors; permits_chicago --selftest (41 planted cases), leads_xlsx --selftest, leads_page --selftest; render_xlsx ERROR VALUES: 0 on screen and print (design/v3 renders).
-- [ ] Holdout PASS on this week's live list (round 4 running; round 3 PASSED with fixes, all applied).
-- [ ] Design director PASS on workbook, free page, members' page, cover and thumbnail (re-judge running; round 1 FAILED all three).
-- [ ] Legal desk: City of Chicago disclaimer word for word on Terms, Start Here, the free page and the members' page; one Legal desk pass on the rebuilt surfaces.
+- [x] Holdout PASS (round 5, Oct 17, 4:30 pm; verify5/holdout-report.md): 0 of 632 clear wasted calls, all counts agree, the two round 4 homes errors fixed, no person's name.
+- [x] Design director: members' page 4.86, cover 4.4, thumbnail 4.6 PASS; free page 4.57 and workbook 4.29 failed twice on polish, so under the gate rules the live session decided: screenshot loading confirmed in a desktop browser (both images load, 1064 and 1200 px), workbook polish items fixed (step layout, card row heights, stat strips spread, Builders header and bars) and checked from fresh renders. Hyperlink color is set to 2F5F9E in the file; LibreOffice draws links in its own color.
+- [x] Legal desk: CLEARED WITH FIXES (verify5/legal-review.md); repo fixes 1, 2, 3b, 5, 6, 7, 8 applied (commit a083c2c). Gumroad wording fixes 3a and 4 are Todd's (his account). Attorney note: the City's terms require users to indemnify the City.
 
 ## 2. The storefront (Gumroad, Todd's account)
+- [ ] Legal wording on Gumroad (Legal desk fixes 3a and 4): not affiliated with the City, AI line, City disclaimer, "of $500,000 or more ... issued in the last 12 months", "Renews monthly until you cancel", tier named Monthly.
 - [x] Name, price ($29 a month), description: checked live Oct 17, 3:16 pm.
-- [ ] Cover (1280 x 720) and thumbnail (600 x 600): files sent to Todd 4:08 pm; director re-judge running; Todd uploads (quest a1-gumroad-cover).
-- [ ] Seller name shows ProofNotFluff, not a person's name (currently shows "Rob").
+- [x] Cover (1280 x 720, no weekly numbers) and thumbnail (600 x 600) uploaded by Todd; both passed the design director.
+- [x] Seller name shows ProofNotFluff (Todd, Oct 17, 4:16 pm screenshot).
 - [ ] Post-purchase content: members' page link and password, checked against the live members' page.
 
 ## 3. Buy and delivery path

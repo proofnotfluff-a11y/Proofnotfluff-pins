@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-16",
+ "updated": "2026-10-17",
  "pages": [
   {
    "slug": "house-cleaning-price-calculator",
@@ -3398,11 +3398,10 @@
   {
    "slug": "chicago-construction-cleaning-leads",
    "kind": "leads",
-   "draft": true,
    "segment": "home-services",
    "city": "Chicago",
    "data": "permits/chicago/sample.json",
-   "kitForm": "",
+   "kitForm": "10059700",
    "price": "29",
    "title": "Chicago Construction Cleaning Leads: Big Projects and Their Builders | ProofNotFluff",
    "desc": "Free weekly sample of Chicago's biggest open building permits: apartment and commercial projects over $500,000, the general contractor on each, and the ones with partial occupancy approved.",

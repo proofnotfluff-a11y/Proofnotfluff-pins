@@ -11,6 +11,8 @@ A page whose spec carries "draft": true is written with a noindex tag and left o
 and the sitemap until the Legal desk clears it and removes the flag (agents/legal-desk.md, SITE PAGES).
 A permit leads page (kind "leads", data from permits/chicago/ via .github/workflows/permits-chicago.yml) also stays
 noindex and off the index, hub and sitemap until its spec has "kitForm" (the Kit waitlist form number).
+Hand-made pages named in site/extras.json (not written here) join the sitemap and the index, with a link card on the
+pages in their "from" list, once their committed page has no robots meta (live_extras).
 """
 import html, json, os, sys
 
@@ -1485,6 +1487,28 @@ def is_live(p):
     return not p.get("draft") and not (p.get("kind") == "leads" and not p.get("kitForm"))
 
 
+def live_extras():
+    """Hand-made pages listed in site/extras.json (the free cheat sheet sign-up page, Oct 17): this script never writes
+    them, but once a page's committed docs/<slug>/index.html carries no robots meta it joins the sitemap, gets a card on
+    the free calculators index and a link card on each page named in its "from" list. Until then it stays off all three."""
+    f = os.path.join(ROOT, "site", "extras.json")
+    if not os.path.exists(f):
+        return []
+    out = []
+    for x in json.load(open(f, encoding="utf-8")).get("pages", []):
+        page = os.path.join(DOCS, x["slug"], "index.html")
+        if os.path.isfile(page) and 'name="robots"' not in open(page, encoding="utf-8").read():
+            out.append(x)
+    return out
+
+
+def extra_cards(slug):
+    """Link cards on a generated page for the live hand-made pages that name it in their "from" list."""
+    cards = "".join(f'<a class="card" href="../{E(x["slug"])}/"><h3>{E(x["h1"])}</h3><p>{E(x["card"])}</p></a>'
+                    for x in live_extras() if slug in x.get("from", []))
+    return f'<section class="block"><div class="tools one">{cards}</div></section>' if cards else ""
+
+
 def money(v):
     v = float(v or 0)
     if v >= 1e9:
@@ -1620,7 +1644,7 @@ def page_html(p):
             f'<div class="grid">{form}{results}</div>'
             f'<section class="block"><h2>How it works</h2>{"".join(f"<p>{E(x)}</p>" for x in p["method"])}</section>'
             f'<section class="block"><h2>A worked example</h2><p>{E(p["example"])}</p></section>'
-            f'{cta(p)}{faq_block(p["faq"])}')
+            f'{extra_cards(p["slug"])}{cta(p)}{faq_block(p["faq"])}')
     robots = '<meta name="robots" content="noindex, nofollow">' if p.get("draft") else ""
     return (HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=SHOP, ld=ld_json(p, url), bodycls=' class="has-mbar"', robots=robots, analytics=analytics_tag()) + body +
             FOOT.format(rel=rel, script=script, sources=E(p["sources"])))
@@ -1628,10 +1652,12 @@ def page_html(p):
 
 def index_html(pages):
     cards = "".join(f'<a class="card" href="{p["slug"]}/"><h3>{E(p["h1"])}</h3><p>{E(p["card"])}</p></a>' for p in pages)
+    extras = "".join(f'<a class="card" href="{E(x["slug"])}/"><h3>{E(x["h1"])}</h3><p>{E(x["card"])}</p></a>' for x in live_extras())
     body = ('<p class="eyebrow">Free tools</p><h1>Pricing calculators that show their work</h1>'
             '<p class="lede">Free calculators for people who sell their time: find your real hourly rate and price a job so it pays you. '
             'Each one uses the same maths as our tested Excel and Google Sheets workbooks.</p>'
-            f'<div class="tools">{cards}</div>')
+            f'<div class="tools">{cards}</div>'
+            + (f'<section class="block"><h2>Free printables</h2><div class="tools">{extras}</div></section>' if extras else ""))
     return (HEAD.format(title="Free pricing calculators for service businesses | ProofNotFluff",
                         desc="Free hourly rate and job pricing calculators for cleaners, pressure washing, freelancers and other service businesses.",
                         url=BASE, rel="", shop=SHOP, ld="", bodycls="", robots="", analytics=analytics_tag()) + body +
@@ -1790,7 +1816,7 @@ def main():
     live = [p for p in pages if is_live(p)]
     open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(index_html(live))
     write_hub_and_redirects(pages)
-    urls = [BASE, BASE + "go/"] + [BASE + p["slug"] + "/" for p in live]
+    urls = [BASE, BASE + "go/"] + [BASE + p["slug"] + "/" for p in live] + [BASE + x["slug"] + "/" for x in live_extras()]
     open(os.path.join(DOCS, "sitemap.xml"), "w").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
         "".join(f"  <url><loc>{u}</loc><lastmod>{spec['updated']}</lastmod></url>\n" for u in urls) + "</urlset>\n")

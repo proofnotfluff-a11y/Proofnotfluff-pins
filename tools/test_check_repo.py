@@ -79,6 +79,11 @@ def plants(tmp):
     if draft:
         out.append(("drafts", f"draft page {draft} made indexable", edit(f"docs/{draft}/index.html",
                     lambda t: t.replace('name="robots" content="noindex', 'name="robots" content="index'))))
+    # Runs even when no page is a draft (Oct 17: the last draft went live), so the drafts check is always tested.
+    live = next((p["slug"] for p in pages if not p.get("draft") and p.get("kind") != "leads"), None)
+    if live:
+        out.append(("drafts", f"live page {live} made noindex", edit(f"docs/{live}/index.html",
+                    lambda t: t.replace('<link rel="canonical"', '<meta name="robots" content="noindex, nofollow"><link rel="canonical"', 1))))
     out.append(("em-dash", "an em dash in docs/", new_file("docs/zz_planted.txt", "planted " + "—" + " dash\n")))
 
     # Secrets: values are built here at run time, so this file itself never matches a pattern.

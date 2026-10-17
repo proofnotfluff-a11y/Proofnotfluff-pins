@@ -1,12 +1,19 @@
 # Kit setup: free cleaning price cheat sheet and the Chicago leads waitlist (about 15 minutes, once)
 
+## Status, Oct 17, 2026 (live session, on Todd's go)
+- Done: Kit login email confirmed; from name ProofNotFluff, from address proofnotfluff@gmail.com.
+- Done: form 10059686 "Cleaning price cheat sheet" (double opt-in; email subject "Confirm and get your cheat sheet", button "Send me the cheat sheet"; after confirming it opens https://proofnotfluff.com/downloads/cleaning-price-floor-cheat-sheet.pdf). Wired into docs/free-cleaning-price-cheat-sheet/ (noindex off, in the sitemap, linked from the index and the house cleaning calculator through site/extras.json).
+- Done: form 10059700 "Chicago construction leads waitlist" (double opt-in; subject "Confirm your spot on the Chicago leads waitlist", button "Confirm my spot"; after confirming it opens the leads page). In site/pages.json kitForm, and the page is live (Legal desk cleared it Oct 17 pending only the form).
+- Not built: the 3-email sequence (Step 3). Kit's Free plan has no sequences or visual automations (help.kit.com/en/articles/16627071, read Oct 17), and the account's Creator trial ends about Oct 21. The sign-up page promises only the cheat sheet. If Todd upgrades Kit, build Step 3 as written and restore the page's line about the three emails.
+- Todd's call: the mailing address in Settings, Email. It is blank, so Kit prints its own Seattle mailbox in the footer (Kit offers that address free; it does not forward mail). A P.O. box or another address replaces it there.
+
 Everything below is ready to paste. Numbers come from the Service Pricing Calculator (#13) example, recalculated by docs/assets/pnf-calc.js (checked Oct 7, 2026). No em dashes, no invented people.
 
 Cheat sheet PDF (public link used in email 1):
-https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/downloads/cleaning-price-floor-cheat-sheet.pdf
+https://proofnotfluff.com/downloads/cleaning-price-floor-cheat-sheet.pdf
 
 Sign-up page (goes live once the form ID is in it):
-https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/free-cleaning-price-cheat-sheet/
+https://proofnotfluff.com/free-cleaning-price-cheat-sheet/
 
 ## Step 1. Account basics (Kit, Settings)
 - Sender name: ProofNotFluff. Sender email: proofnotfluff@gmail.com (the address your Kit account uses) or another inbox you read (replies land there; agents never reply).
@@ -15,13 +22,13 @@ https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/free-cleaning-price-chea
 ## Step 2. Create the form
 Grow, Landing Pages & Forms, Create new, Form, Inline, any template.
 - Name: Cleaning price cheat sheet
-- Settings, Incentive: turn ON "Send incentive email" (this is double opt-in, the safer default). Subject: Confirm and get your cheat sheet. Button text: Send me the cheat sheet. After confirming, redirect to: https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/downloads/cleaning-price-floor-cheat-sheet.pdf
+- Settings, Incentive: turn ON "Send incentive email" (this is double opt-in, the safer default). Subject: Confirm and get your cheat sheet. Button text: Send me the cheat sheet. After confirming, redirect to: https://proofnotfluff.com/downloads/cleaning-price-floor-cheat-sheet.pdf
 - Save. Copy the number in the form's address bar (app.kit.com/forms/designers/1234567/edit, the 1234567) and send it to the live chat. The agent puts it in the sign-up page and turns the page on.
 
 ## Step 2b. Create the waitlist form (the Chicago permit leads pilot, Oct 14)
 Same place: Grow, Landing Pages & Forms, Create new, Form, Inline, any template.
 - Name: Chicago construction leads waitlist
-- Settings, Incentive: turn ON "Send incentive email" (double opt-in). Subject: Confirm your spot on the Chicago leads waitlist. Button text: Confirm my spot. After confirming, redirect to: https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/chicago-construction-cleaning-leads/
+- Settings, Incentive: turn ON "Send incentive email" (double opt-in). Subject: Confirm your spot on the Chicago leads waitlist. Button text: Confirm my spot. After confirming, redirect to: https://proofnotfluff.com/chicago-construction-cleaning-leads/
 - No sequence for this one. Save, copy its number the same way and send both numbers to the live chat. The agent puts this one in the leads page (site/pages.json "kitForm"), and the page can then go live once the Legal desk clears it.
 
 ## Step 3. Create the sequence
@@ -34,7 +41,7 @@ Preview: Four numbers, then price any clean from them
 Hi {{ subscriber.first_name | default: "there" }},
 
 Here's your cheat sheet:
-https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/downloads/cleaning-price-floor-cheat-sheet.pdf
+https://proofnotfluff.com/downloads/cleaning-price-floor-cheat-sheet.pdf
 
 It does one thing: shows what a clean has to cost so it pays you.
 
@@ -43,7 +50,7 @@ Most of us price by dividing the pay we want by the hours we work. In the sheet'
 Print page 1 and fill in the yellow column with your own numbers. It takes about 10 minutes.
 
 If you'd rather type than write, the same maths runs in the free calculator:
-https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/house-cleaning-price-calculator/
+https://proofnotfluff.com/house-cleaning-price-calculator/
 
 ProofNotFluff
 

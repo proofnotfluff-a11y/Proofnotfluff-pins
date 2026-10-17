@@ -1,0 +1,12 @@
+{
+ "about": "Hand-made pages tools/make_site.py does not write. Each joins the sitemap and the free calculators index, with a link card on the pages in its from list, once its committed docs/<slug>/index.html carries no robots meta.",
+ "pages": [
+  {
+   "slug": "free-cleaning-price-cheat-sheet",
+   "h1": "Free cleaning price cheat sheet",
+   "card": "A printable page for house cleaners: four steps to your real break-even rate and the price floor for any clean. Free by email.",
+   "from": ["house-cleaning-price-calculator"],
+   "kitForm": "10059686"
+  }
+ ]
+}

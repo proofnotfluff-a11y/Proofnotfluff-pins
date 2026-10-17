@@ -57,10 +57,18 @@ def stage(m):
     return (m or "").strip()
 
 
+STAGE_ORDER = {"Partial occupancy approved": 0, "Inspections under way": 1, "Permit issued": 2}
+
+
+def sort_key(p):
+    """By neighborhood, then stage (closest to done first), then reported cost, as the sales page promises."""
+    return (p.get("communityArea") or "~", STAGE_ORDER.get(p.get("stage"), 3), -(p.get("cost") or 0), p.get("issued", ""))
+
+
 def prep(p, prev_ids=None):
     q = dict(p)
     q["stage"] = stage(p.get("milestone"))
-    q["gcText"] = ", ".join(p.get("gc") or [])
+    q["gcText"] = "; ".join(p.get("gc") or [])
     new = p.get("newThisWeek") if prev_ids is None else (str(p.get("permit")) not in prev_ids)
     q["new"] = bool(new)
     q["newText"] = "New" if new else ""
@@ -107,7 +115,7 @@ def project_sheet(wb, title, subtitle, rows, as_of, tab):
         r += 1
     if rows:
         ws.auto_filter.ref = f"B{hdr}:{last}{r - 1}"
-    S.finish_sheet(ws, PRODUCT, r, span=("A", get_column_letter(len(COLS) + 2)), freeze=f"C{hdr + 1}",
+    S.finish_sheet(ws, PRODUCT, r, span=("A", get_column_letter(len(COLS) + 2)), freeze=f"D{hdr + 1}",
                    protect=False, footer_notice="Public City of Chicago permit records. See the Terms tab.", tab_color=tab)
     ws.page_setup.orientation = "landscape"
     ws.print_title_rows = f"{hdr}:{hdr}"
@@ -118,18 +126,18 @@ def builders_sheet(wb, rows, as_of):
     ws = wb.create_sheet("Builders")
     S.set_widths(ws, {"A": 2, "B": 38, "C": 12, "D": 18, "E": 14, "F": 12, "G": 40, "H": 2})
     r = S.title_block(ws, "Builders with the most open work",
-                      "One call to a builder's main office can cover many projects. Ask who buys cleaning for the job you name.",
+                      "One call to a builder's main office can cover many projects. Ask who buys cleaning for the job you name. A permit with two builders counts for each.",
                       span=("B", "G"), as_of=as_of)
     agg = collections.OrderedDict()
     for p in rows:
-        for g in (p.get("gc") or [])[:1]:
+        for g in (p.get("gc") or []):  # every listed builder gets credit (Holdout QC Oct 17)
             a = agg.setdefault(g, {"n": 0, "cost": 0, "near": 0, "new": 0, "areas": collections.Counter()})
             a["n"] += 1; a["cost"] += p.get("cost") or 0
             a["near"] += p["stage"] == "Partial occupancy approved"; a["new"] += p["new"]
             if p.get("communityArea"):
                 a["areas"][p["communityArea"]] += 1
     hdr = r
-    S.table_header(ws, r, {"B": "General contractor", "C": "Open projects", "D": "Reported cost", "E": "Near finish",
+    S.table_header(ws, r, {"B": "General contractor", "C": "Open permits", "D": "Reported cost", "E": "Near finish",
                            "F": "New", "G": "Where most of them are"})
     r += 1
     line = Side(style="thin", color=S.PALETTE["line"])
@@ -148,6 +156,8 @@ def builders_sheet(wb, rows, as_of):
         ws.auto_filter.ref = f"B{hdr}:G{r - 1}"
     S.finish_sheet(ws, PRODUCT, r, span=("A", "H"), freeze=f"C{hdr + 1}", protect=False,
                    footer_notice="Public City of Chicago permit records. See the Terms tab.", tab_color="purple")
+    ws.page_setup.orientation = "landscape"
+    ws.print_title_rows = f"{hdr}:{hdr}"
     return ws
 
 
@@ -172,7 +182,8 @@ def text_sheet(wb, title, subtitle, sections, tab, position=None):
 def build(data, out, prev=None):
     prev_ids = {str(p.get("permit")) for p in prev["projects"]} if prev else None
     rows = [prep(p, prev_ids) for p in data["projects"]]
-    rows.sort(key=lambda p: (-(p.get("cost") or 0), p.get("issued", "")))
+    rows.sort(key=sort_key)
+    addresses = len({p.get("address") for p in rows})
     near = [p for p in rows if p["stage"] == "Partial occupancy approved"]
     new = [p for p in rows if p["new"]]
     src = data["source"]
@@ -180,9 +191,9 @@ def build(data, out, prev=None):
     as_of = f"City data as of {fetched.strftime('%b')} {fetched.day}, {fetched.year}"
     total_cost = sum(p.get("cost") or 0 for p in rows)
     wb = S.new_workbook(PRODUCT)
-    text_sheet(wb, "Start Here", f"The open apartment and commercial projects in Chicago over $500,000 and the builders on them. {as_of}.", [
-        ("This week", [f"{len(rows):,} open projects with about ${total_cost / 1e9:.1f} billion of reported cost. "
-                       f"{len(near)} {'has' if len(near) == 1 else 'have'} partial occupancy approved, so the building is close to done. "
+    text_sheet(wb, "Start Here", f"Open apartment and commercial permits in Chicago with a reported cost of $500,000 or more, and the builders on them. {as_of}.", [
+        ("This week", [f"{len(rows):,} open permits at {addresses:,} addresses (big projects often carry several permits), with about ${total_cost / 1e9:.1f} billion of reported cost. "
+                       f"{len(near)} {'has' if len(near) == 1 else 'have'} partial occupancy approved, so the work under that permit is close to done. "
                        f"{len(new)} {'is' if len(new) == 1 else 'are'} new since last week."]),
         ("Three steps", [
             "1. Start with the Near finish tab. Those buildings are closest to a final clean.",
@@ -201,7 +212,7 @@ def build(data, out, prev=None):
     ], "teal", position=0)
     project_sheet(wb, "Near finish", "Partial occupancy approved: the City has cleared part of the building for use.", near, as_of, "accent")
     project_sheet(wb, "New this week", "Permits that were not on last week's list.", new, as_of, "gold")
-    project_sheet(wb, "All projects", "Every open project that passed the filter, biggest reported cost first.", rows, as_of, "blue")
+    project_sheet(wb, "All projects", "Every open permit that passed the filter, by community area, then stage, then reported cost.", rows, as_of, "blue")
     builders_sheet(wb, rows, as_of)
     text_sheet(wb, "Pitch kit", "Adapt these to your company. Keep every claim true.", [
         ("Your one-page capability sheet", [

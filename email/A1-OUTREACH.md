@@ -11,14 +11,14 @@ Why: Gemini's red team (Oct 17) and the COO agree that waiting for traffic is th
 ## Rules
 - Todd sends every email himself from proofnotfluff@gmail.com (no agent sends a message on his behalf). One email per company, no follow-up sequence unless Todd says so.
 - CAN-SPAM: honest subject, the sender is ProofNotFluff, a valid postal address in the footer (Todd, Oct 17, 2:39 pm: "you can use 1718 Capitol Ave Cheyenne, WY 82001"), and a working opt-out (reply "no thanks"); honor it, and never email that address again.
-- Every fact in the email comes from the City of Chicago Building Permits dataset as pulled into permits/chicago/sample.json (refresh the numbers and the example on the Monday before sending).
+- Every fact in the email comes from the week's members' list (the City of Chicago Building Permits dataset as filtered by tools/permits_chicago.py). {permits}, {addresses}, {near} and {example} are filled from that list on the morning the drafts are made, and the drafts are not made if any number differs from the list (Holdout QC, Oct 17: the first draft carried last week's numbers).
 - No invented people, no fake urgency, no claim that any builder works with us.
 
 ## The email (one per company; {fields} filled from the list)
 
 Subject:
 ```
-Chicago projects that need a final clean soon
+Chicago construction permits and their builders, every Monday
 ```
 
 Body:
@@ -27,7 +27,7 @@ Hi {Company} team,
 
 Your site says you do post-construction cleaning{ in Area}, so this may be worth a minute.
 
-Every Monday we pull the City of Chicago's building permits and list the open apartment and commercial projects over $500,000, with the general contractor on each. This week's list has 763 open projects. 8 of them already have partial occupancy approved by the City, which means the building is close to done. One example: a $2.5 million office renovation at 227 W Monroe St in the Loop, general contractor JC Anderson.
+Every Monday we pull the City of Chicago's building permits and list the open apartment and commercial jobs with a reported cost of $500,000 or more, with the general contractor on each. This week's list has {permits} open permits at {addresses} addresses. {near} of them already have partial occupancy approved by the City, which means the work under that permit is close to done. One example: {example}.
 
 Free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/
 

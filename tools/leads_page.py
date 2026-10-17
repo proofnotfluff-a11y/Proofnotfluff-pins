@@ -53,7 +53,7 @@ PAGE = """<!doctype html>
 <header class="top"><div class="wrap"><div><a class="brand" href="../">ProofNotFluff</a><div class="bars"><i></i><i></i><i></i><i></i><i></i></div></div></div></header>
 <main class="wrap"><section class="block">
 <p class="eyebrow">Members</p><h1>Chicago Construction Cleaning Leads</h1>
-<p class="lede">This week's full list: every open apartment and commercial project in Chicago over $500,000, the builder on each, and the ones closest to a final clean. Updated every Monday.</p>
+<p class="lede">This week's full list: every open apartment and commercial permit in Chicago with a reported cost of $500,000 or more, the builder on each, and the ones closest to a final clean. Updated every Monday.</p>
 <form class="lm-gate" id="gate"><label for="pw"><b>Members' password</b> (in your Gumroad receipt)</label>
 <input id="pw" type="password" autocomplete="current-password" required><button class="btn" type="submit">Open this week's list</button>
 <p class="lm-err" id="err" role="alert"></p></form>
@@ -70,11 +70,11 @@ const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 const usd=n=>n?"$"+Math.round(n).toLocaleString("en-US"):"";
 function card(p){return `<div class="lm-card"><h3>${esc(p.address)}${p.communityArea?" <span class=lm-meta>· "+esc(p.communityArea)+"</span>":""}</h3>
 <p>${p.new?'<span class="lm-tag new">New</span>':""}<span class="lm-tag">${esc(p.stage)}</span>${esc(p.type)}${p.units?" · "+p.units+" homes":""} · ${usd(p.cost)} reported</p>
-<p class="lm-meta">${esc(p.scope)}</p><p class="lm-meta"><b>Builder:</b> ${esc((p.gc||[]).join(", "))} · Permit ${esc(p.permit)} · issued ${esc(p.issued)}</p></div>`;}
+<p class="lm-meta">${esc(p.scope)}</p><p class="lm-meta"><b>Builder:</b> ${esc((p.gc||[]).join("; "))} · Permit ${esc(p.permit)} · issued ${esc(p.issued)}</p></div>`;}
 function render(d){const app=document.getElementById("app");let view="near",area="";
 const areas=[...new Set(d.rows.map(r=>r.communityArea).filter(Boolean))].sort();
 const draw=()=>{let rows=d.rows.filter(r=>view==="all"||(view==="near"?r.stage==="Partial occupancy approved":r.new));if(area)rows=rows.filter(r=>r.communityArea===area);
-app.innerHTML=`<p><b>${d.rows.length.toLocaleString("en-US")}</b> open projects · <b>${d.near}</b> near finish · <b>${d.newCount}</b> new this week</p>
+app.innerHTML=`<p><b>${d.rows.length.toLocaleString("en-US")}</b> open permits at <b>${d.addresses.toLocaleString("en-US")}</b> addresses · <b>${d.near}</b> near finish · <b>${d.newCount}</b> new this week</p>
 <p><a class="btn" id="dl" href="#">Download the workbook (Excel, opens in Google Sheets)</a></p>
 <div class="lm-tabs">${[["near","Near finish"],["new","New this week"],["all","All projects"]].map(([k,t])=>`<button type="button" data-v="${k}" aria-pressed="${k===view}">${t}</button>`).join("")}</div>
 <div class="lm-tools"><label for="ar">Community area</label><select id="ar"><option value="">All areas</option>${areas.map(a=>`<option${a===area?" selected":""}>${esc(a)}</option>`).join("")}</select><span class="lm-small">${rows.length} shown</span></div>
@@ -95,10 +95,11 @@ def build(full, xlsx_path, out, password):
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     from leads_xlsx import prep
     rows = [prep(p) for p in full["projects"]]
-    rows.sort(key=lambda p: (-(p.get("cost") or 0), p.get("issued", "")))
+    from leads_xlsx import sort_key
+    rows.sort(key=sort_key)
     fetched = dt.datetime.fromisoformat(full["source"]["fetchedAt"]).date()
     slim = [{k: p.get(k) for k in ("address", "communityArea", "type", "scope", "cost", "units", "issued", "gc", "permit", "stage", "new")} for p in rows]
-    payload = {"rows": slim, "near": sum(p["stage"] == "Partial occupancy approved" for p in rows), "newCount": sum(p["new"] for p in rows),
+    payload = {"rows": slim, "addresses": len({p.get("address") for p in rows}), "near": sum(p["stage"] == "Partial occupancy approved" for p in rows), "newCount": sum(p["new"] for p in rows),
                "fileName": f"chicago-construction-cleaning-leads-{fetched.isoformat()}.xlsx",
                "xlsx": base64.b64encode(open(xlsx_path, "rb").read()).decode()}
     box = encrypt(password, json.dumps(payload, separators=(",", ":")).encode())

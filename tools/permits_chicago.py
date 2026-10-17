@@ -36,7 +36,42 @@ BUSINESS = re.compile(r"\b(LLC|L\.L\.C|INC|INCORPORATED|CORP|CORPORATION|CO|COMP
                       r"ASSOCIATES|INDUSTRIES|SOLUTIONS|SYSTEMS|BUILD)\b\.?")
 RESIDENTIAL_SMALL = re.compile(r"SINGLE[- ]FAMILY|\bSFR\b|\bS\.F\.R\b|TWO[- ]FLAT|\b2[- ]FLAT|THREE[- ]FLAT|\b3[- ]FLAT|COACH HOUSE|"
                                r"\b(1|2|3|ONE|TWO|THREE)[- ]?(DWELLING UNITS?|DU|D\.U\.?|UNITS?)\b")
-UNITS = re.compile(r"(\d{1,4})\s*[- ]?\s*(?:RESIDENTIAL\s+)?(?:DWELLING UNITS?|D\.?U\.?S?\b|UNITS?\b|APARTMENTS?\b)")
+UNITS = re.compile(r"\(?(\d{1,4})\)?\s*[- ]?\s*(?:(?:NEW|STANDARD|EFFICIENCY|RESIDENTIAL|AFFORDABLE|MARKET[- ]RATE|STUDIO|"
+                   r"TOWN ?HOME|RENTAL|CONDO(?:MINIUM)?)\s+)*(?:DWELLING(?:\s+UNITS?)?\b|D\.?U\.?S?\b|UNITS?\b|APARTMENTS?\b)")
+TYPED_UNITS = re.compile(r"\(?(\d{1,4})\)?\s*(?:STANDARD|EFFICIENCY|AFFORDABLE|MARKET[- ]RATE|STUDIO)\s+(?:DWELLING\s+)?UNITS?\b")
+# numbered units of a 2 or 3 flat ("UNITS 1 TO 3", "UNIT 1 + UNIT 2"), or a deconversion down to 3 or fewer homes
+FLAT_UNITS = re.compile(r"\bUNITS?\s*#?\s*[1-3]\b(?:\s*(?:,|&|\+|AND|TO|THRU|THROUGH|-)\s*(?:UNITS?\s*#?\s*)?[1-3]\b)+|\bDE-?CONVER\w*\b.*?\bTO\s*\(?[1-3]\)?\s*(?:DWELLING|UNITS?|D\.?U)")
+# one home inside a bigger building (a condo or a numbered apartment), not an office suite
+ONE_HOME = re.compile(r"SINGLE\s+(?:RESIDENTIAL|DWELLING|CONDO\w*)\s+UNIT|CONDO(?:MINIUM)?\s+UNIT|APARTMENT\s*#\s*\d|\b(?:RESIDENTIAL|DWELLING|CONDO\w*)\s+UNIT\s*#?\s*\d{2,5}\b|PENTHOUSE UNIT")
+# work that never needs a construction clean under this permit (Holdout QC Oct 17: about 10% of rows)
+NON_CLEAN = re.compile(r"CAISSON|\bPILES?\b|PILING|FOUNDATION (?:ONLY|PERMIT)|\bDEMOLITION\b|\bDEMO\b|WRECKING|AIR HANDL|COOLING TOWER|CHILLER|"
+                       r"\bBOILERS?\b|ROOF(?:ING)? REPLACEMENT|REPLACE(?:MENT OF)? (?:THE )?ROOF|RE-?ROOF|\bSOLAR\b|WATER ?MAIN|LANDSCAP|RIVERWALK|"
+                       r"CURTAIN ?WALL|FACADE|MASONRY REPAIR|TUCKPOINT|RESURFAC|PARKING LOT|ANTENNA|ELEVATOR MODERNI|SPRINKLER SYSTEM|FIRE ALARM|"
+                       r"(?:MECHANICAL|ELECTRICAL|PLUMBING|STRUCTURAL|SITE) (?:WORK )?ONLY|NO NEW CONSTRUCTION")
+FINISH_WORK = re.compile(r"BUILD[- ]?OUT|INTERIOR (?:ALTERATION|RENOVATION|REMODEL|FINISH)|ALTERATIONS? (?:TO|OF|AND)|RENOVAT|REMODEL|FIT[- ]?OUT|"
+                         r"TENANT IMPROVEMENT|CONVERSION|CONVERT|\bERECT|NEW (?:\d+|ONE|TWO|THREE|FOUR|FIVE|SIX|SEVEN|EIGHT|NINE|TEN)[- ]STOR|"
+                         r"FULL BUILDING PERMIT|DWELLING|RESIDENTIAL BUILDING|APARTMENT BUILDING|ADDITION")
+ONLY_TRADE = re.compile(r"(?:CAISSON|PILE|PILING|FOUNDATION|DEMOLITION|DEMO|MECHANICAL|EXCAVATION|SHORING|EARTH ?WORK)S?\b[^.;]{0,40}\bONLY\b|"
+                        r"\bONLY\b[^.;]{0,25}\b(?:CAISSON|PILE|FOUNDATION|DEMOLITION)|NO NEW CONSTRUCTION")
+TRADE_GC = re.compile(r"MECHANICAL|HEATING|COOLING|HVAC|REFRIGERATION|ELECTRIC|PLUMBING|DEMOLITION|WRECKING|ROOFING|SHEET METAL|SPRINKLER|AIR\b")
+AREA_NAMES = {"Mckinley Park": "McKinley Park", "Ohare": "O'Hare"}
+
+
+def unit_count(desc):
+    """Homes a residential permit describes: typed counts added up (101 standard + 48 efficiency = 149), else the largest count."""
+    typed = [int(m.group(1)) for m in TYPED_UNITS.finditer(desc)]
+    if len(typed) >= 2:
+        return sum(typed)
+    counts = [int(m.group(1)) for m in UNITS.finditer(desc)]
+    final = re.search(r"\bTO\s*\(?(\d{1,4})\)?\s*(?:DWELLING|UNITS?|D\.?U|APARTMENTS?)", desc)
+    if final and re.search(r"DE-?CONVER|REDUC", desc):
+        return int(final.group(1))
+    return max(counts) if counts else 0
+
+
+def gc_clean(nm):
+    nm = re.split(r"\s+(?:ATTN|ATTENTION|C/O)\b.*$", nm, flags=re.I)[0].strip(" ,;:")
+    return nm + ("..." if len(nm) >= 50 else "")
 COMMERCIAL = re.compile(r"RETAIL|COMMERCIAL|OFFICE|RESTAURANT|HOTEL|SCHOOL|WAREHOUSE|INDUSTRIAL|MIXED[- ]USE|MEDICAL|"
                         r"CLINIC|HOSPITAL|CHURCH|FITNESS|\bGYM\b|\bSTORE\b|\bBANK\b|\bLAB\b|LABORATORY|DATA CENTER|TENANT|"
                         r"BUILD[- ]?OUT|CAFE|\bBAR\b|THEATER|THEATRE|UNIVERSITY|COLLEGE|LIBRARY|DAY ?CARE|MANUFACTURING|"
@@ -93,8 +128,11 @@ PERSON_TAG = re.compile(r"\b(?:plan\s+)?(?:reviewers?|consultants?|architects?|e
                         r"prepared\s+by|drawn\s+by|designed\s+by|attn|c/o|contact|mr|mrs|ms|dr)\b\.?", re.I)
 
 
+WORK = re.compile(r"alter|renovat|build[- ]?out|\berect|construct|conver|remodel|install|replac|demol|repair|addition|finish|rehab", re.I)
+
+
 def clean_scope(desc, limit=150):
-    d = re.sub(r"\s+", " ", (desc or "")).strip()
+    d = re.sub(r"\s+", " ", (desc or "").replace("\u00bf", " ")).strip()
     m = PERSON_TAG.search(d)
     if m:
         d = d[:m.start()]
@@ -103,13 +141,18 @@ def clean_scope(desc, limit=150):
     d = NOISE.sub("", d)
     d = re.sub(r"^\d{1,2}[.)]\s+", "", d)
     parts, out = re.split(r"(?<=[A-Za-z0-9)])\.\s+(?=[A-Za-z0-9])", d), []
-    for part in parts:   # whole sentences until there is enough to say what the job is
+    used = 0
+    for part in parts:   # whole sentences until there is enough to say what the job is, and the work itself is named
+        used += 1
         part = TAIL.sub("", part).strip(" :-/.,;")
         if part:
             out.append(part.lower() if part.isupper() else part)
-        if len(". ".join(out)) >= 60:
+        if len(". ".join(out)) >= 60 and WORK.search(" ".join(out)):
             break
+    more = used < len([p for p in parts if TAIL.sub("", p).strip(" :-/.,;")])
     d = ". ".join(x[:1].upper() + x[1:] for x in out) if out else d
+    if more and len(d) <= limit:
+        d = d.rstrip(".") + "..."
     d = re.sub(r"\b(\d+)\s*du\b", r"\1-unit", d)
     return d if len(d) <= limit else d[:limit].rsplit(" ", 1)[0] + "..."
 
@@ -126,7 +169,8 @@ def title_name(n):
         else:
             w = re.sub(r"[A-Za-z]+", lambda m: m.group(0).capitalize(), w.lower())
             out.append(re.sub(r"\bMc([a-z])", lambda m: "Mc" + m.group(1).upper(), w))
-    return re.sub(r"\s+,", ",", " ".join(out))
+    s = re.sub(r"\s+,", ",", " ".join(out))
+    return re.sub(r"(\w)['\u2019]S\b", lambda m: m.group(1) + "'s", s)
 
 
 def street(r):
@@ -196,15 +240,18 @@ def main():
         milestone[r.get("permit_milestone") or ""] += 1
         if (r.get("permit_status") or "").upper() in CLOSED:
             reasons["closed, complete or suspended"] += 1; continue
-        desc = (r.get("work_description") or "").upper()
-        units = [int(m.group(1)) for m in UNITS.finditer(desc)]
-        maxu = max(units) if units else 0
+        desc = (r.get("work_description") or "").upper().replace("\u00bf", " ")
+        maxu = unit_count(desc)
         if maxu and maxu < 4:
             reasons["1 to 3 homes"] += 1; continue
-        if not maxu and RESIDENTIAL_SMALL.search(desc):
+        if not maxu and (RESIDENTIAL_SMALL.search(desc) or FLAT_UNITS.search(desc)):
             reasons["house or 2 to 3 flat"] += 1; continue
+        if maxu < 4 and ONE_HOME.search(desc):
+            reasons["one home inside a larger building"] += 1; continue
         if not maxu and not COMMERCIAL.search(desc):
             reasons["no commercial or apartment wording"] += 1; continue
+        if ONLY_TRADE.search(desc) or (NON_CLEAN.search(desc) and not FINISH_WORK.search(desc)):
+            reasons["no construction clean (foundation, demolition, roof, mechanical or site work only)"] += 1; continue
         gcs = []
         for n in range(1, 16):
             t = (r.get(f"contact_{n}_type") or "").upper()
@@ -212,10 +259,12 @@ def main():
             if t:
                 ctype[t] += 1
             if "GENERAL CONTRACTOR" in t and "OWNER" not in t and nm and BUSINESS.search(nm.upper()):
-                if gc_key(nm) not in [gc_key(g) for g in gcs]:
+                nm = gc_clean(nm)
+                if nm and gc_key(nm) not in [gc_key(g) for g in gcs]:
                     gcs.append(title_name(nm))
         if not gcs:
             reasons["no business listed as general contractor"] += 1; continue
+        gcs.sort(key=lambda g: bool(TRADE_GC.search(g.upper())))  # the builder first, a trade contractor second
         addr = street(r)
         ca = str(r.get("community_area") or "").split(".")[0]
         cost = float(r.get(cost_col) or 0) if cost_col else 0
@@ -227,7 +276,7 @@ def main():
             "units": maxu or None,
             "cost": round(cost),
             "address": addr,
-            "communityArea": areas.get(ca, ""),
+            "communityArea": AREA_NAMES.get(areas.get(ca, ""), areas.get(ca, "")),
             "status": (r.get("permit_status") or "").title(),
             "milestone": (r.get("permit_milestone") or "").title(),
             "gc": gcs[:2],
@@ -245,8 +294,9 @@ def main():
             "name": "City of Chicago Data Portal, Building Permits", "url": DATASET_PAGE, "rowsUpdatedAt": upd_iso,
             "fetchedAt": now.isoformat(timespec="seconds"),
             "modified": (f"Filtered by ProofNotFluff: permits issued in the last {a.days} days, new construction or renovation, "
-                         f"reported cost ${a.min_cost:,} or more, still open (not complete, suspended, revoked or expired), "
-                         "apartment buildings of 4+ units or commercial work, with a business listed as general contractor; "
+                         f"reported cost ${a.min_cost:,} or more, still open (not complete, suspended, cancelled, revoked or expired), "
+                         "apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs "
+                         "a construction clean under its permit (foundation, caisson, demolition, roof, mechanical or site work only) left out; "
                          "only project-level and business fields kept."),
             "terms": TERMS_URL,
         },
@@ -279,5 +329,52 @@ def main():
     print(json.dumps({"fetched": len(rows), "kept": len(kept), "excluded": dict(reasons), "top3": [(k["cost"], k["type"], k["communityArea"]) for k in kept[:3]]}))
 
 
+FILTER_CASES = [  # planted cases from the Oct 17 holdout QC: (description, keep?, homes or None)
+    ("COMPLETE RENOVATION AND CONVERSION OF EXISTING 3-STORY MASONRY CHURCH BUILDING TO (6) RESIDENTIAL UNITS", True, 6),
+    ("BUILDOUT OF ALL FLOORS FOR NEW 9 STORY RESIDENTIAL BUILDING WITH 101 STANDARD DWELLING UNITS 48 EFFICIENCY UNITS", True, 149),
+    ("REMOVAL AND REPLACEMENT OF THREE (3) AIR HANDLING UNITS AT 2ND FLOOR MECHANICAL SPACE AT EXISTING HOSPITAL", False, None),
+    ("INTERIOR ALTERATIONS TO EXISTING FITNESS CENTER (5TH FLOOR) IN EXISTING 5-STORY BUILDING", True, None),
+    ("ERECT NEW 3 STORY 4 UNIT RESIDENTIAL BUILDING WITH NEW 5 CAR DETACHED GARAGE", True, 4),
+    ("INTERIOR RENOVATION OF 3 DWELLING APARTMENT BUILDING", False, None),
+    ("INTERIOR REMODEL OF UNITS 1 TO 3 IN EXISTING MASONRY APARTMENT BUILDING", False, None),
+    ("GUT REHAB UNIT 1 + UNIT 2 OF EXISTING APARTMENT BUILDING", False, None),
+    ("DECONVERSION OF EXISTING APARTMENT BUILDING FROM 4 UNITS TO 3 DWELLING UNITS", False, None),
+    ("CAISSONS (VERTICAL PENETRATION) ONLY FOR NEW 7 STORY 91-UNIT MIXED USE BUILDING", False, None),
+    ("FOUNDATION ONLY FOR NEW 12 STORY 200 UNIT RESIDENTIAL BUILDING", False, None),
+    ("INTERIOR DEMOLITION OF EXISTING LEVELS 14 AND 15 OF HOSPITAL PAVILION", False, None),
+    ("LANDSCAPING, PARK AND RIVERWALK IMPROVEMENTS FOR CASINO AND HOTEL", False, None),
+    ("ROOF REPLACEMENT AT EXISTING SCHOOL BUILDING", False, None),
+    ("INTERIOR ALTERATIONS TO A SINGLE RESIDENTIAL UNIT 4103 IN EXISTING HIGH-RISE CONDOMINIUM", False, None),
+    ("ALTERATIONS TO EXISTING OFFICE SPACE, SUITES 2600 AND 2652", True, None),
+    ("INTERIOR DEMOLITION AND BUILDOUT OF NEW RESTAURANT TENANT SPACE", True, None),
+    ("NEW CONSTRUCTION OF A 12-STORY RESIDENTIAL BUILDING (199 UNITS) W/ NO BASEMENT", True, 199),
+]
+
+
+def keep_desc(d):
+    """The same tests main() applies to a permit's description, in the same order."""
+    d = d.upper()
+    u = unit_count(d)
+    if (u and u < 4) or (not u and (RESIDENTIAL_SMALL.search(d) or FLAT_UNITS.search(d))) or (u < 4 and ONE_HOME.search(d)):
+        return False, u
+    if not u and not COMMERCIAL.search(d):
+        return False, u
+    if ONLY_TRADE.search(d) or (NON_CLEAN.search(d) and not FINISH_WORK.search(d)):
+        return False, u
+    return True, u
+
+
+def selftest():
+    bad = [(d, k, h, keep_desc(d)) for d, k, h in FILTER_CASES if keep_desc(d)[0] != k or (h is not None and keep_desc(d)[1] != h)]
+    assert gc_clean("MEADE ELECTRIC COMPANY, INC. ATTN: D. POEMBA") == "MEADE ELECTRIC COMPANY, INC.", "Attn not stripped"
+    assert title_name("WILLIAM'S CONSTRUCTION") == "William's Construction"
+    if bad:
+        raise SystemExit("filter selftest FAIL: " + json.dumps(bad)[:800])
+    print(f"filter selftest ok ({len(FILTER_CASES)} planted cases)")
+
+
 if __name__ == "__main__":
-    main()
+    if sys.argv[1:] == ["--selftest"]:
+        selftest()
+    else:
+        main()

@@ -1,5 +1,5 @@
 {
- "ranAt": "2026-10-17T21:39:08+00:00",
+ "ranAt": "2026-10-17T21:40:21+00:00",
  "since": "2026-09-05",
  "weeks": 6,
  "counts": {
@@ -540,6 +540,56 @@
     "permit_class": "C- 437 Addn, Alter, Convn-NonRes",
     "status_current": "Expired",
     "count": "1"
+   }
+  ],
+  "austin_365_commercial_by_workclass": [
+   {
+    "work_class": "Remodel",
+    "count": "2859",
+    "count_total_job_valuation": "3",
+    "count_total_valuation_remodel": "2857"
+   },
+   {
+    "work_class": "New",
+    "count": "971",
+    "count_total_job_valuation": "969",
+    "count_total_valuation_remodel": "0"
+   },
+   {
+    "work_class": "Interior Demo Non-Structural",
+    "count": "198",
+    "count_total_job_valuation": "198",
+    "count_total_valuation_remodel": "0"
+   },
+   {
+    "work_class": "Demolition",
+    "count": "89",
+    "count_total_job_valuation": "89",
+    "count_total_valuation_remodel": "0"
+   },
+   {
+    "work_class": "Shell",
+    "count": "56",
+    "count_total_job_valuation": "56",
+    "count_total_valuation_remodel": "0"
+   },
+   {
+    "work_class": "Addition and Remodel",
+    "count": "34",
+    "count_total_job_valuation": "34",
+    "count_total_valuation_remodel": "34"
+   },
+   {
+    "work_class": "Addition",
+    "count": "16",
+    "count_total_job_valuation": "16",
+    "count_total_valuation_remodel": "0"
+   },
+   {
+    "work_class": "Repair",
+    "count": "3",
+    "count_total_job_valuation": "3",
+    "count_total_valuation_remodel": "3"
    }
   ]
  },

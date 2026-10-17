@@ -1,0 +1,26 @@
+name: link-check
+# COO Oct 17: site/DOMAIN.md step 5 asks the crew to confirm old github.io links land on proofnotfluff.com.
+# The cloud sandbox cannot reach either host, so GitHub's runner checks them. Read-only: no commits.
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/link-check.yml']
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Old links redirect to the custom domain
+        run: |
+          fail=0
+          for u in \
+            https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/ \
+            https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/ \
+            https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/20/ \
+            https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/hourly-rate-calculator/ \
+            https://proofnotfluff.com/go/ \
+            https://proofnotfluff.com/go/20/ ; do
+            r=$(curl -sS -o /dev/null -L --max-redirs 5 -w '%{http_code} %{url_effective} hops=%{num_redirects}' "$u" || echo "000 error")
+            echo "$u -> $r"
+            case "$r" in 200*) ;; *) fail=1;; esac
+          done
+          exit $fail

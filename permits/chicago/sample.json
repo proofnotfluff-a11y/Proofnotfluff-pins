@@ -3,7 +3,7 @@
   "name": "City of Chicago Data Portal, Building Permits",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
   "rowsUpdatedAt": "2026-10-17T12:18:17+00:00",
-  "fetchedAt": "2026-10-17T20:22:39+00:00",
+  "fetchedAt": "2026-10-17T20:30:38+00:00",
   "modified": "Filtered by ProofNotFluff: permits issued in the last 365 days, new construction or renovation, reported cost $500,000 or more, still open (not complete, suspended, cancelled, revoked or expired), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs a construction clean under its permit (foundation, caisson, demolition, roof, mechanical or site work only) left out; only project-level and business fields kept.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
@@ -13,61 +13,61 @@
  },
  "counts": {
   "fetched": 1560,
-  "kept": 689,
+  "kept": 645,
   "excluded": {
-   "1 to 3 homes": 168,
-   "no commercial or apartment wording": 273,
-   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 72,
-   "house or 2 to 3 flat": 188,
-   "no business listed as general contractor": 7,
-   "one home inside a larger building": 7,
-   "closed, complete or suspended": 156
+   "house or 2 to 3 flat": 380,
+   "no commercial or apartment wording": 257,
+   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 95,
+   "one home inside a larger building": 15,
+   "no interior finish work or new building named": 9,
+   "closed, complete or suspended": 156,
+   "no business listed as general contractor": 3
   },
   "keptByType": {
-   "New construction": 166,
-   "Renovation": 523
+   "New construction": 164,
+   "Renovation": 481
   },
-  "keptCost": 3056771760,
-  "keptUnits": 2828,
+  "keptCost": 2971258110,
+  "keptUnits": 2954,
   "topAreas": [
    [
     "Loop",
-    106
+    104
    ],
    [
     "Near North Side",
-    93
+    83
    ],
    [
     "Near West Side",
-    74
+    72
    ],
    [
     "West Town",
-    37
+    36
    ],
    [
     "Lincoln Park",
-    37
+    34
    ],
    [
     "Lake View",
-    32
-   ],
-   [
-    "Lower West Side",
-    22
+    28
    ],
    [
     "Logan Square",
-    20
+    19
+   ],
+   [
+    "Lower West Side",
+    16
    ]
   ],
   "topGCs": [
    {
     "name": "Skender Construction LLC",
-    "projects": 21,
-    "cost": 361525418
+    "projects": 20,
+    "cost": 360475418
    },
    {
     "name": "JC Anderson Inc",
@@ -75,14 +75,14 @@
     "cost": 32438104
    },
    {
-    "name": "Power Construction Company, LLC",
+    "name": "Executive Construction, Inc.",
     "projects": 15,
-    "cost": 155717606
+    "cost": 39514700
    },
    {
-    "name": "Executive Construction, Inc.",
+    "name": "Power Construction Company, LLC",
     "projects": 14,
-    "cost": 39014700
+    "cost": 145717606
    },
    {
     "name": "Redmond Construction Corp.",
@@ -91,13 +91,13 @@
    },
    {
     "name": "Clune Construction Company, L.P.",
-    "projects": 13,
-    "cost": 56137508
+    "projects": 12,
+    "cost": 55587508
    },
    {
     "name": "Bulley & Andrews, L.L.C.",
-    "projects": 12,
-    "cost": 82205500
+    "projects": 11,
+    "cost": 78035500
    },
    {
     "name": "Leopardo Construction Inc",
@@ -111,8 +111,8 @@
    },
    {
     "name": "Bear Construction Company",
-    "projects": 11,
-    "cost": 12481052
+    "projects": 10,
+    "cost": 10181052
    },
    {
     "name": "Development Solutions, Inc",
@@ -320,7 +320,7 @@
    "status": "Active",
    "milestone": "Permit Issued (Fee Due)",
    "gc": [
-    "At Mechanical LLC"
+    "AT Mechanical LLC"
    ]
   },
   {
@@ -410,7 +410,7 @@
    "status": "Active",
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
-    "The George Sollitt Construction Co"
+    "THE George Sollitt Construction Co"
    ]
   },
   {
@@ -637,7 +637,7 @@
    "status": "Active",
    "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
    "gc": [
-    "Lo Destro Construction Company"
+    "LO Destro Construction Company"
    ]
   }
  ]

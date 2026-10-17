@@ -63,8 +63,17 @@ def money_of(r):
     return max(float(r.get("total_job_valuation") or 0), float(r.get("total_valuation_remodel") or 0))
 
 
+MAIN_TAG = re.compile(r"\s*[\[(]?\**\s*MAIN\s*\**[\])]?\s*$", re.I)   # "***Main***", "(Main)", "*Main*" office tags in builder names
+OPEN_TAG = re.compile(r"^\s*\[(?:APPROVED|CONCURRENT|SMART HOUSING|AE GREEN BUILDING|GREEN BUILDING)\]?\s*", re.I)
+
+
+def builder_name(nm):
+    nm = MAIN_TAG.sub("", (nm or "").strip()).strip(" *,")
+    return P.gc_filter(nm) if nm and P.BUSINESS.search(nm.upper()) else None
+
+
 def austin_scope(desc):
-    d = AUSTIN_PREFIX.sub("", (desc or "").strip())
+    d = OPEN_TAG.sub("", AUSTIN_PREFIX.sub("", (desc or "").strip()))
     return P.clean_scope(d)
 
 
@@ -116,20 +125,18 @@ def group_projects(rows, min_cost):
             continue
         gcs = []
         for r in kept:
-            nm = (r.get("contractor_company_name") or "").strip()
-            if nm and P.BUSINESS.search(nm.upper()):
-                g = P.gc_filter(nm)
-                if g and P.gc_key(g) not in [P.gc_key(x) for x in gcs]:
-                    gcs.append(g)
+            g = builder_name(r.get("contractor_company_name"))
+            if g and P.gc_key(g) not in [P.gc_key(x) for x in gcs]:
+                gcs.append(g)
         if not gcs:
             reasons["no business listed as contractor"] += 1
             continue
         finals = sum(1 for r in rs if (r.get("status_current") or "").upper() == "FINAL")
-        units = 0
+        units = 0   # Austin repeats project-level numbers on each building permit, so homes are the largest count on any one permit (a floor)
         for r in kept:
             if re.search(r"\b(?:104|105|106)\b", r.get("permit_class") or ""):
                 try:
-                    units += int(float(r.get("housing_units") or 0))
+                    units = max(units, int(float(r.get("housing_units") or 0)))
                 except ValueError:
                     pass
         first = sorted(kept, key=lambda r: r.get("issue_date") or "")[0]
@@ -221,7 +228,8 @@ def main():
         "window": {"from": since[:10], "to": now.strftime("%Y-%m-%d")},
         "counts": {"fetched": len(rows), "kept": len(projects), "excluded": dict(reasons),
                    "keptByType": dict(collections.Counter(x["type"] for x in projects)),
-                   "keptCost": sum(x["cost"] for x in projects),
+                   # a development's valuation repeats across its master permits: counted once per (valuation, builder, ZIP)
+                   "keptCost": sum(v for v, *_ in {(x["cost"], P.gc_key(x["gc"][0]), x["communityArea"]) for x in projects}),
                    "keptUnits": sum(x["units"] or 0 for x in projects if x["type"] == "New construction"),
                    "topAreas": by_zip.most_common(8), "topGCs": top_gcs, "nearFinish": len(near)},
         "projects": projects[: a.top],
@@ -292,7 +300,11 @@ def selftest():
                  total_job_valuation="245000000", contractor_company_name="EXAMPLE BUILDERS LLC", original_address1="1 Main St",
                  original_zip="78701", issue_date="2026-05-01") for i, st in enumerate(["Active", "Active", "Final"])]
     projects, _ = group_projects(rows, 500000)
-    if len(projects) != 1 or projects[0]["cost"] != 245000000 or projects[0]["milestone"] != "Some buildings finaled" or projects[0]["units"] != 60:
+    if builder_name("HARVEY-CLEARY BUILDERS ***MAIN***") != "Harvey-Cleary Builders" or builder_name("CM CONSTRUCTORS *MAIN*") != "CM Constructors":
+        bad.append(("main tag", builder_name("HARVEY-CLEARY BUILDERS ***MAIN***"), builder_name("CM CONSTRUCTORS *MAIN*")))
+    if not austin_scope("[APPROVED New Construction of Behavior Health Hospital").startswith("New Construction of Behavior"):
+        bad.append(("open tag", austin_scope("[APPROVED New Construction of Behavior Health Hospital")))
+    if len(projects) != 1 or projects[0]["cost"] != 245000000 or projects[0]["milestone"] != "Some buildings finaled" or projects[0]["units"] != 30:
         bad.append(("grouping", projects))
     if bad:
         raise SystemExit("austin selftest FAIL: " + json.dumps(bad)[:1200])

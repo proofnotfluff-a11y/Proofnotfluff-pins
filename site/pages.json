@@ -3467,6 +3467,85 @@
    "checkout": "https://proofnotfluff.gumroad.com/l/vpnaoq?utm_source=proofnotfluff&utm_medium=site&utm_campaign=chicago-leads"
   },
   {
+   "slug": "austin-construction-cleaning-leads",
+   "kind": "leads",
+   "segment": "home-services",
+   "city": "Austin",
+   "draft": true,
+   "data": "permits/austin/sample.json",
+   "price": "29",
+   "title": "Austin Construction Cleaning Leads: Big Projects and Their Builders | ProofNotFluff",
+   "desc": "Free weekly sample of Austin's biggest open commercial and apartment building projects: developments valued at $500,000 or more, the general contractor on each, and the ones with buildings already finaled.",
+   "eyebrow": "Free sample, updated every Monday",
+   "h1": "Austin Construction Cleaning Leads",
+   "lede": "For cleaning, window cleaning and pressure washing companies.",
+   "card": "The biggest open commercial and apartment projects in Austin, who is building them, and which have buildings already finaled.",
+   "permitLabel": "Master permit",
+   "areaWord": "ZIP code",
+   "areaAll": "All ZIP codes",
+   "areaFilter": "a ZIP code filter",
+   "nearTitle": "Some buildings finaled",
+   "nearSub": "some buildings already finaled",
+   "nearText": "These projects have at least one building permit marked final by the City while others are still open, so final cleans are under way or close.",
+   "costSub": "development valuations, each counted once",
+   "disclaimer": "Source data: City of Austin, TX - data.austintexas.gov, published under the City of Austin Open Data Terms of Use (data.austintexas.gov/d/ranj-cccq). The City of Austin has not reviewed or endorsed this page or ProofNotFluff. Permit data can be late, incomplete or wrong, and it changes.",
+   "method": [
+    "Start with the builders, not the buildings. A general contractor with several big jobs open hires subcontractors on each one, so getting on one builder's vendor list can put you in front of many projects.",
+    "Call the builder's main office and ask who buys cleaning for the project you name. Have the master permit number and the address ready.",
+    "Send a one-page capability sheet the same day: what you clean, crew size, insurance, equipment and two references.",
+    "Watch the stage. Austin issues one building permit per building, so a project with some buildings already finaled is the closest to final cleans."
+   ],
+   "links": [
+    [
+     "cleaning-price-per-square-foot-calculator",
+     "Cleaning price per square foot calculator"
+    ],
+    [
+     "hourly-rate-calculator",
+     "Hourly rate calculator"
+    ],
+    [
+     "window-cleaning-price-calculator",
+     "Window cleaning price calculator"
+    ],
+    [
+     "pressure-washing-price-per-square-foot-calculator",
+     "Pressure washing price per square foot calculator"
+    ]
+   ],
+   "cta": {
+    "title": "Get the full list every Monday",
+    "text": "Every open Austin commercial and apartment project valued at $500,000 or more with a business as general contractor, updated every Monday: closest to a final clean first with a ZIP code filter, new permits and projects with finaled buildings flagged, the builder on each, on a members' page and in an Excel file. Plus a pitch kit: a one-page capability sheet outline and an email to builders you can adapt."
+   },
+   "faq": [
+    [
+     "Where does this data come from?",
+     "The City of Austin's Issued Construction Permits dataset on data.austintexas.gov. We pull it every Monday and keep commercial building permits issued in the last 12 months, grouped into projects by the City's master permit, valued at $500,000 or more, with at least one building still open and a business listed as contractor."
+    ],
+    [
+     "Why is the valuation so big on some projects?",
+     "Austin records the valuation of the whole development on each building permit, so a project's valuation can cover several buildings or phases. Treat it as a size signal, not a budget or a contract value."
+    ],
+    [
+     "Why are some big projects missing?",
+     "Projects with no business listed as contractor, homes of two or three units, dumpster enclosures, pergolas and other structures that are not buildings, parking garages, roofs, demolition, shell-only and equipment work, and projects whose every building permit is closed are left out. This free page shows a sample; the weekly list covers every project that passes the filter."
+    ],
+    [
+     "Do you contact the builders for me?",
+     "No. You make your own calls and emails. We never contact builders or anyone else on your behalf."
+    ],
+    [
+     "Does any builder here work with ProofNotFluff?",
+     "No. Builders appear because their names are on public City of Austin permits. None has endorsed or works with ProofNotFluff."
+    ],
+    [
+     "When does the full list open?",
+     "Soon. The Austin list opens once it passes the same checks as our Chicago list."
+    ]
+   ],
+   "sources": "City of Austin, Issued Construction Permits."
+  },
+  {
    "slug": "break-even-calculator",
    "kind": "break_even",
    "draft": false,

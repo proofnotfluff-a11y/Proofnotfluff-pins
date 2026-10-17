@@ -4,7 +4,7 @@ Todd, Oct 17, 2026: "I just want to make sure that product design is so good the
 
 ## Who runs it and when
 
-An independent reviewer (Agent tool, model "opus"), given only the rendered output and this file, never the build code or the builder's notes. It runs after the holdout check and before the Legal desk, on: every new product (all tabs rendered, screen and print), every page a buyer lands on (desktop 1280 and phone 400), every listing image set and every first video frame. A rebuild of a product that passed reruns it only on what changed.
+An independent reviewer (Agent tool, model "opus"), given only the rendered output and this file, never the build code or the builder's notes. It runs after the holdout check and before the Legal desk, on: every new product (all tabs rendered, screen and print), every page a buyer lands on (desktop 1280 and phone 390), every listing image set and every first video frame. A rebuild of a product that passed reruns it only on what changed.
 
 ## What it compares against
 

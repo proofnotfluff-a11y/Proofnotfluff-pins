@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-10-17T21:15:44+00:00",
+ "fetchedAt": "2026-10-17T21:29:19+00:00",
  "rowsUpdatedAt": "2026-10-17T12:18:17+00:00",
  "columns": [
   "id",
@@ -126,8 +126,8 @@
   ":@computed_region_awaf_s7ux"
  ],
  "permitTypes": {
-  "PERMIT - RENOVATION/ALTERATION": 1006,
-  "PERMIT - NEW CONSTRUCTION": 554
+  "PERMIT - NEW CONSTRUCTION": 554,
+  "PERMIT - RENOVATION/ALTERATION": 1006
  },
  "contactTypes": {
   "CONTRACTOR-GENERAL CONTRACTOR": 656,

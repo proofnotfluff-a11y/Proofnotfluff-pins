@@ -21,7 +21,18 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+      - run: python3 tools/inspections_chicago.py --selftest
       - run: python3 tools/inspections_chicago.py --probe
+      - run: python3 tools/inspections_chicago.py --full "$RUNNER_TEMP/inspections-full.json"
+      - name: Keep the full weekly list out of the repo (short-lived artifact; it holds raw violation notes)
+        uses: actions/upload-artifact@v4
+        with:
+          name: inspections-full
+          path: ${{ runner.temp }}/inspections-full.json
+          retention-days: 3
+      # TODO (members' page): once a password secret exists for this product, build the workbook and the
+      # encrypted members' page here, and write the review set encrypted (never in the clear), the same way
+      # permits-chicago.yml does with LEADS_PASSWORD.
       - name: Commit
         run: |
           git config user.name "proofnotfluff-bot"

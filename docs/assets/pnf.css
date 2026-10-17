@@ -1,5 +1,9 @@
 :root{--canvas:#f3f1ec;--card:#fff;--ink:#1d2433;--ink2:#4a5163;--muted:#6b7180;--line:#e2ddd3;--accent:#c8502f;--accent-ink:#a63e21;--teal:#2e6b66;--teal-tint:#e2efec;--input:#fdf6dc;--input-line:#e6cf7a;--input-ink:#1f4f9a;--radius:14px;--shadow:0 10px 30px rgba(20,24,36,.08)}
 *{box-sizing:border-box}
+@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inter-400.woff2) format("woff2")}
+@font-face{font-family:Inter;font-style:normal;font-weight:600;font-display:swap;src:url(fonts/inter-600.woff2) format("woff2")}
+@font-face{font-family:Inter;font-style:normal;font-weight:700;font-display:swap;src:url(fonts/inter-700.woff2) format("woff2")}
+.ld-page,.lm-page{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-feature-settings:"tnum" 0}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--canvas);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
 h1,h2,h3,.brand{font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;letter-spacing:-.01em}

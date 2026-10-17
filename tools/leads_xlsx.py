@@ -115,7 +115,6 @@ PROJECT_COLS = [  # key, heading, width, align, fmt
     ("gcText", "Builder", 30, "left", None),
     ("communityArea", "Community area", 18, "left", None),
     ("stage", "Stage", 25, "center", None),
-    ("newText", "Flag", 10, "center", None),
     ("type", "Type", 16, "left", None),
     ("units", "Homes", 8, "right", "int"),
     ("issued", "Issued", 14, "left", "date"),
@@ -137,15 +136,19 @@ def project_sheet(wb, key, tagline, rows, list_date, tab, drop=(), stats=None):
     col = {c[0]: l for l, c in zip(letters, cols)}
     rng = lambda k: f"{col[k]}{first}:{col[k]}{last}"
     D.h(ws, 6, 10)
-    strip = [(f"{letters[0]}:{letters[0]}", "Projects", f'=COUNTIF({rng("address")},"?*")', S.FMT["int"]),
-             (f"{letters[1]}:{letters[2]}", "Reported cost", f'=SUM({rng("cost")})', MONEY_SHORT)]
-    if key == "all":
-        strip.append((f"{letters[3]}:{letters[4]}", "Homes in them", f'=SUM({rng("units")})', S.FMT["int"]))
+    stats_ = [("Projects", f'=COUNTIF({rng("cost")},">0")', S.FMT["int"]), ("Reported cost", f'=SUM({rng("cost")})', MONEY_SHORT)]
+    if key == "all" and "units" in col:
+        stats_.append(("Homes in them", f'=SUM({rng("units")})', S.FMT["int"]))
+        stats_.append(("Near finish", f'=COUNTIF({rng("stage")},"Partial occupancy approved")', S.FMT["int"]))
     else:
-        strip.append((f"{letters[3]}:{letters[4]}", "Biggest single job", f'=MAX({rng("cost")})', MONEY_SHORT))
-    if "newText" in col:
-        strip.append((f"{letters[5]}:{letters[6]}", "New this week", f'=COUNTIF({rng("newText")},"New")', S.FMT["int"]))
-    D.stat_strip(ws, 7, strip if stats is None else stats(col, rng, letters))
+        stats_.append(("Biggest single job", f'=MAX({rng("cost")})', MONEY_SHORT))
+    # spread the numbers across the whole card, the description column taking the last share
+    groups, k = [], len(stats_)
+    body = letters[:-1]
+    for i in range(k):
+        a, z = body[i * len(body) // k], body[(i + 1) * len(body) // k - 1]
+        groups.append(f"{a}:{z}" if i < k - 1 else f"{a}:{letters[-1]}")
+    D.stat_strip(ws, 7, [(g, e, f_, fmt) for g, (e, f_, fmt) in zip(groups, stats_)])
     D.h(ws, 9, 10)
     D.frame(ws, 6, 9, "B", pad_r)
     # the table card
@@ -160,7 +163,7 @@ def project_sheet(wb, key, tagline, rows, list_date, tab, drop=(), stats=None):
     D.h(ws, head, 24)
     for l, (k, head_, w, align, fmt) in zip(letters, cols):
         ws[f"{l}{head}"].alignment = Alignment(horizontal=align, vertical="center", wrap_text=True,
-                                               indent=1 if (fmt in ("int", "usd0") or k in ("issued", "gcText")) else 0)
+                                               indent=1 if (fmt in ("int", "usd0") or k in ("issued", "gcText", "type")) else 0)
     if not rows:
         ws[f"{letters[0]}{f1}"] = "None this week."
         ws[f"{letters[0]}{f1}"].font = D.f(10, False, "muted")
@@ -169,14 +172,11 @@ def project_sheet(wb, key, tagline, rows, list_date, tab, drop=(), stats=None):
         for l, (k, head_, w, align, fmt) in zip(letters, cols):
             c = ws[f"{l}{r}"]
             c.alignment = Alignment(horizontal=align, vertical="center", wrap_text=k in ("scope", "gcText", "address"),
-                                    indent=1 if (fmt in ("int", "usd0") or k in ("issued", "gcText")) else 0)
+                                    indent=1 if (fmt in ("int", "usd0") or k in ("issued", "gcText", "type")) else 0)
             if k == "stage" and p.get("stage") in CHIP:
                 fg, bg = CHIP[p["stage"]]
                 c.fill = D.fill(bg); c.font = D.f(9, True, fg)
-                c.border = Border(bottom=D.side("FFFFFF", "medium"), top=D.side("FFFFFF", "medium"))
-            elif k == "newText" and p.get("new"):
-                c.fill = D.fill("teal"); c.font = D.f(9, True, "on_ink")
-                c.border = Border(bottom=D.side("FFFFFF", "medium"), top=D.side("FFFFFF", "medium"))
+                c.border = Border(bottom=D.side("hair"))
             elif k == "scope":
                 c.font = D.f(9, False, "ink2")
             elif k in ("permit", "issued", "communityArea", "type"):
@@ -188,7 +188,9 @@ def project_sheet(wb, key, tagline, rows, list_date, tab, drop=(), stats=None):
                    footer_notice="Public City of Chicago permit records. See the Terms tab.", tab_color=tab,
                    canvas_cols=gl(len(cols) + 6))
     ws.page_setup.orientation = "landscape"
+    ws.page_setup.paperSize = ws.PAPERSIZE_LEGAL
     ws.page_setup.fitToWidth = 1
+    ws.page_margins.left = ws.page_margins.right = 0.3
     ws.print_title_rows = f"{head}:{head}"
     return ws
 
@@ -223,7 +225,7 @@ def builders_sheet(wb, rows, list_date):
     spec = [
         {"col": "C", "head": "Builder", "kind": "text", "values": [g for g, _ in items]},
         {"col": "D", "head": "Open permits", "kind": "text", "values": [a["n"] for _, a in items], "align": "right", "fmt": S.FMT["int"]},
-        {"col": "E", "head": "", "kind": "calc", "formula": lambda r: f'=IFERROR(REPT("{D.BAR_CHAR}",MAX(0,ROUND(D{r}/{biggest}*12,0))),"")'},
+        {"col": "E", "head": "", "kind": "calc", "formula": lambda r: f'=IF(D{r}>=2,IFERROR(REPT("{D.BAR_CHAR}",MAX(0,ROUND(D{r}/{biggest}*12,0))),""),"")'},
         {"col": "F", "head": "Reported cost", "kind": "text", "values": [a["cost"] for _, a in items], "align": "right", "fmt": S.FMT["usd0"]},
         {"col": "G", "head": "Near finish", "kind": "text", "values": [a["near"] for _, a in items], "align": "right", "fmt": S.FMT["int"]},
         {"col": "H", "head": "New", "kind": "text", "values": [a["new"] for _, a in items], "align": "right", "fmt": S.FMT["int"]},
@@ -276,14 +278,14 @@ def card(ws, top, title, rows, eyebrow=None, bg="card", line="frame"):
     for kind, val in rows:
         if kind == "num":
             n, text = val
-            L = ws[f"C{r}"]; L.value = n; L.font = D.f(16, True, "accent"); L.alignment = Alignment(horizontal="left", vertical="center", indent=1)
+            L = ws[f"C{r}"]; L.value = n; L.font = D.f(16, True, "accent"); L.alignment = Alignment(horizontal="right", vertical="center", indent=1)
             c = ws[f"E{r}"]; c.value = text; c.font = D.f(10); c.alignment = Alignment(vertical="center", wrap_text=True)
             ws.merge_cells(f"E{r}:O{r}"); D.h(ws, r, max(S.text_height(text, TEXT_W - 24, 10) + 10, 30))
         elif kind == "lead":
             lead, text = val
             L = ws[f"C{r}"]; L.value = lead; L.font = D.f(10, True); L.alignment = Alignment(vertical="top", wrap_text=True)
             c = ws[f"E{r}"]; c.value = text; c.font = D.f(10); c.alignment = Alignment(vertical="top", wrap_text=True)
-            ws.merge_cells(f"E{r}:O{r}"); D.h(ws, r, max(S.text_height(text, TEXT_W - 24, 10) + 8, 22))
+            ws.merge_cells(f"E{r}:O{r}"); D.h(ws, r, max(S.text_height(text, TEXT_W - 24, 10) + 4, 22))
             for k in INNER:
                 ws[f"{k}{r}"].border = Border(bottom=D.side("hair"))
         elif kind == "link":
@@ -322,11 +324,12 @@ def start_here(wb, rows, near, new, src, list_date, addresses):
                     list_date, "teal", position=0)
     allr = f"'{TABS['all']}'!"
     n = max(len(rows), 1)
-    a_rng, c_rng, f_rng, s_rng = (f"{allr}C12:C{11 + n}", f"{allr}D12:D{11 + n}", f"{allr}H12:H{11 + n}", f"{allr}G12:G{11 + n}")
-    tiles = [("B", "D", "OPEN BIG PROJECTS", f'=COUNTIF({a_rng},"?*")', S.FMT["int"], f"permits, at {addresses:,} addresses", True),
+    c_rng, s_rng = f"{allr}D12:D{11 + n}", f"{allr}G12:G{11 + n}"
+    newr = f"'{TABS['new']}'!D12:D{11 + max(len(new), 1)}"
+    tiles = [("B", "D", "OPEN BIG PROJECTS", f'=COUNTIF({c_rng},">0")', S.FMT["int"], f"permits, at {addresses:,} addresses", True),
              ("F", "H", "REPORTED COST", f"=SUM({c_rng})", '"$"0.0,,," billion"', "filed with the permits", False),
              ("J", "L", "NEAR FINISH", f'=COUNTIF({s_rng},"Partial occupancy approved")', S.FMT["int"], "partial occupancy approved", False),
-             ("N", "P", "NEW THIS WEEK", f'=COUNTIF({f_rng},"New")', S.FMT["int"], "not on last week's list", False)]
+             ("N", "P", "NEW THIS WEEK", f'=COUNTIF({newr},">0")', S.FMT["int"], "not on last week's list", False)]
     D.h(ws, 6, 10)
     for left, right, eb, fml, fmt, sub, dark in tiles:
         D.tile(ws, 7, left, right, eb, fml, fmt, sub, dark=dark, value_size=28 if dark else 20)
@@ -387,9 +390,9 @@ def build(data, out, prev=None):
     list_date = f"List of {fetched.strftime('%b')} {fetched.day}, {fetched.year}"
     wb = S.new_workbook(PRODUCT)
     project_sheet(wb, "near", "Partial occupancy approved: the City has cleared part of the building for use. Biggest first.",
-                  near, list_date, "accent", drop=("stage",) + (() if any(p["new"] for p in near) else ("newText",)))
+                  near, list_date, "accent", drop=("stage",) + (() if any(p.get("units") for p in near) else ("units",)))
     project_sheet(wb, "new", "Permits that were not on last week's list. Closest to a final clean first, then biggest.",
-                  new, list_date, None, drop=("newText",))
+                  new, list_date, None, drop=() if any(p.get("units") for p in new) else ("units",))
     project_sheet(wb, "all", "Every open permit that passed the filter, closest to a final clean first, then biggest.",
                   rows, list_date, None)
     builders_sheet(wb, rows, list_date)

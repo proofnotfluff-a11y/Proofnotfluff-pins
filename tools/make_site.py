@@ -1644,10 +1644,10 @@ def leads_page_html(p):
         shots = ('<section class="block ld-shots"><h2>What members get</h2>'
                  '<p>The same data as this page, every open project instead of a sample, on a members\' page and in an Excel file.</p>'
                  '<div class="ld-shotgrid">'
-                 f'<figure class="ld-shot"><img src="{rel}assets/leads/members-list.png" width="1280" height="800" loading="lazy" decoding="async" '
+                 f'<figure class="ld-shot"><img src="{rel}assets/leads/members-list.png" width="1064" height="665" loading="eager" decoding="async" '
                  'alt="The members\' page: this week\'s list as cards with the reported cost, the builder, the address and the stage, with tabs for near finish, new this week and all projects">'
                  '<figcaption>The members\' page, every Monday</figcaption></figure>'
-                 f'<figure class="ld-shot"><img src="{rel}assets/leads/workbook.png" width="1280" height="800" loading="lazy" decoding="async" '
+                 f'<figure class="ld-shot"><img src="{rel}assets/leads/workbook.png" width="1200" height="772" loading="eager" decoding="async" '
                  'alt="The Excel file: the near finish tab with address, reported cost and builder columns, and a filter arrow on every column">'
                  '<figcaption>The Excel file, filters on every column</figcaption></figure></div></section>')
     if p.get("kitForm"):

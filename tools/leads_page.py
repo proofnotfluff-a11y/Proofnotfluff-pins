@@ -129,8 +129,8 @@ PAGE = """<!doctype html>
 .chip{display:inline-block;font-size:12.5px;font-weight:700;line-height:1;padding:6px 10px;border-radius:999px}
 .st-near{color:#2e6b66;background:#e3efed}.st-insp{color:#2f5f9e;background:#e6edf6}.st-iss{color:#3a4152;background:#ece6da}.chip.new{color:#fff;background:#2e6b66}
 .lm-money{font-family:Poppins,system-ui,sans-serif;font-weight:700;font-size:22px;line-height:1.2;color:var(--ink)}
-.lm-money span{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-weight:400;font-size:14px;color:var(--note);margin-left:8px}
-.lm-card h3{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;font-weight:700;margin:0;letter-spacing:0}
+.lm-money span{font-family:inherit;font-weight:400;font-size:14px;color:var(--note);margin-left:8px}
+.lm-card h3{font-family:inherit;font-size:16px;font-weight:700;margin:0;letter-spacing:0}
 .lm-card h3 span{font-weight:400;font-size:15px;color:var(--note)}
 .lm-desc{font-size:15px;color:#3a4152;margin:0;overflow-wrap:anywhere}
 .lm-meta{display:grid;grid-template-columns:72px minmax(0,1fr);gap:4px 12px;margin:4px 0 0;padding-top:12px;border-top:1px solid #efebe3}
@@ -155,7 +155,7 @@ PAGE = """<!doctype html>
 .lm-pk{background:#fff;border:1px solid var(--hair);border-radius:14px;padding:20px;min-width:0}
 .lm-pk-mail{background:#fff6d6;border-color:#e3c978}
 .lm-pk-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin:0 0 10px}
-.lm-pk h3{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;margin:0;letter-spacing:0}.lm-pk h3 span{font-weight:400;color:var(--note)}
+.lm-pk h3{font-family:inherit;font-size:16px;margin:0;letter-spacing:0}.lm-pk h3 span{font-weight:400;color:var(--note)}
 .lm-copy{flex:0 0 auto;height:36px;padding:0 14px;border-radius:10px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);font:inherit;font-size:14px;font-weight:700;cursor:pointer;min-width:84px}
 .lm-copy.done{background:#2e6b66;border-color:#2e6b66;color:#fff}
 .lm-sheet{list-style:none;margin:0;padding:0}.lm-sheet li{display:grid;grid-template-columns:118px minmax(0,1fr);gap:12px;padding:9px 0;border-top:1px solid #efebe3;font-size:15px;color:#3a4152}
@@ -165,7 +165,7 @@ PAGE = """<!doctype html>
 .lm-pk-mail p{font-size:15px;color:#3a4152;margin:0 0 10px}.ph{color:#1f4e9e;font-weight:700}
 .lm-foot{border-top:1px solid var(--hair);margin:40px 0 0;padding-top:16px;font-size:14px;color:var(--note)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-</style></head><body>
+</style></head><body class="lm-page">
 <header class="top"><div class="wrap"><div><a class="brand" href="../">ProofNotFluff</a><div class="bars"><i></i><i></i><i></i><i></i><i></i></div></div></div></header>
 <main class="wrap lm">
 <p class="lm-eye">Members &middot; List of __ASOF__</p>

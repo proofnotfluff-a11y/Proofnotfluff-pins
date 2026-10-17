@@ -1633,7 +1633,7 @@ def leads_page_html(p):
                 f'<p class="ld-count" id="ldCount" aria-live="polite" data-all="{E(big_line)}">{E(big_line)}</p>'
                 f'<div class="ld-list" id="ldList">{"".join(project_card(x) for x in d["projects"])}</div>'
                 '<p class="ld-empty" id="ldEmpty" hidden>No projects in this sample match. The weekly list covers every open project.</p>'
-                + (f'<div class="ld-after"><p>That is the top {n_big}. The full list has all {kept:,}, sorted by neighborhood and stage.</p>{buy()}</div>' if checkout else "")
+                + (f'<div class="ld-after"><p>That is the top {n_big}. The full list has all {kept:,}, closest to a final clean first, with a neighborhood filter.</p>{buy()}</div>' if checkout else "")
                 + '</section>')
     links = "".join(f'<li><a href="{rel}{E(l[0])}/">{E(l[1])}</a></li>' for l in p.get("links", []))
     method = ('<section class="block"><h2>How to use this list</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"])

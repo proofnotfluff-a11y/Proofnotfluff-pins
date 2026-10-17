@@ -70,10 +70,17 @@ def numerals(desc):
     return re.sub(r"\b(\d{1,3})[- ]FLAT\b", r"\1 DWELLING UNITS", d)
 
 
-def unit_count(desc):
-    """Homes a residential permit describes: a stated total first ("80 TOTAL DWELLING UNITS"), then a conversion's end count
-    ("FROM 5 TO 8 DWELLING UNITS"), then typed counts added up (101 standard + 48 efficiency = 149), else the largest count."""
+def unit_count(desc, display=False):
+    """Homes a residential permit describes: a stated total first ("80 TOTAL DWELLING UNITS", "CONTAINING 464 DWELLING UNITS"),
+    then a conversion's end count ("FROM 5 TO 8 DWELLING UNITS"), then typed counts added up (101 standard + 48 efficiency = 149)
+    when that beats every other count, else the largest count. display=True also drops counts of units being made accessible
+    (13 DWELLING UNITS TO MOBILITY ACCESSIBLE UNITS), which describe the work, not the building (Holdout QC Oct 17, fourth pass)."""
     desc = numerals(desc)
+    if display:
+        desc = re.sub(r"\(?\d{1,4}\)?\s*(?:DWELLING |RESIDENTIAL )?UNITS? (?:IN)?TO (?:\w+ ){0,2}(?:ACCESSIBLE|ADA|HEARING|VISION)\w*", " ", desc)
+    cont = re.search(r"CONTAINING (?:A TOTAL OF )?\(?(\d{1,4})\)?\s*(?:\w+ )?(?:DWELLING UNITS|UNITS|APARTMENTS|D\.?U)", desc)
+    if cont:
+        return int(cont.group(1))
     tot = re.search(r"\(?(\d{1,4})\)?\s+TOTAL (?:\w+ )?(?:UNITS|D\.?U|DWELLING)|TOTAL (?:OF )?\(?(\d{1,4})\)?\s*(?:\w+ )?(?:UNITS|D\.?U|DWELLING)", desc)
     if tot:
         return int(tot.group(1) or tot.group(2))
@@ -81,9 +88,9 @@ def unit_count(desc):
     if conv:
         return int(conv.group(1))
     typed = [int(m.group(1)) for m in TYPED_UNITS.finditer(desc)]
-    if len(typed) >= 2:
-        return sum(typed)
     counts = [int(m.group(1)) for m in UNITS.finditer(desc)]
+    if len(typed) >= 2 and sum(typed) >= max(counts or [0]):
+        return sum(typed)
     final = re.search(r"\bTO\s*\(?(\d{1,4})\)?\s*(?:DWELLING|UNITS?|D\.?U|APARTMENTS?)", desc)
     if final and re.search(r"DE-?CONVER|REDUC", desc):
         return int(final.group(1))
@@ -152,11 +159,12 @@ def terms_text():
 
 
 SEP = r"[\s*\[\]()/,.:;&-]*"
-PREFIX = re.compile(r"^(?:" + SEP + r"(?:DDS|DIRECT DEVELOPER SERVICES|SELF[- ]?(?:CERT(?:IFIED|IFICATION)?|CRT|CER)(?: (?:OF|FOR) (?:A )?LIMITED SCOPE RENOVATION)?|"
+SEP_R = r"[\s*\])/,.:;&-]*"          # after a token: never eat an opening bracket that starts the real text
+PREFIX = re.compile(r"^(?:" + SEP + r"(?:DDS|DIRECT DEVELOPER SERVICES|S?ELF[- ]?(?:CERT(?:IFIED|IFICATION)?|CRT|CER)(?: (?:OF|FOR) (?:A )?LIMITED SCOPE RENOVATION)?|"
                     r"SC|SPR|STANDARD PLAN(?: REVIEW)?(?: PROGRAM)?|EPR|EXPRESS PERMIT|EASY PERMIT|PMD\d*|(?:19|20)\d{2}(?=CPS)|(?:19|20)\d{2}|CB[A-Z]{1,3}|CRBC|"
-                    r"CHICAGO BUILDING (?:REHABILITATION )?CODE|CHICAGO REHABILITATION CODE(?: \d{4})?|(?:WITH )?STRUCTU?RAL PEER REVIEW(?: INCLUDED)?|"
+                    r"CHICAGO BUILDING (?:REHABILITATION )?CODE|CHICAGO REHABILITATION CODE(?: \d{4})?|(?:WITH )?STRUC?TU?R?AL PEER REVIEW(?: INCLUDED)?|"
                     r"TITLE 14R|W/ \w+ \d{4} SUPPLEMENTS|CPS SCHOOL - NO CHANGE IN USE(?: OR OCCUPANCY)?|NO CHANGE IN USE(?: OR OCCUPANCY)?|EXISTING ZONED [A-Z]+[- ]?\d+(?:\.\d+)?|"
-                    r"D[XCS]-?\d+(?:\.\d+)?|[A-Z]-\d(?=,)|ASSEMBLY USE|SCOPE OF WORK(?: TO INCLUDE| INCLUDES)?|SCOPE INCLUDED|FOR|&|AND)(?![A-Z0-9]|-[A-Z0-9])" + SEP + r")+", re.I)
+                    r"D[XCS]-?\d+(?:\.\d+)?|[A-Z]-\d(?=,)|ASSEMBLY USE|SCOPE OF WORK(?: TO INCLUDE| INCLUDES)?|SCOPE INCLUDED|FOR|&|AND)(?![A-Z0-9]|-[A-Z0-9])" + SEP_R + r")+", re.I)
 ACRONYMS = re.compile(r"\b(?:(?:i{1,3}|iv|v)-?[ab]|[abemrs]-\d|dx-\d+|cps|mep|hvac|ada|adu|cta|uic|ups|rtus?|ahus?|sf|sqft|llc|ii|iii|iv|cvs|usps|cha|cdph|ohc|pru|hq)\b", re.I)
 
 
@@ -176,7 +184,9 @@ WORK = re.compile(r"alter|renovat|build[- ]?out|\berect|construct|conver|remodel
 def clean_scope(desc, limit=150):
     d = re.sub(r"\s+", " ", (desc or "").replace("\u00bf", " ")).strip()
     d = re.sub(r"NO CHANGE IN USE(?=[A-Z])", "NO CHANGE IN USE. ", d)   # the City's text sometimes runs two words together here
+    d = re.sub(r"\b((?:19|20)\d{2})(CPS)\b", r"\1 \2", d)
     d = PREFIX.sub("", d)
+    d = re.sub(r"^\(\d+[A-Z]? [NSEW]\.? [^)]{2,40}\)\s*", "", d, flags=re.I)   # a leading street address the list already shows
     d = re.split(r"\*\*", d)[0]
     d = re.sub(r"\bINCLUDING\s*,\s*", "INCLUDING ", d, flags=re.I)
     d = re.sub(r"\b(?:AS )?PER \w+(?: \w+)? (?:E-?MAIL|EMAIL|CALL|CONVERSATION)\b[^.;]*", "", d, flags=re.I)
@@ -363,18 +373,19 @@ def main():
             "issued": (r.get("issue_date") or "")[:10],
             "type": "New construction" if "NEW CONSTRUCTION" in (r.get("permit_type") or "") else "Renovation",
             "scope": clean_scope(r.get("work_description")),
-            "units": maxu or None,
+            "units": unit_count(desc, display=True) or None,
             "cost": round(cost),
             "address": addr,
             "communityArea": AREA_NAMES.get(areas.get(ca, ""), areas.get(ca, "")),
             "status": (r.get("permit_status") or "").title(),
             "milestone": (r.get("permit_milestone") or "").title(),
             "gc": gcs[:2],
-            "_rev": (re.findall(r"REVISION (?:TO|OF) (?:THE )?(?:[A-Z&]+ ){0,4}PERMITS? #?\s*(10\d{7})", desc) or [None])[0],
+            "_rev": [x for m in re.finditer(r"REVISIONS? (?:TO|OF) (?:THE )?(?:[A-Z&]+ ){0,4}PERMITS?[:#\s]*((?:#?10\d{7}[,\s]*(?:AND\s*)?)+)", desc)
+                     for x in re.findall(r"10\d{7}", m.group(1))],
         })
     # a revision of a permit that is also on the list is the same job: count it once (Holdout QC Oct 17, third pass)
     ids = {str(k["permit"]) for k in kept}
-    dup = [k for k in kept if k["_rev"] and k["_rev"] in ids and k["_rev"] != str(k["permit"])]
+    dup = [k for k in kept if any(x in ids and x != str(k["permit"]) for x in k["_rev"])]
     reasons["revision of a permit already listed"] += len(dup)
     kept = [k for k in kept if k not in dup]
     for k in kept:
@@ -509,7 +520,7 @@ EQUIPMENT = re.compile(r"PROCESS EQUIPMENT|CONVEYORS?\b|CRYO ?PLANT|AUTOMATION E
                        r"(?:BUILD[- ]?OUT|REMODEL|RENOVATION|ALTERATIONS?) (?:OF|TO) (?:THE )?(?:EXISTING )?(?:\w+ )?(?:MECHANICAL|ELECTRICAL|UPS|SERVER|TELECOM|PUMP|BOILER) ROOMS?|"
                        r"\(UPS\) ROOM|UNINTERRUPTIBLE POWER|DATA CENTER\b[^.]{0,80}(?:AHUS?|CRAH|CHILLERS?|COOLING|ELECTRICAL ROOMS?)|"
                        r"(?:AHUS?|CRAH|CHILLERS?|COOLING|ELECTRICAL ROOMS?)\b[^.]{0,120}DATA CENTER|"
-                       r"TO MAKE STRU\w* REPAIRS|REPAIR (?:EXISTING )?DOCKS|M\.?E\.?P\.? IMPROVEMENTS")
+                       r"TO MAKE STRU\w* REPAIRS|REPAIR (?:EXISTING )?DOCKS|M\.?E\.?P\.? IMPROVEMENTS|BUILD[- ]?OUT (?:WILL BE |TO BE )?(?:UNDER|BY) (?:A )?SEPARATE PERMIT")
 PARK = re.compile(r"LANDSCAPED PARK|CONCRETE MEMORIAL|MEMORIAL (?:PARK|PLAZA|GARDEN|WALL)|AMPHITHEATER")
 
 
@@ -532,6 +543,8 @@ def decide(d, ptype=""):
     start = scope_start(d)
     clauses = [c for c in re.split(r"(?<=[A-Z0-9)])\.\s+|;\s*", start) if c.strip()]
     main = next((c for c in clauses if ACTION.search(c)), clauses[0] if clauses else start)
+    if re.search(r"CORE (?:&|AND) SHELL IMPROVEMENTS", main) and not re.search(r"BUILD[- ]?OUT|TENANT IMPROVEMENT|FINISH", main):
+        return False, "no construction clean (foundation, demolition, roof, mechanical or site work only)"
     if STRUCTURE_ONLY.search(main) or ((EQUIPMENT.search(d) or PARK.search(main)) and not NEW_BUILDING.search(main)):
         return False, "no construction clean (foundation, demolition, roof, mechanical or site work only)"
     if ONLY_TRADE.search(d) or (SITE_START.search(main) and not re.search(r"SUPERSTRUCTURE|FULL BUILDING|AND (?:NEW )?(?:BUILD|RENOVAT|ALTERAT)", main)):
@@ -593,6 +606,11 @@ FILTER_CASES = [  # planted cases from the Oct 17 holdout QC: (description, keep
     ("DDS 2019 CBRC. RENOVATION OF THE SUNNYDALE COMMONS APARTMENTS CONSISTS OF ONE HUNDRED FOUR (104) SENIOR LIVING APARTMENTS LOCATED WITHIN ONE (1) EXISTING 9-STORY BUILDING.", True, 104),
     ("INTERIOR AND EXTERIOR ALTERATIONS TO EXISTING 3 STORY OFFICE AND WAREHOUSE BUILDING. ROOF WORK TO INCLUDE REMOVAL OF ALL RTU'S AND THE INSTALLATION OF THREE NEW UNITS.", True, None),
 ]
+FILTER_CASES += [
+    ("CORE & SHELL IMPROVEMENTS TO EXISTING VACANT INDUSTRIAL 2 STORY BUILDING. SCOPE OF WORK INCLUDES REPLACEMENT OF RTUS, FACADE IMPROVEMENTS, TO MAKE SUITABLE FOR LEASING", False, None),
+    ("SPR 2019 CBRC: NONSTRUCTURAL INTERIOR DEMOLITION AND MINOR ARCHITECTURAL ALTERATIONS TO EXISTING 1-STORY RETAIL BUILDING. TENANT BUILDOUT UNDER SEPARATE PERMIT #101075900", False, None),
+    ("FULL BUILDING PERMIT FOR NEW 19-STORY RESIDENTIAL BUILDING CONTAINING 464 DWELLING UNITS (140 EFFICIENCY UNITS, 81 AFFORDABLE UNITS)", True, 464),
+]
 NAME_CASES = [("THE BOWA GROUP INC", "The Bowa Group Inc"), ("TO BE SEEN LLC", "To Be Seen LLC"), ("CPMH CONSTRUCTION INC", "CPMH Construction Inc"),
               ("21ST CENTURY US-SINO SERVICE INC", "21st Century US-Sino Service Inc"), ("JC ANDERSON INC", "JC Anderson Inc"),
               ("M. A. MORTENSON COMPANY", "M. A. Mortenson Company"), ("THERMO-POL INC", "Thermo-Pol Inc"), ("MPI CONSTRUCTION", "MPI Construction"),
@@ -601,7 +619,12 @@ SCOPE_CASES = [("***SELF-CERT*** EXISTING ZONED PD 306. SCOPE OF WORK: INTERIOR 
                ("SELF CERT 2019 CBRC: STRUCTURAL PEER REVIEW INCLUDED. INTERIOR ALTERATIONS TO 26TH AND 27TH FLOOR OFFICE SPACE.", "Interior alterations"),
                ("2019 CBRC: SELF CERTIFICATION OF A LIMITED SCOPE RENOVATION. SCOPE INCLUDED RENOVATION OF SPACE ON LEVEL 2 FOR OFFICES.", "Renovation of space"),
                ("SELF-CERT 2019 CBC FOR INITIAL BUILD OUT OF GROUND FLOOR SUITE 104 OF THE TRIBUNE TOWER BUILDING.", "Initial build out"),
-               ("", "No description in the City record.")]
+               ("", "No description in the City record."),
+               ("SELF-CERT 2019 CBC.(FACE 1) ERECT A 3-STORY TOWNHOUSE DEVELOPMENT", "(Face 1) erect"),
+               ("SELF CERT: (3512 E 118TH) INTERIOR RENOVATION TO EXISTING PLANET FITNESS", "Interior renovation"),
+               ("SELF CERT 2019 CBRC WITH STRUCTUAL PEER REVIEW.: INTERIOR ALTERATIONS TO GROUND FLOOR RETAIL", "Interior alterations"),
+               ("ELF CERT 2019 CBRC: INTERIOR ALTERATIONS TO 8TH FLOOR OFFICE SPACE", "Interior alterations"),
+               ("SC CBC 2019CPS SCHOOL - NO CHANGE IN USEBATHROOM AND STORAGE ROOM RENOVATION", "Bathroom and storage")]
 
 
 def keep_desc(d, ptype=""):
@@ -614,7 +637,8 @@ def selftest():
     assert gc_clean("MEADE ELECTRIC COMPANY, INC. ATTN: D. POEMBA") == "MEADE ELECTRIC COMPANY, INC.", "Attn not stripped"
     assert title_name("WILLIAM'S CONSTRUCTION") == "William's Construction"
     for raw, want in NAME_CASES:
-        assert gc_filter(raw) == want, (raw, gc_filter(raw), want)
+        assert unit_count("RENOVATION INCLUDING CONVERSION OF 13 DWELLING UNITS TO MOBILITY ACCESSIBLE UNITS", display=True) == 0
+    assert gc_filter(raw) == want, (raw, gc_filter(raw), want)
     for raw, want in SCOPE_CASES:
         assert clean_scope(raw).startswith(want), (raw, clean_scope(raw), want)
     if bad:

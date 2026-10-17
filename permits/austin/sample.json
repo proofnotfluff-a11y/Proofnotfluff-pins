@@ -1,0 +1,612 @@
+{
+ "source": {
+  "name": "City of Austin, Issued Construction Permits",
+  "url": "https://data.austintexas.gov/d/3syk-w9eu",
+  "rowsUpdatedAt": "2026-10-17T12:24:23+00:00",
+  "fetchedAt": "2026-10-17T21:45:15+00:00",
+  "license": "Public Domain U.S. Government",
+  "attribution": "City of Austin, Texas - data.austintexas.gov",
+  "modified": "Filtered by ProofNotFluff: commercial building permits issued in the last 365 days, grouped into projects by master permit, project valuation $500,000 or more, at least one building still open; dumpster enclosures, pergolas, parking garages, roofs, demolition, shell-only and equipment work left out; homes of two or three units left out; only project-level and business fields kept.",
+  "terms": "https://data.austintexas.gov/d/ranj-cccq"
+ },
+ "window": {
+  "from": "2025-10-17",
+  "to": "2026-10-17"
+ },
+ "counts": {
+  "fetched": 811,
+  "kept": 100,
+  "excluded": {
+   "no construction clean (roof, site, equipment, demolition or shell only)": 13,
+   "kept": 100,
+   "work class Shell (shell, demolition or repair)": 3,
+   "structure that is not a building, or a parking garage": 17,
+   "no business listed as contractor": 9,
+   "work class Interior Demo Non-Structural (shell, demolition or repair)": 1,
+   "every building permit closed": 29
+  },
+  "keptByType": {
+   "Renovation": 38,
+   "New construction": 62
+  },
+  "keptCost": 6455938345,
+  "keptUnits": 3829,
+  "topAreas": [
+   [
+    "78701",
+    10
+   ],
+   [
+    "78744",
+    10
+   ],
+   [
+    "78758",
+    7
+   ],
+   [
+    "78723",
+    7
+   ],
+   [
+    "78702",
+    6
+   ],
+   [
+    "78719",
+    6
+   ],
+   [
+    "78753",
+    6
+   ],
+   [
+    "78704",
+    5
+   ]
+  ],
+  "topGCs": [
+   {
+    "name": "Turner Construction",
+    "projects": 3,
+    "cost": 3068000001
+   },
+   {
+    "name": "Swinerton Builders Inc.",
+    "projects": 3,
+    "cost": 254750000
+   },
+   {
+    "name": "Harvey-Cleary Builders ***Main***",
+    "projects": 2,
+    "cost": 833000001
+   },
+   {
+    "name": "Bartlett Cocke General Contractors (Main)",
+    "projects": 2,
+    "cost": 410000000
+   },
+   {
+    "name": "Joeris General Contractors***Main***",
+    "projects": 2,
+    "cost": 71700000
+   },
+   {
+    "name": "OHT Construction LLC ***Main***",
+    "projects": 2,
+    "cost": 49000000
+   },
+   {
+    "name": "Bailey Elliott Construction, Inc.",
+    "projects": 2,
+    "cost": 46675165
+   },
+   {
+    "name": "Icon Builders, LLC",
+    "projects": 2,
+    "cost": 37000000
+   },
+   {
+    "name": "CM Constructors *Main*",
+    "projects": 2,
+    "cost": 29000000
+   },
+   {
+    "name": "Rogers-O'Brien Construction",
+    "projects": 2,
+    "cost": 26000000
+   },
+   {
+    "name": "G Creek Inc.***Main***",
+    "projects": 2,
+    "cost": 12558020
+   },
+   {
+    "name": "CTC Contractors, LLC",
+    "projects": 2,
+    "cost": 11000000
+   }
+  ],
+  "nearFinish": 3
+ },
+ "projects": [
+  {
+   "permit": "13645821",
+   "issued": "2026-04-07",
+   "type": "Renovation",
+   "scope": "Interior Remodel level 1 for sectors 3 6 and 7. Level 2 - Sectors 3 6. (96600SF)",
+   "units": null,
+   "cost": 1525000000,
+   "address": "6801 River Place Blvd",
+   "communityArea": "78726",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 4,
+   "buildingsFinal": 0,
+   "gc": [
+    "Turner Construction"
+   ]
+  },
+  {
+   "permit": "13651802",
+   "issued": "2026-05-11",
+   "type": "New construction",
+   "scope": "Interior Remodel - Sec 2 Floors 3-4. (37200 SF)",
+   "units": null,
+   "cost": 1525000000,
+   "address": "6801 River Place Blvd",
+   "communityArea": "78726",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 4,
+   "buildingsFinal": 0,
+   "gc": [
+    "Turner Construction"
+   ]
+  },
+  {
+   "permit": "13107658",
+   "issued": "2026-06-08",
+   "type": "New construction",
+   "scope": "New Construction of a Multi-Story Mixed Use Multi-Family Bldg...",
+   "units": 188,
+   "cost": 830000000,
+   "address": "6915 Bridge Point Pkwy Bldg 1 (+23 more)",
+   "communityArea": "78730",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 25,
+   "buildingsFinal": 0,
+   "gc": [
+    "Harvey-Cleary Builders ***Main***"
+   ]
+  },
+  {
+   "permit": "13532840",
+   "issued": "2026-07-23",
+   "type": "New construction",
+   "scope": "Phase 1- Main Building to Include Riser Room (137 678 SF)",
+   "units": null,
+   "cost": 380000000,
+   "address": "3935 Bright Light Blvd",
+   "communityArea": "78610",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 3,
+   "buildingsFinal": 0,
+   "gc": [
+    "Bartlett Cocke General Contractors (Main)"
+   ]
+  },
+  {
+   "permit": "13513914",
+   "issued": "2025-12-29",
+   "type": "Renovation",
+   "scope": "First Time Finish Out for Level 1 - 5 PHASE 4 (79388 SF)",
+   "units": null,
+   "cost": 365000000,
+   "address": "4812 Gonzales St",
+   "communityArea": "78702",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 6,
+   "buildingsFinal": 0,
+   "gc": [
+    "NRP Contractors II, LLC"
+   ]
+  },
+  {
+   "permit": "13633524",
+   "issued": "2026-10-16",
+   "type": "New construction",
+   "scope": "Redevelopment of Existing Site. New Construction of 4- Story Affordable Housing to Include 2 Connected Fire Areas and associated site improvements...",
+   "units": 180,
+   "cost": 245000000,
+   "address": "8801 Mc Cann Dr",
+   "communityArea": "78757",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 2,
+   "buildingsFinal": 0,
+   "gc": [
+    "Swinerton Builders Inc."
+   ]
+  },
+  {
+   "permit": "12872034",
+   "issued": "2022-09-14",
+   "type": "Renovation",
+   "scope": "Finish-Outs for Units on Level 48 (13526 SF)",
+   "units": null,
+   "cost": 180000000,
+   "address": "610 Davis St Bldg 1Flr (+40 more)",
+   "communityArea": "78701",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 41,
+   "buildingsFinal": 0,
+   "gc": [
+    "Flintco LLC *Main*"
+   ]
+  },
+  {
+   "permit": "13257587",
+   "issued": "2026-05-08",
+   "type": "Renovation",
+   "scope": "First Time Finish Out for Units",
+   "units": null,
+   "cost": 154000000,
+   "address": "62 East Ave Unit Flr1 (+42 more)",
+   "communityArea": "78701",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 43,
+   "buildingsFinal": 0,
+   "gc": [
+    "Summit Design Build"
+   ]
+  },
+  {
+   "permit": "13740450",
+   "issued": "2026-10-13",
+   "type": "New construction",
+   "scope": "New Construction of Sports Facility Utility Building",
+   "units": null,
+   "cost": 140000000,
+   "address": "7401 Loyola Ln (+1 more)",
+   "communityArea": "78724",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 2,
+   "buildingsFinal": 0,
+   "gc": [
+    "The Burt Group**Main**"
+   ]
+  },
+  {
+   "permit": "13539107",
+   "issued": "2026-07-01",
+   "type": "New construction",
+   "scope": "New Construction of a Mixed Use 7-Story Multi-Family Complex...",
+   "units": 696,
+   "cost": 79500000,
+   "address": "512 Sabine St",
+   "communityArea": "78701",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 5,
+   "buildingsFinal": 0,
+   "gc": [
+    "Ryan Companies US Inc"
+   ]
+  },
+  {
+   "permit": "13114310",
+   "issued": "2025-12-11",
+   "type": "New construction",
+   "scope": "New Construction of Multi Family Amenity Building",
+   "units": 92,
+   "cost": 76000000,
+   "address": "7817 W Sh 71 (+4 more)",
+   "communityArea": "78736",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 9,
+   "buildingsFinal": 0,
+   "gc": [
+    "Morgan PRL Construction LLC"
+   ]
+  },
+  {
+   "permit": "13527831",
+   "issued": "2026-09-29",
+   "type": "Renovation",
+   "scope": "First Time Finish Out for Phase 3 Multi Family Building",
+   "units": null,
+   "cost": 51750000,
+   "address": "4810 Gonzales St",
+   "communityArea": "78702",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 6,
+   "buildingsFinal": 0,
+   "gc": [
+    "The NRP Contractors, LLC"
+   ]
+  },
+  {
+   "permit": "13617546",
+   "issued": "2026-08-19",
+   "type": "New construction",
+   "scope": "New Construction of an Elementary School on Existing Site. Building to include 1 story and 3 story Portions. (94951 SF)",
+   "units": null,
+   "cost": 51150000,
+   "address": "1412 Norseman Ter",
+   "communityArea": "78758",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 1,
+   "buildingsFinal": 0,
+   "gc": [
+    "Joeris General Contractors***Main***"
+   ]
+  },
+  {
+   "permit": "13150876",
+   "issued": "2026-08-27",
+   "type": "New construction",
+   "scope": "New Construction of a Multi-Family Bldg - Above the Podium Fire Area C",
+   "units": 396,
+   "cost": 48000000,
+   "address": "2631 Kramer Ln (+3 more)",
+   "communityArea": "78758",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 4,
+   "buildingsFinal": 0,
+   "gc": [
+    "OHT Construction LLC ***Main***"
+   ]
+  },
+  {
+   "permit": "13091575",
+   "issued": "2026-05-08",
+   "type": "New construction",
+   "scope": "Construct new multifamily complex - ev chargers (4)",
+   "units": 500,
+   "cost": 39719000,
+   "address": "1420 E Howard Ln (+5 more)",
+   "communityArea": "78660",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 6,
+   "buildingsFinal": 0,
+   "gc": [
+    "Journeyman Construction"
+   ]
+  },
+  {
+   "permit": "13705171",
+   "issued": "2026-07-07",
+   "type": "Renovation",
+   "scope": "First Time Finish out of New Airline Lounge (20500 SF)",
+   "units": null,
+   "cost": 38500000,
+   "address": "3600 Presidential Blvd",
+   "communityArea": "78719",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 1,
+   "buildingsFinal": 0,
+   "gc": [
+    "Hensel Phelps Construction Co. ***Main***"
+   ]
+  },
+  {
+   "permit": "13547304",
+   "issued": "2026-08-05",
+   "type": "Renovation",
+   "scope": "Construction of a new building addition and alteration to an existing two-story private club...",
+   "units": null,
+   "cost": 35959964,
+   "address": "3006 Bowman Ave",
+   "communityArea": "78703",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 1,
+   "buildingsFinal": 0,
+   "gc": [
+    "Knight Construction"
+   ]
+  },
+  {
+   "permit": "13476069",
+   "issued": "2026-04-16",
+   "type": "New construction",
+   "scope": "Construction of a New 3-Story Building to include Science Labs and CTE Spaces Additional Parking and Landscape PuPR2",
+   "units": null,
+   "cost": 35587000,
+   "address": "5600 Sunshine Dr Bldg J",
+   "communityArea": "78756",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 1,
+   "buildingsFinal": 0,
+   "gc": [
+    "Adolfson & Peterson Construction"
+   ]
+  },
+  {
+   "permit": "13590902",
+   "issued": "2025-11-17",
+   "type": "Renovation",
+   "scope": "Remodel to Existing 10th Floor Areas (12835 SF)",
+   "units": null,
+   "cost": 33899295,
+   "address": "625 E 10Th St Unit 100 (+2 more)",
+   "communityArea": "78701",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 3,
+   "buildingsFinal": 0,
+   "gc": [
+    "STR Constructors"
+   ]
+  },
+  {
+   "permit": "13575229",
+   "issued": "2026-05-13",
+   "type": "New construction",
+   "scope": "New Construction of Multi Family Building for Supportive Housing. (110375 SF)",
+   "units": 101,
+   "cost": 32500000,
+   "address": "1326 Lamar Square Dr",
+   "communityArea": "78704",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 1,
+   "buildingsFinal": 0,
+   "gc": [
+    "Bailey Elliott Construction, Inc."
+   ]
+  },
+  {
+   "permit": "13619488",
+   "issued": "2026-04-07",
+   "type": "Renovation",
+   "scope": "Addition and Remodel to Austin High School. Phase 3. (396761 SF)",
+   "units": null,
+   "cost": 31072372,
+   "address": "1715 W Cesar Chavez St",
+   "communityArea": "78703",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 4,
+   "buildingsFinal": 0,
+   "gc": [
+    "Cadence McShane Construction Company"
+   ]
+  },
+  {
+   "permit": "13505915",
+   "issued": "2026-07-27",
+   "type": "New construction",
+   "scope": "[APPROVED New Construction of Behavior Health Hospital located at the Texas Neuro Rehab Center Campus (46219 SF)",
+   "units": null,
+   "cost": 30400000,
+   "address": "1106 W Dittmar Rd Bldg 30",
+   "communityArea": "78745",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 1,
+   "buildingsFinal": 0,
+   "gc": [
+    "The Christman Company"
+   ]
+  },
+  {
+   "permit": "12768207",
+   "issued": "2023-01-13",
+   "type": "Renovation",
+   "scope": "Finish Out for Residential Units - also contains Laundry/Lounge (12021 SF)",
+   "units": null,
+   "cost": 30000000,
+   "address": "1320 Art Dilly Dr Bldg 1 Unit Flr1 (+15 more)",
+   "communityArea": "78702",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 16,
+   "buildingsFinal": 0,
+   "gc": [
+    "Bartlett Cocke General Contractors (Main)"
+   ]
+  },
+  {
+   "permit": "13544797",
+   "issued": "2026-08-04",
+   "type": "New construction",
+   "scope": "New Construction of Medical Office Building with New Parking Garage (75766 SF)",
+   "units": null,
+   "cost": 28000000,
+   "address": "6420 Helen Miller Vw",
+   "communityArea": "78724",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 1,
+   "buildingsFinal": 0,
+   "gc": [
+    "Hoar Construction LLC"
+   ]
+  },
+  {
+   "permit": "13627246",
+   "issued": "2026-02-02",
+   "type": "Renovation",
+   "scope": "Tenant Finish out Office Space(2193024 SF)",
+   "units": null,
+   "cost": 26668001,
+   "address": "400 W 6Th St Unit 3100",
+   "communityArea": "78701",
+   "status": "Active",
+   "milestone": "Permit active",
+   "buildings": 1,
+   "buildingsFinal": 0,
+   "gc": [
+    "Rand Construction Corporation"
+   ]
+  }
+ ],
+ "nearFinish": [
+  {
+   "permit": "13525226",
+   "issued": "2025-08-08",
+   "type": "Renovation",
+   "scope": "Change of Use and Interior Remodel to create Research Services...",
+   "units": null,
+   "cost": 4000000,
+   "address": "507 E Howard Ln Bldg 3 Unit 100A",
+   "communityArea": "78753",
+   "status": "Active",
+   "milestone": "Some buildings finaled",
+   "buildings": 1,
+   "buildingsFinal": 2,
+   "gc": [
+    "CM Constructors *Main*"
+   ]
+  },
+  {
+   "permit": "13484951",
+   "issued": "2025-06-17",
+   "type": "Renovation",
+   "scope": "Remodel for Common Spaces - Lobby Entrances Utilites and Restrooms and Facilites",
+   "units": null,
+   "cost": 1000000,
+   "address": "4301 Guadalupe St (+1 more)",
+   "communityArea": "78751",
+   "status": "Active",
+   "milestone": "Some buildings finaled",
+   "buildings": 2,
+   "buildingsFinal": 3,
+   "gc": [
+    "Less Equals More Inc"
+   ]
+  },
+  {
+   "permit": "13600242",
+   "issued": "2025-12-01",
+   "type": "Renovation",
+   "scope": "Interior Remodel to Existing Office/Warehouse. Work to include subdividing Existing Interior into Multiple Suites and New Overhead Doors at Warehouse...",
+   "units": null,
+   "cost": 1000000,
+   "address": "9120 Burnet Rd Unit 150",
+   "communityArea": "78758",
+   "status": "Active",
+   "milestone": "Some buildings finaled",
+   "buildings": 1,
+   "buildingsFinal": 2,
+   "gc": [
+    "Corvus Construction"
+   ]
+  }
+ ]
+}

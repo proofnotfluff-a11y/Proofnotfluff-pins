@@ -1,0 +1,9 @@
+Source: https://data.austintexas.gov/d/ranj-cccq
+Fetched: 2026-10-17T21:45:25+00:00
+
+Name: City of Austin Open Data Terms of Use
+
+City of Austin Open Data Terms of Use
+attribution: "City of Austin, TX - data.austintexas.gov"
+license: {"name": "See Terms of Use"}
+metadata: {"isStorytellerAsset": true, "custom_fields": {"Ownership": {"Program Name": "Enterprise Open Data Program", "Department name": "Austin Technology Services"}, "Publishing Information": {"Update Frequency": "As Needed"}, "Citywide Strategic Plan": {"Strategic Priority": "High-performing Government"}}, "initialized": false, "availableDisplayTypes": ["table", "fatrow", "page"], "renderTypeConfig": {"visible": {"story": true}}}

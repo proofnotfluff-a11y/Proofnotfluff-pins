@@ -595,6 +595,16 @@ def choose_palette(spec, fmt_name, key):
     return min(PALETTES, key=lambda p: (last.get(p, -1), hashlib.sha1((key + p).encode()).hexdigest()))
 
 
+def heard(captions, spec):
+    """Each spoken caption swapped for the words ElevenLabs actually reads (tools/el_voice.py lines)."""
+    try:
+        import el_voice
+        m = {x["text"]: x["tts"] for x in el_voice.lines(spec, "short")}
+    except Exception:
+        m = {}
+    return [re.sub(r"\s+", " ", re.sub(r"\[[a-z ]+\]", "", m.get(c, c))).strip() for c in captions]
+
+
 def main(spec_path, out, fmt_name="short"):
     spec = json.load(open(spec_path)); lint(spec)
     if fmt_name == "short":  # the content playbook's hard rules, in code before any reviewer sees the video
@@ -684,7 +694,9 @@ def main(spec_path, out, fmt_name="short"):
                                   "key_reveal": round(tl["ev"][tl["key"]]["t"], 2),
                                   "fix": round(tl["fix_t"], 2) if tl["fix_t"] is not None else None,
                                   "end_card": round(tl["cta_t"], 2), "ending": round(tl["button"], 2)},
-                      "spoken": [l["text"] for l in tl["lines"] if l["text"] and l["text"] in clips],
+                      # what the viewer HEARS (the "tts" text, tags removed), not the caption: reviewers and the cold viewer
+                      # judge these lines (Todd, Oct 17: "at five-ten cost" passed review because only captions were read)
+                      "spoken": heard([l["text"] for l in tl["lines"] if l["text"] and l["text"] in clips], spec),
                       "captions": [l["text"] for l in tl["lines"] if l["text"] and l["cap"]]}))
 
 

@@ -21,7 +21,7 @@
       "input": true,
       "say": "Here's how most people do the math. $40 an hour",
       "why": "The rate being checked.",
-      "tts": "Here's how most people do the math. Forty an hour"
+      "tts": "Here's how most people do the math. Forty dollars an hour"
     },
     {
       "label": "Hours worked (48 wks x 40)",
@@ -39,7 +39,7 @@
       "ask": "Spot the mistake?",
       "pause": 1.4,
       "why": "$40 times 1,920 hours. The mistake: it assumes clients pay for every hour.",
-      "tts": "Seventy-six thousand, eight hundred. Not bad.",
+      "tts": "Seventy-six thousand, eight hundred dollars. Not bad.",
       "ask_tts": "[short pause] Spot the mistake?"
     },
     {
@@ -57,7 +57,7 @@
       "kind": "bad",
       "say": "Take out tax and costs, and you keep $15.66 an hour. Fifteen.",
       "why": "$46,080 of revenue, less $6,000 of costs and a 25% tax set-aside, leaves $30,060 over 1,920 hours worked.",
-      "tts": "[sighs] Take out tax and costs, and you keep fifteen sixty-six an hour. Fifteen."
+      "tts": "[sighs] Take out tax and costs, and you keep fifteen dollars and sixty-six cents an hour. Fifteen."
     }
   ],
   "fix": {
@@ -65,7 +65,7 @@
     "value": "$75",
     "say": "Want $60,000 in your pocket? Charge $75.",
     "why": "$74.65 rounded up for a rate card: $86,000 of revenue needed over 1,152 paid hours.",
-    "tts": "Want sixty grand in your pocket? Charge seventy-five."
+    "tts": "Want sixty grand in your pocket? Charge seventy-five dollars."
   },
   "cta": {
     "title": "Hourly Rate Quick Calculator",

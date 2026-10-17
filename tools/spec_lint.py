@@ -24,7 +24,20 @@ PIVOT (Todd's "Go", Oct 15, 9:55 pm; coo/PIVOT.md): a spec dated from Oct 16 poi
   with "Free calculator: link in bio (proofnotfluff.com)"; TikTok caption with "Free calculator at proofnotfluff.com";
   neither caption mentions Etsy.
 
+HEARD (Todd, Oct 17, after Proof Check #3 said "at five-ten cost": "No one would say that. They'd say five dollars and
+  ten cents ... make sure the wording sounds human and is quality checked"; cmo/CONTENT_PLAYBOOK.md section 9 rule 3):
+  the lines ElevenLabs reads (each "tts", else the caption) are checked as heard, on every spec dated from Oct 18
+  and every undated example:
+    - every dollar amount the caption shows is said with "dollars", "bucks", "grand" or "cents";
+    - no run-together number pairs ("five-ten", "six sixty-three", "two ninety-eight", "fifteen sixty-six"): a
+      listener can't tell a price from a time or two numbers;
+    - no digits or "$" left in a heard line (ElevenLabs reads them unpredictably; spell them as spoken);
+    - at most two audio tags per video.
+  Reviewers and the cold viewer get these heard lines (python3 tools/spec_lint.py --heard spec.json; make_demo.py
+  prints them as "spoken"), not the captions.
+
 Usage: python3 tools/spec_lint.py spec.json [spec.json ...]    one line per problem, exit 1 if any
+       python3 tools/spec_lint.py --heard spec.json              the lines as the viewer hears them, in order
 """
 import json, os, re, sys
 
@@ -54,6 +67,46 @@ TIKTOK_SITE = "Free calculator at proofnotfluff.com"
 # Honest framing (cmo/CONTENT_PLAYBOOK.md rule 11): no fake secrecy, no fake urgency or scarcity.
 HYPE = re.compile(r"\b(?:secrets?|stolen|leaked|they don't want you to know|last chance|act now|hurry|"
                   r"only \d+ (?:left|spots?|copies)|before it's gone|limited time)\b", re.I)
+
+
+HEARD_START = "2026-10-18"  # the heard-line rules bind specs dated from here (Proof Check #3, Oct 17, is published)
+_UNITS = "one two three four five six seven eight nine".split()
+_TEENS = "ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen".split()
+_TENS = "twenty thirty forty fifty sixty seventy eighty ninety".split()
+_SMALL = rf"(?:(?:{'|'.join(_TENS)})(?:-(?:{'|'.join(_UNITS)}))?|{'|'.join(_TEENS)}|{'|'.join(_UNITS)})"
+_BIG = rf"(?:(?:{'|'.join(_TENS)})(?:-(?:{'|'.join(_UNITS)}))?|{'|'.join(_TEENS)})"
+# a number word run straight into another number of ten or more: "five-ten", "six sixty-three", "two ninety-eight"
+RUN_TOGETHER = re.compile(rf"\b{_SMALL}[- ]{_BIG}\b", re.I)
+MONEY_WORD = re.compile(r"\b(?:dollars?|bucks?|grand|cents?)\b", re.I)
+TAG = re.compile(r"\[[a-z ]+\]", re.I)
+
+
+def heard_lines(spec):
+    """(caption, heard) for every spoken line of a short, in make_demo's order (tools/el_voice.py lines)."""
+    import el_voice
+    return [(x["text"], x["tts"]) for x in el_voice.lines(spec, "short")]
+
+
+def heard_problems(spec):
+    out = []
+    pairs = heard_lines(spec)
+    tags = 0
+    for cap, tts in pairs:
+        spoken = TAG.sub("", tts)
+        tags += len(TAG.findall(tts))
+        amounts = len(re.findall(r"\$\s*\d", cap))
+        if amounts > len(MONEY_WORD.findall(spoken)):
+            out.append(f"heard line {tts!r} drops a money word: the caption shows {amounts} dollar amount(s), so "
+                       "each is said with 'dollars', 'bucks', 'grand' or 'cents' (e.g. $5.10 is 'five dollars and ten cents')")
+        m = RUN_TOGETHER.search(spoken)
+        if m:
+            out.append(f"heard line {tts!r} runs two numbers together ({m.group(0)!r}): say it the way a person "
+                       "would, e.g. 'five dollars and ten cents', 'six hundred sixty-three dollars'")
+        if re.search(r"[\d$]", spoken):
+            out.append(f"heard line {tts!r} still has digits or '$': spell the number the way it is spoken")
+    if tags > 2:
+        out.append(f"{tags} audio tags (at most two per video)")
+    return out
 
 
 def strip(text):
@@ -176,10 +229,17 @@ def problems(spec, path=""):
     tags = HASHTAG.findall(reel)
     if not 3 <= len(tags) <= 5:
         out.append(f"the Reel caption has {len(tags)} hashtags (3 to 5)")
+    if not dated or dated.group(1) >= HEARD_START:
+        out += heard_problems(spec)
     return out
 
 
 def main():
+    if sys.argv[1:2] == ["--heard"]:
+        for p in sys.argv[2:]:
+            for cap, tts in heard_lines(json.load(open(p, encoding="utf-8"))):
+                print(TAG.sub("", tts).strip())
+        return
     bad = 0
     for p in sys.argv[1:]:
         try:

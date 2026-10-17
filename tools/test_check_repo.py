@@ -130,6 +130,18 @@ def plants(tmp):
             return json.dumps(d)
         out.append(("video-specs", "a short with fake secrecy in its hook", new_file(os.path.join("promo", "specs", "examples", "zz-planted-hype.json"), hype_hook(None))))
 
+        # Heard lines (Todd, Oct 17: "No one would say 'at five ten cost'"): a price read like a price tag.
+        def price_tag_read(_):
+            d = json.load(open(os.path.join(tmp, example), encoding="utf-8"))
+            d["fix"]["tts"] = "Want sixty grand in your pocket? Charge seventy-five."
+            return json.dumps(d)
+        def run_together(_):
+            d = json.load(open(os.path.join(tmp, example), encoding="utf-8"))
+            d["rows"][4]["tts"] = "Take out tax and costs, and you keep fifteen sixty-six dollars an hour. Fifteen."
+            return json.dumps(d)
+        out.append(("video-specs", "a heard price without its money word", new_file(os.path.join("promo", "specs", "examples", "zz-planted-moneyword.json"), price_tag_read(None))))
+        out.append(("video-specs", "a heard price run together like a price tag", new_file(os.path.join("promo", "specs", "examples", "zz-planted-runtogether.json"), run_together(None))))
+
     def planted_tell(text):
         d = json.loads(text); d["pages"][0]["plantedNote"] = "Unlock your pricing potential."; return json.dumps(d)
     out.append(("voice", "an AI-sounding phrase on a site page", edit(os.path.join("site", "pages.json"), planted_tell)))

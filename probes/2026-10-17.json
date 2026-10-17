@@ -1,5 +1,5 @@
 {
- "ranAt": "2026-10-17T21:37:30+00:00",
+ "ranAt": "2026-10-17T21:39:08+00:00",
  "since": "2026-09-05",
  "weeks": 6,
  "counts": {
@@ -106,12 +106,12 @@
    },
    {
     "results": "Pass w/ Conditions",
-    "inspection_type": "License Re-Inspection",
+    "inspection_type": "Canvass Re-Inspection",
     "count": "10"
    },
    {
     "results": "Pass w/ Conditions",
-    "inspection_type": "Canvass Re-Inspection",
+    "inspection_type": "License Re-Inspection",
     "count": "10"
    },
    {
@@ -121,12 +121,12 @@
    },
    {
     "results": "Fail",
-    "inspection_type": "License Re-Inspection",
+    "inspection_type": "Short Form Complaint",
     "count": "6"
    },
    {
     "results": "Fail",
-    "inspection_type": "Short Form Complaint",
+    "inspection_type": "License Re-Inspection",
     "count": "6"
    },
    {
@@ -135,19 +135,29 @@
     "count": "4"
    },
    {
-    "results": "Out of Business",
-    "inspection_type": "Complaint",
+    "results": "No Entry",
+    "inspection_type": "Canvass Re-Inspection",
     "count": "2"
    },
    {
-    "results": "No Entry",
-    "inspection_type": "Canvass Re-Inspection",
+    "results": "Out of Business",
+    "inspection_type": "Complaint",
     "count": "2"
    },
    {
     "results": "Pass w/ Conditions",
     "inspection_type": "Suspected Food Poisoning",
     "count": "2"
+   },
+   {
+    "results": "Fail",
+    "inspection_type": "Suspected Food Poisoning",
+    "count": "1"
+   },
+   {
+    "results": "No Entry",
+    "inspection_type": "Complaint Re-Inspection",
+    "count": "1"
    },
    {
     "results": "Pass",
@@ -157,16 +167,6 @@
    {
     "results": "Not Ready",
     "inspection_type": "Short Form Complaint",
-    "count": "1"
-   },
-   {
-    "results": "No Entry",
-    "inspection_type": "Complaint Re-Inspection",
-    "count": "1"
-   },
-   {
-    "results": "Fail",
-    "inspection_type": "Suspected Food Poisoning",
     "count": "1"
    }
   ],
@@ -334,6 +334,212 @@
    {
     "count": "116",
     "count_contractorcompanyname": "2"
+   }
+  ],
+  "austin_365_500k_by_class_status": [
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 329 Com Structures Other Than Bldg",
+    "status_current": "Active",
+    "count": "187"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 105 Five or More Family Bldgs",
+    "status_current": "Active",
+    "count": "93"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 321 Pkg Garage Bldg & Open Deck",
+    "status_current": "Active",
+    "count": "35"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 328 Commercial Other Nonresident Bldg",
+    "status_current": "Active",
+    "count": "31"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 437 Addn, Alter, Convn-NonRes",
+    "status_current": "Active",
+    "count": "17"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 327 Stores & Customer Services",
+    "status_current": "Active",
+    "count": "14"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 326 Schools & Other Educational Bldgs",
+    "status_current": "Active",
+    "count": "12"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 324 Office, Bank & Professional Bldgs",
+    "status_current": "Active",
+    "count": "12"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 104 Three & Four Family Bldgs",
+    "status_current": "Active",
+    "count": "10"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 318 Amusement, Social & Rec Bldgs",
+    "status_current": "Active",
+    "count": "9"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 320 Industrial Bldgs",
+    "status_current": "Active",
+    "count": "6"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C-1000 Commercial Remodel",
+    "status_current": "Final",
+    "count": "5"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 322 Service Station & Repair Garage",
+    "status_current": "Active",
+    "count": "4"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 324 Office, Bank & Professional Bldgs",
+    "status_current": "Final",
+    "count": "2"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 329 Com Structures Other Than Bldg",
+    "status_current": "Final",
+    "count": "2"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 213 Hotels, Motels, & Tourist Cabins",
+    "status_current": "Active",
+    "count": "2"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 322 Service Station & Repair Garage",
+    "status_current": "Final",
+    "count": "2"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 319 Churches and Othr Religious Bldgs",
+    "status_current": "Active",
+    "count": "2"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 319 Churches and Othr Religious Bldgs",
+    "status_current": "Final",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 329 Com Structures Other Than Bldg",
+    "status_current": "Pending Permit",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 321 Pkg Garage Bldg & Open Deck",
+    "status_current": "Final",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 321 Pkg Garage Bldg & Open Deck",
+    "status_current": "Withdrawn",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Residential",
+    "permit_class": "R- 101 Single Family Houses",
+    "status_current": "Active",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 103 Two Family Bldgs",
+    "status_current": "Active",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 327 Stores & Customer Services",
+    "status_current": "Final",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 106 Mixed Use",
+    "status_current": "Expired",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 105 Five or More Family Bldgs",
+    "status_current": "Withdrawn",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Residential",
+    "permit_class": "R- 434 Addition & Alterations",
+    "status_current": "Active",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 318 Amusement, Social & Rec Bldgs",
+    "status_current": "Final",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 328 Commercial Other Nonresident Bldg",
+    "status_current": "Final",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 323 Hospital & Institutional Bldgs",
+    "status_current": "Active",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C-1000 Commercial Remodel",
+    "status_current": "Active",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 321 Pkg Garage Bldg & Open Deck",
+    "status_current": "Cancelled - Contractor Required",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 437 Addn, Alter, Convn-NonRes",
+    "status_current": "Expired",
+    "count": "1"
    }
   ]
  },

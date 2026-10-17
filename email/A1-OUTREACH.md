@@ -14,6 +14,12 @@ Why: Gemini's red team (Oct 17) and the COO agree that waiting for traffic is th
 - Every fact in the email comes from the week's members' list (the City of Chicago Building Permits dataset as filtered by tools/permits_chicago.py). {Company}, {permits}, {addresses}, {near} and {example} are filled from that list on the morning the drafts are made; every draft is checked for leftover braces, and the drafts are not made if any number differs from the list (Holdout QC, Oct 17: the first draft carried last week's numbers).
 - No invented people, no fake urgency, no claim that any builder works with us.
 
+## Reach plan (Todd, Oct 17, 4:19 pm, asked how to reach only the people who would buy; chose "Expand to every Chicagoland cleaner")
+- The prospect list grows from 36 to every Chicago-area company whose own site advertises post-construction or construction cleaning, found from their public sites (no bought lists, no scraped personal emails: only a business address the company publishes, else its contact form).
+- Each email names one near-finish or newest permit in or near the prospect's own part of town, checked against the week's list, so every message carries a real lead the reader can use.
+- Weekly batches of about 40, made as Gmail drafts in the ProofNotFluff account that Todd reads and sends himself. Still one email per company, no follow-up (Todd did not choose the follow-up), no adjacent-trade pages and no paid ads for now.
+- Nothing sends until the launch checklist (launches/chicago-construction-cleaning-leads.md) is complete and Todd says go.
+
 ## The email (one per company; {fields} filled from the list)
 
 Subject:

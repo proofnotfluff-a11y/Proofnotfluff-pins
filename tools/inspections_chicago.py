@@ -15,7 +15,7 @@ Usage: python3 tools/inspections_chicago.py --probe       violation codes, title
 import argparse, collections, datetime as dt, json, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from permits_chicago import get, terms_text, title_name  # noqa: E402
+from permits_chicago import get, terms_text  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "permits", "inspections-chicago")
@@ -141,6 +141,29 @@ FAILS = {"FAIL"}
 FLAGGED = {"FAIL", "PASS W/ CONDITIONS"}
 
 
+DBA_UPPER = {"BBQ", "KFC", "USA", "LLC", "II", "III", "IV", "IHOP", "CVS", "JJ", "TGI", "DQ", "NYC", "LA", "OK", "TV", "UIC", "YMCA", "MCA"}
+DBA_SMALL = {"OF", "AND", "THE", "DE", "LA", "EL", "DEL", "A", "AT", "BY", "ON", "IN", "N"}
+
+
+def dba_case(name):
+    """Restaurant names read as words, not initials ("Viet Nam Restaurant", "Tha Wing Lounge"): a word is kept upper
+    case only when it has no vowel (BBQ, KFC) or is a known set of initials; the business-name casing used for
+    builders treats every 3-letter word as initials, which suits contractors, not restaurants."""
+    out = []
+    for i, w in enumerate(re.sub(r"\s+", " ", (name or "").strip()).split(" ")):
+        bare = re.sub(r"[^A-Za-z]", "", w).upper()
+        if bare in DBA_UPPER or (bare and len(bare) <= 4 and not re.search(r"[AEIOUY]", bare)):
+            out.append(w.upper())
+        elif i and bare in DBA_SMALL and len(bare) <= 3 and bare != "N":
+            out.append(w.lower())
+        else:
+            out.append(re.sub(r"[A-Za-z]+", lambda m: m.group(0).capitalize(), w.lower()))
+    s = " ".join(out)
+    s = re.sub(r"(\w)'S\b", lambda m: m.group(1) + "'s", s, flags=re.I)
+    s = re.sub(r"\bMc([a-z])", lambda m: "Mc" + m.group(1).upper(), s)
+    return re.sub(r"\b(\d+)(St|Nd|Rd|Th)\b", lambda m: m.group(1) + m.group(2).lower(), s)
+
+
 def street(addr):
     words = []
     for w in re.sub(r"\s+", " ", (addr or "").strip()).split(" "):
@@ -208,7 +231,7 @@ def record(r, areas, fails30):
         segs.append("repeatFail")
     return {
         "inspection": str(r.get("inspection_id") or ""),
-        "business": title_name(r.get("dba_name") or r.get("aka_name") or ""),
+        "business": dba_case(r.get("dba_name") or r.get("aka_name") or ""),
         "license": lic,
         "address": street(r.get("address")),
         "zip": (r.get("zip") or "").split(".")[0],
@@ -365,6 +388,10 @@ def selftest():
     assert "COMMENTS" not in blob.upper() and "DROPPINGS" not in blob.upper(), "notes leaked into the records"
     assert reasons["institution or mobile vendor"] == 1
     assert street("3512 E 118TH ST") == "3512 E 118th St"
+    for raw, want in [("VIET NAM RESTAURANT", "Viet Nam Restaurant"), ("THA WING LOUNGE", "Tha Wing Lounge"), ("KFC", "KFC"),
+                      ("LOU MALNATI'S PIZZERIA", "Lou Malnati's Pizzeria"), ("TAQUERIA EL GALLO DE ORO", "Taqueria el Gallo de Oro"),
+                      ("BIG STAR BBQ", "Big Star BBQ"), ("MCDONALD'S", "McDonald's")]:
+        assert dba_case(raw) == want, (raw, dba_case(raw))
     print(f"inspection selftest ok ({len(CAT_CASES)} planted violation cases, 6 planted inspections)")
 
 

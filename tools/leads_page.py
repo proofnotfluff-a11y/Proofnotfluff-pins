@@ -123,8 +123,21 @@ def selftest():
     print("selftest ok")
 
 
+def write_review(full, out, password):
+    """The filter's review set (every open candidate with the City's raw text), encrypted like the members' list,
+    so the crew can test the filter offline without the paid list sitting in a public repo in the clear."""
+    box = encrypt(password, json.dumps(full.get("review", []), separators=(",", ":")).encode())
+    json.dump(box, open(out, "w"))
+    return len(full.get("review", []))
+
+
 if __name__ == "__main__":
-    if sys.argv[1:] == ["--selftest"]:
+    if sys.argv[1:2] == ["--review"]:
+        pw = os.environ.get("LEADS_PASSWORD", "")
+        if len(pw) < 12:
+            raise SystemExit("LEADS_PASSWORD missing; review not written")
+        print("review rows", write_review(json.load(open(sys.argv[2])), sys.argv[3], pw))
+    elif sys.argv[1:] == ["--selftest"]:
         selftest()
     else:
         pw = os.environ.get("LEADS_PASSWORD", "")

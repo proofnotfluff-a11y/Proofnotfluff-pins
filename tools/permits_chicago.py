@@ -324,8 +324,18 @@ def main():
         week = (now - dt.timedelta(days=7)).strftime("%Y-%m-%d")
         for k in kept:
             k["newThisWeek"] = k["issued"] >= week
-        json.dump({"source": sample["source"], "window": sample["window"], "counts": sample["counts"], "projects": kept},
-                  open(a.full, "w"), indent=1)
+        kept_ids = {str(k["permit"]) for k in kept}
+        review = []   # every open candidate with the City's own text, so the filter can be tested offline (Holdout QC Oct 17)
+        for r in rows:
+            if (r.get("permit_status") or "").upper() in CLOSED:
+                continue
+            pid = str(r.get("permit_") or r.get("permit_number") or r.get("id"))
+            review.append({"permit": pid, "kept": pid in kept_ids, "raw": r.get("work_description") or "",
+                           "cost": float(r.get(cost_col) or 0) if cost_col else 0, "type": r.get("permit_type"),
+                           "gcRaw": [r.get(f"contact_{n}_name") for n in range(1, 16)
+                                     if "GENERAL CONTRACTOR" in (r.get(f"contact_{n}_type") or "").upper()]})
+        json.dump({"source": sample["source"], "window": sample["window"], "counts": sample["counts"], "projects": kept,
+                   "review": review}, open(a.full, "w"), indent=1)
     print(json.dumps({"fetched": len(rows), "kept": len(kept), "excluded": dict(reasons), "top3": [(k["cost"], k["type"], k["communityArea"]) for k in kept[:3]]}))
 
 

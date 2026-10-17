@@ -57,15 +57,22 @@ def main():
     # Austin wording for the filter's planted cases: work descriptions and permit fields only, never a name or phone
     since365 = (dt.date.today() - dt.timedelta(days=365)).isoformat()
     rows = get("https://data.austintexas.gov/resource/3syk-w9eu.json", {
-        "$select": "permit_number,permit_class_mapped,permit_class,work_class,description,status_current,housing_units,total_job_valuation,"
-                   "certificate_of_occupancy,issue_date,number_of_floors",
-        "$where": f"issue_date>='{since365}' AND total_job_valuation>=500000", "$order": "issue_date DESC", "$limit": 1500})
+        "$select": "permit_number,project_id,masterpermitnum,permit_class_mapped,permit_class,work_class,description,status_current,"
+                   "housing_units,total_job_valuation,total_valuation_remodel,building_valuation,building_valuation_remodel,"
+                   "certificate_of_occupancy,issue_date,number_of_floors,total_new_add_sqft,remodel_repair_sqft",
+        "$where": f"issue_date>='{since365}' AND permit_class_mapped='Commercial' AND (total_job_valuation>=500000 OR "
+                  f"total_valuation_remodel>=500000 OR building_valuation>=500000 OR building_valuation_remodel>=500000)",
+        "$order": "issue_date DESC", "$limit": 3000})
     json.dump(rows, open(os.path.join("probes", "austin-descriptions.json"), "w"), indent=1)
     stat = get("https://data.austintexas.gov/resource/3syk-w9eu.json", {
         "$select": "permit_class_mapped,permit_class,status_current,count(*)",
         "$where": f"issue_date>='{since365}' AND total_job_valuation>=500000", "$group": "permit_class_mapped,permit_class,status_current",
         "$order": "count(*) DESC", "$limit": 80})
     out["counts"]["austin_365_500k_by_class_status"] = stat
+    out["counts"]["austin_365_commercial_by_workclass"] = get("https://data.austintexas.gov/resource/3syk-w9eu.json", {
+        "$select": "work_class,count(*),count(total_job_valuation),count(total_valuation_remodel)",
+        "$where": f"issue_date>='{since365}' AND permit_class_mapped='Commercial' AND permittype='BP'", "$group": "work_class",
+        "$order": "count(*) DESC", "$limit": 40})
     path = os.path.join("probes", f"{dt.date.today().isoformat()}.json")
     json.dump(out, open(path, "w"), indent=1)
     print(path)

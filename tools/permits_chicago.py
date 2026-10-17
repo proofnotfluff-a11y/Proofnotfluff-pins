@@ -13,7 +13,10 @@ public, business-level fields to permits/chicago/:
 Never written: owner names, any contact that is not a business acting as general contractor,
 phone numbers, emails. Subscribers do their own outreach; the crew never contacts anyone.
 
-Usage: python3 tools/permits_chicago.py [--days 365] [--min-cost 500000] [--top 25]
+Usage: python3 tools/permits_chicago.py [--days 365] [--min-cost 500000] [--top 25] [--full PATH]
+
+--full PATH writes every kept project (the paid weekly list, A1 pre-sale) to PATH. The workflow keeps it
+out of the repo and uploads it as a short-lived run artifact that tools/leads_xlsx.py turns into the workbook.
 """
 import argparse, collections, datetime as dt, html.parser, json, os, re, sys, time, urllib.parse, urllib.request
 
@@ -141,6 +144,7 @@ def main():
     ap.add_argument("--days", type=int, default=365)
     ap.add_argument("--min-cost", type=int, default=500000)
     ap.add_argument("--top", type=int, default=25)
+    ap.add_argument("--full", default="", help="also write every kept project to this path (the paid weekly list; never inside the repo's committed folders)")
     a = ap.parse_args()
     os.makedirs(OUT, exist_ok=True)
     now = dt.datetime.now(dt.timezone.utc)
@@ -266,6 +270,12 @@ def main():
         open(os.path.join(OUT, "source-terms.txt"), "w").write(terms_text())
     except SystemExit as e:
         open(os.path.join(OUT, "source-terms.txt"), "w").write(f"Could not fetch {TERMS_URL}: {e}\n")
+    if a.full:
+        week = (now - dt.timedelta(days=7)).strftime("%Y-%m-%d")
+        for k in kept:
+            k["newThisWeek"] = k["issued"] >= week
+        json.dump({"source": sample["source"], "window": sample["window"], "counts": sample["counts"], "projects": kept},
+                  open(a.full, "w"), indent=1)
     print(json.dumps({"fetched": len(rows), "kept": len(kept), "excluded": dict(reasons), "top3": [(k["cost"], k["type"], k["communityArea"]) for k in kept[:3]]}))
 
 

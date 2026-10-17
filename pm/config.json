@@ -1,0 +1,15 @@
+{
+ "started": "2026-10-17",
+ "bankroll": 200.0,
+ "stake_per_signal": 5.0,
+ "top_n": 20,
+ "time_period": "month",
+ "cohort_refresh_days": 7,
+ "fee_rate": 0.02,
+ "slippage": 0.01,
+ "min_price": 0.05,
+ "max_price": 0.95,
+ "max_open": 40,
+ "verdict_at": "2026-12-12",
+ "min_closed_for_verdict": 100
+}

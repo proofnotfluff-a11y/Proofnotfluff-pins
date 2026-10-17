@@ -1,0 +1,30 @@
+{
+ "data": [
+  {
+   "rank": 1,
+   "user_id": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "pnl": 4799922.746117812,
+   "volume": 51132879.992498,
+   "user_name": "BreakTheBank",
+   "profile_image": "",
+   "x_username": "",
+   "verified": false
+  },
+  {
+   "rank": 2,
+   "user_id": "0xcdcccd0f2d86e450d973da415ad2430e5cc7935a",
+   "pnl": 4645693.94831029,
+   "volume": 28758785.670352,
+   "user_name": "joseph00677",
+   "profile_image": "",
+   "x_username": "",
+   "verified": false
+  }
+ ],
+ "pagination": {
+  "limit": 20,
+  "offset": 0,
+  "has_more": true,
+  "next_cursor": "eyJkYXRhIjp7InR5cGUiOiJsZWFkZXJib2FyZCIsInBhcmFtcyI6eyJsIjoyMCwibyI6MjAsInMiOiJQTkwiLCJ0IjoibW9udGgiLCJjIjoib3ZlcmFsbCJ9fSwic2lnIjoiNDkxNDMyNTFlYzIzZmI0NTQxMjEzY2EzYzQ5Yjc1NWIifQ"
+ }
+}

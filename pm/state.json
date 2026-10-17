@@ -1,0 +1,243 @@
+{
+ "started_at": "2026-10-17T18:19:43Z",
+ "cash": 200.0,
+ "realized_pnl": 0.0,
+ "cohort": {
+  "picked_at": "2026-10-17T18:19:43Z",
+  "wallets": [
+   {
+    "user_id": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+    "user_name": "BreakTheBank",
+    "pnl": 4799922.746117812,
+    "rank": 1
+   },
+   {
+    "user_id": "0xcdcccd0f2d86e450d973da415ad2430e5cc7935a",
+    "user_name": "joseph00677",
+    "pnl": 4645693.94831029,
+    "rank": 2
+   },
+   {
+    "user_id": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+    "user_name": "e46m3",
+    "pnl": 2878310.1016078214,
+    "rank": 3
+   },
+   {
+    "user_id": "0x7c37b52eb226bcb9411375ec48b0169663fb6aeb",
+    "user_name": "Diabolical-Prize",
+    "pnl": 2238518.868224997,
+    "rank": 4
+   },
+   {
+    "user_id": "0x924379a79c64b77ad5816ad362122a5f6228658e",
+    "user_name": "Kch-Temp",
+    "pnl": 1638931.3511655056,
+    "rank": 5
+   },
+   {
+    "user_id": "0x63cf8544631c31e9fcea0b02141dd24d01d6e4d0",
+    "user_name": "halvanicus",
+    "pnl": 1541520.0712579987,
+    "rank": 6
+   },
+   {
+    "user_id": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
+    "user_name": "UpTheBlues",
+    "pnl": 1488503.6989920111,
+    "rank": 7
+   },
+   {
+    "user_id": "0x361b16e3ddfe1d415d41008daac2631d94ab74fe",
+    "user_name": "0x361b16e3ddfe1d415d41008daac2631d94ab74fe",
+    "pnl": 1339022.7639716398,
+    "rank": 8
+   },
+   {
+    "user_id": "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b",
+    "user_name": "Papeasy",
+    "pnl": 1252756.5382374297,
+    "rank": 9
+   },
+   {
+    "user_id": "0x5268527977f700f9bf9b6d5cd843859e4e70135d",
+    "user_name": "HomeRunHazard",
+    "pnl": 1218968.3671482075,
+    "rank": 10
+   },
+   {
+    "user_id": "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d",
+    "user_name": "mooseborzoii",
+    "pnl": 1072635.4849239313,
+    "rank": 11
+   },
+   {
+    "user_id": "0xb0e74df9430a089aa102e2207af5fde1967439d2",
+    "user_name": "0xb0e74DF9430A089Aa102e2207Af5fde1967439D2-1789545517033",
+    "pnl": 1003652.6534490912,
+    "rank": 12
+   },
+   {
+    "user_id": "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747",
+    "user_name": "juice-fruit",
+    "pnl": 941905.36198803,
+    "rank": 13
+   },
+   {
+    "user_id": "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c",
+    "user_name": "omnibus-076daa",
+    "pnl": 938687.1818936939,
+    "rank": 14
+   },
+   {
+    "user_id": "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3",
+    "user_name": "0xBc43c8bfBC4d77c2FC9011adaD38Ba43b88996d3-1765231687816",
+    "pnl": 756838.5606632801,
+    "rank": 15
+   },
+   {
+    "user_id": "0x96489abcb9f583d6835c8ef95ffc923d05a86825",
+    "user_name": "anoin123",
+    "pnl": 718585.6304921542,
+    "rank": 16
+   },
+   {
+    "user_id": "0xd38b71f3e8ed1af71983e5c309eac3dfa9b35029",
+    "user_name": "primm",
+    "pnl": 713128.0341418558,
+    "rank": 17
+   },
+   {
+    "user_id": "0x511f9c771449162349795d17becf8b37031acbe1",
+    "user_name": "Bigggggggg",
+    "pnl": 692246.927156907,
+    "rank": 18
+   },
+   {
+    "user_id": "0x0f6f76ced62a911bccef92f50faaff143854d977",
+    "user_name": "totoro3miyazaki",
+    "pnl": 589267.6757544994,
+    "rank": 19
+   },
+   {
+    "user_id": "0xa2cced8bfae7d645f7f437fb76becf2fcbb70cbc",
+    "user_name": "justwins",
+    "pnl": 572901.215220895,
+    "rank": 20
+   }
+  ]
+ },
+ "watch": {
+  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": {
+   "name": "BreakTheBank",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0xcdcccd0f2d86e450d973da415ad2430e5cc7935a": {
+   "name": "joseph00677",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0x4f1d5ae26fc31472966e951af3183308736d8de2": {
+   "name": "e46m3",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0x7c37b52eb226bcb9411375ec48b0169663fb6aeb": {
+   "name": "Diabolical-Prize",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0x924379a79c64b77ad5816ad362122a5f6228658e": {
+   "name": "Kch-Temp",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0x63cf8544631c31e9fcea0b02141dd24d01d6e4d0": {
+   "name": "halvanicus",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": {
+   "name": "UpTheBlues",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0x361b16e3ddfe1d415d41008daac2631d94ab74fe": {
+   "name": "0x361b16e3ddfe1d415d41008daac2631d94ab74fe",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": {
+   "name": "Papeasy",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": {
+   "name": "HomeRunHazard",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": {
+   "name": "mooseborzoii",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0xb0e74df9430a089aa102e2207af5fde1967439d2": {
+   "name": "0xb0e74DF9430A089Aa102e2207Af5fde1967439D2-1789545517033",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747": {
+   "name": "juice-fruit",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c": {
+   "name": "omnibus-076daa",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": {
+   "name": "0xBc43c8bfBC4d77c2FC9011adaD38Ba43b88996d3-1765231687816",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": {
+   "name": "anoin123",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0xd38b71f3e8ed1af71983e5c309eac3dfa9b35029": {
+   "name": "primm",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0x511f9c771449162349795d17becf8b37031acbe1": {
+   "name": "Bigggggggg",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0x0f6f76ced62a911bccef92f50faaff143854d977": {
+   "name": "totoro3miyazaki",
+   "since": "2026-10-17T18:19:43Z"
+  },
+  "0xa2cced8bfae7d645f7f437fb76becf2fcbb70cbc": {
+   "name": "justwins",
+   "since": "2026-10-17T18:19:43Z"
+  }
+ },
+ "last_seen": {
+  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1792261183,
+  "0xcdcccd0f2d86e450d973da415ad2430e5cc7935a": 1792261183,
+  "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1792261183,
+  "0x7c37b52eb226bcb9411375ec48b0169663fb6aeb": 1792261183,
+  "0x924379a79c64b77ad5816ad362122a5f6228658e": 1792261183,
+  "0x63cf8544631c31e9fcea0b02141dd24d01d6e4d0": 1792261183,
+  "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": 1792261183,
+  "0x361b16e3ddfe1d415d41008daac2631d94ab74fe": 1792261183,
+  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1792261183,
+  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1792261183,
+  "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": 1792261183,
+  "0xb0e74df9430a089aa102e2207af5fde1967439d2": 1792261183,
+  "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747": 1792261183,
+  "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c": 1792261183,
+  "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": 1792261183,
+  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1792261183,
+  "0xd38b71f3e8ed1af71983e5c309eac3dfa9b35029": 1792261183,
+  "0x511f9c771449162349795d17becf8b37031acbe1": 1792261183,
+  "0x0f6f76ced62a911bccef92f50faaff143854d977": 1792261183,
+  "0xa2cced8bfae7d645f7f437fb76becf2fcbb70cbc": 1792261183
+ },
+ "positions": {},
+ "closed": [],
+ "signals": {
+  "buy": 0,
+  "sell": 0,
+  "skipped": 0,
+  "fallback_price": 0
+ },
+ "errors": 0
+}

@@ -1,0 +1,106 @@
+{
+  "formula": "F3 Myth vs Math",
+  "series": "Proof Check",
+  "product_id": "free-inventory-turnover-calculator",
+  "workbook_id": "6",
+  "product": "Inventory Turnover Calculator",
+  "tab": "Free online",
+  "audience": "PROOF CHECK #3 · FOR ONLINE SELLERS",
+  "hookId": "F3",
+  "scope": "broad",
+  "voice": "am_michael",
+  "el_voice": "cjVigY5qzO86Huf0OWal",
+  "el_model": "eleven_v3",
+  "mood": "tension",
+  "palette": "plum",
+  "hook": "130 pot holders in stock. <b>Safe?</b>",
+  "hook_say_short": "130 in stock. Safe?",
+  "hook_tts": "A hundred thirty in stock. Safe?",
+  "hook_say": "Lots of sellers say extra stock is safe: you never miss a sale. Here is one product with 130 on the shelf, and the math on it.",
+  "rows": [
+    {
+      "label": "Pot holders on the shelf",
+      "value": "130 in stock",
+      "input": true,
+      "say": "Say you've got 130 pot holders.",
+      "tts": "Say you've got a hundred thirty pot holders.",
+      "why": "Units on hand for one product, sold as pairs."
+    },
+    {
+      "label": "Sold per day, last 30 days",
+      "value": "0.9 a day",
+      "input": true,
+      "say": "They sell under one a day.",
+      "tts": "They sell under one a day.",
+      "ask": "Plenty of stock, so you're safe?",
+      "ask_tts": "[short pause] Plenty of stock, so you're safe?",
+      "pause": 1.3,
+      "why": "Units sold in the last 30 days, divided by 30."
+    },
+    {
+      "label": "Days to sell out (130 / 0.9)",
+      "value": "144 days",
+      "result": true,
+      "kind": "bad",
+      "say": "Nope. That's 144 days to sell out.",
+      "tts": "Nope. That's a hundred forty-four days to sell out.",
+      "why": "Days of stock = units on hand / units sold per day: 130 / 0.9 = 144.4."
+    },
+    {
+      "label": "Cash tied up (130 x $5.10 cost)",
+      "value": "$663",
+      "result": true,
+      "kind": "bad",
+      "say": "At $5.10 cost each, that's $663 of cash. Sitting there.",
+      "tts": "At five-ten cost each, that's six sixty-three of cash. Sitting there.",
+      "why": "Stock value at cost: 130 units x $5.10 paid per unit = $663."
+    }
+  ],
+  "fix": {
+    "label": "Over the calculator's 120-day cutoff",
+    "value": "Stop reordering it",
+    "say": "The calculator's cutoff is 120 days. Stop reordering it.",
+    "tts": "The calculator's cutoff is a hundred twenty days. Stop reordering it.",
+    "why": "The calculator's overstock cutoff is 120 days of stock (the workbook default, adjustable). 144 days is over it, so it shows Overstock: stop reordering until it sells down."
+  },
+  "pitch": {
+    "say": "That's our free inventory turnover calculator. Type daily sales and stock. It shows how long it lasts.",
+    "tts": "That's our free inventory turnover calculator. Type daily sales and stock. It shows how long it lasts."
+  },
+  "cta": {
+    "title": "Inventory Turnover Calculator",
+    "button": "Free calculator",
+    "sub": "proofnotfluff.com",
+    "say": "Find your overstock free at ProofNotFluff dot com.",
+    "tts": "Find your overstock free at ProofNotFluff dot com.",
+    "what": "Free online. No sign-up.",
+    "use": "Type daily sales and units on hand. It shows how long stock lasts and flags overstock."
+  },
+  "note": "Sample product from the free calculator. An estimate, not advice.",
+  "sources": [
+    {
+      "number": "130 units, 0.9 a day",
+      "source": "#6 workbook 2 SKU List row 24 (SKU-009 Quilted Pot Holder (pair)): J24 130 on hand, N24 0.9 daily sales with trend; free page defaults onHand 130, daily 0.9"
+    },
+    {
+      "number": "144 days",
+      "source": "2 SKU List P24 144.44 (days of stock); PNF.inventoryTurnover pDays 144.44"
+    },
+    {
+      "number": "$5.10, $663",
+      "source": "2 SKU List F24 5.10 (unit cost), U24 663 (stock value at cost)"
+    },
+    {
+      "number": "120 days, overstock",
+      "source": "free page default overDays 120 ('The workbook's default is 120'); 2 SKU List T24 OVERSTOCK; PNF.inventoryTurnover statusText 'Overstock: stop reordering'"
+    }
+  ],
+  "sources_build": "engines/cash-aware-reorder-planner/build_xlsx.py built and recalculated in LibreOffice Oct 17, 2026 (CMO run); docs/assets/pnf-calc.js inventoryTurnover run in node with the page defaults the same run.",
+  "post": {
+    "short_title": "130 in stock. Safe? #Shorts",
+    "description": "https://proofnotfluff-a11y.github.io/Proofnotfluff-pins/go/free-inventory-turnover-calculator/\nFree inventory turnover calculator for online sellers: type units sold per day and units on hand, and it shows days of stock, turns a year and an overstock check.\nExtra stock feels safe. In this example, 130 pot holders selling 0.9 a day take 144 days to sell through (130 / 0.9), almost five months. At $5.10 each that is $663 of cash on the shelf. Past the 120-day overstock line, the calculator says stop reordering until it sells down. Example numbers from the free calculator's sample product. A planning estimate, not advice.\n\n#Shorts",
+    "reel_caption": "Inventory turnover calculator, worked example. Extra stock is safe, right? In this example, 130 pot holders selling 0.9 a day take 144 days to sell through. At $5.10 each, that is $663 of cash sitting on the shelf, past the 120-day overstock line. Example numbers from our free Inventory Turnover Calculator.\n\nFree calculator: link in bio (proofnotfluff.com)\n\n#inventorymanagement #ecommercetips #onlineseller #smallbusinesstips",
+    "tiktok_caption": "130 in stock, selling 0.9 a day. Safe? In this example that's 144 days of stock and $663 of cash on the shelf. Free calculator at proofnotfluff.com #inventorymanagement #ecommercetips #onlineseller"
+  },
+  "render": "promo/renders/2026-10-17-am-proof-check-3-short.mp4"
+}

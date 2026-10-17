@@ -153,3 +153,5 @@ table.mt b{font-weight:700}
 .ld-form .btn{border:0;font:inherit;font-weight:700;cursor:pointer;padding:12px 18px}
 .hubfeat{display:grid;gap:8px;padding:12px;border:2px solid var(--accent);border-radius:14px;background:var(--card)}
 .hubfeat-hook{margin:0;font-weight:700;font-size:16px;line-height:1.35}
+
+.ld-buy{grid-template-columns:1fr;align-items:start}.ld-buy .ld-buybtn{margin-top:14px}.ld-buy .ld-buybtn .btn{display:inline-block}.ld-buy .ld-later{border-top:1px solid #3a4152;padding-top:14px;margin-top:4px;max-width:560px}.ld-buy .ld-later p{font-size:14px;margin-bottom:8px}

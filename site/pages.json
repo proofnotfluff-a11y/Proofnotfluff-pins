@@ -3435,7 +3435,7 @@
    ],
    "cta": {
     "title": "Get the full list every Monday",
-    "text": "Every open project over $500,000 in Chicago, new permits flagged each week, sorted by neighborhood and stage, the general contractor on each, and a pitch kit: a one-page capability sheet and an email you can adapt. It launches only if enough cleaning companies join the waitlist."
+    "text": "Every open permit in Chicago with a reported cost of $500,000 or more and a business as general contractor, updated every Monday: sorted by neighborhood and stage, new permits and near-finish jobs flagged, the builder on each, on a members' page and in an Excel file. Plus a pitch kit: a one-page capability sheet outline and an email to builders you can adapt."
    },
    "faq": [
     [
@@ -3463,7 +3463,8 @@
      "Chicago first. Other large cities publish permit data too, so the waitlist decides where we go next."
     ]
    ],
-   "sources": "City of Chicago Data Portal, Building Permits."
+   "sources": "City of Chicago Data Portal, Building Permits.",
+   "checkout": "https://proofnotfluff.gumroad.com/l/vpnaoq?utm_source=proofnotfluff&utm_medium=site&utm_campaign=chicago-leads"
   },
   {
    "slug": "break-even-calculator",

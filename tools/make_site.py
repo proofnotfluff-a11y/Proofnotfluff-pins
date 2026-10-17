@@ -1607,10 +1607,19 @@ def leads_page_html(p):
                 '<button class="btn" type="submit">Join the waitlist</button></div></form>')
     else:
         form = '<p><span class="btn soon" aria-disabled="true">Waitlist opens soon</span></p>'
-    cta_html = ('<section class="block"><div class="cta ld-cta"><div>'
-                f'<h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
-                f'<p class="ld-price">Planned price: ${E(str(p["price"]))} a month. Joining the waitlist is free and commits you to nothing.</p></div>'
-                f'<div>{form}<small class="ld-note">We email you when the weekly list opens. Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div></div></section>')
+    if p.get("checkout"):   # the paid weekly list is on sale (Todd, Oct 17, 3:18 pm: "Link the leads checkout on the site.")
+        form = form.replace("Join the waitlist", "Keep me posted")
+        cta_html = ('<section class="block"><div class="cta ld-cta ld-buy"><div>'
+                    f'<h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
+                    f'<p class="ld-price">${E(str(p["price"]))} a month on Gumroad. Cancel any time.</p>'
+                    f'<p class="ld-buybtn"><a class="btn" href="{E(p["checkout"])}" rel="noopener">Get the full list: ${E(str(p["price"]))} a month</a></p></div>'
+                    f'<div class="ld-later"><p><b>Not ready yet?</b> Leave your email and we will let you know when the list adds new cities or features.</p>{form}'
+                    '<small class="ld-note">Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div></div></section>')
+    else:
+        cta_html = ('<section class="block"><div class="cta ld-cta"><div>'
+                    f'<h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
+                    f'<p class="ld-price">Planned price: ${E(str(p["price"]))} a month. Joining the waitlist is free and commits you to nothing.</p></div>'
+                    f'<div>{form}<small class="ld-note">We email you when the weekly list opens. Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div></div></section>')
     body = (f'<p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{E(lede)}</p>{tiles}'
             f'{near_html}{gc_html}{big_html}{method}{cta_html}{faq_block(p["faq"])}')
     script = r"""<script>(function(){var list=document.getElementById('ldList');if(!list)return;

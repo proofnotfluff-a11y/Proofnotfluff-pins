@@ -8,7 +8,7 @@ An independent reviewer (Agent tool, model "opus"), given only the rendered outp
 
 ## What it compares against
 
-Before scoring, the reviewer looks at the three best-selling or best-reviewed competitors in the same category it can find through official read routes (the marketplace's own search page, the vendor's own site), and writes one line per competitor on what makes their first impression work. The bar is "would a buyer choosing between these pick ours on looks alone".
+Before scoring, the reviewer looks at the three best-selling or best-reviewed competitors in the same category it can find through WebSearch and the vendors' own sites (never by loading Etsy pages: Etsy research comes only from the idea's recorded buyerProof notes, because the crew's Etsy page loads are capped and belong to the shop run), and writes one line per competitor on what makes their first impression work. The bar is "would a buyer choosing between these pick ours on looks alone".
 
 ## The score (1 to 5 each; pass is no score under 4 and an average of 4.3 or more)
 

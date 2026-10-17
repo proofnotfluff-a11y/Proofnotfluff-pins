@@ -1479,7 +1479,7 @@ CITY_DISCLAIMER = {
 }
 STAGES = [("PARTIAL OCCUPANCY", "Partial occupancy approved", "hot"), ("OCCUPANCY PENDING", "Partial occupancy approved", "hot"),
           ("CERTIFICATE OF OCCUPANCY ISSUED", "Occupancy certificate issued", "done"),
-          ("INSPECTIONS", "Inspections under way", "mid"), ("PERMIT ISSUED", "Permit just issued", "early")]
+          ("INSPECTIONS", "Inspections under way", "mid"), ("PERMIT ISSUED", "Permit issued", "early")]
 
 
 def is_live(p):
@@ -1509,13 +1509,17 @@ def extra_cards(slug):
     return f'<section class="block"><div class="tools one">{cards}</div></section>' if cards else ""
 
 
-def money(v):
+def money(v, spell_billion=False):
+    """One money rule on the leads pages (design director, Oct 17): $770K under $1M, $2.0M under $100M, whole millions
+    from $100M up; "billion" is spelled out only in the hero tile."""
     v = float(v or 0)
-    if v >= 1e9:
+    if v >= 1e9 and spell_billion:
         return f"${v / 1e9:.1f} billion"
+    if v >= 1e8:
+        return f"${v / 1e6:,.0f}M"
     if v >= 1e6:
-        return f"${v / 1e6:.1f}M".replace(".0M", "M")
-    return f"${v / 1e3:.0f}K"
+        return f"${v / 1e6:.1f}M"
+    return f"${v / 1e3:,.0f}K"
 
 
 def nice_date(iso):
@@ -1540,18 +1544,23 @@ def stage(m):
     return (m or "Open").capitalize(), "mid"
 
 
-def project_card(x):
+def project_card(x, pill=True):
     lab, cls = stage(x.get("milestone"))
-    gc = ", ".join(x.get("gc") or [])
+    gc = "; ".join(x.get("gc") or [])
     units = f' · {x["units"]:,} homes' if x.get("units") else ""
     area = x.get("communityArea") or "Chicago"
-    return (f'<article class="ld-proj" data-type="{"new" if x["type"].startswith("New") else "ren"}" data-area="{E(area)}">'
-            f'<div class="ld-ptop"><span class="ld-cost">{money(x["cost"])}</span><span class="ld-type">{E(x["type"])}{units}</span>'
-            f'<span class="ld-stage {cls}">{E(lab)}</span></div>'
+    pill_html = f'<p class="ld-pill s-{cls}">{E(lab)}</p>' if pill else ""
+    return (f'<article class="ld-proj" data-type="{"new" if x["type"].startswith("New") else "ren"}" data-area="{E(area)}">{pill_html}'
+            f'<div class="ld-ptop"><span class="ld-cost">{money(x["cost"])}</span><span class="ld-type">{E(x["type"])}{units}</span></div>'
             f'<p class="ld-scope">{E(x["scope"])}</p>'
-            f'<dl class="ld-meta"><div><dt>General contractor</dt><dd>{E(gc)}</dd></div>'
+            f'<dl class="ld-meta"><div><dt>Builder</dt><dd>{E(gc)}</dd></div>'
             f'<div><dt>Where</dt><dd>{E(x.get("address") or "")}, {E(area)}</dd></div>'
             f'<div><dt>Permit</dt><dd>{E(str(x.get("permit") or ""))}, issued {E(nice_date(x.get("issued", "")))}</dd></div></dl></article>')
+
+
+LOCK = ('<svg class="ld-lock" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2" '
+        'fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" fill="none" stroke="currentColor" stroke-width="1.6"/>'
+        '<circle cx="12" cy="15.3" r="1.4" fill="currentColor"/></svg>')
 
 
 def leads_page_html(p):
@@ -1562,73 +1571,121 @@ def leads_page_html(p):
     kept, cost = c["kept"], c["keptCost"]
     new_n = c.get("keptByType", {}).get("New construction", 0)
     near = d.get("nearFinish", [])
-    since = nice_date(d["window"]["from"])
+    n_near = c.get("nearFinish", len(near))
+    n_big = len(d["projects"])
     asof = nice_date(src.get("rowsUpdatedAt") or src["fetchedAt"])
-    lede = (f'In the last 12 months the City of {p["city"]} issued building permits for at least {kept:,} apartment and commercial '
-            f'projects over $500,000 that are still open, about {money(cost)} of work. Here are the biggest, the builders running the most '
-            f'of them, and the buildings with partial occupancy approved. {p["lede"]}')
+    price = E(str(p["price"]))
+    buy_label = f"Get the full list: ${price} a month"
+    checkout = p.get("checkout")
+
+    def buy(cls="btn ld-btnbig", label=buy_label):
+        return f'<a class="{cls}" href="{E(checkout)}" rel="noopener">{label}</a>' if checkout else ""
+
+    # hero: two lines of promise, then the price and the action on the first screen (design director, Oct 17)
+    lede = (f'{kept:,} open apartment and commercial projects over $500,000 in {E(p["city"])}, about {money(cost, True)} of work, '
+            f'and the builders running them. {E(p["lede"])}')
+    if checkout:
+        hero_act = (f'<div class="ld-heroact" id="ldHeroCta">{buy()}<a class="ld-textlink" href="#near">See this week\'s sample</a></div>'
+                    '<p class="ld-heronote">New list every Monday. Cancel any time.</p>')
+    else:
+        hero_act = '<div class="ld-heroact" id="ldHeroCta"><a class="ld-textlink" href="#ldCta">Join the waitlist</a></div>'
     tiles = (f'<div class="tiles ld-tiles">'
-             f'<div class="tile key"><div class="lab">Open big projects</div><div class="val">{kept:,}</div><div class="sub">permits issued since {E(since)}</div></div>'
-             f'<div class="tile"><div class="lab">Work on the permits</div><div class="val">{money(cost)}</div><div class="sub">reported cost, as filed</div></div>'
+             f'<div class="tile key"><div class="lab">Open projects</div><div class="val">{kept:,}</div><div class="sub">issued in the last 12 months, still open</div></div>'
+             f'<div class="tile"><div class="lab">Reported cost</div><div class="val">{money(cost, True)}</div><div class="sub">as filed with the City</div></div>'
              f'<div class="tile"><div class="lab">New buildings</div><div class="val">{new_n:,}</div><div class="sub">at least {c.get("keptUnits", 0):,} new apartments</div></div>'
-             f'<div class="tile"><div class="lab">Partial occupancy</div><div class="val">{c.get("nearFinish", len(near)):,}</div><div class="sub">approved by the City</div></div></div>'
+             f'<div class="tile"><div class="lab">Near finish</div><div class="val">{n_near:,}</div><div class="sub">partial occupancy approved</div></div></div>'
              f'<p class="asof">City data as of {E(asof)}. Refreshed every Monday.</p>')
+
+    # near finish: the most valuable segment for a final clean, so the free page shows 2 and holds the rest back (owner, Oct 17)
     near_html = ""
     if near:
-        n_near = c.get("nearFinish", len(near))
-        n_show = min(6, len(near))
-        near_note = f" (the {n_show} largest of {n_near} shown)" if n_near > n_show else ""
-        near_html = ('<section class="block"><h2>Partial occupancy approved</h2>'
-                     f'<p>The City has approved temporary or partial occupancy on these projects{near_note}.</p>'
-                     f'<div class="ld-list">{"".join(project_card(x) for x in near[:6])}</div></section>')
-    gcs = "".join(f'<li><span class="ld-gname">{E(g["name"])}</span><span class="ld-gn">{g["projects"]}</span><span class="ld-gv">{money(g["cost"])}</span></li>'
-                  for g in c.get("topGCs", [])[:10])
+        show = near[:2]
+        held = max(0, n_near - len(show))
+        held_html = ""
+        if held:
+            noun = "building is" if held == 1 else "buildings are"
+            held_html = (f'<div class="ld-held">{LOCK}<p class="ld-heldtxt"><b>{held:,} more near-finish {noun} in the full list</b>'
+                         '<span>With the builder, address and permit for each, every Monday.</span></p>'
+                         f'{buy("btn ld-btnbig") if checkout else ""}</div>')
+        near_html = ('<section class="block" id="near"><h2>Partial occupancy approved</h2>'
+                     f'<p>The City has approved temporary or partial occupancy on these projects, so a final clean is close. '
+                     f'Here are {len(show)} of the {n_near:,} on this week\'s list.</p>'
+                     f'<div class="ld-list">{"".join(project_card(x, pill=False) for x in show)}{held_html}</div></section>')
+
+    gcs = "".join(f'<li><span class="ld-gname">{E(g["name"])}</span><span class="ld-gn">{g["projects"]}<span class="ld-gu"> open jobs</span></span>'
+                  f'<span class="ld-gv">{money(g["cost"])}</span></li>' for g in c.get("topGCs", [])[:10])
+    gc_more = (f'<p class="ld-gmore">The full list ranks every builder with open work. <a href="{E(checkout)}" rel="noopener">Get it for ${price} a month</a>.</p>'
+               if checkout else "")
     gc_html = ('<section class="block"><h2>Builders with the most big jobs open</h2>'
                '<p>Counted from permits where the business is listed as general contractor.</p>'
-               '<ol class="ld-gcs"><li class="ld-ghead"><span>General contractor</span><span>Open jobs</span><span>Work</span></li>'
-               f'{gcs}</ol></section>')
+               '<ol class="ld-gcs"><li class="ld-ghead"><span>Builder</span><span>Open jobs</span><span>Work</span></li>'
+               f'{gcs}</ol>{gc_more}</section>')
+
     areas = sorted({x.get("communityArea") for x in d["projects"] if x.get("communityArea")})
     opts = "".join(f'<option value="{E(a)}">{E(a)}</option>' for a in areas)
+    big_line = (f'The {n_big} biggest of {kept:,} open projects. Members get all {kept:,}, filtered by neighborhood and stage, plus the Excel file.')
     big_html = ('<section class="block"><h2>Biggest open projects</h2>'
                 '<div class="ld-filter" role="group" aria-label="Filter projects">'
                 '<button type="button" class="ld-chip" aria-pressed="true" data-f="all">All</button>'
                 '<button type="button" class="ld-chip" aria-pressed="false" data-f="new">New buildings</button>'
                 '<button type="button" class="ld-chip" aria-pressed="false" data-f="ren">Renovations</button>'
                 f'<label class="ld-area"><span class="sr">Neighborhood</span><select id="ldArea"><option value="">All neighborhoods</option>{opts}</select></label></div>'
-                '<p class="ld-count" id="ldCount" aria-live="polite"></p>'
+                f'<p class="ld-count" id="ldCount" aria-live="polite" data-all="{E(big_line)}">{E(big_line)}</p>'
                 f'<div class="ld-list" id="ldList">{"".join(project_card(x) for x in d["projects"])}</div>'
-                '<p class="ld-empty" id="ldEmpty" hidden>No projects in this sample match. The weekly list covers every open project.</p></section>')
+                '<p class="ld-empty" id="ldEmpty" hidden>No projects in this sample match. The weekly list covers every open project.</p>'
+                + (f'<div class="ld-after"><p>That is the top {n_big}. The full list has all {kept:,}, sorted by neighborhood and stage.</p>{buy()}</div>' if checkout else "")
+                + '</section>')
     links = "".join(f'<li><a href="{rel}{E(l[0])}/">{E(l[1])}</a></li>' for l in p.get("links", []))
     method = ('<section class="block"><h2>How to use this list</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"])
               + (f'<p>Price the work before you call:</p><ul>{links}</ul>' if links else "") + "</section>")
+    shots = ""
+    shots_ok = all(os.path.isfile(os.path.join(DOCS, "assets", "leads", f)) for f in ("members-list.png", "workbook.png"))
+    if checkout and shots_ok:   # real screenshots of the paid product (files in docs/assets/leads/, made from the live members' page and workbook)
+        shots = ('<section class="block ld-shots"><h2>What members get</h2>'
+                 '<p>The same data as this page, every open project instead of a sample, on a members\' page and in an Excel file.</p>'
+                 '<div class="ld-shotgrid">'
+                 f'<figure class="ld-shot"><img src="{rel}assets/leads/members-list.png" width="1280" height="800" loading="lazy" decoding="async" '
+                 'alt="The members\' page: this week\'s list as cards with the reported cost, the builder, the address and the stage, with tabs for near finish, new this week and all projects">'
+                 '<figcaption>The members\' page, every Monday</figcaption></figure>'
+                 f'<figure class="ld-shot"><img src="{rel}assets/leads/workbook.png" width="1280" height="800" loading="lazy" decoding="async" '
+                 'alt="The Excel file: the near finish tab with address, reported cost and builder columns, and a filter arrow on every column">'
+                 '<figcaption>The Excel file, filters on every column</figcaption></figure></div></section>')
     if p.get("kitForm"):
         form = (f'<form class="ld-form" action="https://app.kit.com/forms/{E(p["kitForm"])}/subscriptions" method="post">'
                 '<label for="ldEmail">Email</label><div class="ld-frow"><input id="ldEmail" name="email_address" type="email" required autocomplete="email">'
                 '<button class="btn" type="submit">Join the waitlist</button></div></form>')
     else:
         form = '<p><span class="btn soon" aria-disabled="true">Waitlist opens soon</span></p>'
-    if p.get("checkout"):   # the paid weekly list is on sale (Todd, Oct 17, 3:18 pm: "Link the leads checkout on the site.")
+    if checkout:   # the paid weekly list is on sale (Todd, Oct 17, 3:18 pm: "Link the leads checkout on the site.")
         form = form.replace("Join the waitlist", "Keep me posted")
-        cta_html = ('<section class="block"><div class="cta ld-cta ld-buy"><div>'
+        cta_html = ('<section class="block" id="ldCta"><div class="cta ld-cta ld-buy"><div>'
                     f'<h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
-                    f'<p class="ld-price">${E(str(p["price"]))} a month on Gumroad. Cancel any time.</p>'
-                    f'<p class="ld-buybtn"><a class="btn" href="{E(p["checkout"])}" rel="noopener">Get the full list: ${E(str(p["price"]))} a month</a></p></div>'
+                    f'<p class="ld-buybtn">{buy()}</p><p class="ld-secure">Secure checkout by Gumroad. Cancel any time.</p></div>'
                     f'<div class="ld-later"><p><b>Not ready yet?</b> Leave your email and we will let you know when the list adds new cities or features.</p>{form}'
                     '<small class="ld-note">Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div></div></section>')
+        sbar = (f'<div class="ld-sbar" id="ldBar" aria-hidden="true"><div class="wrap"><p><b>${price} a month</b><span> · <span class="ld-sbl">full list </span>every Monday</span></p>'
+                f'<a class="btn" href="{E(checkout)}" rel="noopener" tabindex="-1">Get it</a></div></div>')
     else:
-        cta_html = ('<section class="block"><div class="cta ld-cta"><div>'
+        cta_html = ('<section class="block" id="ldCta"><div class="cta ld-cta"><div>'
                     f'<h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
-                    f'<p class="ld-price">Planned price: ${E(str(p["price"]))} a month. Joining the waitlist is free and commits you to nothing.</p></div>'
+                    f'<p class="ld-price">Planned price: ${price} a month. Joining the waitlist is free and commits you to nothing.</p></div>'
                     f'<div>{form}<small class="ld-note">We email you when the weekly list opens. Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div></div></section>')
-    body = (f'<p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{E(lede)}</p>{tiles}'
-            f'{near_html}{gc_html}{big_html}{method}{cta_html}{faq_block(p["faq"])}')
-    script = r"""<script>(function(){var list=document.getElementById('ldList');if(!list)return;
+        sbar = ""
+    body = (f'<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>{hero_act}</div>{tiles}'
+            f'{near_html}{gc_html}{big_html}{method}{shots}{cta_html}{faq_block(p["faq"])}')
+    script = r"""<script>(function(){var list=document.getElementById('ldList');if(list){
 var cards=[].slice.call(list.querySelectorAll('.ld-proj')),chips=[].slice.call(document.querySelectorAll('.ld-chip')),
 area=document.getElementById('ldArea'),count=document.getElementById('ldCount'),empty=document.getElementById('ldEmpty'),f='all';
 function run(){var a=area.value,n=0;cards.forEach(function(c){var ok=(f==='all'||c.dataset.type===f)&&(!a||c.dataset.area===a);c.hidden=!ok;if(ok)n++});
-count.textContent='Showing '+n+' of '+cards.length+' projects in this free sample';empty.hidden=n>0}
+count.textContent=(f==='all'&&!a)?count.dataset.all:'Showing '+n+' of '+cards.length+' projects in this free sample.';empty.hidden=n>0}
 chips.forEach(function(b){b.addEventListener('click',function(){f=b.dataset.f;chips.forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});run()})});
-area.addEventListener('change',run);run()})();</script>"""
+area.addEventListener('change',run);run()}
+var bar=document.getElementById('ldBar'),hero=document.getElementById('ldHeroCta'),cta=document.getElementById('ldCta');
+if(!bar||!hero||!cta||!('IntersectionObserver' in window))return;
+var hv=true,cv=false,link=bar.querySelector('a');
+function set(){var on=!hv&&!cv;bar.classList.toggle('on',on);bar.setAttribute('aria-hidden',String(!on));link.tabIndex=on?0:-1}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.target===hero)hv=e.isIntersecting;else cv=e.isIntersecting});set()});
+io.observe(hero);io.observe(cta)})();</script>"""
     ld = ('<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@type": "FAQPage",
           "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}) + "</script>")
     robots = "" if is_live(p) else '<meta name="robots" content="noindex, nofollow">'
@@ -1638,8 +1695,9 @@ area.addEventListener('change',run);run()})();</script>"""
             'Public information for planning sales calls; not legal or business advice and no promise of work.</p>'
             f'<p>{E(CITY_DISCLAIMER.get(p["city"], ""))}</p>'
             '<p>Made by ProofNotFluff with AI assistance from public City data. The waitlist form sends your email address to Kit; nothing else you do on this page is sent anywhere.</p>'
-            f'</div></footer>\n{script}\n</body></html>')
-    return (HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=SHOP, ld=ld, bodycls=' class="ld-page"',
+            f'</div></footer>\n{sbar}\n{script}\n</body></html>')
+    bodycls = ' class="ld-page' + (' has-sbar' if sbar else '') + '"'
+    return (HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=SHOP, ld=ld, bodycls=bodycls,
                         robots=robots, analytics=analytics_tag()) + body + foot)
 
 

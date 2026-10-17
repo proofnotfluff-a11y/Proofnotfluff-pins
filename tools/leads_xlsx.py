@@ -1,23 +1,27 @@
 #!/usr/bin/env python3
 """Chicago Construction Cleaning Leads: the paid weekly workbook (A1 pre-sale, email/A1-OUTREACH.md).
 
-Input: the full list tools/permits_chicago.py writes with --full (the permits workflow uploads it as the
-3-day run artifact "chicago-full"; it is never committed, because it is the paid product).
-Output: one Excel workbook that also opens in Google Sheets.
+Input: the full list tools/permits_chicago.py writes with --full (the permits workflow keeps it out of the
+repo, because it is the paid product).
+Output: one Excel workbook that also opens in Google Sheets, built to design/WORKBOOK_STANDARD.md v3
+(canvas, cards, stat tiles, numbered tabs) after the design director's review of Oct 17, 2026.
 
-Tabs: Start Here, Near finish, New this week, All projects, Builders, Pitch kit, Terms.
+Tabs: Start Here, 1 Near finish, 2 New this week, 3 All projects, 4 Builders, 5 Pitch kit, Terms.
 Only public, business-level permit fields go in (no owner names, phones or emails), and the City of
 Chicago data disclaimer its Terms of Use require goes on Start Here and Terms word for word.
 
 Usage: python3 tools/leads_xlsx.py chicago-full.json out.xlsx [--prev last-week.json]
        python3 tools/leads_xlsx.py --selftest
 """
-import argparse, collections, datetime as dt, json, os, sys
+import argparse, collections, datetime as dt, json, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import wb_style as S  # noqa: E402
-from openpyxl.styles import Alignment, Border, Side  # noqa: E402
-from openpyxl.utils import get_column_letter  # noqa: E402
+import pnf_dash as D  # noqa: E402
+from openpyxl.cell.rich_text import CellRichText, TextBlock  # noqa: E402
+from openpyxl.cell.text import InlineFont  # noqa: E402
+from openpyxl.styles import Alignment, Border  # noqa: E402
+from openpyxl.utils import get_column_letter as gl  # noqa: E402
 
 PRODUCT = "Chicago Construction Cleaning Leads"
 CITY_DISCLAIMER = ("This site provides applications using data that has been modified for use from its original source, "
@@ -30,20 +34,32 @@ OUR_NOTICE = ("For general business information only. Projects appear because th
               "invitation to bid. Reported cost is the figure the applicant filed for the permit, not a contract value. "
               "You make your own calls and emails, and you are responsible for following the law when you do. "
               "ProofNotFluff never contacts builders or anyone else on your behalf.")
-COLS = [  # (heading, key, width, format)
-    ("Stage", "stage", 24, None),
-    ("Address", "address", 26, None),
-    ("Community area", "communityArea", 18, None),
-    ("Type", "type", 15, None),
-    ("What the permit covers", "scope", 58, None),
-    ("Reported cost", "cost", 15, "usd0"),
-    ("Homes", "units", 8, "int"),
-    ("Issued", "issued", 12, "date"),
-    ("General contractor", "gcText", 32, None),
-    ("Permit", "permit", 12, None),
-    ("New", "newText", 14, None),
-]
 NEAR = ("OCCUPANCY PENDING", "PARTIAL OCCUPANCY")
+STAGE_ORDER = {"Partial occupancy approved": 0, "Inspections under way": 1, "Permit issued": 2}
+# one status color system across the workbook, the free page and the members' page (design director, Oct 17)
+CHIP = {"Partial occupancy approved": ("2E6B66", "E3EFED"), "Inspections under way": ("2F5F9E", "E6EDF6"),
+        "Permit issued": ("3A4152", "ECE6DA")}
+# The pitch kit, shared with the members' page (tools/leads_page.py). [Brackets] are the parts to fill in.
+CAPABILITY_SHEET = [
+    ("Top line", "Company name, phone, email and website."),
+    ("What you clean", "Rough clean, final clean, touch-up or punch clean, windows, floors, pressure washing."),
+    ("Crew and speed", "Crew size, how fast you can start, and the largest job you have done (square feet or units)."),
+    ("Insurance", "General liability and workers' compensation limits. Builders usually ask for a certificate of insurance."),
+    ("Equipment", "What you bring, such as lifts, HEPA vacuums or floor machines."),
+    ("References", "Two references from builders or property managers, with permission to share them."),
+]
+BUILDER_EMAIL = [
+    "Subject: Final clean for [address]",
+    "Hi [name], thanks for the time on the phone today. We do post-construction cleaning in Chicago, from rough clean "
+    "through final and touch-up. We would like to quote the final clean at [address] (permit [number]). Our capability "
+    "sheet is attached: [crew size], insured for [limits], and we can start within [days]. Who should I send a quote to?",
+    "[Your name], [company], [phone]",
+]
+
+SCOPE_MAX = 120
+MONEY_SHORT = '[>=1000000000]"$"0.0,,," billion";[>=1000000]"$"0.0,,"M";"$"#,##0'
+ROW_H = 30
+TABS = {"near": "1 Near finish", "new": "2 New this week", "all": "3 All projects", "builders": "4 Builders", "pitch": "5 Pitch kit"}
 
 
 def stage(m):
@@ -57,12 +73,20 @@ def stage(m):
     return (m or "").strip()
 
 
-STAGE_ORDER = {"Partial occupancy approved": 0, "Inspections under way": 1, "Permit issued": 2}
-
-
 def sort_key(p):
-    """By neighborhood, then stage (closest to done first), then reported cost, as the sales page promises."""
-    return (p.get("communityArea") or "~", STAGE_ORDER.get(p.get("stage"), 3), -(p.get("cost") or 0), p.get("issued", ""))
+    """Closest to a final clean first, then the biggest job (design director, Oct 17)."""
+    return (STAGE_ORDER.get(p.get("stage"), 3), -(p.get("cost") or 0), p.get("communityArea") or "~", p.get("issued", ""))
+
+
+def cut(text, n=SCOPE_MAX):
+    """Whole words, never inside parentheses, one ellipsis at the end."""
+    t = re.sub(r"\.{3}$", "\u2026", (text or "").strip())
+    if len(t) <= n:
+        return t
+    t = t[:n].rsplit(" ", 1)[0]
+    if t.count("(") > t.count(")"):
+        t = t[:t.rfind("(")]
+    return t.rstrip(" ,;:-&/.") + "…"
 
 
 def prep(p, prev_ids=None):
@@ -79,104 +103,275 @@ def prep(p, prev_ids=None):
     return q
 
 
-def project_sheet(wb, title, subtitle, rows, as_of, tab):
-    ws = wb.create_sheet(title)
-    widths = {"A": 2}
-    for i, (_, _, w, _) in enumerate(COLS):
-        widths[get_column_letter(i + 2)] = w
-    widths[get_column_letter(len(COLS) + 2)] = 2
-    S.set_widths(ws, widths)
-    first, last = "B", get_column_letter(len(COLS) + 1)
-    r = S.title_block(ws, title, f"{subtitle} {as_of}.", span=(first, last))
-    hdr = r
-    S.table_header(ws, r, {get_column_letter(i + 2): h for i, (h, _, _, _) in enumerate(COLS)})
-    for i in range(len(COLS)):
-        ws[f"{get_column_letter(i + 2)}{r}"].alignment = Alignment(horizontal="left", vertical="center", wrap_text=True)
-    r += 1
-    line = Side(style="thin", color=S.PALETTE["line"])
+def rich(parts):
+    """[(text, bold, color)] as one rich-text cell value."""
+    return CellRichText(*[TextBlock(InlineFont(rFont=D.FONT, sz=10, b=b, color=D.T.get(c, c)), t) for t, b, c in parts])
+
+
+# ---------------------------------------------------------------- project tabs
+PROJECT_COLS = [  # key, heading, width, align, fmt
+    ("address", "Address", 27, "left", None),
+    ("cost", "Reported cost", 15, "right", "usd0"),
+    ("gcText", "Builder", 30, "left", None),
+    ("communityArea", "Community area", 18, "left", None),
+    ("stage", "Stage", 25, "center", None),
+    ("newText", "Flag", 10, "center", None),
+    ("type", "Type", 16, "left", None),
+    ("units", "Homes", 8, "right", "int"),
+    ("issued", "Issued", 14, "left", "date"),
+    ("permit", "Permit", 12, "left", None),
+    ("scope", "What the permit covers", 60, "left", None),
+]
+
+
+def project_sheet(wb, key, tagline, rows, list_date, tab, drop=(), stats=None):
+    ws = wb.create_sheet(TABS[key])
+    cols = [c for c in PROJECT_COLS if c[0] not in drop]
+    letters = [gl(i + 3) for i in range(len(cols))]          # A gutter, B pad, data from C
+    pad_r, gut_r = gl(len(cols) + 3), gl(len(cols) + 4)
+    S.set_widths(ws, {"A": 3, "B": 2, **{l: c[2] for l, c in zip(letters, cols)}, pad_r: 2, gut_r: 3})
+    D.page_header(ws, TABS[key].split(" ", 1)[1], tagline, list_date, span=("B", pad_r), side_cols=3)
+    # one-line stat strip card (rows 6 to 9), numbers by formula from the table so they never drift
+    top = 10
+    first, last = top + 2, top + 2 + max(len(rows), 1) - 1
+    col = {c[0]: l for l, c in zip(letters, cols)}
+    rng = lambda k: f"{col[k]}{first}:{col[k]}{last}"
+    D.h(ws, 6, 10)
+    strip = [(f"{letters[0]}:{letters[0]}", "Projects", f'=COUNTIF({rng("address")},"?*")', S.FMT["int"]),
+             (f"{letters[1]}:{letters[2]}", "Reported cost", f'=SUM({rng("cost")})', MONEY_SHORT)]
+    if key == "all":
+        strip.append((f"{letters[3]}:{letters[4]}", "Homes in them", f'=SUM({rng("units")})', S.FMT["int"]))
+    else:
+        strip.append((f"{letters[3]}:{letters[4]}", "Biggest single job", f'=MAX({rng("cost")})', MONEY_SHORT))
+    if "newText" in col:
+        strip.append((f"{letters[5]}:{letters[6]}", "New this week", f'=COUNTIF({rng("newText")},"New")', S.FMT["int"]))
+    D.stat_strip(ws, 7, strip if stats is None else stats(col, rng, letters))
+    D.h(ws, 9, 10)
+    D.frame(ws, 6, 9, "B", pad_r)
+    # the table card
+    spec = []
+    for l, (k, head, w, align, fmt) in zip(letters, cols):
+        vals = [(p["issuedDate"] if k == "issued" else (cut(p.get(k)) if k == "scope" else p.get(k))) for p in rows]
+        spec.append({"col": l, "head": head, "kind": "text", "values": [None if v in ("", None) else v for v in vals],
+                     "align": align, "fmt": "mmm d, yyyy" if fmt == "date" else (S.FMT[fmt] if fmt else None),
+                     "bold": k in ("address", "cost")})
+    f1, f2, end = D.table_card(ws, top, "B", pad_r, spec, max(len(rows), 1), row_height=ROW_H)
+    head = f1 - 1
+    D.h(ws, head, 24)
+    for l, (k, head_, w, align, fmt) in zip(letters, cols):
+        ws[f"{l}{head}"].alignment = Alignment(horizontal=align, vertical="center", wrap_text=True,
+                                               indent=1 if (fmt in ("int", "usd0") or k in ("issued", "gcText")) else 0)
     if not rows:
-        S.paragraph(ws, f"B{r}", "None this week.", span=(first, last), color="note"); r += 1
-    for p in rows:
-        for i, (_, key, w, fmt) in enumerate(COLS):
-            c = ws[f"{get_column_letter(i + 2)}{r}"]
-            v = p["issuedDate"] if key == "issued" else p.get(key)
-            c.value = v if v not in ("", None) else None
-            c.font = S.font(S.SIZE["value"], bold=(key in ("address",)), color="accent" if key == "newText" else "ink")
-            c.alignment = Alignment(vertical="top", wrap_text=key in ("scope", "gcText", "address", "stage"),
-                                    horizontal="right" if fmt in ("usd0", "int") else "left")
-            if fmt == "date":
-                c.number_format = "mmm d, yyyy"
-            elif fmt:
-                c.number_format = S.FMT[fmt]
-            c.border = Border(bottom=line)
-        h = max(S.text_height(str(p.get("scope") or ""), COLS[4][2], S.SIZE["value"], min_height=18),
-                S.text_height(p.get("gcText") or "", COLS[8][2], S.SIZE["value"], min_height=18))
-        S.set_height(ws, r, h)
-        r += 1
+        ws[f"{letters[0]}{f1}"] = "None this week."
+        ws[f"{letters[0]}{f1}"].font = D.f(10, False, "muted")
+    for i, p in enumerate(rows):
+        r = f1 + i
+        for l, (k, head_, w, align, fmt) in zip(letters, cols):
+            c = ws[f"{l}{r}"]
+            c.alignment = Alignment(horizontal=align, vertical="center", wrap_text=k in ("scope", "gcText", "address"),
+                                    indent=1 if (fmt in ("int", "usd0") or k in ("issued", "gcText")) else 0)
+            if k == "stage" and p.get("stage") in CHIP:
+                fg, bg = CHIP[p["stage"]]
+                c.fill = D.fill(bg); c.font = D.f(9, True, fg)
+                c.border = Border(bottom=D.side("FFFFFF", "medium"), top=D.side("FFFFFF", "medium"))
+            elif k == "newText" and p.get("new"):
+                c.fill = D.fill("teal"); c.font = D.f(9, True, "on_ink")
+                c.border = Border(bottom=D.side("FFFFFF", "medium"), top=D.side("FFFFFF", "medium"))
+            elif k == "scope":
+                c.font = D.f(9, False, "ink2")
+            elif k in ("permit", "issued", "communityArea", "type"):
+                c.font = D.f(10, False, "ink2")
     if rows:
-        ws.auto_filter.ref = f"B{hdr}:{last}{r - 1}"
-    S.finish_sheet(ws, PRODUCT, r, span=("A", get_column_letter(len(COLS) + 2)), freeze=f"D{hdr + 1}",
-                   protect=False, footer_notice="Public City of Chicago permit records. See the Terms tab.", tab_color=tab)
+        ws.auto_filter.ref = f"{letters[0]}{head}:{letters[-1]}{f2}"
+    D.paint_canvas(ws, end + 1, gl(len(cols) + 6))
+    S.finish_sheet(ws, PRODUCT, end, span=("A", gut_r), freeze=f"{letters[1]}{f1}", protect=False,
+                   footer_notice="Public City of Chicago permit records. See the Terms tab.", tab_color=tab,
+                   canvas_cols=gl(len(cols) + 6))
     ws.page_setup.orientation = "landscape"
-    ws.print_title_rows = f"{hdr}:{hdr}"
+    ws.page_setup.fitToWidth = 1
+    ws.print_title_rows = f"{head}:{head}"
     return ws
 
 
-def builders_sheet(wb, rows, as_of):
-    ws = wb.create_sheet("Builders")
-    S.set_widths(ws, {"A": 2, "B": 38, "C": 12, "D": 18, "E": 14, "F": 12, "G": 40, "H": 2})
-    r = S.title_block(ws, "Builders with the most open work",
-                      "One call to a builder's main office can cover many projects. Ask who buys cleaning for the job you name. A permit with two builders counts for each.",
-                      span=("B", "G"), as_of=as_of)
+# ---------------------------------------------------------------- builders tab
+def builders_sheet(wb, rows, list_date):
+    ws = wb.create_sheet(TABS["builders"])
+    S.set_widths(ws, {"A": 3, "B": 2, "C": 40, "D": 11, "E": 14, "F": 15, "G": 11, "H": 10, "I": 2, "J": 42, "K": 2, "L": 3})
+    D.page_header(ws, "Builders with the most open work",
+                  "One call to a builder's main office can cover many projects. A permit with two builders counts for each.",
+                  list_date, span=("B", "K"), side_cols=3)
     agg = collections.OrderedDict()
     for p in rows:
-        for g in (p.get("gc") or []):  # every listed builder gets credit (Holdout QC Oct 17)
+        for g in (p.get("gc") or []):
             a = agg.setdefault(g, {"n": 0, "cost": 0, "near": 0, "new": 0, "areas": collections.Counter()})
             a["n"] += 1; a["cost"] += p.get("cost") or 0
             a["near"] += p["stage"] == "Partial occupancy approved"; a["new"] += p["new"]
             if p.get("communityArea"):
                 a["areas"][p["communityArea"]] += 1
-    hdr = r
-    S.table_header(ws, r, {"B": "General contractor", "C": "Open permits", "D": "Reported cost", "E": "Near finish",
-                           "F": "New", "G": "Where most of them are"})
-    ws[f"G{r}"].alignment = Alignment(horizontal="left", vertical="center")
-    r += 1
-    line = Side(style="thin", color=S.PALETTE["line"])
-    for g, a in sorted(agg.items(), key=lambda kv: (-kv[1]["n"], -kv[1]["cost"])):
-        vals = [g, a["n"], a["cost"], a["near"] or None, a["new"] or None, ", ".join(k for k, _ in a["areas"].most_common(3))]
-        for col, v, fmt in zip("BCDEFG", vals, (None, "int", "usd0", "int", "int", None)):
-            c = ws[f"{col}{r}"]; c.value = v
-            c.font = S.font(S.SIZE["value"], bold=col == "B")
-            c.alignment = Alignment(vertical="top", wrap_text=col in "BG", horizontal="right" if fmt else "left")
-            if fmt:
-                c.number_format = S.FMT[fmt]
-            c.border = Border(bottom=line)
-        S.set_height(ws, r, max(S.text_height(g, 38, S.SIZE["value"], min_height=18), S.text_height(vals[-1], 40, S.SIZE["value"], min_height=18)))
-        r += 1
-    if agg:
-        ws.auto_filter.ref = f"B{hdr}:G{r - 1}"
-    S.finish_sheet(ws, PRODUCT, r, span=("A", "H"), freeze=f"C{hdr + 1}", protect=False,
-                   footer_notice="Public City of Chicago permit records. See the Terms tab.", tab_color="purple")
+    items = sorted(agg.items(), key=lambda kv: (-kv[1]["n"], -kv[1]["cost"]))
+    top = 10
+    first, last = top + 2, top + 2 + max(len(items), 1) - 1
+    D.h(ws, 6, 10)
+    D.stat_strip(ws, 7, [
+        ("C:C", "Builders with open work", f'=COUNTIF(C{first}:C{last},"?*")', S.FMT["int"]),
+        ("D:F", "With 2 or more open permits", f'=COUNTIF(D{first}:D{last},">=2")', S.FMT["int"]),
+        ("G:J", "Builder-permits (two builders count twice)", f"=SUM(D{first}:D{last})", S.FMT["int"]),
+    ])
+    D.h(ws, 9, 10)
+    D.frame(ws, 6, 9, "B", "K")
+    biggest = max([a["n"] for _, a in items] or [1])
+    spec = [
+        {"col": "C", "head": "Builder", "kind": "text", "values": [g for g, _ in items]},
+        {"col": "D", "head": "Open permits", "kind": "text", "values": [a["n"] for _, a in items], "align": "right", "fmt": S.FMT["int"]},
+        {"col": "E", "head": "", "kind": "calc", "formula": lambda r: f'=IFERROR(REPT("{D.BAR_CHAR}",MAX(0,ROUND(D{r}/{biggest}*12,0))),"")'},
+        {"col": "F", "head": "Reported cost", "kind": "text", "values": [a["cost"] for _, a in items], "align": "right", "fmt": S.FMT["usd0"]},
+        {"col": "G", "head": "Near finish", "kind": "text", "values": [a["near"] for _, a in items], "align": "right", "fmt": S.FMT["int"]},
+        {"col": "H", "head": "New", "kind": "text", "values": [a["new"] for _, a in items], "align": "right", "fmt": S.FMT["int"]},
+        {"col": "I", "head": "", "kind": "text", "values": []},
+        {"col": "J", "head": "Where most of them are", "kind": "text",
+         "values": [", ".join(k for k, _ in a["areas"].most_common(3)) for _, a in items]},
+    ]
+    f1, f2, end = D.table_card(ws, top, "B", "K", spec, max(len(items), 1), row_height=24)
+    D.h(ws, f1 - 1, 24)
+    for i, (g, a) in enumerate(items):
+        r = f1 + i
+        ws[f"C{r}"].font = D.f(10, i < 10)
+        ws[f"C{r}"].alignment = Alignment(vertical="center", wrap_text=True)
+        ws[f"E{r}"].font = D.f(9, False, "teal"); ws[f"E{r}"].alignment = Alignment(horizontal="left", vertical="center", indent=1)
+        for c in "DGH":
+            ws[f"{c}{r}"].alignment = Alignment(horizontal="right", vertical="center", indent=1)
+            if not ws[f"{c}{r}"].value:
+                ws[f"{c}{r}"].value = 0; ws[f"{c}{r}"].font = D.f(9, False, "muted")
+        ws[f"F{r}"].alignment = Alignment(horizontal="right", vertical="center", indent=1)
+        ws[f"J{r}"].font = D.f(10, False, "ink2"); ws[f"J{r}"].alignment = Alignment(vertical="center", wrap_text=True)
+    for c in "DFGH":
+        ws[f"{c}{f1 - 1}"].alignment = Alignment(horizontal="right", vertical="center", indent=1, wrap_text=True)
+    if items:
+        ws.auto_filter.ref = f"C{f1 - 1}:J{f2}"
+    D.paint_canvas(ws, end + 1, "N")
+    S.finish_sheet(ws, PRODUCT, end, span=("A", "L"), freeze=f"D{f1}", protect=False,
+                   footer_notice="Public City of Chicago permit records. See the Terms tab.", tab_color="purple", canvas_cols="N")
     ws.page_setup.orientation = "landscape"
-    ws.print_title_rows = f"{hdr}:{hdr}"
+    ws.print_title_rows = f"{f1 - 1}:{f1 - 1}"
     return ws
 
 
-def text_sheet(wb, title, subtitle, sections, tab, position=None):
-    ws = wb.create_sheet(title, position) if position is not None else wb.create_sheet(title)
-    S.set_widths(ws, {"A": 2, "B": 86, "C": 22, "D": 2})
-    r = S.title_block(ws, title if title != "Start Here" else PRODUCT, subtitle, span=("B", "C"))
-    for heading, paras in sections:
-        r = S.section_header(ws, r, heading, span=("B", "C")); r = S.spacer(ws, r, 6)
-        for p in paras:
-            if isinstance(p, tuple):
-                S.hyperlink(ws, f"B{r}", p[1], p[2], span=("B", "C"))
-            else:
-                S.paragraph(ws, f"B{r}", p, span=("B", "C"))
-            r += 1; S.set_height(ws, r, 4); r += 1
-        r = S.spacer(ws, r)
-    S.finish_sheet(ws, PRODUCT, r, span=("A", "D"), protect=False,
+# ---------------------------------------------------------------- one-column card tabs (Start Here, Pitch kit, Terms)
+GRID = {"A": 3, "B": 1, "C": 21, "D": 1, "E": 2, "F": 1, "G": 21, "H": 1, "I": 2, "J": 1, "K": 21, "L": 1, "M": 2, "N": 1,
+        "O": 21, "P": 1, "Q": 3}          # four stat tiles with gaps on top, one-column cards (C to O) below
+TEXT_W = sum(GRID[c] for c in "CDEFGHIJKLMNO")
+INNER = "CDEFGHIJKLMNO"
+
+
+def card(ws, top, title, rows, eyebrow=None, bg="card", line="frame"):
+    """rows: [(kind, value)] kind in para, note, num (n, text), lead (lead-in, text), link (text, url), rich (parts)."""
+    r = top
+    D.h(ws, r, 14); r += 1
+    if eyebrow:
+        e = ws[f"C{r}"]; e.value = eyebrow; e.font = D.f(8, True, "muted"); ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, 16); r += 1
+    if title:
+        t = ws[f"C{r}"]; t.value = title; t.font = D.f(12, True); t.alignment = Alignment(vertical="center")
+        ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, 24); r += 1
+        D.h(ws, r, 6); r += 1
+    for kind, val in rows:
+        if kind == "num":
+            n, text = val
+            L = ws[f"C{r}"]; L.value = n; L.font = D.f(16, True, "accent"); L.alignment = Alignment(horizontal="left", vertical="center", indent=1)
+            c = ws[f"E{r}"]; c.value = text; c.font = D.f(10); c.alignment = Alignment(vertical="center", wrap_text=True)
+            ws.merge_cells(f"E{r}:O{r}"); D.h(ws, r, max(S.text_height(text, TEXT_W - 24, 10) + 10, 30))
+        elif kind == "lead":
+            lead, text = val
+            L = ws[f"C{r}"]; L.value = lead; L.font = D.f(10, True); L.alignment = Alignment(vertical="top", wrap_text=True)
+            c = ws[f"E{r}"]; c.value = text; c.font = D.f(10); c.alignment = Alignment(vertical="top", wrap_text=True)
+            ws.merge_cells(f"E{r}:O{r}"); D.h(ws, r, max(S.text_height(text, TEXT_W - 24, 10) + 8, 22))
+            for k in INNER:
+                ws[f"{k}{r}"].border = Border(bottom=D.side("hair"))
+        elif kind == "link":
+            text, url = val
+            c = ws[f"C{r}"]; c.value = text; c.hyperlink = url; c.font = D.f(10, False, "blue", underline="single")
+            c.alignment = Alignment(vertical="center", wrap_text=True); ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, 22)
+        elif kind == "rich":
+            text = "".join(t for t, _, _ in val)
+            c = ws[f"C{r}"]; c.value = rich(val); c.alignment = Alignment(vertical="top", wrap_text=True)
+            ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, S.text_height(text, TEXT_W, 10) + 8)
+        else:
+            size, color = (9, "muted") if kind == "note" else (10, "ink")
+            c = ws[f"C{r}"]; c.value = val; c.font = D.f(size, False, color); c.alignment = Alignment(vertical="top", wrap_text=True)
+            ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, S.text_height(val, TEXT_W, size) + 8)
+        r += 1
+    D.h(ws, r, 14)
+    D.frame(ws, top, r, "B", "P", bg=bg, line=line)
+    return r + 2
+
+
+def card_sheet(wb, name, title, tagline, list_date, tab, position=None):
+    ws = wb.create_sheet(name, position) if position is not None else wb.create_sheet(name)
+    S.set_widths(ws, GRID)
+    D.page_header(ws, title, tagline, list_date, span=("B", "P"), side_cols=4)
+    return ws
+
+
+def finish_card_sheet(ws, r, tab):
+    D.paint_canvas(ws, r, "S")
+    S.finish_sheet(ws, PRODUCT, r - 1, span=("A", "Q"), protect=False, canvas_cols="S",
                    footer_notice="Public City of Chicago permit records. See the Terms tab.", tab_color=tab)
+
+
+def start_here(wb, rows, near, new, src, list_date, addresses):
+    ws = card_sheet(wb, "Start Here", PRODUCT, "Open apartment and commercial permits over $500,000, and their builders.",
+                    list_date, "teal", position=0)
+    allr = f"'{TABS['all']}'!"
+    n = max(len(rows), 1)
+    a_rng, c_rng, f_rng, s_rng = (f"{allr}C12:C{11 + n}", f"{allr}D12:D{11 + n}", f"{allr}H12:H{11 + n}", f"{allr}G12:G{11 + n}")
+    tiles = [("B", "D", "OPEN BIG PROJECTS", f'=COUNTIF({a_rng},"?*")', S.FMT["int"], f"permits, at {addresses:,} addresses", True),
+             ("F", "H", "REPORTED COST", f"=SUM({c_rng})", '"$"0.0,,," billion"', "filed with the permits", False),
+             ("J", "L", "NEAR FINISH", f'=COUNTIF({s_rng},"Partial occupancy approved")', S.FMT["int"], "partial occupancy approved", False),
+             ("N", "P", "NEW THIS WEEK", f'=COUNTIF({f_rng},"New")', S.FMT["int"], "not on last week's list", False)]
+    D.h(ws, 6, 10)
+    for left, right, eb, fml, fmt, sub, dark in tiles:
+        D.tile(ws, 7, left, right, eb, fml, fmt, sub, dark=dark, value_size=28 if dark else 20)
+    r = 12
+    r = card(ws, r, "Three steps", [
+        ("num", (1, f"Start with {TABS['near']}. Those buildings are closest to a final clean.")),
+        ("num", (2, f"Use {TABS['builders']} to find general contractors with several open jobs. One relationship can cover many projects.")),
+        ("num", (3, "Call the builder's main office, name the address and permit number, and ask who buys cleaning for that job. "
+                    f"Send your capability sheet the same day ({TABS['pitch']}).")),
+    ])
+    r = card(ws, r, "How the list is made", [
+        ("para", src.get("modified", "")),
+        ("lead", ("Stages", "From the City's permit milestone. Permit issued is early, Inspections under way means work is moving, and "
+                            "Partial occupancy approved means the City has cleared parts of the building for use.")),
+        ("lead", ("Order", f"{TABS['all']} lists the projects closest to a final clean first, then the biggest. Every table has filter "
+                           "arrows on its header row, so you can pick one community area or sort by cost.")),
+        ("lead", ("Builders", "When a permit names two general contractors, the builder comes first and a trade contractor "
+                              "(heating, electrical and similar) second.")),
+        ("lead", ("Wording", "Descriptions are the City's own text, shortened, with typos left as filed.")),
+        ("link", ("Source: City of Chicago Data Portal, Building Permits", src.get("url", ""))),
+    ])
+    r = card(ws, r, "Before you rely on it", [("note", OUR_NOTICE), ("note", CITY_DISCLAIMER)])
+    finish_card_sheet(ws, r, "teal")
+    return ws
+
+
+def pitch_kit(wb, list_date):
+    ws = card_sheet(wb, TABS["pitch"], "Pitch kit", "Adapt these to your company. Keep every claim true.", list_date, "teal")
+    r = card(ws, 6, "Your one-page capability sheet", [("lead", x) for x in CAPABILITY_SHEET])
+
+    def blue(line):   # [brackets] in bold blue, the rest plain
+        return [(part, part.startswith("["), "input_text" if part.startswith("[") else "ink") for part in re.split(r"(\[[^\]]+\])", line) if part]
+    r = card(ws, r, "An email to a builder (send it after you call)", [("rich", blue(line)) for line in BUILDER_EMAIL],
+             eyebrow="COPY, THEN FILL IN THE BLUE PARTS", bg="input_fill", line="input_line")
+    finish_card_sheet(ws, r, "teal")
+    return ws
+
+
+def terms(wb, src, list_date):
+    ws = card_sheet(wb, "Terms", "Terms of Use", f"{PRODUCT}. Read this before you rely on the list.", list_date, "note")
+    r = card(ws, 6, "City of Chicago data", [("para", CITY_DISCLAIMER), ("link", ("City of Chicago Data Terms of Use", src.get("terms", "")))])
+    r = card(ws, r, "ProofNotFluff", [("para", OUR_NOTICE),
+                                      ("para", "Licensed to one business for its own prospecting. Please don't resell or republish the list."),
+                                      ("para", "Questions about your membership? Reply to your Gumroad receipt.")])
+    finish_card_sheet(ws, r, "note")
     return ws
 
 
@@ -189,60 +384,28 @@ def build(data, out, prev=None):
     new = [p for p in rows if p["new"]]
     src = data["source"]
     fetched = dt.datetime.fromisoformat(src["fetchedAt"]).date()
-    as_of = f"City data as of {fetched.strftime('%b')} {fetched.day}, {fetched.year}"
-    total_cost = sum(p.get("cost") or 0 for p in rows)
+    list_date = f"List of {fetched.strftime('%b')} {fetched.day}, {fetched.year}"
     wb = S.new_workbook(PRODUCT)
-    text_sheet(wb, "Start Here", f"Open apartment and commercial permits in Chicago with a reported cost of $500,000 or more, and the builders on them. {as_of}.", [
-        ("This week", [f"{len(rows):,} open permits at {addresses:,} addresses (big projects often carry several permits), with about ${total_cost / 1e9:.1f} billion of reported cost. "
-                       f"{len(near)} {'has' if len(near) == 1 else 'have'} partial occupancy approved, so the work under that permit is close to done. "
-                       f"{len(new)} {'is' if len(new) == 1 else 'are'} new since last week."]),
-        ("Three steps", [
-            "1. Start with the Near finish tab. Those buildings are closest to a final clean.",
-            "2. Use the Builders tab to find general contractors with several open jobs. One relationship can cover many projects.",
-            "3. Call the builder's main office, name the address and permit number, and ask who buys cleaning for that job. "
-            "Send your one-page capability sheet the same day (Pitch kit tab).",
-        ]),
-        ("How the list is made", [
-            src.get("modified", ""),
-            "Stages come from the City's permit milestone: Permit issued is early, Inspections under way means work is moving, "
-            "and Partial occupancy approved means the City has cleared parts of the building for use.",
-            "The tables have filters on the header row, so you can sort by cost or pick one community area.",
-            ("link", "Source: City of Chicago Data Portal, Building Permits", src.get("url", "")),
-        ]),
-        ("Before you rely on it", [OUR_NOTICE, CITY_DISCLAIMER]),
-    ], "teal", position=0)
-    project_sheet(wb, "Near finish", "Partial occupancy approved: the City has cleared part of the building for use.", near, as_of, "accent")
-    project_sheet(wb, "New this week", "Permits that were not on last week's list.", new, as_of, "gold")
-    project_sheet(wb, "All projects", "Every open permit that passed the filter, by community area, then stage, then reported cost.", rows, as_of, "blue")
-    builders_sheet(wb, rows, as_of)
-    text_sheet(wb, "Pitch kit", "Adapt these to your company. Keep every claim true.", [
-        ("Your one-page capability sheet", [
-            "Company name, phone, email and website at the top.",
-            "What you clean after construction: rough clean, final clean, touch-up or punch clean, windows, floors, pressure washing.",
-            "Crew size, how fast you can start, and the largest job you have done (square feet or units).",
-            "Insurance: general liability and workers' compensation limits. Builders usually ask for a certificate of insurance.",
-            "Equipment you bring, such as lifts, HEPA vacuums or floor machines.",
-            "Two references from builders or property managers, with permission to share them.",
-        ]),
-        ("An email to a builder (send after you call)", [
-            "Subject: Final clean for [address]",
-            "Hi [name], thanks for the time on the phone today. We do post-construction cleaning in Chicago, from rough clean "
-            "through final and touch-up. We would like to quote the final clean at [address] (permit [number]). Our capability "
-            "sheet is attached: [crew size], insured for [limits], and we can start within [days]. Who should I send a quote to?",
-            "[Your name], [company], [phone]",
-        ]),
-    ], "teal")
-    text_sheet(wb, "Terms", f"{PRODUCT}. Read this before you rely on the list.", [
-        ("City of Chicago data", [CITY_DISCLAIMER, ("link", "City of Chicago Data Terms of Use", src.get("terms", ""))]),
-        ("ProofNotFluff", [OUR_NOTICE, "Licensed to one business for its own prospecting. Please don't resell or republish the list."]),
-    ], "note")
+    project_sheet(wb, "near", "Partial occupancy approved: the City has cleared part of the building for use. Biggest first.",
+                  near, list_date, "accent", drop=("stage",) + (() if any(p["new"] for p in near) else ("newText",)))
+    project_sheet(wb, "new", "Permits that were not on last week's list. Closest to a final clean first, then biggest.",
+                  new, list_date, None, drop=("newText",))
+    project_sheet(wb, "all", "Every open permit that passed the filter, closest to a final clean first, then biggest.",
+                  rows, list_date, None)
+    builders_sheet(wb, rows, list_date)
+    pitch_kit(wb, list_date)
+    terms(wb, src, list_date)
+    start_here(wb, rows, near, new, src, list_date, addresses)
+    wb.active = 0
     for ws in wb.worksheets:
         for row in ws.iter_rows():
             for c in row:
-                if isinstance(c.value, str) and "—" in c.value:
+                v = str(c.value) if c.value is not None else ""
+                if "—" in v:
                     raise SystemExit(f"em dash in {ws.title}!{c.coordinate}")
     wb.save(out)
-    return {"projects": len(rows), "near": len(near), "new": len(new), "builders": len({(p.get('gc') or [''])[0] for p in rows})}
+    return {"projects": len(rows), "near": len(near), "new": len(new), "addresses": addresses,
+            "builders": len({g for p in rows for g in (p.get("gc") or [])})}
 
 
 def selftest():
@@ -256,13 +419,16 @@ def selftest():
     out = os.path.join(tempfile.mkdtemp(), "t.xlsx")
     res = build(data, out)
     wb = load_workbook(out)
-    assert wb.sheetnames == ["Start Here", "Near finish", "New this week", "All projects", "Builders", "Pitch kit", "Terms"], wb.sheetnames
+    assert wb.sheetnames == ["Start Here", TABS["near"], TABS["new"], TABS["all"], TABS["builders"], TABS["pitch"], "Terms"], wb.sheetnames
     assert res["near"] == len(sample["nearFinish"]), res
     assert res["new"] == 1, res
-    allp = wb["All projects"]
-    vals = [c.value for c in allp[allp.auto_filter.ref.split(":")[0][1:] and int(allp.auto_filter.ref.split(":")[0][1:])]]
-    assert "Reported cost" in vals, vals
+    allp = wb[TABS["all"]]
+    assert [allp[f"{c}11"].value for c in "CDE"] == ["ADDRESS", "REPORTED COST", "BUILDER"], [allp[f"{c}11"].value for c in "CDE"]
+    stages = [allp[f"G{r}"].value for r in range(12, 12 + res["projects"])]
+    assert stages == sorted(stages, key=lambda s: STAGE_ORDER.get(s, 3)), "All projects not closest-to-clean first"
+    assert "C12" in allp.auto_filter.ref or allp.auto_filter.ref.startswith("C11"), allp.auto_filter.ref
     assert any(CITY_DISCLAIMER == c.value for row in wb["Terms"].iter_rows() for c in row)
+    assert cut("a" * 50 + " (bb cc) " + "d" * 80).endswith("…") and "(" not in cut("x " * 40 + "(one two three four five six seven" + " y" * 30)
     print("selftest ok", res)
 
 

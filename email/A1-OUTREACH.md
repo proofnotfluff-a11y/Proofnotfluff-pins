@@ -4,14 +4,14 @@ Why: Gemini's red team (Oct 17) and the COO agree that waiting for traffic is th
 
 ## The test
 - Who: 36 Chicago-area companies whose own sites advertise post-construction or construction cleaning (list kept privately in the live session's scratchpad and in Drive, never in this public repo).
-- Offer: the full weekly list at $29 a month (the price on the leads page), cancel any time, first list within 2 days of joining, then every Monday.
+- Offer: the full weekly list at $29 a month (the price on the leads page), cancel any time, this week's list right after checkout (members' page and Excel file), then every Monday.
 - Pass: 2 or more paying companies within 10 days of the send. Fail: under 2. A fail kills the paid version and the page stays a free sample.
 - Market check (read Oct 17): Chicago Cityscape sells Chicago permit newsletters with builder contacts at $125 a month; ConstructConnect Starter $129 a month per market (third-party guide, Oct 6, 2026); Dodge, Construction Monitor and BuildZoom are quote only.
 
 ## Rules
 - Todd sends every email himself from proofnotfluff@gmail.com (no agent sends a message on his behalf). One email per company, no follow-up sequence unless Todd says so.
 - CAN-SPAM: honest subject, the sender is ProofNotFluff, a valid postal address in the footer (Todd, Oct 17, 2:39 pm: "you can use 1718 Capitol Ave Cheyenne, WY 82001"), and a working opt-out (reply "no thanks"); honor it, and never email that address again.
-- Every fact in the email comes from the week's members' list (the City of Chicago Building Permits dataset as filtered by tools/permits_chicago.py). {permits}, {addresses}, {near} and {example} are filled from that list on the morning the drafts are made, and the drafts are not made if any number differs from the list (Holdout QC, Oct 17: the first draft carried last week's numbers).
+- Every fact in the email comes from the week's members' list (the City of Chicago Building Permits dataset as filtered by tools/permits_chicago.py). {Company}, {permits}, {addresses}, {near} and {example} are filled from that list on the morning the drafts are made; every draft is checked for leftover braces, and the drafts are not made if any number differs from the list (Holdout QC, Oct 17: the first draft carried last week's numbers).
 - No invented people, no fake urgency, no claim that any builder works with us.
 
 ## The email (one per company; {fields} filled from the list)
@@ -25,13 +25,13 @@ Body:
 ```
 Hi {Company} team,
 
-Your site says you do post-construction cleaning{ in Area}, so this may be worth a minute.
+Your site says you do post-construction cleaning in the Chicago area, so this may be worth a minute.
 
-Every Monday we pull the City of Chicago's building permits and list the open apartment and commercial jobs with a reported cost of $500,000 or more, with the general contractor on each. This week's list has {permits} open permits at {addresses} addresses. {near} of them already have partial occupancy approved by the City, which means the work under that permit is close to done. One example: {example}.
+Each week we pull the City of Chicago's building permits and list the open apartment and commercial jobs with a reported cost of $500,000 or more, with the general contractor on each. This week's list has {permits} open permits at {addresses} addresses. {near} of them already have partial occupancy approved by the City, which means the work under that permit is close to done. One example: {example}.
 
 Free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/
 
-The full list is $29 a month, cancel any time. Your first list arrives within 2 days, then every Monday:
+The full list is $29 a month, cancel any time. You get this week's list right after checkout, then a new one every Monday:
 https://proofnotfluff.gumroad.com/l/vpnaoq
 
 ProofNotFluff

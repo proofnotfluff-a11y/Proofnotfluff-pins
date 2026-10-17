@@ -26,7 +26,7 @@ Fields, on top of EVOLUTION.md section 2: lane, buyer (who pays and why now), ev
 ## 4. Cadence
 - Daily (COO 5:00 am): read each live probe's fitness (Kit subscriber counts through the Kit API once a key exists, else the Kit UI count Todd reports; Cloudflare visits once readable; pm/equity.csv through the raw URL), kill on the dates, log one line.
 - Monday deep run: verdicts, one new probe at most, the red-team round (section 5), the memo, and Todd's queue sorted by expected value per minute of his time.
-- The paper tracker runs itself every 6 hours; the COO reads it, never edits pm/config.json except by a commit that names the reason.
+- The paper tracker runs itself every 6 hours; the COO reads it and never edits pm/config.json except by a commit that names the reason; a config change never alters the cohort rule, window, fees or slippage of the live C1 probe (a paper strategy change is a new experiments doc).
 
 ## 5. The red team (Gemini, Todd's Oct 17 choice)
 - Route: Zapier, Google AI Studio (Gemini), action send_prompt with Google Search grounding on, model gemini-2.5-pro (flash if pro is unavailable). It needs Todd's Gemini API key connected once in Zapier (quest connect-gemini). Until then the red team is a Claude subagent with the same prompt and the memo says so.
@@ -43,4 +43,4 @@ Fields, on top of EVOLUTION.md section 2: lane, buyer (who pays and why now), ev
 $0 autonomous spend (Todd, Oct 17). Every dollar is a quest with the vendor's price and the expected effect; Todd says yes to each. Accounts, keys, terms and payouts are his, as the constitution says. Todd's parts are listed on every probe with minutes, and the Monday memo ranks them by expected value so his time goes where it pays.
 
 ## 8. Honesty
-A metric not recorded is "not recorded". A probe with no visit data is judged on sign-ups alone and says so. The memo states the week's revenue in dollars first, every week, including $0.
+A metric not recorded is "not recorded". A probe with no visit data is judged on sign-ups alone and says so. The memo states the month's revenue in dollars first, every day, including $0.

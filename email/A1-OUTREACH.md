@@ -10,7 +10,7 @@ Why: Gemini's red team (Oct 17) and the COO agree that waiting for traffic is th
 
 ## Rules
 - Todd sends every email himself from proofnotfluff@gmail.com (no agent sends a message on his behalf). One email per company, no follow-up sequence unless Todd says so.
-- CAN-SPAM: honest subject, the sender is ProofNotFluff, a valid postal address in the footer (Todd's USPS PO box), and a working opt-out (reply "no thanks"); honor it, and never email that address again.
+- CAN-SPAM: honest subject, the sender is ProofNotFluff, a valid postal address in the footer (Todd, Oct 17, 2:39 pm: "you can use 1718 Capitol Ave Cheyenne, WY 82001"), and a working opt-out (reply "no thanks"); honor it, and never email that address again.
 - Every fact in the email comes from the City of Chicago Building Permits dataset as pulled into permits/chicago/sample.json (refresh the numbers and the example on the Monday before sending).
 - No invented people, no fake urgency, no claim that any builder works with us.
 
@@ -35,7 +35,7 @@ The full list is $29 a month, cancel any time. Your first list arrives within 2 
 {checkout link}
 
 ProofNotFluff
-{PO box address}
+1718 Capitol Ave, Cheyenne, WY 82001
 
 This is a one-time email to businesses that advertise post-construction cleaning. Not interested? Reply "no thanks" and we won't email you again.
 ```

@@ -3,8 +3,8 @@
   "name": "City of Chicago Data Portal, Building Permits",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
   "rowsUpdatedAt": "2026-10-17T12:18:17+00:00",
-  "fetchedAt": "2026-10-17T20:30:38+00:00",
-  "modified": "Filtered by ProofNotFluff: permits issued in the last 365 days, new construction or renovation, reported cost $500,000 or more, still open (not complete, suspended, cancelled, revoked or expired), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs a construction clean under its permit (foundation, caisson, demolition, roof, mechanical or site work only) left out; only project-level and business fields kept.",
+  "fetchedAt": "2026-10-17T20:57:51+00:00",
+  "modified": "Filtered by ProofNotFluff: permits issued in the last 365 days, new construction or renovation, reported cost $500,000 or more, still open (not complete, suspended, cancelled, revoked or expired), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs a construction clean under its permit (foundation, superstructure, caisson, demolition, roof, facade, mechanical, equipment or site work only) left out; cleaning companies listed as contractor left out; a revision of a permit already on the list counted once; only project-level and business fields kept.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
@@ -13,61 +13,62 @@
  },
  "counts": {
   "fetched": 1560,
-  "kept": 645,
+  "kept": 636,
   "excluded": {
-   "house or 2 to 3 flat": 380,
-   "no commercial or apartment wording": 257,
-   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 95,
-   "one home inside a larger building": 15,
+   "no commercial or apartment wording": 247,
+   "house or 2 to 3 flat": 377,
+   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 111,
+   "one home inside a larger building": 17,
    "no interior finish work or new building named": 9,
    "closed, complete or suspended": 156,
-   "no business listed as general contractor": 3
+   "no business listed as general contractor": 5,
+   "revision of a permit already listed": 2
   },
   "keptByType": {
-   "New construction": 164,
-   "Renovation": 481
+   "New construction": 169,
+   "Renovation": 467
   },
-  "keptCost": 2971258110,
-  "keptUnits": 2954,
+  "keptCost": 2877730970,
+  "keptUnits": 2832,
   "topAreas": [
    [
     "Loop",
-    104
+    101
    ],
    [
     "Near North Side",
-    83
+    81
    ],
    [
     "Near West Side",
-    72
+    68
    ],
    [
     "West Town",
-    36
+    37
    ],
    [
     "Lincoln Park",
-    34
+    35
    ],
    [
     "Lake View",
-    28
+    29
    ],
    [
     "Logan Square",
     19
    ],
    [
-    "Lower West Side",
-    16
+    "Uptown",
+    18
    ]
   ],
   "topGCs": [
    {
     "name": "Skender Construction LLC",
-    "projects": 20,
-    "cost": 360475418
+    "projects": 19,
+    "cost": 359850418
    },
    {
     "name": "JC Anderson Inc",
@@ -75,24 +76,19 @@
     "cost": 32438104
    },
    {
-    "name": "Executive Construction, Inc.",
-    "projects": 15,
-    "cost": 39514700
-   },
-   {
     "name": "Power Construction Company, LLC",
     "projects": 14,
     "cost": 145717606
    },
    {
+    "name": "Executive Construction, Inc.",
+    "projects": 14,
+    "cost": 36514700
+   },
+   {
     "name": "Redmond Construction Corp.",
     "projects": 13,
     "cost": 73475690
-   },
-   {
-    "name": "Clune Construction Company, L.P.",
-    "projects": 12,
-    "cost": 55587508
    },
    {
     "name": "Bulley & Andrews, L.L.C.",
@@ -105,14 +101,14 @@
     "cost": 56327071
    },
    {
+    "name": "Clune Construction Company, L.P.",
+    "projects": 11,
+    "cost": 47187508
+   },
+   {
     "name": "Pintauro Construction Company LLC",
     "projects": 11,
     "cost": 46045440
-   },
-   {
-    "name": "Bear Construction Company",
-    "projects": 10,
-    "cost": 10181052
    },
    {
     "name": "Development Solutions, Inc",
@@ -123,6 +119,11 @@
     "name": "LR Contracting Company",
     "projects": 9,
     "cost": 123971088
+   },
+   {
+    "name": "Bear Construction Company",
+    "projects": 9,
+    "cost": 8881052
    }
   ],
   "nearFinish": 9
@@ -267,7 +268,7 @@
    "permit": "101073356",
    "issued": "2026-03-25",
    "type": "New construction",
-   "scope": "New construction of a 12-story residential building (199 units) w/ no basement to include ground parking (42 auto parking spaces + 199 bike parking...",
+   "scope": "New construction of a 12-story residential building (199 units) w/ no basement to include ground parking...",
    "units": 199,
    "cost": 44000000,
    "address": "566 W Van Buren St",
@@ -339,21 +340,6 @@
    ]
   },
   {
-   "permit": "101077893",
-   "issued": "2026-04-17",
-   "type": "Renovation",
-   "scope": "Alteration to existing warehouse building to make strcuctural repairs, repair docks, install new dock doors, construct new gearge addition and repair...",
-   "units": null,
-   "cost": 35000000,
-   "address": "4343 W Ohio St",
-   "communityArea": "Humboldt Park",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Merker LLC"
-   ]
-  },
-  {
    "permit": "101074867",
    "issued": "2026-01-28",
    "type": "Renovation",
@@ -384,21 +370,6 @@
    ]
   },
   {
-   "permit": "101080637",
-   "issued": "2026-07-10",
-   "type": "New construction",
-   "scope": "Phase 1c - cryoplant buildout for quantum computing facility...",
-   "units": null,
-   "cost": 30000000,
-   "address": "3733 E 87th St",
-   "communityArea": "South Chicago",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Clayco Inc."
-   ]
-  },
-  {
    "permit": "101061910",
    "issued": "2025-10-22",
    "type": "New construction",
@@ -410,14 +381,14 @@
    "status": "Active",
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
-    "THE George Sollitt Construction Co"
+    "The George Sollitt Construction Co"
    ]
   },
   {
    "permit": "101089193",
    "issued": "2026-10-08",
    "type": "Renovation",
-   "scope": "Initial buildout of 56,721 sf commerical office space on 19th, 20th, and 21st floors (3 contiguous floors)...",
+   "scope": "Initial buildout of 56,721 SF commerical office space on 19th, 20th, and 21st floors (3 contiguous floors)...",
    "units": null,
    "cost": 29000000,
    "address": "333 W Wolf Point Plz",
@@ -478,7 +449,7 @@
    "issued": "2025-12-10",
    "type": "New construction",
    "scope": "Full building permit for 6 story 61 dwellling unit apartment building connected to existing 2 story building with 26 parking spaces",
-   "units": null,
+   "units": 61,
    "cost": 26500000,
    "address": "1539 N Pulaski Rd",
    "communityArea": "Humboldt Park",
@@ -502,6 +473,36 @@
    "gc": [
     "LR Contracting Company"
    ]
+  },
+  {
+   "permit": "101081192",
+   "issued": "2026-10-09",
+   "type": "New construction",
+   "scope": "New construction of a 52 unit senior residential building. The project includes (44) 1 bedroom units and (8) 2 bedroom units...",
+   "units": 52,
+   "cost": 25000000,
+   "address": "8332 S Dr Martin L King Jr Dr",
+   "communityArea": "Chatham",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "Skender Construction LLC"
+   ]
+  },
+  {
+   "permit": "101075524",
+   "issued": "2025-12-16",
+   "type": "New construction",
+   "scope": "Complete 8th and 9th floors and buildout of all floors for new 9 story residential building with 101 standard dwelling units 48 efficiency units and...",
+   "units": 149,
+   "cost": 24000000,
+   "address": "310 W Huron St",
+   "communityArea": "Near North Side",
+   "status": "Phased Permitting",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "ZSD Construction LLC"
+   ]
   }
  ],
  "nearFinish": [
@@ -509,7 +510,7 @@
    "permit": "101080622",
    "issued": "2026-03-30",
    "type": "New construction",
-   "scope": "First time build out of 23rd floor office space. Work to include construction of non-load bearing partitions, ceilings, finishes, and associated mep...",
+   "scope": "First time build out of 23rd floor office space. Work to include construction of non-load bearing partitions, ceilings, finishes, and associated MEP...",
    "units": null,
    "cost": 5279012,
    "address": "333 W Wolf Point Plz",
@@ -584,7 +585,7 @@
    "permit": "101077418",
    "issued": "2026-01-14",
    "type": "Renovation",
-   "scope": "Interior alterations and renovations of existing restaurant tenant space at the street level and river level within existing 8-story building (11...",
+   "scope": "Interior alterations and renovations of existing restaurant tenant space at the street level and river level within existing 8-story building...",
    "units": null,
    "cost": 1851000,
    "address": "315 N La Salle Dr",
@@ -599,7 +600,7 @@
    "permit": "101081823",
    "issued": "2026-04-15",
    "type": "Renovation",
-   "scope": "Interior alterations in existing office building on the 27th floor, to exiting full floor office suite 2750, interior partitions, millwork, finishes,...",
+   "scope": "Interior alterations in existing office building on the 27th floor, to exiting full floor office suite 2750, interior partitions, millwork, finishes...",
    "units": null,
    "cost": 769782,
    "address": "230 W Monroe St",
@@ -629,7 +630,7 @@
    "permit": "101071207",
    "issued": "2025-11-19",
    "type": "Renovation",
-   "scope": "Interior remodel of existing day care class room for new day care tenant in the first floor of an existing 6 story type ib construction mixed use...",
+   "scope": "Interior remodel of existing day care class room for new day care tenant in the first floor of an existing 6 story type IB construction mixed use...",
    "units": null,
    "cost": 650000,
    "address": "1000 W Washington Blvd",
@@ -637,7 +638,7 @@
    "status": "Active",
    "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
    "gc": [
-    "LO Destro Construction Company"
+    "Lo Destro Construction Company"
    ]
   }
  ]

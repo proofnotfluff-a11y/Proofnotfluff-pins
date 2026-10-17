@@ -3,7 +3,7 @@
   "name": "City of Austin, Issued Construction Permits",
   "url": "https://data.austintexas.gov/d/3syk-w9eu",
   "rowsUpdatedAt": "2026-10-17T12:24:23+00:00",
-  "fetchedAt": "2026-10-17T21:45:15+00:00",
+  "fetchedAt": "2026-10-17T21:47:51+00:00",
   "license": "Public Domain U.S. Government",
   "attribution": "City of Austin, Texas - data.austintexas.gov",
   "modified": "Filtered by ProofNotFluff: commercial building permits issued in the last 365 days, grouped into projects by master permit, project valuation $500,000 or more, at least one building still open; dumpster enclosures, pergolas, parking garages, roofs, demolition, shell-only and equipment work left out; homes of two or three units left out; only project-level and business fields kept.",
@@ -29,8 +29,8 @@
    "Renovation": 38,
    "New construction": 62
   },
-  "keptCost": 6455938345,
-  "keptUnits": 3829,
+  "keptCost": 4930938345,
+  "keptUnits": 1473,
   "topAreas": [
    [
     "78701",
@@ -77,22 +77,22 @@
     "cost": 254750000
    },
    {
-    "name": "Harvey-Cleary Builders ***Main***",
+    "name": "Harvey-Cleary Builders",
     "projects": 2,
     "cost": 833000001
    },
    {
-    "name": "Bartlett Cocke General Contractors (Main)",
+    "name": "Bartlett Cocke General Contractors",
     "projects": 2,
     "cost": 410000000
    },
    {
-    "name": "Joeris General Contractors***Main***",
+    "name": "Joeris General Contractors",
     "projects": 2,
     "cost": 71700000
    },
    {
-    "name": "OHT Construction LLC ***Main***",
+    "name": "OHT Construction LLC",
     "projects": 2,
     "cost": 49000000
    },
@@ -107,7 +107,7 @@
     "cost": 37000000
    },
    {
-    "name": "CM Constructors *Main*",
+    "name": "CM Constructors",
     "projects": 2,
     "cost": 29000000
    },
@@ -117,7 +117,7 @@
     "cost": 26000000
    },
    {
-    "name": "G Creek Inc.***Main***",
+    "name": "G Creek Inc.",
     "projects": 2,
     "cost": 12558020
    },
@@ -169,7 +169,7 @@
    "issued": "2026-06-08",
    "type": "New construction",
    "scope": "New Construction of a Multi-Story Mixed Use Multi-Family Bldg...",
-   "units": 188,
+   "units": 30,
    "cost": 830000000,
    "address": "6915 Bridge Point Pkwy Bldg 1 (+23 more)",
    "communityArea": "78730",
@@ -178,7 +178,7 @@
    "buildings": 25,
    "buildingsFinal": 0,
    "gc": [
-    "Harvey-Cleary Builders ***Main***"
+    "Harvey-Cleary Builders"
    ]
   },
   {
@@ -195,7 +195,7 @@
    "buildings": 3,
    "buildingsFinal": 0,
    "gc": [
-    "Bartlett Cocke General Contractors (Main)"
+    "Bartlett Cocke General Contractors"
    ]
   },
   {
@@ -220,7 +220,7 @@
    "issued": "2026-10-16",
    "type": "New construction",
    "scope": "Redevelopment of Existing Site. New Construction of 4- Story Affordable Housing to Include 2 Connected Fire Areas and associated site improvements...",
-   "units": 180,
+   "units": 90,
    "cost": 245000000,
    "address": "8801 Mc Cann Dr",
    "communityArea": "78757",
@@ -246,7 +246,7 @@
    "buildings": 41,
    "buildingsFinal": 0,
    "gc": [
-    "Flintco LLC *Main*"
+    "Flintco LLC"
    ]
   },
   {
@@ -280,7 +280,7 @@
    "buildings": 2,
    "buildingsFinal": 0,
    "gc": [
-    "The Burt Group**Main**"
+    "The Burt Group"
    ]
   },
   {
@@ -288,7 +288,7 @@
    "issued": "2026-07-01",
    "type": "New construction",
    "scope": "New Construction of a Mixed Use 7-Story Multi-Family Complex...",
-   "units": 696,
+   "units": 232,
    "cost": 79500000,
    "address": "512 Sabine St",
    "communityArea": "78701",
@@ -305,7 +305,7 @@
    "issued": "2025-12-11",
    "type": "New construction",
    "scope": "New Construction of Multi Family Amenity Building",
-   "units": 92,
+   "units": 49,
    "cost": 76000000,
    "address": "7817 W Sh 71 (+4 more)",
    "communityArea": "78736",
@@ -348,7 +348,7 @@
    "buildings": 1,
    "buildingsFinal": 0,
    "gc": [
-    "Joeris General Contractors***Main***"
+    "Joeris General Contractors"
    ]
   },
   {
@@ -356,7 +356,7 @@
    "issued": "2026-08-27",
    "type": "New construction",
    "scope": "New Construction of a Multi-Family Bldg - Above the Podium Fire Area C",
-   "units": 396,
+   "units": 159,
    "cost": 48000000,
    "address": "2631 Kramer Ln (+3 more)",
    "communityArea": "78758",
@@ -365,7 +365,7 @@
    "buildings": 4,
    "buildingsFinal": 0,
    "gc": [
-    "OHT Construction LLC ***Main***"
+    "OHT Construction LLC"
    ]
   },
   {
@@ -373,7 +373,7 @@
    "issued": "2026-05-08",
    "type": "New construction",
    "scope": "Construct new multifamily complex - ev chargers (4)",
-   "units": 500,
+   "units": 108,
    "cost": 39719000,
    "address": "1420 E Howard Ln (+5 more)",
    "communityArea": "78660",
@@ -399,7 +399,7 @@
    "buildings": 1,
    "buildingsFinal": 0,
    "gc": [
-    "Hensel Phelps Construction Co. ***Main***"
+    "Hensel Phelps Construction Co."
    ]
   },
   {
@@ -491,7 +491,7 @@
    "permit": "13505915",
    "issued": "2026-07-27",
    "type": "New construction",
-   "scope": "[APPROVED New Construction of Behavior Health Hospital located at the Texas Neuro Rehab Center Campus (46219 SF)",
+   "scope": "New Construction of Behavior Health Hospital located at the Texas Neuro Rehab Center Campus (46219 SF)",
    "units": null,
    "cost": 30400000,
    "address": "1106 W Dittmar Rd Bldg 30",
@@ -518,7 +518,7 @@
    "buildings": 16,
    "buildingsFinal": 0,
    "gc": [
-    "Bartlett Cocke General Contractors (Main)"
+    "Bartlett Cocke General Contractors"
    ]
   },
   {
@@ -571,7 +571,7 @@
    "buildings": 1,
    "buildingsFinal": 2,
    "gc": [
-    "CM Constructors *Main*"
+    "CM Constructors"
    ]
   },
   {

@@ -1,0 +1,33 @@
+name: Chicago inspection leads
+# Product #3 (Oct 17, 2026): Chicago Restaurant Inspection Leads for pest control, hood cleaning and grease
+# trap companies. The cloud agents cannot reach data.cityofchicago.org, so this runner pulls the City's Food
+# Inspections data and commits only business-level files to permits/inspections-chicago/ (no comments, no names
+# of people). tools/inspections_chicago.py says what is kept.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/inspections_chicago.py", ".github/workflows/inspections-chicago.yml"]
+  schedule:
+    - cron: "30 11 * * 1"   # Mondays, about 6:30 am Chicago time in daylight time
+permissions:
+  contents: write
+concurrency:
+  group: inspections-chicago
+  cancel-in-progress: false
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/inspections_chicago.py --probe
+      - name: Commit
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add permits/inspections-chicago
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "Chicago inspection leads data $(date -u +%Y-%m-%d)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done
+          exit 1

@@ -139,6 +139,7 @@ def builders_sheet(wb, rows, as_of):
     hdr = r
     S.table_header(ws, r, {"B": "General contractor", "C": "Open permits", "D": "Reported cost", "E": "Near finish",
                            "F": "New", "G": "Where most of them are"})
+    ws[f"G{r}"].alignment = Alignment(horizontal="left", vertical="center")
     r += 1
     line = Side(style="thin", color=S.PALETTE["line"])
     for g, a in sorted(agg.items(), key=lambda kv: (-kv[1]["n"], -kv[1]["cost"])):

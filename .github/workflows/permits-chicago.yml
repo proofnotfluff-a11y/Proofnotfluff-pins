@@ -27,6 +27,16 @@ jobs:
           name: chicago-full
           path: ${{ runner.temp }}/chicago-full.json
           retention-days: 3
+      - name: Build the members' list (encrypted; skipped until the LEADS_PASSWORD secret exists)
+        env:
+          LEADS_PASSWORD: ${{ secrets.LEADS_PASSWORD }}
+        run: |
+          if [ -z "$LEADS_PASSWORD" ]; then echo "no LEADS_PASSWORD secret yet; members' page not built"; exit 0; fi
+          pip install --quiet openpyxl cryptography pillow
+          python3 tools/leads_xlsx.py --selftest
+          python3 tools/leads_page.py --selftest
+          python3 tools/leads_xlsx.py "$RUNNER_TEMP/chicago-full.json" "$RUNNER_TEMP/leads.xlsx"
+          python3 tools/leads_page.py "$RUNNER_TEMP/chicago-full.json" "$RUNNER_TEMP/leads.xlsx" docs/chicago-leads-members/index.html
       - name: Rebuild the site pages from the new sample
         run: python3 tools/make_site.py
       - name: Commit the sample

@@ -25,5 +25,5 @@ Status as of Oct 17, 2026, 4:10 pm Chicago.
 - [x] Buyer view checked: the Content tab is what Gumroad shows after purchase; the password opens the live members' page and the workbook downloads (Playwright, Oct 17).
 
 ## 4. Outreach
-- [ ] Email values filled from this week's live list and checked by the holdout.
-- [ ] Todd has seen the finished product and storefront and said go in chat.
+- [x] Email values filled from this week's live list (632 permits, 563 addresses, 9 near finish; holdout round 5) and each email's example permit taken from that list.
+- [x] Todd said go in chat (Oct 17, 4:44 pm: "Go: make the drafts"). Drafts in the ProofNotFluff Gmail; Todd sends Monday after changing the Gmail sender name to ProofNotFluff.

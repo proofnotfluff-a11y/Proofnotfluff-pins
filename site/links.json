@@ -1,7 +1,16 @@
 {
- "updated": "2026-10-07",
+ "updated": "2026-10-17",
  "shop": "https://proofnotfluff.etsy.com",
- "gumroad": [],
+ "gumroad": [
+  {
+   "slug": "13-week-cash-flow",
+   "name": "13-Week E-commerce Cash Flow",
+   "url": "https://proofnotfluff.gumroad.com/l/13-week-cash-flow",
+   "price": 79,
+   "tagline": "Excel and Google Sheets workbook for e-commerce brands",
+   "channel": "gumroad"
+  }
+ ],
  "groups": [
   {
    "title": "Service businesses and trades",

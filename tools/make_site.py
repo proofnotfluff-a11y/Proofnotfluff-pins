@@ -1766,8 +1766,10 @@ def hub_html(links, pages):
         rows = "".join(f'<a class="hubbtn" href="{E(product_url(by[i]))}" rel="noopener"><b>{E(by[i]["name"])}</b><span>$2.99 on Etsy</span></a>' for i in g["ids"] if i in by)
         if rows:
             groups += f'<h2 class="hubh">{E(g["title"])}</h2><div class="hublist">{rows}</div>'
+    lede = ('The Etsy workbooks are $2.99 each, the premium workbooks are on Gumroad, and the free calculators use the same maths.'
+            if links.get("gumroad") else 'Every paid workbook is $2.99 on Etsy, and the free calculators use the same maths.')
     body = ('<section class="hub"><p class="eyebrow">ProofNotFluff</p><h1>Calculators that show their work</h1>'
-            '<p class="lede">Saw a video? It is right here. Every paid workbook is $2.99 on Etsy, and the free calculators use the same maths.</p>'
+            f'<p class="lede">Saw a video? It is right here. {E(lede)}</p>'
             f'{featured_html(links)}'
             f'{"<h2 class=hubh>Free calculators</h2><div class=hublist>" + calc + "</div>" if calc else ""}'
             f'{"<h2 class=hubh>Premium workbooks</h2><div class=hublist>" + prem + "</div>" if prem else ""}'

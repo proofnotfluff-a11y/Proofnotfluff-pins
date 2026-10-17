@@ -3,7 +3,7 @@
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
   "rowsUpdatedAt": "2026-10-17T09:07:12+00:00",
-  "fetchedAt": "2026-10-17T21:45:20+00:00",
+  "fetchedAt": "2026-10-17T21:47:38+00:00",
   "modified": "Filtered by ProofNotFluff: food inspections of the last 7 days at licensed food businesses (schools, day care, hospitals, senior meal sites and mobile vendors left out) that failed with pest violations, failed or passed with conditions with hood, grease or grease trap violations, had a license (pre-opening) inspection, or failed twice in 30 days. Violation notes are read only to set category labels; inspector notes are not republished. Business-level fields only.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
@@ -21,8 +21,8 @@
    "repeatFail": 6
   },
   "excluded": {
-   "institution or mobile vendor": 26,
-   "no lead segment (passed, or no buyer-relevant violation)": 46
+   "no lead segment (passed, or no buyer-relevant violation)": 46,
+   "institution or mobile vendor": 26
   },
   "areas": [
    [
@@ -46,11 +46,11 @@
     3
    ],
    [
-    "South Lawndale",
+    "Humboldt Park",
     3
    ],
    [
-    "Humboldt Park",
+    "South Lawndale",
     3
    ],
    [
@@ -122,7 +122,7 @@
     ]
    },
    {
-    "business": "Viet NAM Restaurant",
+    "business": "Viet Nam Restaurant",
     "address": "1032 W Argyle St",
     "communityArea": "Uptown",
     "facilityType": "Restaurant",
@@ -137,19 +137,7 @@
     ]
    },
    {
-    "business": "Taquizas Don Rafa 2",
-    "address": "3857 W 26th St",
-    "communityArea": "South Lawndale",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Short Form Complaint",
-    "date": "2026-10-14",
-    "categories": [
-     "Pests"
-    ]
-   },
-   {
-    "business": "THA Wing Lounge",
+    "business": "Tha Wing Lounge",
     "address": "3652 W Chicago Ave",
     "communityArea": "Humboldt Park",
     "facilityType": "Restaurant",
@@ -159,6 +147,18 @@
     "categories": [
      "Cleaning and sanitation",
      "Hood and ventilation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Taquizas Don Rafa 2",
+    "address": "3857 W 26th St",
+    "communityArea": "South Lawndale",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Short Form Complaint",
+    "date": "2026-10-14",
+    "categories": [
      "Pests"
     ]
    },
@@ -222,7 +222,7 @@
     ]
    },
    {
-    "business": "Viet NAM Restaurant",
+    "business": "Viet Nam Restaurant",
     "address": "1032 W Argyle St",
     "communityArea": "Uptown",
     "facilityType": "Restaurant",
@@ -237,7 +237,7 @@
     ]
    },
    {
-    "business": "THA Wing Lounge",
+    "business": "Tha Wing Lounge",
     "address": "3652 W Chicago Ave",
     "communityArea": "Humboldt Park",
     "facilityType": "Restaurant",
@@ -337,7 +337,7 @@
   ],
   "newOpening": [
    {
-    "business": "La Michoacana",
+    "business": "LA Michoacana",
     "address": "2740 W 59th St",
     "communityArea": "Gage Park",
     "facilityType": "Restaurant",
@@ -430,7 +430,7 @@
     "categories": []
    },
    {
-    "business": "Plush PUP",
+    "business": "Plush Pup",
     "address": "5344 N Cumberland Ave",
     "communityArea": "O'Hare",
     "facilityType": "Restaurant",
@@ -444,7 +444,7 @@
   ],
   "repeatFail": [
    {
-    "business": "Viet NAM Restaurant",
+    "business": "Viet Nam Restaurant",
     "address": "1032 W Argyle St",
     "communityArea": "Uptown",
     "facilityType": "Restaurant",
@@ -459,7 +459,7 @@
     ]
    },
    {
-    "business": "THA Wing Lounge",
+    "business": "Tha Wing Lounge",
     "address": "3652 W Chicago Ave",
     "communityArea": "Humboldt Park",
     "facilityType": "Restaurant",

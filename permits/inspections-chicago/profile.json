@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-10-17T21:45:20+00:00",
+ "fetchedAt": "2026-10-17T21:47:38+00:00",
  "rowsUpdatedAt": "2026-10-17T09:07:12+00:00",
  "columns": [
   "inspection_id",
@@ -29,8 +29,8 @@
   "Fail": 264,
   "Pass": 694,
   "Out of Business": 47,
-  "No Entry": 51,
   "Pass w/ Conditions": 118,
+  "No Entry": 51,
   "Not Ready": 51
  },
  "inspectionTypes": {
@@ -66,9 +66,9 @@
   "Daycare Combo 1586": 2,
   "Shared Kitchen User (Long Term)": 2,
   "TAVERN": 1,
-  "VENDING COMMISSARY": 1,
   "GAS STATION/RESTAURANT": 1,
   "CATERING/CAFE": 1,
+  "VENDING COMMISSARY": 1,
   "LIVE POULTRY": 1,
   "PRIVATE SCHOOL": 1,
   "Daycare (Under 2 Years)": 1,

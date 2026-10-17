@@ -1,0 +1,27 @@
+name: Public-data probe
+# Counts and column names only, for choosing the next lead-list products (tools/data_probe.py). No rows are kept.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/data_probe.py", ".github/workflows/data-probe.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: data-probe
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/data_probe.py
+      - name: Commit the probe
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add probes/
+          git diff --cached --quiet && exit 0
+          git commit -m "Public-data probe $(date -u +%F)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 5; done

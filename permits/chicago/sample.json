@@ -3,7 +3,7 @@
   "name": "City of Chicago Data Portal, Building Permits",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
   "rowsUpdatedAt": "2026-10-17T12:18:17+00:00",
-  "fetchedAt": "2026-10-17T21:13:13+00:00",
+  "fetchedAt": "2026-10-17T21:15:44+00:00",
   "modified": "Filtered by ProofNotFluff: permits issued in the last 365 days, new construction or renovation, reported cost $500,000 or more, still open (not complete, suspended, cancelled, revoked or expired), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs a construction clean under its permit (foundation, superstructure, caisson, demolition, roof, facade, mechanical, equipment or site work only) left out; cleaning companies listed as contractor left out; a revision of a permit already on the list counted once; only project-level and business fields kept.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
@@ -13,23 +13,23 @@
  },
  "counts": {
   "fetched": 1560,
-  "kept": 636,
+  "kept": 632,
   "excluded": {
-   "no commercial or apartment wording": 247,
    "house or 2 to 3 flat": 377,
-   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 111,
+   "no commercial or apartment wording": 247,
+   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 113,
    "one home inside a larger building": 17,
    "no interior finish work or new building named": 9,
    "closed, complete or suspended": 156,
    "no business listed as general contractor": 5,
-   "revision of a permit already listed": 2
+   "revision of a permit already listed": 4
   },
   "keptByType": {
    "New construction": 169,
-   "Renovation": 467
+   "Renovation": 463
   },
-  "keptCost": 2877730970,
-  "keptUnits": 2832,
+  "keptCost": 2871630970,
+  "keptUnits": 3075,
   "topAreas": [
    [
     "Loop",
@@ -37,7 +37,7 @@
    ],
    [
     "Near North Side",
-    81
+    80
    ],
    [
     "Near West Side",
@@ -45,11 +45,11 @@
    ],
    [
     "West Town",
-    37
+    36
    ],
    [
     "Lincoln Park",
-    35
+    34
    ],
    [
     "Lake View",
@@ -134,7 +134,7 @@
    "issued": "2026-07-14",
    "type": "New construction",
    "scope": "Full building permit for floors lower level 2 through roof, including 6th floor exterior amentity deck and pool. 46-story building containing 464...",
-   "units": 221,
+   "units": 464,
    "cost": 190000000,
    "address": "931 N Halsted St",
    "communityArea": "Near North Side",

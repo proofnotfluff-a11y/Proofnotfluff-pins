@@ -24,6 +24,21 @@ def git_show(path):
     except Exception:
         return None
 
+def diagnose(last):
+    """One plain line on why the key file failed, so the log says what to fix (optimizer, Oct 17)."""
+    try:
+        body = urllib.request.urlopen("http://" + HOST + "/" + KEY + ".txt", timeout=20).read().decode().strip()
+        http_ok = body == KEY
+    except Exception:
+        http_ok = False
+    if http_ok and ("CERTIFICATE" in last.upper() or "SSL" in last.upper()):
+        return ("DIAGNOSIS: the site serves over http but https fails its certificate check: GitHub Pages has not "
+                "issued the certificate. Fix (repo admin): Settings, Pages, remove the custom domain, retype it, Save, "
+                "then tick Enforce HTTPS once it shows (docs.github.com, Securing your GitHub Pages site with HTTPS).")
+    if http_ok:
+        return "DIAGNOSIS: http serves the key file but https does not answer; check the Pages certificate and DNS."
+    return "DIAGNOSIS: the key file is not served over http either; check docs/CNAME, DNS and the Pages deploy."
+
 def main():
     now = locs(open("docs/sitemap.xml").read())
     prev_key = git_show("docs/" + KEY + ".txt")
@@ -36,15 +51,20 @@ def main():
     if not urls:
         print("No new URLs to submit."); return 0
     # wait until GitHub Pages serves the key file (deploy lag)
+    last = "no answer"
     for i in range(20):
         try:
             body = urllib.request.urlopen(KEY_URL, timeout=20).read().decode().strip()
             if body == KEY: break
+            last = "served, but the body is not the key"
         except Exception as e:
-            pass
+            last = type(e).__name__ + ": " + str(getattr(e, "reason", e))[:200]
         time.sleep(30)
     else:
-        print("Key file not live at", KEY_URL); return 1
+        print("Key file not live at", KEY_URL)
+        print("Last https error:", last)
+        print(diagnose(last))
+        return 1
     payload = json.dumps({"host": HOST, "key": KEY, "keyLocation": KEY_URL, "urlList": urls}).encode()
     req = urllib.request.Request("https://api.indexnow.org/indexnow", data=payload,
                                  headers={"Content-Type": "application/json; charset=utf-8"})

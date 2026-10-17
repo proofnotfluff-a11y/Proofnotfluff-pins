@@ -63,7 +63,9 @@ def main():
         "$where": f"issue_date>='{since365}' AND permit_class_mapped='Commercial' AND (total_job_valuation>=500000 OR "
                   f"total_valuation_remodel>=500000 OR building_valuation>=500000 OR building_valuation_remodel>=500000)",
         "$order": "issue_date DESC", "$limit": 3000})
-    json.dump(rows, open(os.path.join("probes", "austin-descriptions.json"), "w"), indent=1)
+    keep = ("permit_class", "work_class", "description")   # wording only, 40 rows: the filter's planted cases come from these
+    json.dump([{k: r.get(k) for k in keep} for r in rows[:40]] if isinstance(rows, list) else rows,
+              open(os.path.join("probes", "austin-descriptions.json"), "w"), indent=1)
     stat = get("https://data.austintexas.gov/resource/3syk-w9eu.json", {
         "$select": "permit_class_mapped,permit_class,status_current,count(*)",
         "$where": f"issue_date>='{since365}' AND total_job_valuation>=500000", "$group": "permit_class_mapped,permit_class,status_current",

@@ -54,6 +54,18 @@ def main():
             "name": meta.get("name"), "rowsUpdatedAt": meta.get("rowsUpdatedAt"), "license": (meta.get("license") or {}).get("name", ""),
             "attribution": meta.get("attribution", ""), "fields": [c.get("fieldName") for c in meta.get("columns", [])]}
     os.makedirs("probes", exist_ok=True)
+    # Austin wording for the filter's planted cases: work descriptions and permit fields only, never a name or phone
+    since365 = (dt.date.today() - dt.timedelta(days=365)).isoformat()
+    rows = get("https://data.austintexas.gov/resource/3syk-w9eu.json", {
+        "$select": "permit_number,permit_class_mapped,permit_class,work_class,description,status_current,housing_units,total_job_valuation,"
+                   "certificate_of_occupancy,issue_date,number_of_floors",
+        "$where": f"issue_date>='{since365}' AND total_job_valuation>=500000", "$order": "issue_date DESC", "$limit": 1500})
+    json.dump(rows, open(os.path.join("probes", "austin-descriptions.json"), "w"), indent=1)
+    stat = get("https://data.austintexas.gov/resource/3syk-w9eu.json", {
+        "$select": "permit_class_mapped,permit_class,status_current,count(*)",
+        "$where": f"issue_date>='{since365}' AND total_job_valuation>=500000", "$group": "permit_class_mapped,permit_class,status_current",
+        "$order": "count(*) DESC", "$limit": 80})
+    out["counts"]["austin_365_500k_by_class_status"] = stat
     path = os.path.join("probes", f"{dt.date.today().isoformat()}.json")
     json.dump(out, open(path, "w"), indent=1)
     print(path)

@@ -489,6 +489,20 @@ def fetch(now, days=DAYS):
     return since, where, rows
 
 
+TERMS_READ = """== City of Austin Open Data Terms of Use, read Oct 18, 2026 at https://data.austintexas.gov/stories/s/ranj-cccq (in Todd's browser; the
+runner cannot extract the PDF's text). Key terms as read:
+- The data is public domain, "offered free and without restriction". No indemnity clause.
+- Attribution should credit the City of Austin and the source department (here Austin Development Services). The City logo is not
+  to be used, and ProofNotFluff does not use it.
+- The City "may require the termination of any and all displays, distribution, or other use".
+- Confidentiality: users "will not take any measures to re-identify the data or to contact individuals whose information is
+  represented by the data" and "shall not combine the data with data from any other datasets for the purpose of re-identification
+  of individuals".
+Applied in the product: credit "City of Austin, Austin Development Services"; Terms clause "Businesses only" (contact businesses only,
+never identify or contact individual people or combine the data to do so); Availability clause (the City may stop or change the feed).
+"""
+
+
 def terms_text():
     """The City of Austin's own words, for the Legal desk and the product's disclaimer: the Issued Construction Permits
     dataset description (it carries Austin Development Services' data disclaimer) and the Open Data Terms of Use."""
@@ -509,7 +523,7 @@ def terms_text():
         parts += [f"== Terms of Use PDF {TERMS_PDF}", "", text.strip(), ""]
     except Exception as e:
         parts.append(f"Could not read the Terms of Use PDF {TERMS_PDF}: {e}")
-    return "\n".join(parts) + "\n"
+    return "\n".join(parts) + "\n" + TERMS_READ
 
 
 CENSUS = "https://geocoding.geo.census.gov/geocoder/locations/addressbatch"

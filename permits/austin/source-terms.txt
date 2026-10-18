@@ -22,3 +22,14 @@ Austin Development Services Data Disclaimer:
 
 (The PDF's text could not be extracted as words; the same Terms of Use are on the web at https://data.austintexas.gov/stories/s/ranj-cccq.)
 
+== City of Austin Open Data Terms of Use, read Oct 18, 2026 at https://data.austintexas.gov/stories/s/ranj-cccq (in Todd's browser; the
+runner cannot extract the PDF's text). Key terms as read:
+- The data is public domain, "offered free and without restriction". No indemnity clause.
+- Attribution should credit the City of Austin and the source department (here Austin Development Services). The City logo is not
+  to be used, and ProofNotFluff does not use it.
+- The City "may require the termination of any and all displays, distribution, or other use".
+- Confidentiality: users "will not take any measures to re-identify the data or to contact individuals whose information is
+  represented by the data" and "shall not combine the data with data from any other datasets for the purpose of re-identification
+  of individuals".
+Applied in the product: credit "City of Austin, Austin Development Services"; Terms clause "Businesses only" (contact businesses only,
+never identify or contact individual people or combine the data to do so); Availability clause (the City may stop or change the feed).

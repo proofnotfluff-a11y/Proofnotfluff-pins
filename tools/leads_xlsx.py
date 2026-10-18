@@ -450,16 +450,19 @@ def terms_text(date):
             "it and print it for that use. You may not resell, share, give away, upload or redistribute it, in original or edited form, or use it "
             "to make a competing product.",
             "Ownership. The selection, layout, text and formulas belong to ProofNotFluff. The permit records themselves are public City of Austin "
-            "data (City of Austin, Texas - data.austintexas.gov), used under the City of Austin Open Data Terms of Use. Buying a membership "
-            "doesn't transfer ownership.",
+            "data from the City of Austin, Austin Development Services (data.austintexas.gov), used under the City of Austin Open Data Terms of "
+            "Use. Buying a membership doesn't transfer ownership.",
+            "Businesses only. The list is for contacting the businesses named on it about work on their projects. The City of Austin's Open Data "
+            "Terms of Use require that you not use the data to identify or contact individual people, and not combine it with other data to "
+            "re-identify anyone. Use it only to reach businesses.",
             "Accuracy. The list is built from City of Austin permit records as of the date above. City data can be late, incomplete or wrong, and "
             "permits change. Confirm anything you rely on with the builder or the City. Valuation is the largest valuation filed on a project's "
             "City building permits, not a contract value. Map pins come from the City's coordinates or, where the City gives none, from the US "
             "Census Bureau's public geocoder, and can be off. A listed builder is not an invitation to bid.",
             "No promise of results. Valuations, stages and counts are figures from City records, not contract values or forecasts. Nothing "
             "here promises any work, contract, income or outcome.",
-            "Availability. The list depends on the City of Austin publishing its permit data. If the City stops or changes that data, or asks us "
-            "to stop using it, the list may pause or end, and future charges will stop. The map uses OpenStreetMap's free public map service, "
+            "Availability. The list depends on the City of Austin publishing its permit data. The City may stop or change its data feed at any "
+            "time, or require any use of it to end. If that happens the list may pause or end, and future charges will stop. The map uses OpenStreetMap's free public map service, "
             "which can limit or stop access at any time; the list and downloads work without it. Map data © OpenStreetMap contributors.",
             "No warranty. The product is provided \"as is\", without warranties of any kind, to the extent the law allows.",
             "Limit of liability. To the extent the law allows, ProofNotFluff is not liable for any loss or damage from using or relying on this "

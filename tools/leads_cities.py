@@ -109,8 +109,8 @@ AUSTIN = {
                    "The building permits are issued and work can start. The City has not extended or finaled any of them yet."],
     "nearMatch": ("SOME PERMITS FINALED",),
     "contacts": False,
-    "legal": ("Public City of Austin permit records, as of __ASOF__. Source: City of Austin, Texas - data.austintexas.gov, used under the "
-              "City of Austin Open Data Terms of Use and modified by ProofNotFluff (filtered, grouped into projects and shortened). "
+    "legal": ("Public City of Austin permit records, as of __ASOF__. Source: City of Austin, Austin Development Services, published on "
+              "data.austintexas.gov and used under the City of Austin Open Data Terms of Use and modified by ProofNotFluff (filtered, grouped into projects and shortened). "
               + AUSTIN_DISCLAIMER + " ProofNotFluff is not affiliated with or endorsed by the City of Austin, and no builder listed has "
               "endorsed or works with ProofNotFluff. You make your own calls and emails and are responsible for following the law when "
               "you do. Licensed to one business for its own prospecting; no reselling or republishing. Provided as is, without warranties "

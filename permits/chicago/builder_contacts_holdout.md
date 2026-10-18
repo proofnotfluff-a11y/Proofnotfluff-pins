@@ -4,7 +4,7 @@ Status, Oct 17, 2026, about 9 pm: **run.** Two independent checkers (opus, given
 
 ## What each checker gets
 
-Only the file path `permits/chicago/builder_contacts.json` and these rules, never the build notes:
+Only a decrypted copy of the contacts, written outside the repo with `python3 tools/builder_contacts.py --decrypt-to PATH` (the repo keeps only `permits/chicago/builder_contacts.enc.json`, since Oct 18, 2026), and these rules, never the build notes:
 
 - Re-open the `source` URL of every entry listed below. Confirm the phone, email and website in the file appear on that page and belong to the same company as `name` (name match plus a Chicago-area office or project).
 - Only the builder's own website counts. A directory, Yelp, BBB, LinkedIn, Google listing, data broker or aggregator as a source fails the entry.

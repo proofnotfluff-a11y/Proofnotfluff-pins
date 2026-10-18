@@ -18,8 +18,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run the checks
+        # LEADS_PASSWORD lets the builder-contacts check decrypt builder_contacts.enc.json in memory (never printed or written)
+        env:
+          LEADS_PASSWORD: ${{ secrets.LEADS_PASSWORD }}
         run: |
           set -o pipefail
+          pip install --quiet cryptography openpyxl || echo "packages not installed; builder contacts get the shape check only"
           python3 tools/check_repo.py | tee check.txt
       - name: Summary
         if: always()

@@ -17,8 +17,11 @@ Checks
   secrets       no token or private key pattern in any tracked text file
   permit-data   permits/*/sample.json holds business-level fields only, and no scope text carries a
                 reviewer, consultant, architect, engineer or owner tag (where a person's name can follow)
-  builder-contacts  permits/chicago/builder_contacts.json keeps tools/builder_contacts.py's rules: sources and sites on the
-                builder's own domain (never a directory or social site), general inboxes only, no person, no em dash
+  builder-contacts  no plain permits/chicago/builder_contacts.json in the repo (it is public); builder_contacts.enc.json is a
+                well-formed AES-256-GCM box and the do-not-list is a list of keys; with LEADS_PASSWORD set, the entries,
+                decrypted in memory, keep tools/builder_contacts.py's rules: sources and sites on the builder's own domain
+                (never a directory or social site), general inboxes only, no person, no em dash, do-not-list builders
+                with no phone or email
   video-specs   tools/spec_lint.py on every promo/specs/ spec: the content playbook's hard rules for Proof Check shorts
                 (make_demo.py refuses the same specs before rendering)
   voice         tools/voice_lint.py on the free site's page text (site/pages.json) and the email copy (email/): no
@@ -209,14 +212,42 @@ def check_permit_data():
     err("permit-data", "; ".join(bad)) if bad else ok("permit-data")
 
 
-def check_builder_contacts():
-    f = os.path.join(ROOT, "permits", "chicago", "builder_contacts.json")
-    if not os.path.exists(f):
-        return ok("builder-contacts", "no file")
+def check_builder_contacts(files):
+    """Legal desk round 2, Fix 1: this repo is public, so the contacts live only in builder_contacts.enc.json. A plain
+    builder_contacts.json in the repo is an error. With LEADS_PASSWORD set (CI passes the secret) the entries are
+    decrypted in memory and checked against tools/builder_contacts.py's rules; without it only the box's shape is."""
+    rel = "permits/chicago/"
+    if rel + "builder_contacts.json" in files:
+        return err("builder-contacts", "a plain permits/chicago/builder_contacts.json is in the repo; this repo is public, so the contacts "
+                   "live only in builder_contacts.enc.json (tools/builder_contacts.py --encrypt-from), never in the clear")
     spec = importlib.util.spec_from_file_location("builder_contacts", os.path.join(ROOT, "tools", "builder_contacts.py"))
     bc = importlib.util.module_from_spec(spec); spec.loader.exec_module(bc)
-    found = bc.problems(json.load(open(f, encoding="utf-8")))
-    err("builder-contacts", "; ".join(found[:6])) if found else ok("builder-contacts")
+    bad = bc.do_not_list_problems(os.path.join(ROOT, "permits", "chicago", "builder_do_not_list.json"))
+    f = os.path.join(ROOT, "permits", "chicago", "builder_contacts.enc.json")
+    if not os.path.exists(f):
+        return err("builder-contacts", "; ".join(bad)) if bad else ok("builder-contacts", "no file")
+    try:
+        box = json.load(open(f, encoding="utf-8"))
+    except ValueError:
+        return err("builder-contacts", "builder_contacts.enc.json does not parse")
+    bad += bc.box_problems(box)
+    if bad:
+        return err("builder-contacts", "; ".join(bad[:6]))
+    pw = os.environ.get("LEADS_PASSWORD", "")
+    if len(pw) < 12:
+        return ok("builder-contacts", "encrypted box checked; entries not checked without LEADS_PASSWORD")
+    try:
+        data = bc.load(f, pw)
+    except ImportError as e:
+        return ok("builder-contacts", f"encrypted box checked; entries not decrypted here ({e.name} is not installed)")
+    except Exception as e:
+        return err("builder-contacts", f"builder_contacts.enc.json did not decrypt with LEADS_PASSWORD ({type(e).__name__})")
+    found = bc.problems(data, bc.do_not_list(os.path.join(ROOT, "permits", "chicago", "builder_do_not_list.json")))
+    if found:
+        return err("builder-contacts", "; ".join(found[:6]))
+    old = bc.stale(data)
+    ok("builder-contacts", f"{len(data)} entries" + (f"; {len(old)} checked more than {bc.STALE_DAYS} days ago, run "
+                                                     "tools/builder_contacts.py --check" if old else ""))
 
 
 def check_video_specs(files):
@@ -278,7 +309,7 @@ def main():
     files = tracked()
     checks = [("json", lambda: check_json(files)), ("python", lambda: check_python(files)), ("calc-tests", check_calc),
               ("site-sync", lambda: check_site_sync(files)), ("drafts", check_drafts), ("em-dash", lambda: check_em_dash(files)),
-              ("secrets", lambda: check_secrets(files)), ("permit-data", check_permit_data), ("builder-contacts", check_builder_contacts), ("video-specs", lambda: check_video_specs(files)),
+              ("secrets", lambda: check_secrets(files)), ("permit-data", check_permit_data), ("builder-contacts", lambda: check_builder_contacts(files)), ("video-specs", lambda: check_video_specs(files)),
               ("voice", lambda: check_voice(files)),
               ("fiverr-kit", check_fiverr_kit),
               ("gate-tests", check_gate_tests)]

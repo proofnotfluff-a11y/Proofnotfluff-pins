@@ -112,16 +112,39 @@ def plants(tmp):
         out.append(("permit-data", "a personal field in the permit sample", edit(sample, personal_key)))
         out.append(("permit-data", "a reviewer tag in a permit scope", edit(sample, person_tag)))
 
-    contacts = os.path.join("permits", "chicago", "builder_contacts.json")
-    if os.path.exists(os.path.join(tmp, contacts)):
-        def first_verified(d):
-            return next(k for k, c in d.items() if c.get("status") == "verified")
-        def person_email(t):
-            d = json.loads(t); k = first_verified(d); d[k]["email"] = "jane.planted@" + d[k]["website"].split("//")[-1].strip("/").removeprefix("www."); return json.dumps(d)
-        def directory_source(t):
-            d = json.loads(t); d[first_verified(d)]["source"] = "https://www.yelp.com/biz/planted-builder"; return json.dumps(d)
-        out.append(("builder-contacts", "a person's email in the builder contacts", edit(contacts, person_email)))
-        out.append(("builder-contacts", "a directory as a builder contact source", edit(contacts, directory_source)))
+    # Builder contacts (Legal desk round 2, Fix 1): the repo is public, so a plain file coming back is an error, and the
+    # encrypted box must keep its shape. The entry plants decrypt and re-encrypt, so they run only with LEADS_PASSWORD.
+    out.append(("builder-contacts", "a plain builder_contacts.json back in the repo",
+                new_file(os.path.join("permits", "chicago", "builder_contacts.json"), json.dumps({"ACMEBUILDERS": {"name": "Acme Builders"}}))))
+    enc = os.path.join("permits", "chicago", "builder_contacts.enc.json")
+    if os.path.exists(os.path.join(tmp, enc)):
+        def weak_box(t):
+            d = json.loads(t); d["rounds"] = 1000; return json.dumps(d)
+        out.append(("builder-contacts", "the encrypted contacts box with weak key rounds", edit(enc, weak_box)))
+        pw = os.environ.get("LEADS_PASSWORD", "")
+        try:
+            sys.path.insert(0, os.path.join(tmp, "tools"))
+            from leads_page import decrypt, encrypt
+        except ImportError:
+            pw = ""
+        if len(pw) >= 12:
+            def reseal(fn):
+                def go(t):
+                    d = json.loads(decrypt(pw, json.loads(t))); fn(d); return json.dumps(encrypt(pw, json.dumps(d).encode()))
+                return go
+            def first_verified(d):
+                return next(k for k, c in d.items() if c.get("status") == "verified")
+            def person_email(d):
+                k = first_verified(d); d[k]["email"] = "jane.planted@" + d[k]["website"].split("//")[-1].strip("/").removeprefix("www.")
+            def directory_source(d):
+                d[first_verified(d)]["source"] = "https://www.yelp.com/biz/planted-builder"
+            out.append(("builder-contacts", "a person's email in the builder contacts", edit(enc, reseal(person_email))))
+            out.append(("builder-contacts", "a directory as a builder contact source", edit(enc, reseal(directory_source))))
+            dnl = os.path.join("permits", "chicago", "builder_do_not_list.json")
+            def removed_but_verified(_):
+                d = json.loads(decrypt(pw, json.load(open(os.path.join(tmp, enc), encoding="utf-8"))))
+                return json.dumps([next(k for k, c in d.items() if c.get("status") == "verified")])
+            out.append(("builder-contacts", "a do-not-list builder that still has a verified contact", edit(dnl, removed_but_verified)))
 
     example = os.path.join("promo", "specs", "examples", "f2-spot-the-mistake-40-rate.json")
     if os.path.exists(os.path.join(tmp, example)):

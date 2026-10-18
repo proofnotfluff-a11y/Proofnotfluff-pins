@@ -12,3 +12,6 @@ engines/premium-ecom-13-week-cash-flow/
 engines/cleaning-business-kit/r/
 engines/etsy-true-profit/r/
 dashboard/shots/
+
+# Builder contacts stay encrypted in this public repo (Legal desk round 2, Fix 1): builder_contacts.enc.json only
+permits/chicago/builder_contacts.json

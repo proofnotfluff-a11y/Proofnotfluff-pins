@@ -3,7 +3,7 @@
   "name": "City of Chicago Data Portal, Building Permits",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
   "rowsUpdatedAt": "2026-10-17T12:18:17+00:00",
-  "fetchedAt": "2026-10-18T02:42:43+00:00",
+  "fetchedAt": "2026-10-18T03:38:25+00:00",
   "modified": "Filtered by ProofNotFluff: permits issued in the last 24 months, new construction or renovation, reported cost $500,000 or more, still open (City status Active or Phased Permitting; complete, suspended, cancelled, revoked and expired permits left out), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs a construction clean under its permit (foundation, superstructure, caisson, demolition, roof, facade, mechanical, equipment or site work only) left out; cleaning companies listed as contractor left out; a revision of a permit already on the list counted once; only project-level and business fields kept.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
@@ -13,10 +13,10 @@
  },
  "counts": {
   "fetched": 3065,
-  "kept": 954,
+  "kept": 953,
   "excluded": {
-   "house or 2 to 3 flat": 615,
    "no construction clean (foundation, demolition, roof, mechanical or site work only)": 158,
+   "house or 2 to 3 flat": 616,
    "no commercial or apartment wording": 371,
    "one home inside a larger building": 28,
    "no interior finish work or new building named": 26,
@@ -26,10 +26,10 @@
   },
   "keptByType": {
    "Renovation": 677,
-   "New construction": 277
+   "New construction": 276
   },
-  "keptCost": 5021577000,
-  "keptUnits": 5242,
+  "keptCost": 5020827000,
+  "keptUnits": 5238,
   "topAreas": [
    [
     "Loop",
@@ -45,7 +45,7 @@
    ],
    [
     "West Town",
-    59
+    58
    ],
    [
     "Lincoln Park",

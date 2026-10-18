@@ -1698,7 +1698,7 @@ def leads_page_html(p):
                     if os.path.isfile(phone_f) else "")
                  + f'<img src="{rel}assets/{sdir}/workbook.png" width="{w2}" height="{h2}" loading="eager" decoding="async" alt="{E(alt2)}">'
                  + ('</picture>' if os.path.isfile(phone_f) else "") +
-                 '<figcaption>The Excel file, filters on every column</figcaption></figure></div></section>')
+                 f'<figcaption>{E(p.get("shotCapBook", "The Excel file, filters on every column"))}</figcaption></figure></div></section>')
     if p.get("kitForm"):
         form = (f'<form class="ld-form" action="https://app.kit.com/forms/{E(p["kitForm"])}/subscriptions" method="post">'
                 '<label for="ldEmail">Email</label><div class="ld-frow"><input id="ldEmail" name="email_address" type="email" required autocomplete="email">'

@@ -55,6 +55,7 @@ def capture(ctx, base, pw, wb_path, out, no_tiles, check):
         pg.add_style_tag(content=".split{display:block!important}.mapbox{display:none!important}")
     pg.wait_for_timeout(1200)
     pg.evaluate("window.scrollTo(0,0)")
+    pg.mouse.move(1055, 360)   # an empty spot, so no row shows its hover tint
     settle(pg)
     pg.screenshot(path=os.path.join(out, "members-list.png"))
     pg.close()
@@ -65,8 +66,8 @@ def capture(ctx, base, pw, wb_path, out, no_tiles, check):
     im = Image.open(src).convert("RGB")
     w = min(im.width, int(im.height * 1200 / 772))
     im.crop((0, 0, w, int(w * 772 / 1200))).resize((1200, 772), Image.LANCZOS).save(os.path.join(out, "workbook.png"))
-    # the phone crop: the KPI band and the first columns (address, valuation, builder, ZIP code, stage, type), readable at 360 px
-    cw = min(im.width, int(im.width * 0.53))
+    # the phone crop: the KPI band and the first columns (address, valuation, builder, ZIP code, stage), readable at 360 px
+    cw = min(im.width, int(im.width * 0.455))
     im.crop((0, 0, cw, int(cw * 0.75))).resize((900, 675), Image.LANCZOS).save(os.path.join(out, "workbook-phone.png"))
     sizes = [Image.open(os.path.join(out, f)).size for f in ("members-list.png", "workbook.png", "workbook-phone.png")]
     check(sizes == [(1064, 665), (1200, 772), (900, 675)], f"captured the free page's screenshots into {out}: {sizes}")

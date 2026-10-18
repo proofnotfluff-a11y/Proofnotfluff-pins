@@ -22,14 +22,14 @@ Why: Gemini's red team (Oct 17) and the COO agree that waiting for traffic is th
 
 ## The email (one per company; {fields} filled from the list)
 
-Fields, all from that Monday's permits/chicago/sample.json: {projects} = counts.kept, {near} = counts.nearFinish, {area} = the example's community area.
-{example}, one line: `{address}, {area}: {type in lower case}{, N homes when units is set}, {cost} reported cost, general contractor {first name in gc}, {stage}.` Cost in words as the free page writes it ("$6.3 million", "$245 million"). Stage words: "Certificate Of Occupancy Pending (...)" = partial occupancy approved; "Inspections (...)" or "Inspections" = inspections under way; "Permit Issued (...)" = permit issued.
-Picking {example}: from the nearFinish array, the project in the prospect's own community area, else the largest; the follow-up uses the next one on that list, never the first email's (CRM `firstExample` holds its permit number).
+Fields, all from that Monday's permits/chicago/sample.json: {projects} = counts.kept and {near} = counts.nearFinish, written with a thousands comma ("1,134"); {area} = the example's community area.
+{example}, one line: `{address}, {area}: {type in lower case}{, N homes when units is set}, {cost} reported cost, general contractor {first name in gc}, {stage}.` Cost in words: "$850,000" under $1 million, one decimal under $100 million ("$6.3 million", "$71.0 million"), whole millions from $100 million ("$245 million"), two decimals for billions ("$1.25 billion"). Stage words: "Certificate Of Occupancy Pending (...)" = partial occupancy approved; "Inspections (...)" or "Inspections" = inspections under way; "Permit Issued (...)" = permit issued.
+Picking {example}: from the nearFinish array, the project in the prospect's own community area (CRM `area`), else the largest; the follow-up uses the next one on that list, never the first email's (CRM `firstExample` holds its permit number).
 Example: `250 E Superior St, Near North Side: renovation, $6.3 million reported cost, general contractor Berglund Construction Company, partial occupancy approved.`
 
 Subject:
 ```
-A {area} job close to a final clean
+{area} job close to a final clean
 ```
 
 Body:
@@ -68,7 +68,7 @@ One more from this week's Chicago list, in case it helps:
 
 {example}
 
-The list has {projects} open projects with the general contractor on each, and {near} have partial occupancy approved. It updates every Monday. Free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/
+The list has {projects} open projects with the general contractor on each, and {near} have partial occupancy approved. It updates every Monday and is $29 a month. Free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/
 
 If it isn't a fit, reply "no thanks" and we won't email you again.
 
@@ -82,3 +82,4 @@ This is an advertisement for ProofNotFluff's paid list. This is our last email u
 ## Review verdicts
 (email/COPY_REVIEW.md; newest last)
 - Oct 18, 2026, round 1 (fresh reviewer): FAIL, 3.50. The example sat at the end of a long paragraph with no format or picking rule, two links, a filler opener, a bump-only follow-up. Rewritten: the job first, one link, a format and picking rule for {example}, a follow-up with a new job.
+- Oct 18, 2026, round 2 (fresh reviewer): PASS, 4.75. Applied: subject without "A" (vowel areas), thousands commas, a full cost-wording rule, the CRM area field named, the follow-up states the price.

@@ -35,13 +35,13 @@ From the projects and nearFinish arrays of that Monday's file (one list, de-dupl
    - West: 78620, 78732, 78733, 78734, 78735, 78736, 78738, 78746 (west Austin, Lakeway, Bee Cave, Dripping Springs)
    A prospect whose area fits none of these, or whose side has no project, uses Central.
 3. On that side: Near finish first, then Work under way, then Permit issued; within a stage, the largest valuation.
-4. The follow-up uses the next project on the same ordered list, never the one in the first email (the CRM's `firstExample` field holds the first email's master permit).
+4. The follow-up uses the next project on the same ordered list, never the one in the first email (the CRM's `firstExample` field holds the first email's master permit). If the prospect's side has no next project, the follow-up uses the first Central project not already sent to that prospect.
 
 ## First email
 
 Subject:
 ```
-An Austin job in {zip} and its builder
+Austin job in {zip} that will need a final clean
 ```
 
 Body:
@@ -76,7 +76,7 @@ One more from this week's Austin list, in case it helps:
 
 {example}
 
-The list has {projects} open projects with the general contractor on each, closest to a final clean first, and it updates every Monday. Free sample: https://proofnotfluff.com/austin-construction-cleaning-leads/
+The list has {projects} open projects with the general contractor on each, closest to a final clean first. It updates every Monday and is $29 a month. Free sample: https://proofnotfluff.com/austin-construction-cleaning-leads/
 
 If it isn't a fit, reply "no thanks" and we won't email you again.
 
@@ -92,3 +92,4 @@ The first email's body without the "Hi {Company} team," line, the footer kept, s
 ## Review verdicts
 (email/COPY_REVIEW.md; newest last)
 - Oct 18, 2026, round 1 (fresh reviewer): FAIL, 4.60 (bar: above 4.6). Fixed: subject names the job's ZIP, tower and campus finish-outs and remodels over $100 million left out as examples, paragraphs 3 and 4 shortened, one-decimal valuations under $100 million, no "near you" when the prospect's side has no job.
+- Oct 18, 2026, round 2 (fresh reviewer): PASS, 4.75. Applied: the subject says why a cleaner cares, the follow-up states the price, a West prospect's follow-up falls back to Central.

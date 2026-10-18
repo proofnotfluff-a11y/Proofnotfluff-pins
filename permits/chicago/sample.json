@@ -3,17 +3,17 @@
   "name": "City of Chicago Data Portal, Building Permits",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
   "rowsUpdatedAt": "2026-10-17T12:18:17+00:00",
-  "fetchedAt": "2026-10-18T04:28:23+00:00",
+  "fetchedAt": "2026-10-18T05:03:06+00:00",
   "modified": "Filtered by ProofNotFluff: permits issued in the last 24 months, new construction or renovation, reported cost $500,000 or more, still open (City status Active or Phased Permitting; complete, suspended, cancelled, revoked and expired permits left out), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs a construction clean under its permit (foundation, superstructure, caisson, demolition, roof, facade, mechanical, equipment or site work only) left out; cleaning companies listed as contractor left out; a revision of a permit already on the list counted once; only project-level and business fields kept.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
-  "from": "2024-10-17",
+  "from": "2024-10-18",
   "to": "2026-10-18"
  },
  "counts": {
-  "fetched": 3068,
-  "kept": 1122,
+  "fetched": 3065,
+  "kept": 1120,
   "excluded": {
    "no construction clean (foundation, demolition, roof, mechanical or site work only)": 236,
    "house or 2 to 3 flat": 614,
@@ -21,16 +21,16 @@
    "no interior finish work or new building named": 47,
    "one home inside a larger building": 34,
    "no business listed as general contractor": 4,
-   "closed, complete or suspended": 897,
+   "closed, complete or suspended": 896,
    "apartment building with no unit count (could be a 2 or 3 flat)": 6,
    "revision of a permit already listed": 13
   },
   "keptByType": {
-   "New construction": 321,
-   "Renovation": 801
+   "New construction": 320,
+   "Renovation": 800
   },
-  "keptCost": 8625421115,
-  "keptUnits": 5787,
+  "keptCost": 8619421115,
+  "keptUnits": 5763,
   "topAreas": [
    [
     "Loop",

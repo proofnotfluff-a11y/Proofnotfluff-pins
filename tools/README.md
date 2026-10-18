@@ -126,6 +126,7 @@ Same encryption as leads_page.py (AES-256-GCM, PBKDF2-SHA256 at 250,000 rounds, 
 
 - `LEADS_PASSWORD=... python3 tools/leads_app.py chicago-full.json leads.xlsx docs/chicago-leads-members-v2/index.html` (the permits workflow does this every Monday)
 - `python3 tools/leads_app.py --pw-file PATH --from-review permits/chicago/review.enc.json OUT.html` rebuilds the week offline from the encrypted review set (previews, checks)
+- `.github/workflows/leads-app-check.yml` (manual run): opens the published preview on a GitHub runner, unlocks it, and confirms Leaflet loaded from cdnjs with its SRI hash, the OpenStreetMap tiles drew and the console stayed clean; it keeps only map-pane screenshots for one day (the cloud cannot reach cdnjs or the tile servers)
 - `python3 tools/leads_app.py --selftest` (ciphertext only in the page, legal line word for word, Leaflet pinned with SRI, contacts cleaned, review rebuild, voice and em dash checks)
 
 The preview lives at docs/chicago-leads-members-v2/ (noindex, linked from nowhere). docs/chicago-leads-members/ stays on leads_page.py until the gates pass and Todd says go: that path is in buyers' Gumroad receipts.

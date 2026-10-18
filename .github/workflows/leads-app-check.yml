@@ -1,0 +1,66 @@
+name: Leads app live check
+# Members' app v2 (tools/leads_app.py): the cloud agents cannot reach cdnjs or the OpenStreetMap tile servers, so this
+# runner opens the published preview the way a buyer does, unlocks it with the members' password, and confirms Leaflet
+# loaded from cdnjs with its SRI hash, the map tiles drew and the console stayed clean. It keeps only screenshots of the
+# map pane (no list text) as a one-day artifact for the design director. Manual runs only.
+on:
+  workflow_dispatch:
+    inputs:
+      path:
+        description: "Page path on proofnotfluff.com"
+        default: "/chicago-leads-members-v2/"
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Open the live preview
+        env:
+          LEADS_PASSWORD: ${{ secrets.LEADS_PASSWORD }}
+          PAGE: https://proofnotfluff.com${{ github.event.inputs.path }}
+        run: |
+          pip install --quiet playwright==1.48.0
+          python3 -m playwright install --with-deps chromium > /dev/null
+          mkdir -p shots
+          cat > check.py <<'PY'
+          import os, sys
+          from playwright.sync_api import sync_playwright
+          bad = []
+          with sync_playwright() as p:
+              b = p.chromium.launch()
+              for w, h, mob in ((1280, 900, False), (390, 844, True)):
+                  ctx = b.new_context(viewport={"width": w, "height": h}, is_mobile=mob, has_touch=mob, device_scale_factor=2)
+                  pg = ctx.new_page()
+                  errs = []
+                  pg.on("pageerror", lambda e: errs.append(str(e)))
+                  pg.on("console", lambda m: errs.append(m.text) if m.type == "error" else None)
+                  pg.goto(os.environ["PAGE"] + "#/projects?view=map", wait_until="networkidle")
+                  pg.fill("#pw", os.environ["LEADS_PASSWORD"])
+                  pg.click("#go")
+                  pg.wait_for_selector("#map .leaflet-tile-loaded", timeout=45000)
+                  pg.wait_for_timeout(3000)
+                  ok_l = pg.evaluate("!!window.L && !!STATE.map")
+                  tiles = pg.evaluate("document.querySelectorAll('#map .leaflet-tile-loaded').length")
+                  marks = pg.evaluate("STATE.layer.getLayers().length")
+                  print(f"{w}px: leaflet={ok_l} tiles={tiles} markers={marks} errors={len(errs)}")
+                  if not ok_l or tiles < 4 or marks < 1 or errs:
+                      bad.append(f"{w}px {errs[:2]}")
+                  pg.locator("#mapbox").screenshot(path=f"shots/map-{w}.png")
+                  pg.evaluate("location.hash='#/project/'+P.find(p=>p.st===0&&p.lat).id")
+                  pg.wait_for_selector("#minimap .leaflet-tile-loaded", timeout=30000)
+                  pg.wait_for_timeout(1500)
+                  pg.locator("#minimap").screenshot(path=f"shots/minimap-{w}.png")
+                  ctx.close()
+          if bad:
+              sys.exit("FAIL " + "; ".join(bad))
+          print("PASS")
+          PY
+          python3 check.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: leads-app-map-shots
+          path: shots/
+          retention-days: 1

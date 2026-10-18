@@ -3,7 +3,7 @@
   "name": "City of Chicago Data Portal, Building Permits",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
   "rowsUpdatedAt": "2026-10-17T12:18:17+00:00",
-  "fetchedAt": "2026-10-18T05:03:06+00:00",
+  "fetchedAt": "2026-10-18T05:21:32+00:00",
   "modified": "Filtered by ProofNotFluff: permits issued in the last 24 months, new construction or renovation, reported cost $500,000 or more, still open (City status Active or Phased Permitting; complete, suspended, cancelled, revoked and expired permits left out), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs a construction clean under its permit (foundation, superstructure, caisson, demolition, roof, facade, mechanical, equipment or site work only) left out; cleaning companies listed as contractor left out; a revision of a permit already on the list counted once; only project-level and business fields kept.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
@@ -13,32 +13,33 @@
  },
  "counts": {
   "fetched": 3065,
-  "kept": 1120,
+  "kept": 1134,
   "excluded": {
-   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 236,
-   "house or 2 to 3 flat": 614,
-   "no commercial or apartment wording": 95,
-   "no interior finish work or new building named": 47,
-   "one home inside a larger building": 34,
-   "no business listed as general contractor": 4,
+   "house or 2 to 3 flat": 591,
+   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 248,
+   "no commercial or apartment wording": 82,
+   "no interior finish work or new building named": 38,
+   "common areas only, no homes worked on": 7,
+   "apartment building with no unit count (could be a 2 or 3 flat)": 9,
+   "one home inside a larger building": 40,
+   "no business listed as general contractor": 5,
    "closed, complete or suspended": 896,
-   "apartment building with no unit count (could be a 2 or 3 flat)": 6,
-   "revision of a permit already listed": 13
+   "revision or second listing of a permit already listed": 15
   },
   "keptByType": {
-   "New construction": 320,
-   "Renovation": 800
+   "New construction": 335,
+   "Renovation": 799
   },
-  "keptCost": 8619421115,
-  "keptUnits": 5763,
+  "keptCost": 8745615902,
+  "keptUnits": 5798,
   "topAreas": [
    [
     "Loop",
-    161
+    160
    ],
    [
     "Near North Side",
-    142
+    139
    ],
    [
     "Near West Side",
@@ -46,22 +47,22 @@
    ],
    [
     "West Town",
-    65
+    68
    ],
    [
     "Lincoln Park",
-    53
+    55
    ],
    [
     "Lake View",
-    41
+    42
    ],
    [
     "Logan Square",
-    29
+    31
    ],
    [
-    "O'Hare",
+    "Uptown",
     26
    ]
   ],
@@ -89,12 +90,12 @@
    {
     "name": "Bulley & Andrews, L.L.C.",
     "projects": 21,
-    "cost": 170137361
+    "cost": 164987361
    },
    {
-    "name": "Clune Construction Company, L.P.",
+    "name": "Leopardo Construction Inc",
     "projects": 16,
-    "cost": 62552408
+    "cost": 79589105
    },
    {
     "name": "Development Solutions, Inc",
@@ -102,32 +103,32 @@
     "cost": 49137018
    },
    {
-    "name": "Bear Construction Company",
-    "projects": 16,
-    "cost": 23899000
-   },
-   {
-    "name": "Leopardo Construction Inc",
-    "projects": 15,
-    "cost": 78989105
-   },
-   {
     "name": "Redmond Construction Corp.",
     "projects": 15,
     "cost": 76275690
    },
    {
-    "name": "Pintauro Construction Company LLC",
-    "projects": 13,
-    "cost": 59609486
+    "name": "Clune Construction Company, L.P.",
+    "projects": 15,
+    "cost": 61802408
+   },
+   {
+    "name": "Bear Construction Company",
+    "projects": 15,
+    "cost": 22799000
    },
    {
     "name": "Reed Construction LLC",
+    "projects": 14,
+    "cost": 16316746
+   },
+   {
+    "name": "F.H. Paschen, S.N. Nielsen & Associates, LLC.",
     "projects": 13,
-    "cost": 15040746
+    "cost": 660489247
    }
   ],
-  "nearFinish": 20
+  "nearFinish": 21
  },
  "projects": [
   {
@@ -136,6 +137,7 @@
    "type": "New construction",
    "scope": "Full building permit for the superstructure, enclosure, and interior fit out of satellite 1 concourse terminal building at o'hare international...",
    "units": null,
+   "sleeping": null,
    "cost": 730000000,
    "address": "10000 W Ohare St",
    "communityArea": "O'Hare",
@@ -153,6 +155,7 @@
    "type": "New construction",
    "scope": "Interior buildout of new 7-story casino, parking, and event center building and 34-story hotel tower...",
    "units": null,
+   "sleeping": null,
    "cost": 580000000,
    "address": "705 W Chicago Ave",
    "communityArea": "West Town",
@@ -170,6 +173,7 @@
    "type": "Renovation",
    "scope": "Work is to include construction of an elevated transit station on the loop elevated line at state street and lake street, and also improvements at...",
    "units": null,
+   "sleeping": null,
    "cost": 445000000,
    "address": "200 N State St",
    "communityArea": "Loop",
@@ -187,6 +191,7 @@
    "type": "New construction",
    "scope": "Core and shell permit for the new construction of a 7-story casino, parking, and event center building and 34-story hotel tower...",
    "units": null,
+   "sleeping": null,
    "cost": 396200000,
    "address": "705 W Chicago Ave",
    "communityArea": "West Town",
@@ -204,6 +209,7 @@
    "type": "Renovation",
    "scope": "Phase 3 of 3 interior & exterior alterations to existing 17-story office building to include installation of new exterior window wall system",
    "units": null,
+   "sleeping": null,
    "cost": 292000000,
    "address": "171 N La Salle St",
    "communityArea": "Loop",
@@ -221,6 +227,7 @@
    "type": "New construction",
    "scope": "Trad. Ds - 2019 cbc: interior fit out phase for proposed 8 story (above grade) medical center. Occupancy: i - instit and b - business, accessory...",
    "units": null,
+   "sleeping": null,
    "cost": 263000000,
    "address": "5644 S Drexel Ave",
    "communityArea": "Hyde Park",
@@ -238,6 +245,7 @@
    "type": "Renovation",
    "scope": "Ds 2019 cbrc: revision to full building permit 101056000 for the renovation of existing space and addition of approximately 35,960 SF at terminal 3...",
    "units": null,
+   "sleeping": null,
    "cost": 250000000,
    "address": "10000 W Ohare Airport",
    "communityArea": "O'Hare",
@@ -255,6 +263,7 @@
    "type": "New construction",
    "scope": "Full building permit for floors lower level 2 through roof, including 6th floor exterior amentity deck and pool. 46-story building containing 464...",
    "units": 464,
+   "sleeping": null,
    "cost": 190000000,
    "address": "931 N Halsted St",
    "communityArea": "Near North Side",
@@ -272,6 +281,7 @@
    "type": "New construction",
    "scope": "New construction of a 6-floor plus basement concrete building...",
    "units": null,
+   "sleeping": null,
    "cost": 162000000,
    "address": "1144 W Loyola Ave",
    "communityArea": "Rogers Park",
@@ -289,6 +299,7 @@
    "type": "New construction",
    "scope": "Full building permit for the new construction of a 31-story residential building (154 efficiency units & 339 dwelling units) toinclude ground floor...",
    "units": 493,
+   "sleeping": null,
    "cost": 155000000,
    "address": "370 N Morgan St",
    "communityArea": "Near West Side",
@@ -306,6 +317,7 @@
    "type": "Renovation",
    "scope": "Phase 3 of 3: interior alterations to existing 7-story office building to convert to a data center...",
    "units": null,
+   "sleeping": null,
    "cost": 151112046,
    "address": "400 S La Salle St",
    "communityArea": "Loop",
@@ -323,6 +335,7 @@
    "type": "New construction",
    "scope": "Core and shell permit for the new construction of a 44' tall one story, approximately 84,979 SF quantum computing facility with associated support...",
    "units": null,
+   "sleeping": null,
    "cost": 100000000,
    "address": "3733 E 87th St",
    "communityArea": "South Chicago",
@@ -340,6 +353,7 @@
    "type": "Renovation",
    "scope": "Erect new 3 story training facility and office building. Work to include sitework, landscape and new trash enclosure...",
    "units": null,
+   "sleeping": null,
    "cost": 100000000,
    "address": "349 N Pulaski Rd",
    "communityArea": "West Garfield Park",
@@ -357,6 +371,7 @@
    "type": "New construction",
    "scope": "New construction for a one story 73,485 SF storage facility, containing a storage (S-1) classification with a business (b) classification as an...",
    "units": null,
+   "sleeping": null,
    "cost": 92420000,
    "address": "4443 S Western Blvd",
    "communityArea": "New City",
@@ -374,6 +389,7 @@
    "type": "New construction",
    "scope": "Full building permit for the construction of new midfield cooling plant (mcp) (o'hare building 240), midfield cooling tower (o'hare building 241)...",
    "units": null,
+   "sleeping": null,
    "cost": 85000000,
    "address": "10000 W Ohare St",
    "communityArea": "O'Hare",
@@ -391,6 +407,7 @@
    "type": "Renovation",
    "scope": "Aa ord l concourse. Interior renovation, limited relocation of concessions program, updated building systems, reconfiguration of 3 boarding gates...",
    "units": null,
+   "sleeping": null,
    "cost": 85000000,
    "address": "11601 W Touhy Ave",
    "communityArea": "O'Hare",
@@ -408,6 +425,7 @@
    "type": "Renovation",
    "scope": "Interior alterations to floors b1, 1 and 3 thru 9 in an existing high-rise office building for google...",
    "units": null,
+   "sleeping": null,
    "cost": 85000000,
    "address": "171 N La Salle St",
    "communityArea": "Loop",
@@ -425,6 +443,7 @@
    "type": "Renovation",
    "scope": "Renovation to existing lab/office building on floors 2, 4, 6, 7 and penthouse 1 for expansion of labs to include mechanical penthouse addition on...",
    "units": null,
+   "sleeping": null,
    "cost": 81315000,
    "address": "710 N Fairbanks Ct",
    "communityArea": "Near North Side",
@@ -442,6 +461,7 @@
    "type": "Renovation",
    "scope": "Interior buildout to existing 24-story mixed-use, office building to convert into multi-family residential building with 320 residential units...",
    "units": 320,
+   "sleeping": null,
    "cost": 71650000,
    "address": "500 N Michigan Ave",
    "communityArea": "Near North Side",
@@ -454,11 +474,30 @@
    "lon": -87.624277
   },
   {
+   "permit": "101069018",
+   "issued": "2025-05-13",
+   "type": "Renovation",
+   "scope": "New metra rail transit platform to be built on reinforced concrete pilecaps with micropile foundations. New metra rail tranit platform extension...",
+   "units": null,
+   "sleeping": null,
+   "cost": 71000000,
+   "address": "89 E Randolph St",
+   "communityArea": "Loop",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "F.H. Paschen, S.N. Nielsen & Associates, LLC."
+   ],
+   "lat": 41.884393,
+   "lon": -87.624783
+  },
+  {
    "permit": "101032812",
    "issued": "2024-11-22",
    "type": "New construction",
    "scope": "Full building and associated site work for a 21-story residential apartment building with 386 units, parking garage and ground floor retail. R-2...",
    "units": 386,
+   "sleeping": null,
    "cost": 60705000,
    "address": "1010 S Wells St",
    "communityArea": "Loop",
@@ -476,6 +515,7 @@
    "type": "New construction",
    "scope": "Construct new 1 story addition to an existing 1 story warehouse building",
    "units": null,
+   "sleeping": null,
    "cost": 52000000,
    "address": "1650 E 95th St",
    "communityArea": "South Deering",
@@ -493,6 +533,7 @@
    "type": "Renovation",
    "scope": "Interior alterations to existing 24-story office building to convert floors 4-24 to residential apartments (252 dwelling units) to include window...",
    "units": 252,
+   "sleeping": null,
    "cost": 51000000,
    "address": "65 E Wacker Pl",
    "communityArea": "Loop",
@@ -510,6 +551,7 @@
    "type": "Renovation",
    "scope": "Interior alterations to levels b2, b1, l1, and l2 for building shared amenity space...",
    "units": null,
+   "sleeping": null,
    "cost": 50118593,
    "address": "100 W Randolph St",
    "communityArea": "Loop",
@@ -527,6 +569,7 @@
    "type": "Renovation",
    "scope": "Full building permit: mixed-use commercial 3 story building addition to united center and will include 266 off street parking spaces and 10 off...",
    "units": null,
+   "sleeping": null,
    "cost": 50000000,
    "address": "1901 W Madison St",
    "communityArea": "Near West Side",
@@ -537,23 +580,6 @@
    ],
    "lat": 41.881241,
    "lon": -87.674283
-  },
-  {
-   "permit": "101069926",
-   "issued": "2026-06-22",
-   "type": "Renovation",
-   "scope": "Interior and exterior alterations to existing 17 story office building to convert it to a mixed-use building with ground floor retail use, hotel use...",
-   "units": 175,
-   "cost": 50000000,
-   "address": "19 S La Salle St",
-   "communityArea": "Loop",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Power Construction Company, LLC"
-   ],
-   "lat": 41.881419,
-   "lon": -87.632203
   }
  ],
  "nearFinish": [
@@ -563,6 +589,7 @@
    "type": "Renovation",
    "scope": "Alterations to existing 2nd floor cafeteria/dining space to accommodate neurodiagnostic/pft testing clinic space...",
    "units": null,
+   "sleeping": null,
    "cost": 6268000,
    "address": "250 E Superior St",
    "communityArea": "Near North Side",
@@ -580,6 +607,7 @@
    "type": "New construction",
    "scope": "First time build out of 23rd floor office space. Work to include construction of non-load bearing partitions, ceilings, finishes, and associated MEP...",
    "units": null,
+   "sleeping": null,
    "cost": 5279012,
    "address": "333 W Wolf Point Plz",
    "communityArea": "Near North Side",
@@ -597,6 +625,7 @@
    "type": "New construction",
    "scope": "New construction of a proposed 3-story multi-family residential building with 12 dwelling units...",
    "units": 12,
+   "sleeping": null,
    "cost": 5100000,
    "address": "4540 S State St",
    "communityArea": "Grand Boulevard",
@@ -614,6 +643,7 @@
    "type": "Renovation",
    "scope": "Interior alterations to 1st and 2nd floor retail space for new day care, exterior extension of private sidewalk, installation of protective bollards...",
    "units": null,
+   "sleeping": null,
    "cost": 2750000,
    "address": "727 N Milwaukee Ave",
    "communityArea": "West Town",
@@ -631,6 +661,7 @@
    "type": "Renovation",
    "scope": "Alterations to existing office space, suites 2600 and 2652",
    "units": null,
+   "sleeping": null,
    "cost": 2500000,
    "address": "227 W Monroe St",
    "communityArea": "Loop",
@@ -648,6 +679,7 @@
    "type": "Renovation",
    "scope": "Existing zoning pd 779, no change. 14,834 s.f. Full/partial floor tenant interior improvements to the 25th floor of an existing 31 story building...",
    "units": null,
+   "sleeping": null,
    "cost": 2310400,
    "address": "540 W Madison St",
    "communityArea": "Near West Side",
@@ -665,6 +697,7 @@
    "type": "Renovation",
    "scope": "Landlord interior renovations to office floors 9, 22, suite 2330 on the 23rd floor, and suite 2625 on the 26th floor...",
    "units": null,
+   "sleeping": null,
    "cost": 2308056,
    "address": "1 N Franklin St",
    "communityArea": "Loop",
@@ -682,6 +715,7 @@
    "type": "New construction",
    "scope": "Erect new 3 story with basement 4 unit residential building with new 5 car detached garage with roof deck",
    "units": 4,
+   "sleeping": null,
    "cost": 2000000,
    "address": "2644 N Lakewood Ave",
    "communityArea": "Lincoln Park",
@@ -699,6 +733,7 @@
    "type": "Renovation",
    "scope": "Interior buildout of a new outpatient behavioral health office space in lower level of existing 4 story medical office building",
    "units": null,
+   "sleeping": null,
    "cost": 1988677,
    "address": "2740 W Foster Ave",
    "communityArea": "Lincoln Square",
@@ -716,6 +751,7 @@
    "type": "Renovation",
    "scope": "5th floor addition - 8 additional units - to existing 4 story 24 unit building...",
    "units": 32,
+   "sleeping": null,
    "cost": 1900000,
    "address": "1537 N Orleans St",
    "communityArea": "Near North Side",

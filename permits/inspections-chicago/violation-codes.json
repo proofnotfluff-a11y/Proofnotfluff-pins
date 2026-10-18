@@ -1,5 +1,5 @@
 {
- "ranAt": "2026-10-18T03:26:50+00:00",
+ "ranAt": "2026-10-18T03:53:20+00:00",
  "since": "2026-09-06",
  "inspections": 1353,
  "codes": [
@@ -313,8 +313,8 @@
    "keywordHits": {
     "grease": 68,
     "plumbing": 68,
-    "rodent": 12,
     "insect": 14,
+    "rodent": 12,
     "grease_trap": 12,
     "exhaust": 8,
     "roach": 4,
@@ -656,15 +656,15 @@
    1
   ],
   [
+   "VENDING COMMISSARY",
+   1
+  ],
+  [
    "GAS STATION/RESTAURANT",
    1
   ],
   [
    "CATERING/CAFE",
-   1
-  ],
-  [
-   "VENDING COMMISSARY",
    1
   ],
   [

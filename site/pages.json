@@ -3738,6 +3738,58 @@
     "Derived on the page: profit at $23.00 = 23 - 12.10 - 23 x 0.0217 = 10.40; lowest price = 12.10 / (1 - 0.0217) = 12.37.",
     "docs/assets/pnf-calc.test.js handmade checks."
    ]
+  },
+  {
+   "slug": "chicago-restaurant-inspection-leads",
+   "kind": "restleads",
+   "segment": "home-services",
+   "city": "Chicago",
+   "draft": true,
+   "data": "permits/inspections-chicago/rest-sample.json",
+   "price": "39",
+   "title": "Chicago Restaurant Inspection Leads: Failed Inspections and New Openings | ProofNotFluff",
+   "desc": "Free weekly sample of Chicago food inspection leads: places with a failed or conditional City inspection by violation category, places about to open, and repeat failures, for pest control, hood cleaning, grease trap and kitchen cleaning companies.",
+   "eyebrow": "Free sample, updated every Monday",
+   "h1": "Chicago Restaurant Inspection Leads",
+   "lede": "For pest control, hood cleaning, grease trap and commercial kitchen cleaning companies, and vendors to new restaurants.",
+   "card": "Chicago restaurants with a fresh failed or conditional City inspection, sorted by violation category, and places about to open.",
+   "method": [
+    "Pick your category. A pest violation is a pest control lead, a ventilation or hood violation is a hood cleaning lead, and a waste water or grease trap violation is a grease trap lead.",
+    "Call within a few days of the inspection date, during a quiet hour (2 to 4 pm suits most kitchens). Name the City's public record and its date, and leave any judgment out of it.",
+    "Offer what helps before the re-inspection: a service visit, a service log or a cleaning record the inspector can see.",
+    "Work the openings list early. A place that just had its license inspection is choosing every vendor for the first time."
+   ],
+   "cta": {
+    "title": "Get the full list every Monday",
+    "text": "Every place on all three lists, named, with its address, community area, the City's result and date, our violation category with the City's violation codes, and its 24-month inspection history: in a members' web app with a map, filters by category, result, area and date, and CSV export, and in an Excel file. Plus a pitch kit: a call opener and an email for each trade."
+   },
+   "faq": [
+    [
+     "Where does this data come from?",
+     "The City of Chicago Data Portal's Food Inspections dataset. We pull it every Monday and keep the last 30 days of inspections up to the newest one the City has published, because the City posts results a few days late."
+    ],
+    [
+     "What do the categories mean?",
+     "They are our reading of the City's violation codes: Pests is violation 38 (insects, rodents and animals) and any inspector note naming pests; Hood is violation 56 when it names a hood, filter, exhaust or grease; Grease trap and drains is violation 52 and any note naming a grease trap, interceptor or clogged drain; Cleaning is violation 49 and cleaning notes under 53, 54, 55 and 60."
+    ],
+    [
+     "Who is left out?",
+     "Schools, day care and other children's sites, hospitals, senior and nursing sites, mobile vendors, any place whose business name is a person's name, and places the City last marked out of business."
+    ],
+    [
+     "Does a place on the list have a problem today?",
+     "Not necessarily. The list repeats the City's result on the inspection date. Many places pass a re-inspection within days, and the members' list shows that newer result next to the old one."
+    ],
+    [
+     "Do you contact these businesses for me?",
+     "No. You make your own calls and emails. We never contact anyone on your behalf, and no business listed has endorsed or works with ProofNotFluff."
+    ],
+    [
+     "Why doesn't this page show names?",
+     "On this public page we never name a business with a failed result. Members get the full list, licensed to their own business for its own sales calls."
+    ]
+   ],
+   "sources": "City of Chicago Data Portal, Food Inspections."
   }
  ]
 }

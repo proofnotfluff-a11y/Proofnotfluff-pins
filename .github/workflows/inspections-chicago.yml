@@ -34,14 +34,29 @@ jobs:
           name: inspections-full
           path: ${{ runner.temp }}/inspections-full.json
           retention-days: 3
-      # TODO (members' page): once a password secret exists for this product, build the workbook and the
-      # encrypted members' page here, and write the review set encrypted (never in the clear), the same way
-      # permits-chicago.yml does with LEADS_PASSWORD.
+      - name: Restaurant leads self-checks
+        run: |
+          python3 tools/rest_leads.py --selftest
+          python3 tools/rest_xlsx.py --selftest
+          python3 tools/rest_app.py --selftest
+          python3 tools/rest_site.py
+      - name: Free sample for the restaurant leads page (public; failed places are not named)
+        run: python3 tools/rest_leads.py --sample "$RUNNER_TEMP/inspections-raw.json" permits/inspections-chicago/rest-sample.json
+      - name: Build the restaurant members' app (encrypted; skipped until the REST_LEADS_PASSWORD secret exists)
+        env:
+          REST_LEADS_PASSWORD: ${{ secrets.REST_LEADS_PASSWORD }}
+        run: |
+          if [ -z "$REST_LEADS_PASSWORD" ]; then echo "no REST_LEADS_PASSWORD secret yet; members' app not built"; exit 0; fi
+          python3 tools/rest_leads.py "$RUNNER_TEMP/inspections-raw.json" "$RUNNER_TEMP/rest-data.json"
+          python3 tools/rest_xlsx.py "$RUNNER_TEMP/rest-data.json" "$RUNNER_TEMP/rest-leads.xlsx"
+          python3 tools/rest_app.py "$RUNNER_TEMP/rest-data.json" "$RUNNER_TEMP/rest-leads.xlsx" docs/chicago-restaurant-leads-members/index.html
+      - name: Rebuild the site pages from the new samples
+        run: python3 tools/make_site.py
       - name: Commit
         run: |
           git config user.name "proofnotfluff-bot"
           git config user.email "proofnotfluff-bot@users.noreply.github.com"
-          git add permits/inspections-chicago
+          git add permits/inspections-chicago docs
           if git diff --cached --quiet; then echo "no change"; exit 0; fi
           git commit -m "Chicago inspection leads data $(date -u +%Y-%m-%d)"
           for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done

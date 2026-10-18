@@ -132,3 +132,15 @@ Same encryption as leads_page.py (AES-256-GCM, PBKDF2-SHA256 at 250,000 rounds, 
 - `python3 tools/leads_app.py --selftest` (ciphertext only in the page, legal line word for word, Leaflet pinned with SRI, contacts cleaned, review rebuild, voice and em dash checks)
 
 The preview lives at docs/chicago-leads-members-v2/ (noindex, linked from nowhere). docs/chicago-leads-members/ stays on leads_page.py until the gates pass and Todd says go: that path is in buyers' Gumroad receipts.
+
+## Chicago Restaurant Inspection Leads: rest_*.py (Oct 2026, product 3, not launched)
+
+Weekly leads from the City's Food Inspections data for pest control, hood cleaning, grease trap and kitchen cleaning companies and vendors to new restaurants. One dataset feeds every surface, so they cannot drift.
+
+- `tools/inspections_chicago.py --raw RAW.json` (runner only): the City's raw rows for 37 days plus each candidate license's 24-month history, with the community area.
+- `tools/rest_seal.py seal|open` : the runner seals the raw pull to `permits/inspections-chicago/raw-seal.pub.pem` and commits `raw.sealed.json`; the private key lives only with the live session (scratchpad), which opens it for previews and holdout checks.
+- `tools/rest_leads.py RAW.json DATA.json` builds the lists (failed or conditional with a buyer category, opening soon, failed more than once), the violation categories, the exclusions (children's and medical sites, seniors, mobile vendors, person names, out of business) and each place's history. `--sample RAW.json OUT.json` writes the public sample (failed places unnamed). `--selftest`: 27 category cases on the City's real titles, 27 name cases, 16 planted inspections.
+- `tools/rest_xlsx.py DATA.json OUT.xlsx`: the workbook (Start Here, 1 Failed or conditional, 2 Opening soon, 3 Failed more than once, 4 Inspection history, 5 Pitch kit, Terms). It also holds the shared words: `PITCH` (a call opener and an email per trade) and `terms_text()`.
+- `tools/rest_app.py DATA.json OUT.xlsx docs/chicago-restaurant-leads-members/index.html` with `REST_LEADS_PASSWORD` (or `--pw-file`): the members' app (overview by trade, list with map and filters, place page with its inspection history, pitch kit, Terms, CSV, workbook download). Reuses leads_app.py's stylesheet and Leaflet pins by import and leads_page.py's encryption. `--selftest` checks ciphertext only, the City disclaimer word for word, Terms and pitch from rest_xlsx, browser helpers in node, voice and judgment words.
+- `tools/rest_site.py` (called by make_site.py for kind `restleads`): the free sample page; `python3 tools/rest_site.py` runs its selftest.
+- The inspections workflow runs all of it every Monday; the members' app is built only once the `REST_LEADS_PASSWORD` Actions secret exists.

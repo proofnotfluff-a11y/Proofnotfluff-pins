@@ -1728,6 +1728,9 @@ io.observe(hero);io.observe(cta)})();</script>"""
 def page_html(p):
     if p.get("kind") == "leads":
         return leads_page_html(p)
+    if p.get("kind") == "restleads":   # Chicago Restaurant Inspection Leads (tools/rest_site.py)
+        import rest_site
+        return rest_site.page_html(p)
     url = BASE + p["slug"] + "/"
     rel = "../"
     form, results, script = PAGE_KINDS[p["kind"]](p)
@@ -1903,7 +1906,7 @@ def main():
     spec = json.load(open(os.path.join(ROOT, "site", "pages.json"), encoding="utf-8"))
     pages = spec["pages"]
     for p in pages:
-        if p.get("kind") == "leads" and not os.path.isfile(os.path.join(ROOT, p["data"])):
+        if p.get("kind") in ("leads", "restleads") and not os.path.isfile(os.path.join(ROOT, p["data"])):
             print("skipped", p["slug"], "(no data yet)")
             continue
         out = os.path.join(DOCS, p["slug"]); os.makedirs(out, exist_ok=True)

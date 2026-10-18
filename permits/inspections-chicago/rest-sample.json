@@ -1,0 +1,400 @@
+{
+ "product": "Chicago Restaurant Inspection Leads",
+ "asOf": "2026-10-17",
+ "asOfText": "Oct 17, 2026",
+ "through": "2026-10-16",
+ "throughText": "Oct 16, 2026",
+ "window": {
+  "from": "2026-09-17",
+  "to": "2026-10-16",
+  "newFrom": "2026-10-10",
+  "repeatFrom": "2026-07-19"
+ },
+ "source": {
+  "name": "City of Chicago Data Portal, Food Inspections",
+  "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
+  "fetchedAt": "2026-10-18T03:26:55+00:00",
+  "rowsUpdatedAt": "2026-10-17T09:07:12+00:00",
+  "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
+  "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
+ },
+ "counts": {
+  "places": 247,
+  "flagged": 118,
+  "opening": 131,
+  "repeat": 24,
+  "new": 52,
+  "byCat": {
+   "pests": 81,
+   "hood": 23,
+   "drain": 13,
+   "clean": 96
+  },
+  "flaggedFail": 98,
+  "openingPassed": 93,
+  "excluded": {
+   "business name is a person's name": 2,
+   "school, day care, hospital, senior or mobile vendor": 69,
+   "the City's latest result is out of business or not located": 1
+  },
+  "rowsRead": 1151,
+  "historyRead": 767,
+  "areas": [
+   [
+    "Near West Side",
+    14
+   ],
+   [
+    "West Town",
+    14
+   ],
+   [
+    "Loop",
+    13
+   ],
+   [
+    "Lake View",
+    11
+   ],
+   [
+    "Logan Square",
+    11
+   ],
+   [
+    "West Ridge",
+    11
+   ],
+   [
+    "South Lawndale",
+    9
+   ],
+   [
+    "Austin",
+    9
+   ],
+   [
+    "Albany Park",
+    8
+   ],
+   [
+    "Grand Boulevard",
+    7
+   ],
+   [
+    "Humboldt Park",
+    7
+   ],
+   [
+    "Uptown",
+    6
+   ],
+   [
+    "Lincoln Park",
+    6
+   ],
+   [
+    "Near North Side",
+    6
+   ],
+   [
+    "Auburn Gresham",
+    5
+   ],
+   [
+    "O'Hare",
+    5
+   ],
+   [
+    "Irving Park",
+    5
+   ],
+   [
+    "Lower West Side",
+    5
+   ],
+   [
+    "South Shore",
+    5
+   ],
+   [
+    "Chatham",
+    5
+   ],
+   [
+    "McKinley Park",
+    4
+   ],
+   [
+    "Gage Park",
+    4
+   ],
+   [
+    "Hyde Park",
+    4
+   ],
+   [
+    "West Elsdon",
+    4
+   ],
+   [
+    "Greater Grand Crossing",
+    4
+   ],
+   [
+    "Brighton Park",
+    4
+   ],
+   [
+    "Lincoln Square",
+    4
+   ],
+   [
+    "Roseland",
+    3
+   ],
+   [
+    "Dunning",
+    3
+   ],
+   [
+    "Garfield Ridge",
+    3
+   ],
+   [
+    "North Lawndale",
+    3
+   ],
+   [
+    "North Center",
+    3
+   ],
+   [
+    "East Garfield Park",
+    3
+   ],
+   [
+    "West Lawn",
+    3
+   ],
+   [
+    "Avondale",
+    2
+   ],
+   [
+    "Edgewater",
+    2
+   ],
+   [
+    "Beverly",
+    2
+   ],
+   [
+    "Kenwood",
+    2
+   ],
+   [
+    "South Deering",
+    2
+   ],
+   [
+    "New City",
+    2
+   ],
+   [
+    "Rogers Park",
+    2
+   ],
+   [
+    "Hermosa",
+    2
+   ],
+   [
+    "Douglas",
+    2
+   ],
+   [
+    "Englewood",
+    2
+   ],
+   [
+    "Near South Side",
+    2
+   ],
+   [
+    "Portage Park",
+    2
+   ],
+   [
+    "West Englewood",
+    1
+   ],
+   [
+    "Ashburn",
+    1
+   ],
+   [
+    "Norwood Park",
+    1
+   ],
+   [
+    "West Garfield Park",
+    1
+   ],
+   [
+    "Armour Square",
+    1
+   ],
+   [
+    "Chicago Lawn",
+    1
+   ],
+   [
+    "Avalon Park",
+    1
+   ],
+   [
+    "Archer Heights",
+    1
+   ],
+   [
+    "Mount Greenwood",
+    1
+   ],
+   [
+    "Washington Heights",
+    1
+   ],
+   [
+    "Belmont Cragin",
+    1
+   ]
+  ]
+ },
+ "categories": [
+  {
+   "key": "pests",
+   "label": "Pests and rodents",
+   "short": "Pests",
+   "buyer": "Pest control"
+  },
+  {
+   "key": "hood",
+   "label": "Hood and exhaust",
+   "short": "Hood",
+   "buyer": "Hood and exhaust cleaning"
+  },
+  {
+   "key": "drain",
+   "label": "Grease trap and drains",
+   "short": "Grease trap",
+   "buyer": "Grease trap and drain service"
+  },
+  {
+   "key": "clean",
+   "label": "Cleaning",
+   "short": "Cleaning",
+   "buyer": "Commercial kitchen cleaning"
+  }
+ ],
+ "examples": {
+  "flagged": [
+   {
+    "type": "Restaurant",
+    "area": "Grand Boulevard",
+    "date": "2026-10-16",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "categories": [
+     "Pests and rodents",
+     "Cleaning"
+    ]
+   },
+   {
+    "type": "Restaurant",
+    "area": "West Elsdon",
+    "date": "2026-10-15",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "categories": [
+     "Pests and rodents",
+     "Cleaning"
+    ]
+   },
+   {
+    "type": "Restaurant",
+    "area": "Hyde Park",
+    "date": "2026-10-15",
+    "result": "Pass w/ Conditions",
+    "inspectionType": "Canvass",
+    "categories": [
+     "Cleaning"
+    ]
+   }
+  ],
+  "repeat": [
+   {
+    "type": "Not given",
+    "area": "South Lawndale",
+    "date": "2026-10-14",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "categories": [
+     "Pests and rodents"
+    ]
+   },
+   {
+    "type": "Restaurant",
+    "area": "South Lawndale",
+    "date": "2026-10-14",
+    "result": "Fail",
+    "inspectionType": "Short Form Complaint",
+    "categories": [
+     "Pests and rodents",
+     "Hood and exhaust",
+     "Cleaning"
+    ]
+   },
+   {
+    "type": "Restaurant",
+    "area": "Humboldt Park",
+    "date": "2026-10-14",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "categories": [
+     "Pests and rodents",
+     "Hood and exhaust",
+     "Cleaning"
+    ]
+   }
+  ],
+  "opening": [
+   {
+    "name": "Iron Cafe",
+    "address": "3700 S Iron St",
+    "area": "McKinley Park",
+    "type": "Restaurant",
+    "date": "2026-10-16",
+    "result": "Fail",
+    "inspectionType": "License"
+   },
+   {
+    "name": "LA Michoacana",
+    "address": "2740 W 59th St",
+    "area": "Gage Park",
+    "type": "Restaurant",
+    "date": "2026-10-16",
+    "result": "Pass",
+    "inspectionType": "License"
+   },
+   {
+    "name": "Da's Catering LLC",
+    "address": "7117 S State St",
+    "area": "Greater Grand Crossing",
+    "type": "Restaurant",
+    "date": "2026-10-15",
+    "result": "Pass",
+    "inspectionType": "License"
+   }
+  ]
+ }
+}

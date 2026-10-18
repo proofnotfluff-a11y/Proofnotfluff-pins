@@ -3,7 +3,7 @@
   "name": "City of Austin, Issued Construction Permits",
   "url": "https://data.austintexas.gov/d/3syk-w9eu",
   "rowsUpdatedAt": "2026-10-18T12:52:08+00:00",
-  "fetchedAt": "2026-10-18T20:26:04+00:00",
+  "fetchedAt": "2026-10-18T21:28:47+00:00",
   "license": "Public Domain U.S. Government",
   "attribution": "City of Austin, Texas - data.austintexas.gov",
   "modified": "Filtered by ProofNotFluff: commercial building permits issued in the last 24 months, still Active, grouped into projects by the City's master permit, project valuation $500,000 or more (the largest valuation on its open building permits on the list, counted once; finaled, shell and garage permits do not count), with a business listed as general contractor; structures that are not buildings (carports, pergolas, canopies, enclosures, pools, EV chargers), parking garages, houses, duplexes and three-unit buildings, shell-only buildings, interior demolition, repairs, and roof, equipment, sign, elevator, site and exterior-only work left out; cleaning companies listed as contractor left out; only project-level and business fields kept.",
@@ -50,6 +50,11 @@
    "Remodel or addition": 42,
    "New construction": 104,
    "Finish-out": 12
+  },
+  "byStage": {
+   "Work under way": 132,
+   "Permit issued": 25,
+   "Near finish": 1
   },
   "keptCost": 6242314201,
   "keptUnits": 8303,

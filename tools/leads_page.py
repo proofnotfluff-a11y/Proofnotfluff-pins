@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""The members' page for Chicago Construction Cleaning Leads (A1 pre-sale, email/A1-OUTREACH.md).
+"""The v1 members' page for Chicago Construction Cleaning Leads (A1 pre-sale, email/A1-OUTREACH.md).
+
+Retired Oct 17, 2026: docs/chicago-leads-members/ is now built by tools/leads_app.py (v2). This builder stays for rollback
+(MAP.md has the one-line switch) and for its encrypt/decrypt helpers and the --review set, which the workflow still uses.
 
 This repo is public, so the paid list is never committed in the clear. The permits workflow builds the
 workbook (tools/leads_xlsx.py), then this script encrypts the week's list and workbook with AES-256-GCM

@@ -25,7 +25,7 @@ every view, and the gate, link to it.
 Map: Leaflet 1.9.4 from cdnjs (exact version, SRI) on OpenStreetMap's standard tiles, desaturated with CSS, with the
 OpenStreetMap attribution shown (CARTO's free basemaps are for non-commercial use, so they are not used here).
 
-Usage: LEADS_PASSWORD=... python3 tools/leads_app.py chicago-full.json leads.xlsx docs/chicago-leads-members-v2/index.html
+Usage: LEADS_PASSWORD=... python3 tools/leads_app.py chicago-full.json leads.xlsx docs/chicago-leads-members/index.html
        LEADS_PASSWORD=... python3 tools/leads_app.py --from-review permits/chicago/review.enc.json OUT.html
            (rebuilds the week's list offline from the encrypted review set, for previews and checks)
        python3 tools/leads_app.py --selftest

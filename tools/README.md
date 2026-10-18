@@ -126,12 +126,12 @@ The Chicago Construction Cleaning Leads members' web app (Todd, Oct 17, 8:00 pm:
 
 Same encryption as leads_page.py (AES-256-GCM, PBKDF2-SHA256 at 250,000 rounds, the members' password). Builder contacts come from `builder_contacts.contact_for` at build time: verified entries only, never a do-not-list builder; everyone else shows "no contact on file yet". `#/terms` shows the City's disclaimer and the Terms of Use paragraphs from `leads_xlsx.terms_text()`, the list the workbook's Terms tab is built from, so the two cannot drift; the gate and every footer link to it. Map: Leaflet 1.9.4 from cdnjs with SRI, OpenStreetMap standard tiles desaturated with CSS, attribution shown (CARTO's free basemaps are non-commercial only). Poppins is self-hosted at docs/assets/fonts (OFL, poppins-OFL.txt).
 
-- `LEADS_PASSWORD=... python3 tools/leads_app.py chicago-full.json leads.xlsx docs/chicago-leads-members-v2/index.html` (the permits workflow does this every Monday)
+- `LEADS_PASSWORD=... python3 tools/leads_app.py chicago-full.json leads.xlsx docs/chicago-leads-members/index.html` (the permits workflow does this every Monday)
 - `python3 tools/leads_app.py --pw-file PATH --from-review permits/chicago/review.enc.json OUT.html` rebuilds the week offline from the encrypted review set (previews, checks)
-- `.github/workflows/leads-app-check.yml` (manual run): opens the published preview on a GitHub runner, unlocks it, and confirms Leaflet loaded from cdnjs with its SRI hash, the OpenStreetMap tiles drew and the console stayed clean; it keeps only map-pane screenshots for one day (the cloud cannot reach cdnjs or the tile servers)
+- `.github/workflows/leads-app-check.yml` (manual run): opens the published members' app on a GitHub runner, unlocks it, and confirms Leaflet loaded from cdnjs with its SRI hash, the OpenStreetMap tiles drew and the console stayed clean; it keeps only map-pane screenshots for one day (the cloud cannot reach cdnjs or the tile servers)
 - `python3 tools/leads_app.py --selftest` (ciphertext only in the page, legal line word for word, Leaflet pinned with SRI, contacts cleaned, review rebuild, voice and em dash checks)
 
-The preview lives at docs/chicago-leads-members-v2/ (noindex, linked from nowhere). docs/chicago-leads-members/ stays on leads_page.py until the gates pass and Todd says go: that path is in buyers' Gumroad receipts.
+Live at docs/chicago-leads-members/ (the path in buyers' Gumroad receipts) since Oct 17, 2026: gates passed and Todd said go at 9:38 pm. docs/chicago-leads-members-v2/ is a noindex redirect there. tools/leads_page.py (the v1 page) stays in the repo for rollback; MAP.md has the one-line switch.
 
 ## Chicago Restaurant Inspection Leads: rest_*.py (Oct 2026, product 3, not launched)
 

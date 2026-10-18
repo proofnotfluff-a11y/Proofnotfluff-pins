@@ -1,6 +1,6 @@
 name: Leads app live check
 # Members' app v2 (tools/leads_app.py): the cloud agents cannot reach cdnjs or the OpenStreetMap tile servers, so this
-# runner opens the published preview the way a buyer does, unlocks it with the members' password, and confirms Leaflet
+# runner opens the published members' app the way a buyer does, unlocks it with the members' password, and confirms Leaflet
 # loaded from cdnjs with its SRI hash, the map tiles drew and the console stayed clean. It keeps only screenshots of the
 # map pane (no list text) as a one-day artifact for the design director. Manual runs only.
 on:
@@ -8,7 +8,7 @@ on:
     inputs:
       path:
         description: "Page path on proofnotfluff.com"
-        default: "/chicago-leads-members-v2/"
+        default: "/chicago-leads-members/"
 permissions:
   contents: read
 jobs:

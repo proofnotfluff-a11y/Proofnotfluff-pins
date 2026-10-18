@@ -27,3 +27,6 @@ Status as of Oct 17, 2026, 4:10 pm Chicago.
 ## 4. Outreach
 - [x] Email values filled from this week's live list (632 permits, 563 addresses, 9 near finish; holdout round 5) and each email's example permit taken from that list.
 - [x] Todd said go in chat (Oct 17, 4:44 pm: "Go: make the drafts"). Drafts in the ProofNotFluff Gmail; Todd sends Monday after changing the Gmail sender name to ProofNotFluff.
+
+## 5. Members' app v2
+- [x] Oct 18, 2026, 12:05 am Chicago: v2 members' app live at https://proofnotfluff.com/chicago-leads-members/ (the Gumroad receipt link, same password, same encryption, same workbook download); the old preview path /chicago-leads-members-v2/ redirects there. Gates passed: holdout app fidelity rounds 2 to 6 (round 6: every field of all 1,122 permits, all 472 builders, the CSV and the workbook match the City rows), design director 4.79, Legal cleared with fixes applied. Todd's go: Oct 17, 9:38 pm. The v1 builder (tools/leads_page.py) stays for rollback; MAP.md has the one-line switch.

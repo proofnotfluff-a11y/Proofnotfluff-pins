@@ -1666,11 +1666,11 @@ def leads_page_html(p):
     shots_ok = all(os.path.isfile(os.path.join(DOCS, "assets", "leads", f)) for f in ("members-list.png", "workbook.png"))
     if checkout and shots_ok:   # real screenshots of the paid product (files in docs/assets/leads/, made from the live members' page and workbook)
         shots = ('<section class="block ld-shots"><h2>What members get</h2>'
-                 '<p>The same data as this page, every open project instead of a sample, on a members\' page and in an Excel file.</p>'
+                 '<p>The same data as this page, every open project instead of a sample, in a members\' app and an Excel file.</p>'
                  '<div class="ld-shotgrid">'
                  f'<figure class="ld-shot"><img src="{rel}assets/leads/members-list.png" width="1064" height="665" loading="eager" decoding="async" '
-                 'alt="The members\' page: this week\'s list as cards with the reported cost, the builder, the address and the stage, with tabs for near finish, new this week and all projects">'
-                 '<figcaption>The members\' page, every Monday</figcaption></figure>'
+                 'alt="The members\' app: every open project with the reported cost, address, builder and stage, filters for stage, community area, cost and building type, CSV export and a map of the projects">'
+                 '<figcaption>The members\' app, updated every Monday</figcaption></figure>'
                  f'<figure class="ld-shot"><img src="{rel}assets/leads/workbook.png" width="1200" height="772" loading="eager" decoding="async" '
                  'alt="The Excel file: the near finish tab with address, reported cost and builder columns, and a filter arrow on every column">'
                  '<figcaption>The Excel file, filters on every column</figcaption></figure></div></section>')

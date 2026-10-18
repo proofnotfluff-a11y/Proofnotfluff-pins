@@ -3,32 +3,32 @@
   "name": "City of Chicago Data Portal, Building Permits",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
   "rowsUpdatedAt": "2026-10-17T12:18:17+00:00",
-  "fetchedAt": "2026-10-17T21:29:19+00:00",
+  "fetchedAt": "2026-10-18T01:06:41+00:00",
   "modified": "Filtered by ProofNotFluff: permits issued in the last 365 days, new construction or renovation, reported cost $500,000 or more, still open (not complete, suspended, cancelled, revoked or expired), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs a construction clean under its permit (foundation, superstructure, caisson, demolition, roof, facade, mechanical, equipment or site work only) left out; cleaning companies listed as contractor left out; a revision of a permit already on the list counted once; only project-level and business fields kept.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
-  "from": "2025-10-17",
-  "to": "2026-10-17"
+  "from": "2025-10-18",
+  "to": "2026-10-18"
  },
  "counts": {
-  "fetched": 1560,
-  "kept": 632,
+  "fetched": 1552,
+  "kept": 630,
   "excluded": {
-   "no commercial or apartment wording": 247,
-   "house or 2 to 3 flat": 377,
+   "no commercial or apartment wording": 245,
    "no construction clean (foundation, demolition, roof, mechanical or site work only)": 113,
+   "house or 2 to 3 flat": 374,
    "one home inside a larger building": 17,
    "no interior finish work or new building named": 9,
-   "closed, complete or suspended": 156,
+   "closed, complete or suspended": 155,
    "no business listed as general contractor": 5,
    "revision of a permit already listed": 4
   },
   "keptByType": {
    "New construction": 169,
-   "Renovation": 463
+   "Renovation": 461
   },
-  "keptCost": 2871630970,
+  "keptCost": 2869130970,
   "keptUnits": 3075,
   "topAreas": [
    [
@@ -53,7 +53,7 @@
    ],
    [
     "Lake View",
-    29
+    28
    ],
    [
     "Logan Square",
@@ -142,7 +142,9 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Onni Contracting (Chicago) Inc"
-   ]
+   ],
+   "lat": 41.899829,
+   "lon": -87.647763
   },
   {
    "permit": "101072777",
@@ -157,7 +159,9 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Skender Construction LLC"
-   ]
+   ],
+   "lat": 41.885127,
+   "lon": -87.632278
   },
   {
    "permit": "101082660",
@@ -172,7 +176,9 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Skender Construction LLC"
-   ]
+   ],
+   "lat": 41.895404,
+   "lon": -87.620483
   },
   {
    "permit": "101082340",
@@ -187,7 +193,9 @@
    "milestone": "Permit Issued (Fee Due)",
    "gc": [
     "Skender Construction LLC"
-   ]
+   ],
+   "lat": 41.890971,
+   "lon": -87.624277
   },
   {
    "permit": "101065267",
@@ -202,7 +210,9 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Triumph Design Build Corporation"
-   ]
+   ],
+   "lat": 41.722481,
+   "lon": -87.583076
   },
   {
    "permit": "101077075",
@@ -217,7 +227,9 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Skender Construction LLC"
-   ]
+   ],
+   "lat": 41.884586,
+   "lon": -87.63101
   },
   {
    "permit": "101075068",
@@ -232,7 +244,9 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "James McHugh Construction Co"
-   ]
+   ],
+   "lat": 41.881241,
+   "lon": -87.674283
   },
   {
    "permit": "101069926",
@@ -247,7 +261,9 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Power Construction Company, LLC"
-   ]
+   ],
+   "lat": 41.881419,
+   "lon": -87.632203
   },
   {
    "permit": "101086662",
@@ -262,7 +278,9 @@
    "milestone": "Inspections",
    "gc": [
     "Redmond Construction Corp."
-   ]
+   ],
+   "lat": 41.884356,
+   "lon": -87.634637
   },
   {
    "permit": "101073356",
@@ -277,7 +295,9 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Clark Construction Group Chicago LLC"
-   ]
+   ],
+   "lat": 41.876846,
+   "lon": -87.64225
   },
   {
    "permit": "101082901",
@@ -292,7 +312,9 @@
    "milestone": "Inspections",
    "gc": [
     "Meridian Design Build, Inc"
-   ]
+   ],
+   "lat": 41.814248,
+   "lon": -87.660398
   },
   {
    "permit": "100994035",
@@ -307,7 +329,9 @@
    "milestone": "Permit Issued (Fee Due)",
    "gc": [
     "Norcon, Inc."
-   ]
+   ],
+   "lat": 41.903438,
+   "lon": -87.668663
   },
   {
    "permit": "101036007",
@@ -322,7 +346,9 @@
    "milestone": "Permit Issued (Fee Due)",
    "gc": [
     "AT Mechanical LLC"
-   ]
+   ],
+   "lat": 41.900311,
+   "lon": -87.64294
   },
   {
    "permit": "101075727",
@@ -337,7 +363,9 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Berglund Construction Company"
-   ]
+   ],
+   "lat": 41.954042,
+   "lon": -87.67851
   },
   {
    "permit": "101074867",
@@ -352,7 +380,9 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Power Construction Company, LLC"
-   ]
+   ],
+   "lat": 41.800843,
+   "lon": -87.58893
   },
   {
    "permit": "101076730",
@@ -367,7 +397,9 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Bulley & Andrews, L.L.C."
-   ]
+   ],
+   "lat": 41.942542,
+   "lon": -87.690832
   },
   {
    "permit": "101061910",
@@ -382,7 +414,9 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "The George Sollitt Construction Co"
-   ]
+   ],
+   "lat": 41.811815,
+   "lon": -87.743417
   },
   {
    "permit": "101089193",
@@ -397,7 +431,9 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Clune Construction Company, L.P."
-   ]
+   ],
+   "lat": 41.887808,
+   "lon": -87.637533
   },
   {
    "permit": "101078161",
@@ -412,7 +448,9 @@
    "milestone": "Permit Issued (Fee Due)",
    "gc": [
     "Skender-Ashlaur Joint Venture LLC"
-   ]
+   ],
+   "lat": 41.883969,
+   "lon": -87.706355
   },
   {
    "permit": "101069022",
@@ -427,7 +465,9 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Ujamaa Construction, Inc."
-   ]
+   ],
+   "lat": 41.798343,
+   "lon": -87.617841
   },
   {
    "permit": "101079295",
@@ -442,7 +482,9 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Clark Construction Group Chicago LLC"
-   ]
+   ],
+   "lat": 41.885127,
+   "lon": -87.632278
   },
   {
    "permit": "101064943",
@@ -457,7 +499,9 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Leopardo Construction Inc"
-   ]
+   ],
+   "lat": 41.909286,
+   "lon": -87.726343
   },
   {
    "permit": "101055535",
@@ -472,7 +516,9 @@
    "milestone": "Inspections",
    "gc": [
     "LR Contracting Company"
-   ]
+   ],
+   "lat": 41.931275,
+   "lon": -87.680316
   },
   {
    "permit": "101081192",
@@ -487,7 +533,9 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Skender Construction LLC"
-   ]
+   ],
+   "lat": 41.742811,
+   "lon": -87.614845
   },
   {
    "permit": "101075524",
@@ -502,7 +550,9 @@
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "ZSD Construction LLC"
-   ]
+   ],
+   "lat": 41.894875,
+   "lon": -87.636177
   }
  ],
  "nearFinish": [
@@ -519,7 +569,9 @@
    "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
    "gc": [
     "Skender Construction LLC"
-   ]
+   ],
+   "lat": 41.887808,
+   "lon": -87.637533
   },
   {
    "permit": "101070208",
@@ -534,7 +586,9 @@
    "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
    "gc": [
     "Triumph Design Build Corporation"
-   ]
+   ],
+   "lat": 41.894889,
+   "lon": -87.653094
   },
   {
    "permit": "101078819",
@@ -549,7 +603,9 @@
    "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
    "gc": [
     "JC Anderson Inc"
-   ]
+   ],
+   "lat": 41.880539,
+   "lon": -87.634592
   },
   {
    "permit": "101075927",
@@ -564,7 +620,9 @@
    "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
    "gc": [
     "Allegiance Construction Group, Inc."
-   ]
+   ],
+   "lat": 41.881967,
+   "lon": -87.635165
   },
   {
    "permit": "101076879",
@@ -579,7 +637,9 @@
    "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
    "gc": [
     "Bear Construction Company"
-   ]
+   ],
+   "lat": 41.975933,
+   "lon": -87.698122
   },
   {
    "permit": "101077418",
@@ -594,7 +654,9 @@
    "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
    "gc": [
     "Development Solutions, Inc"
-   ]
+   ],
+   "lat": 41.887921,
+   "lon": -87.63236
   },
   {
    "permit": "101081823",
@@ -609,7 +671,9 @@
    "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
    "gc": [
     "Plan North Construction Services LLC"
-   ]
+   ],
+   "lat": 41.880757,
+   "lon": -87.634709
   },
   {
    "permit": "101077898",
@@ -624,7 +688,9 @@
    "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
    "gc": [
     "JC Anderson Inc"
-   ]
+   ],
+   "lat": 41.883099,
+   "lon": -87.6346
   },
   {
    "permit": "101071207",
@@ -639,7 +705,9 @@
    "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
    "gc": [
     "Lo Destro Construction Company"
-   ]
+   ],
+   "lat": 41.883172,
+   "lon": -87.652133
   }
  ]
 }

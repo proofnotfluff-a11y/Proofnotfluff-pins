@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["tools/inspections_chicago.py", ".github/workflows/inspections-chicago.yml"]
+    paths: ["tools/inspections_chicago.py", "tools/rest_*.py", ".github/workflows/inspections-chicago.yml"]
   schedule:
     - cron: "30 11 * * 1"   # Mondays, about 6:30 am Chicago time in daylight time
 permissions:
@@ -23,7 +23,11 @@ jobs:
       - uses: actions/checkout@v4
       - run: python3 tools/inspections_chicago.py --selftest
       - run: python3 tools/inspections_chicago.py --probe
-      - run: python3 tools/inspections_chicago.py --full "$RUNNER_TEMP/inspections-full.json"
+      - run: pip install --quiet cryptography openpyxl pillow
+      - run: python3 tools/rest_seal.py --selftest
+      - run: python3 tools/inspections_chicago.py --full "$RUNNER_TEMP/inspections-full.json" --raw "$RUNNER_TEMP/inspections-raw.json"
+      - name: Seal the raw pull for the crew's offline checks (public-key box; the private key is never in the repo)
+        run: python3 tools/rest_seal.py seal "$RUNNER_TEMP/inspections-raw.json" permits/inspections-chicago/raw.sealed.json
       - name: Keep the full weekly list out of the repo (short-lived artifact; it holds raw violation notes)
         uses: actions/upload-artifact@v4
         with:

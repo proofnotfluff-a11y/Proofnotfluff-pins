@@ -281,9 +281,60 @@ SEGMENTS = {"pests": "Failed with pests", "hoodGrease": "Hood, grease or grease 
             "newOpening": "About to open (license inspection)", "repeatFail": "Repeat failures in 30 days"}
 
 
+RAW_KEEP = ("inspection_id", "dba_name", "aka_name", "license_", "facility_type", "risk", "address", "city", "state", "zip",
+            "inspection_date", "inspection_type", "results", "violations", "latitude", "longitude")
+HISTORY_MONTHS = 24
+
+
+def raw_rows(rows, areas):
+    """The City's own fields for each row, plus the community area found from its point (the members' list,
+    tools/rest_leads.py, is built from these). Nothing is renamed or cleaned here, so a checker can hold every
+    figure on the list against the row it came from."""
+    out = []
+    for r in rows:
+        x = {k: r.get(k) for k in RAW_KEEP if r.get(k) not in (None, "")}
+        x["_area"] = area_of(r.get("latitude"), r.get("longitude"), areas)
+        out.append(x)
+    return out
+
+
+def history(licenses, meta_cols, today):
+    """Every inspection of the last 24 months for these license numbers (a place's inspection history on the members' list)."""
+    since = (today - dt.timedelta(days=round(HISTORY_MONTHS * 30.44))).isoformat()
+    numeric = (meta_cols.get("license_") or "").lower() in ("number", "double", "money")
+    lic = sorted({l for l in licenses if l and l != "0"}, key=lambda s: (len(s), s))
+    out = []
+    for i in range(0, len(lic), 80):
+        chunk = lic[i:i + 80]
+        vals = ",".join(c if numeric else "'" + c.replace("'", "''") + "'" for c in chunk)
+        out += pull(f"license_ in ({vals}) AND inspection_date >= '{since}'")
+    return out
+
+
+def write_raw(path, rows, areas, meta, upd_iso, now, terms_url):
+    """The raw file the members' list is built from (it holds the City's violation notes, so the workflow keeps it out of
+    the repo: it is sealed or encrypted before anything is committed)."""
+    today = now.date()
+    cols = {c.get("fieldName"): c.get("dataTypeName") for c in meta.get("columns", [])}
+    month = (today - dt.timedelta(days=37)).isoformat()
+    lic = {str(r.get("license_") or "").split(".")[0] for r in rows
+           if (r.get("inspection_date") or "")[:10] >= month
+           and ((r.get("results") or "").upper() in FLAGGED or (r.get("inspection_type") or "").upper().startswith("LICENSE"))}
+    hist = history(lic, cols, today)
+    seen = {str(r.get("inspection_id")) for r in rows}
+    hist = [r for r in hist if str(r.get("inspection_id")) not in seen]
+    doc = {"source": {"name": "City of Chicago Data Portal, Food Inspections", "url": DATASET_PAGE, "dataset": DATASET,
+                      "rowsUpdatedAt": upd_iso, "fetchedAt": now.isoformat(timespec="seconds"), "terms": terms_url},
+           "pulledSince": (today - dt.timedelta(days=37)).isoformat(), "historyMonths": HISTORY_MONTHS,
+           "rows": raw_rows(rows, areas), "history": raw_rows(hist, areas)}
+    json.dump(doc, open(path, "w"), separators=(",", ":"))
+    return {"rows": len(doc["rows"]), "history": len(doc["history"]), "licenses": len(lic)}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--full", default="")
+    ap.add_argument("--raw", default="", help="also write the raw rows and 24-month histories the members' list is built from")
     ap.add_argument("--top", type=int, default=10)
     a = ap.parse_args()
     os.makedirs(OUT, exist_ok=True)
@@ -335,6 +386,8 @@ def main():
                   for r in rows if (r.get("inspection_date") or "")[:10] >= (today - dt.timedelta(days=7)).isoformat()]
         json.dump({"source": source, "window": sample["window"], "counts": sample["counts"], "records": recs, "review": review},
                   open(a.full, "w"), indent=1)
+    if a.raw:
+        print(json.dumps({"raw": write_raw(a.raw, rows, areas, meta, upd_iso, now, source["terms"])}))
     print(json.dumps({"fetched": len(rows), "kept": len(recs), "segments": seg_counts, "excluded": dict(reasons), "areas": len(areas)}))
 
 

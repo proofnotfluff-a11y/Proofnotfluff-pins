@@ -50,3 +50,20 @@ This is a one-time advertisement for ProofNotFluff's paid list, sent to business
 - Every open project that passes the filter (Excel and Google Sheets): address, community area, type, scope, reported cost, units, stage, issue date and general contractor; new permits since last week flagged; near-finish projects on their own tab.
 - The pitch kit from the page: a one-page capability sheet template and an email to builders they can adapt.
 - The City of Chicago data disclaimer the City's terms require.
+
+## Follow-up (Todd, Oct 18: "Yes, one follow-up")
+Sent once, 5 business days after the first email, as a reply in the same thread, only to businesses that have not replied, opted out or bounced. {projects} and {near} come from that Monday's permits/chicago/sample.json counts (open projects on the list, and projects near finish).
+
+Body:
+```
+Hi {Company} team,
+
+Following up once on my note last week about our weekly list of Chicago construction permits and their general contractors. This week's list has {projects} open jobs, and {near} of them look close to done.
+
+Free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/
+
+If it isn't useful, reply "no thanks" and we won't email you again.
+
+ProofNotFluff
+1718 Capitol Ave, Cheyenne, WY 82001
+```

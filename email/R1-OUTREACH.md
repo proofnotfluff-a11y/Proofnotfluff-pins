@@ -90,3 +90,20 @@ This is a one-time advertisement for ProofNotFluff's paid list, sent to business
 ```
 
 {example} reads like: "a restaurant in West Elsdon, City result Fail on Oct 15, 2026, canvass inspection, violation 38 cited. Members see its name and address". {checkout} is the Gumroad link with utm tags, filled once Todd has created the product.
+
+## Follow-up (Todd, Oct 18: "Yes, one follow-up")
+Sent once, 5 business days after the first email, as a reply in the same thread, only to businesses that have not replied, opted out or bounced. {trade_line} matches the business's trade and comes from that Monday's permits/inspections-chicago/rest-sample.json: pest control "{pests} places had a pest violation in the last 30 days", hood and exhaust cleaning "{hood} places were cited for a hood, filter, exhaust or grease problem in the last 30 days", grease trap and drains "{opening} places had a City license inspection in the last 30 days".
+
+Body:
+```
+Hi {Company} team,
+
+Following up once on my note last week. Each Monday we list the Chicago restaurants and food stores whose City inspection failed or passed with conditions, sorted by what the inspector cited. On this week's list, {trade_line}.
+
+Free sample: https://proofnotfluff.com/chicago-restaurant-inspection-leads/
+
+If it isn't useful, reply "no thanks" and we won't email you again.
+
+ProofNotFluff
+1718 Capitol Ave, Cheyenne, WY 82001
+```

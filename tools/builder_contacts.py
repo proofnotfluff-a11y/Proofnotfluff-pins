@@ -46,10 +46,10 @@ DIRECTORY = re.compile(r"(?:^|\.)(?:yelp|bbb|linkedin|facebook|instagram|twitter
                        r"buzzfile|cortera|corporationwiki|bloomberg|levelset|constructconnect|dodge|bidclerk|thebluebook|blueBook|"
                        r"procore|zoominfo|wikipedia|youtube|tiktok|pinterest)\.[a-z.]+$", re.I)
 # a general business inbox, never a person's (no first.last, no first name)
-GENERIC_EMAIL = re.compile(r"^(?:info|office|offices|contact|contactus|hello|hi|mail|main|admin|administration|general|inquiries|inquiry|"
+GENERIC_EMAIL = re.compile(r"^(?:info|information|office|offices|contact|contactus|hello|hi|mail|main|admin|administration|general|inquiries|inquiry|"
                            r"enquiries|sales|estimating|estimates|estimate|bids|bid|bidding|precon|preconstruction|projects|"
                            r"construction|service|services|marketing|reception|frontdesk|team|chicago|newbusiness|business|"
-                           r"customerservice|support|build|builders|prequal|subcontractors|ask|questions|connect|work)"
+                           r"customerservice|support|build|builders|prequal|subcontractors|ask|questions|connect|work|communications)"
                            r"(?:[._-]?(?:chicago|chi|il|us|team|desk|dept|request|requests))?@", re.I)
 PHONE = re.compile(r"^\(\d{3}\) \d{3}-\d{4}(?: ext\. \d{1,5})?$")
 

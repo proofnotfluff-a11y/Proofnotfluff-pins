@@ -329,9 +329,44 @@ def builders(names):
         nm = (nm or "").strip()
         if nm and BUSINESS.search(nm.upper()):
             nm = gc_filter(nm)
-            if nm and gc_key(nm) not in [gc_key(g) for g in out]:
+            if nm and entity_key(nm) not in [entity_key(g) for g in out]:
                 out.append(nm)
     return sorted(out, key=lambda g: bool(TRADE_GC.search(g.upper())))
+
+
+LEGAL_SUFFIX = [(r"\bL\.?\s?L\.?\s?C\b\.?", "LLC"), (r"\bINCORPORATED\b", "INC"), (r"\bCORPORATION\b", "CORP"),
+                (r"\bCOMPANY\b", "CO"), (r"\bLIMITED\b", "LTD")]
+
+
+def entity_key(n):
+    """One key per business as the City lists it: casing, punctuation and the spelling of the legal suffix do not matter
+    ("AT MECHANICAL LLC" = "AT Mechanical, L.L.C."; "Acme Inc" = "Acme Incorporated"), but a different suffix is a different
+    entity ("PANOPTIC GROUP LLC" is not "PANOPTIC GROUP INCORPORATED"; holdout, Oct 18). Every page, the workbook and the
+    builder counts group builders by this key; gc_key below stays the suffix-free key the contacts file uses."""
+    u = (n or "").upper()
+    for pat, canon in LEGAL_SUFFIX:
+        u = re.sub(pat, canon, u)
+    return re.sub(r"[^A-Z0-9]", "", u)
+
+
+def entity_names(projects):
+    """{entity_key: the name to print}: the spelling most permits use, then the shortest, then A to Z, so every surface prints
+    the same name for a builder whatever order it reads the permits in."""
+    seen = collections.defaultdict(collections.Counter)
+    for p in projects:
+        for g in p.get("gc") or []:
+            seen[entity_key(g)][g] += 1
+    return {k: sorted(c.items(), key=lambda kv: (-kv[1], len(kv[0]), kv[0]))[0][0] for k, c in seen.items()}
+
+
+def list_day(iso):
+    """The list's date: the Chicago calendar date of the pull (a 02:42 UTC Oct 18 pull is Oct 17 in Chicago), the same on the
+    free page, the members' pages and the workbook (holdout, Oct 18)."""
+    from zoneinfo import ZoneInfo
+    t = dt.datetime.fromisoformat(str(iso).replace("Z", "+00:00"))
+    if t.tzinfo is None:
+        t = t.replace(tzinfo=dt.timezone.utc)
+    return t.astimezone(ZoneInfo("America/Chicago")).date()
 
 
 def gc_key(n):
@@ -454,7 +489,7 @@ def main():
     by_area = collections.Counter(k["communityArea"] for k in kept if k["communityArea"])
     gc_n, gc_cost, gc_name = collections.Counter(), collections.Counter(), {}
     for k in kept:
-        g = k["gc"][0]; key = gc_key(g)
+        g = k["gc"][0]; key = entity_key(g)
         gc_n[key] += 1; gc_cost[key] += k["cost"]; gc_name.setdefault(key, g)
     top_gcs = [{"name": gc_name[key], "projects": n, "cost": gc_cost[key]} for key, n in
                sorted(gc_n.items(), key=lambda kv: (-kv[1], -gc_cost[kv[0]]))[:12]]
@@ -715,6 +750,14 @@ def selftest():
     assert builders(["CPMH CONSTRUCTION INC", "RD'S HVAC INC", "THE BOWA GROUP INC"]) == ["CPMH Construction Inc", "The Bowa Group Inc", "RD's HVAC Inc"], \
         builders(["CPMH CONSTRUCTION INC", "RD'S HVAC INC", "THE BOWA GROUP INC"])
     assert builders(["ACME BUILDERS LLC", "Acme Builders, L.L.C.", "JOHN SMITH", "", None]) == ["Acme Builders LLC"]
+    assert entity_key("AT MECHANICAL LLC") == entity_key("AT Mechanical, L.L.C.") == entity_key("at mechanical llc.")
+    assert entity_key("Skender Construction LLC") == entity_key("Skender Construction, LLC.")
+    assert entity_key("PANOPTIC GROUP LLC") != entity_key("PANOPTIC GROUP INCORPORATED") and gc_key("PANOPTIC GROUP LLC") == gc_key("PANOPTIC GROUP INCORPORATED")
+    assert entity_key("Acme Inc") == entity_key("ACME INCORPORATED") and entity_key("Acme Corp") != entity_key("Acme Co")
+    assert builders(["PANOPTIC GROUP LLC", "PANOPTIC GROUP INCORPORATED"]) == ["Panoptic Group LLC", "Panoptic Group Incorporated"]
+    assert entity_names([{"gc": ["Skender Construction, LLC."]}, {"gc": ["Skender Construction LLC"]}, {"gc": ["Skender Construction LLC"]}]) == \
+        {entity_key("Skender Construction LLC"): "Skender Construction LLC"}
+    assert str(list_day("2026-10-18T02:42:43+00:00")) == "2026-10-17" and str(list_day("2026-10-18T15:00:00Z")) == "2026-10-18"
     assert coord("41.881832") == 41.881832 and coord(None) is None and coord("") is None and coord("0") is None
     # the 24-month open-permit window (Todd, Oct 17): planted rows as the City writes them, run on Oct 18, 2026
     run = dt.datetime(2026, 10, 18, 1, 25, tzinfo=dt.timezone.utc)

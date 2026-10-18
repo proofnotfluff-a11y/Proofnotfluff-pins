@@ -9,7 +9,7 @@ Why: Gemini's red team (Oct 17) and the COO agree that waiting for traffic is th
 - Market check (read Oct 17): Chicago Cityscape sells Chicago permit newsletters with builder contacts at $125 a month; ConstructConnect Starter $129 a month per market (third-party guide, Oct 6, 2026); Dodge, Construction Monitor and BuildZoom are quote only.
 
 ## Rules
-- Todd sends every email himself from proofnotfluff@gmail.com (no agent sends a message on his behalf). One email per company, no follow-up sequence unless Todd says so.
+- Sending (Todd, Oct 18: "You send after my yes"): the outreach run sends each checked batch from hello@proofnotfluff.com in Gmail on the web, only after Todd says send in chat for that batch (coo/LEADS_DESK.md). Follow-up (Todd, Oct 18: "Yes, one follow-up"): one short follow-up 5 business days after the first email, in the same thread, never to anyone who replied, opted out or bounced. Nothing more after it.
 - CAN-SPAM: honest subject, the sender is ProofNotFluff, a valid postal address in the footer (Todd, Oct 17, 2:39 pm: "you can use 1718 Capitol Ave Cheyenne, WY 82001"), and a working opt-out (reply "no thanks"); honor it, and never email that address again.
 - Every fact in the email comes from the week's members' list (the City of Chicago Building Permits dataset as filtered by tools/permits_chicago.py). {Company}, {permits}, {addresses}, {near} and {example} are filled from that list on the morning the drafts are made; every draft is checked for leftover braces, and the drafts are not made if any number differs from the list (Holdout QC, Oct 17: the first draft carried last week's numbers).
 - No invented people, no fake urgency, no claim that any builder works with us.
@@ -17,7 +17,7 @@ Why: Gemini's red team (Oct 17) and the COO agree that waiting for traffic is th
 ## Reach plan (Todd, Oct 17, 4:19 pm, asked how to reach only the people who would buy; chose "Expand to every Chicagoland cleaner")
 - The prospect list grows from 36 to every Chicago-area company whose own site advertises post-construction or construction cleaning, found from their public sites (no bought lists, no scraped personal emails: only a business address the company publishes, else its contact form).
 - Each email names one near-finish or newest permit in or near the prospect's own part of town, checked against the week's list, so every message carries a real lead the reader can use.
-- Weekly batches of about 40, made as Gmail drafts in the ProofNotFluff account that Todd reads and sends himself. Still one email per company, no follow-up (Todd did not choose the follow-up), no adjacent-trade pages and no paid ads for now.
+- Weekly batches of about 40, made as Gmail drafts in hello@proofnotfluff.com and sent as the Sending line says, with the one follow-up; no adjacent-trade pages and no paid ads for now.
 - Nothing sends until the launch checklist (launches/chicago-construction-cleaning-leads.md) is complete and Todd says go.
 
 ## The email (one per company; {fields} filled from the list)

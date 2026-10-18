@@ -1485,7 +1485,7 @@ STAGES = [("PARTIAL OCCUPANCY", "Partial occupancy approved", "hot"), ("OCCUPANC
 
 def is_live(p):
     """A page is public when its draft flag is off; a leads page also needs its Kit waitlist form."""
-    return not p.get("draft") and not (p.get("kind") == "leads" and not p.get("kitForm"))
+    return not p.get("draft") and not (p.get("kind") == "leads" and not (p.get("kitForm") or p.get("checkout")))
 
 
 def live_extras():
@@ -1510,11 +1510,23 @@ def extra_cards(slug):
     return f'<section class="block"><div class="tools one">{cards}</div></section>' if cards else ""
 
 
-def money(v, spell_billion=False):
+def png_size(path):
+    """(width, height) of a PNG from its header."""
+    import struct
+    with open(path, "rb") as f:
+        head = f.read(24)
+    return struct.unpack(">II", head[16:24])
+
+
+def money(v, spell_billion=False, bil2=False):
     """One money rule on the leads pages (design director, Oct 17): $770K under $1M, $2.0M under $100M, whole millions
-    from $100M up; "billion" is spelled out only in the hero tile."""
+    from $100M up; "billion" is spelled out only in the hero tile. bil2 (Austin, design director Oct 18): $1 billion and up
+    always reads "$1.57 billion", two decimals, everywhere."""
     d = max(0, int(float(v or 0) + 0.5))            # whole dollars; halves round up on integers, never on floats
     up = lambda n, unit: (2 * n + unit) // (2 * unit)   # n / unit rounded half up
+    if bil2 and up(d, 10_000_000) >= 100:
+        t = up(d, 10_000_000)
+        return f"${t // 100}.{t % 100:02d} billion"
     if d >= 1_000_000_000 and spell_billion:
         t = up(d, 100_000_000)
         return f"${t // 10}.{t % 10} billion"
@@ -1548,7 +1560,7 @@ def stage(m):
     return (m or "Open").capitalize(), "mid"
 
 
-def project_card(x, pill=True, city="Chicago", permit_label="Permit"):
+def project_card(x, pill=True, city="Chicago", permit_label="Permit", bil2=False):
     lab, cls = stage(x.get("milestone"))
     gc = "; ".join(x.get("gc") or [])
     units = (f' · {x["units"]:,} home{"s" if x["units"] != 1 else ""}' if x.get("units") else
@@ -1556,9 +1568,9 @@ def project_card(x, pill=True, city="Chicago", permit_label="Permit"):
     area = x.get("communityArea") or city
     pill_html = f'<p class="ld-pill s-{cls}">{E(lab)}</p>' if pill else ""
     return (f'<article class="ld-proj" data-type="{"new" if x["type"].startswith("New") else "ren"}" data-area="{E(area)}">{pill_html}'
-            f'<div class="ld-ptop"><span class="ld-cost">{money(x["cost"])}</span><span class="ld-type">{E(x["type"])}{units}</span></div>'
+            f'<div class="ld-ptop"><span class="ld-cost">{money(x["cost"], bil2=bil2)}</span><span class="ld-type">{E(x["type"])}{units}</span></div>'
             f'<p class="ld-scope">{E(x["scope"])}</p>'
-            f'<dl class="ld-meta"><div><dt>Builder</dt><dd>{E(gc)}</dd></div>'
+            f'<dl class="ld-meta{" wide" if len(permit_label) > 7 else ""}"><div><dt>Builder</dt><dd>{E(gc)}</dd></div>'
             f'<div><dt>Where</dt><dd>{E(x.get("address") or "")}, {E(area)}</dd></div>'
             f'<div><dt>{E(permit_label)}</dt><dd>{E(str(x.get("permit") or ""))}, issued {E(nice_date(x.get("issued", "")))}</dd></div></dl></article>')
 
@@ -1583,6 +1595,7 @@ def window_months(d):
 def leads_page_html(p):
     url = BASE + p["slug"] + "/"
     rel = "../"
+    M = lambda v, sb=False: money(v, sb, bool(p.get("billions2")))
     d = json.load(open(os.path.join(ROOT, p["data"]), encoding="utf-8"))
     c, src = d["counts"], d["source"]
     kept, cost = c["kept"], c["keptCost"]
@@ -1596,7 +1609,7 @@ def leads_page_html(p):
     checkout = p.get("checkout")
     # per-city wording (Austin, Oct 17): every key is optional and defaults to the Chicago page's words
     city = p["city"]
-    card = lambda x, pill=True: project_card(x, pill, city, p.get("permitLabel", "Permit"))
+    card = lambda x, pill=True: project_card(x, pill, city, p.get("permitLabel", "Permit"), bool(p.get("billions2")))
     near_title = p.get("nearTitle", "Partial occupancy approved")
     near_sub = p.get("nearSub", "partial occupancy approved")
     near_text = p.get("nearText", "The City has approved temporary or partial occupancy on these projects, so a final clean is close.")
@@ -1607,16 +1620,18 @@ def leads_page_html(p):
         return f'<a class="{cls}" href="{E(checkout)}" rel="noopener">{label}</a>' if checkout else ""
 
     # hero: two lines of promise, then the price and the action on the first screen (design director, Oct 17)
-    lede = (f'{kept:,} open apartment and commercial projects of $500,000 or more in {E(p["city"])}, about {money(cost, True)} of work, '
+    lede = (f'{kept:,} open apartment and commercial projects of $500,000 or more in {E(p["city"])}, about {M(cost, True)} of work, '
             f'and the builders running them. {E(p["lede"])}')
     if checkout:
         hero_act = (f'<div class="ld-heroact" id="ldHeroCta">{buy()}<a class="ld-textlink" href="#near">See this week\'s sample</a></div>'
                     '<p class="ld-heronote">New list every Monday. Cancel any time.</p>')
-    else:
+    elif p.get("kitForm"):
         hero_act = '<div class="ld-heroact" id="ldHeroCta"><a class="ld-textlink" href="#ldCta">Join the waitlist</a></div>'
+    else:   # before launch with no waitlist form: no action that leads nowhere (design director, Oct 18)
+        hero_act = f'<p class="ld-heronote" id="ldHeroCta">Planned price: ${price} a month, new list every Monday. Not on sale yet.</p>'
     tiles = (f'<div class="tiles ld-tiles">'
-             f'<div class="tile key"><div class="lab">Open projects</div><div class="val">{kept:,}</div><div class="sub">issued in the last {window_months(d)}, still open</div></div>'
-             f'<div class="tile"><div class="lab">{E(p.get("costLabel", "Reported cost"))}</div><div class="val">{money(cost, True)}</div><div class="sub">{E(p.get("costSub", "as filed with the City"))}</div></div>'
+             f'<div class="tile key"><div class="lab">Open projects</div><div class="val">{kept:,}</div><div class="sub">issued in the last {window_months(d)}, still&nbsp;open</div></div>'
+             f'<div class="tile"><div class="lab">{E(p.get("costLabel", "Reported cost"))}</div><div class="val">{M(cost, True)}</div><div class="sub">{E(p.get("costSub", "as filed with the City"))}</div></div>'
              f'<div class="tile"><div class="lab">New buildings</div><div class="val">{new_n:,}</div><div class="sub">at least {c.get("keptUnits", 0):,} new {E(p.get("unitsWord", "apartments"))}</div></div>'
              f'<div class="tile"><div class="lab">Near finish</div><div class="val">{n_near:,}</div><div class="sub">{E(near_sub)}</div></div></div>'
              f'<p class="asof">City data as of {E(asof)}. Refreshed every Monday.</p>')
@@ -1628,7 +1643,7 @@ def leads_page_html(p):
         held = max(0, n_near - len(show))
         held_html = ""
         if held:
-            noun = "building is" if held == 1 else "buildings are"
+            noun = "project is" if held == 1 else "projects are"
             held_html = (f'<div class="ld-held">{LOCK}<p class="ld-heldtxt"><b>{held:,} more near-finish {noun} in the full list</b>'
                          '<span>With the builder, address and permit for each, every Monday.</span></p>'
                          f'{buy("btn ld-btnbig") if checkout else ""}</div>')
@@ -1638,7 +1653,7 @@ def leads_page_html(p):
                      f'<div class="ld-list">{"".join(card(x, pill=False) for x in show)}{held_html}</div></section>')
 
     gcs = "".join(f'<li><span class="ld-gname">{E(g["name"])}</span><span class="ld-gn">{g["projects"]}<span class="ld-gu"> open jobs</span></span>'
-                  f'<span class="ld-gv">{money(g["cost"])}</span></li>' for g in c.get("topGCs", [])[:10])
+                  f'<span class="ld-gv">{M(g["cost"])}</span></li>' for g in c.get("topGCs", [])[:10])
     gc_more = (f'<p class="ld-gmore">The full list ranks every builder with open work. <a href="{E(checkout)}" rel="noopener">Get it for ${price} a month</a>.</p>'
                if checkout else "")
     gc_html = ('<section class="block"><h2>Builders with the most big jobs open</h2>'
@@ -1664,16 +1679,21 @@ def leads_page_html(p):
     method = ('<section class="block"><h2>How to use this list</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"])
               + (f'<p>Price the work before you call:</p><ul>{links}</ul>' if links else "") + "</section>")
     shots = ""
-    shots_ok = all(os.path.isfile(os.path.join(DOCS, "assets", "leads", f)) for f in ("members-list.png", "workbook.png"))
-    if checkout and shots_ok:   # real screenshots of the paid product (files in docs/assets/leads/, made from the live members' page and workbook)
+    sdir = p.get("shotsDir", "leads")   # each city's own screenshots (Austin: docs/assets/leads/austin/, tools/leads_check.py --capture)
+    shot_f = [os.path.join(DOCS, "assets", sdir, f) for f in ("members-list.png", "workbook.png")]
+    shots_ok = all(os.path.isfile(f) for f in shot_f)
+    if shots_ok and (checkout or p.get("shotsDir")):   # real screenshots of the paid product, made from the members' app and workbook
+        (w1, h1), (w2, h2) = (png_size(f) for f in shot_f)
+        alt1 = p.get("shotAltApp", "The members' app: every open project with the reported cost, address, builder and stage, filters for stage, community area, cost and building type, CSV export and a map of the projects")
+        alt2 = p.get("shotAltBook", "The Excel file: the near finish tab with address, reported cost and builder columns, and a filter arrow on every column")
         shots = ('<section class="block ld-shots"><h2>What members get</h2>'
                  '<p>The same data as this page, every open project instead of a sample, in a members\' app and an Excel file.</p>'
                  '<div class="ld-shotgrid">'
-                 f'<figure class="ld-shot"><img src="{rel}assets/leads/members-list.png" width="1064" height="665" loading="eager" decoding="async" '
-                 'alt="The members\' app: every open project with the reported cost, address, builder and stage, filters for stage, community area, cost and building type, CSV export and a map of the projects">'
+                 f'<figure class="ld-shot"><img src="{rel}assets/{sdir}/members-list.png" width="{w1}" height="{h1}" loading="eager" decoding="async" '
+                 f'alt="{E(alt1)}">'
                  '<figcaption>The members\' app, updated every Monday</figcaption></figure>'
-                 f'<figure class="ld-shot"><img src="{rel}assets/leads/workbook.png" width="1200" height="772" loading="eager" decoding="async" '
-                 'alt="The Excel file: the near finish tab with address, reported cost and builder columns, and a filter arrow on every column">'
+                 f'<figure class="ld-shot"><img src="{rel}assets/{sdir}/workbook.png" width="{w2}" height="{h2}" loading="eager" decoding="async" '
+                 f'alt="{E(alt2)}">'
                  '<figcaption>The Excel file, filters on every column</figcaption></figure></div></section>')
     if p.get("kitForm"):
         form = (f'<form class="ld-form" action="https://app.kit.com/forms/{E(p["kitForm"])}/subscriptions" method="post">'
@@ -1686,10 +1706,16 @@ def leads_page_html(p):
         cta_html = ('<section class="block" id="ldCta"><div class="cta ld-cta ld-buy"><div>'
                     f'<h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
                     f'<p class="ld-buybtn">{buy()}</p><p class="ld-secure">Secure checkout by Gumroad. Cancel any time.</p></div>'
-                    f'<div class="ld-later"><p><b>Not ready yet?</b> Leave your email and we will let you know when the list adds new cities or features.</p>{form}'
-                    '<small class="ld-note">Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div></div></section>')
+                    + (f'<div class="ld-later"><p><b>Not ready yet?</b> Leave your email and we will let you know when the list adds new cities or features.</p>{form}'
+                       '<small class="ld-note">Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div>' if p.get("kitForm") else "")
+                    + '</div></section>')
         sbar = (f'<div class="ld-sbar" id="ldBar" aria-hidden="true"><div class="wrap"><p><b>${price} a month</b><span> · <span class="ld-sbl">full list </span>every Monday</span></p>'
                 f'<a class="btn" href="{E(checkout)}" rel="noopener" tabindex="-1">Get it</a></div></div>')
+    elif not p.get("kitForm"):   # before launch, no waitlist: the offer and the planned price, no form (design director, Oct 18)
+        cta_html = ('<section class="block" id="ldCta"><div class="cta ld-cta ld-solo"><div>'
+                    f'<h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
+                    f'<p class="ld-price">Planned price: ${price} a month. Not on sale yet: this page shows the checkout once the list opens.</p></div></div></section>')
+        sbar = ""
     else:
         cta_html = ('<section class="block" id="ldCta"><div class="cta ld-cta"><div>'
                     f'<h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
@@ -1719,7 +1745,7 @@ io.observe(hero);io.observe(cta)})();</script>"""
             f'{E(p.get("costNote", "Reported cost is the figure filed with the City, not a contract value."))} No contractor named here has endorsed or works with ProofNotFluff. '
             'Public information for planning sales calls; not legal or business advice and no promise of work.</p>'
             f'<p>{E(p.get("disclaimer") or CITY_DISCLAIMER.get(p["city"], ""))}</p>'
-            '<p>Made by ProofNotFluff with AI assistance from public City data. The waitlist form sends your email address to Kit. The page counts visits with Cloudflare Web Analytics, which sets no cookies, and loads its heading font from Google Fonts.</p>'
+            f'<p>Made by ProofNotFluff with AI assistance from public City data.{" The waitlist form sends your email address to Kit." if p.get("kitForm") else ""} The page counts visits with Cloudflare Web Analytics, which sets no cookies, and loads its heading font from Google Fonts.</p>'
             f'</div></footer>\n{sbar}\n{script}\n</body></html>')
     bodycls = ' class="ld-page' + (' has-sbar' if sbar else '') + '"'
     return (HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=SHOP, ld=ld, bodycls=bodycls,

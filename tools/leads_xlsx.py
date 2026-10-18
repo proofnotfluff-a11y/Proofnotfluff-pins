@@ -59,6 +59,7 @@ BUILDER_EMAIL = [
 
 SCOPE_MAX = 120
 MONEY_SHORT = '[>=1000000000]"$"0.0,,," billion";[>=1000000]"$"0.0,,"M";"$"#,##0'
+BILLION = '"$"0.0,,," billion"'
 ROW_H = 30
 C = LC.CHICAGO   # the city being built; use() switches it
 
@@ -66,9 +67,11 @@ C = LC.CHICAGO   # the city being built; use() switches it
 def use(c):
     """Point this module at one city's settings (tools/leads_cities.py). Chicago's are the defaults, the exact words the
     Chicago workbook shipped with."""
-    global C, PRODUCT, CITY_DISCLAIMER, OUR_NOTICE, STAGE_ORDER, CHIP, NEAR
+    global C, PRODUCT, CITY_DISCLAIMER, OUR_NOTICE, STAGE_ORDER, CHIP, NEAR, MONEY_SHORT, BILLION
     C = LC.city(c) if isinstance(c, str) else c
     PRODUCT, CITY_DISCLAIMER, OUR_NOTICE, NEAR = C["product"], C["disclaimer"], C["notice"], C["nearMatch"]
+    BILLION = '"$"0.00,,," billion"' if C.get("bil2") else '"$"0.0,,," billion"'
+    MONEY_SHORT = f'[>=1000000000]{BILLION};[>=1000000]"$"0.0,,"M";"$"#,##0'
     st = C["stages"]
     STAGE_ORDER = {x: i for i, x in enumerate(st)}
     CHIP = {st[0]: ("2E6B66", "E3EFED"), st[1]: ("2F5F9E", "E6EDF6"), st[2]: ("3A4152", "ECE6DA")}
@@ -374,7 +377,7 @@ def start_here(wb, rows, near, new, src, list_date, addresses):
     c_rng, s_rng = f"{allr}D12:D{11 + n}", f"{allr}G12:G{11 + n}"
     newr = f"'{TABS['new']}'!D12:D{11 + max(len(new), 1)}"
     tiles = [("B", "D", "OPEN BIG PROJECTS", f'=COUNTIF({c_rng},">0")', S.FMT["int"], (f"projects, {sum(p.get('buildings') or 0 for p in rows):,} building permits" if aus else f"permits, at {addresses:,} addresses"), True),
-             ("F", "H", "VALUATION" if aus else "REPORTED COST", f"=SUM({c_rng})", '"$"0.0,,," billion"',
+             ("F", "H", "VALUATION" if aus else "REPORTED COST", f"=SUM({c_rng})", BILLION,
               "largest on each project's permits" if aus else "filed with the permits", False),
              ("J", "L", "NEAR FINISH", f'=COUNTIF({s_rng},"{C["stages"][0]}")', S.FMT["int"], C["stages"][0].lower(), False),
              ("N", "P", "NEW THIS WEEK", f'=COUNTIF({newr},">0")', S.FMT["int"], "issued in the last 7 days", False)]

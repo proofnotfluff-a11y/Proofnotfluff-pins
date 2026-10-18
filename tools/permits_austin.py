@@ -158,9 +158,46 @@ def tidy(desc):
     return d
 
 
+KEEP_CAPS = {"MEP", "HVAC", "ADA", "AISD", "CTE", "TI", "EV", "SF", "PV", "LLC", "BP", "ATD", "BOH", "IMP", "CU", "AE", "UT", "ACC", "II", "III", "IV",
+             "LBJ", "MLK", "SH", "FM", "IH", "US", "RR", "ATX", "CISD", "ISD", "YMLA", "GSE", "FIS", "BAUS", "CMU", "PEMB", "RTU", "RTUS", "SMART", "HQ", "ER", "ICU"}
+
+
+def sentence_case(t):
+    """The City's all-caps text in sentence case, acronyms kept (design director, Oct 18: "FIRST TIME FINISH OUT- 5 PHASE 1
+    MULTIFAMILY FLOORS 1-5 CLUB AMENTITY" reads as shouting). Text that is mostly lower case is left as filed."""
+    words = re.findall(r"[A-Za-z]{3,}", t)
+    caps = [w for w in words if w.isupper()]
+    if len(caps) < 3 or len(caps) < 0.4 * len(words):
+        return t
+    out = re.sub(r"[A-Za-z][A-Za-z']*", lambda m: m.group(0) if m.group(0).upper() in KEEP_CAPS else m.group(0).lower(), t)
+    out = re.sub(r"(^|[.!?]\s+|\|\s+)([a-z])", lambda m: m.group(1) + m.group(2).upper(), out)
+    return P.ACRONYMS.sub(lambda m: m.group(0).upper(), out)
+
+
+ALWAYS_CAPS = re.compile(r"\b(?:aisd|cisd|isd|ymla|cte|lbj|mlk|baus|pemb|atd|boh)\b", re.I)
+
+
 def austin_scope(desc, limit=150, whole=False):
     d = tidy(desc)
-    return P.clean_scope(d, limit=limit, whole=whole) if d else "No description in the City record."
+    return ALWAYS_CAPS.sub(lambda m: m.group(0).upper(), sentence_case(P.clean_scope(d, limit=limit, whole=whole))) if d else "No description in the City record."
+
+
+ROAD_CAPS = re.compile(r"^(?:LBJ|MLK|SH|FM|IH|US|RR|RM|CR|NE|NW|SE|SW|ATX)\d*$", re.I)
+
+
+def street_title(a):
+    """An address as the list prints it: words in title case, road names in capitals (LBJ, SH, FM, IH, US, RR, RM), Mc names
+    whole ("MC CANN DR" is McCann Dr), ordinals in lower case (21st)."""
+    a = re.sub(r"\s+", " ", (a or "").strip())
+    a = re.sub(r"\bMC\s+(?=[A-Z]{3,})", "MC", a, flags=re.I) if a.isupper() else a
+    words = []
+    for w in a.split(" "):
+        if ROAD_CAPS.match(w):
+            words.append(w.upper())
+        else:
+            w = re.sub(r"[A-Za-z]+", lambda m: m.group(0).capitalize(), w.lower())
+            words.append(re.sub(r"\bMc([a-z])", lambda m: "Mc" + m.group(1).upper(), w))
+    return re.sub(r"\b(\d+)(St|Nd|Rd|Th)\b", lambda m: m.group(1) + m.group(2).lower(), " ".join(words))
 
 
 # ---------------------------------------------------------------- rule 2: real construction clean-up work
@@ -285,15 +322,18 @@ def group_projects(rows, since, today, week, min_cost=MIN_COST):
                                  -(num(r.get("total_new_add_sqft")) + num(r.get("remodel_repair_sqft"))),
                                  day(r.get("issue_date")), str(r.get("permit_number"))))
         lead = kept[0]
-        finals = [r for r in rs if (r.get("status_current") or "").upper() == "FINAL" and day(r.get("issue_date")) >= since[:10]]
+        # finaled building permits of the project issued in the window, of the kind the list keeps (an earlier phase of a phased
+        # remodel counts: 13521831 has 17 finaled phases and 2 open, Oct 18)
+        finals = [r for r in rs if (r.get("status_current") or "").upper() == "FINAL" and day(r.get("issue_date")) >= since[:10]
+                  and keep_permit(dict(r, status_current="Active", expiresdate=""), since, today)[0]]
         stage = ("Some permits finaled" if finals else "Work under way" if any(extended(r) for r in kept) else "Permit issued")
         new_units = sum(int(num(r.get("housing_units"))) for r in kept if cls_no(r) in (104, 105, 106))
         fin_units = sum(int(num(r.get("housing_units"))) for r in kept if cls_no(r) in (1000, 1001, 1002) and re.search(r"UNIT|RESIDEN|MULTI|APART", (r.get("description") or "").upper()))
         units = max(new_units, fin_units)
+        built_units = sum(int(num(r.get("housing_units"))) for r in kept if cls_no(r) in (104, 105, 106) and (r.get("work_class") or "").upper() == "NEW")
         addrs = []
         for r in kept:
-            a = re.sub(r"\s+", " ", (r.get("original_address1") or "").strip()).title()
-            a = re.sub(r"\b(\d+)(St|Nd|Rd|Th)\b", lambda m: m.group(1) + m.group(2).lower(), a)
+            a = street_title(r.get("original_address1"))
             if a and a not in addrs:
                 addrs.append(a)
         lat = lon = None
@@ -316,6 +356,7 @@ def group_projects(rows, since, today, week, min_cost=MIN_COST):
             "scope": austin_scope(lead.get("description")),
             "scopeFull": " | ".join(scopes[:12]) + (f" | and {len(scopes) - 12} more building permits" if len(scopes) > 12 else ""),
             "units": units or None,
+            "newUnits": built_units,
             "cost": int(cost + 0.5),
             "address": addrs[0] + (f" (+{len(addrs) - 1} more)" if len(addrs) > 1 else "") if addrs else "",
             "communityArea": (lead.get("original_zip") or "").strip()[:5],
@@ -338,6 +379,35 @@ def group_projects(rows, since, today, week, min_cost=MIN_COST):
 
 def top_builders(projects, n=12):
     return P.top_builders(projects, n)
+
+
+def bare(name):
+    """True when a builder's name carries no legal suffix (LLC, Inc, Corp, Co, Ltd and their spellings)."""
+    return P.gc_key(name) == re.sub(r"[^A-Z0-9]", "", (name or "").upper())
+
+
+def unify_builders(projects):
+    """One builder per legal entity (design director, Oct 18: "Rogers Obrien Construction" and "Rogers-O'Brien Construction
+    Co. Ltd" were two). Punctuation and suffix spelling never split a builder (permits_chicago.entity_key). A name the City
+    gives without any legal suffix joins the one suffixed entity with the same name, when there is exactly one; when there are
+    two (an LLC and an Inc), they stay apart and the bare name stays as filed. Returns {old spelling: new spelling}."""
+    names = collections.Counter(g for x in projects for g in x["gc"])
+    by_root = collections.defaultdict(set)
+    for g in names:
+        by_root[P.gc_key(g)].add(P.entity_key(g))
+    spelled = collections.defaultdict(collections.Counter)
+    for g, n in names.items():
+        spelled[P.entity_key(g)][g] += n
+    best = {k: sorted(c.items(), key=lambda kv: (-kv[1], len(kv[0]), kv[0]))[0][0] for k, c in spelled.items()}
+    change = {}
+    for g in names:
+        root = P.gc_key(g)
+        suffixed = [k for k in by_root[root] if not bare(best[k])]
+        if bare(g) and len(suffixed) == 1:
+            change[g] = best[suffixed[0]]
+    for x in projects:
+        x["gc"] = list(dict.fromkeys(change.get(g, g) for g in x["gc"]))
+    return change
 
 
 def merge_twins(projects):
@@ -491,6 +561,7 @@ def build_lists(rows, now, since, days=DAYS, min_cost=MIN_COST):
     today = central_today(now)
     week = (today - dt.timedelta(days=7)).isoformat()
     projects, reasons, preasons = group_projects(rows, since, today, week, min_cost)
+    unify_builders(projects)
     projects, merged = merge_twins(projects)
     if merged:
         reasons["kept"] -= len(merged)
@@ -534,7 +605,7 @@ def main():
         "counts": {"fetched": len(rows), "kept": len(projects), "excluded": dict(reasons), "permitReasons": dict(preasons),
                    "keptByType": dict(collections.Counter(x["type"] for x in projects)),
                    "keptCost": total_cost(projects),
-                   "keptUnits": sum(x["units"] or 0 for x in projects if x["type"] == "New construction"),
+                   "keptUnits": sum(x.get("newUnits") or 0 for x in projects),   # homes in new buildings only (the free page says "new homes")
                    "keptBuildings": sum(x["buildings"] for x in projects),
                    "topAreas": by_zip.most_common(8), "topGCs": top_builders(projects), "nearFinish": len(near),
                    "builders": len({P.entity_key(g) for x in projects for g in x["gc"]}),
@@ -743,6 +814,17 @@ def selftest():
         got = austin_scope(raw)
         if not got.startswith(want):
             bad.append(("scope", raw[:60], got))
+    for raw, want in [("ePlan: Commercial Expedited Review - [APPROVED] First Time Finish Out- 5 PHASE 1 MULTIFAMILY FLOORS 1-5 CLUB AMENTITY TO INCLUDE LEASING OFFICE",
+                       "First time finish out- 5 phase 1 multifamily floors 1-5 club amentity to include leasing office"),
+                      ("NEW CONSTRUCTION OF AISD MIDDLE SCHOOL. MEP WORK INCLUDED", "New construction of AISD middle school. MEP work included"),
+                      ("Interior Remodel to Existing Office (13000 SF)", "Interior Remodel to Existing Office (13000 SF)")]:
+        if austin_scope(raw, limit=300) != want:
+            bad.append(("sentence case", austin_scope(raw, limit=300), want))
+    for raw, want in [("9711 LBJ FWY", "9711 LBJ Fwy"), ("4501 W SH 71", "4501 W SH 71"), ("8801 MC CANN DR", "8801 McCann Dr"),
+                      ("11400 N IH 35 SVRD", "11400 N IH 35 Svrd"), ("3001 RR 620 S", "3001 RR 620 S"), ("1110 W 6TH ST UNIT FLR1", "1110 W 6th St Unit Flr1"),
+                      ("2201 E MLK JR BLVD", "2201 E MLK Jr Blvd"), ("100 MCCALL LN", "100 McCall Ln")]:
+        if street_title(raw) != want:
+            bad.append(("address", raw, street_title(raw), want))
     for raw in ("Construction of a new 51250 sq. ft single story middle school.                   210-850-8661",
                 "New office. Call (512) 974-2000 or plans@example.com", "New school. Owner John Smith"):
         s = austin_scope(raw, limit=1200, whole=True)
@@ -788,6 +870,13 @@ def selftest():
     twins = [dict(byp["M1"], permit="T1", address="6801 River Place Blvd", cost=1525000000, gc=["Turner Construction"], milestone="Work under way"),
              dict(byp["M1"], permit="T2", address="6801 River Place Blvd (+1 more)", cost=1525000000, gc=["TURNER CONSTRUCTION"], milestone="Some permits finaled"),
              dict(byp["M1"], permit="T3", address="6801 River Place Blvd", cost=9000000, gc=["Turner Construction"])] if "M1" in byp else []
+    ub = [{"gc": ["Rogers Obrien Construction"]}, {"gc": ["Rogers-O'Brien Construction Co. Ltd"]}, {"gc": ["ROGERS-O'BRIEN CONSTRUCTION CO., LTD."]},
+          {"gc": ["Panoptic Group"]}, {"gc": ["Panoptic Group LLC"]}, {"gc": ["Panoptic Group Inc"]}, {"gc": ["Acme Builders"]}, {"gc": ["Zeta Builders"]}]
+    unify_builders(ub)
+    if [x["gc"][0] for x in ub] != ["Rogers-O'Brien Construction Co. Ltd"] * 2 + ["ROGERS-O'BRIEN CONSTRUCTION CO., LTD."] + \
+            ["Panoptic Group", "Panoptic Group LLC", "Panoptic Group Inc", "Acme Builders", "Zeta Builders"] \
+            or len({P.entity_key(x["gc"][0]) for x in ub[:3]}) != 1:
+        bad.append(("one builder per legal entity", [x["gc"] for x in ub]))
     mt, gone = merge_twins(twins)
     if len(mt) != 2 or gone != ["T2"] or mt[0]["buildings"] != 4 or mt[0]["milestone"] != "Some permits finaled" or mt[0]["address"] != "6801 River Place Blvd (+1 more)" \
             or total_cost(mt) != 1534000000 or mt[0]["masters"] != ["T1", "T2"]:

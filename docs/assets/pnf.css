@@ -55,6 +55,7 @@ section.block h2{font-size:24px;margin:0 0 10px}
 section.block p,section.block li{color:var(--ink2);max-width:760px}
 .cta{display:grid;gap:14px;align-items:center;background:var(--ink);color:#fff;border-radius:var(--radius);padding:22px}
 @media(min-width:760px){.cta{grid-template-columns:1fr auto}}
+@media(min-width:760px){.cta.ld-solo{grid-template-columns:minmax(0,1fr)}}
 .cta h2{color:#fff;margin:0 0 6px;font-size:22px}.cta p{color:#c9cfdb;margin:0}
 .btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:13px 20px;border-radius:10px;text-align:center}
 .btn:hover{background:var(--accent-ink)}
@@ -147,7 +148,8 @@ table.mt b{font-weight:700}
 .ld-meta dt{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:2px}
 .ld-meta dd{margin:0;font-size:14.5px;overflow-wrap:anywhere}
 .ld-meta div:first-child dd{font-weight:700;color:var(--ink)}
-@media(max-width:420px){.ld-meta div{grid-template-columns:minmax(0,1fr);gap:0}}
+.ld-meta.wide div{grid-template-columns:120px minmax(0,1fr)}
+@media(max-width:420px){.ld-meta div,.ld-meta.wide div{grid-template-columns:minmax(0,1fr);gap:0}}
 .ld-held{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;background:var(--canvas);border:1px dashed #cfc8bb;border-radius:12px;padding:18px 20px}
 .ld-lock{flex:0 0 auto;color:var(--muted)}
 .block p.ld-heldtxt{flex:1 1 260px;margin:0;color:var(--ink);max-width:none}

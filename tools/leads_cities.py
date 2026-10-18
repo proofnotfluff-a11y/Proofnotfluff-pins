@@ -68,6 +68,7 @@ CHICAGO = {
     "totalWord": "total reported",
     "leaveList": "Projects leave the list when the City marks the permit complete, and builders leave with their projects.",
     "noGeo": "no map location in the City record",
+    "bil2": False,
 }
 
 AUSTIN_DISCLAIMER = (
@@ -128,6 +129,7 @@ AUSTIN = {
     "totalWord": "total valuation",
     "leaveList": "Projects leave the list when the City finals or closes all their building permits, and builders leave with their projects.",
     "noGeo": "no map location in the City record or from the Census geocoder",
+    "bil2": True,   # $1 billion and up as "$1.57 billion" everywhere (design director, Oct 18)
 }
 
 CITIES = {"chicago": CHICAGO, "austin": AUSTIN}

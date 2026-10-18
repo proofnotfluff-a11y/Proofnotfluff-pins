@@ -13,8 +13,8 @@ Checklist: design/LAUNCH_CHECKLIST.md. Nothing is published, linked, emailed or 
 ## The rules (tools/permits_austin.py; planted cases in --selftest)
 1. Window: building permits issued in the last 24 months (from the Central date of the pull), status Active and not past the City's expiry date.
 2. Real clean-up work: commercial and multifamily buildings only. Out: class 329 structures (carports, pergolas, canopies, enclosures, pools, EV chargers), class 321 parking garages, houses, duplexes and three-unit buildings, shell-only, interior demolition, repairs, small accessory structures and garages, and roof, equipment, generator, fuel, solar, sign, elevator, fence, site and exterior-only work.
-3. Projects: building permits grouped by master permit; one development under two master permits (same address, valuation and builder) is one project. Valuation is the largest valuation on any of its building permits, once; the project is kept at $500,000 or more.
-4. Builder: the General Contractor the City lists on the kept permits, a business only (never a person's name, phone, applicant or owner), cleaning companies out, grouped by legal entity.
+3. Projects: building permits grouped by master permit; one development under two master permits (same address, valuation and builder) is one project. Homes are the City's housing units on the kept permits; "new homes" on the free page counts only new buildings (classes 104 to 106, work class New). Valuation is the largest valuation on any of its building permits, once; the project is kept at $500,000 or more.
+4. Builder: the General Contractor the City lists on the kept permits, a business only (never a person's name, phone, applicant or owner), cleaning companies out, grouped by legal entity; a name filed with no legal suffix joins the one suffixed entity of the same name (Rogers Obrien Construction is Rogers-O'Brien Construction Co. Ltd), while an LLC and an Inc of the same name stay apart.
 5. Stage: Some permits finaled (a building permit of the project issued in the window is Final), Work under way (the City pushed an expiry date past the first 180 days), else Permit issued. New this week: the project's first kept building permit was issued in the last 7 days.
 
 ## 1. Gates
@@ -66,7 +66,7 @@ What you get:
 
 Stages come from the City's own permit fields: Permit issued; Work under way, when the City has pushed a permit's expiry date past the first 180 days, which it does when an inspection passes or an extension is granted; and Some permits finaled, when part of the project is marked Final while the rest is open.
 
-What it is not: valuation is the largest valuation filed on a project's City building permits, not a contract value or a budget. The list names the general contractor the City lists; it does not include builder phone numbers or emails, and you make your own calls and emails. No builder listed has endorsed or works with ProofNotFluff. Houses, duplexes, carports, pergolas, parking garages, shell-only buildings, demolition, and roof, equipment, sign and site work are left out; the full rule is on the free sample page and in the Excel file.
+What it is not: valuation is the largest valuation filed on a project's City building permits, not a contract value or a budget. The list names the general contractor the City lists; it does not include builder phone numbers or emails, and you make your own calls and emails. No builder listed has endorsed or works with ProofNotFluff. Houses, duplexes, carports, pergolas, parking garages, shell-only buildings, demolition, and roof, equipment, sign and site work are left out; the full rule is on the free sample page and in the Excel file. Free sample: https://proofnotfluff.com/austin-construction-cleaning-leads/
 
 $29 a month. Cancel any time from your Gumroad library; cancelling stops future charges. Your membership renews monthly until you cancel.
 

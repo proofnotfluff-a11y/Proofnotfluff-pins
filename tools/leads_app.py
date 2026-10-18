@@ -168,7 +168,7 @@ def terms_json(as_of, city_terms=CITY_TERMS):
 def city_json():
     keys = ("key", "city", "state", "product", "csvPrefix", "storageKey", "center", "zoom", "cityName", "records", "area", "areaLower",
             "areaAll", "areaPlural", "cost", "costLower", "costShort", "permit", "permitLower", "types", "stages", "stagesShort",
-            "stageLines", "contacts", "termsLabel", "nearEmpty", "midWords", "totalWord", "leaveList", "noGeo")
+            "stageLines", "contacts", "termsLabel", "nearEmpty", "midWords", "totalWord", "leaveList", "noGeo", "bil2")
     return json.dumps({k: CITY[k] for k in keys}, ensure_ascii=False).replace("</", "<\\/")
 
 
@@ -688,8 +688,8 @@ const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(BOX.iv)},key,b64(BOX
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const int=n=>Math.round(+n||0).toLocaleString("en-US");
-function money(n){n=Math.round(+n||0);if(!n)return "$0";if(n>=99.95e6)return "$"+int(n/1e6)+"M";if(n>=999.5e3)return "$"+(Math.round(n/1e5)/10).toFixed(1)+"M";return "$"+Math.round(n/1e3)+"K";}
-function bigMoney(n){return n>=1e9?"$"+(Math.round(n/1e8)/10).toFixed(1)+" billion":money(n);}
+function money(n){n=Math.round(+n||0);if(!n)return "$0";if(typeof CITY!=="undefined"&&CITY.bil2&&Math.round(n/1e7)>=100)return "$"+(Math.round(n/1e7)/100).toFixed(2)+" billion";if(n>=99.95e6)return "$"+int(n/1e6)+"M";if(n>=999.5e3)return "$"+(Math.round(n/1e5)/10).toFixed(1)+"M";return "$"+Math.round(n/1e3)+"K";}
+function bigMoney(n){if(typeof CITY!=="undefined"&&CITY.bil2)return money(n);return n>=1e9?"$"+(Math.round(n/1e8)/10).toFixed(1)+" billion":money(n);}
 const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 function day(s){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||"");return m?MON[+m[2]-1]+" "+(+m[3])+", "+m[1]:"";}
 const sent=s=>{s=String(s||"").toLowerCase();return s.charAt(0).toUpperCase()+s.slice(1);};
@@ -1133,6 +1133,13 @@ def selftest():
             js = fns + "\nconsole.log(JSON.stringify(%s.map(n=>money(n)).concat([bigMoney(2950000000),bigMoney(2850000000)])))" % json.dumps(list(cases))
             got = json.loads(subprocess.run([node, "-e", js], capture_output=True, text=True, check=True).stdout)
             assert got == list(cases.values()) + ["$3.0 billion", "$2.9 billion"], got
+        # Austin (design director, Oct 18): $1 billion and up as "$1.57 billion", the same in the app and on the free page
+        fns = "\n".join(m.group(0) for m in re.finditer(r"^(?:const int=|function money\(n\)|function bigMoney\(n\)).*$", PAGE, re.M))
+        bcases = [1567000000, 994000000, 995000000, 6667343254, 999499]
+        js = "const CITY={bil2:true};" + fns + "\nconsole.log(JSON.stringify(%s.map(n=>money(n)).concat([bigMoney(6667343254)])))" % json.dumps(bcases)
+        got = json.loads(subprocess.run([node, "-e", js], capture_output=True, text=True, check=True).stdout)
+        want = ["$1.57 billion", "$994M", "$1.00 billion", "$6.67 billion", "$999K", "$6.67 billion"]
+        assert got == want and [ms.money(v, bil2=True) for v in bcases] == want[:5], (got, [ms.money(v, bil2=True) for v in bcases])
         # CSV export: the formula guard quotes text that starts with = + - @, but plain numbers such as longitudes stay numbers
         fn = re.search(r"^function cell\(v\).*$", PAGE, re.M).group(0)
         cells = [-87.637533, "-87.637533", 41.88, 1988677, "=SUM(A1)", "-1 call first", "+1 312", "@x", "", None, 'say "hi", then']

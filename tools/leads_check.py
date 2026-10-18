@@ -8,7 +8,11 @@ with an error value in any cell. Screenshots go to the --shots folder.
 The password is read from a file and never printed. When the sandbox cannot reach cdnjs or the map tiles, pass --leaflet DIR
 (leaflet@1.9.4's dist folder from npm, the same bytes the page's SRI hash pins) and the tiles are served blank.
 
-Usage: python3 tools/leads_check.py --docs docs --app austin-leads-members --pw-file PW --shots OUT [--leaflet DIR]
+--capture DIR also writes the free page's "What members get" images from this app (tools/make_site.py reads them):
+members-list.png (the project list, 1064 x 665) and workbook.png (the workbook's All projects tab, 1200 x 772). For Austin,
+DIR is docs/assets/leads/austin. When the map tiles cannot load (--leaflet), the list is captured without the map pane.
+
+Usage: python3 tools/leads_check.py --docs docs --app austin-leads-members --pw-file PW --shots OUT [--leaflet DIR] [--capture DIR]
 """
 import argparse, csv, functools, http.server, io, json, os, re, socketserver, sys, threading, zipfile
 
@@ -26,6 +30,36 @@ def serve(root):
     return srv
 
 
+def capture(ctx, base, pw, wb_path, out, no_tiles, check):
+    """The free page's two screenshots of the paid product, made from this build."""
+    import subprocess, tempfile
+    from PIL import Image
+    os.makedirs(out, exist_ok=True)
+    pg = ctx.new_page()
+    pg.set_viewport_size({"width": 1064, "height": 665})
+    pg.goto(base)
+    pg.fill("#pw", pw)
+    pg.click("#go")
+    pg.wait_for_selector("#app .hero")
+    pg.goto(base + "#/projects")
+    pg.wait_for_selector("#plist .row")
+    if no_tiles:
+        pg.add_style_tag(content=".split{display:block!important}.mapbox{display:none!important}")
+    pg.wait_for_timeout(1200)
+    pg.evaluate("window.scrollTo(0,0)")
+    pg.screenshot(path=os.path.join(out, "members-list.png"))
+    pg.close()
+    tmp = tempfile.mkdtemp()
+    subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), "render_xlsx.py"), wb_path, tmp],
+                   check=True, capture_output=True)
+    src = next(os.path.join(tmp, f) for f in sorted(os.listdir(tmp)) if "All-projects" in f and f.endswith(".png"))
+    im = Image.open(src).convert("RGB")
+    w = min(im.width, int(im.height * 1200 / 772))
+    im.crop((0, 0, w, int(w * 772 / 1200))).resize((1200, 772), Image.LANCZOS).save(os.path.join(out, "workbook.png"))
+    sizes = [Image.open(os.path.join(out, f)).size for f in ("members-list.png", "workbook.png")]
+    check(sizes == [(1064, 665), (1200, 772)], f"captured the free page's screenshots into {out}: {sizes}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--docs", required=True)
@@ -33,6 +67,7 @@ def main():
     ap.add_argument("--pw-file", required=True)
     ap.add_argument("--shots", required=True)
     ap.add_argument("--leaflet", default="")
+    ap.add_argument("--capture", default="")
     a = ap.parse_args()
     from playwright.sync_api import sync_playwright
     from openpyxl import load_workbook
@@ -178,6 +213,8 @@ def main():
             errs = [f"{ws.title}!{c.coordinate}" for ws in wb.worksheets for row in ws.iter_rows() for c in row
                     if isinstance(c.value, str) and re.match(r"^#(?:REF|VALUE|NAME|DIV/0|N/A|NUM|NULL)", c.value)]
             check(not errs, f"{tag} workbook {dl.value.suggested_filename}: {len(wb.sheetnames)} tabs, error cells {errs[:5]}")
+            if a.capture and width > 500:
+                capture(ctx, base, pw, wb_path, a.capture, bool(a.leaflet), check)
             errors = [e for e in errors if "tile.openstreetmap" not in e]
             check(not errors, f"{tag} console errors: {errors[:3]}")
             ctx.close()

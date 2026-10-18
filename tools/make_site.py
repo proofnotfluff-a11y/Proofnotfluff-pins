@@ -1480,7 +1480,7 @@ CITY_DISCLAIMER = {
 STAGES = [("PARTIAL OCCUPANCY", "Partial occupancy approved", "hot"), ("OCCUPANCY PENDING", "Partial occupancy approved", "hot"),
           ("CERTIFICATE OF OCCUPANCY ISSUED", "Occupancy certificate issued", "done"),
           ("INSPECTIONS", "Inspections under way", "mid"), ("PERMIT ISSUED", "Permit issued", "early"),
-          ("SOME BUILDINGS FINALED", "Some buildings finaled", "hot"), ("PERMIT ACTIVE", "Permit active", "early")]   # Austin (no milestones)
+          ("SOME PERMITS FINALED", "Some permits finaled", "hot"), ("WORK UNDER WAY", "Work under way", "mid")]   # Austin (stages from the City's own fields)
 
 
 def is_live(p):
@@ -1616,8 +1616,8 @@ def leads_page_html(p):
         hero_act = '<div class="ld-heroact" id="ldHeroCta"><a class="ld-textlink" href="#ldCta">Join the waitlist</a></div>'
     tiles = (f'<div class="tiles ld-tiles">'
              f'<div class="tile key"><div class="lab">Open projects</div><div class="val">{kept:,}</div><div class="sub">issued in the last {window_months(d)}, still open</div></div>'
-             f'<div class="tile"><div class="lab">Reported cost</div><div class="val">{money(cost, True)}</div><div class="sub">{E(p.get("costSub", "as filed with the City"))}</div></div>'
-             f'<div class="tile"><div class="lab">New buildings</div><div class="val">{new_n:,}</div><div class="sub">at least {c.get("keptUnits", 0):,} new apartments</div></div>'
+             f'<div class="tile"><div class="lab">{E(p.get("costLabel", "Reported cost"))}</div><div class="val">{money(cost, True)}</div><div class="sub">{E(p.get("costSub", "as filed with the City"))}</div></div>'
+             f'<div class="tile"><div class="lab">New buildings</div><div class="val">{new_n:,}</div><div class="sub">at least {c.get("keptUnits", 0):,} new {E(p.get("unitsWord", "apartments"))}</div></div>'
              f'<div class="tile"><div class="lab">Near finish</div><div class="val">{n_near:,}</div><div class="sub">{E(near_sub)}</div></div></div>'
              f'<p class="asof">City data as of {E(asof)}. Refreshed every Monday.</p>')
 
@@ -1716,7 +1716,7 @@ io.observe(hero);io.observe(cta)})();</script>"""
     robots = "" if is_live(p) else '<meta name="robots" content="noindex, nofollow">'
     foot = (f'</main>\n<footer><div class="wrap">'
             f'<p>Source: {E(src["name"])} ({E(src["url"])}), City data as of {E(asof)}, the day it was pulled. {E(src["modified"])} '
-            'Reported cost is the figure filed with the City, not a contract value. No contractor named here has endorsed or works with ProofNotFluff. '
+            f'{E(p.get("costNote", "Reported cost is the figure filed with the City, not a contract value."))} No contractor named here has endorsed or works with ProofNotFluff. '
             'Public information for planning sales calls; not legal or business advice and no promise of work.</p>'
             f'<p>{E(p.get("disclaimer") or CITY_DISCLAIMER.get(p["city"], ""))}</p>'
             '<p>Made by ProofNotFluff with AI assistance from public City data. The waitlist form sends your email address to Kit. The page counts visits with Cloudflare Web Analytics, which sets no cookies, and loads its heading font from Google Fonts.</p>'

@@ -22,6 +22,7 @@ from openpyxl.cell.rich_text import CellRichText, TextBlock  # noqa: E402
 from openpyxl.cell.text import InlineFont  # noqa: E402
 from openpyxl.styles import Alignment, Border  # noqa: E402
 from openpyxl.utils import get_column_letter as gl  # noqa: E402
+import leads_cities as LC  # noqa: E402  (per-city words, Oct 18, 2026: one code base for Chicago and Austin)
 
 PRODUCT = "Chicago Construction Cleaning Leads"
 CITY_DISCLAIMER = ("This site provides applications using data that has been modified for use from its original source, "
@@ -59,10 +60,28 @@ BUILDER_EMAIL = [
 SCOPE_MAX = 120
 MONEY_SHORT = '[>=1000000000]"$"0.0,,," billion";[>=1000000]"$"0.0,,"M";"$"#,##0'
 ROW_H = 30
+C = LC.CHICAGO   # the city being built; use() switches it
+
+
+def use(c):
+    """Point this module at one city's settings (tools/leads_cities.py). Chicago's are the defaults, the exact words the
+    Chicago workbook shipped with."""
+    global C, PRODUCT, CITY_DISCLAIMER, OUR_NOTICE, STAGE_ORDER, CHIP, NEAR
+    C = LC.city(c) if isinstance(c, str) else c
+    PRODUCT, CITY_DISCLAIMER, OUR_NOTICE, NEAR = C["product"], C["disclaimer"], C["notice"], C["nearMatch"]
+    st = C["stages"]
+    STAGE_ORDER = {x: i for i, x in enumerate(st)}
+    CHIP = {st[0]: ("2E6B66", "E3EFED"), st[1]: ("2F5F9E", "E6EDF6"), st[2]: ("3A4152", "ECE6DA")}
+    BUILDER_EMAIL[1] = BUILDER_EMAIL[1].replace("cleaning in Chicago", f"cleaning in {C['city']}").replace("cleaning in Austin", f"cleaning in {C['city']}")
+    return C
+
+
 TABS = {"near": "1 Near finish", "new": "2 New this week", "all": "3 All projects", "builders": "4 Builders", "pitch": "5 Pitch kit"}
 
 
 def stage(m):
+    if (m or "") in C["stages"]:          # Austin's list carries the stage itself
+        return m
     u = (m or "").upper()
     if any(x in u for x in NEAR):
         return "Partial occupancy approved"
@@ -124,9 +143,24 @@ PROJECT_COLS = [  # key, heading, width, align, fmt
 ]
 
 
+AUSTIN_COLS = [
+    ("address", "Address", 27, "left", None),
+    ("cost", "Valuation", 15, "right", "usd0"),
+    ("gcText", "Builder", 30, "left", None),
+    ("communityArea", "ZIP code", 11, "left", None),
+    ("stage", "Stage", 22, "center", None),
+    ("type", "Type", 18, "left", None),
+    ("units", "Homes", 8, "right", "int"),
+    ("buildings", "Building permits", 11, "right", "int"),
+    ("issued", "First issued", 14, "left", "date"),
+    ("permit", "Master permit", 12, "left", None),
+    ("scope", "What the permits cover", 60, "left", None),
+]
+
+
 def project_sheet(wb, key, tagline, rows, list_date, tab, drop=(), stats=None):
     ws = wb.create_sheet(TABS[key])
-    cols = [c for c in PROJECT_COLS if c[0] not in drop]
+    cols = [c for c in (PROJECT_COLS if C["key"] == "chicago" else AUSTIN_COLS) if c[0] not in drop]
     letters = [gl(i + 3) for i in range(len(cols))]          # A gutter, B pad, data from C
     pad_r, gut_r = gl(len(cols) + 3), gl(len(cols) + 4)
     S.set_widths(ws, {"A": 3, "B": 2, **{l: c[2] for l, c in zip(letters, cols)}, pad_r: 2, gut_r: 3})
@@ -137,10 +171,10 @@ def project_sheet(wb, key, tagline, rows, list_date, tab, drop=(), stats=None):
     col = {c[0]: l for l, c in zip(letters, cols)}
     rng = lambda k: f"{col[k]}{first}:{col[k]}{last}"
     D.h(ws, 6, 10)
-    stats_ = [("Projects", f'=COUNTIF({rng("cost")},">0")', S.FMT["int"]), ("Reported cost", f'=SUM({rng("cost")})', MONEY_SHORT)]
+    stats_ = [("Projects", f'=COUNTIF({rng("cost")},">0")', S.FMT["int"]), (C["cost"], f'=SUM({rng("cost")})', MONEY_SHORT)]
     if key == "all" and "units" in col:
         stats_.append(("Homes in them", f'=SUM({rng("units")})', S.FMT["int"]))
-        stats_.append(("Near finish", f'=COUNTIF({rng("stage")},"Partial occupancy approved")', S.FMT["int"]))
+        stats_.append(("Near finish", f'=COUNTIF({rng("stage")},"{C["stages"][0]}")', S.FMT["int"]))
     else:
         stats_.append(("Biggest single job", f'=MAX({rng("cost")})', MONEY_SHORT))
     # spread the numbers across the whole card, the description column taking the last share
@@ -161,7 +195,8 @@ def project_sheet(wb, key, tagline, rows, list_date, tab, drop=(), stats=None):
     # the table card
     spec = []
     for l, (k, head, w, align, fmt) in zip(letters, cols):
-        vals = [(p["issuedDate"] if k == "issued" else (cut(p.get(k)) if k == "scope" else p.get(k))) for p in rows]
+        vals = [(p["issuedDate"] if k == "issued" else (cut(p.get(k)) if k == "scope" else
+                 ", ".join(p["masters"]) if k == "permit" and len(p.get("masters") or []) > 1 else p.get(k))) for p in rows]
         spec.append({"col": l, "head": head, "kind": "text", "values": [None if v in ("", None) else v for v in vals],
                      "align": align, "fmt": "mmm d, yyyy" if fmt == "date" else (S.FMT[fmt] if fmt else None),
                      "bold": k in ("address", "cost")})
@@ -192,7 +227,7 @@ def project_sheet(wb, key, tagline, rows, list_date, tab, drop=(), stats=None):
         ws.auto_filter.ref = f"{letters[0]}{head}:{letters[-1]}{f2}"
     D.paint_canvas(ws, end + 1, gl(len(cols) + 6))
     S.finish_sheet(ws, PRODUCT, end, span=("A", gut_r), freeze=f"{letters[1]}{f1}", protect=False,
-                   footer_notice="Public City of Chicago permit records. See the Terms tab.", tab_color=tab,
+                   footer_notice=f"Public {C['records']}. See the Terms tab.", tab_color=tab,
                    canvas_cols=gl(len(cols) + 6))
     ws.page_setup.orientation = "landscape"
     ws.page_setup.paperSize = ws.PAPERSIZE_LEGAL
@@ -215,7 +250,7 @@ def builders_sheet(wb, rows, list_date):
         for g in (p.get("gc") or []):
             a = agg.setdefault(names[entity_key(g)], {"n": 0, "cost": 0, "near": 0, "new": 0, "areas": collections.Counter()})
             a["n"] += 1; a["cost"] += p.get("cost") or 0
-            a["near"] += p["stage"] == "Partial occupancy approved"; a["new"] += p["new"]
+            a["near"] += p["stage"] == C["stages"][0]; a["new"] += p["new"]
             if p.get("communityArea"):
                 a["areas"][p["communityArea"]] += 1
     items = sorted(agg.items(), key=lambda kv: (-kv[1]["n"], -kv[1]["cost"]))
@@ -234,7 +269,7 @@ def builders_sheet(wb, rows, list_date):
         {"col": "C", "head": "Builder", "kind": "text", "values": [g for g, _ in items]},
         {"col": "D", "head": "Open permits", "kind": "text", "values": [a["n"] for _, a in items], "align": "right", "fmt": S.FMT["int"]},
         {"col": "E", "head": "", "kind": "calc", "formula": lambda r: f'=IF(D{r}>=2,IFERROR(REPT("{D.BAR_CHAR}",MAX(0,ROUND(D{r}/{biggest}*16,0))),""),"")'},
-        {"col": "F", "head": "Reported cost", "kind": "text", "values": [a["cost"] for _, a in items], "align": "right", "fmt": S.FMT["usd0"]},
+        {"col": "F", "head": C["cost"], "kind": "text", "values": [a["cost"] for _, a in items], "align": "right", "fmt": S.FMT["usd0"]},
         {"col": "G", "head": "Near finish", "kind": "text", "values": [a["near"] for _, a in items], "align": "right", "fmt": S.FMT["int"]},
         {"col": "H", "head": "New", "kind": "text", "values": [a["new"] for _, a in items], "align": "right", "fmt": S.FMT["int"]},
         {"col": "I", "head": "", "kind": "text", "values": []},
@@ -261,7 +296,7 @@ def builders_sheet(wb, rows, list_date):
         ws.auto_filter.ref = f"C{f1 - 1}:J{f2}"
     D.paint_canvas(ws, end + 1, "N")
     S.finish_sheet(ws, PRODUCT, end, span=("A", "L"), freeze=f"D{f1}", protect=False,
-                   footer_notice="Public City of Chicago permit records. See the Terms tab.", tab_color="purple", canvas_cols="N")
+                   footer_notice=f"Public {C['records']}. See the Terms tab.", tab_color="purple", canvas_cols="N")
     ws.page_setup.orientation = "landscape"
     ws.print_title_rows = f"{f1 - 1}:{f1 - 1}"
     return ws
@@ -327,19 +362,21 @@ def card_sheet(wb, name, title, tagline, list_date, tab, position=None):
 def finish_card_sheet(ws, r, tab):
     D.paint_canvas(ws, r, "S")
     S.finish_sheet(ws, PRODUCT, r - 1, span=("A", "Q"), protect=False, canvas_cols="S",
-                   footer_notice="Public City of Chicago permit records. See the Terms tab.", tab_color=tab)
+                   footer_notice=f"Public {C['records']}. See the Terms tab.", tab_color=tab)
 
 
 def start_here(wb, rows, near, new, src, list_date, addresses):
-    ws = card_sheet(wb, "Start Here", PRODUCT, "Open apartment and commercial permits of $500,000 or more, and their builders.",
-                    list_date, "teal", position=0)
+    aus = C["key"] == "austin"
+    ws = card_sheet(wb, "Start Here", PRODUCT, "Open commercial and apartment projects valued at $500,000 or more, and their builders." if aus
+                    else "Open apartment and commercial permits of $500,000 or more, and their builders.", list_date, "teal", position=0)
     allr = f"'{TABS['all']}'!"
     n = max(len(rows), 1)
     c_rng, s_rng = f"{allr}D12:D{11 + n}", f"{allr}G12:G{11 + n}"
     newr = f"'{TABS['new']}'!D12:D{11 + max(len(new), 1)}"
-    tiles = [("B", "D", "OPEN BIG PROJECTS", f'=COUNTIF({c_rng},">0")', S.FMT["int"], f"permits, at {addresses:,} addresses", True),
-             ("F", "H", "REPORTED COST", f"=SUM({c_rng})", '"$"0.0,,," billion"', "filed with the permits", False),
-             ("J", "L", "NEAR FINISH", f'=COUNTIF({s_rng},"Partial occupancy approved")', S.FMT["int"], "partial occupancy approved", False),
+    tiles = [("B", "D", "OPEN BIG PROJECTS", f'=COUNTIF({c_rng},">0")', S.FMT["int"], (f"projects, {sum(p.get('buildings') or 0 for p in rows):,} building permits" if aus else f"permits, at {addresses:,} addresses"), True),
+             ("F", "H", "VALUATION" if aus else "REPORTED COST", f"=SUM({c_rng})", '"$"0.0,,," billion"',
+              "largest on each project's permits" if aus else "filed with the permits", False),
+             ("J", "L", "NEAR FINISH", f'=COUNTIF({s_rng},"{C["stages"][0]}")', S.FMT["int"], C["stages"][0].lower(), False),
              ("N", "P", "NEW THIS WEEK", f'=COUNTIF({newr},">0")', S.FMT["int"], "issued in the last 7 days", False)]
     D.h(ws, 6, 10)
     for left, right, eb, fml, fmt, sub, dark in tiles:
@@ -348,22 +385,38 @@ def start_here(wb, rows, near, new, src, list_date, addresses):
     r = card(ws, r, "Three steps", [
         ("num", (1, f"Start with {TABS['near']}. Those buildings are closest to a final clean.")),
         ("num", (2, f"Use {TABS['builders']} to find general contractors with several open jobs. One relationship can cover many projects.")),
-        ("num", (3, "Call the builder's office with the address and permit. Ask who buys cleaning, then send your capability sheet.")),
+        ("num", (3, f"Call the builder's office with the address and {C['permitLower']} number. Ask who buys cleaning, then send your capability sheet."
+                    if aus else "Call the builder's office with the address and permit. Ask who buys cleaning, then send your capability sheet.")),
     ])
-    r = card(ws, r, "How the list is made", [
-        ("para", src.get("modified", "")),
-        ("lead", ("Stages", "From the City's permit milestone. Permit issued is early, Inspections under way means work is moving, and "
-                            "Partial occupancy approved means the City has cleared parts of the building for use.")),
-        ("lead", ("Order", f"{TABS['all']} lists the projects closest to a final clean first, then the biggest. Every table has filter "
-                           "arrows on its header row, so you can pick one community area or sort by cost.")),
-        ("lead", ("Builders", "When a permit names two general contractors, the builder comes first and a trade contractor "
-                              "(heating, electrical and similar) second.")),
-        ("lead", ("Wording", "Descriptions are the City's own text, shortened, with typos left as filed.")),
-        ("link", ("Source: City of Chicago Data Portal, Building Permits", src.get("url", ""))),
-    ])
+    if aus:
+        how = [("para", src.get("modified", "")),
+               ("lead", ("Projects", "Austin issues a building permit for each building, and often one for each floor of finish-out. The list "
+                                     "groups them by the City's master permit, so one row is one project.")),
+               ("lead", ("Stages", "From the City's own permit fields. Permit issued is early. Work under way means the City has pushed a "
+                                   "permit's expiry date past the first 180 days, which it does when an inspection passes or an extension is "
+                                   "granted. Some permits finaled means part of the project is marked Final while the rest is open.")),
+               ("lead", ("Valuation", "Austin repeats a development's valuation on its building permits, so each project shows the largest "
+                                      "valuation on any of its permits, counted once. It is a size signal, not a budget.")),
+               ("lead", ("Order", f"{TABS['all']} lists the projects closest to a final clean first, then the biggest. Every table has filter "
+                                  "arrows on its header row, so you can pick one ZIP code or sort by valuation.")),
+               ("lead", ("Builders", "The general contractor the City lists on the project's open building permits. When they name more than "
+                                     "one, the one on the most permits comes first.")),
+               ("lead", ("Wording", "Descriptions are the City's own text, shortened, with typos left as filed.")),
+               ("link", (f"Source: {C['sourceLabel']}", src.get("url", "")))]
+    else:
+        how = [("para", src.get("modified", "")),
+               ("lead", ("Stages", "From the City's permit milestone. Permit issued is early, Inspections under way means work is moving, and "
+                                   "Partial occupancy approved means the City has cleared parts of the building for use.")),
+               ("lead", ("Order", f"{TABS['all']} lists the projects closest to a final clean first, then the biggest. Every table has filter "
+                                  "arrows on its header row, so you can pick one community area or sort by cost.")),
+               ("lead", ("Builders", "When a permit names two general contractors, the builder comes first and a trade contractor "
+                                     "(heating, electrical and similar) second.")),
+               ("lead", ("Wording", "Descriptions are the City's own text, shortened, with typos left as filed.")),
+               ("link", ("Source: City of Chicago Data Portal, Building Permits", src.get("url", "")))]
+    r = card(ws, r, "How the list is made", how)
     r = card(ws, r, "Before you rely on it", [
         ("note", "For general information and planning only. This is not legal, tax, financial or other professional advice, and using it "
-                 f"doesn't create a professional relationship. Figures come from City of Chicago records as of {list_date[8:]} and can change. "
+                 f"doesn't create a professional relationship. Figures come from {C['cityName']} records as of {list_date[8:]} and can change. "
                  "See the Terms tab before you rely on anything here."),
         ("note", OUR_NOTICE), ("note", CITY_DISCLAIMER)])
     finish_card_sheet(ws, r, "teal")
@@ -385,7 +438,36 @@ def pitch_kit(wb, list_date):
 def terms_text(date):
     """The Terms of Use from the clause library, adapted for a monthly membership (Legal desk, Oct 17, 2026; version 2 for builder
     contacts and the map, Legal desk round 2, Fix 3). One source: the workbook's Terms tab and the members' app's #/terms view
-    (tools/leads_app.py) are both built from this list."""
+    (tools/leads_app.py) are both built from this list. Austin's version 1 (Oct 18, 2026) is the same text for the City of Austin,
+    with no builder contacts and its valuation wording."""
+    if C["key"] == "austin":
+        return [
+            f"ProofNotFluff | {PRODUCT} | {C['termsVersion']}, {date}",
+            "License. Your membership gives you a license to use this list for one business you own, for its own sales prospecting. You may edit "
+            "it and print it for that use. You may not resell, share, give away, upload or redistribute it, in original or edited form, or use it "
+            "to make a competing product.",
+            "Ownership. The selection, layout, text and formulas belong to ProofNotFluff. The permit records themselves are public City of Austin "
+            "data (City of Austin, Texas - data.austintexas.gov), used under the City of Austin Open Data Terms of Use. Buying a membership "
+            "doesn't transfer ownership.",
+            "Accuracy. The list is built from City of Austin permit records as of the date above. City data can be late, incomplete or wrong, and "
+            "permits change. Confirm anything you rely on with the builder or the City. Valuation is the largest valuation filed on a project's "
+            "City building permits, not a contract value. Map pins come from the City's coordinates or, where the City gives none, from the US "
+            "Census Bureau's public geocoder, and can be off. A listed builder is not an invitation to bid.",
+            "No promise of results. Valuations, stages and counts are figures from City records, not contract values or forecasts. Nothing "
+            "here promises any work, contract, income or outcome.",
+            "Availability. The list depends on the City of Austin publishing its permit data. If the City stops or changes that data, or asks us "
+            "to stop using it, the list may pause or end, and future charges will stop. The map uses OpenStreetMap's free public map service, "
+            "which can limit or stop access at any time; the list and downloads work without it. Map data © OpenStreetMap contributors.",
+            "No warranty. The product is provided \"as is\", without warranties of any kind, to the extent the law allows.",
+            "Limit of liability. To the extent the law allows, ProofNotFluff is not liable for any loss or damage from using or relying on this "
+            "product, and its total liability for any claim is limited to the amount you paid for the most recent month of your membership. "
+            "Nothing here limits rights you have under consumer protection laws that can't be waived.",
+            "Trademarks. Microsoft Excel, Google Sheets, Google Maps, OpenStreetMap and Gumroad are trademarks of their owners. ProofNotFluff "
+            "isn't affiliated with, sponsored or endorsed by them, by the City of Austin, or by any builder listed.",
+            "AI assistance. This product was made with AI assistance and reviewed and tested by the shop owner.",
+            "Help and cancelling. If the file won't open or something looks wrong, reply to your Gumroad receipt and it will be fixed. Cancel any "
+            "time from your Gumroad receipt or library; cancelling stops future charges.",
+        ]
     return [
         f"ProofNotFluff | {PRODUCT} | Version 2, {date}",
         "License. Your membership gives you a license to use this list for one business you own, for its own sales prospecting. You may edit "
@@ -417,29 +499,31 @@ def terms_text(date):
 
 def terms(wb, src, list_date):
     ws = card_sheet(wb, "Terms", "Terms of Use", f"{PRODUCT}. Read this before you rely on the list.", list_date, "note")
-    r = card(ws, 6, "City of Chicago data", [("para", CITY_DISCLAIMER), ("link", ("City of Chicago Data Terms of Use", src.get("terms", "")))])
+    r = card(ws, 6, f"{C['cityName']} data", [("para", CITY_DISCLAIMER), ("link", (C["termsLabel"], src.get("terms", "") or C["termsUrl"]))])
     r = card(ws, r, "ProofNotFluff", [("para", OUR_NOTICE)] + [("para", t) for t in terms_text(list_date[8:])])
     finish_card_sheet(ws, r, "note")
     return ws
 
 
-def build(data, out, prev=None):
+def build(data, out, prev=None, city=None):
+    use(city or LC.for_source(data.get("source")))
     prev_ids = {str(p.get("permit")) for p in prev["projects"]} if prev else None
     rows = [prep(p, prev_ids) for p in data["projects"]]
     rows.sort(key=sort_key)
     addresses = len({p.get("address") for p in rows})
-    near = [p for p in rows if p["stage"] == "Partial occupancy approved"]
+    near = [p for p in rows if p["stage"] == C["stages"][0]]
     new = [p for p in rows if p["new"]]
     src = data["source"]
     from permits_chicago import list_day
     fetched = list_day(src["fetchedAt"])
     list_date = f"List of {fetched.strftime('%b')} {fetched.day}, {fetched.year}"
     wb = S.new_workbook(PRODUCT)
-    project_sheet(wb, "near", "Partial occupancy approved: the City has cleared part of the building for use. Biggest first.",
+    project_sheet(wb, "near", "Some permits finaled: part of the project is marked Final while the rest is open. Biggest first."
+                  if C["key"] == "austin" else "Partial occupancy approved: the City has cleared part of the building for use. Biggest first.",
                   near, list_date, "accent", drop=("stage",) + absent(near))
     project_sheet(wb, "new", "Permits issued in the last 7 days. Closest to a final clean first, then biggest.",
                   new, list_date, None, drop=absent(new))
-    project_sheet(wb, "all", "Every open permit that passed the filter, closest to a final clean first, then biggest.",
+    project_sheet(wb, "all", f"Every open {'project' if C['key'] == 'austin' else 'permit'} that passed the filter, closest to a final clean first, then biggest.",
                   rows, list_date, None, drop=tuple(k for k in absent(rows) if k == "sleeping"))
     builders_sheet(wb, rows, list_date)
     pitch_kit(wb, list_date)
@@ -663,7 +747,21 @@ def selftest():
     assert formula_value(wb, allp, '=IFERROR(1/0,"none")') == "none"
     assert _round(2.5) == 3 and _round(-2.5) == -3
     assert cut("a" * 50 + " (bb cc) " + "d" * 80).endswith("…") and "(" not in cut("x " * 40 + "(one two three four five six seven" + " y" * 30)
-    print("selftest ok", res)
+    # Austin: the same code with the City of Austin's words (tools/leads_cities.py); built from the public free sample
+    au = json.load(open(os.path.join(here, "permits", "austin", "sample.json")))
+    ids = {q["permit"] for q in au["projects"]}
+    adata = {"source": au["source"], "window": au["window"], "counts": au["counts"],
+             "projects": au["projects"] + [q for q in au["nearFinish"] if q["permit"] not in ids]}
+    out2 = os.path.join(tempfile.mkdtemp(), "a.xlsx")
+    res2 = build(adata, out2)
+    wa = load_workbook(out2)
+    assert PRODUCT == "Austin Construction Cleaning Leads" and wa.sheetnames == wb.sheetnames
+    assert [wa[TABS["all"]][f"{c}11"].value for c in "CDEF"] == ["ADDRESS", "VALUATION", "BUILDER", "ZIP CODE"]
+    cells = [str(c.value) for ws in wa.worksheets for row in ws.iter_rows() for c in row if c.value is not None]
+    assert LC.AUSTIN["disclaimer"] in cells and not any("Chicago" in c for c in cells), [c for c in cells if "Chicago" in c][:3]
+    assert res2["near"] == len(au["nearFinish"]), res2
+    use("chicago")
+    print("selftest ok", res, "austin", res2)
 
 
 if __name__ == "__main__":

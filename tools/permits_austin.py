@@ -7,7 +7,7 @@ Terms of Use. Written to permits/austin/: sample.json (the free page's sample an
 tune the filter; no names) and source-terms.txt (the City's own terms and disclaimer text, for the Legal desk). --full PATH
 writes the paid list for the runner only; the repo is public, so that file is never committed in the clear.
 
-How Austin's data works (read from the City's rows, probes/austin-audit.json, Oct 18, 2026):
+How Austin's data works (read Oct 18, 2026 from a de-identified audit of every candidate row, --audit; committed once at 0fbf3ae):
 - One building permit (permittype BP) per building, and often one per floor or phase of finish-out. A development's
   building permits share a master permit number (masterpermitnum), so the lead is the project: its building permits
   grouped by master permit.
@@ -281,7 +281,8 @@ def group_projects(rows, since, today, week, min_cost=MIN_COST):
         if not gcs:
             reasons["no business listed as general contractor"] += 1
             continue
-        kept.sort(key=lambda r: (WORK_RANK.get((r.get("work_class") or "").upper(), 3), -(num(r.get("total_new_add_sqft")) + num(r.get("remodel_repair_sqft"))),
+        kept.sort(key=lambda r: (WORK_RANK.get((r.get("work_class") or "").upper(), 3), cls_no(r) not in (104, 105, 106),
+                                 -(num(r.get("total_new_add_sqft")) + num(r.get("remodel_repair_sqft"))),
                                  day(r.get("issue_date")), str(r.get("permit_number"))))
         lead = kept[0]
         finals = [r for r in rs if (r.get("status_current") or "").upper() == "FINAL" and day(r.get("issue_date")) >= since[:10]]
@@ -328,7 +329,7 @@ def group_projects(rows, since, today, week, min_cost=MIN_COST):
                          "scope": austin_scope(r.get("description"), limit=160), "link": r.get("link") if isinstance(r.get("link"), str) else (r.get("link") or {}).get("url", "")}
                         for r in kept[:40]],
             "gc": gcs,
-            "lat": lat, "lon": lon,
+            "lat": lat, "lon": lon, "geo": "city" if lat is not None else "",
             "newThisWeek": issued >= week,
         })
         reasons["kept"] += 1
@@ -339,13 +340,49 @@ def top_builders(projects, n=12):
     return P.top_builders(projects, n)
 
 
-def total_cost(projects):
-    """The list's total valuation: each project once. Two projects at the same address with the same valuation are one
-    development's figure repeated on two master permits, so it counts once."""
-    seen = {}
+def merge_twins(projects):
+    """One development filed under two master permits is one lead (holdout spirit of Chicago's dedupe): two projects at the same
+    street address, with the same valuation and the same builder, become one, with every building permit of both. The list,
+    the free page, the app and the workbook then count its valuation once. Returns (projects, merged master numbers)."""
+    groups = collections.OrderedDict()
     for x in projects:
-        seen[(x["cost"], (x["address"] or "").split(" (+")[0].upper())] = x["cost"]
-    return sum(seen.values())
+        key = ((x["address"] or "").split(" (+")[0].upper(), x["cost"], P.entity_key(x["gc"][0]) if x["gc"] else "")
+        groups.setdefault(key, []).append(x)
+    out, merged = [], []
+    order = {s: i for i, s in enumerate(["Some permits finaled", "Work under way", "Permit issued"])}
+    for (addr, _, _), xs in groups.items():
+        if len(xs) == 1 or not addr:
+            out += xs
+            continue
+        xs.sort(key=lambda x: (x["issued"], x["permit"]))
+        m = dict(xs[0])
+        m["masters"] = [x["permit"] for x in xs]
+        merged += m["masters"][1:]
+        m["issued"] = min(x["issued"] for x in xs)
+        m["lastIssued"] = max(x["lastIssued"] for x in xs)
+        m["type"] = next(t for t in TYPES if any(x["type"] == t for x in xs))
+        m["milestone"] = min((x["milestone"] for x in xs), key=lambda st: order.get(st, 9))
+        m["buildings"] = sum(x["buildings"] for x in xs)
+        m["buildingsFinal"] = sum(x["buildingsFinal"] for x in xs)
+        m["units"] = sum(x["units"] or 0 for x in xs) or None
+        m["permits"] = [q for x in xs for q in x["permits"]][:40]
+        m["scopeFull"] = " | ".join(dict.fromkeys(part for x in xs for part in x["scopeFull"].split(" | ")))
+        m["gc"] = list(dict.fromkeys(g for x in xs for g in x["gc"]))
+        n = sum(int(re.search(r"\(\+(\d+) more\)", x["address"]).group(1)) if "(+" in x["address"] else 0 for x in xs)   # same street address, the extras add
+        m["address"] = xs[0]["address"].split(" (+")[0] + (f" (+{n} more)" if n else "")
+        m["newThisWeek"] = all(x["newThisWeek"] for x in xs)
+        if m.get("lat") is None:
+            for x in xs:
+                if x.get("lat") is not None:
+                    m["lat"], m["lon"], m["geo"] = x["lat"], x["lon"], x.get("geo", "city")
+                    break
+        out.append(m)
+    return out, merged
+
+
+def total_cost(projects):
+    """The list's total valuation: the sum of its projects' valuations (merge_twins has already counted each development once)."""
+    return sum(x["cost"] for x in projects)
 
 
 # ---------------------------------------------------------------- the pull
@@ -397,21 +434,67 @@ def terms_text():
         from pypdf import PdfReader
         raw = urllib.request.urlopen(urllib.request.Request(TERMS_PDF, headers=UA), timeout=120).read()
         text = "\n".join((pg.extract_text() or "") for pg in PdfReader(io.BytesIO(raw)).pages)
+        if sum(ch.isalpha() for ch in text) < 0.5 * max(1, len(text)):   # the PDF's embedded fonts give glyph codes, not words
+            text = f"(The PDF's text could not be extracted as words; the same Terms of Use are on the web at {TERMS_URL}.)"
         parts += [f"== Terms of Use PDF {TERMS_PDF}", "", text.strip(), ""]
     except Exception as e:
         parts.append(f"Could not read the Terms of Use PDF {TERMS_PDF}: {e}")
     return "\n".join(parts) + "\n"
 
 
+CENSUS = "https://geocoding.geo.census.gov/geocoder/locations/addressbatch"
+
+
+def geo_street(addr):
+    """The street address alone, for the geocoder: no "(+2 more)", unit, building, suite or floor parts."""
+    a = re.sub(r"\s*\(\+\d+ more\)$", "", addr or "")
+    return re.sub(r"\s+(?:Unit|Bldg|Building|Ste|Suite|Flr|Floor|Apt|#)\b.*$", "", a, flags=re.I).strip()
+
+
+def geocode_missing(projects):
+    """A map pin for projects whose City rows carry no coordinates (about half of Austin's building permits): the US Census
+    Bureau's public geocoder, matched on the street address and ZIP code. Such a pin is marked geo "census" so the app can say
+    so. A project the geocoder cannot match keeps no pin. Failures never stop the list."""
+    want = [x for x in projects if x.get("lat") is None and geo_street(x.get("address"))]
+    if not want:
+        return 0
+    lines = "".join(f'{i},"{geo_street(x["address"])}",Austin,TX,{x.get("communityArea") or ""}\n' for i, x in enumerate(want))
+    bnd = "pnf" + str(int(time.time()))
+    body = (f"--{bnd}\r\nContent-Disposition: form-data; name=\"benchmark\"\r\n\r\nPublic_AR_Current\r\n"
+            f"--{bnd}\r\nContent-Disposition: form-data; name=\"addressFile\"; filename=\"a.csv\"\r\nContent-Type: text/csv\r\n\r\n{lines}\r\n--{bnd}--\r\n").encode()
+    try:
+        req = urllib.request.Request(CENSUS, data=body, headers=dict(UA, **{"Content-Type": f"multipart/form-data; boundary={bnd}"}))
+        text = urllib.request.urlopen(req, timeout=300).read().decode("utf-8", "replace")
+    except Exception as e:
+        print(f"census geocoder unavailable ({e}); projects without City coordinates keep no pin")
+        return 0
+    import csv, io
+    n = 0
+    for row in csv.reader(io.StringIO(text)):
+        if len(row) >= 6 and row[2] == "Match" and row[0].isdigit() and int(row[0]) < len(want):
+            try:
+                lon, lat = (float(v) for v in row[5].split(","))
+            except ValueError:
+                continue
+            if 29.5 < lat < 31.0 and -98.5 < lon < -97.0:
+                x = want[int(row[0])]
+                x["lat"], x["lon"], x["geo"] = round(lat, 6), round(lon, 6), "census"; n += 1
+    return n
+
+
 def slim(x):
     """A project as the public free sample shows it: no per-permit detail and no full scope text."""
-    return {k: v for k, v in x.items() if k not in ("scopeFull", "permits", "lat", "lon", "lastIssued")}
+    return {k: v for k, v in x.items() if k not in ("scopeFull", "permits", "lat", "lon", "geo", "lastIssued")}
 
 
 def build_lists(rows, now, since, days=DAYS, min_cost=MIN_COST):
     today = central_today(now)
     week = (today - dt.timedelta(days=7)).isoformat()
     projects, reasons, preasons = group_projects(rows, since, today, week, min_cost)
+    projects, merged = merge_twins(projects)
+    if merged:
+        reasons["kept"] -= len(merged)
+        reasons["second master permit of a development already listed"] += len(merged)
     projects.sort(key=lambda x: (-x["cost"], x["issued"], x["permit"]))
     return projects, reasons, preasons
 
@@ -431,6 +514,7 @@ def main():
     upd_iso = dt.datetime.fromtimestamp(upd, dt.timezone.utc).isoformat(timespec="seconds") if upd else ""
     since, where, rows = fetch(now, a.days)
     projects, reasons, preasons = build_lists(rows, now, since, a.days, a.min_cost)
+    geocoded = geocode_missing(projects)
     near = [x for x in projects if x["milestone"] == "Some permits finaled"]
     by_zip = collections.Counter(x["communityArea"] for x in projects if x["communityArea"])
     sample = {
@@ -453,7 +537,8 @@ def main():
                    "keptUnits": sum(x["units"] or 0 for x in projects if x["type"] == "New construction"),
                    "keptBuildings": sum(x["buildings"] for x in projects),
                    "topAreas": by_zip.most_common(8), "topGCs": top_builders(projects), "nearFinish": len(near),
-                   "builders": len({P.entity_key(g) for x in projects for g in x["gc"]})},
+                   "builders": len({P.entity_key(g) for x in projects for g in x["gc"]}),
+                   "mapped": sum(1 for x in projects if x.get("lat") is not None), "geocoded": geocoded},
         "projects": [slim(x) for x in projects[: a.top]],
         "nearFinish": [slim(x) for x in sorted(near, key=lambda x: (-x["cost"], x["issued"]))[:10]],
     }
@@ -475,7 +560,7 @@ def main():
 
 
 # ---------------------------------------------------------------- planted cases
-# Real City of Austin wording (probes/austin-audit.json, Oct 18, 2026, trimmed): (fields, keep?)
+# Real City of Austin wording (the Oct 18, 2026 audit, commit 0fbf3ae, trimmed): (fields, keep?)
 C = "Commercial"
 PERMIT_CASES = [
     # rule 2: the work. Kept: new buildings, finish-outs, remodels with interior work
@@ -699,8 +784,16 @@ def selftest():
             bad.append(("M5", byp["M5"]))   # a permit finaled before the window is an old phase, not a sign of this one finishing
     if why.get("project valuation under $500,000") != 1 or why.get("no business listed as general contractor") != 1:
         bad.append(("reasons", dict(why)))
-    if total_cost([{"cost": 5, "address": "1 A St"}, {"cost": 5, "address": "1 A St (+2 more)"}, {"cost": 5, "address": "2 A St"}]) != 10:
-        bad.append(("total counts a repeated valuation at one address once",))
+    # one development under two master permits (6801 River Place Blvd, Oct 18: $1,525,000,000 on both): one project, valued once
+    twins = [dict(byp["M1"], permit="T1", address="6801 River Place Blvd", cost=1525000000, gc=["Turner Construction"], milestone="Work under way"),
+             dict(byp["M1"], permit="T2", address="6801 River Place Blvd (+1 more)", cost=1525000000, gc=["TURNER CONSTRUCTION"], milestone="Some permits finaled"),
+             dict(byp["M1"], permit="T3", address="6801 River Place Blvd", cost=9000000, gc=["Turner Construction"])] if "M1" in byp else []
+    mt, gone = merge_twins(twins)
+    if len(mt) != 2 or gone != ["T2"] or mt[0]["buildings"] != 4 or mt[0]["milestone"] != "Some permits finaled" or mt[0]["address"] != "6801 River Place Blvd (+1 more)" \
+            or total_cost(mt) != 1534000000 or mt[0]["masters"] != ["T1", "T2"]:
+        bad.append(("merge twins", [(x["permit"], x["address"], x["buildings"], x["milestone"]) for x in mt], gone))
+    if geo_street("507 E Howard Ln Bldg 3 Unit 10 (+2 more)") != "507 E Howard Ln" or geo_street("1110 W 6th St Unit Flr1") != "1110 W 6th St":
+        bad.append(("geo street", geo_street("507 E Howard Ln Bldg 3 Unit 10 (+2 more)")))
     if coord({"latitude": "30.2672", "longitude": "-97.7431"}) != (30.2672, -97.7431) or coord({"latitude": "0", "longitude": "0"}) != (None, None) \
             or coord({"location": {"type": "Point", "coordinates": [-97.7, 30.3]}}) != (30.3, -97.7):
         bad.append(("coord",))

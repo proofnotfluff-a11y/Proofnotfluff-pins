@@ -10,7 +10,9 @@ An independent reviewer (Agent tool, model "opus"), given only the rendered outp
 
 Before scoring, the reviewer looks at the three best-selling or best-reviewed competitors in the same category it can find through WebSearch and the vendors' own sites (never by loading Etsy pages: Etsy research comes only from the idea's recorded buyerProof notes, because the crew's Etsy page loads are capped and belong to the shop run), and writes one line per competitor on what makes their first impression work. The bar is "would a buyer choosing between these pick ours on looks alone".
 
-## The score (1 to 5 each; pass is no score under 4 and an average of 4.3 or more)
+## The score (1 to 5 each; pass is no score under 4 and an average higher than 4.6)
+
+Todd, Oct 18, 2026, 1:38 pm: "Our threshold should be higher than 4.6". The average of the seven scores, to two decimals, must be 4.61 or more (it was 4.3 before Oct 18). A product that passed under the old bar is judged again against this one before its next promotion or rebuild.
 
 1. First impression (the first screen, the first image, the first tab): one clear focal point, the main answer or promise visible without scrolling.
 2. Hierarchy: a stranger finds the three things that matter in five seconds; headings, numbers and labels are clearly ranked.

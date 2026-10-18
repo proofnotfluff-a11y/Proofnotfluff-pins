@@ -284,6 +284,8 @@ def analyse(out, loans):
                    "valuationAgeYears": hist([t["valAge"] for t in tests if t["valAge"] is not None], (2, 5, 8)),
                    "valuationIsSecuritization": sum(1 for t in tests if t["valSrc"] == "securitization"),
                    "noiFromSecuritizationOnly": sum(1 for t in tests if t["noiSrc"] == "securitization"),
+                   "noiAnnualizedFromPartialYear": sum(1 for t in tests if t["annualized"]),
+                   "financialsOlderThan18Months": sum(1 for t in tests if t["finEnd"] and (TODAY - dt.date.fromisoformat(t["finEnd"])).days > 548),
                    "splitLoans": sum(1 for t in tests if t["share"] < 0.95),
                    "specialServicedNow": sum(1 for t in tests if t["ss"]), "specialServicedWithGap": sum(1 for t in gap if t["ss"]),
                    "gapByType": dict(by([(None, None, None, t["gap"], None, t["type"]) for t in gap], lambda a: a[5]))}
@@ -299,7 +301,8 @@ def analyse(out, loans):
 
 
 def defeased(a):
-    return (pick(a[1], "defeasedStatusCode") or "").upper() in ("F", "P") or ptype(a[2]) == "SE"
+    names = " ".join((pick(p, "propertyName") or "") for p in a[2]).upper()
+    return (pick(a[1], "defeasedStatusCode") or "").upper() in ("F", "P") or ptype(a[2]) == "SE" or "DEFEAS" in names
 
 
 def group(rows, f):
@@ -327,7 +330,18 @@ def refi(group_rows):
     note_sum = sum(a[3] for a in group_rows)
     p0 = props[0] if props else {}
     sumf = lambda f: sum(x for x in (num(pick(p, *f)) for p in props) if x) or None
-    noi_now = sumf(("mostRecentNetOperatingIncomeAmount",))
+    noi_now, annualized = 0.0, 0
+    for p in props:  # the latest financials are often a partial year (a quarter or year to date): scale each to 12 months
+        v = num(pick(p, "mostRecentNetOperatingIncomeAmount"))
+        if not v:
+            continue
+        a, b = date(pick(p, "mostRecentFinancialsStartDate")), date(pick(p, "mostRecentFinancialsEndDate"))
+        days = (b - a).days + 1 if a and b else 365
+        if 60 <= days <= 340:
+            v, annualized = v * 365 / days, 1
+        noi_now += v
+    noi_now = noi_now or None
+    fin_end = date(pick(p0, "mostRecentFinancialsEndDate"))
     noi_sec = sumf(("netOperatingIncomeSecuritizationAmount",))
     val_now = sumf(("mostRecentValuationAmount",))
     val_sec = sumf(("valuationSecuritizationAmount",))
@@ -373,11 +387,12 @@ def refi(group_rows):
             "gap": round(whole - min(caps)) if caps else None,
             "gapNoi": round(whole - new_noi) if new_noi is not None else None,
             "gapVal": round(whole - new_val) if new_val is not None else None,
-            "gapLight": round(whole - min(caps2)) if caps2 else None}
+            "gapLight": round(whole - min(caps2)) if caps2 else None, "annualized": annualized,
+            "finEnd": fin_end.isoformat() if fin_end else None}
 
 
 SLIM = ("name", "city", "state", "county", "type", "maturity", "wholeLoan", "noteBal", "share", "trusts", "noi", "noiSrc", "val",
-        "valDate", "valSrc", "dscrNow", "occNow", "rate", "status", "ss", "servicer", "newLoan", "gap")
+        "valDate", "valSrc", "finEnd", "dscrNow", "occNow", "rate", "status", "ss", "servicer", "newLoan", "gap")
 
 
 def slim(t):

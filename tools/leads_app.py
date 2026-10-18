@@ -167,7 +167,7 @@ def terms_json(as_of, city_terms=CITY_TERMS):
 
 def city_json():
     keys = ("key", "city", "state", "product", "csvPrefix", "storageKey", "center", "zoom", "cityName", "records", "area", "areaLower",
-            "areaAll", "areaPlural", "cost", "costLower", "costShort", "permit", "permitLower", "types", "stages", "stagesShort",
+            "areaAll", "areaPlural", "cost", "costLower", "costShort", "costAny", "bNoun", "bWeek", "permit", "permitLower", "types", "stages", "stagesShort",
             "stageLines", "contacts", "termsLabel", "nearEmpty", "midWords", "totalWord", "leaveList", "noGeo", "bil2")
     return json.dumps({k: CITY[k] for k in keys}, ensure_ascii=False).replace("</", "<\\/")
 
@@ -741,7 +741,7 @@ for(const k in B){const b=B[k];b.n=b.ps.length;b.cost=b.ps.reduce((s,p)=>s+p.c,0
 const pn=(p,i)=>(p.gn&&p.gn[i])||(p.g[i]?B[p.g[i]].name:"");
 const bname=p=>p.g.length?pn(p,0):"No builder listed";
 const ORDER={clean:(a,b)=>a.st-b.st||b.c-a.c,big:(a,b)=>b.c-a.c,newest:(a,b)=>(b.i||"").localeCompare(a.i||"")||b.c-a.c,builder:(a,b)=>bname(a).localeCompare(bname(b))||b.c-a.c};
-const COST=[["","Any cost"],["lt1","Under $1M",0,1e6],["1to5","$1M to $5M",1e6,5e6],["5to25","$5M to $25M",5e6,25e6],["25","$25M and up",25e6,Infinity]];
+const COST=[["",CITY.costAny],["lt1","Under $1M",0,1e6],["1to5","$1M to $5M",1e6,5e6],["5to25","$5M to $25M",5e6,25e6],["25","$25M and up",25e6,Infinity]];
 const STAGE_KEYS={near:0,insp:1,issued:2};
 
 /* routing */
@@ -769,7 +769,7 @@ if(scroll){window.scrollTo(0,0);const h=app.querySelector("h1");if(h){h.setAttri
 function row(p,ctx){const m=mk(p.id);const b=p.g.length?B[p.g[0]]:null;const other=ctx&&ctx!=="near"&&ctx!=="new"&&p.g.find(k=>k!==ctx);const kind=[p.t,p.u?plural(p.u,"home"):"",p.sl?plural(p.sl,"sleeping unit"):""].filter(Boolean).join(", ");
 return `<li><a class="row" href="#/project/${encodeURIComponent(p.id)}" data-id="${esc(p.id)}">
 <span class="mn num">${money(p.c)}<small>${esc(kind)}</small></span>
-<span class="ad">${esc(p.a)}${p.ca?`<span class="ar">, ${esc(p.ca)}</span>`:""}</span>
+<span class="ad">${esc(p.a)}${p.ca?`<span class="ar">,${CITY.key==="austin"?"&nbsp;":" "}${esc(p.ca)}</span>`:""}</span>
 ${ctx&&ctx!=="near"&&ctx!=="new"?(other?`<span class="bd"><span>With ${esc(pn(p,p.g.indexOf(other)))}</span></span>`:""):`<span class="bd">${b&&b.ok?ico(b.contact.phone?"phone":"mail","s")+'<span class="sr">Contact on file: </span>':""}<span>${esc(b?pn(p,0):"No builder listed")}${p.g.length>1?` <span class="ar">and ${int(p.g.length-1)} more</span>`:""}</span>${b&&!b.ok&&CITY.contacts?'<span class="nc">No contact yet</span>':""}</span>`}
 <span class="rt">${ctx&&ctx!=="new"?"":chip(p.st)}${p.n&&ctx!=="new"?'<span class="badge new">New this week</span>':""}${m.c?`<span class="badge done">${ico("check","s")}Contacted</span>`:""}</span>${ico("chev","chev")}</a></li>`;}
 function rowsHtml(list,limit,ctx){if(!list.length)return "";const n=Math.min(limit||list.length,list.length);return `<ul class="list-rows">${list.slice(0,n).map(p=>row(p,ctx)).join("")}</ul>`;}
@@ -790,7 +790,7 @@ $("#app").innerHTML=`<section class="hero"><h1>${int(by[0].length)} ${by[0].leng
 <section class="panel"><div class="sec-h"><h2>New this week<span class="c num">${int(nw.length)}</span></h2>${nw.length?`<a href="#/projects?new=1">See all ${int(nw.length)}</a>`:""}</div>${nw.length?rowsHtml(nw,5,"new"):`<p class="empty">No permits on the list were issued in the last 7 days.</p>`}</section>
 </div><div class="ov-col">
 <section class="panel"><div class="sec-h"><h2>Builders to call first</h2><a href="#/builders">All ${int(Object.keys(B).length)} builders</a></div>
-${top.map(b=>`<a class="mini-b" href="#/builder/${encodeURIComponent(b.key)}"><b>${esc(b.name)}</b><span>${plural(b.n,"project")} this week${CITY.contacts?", "+(b.ok?"contact on file":"no contact on file yet"):""}</span><span class="r num">${int(b.near)}<small>near finish</small></span></a>`).join("")}</section>
+${top.map(b=>`<a class="mini-b" href="#/builder/${encodeURIComponent(b.key)}"><b>${esc(b.name)}</b><span>${plural(b.n,CITY.bNoun)}${CITY.bWeek}${CITY.contacts?", "+(b.ok?"contact on file":"no contact on file yet"):""}</span><span class="r num">${int(b.near)}<small>near finish</small></span></a>`).join("")}</section>
 <section class="panel"><div class="sec-h"><h2>Where the work is</h2><a href="#/projects?view=map">Open the map</a></div>
 <p class="blg" aria-hidden="true"><span><i class="b0"></i>${STG_SHORT[0]}</span><span><i class="b1"></i>${STG_SHORT[1]}</span><span><i class="b2"></i>${STG_SHORT[2]}</span></p>
 <ul class="bars" aria-label="Open projects by ${CITY.areaLower} and stage"><li class="hd" aria-hidden="true"><span></span><span class="sp2"></span><span>Near finish</span><span>All</span></li>${areas.map(([a,n,c])=>`<li><a href="#/projects?area=${encodeURIComponent(a)}" aria-label="${esc(a)}: ${plural(n,"project")}, ${int(c[0])} near finish, ${int(c[1])} ${CITY.midWords}, ${int(c[2])} permit issued" title="${int(c[0])} near finish, ${int(c[1])} ${STG_SHORT[1].toLowerCase()}, ${int(c[2])} permit issued"><span>${esc(a)}</span><span class="tr" style="width:${Math.max(3,Math.round(n/amax*100))}%" aria-hidden="true">${[0,1,2].filter(s=>c[s]).map(s=>`<i class="b${s}" style="flex-grow:${c[s]}"></i>`).join("")}</span><span class="nv num${c[0]?"":" z"}">${int(c[0])}</span><span class="v num">${int(n)}</span></a></li>`).join("")}</ul></section>
@@ -926,11 +926,11 @@ let body="";
 if(b.ok){body=`${c.phone?`<a class="btn pri call" href="tel:+1${esc(c.tel)}">${ico("phone")}Call ${esc(c.phone)}</a>`:""}
 <ul class="cl">${c.email?`<li><a href="mailto:${esc(c.email)}${subj}">${ico("mail")}<span>${esc(c.email)}</span></a></li>`:""}${c.website?`<li><a href="${esc(c.website)}" target="_blank" rel="noopener">${ico("web")}<span>${esc(host(c.website))}</span><span class="sr"> (opens in a new tab)</span></a></li>`:""}${c.contactPage&&c.contactPage!==c.website?`<li><a href="${esc(c.contactPage)}" target="_blank" rel="noopener">${ico("ext")}<span>Their contact page</span><span class="sr"> (opens in a new tab)</span></a></li>`:""}</ul>
 <p class="src">${c.note?esc(c.note.charAt(0).toUpperCase()+c.note.slice(1))+". ":""}Main office details from ${c.source?`<a href="${esc(c.source)}" target="_blank" rel="noopener">the builder's own website</a>`:"the builder's own website"}${c.checkedAt?`, checked ${esc(day(c.checkedAt))}`:""}. Ask for the project manager or the estimator on this job.</p>`;}
-else if(!CITY.contacts){body=`<div class="none"><b>Reach the builder's main office</b>We list the general contractor the City names on the permits. Search for their main office and ask for the project manager or the estimator on this job, with the address and ${esc(CITY.permitLower)} number ready.</div>
+else if(!CITY.contacts){body=`<div class="none"><b>Reach the builder's main office</b>We list the general contractor the City names on the permits. Search for their main office and ask for the project manager or the estimator ${onBuilderPage?"on your project, with its":"on this project, with the"} address and ${esc(CITY.permitLower)} number ready.</div>
 <div class="foot"><a class="btn" href="https://www.google.com/search?q=${encodeURIComponent(b.name+" "+CITY.city)}" target="_blank" rel="noopener">${ico("search","s")}Search the web for this builder<span class="sr"> (opens in a new tab)</span></a></div>`;}
 else{body=`<div class="none"><b>No contact on file yet</b>We list a builder's office phone and general email only after reading them on the builder's own website. This builder is not checked yet, we found no website that is clearly theirs, or their site does not show them.</div>
 <div class="foot"><a class="btn" href="https://www.google.com/search?q=${encodeURIComponent(b.name+" "+CITY.city)}" target="_blank" rel="noopener">${ico("search","s")}Search the web for this builder<span class="sr"> (opens in a new tab)</span></a></div>`;}
-return `<section class="panel bc" aria-label="${onBuilderPage?"Contact":"Builder"}">${onBuilderPage?`<h2>Contact</h2>`:`<div class="who"><span class="av">${ico("build")}</span><div><h2>${esc(shown||b.name)}</h2><p class="meta num">${plural(b.n,"project")} this week<br>${money(b.cost)} ${CITY.costShort}${b.near?`, ${int(b.near)} near finish`:""}</p></div></div>`}${body}
+return `<section class="panel bc" aria-label="${onBuilderPage?"Contact":"Builder"}">${onBuilderPage?`<h2>Contact</h2>`:`<div class="who"><span class="av">${ico("build")}</span><div><h2>${esc(shown||b.name)}</h2><p class="meta num">${plural(b.n,CITY.bNoun)}${CITY.bWeek}<br>${money(b.cost)} ${CITY.costShort}${b.near?`, ${int(b.near)} near finish`:""}</p></div></div>`}${body}
 ${showLink?`<div class="foot"><a class="btn" href="#/builder/${encodeURIComponent(b.key)}">See all ${plural(b.n,"project")} by this builder</a></div>`:""}</section>`;}
 
 /* project page */
@@ -998,8 +998,8 @@ $("#blist").onclick=e=>{if(e.target.closest("a"))return;const tr=e.target.closes
 let tb;$("#bq").addEventListener("input",()=>{clearTimeout(tb);tb=setTimeout(draw,120);});$("#bsort").onchange=draw;$("#bph").onchange=draw;draw();}
 function viewBuilder(b){document.title=`${b.name} | ${PROD}`;const ps=b.ps.slice().sort(ORDER.clean);
 $("#app").innerHTML=`<a class="back" href="#/builders" id="back">${ico("back")}Back</a>
-<div class="pg"><section class="pg-head"><div class="p-title"><h1>${esc(b.name)}</h1><p class="sub">General contractor on ${plural(b.n,CITY.key==="austin"?"open project":"open permit")} this week${b.area?", mostly in "+(CITY.key==="austin"?esc(CITY.areaLower)+" ":"")+esc(b.area):""}</p></div>
-<div class="stats"><div><b class="num">${int(b.n)}</b><span>${b.n===1?"project":"projects"} this week</span></div><div><b class="num">${money(b.cost)}</b><span>${esc(CITY.totalWord)}</span></div><div><b class="num">${int(b.near)}</b><span>near finish</span></div><div><b class="num">${int(b.nw)}</b><span>new this week</span></div></div></section>
+<div class="pg"><section class="pg-head"><div class="p-title"><h1>${esc(b.name)}</h1><p class="sub">General contractor on ${plural(b.n,CITY.key==="austin"?"open project":"open permit")}${CITY.bWeek}${b.area?", mostly in "+(CITY.key==="austin"?esc(CITY.areaLower)+" ":"")+esc(b.area):""}</p></div>
+<div class="stats"><div><b class="num">${int(b.n)}</b><span>${CITY.key==="austin"?(b.n===1?"open project":"open projects"):(b.n===1?"project":"projects")+" this week"}</span></div><div><b class="num">${money(b.cost)}</b><span>${esc(CITY.totalWord)}</span></div><div><b class="num">${int(b.near)}</b><span>near finish</span></div><div><b class="num">${int(b.nw)}</b><span>new this week</span></div></div></section>
 <aside class="pg-side" aria-label="Builder contact">${builderCard(b,ps[0],false,true)}<section class="panel bc"><h2 style="font-size:17px">Pitch kit</h2><p class="meta" style="margin:6px 0 14px">The capability sheet builders ask for, and an email to send after you call.</p><a class="btn" href="#/pitch">${ico("kit","s")}Open the pitch kit</a></section></aside>
 <div class="pg-main"><section class="panel"><div class="sec-h"><h2>Their projects<span class="c num">${int(ps.length)}</span></h2><a href="#/projects?q=${encodeURIComponent(b.name)}">Open in Projects</a></div>${[0,1,2].map(st=>{const g=ps.filter(p=>p.st===st);return g.length?`<h3 class="grp">${STG[st]}<span class="c num">${int(g.length)}</span></h3>${rowsHtml(g,0,b.key)}`:"";}).join("")}</section></div></div>`;
 $("#back").onclick=e=>{e.preventDefault();back("#/builders");};}

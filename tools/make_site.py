@@ -1480,7 +1480,7 @@ CITY_DISCLAIMER = {
 STAGES = [("PARTIAL OCCUPANCY", "Partial occupancy approved", "hot"), ("OCCUPANCY PENDING", "Partial occupancy approved", "hot"),
           ("CERTIFICATE OF OCCUPANCY ISSUED", "Occupancy certificate issued", "done"),
           ("INSPECTIONS", "Inspections under way", "mid"), ("PERMIT ISSUED", "Permit issued", "early"),
-          ("SOME PERMITS FINALED", "Some permits finaled", "hot"), ("WORK UNDER WAY", "Work under way", "mid")]   # Austin (stages from the City's own fields)
+          ("NEAR FINISH", "Near finish", "hot"), ("SOME PERMITS FINALED", "Near finish", "hot"), ("WORK UNDER WAY", "Work under way", "mid")]   # Austin (stages from the City's own fields)
 
 
 def is_live(p):
@@ -1560,18 +1560,18 @@ def stage(m):
     return (m or "Open").capitalize(), "mid"
 
 
-def project_card(x, pill=True, city="Chicago", permit_label="Permit", bil2=False):
+def project_card(x, pill=True, city="Chicago", permit_label="Permit", bil2=False, sep=" · "):
     lab, cls = stage(x.get("milestone"))
     gc = "; ".join(x.get("gc") or [])
-    units = (f' · {x["units"]:,} home{"s" if x["units"] != 1 else ""}' if x.get("units") else
-             f' · {x["sleeping"]:,} sleeping units' if x.get("sleeping") else "")   # shelter rooms are never homes (holdout round 6)
+    units = (f'{sep}{x["units"]:,} home{"s" if x["units"] != 1 else ""}' if x.get("units") else
+             f'{sep}{x["sleeping"]:,} sleeping units' if x.get("sleeping") else "")   # shelter rooms are never homes (holdout round 6)
     area = x.get("communityArea") or city
     pill_html = f'<p class="ld-pill s-{cls}">{E(lab)}</p>' if pill else ""
     return (f'<article class="ld-proj" data-type="{"new" if x["type"].startswith("New") else "ren"}" data-area="{E(area)}">{pill_html}'
             f'<div class="ld-ptop"><span class="ld-cost">{money(x["cost"], bil2=bil2)}</span><span class="ld-type">{E(x["type"])}{units}</span></div>'
             f'<p class="ld-scope">{E(x["scope"])}</p>'
             f'<dl class="ld-meta{" wide" if len(permit_label) > 7 else ""}"><div><dt>Builder</dt><dd>{E(gc)}</dd></div>'
-            f'<div><dt>Where</dt><dd>{E(x.get("address") or "")}, {E(area)}</dd></div>'
+            f'<div><dt>Where</dt><dd>{E(x.get("address") or "")},{"&nbsp;" if str(area).isdigit() else " "}{E(area)}</dd></div>'
             f'<div><dt>{E(permit_label)}</dt><dd>{E(str(x.get("permit") or ""))}, issued {E(nice_date(x.get("issued", "")))}</dd></div></dl></article>')
 
 
@@ -1592,6 +1592,13 @@ def window_months(d):
     return f"{m} months" if abs(m * 30.4 - days) <= 4 else f"{days} days"
 
 
+def odd_note(c):
+    """Austin's footnote on valuations filed a few dollars over a round figure, from the list's own examples (design round 3)."""
+    odd = list(c.get("oddCosts") or [])[:2]
+    return (" A few valuations end in a stray digit, such as " + " and ".join(f"${v:,}" for v in odd)
+            + ": that is the figure the City filed, shown as filed.") if odd else ""
+
+
 def leads_page_html(p):
     url = BASE + p["slug"] + "/"
     rel = "../"
@@ -1609,7 +1616,7 @@ def leads_page_html(p):
     checkout = p.get("checkout")
     # per-city wording (Austin, Oct 17): every key is optional and defaults to the Chicago page's words
     city = p["city"]
-    card = lambda x, pill=True: project_card(x, pill, city, p.get("permitLabel", "Permit"), bool(p.get("billions2")))
+    card = lambda x, pill=True: project_card(x, pill, city, p.get("permitLabel", "Permit"), bool(p.get("billions2")), p.get("metaSep", " · "))
     near_title = p.get("nearTitle", "Partial occupancy approved")
     near_sub = p.get("nearSub", "partial occupancy approved")
     near_text = p.get("nearText", "The City has approved temporary or partial occupancy on these projects, so a final clean is close.")
@@ -1649,7 +1656,9 @@ def leads_page_html(p):
                          f'{buy("btn ld-btnbig") if checkout else ""}</div>')
         near_html = (f'<section class="block" id="near"><h2>{E(near_title)}</h2>'
                      f'<p>{E(near_text)} '
-                     f'Here are {len(show)} of the {n_near:,} on this week\'s list.</p>'
+                     + (f'Here are {len(show)} of the {n_near:,} on this week\'s list.' if len(show) < n_near else
+                        "It is the only one on this week's list." if n_near == 1 else f"Both are on this week's list." if n_near == 2 else
+                        f"All {n_near} are on this week's list.") + '</p>'
                      f'<div class="ld-list">{"".join(card(x, pill=False) for x in show)}{held_html}</div></section>')
 
     gcs = "".join(f'<li><span class="ld-gname">{E(g["name"])}</span><span class="ld-gn">{g["projects"]}<span class="ld-gu"> open jobs</span></span>'
@@ -1683,6 +1692,7 @@ def leads_page_html(p):
     shot_f = [os.path.join(DOCS, "assets", sdir, f) for f in ("members-list.png", "workbook.png")]
     shots_ok = all(os.path.isfile(f) for f in shot_f)
     phone_f = os.path.join(DOCS, "assets", sdir, "workbook-phone.png")   # a readable crop for phones, when the city has one
+    lphone_f = os.path.join(DOCS, "assets", sdir, "members-list-phone.png")   # the app on a phone, when the city has one (design round 3)
     if shots_ok and (checkout or p.get("shotsDir")):   # real screenshots of the paid product, made from the members' app and workbook
         (w1, h1), (w2, h2) = (png_size(f) for f in shot_f)
         alt1 = p.get("shotAltApp", "The members' app: every open project with the reported cost, address, builder and stage, filters for stage, community area, cost and building type, CSV export and a map of the projects")
@@ -1690,8 +1700,11 @@ def leads_page_html(p):
         shots = ('<section class="block ld-shots"><h2>What members get</h2>'
                  '<p>The same data as this page, every open project instead of a sample, in a members\' app and an Excel file.</p>'
                  '<div class="ld-shotgrid">'
-                 f'<figure class="ld-shot"><img src="{rel}assets/{sdir}/members-list.png" width="{w1}" height="{h1}" loading="eager" decoding="async" '
-                 f'alt="{E(alt1)}">'
+                 f'<figure class="ld-shot">'
+                 + (f'<picture><source media="(max-width:600px)" srcset="{rel}assets/{sdir}/members-list-phone.png" width="{png_size(lphone_f)[0]}" height="{png_size(lphone_f)[1]}">'
+                    if os.path.isfile(lphone_f) else "")
+                 + f'<img src="{rel}assets/{sdir}/members-list.png" width="{w1}" height="{h1}" loading="eager" decoding="async" '
+                 f'alt="{E(alt1)}">' + ('</picture>' if os.path.isfile(lphone_f) else "") +
                  '<figcaption>The members\' app, updated every Monday</figcaption></figure>'
                  f'<figure class="ld-shot">'
                  + (f'<picture><source media="(max-width:600px)" srcset="{rel}assets/{sdir}/workbook-phone.png" width="{png_size(phone_f)[0]}" height="{png_size(phone_f)[1]}">'
@@ -1746,7 +1759,7 @@ io.observe(hero);io.observe(cta)})();</script>"""
     robots = "" if is_live(p) else '<meta name="robots" content="noindex, nofollow">'
     foot = (f'</main>\n<footer><div class="wrap">'
             f'<p>Source: {E(src["name"])} ({E(src["url"])}), City data as of {E(asof)}, the day it was pulled. {E(src["modified"])} '
-            f'{E(p.get("costNote", "Reported cost is the figure filed with the City, not a contract value."))} No contractor named here has endorsed or works with ProofNotFluff. '
+            f'{E(p.get("costNote", "Reported cost is the figure filed with the City, not a contract value."))}{E(odd_note(c))} No contractor named here has endorsed or works with ProofNotFluff. '
             'Public information for planning sales calls; not legal or business advice and no promise of work.</p>'
             f'<p>{E(p.get("disclaimer") or CITY_DISCLAIMER.get(p["city"], ""))}</p>'
             f'<p>Made by ProofNotFluff with AI assistance from public City data.{" The waitlist form sends your email address to Kit." if p.get("kitForm") else ""} The page counts visits with Cloudflare Web Analytics, which sets no cookies, and loads its heading font from Google Fonts.</p>'

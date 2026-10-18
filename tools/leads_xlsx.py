@@ -83,6 +83,7 @@ TABS = {"near": "1 Near finish", "new": "2 New this week", "all": "3 All project
 
 
 def stage(m):
+    m = {"Some permits finaled": "Near finish"}.get(m, m)   # Austin's name for near finish before Oct 18 (one set of labels)
     if (m or "") in C["stages"]:          # Austin's list carries the stage itself
         return m
     u = (m or "").upper()
@@ -123,6 +124,16 @@ def prep(p, prev_ids=None):
     except ValueError:
         q["issuedDate"] = None
     return q
+
+
+def odd_note(src):
+    """The footnote on valuations the City filed a few dollars over a round figure (design round 3, Oct 18), from this list's own
+    examples; empty when the list has none."""
+    odd = list(src.get("oddCosts") or [])[:2]
+    if not odd:
+        return ""
+    ex = " and ".join(f"${v:,}" for v in odd)
+    return f" A few end in a stray digit, such as {ex}: that is the figure the City filed, shown as filed."
 
 
 def rich(parts):
@@ -176,7 +187,10 @@ def project_sheet(wb, key, tagline, rows, list_date, tab, drop=(), stats=None):
     D.h(ws, 6, 10)
     stats_ = [("Projects", f'=COUNTIF({rng("cost")},">0")', S.FMT["int"]), (C["cost"], f'=SUM({rng("cost")})', MONEY_SHORT)]
     if key == "all" and "units" in col:
-        stats_.append(("Homes in them", f'=SUM({rng("units")})', S.FMT["int"]))
+        if C["key"] == "austin":   # the free page's "new homes": homes in new buildings only (design round 3, Oct 18)
+            stats_.append(("New homes", sum(p.get("newUnits") or 0 for p in rows), S.FMT["int"]))
+        else:
+            stats_.append(("Homes in them", f'=SUM({rng("units")})', S.FMT["int"]))
         stats_.append(("Near finish", f'=COUNTIF({rng("stage")},"{C["stages"][0]}")', S.FMT["int"]))
     else:
         stats_.append(("Biggest single job", f'=MAX({rng("cost")})', MONEY_SHORT))
@@ -188,6 +202,20 @@ def project_sheet(wb, key, tagline, rows, list_date, tab, drop=(), stats=None):
         acc += w
         cuts.append(acc)
     starts = [0] + [min(range(len(cuts)), key=lambda j: abs(cuts[j] - total * i / k)) + 1 for i in range(1, k)]
+    if C["key"] == "austin":   # even gaps between the numbers (design round 3): the most even set of column starts, the last past 55%
+        import itertools
+        full, edge = sum(c[2] for c in cols), [0] + cuts[:-1]
+        best = None
+        for combo in itertools.combinations(range(1, len(cols)), k - 1):
+            pos = [0] + [edge[j] for j in combo]
+            if pos[-1] < 0.55 * full:
+                continue
+            gaps = [b - a for a, b in zip(pos, pos[1:])]
+            score = max(gaps) - min(gaps)
+            if best is None or score < best[0]:
+                best = (score, [0, *combo])
+        if best:
+            starts = best[1]
     for i in range(k):
         a = letters[starts[i]]
         z = letters[starts[i + 1] - 1] if i < k - 1 else letters[-1]
@@ -273,7 +301,8 @@ def builders_sheet(wb, rows, list_date):
     spec = [
         {"col": "C", "head": "Builder", "kind": "text", "values": [g for g, _ in items]},
         {"col": "D", "head": "Projects" if aus else "Open permits", "kind": "text", "values": [a["n"] for _, a in items], "align": "right", "fmt": S.FMT["int"]},
-        {"col": "E", "head": "", "kind": "calc", "formula": lambda r: f'=IF(D{r}>=2,IFERROR(REPT("{D.BAR_CHAR}",MAX(0,ROUND(D{r}/{biggest}*16,0))),""),"")'},
+        {"col": "E", "head": "", "kind": "calc", "formula": (lambda r: f'=IFERROR(REPT("{D.BAR_CHAR}",MAX(1,ROUND(D{r}/{biggest}*16,0))),"")') if aus else
+         (lambda r: f'=IF(D{r}>=2,IFERROR(REPT("{D.BAR_CHAR}",MAX(0,ROUND(D{r}/{biggest}*16,0))),""),"")')},   # Austin: a bar on every row, bold for 2+
         {"col": "F", "head": C["cost"], "kind": "text", "values": [a["cost"] for _, a in items], "align": "right", "fmt": S.FMT["usd0"]},
         {"col": "G", "head": "Near finish", "kind": "text", "values": [a["near"] for _, a in items], "align": "right", "fmt": S.FMT["int"]},
         {"col": "H", "head": "New", "kind": "text", "values": [a["new"] for _, a in items], "align": "right", "fmt": S.FMT["int"]},
@@ -285,7 +314,7 @@ def builders_sheet(wb, rows, list_date):
     D.h(ws, f1 - 1, 24)
     for i, (g, a) in enumerate(items):
         r = f1 + i
-        ws[f"C{r}"].font = D.f(10, i < 10)
+        ws[f"C{r}"].font = D.f(10, a["n"] >= 2 if aus else i < 10)   # Austin: bold means 2 or more projects, the stat above it
         ws[f"C{r}"].alignment = Alignment(vertical="center", wrap_text=True)
         ws[f"E{r}"].font = D.f(9, False, "teal"); ws[f"E{r}"].alignment = Alignment(horizontal="left", vertical="center", indent=1)
         for c in "DGH":
@@ -343,10 +372,10 @@ def card(ws, top, title, rows, eyebrow=None, bg="card", line="frame"):
             text, url = val
             c = ws[f"C{r}"]; c.value = text; c.hyperlink = url; c.font = D.f(10, False, "blue", underline="single")
             c.alignment = Alignment(vertical="center", wrap_text=True); ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, 22)
-        elif kind == "rich":
+        elif kind in ("rich", "richgap"):
             text = "".join(t for t, _, _ in val)
             c = ws[f"C{r}"]; c.value = rich(val); c.alignment = Alignment(vertical="top", wrap_text=True)
-            ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, S.text_height(text, TEXT_W + 8, 10) + 6)
+            ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, S.text_height(text, TEXT_W + (3 if kind == "richgap" else 8), 10) + (16 if kind == "richgap" else 6))
         else:
             size, color = (9, "muted") if kind == "note" else (10, "ink")
             c = ws[f"C{r}"]; c.value = val; c.font = D.f(size, False, color); c.alignment = Alignment(vertical="top", wrap_text=True)
@@ -380,12 +409,12 @@ def start_here(wb, rows, near, new, src, list_date, addresses):
     newr = f"'{TABS['new']}'!D12:D{11 + max(len(new), 1)}"
     tiles = [("B", "D", "OPEN BIG PROJECTS", f'=COUNTIF({c_rng},">0")', S.FMT["int"], (f"projects, {sum(p.get('buildings') or 0 for p in rows):,} building permits" if aus else f"permits, at {addresses:,} addresses"), True),
              ("F", "H", "VALUATION" if aus else "REPORTED COST", f"=SUM({c_rng})", BILLION,
-              "largest on each project's open permits" if aus else "filed with the permits", False),
-             ("J", "L", "NEAR FINISH", f'=COUNTIF({s_rng},"{C["stages"][0]}")', S.FMT["int"], C["stages"][0].lower(), False),
+              "largest permit per project" if aus else "filed with the permits", False),
+             ("J", "L", "NEAR FINISH", f'=COUNTIF({s_rng},"{C["stages"][0]}")', S.FMT["int"], "some permits finaled" if aus else C["stages"][0].lower(), False),
              ("N", "P", "NEW THIS WEEK", f'=COUNTIF({newr},">0")', S.FMT["int"], "issued in the last 7 days", False)]
     D.h(ws, 6, 10)
     for left, right, eb, fml, fmt, sub, dark in tiles:
-        D.tile(ws, 7, left, right, eb, fml, fmt, sub, dark=dark, value_size=28 if dark else 20)
+        D.tile(ws, 7, left, right, eb, fml, fmt, sub, dark=dark, value_size=(28 if dark else 18) if aus else (28 if dark else 20))
     r = 12
     r = card(ws, r, "Three steps", [
         ("num", (1, f"Start with {TABS['near']}. Those {'projects' if aus else 'buildings'} are closest to a final clean.")),
@@ -401,10 +430,10 @@ def start_here(wb, rows, near, new, src, list_date, addresses):
                                   "permits of a project repeat the same number, it counts once (fourplexes add up). Blank on non-residential work.")),
                ("lead", ("Stages", "From the City's own permit fields. Permit issued is early. Work under way means the City has pushed a "
                                    "permit's expiry date past the first 180 days, which it does when an inspection passes or an extension is "
-                                   "granted. Some permits finaled means part of the project is marked Final while the rest is open.")),
+                                   "granted. Near finish means at least one of the project's building permits is marked Final while the rest are open.")),
                ("lead", ("Valuation", "Austin repeats a development's valuation on its building permits, so each project shows the largest "
                                       "valuation on its open building permits on the list, counted once. Finaled, shell and garage permits "
-                                      "do not count. It is a size signal, not a budget.")),
+                                      "do not count. It is a size signal, not a budget." + odd_note(src))),
                ("lead", ("Order", f"{TABS['all']} lists the projects closest to a final clean first, then the biggest. Every table has filter "
                                   "arrows on its header row, so you can pick one ZIP code or sort by valuation.")),
                ("lead", ("Builders", "The general contractor the City lists on the project's open building permits. When they name more than "
@@ -450,7 +479,7 @@ def terms_text(date):
     with no builder contacts and its valuation wording."""
     if C["key"] == "austin":
         return [
-            f"ProofNotFluff | {PRODUCT} | {C['termsVersion']}, {date}",
+            f"ProofNotFluff · {PRODUCT} · {C['termsVersion']}, {date}",
             "License. Your membership gives you a license to use this list for one business you own, for its own sales prospecting. You may edit "
             "it and print it for that use. You may not resell, share, give away, upload or redistribute it, in original or edited form, or use it "
             "to make a competing product.",
@@ -511,8 +540,15 @@ def terms_text(date):
 def terms(wb, src, list_date):
     ws = card_sheet(wb, "Terms", "Terms of Use", f"{PRODUCT}. Read this before you rely on the list.", list_date, "note")
     r = card(ws, 6, f"{C['cityName']} data", [("para", CITY_DISCLAIMER), ("link", (C["termsLabel"], src.get("terms", "") or C["termsUrl"]))])
-    kind = "paragap" if C["key"] == "austin" else "para"   # Austin: an even gap after every paragraph (design director, Oct 18)
-    r = card(ws, r, "ProofNotFluff", [(kind, OUR_NOTICE)] + [(kind, t) for t in terms_text(list_date[8:])])
+    if C["key"] == "austin":   # an even gap after every paragraph, the version line muted, clause names bold (design director, Oct 18)
+        paras = terms_text(list_date[8:])
+        items = [("paragap", OUR_NOTICE), ("note", paras[0])]
+        for t in paras[1:]:
+            m = re.match(r"([A-Z][^.]{0,40}\.)\s(.*)$", t, re.S)
+            items.append(("richgap", [(m.group(1) + " ", True, "ink"), (m.group(2), False, "ink")]) if m else ("paragap", t))
+        r = card(ws, r, "ProofNotFluff", items)
+    else:
+        r = card(ws, r, "ProofNotFluff", [("para", OUR_NOTICE)] + [("para", t) for t in terms_text(list_date[8:])])
     finish_card_sheet(ws, r, "note")
     return ws
 
@@ -525,12 +561,12 @@ def build(data, out, prev=None, city=None):
     addresses = len({p.get("address") for p in rows})
     near = [p for p in rows if p["stage"] == C["stages"][0]]
     new = [p for p in rows if p["new"]]
-    src = data["source"]
+    src = dict(data["source"], oddCosts=(data.get("counts") or {}).get("oddCosts") or [])
     from permits_chicago import list_day
     fetched = list_day(src["fetchedAt"])
     list_date = f"List of {fetched.strftime('%b')} {fetched.day}, {fetched.year}"
     wb = S.new_workbook(PRODUCT)
-    project_sheet(wb, "near", "Some permits finaled: part of the project is marked Final while the rest is open. Biggest first."
+    project_sheet(wb, "near", "Near finish: at least one building permit is marked Final while the rest are open. Biggest first."
                   if C["key"] == "austin" else "Partial occupancy approved: the City has cleared part of the building for use. Biggest first.",
                   near, list_date, "accent", drop=("stage",) + absent(near))
     project_sheet(wb, "new", "Permits issued in the last 7 days. Closest to a final clean first, then biggest.",

@@ -269,6 +269,8 @@ def keep_permit(r, since, today):
         return False, "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)"
     lead_trade = re.match(r"(?:REPLACEMENT OF|REPAIRS?\b|RE[- ]?ROOF|ROOF)", main)
     spec = SPECIFIC.findall(main)
+    if c == 327 and work == "NEW" and re.search(r"CONVENIENCE STORE", main):
+        spec.append("CONVENIENCE STORE")   # a new store building with its fuel canopy (holdout D, Oct 18: 13347837, 9,566 sq ft)
     if lead_trade:   # a permit that opens with trade work needs finish work in rooms, not just "finishes" (holdout, Oct 18)
         spec = [x for x in spec if not re.match(r"FINISHES|KITCHEN|CEILINGS", x)]
     if (NOT_CLEAN.search(main) or OBJECT_TRADE.search(main)) and not spec:
@@ -288,11 +290,12 @@ DEBORAH STEPHANIE REBECCA SHARON LAURA CYNTHIA KATHLEEN AMY ANGELA SHIRLEY ANNA 
 DEBRA RACHEL CAROLYN JANET CATHERINE MARIA HEATHER DIANE RUTH JULIE OLIVIA JOYCE VIRGINIA VICTORIA KELLY LAUREN CHRISTINA JOAN EVELYN JUDITH
 MEGAN ANDREA CHERYL HANNAH JACQUELINE MARTHA GLORIA TERESA ANN SARA MADISON FRANCES KATHRYN JANICE JEAN ABIGAIL ALICE JULIA JUDY SOPHIA GRACE
 DENISE AMBER DORIS MARILYN DANIELLE BEVERLY ISABELLA THERESA DIANA NATALIE BRITTANY CHARLOTTE MARIE KAYLA ALEXIS LORI ROSA ANA CARMEN GUADALUPE
-LETICIA VERONICA YOLANDA ADRIANA ALMA JIM BOB TOM MIKE DAN DAVE STEVE CHRIS MATT TONY BILL RICK RON KEN TODD SHANE TRAVIS CODY DUSTIN DEREK""".split())
+LETICIA VERONICA YOLANDA ADRIANA ALMA JIM BOB TOM MIKE DAN DAVE STEVE CHRIS MATT TONY BILL RICK RON KEN TODD SHANE TRAVIS CODY DUSTIN DEREK GORDON GLENN DALE WAYNE CRAIG
+CURTIS TROY BRETT CLINT""".split())
 ENTITY = re.compile(r"\b(?:L\.?\s?L\.?\s?C|INC(?:ORPORATED)?|CORP(?:ORATION)?|CO|COMPANY|LTD|LIMITED|L\.?\s?P|L\.?\s?L\.?\s?P|P\.?\s?L\.?\s?L\.?\s?C|P\.?\s?C)\b\.?")
 TYPE_OF = [("LLC", r"\bL\.?\s?L\.?\s?C\b"), ("INC", r"\bINC(?:ORPORATED)?\b"), ("CORP", r"\bCORP(?:ORATION)?\b"), ("LTD", r"\bLTD\b|\bLIMITED\b"),
            ("LLP", r"\bL\.?\s?L\.?\s?P\b"), ("LP", r"(?<![L.\s])\s*\bL\.?\s?P\b(?!\.?\s?L)"), ("PLLC", r"\bP\.?\s?L\.?\s?L\.?\s?C\b"), ("PC", r"\bP\.?\s?C\b")]
-MAIN_ANY = re.compile(r"\s*(?:[\[(]\s*\**\s*MAIN\s*\**\s*[\])]|\*+\s*MAIN\s*\*+)\s*", re.I)
+MAIN_ANY = re.compile(r"\s*(?:[\[(]\s*\**\s*MAIN\s*\**\s*[\])]|\*+\s*MAIN\b\s*\**|\bMAIN\s*\*+)\s*", re.I)   # stars on one or both sides (holdout D, Oct 18: "*MAIN", "***Main")
 
 
 def _norm_person(n):
@@ -301,7 +304,7 @@ def _norm_person(n):
 
 def is_person(company, full_name=""):
     """True when the City's company field holds a person's own name, not a business (holdout, Oct 18: "Hill & Wilkinson",
-    "Kingham Dalton Wilson", "Gordon Highlander" and "XBiotech" are businesses). A name with a business word or a legal suffix is a
+    "Kingham Dalton Wilson" and "XBiotech" are businesses; holdout D: "Gordon Highlander" is a person's name). A name with a business word or a legal suffix is a
     business. Otherwise it is a person's name when it is the contractor's own name in the City record (either order), or when it
     is two or three plain words that start with a common first name and carry no "&", digit or initials."""
     up = (company or "").upper()
@@ -311,8 +314,11 @@ def is_person(company, full_name=""):
     if f and (c == f or c == " ".join(reversed(f.split())) or c.replace(" ", "") == f.replace(" ", "")):
         return True
     words = c.split()
-    return (2 <= len(words) <= 3 and words[0] in FIRST_NAMES and not re.search(r"[&\d/]", up)
-            and (not f or words[-1] == f.split()[-1]))
+    if re.search(r"[&\d/]", up) or not 2 <= len(words) <= 3 or words[0] not in FIRST_NAMES:
+        return False
+    # two plain words that start with a first name are a person's name whatever the City's full name says (holdout D, Oct 18:
+    # "Gordon Highlander"); three words need the contractor's own surname to match ("Kingham Dalton Wilson" stays a business)
+    return len(words) == 2 or not f or words[-1] == f.split()[-1]
 
 
 def builder_name(r):
@@ -406,7 +412,7 @@ def group_projects(rows, since, today, week, min_cost=MIN_COST):
         # remodel counts: 13521831 has 17 finaled phases and 2 open, Oct 18)
         finals = [r for r in rs if (r.get("status_current") or "").upper() == "FINAL" and day(r.get("issue_date")) >= since[:10]
                   and keep_permit(dict(r, status_current="Active", expiresdate=""), since, today)[0]]
-        stage = ("Some permits finaled" if finals else "Work under way" if any(extended(r) for r in kept) else "Permit issued")
+        stage = ("Near finish" if finals else "Work under way" if any(extended(r) for r in kept) else "Permit issued")
         new_units = homes([r for r in kept if cls_no(r) in (104, 105, 106)])
         fin_units = homes([r for r in kept if cls_no(r) in (1000, 1001, 1002) and HOME_WORDS.search((r.get("description") or "").upper())])
         units = max(new_units, fin_units)
@@ -495,7 +501,7 @@ def merge_twins(projects):
         key = ((x["address"] or "").split(" (+")[0].upper(), x["cost"], P.entity_key(x["gc"][0]) if x["gc"] else "")
         groups.setdefault(key, []).append(x)
     out, merged = [], []
-    order = {s: i for i, s in enumerate(["Some permits finaled", "Work under way", "Permit issued"])}
+    order = {s: i for i, s in enumerate(["Near finish", "Work under way", "Permit issued"])}
     for (addr, _, _), xs in groups.items():
         if len(xs) == 1 or not addr:
             out += xs
@@ -694,7 +700,7 @@ def main():
     since, where, rows = fetch(now, a.days)
     projects, reasons, preasons = build_lists(rows, now, since, a.days, a.min_cost)
     geocoded = geocode_missing(projects)
-    near = [x for x in projects if x["milestone"] == "Some permits finaled"]
+    near = [x for x in projects if x["milestone"] == "Near finish"]
     by_zip = collections.Counter(x["communityArea"] for x in projects if x["communityArea"])
     sample = {
         "source": {
@@ -713,7 +719,9 @@ def main():
         "counts": {"fetched": len(rows), "kept": len(projects), "excluded": dict(reasons), "permitReasons": dict(preasons),
                    "keptByType": dict(collections.Counter(x["type"] for x in projects)),
                    "keptCost": total_cost(projects),
-                   "keptUnits": sum(x.get("newUnits") or 0 for x in projects),   # homes in new buildings only (the free page says "new homes")
+                   "keptUnits": sum(x.get("newUnits") or 0 for x in projects),
+                   # valuations the City filed one or a few dollars over a round figure ($18,000,001, $500,002): the footnote's examples
+                   "oddCosts": sorted({x["cost"] for x in projects if 0 < x["cost"] % 1000 < 10}, reverse=True)[:2],   # homes in new buildings only (the free page says "new homes")
                    "keptBuildings": sum(x["buildings"] for x in projects),
                    "topAreas": by_zip.most_common(8), "topGCs": top_builders(projects), "nearFinish": len(near),
                    "builders": len({P.entity_key(g) for x in projects for g in x["gc"]}),
@@ -762,6 +770,10 @@ PERMIT_CASES = [
       "description": "ePlan: Expedited Review - New Apartments - Fire Area 1C - also contains Retail Shell (Separate Building Permit) 53870 SF"}, True),
     ({"permit_class": "C- 327 Stores & Customer Services", "work_class": "New",
       "description": "New Construction of a 7000 SF shell retail building which includes a 5000 SF convenience store finish-out and two (2) unfinished future tenant lease spaces"}, True),
+    ({"permit_class": "C- 327 Stores & Customer Services", "work_class": "New",   # holdout D: a new store building, kept despite "fuel"
+      "description": "New Construction of Convenience Store Fuel Canopy and Dumpster Enclosure (9566 SF)"}, True),
+    ({"permit_class": "C- 437 Addn, Alter, Convn-NonRes", "work_class": "Addition and Remodel",
+      "description": "Remodel and Addition to Existing Fuel Station 2023 001465 DA - Approved"}, False),
     ({"permit_class": "C-1001 Commercial Finish Out", "work_class": "Remodel",
       "description": "ePlan: Commercial Expedited Review - [APPROVED] Interior Finish out of Shell Space to a Dance Studio to include 3 Flex Spaces 3 Restrooms and Entry Se"}, True),
     ({"permit_class": "C- 326 Schools & Other Educational Bldgs", "work_class": "New",
@@ -925,7 +937,8 @@ def selftest():
                              # completeness holdout, Oct 18: businesses whose names look like surnames are businesses
                              ("HILL & WILKINSON", "General Contractor", "Hill & Wilkinson"),
                              ("KINGHAM DALTON WILSON", "General Contractor", "Kingham Dalton Wilson"),
-                             ("Gordon Highlander|Pat Jones", "General Contractor", "Gordon Highlander"),
+                             ("Gordon Highlander|Pat Jones", "General Contractor", None),   # holdout D: two plain words starting with a first name
+                             ("FLYNN CONSTRUCTION ***Main", "General Contractor", "Flynn Construction"), ("*MAIN", "General Contractor", None),
                              ("Gordon Highlander|Gordon Highlander", "General Contractor", None),   # the contractor's own name: a person
                              ("SMITH JOHN|JOHN SMITH", "General Contractor", None),
                              ("XBIOTECH", "General Contractor", "Xbiotech"), ("Speed Fab-Crete", "General Contractor", "Speed Fab-Crete"),
@@ -1014,7 +1027,7 @@ def selftest():
     if set(byp) != {"M1", "M4", "M5", "M8", "M9", "M10"}:
         bad.append(("projects kept", sorted(byp), dict(why)))
     else:
-        if byp["M1"]["cost"] != 245000000 or byp["M1"]["milestone"] != "Some permits finaled" or byp["M1"]["buildings"] != 2 or byp["M1"]["units"] != 30:
+        if byp["M1"]["cost"] != 245000000 or byp["M1"]["milestone"] != "Near finish" or byp["M1"]["buildings"] != 2 or byp["M1"]["units"] != 30:
             bad.append(("M1", byp["M1"]))   # valued from its kept permits only (the pergola's $830M does not count); 30 homes repeated on 2 permits count once
         if byp["M4"]["gc"] != ["Acme Builders LLC"] or byp["M4"]["milestone"] != "Work under way" or byp["M4"]["issued"] != "2026-02-01" or byp["M4"]["newThisWeek"]:
             bad.append(("M4", byp["M4"]))   # one legal entity, expiry pushed past 180 days, new only when its first permit is new
@@ -1027,7 +1040,7 @@ def selftest():
         bad.append(("reasons", dict(why)))
     # one development under two master permits (6801 River Place Blvd, Oct 18: $1,525,000,000 on both): one project, valued once
     twins = [dict(byp["M1"], permit="T1", address="6801 River Place Blvd", cost=1525000000, gc=["Turner Construction"], milestone="Work under way"),
-             dict(byp["M1"], permit="T2", address="6801 River Place Blvd (+1 more)", cost=1525000000, gc=["TURNER CONSTRUCTION"], milestone="Some permits finaled"),
+             dict(byp["M1"], permit="T2", address="6801 River Place Blvd (+1 more)", cost=1525000000, gc=["TURNER CONSTRUCTION"], milestone="Near finish"),
              dict(byp["M1"], permit="T3", address="6801 River Place Blvd", cost=9000000, gc=["Turner Construction"])] if "M1" in byp else []
     ub = [{"gc": ["Rogers Obrien Construction"]}, {"gc": ["Rogers-O'Brien Construction Co. Ltd"]}, {"gc": ["ROGERS-O'BRIEN CONSTRUCTION CO., LTD."]},
           {"gc": ["Panoptic Group"]}, {"gc": ["Panoptic Group LLC"]}, {"gc": ["Panoptic Group Inc"]}, {"gc": ["Acme Builders"]}, {"gc": ["Zeta Builders"]}]
@@ -1039,7 +1052,7 @@ def selftest():
             ["Zapalac/Reed Construction Co., LP"] * 2 + ["The Struthoff Co. Inc."] * 3:
         bad.append(("one builder per legal entity", [x["gc"] for x in ub]))
     mt, gone = merge_twins(twins)
-    if len(mt) != 2 or gone != ["T2"] or mt[0]["buildings"] != 4 or mt[0]["milestone"] != "Some permits finaled" or mt[0]["address"] != "6801 River Place Blvd (+1 more)" \
+    if len(mt) != 2 or gone != ["T2"] or mt[0]["buildings"] != 4 or mt[0]["milestone"] != "Near finish" or mt[0]["address"] != "6801 River Place Blvd (+1 more)" \
             or total_cost(mt) != 1534000000 or mt[0]["masters"] != ["T1", "T2"]:
         bad.append(("merge twins", [(x["permit"], x["address"], x["buildings"], x["milestone"]) for x in mt], gone))
     if geo_street("507 E Howard Ln Bldg 3 Unit 10 (+2 more)") != "507 E Howard Ln" or geo_street("1110 W 6th St Unit Flr1") != "1110 W 6th St":

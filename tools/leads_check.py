@@ -38,7 +38,53 @@ def settle(pg):
     pg.wait_for_timeout(300)
 
 
-def capture(ctx, base, pw, wb_path, out, no_tiles, check):
+def calm(pg):
+    """No hover tint, focus ring or pressed state in a capture (design round 3, Oct 18): the pointer leaves the page and focus goes."""
+    pg.mouse.move(0, 0)
+    pg.evaluate("document.activeElement&&document.activeElement.blur&&document.activeElement.blur()")
+    pg.add_style_tag(content="*:focus,*:focus-visible{outline:none!important}")
+    settle(pg)
+
+
+def row_cut(im, want):
+    """The last row boundary at or above y=want in a rendered sheet: a full-width line of one light colour, so a crop never cuts a
+    row through its text (design round 3)."""
+    px, w = im.load(), im.width
+    for y in range(min(want, im.height - 1), max(want - 90, 1), -1):
+        xs = range(int(w * 0.03), int(w * 0.30), max(1, w // 300))   # the address, valuation and builder columns (no stage tint)
+        cols = [px[x, y] for x in xs]
+        if max(max(c) - min(c) for c in zip(*cols)) <= 6 and 170 < min(cols)[0] < 248:   # a grid line: one light grey across
+            return y + 1
+    return want
+
+
+def card_right(im):
+    """The right edge of the sheet's card in a render: the end of the dark rule under the table header, then the card's frame
+    line past it, so the crop drops the empty canvas and LibreOffice's page edge beyond (design round 3)."""
+    px, bg = im.load(), im.getpixel((2, 2))
+    for y in range(int(im.height * 0.05), int(im.height * 0.5)):
+        dark = [x for x in range(im.width) if sum(px[x, y]) < 200]
+        if len(dark) > im.width * 0.4:
+            for x in range(dark[-1] + 1, min(im.width, dark[-1] + 80)):
+                if sum(abs(a - b) for a, b in zip(px[x, y], bg)) > 12 and sum(px[x, y]) < 740:
+                    return x + 1
+            return dark[-1] + 1
+    return im.width
+
+
+def pad_to(im, w, h, margin):
+    """The image on a canvas of its own background colour with an even margin, scaled to w x h (design round 3)."""
+    from PIL import Image
+    bg = im.getpixel((2, 2))
+    W = im.width + 2 * margin
+    H = max(int(W * h / w), im.height + 2 * margin)
+    W = int(H * w / h)
+    c = Image.new("RGB", (W, H), bg)
+    c.paste(im, ((W - im.width) // 2, margin))
+    return c.resize((w, h), Image.LANCZOS)
+
+
+def capture(ctx, base, pw, wb_path, out, no_tiles, check, leaflet=""):
     """The free page's two screenshots of the paid product, made from this build."""
     import subprocess, tempfile
     from PIL import Image
@@ -55,22 +101,43 @@ def capture(ctx, base, pw, wb_path, out, no_tiles, check):
         pg.add_style_tag(content=".split{display:block!important}.mapbox{display:none!important}")
     pg.wait_for_timeout(1200)
     pg.evaluate("window.scrollTo(0,0)")
-    pg.mouse.move(1055, 360)   # an empty spot, so no row shows its hover tint
-    settle(pg)
+    calm(pg)
     pg.screenshot(path=os.path.join(out, "members-list.png"))
     pg.close()
+    # the phone list (design round 3): the same view on a 390 px phone at 2x, for the free page's phone layout
+    pctx = ctx.browser.new_context(viewport={"width": 390, "height": 760}, device_scale_factor=2, is_mobile=True, has_touch=True)
+    if leaflet:
+        pctx.route(re.compile(r"https://cdnjs\.cloudflare\.com/ajax/libs/leaflet/1\.9\.4/(.*)"),
+                   lambda route: route.fulfill(path=os.path.join(leaflet, route.request.url.rsplit("/", 1)[1])))
+        pctx.route(re.compile(r"https://tile\.openstreetmap\.org/.*"), lambda route: route.fulfill(body=BLANK_PNG, content_type="image/png"))
+    pq = pctx.new_page()
+    pq.goto(base)
+    pq.fill("#pw", pw)
+    pq.click("#go")
+    pq.wait_for_selector("#app .hero")
+    pq.goto(base + "#/projects")
+    pq.wait_for_selector("#plist .row")
+    pq.wait_for_timeout(800)
+    pq.evaluate("window.scrollTo(0,0)")
+    calm(pq)
+    pq.screenshot(path=os.path.join(out, "members-list-phone.png"))
+    pctx.close()
     tmp = tempfile.mkdtemp()
     subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), "render_xlsx.py"), wb_path, tmp],
                    check=True, capture_output=True)
     src = next(os.path.join(tmp, f) for f in sorted(os.listdir(tmp)) if "All-projects" in f and f.endswith(".png"))
     im = Image.open(src).convert("RGB")
-    w = min(im.width, int(im.height * 1200 / 772))
-    im.crop((0, 0, w, int(w * 772 / 1200))).resize((1200, 772), Image.LANCZOS).save(os.path.join(out, "workbook.png"))
+    m = max(16, im.width // 50)   # an even margin round the sheet, and the crop ends on a row line (design round 3)
+    w = min(card_right(im), int((im.height + 2 * m) * 1200 / 772) - 2 * m)
+    cut = row_cut(im, int((w + 2 * m) * 772 / 1200) - 2 * m)
+    pad_to(im.crop((0, 0, w, cut)), 1200, 772, m).save(os.path.join(out, "workbook.png"))
     # the phone crop: the KPI band and the first columns (address, valuation, builder, ZIP code, stage), readable at 360 px
     cw = min(im.width, int(im.width * 0.455))
-    im.crop((0, 0, cw, int(cw * 0.75))).resize((900, 675), Image.LANCZOS).save(os.path.join(out, "workbook-phone.png"))
-    sizes = [Image.open(os.path.join(out, f)).size for f in ("members-list.png", "workbook.png", "workbook-phone.png")]
-    check(sizes == [(1064, 665), (1200, 772), (900, 675)], f"captured the free page's screenshots into {out}: {sizes}")
+    cut = row_cut(im, int((cw + 2 * m) * 0.75) - 2 * m)
+    pad_to(im.crop((0, 0, cw, cut)), 900, 675, m).save(os.path.join(out, "workbook-phone.png"))
+    names = ("members-list.png", "members-list-phone.png", "workbook.png", "workbook-phone.png")
+    sizes = [Image.open(os.path.join(out, f)).size for f in names]
+    check(sizes == [(1064, 665), (780, 1520), (1200, 772), (900, 675)], f"captured the free page's screenshots into {out}: {sizes}")
 
 
 def main():
@@ -228,7 +295,7 @@ def main():
                     if isinstance(c.value, str) and re.match(r"^#(?:REF|VALUE|NAME|DIV/0|N/A|NUM|NULL)", c.value)]
             check(not errs, f"{tag} workbook {dl.value.suggested_filename}: {len(wb.sheetnames)} tabs, error cells {errs[:5]}")
             if a.capture and width > 500:
-                capture(ctx, base, pw, wb_path, a.capture, bool(a.leaflet), check)
+                capture(ctx, base, pw, wb_path, a.capture, bool(a.leaflet), check, a.leaflet)
             errors = [e for e in errors if "tile.openstreetmap" not in e]
             check(not errors, f"{tag} console errors: {errors[:3]}")
             ctx.close()

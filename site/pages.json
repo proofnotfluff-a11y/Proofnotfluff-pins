@@ -3484,9 +3484,10 @@
    "areaWord": "ZIP code",
    "areaAll": "All ZIP codes",
    "areaFilter": "a ZIP code filter",
-   "nearTitle": "Some permits finaled",
+   "nearTitle": "Near finish",
    "nearSub": "some permits finaled",
-   "nearText": "These projects have at least one building permit marked Final by the City while others are still open, so final cleans are under way or close.",
+   "nearText": "A project is near finish when at least one of its building permits is marked Final by the City while others are still open, so final cleans are under way or close.",
+   "metaSep": ", ",
    "costLabel": "Valuation",
    "costSub": "largest on each project's open permits",
    "costNote": "Valuation is the largest valuation filed on a project's open City building permits on the list, not a contract value.",
@@ -3502,7 +3503,7 @@
     "Start with the builders, not the buildings. A general contractor with several big jobs open hires subcontractors on each one, so getting on one builder's vendor list can put you in front of many projects.",
     "Call the builder's main office and ask who buys cleaning for the project you name. Have the master permit number and the address ready.",
     "Send a one-page capability sheet the same day: what you clean, crew size, insurance, equipment and two references.",
-    "Watch the stage. Permit issued is early, work under way means the City has extended a permit after an inspection or on request, and some permits finaled means parts of the project are already done."
+    "Watch the stage. Permit issued is early, work under way means the City has extended a permit after an inspection or on request, and near finish means some of the project's building permits are already finaled."
    ],
    "links": [
     [

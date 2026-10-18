@@ -19,7 +19,7 @@ concurrency:
 jobs:
   pull:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
       - run: python3 tools/permits_chicago.py --selftest
@@ -37,13 +37,41 @@ jobs:
           python3 tools/leads_xlsx.py "$RUNNER_TEMP/austin-full.json" "$RUNNER_TEMP/austin-leads.xlsx"
           # the same members' app code as Chicago's (tools/leads_app.py); the city comes from the list's source block
           python3 tools/leads_app.py "$RUNNER_TEMP/austin-full.json" "$RUNNER_TEMP/austin-leads.xlsx" docs/austin-leads-members/index.html
+      - name: Buyer click-through and the free page's screenshots (design round 3; the password never printed)
+        env:
+          AUSTIN_LEADS_PASSWORD: ${{ secrets.AUSTIN_LEADS_PASSWORD }}
+        run: |
+          if [ -z "$AUSTIN_LEADS_PASSWORD" ]; then exit 0; fi
+          sudo apt-get update -qq > /dev/null && sudo apt-get install -y -qq --no-install-recommends libreoffice-calc > /dev/null
+          pip install --quiet playwright==1.48.0 && python3 -m playwright install --with-deps chromium > /dev/null
+          printf '%s' "$AUSTIN_LEADS_PASSWORD" > "$RUNNER_TEMP/pw"
+          mkdir -p probes "$RUNNER_TEMP/shots"
+          python3 tools/leads_check.py --docs docs --app austin-leads-members --pw-file "$RUNNER_TEMP/pw" --shots "$RUNNER_TEMP/shots" \
+            --capture docs/assets/leads/austin > probes/austin-app-check.txt 2>&1 || true
+          rm -f "$RUNNER_TEMP/pw"
+          tail -3 probes/austin-app-check.txt
+      - name: The City's own rows for projects to confirm (business fields only; design round 3)
+        run: |
+          python3 - <<'PY'
+          import json, sys
+          sys.path.insert(0, "tools")
+          import permits_austin as A
+          keep = ("permit_number", "masterpermitnum", "permit_class", "work_class", "status_current", "issue_date", "total_job_valuation",
+                  "total_valuation_remodel", "housing_units", "number_of_floors", "total_new_add_sqft", "remodel_repair_sqft", "original_address1", "description")
+          out = {}
+          for m in ("13645821", "13651802", "12872034"):
+              rows = A.get(f"{A.PORTAL}/resource/{A.DATASET}.json", {"$select": ",".join(keep), "masterpermitnum": m, "$limit": 500})
+              out[m] = rows
+          json.dump(out, open("probes/austin-confirm.json", "w"), indent=1)
+          print({m: len(r) for m, r in out.items()})
+          PY
       - name: Rebuild the site pages from the new sample
         run: python3 tools/make_site.py
       - name: Commit the sample
         run: |
           git config user.name "proofnotfluff-bot"
           git config user.email "proofnotfluff-bot@users.noreply.github.com"
-          git add permits/austin docs
+          git add permits/austin docs probes/austin-app-check.txt probes/austin-confirm.json
           if git diff --cached --quiet; then echo "no change"; exit 0; fi
           git commit -m "Austin permit sample $(date -u +%Y-%m-%d)"
           for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done

@@ -33,7 +33,7 @@ CHICAGO = {
     "record": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=",
     # areas, money, permits
     "area": "Community area", "areaLower": "community area", "areaAll": "All community areas", "areaPlural": "community areas",
-    "cost": "Reported cost", "costLower": "reported cost", "costShort": "reported",
+    "cost": "Reported cost", "costLower": "reported cost", "costShort": "reported", "costAny": "Any cost", "bNoun": "project", "bWeek": " this week",
     "permit": "Permit", "permitLower": "permit",
     "types": ["New construction", "Renovation"],
     # stages: closest to a final clean first
@@ -97,17 +97,18 @@ AUSTIN = {
     "termsUrl": "https://data.austintexas.gov/stories/s/ranj-cccq",
     "record": "https://data.austintexas.gov/resource/3syk-w9eu.json?masterpermitnum=",
     "area": "ZIP code", "areaLower": "ZIP code", "areaAll": "All ZIP codes", "areaPlural": "ZIP codes",
-    "cost": "Valuation", "costLower": "valuation", "costShort": "in valuation",
+    "cost": "Valuation", "costLower": "valuation", "costShort": "in valuation", "costAny": "Any valuation",
+    "bNoun": "open project", "bWeek": "",   # a builder's count is open projects, not "this week" (design round 3, Oct 18)
     "permit": "Master permit", "permitLower": "master permit",
     "types": ["New construction", "Finish-out", "Remodel or addition"],
-    "stages": ["Some permits finaled", "Work under way", "Permit issued"],
-    "stagesShort": ["Near finish", "Under way", "Permit issued"],
+    "stages": ["Near finish", "Work under way", "Permit issued"],   # one set of stage labels everywhere (design round 3, Oct 18)
+    "stagesShort": ["Near finish", "Work under way", "Permit issued"],
     "stageLines": ["At least one of this project's building permits is marked Final by the City while others are still active, so parts of "
                    "the project are done and final cleans are under way or close.",
                    "The City has pushed a building permit's expiry date past the first 180 days, which it does when an inspection passes "
                    "or an extension is granted. The final clean usually comes after the last inspections.",
                    "The building permits are issued and work can start. The City has not extended or finaled any of them yet."],
-    "nearMatch": ("SOME PERMITS FINALED",),
+    "nearMatch": ("NEAR FINISH",),
     "contacts": False,
     "legal": ("Public City of Austin permit records, as of __ASOF__. Source: City of Austin, Austin Development Services, published on "
               "data.austintexas.gov and used under the City of Austin Open Data Terms of Use and modified by ProofNotFluff (filtered, grouped into projects and shortened). "

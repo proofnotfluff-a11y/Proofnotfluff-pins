@@ -126,6 +126,8 @@ def main():
     out["absEeFilersSince"] = {"since": SINCE.isoformat(), "filers": len(filings)}
     tags, fill, trusts, loans = {}, {}, [], []
     nonc = {}
+    diag = {"rowsWithLoanFields": 0, "rowsPropertyOnly": 0, "rowsJoinedToSameAssetNumber": 0, "assetNumberDigitsOnly": 0}
+    out["rowDiagnostics"] = diag
     for cik, (name, filed, acc) in sorted(filings.items(), key=lambda kv: kv[1][0]):
         base = f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc.replace('-', '')}/"
         try:
@@ -154,7 +156,7 @@ def main():
         except Exception as e:
             out["errors"].append(f"{name}: xml {str(e)[:120]}")
             continue
-        n_assets, period = 0, None
+        n_assets, period, book, order = 0, None, {}, []
         for ev, el in ET.iterparse(io.BytesIO(raw), events=("end",)):
             if local(el.tag) != "assets":
                 continue
@@ -176,7 +178,21 @@ def main():
                         fill[t] = fill.get(t, 0) + 1
             el.clear()
             period = period or date(pick(d, "reportingPeriodEndDate"))
-            loans.append((name, d, props))
+            an = pick(d, "assetNumber") or f"row{n_assets}"
+            loanish = bool(pick(d, "originalLoanAmount", "reportPeriodEndActualBalanceAmount", "maturityDate"))
+            diag["rowsWithLoanFields" if loanish else "rowsPropertyOnly"] += 1
+            if an in book:
+                if loanish and not pick(book[an][0], "originalLoanAmount", "reportPeriodEndActualBalanceAmount"):
+                    book[an][0].update(d)
+                book[an][1].extend(props)
+                diag["rowsJoinedToSameAssetNumber"] += 1
+            else:
+                book[an] = (d, list(props))
+                order.append(an)
+            if re.fullmatch(r"\d+", an or ""):
+                diag["assetNumberDigitsOnly"] += 1
+        for an in order:
+            loans.append((name, book[an][0], book[an][1]))
         del raw
         trusts.append({"trust": name, "cik": cik, "filed": filed.isoformat(), "periodEnd": period.isoformat() if period else None,
                        "assets": n_assets})
@@ -209,17 +225,21 @@ def analyse(out, loans):
         bal = num(pick(d, "reportPeriodEndActualBalanceAmount", "reportPeriodEndScheduledLoanBalanceAmount"))
         if not bal or bal <= 0:
             continue
-        mat = date(pick(d, "maturityDate"))
+        mat = date(pick(d, "postModificationMaturityDate")) or date(pick(d, "maturityDate"))
         active.append((trust, d, props, bal, mat))
     res["activeLoanRows"] = len(active)
+    res["maturityFromModification"] = sum(1 for a in active if date(pick(a[1], "postModificationMaturityDate")))
+    res["activeWithNoProperty"] = sum(1 for a in active if not a[2])
     # the same loan's notes sit in several trusts (pari passu splits); key on property and maturity to count loans once
-    def key(d, props, mat):
+    def key(d, props, mat, trust=""):
         p = props[0] if props else {}
+        if not pick(p, "propertyName"):
+            return (trust, pick(d, "assetNumber") or "", "", mat.isoformat() if mat else "")
         return ((pick(p, "propertyName") or "").upper()[:40], (pick(p, "propertyCity") or "").upper(),
                 (pick(p, "propertyState") or "").upper(), mat.isoformat() if mat else "")
     uniq = {}
     for a in active:
-        uniq.setdefault(key(a[1], a[2], a[4]), []).append(a)
+        uniq.setdefault(key(a[1], a[2], a[4], a[0]), []).append(a)
     res["activeDistinctLoans"] = len(uniq)
     res["activeBalance"] = round(sum(a[3] for a in active))
     res["maturityMissing"] = sum(1 for a in active if not a[4])
@@ -227,25 +247,36 @@ def analyse(out, loans):
                                            "balance": round(sum(a[3] for a in active if a[4] and a[4] < TODAY))}
     win = [a for a in active if a[4] and TODAY <= a[4] <= END]
     by = lambda rows, f: sorted(((k, {"rows": len(v), "balance": round(sum(x[3] for x in v))}) for k, v in group(rows, f).items()))
-    res["maturing"] = {"rows": len(win), "distinctLoans": len({key(a[1], a[2], a[4]) for a in win}),
+    res["maturing"] = {"rows": len(win), "distinctLoans": len({key(a[1], a[2], a[4], a[0]) for a in win}),
+                       "byYearEnd2026": {"rows": sum(1 for a in win if a[4].year == 2026),
+                                         "distinctLoans": len({key(a[1], a[2], a[4], a[0]) for a in win if a[4].year == 2026}),
+                                         "balance": round(sum(a[3] for a in win if a[4].year == 2026))},
+                       "defeased": {"rows": sum(1 for a in win if defeased(a)), "balance": round(sum(a[3] for a in win if defeased(a)))},
+                       "byPaymentStatus": dict(by(win, lambda a: pick(a[1], "paymentStatusLoanCode") or "blank")),
                        "balance": round(sum(a[3] for a in win)),
                        "byMonth": dict(by(win, lambda a: a[4].strftime("%Y-%m"))),
                        "byType": dict(by(win, lambda a: ptype(a[2])))}
     il = [a for a in win if any((pick(p, "propertyState") or "").upper() == "IL" for p in a[2])]
     chi = [a for a in il if any((pick(p, "propertyState") or "").upper() == "IL" and county(p) in CHI for p in a[2])]
     for label, rows in (("illinois", il), ("chicagoMetro", chi)):
-        res[label] = {"rows": len(rows), "distinctLoans": len({key(a[1], a[2], a[4]) for a in rows}),
+        res[label] = {"rows": len(rows), "distinctLoans": len({key(a[1], a[2], a[4], a[0]) for a in rows}),
                       "balance": round(sum(a[3] for a in rows)),
                       "byMonth": dict(by(rows, lambda a: a[4].strftime("%Y-%m"))), "byType": dict(by(rows, lambda a: ptype(a[2])))}
     res["illinoisAllActive"] = {"rows": sum(1 for a in active if any((pick(p, "propertyState") or "").upper() == "IL" for p in a[2]))}
     # refinance test, once per distinct loan in the window
     tests, rows = [], []
-    for k, group_rows in {kk: v for kk, v in uniq.items() if v[0][4] and TODAY <= v[0][4] <= END}.items():
+    for k, group_rows in {kk: v for kk, v in uniq.items() if v[0][4] and TODAY <= v[0][4] <= END and not defeased(v[0])}.items():
         t = refi(group_rows)
         tests.append(t)
         rows.append(t)
     gap = [t for t in tests if t["gap"] is not None and t["gap"] > 0]
     res["refi"] = {"tested": len(tests), "noData": sum(1 for t in tests if t["gap"] is None),
+                   "debtYield": hist([t["noi"] / t["wholeLoan"] * 100 for t in tests if t["noi"] and t["wholeLoan"]], (6, 8, 10, 12)),
+                   "lighterRule": {"rule": "lower of 70% of value and NOI / (1.20 x 6.25%, 30-yr constant)",
+                                   "gapCount": sum(1 for t in tests if t["gapLight"] is not None and t["gapLight"] > 0),
+                                   "gapTotal": round(sum(t["gapLight"] for t in tests if t["gapLight"] and t["gapLight"] > 0))},
+                   "gapCountNovDec2026": sum(1 for t in tests if t["gap"] and t["gap"] > 0 and t["maturity"] < "2027"),
+                   "gapTotalNovDec2026": round(sum(t["gap"] for t in tests if t["gap"] and t["gap"] > 0 and t["maturity"] < "2027")),
                    "gapCount": len(gap), "gapTotal": round(sum(t["gap"] for t in gap)),
                    "gapCountNoiOnly": sum(1 for t in tests if t["gapNoi"] is not None and t["gapNoi"] > 0),
                    "gapCountValueOnly": sum(1 for t in tests if t["gapVal"] is not None and t["gapVal"] > 0),
@@ -265,6 +296,10 @@ def analyse(out, loans):
     res["rowsNationalTopGap"] = [slim(t) for t in rows if t["gap"] and t["gap"] > 0][:260]
     res["rowsIllinois"] = [slim(t) for t in rows if t["state"] == "IL"]
     out["results"] = res
+
+
+def defeased(a):
+    return (pick(a[1], "defeasedStatusCode") or "").upper() in ("F", "P") or ptype(a[2]) == "SE"
 
 
 def group(rows, f):
@@ -318,6 +353,9 @@ def refi(group_rows):
     new_val = LTV_MAX * val if val else None
     new_noi = noi / (DSCR_MIN * CONST) if noi and noi > 0 else (0.0 if noi is not None and noi <= 0 else None)
     caps = [c for c in (new_val, new_noi) if c is not None]
+    rl = 0.0625 / 12
+    c2 = 12 * rl / (1 - (1 + rl) ** -360)
+    caps2 = [c for c in ((0.70 * val) if val else None, (noi / (1.20 * c2)) if noi and noi > 0 else (0.0 if noi is not None else None)) if c is not None]
     ss_in = date(pick(d, "mostRecentSpecialServicerTransferDate"))
     ss_out = date(pick(d, "mostRecentMasterServicerReturnDate"))
     return {"name": (pick(p0, "propertyName") or "")[:60], "city": (pick(p0, "propertyCity") or "")[:30],
@@ -334,7 +372,8 @@ def refi(group_rows):
             "newLoan": round(min(caps)) if caps else None,
             "gap": round(whole - min(caps)) if caps else None,
             "gapNoi": round(whole - new_noi) if new_noi is not None else None,
-            "gapVal": round(whole - new_val) if new_val is not None else None}
+            "gapVal": round(whole - new_val) if new_val is not None else None,
+            "gapLight": round(whole - min(caps2)) if caps2 else None}
 
 
 SLIM = ("name", "city", "state", "county", "type", "maturity", "wholeLoan", "noteBal", "share", "trusts", "noi", "noiSrc", "val",

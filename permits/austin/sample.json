@@ -3,7 +3,7 @@
   "name": "City of Austin, Issued Construction Permits",
   "url": "https://data.austintexas.gov/d/3syk-w9eu",
   "rowsUpdatedAt": "2026-10-18T12:52:08+00:00",
-  "fetchedAt": "2026-10-18T15:30:11+00:00",
+  "fetchedAt": "2026-10-18T15:55:12+00:00",
   "license": "Public Domain U.S. Government",
   "attribution": "City of Austin, Texas - data.austintexas.gov",
   "modified": "Filtered by ProofNotFluff: commercial building permits issued in the last 24 months, still Active, grouped into projects by the City's master permit, project valuation $500,000 or more (the largest valuation on any of its building permits, counted once), with a business listed as general contractor; structures that are not buildings (carports, pergolas, canopies, enclosures, pools, EV chargers), parking garages, houses, duplexes and three-unit buildings, shell-only buildings, interior demolition, repairs, and roof, equipment, sign, elevator, site and exterior-only work left out; cleaning companies listed as contractor left out; only project-level and business fields kept.",
@@ -15,9 +15,9 @@
  },
  "counts": {
   "fetched": 8760,
-  "kept": 161,
+  "kept": 160,
   "excluded": {
-   "kept": 161,
+   "kept": 160,
    "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 280,
    "project valuation under $500,000": 1058,
    "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 184,
@@ -29,7 +29,8 @@
    "no business listed as general contractor": 15,
    "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)": 3,
    "work class Repair (interior demolition or repair)": 2,
-   "house, duplex or three-unit building": 1
+   "house, duplex or three-unit building": 1,
+   "second master permit of a development already listed": 1
   },
   "permitReasons": {
    "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 549,
@@ -46,7 +47,7 @@
    "house, duplex or three-unit building": 11
   },
   "keptByType": {
-   "Remodel or addition": 47,
+   "Remodel or addition": 46,
    "New construction": 97,
    "Finish-out": 17
   },
@@ -90,8 +91,8 @@
   "topGCs": [
    {
     "name": "Turner Construction",
-    "projects": 6,
-    "cost": 3092000001
+    "projects": 5,
+    "cost": 1567000001
    },
    {
     "name": "Swinerton Builders Inc.",
@@ -150,7 +151,9 @@
    }
   ],
   "nearFinish": 4,
-  "builders": 111
+  "builders": 111,
+  "mapped": 141,
+  "geocoded": 58
  },
  "projects": [
   {
@@ -165,40 +168,25 @@
    "district": "10",
    "status": "Active",
    "milestone": "Work under way",
-   "buildings": 3,
+   "buildings": 6,
    "buildingsFinal": 0,
    "gc": [
     "Turner Construction"
    ],
-   "newThisWeek": false
-  },
-  {
-   "permit": "13651802",
-   "issued": "2026-05-11",
-   "type": "Remodel or addition",
-   "scope": "Interior Remodel -Sec 3 Floors 3-4 (38300 SF)",
-   "units": null,
-   "cost": 1525000000,
-   "address": "6801 River Place Blvd",
-   "communityArea": "78726",
-   "district": "10",
-   "status": "Active",
-   "milestone": "Work under way",
-   "buildings": 3,
-   "buildingsFinal": 0,
-   "gc": [
-    "Turner Construction"
-   ],
-   "newThisWeek": false
+   "newThisWeek": false,
+   "masters": [
+    "13645821",
+    "13651802"
+   ]
   },
   {
    "permit": "13107658",
    "issued": "2026-06-08",
    "type": "New construction",
-   "scope": "New Construction of Upper Clubhouse with Garage",
+   "scope": "New Construction of a Multi-Story Mixed Use Multi-Family Bldg...",
    "units": 188,
    "cost": 830000000,
-   "address": "6915 Bridge Point Pkwy Bldg 1 (+23 more)",
+   "address": "6915 Bridge Point Pkwy Bldg 8 (+23 more)",
    "communityArea": "78730",
    "district": "10",
    "status": "Active",
@@ -625,6 +613,25 @@
    "buildingsFinal": 0,
    "gc": [
     "Joeris General Contractors"
+   ],
+   "newThisWeek": false
+  },
+  {
+   "permit": "13150876",
+   "issued": "2026-08-27",
+   "type": "New construction",
+   "scope": "New Construction of a Multi-Family Bldg - Above the Podium Fire Area C",
+   "units": 396,
+   "cost": 48000000,
+   "address": "2631 Kramer Ln Unit Fw3 (+3 more)",
+   "communityArea": "78758",
+   "district": "7",
+   "status": "Active",
+   "milestone": "Permit issued",
+   "buildings": 4,
+   "buildingsFinal": 0,
+   "gc": [
+    "OHT Construction LLC"
    ],
    "newThisWeek": false
   }

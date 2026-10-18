@@ -22,32 +22,32 @@ Fields by trade:
 | Trade | {service} (opener) | {count} | {cited} | {trade_line} | {service_ad} |
 |---|---|---|---|---|---|
 | Pest control | do commercial pest control | counts.byCat.pests | pests | {count} places had a pest violation in the last 30 days | commercial pest control |
-| Hood and exhaust cleaning | clean commercial kitchen hoods | counts.byCat.hood | hoods or exhaust | {count} places were cited for a hood, filter, exhaust or grease problem in the last 30 days | kitchen hood cleaning |
-| Grease trap and drains | service restaurant grease traps | counts.byCat.drain | grease traps or drains | {count} places were cited for waste water or a grease trap or drain problem in the last 30 days | grease trap service |
+| Hood and exhaust cleaning | clean commercial kitchen hoods | counts.byCat.hood | hood or exhaust | {count} places were cited for a hood, filter, exhaust or grease problem in the last 30 days | kitchen hood cleaning |
+| Grease trap and drains | service restaurant grease traps | counts.byCat.drain | grease trap or drain | {count} places were cited for waste water or a grease trap or drain problem in the last 30 days | grease trap service |
 
 A trade whose {count} is under 2 gets no batch that week (the subject and trade line would read wrong); its prospects wait for the next Monday.
 
 - {opening} = counts.opening.
-- {example}: `a {type in lower case, or "food business" when type is "Not given"} in {area} that {"failed" when result is Fail, "passed with conditions" when Pass w/ Conditions} a {inspectionType in lower case, adding " inspection" unless it already ends in "inspection"} on {date as Oct 16}, with {categories in lower case, joined as "a, b and c"} cited`. The first record in examples.flagged, then examples.repeat, whose categories match the trade. Never a name or address: these places failed or passed with conditions.
+- {example}: `a {type in lower case, or "food business" when type is "Not given"} in {area} that {"failed" when result is Fail, "passed with conditions" when Pass w/ Conditions} a {inspection type in plain words} on {date as Oct 16}, cited for {trade phrase}{", plus " and the other categories in lower case joined as "a and b", when there are any}`. Trade phrase: "pests", "a hood or exhaust problem", "a grease trap or drain problem". Inspection type in plain words: Canvass = "routine inspection", Complaint and Short Form Complaint = "complaint inspection", any Re-Inspection = "re-inspection", License = "license inspection", else the City's words in lower case followed by "inspection". Example: "a restaurant in South Lawndale that failed a complaint inspection on Oct 14, cited for a hood or exhaust problem, plus pests and cleaning". The first record in examples.flagged, then examples.repeat, whose categories match the trade. Never a name or address: these places failed or passed with conditions.
 - {opening_example}: `{name}, {address}, {area}, passed its license inspection on {date as Oct 16}`. From examples.opening only (Pass results, which the free page already names). Never a place with a failed result.
-- The follow-up's {name}, {address}, {area} and {date}: the next record in examples.opening after the first email's {opening_example}, never the same place.
+- Follow-up fields come from the newest Monday file on the day it is sent: that week's {trade_line}, and the first examples.opening record the first email did not name ({name}, {address}, {area}, {date}).
 
 Subject:
 ```
-{count} Chicago food businesses cited for {cited}
+{count} Chicago places cited for {cited}
 ```
 
 Body:
 ```
 Hi {Company} team,
 
-Your site says you {service} in the Chicago area, so here are this week's City inspection records that fit your work.
+Your site says you {service} in the Chicago area. On this week's list of City food inspections, {trade_line}.
 
-On this week's list, {trade_line}. One was {example}. Members see its name and address.
+One was {example}. Members get its name and address.
 
-{opening} places also had the license inspection Chicago does before it issues a food license, so many may be choosing vendors now. One: {opening_example}.
+{opening} places also had the inspection Chicago does before it issues a food license, and many may be picking vendors now. One: {opening_example}.
 
-Every Monday we turn the City's food inspection records into that list: every place named, with its address, inspection history, a map, an Excel file and a short call script. It is $39 a month, cancel any time.
+Every Monday the list names every place, with its address, inspection history, a map, an Excel file and a call script. It is $39 a month, cancel any time.
 
 This week's free sample: https://proofnotfluff.com/chicago-restaurant-inspection-leads/
 
@@ -65,7 +65,7 @@ Body:
 ```
 Hi {Company} team,
 
-One more from this week's Chicago list, a place that just passed its license inspection: {name}, {address}, {area}, on {date as Oct 16}. A new license often means vendors are being picked for the first time.
+One more from Monday's Chicago list, a place that just passed its license inspection: {name}, {address}, {area}, on {date as Oct 16}. A new license often means vendors are being picked for the first time.
 
 On the list, {trade_line}, and every place is named with its address and City inspection history. It updates every Monday and is $39 a month. Free sample: https://proofnotfluff.com/chicago-restaurant-inspection-leads/
 
@@ -82,3 +82,4 @@ This is an advertisement for ProofNotFluff's paid list. This is our last email u
 (email/COPY_REVIEW.md; newest last)
 - Oct 18, 2026, round 1 (fresh reviewer): FAIL, 3.40. Filler opener, an unnamed failed place gave the reader nothing to act on, two links, a bump-only follow-up, a sample example that matched no record. Rewritten as one template for all three trades with a named, passing license-inspection place, one link, and a follow-up with a new record.
 - Oct 18, 2026, round 2 (fresh reviewer): FAIL, 4.35. Applied: a natural example line ("a restaurant in Lake View that failed a complaint inspection on Oct 16, with pests and cleaning cited"), the follow-up leads with a named place that just passed its license inspection and states the price, {service_ad} per trade, no batch for a trade under 2. Open: tools/rest_leads.py must carry each example's latest result so the "newest result still the one quoted" rule can be checked; the builder run does it before the first restaurant batch (Oct 26).
+- Oct 18, 2026, round 3 (fresh reviewer): FAIL, 4.40, nothing under 4. Applied: a shorter body (about 135 words), a shorter subject, the example cited for the trade first in plain inspection words, the follow-up from the newest Monday file. Next: a fresh reviewer re-checks items 4, 6, 7 and 10 before the first restaurant batch (Oct 26).

@@ -10,6 +10,9 @@ A new chat picks up here. Read this file, then coo/CONSTITUTION.md, coo/PIVOT.md
 
 ## Live: Austin Construction Cleaning Leads ($29 a month, product 3)
 - Published Oct 18, 4:17 pm: https://proofnotfluff.gumroad.com/l/vzokd; free page /austin-construction-cleaning-leads/ out of draft with checkout (indexed, hub, sitemap); members' app /austin-leads-members/. List of Oct 18: 158 projects, $6.24 billion, 108 builders. Launch record: launches/austin-construction-cleaning-leads.md.
+- Outreach go (Todd, Oct 18, 4:24 pm): CRM meta/products austin-construction live and outreachGo true; 72 Austin prospects ready in the CRM (43 email, 29 form; found by two researchers, each passed by two independent checkers). Emails: email/U1-OUTREACH.md (copy review PASS 4.75). Mon Oct 19, 8:45 am: a reminder (trig_01UY6RMBrDKJwnZXp7UgAe1c) wakes the live session to draft the first Austin batch and a review page; Todd's one "send" schedules them at most 25 a day from hello@.
+- Copy review gate (email/COPY_REVIEW.md, Todd's ask): A1 Chicago construction rewritten and PASS 4.75 (its first batch, Mon Oct 19, uses the new text); R1 restaurants rewritten and PASS 4.65 (open: tools/rest_leads.py must carry each example's latest City result before the Oct 26 batch). Sending checked: SPF includes Google, a Google DKIM key is published, DMARC p=none.
+- Waiting on Todd: OK to fix the live Chicago Gumroad page, which still says "the last 12 months" (the list is 24 months).
 - Open: Todd's buyer test (buy once, then refund: receipt, password, app, workbook in Excel and Google Sheets); outreach go for Austin not given yet. Later nit: the workbook All projects stat strip's first gap is wider than the others.
 - The Austin workflow runs the buyer click-through, recaptures the free page's screenshots and writes probes/austin-confirm.json on every build.
 

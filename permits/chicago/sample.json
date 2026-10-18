@@ -3,132 +3,166 @@
   "name": "City of Chicago Data Portal, Building Permits",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
   "rowsUpdatedAt": "2026-10-17T12:18:17+00:00",
-  "fetchedAt": "2026-10-18T01:24:56+00:00",
-  "modified": "Filtered by ProofNotFluff: permits issued in the last 365 days, new construction or renovation, reported cost $500,000 or more, still open (not complete, suspended, cancelled, revoked or expired), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs a construction clean under its permit (foundation, superstructure, caisson, demolition, roof, facade, mechanical, equipment or site work only) left out; cleaning companies listed as contractor left out; a revision of a permit already on the list counted once; only project-level and business fields kept.",
+  "fetchedAt": "2026-10-18T02:42:43+00:00",
+  "modified": "Filtered by ProofNotFluff: permits issued in the last 24 months, new construction or renovation, reported cost $500,000 or more, still open (City status Active or Phased Permitting; complete, suspended, cancelled, revoked and expired permits left out), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs a construction clean under its permit (foundation, superstructure, caisson, demolition, roof, facade, mechanical, equipment or site work only) left out; cleaning companies listed as contractor left out; a revision of a permit already on the list counted once; only project-level and business fields kept.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
-  "from": "2025-10-18",
+  "from": "2024-10-18",
   "to": "2026-10-18"
  },
  "counts": {
-  "fetched": 1552,
-  "kept": 630,
+  "fetched": 3065,
+  "kept": 954,
   "excluded": {
-   "no commercial or apartment wording": 245,
-   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 113,
-   "house or 2 to 3 flat": 374,
-   "one home inside a larger building": 17,
-   "no interior finish work or new building named": 9,
-   "closed, complete or suspended": 155,
-   "no business listed as general contractor": 5,
-   "revision of a permit already listed": 4
+   "house or 2 to 3 flat": 615,
+   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 158,
+   "no commercial or apartment wording": 371,
+   "one home inside a larger building": 28,
+   "no interior finish work or new building named": 26,
+   "closed, complete or suspended": 896,
+   "no business listed as general contractor": 7,
+   "revision of a permit already listed": 10
   },
   "keptByType": {
-   "New construction": 169,
-   "Renovation": 461
+   "Renovation": 677,
+   "New construction": 277
   },
-  "keptCost": 2869130970,
-  "keptUnits": 3075,
+  "keptCost": 5021577000,
+  "keptUnits": 5242,
   "topAreas": [
    [
     "Loop",
-    101
+    134
    ],
    [
     "Near North Side",
-    80
+    128
    ],
    [
     "Near West Side",
-    68
+    96
    ],
    [
     "West Town",
-    36
+    59
    ],
    [
     "Lincoln Park",
-    34
+    50
    ],
    [
     "Lake View",
-    28
+    36
    ],
    [
     "Logan Square",
-    19
+    28
    ],
    [
     "Uptown",
-    18
+    22
    ]
   ],
   "topGCs": [
    {
     "name": "Skender Construction LLC",
-    "projects": 19,
-    "cost": 359850418
-   },
-   {
-    "name": "JC Anderson Inc",
-    "projects": 16,
-    "cost": 32438104
-   },
-   {
-    "name": "Power Construction Company, LLC",
-    "projects": 14,
-    "cost": 145717606
+    "projects": 22,
+    "cost": 541565145
    },
    {
     "name": "Executive Construction, Inc.",
-    "projects": 14,
-    "cost": 36514700
+    "projects": 20,
+    "cost": 57345100
    },
    {
-    "name": "Redmond Construction Corp.",
-    "projects": 13,
-    "cost": 73475690
+    "name": "JC Anderson Inc",
+    "projects": 20,
+    "cost": 45031994
+   },
+   {
+    "name": "Power Construction Company, LLC",
+    "projects": 15,
+    "cost": 152017606
    },
    {
     "name": "Bulley & Andrews, L.L.C.",
-    "projects": 11,
-    "cost": 78035500
-   },
-   {
-    "name": "Leopardo Construction Inc",
-    "projects": 11,
-    "cost": 56327071
+    "projects": 15,
+    "cost": 107621447
    },
    {
     "name": "Clune Construction Company, L.P.",
-    "projects": 11,
-    "cost": 47187508
+    "projects": 15,
+    "cost": 61852408
    },
    {
-    "name": "Pintauro Construction Company LLC",
-    "projects": 11,
-    "cost": 46045440
+    "name": "Redmond Construction Corp.",
+    "projects": 14,
+    "cost": 75475690
    },
    {
     "name": "Development Solutions, Inc",
-    "projects": 10,
-    "cost": 9581498
+    "projects": 14,
+    "cost": 44137018
    },
    {
-    "name": "LR Contracting Company",
-    "projects": 9,
-    "cost": 123971088
+    "name": "Leopardo Construction Inc",
+    "projects": 13,
+    "cost": 77127071
+   },
+   {
+    "name": "Pintauro Construction Company LLC",
+    "projects": 13,
+    "cost": 59609486
    },
    {
     "name": "Bear Construction Company",
-    "projects": 9,
-    "cost": 8881052
+    "projects": 13,
+    "cost": 15259252
+   },
+   {
+    "name": "LR Contracting Company",
+    "projects": 10,
+    "cost": 128758788
    }
   ],
-  "nearFinish": 9
+  "nearFinish": 20
  },
  "projects": [
+  {
+   "permit": "101039784",
+   "issued": "2024-10-29",
+   "type": "Renovation",
+   "scope": "Phase 3 of 3 interior & exterior alterations to existing 17-story office building to include installation of new exterior window wall system",
+   "units": null,
+   "cost": 292000000,
+   "address": "171 N La Salle St",
+   "communityArea": "Loop",
+   "status": "Phased Permitting",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "Clark Construction Group Chicago LLC"
+   ],
+   "lat": 41.885127,
+   "lon": -87.632278
+  },
+  {
+   "permit": "101061630",
+   "issued": "2024-10-29",
+   "type": "New construction",
+   "scope": "Trad. Ds - 2019 cbc: interior fit out phase for proposed 8 story (above grade) medical center. Occupancy: i - instit and b - business, accessory...",
+   "units": null,
+   "cost": 263000000,
+   "address": "5644 S Drexel Ave",
+   "communityArea": "Hyde Park",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "Turner Construction Company"
+   ],
+   "lat": 41.79185,
+   "lon": -87.603901
+  },
   {
    "permit": "101076997",
    "issued": "2026-07-14",
@@ -145,6 +179,74 @@
    ],
    "lat": 41.899829,
    "lon": -87.647763
+  },
+  {
+   "permit": "101059401",
+   "issued": "2025-07-14",
+   "type": "New construction",
+   "scope": "Full building permit for the new construction of a 31-story residential building (154 efficiency units & 339 dwelling units) toinclude ground floor...",
+   "units": 339,
+   "cost": 155000000,
+   "address": "370 N Morgan St",
+   "communityArea": "Near West Side",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "Skender Construction LLC"
+   ],
+   "lat": 41.888895,
+   "lon": -87.65238
+  },
+  {
+   "permit": "101063081",
+   "issued": "2025-10-01",
+   "type": "New construction",
+   "scope": "Core and shell permit for the new construction of a 44' tall one story, approximately 84,979 SF quantum computing facility with associated support...",
+   "units": null,
+   "cost": 100000000,
+   "address": "3733 E 87th St",
+   "communityArea": "South Chicago",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "Clayco Inc."
+   ],
+   "lat": 41.737743,
+   "lon": -87.533804
+  },
+  {
+   "permit": "101064113",
+   "issued": "2025-10-07",
+   "type": "Renovation",
+   "scope": "Erect new 3 story training facility and office building. Work to include sitework, landscape and new trash enclosure...",
+   "units": null,
+   "cost": 100000000,
+   "address": "349 N Pulaski Rd",
+   "communityArea": "West Garfield Park",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "Clayco Inc."
+   ],
+   "lat": 41.886932,
+   "lon": -87.725699
+  },
+  {
+   "permit": "101065085",
+   "issued": "2025-09-12",
+   "type": "New construction",
+   "scope": "Full building permit for the construction of new midfield cooling plant (mcp) (o'hare building 240), midfield cooling tower (o'hare building 241)...",
+   "units": null,
+   "cost": 85000000,
+   "address": "10000 W Ohare St",
+   "communityArea": "O'Hare",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "Hunt Construction Group Inc"
+   ],
+   "lat": null,
+   "lon": null
   },
   {
    "permit": "101072777",
@@ -198,6 +300,23 @@
    "lon": -87.624277
   },
   {
+   "permit": "101032812",
+   "issued": "2024-11-22",
+   "type": "New construction",
+   "scope": "Full building and associated site work for a 21-story residential apartment building with 386 units, parking garage and ground floor retail. R-2...",
+   "units": 386,
+   "cost": 60705000,
+   "address": "1010 S Wells St",
+   "communityArea": "Loop",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "Brandts Build, LLC"
+   ],
+   "lat": 41.869691,
+   "lon": -87.633631
+  },
+  {
    "permit": "101065267",
    "issued": "2025-11-26",
    "type": "New construction",
@@ -213,6 +332,23 @@
    ],
    "lat": 41.722481,
    "lon": -87.583076
+  },
+  {
+   "permit": "101067603",
+   "issued": "2025-09-11",
+   "type": "Renovation",
+   "scope": "Interior alterations to existing 24-story office building to convert floors 4-24 to residential apartments (252 dwelling units) to include window...",
+   "units": 252,
+   "cost": 51000000,
+   "address": "65 E Wacker Pl",
+   "communityArea": "Loop",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "James McHugh Construction Co"
+   ],
+   "lat": 41.886704,
+   "lon": -87.625496
   },
   {
    "permit": "101077075",
@@ -264,6 +400,40 @@
    ],
    "lat": 41.881419,
    "lon": -87.632203
+  },
+  {
+   "permit": "101061913",
+   "issued": "2025-10-16",
+   "type": "New construction",
+   "scope": "New construction of a 6-story residential building (110 dwelling units), at-grade parking lot (134 auto spaces + 40 bike spaces) and associated site...",
+   "units": 110,
+   "cost": 46770000,
+   "address": "4809 W 44th St",
+   "communityArea": "Garfield Ridge",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "The George Sollitt Construction Co"
+   ],
+   "lat": 41.812982,
+   "lon": -87.743732
+  },
+  {
+   "permit": "101060677",
+   "issued": "2025-02-04",
+   "type": "Renovation",
+   "scope": "Interior renovations to existing plaza, lobby and level 02. Plaza level work to include a new 3-story convenience stairs and escalators, connecting...",
+   "units": null,
+   "cost": 45713000,
+   "address": "10 S Dearborn St",
+   "communityArea": "Loop",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "Turner Construction Company"
+   ],
+   "lat": 41.881807,
+   "lon": -87.629543
   },
   {
    "permit": "101086662",
@@ -368,194 +538,41 @@
    "lon": -87.67851
   },
   {
-   "permit": "101074867",
-   "issued": "2026-01-28",
+   "permit": "101057281",
+   "issued": "2025-03-21",
    "type": "Renovation",
-   "scope": "Initial tenant buildout on the 11th, 12th, and 13th floor of an existing office building for a business use non-hazardous laboratory space with...",
+   "scope": "Interior alterations to existing CTA station on concourse, ground & level 2 in an existing 17-story office building",
    "units": null,
-   "cost": 33000000,
-   "address": "5207 S Harper Ave",
-   "communityArea": "Hyde Park",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Power Construction Company, LLC"
-   ],
-   "lat": 41.800843,
-   "lon": -87.58893
-  },
-  {
-   "permit": "101076730",
-   "issued": "2026-04-21",
-   "type": "Renovation",
-   "scope": "Addition of a 2-story athletic facility to existing school building to build indoor competition and practice gymnasiums with associated locker rooms...",
-   "units": null,
-   "cost": 30000000,
-   "address": "3348 N Campbell Ave",
-   "communityArea": "North Center",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Bulley & Andrews, L.L.C."
-   ],
-   "lat": 41.942542,
-   "lon": -87.690832
-  },
-  {
-   "permit": "101061910",
-   "issued": "2025-10-22",
-   "type": "New construction",
-   "scope": "New construction of a 6-story residential building (73 dwelling units) to include 40 bike spaces",
-   "units": 73,
-   "cost": 29936000,
-   "address": "4442 S Cicero Ave",
-   "communityArea": "Garfield Ridge",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "The George Sollitt Construction Co"
-   ],
-   "lat": 41.811815,
-   "lon": -87.743417
-  },
-  {
-   "permit": "101089193",
-   "issued": "2026-10-08",
-   "type": "Renovation",
-   "scope": "Initial buildout of 56,721 SF commerical office space on 19th, 20th, and 21st floors (3 contiguous floors)...",
-   "units": null,
-   "cost": 29000000,
-   "address": "333 W Wolf Point Plz",
-   "communityArea": "Near North Side",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Clune Construction Company, L.P."
-   ],
-   "lat": 41.887808,
-   "lon": -87.637533
-  },
-  {
-   "permit": "101078161",
-   "issued": "2026-09-16",
-   "type": "New construction",
-   "scope": "Full building permit for a 5-story mixed-use building with ground floor commercial and office space with 51 affordable dwelling units. Includes 12...",
-   "units": 51,
-   "cost": 28795046,
-   "address": "136 N Kedzie Ave",
-   "communityArea": "East Garfield Park",
-   "status": "Active",
-   "milestone": "Permit Issued (Fee Due)",
-   "gc": [
-    "Skender-Ashlaur Joint Venture LLC"
-   ],
-   "lat": 41.883969,
-   "lon": -87.706355
-  },
-  {
-   "permit": "101069022",
-   "issued": "2026-01-27",
-   "type": "New construction",
-   "scope": "Full building permit for new 6 story, 71 dwelling unit apartment building with 24 outdoor parking spaces and rooftop terrace",
-   "units": 71,
-   "cost": 28000000,
-   "address": "5300 S Calumet Ave",
-   "communityArea": "Washington Park",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Ujamaa Construction, Inc."
-   ],
-   "lat": 41.798343,
-   "lon": -87.617841
-  },
-  {
-   "permit": "101079295",
-   "issued": "2026-07-02",
-   "type": "Renovation",
-   "scope": "Revision to permit 101039784 for modifications to levels b2 through level 17 in an existing 17-story office building",
-   "units": null,
-   "cost": 28000000,
-   "address": "171 N La Salle St",
+   "cost": 35000000,
+   "address": "194 N Clark St",
    "communityArea": "Loop",
    "status": "Active",
    "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Clark Construction Group Chicago LLC"
    ],
-   "lat": 41.885127,
-   "lon": -87.632278
-  },
-  {
-   "permit": "101064943",
-   "issued": "2025-12-10",
-   "type": "New construction",
-   "scope": "Full building permit for 6 story 61 dwellling unit apartment building connected to existing 2 story building with 26 parking spaces",
-   "units": 61,
-   "cost": 26500000,
-   "address": "1539 N Pulaski Rd",
-   "communityArea": "Humboldt Park",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Leopardo Construction Inc"
-   ],
-   "lat": 41.909286,
-   "lon": -87.726343
-  },
-  {
-   "permit": "101055535",
-   "issued": "2026-07-14",
-   "type": "Renovation",
-   "scope": "Building s-01, 2731 - 2759 n leavitt st and 2041 - 2049 w diversey parkway. Alterations to existing 3 story, 71 dwelling unit apartment building with...",
-   "units": 71,
-   "cost": 25000000,
-   "address": "2731 N Leavitt St",
-   "communityArea": "Lincoln Park",
-   "status": "Active",
-   "milestone": "Inspections",
-   "gc": [
-    "LR Contracting Company"
-   ],
-   "lat": 41.931275,
-   "lon": -87.680316
-  },
-  {
-   "permit": "101081192",
-   "issued": "2026-10-09",
-   "type": "New construction",
-   "scope": "New construction of a 52 unit senior residential building. The project includes (44) 1 bedroom units and (8) 2 bedroom units...",
-   "units": 52,
-   "cost": 25000000,
-   "address": "8332 S Dr Martin L King Jr Dr",
-   "communityArea": "Chatham",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Skender Construction LLC"
-   ],
-   "lat": 41.742811,
-   "lon": -87.614845
-  },
-  {
-   "permit": "101075524",
-   "issued": "2025-12-16",
-   "type": "New construction",
-   "scope": "Complete 8th and 9th floors and buildout of all floors for new 9 story residential building with 101 standard dwelling units 48 efficiency units and...",
-   "units": 149,
-   "cost": 24000000,
-   "address": "310 W Huron St",
-   "communityArea": "Near North Side",
-   "status": "Phased Permitting",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "ZSD Construction LLC"
-   ],
-   "lat": 41.894875,
-   "lon": -87.636177
+   "lat": 41.885581,
+   "lon": -87.631119
   }
  ],
  "nearFinish": [
+  {
+   "permit": "101070402",
+   "issued": "2025-10-02",
+   "type": "Renovation",
+   "scope": "Alterations to existing 2nd floor cafeteria/dining space to accommodate neurodiagnostic/pft testing clinic space...",
+   "units": null,
+   "cost": 6268000,
+   "address": "250 E Superior St",
+   "communityArea": "Near North Side",
+   "status": "Active",
+   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
+   "gc": [
+    "Berglund Construction Company"
+   ],
+   "lat": 41.895898,
+   "lon": -87.620773
+  },
   {
    "permit": "101080622",
    "issued": "2026-03-30",
@@ -572,6 +589,23 @@
    ],
    "lat": 41.887808,
    "lon": -87.637533
+  },
+  {
+   "permit": "101053170",
+   "issued": "2025-02-11",
+   "type": "New construction",
+   "scope": "New construction of a proposed 3-story multi-family residential building with 12 dwelling units...",
+   "units": 12,
+   "cost": 5100000,
+   "address": "4540 S State St",
+   "communityArea": "Grand Boulevard",
+   "status": "Active",
+   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
+   "gc": [
+    "Griggs Mitchell & Alma of IL, LLC"
+   ],
+   "lat": 41.811829,
+   "lon": -87.626299
   },
   {
    "permit": "101070208",
@@ -608,6 +642,23 @@
    "lon": -87.634592
   },
   {
+   "permit": "101065575",
+   "issued": "2025-03-17",
+   "type": "Renovation",
+   "scope": "Existing zoning pd 779, no change. 14,834 s.f. Full/partial floor tenant interior improvements to the 25th floor of an existing 31 story building...",
+   "units": null,
+   "cost": 2310400,
+   "address": "540 W Madison St",
+   "communityArea": "Near West Side",
+   "status": "Active",
+   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
+   "gc": [
+    "Executive Construction, Inc."
+   ],
+   "lat": 41.881966,
+   "lon": -87.641276
+  },
+  {
    "permit": "101075927",
    "issued": "2025-12-29",
    "type": "Renovation",
@@ -623,6 +674,23 @@
    ],
    "lat": 41.881967,
    "lon": -87.635165
+  },
+  {
+   "permit": "101071916",
+   "issued": "2025-09-29",
+   "type": "New construction",
+   "scope": "Erect new 3 story with basement 4 unit residential building with new 5 car detached garage with roof deck",
+   "units": 4,
+   "cost": 2000000,
+   "address": "2644 N Lakewood Ave",
+   "communityArea": "Lincoln Park",
+   "status": "Active",
+   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
+   "gc": [
+    "Bachula Development Inc"
+   ],
+   "lat": 41.930214,
+   "lon": -87.661232
   },
   {
    "permit": "101076879",
@@ -642,72 +710,21 @@
    "lon": -87.698122
   },
   {
-   "permit": "101077418",
-   "issued": "2026-01-14",
+   "permit": "101068718",
+   "issued": "2025-08-13",
    "type": "Renovation",
-   "scope": "Interior alterations and renovations of existing restaurant tenant space at the street level and river level within existing 8-story building...",
-   "units": null,
-   "cost": 1851000,
-   "address": "315 N La Salle Dr",
+   "scope": "5th floor addition - 8 additional units - to existing 4 story 24 unit building...",
+   "units": 32,
+   "cost": 1900000,
+   "address": "1537 N Orleans St",
    "communityArea": "Near North Side",
    "status": "Active",
    "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
    "gc": [
-    "Development Solutions, Inc"
+    "Midwest Heritage Builders, LLC"
    ],
-   "lat": 41.887921,
-   "lon": -87.63236
-  },
-  {
-   "permit": "101081823",
-   "issued": "2026-04-15",
-   "type": "Renovation",
-   "scope": "Interior alterations in existing office building on the 27th floor, to exiting full floor office suite 2750, interior partitions, millwork, finishes...",
-   "units": null,
-   "cost": 769782,
-   "address": "230 W Monroe St",
-   "communityArea": "Loop",
-   "status": "Active",
-   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
-   "gc": [
-    "Plan North Construction Services LLC"
-   ],
-   "lat": 41.880757,
-   "lon": -87.634709
-  },
-  {
-   "permit": "101077898",
-   "issued": "2026-01-02",
-   "type": "Renovation",
-   "scope": "Buildout of two (2) spec office suites 1301 & 1310 and renovation of exiting public corridor on the 13th floor in existing office building...",
-   "units": null,
-   "cost": 717050,
-   "address": "225 W Washington St",
-   "communityArea": "Loop",
-   "status": "Active",
-   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
-   "gc": [
-    "JC Anderson Inc"
-   ],
-   "lat": 41.883099,
-   "lon": -87.6346
-  },
-  {
-   "permit": "101071207",
-   "issued": "2025-11-19",
-   "type": "Renovation",
-   "scope": "Interior remodel of existing day care class room for new day care tenant in the first floor of an existing 6 story type IB construction mixed use...",
-   "units": null,
-   "cost": 650000,
-   "address": "1000 W Washington Blvd",
-   "communityArea": "Near West Side",
-   "status": "Active",
-   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
-   "gc": [
-    "Lo Destro Construction Company"
-   ],
-   "lat": 41.883172,
-   "lon": -87.652133
+   "lat": 41.910432,
+   "lon": -87.637457
   }
  ]
 }

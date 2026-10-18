@@ -181,7 +181,9 @@ PERSON_TAG = re.compile(r"\b(?:plan\s+)?(?:reviewers?|consultants?|architects?|e
 WORK = re.compile(r"alter|renovat|build[- ]?out|\berect|construct|conver|remodel|install|replac|demol|repair|addition|finish|rehab", re.I)
 
 
-def clean_scope(desc, limit=150):
+def clean_scope(desc, limit=150, whole=False):
+    """The permit's scope as the list prints it. whole=True keeps every sentence (the members' app's project page) and
+    still cuts at the first reviewer, consultant or owner tag, so no person's name reaches the page."""
     d = re.sub(r"\s+", " ", (desc or "").replace("\u00bf", " ")).strip()
     d = re.sub(r"NO CHANGE IN USE(?=[A-Z])", "NO CHANGE IN USE. ", d)   # the City's text sometimes runs two words together here
     d = re.sub(r"\b((?:19|20)\d{2})(CPS)\b", r"\1 \2", d)
@@ -205,7 +207,7 @@ def clean_scope(desc, limit=150):
         part = TAIL.sub("", part).strip(" :-/.,;")
         if part:
             out.append(part.lower() if part.isupper() else part)
-        if len(". ".join(out)) >= 60 and WORK.search(" ".join(out)):
+        if not whole and len(". ".join(out)) >= 60 and WORK.search(" ".join(out)):
             break
     more = used < len([p for p in parts if TAIL.sub("", p).strip(" :-/.,;")])
     d = ". ".join(x[:1].upper() + x[1:] for x in out) if out else d
@@ -286,8 +288,22 @@ def street(r):
     return " ".join(x for x in [r.get("street_number", ""), r.get("street_direction", ""), name] if x).strip()
 
 
+def coord(v):
+    """A latitude or longitude from the City row, rounded to about a metre, or None when the record has none."""
+    try:
+        f = round(float(v), 6)
+    except (TypeError, ValueError):
+        return None
+    return f if f else None
+
+
 def gc_key(n):
     return re.sub(r"[^A-Z0-9]", "", re.sub(r"\b(LLC|L\.L\.C|INC|INCORPORATED|CORP|CORPORATION|CO|COMPANY|LTD)\b\.?", "", n.upper()))
+
+
+def slim(k):
+    """A kept project as the public free sample shows it: the members' app's whole scope text stays in the paid list."""
+    return {x: v for x, v in k.items() if x != "scopeFull"}
 
 
 def main():
@@ -373,6 +389,7 @@ def main():
             "issued": (r.get("issue_date") or "")[:10],
             "type": "New construction" if "NEW CONSTRUCTION" in (r.get("permit_type") or "") else "Renovation",
             "scope": clean_scope(r.get("work_description")),
+            "scopeFull": clean_scope(r.get("work_description"), limit=1200, whole=True),
             "units": unit_count(desc, display=True) or None,
             "cost": round(cost),
             "address": addr,
@@ -380,6 +397,7 @@ def main():
             "status": (r.get("permit_status") or "").title(),
             "milestone": (r.get("permit_milestone") or "").title(),
             "gc": gcs[:2],
+            "lat": coord(r.get("latitude")), "lon": coord(r.get("longitude")),
             "_rev": [x for m in re.finditer(r"REVISIONS? (?:TO|OF) (?:THE )?(?:[A-Z&]+ ){0,4}PERMITS?[:#\s]*((?:#?10\d{7}[,\s]*(?:AND\s*)?)+)", desc)
                      for x in re.findall(r"10\d{7}", m.group(1))],
         })
@@ -416,8 +434,8 @@ def main():
                    "keptCost": sum(k["cost"] for k in kept), "keptUnits": sum(k["units"] or 0 for k in kept if k["type"] == "New construction"),
                    "topAreas": by_area.most_common(8), "topGCs": top_gcs,
                    "nearFinish": sum(1 for k in kept if "OCCUPANCY PENDING" in k["milestone"].upper() or "PARTIAL OCCUPANCY" in k["milestone"].upper())},
-        "projects": kept[: a.top],
-        "nearFinish": [k for k in kept if "OCCUPANCY PENDING" in k["milestone"].upper() or "PARTIAL OCCUPANCY" in k["milestone"].upper()][:10],
+        "projects": [slim(k) for k in kept[: a.top]],
+        "nearFinish": [slim(k) for k in kept if "OCCUPANCY PENDING" in k["milestone"].upper() or "PARTIAL OCCUPANCY" in k["milestone"].upper()][:10],
     }
     profile = {"fetchedAt": sample["source"]["fetchedAt"], "rowsUpdatedAt": upd_iso, "columns": cols,
                "permitTypes": dict(ptype), "contactTypes": dict(ctype.most_common(40)),
@@ -448,7 +466,8 @@ def main():
                            "issued": (r.get("issue_date") or "")[:10], "address": street(r), "status": (r.get("permit_status") or "").title(),
                            "milestone": (r.get("permit_milestone") or "").title(),
                            "communityArea": AREA_NAMES.get(areas.get(str(r.get("community_area") or "").split(".")[0], ""),
-                                                           areas.get(str(r.get("community_area") or "").split(".")[0], ""))})
+                                                           areas.get(str(r.get("community_area") or "").split(".")[0], "")),
+                           "lat": coord(r.get("latitude")), "lon": coord(r.get("longitude"))})
         json.dump({"source": sample["source"], "window": sample["window"], "counts": sample["counts"], "projects": kept,
                    "review": review}, open(a.full, "w"), indent=1)
     print(json.dumps({"fetched": len(rows), "kept": len(kept), "excluded": dict(reasons), "top3": [(k["cost"], k["type"], k["communityArea"]) for k in kept[:3]]}))
@@ -641,6 +660,12 @@ def selftest():
     assert gc_filter(raw) == want, (raw, gc_filter(raw), want)
     for raw, want in SCOPE_CASES:
         assert clean_scope(raw).startswith(want), (raw, clean_scope(raw), want)
+    long = ("SELF-CERT 2019 CBC: INTERIOR ALTERATIONS TO 8TH FLOOR OFFICE SPACE FOR A NEW TENANT. NEW PARTITIONS, CEILINGS AND FINISHES. "
+            "NEW RESTROOMS ON THE FLOOR. PLAN REVIEWER JANE DOE")
+    whole = clean_scope(long, limit=1200, whole=True)
+    assert whole.startswith("Interior alterations") and "restrooms" in whole and "Jane" not in whole and "Doe" not in whole, whole
+    assert len(clean_scope(long)) < len(whole), "whole scope should keep every sentence"
+    assert coord("41.881832") == 41.881832 and coord(None) is None and coord("") is None and coord("0") is None
     if bad:
         raise SystemExit("filter selftest FAIL: " + json.dumps(bad)[:800])
     print(f"filter selftest ok ({len(FILTER_CASES)} planted cases)")

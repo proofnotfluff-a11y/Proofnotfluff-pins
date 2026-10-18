@@ -19,7 +19,7 @@ A new chat picks up here. Read this file, then coo/CONSTITUTION.md, coo/PIVOT.md
 ## Runs on (all others paused Oct 18, none deleted)
 - Etsy upkeep: rule desk (trig_011ws5Q3ACvuqcumRfiP2YvF), API lister (trig_01DW4BdnSAKp949MM9nBJ25y).
 - Leads desk (coo/LEADS_DESK.md): Monday quality check trig_014Joc3MjUkfodUwmYX9w3FD (8:10 am), outreach and inbox trig_01KryiDdpkhstgJ9MFjwiv2h (Mon and Thu 9:40 am, Todd's PC, Chrome on hello@ at Gmail /u/3/), prospect finder trig_01ATws65kCLYjdpw77xjueTB (Wed 10:10 am), builder trig_012B11U1Nm3jK7u5c9PEevwk (Tue to Fri 11:10 am; Thursdays add one question page per live product for free search traffic).
-- Mon Oct 19, 7:20 am: a reminder wakes the live session to refresh the 29 construction drafts in hello@ with Monday's numbers and the new templates (ad notice and "at most one follow-up" line), then ask Todd to say send. The outreach run skips first emails that Monday.
+- Mon Oct 19: the 7:20 am Chicago refresh in the earlier chat is turned off (not deleted). At 8:40 am (trig_01SMTjmVrsK3qUARijR7tr4c) this chat rebuilds the 29 Chicago drafts from the reviewed A1 text, drafts the Austin batch, and publishes one review page for both; Todd's one "send" schedules them at most 25 a day, Chicago first.
 
 ## Shared places
 - CRM (private): https://claude.ai/artifact/De189P4AXgWVC6o8LYbxdB (prospects, meta/products, meta/desk; 200 businesses loaded Oct 18).

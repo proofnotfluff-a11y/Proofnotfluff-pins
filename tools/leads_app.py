@@ -239,11 +239,12 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media(max-width:860px){.page{padding:20px 16px 36px}}
 .ph{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:0 0 20px}
 .ph h1{font-size:30px;font-weight:700}
-.ph p{margin:6px 0 0;color:var(--muted);font-size:15px;max-width:64ch}
+.ph p{margin:6px 0 0;color:var(--muted);font-size:15px;max-width:680px;text-wrap:pretty}
 @media(max-width:600px){.ph h1{font-size:24px}}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}
 .sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:18px 20px 12px}
 .sec-h h2{font-size:18px;font-weight:600}
+@media(max-width:600px){.sec-h{padding:16px 16px 10px}.sec-h h2{font-size:17px}}
 .sec-h a{display:inline-flex;align-items:center;min-height:44px;margin:-12px 0;font-size:14px;font-weight:600;white-space:nowrap}
 .sec-h .c{color:var(--muted);font:600 14px var(--body);margin-left:8px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:600;font-size:14.5px;cursor:pointer;text-decoration:none;white-space:nowrap}
@@ -297,8 +298,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .stn.s0 .n{color:var(--teal)}
 .stn .t{display:block;font-weight:600;font-size:15px}
 .stn .m{display:block;color:var(--muted);font-size:13.5px;margin-top:2px}
-.stn:hover .t{text-decoration:underline;text-underline-offset:3px}
-.flag{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--accent-ink);font-weight:700;font-size:13px;width:80px;text-align:center}
+@media(hover:hover){.stn:hover .t{text-decoration:underline;text-underline-offset:3px}}
+.flag{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;color:var(--ink);width:120px}
+.flag .t{display:block;font-weight:600;font-size:15px;margin-top:16px}.flag .m{display:block;color:var(--muted);font-size:13.5px;margin-top:2px}
 .flag .dot{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--accent);color:#fff}
 @media(max-width:700px){
  .line{grid-template-columns:minmax(0,1fr);gap:0;margin:18px 0 22px}
@@ -306,11 +308,11 @@ button,input,select,textarea{font:inherit;color:inherit}
  .stn{display:grid;grid-template-columns:48px minmax(0,1fr) auto;column-gap:14px;align-items:center;padding:0 0 14px}
  .stn .n{grid-column:3;grid-row:1;margin:0;font-size:26px;text-align:right}
  .stn .tx{grid-column:2;grid-row:1}
- .flag{flex-direction:row;width:auto;gap:14px;font-size:14px}
+ .flag{display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:14px;align-items:center;width:auto}.flag .t{margin:0}.flag .tx{grid-column:2}
 }
 .list-rows{list-style:none;margin:0;padding:0}
-.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:14px 20px;border-top:1px solid var(--line2);text-decoration:none;color:inherit;position:relative}
-.row:hover{background:#FBFAF7}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:14px 48px 14px 20px;border-top:1px solid var(--line2);text-decoration:none;color:inherit;position:relative}
+@media(hover:hover){.row:hover{background:#FBFAF7}}
 .row:focus-visible{box-shadow:inset 0 0 0 3px rgba(47,95,158,.45);border-radius:0}
 .row .mn{font:700 19px/1.2 var(--head);letter-spacing:-.01em;color:var(--ink)}
 .row .mn small{font:500 13px var(--body);color:var(--muted);margin-left:8px;letter-spacing:0}
@@ -319,11 +321,15 @@ button,input,select,textarea{font:inherit;color:inherit}
 .row .bd{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--ink2);min-width:0}
 .row .bd span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .row .bd .ico{color:var(--teal)}
-.row .rt{grid-column:2;grid-row:1 / span 3;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
-.row .rt .chev{margin-top:auto;color:var(--field)}
+.row .rt{grid-column:2;grid-row:1 / span 3;display:flex;flex-wrap:wrap;justify-content:flex-end;align-content:flex-start;align-items:center;gap:6px;max-width:300px}
+.row .chev{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--field)}
+.row .nc{color:var(--muted);font-size:13px;white-space:nowrap}
 .row.hl{background:#F6F3EC}
+.grp{display:flex;align-items:baseline;gap:8px;margin:0;padding:10px 20px;border-top:1px solid var(--line2);background:#FAF8F4;font:600 13px var(--body);color:var(--ink2);letter-spacing:0}
+.grp .c{color:var(--muted)}
+.grp+.list-rows .row{border-top:1px solid var(--line2)}
 .row-more{padding:14px 20px;border-top:1px solid var(--line2);display:flex;gap:12px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:14px}
-@media(max-width:600px){.row{grid-template-columns:minmax(0,1fr);padding:14px 16px;gap:3px}.row .rt{grid-column:1;grid-row:auto;order:-1;flex-direction:row;flex-wrap:wrap;align-items:center;margin:0 0 4px}.row .rt .chev{display:none}}
+@media(max-width:600px){.row{grid-template-columns:minmax(0,1fr);padding:14px 16px;gap:3px}.row .rt{grid-column:1;grid-row:auto;order:-1;justify-content:flex-start;max-width:none;margin:0 0 4px}.row .rt:empty{display:none}.row .chev{display:none}}
 .mini-b{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 12px;padding:12px 20px;border-top:1px solid var(--line2);text-decoration:none;color:inherit}
 .mini-b:hover{background:#FBFAF7}
 .mini-b b{font-weight:600;font-size:14.5px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -335,16 +341,23 @@ button,input,select,textarea{font:inherit;color:inherit}
 .bars a{display:grid;grid-template-columns:minmax(0,9rem) minmax(0,1fr) 3.2rem;align-items:center;gap:12px;min-height:40px;padding:4px 0;text-decoration:none;color:var(--ink);font-size:14px;border-radius:6px}
 .bars a span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .bars a:hover span:first-child{text-decoration:underline;text-underline-offset:3px}
-.bars .tr{height:10px;border-radius:0 4px 4px 0;background:#5B6478;min-width:3px}
+.bars .tr{display:flex;gap:2px;height:12px;min-width:3px}
+.bars .tr i,.blg i{display:block;height:12px;border-radius:2px;min-width:3px;flex-basis:0}
+.b0{background:var(--teal)}.b1{background:var(--blue)}.b2{background:#fff;box-shadow:inset 0 0 0 1.5px var(--iss)}
+.bars .tr i:last-child{border-radius:2px 4px 4px 2px}
+.blg{display:flex;flex-wrap:wrap;gap:6px 16px;margin:0;padding:0 20px 6px;font-size:12.5px;color:var(--muted)}
+.blg span{display:inline-flex;align-items:center;gap:6px}.blg i{width:12px;flex:none}
 .bars .v{text-align:right;font-weight:600}
-.mine{padding:4px 20px 18px;color:var(--muted);font-size:14px}
-.mine b{color:var(--ink)}
+.mine{padding:0 20px 20px;color:var(--muted);font-size:13.5px}
+.mine p{margin:0 0 10px}.mine .mh{color:var(--ink2);font-size:14.5px}.mine .mh b{color:var(--ink)}.mine .mh b.blk{display:block;margin:0 0 2px}
+.mine .btn{margin-top:4px}
 /* projects */
 .tool{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 12px}
 .search{position:relative;flex:1 1 280px;min-width:0;max-width:420px}
 .search .ico{position:absolute;left:12px;top:12px;color:var(--muted)}
 .search input{width:100%;height:44px;padding:0 40px 0 40px;border:1px solid var(--field);border-radius:10px;background:#fff;font-size:15px}
 .search input:focus{outline:none;border-color:var(--blue);box-shadow:var(--focus)}
+.search input::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
 .search .clr{position:absolute;right:2px;top:2px;width:40px;height:40px;border:0;background:none;border-radius:8px;color:var(--muted);cursor:pointer;display:grid;place-items:center}
 .seg{display:inline-flex;background:#fff;border:1px solid var(--field);border-radius:10px;padding:3px;gap:2px;max-width:100%;overflow-x:auto;scrollbar-width:none}
 .seg::-webkit-scrollbar{display:none}
@@ -352,7 +365,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .seg button .c{color:var(--muted);font-weight:600}
 .seg button[aria-pressed=true]{background:var(--ink);color:#fff}.seg button[aria-pressed=true] .c{color:#C9CFDB}
 .seg button:hover:not([aria-pressed=true]){background:#F5F2EC}
-.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.filters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;align-items:end}
+.filters .fld select{width:100%;max-width:none}.filters .tog{width:100%}
+@media(max-width:1100px){.filters{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .fld label{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin:0 0 4px}
 .fld select{appearance:none;-webkit-appearance:none;height:40px;min-width:0;max-width:215px;padding:0 34px 0 12px;border:1px solid var(--field);border-radius:10px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%231d2433' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 12px center;font-size:14px;font-weight:600;cursor:pointer}
 .fld select:focus{outline:none;box-shadow:var(--focus);border-color:var(--blue)}
@@ -360,11 +375,13 @@ button,input,select,textarea{font:inherit;color:inherit}
 .tog input{width:18px;height:18px;margin:0;accent-color:var(--teal)}
 .tog:has(input:focus-visible){box-shadow:var(--focus)}
 .fbtn{display:none}
-.rbar{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;margin:0 0 12px;font-size:14px;color:var(--muted)}
+.rbar{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;margin:16px 0 12px;font-size:14px;color:var(--muted)}
 .rbar b{color:var(--ink)}
 .rbar .sp{flex:1}
 .vtog{display:none}
 .tsp{flex:1}
+#csv .m{display:none}
+.fcount{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--ink);color:#fff;font-size:12px;margin-left:2px}
 .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:16px;align-items:start}
 .split .panel.lst{min-width:0;overflow:hidden}
 .split .panel.lst .list-rows .row:first-child{border-top:0}
@@ -373,7 +390,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .legend{position:absolute;z-index:500;right:12px;top:12px;background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:12.5px;font-weight:600;color:var(--ink2);display:grid;gap:4px;box-shadow:0 2px 8px rgba(29,36,51,.08)}
 .legend span{display:flex;align-items:center;gap:8px}
 .legend i{display:inline-block;border-radius:50%}
-.lg0{width:14px;height:14px;background:var(--teal);box-shadow:0 0 0 2px #fff,0 0 0 4px var(--teal)}
+.lg0{width:14px;height:14px;background:var(--teal);box-shadow:0 0 0 2px #fff,0 0 0 4px #1F4E4A}
 .lg1{width:10px;height:10px;background:var(--blue);margin:0 2px}
 .lg2{width:10px;height:10px;background:#fff;border:2px solid var(--iss);margin:0 2px}
 .map-note{position:absolute;z-index:500;left:12px;bottom:12px;max-width:calc(100% - 140px);background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12.5px;color:var(--muted)}
@@ -401,14 +418,19 @@ button,input,select,textarea{font:inherit;color:inherit}
  .split[data-v=list] .mapbox{display:none}
  .split[data-v=map] .panel.lst{display:none}
  .mapbox{position:relative;top:0;height:calc(100vh - var(--bar-h) - var(--nav-h) - 128px);height:calc(100svh - var(--bar-h) - var(--nav-h) - 128px);min-height:360px}
- #csv .t{display:none}#csv{width:44px;min-height:44px;padding:0}
+ #csv .t{display:none}#csv .m{display:inline}#csv{min-height:44px;padding:0 12px}
+ .tool{gap:8px}.tsp{display:none}.vtog{margin-left:auto}
+ .tool .fbtn{padding:0 12px}.vtog button{padding:0 10px}
+ .btool{display:grid;grid-template-columns:1fr 1fr}.btool .search{grid-column:1 / -1}.btool .fld select{width:100%;max-width:none}.btool .tog{width:100%}
  .vtog{display:inline-flex}
- .tool .seg:not(.vtog){display:grid;grid-template-columns:1fr 1fr;width:100%}
- .tool .seg:not(.vtog) button{justify-content:space-between}
+ .tool .seg:not(.vtog){display:flex;gap:8px;width:calc(100% + 32px);margin:0 -16px;padding:0 16px;background:none;border:0;border-radius:0;overflow-x:auto;scroll-padding:16px}
+ .tool .seg:not(.vtog) button{flex:none;height:44px;padding:0 14px;border:1px solid var(--field);border-radius:999px;background:#fff}
+ .tool .seg:not(.vtog) button[data-k=""]{order:1}
+ .tool .seg:not(.vtog) button[aria-pressed=true]{background:var(--ink);border-color:var(--ink)}
  .rbar{gap:8px 12px}
  .search{max-width:none;flex-basis:100%}
  .fbtn{display:inline-flex}
- .filters{position:fixed;z-index:1000;left:0;right:0;bottom:0;max-height:85vh;overflow:auto;background:#fff;border-radius:18px 18px 0 0;padding:8px 16px calc(16px + env(safe-area-inset-bottom));box-shadow:0 -10px 40px rgba(29,36,51,.25);flex-direction:column;align-items:stretch;flex-wrap:nowrap;gap:14px;transform:translateY(105%);transition:transform .28s cubic-bezier(.2,.8,.2,1);visibility:hidden}
+ .filters{display:flex;position:fixed;z-index:1000;left:0;right:0;bottom:0;max-height:85vh;overflow:auto;background:#fff;border-radius:18px 18px 0 0;padding:8px 16px calc(16px + env(safe-area-inset-bottom));box-shadow:0 -10px 40px rgba(29,36,51,.25);flex-direction:column;align-items:stretch;flex-wrap:nowrap;gap:14px;transform:translateY(105%);transition:transform .28s cubic-bezier(.2,.8,.2,1);visibility:hidden}
  .filters.open{transform:none;visibility:visible}
  .filters .fld select{width:100%;max-width:none;height:48px;font-size:16px}
  .tog{height:48px;font-size:15px}
@@ -423,7 +445,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* project page */
 .back{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px 0 6px;margin:-8px 0 8px -6px;border:0;background:none;color:var(--ink2);font-weight:600;font-size:14.5px;cursor:pointer;border-radius:8px;text-decoration:none}
 .back:hover{background:var(--paper2)}
-.pg{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:20px;align-items:start}
+.pg{display:grid;grid-template-columns:minmax(0,1fr) 380px;grid-template-rows:auto 1fr;gap:20px;align-items:start}
 .pg-head{grid-column:1;grid-row:1;min-width:0}.pg-main{grid-column:1;grid-row:2}.pg-side{grid-column:2;grid-row:1 / span 2;align-self:start}
 @media(max-width:1020px){.pg{grid-template-columns:minmax(0,1fr)}.pg-head,.pg-main,.pg-side{grid-column:1;grid-row:auto}}
 .pg-main,.pg-side{display:grid;gap:20px;min-width:0}
@@ -464,7 +486,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .facts dt{font-size:12.5px;color:var(--muted);font-weight:600;margin:0 0 3px}
 .facts dd{margin:0;font-weight:600;font-size:15px;overflow-wrap:anywhere}
 @media(max-width:700px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.scope{padding:0 20px 20px;font-size:15.5px;line-height:1.6;color:var(--ink2);max-width:72ch;margin:0}
+.scope{padding:0 20px 20px;font-size:15.5px;line-height:1.6;color:var(--ink2);margin:0;text-wrap:pretty}
 .rec{padding:0 20px 18px;font-size:14px;color:var(--muted)}
 .minimap{height:240px;border-top:1px solid var(--line2);border-radius:0 0 var(--r) var(--r);overflow:hidden;position:relative}
 .bc{padding:20px}
@@ -482,10 +504,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 .bc .none{margin:16px 0 0;padding:14px;border-radius:10px;background:var(--paper);font-size:14px;color:var(--ink2)}
 .bc .none b{display:block;color:var(--ink);margin:0 0 4px;font-size:14.5px}
 .bc .foot{margin:16px 0 0;display:flex;gap:10px;flex-wrap:wrap}
-.note{padding:20px}
+.note{padding:20px 20px 24px}
+.note .st:empty{display:none}
 .note h2{font-size:17px;font-weight:600;margin:0 0 4px}
 .note p.hint{margin:0 0 14px;color:var(--muted);font-size:13.5px}
-.note textarea{width:100%;min-height:96px;resize:vertical;padding:12px;border:1px solid var(--field);border-radius:10px;background:#FFFEFB;font-size:16px;line-height:1.5}
+.note textarea{width:100%;min-height:96px;resize:none;overflow:hidden;padding:12px;border:1px solid var(--field);border-radius:10px;background:#FFFEFB;font-size:16px;line-height:1.5}
 .note textarea:focus{outline:none;border-color:var(--blue);box-shadow:var(--focus)}
 .note .st{font-size:13px;color:var(--muted);margin:8px 0 0;min-height:18px}
 .note .btn{width:100%;margin:0 0 12px}
@@ -501,17 +524,19 @@ button,input,select,textarea{font:inherit;color:inherit}
 .bt th{text-align:left;font-size:12.5px;font-weight:600;color:var(--muted);padding:12px 20px;border-bottom:1px solid var(--line)}
 .bt td{padding:0;border-top:1px solid var(--line2)}
 .bt tr:first-child td{border-top:0}
-.bt td a{display:block;padding:13px 20px;color:var(--ink);text-decoration:none}
-.bt td.n{padding:13px 20px;vertical-align:top}
+.bt td a{display:block;padding:12px 20px;color:var(--ink);text-decoration:none}
+.bt td.n{padding:12px 20px}
 .bt tbody tr{cursor:pointer}
 .bt tr:hover td{background:#FBFAF7}
-.bt .n{text-align:right;white-space:nowrap}
+.bt .n{text-align:right;white-space:nowrap;color:var(--ink)}
 .bt .nm b{font-weight:600}
 .bt .nm small{display:flex;align-items:center;gap:5px;color:var(--muted);font-size:13px;margin-top:2px}
 .bt .nm small .ico{color:var(--teal)}
 .bt .z{color:var(--muted);font-weight:400}
-.bt .mob{display:none}
-@media(max-width:700px){.bt thead{display:none}.bt td.n{display:none}.bt .mob{display:block;color:var(--ink2)}.bt td a{padding:13px 16px}}
+.bt .nm small.mob{display:none}
+.bt td.n{vertical-align:middle}
+.bt th .ico{width:14px;height:14px;vertical-align:-2px;margin-left:2px}
+@media(max-width:700px){.bt thead{display:none}.bt td.n{display:none}.bt .nm small.mob{display:block;color:var(--ink2)}.bt td a{padding:13px 16px}}
 /* pitch kit */
 .pk{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
 @media(max-width:900px){.pk{grid-template-columns:minmax(0,1fr)}}
@@ -523,14 +548,14 @@ button,input,select,textarea{font:inherit;color:inherit}
 .sheet li{display:grid;grid-template-columns:130px minmax(0,1fr);gap:12px;padding:10px 0;border-top:1px solid var(--line2);font-size:14.5px;color:var(--ink2)}
 .sheet li b{color:var(--ink);font-weight:600}
 @media(max-width:420px){.sheet li{grid-template-columns:minmax(0,1fr);gap:2px}}
-.mail p{margin:0 0 12px;font-size:15px;color:var(--ink2)}
+.mail>p{margin:0 0 12px;font-size:15px;color:var(--ink2)}
 .mail .f{color:var(--blue);font-weight:700}
 /* footer */
 .foot-legal{border-top:1px solid var(--line);max-width:1320px;margin:8px auto 0;padding:20px 16px 32px;font-size:12.5px;line-height:1.6;color:var(--muted)}
 .foot-legal p{margin:0 0 8px;max-width:110ch}
-.toast{position:fixed;z-index:1100;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;background:var(--ink);color:#fff;padding:12px 18px;border-radius:10px;font-weight:600;font-size:14.5px;box-shadow:0 10px 30px rgba(29,36,51,.3);transition:opacity .2s,transform .25s cubic-bezier(.2,.8,.2,1);pointer-events:none;max-width:calc(100vw - 32px)}
+.toast{position:fixed;z-index:1100;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;background:var(--ink);color:#fff;padding:12px 18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-radius:10px;font-weight:600;font-size:14.5px;box-shadow:0 10px 30px rgba(29,36,51,.3);transition:opacity .2s,transform .25s cubic-bezier(.2,.8,.2,1);pointer-events:none;max-width:calc(100vw - 32px)}
 .toast.on{opacity:1;transform:translate(-50%,0)}
-@media(max-width:860px){.toast{bottom:calc(var(--nav-h) + 16px + env(safe-area-inset-bottom))}}
+@media(max-width:860px){.toast{bottom:calc(var(--nav-h) + 12px + env(safe-area-inset-bottom))}}
 .view-enter{animation:vin .32s cubic-bezier(.2,.8,.2,1)}
 @keyframes vin{from{opacity:.55;transform:translateY(4px)}to{opacity:1;transform:none}}
 </style></head><body>
@@ -543,7 +568,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 </div></header>
 <main id="gateView" class="gate">
 <form class="gate-card" id="gate" novalidate>
-<span class="chip s0"><span class="pips" aria-hidden="true"><i class="f"></i><i class="f"></i><i class="f"></i></span>Members</span>
+<span class="chip s2"><svg class="ico s" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Members</span>
 <h1>This week's Chicago leads</h1>
 <p class="sub">List of __ASOF__. Projects close to a final clean, the builder on each, and how to reach them.</p>
 <label for="pw">Members' password</label>
@@ -552,7 +577,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 <button class="btn pri" type="submit" id="go">Open this week's list</button>
 <p class="err" id="err" role="alert"></p>
 <div class="gate-help" id="pwHelp"><p>The password is on your Gumroad purchase page, linked from your receipt email. <a href="https://gumroad.com/library">Open your Gumroad library</a></p>
-<p>Not a member yet? <a href="__FREE__">Get the full list: $29 a month</a></p></div>
+<p>Not a member yet? <a href="__FREE__">Get the full list: $29&nbsp;a&nbsp;month</a></p></div>
 </form>
 </main>
 <p class="gate-legal" id="gateLegal">__LEGAL__</p>
@@ -571,10 +596,12 @@ const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(BOX.iv)},key,b64(BOX
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const int=n=>Math.round(+n||0).toLocaleString("en-US");
-function money(n){n=+n||0;if(n>=99.95e6)return "$"+int(n/1e6)+"M";if(n>=999.5e3)return "$"+(n/1e6).toFixed(1)+"M";return "$"+Math.round(n/1e3)+"K";}
+function money(n){n=+n||0;if(!n)return "$0";if(n>=99.95e6)return "$"+int(n/1e6)+"M";if(n>=999.5e3)return "$"+(n/1e6).toFixed(1)+"M";return "$"+Math.round(n/1e3)+"K";}
 function bigMoney(n){return n>=1e9?"$"+(n/1e9).toFixed(1)+" billion":money(n);}
 const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 function day(s){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||"");return m?MON[+m[2]-1]+" "+(+m[3])+", "+m[1]:"";}
+const sent=s=>{s=String(s||"").toLowerCase();return s.charAt(0).toUpperCase()+s.slice(1);};
+const nbh=s=>String(s).replace(/\b([A-Z0-9]{1,3})-(?=[A-Za-z0-9])/g,"$1\u2011");
 const plural=(n,a,b)=>int(n)+" "+(n===1?a:(b||a+"s"));
 const STG=["Partial occupancy approved","Inspections under way","Permit issued"];
 const STG_SHORT=["Near finish","Inspections","Permit issued"];
@@ -589,7 +616,7 @@ copy:'<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 
 pin:'<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
 dl:'<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
 filter:'<path d="M4 6h16M7 12h10M10 18h4"/>',check:'<path d="m5 12.5 4.5 4.5L19 7.5"/>',back:'<path d="M15 18l-6-6 6-6"/>',
-chev:'<path d="m9 6 6 6-6 6"/>',list:'<path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/>',
+chev:'<path d="m9 6 6 6-6 6"/>',down:'<path d="M12 5v14M6 13l6 6 6-6"/>',up:'<path d="M12 19V5M6 11l6-6 6 6"/>',lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',list:'<path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/>',
 map:'<path d="M9 4 3 6.5v13.5L9 17.5l6 2.5 6-2.5V4l-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/>',
 home:'<path d="M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>',
 crane:'<path d="M4 21h8M8 21V5l12 3H8M8 5 4 9h4M17 8v5"/><path d="M15.5 13h3v2h-3z"/>',
@@ -599,7 +626,8 @@ kit:'<path d="M8 4h8M9 4V3h6v1M6 6h12v15H6z"/><path d="M9 11h6M9 15h6"/>',csv:'<
 ext:'<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>'};
 const ico=(n,c)=>`<svg class="ico${c?" "+c:""}" viewBox="0 0 24 24" aria-hidden="true">${I[n]}</svg>`;
 const chip=s=>`<span class="chip s${s}"><span class="pips" aria-hidden="true">${[0,1,2].map(i=>`<i${i<PIPS[s]?' class="f"':""}></i>`).join("")}</span>${STG[s]}</span>`;
-function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("on"),2400);}
+function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("on"),2500);}
+function untoast(){clearTimeout(toast.t);$("#toast").classList.remove("on");}
 async function copyText(t){try{await navigator.clipboard.writeText(t);return true;}catch(e){const a=document.createElement("textarea");a.value=t;a.setAttribute("readonly","");a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();let ok=false;try{ok=document.execCommand("copy");}catch(x){}a.remove();return ok;}}
 
 /* private marks and notes: this browser only */
@@ -632,7 +660,7 @@ function onHash(){const h=location.hash||"#/";const t=STATE.trail;if(t.length>1&
 function setNav(v){const items=[["overview","#/","Overview","home"],["projects","#/projects","Projects","list"],["builders","#/builders","Builders","build"],["pitch","#/pitch","Pitch kit","kit"]];
 const html=items.map(([k,h,t,i])=>`<a href="${h}"${k===v?' aria-current="page"':""}>${ico(i)}${t}</a>`).join("");$("#tabs").innerHTML=html;$("#bnav").innerHTML=html;}
 function route(scroll){const {parts,q}=parse();const v=parts[0]||"overview";
-for(const k of ["map","mini"]){const m=STATE[k];if(m){try{m.stop();m.off();m.remove();}catch(e){}STATE[k]=null;}}closeSheet();
+untoast();for(const k of ["map","mini"]){const m=STATE[k];if(m){try{m.stop();m.off();m.remove();}catch(e){}STATE[k]=null;}}closeSheet();
 const app=$("#app");let nav=v;
 if(v==="projects")viewProjects(q);
 else if(v==="project"&&BYID[parts[1]]){viewProject(BYID[parts[1]]);nav="projects";}
@@ -645,12 +673,12 @@ setNav(nav);app.classList.remove("view-enter");void app.offsetWidth;app.classLis
 if(scroll){window.scrollTo(0,0);const h=app.querySelector("h1");if(h){h.setAttribute("tabindex","-1");h.focus({preventScroll:true});}}}
 
 /* shared pieces */
-function row(p,ctx){const m=mk(p.id);const b=p.g.length?B[p.g[0]]:null;const other=ctx&&p.g.find(k=>k!==ctx);const kind=[p.t,p.u?plural(p.u,"home"):""].filter(Boolean).join(", ");
+function row(p,ctx){const m=mk(p.id);const b=p.g.length?B[p.g[0]]:null;const other=ctx&&ctx!=="near"&&p.g.find(k=>k!==ctx);const kind=[p.t,p.u?plural(p.u,"home"):""].filter(Boolean).join(", ");
 return `<li><a class="row" href="#/project/${encodeURIComponent(p.id)}" data-id="${esc(p.id)}">
 <span class="mn num">${money(p.c)}<small>${esc(kind)}</small></span>
 <span class="ad">${esc(p.a)}${p.ca?`<span class="ar">, ${esc(p.ca)}</span>`:""}</span>
-${ctx?(other?`<span class="bd"><span>With ${esc(B[other].name)}</span></span>`:""):`<span class="bd">${b&&b.ok?ico(b.contact.phone?"phone":"mail","s")+'<span class="sr">Contact on file: </span>':""}<span>${esc(b?b.name:"No builder listed")}${p.g.length>1?` <span class="ar">and 1 more</span>`:""}</span></span>`}
-<span class="rt">${chip(p.st)}${p.n?'<span class="badge new">New this week</span>':""}${m.c?`<span class="badge done">${ico("check","s")}Contacted</span>`:""}${ico("chev","chev")}</span></a></li>`;}
+${ctx&&ctx!=="near"?(other?`<span class="bd"><span>With ${esc(B[other].name)}</span></span>`:""):`<span class="bd">${b&&b.ok?ico(b.contact.phone?"phone":"mail","s")+'<span class="sr">Contact on file: </span>':""}<span>${esc(b?b.name:"No builder listed")}${p.g.length>1?` <span class="ar">and 1 more</span>`:""}</span>${b&&!b.ok?'<span class="nc">No contact yet</span>':""}</span>`}
+<span class="rt">${ctx==="near"?"":chip(p.st)}${p.n?'<span class="badge new">New this week</span>':""}${m.c?`<span class="badge done">${ico("check","s")}Contacted</span>`:""}</span>${ico("chev","chev")}</a></li>`;}
 function rowsHtml(list,limit,ctx){if(!list.length)return "";const n=Math.min(limit||list.length,list.length);return `<ul class="list-rows">${list.slice(0,n).map(p=>row(p,ctx)).join("")}</ul>`;}
 
 /* overview */
@@ -658,22 +686,23 @@ function viewOverview(){document.title="Overview | Chicago Construction Cleaning
 const by=[0,1,2].map(s=>P.filter(p=>p.st===s));const near=by[0].slice().sort(ORDER.big);const nw=P.filter(p=>p.n).sort(ORDER.clean);
 const addrs=new Set(P.map(p=>p.a)).size;
 const top=Object.values(B).sort((a,b)=>b.near-a.near||b.n-a.n||b.cost-a.cost).slice(0,6);
-const ac={};P.forEach(p=>{if(p.ca)ac[p.ca]=(ac[p.ca]||0)+1;});const areas=Object.entries(ac).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,8);const amax=areas.length?areas[0][1]:1;
+const ac={};P.forEach(p=>{if(p.ca){const a=ac[p.ca]=ac[p.ca]||[0,0,0];a[p.st]++;}});const areas=Object.entries(ac).map(([a,c])=>[a,c[0]+c[1]+c[2],c]).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,8);const amax=areas.length?areas[0][1]:1;
 const marked=Object.keys(MARKS).filter(id=>BYID[id]);const cN=marked.filter(id=>MARKS[id].c).length,nN=marked.filter(id=>(MARKS[id].n||"").trim()).length;
 const stn=s=>`<a class="stn s${s}" href="#/projects?stage=${["near","insp","issued"][s]}"><span class="dot">${ico(["check","search","crane"][s])}</span><span class="n num">${int(by[s].length)}</span><span class="tx"><span class="t">${STG[s]}</span><span class="m num">${bigMoney(by[s].reduce((x,p)=>x+p.c,0))} reported</span></span></a>`;
 $("#app").innerHTML=`<section class="hero"><h1>${int(by[0].length)} ${by[0].length===1?"project is":"projects are"} close to a final clean this week</h1>
 <p>${int(P.length)} open permits on the list, ${bigMoney(TOTAL)} in reported cost at ${int(addrs)} addresses. Built from City of Chicago permit records, list of ${esc(D.asOf)}.</p></section>
-<nav class="line" aria-label="Projects by stage, from permit to final clean">${stn(2)}${stn(1)}${stn(0)}<span class="flag"><span class="dot">${ico("flag")}</span>Final clean</span></nav>
+<nav class="line" aria-label="Projects by stage, from permit to final clean">${stn(2)}${stn(1)}${stn(0)}<span class="flag"><span class="dot">${ico("flag")}</span><span class="tx"><span class="t">Final clean</span><span class="m">Your bid</span></span></span></nav>
 <div class="ov"><div class="ov-col">
-<section class="panel"><div class="sec-h"><h2>Closest to a final clean<span class="c num">${int(near.length)}</span></h2><a href="#/projects?stage=near">Open as a list</a></div>${near.length?rowsHtml(near):`<p class="empty">No project has partial occupancy approved this week. Projects with inspections under way are the next closest.</p>`}</section>
+<section class="panel"><div class="sec-h"><h2>Closest to a final clean<span class="c num">${int(near.length)}</span></h2><a href="#/projects?stage=near">See all ${int(near.length)}</a></div>${near.length?rowsHtml(near,0,"near"):`<p class="empty">No project has partial occupancy approved this week. Projects with inspections under way are the next closest.</p>`}</section>
 <section class="panel"><div class="sec-h"><h2>New this week<span class="c num">${int(nw.length)}</span></h2>${nw.length?`<a href="#/projects?new=1">See all ${int(nw.length)}</a>`:""}</div>${nw.length?rowsHtml(nw,5):`<p class="empty">No permits on the list were issued in the last 7 days.</p>`}</section>
 </div><div class="ov-col">
 <section class="panel"><div class="sec-h"><h2>Builders to call first</h2><a href="#/builders">All ${int(Object.keys(B).length)} builders</a></div>
-${top.map(b=>`<a class="mini-b" href="#/builder/${encodeURIComponent(b.key)}"><b>${esc(b.name)}</b><span>${b.near?`${plural(b.near,"project")} near finish, `:""}${b.ok?"contact on file":"no contact on file yet"}</span><span class="r num">${int(b.n)}<small>${b.n===1?"project":"projects"}</small></span></a>`).join("")}</section>
+${top.map(b=>`<a class="mini-b" href="#/builder/${encodeURIComponent(b.key)}"><b>${esc(b.name)}</b><span>${plural(b.n,"project")} this week, ${b.ok?"contact on file":"no contact on file yet"}</span><span class="r num">${int(b.near)}<small>near finish</small></span></a>`).join("")}</section>
 <section class="panel"><div class="sec-h"><h2>Where the work is</h2><a href="#/projects?view=map">Open the map</a></div>
-<ul class="bars" aria-label="Open projects by community area">${areas.map(([a,n])=>`<li><a href="#/projects?area=${encodeURIComponent(a)}" aria-label="${esc(a)}: ${plural(n,"project")}"><span>${esc(a)}</span><span class="tr" style="width:${Math.max(3,Math.round(n/amax*100))}%" aria-hidden="true"></span><span class="v num">${int(n)}</span></a></li>`).join("")}</ul></section>
+<p class="blg" aria-hidden="true"><span><i class="b0"></i>Near finish</span><span><i class="b1"></i>Inspections</span><span><i class="b2"></i>Permit issued</span></p>
+<ul class="bars" aria-label="Open projects by community area and stage">${areas.map(([a,n,c])=>`<li><a href="#/projects?area=${encodeURIComponent(a)}" aria-label="${esc(a)}: ${plural(n,"project")}, ${int(c[0])} near finish, ${int(c[1])} with inspections under way, ${int(c[2])} permit issued" title="${int(c[0])} near finish, ${int(c[1])} inspections, ${int(c[2])} permit issued"><span>${esc(a)}</span><span class="tr" style="width:${Math.max(3,Math.round(n/amax*100))}%" aria-hidden="true">${[0,1,2].filter(s=>c[s]).map(s=>`<i class="b${s}" style="flex-grow:${c[s]}"></i>`).join("")}</span><span class="v num">${int(n)}</span></a></li>`).join("")}</ul></section>
 <section class="panel"><div class="sec-h"><h2>Your follow-ups</h2>${cN||nN?`<a href="#/projects?fu=mine">Show them</a>`:""}</div>
-<p class="mine">${cN||nN?`<b>${plural(cN,"project")}</b> marked contacted, <b>${plural(nN,"note")}</b> written. `:`Mark a project as contacted or add a note on its page, and it shows up here. `}${esc(STORE_LINE())}</p></section>
+<div class="mine">${cN||nN?`<p class="mh"><b>${plural(cN,"project")}</b> marked contacted, <b>${plural(nN,"note")}</b> written.</p>`:`<p class="mh"><b class="blk">No follow-ups yet</b>Mark a project as contacted or add a note on its page, and it shows up here.</p>`}<p>${esc(STORE_LINE())}</p>${cN||nN?"":`<a class="btn" href="#/projects?stage=near">Open the ${plural(by[0].length,"near-finish project")}</a>`}</div></section>
 </div></div>`;}
 
 /* projects: filters, list and map, in sync */
@@ -689,19 +718,19 @@ function activeCount(f){return [f.area,f.cost,f.type,f.nw,f.fu].filter(Boolean).
 function viewProjects(q){const f=readF(q);STATE.f=f;STATE.shown=60;document.title="Projects | Chicago Construction Cleaning Leads";
 const areas=[...new Set(P.map(p=>p.ca).filter(Boolean))].sort();
 $("#app").innerHTML=`<div class="ph"><h1>Projects</h1></div>
-<div class="tool"><label class="search"><span class="sr">Search projects</span>${ico("search")}<input id="fq" type="search" placeholder="Search address, builder, area or permit" value="${esc(f.q)}" autocomplete="off" enterkeyhint="search"><button type="button" class="clr" id="fqx" aria-label="Clear search"${f.q?"":" hidden"}>${ico("x","s")}</button></label>
+<div class="tool"><label class="search"><span class="sr">Search projects</span>${ico("search")}<input id="fq" type="search" placeholder="Search address, builder or permit" value="${esc(f.q)}" autocomplete="off" enterkeyhint="search"><button type="button" class="clr" id="fqx" aria-label="Clear search"${f.q?"":" hidden"}>${ico("x","s")}</button></label>
 <div class="seg" id="fstage" role="group" aria-label="Stage"></div>
 <button class="btn fbtn" id="fopen" type="button" aria-haspopup="dialog" aria-controls="fsheet">${ico("filter")}<span id="fopenT">Filters</span></button>
-<span class="tsp"></span><button class="btn csvb" type="button" id="csv" aria-label="Export these projects as a CSV file">${ico("csv","s")}<span class="t" aria-hidden="true">Export CSV</span></button>
+<span class="tsp"></span><button class="btn csvb" type="button" id="csv" aria-label="Export these projects as a CSV file">${ico("csv","s")}<span class="t" aria-hidden="true">Export CSV</span><span class="m" aria-hidden="true">CSV</span></button>
 <div class="seg vtog" role="group" aria-label="Show as"><button type="button" data-v="list">${ico("list","s")}List</button><button type="button" data-v="map">${ico("map","s")}Map</button></div></div>
 <div class="filters" id="fsheet" aria-label="Filters">
 <div class="sheet-h"><h2 id="fsheetH">Filters</h2><button class="btn sm" type="button" id="fclose" aria-label="Close filters">${ico("x","s")}</button></div>
 <div class="fld"><label for="farea">Community area</label><select id="farea"></select></div>
 <div class="fld"><label for="fcost">Reported cost</label><select id="fcost"></select></div>
 <div class="fld"><label for="ftype">Building type</label><select id="ftype"></select></div>
-<div class="fld"><label for="fsort">Sort</label><select id="fsort"><option value="clean">Closest to a final clean</option><option value="big">Biggest first</option><option value="newest">Newest permit first</option><option value="builder">Builder, A to Z</option></select></div>
-<label class="tog"><input type="checkbox" id="fnew"><span id="fnewT">New this week</span></label>
+<div class="fld"><label for="fsort">Sort</label><select id="fsort"><option value="clean">Closest to finish</option><option value="big">Biggest first</option><option value="newest">Newest permit first</option><option value="builder">Builder, A to Z</option></select></div>
 <div class="fld"><label for="ffu">Follow-up</label><select id="ffu"><option value="">All projects</option><option value="todo">Not contacted yet</option><option value="mine">Contacted or with a note</option></select></div>
+<label class="tog"><input type="checkbox" id="fnew"><span id="fnewT">New this week</span></label>
 <div class="sheet-f"><button class="btn" type="button" id="freset">Clear filters</button><button class="btn ink" type="button" id="fdone">Show projects</button></div>
 </div>
 <div class="rbar" aria-live="polite"><span id="rcount"></span><button class="lnk" type="button" id="fclear" hidden>Clear filters</button></div>
@@ -734,9 +763,9 @@ $("#farea").innerHTML=opt("","All community areas",null,!f.area)+STATE.areas.map
 $("#fcost").innerHTML=COST.map(c=>opt(c[0],c[1],c[0]?facet("cost",p=>p.c>=c[2]&&p.c<c[3]):null,f.cost===c[0])).join("");
 $("#ftype").innerHTML=opt("","Any type",null,!f.type)+["New construction","Renovation"].map(t=>opt(t,t,facet("type",p=>p.t===t),f.type===t)).join("");
 $("#fsort").value=f.sort;$("#fnew").checked=f.nw;$("#ffu").value=f.fu;$("#fnewT").textContent=`New this week (${int(facet("new",p=>p.n))})`;
-const ac=activeCount(f);$("#fopenT").textContent=ac?`Filters (${ac})`:"Filters";
+const ac=activeCount(f);$("#fopenT").innerHTML=ac?`Filters <span class="fcount num">${ac}</span>`:"Filters";
 const rows=filtered();STATE.rows=rows;const sum=rows.reduce((s,p)=>s+p.c,0);
-$("#rcount").innerHTML=rows.length===P.length?`<b class="num">${int(rows.length)}</b> projects, <span class="num">${bigMoney(sum)}</span> reported`:`<b class="num">${int(rows.length)}</b> of <span class="num">${int(P.length)}</span> projects, <span class="num">${bigMoney(sum)}</span> reported`;
+$("#rcount").innerHTML=!rows.length?`<b class="num">0</b> of <span class="num">${int(P.length)}</span> projects`:rows.length===P.length?`<b class="num">${int(rows.length)}</b> projects, <span class="num">${bigMoney(sum)}</span> reported`:`<b class="num">${int(rows.length)}</b> of <span class="num">${int(P.length)}</span> projects, <span class="num">${bigMoney(sum)}</span> reported`;
 $("#fclear").hidden=!(f.q||f.stage||ac);$("#fdone").textContent=rows.length?`Show ${plural(rows.length,"project")}`:"No projects match";$("#csv").disabled=!rows.length;
 drawList();drawMap(refit);}
 function drawList(){const rows=STATE.rows,n=Math.min(STATE.shown,rows.length);const el=$("#plist");
@@ -750,15 +779,21 @@ const MS=[{radius:9,color:"#fff",weight:2.5,fillColor:"#2E6B66",fillOpacity:1},{
 function tiles(m){L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(m);}
 function ensureMap(){STATE.lazyMap=false;if(STATE.map||!$("#map"))return;if(!window.L){const box=$("#mapbox");if(box&&!box.querySelector(".map-fail"))box.insertAdjacentHTML("beforeend",'<div class="map-fail"><p>The map did not load on this connection. The list has every project.</p></div>');if(!ensureMap.tries){ensureMap.tries=1;window.addEventListener("load",()=>{if($("#map")&&!STATE.map){const f=$("#mapbox .map-fail");f&&f.remove();ensureMap();}},{once:true});}return;}
 const m=L.map("map",{preferCanvas:true,zoomControl:true,scrollWheelZoom:true,attributionControl:true}).setView([41.88,-87.66],11);
-m.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');tiles(m);STATE.map=m;STATE.layer=L.layerGroup().addTo(m);STATE.mk={};drawMap(true);}
+m.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');tiles(m);STATE.map=m;STATE.layer=L.layerGroup().addTo(m);STATE.mk={};m.on("zoomend",declutter);drawMap(true);}
 function popup(p){const b=p.g.length?B[p.g[0]]:null;return `<div class="pop"><span class="mn num">${money(p.c)}</span><span class="ad">${esc(p.a)}</span><span class="bd">${esc(b?b.name:"No builder listed")}</span>${chip(p.st)}<p style="margin:10px 0 0"><a class="btn ink" href="#/project/${encodeURIComponent(p.id)}">Open project</a></p></div>`;}
 function drawMap(refit){const m=STATE.map;const rows=STATE.rows||[];const geo=rows.filter(p=>p.lat&&p.lon);const note=$("#mapnote");
 if(note){const miss=rows.length-geo.length;note.hidden=!miss;note.textContent=miss?`${plural(miss,"project")} in the list ${miss===1?"has":"have"} no map location in the City record.`:"";}
 if(!m)return;STATE.layer.clearLayers();STATE.mk={};
-geo.slice().sort((a,b)=>b.st-a.st).forEach(p=>{const c=L.circleMarker([p.lat,p.lon],MS[p.st]).bindPopup(popup(p),{maxWidth:280});c.addTo(STATE.layer);STATE.mk[p.id]=c;});
-if(refit&&geo.length){const bb=L.latLngBounds(geo.map(p=>[p.lat,p.lon]));if(geo.length===1)m.setView(bb.getCenter(),15,{animate:false});else m.fitBounds(bb,{padding:[40,40],maxZoom:15,animate:false});}}
+STATE.near=[];geo.slice().sort((a,b)=>b.st-a.st).forEach(p=>{let ring=null;if(p.st===0){ring=L.circleMarker([p.lat,p.lon],{radius:12,color:"#1F4E4A",weight:2,fill:false,interactive:false}).addTo(STATE.layer);}
+const c=L.circleMarker([p.lat,p.lon],MS[p.st]).bindPopup(popup(p),{maxWidth:280});c.addTo(STATE.layer);STATE.mk[p.id]=c;if(ring)STATE.near.push({p,c,ring});});declutter();
+if(refit&&geo.length){const bb=L.latLngBounds(geo.map(p=>[p.lat,p.lon]));if(geo.length===1)m.setView(bb.getCenter(),15,{animate:false});else m.fitBounds(bb,{padding:[40,40],maxZoom:15,animate:false});}declutter();}
 function fit(){drawMap(true);}
-function hot(id,on){const c=STATE.mk&&STATE.mk[id];if(!c)return;const p=BYID[id];c.setStyle(on?{radius:MS[p.st].radius+4,weight:3,color:"#C8502F"}:MS[p.st]);if(on)c.bringToFront();}
+/* near-finish pins that sit on top of each other are spread apart in screen space so each one can be tapped */
+function declutter(){const m=STATE.map,ns=STATE.near||[];if(!m||!ns.length)return;const pts=ns.map(o=>m.latLngToLayerPoint([o.p.lat,o.p.lon]));
+for(let it=0;it<30;it++){let moved=false;for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[j].x-pts[i].x,dy=pts[j].y-pts[i].y,d=Math.hypot(dx,dy),min=26;
+if(d<min){const ux=d?dx/d:Math.cos(i+j),uy=d?dy/d:Math.sin(i+j),push=(min-d)/2;pts[i]=pts[i].subtract([ux*push,uy*push]);pts[j]=pts[j].add([ux*push,uy*push]);moved=true;}}if(!moved)break;}
+ns.forEach((o,i)=>{const ll=m.layerPointToLatLng(pts[i]);o.c.setLatLng(ll);o.ring.setLatLng(ll);o.c.bringToFront();});}
+function hot(id,on){const c=STATE.mk&&STATE.mk[id];if(!c)return;const p=BYID[id];c.setStyle(on?{radius:MS[p.st].radius+4,weight:3,color:"#C8502F"}:MS[p.st]);if(on)c.bringToFront();else if(p.st!==0)(STATE.near||[]).forEach(o=>o.c.bringToFront());}
 
 /* filters sheet (phone) */
 let lastFocus=null;
@@ -782,7 +817,7 @@ function downloadWorkbook(){const blob=new Blob([b64(D.xlsx)],{type:"application
 const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=D.fileName;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);toast("Workbook downloaded");}
 
 /* builder card */
-function builderCard(b,p,showLink){const c=b.contact;const subj=p?`?subject=${encodeURIComponent("Final clean for "+p.a)}`:"";
+function builderCard(b,p,showLink,onBuilderPage){const c=b.contact;const subj=p?`?subject=${encodeURIComponent("Final clean for "+p.a)}`:"";
 const host=u=>{try{return new URL(u).hostname.replace(/^www\./,"");}catch(e){return u;}};
 let body="";
 if(b.ok){body=`${c.phone?`<a class="btn pri call" href="tel:+1${esc(c.tel)}">${ico("phone")}Call ${esc(c.phone)}</a>`:""}
@@ -790,14 +825,15 @@ if(b.ok){body=`${c.phone?`<a class="btn pri call" href="tel:+1${esc(c.tel)}">${i
 <p class="src">${c.note?esc(c.note.charAt(0).toUpperCase()+c.note.slice(1))+". ":""}Main office details from ${c.source?`<a href="${esc(c.source)}" target="_blank" rel="noopener">the builder's own website</a>`:"the builder's own website"}${c.checkedAt?`, checked ${esc(day(c.checkedAt))}`:""}. Ask for the project manager or the estimator on this job.</p>`;}
 else{body=`<div class="none"><b>No contact on file yet</b>We list a builder's office phone and general email only after reading them on the builder's own website. This builder is not checked yet, or their site does not show them.</div>
 <div class="foot"><a class="btn" href="https://www.google.com/search?q=${encodeURIComponent(b.name+" Chicago")}" target="_blank" rel="noopener">${ico("search","s")}Search the web for this builder<span class="sr"> (opens in a new tab)</span></a></div>`;}
-return `<section class="panel bc" aria-label="Builder"><div class="who"><span class="av">${ico("build")}</span><div><h2>${esc(b.name)}</h2><p class="meta num">${plural(b.n,"project")} this week, ${money(b.cost)} reported${b.near?`, ${int(b.near)} near finish`:""}</p></div></div>${body}
+return `<section class="panel bc" aria-label="${onBuilderPage?"Contact":"Builder"}">${onBuilderPage?`<h2>Contact</h2>`:`<div class="who"><span class="av">${ico("build")}</span><div><h2>${esc(b.name)}</h2><p class="meta num">${plural(b.n,"project")} this week<br>${money(b.cost)} reported${b.near?`, ${int(b.near)} near finish`:""}</p></div></div>`}${body}
 ${showLink?`<div class="foot"><a class="btn" href="#/builder/${encodeURIComponent(b.key)}">See all ${plural(b.n,"project")} by this builder</a></div>`:""}</section>`;}
 
 /* project page */
 function viewProject(p){document.title=`${p.a} | Chicago Construction Cleaning Leads`;const m=mk(p.id);
 const kind=[p.t,p.u?plural(p.u,"home"):""].filter(Boolean).join(", ");
 const bs=p.g.map(k=>B[k]);
-const steps=[[2,"Permit issued",p.i?"Issued "+day(p.i):""],[1,"Inspections under way",""],[0,"Partial occupancy approved",""]];
+const sub=s=>p.st===s?(s===2&&p.i?"Issued "+day(p.i)+". Current stage":"Current stage"):p.st<s?(s===2&&p.i?"Issued "+day(p.i):"Done"):"Not yet";
+const steps=[[2,"Permit issued",sub(2)],[1,"Inspections under way",sub(1)],[0,"Partial occupancy approved",sub(0)]];
 const maps="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(p.a+", Chicago, IL");
 $("#app").innerHTML=`<a class="back" href="#/projects" id="back">${ico("back")}Back</a>
 <div class="pg"><section class="pg-head"><div class="ph-chips">${chip(p.st)}${p.n?'<span class="badge new">New this week</span>':""}${m.c?`<span class="badge done">${ico("check","s")}Contacted ${esc(day(m.c))}</span>`:""}</div>
@@ -810,27 +846,28 @@ ${bs.length?bs.map((b,i)=>builderCard(b,p,true)).join(""):`<section class="panel
 <button class="btn${m.c?" on":""}" type="button" id="mark" aria-pressed="${!!m.c}">${ico("check","s")}<span id="markT">${m.c?"Contacted "+esc(day(m.c))+" (undo)":"Mark as contacted"}</span></button>
 <label for="nt" class="sr">Private note</label><textarea id="nt" placeholder="Who you spoke to, the bid due date, the next call" maxlength="2000">${esc(m.n||"")}</textarea><p class="st" id="ntst" aria-live="polite"></p></section>
 </aside><div class="pg-main"><section class="panel track"><h2>Where this job is</h2><ol class="steps">${steps.map(([s,t,sub])=>`<li class="${p.st===s?"now s"+s:p.st<s?"done":""}"${p.st===s?' aria-current="step"':""}><span class="k">${p.st<s?ico("check","s"):p.st===s?ico(["check","search","crane"][s],"s"):""}</span><b>${t}</b>${sub?`<span>${esc(sub)}</span>`:""}</li>`).join("")}<li class="fin"><span class="k">${ico("flag","s")}</span><b>Final clean</b><span>Your bid</span></li></ol>
-<p class="ms"><b>City milestone:</b> ${esc(p.m||"Not given")}. ${STG_LINE[p.st]}</p></section>
+<p class="ms"><b>City milestone:</b> ${esc(sent(p.m)||"Not given")}. ${STG_LINE[p.st]}</p></section>
 <section class="panel"><div class="sec-h"><h2>Permit details</h2></div><dl class="facts">
 <div><dt>Reported cost</dt><dd class="num">$${int(p.c)}</dd></div><div><dt>Type</dt><dd>${esc(p.t)}</dd></div><div><dt>Homes</dt><dd class="num">${p.u?int(p.u):"None listed"}</dd></div><div><dt>Issued</dt><dd>${esc(day(p.i))}</dd></div>
 <div><dt>Permit number</dt><dd class="num">${esc(p.id)}</dd></div><div><dt>City permit status</dt><dd>${esc(p.cs||"Not given")}</dd></div><div><dt>Community area</dt><dd>${esc(p.ca||"Not given")}</dd></div><div><dt>Stage</dt><dd>${STG[p.st]}</dd></div></dl></section>
-<section class="panel"><div class="sec-h"><h2>What the permit covers</h2></div><p class="scope">${esc(p.sf||p.s)}</p>
+<section class="panel"><div class="sec-h"><h2>What the permit covers</h2></div><p class="scope">${esc(nbh(p.sf||p.s))}</p>
 <p class="rec">From the City's permit text, tidied for reading. <a href="${esc(D.record+encodeURIComponent(p.id))}" target="_blank" rel="noopener">See the City's raw record for permit ${esc(p.id)}<span class="sr"> (opens in a new tab)</span></a></p>
 ${p.lat&&p.lon?'<div class="minimap" id="minimap" role="region" aria-label="Map of the project location"></div>':""}</section>
 </div></div>`;
 $("#back").onclick=e=>{e.preventDefault();back("#/projects");};
-$("#cpy").onclick=async()=>{toast(await copyText(p.a+", Chicago, IL")?"Address copied":"Copy did not work here. Press and hold the address to copy it.");};
-$("#mark").onclick=()=>{const now=mk(p.id).c?"":new Date().toISOString().slice(0,10);const ok=setMark(p.id,{c:now});const btn=$("#mark");btn.classList.toggle("on",!!now);btn.setAttribute("aria-pressed",String(!!now));$("#markT").textContent=now?"Contacted "+day(now)+" (undo)":"Mark as contacted";toast(ok?(now?"Marked as contacted":"Contacted mark removed"):"Not saved. This browser blocks saving here; private browsing is the usual cause.");};
-let tn;$("#nt").addEventListener("input",e=>{clearTimeout(tn);$("#ntst").textContent="Saving...";tn=setTimeout(()=>{const ok=setMark(p.id,{n:e.target.value});$("#ntst").textContent=ok?"Note saved in this browser":"Not saved. This browser blocks saving here; private browsing is the usual cause.";},400);});
+$("#cpy").onclick=async()=>{toast(await copyText(p.a+", Chicago, IL")?"Address copied":"Copy did not work. Press and hold the address.");};
+$("#mark").onclick=()=>{const now=mk(p.id).c?"":new Date().toISOString().slice(0,10);const ok=setMark(p.id,{c:now});const btn=$("#mark");btn.classList.toggle("on",!!now);btn.setAttribute("aria-pressed",String(!!now));$("#markT").textContent=now?"Contacted "+day(now)+" (undo)":"Mark as contacted";toast(ok?(now?"Marked as contacted":"Contacted mark removed"):"Not saved: this browser blocks saving");};
+const grow=t=>{t.style.height="auto";t.style.height=Math.max(96,t.scrollHeight+2)+"px";};grow($("#nt"));
+let tn;$("#nt").addEventListener("input",e=>{grow(e.target);clearTimeout(tn);$("#ntst").textContent="Saving...";tn=setTimeout(()=>{const ok=setMark(p.id,{n:e.target.value});$("#ntst").textContent=ok?"Note saved in this browser":"Not saved. This browser blocks saving here; private browsing is the usual cause.";},400);});
 if(p.lat&&p.lon){const mm=()=>{if(!window.L||!$("#minimap"))return;const m2=L.map("minimap",{scrollWheelZoom:false,dragging:!L.Browser.mobile,tap:false,zoomControl:true}).setView([p.lat,p.lon],15);m2.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');tiles(m2);L.circleMarker([p.lat,p.lon],Object.assign({},MS[p.st],{radius:10})).addTo(m2);STATE.mini=m2;};if(window.L)mm();else window.addEventListener("load",mm,{once:true});}}
 
 /* builders */
 function viewBuilders(q){document.title="Builders | Chicago Construction Cleaning Leads";const s0=q.get("sort")||"near",q0=q.get("q")||"",ph=q.get("phone")==="1";
 const all=Object.values(B);
 $("#app").innerHTML=`<div class="ph"><div><h1>Builders</h1><p>Every general contractor on this week's list. A permit with two builders counts for each.</p></div></div>
-<div class="tool"><label class="search"><span class="sr">Search builders</span>${ico("search")}<input id="bq" type="search" placeholder="Search builder name" value="${esc(q0)}" autocomplete="off"></label>
+<div class="tool btool"><label class="search"><span class="sr">Search builders</span>${ico("search")}<input id="bq" type="search" placeholder="Search builder name" value="${esc(q0)}" autocomplete="off"></label>
 <div class="fld"><label for="bsort" class="sr">Sort builders</label><select id="bsort"><option value="near">Most near finish</option><option value="n">Most projects</option><option value="cost">Biggest total</option><option value="az">Name, A to Z</option></select></div>
-<label class="tog"><input type="checkbox" id="bph"${ph?" checked":""}><span>Contact on file (${int(all.filter(b=>b.ok).length)})</span></label></div>
+<label class="tog"><input type="checkbox" id="bph"${ph?" checked":""}><span>Has contact (${int(all.filter(b=>b.ok).length)})</span></label></div>
 <div class="rbar" aria-live="polite"><span id="bcount"></span></div><section class="panel" id="blist"></section>`;
 $("#bsort").value=s0;
 const draw=()=>{const t=norm($("#bq").value),so=$("#bsort").value,only=$("#bph").checked;
@@ -838,7 +875,7 @@ const sorts={near:(a,b)=>b.near-a.near||b.n-a.n||b.cost-a.cost,n:(a,b)=>b.n-a.n|
 const rows=all.filter(b=>(!t||t.split(" ").every(w=>norm(b.name).includes(w)))&&(!only||b.ok)).sort(sorts[so]);
 const qs=new URLSearchParams();if(t)qs.set("q",$("#bq").value.trim());if(so!=="near")qs.set("sort",so);if(only)qs.set("phone","1");history.replaceState(history.state,"","#/builders"+(qs.toString()?"?"+qs:""));STATE.trail[STATE.trail.length-1]=location.hash;
 $("#bcount").innerHTML=`<b class="num">${int(rows.length)}</b> ${rows.length===1?"builder":"builders"}`;
-$("#blist").innerHTML=rows.length?`<table class="bt"><caption class="sr">Builders on this week's list</caption><thead><tr><th>Builder</th><th class="n">Projects</th><th class="n">Near finish</th><th class="n hm">New</th><th class="n hm">Reported cost</th></tr></thead><tbody>${rows.map(b=>{const h="#/builder/"+encodeURIComponent(b.key);
+$("#blist").innerHTML=rows.length?`<table class="bt"><caption class="sr">Builders on this week's list</caption><thead><tr>${[["az","Builder",""],["n","Projects","n"],["near","Near finish","n"],["","New","n hm"],["cost","Reported cost","n hm"]].map(([k,t,c])=>`<th class="${c}"${k&&k===so?' aria-sort="'+(k==="az"?"ascending":"descending")+'"':""}>${t}${k&&k===so?ico(k==="az"?"up":"down"):""}</th>`).join("")}</tr></thead><tbody>${rows.map(b=>{const h="#/builder/"+encodeURIComponent(b.key);
 return `<tr><td class="nm"><a href="${h}"><b>${esc(b.name)}</b><small>${b.ok?ico(b.contact.phone?"phone":"mail","s")+"Contact on file":"No contact on file yet"}${b.area?", mostly "+esc(b.area):""}</small><small class="mob num">${plural(b.n,"project")}${b.near?`, ${int(b.near)} near finish`:""}, ${money(b.cost)}</small></a></td><td class="n num">${int(b.n)}</td><td class="n num${b.near?"":" z"}">${int(b.near)}</td><td class="n num hm${b.nw?"":" z"}">${int(b.nw)}</td><td class="n num hm">${money(b.cost)}</td></tr>`;}).join("")}</tbody></table>`
 :`<div class="empty"><h3>No builders match</h3><p>Check the spelling, or search part of the name.</p></div>`;};
 $("#blist").onclick=e=>{if(e.target.closest("a"))return;const tr=e.target.closest("tr");const a=tr&&tr.querySelector("a");if(a)go(a.getAttribute("href"));};
@@ -847,8 +884,8 @@ function viewBuilder(b){document.title=`${b.name} | Chicago Construction Cleanin
 $("#app").innerHTML=`<a class="back" href="#/builders" id="back">${ico("back")}Back</a>
 <div class="pg"><section class="pg-head"><div class="p-title"><h1>${esc(b.name)}</h1><p class="sub">General contractor on ${plural(b.n,"open permit")} this week${b.area?", mostly in "+esc(b.area):""}</p></div>
 <div class="stats"><div><b class="num">${int(b.n)}</b><span>${b.n===1?"project":"projects"} this week</span></div><div><b class="num">${money(b.cost)}</b><span>total reported</span></div><div><b class="num">${int(b.near)}</b><span>near finish</span></div><div><b class="num">${int(b.nw)}</b><span>new this week</span></div></div></section>
-<aside class="pg-side" aria-label="Builder contact">${builderCard(b,ps[0],false)}<section class="panel bc"><h2 style="font-size:17px">Before you call</h2><p class="meta" style="margin:6px 0 14px">A short script and the capability sheet builders ask for.</p><a class="btn" href="#/pitch">${ico("kit","s")}Open the pitch kit</a></section></aside>
-<div class="pg-main"><section class="panel"><div class="sec-h"><h2>Their projects<span class="c num">${int(ps.length)}</span></h2><a href="#/projects?q=${encodeURIComponent(b.name)}">Open in Projects</a></div>${rowsHtml(ps,0,b.key)}</section></div></div>`;
+<aside class="pg-side" aria-label="Builder contact">${builderCard(b,ps[0],false,true)}<section class="panel bc"><h2 style="font-size:17px">Before you call</h2><p class="meta" style="margin:6px 0 14px">A short script and the capability sheet builders ask for.</p><a class="btn" href="#/pitch">${ico("kit","s")}Open the pitch kit</a></section></aside>
+<div class="pg-main"><section class="panel"><div class="sec-h"><h2>Their projects<span class="c num">${int(ps.length)}</span></h2><a href="#/projects?q=${encodeURIComponent(b.name)}">Open in Projects</a></div>${[0,1,2].map(st=>{const g=ps.filter(p=>p.st===st);return g.length?`<h3 class="grp">${STG[st]}<span class="c num">${int(g.length)}</span></h3>${rowsHtml(g,0,b.key)}`:"";}).join("")}</section></div></div>`;
 $("#back").onclick=e=>{e.preventDefault();back("#/builders");};}
 
 /* pitch kit */
@@ -858,7 +895,7 @@ const fill=s=>esc(s).replace(/\[([^\]]+)\]/g,'<span class="f">[$1]</span>');
 $("#app").innerHTML=`<div class="ph"><div><h1>Pitch kit</h1><p>What to send a builder after you call. Copy it, then fill in the parts in blue brackets.</p></div></div>
 <div class="pk"><section class="panel"><div class="pk-h"><div><h2>Your one-page capability sheet</h2><p>Builders ask for this before they add you to a bid list.</p></div><button class="btn sm" type="button" data-copy="s">${ico("copy","s")}Copy</button></div><ul class="sheet">${PITCH.sheet.map(([k,v])=>`<li><b>${esc(k)}</b><span>${esc(v)}</span></li>`).join("")}</ul></section>
 <section class="panel mail"><div class="pk-h"><div><h2>An email to a builder</h2><p>Send it after you call.</p></div><button class="btn sm" type="button" data-copy="m">${ico("copy","s")}Copy</button></div>${PITCH.email.map(x=>`<p>${fill(x)}</p>`).join("")}</section></div>`;
-document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=async()=>{toast(await copyText(b.dataset.copy==="s"?sheetTxt:mailTxt)?"Copied":"Copy did not work here. Select the text and copy it.");});}
+document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=async()=>{toast(await copyText(b.dataset.copy==="s"?sheetTxt:mailTxt)?"Copied":"Copy did not work. Select the text.");});}
 
 $("#skip").onclick=e=>{e.preventDefault();const t=$("#app").hidden?$("#pw"):($("#app h1")||$("#app"));if(t){t.setAttribute("tabindex",t.id==="pw"?"0":"-1");t.focus();}};
 /* gate */

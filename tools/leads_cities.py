@@ -119,7 +119,7 @@ AUSTIN = {
               "tab of the Excel file)."),
     "notice": ("For general business information only. Projects appear because their building permits are public City of Austin "
                "records; no builder listed here has endorsed or works with ProofNotFluff, and a listing is not an invitation to bid. "
-               "Valuation is the largest valuation filed on the project's City building permits, not a contract value or a budget. "
+               "Valuation is the largest valuation filed on the project's open City building permits on the list, not a contract value or a budget. "
                "You make your own calls and emails, and you are responsible for following the law when you do. "
                "ProofNotFluff never contacts builders or anyone else on your behalf."),
     "termsVersion": "Version 1",

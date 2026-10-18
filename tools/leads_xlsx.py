@@ -149,14 +149,14 @@ PROJECT_COLS = [  # key, heading, width, align, fmt
 AUSTIN_COLS = [
     ("address", "Address", 27, "left", None),
     ("cost", "Valuation", 15, "right", "usd0"),
-    ("gcText", "Builder", 30, "left", None),
+    ("gcText", "Builder", 34, "left", None),
     ("communityArea", "ZIP code", 11, "left", None),
     ("stage", "Stage", 22, "center", None),
     ("type", "Type", 18, "left", None),
     ("units", "Homes", 8, "right", "int"),
     ("buildings", "Building permits", 11, "right", "int"),
     ("issued", "First issued", 14, "left", "date"),
-    ("permit", "Master permit", 12, "left", None),
+    ("permit", "Master permit", 20, "left", None),
     ("scope", "What the permits cover", 60, "left", None),
 ]
 
@@ -216,7 +216,7 @@ def project_sheet(wb, key, tagline, rows, list_date, tab, drop=(), stats=None):
         r = f1 + i
         for l, (k, head_, w, align, fmt) in zip(letters, cols):
             c = ws[f"{l}{r}"]
-            c.alignment = Alignment(horizontal=align, vertical="center", wrap_text=k in ("scope", "gcText", "address"),
+            c.alignment = Alignment(horizontal=align, vertical="center", wrap_text=k in ("scope", "gcText", "address") or (k == "permit" and C["key"] == "austin"),
                                     indent=1 if (fmt in ("int", "usd0") or k in ("issued", "gcText", "type")) else 0)
             if k == "stage" and p.get("stage") in CHIP:
                 fg, bg = CHIP[p["stage"]]
@@ -244,8 +244,10 @@ def project_sheet(wb, key, tagline, rows, list_date, tab, drop=(), stats=None):
 def builders_sheet(wb, rows, list_date):
     ws = wb.create_sheet(TABS["builders"])
     S.set_widths(ws, {"A": 3, "B": 2, "C": 40, "D": 11, "E": 18, "F": 15, "G": 11, "H": 10, "I": 2, "J": 42, "K": 2, "L": 3})
+    aus = C["key"] == "austin"
+    unit = "project" if aus else "permit"
     D.page_header(ws, "Builders with the most open work",
-                  "One call to a builder's main office can cover many projects. A permit with two builders counts for each.",
+                  f"One call to a builder's main office can cover many projects. A {unit} with two builders counts for each.",
                   list_date, span=("B", "K"), side_cols=3)
     from permits_chicago import entity_key, entity_names
     agg, names = collections.OrderedDict(), entity_names(rows)
@@ -262,15 +264,15 @@ def builders_sheet(wb, rows, list_date):
     D.h(ws, 6, 10)
     D.stat_strip(ws, 7, [
         ("C:C", "Builders with open work", f'=COUNTIF(C{first}:C{last},"?*")', S.FMT["int"]),
-        ("D:G", "With 2 or more open permits", f'=COUNTIF(D{first}:D{last},">=2")', S.FMT["int"]),
-        ("H:J", "Builder-permits (two builders count twice)", f"=SUM(D{first}:D{last})", S.FMT["int"]),
+        ("D:G", "With 2 or more projects" if aus else "With 2 or more open permits", f'=COUNTIF(D{first}:D{last},">=2")', S.FMT["int"]),
+        ("H:J", "Builder-projects (two builders count twice)" if aus else "Builder-permits (two builders count twice)", f"=SUM(D{first}:D{last})", S.FMT["int"]),
     ])
     D.h(ws, 9, 10)
     D.frame(ws, 6, 9, "B", "K")
     biggest = max([a["n"] for _, a in items] or [1])
     spec = [
         {"col": "C", "head": "Builder", "kind": "text", "values": [g for g, _ in items]},
-        {"col": "D", "head": "Open permits", "kind": "text", "values": [a["n"] for _, a in items], "align": "right", "fmt": S.FMT["int"]},
+        {"col": "D", "head": "Projects" if aus else "Open permits", "kind": "text", "values": [a["n"] for _, a in items], "align": "right", "fmt": S.FMT["int"]},
         {"col": "E", "head": "", "kind": "calc", "formula": lambda r: f'=IF(D{r}>=2,IFERROR(REPT("{D.BAR_CHAR}",MAX(0,ROUND(D{r}/{biggest}*16,0))),""),"")'},
         {"col": "F", "head": C["cost"], "kind": "text", "values": [a["cost"] for _, a in items], "align": "right", "fmt": S.FMT["usd0"]},
         {"col": "G", "head": "Near finish", "kind": "text", "values": [a["near"] for _, a in items], "align": "right", "fmt": S.FMT["int"]},
@@ -348,7 +350,7 @@ def card(ws, top, title, rows, eyebrow=None, bg="card", line="frame"):
         else:
             size, color = (9, "muted") if kind == "note" else (10, "ink")
             c = ws[f"C{r}"]; c.value = val; c.font = D.f(size, False, color); c.alignment = Alignment(vertical="top", wrap_text=True)
-            ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, S.text_height(val, TEXT_W + 8, size) + 6)
+            ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, S.text_height(val, TEXT_W + 3, size) + 16 if kind == "paragap" else S.text_height(val, TEXT_W + 8, size) + 6)
         r += 1
     D.h(ws, r, 14)
     D.frame(ws, top, r, "B", "P", bg=bg, line=line)
@@ -378,7 +380,7 @@ def start_here(wb, rows, near, new, src, list_date, addresses):
     newr = f"'{TABS['new']}'!D12:D{11 + max(len(new), 1)}"
     tiles = [("B", "D", "OPEN BIG PROJECTS", f'=COUNTIF({c_rng},">0")', S.FMT["int"], (f"projects, {sum(p.get('buildings') or 0 for p in rows):,} building permits" if aus else f"permits, at {addresses:,} addresses"), True),
              ("F", "H", "VALUATION" if aus else "REPORTED COST", f"=SUM({c_rng})", BILLION,
-              "largest on each project's permits" if aus else "filed with the permits", False),
+              "largest on each project's open permits" if aus else "filed with the permits", False),
              ("J", "L", "NEAR FINISH", f'=COUNTIF({s_rng},"{C["stages"][0]}")', S.FMT["int"], C["stages"][0].lower(), False),
              ("N", "P", "NEW THIS WEEK", f'=COUNTIF({newr},">0")', S.FMT["int"], "issued in the last 7 days", False)]
     D.h(ws, 6, 10)
@@ -386,7 +388,7 @@ def start_here(wb, rows, near, new, src, list_date, addresses):
         D.tile(ws, 7, left, right, eb, fml, fmt, sub, dark=dark, value_size=28 if dark else 20)
     r = 12
     r = card(ws, r, "Three steps", [
-        ("num", (1, f"Start with {TABS['near']}. Those buildings are closest to a final clean.")),
+        ("num", (1, f"Start with {TABS['near']}. Those {'projects' if aus else 'buildings'} are closest to a final clean.")),
         ("num", (2, f"Use {TABS['builders']} to find general contractors with several open jobs. One relationship can cover many projects.")),
         ("num", (3, f"Call the builder's office with the address and {C['permitLower']} number. Ask who buys cleaning, then send your capability sheet."
                     if aus else "Call the builder's office with the address and permit. Ask who buys cleaning, then send your capability sheet.")),
@@ -395,11 +397,14 @@ def start_here(wb, rows, near, new, src, list_date, addresses):
         how = [("para", src.get("modified", "")),
                ("lead", ("Projects", "Austin issues a building permit for each building, and often one for each floor of finish-out. The list "
                                      "groups them by the City's master permit, so one row is one project.")),
+               ("lead", ("Homes", "The City's housing units on residential buildings and on finish-outs or remodels of homes. When every "
+                                  "permit of a project repeats the same number, it counts once. Blank on non-residential work.")),
                ("lead", ("Stages", "From the City's own permit fields. Permit issued is early. Work under way means the City has pushed a "
                                    "permit's expiry date past the first 180 days, which it does when an inspection passes or an extension is "
                                    "granted. Some permits finaled means part of the project is marked Final while the rest is open.")),
                ("lead", ("Valuation", "Austin repeats a development's valuation on its building permits, so each project shows the largest "
-                                      "valuation on any of its permits, counted once. It is a size signal, not a budget.")),
+                                      "valuation on its open building permits on the list, counted once. Finaled, shell and garage permits "
+                                      "do not count. It is a size signal, not a budget.")),
                ("lead", ("Order", f"{TABS['all']} lists the projects closest to a final clean first, then the biggest. Every table has filter "
                                   "arrows on its header row, so you can pick one ZIP code or sort by valuation.")),
                ("lead", ("Builders", "The general contractor the City lists on the project's open building permits. When they name more than "
@@ -457,7 +462,7 @@ def terms_text(date):
             "re-identify anyone. Use it only to reach businesses.",
             "Accuracy. The list is built from City of Austin permit records as of the date above. City data can be late, incomplete or wrong, and "
             "permits change. Confirm anything you rely on with the builder or the City. Valuation is the largest valuation filed on a project's "
-            "City building permits, not a contract value. Map pins come from the City's coordinates or, where the City gives none, from the US "
+            "open City building permits on the list, not a contract value. Map pins come from the City's coordinates or, where the City gives none, from the US "
             "Census Bureau's public geocoder, and can be off. A listed builder is not an invitation to bid.",
             "No promise of results. Valuations, stages and counts are figures from City records, not contract values or forecasts. Nothing "
             "here promises any work, contract, income or outcome.",
@@ -506,7 +511,8 @@ def terms_text(date):
 def terms(wb, src, list_date):
     ws = card_sheet(wb, "Terms", "Terms of Use", f"{PRODUCT}. Read this before you rely on the list.", list_date, "note")
     r = card(ws, 6, f"{C['cityName']} data", [("para", CITY_DISCLAIMER), ("link", (C["termsLabel"], src.get("terms", "") or C["termsUrl"]))])
-    r = card(ws, r, "ProofNotFluff", [("para", OUR_NOTICE)] + [("para", t) for t in terms_text(list_date[8:])])
+    kind = "paragap" if C["key"] == "austin" else "para"   # Austin: an even gap after every paragraph (design director, Oct 18)
+    r = card(ws, r, "ProofNotFluff", [(kind, OUR_NOTICE)] + [(kind, t) for t in terms_text(list_date[8:])])
     finish_card_sheet(ws, r, "note")
     return ws
 

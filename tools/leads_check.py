@@ -30,6 +30,14 @@ def serve(root):
     return srv
 
 
+def settle(pg):
+    """Wait for the view's fade-in and for any toast to clear, so no screenshot is washed out (design director, Oct 18)."""
+    pg.wait_for_timeout(450)
+    pg.evaluate("document.querySelector('#toast')&&document.querySelector('#toast').classList.remove('on')")
+    pg.wait_for_function("!document.querySelector('#toast.on') && !document.getAnimations().some(a=>a.playState==='running')", timeout=5000)
+    pg.wait_for_timeout(300)
+
+
 def capture(ctx, base, pw, wb_path, out, no_tiles, check):
     """The free page's two screenshots of the paid product, made from this build."""
     import subprocess, tempfile
@@ -47,6 +55,7 @@ def capture(ctx, base, pw, wb_path, out, no_tiles, check):
         pg.add_style_tag(content=".split{display:block!important}.mapbox{display:none!important}")
     pg.wait_for_timeout(1200)
     pg.evaluate("window.scrollTo(0,0)")
+    settle(pg)
     pg.screenshot(path=os.path.join(out, "members-list.png"))
     pg.close()
     tmp = tempfile.mkdtemp()
@@ -56,8 +65,11 @@ def capture(ctx, base, pw, wb_path, out, no_tiles, check):
     im = Image.open(src).convert("RGB")
     w = min(im.width, int(im.height * 1200 / 772))
     im.crop((0, 0, w, int(w * 772 / 1200))).resize((1200, 772), Image.LANCZOS).save(os.path.join(out, "workbook.png"))
-    sizes = [Image.open(os.path.join(out, f)).size for f in ("members-list.png", "workbook.png")]
-    check(sizes == [(1064, 665), (1200, 772)], f"captured the free page's screenshots into {out}: {sizes}")
+    # the phone crop: the KPI band and the first columns (address, valuation, builder, ZIP code, stage, type), readable at 360 px
+    cw = min(im.width, int(im.width * 0.53))
+    im.crop((0, 0, cw, int(cw * 0.75))).resize((900, 675), Image.LANCZOS).save(os.path.join(out, "workbook-phone.png"))
+    sizes = [Image.open(os.path.join(out, f)).size for f in ("members-list.png", "workbook.png", "workbook-phone.png")]
+    check(sizes == [(1064, 665), (1200, 772), (900, 675)], f"captured the free page's screenshots into {out}: {sizes}")
 
 
 def main():
@@ -99,6 +111,7 @@ def main():
                 check(over <= 0, f"{tag} {name}: no horizontal scroll ({over}px)")
 
             def shot(name):
+                settle(pg)
                 pg.screenshot(path=os.path.join(a.shots, f"{tag}-{name}.png"), full_page=False)
 
             pg.goto(base)

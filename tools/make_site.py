@@ -1682,6 +1682,7 @@ def leads_page_html(p):
     sdir = p.get("shotsDir", "leads")   # each city's own screenshots (Austin: docs/assets/leads/austin/, tools/leads_check.py --capture)
     shot_f = [os.path.join(DOCS, "assets", sdir, f) for f in ("members-list.png", "workbook.png")]
     shots_ok = all(os.path.isfile(f) for f in shot_f)
+    phone_f = os.path.join(DOCS, "assets", sdir, "workbook-phone.png")   # a readable crop for phones, when the city has one
     if shots_ok and (checkout or p.get("shotsDir")):   # real screenshots of the paid product, made from the members' app and workbook
         (w1, h1), (w2, h2) = (png_size(f) for f in shot_f)
         alt1 = p.get("shotAltApp", "The members' app: every open project with the reported cost, address, builder and stage, filters for stage, community area, cost and building type, CSV export and a map of the projects")
@@ -1692,8 +1693,11 @@ def leads_page_html(p):
                  f'<figure class="ld-shot"><img src="{rel}assets/{sdir}/members-list.png" width="{w1}" height="{h1}" loading="eager" decoding="async" '
                  f'alt="{E(alt1)}">'
                  '<figcaption>The members\' app, updated every Monday</figcaption></figure>'
-                 f'<figure class="ld-shot"><img src="{rel}assets/{sdir}/workbook.png" width="{w2}" height="{h2}" loading="eager" decoding="async" '
-                 f'alt="{E(alt2)}">'
+                 f'<figure class="ld-shot">'
+                 + (f'<picture><source media="(max-width:600px)" srcset="{rel}assets/{sdir}/workbook-phone.png" width="{png_size(phone_f)[0]}" height="{png_size(phone_f)[1]}">'
+                    if os.path.isfile(phone_f) else "")
+                 + f'<img src="{rel}assets/{sdir}/workbook.png" width="{w2}" height="{h2}" loading="eager" decoding="async" alt="{E(alt2)}">'
+                 + ('</picture>' if os.path.isfile(phone_f) else "") +
                  '<figcaption>The Excel file, filters on every column</figcaption></figure></div></section>')
     if p.get("kitForm"):
         form = (f'<form class="ld-form" action="https://app.kit.com/forms/{E(p["kitForm"])}/subscriptions" method="post">'

@@ -12,9 +12,10 @@ How Austin's data works (read Oct 18, 2026 from a de-identified audit of every c
   building permits share a master permit number (masterpermitnum), so the lead is the project: its building permits
   grouped by master permit.
 - Austin repeats a development's valuation on its building permits (Lake View East shows $830,000,000 on 77 of them, its
-  pergolas and garages included), and many permits carry a placeholder ($1, $5). So a project's valuation is the largest
-  valuation on any of its building permits, counted once. New work carries it in total_job_valuation, remodels and
-  finish-outs in total_valuation_remodel.
+  pergolas and garages included), and many permits carry a placeholder ($1, $5). A project's valuation is the largest
+  valuation on its kept building permits (open, in the window, real clean-up work), counted once; valuations on finaled,
+  shell, garage or older permits of the same master never count (holdout, Oct 18). New work carries it in total_job_valuation,
+  remodels and finish-outs in total_valuation_remodel.
 - There is no inspection milestone. The stage comes from the City's own fields: a permit of the project marked Final while
   others are still Active, or an expiry date the City has pushed past the first 180 days (Austin extends a building permit's
   expiry when an inspection passes or an extension is granted).
@@ -27,7 +28,7 @@ The rules (Todd, Oct 17, 2026, the Chicago list's buyer promise; every rule has 
    houses and duplexes (classes 101 to 103), three-unit buildings (class 104 under 4 homes), shell-only buildings, interior
    demolition, repair work, and work that never needs a construction clean (roofs, equipment, generators, fuel systems,
    solar, signs, elevators, fences, retaining walls, site and exterior-only work).
-3. Valuation: the project's valuation (the largest on any of its building permits) is $500,000 or more.
+3. Valuation: the project's valuation (the largest on its kept building permits) is $500,000 or more.
 4. Builder: the general contractor the City lists on the kept permits, only when it is a business (never a person's name;
    no phone, applicant or owner field is ever read), cleaning companies left out, grouped by legal entity
    (permits_chicago.entity_key: "Acme Builders LLC" and "ACME BUILDERS, L.L.C." are one builder, LLC and Inc are two).
@@ -53,11 +54,12 @@ MIN_COST = 500_000
 OPEN = {"ACTIVE"}
 KEEP_WORK = {"NEW", "ADDITION", "ADDITION AND REMODEL", "REMODEL"}
 DEFAULT_EXPIRY = 181               # days from issue to the first expiry date the City sets (247 of the 1,268 open permits, Oct 18)
-# Only these fields are read. Never: contractor_full_name, contractor_phone, contractor_address*, applicant_* (people).
+# Only these fields are read. Never: contractor_phone, contractor_address*, applicant_* (people). contractor_full_name is read only to
+# tell a person filing as their own company from a business (builder_name); it is never written anywhere.
 FIELDS = ("permit_number,masterpermitnum,permittype,permit_class_mapped,permit_class,work_class,description,status_current,"
           "statusdate,issue_date,expiresdate,completed_date,total_job_valuation,total_valuation_remodel,housing_units,"
           "number_of_floors,total_new_add_sqft,remodel_repair_sqft,original_address1,original_zip,council_district,"
-          "latitude,longitude,location,contractor_trade,contractor_company_name,link")
+          "latitude,longitude,location,contractor_trade,contractor_company_name,contractor_full_name,link")
 
 
 def get(url, params=None, tries=4, as_text=False):
@@ -197,7 +199,11 @@ def street_title(a):
         else:
             w = re.sub(r"[A-Za-z]+", lambda m: m.group(0).capitalize(), w.lower())
             words.append(re.sub(r"\bMc([a-z])", lambda m: "Mc" + m.group(1).upper(), w))
-    return re.sub(r"\b(\d+)(St|Nd|Rd|Th)\b", lambda m: m.group(1) + m.group(2).lower(), " ".join(words))
+    out = re.sub(r"\b(\d+)(St|Nd|Rd|Th)\b", lambda m: m.group(1) + m.group(2).lower(), " ".join(words))
+    # the City's internal floor tokens ("Unit Flr1", "Bldg 1Flr Unit 55", "Unit Fw3") are not part of the address (design director)
+    out = re.sub(r"\s+(?:Unit\s+)?(?:Flr\d+|Fw\d+)\b|\s+\d+Flr\b", "", out, flags=re.I)
+    out = re.sub(r"\s+Bldg(?=\s+Unit\b)|\s+(?:Unit|Bldg)$", "", out)
+    return re.sub(r"\s+", " ", out).strip()
 
 
 # ---------------------------------------------------------------- rule 2: real construction clean-up work
@@ -261,19 +267,76 @@ def keep_permit(r, since, today):
         return False, f"work class {work.title() or 'blank'} (interior demolition or repair)"
     if ACCESSORY.search(main):
         return False, "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)"
-    if (NOT_CLEAN.search(main) or OBJECT_TRADE.search(main)) and not SPECIFIC.search(main):
+    lead_trade = re.match(r"(?:REPLACEMENT OF|REPAIRS?\b|RE[- ]?ROOF|ROOF)", main)
+    spec = SPECIFIC.findall(main)
+    if lead_trade:   # a permit that opens with trade work needs finish work in rooms, not just "finishes" (holdout, Oct 18)
+        spec = [x for x in spec if not re.match(r"FINISHES|KITCHEN|CEILINGS", x)]
+    if (NOT_CLEAN.search(main) or OBJECT_TRADE.search(main)) and not spec:
         return False, "no construction clean (roof, equipment, site, sign, elevator or exterior work only)"
     return True, "kept"
 
 
 # ---------------------------------------------------------------- rule 4: the builder
+FIRST_NAMES = set("""JAMES JOHN ROBERT MICHAEL WILLIAM DAVID RICHARD JOSEPH THOMAS CHARLES CHRISTOPHER DANIEL MATTHEW ANTHONY MARK DONALD STEVEN
+PAUL ANDREW JOSHUA KENNETH KEVIN BRIAN GEORGE TIMOTHY RONALD EDWARD JASON JEFFREY RYAN JACOB GARY NICHOLAS ERIC JONATHAN STEPHEN LARRY JUSTIN
+SCOTT BRANDON BENJAMIN SAMUEL GREGORY ALEXANDER FRANK PATRICK RAYMOND JACK DENNIS JERRY TYLER AARON JOSE ADAM NATHAN HENRY DOUGLAS ZACHARY PETER
+KYLE ETHAN WALTER NOAH JEREMY CHRISTIAN KEITH ROGER TERRY AUSTIN SEAN GERALD CARL HAROLD DYLAN ARTHUR LAWRENCE JORDAN JESSE BRYAN BILLY BRUCE
+GABRIEL JOE LOGAN ALBERT WILLIE ALAN EUGENE RUSSELL VINCENT PHILIP BOBBY JOHNNY BRADLEY ROY RALPH RANDY LOUIS MARIO JUAN CARLOS LUIS MIGUEL JORGE
+PEDRO RAFAEL RICARDO FRANCISCO ANTONIO MANUEL JESUS ALEJANDRO JAVIER FERNANDO ROBERTO EDUARDO SERGIO HECTOR MARY PATRICIA JENNIFER LINDA
+ELIZABETH BARBARA SUSAN JESSICA SARAH KAREN LISA NANCY BETTY MARGARET SANDRA ASHLEY KIMBERLY EMILY DONNA MICHELLE CAROL AMANDA DOROTHY MELISSA
+DEBORAH STEPHANIE REBECCA SHARON LAURA CYNTHIA KATHLEEN AMY ANGELA SHIRLEY ANNA BRENDA PAMELA EMMA NICOLE HELEN SAMANTHA KATHERINE CHRISTINE
+DEBRA RACHEL CAROLYN JANET CATHERINE MARIA HEATHER DIANE RUTH JULIE OLIVIA JOYCE VIRGINIA VICTORIA KELLY LAUREN CHRISTINA JOAN EVELYN JUDITH
+MEGAN ANDREA CHERYL HANNAH JACQUELINE MARTHA GLORIA TERESA ANN SARA MADISON FRANCES KATHRYN JANICE JEAN ABIGAIL ALICE JULIA JUDY SOPHIA GRACE
+DENISE AMBER DORIS MARILYN DANIELLE BEVERLY ISABELLA THERESA DIANA NATALIE BRITTANY CHARLOTTE MARIE KAYLA ALEXIS LORI ROSA ANA CARMEN GUADALUPE
+LETICIA VERONICA YOLANDA ADRIANA ALMA JIM BOB TOM MIKE DAN DAVE STEVE CHRIS MATT TONY BILL RICK RON KEN TODD SHANE TRAVIS CODY DUSTIN DEREK""".split())
+ENTITY = re.compile(r"\b(?:L\.?\s?L\.?\s?C|INC(?:ORPORATED)?|CORP(?:ORATION)?|CO|COMPANY|LTD|LIMITED|L\.?\s?P|L\.?\s?L\.?\s?P|P\.?\s?L\.?\s?L\.?\s?C|P\.?\s?C)\b\.?")
+TYPE_OF = [("LLC", r"\bL\.?\s?L\.?\s?C\b"), ("INC", r"\bINC(?:ORPORATED)?\b"), ("CORP", r"\bCORP(?:ORATION)?\b"), ("LTD", r"\bLTD\b|\bLIMITED\b"),
+           ("LLP", r"\bL\.?\s?L\.?\s?P\b"), ("LP", r"(?<![L.\s])\s*\bL\.?\s?P\b(?!\.?\s?L)"), ("PLLC", r"\bP\.?\s?L\.?\s?L\.?\s?C\b"), ("PC", r"\bP\.?\s?C\b")]
+MAIN_ANY = re.compile(r"\s*(?:[\[(]\s*\**\s*MAIN\s*\**\s*[\])]|\*+\s*MAIN\s*\*+)\s*", re.I)
+
+
+def _norm_person(n):
+    return re.sub(r"[^A-Z ]", "", re.sub(r"\s+", " ", (n or "").upper())).strip()
+
+
+def is_person(company, full_name=""):
+    """True when the City's company field holds a person's own name, not a business (holdout, Oct 18: "Hill & Wilkinson",
+    "Kingham Dalton Wilson", "Gordon Highlander" and "XBiotech" are businesses). A name with a business word or a legal suffix is a
+    business. Otherwise it is a person's name when it is the contractor's own name in the City record (either order), or when it
+    is two or three plain words that start with a common first name and carry no "&", digit or initials."""
+    up = (company or "").upper()
+    if P.BUSINESS.search(up) or re.search(r"\b(?:GC|COMPANIES|COMMERCIAL|INDUSTRIES|ARCHITECTURAL|DESIGN|BUILD|CONCRETE|STEEL|ELECTRIC|ROOFING|PAVING)\b", up):
+        return False
+    c, f = _norm_person(company), _norm_person(full_name)
+    if f and (c == f or c == " ".join(reversed(f.split())) or c.replace(" ", "") == f.replace(" ", "")):
+        return True
+    words = c.split()
+    return (2 <= len(words) <= 3 and words[0] in FIRST_NAMES and not re.search(r"[&\d/]", up)
+            and (not f or words[-1] == f.split()[-1]))
+
+
 def builder_name(r):
-    """The general contractor as the list prints it, or None: a business only, never a person's name (Chicago's BUSINESS
-    and gc_filter rules), and only when the City lists it as General Contractor."""
+    """The general contractor as the list prints it, or None: the City's company name when it is a business, never a person's
+    name (is_person), never a cleaning company (Chicago's gc_filter), and only when the City lists it as General Contractor."""
     if (r.get("contractor_trade") or "General Contractor").strip().upper() not in ("GENERAL CONTRACTOR",):
         return None
-    nm = re.sub(r"\s*[\[(]?\**\s*MAIN\s*\**[\])]?\s*$", "", (r.get("contractor_company_name") or "").strip(), flags=re.I).strip(" *,")
-    return P.gc_filter(nm) if nm and P.BUSINESS.search(nm.upper()) else None
+    nm = MAIN_ANY.sub(" ", (r.get("contractor_company_name") or "")).strip(" *,")
+    nm = re.sub(r"\s+", " ", nm)
+    if not nm or is_person(nm, r.get("contractor_full_name") or ""):
+        return None
+    return P.gc_filter(nm)
+
+
+def entity_root(n):
+    """A builder's name without its legal suffix, punctuation, case or a leading "The"."""
+    u = re.sub(r"^\s*THE\s+", "", (n or "").upper())
+    return re.sub(r"[^A-Z0-9]", "", ENTITY.sub(" ", u))
+
+
+def entity_types(n):
+    """The legal entity types a name carries (Co and Company are words, not types)."""
+    u = (n or "").upper()
+    return frozenset(t for t, pat in TYPE_OF if re.search(pat, u))
 
 
 # ---------------------------------------------------------------- projects
@@ -288,6 +351,21 @@ def ptype(r):
     if cls_no(r) in (1001, 1002) or re.search(r"FIRST TIME FINISH|FINISH[- ]?OUT", (r.get("description") or "").upper()):
         return "Finish-out"
     return "Remodel or addition"
+
+
+HOME_WORDS = re.compile(r"\bUNITS?\b|RESIDEN|MULTI-?\s?FAMILY|APARTMENT|DWELLING")
+
+
+def homes(rs):
+    """Homes on a set of building permits: the City's housing units, added up. When every permit lists the same number, it is the
+    project's own count repeated (4208 Medical Pkwy: 70 on each of 3 permits; 13114310: 295 on each of 6), so it counts once.
+    Counted only on residential buildings (classes 104 to 106) and on finish-outs or remodels of homes; elsewhere the City often
+    files 1 on non-residential work, and the list leaves Homes blank."""
+    n = [int(num(r.get("housing_units"))) for r in rs]
+    n = [x for x in n if x > 0]
+    if len(n) >= 2 and len(set(n)) == 1:
+        return n[0]
+    return sum(n)
 
 
 def group_projects(rows, since, today, week, min_cost=MIN_COST):
@@ -305,7 +383,7 @@ def group_projects(rows, since, today, week, min_cost=MIN_COST):
             live = [why for r, (k, why) in decided if day(r.get("issue_date")) >= since[:10] and is_open(r, today)]
             reasons[live[0] if live else "no open building permit in the window"] += 1
             continue
-        cost = max(money_of(r) for r in rs)
+        cost = max(money_of(r) for r in kept)   # the kept, open, in-window permits only (holdout, Oct 18)
         if cost < min_cost:
             reasons["project valuation under $500,000"] += 1
             continue
@@ -327,10 +405,10 @@ def group_projects(rows, since, today, week, min_cost=MIN_COST):
         finals = [r for r in rs if (r.get("status_current") or "").upper() == "FINAL" and day(r.get("issue_date")) >= since[:10]
                   and keep_permit(dict(r, status_current="Active", expiresdate=""), since, today)[0]]
         stage = ("Some permits finaled" if finals else "Work under way" if any(extended(r) for r in kept) else "Permit issued")
-        new_units = sum(int(num(r.get("housing_units"))) for r in kept if cls_no(r) in (104, 105, 106))
-        fin_units = sum(int(num(r.get("housing_units"))) for r in kept if cls_no(r) in (1000, 1001, 1002) and re.search(r"UNIT|RESIDEN|MULTI|APART", (r.get("description") or "").upper()))
+        new_units = homes([r for r in kept if cls_no(r) in (104, 105, 106)])
+        fin_units = homes([r for r in kept if cls_no(r) in (1000, 1001, 1002) and HOME_WORDS.search((r.get("description") or "").upper())])
         units = max(new_units, fin_units)
-        built_units = sum(int(num(r.get("housing_units"))) for r in kept if cls_no(r) in (104, 105, 106) and (r.get("work_class") or "").upper() == "NEW")
+        built_units = homes([r for r in kept if cls_no(r) in (104, 105, 106) and (r.get("work_class") or "").upper() == "NEW"])
         addrs = []
         for r in kept:
             a = street_title(r.get("original_address1"))
@@ -381,30 +459,26 @@ def top_builders(projects, n=12):
     return P.top_builders(projects, n)
 
 
-def bare(name):
-    """True when a builder's name carries no legal suffix (LLC, Inc, Corp, Co, Ltd and their spellings)."""
-    return P.gc_key(name) == re.sub(r"[^A-Z0-9]", "", (name or "").upper())
-
-
 def unify_builders(projects):
-    """One builder per legal entity (design director, Oct 18: "Rogers Obrien Construction" and "Rogers-O'Brien Construction
-    Co. Ltd" were two). Punctuation and suffix spelling never split a builder (permits_chicago.entity_key). A name the City
-    gives without any legal suffix joins the one suffixed entity with the same name, when there is exactly one; when there are
-    two (an LLC and an Inc), they stay apart and the bare name stays as filed. Returns {old spelling: new spelling}."""
+    """One builder per legal entity, spelled one way everywhere (holdout and design director, Oct 18). Names with the same root
+    (permits_chicago's punctuation and suffix spelling, plus Co and Company read as words) and the same entity types are one
+    builder ("The Struthoff Company, Inc." = "The Struthoff Co. Inc."). A name with no entity type joins the one typed entity of
+    its root ("Rogers Obrien Construction" joins "Rogers-O'Brien Construction Co. Ltd"; "Zapalac/Reed Construction Company" joins
+    "Zapalac/Reed Construction Co., LP"); an LLC and an Inc of one root stay two builders. Every project then carries the
+    group's one spelling: the one most permits use, then the shortest. Returns {spelling: canonical spelling}."""
     names = collections.Counter(g for x in projects for g in x["gc"])
-    by_root = collections.defaultdict(set)
-    for g in names:
-        by_root[P.gc_key(g)].add(P.entity_key(g))
-    spelled = collections.defaultdict(collections.Counter)
+    groups = collections.defaultdict(lambda: collections.defaultdict(collections.Counter))
     for g, n in names.items():
-        spelled[P.entity_key(g)][g] += n
-    best = {k: sorted(c.items(), key=lambda kv: (-kv[1], len(kv[0]), kv[0]))[0][0] for k, c in spelled.items()}
+        groups[entity_root(g)][entity_types(g)][g] += n
     change = {}
-    for g in names:
-        root = P.gc_key(g)
-        suffixed = [k for k in by_root[root] if not bare(best[k])]
-        if bare(g) and len(suffixed) == 1:
-            change[g] = best[suffixed[0]]
+    for root, by_type in groups.items():
+        typed = [t for t in by_type if t]
+        if len(typed) == 1 and frozenset() in by_type:
+            by_type[typed[0]].update(by_type.pop(frozenset()))
+        for t, spellings in by_type.items():
+            best = sorted(spellings.items(), key=lambda kv: (not entity_types(kv[0]), -kv[1], len(kv[0]), kv[0]))[0][0]
+            for g in spellings:
+                change[g] = best
     for x in projects:
         x["gc"] = list(dict.fromkeys(change.get(g, g) for g in x["gc"]))
     return change
@@ -546,12 +620,30 @@ def geocode_missing(projects):
     bnd = "pnf" + str(int(time.time()))
     body = (f"--{bnd}\r\nContent-Disposition: form-data; name=\"benchmark\"\r\n\r\nPublic_AR_Current\r\n"
             f"--{bnd}\r\nContent-Disposition: form-data; name=\"addressFile\"; filename=\"a.csv\"\r\nContent-Type: text/csv\r\n\r\n{lines}\r\n--{bnd}--\r\n").encode()
-    try:
-        req = urllib.request.Request(CENSUS, data=body, headers=dict(UA, **{"Content-Type": f"multipart/form-data; boundary={bnd}"}))
-        text = urllib.request.urlopen(req, timeout=300).read().decode("utf-8", "replace")
-    except Exception as e:
-        print(f"census geocoder unavailable ({e}); projects without City coordinates keep no pin")
-        return 0
+    text = ""
+    for i in range(3):   # the batch service is sometimes slow or down (Oct 18: 0 of 77 on one run): retry, then one address at a time
+        try:
+            req = urllib.request.Request(CENSUS, data=body, headers=dict(UA, **{"Content-Type": f"multipart/form-data; boundary={bnd}"}))
+            text = urllib.request.urlopen(req, timeout=300).read().decode("utf-8", "replace")
+            if "Match" in text:
+                break
+        except Exception as e:
+            print(f"census batch geocoder try {i + 1} failed ({e})")
+        time.sleep(10 * (i + 1))
+    if "Match" not in text:
+        rows = []
+        for i, x in enumerate(want):
+            q = urllib.parse.urlencode({"address": f"{geo_street(x['address'])}, Austin, TX {x.get('communityArea') or ''}",
+                                        "benchmark": "Public_AR_Current", "format": "json"})
+            try:
+                m = json.loads(urllib.request.urlopen(urllib.request.Request(CENSUS.replace("addressbatch", "onelineaddress") + "?" + q, headers=UA),
+                                                      timeout=60).read().decode())["result"]["addressMatches"]
+            except Exception:
+                continue
+            if m:
+                rows.append([str(i), "", "Match", "", "", f'{m[0]["coordinates"]["x"]},{m[0]["coordinates"]["y"]}'])
+        import io as _io, csv as _csv
+        buf = _io.StringIO(); _csv.writer(buf).writerows(rows); text = buf.getvalue()
     import csv, io
     n = 0
     for row in csv.reader(io.StringIO(text)):
@@ -608,8 +700,8 @@ def main():
             "fetchedAt": now.isoformat(timespec="seconds"), "license": (meta.get("license") or {}).get("name", ""),
             "attribution": meta.get("attribution", ""),
             "modified": (f"Filtered by ProofNotFluff: commercial building permits issued in the last {P.months(a.days)}, still Active, grouped into "
-                         f"projects by the City's master permit, project valuation ${a.min_cost:,} or more (the largest valuation on any of its "
-                         "building permits, counted once), with a business listed as general contractor; structures that are not buildings "
+                         f"projects by the City's master permit, project valuation ${a.min_cost:,} or more (the largest valuation on its open "
+                         "building permits on the list, counted once; finaled, shell and garage permits do not count), with a business listed as general contractor; structures that are not buildings "
                          "(carports, pergolas, canopies, enclosures, pools, EV chargers), parking garages, houses, duplexes and three-unit "
                          "buildings, shell-only buildings, interior demolition, repairs, and roof, equipment, sign, elevator, site and exterior-only "
                          "work left out; cleaning companies listed as contractor left out; only project-level and business fields kept."),
@@ -774,6 +866,24 @@ PERMIT_CASES = [
       "description": "Addition of a covered porch and canopy. demolition of 4 parking spaces relocation of ADA parking and construction of ada access ramps."}, False),
     ({"permit_class": "C- 105 Five or More Family Bldgs", "work_class": "New", "description": "CONSTRUCT NEW MULTIFAMILY COMPLEX - CARPORT"}, False),
     ({"permit_class": "C- 105 Five or More Family Bldgs", "work_class": "New", "description": "CONSTRUCT NEW MULTIFAMILY COMPLEX     BLDG 1 TYPE A"}, True),
+    # holdout, Oct 18: trade work first with only minor finishes is out; interior partitions and ceilings keep an exterior remodel in
+    ({"permit_class": "C-1000 Commercial Remodel", "work_class": "Remodel",
+      "description": "Replacement of exterior mechanical units roofing membrane and roof rigid insulation clerestory glazing sidewalks improvements new kitchen "
+                     "grease trap and interior renovations to include ADA water cooler and kitchen finishes cabinets equipment"}, False),
+    ({"permit_class": "C-1000 Commercial Remodel", "work_class": "Remodel",
+      "description": "ePlan: Commercial Expedited Review - Exterior Remodel to Existing Office. Phase 1 Including non structural partitions ceilings finishes "
+                     "and food service improvements. Work to include Remodel to Existing Patio. Phase 1 (163500 SF)"}, True),
+    # rulings on the holdout's borderline cases (launch record): process equipment and a baggage system are out, a training building is in
+    ({"permit_class": "C- 437 Addn, Alter, Convn-NonRes", "work_class": "Addition",
+      "description": "Phase A of Interior renovation to existing industrial facility for photo metal & etch chemical storage and IMP areas with added new "
+                     "exterior equipment including wet scrubber and emergency generator"}, False),
+    ({"permit_class": "C- 328 Commercial Other Nonresident Bldg", "work_class": "New",
+      "description": "ePlan: Commercial Expedited Review - New Construction of New Training Building."}, True),
+    ({"permit_class": "C- 320 Industrial Bldgs", "work_class": "New",
+      "description": "62435 SF ground up new light manufacturer. Project will be structural steel tilt wall construction with associated site work and interior finish out."}, True),
+    ({"permit_class": "C- 322 Service Station & Repair Garage", "work_class": "New", "description": "New Construction of an Express Car Wash."}, True),
+    ({"permit_class": "C- 104 Three & Four Family Bldgs", "work_class": "New", "housing_units": "4",
+      "description": "New construction of a multi-family fourplex"}, True),
 ]
 
 
@@ -809,8 +919,18 @@ def selftest():
                              ("Turner Construction Company", "General Contractor", "Turner Construction Company"),
                              ("JOHN SMITH", "General Contractor", None), ("Maria Lopez", "General Contractor", None),
                              ("SPARKLE CLEANING SERVICES LLC", "General Contractor", None),
-                             ("ACME ELECTRIC LLC", "Electrical Contractor", None), ("", "General Contractor", None)]:
-        got = builder_name({"contractor_company_name": raw, "contractor_trade": trade})
+                             ("ACME ELECTRIC LLC", "Electrical Contractor", None), ("", "General Contractor", None),
+                             # completeness holdout, Oct 18: businesses whose names look like surnames are businesses
+                             ("HILL & WILKINSON", "General Contractor", "Hill & Wilkinson"),
+                             ("KINGHAM DALTON WILSON", "General Contractor", "Kingham Dalton Wilson"),
+                             ("Gordon Highlander|Pat Jones", "General Contractor", "Gordon Highlander"),
+                             ("Gordon Highlander|Gordon Highlander", "General Contractor", None),   # the contractor's own name: a person
+                             ("SMITH JOHN|JOHN SMITH", "General Contractor", None),
+                             ("XBIOTECH", "General Contractor", "Xbiotech"), ("Speed Fab-Crete", "General Contractor", "Speed Fab-Crete"),
+                             ("HCI Commercial", "General Contractor", "HCI Commercial"), ("Joseph Companies", "General Contractor", "Joseph Companies"),
+                             ("ZAPALAC/REED (MAIN) CONSTRUCTION COMPANY", "General Contractor", "Zapalac/Reed Construction Company")]:
+        raw, full = (raw.split("|") + [""])[:2]
+        got = builder_name({"contractor_company_name": raw, "contractor_trade": trade, "contractor_full_name": full})
         if got != want:
             bad.append(("builder", raw, got, want))
     assert P.entity_key("Bailey Elliott Construction, Inc.") == P.entity_key("BAILEY ELLIOTT CONSTRUCTION INC")
@@ -835,7 +955,8 @@ def selftest():
         if austin_scope(raw, limit=300) != want:
             bad.append(("sentence case", austin_scope(raw, limit=300), want))
     for raw, want in [("9711 LBJ FWY", "9711 LBJ Fwy"), ("4501 W SH 71", "4501 W SH 71"), ("8801 MC CANN DR", "8801 McCann Dr"),
-                      ("11400 N IH 35 SVRD", "11400 N IH 35 Svrd"), ("3001 RR 620 S", "3001 RR 620 S"), ("1110 W 6TH ST UNIT FLR1", "1110 W 6th St Unit Flr1"),
+                      ("11400 N IH 35 SVRD", "11400 N IH 35 Svrd"), ("3001 RR 620 S", "3001 RR 620 S"), ("1110 W 6TH ST UNIT FLR1", "1110 W 6th St"), ("610 DAVIS ST BLDG 1FLR UNIT 55", "610 Davis St Unit 55"),
+                      ("62 EAST AVE UNIT FLR15", "62 East Ave"), ("2631 KRAMER LN UNIT FW3", "2631 Kramer Ln"),
                       ("2201 E MLK JR BLVD", "2201 E MLK Jr Blvd"), ("100 MCCALL LN", "100 McCall Ln")]:
         if street_title(raw) != want:
             bad.append(("address", raw, street_title(raw), want))
@@ -867,18 +988,37 @@ def selftest():
                 contractor_company_name="ACME BUILDERS LLC"),
             row(9, masterpermitnum="M5", status_current="Final", issue_date="2022-01-05T00:00:00.000"),
             row(10, masterpermitnum="M5", total_job_valuation="900000", issue_date="2026-09-01T00:00:00.000", expiresdate="2027-03-01T00:00:00.000")]
+    rows += [  # holdout, Oct 18: valued only from kept permits; repeated home counts once; a fourplex at exactly $500,000 on the window's edge
+        row(11, masterpermitnum="M6", total_valuation_remodel="60000", work_class="Remodel", permit_class="C-1000 Commercial Remodel",
+            description="Remodel for Common Spaces - Lobby Entrances Utilites and Restrooms", housing_units="3", expiresdate="2026-12-01T00:00:00.000"),
+        row(12, masterpermitnum="M6", status_current="Final", total_valuation_remodel="1000000", work_class="Remodel", permit_class="C-1000 Commercial Remodel"),
+        row(13, masterpermitnum="M7", total_valuation_remodel="5", work_class="Remodel", permit_class="C-1001 Commercial Finish Out",
+            description="First Time Finish Out for Units", housing_units="7", expiresdate="2026-12-01T00:00:00.000"),
+        row(14, masterpermitnum="M7", work_class="Shell", total_job_valuation="154000000", description="New Shell Building of a 57-Story Tower"),
+        row(15, masterpermitnum="M8", total_job_valuation="20000000", housing_units="70", expiresdate="2026-12-01T00:00:00.000"),
+        row(16, masterpermitnum="M8", total_job_valuation="20000000", housing_units="70", expiresdate="2026-12-01T00:00:00.000"),
+        row(17, masterpermitnum="M8", total_job_valuation="20000000", housing_units="70", expiresdate="2026-12-01T00:00:00.000"),
+        row(18, masterpermitnum="M9", permit_class="C- 104 Three & Four Family Bldgs", housing_units="4", total_job_valuation="500000",
+            issue_date="2024-10-19T00:00:00.000", expiresdate="2026-11-30T00:00:00.000", contractor_company_name="Joseph Companies",
+            description="New construction of a multi-family fourplex"),
+        row(19, masterpermitnum="M10", permit_class="C-1000 Commercial Remodel", work_class="Remodel", housing_units="3", total_valuation_remodel="900000",
+            description="Interior Remodel to Existing Office/Warehouse. Work to include subdividing Existing Interior into Multiple Suites",
+            expiresdate="2026-12-01T00:00:00.000")]
     ps, why, _ = group_projects(rows, since, today, week)
     byp = {p["permit"]: p for p in ps}
-    if set(byp) != {"M1", "M4", "M5"}:
+    if set(byp) != {"M1", "M4", "M5", "M8", "M9", "M10"}:
         bad.append(("projects kept", sorted(byp), dict(why)))
     else:
-        if byp["M1"]["cost"] != 830000000 or byp["M1"]["milestone"] != "Some permits finaled" or byp["M1"]["buildings"] != 2 or byp["M1"]["units"] != 60:
-            bad.append(("M1", byp["M1"]))   # the pergola's repeated valuation still values the project; the pergola is not a kept building
+        if byp["M1"]["cost"] != 245000000 or byp["M1"]["milestone"] != "Some permits finaled" or byp["M1"]["buildings"] != 2 or byp["M1"]["units"] != 30:
+            bad.append(("M1", byp["M1"]))   # valued from its kept permits only (the pergola's $830M does not count); 30 homes repeated on 2 permits count once
         if byp["M4"]["gc"] != ["Acme Builders LLC"] or byp["M4"]["milestone"] != "Work under way" or byp["M4"]["issued"] != "2026-02-01" or byp["M4"]["newThisWeek"]:
             bad.append(("M4", byp["M4"]))   # one legal entity, expiry pushed past 180 days, new only when its first permit is new
+        if byp["M8"]["units"] != 70 or byp["M8"]["newUnits"] != 70 or byp["M9"]["units"] != 4 or byp["M9"]["cost"] != 500000 \
+                or byp["M10"]["units"] is not None:
+            bad.append(("homes", byp["M8"]["units"], byp["M9"]["units"], byp["M10"]["units"]))
         if byp["M5"]["milestone"] != "Permit issued":
             bad.append(("M5", byp["M5"]))   # a permit finaled before the window is an old phase, not a sign of this one finishing
-    if why.get("project valuation under $500,000") != 1 or why.get("no business listed as general contractor") != 1:
+    if why.get("project valuation under $500,000") != 3 or why.get("no business listed as general contractor") != 1:
         bad.append(("reasons", dict(why)))
     # one development under two master permits (6801 River Place Blvd, Oct 18: $1,525,000,000 on both): one project, valued once
     twins = [dict(byp["M1"], permit="T1", address="6801 River Place Blvd", cost=1525000000, gc=["Turner Construction"], milestone="Work under way"),
@@ -886,10 +1026,12 @@ def selftest():
              dict(byp["M1"], permit="T3", address="6801 River Place Blvd", cost=9000000, gc=["Turner Construction"])] if "M1" in byp else []
     ub = [{"gc": ["Rogers Obrien Construction"]}, {"gc": ["Rogers-O'Brien Construction Co. Ltd"]}, {"gc": ["ROGERS-O'BRIEN CONSTRUCTION CO., LTD."]},
           {"gc": ["Panoptic Group"]}, {"gc": ["Panoptic Group LLC"]}, {"gc": ["Panoptic Group Inc"]}, {"gc": ["Acme Builders"]}, {"gc": ["Zeta Builders"]}]
+    ub += [{"gc": ["Zapalac/Reed Construction Co., LP"]}, {"gc": ["Zapalac/Reed Construction Company"]},
+           {"gc": ["The Struthoff Company, Inc."]}, {"gc": ["The Struthoff Co. Inc."]}, {"gc": ["The Struthoff Co. Inc."]}]
     unify_builders(ub)
-    if [x["gc"][0] for x in ub] != ["Rogers-O'Brien Construction Co. Ltd"] * 2 + ["ROGERS-O'BRIEN CONSTRUCTION CO., LTD."] + \
-            ["Panoptic Group", "Panoptic Group LLC", "Panoptic Group Inc", "Acme Builders", "Zeta Builders"] \
-            or len({P.entity_key(x["gc"][0]) for x in ub[:3]}) != 1:
+    if [x["gc"][0] for x in ub] != ["Rogers-O'Brien Construction Co. Ltd"] * 3 + \
+            ["Panoptic Group", "Panoptic Group LLC", "Panoptic Group Inc", "Acme Builders", "Zeta Builders"] + \
+            ["Zapalac/Reed Construction Co., LP"] * 2 + ["The Struthoff Co. Inc."] * 3:
         bad.append(("one builder per legal entity", [x["gc"] for x in ub]))
     mt, gone = merge_twins(twins)
     if len(mt) != 2 or gone != ["T2"] or mt[0]["buildings"] != 4 or mt[0]["milestone"] != "Some permits finaled" or mt[0]["address"] != "6801 River Place Blvd (+1 more)" \
@@ -902,7 +1044,7 @@ def selftest():
         bad.append(("coord",))
     if bad:
         raise SystemExit("austin selftest FAIL: " + json.dumps(bad, default=str)[:2500])
-    print(f"austin selftest ok ({len(PERMIT_CASES)} planted permits, 11 window cases, 8 builder cases, 11 scope cases, 5 planted projects)")
+    print(f"austin selftest ok ({len(PERMIT_CASES)} planted permits, 11 window cases, 18 builder cases, 14 scope cases, 10 planted projects, 13 builder groupings, twin merge, 12 addresses)")
 
 
 def audit(rows, since, today, path):

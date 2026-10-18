@@ -502,6 +502,7 @@ button,input,select,textarea{font:inherit;color:inherit}
  .tool .seg:not(.vtog){display:flex;gap:8px;width:calc(100% + 32px);margin:0 -16px;padding:0 16px;background:none;border:0;border-radius:0;overflow-x:auto;scroll-padding:16px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 24px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 24px),transparent)}
  .tool .seg:not(.vtog) button{flex:none;height:44px;padding:0 14px;border:1px solid var(--field);border-radius:999px;background:#fff}
  .tool .seg:not(.vtog) button[data-k=""]{order:1}
+ .c-austin .tool .seg:not(.vtog) button[data-k=""]{order:0}
  .tool .seg:not(.vtog) button[aria-pressed=true]{background:var(--ink);border-color:var(--ink)}
  .rbar{gap:8px 12px}
  .search{max-width:none;flex-basis:100%}
@@ -680,7 +681,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 const BOX=__BOX__;
 const PITCH=__PITCH__;
 const TERMS=__TERMS__;
-const CITY=__CITY__;const PROD=CITY.product;
+const CITY=__CITY__;const PROD=CITY.product;if(CITY.key!=="chicago")document.body.classList.add("c-"+CITY.key);
 const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 async function openBox(pw){const k0=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveKey"]);
 const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b64(BOX.salt),iterations:BOX.rounds,hash:"SHA-256"},k0,{name:"AES-GCM",length:256},false,["decrypt"]);

@@ -9,8 +9,8 @@ ok 390 overview: no horizontal scroll (0px)
 ok 390 list shows all 158 projects
 ok 390 projects: no horizontal scroll (0px)
 ok 390 stage filter 'near': 1 of 1
-ok 390 stage filter 'insp': 130 of 130
-ok 390 stage filter 'issued': 27 of 27
+ok 390 stage filter 'insp': 132 of 132
+ok 390 stage filter 'issued': 25 of 25
 ok 390 stage filter 'all': 158 of 158
 ok 390 area filter 78610: 1 of 1
 ok 390 area + type filter: 1 of 1
@@ -42,8 +42,8 @@ ok 1280 overview: no horizontal scroll (0px)
 ok 1280 list shows all 158 projects
 ok 1280 projects: no horizontal scroll (0px)
 ok 1280 stage filter 'near': 1 of 1
-ok 1280 stage filter 'insp': 130 of 130
-ok 1280 stage filter 'issued': 27 of 27
+ok 1280 stage filter 'insp': 132 of 132
+ok 1280 stage filter 'issued': 25 of 25
 ok 1280 stage filter 'all': 158 of 158
 ok 1280 area filter 78610: 1 of 1
 ok 1280 area + type filter: 1 of 1
@@ -63,6 +63,6 @@ ok 1280 pitch kit names the city
 ok 1280 pitch: no horizontal scroll (0px)
 ok 1280 terms: no horizontal scroll (0px)
 ok 1280 workbook austin-construction-cleaning-leads-2026-10-18.xlsx: 7 tabs, error cells []
-ok captured the free page's screenshots into docs/assets/leads/austin: [(1064, 665), (780, 1520), (1200, 772), (900, 675)]
+ok captured the free page's screenshots into docs/assets/leads/austin: [(1064, 665), (780, 1100), (1200, 772), (900, 675)]
 ok 1280 console errors: []
 leads_check: 0 failures, 67 checks passed

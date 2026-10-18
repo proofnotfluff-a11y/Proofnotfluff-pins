@@ -42,11 +42,11 @@ jobs:
           AUSTIN_LEADS_PASSWORD: ${{ secrets.AUSTIN_LEADS_PASSWORD }}
         run: |
           if [ -z "$AUSTIN_LEADS_PASSWORD" ]; then exit 0; fi
-          sudo apt-get update -qq > /dev/null && sudo apt-get install -y -qq --no-install-recommends libreoffice-calc > /dev/null
+          sudo apt-get update -qq > /dev/null && sudo apt-get install -y -qq --no-install-recommends libreoffice-calc python3-uno poppler-utils fonts-liberation > /dev/null
           pip install --quiet playwright==1.48.0 && python3 -m playwright install --with-deps chromium > /dev/null
           printf '%s' "$AUSTIN_LEADS_PASSWORD" > "$RUNNER_TEMP/pw"
           mkdir -p probes "$RUNNER_TEMP/shots"
-          python3 tools/leads_check.py --docs docs --app austin-leads-members --pw-file "$RUNNER_TEMP/pw" --shots "$RUNNER_TEMP/shots" \
+          PYTHONUNBUFFERED=1 python3 tools/leads_check.py --docs docs --app austin-leads-members --pw-file "$RUNNER_TEMP/pw" --shots "$RUNNER_TEMP/shots" \
             --capture docs/assets/leads/austin > probes/austin-app-check.txt 2>&1 || true
           rm -f "$RUNNER_TEMP/pw"
           tail -3 probes/austin-app-check.txt

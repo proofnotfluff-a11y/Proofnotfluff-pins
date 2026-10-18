@@ -3,112 +3,118 @@
   "name": "City of Chicago Data Portal, Building Permits",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
   "rowsUpdatedAt": "2026-10-17T12:18:17+00:00",
-  "fetchedAt": "2026-10-18T03:42:05+00:00",
+  "fetchedAt": "2026-10-18T04:28:23+00:00",
   "modified": "Filtered by ProofNotFluff: permits issued in the last 24 months, new construction or renovation, reported cost $500,000 or more, still open (City status Active or Phased Permitting; complete, suspended, cancelled, revoked and expired permits left out), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs a construction clean under its permit (foundation, superstructure, caisson, demolition, roof, facade, mechanical, equipment or site work only) left out; cleaning companies listed as contractor left out; a revision of a permit already on the list counted once; only project-level and business fields kept.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
-  "from": "2024-10-18",
+  "from": "2024-10-17",
   "to": "2026-10-18"
  },
  "counts": {
-  "fetched": 3065,
-  "kept": 953,
+  "fetched": 3068,
+  "kept": 1122,
   "excluded": {
-   "house or 2 to 3 flat": 616,
-   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 158,
-   "no commercial or apartment wording": 371,
-   "one home inside a larger building": 28,
-   "no interior finish work or new building named": 26,
-   "closed, complete or suspended": 896,
-   "no business listed as general contractor": 7,
-   "revision of a permit already listed": 10
+   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 236,
+   "house or 2 to 3 flat": 614,
+   "no commercial or apartment wording": 95,
+   "no interior finish work or new building named": 47,
+   "one home inside a larger building": 34,
+   "no business listed as general contractor": 4,
+   "closed, complete or suspended": 897,
+   "apartment building with no unit count (could be a 2 or 3 flat)": 6,
+   "revision of a permit already listed": 13
   },
   "keptByType": {
-   "Renovation": 677,
-   "New construction": 276
+   "New construction": 321,
+   "Renovation": 801
   },
-  "keptCost": 5020827000,
-  "keptUnits": 5238,
+  "keptCost": 8625421115,
+  "keptUnits": 5787,
   "topAreas": [
    [
     "Loop",
-    134
+    161
    ],
    [
     "Near North Side",
-    128
+    142
    ],
    [
     "Near West Side",
-    96
+    103
    ],
    [
     "West Town",
-    58
+    65
    ],
    [
     "Lincoln Park",
-    50
+    53
    ],
    [
     "Lake View",
-    36
+    41
    ],
    [
     "Logan Square",
-    28
+    29
    ],
    [
-    "Uptown",
-    22
+    "O'Hare",
+    26
    ]
   ],
   "topGCs": [
    {
     "name": "Skender Construction LLC",
-    "projects": 22,
-    "cost": 541565145
+    "projects": 25,
+    "cost": 557369145
    },
    {
     "name": "Executive Construction, Inc.",
-    "projects": 20,
-    "cost": 57345100
+    "projects": 24,
+    "cost": 67350800
    },
    {
     "name": "JC Anderson Inc",
-    "projects": 20,
-    "cost": 45031994
+    "projects": 23,
+    "cost": 47747594
    },
    {
     "name": "Power Construction Company, LLC",
-    "projects": 15,
-    "cost": 152017606
+    "projects": 22,
+    "cost": 362960308
    },
    {
     "name": "Bulley & Andrews, L.L.C.",
-    "projects": 15,
-    "cost": 107621447
+    "projects": 21,
+    "cost": 170137361
    },
    {
     "name": "Clune Construction Company, L.P.",
-    "projects": 15,
-    "cost": 61852408
-   },
-   {
-    "name": "Redmond Construction Corp.",
-    "projects": 14,
-    "cost": 75475690
+    "projects": 16,
+    "cost": 62552408
    },
    {
     "name": "Development Solutions, Inc",
-    "projects": 14,
-    "cost": 44137018
+    "projects": 16,
+    "cost": 49137018
+   },
+   {
+    "name": "Bear Construction Company",
+    "projects": 16,
+    "cost": 23899000
    },
    {
     "name": "Leopardo Construction Inc",
-    "projects": 13,
-    "cost": 77127071
+    "projects": 15,
+    "cost": 78989105
+   },
+   {
+    "name": "Redmond Construction Corp.",
+    "projects": 15,
+    "cost": 76275690
    },
    {
     "name": "Pintauro Construction Company LLC",
@@ -116,19 +122,82 @@
     "cost": 59609486
    },
    {
-    "name": "Bear Construction Company",
+    "name": "Reed Construction LLC",
     "projects": 13,
-    "cost": 15259252
-   },
-   {
-    "name": "LR Contracting Company",
-    "projects": 10,
-    "cost": 128758788
+    "cost": 15040746
    }
   ],
   "nearFinish": 20
  },
  "projects": [
+  {
+   "permit": "101071590",
+   "issued": "2026-02-25",
+   "type": "New construction",
+   "scope": "Full building permit for the superstructure, enclosure, and interior fit out of satellite 1 concourse terminal building at o'hare international...",
+   "units": null,
+   "cost": 730000000,
+   "address": "10000 W Ohare St",
+   "communityArea": "O'Hare",
+   "status": "Phased Permitting",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "Hunt Construction Group Inc"
+   ],
+   "lat": null,
+   "lon": null
+  },
+  {
+   "permit": "101074828",
+   "issued": "2026-03-19",
+   "type": "New construction",
+   "scope": "Interior buildout of new 7-story casino, parking, and event center building and 34-story hotel tower...",
+   "units": null,
+   "cost": 580000000,
+   "address": "705 W Chicago Ave",
+   "communityArea": "West Town",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "Gilbane Building Company, Inc."
+   ],
+   "lat": 41.896313,
+   "lon": -87.646301
+  },
+  {
+   "permit": "101081959",
+   "issued": "2026-04-09",
+   "type": "Renovation",
+   "scope": "Work is to include construction of an elevated transit station on the loop elevated line at state street and lake street, and also improvements at...",
+   "units": null,
+   "cost": 445000000,
+   "address": "200 N State St",
+   "communityArea": "Loop",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "F.H. Paschen, S.N. Nielsen & Associates, LLC."
+   ],
+   "lat": 41.885775,
+   "lon": -87.628087
+  },
+  {
+   "permit": "101068175",
+   "issued": "2025-08-19",
+   "type": "New construction",
+   "scope": "Core and shell permit for the new construction of a 7-story casino, parking, and event center building and 34-story hotel tower...",
+   "units": null,
+   "cost": 396200000,
+   "address": "705 W Chicago Ave",
+   "communityArea": "West Town",
+   "status": "Phased Permitting",
+   "milestone": "Inspections",
+   "gc": [
+    "Gilbane Building Company, Inc."
+   ],
+   "lat": 41.896313,
+   "lon": -87.646301
+  },
   {
    "permit": "101039784",
    "issued": "2024-10-29",
@@ -164,6 +233,23 @@
    "lon": -87.603901
   },
   {
+   "permit": "101083648",
+   "issued": "2026-05-28",
+   "type": "Renovation",
+   "scope": "Ds 2019 cbrc: revision to full building permit 101056000 for the renovation of existing space and addition of approximately 35,960 SF at terminal 3...",
+   "units": null,
+   "cost": 250000000,
+   "address": "10000 W Ohare Airport",
+   "communityArea": "O'Hare",
+   "status": "Active",
+   "milestone": "Inspections",
+   "gc": [
+    "Clark - W.E. O'Neil JV"
+   ],
+   "lat": 41.979729,
+   "lon": -87.902322
+  },
+  {
    "permit": "101076997",
    "issued": "2026-07-14",
    "type": "New construction",
@@ -181,11 +267,28 @@
    "lon": -87.647763
   },
   {
+   "permit": "101077810",
+   "issued": "2026-07-24",
+   "type": "New construction",
+   "scope": "New construction of a 6-floor plus basement concrete building...",
+   "units": null,
+   "cost": 162000000,
+   "address": "1144 W Loyola Ave",
+   "communityArea": "Rogers Park",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "Power Construction Company, LLC"
+   ],
+   "lat": 42.001647,
+   "lon": -87.660406
+  },
+  {
    "permit": "101059401",
    "issued": "2025-07-14",
    "type": "New construction",
    "scope": "Full building permit for the new construction of a 31-story residential building (154 efficiency units & 339 dwelling units) toinclude ground floor...",
-   "units": 339,
+   "units": 493,
    "cost": 155000000,
    "address": "370 N Morgan St",
    "communityArea": "Near West Side",
@@ -196,6 +299,23 @@
    ],
    "lat": 41.888895,
    "lon": -87.65238
+  },
+  {
+   "permit": "101084518",
+   "issued": "2026-09-16",
+   "type": "Renovation",
+   "scope": "Phase 3 of 3: interior alterations to existing 7-story office building to convert to a data center...",
+   "units": null,
+   "cost": 151112046,
+   "address": "400 S La Salle St",
+   "communityArea": "Loop",
+   "status": "Active",
+   "milestone": "Permit Issued (Fee Due)",
+   "gc": [
+    "Arco/Murray National Construction Company LLC"
+   ],
+   "lat": 41.876808,
+   "lon": -87.631916
   },
   {
    "permit": "101063081",
@@ -232,6 +352,23 @@
    "lon": -87.725699
   },
   {
+   "permit": "101071904",
+   "issued": "2026-01-12",
+   "type": "New construction",
+   "scope": "New construction for a one story 73,485 SF storage facility, containing a storage (S-1) classification with a business (b) classification as an...",
+   "units": null,
+   "cost": 92420000,
+   "address": "4443 S Western Blvd",
+   "communityArea": "New City",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "Arco/Murray National Construction Company LLC"
+   ],
+   "lat": 41.812637,
+   "lon": -87.683834
+  },
+  {
    "permit": "101065085",
    "issued": "2025-09-12",
    "type": "New construction",
@@ -247,6 +384,23 @@
    ],
    "lat": null,
    "lon": null
+  },
+  {
+   "permit": "101072776",
+   "issued": "2025-10-21",
+   "type": "Renovation",
+   "scope": "Aa ord l concourse. Interior renovation, limited relocation of concessions program, updated building systems, reconfiguration of 3 boarding gates...",
+   "units": null,
+   "cost": 85000000,
+   "address": "11601 W Touhy Ave",
+   "communityArea": "O'Hare",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "F.H. Paschen, S.N. Nielsen & Associates, LLC."
+   ],
+   "lat": 42.008536,
+   "lon": -87.914428
   },
   {
    "permit": "101072777",
@@ -400,159 +554,6 @@
    ],
    "lat": 41.881419,
    "lon": -87.632203
-  },
-  {
-   "permit": "101061913",
-   "issued": "2025-10-16",
-   "type": "New construction",
-   "scope": "New construction of a 6-story residential building (110 dwelling units), at-grade parking lot (134 auto spaces + 40 bike spaces) and associated site...",
-   "units": 110,
-   "cost": 46770000,
-   "address": "4809 W 44th St",
-   "communityArea": "Garfield Ridge",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "The George Sollitt Construction Co"
-   ],
-   "lat": 41.812982,
-   "lon": -87.743732
-  },
-  {
-   "permit": "101060677",
-   "issued": "2025-02-04",
-   "type": "Renovation",
-   "scope": "Interior renovations to existing plaza, lobby and level 02. Plaza level work to include a new 3-story convenience stairs and escalators, connecting...",
-   "units": null,
-   "cost": 45713000,
-   "address": "10 S Dearborn St",
-   "communityArea": "Loop",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Turner Construction Company"
-   ],
-   "lat": 41.881807,
-   "lon": -87.629543
-  },
-  {
-   "permit": "101086662",
-   "issued": "2026-10-06",
-   "type": "Renovation",
-   "scope": "Interior alterations to existing office floors 10 through 16 for buildout of golub capital office space",
-   "units": null,
-   "cost": 44919084,
-   "address": "225 W Randolph St",
-   "communityArea": "Loop",
-   "status": "Active",
-   "milestone": "Inspections",
-   "gc": [
-    "Redmond Construction Corp."
-   ],
-   "lat": 41.884356,
-   "lon": -87.634637
-  },
-  {
-   "permit": "101073356",
-   "issued": "2026-03-25",
-   "type": "New construction",
-   "scope": "New construction of a 12-story residential building (199 units) w/ no basement to include ground parking...",
-   "units": 199,
-   "cost": 44000000,
-   "address": "566 W Van Buren St",
-   "communityArea": "Near West Side",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Clark Construction Group Chicago LLC"
-   ],
-   "lat": 41.876846,
-   "lon": -87.64225
-  },
-  {
-   "permit": "101082901",
-   "issued": "2026-07-13",
-   "type": "Renovation",
-   "scope": "Tenant build out in an existing warehouse for expansion of a food processing facility",
-   "units": null,
-   "cost": 39500000,
-   "address": "1400 W 44th St",
-   "communityArea": "New City",
-   "status": "Active",
-   "milestone": "Inspections",
-   "gc": [
-    "Meridian Design Build, Inc"
-   ],
-   "lat": 41.814248,
-   "lon": -87.660398
-  },
-  {
-   "permit": "100994035",
-   "issued": "2026-04-09",
-   "type": "New construction",
-   "scope": "Full building permit for 13-story building with 121 dwelling units and first floor garage.. sprinkler system under seperate permit",
-   "units": 121,
-   "cost": 38000000,
-   "address": "1628 W Division St",
-   "communityArea": "West Town",
-   "status": "Active",
-   "milestone": "Permit Issued (Fee Due)",
-   "gc": [
-    "Norcon, Inc."
-   ],
-   "lat": 41.903438,
-   "lon": -87.668663
-  },
-  {
-   "permit": "101036007",
-   "issued": "2026-03-18",
-   "type": "New construction",
-   "scope": "New construction 7 story, 79ft, 78 unit multi-family residential building...",
-   "units": 78,
-   "cost": 36887188,
-   "address": "955 N Larrabee St",
-   "communityArea": "Near North Side",
-   "status": "Active",
-   "milestone": "Permit Issued (Fee Due)",
-   "gc": [
-    "AT Mechanical LLC"
-   ],
-   "lat": 41.900311,
-   "lon": -87.64294
-  },
-  {
-   "permit": "101075727",
-   "issued": "2026-08-14",
-   "type": "Renovation",
-   "scope": "Adaptive reuse of an existing 5 story commercial building to multi-family residential with a new 5 story addition...",
-   "units": null,
-   "cost": 35971375,
-   "address": "3959 N Lincoln Ave",
-   "communityArea": "North Center",
-   "status": "Phased Permitting",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Berglund Construction Company"
-   ],
-   "lat": 41.954042,
-   "lon": -87.67851
-  },
-  {
-   "permit": "101057281",
-   "issued": "2025-03-21",
-   "type": "Renovation",
-   "scope": "Interior alterations to existing CTA station on concourse, ground & level 2 in an existing 17-story office building",
-   "units": null,
-   "cost": 35000000,
-   "address": "194 N Clark St",
-   "communityArea": "Loop",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Clark Construction Group Chicago LLC"
-   ],
-   "lat": 41.885581,
-   "lon": -87.631119
   }
  ],
  "nearFinish": [

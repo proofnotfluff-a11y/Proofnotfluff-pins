@@ -24,9 +24,8 @@ jobs:
       - run: python3 tools/permits_chicago.py --selftest
       - run: python3 tools/permits_austin.py --selftest
       - run: pip install --quiet pypdf
-      - run: python3 tools/permits_austin.py --full "$RUNNER_TEMP/austin-full.json"
-      - name: De-identified rules audit (no addresses, permit numbers, ZIPs, coordinates or names; for tuning the filter from the cloud)
-        run: python3 tools/permits_austin.py --probe probes/austin-audit.json
+      - name: Pull the City's data (the full list stays in the runner; the de-identified rules audit has no address, permit number, ZIP, coordinates or name)
+        run: python3 tools/permits_austin.py --full "$RUNNER_TEMP/austin-full.json" --audit probes/austin-audit.json
       # TODO (launch checklist, after Todd adds the AUSTIN_LEADS_PASSWORD secret): build the encrypted members' page and
       # the encrypted review set, the same way permits-chicago.yml does:
       #   python3 tools/leads_xlsx.py "$RUNNER_TEMP/austin-full.json" "$RUNNER_TEMP/leads.xlsx"   (needs the city parameter)

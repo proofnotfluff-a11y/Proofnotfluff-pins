@@ -1,4 +1,4 @@
-# Handoff: where ProofNotFluff stands (live session, Oct 18, 2026, 2:15 pm CT)
+# Handoff: where ProofNotFluff stands (live session, Oct 18, 2026, 3:30 pm CT)
 
 A new chat picks up here. Read this file, then coo/CONSTITUTION.md, coo/PIVOT.md (LEADS FOCUS), coo/LEADS_DESK.md and the ledger (memory /areas/digital-products.md and /areas/digital-products-plan.md). Secrets never go in this repo: members' passwords are with Todd, and the GitHub secrets hold them for the workflows.
 
@@ -7,12 +7,11 @@ A new chat picks up here. Read this file, then coo/CONSTITUTION.md, coo/PIVOT.md
 - Chicago Restaurant Inspection Leads, $39 a month: https://proofnotfluff.gumroad.com/l/mlyiiz, published Oct 18 1:13 pm, delivery checked; free page live with checkout (854eee0). Todd: "go restaurants" (1:20 pm).
 - 0 paying subscribers so far; no outreach email sent yet.
 
-## In progress: Austin Construction Cleaning Leads ($29 a month, product 3)
-- Built (tools/leads_cities.py, permits_austin.py; app built in Actions with the AUSTIN_LEADS_PASSWORD secret Todd added). Legal: CLEAR (City of Austin terms read Oct 18). Data: 159 projects, $6.24 billion valuation, 109 builders after three fix rounds.
-- Holdouts C and D (fresh samples) found only these, still to fix: drop master 13604598 (contractor "*MAIN", no business); strip "***Main" from Flynn Construction (13637624); drop 13501889 "Gordon Highlander" (bare person-like name, no business word); include 13347837 Schaffer Construction convenience store (class 327, dropped by the word "fuel"). Then rebuild in Actions.
-- Design round 3 FAILED at 4.14 (bar is now no score under 4 and an average above 4.6). Its 20 items: the "Here are 1 of the 1" sentence; Start Here G9 overflow; "Any cost" to "Any valuation"; one set of stage labels everywhere; "2 open projects" not "this week"; homes stat label in the workbook vs "8,303 new homes"; a footnote on odd City filings ($18,000,001; $500,002); consistent bold rule and bar column on the Builders tab; Terms version line and bold clause names; even stat strips; workbook.png padding and crop; a phone members-list image; cover stepper label wrap; hover artifacts in captures; non-breaking space before ZIPs; one separator style; thumbnail benefit line instead of a dated caption; "on your project" on builder pages; confirm 6801 River Place ($1.53B interior remodel) and the $180M two-home finish-out against the City record. Full report text is in this session's notes; the list above is the work.
-- After fixes: one design check and a short holdout re-check of the changed items only, then the Gumroad product (Todd pastes the password and clicks Publish), then the free page checkout.
-- Todd was asked whether to finish Austin today or pause to save usage; no answer yet.
+## Ready to launch: Austin Construction Cleaning Leads ($29 a month, product 3)
+- All gates passed Oct 18 (launch record launches/austin-construction-cleaning-leads.md): holdout D fixed and re-checked, design re-check 4.70 with no item under 4, real app 67 of 67 checks in Actions (probes/austin-app-check.txt), Legal per the Oct 18 City terms reading. List of Oct 18: 158 projects, $6.24 billion, 108 builders.
+- Next: Todd's Gumroad step (launch record section 2, step 3: Membership, Monthly $29, Name, Summary and Description from the record, cover and thumbnail from launches/austin-construction-cleaning-leads/, post-purchase content = members' link plus the password; the live session can fill the form in Todd's browser, Todd pastes the password and clicks Publish). Then the session adds the checkout link to site/pages.json, drops "draft", rebuilds, and runs the buyer test (step 5).
+- Open nit for a later pass (not a blocker): the workbook All projects stat strip's first gap is about 1.5 times the others.
+- The Austin workflow now also runs the buyer click-through, recaptures the free page's screenshots and writes probes/austin-confirm.json on every build (Mondays and on pushes to tools/permits_austin.py or the workflow).
 
 ## Runs on (all others paused Oct 18, none deleted)
 - Etsy upkeep: rule desk (trig_011ws5Q3ACvuqcumRfiP2YvF), API lister (trig_01DW4BdnSAKp949MM9nBJ25y).
@@ -30,7 +29,7 @@ A new chat picks up here. Read this file, then coo/CONSTITUTION.md, coo/PIVOT.md
 ## Open items for Todd
 1. Verify Google Search Console for proofnotfluff.com (DNS TXT in Cloudflare), then say "verified".
 2. Decide: Sonnet for routine runs (Thursday inbox, simple QA steps), yes or no.
-3. Decide: finish Austin today or tomorrow.
+3. Austin: create and publish the Gumroad product, or say "fill it in" and the session fills the form in your browser.
 4. Next product after Austin: the live session recommended a 1-day check of Chicago building violations for exterior trades (porches, masonry, fire escapes on 4+ unit and commercial buildings) over new business licenses; no answer yet.
 5. Attorney: the Cheyenne, WY postal address in the outreach emails must reach ProofNotFluff LLC (an Illinois LLC); plus the earlier list (ADV subject rule, City indemnity, Terms before checkout, correction process, naming the LLC in the Terms).
 6. Tue Oct 20: the LLC approval check (scheduled), then EIN, bank and Gumroad payouts.

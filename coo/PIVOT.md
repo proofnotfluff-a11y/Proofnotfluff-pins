@@ -1,3 +1,13 @@
+# LEADS FOCUS (from Oct 17, 2026; overrides the pivot below where they differ)
+
+Todd, Oct 17, 2026, 7:23 pm: "Now that we are deprioritizing Etsy and building lead tools with public databases, let's divert token usage appropriately." He chose "Go: apply all", next product "Chicago restaurant leads", and "Hold both" for the Fiverr gigs and the $79 kit. Plan file (memory /areas/digital-products-plan.md) section LEADS FOCUS carries the same lines.
+
+- **Runs:** product factory, R&D lab, daily shop run and afternoon promote are disabled (not deleted). Cloud builder runs 10:10 am and 3:10 pm. Rule desk stays on so live Etsy listings stay accurate. Etsy listings stay live and untouched; nothing new is built, listed, redesigned or promoted for Etsy, and no new calculator pages, Fiverr or kit work.
+- **Every other run works the lead products:** the builder builds them, the Legal desk clears them, the CMO writes local outreach and AI-labeled presenter scripts (ledger AI PRESENTER line), the morning promote posts lead-product pieces only, the scout looks for public datasets, the COO tracks paying subscribers per product.
+- **Order:** 1 Chicago restaurant leads (failed or conditional inspections for pest control and hood cleaning; restaurants about to open for grease trap, hood and POS vendors; data in permits/inspections-chicago), 2 Austin construction cleaning leads (permits/austin), 3 Chicago new business licenses by trade, 4 Seattle permits. One launch at a time, each through design/LAUNCH_CHECKLIST.md with every box ticked.
+- **Reach:** about 40 local emails a week per product, each naming a real record from the list, drafted in hello@proofnotfluff.com for Todd to send; a free weekly sample page per city; Higgsfield presenter demos posted free first; Meta ads limited to the metro only after a product has payers and Todd names a budget.
+- **Judge:** paying subscribers per product. No payers after 3 outreach weeks (about 120 emails): rework or drop. Payers: the ads test and the next city.
+
 # PIVOT: one audience, one price ladder (from Oct 16, 2026)
 
 Todd, Oct 15, 2026, 9:55 pm, answering the live session's "Go with the pivot?": **"Go"**. This file binds every run. Where it differs from the ledger, the plan file, a task prompt or another repo file, this file wins. The safety rules, the constitution (coo/CONSTITUTION.md), prices and every [stated] line it does not name below stay on top.

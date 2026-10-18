@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-10-17T21:47:38+00:00",
+ "fetchedAt": "2026-10-18T03:26:55+00:00",
  "rowsUpdatedAt": "2026-10-17T09:07:12+00:00",
  "columns": [
   "inspection_id",
@@ -26,32 +26,32 @@
   ":@computed_region_43wa_7qmu"
  ],
  "results": {
-  "Fail": 264,
-  "Pass": 694,
-  "Out of Business": 47,
-  "Pass w/ Conditions": 118,
-  "No Entry": 51,
-  "Not Ready": 51
+  "Fail": 255,
+  "Pass": 645,
+  "Out of Business": 44,
+  "No Entry": 50,
+  "Pass w/ Conditions": 110,
+  "Not Ready": 47
  },
  "inspectionTypes": {
-  "Canvass": 396,
-  "License": 235,
-  "Complaint": 172,
-  "Canvass Re-Inspection": 142,
-  "Complaint Re-Inspection": 136,
-  "License Re-Inspection": 62,
-  "Short Form Complaint": 43,
-  "Non-Inspection": 35,
+  "Canvass": 361,
+  "License": 225,
+  "Complaint": 168,
+  "Canvass Re-Inspection": 133,
+  "Complaint Re-Inspection": 127,
+  "License Re-Inspection": 59,
+  "Short Form Complaint": 40,
+  "Non-Inspection": 34,
   "Suspected Food Poisoning": 3,
   "Suspected Food Poisoning Re-inspection": 1
  },
  "facilityTypes": {
-  "Restaurant": 680,
-  "School": 242,
-  "Grocery Store": 123,
+  "Restaurant": 637,
+  "School": 218,
+  "Grocery Store": 120,
   "Children's Services Facility": 44,
   "Daycare Above and Under 2 Years": 30,
-  "": 29,
+  "": 26,
   "Mobile Food Preparer": 15,
   "Bakery": 13,
   "Liquor": 7,
@@ -66,15 +66,14 @@
   "Daycare Combo 1586": 2,
   "Shared Kitchen User (Long Term)": 2,
   "TAVERN": 1,
+  "VENDING COMMISSARY": 1,
   "GAS STATION/RESTAURANT": 1,
   "CATERING/CAFE": 1,
-  "VENDING COMMISSARY": 1,
   "LIVE POULTRY": 1,
   "PRIVATE SCHOOL": 1,
   "Daycare (Under 2 Years)": 1,
   "BANQUET": 1,
-  "SENIOR DAY CARE": 1,
-  "PALETERIA": 1
+  "SENIOR DAY CARE": 1
  },
  "codesThisWeek": {
   "55": 20,

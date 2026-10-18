@@ -1589,7 +1589,7 @@ def leads_page_html(p):
     near = d.get("nearFinish", [])
     n_near = c.get("nearFinish", len(near))
     n_big = len(d["projects"])
-    asof = nice_date(src.get("rowsUpdatedAt") or src["fetchedAt"])
+    asof = nice_date(src["fetchedAt"])   # the Chicago date of the pull, the same date the members' pages and workbook print
     price = E(str(p["price"]))
     buy_label = f"Get the full list: ${price} a month"
     checkout = p.get("checkout")
@@ -1714,7 +1714,7 @@ io.observe(hero);io.observe(cta)})();</script>"""
           "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}) + "</script>")
     robots = "" if is_live(p) else '<meta name="robots" content="noindex, nofollow">'
     foot = (f'</main>\n<footer><div class="wrap">'
-            f'<p>Source: {E(src["name"])} ({E(src["url"])}), City data as of {E(asof)}, pulled {E(nice_date(src["fetchedAt"]))}. {E(src["modified"])} '
+            f'<p>Source: {E(src["name"])} ({E(src["url"])}), City data as of {E(asof)}, the day it was pulled. {E(src["modified"])} '
             'Reported cost is the figure filed with the City, not a contract value. No contractor named here has endorsed or works with ProofNotFluff. '
             'Public information for planning sales calls; not legal or business advice and no promise of work.</p>'
             f'<p>{E(p.get("disclaimer") or CITY_DISCLAIMER.get(p["city"], ""))}</p>'

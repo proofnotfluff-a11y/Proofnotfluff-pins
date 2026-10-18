@@ -27,6 +27,7 @@ FREE_PAGE = "https://proofnotfluff.com/chicago-construction-cleaning-leads/"
 # The pitch kit: one source of truth, the workbook's Pitch kit tab (tools/leads_xlsx.py). [Brackets] are the parts to fill in.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from leads_xlsx import BUILDER_EMAIL, CAPABILITY_SHEET  # noqa: E402
+from permits_chicago import entity_key, entity_names, list_day  # noqa: E402
 
 
 def encrypt(password, payload: bytes):
@@ -254,11 +255,11 @@ catch(x){err.textContent="That password didn't open the list. Check your Gumroad
 def builders_table(rows):
     """Every builder on the list: open permits, reported cost, near finish, new, and the community area with most of them.
     A permit with two builders counts for each (the workbook's Builders tab does the same)."""
-    agg = {}
+    agg, names = {}, entity_names(rows)
     for p in rows:
         for g in p.get("gc") or []:
-            k = re.sub(r"[^a-z0-9]", "", g.lower())
-            b = agg.setdefault(k, {"name": g, "n": 0, "cost": 0, "near": 0, "new": 0, "areas": collections.Counter()})
+            k = entity_key(g)
+            b = agg.setdefault(k, {"name": names[k], "n": 0, "cost": 0, "near": 0, "new": 0, "areas": collections.Counter()})
             b["n"] += 1
             b["cost"] += p.get("cost") or 0
             b["near"] += p.get("stage") == "Partial occupancy approved"
@@ -293,7 +294,7 @@ def build(full, xlsx_path, out, password):
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     from leads_xlsx import prep
     rows = [prep(p) for p in full["projects"]]
-    fetched = dt.datetime.fromisoformat(full["source"]["fetchedAt"]).date()
+    fetched = list_day(full["source"]["fetchedAt"])
     html = build_html(rows, fetched, open(xlsx_path, "rb").read(), password)
     os.makedirs(os.path.dirname(out), exist_ok=True)
     open(out, "w", encoding="utf-8").write(html)

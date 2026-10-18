@@ -30,14 +30,14 @@ Usage: LEADS_PASSWORD=... python3 tools/leads_app.py chicago-full.json leads.xls
            (rebuilds the week's list offline from the encrypted review set, for previews and checks)
        python3 tools/leads_app.py --selftest
 """
-import base64, datetime as dt, json, os, re, sys, tempfile
+import base64, collections, datetime as dt, json, os, re, sys, tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 from leads_page import decrypt, encrypt, pretty_date, FREE_PAGE  # noqa: E402
 from leads_xlsx import BUILDER_EMAIL, CAPABILITY_SHEET, CITY_DISCLAIMER, OUR_NOTICE, prep, terms_text  # noqa: E402
-from permits_chicago import DATASET, PORTAL, builders, clean_scope, gc_key, unit_count  # noqa: E402
+from permits_chicago import DATASET, PORTAL, builders, clean_scope, entity_key, entity_names, gc_key, list_day, unit_count  # noqa: E402
 
 try:
     from builder_contacts import contact_for, set_password as contacts_password  # noqa: E402
@@ -67,7 +67,7 @@ EMAIL_OK = re.compile(r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$")
 
 def bkey(name):
     """The builder's key in the app's URLs: the same grouping key the list and the contacts file use, lower case."""
-    return gc_key(name or "").lower()
+    return entity_key(name or "").lower()
 
 
 def _url(u):
@@ -75,7 +75,7 @@ def _url(u):
     return u if re.match(r"^https?://[^\s\"'<>]+$", u) else ""
 
 
-def contact(name):
+def contact(name, suffix_free_twins=1):
     """The builder's verified contact entry (phone or email read on their own website), cleaned for the page, or None.
     Only verified entries reach the page; every other builder shows "no contact on file yet". Read at build time, so a
     holdout that moves an entry to fix or no-contact takes it off the page on the next build."""
@@ -86,6 +86,10 @@ def contact(name):
     except Exception:
         return None
     if not c or c.get("status") != "verified":
+        return None
+    # the contacts file is keyed without the legal suffix: its entry belongs to this builder only when it names the same
+    # entity, or when no other builder on the list shares the suffix-free name (PANOPTIC GROUP LLC vs INCORPORATED)
+    if entity_key(c.get("name") or "") != entity_key(name) and suffix_free_twins != 1:
         return None
     phone = c.get("phone") or ""
     email = c.get("email") or ""
@@ -100,18 +104,20 @@ def slim(p):
     st = p.get("stage")
     return {"id": str(p.get("permit")), "a": p.get("address") or "", "ca": p.get("communityArea") or "", "t": p.get("type") or "",
             "s": p.get("scope") or "", "sf": p.get("scopeFull") or p.get("scope") or "", "c": round(p.get("cost") or 0),
-            "u": p.get("units") or 0, "i": p.get("issued") or "", "g": [bkey(g) for g in (p.get("gc") or [])],
+            "u": p.get("units") or 0, "i": p.get("issued") or "", "g": [bkey(g) for g in (p.get("gc") or [])], "gn": list(p.get("gc") or []),
             "st": STAGES.index(st) if st in STAGES else 2, "m": p.get("milestone") or "", "cs": p.get("status") or "",
             "n": bool(p.get("new")), "lat": p.get("lat"), "lon": p.get("lon")}
 
 
 def payload(rows, fetched, xlsx_bytes):
-    builders = {}
+    builders, names = {}, entity_names(rows)
+    twins = collections.Counter(gc_key(n) for n in names.values())
     for p in rows:
         for g in p.get("gc") or []:
             k = bkey(g)
             if k and k not in builders:
-                builders[k] = {"name": g, "contact": contact(g)}
+                nm = names[entity_key(g)]
+                builders[k] = {"name": nm, "contact": contact(nm, twins[gc_key(nm)])}
     return {"asOf": pretty_date(fetched), "asOfIso": fetched.isoformat(), "projects": [slim(p) for p in rows],
             "builders": builders, "record": RECORD, "fileName": f"chicago-construction-cleaning-leads-{fetched.isoformat()}.xlsx",
             "xlsx": base64.b64encode(xlsx_bytes).decode()}
@@ -151,17 +157,19 @@ def build_html(rows, fetched, xlsx_bytes, password, city_terms=CITY_TERMS):
 
 def build(full, xlsx_path, out, password):
     rows = [prep(p) for p in full["projects"]]
-    fetched = dt.datetime.fromisoformat(full["source"]["fetchedAt"]).date()
+    fetched = list_day(full["source"]["fetchedAt"])
     html = build_html(rows, fetched, open(xlsx_path, "rb").read(), password, full["source"].get("terms") or CITY_TERMS)
     os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
     open(out, "w", encoding="utf-8").write(html)
-    names = {g for p in rows for g in (p.get("gc") or [])}
-    return {"rows": len(rows), "bytes": len(html), "buildersWithContact": sum(1 for g in names if contact(g))}
+    d = payload(rows, fetched, b"")
+    return {"rows": len(rows), "bytes": len(html), "builders": len(d["builders"]),
+            "buildersWithContact": sum(1 for b in d["builders"].values() if b["contact"])}
 
 
 def projects_from_review(review, fetched):
     """The week's kept projects rebuilt from the review set with the same functions tools/permits_chicago.py main() uses
-    (review rows carry only general-contractor names, so no person's name can enter here)."""
+    (review rows carry only general-contractor names, so no person's name can enter here). fetched is the pull's UTC
+    date, the base main() uses for new this week."""
     week = (fetched - dt.timedelta(days=7)).isoformat()
     out = []
     for r in review:
@@ -182,7 +190,7 @@ def projects_from_review(review, fetched):
 def from_review(review_path, out, password, sample_path=None):
     import leads_xlsx
     sample = json.load(open(sample_path or os.path.join(ROOT, "permits", "chicago", "sample.json")))
-    fetched = dt.datetime.fromisoformat(sample["source"]["fetchedAt"]).date()
+    fetched = dt.datetime.fromisoformat(sample["source"]["fetchedAt"]).astimezone(dt.timezone.utc).date()
     review = json.loads(decrypt(password, json.load(open(review_path))))
     full = {"source": sample["source"], "window": sample["window"], "counts": sample["counts"],
             "projects": projects_from_review(review, fetched)}
@@ -679,7 +687,8 @@ for(const k in B){const b=B[k];b.n=b.ps.length;b.cost=b.ps.reduce((s,p)=>s+p.c,0
  const ac={};b.ps.forEach(p=>{if(p.ca)ac[p.ca]=(ac[p.ca]||0)+1;});b.area=Object.entries(ac).sort((x,y)=>y[1]-x[1]||x[0].localeCompare(y[0]))[0]?.[0]||"";
  const c=b.contact;b.ok=!!(c&&c.status==="verified"&&(c.phone||c.email));}
 }
-const bname=p=>p.g.length?B[p.g[0]].name:"No builder listed";
+const pn=(p,i)=>(p.gn&&p.gn[i])||(p.g[i]?B[p.g[i]].name:"");
+const bname=p=>p.g.length?pn(p,0):"No builder listed";
 const ORDER={clean:(a,b)=>a.st-b.st||b.c-a.c,big:(a,b)=>b.c-a.c,newest:(a,b)=>(b.i||"").localeCompare(a.i||"")||b.c-a.c,builder:(a,b)=>bname(a).localeCompare(bname(b))||b.c-a.c};
 const COST=[["","Any cost"],["lt1","Under $1M",0,1e6],["1to5","$1M to $5M",1e6,5e6],["5to25","$5M to $25M",5e6,25e6],["25","$25M and up",25e6,Infinity]];
 const STAGE_KEYS={near:0,insp:1,issued:2};
@@ -710,7 +719,7 @@ function row(p,ctx){const m=mk(p.id);const b=p.g.length?B[p.g[0]]:null;const oth
 return `<li><a class="row" href="#/project/${encodeURIComponent(p.id)}" data-id="${esc(p.id)}">
 <span class="mn num">${money(p.c)}<small>${esc(kind)}</small></span>
 <span class="ad">${esc(p.a)}${p.ca?`<span class="ar">, ${esc(p.ca)}</span>`:""}</span>
-${ctx&&ctx!=="near"&&ctx!=="new"?(other?`<span class="bd"><span>With ${esc(B[other].name)}</span></span>`:""):`<span class="bd">${b&&b.ok?ico(b.contact.phone?"phone":"mail","s")+'<span class="sr">Contact on file: </span>':""}<span>${esc(b?b.name:"No builder listed")}${p.g.length>1?` <span class="ar">and ${int(p.g.length-1)} more</span>`:""}</span>${b&&!b.ok?'<span class="nc">No contact yet</span>':""}</span>`}
+${ctx&&ctx!=="near"&&ctx!=="new"?(other?`<span class="bd"><span>With ${esc(pn(p,p.g.indexOf(other)))}</span></span>`:""):`<span class="bd">${b&&b.ok?ico(b.contact.phone?"phone":"mail","s")+'<span class="sr">Contact on file: </span>':""}<span>${esc(b?pn(p,0):"No builder listed")}${p.g.length>1?` <span class="ar">and ${int(p.g.length-1)} more</span>`:""}</span>${b&&!b.ok?'<span class="nc">No contact yet</span>':""}</span>`}
 <span class="rt">${ctx&&ctx!=="new"?"":chip(p.st)}${p.n&&ctx!=="new"?'<span class="badge new">New this week</span>':""}${m.c?`<span class="badge done">${ico("check","s")}Contacted</span>`:""}</span>${ico("chev","chev")}</a></li>`;}
 function rowsHtml(list,limit,ctx){if(!list.length)return "";const n=Math.min(limit||list.length,list.length);return `<ul class="list-rows">${list.slice(0,n).map(p=>row(p,ctx)).join("")}</ul>`;}
 
@@ -813,7 +822,7 @@ function tiles(m){L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{
 function ensureMap(){STATE.lazyMap=false;if(STATE.map||!$("#map"))return;if(!window.L){const box=$("#mapbox");if(box&&!box.querySelector(".map-fail"))box.insertAdjacentHTML("beforeend",'<div class="map-fail"><p>The map did not load on this connection. The list has every project.</p></div>');if(!ensureMap.tries){ensureMap.tries=1;window.addEventListener("load",()=>{if($("#map")&&!STATE.map){const f=$("#mapbox .map-fail");f&&f.remove();ensureMap();}},{once:true});}return;}
 const m=L.map("map",{preferCanvas:true,zoomControl:true,scrollWheelZoom:true,attributionControl:true}).setView([41.88,-87.66],11);
 m.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');tiles(m);STATE.map=m;STATE.layer=L.layerGroup().addTo(m);STATE.mk={};m.on("zoomend",declutter);drawMap(true);}
-function popup(p){const b=p.g.length?B[p.g[0]]:null;return `<div class="pop"><span class="mn num">${money(p.c)}</span><span class="ad">${esc(p.a)}</span><span class="bd">${esc(b?b.name:"No builder listed")}</span>${chip(p.st)}<p style="margin:10px 0 0"><a class="btn ink" href="#/project/${encodeURIComponent(p.id)}">Open project</a></p></div>`;}
+function popup(p){const b=p.g.length?B[p.g[0]]:null;return `<div class="pop"><span class="mn num">${money(p.c)}</span><span class="ad">${esc(p.a)}</span><span class="bd">${esc(b?pn(p,0):"No builder listed")}</span>${chip(p.st)}<p style="margin:10px 0 0"><a class="btn ink" href="#/project/${encodeURIComponent(p.id)}">Open project</a></p></div>`;}
 function drawMap(refit){const m=STATE.map;const rows=STATE.rows||[];const geo=rows.filter(p=>p.lat&&p.lon);const note=$("#mapnote");
 if(note){const miss=rows.length-geo.length;note.hidden=!(miss||!rows.length);note.textContent=!rows.length?"No pins for these filters.":miss?`${plural(miss,"project")} in the list ${miss===1?"has":"have"} no map location in the City record.`:"";}
 if(!m)return;STATE.layer.clearLayers();STATE.mk={};
@@ -839,10 +848,10 @@ if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}else if
 /* CSV of the current view */
 function cell(v){v=v==null?"":String(v);if(/^[=+\-@\t\r]/.test(v)&&!/^-?\d+(\.\d+)?$/.test(v))v="'"+v;return /[",\r\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;}
 function exportCsv(){const rows=STATE.rows||[];if(!rows.length)return;
-const head=["Address","Community area","Reported cost","Stage","City milestone","City permit status","Type","Homes","Issued","Permit","Builder","Second builder","Builder office phone","Builder email","Builder website","New this week","Contacted","Contacted on","Your note","What the permit covers","Latitude","Longitude"];
+const head=["Address","Community area","Reported cost","Stage","City milestone","City permit status","Type","Homes","Issued","Permit","Builder","All builders","Builder office phone","Builder email","Builder website","New this week","Contacted","Contacted on","Your note","What the permit covers","Latitude","Longitude"];
 const lines=[head.map(cell).join(",")];
 rows.forEach(p=>{const b=p.g.length?B[p.g[0]]:null;const c=b&&b.contact&&b.contact.status==="verified"?b.contact:{};const m=mk(p.id);
-lines.push([p.a,p.ca,p.c,STG[p.st],p.m,p.cs,p.t,p.u||"",p.i,p.id,b?b.name:"",p.g[1]?B[p.g[1]].name:"",c.phone||"",c.email||"",c.website||"",p.n?"Yes":"",m.c?"Yes":"",m.c||"",(m.n||"").trim(),p.sf,p.lat||"",p.lon||""].map(cell).join(","));});
+lines.push([p.a,p.ca,p.c,STG[p.st],p.m,p.cs,p.t,p.u||"",p.i,p.id,b?pn(p,0):"",p.g.map((k,i)=>pn(p,i)).join("; "),c.phone||"",c.email||"",c.website||"",p.n?"Yes":"",m.c?"Yes":"",m.c||"",(m.n||"").trim(),p.sf,p.lat||"",p.lon||""].map(cell).join(","));});
 const blob=new Blob(["﻿"+lines.join("\r\n")+"\r\n"],{type:"text/csv;charset=utf-8"});
 const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`chicago-leads-${D.asOfIso}-${rows.length}-projects.csv`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);
 toast(`CSV exported: ${plural(rows.length,"project")}`);}
@@ -850,7 +859,7 @@ function downloadWorkbook(){const blob=new Blob([b64(D.xlsx)],{type:"application
 const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=D.fileName;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);toast("Workbook downloaded");}
 
 /* builder card */
-function builderCard(b,p,showLink,onBuilderPage){const c=b.contact;const subj=p?`?subject=${encodeURIComponent("Final clean for "+p.a)}`:"";
+function builderCard(b,p,showLink,onBuilderPage,shown){const c=b.contact;const subj=p?`?subject=${encodeURIComponent("Final clean for "+p.a)}`:"";
 const host=u=>{try{return new URL(u).hostname.replace(/^www\./,"");}catch(e){return u;}};
 let body="";
 if(b.ok){body=`${c.phone?`<a class="btn pri call" href="tel:+1${esc(c.tel)}">${ico("phone")}Call ${esc(c.phone)}</a>`:""}
@@ -858,7 +867,7 @@ if(b.ok){body=`${c.phone?`<a class="btn pri call" href="tel:+1${esc(c.tel)}">${i
 <p class="src">${c.note?esc(c.note.charAt(0).toUpperCase()+c.note.slice(1))+". ":""}Main office details from ${c.source?`<a href="${esc(c.source)}" target="_blank" rel="noopener">the builder's own website</a>`:"the builder's own website"}${c.checkedAt?`, checked ${esc(day(c.checkedAt))}`:""}. Ask for the project manager or the estimator on this job.</p>`;}
 else{body=`<div class="none"><b>No contact on file yet</b>We list a builder's office phone and general email only after reading them on the builder's own website. This builder is not checked yet, we found no website that is clearly theirs, or their site does not show them.</div>
 <div class="foot"><a class="btn" href="https://www.google.com/search?q=${encodeURIComponent(b.name+" Chicago")}" target="_blank" rel="noopener">${ico("search","s")}Search the web for this builder<span class="sr"> (opens in a new tab)</span></a></div>`;}
-return `<section class="panel bc" aria-label="${onBuilderPage?"Contact":"Builder"}">${onBuilderPage?`<h2>Contact</h2>`:`<div class="who"><span class="av">${ico("build")}</span><div><h2>${esc(b.name)}</h2><p class="meta num">${plural(b.n,"project")} this week<br>${money(b.cost)} reported${b.near?`, ${int(b.near)} near finish`:""}</p></div></div>`}${body}
+return `<section class="panel bc" aria-label="${onBuilderPage?"Contact":"Builder"}">${onBuilderPage?`<h2>Contact</h2>`:`<div class="who"><span class="av">${ico("build")}</span><div><h2>${esc(shown||b.name)}</h2><p class="meta num">${plural(b.n,"project")} this week<br>${money(b.cost)} reported${b.near?`, ${int(b.near)} near finish`:""}</p></div></div>`}${body}
 ${showLink?`<div class="foot"><a class="btn" href="#/builder/${encodeURIComponent(b.key)}">See all ${plural(b.n,"project")} by this builder</a></div>`:""}</section>`;}
 
 /* project page */
@@ -874,7 +883,7 @@ $("#app").innerHTML=`<a class="back" href="#/projects" id="back">${ico("back")}B
 <div class="p-money"><b class="num">${money(p.c)}</b><span class="num">reported cost ($${int(p.c)})</span></div>
 <div class="acts"><button class="btn" type="button" id="cpy">${ico("copy","s")}Copy address</button><a class="btn" href="${maps}" target="_blank" rel="noopener">${ico("pin","s")}Directions<span class="sr"> (opens Google Maps in a new tab)</span></a></div></section>
 <aside class="pg-side" aria-label="Builder and your follow-up">
-${bs.length?bs.map((b,i)=>builderCard(b,p,true)).join(""):`<section class="panel bc"><div class="none"><b>No builder listed</b>The City record names no general contractor business for this permit.</div></section>`}
+${bs.length?bs.map((b,i)=>builderCard(b,p,true,false,pn(p,i))).join(""):`<section class="panel bc"><div class="none"><b>No builder listed</b>The City record names no general contractor business for this permit.</div></section>`}
 <section class="panel note" aria-labelledby="nh"><h2 id="nh">Your follow-up</h2><p class="hint">${esc(STORE_LINE())}</p>
 <button class="btn${m.c?" on":""}" type="button" id="mark" aria-pressed="${!!m.c}">${ico("check","s")}<span id="markT">${m.c?"Contacted "+esc(day(m.c))+" (undo)":"Mark as contacted"}</span></button>
 <label for="nt" class="sr">Private note</label><textarea id="nt" placeholder="Who you spoke to, the bid due date, the next call" maxlength="2000">${esc(m.n||"")}</textarea><p class="st" id="ntst" aria-live="polite"></p></section>
@@ -990,8 +999,10 @@ def selftest():
     assert box["rounds"] == 250_000 and box["kdf"] == "PBKDF2-SHA256"
     d = json.loads(decrypt("correct horse battery", box))
     assert [p["st"] for p in d["projects"]] == [0, 2] and d["projects"][1]["n"] is True and d["projects"][0]["n"] is False
-    assert d["projects"][0]["g"] == ["acmebuilders", "betaelectric"] and d["projects"][1]["g"] == ["acmebuilders"], "one builder key for both spellings"
-    assert set(d["builders"]) == {"acmebuilders", "betaelectric"} and d["projects"][0]["sf"].endswith("floors 2 to 5")
+    assert d["projects"][0]["g"] == ["acmebuildersllc", "betaelectricinc"] and d["projects"][1]["g"] == ["acmebuildersllc"], "one builder key for both spellings"
+    assert set(d["builders"]) == {"acmebuildersllc", "betaelectricinc"} and d["projects"][0]["sf"].endswith("floors 2 to 5")
+    assert d["projects"][1]["gn"] == ["Acme Builders, L.L.C."] and d["builders"]["acmebuildersllc"]["name"] == "Acme Builders LLC", "each permit keeps its own spelling"
+    assert '"Builder","All builders"' in html and 'p.g.map((k,i)=>pn(p,i)).join("; ")' in html, "the CSV exports every builder"
     try:
         decrypt("wrong password", box)
         raise AssertionError("wrong password decrypted")
@@ -1008,6 +1019,14 @@ def selftest():
     try:
         c = contact("Acme Builders LLC")
         assert c["tel"] == "3125550100" and c["website"] == "" and c["contactPage"].startswith("https://") and c["note"] == "main office", c
+        # suffix-free fallback only for a lone entity: PANOPTIC GROUP LLC and PANOPTIC GROUP INCORPORATED stay apart (holdout, Oct 18)
+        contact_for = lambda name, verified_only=True: {"name": "Panoptic Group LLC", "status": "verified", "phone": "(312) 555-0101"}
+        pan = [{"permit": "1", "address": "1 A St", "cost": 1_000_000, "gc": ["Panoptic Group LLC"], "milestone": "Inspections"},
+               {"permit": "2", "address": "2 A St", "cost": 2_000_000, "gc": ["Panoptic Group Incorporated"], "milestone": "Inspections"}]
+        pb = payload([prep(x) for x in pan], dt.date(2026, 10, 17), b"")["builders"]
+        assert set(pb) == {"panopticgroupllc", "panopticgroupinc"}, set(pb)
+        assert pb["panopticgroupllc"]["contact"] and pb["panopticgroupinc"]["contact"] is None, pb
+        assert contact("Panoptic Group Inc", 1)["phone"] == "(312) 555-0101", "a lone entity may use the suffix-free entry"
     finally:
         contact_for = real
     review = [{"permit": "101000003", "kept": True, "raw": "INTERIOR ALTERATIONS TO 8TH FLOOR OFFICE SPACE. NEW RESTROOMS. PLAN REVIEWER JANE DOE",

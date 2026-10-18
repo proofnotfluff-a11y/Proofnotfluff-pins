@@ -208,10 +208,11 @@ def builders_sheet(wb, rows, list_date):
     D.page_header(ws, "Builders with the most open work",
                   "One call to a builder's main office can cover many projects. A permit with two builders counts for each.",
                   list_date, span=("B", "K"), side_cols=3)
-    agg = collections.OrderedDict()
+    from permits_chicago import entity_key, entity_names
+    agg, names = collections.OrderedDict(), entity_names(rows)
     for p in rows:
         for g in (p.get("gc") or []):
-            a = agg.setdefault(g, {"n": 0, "cost": 0, "near": 0, "new": 0, "areas": collections.Counter()})
+            a = agg.setdefault(names[entity_key(g)], {"n": 0, "cost": 0, "near": 0, "new": 0, "areas": collections.Counter()})
             a["n"] += 1; a["cost"] += p.get("cost") or 0
             a["near"] += p["stage"] == "Partial occupancy approved"; a["new"] += p["new"]
             if p.get("communityArea"):
@@ -429,7 +430,8 @@ def build(data, out, prev=None):
     near = [p for p in rows if p["stage"] == "Partial occupancy approved"]
     new = [p for p in rows if p["new"]]
     src = data["source"]
-    fetched = dt.datetime.fromisoformat(src["fetchedAt"]).date()
+    from permits_chicago import list_day
+    fetched = list_day(src["fetchedAt"])
     list_date = f"List of {fetched.strftime('%b')} {fetched.day}, {fetched.year}"
     wb = S.new_workbook(PRODUCT)
     project_sheet(wb, "near", "Partial occupancy approved: the City has cleared part of the building for use. Biggest first.",
@@ -451,7 +453,7 @@ def build(data, out, prev=None):
                     raise SystemExit(f"em dash in {ws.title}!{c.coordinate}")
     wb.save(out)
     return {"projects": len(rows), "near": len(near), "new": len(new), "addresses": addresses,
-            "builders": len({g for p in rows for g in (p.get("gc") or [])})}
+            "builders": len({__import__("permits_chicago").entity_key(g) for p in rows for g in (p.get("gc") or [])})}
 
 
 def selftest():

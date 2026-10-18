@@ -720,6 +720,7 @@ def main():
         "window": {"from": since[:10], "to": central_today(now).isoformat()},
         "counts": {"fetched": len(rows), "kept": len(projects), "excluded": dict(reasons), "permitReasons": dict(preasons),
                    "keptByType": dict(collections.Counter(x["type"] for x in projects)),
+                   "byStage": dict(collections.Counter(x["milestone"] for x in projects)),   # the outreach email's counts (email/U1-OUTREACH.md)
                    "keptCost": total_cost(projects),
                    "keptUnits": sum(x.get("newUnits") or 0 for x in projects),
                    # valuations the City filed one or a few dollars over a round figure ($18,000,001, $500,002): the footnote's examples

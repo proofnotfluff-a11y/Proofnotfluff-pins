@@ -174,7 +174,7 @@ TAIL = re.compile(r"[;,.]?\s*\b(?:occupancy group|use group|construction type|as
 
 # Free-text permit descriptions can end with a plan reviewer's, consultant's or owner's name (Legal desk, Oct 15):
 # everything from the first such tag on is dropped before anything else, so no person's name reaches the page or the list.
-PERSON_TAG = re.compile(r"\b(?:plan\s+)?(?:reviewers?|consultants?|architects?|engineers?|owners?(?!['\u2019]s)|designers?|expeditors?|"
+PERSON_TAG = re.compile(r"\b(?:plan\s+)?(?:reviewers?|consultants?|cons[a-z]{2,6}ants?|architects?|engineers?|owners?(?!['\u2019]s)|designers?|expeditors?|"
                         r"prepared\s+by|drawn\s+by|designed\s+by|attn|c/o|contact|mr|mrs|ms|dr)\b\.?", re.I)
 
 
@@ -186,6 +186,9 @@ def clean_scope(desc, limit=150, whole=False):
     still cuts at the first reviewer, consultant or owner tag, so no person's name reaches the page."""
     d = re.sub(r"\s+", " ", (desc or "").replace("\u00bf", " ")).strip()
     d = re.sub(r"NO CHANGE IN USE(?=[A-Z])", "NO CHANGE IN USE. ", d)   # the City's text sometimes runs two words together here
+    # a reviewer's initials at the very end ("... 2025 N RACINE. HLH)"): consonants only, after a stop (Holdout, Oct 18)
+    d = re.sub(r"[.;,]\s*[B-DF-HJ-NP-TV-Z]{2,3}\)\s*$", ")", d)
+    d = re.sub(r"[.;,]\s*[B-DF-HJ-NP-TV-Z]{2,3}\s*$", "", d)
     d = re.sub(r"\b((?:19|20)\d{2})(CPS)\b", r"\1 \2", d)
     d = PREFIX.sub("", d)
     d = re.sub(r"^\(\d+[A-Z]? [NSEW]\.? [^)]{2,40}\)\s*", "", d, flags=re.I)   # a leading street address the list already shows
@@ -676,6 +679,11 @@ def selftest():
     whole = clean_scope(long, limit=1200, whole=True)
     assert whole.startswith("Interior alterations") and "restrooms" in whole and "Jane" not in whole and "Doe" not in whole, whole
     assert len(clean_scope(long)) < len(whole), "whole scope should keep every sentence"
+    lab = clean_scope("INTERIOR RENOVATION OF LARGE LAB PROCESSING SPACE ON LEVEL 2. CONSUTLTANT REVIEWER: X3 JOHN SMITH", limit=1200, whole=True)
+    assert lab.endswith("on level 2") and "Consut" not in lab and "Smith" not in lab, lab
+    init = clean_scope("ERECT A 4 STORY BUILDING (THIS PERMIT INCLUDES THE ATTACHED 6-UNIT BUILDING AT 2025 N RACINE. HLH)", limit=1200, whole=True)
+    assert init.lower().endswith("2025 n racine)") and "hlh" not in init.lower(), init
+    assert clean_scope("INTERIOR ALTERATIONS TO OFFICE SPACE ON LEVEL PH)", limit=1200, whole=True).lower().endswith("level ph)"), "a level name is not initials"
     assert builders(["CPMH CONSTRUCTION INC", "RD'S HVAC INC", "THE BOWA GROUP INC"]) == ["CPMH Construction Inc", "The Bowa Group Inc", "RD's HVAC Inc"], \
         builders(["CPMH CONSTRUCTION INC", "RD'S HVAC INC", "THE BOWA GROUP INC"])
     assert builders(["ACME BUILDERS LLC", "Acme Builders, L.L.C.", "JOHN SMITH", "", None]) == ["Acme Builders LLC"]

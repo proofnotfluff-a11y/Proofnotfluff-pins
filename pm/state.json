@@ -1,7 +1,7 @@
 {
  "started_at": "2026-10-17T18:19:43Z",
- "cash": 0.0,
- "realized_pnl": 0.0,
+ "cash": 66.2867,
+ "realized_pnl": -3.7133,
  "cohort": {
   "picked_at": "2026-10-17T18:19:43Z",
   "wallets": [
@@ -210,43 +210,28 @@
   }
  },
  "last_seen": {
-  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1792330742,
-  "0xcdcccd0f2d86e450d973da415ad2430e5cc7935a": 1792323264,
-  "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1792330413,
+  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1792348137,
+  "0xcdcccd0f2d86e450d973da415ad2430e5cc7935a": 1792344389,
+  "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1792347924,
   "0x7c37b52eb226bcb9411375ec48b0169663fb6aeb": 1792261183,
-  "0x924379a79c64b77ad5816ad362122a5f6228658e": 1792329329,
+  "0x924379a79c64b77ad5816ad362122a5f6228658e": 1792345685,
   "0x63cf8544631c31e9fcea0b02141dd24d01d6e4d0": 1792261183,
-  "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": 1792330806,
-  "0x361b16e3ddfe1d415d41008daac2631d94ab74fe": 1792330434,
-  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1792330658,
-  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1792330814,
-  "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": 1792330779,
+  "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": 1792348269,
+  "0x361b16e3ddfe1d415d41008daac2631d94ab74fe": 1792346604,
+  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1792348223,
+  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1792348262,
+  "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": 1792348164,
   "0xb0e74df9430a089aa102e2207af5fde1967439d2": 1792261183,
-  "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747": 1792328399,
-  "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c": 1792330811,
-  "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": 1792330385,
-  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1792330641,
-  "0xd38b71f3e8ed1af71983e5c309eac3dfa9b35029": 1792330392,
-  "0x511f9c771449162349795d17becf8b37031acbe1": 1792330268,
+  "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747": 1792338929,
+  "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c": 1792348101,
+  "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": 1792348148,
+  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1792334339,
+  "0xd38b71f3e8ed1af71983e5c309eac3dfa9b35029": 1792345233,
+  "0x511f9c771449162349795d17becf8b37031acbe1": 1792347848,
   "0x0f6f76ced62a911bccef92f50faaff143854d977": 1792327208,
-  "0xa2cced8bfae7d645f7f437fb76becf2fcbb70cbc": 1792330791
+  "0xa2cced8bfae7d645f7f437fb76becf2fcbb70cbc": 1792341776
  },
  "positions": {
-  "34020569485949390434092453776234146958179225699579411132499958841047996143534": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0xab1fd80d8bd4071eed7e300af7478a50f20524588ce4577e3bd8a54410d9d9db",
-   "title": "Will Leeds United FC win on 2026-10-18?",
-   "outcome": "Yes",
-   "outcome_index": 0,
-   "opened_at": "2026-10-18T13:39:44Z",
-   "leader_price": 0.38,
-   "entry_price": 0.165,
-   "shares": 29.697,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.145,
-   "value": 4.3061
-  },
   "62216093420049586863764473589072732611021099987810862636177687263075853891357": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
    "condition_id": "0x340c1c3ad87ec9d60450284665ba1a386a213d818a9042fdfcc8e20e0521f624",
@@ -307,36 +292,6 @@
    "last_price": 0.085,
    "value": 4.3842
   },
-  "60038851749173369931336497544490106980986794991739629705928827091414429384667": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0x86deb2fe5cf031b3bcd8b33e22c3e235c85b57b0eccec29f98746c4a0c5f6970",
-   "title": "Will AFC Bournemouth vs. Sunderland AFC end in a draw?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-18T13:39:52Z",
-   "leader_price": 0.7000000536,
-   "entry_price": 0.925,
-   "shares": 5.2973,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.915,
-   "value": 4.847
-  },
-  "90608692162892337044333418552404205576306805824402422725718494245658809068971": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0x7aa4f9d27c6fd2f60665b5906c15e180e99c752bcae3b51cedf60b1da4db6a79",
-   "title": "Will AFC Bournemouth win on 2026-10-18?",
-   "outcome": "Yes",
-   "outcome_index": 0,
-   "opened_at": "2026-10-18T13:39:52Z",
-   "leader_price": 0.46,
-   "entry_price": 0.915,
-   "shares": 5.3552,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.905,
-   "value": 4.8465
-  },
   "94075593196789530084405345554962428181194102842583443422288415987241260296384": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
    "condition_id": "0xc31915b123ee3e3d244ce09aa6bfa0351ef34db0abdd34eb793d814f7774c593",
@@ -351,21 +306,6 @@
    "fee_in": 0.1,
    "last_price": 0.475,
    "value": 4.799
-  },
-  "86145483780316106938306961633604534518555621763399884101132226004696588558059": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0x073b358ca8a2fdcbee75fbe0cc3a93dea55a12ac1ff81cf15fd51257008aa9c8",
-   "title": "Texans vs. Jaguars",
-   "outcome": "Texans",
-   "outcome_index": 0,
-   "opened_at": "2026-10-18T13:39:53Z",
-   "leader_price": 0.43,
-   "entry_price": 0.46,
-   "shares": 10.6522,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.445,
-   "value": 4.7402
   },
   "89524111316754281233016446935787527194216234343076592935555965327756401377156": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -409,8 +349,8 @@
    "shares": 7.1533,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.675,
-   "value": 4.8285
+   "last_price": 0.685,
+   "value": 4.9
   },
   "80556780616787832316859639400463067606516361929931003340350213494027673411133": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -424,8 +364,8 @@
    "shares": 10.1031,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.475,
-   "value": 4.799
+   "last_price": 0.515,
+   "value": 5.2031
   },
   "63409185409937996202343842452343435862204915747508075225495632362543206059313": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -439,8 +379,8 @@
    "shares": 11.3953,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.42,
-   "value": 4.786
+   "last_price": 0.415,
+   "value": 4.729
   },
   "32481463316308414566870387925755631596964865686902270953857613599861973534909": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -454,8 +394,8 @@
    "shares": 6.7586,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.715,
-   "value": 4.8324
+   "last_price": 0.72,
+   "value": 4.8662
   },
   "34211495561850364902657006812472964732267678973593165677831288791451957431998": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -469,8 +409,8 @@
    "shares": 5.1363,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.944,
-   "value": 4.8487
+   "last_price": 0.9415,
+   "value": 4.8358
   },
   "8818882580258325166337837102966293982190018467620490556947006190938951037006": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -484,8 +424,8 @@
    "shares": 5.1336,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9445,
-   "value": 4.8487
+   "last_price": 0.969,
+   "value": 4.9745
   },
   "67556833911038516663762658580603672381492400838184408384897474335007438931935": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -499,8 +439,8 @@
    "shares": 12.3581,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.3865,
-   "value": 4.7764
+   "last_price": 0.4165,
+   "value": 5.1471
   },
   "51971221506050097243705792157899572281015127216972300934938845878155423445294": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -514,8 +454,8 @@
    "shares": 5.9394,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.815,
-   "value": 4.8406
+   "last_price": 0.805,
+   "value": 4.7812
   },
   "5025646279751821747465277196511043885318485329317122457171454361662285580942": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -529,8 +469,8 @@
    "shares": 5.1228,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9465,
-   "value": 4.8487
+   "last_price": 0.921,
+   "value": 4.7181
   },
   "47741949625869287078479365362596112595414393647054952894820065470931218251823": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -544,8 +484,8 @@
    "shares": 5.5056,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.88,
-   "value": 4.8449
+   "last_price": 0.87,
+   "value": 4.7899
   },
   "94214247732572108142333554150305204183076076304152964599838273342702674607861": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -559,8 +499,8 @@
    "shares": 7.1014,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.68,
-   "value": 4.829
+   "last_price": 0.685,
+   "value": 4.8645
   },
   "108767173380374027732080104990699635190337878673564806647896154227197681002646": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -574,8 +514,8 @@
    "shares": 5.3552,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.905,
-   "value": 4.8465
+   "last_price": 0.925,
+   "value": 4.9536
   },
   "54067234782064566757986954649290239732663264374027341052285058785312325589651": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -589,38 +529,8 @@
    "shares": 5.4444,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.89,
-   "value": 4.8455
-  },
-  "84068313494487977441639789914882526138844922969736778160218127663673485785741": {
-   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
-   "condition_id": "0x9a09223f453c8fa80100aa3b64e595a19779de5edac4d8ed48e6aca773fe365c",
-   "title": "North East United FC vs. Kerala Blasters FC: Neither team to score first?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-18T13:40:05Z",
-   "leader_price": 0.92,
-   "entry_price": 0.955,
-   "shares": 5.1309,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.945,
-   "value": 4.8487
-  },
-  "528383414664033909115202144039338004166660158728304575493681700822274976034": {
-   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
-   "condition_id": "0x9a09223f453c8fa80100aa3b64e595a19779de5edac4d8ed48e6aca773fe365c",
-   "title": "North East United FC vs. Kerala Blasters FC: Neither team to score first?",
-   "outcome": "Yes",
-   "outcome_index": 0,
-   "opened_at": "2026-10-18T13:40:05Z",
-   "leader_price": 0.030000001,
-   "entry_price": 0.065,
-   "shares": 75.3846,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.055,
-   "value": 4.1462
+   "last_price": 0.95,
+   "value": 5.1722
   },
   "72926272721443753114182470089845936489635136464712637631305377519156681079859": {
    "leader": "0x924379a79c64b77ad5816ad362122a5f6228658e",
@@ -634,8 +544,8 @@
    "shares": 9.3333,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.515,
-   "value": 4.8066
+   "last_price": 0.87,
+   "value": 8.12
   },
   "21008979940353256144503935544250653186353322542026332591388122526743916039985": {
    "leader": "0x924379a79c64b77ad5816ad362122a5f6228658e",
@@ -649,8 +559,8 @@
    "shares": 9.3333,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.515,
-   "value": 4.8066
+   "last_price": 0.44,
+   "value": 4.1067
   },
   "99854894204125463189302259163161636491064705524579434071413945537050197003121": {
    "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
@@ -664,68 +574,8 @@
    "shares": 8.8288,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.545,
-   "value": 4.8117
-  },
-  "23809430638928095437337789232876138383878165064836822581309556174999424442803": {
-   "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
-   "condition_id": "0x9162c06543956e1ebeb3e07414b23d27287ba700c9699fd7ea4704f063ae1d15",
-   "title": "Will FC Salzburg win on 2026-10-18?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-18T13:40:10Z",
-   "leader_price": 0.15,
-   "entry_price": 0.165,
-   "shares": 29.697,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.115,
-   "value": 3.4152
-  },
-  "42342576186998212727045932706074010475503943193458432507957710406940842573553": {
-   "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
-   "condition_id": "0x91290d87ec7cc751eef09408cd0d7b41afec4ad2edbb2b6181ae7b7f1440536e",
-   "title": "Florence: Dmitry Popko vs Daniele Rapagnetta",
-   "outcome": "Dmitry Popko",
-   "outcome_index": 0,
-   "opened_at": "2026-10-18T13:40:10Z",
-   "leader_price": 0.75,
-   "entry_price": 0.775,
-   "shares": 6.3226,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.735,
-   "value": 4.6471
-  },
-  "25665199630563540398962428584579658096680835485311944866668893065354008750622": {
-   "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
-   "condition_id": "0xa342cfb1985c983dc9c6baceb1a82ff5fe1d93e4b3c7ff42a0543518ae1ef711",
-   "title": "Olbia: Jacob Fearnley vs Damir Dzumhur",
-   "outcome": "Jacob Fearnley",
-   "outcome_index": 0,
-   "opened_at": "2026-10-18T13:40:10Z",
-   "leader_price": 0.54,
-   "entry_price": 0.495,
-   "shares": 9.899,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.485,
-   "value": 4.801
-  },
-  "52659043615564171146151861079401288931834507683491617554165762913071295298305": {
-   "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
-   "condition_id": "0xa240773db888978d36e83789cdbdb1bd653906a68d36ab75d8bda14c3cbed984",
-   "title": "S\u00f8nderjyske Fodbold vs. Silkeborg IF: O/U 3.5",
-   "outcome": "Under",
-   "outcome_index": 1,
-   "opened_at": "2026-10-18T13:40:11Z",
-   "leader_price": 0.5,
-   "entry_price": 0.2,
-   "shares": 24.5,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.205,
-   "value": 5.0225
+   "last_price": 0.9995,
+   "value": 8.8244
   },
   "70614471196795272033329426723799996809321570296189387908272288974160916845122": {
    "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
@@ -739,53 +589,8 @@
    "shares": 12.4051,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.385,
-   "value": 4.776
-  },
-  "113409138797956981189474379888793715237386038085917470265295402608935087574296": {
-   "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
-   "condition_id": "0x4b78706ca8289c71fd16b9c0da0f603a64e7b941415a00113fc18cee78d49305",
-   "title": "SC Cambuur-Leeuwarden vs. AZ: O/U 4.5",
-   "outcome": "Under",
-   "outcome_index": 1,
-   "opened_at": "2026-10-18T13:40:11Z",
-   "leader_price": 0.37,
-   "entry_price": 0.41,
-   "shares": 11.9512,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.365,
-   "value": 4.3622
-  },
-  "19133107896909512602632242292886314659837845619302869143818568530599648347762": {
-   "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
-   "condition_id": "0x04721b1d35f3cf3c42bc84f8b43243f815adb54093fc5ee3d5eba5c2744fb4aa",
-   "title": "Will Bayer 04 Leverkusen win on 2026-10-18?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-18T13:40:12Z",
-   "leader_price": 0.4,
-   "entry_price": 0.425,
-   "shares": 11.5294,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.415,
-   "value": 4.7847
-  },
-  "71370100000564667583029322097114687139833514783838720024525860465558831427304": {
-   "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
-   "condition_id": "0x618ad4095ed732455c2b379a7cb755ac2fceb7ee26d18df3cf6d9fd079dd5bc3",
-   "title": "Will AZ win on 2026-10-18?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-18T13:40:12Z",
-   "leader_price": 0.68,
-   "entry_price": 0.705,
-   "shares": 6.9504,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.725,
-   "value": 5.039
+   "last_price": 0.4,
+   "value": 4.962
   },
   "63540908491021118927653883361620441547408161970592236498816278085661749424356": {
    "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
@@ -799,8 +604,8 @@
    "shares": 18.4906,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.255,
-   "value": 4.7151
+   "last_price": 0.0005,
+   "value": 0.0092
   },
   "50738671206644409825645979113124674114540285728171510741911109012242870025823": {
    "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
@@ -814,10 +619,272 @@
    "shares": 16.8966,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.28,
-   "value": 4.731
+   "last_price": 0.9995,
+   "value": 16.8882
+  }
+ },
+ "closed": [
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0xab1fd80d8bd4071eed7e300af7478a50f20524588ce4577e3bd8a54410d9d9db",
+   "title": "Will Leeds United FC win on 2026-10-18?",
+   "outcome": "Yes",
+   "outcome_index": 0,
+   "opened_at": "2026-10-18T13:39:44Z",
+   "leader_price": 0.38,
+   "entry_price": 0.165,
+   "shares": 29.697,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.145,
+   "value": 4.3061,
+   "closed_at": "2026-10-18T18:31:14Z",
+   "exit_price": 0.0,
+   "fee_out": 0.0,
+   "pnl": -5.0,
+   "reason": "resolved"
   },
-  "115151569630279219129035672245770766906377612568715418285289886485381486370232": {
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x86deb2fe5cf031b3bcd8b33e22c3e235c85b57b0eccec29f98746c4a0c5f6970",
+   "title": "Will AFC Bournemouth vs. Sunderland AFC end in a draw?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-18T13:39:52Z",
+   "leader_price": 0.7000000536,
+   "entry_price": 0.925,
+   "shares": 5.2973,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.915,
+   "value": 4.847,
+   "closed_at": "2026-10-18T18:31:16Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 0.2973,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x7aa4f9d27c6fd2f60665b5906c15e180e99c752bcae3b51cedf60b1da4db6a79",
+   "title": "Will AFC Bournemouth win on 2026-10-18?",
+   "outcome": "Yes",
+   "outcome_index": 0,
+   "opened_at": "2026-10-18T13:39:52Z",
+   "leader_price": 0.46,
+   "entry_price": 0.915,
+   "shares": 5.3552,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.905,
+   "value": 4.8465,
+   "closed_at": "2026-10-18T18:31:16Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 0.3552,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x073b358ca8a2fdcbee75fbe0cc3a93dea55a12ac1ff81cf15fd51257008aa9c8",
+   "title": "Texans vs. Jaguars",
+   "outcome": "Texans",
+   "outcome_index": 0,
+   "opened_at": "2026-10-18T13:39:53Z",
+   "leader_price": 0.43,
+   "entry_price": 0.46,
+   "shares": 10.6522,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.445,
+   "value": 4.7402,
+   "closed_at": "2026-10-18T18:31:17Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 5.6522,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x9a09223f453c8fa80100aa3b64e595a19779de5edac4d8ed48e6aca773fe365c",
+   "title": "North East United FC vs. Kerala Blasters FC: Neither team to score first?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-18T13:40:05Z",
+   "leader_price": 0.92,
+   "entry_price": 0.955,
+   "shares": 5.1309,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.945,
+   "value": 4.8487,
+   "closed_at": "2026-10-18T18:31:24Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 0.1309,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x9a09223f453c8fa80100aa3b64e595a19779de5edac4d8ed48e6aca773fe365c",
+   "title": "North East United FC vs. Kerala Blasters FC: Neither team to score first?",
+   "outcome": "Yes",
+   "outcome_index": 0,
+   "opened_at": "2026-10-18T13:40:05Z",
+   "leader_price": 0.030000001,
+   "entry_price": 0.065,
+   "shares": 75.3846,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.055,
+   "value": 4.1462,
+   "closed_at": "2026-10-18T18:31:24Z",
+   "exit_price": 0.0,
+   "fee_out": 0.0,
+   "pnl": -5.0,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
+   "condition_id": "0x9162c06543956e1ebeb3e07414b23d27287ba700c9699fd7ea4704f063ae1d15",
+   "title": "Will FC Salzburg win on 2026-10-18?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-18T13:40:10Z",
+   "leader_price": 0.15,
+   "entry_price": 0.165,
+   "shares": 29.697,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.115,
+   "value": 3.4152,
+   "closed_at": "2026-10-18T18:31:25Z",
+   "exit_price": 0.0,
+   "fee_out": 0.0,
+   "pnl": -5.0,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
+   "condition_id": "0x91290d87ec7cc751eef09408cd0d7b41afec4ad2edbb2b6181ae7b7f1440536e",
+   "title": "Florence: Dmitry Popko vs Daniele Rapagnetta",
+   "outcome": "Dmitry Popko",
+   "outcome_index": 0,
+   "opened_at": "2026-10-18T13:40:10Z",
+   "leader_price": 0.75,
+   "entry_price": 0.775,
+   "shares": 6.3226,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.735,
+   "value": 4.6471,
+   "closed_at": "2026-10-18T18:31:25Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 1.3226,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
+   "condition_id": "0xa342cfb1985c983dc9c6baceb1a82ff5fe1d93e4b3c7ff42a0543518ae1ef711",
+   "title": "Olbia: Jacob Fearnley vs Damir Dzumhur",
+   "outcome": "Jacob Fearnley",
+   "outcome_index": 0,
+   "opened_at": "2026-10-18T13:40:10Z",
+   "leader_price": 0.54,
+   "entry_price": 0.495,
+   "shares": 9.899,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.485,
+   "value": 4.801,
+   "closed_at": "2026-10-18T18:31:26Z",
+   "exit_price": 0.0,
+   "fee_out": 0.0,
+   "pnl": -5.0,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
+   "condition_id": "0xa240773db888978d36e83789cdbdb1bd653906a68d36ab75d8bda14c3cbed984",
+   "title": "S\u00f8nderjyske Fodbold vs. Silkeborg IF: O/U 3.5",
+   "outcome": "Under",
+   "outcome_index": 1,
+   "opened_at": "2026-10-18T13:40:11Z",
+   "leader_price": 0.5,
+   "entry_price": 0.2,
+   "shares": 24.5,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.205,
+   "value": 5.0225,
+   "closed_at": "2026-10-18T18:31:26Z",
+   "exit_price": 0.0,
+   "fee_out": 0.0,
+   "pnl": -5.0,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
+   "condition_id": "0x4b78706ca8289c71fd16b9c0da0f603a64e7b941415a00113fc18cee78d49305",
+   "title": "SC Cambuur-Leeuwarden vs. AZ: O/U 4.5",
+   "outcome": "Under",
+   "outcome_index": 1,
+   "opened_at": "2026-10-18T13:40:11Z",
+   "leader_price": 0.37,
+   "entry_price": 0.41,
+   "shares": 11.9512,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.365,
+   "value": 4.3622,
+   "closed_at": "2026-10-18T18:31:26Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 6.9512,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
+   "condition_id": "0x04721b1d35f3cf3c42bc84f8b43243f815adb54093fc5ee3d5eba5c2744fb4aa",
+   "title": "Will Bayer 04 Leverkusen win on 2026-10-18?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-18T13:40:12Z",
+   "leader_price": 0.4,
+   "entry_price": 0.425,
+   "shares": 11.5294,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.415,
+   "value": 4.7847,
+   "closed_at": "2026-10-18T18:31:26Z",
+   "exit_price": 0.0,
+   "fee_out": 0.0,
+   "pnl": -5.0,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
+   "condition_id": "0x618ad4095ed732455c2b379a7cb755ac2fceb7ee26d18df3cf6d9fd079dd5bc3",
+   "title": "Will AZ win on 2026-10-18?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-18T13:40:12Z",
+   "leader_price": 0.68,
+   "entry_price": 0.705,
+   "shares": 6.9504,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.725,
+   "value": 5.039,
+   "closed_at": "2026-10-18T18:31:27Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 1.9504,
+   "reason": "resolved"
+  },
+  {
    "leader": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
    "condition_id": "0x4601923a5734a2d01f7d68ab47bb13202555e6c4e2c1c11c07b3aea6e4a37e70",
    "title": "Roanne: Matteo Martineau vs Mika Brunold",
@@ -830,14 +897,18 @@
    "cost": 5.0,
    "fee_in": 0.1,
    "last_price": 0.325,
-   "value": 4.7537
+   "value": 4.7537,
+   "closed_at": "2026-10-18T18:31:28Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 9.6269,
+   "reason": "resolved"
   }
- },
- "closed": [],
+ ],
  "signals": {
   "buy": 40,
   "sell": 0,
-  "skipped": 912,
+  "skipped": 1860,
   "fallback_price": 0
  },
  "errors": 0

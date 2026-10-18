@@ -1606,7 +1606,7 @@ def leads_page_html(p):
         return f'<a class="{cls}" href="{E(checkout)}" rel="noopener">{label}</a>' if checkout else ""
 
     # hero: two lines of promise, then the price and the action on the first screen (design director, Oct 17)
-    lede = (f'{kept:,} open apartment and commercial projects over $500,000 in {E(p["city"])}, about {money(cost, True)} of work, '
+    lede = (f'{kept:,} open apartment and commercial projects of $500,000 or more in {E(p["city"])}, about {money(cost, True)} of work, '
             f'and the builders running them. {E(p["lede"])}')
     if checkout:
         hero_act = (f'<div class="ld-heroact" id="ldHeroCta">{buy()}<a class="ld-textlink" href="#near">See this week\'s sample</a></div>'

@@ -15,7 +15,12 @@ the workbook travel inside one AES-256-GCM box under a key derived with PBKDF2-S
 members' password; the page decrypts in the buyer's browser. The repo holds only ciphertext.
 
 Builder contacts: tools/builder_contacts.py contact_for() (verified phone, website and general email read on the
-builder's own site). Builders without an entry show a "no contact on file yet" card.
+builder's own site). Builders without an entry, and any builder on permits/chicago/builder_do_not_list.json, show a "no contact on file yet" card.
+The contacts file is encrypted in the repo (builder_contacts.enc.json); this script hands its password to builder_contacts.
+
+Terms: #/terms shows the City's disclaimer and the Terms of Use paragraphs from tools/leads_xlsx.py terms_text(), the same
+list the workbook's Terms tab is built from, so the two cannot drift (Legal desk round 2, Fixes 2 and 3). The footer on
+every view, and the gate, link to it.
 
 Map: Leaflet 1.9.4 from cdnjs (exact version, SRI) on OpenStreetMap's standard tiles, desaturated with CSS, with the
 OpenStreetMap attribution shown (CARTO's free basemaps are for non-commercial use, so they are not used here).
@@ -31,27 +36,32 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 from leads_page import decrypt, encrypt, pretty_date, FREE_PAGE  # noqa: E402
-from leads_xlsx import BUILDER_EMAIL, CAPABILITY_SHEET, prep  # noqa: E402
+from leads_xlsx import BUILDER_EMAIL, CAPABILITY_SHEET, CITY_DISCLAIMER, OUR_NOTICE, prep, terms_text  # noqa: E402
 from permits_chicago import DATASET, PORTAL, builders, clean_scope, gc_key, unit_count  # noqa: E402
 
 try:
-    from builder_contacts import contact_for  # noqa: E402
+    from builder_contacts import contact_for, set_password as contacts_password  # noqa: E402
 except Exception:  # the contacts file and tool are optional: every builder then shows "no contact on file yet"
-    contact_for = None
+    contact_for = contacts_password = None
 
 STAGES = ["Partial occupancy approved", "Inspections under way", "Permit issued"]
 LEAFLET_JS = ("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js", "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=")
 LEAFLET_CSS = ("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css", "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=")
 RECORD = f"{PORTAL}/resource/{DATASET}.json?permit_="
-# the v1 page's legal line, word for word (tools/leads_page.py PAGE, .lm-legal)
+CITY_TERMS = "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+# the footer on every view and under the gate: the City's disclaimer word for word, then ours (Legal desk round 2, Fixes 2
+# and 4). "Terms of Use" becomes the link to #/terms.
 LEGAL = ("Public City of Chicago permit records, as of __ASOF__. This site provides applications using data that has been modified "
          "for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago "
          "makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data "
          "provided at this site is subject to change at any time. It is understood that the data provided at this site is being used "
-         "at one's own risk. No builder listed has endorsed or works with ProofNotFluff. Licensed to one business for its own "
+         "at one's own risk. ProofNotFluff is not affiliated with or endorsed by the City of Chicago, and no builder listed has "
+         "endorsed or works with ProofNotFluff. Builder contacts come from each builder's own website, not the City. You make your "
+         "own calls and emails and are responsible for following the law when you do. Licensed to one business for its own "
          "prospecting; no reselling or republishing. Provided as is, without warranties of any kind, to the extent the law allows, and "
          "ProofNotFluff's total liability for any claim is limited to the amount you paid for the most recent month of your membership. "
-         "Made with AI assistance. Full terms are on the Terms tab of the Excel file.")
+         "Made with AI assistance. Read the full Terms of Use (also on the Terms tab of the Excel file).")
+TERMS_LINK = "Terms of Use"
 EMAIL_OK = re.compile(r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$")
 
 
@@ -115,11 +125,25 @@ def pitch_json():
     return json.dumps({"sheet": CAPABILITY_SHEET, "email": BUILDER_EMAIL})
 
 
-def build_html(rows, fetched, xlsx_bytes, password):
+def legal_html():
+    """LEGAL, escaped, with "Terms of Use" linking to the in-app Terms view."""
+    assert LEGAL.count(TERMS_LINK) == 1
+    return _esc(LEGAL).replace(TERMS_LINK, f'<a href="#/terms">{TERMS_LINK}</a>')
+
+
+def terms_json(as_of, city_terms=CITY_TERMS):
+    """The Terms view's text: the workbook Terms tab's own paragraphs (tools/leads_xlsx.py terms_text), not a copy."""
+    t = terms_text(as_of)
+    return json.dumps({"version": t[0], "paras": t[1:], "city": CITY_DISCLAIMER, "cityTerms": city_terms, "notice": OUR_NOTICE},
+                      ensure_ascii=False).replace("</", "<\\/")
+
+
+def build_html(rows, fetched, xlsx_bytes, password, city_terms=CITY_TERMS):
     """The app page for prepared rows (tools/leads_xlsx.py prep: each with a stage and a new flag), the list date and the workbook."""
     box = encrypt(password, json.dumps(payload(rows, fetched, xlsx_bytes), separators=(",", ":")).encode())
     as_of = pretty_date(fetched)
-    return (PAGE.replace("__BOX__", json.dumps(box)).replace("__LEGAL__", _esc(LEGAL)).replace("__ASOF__", as_of)
+    return (PAGE.replace("__BOX__", json.dumps(box)).replace("__TERMS__", terms_json(as_of, city_terms))
+            .replace("__LEGAL__", legal_html()).replace("__ASOF__", as_of)
             .replace("__FREE__", FREE_PAGE).replace("__PITCH__", pitch_json())
             .replace("__LJS__", LEAFLET_JS[0]).replace("__LJSI__", LEAFLET_JS[1])
             .replace("__LCSS__", LEAFLET_CSS[0]).replace("__LCSSI__", LEAFLET_CSS[1]))
@@ -128,10 +152,11 @@ def build_html(rows, fetched, xlsx_bytes, password):
 def build(full, xlsx_path, out, password):
     rows = [prep(p) for p in full["projects"]]
     fetched = dt.datetime.fromisoformat(full["source"]["fetchedAt"]).date()
-    html = build_html(rows, fetched, open(xlsx_path, "rb").read(), password)
+    html = build_html(rows, fetched, open(xlsx_path, "rb").read(), password, full["source"].get("terms") or CITY_TERMS)
     os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
     open(out, "w", encoding="utf-8").write(html)
-    return {"rows": len(rows), "bytes": len(html)}
+    names = {g for p in rows for g in (p.get("gc") or [])}
+    return {"rows": len(rows), "bytes": len(html), "buildersWithContact": sum(1 for g in names if contact(g))}
 
 
 def projects_from_review(review, fetched):
@@ -550,6 +575,12 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media(max-width:420px){.sheet li{grid-template-columns:minmax(0,1fr);gap:2px}}
 .mail>p{margin:0 0 12px;font-size:15px;color:var(--ink2)}
 .mail .f{color:var(--blue);font-weight:700}
+/* terms */
+.terms{display:grid;gap:20px;max-width:880px}
+.terms .tx{padding:0 20px 20px;font-size:15px;line-height:1.65;color:var(--ink2)}
+.terms .tx p{margin:0 0 12px;max-width:75ch;text-wrap:pretty}.terms .tx p:last-child{margin-bottom:0}
+.terms .tx b{color:var(--ink);font-weight:600}
+@media(max-width:600px){.terms .tx{padding:0 16px 16px}}
 /* footer */
 .foot-legal{border-top:1px solid var(--line);max-width:1320px;margin:8px auto 0;padding:20px 16px 32px;font-size:12.5px;line-height:1.6;color:var(--muted)}
 .foot-legal p{margin:0 0 8px;max-width:110ch}
@@ -570,7 +601,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 <form class="gate-card" id="gate" novalidate>
 <span class="chip s2"><svg class="ico s" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Members</span>
 <h1>This week's Chicago leads</h1>
-<p class="sub">List of __ASOF__. Projects close to a final clean, the builder on each, and how to reach them.</p>
+<p class="sub">List of __ASOF__. Projects close to a final clean, the builder on each, and the builder's office phone or email where their own website lists one.</p>
 <label for="pw">Members' password</label>
 <div class="pw"><input id="pw" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="err pwHelp">
 <button type="button" class="eye" id="eye" aria-label="Show password" aria-pressed="false"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path id="eyeslash" d="M3 3l18 18" hidden/></svg></button></div>
@@ -589,6 +620,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 "use strict";
 const BOX=__BOX__;
 const PITCH=__PITCH__;
+const TERMS=__TERMS__;
 const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 async function openBox(pw){const k0=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveKey"]);
 const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b64(BOX.salt),iterations:BOX.rounds,hash:"SHA-256"},k0,{name:"AES-GCM",length:256},false,["decrypt"]);
@@ -667,6 +699,7 @@ else if(v==="project"&&BYID[parts[1]]){viewProject(BYID[parts[1]]);nav="projects
 else if(v==="builders")viewBuilders(q);
 else if(v==="builder"&&B[parts[1]]){viewBuilder(B[parts[1]]);nav="builders";}
 else if(v==="pitch")viewPitch();
+else if(v==="terms"){viewTerms();nav="";}
 else if(v==="project"||v==="builder"){app.innerHTML=`<div class="panel empty"><h3>That ${v} is not on this week's list</h3><p>Projects leave the list when the City marks the permit complete, and builders leave with their projects.</p><a class="btn ink" href="#/projects">See this week's projects</a></div>`;nav=v==="project"?"projects":"builders";document.title="Not on this week's list | Chicago Construction Cleaning Leads";}
 else viewOverview();
 setNav(nav);app.classList.remove("view-enter");void app.offsetWidth;app.classList.add("view-enter");
@@ -804,7 +837,7 @@ function sheetKeys(e){if(e.key==="Escape"){closeSheet();return;}if(e.key!=="Tab"
 if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();}}
 
 /* CSV of the current view */
-function cell(v){v=v==null?"":String(v);if(/^[=+\-@\t\r]/.test(v))v="'"+v;return /[",\r\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;}
+function cell(v){v=v==null?"":String(v);if(/^[=+\-@\t\r]/.test(v)&&!/^-?\d+(\.\d+)?$/.test(v))v="'"+v;return /[",\r\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;}
 function exportCsv(){const rows=STATE.rows||[];if(!rows.length)return;
 const head=["Address","Community area","Reported cost","Stage","City milestone","City permit status","Type","Homes","Issued","Permit","Builder","Second builder","Builder office phone","Builder email","Builder website","New this week","Contacted","Contacted on","Your note","What the permit covers","Latitude","Longitude"];
 const lines=[head.map(cell).join(",")];
@@ -823,7 +856,7 @@ let body="";
 if(b.ok){body=`${c.phone?`<a class="btn pri call" href="tel:+1${esc(c.tel)}">${ico("phone")}Call ${esc(c.phone)}</a>`:""}
 <ul class="cl">${c.email?`<li><a href="mailto:${esc(c.email)}${subj}">${ico("mail")}<span>${esc(c.email)}</span></a></li>`:""}${c.website?`<li><a href="${esc(c.website)}" target="_blank" rel="noopener">${ico("web")}<span>${esc(host(c.website))}</span><span class="sr"> (opens in a new tab)</span></a></li>`:""}${c.contactPage&&c.contactPage!==c.website?`<li><a href="${esc(c.contactPage)}" target="_blank" rel="noopener">${ico("ext")}<span>Their contact page</span><span class="sr"> (opens in a new tab)</span></a></li>`:""}</ul>
 <p class="src">${c.note?esc(c.note.charAt(0).toUpperCase()+c.note.slice(1))+". ":""}Main office details from ${c.source?`<a href="${esc(c.source)}" target="_blank" rel="noopener">the builder's own website</a>`:"the builder's own website"}${c.checkedAt?`, checked ${esc(day(c.checkedAt))}`:""}. Ask for the project manager or the estimator on this job.</p>`;}
-else{body=`<div class="none"><b>No contact on file yet</b>We list a builder's office phone and general email only after reading them on the builder's own website. This builder is not checked yet, or their site does not show them.</div>
+else{body=`<div class="none"><b>No contact on file yet</b>We list a builder's office phone and general email only after reading them on the builder's own website. This builder is not checked yet, we found no website that is clearly theirs, or their site does not show them.</div>
 <div class="foot"><a class="btn" href="https://www.google.com/search?q=${encodeURIComponent(b.name+" Chicago")}" target="_blank" rel="noopener">${ico("search","s")}Search the web for this builder<span class="sr"> (opens in a new tab)</span></a></div>`;}
 return `<section class="panel bc" aria-label="${onBuilderPage?"Contact":"Builder"}">${onBuilderPage?`<h2>Contact</h2>`:`<div class="who"><span class="av">${ico("build")}</span><div><h2>${esc(b.name)}</h2><p class="meta num">${plural(b.n,"project")} this week<br>${money(b.cost)} reported${b.near?`, ${int(b.near)} near finish`:""}</p></div></div>`}${body}
 ${showLink?`<div class="foot"><a class="btn" href="#/builder/${encodeURIComponent(b.key)}">See all ${plural(b.n,"project")} by this builder</a></div>`:""}</section>`;}
@@ -888,6 +921,19 @@ $("#app").innerHTML=`<a class="back" href="#/builders" id="back">${ico("back")}B
 <div class="pg-main"><section class="panel"><div class="sec-h"><h2>Their projects<span class="c num">${int(ps.length)}</span></h2><a href="#/projects?q=${encodeURIComponent(b.name)}">Open in Projects</a></div>${[0,1,2].map(st=>{const g=ps.filter(p=>p.st===st);return g.length?`<h3 class="grp">${STG[st]}<span class="c num">${int(g.length)}</span></h3>${rowsHtml(g,0,b.key)}`:"";}).join("")}</section></div></div>`;
 $("#back").onclick=e=>{e.preventDefault();back("#/builders");};}
 
+/* terms: the workbook Terms tab's own paragraphs (tools/leads_xlsx.py terms_text) with the City's disclaimer first */
+function termsHtml(){const para=t=>{const m=/^([A-Z][A-Za-z ]{1,40}?\.) (.+)$/.exec(t);return m?`<p><b>${esc(m[1])}</b> ${esc(m[2])}</p>`:`<p>${esc(t)}</p>`;};
+return `<div class="ph"><div><h1>Terms of Use</h1><p>${esc(TERMS.version)}. The same terms are on the Terms tab of the Excel file.</p></div></div>
+<div class="terms"><section class="panel" aria-labelledby="th1"><div class="sec-h"><h2 id="th1">City of Chicago data</h2></div><div class="tx"><p>${esc(TERMS.city)}</p><p><a href="${esc(TERMS.cityTerms)}" target="_blank" rel="noopener">City of Chicago Data Terms of Use<span class="sr"> (opens in a new tab)</span></a></p></div></section>
+<section class="panel" aria-labelledby="th2"><div class="sec-h"><h2 id="th2">ProofNotFluff</h2></div><div class="tx"><p>${esc(TERMS.notice)}</p>${TERMS.paras.map(para).join("")}</div></section></div>`;}
+function viewTerms(){document.title="Terms of Use | Chicago Construction Cleaning Leads";
+$("#app").innerHTML=`<a class="back" href="#/" id="back">${ico("back")}Back</a>`+termsHtml();$("#back").onclick=e=>{e.preventDefault();back("#/");};}
+/* before the list is open, the Terms link on the gate shows the same Terms view, with a way back to the password */
+function gateHash(){if(D)return;const t=(location.hash||"")==="#/terms";$("#gateView").hidden=t;$("#gateLegal").hidden=t;$("#app").hidden=!t;$("#appLegal").hidden=!t;
+if(t){document.title="Terms of Use | Chicago Construction Cleaning Leads";$("#app").innerHTML=`<a class="back" href="#/">${ico("back")}Back to the password</a>`+termsHtml();window.scrollTo(0,0);const h=$("#app h1");h.setAttribute("tabindex","-1");h.focus({preventScroll:true});}
+else{$("#app").innerHTML="";document.title="Members: Chicago Construction Cleaning Leads | ProofNotFluff";}}
+window.addEventListener("hashchange",gateHash);gateHash();
+
 /* pitch kit */
 function viewPitch(){document.title="Pitch kit | Chicago Construction Cleaning Leads";
 const sheetTxt=PITCH.sheet.map(([k,v])=>k+": "+v).join("\n"),mailTxt=PITCH.email.join("\n\n");
@@ -906,7 +952,7 @@ if(!pw.value.trim()){err.textContent="Type the password from your Gumroad purcha
 btn.disabled=true;btn.textContent="Opening the list...";err.textContent="";
 try{const d=await openBox(pw.value.trim());pw.value="";prep(d);
 $("#gateView").hidden=true;$("#gateLegal").hidden=true;$("#app").hidden=false;$("#appLegal").hidden=false;$("#tabs").hidden=false;$("#bnav").hidden=false;$("#dlTop").hidden=false;document.body.classList.add("in");
-$("#dlTop").onclick=downloadWorkbook;window.addEventListener("hashchange",onHash);STATE.trail=[location.hash||"#/"];route(true);}
+$("#dlTop").onclick=downloadWorkbook;window.removeEventListener("hashchange",gateHash);window.addEventListener("hashchange",onHash);STATE.trail=[location.hash||"#/"];route(true);}
 catch(x){btn.disabled=false;btn.textContent="Open this week's list";err.textContent="That password did not open the list. Check your Gumroad purchase page, or reply to your receipt for help.";pw.select();}};
 </script></body></html>
 """
@@ -926,7 +972,17 @@ def selftest():
     html = build_html(prepped, dt.date(2026, 10, 17), b"PK", "correct horse battery")
     assert "<b>alterations</b>" not in html and "Acme" not in html and "1 N Main" not in html, "row data must stay inside the ciphertext"
     assert 'name="robots" content="noindex' in html and "List of Oct 17, 2026" in html
-    assert LEGAL.replace("__ASOF__", "Oct 17, 2026") in html.replace("&#x27;", "'"), "the v1 legal line must appear word for word"
+    text_only = re.sub(r"<[^>]+>", "", html).replace("&#x27;", "'")
+    assert text_only.count(LEGAL.replace("__ASOF__", "Oct 17, 2026")) == 2, "the legal line must appear word for word on the gate and in the footer"
+    assert html.count('<a href="#/terms">Terms of Use</a>') == 2, "the gate and the footer link to the Terms view"
+    terms = json.loads(re.search(r"const TERMS=(\{.*?\});\n", html).group(1))
+    import leads_xlsx
+    assert [terms["version"]] + terms["paras"] == leads_xlsx.terms_text("Oct 17, 2026"), "the Terms view must be the workbook's own paragraphs"
+    assert "Version 2, Oct 17, 2026" in terms["version"] and terms["city"] == leads_xlsx.CITY_DISCLAIMER and terms["notice"] == leads_xlsx.OUR_NOTICE
+    assert any(p.startswith("Accuracy.") and "not City data" in p for p in terms["paras"]) and any("OpenStreetMap" in p for p in terms["paras"])
+    assert 'v==="terms"' in html and "function viewTerms()" in html and "function gateHash()" in html
+    assert "and the builder's office phone or email where their own website lists one." in html and "how to reach them" not in html
+    assert "we found no website that is clearly theirs, or their site does not show them." in html
     for u, h in (LEAFLET_JS, LEAFLET_CSS):
         assert re.search(r"/leaflet/\d+\.\d+\.\d+/", u) and h.startswith("sha256-") and h in html and u in html
     assert "openstreetmap.org/copyright" in html, "map attribution"
@@ -978,8 +1034,15 @@ def selftest():
             js = fns + "\nconsole.log(JSON.stringify(%s.map(n=>money(n)).concat([bigMoney(2950000000),bigMoney(2850000000)])))" % json.dumps(list(cases))
             got = json.loads(subprocess.run([node, "-e", js], capture_output=True, text=True, check=True).stdout)
             assert got == list(cases.values()) + ["$3.0 billion", "$2.9 billion"], got
+        # CSV export: the formula guard quotes text that starts with = + - @, but plain numbers such as longitudes stay numbers
+        fn = re.search(r"^function cell\(v\).*$", PAGE, re.M).group(0)
+        cells = [-87.637533, "-87.637533", 41.88, 1988677, "=SUM(A1)", "-1 call first", "+1 312", "@x", "", None, 'say "hi", then']
+        js = fn + "\nconsole.log(JSON.stringify(%s.map(cell)))" % json.dumps(cells)
+        got = json.loads(subprocess.run([node, "-e", js], capture_output=True, text=True, check=True).stdout)
+        assert got == ["-87.637533", "-87.637533", "41.88", "1988677", "'=SUM(A1)", "'-1 call first", "'+1 312", "'@x", "", "",
+                       '"say ""hi"", then"'], got
     else:
-        print("node not found: browser money format not checked here")
+        print("node not found: browser money format and CSV cells not checked here")
     text = PAGE + LEGAL
     assert "—" not in text, "em dash"
     for w in ("honestly", "genuinely", "straightforward", "delve", "unlock ", "elevate", "seamless", "game-changer", "effortless", "supercharge"):
@@ -1002,6 +1065,8 @@ if __name__ == "__main__":
             args = args[:i] + args[i + 2:]
         if len(pw) < 12:
             raise SystemExit("LEADS_PASSWORD missing or shorter than 12 characters; nothing written")
+        if contacts_password:
+            contacts_password(pw)   # the encrypted contacts file uses the same members' password
         if args[:1] == ["--from-review"]:
             print(from_review(args[1], args[2], pw))
         else:

@@ -329,7 +329,7 @@ def finish_card_sheet(ws, r, tab):
 
 
 def start_here(wb, rows, near, new, src, list_date, addresses):
-    ws = card_sheet(wb, "Start Here", PRODUCT, "Open apartment and commercial permits over $500,000, and their builders.",
+    ws = card_sheet(wb, "Start Here", PRODUCT, "Open apartment and commercial permits of $500,000 or more, and their builders.",
                     list_date, "teal", position=0)
     allr = f"'{TABS['all']}'!"
     n = max(len(rows), 1)
@@ -381,26 +381,32 @@ def pitch_kit(wb, list_date):
 
 
 def terms_text(date):
-    """The Terms of Use from the clause library, adapted for a monthly membership (Legal desk, Oct 17, 2026)."""
+    """The Terms of Use from the clause library, adapted for a monthly membership (Legal desk, Oct 17, 2026; version 2 for builder
+    contacts and the map, Legal desk round 2, Fix 3). One source: the workbook's Terms tab and the members' app's #/terms view
+    (tools/leads_app.py) are both built from this list."""
     return [
-        f"ProofNotFluff | {PRODUCT} | Version 1, {date}",
+        f"ProofNotFluff | {PRODUCT} | Version 2, {date}",
         "License. Your membership gives you a license to use this list for one business you own, for its own sales prospecting. You may edit "
         "it and print it for that use. You may not resell, share, give away, upload or redistribute it, in original or edited form, or use it "
         "to make a competing product.",
         "Ownership. The selection, layout, text and formulas belong to ProofNotFluff. The permit records themselves are public City of Chicago "
         "data. Buying a membership doesn't transfer ownership.",
         "Accuracy. The list is built from City of Chicago permit records as of the date above. City data can be late, incomplete or wrong, and "
-        "permits change. Confirm anything you rely on with the builder or the City.",
+        "permits change. Confirm anything you rely on with the builder or the City. Builder office phone numbers, general email addresses "
+        "and websites are not City data. We read them on each builder's own website on the date shown with each one, and builders change "
+        "them. A listed contact is not an invitation to bid.",
         "No promise of results. Reported costs, stages and counts are figures from City records, not contract values or forecasts. Nothing "
         "here promises any work, contract, income or outcome.",
         "Availability. The list depends on the City of Chicago publishing its permit data. If the City stops or changes that data, or asks us "
-        "to stop using it, the list may pause or end, and future charges will stop.",
+        "to stop using it, the list may pause or end, and future charges will stop. The map uses OpenStreetMap's free public map service, "
+        "which can limit or stop access at any time; the list, contacts and downloads work without it. Map data © OpenStreetMap "
+        "contributors.",
         "No warranty. The product is provided \"as is\", without warranties of any kind, to the extent the law allows.",
         "Limit of liability. To the extent the law allows, ProofNotFluff is not liable for any loss or damage from using or relying on this "
         "product, and its total liability for any claim is limited to the amount you paid for the most recent month of your membership. "
         "Nothing here limits rights you have under consumer protection laws that can't be waived.",
-        "Trademarks. Microsoft Excel, Google Sheets and Gumroad are trademarks of their owners. ProofNotFluff isn't affiliated with, sponsored "
-        "or endorsed by them, or by the City of Chicago.",
+        "Trademarks. Microsoft Excel, Google Sheets, Google Maps, OpenStreetMap and Gumroad are trademarks of their owners. ProofNotFluff "
+        "isn't affiliated with, sponsored or endorsed by them, by the City of Chicago, or by any builder listed.",
         "AI assistance. This product was made with AI assistance and reviewed and tested by the shop owner.",
         "Help and cancelling. If the file won't open or something looks wrong, reply to your Gumroad receipt and it will be fixed. Cancel any "
         "time from your Gumroad receipt or library; cancelling stops future charges.",

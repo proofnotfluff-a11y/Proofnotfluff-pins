@@ -176,7 +176,10 @@ def projects_from_review(review, fetched):
         if not r.get("kept"):
             continue
         desc = (r.get("raw") or "").upper().replace("¿", " ")
-        gcs = builders(r.get("gcRaw") or [])
+        names, types = r.get("gcRaw") or [], r.get("gcType")
+        if types and len(types) == len(names):   # main() never lists an owner acting as general contractor
+            names = [n for n, t in zip(names, types) if "OWNER" not in (t or "").upper()]
+        gcs = builders(names)
         out.append({"permit": r.get("permit"), "issued": r.get("issued") or "",
                     "type": "New construction" if "NEW CONSTRUCTION" in (r.get("type") or "") else "Renovation",
                     "scope": clean_scope(r.get("raw")), "scopeFull": clean_scope(r.get("raw"), limit=1200, whole=True),
@@ -1032,9 +1035,16 @@ def selftest():
     review = [{"permit": "101000003", "kept": True, "raw": "INTERIOR ALTERATIONS TO 8TH FLOOR OFFICE SPACE. NEW RESTROOMS. PLAN REVIEWER JANE DOE",
                "cost": 750000.0, "type": "PERMIT - RENOVATION/ALTERATION", "gcRaw": ["ACME BUILDERS LLC", "JOHN SMITH"], "issued": "2026-10-15",
                "address": "3 N Main St", "status": "Active", "milestone": "Inspections", "communityArea": "Loop", "lat": 41.9, "lon": -87.6},
+              {"permit": "101000005", "kept": True, "raw": "INTERIOR ALTERATIONS TO 3RD FLOOR OFFICE SPACE", "cost": 600000.0,
+               "type": "PERMIT - RENOVATION/ALTERATION", "gcRaw": ["3312 LINCOLN LLC", "MANGAN BUILDERS, INC."],
+               "gcType": ["Owner/General Contractor", "Contractor-General Contractor"], "issued": "2026-01-02", "address": "5 N Main St",
+               "status": "Active", "milestone": "Inspections", "communityArea": "Loop"},
               {"permit": "101000004", "kept": False, "raw": "ROOF REPLACEMENT", "cost": 900000.0, "type": "PERMIT - RENOVATION/ALTERATION", "gcRaw": [],
                "issued": "2026-01-01", "address": "4 N Main St", "status": "Active", "milestone": "Inspections", "communityArea": "Loop"}]
     ps = projects_from_review(review, dt.date(2026, 10, 17))
+    owner = [p for p in ps if p["permit"] == "101000005"]
+    assert owner and owner[0]["gc"] == ["Mangan Builders, Inc."], "an owner acting as general contractor is never listed"
+    ps = [p for p in ps if p["permit"] != "101000005"]
     assert len(ps) == 1 and ps[0]["gc"] == ["Acme Builders LLC"] and ps[0]["newThisWeek"] and "Jane" not in ps[0]["scopeFull"], ps
     assert "restrooms" in ps[0]["scopeFull"].lower()
     # short money: halves round up on whole dollars, the same in the app, the v1 page and the free page (Holdout, Oct 18)

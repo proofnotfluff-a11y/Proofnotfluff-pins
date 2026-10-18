@@ -549,6 +549,9 @@ def main():
                            "cost": float(r.get(cost_col) or 0) if cost_col else 0, "type": r.get("permit_type"),
                            "gcRaw": [r.get(f"contact_{n}_name") for n in range(1, 16)
                                      if "GENERAL CONTRACTOR" in (r.get(f"contact_{n}_type") or "").upper()],
+                           # the City's contact type for each gcRaw name: an owner acting as general contractor is never listed
+                           "gcType": [(r.get(f"contact_{n}_type") or "").title() for n in range(1, 16)
+                                      if "GENERAL CONTRACTOR" in (r.get(f"contact_{n}_type") or "").upper()],
                            # enough of the City row to rebuild the whole list offline (no person's name: contacts are GC businesses only)
                            "issued": (r.get("issue_date") or "")[:10], "address": street(r), "status": (r.get("permit_status") or "").title(),
                            "milestone": (r.get("permit_milestone") or "").title(),

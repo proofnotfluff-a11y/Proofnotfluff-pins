@@ -12,7 +12,7 @@ Status as of Oct 17, 2026, 4:10 pm Chicago.
 - [x] Legal desk: CLEARED WITH FIXES (verify5/legal-review.md); repo fixes 1, 2, 3b, 5, 6, 7, 8 applied (commit a083c2c). Gumroad wording fixes 3a and 4 are Todd's (his account). Attorney note: the City's terms require users to indemnify the City.
 
 ## 2. The storefront (Gumroad, Todd's account)
-- [x] Legal wording on Gumroad (Legal desk fixes 3a and 4): checked on the live product page Oct 17, 4:40 pm (non-affiliation, AI line, City disclaimer, 12-month and $500,000-or-more scope, renewal line, tier named Monthly). Cover reworded to "of $500,000 or more" to match; Todd swaps it.
+- [x] Legal wording on Gumroad (Legal desk fixes 3a and 4): checked on the live product page Oct 17, 4:40 pm (non-affiliation, AI line, City disclaimer, 24-month (corrected on Gumroad Oct 18) and $500,000-or-more scope, renewal line, tier named Monthly). Cover reworded to "of $500,000 or more" to match; Todd swaps it.
 - [x] Name, price ($29 a month), description: checked live Oct 17, 3:16 pm.
 - [x] Cover (1280 x 720, no weekly numbers) and thumbnail (600 x 600) uploaded by Todd; both passed the design director.
 - [x] Seller name shows ProofNotFluff (Todd, Oct 17, 4:16 pm screenshot).

@@ -1513,14 +1513,17 @@ def extra_cards(slug):
 def money(v, spell_billion=False):
     """One money rule on the leads pages (design director, Oct 17): $770K under $1M, $2.0M under $100M, whole millions
     from $100M up; "billion" is spelled out only in the hero tile."""
-    v = float(v or 0)
-    if v >= 1e9 and spell_billion:
-        return f"${v / 1e9:.1f} billion"
-    if v >= 1e8:
-        return f"${v / 1e6:,.0f}M"
-    if v >= 1e6:
-        return f"${v / 1e6:.1f}M"
-    return f"${v / 1e3:,.0f}K"
+    d = max(0, int(float(v or 0) + 0.5))            # whole dollars; halves round up on integers, never on floats
+    up = lambda n, unit: (2 * n + unit) // (2 * unit)   # n / unit rounded half up
+    if d >= 1_000_000_000 and spell_billion:
+        t = up(d, 100_000_000)
+        return f"${t // 10}.{t % 10} billion"
+    if up(d, 100_000) >= 1000:                          # $99.95M and up: whole millions
+        return f"${up(d, 1_000_000):,}M"
+    if up(d, 1000) >= 1000:                             # $999,500 and up: millions to one decimal
+        t = up(d, 100_000)
+        return f"${t // 10}.{t % 10}M"
+    return f"${up(d, 1000):,}K"
 
 
 def nice_date(iso):

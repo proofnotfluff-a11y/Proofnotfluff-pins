@@ -32,7 +32,7 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 from leads_page import decrypt, encrypt, pretty_date, FREE_PAGE  # noqa: E402
 from leads_xlsx import BUILDER_EMAIL, CAPABILITY_SHEET, prep  # noqa: E402
-from permits_chicago import BUSINESS, TRADE_GC, DATASET, PORTAL, clean_scope, gc_filter, gc_key, unit_count  # noqa: E402
+from permits_chicago import DATASET, PORTAL, builders, clean_scope, gc_key, unit_count  # noqa: E402
 
 try:
     from builder_contacts import contact_for  # noqa: E402
@@ -143,20 +143,13 @@ def projects_from_review(review, fetched):
         if not r.get("kept"):
             continue
         desc = (r.get("raw") or "").upper().replace("¿", " ")
-        gcs = []
-        for nm in r.get("gcRaw") or []:
-            nm = (nm or "").strip()
-            if nm and BUSINESS.search(nm.upper()):
-                nm = gc_filter(nm)
-                if nm and gc_key(nm) not in [gc_key(g) for g in gcs]:
-                    gcs.append(nm)
-        gcs.sort(key=lambda g: bool(TRADE_GC.search(g.upper())))
+        gcs = builders(r.get("gcRaw") or [])
         out.append({"permit": r.get("permit"), "issued": r.get("issued") or "",
                     "type": "New construction" if "NEW CONSTRUCTION" in (r.get("type") or "") else "Renovation",
                     "scope": clean_scope(r.get("raw")), "scopeFull": clean_scope(r.get("raw"), limit=1200, whole=True),
                     "units": unit_count(desc, display=True) or None, "cost": round(r.get("cost") or 0), "address": r.get("address") or "",
                     "communityArea": r.get("communityArea") or "", "status": r.get("status") or "", "milestone": r.get("milestone") or "",
-                    "gc": gcs[:2], "lat": r.get("lat"), "lon": r.get("lon"), "newThisWeek": (r.get("issued") or "") >= week})
+                    "gc": gcs, "lat": r.get("lat"), "lon": r.get("lon"), "newThisWeek": (r.get("issued") or "") >= week})
     out.sort(key=lambda x: (-x["cost"], x["issued"]))
     return out
 
@@ -603,8 +596,8 @@ const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(BOX.iv)},key,b64(BOX
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const int=n=>Math.round(+n||0).toLocaleString("en-US");
-function money(n){n=+n||0;if(!n)return "$0";if(n>=99.95e6)return "$"+int(n/1e6)+"M";if(n>=999.5e3)return "$"+(n/1e6).toFixed(1)+"M";return "$"+Math.round(n/1e3)+"K";}
-function bigMoney(n){return n>=1e9?"$"+(n/1e9).toFixed(1)+" billion":money(n);}
+function money(n){n=Math.round(+n||0);if(!n)return "$0";if(n>=99.95e6)return "$"+int(n/1e6)+"M";if(n>=999.5e3)return "$"+(Math.round(n/1e5)/10).toFixed(1)+"M";return "$"+Math.round(n/1e3)+"K";}
+function bigMoney(n){return n>=1e9?"$"+(Math.round(n/1e8)/10).toFixed(1)+" billion":money(n);}
 const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 function day(s){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||"");return m?MON[+m[2]-1]+" "+(+m[3])+", "+m[1]:"";}
 const sent=s=>{s=String(s||"").toLowerCase();return s.charAt(0).toUpperCase()+s.slice(1);};
@@ -684,7 +677,7 @@ function row(p,ctx){const m=mk(p.id);const b=p.g.length?B[p.g[0]]:null;const oth
 return `<li><a class="row" href="#/project/${encodeURIComponent(p.id)}" data-id="${esc(p.id)}">
 <span class="mn num">${money(p.c)}<small>${esc(kind)}</small></span>
 <span class="ad">${esc(p.a)}${p.ca?`<span class="ar">, ${esc(p.ca)}</span>`:""}</span>
-${ctx&&ctx!=="near"&&ctx!=="new"?(other?`<span class="bd"><span>With ${esc(B[other].name)}</span></span>`:""):`<span class="bd">${b&&b.ok?ico(b.contact.phone?"phone":"mail","s")+'<span class="sr">Contact on file: </span>':""}<span>${esc(b?b.name:"No builder listed")}${p.g.length>1?` <span class="ar">and 1 more</span>`:""}</span>${b&&!b.ok?'<span class="nc">No contact yet</span>':""}</span>`}
+${ctx&&ctx!=="near"&&ctx!=="new"?(other?`<span class="bd"><span>With ${esc(B[other].name)}</span></span>`:""):`<span class="bd">${b&&b.ok?ico(b.contact.phone?"phone":"mail","s")+'<span class="sr">Contact on file: </span>':""}<span>${esc(b?b.name:"No builder listed")}${p.g.length>1?` <span class="ar">and ${int(p.g.length-1)} more</span>`:""}</span>${b&&!b.ok?'<span class="nc">No contact yet</span>':""}</span>`}
 <span class="rt">${ctx&&ctx!=="new"?"":chip(p.st)}${p.n&&ctx!=="new"?'<span class="badge new">New this week</span>':""}${m.c?`<span class="badge done">${ico("check","s")}Contacted</span>`:""}</span>${ico("chev","chev")}</a></li>`;}
 function rowsHtml(list,limit,ctx){if(!list.length)return "";const n=Math.min(limit||list.length,list.length);return `<ul class="list-rows">${list.slice(0,n).map(p=>row(p,ctx)).join("")}</ul>`;}
 
@@ -969,6 +962,24 @@ def selftest():
     ps = projects_from_review(review, dt.date(2026, 10, 17))
     assert len(ps) == 1 and ps[0]["gc"] == ["Acme Builders LLC"] and ps[0]["newThisWeek"] and "Jane" not in ps[0]["scopeFull"], ps
     assert "restrooms" in ps[0]["scopeFull"].lower()
+    # short money: halves round up on whole dollars, the same in the app, the v1 page and the free page (Holdout, Oct 18)
+    import importlib, shutil, subprocess
+    ms = importlib.import_module("make_site")
+    import leads_page
+    cases = {950: "$1K", 9950: "$10K", 999499: "$999K", 999500: "$1.0M", 999950: "$1.0M", 1150000: "$1.2M", 62550000: "$62.6M",
+             8450000: "$8.5M", 99949999: "$99.9M", 99950000: "$100M", 190000000: "$190M", 770000: "$770K", 5279012: "$5.3M"}
+    for v, want in cases.items():
+        assert ms.money(v) == want, (v, ms.money(v), want)
+    assert ms.money(2_950_000_000, True) == "$3.0 billion" and ms.money(2_850_000_000, True) == "$2.9 billion"
+    node = shutil.which("node")
+    if node:
+        for src in (PAGE, leads_page.PAGE):
+            fns = "\n".join(m.group(0) for m in re.finditer(r"^(?:const int=|function money\(n\)|function bigMoney\(n\)).*$", src, re.M))
+            js = fns + "\nconsole.log(JSON.stringify(%s.map(n=>money(n)).concat([bigMoney(2950000000),bigMoney(2850000000)])))" % json.dumps(list(cases))
+            got = json.loads(subprocess.run([node, "-e", js], capture_output=True, text=True, check=True).stdout)
+            assert got == list(cases.values()) + ["$3.0 billion", "$2.9 billion"], got
+    else:
+        print("node not found: browser money format not checked here")
     text = PAGE + LEGAL
     assert "—" not in text, "em dash"
     for w in ("honestly", "genuinely", "straightforward", "delve", "unlock ", "elevate", "seamless", "game-changer", "effortless", "supercharge"):

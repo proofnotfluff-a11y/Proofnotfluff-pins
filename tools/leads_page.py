@@ -192,8 +192,8 @@ const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b64(BOX.salt),iterat
 const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(BOX.iv)},key,b64(BOX.ct));return JSON.parse(new TextDecoder().decode(pt));}
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const int=n=>Math.round(+n||0).toLocaleString("en-US");
-function money(n){n=+n||0;if(n>=99.95e6)return "$"+int(n/1e6)+"M";if(n>=999.5e3)return "$"+(n/1e6).toFixed(1)+"M";return "$"+Math.round(n/1e3)+"K";}
-function bigMoney(n){return n>=1e9?"$"+(n/1e9).toFixed(1)+" billion":money(n);}
+function money(n){n=Math.round(+n||0);if(n>=99.95e6)return "$"+int(n/1e6)+"M";if(n>=999.5e3)return "$"+(Math.round(n/1e5)/10).toFixed(1)+"M";return "$"+Math.round(n/1e3)+"K";}
+function bigMoney(n){return n>=1e9?"$"+(Math.round(n/1e8)/10).toFixed(1)+" billion":money(n);}
 const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 function day(s){const m=/^(\\d{4})-(\\d{2})-(\\d{2})/.exec(s||"");return m?MON[+m[2]-1]+" "+(+m[3])+", "+m[1]:esc(s);}
 const ST={"Partial occupancy approved":"st-near","Inspections under way":"st-insp","Permit issued":"st-iss"};

@@ -1,0 +1,29 @@
+name: Permits window probe (temporary, branch only)
+# One-off dry run of the 24-month open-permit window before it reaches main. Commits only to this branch:
+# the counts (sample, profile) and the review set encrypted like permits/chicago/review.enc.json.
+on:
+  push:
+    branches: [probe-permits-730]
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/permits_chicago.py --selftest
+      - run: python3 tools/permits_chicago.py --full "$RUNNER_TEMP/full.json"
+      - env:
+          LEADS_PASSWORD: ${{ secrets.LEADS_PASSWORD }}
+        run: |
+          pip install --quiet openpyxl cryptography pillow
+          mkdir -p probe
+          python3 tools/leads_page.py --review "$RUNNER_TEMP/full.json" probe/review730.enc.json
+          cp permits/chicago/sample.json probe/sample730.json
+          cp permits/chicago/profile.json probe/profile730.json
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add probe
+          git commit -m "Permits window probe $(date -u +%F) [skip ci]"
+          git push origin HEAD:probe-permits-730

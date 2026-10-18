@@ -1620,7 +1620,7 @@ def leads_page_html(p):
         return f'<a class="{cls}" href="{E(checkout)}" rel="noopener">{label}</a>' if checkout else ""
 
     # hero: two lines of promise, then the price and the action on the first screen (design director, Oct 17)
-    lede = (f'{kept:,} open apartment and commercial projects of $500,000 or more in {E(p["city"])}, about {M(cost, True)} of work, '
+    lede = (f'{kept:,} open apartment and commercial projects of $500,000 or more in {E(p["city"])}, about {M(cost, True)} {"in City valuation" if p.get("costLabel") == "Valuation" else "of work"}, '
             f'and the builders running them. {E(p["lede"])}')
     if checkout:
         hero_act = (f'<div class="ld-heroact" id="ldHeroCta">{buy()}<a class="ld-textlink" href="#near">See this week\'s sample</a></div>'
@@ -1658,7 +1658,7 @@ def leads_page_html(p):
                if checkout else "")
     gc_html = ('<section class="block"><h2>Builders with the most big jobs open</h2>'
                '<p>Counted from permits where the business is listed as general contractor.</p>'
-               '<ol class="ld-gcs"><li class="ld-ghead"><span>Builder</span><span>Open jobs</span><span>Work</span></li>'
+               f'<ol class="ld-gcs"><li class="ld-ghead"><span>Builder</span><span>Open jobs</span><span>{"Valuation" if p.get("costLabel") == "Valuation" else "Work"}</span></li>'
                f'{gcs}</ol>{gc_more}</section>')
 
     areas = sorted({x.get("communityArea") for x in d["projects"] if x.get("communityArea")})

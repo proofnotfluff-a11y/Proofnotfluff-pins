@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-10-18T18:51:50+00:00",
+ "fetchedAt": "2026-10-18T19:33:20+00:00",
  "rowsUpdatedAt": "2026-10-18T12:52:08+00:00",
  "columns": [
   "permittype",
@@ -140,8 +140,8 @@
  },
  "permitReasons": {
   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 549,
-  "kept": 1964,
-  "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 381,
+  "kept": 1965,
+  "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 380,
   "work class Demolition (interior demolition or repair)": 64,
   "work class Interior Demo Non-Structural (interior demolition or repair)": 58,
   "permit closed (final, expired, withdrawn, void or cancelled)": 5009,

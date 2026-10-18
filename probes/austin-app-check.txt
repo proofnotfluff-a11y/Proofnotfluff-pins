@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/tools/leads_check.py", line 311, in <module>
+    main()
+  File "/home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/tools/leads_check.py", line 298, in main
+    capture(ctx, base, pw, wb_path, a.capture, bool(a.leaflet), check, a.leaflet)
+  File "/home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/tools/leads_check.py", line 126, in capture
+    subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), "render_xlsx.py"), wb_path, tmp],
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/bin/python3', '/home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/tools/render_xlsx.py', '/home/runner/work/_temp/shots/1280-austin-construction-cleaning-leads-2026-10-18.xlsx', '/tmp/tmpez6r25u3']' returned non-zero exit status 1.

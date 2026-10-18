@@ -3,7 +3,7 @@
   "name": "City of Austin, Issued Construction Permits",
   "url": "https://data.austintexas.gov/d/3syk-w9eu",
   "rowsUpdatedAt": "2026-10-18T12:52:08+00:00",
-  "fetchedAt": "2026-10-18T18:51:50+00:00",
+  "fetchedAt": "2026-10-18T19:33:20+00:00",
   "license": "Public Domain U.S. Government",
   "attribution": "City of Austin, Texas - data.austintexas.gov",
   "modified": "Filtered by ProofNotFluff: commercial building permits issued in the last 24 months, still Active, grouped into projects by the City's master permit, project valuation $500,000 or more (the largest valuation on its open building permits on the list, counted once; finaled, shell and garage permits do not count), with a business listed as general contractor; structures that are not buildings (carports, pergolas, canopies, enclosures, pools, EV chargers), parking garages, houses, duplexes and three-unit buildings, shell-only buildings, interior demolition, repairs, and roof, equipment, sign, elevator, site and exterior-only work left out; cleaning companies listed as contractor left out; only project-level and business fields kept.",
@@ -15,18 +15,18 @@
  },
  "counts": {
   "fetched": 8760,
-  "kept": 159,
+  "kept": 158,
   "excluded": {
-   "kept": 159,
+   "kept": 158,
    "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 281,
    "project valuation under $500,000": 1069,
-   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 184,
+   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 183,
    "work class Demolition (interior demolition or repair)": 63,
    "work class Interior Demo Non-Structural (interior demolition or repair)": 58,
    "no open building permit in the window": 4127,
    "shell only, no finish work": 68,
    "parking garage": 3,
-   "no business listed as general contractor": 4,
+   "no business listed as general contractor": 6,
    "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)": 3,
    "work class Repair (interior demolition or repair)": 2,
    "house, duplex or three-unit building": 1,
@@ -34,8 +34,8 @@
   },
   "permitReasons": {
    "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 549,
-   "kept": 1964,
-   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 381,
+   "kept": 1965,
+   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 380,
    "work class Demolition (interior demolition or repair)": 64,
    "work class Interior Demo Non-Structural (interior demolition or repair)": 58,
    "permit closed (final, expired, withdrawn, void or cancelled)": 5009,
@@ -49,11 +49,15 @@
   "keptByType": {
    "Remodel or addition": 42,
    "New construction": 104,
-   "Finish-out": 13
+   "Finish-out": 12
   },
-  "keptCost": 6244681816,
+  "keptCost": 6242314201,
   "keptUnits": 8303,
-  "keptBuildings": 364,
+  "oddCosts": [
+   26668001,
+   18000001
+  ],
+  "keptBuildings": 362,
   "topAreas": [
    [
     "78744",
@@ -80,12 +84,12 @@
     9
    ],
    [
-    "78724",
+    "78753",
     8
    ],
    [
-    "78753",
-    8
+    "78724",
+    7
    ]
   ],
   "topGCs": [
@@ -151,9 +155,9 @@
    }
   ],
   "nearFinish": 1,
-  "builders": 109,
-  "mapped": 139,
-  "geocoded": 55
+  "builders": 108,
+  "mapped": 138,
+  "geocoded": 54
  },
  "projects": [
   {
@@ -674,7 +678,7 @@
    "communityArea": "78753",
    "district": "7",
    "status": "Active",
-   "milestone": "Some permits finaled",
+   "milestone": "Near finish",
    "buildings": 1,
    "buildingsFinal": 2,
    "gc": [

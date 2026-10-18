@@ -3471,7 +3471,6 @@
    "kind": "leads",
    "segment": "home-services",
    "city": "Austin",
-   "draft": true,
    "data": "permits/austin/sample.json",
    "price": "29",
    "title": "Austin Construction Cleaning Leads: Big Projects and Their Builders | ProofNotFluff",
@@ -3549,11 +3548,12 @@
      "No. Builders appear because their names are on public City of Austin permits. None has endorsed or works with ProofNotFluff."
     ],
     [
-     "When does the full list open?",
-     "Soon. The Austin list opens once it passes the same checks as our Chicago list."
+     "What does it cost, and can I cancel?",
+     "$29 a month through Gumroad, with a new list in the members' app and the Excel file every Monday. Cancel any time from your Gumroad library; cancelling stops future charges."
     ]
    ],
-   "sources": "City of Austin, Issued Construction Permits."
+   "sources": "City of Austin, Issued Construction Permits.",
+   "checkout": "https://proofnotfluff.gumroad.com/l/vzokd?utm_source=proofnotfluff&utm_medium=site&utm_campaign=austin-construction-leads"
   },
   {
    "slug": "break-even-calculator",

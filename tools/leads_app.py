@@ -192,7 +192,7 @@ PAGE = r"""<!doctype html>
 --accent:#C8502F;--accent-ink:#A63E21;--teal:#2E6B66;--teal-bg:#E3EFED;--blue:#2F5F9E;--blue-bg:#E6EDF6;--iss:#3A4152;--iss-bg:#ECE6DA;
 --focus:0 0 0 3px rgba(47,95,158,.45);--sh:0 1px 2px rgba(29,36,51,.05),0 6px 20px rgba(29,36,51,.06);--r:12px;
 --head:Poppins,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--body:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
---bar-h:60px;--nav-h:64px}
+--bar-h:60px;--nav-h:64px;--field:#8F887C}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scrollbar-color:#C9C2B5 var(--paper)}
 body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 var(--body);font-feature-settings:"cv11","ss01";-webkit-font-smoothing:antialiased}
@@ -202,6 +202,8 @@ a{color:var(--blue);text-underline-offset:3px;text-decoration-thickness:1px}
 button,input,select,textarea{font:inherit;color:inherit}
 :focus-visible{outline:none;box-shadow:var(--focus);border-radius:8px}
 .num{font-variant-numeric:tabular-nums}
+.skip{position:absolute;left:12px;top:-60px;z-index:2000;background:#fff;color:var(--ink);padding:12px 14px;min-height:44px;border-radius:8px;font-weight:600;box-shadow:var(--sh)}
+.skip:focus{top:10px}
 .sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 [hidden]{display:none!important}
 .ico{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
@@ -209,7 +211,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* app bar */
 .bar{position:sticky;top:0;z-index:900;background:var(--ink);color:#fff;height:var(--bar-h)}
 .bar-in{max-width:1320px;margin:0 auto;height:100%;padding:0 16px;display:flex;align-items:center;gap:20px}
-.brand{display:flex;flex-direction:column;gap:5px;text-decoration:none;color:#fff;min-width:0}
+.brand{display:flex;flex-direction:column;justify-content:center;gap:5px;min-height:44px;text-decoration:none;color:#fff;min-width:0}
 .brand b{font:700 16px/1 var(--head);letter-spacing:-.01em;white-space:nowrap}
 .brand small{font-size:12.5px;line-height:1;color:#B9C0CE;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .marks{display:flex;gap:3px}.marks i{width:14px;height:3px;border-radius:2px}
@@ -242,7 +244,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}
 .sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:18px 20px 12px}
 .sec-h h2{font-size:18px;font-weight:600}
-.sec-h a{font-size:14px;font-weight:600;white-space:nowrap}
+.sec-h a{display:inline-flex;align-items:center;min-height:44px;margin:-12px 0;font-size:14px;font-weight:600;white-space:nowrap}
 .sec-h .c{color:var(--muted);font:600 14px var(--body);margin-left:8px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:600;font-size:14.5px;cursor:pointer;text-decoration:none;white-space:nowrap}
 .btn:hover{background:#FAF8F4;border-color:#D6D0C4}
@@ -266,7 +268,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .gate-card p.sub{margin:0 0 20px;color:var(--muted)}
 .gate label{display:block;font-weight:600;font-size:14.5px;margin:0 0 8px}
 .pw{position:relative}
-.pw input{width:100%;height:50px;font-size:16px;padding:0 52px 0 14px;border:1px solid #CFC8BB;border-radius:10px;background:#fff}
+.pw input{width:100%;height:50px;font-size:16px;padding:0 52px 0 14px;border:1px solid var(--field);border-radius:10px;background:#fff}
 .pw input:focus{outline:none;border-color:var(--blue);box-shadow:var(--focus)}
 .eye{position:absolute;right:3px;top:3px;width:44px;height:44px;border:0;background:transparent;border-radius:8px;color:var(--muted);cursor:pointer;display:grid;place-items:center}
 .eye:hover{background:#F3F1EC}
@@ -318,7 +320,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .row .bd span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .row .bd .ico{color:var(--teal)}
 .row .rt{grid-column:2;grid-row:1 / span 3;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
-.row .rt .chev{margin-top:auto;color:#B3AC9F}
+.row .rt .chev{margin-top:auto;color:var(--field)}
 .row.hl{background:#F6F3EC}
 .row-more{padding:14px 20px;border-top:1px solid var(--line2);display:flex;gap:12px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:14px}
 @media(max-width:600px){.row{grid-template-columns:minmax(0,1fr);padding:14px 16px;gap:3px}.row .rt{grid-column:1;grid-row:auto;order:-1;flex-direction:row;flex-wrap:wrap;align-items:center;margin:0 0 4px}.row .rt .chev{display:none}}
@@ -330,7 +332,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .mini-b .r small{display:block;font:500 12.5px var(--body);color:var(--muted)}
 .bars{list-style:none;margin:0;padding:4px 20px 18px}
 .bars li{margin:0}
-.bars a{display:grid;grid-template-columns:minmax(0,9rem) minmax(0,1fr) 3.2rem;align-items:center;gap:12px;padding:7px 0;text-decoration:none;color:var(--ink);font-size:14px;border-radius:6px}
+.bars a{display:grid;grid-template-columns:minmax(0,9rem) minmax(0,1fr) 3.2rem;align-items:center;gap:12px;min-height:40px;padding:4px 0;text-decoration:none;color:var(--ink);font-size:14px;border-radius:6px}
 .bars a span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .bars a:hover span:first-child{text-decoration:underline;text-underline-offset:3px}
 .bars .tr{height:10px;border-radius:0 4px 4px 0;background:#5B6478;min-width:3px}
@@ -341,10 +343,10 @@ button,input,select,textarea{font:inherit;color:inherit}
 .tool{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 12px}
 .search{position:relative;flex:1 1 280px;min-width:0;max-width:420px}
 .search .ico{position:absolute;left:12px;top:12px;color:var(--muted)}
-.search input{width:100%;height:44px;padding:0 40px 0 40px;border:1px solid var(--line);border-radius:10px;background:#fff;font-size:15px}
+.search input{width:100%;height:44px;padding:0 40px 0 40px;border:1px solid var(--field);border-radius:10px;background:#fff;font-size:15px}
 .search input:focus{outline:none;border-color:var(--blue);box-shadow:var(--focus)}
 .search .clr{position:absolute;right:2px;top:2px;width:40px;height:40px;border:0;background:none;border-radius:8px;color:var(--muted);cursor:pointer;display:grid;place-items:center}
-.seg{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:10px;padding:3px;gap:2px;max-width:100%;overflow-x:auto;scrollbar-width:none}
+.seg{display:inline-flex;background:#fff;border:1px solid var(--field);border-radius:10px;padding:3px;gap:2px;max-width:100%;overflow-x:auto;scrollbar-width:none}
 .seg::-webkit-scrollbar{display:none}
 .seg button{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 12px;border:0;border-radius:7px;background:none;color:var(--ink2);font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap}
 .seg button .c{color:var(--muted);font-weight:600}
@@ -352,9 +354,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .seg button:hover:not([aria-pressed=true]){background:#F5F2EC}
 .filters{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
 .fld label{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin:0 0 4px}
-.fld select{appearance:none;-webkit-appearance:none;height:40px;min-width:0;max-width:215px;padding:0 34px 0 12px;border:1px solid var(--line);border-radius:10px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%231d2433' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 12px center;font-size:14px;font-weight:600;cursor:pointer}
+.fld select{appearance:none;-webkit-appearance:none;height:40px;min-width:0;max-width:215px;padding:0 34px 0 12px;border:1px solid var(--field);border-radius:10px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%231d2433' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 12px center;font-size:14px;font-weight:600;cursor:pointer}
 .fld select:focus{outline:none;box-shadow:var(--focus);border-color:var(--blue)}
-.tog{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 12px;border:1px solid var(--line);border-radius:10px;background:#fff;font-size:14px;font-weight:600;cursor:pointer;user-select:none}
+.tog{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 12px;border:1px solid var(--field);border-radius:10px;background:#fff;font-size:14px;font-weight:600;cursor:pointer;user-select:none}
 .tog input{width:18px;height:18px;margin:0;accent-color:var(--teal)}
 .tog:has(input:focus-visible){box-shadow:var(--focus)}
 .fbtn{display:none}
@@ -391,6 +393,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .empty h3{font:600 17px var(--head);color:var(--ink);margin:0 0 6px}
 .empty .btn{margin-top:12px}
 @media(max-width:860px){
+ .seg button{height:44px}.btn.sm{min-height:44px}.bars a{min-height:44px}.fld select{height:44px}.tog{height:44px}
+ .leaflet-bar a{width:44px!important;height:44px!important;line-height:44px!important}
+ #fclose{width:44px;height:44px;padding:0}
  .legend{font-size:12px;padding:6px 10px;gap:2px}
  .split{display:block}
  .split[data-v=list] .mapbox{display:none}
@@ -480,7 +485,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .note{padding:20px}
 .note h2{font-size:17px;font-weight:600;margin:0 0 4px}
 .note p.hint{margin:0 0 14px;color:var(--muted);font-size:13.5px}
-.note textarea{width:100%;min-height:96px;resize:vertical;padding:12px;border:1px solid var(--line);border-radius:10px;background:#FFFEFB;font-size:16px;line-height:1.5}
+.note textarea{width:100%;min-height:96px;resize:vertical;padding:12px;border:1px solid var(--field);border-radius:10px;background:#FFFEFB;font-size:16px;line-height:1.5}
 .note textarea:focus{outline:none;border-color:var(--blue);box-shadow:var(--focus)}
 .note .st{font-size:13px;color:var(--muted);margin:8px 0 0;min-height:18px}
 .note .btn{width:100%;margin:0 0 12px}
@@ -497,12 +502,14 @@ button,input,select,textarea{font:inherit;color:inherit}
 .bt td{padding:0;border-top:1px solid var(--line2)}
 .bt tr:first-child td{border-top:0}
 .bt td a{display:block;padding:13px 20px;color:var(--ink);text-decoration:none}
+.bt td.n{padding:13px 20px;vertical-align:top}
+.bt tbody tr{cursor:pointer}
 .bt tr:hover td{background:#FBFAF7}
 .bt .n{text-align:right;white-space:nowrap}
 .bt .nm b{font-weight:600}
 .bt .nm small{display:flex;align-items:center;gap:5px;color:var(--muted);font-size:13px;margin-top:2px}
 .bt .nm small .ico{color:var(--teal)}
-.bt .z{color:#9AA0AB}
+.bt .z{color:var(--muted);font-weight:400}
 .bt .mob{display:none}
 @media(max-width:700px){.bt thead{display:none}.bt td.n{display:none}.bt .mob{display:block;color:var(--ink2)}.bt td a{padding:13px 16px}}
 /* pitch kit */
@@ -527,6 +534,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .view-enter{animation:vin .32s cubic-bezier(.2,.8,.2,1)}
 @keyframes vin{from{opacity:.55;transform:translateY(4px)}to{opacity:1;transform:none}}
 </style></head><body>
+<a class="skip" href="#/" id="skip">Skip to main content</a>
 <header class="bar"><div class="bar-in">
 <a class="brand" href="#/" aria-label="ProofNotFluff, Chicago Construction Cleaning Leads, overview"><b>ProofNotFluff</b><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><small>Chicago Construction Cleaning Leads</small></a>
 <nav class="tabs" id="tabs" aria-label="Sections" hidden></nav>
@@ -694,7 +702,7 @@ $("#app").innerHTML=`<div class="ph"><h1>Projects</h1></div>
 <div class="fld"><label for="fsort">Sort</label><select id="fsort"><option value="clean">Closest to a final clean</option><option value="big">Biggest first</option><option value="newest">Newest permit first</option><option value="builder">Builder, A to Z</option></select></div>
 <label class="tog"><input type="checkbox" id="fnew"><span id="fnewT">New this week</span></label>
 <div class="fld"><label for="ffu">Follow-up</label><select id="ffu"><option value="">All projects</option><option value="todo">Not contacted yet</option><option value="mine">Contacted or with a note</option></select></div>
-<div class="sheet-f"><button class="btn" type="button" id="freset">Clear all</button><button class="btn ink" type="button" id="fdone">Show projects</button></div>
+<div class="sheet-f"><button class="btn" type="button" id="freset">Clear filters</button><button class="btn ink" type="button" id="fdone">Show projects</button></div>
 </div>
 <div class="rbar" aria-live="polite"><span id="rcount"></span><button class="lnk" type="button" id="fclear" hidden>Clear filters</button></div>
 <div class="split" id="split" data-v="${f.view}"><section class="panel lst" aria-label="Project list"><div id="plist"></div></section>
@@ -769,7 +777,7 @@ rows.forEach(p=>{const b=p.g.length?B[p.g[0]]:null;const c=b&&b.contact&&b.conta
 lines.push([p.a,p.ca,p.c,STG[p.st],p.m,p.cs,p.t,p.u||"",p.i,p.id,b?b.name:"",p.g[1]?B[p.g[1]].name:"",c.phone||"",c.email||"",c.website||"",p.n?"Yes":"",m.c?"Yes":"",m.c||"",(m.n||"").trim(),p.sf,p.lat||"",p.lon||""].map(cell).join(","));});
 const blob=new Blob(["﻿"+lines.join("\r\n")+"\r\n"],{type:"text/csv;charset=utf-8"});
 const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`chicago-leads-${D.asOfIso}-${rows.length}-projects.csv`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);
-toast(`CSV downloaded: ${plural(rows.length,"project")}`);}
+toast(`CSV exported: ${plural(rows.length,"project")}`);}
 function downloadWorkbook(){const blob=new Blob([b64(D.xlsx)],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
 const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=D.fileName;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);toast("Workbook downloaded");}
 
@@ -781,7 +789,7 @@ if(b.ok){body=`${c.phone?`<a class="btn pri call" href="tel:+1${esc(c.tel)}">${i
 <ul class="cl">${c.email?`<li><a href="mailto:${esc(c.email)}${subj}">${ico("mail")}<span>${esc(c.email)}</span></a></li>`:""}${c.website?`<li><a href="${esc(c.website)}" target="_blank" rel="noopener">${ico("web")}<span>${esc(host(c.website))}</span><span class="sr"> (opens in a new tab)</span></a></li>`:""}${c.contactPage&&c.contactPage!==c.website?`<li><a href="${esc(c.contactPage)}" target="_blank" rel="noopener">${ico("ext")}<span>Their contact page</span><span class="sr"> (opens in a new tab)</span></a></li>`:""}</ul>
 <p class="src">${c.note?esc(c.note.charAt(0).toUpperCase()+c.note.slice(1))+". ":""}Main office details from ${c.source?`<a href="${esc(c.source)}" target="_blank" rel="noopener">the builder's own website</a>`:"the builder's own website"}${c.checkedAt?`, checked ${esc(day(c.checkedAt))}`:""}. Ask for the project manager or the estimator on this job.</p>`;}
 else{body=`<div class="none"><b>No contact on file yet</b>We list a builder's office phone and general email only after reading them on the builder's own website. This builder is not checked yet, or their site does not show them.</div>
-<div class="foot"><a class="btn" href="https://www.google.com/search?q=${encodeURIComponent(b.name+" Chicago")}" target="_blank" rel="noopener">${ico("search","s")}Search the web for them<span class="sr"> (opens in a new tab)</span></a></div>`;}
+<div class="foot"><a class="btn" href="https://www.google.com/search?q=${encodeURIComponent(b.name+" Chicago")}" target="_blank" rel="noopener">${ico("search","s")}Search the web for this builder<span class="sr"> (opens in a new tab)</span></a></div>`;}
 return `<section class="panel bc" aria-label="Builder"><div class="who"><span class="av">${ico("build")}</span><div><h2>${esc(b.name)}</h2><p class="meta num">${plural(b.n,"project")} this week, ${money(b.cost)} reported${b.near?`, ${int(b.near)} near finish`:""}</p></div></div>${body}
 ${showLink?`<div class="foot"><a class="btn" href="#/builder/${encodeURIComponent(b.key)}">See all ${plural(b.n,"project")} by this builder</a></div>`:""}</section>`;}
 
@@ -794,12 +802,12 @@ const maps="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent
 $("#app").innerHTML=`<a class="back" href="#/projects" id="back">${ico("back")}Back</a>
 <div class="pg"><section class="pg-head"><div class="ph-chips">${chip(p.st)}${p.n?'<span class="badge new">New this week</span>':""}${m.c?`<span class="badge done">${ico("check","s")}Contacted ${esc(day(m.c))}</span>`:""}</div>
 <div class="p-title"><h1>${esc(p.a)}</h1><p class="sub">${esc([p.ca,"Chicago"].filter(Boolean).join(", "))}</p></div>
-<div class="p-money"><b class="num">${money(p.c)}</b><span class="num">reported cost, $${int(p.c)} exactly</span></div>
+<div class="p-money"><b class="num">${money(p.c)}</b><span class="num">reported cost ($${int(p.c)})</span></div>
 <div class="acts"><button class="btn" type="button" id="cpy">${ico("copy","s")}Copy address</button><a class="btn" href="${maps}" target="_blank" rel="noopener">${ico("pin","s")}Directions<span class="sr"> (opens Google Maps in a new tab)</span></a></div></section>
 <aside class="pg-side" aria-label="Builder and your follow-up">
 ${bs.length?bs.map((b,i)=>builderCard(b,p,true)).join(""):`<section class="panel bc"><div class="none"><b>No builder listed</b>The City record names no general contractor business for this permit.</div></section>`}
 <section class="panel note" aria-labelledby="nh"><h2 id="nh">Your follow-up</h2><p class="hint">${esc(STORE_LINE())}</p>
-<button class="btn${m.c?" on":""}" type="button" id="mark" aria-pressed="${!!m.c}">${ico("check","s")}<span id="markT">${m.c?"Contacted "+esc(day(m.c))+". Tap to undo":"Mark as contacted"}</span></button>
+<button class="btn${m.c?" on":""}" type="button" id="mark" aria-pressed="${!!m.c}">${ico("check","s")}<span id="markT">${m.c?"Contacted "+esc(day(m.c))+" (undo)":"Mark as contacted"}</span></button>
 <label for="nt" class="sr">Private note</label><textarea id="nt" placeholder="Who you spoke to, the bid due date, the next call" maxlength="2000">${esc(m.n||"")}</textarea><p class="st" id="ntst" aria-live="polite"></p></section>
 </aside><div class="pg-main"><section class="panel track"><h2>Where this job is</h2><ol class="steps">${steps.map(([s,t,sub])=>`<li class="${p.st===s?"now s"+s:p.st<s?"done":""}"${p.st===s?' aria-current="step"':""}><span class="k">${p.st<s?ico("check","s"):p.st===s?ico(["check","search","crane"][s],"s"):""}</span><b>${t}</b>${sub?`<span>${esc(sub)}</span>`:""}</li>`).join("")}<li class="fin"><span class="k">${ico("flag","s")}</span><b>Final clean</b><span>Your bid</span></li></ol>
 <p class="ms"><b>City milestone:</b> ${esc(p.m||"Not given")}. ${STG_LINE[p.st]}</p></section>
@@ -808,12 +816,12 @@ ${bs.length?bs.map((b,i)=>builderCard(b,p,true)).join(""):`<section class="panel
 <div><dt>Permit number</dt><dd class="num">${esc(p.id)}</dd></div><div><dt>City permit status</dt><dd>${esc(p.cs||"Not given")}</dd></div><div><dt>Community area</dt><dd>${esc(p.ca||"Not given")}</dd></div><div><dt>Stage</dt><dd>${STG[p.st]}</dd></div></dl></section>
 <section class="panel"><div class="sec-h"><h2>What the permit covers</h2></div><p class="scope">${esc(p.sf||p.s)}</p>
 <p class="rec">From the City's permit text, tidied for reading. <a href="${esc(D.record+encodeURIComponent(p.id))}" target="_blank" rel="noopener">See the City's raw record for permit ${esc(p.id)}<span class="sr"> (opens in a new tab)</span></a></p>
-${p.lat&&p.lon?'<div class="minimap" id="minimap" role="img" aria-label="Map showing the project location"></div>':""}</section>
+${p.lat&&p.lon?'<div class="minimap" id="minimap" role="region" aria-label="Map of the project location"></div>':""}</section>
 </div></div>`;
 $("#back").onclick=e=>{e.preventDefault();back("#/projects");};
 $("#cpy").onclick=async()=>{toast(await copyText(p.a+", Chicago, IL")?"Address copied":"Copy did not work here. Press and hold the address to copy it.");};
-$("#mark").onclick=()=>{const now=mk(p.id).c?"":new Date().toISOString().slice(0,10);const ok=setMark(p.id,{c:now});const btn=$("#mark");btn.classList.toggle("on",!!now);btn.setAttribute("aria-pressed",String(!!now));$("#markT").textContent=now?"Contacted "+day(now)+". Tap to undo":"Mark as contacted";toast(ok?(now?"Marked as contacted":"Contacted mark removed"):"Not saved: this browser is blocking storage");};
-let tn;$("#nt").addEventListener("input",e=>{clearTimeout(tn);$("#ntst").textContent="Saving...";tn=setTimeout(()=>{const ok=setMark(p.id,{n:e.target.value});$("#ntst").textContent=ok?"Note saved in this browser":"Not saved: this browser is blocking storage";},400);});
+$("#mark").onclick=()=>{const now=mk(p.id).c?"":new Date().toISOString().slice(0,10);const ok=setMark(p.id,{c:now});const btn=$("#mark");btn.classList.toggle("on",!!now);btn.setAttribute("aria-pressed",String(!!now));$("#markT").textContent=now?"Contacted "+day(now)+" (undo)":"Mark as contacted";toast(ok?(now?"Marked as contacted":"Contacted mark removed"):"Not saved. This browser blocks saving here; private browsing is the usual cause.");};
+let tn;$("#nt").addEventListener("input",e=>{clearTimeout(tn);$("#ntst").textContent="Saving...";tn=setTimeout(()=>{const ok=setMark(p.id,{n:e.target.value});$("#ntst").textContent=ok?"Note saved in this browser":"Not saved. This browser blocks saving here; private browsing is the usual cause.";},400);});
 if(p.lat&&p.lon){const mm=()=>{if(!window.L||!$("#minimap"))return;const m2=L.map("minimap",{scrollWheelZoom:false,dragging:!L.Browser.mobile,tap:false,zoomControl:true}).setView([p.lat,p.lon],15);m2.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');tiles(m2);L.circleMarker([p.lat,p.lon],Object.assign({},MS[p.st],{radius:10})).addTo(m2);STATE.mini=m2;};if(window.L)mm();else window.addEventListener("load",mm,{once:true});}}
 
 /* builders */
@@ -831,8 +839,9 @@ const rows=all.filter(b=>(!t||t.split(" ").every(w=>norm(b.name).includes(w)))&&
 const qs=new URLSearchParams();if(t)qs.set("q",$("#bq").value.trim());if(so!=="near")qs.set("sort",so);if(only)qs.set("phone","1");history.replaceState(history.state,"","#/builders"+(qs.toString()?"?"+qs:""));STATE.trail[STATE.trail.length-1]=location.hash;
 $("#bcount").innerHTML=`<b class="num">${int(rows.length)}</b> ${rows.length===1?"builder":"builders"}`;
 $("#blist").innerHTML=rows.length?`<table class="bt"><caption class="sr">Builders on this week's list</caption><thead><tr><th>Builder</th><th class="n">Projects</th><th class="n">Near finish</th><th class="n hm">New</th><th class="n hm">Reported cost</th></tr></thead><tbody>${rows.map(b=>{const h="#/builder/"+encodeURIComponent(b.key);
-return `<tr><td class="nm"><a href="${h}"><b>${esc(b.name)}</b><small>${b.ok?ico(b.contact.phone?"phone":"mail","s")+"Contact on file":"No contact on file yet"}${b.area?", mostly "+esc(b.area):""}</small><small class="mob num">${plural(b.n,"project")}${b.near?`, ${int(b.near)} near finish`:""}, ${money(b.cost)}</small></a></td><td class="n num"><a href="${h}" tabindex="-1" aria-hidden="true">${int(b.n)}</a></td><td class="n num${b.near?"":" z"}"><a href="${h}" tabindex="-1" aria-hidden="true">${int(b.near)}</a></td><td class="n num hm${b.nw?"":" z"}"><a href="${h}" tabindex="-1" aria-hidden="true">${int(b.nw)}</a></td><td class="n num hm"><a href="${h}" tabindex="-1" aria-hidden="true">${money(b.cost)}</a></td></tr>`;}).join("")}</tbody></table>`
+return `<tr><td class="nm"><a href="${h}"><b>${esc(b.name)}</b><small>${b.ok?ico(b.contact.phone?"phone":"mail","s")+"Contact on file":"No contact on file yet"}${b.area?", mostly "+esc(b.area):""}</small><small class="mob num">${plural(b.n,"project")}${b.near?`, ${int(b.near)} near finish`:""}, ${money(b.cost)}</small></a></td><td class="n num">${int(b.n)}</td><td class="n num${b.near?"":" z"}">${int(b.near)}</td><td class="n num hm${b.nw?"":" z"}">${int(b.nw)}</td><td class="n num hm">${money(b.cost)}</td></tr>`;}).join("")}</tbody></table>`
 :`<div class="empty"><h3>No builders match</h3><p>Check the spelling, or search part of the name.</p></div>`;};
+$("#blist").onclick=e=>{if(e.target.closest("a"))return;const tr=e.target.closest("tr");const a=tr&&tr.querySelector("a");if(a)go(a.getAttribute("href"));};
 let tb;$("#bq").addEventListener("input",()=>{clearTimeout(tb);tb=setTimeout(draw,120);});$("#bsort").onchange=draw;$("#bph").onchange=draw;draw();}
 function viewBuilder(b){document.title=`${b.name} | Chicago Construction Cleaning Leads`;const ps=b.ps.slice().sort(ORDER.clean);
 $("#app").innerHTML=`<a class="back" href="#/builders" id="back">${ico("back")}Back</a>
@@ -851,6 +860,7 @@ $("#app").innerHTML=`<div class="ph"><div><h1>Pitch kit</h1><p>What to send a bu
 <section class="panel mail"><div class="pk-h"><div><h2>An email to a builder</h2><p>Send it after you call.</p></div><button class="btn sm" type="button" data-copy="m">${ico("copy","s")}Copy</button></div>${PITCH.email.map(x=>`<p>${fill(x)}</p>`).join("")}</section></div>`;
 document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=async()=>{toast(await copyText(b.dataset.copy==="s"?sheetTxt:mailTxt)?"Copied":"Copy did not work here. Select the text and copy it.");});}
 
+$("#skip").onclick=e=>{e.preventDefault();const t=$("#app").hidden?$("#pw"):($("#app h1")||$("#app"));if(t){t.setAttribute("tabindex",t.id==="pw"?"0":"-1");t.focus();}};
 /* gate */
 const pw=$("#pw"),eye=$("#eye");
 eye.onclick=()=>{const show=pw.type==="password";pw.type=show?"text":"password";eye.setAttribute("aria-pressed",String(show));eye.setAttribute("aria-label",show?"Hide password":"Show password");$("#eyeslash").hidden=!show;pw.focus();};

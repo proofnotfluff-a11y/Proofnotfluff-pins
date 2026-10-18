@@ -1571,7 +1571,7 @@ def project_card(x, pill=True, city="Chicago", permit_label="Permit", bil2=False
             f'<div class="ld-ptop"><span class="ld-cost">{money(x["cost"], bil2=bil2)}</span><span class="ld-type">{E(x["type"])}{units}</span></div>'
             f'<p class="ld-scope">{E(x["scope"])}</p>'
             f'<dl class="ld-meta{" wide" if len(permit_label) > 7 else ""}"><div><dt>Builder</dt><dd>{E(gc)}</dd></div>'
-            f'<div><dt>Where</dt><dd>{E(x.get("address") or "")},{"&nbsp;" if str(area).isdigit() else " "}{E(area)}</dd></div>'
+            f'<div><dt>Where</dt><dd>{E(x.get("address") or "").replace(" more)", "&nbsp;more)") if sep == ", " else E(x.get("address") or "")},{"&nbsp;" if str(area).isdigit() else " "}{E(area)}</dd></div>'
             f'<div><dt>{E(permit_label)}</dt><dd>{E(str(x.get("permit") or ""))}, issued {E(nice_date(x.get("issued", "")))}</dd></div></dl></article>')
 
 

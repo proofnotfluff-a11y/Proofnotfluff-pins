@@ -769,7 +769,7 @@ if(scroll){window.scrollTo(0,0);const h=app.querySelector("h1");if(h){h.setAttri
 function row(p,ctx){const m=mk(p.id);const b=p.g.length?B[p.g[0]]:null;const other=ctx&&ctx!=="near"&&ctx!=="new"&&p.g.find(k=>k!==ctx);const kind=[p.t,p.u?plural(p.u,"home"):"",p.sl?plural(p.sl,"sleeping unit"):""].filter(Boolean).join(", ");
 return `<li><a class="row" href="#/project/${encodeURIComponent(p.id)}" data-id="${esc(p.id)}">
 <span class="mn num">${money(p.c)}<small>${esc(kind)}</small></span>
-<span class="ad">${esc(p.a)}${p.ca?`<span class="ar">,${CITY.key==="austin"?"&nbsp;":" "}${esc(p.ca)}</span>`:""}</span>
+<span class="ad">${CITY.key==="austin"?esc(p.a).replace(/ more\)/g,"&nbsp;more)"):esc(p.a)}${p.ca?`<span class="ar">,${CITY.key==="austin"?"&nbsp;":" "}${esc(p.ca)}</span>`:""}</span>
 ${ctx&&ctx!=="near"&&ctx!=="new"?(other?`<span class="bd"><span>With ${esc(pn(p,p.g.indexOf(other)))}</span></span>`:""):`<span class="bd">${b&&b.ok?ico(b.contact.phone?"phone":"mail","s")+'<span class="sr">Contact on file: </span>':""}<span>${esc(b?pn(p,0):"No builder listed")}${p.g.length>1?` <span class="ar">and ${int(p.g.length-1)} more</span>`:""}</span>${b&&!b.ok&&CITY.contacts?'<span class="nc">No contact yet</span>':""}</span>`}
 <span class="rt">${ctx&&ctx!=="new"?"":chip(p.st)}${p.n&&ctx!=="new"?'<span class="badge new">New this week</span>':""}${m.c?`<span class="badge done">${ico("check","s")}Contacted</span>`:""}</span>${ico("chev","chev")}</a></li>`;}
 function rowsHtml(list,limit,ctx){if(!list.length)return "";const n=Math.min(limit||list.length,list.length);return `<ul class="list-rows">${list.slice(0,n).map(p=>row(p,ctx)).join("")}</ul>`;}
@@ -811,7 +811,7 @@ function activeCount(f){return [f.area,f.cost,f.type,f.nw,f.fu].filter(Boolean).
 function viewProjects(q){const f=readF(q);STATE.f=f;STATE.shown=60;document.title="Projects | "+PROD;
 const areas=[...new Set(P.map(p=>p.ca).filter(Boolean))].sort();
 $("#app").innerHTML=`<div class="ph"><h1>Projects</h1></div>
-<div class="tool"><label class="search"><span class="sr">Search projects</span>${ico("search")}<input id="fq" type="search" placeholder="Search address, builder or permit" value="${esc(f.q)}" autocomplete="off" enterkeyhint="search"><button type="button" class="clr" id="fqx" aria-label="Clear search"${f.q?"":" hidden"}>${ico("x","s")}</button></label>
+<div class="tool"><label class="search"><span class="sr">Search projects</span>${ico("search")}<input id="fq" type="search" placeholder="${CITY.key==="austin"?"Search address, builder, permit":"Search address, builder or permit"}" value="${esc(f.q)}" autocomplete="off" enterkeyhint="search"><button type="button" class="clr" id="fqx" aria-label="Clear search"${f.q?"":" hidden"}>${ico("x","s")}</button></label>
 <div class="seg" id="fstage" role="group" aria-label="Stage"></div>
 <button class="btn fbtn" id="fopen" type="button" aria-haspopup="dialog" aria-controls="fsheet">${ico("filter")}<span id="fopenT">Filters</span></button>
 <span class="tsp"></span><button class="btn csvb" type="button" id="csv" aria-label="Export these projects as a CSV file">${ico("csv","s")}<span class="t" aria-hidden="true">Export CSV</span><span class="m" aria-hidden="true">CSV</span></button>

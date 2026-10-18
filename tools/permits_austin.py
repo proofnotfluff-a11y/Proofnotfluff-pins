@@ -282,7 +282,7 @@ def keep_permit(r, since, today):
 FIRST_NAMES = set("""JAMES JOHN ROBERT MICHAEL WILLIAM DAVID RICHARD JOSEPH THOMAS CHARLES CHRISTOPHER DANIEL MATTHEW ANTHONY MARK DONALD STEVEN
 PAUL ANDREW JOSHUA KENNETH KEVIN BRIAN GEORGE TIMOTHY RONALD EDWARD JASON JEFFREY RYAN JACOB GARY NICHOLAS ERIC JONATHAN STEPHEN LARRY JUSTIN
 SCOTT BRANDON BENJAMIN SAMUEL GREGORY ALEXANDER FRANK PATRICK RAYMOND JACK DENNIS JERRY TYLER AARON JOSE ADAM NATHAN HENRY DOUGLAS ZACHARY PETER
-KYLE ETHAN WALTER NOAH JEREMY CHRISTIAN KEITH ROGER TERRY AUSTIN SEAN GERALD CARL HAROLD DYLAN ARTHUR LAWRENCE JORDAN JESSE BRYAN BILLY BRUCE
+KYLE ETHAN WALTER NOAH JEREMY CHRISTIAN KEITH ROGER TERRY SEAN GERALD CARL HAROLD DYLAN ARTHUR LAWRENCE JESSE BRYAN BILLY BRUCE
 GABRIEL JOE LOGAN ALBERT WILLIE ALAN EUGENE RUSSELL VINCENT PHILIP BOBBY JOHNNY BRADLEY ROY RALPH RANDY LOUIS MARIO JUAN CARLOS LUIS MIGUEL JORGE
 PEDRO RAFAEL RICARDO FRANCISCO ANTONIO MANUEL JESUS ALEJANDRO JAVIER FERNANDO ROBERTO EDUARDO SERGIO HECTOR MARY PATRICIA JENNIFER LINDA
 ELIZABETH BARBARA SUSAN JESSICA SARAH KAREN LISA NANCY BETTY MARGARET SANDRA ASHLEY KIMBERLY EMILY DONNA MICHELLE CAROL AMANDA DOROTHY MELISSA
@@ -412,7 +412,9 @@ def group_projects(rows, since, today, week, min_cost=MIN_COST):
         # remodel counts: 13521831 has 17 finaled phases and 2 open, Oct 18)
         finals = [r for r in rs if (r.get("status_current") or "").upper() == "FINAL" and day(r.get("issue_date")) >= since[:10]
                   and keep_permit(dict(r, status_current="Active", expiresdate=""), since, today)[0]]
-        stage = ("Near finish" if finals else "Work under way" if any(extended(r) for r in kept) else "Permit issued")
+        # an extended expiry on any open building permit of the project counts, older ones included (design round 4: 12872034, a
+        # 55-story tower whose 2022 floor finish-outs are still open, is work under way, not a permit just issued)
+        stage = ("Near finish" if finals else "Work under way" if any(extended(r) for r in rs if is_open(r, today)) else "Permit issued")
         new_units = homes([r for r in kept if cls_no(r) in (104, 105, 106)])
         fin_units = homes([r for r in kept if cls_no(r) in (1000, 1001, 1002) and HOME_WORDS.search((r.get("description") or "").upper())])
         units = max(new_units, fin_units)
@@ -939,6 +941,7 @@ def selftest():
                              ("KINGHAM DALTON WILSON", "General Contractor", "Kingham Dalton Wilson"),
                              ("Gordon Highlander|Pat Jones", "General Contractor", None),   # holdout D: two plain words starting with a first name
                              ("FLYNN CONSTRUCTION ***Main", "General Contractor", "Flynn Construction"), ("*MAIN", "General Contractor", None),
+                             ("AUSTIN BRIDGE", "General Contractor", "Austin Bridge"), ("Jordan Foster", "General Contractor", "Jordan Foster"),   # names that are businesses here
                              ("Gordon Highlander|Gordon Highlander", "General Contractor", None),   # the contractor's own name: a person
                              ("SMITH JOHN|JOHN SMITH", "General Contractor", None),
                              ("XBIOTECH", "General Contractor", "Xbiotech"), ("Speed Fab-Crete", "General Contractor", "Speed Fab-Crete"),
@@ -1062,7 +1065,7 @@ def selftest():
         bad.append(("coord",))
     if bad:
         raise SystemExit("austin selftest FAIL: " + json.dumps(bad, default=str)[:2500])
-    print(f"austin selftest ok ({len(PERMIT_CASES)} planted permits, 11 window cases, 18 builder cases, 14 scope cases, 10 planted projects, 13 builder groupings, twin merge, 12 addresses)")
+    print(f"austin selftest ok ({len(PERMIT_CASES)} planted permits, 11 window cases, 22 builder cases, 14 scope cases, 10 planted projects, 13 builder groupings, twin merge, 12 addresses)")
 
 
 def audit(rows, since, today, path):

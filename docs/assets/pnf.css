@@ -188,6 +188,7 @@ table.mt b{font-weight:700}
 @media(min-width:760px){.ld-shotgrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
 .ld-shot{margin:0;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;box-shadow:0 4px 14px rgba(20,24,36,.05)}
 .ld-shot img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top left;border-radius:8px;background:#f0ece4}
+@media(max-width:600px){.ld-shot picture img{aspect-ratio:auto;object-fit:contain}}   /* phone images shown whole (design round 4) */
 .ld-shot figcaption{font-size:14px;color:var(--ink2);padding:10px 4px 2px;font-weight:600}
 .block .ld-cta p.ld-price{margin-top:10px;color:#fff;font-weight:600}
 .ld-form label{display:block;font-size:13px;font-weight:700;color:#c9cfdb;margin-bottom:6px}

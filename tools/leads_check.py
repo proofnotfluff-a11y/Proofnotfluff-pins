@@ -105,7 +105,7 @@ def capture(ctx, base, pw, wb_path, out, no_tiles, check, leaflet=""):
     pg.screenshot(path=os.path.join(out, "members-list.png"))
     pg.close()
     # the phone list (design round 3): the same view on a 390 px phone at 2x, for the free page's phone layout
-    pctx = ctx.browser.new_context(viewport={"width": 390, "height": 760}, device_scale_factor=2, is_mobile=True, has_touch=True)
+    pctx = ctx.browser.new_context(viewport={"width": 390, "height": 550}, device_scale_factor=2, is_mobile=True, has_touch=True)
     if leaflet:
         pctx.route(re.compile(r"https://cdnjs\.cloudflare\.com/ajax/libs/leaflet/1\.9\.4/(.*)"),
                    lambda route: route.fulfill(path=os.path.join(leaflet, route.request.url.rsplit("/", 1)[1])))
@@ -137,7 +137,7 @@ def capture(ctx, base, pw, wb_path, out, no_tiles, check, leaflet=""):
     pad_to(im.crop((0, 0, cw, cut)), 900, 675, m).save(os.path.join(out, "workbook-phone.png"))
     names = ("members-list.png", "members-list-phone.png", "workbook.png", "workbook-phone.png")
     sizes = [Image.open(os.path.join(out, f)).size for f in names]
-    check(sizes == [(1064, 665), (780, 1520), (1200, 772), (900, 675)], f"captured the free page's screenshots into {out}: {sizes}")
+    check(sizes == [(1064, 665), (780, 1100), (1200, 772), (900, 675)], f"captured the free page's screenshots into {out}: {sizes}")
 
 
 def main():

@@ -208,7 +208,7 @@ def project_sheet(wb, key, tagline, rows, list_date, tab, drop=(), stats=None):
         best = None
         for combo in itertools.combinations(range(1, len(cols)), k - 1):
             pos = [0] + [edge[j] for j in combo]
-            if pos[-1] < 0.55 * full:
+            if pos[-1] < 0.70 * full:   # the last number reaches the description column, so the strip spans the card
                 continue
             gaps = [b - a for a, b in zip(pos, pos[1:])]
             score = max(gaps) - min(gaps)
@@ -291,9 +291,9 @@ def builders_sheet(wb, rows, list_date):
     first, last = top + 2, top + 2 + max(len(items), 1) - 1
     D.h(ws, 6, 10)
     D.stat_strip(ws, 7, [
-        ("C:C", "Builders with open work", f'=COUNTIF(C{first}:C{last},"?*")', S.FMT["int"]),
-        ("D:G", "With 2 or more projects" if aus else "With 2 or more open permits", f'=COUNTIF(D{first}:D{last},">=2")', S.FMT["int"]),
-        ("H:J", "Builder-projects (two builders count twice)" if aus else "Builder-permits (two builders count twice)", f"=SUM(D{first}:D{last})", S.FMT["int"]),
+        ("C:D" if aus else "C:C", "Builders with open work", f'=COUNTIF(C{first}:C{last},"?*")', S.FMT["int"]),   # Austin: even gaps (design round 4)
+        ("E:H" if aus else "D:G", "With 2 or more projects" if aus else "With 2 or more open permits", f'=COUNTIF(D{first}:D{last},">=2")', S.FMT["int"]),
+        ("I:J" if aus else "H:J", "Builder-projects (two builders count twice)" if aus else "Builder-permits (two builders count twice)", f"=SUM(D{first}:D{last})", S.FMT["int"]),
     ])
     D.h(ws, 9, 10)
     D.frame(ws, 6, 9, "B", "K")

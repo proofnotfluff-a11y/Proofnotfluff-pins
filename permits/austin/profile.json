@@ -1,6 +1,6 @@
 {
- "fetchedAt": "2026-10-17T21:47:51+00:00",
- "rowsUpdatedAt": "2026-10-17T12:24:23+00:00",
+ "fetchedAt": "2026-10-18T15:15:43+00:00",
+ "rowsUpdatedAt": "2026-10-18T12:52:08+00:00",
  "columns": [
   "permittype",
   "permit_type_desc",
@@ -82,8 +82,8 @@
   ":@computed_region_6gig_z43c"
  ],
  "workClasses": {
-  "Remodel": 223,
   "New": 537,
+  "Remodel": 223,
   "Addition and Remodel": 21,
   "Shell": 23,
   "Addition": 1,
@@ -119,5 +119,5 @@
   "C- 106 Mixed Use": 1
  },
  "license": "Public Domain U.S. Government",
- "where": "issue_date >= '2025-10-17T00:00:00' AND permittype='BP' AND permit_class_mapped='Commercial' AND (total_job_valuation >= 500000 OR total_valuation_remodel >= 500000)"
+ "where": "issue_date >= '2025-10-18T00:00:00' AND permittype='BP' AND permit_class_mapped='Commercial' AND (total_job_valuation >= 500000 OR total_valuation_remodel >= 500000)"
 }

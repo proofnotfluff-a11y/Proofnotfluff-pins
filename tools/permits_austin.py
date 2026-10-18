@@ -360,12 +360,14 @@ def homes(rs):
     """Homes on a set of building permits: the City's housing units, added up. When every permit lists the same number, it is the
     project's own count repeated (4208 Medical Pkwy: 70 on each of 3 permits; 13114310: 295 on each of 6), so it counts once.
     Counted only on residential buildings (classes 104 to 106) and on finish-outs or remodels of homes; elsewhere the City often
-    files 1 on non-residential work, and the list leaves Homes blank."""
-    n = [int(num(r.get("housing_units"))) for r in rs]
+    files 1 on non-residential work, and the list leaves Homes blank. Class 104 permits (three and four family buildings, one
+    building each) always add up: 13352064 is two fourplexes, 8 homes."""
+    small = sum(int(num(r.get("housing_units"))) for r in rs if cls_no(r) == 104)   # a class 104 permit is one 3 or 4 home building: add them
+    n = [int(num(r.get("housing_units"))) for r in rs if cls_no(r) != 104]
     n = [x for x in n if x > 0]
     if len(n) >= 2 and len(set(n)) == 1:
-        return n[0]
-    return sum(n)
+        return small + n[0]
+    return small + sum(n)
 
 
 def group_projects(rows, since, today, week, min_cost=MIN_COST):
@@ -1001,6 +1003,9 @@ def selftest():
         row(18, masterpermitnum="M9", permit_class="C- 104 Three & Four Family Bldgs", housing_units="4", total_job_valuation="500000",
             issue_date="2024-10-19T00:00:00.000", expiresdate="2026-11-30T00:00:00.000", contractor_company_name="Joseph Companies",
             description="New construction of a multi-family fourplex"),
+        row(20, masterpermitnum="M9", permit_class="C- 104 Three & Four Family Bldgs", housing_units="4", total_job_valuation="500000",
+            issue_date="2024-10-19T00:00:00.000", expiresdate="2026-11-30T00:00:00.000", contractor_company_name="Joseph Companies",
+            description="New construction of a multi-family fourplex"),
         row(19, masterpermitnum="M10", permit_class="C-1000 Commercial Remodel", work_class="Remodel", housing_units="3", total_valuation_remodel="900000",
             description="Interior Remodel to Existing Office/Warehouse. Work to include subdividing Existing Interior into Multiple Suites",
             expiresdate="2026-12-01T00:00:00.000")]
@@ -1013,7 +1018,7 @@ def selftest():
             bad.append(("M1", byp["M1"]))   # valued from its kept permits only (the pergola's $830M does not count); 30 homes repeated on 2 permits count once
         if byp["M4"]["gc"] != ["Acme Builders LLC"] or byp["M4"]["milestone"] != "Work under way" or byp["M4"]["issued"] != "2026-02-01" or byp["M4"]["newThisWeek"]:
             bad.append(("M4", byp["M4"]))   # one legal entity, expiry pushed past 180 days, new only when its first permit is new
-        if byp["M8"]["units"] != 70 or byp["M8"]["newUnits"] != 70 or byp["M9"]["units"] != 4 or byp["M9"]["cost"] != 500000 \
+        if byp["M8"]["units"] != 70 or byp["M8"]["newUnits"] != 70 or byp["M9"]["units"] != 8 or byp["M9"]["cost"] != 500000 \
                 or byp["M10"]["units"] is not None:
             bad.append(("homes", byp["M8"]["units"], byp["M9"]["units"], byp["M10"]["units"]))
         if byp["M5"]["milestone"] != "Permit issued":

@@ -397,8 +397,8 @@ def start_here(wb, rows, near, new, src, list_date, addresses):
         how = [("para", src.get("modified", "")),
                ("lead", ("Projects", "Austin issues a building permit for each building, and often one for each floor of finish-out. The list "
                                      "groups them by the City's master permit, so one row is one project.")),
-               ("lead", ("Homes", "The City's housing units on residential buildings and on finish-outs or remodels of homes. When every "
-                                  "permit of a project repeats the same number, it counts once. Blank on non-residential work.")),
+               ("lead", ("Homes", "The City's housing units on residential buildings and on finish-outs or remodels of homes. When the "
+                                  "permits of a project repeat the same number, it counts once (fourplexes add up). Blank on non-residential work.")),
                ("lead", ("Stages", "From the City's own permit fields. Permit issued is early. Work under way means the City has pushed a "
                                    "permit's expiry date past the first 180 days, which it does when an inspection passes or an extension is "
                                    "granted. Some permits finaled means part of the project is marked Final while the rest is open.")),

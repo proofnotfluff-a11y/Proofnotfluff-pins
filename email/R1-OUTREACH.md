@@ -21,7 +21,7 @@ Fields by trade:
 
 | Trade | {service} (opener) | {count} | {cited} | {trade_line} | {service_ad} |
 |---|---|---|---|---|---|
-| Pest control | do commercial pest control | counts.byCat.pests | pest violations | {count} places were cited for pests in the last 30 days | commercial pest control |
+| Pest control | do commercial pest control | counts.byCat.pests | pest violations | {count} places were cited for pest violations in the last 30 days | commercial pest control |
 | Hood and exhaust cleaning | clean commercial kitchen hoods | counts.byCat.hood | hood or exhaust violations | {count} places were cited for hood, filter or exhaust problems in the last 30 days | kitchen hood cleaning |
 | Grease trap and drains | service restaurant grease traps | counts.byCat.drain | grease trap or drain violations | {count} places were cited for grease trap or drain problems in the last 30 days | grease trap service |
 
@@ -85,3 +85,4 @@ This is an advertisement for ProofNotFluff's paid list. This is our last email u
 - Oct 18, 2026, round 3 (fresh reviewer): FAIL, 4.40, nothing under 4. Applied: a shorter body (about 135 words), a shorter subject, the example cited for the trade first in plain inspection words, the follow-up from the newest Monday file. Next: a fresh reviewer re-checks items 4, 6, 7 and 10 before the first restaurant batch (Oct 26).
 - Oct 18, 2026, round 4 (fresh reviewer): FAIL, 4.55, nothing under 4. Applied: subjects end on a noun ("hood or exhaust problems"), paragraphs 3 and 4 tightened, "call opener for your trade" as the free page says, "See this week's free sample:". Items 4 and 6 go to a fresh re-check.
 - Oct 18, 2026, round 5 (fresh reviewer, items 4 and 6): FAIL, 4.55. Applied: body cut to about 120 words, subjects "{count} Chicago places with {cited}" with the trade words kept accurate.
+- Oct 18, 2026, round 6 (fresh reviewer, items 3, 4 and 6): PASS, 4.65, nothing under 4. Applied its optional tweak ("cited for pest violations"). Open data-tool item before the Oct 26 batch: tools/rest_leads.py carries each example's latest City result.

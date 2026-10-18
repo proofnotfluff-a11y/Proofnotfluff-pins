@@ -77,3 +77,9 @@ Made with AI assistance and reviewed and tested by the shop owner.
 Tier name: `Monthly`. Price: `$39`.
 
 Paste the "Terms of Use, readable before you buy" line only after the inspections workflow has published the members' app and that link opens the Terms without a password (the app's #/terms view opens before the password; Legal desk fix 9).
+
+## Launched Oct 18, 2026
+- Gumroad published by Todd at 1:13 pm (https://proofnotfluff.gumroad.com/l/mlyiiz, $39 a month, tier Monthly). Summary typo fixed by the live session the same minute.
+- Buyer delivery checked: the Content tab holds the members' link and the members' password; that password unlocks the app (repo copy served locally at 390 and 1280 px), and the live page's file is byte-identical (sha256 40b6cbeb...); #/terms opens without the password.
+- Free page out of draft with the Gumroad checkout (commit 854eee0), live and indexed.
+- Todd, Oct 18, 1:20 pm: "go restaurants". CRM meta/products.chicago-restaurant.outreachGo true; first batch is drafted by the Monday outreach run and sent only after his "send".

@@ -1,7 +1,7 @@
 {
- "ranAt": "2026-10-18T04:22:21+00:00",
+ "ranAt": "2026-10-18T13:11:16+00:00",
  "since": "2026-09-06",
- "inspections": 1353,
+ "inspections": 1354,
  "codes": [
   {
    "code": 1,
@@ -77,7 +77,7 @@
   {
    "code": 16,
    "title": "FOOD-CONTACT SURFACES: CLEANED & SANITIZED",
-   "count": 91,
+   "count": 92,
    "keywordHits": {}
   },
   {
@@ -157,9 +157,9 @@
   {
    "code": 38,
    "title": "INSECTS, RODENTS, & ANIMALS NOT PRESENT",
-   "count": 322,
+   "count": 323,
    "keywordHits": {
-    "roach": 46,
+    "roach": 47,
     "rodent": 95,
     "droppings": 59,
     "flies": 49,
@@ -202,7 +202,7 @@
   {
    "code": 43,
    "title": "IN-USE UTENSILS: PROPERLY STORED",
-   "count": 24,
+   "count": 25,
    "keywordHits": {}
   },
   {
@@ -228,7 +228,7 @@
   {
    "code": 47,
    "title": "FOOD & NON-FOOD CONTACT SURFACES CLEANABLE, PROPERLY DESIGNED, CONSTRUCTED & USED",
-   "count": 264,
+   "count": 267,
    "keywordHits": {
     "plumbing": 5,
     "filter": 2,
@@ -247,9 +247,9 @@
   {
    "code": 49,
    "title": "NON-FOOD/FOOD CONTACT SURFACES CLEAN",
-   "count": 245,
+   "count": 246,
    "keywordHits": {
-    "grease": 75,
+    "grease": 76,
     "grease_trap": 11,
     "flies": 2,
     "rodent": 1,
@@ -268,9 +268,9 @@
   {
    "code": 51,
    "title": "PLUMBING INSTALLED; PROPER BACKFLOW DEVICES",
-   "count": 240,
+   "count": 241,
    "keywordHits": {
-    "plumbing": 170,
+    "plumbing": 171,
     "grease": 1,
     "grease_trap": 1
    }
@@ -309,7 +309,7 @@
   {
    "code": 55,
    "title": "PHYSICAL FACILITIES INSTALLED, MAINTAINED & CLEAN",
-   "count": 683,
+   "count": 684,
    "keywordHits": {
     "grease": 68,
     "plumbing": 68,
@@ -328,8 +328,8 @@
    "title": "ADEQUATE VENTILATION & LIGHTING; DESIGNATED AREAS USED",
    "count": 203,
    "keywordHits": {
-    "exhaust": 69,
     "hood": 79,
+    "exhaust": 69,
     "filter": 39,
     "grease": 30
    }
@@ -365,15 +365,16 @@
   {
    "code": 60,
    "title": "PREVIOUS CORE VIOLATION CORRECTED",
-   "count": 51,
+   "count": 52,
    "keywordHits": {
-    "rodent": 4,
+    "rodent": 5,
+    "roach": 1,
+    "insect": 4,
+    "grease": 15,
     "hood": 6,
     "filter": 7,
-    "grease": 14,
     "exhaust": 3,
     "plumbing": 11,
-    "insect": 3,
     "flies": 1,
     "droppings": 1
    }
@@ -432,7 +433,7 @@
   {
    "result": "Fail",
    "type": "Complaint",
-   "count": 86
+   "count": 87
   },
   {
    "result": "Fail",
@@ -573,7 +574,7 @@
  "facilityTypes": [
   [
    "Restaurant",
-   763
+   764
   ],
   [
    "School",

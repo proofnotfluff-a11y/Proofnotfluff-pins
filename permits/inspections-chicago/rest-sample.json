@@ -1,7 +1,7 @@
 {
  "product": "Chicago Restaurant Inspection Leads",
- "asOf": "2026-10-17",
- "asOfText": "Oct 17, 2026",
+ "asOf": "2026-10-18",
+ "asOfText": "Oct 18, 2026",
  "through": "2026-10-16",
  "throughText": "Oct 16, 2026",
  "window": {
@@ -13,39 +13,39 @@
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-18T03:53:26+00:00",
-  "rowsUpdatedAt": "2026-10-17T09:07:12+00:00",
+  "fetchedAt": "2026-10-18T13:11:21+00:00",
+  "rowsUpdatedAt": "2026-10-18T09:08:05+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "places": 245,
-  "flagged": 117,
+  "places": 246,
+  "flagged": 118,
   "opening": 130,
   "repeat": 23,
-  "new": 52,
+  "new": 53,
   "byCat": {
-   "pests": 81,
+   "pests": 82,
    "hood": 23,
-   "drain": 12,
-   "clean": 93
+   "drain": 13,
+   "clean": 94
   },
-  "flaggedFail": 98,
+  "flaggedFail": 99,
   "openingPassed": 92,
   "excluded": {
    "business name is a person's name": 4,
    "school, day care, hospital, senior or mobile vendor": 70,
    "the City's latest result is out of business or not located": 1
   },
-  "rowsRead": 1151,
-  "historyRead": 767,
+  "rowsRead": 1152,
+  "historyRead": 768,
   "areas": [
    [
-    "Near West Side",
+    "Loop",
     14
    ],
    [
-    "Loop",
+    "Near West Side",
     14
    ],
    [
@@ -54,7 +54,7 @@
    ],
    [
     "Lake View",
-    11
+    12
    ],
    [
     "Logan Square",
@@ -85,11 +85,11 @@
     7
    ],
    [
-    "Uptown",
+    "Lincoln Park",
     6
    ],
    [
-    "Lincoln Park",
+    "Uptown",
     6
    ],
    [
@@ -97,11 +97,11 @@
     6
    ],
    [
-    "Auburn Gresham",
+    "O'Hare",
     5
    ],
    [
-    "O'Hare",
+    "Auburn Gresham",
     5
    ],
    [
@@ -129,11 +129,11 @@
     4
    ],
    [
-    "Hyde Park",
+    "West Elsdon",
     4
    ],
    [
-    "West Elsdon",
+    "Hyde Park",
     4
    ],
    [
@@ -153,11 +153,7 @@
     3
    ],
    [
-    "Dunning",
-    3
-   ],
-   [
-    "Garfield Ridge",
+    "East Garfield Park",
     3
    ],
    [
@@ -165,19 +161,19 @@
     3
    ],
    [
+    "Dunning",
+    3
+   ],
+   [
     "North Center",
     3
    ],
    [
-    "East Garfield Park",
+    "Garfield Ridge",
     3
    ],
    [
     "Avondale",
-    2
-   ],
-   [
-    "Edgewater",
     2
    ],
    [
@@ -189,7 +185,11 @@
     2
    ],
    [
-    "South Deering",
+    "Edgewater",
+    2
+   ],
+   [
+    "Rogers Park",
     2
    ],
    [
@@ -197,7 +197,7 @@
     2
    ],
    [
-    "Rogers Park",
+    "South Deering",
     2
    ],
    [
@@ -311,22 +311,24 @@
    },
    {
     "type": "Restaurant",
+    "area": "Lake View",
+    "date": "2026-10-16",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "categories": [
+     "Pests",
+     "Grease trap and drains",
+     "Cleaning"
+    ]
+   },
+   {
+    "type": "Restaurant",
     "area": "West Elsdon",
     "date": "2026-10-15",
     "result": "Fail",
     "inspectionType": "Complaint",
     "categories": [
      "Pests",
-     "Cleaning"
-    ]
-   },
-   {
-    "type": "Restaurant",
-    "area": "Hyde Park",
-    "date": "2026-10-15",
-    "result": "Pass w/ Conditions",
-    "inspectionType": "Canvass",
-    "categories": [
      "Cleaning"
     ]
    }

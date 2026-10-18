@@ -2,8 +2,8 @@
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "rowsUpdatedAt": "2026-10-17T09:07:12+00:00",
-  "fetchedAt": "2026-10-18T04:22:24+00:00",
+  "rowsUpdatedAt": "2026-10-18T09:08:05+00:00",
+  "fetchedAt": "2026-10-18T13:11:21+00:00",
   "modified": "Filtered by ProofNotFluff: food inspections of the last 7 days at licensed food businesses (schools, day care, hospitals, senior meal sites and mobile vendors left out) that failed with pest violations, failed or passed with conditions with hood, grease or grease trap violations, had a license (pre-opening) inspection, or failed twice in 30 days. Violation notes are read only to set category labels; inspector notes are not republished. Business-level fields only.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
@@ -12,17 +12,17 @@
   "to": "2026-10-18"
  },
  "counts": {
-  "fetched": 1151,
-  "kept": 64,
+  "fetched": 1152,
+  "kept": 65,
   "segments": {
-   "pests": 15,
-   "hoodGrease": 9,
+   "pests": 16,
+   "hoodGrease": 10,
    "newOpening": 49,
    "repeatFail": 6
   },
   "excluded": {
-   "institution or mobile vendor": 26,
-   "no lead segment (passed, or no buyer-relevant violation)": 46
+   "no lead segment (passed, or no buyer-relevant violation)": 46,
+   "institution or mobile vendor": 26
   },
   "areas": [
    [
@@ -58,17 +58,32 @@
     3
    ],
    [
-    "McKinley Park",
+    "Lake View",
     2
    ],
    [
-    "Grand Boulevard",
+    "McKinley Park",
     2
    ]
   ]
  },
  "segments": {
   "pests": [
+   {
+    "business": "Morrison Management Specialists #72092 Immc Rendez",
+    "address": "836 W Wellington Ave",
+    "communityArea": "Lake View",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "date": "2026-10-16",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Pests",
+     "Plumbing"
+    ]
+   },
    {
     "business": "Chicago's Home of Chicken & Waffles",
     "address": "3947 S Dr Martin Luther King Jr Dr",
@@ -190,23 +205,24 @@
      "Pests",
      "Plumbing"
     ]
-   },
-   {
-    "business": "Morrison's Soul Food",
-    "address": "148 W 79th St",
-    "communityArea": "Greater Grand Crossing",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Complaint",
-    "date": "2026-10-14",
-    "categories": [
-     "Cleaning and sanitation",
-     "Hood and ventilation",
-     "Pests"
-    ]
    }
   ],
   "hoodGrease": [
+   {
+    "business": "Morrison Management Specialists #72092 Immc Rendez",
+    "address": "836 W Wellington Ave",
+    "communityArea": "Lake View",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "date": "2026-10-16",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Pests",
+     "Plumbing"
+    ]
+   },
    {
     "business": "Chicago's Home of Chicken & Waffles",
     "address": "3947 S Dr Martin Luther King Jr Dr",

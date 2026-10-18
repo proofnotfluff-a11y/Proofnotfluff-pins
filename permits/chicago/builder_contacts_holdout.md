@@ -1,6 +1,6 @@
 # Builder contacts holdout check
 
-Status, Oct 17, 2026: **not run yet.** The session that filled permits/chicago/builder_contacts.json had no tool for starting independent checker agents, so Todd's holdout rule (two checkers that never see the build notes) is still open. Until both checkers pass an entry, treat every `verified` entry as self-checked only.
+Status, Oct 17, 2026, about 9 pm: **run.** Two independent checkers (opus, given only this file and the contacts file) reopened every source page. Checker A: 49 ok, 1 fix, 0 drop. Checker B: 49 ok, 1 fix, 0 drop. They agreed on 48 entries. No agreed fix, so nothing was changed in place. Consortian stays as filed (A suggested adding a general inbox; B did not confirm it, so it is not added). The Bowa Group goes to no-contact because the checkers disagreed. Verdict files: session scratchpad holdout-A.json and holdout-B.json.
 
 ## What each checker gets
 
@@ -17,53 +17,53 @@ Keep only entries both checkers pass; apply fixes both agree on; set entries the
 
 | Builder | Status | Checker A | Checker B | Result |
 |---|---|---|---|---|
-| Skender Construction LLC | verified | | | |
-| Redmond Construction Corp. | no-contact | | | |
-| Triumph Design Build Corporation | verified | | | |
-| JC Anderson Inc | verified | | | |
-| Macon Construction Group, Inc. | verified | | | |
-| Big Construction LLC | verified | | | |
-| Lo Destro Construction Company | verified | | | |
-| Development Solutions, Inc | verified | | | |
-| Bear Construction Company | verified | | | |
-| MPI Contracting, Inc. | no-site | | | |
-| Knudsen Construction, Inc. | verified | | | |
-| Allegiance Construction Group, Inc. | verified | | | |
-| Spec Development LLC | no-site | | | |
-| Sachse Construction and Development Company LLC | verified | | | |
-| Promised Land Development | verified | | | |
-| Plan North Construction Services LLC | verified | | | |
-| Kasper Development LLC | verified | | | |
-| Libot Construction Group Ltd | no-site | | | |
-| Lorenzos Home Improvement Services | no-site | | | |
-| SB Group Construction LLC | no-site | | | |
-| Corebuilt Contracting, Inc | verified | | | |
-| Accend Construction LLC | verified | | | |
-| K.R. Miller Contractors, Inc. | no-contact | | | |
-| Burling Builders, Inc | verified | | | |
-| Reed Construction LLC | verified | | | |
-| Berglund Construction Company | verified | | | |
-| McInerney Builders, Inc. | no-site | | | |
-| Treewright Construction Services LLC | no-site | | | |
-| Midwest Heritage Builders, LLC | no-site | | | |
-| Ujamaa Construction, Inc. | verified | | | |
-| Metropole Holdings LLC | no-site | | | |
-| The George Sollitt Construction Co | verified | | | |
-| Novak Construction Company | verified | | | |
-| Northshore Development Group LLC | no-site | | | |
-| Enciso Operations LLC | no-site | | | |
-| Panoptic Group LLC | no-contact | | | |
-| Bulley & Andrews, L.L.C. | verified | | | |
-| Mavrek, Inc | verified | | | |
-| Method Construction Services, LLC | no-site | | | |
-| Halo Masonry & Construction, Inc. | verified | | | |
-| TM1 Construction, Inc. | no-site | | | |
-| O'Malley Construction Company | verified | | | |
-| Avenue Construction Inc | no-site | | | |
-| The Bowa Group Inc | no-site | | | |
-| William's Construction & Design Co | no-site | | | |
-| Breaking Ground Contractors Inc | no-site | | | |
-| Consortian Construction, Inc. | verified | | | |
-| D.O.M. Properties Investment Inc | no-site | | | |
-| Leopardo Construction Inc | verified | | | |
-| Summit Design & Build, LLC. | verified | | | |
+| Skender Construction LLC | verified | ok | ok | kept |
+| Redmond Construction Corp. | no-contact | ok | ok | kept |
+| Triumph Design Build Corporation | verified | ok | ok | kept |
+| JC Anderson Inc | verified | ok | ok | kept |
+| Macon Construction Group, Inc. | verified | ok | ok | kept |
+| Big Construction LLC | verified | ok | ok | kept |
+| Lo Destro Construction Company | verified | ok | ok | kept |
+| Development Solutions, Inc | verified | ok | ok | kept |
+| Bear Construction Company | verified | ok | ok | kept |
+| MPI Contracting, Inc. | no-site | ok | ok | kept |
+| Knudsen Construction, Inc. | verified | ok | ok | kept |
+| Allegiance Construction Group, Inc. | verified | ok | ok | kept |
+| Spec Development LLC | no-site | ok | ok | kept |
+| Sachse Construction and Development Company LLC | verified | ok | ok | kept |
+| Promised Land Development | verified | ok | ok | kept |
+| Plan North Construction Services LLC | verified | ok | ok | kept |
+| Kasper Development LLC | verified | ok | ok | kept |
+| Libot Construction Group Ltd | no-site | ok | ok | kept |
+| Lorenzos Home Improvement Services | no-site | ok | ok | kept |
+| SB Group Construction LLC | no-site | ok | ok | kept |
+| Corebuilt Contracting, Inc | verified | ok | ok | kept |
+| Accend Construction LLC | verified | ok | ok | kept |
+| K.R. Miller Contractors, Inc. | no-contact | ok | ok | kept |
+| Burling Builders, Inc | verified | ok | ok | kept |
+| Reed Construction LLC | verified | ok | ok | kept |
+| Berglund Construction Company | verified | ok | ok | kept |
+| McInerney Builders, Inc. | no-site | ok | ok | kept |
+| Treewright Construction Services LLC | no-site | ok | ok | kept |
+| Midwest Heritage Builders, LLC | no-site | ok | ok | kept |
+| Ujamaa Construction, Inc. | verified | ok | ok | kept |
+| Metropole Holdings LLC | no-site | ok | ok | kept |
+| The George Sollitt Construction Co | verified | ok | ok | kept |
+| Novak Construction Company | verified | ok | ok | kept |
+| Northshore Development Group LLC | no-site | ok | ok | kept |
+| Enciso Operations LLC | no-site | ok | ok | kept |
+| Panoptic Group LLC | no-contact | ok | ok | kept |
+| Bulley & Andrews, L.L.C. | verified | ok | ok | kept |
+| Mavrek, Inc | verified | ok | ok | kept |
+| Method Construction Services, LLC | no-site | ok | ok | kept |
+| Halo Masonry & Construction, Inc. | verified | ok | ok | kept |
+| TM1 Construction, Inc. | no-site | ok | ok | kept |
+| O'Malley Construction Company | verified | ok | ok | kept |
+| Avenue Construction Inc | no-site | ok | ok | kept |
+| The Bowa Group Inc | no-site | ok | fix | no-contact (disagreed) |
+| William's Construction & Design Co | no-site | ok | ok | kept |
+| Breaking Ground Contractors Inc | no-site | ok | ok | kept |
+| Consortian Construction, Inc. | verified | fix | ok | kept as filed (fix not agreed) |
+| D.O.M. Properties Investment Inc | no-site | ok | ok | kept |
+| Leopardo Construction Inc | verified | ok | ok | kept |
+| Summit Design & Build, LLC. | verified | ok | ok | kept |

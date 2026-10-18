@@ -9,7 +9,7 @@ check_repo.py runs this file as its gate-tests check, so the nightly optimizer a
 import json, os, random, re, shutil, string, subprocess, sys, tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data", "video-specs", "voice", "fiverr-kit"]
+CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data", "builder-contacts", "video-specs", "voice", "fiverr-kit"]
 rng = random.Random()
 # Key markers are assembled here so this file never matches the secrets check itself.
 KEY_BEGIN = "-----BEGIN " + "RSA PRIVATE " + "KEY-----"
@@ -111,6 +111,17 @@ def plants(tmp):
             d = json.loads(t); d["projects"][0]["scope"] = d["projects"][0].get("scope", "") + " Consultant reviewer: Planted Person"; return json.dumps(d)
         out.append(("permit-data", "a personal field in the permit sample", edit(sample, personal_key)))
         out.append(("permit-data", "a reviewer tag in a permit scope", edit(sample, person_tag)))
+
+    contacts = os.path.join("permits", "chicago", "builder_contacts.json")
+    if os.path.exists(os.path.join(tmp, contacts)):
+        def first_verified(d):
+            return next(k for k, c in d.items() if c.get("status") == "verified")
+        def person_email(t):
+            d = json.loads(t); k = first_verified(d); d[k]["email"] = "jane.planted@" + d[k]["website"].split("//")[-1].strip("/").removeprefix("www."); return json.dumps(d)
+        def directory_source(t):
+            d = json.loads(t); d[first_verified(d)]["source"] = "https://www.yelp.com/biz/planted-builder"; return json.dumps(d)
+        out.append(("builder-contacts", "a person's email in the builder contacts", edit(contacts, person_email)))
+        out.append(("builder-contacts", "a directory as a builder contact source", edit(contacts, directory_source)))
 
     example = os.path.join("promo", "specs", "examples", "f2-spot-the-mistake-40-rate.json")
     if os.path.exists(os.path.join(tmp, example)):

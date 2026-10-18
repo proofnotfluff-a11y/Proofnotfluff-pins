@@ -120,6 +120,17 @@
   "status": "no-site",
   "note": "no company website found (directories and social page only)"
  },
+ "ATMECHANICAL": {
+  "name": "AT Mechanical LLC",
+  "website": "https://www.atmechanical.com/",
+  "phone": "(847) 671-7940",
+  "email": "info@atmechanical.com",
+  "contactPage": "https://www.atmechanical.com/contact",
+  "source": "https://www.atmechanical.com/contact",
+  "checkedAt": "2026-10-17",
+  "status": "verified",
+  "note": "mechanical contractor listed as builder; 2000 N Hawthorne Ave, Melrose Park, IL"
+ },
  "AVENUECONSTRUCTION": {
   "name": "Avenue Construction Inc",
   "website": "",
@@ -287,6 +298,17 @@
  },
  "BURNHAM": {
   "name": "Burnham & Company Inc",
+  "website": "",
+  "phone": "",
+  "email": "",
+  "contactPage": "",
+  "source": "",
+  "checkedAt": "2026-10-17",
+  "status": "no-site",
+  "note": "no company website found"
+ },
+ "CENTRECONSTRUCTIONSERVICES": {
+  "name": "Centre Construction Services LLC",
   "website": "",
   "phone": "",
   "email": "",
@@ -1110,6 +1132,17 @@
   "status": "no-site",
   "note": "a site named SB Group exists but shows no location or contact, so it cannot be confirmed as the same company"
  },
+ "SKENDERASHLAURJOINTVENTURE": {
+  "name": "Skender-Ashlaur Joint Venture LLC",
+  "website": "",
+  "phone": "",
+  "email": "",
+  "contactPage": "",
+  "source": "https://www.skender.com/news-media/skender-completes-construction-on-fifth-city-commons-affordable-housing-complex-in-east-garfield-park/",
+  "checkedAt": "2026-10-17",
+  "status": "no-contact",
+  "note": "joint venture with no site of its own; Skender's site covers its projects (see the Skender Construction entry)"
+ },
  "SKENDERCONSTRUCTION": {
   "name": "Skender Construction LLC",
   "website": "https://www.skender.com/",
@@ -1264,6 +1297,17 @@
   "status": "no-site",
   "note": "no company website found"
  },
+ "TOBESEEN": {
+  "name": "To Be Seen LLC",
+  "website": "",
+  "phone": "",
+  "email": "",
+  "contactPage": "",
+  "source": "",
+  "checkedAt": "2026-10-17",
+  "status": "no-site",
+  "note": "no company website found"
+ },
  "TOWERCOMMERCIALCONSTRUCTION": {
   "name": "Tower Commercial Construction LLC",
   "website": "",
@@ -1332,6 +1376,17 @@
  },
  "VAMDEVELOPMENT": {
   "name": "VAM Development Inc",
+  "website": "",
+  "phone": "",
+  "email": "",
+  "contactPage": "",
+  "source": "",
+  "checkedAt": "2026-10-17",
+  "status": "no-site",
+  "note": "no company website found"
+ },
+ "VARIABLEPROPERTIES": {
+  "name": "Variable Properties LLC",
   "website": "",
   "phone": "",
   "email": "",

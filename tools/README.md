@@ -108,3 +108,12 @@ make_site.py also writes docs/go/index.html (the one bio link: free calculators,
 
 ## holdout_check.py (live session, Oct 17, 2026)
 `python3 tools/holdout_check.py cases.json` types hand-worked cases into a free calculator page the way a visitor would (Playwright, 390 px wide), reads what the page shows and compares; exit 1 on any FAIL. `--selftest` proves it passes a right answer and fails a planted wrong one. The page's own tests (docs/assets/pnf-calc.test.js) come from the builder's workbook, so a builder that misreads a source passes them; holdout cases come from someone who did not build the page, worked out from the page's method lines and its dated primary sources, and live outside the repo so the builder never sees them (Kem's holdout tests; Legal desk HOLDOUT MATH). Case format is in the file's header.
+
+## Builder contacts: builder_contacts.py
+
+Contact details for the general contractors on the Chicago Construction Cleaning Leads list (Todd approved Oct 17, 2026), in `permits/chicago/builder_contacts.json`, keyed by `permits_chicago.gc_key` of the name the list prints. Only the builder's own website counts as a source; main office lines and general inboxes only, never a person. Status is `verified`, `no-site`, `no-contact` or `skipped`.
+
+- `from builder_contacts import contact_for` then `contact_for(name)` gives the entry for a verified builder (else None); `contact_for(name, verified_only=False)` gives any entry.
+- `python3 tools/builder_contacts.py --todo --pw-file PATH` (or `LEADS_PASSWORD`, or `--full chicago-full.json`) lists this week's builders not yet on file, near finish and new first, then by total reported cost. Never paste its output anywhere public.
+- `--check` runs the file's rules; `--selftest` plants bad entries. check_repo.py runs the rules as `builder-contacts`; the permits workflow runs the selftest.
+- Holdout status and the checker brief: `permits/chicago/builder_contacts_holdout.md`.

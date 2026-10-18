@@ -101,7 +101,7 @@ def problems(data):
             bad.append(f"{tag}: key is not key(name)")
         if c["status"] not in STATUSES:
             bad.append(f"{tag}: status {c['status']!r}")
-        if "—" in json.dumps(c, ensure_ascii=False):
+        if "\u2014" in json.dumps(c, ensure_ascii=False):
             bad.append(f"{tag}: em dash")
         for f in ("website", "contactPage", "source"):
             if c[f] and (not c[f].startswith("https://") and not c[f].startswith("http://")):
@@ -186,7 +186,7 @@ def selftest():
         "source off site": dict(good, source="https://www.example.org/acme"),
         "bad status": dict(good, status="maybe"),
         "skipped with phone": dict(good, status="skipped"),
-        "em dash": dict(good, note="main line — front desk"),
+        "em dash": dict(good, note="main line \u2014 front desk"),
         "linkedin site": dict(good, website="https://www.linkedin.com/company/acme", source="https://www.linkedin.com/company/acme",
                               contactPage="", email=""),
     }
@@ -243,7 +243,10 @@ def main():
               f"{have / total:.0%} of ${total:,.0f} reported cost")
         for b in miss:
             flag = ("near " if b["near"] else "") + ("new" if b["new"] else "")
-            print(f"${b['cost']:>13,.0f}  {b['n']:>3}  {flag:<9} {b['name']}")
+            try:
+                print(f"${b['cost']:>13,.0f}  {b['n']:>3}  {flag:<9} {b['name']}")
+            except BrokenPipeError:
+                return
         return
     ap.print_help()
 

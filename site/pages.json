@@ -3752,7 +3752,6 @@
    "kind": "restleads",
    "segment": "home-services",
    "city": "Chicago",
-   "draft": true,
    "data": "permits/inspections-chicago/rest-sample.json",
    "price": "39",
    "title": "Chicago Restaurant Inspection Leads: Failed Inspections and New Openings | ProofNotFluff",
@@ -3797,7 +3796,8 @@
      "On this public page we never name a business with a failed result. Members get the full list, licensed to their own business for its own sales calls."
     ]
    ],
-   "sources": "City of Chicago Data Portal, Food Inspections."
+   "sources": "City of Chicago Data Portal, Food Inspections.",
+   "checkout": "https://proofnotfluff.gumroad.com/l/mlyiiz?utm_source=proofnotfluff&utm_medium=site&utm_campaign=chicago-restaurant-leads"
   }
  ]
 }

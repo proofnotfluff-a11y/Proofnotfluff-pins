@@ -48,7 +48,7 @@ RECORD = "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
 
 # ---------------------------------------------------------------- what each buyer works on
 CATEGORIES = [  # key, label, short label, who buys
-    ("pests", "Pests and rodents", "Pests", "Pest control"),
+    ("pests", "Pests", "Pests", "Pest control"),
     ("hood", "Hood and exhaust", "Hood", "Hood and exhaust cleaning"),
     ("drain", "Grease trap and drains", "Grease trap", "Grease trap and drain service"),
     ("clean", "Cleaning", "Cleaning", "Commercial kitchen cleaning"),
@@ -73,32 +73,63 @@ CAT_ORDER = [k for k, _, _, _ in CATEGORIES]
 #           grime, dust, mold, residue or a buildup ("easily cleanable" surfaces and ice buildup do not count).
 PEST_EVIDENCE = re.compile(r"DROPPING|\bROACH|COCKROACH|\bMICE\b|\bMOUSE\b|\bRATS?\b|\bRODENT ACTIVITY|\bFLIES\b|FRUIT FL(?:Y|IES)|"
                            r"\bGNATS?\b|\bPEST ACTIVITY|\bINSECT ACTIVITY|\bGNAW|\bLIVE (?:INSECT|BUG)|\bBED ?BUGS?\b|\bRODENTS?\b")
-PREVENT = re.compile(r"\b(?:TO\s+)?PREVENT(?:ING)?\b[^.;]*|\b(?:RODENT|INSECT|PEST)[\s/-]*(?:AND\s+|/)?(?:INSECT|RODENT|PEST)?[\s/-]*PROOF\w*|"
+PREVENT = re.compile(r"\b(?:RODENT|MOUSE|RAT|INSECT|PEST)\s+(?:BAIT|STATION|TRAP)S?\b(?:\s+STATIONS?)?|\bBAIT\s+STATIONS?\b|\b(?:TO\s+)?PREVENT(?:ING)?\b[^.;]*|\b(?:RODENT|INSECT|PEST)[\s/-]*(?:AND\s+|/)?(?:INSECT|RODENT|PEST)?[\s/-]*PROOF\w*|"
                      r"\bFREE (?:OF|FROM) [^.;]*|\bNO (?:EVIDENCE|SIGNS?) OF [^.;]*")
-REF_38 = re.compile(r"#\s*38\b|\b38\s*[-:)]|\(\s*#?\s*38\s*\)|\bVIOLATION\s*(?:#|NO\.?|NUMBER)?\s*38\b")
 HOOD_56 = re.compile(r"\bHOODS?\b|\bFILTERS?\b|\bEXHAUST|\bDUCT|\bGREASE")
 HOOD_ANY = re.compile(r"\bHOODS?\b|\bEXHAUST (?:FAN|HOOD|SYSTEM)")
 TRAP = re.compile(r"GREASE\s+TRAP|GREASE\s+INTERCEPTOR|\bINTERCEPTOR")
 DRAIN = re.compile(r"\bCLOG|\bBACK(?:ING|ED|S)?[\s-]+UP\b|\bSLOW(?:LY)?[\s-]+DRAIN|\bNOT\s+DRAINING|\bSTANDING\s+WATER|\bSEWAGE|\bSEWER")
 CLEAN_WORDS = re.compile(r"\bCLEAN(?:ED|ING)?\b|\bDIRT|\bDEBRIS|\bGREASE|\bGREASY|\bGRIME|\bDUST|\bMOLD|\bMILDEW|\bRESIDUE|"
                          r"\bBUILD[\s-]?UP|\bBUILT[\s-]?UP|\bACCUMULAT|\bSOIL(?:ED)?\b|\bSLIME")
-NOT_CLEAN = re.compile(r"\bEASILY\s+CLEANABLE|\bCLEANABLE|\bICE\s+BUILD[\s-]?UP|\bFROST\s+BUILD[\s-]?UP")
+NOT_CLEAN = re.compile(r"\bEASILY\s+CLEANABLE|\bCLEANABLE|\bICE\s+BUILD[\s-]?UP|\bFROST\s+BUILD[\s-]?UP|"
+                       r"\bSOILED\s+(?:MOP|WATER|LINEN|TOWEL|RAG|CLOTH|WIPING|APRON|UNIFORM|DISH|UTENSIL)\w*(?:\s+HEADS?)?")
+
+
+# City ordinance and food code rule numbers ("7-38-030(C)", "6-501.111", "8-404.13(B)(3)") are never violation codes
+CODE_REFS_STRIP = re.compile(r"\b\d{1,2}-\d{1,3}-\d{1,3}(?:\s*\([A-Z0-9:]+\))*|\b\d-\d{3}(?:\.\d+)+(?:\s*\([A-Z0-9:]+\))*")
+CODE_REF = re.compile(r"#\s*(\d{1,2})(?!\d)|\bVIOLATIONS?\s*(?:#|NO\.?|NUMBER)?\s*(\d{1,2})(?!\d)|"
+                      r"(?:^|(?<=[\s:;,(\-]))(\d{2})\s*(?:\)|[-.:](?=\s*[A-Z*]))")
+
+
+def code_refs(note):
+    """Violation codes a "previous violation not corrected" note (59 or 60) refers to: "#38", "-38. REAR DOOR", ":38-",
+    "(#36)", "45) 4-502.13", "VIOLATION 38". Ordinance and rule numbers are removed first, so 7-38-030(C) is not 38."""
+    t = CODE_REFS_STRIP.sub(" ", note.upper())
+    out = set()
+    for m in CODE_REF.finditer(t):
+        c = int(next(g for g in m.groups() if g))
+        if 1 <= c <= 64 and c not in (59, 60):
+            out.add(c)
+    return out
+
+
+def _cats_for(code, n):
+    """The categories one cited violation (code, upper-case note) belongs to."""
+    out = set()
+    evidence = PREVENT.sub(" ", n)
+    if code == 38 or PEST_EVIDENCE.search(evidence):
+        out.add("pests")
+    if (code == 56 and HOOD_56.search(n)) or HOOD_ANY.search(n):
+        out.add("hood")
+    if code == 52 or TRAP.search(n) or (code in (51, 55) and DRAIN.search(n)):
+        out.add("drain")
+    if code == 49 or (code in (53, 54, 55, 60) and CLEAN_WORDS.search(NOT_CLEAN.sub(" ", n))):
+        out.add("clean")
+    return out
 
 
 def categorize(violations):
-    """{category: sorted City violation codes that put this inspection in it} from the City's violations text."""
+    """{category: sorted City violation codes that put this inspection in it} from the City's violations text. A 59 or 60
+    ("previous violation not corrected") note that names an earlier code counts as that code would, under the 59 or 60."""
     out = collections.defaultdict(set)
     for code, title, note in split_violations(violations):
         n = note.upper()
-        evidence = PREVENT.sub(" ", n)
-        if code == 38 or (code in (59, 60) and REF_38.search(n)) or PEST_EVIDENCE.search(evidence):
-            out["pests"].add(code)
-        if (code == 56 and HOOD_56.search(n)) or HOOD_ANY.search(n):
-            out["hood"].add(code)
-        if code == 52 or TRAP.search(n) or (code in (51, 55) and DRAIN.search(n)):
-            out["drain"].add(code)
-        if code == 49 or (code in (53, 54, 55, 60) and CLEAN_WORDS.search(NOT_CLEAN.sub(" ", n))):
-            out["clean"].add(code)
+        hits = _cats_for(code, n)
+        if code in (59, 60):
+            for ref in code_refs(n):
+                hits |= _cats_for(ref, n)
+        for k in hits:
+            out[k].add(code)
     return {k: sorted(out[k]) for k in CAT_ORDER if out.get(k)}
 
 
@@ -120,7 +151,7 @@ INSTITUTION_NAME = re.compile(r"(?<!COOKING )\bSCHOOL\b|\bACADEMY\b|\bELEMENTARY
                               r"\bCHARTER\b|\bCAMPUS\b|\bPRE-?K\b|\bPRESCHOOL|\bPRE-SCHOOL|\bMONTESSORI|\bDAY ?CARE|\bCHILD ?CARE|\bCHILDREN|"
                               r"\bKIDS?\b|\bKIDZ\b|\bKIDDIE|\bTOTS?\b|\bINFANT|\bTODDLER|\bHEAD START|\bLEARNING CENTER|\bEARLY LEARNING|"
                               r"\bCPS\b|\bCICS\b|\bKIPP\b|\bHOSPITAL|\bMEDICAL CENTER|\bNURSING|\bSENIORS?\b|\bASSISTED LIVING|\bUNIVERSITY\b|"
-                              r"\bCLASSICAL\b|\bMAGNET\b|\bYCCS\b", re.I)
+                              r"\bCLASSICAL\b|\bMAGNET\b|\bYCCS\b|\bCOLLEGE\b", re.I)
 # Words that make a name a business, not a person ("Sofia Bakery", "Paul House", "George Street Pub").
 BIZ = set("""RESTAURANT RESTAURANTE CAFE CAFFE COFFEE TEA BOBA KITCHEN GRILL GRILLE BAR PUB TAVERN LOUNGE CLUB BAKERY PANADERIA PASTRY
 PIZZA PIZZERIA TACOS TACO TAQUERIA TAMALES BURRITO BURGER BURGERS DELI MARKET MART GROCERY FOOD FOODS FOODMART LIQUOR LIQUORS STORE
@@ -168,6 +199,20 @@ ADAMU AMINA ANIL ARJUN CHEN DEEPAK HUI JIN KENJI LI MEI MING PRIYA RAJ RAJESH RA
 AGNIESZKA ANDRZEJ BOGDAN DARIUSZ JACEK JAN KRZYSZTOF MAREK PIOTR STANISLAW TADEUSZ TOMASZ WOJCIECH ZBIGNIEW""".split())
 
 
+LEGAL_WORDS = {"LLC", "L.L.C", "INC", "INCORPORATED", "CORP", "CORPORATION", "CO", "LTD", "LP"}
+# Common surnames (US Census top surnames plus frequent Chicago South Asian, Arab, Polish and East Asian ones). Words that
+# are also everyday English (KING, YOUNG, WHITE, GREEN, LONG...) are left out so "Riverfish King" stays a business.
+SURNAMES = set("""SMITH JOHNSON WILLIAMS JONES GARCIA MILLER DAVIS RODRIGUEZ MARTINEZ HERNANDEZ LOPEZ GONZALEZ WILSON ANDERSON THOMAS
+TAYLOR MOORE JACKSON MARTIN LEE PEREZ THOMPSON HARRIS SANCHEZ CLARK RAMIREZ LEWIS ROBINSON WALKER ALLEN TORRES NGUYEN FLORES
+RIVERA GOMEZ DIAZ CRUZ REYES MORALES ORTIZ GUTIERREZ CHAVEZ RAMOS RUIZ ALVAREZ MENDOZA CASTILLO JIMENEZ MORENO ROMERO HERRERA
+MEDINA AGUILAR VARGAS GUZMAN SALAZAR MUNOZ CONTRERAS DELGADO VEGA LEON CASTRO JUAREZ ESPINOZA SANDOVAL NAVARRO SOTO MEJIA
+PATEL SHAH DESAI MEHTA SINGH KAUR SHARMA GUPTA KUMAR REDDY RAO KHAN AHMED AHMAD ALI HUSSAIN HUSSAIN MOHAMMED RAHMAN CHAUDHRY
+QURESHI SIDDIQUI MALIK BUTT AKHTAR IQBAL HASSAN ABDULLAH IBRAHIM YOUSEF SALEH HAMDAN KOWALSKI NOWAK WISNIEWSKI WOJCIK KOWALCZYK
+KAMINSKI LEWANDOWSKI ZIELINSKI SZYMANSKI WOZNIAK DABROWSKI KOZLOWSKI JANKOWSKI MAZUR KRAWCZYK KIM PARK CHOI JUNG KANG CHO YOON
+JANG LIM CHEN WANG ZHANG LIU YANG HUANG ZHAO WU ZHOU XU SUN MA ZHU HU GUO LIN HE GAO LUO TRAN PHAM HOANG HUYNH VU VO DANG BUI
+DO NGO DUONG LY DAO NAKAMURA TANAKA SUZUKI WATANABE OBRIEN MURPHY KELLY SULLIVAN WALSH OCONNOR RYAN GALLAGHER DOYLE""".split())
+
+
 def person_name(name):
     """True when the business name reads as a person's name ("Maria Garcia", "Chef Taryn", "Smith, Wendell"): two or three
     words, the first a common first name (after a title such as "Chef"), no business or food word, no possessive, no
@@ -179,16 +224,21 @@ def person_name(name):
         last, first = [x.strip() for x in raw.split(",", 1)]
         return first.split()[0].strip(".") in FIRST and last not in BIZ
     words = [w.strip(".,-") for w in re.split(r"\s+", raw) if w.strip(".,-")]
-    if any(w in BIZ for w in words) or not all(re.fullmatch(r"[A-Z\-]+", w) for w in words):
+    words = [w for w in words if w not in LEGAL_WORDS]          # "Yanqui Leon LLC" is a person's name with a suffix
+    if not words or any(w in BIZ for w in words) or not all(re.fullmatch(r"[A-Z\-]+", w) for w in words):
         return False
     core = [w for w in words if w not in TITLES and len(w) > 1]
     titled = len(core) < len([w for w in words if len(w) > 1])
-    return (2 <= len(core) <= 3 or (titled and len(core) == 1)) and core[0] in FIRST
+    if titled and len(core) == 1:
+        return core[0] in FIRST                                 # "Chef Taryn"
+    return 2 <= len(core) <= 3 and (core[0] in FIRST or core[-1] in SURNAMES)   # "Maria Garcia", "Bundoo Khan"
 
 
 def biz_case(name):
     """dba_case, with the Spanish article "La" read as a word, not as Los Angeles ("La Colonia", "La Michoacana")."""
-    return re.sub(r"\bLA\b(?= [A-Za-z])", "La", dba_case(name))
+    s = re.sub(r"\bLA\b(?= [A-Za-z])", "La", dba_case(name))
+    s = re.sub(r"\b(\d+)(ST|ND|RD|TH)\b", lambda m: m.group(1) + m.group(2).lower(), s)        # 57th, 87th
+    return re.sub(r"\ba\b(?= (?:LLC|Inc|INC|Corp|CORP|Co|CO)\b\.?)", "A", s)                     # "Professor Pizza A LLC"
 
 
 def institution(r):
@@ -233,6 +283,7 @@ def _f(v):
 def type_title(t):
     """The City's inspection type, in its own words, with consistent capitals ("Canvass Re-Inspection")."""
     t = re.sub(r"\s+", " ", (t or "").strip())
+    t = re.sub(r"(?i)^suspected food poisoning\b", "Complaint", t)   # legal review Oct 17, 2026: shown as Complaint
     return re.sub(r"(?<=-)([a-z])", lambda m: m.group(1).upper(), t.title()).replace("W/", "w/")
 
 
@@ -256,18 +307,7 @@ def build(raw):
     r_from = (through - dt.timedelta(days=REPEAT_DAYS - 1)).isoformat()
     through_s = through.isoformat()
 
-    # one record per inspection visit: the City's dataset "may contain some duplicate reports" (same place, day, type
-    # and result under two ids), so those collapse into one, keeping the fuller violations text
-    by_visit = {}
-    for r in rows:
-        d = (r.get("inspection_date") or "")[:10]
-        if not d or d > through_s:
-            continue
-        k = (place_key(r), d, (r.get("inspection_type") or "").strip().upper(), (r.get("results") or "").strip().upper())
-        old = by_visit.get(k)
-        if old is None or len(r.get("violations") or "") > len(old.get("violations") or "") or \
-                (len(r.get("violations") or "") == len(old.get("violations") or "") and str(r.get("inspection_id")) < str(old.get("inspection_id"))):
-            by_visit[k] = r
+    rows = [r for r in rows if (r.get("inspection_date") or "")[:10] and (r.get("inspection_date") or "")[:10] <= through_s]
     # one place per business at one address: rows join when they share a license number, or the same business name at
     # the same address (one bar can hold several licenses, and a license can be re-issued under the same name)
     parent = {}
@@ -278,12 +318,31 @@ def build(raw):
             x = parent[x]
         return x
     norm = lambda s: re.sub(r"[^A-Z0-9]", "", (s or "").upper())
-    for r in by_visit.values():
+    for r in rows:
         a, b = place_key(r), "A" + norm(r.get("dba_name")) + "|" + norm(r.get("address"))
         parent[find(a)] = find(b)
-    per_place = collections.defaultdict(list)
-    for r in by_visit.values():
-        per_place[find(place_key(r))].append(r)
+    by_place = collections.defaultdict(list)
+    for r in rows:
+        by_place[find(place_key(r))].append(r)
+    # one record per inspection visit: the City's dataset "may contain some duplicate reports". Reports of the same place,
+    # day, inspection type and result (often filed under each of the place's licenses) are one visit: the report citing the
+    # most violations leads, and the codes cited on the duplicates are merged into it (holdout, Oct 2026).
+    per_place = {}
+    for pk, rs in by_place.items():
+        visits = collections.defaultdict(list)
+        for r in rs:
+            visits[((r.get("inspection_date") or "")[:10], (r.get("inspection_type") or "").strip().upper(),
+                    (r.get("results") or "").strip().upper())].append(r)
+        merged = []
+        for group in visits.values():
+            group.sort(key=lambda r: (-len(split_violations(r.get("violations"))), -len(r.get("violations") or ""), str(r.get("inspection_id"))))
+            lead = dict(group[0])
+            extra = [g.get("violations") for g in group[1:] if g.get("violations")]
+            if extra:
+                lead["violations"] = " | ".join([lead.get("violations") or ""] + extra).strip(" |")
+            lead["_dups"] = [str(g.get("inspection_id")) for g in group[1:]]
+            merged.append(lead)
+        per_place[pk] = merged
 
     excluded = collections.Counter()
     places, insp = {}, {}
@@ -296,9 +355,10 @@ def build(raw):
             continue
         # every exclusion is decided on the place, from any of its rows, so a place never slips in under another spelling
         reason = ""
-        if any(institution(r) for r in rs):
+        all_rs = by_place[pk]
+        if any(institution(r) for r in all_rs):
             reason = "school, day care, hospital, senior or mobile vendor"
-        elif any(person_name(r.get("dba_name")) or person_name(r.get("aka_name")) for r in rs):
+        elif any(person_name(r.get("dba_name")) or person_name(r.get("aka_name")) for r in all_rs):
             reason = "business name is a person's name"
         elif not (latest.get("dba_name") or "").strip() or not (latest.get("address") or "").strip():
             reason = "no business name or address"
@@ -309,7 +369,8 @@ def build(raw):
             cats = categorize(r.get("violations"))
             recs.append({"id": str(r.get("inspection_id")), "d": (r.get("inspection_date") or "")[:10],
                          "t": type_title(r.get("inspection_type")), "r": result_word(r.get("results")),
-                         "v": violation_list(r.get("violations")), "c": cats, "lic": is_license(r.get("inspection_type"))})
+                         "v": violation_list(r.get("violations")), "c": cats, "lic": is_license(r.get("inspection_type")),
+                         "dup": r.get("_dups") or []})
         win = [x for x in recs if x["d"] >= w_from]
         flagged = [x for x in win if not x["lic"] and x["r"].upper() in ("FAIL", "PASS W/ CONDITIONS") and x["c"]]
         opening = [x for x in win if x["lic"]]
@@ -324,15 +385,27 @@ def build(raw):
         name = biz_case(latest.get("dba_name"))
         aka = biz_case(latest.get("aka_name") or "")
         union = lambda xs: sorted({c for x in xs for c in x["c"]}, key=CAT_ORDER.index)
-        cats_by = {"flagged": union(flagged), "opening": union(opening), "repeat": union(fails90) if repeat else []}
+        quals = {"flagged": flagged, "opening": opening, "repeat": fails90 if repeat else []}
+        cats_by = {k: union(v) for k, v in quals.items()}            # every category in the list's qualifying inspections
+        lead_by = {k: (v[0]["id"] if v else "") for k, v in quals.items()}
+        lead_cats = {k: (sorted(v[0]["c"], key=CAT_ORDER.index) if v else []) for k, v in quals.items()}
+        also_by = {}                                                   # categories cited on an earlier qualifying inspection
+        for k, v in quals.items():
+            also_by[k] = []
+            for c in cats_by[k]:
+                if c in lead_cats[k]:
+                    continue
+                x = next(x for x in v if c in x["c"])
+                also_by[k].append({"cat": c, "id": x["id"], "d": x["d"], "codes": x["c"][c]})
+        new_by = {k: bool(v) and v[0]["d"] >= n_from for k, v in quals.items()}
         cats = union(flagged + opening + (fails90 if repeat else []))
         pk = "L" + lic_of(latest) if lic_of(latest) else place_key(latest)
-        lics = sorted({lic_of(r) for r in rs if lic_of(r)}, key=lambda l: (len(l), l))
+        lics = sorted({lic_of(r) for r in all_rs if lic_of(r)}, key=lambda l: (len(l), l))
         p = {"id": pk, "name": name, "aka": aka if aka and re.sub(r"[^A-Z0-9]", "", aka.upper()) != re.sub(r"[^A-Z0-9]", "", name.upper()) else "",
              "license": lic_of(latest), "licenses": lics, "address": street(latest.get("address")), "zip": (latest.get("zip") or "").split(".")[0],
              "area": latest.get("_area") or "", "type": (latest.get("facility_type") or "").strip().title() or "Not given",
              "risk": (latest.get("risk") or "").strip(), "lat": _f(latest.get("latitude")), "lon": _f(latest.get("longitude")),
-             "lists": on, "cats": cats, "catsBy": cats_by,
+             "lists": on, "cats": cats, "catsBy": cats_by, "leadBy": lead_by, "leadCats": lead_cats, "alsoBy": also_by, "newBy": new_by,
              "lead": (flagged or opening or fails90)[0]["id"],
              "flaggedIds": [x["id"] for x in flagged], "openingIds": [x["id"] for x in opening], "failIds": [x["id"] for x in fails90],
              "fails90": len(fails90), "new": any(x["d"] >= n_from for x in (flagged + opening + (fails90 if repeat else []))),
@@ -387,11 +460,13 @@ def sample(data, n=3):
             "categories": data["categories"],
             "examples": {"flagged": [anon(pk) for pk in pick(data["lists"]["flagged"])],
                          "repeat": [anon(pk) for pk in pick(data["lists"]["repeat"])],
-                         "opening": [full(pk) for pk in pick(data["lists"]["opening"])]}}
+                         "opening": [full(pk) for pk in pick([pk for pk in data["lists"]["opening"]
+                                                              if I[P[pk]["openingIds"][0]]["r"].upper() == "PASS"
+                                                              and not set(P[pk]["lists"]) & {"flagged", "repeat"}])]}}
 
 
 # ---------------------------------------------------------------- planted cases
-T = {38: "38. INSECTS, RODENTS, & ANIMALS NOT PRESENT", 56: "56. ADEQUATE VENTILATION & LIGHTING; DESIGNATED AREAS USED",
+T = {10: "10. ADEQUATE HANDWASHING SINKS PROPERLY SUPPLIED AND ACCESSIBLE", 38: "38. INSECTS, RODENTS, & ANIMALS NOT PRESENT", 56: "56. ADEQUATE VENTILATION & LIGHTING; DESIGNATED AREAS USED",
      52: "52. SEWAGE & WASTE WATER PROPERLY DISPOSED", 51: "51. PLUMBING INSTALLED; PROPER BACKFLOW DEVICES",
      49: "49. NON-FOOD/FOOD CONTACT SURFACES CLEAN", 55: "55. PHYSICAL FACILITIES INSTALLED, MAINTAINED & CLEAN",
      54: "54. GARBAGE & REFUSE PROPERLY DISPOSED; FACILITIES MAINTAINED", 2: "2. CITY OF CHICAGO FOOD SERVICE SANITATION CERTIFICATE",
@@ -426,6 +501,15 @@ CAT_CASES = [  # (violations text, expected categories) with invented notes on t
     (V(47, "STAINED CUTTING BOARDS, MUST REPLACE. GREASE ON SHELVES."), {}),
     (V(38, "OBSERVED FLIES IN KITCHEN") + " | " + V(56, "EXHAUST HOOD NOT WORKING"), {"pests": [38], "hood": [56]}),
     (V(55, "NO EVIDENCE OF RODENTS AT THIS TIME. MUST SEAL HOLE IN WALL."), {}),
+    # holdout round 1: a 59/60 note naming an earlier code counts as that code; ordinance numbers are not codes; "soiled" mops
+    (V(60, "PREVIOUS CORE VIOLATIONS FROM REPORT #2639413 NOT CORRECTED: -38. REAR EXIT DOOR NOT RODENT/INSECT PROOFED."), {"pests": [60]}),
+    (V(60, "PREVIOUS CORE VIOLATION NOT CORRECTED: #51 LEAKING FAUCET AT HAND SINK. PRIORITY 7-38-030(C) NO CITATION ISSUED."), {}),
+    (V(60, "NOTED PREVIOUS CORE VIOLATION :38- GAP UNDER FRONT DOOR NOT CORRECTED."), {"pests": [60]}),
+    (V(59, "PREVIOUS PRIORITY FOUNDATION VIOLATION NOT CORRECTED 8-404.13(B)(3): #52 GREASE BACKING UP FROM FLOOR DRAIN."), {"drain": [59]}),
+    (V(55, "OBSERVED SOILED MOP HEAD IN MOP SINK. MUST STORE PROPERLY."), {}),
+    (V(55, "SOILED FLOORS UNDER COOKING LINE."), {"clean": [55]}),
+    ("28. TOXIC SUBSTANCES PROPERLY IDENTIFIED, STORED, & USED - Comments: OBSERVED OPEN RODENT BAIT ON SHELF ABOVE PREP TABLE. MUST REMOVE.", {}),
+    ("28. TOXIC SUBSTANCES PROPERLY IDENTIFIED, STORED, & USED - Comments: RODENT BAIT STATION NEXT TO FOOD. ALSO OBSERVED MICE DROPPINGS.", {"pests": [28]}),
 ]
 CAT_CASES = [(t, {k: v for k, v in want.items() if v}) for t, want in CAT_CASES]
 
@@ -434,7 +518,9 @@ PERSON_CASES = [("MARIA GARCIA", True), ("JOHN SMITH", True), ("CHEF TARYN", Tru
                 ("GEORGE STREET PUB", False), ("MARIA'S KITCHEN", False), ("LOU MALNATI'S PIZZERIA", False), ("SUBWAY", False),
                 ("BIG STAR", False), ("THA WING LOUNGE", False), ("JIMENEZ RESTAURANT", False), ("TACO BELL", False),
                 ("JJ FISH", False), ("CHARLIES CHICAGO", False), ("MAXWELL STREET CICERO", False), ("ROSAS TAMALES INC", False),
-                ("THE HAT", False), ("FIVE GUYS", False), ("JULIANA RESTAURANT", False), ("CAFE MUSTACHE", False), ("DON PEDRO CARNITAS", False), ("", False)]
+                ("THE HAT", False), ("FIVE GUYS", False), ("JULIANA RESTAURANT", False), ("CAFE MUSTACHE", False), ("DON PEDRO CARNITAS", False), ("BUNDOO KHAN", True), ("YANQUI LEON LLC", True),
+                ("BILLAL'S", False), ("MODESTO", False), ("RIVERFISH KING", False), ("HAN RAMYUN INC.", False), ("GREEN DRAGON", False),
+                ("SMOOTHIE KING", False), ("", False)]
 
 
 def selftest():
@@ -470,19 +556,22 @@ def selftest():
         R(13, "NEW PLACE", "222", "Canvass", "Pass", "2025-01-01"),
         R(14, "NO PESTS BAR", "999", "Canvass Re-Inspection", "Fail", "2026-10-14", V(2, "NO MANAGER")),   # 2 fails, nothing a buyer does
         R(15, "TWO LICENSE TAVERN", "1001", "License", "Pass", "2026-10-15", address="925 W FULTON MARKET"),
-        R(16, "TWO LICENSE TAVERN", "1002", "License", "Pass", "2026-10-15", address="925 W FULTON MARKET"),
+        R(16, "TWO LICENSE TAVERN", "1002", "License", "Pass", "2026-10-15", address="925 W FULTON MARKET",
+          v=V(10, "NO SOAP AT HAND SINK") + " | " + V(38, "GAP UNDER DOOR")),       # same visit filed under a second license
+        R(17, "HOOD AND BUG GRILL", "1201", "Canvass", "Fail", "2026-10-03", CAT_CASES[3][0]),        # hood on Oct 3
+        R(18, "HOOD AND BUG GRILL", "1201", "Canvass Re-Inspection", "Pass w/ Conditions", "2026-10-15", CAT_CASES[0][0]),  # pests Oct 15
     ]
     raw = {"source": {"name": "x", "url": DATASET_PAGE, "fetchedAt": "2026-10-18T03:00:00+00:00", "terms": CITY_TERMS},
            "rows": [r for r in rows if r["inspection_date"] >= "2026-09-11"], "history": [r for r in rows if r["inspection_date"] < "2026-09-11"]}
     d = build(raw)
     P, L = d["places"], d["lists"]
     assert d["asOf"] == "2026-10-17" and d["through"] == "2026-10-15" and d["window"]["from"] == "2026-09-16", (d["asOf"], d["through"], d["window"])
-    assert L["flagged"] == ["L111", "L444"], L
+    assert L["flagged"] == ["L111", "L1201", "L444"], L
     assert L["opening"] == ["L1002", "L222"] or L["opening"] == ["L1001", "L222"], L
     two = P[L["opening"][0]]
     assert two["licenses"] == ["1001", "1002"] and two["address"] == "925 W Fulton Market", two
     assert L["repeat"] == ["L111"] and P["L111"]["fails90"] == 2, L
-    assert set(P) == {"L111", "L222", "L444", L["opening"][0]}, sorted(P)
+    assert set(P) == {"L111", "L222", "L444", "L1201", L["opening"][0]}, sorted(P)
     assert d["counts"]["excluded"] == {"business name is a person's name": 1, "school, day care, hospital, senior or mobile vendor": 1,
                                        "the City's latest result is out of business or not located": 1}, d["counts"]["excluded"]
     assert P["L444"]["flaggedIds"] == ["8"] and d["inspections"]["8"]["c"] == {"hood": [56]}, "duplicate report kept once, the fuller text"
@@ -495,11 +584,22 @@ def selftest():
     s = sample(d)
     assert "Acme" not in json.dumps(s["examples"]["flagged"]) and "Main" not in json.dumps(s["examples"]["flagged"]), "free page names a failed place"
     assert [x["name"] for x in s["examples"]["opening"]] == ["Two License Tavern", "New Place"], s["examples"]["opening"]
+    hb = P["L1201"]
+    assert hb["leadCats"]["flagged"] == ["pests"] and hb["catsBy"]["flagged"] == ["pests", "hood"], hb
+    assert hb["alsoBy"]["flagged"] == [{"cat": "hood", "id": "17", "d": "2026-10-03", "codes": [56]}], hb["alsoBy"]
+    assert P["L111"]["newBy"] == {"flagged": True, "opening": False, "repeat": True}
+    tl = d["inspections"][two["openingIds"][0]]
+    assert len(two["history"]) == 1 and tl["id"] == "16" and [c for c, _ in tl["v"]] == [10, 38] and tl["dup"] == ["15"], tl
+    assert biz_case("57TH & CHICAGO FOOD MART INC.") == "57th & Chicago Food Mart Inc." and biz_case("87TH QUICK STOP") == "87th Quick Stop"
+    assert biz_case("PROFESSOR PIZZA A LLC") == "Professor Pizza A LLC", biz_case("PROFESSOR PIZZA A LLC")
+    assert institution({"facility_type": "Restaurant", "dba_name": "FOODA @ DALEY COLLEGE"})
     assert biz_case("LA COLONIA") == "La Colonia" and biz_case("TACOS LA GUERITA") == "Tacos La Guerita" and biz_case("KFC") == "KFC"
+    assert type_title("Suspected Food Poisoning") == "Complaint" and type_title("Suspected Food Poisoning Re-inspection") == "Complaint Re-Inspection"
+    assert all(x["result"].upper() == "PASS" for x in s["examples"]["opening"]), "the free page names only openings that passed"
     assert pretty("2026-10-05") == "Oct 5, 2026" and type_title("canvass re-inspection") == "Canvass Re-Inspection" and type_title("LICENSE") == "License"
     for t in (__doc__ or "",):
         assert "—" not in t
-    print(f"rest_leads selftest ok ({len(CAT_CASES)} category cases, {len(PERSON_CASES)} name cases, 16 planted inspections)")
+    print(f"rest_leads selftest ok ({len(CAT_CASES)} category cases, {len(PERSON_CASES)} name cases, 18 planted inspections)")
 
 
 if __name__ == "__main__":

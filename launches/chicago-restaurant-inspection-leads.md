@@ -7,14 +7,14 @@ Checklist: design/LAUNCH_CHECKLIST.md. Nothing is published, linked, emailed or 
 - Workbook: tools/rest_xlsx.py (Start Here, 1 Failed or conditional, 2 Opening soon, 3 Failed more than once, 4 Inspection history, 5 Pitch kit, Terms).
 - Free sample page: docs/chicago-restaurant-inspection-leads/ (site/pages.json kind "restleads", draft, noindex, off the index and sitemap; failed places are never named on it).
 - Data: tools/rest_leads.py on the City's Food Inspections dataset (4ijn-s7e5), weekly in .github/workflows/inspections-chicago.yml.
-- This week's list: 118 failed or conditional (81 pests, 23 hood, 13 grease trap and drains, 96 cleaning; 98 with a Fail), 131 opening soon (93 passed the license inspection), 24 failed more than once, 52 places new this week, 247 places in all. Left out: 69 schools, day care, hospitals, senior sites and mobile vendors, 2 places named after a person, 1 out of business.
+- This week's list: 117 failed or conditional (81 pests, 23 hood, 12 grease trap and drains, 93 cleaning; 98 with a Fail), 130 opening soon (92 passed the license inspection), 23 failed more than once, 52 places new this week, 245 places in all. Left out: 70 schools, colleges, day care, hospitals, senior sites and mobile vendors, 4 places named after a person, 1 out of business.
 
 ## 1. The product
 - [x] Built to standard (WORKBOOK_STANDARD v3 card language from tools/leads_xlsx.py; the app reuses the construction app's stylesheet and encryption).
-- [x] Self-checks: rest_leads --selftest (27 category cases on the City's real titles, 27 name cases, 16 planted inspections), rest_xlsx, rest_app (node checks of dates, CSV guard and result classes), rest_site, rest_seal; check_repo 0 errors with 29 planted failures caught; render_xlsx ERROR VALUES: 0 on screen and print, every tab opened; Playwright at 390 and 1280 on every view (gate, Terms before password, wrong password, overview, trade memory, three lists, filters, CSV, map pins, place page, notes, back button, pitch kit, Terms, workbook download, filter sheet): all pass, no console errors, no horizontal scroll; axe-core 4.10.2 WCAG 2.1 AA 0 violations on every view and on the free page; 44 px touch targets on phone.
-- [ ] Holdout PASS: not run yet (needs an independent agent; brief in the live session's scratchpad, rest/holdout-brief.md).
-- [ ] Design director PASS on the app, workbook, free page, cover and thumbnail: not run yet.
-- [ ] Legal desk cleared: not run yet. Ask it to cover the City data terms (disclaimer word for word, indemnity), naming businesses with failed results in a paid list, the "Suspected Food Poisoning" inspection type shown as the City's own words, the exclusions, the outreach drafts (email/R1-OUTREACH.md) and the prospect list method.
+- [x] Self-checks: rest_leads --selftest (35 category cases on the City's real titles, 35 name cases, 18 planted inspections), rest_xlsx, rest_app (node checks of dates, CSV guard and result classes), rest_site, rest_seal; check_repo 0 errors with 29 planted failures caught; render_xlsx ERROR VALUES: 0 on screen and print, every tab opened; Playwright at 390 and 1280 on every view (gate, Terms before password, wrong password, overview, trade memory, three lists, filters, CSV, map pins, place page, notes, back button, pitch kit, Terms, workbook download, filter sheet): all pass, no console errors, no horizontal scroll; axe-core 4.10.2 WCAG 2.1 AA 0 violations on every view and on the free page; 44 px touch targets on phone.
+- [ ] Holdout PASS: round 1 FAIL (59/60 notes naming another code, ordinance numbers read as codes, duplicate reports across licenses, row codes from the 30-day union, person names, ordinal casing, "soiled", new by own date, colleges). All fixed with planted cases and rebuilt Oct 17; re-check pending.
+- [ ] Design director PASS on the app, workbook, free page, cover and thumbnail: round 1 FAIL 4.29; all 47 fixes applied and rebuilt Oct 17; re-review pending.
+- [x] Legal desk: CLEARED WITH FIXES; fixes 1 to 10 applied as worded, plus the rodent bait rule (planted case). Open questions for counsel stay with Todd (City indemnity, LLC on the Terms version line, members' TCPA and CAN-SPAM duties).
 
 ## 2. The storefront (Gumroad, Todd's account)
 - [ ] Product created by Todd (Membership, monthly tier, $39), copy below pasted, cover and thumbnail uploaded (launches/chicago-restaurant-inspection-leads/cover-1280x720.png and thumb-600x600.png, no weekly numbers on either).
@@ -48,7 +48,7 @@ Each Monday we pull the City of Chicago's food inspection records and sort them 
 
 Failed or conditional: places whose inspection in the last 30 days came back Fail or Pass w/ Conditions, with the violation categories you work on (pests and rodents, hood and exhaust, grease trap and drains, cleaning) and the City's violation codes for each.
 
-Opening soon: places that had the license inspection Chicago does before a food license is issued, so they are weeks from opening or just opened and choosing vendors.
+Opening soon: places that had the license inspection Chicago does before a food license is issued, so many are weeks from opening or just opened, and may be choosing vendors.
 
 Failed more than once: places with two or more failed inspections in 90 days.
 
@@ -61,6 +61,8 @@ What it is not: the list repeats the City's recorded result, date and violation 
 
 $39 a month. Cancel any time from your Gumroad library; cancelling stops future charges. Your membership renews monthly until you cancel.
 
+Terms of Use, readable before you buy: https://proofnotfluff.com/chicago-restaurant-leads-members/#/terms
+
 This site provides applications using data that has been modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one's own risk.
 
 ProofNotFluff is not affiliated with or endorsed by the City of Chicago. Licensed to one business for its own prospecting.
@@ -69,3 +71,5 @@ Made with AI assistance and reviewed and tested by the shop owner.
 ```
 
 Tier name: `Monthly`. Price: `$39`.
+
+Paste the "Terms of Use, readable before you buy" line only after the inspections workflow has published the members' app and that link opens the Terms without a password (the app's #/terms view opens before the password; Legal desk fix 9).

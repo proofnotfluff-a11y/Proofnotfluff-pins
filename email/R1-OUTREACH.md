@@ -10,9 +10,10 @@ Product: Chicago Restaurant Inspection Leads, $39 a month (launches/chicago-rest
 - Todd sends every email himself from the ProofNotFluff mailbox. No agent sends. One email per company, no follow-up sequence unless Todd says so.
 - CAN-SPAM: honest subject, the sender is ProofNotFluff, the postal address "1718 Capitol Ave, Cheyenne, WY 82001" in the footer, and a working opt-out (reply "no thanks"); honor it and never email that address again.
 - Every fact comes from that morning's members' list (tools/rest_leads.py on the City's Food Inspections data). {fields} are filled the morning the drafts are made; a draft with a leftover brace, or a number that differs from the list, is not made.
-- The example record names the City's result, date, inspection type and violation code, and nothing else: never "dirty", "unsafe", "infested" or any judgment. Pick an example whose newest City result is still the one quoted (if the place passed a re-inspection since, pick another).
+- The example record gives the facility type, community area, the City's result, date, inspection type and violation code, and never the business name or street address (the same line as the free page): never "dirty", "unsafe", "infested" or any judgment. Pick an example whose newest City result is still the one quoted (if the place passed a re-inspection since, pick another).
 - No invented people, no fake urgency, no claim that any business works with us.
-- For a contact-form prospect, paste the body without the footer lines the form does not need, but keep the opt-out sentence.
+- For a contact-form prospect, paste the whole body, including "ProofNotFluff", the postal address and the opt-out sentence, and give the ProofNotFluff mailbox as the reply address. Skip any form that says it is not for sales, solicitations or vendors.
+- Any reply that asks to stop, in any words, is an opt-out. Add the address and the company to a do-not-email column in rest-prospects.csv within 10 business days, and check that column before every send.
 
 ## The emails ({fields} from the list)
 
@@ -51,7 +52,7 @@ Hi {Company} team,
 
 Your site says you clean commercial kitchen hoods in the Chicago area, so this may be worth a minute.
 
-Each week we pull the City of Chicago's food inspection records and list the restaurants whose inspection failed or passed with conditions, sorted by what the inspector cited. In the last 30 days, {hood} places were cited under ventilation (City violation 56) for a hood, filter, exhaust or grease. We also list the {opening} places that had their license inspection in the same 30 days, so they are about to open. One example: {example}.
+Each week we pull the City of Chicago's food inspection records and list the restaurants whose inspection failed or passed with conditions, sorted by what the inspector cited. In the last 30 days, {hood} places were cited for a hood, filter, exhaust or grease problem, most under City violation 56 (ventilation). We also list the {opening} places that had a City license inspection in the same 30 days, the inspection Chicago does before it issues a food license. One example: {example}.
 
 Free sample: https://proofnotfluff.com/chicago-restaurant-inspection-leads/
 
@@ -75,7 +76,7 @@ Hi {Company} team,
 
 Your site says you service restaurant grease traps in the Chicago area, so this may be worth a minute.
 
-Each week we pull the City of Chicago's food inspection records and list the restaurants whose inspection failed or passed with conditions, sorted by what the inspector cited. In the last 30 days, {drain} places were cited for waste water (City violation 52) or a grease trap or drain, and {opening} more had the license inspection that comes before opening. One example: {example}.
+Each week we pull the City of Chicago's food inspection records and list the restaurants whose inspection failed or passed with conditions, sorted by what the inspector cited. In the last 30 days, {drain} places were cited for waste water (City violation 52) or a grease trap or drain, and we list the {opening} places that had the license inspection Chicago does before it issues a food license. One example: {example}.
 
 Free sample: https://proofnotfluff.com/chicago-restaurant-inspection-leads/
 
@@ -88,4 +89,4 @@ ProofNotFluff
 This is a one-time advertisement for ProofNotFluff's paid list, sent to businesses that advertise grease trap service. Not interested? Reply "no thanks" and we won't email you again.
 ```
 
-{example} reads like: "Subway, 5131 S Pulaski Rd (West Elsdon): City result Fail on Oct 15, 2026, canvass inspection, violation 38 cited". {checkout} is the Gumroad link with utm tags, filled once Todd has created the product.
+{example} reads like: "a restaurant in West Elsdon, City result Fail on Oct 15, 2026, canvass inspection, violation 38 cited. Members see its name and address". {checkout} is the Gumroad link with utm tags, filled once Todd has created the product.

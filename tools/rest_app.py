@@ -68,7 +68,7 @@ def payload(data, xlsx_bytes):
     for p in P.values():
         places.append({"id": p["id"], "n": p["name"], "k": p["aka"], "a": p["address"], "z": p["zip"], "ar": p["area"], "ty": p["type"],
                        "rk": p["risk"], "lic": p.get("licenses") or ([p["license"]] if p["license"] else []), "lat": p["lat"], "lon": p["lon"],
-                       "ls": p["lists"], "cb": p["catsBy"], "nw": p["new"], "f90": p["fails90"], "fl": p["flaggedIds"], "op": p["openingIds"],
+                       "ls": p["lists"], "cb": p["catsBy"], "lc": p["leadCats"], "al": p["alsoBy"], "nb": p["newBy"], "nw": p["new"], "f90": p["fails90"], "fl": p["flaggedIds"], "op": p["openingIds"],
                        "fa": p["failIds"], "lt": p["latestId"], "h": p["history"]})
     insp = {i: {"d": x["d"], "t": x["t"], "r": x["r"], "v": [c for c, _ in x["v"]], "c": x["c"]} for i, x in I.items()}
     return {"asOf": data["asOfText"], "asOfIso": data["asOf"], "through": data["through"], "throughText": data["throughText"],
@@ -213,6 +213,37 @@ PAGE = r"""<!doctype html>
 .bk a[aria-current=page]{background:var(--ink);border-color:var(--ink);color:#fff}
 .call{font-size:16px;line-height:1.6;color:var(--ink);margin:0;padding:16px 18px;border-radius:10px;background:var(--paper)}
 .rules{margin:18px 0 0;padding:0 0 0 20px;color:var(--ink2);font-size:14.5px}.rules li{margin:0 0 6px}
+/* design director round 1 */
+.row{grid-template-columns:minmax(0,1fr) 172px}
+.row .rt{grid-row:1 / span 4;flex-direction:column;align-items:flex-end;flex-wrap:nowrap;max-width:none;gap:6px}
+.row .bd.cs{margin-top:8px;gap:6px}
+.row .nwt{color:var(--accent-ink);font-weight:700}
+.row .also{font-size:13px;color:var(--muted);align-self:center;margin-left:2px}
+.row .ftx{color:var(--fail);font-weight:700}
+.row .ctx{color:var(--teal);font-weight:700;display:inline-flex;align-items:center;gap:4px}
+.res.nw{height:24px;font-size:12px;font-weight:600}
+@media(max-width:600px){.row{grid-template-columns:minmax(0,1fr)}.row .rt{grid-row:auto;flex-direction:row;align-items:center;flex-wrap:wrap}}
+.lg-f{width:11px;height:11px;background:#C8502F;box-shadow:0 0 0 1.5px #fff,0 0 0 2.5px #A63E21;transform:rotate(45deg);border-radius:2px!important;margin:0 3px}
+.pin-f{background:#C8502F;border:1.5px solid #fff;box-shadow:0 0 0 1px #A63E21,0 1px 3px rgba(29,36,51,.3);transform:rotate(45deg);border-radius:2px;box-sizing:border-box}
+.pin-f.hot{background:#1D2433;box-shadow:0 0 0 2px #C8502F}
+@media(max-width:860px){.tool .seg:not(.vtog) button[data-k=""]{order:0}}
+.pg{grid-template-rows:auto auto 1fr}
+.pg-side{grid-row:1 / span 3}
+.pg-facts{grid-column:1;grid-row:3;min-width:0}
+@media(max-width:1020px){.pg-side,.pg-facts{grid-row:auto}}
+.facts dd.nv{color:var(--muted);font-weight:400}
+.tl .vl li{grid-template-columns:28px minmax(0,1fr)}
+.tl .vl{margin-left:0}
+@media(max-width:600px){.mini-b{padding:12px 16px}.mine{padding:0 16px 16px}}
+.mini-b .r{min-width:84px;max-width:96px}.mini-b span .dt{white-space:nowrap}
+@media(max-width:600px){.bars .hd{min-height:0;padding:0;margin:0 0 2px}}
+.trade .yt{font-size:12px;font-weight:600;letter-spacing:0}
+.pick{align-items:flex-end}.pick p{line-height:40px}
+@media(max-width:860px){.pick p{line-height:44px}}
+.pk-h{align-items:center;margin:0 0 4px}.pk .sub{margin:0 0 14px;font-size:13.5px;color:var(--muted)}
+.call .f{color:var(--blue);font-weight:700}
+.terms{max-width:760px}.terms .tx p{max-width:none}
+#fsheetH:focus{outline:none;box-shadow:none}
 </style></head><body>
 <a class="skip" href="#/" id="skip">Skip to main content</a>
 <header class="bar"><div class="bar-in">
@@ -256,7 +287,7 @@ const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","De
 function day(s){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||"");return m?MON[+m[2]-1]+" "+(+m[3])+", "+m[1]:"";}
 function dayShort(s){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||"");return m?MON[+m[2]-1]+" "+(+m[3]):"";}
 const plural=(n,a,b)=>int(n)+" "+(n===1?a:(b||a+"s"));
-const sent=s=>{s=String(s||"").toLowerCase();return s.charAt(0).toUpperCase()+s.slice(1);};
+const sent=s=>{s=String(s||"").toLowerCase();return (s.charAt(0).toUpperCase()+s.slice(1)).replace(/\bchicago\b/g,"Chicago");};
 const I={phone:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',
 mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
 copy:'<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/>',
@@ -281,11 +312,11 @@ async function copyText(t){try{await navigator.clipboard.writeText(t);return tru
 
 /* results, categories, lists */
 const RES=r=>{const u=String(r||"").toUpperCase();return u==="FAIL"?"fail":u==="PASS W/ CONDITIONS"?"pwc":u==="PASS"?"pass":u==="NOT READY"?"nr":"oth";};
-const res=(r,lg)=>`<span class="res ${RES(r)}${lg?" lg":""}"><i aria-hidden="true"></i>${esc(r)}</span>`;
+const res=(r,lg,pre,post,cls)=>`<span class="res ${RES(r)}${lg?" lg":""}${cls?" "+cls:""}"><i aria-hidden="true"></i>${pre?esc(pre):""}${esc(r)}${post?" "+esc(post):""}</span>`;
 let CATS=[],CAT={};
 const cat=(k,on)=>`<span class="cat${on?" on":""}">${ico(k)}${esc(CAT[k].short)}</span>`;
 const LISTS={flagged:{t:"Failed or conditional",s:"City result Fail or Pass w/ Conditions in the last 30 days, with a violation in at least one category.",ids:"fl"},
- opening:{t:"Opening soon",s:"A license inspection in the last 30 days. Chicago inspects a food business before its license is issued, so these places are weeks from opening or just opened.",ids:"op"},
+ opening:{t:"Opening soon",s:"A license inspection in the last 30 days. Chicago inspects a food business before it issues a food license, so many of these places are about to open or just opened.",ids:"op"},
  repeat:{t:"Failed more than once",s:"Two or more failed routine, complaint or re-inspections in 90 days, at least one in the last 30, with a violation in at least one category.",ids:"fa"}};
 const TRADES=[["pests","Pest control","flagged","pests"],["hood","Hood cleaning","flagged","hood"],["drain","Grease trap and drains","flagged","drain"],["clean","Kitchen cleaning","flagged","clean"],["opening","New openings","opening",""]];
 
@@ -301,8 +332,8 @@ const STORE_LINE=()=>STORE_OK?"Saved in this browser on this device only. Nobody
 let D,P,BYID,INS;
 const STATE={trail:[],map:null,mini:null};
 function prep(d){D=d;P=d.places;INS=d.insp;BYID={};P.forEach(p=>{BYID[p.id]=p;});CATS=d.cats.map(c=>c.key);CAT={};d.cats.forEach(c=>{CAT[c.key]=c;});
-P.forEach(p=>{p.lead={flagged:p.fl[0],opening:p.op[0],repeat:p.fa[0]};p.since=null;
- const lt=INS[p.lt];for(const l of p.ls){const x=INS[p.lead[l]];if(x&&p.lt!==p.lead[l]&&lt.d>x.d&&!p.since)p.since=lt;}});}
+P.forEach(p=>{p.lead={flagged:p.fl[0],opening:p.op[0],repeat:p.fa[0]};p.since={};
+ const lt=INS[p.lt];for(const l of p.ls){const x=INS[p.lead[l]];if(x&&p.lt!==p.lead[l]&&lt.d>x.d)p.since[l]=lt;}});}
 const leadOf=(p,l)=>INS[p.lead[l]||p.lead[p.ls[0]]];
 
 /* routing */
@@ -325,14 +356,16 @@ setNav(nav);app.classList.remove("view-enter");void app.offsetWidth;app.classLis
 if(scroll){window.scrollTo(0,0);const h=app.querySelector("h1");if(h){h.setAttribute("tabindex","-1");h.focus({preventScroll:true});}}}
 
 /* a row in any list */
-function row(p,l){const x=leadOf(p,l);const m=mk(p.id);const cats=(p.cb[l]||[]);
-const meta=`<span class="when">${dayShort(x.d)}, ${esc(x.t)}</span>`;
+function row(p,l,ov){const x=leadOf(p,l);const m=mk(p.id);const cats=(p.lc[l]||[]);const nw=p.since[l];const also=p.al[l]||[];
+const meta=[p.nb[l]&&!ov?'<span class="nwt">New</span>':"",`<span class="when">${dayShort(x.d)}, ${esc(x.t)}</span>`,
+ l!=="opening"&&p.f90>=2?`<span class="ftx">${int(p.f90)} fails in 90 days</span>`:"",
+ m.c?`<span class="ctx">${ico("check","s")}Contacted</span>`:""].filter(Boolean).join('<span aria-hidden="true">&middot;</span>');
 return `<li><a class="row" href="#/place/${encodeURIComponent(p.id)}?from=${l}" data-id="${esc(p.id)}">
 <span class="mn">${esc(p.n)}${p.ty&&p.ty!=="Not given"&&p.ty!=="Restaurant"?`<small>${esc(p.ty)}</small>`:""}</span>
 <span class="ad">${esc(p.a)}${p.ar?`<span class="ar">, ${esc(p.ar)}</span>`:""}</span>
-<span class="bd">${meta}${cats.map(k=>cat(k)).join("")}</span>
-<span class="rt">${res(x.r)}${p.nw?'<span class="badge new">New this week</span>':""}${l!=="opening"&&p.f90>=2?`<span class="badge rep">${int(p.f90)} fails in 90 days</span>`:""}${p.since&&l!=="opening"?`<span class="badge since">${esc(p.since.r)} ${dayShort(p.since.d)}</span>`:""}${m.c?`<span class="badge done">${ico("check","s")}Contacted</span>`:""}</span>${ico("chev","chev")}</a></li>`;}
-function rowsHtml(list,l,limit){if(!list.length)return "";const n=Math.min(limit||list.length,list.length);return `<ul class="list-rows">${list.slice(0,n).map(p=>row(p,l)).join("")}</ul>`;}
+<span class="bd">${meta}</span>${cats.length||also.length?`<span class="bd cs">${cats.map(k=>cat(k)).join("")}${also.length?`<span class="also">Also cited in the last ${l==="repeat"?"90":"30"} days: ${also.map(a=>esc(CAT[a.cat].short)+" ("+dayShort(a.d)+")").join(", ")}</span>`:""}</span>`:""}
+<span class="rt">${l==="opening"?res(x.r,0,"License: "):res(x.r)}${nw&&l!=="opening"?res(nw.r,0,"Newer: ",dayShort(nw.d),"nw"):""}</span>${ico("chev","chev")}</a></li>`;}
+function rowsHtml(list,l,limit,ov){if(!list.length)return "";const n=Math.min(limit||list.length,list.length);return `<ul class="list-rows">${list.slice(0,n).map(p=>row(p,l,ov)).join("")}</ul>`;}
 const inList=l=>D.lists[l].map(id=>BYID[id]);
 function tradeRows(t){const tr=TRADES.find(x=>x[0]===t);if(!tr)return inList("flagged");return inList(tr[2]).filter(p=>!tr[3]||p.cb[tr[2]].includes(tr[3]));}
 const tradeHref=t=>{const tr=TRADES.find(x=>x[0]===t);return tr[2]==="opening"?"#/list?l=opening":"#/list?cat="+tr[3];};
@@ -341,22 +374,22 @@ const tradeHref=t=>{const tr=TRADES.find(x=>x[0]===t);return tr[2]==="opening"?"
 function viewOverview(){document.title="Overview | Chicago Restaurant Inspection Leads";
 const c=D.counts,fl=inList("flagged"),op=inList("opening"),rp=inList("repeat");
 const t=TRADES.find(x=>x[0]===TRADE);
-const tile=([k,name,l,cf])=>{const rows=tradeRows(k);const nw=rows.filter(p=>p.nw).length;const mine=k===TRADE;
-return `<a class="trade${mine?" mine":""}" href="${tradeHref(k)}">${mine?'<span class="yt">YOUR TRADE</span>':""}<span class="ti">${ico(k)}</span><span class="tn num">${int(rows.length)}</span><span class="tt">${esc(name)}</span><span class="tm num">${nw?`<b>${int(nw)} new</b> this week`:"none new this week"}</span></a>`;};
+const tile=([k,name,l,cf])=>{const rows=tradeRows(k);const nw=rows.filter(p=>p.nb[l]).length;const mine=k===TRADE;
+return `<a class="trade${mine?" mine":""}" href="${tradeHref(k)}">${mine?'<span class="yt">Your trade</span>':""}<span class="ti">${ico(k)}</span><span class="tn num">${int(rows.length)}</span><span class="tt">${esc(name)}</span><span class="tm num">${nw?`<b>${int(nw)} new</b> this week`:"none new this week"}</span></a>`;};
 const newest=(t?tradeRows(TRADE):fl).slice(0,6),tl=t?t[2]:"flagged";
 const ac={};fl.concat(op).forEach(p=>{if(p.ar){const a=ac[p.ar]=ac[p.ar]||[0,0];a[p.ls.includes("flagged")?0:1]++;}});
 const areas=Object.entries(ac).map(([a,v])=>[a,v[0]+v[1],v]).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,8);const amax=areas.length?areas[0][1]:1;
 const marked=Object.keys(MARKS).filter(id=>BYID[id]);const cN=marked.filter(id=>MARKS[id].c).length,nN=marked.filter(id=>(MARKS[id].n||"").trim()).length;
-$("#app").innerHTML=`<section class="hero"><h1>${int(c.flagged)} places failed or passed with conditions in the last 30 days, and ${int(c.opening)} are about to open</h1>
+$("#app").innerHTML=`<section class="hero"><h1>${int(c.flagged)} places failed or passed with conditions in the last 30 days, and ${int(c.opening)} had a license inspection</h1>
 <p>From City of Chicago food inspection records through ${esc(D.throughText)}. List of ${esc(D.asOf)}. Pick your trade to see your leads first.</p>
 <div class="pick"><div class="fld"><label for="trade">Your trade</label><select id="trade"><option value="">All trades</option>${TRADES.map(([k,n])=>`<option value="${k}"${k===TRADE?" selected":""}>${esc(n)}</option>`).join("")}</select></div><p>${STORE_OK?"Remembered on this device.":""}</p></div></section>
 <nav class="trades" aria-label="Leads by trade">${TRADES.map(tile).join("")}</nav>
 <div class="ov"><div class="ov-col">
-<section class="panel"><div class="sec-h"><h2>${t?esc(t[1])+": newest leads":"Newest leads"}<span class="c num">${int(t?tradeRows(TRADE).length:fl.length)}</span></h2><a href="${t?tradeHref(TRADE):"#/list"}">See all</a></div>${newest.length?rowsHtml(newest,tl):`<p class="empty">None on this week's list.</p>`}</section>
-${tl!=="opening"?`<section class="panel"><div class="sec-h"><h2>Opening soon<span class="c num">${int(op.length)}</span></h2><a href="#/list?l=opening">See all ${int(op.length)}</a></div>${rowsHtml(op,"opening",4)}</section>`:""}
+<section class="panel"><div class="sec-h"><h2>${t?esc(t[1])+": newest leads":"Newest leads"}<span class="c num">${int(t?tradeRows(TRADE).length:fl.length)}</span></h2><a href="${t?tradeHref(TRADE):"#/list"}">See all ${int(t?tradeRows(TRADE).length:fl.length)}</a></div>${newest.length?rowsHtml(newest,tl,0,true):`<p class="empty">None on this week's list.</p>`}</section>
+${tl!=="opening"?`<section class="panel"><div class="sec-h"><h2>Opening soon<span class="c num">${int(op.length)}</span></h2><a href="#/list?l=opening">See all ${int(op.length)}</a></div>${rowsHtml(op,"opening",4,true)}</section>`:""}
 </div><div class="ov-col">
-<section class="panel"><div class="sec-h"><h2>Failed more than once<span class="c num">${int(rp.length)}</span></h2><a href="#/list?l=repeat">See all</a></div>
-${rp.slice().sort((a,b)=>b.f90-a.f90||a.n.localeCompare(b.n)).slice(0,6).map(p=>`<a class="mini-b" href="#/place/${encodeURIComponent(p.id)}?from=repeat"><b>${esc(p.n)}</b><span>${esc(p.ar||"Chicago")}, last failed ${dayShort(INS[p.fa[0]].d)}</span><span class="r num">${int(p.f90)}<small>fails in 90 days</small></span></a>`).join("")}</section>
+<section class="panel"><div class="sec-h"><h2>Failed more than once<span class="c num">${int(rp.length)}</span></h2><a href="#/list?l=repeat">See all ${int(rp.length)}</a></div>
+${rp.slice().sort((a,b)=>b.f90-a.f90||a.n.localeCompare(b.n)).slice(0,6).map(p=>`<a class="mini-b" href="#/place/${encodeURIComponent(p.id)}?from=repeat"><b>${esc(p.n)}</b><span>${esc(p.ar||"Chicago")}, last failed <span class="dt">${dayShort(INS[p.fa[0]].d)}</span></span><span class="r num">${int(p.f90)}<small>fails in 90 days</small></span></a>`).join("")}</section>
 <section class="panel"><div class="sec-h"><h2>Where they are</h2><a href="#/list?view=map">Open the map</a></div>
 <p class="blg" aria-hidden="true"><span><i class="b0" style="background:#C8502F"></i>Failed or conditional</span><span><i class="b1" style="background:#2F5F9E"></i>Opening soon</span></p>
 <ul class="bars" aria-label="Places on the list by community area"><li class="hd" aria-hidden="true"><span></span><span class="sp2"></span><span>Failed</span><span>All</span></li>${areas.map(([a,n,v])=>`<li><a href="#/list?area=${encodeURIComponent(a)}" aria-label="${esc(a)}: ${plural(n,"place")}, ${int(v[0])} failed or conditional, ${int(v[1])} opening soon"><span>${esc(a)}</span><span class="tr" style="width:${Math.max(3,Math.round(n/amax*100))}%" aria-hidden="true">${v[0]?`<i style="flex-grow:${v[0]};background:#C8502F"></i>`:""}${v[1]?`<i style="flex-grow:${v[1]};background:#2F5F9E"></i>`:""}</span><span class="nv num${v[0]?"":" z"}" style="color:var(--fail)">${int(v[0])}</span><span class="v num">${int(n)}</span></a></li>`).join("")}</ul></section>
@@ -377,7 +410,7 @@ function since(days){const t=new Date(D.through+"T12:00:00Z");t.setUTCDate(t.get
 function pass(p,f,skip){const x=leadOf(p,f.l);
 if(skip!=="q"&&f.q){const t=norm(f.q);const hay=norm([p.n,p.k,p.a,p.ar,p.z,...p.lic].join(" "));if(!t.split(" ").every(w=>hay.includes(w)))return false;}
 if(skip!=="cat"&&f.cat&&!(p.cb[f.l]||[]).includes(f.cat))return false;if(skip!=="res"&&f.res&&x.r!==f.res)return false;if(skip!=="area"&&f.area&&p.ar!==f.area)return false;
-if(skip!=="days"&&f.days&&x.d<since(f.days))return false;if(skip!=="type"&&f.type&&p.ty!==f.type)return false;if(skip!=="new"&&f.nw&&!p.nw)return false;
+if(skip!=="days"&&f.days&&x.d<since(f.days))return false;if(skip!=="type"&&f.type&&p.ty!==f.type)return false;if(skip!=="new"&&f.nw&&!p.nb[f.l])return false;
 if(f.fu==="todo"&&mk(p.id).c)return false;if(f.fu==="mine"&&!(mk(p.id).c||(mk(p.id).n||"").trim()))return false;return true;}
 function activeCount(f){return [f.res,f.area,f.days,f.type,f.nw,f.fu].filter(Boolean).length;}
 function viewList(q){const f=readF(q);STATE.f=f;STATE.shown=60;const L=LISTS[f.l];document.title=`${L.t} | Chicago Restaurant Inspection Leads`;
@@ -419,7 +452,7 @@ $("#csv").onclick=exportCsv;STATE.upd=upd;
 refresh(false);syncVtog();
 const phone=window.matchMedia("(max-width:860px)").matches;if(!phone)ensureMap();else if(f.view==="map")setTimeout(showMap,60);
 return f.l;}
-function showMap(){const t=$("#fopen");if(t&&window.matchMedia("(max-width:860px)").matches){const y=t.getBoundingClientRect().top+window.scrollY-parseInt(getComputedStyle(document.documentElement).getPropertyValue("--bar-h"))-12;window.scrollTo(0,Math.max(0,y));}
+function showMap(){const t=document.querySelector(".tool");if(t&&window.matchMedia("(max-width:860px)").matches){const y=t.getBoundingClientRect().top+window.scrollY-parseInt(getComputedStyle(document.documentElement).getPropertyValue("--bar-h"))-12;window.scrollTo(0,Math.max(0,y));}
 setTimeout(()=>{ensureMap();if(STATE.map){STATE.map.invalidateSize();drawMap(true);}},40);}
 function syncVtog(){document.querySelectorAll(".vtog button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===STATE.f.view)));}
 function refresh(refit){const f=STATE.f,base=STATE.base;
@@ -433,7 +466,7 @@ $("#fres").innerHTML=opt("","Any result",null,!f.res)+STATE.results.map(r=>opt(r
 $("#fdays").innerHTML=DAYS.map(([v,t])=>opt(v,t,v?facet("days",p=>leadOf(p,f.l).d>=since(v)):null,f.days===v)).join("");
 $("#farea").innerHTML=opt("","All community areas",null,!f.area)+STATE.areas.map(a=>opt(a,a,facet("area",p=>p.ar===a),f.area===a)).join("");
 $("#ftype").innerHTML=opt("","Any type",null,!f.type)+STATE.types.map(t=>opt(t,t,facet("type",p=>p.ty===t),f.type===t)).join("");
-$("#fsort").value=f.sort;$("#fnew").checked=f.nw;$("#ffu").value=f.fu;$("#fnewT").textContent=`New this week (${int(facet("new",p=>p.nw))})`;
+$("#fsort").value=f.sort;$("#fnew").checked=f.nw;$("#ffu").value=f.fu;$("#fnewT").textContent=`New this week (${int(facet("new",p=>p.nb[f.l]))})`;
 const ac=activeCount(f);$("#fopenT").innerHTML=ac?`Filters <span class="fcount num">${ac}</span>`:"Filters";
 const rows=base.filter(p=>pass(p,f)).sort(SORTS[f.sort](f.l));STATE.rows=rows;
 $("#rcount").innerHTML=rows.length===base.length?`<b class="num">${int(rows.length)}</b> ${rows.length===1?"place":"places"}`:`<b class="num">${int(rows.length)}</b> of <span class="num">${int(base.length)}</span> places`;
@@ -457,14 +490,19 @@ function drawMap(refit){const m=STATE.map;const rows=STATE.rows||[];const geo=ro
 if(note){const miss=rows.length-geo.length;note.hidden=!(miss||!rows.length);note.textContent=!rows.length?"No pins for these filters.":miss?`${plural(miss,"place")} in the list ${miss===1?"has":"have"} no map location in the City record.`:"";}
 if(!m)return;STATE.layer.clearLayers();STATE.mk={};
 const rank={pass:0,oth:1,nr:1,pwc:2,fail:3};
-geo.slice().sort((a,b)=>rank[RES(leadOf(a,STATE.f.l).r)]-rank[RES(leadOf(b,STATE.f.l).r)]).forEach(p=>{const k=RES(leadOf(p,STATE.f.l).r);const c=L.circleMarker([p.lat,p.lon],MS[k]).bindPopup(popup(p),{maxWidth:280});c.addTo(STATE.layer);STATE.mk[p.id]=[c,k];});
+geo.slice().sort((a,b)=>rank[RES(leadOf(a,STATE.f.l).r)]-rank[RES(leadOf(b,STATE.f.l).r)]).forEach(p=>{const k=RES(leadOf(p,STATE.f.l).r);const c=pin([p.lat,p.lon],k,1).bindPopup(popup(p),{maxWidth:280});c.addTo(STATE.layer);STATE.mk[p.id]=[c,k];});
 if(refit&&geo.length){const bb=L.latLngBounds(geo.map(p=>[p.lat,p.lon]));if(geo.length===1)m.setView(bb.getCenter(),15,{animate:false});else m.fitBounds(bb,{padding:[40,40],maxZoom:15,animate:false});}}
-function hot(id,on){const e=STATE.mk&&STATE.mk[id];if(!e)return;const [c,k]=e;c.setStyle(on?Object.assign({},MS[k],{radius:MS[k].radius+4,weight:3,color:"#1D2433"}):MS[k]);if(on)c.bringToFront();}
+/* fail pins are the legend's diamond (a div icon); the others stay circles */
+function pin(ll,k,scale){if(k==="fail"){const z=Math.round(13*scale);return L.marker(ll,{icon:L.divIcon({className:"pin-f",iconSize:[z,z]}),keyboard:false,riseOnHover:true});}
+return L.circleMarker(ll,Object.assign({},MS[k],{radius:MS[k].radius*scale}));}
+function hot(id,on){const e=STATE.mk&&STATE.mk[id];if(!e)return;const [c,k]=e;
+if(c.setStyle){c.setStyle(on?Object.assign({},MS[k],{radius:MS[k].radius+4,weight:3,color:"#1D2433"}):MS[k]);if(on)c.bringToFront();}
+else{const el=c.getElement&&c.getElement();if(el)el.classList.toggle("hot",on);c.setZIndexOffset(on?1000:0);}}
 
 /* filters sheet (phone) */
 let lastFocus=null;
 function openSheet(){const s=$("#fsheet");if(!s)return;lastFocus=document.activeElement;s.classList.add("open");s.setAttribute("role","dialog");s.setAttribute("aria-modal","true");s.setAttribute("aria-labelledby","fsheetH");
-const sc=document.createElement("div");sc.className="scrim";sc.id="scrim";sc.onclick=closeSheet;document.body.appendChild(sc);setTimeout(()=>$("#fres").focus(),60);document.addEventListener("keydown",sheetKeys);}
+const sc=document.createElement("div");sc.className="scrim";sc.id="scrim";sc.onclick=closeSheet;document.body.appendChild(sc);setTimeout(()=>{const h=$("#fsheetH");h.setAttribute("tabindex","-1");h.focus();},60);document.addEventListener("keydown",sheetKeys);}
 function closeSheet(){const s=$("#fsheet");const sc=$("#scrim");if(sc)sc.remove();document.removeEventListener("keydown",sheetKeys);if(!s||!s.classList.contains("open"))return;s.classList.remove("open");s.removeAttribute("role");s.removeAttribute("aria-modal");if(lastFocus&&lastFocus.focus)lastFocus.focus();}
 function sheetKeys(e){if(e.key==="Escape"){closeSheet();return;}if(e.key!=="Tab")return;const f=[...$("#fsheet").querySelectorAll("select,input,button")].filter(x=>x.offsetParent!==null);if(!f.length)return;const a=f[0],z=f[f.length-1];
 if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();}}
@@ -472,10 +510,10 @@ if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}else if
 /* CSV of the current view */
 function cell(v){v=v==null?"":String(v);if(/^[=+\-@\t\r]/.test(v)&&!/^-?\d+(\.\d+)?$/.test(v))v="'"+v;return /[",\r\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;}
 function exportCsv(){const rows=STATE.rows||[];if(!rows.length)return;const l=STATE.f.l;
-const head=["Business","Also known as","Address","ZIP","Community area","Facility type","List","City result","Inspected","Inspection type"].concat(CATS.map(k=>CAT[k].short+" (violation codes)")).concat(["All violations cited","Fails in 90 days","Newest City result","Newest result date","New this week","License","City record","Contacted","Contacted on","Your note","Latitude","Longitude"]);
+const head=["Business","Also known as","Address","ZIP","Community area","Facility type","List","City result","Inspected","Inspection type"].concat(CATS.map(k=>CAT[k].short+" (violation codes)")).concat(["All violations cited","Also cited in the list window","Fails in 90 days","Newest City result","Newest result date","New this week","License","City record","Contacted","Contacted on","Your note","Latitude","Longitude"]);
 const lines=[head.map(cell).join(",")];
-rows.forEach(p=>{const x=leadOf(p,l);const lt=INS[p.lt];const m=mk(p.id);const ids=p[LISTS[l].ids]||[];const cc={};ids.forEach(i=>{const c=INS[i].c;for(const k in c)(cc[k]=cc[k]||new Set()),c[k].forEach(v=>cc[k].add(v));});
-lines.push([p.n,p.k,p.a,p.z,p.ar,p.ty,LISTS[l].t,x.r,x.d,x.t].concat(CATS.map(k=>cc[k]?[...cc[k]].sort((a,b)=>a-b).join(" "):"")).concat([x.v.join(" "),p.f90,lt.r,lt.d,p.nw?"Yes":"",p.lic.join("; "),D.record+p.lead[l],m.c?"Yes":"",m.c||"",(m.n||"").trim(),p.lat||"",p.lon||""]).map(cell).join(","));});
+rows.forEach(p=>{const x=leadOf(p,l);const lt=INS[p.lt];const m=mk(p.id);const cc=x.c||{};
+lines.push([p.n,p.k,p.a,p.z,p.ar,p.ty,LISTS[l].t,x.r,x.d,x.t].concat(CATS.map(k=>cc[k]?cc[k].join(" "):"")).concat([x.v.join(" "),(p.al[l]||[]).map(a=>CAT[a.cat].short+" "+a.codes.join(" ")+" on "+a.d).join("; "),p.f90,lt.r,lt.d,p.nb[l]?"Yes":"",p.lic.join("; "),D.record+p.lead[l],m.c?"Yes":"",m.c||"",(m.n||"").trim(),p.lat||"",p.lon||""]).map(cell).join(","));});
 const blob=new Blob(["﻿"+lines.join("\r\n")+"\r\n"],{type:"text/csv;charset=utf-8"});
 const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`chicago-restaurant-leads-${D.asOfIso}-${l}-${rows.length}.csv`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);
 toast(`CSV exported: ${plural(rows.length,"place")}`);}
@@ -483,8 +521,11 @@ function downloadWorkbook(){const blob=new Blob([b64(D.xlsx)],{type:"application
 const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=D.fileName;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);toast("Workbook downloaded");}
 
 /* place page */
-const CAT_HOW={pests:"Violation 38 (insects, rodents and animals), or an inspector note that names pests",hood:"Violation 56 (ventilation) naming a hood, filter, exhaust or grease, or a note that names a hood",
-drain:"Violation 52 (sewage and waste water), or a note that names a grease trap, interceptor or clogged drain",clean:"Violation 49 (surfaces clean), or a cleaning note under violations 53, 54, 55 or 60"};
+/* the category's own violation code; anything else came from the inspector's note */
+const CAT_BASE={pests:[38],drain:[52],clean:[49],hood:[]};
+const CAT_NOTE={pests:"names pests",hood:"names a hood, filter, exhaust or grease",drain:"names a grease trap or a drain problem",clean:"asks for cleaning"};
+const fromNote=(k,codes)=>codes.some(c=>!CAT_BASE[k].includes(c));
+const fv=(v,c)=>v?`<dd${c?` class="${c}"`:""}>${esc(v)}</dd>`:'<dd class="nv">Not on the City record</dd>';
 function viewPlace(p,from){document.title=`${p.n} | Chicago Restaurant Inspection Leads`;const m=mk(p.id);
 const l=p.ls.includes(from)?from:p.ls[0];const x=leadOf(p,l);
 const why=Object.entries(x.c);const tr=TRADES.find(t=>t[0]===TRADE);
@@ -500,33 +541,34 @@ $("#app").innerHTML=`<a class="back" href="#/list" id="back">${ico("back")}Back<
 <div class="pg"><section class="pg-head"><div class="ph-chips">${listChips}${p.nw?'<span class="badge new">New this week</span>':""}${m.c?`<span class="badge done">${ico("check","s")}Contacted ${esc(day(m.c))}</span>`:""}</div>
 <div class="p-title"><h1>${esc(p.n)}</h1><p class="sub">${esc(p.a)}, ${esc([p.ar,"Chicago"].filter(Boolean).join(", "))}${p.k?`<br>Also listed as ${esc(p.k)}`:""}</p></div>
 <div class="acts"><button class="btn" type="button" id="cpy">${ico("copy","s")}Copy address</button><a class="btn" href="${maps}" target="_blank" rel="noopener">${ico("pin","s")}Map and phone<span class="sr"> (opens Google Maps in a new tab)</span></a><a class="btn" href="${find}" target="_blank" rel="noopener">${ico("search","s")}Search the web<span class="sr"> (opens in a new tab)</span></a></div></section>
+<div class="pg-main">
+<section class="panel why" aria-labelledby="wh"><h2 id="wh">Why it is on the ${esc(LISTS[l].t.toLowerCase())} list</h2>
+<div class="top">${res(x.r,true,l==="opening"?"License: ":"")}<span class="dt">${day(x.d)}</span><span class="ty">${esc(/inspection$/i.test(x.t)?x.t:x.t+" inspection")}</span></div>
+${l==="opening"?`<p style="margin:0 0 ${why.length?"14px":"0"};color:var(--ink2)">Chicago inspects a food business before it issues a food license. ${/^PASS/i.test(x.r)?"This place passed its license inspection, so it may open soon.":"This place has not passed its license inspection yet."}${p.op.length>1?` ${plural(p.op.length,"license inspection")} in the last 30 days.`:""}</p>`:""}
+${l==="repeat"?`<p style="margin:0 0 14px;color:var(--ink2)">${plural(p.f90,"failed inspection")} in the 90 days to ${esc(D.throughText)}: ${p.fa.map(i=>dayShort(INS[i].d)).join(", ")}.</p>`:""}
+${why.length?`<ul class="cv">${why.map(([k,codes])=>`<li>${cat(k,true)}<div><p><b>City violation ${codes.map(c=>c+" ("+esc(sent(D.titles[c]||""))+")").join(", ")}</b></p>${fromNote(k,codes)?`<p>From the inspector's note, which ${esc(CAT_NOTE[k])}.</p>`:""}</div></li>`).join("")}</ul>`:""}
+${(p.al[l]||[]).length?`<p class="ms"><b>Also cited in the last ${l==="repeat"?"90":"30"} days:</b> ${p.al[l].map(a=>`${esc(CAT[a.cat].short)}, violation ${a.codes.join(", ")} on ${day(a.d)}`).join("; ")}.</p>`:""}
+${p.since[l]?`<p class="ms"><b>Newer City result:</b> ${esc(p.since[l].r)} on ${day(p.since[l].d)} (${esc(p.since[l].t)}).</p>`:""}
+</section>
+<section class="panel"><div class="sec-h"><h2>Inspection history<span class="c num">${int(p.h.length)}</span></h2></div><p class="rec" style="padding-top:0">Every City inspection on file for this place in the last 24 months, newest first. Results and violation numbers are the City's; categories are ours.</p><ol class="tl">${hist}</ol></section>
+</div>
 <aside class="pg-side" aria-label="Your follow-up">
 <section class="panel note" aria-labelledby="nh"><h2 id="nh">Your follow-up</h2><p class="hint">${esc(STORE_LINE())}</p>
 <button class="btn${m.c?" on":""}" type="button" id="mark" aria-pressed="${!!m.c}">${ico("check","s")}<span id="markT">${m.c?"Contacted "+esc(day(m.c))+" (undo)":"Mark as contacted"}</span></button>
 <label for="nt" class="sr">Private note</label><textarea id="nt" placeholder="Who you spoke to, what they need, when to call back" maxlength="2000">${esc(m.n||"")}</textarea><p class="st" id="ntst" aria-live="polite"></p></section>
 <section class="panel bc"><h2 style="font-size:17px">What to say</h2><p class="meta" style="margin:6px 0 14px">A call opener and an email ${tr?"for "+esc(tr[1].toLowerCase()):"for each trade"}, with this place's details to fill in.</p><a class="btn" href="#/pitch${tr?"?b="+tr[0]:""}">${ico("kit","s")}Open the pitch kit</a></section>
 </aside>
-<div class="pg-main">
-<section class="panel why" aria-labelledby="wh"><h2 id="wh">Why it is on the ${esc(LISTS[l].t.toLowerCase())} list</h2>
-<div class="top">${res(x.r,true)}<span class="dt">${day(x.d)}</span><span class="ty">${esc(/inspection$/i.test(x.t)?x.t:x.t+" inspection")}</span></div>
-${l==="opening"?`<p style="margin:0 0 ${why.length?"14px":"0"};color:var(--ink2)">Chicago inspects a food business before its license is issued. ${/^PASS/i.test(x.r)?"This place passed its license inspection, so it is close to opening.":"This place has not passed its license inspection yet, so it is still getting ready."}${p.op.length>1?` ${plural(p.op.length,"license inspection")} in the last 30 days.`:""}</p>`:""}
-${l==="repeat"?`<p style="margin:0 0 14px;color:var(--ink2)">${plural(p.f90,"failed inspection")} in the 90 days to ${esc(D.throughText)}: ${p.fa.map(i=>dayShort(INS[i].d)).join(", ")}.</p>`:""}
-${why.length?`<ul class="cv">${why.map(([k,codes])=>`<li>${cat(k,true)}<div><p><b>City violation ${codes.map(c=>c+" ("+esc(sent(D.titles[c]||""))+")").join(", ")}</b></p><p>${esc(CAT_HOW[k])}.</p></div></li>`).join("")}</ul>`:""}
-${p.since?`<p class="ms"><b>Newer City result:</b> ${esc(p.since.r)} on ${day(p.since.d)} (${esc(p.since.t)}).</p>`:""}
-</section>
-<section class="panel"><div class="sec-h"><h2>Inspection history<span class="c num">${int(p.h.length)}</span></h2></div><p class="rec" style="padding-top:0">Every City inspection on file for this place in the last 24 months, newest first. Results and violation numbers are the City's; categories are ours.</p><ol class="tl">${hist}</ol></section>
-<section class="panel"><div class="sec-h"><h2>Facts from the City record</h2></div><dl class="facts">
-<div><dt>Facility type</dt><dd>${esc(p.ty)}</dd></div><div><dt>Community area</dt><dd>${esc(p.ar||"Not given")}</dd></div><div><dt>ZIP</dt><dd class="num">${esc(p.z||"Not given")}</dd></div><div><dt>City risk level</dt><dd>${esc(p.rk||"Not given")}</dd></div>
-<div><dt>License${p.lic.length>1?"s":""}</dt><dd class="lic">${esc(p.lic.join(", ")||"Not given")}</dd></div><div><dt>Newest result</dt><dd>${esc(INS[p.lt].r)}, ${dayShort(INS[p.lt].d)}</dd></div><div><dt>Fails in 90 days</dt><dd class="num">${int(p.f90)}</dd></div><div><dt>Inspections on file</dt><dd class="num">${int(p.h.length)}</dd></div></dl>
-${p.lat&&p.lon?'<div class="minimap" id="minimap" role="region" aria-label="Map of the place"></div>':""}</section>
-</div></div>`;
+<section class="panel pg-facts"><div class="sec-h"><h2>Facts from the City record</h2></div><dl class="facts">
+<div><dt>Facility type</dt>${fv(p.ty==="Not given"?"":p.ty)}</div><div><dt>Community area</dt>${fv(p.ar)}</div><div><dt>ZIP</dt>${fv(p.z,"num")}</div><div><dt>City risk level</dt>${fv(p.rk)}</div>
+<div><dt>License${p.lic.length>1?"s":""}</dt>${fv(p.lic.join(", "),"lic")}</div><div><dt>Newest result</dt><dd>${esc(INS[p.lt].r)}, ${dayShort(INS[p.lt].d)}</dd></div><div><dt>Fails in 90 days, not counting license inspections</dt><dd class="num">${int(p.f90)}</dd></div><div><dt>Inspections on file</dt><dd class="num">${int(p.h.length)}</dd></div></dl>
+${p.lat&&p.lon?'<div class="minimap" id="minimap" role="region" aria-label="Map of the place"></div>':""}</section></div>`;
 $("#back").onclick=e=>{e.preventDefault();back("#/list"+(l!=="flagged"?"?l="+l:""));};
 $("#cpy").onclick=async()=>{toast(await copyText(p.n+", "+p.a+", Chicago, IL")?"Address copied":"Copy did not work. Press and hold the address.");};
 $("#mark").onclick=()=>{const now=mk(p.id).c?"":new Date().toISOString().slice(0,10);const ok=setMark(p.id,{c:now});const b=$("#mark");b.classList.toggle("on",!!now);b.setAttribute("aria-pressed",String(!!now));$("#markT").textContent=now?"Contacted "+day(now)+" (undo)":"Mark as contacted";toast(ok?(now?"Marked as contacted":"Contacted mark removed"):"Not saved: this browser blocks saving");};
 const grow=t=>{t.style.height="auto";t.style.height=Math.max(96,t.scrollHeight+2)+"px";};grow($("#nt"));
 let tn;$("#nt").addEventListener("input",e=>{grow(e.target);clearTimeout(tn);$("#ntst").textContent="Saving...";tn=setTimeout(()=>{const ok=setMark(p.id,{n:e.target.value});$("#ntst").textContent=ok?"Note saved in this browser":"Not saved. This browser blocks saving here; private browsing is the usual cause.";},400);});
 const lead=$(".tl li.on details");if(lead)lead.open=true;
-if(p.lat&&p.lon){const mm=()=>{if(!window.L||!$("#minimap"))return;const m2=L.map("minimap",{scrollWheelZoom:false,dragging:!L.Browser.mobile,tap:false}).setView([p.lat,p.lon],15);m2.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');tiles(m2);const k=RES(x.r);L.circleMarker([p.lat,p.lon],Object.assign({},MS[k],{radius:MS[k].radius*1.6})).addTo(m2);STATE.mini=m2;};if(window.L)mm();else window.addEventListener("load",mm,{once:true});}}
+if(p.lat&&p.lon){const mm=()=>{if(!window.L||!$("#minimap"))return;const m2=L.map("minimap",{scrollWheelZoom:false,dragging:!L.Browser.mobile,tap:false}).setView([p.lat,p.lon],15);m2.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');tiles(m2);pin([p.lat,p.lon],RES(x.r),1.6).addTo(m2);STATE.mini=m2;};if(window.L)mm();else window.addEventListener("load",mm,{once:true});}}
 
 /* pitch kit */
 function viewPitch(q){const ks=PITCH.kits;const b=ks.find(k=>k.key===q.get("b"))||ks.find(k=>k.key===TRADE)||ks[0];
@@ -534,11 +576,12 @@ document.title="Pitch kit | Chicago Restaurant Inspection Leads";
 const fill=s=>esc(s).replace(/\[([^\]]+)\]/g,'<span class="f">[$1]</span>');
 $("#app").innerHTML=`<div class="ph"><div><h1>Pitch kit</h1><p>A short call opener and an email for each trade. Fill in the parts in blue brackets from the place's page, and keep every claim true.</p></div></div>
 <nav class="bk" aria-label="Trades">${ks.map(k=>`<a href="#/pitch?b=${k.key}"${k===b?' aria-current="page"':""}>${ico(k.key==="opening"?"opening":k.key,"s")}${esc(TRADES.find(t=>t[0]===k.key)[1])}</a>`).join("")}</nav>
-<div class="pk"><section class="panel"><div class="pk-h"><div><h2>Call opener</h2><p>${esc(b.buyer)}. About 20 seconds.</p></div><button class="btn sm" type="button" data-copy="c">${ico("copy","s")}Copy</button></div><p class="call">${fill(b.call)}</p>
+<div class="pk"><section class="panel"><div class="pk-h"><h2>Call opener</h2><button class="btn sm" type="button" data-copy="c">${ico("copy","s")}Copy</button></div><p class="sub">${esc(b.buyer)}. About 20 seconds.</p><p class="call">${fill(b.call)}</p>
 <ol class="rules">${PITCH.rules.map(r=>`<li>${esc(r)}</li>`).join("")}</ol></section>
-<section class="panel mail"><div class="pk-h"><div><h2>Email</h2><p>Send it the same day as the call.</p></div><button class="btn sm" type="button" data-copy="m">${ico("copy","s")}Copy</button></div>${b.email.map(x=>`<p>${fill(x)}</p>`).join("")}</section></div>
+<section class="panel mail"><div class="pk-h"><h2>Email</h2><button class="btn sm" type="button" data-copy="m">${ico("copy","s")}Copy</button></div><p class="sub">Send it the same day as the call.</p>${b.email.map(x=>`<p>${fill(x)}</p>`).join("")}</section></div>
 <p class="rec" style="padding:16px 0 0">Leads for this trade: <a href="${b.list==="opening"?"#/list?l=opening":"#/list?cat="+b.cat}">open the ${esc(b.list==="opening"?"opening soon":CAT[b.cat].label.toLowerCase())} list</a>.</p>`;
-document.querySelectorAll("[data-copy]").forEach(x=>x.onclick=async()=>{toast(await copyText(x.dataset.copy==="c"?b.call:b.email.join("\n\n"))?"Copied":"Copy did not work. Select the text.");});}
+document.querySelectorAll("[data-copy]").forEach(x=>x.onclick=async()=>{toast(await copyText(x.dataset.copy==="c"?b.call:b.email.join("\n\n"))?"Copied":"Copy did not work. Select the text.");});
+const on=document.querySelector('.bk a[aria-current="page"]');if(on&&on.scrollIntoView)on.scrollIntoView({block:"nearest",inline:"center"});}
 
 /* terms */
 function termsHtml(){const para=t=>{const m=/^([A-Z][A-Za-z ]{1,40}?\.) (.+)$/.exec(t);return m?`<p><b>${esc(m[1])}</b> ${esc(m[2])}</p>`:`<p>${esc(t)}</p>`;};
@@ -573,7 +616,8 @@ def selftest():
     out = os.path.join(tempfile.mkdtemp(), "t.xlsx")
     rest_xlsx.build(data, out)
     html = build_html(data, open(out, "rb").read(), "correct horse battery")
-    assert "Acme" not in html and "MAIN ST" not in html.upper().replace("MAIN CONTENT", ""), "place data must stay inside the ciphertext"
+    clear = re.sub(r"const BOX=\{.*?\};", "", html)          # base64 ciphertext can spell anything by chance
+    assert "Acme" not in clear and "MAIN ST" not in clear.upper().replace("MAIN CONTENT", ""), "place data must stay inside the ciphertext"
     assert 'name="robots" content="noindex' in html and "List of Oct 17, 2026" in html
     text_only = re.sub(r"<[^>]+>", "", html).replace("&#x27;", "'")
     assert text_only.count(LEGAL.replace("__ASOF__", "Oct 17, 2026")) == 2, "the legal line word for word on the gate and the footer"
@@ -593,6 +637,7 @@ def selftest():
     assert set(by) == {"Acme Tacos", "New Place", "Fry House", "Second Shop"}, set(by)
     assert by["Acme Tacos"]["ls"] == ["flagged", "repeat"] and by["Acme Tacos"]["f90"] == 2 and by["Acme Tacos"]["cb"]["flagged"] == ["pests"]
     assert d["insp"][by["Fry House"]["lt"]]["r"] == "Pass", "the newer pass is in the payload, so the place page can say so"
+    assert by["Acme Tacos"]["lc"]["flagged"] == ["pests"] and by["Acme Tacos"]["nb"]["flagged"] is True and "al" in by["Acme Tacos"]
     assert d["titles"]["38"] == "INSECTS, RODENTS, & ANIMALS NOT PRESENT" and "COMMENTS" not in json.dumps(d).upper()
     assert d["lists"]["opening"] and d["xlsx"] and d["fileName"].endswith(".xlsx")
     try:

@@ -13,28 +13,28 @@
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-18T04:22:24+00:00",
+  "fetchedAt": "2026-10-18T03:53:26+00:00",
   "rowsUpdatedAt": "2026-10-17T09:07:12+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "places": 247,
-  "flagged": 118,
-  "opening": 131,
-  "repeat": 24,
+  "places": 245,
+  "flagged": 117,
+  "opening": 130,
+  "repeat": 23,
   "new": 52,
   "byCat": {
    "pests": 81,
    "hood": 23,
-   "drain": 13,
-   "clean": 96
+   "drain": 12,
+   "clean": 93
   },
   "flaggedFail": 98,
-  "openingPassed": 93,
+  "openingPassed": 92,
   "excluded": {
-   "business name is a person's name": 2,
-   "school, day care, hospital, senior or mobile vendor": 69,
+   "business name is a person's name": 4,
+   "school, day care, hospital, senior or mobile vendor": 70,
    "the City's latest result is out of business or not located": 1
   },
   "rowsRead": 1151,
@@ -45,12 +45,12 @@
     14
    ],
    [
-    "West Town",
+    "Loop",
     14
    ],
    [
-    "Loop",
-    13
+    "West Town",
+    14
    ],
    [
     "Lake View",
@@ -62,7 +62,7 @@
    ],
    [
     "West Ridge",
-    11
+    10
    ],
    [
     "South Lawndale",
@@ -173,10 +173,6 @@
     3
    ],
    [
-    "West Lawn",
-    3
-   ],
-   [
     "Avondale",
     2
    ],
@@ -205,11 +201,11 @@
     2
    ],
    [
-    "Hermosa",
+    "Douglas",
     2
    ],
    [
-    "Douglas",
+    "West Lawn",
     2
    ],
    [
@@ -249,6 +245,10 @@
     1
    ],
    [
+    "Hermosa",
+    1
+   ],
+   [
     "Avalon Park",
     1
    ],
@@ -273,7 +273,7 @@
  "categories": [
   {
    "key": "pests",
-   "label": "Pests and rodents",
+   "label": "Pests",
    "short": "Pests",
    "buyer": "Pest control"
   },
@@ -305,7 +305,7 @@
     "result": "Fail",
     "inspectionType": "Complaint",
     "categories": [
-     "Pests and rodents",
+     "Pests",
      "Cleaning"
     ]
    },
@@ -316,7 +316,7 @@
     "result": "Fail",
     "inspectionType": "Complaint",
     "categories": [
-     "Pests and rodents",
+     "Pests",
      "Cleaning"
     ]
    },
@@ -333,13 +333,24 @@
   ],
   "repeat": [
    {
+    "type": "Restaurant",
+    "area": "Roseland",
+    "date": "2026-10-14",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "categories": [
+     "Pests",
+     "Cleaning"
+    ]
+   },
+   {
     "type": "Not given",
     "area": "South Lawndale",
     "date": "2026-10-14",
     "result": "Fail",
     "inspectionType": "Complaint Re-Inspection",
     "categories": [
-     "Pests and rodents"
+     "Pests"
     ]
    },
    {
@@ -349,34 +360,13 @@
     "result": "Fail",
     "inspectionType": "Short Form Complaint",
     "categories": [
-     "Pests and rodents",
-     "Hood and exhaust",
-     "Cleaning"
-    ]
-   },
-   {
-    "type": "Restaurant",
-    "area": "Humboldt Park",
-    "date": "2026-10-14",
-    "result": "Fail",
-    "inspectionType": "Complaint Re-Inspection",
-    "categories": [
-     "Pests and rodents",
+     "Pests",
      "Hood and exhaust",
      "Cleaning"
     ]
    }
   ],
   "opening": [
-   {
-    "name": "Iron Cafe",
-    "address": "3700 S Iron St",
-    "area": "McKinley Park",
-    "type": "Restaurant",
-    "date": "2026-10-16",
-    "result": "Fail",
-    "inspectionType": "License"
-   },
    {
     "name": "La Michoacana",
     "address": "2740 W 59th St",
@@ -390,6 +380,15 @@
     "name": "Da's Catering LLC",
     "address": "7117 S State St",
     "area": "Greater Grand Crossing",
+    "type": "Restaurant",
+    "date": "2026-10-15",
+    "result": "Pass",
+    "inspectionType": "License"
+   },
+   {
+    "name": "Gibsons Tavern",
+    "address": "925 W Fulton Market",
+    "area": "Near West Side",
     "type": "Restaurant",
     "date": "2026-10-15",
     "result": "Pass",

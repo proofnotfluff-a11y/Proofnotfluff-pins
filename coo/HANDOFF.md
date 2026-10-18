@@ -9,6 +9,7 @@ A new chat picks up here. Read this file, then coo/CONSTITUTION.md, coo/PIVOT.md
 
 ## Ready to launch: Austin Construction Cleaning Leads ($29 a month, product 3)
 - All gates passed Oct 18 (launch record launches/austin-construction-cleaning-leads.md): holdout D fixed and re-checked, design re-check 4.70 with no item under 4, real app 67 of 67 checks in Actions (probes/austin-app-check.txt), Legal per the Oct 18 City terms reading. List of Oct 18: 158 projects, $6.24 billion, 108 builders.
+- Gumroad draft filled Oct 18, 4:15 pm: https://gumroad.com/products/vzokd/edit (Todd: paste the password after "Password:" on the Content tab, then Publish and send the checkout link).
 - Next: Todd's Gumroad step (launch record section 2, step 3: Membership, Monthly $29, Name, Summary and Description from the record, cover and thumbnail from launches/austin-construction-cleaning-leads/, post-purchase content = members' link plus the password; the live session can fill the form in Todd's browser, Todd pastes the password and clicks Publish). Then the session adds the checkout link to site/pages.json, drops "draft", rebuilds, and runs the buyer test (step 5).
 - Open nit for a later pass (not a blocker): the workbook All projects stat strip's first gap is about 1.5 times the others.
 - The Austin workflow now also runs the buyer click-through, recaptures the free page's screenshots and writes probes/austin-confirm.json on every build (Mondays and on pushes to tools/permits_austin.py or the workflow).

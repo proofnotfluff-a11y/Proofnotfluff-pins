@@ -30,7 +30,7 @@ Checklist: design/LAUNCH_CHECKLIST.md. Nothing is published, linked, emailed or 
 ## 2. Todd's steps, in order
 1. [x] GitHub: add the Actions secret AUSTIN_LEADS_PASSWORD (Settings, Secrets and variables, Actions) with the password the live session gives you. It is never in this repo.
 2. [x] Tell the session. It runs the Austin permits workflow once, so the members' app is published at https://proofnotfluff.com/austin-leads-members/, and runs tools/leads_check.py on it.
-3. [ ] Gumroad: new Membership product, tier `Monthly` at $29. Paste Name, Summary and Description below. Cover and thumbnail from launches/austin-construction-cleaning-leads/. Post-purchase content: the members' link and the password. Publish, then send the checkout link to the session.
+3. [ ] Gumroad (draft filled Oct 18 by the live session: https://gumroad.com/products/vzokd/edit, name, summary, description, Monthly tier at $29, cover, thumbnail and the members' content; Todd adds the password after "Password:" on the Content tab and clicks Publish): new Membership product, tier `Monthly` at $29. Paste Name, Summary and Description below. Cover and thumbnail from launches/austin-construction-cleaning-leads/. Post-purchase content: the members' link and the password. Publish, then send the checkout link to the session.
 4. [ ] The session puts the checkout link on the free page (site/pages.json "checkout"), drops "draft", and rebuilds the site.
 5. [ ] Buy once as a buyer (then refund): receipt, password, app, workbook in Excel and Google Sheets.
 

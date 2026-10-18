@@ -69,7 +69,7 @@ Goal: each product with live or outreachGo true, or next in the launch line, kee
 4. Check twice: two checker subagents each re-read every candidate's own pages and return ok, fix or drop with the URL they read. Keep only what both pass; apply fixes both agree on.
 5. CRM: create each as `ready`, checkedBy `twice` (create only; skip an id that exists). Update meta/desk.lastFinder. No message to Todd unless a product has under 40 ready after the run.
 
-## Run 4: product builder (Tuesday to Friday 10:10 am, cloud)
+## Run 4: product builder (Tuesday to Friday 11:10 am, cloud)
 
 1. First any FIX line from this week's qa/ report.
 2. Then the next product in the launch line (coo/PIVOT.md LEADS FOCUS order; after Austin: Chicago new business licenses by trade, then Seattle permits), through every box of design/LAUNCH_CHECKLIST.md: data rules with planted test cases, the members' app (tools/leads_app.py and its pattern), Excel, free page (draft), storefront copy and images, the outreach email file with a follow-up.

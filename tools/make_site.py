@@ -1567,6 +1567,18 @@ LOCK = ('<svg class="ld-lock" viewBox="0 0 24 24" width="40" height="40" aria-hi
         '<circle cx="12" cy="15.3" r="1.4" fill="currentColor"/></svg>')
 
 
+def window_months(d):
+    """The sample's window as the tile says it ("24 months" for Chicago's 730 days, "12 months" for 365)."""
+    import datetime as _dt
+    w = d.get("window") or {}
+    try:
+        days = (_dt.date.fromisoformat(w["to"][:10]) - _dt.date.fromisoformat(w["from"][:10])).days
+    except (KeyError, TypeError, ValueError):
+        return "12 months"
+    m = round(days / 30.4)
+    return f"{m} months" if abs(m * 30.4 - days) <= 4 else f"{days} days"
+
+
 def leads_page_html(p):
     url = BASE + p["slug"] + "/"
     rel = "../"
@@ -1602,7 +1614,7 @@ def leads_page_html(p):
     else:
         hero_act = '<div class="ld-heroact" id="ldHeroCta"><a class="ld-textlink" href="#ldCta">Join the waitlist</a></div>'
     tiles = (f'<div class="tiles ld-tiles">'
-             f'<div class="tile key"><div class="lab">Open projects</div><div class="val">{kept:,}</div><div class="sub">issued in the last 12 months, still open</div></div>'
+             f'<div class="tile key"><div class="lab">Open projects</div><div class="val">{kept:,}</div><div class="sub">issued in the last {window_months(d)}, still open</div></div>'
              f'<div class="tile"><div class="lab">Reported cost</div><div class="val">{money(cost, True)}</div><div class="sub">{E(p.get("costSub", "as filed with the City"))}</div></div>'
              f'<div class="tile"><div class="lab">New buildings</div><div class="val">{new_n:,}</div><div class="sub">at least {c.get("keptUnits", 0):,} new apartments</div></div>'
              f'<div class="tile"><div class="lab">Near finish</div><div class="val">{n_near:,}</div><div class="sub">{E(near_sub)}</div></div></div>'

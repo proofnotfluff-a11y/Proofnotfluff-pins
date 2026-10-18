@@ -13,7 +13,7 @@ public, business-level fields to permits/chicago/:
 Never written: owner names, any contact that is not a business acting as general contractor,
 phone numbers, emails. Subscribers do their own outreach; the crew never contacts anyone.
 
-Usage: python3 tools/permits_chicago.py [--days 365] [--min-cost 500000] [--top 25] [--full PATH]
+Usage: python3 tools/permits_chicago.py [--days 730] [--min-cost 500000] [--top 25] [--full PATH]
 
 --full PATH writes every kept project (the paid weekly list, A1 pre-sale) to PATH. The workflow keeps it
 out of the repo and uploads it as a short-lived run artifact that tools/leads_xlsx.py turns into the workbook.
@@ -28,6 +28,26 @@ DATASET_PAGE = f"{PORTAL}/Buildings/Building-Permits/{DATASET}"
 TERMS_URL = "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
 AREAS = "igwz-8jzy"   # Boundaries - Community Areas (area number to name)
 CLOSED = {"COMPLETE", "COMPLETED", "SUSPENDED", "CANCELLED", "CANCELED", "REVOKED", "EXPIRED", "VOID", "WITHDRAWN", "CLOSED"}
+# Window (Todd, Oct 17, 2026: "Keep open permits up to 24 months"): every permit issued in the last 730 days, counted from
+# midnight UTC as before, whose City status is still open. Open means ACTIVE or PHASED PERMITTING (a job permitted in phases,
+# still under way); anything else (COMPLETE, SUSPENDED, CANCELLED, EXPIRED, REVOKED, a blank or a status the City adds later)
+# is left out and counted by name in profile.json, so a new open status shows up there before it costs a lead.
+DAYS = 730
+OPEN = {"ACTIVE", "PHASED PERMITTING"}
+
+
+def is_open(status):
+    return (status or "").strip().upper() in OPEN
+
+
+def window_start(now, days=DAYS):
+    """The first issue date the list keeps, as the City query writes it."""
+    return (now - dt.timedelta(days=days)).strftime("%Y-%m-%dT00:00:00")
+
+
+def in_window(r, since):
+    """True when a City row was issued on or after since and the City still has it open."""
+    return (r.get("issue_date") or "")[:19] >= since and is_open(r.get("permit_status"))
 UA = {"User-Agent": "ProofNotFluff permit pilot (github.com/proofnotfluff-a11y/Proofnotfluff-pins)"}
 
 BUSINESS = re.compile(r"\b(LLC|L\.L\.C|INC|INCORPORATED|CORP|CORPORATION|CO|COMPANY|LTD|LP|LLP|PLLC|GROUP|BUILDERS?|"
@@ -318,6 +338,12 @@ def gc_key(n):
     return re.sub(r"[^A-Z0-9]", "", re.sub(r"\b(LLC|L\.L\.C|INC|INCORPORATED|CORP|CORPORATION|CO|COMPANY|LTD)\b\.?", "", n.upper()))
 
 
+def months(days):
+    """The window as people say it: 730 days is "24 months", 365 is "12 months"; anything else stays in days."""
+    m = round(days / 30.4)
+    return f"{m} months" if abs(m * 30.4 - days) <= 4 else f"{days} days"
+
+
 def slim(k):
     """A kept project as the public free sample shows it: the members' app's whole scope text stays in the paid list."""
     return {x: v for x, v in k.items() if x != "scopeFull"}
@@ -325,7 +351,7 @@ def slim(k):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--days", type=int, default=365)
+    ap.add_argument("--days", type=int, default=DAYS)
     ap.add_argument("--min-cost", type=int, default=500000)
     ap.add_argument("--top", type=int, default=25)
     ap.add_argument("--full", default="", help="also write every kept project to this path (the paid weekly list; never inside the repo's committed folders)")
@@ -343,7 +369,7 @@ def main():
         raise SystemExit(f"dataset columns changed, missing {missing}; columns: {cols}")
     cost_col = "reported_cost" if "reported_cost" in cols else None
 
-    since = (now - dt.timedelta(days=a.days)).strftime("%Y-%m-%dT00:00:00")
+    since = window_start(now, a.days)
     where = (f"issue_date >= '{since}' AND permit_type in('PERMIT - NEW CONSTRUCTION','PERMIT - RENOVATION/ALTERATION')"
              + (f" AND {cost_col} >= {a.min_cost}" if cost_col else ""))
     def pull(w):
@@ -378,8 +404,10 @@ def main():
         ptype[r.get("permit_type", "")] += 1
         status[r.get("permit_status") or ""] += 1
         milestone[r.get("permit_milestone") or ""] += 1
-        if (r.get("permit_status") or "").upper() in CLOSED:
-            reasons["closed, complete or suspended"] += 1; continue
+        if not in_window(r, since):
+            reasons["closed, complete or suspended" if (r.get("permit_status") or "").upper() in CLOSED else
+                    f"status not open ({r.get('permit_status') or 'blank'})" if (r.get("issue_date") or "")[:19] >= since else "issued before the window"] += 1
+            continue
         desc = (r.get("work_description") or "").upper().replace("\u00bf", " ")
         maxu = unit_count(desc)
         ok, why = decide(desc, r.get("permit_type") or "")
@@ -434,8 +462,8 @@ def main():
         "source": {
             "name": "City of Chicago Data Portal, Building Permits", "url": DATASET_PAGE, "rowsUpdatedAt": upd_iso,
             "fetchedAt": now.isoformat(timespec="seconds"),
-            "modified": (f"Filtered by ProofNotFluff: permits issued in the last {a.days} days, new construction or renovation, "
-                         f"reported cost ${a.min_cost:,} or more, still open (not complete, suspended, cancelled, revoked or expired), "
+            "modified": (f"Filtered by ProofNotFluff: permits issued in the last {months(a.days)}, new construction or renovation, "
+                         f"reported cost ${a.min_cost:,} or more, still open (City status Active or Phased Permitting; complete, suspended, cancelled, revoked and expired permits left out), "
                          "apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs "
                          "a construction clean under its permit (foundation, superstructure, caisson, demolition, roof, facade, mechanical, equipment or site work only) "
                          "left out; cleaning companies listed as contractor left out; a revision of a permit already on the list counted once; "
@@ -469,7 +497,7 @@ def main():
         kept_ids = {str(k["permit"]) for k in kept}
         review = []   # every open candidate with the City's own text, so the filter can be tested offline (Holdout QC Oct 17)
         for r in rows:
-            if (r.get("permit_status") or "").upper() in CLOSED:
+            if not in_window(r, since):
                 continue
             pid = str(r.get("permit_") or r.get("permit_number") or r.get("id"))
             review.append({"permit": pid, "kept": pid in kept_ids, "raw": r.get("work_description") or "",
@@ -688,6 +716,24 @@ def selftest():
         builders(["CPMH CONSTRUCTION INC", "RD'S HVAC INC", "THE BOWA GROUP INC"])
     assert builders(["ACME BUILDERS LLC", "Acme Builders, L.L.C.", "JOHN SMITH", "", None]) == ["Acme Builders LLC"]
     assert coord("41.881832") == 41.881832 and coord(None) is None and coord("") is None and coord("0") is None
+    # the 24-month open-permit window (Todd, Oct 17): planted rows as the City writes them, run on Oct 18, 2026
+    run = dt.datetime(2026, 10, 18, 1, 25, tzinfo=dt.timezone.utc)
+    since = window_start(run)
+    assert since == "2024-10-18T00:00:00" and months(DAYS) == "24 months" and months(365) == "12 months", (since, months(DAYS))
+    row = lambda issued, status: {"issue_date": issued + "T00:00:00.000", "permit_status": status}
+    for issued, status, want in [
+            ("2025-10-17", "ACTIVE", True),               # 101070566 and 101070855: aged out of the old 365-day window, work still under way
+            ("2025-09-18", "ACTIVE", True),               # 13 months old, still open: kept
+            ("2025-09-18", "PHASED PERMITTING", True),
+            ("2024-10-18", "ACTIVE", True),               # first day of the window
+            ("2024-10-17", "ACTIVE", False),              # one day past 24 months
+            ("2024-09-18", "ACTIVE", False),              # 25 months old: dropped
+            ("2025-09-18", "COMPLETE", False),            # 13 months old but closed or expired: dropped
+            ("2025-09-18", "EXPIRED", False),
+            ("2025-09-18", "SUSPENDED", False),
+            ("2025-09-18", "CANCELLED", False),
+            ("2025-09-18", "", False)]:
+        assert in_window(row(issued, status), since) is want, (issued, status, want)
     if bad:
         raise SystemExit("filter selftest FAIL: " + json.dumps(bad)[:800])
     print(f"filter selftest ok ({len(FILTER_CASES)} planted cases)")

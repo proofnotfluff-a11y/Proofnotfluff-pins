@@ -3440,7 +3440,7 @@
    "faq": [
     [
      "Where does this data come from?",
-     "The City of Chicago Data Portal's Building Permits dataset, which the City updates daily, Monday to Saturday. We pull it every Monday and keep permits issued in the last 12 months for apartment buildings of 4 or more homes and commercial work with a reported cost of $500,000 or more that are still open and list a business as general contractor."
+     "The City of Chicago Data Portal's Building Permits dataset, which the City updates daily, Monday to Saturday. We pull it every Monday and keep permits issued in the last 24 months for apartment buildings of 4 or more homes and commercial work with a reported cost of $500,000 or more that are still open and list a business as general contractor."
     ],
     [
      "Why are some big projects missing?",

@@ -47,7 +47,7 @@ PITCH = [
              "the pest control log the City asks to see. Is the owner or manager around for two minutes?",
      "email": ["Subject: Pest control for [business]",
                "Hi [business] team, I'm [your name] with [company], a licensed pest control company working with Chicago restaurants. "
-               "The City's public food inspection record for [address] on [date] lists violation 38 (insects, rodents and animals). "
+               "The City's public food inspection record for [address] on [date] lists violation 38 (insects, rodents and animals).",
                "We can inspect this week, treat, seal entry points and leave a service log for your next inspection. Would [day] "
                "work for a visit?",
                "[Your name], [company], [phone], Illinois structural pest control license [number]"]},
@@ -195,7 +195,7 @@ def data_sheet(wb, key, title, tagline, list_date, tab, cols, rows, stats, freez
         rr = f1 + i
         for l, (ck, head_, w, align, fmt) in zip(letters, cols):
             c = ws[f"{l}{rr}"]
-            c.alignment = Alignment(horizontal=align, vertical="center", wrap_text=ck in ("name", "address", "area", "cats", "codes", "latest", "itype"),
+            c.alignment = Alignment(horizontal=align, vertical="center", wrap_text=ck in ("name", "address", "area", "cats", "codes", "latest", "itype", "license"),
                                     indent=1 if align == "right" else 0)
             if ck in ("result", "lastResult") and r.get(ck):
                 chip(c, r.get(ck))
@@ -261,7 +261,7 @@ def build(data, out):
                 ("result", "City result", 17, "center", None), ("date", "Inspected", 13, "left", "date"), ("itype", "Inspection type", 22, "left", None)]
                + catcols + [("codes", "All violations cited", 18, "left", None), ("fails", "Fails in 90 days", 10, "right", "int"),
                             ("latest", "Newer City result", 17, "left", None), ("new", "New this week", 9, "center", None),
-                            ("type", "Facility type", 14, "left", None), ("license", "License", 10, "left", None), ("record", "City record", 11, "left", None)],
+                            ("type", "Facility type", 14, "left", None), ("license", "License", 14, "left", None), ("record", "City record", 11, "left", None)],
                rows1, [("Places", cnt("name"), S.FMT["int"]), ("Failed", lambda rg: f'=COUNTIF({rg["result"]},"Fail")', S.FMT["int"]),
                        ("Pests", cnt("pests"), S.FMT["int"]), ("Hood", cnt("hood"), S.FMT["int"]), ("Grease trap", cnt("drain"), S.FMT["int"]),
                        ("Cleaning", cnt("clean"), S.FMT["int"])])
@@ -282,7 +282,7 @@ def build(data, out):
                 ("result", "License inspection result", 17, "center", None), ("date", "Inspected", 13, "left", "date"),
                 ("itype", "Inspection type", 20, "left", None), ("n", "License inspections in 30 days", 13, "right", "int"),
                 ("cats", "Violation categories cited", 26, "left", None), ("new", "New this week", 9, "center", None),
-                ("type", "Facility type", 15, "left", None), ("license", "License", 12, "left", None), ("record", "City record", 11, "left", None)],
+                ("type", "Facility type", 15, "left", None), ("license", "License", 14, "left", None), ("record", "City record", 11, "left", None)],
                rows2, [("Places", cnt("name"), S.FMT["int"]), ("Passed", lambda rg: f'=COUNTIF({rg["result"]},"Pass*")', S.FMT["int"]),
                        ("Not passed yet", lambda rg: f'=COUNTIF({rg["name"]},"?*")-COUNTIF({rg["result"]},"Pass*")', S.FMT["int"]),
                        ("New this week", cnt("new"), S.FMT["int"])])
@@ -307,7 +307,7 @@ def build(data, out):
                [("name", "Business", 30, "left", None), ("address", "Address", 26, "left", None), ("area", "Community area", 18, "left", None),
                 ("fails", "Fails in 90 days", 11, "right", "int"), ("lastFail", "Last failed", 13, "left", "date"),
                 ("cats", "Violation categories in those fails", 32, "left", None), ("lastResult", "Newest City result", 17, "center", None),
-                ("lastDate", "On", 13, "left", "date"), ("type", "Facility type", 15, "left", None), ("license", "License", 12, "left", None),
+                ("lastDate", "On", 13, "left", "date"), ("type", "Facility type", 15, "left", None), ("license", "License", 14, "left", None),
                 ("record", "City record", 11, "left", None)],
                rows3, [("Places", cnt("name"), S.FMT["int"]), ("Fails between them", lambda rg: f'=SUM({rg["fails"]})', S.FMT["int"]),
                        ("Most fails at one place", lambda rg: f'=MAX({rg["fails"]})', S.FMT["int"])])
@@ -329,7 +329,7 @@ def build(data, out):
                [("name", "Business", 30, "left", None), ("address", "Address", 26, "left", None), ("date", "Inspected", 13, "left", "date"),
                 ("itype", "Inspection type", 20, "left", None), ("result", "City result", 17, "center", None),
                 ("cats", "Violation categories", 28, "left", None), ("codes", "Violations cited", 22, "left", None),
-                ("license", "License", 12, "left", None), ("record", "City record", 11, "left", None)],
+                ("license", "License", 14, "left", None), ("record", "City record", 11, "left", None)],
                rows4, [("Inspections", cnt("name"), S.FMT["int"]), ("Failed", lambda rg: f'=COUNTIF({rg["result"]},"Fail")', S.FMT["int"]),
                        ("Passed with conditions", lambda rg: f'=COUNTIF({rg["result"]},"Pass w/ Conditions")', S.FMT["int"])], freeze_col=2)
 
@@ -392,7 +392,7 @@ def start_here(wb, data, list_date, n1, n2, n3):
 
 
 def pitch_kit(wb, list_date):
-    ws = card_sheet(wb, TABS["pitch"], "Pitch kit", "A short call opener and an email for each trade. Fill in the blue parts and keep every claim true.",
+    ws = card_sheet(wb, TABS["pitch"], "Pitch kit", "A call opener and an email for each trade. Fill in the blue parts.",
                     list_date, "teal")
 
     def blue(line):

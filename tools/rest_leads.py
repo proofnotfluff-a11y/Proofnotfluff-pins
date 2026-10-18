@@ -186,6 +186,11 @@ def person_name(name):
     return (2 <= len(core) <= 3 or (titled and len(core) == 1)) and core[0] in FIRST
 
 
+def biz_case(name):
+    """dba_case, with the Spanish article "La" read as a word, not as Los Angeles ("La Colonia", "La Michoacana")."""
+    return re.sub(r"\bLA\b(?= [A-Za-z])", "La", dba_case(name))
+
+
 def institution(r):
     return bool(INSTITUTION_TYPE.search(r.get("facility_type") or "") or INSTITUTION_NAME.search(r.get("dba_name") or "")
                 or INSTITUTION_NAME.search(r.get("aka_name") or ""))
@@ -316,8 +321,8 @@ def build(raw):
         if reason:
             excluded[reason] += 1
             continue
-        name = dba_case(latest.get("dba_name"))
-        aka = dba_case(latest.get("aka_name") or "")
+        name = biz_case(latest.get("dba_name"))
+        aka = biz_case(latest.get("aka_name") or "")
         union = lambda xs: sorted({c for x in xs for c in x["c"]}, key=CAT_ORDER.index)
         cats_by = {"flagged": union(flagged), "opening": union(opening), "repeat": union(fails90) if repeat else []}
         cats = union(flagged + opening + (fails90 if repeat else []))
@@ -490,6 +495,7 @@ def selftest():
     s = sample(d)
     assert "Acme" not in json.dumps(s["examples"]["flagged"]) and "Main" not in json.dumps(s["examples"]["flagged"]), "free page names a failed place"
     assert [x["name"] for x in s["examples"]["opening"]] == ["Two License Tavern", "New Place"], s["examples"]["opening"]
+    assert biz_case("LA COLONIA") == "La Colonia" and biz_case("TACOS LA GUERITA") == "Tacos La Guerita" and biz_case("KFC") == "KFC"
     assert pretty("2026-10-05") == "Oct 5, 2026" and type_title("canvass re-inspection") == "Canvass Re-Inspection" and type_title("LICENSE") == "License"
     for t in (__doc__ or "",):
         assert "—" not in t

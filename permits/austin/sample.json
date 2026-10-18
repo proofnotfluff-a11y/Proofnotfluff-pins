@@ -3,10 +3,10 @@
   "name": "City of Austin, Issued Construction Permits",
   "url": "https://data.austintexas.gov/d/3syk-w9eu",
   "rowsUpdatedAt": "2026-10-18T12:52:08+00:00",
-  "fetchedAt": "2026-10-18T18:22:17+00:00",
+  "fetchedAt": "2026-10-18T18:48:10+00:00",
   "license": "Public Domain U.S. Government",
   "attribution": "City of Austin, Texas - data.austintexas.gov",
-  "modified": "Filtered by ProofNotFluff: commercial building permits issued in the last 24 months, still Active, grouped into projects by the City's master permit, project valuation $500,000 or more (the largest valuation on any of its building permits, counted once), with a business listed as general contractor; structures that are not buildings (carports, pergolas, canopies, enclosures, pools, EV chargers), parking garages, houses, duplexes and three-unit buildings, shell-only buildings, interior demolition, repairs, and roof, equipment, sign, elevator, site and exterior-only work left out; cleaning companies listed as contractor left out; only project-level and business fields kept.",
+  "modified": "Filtered by ProofNotFluff: commercial building permits issued in the last 24 months, still Active, grouped into projects by the City's master permit, project valuation $500,000 or more (the largest valuation on its open building permits on the list, counted once; finaled, shell and garage permits do not count), with a business listed as general contractor; structures that are not buildings (carports, pergolas, canopies, enclosures, pools, EV chargers), parking garages, houses, duplexes and three-unit buildings, shell-only buildings, interior demolition, repairs, and roof, equipment, sign, elevator, site and exterior-only work left out; cleaning companies listed as contractor left out; only project-level and business fields kept.",
   "terms": "https://data.austintexas.gov/stories/s/ranj-cccq"
  },
  "window": {
@@ -15,18 +15,18 @@
  },
  "counts": {
   "fetched": 8760,
-  "kept": 160,
+  "kept": 159,
   "excluded": {
-   "kept": 160,
-   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 280,
-   "project valuation under $500,000": 1058,
+   "kept": 159,
+   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 281,
+   "project valuation under $500,000": 1069,
    "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 184,
    "work class Demolition (interior demolition or repair)": 63,
    "work class Interior Demo Non-Structural (interior demolition or repair)": 58,
    "no open building permit in the window": 4127,
    "shell only, no finish work": 68,
    "parking garage": 3,
-   "no business listed as general contractor": 15,
+   "no business listed as general contractor": 4,
    "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)": 3,
    "work class Repair (interior demolition or repair)": 2,
    "house, duplex or three-unit building": 1,
@@ -34,8 +34,8 @@
   },
   "permitReasons": {
    "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 549,
-   "kept": 1965,
-   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 380,
+   "kept": 1964,
+   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 381,
    "work class Demolition (interior demolition or repair)": 64,
    "work class Interior Demo Non-Structural (interior demolition or repair)": 58,
    "permit closed (final, expired, withdrawn, void or cancelled)": 5009,
@@ -47,45 +47,45 @@
    "house, duplex or three-unit building": 11
   },
   "keptByType": {
-   "Remodel or addition": 46,
-   "New construction": 97,
-   "Finish-out": 17
+   "Remodel or addition": 42,
+   "New construction": 104,
+   "Finish-out": 13
   },
-  "keptCost": 6667343254,
-  "keptUnits": 8999,
-  "keptBuildings": 416,
+  "keptCost": 6244681816,
+  "keptUnits": 8299,
+  "keptBuildings": 364,
   "topAreas": [
    [
     "78744",
-    17
-   ],
-   [
-    "78701",
-    14
+    20
    ],
    [
     "78702",
-    12
+    11
    ],
    [
     "78723",
     11
    ],
    [
-    "78758",
+    "78704",
     10
    ],
    [
-    "78704",
+    "78701",
+    10
+   ],
+   [
+    "78758",
     9
+   ],
+   [
+    "78724",
+    8
    ],
    [
     "78753",
     8
-   ],
-   [
-    "78724",
-    7
    ]
   ],
   "topGCs": [
@@ -115,14 +115,19 @@
     "cost": 43064409
    },
    {
-    "name": "Flintco LLC",
-    "projects": 3,
-    "cost": 377560759
-   },
-   {
     "name": "Joeris General Contractors",
     "projects": 3,
-    "cost": 203382420
+    "cost": 196687420
+   },
+   {
+    "name": "Flintco LLC",
+    "projects": 3,
+    "cost": 188560759
+   },
+   {
+    "name": "Hill & Wilkinson GC",
+    "projects": 3,
+    "cost": 89628562
    },
    {
     "name": "Journeyman Construction",
@@ -143,17 +148,12 @@
     "name": "Franklin-Alan LLC",
     "projects": 3,
     "cost": 3500000
-   },
-   {
-    "name": "Harvey-Cleary Builders",
-    "projects": 2,
-    "cost": 833000001
    }
   ],
-  "nearFinish": 4,
+  "nearFinish": 1,
   "builders": 109,
-  "mapped": 83,
-  "geocoded": 0
+  "mapped": 139,
+  "geocoded": 55
  },
  "projects": [
   {
@@ -245,8 +245,8 @@
    "issued": "2026-10-16",
    "type": "New construction",
    "scope": "Redevelopment of Existing Site. New Construction of 4- Story Affordable Housing to Include 2 Connected Fire Areas and associated site improvements...",
-   "units": 180,
-   "newUnits": 180,
+   "units": 90,
+   "newUnits": 90,
    "cost": 245000000,
    "address": "8801 McCann Dr",
    "communityArea": "78757",
@@ -259,26 +259,6 @@
     "Swinerton Builders Inc."
    ],
    "newThisWeek": true
-  },
-  {
-   "permit": "13329057",
-   "issued": "2025-05-15",
-   "type": "Finish-out",
-   "scope": "First Time Finish Out of Hotel",
-   "units": 10,
-   "newUnits": 0,
-   "cost": 190000000,
-   "address": "1110 W 6th St Unit Flr1 (+4 more)",
-   "communityArea": "78703",
-   "district": "9",
-   "status": "Active",
-   "milestone": "Work under way",
-   "buildings": 12,
-   "buildingsFinal": 0,
-   "gc": [
-    "Flintco LLC"
-   ],
-   "newThisWeek": false
   },
   {
    "permit": "13465258",
@@ -308,7 +288,7 @@
    "units": 2,
    "newUnits": 0,
    "cost": 180000000,
-   "address": "610 Davis St Bldg 1Flr Unit 55",
+   "address": "610 Davis St Unit 55",
    "communityArea": "78701",
    "district": "9",
    "status": "Active",
@@ -317,26 +297,6 @@
    "buildingsFinal": 0,
    "gc": [
     "Flintco LLC"
-   ],
-   "newThisWeek": false
-  },
-  {
-   "permit": "13257587",
-   "issued": "2026-05-08",
-   "type": "Finish-out",
-   "scope": "First Time Finish Out for Amenities 7056 SF with Exterior Terraces with Dog Park 4119 SF- also contains Fitness and Co Working",
-   "units": 215,
-   "newUnits": 0,
-   "cost": 154000000,
-   "address": "62 East Ave Unit Flr15 (+43 more)",
-   "communityArea": "78701",
-   "district": "9",
-   "status": "Active",
-   "milestone": "Permit issued",
-   "buildings": 44,
-   "buildingsFinal": 0,
-   "gc": [
-    "Summit Design Build"
    ],
    "newThisWeek": false
   },
@@ -401,26 +361,6 @@
    "newThisWeek": false
   },
   {
-   "permit": "12740517",
-   "issued": "2025-09-24",
-   "type": "Finish-out",
-   "scope": "Finish-Out for Multi-Family Units - also contains Music Lounge (20848 SF)",
-   "units": 19,
-   "newUnits": 0,
-   "cost": 104000000,
-   "address": "2011 San Antonio St Unit Flr27",
-   "communityArea": "78705",
-   "district": "9",
-   "status": "Active",
-   "milestone": "Work under way",
-   "buildings": 1,
-   "buildingsFinal": 0,
-   "gc": [
-    "Hensel Phelps Construction Co."
-   ],
-   "newThisWeek": false
-  },
-  {
    "permit": "13538837",
    "issued": "2025-10-09",
    "type": "New construction",
@@ -445,8 +385,8 @@
    "issued": "2026-07-01",
    "type": "New construction",
    "scope": "New Construction of a Mixed Use 7-Story Multi-Family Complex...",
-   "units": 696,
-   "newUnits": 696,
+   "units": 232,
+   "newUnits": 232,
    "cost": 79500000,
    "address": "512 Sabine St",
    "communityArea": "78701",
@@ -485,7 +425,7 @@
    "issued": "2025-12-11",
    "type": "New construction",
    "scope": "New Construction of Mixed-Use Multi-Family Bldgs. With associated amenities",
-   "units": 1770,
+   "units": 295,
    "newUnits": 92,
    "cost": 76000000,
    "address": "7817 W SH 71 Bldg 2 (+4 more)",
@@ -508,7 +448,7 @@
    "units": 344,
    "newUnits": 344,
    "cost": 72000000,
-   "address": "1310 LBJ Way Unit Fw3 (+2 more)",
+   "address": "1310 LBJ Way",
    "communityArea": "78702",
    "district": "3",
    "status": "Active",
@@ -601,26 +541,6 @@
    "newThisWeek": false
   },
   {
-   "permit": "13527831",
-   "issued": "2026-09-29",
-   "type": "Finish-out",
-   "scope": "First Time Finish Out for Phase 4 Multi Family Building",
-   "units": 334,
-   "newUnits": 0,
-   "cost": 51750000,
-   "address": "4810 Gonzales St",
-   "communityArea": "78702",
-   "district": "3",
-   "status": "Active",
-   "milestone": "Permit issued",
-   "buildings": 6,
-   "buildingsFinal": 0,
-   "gc": [
-    "The NRP Contractors, LLC"
-   ],
-   "newThisWeek": false
-  },
-  {
    "permit": "13617546",
    "issued": "2026-08-19",
    "type": "New construction",
@@ -648,7 +568,7 @@
    "units": 396,
    "newUnits": 396,
    "cost": 48000000,
-   "address": "2631 Kramer Ln Unit Fw3 (+3 more)",
+   "address": "2631 Kramer Ln",
    "communityArea": "78758",
    "district": "7",
    "status": "Active",
@@ -659,29 +579,89 @@
     "OHT Construction LLC"
    ],
    "newThisWeek": false
-  }
- ],
- "nearFinish": [
+  },
   {
-   "permit": "13521831",
-   "issued": "2025-07-29",
-   "type": "Remodel or addition",
-   "scope": "Interior Remodel to Existing Office - Phase 5a - 4th Floor Office Tenant Improvements...",
+   "permit": "13482374",
+   "issued": "2025-06-17",
+   "type": "New construction",
+   "scope": "Public Project New Construction of Elementary School (159000 SF)",
    "units": null,
    "newUnits": 0,
-   "cost": 6500000,
-   "address": "1210 San Antonio St",
-   "communityArea": "78701",
-   "district": "9",
+   "cost": 47622000,
+   "address": "2720 Goodwin Ave",
+   "communityArea": "78702",
+   "district": "3",
    "status": "Active",
-   "milestone": "Some permits finaled",
-   "buildings": 2,
-   "buildingsFinal": 17,
+   "milestone": "Work under way",
+   "buildings": 1,
+   "buildingsFinal": 0,
    "gc": [
-    "IE2 Construction, Inc"
+    "Hoar Construction LLC"
    ],
    "newThisWeek": false
   },
+  {
+   "permit": "13500054",
+   "issued": "2025-12-02",
+   "type": "New construction",
+   "scope": "Construction of a new 67619 SF two story elementary school (Building A)",
+   "units": null,
+   "newUnits": 0,
+   "cost": 47183562,
+   "address": "2206 Blue Meadow Dr",
+   "communityArea": "78744",
+   "district": "2",
+   "status": "Active",
+   "milestone": "Work under way",
+   "buildings": 4,
+   "buildingsFinal": 0,
+   "gc": [
+    "Hill & Wilkinson GC"
+   ],
+   "newThisWeek": false
+  },
+  {
+   "permit": "13079707",
+   "issued": "2025-05-29",
+   "type": "New construction",
+   "scope": "New Construction Office Whse spec - Building 6",
+   "units": null,
+   "newUnits": 0,
+   "cost": 47000000,
+   "address": "11801 Decker Lake Rd Bldg 6",
+   "communityArea": "78724",
+   "district": "1",
+   "status": "Active",
+   "milestone": "Work under way",
+   "buildings": 1,
+   "buildingsFinal": 0,
+   "gc": [
+    "Burton Construction"
+   ],
+   "newThisWeek": false
+  },
+  {
+   "permit": "13412186",
+   "issued": "2025-05-14",
+   "type": "New construction",
+   "scope": "Approximate 148000sf of new construction. The proposed design will accommodate a single-gender population for 600 middle school girls grades 6-8...",
+   "units": null,
+   "newUnits": 0,
+   "cost": 45000000,
+   "address": "6401 North Hampton Dr (+3 more)",
+   "communityArea": "78723",
+   "district": "4",
+   "status": "Active",
+   "milestone": "Work under way",
+   "buildings": 4,
+   "buildingsFinal": 0,
+   "gc": [
+    "Bartlett Cocke General Contractors"
+   ],
+   "newThisWeek": false
+  }
+ ],
+ "nearFinish": [
   {
    "permit": "13525226",
    "issued": "2025-08-08",
@@ -699,46 +679,6 @@
    "buildingsFinal": 2,
    "gc": [
     "CM Constructors"
-   ],
-   "newThisWeek": false
-  },
-  {
-   "permit": "13484951",
-   "issued": "2025-06-17",
-   "type": "Remodel or addition",
-   "scope": "Remodel for Common Spaces - Lobby Entrances Utilites and Restrooms and Facilites",
-   "units": null,
-   "newUnits": 0,
-   "cost": 1000000,
-   "address": "4301 Guadalupe St",
-   "communityArea": "78751",
-   "district": "9",
-   "status": "Active",
-   "milestone": "Some permits finaled",
-   "buildings": 1,
-   "buildingsFinal": 3,
-   "gc": [
-    "Less Equals More Inc"
-   ],
-   "newThisWeek": false
-  },
-  {
-   "permit": "13600242",
-   "issued": "2025-12-01",
-   "type": "Remodel or addition",
-   "scope": "Interior Remodel to Existing Office/Warehouse. Work to include subdividing Existing Interior into Multiple Suites and New Overhead Doors at Warehouse...",
-   "units": 3,
-   "newUnits": 0,
-   "cost": 1000000,
-   "address": "9120 Burnet Rd Unit 150",
-   "communityArea": "78758",
-   "district": "7",
-   "status": "Active",
-   "milestone": "Some permits finaled",
-   "buildings": 1,
-   "buildingsFinal": 2,
-   "gc": [
-    "Corvus Construction"
    ],
    "newThisWeek": false
   }

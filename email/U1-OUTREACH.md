@@ -20,12 +20,13 @@ Todd, Oct 18, 4:24 pm: "Yes email outreach is our best marketing tactic and shou
 - {underway}: counts.byStage["Work under way"] plus counts.byStage["Near finish"] (projects past the permit-issued stage).
 - {example}: one project, picked by the rule below, written on one line as:
   `{address}, {ZIP}: {type in lower case}{, N homes when units is set}, {valuation} in City valuation, general contractor {builder}, {stage in lower case}.`
-  Valuation as the free page writes it: "$365 million", "$1.25 billion" (two decimals for billions), "$4.0 million" under $10 million. The builder is the first name in the project's gc list, as printed. The address is printed without any "(+N more)".
-  Example: `4812 Gonzales St, 78702: finish-out, 31 homes, $365 million in City valuation, general contractor NRP Contractors II, LLC, work under way.`
+  Valuation as the free page writes it, in words: "$365 million" from $100 million up, "$71.0 million" or "$4.0 million" (one decimal) under $100 million, "$1.25 billion" (two decimals) for billions. The builder is the first name in the project's gc list, as printed. The address is printed without any "(+N more)".
+  Example: `2915 E Cesar Chavez St, 78702: new construction, 309 homes, $100 million in City valuation, general contractor JLB Builders, LLC, work under way.`
+- {zip}: the example project's ZIP code.
 
 ### Picking {example}
 From the projects and nearFinish arrays of that Monday's file (one list, de-duplicated by permit):
-1. Leave out any "Remodel or addition" over $100 million (Austin repeats a campus valuation on remodel permits; it reads as a mistake in a cold email) and any project whose valuation ends in a stray digit (counts.oddCosts).
+1. Leave out any "Remodel or addition" or "Finish-out" over $100 million (Austin repeats a campus or tower valuation on each building's or floor's permit; it reads as a mistake in a cold email) and any project whose valuation ends in a stray digit (counts.oddCosts).
 2. Keep the projects on the prospect's side of the metro, by the project's ZIP and the prospect's own town or neighborhood (CRM `area`):
    - North: 78613, 78626, 78628, 78634, 78641, 78660, 78664, 78665, 78681, 78717, 78726, 78727, 78728, 78729, 78730, 78750, 78753, 78757, 78758, 78759 (Round Rock, Cedar Park, Leander, Pflugerville, Georgetown, Hutto, north Austin)
    - Central: 78701, 78703, 78705, 78722, 78723, 78731, 78751, 78752, 78756 (downtown, central Austin)
@@ -40,20 +41,20 @@ From the projects and nearFinish arrays of that Monday's file (one list, de-dupl
 
 Subject:
 ```
-Austin construction jobs and the builders on them
+An Austin job in {zip} and its builder
 ```
 
 Body:
 ```
 Hi {Company} team,
 
-Your site lists post-construction cleaning, so here is a job near you that will need a final clean:
+Your site lists post-construction cleaning, so here is an Austin job that will need a final clean:
 
 {example}
 
-It is one of {projects} open commercial and apartment projects in Austin valued at $500,000 or more on this week's list, each with the general contractor the City names on its permits. {underway} of them already have work under way.
+It is one of {projects} open Austin commercial and apartment projects of $500,000 or more on this week's list, each with its general contractor. {underway} already have work under way.
 
-Every Monday we pull the City of Austin's building permits and turn them into that list, closest to a final clean first, with a ZIP code filter, in a web app and an Excel file. It is $29 a month, cancel any time.
+Every Monday we turn the City of Austin's building permits into that list, closest to a final clean first, in a web app and an Excel file with a ZIP code filter. It is $29 a month, cancel any time.
 
 This week's free sample: https://proofnotfluff.com/austin-construction-cleaning-leads/
 
@@ -90,3 +91,4 @@ The first email's body without the "Hi {Company} team," line, the footer kept, s
 
 ## Review verdicts
 (email/COPY_REVIEW.md; newest last)
+- Oct 18, 2026, round 1 (fresh reviewer): FAIL, 4.60 (bar: above 4.6). Fixed: subject names the job's ZIP, tower and campus finish-outs and remodels over $100 million left out as examples, paragraphs 3 and 4 shortened, one-decimal valuations under $100 million, no "near you" when the prospect's side has no job.

@@ -22,25 +22,29 @@ Why: Gemini's red team (Oct 17) and the COO agree that waiting for traffic is th
 
 ## The email (one per company; {fields} filled from the list)
 
-Fields, all from that Monday's permits/chicago/sample.json: {projects} = counts.kept, {near} = counts.nearFinish; {example} = one project from the list (address, community area, reported cost, general contractor, stage), still open on that day's list.
+Fields, all from that Monday's permits/chicago/sample.json: {projects} = counts.kept, {near} = counts.nearFinish, {area} = the example's community area.
+{example}, one line: `{address}, {area}: {type in lower case}{, N homes when units is set}, {cost} reported cost, general contractor {first name in gc}, {stage}.` Cost in words as the free page writes it ("$6.3 million", "$245 million"). Stage words: "Certificate Of Occupancy Pending (...)" = partial occupancy approved; "Inspections (...)" or "Inspections" = inspections under way; "Permit Issued (...)" = permit issued.
+Picking {example}: from the nearFinish array, the project in the prospect's own community area, else the largest; the follow-up uses the next one on that list, never the first email's (CRM `firstExample` holds its permit number).
+Example: `250 E Superior St, Near North Side: renovation, $6.3 million reported cost, general contractor Berglund Construction Company, partial occupancy approved.`
 
 Subject:
 ```
-Chicago construction permits and their builders, every Monday
+A {area} job close to a final clean
 ```
 
 Body:
 ```
 Hi {Company} team,
 
-Your site says you do post-construction cleaning in the Chicago area, so this may be worth a minute.
+Your site says you do post-construction cleaning in the Chicago area, so here is a job close to a final clean:
 
-Each week we pull the City of Chicago's building permits and list the open apartment and commercial jobs with a reported cost of $500,000 or more, with the general contractor on each. This week's list has {projects} open projects. {near} of them are at the City's occupancy stage (partial occupancy approved or occupancy pending), which usually means the work is close to done. One example: {example}.
+{example}
 
-Free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/
+It is one of {near} projects on this week's list where the City has approved partial or temporary occupancy. The full list has {projects} open projects of $500,000 or more, each with its general contractor.
 
-The full list is $29 a month, cancel any time. You get this week's list right after checkout, then a new one every Monday:
-https://proofnotfluff.gumroad.com/l/vpnaoq
+Every Monday we turn the City of Chicago's building permits into that list, with the near-finish jobs on their own tab, in a web app and an Excel file. It is $29 a month, cancel any time.
+
+This week's free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/
 
 ProofNotFluff
 1718 Capitol Ave, Cheyenne, WY 82001
@@ -60,14 +64,21 @@ Body:
 ```
 Hi {Company} team,
 
-Following up once on my note last week about our weekly list of Chicago construction permits and their general contractors. This week's list has {projects} open jobs, and {near} of them look close to done.
+One more from this week's Chicago list, in case it helps:
 
-Free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/
+{example}
 
-If it isn't useful, reply "no thanks" and we won't email you again.
+The list has {projects} open projects with the general contractor on each, and {near} have partial occupancy approved. It updates every Monday. Free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/
+
+If it isn't a fit, reply "no thanks" and we won't email you again.
 
 ProofNotFluff
 1718 Capitol Ave, Cheyenne, WY 82001
 
 This is an advertisement for ProofNotFluff's paid list. This is our last email unless you write back.
 ```
+
+
+## Review verdicts
+(email/COPY_REVIEW.md; newest last)
+- Oct 18, 2026, round 1 (fresh reviewer): FAIL, 3.50. The example sat at the end of a long paragraph with no format or picking rule, two links, a filler opener, a bump-only follow-up. Rewritten: the job first, one link, a format and picking rule for {example}, a follow-up with a new job.

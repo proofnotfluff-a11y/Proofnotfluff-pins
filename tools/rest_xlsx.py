@@ -19,7 +19,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import wb_style as S  # noqa: E402
 import pnf_dash as D  # noqa: E402
-from leads_xlsx import CITY_DISCLAIMER, INNER, TEXT_W, card_sheet, rich  # noqa: E402
+from leads_xlsx import CITY_DISCLAIMER, GRID, INNER, TEXT_W, card_sheet, rich  # noqa: E402
 from openpyxl.styles import Alignment, Border  # noqa: E402
 from openpyxl.utils import get_column_letter as gl  # noqa: E402
 from rest_leads import CATEGORIES, CAT_LABEL, CAT_ORDER, PRODUCT, pretty
@@ -201,6 +201,10 @@ def data_sheet(wb, key, title, tagline, list_date, tab, cols, rows, stats, freez
     for rr in range(6, 10):
         for c in tile_cols:
             ws[f"{c}{rr}"].fill = D.fill("ink")
+    for g in groups[1:]:                       # light stats sit off the ink tile's edge (round 2, B2)
+        for rr in (7, 8):
+            c = ws[f"{g.split(':')[0]}{rr}"]
+            c.alignment = Alignment(horizontal="left", vertical=c.alignment.vertical, indent=1)
     ws[f"{a}7"].font = D.f(8, True, "on_ink_soft")
     ws[f"{a}8"].font = D.f(22, True, "on_ink")
     D.h(ws, 9, 10)
@@ -213,8 +217,11 @@ def data_sheet(wb, key, title, tagline, list_date, tab, cols, rows, stats, freez
     f1, f2, end = D.table_card(ws, top, "B", pad_r, spec, max(len(rows), 1), row_height=30)
     head = f1 - 1
     D.h(ws, head, 30)
+    # the column after a result chip starts one indent in, so it never touches the fill (round 2, B6)
+    after_chip = {letters[i + 1] for i, c in enumerate(cols[:-1]) if c[0] in ("result", "lastResult")}
+    ind = lambda l, align: 1 if align == "right" or l in after_chip else 0
     for l, (ck, head_, w, align, fmt) in zip(letters, cols):
-        ws[f"{l}{head}"].alignment = Alignment(horizontal=align, vertical="bottom", wrap_text=True, indent=1 if align == "right" else 0)
+        ws[f"{l}{head}"].alignment = Alignment(horizontal=align, vertical="bottom", wrap_text=True, indent=ind(l, align))
     if not rows:
         ws[f"{letters[0]}{f1}"] = "None this week."
         ws[f"{letters[0]}{f1}"].font = D.f(10, False, "muted")
@@ -223,7 +230,7 @@ def data_sheet(wb, key, title, tagline, list_date, tab, cols, rows, stats, freez
         need = 30
         for l, (ck, head_, w, align, fmt) in zip(letters, cols):
             c = ws[f"{l}{rr}"]
-            c.alignment = Alignment(horizontal=align, vertical="center", wrap_text=ck in WRAP, indent=1 if align == "right" else 0)
+            c.alignment = Alignment(horizontal=align, vertical="center", wrap_text=ck in WRAP, indent=ind(l, align))
             if ck in ("license", "area", "type") and r.get(ck) in ("", None, "Not given"):
                 c.value = "Not given"; c.font = D.f(10, False, "muted")      # one convention for a missing value (fix 34)
             elif ck in ("result", "lastResult") and r.get(ck):
@@ -266,6 +273,14 @@ def blue(line):
     return [(part, part.startswith("["), "input_text" if part.startswith("[") else "ink") for part in re.split(r"(\[[^\]]+\])", line) if part]
 
 
+def th(text, cols, size=10, bold=False):
+    """Row height for text in a merged run of card columns. A column w characters wide is about w*7+5 px in Excel, so a
+    merged run is wider than the sum of its widths; measuring against the sum left empty bands under long paragraphs
+    (design director, round 2, B4). A 5 percent margin keeps Excel from cutting a last word."""
+    usable = (sum(GRID[c] * 7 + 5 for c in cols) * 0.75 - 6) * 0.95
+    return S.text_height(text, (usable + 2) / 5.2, size, bold)
+
+
 def card(ws, top, title, rows, eyebrow=None, bg="card", line="frame"):
     """The one-column card (leads_xlsx.card's layout) with three more row kinds: "step" (an accent number in C and the text
     hanging in E to O, so wrapped lines never run under the number), "gap" (a paragraph space) and "notegrey" (9 pt note
@@ -283,7 +298,7 @@ def card(ws, top, title, rows, eyebrow=None, bg="card", line="frame"):
             n, text = val
             c = ws[f"C{r}"]; c.value = n; c.font = D.f(16, True, "accent"); c.alignment = Alignment(horizontal="right", vertical="top", indent=1)
             t = ws[f"E{r}"]; t.value = text; t.font = D.f(10); t.alignment = Alignment(vertical="top", wrap_text=True)
-            ws.merge_cells(f"E{r}:O{r}"); D.h(ws, r, max(S.text_height(text, TEXT_W - 22, 10) + 10, 26))
+            ws.merge_cells(f"E{r}:O{r}"); D.h(ws, r, max(th(text, 'EFGHIJKLMNO', 10) + 10, 26))
         elif kind == "gap":
             D.h(ws, r, 8)
         elif kind == "lead":
@@ -292,7 +307,7 @@ def card(ws, top, title, rows, eyebrow=None, bg="card", line="frame"):
             c = ws[f"E{r}"]; c.value = text if isinstance(text, str) else rich(text)
             c.font = D.f(10); c.alignment = Alignment(vertical="top", wrap_text=True)
             plain = text if isinstance(text, str) else "".join(t for t, _, _ in text)
-            ws.merge_cells(f"E{r}:O{r}"); D.h(ws, r, max(S.text_height(plain, TEXT_W - 22, 10) + 8, 22))
+            ws.merge_cells(f"E{r}:O{r}"); D.h(ws, r, max(th(plain, 'EFGHIJKLMNO', 10) + 6, 22))
             for k in INNER:
                 ws[f"{k}{r}"].border = Border(bottom=D.side("hair"))
         elif kind == "link":
@@ -302,11 +317,11 @@ def card(ws, top, title, rows, eyebrow=None, bg="card", line="frame"):
         elif kind == "rich":
             text = "".join(t for t, _, _ in val)
             c = ws[f"C{r}"]; c.value = rich(val); c.alignment = Alignment(vertical="top", wrap_text=True)
-            ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, S.text_height(text, TEXT_W, 10) + 8)
+            ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, th(text, INNER, 10) + 6)
         else:
             size, color = (9, "5C6370") if kind == "notegrey" else (9, "muted") if kind == "note" else (10, "ink")
             c = ws[f"C{r}"]; c.value = val; c.font = D.f(size, False, color); c.alignment = Alignment(vertical="top", wrap_text=True)
-            ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, S.text_height(val, TEXT_W, size) + 8)
+            ws.merge_cells(f"C{r}:O{r}"); D.h(ws, r, th(val, INNER, size) + 6)
         r += 1
     D.h(ws, r, 14)
     D.frame(ws, top, r, "B", "P", bg=bg, line=line)
@@ -325,7 +340,7 @@ def build(data, out):
     list_date = f"List of {data['asOfText']}"
     rec = data["source"]["record"]
     wb = S.new_workbook(PRODUCT)
-    catcols = [(k, f"{s} (violation)", 12, "center", None) for k, _, s, _ in CATEGORIES]
+    catcols = [(k, f"{s} (violation)", 10, "center", None) for k, _, s, _ in CATEGORIES]
 
     def base(p, x, l=None):
         return {"name": p["name"], "address": p["address"], "area": p["area"], "type": p["type"], "result": x["r"], "date": day(x["d"]),
@@ -347,10 +362,12 @@ def build(data, out):
         rows1.append(r)
     cnt = lambda col: (lambda rg: f'=COUNTIF({rg[col]},"?*")')
     catcnt = lambda col, word: (lambda rg: f'=COUNTIF({rg[col]},"?*")+COUNTIFS({rg[col]},"",{rg["also"]},"*{word}*")')
-    cols1 = ([("name", "Business", 28, "left", None), ("address", "Address", 24, "left", None), ("area", "Community area", 17, "left", None),
-              ("result", "City result", 17, "center", None), ("date", "Inspected", 13, "left", "date"), ("itype", "Inspection type", 22, "left", None)]
-             + catcols + [("also", "Also cited in the last 30 days", 18, "left", None), ("fails", "Fails in 90 days", 10, "right", "int"),
-                          ("latest", "Newer City result", 17, "left", None), ("new", "New this week", 9, "center", None),
+    # Columns C to O print (13 columns, about 9 pt on legal landscape); "Also cited" and the rest stay on screen
+    # (design director, round 2, B1).
+    cols1 = ([("name", "Business", 24, "left", None), ("address", "Address", 20, "left", None), ("area", "Community area", 15, "left", None),
+              ("result", "City result", 17, "center", None), ("date", "Inspected", 13, "left", "date"), ("itype", "Inspection type", 18, "left", None)]
+             + catcols + [("fails", "Fails in 90 days", 10, "right", "int"), ("latest", "Newer City result", 17, "left", None),
+                          ("new", "New this week", 9, "center", None), ("also", "Also cited in the last 30 days", 22, "left", None),
                           ("codes", "All violations cited", 18, "left", None), ("type", "Facility type", 14, "left", None),
                           ("license", "License", 14, "left", None), ("record", "City record", 11, "left", None)])
     _, c1 = data_sheet(wb, "flagged", "Failed or conditional",
@@ -359,7 +376,7 @@ def build(data, out):
                        [("Places", cnt("name"), S.FMT["int"]), ("Failed", lambda rg: f'=COUNTIF({rg["result"]},"Fail")', S.FMT["int"]),
                         ("Pests", catcnt("pests", "Pests"), S.FMT["int"]), ("Hood", catcnt("hood", "Hood"), S.FMT["int"]),
                         ("Grease trap", catcnt("drain", "Grease trap"), S.FMT["int"]), ("Cleaning", catcnt("clean", "Cleaning"), S.FMT["int"])],
-                       print_cols=14)
+                       print_cols=13)
 
     # 2 opening soon
     rows2 = []
@@ -493,8 +510,9 @@ def pitch_kit(wb, list_date):
     ws = card_sheet(wb, TABS["pitch"], "Pitch kit", "A call opener and an email for each trade. Fill in the blue parts.",
                     list_date, "teal")
     r = card(ws, 6, "Three rules", [("step", (i + 1, t)) for i, t in enumerate(PITCH_RULES)])
-    for x in PITCH:
-        S.page_break_before(ws, r)                     # one trade per printed page (design director, fix 31)
+    for i, x in enumerate(PITCH):
+        if i % 2:                                      # two trades per printed page, the rules share page 1 (round 2, B3)
+            S.page_break_before(ws, r)
         r = card(ws, r, x["buyer"], [("lead", ("Call opener", blue(x["call"])))],
                  eyebrow=("TAB 2" if x["list"] == "opening" else f"TAB 1, {CAT_SHORT[x['cat']].upper()} COLUMN"))
         lines = []
@@ -509,7 +527,7 @@ def pitch_kit(wb, list_date):
 
 def terms(wb, data, list_date):
     t = terms_text(data["asOfText"])
-    ws = card_sheet(wb, "Terms", "Terms of Use", t[0].replace("ProofNotFluff | ", ""), list_date, "note")
+    ws = card_sheet(wb, "Terms", "Terms of Use", t[0].replace("ProofNotFluff | ", "").split(" | List of ")[0], list_date, "note")
     r = card(ws, 6, "City of Chicago data", [("para", CITY_DISCLAIMER), ("link", ("City of Chicago Data Terms of Use", data["source"]["terms"]))])
     rows = [("para", OUR_NOTICE)]
     for x in t[1:]:
@@ -539,17 +557,21 @@ def selftest():
     texts = [c.value for row in sh.iter_rows() for c in row if isinstance(c.value, str)]
     assert CITY_DISCLAIMER in texts and OUR_NOTICE in texts
     # the Start Here tiles count the right columns
-    assert "'1 Failed or conditional'!C12:C13" in sh["C8"].value and "'1 Failed or conditional'!P12:P13" in [c.value for row in sh.iter_rows() for c in row if isinstance(c.value, str) and "P12" in c.value][0]
+    assert "'1 Failed or conditional'!C12:C13" in sh["C8"].value and "'1 Failed or conditional'!O12:O13" in [c.value for row in sh.iter_rows() for c in row if isinstance(c.value, str) and "O12" in c.value][0]
     assert wb[TABS["opening"]]["K11"].value == "NEW THIS WEEK", wb[TABS["opening"]]["K11"].value
     tt = [c.value for row in wb["Terms"].iter_rows() for c in row if isinstance(c.value, str)]
     assert any("Version 1, Oct 17, 2026" in t for t in tt) and CITY_DISCLAIMER in tt, "version in the subtitle, City text word for word"
+    assert not any("Version 1" in t and "List of" in t for t in tt), "the list date is in the stamp only (round 2, B5)"
+    assert len(pk_breaks := wb[TABS["pitch"]].row_breaks.brk) == len(PITCH) // 2, "two trades per printed page (round 2, B3)"
     rich_runs = [c.value for row in wb["Terms"].iter_rows() for c in row if type(c.value).__name__ == "CellRichText"]
     assert any(str(v).startswith("License. ") and v[0].font.b for v in rich_runs), "Terms lead-ins in bold"
     # holdout round 1: a row's category codes are its own inspection's; the 30-day union is the labelled Also column
-    assert t1["M11"].value == "ALSO CITED IN THE LAST 30 DAYS" and t1["P11"].value == "NEW THIS WEEK", (t1["M11"].value, t1["P11"].value)
-    assert t1.print_area and "$P$" in t1.print_area, t1.print_area
+    assert t1["P11"].value == "ALSO CITED IN THE LAST 30 DAYS" and t1["O11"].value == "NEW THIS WEEK", (t1["P11"].value, t1["O11"].value)
+    assert t1.print_area and "$O$" in t1.print_area, t1.print_area           # Also cited stays on screen (round 2, B1)
+    assert t1["G12"].alignment.indent == 1 and t1["G11"].alignment.indent == 1, "the column after City result is indented"
+    assert t1["C7"].alignment.indent == 0 and all(t1[f"{c}7"].alignment.indent == 1 for c in "DEFGHIJKLMNOP" if t1[f"{c}7"].value), "light stats off the ink tile"
     fh = [r for r in range(12, 15) if t1[f"C{r}"].value == "Fry House"][0]
-    assert t1[f"J{fh}"].value == "56" and t1[f"O{fh}"].value.startswith("Pass, "), "newer City result shown"
+    assert t1[f"J{fh}"].value == "56" and t1[f"N{fh}"].value.startswith("Pass, "), "newer City result shown"
     t2 = wb[TABS["opening"]]
     lic = [t2[f"M{r}"].value for r in range(12, 14)]
     assert "1 +0" not in str(lic)

@@ -37,8 +37,11 @@ jobs:
           pip install --quiet openpyxl cryptography pillow
           python3 tools/leads_xlsx.py --selftest
           python3 tools/leads_page.py --selftest
+          python3 tools/leads_app.py --selftest
           python3 tools/leads_xlsx.py "$RUNNER_TEMP/chicago-full.json" "$RUNNER_TEMP/leads.xlsx"
           python3 tools/leads_page.py "$RUNNER_TEMP/chicago-full.json" "$RUNNER_TEMP/leads.xlsx" docs/chicago-leads-members/index.html
+          # members' app v2 preview (noindex, unlinked) until Todd says go to swap it in at docs/chicago-leads-members/
+          python3 tools/leads_app.py "$RUNNER_TEMP/chicago-full.json" "$RUNNER_TEMP/leads.xlsx" docs/chicago-leads-members-v2/index.html
           python3 tools/leads_page.py --review "$RUNNER_TEMP/chicago-full.json" permits/chicago/review.enc.json
       - name: Rebuild the site pages from the new sample
         run: python3 tools/make_site.py

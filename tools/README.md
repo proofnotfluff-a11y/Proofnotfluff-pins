@@ -117,3 +117,15 @@ Contact details for the general contractors on the Chicago Construction Cleaning
 - `python3 tools/builder_contacts.py --todo --pw-file PATH` (or `LEADS_PASSWORD`, or `--full chicago-full.json`) lists this week's builders not yet on file, near finish and new first, then by total reported cost. Never paste its output anywhere public.
 - `--check` runs the file's rules; `--selftest` plants bad entries. check_repo.py runs the rules as `builder-contacts`; the permits workflow runs the selftest.
 - Holdout status and the checker brief: `permits/chicago/builder_contacts_holdout.md`.
+
+## Members' app v2: leads_app.py (Oct 17, 2026)
+
+The Chicago Construction Cleaning Leads members' web app (Todd, Oct 17, 8:00 pm: the app is the main product, the workbook stays as a download inside it). Overview with the stage track, a filtered project list with a Leaflet map (stage, community area, cost band, type, new this week, follow-up, search, sort; counts on every filter; filters live in the URL), a project page (stage track with the City milestone, every permit field, the whole scope text, the City's raw record link, the builder card) and a builder page (contact card, every project of theirs, totals). Hash routes (`#/projects?...`, `#/project/<permit>`, `#/builders`, `#/builder/<key>`, `#/pitch`) so a page can be bookmarked or shared; the back button works. Contacted marks and private notes stay in the buyer's browser (localStorage). CSV export of the current view, and the workbook download.
+
+Same encryption as leads_page.py (AES-256-GCM, PBKDF2-SHA256 at 250,000 rounds, the members' password). Builder contacts come from `builder_contacts.contact_for` at build time: verified entries only, everyone else shows "no contact on file yet". Map: Leaflet 1.9.4 from cdnjs with SRI, OpenStreetMap standard tiles desaturated with CSS, attribution shown (CARTO's free basemaps are non-commercial only). Poppins is self-hosted at docs/assets/fonts (OFL, poppins-OFL.txt).
+
+- `LEADS_PASSWORD=... python3 tools/leads_app.py chicago-full.json leads.xlsx docs/chicago-leads-members-v2/index.html` (the permits workflow does this every Monday)
+- `python3 tools/leads_app.py --pw-file PATH --from-review permits/chicago/review.enc.json OUT.html` rebuilds the week offline from the encrypted review set (previews, checks)
+- `python3 tools/leads_app.py --selftest` (ciphertext only in the page, legal line word for word, Leaflet pinned with SRI, contacts cleaned, review rebuild, voice and em dash checks)
+
+The preview lives at docs/chicago-leads-members-v2/ (noindex, linked from nowhere). docs/chicago-leads-members/ stays on leads_page.py until the gates pass and Todd says go: that path is in buyers' Gumroad receipts.

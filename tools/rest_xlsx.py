@@ -22,7 +22,7 @@ import pnf_dash as D  # noqa: E402
 from leads_xlsx import CITY_DISCLAIMER, GRID, INNER, TEXT_W, card_sheet, rich  # noqa: E402
 from openpyxl.styles import Alignment, Border  # noqa: E402
 from openpyxl.utils import get_column_letter as gl  # noqa: E402
-from rest_leads import CATEGORIES, CAT_LABEL, CAT_ORDER, PRODUCT, pretty
+from rest_leads import CATEGORIES, CAT_LABEL, CAT_ORDER, LEFT_OUT, PRODUCT, pretty
 CAT_SHORT = {k: s for k, _, s, _ in CATEGORIES}  # noqa: E402
 
 TABS = {"flagged": "1 Failed or conditional", "opening": "2 Opening soon", "repeat": "3 Failed more than once",
@@ -110,6 +110,7 @@ def terms_text(date):
         "its next inspection. The violation categories are ProofNotFluff's reading of the City's violation codes and notes, not the City's "
         "own labels. Inspection types are the City's, except that the City's \"Suspected Food Poisoning\" inspections, which follow a "
         "complaint, are shown as Complaint. Confirm anything you rely on with the business or the City.",
+        "Who is left out. " + LEFT_OUT,
         "What the list does not say. A place on the list has a public inspection record; the list does not say it is clean or unsafe, "
         "open or closed, or in need of any service. Don't present the list, or anything in it, as a judgment about a business.",
         "No promise of results. Counts and categories are figures from City records. Nothing here promises any work, contract, income "
@@ -490,8 +491,7 @@ def start_here(wb, data, list_date, n1, n2, n3, new1, new2):
                                 "or clogged drain; Cleaning is violation 49 and cleaning notes under 53, 54, 55 and 60. A 59 or 60 (an earlier "
                                 "violation not corrected) counts in the category of the violation its note names. The numbers in each row are the "
                                 "codes cited on that row's inspection; Also cited names a category from an earlier inspection in the window.")),
-        ("lead", ("Left out", "Schools, colleges, day care and other children's sites, hospitals, senior and nursing sites, mobile vendors, any "
-                              "place whose business name is a person's full name, and places the City last marked out of business.")),
+        ("lead", ("Left out", LEFT_OUT)),
         ("lead", ("Duplicates", "The City sometimes files one visit under several license numbers. Those reports count once, with every "
                                 "violation they cite.")),
         ("lead", ("Not included", "The inspector's written notes. They are public on the City's site; this list only uses them to set a category.")),
@@ -555,7 +555,7 @@ def selftest():
     assert t1["C12"].font.name == "Arial" and t1.auto_filter.ref.startswith("C11")
     sh = wb["Start Here"]
     texts = [c.value for row in sh.iter_rows() for c in row if isinstance(c.value, str)]
-    assert CITY_DISCLAIMER in texts and OUR_NOTICE in texts
+    assert CITY_DISCLAIMER in texts and OUR_NOTICE in texts and LEFT_OUT in texts, "Start Here states the shared left-out sentence"
     # the Start Here tiles count the right columns
     assert "'1 Failed or conditional'!C12:C13" in sh["C8"].value and "'1 Failed or conditional'!O12:O13" in [c.value for row in sh.iter_rows() for c in row if isinstance(c.value, str) and "O12" in c.value][0]
     assert wb[TABS["opening"]]["K11"].value == "NEW THIS WEEK", wb[TABS["opening"]]["K11"].value

@@ -113,13 +113,18 @@ def page_html(p):
           ".rl-trades li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 16px;border-top:1px solid #EFEBE4}"
           ".rl-trades li:first-child{border-top:0}.rl-trades .nm{font-weight:600;color:var(--ink)}"
           ".rl-trades .nm small{display:block;font-size:13.5px;font-weight:400;color:#555B68;margin-top:2px}"
-          ".rl-trades .n{font:700 18px/1 Poppins,system-ui,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}</style>")
+          ".rl-trades .n{font:700 18px/1 Poppins,system-ui,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}"
+          # design director round 2: the trade card is the FAQ's measure (C1), the price line clears the button (C2),
+          # and no heading or question leaves one word alone on a phone (C3)
+          ".rl-trades{max-width:760px}section.block .rl-trades li{max-width:none}"
+          ".ld-page .ld-cta p.ld-buybtn{margin-top:16px}"
+          ".ld-page h2,.ld-page summary{text-wrap:balance}</style>")
     robots = "" if M.is_live(p) else '<meta name="robots" content="noindex, nofollow">'
     src = d["source"]
     foot = (f'</main>\n<footer><div class="wrap">'
             f'<p>Source: {E(src["name"])} ({E(src["url"])}), City records through {E(d["throughText"])}, pulled {asof}. Filtered by ProofNotFluff: '
-            'inspections of the last 30 days at food businesses (schools, day care and other children\'s sites, hospitals, senior and nursing sites, '
-            'mobile vendors and businesses named after a person left out) with a City result of Fail or Pass w/ Conditions and a violation in one of '
+            'inspections of the last 30 days at food businesses, less the places under "Who is left out?" above, with a City result of Fail or '
+            'Pass w/ Conditions and a violation in one of '
             'four categories, a license inspection, or two failed inspections in 90 days. Categories are ProofNotFluff\'s reading of the City\'s '
             'violation codes; inspector notes are not republished. A record repeats the City\'s result on that date; it does not say a place is '
             'clean, safe or open today. No business named here has endorsed or works with ProofNotFluff. Public information for planning sales calls; '
@@ -148,6 +153,9 @@ def selftest():
     assert "Tell me when it opens" in html or "Get the full list, $" in html, "a primary action on the page"
     assert "one’s own risk" in html or "one's own risk" in html.replace("&#x27;", "'")
     assert "—" not in html
+    faq = dict((q, a) for q, a in spec["faq"])
+    assert faq.get("Who is left out?") == rest_leads.LEFT_OUT, "the free page states the shared left-out sentence (holdout round 2)"
+    assert "named after a person" not in html and "full name" not in html, "one wording for the person-name rule"
     for w in ("dirty", "filthy", "infested", "violator", "offender"):
         assert w not in re.sub(r"<[^>]+>", " ", html).lower(), w
     print("rest_site selftest ok")

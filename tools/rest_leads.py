@@ -77,7 +77,7 @@ PREVENT = re.compile(r"\b(?:RODENT|MOUSE|RAT|INSECT|PEST)\s+(?:BAIT|STATION|TRAP
                      r"\bFREE (?:OF|FROM) [^.;]*|\bNO (?:EVIDENCE|SIGNS?) OF [^.;]*")
 HOOD_56 = re.compile(r"\bHOODS?\b|\bFILTERS?\b|\bEXHAUST|\bDUCT|\bGREASE")
 HOOD_ANY = re.compile(r"\bHOODS?\b|\bEXHAUST (?:FAN|HOOD|SYSTEM)")
-TRAP = re.compile(r"GREASE\s+TRAP|GREASE\s+INTERCEPTOR|\bINTERCEPTOR")
+TRAP = re.compile(r"GREASE\s*TRAP|GREASE\s+INTERCEPTOR|\bINTERCEPTOR")   # "GREASETRAPS" as one word too (holdout round 2)
 DRAIN = re.compile(r"\bCLOG|\bBACK(?:ING|ED|S)?[\s-]+UP\b|\bSLOW(?:LY)?[\s-]+DRAIN|\bNOT\s+DRAINING|\bSTANDING\s+WATER|\bSEWAGE|\bSEWER")
 CLEAN_WORDS = re.compile(r"\bCLEAN(?:ED|ING)?\b|\bDIRT|\bDEBRIS|\bGREASE|\bGREASY|\bGRIME|\bDUST|\bMOLD|\bMILDEW|\bRESIDUE|"
                          r"\bBUILD[\s-]?UP|\bBUILT[\s-]?UP|\bACCUMULAT|\bSOIL(?:ED)?\b|\bSLIME")
@@ -86,7 +86,8 @@ NOT_CLEAN = re.compile(r"\bEASILY\s+CLEANABLE|\bCLEANABLE|\bICE\s+BUILD[\s-]?UP|
 
 
 # City ordinance and food code rule numbers ("7-38-030(C)", "6-501.111", "8-404.13(B)(3)") are never violation codes
-CODE_REFS_STRIP = re.compile(r"\b\d{1,2}-\d{1,3}-\d{1,3}(?:\s*\([A-Z0-9:]+\))*|\b\d-\d{3}(?:\.\d+)+(?:\s*\([A-Z0-9:]+\))*")
+# A paragraph mark like "(C)" or "(B)(3)" goes with the number; a bare two-digit "(38)" after it is a violation code (holdout round 2)
+CODE_REFS_STRIP = re.compile(r"\b\d{1,2}-\d{1,3}-\d{1,3}(?:\s*\((?!\d{2}\))[A-Z0-9:]+\))*|\b\d-\d{3}(?:\.\d+)+(?:\s*\((?!\d{2}\))[A-Z0-9:]+\))*")
 CODE_REF = re.compile(r"#\s*(\d{1,2})(?!\d)|\bVIOLATIONS?\s*(?:#|NO\.?|NUMBER)?\s*(\d{1,2})(?!\d)|"
                       r"(?:^|(?<=[\s:;,(\-]))(\d{2})\s*(?:\)|[-.:](?=\s*[A-Z*]))")
 
@@ -167,6 +168,12 @@ SUPERMERCADO MINI SUPER FOOD-MART DOLLAR WALGREENS CVS TARGET COSTCO JEWEL ALDI 
 SUBWAY WENDYS STARBUCKS DUNKIN POTBELLY CHIPOTLE PANERA POPEYES HAROLDS HAROLD'S ROTI SALAD BOWL BOWLS POKE BOX TRUCK
 CARNITAS BIRRIA POZOLE POZOLERIA ELOTES TORTAS TORTILLERIA TAMALERIA MOLE MENUDO CEVICHE BIRRIERIA LONCHERIA BURRITOS QUESADILLAS
 GYRO HOTDOG HOTDOGS DOGS BEEF PORK RIBS CHOPHOUSE TAPAS DUMPLING DUMPLINGS BAO CURRY BIRYANI KABOB KABOBS SAJ JERK PATTY""".split())
+# The one sentence every surface uses for who is left out (workbook Start Here and Terms, app Terms, free page FAQ); it states
+# the rules below in plain words (holdout round 2).
+LEFT_OUT = ("Schools, colleges, day care and other children's sites, hospitals, senior and nursing sites, mobile vendors, and places "
+            "the City last marked out of business are left out. So is a place whose business name reads as only a person's name: a "
+            "first and last name, with or without LLC or Inc, or a title and a first name, such as \"Chef Maria\". A name with a "
+            "business word or a possessive, such as \"Garcia Bakery\" or \"Maria's Kitchen\", stays.")
 TITLES = {"CHEF", "MR", "MRS", "MS", "MISS", "DR", "DOCTOR", "SR", "JR", "II", "III", "IV", "SAINT", "ST"}
 FIRST = set("""AARON ABDUL ABEL ABIGAIL ABRAHAM ADA ADAM ADRIAN ADRIANA AGNES AHMED AIDAN AISHA ALAN ALBERT ALBERTO ALEJANDRA ALEJANDRO ALEX
 ALEXANDER ALEXANDRA ALEXIS ALFONSO ALFREDO ALI ALICE ALICIA ALINA ALISON ALLEN ALMA ALVARO ALVIN AMANDA AMBER AMELIA AMIR AMY ANA
@@ -510,6 +517,11 @@ CAT_CASES = [  # (violations text, expected categories) with invented notes on t
     (V(55, "SOILED FLOORS UNDER COOKING LINE."), {"clean": [55]}),
     ("28. TOXIC SUBSTANCES PROPERLY IDENTIFIED, STORED, & USED - Comments: OBSERVED OPEN RODENT BAIT ON SHELF ABOVE PREP TABLE. MUST REMOVE.", {}),
     ("28. TOXIC SUBSTANCES PROPERLY IDENTIFIED, STORED, & USED - Comments: RODENT BAIT STATION NEXT TO FOOD. ALSO OBSERVED MICE DROPPINGS.", {"pests": [28]}),
+    # holdout round 2: "GREASETRAPS" as one word; "(38)" straight after an ordinance number still names violation 38
+    (V(47, "MUST CLEAN AND REPAIR GREASETRAPS UNDER 3 COMPARTMENT SINK."), {"drain": [47]}),
+    (V(60, "OBSERVED PREVIOUS CORE VIOLATIONS NOT CORRECTED FROM REPORT #2635970. CIATION ISSUED #7-42-090  (38)Violation Codes: 6-202.15 "
+           "GAP ALONG BOTTOM OF FRONT DOORS."), {"pests": [60]}),
+    (V(60, "PREVIOUS CORE VIOLATION NOT CORRECTED. PRIORITY 7-38-030(C) (B) NO CITATION ISSUED. MUST FIX LEAKING FAUCET."), {}),
 ]
 CAT_CASES = [(t, {k: v for k, v in want.items() if v}) for t, want in CAT_CASES]
 
@@ -520,7 +532,7 @@ PERSON_CASES = [("MARIA GARCIA", True), ("JOHN SMITH", True), ("CHEF TARYN", Tru
                 ("JJ FISH", False), ("CHARLIES CHICAGO", False), ("MAXWELL STREET CICERO", False), ("ROSAS TAMALES INC", False),
                 ("THE HAT", False), ("FIVE GUYS", False), ("JULIANA RESTAURANT", False), ("CAFE MUSTACHE", False), ("DON PEDRO CARNITAS", False), ("BUNDOO KHAN", True), ("YANQUI LEON LLC", True),
                 ("BILLAL'S", False), ("MODESTO", False), ("RIVERFISH KING", False), ("HAN RAMYUN INC.", False), ("GREEN DRAGON", False),
-                ("SMOOTHIE KING", False), ("", False)]
+                ("SMOOTHIE KING", False), ("CHEF MARIA", True), ("MARIA GARCIA LLC", True), ("MARIA GARCIA INC", True), ("GARCIA BAKERY", False), ("", False)]
 
 
 def selftest():

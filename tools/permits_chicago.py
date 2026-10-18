@@ -60,7 +60,7 @@ BUSINESS = re.compile(r"\b(LLC|L\.L\.C|INC|INCORPORATED|CORP|CORPORATION|CO|COMP
                       r"ASSOCIATES|INDUSTRIES|SOLUTIONS|SYSTEMS|BUILD|VENTURES?|SONS?|HUMANITY|ASSOCIATION|AUTHORITY|JV|JOINT VENTURE)\b\.?")
 RESIDENTIAL_SMALL = re.compile(r"SINGLE[- ]FAMILY|\bSFR\b|\bS\.F\.R\b|TWO[- ]FLAT|\b2[- ]FLAT|THREE[- ]FLAT|\b3[- ]FLAT|COACH HOUSE|"
                                r"\b(1|2|3|ONE|TWO|THREE)[- ]?(DWELLING UNITS?|DU|D\.U\.?|UNITS?)\b")
-UNITS = re.compile(r"\(?(\d{1,4})\)?\s*[- ]?\s*(?:(?:NEW|EXISTING|STANDARD|EFFICIENCY|RESIDENTIAL|AFFORDABLE|AFFORABLE|HOUSING|MARKET[- ]RATE|STUDIO|SENIOR|LIVING|EAST|WEST|NORTH|SOUTH|"
+UNITS = re.compile(r"(?<![A-Z]-)(?<![A-Z])\(?(\d{1,4})\)?\s*[- ]?\s*(?:(?:NEW|EXISTING|STANDARD|EFFICIENCY|RESIDENTIAL|AFFORDABLE|AFFORABLE|HOUSING|MARKET[- ]RATE|STUDIO|SENIOR|LIVING|EAST|WEST|NORTH|SOUTH|"
                    r"TOWN ?HOME|TOWN ?HOUSE|RENTAL|CONDO(?:MINIUM)?|\d[- ]STORY)\s+)*(?:DWELLING(?:\s+UNITS?)?\b|D\.?U\.?S?\b|UNITS?\b|APARTMENTS?\b|TOWN ?(?:HOUSE|HOME)S?\b)")
 TYPED_UNITS = re.compile(r"\(?(\d{1,4})\)?\s*(?:STANDARD|EFFICIENCY|AFFORDABLE|MARKET[- ]RATE|STUDIO)\s+(?:DWELLING\s+)?UNITS?\b")
 # numbered units of a 2 or 3 flat ("UNITS 1 TO 3", "UNIT 1 + UNIT 2"), or a deconversion down to 3 or fewer homes
@@ -104,8 +104,9 @@ def unit_count(desc, display=False):
     when that beats every other count, else the largest count. display=True also drops counts of units being made accessible
     (13 DWELLING UNITS TO MOBILITY ACCESSIBLE UNITS), which describe the work, not the building (Holdout QC Oct 17, fourth pass)."""
     desc = numerals(desc)
-    if display and max([int(x) for x in SLEEPING.findall(desc)] or [0]) >= 4:
-        n = unit_count(desc)   # a shelter or group home: a caretaker's 1 dwelling unit is not shown as "1 home" (holdout, Oct 18)
+    if display and (sleeping_count(desc) >= 4 or SHELTER.search(desc)):
+        # shelter, SRO and group-home rooms are sleeping units, never homes (holdout round 6, Oct 18): only stated dwelling units count
+        n = max([int(x) for x in re.findall(r"\(?(\d{1,4})\)?\s+(?:EXISTING\s+|NEW\s+)?DWELLING UNITS?", desc)] or [0])
         return n if n >= 4 else 0
     if display:
         desc = re.sub(r"\(?\d{1,4}\)?\s*(?:DWELLING |RESIDENTIAL )?UNITS? (?:IN)?TO (?:\w+ ){0,2}(?:ACCESSIBLE|ADA|HEARING|VISION)\w*", " ", desc)
@@ -127,12 +128,23 @@ def unit_count(desc, display=False):
     UNIT_WORD = r"(?:D\.?U\.?S?(?![A-Z])|DWELLING(?: UNITS?)?\b|UNITS?\b|APARTMENTS?\b|RESIDENCES?\b)"
     # only words that describe homes may sit between the count and "units" (not SLEEPING, GUEST or ADDITIONAL units)
     ADJ = r"(?:(?:NEW|STANDARD|EFFICIENCY|RESIDENTIAL|RESIDENTAIL|AFFORDABLE|MARKET[- ]RATE|STUDIO|SENIOR|TOWN ?HOME|RENTAL|CONDO(?:MINIUM)?)[- ]){0,3}"
+    # a basement or attic made into homes adds to the homes already there ("REMODEL 6 EXISTING DU. CONVERT BASEMENTS INTO 2 DU" is 8)
+    bsmt = re.search(r"\bCONVER\w*\s+(?:THE\s+)?(?:EXISTING\s+)?(?:BASEMENTS?|ATTIC|GARAGE)\s+(?:IN)?TO\s+\(?(\d{1,3})\)?\s*(?:NEW\s+)?" + UNIT_WORD, desc)
+    if bsmt:
+        rest = [int(m.group(1)) for m in UNITS.finditer(desc) if not (bsmt.start() <= m.start(1) < bsmt.end())]
+        if rest:
+            return max(rest) + int(bsmt.group(1))
     after = re.search(r"\bEXISTING\s+\(?\d{1,4}\)?\s*[- ]?" + ADJ + UNIT_WORD + r"[^.;]{0,60}?\bIN(?:TO)?\s+\(?(\d{1,4})\)?\s*[- ]?" + ADJ + UNIT_WORD
                       + r"|\bEXISTING\s+\(?\d{1,4}\)?\s*[- ]?" + ADJ + UNIT_WORD + r"[^.;]{0,60}?\bTO\s+\(?(\d{1,4})\)?\s*[- ]?" + ADJ + UNIT_WORD
                       + r"|\bCONVER(?:T|TS|TED|TING|SION)\b[^.;]{0,100}?\b(?:IN)?TO\s+(?:A\s+)?\(?(\d{1,4})\)?\s*[- ]?" + ADJ + UNIT_WORD, desc)
     if after:
         return int(next(g for g in after.groups() if g))
     found = list(UNITS.finditer(desc))
+    # one permit for two attached buildings ("6 DWELLING UNITS ... INCLUDES THE ATTACHED 6 DU BUILDING"): both count
+    att = re.search(r"INCLUDES THE ATTACHED \(?(\d{1,3})\)?\s*(?:D\.?U\.?|DWELLING UNITS?|UNITS?)\s+BUILDING", desc)
+    if att:
+        rest = [int(m.group(1)) for m in found if not (att.start() <= m.start(1) < att.end())]
+        return max(rest or [0]) + int(att.group(1))
     # homes left untouched by the work count too ("WORK TO 6 D.U. (NO WORK ON REMAINING 18 D.U.)" is a 24-home building)
     rem = re.search(r"\bREMAINING\s+\(?(\d{1,4})\)?\s*(?:EXISTING\s+)?(?:D\.?U|DWELLING|UNITS?|APARTMENTS?)", desc)
     if rem:
@@ -173,8 +185,8 @@ def unit_count(desc, display=False):
 
 def gc_clean(nm):
     nm = re.split(r"\s+(?:ATTN|ATTENTION|C/O)\b.*$", nm, flags=re.I)[0].strip(" ,;:")
-    if re.search(r"\s+D/?B/?A\s+", nm, re.I) and len(nm) >= 45:   # the City cuts names at 50 characters: keep the legal name
-        return re.split(r"\s+D/?B/?A\s+", nm, flags=re.I)[0].strip(" ,;:")
+    if re.search(r"\s+D/?B/?A\s+", nm, re.I):   # the legal name only, for every builder (holdout round 6: "X DBA Y" printed one way everywhere;
+        return re.split(r"\s+D/?B/?A\s+", nm, flags=re.I)[0].strip(" ,;:")   # the City cuts names at 50 characters, so the DBA part is often cut)
     return nm   # as the City lists it: no ellipsis is ever added (holdout, Oct 18: "DINASO AND SONS ... INCORPORATED...")
 
 
@@ -206,7 +218,10 @@ COMMERCIAL2 = re.compile(r"\bBUSINESS\b|\bASSEMBLY\b|RELIGIOUS|SYNAGOGUE|SANCTUA
                          r"CLASSROOMS?|LOCKER ROOMS?|STUDENT TOILETS|CONFERENCE CENTER|PADEL|PICKLE ?BALL|CURRENCY EXCHANGE|AUTO BODY|CASINO|POOL DECK|"
                          r"BATH HOUSE|\bMALL\b|\bTSA\b|SPEC SUITES?|EXPERIENCE CENTER|INSTITUTIONAL|SHELL SPACE|GROCERY|TRADING|ADAPTIVE REUSE|DIALYSIS|"
                          r"ACCESSORY BUILDING|FOOD (?:PREP|SERVICE)|\bSHELTER\b|GROUP (?:HOME|LIVING)|TRANSITIONAL|CONGREGATE|SLEEPING UNITS|TRANSIT STATION|"
-                         r"\bSTATION (?:ENCLOSURE|HOUSE)|\bMARKET\b|\bB[- ]BUSINESS\b|TOWN ?(?:HOUSE|HOME)S")
+                         r"\bSTATION (?:ENCLOSURE|HOUSE)|\bMARKET\b|\bB[- ]BUSINESS\b|TOWN ?(?:HOUSE|HOME)S|"
+                         # holdout round 6, Oct 18
+                         r"\bCTA\b|METRA|TRANSIT PLATFORM|TRAIN STATION|STATIONHOUSE|CLUBHOUSE|SHOWROOM|REPAIR GARAGE|SERVICE RECEPTION|CHAPEL|FIELD HOUSE|"
+                         r"\bCPS\b|FREEZER CASES|CHECK STANDS|FOOD SERVICE")
 OCCUPANCY = re.compile(r"\b(?:OCC(?:UPANCY|UPACY)?\.?|USE|GROUPS?|CLASSIFICATIONS?)\s*(?:GROUPS?\s*|TYPE\s*|CLASSIFICATIONS?\s*|IS\s*)?[:\-]?\s*\(?"
                        r"(?:A-?[1-5]|B|E-?1?|F-?[12]|H-?[1-5]|I-?[1-4]|M|S-?[12])\b|\b(?:A-[1-5]|I-[1-4]|E-1|S-[12]|F-[12]|H-[1-5])\b")
 WEAK_COMMERCIAL = re.compile(r"\bSUITES?\s*#?\s*[A-Z]?\d|\bFLOORS?\s+\d|\b\d{1,3}(?:ST|ND|RD|TH) FLOOR|\bLOBBY\b|REST?OOMS|TOILET ROOMS|CONFERENCE|EXAM ROOMS")
@@ -225,6 +240,69 @@ ONE_UNIT_WORK = re.compile(r"(?:ALTERATIONS?|RENOVATIONS?|REMODEL\w*|BUILD[- ]?O
                            r"(?:RESIDENTIAL|DWELLING|CONDO\w*)\s+UNIT\b(?!S)")
 ONE_UNIT_PLAIN = re.compile(r"(?:ALTERATIONS?|RENOVATIONS?|REMODEL\w*)\s+(?:TO|OF|IN)\s+(?:EXISTING\s+)?UNIT\s*#?\s*\d{1,5}[A-Z]{0,3}\b(?!\s*(?:AND|&|,|-|TO|THRU|THROUGH)\s*#?\s*\d)")
 SLEEPING = re.compile(r"\(?(\d{1,4})\)?\s+(?:[A-Z]+\s+){0,2}?SLEEPING (?:UNITS?|ROOMS?)")
+SHELTER = re.compile(r"\bSHELTER\b(?! (?:CANOP|STRUCTURE))|\bS\.?R\.?O\b|SINGLE ROOM OCCUPANCY|GROUP (?:HOME|LIVING)")
+# a shelter's rooms by its own count ("41-UNIT NON-CONGREGATE TRANSITIONAL SHELTER")
+SHELTER_UNITS = re.compile(r"\(?(\d{1,4})\)?[- ](?:UNIT|ROOM|BED) (?:[\w-]+ ){0,3}SHELTER")
+
+
+def sleeping_count(desc):
+    """Sleeping units in a shelter, SRO or group home after the work, shown as sleeping units and never as homes (holdout round 6):
+    "RECONFIGURED INTO 12 SLEEPING UNITS" is 12, "(24 SLEEPING UNITS + 2 ADA SLEEPING UNITS FOR A TOTAL OF 26)" is 26."""
+    d = numerals((desc or "").upper())
+    into = re.search(r"\b(?:IN)?TO\s+\(?(\d{1,4})\)?\s+(?:[A-Z]+\s+){0,2}?SLEEPING (?:UNITS?|ROOMS?)", d)
+    if into:
+        return int(into.group(1))
+    found = [int(x) for x in SLEEPING.findall(d)]
+    if found:
+        tot = re.search(r"SLEEPING (?:UNITS?|ROOMS?)[^.]{0,40}?\bTOTAL OF \(?(\d{1,4})\)?", d)
+        return int(tot.group(1)) if tot else max(found)
+    return max([int(x) for x in SHELTER_UNITS.findall(d)] or [0])
+
+
+REV_REF = re.compile(r"REVISIONS?(?:\s+(?:NO\.?\s*|#\s*)?\d{1,2})?\s+(?:TO|OF)\s+(?:THE\s+)?(?:[A-Z&]+\s+){0,4}PERMITS?(?:\s+(?:NUMBER|NO\.?))?[:#\s]*"
+                     r"((?:#?\s*10\d{7}[,\s]*(?:AND\s*)?)+)")
+
+
+def refs(desc):
+    """(permits this one revises, permits it says it repeats: "INCLUDES REFERENCE TO PERMIT #101085470")."""
+    d = (desc or "").upper()
+    same = [x for m in re.finditer(r"(?:REFERENCE TO|SAME (?:SCOPE|WORK) AS|DUPLICATE OF) (?:PERMIT|APPLICATION)S?[:#\s]*((?:#?\s*10\d{7}[,\s]*(?:AND\s*)?)+)", d)
+            for x in re.findall(r"10\d{7}", m.group(1))]
+    return [x for m in REV_REF.finditer(d) for x in re.findall(r"10\d{7}", m.group(1))], same
+
+
+def top_builders(kept, n=12):
+    """The builders with the most listed jobs, for the free page. Every general contractor the City lists on a permit counts,
+    as the members' app and the workbook count them (holdout round 6: Leopardo showed 15 jobs on the free page, 16 elsewhere)."""
+    gc_n, gc_cost = collections.Counter(), collections.Counter()
+    for k in kept:
+        for key in dict.fromkeys(entity_key(g) for g in k.get("gc") or []):
+            gc_n[key] += 1; gc_cost[key] += k.get("cost") or 0
+    names = entity_names(kept)
+    return [{"name": names[key], "projects": c, "cost": gc_cost[key]} for key, c in sorted(gc_n.items(), key=lambda kv: (-kv[1], -gc_cost[kv[0]]))[:n]]
+
+
+def dedupe(kept):
+    """Each job once (holdout round 6, Oct 18). A revision of a permit that is also on the list is the same job; two permits at
+    the same address where one names the other are one job listed twice, and the one with the larger reported cost stays.
+    kept: dicts with permit, address, cost, _rev and _ref. Returns (kept, dropped permit numbers)."""
+    ids = {str(k["permit"]): k for k in kept}
+    drop = []
+    for k in kept:
+        me = str(k["permit"])
+        if any(x in ids and x != me for x in k.get("_rev") or []):
+            drop.append(me)
+    for k in kept:
+        me = str(k["permit"])
+        if me in drop:
+            continue
+        for x in k.get("_ref") or []:
+            o = ids.get(x)
+            if o is None or x == me or x in drop or (o.get("address") or "").upper() != (k.get("address") or "").upper():
+                continue
+            drop.append(me if (k.get("cost") or 0) <= (o.get("cost") or 0) else x)
+            break
+    return [k for k in kept if str(k["permit"]) not in drop], drop
 
 
 def get(url, params=None, tries=3, as_text=False):
@@ -552,6 +630,7 @@ def main():
             "scope": clean_scope(r.get("work_description")),
             "scopeFull": clean_scope(r.get("work_description"), limit=1200, whole=True),
             "units": unit_count(desc, display=True) or None,
+            "sleeping": sleeping_count(desc) or None,
             "cost": round(cost),
             "address": addr,
             "communityArea": AREA_NAMES.get(areas.get(ca, ""), areas.get(ca, "")),
@@ -559,24 +638,16 @@ def main():
             "milestone": (r.get("permit_milestone") or "").title(),
             "gc": gcs,
             "lat": coord(r.get("latitude")), "lon": coord(r.get("longitude")),
-            "_rev": [x for m in re.finditer(r"REVISIONS? (?:TO|OF) (?:THE )?(?:[A-Z&]+ ){0,4}PERMITS?[:#\s]*((?:#?10\d{7}[,\s]*(?:AND\s*)?)+)", desc)
-                     for x in re.findall(r"10\d{7}", m.group(1))],
+            "_rev": refs(desc)[0], "_ref": refs(desc)[1],
         })
     # a revision of a permit that is also on the list is the same job: count it once (Holdout QC Oct 17, third pass)
-    ids = {str(k["permit"]) for k in kept}
-    dup = [k for k in kept if any(x in ids and x != str(k["permit"]) for x in k["_rev"])]
-    reasons["revision of a permit already listed"] += len(dup)
-    kept = [k for k in kept if k not in dup]
+    kept, dup = dedupe(kept)
+    reasons["revision or second listing of a permit already listed"] += len(dup)
     for k in kept:
-        k.pop("_rev", None)
+        k.pop("_rev", None); k.pop("_ref", None)
     kept.sort(key=lambda x: (-x["cost"], x["issued"]))
     by_area = collections.Counter(k["communityArea"] for k in kept if k["communityArea"])
-    gc_n, gc_cost, gc_name = collections.Counter(), collections.Counter(), {}
-    for k in kept:
-        g = k["gc"][0]; key = entity_key(g)
-        gc_n[key] += 1; gc_cost[key] += k["cost"]; gc_name.setdefault(key, g)
-    top_gcs = [{"name": gc_name[key], "projects": n, "cost": gc_cost[key]} for key, n in
-               sorted(gc_n.items(), key=lambda kv: (-kv[1], -gc_cost[kv[0]]))[:12]]
+    top_gcs = top_builders(kept)
     sample = {
         "source": {
             "name": "City of Chicago Data Portal, Building Permits", "url": DATASET_PAGE, "rowsUpdatedAt": upd_iso,
@@ -645,7 +716,7 @@ NEW_BUILDING = re.compile(r"\bERECT|NEW CONSTRUCTION|NEW (?:FREESTANDING |GROUND
                           # holdout, Oct 18: a constructed addition, a proposed building, a new named building
                           r"\bCONSTRUCT\w*\s+(?:AN?\s+)?[^.;]{0,50}?\b(?:STORY|STOREY|FLOOR|DWELLING|MASONRY)\b[^.;]{0,40}?\bADDITION\b|"
                           r"\bPROPOSED (?:NEW )?(?:(?!TO\b|FOR\b|AT\b|OF\b|IN\b|ON\b|WITH\b|AND\b)[\w,'-]+ ){0,5}(?:BUILDING|DEVELOPMENT|CAR ?WASH)\b|"
-                          r"\bTWO[- ]TENANT BUILDING|\bNEW (?:(?!TO\b|FOR\b|AT\b|OF\b|IN\b|ON\b|WITH\b|AND\b)[\w,'-]+ ){0,4}(?:BUILDING|FACILITY|CAR ?WASH|FIELDHOUSE|TOWN ?(?:HOUSE|HOME)S)\b|"
+                          r"\bTWO[- ]TENANT BUILDING|\bNEW (?:(?!TO\b|FOR\b|AT\b|OF\b|IN\b|ON\b|WITH\b|AND\b)[\w,'-]+ ){0,4}(?:BUILDING|FACILITY|CAR ?WASH|FIELDHOUSE|CLUBHOUSE|TOWN ?(?:HOUSE|HOME)S)\b|"
                           r"\bCONSTRUCTION OF (?:AN? )?(?:NEW )?(?:[\w,'-]+ ){0,3}(?:BUILDING|STATION|FACILITY)\b|\bCONSTRUCT \d+ TOWN ?(?:HOUSE|HOME)")
 WORK_WORD = r"(?:ALTERATION|ALTERNATION|ATERATION|RENOVATION|RENO\b\.?|REMODEL(?:ING)?|REHAB(?:ILITATION)?|MODIFICATION|BUILD[- ]?OUT|BUILDING OUT|FIT[- ]?OUT|IMPROVEMENT|FINISHES|UPGRADE|RETROFIT)S?"
 ROOM_WORD = (r"(?:OFFICE|RETAIL|RESTAURANT|SPACE|TENANT|SUITE|FLOOR|LEVEL|CLINIC|STORE|BANK|SCHOOL|CLASSROOM|LAB|LABORATORY|APARTMENT|BUILDING|"
@@ -697,7 +768,7 @@ STRONG_INTERIOR = re.compile(r"(?<!SELECTIVE )\bINT(?:ERIOR)?\.?(?: AND EXT(?:ER
                              # holdout, Oct 18: renovation or alteration of whole rooms and buildings a cleaner is hired for (not repairs)
                              r"(?:RENOVATIONS?|REMODEL\w*|ALTERATIONS?|ATERATIONS?)\b[^.]{0,110}?\b(?:APARTMENTS|HOUSING UNITS|CLASSROOMS?|TOILETS|CHURCH|SYNAGOGUE|"
                              r"SANCTUARY|MUSEUM|GALLERY|CONCOURSE|TERMINAL|LOCKER ROOMS?|CONFERENCE|HEALTH CLUB|MALL|COMMON AREAS?|POOL DECK|DINING|SURGERY|BANKING|"
-                             r"CEILINGS|SPACES? ON|INSTITUTIONAL|SHELL SPACE|COMMERCIAL SPACE|(?:TRANSIT|COMMUTER ?RAIL|METRA|RAIL) STATION)\b|INTERIOR DEMOLITION,? (?:AND )?RENOVATION|"
+                             r"CEILINGS|SPACES? ON|INSTITUTIONAL|SHELL SPACE|COMMERCIAL SPACE|FOOD SERVICE|(?:TRANSIT|COMMUTER ?RAIL|METRA|RAIL) STATION)\b|INTERIOR DEMOLITION,? (?:AND )?RENOVATION|"
                              r"\bINTERIOR CHANGES ON (?:LEVELS|FLOORS)|"
                              r"(?:OFFICE|RETAIL|RESTAURANT|TENANT|CLINIC|CLASSROOM|LAB|AMENITY|LOBBY|STORE|BATHROOM|TOILET)(?: ROOMS?)?(?: SPACE)? "
                              r"(?:RENOVATION|ALTERATION|IMPROVEMENT|REMODEL|REPAIRS)")
@@ -733,8 +804,49 @@ EQUIPMENT = re.compile(r"PROCESS EQUIPMENT|\bCT (?:SCANNER|EQUIPMENT)|SALES DISP
                        r"(?:BUILD[- ]?OUT|REMODEL|RENOVATION|ALTERATIONS?) (?:OF|TO) (?:THE )?(?:EXISTING )?(?:\w+ )?(?:MECHANICAL|ELECTRICAL|UPS|SERVER|TELECOM|PUMP|BOILER) ROOMS?|"
                        r"\(UPS\) ROOM|UNINTERRUPTIBLE POWER|DATA CENTER\b[^.]{0,80}(?:AHUS?|CRAH|CHILLERS?|COOLING|ELECTRICAL ROOMS?)|"
                        r"(?:AHUS?|CRAH|CHILLERS?|COOLING|ELECTRICAL ROOMS?)\b[^.]{0,120}DATA CENTER|"
-                       r"TO MAKE STRU\w* REPAIRS|REPAIR (?:EXISTING )?DOCKS|M\.?E\.?P\.? IMPROVEMENTS|BUILD[- ]?OUT (?:WILL BE |TO BE )?(?:UNDER|BY) (?:A )?SEPARATE PERMIT")
+                       r"TO MAKE STRU\w* REPAIRS|REPAIR (?:EXISTING )?DOCKS|M\.?E\.?P\.? IMPROVEMENTS")
+SEPARATE_BUILDOUT = re.compile(r"BUILD[- ]?OUT (?:WILL BE |TO BE )?(?:UNDER|BY) (?:A )?SEPARATE PERMIT")
 PARK = re.compile(r"LANDSCAPED PARK|CONCRETE MEMORIAL|MEMORIAL (?:PARK|PLAZA|GARDEN|WALL)|AMPHITHEATER")
+# holdout round 6, Oct 18 (Todd's rules for the judgment calls):
+# finish work a cleaner is hired after; a permit whose only named work is MEP, equipment or an elevator has none of it
+EVIDENCE = re.compile(r"PARTITION|\bFINISH(?:ES)?\b(?! TO ACCOMM)|BUILD[- ]?OUT|FIT[- ]?OUT|CEILING|FLOORING|MILLWORK|CABINETRY|CASEWORK|LAYOUT|"
+                      r"RECONFIGUR|TOILET ROOMS|REST?R?OOMS|BATHROOMS|LOCKER ROOMS?|CLASSROOMS|KITCHENS?\b|DWELLING UNITS|APARTMENTS|TENANT|\bGUT\b|"
+                      r"REPAINT|\bPAINT\b|NEW WALLS|EXAM ROOMS?|NURSE STATION|\bCOUNTER\b|SHOWROOM|DINING|RESTAURANT|RETAIL|\bSTORE\b|CONVER(?:T|SION)")
+MEP_TRIGGER = re.compile(r"\bMEP SYSTEMS\b|MECHANICAL,? ELECTRICAL,? (?:AND|&) PLUMBING SERVICE|\bIDF ROOM|VIDEO SURVEILLANCE|ACCESS CONTROL|"
+                         r"BUILDING AUTOMATION|TURNSTILES|RADIOLOGY EQUIPMENT|GUIDANCE VEHICLES|"
+                         r"(?:REPLACE|REPLACEMENT OF|REMOVE AND REPLACE|REMOVAL AND INSTALL)\s+(?:\w+\s+){0,3}(?:CHILLERS?|EQUIPMENT|MECHANICAL SYSTEMS)|"
+                         r"\bMECHANICALS\b|FURNACES|\bRTUS\b|ELE?C?TRICAL SERVICE|ELEVATOR (?:AND STAIR )?(?:ENCLOSURE |TOWER |SHAFT )?ADDITION|"
+                         r"INSTALLATION OF (?:A )?NEW ELEVATOR")
+ELEVATOR_ADD = re.compile(r"ELEVATOR (?:AND STAIR )?(?:ENCLOSURE |TOWER |SHAFT )?ADDITION|ELEVATOR ADDITION")
+# an accessory structure is not a new building ("ERECTING NEW STEEL 2 STORY REAR METAL DECK")
+ACCESSORY_ONLY = re.compile(r"^(?:\w+ ){0,2}(?:ERECT\w*|CONSTRUCT\w*|NEW)\s+(?:AN?\s+)?(?:NEW\s+)?(?:(?!BUILDING|STRUCTURE|HOUSE|CENTER|FACILITY)[\w-]+\s+){0,5}(?:DECKS?|PORCH(?:ES)?|STAIRS?|FENCE|CANOP(?:Y|IES)|BALCON\w+)\b")
+# a single accessory dwelling unit added to a building, with no work on the homes already there
+ADU = re.compile(r"\bA\.?D\.?U\b\.?|ADDITIONAL DWELLING UNIT|ACCESSORY DWELLING UNIT")
+ADU_WHOLE = re.compile(r"RENO\w*\.?\s+(?:TO|OF)\s+EXIST|INTERIOR/EXTERIOR RENOVATIONS|INT\.? (?:&|AND) EXT\.? RENO|GUT REHAB|ALL UNITS|"
+                       r"REMODEL\w*\s+(?:OF\s+)?(?:THE\s+)?(?:\(?\d+\)?\s+)?EXISTING|TO\s+EXISTING\s+D\.?U|"
+                       r"ALTERATIONS?(?:\s*\([^)]*\))?\s+(?:TO|OF)\s+(?:THE\s+|AN?\s+)?EXISTING\s+(?:\(?\d+\)?\s*)?(?:[\w-]+\s+){0,4}?(?:D\.?U|DWELLING|UNITS|BUILDING)|"
+                       r"\b(?:[2-9]|\d{2})\s+(?:NEW\s+)?A\.?D\.?U")
+# work on two or three homes of a building ("TWO EAST UNITS OF A FOUR STORY FOUR UNIT CONDOMINIUM")
+PART_UNITS = re.compile(r"\b(?:TWO|THREE|\(?[23]\)?)\s+(?:\(?[23]\)?\s+)?(?:EXISTING\s+|EAST\s+|WEST\s+|NORTH\s+|SOUTH\s+|REAR\s+|FRONT\s+)*"
+                        r"(?:RESIDENTIAL\s+|DWELLING\s+|APARTMENT\s+|CONDO\w*\s+)?UNITS\s+(?:OF|IN|WITHIN)\s+(?:AN?\s+|THE\s+)?(?:EXISTING\s+)?")
+# common areas only in a residential building ("NO WORK TO EXISTING DWELLING UNITS")
+COMMON_AREA = re.compile(r"\bLOBB(?:Y|IES)\b|COMMON AREAS?|AMENIT(?:Y|IES)|\bSPA\b|HOT TUB|CORRIDORS|HALLWAYS|MAIL ?ROOM|CLUB ?ROOM|\bPOOL\b")
+RESI_BUILDING = re.compile(r"RESIDENTIAL|CONDO|APARTMENT|DWELLING|\bR-?2\b|\bRM\b")
+UNIT_WORK = re.compile(r"ALL UNITS|UNITS? MODIFICATION|WORK (?:IN|TO) \(?\d+\)? (?:DWELLING )?UNITS|(?:RENOVAT|REMODEL|ALTER|REHAB|UPDATE|UPGRADE|CONVER|GUT)\w*[^.]{0,60}?\b(?:DWELLING UNITS|D\.?U\.?S?\b|APARTMENTS|(?:\w+ )?UNITS\b)|"
+                       r"\b(?:DWELLING UNITS|APARTMENTS|RESIDENTIAL UNITS)\b[^.]{0,30}?(?:RENOVAT|REMODEL|ALTER|REHAB|UPDATE)")
+NOT_IN_CONTRACT = re.compile(r"NOT IN (?:THE )?CONTRACT|NO WORK (?:TO|IN|ON) (?:THE )?(?:EXISTING )?(?:COMMERCIAL|RETAIL|MERCANTILE|STORE)")
+USE_COMMERCIAL = re.compile(r"MIXED[- ]USE|COMMERCIAL|RETAIL|OFFICE|RESTAURANT|\bCAFE\b|BUSINESS|VETERINARY|CLINIC|\bSTORE\b|SALON|\bA-2\b")
+# transit: stations, stationhouses and platforms are kept; track, substation and right-of-way work is not
+TRANSIT = re.compile(r"\bCTA\b|METRA|TRANSIT|\bRAIL\b|COMMUTER|\bTRAIN\b|STATIONHOUSE|ELEVATED (?:LINE|PLATFORM)")
+STATION = re.compile(r"(?<!SUB)(?<!GAS )(?<!FIRE )(?<!POLICE )\bSTATION(?:HOUSE)?S?\b|\bPLATFORMS?\b")
+# partial school, field house and chapel renovations: kept when interior rooms are worked on (holdout round 6: $500,000 or more,
+# which every listed permit is); roof, MEP and finishes "to accommodate" mechanical work are not interior work
+SCHOOLISH = re.compile(r"SCHOOL|\bCPS\b|\bE-?1\b|ELEMENTARY|FIELD ?HOUSE|CHAPEL")
+SCHOOL_INTERIOR = re.compile(r"(?:RENOVAT|REMODEL|ALTERAT|REPAIR|UPDATE|NEW|REFINISH|UPGRADE)\w*\s+(?:[\w,-]+\s+){0,6}?(?:TOILET ROOMS?|BATHROOMS?|RESTROOMS?|CLASSROOMS?|LOCKER ROOMS?)|"
+                             r"(?:TOILET ROOMS?|BATHROOMS?|RESTROOMS?|RESTROOM FACILITIES|CLASSROOMS?) (?:RENOVATIONS?|REPAIRS?|REMODEL)|"
+                             r"INTERIOR (?:REPAIRS|FINISH REPAIRS|UPDATES)|SELECT INTERIOR (?:SCOPE|ALTERATIONS)|\bAND INTERIOR ALTERATIONS|ACCESSIBLE ROUTE|ACCESSIBILITY RENOVATIONS")
+# a whole building restored inside and out
+WHOLE_BUILDING = re.compile(r"(?:RESTORATION|REPLACEMENT) OF ALL [^.]{0,40}\bFINISHES\b")
 
 
 def decide(d, ptype=""):
@@ -746,11 +858,17 @@ def decide(d, ptype=""):
     u = unit_count(d)
     sleeping = max([int(x) for x in SLEEPING.findall(numerals(d))] or [0])   # a shelter or group home of 4+ sleeping units: commercial scale
     small_units = {int(x) for x in re.findall(r"\bUNIT\s*#?\s*(\d)\b", d)}
-    mixed = re.search(r"MIXED[- ]USE|COMMERCIAL|RETAIL|OFFICE|RESTAURANT", d)
-    if sleeping < 4 and ((u and u < 4 and not (mixed and u == 1)) or (not u and (RESIDENTIAL_SMALL.search(d) or FLAT_UNITS.search(d) or re.search(r"\bR-?5\b", d)
+    # commercial space that is part of the work (a new mixed-use building, a restaurant build-out under 2 flats): the homes
+    # count does not decide it (holdout round 6); a shop the contract leaves out does not count
+    commercial_use = bool(USE_COMMERCIAL.search(d)) and not NOT_IN_CONTRACT.search(d)
+    if sleeping < 4 and not commercial_use and ((u and u < 4) or (not u and (RESIDENTIAL_SMALL.search(d) or FLAT_UNITS.search(d) or re.search(r"\bR-?5\b", d)
                                     or (small_units and max(small_units) <= 3)))):
         return False, "house or 2 to 3 flat"
-    m = SINGLE_HOME.search(d)
+    if ADU.search(d) and not ADU_WHOLE.search(d):
+        return False, "one home inside a larger building"
+    if PART_UNITS.search(d) and not re.search(r"\bALL\b[^.]{0,20}UNITS", d):
+        return False, "one home inside a larger building"
+    m = SINGLE_HOME.search(d) if not (commercial_use and NEW_BUILDING.search(d)) else None
     if (m and (u < 4 or re.search(r"\d{3,5}|\d[A-Z]{1,3}\b|CONDO|BEDROOM|COMBIN|PENTHOUSE|APARTMENT\s*#|ONLY", m.group(0)))) or ONE_UNIT_WORK.search(d) \
             or (ONE_UNIT_PLAIN.search(d) and re.search(r"\bR-?2\b|RESIDENTIAL|CONDO", d)):
         return False, "one home inside a larger building"
@@ -758,6 +876,11 @@ def decide(d, ptype=""):
     if not u and not strong and not (WEAK_COMMERCIAL.search(d) and not HOUSE.search(d)):
         return False, "no commercial or apartment wording"
     if not u and re.search(r"\b[1-3][- ]STORY WALK[- ]?UP\b", d) and not re.search(r"CONVER|MIXED|COMMERCIAL|RETAIL|OFFICE", d):
+        return False, "apartment building with no unit count (could be a 2 or 3 flat)"
+    # homes worked on with no count and no sign of 4 or more (holdout round 6: same scope, same decision as the walk-ups)
+    stories = max([int(x) for x in re.findall(r"\b(\d{1,2})[- ]?STOR(?:Y|IES|EY)", d)] or [0])
+    if not u and sleeping < 4 and not commercial_use and re.search(r"RESIDENTIAL UNITS|EXISTING APARTMENTS|APARTMENT BUILDING", d) \
+            and stories < 4 and not re.search(r"HIGH[- ]RISE|MID[- ]RISE|TOWER|SENIOR|CONVER|COMMON AREA", d):
         return False, "apartment building with no unit count (could be a 2 or 3 flat)"
     start = scope_start(d)
     clauses = [c for c in re.split(r"(?<=[A-Z0-9)])\.\s+|;\s*", start) if c.strip()]
@@ -769,13 +892,32 @@ def decide(d, ptype=""):
         return False, "no construction clean (foundation, demolition, roof, mechanical or site work only)"
     if re.search(r"CORE (?:&|AND) SHELL IMPROVEMENTS", main) and not re.search(r"BUILD[- ]?OUT|TENANT IMPROVEMENT|FINISH", main):
         return False, "no construction clean (foundation, demolition, roof, mechanical or site work only)"
-    if STRUCTURE_ONLY.search(main) or (STRUCTURE_ANY.search(d) and not STRONG_INTERIOR.search(main)) or ((EQUIPMENT.search(d) or PARK.search(main)) and not NEW_BUILDING.search(main)):
+    evidence = {m.group(0) for m in EVIDENCE.finditer(re.sub(r"INTERIOR RENOVATION TO REMOVE|FINISHES TO ACCOMM\w+|UPDATES PER RECONFIGURATION|"
+                                                             r"\bREMOVAL OF [^.]*|\bDEMO(?:LITION)? (?:OF|INCLUDES) [^.]*|UNDER (?:A )?SEPARATE PERMIT|"
+                                                             r"NO (?:CHANGES?|MODIFICATIONS?|WORK) (?:TO|IN|ON) [^.,]{0,40}|"
+                                                             r"BUILD[- ]?OUT OF (?:AN? |THE )?(?:NEW )?(?:IDF|MDF|TELECOM|SERVER|DATA|ELECTRICAL|MECHANICAL) ROOMS?", " ", d))}
+    if STRUCTURE_ONLY.search(main) or (STRUCTURE_ANY.search(d) and not STRONG_INTERIOR.search(main)) or (SEPARATE_BUILDOUT.search(d) and not NEW_BUILDING.search(main)) \
+            or (EQUIPMENT.search(d) and not NEW_BUILDING.search(main) and len(evidence) < 2) \
+            or re.search(r"REVISION[^.]{0,60}?\bTO (?:INCREASE|CHANGE|REVISE|UPGRADE|RELOCATE) (?:THE )?(?:\w+ )?(?:ELECTRICAL|MECHANICAL|PLUMBING|FIRE|SPRINKLER|STRUCTURAL)", d) \
+            or (PARK.search(main) and not re.search(r"(?<!FULL )\bBUILDING\b(?! PERMIT)|FIELDHOUSE|PAVILION|CENTER|CLUBHOUSE", main)):
         return False, "no construction clean (foundation, demolition, roof, mechanical or site work only)"
-    if ONLY_TRADE.search(d) or (SITE_START.search(main) and not re.search(r"SUPERSTRUCTURE|FULL BUILDING|(?:AND|,)\s*(?:NEW )?(?:BUILD|RENOVAT|ALTERAT|REMODEL)", main)):
+    if SCHOOLISH.search(d) and SCHOOL_INTERIOR.search(d) and not re.search(r"EXTERIOR (?:IMPROVEMENTS|WORK) ONLY|NO INTERIOR", d):
+        return True, "kept"
+    if TRANSIT.search(d) and STATION.search(main) and not re.search(r"\bTRACK (?:WORK|REPLACEMENT|RENEWAL|REHAB\w*|STRUCTURE)|BALLAST|SUBSTATION|RIGHT[- ]OF[- ]WAY", main):
+        return True, "kept"
+    nb = ("NEW CONSTRUCTION" in (ptype or "").upper() or NEW_BUILDING.search(main) or ADD_BUILDING.search(main)) and not ACCESSORY_ONLY.search(main)
+    if MEP_TRIGGER.search(d) and not evidence and (not nb or ELEVATOR_ADD.search(main)):
+        return False, "no construction clean (foundation, demolition, roof, mechanical or site work only)"
+    if RESI_BUILDING.search(d) and COMMON_AREA.search(d) and not nb and not re.search(r"CONVER|CHANGE OF (?:USE|OCCUPANCY)|OCCUPANCY CHANGE", d) and (not UNIT_WORK.search(d) or re.search(r"NO WORK (?:TO|IN|ON) (?:THE )?(?:EXISTING )?(?:DWELLING |RESIDENTIAL )?UNITS", d)) \
+            and not re.search(r"RETAIL|RESTAURANT|\bSTORE\b|MIXED[- ]USE", d):
+        return False, "common areas only, no homes worked on"
+    if ONLY_TRADE.search(d) or (SITE_START.search(main) and len(evidence) < 3 and not re.search(r"SUPERSTRUCTURE|FULL BUILDING|(?:AND|,)\s*(?:NEW )?(?:BUILD|RENOVAT|ALTERAT|REMODEL)", main)):
         return False, "no construction clean (foundation, demolition, roof, mechanical or site work only)"
     if STRONG_INTERIOR.search(main) and not PURPOSE_TRADE.search(main):
         return True, "kept"
-    new_bldg = (("NEW CONSTRUCTION" in (ptype or "").upper() or NEW_BUILDING.search(main) or ADD_BUILDING.search(main)) and not SITE_NEW.search(main)
+    if WHOLE_BUILDING.search(d) or (len(evidence) >= 3 and not PURPOSE_TRADE.search(main)):
+        return True, "kept"
+    new_bldg = (nb and not SITE_NEW.search(main)
                 and not (SITE_SOFT.search(main) and not (PEOPLE_BUILDING.search(main) or COMMERCIAL.search(main) or COMMERCIAL2.search(main))))
     if new_bldg:
         return True, "kept"
@@ -894,6 +1036,73 @@ FILTER_CASES += [
     ("PROPOSED COMMERCIAL BUILDING DEVELOPMENT. TWO TENANT BUILDING BUFFALO WILD WINGS IS PART OF THE PROJECT. PARKING AND TRASH ENCLOSURE.", True, None),
     ("SC CBC 2019 CONSTRUCT A SECOND FLOOR ADDITION AND A 2 STORY TYPE IIIA REAR MASONRY ADDITION FOR AN EXISTIN ONE STORY COMMERCIAL SPACE", True, None),
 ]
+# holdout round 6, Oct 18 (real City wording, trimmed; Todd's rules for the judgment calls): a case for every rule changed that day
+FILTER_CASES += [
+    # single ADUs and work on part of a building's homes: dropped; an ADU with work on the existing homes: kept
+    ("SPR 2019 CBRC: CONVERSION OF EXISTING BASEMENT INTO A FULLY INDEPENDENT ADDITIONAL DWELLING UNIT (ADU). WORK INCLUDES DEMO, NEW FRAMING, INSULATION, ELECTRICAL, PLUMBING, HVAC, NEW WINDOWS AND FINISHES. EXISTING R-2 OCCUPANCY", False, None),
+    ("2019 SPR CBC. NEW ADU UNIT AT BASEMENT LEVEL FOR A TOTAL OF 4D.U. AS PER ARCHITECTURAL PLANS, FOR EXISTING 3 STORY WITH BASEMENT MASONRY APARTMENT BUILDING (OCCUPANCY GROUP R-2).", False, None),
+    ("2019 SPR: ADU NORTH ZONE, CONVERT PROPERTY FROM 5 DU TO 6 DU, INCLUDING MEP WORK AS PER PLANS (CONSTRUCTION TYPE: IIIA, OCCUPANCY R-2)", False, None),
+    ("2019 SPR. 1 NEW ADU UNIT AT BASEMENT LEVEL IN AN EXISTING FOUR STORY BRICK BUILDING, INTERIOR ALTERATIONS (INCLUDING MEP WORK) TO EXISTING 7 D.U., (NEW UNIT COUNT FOR PROPERTY TO BE 8 D.U.)", True, 8),
+    ("SPR 2019 CBRC: FIRE RESTORATION RECONSTRUCTION TO TWO EAST UNITS OF A FOUR STORY FOUR UNIT CONDOMINIUM BUILDING (OCCUPANCY GROUP R-2, TYPE III-B CONSTRUCTION)", False, None),
+    # MEP, equipment and elevator-only work: dropped
+    ("SELF-CERT: INTERIOR RENOVATION TO REMOVE AND REPLACE CHILLERS IN AN EXISTING MECHANICAL ROOM ON THE 20TH FLOOR OFFICE SPACE AS PER PLANS. (B-BUSINESS OCCUPANCY; IA CONSTRUCTION)", False, None),
+    ("SELF-CERT 2019 CBRC: ALTERATIONS TO MEP SYSTEMS IN 3 STORY CPS SCHOOL BUILDING. (OCCUPANCY GROUP E-1; TYPE IA CONSTRUCTION)", False, None),
+    ("RENOVATION OF EXISTING TWO STORY MIXED USE BUILDING. NEW MECHANICAL, ELECTRICAL, AND PLUMBING SERVICE AND DISTRIBUTION.CERTIFIED CORRECTION.", False, None),
+    ("SPR 2019 CBRC: INTERIOR BUILD-OUT OF AN IDF ROOM ON THE 7TH FLOOR. MECHANICAL, ELECTRICAL & PLUMBING WORK. (1A CONSTRUCTION. B-BUSINESS USE)", False, None),
+    ("SELF-CERT 2019 CBC: INTERIOR ALTERATIONS TO REPLACE INTERVENTIONAL RADIOLOGY EQUIPMENT IN SINGLE IR LAB ON FLOOR 5 OF APPROXIMATELY 770 SQUARE FEET (OCCUPANCY: I-2 CONDITION 2; CONSTRUCTION TYPE: IA)", False, None),
+    ("SPR 2019 CBRC: INTERIOR ALTERATIONS TO EXISTING LOWER LEVEL INSTITUTIONAL (HOSPITAL) SPACE FOR INFRASTRUCTURE UPGRADES TO ACCOMMODATE AUTOMATED GUIDANCE VEHICLES (AGV) UPDATES AND EXPANSION. NO MODIFICATIONS TO PARTITIONS OR EXITING PATHS.", False, None),
+    ("SC 2019 CBC ERECTING NEW STEEL 2 STORY REAR METAL DECK AND ADDING A NEW BATHROOM AT THE FIRST FLOOR COMMERCIAL INSTALLING TWO NEW GAS FORCED AIR FURNACES AT EACH COMMERCIAL SPACE. PROVIDING NEW PLUMBING AND ELECTRICAL. (R2, B USE AND TYPE 3A CONSTRUCTION).", False, None),
+    ("SC 2019 CBRC: INTERIOR ALTERATIONS FOR CPS GRIMES ELEMENTARY SCHOOL. REPLACEMENT OF EXISTING MECHANICAL SYSTEMS, PARTIAL ROOF REPLACEMENT, NEW FIRE ALARM SYSTEM, AND ARCHITECTURAL FINISHES TO ACCOMMODATE MECHANICAL UPGRADES.", False, None),
+    ("SPR 2019 CBRC: CONSTRUCT NEW 3 STORY ELEVATOR AND STAIR ENCLOSURE ADDITTION TO AN EXISTING PUBLIC SCHOOL PER PLANS AND STRUCTURAL PEER REVIEW REPRT. (USE GROUP E1 CONSTRUCTION TYPE IIB)", False, None),
+    ("ELEVATOR ADDITION AND ASSOCIATED RENOVATION WORK", False, None),
+    ("SELF CERT 2019 CRBC; REVISION TO PERMIT #101012788 TO INCREASE ELECTRICAL SERVICE SIZE TO 800A, NEW ONE LINE DIAGRAM AND DETAILS FOR NEW CONSTRUCTION, MASONRY, 4-STORY MIXED USED BUILDING WITH GROUND FLOOR COMMERCIAL AND 3 RESIDENTIAL UNIT ABOVE", False, None),
+    ("2019 CBC: PROPOSED INTERIOR REMODEL OF EXISTING 2 STORY, TYPE IIB CONSTRUCTION, NEW HVAC UNIT, ELECTRICAL SERVICE, ADA RESTOOMS AND ELEVATOR TO BE ADDED (UNDER SEPARATE PERMIT) AS PER PLANS.", True, None),
+    # common areas only in a residential building: dropped; with work on the homes, or a new building: kept
+    ("SPR, CBRC 2019, INTERIOR ALTERATION TO 7TH FLOOR COMMON AREA SPA (HOT TUB) IN AN EXISTING 40 STORY HIGH-RISE RESIDENTIAL CONDOMINIUM BUILDING (R-2). NO WORK TO EXISTING DWELLING UNITS.", False, None),
+    ("INTERIOR RENOVATION OF RESIDENTIAL CONDOMINIUM LOBBY AND ADJOINING SERVICE AREAS 1A CONSTRUCTION TYPE, 30 STORY BUILDING AS PER PLANS", False, None),
+    ("DDS 2019 CBRC: INTERIOR AND EXTERIOR ALTERATIONS TO EXISTING 5 STORY 53 UNIT SENIOR LIVING APARTMENT BUILDING. WORK TO INCLUDE NEW APPLIANCES AND FIXTURES IN ALL UNITS; GROUND FLOOR TENANT AMENITY SPACE RENOVATION", True, 53),
+    ("DDS CBC 2019: FULL BUILDING PERMIT FOR A 5 STORY 32 UNIT RESIDENTIAL BUILDING (INCL. 6 EFFICIENCY UNITS) WITH 6 VEHICULAR PARKING SPACES AND TENANT AMENITIES LOCATED ON GRADE. (OCC. R-2; TYPE IIIA CONST.)", True, 32),
+    # homes with no count: same scope, same decision as the 2-story walk-ups
+    ("RENOVATION OF EXISTING APARTMENTS INCLUDING , ELECTRICAL, & PLUMBING FIXTURES. INCLUDES NEW KITCHEN AND BATHROOM CABINETS, NEW WINDOWS, & FLOORING.", False, None),
+    ("SPR 2019 CBRC: ALTERATION TO RESIDENTIAL UNITS IN TYPE III-A MIXED USE BUILDING WITH M AND R-2 OCCUPANCIES. EXISTING MERCANTILE UNIT AT FIRST FLOOR IS NOT IN CONTRACT.", False, None),
+    # a park with a memorial is site work even on a full building permit
+    ("SELF-CERT 2019 CBC: FULL BUILDING PERMIT FOR TYPE 1 CONSTRUCTION & LANDSCAPED PARK INCLUDING: ARCHITECTURAL CONCRETE MEMORIAL. EXTERIOR SPACES TO ENTRANCE, MEMORIAL, EXCAVATED AMPHITHEATER, LANDSCAPING, PAVING", False, None),
+    # transit: stations and platforms kept, a revision deleting platform work dropped
+    ("SPR 2019 CBC: IMPROVE STATION ACCESSIBILITY, INCLUDES SIDEWALK RAMP, INTERIOR STATIONHOUSE RAMP, ACCESSIBLE KIOSK. EXPAND STATIONHOUSE TO INCLUDE ELEVATOR MACHINE, ELECTRICAL, TELECOMM EQUIPMENT & ACCESSIBLE STAFF TOILET ROOMS", True, None),
+    ("REPAIRS AND REHABILITATION OF EXISTING CTA BROWN LINE STATION, WITH NO CHANGES PROPOSED TO EXISTING USE AND OCCUPANCY OF A-3/U OR CONSTRUCTION TYPE IIB. RENOVATIONS INCLUDE REPLACEMENT OF ELEVATORS", True, None),
+    ("PROPOSED METRA RAIL TRANSIT PLATFORM WITH CANOPY, ELEVATOR AND WARMING SHELTERS TO BE BUILT ON REINFORCED CONCRETE PILE CAPS WITH MICROPILE FOUNDATIONS.", True, None),
+    ("NEW METRA RAIL TRANSIT PLATFORM TO BE BUILT ON REINFORCED CONCRETE PILECAPS WITH MICROPILE FOUNDATIONS. NEW METRA RAIL TRANIT PLATFORM EXTENSION CONNECTING TO EXISTING PLATFORM.", True, None),
+    ("SPR 2019 CBRC - B3-1/RS-3. REPLACEMENT OF EXISTING TRAIN STATION WITH TWO WARMING SHELTERS ON THE EAST AND WEST SIDES OF THE TRACK ALONG THE EXISTING PLATFORMS.", True, None),
+    ("SCOPE OW WORK INCLUDES UPGRADING EQUIPMENT IN EXIWTING JAKSON TRACTION POWER SUBSTATION LOCATED WITHIN METRA'S RAIL RIGHT-OF-WAY.", False, None),
+    # new buildings and commercial interiors
+    ("SPR 2019 CBRC. NEW SINGLE STORY CLUBHOUSE CONSTRUCTION. ALL WORK AS PER PLANS.", True, None),
+    ("2019 CBC - NEW CONSTRUCTION BUILDING 2-STORIES MIXED USE. MAIN LEVEL& PARTIAL 2ND LEVEL BUSINESS VETERINARY CLINIC, AND PARTIAL 2ND LEVEL R-3 DWELLING UNIT.", True, None),
+    ("2019 CBC ERECT A 4 STORY, 3 DWELLING UNIT TYPE IIIA SPRINKLERED MASONRY BUILDING WITH AN ELEVATOR, GROUND FLOOR PROFESSIONAL OFFICE, 6 FOOT HIGH PRIVACY FENCE, AS PER PLANS. R2 OCCUPANCY CLASSIFICATION.", True, 3),
+    ("SPR 2019 CBRC: FULL BUILDING PERMIT FOR 2-STORY MIXED-USE BUILDING WITH 1 DWELLING UNIT AND 1 RETAIL TENANT SPACE ON GRADE, 2-CAR FRAME GARAGE (OCCUPANCY GROUP R-5 & M, TYPE III-A CONSTRUCTION)", True, 1),
+    ("SPR 2019 CBRC: RESTORATION AND IMPROVEMENTS OF THE EXISTING 1-STORY WITH BASEMENT UNOCCUPIED CHICAGO PARK DISTRICT STRUCTURE BURNHAM BUILDING AT JACKSON PARK. WORK TO INCLUDED RECONSTRUCTION OF THE ROOF STRUCTURE, THE RESTORATION OR REPLACEMENT OF ALL WINDOWS, DOORS, AND FINISHES, AND REPLACEMENT OF PLUMBING AND ELECTRICAL SYSTEM AND FIXTURES. (OCCUPANCY GROUP B)", True, None),
+    ("SPR 2019 CBRC: REMODEL 6 EXISTING DU: 9000 SF. CONVERT BASEMENTS INTO 2 DU: 3000 SF. PROPOSED OPEN WOOD PORCH: 250 SF. (OCCUPANCY GROUP: RM-5; CONSTRUCTION TYPE III-A)", True, 8),
+    ("ADDITION OF 1-STORY SERVICE RECEPTION, PARTS STORAGE AND REPAIR GARAGE.WEST & NORTH FACADE IMPROVEMENTS: NEW ACM CANOPY & GLASS ENTRY PORTAL. INTERIOR ALTERATIONS (SHOWROOM, CUSTOMER FACING & BOH AREAS ONLY)", True, None),
+    ("SELF-CERT 2019 CBRC: INTERIOR DEMOLITION OF EXISTING ECAM 8, STRESS BAYS AND NURSE STATION ON 8TH FLOOR OF GALTER PAVILION. WORK INCLUDES NEW SPECT CT EXAM ROOM, EXPANDED CONTROL ROOM, (5) NEW AND RECONFIGURED STRESS BAYS, AND NEW AND RECONFIGURED NURSE STATION. NEW STRUCTURAL WORK TO SUPPORT SPECT CT EQUIPMENT.", True, None),
+    ("SELF-CERT 2019 CBRC ALTERATION LEVEL 1: EXISTING 1 STORY MASONRY BUILDING. EXTERIOR: YARD REPAIR. INTERIOR: NEW KITCHEN EQUIPMENT, APPLIANCES & CABINETRY. NEW RESTROOMS WITH NEW PLUMBING FIXTURES. NEW FLOOR, WALL & CEILING FINISHES AT ALL ALTERED SPACES (A-3, B)", True, None),
+    ("SC 2019 CBC: INTERIOR RENOVATION OF THE 1ST FLOOR AND BASEMENT IN EXISTING 3 STORY + BASEMENT MIXED USE BUILDING, NEW MECHANICAL, ELECTRICAL, AND PLUMBING SERVICE AND DISTRIBUTION. NEW PORCH STAIR FOR A GENERAL RESTAURANT BUILD OUT ON THE 1ST FLOOR AND 2 DWELLING UNITS ON THE FLOORS ABOVE TO REMAIN", True, 2),
+    ("RENOVATION OF EXISTING SPACE INCLUDING REMOVING EXISTING UTILITY SINK, REPAINTING EXISTING WALLS AND DOORS, AND BUILDING NEW WALLS/DOORS AND ADDING NEW CABINETRY, ELECTRICAL OUTLETS AND DATA PORTS. NO CHANGE TO THE EXISTING BUILDING OCCUPANCY CLASSIFICATION M (MERCANTILE).", True, None),
+    ("2019 SPR CBRC: CHANGE OF OCCUPANCY (CONVERT EXISTING OFFICE BUILDING TO 1ST FLOOR 'A-2' USE GROUP, 2ND FLOOR 'B' USE GROUP & 3RD FLOOR 'R-5' USE GROUP), INTERIOR ALTERATIONS WITH MEP WORK & NEW ADDITION ON 1ST & 2ND FLOORS", True, None),
+    ("DDS 2019 CBRC: INTERIOR AND EXTERIOR RENOVATIONS TO AN EXISTING VACANT TWO STORY COACH HOUSE BUILDING AS PER PLANS. WORK TO INCLUDE DEMOLITION, NEW PARTITIONS, LIGHTING, FINISHES. PROPOSED TO INCLUDE A CAFE, KITCHEN, STORAGE AND TOILET ROOM ON THE FIRST LEVEL", True, None),
+    ("SELF CERT 2019 CBRC: INTERIOR ALTERATIONS TO EXISTING GROUND FLOOR REPAIR / REPLACE FINISHES / NEW PAINT AS REQUIRED THROUGHOUT. NEW REFRIGERATION & FREEZER CASES. EXISTING RESTROOMS TO RECEIVE NEW FLOORING", True, None),
+    ("ALTERATION TO EXISTING FOOD SERVICE ESTABLISHMENT INCLUDING CONSTRUCTION OF COUNTER, PLUMBING, ELECTRICAL AND MECHANICAL. NO CHANGES TO EXISTING STRUCTURE. OCCUPANCY GROUP B, TYPE II-B CONSTRUCTION.", True, None),
+    ("SELF CERT 2019 CBC: INTERIOR DEMOLITION OF EXISTING LEVELS 14 AND 15 OF THE GALTER PAVILION. WORK INCLUDES REMOVAL OF EXISTING PARTITIONS, DOORS, CASEWORK, FINISHES, CEILINGS, LIGHTING, MECHANICAL EQUIPMENT", False, None),
+    # partial school, field house and chapel renovations with interior rooms: kept; exterior-only: dropped
+    ("CPS SCHOOL, NO CHANGE IN USE. MONARCAS ELEMENTARY. THE WORK CONSISTS OF: ROOF REPLACEMENT, MASONRY REPAIRS, INTERIOR REPAIRS, MECHANICAL EQUIPMENT REPLACEMENT, EXTERIOR LIGHTING, LIMITED LANDSCAPING.", True, None),
+    ("SC 2019 CBC THIRD FLOOR BATHROOM RENOVATIONS TO THE THIRD FLOOR WHICH INCLUDES MEP WORK AND ROOF REPLACEMENT AND MINOR FACADE REPAIR WORK TO A 3 STORY CPS BUILDING, AS PER ARCHITECTURAL PLANS", True, None),
+    ("SPR 2019 CBRC: ACCESSIBILITY RENOVATIONS TO EXISTING FIELD HOUSE. NEW EXTERIOR RAMP, MINOR INTERIOR UPDATES. NEW WATER SERVICE TO BUILDING. (OCCUPANCY GROUP A-3; 1-STORY; TYPE IIIB CONSTRUCTION)", True, None),
+    ("SPR 2019 CBC: LOWER-LEVEL RESTROOM FACILITIES RENOVATION AND WATER SERVICE UPGRADE TO AN EXISTING CONCRETE AND MASONRY CHAPEL BUILDING.", True, None),
+    ("SPR 2019 CBRC 4-STORY SCHOOL ELEVATOR ADDITION (NO PENETRATIONS OR EXCAVATIONS BELOW 12 FEET) AND INTERIOR ALTERATIONS (OCCUPANCY GROUP E1; TYPE IIIA CONSTRUCTION).", True, None),
+    ("SPR 2019 CBRC: NEW ARTIFICAL TURF FIELD AND TRACK, EXTERIOR LIGHTING, PARTIAL PAVEMENT AT CPS PERCY JULIAN HIGH SCHOOL. EXTERIOR IMPROVEMENTS ONLY, NO INTERIOR SCOPE OF WORK. OCCUPANCY GROUP E-1", False, None),
+    ("SC 2019 CBRC: CPS SCHOOL, NO CHANGE IN USE. REPLACEMENT OF ROOFTOP CHILLER EQUIPMENT ATOP 3-STORY ELEMENTARY SCHOOL BUILDING, AND ASSOCIATED STRUCTURAL SUPPORT, MECHANICAL PIPING, ELECTRICAL, AND ARCHITECTURAL FINISHES.", False, None),
+    # shelters: kept, their rooms never homes
+    ("DDS 2019 CBRC: RENOVATION OF A 4-STORY, 39-UNIT SRO BUILDING WITH 2 GROUND FLOOR COMMERCIAL UNITS INTO A 41-UNIT NON-CONGREGATE TRANSITIONAL SHELTER WITH GROUND FLOOR SUPPORT SPACES.", True, 0),
+    ("INTERIOR REMODEL OF AN EXISTING MULTI-FAMILY RESIDENTIAL BUILDING WITH 6 DWELLING UNITS. GUT REHAB WITH NEW MECHANICAL, ELECTRICAL & PLUMBING SYSTEMS FOR BOTH BUIDINGS.(THIS PERMIT INCLUDES THE ATTACHED 6 DU BUILDING WITH ADDRESS OF 2025 N RACINE.)", True, 12),
+]
 NAME_CASES = [("THE BOWA GROUP INC", "The Bowa Group Inc"), ("TO BE SEEN LLC", "To Be Seen LLC"), ("CPMH CONSTRUCTION INC", "CPMH Construction Inc"),
               ("21ST CENTURY US-SINO SERVICE INC", "21st Century US-Sino Service Inc"), ("JC ANDERSON INC", "JC Anderson Inc"),
               ("M. A. MORTENSON COMPANY", "M. A. Mortenson Company"), ("THERMO-POL INC", "Thermo-Pol Inc"), ("MPI CONSTRUCTION", "MPI Construction"),
@@ -901,7 +1110,10 @@ NAME_CASES = [("THE BOWA GROUP INC", "The Bowa Group Inc"), ("TO BE SEEN LLC", "
               # holdout, Oct 18: no ellipsis is ever added, and these are businesses
               ("DINASO AND SONS CONSTRUCTION COMPANY, INCORPORATED", "Dinaso and Sons Construction Company, Incorporated"),
               ("G.A. JOHNSON & SON", "G.A. Johnson & Son"), ("SANDSMITH VENTURE", "Sandsmith Venture"), ("CLARK - W.E. O'NEIL JV", "Clark - W.E. O'Neil JV"),
-              ("HABITAT FOR HUMANITY CHICAGO", "Habitat for Humanity Chicago")]
+              ("HABITAT FOR HUMANITY CHICAGO", "Habitat for Humanity Chicago"),
+              # holdout round 6: a DBA prints as the legal name for every builder, cut by the City or not
+              ("SMJ CORPORATE LLC DBA APEX DESIGN BUILD", "SMJ Corporate LLC"), ("GENERAL REFRIGERATION LLC DBA PREMISTAR NORTH", "General Refrigeration LLC"),
+              ("CHITOWN CONSTRUCTION, LLC. DBA REIGN RENOVATIONS", "Chitown Construction, LLC.")]
 SCOPE_CASES = [("***SELF-CERT*** EXISTING ZONED PD 306. SCOPE OF WORK: INTERIOR ALTERATION OF EXISTING SPACE INTO A COMMERCIAL BANKING FACILITY", "Interior alteration"),
                ("SELF CERT 2019 CBRC: STRUCTURAL PEER REVIEW INCLUDED. INTERIOR ALTERATIONS TO 26TH AND 27TH FLOOR OFFICE SPACE.", "Interior alterations"),
                ("2019 CBRC: SELF CERTIFICATION OF A LIMITED SCOPE RENOVATION. SCOPE INCLUDED RENOVATION OF SPACE ON LEVEL 2 FOR OFFICES.", "Renovation of space"),
@@ -923,9 +1135,9 @@ def selftest():
     bad = [(d, k, h, keep_desc(d, "PERMIT - NEW CONSTRUCTION" if "NEW CONSTRUCTION" in d else "")) for d, k, h in FILTER_CASES if keep_desc(d)[0] != k or (h is not None and keep_desc(d)[1] != h)]
     assert gc_clean("MEADE ELECTRIC COMPANY, INC. ATTN: D. POEMBA") == "MEADE ELECTRIC COMPANY, INC.", "Attn not stripped"
     assert title_name("WILLIAM'S CONSTRUCTION") == "William's Construction"
-    for raw, want in NAME_CASES:
-        assert unit_count("RENOVATION INCLUDING CONVERSION OF 13 DWELLING UNITS TO MOBILITY ACCESSIBLE UNITS", display=True) == 0
-    assert gc_filter(raw) == want, (raw, gc_filter(raw), want)
+    assert unit_count("RENOVATION INCLUDING CONVERSION OF 13 DWELLING UNITS TO MOBILITY ACCESSIBLE UNITS", display=True) == 0
+    for raw, want in NAME_CASES:   # every case (this loop checked only the last one until Oct 18)
+        assert gc_filter(raw) == want, (raw, gc_filter(raw), want)
     for raw, want in SCOPE_CASES:
         assert clean_scope(raw).startswith(want), (raw, clean_scope(raw), want)
     long = ("SELF-CERT 2019 CBC: INTERIOR ALTERATIONS TO 8TH FLOOR OFFICE SPACE FOR A NEW TENANT. NEW PARTITIONS, CEILINGS AND FINISHES. "
@@ -949,6 +1161,24 @@ def selftest():
     assert entity_names([{"gc": ["Skender Construction, LLC."]}, {"gc": ["Skender Construction LLC"]}, {"gc": ["Skender Construction LLC"]}]) == \
         {entity_key("Skender Construction LLC"): "Skender Construction LLC"}
     assert str(list_day("2026-10-18T02:42:43+00:00")) == "2026-10-17" and str(list_day("2026-10-18T15:00:00Z")) == "2026-10-18"
+    # holdout round 6: sleeping units, each job once, every listed builder counted on the free page
+    assert sleeping_count("INTO A 41-UNIT NON-CONGREGATE TRANSITIONAL SHELTER") == 41
+    assert sleeping_count("(24 SLEEPING UNITS + 2 ADA SLEEPING UNITS FOR A TOTAL OF 26)") == 26
+    assert sleeping_count("EXISTING 16 SLEEPING UNITS ARE TO BE DEMOLISHED AND RECONFIGURED INTO 12 SLEEPING UNITS") == 12
+    assert sleeping_count("GROUP HOME CONSISTING OF 1 EXISTING DWELLING UNIT AND 8 EXISTING SLEEPING UNITS") == 8 and sleeping_count("NEW OFFICE") == 0
+    assert refs("SC 2019 CBRC: REVISION 1 TO PERMIT NUMBER 101068243 TO INCLUDE INTERIOR TENANT FIT-OUT")[0] == ["101068243"]
+    assert refs("INITIAL BUILDOUT OF 19TH, 20TH, AND 21ST FLOORS. INCLUDES REFERENCE TO PERMIT #101085470")[1] == ["101085470"]
+    assert refs("CAISSONS AND PILES ONLY PERMITTED UNDER 101064196") == ([], []), "naming another phase's permit is not a second listing"
+    k = lambda pid, addr, cost, rev=(), ref=(): {"permit": pid, "address": addr, "cost": cost, "_rev": list(rev), "_ref": list(ref)}
+    left, gone = dedupe([k("101068243", "40 E Delaware Pl", 540000), k("101073035", "40 E Delaware Pl", 540000, rev=["101068243"]),
+                         k("101089193", "333 W Wolf Point Plz", 29000000, ref=["101085470"]), k("101085470", "333 W Wolf Point Plz", 750000),
+                         k("101071627", "11211 S Corliss Ave", 666700), k("101071521", "11211 S Corliss Ave", 900000),
+                         k("101060930", "3245 S Calumet Ave", 4099650, ref=["101060929"]), k("101060929", "3244 S Dr Martin L King Jr Dr", 4104300)])
+    assert sorted(gone) == ["101073035", "101085470"], gone
+    top = top_builders([{"gc": ["Edwards Engineering Inc", "Leopardo Construction Inc"], "cost": 600000},
+                        {"gc": ["Leopardo Construction Inc"], "cost": 1000000}, {"gc": ["Acme LLC"], "cost": 5000000}])
+    assert top[0] == {"name": "Leopardo Construction Inc", "projects": 2, "cost": 1600000}, top
+    assert unit_count("41-UNIT NON-CONGREGATE TRANSITIONAL SHELTER", display=True) == 0
     assert coord("41.881832") == 41.881832 and coord(None) is None and coord("") is None and coord("0") is None
     # the 24-month open-permit window (Todd, Oct 17): planted rows as the City writes them, run on Oct 18, 2026
     run = dt.datetime(2026, 10, 18, 1, 25, tzinfo=dt.timezone.utc)

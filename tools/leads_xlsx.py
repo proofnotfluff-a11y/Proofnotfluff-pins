@@ -117,6 +117,7 @@ PROJECT_COLS = [  # key, heading, width, align, fmt
     ("stage", "Stage", 25, "center", None),
     ("type", "Type", 16, "left", None),
     ("units", "Homes", 8, "right", "int"),
+    ("sleeping", "Sleeping units", 10, "right", "int"),   # shelters and group homes: never counted as homes (holdout round 6)
     ("issued", "Issued", 14, "left", "date"),
     ("permit", "Permit", 12, "left", None),
     ("scope", "What the permit covers", 60, "left", None),
@@ -435,11 +436,11 @@ def build(data, out, prev=None):
     list_date = f"List of {fetched.strftime('%b')} {fetched.day}, {fetched.year}"
     wb = S.new_workbook(PRODUCT)
     project_sheet(wb, "near", "Partial occupancy approved: the City has cleared part of the building for use. Biggest first.",
-                  near, list_date, "accent", drop=("stage",) + (() if any(p.get("units") for p in near) else ("units",)))
+                  near, list_date, "accent", drop=("stage",) + absent(near))
     project_sheet(wb, "new", "Permits issued in the last 7 days. Closest to a final clean first, then biggest.",
-                  new, list_date, None, drop=() if any(p.get("units") for p in new) else ("units",))
+                  new, list_date, None, drop=absent(new))
     project_sheet(wb, "all", "Every open permit that passed the filter, closest to a final clean first, then biggest.",
-                  rows, list_date, None)
+                  rows, list_date, None, drop=tuple(k for k in absent(rows) if k == "sleeping"))
     builders_sheet(wb, rows, list_date)
     pitch_kit(wb, list_date)
     terms(wb, src, list_date)
@@ -452,8 +453,181 @@ def build(data, out, prev=None):
                 if "—" in v:
                     raise SystemExit(f"em dash in {ws.title}!{c.coordinate}")
     wb.save(out)
+    cache_values(out)
     return {"projects": len(rows), "near": len(near), "new": len(new), "addresses": addresses,
             "builders": len({__import__("permits_chicago").entity_key(g) for p in rows for g in (p.get("gc") or [])})}
+
+
+def absent(rows):
+    """The count columns no row on a tab fills (Homes, Sleeping units), left off that tab."""
+    return tuple(k for k in ("units", "sleeping") if not any(p.get(k) for p in rows))
+
+
+# ---------------------------------------------------------------- cached formula values
+# openpyxl writes formulas with no stored result, so a viewer that does not recalculate (a phone preview, Google Drive's
+# viewer, Quick Look) shows the summary cells blank (holdout round 6). cache_values() works out every formula this file
+# writes from the cells it reads and stores the result in the file; Excel still recalculates on open.
+_FUNCS = {}
+
+
+def _flat(a):
+    for x in a:
+        if isinstance(x, list):
+            yield from _flat(x)
+        else:
+            yield x
+
+
+def _num(v):
+    return isinstance(v, (int, float)) and not isinstance(v, bool)
+
+
+def _countif(rng, crit):
+    vals = list(_flat(rng))
+    m = re.fullmatch(r"(>=|<=|<>|>|<|=)?(.*)", crit)
+    op, rhs = m.group(1) or "=", m.group(2)
+    if rhs == "?*":
+        return sum(1 for v in vals if isinstance(v, str) and len(v) >= 1)
+    try:
+        r = float(rhs)
+        test = {">": lambda v: v > r, ">=": lambda v: v >= r, "<": lambda v: v < r, "<=": lambda v: v <= r,
+                "=": lambda v: v == r, "<>": lambda v: v != r}[op]
+        return sum(1 for v in vals if _num(v) and test(v))
+    except ValueError:
+        return sum(1 for v in vals if isinstance(v, str) and (v.lower() == rhs.lower()) == (op != "<>"))
+
+
+def _round(x, n=0):
+    q = 10 ** int(n)
+    return (1 if x >= 0 else -1) * int(abs(x) * q + 0.5) / q   # Excel rounds half away from zero
+
+
+class _Err(Exception):
+    pass
+
+
+_FUNCS.update(COUNTIF=_countif, SUM=lambda *a: sum(v for v in _flat(a) if _num(v)), MAX=lambda *a: max([v for v in _flat(a) if _num(v)] or [0]),
+              MIN=lambda *a: min([v for v in _flat(a) if _num(v)] or [0]), ROUND=_round, REPT=lambda t, n: t * int(n),
+              IF=lambda c, a, b="": a if c else b, IFERROR=lambda x, alt: alt if isinstance(x, _Err) else x)
+
+
+def formula_value(wb, ws, f):
+    """The value of one formula of the kinds this workbook writes (COUNTIF, SUM, MAX, MIN, IF, IFERROR, REPT, ROUND, + - * /, comparisons)."""
+    parts = re.split(r'("(?:[^"]|"")*")', f[1:])
+    out = []
+    for i, part in enumerate(parts):
+        if i % 2:
+            out.append(repr(part[1:-1].replace('""', '"')))
+            continue
+        part = re.sub(r"(?:'((?:[^']|'')+)'!)?\$?\b([A-Z]{1,3})\$?(\d+)(?::\$?([A-Z]{1,3})\$?(\d+))?\b",
+                      lambda m: f"_R({(m.group(1) or '').replace(chr(39) * 2, chr(39))!r},{m.group(2)!r},{m.group(3)},{(m.group(4) or '')!r},{m.group(5) or 0})", part)
+        part = part.replace("<>", "!=")
+        part = re.sub(r"(?<![<>!=])=(?!=)", "==", part)
+        out.append(part)
+    expr = "".join(out)
+
+    def _R(sheet, c1, r1, c2, r2):
+        sh = wb[sheet] if sheet else ws
+        if not c2:
+            v = sh[f"{c1}{r1}"].value
+            if isinstance(v, str) and v.startswith("="):
+                raise SystemExit(f"formula refers to formula cell {c1}{r1}: not supported")
+            return 0 if v is None else v   # a blank cell is 0 in Excel arithmetic
+        return [[c.value for c in row] for row in sh[f"{c1}{r1}:{c2}{r2}"]]
+
+    env = dict(_FUNCS, _R=_R, _try=_try, __builtins__={})
+    expr = _close_try(re.sub(r"IFERROR\(", "IFERROR(_try(lambda: ", expr))
+    try:
+        return eval(expr, env)
+    except (ZeroDivisionError, TypeError, ValueError) as e:
+        return _Err(str(e))
+
+
+def _try(fn):
+    try:
+        return fn()
+    except (_Err, ZeroDivisionError, TypeError, ValueError) as e:
+        return e if isinstance(e, _Err) else _Err(str(e))
+
+
+def _close_try(expr):
+    """IFERROR(_try(lambda: X, alt)  ->  IFERROR(_try(lambda: X), alt): close the lambda at IFERROR's first top-level comma."""
+    out, i = "", 0
+    key = "IFERROR(_try(lambda: "
+    while True:
+        j = expr.find(key, i)
+        if j < 0:
+            return out + expr[i:]
+        out += expr[i:j + len(key)]
+        k, depth, q = j + len(key), 0, None
+        while k < len(expr):
+            ch = expr[k]
+            if q:
+                if ch == q and expr[k - 1] != "\\":
+                    q = None
+            elif ch in "'\"":
+                q = ch
+            elif ch == "(":
+                depth += 1
+            elif ch == ")":
+                depth -= 1
+            elif ch == "," and depth == 0:
+                break
+            k += 1
+        out += _close_try(expr[j + len(key):k]) + ")"
+        i = k
+
+
+def cache_values(path):
+    """Store every formula's result in the saved file, so the numbers show without a recalculation."""
+    import zipfile, html as _html
+    from openpyxl import load_workbook
+    wb = load_workbook(path)
+    zf = zipfile.ZipFile(path)
+    names = zf.namelist()
+    wbxml = zf.read("xl/workbook.xml").decode()
+    rels = zf.read("xl/_rels/workbook.xml.rels").decode()
+    target = {m.group(1): m.group(2) for m in re.finditer(r'<Relationship[^>]*Id="([^"]+)"[^>]*Target="([^"]+)"', rels)}
+    target.update({m.group(2): m.group(1) for m in re.finditer(r'<Relationship[^>]*Target="([^"]+)"[^>]*Id="([^"]+)"', rels)})
+    sheet_file = {}
+    for m in re.finditer(r'<sheet [^>]*name="([^"]+)"[^>]*r:id="([^"]+)"', wbxml):
+        t = target[m.group(2)].lstrip("/")
+        sheet_file[_html.unescape(m.group(1))] = t if t.startswith("xl/") else "xl/" + t
+    patched = {}
+    for ws in wb.worksheets:
+        vals = {}
+        for row in ws.iter_rows():
+            for c in row:
+                if isinstance(c.value, str) and c.value.startswith("="):
+                    v = formula_value(wb, ws, c.value)
+                    if isinstance(v, _Err):
+                        raise SystemExit(f"{ws.title}!{c.coordinate} {c.value}: {v}")
+                    vals[c.coordinate] = v
+        if not vals:
+            continue
+        fn = sheet_file[ws.title]
+        xml = zf.read(fn).decode()
+
+        def put(m):
+            coord = re.search(r'\br="([A-Z]+\d+)"', m.group(1)).group(1)
+            if coord not in vals:
+                return m.group(0)
+            v, head = vals[coord], m.group(1)
+            if isinstance(v, str):
+                head = re.sub(r'\st="[^"]*"', "", head)[:-1] + ' t="str">'
+                return f"{head}{m.group(2)}<v>{_html.escape(v, quote=False)}</v></c>"
+            if isinstance(v, bool):
+                v = int(v)
+            num = repr(float(v)) if isinstance(v, float) and not float(v).is_integer() else str(int(v))
+            return f"{head}{m.group(2)}<v>{num}</v></c>"
+        xml = re.sub(r"(<c [^>]*>)(<f>[^<]*</f>)(?:<v\s*/>|<v>[^<]*</v>)?</c>", put, xml)
+        patched[fn] = xml
+    tmp = path + ".tmp"
+    with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as out:
+        for n in names:
+            out.writestr(zf.getinfo(n), patched.get(n, zf.read(n)))
+    zf.close()
+    os.replace(tmp, path)
 
 
 def selftest():
@@ -476,6 +650,18 @@ def selftest():
     assert stages == sorted(stages, key=lambda s: STAGE_ORDER.get(s, 3)), "All projects not closest-to-clean first"
     assert "C12" in allp.auto_filter.ref or allp.auto_filter.ref.startswith("C11"), allp.auto_filter.ref
     assert any(CITY_DISCLAIMER == c.value for row in wb["Terms"].iter_rows() for c in row)
+    # every formula cell carries its stored result (holdout round 6: blank in viewers that do not recalculate)
+    cached = load_workbook(out, data_only=True)
+    for ws in wb.worksheets:
+        for row in ws.iter_rows():
+            for c in row:
+                if isinstance(c.value, str) and c.value.startswith("="):
+                    v, want = cached[ws.title][c.coordinate].value, formula_value(wb, ws, c.value)
+                    assert (v if v is not None else "") == want, f"stored value {v!r} != {want!r}: {ws.title}!{c.coordinate} {c.value}"
+    assert cached["Start Here"]["C8"].value == res["projects"], cached["Start Here"]["C8"].value
+    assert formula_value(wb, allp, '=IF(5>=2,IFERROR(REPT("x",MAX(0,ROUND(5/10*16,0))),""),"")') == "x" * 8
+    assert formula_value(wb, allp, '=IFERROR(1/0,"none")') == "none"
+    assert _round(2.5) == 3 and _round(-2.5) == -3
     assert cut("a" * 50 + " (bb cc) " + "d" * 80).endswith("…") and "(" not in cut("x " * 40 + "(one two three four five six seven" + " y" * 30)
     print("selftest ok", res)
 

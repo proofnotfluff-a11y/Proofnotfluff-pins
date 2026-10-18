@@ -37,7 +37,7 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 from leads_page import decrypt, encrypt, pretty_date, FREE_PAGE  # noqa: E402
 from leads_xlsx import BUILDER_EMAIL, CAPABILITY_SHEET, CITY_DISCLAIMER, OUR_NOTICE, prep, terms_text  # noqa: E402
-from permits_chicago import DATASET, PORTAL, builders, clean_scope, entity_key, entity_names, gc_key, list_day, unit_count  # noqa: E402
+from permits_chicago import DATASET, PORTAL, builders, clean_scope, entity_key, entity_names, gc_key, list_day, sleeping_count, unit_count  # noqa: E402
 
 try:
     from builder_contacts import contact_for, set_password as contacts_password  # noqa: E402
@@ -104,7 +104,7 @@ def slim(p):
     st = p.get("stage")
     return {"id": str(p.get("permit")), "a": p.get("address") or "", "ca": p.get("communityArea") or "", "t": p.get("type") or "",
             "s": p.get("scope") or "", "sf": p.get("scopeFull") or p.get("scope") or "", "c": round(p.get("cost") or 0),
-            "u": p.get("units") or 0, "i": p.get("issued") or "", "g": [bkey(g) for g in (p.get("gc") or [])], "gn": list(p.get("gc") or []),
+            "u": p.get("units") or 0, "sl": p.get("sleeping") or 0, "i": p.get("issued") or "", "g": [bkey(g) for g in (p.get("gc") or [])], "gn": list(p.get("gc") or []),
             "st": STAGES.index(st) if st in STAGES else 2, "m": p.get("milestone") or "", "cs": p.get("status") or "",
             "n": bool(p.get("new")), "lat": p.get("lat"), "lon": p.get("lon")}
 
@@ -183,7 +183,8 @@ def projects_from_review(review, fetched):
         out.append({"permit": r.get("permit"), "issued": r.get("issued") or "",
                     "type": "New construction" if "NEW CONSTRUCTION" in (r.get("type") or "") else "Renovation",
                     "scope": clean_scope(r.get("raw")), "scopeFull": clean_scope(r.get("raw"), limit=1200, whole=True),
-                    "units": unit_count(desc, display=True) or None, "cost": round(r.get("cost") or 0), "address": r.get("address") or "",
+                    "units": unit_count(desc, display=True) or None, "sleeping": sleeping_count(desc) or None,
+                    "cost": round(r.get("cost") or 0), "address": r.get("address") or "",
                     "communityArea": r.get("communityArea") or "", "status": r.get("status") or "", "milestone": r.get("milestone") or "",
                     "gc": gcs, "lat": r.get("lat"), "lon": r.get("lon"), "newThisWeek": (r.get("issued") or "") >= week})
     out.sort(key=lambda x: (-x["cost"], x["issued"]))
@@ -718,7 +719,7 @@ setNav(nav);app.classList.remove("view-enter");void app.offsetWidth;app.classLis
 if(scroll){window.scrollTo(0,0);const h=app.querySelector("h1");if(h){h.setAttribute("tabindex","-1");h.focus({preventScroll:true});}}}
 
 /* shared pieces */
-function row(p,ctx){const m=mk(p.id);const b=p.g.length?B[p.g[0]]:null;const other=ctx&&ctx!=="near"&&ctx!=="new"&&p.g.find(k=>k!==ctx);const kind=[p.t,p.u?plural(p.u,"home"):""].filter(Boolean).join(", ");
+function row(p,ctx){const m=mk(p.id);const b=p.g.length?B[p.g[0]]:null;const other=ctx&&ctx!=="near"&&ctx!=="new"&&p.g.find(k=>k!==ctx);const kind=[p.t,p.u?plural(p.u,"home"):"",p.sl?plural(p.sl,"sleeping unit"):""].filter(Boolean).join(", ");
 return `<li><a class="row" href="#/project/${encodeURIComponent(p.id)}" data-id="${esc(p.id)}">
 <span class="mn num">${money(p.c)}<small>${esc(kind)}</small></span>
 <span class="ad">${esc(p.a)}${p.ca?`<span class="ar">, ${esc(p.ca)}</span>`:""}</span>
@@ -851,10 +852,10 @@ if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}else if
 /* CSV of the current view */
 function cell(v){v=v==null?"":String(v);if(/^[=+\-@\t\r]/.test(v)&&!/^-?\d+(\.\d+)?$/.test(v))v="'"+v;return /[",\r\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;}
 function exportCsv(){const rows=STATE.rows||[];if(!rows.length)return;
-const head=["Address","Community area","Reported cost","Stage","City milestone","City permit status","Type","Homes","Issued","Permit","Builder","All builders","Builder office phone","Builder email","Builder website","New this week","Contacted","Contacted on","Your note","What the permit covers","Latitude","Longitude"];
+const head=["Address","Community area","Reported cost","Stage","City milestone","City permit status","Type","Homes","Sleeping units","Issued","Permit","Builder","All builders","Builder office phone","Builder email","Builder website","New this week","Contacted","Contacted on","Your note","What the permit covers","Latitude","Longitude"];
 const lines=[head.map(cell).join(",")];
 rows.forEach(p=>{const b=p.g.length?B[p.g[0]]:null;const c=b&&b.contact&&b.contact.status==="verified"?b.contact:{};const m=mk(p.id);
-lines.push([p.a,p.ca,p.c,STG[p.st],p.m,p.cs,p.t,p.u||"",p.i,p.id,b?pn(p,0):"",p.g.map((k,i)=>pn(p,i)).join("; "),c.phone||"",c.email||"",c.website||"",p.n?"Yes":"",m.c?"Yes":"",m.c||"",(m.n||"").trim(),p.sf,p.lat||"",p.lon||""].map(cell).join(","));});
+lines.push([p.a,p.ca,p.c,STG[p.st],p.m,p.cs,p.t,p.u||"",p.sl||"",p.i,p.id,b?pn(p,0):"",p.g.map((k,i)=>pn(p,i)).join("; "),c.phone||"",c.email||"",c.website||"",p.n?"Yes":"",m.c?"Yes":"",m.c||"",(m.n||"").trim(),p.sf,p.lat||"",p.lon||""].map(cell).join(","));});
 const blob=new Blob(["﻿"+lines.join("\r\n")+"\r\n"],{type:"text/csv;charset=utf-8"});
 const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`chicago-leads-${D.asOfIso}-${rows.length}-projects.csv`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);
 toast(`CSV exported: ${plural(rows.length,"project")}`);}
@@ -875,7 +876,7 @@ ${showLink?`<div class="foot"><a class="btn" href="#/builder/${encodeURIComponen
 
 /* project page */
 function viewProject(p){document.title=`${p.a} | Chicago Construction Cleaning Leads`;const m=mk(p.id);
-const kind=[p.t,p.u?plural(p.u,"home"):""].filter(Boolean).join(", ");
+const kind=[p.t,p.u?plural(p.u,"home"):"",p.sl?plural(p.sl,"sleeping unit"):""].filter(Boolean).join(", ");
 const bs=p.g.map(k=>B[k]);
 const sub=s=>p.st===s?(s===2&&p.i?"Issued "+day(p.i)+". Current stage":"Current stage"):p.st<s?(s===2&&p.i?"Issued "+day(p.i):"Done"):"Not yet";
 const steps=[[2,"Permit issued",sub(2)],[1,"Inspections under way",sub(1)],[0,"Partial occupancy approved",sub(0)]];
@@ -893,7 +894,7 @@ ${bs.length?bs.map((b,i)=>builderCard(b,p,true,false,pn(p,i))).join(""):`<sectio
 </aside><div class="pg-main"><section class="panel track"><h2>Where this job is</h2><ol class="steps">${steps.map(([s,t,sub])=>`<li class="${p.st===s?"now s"+s:p.st<s?"done":""}"${p.st===s?' aria-current="step"':""}><span class="k">${p.st<s?ico("check","s"):p.st===s?ico(["check","search","crane"][s],"s"):""}</span><b>${t}</b>${sub?`<span>${esc(sub)}</span>`:""}</li>`).join("")}<li class="fin"><span class="k">${ico("flag","s")}</span><b>Final clean</b><span>Your bid</span></li></ol>
 <p class="ms"><b>City milestone:</b> ${esc(sent(p.m)||"Not given")}. ${STG_LINE[p.st]}</p></section>
 <section class="panel"><div class="sec-h"><h2>Permit details</h2></div><dl class="facts">
-<div><dt>Reported cost</dt><dd class="num">$${int(p.c)}</dd></div><div><dt>Type</dt><dd>${esc(p.t)}</dd></div><div><dt>Homes</dt><dd class="num">${p.u?int(p.u):"None listed"}</dd></div><div><dt>Issued</dt><dd>${esc(day(p.i))}</dd></div>
+<div><dt>Reported cost</dt><dd class="num">$${int(p.c)}</dd></div><div><dt>Type</dt><dd>${esc(p.t)}</dd></div><div><dt>Homes</dt><dd class="num">${p.u?int(p.u):"None listed"}</dd></div>${p.sl?`<div><dt>Sleeping units</dt><dd class="num">${int(p.sl)}</dd></div>`:""}<div><dt>Issued</dt><dd>${esc(day(p.i))}</dd></div>
 <div><dt>Permit number</dt><dd class="num">${esc(p.id)}</dd></div><div><dt>City permit status</dt><dd>${esc(p.cs||"Not given")}</dd></div><div><dt>Community area</dt><dd>${esc(p.ca||"Not given")}</dd></div><div><dt>Stage</dt><dd>${STG[p.st]}</dd></div></dl></section>
 <section class="panel"><div class="sec-h"><h2>What the permit covers</h2></div><p class="scope">${esc(nbh(p.sf||p.s))}</p>
 <p class="rec">From the City's permit text, tidied for reading. <a href="${esc(D.record+encodeURIComponent(p.id))}" target="_blank" rel="noopener">See the City's raw record for permit ${esc(p.id)}<span class="sr"> (opens in a new tab)</span></a></p>

@@ -1551,7 +1551,8 @@ def stage(m):
 def project_card(x, pill=True, city="Chicago", permit_label="Permit"):
     lab, cls = stage(x.get("milestone"))
     gc = "; ".join(x.get("gc") or [])
-    units = f' · {x["units"]:,} homes' if x.get("units") else ""
+    units = (f' · {x["units"]:,} home{"s" if x["units"] != 1 else ""}' if x.get("units") else
+             f' · {x["sleeping"]:,} sleeping units' if x.get("sleeping") else "")   # shelter rooms are never homes (holdout round 6)
     area = x.get("communityArea") or city
     pill_html = f'<p class="ld-pill s-{cls}">{E(lab)}</p>' if pill else ""
     return (f'<article class="ld-proj" data-type="{"new" if x["type"].startswith("New") else "ren"}" data-area="{E(area)}">{pill_html}'

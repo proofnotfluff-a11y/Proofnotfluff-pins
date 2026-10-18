@@ -356,7 +356,9 @@ def run():
 def selftest():
     """Offline: canned API answers drive two steps; the maths, the no-history rule and the invariant are checked,
     and a planted broken fee must be caught by the invariant (a checker that cannot fail proves nothing)."""
-    global leaderboard, activity, current_price, resolution
+    global leaderboard, activity, current_price, resolution, PM
+    import tempfile
+    PM = tempfile.mkdtemp(prefix="pm-selftest-")  # never read or write the live pm/ state (COO Oct 18: the live state.json broke runs 2 and 3)
     cfg = dict(DEFAULT_CONFIG, bankroll=100.0, stake_per_signal=10.0, top_n=2)
     clock = {"t": 1_700_000_000}
     trades = {"0xA": [], "0xB": []}

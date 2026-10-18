@@ -1,92 +1,78 @@
-# COO strategy (rewritten every run; this version Sat Oct 17, 2026, 5:45 am, daily run on Opus)
+# COO strategy (rewritten every run; this version Sun Oct 18, 2026, 5:02 am, daily run on Opus)
 
-Plan: coo/PIVOT.md (Todd's "Go", Oct 15, 9:55 pm). One audience (e-commerce and consumer brands), one ladder (free calculators on proofnotfluff.com, the $79 13-week kit on Gumroad, Fiverr gigs at $60 to $550), Etsy on autopilot, one video a day on e-commerce cash topics, judged Nov 12 (scoreboard experiments/ecom-ladder-pivot).
+Plan: LEADS FOCUS (Todd, Oct 17, 7:23 pm; plan file) over coo/PIVOT.md and coo/VENTURE.md. Etsy is paused and untouched; the crew builds lead tools from public data, sells them as Gumroad memberships, and reaches local buyers by email Todd sends. First win: a $1,000 month by Jan 31, 2027.
+
+## Revenue this month: $0 (October to date, net of platform fees)
+Sales Log has only the TEST row; no Gumroad sale email in the connected Gmail in the last 3 days. Caveat: the Gumroad-to-Sales-Log zap runs on Zapier, which is out of tasks since Oct 17, 4:10 pm, so a sale would not be logged until the limit resets.
 
 ## What changed since yesterday
-- proofnotfluff.com serves over HTTPS (Todd re-added the domain and ticked Enforce HTTPS Oct 16 evening); IndexNow accepted all 44 sitemap URLs (202). One of the three discovery blockers is gone; Search Console and Bing verification are still Todd's.
-- Hub swap (site/DOMAIN.md step 5): https://proofnotfluff.com/go/ is now the hub in cmo/CONVERSION_STANDARD.md, agents/cmo.md and the ledger FUNNEL line. The promote prompts still print github.io short links until the redirect is confirmed: .github/workflows/link-check.yml checks old links from GitHub's runner (the cloud sandbox cannot reach either host).
-- Product engine (PIVOT.md, Oct 17 COO line): the builder needs a rework-in-place path for the three page upgrades (payout gap, PO cash, channel profit). Written in agents/cloud-builder.md; the COO run's update_trigger was refused by its permission check, so the live session applied it Oct 17 (11:11 am) after a second constitution review caught and fixed a gap (a reworked kit kept its old clearance). The stored builder and CMO prompts now match the repo: the upgrades can be queued.
-- Ads swap did not run: the Oct 16 shop run's toggle click was refused by the PC permission check. Todd's clicks: #23 off, #29 on, Savings Tracker off (it was never in the approved set).
-- Rule desk's first Haiku run (Oct 16, 6:32 am): ok, 13 official sources checked, no value changes, no Opus subagent needed (Oct 15 on Opus checked 17; the rotation varies by day).
-- Plan file 48.7 to 44.4 KB, ledger 46.5 to 46.0 KB (superseded lines moved verbatim to archive-3); ElevenLabs purchase now on the ledger Spend line.
+- Two products are live off Etsy for the first time (Oct 17): the $79 13-Week E-commerce Cash Flow kit (Gumroad, payout method added) and Chicago Construction Cleaning Leads at $29 a month (Gumroad membership, launch checklist ticked, outreach drafts waiting). Registered today as products/33 and 34 with legal/33 and 34.
+- Discovery switches flipped: Search Console verified and Bing imported (47 URLs), Kit forms live (cheat sheet and leads waitlist), Cloudflare visits readable (site: 19, 17 and 25+ visits on Oct 15, 16, 17).
+- LEADS FOCUS disabled the factory, R&D lab, shop run and afternoon promote. ProofNotFluff cloud runs fell from about 18 to about 10 a day. Cost: Etsy numbers are no longer read (the shop run was the only reader).
+- Fiverr dropped (Todd, Oct 17: it trades his hours and identity); LLC articles filed ($153.38, Todd); Higgsfield free account open.
+- Chicago Restaurant Inspection Leads ($39 a month) passed all four gates; launch waits on Todd's go, a GitHub secret and the Gumroad product.
 
-## Goal ladder (off-Etsy first since the pivot)
+## Goal ladder
 | Rung | Status | What has to be true |
 |---|---|---|
-| First dollar off Etsy | not reached; target Nov 12 | Gumroad payout method (kit built, cleared, waiting) or the Fiverr account open; 1 sale |
-| First $100 off Etsy | not started | 2 kit sales at $79, or 1 Fiverr gig at $100+ |
-| $1,000 a month | target Jan 31, 2027 | about 13 kit sales, or 3 to 5 Fiverr orders at $200 to $550 a month |
-| $10,000 a month | no date | a hosted cash-flow tool with 300+ subscribers at $29, or 20+ service orders a month |
-| $100,000 a month | no date | not reachable faceless on today's evidence |
-| Etsy first order (background) | not reached: 0 orders on 36 visits since Sep 27 | autopilot only |
+| First dollar off Etsy | not reached; target Oct 31 | 1 kit sale or 1 leads subscriber; 36 Chicago emails go Monday |
+| First $100 a month | not started; target Nov 30 | 4 leads subscribers at $29, or 2 kit sales |
+| $1,000 a month | target Jan 31, 2027 | about 30 subscribers across 2 to 3 lead products at $29 to $39, or a mix with kit sales |
+| $10,000 a month | no date | about 300 subscribers: 8 to 10 city-trade lists, or one list with a paid acquisition loop that pays back |
+| $100,000 a month | no date | not reachable on today's evidence |
+| Etsy first order (background) | not reached: 0 orders since Sep 27 | paused, listings live |
 
-Honest distance: $1M a year is 35 sales a day at $79, or about 920 a day at $2.99. Today: $0 off Etsy, 0 products live off Etsy, 0 Etsy orders, about 1.7 Etsy visits a day.
+Honest distance: $1M a year is about 2,900 subscribers at $29. Today: 0 subscribers, 0 sales, about 20 site visits a day.
 
-## Net profit this week (EVOLUTION.md section 1; Oct 10 to 16)
-Revenue $0. Etsy fees $0. Listing fees $1.00 (5 new listings). Etsy Ads spend $0.16 (1 click on #23). Cloud runs: about 18 ProofNotFluff runs a day, about 126 for the week. Cost per run: not set. Net: minus $1.16 before agent cost. Leading indicator optimized: visits to the e-commerce free pages (Cloudflare Web Analytics; no read route from the cloud yet), then clicks to the kit and gigs.
+## Net profit this week (EVOLUTION.md section 1; Oct 11 to 17)
+Revenue $0. Etsy fees $0. Listing fees $0.60 (3 listings). Etsy Ads $0.16. Cloud runs about 120 (about 18 a day to Oct 17, about 10 from Oct 18). Cost per run: not set. Net: minus $0.76 before agent cost. One-off outside the formula: LLC filing $153.38 (Todd). Leading indicator: paying subscribers on the leads product, then leads waitlist sign-ups and visits to the kit's free page.
 
 ## The constraint this week
-Availability, unchanged: the kit cannot sell without the Gumroad payout method and the gigs cannot sell without the Fiverr account; both are Todd's steps (3 and 30 minutes). Discovery moved one step (HTTPS and IndexNow done); Search Console and Bing remain. Nothing the crew builds moves the first-dollar rung until one switch flips.
+Reach to buyers who pay. Both products can now take money; the only demand test in motion is 36 emails Todd sends Monday (pass mark: 2 paying companies within 10 days, quest a1-send-outreach). Behind it, Zapier's task limit blocks every video, Reel, TikTok, pin and the sale log until Todd picks a fix (quest zapier-task-limit).
 
-## Scorecard (Oct 9 to 15 vs Oct 2 to 8; Oct 16 not final until today's shop run)
-| Metric | now | before |
-|---|---|---|
-| Etsy listings live | 32 | 26 |
-| Listings added | 7 | 14 |
-| Etsy visits | 12 | 12 |
-| Visits per listing per day | 0.05 | 0.07 |
-| Etsy search visits | not recorded | not recorded |
-| Favorites, orders, revenue | 0, 0, $0 | 0, 0, $0 |
-| Etsy Ads (30 days to Oct 16) | 3 views, 1 click, $0.16 | not running |
-| Shorts | 12 | 17 |
-| Pins | 29 (0 outbound clicks recorded) | 40 |
-| Posts | 28 | 18 |
-| Free-page visits (Cloudflare) | not recorded (no cloud read route) | none |
-| Off-Etsy sales | 0 (nothing live) | 0 |
+## Unit economics (assumptions marked)
+- Leads A1: $29 a month, Gumroad fee about 10% (assumption until the first payout statement), so about $26 net per subscriber per month. $1,000 a month needs about 38 subscribers net. From email: if 36 emails give 2 payers (Todd's pass mark, 5.6%), 40 emails a week for 10 weeks gives about 22 subscribers before churn. That alone misses Jan 31; it takes two or three city-trade lists in parallel or a second channel. Binding factor: outreach volume, which is Todd's send time (about 20 minutes per 36).
+- Kit: $79, about $71 net. 14 sales a month alone reach $1,000. Traffic to its page is not split out yet; at 20 site visits a day across 47 pages it is low single digits.
+- Etsy: 32 listings x about 0.05 visits a day; paused. 0.6 orders a month at best.
 
-## Unit economics
-- Etsy: 32 listings x 0.05 visits a day x unknown conversion x $2.99. At 2% that is about one order every 30 days; a $2.99 sale nets about $2.26. Etsy served 3 ad views in 30 days at $5 a day. Autopilot stays right.
-- Ladder: price is the factor with headroom (26x per sale at $79, up to 180x at $550). Conversion and traffic are unmeasured because nothing is live to convert. Binding factor: availability (0 of 2 sales switches on).
-- Path to the first $100 off Etsy: roughly 100 to 200 e-commerce page visitors for 1 or 2 kit sales at a 1% page-to-purchase rate (assumption, unconfirmed); that is the Nov 12 target of 100+ visits in 14 days.
-
-## Experiments in flight
+## Experiments in flight (live strategy experiments: ecom-ladder-pivot; probes: permit-leads-pilot A1, pm-copy-top-wallets C1, affiliate-tools-probe armed)
 | slug | started | metric now vs baseline | check | owner |
 |---|---|---|---|---|
-| ecom-ladder-pivot | Oct 15 (Todd) | 0 of 2 sales switches on; $0 off Etsy; HTTPS and IndexNow done; page visits not read | Nov 12 | coo |
-| free-calculator-site | Oct 6 | 44 pages submitted to IndexNow Oct 16; not in Google yet | Nov 4 | coo |
-| plan-v2-demand-test | Oct 7 | kit cleared at $79, unpublished (payout method) | Nov 4, extend to Nov 30 if published after Oct 15 | coo |
-| etsy-ads-test | Oct 13 (Todd) | 3 views, 1 click, $0.16 in 30 days; swap waits on Todd's clicks | Oct 27 | todd |
-| sales-first | Oct 8 (Todd) | superseded by the pivot for CTAs | Nov 1 | todd |
-| price-299 | Oct 6 (Todd) | 0 orders on 12 visits this week | Nov 3 | todd |
-| permit-leads-pilot | Oct 14 (Todd) | parked until the Kit form exists | 45 days after go-live | todd |
+| permit-leads-pilot (probe A1) | Oct 14; paid page Oct 17 | 0 subscribers; waitlist count not recorded (Kit, no API key); outreach Monday | Dec 1 | coo |
+| pm-copy-top-wallets (probe C1) | Oct 17 | $200.00 paper, 0 positions; scheduled runs 2 and 3 failed on the selftest, fixed today | Dec 12 | coo |
+| ecom-ladder-pivot | Oct 15 | $79 kit live Oct 17, 0 sales; Search Console and Bing live | Nov 12 (kit 45-day check Dec 1) | coo |
+| etsy-ads-test | Oct 13 (Todd) | 3 views, 1 click, $0.16 in 30 days; swap never ran | Oct 27 (ads off is Todd's click) | todd |
+| price-299 | Oct 6 (Todd) | 0 orders | Nov 3 | todd |
+| affiliate-tools-probe | armed | no page meets the 30-visits gate | 45 days after first block | coo |
 
 ## What we know
-- A1: title format under 15 words, noun first; judged Nov 7.
-- C6: Short descriptions are not clickable; broad money hooks beat narrow trade hooks (median 41 vs 11 views). Proof Check #1 drew 50 views in 17 hours vs 4 for the old format the same day (one data point).
-- D1: Pinterest is a 90-day channel (judge Jan 3); 0 outbound clicks so far.
+- A1: title format under 15 words, noun first; judged Nov 7 (Etsy paused, likely inconclusive).
+- C6: Short descriptions are not clickable; broad money hooks beat narrow trade hooks. Proof Check #1: 50 views in 17 hours vs 4 for the old format.
 - Etsy Ads: a new shop with no sales gets almost no paid placement (3 views in 30 days at $5 a day).
-- Crew fact (Oct 17): the permission check can refuse scheduled-task writes from this run; a prompt change then waits for Todd, and nothing routes around it.
-- Crew fact (Oct 16): a prompt edit must change the review gate too, or the reviewer blocks the new behavior.
-- Crew fact (Oct 14): the account usage limit is shared across every task; when it hits, the shop run (the only Etsy numbers) goes dark.
+- Red team, accepted once (Oct 17): traffic is the bottleneck; a waitlist is weaker evidence than a paid pre-sale. One more acceptance makes it a rule.
+- Crew fact (Oct 18): a tool's selftest must never read live state; the paper tracker's did and stopped the probe for 12 hours.
+- Crew fact (Oct 17): Zapier costs 2 tasks a call and the crew used about 36 a day; when the limit hits, all publishing and the sale log stop at once.
+- Crew fact (Oct 14): the account usage limit is shared by every task.
 
-## Crew health (Oct 17, 5:45 am)
-- Scout's Wed Oct 14 run failed on the usage limit; next run Sun Oct 18.
-- Shop run partial Oct 15 and 16 (PC permission check refused the ads toggle and Publish clicks; file swaps and KDP #8 wait on a connected PC folder). Legal desk partial Oct 16 (#32 zip not in Drive, quest legal-32-files).
-- Factory (3 runs a day, still on Fable) and R&D lab (2 a day) produce nothing under the pivot; both are PC-bound, so only Todd can slow them. Builder had no work in its last 3 runs (site queue empty).
-- All other runs ok. Schedule: about 18 ProofNotFluff runs a day of the 24 budget. Edition and redesign desks off.
+## Crew health (Oct 18, 5:00 am)
+- Failed: capability scout's last run (Oct 14, usage limit); next Sun Oct 18, 8:40 pm. Afternoon promote Oct 17 failed (Zapier limit), now disabled. Paper tracker workflow failed Oct 18 00:41 and 06:34 UTC (fixed, commit today).
+- Partial: shop run (permission check, no PC folder) before it was disabled; rule desk Oct 17 (USPS 2027 filing not found yet, expected mid-November).
+- Builder: no Etsy work, but the live session built the restaurant leads product; the builder's queue for lead products is the plan file's product order.
+- Schedule: about 10 ProofNotFluff cloud runs a day of the 24 budget. Factory, R&D lab, shop run, afternoon promote, edition and redesign desks disabled.
+- Prompt sync: morning promote stored prompt now carries the HEARD LINES review and a constitution BINDING line (reviewer PASS); afternoon promote's repo copy has both and applies when it is re-enabled; CMO stored prompt already matched.
 
 ## What we stopped and why
-- Premium evidence reads for home services and STR: held by the pivot; lines moved to archive-3 (the Oct 20 decision is moot).
-- demand-gate-v2 stopped by the pivot (3 search visits in 30 days, under the 50-visit floor).
-- Instagram carousel step: deferred to the Oct 29 zero-click review.
+- Fiverr: Todd, Oct 17 (needs his identity and hours).
+- Etsy builds, Etsy reads and calculator-page work: LEADS FOCUS (Oct 17).
+- Instagram carousel: deferred to the Oct 29 zero-click review.
 
-## Open questions for Todd (ranked by expected profit, minutes)
-1. upload-premium-ecom-13-week-cash-flow (3 min): Gumroad payout method. Turns on the only built product priced for real money ($79).
-2. open-fiverr-account (30 min): the $60 to $550 gigs are built and waiting.
-3. Etsy Ads swap (2 min, Etsy Ads in Shop Manager): #23 off, #29 on, Savings Tracker off; budget stays $5.
-4. verify-search-console (10 min): Search Console plus the Bing import; HTTPS is now live, so nothing blocks it.
-5. Apply two reviewed prompt updates (1 min in a live chat: "apply the COO's Oct 17 builder and CMO prompts"): unlocks the three page upgrades and the CMO's committed ElevenLabs renders.
-6. kit-form (15 min), share-save-bio-links, switch-pc-models-opus (factory still Fable), pc-shop-run-folder, legal-32-files, apply-erank-affiliate. Oct 5 quests (messages-24h, note-to-buyers-browser, legal-returns-policy) retire Oct 19 if unticked.
+## Open questions for Todd (ranked by expected profit per minute)
+1. a1-send-outreach (20 min, Monday): the only live demand test. Expected: 2 payers = $58 a month recurring.
+2. zapier-task-limit (3 min): restores publishing and the sale log; without it a first sale may go unrecorded.
+3. gmail-display-name (1 min): Legal's condition before the Monday sends.
+4. Restaurant leads launch (about 15 min: go, GitHub secret, Gumroad $39 membership; launch record steps 1 to 4): doubles the products the Monday outreach engine can sell.
+5. Etsy Ads off by Oct 27 (2 min) and the swap (optional).
+6. llc-ein after the state approves (check Oct 20).
 
-## Next run (Sun Oct 18, 5:00 am)
-Read the link-check result; if old links land on proofnotfluff.com, swap the promote prompts' short links when prompt writes are allowed. Oct 16 final Etsy line; whether any switch flipped; whether the prompt updates were applied (then queue the three page upgrades). Monday deep run Oct 19.
+## Next run (Mon Oct 19, 5:00 am, deep run)
+Red team round (Gemini on Todd's key, Zapier permitting; else the Claude fallback). Check the paper tracker wrote new rows after the fix. Count Monday sends and any subscriber. Research: what public-data lead lists sell for and how they acquire buyers. Decide the next probe (lane A candidates: Austin construction cleaning, Chicago new business licenses).

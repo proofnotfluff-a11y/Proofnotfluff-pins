@@ -3748,11 +3748,11 @@
    "data": "permits/inspections-chicago/rest-sample.json",
    "price": "39",
    "title": "Chicago Restaurant Inspection Leads: Failed Inspections and New Openings | ProofNotFluff",
-   "desc": "Free weekly sample of Chicago food inspection leads: places with a failed or conditional City inspection by violation category, places about to open, and repeat failures, for pest control, hood cleaning, grease trap and kitchen cleaning companies.",
+   "desc": "Free weekly sample of Chicago food inspection leads: places with a failed or conditional City inspection by violation category, places with a new license inspection, and repeat failures, for pest control, hood cleaning, grease trap and kitchen cleaning companies.",
    "eyebrow": "Free sample, updated every Monday",
    "h1": "Chicago Restaurant Inspection Leads",
    "lede": "For pest control, hood cleaning, grease trap and commercial kitchen cleaning companies, and vendors to new restaurants.",
-   "card": "Chicago restaurants with a fresh failed or conditional City inspection, sorted by violation category, and places about to open.",
+   "card": "Chicago restaurants with a fresh failed or conditional City inspection, sorted by violation category, and places with a new license inspection.",
    "method": [
     "Pick your category. A pest violation is a pest control lead, a ventilation or hood violation is a hood cleaning lead, and a waste water or grease trap violation is a grease trap lead.",
     "Call within a few days of the inspection date, during a quiet hour (2 to 4 pm suits most kitchens). Name the City's public record and its date, and leave any judgment out of it.",
@@ -3774,7 +3774,7 @@
     ],
     [
      "Who is left out?",
-     "Schools, colleges, day care and other children's sites, hospitals, senior and nursing sites, mobile vendors, and places the City last marked out of business are left out. So is a place whose business name reads as only a person's name: a first and last name, with or without LLC or Inc, or a title and a first name, such as \"Chef Maria\". A name with a business word or a possessive, such as \"Garcia Bakery\" or \"Maria's Kitchen\", stays."
+     "Schools, colleges, day care and other children's sites, hospitals, nursing, rehab and senior sites, shelters, mobile vendors, and places the City last marked out of business or not located are left out. So is a place whose business name reads as only a person's name: a first and last name, with or without LLC or Inc, or a title and a first name, such as \"Chef Maria\". A name with a business word or a possessive, such as \"Garcia Bakery\" or \"Maria's Kitchen\", stays. Names are checked against lists of common first names and surnames, so the check can miss one; if a business on the list goes by a person's name, write to hello@proofnotfluff.com."
     ],
     [
      "Does a place on the list have a problem today?",

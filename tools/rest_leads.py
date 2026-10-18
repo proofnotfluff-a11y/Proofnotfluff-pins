@@ -21,7 +21,7 @@ published, so every weekly list has the same depth even though the City posts re
 What is left out, and why (counted in counts.excluded): schools, day care and other children's facilities, hospitals,
 nursing and senior sites, and mobile vendors (by the City's facility type and by name); any place whose business name
 is a person's name (person_name); rows with no business name or no address; places the City last marked "Out of
-Business" or "Business Not Located".
+Business" or "Business Not Located"; any place on the do-not-list (DNL_FILE), every week once it asks.
 
 Wording rule (Todd, Oct 17): the list states the City's recorded result and the violation categories, dated, with
 the City's disclaimer. It never says a business is dirty or unsafe, and it never republishes the inspector's notes:
@@ -30,6 +30,7 @@ code numbers and titles.
 
 Usage: python3 tools/rest_leads.py RAW.json OUT.json      the dataset (members' data: keep it out of the repo)
        python3 tools/rest_leads.py --sample RAW.json      writes permits/inspections-chicago/rest-sample.json (public)
+       python3 tools/rest_leads.py --dnl-add --license N | --name NAME --address ADDRESS   (a place asked to be left out)
        python3 tools/rest_leads.py --selftest
 """
 import collections, datetime as dt, json, os, re, sys
@@ -170,10 +171,12 @@ CARNITAS BIRRIA POZOLE POZOLERIA ELOTES TORTAS TORTILLERIA TAMALERIA MOLE MENUDO
 GYRO HOTDOG HOTDOGS DOGS BEEF PORK RIBS CHOPHOUSE TAPAS DUMPLING DUMPLINGS BAO CURRY BIRYANI KABOB KABOBS SAJ JERK PATTY""".split())
 # The one sentence every surface uses for who is left out (workbook Start Here and Terms, app Terms, free page FAQ); it states
 # the rules below in plain words (holdout round 2).
-LEFT_OUT = ("Schools, colleges, day care and other children's sites, hospitals, senior and nursing sites, mobile vendors, and places "
-            "the City last marked out of business are left out. So is a place whose business name reads as only a person's name: a "
-            "first and last name, with or without LLC or Inc, or a title and a first name, such as \"Chef Maria\". A name with a "
-            "business word or a possessive, such as \"Garcia Bakery\" or \"Maria's Kitchen\", stays.")
+LEFT_OUT = ("Schools, colleges, day care and other children's sites, hospitals, nursing, rehab and senior sites, shelters, mobile "
+            "vendors, and places the City last marked out of business or not located are left out. So is a place whose business name "
+            "reads as only a person's name: a first and last name, with or without LLC or Inc, or a title and a first name, such as "
+            "\"Chef Maria\". A name with a business word or a possessive, such as \"Garcia Bakery\" or \"Maria's Kitchen\", stays. "
+            "Names are checked against lists of common first names and surnames, so the check can miss one; if a business on the list "
+            "goes by a person's name, write to hello@proofnotfluff.com.")
 TITLES = {"CHEF", "MR", "MRS", "MS", "MISS", "DR", "DOCTOR", "SR", "JR", "II", "III", "IV", "SAINT", "ST"}
 FIRST = set("""AARON ABDUL ABEL ABIGAIL ABRAHAM ADA ADAM ADRIAN ADRIANA AGNES AHMED AIDAN AISHA ALAN ALBERT ALBERTO ALEJANDRA ALEJANDRO ALEX
 ALEXANDER ALEXANDRA ALEXIS ALFONSO ALFREDO ALI ALICE ALICIA ALINA ALISON ALLEN ALMA ALVARO ALVIN AMANDA AMBER AMELIA AMIR AMY ANA
@@ -302,8 +305,67 @@ def result_word(r):
     return re.sub(r"\s+", " ", (r or "").strip())
 
 
-def build(raw):
-    """The dataset for this week's list (see the module docstring)."""
+# Do-not-list: a place that asks to be left out stays out of every list, the sample and the history, on every later build.
+# permits/inspections-chicago/rest_do_not_list.json holds salted SHA-256 keys, never a name, address or license in the clear:
+# "L:<license>" for each City license, and "N:<name>|<address>" (letters and digits only, upper case). Add one with
+#   python3 tools/rest_leads.py --dnl-add --license 1234567          (the License on the place page or workbook)
+#   python3 tools/rest_leads.py --dnl-add --name "BUSINESS NAME" --address "123 W MAIN ST"
+# The salt is public, so a key can be checked against the City's own records; it keeps the list free of names, not secret.
+DNL_FILE = os.path.join(ROOT, "permits", "inspections-chicago", "rest_do_not_list.json")
+DNL_SALT = "proofnotfluff-rest-dnl-v1"
+DNL_REASON = "the business asked to be left out"
+
+
+def dnl_hash(key):
+    import hashlib
+    return hashlib.sha256((DNL_SALT + "|" + key).encode("utf-8")).hexdigest()
+
+
+def dnl_key_name(name, address):
+    n = lambda t: re.sub(r"[^A-Z0-9]", "", (t or "").upper())
+    return "N:" + n(name) + "|" + n(address)
+
+
+def place_dnl_keys(rows):
+    """Every key a place can be listed under: each license, and each City name or AKA at each address."""
+    keys = set()
+    for r in rows:
+        l = lic_of(r)
+        if l:
+            keys.add("L:" + l)
+        for nm in (r.get("dba_name"), r.get("aka_name")):
+            if (nm or "").strip() and (r.get("address") or "").strip():
+                keys.add(dnl_key_name(nm, r.get("address")))
+    return {dnl_hash(k) for k in keys}
+
+
+def dnl_load(path=DNL_FILE):
+    """The set of keys. A missing file is an empty list; a broken one stops the build, so a removal is never dropped."""
+    if not os.path.exists(path):
+        return set()
+    d = json.load(open(path, encoding="utf-8"))
+    keys = d.get("keys") if isinstance(d, dict) else None
+    if not isinstance(d, dict) or d.get("salt") != DNL_SALT or not isinstance(keys, list) or \
+            not all(isinstance(k, str) and re.fullmatch(r"[0-9a-f]{64}", k) for k in keys):
+        raise SystemExit(f"{path}: must be {{\"salt\": \"{DNL_SALT}\", \"keys\": [64-hex keys]}}")
+    return set(keys)
+
+
+def dnl_add(key, path=DNL_FILE):
+    d = json.load(open(path, encoding="utf-8")) if os.path.exists(path) else {}
+    keys = set(d.get("keys") or [])
+    keys.add(dnl_hash(key))
+    out = {"about": "Restaurant places that asked to be left out. Salted SHA-256 keys only; see tools/rest_leads.py.",
+           "salt": DNL_SALT, "keys": sorted(keys)}
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(out, f, indent=1)
+        f.write("\n")
+    return len(keys)
+
+
+def build(raw, dnl=None):
+    """The dataset for this week's list (see the module docstring). dnl: do-not-list keys (default: the repo's file)."""
+    dnl = dnl_load() if dnl is None else dnl
     src = raw["source"]
     as_of = chicago_day(src["fetchedAt"])
     rows = list(raw.get("rows", [])) + list(raw.get("history", []))
@@ -363,7 +425,9 @@ def build(raw):
         # every exclusion is decided on the place, from any of its rows, so a place never slips in under another spelling
         reason = ""
         all_rs = by_place[pk]
-        if any(institution(r) for r in all_rs):
+        if dnl and place_dnl_keys(all_rs) & dnl:
+            reason = DNL_REASON
+        elif any(institution(r) for r in all_rs):
             reason = "school, day care, hospital, senior or mobile vendor"
         elif any(person_name(r.get("dba_name")) or person_name(r.get("aka_name")) for r in all_rs):
             reason = "business name is a person's name"
@@ -575,7 +639,7 @@ def selftest():
     ]
     raw = {"source": {"name": "x", "url": DATASET_PAGE, "fetchedAt": "2026-10-18T03:00:00+00:00", "terms": CITY_TERMS},
            "rows": [r for r in rows if r["inspection_date"] >= "2026-09-11"], "history": [r for r in rows if r["inspection_date"] < "2026-09-11"]}
-    d = build(raw)
+    d = build(raw, set())
     P, L = d["places"], d["lists"]
     assert d["asOf"] == "2026-10-17" and d["through"] == "2026-10-15" and d["window"]["from"] == "2026-09-16", (d["asOf"], d["through"], d["window"])
     assert L["flagged"] == ["L111", "L1201", "L444"], L
@@ -611,13 +675,35 @@ def selftest():
     assert pretty("2026-10-05") == "Oct 5, 2026" and type_title("canvass re-inspection") == "Canvass Re-Inspection" and type_title("LICENSE") == "License"
     for t in (__doc__ or "",):
         assert "—" not in t
-    print(f"rest_leads selftest ok ({len(CAT_CASES)} category cases, {len(PERSON_CASES)} name cases, 18 planted inspections)")
+    # do-not-list: one place removed by license (Fry House, 444), one by name and address (Hood and Bug Grill); the real file loads
+    import tempfile
+    tf = os.path.join(tempfile.mkdtemp(), "dnl.json")
+    dnl_add("L:444", tf)
+    dnl_add(dnl_key_name("Hood and Bug Grill", "1234 W. Main St."), tf)   # case and punctuation do not matter
+    keys = dnl_load(tf)
+    assert len(keys) == 2 and "444" not in open(tf).read() and "HOOD" not in open(tf).read().upper(), "do-not-list holds no clear text"
+    d2 = build(raw, keys)
+    assert "L444" not in d2["places"] and "L1201" not in d2["places"] and "L111" in d2["places"], sorted(d2["places"])
+    assert "Fry House" not in json.dumps(d2) and "Hood and Bug" not in json.dumps(d2), "a removed place leaks into the data"
+    assert "Fry House" not in json.dumps(sample(d2)) and d2["counts"]["excluded"].get(DNL_REASON) == 2, d2["counts"]["excluded"]
+    assert d2["lists"]["flagged"] == ["L111"], d2["lists"]
+    dnl_load()                                                     # the repo's file parses (a broken file stops the build)
+    print(f"rest_leads selftest ok ({len(CAT_CASES)} category cases, {len(PERSON_CASES)} name cases, 18 planted inspections, 2 planted removals)")
 
 
 if __name__ == "__main__":
     a = sys.argv[1:]
     if a == ["--selftest"]:
         selftest()
+    elif a[:1] == ["--dnl-add"]:
+        o = dict(zip(a[1::2], a[2::2]))
+        if "--license" in o:
+            n = dnl_add("L:" + re.sub(r"\D", "", o["--license"]))
+        elif "--name" in o and "--address" in o:
+            n = dnl_add(dnl_key_name(o["--name"], o["--address"]))
+        else:
+            raise SystemExit("usage: --dnl-add --license N  |  --dnl-add --name NAME --address ADDRESS")
+        print(f"do-not-list: {n} keys")
     elif a[:1] == ["--sample"]:
         d = build(json.load(open(a[1])))
         json.dump(sample(d), open(a[2] if len(a) > 2 else SAMPLE, "w"), indent=1)

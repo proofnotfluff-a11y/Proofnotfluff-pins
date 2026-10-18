@@ -478,7 +478,7 @@ def start_here(wb, data, list_date, n1, n2, n3, new1, new2):
     ])
     r = card(ws, r, "Find your trade", [("lead", (x["short"], (
         f"{TABS['flagged']}: filter the {CAT_SHORT[x['cat']]} column." if x["cat"] else f"{TABS['opening']}, for POS, linen, cleaning, pest and hood vendors. Every new license is a new account.")
-        + (" " + TABS["repeat"] + " lists places with ongoing problems." if x["key"] == "pests" else ""))) for x in PITCH])
+        + (" " + TABS["repeat"] + " lists places with 2 or more City fails in 90 days." if x["key"] == "pests" else ""))) for x in PITCH])
     w = data["window"]
     r = card(ws, r, "How the list is made", [
         ("para", f"From the City of Chicago's Food Inspections data, pulled {data['asOfText']}. The City posts results a few days late, so "

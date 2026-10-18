@@ -1,0 +1,5 @@
+{
+ "about": "Restaurant places that asked to be left out. Salted SHA-256 keys only; see tools/rest_leads.py.",
+ "salt": "proofnotfluff-rest-dnl-v1",
+ "keys": []
+}

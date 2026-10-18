@@ -161,16 +161,32 @@ def group_projects(rows, min_cost):
     return projects, reasons
 
 
+TERMS_PDF = f"{PORTAL}/download/2z87-8uh7/application/pdf"   # City of Austin Open Data Terms of Use (PDF version, catalog.data.gov)
+
+
 def terms_text():
+    """The City of Austin's own words, for the Legal desk and the product's disclaimer: the Issued Construction Permits
+    dataset description (it carries Austin Development Services' data disclaimer) and the Open Data Terms of Use PDF."""
+    parts = [f"Fetched: {dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')}", ""]
+    try:
+        m = get(f"{PORTAL}/api/views/{DATASET}.json")
+        parts += [f"== Dataset {DATASET_PAGE}", f"Name: {m.get('name', '')}", f"Attribution: {m.get('attribution', '')}",
+                  f"License: {(m.get('license') or {}).get('name', '')}", "", "Description:", m.get("description") or "", ""]
+    except SystemExit as e:
+        parts.append(f"Could not fetch the dataset description: {e}")
     try:
         meta = get(f"{PORTAL}/api/views/{TERMS_VIEW}.json")
+        parts += [f"== Terms page {PORTAL}/d/{TERMS_VIEW}", f"Name: {meta.get('name', '')}", f"Attribution: {meta.get('attribution', '')}", ""]
     except SystemExit as e:
-        return f"Could not fetch the City of Austin Open Data Terms of Use ({TERMS_VIEW}): {e}\n"
-    parts = [f"Source: {PORTAL}/d/{TERMS_VIEW}", f"Fetched: {dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')}", "",
-             f"Name: {meta.get('name', '')}", "", meta.get("description") or ""]
-    for k in ("attribution", "attributionLink", "license", "metadata"):
-        if meta.get(k):
-            parts.append(f"{k}: {json.dumps(meta.get(k))[:4000]}")
+        parts.append(f"Could not fetch {TERMS_VIEW}: {e}")
+    try:
+        import io
+        from pypdf import PdfReader
+        raw = urllib.request.urlopen(urllib.request.Request(TERMS_PDF, headers=UA), timeout=120).read()
+        text = "\n".join((pg.extract_text() or "") for pg in PdfReader(io.BytesIO(raw)).pages)
+        parts += [f"== Terms of Use PDF {TERMS_PDF}", "", text.strip(), ""]
+    except Exception as e:
+        parts.append(f"Could not read the Terms of Use PDF {TERMS_PDF}: {e}")
     return "\n".join(parts) + "\n"
 
 
@@ -256,6 +272,73 @@ def main():
     print(json.dumps({"fetched": len(rows), "kept": len(projects), "near": len(near), "excluded": dict(reasons)}))
 
 
+PROBE_FIELDS = ("permit_number,masterpermitnum,permittype,permit_type_desc,permit_class_mapped,permit_class,work_class,condominium,description,"
+                "status_current,statusdate,expiresdate,completed_date,issue_date,applieddate,total_existing_bldg_sqft,remodel_repair_sqft,"
+                "total_new_add_sqft,total_valuation_remodel,total_job_valuation,number_of_floors,housing_units,building_valuation,"
+                "building_valuation_remodel,electrical_valuation,mechanical_valuation,plumbing_valuation,original_zip,council_district,"
+                "jurisdiction,original_city,latitude,longitude,contractor_trade,contractor_company_name,certificate_of_occupancy,link,project_id")
+
+
+def probe(path, days=730, floor=100000):
+    """A de-identified audit of the real rows, for tuning the rules from the cloud (which cannot reach the portal): field
+    value counts and, per building permit, the City's description, class, status, dates and valuations. No address, ZIP,
+    permit number, coordinates or contractor name is written; builders appear only as a yes or no for 'is a business'."""
+    now = dt.datetime.now(dt.timezone.utc)
+    since = P.window_start(now, days)
+    base = f"issue_date >= '{since}' AND permittype='BP' AND permit_class_mapped='Commercial'"
+    where = base + f" AND (total_job_valuation >= {floor} OR total_valuation_remodel >= {floor})"
+    def pull(w, sel=PROBE_FIELDS):
+        out, off = [], 0
+        while True:
+            page = get(f"{PORTAL}/resource/{DATASET}.json", {"$select": sel, "$where": w, "$order": ":id", "$limit": 5000, "$offset": off})
+            out += page
+            if len(page) < 5000:
+                return out
+            off += 5000
+    rows = pull(where)
+    counts = {}
+    for name, w in (("commercial_all", base), ("commercial_floor", where),
+                    ("residential_500k", f"issue_date >= '{since}' AND permittype='BP' AND permit_class_mapped='Residential' AND (total_job_valuation >= 500000 OR total_valuation_remodel >= 500000)")):
+        counts[name] = get(f"{PORTAL}/resource/{DATASET}.json", {"$select": "count(*)", "$where": w})
+    counts["by_class_all"] = get(f"{PORTAL}/resource/{DATASET}.json", {"$select": "permit_class_mapped,permit_class,count(*)", "$where": f"issue_date >= '{since}' AND permittype='BP'",
+                                                                       "$group": "permit_class_mapped,permit_class", "$order": "count(*) DESC", "$limit": 200})
+    counts["permittypes"] = get(f"{PORTAL}/resource/{DATASET}.json", {"$select": "permittype,permit_type_desc,count(*)", "$where": f"issue_date >= '{since}'",
+                                                                      "$group": "permittype,permit_type_desc", "$limit": 50})
+    masters = sorted({r.get("masterpermitnum") for r in rows if r.get("masterpermitnum")})
+    seen = {r.get("permit_number") for r in rows}
+    sib = []
+    for i in range(0, len(masters), 40):
+        chunk = ",".join(f"'{m}'" for m in masters[i:i + 40])
+        for r in pull(f"masterpermitnum in({chunk})"):
+            if r.get("permit_number") not in seen:
+                seen.add(r.get("permit_number")); sib.append(r)
+    gid = {}
+    def de(r, extra):
+        g = r.get("masterpermitnum") or ("solo-" + str(r.get("permit_number")))
+        gid.setdefault(g, len(gid))
+        nm = r.get("contractor_company_name") or ""
+        keep = {k: r.get(k) for k in ("permittype", "permit_class", "work_class", "condominium", "status_current", "contractor_trade",
+                                       "certificate_of_occupancy", "jurisdiction", "original_city", "permit_type_desc")}
+        for k in ("statusdate", "expiresdate", "completed_date", "issue_date", "applieddate"):
+            keep[k] = (r.get(k) or "")[:10]
+        for k in ("total_existing_bldg_sqft", "remodel_repair_sqft", "total_new_add_sqft", "total_valuation_remodel", "total_job_valuation",
+                  "number_of_floors", "housing_units", "building_valuation", "building_valuation_remodel", "electrical_valuation",
+                  "mechanical_valuation", "plumbing_valuation"):
+            keep[k] = r.get(k)
+        keep.update({"g": gid[g], "hasMaster": bool(r.get("masterpermitnum")), "isMasterSelf": r.get("masterpermitnum") == r.get("permit_number"),
+                     "biz": bool(nm and P.BUSINESS.search(nm.upper())), "hasName": bool(nm), "hasGeo": bool(r.get("latitude")),
+                     "hasZip": bool(r.get("original_zip")), "hasDistrict": bool(r.get("council_district")), "hasLink": bool(r.get("link")),
+                     "hasProject": bool(r.get("project_id")), "desc": r.get("description") or "", "sibling": extra})
+        return keep
+    out = {"since": since, "pulledAt": now.isoformat(timespec="seconds"), "counts": counts, "nMain": len(rows), "nSiblings": len(sib),
+           "values": {k: collections.Counter(r.get(k) for r in rows + sib).most_common(60)
+                      for k in ("work_class", "permit_class", "status_current", "contractor_trade", "condominium", "certificate_of_occupancy",
+                                "jurisdiction", "original_city", "permittype")},
+           "rows": [de(r, False) for r in rows] + [de(r, True) for r in sib]}
+    json.dump(out, open(path, "w"), indent=0)
+    print(json.dumps({"main": len(rows), "siblings": len(sib), "groups": len(gid)}))
+
+
 ROW_CASES = [  # real Austin wording (probes/austin-descriptions.json, Oct 17): (row fields, keep?)
     ({"permit_class": "C- 105 Five or More Family Bldgs", "work_class": "New", "housing_units": "30",
       "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments with Private Garages (38520 SF)."}, True),
@@ -314,5 +397,7 @@ def selftest():
 if __name__ == "__main__":
     if sys.argv[1:] == ["--selftest"]:
         selftest()
+    elif sys.argv[1:2] == ["--probe"]:
+        probe(sys.argv[2])
     else:
         main()

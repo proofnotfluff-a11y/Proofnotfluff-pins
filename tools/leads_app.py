@@ -244,7 +244,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}
 .sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:18px 20px 12px}
 .sec-h h2{font-size:18px;font-weight:600}
-@media(max-width:600px){.sec-h{padding:16px 16px 10px}.sec-h h2{font-size:17px}}
+@media(max-width:600px){.sec-h{padding:16px 16px 10px}.sec-h h2{font-size:17px}.pg-main .sec-h{padding-left:20px;padding-right:20px}.grp{padding:10px 16px}}
 .sec-h a{display:inline-flex;align-items:center;min-height:44px;margin:-12px 0;font-size:14px;font-weight:600;white-space:nowrap}
 .sec-h .c{color:var(--muted);font:600 14px var(--body);margin-left:8px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:600;font-size:14.5px;cursor:pointer;text-decoration:none;white-space:nowrap}
@@ -289,7 +289,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media(max-width:600px){.hero h1{font-size:26px}.hero p{font-size:15px}}
 /* the finish line: the signature */
 .line{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:0;margin:22px 0 28px;padding:0}
-.line::before{content:"";position:absolute;left:24px;right:40px;top:23px;height:2px;background:repeating-linear-gradient(90deg,#C9C2B5 0 8px,transparent 8px 14px)}
+.line::before{content:"";position:absolute;left:24px;right:96px;top:23px;height:2px;background:repeating-linear-gradient(90deg,#C9C2B5 0 8px,transparent 8px 14px)}
 .stn{position:relative;display:block;text-decoration:none;color:var(--ink);padding:0 16px 0 0;min-width:0}
 .stn .dot{position:relative;z-index:1;display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:#fff;border:2px solid var(--iss);color:var(--iss)}
 .stn.s1 .dot{border-color:var(--blue);color:var(--blue)}
@@ -312,7 +312,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 }
 .list-rows{list-style:none;margin:0;padding:0}
 .row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:14px 48px 14px 20px;border-top:1px solid var(--line2);text-decoration:none;color:inherit;position:relative}
-@media(hover:hover){.row:hover{background:#FBFAF7}}
+.row,.mini-b,.bars a,.stn{-webkit-tap-highlight-color:transparent}
+@media(hover:hover) and (pointer:fine){.row:hover{background:#FBFAF7}}
 .row:focus-visible{box-shadow:inset 0 0 0 3px rgba(47,95,158,.45);border-radius:0}
 .row .mn{font:700 19px/1.2 var(--head);letter-spacing:-.01em;color:var(--ink)}
 .row .mn small{font:500 13px var(--body);color:var(--muted);margin-left:8px;letter-spacing:0}
@@ -324,6 +325,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .row .rt{grid-column:2;grid-row:1 / span 3;display:flex;flex-wrap:wrap;justify-content:flex-end;align-content:flex-start;align-items:center;gap:6px;max-width:300px}
 .row .chev{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--field)}
 .row .nc{color:var(--muted);font-size:13px;white-space:nowrap}
+.row .bd{align-items:baseline}.row .bd .ico{align-self:center}
 .row.hl{background:#F6F3EC}
 .grp{display:flex;align-items:baseline;gap:8px;margin:0;padding:10px 20px;border-top:1px solid var(--line2);background:#FAF8F4;font:600 13px var(--body);color:var(--ink2);letter-spacing:0}
 .grp .c{color:var(--muted)}
@@ -331,23 +333,26 @@ button,input,select,textarea{font:inherit;color:inherit}
 .row-more{padding:14px 20px;border-top:1px solid var(--line2);display:flex;gap:12px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:14px}
 @media(max-width:600px){.row{grid-template-columns:minmax(0,1fr);padding:14px 16px;gap:3px}.row .rt{grid-column:1;grid-row:auto;order:-1;justify-content:flex-start;max-width:none;margin:0 0 4px}.row .rt:empty{display:none}.row .chev{display:none}}
 .mini-b{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 12px;padding:12px 20px;border-top:1px solid var(--line2);text-decoration:none;color:inherit}
-.mini-b:hover{background:#FBFAF7}
+@media(hover:hover) and (pointer:fine){.mini-b:hover{background:#FBFAF7}}
 .mini-b b{font-weight:600;font-size:14.5px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .mini-b span{font-size:13.5px;color:var(--muted)}
 .mini-b .r{grid-column:2;grid-row:1 / span 2;text-align:right;font:700 16px var(--head)}
 .mini-b .r small{display:block;font:500 12.5px var(--body);color:var(--muted)}
 .bars{list-style:none;margin:0;padding:4px 20px 18px}
 .bars li{margin:0}
-.bars a{display:grid;grid-template-columns:minmax(0,9rem) minmax(0,1fr) 3.2rem;align-items:center;gap:12px;min-height:40px;padding:4px 0;text-decoration:none;color:var(--ink);font-size:14px;border-radius:6px}
+.bars a{display:grid;grid-template-columns:minmax(0,9rem) minmax(0,1fr) 2.6rem 2.6rem;align-items:center;gap:12px;min-height:40px;padding:4px 0;text-decoration:none;color:var(--ink);font-size:14px;border-radius:6px}
 .bars a span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .bars a:hover span:first-child{text-decoration:underline;text-underline-offset:3px}
 .bars .tr{display:flex;gap:2px;height:12px;min-width:3px}
-.bars .tr i,.blg i{display:block;height:12px;border-radius:2px;min-width:3px;flex-basis:0}
-.b0{background:var(--teal)}.b1{background:var(--blue)}.b2{background:#fff;box-shadow:inset 0 0 0 1.5px var(--iss)}
+.bars .tr i,.blg i{display:block;height:12px;border-radius:2px;min-width:3px;flex-basis:0;flex-shrink:0}
+.b0{background:var(--teal)}.b1{background:var(--blue)}.b2{background:#7E91B0}
 .bars .tr i:last-child{border-radius:2px 4px 4px 2px}
 .blg{display:flex;flex-wrap:wrap;gap:6px 16px;margin:0;padding:0 20px 6px;font-size:12.5px;color:var(--muted)}
 .blg span{display:inline-flex;align-items:center;gap:6px}.blg i{width:12px;flex:none}
-.bars .v{text-align:right;font-weight:600}
+.bars .v{text-align:right;font-weight:600}.bars .nv{text-align:right;font-weight:700;color:var(--teal)}.bars .nv.z{color:var(--muted);font-weight:400}
+.bars .hd{display:grid;grid-template-columns:minmax(0,9rem) minmax(0,1fr) 2.6rem 2.6rem;gap:12px;font-size:12px;color:var(--muted);padding:0 0 2px}.bars .hd span{text-align:right}
+@media(hover:hover) and (pointer:fine){.bars a:hover{background:#FBFAF7}}
+@media(max-width:600px){.bars{padding:4px 16px 16px}.bars a,.bars .hd{grid-template-columns:minmax(0,1fr) 3.4rem 2.6rem;gap:6px 10px;min-height:44px}.bars .tr{grid-column:1 / -1;grid-row:2;height:8px}.bars .hd .sp2{display:none}.bars .tr i{height:8px}.blg{padding:0 16px 6px}}
 .mine{padding:0 20px 20px;color:var(--muted);font-size:13.5px}
 .mine p{margin:0 0 10px}.mine .mh{color:var(--ink2);font-size:14.5px}.mine .mh b{color:var(--ink)}.mine .mh b.blk{display:block;margin:0 0 2px}
 .mine .btn{margin-top:4px}
@@ -420,10 +425,11 @@ button,input,select,textarea{font:inherit;color:inherit}
  .mapbox{position:relative;top:0;height:calc(100vh - var(--bar-h) - var(--nav-h) - 128px);height:calc(100svh - var(--bar-h) - var(--nav-h) - 128px);min-height:360px}
  #csv .t{display:none}#csv .m{display:inline}#csv{min-height:44px;padding:0 12px}
  .tool{gap:8px}.tsp{display:none}.vtog{margin-left:auto}
- .tool .fbtn{padding:0 12px}.vtog button{padding:0 10px}
+ .tool .fbtn{padding:0 12px}
+ .tool .vtog{flex:1;margin-left:0;padding:2px;height:44px}.tool .vtog button{flex:1;justify-content:center;height:38px;padding:0 8px}
  .btool{display:grid;grid-template-columns:1fr 1fr}.btool .search{grid-column:1 / -1}.btool .fld select{width:100%;max-width:none}.btool .tog{width:100%}
  .vtog{display:inline-flex}
- .tool .seg:not(.vtog){display:flex;gap:8px;width:calc(100% + 32px);margin:0 -16px;padding:0 16px;background:none;border:0;border-radius:0;overflow-x:auto;scroll-padding:16px}
+ .tool .seg:not(.vtog){display:flex;gap:8px;width:calc(100% + 32px);margin:0 -16px;padding:0 16px;background:none;border:0;border-radius:0;overflow-x:auto;scroll-padding:16px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 24px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 24px),transparent)}
  .tool .seg:not(.vtog) button{flex:none;height:44px;padding:0 14px;border:1px solid var(--field);border-radius:999px;background:#fff}
  .tool .seg:not(.vtog) button[data-k=""]{order:1}
  .tool .seg:not(.vtog) button[aria-pressed=true]{background:var(--ink);border-color:var(--ink)}
@@ -527,13 +533,14 @@ button,input,select,textarea{font:inherit;color:inherit}
 .bt td a{display:block;padding:12px 20px;color:var(--ink);text-decoration:none}
 .bt td.n{padding:12px 20px}
 .bt tbody tr{cursor:pointer}
-.bt tr:hover td{background:#FBFAF7}
+@media(hover:hover) and (pointer:fine){.bt tr:hover td{background:#FBFAF7}}
 .bt .n{text-align:right;white-space:nowrap;color:var(--ink)}
 .bt .nm b{font-weight:600}
 .bt .nm small{display:flex;align-items:center;gap:5px;color:var(--muted);font-size:13px;margin-top:2px}
 .bt .nm small .ico{color:var(--teal)}
 .bt .z{color:var(--muted);font-weight:400}
 .bt .nm small.mob{display:none}
+.btool .fld select,.btool .tog{height:44px}
 .bt td.n{vertical-align:middle}
 .bt th .ico{width:14px;height:14px;vertical-align:-2px;margin-left:2px}
 @media(max-width:700px){.bt thead{display:none}.bt td.n{display:none}.bt .nm small.mob{display:block;color:var(--ink2)}.bt td a{padding:13px 16px}}
@@ -673,12 +680,12 @@ setNav(nav);app.classList.remove("view-enter");void app.offsetWidth;app.classLis
 if(scroll){window.scrollTo(0,0);const h=app.querySelector("h1");if(h){h.setAttribute("tabindex","-1");h.focus({preventScroll:true});}}}
 
 /* shared pieces */
-function row(p,ctx){const m=mk(p.id);const b=p.g.length?B[p.g[0]]:null;const other=ctx&&ctx!=="near"&&p.g.find(k=>k!==ctx);const kind=[p.t,p.u?plural(p.u,"home"):""].filter(Boolean).join(", ");
+function row(p,ctx){const m=mk(p.id);const b=p.g.length?B[p.g[0]]:null;const other=ctx&&ctx!=="near"&&ctx!=="new"&&p.g.find(k=>k!==ctx);const kind=[p.t,p.u?plural(p.u,"home"):""].filter(Boolean).join(", ");
 return `<li><a class="row" href="#/project/${encodeURIComponent(p.id)}" data-id="${esc(p.id)}">
 <span class="mn num">${money(p.c)}<small>${esc(kind)}</small></span>
 <span class="ad">${esc(p.a)}${p.ca?`<span class="ar">, ${esc(p.ca)}</span>`:""}</span>
-${ctx&&ctx!=="near"?(other?`<span class="bd"><span>With ${esc(B[other].name)}</span></span>`:""):`<span class="bd">${b&&b.ok?ico(b.contact.phone?"phone":"mail","s")+'<span class="sr">Contact on file: </span>':""}<span>${esc(b?b.name:"No builder listed")}${p.g.length>1?` <span class="ar">and 1 more</span>`:""}</span>${b&&!b.ok?'<span class="nc">No contact yet</span>':""}</span>`}
-<span class="rt">${ctx==="near"?"":chip(p.st)}${p.n?'<span class="badge new">New this week</span>':""}${m.c?`<span class="badge done">${ico("check","s")}Contacted</span>`:""}</span>${ico("chev","chev")}</a></li>`;}
+${ctx&&ctx!=="near"&&ctx!=="new"?(other?`<span class="bd"><span>With ${esc(B[other].name)}</span></span>`:""):`<span class="bd">${b&&b.ok?ico(b.contact.phone?"phone":"mail","s")+'<span class="sr">Contact on file: </span>':""}<span>${esc(b?b.name:"No builder listed")}${p.g.length>1?` <span class="ar">and 1 more</span>`:""}</span>${b&&!b.ok?'<span class="nc">No contact yet</span>':""}</span>`}
+<span class="rt">${ctx&&ctx!=="new"?"":chip(p.st)}${p.n&&ctx!=="new"?'<span class="badge new">New this week</span>':""}${m.c?`<span class="badge done">${ico("check","s")}Contacted</span>`:""}</span>${ico("chev","chev")}</a></li>`;}
 function rowsHtml(list,limit,ctx){if(!list.length)return "";const n=Math.min(limit||list.length,list.length);return `<ul class="list-rows">${list.slice(0,n).map(p=>row(p,ctx)).join("")}</ul>`;}
 
 /* overview */
@@ -694,13 +701,13 @@ $("#app").innerHTML=`<section class="hero"><h1>${int(by[0].length)} ${by[0].leng
 <nav class="line" aria-label="Projects by stage, from permit to final clean">${stn(2)}${stn(1)}${stn(0)}<span class="flag"><span class="dot">${ico("flag")}</span><span class="tx"><span class="t">Final clean</span><span class="m">Your bid</span></span></span></nav>
 <div class="ov"><div class="ov-col">
 <section class="panel"><div class="sec-h"><h2>Closest to a final clean<span class="c num">${int(near.length)}</span></h2><a href="#/projects?stage=near">See all ${int(near.length)}</a></div>${near.length?rowsHtml(near,0,"near"):`<p class="empty">No project has partial occupancy approved this week. Projects with inspections under way are the next closest.</p>`}</section>
-<section class="panel"><div class="sec-h"><h2>New this week<span class="c num">${int(nw.length)}</span></h2>${nw.length?`<a href="#/projects?new=1">See all ${int(nw.length)}</a>`:""}</div>${nw.length?rowsHtml(nw,5):`<p class="empty">No permits on the list were issued in the last 7 days.</p>`}</section>
+<section class="panel"><div class="sec-h"><h2>New this week<span class="c num">${int(nw.length)}</span></h2>${nw.length?`<a href="#/projects?new=1">See all ${int(nw.length)}</a>`:""}</div>${nw.length?rowsHtml(nw,5,"new"):`<p class="empty">No permits on the list were issued in the last 7 days.</p>`}</section>
 </div><div class="ov-col">
 <section class="panel"><div class="sec-h"><h2>Builders to call first</h2><a href="#/builders">All ${int(Object.keys(B).length)} builders</a></div>
 ${top.map(b=>`<a class="mini-b" href="#/builder/${encodeURIComponent(b.key)}"><b>${esc(b.name)}</b><span>${plural(b.n,"project")} this week, ${b.ok?"contact on file":"no contact on file yet"}</span><span class="r num">${int(b.near)}<small>near finish</small></span></a>`).join("")}</section>
 <section class="panel"><div class="sec-h"><h2>Where the work is</h2><a href="#/projects?view=map">Open the map</a></div>
 <p class="blg" aria-hidden="true"><span><i class="b0"></i>Near finish</span><span><i class="b1"></i>Inspections</span><span><i class="b2"></i>Permit issued</span></p>
-<ul class="bars" aria-label="Open projects by community area and stage">${areas.map(([a,n,c])=>`<li><a href="#/projects?area=${encodeURIComponent(a)}" aria-label="${esc(a)}: ${plural(n,"project")}, ${int(c[0])} near finish, ${int(c[1])} with inspections under way, ${int(c[2])} permit issued" title="${int(c[0])} near finish, ${int(c[1])} inspections, ${int(c[2])} permit issued"><span>${esc(a)}</span><span class="tr" style="width:${Math.max(3,Math.round(n/amax*100))}%" aria-hidden="true">${[0,1,2].filter(s=>c[s]).map(s=>`<i class="b${s}" style="flex-grow:${c[s]}"></i>`).join("")}</span><span class="v num">${int(n)}</span></a></li>`).join("")}</ul></section>
+<ul class="bars" aria-label="Open projects by community area and stage"><li class="hd" aria-hidden="true"><span></span><span class="sp2"></span><span>Near finish</span><span>All</span></li>${areas.map(([a,n,c])=>`<li><a href="#/projects?area=${encodeURIComponent(a)}" aria-label="${esc(a)}: ${plural(n,"project")}, ${int(c[0])} near finish, ${int(c[1])} with inspections under way, ${int(c[2])} permit issued" title="${int(c[0])} near finish, ${int(c[1])} inspections, ${int(c[2])} permit issued"><span>${esc(a)}</span><span class="tr" style="width:${Math.max(3,Math.round(n/amax*100))}%" aria-hidden="true">${[0,1,2].filter(s=>c[s]).map(s=>`<i class="b${s}" style="flex-grow:${c[s]}"></i>`).join("")}</span><span class="nv num${c[0]?"":" z"}">${int(c[0])}</span><span class="v num">${int(n)}</span></a></li>`).join("")}</ul></section>
 <section class="panel"><div class="sec-h"><h2>Your follow-ups</h2>${cN||nN?`<a href="#/projects?fu=mine">Show them</a>`:""}</div>
 <div class="mine">${cN||nN?`<p class="mh"><b>${plural(cN,"project")}</b> marked contacted, <b>${plural(nN,"note")}</b> written.</p>`:`<p class="mh"><b class="blk">No follow-ups yet</b>Mark a project as contacted or add a note on its page, and it shows up here.</p>`}<p>${esc(STORE_LINE())}</p>${cN||nN?"":`<a class="btn" href="#/projects?stage=near">Open the ${plural(by[0].length,"near-finish project")}</a>`}</div></section>
 </div></div>`;}
@@ -769,7 +776,7 @@ $("#rcount").innerHTML=!rows.length?`<b class="num">0</b> of <span class="num">$
 $("#fclear").hidden=!(f.q||f.stage||ac);$("#fdone").textContent=rows.length?`Show ${plural(rows.length,"project")}`:"No projects match";$("#csv").disabled=!rows.length;
 drawList();drawMap(refit);}
 function drawList(){const rows=STATE.rows,n=Math.min(STATE.shown,rows.length);const el=$("#plist");
-if(!rows.length){el.innerHTML=`<div class="empty"><h3>No projects match these filters</h3><p>Try another community area or cost band, or clear the filters to see all ${int(P.length)}.</p><button class="btn ink" type="button" id="eclr">Clear filters</button></div>`;$("#eclr").onclick=()=>$("#fclear").click();return;}
+if(!rows.length){const q=STATE.f.q,only=q&&!STATE.f.stage&&!activeCount(STATE.f);el.innerHTML=q?`<div class="empty"><h3>No projects match "${esc(q)}"</h3><p>Check the spelling, or clear the ${only?"search":"search and filters"} to see all ${int(P.length)}.</p><button class="btn ink" type="button" id="eclr">${only?"Clear search":"Clear search and filters"}</button></div>`:`<div class="empty"><h3>No projects match these filters</h3><p>Try another community area or cost band, or clear the filters to see all ${int(P.length)}.</p><button class="btn ink" type="button" id="eclr">Clear filters</button></div>`;$("#eclr").onclick=()=>$("#fclear").click();return;}
 el.innerHTML=rowsHtml(rows,n)+(n<rows.length?`<div class="row-more"><button class="btn" type="button" id="more">Show ${int(Math.min(60,rows.length-n))} more</button><span>${int(n)} of ${int(rows.length)} shown</span></div>`:"");
 const m=$("#more");if(m)m.onclick=()=>{STATE.shown+=60;drawList();};
 el.querySelectorAll(".row").forEach(a=>{a.addEventListener("mouseenter",()=>hot(a.dataset.id,true));a.addEventListener("mouseleave",()=>hot(a.dataset.id,false));});}
@@ -782,11 +789,11 @@ const m=L.map("map",{preferCanvas:true,zoomControl:true,scrollWheelZoom:true,att
 m.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');tiles(m);STATE.map=m;STATE.layer=L.layerGroup().addTo(m);STATE.mk={};m.on("zoomend",declutter);drawMap(true);}
 function popup(p){const b=p.g.length?B[p.g[0]]:null;return `<div class="pop"><span class="mn num">${money(p.c)}</span><span class="ad">${esc(p.a)}</span><span class="bd">${esc(b?b.name:"No builder listed")}</span>${chip(p.st)}<p style="margin:10px 0 0"><a class="btn ink" href="#/project/${encodeURIComponent(p.id)}">Open project</a></p></div>`;}
 function drawMap(refit){const m=STATE.map;const rows=STATE.rows||[];const geo=rows.filter(p=>p.lat&&p.lon);const note=$("#mapnote");
-if(note){const miss=rows.length-geo.length;note.hidden=!miss;note.textContent=miss?`${plural(miss,"project")} in the list ${miss===1?"has":"have"} no map location in the City record.`:"";}
+if(note){const miss=rows.length-geo.length;note.hidden=!(miss||!rows.length);note.textContent=!rows.length?"No pins for these filters.":miss?`${plural(miss,"project")} in the list ${miss===1?"has":"have"} no map location in the City record.`:"";}
 if(!m)return;STATE.layer.clearLayers();STATE.mk={};
 STATE.near=[];geo.slice().sort((a,b)=>b.st-a.st).forEach(p=>{let ring=null;if(p.st===0){ring=L.circleMarker([p.lat,p.lon],{radius:12,color:"#1F4E4A",weight:2,fill:false,interactive:false}).addTo(STATE.layer);}
 const c=L.circleMarker([p.lat,p.lon],MS[p.st]).bindPopup(popup(p),{maxWidth:280});c.addTo(STATE.layer);STATE.mk[p.id]=c;if(ring)STATE.near.push({p,c,ring});});declutter();
-if(refit&&geo.length){const bb=L.latLngBounds(geo.map(p=>[p.lat,p.lon]));if(geo.length===1)m.setView(bb.getCenter(),15,{animate:false});else m.fitBounds(bb,{padding:[40,40],maxZoom:15,animate:false});}declutter();}
+if(refit&&geo.length){const bb=L.latLngBounds(geo.map(p=>[p.lat,p.lon]));if(geo.length===1)m.setView(bb.getCenter(),15,{animate:false});else m.fitBounds(bb,{padding:[48,48],maxZoom:15,animate:false});}declutter();}
 function fit(){drawMap(true);}
 /* near-finish pins that sit on top of each other are spread apart in screen space so each one can be tapped */
 function declutter(){const m=STATE.map,ns=STATE.near||[];if(!m||!ns.length)return;const pts=ns.map(o=>m.latLngToLayerPoint([o.p.lat,o.p.lon]));
@@ -859,7 +866,7 @@ $("#cpy").onclick=async()=>{toast(await copyText(p.a+", Chicago, IL")?"Address c
 $("#mark").onclick=()=>{const now=mk(p.id).c?"":new Date().toISOString().slice(0,10);const ok=setMark(p.id,{c:now});const btn=$("#mark");btn.classList.toggle("on",!!now);btn.setAttribute("aria-pressed",String(!!now));$("#markT").textContent=now?"Contacted "+day(now)+" (undo)":"Mark as contacted";toast(ok?(now?"Marked as contacted":"Contacted mark removed"):"Not saved: this browser blocks saving");};
 const grow=t=>{t.style.height="auto";t.style.height=Math.max(96,t.scrollHeight+2)+"px";};grow($("#nt"));
 let tn;$("#nt").addEventListener("input",e=>{grow(e.target);clearTimeout(tn);$("#ntst").textContent="Saving...";tn=setTimeout(()=>{const ok=setMark(p.id,{n:e.target.value});$("#ntst").textContent=ok?"Note saved in this browser":"Not saved. This browser blocks saving here; private browsing is the usual cause.";},400);});
-if(p.lat&&p.lon){const mm=()=>{if(!window.L||!$("#minimap"))return;const m2=L.map("minimap",{scrollWheelZoom:false,dragging:!L.Browser.mobile,tap:false,zoomControl:true}).setView([p.lat,p.lon],15);m2.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');tiles(m2);L.circleMarker([p.lat,p.lon],Object.assign({},MS[p.st],{radius:10})).addTo(m2);STATE.mini=m2;};if(window.L)mm();else window.addEventListener("load",mm,{once:true});}}
+if(p.lat&&p.lon){const mm=()=>{if(!window.L||!$("#minimap"))return;const m2=L.map("minimap",{scrollWheelZoom:false,dragging:!L.Browser.mobile,tap:false,zoomControl:true}).setView([p.lat,p.lon],15);m2.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');tiles(m2);if(p.st===0)L.circleMarker([p.lat,p.lon],{radius:17,color:"#1F4E4A",weight:2.5,fill:false,interactive:false}).addTo(m2);L.circleMarker([p.lat,p.lon],Object.assign({},MS[p.st],{radius:MS[p.st].radius*1.5})).addTo(m2);STATE.mini=m2;};if(window.L)mm();else window.addEventListener("load",mm,{once:true});}}
 
 /* builders */
 function viewBuilders(q){document.title="Builders | Chicago Construction Cleaning Leads";const s0=q.get("sort")||"near",q0=q.get("q")||"",ph=q.get("phone")==="1";
@@ -884,7 +891,7 @@ function viewBuilder(b){document.title=`${b.name} | Chicago Construction Cleanin
 $("#app").innerHTML=`<a class="back" href="#/builders" id="back">${ico("back")}Back</a>
 <div class="pg"><section class="pg-head"><div class="p-title"><h1>${esc(b.name)}</h1><p class="sub">General contractor on ${plural(b.n,"open permit")} this week${b.area?", mostly in "+esc(b.area):""}</p></div>
 <div class="stats"><div><b class="num">${int(b.n)}</b><span>${b.n===1?"project":"projects"} this week</span></div><div><b class="num">${money(b.cost)}</b><span>total reported</span></div><div><b class="num">${int(b.near)}</b><span>near finish</span></div><div><b class="num">${int(b.nw)}</b><span>new this week</span></div></div></section>
-<aside class="pg-side" aria-label="Builder contact">${builderCard(b,ps[0],false,true)}<section class="panel bc"><h2 style="font-size:17px">Before you call</h2><p class="meta" style="margin:6px 0 14px">A short script and the capability sheet builders ask for.</p><a class="btn" href="#/pitch">${ico("kit","s")}Open the pitch kit</a></section></aside>
+<aside class="pg-side" aria-label="Builder contact">${builderCard(b,ps[0],false,true)}<section class="panel bc"><h2 style="font-size:17px">Pitch kit</h2><p class="meta" style="margin:6px 0 14px">The capability sheet builders ask for, and an email to send after you call.</p><a class="btn" href="#/pitch">${ico("kit","s")}Open the pitch kit</a></section></aside>
 <div class="pg-main"><section class="panel"><div class="sec-h"><h2>Their projects<span class="c num">${int(ps.length)}</span></h2><a href="#/projects?q=${encodeURIComponent(b.name)}">Open in Projects</a></div>${[0,1,2].map(st=>{const g=ps.filter(p=>p.st===st);return g.length?`<h3 class="grp">${STG[st]}<span class="c num">${int(g.length)}</span></h3>${rowsHtml(g,0,b.key)}`:"";}).join("")}</section></div></div>`;
 $("#back").onclick=e=>{e.preventDefault();back("#/builders");};}
 

@@ -1653,7 +1653,7 @@ def leads_page_html(p):
                 '<div class="ld-filter" role="group" aria-label="Filter projects">'
                 '<button type="button" class="ld-chip" aria-pressed="true" data-f="all">All</button>'
                 '<button type="button" class="ld-chip" aria-pressed="false" data-f="new">New buildings</button>'
-                '<button type="button" class="ld-chip" aria-pressed="false" data-f="ren">Renovations</button>'
+                f'<button type="button" class="ld-chip" aria-pressed="false" data-f="ren">{E(p.get("renLabel", "Renovations"))}</button>'
                 f'<label class="ld-area"><span class="sr">{E(area_word)}</span><select id="ldArea"><option value="">{E(area_all)}</option>{opts}</select></label></div>'
                 f'<p class="ld-count" id="ldCount" aria-live="polite" data-all="{E(big_line)}">{E(big_line)}</p>'
                 f'<div class="ld-list" id="ldList">{"".join(card(x) for x in d["projects"])}</div>'

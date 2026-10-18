@@ -297,6 +297,20 @@ def coord(v):
     return f if f else None
 
 
+def builders(names):
+    """Every business the City lists as general contractor, as the list prints them: business names only, each builder
+    once, builders before trade contractors. All of them are kept (Holdout, Oct 18: a third contractor such as
+    "RD'S HVAC INC" was cut by a two-name cap)."""
+    out = []
+    for nm in names:
+        nm = (nm or "").strip()
+        if nm and BUSINESS.search(nm.upper()):
+            nm = gc_filter(nm)
+            if nm and gc_key(nm) not in [gc_key(g) for g in out]:
+                out.append(nm)
+    return sorted(out, key=lambda g: bool(TRADE_GC.search(g.upper())))
+
+
 def gc_key(n):
     return re.sub(r"[^A-Z0-9]", "", re.sub(r"\b(LLC|L\.L\.C|INC|INCORPORATED|CORP|CORPORATION|CO|COMPANY|LTD)\b\.?", "", n.upper()))
 
@@ -368,19 +382,16 @@ def main():
         ok, why = decide(desc, r.get("permit_type") or "")
         if not ok:
             reasons[why] += 1; continue
-        gcs = []
+        names = []
         for n in range(1, 16):
             t = (r.get(f"contact_{n}_type") or "").upper()
-            nm = (r.get(f"contact_{n}_name") or "").strip()
             if t:
                 ctype[t] += 1
-            if "GENERAL CONTRACTOR" in t and "OWNER" not in t and nm and BUSINESS.search(nm.upper()):
-                nm = gc_filter(nm)
-                if nm and gc_key(nm) not in [gc_key(g) for g in gcs]:
-                    gcs.append(nm)
+            if "GENERAL CONTRACTOR" in t and "OWNER" not in t:
+                names.append(r.get(f"contact_{n}_name") or "")
+        gcs = builders(names)   # the builder first, trade contractors after
         if not gcs:
             reasons["no business listed as general contractor"] += 1; continue
-        gcs.sort(key=lambda g: bool(TRADE_GC.search(g.upper())))  # the builder first, a trade contractor second
         addr = street(r)
         ca = str(r.get("community_area") or "").split(".")[0]
         cost = float(r.get(cost_col) or 0) if cost_col else 0
@@ -396,7 +407,7 @@ def main():
             "communityArea": AREA_NAMES.get(areas.get(ca, ""), areas.get(ca, "")),
             "status": (r.get("permit_status") or "").title(),
             "milestone": (r.get("permit_milestone") or "").title(),
-            "gc": gcs[:2],
+            "gc": gcs,
             "lat": coord(r.get("latitude")), "lon": coord(r.get("longitude")),
             "_rev": [x for m in re.finditer(r"REVISIONS? (?:TO|OF) (?:THE )?(?:[A-Z&]+ ){0,4}PERMITS?[:#\s]*((?:#?10\d{7}[,\s]*(?:AND\s*)?)+)", desc)
                      for x in re.findall(r"10\d{7}", m.group(1))],
@@ -665,6 +676,9 @@ def selftest():
     whole = clean_scope(long, limit=1200, whole=True)
     assert whole.startswith("Interior alterations") and "restrooms" in whole and "Jane" not in whole and "Doe" not in whole, whole
     assert len(clean_scope(long)) < len(whole), "whole scope should keep every sentence"
+    assert builders(["CPMH CONSTRUCTION INC", "RD'S HVAC INC", "THE BOWA GROUP INC"]) == ["CPMH Construction Inc", "The Bowa Group Inc", "RD's HVAC Inc"], \
+        builders(["CPMH CONSTRUCTION INC", "RD'S HVAC INC", "THE BOWA GROUP INC"])
+    assert builders(["ACME BUILDERS LLC", "Acme Builders, L.L.C.", "JOHN SMITH", "", None]) == ["Acme Builders LLC"]
     assert coord("41.881832") == 41.881832 and coord(None) is None and coord("") is None and coord("0") is None
     if bad:
         raise SystemExit("filter selftest FAIL: " + json.dumps(bad)[:800])

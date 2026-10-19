@@ -24,6 +24,13 @@ Todd, Oct 18, 2026: "Let's make sure we are not wasting usage and putting it tow
 
 GitHub Actions refresh the data every Monday morning (permits-chicago 6:20, inspections-chicago 6:30, permits-austin 6:35 Central). The cloud sandbox cannot reach the City portals; read what the workflows commit.
 
+## Cancellation survey (Todd, Oct 19, 2026: "we need to understand what issues there are with the product so we can improve it in case we want to launch this in other cities")
+
+- **Where it is:** a Google Form in hello@proofnotfluff.com, "ProofNotFluff cancellation survey" (https://docs.google.com/forms/d/e/1FAIpQLSdLrer5KtdADyASUCCdF1wY7kYvmVzS4I4ioo3sWpA4hV6Q0g/viewform). Responses land in the Google Sheet "ProofNotFluff cancellation survey (Responses)" in the same Drive. Question 1 (required, pick any) lists 11 common reasons plus "Other" with a write-in; question 2 is the list, prefilled by the link (entry.2001137123); question 3 asks for the one change that would have kept them; question 4 is an optional email.
+- **How members reach it:** every members' app footer carries "Thinking of cancelling? Tell us why first" with the product prefilled (tools/leads_app.py SURVEY_FORM, also used by tools/rest_app.py). Three Gumroad workflows, "Cancellation survey: <product>" (trigger Member cancels, sent when the cancellation takes effect), are saved unpublished: Gumroad publishes workflows only after $100 in earnings and a first payout. The live session publishes them as soon as Gumroad allows it.
+- **Reading it (Run 2, Mondays, first):** open the Responses sheet in Todd's Chrome (Gmail account /u/3/, hello@). Count new responses since the last Monday by product and by reason, and summarize each "Other" and "one change" answer in one plain line in our words. Write the counts and summary lines to qa/<date>-cancellations.md (counts and our own summary lines only: never an email address, a name or the respondent's own words). Tell Todd in the Monday message: responses this week by product, the top reason, and any new theme.
+- **Acting on it:** when a reason reaches 3 responses for a product, or any answer reports wrong or broken data, the builder run (Run 4) takes it as a FIX line the next day: data or app fixes through the usual gates, copy or pricing changes as a proposal to Todd. Before a new city launches, the builder reads every response so far and says in the launch record what was changed because of it.
+
 ## Run 1: Monday quality check (8:10 am, cloud)
 
 1. For each workflow, confirm this Monday's run succeeded (`gh api repos/proofnotfluff-a11y/Proofnotfluff-pins/actions/workflows/<file>/runs?per_page=3`) and committed new data dated today. A failed or missing run is the first line of the report.

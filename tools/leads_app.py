@@ -165,6 +165,19 @@ def terms_json(as_of, city_terms=CITY_TERMS):
                       ensure_ascii=False).replace("</", "<\\/")
 
 
+# The cancellation survey (Todd, Oct 19, 2026): a Google Form in hello@proofnotfluff.com, responses in the Sheet
+# "ProofNotFluff cancellation survey (Responses)"; the list question is prefilled per product. Gumroad "Member cancels"
+# workflows with the same link are saved and publish once Gumroad allows it ($100 earned and a first payout).
+SURVEY_FORM = "https://docs.google.com/forms/d/e/1FAIpQLSdLrer5KtdADyASUCCdF1wY7kYvmVzS4I4ioo3sWpA4hV6Q0g/viewform"
+SURVEY_LIST_FIELD = "entry.2001137123"
+
+
+def survey_url(product):
+    """The cancellation survey with the member's list already picked, as an HTML-safe href."""
+    import urllib.parse
+    return f"{SURVEY_FORM}?usp=pp_url&amp;{SURVEY_LIST_FIELD}=" + urllib.parse.quote_plus(product)
+
+
 def city_json():
     keys = ("key", "city", "state", "product", "csvPrefix", "storageKey", "center", "zoom", "cityName", "records", "area", "areaLower",
             "areaAll", "areaPlural", "cost", "costLower", "costShort", "costAny", "bNoun", "bWeek", "permit", "permitLower", "types", "stages", "stagesShort",
@@ -189,7 +202,7 @@ def build_html(rows, fetched, xlsx_bytes, password, city_terms=None, city=None):
             .replace("__CITY__", city_json()).replace("__PRODUCT__", CITY["product"]).replace("__CITYNAME__", CITY["city"])
             .replace("__GATESUB__", _esc(CITY["gateSub"]))
             .replace("__LEGAL__", legal_html()).replace("__ASOF__", as_of)
-            .replace("__FREE__", CITY["freePage"]).replace("__PITCH__", pitch_json())
+            .replace("__FREE__", CITY["freePage"]).replace("__PITCH__", pitch_json()).replace("__SURVEY__", survey_url(CITY["product"]))
             .replace("__LJS__", LEAFLET_JS[0]).replace("__LJSI__", LEAFLET_JS[1])
             .replace("__LCSS__", LEAFLET_CSS[0]).replace("__LCSSI__", LEAFLET_CSS[1]))
 
@@ -644,6 +657,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* footer */
 .foot-legal{border-top:1px solid var(--line);max-width:1320px;margin:8px auto 0;padding:20px 16px 32px;font-size:12.5px;line-height:1.6;color:var(--muted)}
 .foot-legal p{margin:0 0 8px;max-width:110ch}
+.foot-legal .leave{color:var(--ink2,var(--muted));font-weight:500}.foot-legal .leave a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 .toast{position:fixed;z-index:1100;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;background:var(--ink);color:#fff;padding:12px 18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-radius:10px;font-weight:600;font-size:14.5px;box-shadow:0 10px 30px rgba(29,36,51,.3);transition:opacity .2s,transform .25s cubic-bezier(.2,.8,.2,1);pointer-events:none;max-width:calc(100vw - 32px)}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 @media(max-width:860px){.toast{bottom:calc(var(--nav-h) + 12px + env(safe-area-inset-bottom))}}
@@ -673,7 +687,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 </main>
 <p class="gate-legal" id="gateLegal">__LEGAL__</p>
 <main id="app" class="page" hidden tabindex="-1"></main>
-<footer class="foot-legal" id="appLegal" hidden><p>__LEGAL__</p><p>List of __ASOF__. Questions about your membership? Reply to your Gumroad receipt.</p></footer>
+<footer class="foot-legal" id="appLegal" hidden><p>__LEGAL__</p><p>List of __ASOF__. Questions about your membership? Reply to your Gumroad receipt.</p><p class="leave">Thinking of cancelling? <a href="__SURVEY__" target="_blank" rel="noopener">Tell us why first<span class="sr"> (opens in a new tab)</span></a>. It takes a minute and decides what we fix next.</p></footer>
 <nav class="bnav" id="bnav" aria-label="Sections" hidden></nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>

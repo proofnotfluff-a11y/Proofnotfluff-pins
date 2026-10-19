@@ -100,7 +100,7 @@ def build_html(data, xlsx_bytes, password):
     return (PAGE.replace("__BASECSS__", base_css()).replace("__BOX__", json.dumps(box))
             .replace("__TERMS__", terms_json(data["asOfText"], data["source"]["terms"])).replace("__PITCH__", pitch_json())
             .replace("__LEGAL__", legal_html()).replace("__ASOF__", data["asOfText"]).replace("__FREE__", FREE_PAGE)
-            .replace("__PRICE__", PRICE).replace("__LJS__", js).replace("__LJSI__", jsi).replace("__LCSS__", css).replace("__LCSSI__", cssi))
+            .replace("__SURVEY__", leads_app.survey_url(PRODUCT)).replace("__PRICE__", PRICE).replace("__LJS__", js).replace("__LJSI__", jsi).replace("__LCSS__", css).replace("__LCSSI__", cssi))
 
 
 def build(data, xlsx_path, out, password):
@@ -280,7 +280,7 @@ PAGE = r"""<!doctype html>
 </main>
 <p class="gate-legal" id="gateLegal">__LEGAL__</p>
 <main id="app" class="page" hidden tabindex="-1"></main>
-<footer class="foot-legal" id="appLegal" hidden><p>__LEGAL__</p><p>List of __ASOF__. Questions about your membership? Reply to your Gumroad receipt.</p></footer>
+<footer class="foot-legal" id="appLegal" hidden><p>__LEGAL__</p><p>List of __ASOF__. Questions about your membership? Reply to your Gumroad receipt.</p><p class="leave">Thinking of cancelling? <a href="__SURVEY__" target="_blank" rel="noopener">Tell us why first<span class="sr"> (opens in a new tab)</span></a>. It takes a minute and decides what we fix next.</p></footer>
 <nav class="bnav" id="bnav" aria-label="Sections" hidden></nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>

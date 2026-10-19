@@ -13,7 +13,7 @@
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-19T12:06:39+00:00",
+  "fetchedAt": "2026-10-19T13:55:24+00:00",
   "rowsUpdatedAt": "2026-10-18T09:08:05+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
@@ -41,11 +41,11 @@
   "historyRead": 744,
   "areas": [
    [
-    "Loop",
+    "Near West Side",
     14
    ],
    [
-    "Near West Side",
+    "Loop",
     14
    ],
    [
@@ -85,11 +85,11 @@
     7
    ],
    [
-    "Lincoln Park",
+    "Uptown",
     6
    ],
    [
-    "Uptown",
+    "Lincoln Park",
     6
    ],
    [
@@ -97,11 +97,11 @@
     6
    ],
    [
-    "O'Hare",
+    "Auburn Gresham",
     5
    ],
    [
-    "Auburn Gresham",
+    "O'Hare",
     5
    ],
    [
@@ -153,19 +153,7 @@
     3
    ],
    [
-    "East Garfield Park",
-    3
-   ],
-   [
-    "North Lawndale",
-    3
-   ],
-   [
     "Dunning",
-    3
-   ],
-   [
-    "North Center",
     3
    ],
    [
@@ -173,7 +161,23 @@
     3
    ],
    [
+    "North Lawndale",
+    3
+   ],
+   [
+    "North Center",
+    3
+   ],
+   [
+    "East Garfield Park",
+    3
+   ],
+   [
     "Avondale",
+    2
+   ],
+   [
+    "Edgewater",
     2
    ],
    [
@@ -185,11 +189,7 @@
     2
    ],
    [
-    "Edgewater",
-    2
-   ],
-   [
-    "Rogers Park",
+    "South Deering",
     2
    ],
    [
@@ -197,7 +197,7 @@
     2
    ],
    [
-    "South Deering",
+    "Rogers Park",
     2
    ],
    [

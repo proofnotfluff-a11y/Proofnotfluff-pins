@@ -1,7 +1,7 @@
 {
  "product": "Chicago Restaurant Inspection Leads",
- "asOf": "2026-10-18",
- "asOfText": "Oct 18, 2026",
+ "asOf": "2026-10-19",
+ "asOfText": "Oct 19, 2026",
  "through": "2026-10-16",
  "throughText": "Oct 16, 2026",
  "window": {
@@ -13,7 +13,7 @@
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-18T13:11:21+00:00",
+  "fetchedAt": "2026-10-19T12:06:39+00:00",
   "rowsUpdatedAt": "2026-10-18T09:08:05+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
@@ -37,8 +37,8 @@
    "school, day care, hospital, senior or mobile vendor": 70,
    "the City's latest result is out of business or not located": 1
   },
-  "rowsRead": 1152,
-  "historyRead": 768,
+  "rowsRead": 1125,
+  "historyRead": 744,
   "areas": [
    [
     "Loop",

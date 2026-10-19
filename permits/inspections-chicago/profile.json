@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-10-18T13:11:21+00:00",
+ "fetchedAt": "2026-10-19T12:06:39+00:00",
  "rowsUpdatedAt": "2026-10-18T09:08:05+00:00",
  "columns": [
   "inspection_id",
@@ -26,30 +26,30 @@
   ":@computed_region_43wa_7qmu"
  ],
  "results": {
-  "Fail": 256,
-  "Pass": 645,
+  "Fail": 248,
+  "Pass": 629,
   "Out of Business": 44,
-  "Pass w/ Conditions": 110,
-  "No Entry": 50,
+  "Pass w/ Conditions": 108,
+  "No Entry": 49,
   "Not Ready": 47
  },
  "inspectionTypes": {
-  "Canvass": 361,
-  "License": 225,
-  "Complaint": 169,
-  "Canvass Re-Inspection": 133,
-  "Complaint Re-Inspection": 127,
-  "License Re-Inspection": 59,
-  "Short Form Complaint": 40,
-  "Non-Inspection": 34,
+  "Canvass": 347,
+  "License": 223,
+  "Complaint": 168,
+  "Canvass Re-Inspection": 130,
+  "Complaint Re-Inspection": 125,
+  "License Re-Inspection": 56,
+  "Short Form Complaint": 39,
+  "Non-Inspection": 33,
   "Suspected Food Poisoning": 3,
   "Suspected Food Poisoning Re-inspection": 1
  },
  "facilityTypes": {
-  "Restaurant": 638,
-  "School": 218,
-  "Grocery Store": 120,
-  "Children's Services Facility": 44,
+  "Restaurant": 630,
+  "School": 203,
+  "Grocery Store": 117,
+  "Children's Services Facility": 43,
   "Daycare Above and Under 2 Years": 30,
   "": 26,
   "Mobile Food Preparer": 15,

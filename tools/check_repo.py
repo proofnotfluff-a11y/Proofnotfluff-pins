@@ -13,6 +13,8 @@ Checks
                 docs/go/index.html is skipped because its featured block follows the calendar
   drafts        draft pages (and leads pages without a Kit form) carry noindex and stay out of the sitemap,
                 index and hub; live pages are in the sitemap without noindex
+  sender-tests  node email/sender/test.js and test_glue.js pass (the Apps Script sender's caps, ramp, window,
+                do-not-email, bounces, opt-outs, follow-up threading, through a simulated sending week)
   em-dash       no em dash in anything public: docs/, site/, email/, promo/specs/, agents/, services/
   secrets       no token or private key pattern in any tracked text file
   permit-data   permits/*/sample.json holds business-level fields only, and no scope text carries a
@@ -302,12 +304,29 @@ def check_gate_tests():
         ok("gate-tests", (lines[-1].split(": ", 1)[-1] if lines else "passed"))
 
 
+def check_sender():
+    tests = [os.path.join(ROOT, "email", "sender", t) for t in ("test.js", "test_glue.js")]
+    tests = [t for t in tests if os.path.exists(t)]
+    if not tests:
+        return ok("sender-tests", "no test file")
+    if not shutil.which("node"):
+        return err("sender-tests", "node is not installed here")
+    out = []
+    for t in tests:
+        r = subprocess.run(["node", t], cwd=ROOT, capture_output=True, text=True)
+        last = (r.stdout.strip().splitlines() or ["no output"])[-1]
+        if r.returncode != 0 or not last.startswith("PASS"):
+            return err("sender-tests", f"{os.path.basename(t)}: {last} {r.stderr.strip()[:120]}")
+        out.append(last.replace("PASS ", ""))
+    ok("sender-tests", "; ".join(out))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", default="")
     only = {x.strip() for x in ap.parse_args().only.split(",") if x.strip()}
     files = tracked()
-    checks = [("json", lambda: check_json(files)), ("python", lambda: check_python(files)), ("calc-tests", check_calc),
+    checks = [("json", lambda: check_json(files)), ("python", lambda: check_python(files)), ("calc-tests", check_calc), ("sender-tests", check_sender),
               ("site-sync", lambda: check_site_sync(files)), ("drafts", check_drafts), ("em-dash", lambda: check_em_dash(files)),
               ("secrets", lambda: check_secrets(files)), ("permit-data", check_permit_data), ("builder-contacts", lambda: check_builder_contacts(files)), ("video-specs", lambda: check_video_specs(files)),
               ("voice", lambda: check_voice(files)),

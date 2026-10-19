@@ -29,20 +29,25 @@ Example: `250 E Superior St, Near North Side: renovation, $6.3 million reported 
 
 Subject:
 ```
-{area} job close to a final clean
+Who to call for a final clean in {area}
 ```
+
+Fields for the job block, from the {example} pick: {address}, {area}, {builder} (first name in gc), {stage} (the stage words above), {work} = `{type in lower case}{, N homes when units is set}, {cost} reported cost`. {fetched} = counts.fetched with a thousands comma; {topGC} and {topGCJobs} = counts.topGCs[0].name and .projects.
 
 Body:
 ```
 Hi {Company} team,
 
-Your site says you do post-construction cleaning in the Chicago area, so here is a job close to a final clean:
+You advertise post-construction cleaning, so here is a lead from Chicago's building permits:
 
-{example}
+Job: {address}, {area}
+Work: {work}
+Stage: {stage}
+Who to call: {builder}, the general contractor
 
-It is one of {near} projects on this week's list where the City has approved partial or temporary occupancy. The full list has {projects} open projects of $500,000 or more, each with its general contractor.
+Not a job from us or a bid invite: you call the builder's office and ask to bid the final clean.
 
-Every Monday we turn the City of Chicago's building permits into that list, with the near-finish jobs on their own tab, in a web app and an Excel file. It is $29 a month, cancel any time.
+Every Monday we cut {fetched} permit records to the {projects} open commercial and apartment jobs of $500,000 or more, each with its builder, the {near} with partial occupancy on their own tab. One builder, {topGC}, has {topGCJobs} of them. Web app, Excel file, and a pitch kit with an email for builders. $29 a month, cancel any time.
 
 This week's free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/
 
@@ -64,11 +69,16 @@ Body:
 ```
 Hi {Company} team,
 
-One more from this week's Chicago list, in case it helps:
+Another lead from this week's Chicago list:
 
-{example}
+Job: {address}, {area}
+Work: {work}
+Stage: {stage}
+Who to call: {builder}, the general contractor
 
-The list has {projects} open projects with the general contractor on each, and {near} have partial occupancy approved. It updates every Monday and is $29 a month. Free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/
+Same idea: call the builder's office and ask to bid the final clean, or send the short builder email from the pitch kit.
+
+The list has {projects} jobs like this, {near} with partial occupancy approved, updated every Monday, $29 a month. Free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/
 
 If it isn't a fit, reply "no thanks" and we won't email you again.
 
@@ -83,3 +93,4 @@ This is an advertisement for ProofNotFluff's paid list. This is our last email u
 (email/COPY_REVIEW.md; newest last)
 - Oct 18, 2026, round 1 (fresh reviewer): FAIL, 3.50. The example sat at the end of a long paragraph with no format or picking rule, two links, a filler opener, a bump-only follow-up. Rewritten: the job first, one link, a format and picking rule for {example}, a follow-up with a new job.
 - Oct 18, 2026, round 2 (fresh reviewer): PASS, 4.75. Applied: subject without "A" (vowel areas), thousands commas, a full cost-wording rule, the CRM area field named, the follow-up states the price.
+- Oct 19, 2026 (Todd asked whether readers can tell these are leads to pursue): two cold-reader tests on the filled emails both read the subject and opener as a job or bid invite and would delete. An independent B2B cold-email marketer scored clarity 2 of 5 and objection handling 1 of 5, and rewrote: subject "Who to call for a final clean in ...", the job as labeled lines with "Who to call", an explicit "Not a job from us or a bid invite" line, and the scale line that answers "permits are free" and "I have my GCs". Applied as written; fresh cold readers re-test before the batch.

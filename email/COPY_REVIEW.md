@@ -17,6 +17,10 @@ A fresh subagent that did not write or edit the copy and has not seen earlier dr
 9. **Compliance:** CAN-SPAM (sender identity, postal address, ad notice, working opt-out honored), no person's name or personal contact, the data source's terms respected (legal/README.md).
 10. **Follow-up:** adds something new (a different job, a fresh count) instead of only bumping the first email, and says it is the last.
 
+## Two more checks (Todd, Oct 19, 2026: "Is it clear from the draft emails that these are leads for them to pursue? Did you have an independent marketing AI agent review these for effectiveness?")
+- **Cold-reader test:** two fresh readers, each given only one filled email and a short role (a small cleaning or trade business owner reading on a phone), with no product context. Each answers: what is being sold, whether they thought for a moment someone was offering them the job or a bid invite, what they would do next, and click, reply or delete. A copy passes only when no reader thinks it is a job offer and both can say what to do with the lead.
+- **Independent marketer:** a fresh B2B cold-email marketer scores clarity and conversion (hook, relevance, value shown, offer clarity, objection handling, call to action, subject, follow-up) and returns a paste-ready rewrite. Its fixes are applied, then the cold-reader test runs again on the new text.
+
 ## The bar
 No score under 4 and an average above 4.6 (the same bar as the design director). The reviewer returns a table (item, score, one-line reason), the average, PASS or FAIL, and for anything under 4.5 the exact rewrite it recommends. Fixes are applied, then a fresh reviewer re-checks only what changed. The verdict and date go at the end of the outreach file under "Review verdicts".
 

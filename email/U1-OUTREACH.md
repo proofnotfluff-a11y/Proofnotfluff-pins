@@ -39,22 +39,27 @@ From the projects and nearFinish arrays of that Monday's file (one list, de-dupl
 
 ## First email
 
+Fields for the job block, from the {example} pick: {address} (printed without "(+N more)"), {zip}, {builder} (first name in gc), {stage} in lower case ("near finish", "work under way", "permit issued"), {work} = `{type in lower case}{, N homes when units is set}, {valuation} City valuation`. {fetched} = counts.fetched and {builders} = counts.builders, with thousands commas.
+
 Subject:
 ```
-Austin job in {zip} that will need a final clean
+Who to call for a final clean in {zip}
 ```
 
 Body:
 ```
 Hi {Company} team,
 
-Your site lists post-construction cleaning, so here is an Austin job that will need a final clean:
+You advertise post-construction cleaning, so here is a lead from Austin's building permits:
 
-{example}
+Job: {address}, {zip}
+Work: {work}
+Stage: {stage}
+Who to call: {builder}, the general contractor
 
-It is one of {projects} open Austin commercial and apartment projects of $500,000 or more on this week's list, each with its general contractor. {underway} already have work under way.
+Not a job from us or a bid invite: you call the builder's office and ask to bid the final clean.
 
-Every Monday we turn the City of Austin's building permits into that list, closest to a final clean first, in a web app and an Excel file with a ZIP code filter. It is $29 a month, cancel any time.
+Every Monday we cut {fetched} permit records to the {projects} open commercial and apartment jobs of $500,000 or more, from {builders} general contractors, closest to a final clean first. You get a web app, an Excel file and a pitch kit with an email to send builders. $29 a month, cancel any time.
 
 This week's free sample: https://proofnotfluff.com/austin-construction-cleaning-leads/
 
@@ -66,17 +71,22 @@ This is an advertisement for ProofNotFluff's paid list, sent to businesses that 
 
 ## Follow-up (one, 5 business days later, as a reply in the same thread)
 
-Fields from that Monday's file; {example} is the next project per the picking rule, different from the first email's.
+Fields from that Monday's file; the job is the next project per the picking rule, different from the first email's.
 
 Body:
 ```
 Hi {Company} team,
 
-One more from this week's Austin list, in case it helps:
+Another lead from this week's Austin list:
 
-{example}
+Job: {address}, {zip}
+Work: {work}
+Stage: {stage}
+Who to call: {builder}, the general contractor
 
-The list has {projects} open projects with the general contractor on each, closest to a final clean first. It updates every Monday and is $29 a month. Free sample: https://proofnotfluff.com/austin-construction-cleaning-leads/
+Same idea: call the builder's office and ask to bid the final clean, or send the short builder email from the pitch kit.
+
+The list has {projects} jobs like this from {builders} general contractors, updated every Monday, $29 a month. Free sample: https://proofnotfluff.com/austin-construction-cleaning-leads/
 
 If it isn't a fit, reply "no thanks" and we won't email you again.
 
@@ -93,3 +103,4 @@ The first email's body without the "Hi {Company} team," line, the footer kept, s
 (email/COPY_REVIEW.md; newest last)
 - Oct 18, 2026, round 1 (fresh reviewer): FAIL, 4.60 (bar: above 4.6). Fixed: subject names the job's ZIP, tower and campus finish-outs and remodels over $100 million left out as examples, paragraphs 3 and 4 shortened, one-decimal valuations under $100 million, no "near you" when the prospect's side has no job.
 - Oct 18, 2026, round 2 (fresh reviewer): PASS, 4.75. Applied: the subject says why a cleaner cares, the follow-up states the price, a West prospect's follow-up falls back to Central.
+- Oct 19, 2026 (Todd asked whether readers can tell these are leads to pursue): two cold-reader tests on the filled emails both read the subject and opener as a job or bid invite and would delete. An independent B2B cold-email marketer scored clarity 2 of 5 and objection handling 1 of 5, and rewrote: subject "Who to call for a final clean in ...", the job as labeled lines with "Who to call", an explicit "Not a job from us or a bid invite" line, and the scale line that answers "permits are free" and "I have my GCs". Applied as written; fresh cold readers re-test before the batch.

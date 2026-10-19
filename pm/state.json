@@ -1,7 +1,7 @@
 {
  "started_at": "2026-10-17T18:19:43Z",
- "cash": 42.9818,
- "realized_pnl": -5.7315,
+ "cash": 28.9893,
+ "realized_pnl": -6.7422,
  "cohort": {
   "picked_at": "2026-10-17T18:19:43Z",
   "wallets": [
@@ -210,43 +210,28 @@
   }
  },
  "last_seen": {
-  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1792370262,
+  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1792390458,
   "0xcdcccd0f2d86e450d973da415ad2430e5cc7935a": 1792344389,
-  "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1792370388,
+  "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1792392003,
   "0x7c37b52eb226bcb9411375ec48b0169663fb6aeb": 1792261183,
   "0x924379a79c64b77ad5816ad362122a5f6228658e": 1792349378,
   "0x63cf8544631c31e9fcea0b02141dd24d01d6e4d0": 1792261183,
-  "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": 1792370529,
+  "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": 1792392329,
   "0x361b16e3ddfe1d415d41008daac2631d94ab74fe": 1792367475,
-  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1792370451,
-  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1792370417,
-  "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": 1792370496,
+  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1792392135,
+  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1792392329,
+  "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": 1792391898,
   "0xb0e74df9430a089aa102e2207af5fde1967439d2": 1792261183,
   "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747": 1792338929,
-  "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c": 1792370409,
-  "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": 1792369808,
-  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1792367189,
-  "0xd38b71f3e8ed1af71983e5c309eac3dfa9b35029": 1792370477,
-  "0x511f9c771449162349795d17becf8b37031acbe1": 1792370496,
+  "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c": 1792392245,
+  "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": 1792391153,
+  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1792379181,
+  "0xd38b71f3e8ed1af71983e5c309eac3dfa9b35029": 1792380941,
+  "0x511f9c771449162349795d17becf8b37031acbe1": 1792392096,
   "0x0f6f76ced62a911bccef92f50faaff143854d977": 1792327208,
   "0xa2cced8bfae7d645f7f437fb76becf2fcbb70cbc": 1792341776
  },
  "positions": {
-  "62216093420049586863764473589072732611021099987810862636177687263075853891357": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0x340c1c3ad87ec9d60450284665ba1a386a213d818a9042fdfcc8e20e0521f624",
-   "title": "Cowboys vs. Packers",
-   "outcome": "Cowboys",
-   "outcome_index": 0,
-   "opened_at": "2026-10-18T13:39:45Z",
-   "leader_price": 0.4900001785,
-   "entry_price": 0.505,
-   "shares": 9.703,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.345,
-   "value": 3.3475
-  },
   "33156410999665902694791064431724433042010245771106314074312009703157423879038": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
    "condition_id": "0xd5d9fc47718bd553592d126b1fa5e87183d27f3936975b0c04cc0f2dec1f1bb4",
@@ -334,8 +319,8 @@
    "shares": 11.3953,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.525,
-   "value": 5.9825
+   "last_price": 0.039,
+   "value": 0.4444
   },
   "32481463316308414566870387925755631596964865686902270953857613599861973534909": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -364,8 +349,8 @@
    "shares": 5.1363,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9405,
-   "value": 4.8307
+   "last_price": 0.957,
+   "value": 4.9154
   },
   "8818882580258325166337837102966293982190018467620490556947006190938951037006": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -379,8 +364,8 @@
    "shares": 5.1336,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.97,
-   "value": 4.9796
+   "last_price": 0.971,
+   "value": 4.9847
   },
   "67556833911038516663762658580603672381492400838184408384897474335007438931935": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -394,8 +379,8 @@
    "shares": 12.3581,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.381,
-   "value": 4.7084
+   "last_price": 0.431,
+   "value": 5.3263
   },
   "51971221506050097243705792157899572281015127216972300934938845878155423445294": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -409,8 +394,8 @@
    "shares": 5.9394,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.86,
-   "value": 5.1079
+   "last_price": 0.83,
+   "value": 4.9297
   },
   "5025646279751821747465277196511043885318485329317122457171454361662285580942": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -424,8 +409,8 @@
    "shares": 5.1228,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9215,
-   "value": 4.7207
+   "last_price": 0.9315,
+   "value": 4.7719
   },
   "47741949625869287078479365362596112595414393647054952894820065470931218251823": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -454,8 +439,8 @@
    "shares": 7.1014,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.725,
-   "value": 5.1485
+   "last_price": 0.745,
+   "value": 5.2905
   },
   "108767173380374027732080104990699635190337878673564806647896154227197681002646": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -469,8 +454,8 @@
    "shares": 5.3552,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.925,
-   "value": 4.9536
+   "last_price": 0.92,
+   "value": 4.9268
   },
   "54067234782064566757986954649290239732663264374027341052285058785312325589651": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -484,83 +469,8 @@
    "shares": 5.4444,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9655,
-   "value": 5.2566
-  },
-  "14279175689109971827223405446990432376532760818882845097748066827800902764471": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0x0fb25dd225f0fa57e6c24982ebb2cf1fb4862a651445440e4853e447717535f6",
-   "title": "Spread: Cowboys (-1.5)",
-   "outcome": "Cowboys",
-   "outcome_index": 0,
-   "opened_at": "2026-10-19T00:42:13Z",
-   "leader_price": 0.48,
-   "entry_price": 0.32,
-   "shares": 15.3125,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.31,
-   "value": 4.7469
-  },
-  "21171178487353737927893372845758215228865089102629824238819632977860629511688": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0x5ea2ad122aacaef85f9e422bc753baf76830c8edc91336370a8f6941b954d7b7",
-   "title": "Spread: Packers (-1.5)",
-   "outcome": "Cowboys",
-   "outcome_index": 1,
-   "opened_at": "2026-10-19T00:42:14Z",
-   "leader_price": 0.54,
-   "entry_price": 0.37,
-   "shares": 13.2432,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.36,
-   "value": 4.7676
-  },
-  "70547856218792735037123308932478096676362518792366511192816840316400215949826": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0x9e81967b3c0cf514582b60f506256d12b8cf255c4134de9054f372ad21a82860",
-   "title": "Cowboys vs. Packers: O/U 54.5",
-   "outcome": "Under",
-   "outcome_index": 1,
-   "opened_at": "2026-10-19T00:42:14Z",
-   "leader_price": 0.52,
-   "entry_price": 0.535,
-   "shares": 9.1589,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.525,
-   "value": 4.8084
-  },
-  "44086920348248650939896663834553377177692183638249726534434302810667785929066": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0x1a49fb0014f5519d9339178636575a312c891fc2a18664ece2d9c8d40a739de0",
-   "title": "Cowboys vs. Packers: O/U 52.5",
-   "outcome": "Under",
-   "outcome_index": 1,
-   "opened_at": "2026-10-19T00:42:14Z",
-   "leader_price": 0.45,
-   "entry_price": 0.475,
-   "shares": 10.3158,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.465,
-   "value": 4.7968
-  },
-  "96027256355689421133559571920239755795762928441993873379673570173319420783351": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0x3c0525cae4770dd614604b1fd14f5e72f5f064fc54c67f34709e02199ffa31af",
-   "title": "Cowboys vs. Packers: O/U 53.5",
-   "outcome": "Under",
-   "outcome_index": 1,
-   "opened_at": "2026-10-19T00:42:15Z",
-   "leader_price": 0.49,
-   "entry_price": 0.515,
-   "shares": 9.5146,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.495,
-   "value": 4.7097
+   "last_price": 0.922,
+   "value": 5.0197
   },
   "67781785096048986480555545673104624537092194418025974732512910497941198736358": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -574,8 +484,8 @@
    "shares": 7.6562,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.63,
-   "value": 4.8234
+   "last_price": 0.545,
+   "value": 4.1726
   },
   "22617620315505175727723001645918372863877630230601156151742064900928321573866": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -589,8 +499,8 @@
    "shares": 7.5969,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.635,
-   "value": 4.824
+   "last_price": 0.545,
+   "value": 4.1403
   },
   "96093558977186137045584860805689703872738518986109587956472968816094483551547": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -619,8 +529,8 @@
    "shares": 6.9014,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.7,
-   "value": 4.831
+   "last_price": 0.71,
+   "value": 4.9
   },
   "105522655783628111568150477868720380862891055050578008224404520695883452961983": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -634,8 +544,8 @@
    "shares": 6.087,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.795,
-   "value": 4.8392
+   "last_price": 0.81,
+   "value": 4.9305
   },
   "32848994087271280276945427999529555199875725679020258790709442923943602775187": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -649,8 +559,8 @@
    "shares": 9.0741,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.53,
-   "value": 4.8093
+   "last_price": 0.515,
+   "value": 4.6732
   },
   "21131379016926049701417734287028702583113655898100120430841005283575185576138": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -679,8 +589,8 @@
    "shares": 5.2973,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.915,
-   "value": 4.847
+   "last_price": 0.92,
+   "value": 4.8735
   },
   "27301262124481043891033368015184733531227980710771869848766899126291100539458": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -694,8 +604,143 @@
    "shares": 1.6484,
    "cost": 1.2867,
    "fee_in": 0.0257,
-   "last_price": 0.755,
-   "value": 1.2445
+   "last_price": 0.515,
+   "value": 0.8489
+  },
+  "2618138322856109565904469085316346602627882727483900432328802655317079880335": {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x741bb46008b72234857c5118c8365ab3c2f69dbf28b30b59de04f173b8a778de",
+   "title": "Will Dan Sullivan win the Alaska Senate race in 2026?",
+   "outcome": "Yes",
+   "outcome_index": 0,
+   "opened_at": "2026-10-19T06:45:30Z",
+   "leader_price": 0.25,
+   "entry_price": 0.265,
+   "shares": 18.4906,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.255,
+   "value": 4.7151
+  },
+  "104332866126515956093450589750286954738111137415513428604932963328511192583801": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0xbdcdc14fd98134683503468026d53603a9765f917cdd7a3953b7ebc03e5cf40a",
+   "title": "Will Shas win 12 or more seats in the 2026 Knesset elections?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-19T06:45:31Z",
+   "leader_price": 0.96,
+   "entry_price": 0.94,
+   "shares": 5.2128,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.93,
+   "value": 4.8479
+  },
+  "66072327615726046499669264247360148320766479710839940112360677274067132727584": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x532eb1b0d2a7ef8d48c1cb0165f9ed2396c5c301c064a2eb3038f082d3b0f28d",
+   "title": "Will Shas win 6-7 seats in the 2026 Knesset elections?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-19T06:45:32Z",
+   "leader_price": 0.54,
+   "entry_price": 0.61,
+   "shares": 8.0328,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.6,
+   "value": 4.8197
+  },
+  "60542622068067373528159211305579692149482525110661714547965603688547571465715": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x4d0b8dd9cb14b8d4a4d88c6692762a29f1a7973bba9be038f06e9e71abd88765",
+   "title": "Will Alison Jarman win the next Devonport mayoral election?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-19T06:45:32Z",
+   "leader_price": 0.2400000048,
+   "entry_price": 0.32,
+   "shares": 15.3125,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.31,
+   "value": 4.7469
+  },
+  "108188779790444016941848487602523982621927017413109885207453087351349250458729": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x1d315e87770060d113b10642aeb4b6a4b67ecbcd218cf4926e7101bce0cdf73b",
+   "title": "Will Steve Martin win the next Devonport mayoral election?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-19T06:45:33Z",
+   "leader_price": 0.75,
+   "entry_price": 0.75,
+   "shares": 6.5333,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.74,
+   "value": 4.8346
+  },
+  "68095207797142020283849185518171445977080871350745178377199281395319965060478": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x809b8f9ab5700ab7ac31104cb7870b1b366e2776e12057378c807d64cfc808bc",
+   "title": "Will the highest temperature in Milan be 17\u00b0C on October 20?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-19T06:45:33Z",
+   "leader_price": 0.71,
+   "entry_price": 0.72,
+   "shares": 6.8056,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.71,
+   "value": 4.832
+  },
+  "21526447557476835539496175678457377196772437996920415397629734301227404557702": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0xbef3f22fca2201c4be5fc48ce717e5b3a436b99101670c917c05d68ffbe2b868",
+   "title": "Will the highest temperature in Milan be 15\u00b0C on October 20?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-19T06:45:34Z",
+   "leader_price": 0.82,
+   "entry_price": 0.835,
+   "shares": 5.8683,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.825,
+   "value": 4.8413
+  },
+  "103260758221019261190568249958083274029384820061909611626197177871555415590776": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0xa28e14fa834a4ee76a9180a2e14dba6ee455fce33f112cefa7157411d61d443c",
+   "title": "Will Conservative win the most seats in the 2026 British Columbia general election?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-19T06:45:34Z",
+   "leader_price": 0.16,
+   "entry_price": 0.15,
+   "shares": 32.6667,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.14,
+   "value": 4.5733
+  },
+  "75699093204664657083852366089628829977790159055900435225255069244546773042089": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x1976c8f59abd1819cf56d9fb7d5c90fd3fc2cfc2044056266e6aae72df8d5334",
+   "title": "Will \"Remain\" win the Alberta independence referendum by 40\u201360%?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-19T06:45:35Z",
+   "leader_price": 0.2,
+   "entry_price": 0.26,
+   "shares": 11.2392,
+   "cost": 2.9818,
+   "fee_in": 0.0596,
+   "last_price": 0.25,
+   "value": 2.8098
   }
  },
  "closed": [
@@ -1158,12 +1203,132 @@
    "fee_out": 0.0,
    "pnl": 11.8966,
    "reason": "resolved"
+  },
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x340c1c3ad87ec9d60450284665ba1a386a213d818a9042fdfcc8e20e0521f624",
+   "title": "Cowboys vs. Packers",
+   "outcome": "Cowboys",
+   "outcome_index": 0,
+   "opened_at": "2026-10-18T13:39:45Z",
+   "leader_price": 0.4900001785,
+   "entry_price": 0.505,
+   "shares": 9.703,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.345,
+   "value": 3.3475,
+   "closed_at": "2026-10-19T06:45:39Z",
+   "exit_price": 0.0,
+   "fee_out": 0.0,
+   "pnl": -5.0,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x0fb25dd225f0fa57e6c24982ebb2cf1fb4862a651445440e4853e447717535f6",
+   "title": "Spread: Cowboys (-1.5)",
+   "outcome": "Cowboys",
+   "outcome_index": 0,
+   "opened_at": "2026-10-19T00:42:13Z",
+   "leader_price": 0.48,
+   "entry_price": 0.32,
+   "shares": 15.3125,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.31,
+   "value": 4.7469,
+   "closed_at": "2026-10-19T06:45:48Z",
+   "exit_price": 0.0,
+   "fee_out": 0.0,
+   "pnl": -5.0,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x5ea2ad122aacaef85f9e422bc753baf76830c8edc91336370a8f6941b954d7b7",
+   "title": "Spread: Packers (-1.5)",
+   "outcome": "Cowboys",
+   "outcome_index": 1,
+   "opened_at": "2026-10-19T00:42:14Z",
+   "leader_price": 0.54,
+   "entry_price": 0.37,
+   "shares": 13.2432,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.36,
+   "value": 4.7676,
+   "closed_at": "2026-10-19T06:45:48Z",
+   "exit_price": 0.0,
+   "fee_out": 0.0,
+   "pnl": -5.0,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x9e81967b3c0cf514582b60f506256d12b8cf255c4134de9054f372ad21a82860",
+   "title": "Cowboys vs. Packers: O/U 54.5",
+   "outcome": "Under",
+   "outcome_index": 1,
+   "opened_at": "2026-10-19T00:42:14Z",
+   "leader_price": 0.52,
+   "entry_price": 0.535,
+   "shares": 9.1589,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.525,
+   "value": 4.8084,
+   "closed_at": "2026-10-19T06:45:48Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 4.1589,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x1a49fb0014f5519d9339178636575a312c891fc2a18664ece2d9c8d40a739de0",
+   "title": "Cowboys vs. Packers: O/U 52.5",
+   "outcome": "Under",
+   "outcome_index": 1,
+   "opened_at": "2026-10-19T00:42:14Z",
+   "leader_price": 0.45,
+   "entry_price": 0.475,
+   "shares": 10.3158,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.465,
+   "value": 4.7968,
+   "closed_at": "2026-10-19T06:45:48Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 5.3158,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x3c0525cae4770dd614604b1fd14f5e72f5f064fc54c67f34709e02199ffa31af",
+   "title": "Cowboys vs. Packers: O/U 53.5",
+   "outcome": "Under",
+   "outcome_index": 1,
+   "opened_at": "2026-10-19T00:42:15Z",
+   "leader_price": 0.49,
+   "entry_price": 0.515,
+   "shares": 9.5146,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.495,
+   "value": 4.7097,
+   "closed_at": "2026-10-19T06:45:48Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 4.5146,
+   "reason": "resolved"
   }
  ],
  "signals": {
-  "buy": 54,
+  "buy": 63,
   "sell": 0,
-  "skipped": 2604,
+  "skipped": 3243,
   "fallback_price": 0
  },
  "errors": 0

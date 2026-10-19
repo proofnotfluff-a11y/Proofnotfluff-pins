@@ -10,7 +10,7 @@ Why: Gemini's red team (Oct 17) and the COO agree that waiting for traffic is th
 
 ## Rules
 - Sending (Todd, Oct 18: "You send after my yes"): the outreach run sends each checked batch from hello@proofnotfluff.com in Gmail on the web, only after Todd says send in chat for that batch (coo/LEADS_DESK.md). Follow-up (Todd, Oct 18: "Yes, one follow-up"): one short follow-up 5 business days after the first email, in the same thread, never to anyone who replied, opted out or bounced. Nothing more after it.
-- CAN-SPAM: honest subject, the sender is ProofNotFluff, a valid postal address in the footer (Todd, Oct 17, 2:39 pm: "you can use 1718 Capitol Ave Cheyenne, WY 82001"), and a working opt-out (reply "no thanks"); honor it, and never email that address again.
+- CAN-SPAM: honest subject, the sender is ProofNotFluff, a valid postal address in the footer: "680 North Lake Shore Drive, Suite 110-2964, Chicago, IL 60611" (Todd's iPostal1 mailbox, a private mailbox at a USPS-registered commercial mail receiving agency, Oct 19, 2026; it replaced the Oct 17 Cheyenne, WY address), and a working opt-out (reply "no thanks"); honor it, and never email that address again.
 - Every fact in the email comes from the week's members' list (the City of Chicago Building Permits dataset as filtered by tools/permits_chicago.py). {Company}, {projects}, {near} and {example} are filled from that list on the morning the drafts are made; every draft is checked for leftover braces, and the drafts are not made if any number differs from the list (Holdout QC, Oct 17: the first draft carried last week's numbers).
 - No invented people, no fake urgency, no claim that any builder works with us.
 
@@ -52,7 +52,7 @@ Every Monday we cut {fetched} permit records to the {projects} open commercial a
 This week's free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/
 
 ProofNotFluff
-1718 Capitol Ave, Cheyenne, WY 82001
+680 North Lake Shore Drive, Suite 110-2964, Chicago, IL 60611
 
 This is an advertisement for ProofNotFluff's paid list, sent to businesses that advertise post-construction cleaning. We send at most one follow-up. Not interested? Reply "no thanks" and we won't email you again.
 ```
@@ -83,7 +83,7 @@ The list has {projects} jobs like this, {near} with partial occupancy approved, 
 If it isn't a fit, reply "no thanks" and we won't email you again.
 
 ProofNotFluff
-1718 Capitol Ave, Cheyenne, WY 82001
+680 North Lake Shore Drive, Suite 110-2964, Chicago, IL 60611
 
 This is an advertisement for ProofNotFluff's paid list. This is our last email unless you write back.
 ```
@@ -94,4 +94,4 @@ This is an advertisement for ProofNotFluff's paid list. This is our last email u
 - Oct 18, 2026, round 1 (fresh reviewer): FAIL, 3.50. The example sat at the end of a long paragraph with no format or picking rule, two links, a filler opener, a bump-only follow-up. Rewritten: the job first, one link, a format and picking rule for {example}, a follow-up with a new job.
 - Oct 18, 2026, round 2 (fresh reviewer): PASS, 4.75. Applied: subject without "A" (vowel areas), thousands commas, a full cost-wording rule, the CRM area field named, the follow-up states the price.
 - Oct 19, 2026 (Todd asked whether readers can tell these are leads to pursue): two cold-reader tests on the filled emails both read the subject and opener as a job or bid invite and would delete. An independent B2B cold-email marketer scored clarity 2 of 5 and objection handling 1 of 5, and rewrote: subject "Who to call for a final clean in ...", the job as labeled lines with "Who to call", an explicit "Not a job from us or a bid invite" line, and the scale line that answers "permits are free" and "I have my GCs". Applied as written; fresh cold readers re-test before the batch.
-- Oct 19, 2026, re-test: two fresh cold readers on the rewritten emails both answered "No" to reading it as a job offer and both named the next step (call the builder's office and ask to bid the final clean). PASS on clarity. Every reader in both rounds questioned the Cheyenne, WY address on a local list (Todd's call).
+- Oct 19, 2026, re-test: two fresh cold readers on the rewritten emails both answered "No" to reading it as a job offer and both named the next step (call the builder's office and ask to bid the final clean). PASS on clarity. Every reader in both rounds questioned the Cheyenne, WY address on a local list; Todd replaced it the same morning with his iPostal1 Chicago mailbox (footer updated).

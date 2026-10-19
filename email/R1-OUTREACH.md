@@ -8,7 +8,7 @@ Product: Chicago Restaurant Inspection Leads, $39 a month (launches/chicago-rest
 
 ## Rules (same legal base as email/A1-OUTREACH.md)
 - Sending (Todd, Oct 18: "You send after my yes"): the outreach run sends each checked batch from hello@proofnotfluff.com in Gmail on the web, only after Todd says send in chat for that batch (coo/LEADS_DESK.md). Follow-up (Todd, Oct 18: "Yes, one follow-up"): one short follow-up 5 business days after the first email, in the same thread, never to anyone who replied, opted out or bounced. Nothing more after it.
-- CAN-SPAM: honest subject, the sender is ProofNotFluff, the postal address "1718 Capitol Ave, Cheyenne, WY 82001" in the footer, and a working opt-out (reply "no thanks"); honor it and never email that address again.
+- CAN-SPAM: honest subject, the sender is ProofNotFluff, the postal address "680 North Lake Shore Drive, Suite 110-2964, Chicago, IL 60611" in the footer (Todd's iPostal1 mailbox, Oct 19, 2026; it replaced the Cheyenne, WY address), and a working opt-out (reply "no thanks"); honor it and never email that address again.
 - Every fact comes from that morning's members' list (tools/rest_leads.py on the City's Food Inspections data). {fields} are filled the morning the drafts are made from permits/inspections-chicago/rest-sample.json counts and examples (the table under "The emails"); a draft with a leftover brace, or a number that differs from the list, is not made.
 - The example record gives the facility type, community area, the City's result, date, inspection type and violation code, and never the business name or street address (the same line as the free page): never "dirty", "unsafe", "infested" or any judgment. Pick an example whose newest City result is still the one quoted (if the place passed a re-inspection since, pick another).
 - No invented people, no fake urgency, no claim that any business works with us.
@@ -52,7 +52,7 @@ Every Monday, members get each place named with its address, a map, an Excel fil
 Free sample: https://proofnotfluff.com/chicago-restaurant-inspection-leads/
 
 ProofNotFluff
-1718 Capitol Ave, Cheyenne, WY 82001
+680 North Lake Shore Drive, Suite 110-2964, Chicago, IL 60611
 
 This is an advertisement for ProofNotFluff's paid list, sent to businesses that advertise {service_ad}. We send at most one follow-up. Not interested? Reply "no thanks" and we won't email you again.
 ```
@@ -72,7 +72,7 @@ On the list, {trade_line}, and every place is named with its address and City in
 If it isn't a fit, reply "no thanks" and we won't email you again.
 
 ProofNotFluff
-1718 Capitol Ave, Cheyenne, WY 82001
+680 North Lake Shore Drive, Suite 110-2964, Chicago, IL 60611
 
 This is an advertisement for ProofNotFluff's paid list. This is our last email unless you write back.
 ```

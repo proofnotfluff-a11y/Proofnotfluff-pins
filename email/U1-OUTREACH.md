@@ -15,7 +15,7 @@ Todd, Oct 18, 4:24 pm: "Yes email outreach is our best marketing tactic and shou
 - No invented people, no fake urgency, no claim that any builder works with us, no person's name anywhere.
 
 ## Fields (all from that Monday's permits/austin/sample.json)
-- {Company}: the business name as its own site prints it, without "LLC", "Inc." and the like.
+- {Company}: the business name as its own site prints it, without "LLC", "Inc.", "Co." and the like (so the greeting reads like a person wrote it).
 - {projects}: counts.kept.
 - {underway}: counts.byStage["Work under way"] plus counts.byStage["Near finish"] (projects past the permit-issued stage).
 - {example}: one project, picked by the rule below, written on one line as:
@@ -104,3 +104,4 @@ The first email's body without the "Hi {Company} team," line, the footer kept, s
 - Oct 18, 2026, round 1 (fresh reviewer): FAIL, 4.60 (bar: above 4.6). Fixed: subject names the job's ZIP, tower and campus finish-outs and remodels over $100 million left out as examples, paragraphs 3 and 4 shortened, one-decimal valuations under $100 million, no "near you" when the prospect's side has no job.
 - Oct 18, 2026, round 2 (fresh reviewer): PASS, 4.75. Applied: the subject says why a cleaner cares, the follow-up states the price, a West prospect's follow-up falls back to Central.
 - Oct 19, 2026 (Todd asked whether readers can tell these are leads to pursue): two cold-reader tests on the filled emails both read the subject and opener as a job or bid invite and would delete. An independent B2B cold-email marketer scored clarity 2 of 5 and objection handling 1 of 5, and rewrote: subject "Who to call for a final clean in ...", the job as labeled lines with "Who to call", an explicit "Not a job from us or a bid invite" line, and the scale line that answers "permits are free" and "I have my GCs". Applied as written; fresh cold readers re-test before the batch.
+- Oct 19, 2026, re-test: two fresh cold readers on the rewritten emails both answered "No" to reading it as a job offer and both named the next step (call the builder's office and ask to bid the final clean). PASS on clarity. Every reader in both rounds questioned the Cheyenne, WY address on a local list (Todd's call).

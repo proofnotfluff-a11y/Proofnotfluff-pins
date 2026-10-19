@@ -3,19 +3,19 @@
   "name": "City of Chicago Data Portal, Building Permits",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
   "rowsUpdatedAt": "2026-10-17T12:18:17+00:00",
-  "fetchedAt": "2026-10-18T05:21:32+00:00",
+  "fetchedAt": "2026-10-19T11:45:50+00:00",
   "modified": "Filtered by ProofNotFluff: permits issued in the last 24 months, new construction or renovation, reported cost $500,000 or more, still open (City status Active or Phased Permitting; complete, suspended, cancelled, revoked and expired permits left out), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs a construction clean under its permit (foundation, superstructure, caisson, demolition, roof, facade, mechanical, equipment or site work only) left out; cleaning companies listed as contractor left out; a revision of a permit already on the list counted once; only project-level and business fields kept.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
-  "from": "2024-10-18",
-  "to": "2026-10-18"
+  "from": "2024-10-19",
+  "to": "2026-10-19"
  },
  "counts": {
-  "fetched": 3065,
-  "kept": 1134,
+  "fetched": 3061,
+  "kept": 1133,
   "excluded": {
-   "house or 2 to 3 flat": 591,
+   "house or 2 to 3 flat": 590,
    "no construction clean (foundation, demolition, roof, mechanical or site work only)": 248,
    "no commercial or apartment wording": 82,
    "no interior finish work or new building named": 38,
@@ -23,14 +23,14 @@
    "apartment building with no unit count (could be a 2 or 3 flat)": 9,
    "one home inside a larger building": 40,
    "no business listed as general contractor": 5,
-   "closed, complete or suspended": 896,
+   "closed, complete or suspended": 894,
    "revision or second listing of a permit already listed": 15
   },
   "keptByType": {
    "New construction": 335,
-   "Renovation": 799
+   "Renovation": 798
   },
-  "keptCost": 8745615902,
+  "keptCost": 8744415902,
   "keptUnits": 5798,
   "topAreas": [
    [
@@ -55,7 +55,7 @@
    ],
    [
     "Lake View",
-    42
+    41
    ],
    [
     "Logan Square",

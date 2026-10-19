@@ -29,7 +29,7 @@ ok 390 builder: no horizontal scroll (0px)
 ok 390 pitch kit names the city
 ok 390 pitch: no horizontal scroll (0px)
 ok 390 terms: no horizontal scroll (0px)
-ok 390 workbook austin-construction-cleaning-leads-2026-10-18.xlsx: 7 tabs, error cells []
+ok 390 workbook austin-construction-cleaning-leads-2026-10-19.xlsx: 7 tabs, error cells []
 ok 390 console errors: []
 ok 1280 gate: no horizontal scroll (0px)
 ok 1280 Terms view opens before the password
@@ -62,7 +62,7 @@ ok 1280 builder: no horizontal scroll (0px)
 ok 1280 pitch kit names the city
 ok 1280 pitch: no horizontal scroll (0px)
 ok 1280 terms: no horizontal scroll (0px)
-ok 1280 workbook austin-construction-cleaning-leads-2026-10-18.xlsx: 7 tabs, error cells []
+ok 1280 workbook austin-construction-cleaning-leads-2026-10-19.xlsx: 7 tabs, error cells []
 ok captured the free page's screenshots into docs/assets/leads/austin: [(1064, 665), (780, 1100), (1200, 772), (900, 675)]
 ok 1280 console errors: []
 leads_check: 0 failures, 67 checks passed

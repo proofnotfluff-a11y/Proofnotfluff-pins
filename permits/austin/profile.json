@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-10-18T21:28:47+00:00",
+ "fetchedAt": "2026-10-19T12:05:05+00:00",
  "rowsUpdatedAt": "2026-10-18T12:52:08+00:00",
  "columns": [
   "permittype",
@@ -82,8 +82,8 @@
   ":@computed_region_6gig_z43c"
  ],
  "workClasses": {
-  "New": 2016,
-  "Remodel": 5986,
+  "New": 2015,
+  "Remodel": 5981,
   "Demolition": 163,
   "Interior Demo Non-Structural": 359,
   "Addition and Remodel": 66,
@@ -93,26 +93,26 @@
   "Relocation": 1
  },
  "statuses": {
-  "Active": 3475,
-  "Final": 4487,
+  "Active": 3474,
+  "Final": 4483,
   "Cancelled - Contractor Required": 5,
   "Withdrawn": 45,
   "VOID": 22,
   "Aborted": 1,
-  "Expired": 702,
+  "Expired": 701,
   "Pending Permit": 7,
   "On Hold": 1,
   "Pending": 15
  },
  "classes": {
-  "C-1000 Commercial Remodel": 5384,
-  "C- 329 Com Structures Other Than Bldg": 1226,
+  "C-1000 Commercial Remodel": 5380,
+  "C- 329 Com Structures Other Than Bldg": 1225,
   "C-1001 Commercial Finish Out": 866,
   "C- 105 Five or More Family Bldgs": 321,
   "C- 649 Demolition All Other Bldgs Com": 157,
   "C- 328 Commercial Other Nonresident Bldg": 138,
   "C- 437 Addn, Alter, Convn-NonRes": 121,
-  "C-1002 Commercial Remodel & Finish Out": 94,
+  "C-1002 Commercial Remodel & Finish Out": 93,
   "C- 321 Pkg Garage Bldg & Open Deck": 88,
   "C- 326 Schools & Other Educational Bldgs": 82,
   "C- 327 Stores & Customer Services": 75,
@@ -134,24 +134,24 @@
   "C- 101 Single Family Houses": 1
  },
  "contractorTrades": {
-  "General Contractor": 8740,
+  "General Contractor": 8734,
   "null": 19,
   "Electrical Contractor": 1
  },
  "permitReasons": {
-  "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 549,
-  "kept": 1965,
+  "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 548,
+  "kept": 1963,
   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 380,
   "work class Demolition (interior demolition or repair)": 64,
   "work class Interior Demo Non-Structural (interior demolition or repair)": 58,
-  "permit closed (final, expired, withdrawn, void or cancelled)": 5009,
+  "permit closed (final, expired, withdrawn, void or cancelled)": 5005,
   "shell only, no finish work": 147,
-  "issued before the 24-month window": 489,
+  "issued before the 24-month window": 490,
   "parking garage": 58,
   "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)": 28,
   "work class Repair (interior demolition or repair)": 2,
   "house, duplex or three-unit building": 11
  },
  "license": "Public Domain U.S. Government",
- "where": "issue_date >= '2024-10-18T00:00:00' AND permittype='BP' AND permit_class_mapped='Commercial'"
+ "where": "issue_date >= '2024-10-19T00:00:00' AND permittype='BP' AND permit_class_mapped='Commercial'"
 }

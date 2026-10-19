@@ -3,27 +3,27 @@
   "name": "City of Austin, Issued Construction Permits",
   "url": "https://data.austintexas.gov/d/3syk-w9eu",
   "rowsUpdatedAt": "2026-10-18T12:52:08+00:00",
-  "fetchedAt": "2026-10-18T21:28:47+00:00",
+  "fetchedAt": "2026-10-19T12:05:05+00:00",
   "license": "Public Domain U.S. Government",
   "attribution": "City of Austin, Texas - data.austintexas.gov",
   "modified": "Filtered by ProofNotFluff: commercial building permits issued in the last 24 months, still Active, grouped into projects by the City's master permit, project valuation $500,000 or more (the largest valuation on its open building permits on the list, counted once; finaled, shell and garage permits do not count), with a business listed as general contractor; structures that are not buildings (carports, pergolas, canopies, enclosures, pools, EV chargers), parking garages, houses, duplexes and three-unit buildings, shell-only buildings, interior demolition, repairs, and roof, equipment, sign, elevator, site and exterior-only work left out; cleaning companies listed as contractor left out; only project-level and business fields kept.",
   "terms": "https://data.austintexas.gov/stories/s/ranj-cccq"
  },
  "window": {
-  "from": "2024-10-18",
-  "to": "2026-10-18"
+  "from": "2024-10-19",
+  "to": "2026-10-19"
  },
  "counts": {
-  "fetched": 8760,
+  "fetched": 8754,
   "kept": 158,
   "excluded": {
    "kept": 158,
    "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 281,
-   "project valuation under $500,000": 1069,
-   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 183,
+   "project valuation under $500,000": 1067,
+   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 182,
    "work class Demolition (interior demolition or repair)": 63,
    "work class Interior Demo Non-Structural (interior demolition or repair)": 58,
-   "no open building permit in the window": 4127,
+   "no open building permit in the window": 4124,
    "shell only, no finish work": 68,
    "parking garage": 3,
    "no business listed as general contractor": 6,
@@ -33,14 +33,14 @@
    "second master permit of a development already listed": 1
   },
   "permitReasons": {
-   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 549,
-   "kept": 1965,
+   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 548,
+   "kept": 1963,
    "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 380,
    "work class Demolition (interior demolition or repair)": 64,
    "work class Interior Demo Non-Structural (interior demolition or repair)": 58,
-   "permit closed (final, expired, withdrawn, void or cancelled)": 5009,
+   "permit closed (final, expired, withdrawn, void or cancelled)": 5005,
    "shell only, no finish work": 147,
-   "issued before the 24-month window": 489,
+   "issued before the 24-month window": 490,
    "parking garage": 58,
    "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)": 28,
    "work class Repair (interior demolition or repair)": 2,

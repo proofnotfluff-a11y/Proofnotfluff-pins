@@ -14,6 +14,7 @@ Open question for Todd (coo/HANDOFF.md item 4): the live session suggested Chica
 
 ## Build log
 - Oct 20, 2026 (builder run 1): tools/licenses_chicago.py (data rules, 12 planted name cases, 14 planted licenses, selftest ok), workflow licenses-chicago.yml, this record.
+- Oct 20, first real pull (run 39456350920, commit 8758804): 711 new licenses fetched for 37 days; kept 247 in 30 days, 71 in the last 7 (food 33, shops and services 28, beauty 5, venues 3, auto 2). Left out: 226 person-held or event licenses, 134 outside the window, 62 names that could be a person's, 24 outside Chicago, 15 second licenses at one site, 2 cancelled, 1 apartment. Fixed after reading it: "Computer Automated Design" no longer reads as auto (word match), "La Casa de las Flores" casing; both planted. Open for the gates: suite numbers in addresses ("2 202", "4 412") may be home offices in apartment buildings; the 62 person-name exclusions include real businesses like two-word names; a holdout should judge both.
 
 ## 1. Gates (none run yet)
 - [ ] Built to standard: data rules done; members' app (tools/leads_app.py pattern), workbook (tools/leads_xlsx.py pattern), free page (site/pages.json, "draft": true, noindex, no checkout), storefront copy and images, outreach email file with one follow-up: to do.

@@ -42,7 +42,7 @@ SEGMENTS = [
     ("beauty", "Salons, barbers, nails, spas and fitness",
      r"BARBER|HAIR|NAIL|BEAUTY|COSMETOLOG|SALON|ESTHETIC|SPA\b|MASSAGE|TANNING|BODY ART|TATTOO|LASH|BROW|GYM|FITNESS|HEALTH CLUB|YOGA"),
     ("auto", "Auto repair, tire and car wash shops",
-     r"MOTOR VEHICLE|AUTO|TIRE|CAR WASH|AUTOMOTIVE|VEHICLE REPAIR|BODY SHOP"),
+     r"MOTOR VEHICLE|\bAUTO\b|AUTO ?BODY|\bTIRES?\b|CAR WASH|AUTOMOTIVE|VEHICLE REPAIR|BODY SHOP|FILLING STATION|COMMERCIAL GARAGE"),
     ("care", "Day care and children's services",
      r"CHILDREN'?S SERVICES|DAY ?CARE|CHILD CARE|EARLY LEARNING|PRESCHOOL"),
     ("venue", "Venues, entertainment and lodging",
@@ -72,6 +72,14 @@ def could_be_person(name):
         return False
     words = [w for w in n.replace(",", " ").split(" ") if w]
     return 2 <= len(words) <= 4 and all(PLAIN_WORD.match(w) for w in words)
+
+
+def name_case(name):
+    """dba_case, except a leading "La" or "Las" reads as the Spanish word ("La Casa de las Flores"), not Los Angeles."""
+    if re.match(r"\s*LA FITNESS\b", (name or "").upper()):   # the gym brand keeps its initials
+        return dba_case(name)
+    s = re.sub(r"^(LA|LAS|LOS) (?=[A-Z][a-z])", lambda m: m.group(1).capitalize() + " ", dba_case(name))
+    return re.sub(r"(?<=\w )(Las|Los)(?= \w)", lambda m: m.group(1).lower(), s)
 
 
 def segment(desc, activity):
@@ -105,7 +113,7 @@ def keep(r, since, today):
     if could_be_person(shown) or could_be_person(r.get("legal_name") if not r.get("doing_business_as_name") else ""):
         return None, "name could be a person's"
     return {"license": str(r.get("license_number") or r.get("license_id") or "").split(".")[0],
-            "business": dba_case(shown), "address": street(addr), "zip": (r.get("zip_code") or "")[:5],
+            "business": name_case(shown), "address": street(addr), "zip": (r.get("zip_code") or "")[:5],
             "licenseType": desc, "activity": re.sub(r"\s+", " ", (r.get("business_activity") or "").strip())[:160],
             "issued": issued, "segment": segment(desc, r.get("business_activity") or ""),
             "lat": r.get("latitude"), "lon": r.get("longitude"), "communityArea": ""}, ""
@@ -215,6 +223,14 @@ def selftest():
                        ("JOHN SMITH LLC", False), ("MARIA'S TAQUERIA", False), ("SMITH & SONS", False), ("KFC", False),
                        ("LUNA NAIL SPA", False), ("GOLDEN DRAGON", True), ("ACME 24 HOUR FITNESS", False), ("", False)]:
         assert could_be_person(name) == want, (name, could_be_person(name), want)
+    for raw, want in [("LA CASA DE LAS FLORES", "La Casa de las Flores"), ("LA CALACA CANTINA", "La Calaca Cantina"),
+                      ("LA FITNESS", "LA Fitness"), ("YATES LIQUOR", "Yates Liquor")]:
+        assert name_case(raw) == want, (raw, name_case(raw))
+    for desc, act, want in [("Regulated Business License", "Computer Consulting Services / Computer Automated Design", "retail"),
+                            ("Motor Vehicle Services License", "Motor Vehicle Repair - Engine and Transmission Work", "auto"),
+                            ("Limited Business License", "Hair Services", "beauty"), ("Filling Station", "", "auto"),
+                            ("Package Goods", "Retail Sales of Packaged Liquor", "food")]:
+        assert segment(desc, act) == want, (desc, act, segment(desc, act))
     today = dt.date(2026, 10, 20)
     base = {"application_type": "ISSUE", "license_status": "AAI", "city": "CHICAGO", "zip_code": "60601", "latitude": "41.88",
             "longitude": "-87.65", "date_issued": "2026-10-16T00:00:00.000", "address": "100 W RANDOLPH ST", "business_activity": ""}

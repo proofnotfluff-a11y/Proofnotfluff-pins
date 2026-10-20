@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-10-20T16:23:08+00:00",
+ "fetchedAt": "2026-10-20T16:26:12+00:00",
  "rowsUpdatedAt": "2026-10-20T10:07:51+00:00",
  "columns": [
   "id",
@@ -189,12 +189,12 @@
    106
   ],
   [
-   "Regulated Business License",
-   51
-  ],
-  [
    "Retail Food Establishment",
    47
+  ],
+  [
+   "Regulated Business License",
+   26
   ],
   [
    "Tobacco",
@@ -238,10 +238,6 @@
   ],
   [
    "Emerging Business",
-   1
-  ],
-  [
-   "Indoor Special Event",
    1
   ],
   [

@@ -3,7 +3,7 @@
   "name": "City of Chicago Data Portal, Business Licenses",
   "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
   "rowsUpdatedAt": "2026-10-20T10:07:51+00:00",
-  "fetchedAt": "2026-10-20T16:19:17+00:00",
+  "fetchedAt": "2026-10-20T16:23:08+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: licenses held by a person or for an event or season (peddlers, special events, pop-ups, tow trucks, home-sharing), home or apartment addresses, and any business whose name could be a person's name. Business-level fields only."
  },
@@ -19,18 +19,18 @@
   "segmentsWeek": {
    "food": 33,
    "beauty": 5,
-   "auto": 2,
+   "auto": 1,
    "care": 0,
    "venue": 3,
-   "retail": 28
+   "retail": 29
   },
   "segments30": {
    "food": 82,
    "beauty": 32,
-   "auto": 8,
+   "auto": 7,
    "care": 1,
    "venue": 3,
-   "retail": 121
+   "retail": 122
   },
   "excluded": {
    "name could be a person's": 62,
@@ -103,7 +103,7 @@
     "issued": "2026-10-19"
    },
    {
-    "business": "LA Casa de Las Flores",
+    "business": "La Casa de las Flores",
     "address": "2459 S Christiana Ave Strfrnt",
     "communityArea": "South Lawndale",
     "licenseType": "Retail Food Establishment",
@@ -111,7 +111,7 @@
     "issued": "2026-10-19"
    },
    {
-    "business": "LA Calaca Cantina/Porkchop",
+    "business": "La Calaca Cantina/Porkchop",
     "address": "1800-1802 W Pershing Rd",
     "communityArea": "McKinley Park",
     "licenseType": "Consumption on Premises - Incidental Activity",
@@ -219,14 +219,6 @@
   ],
   "auto": [
    {
-    "business": "Passings",
-    "address": "1104 W Webster Ave 2 202",
-    "communityArea": "Lincoln Park",
-    "licenseType": "Regulated Business License",
-    "activity": "Computer Consulting Services / Computer Automated Design (Home Based Business)",
-    "issued": "2026-10-19"
-   },
-   {
     "business": "Bolts and Nuts",
     "address": "3353 W Division St 1",
     "communityArea": "Humboldt Park",
@@ -288,6 +280,14 @@
     "issued": "2026-10-19"
    },
    {
+    "business": "Passings",
+    "address": "1104 W Webster Ave 2 202",
+    "communityArea": "Lincoln Park",
+    "licenseType": "Regulated Business License",
+    "activity": "Computer Consulting Services / Computer Automated Design (Home Based Business)",
+    "issued": "2026-10-19"
+   },
+   {
     "business": "McCann Ventures LLC",
     "address": "3047 N Lincoln Ave 4 412",
     "communityArea": "Lake View",
@@ -334,14 +334,6 @@
     "licenseType": "Limited Business License",
     "activity": "Provide Business and Management Consulting",
     "issued": "2026-10-16"
-   },
-   {
-    "business": "Z.A.S Consulting, Inc.",
-    "address": "4753 N Broadway 2 P105",
-    "communityArea": "Uptown",
-    "licenseType": "Regulated Business License",
-    "activity": "Home Repair Services | Residential Landscaping Services | Snowplowing",
-    "issued": "2026-10-15"
    }
   ]
  }

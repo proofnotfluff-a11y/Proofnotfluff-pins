@@ -34,6 +34,10 @@ SKIP_LICENSES = re.compile(r"^(?:PEDDLER|PHARMACEUTICAL REPRESENTATIVE|SPECIAL E
                            r"HOME OCCUPATION|HOME REPAIR|MOBILE FOOD|PUBLIC CHAUFFEUR|VALET|BED-AND-BREAKFAST|VACATION RENTAL|"
                            r"ITINERANT|MASSAGE THERAPIST|BODY ART PRACTITIONER|SCAVENGER|EXPEDITOR|BUSINESS AFFAIRS|"
                            r"RESIDENTIAL REAL ESTATE DEVELOPER)", re.I)
+# The same kinds named only in the business activity, and any activity the City marks as home based.
+SKIP_ACTIVITY = re.compile(r"STREET PERFORMER|FLEA MARKET|ORGANIZER OF EVENT|VACATION RENTAL|SHARED HOUSING|TOW TRUCK|SCAVENGER VEHICLE|"
+                           r"MOBILE FOOD|SPECIAL EVENT|PEDDLER", re.I)
+HOME_BASED = re.compile(r"HOME[- ]BASED", re.I)
 # Trade segments, first match wins: (key, label, license or activity pattern)
 SEGMENTS = [
     ("food", "Restaurants, cafes, bars and food shops",
@@ -102,6 +106,11 @@ def keep(r, since, today):
     desc = (r.get("license_description") or "").strip()
     if SKIP_LICENSES.search(desc):
         return None, "license held by a person or for an event or season"
+    act = r.get("business_activity") or ""
+    if SKIP_ACTIVITY.search(act):
+        return None, "license held by a person or for an event or season"
+    if HOME_BASED.search(act):
+        return None, "home or apartment address"
     if (r.get("city") or "CHICAGO").upper().strip() != "CHICAGO":
         return None, "site outside Chicago"
     addr = (r.get("address") or "").strip()
@@ -261,6 +270,12 @@ def selftest():
              license_description="Tavern", address="1100 W LAKE ST"),                                # cancelled: out
         dict(base, license_number="13", doing_business_as_name="SUMMER FEST FOOD", legal_name="SFF LLC",
              license_description="Special Event Food", address="1200 W LAKE ST"),                     # event: out
+        dict(base, license_number="15", doing_business_as_name="BRIGHT IDEAS CONSULTING", legal_name="BI LLC",
+             license_description="Regulated Business License", business_activity="Professional Consulting (Home Based Business)",
+             address="1500 W LAKE ST 2 202"),                                                       # home based: out
+        dict(base, license_number="16", doing_business_as_name="SUNNY FLEA GOODS", legal_name="SFG LLC",
+             license_description="Limited Business License",
+             business_activity="Sale of General Merchandise at Flea Market 181-365 Consecutive Days", address="1600 W LAKE ST"),
         dict(base, license_number="14", doing_business_as_name="MAIN STREET PHONES", legal_name="MSP INC",
              license_description="Limited Business License", business_activity="Retail Sales of Electronics", address="1300 W LAKE ST"),
     ]
@@ -272,7 +287,7 @@ def selftest():
     blob = json.dumps(recs).upper()
     assert "JOHN Q PUBLIC" not in blob and "LEGAL" not in blob, "a legal name leaked into the records"
     want = {"second license at the same site (listed once)": 1, "name could be a person's": 1,
-            "license held by a person or for an event or season": 2, "home or apartment address": 1,
+            "license held by a person or for an event or season": 3, "home or apartment address": 2,
             "not a new license (renewal or change)": 1, "issued outside the window": 1, "site outside Chicago": 1,
             "license not active (cancelled or revoked)": 1}
     assert dict(reasons) == want, dict(reasons)

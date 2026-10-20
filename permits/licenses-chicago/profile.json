@@ -1,0 +1,269 @@
+{
+ "fetchedAt": "2026-10-20T16:19:17+00:00",
+ "rowsUpdatedAt": "2026-10-20T10:07:51+00:00",
+ "columns": [
+  "id",
+  "license_id",
+  "account_number",
+  "site_number",
+  "legal_name",
+  "doing_business_as_name",
+  "address",
+  "city",
+  "state",
+  "zip_code",
+  "ward",
+  "precinct",
+  "ward_precinct",
+  "police_district",
+  "community_area",
+  "community_area_name",
+  "neighborhood",
+  "license_code",
+  "license_description",
+  "business_activity_id",
+  "business_activity",
+  "license_number",
+  "application_type",
+  "application_created_date",
+  "application_requirements_complete",
+  "payment_date",
+  "conditional_approval",
+  "license_start_date",
+  "expiration_date",
+  "license_approved_for_issuance",
+  "date_issued",
+  "license_status",
+  "license_status_change_date",
+  "ssa",
+  "latitude",
+  "longitude",
+  "location",
+  ":@computed_region_vrxf_vc4k",
+  ":@computed_region_awaf_s7ux",
+  ":@computed_region_6mkv_f3dw",
+  ":@computed_region_bdys_3d7i",
+  ":@computed_region_43wa_7qmu"
+ ],
+ "byLicense": [
+  [
+   "Limited Business License",
+   174
+  ],
+  [
+   "Pop-Up Retail User",
+   102
+  ],
+  [
+   "Retail Food Establishment",
+   82
+  ],
+  [
+   "Regulated Business License",
+   81
+  ],
+  [
+   "Special Event Food",
+   62
+  ],
+  [
+   "Peddler License",
+   29
+  ],
+  [
+   "Pharmaceutical Representative",
+   26
+  ],
+  [
+   "Special Event Liquor",
+   20
+  ],
+  [
+   "Consumption on Premises - Incidental Activity",
+   17
+  ],
+  [
+   "Shared Kitchen User (Long Term)",
+   16
+  ],
+  [
+   "Tobacco",
+   14
+  ],
+  [
+   "Shared Housing Unit Operator",
+   12
+  ],
+  [
+   "Valet Parking Operator",
+   9
+  ],
+  [
+   "Motor Vehicle Services License",
+   8
+  ],
+  [
+   "Children's Services Facility License",
+   7
+  ],
+  [
+   "Outdoor Patio",
+   5
+  ],
+  [
+   "Towing - Tow Truck",
+   5
+  ],
+  [
+   "Raffles",
+   5
+  ],
+  [
+   "Public Place of Amusement",
+   4
+  ],
+  [
+   "Filling Station",
+   4
+  ],
+  [
+   "Package Goods",
+   3
+  ],
+  [
+   "Mobile Food License",
+   3
+  ],
+  [
+   "Commercial Garage",
+   3
+  ],
+  [
+   "Animal Care License",
+   3
+  ],
+  [
+   "Manufacturing Establishments",
+   3
+  ],
+  [
+   "Indoor Special Event",
+   2
+  ],
+  [
+   "Private Booting Registration",
+   2
+  ],
+  [
+   "Shared Kitchen User (Short Term)",
+   2
+  ],
+  [
+   "Caterer's Liquor License",
+   2
+  ],
+  [
+   "Tavern",
+   2
+  ],
+  [
+   "Emerging Business",
+   1
+  ],
+  [
+   "Pawnbroker",
+   1
+  ],
+  [
+   "Secondhand Dealer",
+   1
+  ],
+  [
+   "Wholesale Food Establishment",
+   1
+  ]
+ ],
+ "keptByLicense": [
+  [
+   "Limited Business License",
+   106
+  ],
+  [
+   "Regulated Business License",
+   51
+  ],
+  [
+   "Retail Food Establishment",
+   47
+  ],
+  [
+   "Tobacco",
+   9
+  ],
+  [
+   "Shared Kitchen User (Long Term)",
+   6
+  ],
+  [
+   "Motor Vehicle Services License",
+   5
+  ],
+  [
+   "Consumption on Premises - Incidental Activity",
+   3
+  ],
+  [
+   "Public Place of Amusement",
+   3
+  ],
+  [
+   "Manufacturing Establishments",
+   3
+  ],
+  [
+   "Private Booting Registration",
+   2
+  ],
+  [
+   "Outdoor Patio",
+   2
+  ],
+  [
+   "Children's Services Facility License",
+   2
+  ],
+  [
+   "Package Goods",
+   1
+  ],
+  [
+   "Emerging Business",
+   1
+  ],
+  [
+   "Indoor Special Event",
+   1
+  ],
+  [
+   "Animal Care License",
+   1
+  ],
+  [
+   "Shared Kitchen User (Short Term)",
+   1
+  ],
+  [
+   "Caterer's Liquor License",
+   1
+  ],
+  [
+   "Filling Station",
+   1
+  ],
+  [
+   "Tavern",
+   1
+  ]
+ ],
+ "areasLoaded": 77
+}

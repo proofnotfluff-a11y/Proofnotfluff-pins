@@ -1,0 +1,348 @@
+{
+ "source": {
+  "name": "City of Chicago Data Portal, Business Licenses",
+  "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
+  "rowsUpdatedAt": "2026-10-20T10:07:51+00:00",
+  "fetchedAt": "2026-10-20T16:19:17+00:00",
+  "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
+  "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: licenses held by a person or for an event or season (peddlers, special events, pop-ups, tow trucks, home-sharing), home or apartment addresses, and any business whose name could be a person's name. Business-level fields only."
+ },
+ "window": {
+  "from": "2026-10-13",
+  "to": "2026-10-20",
+  "listFrom": "2026-09-20"
+ },
+ "counts": {
+  "fetched": 711,
+  "kept30": 247,
+  "keptWeek": 71,
+  "segmentsWeek": {
+   "food": 33,
+   "beauty": 5,
+   "auto": 2,
+   "care": 0,
+   "venue": 3,
+   "retail": 28
+  },
+  "segments30": {
+   "food": 82,
+   "beauty": 32,
+   "auto": 8,
+   "care": 1,
+   "venue": 3,
+   "retail": 121
+  },
+  "excluded": {
+   "name could be a person's": 62,
+   "license held by a person or for an event or season": 226,
+   "site outside Chicago": 24,
+   "license not active (cancelled or revoked)": 2,
+   "second license at the same site (listed once)": 15,
+   "home or apartment address": 1,
+   "issued outside the window": 134
+  },
+  "areasWeek": [
+   [
+    "Loop",
+    7
+   ],
+   [
+    "Near West Side",
+    6
+   ],
+   [
+    "Lake View",
+    5
+   ],
+   [
+    "Logan Square",
+    5
+   ],
+   [
+    "Lincoln Park",
+    4
+   ],
+   [
+    "O'Hare",
+    3
+   ],
+   [
+    "Lower West Side",
+    3
+   ],
+   [
+    "Irving Park",
+    3
+   ],
+   [
+    "North Center",
+    3
+   ],
+   [
+    "West Ridge",
+    3
+   ]
+  ]
+ },
+ "segmentNames": {
+  "food": "Restaurants, cafes, bars and food shops",
+  "beauty": "Salons, barbers, nails, spas and fitness",
+  "auto": "Auto repair, tire and car wash shops",
+  "care": "Day care and children's services",
+  "venue": "Venues, entertainment and lodging",
+  "retail": "Shops, offices and other services"
+ },
+ "segments": {
+  "food": [
+   {
+    "business": "Yates Liquor",
+    "address": "8700 S Yates Blvd 1st",
+    "communityArea": "Avalon Park",
+    "licenseType": "Package Goods",
+    "activity": "Retail Sales of Packaged Liquor",
+    "issued": "2026-10-19"
+   },
+   {
+    "business": "LA Casa de Las Flores",
+    "address": "2459 S Christiana Ave Strfrnt",
+    "communityArea": "South Lawndale",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Sale of Food Prepared Onsite With Dining Area",
+    "issued": "2026-10-19"
+   },
+   {
+    "business": "LA Calaca Cantina/Porkchop",
+    "address": "1800-1802 W Pershing Rd",
+    "communityArea": "McKinley Park",
+    "licenseType": "Consumption on Premises - Incidental Activity",
+    "activity": "Consumption of Liquor on Premises",
+    "issued": "2026-10-19"
+   },
+   {
+    "business": "Chiapop",
+    "address": "2428 W Berwyn Ave 2s",
+    "communityArea": "Lincoln Square",
+    "licenseType": "Shared Kitchen User (Long Term)",
+    "activity": "Shared Kitchen User - Long Term",
+    "issued": "2026-10-19"
+   },
+   {
+    "business": "Shadaab Restaurant and Grill",
+    "address": "2309-2311 W Devon Ave 1st",
+    "communityArea": "West Ridge",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Preparation of Food and Dining on Premises With Seating",
+    "issued": "2026-10-16"
+   },
+   {
+    "business": "Rest + Recreation",
+    "address": "1359 N Wells St 1",
+    "communityArea": "Near North Side",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Sale of Food Prepared Onsite With Dining Area",
+    "issued": "2026-10-16"
+   },
+   {
+    "business": "Penelope's Vegan Taqueria",
+    "address": "311 W Chicago Ave 1st",
+    "communityArea": "Near North Side",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Preparation of Food and Dining on Premises With Seating",
+    "issued": "2026-10-16"
+   },
+   {
+    "business": "Marina Bay Inc.",
+    "address": "2060 S Lumber St",
+    "communityArea": "Lower West Side",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Preparation of Food and Dining on Premises With Seating",
+    "issued": "2026-10-16"
+   },
+   {
+    "business": "Green Lines Quick Mart, Inc.",
+    "address": "347 E 47th St 1st",
+    "communityArea": "Grand Boulevard",
+    "licenseType": "Limited Business License",
+    "activity": "Retail Sales of General Merchandise and Non-Perishable Food",
+    "issued": "2026-10-16"
+   },
+   {
+    "business": "Glorias Pizza",
+    "address": "704 W 47th St",
+    "communityArea": "New City",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Sale of Food Prepared Onsite Without Dining Area",
+    "issued": "2026-10-16"
+   }
+  ],
+  "beauty": [
+   {
+    "business": "Montrose Foot Massage & Spa",
+    "address": "4401 N Keeler Ave 1st",
+    "communityArea": "Irving Park",
+    "licenseType": "Limited Business License",
+    "activity": "Skincare Services | Provide Foot Massage - Fully Clothed/No Disrobing",
+    "issued": "2026-10-19"
+   },
+   {
+    "business": "Julie's Salon and Spa",
+    "address": "7012 N Western Ave 1",
+    "communityArea": "West Ridge",
+    "licenseType": "Limited Business License",
+    "activity": "Hair Services",
+    "issued": "2026-10-14"
+   },
+   {
+    "business": "Aura Trims & Lounge",
+    "address": "1410 W Taylor St 1 101",
+    "communityArea": "Near West Side",
+    "licenseType": "Limited Business License",
+    "activity": "Hair Services",
+    "issued": "2026-10-14"
+   },
+   {
+    "business": "Black Beauty by Chris LLC",
+    "address": "1157 W 79th St",
+    "communityArea": "Auburn Gresham",
+    "licenseType": "Limited Business License",
+    "activity": "Hair Services",
+    "issued": "2026-10-13"
+   },
+   {
+    "business": "Archer Woods Spa",
+    "address": "3265 S Archer Ave 1st",
+    "communityArea": "McKinley Park",
+    "licenseType": "Limited Business License",
+    "activity": "Skincare Services | Provide Foot Massage - Fully Clothed/No Disrobing",
+    "issued": "2026-10-13"
+   }
+  ],
+  "auto": [
+   {
+    "business": "Passings",
+    "address": "1104 W Webster Ave 2 202",
+    "communityArea": "Lincoln Park",
+    "licenseType": "Regulated Business License",
+    "activity": "Computer Consulting Services / Computer Automated Design (Home Based Business)",
+    "issued": "2026-10-19"
+   },
+   {
+    "business": "Bolts and Nuts",
+    "address": "3353 W Division St 1",
+    "communityArea": "Humboldt Park",
+    "licenseType": "Motor Vehicle Services License",
+    "activity": "Motor Vehicle Repair - Engine and Transmission Work",
+    "issued": "2026-10-19"
+   }
+  ],
+  "care": [],
+  "venue": [
+   {
+    "business": "The Smart Bar",
+    "address": "3730 N Clark St Basement",
+    "communityArea": "Lake View",
+    "licenseType": "Public Place of Amusement",
+    "activity": "Charges a Fee for Entertainment or Amusements or Recreational Activities",
+    "issued": "2026-10-15"
+   },
+   {
+    "business": "Kermess",
+    "address": "32 W Randolph St 13-14",
+    "communityArea": "Loop",
+    "licenseType": "Public Place of Amusement",
+    "activity": "Charges a Fee for Entertainment or Amusements or Recreational Activities",
+    "issued": "2026-10-14"
+   },
+   {
+    "business": "Serial Killer: the Original Exhibition World Tour",
+    "address": "2448 W 15th Pl",
+    "communityArea": "Near West Side",
+    "licenseType": "Public Place of Amusement",
+    "activity": "Charges a Fee for Entertainment or Amusements or Recreational Activities",
+    "issued": "2026-10-13"
+   }
+  ],
+  "retail": [
+   {
+    "business": "Unifi Aviation, LLC",
+    "address": "10000 W Ohare St",
+    "communityArea": "O'Hare",
+    "licenseType": "Limited Business License",
+    "activity": "Commercial Janitorial Services",
+    "issued": "2026-10-19"
+   },
+   {
+    "business": "Royal Reigning Reliable LLC",
+    "address": "1655 S Blue Island Ave 2 100",
+    "communityArea": "Lower West Side",
+    "licenseType": "Limited Business License",
+    "activity": "Operation of an Administrative Commercial Office",
+    "issued": "2026-10-19"
+   },
+   {
+    "business": "Prospect International Airport Services, LLC",
+    "address": "10000 W Ohare St",
+    "communityArea": "O'Hare",
+    "licenseType": "Limited Business License",
+    "activity": "Miscellaneous Commercial Services",
+    "issued": "2026-10-19"
+   },
+   {
+    "business": "McCann Ventures LLC",
+    "address": "3047 N Lincoln Ave 4 412",
+    "communityArea": "Lake View",
+    "licenseType": "Limited Business License",
+    "activity": "Retail Sales of General Merchandise",
+    "issued": "2026-10-19"
+   },
+   {
+    "business": "Green Paws Chicago",
+    "address": "2049 W Belmont Ave 1 1",
+    "communityArea": "North Center",
+    "licenseType": "Limited Business License",
+    "activity": "Provide Dog Walking Services",
+    "issued": "2026-10-19"
+   },
+   {
+    "business": "Fotel 81",
+    "address": "2545 N Milwaukee Ave",
+    "communityArea": "Logan Square",
+    "licenseType": "Limited Business License",
+    "activity": "Retail Sales of General Merchandise | Provide Photography or Videography Services",
+    "issued": "2026-10-19"
+   },
+   {
+    "business": "Safecare",
+    "address": "8 S Michigan Ave 8th 801",
+    "communityArea": "Loop",
+    "licenseType": "Limited Business License",
+    "activity": "Provide Home Health Care Services",
+    "issued": "2026-10-16"
+   },
+   {
+    "business": "Pasture-To-Porch",
+    "address": "11102 S Kedzie Ave",
+    "communityArea": "Mount Greenwood",
+    "licenseType": "Limited Business License",
+    "activity": "Operation of an Administrative Commercial Office | Miscellaneous Commercial Services",
+    "issued": "2026-10-16"
+   },
+   {
+    "business": "Illumination Consulting Group LLC",
+    "address": "3509 S Dr Martin Luther King Jr Dr 2 2b Off. A",
+    "communityArea": "Douglas",
+    "licenseType": "Limited Business License",
+    "activity": "Provide Business and Management Consulting",
+    "issued": "2026-10-16"
+   },
+   {
+    "business": "Z.A.S Consulting, Inc.",
+    "address": "4753 N Broadway 2 P105",
+    "communityArea": "Uptown",
+    "licenseType": "Regulated Business License",
+    "activity": "Home Repair Services | Residential Landscaping Services | Snowplowing",
+    "issued": "2026-10-15"
+   }
+  ]
+ }
+}

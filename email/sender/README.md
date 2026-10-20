@@ -3,7 +3,7 @@
 Todd, Oct 19, 2026, 4:34 pm: "using a script is a much better idea". It sends outreach from the sending inboxes on the new domain without a chat session composing each email, so sending costs almost no usage.
 
 ## How it works
-- One Google Sheet, "PNF send queue", owned by leads@ on the sending domain and shared (edit) with the other sending inboxes. The script in this folder is bound to it.
+- One Google Sheet, "PNF send queue", owned by sales@ on the sending domain and shared (edit) with the other sending inboxes. The script in this folder is bound to it.
 - Tabs: Queue (one row per email), Senders (one row per inbox: start date, cap override, paused), DoNotEmail (addresses or @domains, never emailed again), Log.
 - Each inbox opens the sheet once and clicks ProofNotFluff, Start sending. That installs a 10-minute trigger that runs as that inbox, so it sends only its own rows from its own Gmail, through the Gmail API (plain text, a List-Unsubscribe header, follow-ups threaded under the first email with In-Reply-To).
 - The leads desk fills the queue through the web app (POST {secret, rows}) and reads results back (GET ?secret&since). The secret lives in Script Properties (SECRET) and in the private vault's GitHub secrets, never in this repo.
@@ -23,8 +23,8 @@ Todd, Oct 19, 2026, 4:34 pm: "using a script is a much better idea". It sends ou
 - `node email/sender/test_glue.js`: the real script against in-memory Sheets, Gmail and a clock, through a sending week: Sunday and out-of-window runs send nothing, day 1 sends exactly 10, a bounce, a reply and an opt-out are caught, follow-ups skip the right three and thread the fourth, the web app rejects a wrong secret and duplicate rows, dry run sends nothing.
 
 ## Setup (after the sending domain and inboxes exist)
-1. Live session, in Todd's browser signed in as leads@: create the sheet, open Extensions, Apps Script, paste Code.gs and appsscript.json (show the manifest in Project Settings), run setupSheets, set Script Properties SECRET (random, generated in the session and stored only in the vault's secrets) and DRY_RUN=true.
-2. Todd: approve Google's permission screen once for leads@ (Gmail send and read, the sheet, triggers).
-3. Live session: deploy as a web app (execute as leads@, anyone with the link), store the URL in the vault's secrets, share the sheet with the other inboxes.
+1. Live session, in Todd's browser signed in as sales@: create the sheet, open Extensions, Apps Script, paste Code.gs and appsscript.json (show the manifest in Project Settings), run setupSheets, set Script Properties SECRET (random, generated in the session and stored only in the vault's secrets) and DRY_RUN=true.
+2. Todd: approve Google's permission screen once for sales@ (Gmail send and read, the sheet, triggers).
+3. Live session: deploy as a web app (execute as sales@, anyone with the link), store the URL in the vault's secrets, share the sheet with the other inboxes.
 4. Each inbox (Todd's sign-in, about 1 minute each): open the sheet, ProofNotFluff, Start sending, approve the permission screen.
 5. Test: queue 3 rows to Todd's own address with DRY_RUN=true and check the Log; then set DRY_RUN=false and send 2 real ones to his address (first plus follow-up) to check the From name, threading and the footer; then real prospects at the ramp.

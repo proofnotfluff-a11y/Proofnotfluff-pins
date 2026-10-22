@@ -1,0 +1,7 @@
+{
+ "v": 1,
+ "alg": "scrypt-n32768-r8-p1+AES-256-GCM+gzip",
+ "salt": "i9qQUgykFKVBJFmR/C+QoQ==",
+ "nonce": "STTwLIzI62lDEHVF",
+ "ct": "JSeN0RNPkHlFod+U8dSDnAFrWfXoS0TPqTSTzz0mhVGztSA6lP0pjlZ4UdC/DmJBPA9DY6pkJGlyxxSsIkvmYbsCnDn31xmYoBs="
+}

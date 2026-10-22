@@ -26,6 +26,15 @@ import pnf_rules as R  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CLOSED = {"replied", "customer", "opted-out", "bounced", "bounced-precheck", "skipped", "sent", "followed-up"}
+# Todd, Oct 22, 2026: the Oct 19 and Oct 20 batches (a link in every email, sent to role inboxes) get no follow-up, ever
+LEGACY_BATCHES = {"2026-10-19", "2026-10-20"}
+
+
+def legacy_batch(d):
+    """True for a prospect first emailed in the Oct 19 or Oct 20 batch, by its batch field or its first send date."""
+    return str(d.get("batch") or "")[:10] in LEGACY_BATCHES or str(d.get("firstSentAt") or "")[:10] in LEGACY_BATCHES
+
+
 CITY = {"chicago-construction": "chicago", "chicago-restaurant": "chicago", "austin-construction": "austin"}
 
 
@@ -95,6 +104,9 @@ def main():
         if d.get("contactType") != "email":
             named.append("contact form only")
         # follow-up candidates: emailed once, nothing back, due, and a named address that still passes every gate
+        if legacy_batch(d):
+            ineligible.append({"prospect_id": pid, "reasons": ["legacy Oct 19 or 20 batch: no follow-up under the Oct 22 rules"]})
+            continue
         if (p["status"] == "sent" and d.get("firstSentAt") and not d.get("repliedAt") and not p["do_not_email"]
                 and (d.get("followupDueAt") or "9999") <= today and not d.get("followupSentAt")):
             if named:

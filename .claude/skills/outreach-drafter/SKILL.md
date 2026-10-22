@@ -15,7 +15,7 @@ One job: keep hello@ and sales@ replies true in the CRM (both days), then on Mon
 4. Draft: fill the template for the lead's stage. Fields come only from the two validated files: {first}, {gc} (pnf_rules.gc_display), {value} (pnf_rules.value_display), {kind} (one word from scope: school, office, hotel, apartment), {street} (pnf_rules.street_display). Write data/work/drafts.json.
 5. `python3 tools/copy_gate.py`. Exit 1: fix wording only, rerun once, else drop the draft.
 6. Human surface: one private review page with every draft in full; ask Todd "Reply send". After send, follow email/SEND_RULES.md exactly. Sender appends the footer.
-- Follow-up: one, 5 business days later, same thread, the stage template for a different lead, gated with `python3 tools/copy_gate.py data/work/followups.json --prospects data/prospects/followups.json --matches ''`. Never after a reply.
+- Follow-up: one, 5 business days later, same thread, the stage template for a different lead, gated with `python3 tools/copy_gate.py data/work/followups.json --prospects data/prospects/followups.json --matches ''`. Never after a reply, never to the Oct 19 and 20 batches (crm_prospects.py LEGACY_BATCHES).
 - A yes reply: tell Todd; he decides what to send (members' data is paid data).
 
 ## Outputs (Writes)

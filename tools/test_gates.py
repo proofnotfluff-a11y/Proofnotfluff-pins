@@ -174,11 +174,19 @@ def context_cases():
     expect("context: L0 + L1 + one skill over 10 KB fails", [l for l in run(budget) if "the budget is under 10240" in l], True)
 
 
+def legacy_cases():
+    import crm_prospects as CP
+    expect("legacy: Oct 19 batch blocked", [] if CP.legacy_batch({"batch": "2026-10-19"}) else ["not blocked"], False)
+    expect("legacy: Oct 20 first send blocked", [] if CP.legacy_batch({"firstSentAt": "2026-10-20T14:02:00Z"}) else ["not blocked"], False)
+    expect("legacy: a later batch is not blocked", ["blocked"] if CP.legacy_batch({"batch": "2026-10-26"}) else [], False)
+
+
 def main():
     moat_cases()
     inbox_cases()
     copy_cases()
     context_cases()
+    legacy_cases()
     bad = [(n, p) for n, good, p in results if not good]
     for n, p in bad:
         print(f"FAIL {n} {p}")

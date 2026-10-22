@@ -52,7 +52,7 @@ HISTORY_LONG = {"first": "We found no Chicago license for this business before t
                          "address); this one adds a new license type there. "
                          "Since: the year of its first license at this site.",
                 "relicensed": "The business, or one by the same name, held this same license type at this site before the last 30 days, "
-                              "so this is a new owner, or the same business licensing the site again after an older license ended. Since: the year of the "
+                              "so this is a new owner, the same business licensing the site again, or a second license of that type there. Since: the year of the "
                               "earliest such license.",
                 "": "The City's earlier records were not checked this week."}
 

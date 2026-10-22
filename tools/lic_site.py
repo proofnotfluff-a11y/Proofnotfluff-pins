@@ -66,7 +66,7 @@ def page_html(p):
     segs = "".join(f'<h3 class="lc-h3">{E(names[k])} <span>({sw.get(k, 0):,} this week)</span></h3><div class="ld-list rl3">{"".join(card(x) for x in d["segments"][k][:3])}</div>'
                    for k in ORDER if d["segments"].get(k))
     sample = (f'<section class="block" id="sample"><h2>This week\'s sample</h2><p>Up to three businesses per trade licensed in the last 7 days. '
-              'The members\' list has all {c["kept30"]:,} from the last 30 days, with a map, filters by trade, area and date, and an Excel file.</p>'
+              f'The members\' list has all {c["kept30"]:,} from the last 30 days, with a map, filters by trade, area and date, and an Excel file.</p>'
               f'{segs}</section>')
     method = '<section class="block"><h2>How to use this list</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"]) + "</section>"
     cta_html = (f'<section class="block" id="ldCta"><div class="cta ld-cta"><div><h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
@@ -123,7 +123,8 @@ def selftest():
     f = os.path.join(tmp, "s.json")
     json.dump(d, open(f, "w"))
     h2 = page_html(dict(spec, data=os.path.relpath(f, ROOT)))
-    assert "Planted Grill" in h2 and "4,321" in h2 and "Busiest area" not in h2
+    assert "Planted Grill" in h2 and "4,321" in h2 and "has all 4,321 from" in h2 and "Busiest area" not in h2
+    assert not re.search(r"\{[a-z_]+\[|\{c\[", html), "a template placeholder reached the page (holdout 1, round 4)"
     text = re.sub(r"<[^>]+>", " ", html).lower()
     for w in ("guarantee", "dirty", "violator"):
         assert w not in text, w

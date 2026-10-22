@@ -65,7 +65,7 @@ def payload(full, xlsx_bytes):
         for r in groups.get(k, []):
             rows.append({"id": r["license"], "n": r["business"], "a": r["address"], "z": r.get("zip") or "", "ar": r.get("communityArea") or "",
                          "t": k, "ty": r["licenseType"], "ot": r.get("otherTypes") or [], "ac": r.get("activity") or "", "d": r["issued"],
-                         "h": r.get("history") or "", "hs": r.get("since") or "", "fi": r.get("foodInsp") or "", "nw": X.is_new(r, full),
+                         "h": r.get("history") or "", "hs": r.get("since") or "", "fi": r.get("foodInsp") or "", "is": r.get("inspSince") or "", "nw": X.is_new(r, full),
                          "lat": r.get("lat"), "lon": r.get("lon")})
     checks = (full.get("counts") or {}).get("checks") or {}
     return {"asOf": X.as_of_text(full), "asOfIso": full["source"]["fetchedAt"][:10], "window": full["window"],
@@ -491,6 +491,7 @@ $("#app").innerHTML=`<a class="back" href="#/list" id="back">${ico("back")}Back<
 <div class="top"><span class="ty">${esc(r.ty)}</span></div><p class="act">Issued ${esc(day(r.d))}${r.ac?`. Business activity: ${esc(r.ac)}`:""}.</p>
 ${r.h?`<p class="why">${hi(r,true)}<br><span style="display:block;margin-top:8px">${esc(W.historyLong[r.h])}${r.hs?` The earliest such license on the City's record is from ${esc(r.hs)}.`:""}</span></p>`:`<p class="why">${esc(W.historyLong[""])}</p>`}
 ${r.fi?`<p class="why"><b>City food license inspection on ${esc(day(r.fi))}.</b> Chicago inspects a food business before it issues a food license. ${esc("Chicago Restaurant Inspection Leads lists those inspections as Opening soon, so a member of both products most likely saw this business there first.")}</p>`:""}
+${r.is?`<p class="why"><b>City food inspections on file since ${esc(r.is)}.</b> The City inspected this business before this license was issued, which shows it was open before the license date.</p>`:""}
 ${r.ot.length?`<p class="why"><b>Also licensed at this site in the last 30 days:</b> ${esc(r.ot.join("; "))}.</p>`:""}
 </section>
 <section class="panel pg-facts"><div class="sec-h"><h2>Facts from the City record</h2></div><dl class="facts">
@@ -565,7 +566,7 @@ def check(full, html, password, xlsx_path):
         g = got[k]
         pairs = [(g["n"], r["business"]), (g["a"], r["address"]), (g["ar"], r.get("communityArea") or ""), (g["ty"], r["licenseType"]),
                  (g["ac"], r.get("activity") or ""), (g["d"], r["issued"]), (g["t"], r["segment"]), (g["h"], r.get("history") or ""),
-                 (g["fi"], r.get("foodInsp") or ""), (g["ot"], r.get("otherTypes") or []), (g["z"], r.get("zip") or "")]
+                 (g["fi"], r.get("foodInsp") or ""), (g["is"], r.get("inspSince") or ""), (g["ot"], r.get("otherTypes") or []), (g["z"], r.get("zip") or "")]
         assert all(a == b for a, b in pairs), f"license {k}: app field differs from the runner's list"
     wb = load_workbook(xlsx_path)
     seen = {}

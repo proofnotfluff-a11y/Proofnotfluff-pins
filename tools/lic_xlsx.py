@@ -44,8 +44,10 @@ FOOT = "Public City of Chicago business license records. See the Terms tab."
 # What the City's earlier records say about the business (tools/licenses_chicago.py add_history)
 HISTORY = {"first": "First license", "site": "New site", "added": "Added license", "": "Not checked"}
 HISTORY_LONG = {"first": "No Chicago license on the City's record for this business before the last 30 days (the record starts in 2002).",
-                "site": "The business held a Chicago license at another site before the last 30 days, so this is a new location.",
-                "added": "The business held a license at this site before the last 30 days; this one adds a new license type there.",
+                "site": "The business held a Chicago license at another site before the last 30 days, so this is a new location. "
+                        "Since: the year of its first Chicago license.",
+                "added": "The business held a license at this site before the last 30 days; this one adds a new license type there. "
+                         "Since: the year of its first license at this site.",
                 "": "The City's earlier records were not checked this week."}
 
 
@@ -58,20 +60,26 @@ def history_text(r):
     return HISTORY[h]
 
 
-LEFT_OUT = ("Renewals and changes, cancelled or revoked licenses, and licenses held by a person or for an event or a season are "
-            "left out: peddler, special event, pop-up, raffle, tow truck, valet, chauffeur, home-sharing, vacation rental, "
-            "bed-and-breakfast, mobile food, home occupation, home repair, massage therapist, body art practitioner, scavenger "
-            "and expediter licenses, and street performers, flea market vendors and market stalls. So are businesses the City "
-            "marks as home based, addresses with an apartment or unit number, sites outside Chicago, and any business whose "
-            "shown name could be a person's name: two to four plain words with no business word, such as \"Golden Dragon\". "
+LEFT_OUT = ("Renewals and changes (including an older license the City re-dated), cancelled or revoked licenses, and licenses "
+            "held by a person or for an event or a season are left out: peddler, special event, pop-up, raffle, tow truck, valet, "
+            "chauffeur, home-sharing, vacation rental, bed-and-breakfast, mobile food, shared kitchen user, home occupation, home "
+            "repair, massage therapist, body art practitioner, scavenger and expediter licenses, and street performers, flea "
+            "market vendors and market stalls. So are home and mail-drop addresses: businesses the City marks as home based, "
+            "addresses with an apartment number, upper-floor units in a building where the City has licensed home-based "
+            "businesses, private mailboxes, and addresses with a City virtual office license. Office and shop suites stay. "
+            "Sites outside Chicago are left out, and so is any business whose shown name could be a person's name: two to four "
+            "plain words with no business word, with or without LLC or Inc, such as \"Golden Dragon\". "
             "That check leaves some real businesses out on purpose, because a wrong omission costs less than printing a "
             "person's name. A business with two licenses at one site is listed once. If a business on the list goes by a "
             "person's name, or asks to be left out, write to hello@proofnotfluff.com and it is removed from every later list.")
 
 OVERLAP = ("Food businesses usually get a City food license inspection before the City issues their food license, and "
-           f"{RESTAURANT} lists those inspections as Opening soon. A row here with a date under Food license inspection had "
-           "that inspection in the 120 days before its license, so a member of both products most likely saw the business "
-           "there first. Everything else on this list, including every non-food trade, is not on the restaurant product.")
+           f"{RESTAURANT} lists those inspections as Opening soon. A food and drink row here with a date under Food license "
+           "inspection had that inspection in the 120 days before its license, so a member of both products most likely saw the "
+           "business there first. The other food rows, and nearly all businesses in the other trades, are not on the "
+           "restaurant product.")
+OPEN_BEFORE = ("Food inspections since: the year of the City's earliest routine or complaint food inspection on file for the "
+               "business before this license. It shows the business was open before the license was issued.")
 
 OUR_NOTICE = ("For general business information only. Businesses appear because their licenses are public City of Chicago "
               "records. A new license shows the City issued it on that date; it does not say the business is open, hiring or "
@@ -248,7 +256,7 @@ def data_sheet(wb, key, rows, list_date, food):
     cols = ([("name", "Business", 26, "left", None), ("address", "Address", 24, "left", None), ("area", "Community area", 16, "left", None),
              ("issued", "Licensed", 13, "left", "date"), ("type", "License type", 22, "left", None),
              ("activity", "Business activity", 30, "left", None), ("history", "On the City's record", 22, "left", None)]
-            + ([("food", "Food license inspection", 14, "left", "date")] if food else [])
+            + ([("food", "Food license inspection", 14, "left", "date"), ("since", "Food inspections since", 11, "left", None)] if food else [])
             + [("new", "New this week", 9, "center", None), ("also", "Other licenses here", 22, "left", None),
                ("zip", "ZIP", 8, "left", None), ("license", "License", 11, "left", None), ("record", "City record", 11, "left", None)])
     print_cols = 8 if food else 7
@@ -347,7 +355,7 @@ def finish_card(ws, r, tab):
 def row_of(r, full):
     return {"name": r["business"], "address": r["address"], "area": r.get("communityArea") or "", "issued": day(r["issued"]),
             "type": r["licenseType"], "activity": r.get("activity") or "", "history": history_text(r), "hist": r.get("history") or "",
-            "food": day(r.get("foodInsp")), "new": "New" if is_new(r, full) else "", "also": "; ".join(r.get("otherTypes") or []),
+            "food": day(r.get("foodInsp")), "since": r.get("inspSince") or "", "new": "New" if is_new(r, full) else "", "also": "; ".join(r.get("otherTypes") or []),
             "zip": r.get("zip") or "", "license": r["license"], "recordUrl": RECORD + r["license"], "record": "City record"}
 
 
@@ -404,7 +412,7 @@ def start_here(wb, full, list_date, counts, cols):
                             "the order of the tabs.")),
         ("lead", ("City record", "We read the City's earlier licenses for the same business. " + " ".join(
             f"{HISTORY[k]}: {HISTORY_LONG[k]}" for k in ("first", "site", "added")))),
-        ("lead", ("Restaurants", OVERLAP)),
+        ("lead", ("Restaurants", OVERLAP + " " + OPEN_BEFORE)),
         ("lead", ("Left out", LEFT_OUT)),
         ("lead", ("Not included", "The legal name of the business and anything about the people who own it. The legal name is read only "
                                   "to judge whether a name could be a person's, and is never written out.")),
@@ -461,7 +469,7 @@ def _planted():
                                                  "licenseType": "Limited Business License", "otherTypes": [], "activity": "Retail Sales",
                                                  "issued": issued, "segment": seg, "communityArea": "Loop", "lat": 41.88, "lon": -87.63,
                                                  "history": "first", "since": "", "foodInsp": ""}, **kw)
-    recs = [R("1", "Luna Tacos", "food", "2026-10-20", licenseType="Retail Food Establishment", foodInsp="2026-10-02",
+    recs = [R("1", "Luna Tacos", "food", "2026-10-20", licenseType="Retail Food Establishment", foodInsp="2026-10-02", inspSince="2025",
               otherTypes=["Consumption on Premises - Incidental Activity"]),
             R("2", "Bright Kids Academy", "care", "2026-10-01", licenseType="Children's Services Facility License"),
             R("3", "Fresh Cuts Barbershop", "beauty", "2026-10-19", history="added", since="2019"),
@@ -497,8 +505,8 @@ def selftest():
                      "FOOD LICENSE INSPECTION"], heads
     assert f["C12"].value == "Corner Market" and f["C13"].value == "Luna Tacos", "newest first"
     assert f["F13"].number_format == "mmm d, yyyy" and f["J13"].number_format == "mmm d, yyyy"
-    assert f["L13"].value == "Consumption on Premises - Incidental Activity" and f["K12"].value == "New"
-    assert f["O13"].hyperlink.target == RECORD + "1" and f.auto_filter.ref.startswith("C11")
+    assert f["M13"].value == "Consumption on Premises - Incidental Activity" and f["L12"].value == "New" and f["K13"].value == "2025"
+    assert f["P13"].hyperlink.target == RECORD + "1" and f.auto_filter.ref.startswith("C11")
     assert wb[TAB["venue"]]["D12"].value == "None in the last 30 days." and cached_note_ok(out)
     r = wb[TAB["retail"]]
     assert r["I12"].value == "New site, licensed in Chicago since 2015" and r["E12"].value == "Not given"

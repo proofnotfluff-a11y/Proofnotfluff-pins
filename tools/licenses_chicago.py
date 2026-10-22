@@ -34,10 +34,10 @@ WINDOW_DAYS = 30      # members' list: licenses issued in the last 30 days; the 
 SKIP_LICENSES = re.compile(r"^(?:PEDDLER|PHARMACEUTICAL REPRESENTATIVE|SPECIAL EVENT|POP-UP|RAFFLE|TOWING|TOW TRUCK|SHARED HOUSING|"
                            r"HOME OCCUPATION|HOME REPAIR|MOBILE FOOD|PUBLIC CHAUFFEUR|VALET|BED-AND-BREAKFAST|VACATION RENTAL|"
                            r"ITINERANT|MASSAGE THERAPIST|BODY ART PRACTITIONER|SCAVENGER|EXPEDITOR|BUSINESS AFFAIRS|"
-                           r"RESIDENTIAL REAL ESTATE DEVELOPER)", re.I)
+                           r"RESIDENTIAL REAL ESTATE DEVELOPER|SHARED KITCHEN USER)", re.I)   # a shared kitchen user cooks in someone else's kitchen (holdout 1, Oct 22)
 # The same kinds named only in the business activity, and any activity the City marks as home based.
 SKIP_ACTIVITY = re.compile(r"STREET PERFORMER|FLEA MARKET|ORGANIZER OF EVENT|VACATION RENTAL|SHARED HOUSING|TOW TRUCK|SCAVENGER VEHICLE|"
-                           r"MOBILE FOOD|SPECIAL EVENT|PEDDLER", re.I)
+                           r"MOBILE FOOD|SPECIAL EVENT|PEDDLER|BED[- ]AND[- ]BREAKFAST|HOME REPAIR|SHARED KITCHEN USER", re.I)
 HOME_BASED = re.compile(r"HOME[- ]BASED", re.I)
 # Trade segments, first match wins: (key, label, license or activity pattern)
 SEGMENTS = [
@@ -82,11 +82,39 @@ PLAIN_WORD = re.compile(r"^[A-Z][A-Z'\-]*\.?$")
 HOME_ADDRESS = re.compile(r"\b(?:APT|APARTMENT|UNIT\s+\d+[A-Z]?\s*$|#\s*\d+[A-Z]?\s*$|\d+(?:ST|ND|RD|TH)\s+FL(?:OOR)?\s+APT)\b", re.I)
 # A stall or booth at a market ("4100 S ASHLAND AVE OUTSIDE 636" is an outdoor flea market space): a vendor, not a site (Oct 22).
 STALL_ADDRESS = re.compile(r"\b(?:OUTSIDE\s+\d+|BOOTH|STALL)\b", re.I)
+# A private mailbox ("PMB 353", "#453522"): a mail drop, not a site a vendor can visit (holdout 1, Oct 22).
+MAILBOX_ADDRESS = re.compile(r"\bPMB\b|#\s*\d{5,}\b", re.I)
+MAILBOX_REASON = "virtual office or mailbox address"
+RESIDENTIAL_REASON = "home or apartment address"
+STREET_END = re.compile(r"^(?:ST|AVE|AV|BLVD|DR|RD|PL|PKWY|CT|HWY|TER|WAY|LN|SQ|PLZ|CIR|ROW|BROADWAY|WACKER)$", re.I)
+GROUND_UNIT = re.compile(r"^(?:1|1ST|1F|1R|1 1|1ST FL(?:OOR)?|1ST FLR|GROUND|GRND|BSMT|BASEMENT|STORE(?:FRONT)?|"
+                         r"(?:STE|SUITE|SUIT)\b.*|RETAIL\b.*|COMMERCIAL\b.*|#?\s*1)?$", re.I)
+
+
+def split_address(addr):
+    """(building, unit): "3950 N LAKE SHORE DR 20TH 2021" -> ("3950 N LAKE SHORE DR", "20TH 2021"). The building is the house
+    number (or range) and the street through its suffix; no suffix found means no unit."""
+    words = re.sub(r"\s+", " ", (addr or "").upper().strip()).split(" ")
+    for i, w in enumerate(words[2:], 2):
+        if STREET_END.match(w.strip(",.")):
+            return " ".join(words[:i + 1]).strip(" ,"), " ".join(words[i + 1:]).strip(" ,")
+    return " ".join(words), ""
+
+
+def building_key(addr):
+    b, _ = split_address(addr)
+    return re.sub(r"[^A-Z0-9]", "", re.sub(r"^(\d+)-\d+", r"\1", b))
+
+
+LEGAL_END = re.compile(r"[\s,]+(?:L\.?\s?L\.?\s?C\.?|INC\.?|INCORPORATED|CORP\.?|CORPORATION|CO\.?|LTD\.?|L\.?P\.?|L\.?L\.?P\.?|P\.?L\.?L\.?C\.?|P\.?C\.?)\s*$", re.I)
 
 
 def could_be_person(name):
-    """True when a shown business name could be a person's name: two to four plain words, no digit, no business word."""
+    """True when a shown business name could be a person's name: two to four plain words, no digit, no business word, with or
+    without LLC, Inc or Corp at the end ("NOEL MERCADO L.L.C." reads as a person's name; holdout 1, Oct 22)."""
     n = re.sub(r"\s+", " ", (name or "").upper().strip())
+    while LEGAL_END.search(n):
+        n = LEGAL_END.sub("", n).strip()
     if not n or re.search(r"\d|&|\bAND\b|'S\b", n) or BUSINESS_WORDS.search(n):
         return False
     words = [w for w in n.replace(",", " ").split(" ") if w]
@@ -94,17 +122,34 @@ def could_be_person(name):
 
 
 def name_case(name):
-    """dba_case, except a leading "La" or "Las" reads as the Spanish word ("La Casa de las Flores"), not Los Angeles."""
+    """dba_case, except a leading "La" or "Las" reads as the Spanish word ("La Casa de las Flores"), not Los Angeles. A name the City
+    already writes in mixed case ("The UPS Store", "ChaTraMue") stays exactly as written (holdout 1, Oct 22)."""
+    if re.search(r"[a-z]", name or ""):
+        return re.sub(r"\s+", " ", name.strip())
     if re.match(r"\s*LA FITNESS\b", (name or "").upper()):   # the gym brand keeps its initials
         return dba_case(name)
     s = re.sub(r"^(LA|LAS|LOS) (?=[A-Z][a-z])", lambda m: m.group(1).capitalize() + " ", dba_case(name))
     return re.sub(r"(?<=\w )(Las|Los)(?= \w)", lambda m: m.group(1).lower(), s)
 
 
+FOOD_LICENSE = re.compile(r"RETAIL FOOD|WHOLESALE FOOD|FOOD ESTABLISHMENT|SHARED KITCHEN|CONSUMPTION ON PREMISES|TAVERN|PACKAGE GOODS|LIQUOR|"
+                          r"CATERER", re.I)
+STOCK_FOOD = re.compile(r"RETAIL SALES OF GENERAL MERCHANDISE AND NON-PERISHABLE FOOD|NON-PERISHABLE FOOD", re.I)
+
+
 def segment(desc, activity):
-    text = f"{desc} | {activity}".upper()
-    for key, _, pat in SEGMENTS:
-        if re.search(pat, text):
+    """The trade (holdout 1, Oct 22): a food or liquor license type is food; a Public Place of Amusement license is a venue;
+    otherwise the most specific activity decides, in the order beauty, auto, day care, venue, food, and the City's stock
+    "Retail Sales of General Merchandise and Non-Perishable Food" activity never makes a row food (a UPS Store, a gym)."""
+    d = (desc or "").upper()
+    if FOOD_LICENSE.search(d):
+        return "food"
+    if re.search(r"PUBLIC PLACE OF AMUSEMENT", d):
+        return "venue"
+    text = f"{d} | {STOCK_FOOD.sub(' ', (activity or '').upper())}"
+    pats = dict((k, p) for k, _, p in SEGMENTS)
+    for key in ("beauty", "auto", "care", "venue", "food"):
+        if re.search(pats[key], text):
             return key
     return "retail"
 
@@ -116,6 +161,9 @@ def keep(r, since, today):
     issued = (r.get("date_issued") or "")[:10]
     if not issued or issued < since or issued > today:
         return None, "issued outside the window"
+    approved = (r.get("license_approved_for_issuance") or "")[:10]
+    if approved and approved < since:     # a re-dated old license ("Domino's" 2971586, approved 2024; holdout 1, Oct 22)
+        return None, "not a new license (renewal or change)"
     if (r.get("license_status") or "").upper() != "AAI":   # AAI: issued; AAC cancelled, REV revoked, INQ under inquiry
         return None, "license not active (cancelled or revoked)"
     desc = (r.get("license_description") or "").strip()
@@ -135,6 +183,8 @@ def keep(r, since, today):
         return None, "home or apartment address"
     if STALL_ADDRESS.search(addr):
         return None, "license held by a person or for an event or season"
+    if MAILBOX_ADDRESS.search(addr):
+        return None, MAILBOX_REASON
     shown = (r.get("doing_business_as_name") or "").strip() or (r.get("legal_name") or "").strip()
     if could_be_person(shown) or could_be_person(r.get("legal_name") if not r.get("doing_business_as_name") else ""):
         return None, "name could be a person's"
@@ -144,7 +194,7 @@ def keep(r, since, today):
             "licenseType": desc, "otherTypes": [], "activity": activity_text(r.get("business_activity")),
             "issued": issued, "segment": segment(desc, r.get("business_activity") or ""),
             "lat": _coord(r.get("latitude")), "lon": _coord(r.get("longitude")), "communityArea": "",
-            "_acct": num("account_number"), "_site": num("site_number")}, ""
+            "_acct": num("account_number"), "_site": num("site_number"), "_addr": addr.upper()}, ""
 
 
 def activity_text(a, cap=300):
@@ -157,7 +207,8 @@ def activity_text(a, cap=300):
         if len(" | ".join(out + [x])) > cap:
             break
         out.append(x)
-    return " | ".join(out) if out else a[:cap].rsplit(" ", 1)[0]
+    more = len(parts) - len(out)
+    return (" | ".join(out) + f" | and {more} more") if out else a[:cap].rsplit(" ", 1)[0]
 
 
 def _coord(v):
@@ -264,12 +315,15 @@ def add_history(recs, fetch, start):
     licenses in stages, say a food license on Oct 1 and a liquor license on Oct 19, is still new), "site" (the account held a
     license at another site before the window: a new location or a move), "added" (the account held a license at this site
     before the window: a new license type there). since: the year of the earliest such license. start: the window's first day.
-    fetch(accounts) returns City rows with account_number, site_number and date_issued for those accounts."""
+    fetch(accounts) returns City rows with account_number, site_number, license_number, application_type and date_issued.
+    Returns the license numbers that also carry a RENEW row: an old license the City re-dated, not a new one (holdout 1)."""
     accts = sorted({r["_acct"] for r in recs if r.get("_acct")})
-    hist = collections.defaultdict(list)
+    hist, renewed = collections.defaultdict(list), set()
     for i in range(0, len(accts), 40):
         for x in fetch(accts[i:i + 40]):
             a, d = str(x.get("account_number") or "").split(".")[0], (x.get("date_issued") or "")[:10]
+            if (x.get("application_type") or "").upper() == "RENEW":
+                renewed.add(str(x.get("license_number") or "").split(".")[0])
             if a and d:
                 hist[a].append((d, str(x.get("site_number") or "").split(".")[0]))
     for r in recs:
@@ -283,43 +337,112 @@ def add_history(recs, fetch, start):
             r["history"], r["since"] = "site", min(d for d, _ in prior)[:4]
         else:
             r["history"], r["since"] = "first", ""
-    return recs
+    return {r["license"] for r in recs if set(r.get("_lics") or [r["license"]]) & renewed}
 
 
 def add_food_inspections(recs, fetch):
-    """foodInsp: the newest City food license inspection on file for the row's license number (the City's Food Inspections
-    dataset, 4ijn-s7e5, files it under the business license number), in the 120 days before the license was issued. That
-    inspection is what Chicago Restaurant Inspection Leads lists as "Opening soon". fetch(licenses) returns rows with license_
-    and inspection_date."""
-    lic = sorted({n for r in recs for n in (r.get("_lics") or [r["license"]]) if n})
+    """Food and drink rows only (the restaurant product lists food businesses; holdout 1). foodInsp: the newest City food license
+    inspection (type License or License Re-Inspection) on file for any license at the site (the City's Food Inspections dataset,
+    4ijn-s7e5, files it under the business license number), in the 120 days before the license was issued: what Chicago
+    Restaurant Inspection Leads lists as "Opening soon". inspSince: the year of the earliest other City food inspection (a
+    canvass or a complaint) before the license was issued, which shows the business was open before this license. fetch(licenses)
+    returns rows with license_, inspection_type and inspection_date."""
+    food = [r for r in recs if r["segment"] == "food"]
+    lic = sorted({n for r in food for n in (r.get("_lics") or [r["license"]]) if n})
     seen = collections.defaultdict(list)
     for i in range(0, len(lic), 40):
         for x in fetch(lic[i:i + 40]):
             n, d = str(x.get("license_") or "").split(".")[0], (x.get("inspection_date") or "")[:10]
             if n and d:
-                seen[n].append(d)
+                seen[n].append((d, (x.get("inspection_type") or "").upper()))
     for r in recs:
+        r["foodInsp"], r["inspSince"] = "", ""
+    for r in food:
         start = (dt.date.fromisoformat(r["issued"]) - dt.timedelta(days=120)).isoformat()
-        ds = [d for n in (r.get("_lics") or [r["license"]]) for d in seen.get(n, []) if start <= d <= r["issued"]]
-        r["foodInsp"] = max(ds) if ds else ""
+        got = [x for n in (r.get("_lics") or [r["license"]]) for x in seen.get(n, [])]
+        ds = [d for d, t in got if t.startswith("LICENSE") and start <= d <= r["issued"]]
+        op = [d for d, t in got if not t.startswith("LICENSE") and d < r["issued"]]
+        r["foodInsp"], r["inspSince"] = (max(ds) if ds else ""), (min(op)[:4] if op else "")
     return recs
+
+
+def flagged_buildings(recs, home, virtual):
+    """{license: reason} for rows the City's other licenses place in a home or a mail drop (holdout 1, Oct 22). home and virtual
+    are building keys (building_key) with a City Home Based Business or Home Occupation license, or a Virtual Office Services
+    license, on record. A row in a home-based building is left out when its address has a unit above the ground floor (the
+    storefront of a mixed building stays); every row at a virtual-office address is left out."""
+    out = {}
+    for r in recs:
+        b, unit = split_address(r.get("_addr") or r["address"])
+        k = building_key(r.get("_addr") or r["address"])
+        if k in virtual:
+            out[r["license"]] = MAILBOX_REASON
+        elif k in home and unit and not GROUND_UNIT.match(unit.strip()):
+            out[r["license"]] = RESIDENTIAL_REASON
+    return out
+
+
+def fetch_buildings():
+    """(home, virtual): building keys from the City's whole Business Licenses record (2002 on)."""
+    def keys(where):
+        out, off = set(), 0
+        while True:
+            page = get(f"{PORTAL}/resource/{DATASET}.json", {"$select": "address", "$where": where, "$group": "address",
+                                                            "$order": "address", "$limit": 50000, "$offset": off})
+            out |= {building_key(x.get("address")) for x in page if x.get("address")}
+            if len(page) < 50000:
+                return out
+            off += 50000
+    return (keys("upper(business_activity) like '%HOME BASED%' OR upper(license_description) like 'HOME OCCUPATION%'"),
+            keys("upper(business_activity) like '%VIRTUAL OFFICE%'"))
+
+
+def run_checks(recs, reasons, today, f_hist, f_food, f_build):
+    """The City's own records on top of build(): the building checks (home and mail-drop addresses), the business's history
+    (and old licenses the City re-dated), then the food inspections on the rows that are left. A check that cannot fetch is
+    marked not run; the list still ships, and the app and workbook say so. Returns (records, checks)."""
+    checks, drop = {}, {}
+    try:
+        home, virtual = f_build()
+        drop.update(flagged_buildings(recs, home, virtual)); checks["buildings"] = True
+    except SystemExit as e:
+        print(f"buildings check did not run: {e}"); checks["buildings"] = False
+    try:
+        for lic in add_history(recs, f_hist, (today - dt.timedelta(days=WINDOW_DAYS)).isoformat()):
+            drop.setdefault(lic, "not a new license (renewal or change)")
+        checks["history"] = True
+    except SystemExit as e:
+        print(f"history check did not run: {e}"); checks["history"] = False
+        for r in recs:
+            r["history"], r["since"] = "", ""
+    for why in drop.values():
+        reasons[why] += 1
+    recs = [r for r in recs if r["license"] not in drop]
+    try:
+        add_food_inspections(recs, f_food); checks["foodInspections"] = True
+    except SystemExit as e:
+        print(f"foodInspections check did not run: {e}"); checks["foodInspections"] = False
+        for r in recs:
+            r["foodInsp"], r["inspSince"] = "", ""
+    return strip_internal(recs), checks
 
 
 def strip_internal(recs):
     for r in recs:
-        r.pop("_acct", None); r.pop("_site", None); r.pop("_lics", None)
+        for k in ("_acct", "_site", "_lics", "_addr"):
+            r.pop(k, None)
     return recs
 
 
 def fetch_history(accts):
     return get(f"{PORTAL}/resource/{DATASET}.json",
-               {"$select": "account_number,site_number,date_issued", "$where": f"account_number in ({','.join(accts)})", "$limit": 50000})
+               {"$select": "account_number,site_number,license_number,application_type,date_issued",
+                "$where": f"account_number in ({','.join(accts)})", "$limit": 50000})
 
 
 def fetch_food(lics):
     return get(f"{PORTAL}/resource/{FOOD}.json",
-               {"$select": "license_,inspection_date", "$where": f"license_ in ({','.join(lics)}) AND upper(inspection_type) like 'LICENSE%'",
-                "$limit": 50000})
+               {"$select": "license_,inspection_type,inspection_date", "$where": f"license_ in ({','.join(lics)})", "$limit": 50000})
 
 
 def pull(since):
@@ -367,16 +490,7 @@ def main():
     rows = pull((today - dt.timedelta(days=WINDOW_DAYS + 7)).isoformat())
     areas = load_areas()
     recs, reasons = build(rows, areas, today)
-    checks = {}
-    for name, fn in (("history", lambda: add_history(recs, fetch_history, (today - dt.timedelta(days=WINDOW_DAYS)).isoformat())), ("foodInspections", lambda: add_food_inspections(recs, fetch_food))):
-        try:
-            fn(); checks[name] = True
-        except SystemExit as e:                     # the list still ships; the app and workbook say the check did not run
-            print(f"{name} check did not run: {e}")
-            checks[name] = False
-            for r in recs:
-                r.setdefault("history", ""); r.setdefault("since", ""); r.setdefault("foodInsp", "")
-    strip_internal(recs)
+    recs, checks = run_checks(recs, reasons, today, fetch_history, fetch_food, fetch_buildings)
     week_from = (today - dt.timedelta(days=7)).isoformat()
     week = [r for r in recs if r["issued"] >= week_from]
     labels = {k: lab for k, lab, _ in SEGMENTS}
@@ -385,8 +499,8 @@ def main():
               "fetchedAt": now.isoformat(timespec="seconds"), "terms": TERMS,
               "modified": ("Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a "
                            "Chicago business site, one row per business and address. Left out: licenses held by a person or for an "
-                           "event or season (peddlers, special events, pop-ups, tow trucks, home-sharing), home or apartment "
-                           "addresses, and any business whose name could be a person's name. Business-level fields only.")}
+                           "event or season (peddlers, special events, pop-ups, tow trucks, home-sharing, shared kitchen users), home "
+                           "and mail-drop addresses, and any business whose name could be a person's name. Business-level fields only.")}
     sample = {"source": source,
               "window": {"from": week_from, "to": today.isoformat(), "listFrom": (today - dt.timedelta(days=WINDOW_DAYS)).isoformat()},
               "counts": {"fetched": len(rows), "kept30": len(recs), "keptWeek": len(week),
@@ -417,18 +531,27 @@ def main():
 # ---------------------------------------------------------------- planted cases (invented businesses, real City field names)
 def selftest():
     for name, want in [("JOHN SMITH", True), ("MARIA G LOPEZ", True), ("O'BRIEN KELLY", True), ("ANNA-MARIE DE LA CRUZ", True),
-                       ("JOHN SMITH LLC", False), ("MARIA'S TAQUERIA", False), ("SMITH & SONS", False), ("KFC", False),
-                       ("LUNA NAIL SPA", False), ("GOLDEN DRAGON", True), ("ACME 24 HOUR FITNESS", False), ("", False)]:
+                       ("JOHN SMITH LLC", True), ("NOEL MERCADO L.L.C.", True), ("ANNA LEE, INC.", True),   # LLC never makes a name a business
+                       ("ACME HOLDINGS LLC", False), ("MARIA'S TAQUERIA", False), ("SMITH & SONS", False), ("KFC", False),
+                       ("LUNA NAIL SPA", False), ("GOLDEN DRAGON", True), ("ACME 24 HOUR FITNESS", False), ("TAQUERO LLC", False), ("", False)]:
         assert could_be_person(name) == want, (name, could_be_person(name), want)
     for raw, want in [("LA CASA DE LAS FLORES", "La Casa de las Flores"), ("LA CALACA CANTINA", "La Calaca Cantina"),
-                      ("LA FITNESS", "LA Fitness"), ("YATES LIQUOR", "Yates Liquor")]:
+                      ("LA FITNESS", "LA Fitness"), ("YATES LIQUOR", "Yates Liquor"), ("The UPS Store", "The UPS Store"),
+                      ("ChaTraMue", "ChaTraMue"), ("(GEI-184)  Shop", "(GEI-184) Shop")]:
         assert name_case(raw) == want, (raw, name_case(raw))
     for desc, act, want in [("Regulated Business License", "Computer Consulting Services / Computer Automated Design", "retail"),
                             ("Motor Vehicle Services License", "Motor Vehicle Repair - Engine and Transmission Work", "auto"),
                             ("Limited Business License", "Hair Services", "beauty"), ("Filling Station", "", "auto"),
                             ("Package Goods", "Retail Sales of Packaged Liquor", "food"),
                             ("Limited Business License", "Skincare Services | Provide Waxing Services", "beauty"),
-                            ("Commercial Garage", "Provide 4 or More Parking Spaces For a Fee", "retail")]:
+                            ("Commercial Garage", "Provide 4 or More Parking Spaces For a Fee", "retail"),
+                            # holdout 1: the City's stock "non-perishable food" activity never makes a row food
+                            ("Limited Business License", "Mail Services | Retail Sales of General Merchandise and Non-Perishable Food", "retail"),
+                            ("Limited Business License", "Health Club / Fitness Center | Retail Sales of General Merchandise and Non-Perishable Food", "beauty"),
+                            ("Limited Business License", "Hand Car Wash | Retail Sales of General Merchandise and Non-Perishable Food", "auto"),
+                            ("Public Place of Amusement", "Charges a Fee for Entertainment | Retail Sales of General Merchandise and Non-Perishable Food", "venue"),
+                            ("Retail Food Establishment", "Retail Sales of General Merchandise and Non-Perishable Food", "food"),
+                            ("Limited Business License", "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Perishable Foods", "food")]:
         assert segment(desc, act) == want, (desc, act, segment(desc, act))
     today = dt.date(2026, 10, 20)
     base = {"application_type": "ISSUE", "license_status": "AAI", "city": "CHICAGO", "zip_code": "60601", "latitude": "41.88",
@@ -471,6 +594,16 @@ def selftest():
         dict(base, license_number="17", doing_business_as_name="SWAP TOOLS", legal_name="ST LLC",
              license_description="Limited Business License", business_activity="Retail Sales of General Merchandise",
              address="4100 S ASHLAND AVE OUTSIDE 636"),                                              # market stall: out
+        dict(base, license_number="18", doing_business_as_name="OLD PIZZA STORE", legal_name="OPS INC", license_description="Retail Food Establishment",
+             license_approved_for_issuance="2024-06-26T00:00:00.000", address="1700 W LAKE ST"),     # approved in 2024, re-dated: out
+        dict(base, license_number="19", doing_business_as_name="ACME CONSULTING", legal_name="AC LLC", license_description="Limited Business License",
+             address="980 N MICHIGAN AVE STE 1090 #453522"),                                        # private mailbox: out
+        dict(base, license_number="20", doing_business_as_name="STEW KITCHEN", legal_name="SK LLC", license_description="Shared Kitchen User (Long Term)",
+             address="4329 N MOZART ST 1F"),                                                         # shared kitchen user: out
+        dict(base, license_number="21", doing_business_as_name="LAKE INN", legal_name="LI LLC", license_description="Limited Business License",
+             business_activity="Bed and Breakfast Establishment, Owner-Occupied", address="1800 W LAKE ST"),   # bed and breakfast: out
+        dict(base, license_number="22", doing_business_as_name="ZAS CONSULTING", legal_name="Z LLC", license_description="Limited Business License",
+             business_activity="Home Repair Services | Snowplowing", address="1900 W LAKE ST"),       # home repair: out
     ]
     for r in rows:
         r.setdefault("account_number", str(100 + int(r["license_number"])) + ".0"); r.setdefault("site_number", "1")
@@ -500,27 +633,53 @@ def selftest():
     calls = []
     def fake_hist(accts):
         calls.append(len(accts))
-        return [{"account_number": a + ".0", "site_number": s, "date_issued": d + "T00:00:00.000"} for a in accts for d, s in hist.get(a, [])]
-    add_history(recs, fake_hist, "2026-09-20")
+        rows_ = [{"account_number": a + ".0", "site_number": s, "date_issued": d + "T00:00:00.000", "license_number": "9" + a,
+                  "application_type": "ISSUE"} for a in accts for d, s in hist.get(a, [])]
+        return rows_ + [{"account_number": "105", "site_number": "1", "license_number": "5", "application_type": "RENEW",
+                         "date_issued": "2026-10-16T00:00:00.000"}]       # license 5 also has a RENEW row: an old license
+    renewed = add_history(recs, fake_hist, "2026-09-20")
+    assert renewed == {"5"}, renewed
     assert [(by[k]["history"], by[k]["since"]) for k in ("1", "4", "5", "7", "14")] == [
         ("first", ""), ("added", "2019"), ("first", ""), ("first", ""), ("site", "2015")], [(by[k]["history"], by[k]["since"]) for k in by]
     assert calls == [5], calls
-    food = {"2": ["2026-10-02", "2026-10-09", "2025-01-01"], "5": ["2026-10-17"]}   # filed under the site's second license
-    add_food_inspections(recs, lambda lics: [{"license_": n + ".0", "inspection_date": d + "T00:00:00.000"} for n in lics for d in food.get(n, [])])
-    assert by["1"]["foodInsp"] == "2026-10-09" and by["5"]["foodInsp"] == "" and by["4"]["foodInsp"] == "", "newest, 120 days before, never after the issue date"
+    # food inspections: food rows only; the License inspection under the site's second license; a canvass before the license
+    food = {"2": [("2026-10-02", "License"), ("2026-10-09", "License Re-Inspection"), ("2025-01-01", "License"), ("2025-03-04", "Canvass")],
+            "5": [("2026-10-17", "License")], "4": [("2026-10-01", "License")]}
+    asked = []
+    def fake_food(lics):
+        asked.extend(lics)
+        return [{"license_": n + ".0", "inspection_date": d + "T00:00:00.000", "inspection_type": t} for n in lics for d, t in food.get(n, [])]
+    add_food_inspections(recs, fake_food)
+    assert by["1"]["foodInsp"] == "2026-10-09" and by["1"]["inspSince"] == "2025", (by["1"]["foodInsp"], by["1"]["inspSince"])
+    assert by["4"]["foodInsp"] == "" and "4" not in asked and by["5"]["foodInsp"] == "", "food rows only, never after the issue date"
+    # the building checks: a unit above the ground floor in a building with home-based licenses, any row at a virtual office
+    assert split_address("3950 N LAKE SHORE DR 20TH 2021") == ("3950 N LAKE SHORE DR", "20TH 2021")
+    assert split_address("11611-11613 S HALSTED ST 1ST") == ("11611-11613 S HALSTED ST", "1ST") and building_key("11611-11613 S Halsted St") == "11611SHALSTEDST"
+    probe = [{"license": "a", "address": "3950 N Lake Shore Dr 20th 2021"}, {"license": "b", "address": "2049 W Belmont Ave 1 1"},
+             {"license": "c", "address": "1655 S Blue Island Ave 2 100"}, {"license": "d", "address": "2049 W Belmont Ave 2 2R"},
+             {"license": "e", "address": "500 N State St Ste 300"}]
+    fl = flagged_buildings(probe, {"3950NLAKESHOREDR", "2049WBELMONTAVE", "500NSTATEST"}, {"1655SBLUEISLANDAVE"})
+    assert fl == {"a": RESIDENTIAL_REASON, "c": MAILBOX_REASON, "d": RESIDENTIAL_REASON}, fl
+    # run_checks drops what the City's records rule out, counts the reasons, and marks a check that cannot fetch
+    r2, rs2 = build(rows, loop, today, dnl=set())
+    def boom(*a):
+        raise SystemExit("fetch failed")
+    got, ch = run_checks(r2, rs2, today, fake_hist, boom, lambda: ({"300SWABASHAVE"}, {"400WLAKEST"}))
+    assert {r["license"] for r in got} == {"1", "4", "7", "14"} and rs2[MAILBOX_REASON] == 2, (sorted(r["license"] for r in got), dict(rs2))
+    assert ch == {"buildings": True, "history": True, "foodInspections": False} and all(r["foodInsp"] == "" for r in got), ch
     strip_internal(recs)
     assert not any(k.startswith("_") for r in recs for k in r), "account and site numbers never leave the runner"
     blob = json.dumps(recs).upper()
     assert "JOHN Q PUBLIC" not in blob and "LEGAL" not in blob, "a legal name leaked into the records"
     want = {"second license at the same site (listed once)": 1, "name could be a person's": 1,
-            "license held by a person or for an event or season": 4, "home or apartment address": 2,
-            "not a new license (renewal or change)": 1, "issued outside the window": 1, "site outside Chicago": 1,
-            "license not active (cancelled or revoked)": 1}
+            "license held by a person or for an event or season": 7, "home or apartment address": 2,
+            "not a new license (renewal or change)": 2, "issued outside the window": 1, "site outside Chicago": 1,
+            "license not active (cancelled or revoked)": 1, MAILBOX_REASON: 1}
     assert dict(reasons) == want, dict(reasons)
     long = " | ".join(["Retail Sales of General Merchandise and Non-Perishable Food"] * 8)
-    assert activity_text(long) == " | ".join(["Retail Sales of General Merchandise and Non-Perishable Food"] * 4), activity_text(long)
+    assert activity_text(long) == " | ".join(["Retail Sales of General Merchandise and Non-Perishable Food"] * 4) + " | and 4 more", activity_text(long)
     assert activity_text("Hair Services") == "Hair Services"
-    print(f"licenses selftest ok (12 planted names, 7 planted trades, {len(rows)} planted licenses, 2 planted removals, 5 planted histories, 2 planted food inspections)")
+    print(f"licenses selftest ok (17 planted names, 13 planted trades, {len(rows)} planted licenses, 2 planted removals, 5 planted histories, 2 planted food inspections)")
 
 
 def dnl_cli(args):

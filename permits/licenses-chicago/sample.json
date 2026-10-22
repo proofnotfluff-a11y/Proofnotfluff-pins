@@ -105,14 +105,6 @@
  "segments": {
   "food": [
    {
-    "business": "Stew Kitchen",
-    "address": "4329 N Mozart St 1f",
-    "communityArea": "Irving Park",
-    "licenseType": "Shared Kitchen User (Long Term)",
-    "activity": "Shared Kitchen User - Long Term",
-    "issued": "2026-10-21"
-   },
-   {
     "business": "Pearl Club",
     "address": "495-499 N Milwaukee Ave Basement, 1, Mezz.",
     "communityArea": "West Town",
@@ -211,14 +203,6 @@
     "issued": "2026-10-21"
    },
    {
-    "business": "Vaknin Aesthetics LLC",
-    "address": "6165 N Northwest Hwy 123",
-    "communityArea": "Norwood Park",
-    "licenseType": "Limited Business License",
-    "activity": "Skincare Services | Retail Sales of General Merchandise",
-    "issued": "2026-10-20"
-   },
-   {
     "business": "The Nail Edit",
     "address": "2811 N Pine Grove Ave",
     "communityArea": "Lake View",
@@ -290,14 +274,6 @@
     "issued": "2026-10-21"
    },
    {
-    "business": "Parking Enforcement of Illinois, Inc.",
-    "address": "2721-2729 W Lawrence Ave",
-    "communityArea": "Lincoln Square",
-    "licenseType": "Private Booting Registration",
-    "activity": "Private Booting Registration",
-    "issued": "2026-10-20"
-   },
-   {
     "business": "Coi Company",
     "address": "4444 S Kildare Blvd",
     "communityArea": "Archer Heights",
@@ -306,35 +282,11 @@
     "issued": "2026-10-20"
    },
    {
-    "business": "Unifi Aviation, LLC",
-    "address": "10000 W Ohare St",
-    "communityArea": "O'Hare",
-    "licenseType": "Limited Business License",
-    "activity": "Commercial Janitorial Services",
-    "issued": "2026-10-19"
-   },
-   {
-    "business": "Royal Reigning Reliable LLC",
-    "address": "1655 S Blue Island Ave 2 100",
-    "communityArea": "Lower West Side",
-    "licenseType": "Limited Business License",
-    "activity": "Operation of an Administrative Commercial Office",
-    "issued": "2026-10-19"
-   },
-   {
     "business": "Prospect International Airport Services, LLC",
     "address": "10000 W Ohare St",
     "communityArea": "O'Hare",
     "licenseType": "Limited Business License",
     "activity": "Miscellaneous Commercial Services",
-    "issued": "2026-10-19"
-   },
-   {
-    "business": "McCann Ventures LLC",
-    "address": "3047 N Lincoln Ave 4 412",
-    "communityArea": "Lake View",
-    "licenseType": "Limited Business License",
-    "activity": "Retail Sales of General Merchandise",
     "issued": "2026-10-19"
    }
   ]

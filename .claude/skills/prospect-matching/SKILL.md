@@ -13,7 +13,7 @@ One job: turn local commercial cleaning and pressure washing businesses into val
 3. Enrich, deterministic: `python3 tools/enrich_hunter.py data/prospects/businesses.csv --out data/prospects/hunter.csv` then `python3 tools/prospects_import.py --product <key> --source hunter data/prospects/hunter.csv`. Drive CSV instead: download to data/prospects/, then prospects_import with --source apollo or clay. No source: skip to step 6 and tell Todd once.
 4. Gate: `python3 tools/validate_leads.py prospects`. Exit 1 stops this step; record the ERROR lines in meta/desk.note. Never hand-edit a rejected address to pass.
 5. Pre-match (semantic): each validated prospect gets one lead_id from gc_leads.json in its city (same side of town when the area says so; Partial Occupancy Approved first, then valuation). Then `python3 tools/validate_leads.py matches` must exit 0.
-6. CRM writes, pinned to the version read, batches of up to 50.
+6. CRM writes, pinned to the version read, batches of up to 50. New ids: create only, skip an id that exists. An existing id gets only the contact fields and matchedLeadId, and never when it has firstSentAt (one first email per business, ever). Todd's own edits win. Tools: email/SEND_RULES.md "Tools".
 
 ## Outputs (Writes)
 - CRM prospects/<id> (id prefix cc-, cr-, ac- plus the website domain): {product, business, trade, area, website, contactType:"email", contact (the verified work email), contactFirstName, contactLastName, contactTitle, emailSource, emailStatus, matchedLeadId, sourceUrl, checkedAt, checkedBy:"twice", status:"ready", doNotEmail:false}. New businesses without a decision-maker: status candidate.

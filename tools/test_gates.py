@@ -26,16 +26,16 @@ def expect(name, problems, should_fail):
 
 LEAD = {"lead_id": "chi-1", "city": "chicago", "permit_id": "1", "stage": "Partial Occupancy Approved",
         "stage_source": "CERTIFICATE OF OCCUPANCY PENDING (TEMPORARY OR PARTIAL OCCUPANCY APPROVED)", "issue_date": "2026-03-02",
-        "address": "4100 N Hampton Dr", "address_key": "4100 N HAMPTON DR", "valuation": 45000000, "gc_company": "Bartlett Cocke",
+        "address": "4100 N Hampton Dr", "address_key": "4100 N HAMPTON DR", "valuation": 45000000, "gc_company": "Bartlett Cocke, LLC",
         "signals": [{"type": "co_pending", "dataset": "ydr8-5enu", "record_id": "9", "date": None, "detail": "x"}],
         "source_url": "https://example.invalid/x", "site_contact": None, "scope": "New school building"}
 PROSPECT = {"prospect_id": "cc-sparkleco-example", "product": "chicago-construction", "business": "Sparkle Co", "website_domain": "sparkleco.example",
             "city": "chicago", "first_name": "Dana", "last_name": "Reyes", "title": "Owner", "email": "dana@sparkleco.example",
             "email_source": "apollo", "email_status": "verified", "do_not_email": False}
-BODY = ("Hi Dana,\n\nNoticed Bartlett Cocke just hit partial occupancy approved on the $45M school build on North Hampton Dr, "
-        "with final city inspections under way. That is usually when the final clean gets bid.\n\n"
+BODY = ("Hi Dana,\n\nNoticed Bartlett Cocke is at partial occupancy approved on the $45M school build on N Hampton Dr. "
+        "That is usually when the final clean gets bid.\n\n"
         "Mind if I send over the general contractor's direct contact details?")
-SUBJECT = "Bartlett Cocke on North Hampton Dr"
+SUBJECT = "Bartlett Cocke on N Hampton Dr"
 
 
 def moat_cases():
@@ -57,6 +57,13 @@ def inbox_cases():
     expect("inbox: named work email passes", R.validate_prospect(PROSPECT), False)
     for local in ("info", "contact", "sales", "admin", "office", "dispatch", "estimating", "bids", "support", "hello", "info.chicago", "office2"):
         expect(f"inbox: {local}@ fails", R.validate_prospect(dict(PROSPECT, email=f"{local}@sparkleco.example")), True)
+    for local in ("infoteam", "contactus", "salesteam", "officemanager", "frontoffice", "customercare", "inquiry", "projects", "sam"):
+        expect(f"inbox: {local}@ fails", R.validate_prospect(dict(PROSPECT, email=f"{local}@sparkleco.example")), True)
+    for local in ("dreyes", "dana.reyes", "reyes", "danar"):
+        expect(f"inbox: {local}@ passes", R.validate_prospect(dict(PROSPECT, email=f"{local}@sparkleco.example")), False)
+    expect("inbox: Crew Manager title fails", R.validate_prospect(dict(PROSPECT, title="Crew Manager")), True)
+    expect("moat: zero-lead file fails", R.validate_gc_file({"schema": "pnf.gc_lead.v1", "generatedAt": "2026-10-20T12:00:00Z", "leads": []}), True)
+    expect("moat: future generatedAt fails", R.validate_gc_file({"schema": "pnf.gc_lead.v1", "generatedAt": "2099-01-01T00:00:00Z", "leads": [LEAD]}, max_age_days=8), True)
     expect("inbox: free mail fails", R.validate_prospect(dict(PROSPECT, email="dana.reyes@gmail.com")), True)
     expect("inbox: other domain fails", R.validate_prospect(dict(PROSPECT, email="dana@othersite.example")), True)
     expect("inbox: non decision-maker title fails", R.validate_prospect(dict(PROSPECT, title="Cleaner")), True)
@@ -82,13 +89,18 @@ def copy_cases():
         expect(f"copy: {bad!r} fails", R.copy_problems(SUBJECT, BODY.replace("Mind if", f"See {bad}. Mind if"), "Dana", LEAD), True)
     expect("copy: link in subject fails", R.copy_problems("See proofnotfluff.com", BODY, "Dana", LEAD), True)
     for bad in ("broke ground", "breaking ground"):
-        expect(f"copy: {bad!r} fails", R.copy_problems(SUBJECT, BODY.replace("just hit", f"{bad} and just hit"), "Dana", LEAD), True)
+        expect(f"copy: {bad!r} fails", R.copy_problems(SUBJECT, BODY.replace("is at", f"{bad} and is at"), "Dana", LEAD), True)
     expect("copy: subscription pitch fails", R.copy_problems(SUBJECT, BODY.replace("Mind if", "It is $29 a month. Mind if"), "Dana", LEAD), True)
-    expect("copy: em dash fails", R.copy_problems(SUBJECT, BODY.replace(", with", " — with"), "Dana", LEAD), True)
+    expect("copy: em dash fails", R.copy_problems(SUBJECT, BODY.replace(". That", " \u2014 That"), "Dana", LEAD), True)
     expect("copy: generic greeting fails", R.copy_problems(SUBJECT, BODY.replace("Hi Dana,", "Hi Sparkle Co team,"), "Dana", LEAD), True)
     expect("copy: no permission question fails", R.copy_problems(SUBJECT, BODY.rstrip("?") + ".", "Dana", LEAD), True)
     expect("copy: missing GC fails", R.copy_problems(SUBJECT, BODY.replace("Bartlett Cocke", "the builder"), "Dana", LEAD), True)
     expect("copy: missing stage fails", R.copy_problems(SUBJECT, BODY.replace("partial occupancy approved", "progress"), "Dana", LEAD), True)
+    expect("copy: wrong valuation fails", R.copy_problems(SUBJECT, BODY.replace("$45M", "$90M"), "Dana", LEAD), True)
+    expect("copy: wrong street fails", R.copy_problems(SUBJECT, BODY.replace("N Hampton Dr", "S Fake St"), "Dana", LEAD), True)
+    for bad in ("proofnotfluff dot com", "acme.ai", "leads.app", "acme.biz", "pnf.info", "proofnotfluff . com"):
+        expect(f"copy: {bad!r} fails", R.copy_problems(SUBJECT, BODY.replace("Mind if", f"See {bad}. Mind if"), "Dana", LEAD), True)
+    expect("copy: 'Inc. in' is not a link", R.copy_problems(SUBJECT, BODY.replace("That is", "Cocke Inc. in town. That is"), "Dana", LEAD), False)
     expect("copy: leftover brace fails", R.copy_problems(SUBJECT, BODY.replace("Dana,\n", "Dana,\n{street} "), "Dana", LEAD), True)
     drafts = {"schema": "pnf.draft.v1", "drafts": [{"prospect_id": PROSPECT["prospect_id"], "lead_id": "chi-1", "to": "info@sparkleco.example",
                                                     "subject": SUBJECT, "body": BODY}]}
@@ -96,6 +108,11 @@ def copy_cases():
     good = copy.deepcopy(drafts)
     good["drafts"][0]["to"] = PROSPECT["email"]
     expect("copy: valid draft file passes", R.validate_drafts(good, {"chi-1": LEAD}, {PROSPECT["prospect_id"]: PROSPECT}), False)
+    dup = copy.deepcopy(good)
+    dup["drafts"].append(dup["drafts"][0])
+    expect("copy: two drafts to one prospect fail", R.validate_drafts(dup, {"chi-1": LEAD}, {PROSPECT["prospect_id"]: PROSPECT}), True)
+    expect("copy: draft off its validated match fails",
+           R.validate_drafts(good, {"chi-1": LEAD}, {PROSPECT["prospect_id"]: PROSPECT}, {PROSPECT["prospect_id"]: "chi-9"}), True)
 
 
 def context_cases():
@@ -142,7 +159,7 @@ def context_cases():
     expect("context: missing Outputs section fails", run(drop_section), True)
     expect("context: legacy ledger file in an active path fails", run(legacy_file), True)
     expect("context: active layer reading the legacy ledger fails", run(append("CLAUDE.md", "\nRead /areas/digital-products.md first.\n")), True)
-    expect("context: em dash in a layer fails", run(append("coo/HANDOFF.md", "\nlive — state\n")), True)
+    expect("context: em dash in a layer fails", run(append("coo/HANDOFF.md", "\nlive \u2014 state\n")), True)
     expect("context: L0 + L1 + one skill over 10 KB fails", [l for l in run(budget) if "the budget is under 10240" in l], True)
 
 

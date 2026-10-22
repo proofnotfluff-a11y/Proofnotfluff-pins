@@ -1,6 +1,6 @@
 # ProofNotFluff router (Layer 0)
 
-Read this, then coo/HANDOFF.md, then only the one SKILL.md your run names. Nothing else loads before the run starts.
+Read this, coo/HANDOFF.md, coo/CONSTITUTION.md (it binds first), then only the one SKILL.md your run names. Nothing else loads before the run starts.
 
 ## Topology
 - .claude/skills/<job>/SKILL.md: stage contracts (Inputs, Process, Outputs). One stage, one job.
@@ -19,3 +19,4 @@ Read this, then coo/HANDOFF.md, then only the one SKILL.md your run names. Nothi
 5. No person's data in the repo, scoreboard or logs. Prospects live in the CRM and data/.
 6. No em or en dashes. Plain words. No invented people, numbers or claims.
 7. Push: check_repo exits 0, git push origin HEAD:main, never force.
+8. Tools: the repo, ArtifactData, web search and fetch, Agent checkers, Claude in Chrome and Drive only where a SKILL says. Never the Gmail connector, Zapier, Typefully, Lovable, QuickBooks, Canva, Adobe or Supermetrics.

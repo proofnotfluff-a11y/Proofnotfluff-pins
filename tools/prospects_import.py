@@ -36,11 +36,11 @@ ALIASES = {
     "business": ("company", "companyname", "organization", "organizationname", "accountname", "business"),
     "website": ("website", "companywebsite", "domain", "companydomain", "websiteurl", "url"),
     "city": ("city", "companycity", "personcity", "locationcity"),
-    "source_url": ("linkedinurl", "personlinkedinurl", "sourceurl", "source"),
+    "source_url": ("linkedinurl", "personlinkedinurl", "sourceurl"),
 }
 STATUS_MAP = {"verified": "verified", "valid": "valid", "deliverable": "deliverable", "ok": "valid",
               "accept_all": "accept_all", "acceptall": "accept_all", "catchall": "catch_all", "catch_all": "catch_all",
-              "catch-all": "catch_all", "likely to engage": "valid", "guessed": "unverified", "unverified": "unverified",
+              "catch-all": "catch_all", "guessed": "unverified", "unverified": "unverified",
               "invalid": "invalid", "undeliverable": "invalid", "risky": "risky", "unknown": "unknown", "": "unknown"}
 CITY_OF = {"chicago-construction": "chicago", "chicago-restaurant": "chicago", "austin-construction": "austin"}
 PREFIX = {"chicago-construction": "cc", "chicago-restaurant": "cr", "austin-construction": "ac"}
@@ -103,7 +103,8 @@ def main():
     existing = {"schema": "pnf.prospect.v1", "prospects": []}
     if os.path.exists(a.out):
         existing = json.load(open(a.out, encoding="utf-8"))
-    keep = {x["prospect_id"]: x for x in existing.get("prospects", [])}
+    keep = {x["prospect_id"]: x for x in existing.get("prospects", [])
+            if x.get("email", "").lower() not in blocked and x.get("website_domain", "").lower() not in blocked}
     rejected = []
     for path in a.csv:
         with open(path, newline="", encoding="utf-8-sig") as f:

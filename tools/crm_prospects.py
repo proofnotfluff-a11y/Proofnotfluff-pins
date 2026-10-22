@@ -6,6 +6,7 @@ A run lists the CRM's prospects collection with ArtifactData (out_dir=data/crm) 
 prospects that carry a named decision-maker, have never had a first email (no firstSentAt) (contactFirstName, contactLastName, contactTitle and a contact email that
 passes the Inbox Gate), drops doNotEmail, replied, customer, opted-out and bounced records, and writes:
   data/prospects/prospects.json   schema pnf.prospect.v1 (eligible for drafting)
+  data/prospects/followups.json   schema pnf.prospect.v1: emailed once, no reply, follow-up due, address still valid
   data/prospects/ineligible.json  every other prospect id with the reason (role inbox, no name, contact form ...)
   data/work/matches.json          schema pnf.match.v1 from each eligible prospect's matchedLeadId, kept only when that lead
                                   is in this week's permits/downstream/gc_leads.json
@@ -24,7 +25,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pnf_rules as R  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CLOSED = {"replied", "customer", "opted-out", "bounced", "bounced-precheck", "skipped"}
+CLOSED = {"replied", "customer", "opted-out", "bounced", "bounced-precheck", "skipped", "sent", "followed-up"}
 CITY = {"chicago-construction": "chicago", "chicago-restaurant": "chicago", "austin-construction": "austin"}
 
 
@@ -72,15 +73,17 @@ def to_prospect(pid, d):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("listing")
-    ap.add_argument("--products", default="")
+    ap.add_argument("--products", default="austin-construction,chicago-construction",
+                    help="the construction products only: the templates are construction emails")
     ap.add_argument("--gc", default=os.path.join(ROOT, "permits", "downstream", "gc_leads.json"))
     a = ap.parse_args()
     if not os.path.exists(a.listing):
         print(f"ERROR crm: {a.listing} does not exist (list the CRM prospects with ArtifactData out_dir first)")
         sys.exit(1)
     want = {p for p in a.products.split(",") if p}
-    eligible, ineligible = [], []
+    eligible, ineligible, followups = [], [], []
     seen = set()
+    today = __import__("datetime").date.today().isoformat()
     for pid, d in docs_from(a.listing):
         if pid in seen or not pid:
             continue
@@ -88,18 +91,41 @@ def main():
         p = to_prospect(pid, d)
         if want and p["product"] not in want:
             continue
-        why = []
+        named = [w.split(": ", 1)[-1] for w in R.validate_prospect(p)]
+        if d.get("contactType") != "email":
+            named.append("contact form only")
+        # follow-up candidates: emailed once, nothing back, due, and a named address that still passes every gate
+        if (p["status"] == "sent" and d.get("firstSentAt") and not d.get("repliedAt") and not p["do_not_email"]
+                and (d.get("followupDueAt") or "9999") <= today and not d.get("followupSentAt")):
+            if named:
+                ineligible.append({"prospect_id": pid, "reasons": sorted(set(["follow-up blocked"] + named))})
+            else:
+                followups.append(p)
+            continue
+        why = list(named)
         if p["do_not_email"] or p["status"] in CLOSED:
             why.append(f"closed ({p['status'] or 'doNotEmail'})")
         if d.get("firstSentAt"):
-            why.append("already emailed (firstSentAt set; follow-ups run from the CRM, never a second first email)")
-        if d.get("contactType") != "email":
-            why.append("contact form only")
-        why += [w.split(": ", 1)[-1] for w in R.validate_prospect(p)]
+            why.append("already emailed (firstSentAt set; never a second first email)")
         (ineligible.append({"prospect_id": pid, "reasons": sorted(set(why))}) if why else eligible.append(p))
 
+    # file-level rules move records aside instead of stopping the whole Monday: one decision-maker per business and
+    # address, catch-all at most 10% of the batch
+    kept, emails, biz = [], set(), set()
+    for p in sorted(eligible, key=lambda x: x["prospect_id"]):
+        key = (p["product"], p["website_domain"])
+        if p["email"] in emails or key in biz:
+            ineligible.append({"prospect_id": p["prospect_id"], "reasons": ["duplicate address or business"]})
+            continue
+        emails.add(p["email"]); biz.add(key); kept.append(p)
+    ca = [p for p in kept if p["email_status"] in R.CATCH_ALL]
+    allowed = len(kept) // 10
+    for p in ca[allowed:]:
+        kept.remove(p)
+        ineligible.append({"prospect_id": p["prospect_id"], "reasons": ["catch-all over the 10% batch cap; next week"]})
+    eligible = kept
     doc = {"schema": "pnf.prospect.v1", "prospects": eligible}
-    probs = R.validate_prospect_file(doc)
+    probs = R.validate_prospect_file(doc) + R.validate_prospect_file({"schema": "pnf.prospect.v1", "prospects": followups})
     if probs:
         for x in probs[:20]:
             print(f"ERROR crm: {x}")
@@ -107,6 +133,8 @@ def main():
     os.makedirs(os.path.join(ROOT, "data", "prospects"), exist_ok=True)
     os.makedirs(os.path.join(ROOT, "data", "work"), exist_ok=True)
     json.dump(doc, open(os.path.join(ROOT, "data", "prospects", "prospects.json"), "w", encoding="utf-8"), indent=1)
+    json.dump({"schema": "pnf.prospect.v1", "prospects": followups},
+              open(os.path.join(ROOT, "data", "prospects", "followups.json"), "w", encoding="utf-8"), indent=1)
     json.dump({"ineligible": ineligible}, open(os.path.join(ROOT, "data", "prospects", "ineligible.json"), "w", encoding="utf-8"), indent=1)
 
     leads = set()
@@ -118,7 +146,7 @@ def main():
               open(os.path.join(ROOT, "data", "work", "matches.json"), "w", encoding="utf-8"), indent=1)
     role = sum(1 for x in ineligible if any("role-based" in r for r in x["reasons"]))
     print(f"OK crm: {len(eligible)} eligible named decision-makers, {len(ineligible)} ineligible ({role} role inboxes), "
-          f"{len(matches)} stored matches still current")
+          f"{len(matches)} stored matches still current, {len(followups)} follow-ups due")
     sys.exit(0)
 
 

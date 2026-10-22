@@ -50,7 +50,9 @@ ROLE_LOCALPARTS = ("info", "contact", "sales", "admin", "office", "dispatch", "e
                    "team", "service", "services", "help", "enquiries", "inquiries", "general", "mail", "booking", "bookings",
                    "billing", "accounts", "accounting", "careers", "jobs", "hr", "marketing", "noreply", "no-reply",
                    "donotreply", "webmaster", "frontdesk", "reception", "quotes", "quote", "estimate", "estimates",
-                   "cleaning", "clean", "customerservice", "operations", "ops", "orders", "schedule", "scheduling")
+                   "cleaning", "clean", "customerservice", "operations", "ops", "orders", "schedule", "scheduling",
+                   "infoteam", "contactus", "salesteam", "officemanager", "frontoffice", "theoffice", "customercare",
+                   "inquiry", "enquiry", "projects", "project", "bid", "proposals", "leads", "work", "jobs", "crew")
 ROLE_RE = re.compile(r"^(?:%s)(?:[._+-].*|\d+)?$" % "|".join(re.escape(x) for x in ROLE_LOCALPARTS), re.I)
 FREEMAIL = {"gmail.com", "googlemail.com", "yahoo.com", "ymail.com", "outlook.com", "hotmail.com", "live.com", "msn.com",
             "icloud.com", "me.com", "mac.com", "aol.com", "comcast.net", "att.net", "sbcglobal.net", "verizon.net",
@@ -58,8 +60,8 @@ FREEMAIL = {"gmail.com", "googlemail.com", "yahoo.com", "ymail.com", "outlook.co
 EMAIL_RE = re.compile(r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$")
 NAME_RE = re.compile(r"^[A-Za-z][A-Za-z'.-]{0,39}(?: [A-Za-z][A-Za-z'.-]{0,39})?$")
 DECISION_TITLE = re.compile(r"\b(?:owner|co-?owner|founder|co-?founder|president|ceo|chief|principal|partner|managing|"
-                            r"general manager|gm|director|vice president|vp|head of|operations manager|business manager|"
-                            r"proprietor|manager)\b", re.I)
+                            r"general manager|gm|director|vice president|vp|head of|"
+                            r"proprietor|operations manager|business manager|branch manager)\b", re.I)
 OK_EMAIL_STATUS = {"verified", "valid", "deliverable", "catch_all", "accept_all"}
 CATCH_ALL = {"catch_all", "accept_all"}
 PRODUCTS = {"chicago-construction": "chicago", "austin-construction": "austin", "chicago-restaurant": "chicago"}
@@ -68,10 +70,13 @@ SOURCES = {"apollo", "hunter", "clay", "site", "manual"}
 # ------------------------------------------------------------------ outreach copy
 MAX_WORDS = 75            # a draft fails at 75 words or more
 MAX_SUBJECT_WORDS = 9
-URL_RE = re.compile(r"https?://|www\.|\.com\b|\.net\b|\.org\b|\.io\b|\.co\b|\.us\b|gumroad|bit\.ly|[a-z0-9-]+\.[a-z]{2,6}/", re.I)
+TLDS = ("com|net|org|io|co|ai|app|biz|info|us|me|ly|xyz|site|online|store|shop|dev|tech|pro|link|page|ws|tv|gg|"
+        "cc|so|to|in|uk|ca|club|live|world|today|agency|services|solutions|cleaning|network|email|website|web")
+URL_RE = re.compile(r"https?://|www\.|gumroad|bit\.ly|\b[a-z0-9-]+\.(?:%s)\b|\b[a-z0-9-]+\s\.\s?(?:com|net|org|io)\b|"
+                    r"\b[a-z0-9-]+\.\s(?:com|net|org|io)\b|\bdot\s+(?:com|net|org|io|co|ai|app)\b|[a-z0-9-]+\.[a-z]{2,24}/" % TLDS, re.I)
 PITCH_RE = re.compile(r"\$\s?\d+\s*(?:/|a|per)\s*(?:mo|month)\b|\bsubscri\w*|\bfree trial\b|\bsign up\b|\bcheckout\b|"
                       r"\bbuy now\b|\bdiscount\b|\bmembership\b|\bpricing\b|\bprice\b", re.I)
-DASHES = ("—", "–")
+DASHES = ("\u2014", "\u2013")
 # CAN-SPAM block the sender appends under every first email. It is fixed text, checked byte for byte, and not counted
 # against the 75 words because it is compliance, not copy.
 FOOTER = ("ProofNotFluff\n680 North Lake Shore Drive, Suite 110-2964, Chicago, IL 60611\n"
@@ -80,6 +85,28 @@ FOOTER = ("ProofNotFluff\n680 North Lake Shore Drive, Suite 110-2964, Chicago, I
 
 def words(text):
     return re.findall(r"[A-Za-z0-9$][A-Za-z0-9$'.,%-]*", text or "")
+
+
+GC_SUFFIX = re.compile(r",?\s+\b(?:L\.?L\.?C|INC(?:ORPORATED)?|CORP(?:ORATION)?|CO|COMPANY|LTD|L\.?P|LLP|PLLC)\b\.?\s*$", re.I)
+
+
+def gc_display(name):
+    """The general contractor as an email names it: the City's business name without a trailing legal suffix.
+    'Bartlett Cocke General Contractors, LLC' gives 'Bartlett Cocke General Contractors'. Drafter and gate both use it."""
+    n = (name or "").strip()
+    for _ in range(2):
+        n = GC_SUFFIX.sub("", n).strip(" ,")
+    return n
+
+
+def value_display(v):
+    """$45M style for an email: whole millions under $1 billion ($4.5M under $10M), $1.2B from $1 billion."""
+    v = float(v or 0)
+    if v >= 1e9:
+        return f"${v / 1e9:.1f}B"
+    if v >= 1e7:
+        return f"${v / 1e6:.0f}M"
+    return f"${v / 1e6:.1f}M"
 
 
 def domain_of(url_or_domain):
@@ -170,6 +197,8 @@ def validate_gc_lead(lead, today=None):
 
 def validate_gc_file(doc, max_age_days=None, now=None):
     p = []
+    if not isinstance(doc, dict):
+        return ["gc file: not a JSON object"]
     if doc.get("schema") != "pnf.gc_lead.v1":
         p.append("gc file: schema must be pnf.gc_lead.v1")
     leads = doc.get("leads")
@@ -178,15 +207,21 @@ def validate_gc_file(doc, max_age_days=None, now=None):
     ids = [x.get("lead_id") for x in leads]
     if len(ids) != len(set(ids)):
         p.append("gc file: duplicate lead_id")
+    if not leads:
+        p.append("gc file: zero leads (a City column or label change would look like this; check the ingest report)")
     for x in leads:
-        p += validate_gc_lead(x)
+        p += validate_gc_lead(x) if isinstance(x, dict) else ["gc file: a lead is not an object"]
     if max_age_days is not None:
         try:
             at = dt.datetime.fromisoformat(str(doc.get("generatedAt")).replace("Z", "+00:00"))
+            if at.tzinfo is None:
+                raise ValueError("no time zone")
             now = now or dt.datetime.now(dt.timezone.utc)
-            if (now - at).days > max_age_days:
+            if at > now + dt.timedelta(hours=1):
+                p.append(f"gc file: generatedAt {doc.get('generatedAt')} is in the future")
+            elif (now - at).days > max_age_days:
                 p.append(f"gc file: generatedAt {doc.get('generatedAt')} is older than {max_age_days} days")
-        except ValueError:
+        except (ValueError, TypeError):
             p.append("gc file: generatedAt unreadable")
     return p
 
@@ -196,8 +231,9 @@ PROSPECT_REQUIRED = ("prospect_id", "product", "business", "website_domain", "ci
                      "email", "email_source", "email_status")
 
 
-def inbox_problems(email, website_domain=""):
-    """The Inbox Gate for one address: syntax, no role-based local part, no free mail, on the business's own domain."""
+def inbox_problems(email, website_domain="", first_name="", last_name=""):
+    """The Inbox Gate for one address: syntax, no role-based local part, no free mail, on the business's own domain, and,
+    when the person's name is known, a local part built from that name (dana@, dreyes@, dana.reyes@, reyes@)."""
     e = (email or "").strip()
     if not EMAIL_RE.match(e):
         return [f"{e or '(blank)'}: not a valid email address"]
@@ -210,6 +246,10 @@ def inbox_problems(email, website_domain=""):
     wd = domain_of(website_domain)
     if wd and not (dom == wd or dom.endswith("." + wd)):
         p.append(f"{e}: domain {dom} does not match the business website {wd}")
+    f, l = re.sub(r"[^a-z]", "", (first_name or "").lower()), re.sub(r"[^a-z]", "", (last_name or "").lower())
+    flat = re.sub(r"[^a-z]", "", local)
+    if f and l and not (f in flat or l in flat or flat in (f[0] + l, f + l[0], f[0] + l[0])):
+        p.append(f"{e}: the address is not {first_name} {last_name}'s own (local part does not carry the name)")
     return p
 
 
@@ -233,12 +273,14 @@ def validate_prospect(x):
         p.append(f"{pid}: email_status {x.get('email_status')!r} is not deliverable")
     if x.get("do_not_email") is True:
         p.append(f"{pid}: do_not_email is set")
-    p += [f"{pid}: {m}" for m in inbox_problems(x.get("email"), x.get("website_domain"))]
+    p += [f"{pid}: {m}" for m in inbox_problems(x.get("email"), x.get("website_domain"), x.get("first_name"), x.get("last_name"))]
     return p
 
 
 def validate_prospect_file(doc):
     p = []
+    if not isinstance(doc, dict):
+        return ["prospect file: not a JSON object"]
     if doc.get("schema") != "pnf.prospect.v1":
         p.append("prospect file: schema must be pnf.prospect.v1")
     rows = doc.get("prospects")
@@ -266,7 +308,7 @@ def validate_prospect_file(doc):
 def validate_matches(doc, leads_by_id, prospects_by_id):
     p = []
     rows = doc.get("matches") if isinstance(doc, dict) else None
-    if doc.get("schema") != "pnf.match.v1" or not isinstance(rows, list):
+    if not isinstance(doc, dict) or doc.get("schema") != "pnf.match.v1" or not isinstance(rows, list):
         return ["match file: schema must be pnf.match.v1 with a matches list"]
     used = set()
     for m in rows:
@@ -317,8 +359,15 @@ def copy_problems(subject, body, first_name=None, lead=None):
     if not b.rstrip().endswith("?"):
         p.append("body must end with the permission question")
     if lead is not None:
-        if (lead.get("gc_company") or "").lower() not in b.lower():
-            p.append(f"body does not name the general contractor {lead.get('gc_company')!r}")
+        gc = gc_display(lead.get("gc_company"))
+        if gc.lower() not in b.lower():
+            p.append(f"body does not name the general contractor {gc!r}")
+        for m in re.findall(r"\$\d+(?:\.\d+)?[MB]\b", b):
+            if m != value_display(lead.get("valuation")):
+                p.append(f"body states {m}, the lead's valuation is {value_display(lead.get('valuation'))}")
+        street = re.sub(r"^\d+\s+", "", lead.get("address") or "").lower()
+        if street and street not in b.lower():
+            p.append(f"body does not name the lead's street ({street!r})")
         stage_words = {"Partial Occupancy Approved": "partial occupancy", "Inspections Under Way": "inspection",
                        "Final Inspection Scheduled": "final inspection", "Certificate of Occupancy Pending": "certificate of occupancy"}
         want = stage_words.get(lead.get("stage"), "")
@@ -327,12 +376,21 @@ def copy_problems(subject, body, first_name=None, lead=None):
     return p
 
 
-def validate_drafts(doc, leads_by_id, prospects_by_id):
+def validate_drafts(doc, leads_by_id, prospects_by_id, matches_by_prospect=None):
     p = []
     rows = doc.get("drafts") if isinstance(doc, dict) else None
-    if doc.get("schema") != "pnf.draft.v1" or not isinstance(rows, list):
+    if not isinstance(doc, dict) or doc.get("schema") != "pnf.draft.v1" or not isinstance(rows, list):
         return ["draft file: schema must be pnf.draft.v1 with a drafts list"]
+    seen = set()
     for d in rows:
+        if not isinstance(d, dict):
+            p.append("draft file: a draft is not an object")
+            continue
+        if d.get("prospect_id") in seen:
+            p.append(f"draft {d.get('prospect_id')}: second draft to the same prospect in one batch")
+        seen.add(d.get("prospect_id"))
+        if matches_by_prospect is not None and matches_by_prospect.get(d.get("prospect_id")) != d.get("lead_id"):
+            p.append(f"draft {d.get('prospect_id')}: lead_id differs from the validated match")
         pid, lid = d.get("prospect_id"), d.get("lead_id")
         pr, ld = prospects_by_id.get(pid), leads_by_id.get(lid)
         if pr is None or ld is None:
@@ -340,6 +398,6 @@ def validate_drafts(doc, leads_by_id, prospects_by_id):
             continue
         if (d.get("to") or "").lower() != pr["email"].lower():
             p.append(f"draft {pid}: to address differs from the prospect's validated email")
-        p += [f"draft {pid}: {m}" for m in inbox_problems(d.get("to"), pr.get("website_domain"))]
+        p += [f"draft {pid}: {m}" for m in inbox_problems(d.get("to"), pr.get("website_domain"), pr.get("first_name"), pr.get("last_name"))]
         p += [f"draft {pid}: {m}" for m in copy_problems(d.get("subject"), d.get("body"), pr["first_name"], ld)]
     return p

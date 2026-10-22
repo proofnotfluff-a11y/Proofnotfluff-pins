@@ -1,10 +1,9 @@
 # Handoff (Layer 1): live state pointers, Oct 22, 2026
 
-- Restructure (one model, one folder): COMPLETE, Oct 22 overnight run. Previous handoff: archive/legacy-handoff/HANDOFF-2026-10-20.md. The three ledger files are archived in memory under /archive/legacy-memory/ and no run reads them.
+- Restructure (one model, one folder): repo side COMPLETE Oct 22 (layers, skills, gates, downstream workflow). Switch-over WAITING on Todd's go in a live chat: four trigger prompts to one line each, ledger files to memory /archive/legacy-memory/. Exact text: the Oct 22 Morning Report. Until then the old prompts, the ledger and coo/LEADS_DESK.md still run everything.
+- Previous handoff: archive/legacy-handoff/HANDOFF-2026-10-20.md (open items 1 to 8 there still stand).
 - Live: Chicago and Austin construction cleaning leads ($29 a month), Chicago restaurant inspection leads ($39 a month). 0 payers.
-- Outreach: first emails wait for named decision-makers. The CRM holds role inboxes only, which the Inbox Gate rejects. Blocker: Todd's enrichment source (HUNTER_API_KEY in the cloud environment, or Apollo or Clay CSV exports in Drive folder "PNF enrichment").
-- Old batches (Oct 19 and 20, link plus role inbox): no follow-ups under the new rules.
-- Data: permits/downstream/gc_leads.json from .github/workflows/downstream-leads.yml, Mondays 7:05 am CT.
+- Outreach under the new skills drafts only to named decision-makers. The CRM holds role inboxes only. Blocker: an enrichment source (HUNTER_API_KEY in the cloud environment, or Apollo or Clay CSVs in Drive folder "PNF enrichment").
+- Data: permits/downstream/gc_leads.json from .github/workflows/downstream-leads.yml (Mondays 12:05 UTC); join-key counts in probes/join-keys-<date>.json.
 - Senders: hello@proofnotfluff.com (25 a day), sales@getproofnotfluff.com (Apps Script ramp from Oct 20).
-- Runs: Mon 8:10 permit-ingestion, Mon and Thu 9:40 outreach-drafter, Wed 10:10 prospect-matching, Tue to Fri 11:10 product-builder. remotion-walkthrough on request only.
-- Todd's open items: the Morning Report of Oct 22 (enrichment source, constitution line 5.3, sales@ queue follow-ups, Search Console).
+- Skills: permit-ingestion (Mon QA), outreach-drafter (Mon, Thu), prospect-matching (Wed), product-builder (Tue to Fri), remotion-walkthrough (on request).

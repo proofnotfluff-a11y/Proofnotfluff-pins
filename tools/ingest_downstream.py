@@ -71,11 +71,15 @@ def chicago_permits(api, since):
     where = (f"issue_date >= '{since}' AND permit_type in('PERMIT - NEW CONSTRUCTION','PERMIT - RENOVATION/ALTERATION') "
              f"AND reported_cost >= {MIN_COST} AND permit_milestone in{in_list(stages)}")
     rows = api.pull(CHI_PERMITS, where=where, order=":id")
-    out, reasons = [], collections.Counter()
+    out, reasons, seen = [], collections.Counter(), set()
     for r in rows:
         if not P.in_window(r, since):
             reasons["permit not open in the City record"] += 1
             continue
+        if r.get("permit_") in seen:
+            reasons["second row of the same permit"] += 1
+            continue
+        seen.add(r.get("permit_"))
         ms = (r.get("permit_milestone") or "").strip().upper()
         stage = R.CHICAGO_MILESTONES.get(ms)
         if not stage:
@@ -118,8 +122,20 @@ def chicago_permits(api, since):
             "site_contact": None,
             "signals": sigs,
             "source_url": f"{CHI}/resource/{CHI_PERMITS}.json?permit_={r.get('permit_')}",
+            "_rev": [], "_ref": [],
         })
+        if hasattr(P, "refs"):
+            out[-1]["_rev"], out[-1]["_ref"] = P.refs((r.get("work_description") or "").upper())
         reasons["candidate"] += 1
+    # each job once: a revision of a listed permit, or two permits at one address where one names the other
+    # (permits_chicago.dedupe, the same rule the paid list uses)
+    view = [{"permit": x["permit_id"], "address": x["address"], "cost": x["valuation"], "_rev": x["_rev"], "_ref": x["_ref"]} for x in out]
+    _left, dropped = P.dedupe(view)
+    reasons["revision or repeat of a listed job"] += len(dropped)
+    out = [x for x in out if x["permit_id"] not in set(dropped)]
+    for x in out:
+        x.pop("_rev", None)
+        x.pop("_ref", None)
     return out, reasons, len(rows)
 
 

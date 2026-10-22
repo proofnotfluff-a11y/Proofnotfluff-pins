@@ -6,6 +6,10 @@ Condensed Oct 22, 2026 from coo/LEADS_DESK.md Run 2 for the outreach-drafter sta
 - Only the batch named in the message he answered. It is void once the next Monday's data refresh has run.
 - First re-run the inbox step and re-read each prospect from the CRM. Skip anyone now replied, customer, opted-out, bounced or doNotEmail, and delete their draft.
 
+## Which drafts go
+- Only drafts of CRM prospects with status drafted and batch = the named batch date, matched by To address and subject (follow-ups: the reply draft in that prospect's thread). Leave every other draft alone. One at a time, a few seconds apart, each Gmail step in a new tab you open.
+- The text typed into Gmail must equal data/work/drafts.json plus the footer, character for character; read each draft back after saving.
+
 ## Before any email leaves
 1. `python3 tools/copy_gate.py` exits 0 on the exact batch file. A draft edited after the gate is gated again.
 2. Every address: Bouncer (app.usebouncer.com, signed in as hello@ in Todd's Chrome). Send only "Deliverable"; catch-all at most 10% of a batch; "Undeliverable" sets bounced-precheck and doNotEmail; "Risky" or "Unknown" waits a week. Credits out: tell Todd once.
@@ -28,6 +32,9 @@ Not interested? Reply "no thanks" and we will not email you again.
 - Confirm it shows in Sent (hello@) or in the sheet's Log (sales@). Scheduled mail counts as sent only once it shows in Sent.
 - CRM: first email `sent`, firstSentAt, followupDueAt = plus 5 business days, firstExample = the lead_id it named. Follow-up `followed-up`, followupSentAt.
 - Scoreboard leadproducts/<slug>.outreach counts, counted fresh from the CRM (this stage is the only writer). One line to Todd with the counts.
+
+## Tools
+- Only the repo, ArtifactData (CRM, scoreboard), web search and fetch, the Agent tool for checkers, Claude in Chrome on hello@'s Gmail and Bouncer, and (prospect-matching only) Google Drive read and download in the "PNF enrichment" folder. Never the Gmail connector (a different account), Zapier, Typefully, Lovable, QuickBooks, Canva, Adobe or Supermetrics.
 
 ## Never
 - A second first email to anyone with firstSentAt. A follow-up after any reply, bounce or opt-out. More than one follow-up.

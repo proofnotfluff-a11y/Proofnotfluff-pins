@@ -12,7 +12,8 @@ validated GC lead and prospect it names:
   - the To address is the prospect's validated address and passes the Inbox Gate again.
 
 Usage: python3 tools/copy_gate.py [data/work/drafts.json] [--gc permits/downstream/gc_leads.json]
-                                  [--prospects data/prospects/prospects.json]
+                                  [--prospects data/prospects/prospects.json] [--matches data/work/matches.json]
+       Follow-ups: --prospects data/prospects/followups.json --matches ''  (prospects already emailed once)
        python3 tools/copy_gate.py --templates .claude/skills/outreach-drafter/SKILL.md
            renders every template in the skill with a fixture lead and prospect and checks it the same way.
 """
@@ -31,9 +32,9 @@ GC = os.path.join(ROOT, "permits", "downstream", "gc_leads.json")
 PROSPECTS = os.path.join(ROOT, "data", "prospects", "prospects.json")
 SKILL = os.path.join(ROOT, ".claude", "skills", "outreach-drafter", "SKILL.md")
 
-FIXTURE_LEAD = {"lead_id": "chi-fixture", "city": "chicago", "gc_company": "Bartlett Cocke", "stage": "Partial Occupancy Approved",
+FIXTURE_LEAD = {"lead_id": "chi-fixture", "city": "chicago", "gc_company": "Bartlett Cocke, LLC", "stage": "Partial Occupancy Approved",
                 "address": "4100 N Hampton Dr", "valuation": 45000000, "work_type": "New construction", "scope": "school"}
-FIXTURE_FIELDS = {"first": "Dana", "gc": "Bartlett Cocke", "value": "$45M", "kind": "school", "street": "North Hampton Dr",
+FIXTURE_FIELDS = {"first": "Dana", "gc": "Bartlett Cocke", "value": "$45M", "kind": "school", "street": "N Hampton Dr",
                   "zip": "78723"}
 
 
@@ -78,6 +79,8 @@ def main():
     ap.add_argument("--gc", default=GC)
     ap.add_argument("--prospects", default=PROSPECTS)
     ap.add_argument("--templates", nargs="?", const=SKILL, default=None)
+    ap.add_argument("--matches", default=os.path.join(ROOT, "data", "work", "matches.json"),
+                    help="every draft's lead_id must equal its validated match (pass '' for follow-ups)")
     a = ap.parse_args()
     if a.templates:
         problems, n = check_templates(a.templates)
@@ -98,7 +101,10 @@ def main():
     if pre:
         print(f"ERROR copy: inputs do not validate ({pre[0]})")
         sys.exit(1)
-    problems = R.validate_drafts(drafts, {x["lead_id"]: x for x in gc["leads"]}, {x["prospect_id"]: x for x in pr["prospects"]})
+    matches = None
+    if a.matches and os.path.exists(a.matches):
+        matches = {m.get("prospect_id"): m.get("lead_id") for m in json.load(open(a.matches, encoding="utf-8")).get("matches", [])}
+    problems = R.validate_drafts(drafts, {x["lead_id"]: x for x in gc["leads"]}, {x["prospect_id"]: x for x in pr["prospects"]}, matches)
     if not (drafts.get("drafts") or []):
         problems.append("no drafts in the file")
     for p in problems[:60]:

@@ -3,7 +3,7 @@
 One job: prove this Monday's Entity A data is fresh, complete and true. Code fetches and filters; you only verify and report. You never publish, buy, message anyone but Todd, or touch Gumroad, Etsy or email.
 
 ## Inputs (Reads)
-- GitHub Actions runs today for permits-chicago.yml, permits-austin.yml, inspections-chicago.yml, downstream-leads.yml (GitHub MCP actions_list; dispatch downstream-leads.yml once with actions_run_trigger if it has no run today).
+- GitHub Actions runs today for permits-chicago.yml, permits-austin.yml, inspections-chicago.yml, downstream-leads.yml (GitHub MCP actions_list; dispatch downstream-leads.yml once with actions_run_trigger if it has no run today, wait for it to finish, then git pull).
 - permits/downstream/gc_leads.json, permits/chicago/sample.json, permits/austin/sample.json, permits/inspections-chicago/rest-sample.json.
 - launches/<slug>.md and the free pages (the holdout's only inputs).
 

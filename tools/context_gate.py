@@ -83,7 +83,7 @@ def check(skill=None):
         text = open(p, encoding="utf-8").read()
         if LEGACY_REF.search(text):
             problems.append(f"{rel} points a run at the archived legacy ledger (/areas/digital-products*.md)")
-        if "—" in text or "–" in text:
+        if "\u2014" in text or "\u2013" in text:
             problems.append(f"{rel} carries an em or en dash")
     for rel in tracked():
         if LEGACY.search(rel) and not rel.startswith("archive/"):

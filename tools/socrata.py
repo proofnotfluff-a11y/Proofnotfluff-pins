@@ -72,6 +72,8 @@ class Socrata:
     def pull(self, dataset, where=None, select=None, order=":id", key=None, max_rows=200000):
         """Every row matching where, paged until a short page, de-duplicated on key when given, then checked against the
         portal's own count. Raises SocrataError when the pull is short or the result would pass max_rows."""
+        if key and select and key not in [c.strip().split(" ")[0] for c in select.split(",")]:
+            raise SocrataError(f"{dataset}: key {key!r} must be in select, or every row would look like a duplicate")
         want = self.count(dataset, where)
         if want > max_rows:
             raise SocrataError(f"{dataset}: {want} rows match, over the {max_rows} row ceiling; narrow the where clause")

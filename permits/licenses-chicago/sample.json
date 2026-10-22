@@ -3,7 +3,7 @@
   "name": "City of Chicago Data Portal, Business Licenses",
   "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
   "rowsUpdatedAt": "2026-10-22T09:55:53+00:00",
-  "fetchedAt": "2026-10-22T20:23:20+00:00",
+  "fetchedAt": "2026-10-22T21:08:45+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: licenses held by a person or for an event or season (peddlers, special events, pop-ups, tow trucks, home-sharing, shared kitchen users), home and mail-drop addresses, and any business whose name could be a person's name. Business-level fields only."
  },
@@ -14,11 +14,11 @@
  },
  "counts": {
   "fetched": 740,
-  "kept30": 232,
-  "keptWeek": 53,
+  "kept30": 234,
+  "keptWeek": 54,
   "segmentsWeek": {
    "food": 26,
-   "beauty": 6,
+   "beauty": 7,
    "auto": 1,
    "care": 1,
    "venue": 2,
@@ -26,16 +26,16 @@
   },
   "segments30": {
    "food": 74,
-   "beauty": 39,
+   "beauty": 40,
    "auto": 10,
    "care": 3,
    "venue": 3,
-   "retail": 103
+   "retail": 104
   },
   "excluded": {
    "issued outside the window": 139,
    "second license at the same site (listed once)": 16,
-   "name could be a person's": 35,
+   "name could be a person's": 33,
    "license held by a person or for an event or season": 265,
    "home or apartment address": 23,
    "site outside Chicago": 20,
@@ -91,8 +91,8 @@
    "foodInspections": true
   },
   "history30": {
-   "first": 139,
-   "relicensed": 36,
+   "first": 140,
+   "relicensed": 37,
    "added": 17,
    "site": 40
   },
@@ -229,6 +229,14 @@
     "licenseType": "Limited Business License",
     "activity": "Nail Services",
     "issued": "2026-10-20"
+   },
+   {
+    "business": "Tabitha African Hair Braiding",
+    "address": "5806 W Division St",
+    "communityArea": "Austin",
+    "licenseType": "Limited Business License",
+    "activity": "Hair Services",
+    "issued": "2026-10-19"
    },
    {
     "business": "Montrose Foot Massage & Spa",

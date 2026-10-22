@@ -1,0 +1,1545 @@
+{
+ "ranAt": "2026-10-22T16:37:53+00:00",
+ "d30From": "2026-09-22",
+ "d90From": "2026-07-24",
+ "violations": {
+  "dataset": "22u3-xenr",
+  "columns": {
+   "name": "Building Violations",
+   "rowsUpdatedAt": 1792651809,
+   "license": "",
+   "fields": [
+    "id",
+    "violation_last_modified_date",
+    "violation_date",
+    "violation_code",
+    "violation_status",
+    "violation_status_date",
+    "violation_description",
+    "violation_location",
+    "violation_inspector_comments",
+    "violation_ordinance",
+    "inspector_id",
+    "inspection_number",
+    "inspection_status",
+    "inspection_waived",
+    "inspection_category",
+    "department_bureau",
+    "address",
+    "street_number",
+    "street_direction",
+    "street_name",
+    "street_type",
+    "property_group",
+    "ssa",
+    "latitude",
+    "longitude",
+    "location",
+    ":@computed_region_vrxf_vc4k",
+    ":@computed_region_6mkv_f3dw",
+    ":@computed_region_rpca_8um6",
+    ":@computed_region_bdys_3d7i",
+    ":@computed_region_43wa_7qmu",
+    ":@computed_region_awaf_s7ux"
+   ]
+  },
+  "dateField": "violation_date",
+  "d30": {
+   "total": 3384,
+   "department_bureau": [
+    {
+     "value": "CONSERVATION",
+     "n": 2496
+    },
+    {
+     "value": "ELEVATOR",
+     "n": 467
+    },
+    {
+     "value": "BOILER",
+     "n": 128
+    },
+    {
+     "value": "PLUMBING",
+     "n": 99
+    },
+    {
+     "value": "SPECIAL INSPECTION PROGRAM",
+     "n": 89
+    },
+    {
+     "value": "ELECTRICAL",
+     "n": 36
+    },
+    {
+     "value": "REFRIGERATION",
+     "n": 32
+    },
+    {
+     "value": "VENTILATION",
+     "n": 25
+    },
+    {
+     "value": "NEW CONSTRUCTION",
+     "n": 8
+    },
+    {
+     "value": "SPECIAL TASK FORCE",
+     "n": 4
+    }
+   ],
+   "inspection_category": [
+    {
+     "value": "COMPLAINT",
+     "n": 2130
+    },
+    {
+     "value": "PERIODIC",
+     "n": 954
+    },
+    {
+     "value": "PERMIT",
+     "n": 300
+    }
+   ],
+   "violation_status": [
+    {
+     "value": "OPEN",
+     "n": 3340
+    },
+    {
+     "value": "COMPLIED",
+     "n": 44
+    }
+   ],
+   "topDescriptions": [
+    {
+     "value": "MAINTAIN OR REPAIR ELECT ELEVA",
+     "n": 346
+    },
+    {
+     "value": "ARRANGE PREMISE INSPECTION",
+     "n": 277
+    },
+    {
+     "value": "REPAIR EXTERIOR WALL",
+     "n": 154
+    },
+    {
+     "value": "MAINTAIN OR REPAIR HYDRO ELEVA",
+     "n": 101
+    },
+    {
+     "value": "REPAIR PORCH SYSTEM",
+     "n": 78
+    },
+    {
+     "value": "STOP/REMOVE NUISANCE",
+     "n": 76
+    },
+    {
+     "value": "ARRANGE FOR REINSPECTION REGAR",
+     "n": 73
+    },
+    {
+     "value": "REPAIR FENCE",
+     "n": 70
+    },
+    {
+     "value": "REPLCE WINDOW PANES, PLEXGLAS",
+     "n": 67
+    },
+    {
+     "value": "MAINTAIN WINDOW",
+     "n": 64
+    },
+    {
+     "value": "REPAIR INTERIOR WALLS/CEILING",
+     "n": 63
+    },
+    {
+     "value": "REPAIR SCREENS",
+     "n": 59
+    },
+    {
+     "value": "REPAIR EXTERIOR STAIR",
+     "n": 59
+    },
+    {
+     "value": "OWNER OR LICENSED CONTRACTOR",
+     "n": 58
+    },
+    {
+     "value": "OPEN",
+     "n": 57
+    },
+    {
+     "value": "PARAPET",
+     "n": 53
+    },
+    {
+     "value": "CHIMNEY",
+     "n": 50
+    },
+    {
+     "value": "INSTALL SMOKE DETECTORS",
+     "n": 49
+    },
+    {
+     "value": "PLANS & PERMITS REQ - CONTRCTR",
+     "n": 43
+    },
+    {
+     "value": "REPAIR EAVES",
+     "n": 43
+    },
+    {
+     "value": "REPAIR/REBUILD GARAGE OR SHED",
+     "n": 41
+    },
+    {
+     "value": "REPAIR WINDOW SILLS",
+     "n": 41
+    },
+    {
+     "value": "SCREEN OUTER DOORS, WINDOWS",
+     "n": 40
+    },
+    {
+     "value": "CUT OR REMOVE HIGH WEEDS",
+     "n": 40
+    },
+    {
+     "value": "REPAIR",
+     "n": 37
+    },
+    {
+     "value": "REPAIR ROOF",
+     "n": 37
+    },
+    {
+     "value": "REPAIR OR REPLACE",
+     "n": 37
+    },
+    {
+     "value": "REPAIR LINTELS",
+     "n": 36
+    },
+    {
+     "value": "REPAIR EXTERIOR DOOR",
+     "n": 35
+    },
+    {
+     "value": "OBSTRUCTIONS IN EXIT WAY",
+     "n": 32
+    },
+    {
+     "value": "REPAIR FLOOR",
+     "n": 32
+    },
+    {
+     "value": "REPAIR EXTERIOR DOOR HARDWARE",
+     "n": 31
+    },
+    {
+     "value": "WORK NOT ALLOWED",
+     "n": 30
+    },
+    {
+     "value": "REPAIR CORNICE",
+     "n": 29
+    },
+    {
+     "value": "ARRANGE FOR INSPECTION",
+     "n": 26
+    },
+    {
+     "value": "PROVIDE",
+     "n": 25
+    },
+    {
+     "value": "REPAIR/REPLACE SMOKE DETECTORS",
+     "n": 23
+    },
+    {
+     "value": "ILLUMINATE PUBLIC STAIR/HALL",
+     "n": 22
+    },
+    {
+     "value": "CHIMNEY CAPPING",
+     "n": 20
+    },
+    {
+     "value": "ARRANGE COMPLETED PERMIT INSP.",
+     "n": 20
+    },
+    {
+     "value": "CARB MONOX DETECT IN RESID",
+     "n": 20
+    },
+    {
+     "value": null,
+     "n": 19
+    },
+    {
+     "value": "REMOVE",
+     "n": 18
+    },
+    {
+     "value": "INSTALL DOOR VIEWING DEVICE",
+     "n": 18
+    },
+    {
+     "value": "PERMIT REQUIRED - CONTRACTOR",
+     "n": 17
+    },
+    {
+     "value": "ROACHES",
+     "n": 17
+    },
+    {
+     "value": "SEE INSPECTOR COMMENTS",
+     "n": 17
+    },
+    {
+     "value": "DEBRIS, EXCESSIVE",
+     "n": 17
+    },
+    {
+     "value": "DEFECTIVE OUTLETS",
+     "n": 17
+    },
+    {
+     "value": "REPAIR INTERIOR STAIR SYSTEM",
+     "n": 16
+    },
+    {
+     "value": "EXPOSED WIRING",
+     "n": 16
+    },
+    {
+     "value": "SAFE WORKING CONDITIONS",
+     "n": 15
+    },
+    {
+     "value": "PROVIDE GUARD RAIL 42 IN HIGH",
+     "n": 14
+    },
+    {
+     "value": "FIRE EXTNGSHR RECHARGE & TAG",
+     "n": 14
+    },
+    {
+     "value": "MICE/RODENTS",
+     "n": 13
+    },
+    {
+     "value": "SERVICE WALK, PASSAGE, AREAWAY",
+     "n": 13
+    },
+    {
+     "value": "REPLACE D&H PORCH",
+     "n": 13
+    },
+    {
+     "value": "REPAIR GUTTER & DOWNSPOUT",
+     "n": 12
+    },
+    {
+     "value": "REPAIR EXTERIOR DOOR FRAME",
+     "n": 11
+    },
+    {
+     "value": "REPAIR DOOR, INT.",
+     "n": 10
+    }
+   ],
+   "tradeBuckets": {
+    "other": 2053,
+    "windows_doors": 417,
+    "masonry_tuckpointing": 261,
+    "porch_stairs": 207,
+    "heat_boiler": 95,
+    "fire_safety": 89,
+    "roof_gutter": 78,
+    "pest_rodent": 59,
+    "plumbing": 44,
+    "electrical": 43,
+    "registration_admin": 29,
+    "paint_plaster": 19,
+    "elevator": 15,
+    "sign": 5
+   },
+   "buildings30": 897,
+   "buildingsOpen30": 873
+  },
+  "d90": {
+   "total": 11741,
+   "department_bureau": [
+    {
+     "value": "CONSERVATION",
+     "n": 7964
+    },
+    {
+     "value": "ELEVATOR",
+     "n": 1805
+    },
+    {
+     "value": "BOILER",
+     "n": 536
+    },
+    {
+     "value": "PLUMBING",
+     "n": 434
+    },
+    {
+     "value": "SPECIAL INSPECTION PROGRAM",
+     "n": 350
+    },
+    {
+     "value": "ELECTRICAL",
+     "n": 250
+    },
+    {
+     "value": "REFRIGERATION",
+     "n": 161
+    },
+    {
+     "value": "NEW CONSTRUCTION",
+     "n": 116
+    },
+    {
+     "value": "VENTILATION",
+     "n": 90
+    },
+    {
+     "value": "SPECIAL TASK FORCE",
+     "n": 27
+    },
+    {
+     "value": "DEMOLITION",
+     "n": 5
+    },
+    {
+     "value": "SIGNS",
+     "n": 3
+    }
+   ],
+   "inspection_category": [
+    {
+     "value": "COMPLAINT",
+     "n": 7376
+    },
+    {
+     "value": "PERIODIC",
+     "n": 3362
+    },
+    {
+     "value": "PERMIT",
+     "n": 1003
+    }
+   ],
+   "violation_status": [
+    {
+     "value": "OPEN",
+     "n": 11282
+    },
+    {
+     "value": "COMPLIED",
+     "n": 458
+    },
+    {
+     "value": "NO ENTRY",
+     "n": 1
+    }
+   ]
+  }
+ },
+ "permits": {
+  "dataset": "ydr8-5enu",
+  "byType30": [
+   {
+    "value": "PERMIT \u2013 EXPRESS PERMIT PROGRAM",
+    "n": 2019
+   },
+   {
+    "value": "PERMIT - RENOVATION/ALTERATION",
+    "n": 465
+   },
+   {
+    "value": "PERMIT - SIGNS",
+    "n": 153
+   },
+   {
+    "value": "PERMIT - NEW CONSTRUCTION",
+    "n": 131
+   },
+   {
+    "value": "PERMIT - ELEVATOR EQUIPMENT",
+    "n": 95
+   },
+   {
+    "value": "PERMIT - WRECKING/DEMOLITION",
+    "n": 64
+   },
+   {
+    "value": "PERMIT - REINSTATE REVOKED PMT",
+    "n": 35
+   }
+  ],
+  "demolition30": {
+   "total": 64,
+   "byContact1": [
+    {
+     "value": "OWNER",
+     "n": 59
+    },
+    {
+     "value": "CONTRACTOR-GENERAL CONTRACTOR",
+     "n": 3
+    },
+    {
+     "value": "EXPEDITOR",
+     "n": 2
+    }
+   ],
+   "byCost": {
+    "0-25000": 39,
+    "25000-100000": 21,
+    "100000-500000": 3,
+    "500000-1000000000000": 1
+   }
+  },
+  "renovationWithGc30": {
+   "0-25000": 26,
+   "25000-100000": 67,
+   "100000-500000": 73,
+   "500000-1000000000000": 21
+  }
+ },
+ "licenses": {
+  "dataset": "r5kz-chrr",
+  "byApplicationType30": [
+   {
+    "value": "RENEW",
+    "n": 1880
+   },
+   {
+    "value": "ISSUE",
+    "n": 601
+   },
+   {
+    "value": "C_LOC",
+    "n": 32
+   },
+   {
+    "value": "C_SBA",
+    "n": 3
+   }
+  ],
+  "changeOfLocation30ByType": [
+   {
+    "value": "Limited Business License",
+    "n": 20
+   },
+   {
+    "value": "Regulated Business License",
+    "n": 10
+   },
+   {
+    "value": "Motor Vehicle Services License",
+    "n": 2
+   }
+  ]
+ },
+ "catalog": {
+  "sidewalk cafe": [
+   {
+    "id": "nxj5-ix6z",
+    "name": "Sidewalk Cafe Permits",
+    "updatedAt": "2026-10-22T09:51:47.000Z",
+    "fields": [
+     ":@computed_region_43wa_7qmu",
+     ":@computed_region_bdys_3d7i",
+     "issued_date",
+     "doing_business_as_name",
+     "street",
+     "expiration_date",
+     "zip_code",
+     ":@computed_region_6mkv_f3dw",
+     "address_number",
+     ":@computed_region_vrxf_vc4k",
+     ":@computed_region_rpca_8um6",
+     "address",
+     "city",
+     "state",
+     "legal_name",
+     "payment_date",
+     "location_city",
+     "ward",
+     "account_number",
+     "address_number_start",
+     "location_address",
+     "location_state",
+     "location_zip",
+     "street_type",
+     "latitude",
+     "location",
+     "site_number",
+     "longitude",
+     "permit_number",
+     "street_direction",
+     "police_district"
+    ]
+   }
+  ],
+  "elevator": [
+   {
+    "id": "zgvr-7yfd",
+    "name": "Elevation Benchmarks",
+    "updatedAt": "2011-09-29T20:22:04.000Z",
+    "fields": [
+     ":@computed_region_rpca_8um6",
+     ":@computed_region_awaf_s7ux",
+     "location_description_2",
+     ":@computed_region_6mkv_f3dw",
+     "location_description",
+     "northing",
+     "year_benchmark_elevation_fixed",
+     "estimated_location",
+     ":@computed_region_bdys_3d7i",
+     "longitude",
+     "latitude",
+     ":@computed_region_vrxf_vc4k",
+     "estimated_location_city",
+     "estimated_location_state",
+     "estimated_location_address",
+     ":@computed_region_43wa_7qmu",
+     "book_number",
+     "mark_description",
+     "easting",
+     "benchmark_number",
+     "elevation",
+     "estimated_location_zip"
+    ]
+   },
+   {
+    "id": "v2z5-jyrq",
+    "name": "Public Health Statistics - Screening for elevated blood lead levels in children aged 0-6 years by year, Chicago, 1999-2013 - Historical",
+    "updatedAt": "2015-02-05T23:21:12.000Z",
+    "fields": [
+     "elevated_blood_lead_level_in_2013",
+     "percent_elevated_2013_upper_ci",
+     "percent_elevated_2013_lower_ci",
+     "percent_elevated_2013",
+     "community_area_number",
+     "percent_elevated_2009_upper_ci",
+     "percent_elevated_2002_upper_ci",
+     "percent_elevated_2012_lower_ci",
+     "elevated_blood_lead_level_in_1999",
+     "screening_rate_2001_lower_ci",
+     "elevated_blood_lead_level_in_2003",
+     "percent_elevated_2002_lower_ci",
+     "lead_screening_rate_2001",
+     "screened_for_lead_in_2010",
+     "screened_for_lead_in_2001",
+     "percent_elevated_2006",
+     "percent_elevated_2000_upper_ci",
+     "percent_elevated_2000_lower_ci",
+     "lead_screening_rate_2010",
+     "elevated_blood_lead_level_in_2006",
+     "screening_rate_2006_upper_ci",
+     "screening_rate_2006_lower_ci",
+     "lead_screening_rate_2002",
+     "screening_rate_2002_lower_ci",
+     "screening_rate_2010_lower_ci",
+     "screening_rate_2002_upper_ci",
+     "percent_elevated_1999",
+     "percent_elevated_2003",
+     "percent_elevated_2012_upper_ci",
+     "percent_elevated_2003_lower_ci",
+     "percent_elevated_2002",
+     "percent_elevated_2003_upper_ci",
+     "screened_for_lead_in_2013",
+     "lead_screening_rate_2013",
+     "screening_rate_2010_upper_ci",
+     "lead_screening_rate_2006",
+     "percent_elevated_2008_upper_ci",
+     "screened_for_lead_in_2006",
+     "screening_rate_2007_upper_ci",
+     "percent_elevated_1999_lower_ci"
+    ]
+   },
+   {
+    "id": "3mg2-a24n",
+    "name": "Performance Metrics - Public Health - Lead Inspections Performed",
+    "updatedAt": "2012-04-16T20:12:59.000Z",
+    "fields": [
+     "months_target_was_achieved",
+     "cumulative_target",
+     "cumulative_lead_inspections_completed",
+     "date",
+     "monthly_target",
+     "total_number_of_initial_lead_inspections_completed_per_month",
+     "months_target_was_not_achieved"
+    ]
+   },
+   {
+    "id": "nphj-5zur",
+    "name": "811 Chicago Utility Hit Tickets",
+    "updatedAt": "2026-10-22T07:23:01.000Z",
+    "fields": [
+     "notice_type",
+     "hit_by_name",
+     "site_id",
+     "hit_report_no",
+     "hit_date",
+     "hit_report_status",
+     "related_dig_ticket",
+     "street_number",
+     "street_number_high",
+     "direction",
+     "street_name",
+     "suffix",
+     "street_address",
+     "facility_hit",
+     "facility_owner",
+     "reported_by_name",
+     "utility_name",
+     "location",
+     ":@computed_region_rpca_8um6",
+     ":@computed_region_vrxf_vc4k",
+     ":@computed_region_6mkv_f3dw",
+     ":@computed_region_bdys_3d7i",
+     ":@computed_region_43wa_7qmu"
+    ]
+   }
+  ],
+  "boiler": [],
+  "vacant building": [
+   {
+    "id": "7nii-7srd",
+    "name": "311 Service Requests - Vacant and Abandoned Buildings Reported - Historical",
+    "updatedAt": "2019-03-06T10:03:47.000Z",
+    "fields": [
+     "is_building_open_or_boarded_",
+     "service_request_type",
+     "is_the_building_vacant_due_to_fire_",
+     "x_coordinate",
+     "address_street_suffix",
+     ":@computed_region_bdys_3d7i",
+     "y_coordinate",
+     "ward",
+     "location",
+     "latitude",
+     "if_the_building_is_open_where_is_the_entry_point_",
+     "zip_code",
+     "address_street_name",
+     "community_area",
+     "date_service_request_was_received",
+     "longitude",
+     "location_of_building_on_the_lot_if_garage_change_type_code_to_bgd_",
+     "is_the_building_dangerous_or_hazardous_",
+     "address_street_number",
+     "service_request_number",
+     "address_street_direction",
+     "any_people_using_property_homeless_childen_gangs_",
+     "police_district",
+     "location_city",
+     ":@computed_region_6mkv_f3dw",
+     ":@computed_region_awaf_s7ux",
+     ":@computed_region_43wa_7qmu",
+     "is_the_building_currently_vacant_or_occupied_",
+     ":@computed_region_vrxf_vc4k",
+     "location_state",
+     "location_zip",
+     "location_address"
+    ]
+   },
+   {
+    "id": "22u3-xenr",
+    "name": "Building Violations",
+    "updatedAt": "2026-10-22T06:50:09.000Z",
+    "fields": [
+     "violation_last_modified_date",
+     "property_group",
+     "violation_inspector_comments",
+     "inspection_status",
+     "violation_status",
+     "department_bureau",
+     "street_type",
+     "violation_ordinance",
+     "ssa",
+     "latitude",
+     ":@computed_region_6mkv_f3dw",
+     "violation_code",
+     "inspection_waived",
+     "inspection_number",
+     "violation_location",
+     ":@computed_region_rpca_8um6",
+     "violation_date",
+     "violation_description",
+     "location_city",
+     "inspector_id",
+     "location_state",
+     "location_address",
+     "inspection_category",
+     "location_zip",
+     "street_direction",
+     "id",
+     "address",
+     "location",
+     "longitude",
+     "street_name",
+     ":@computed_region_awaf_s7ux",
+     ":@computed_region_43wa_7qmu",
+     ":@computed_region_bdys_3d7i",
+     "street_number",
+     "violation_status_date",
+     ":@computed_region_vrxf_vc4k"
+    ]
+   },
+   {
+    "id": "kc9i-wq85",
+    "name": "Vacant and Abandoned Buildings - Violations",
+    "updatedAt": "2025-10-08T12:17:08.000Z",
+    "fields": [
+     "total_paid",
+     "court_cost",
+     "collection_costs_or_attorney_fees",
+     "interest_amount",
+     "total_administrative_costs",
+     "total_fines",
+     "disposition_description",
+     "current_amount_due",
+     "original_total_amount_due",
+     "longitude",
+     ":@computed_region_vrxf_vc4k",
+     ":@computed_region_bdys_3d7i",
+     "docket_number",
+     "issuing_department",
+     "location",
+     ":@computed_region_6mkv_f3dw",
+     "violation_type",
+     ":@computed_region_43wa_7qmu",
+     ":@computed_region_rpca_8um6",
+     "latitude",
+     "entity_or_person_s_",
+     "last_hearing_date",
+     "violation_number",
+     "issued_date",
+     "property_address"
+    ]
+   },
+   {
+    "id": "fpsv-qjg3",
+    "name": "TIF Projections - 2025-2034",
+    "updatedAt": "2025-11-18T18:42:06.000Z",
+    "fields": [
+     "_2026",
+     "through_end_date",
+     "tif_district_name",
+     "_2030",
+     "_2034",
+     "_2025",
+     "_2033",
+     "_2028",
+     "_2032",
+     "_2031",
+     "_2029",
+     "line_item_description",
+     "year_tif_ends",
+     "category_description",
+     "_2027",
+     "tif_district_id",
+     "fund_and_project_balances"
+    ]
+   }
+  ],
+  "liquor": [
+   {
+    "id": "r5kz-chrr",
+    "name": "Business Licenses",
+    "updatedAt": "2026-10-22T09:55:53.000Z",
+    "fields": [
+     "doing_business_as_name",
+     "account_number",
+     "application_type",
+     "business_activity",
+     ":@computed_region_43wa_7qmu",
+     ":@computed_region_bdys_3d7i",
+     "ward_precinct",
+     "legal_name",
+     ":@computed_region_6mkv_f3dw",
+     "location",
+     "community_area",
+     "license_number",
+     "state",
+     "longitude",
+     "business_activity_id",
+     "precinct",
+     "conditional_approval",
+     "zip_code",
+     "neighborhood",
+     "community_area_name",
+     "ssa",
+     "expiration_date",
+     "location_city",
+     "location_state",
+     "city",
+     "location_zip",
+     "license_code",
+     "location_address",
+     "police_district",
+     "application_created_date",
+     "date_issued",
+     ":@computed_region_vrxf_vc4k",
+     ":@computed_region_awaf_s7ux",
+     "license_description",
+     "license_approved_for_issuance",
+     "license_status",
+     "id",
+     "address",
+     "ward",
+     "license_id"
+    ]
+   }
+  ],
+  "special event": [
+   {
+    "id": "xgse-8eg7",
+    "name": "Special Events",
+    "updatedAt": "2026-01-08T20:32:20.000Z",
+    "fields": [
+     "venue_address",
+     "event_details",
+     ":@computed_region_bdys_3d7i",
+     "ward",
+     ":@computed_region_8hcu_yrd4",
+     ":@computed_region_vrxf_vc4k",
+     ":@computed_region_6mkv_f3dw",
+     ":@computed_region_rpca_8um6",
+     "location",
+     "start_time",
+     "date",
+     "event_type",
+     "venue"
+    ]
+   },
+   {
+    "id": "ikdf-ernx",
+    "name": "FOIA Request Log - Cultural Affairs & Special Events",
+    "updatedAt": "2026-09-25T18:00:19.000Z",
+    "fields": [
+     "required_completion_date",
+     "create_date",
+     "reference_no",
+     "request_status",
+     "company_name",
+     "summary"
+    ]
+   },
+   {
+    "id": "kpzx-wx3r",
+    "name": "FOIA Request Log - Special Events - Historical",
+    "updatedAt": "2011-08-21T02:47:28.000Z",
+    "fields": [
+     "due_date",
+     "organization",
+     "requestor_name",
+     "date_received",
+     "description_of_request"
+    ]
+   },
+   {
+    "id": "npw8-6cq9",
+    "name": "FOIA Request Log - Cultural Affairs - Historical",
+    "updatedAt": "2017-02-02T21:12:27.000Z",
+    "fields": [
+     "organization",
+     "due_date",
+     "date_received",
+     "description_of_request",
+     "requestor_name"
+    ]
+   },
+   {
+    "id": "hu6v-hsqb",
+    "name": "Farmers Markets - 2012",
+    "updatedAt": "2012-05-24T22:03:46.000Z",
+    "fields": [
+     "map_zip",
+     "map",
+     "link_accepted",
+     "day",
+     "start_date",
+     "longitude",
+     "map_address",
+     ":@computed_region_6mkv_f3dw",
+     ":@computed_region_vrxf_vc4k",
+     ":@computed_region_bdys_3d7i",
+     "start_time",
+     "location",
+     "latitude",
+     "end_date",
+     "website",
+     "intersection",
+     "map_state",
+     ":@computed_region_43wa_7qmu",
+     ":@computed_region_awaf_s7ux",
+     "end_time",
+     "type",
+     ":@computed_region_rpca_8um6",
+     "map_city"
+    ]
+   }
+  ],
+  "311 service requests": [
+   {
+    "id": "v6vf-nfxy",
+    "name": "311 Service Requests",
+    "updatedAt": "2026-10-22T16:23:29.000Z",
+    "fields": [
+     "duplicate",
+     "legacy_sr_number",
+     "longitude",
+     "street_number",
+     "created_hour",
+     "sr_number",
+     "closed_date",
+     "precinct",
+     ":@computed_region_rpca_8um6",
+     "y_coordinate",
+     ":@computed_region_vrxf_vc4k",
+     "street_name",
+     ":@computed_region_6mkv_f3dw",
+     "police_sector",
+     ":@computed_region_bdys_3d7i",
+     "street_direction",
+     "location_zip",
+     "zip_code",
+     "location_city",
+     "street_address",
+     "street_type",
+     "sanitation_division_days",
+     "status",
+     "state",
+     "police_district",
+     "city",
+     "x_coordinate",
+     "owner_department",
+     "location_state",
+     "created_month",
+     "created_date",
+     "community_area",
+     "created_day_of_week",
+     "origin",
+     "last_modified_date",
+     "sr_type",
+     "created_department",
+     "parent_sr_number",
+     ":@computed_region_du4m_ji7t",
+     "police_beat"
+    ]
+   },
+   {
+    "id": "hec5-y4x5",
+    "name": "311 Service Requests - Graffiti Removal - Historical",
+    "updatedAt": "2019-03-06T09:14:38.000Z",
+    "fields": [
+     "location_zip",
+     "location_state",
+     "service_request_number",
+     "x_coordinate",
+     "zip_code",
+     "street_address",
+     ":@computed_region_43wa_7qmu",
+     "y_coordinate",
+     "where_is_the_graffiti_located_",
+     "ward",
+     "police_district",
+     "what_type_of_surface_is_the_graffiti_on_",
+     "community_area",
+     "type_of_service_request",
+     "completion_date",
+     "ssa",
+     "status",
+     "creation_date",
+     "latitude",
+     "longitude",
+     ":@computed_region_6mkv_f3dw",
+     ":@computed_region_awaf_s7ux",
+     "location",
+     "location_address",
+     ":@computed_region_bdys_3d7i",
+     ":@computed_region_vrxf_vc4k",
+     "location_city"
+    ]
+   },
+   {
+    "id": "uxic-zsuj",
+    "name": "311 Service Requests - Tree Trims - Historical",
+    "updatedAt": "2019-03-06T09:20:58.000Z",
+    "fields": [
+     ":@computed_region_6mkv_f3dw",
+     ":@computed_region_awaf_s7ux",
+     "location_zip",
+     ":@computed_region_vrxf_vc4k",
+     ":@computed_region_bdys_3d7i",
+     "status",
+     ":@computed_region_43wa_7qmu",
+     "type_of_service_request",
+     "police_district",
+     "ward",
+     "zip_code",
+     "longitude",
+     "x_coordinate",
+     "location_city",
+     "service_request_number",
+     "street_address",
+     "community_area",
+     "location_of_trees",
+     "y_coordinate",
+     "location_state",
+     "location",
+     "location_address",
+     "completion_date",
+     "latitude",
+     "creation_date"
+    ]
+   },
+   {
+    "id": "97t6-zrhs",
+    "name": "311 Service Requests - Rodent Baiting - Historical",
+    "updatedAt": "2019-03-06T09:25:27.000Z",
+    "fields": [
+     ":@computed_region_43wa_7qmu",
+     ":@computed_region_6mkv_f3dw",
+     "longitude",
+     "location",
+     ":@computed_region_vrxf_vc4k",
+     ":@computed_region_bdys_3d7i",
+     "location_city",
+     "location_address",
+     "location_zip",
+     "status",
+     "location_state",
+     "zip_code",
+     "service_request_number",
+     "completion_date",
+     "x_coordinate",
+     "creation_date",
+     ":@computed_region_awaf_s7ux",
+     "y_coordinate",
+     "police_district",
+     "ward",
+     "street_address",
+     "latitude",
+     "community_area",
+     "most_recent_action",
+     "current_activity",
+     "number_of_premises_with_rats",
+     "number_of_premises_with_garbage",
+     "number_of_premises_baited",
+     "type_of_service_request"
+    ]
+   },
+   {
+    "id": "9ksk-na4q",
+    "name": "311 Service Requests - Garbage Carts - Historical",
+    "updatedAt": "2019-03-06T09:48:55.000Z",
+    "fields": [
+     "location_state",
+     "location_zip",
+     ":@computed_region_43wa_7qmu",
+     "service_request_number",
+     "location",
+     "completion_date",
+     "status",
+     "creation_date",
+     ":@computed_region_awaf_s7ux",
+     ":@computed_region_6mkv_f3dw",
+     ":@computed_region_vrxf_vc4k",
+     "location_address",
+     "current_activity",
+     "most_recent_action",
+     "street_address",
+     "zip_code",
+     "x_coordinate",
+     "location_city",
+     "y_coordinate",
+     "ward",
+     "police_district",
+     "community_area",
+     ":@computed_region_bdys_3d7i",
+     "ssa",
+     "latitude",
+     "number_of_black_carts_delivered",
+     "longitude",
+     "type_of_service_request"
+    ]
+   }
+  ],
+  "rodent": [
+   {
+    "id": "97t6-zrhs",
+    "name": "311 Service Requests - Rodent Baiting - Historical",
+    "updatedAt": "2019-03-06T09:25:27.000Z",
+    "fields": [
+     ":@computed_region_43wa_7qmu",
+     ":@computed_region_6mkv_f3dw",
+     "longitude",
+     "location",
+     ":@computed_region_vrxf_vc4k",
+     ":@computed_region_bdys_3d7i",
+     "location_city",
+     "location_address",
+     "location_zip",
+     "status",
+     "location_state",
+     "zip_code",
+     "service_request_number",
+     "completion_date",
+     "x_coordinate",
+     "creation_date",
+     ":@computed_region_awaf_s7ux",
+     "y_coordinate",
+     "police_district",
+     "ward",
+     "street_address",
+     "latitude",
+     "community_area",
+     "most_recent_action",
+     "current_activity",
+     "number_of_premises_with_rats",
+     "number_of_premises_with_garbage",
+     "number_of_premises_baited",
+     "type_of_service_request"
+    ]
+   },
+   {
+    "id": "ga2y-gwbs",
+    "name": "Performance Metrics - Streets & Sanitation - Rodent Baiting",
+    "updatedAt": "2012-07-13T21:20:59.000Z",
+    "fields": [
+     "median_days_to_repond_to_rodent_baiting_request",
+     "target_response_time_days_",
+     "average_days_to_complete_rodent_baiting_rat_complaint_requests",
+     "week"
+    ]
+   }
+  ],
+  "scofflaw": [
+   {
+    "id": "crg5-4zyp",
+    "name": "Building Code Scofflaw List",
+    "updatedAt": "2026-10-01T14:29:55.000Z",
+    "fields": [
+     "community_area",
+     "defendant_owner",
+     ":@computed_region_6mkv_f3dw",
+     ":@computed_region_bdys_3d7i",
+     ":@computed_region_rpca_8um6",
+     "owner_list_date",
+     "building_list_date",
+     "y_coordinate",
+     "longitude",
+     "circuit_court_case_number",
+     "record_id",
+     "address",
+     "tertiary_address",
+     "latitude",
+     "community_area_number",
+     "ward",
+     "x_coordinate",
+     "location",
+     "secondary_address",
+     ":@computed_region_awaf_s7ux",
+     ":@computed_region_43wa_7qmu",
+     ":@computed_region_vrxf_vc4k"
+    ]
+   },
+   {
+    "id": "y93d-d9e3",
+    "name": "Debarred Firms and Individuals",
+    "updatedAt": "2026-10-08T15:56:03.000Z",
+    "fields": [
+     "reason",
+     "debarment_date",
+     "type",
+     "zip_code",
+     "length_of_debarment",
+     "state",
+     "entity_individual",
+     "street_address",
+     "city"
+    ]
+   }
+  ],
+  "towing": [
+   {
+    "id": "ygr5-vcbg",
+    "name": "Towed Vehicles",
+    "updatedAt": "2026-10-22T16:16:36.000Z",
+    "fields": [
+     "towed_to_address",
+     "tow_facility_phone",
+     "model",
+     "inventory_number",
+     "color",
+     "style",
+     "state",
+     "make",
+     "plate",
+     "tow_date"
+    ]
+   },
+   {
+    "id": "68nd-jvt3",
+    "name": "Traffic Crashes - Vehicles",
+    "updatedAt": "2026-10-22T15:10:45.000Z",
+    "fields": [
+     "unit_type",
+     "occupant_cnt",
+     "model",
+     "maneuver",
+     "lic_plate_state",
+     "vehicle_year",
+     "vehicle_defect",
+     "vehicle_type",
+     "vehicle_use",
+     "mcs_report_no",
+     "travel_direction",
+     "wide_load_i",
+     "commercial_src",
+     "hazmat_vio_cause_crash_i",
+     "trailer1_width",
+     "trailer2_width",
+     "trailer1_length",
+     "ilcc_no",
+     "area_01_i",
+     "gvwr",
+     "carrier_name",
+     "carrier_city",
+     "trailer2_length",
+     "total_vehicle_length",
+     "mcs_report_i",
+     "axle_cnt",
+     "ccmc_no",
+     "vehicle_config",
+     "cargo_body_type",
+     "hazmat_placards_i",
+     "mcs_out_of_service_i",
+     "area_12_i",
+     "usdot_no",
+     "hazmat_report_i",
+     "cmv_id",
+     "hazmat_present_i",
+     "first_contact_point",
+     "area_10_i",
+     "crash_unit_id",
+     "mcs_vio_cause_crash_i"
+    ]
+   },
+   {
+    "id": "3c9v-pnva",
+    "name": "311 Service Requests - Abandoned Vehicles - Historical",
+    "updatedAt": "2020-07-24T07:34:39.000Z",
+    "fields": [
+     "ssa",
+     "community_area",
+     "x_coordinate",
+     "street_address",
+     "police_district",
+     "vehicle_color",
+     "location",
+     "service_request_number",
+     "zip_code",
+     "y_coordinate",
+     "location_state",
+     "how_many_days_has_the_vehicle_been_reported_as_parked_",
+     "completion_date",
+     "longitude",
+     "creation_date",
+     "latitude",
+     "current_activity",
+     "ward",
+     "license_plate",
+     "location_zip",
+     "type_of_service_request",
+     "status",
+     ":@computed_region_6mkv_f3dw",
+     ":@computed_region_43wa_7qmu",
+     ":@computed_region_bdys_3d7i",
+     ":@computed_region_vrxf_vc4k",
+     ":@computed_region_awaf_s7ux",
+     "location_address",
+     "location_city",
+     "vehicle_make_model",
+     "most_recent_action"
+    ]
+   },
+   {
+    "id": "85ca-t3if",
+    "name": "Traffic Crashes - Crashes",
+    "updatedAt": "2026-10-22T15:59:11.000Z",
+    "fields": [
+     "traffic_control_device",
+     "location",
+     "crash_record_id",
+     "injuries_total",
+     "injuries_reported_not_evident",
+     "crash_date_est_i",
+     "crash_date",
+     "posted_speed_limit",
+     "injuries_non_incapacitating",
+     "injuries_incapacitating",
+     "device_condition",
+     "weather_condition",
+     "lighting_condition",
+     "first_crash_type",
+     "trafficway_type",
+     "lane_cnt",
+     "alignment",
+     "roadway_surface_cond",
+     "road_defect",
+     "report_type",
+     "crash_type",
+     "intersection_related_i",
+     "private_property_i",
+     "hit_and_run_i",
+     "damage",
+     "date_police_notified",
+     "prim_contributory_cause",
+     "sec_contributory_cause",
+     "street_no",
+     "street_direction",
+     "street_name",
+     "beat_of_occurrence",
+     "photos_taken_i",
+     "statements_taken_i",
+     "dooring_i",
+     "work_zone_i",
+     "work_zone_type",
+     "workers_present_i",
+     "num_units",
+     ":@computed_region_rpca_8um6"
+    ]
+   }
+  ],
+  "food inspections": [
+   {
+    "id": "4ijn-s7e5",
+    "name": "Food Inspections",
+    "updatedAt": "2026-10-22T09:08:25.000Z",
+    "fields": [
+     "license_",
+     "location_address",
+     "dba_name",
+     "state",
+     "inspection_id",
+     "inspection_type",
+     "longitude",
+     "facility_type",
+     "zip",
+     "address",
+     "aka_name",
+     "risk",
+     "results",
+     "violations",
+     ":@computed_region_bdys_3d7i",
+     ":@computed_region_vrxf_vc4k",
+     ":@computed_region_6mkv_f3dw",
+     ":@computed_region_awaf_s7ux",
+     ":@computed_region_43wa_7qmu",
+     "location",
+     "inspection_date",
+     "location_city",
+     "city",
+     "latitude",
+     "location_zip",
+     "location_state"
+    ]
+   }
+  ],
+  "affordable rental housing": [
+   {
+    "id": "s6ha-ppgi",
+    "name": "Affordable Rental Housing Developments",
+    "updatedAt": "2024-12-30T22:11:37.000Z",
+    "fields": [
+     "location_state",
+     "longitude",
+     "property_name",
+     "location",
+     "location_address",
+     "y_coordinate",
+     "x_coordinate",
+     "community_area_number",
+     "phone_number",
+     "community_area",
+     "latitude",
+     ":@computed_region_bdys_3d7i",
+     ":@computed_region_6mkv_f3dw",
+     ":@computed_region_vrxf_vc4k",
+     "management_company",
+     "location_city",
+     "units",
+     ":@computed_region_43wa_7qmu",
+     "location_zip",
+     "property_type",
+     ":@computed_region_awaf_s7ux",
+     "zip_code",
+     "address"
+    ]
+   },
+   {
+    "id": "j4h8-ug9m",
+    "name": "Additional Dwelling Unit Preapproval Applications",
+    "updatedAt": "2026-10-21T00:01:42.000Z",
+    "fields": [
+     "proof_of_residency_yn",
+     "property_owner_occupied",
+     "acknowledge_will_require_affordable_adus",
+     "unit",
+     "latitude",
+     "ward",
+     "zip",
+     "street_number",
+     "applicant_first_name",
+     "applicant_unit",
+     "id",
+     "longitude",
+     "zoning",
+     "alderman",
+     "action_date",
+     "street_name",
+     "principal_building_requirement",
+     "address",
+     "applicant_zip",
+     "acknowledge_no_shared",
+     "coach_house",
+     "property_owner_first_name",
+     "applicant_address",
+     "has_one_applied_previously",
+     "fee_affordable_units_required",
+     "labor_requirement",
+     "applicant_city",
+     "conversion_unit",
+     "applicant_state",
+     "max_number_of_adu_allowed",
+     "status",
+     "property_owner_last_name",
+     "submission_date",
+     "number_affordable_units_required",
+     "user_amended_date",
+     "principal_building_built_year",
+     "applicant_last_name",
+     "max_number_coach_house_units_allowed",
+     "adu_applying_for",
+     "property_owner_yn"
+    ]
+   }
+  ]
+ }
+}

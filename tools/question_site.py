@@ -86,7 +86,7 @@ def page_html(p):
     pages = {x["slug"]: x for x in json.load(open(os.path.join(ROOT, "site", "pages.json"), encoding="utf-8"))["pages"]}
     prod = pages[p["product"]]
     s = stats(p["stats"], d) | {"price": "$" + str(prod["price"])}
-    F = lambda t: E(fill(t, s))
+    F = lambda t: re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", E(fill(t, s)))
     url = M.BASE + p["slug"] + "/"
     rel = "../"
     checkout = prod.get("checkout")
@@ -114,7 +114,7 @@ def page_html(p):
                 f'<p class="ld-buybtn">{buy()}</p>'
                 + ('<p class="ld-secure">Secure checkout by Gumroad. Cancel any time.</p>' if checkout else "")
                 + f'<p class="qa-free"><a href="{sample}">Or see this week\'s free sample first</a></p></div></div></section>')
-    srcs = "".join(f'<li>{F(label)}: <a href="{E(fill(u, s))}" rel="noopener">{E(fill(u, s))}</a>, {F(when)}</li>'
+    srcs = "".join(f'<li><a href="{E(fill(u, s))}" rel="noopener">{F(label)}</a>, {F(when)}</li>'
                    for label, u, when in p["sources"])
     body = (f'<article class="qa"><p class="eyebrow">{F(p["eyebrow"])}</p><h1>{F(p["h1"])}</h1><p class="asof qa-upd">{F(p["updated"])}</p>'
             f'<div class="qa-answer"><p class="qa-tag">The short answer</p>{answer}</div>'
@@ -129,14 +129,17 @@ def page_html(p):
           "mainEntity": [{"@type": "Question", "name": fill(q, s), "acceptedAnswer": {"@type": "Answer", "text": fill(a, s)}}
                          for q, a in p["faq"]]}) + "</script>"
           "<style>.ld-page .asof,.ld-page footer p{color:#555B68}"
-          ".qa{max-width:none}.qa>h1,.qa>p,.qa-answer,.qa-act,.qa .block>h2,.qa .block>p,.qa-steps,.qa .block details,.qa-rel,.qa-src ul{max-width:760px}.qa-upd{margin:10px 0 0}.qa h1{text-wrap:balance}.ld-page h2,.ld-page h3,.ld-page summary{text-wrap:balance}"
+          ".qa{max-width:none}.qa>h1{max-width:820px;text-wrap:pretty}.qa p{max-width:72ch}.qa-answer p{max-width:62ch}.qa-steps li{max-width:72ch}.qa-upd{margin:10px 0 0}.ld-page h2,.ld-page h3,.ld-page summary{text-wrap:balance}"
+          ".qa-answer strong{font-weight:700;color:var(--ink)}.ld-page .ld-tiles .tile .sub{text-wrap:balance}"
+          ".qa-rel{list-style:none;padding:0;margin:12px 0 0}.qa-rel li{margin:0 0 10px}.qa-rel a{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-weight:600;color:var(--ink);text-decoration:none}"
+          ".qa-rel a::after{content:'\\2192';font-weight:400;color:#555B68}.qa-rel a:hover{border-color:var(--ink)}"
           ".qa-answer{background:#fff;border:1px solid var(--line);border-left:4px solid var(--ink);border-radius:12px;padding:18px 20px;margin:18px 0 0}"
           ".qa-answer p{margin:0 0 12px;font-size:17.5px;line-height:1.6}.qa-answer p:last-child{margin:0}"
           ".qa-answer .qa-tag{font:600 12px/1 Poppins,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#555B68;margin:0 0 10px}"
           ".qa-act{margin:18px 0 8px}"
           ".qa-steps{margin:14px 0 0;padding:0 0 0 22px}.qa-steps li{margin:0 0 16px;padding-left:4px}"
           ".qa-steps h3{font:600 17px/1.35 Poppins,system-ui,sans-serif;margin:0 0 6px;color:var(--ink)}.qa-steps p{margin:0;line-height:1.6}"
-          ".qa-rel,.qa-src ul{margin:10px 0 0;padding-left:20px}.qa-rel li,.qa-src li{margin:0 0 8px;line-height:1.5}"
+          ".qa-src ul{margin:10px 0 0;padding-left:20px}.qa-src li{margin:0 0 8px;line-height:1.5}"
           ".qa-src li{font-size:14.5px;color:#555B68;overflow-wrap:break-word}"
           ".qa-free{margin:12px 0 0;font-size:15px}.ld-cta .qa-free a{color:#fff}.ld-page .ld-cta p.ld-buybtn{margin-top:16px}"
           ".ld-page .ld-tiles .tile .lab{letter-spacing:.04em;overflow-wrap:anywhere}"

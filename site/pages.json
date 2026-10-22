@@ -3816,8 +3816,7 @@
    "updated": "Updated {asOf} from City of Chicago building permits. Refreshed every Monday.",
    "h1": "How does a small cleaning company get post-construction cleaning contracts in Chicago?",
    "answer": [
-    "Go to the general contractor's office, early, with a named project in hand. In Chicago you do not have to guess who the builder is: the City's building permits list the general contractor on each job.",
-    "This week the City's records show {kept} open commercial and apartment projects in Chicago with a reported cost of $500,000 or more and a business listed as general contractor. {nearFinish} of them are at the partial occupancy stage, near the end of the job."
+    "Go to the general contractor's office early, with a named project in hand. Chicago's building permits name the builder on most big jobs: this week **{kept}** open commercial and apartment projects of $500,000 or more list one, and {nearFinish} are near the end of the job."
    ],
    "numbersTitle": "Chicago this week, from the City's own records",
    "tiles": [
@@ -3829,7 +3828,7 @@
     [
      "Reported cost",
      "{cost}",
-     "all open projects"
+     "all {kept} projects on the list"
     ],
     [
      "New buildings",
@@ -3933,8 +3932,7 @@
    "updated": "Updated {asOf} from City of Austin issued construction permits. Refreshed every Monday.",
    "h1": "Who do I contact to get post-construction cleanup work in Austin?",
    "answer": [
-    "The general contractor's office. The City of Austin lists the contractor on each building permit with its trade, and the one marked General Contractor is the builder running the job. Find the right person there, send a short sheet about your company, then ask to meet.",
-    "This week the City's records show {kept} active commercial and apartment projects in Austin valued at $500,000 or more with a business listed as general contractor, run by {builders} different builders."
+    "Call the general contractor's office. The City of Austin lists contractors on its building permits with their trade: this week **{kept}** active commercial and apartment projects of $500,000 or more list a general contractor, run by {builders} builders."
    ],
    "numbersTitle": "Austin this week, from the City's own records",
    "tiles": [
@@ -3951,7 +3949,7 @@
     [
      "Project valuation",
      "{cost}",
-     "all active projects"
+     "all {kept} projects on the list"
     ],
     [
      "New buildings",
@@ -4026,7 +4024,7 @@
     [
      "City of Austin Open Data Terms of Use",
      "https://data.austintexas.gov/stories/s/ranj-cccq",
-     "as referenced on the free sample page"
+     "read Oct 22, 2026"
     ]
    ],
    "footnote": "Numbers from the City of Austin's Issued Construction Permits data, pulled {asOf}, filtered by ProofNotFluff as the free sample page describes."
@@ -4046,8 +4044,7 @@
    "updated": "City records through {through}, pulled {asOf}. Refreshed every Monday.",
    "h1": "How does a new hood cleaning company get its first restaurant clients in Chicago?",
    "answer": [
-    "Start where the need is fresh: restaurants that are about to open, and restaurants the City just cited for a hood or exhaust problem. Both show up in the City of Chicago's public food inspection records, and both are places you can visit this week.",
-    "In the 30 days from {from} through {through}, {opening} Chicago food businesses had the license inspection the City does before it issues a food license, and {hood} failed or passed with conditions with a hood or exhaust violation."
+    "Start with restaurants about to open and restaurants just cited for a hood or exhaust problem. In the 30 days through {through}, **{opening}** Chicago food businesses had a license inspection and **{hood}** failed or passed with conditions with a hood or exhaust violation."
    ],
    "numbersTitle": "Chicago in the last 30 days, from the City's own records",
    "tiles": [
@@ -4064,22 +4061,22 @@
     [
      "Failed or conditional",
      "{flagged}",
-     "all violation categories we track"
+     "any inspection type, our four categories"
     ],
     [
      "New this week",
      "{new}",
-     "inspected in the last 7 days"
+     "inspected in the last week"
     ]
    ],
    "numbers": [
-    "City records through {through}, pulled {asOf}. A record repeats the City's result on that date. It does not say a place has a problem today, and a place may pass a re-inspection soon after."
+    "A record repeats the City's result on that date. It does not say a place has a problem today, and a place may pass a re-inspection soon after."
    ],
    "stepsTitle": "How to do it",
    "steps": [
     [
      "Start with places about to open",
-     "The City's Retail Food License Readiness Checklist says an applicant should pay for the license only when construction is complete and the place is ready to operate, and that the health department then schedules an on-site inspection. A place with a fresh license inspection is often close to opening and may be choosing its first vendors."
+     "The City's Retail Food License Readiness Checklist says an applicant should pay for the license only when it is ready for inspection, with construction complete, and that the health department then schedules an on-site inspection. A place with a fresh license inspection is often close to opening and may be choosing its first vendors."
     ],
     [
      "Then the hood and exhaust citations",
@@ -4109,7 +4106,7 @@
     ],
     [
      "Why doesn't this page name places?",
-     "On our public pages we never name a business with a failed result. Members get the full list, licensed to their own business for its own sales calls."
+     "On our public pages we never name a business with a failed or conditional result. Members get the full list, licensed to their own business for its own sales calls."
     ],
     [
      "Do you contact restaurants for me?",

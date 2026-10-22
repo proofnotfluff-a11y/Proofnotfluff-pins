@@ -8,6 +8,6 @@
 - Trade verticals: commercial_cleaning, exterior_turnkey (Chicago, Partial Occupancy Approved only). interior_finish and security_access only after exterior gets replies.
 - Copy test 1 (Todd, Oct 22): variants A and B in templates.md, arm fixed by prospect id, `variant` on every draft (copy_gate --assign). Up to two follow-ups. C waits for test 2. research_notes/cold-email-2026-10-22.md.
 - Todd, Oct 22 (launches/): licenses go at $29 for cleaning and pest, gates first; signal copy gate built (copy_gate --signal*, email/L1-OUTREACH.md T11 to T16); elevator: 24 active firms, no $99 build; no sender name.
-- Store: live Oct 22 (seo/STORE.md). Question pages run Mon, Wed, Fri 7:10 am.
+- Store and 3 question pages live Oct 22 (seo/STORE.md). Next page Fri 7:10 am.
 - Next: product-builder builds the licenses members' app and workbook. Price, go, Gumroad, secret, buyer test, outreach go: Todd.
 - Skills: .claude/skills/ (5 scheduled, 2 on request).

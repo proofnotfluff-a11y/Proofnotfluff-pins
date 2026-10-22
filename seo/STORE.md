@@ -2,7 +2,11 @@
 
 Todd's brief, Oct 22, 2026: turn proofnotfluff.com into a store built to convert and add a question-page engine, same domain, generator (tools/make_site.py, site/*.json, docs/) and host. Phases 0 to 2 time-boxed to one week.
 
-## Phase 0 (done Oct 22; waits for Todd's go)
+## Phase 0 (done Oct 22)
+
+Todd, Oct 22, 2026, 2:20 pm [stated]: "I'm a go on the plan." Todd, 2:23 pm [stated]: "refund ok" (wording below) and the publishing rule now in coo/CONSTITUTION.md section 2.
+
+Refund wording (Todd's ok, Oct 22): "No refunds on lead lists or the workbook, because you get the data the moment you pay. Cancel a list any time and you won't be charged again. If a list doesn't arrive or a file won't open, email hello@proofnotfluff.com and we'll fix it or refund that month."
 
 Design: Claude Design canvas https://claude.ai/artifact/LqgDbvVYjWCetbybrZ9JiY (home, shop, lead product page, question page; desktop 1280, phone 390, dark), built on the ProofNotFluff design system.
 
@@ -38,8 +42,8 @@ Design: Claude Design canvas https://claude.ai/artifact/LqgDbvVYjWCetbybrZ9JiY (
 - JSON-LD: Product with Offer on the 4 products, Article and FAQ on question pages, BreadcrumbList everywhere; og:image per page.
 - Two-tap rule as built: any page to the product page (opens on the sample), then Gumroad checkout.
 
-### Weekly batch approval (proposed)
-Sunday evening one message: next week's pages, each with its question, product, both gate lines and a preview link. Todd replies "go", "go 1 3" or "hold 2". On "go" each page publishes on its day (Mon, Wed, Fri). No reply means nothing publishes. His reply is recorded verbatim here.
+### Publishing rule (Todd, Oct 22)
+Minor changes publish once every gate passes and get one line in seo/RESULTS.md; major ones go to Todd first, any day. Definitions: coo/CONSTITUTION.md section 2. The store build (Phase 1) is major.
 
 ## Next step
-Todd: go or changes on this plan; the refund rule for the lists and the kit; yes or no to the batch rule above.
+Phase 1 build on branch store-v1, then the Phase 2 checks, then Todd's go on the store.

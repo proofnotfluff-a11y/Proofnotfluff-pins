@@ -1,5 +1,1987 @@
 {
  "schema": "pnf.business.v1",
  "note": "Business-level fields only (prospect_id, product, business, website). Written by the prospect-matching run; read by .github/workflows/prospect-enrichment.yml.",
- "businesses": []
+ "businesses": [
+  {
+   "prospect_id": "cc-advancedcleaningsystems-com",
+   "product": "chicago-construction",
+   "business": "Advanced Cleaning Systems",
+   "website": "https://advancedcleaningsystems.com",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-activatepressurewashing-com",
+   "product": "austin-construction",
+   "business": "Activate Pressure Washing",
+   "website": "https://activatepressurewashing.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-a-actionpestcontrol-com",
+   "product": "chicago-restaurant",
+   "business": "A-Action Pest Control",
+   "website": "https://www.a-actionpestcontrol.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-deepcleanchicago-com",
+   "product": "chicago-construction",
+   "business": "Deep Clean Chicago",
+   "website": "https://deepcleanchicago.com",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-alliedservicesaustin-com",
+   "product": "austin-construction",
+   "business": "Allied Services Company",
+   "website": "https://www.alliedservicesaustin.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-a1pestcontrolinc-com",
+   "product": "chicago-restaurant",
+   "business": "A-1 Pest Control",
+   "website": "https://www.a1pestcontrolinc.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-homeprideservicesinc-com",
+   "product": "chicago-construction",
+   "business": "Home Pride Services Inc.",
+   "website": "https://www.homeprideservicesinc.com",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-anagocleaning-com",
+   "product": "austin-construction",
+   "business": "Anago Cleaning Systems of Austin",
+   "website": "https://anagocleaning.com/austin/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-aarenpestcontrol-com",
+   "product": "chicago-restaurant",
+   "business": "Aaren Pest Control",
+   "website": "https://www.aarenpestcontrol.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-officecleaning-info",
+   "product": "chicago-construction",
+   "business": "Alpha Cleaning Company",
+   "website": "https://www.officecleaning.info",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-atxconstructionclean-com",
+   "product": "austin-construction",
+   "business": "Atx Construction Clean",
+   "website": "https://www.atxconstructionclean.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-aerex-com",
+   "product": "chicago-restaurant",
+   "business": "Aerex Pest Control",
+   "website": "https://www.aerex.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-soapies-cleaningservices-com",
+   "product": "chicago-construction",
+   "business": "Soapies Cleaning Services Inc",
+   "website": "https://soapies-cleaningservices.com",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-atxjanitorial-com",
+   "product": "austin-construction",
+   "business": "ATX Janitorial Services",
+   "website": "https://atxjanitorial.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-aircareservicesinc-com",
+   "product": "chicago-restaurant",
+   "business": "Air Care Services",
+   "website": "https://aircareservicesinc.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-spotlesscleaningchicago-com",
+   "product": "chicago-construction",
+   "business": "Spotless Cleaning Chicago",
+   "website": "https://spotlesscleaningchicago.com",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-austinhousecleaners-com",
+   "product": "austin-construction",
+   "business": "Austin House Cleaners",
+   "website": "https://austinhousecleaners.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-airwayssystems-com",
+   "product": "chicago-restaurant",
+   "business": "Airways Systems",
+   "website": "https://www.airwayssystems.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-123laborinc-com",
+   "product": "chicago-construction",
+   "business": "123 Labor Inc.",
+   "website": "https://www.123laborinc.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-austinskylinecleaning-com",
+   "product": "austin-construction",
+   "business": "Austin Skyline Cleaning Services",
+   "website": "https://austinskylinecleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-allbriteamerica-com",
+   "product": "chicago-restaurant",
+   "business": "All Brite America",
+   "website": "https://www.allbriteamerica.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-agneshousecleaning-com",
+   "product": "chicago-construction",
+   "business": "Agnes Cleaning Service Corp.",
+   "website": "https://agneshousecleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-bastropcleaningvidapuertas-com",
+   "product": "austin-construction",
+   "business": "Bastrop Cleaning",
+   "website": "https://bastropcleaningvidapuertas.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-andersonpestsolutions-com",
+   "product": "chicago-restaurant",
+   "business": "Anderson Pest Solutions",
+   "website": "https://andersonpestsolutions.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-allwindowcleaning-com",
+   "product": "chicago-construction",
+   "business": "All Window Cleaning",
+   "website": "https://allwindowcleaning.com/",
+   "trade_vertical": "exterior_turnkey"
+  },
+  {
+   "prospect_id": "ac-cleaningservicebastrop-com",
+   "product": "austin-construction",
+   "business": "Trusted Cleaning Service Bastrop",
+   "website": "https://www.cleaningservicebastrop.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-antpestcontrol-com",
+   "product": "chicago-restaurant",
+   "business": "A.N.T. Pest Control",
+   "website": "https://antpestcontrol.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-anchorworldservices-com",
+   "product": "chicago-construction",
+   "business": "Anchor World Services",
+   "website": "https://www.anchorworldservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-clearsiteconstruction-com",
+   "product": "austin-construction",
+   "business": "ClearSite Construction Services",
+   "website": "https://clearsiteconstruction.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-armnspmc-com",
+   "product": "chicago-restaurant",
+   "business": "ARMNS Pest Management",
+   "website": "https://www.armnspmc.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-arealmaidsinc-com",
+   "product": "chicago-construction",
+   "business": "A Real Maids Inc.",
+   "website": "https://arealmaidsinc.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-dycleaningservices-com",
+   "product": "austin-construction",
+   "business": "D&Y Cleaning Services",
+   "website": "https://www.dycleaningservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-arrestmypest-com",
+   "product": "chicago-restaurant",
+   "business": "Pest Arrest",
+   "website": "https://www.arrestmypest.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-bekcleaning-com",
+   "product": "chicago-construction",
+   "business": "BEK Cleaning & Restoration Services Inc.",
+   "website": "https://www.bekcleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-everlastingimpressioninc-com",
+   "product": "austin-construction",
+   "business": "Everlasting Impressions Inc.",
+   "website": "https://www.everlastingimpressioninc.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-aurorasewercleaning-com",
+   "product": "chicago-restaurant",
+   "business": "Aurora Sewer Cleaning Corp",
+   "website": "https://aurorasewercleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-blucollarsolutions-com",
+   "product": "chicago-construction",
+   "business": "Blu Collar Solutions",
+   "website": "https://blucollarsolutions.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-gentletouchcleaningtx-com",
+   "product": "austin-construction",
+   "business": "Gentle Touch Cleaning",
+   "website": "https://gentletouchcleaningtx.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-bbestpestcontrol-com",
+   "product": "chicago-restaurant",
+   "business": "B.B.E.S.T. Pest Control",
+   "website": "https://bbestpestcontrol.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-boostermaids-com",
+   "product": "chicago-construction",
+   "business": "Booster Maids",
+   "website": "https://boostermaids.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-greatwesternco-com",
+   "product": "austin-construction",
+   "business": "Great Western Corporation",
+   "website": "https://greatwesternco.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-bestpestcontrol-us",
+   "product": "chicago-restaurant",
+   "business": "Best Pest Control Inc",
+   "website": "https://bestpestcontrol.us/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-chgo-alloracleaning-com",
+   "product": "chicago-construction",
+   "business": "Allora Cleaning Chicago",
+   "website": "https://chgo.alloracleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-inbudgetcommercialcleaning-com",
+   "product": "austin-construction",
+   "business": "In Budget Commercial Cleaning, LLC",
+   "website": "https://inbudgetcommercialcleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-bigfootpestcontrol-com",
+   "product": "chicago-restaurant",
+   "business": "Bigfoot Pest Control",
+   "website": "https://bigfootpestcontrol.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-chicagoilhousecleaning-com",
+   "product": "chicago-construction",
+   "business": "Neat N Tidy Cleaning Services",
+   "website": "https://chicagoilhousecleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-industrycleaningsolutions-com",
+   "product": "austin-construction",
+   "business": "Industry Cleaning Solutions",
+   "website": "https://industrycleaningsolutions.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-brennanspestcontrol-com",
+   "product": "chicago-restaurant",
+   "business": "Brennan's Pest Control",
+   "website": "https://www.brennanspestcontrol.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-citywidejani-com",
+   "product": "chicago-construction",
+   "business": "City Wide Jani Inc.",
+   "website": "https://citywidejani.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-jc-commercial-com",
+   "product": "austin-construction",
+   "business": "JC Commercial Services",
+   "website": "https://www.jc-commercial.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-bugsanonymousil-com",
+   "product": "chicago-restaurant",
+   "business": "Bugs Anonymous",
+   "website": "https://bugsanonymousil.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-clean-as-a-whistle-inc-com",
+   "product": "chicago-construction",
+   "business": "Clean As a Whistle Inc.",
+   "website": "https://www.clean-as-a-whistle-inc.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-littleladycleaningservices-com",
+   "product": "austin-construction",
+   "business": "Little Lady Cleaning Services LLC",
+   "website": "https://littleladycleaningservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-chem-wise-com",
+   "product": "chicago-restaurant",
+   "business": "Chem-Wise Pest Control",
+   "website": "https://chem-wise.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-cleaninggreenmaids-com",
+   "product": "chicago-construction",
+   "business": "Cleaning Green Maids",
+   "website": "https://www.cleaninggreenmaids.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-maidsandmoore-com",
+   "product": "austin-construction",
+   "business": "Maids and Moore",
+   "website": "https://maidsandmoore.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-chicagohoodcleaning-net",
+   "product": "chicago-restaurant",
+   "business": "Chicago Hood Cleaning Services Inc",
+   "website": "https://chicagohoodcleaning.net/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-cleaningservicechicagoill-com",
+   "product": "chicago-construction",
+   "business": "Ramos Quality H&B Cleaning Services LLC",
+   "website": "https://cleaningservicechicagoill.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-maribelhomecleaning-com",
+   "product": "austin-construction",
+   "business": "Maribel's Home Cleaning Services",
+   "website": "https://maribelhomecleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-chicagohoodcleaningpros-com",
+   "product": "chicago-restaurant",
+   "business": "Chicago Hood Cleaning Pros",
+   "website": "https://chicagohoodcleaningpros.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-cleaningserviceinhomerglenil-com",
+   "product": "chicago-construction",
+   "business": "J & M Cleaning Service",
+   "website": "https://www.cleaningserviceinhomerglenil.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-naturalcleaning4u-com",
+   "product": "austin-construction",
+   "business": "Natural Cleaning Experts LLC",
+   "website": "https://www.naturalcleaning4u.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-chicagolandpestcontrol-com",
+   "product": "chicago-restaurant",
+   "business": "House Specialty Pest Control",
+   "website": "https://chicagolandpestcontrol.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-clementcommercialclean-com",
+   "product": "chicago-construction",
+   "business": "Clement Commercial Cleaning LLC",
+   "website": "https://clementcommercialclean.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-puremagicmaids-com",
+   "product": "austin-construction",
+   "business": "Pure Magic Maids",
+   "website": "https://puremagicmaids.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-chicagopestsllc-com",
+   "product": "chicago-restaurant",
+   "business": "Chicago Pests LLC",
+   "website": "https://chicagopestsllc.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-companionmaids-com",
+   "product": "chicago-construction",
+   "business": "Companion Maids Cleaning Service",
+   "website": "https://companionmaids.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-selectcommercialservice-com",
+   "product": "austin-construction",
+   "business": "SELECT Commercial Services",
+   "website": "https://selectcommercialservice.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-cleanwashremove-com",
+   "product": "chicago-restaurant",
+   "business": "Clean Wash Remove",
+   "website": "https://cleanwashremove.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-conquestclean-com",
+   "product": "chicago-construction",
+   "business": "Conquest Clean",
+   "website": "https://www.conquestclean.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-servicemasterclean-com",
+   "product": "austin-construction",
+   "business": "ServiceMaster Commercial Cleaning and Maintenance Co.",
+   "website": "https://www.servicemasterclean.com/servicemaster-commercial-cleaning-and-maintenance-co/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-crowpros-com",
+   "product": "chicago-restaurant",
+   "business": "Crow Pest Control",
+   "website": "https://www.crowpros.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-cortesjunkremoval-com",
+   "product": "chicago-construction",
+   "business": "Cortes Junk Removal",
+   "website": "https://cortesjunkremoval.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-shlservicesatx-com",
+   "product": "austin-construction",
+   "business": "SHL Services",
+   "website": "https://shlservicesatx.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-earthpestcontrolservices-com",
+   "product": "chicago-restaurant",
+   "business": "Earth Pest Control Services",
+   "website": "https://www.earthpestcontrolservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-cubbybearcleaning-com",
+   "product": "chicago-construction",
+   "business": "Cubby Bear Cleaning",
+   "website": "https://cubbybearcleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-sirthomas-org",
+   "product": "austin-construction",
+   "business": "Sir Thomas Commercial Services Group",
+   "website": "https://www.sirthomas.org/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-ecoshieldpest-com",
+   "product": "chicago-restaurant",
+   "business": "EcoShield Pest Solutions (Arlington Heights)",
+   "website": "https://www.ecoshieldpest.com/pest-control/illinois/arlington-heights/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-dbsbuildingsolutions-com",
+   "product": "chicago-construction",
+   "business": "DBS Building Solutions (Chicago office)",
+   "website": "https://dbsbuildingsolutions.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-sofreshsocleantx-com",
+   "product": "austin-construction",
+   "business": "So Fresh So Clean TX",
+   "website": "https://www.sofreshsocleantx.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-ecotechpestcontrol-com",
+   "product": "chicago-restaurant",
+   "business": "Eco Tech Pest Control",
+   "website": "https://ecotechpestcontrol.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-deepcleanerschicago-com",
+   "product": "chicago-construction",
+   "business": "The Deep Cleaners",
+   "website": "https://deepcleanerschicago.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-sparklymaidaustin-com",
+   "product": "austin-construction",
+   "business": "Sparkly Maid Austin",
+   "website": "https://www.sparklymaidaustin.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-filtershineusa-com",
+   "product": "chicago-restaurant",
+   "business": "FilterShine Chicago",
+   "website": "https://www.filtershineusa.com/chicago",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-deepcleaningchicago-net",
+   "product": "chicago-construction",
+   "business": "Deep Cleaning Chicago",
+   "website": "https://deepcleaningchicago.net/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-supercleantx-com",
+   "product": "austin-construction",
+   "business": "Super Clean",
+   "website": "https://supercleantx.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-fox-pest-com",
+   "product": "chicago-restaurant",
+   "business": "Fox Pest Control (Chicago south)",
+   "website": "https://fox-pest.com/locations/illinois/orland-park/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-djrcleaning-com",
+   "product": "chicago-construction",
+   "business": "Done Just Right, Inc.",
+   "website": "https://www.djrcleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-sweptupcleaningco-com",
+   "product": "austin-construction",
+   "business": "Swept Up Cleaning Co.",
+   "website": "https://sweptupcleaningco.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-grandnaturalinc-com",
+   "product": "chicago-restaurant",
+   "business": "Grand Natural Inc",
+   "website": "https://www.grandnaturalinc.com/locations/chicago.html",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-dmcleaningservice-com",
+   "product": "chicago-construction",
+   "business": "DM Janitorial Service Inc. (DM Cleaning Service)",
+   "website": "https://dmcleaningservice.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-system4-austin-com",
+   "product": "austin-construction",
+   "business": "System4 of Austin",
+   "website": "https://system4-austin.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-greasebusters-com",
+   "product": "chicago-restaurant",
+   "business": "GreaseBusters (Chicago)",
+   "website": "https://greasebusters.com/locations/chicago/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-eco-cleaningservices-com",
+   "product": "chicago-construction",
+   "business": "Eco Cleaning Service",
+   "website": "https://eco-cleaningservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-texasbuildingservices-com",
+   "product": "austin-construction",
+   "business": "Texas Building Services",
+   "website": "https://texasbuildingservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-greenixpc-com",
+   "product": "chicago-restaurant",
+   "business": "Greenix Pest Control (Chicago)",
+   "website": "https://www.greenixpc.com/service-areas/illinois/chicago",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-elitedetailedcleaning-com",
+   "product": "chicago-construction",
+   "business": "Elite Detailed Cleaning",
+   "website": "https://elitedetailedcleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-texasedgecleaning-com",
+   "product": "austin-construction",
+   "business": "Texas Edge Cleaning",
+   "website": "https://texasedgecleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-grizzpest-com",
+   "product": "chicago-restaurant",
+   "business": "Grizz Pest Management",
+   "website": "https://grizzpest.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-euro-maids-com",
+   "product": "chicago-construction",
+   "business": "Euro Maids",
+   "website": "https://www.euro-maids.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-thehappyclean-com",
+   "product": "austin-construction",
+   "business": "Happy Clean",
+   "website": "https://thehappyclean.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-guardianpestcontrol-com",
+   "product": "chicago-restaurant",
+   "business": "Guardian Pest Control",
+   "website": "https://guardianpestcontrol.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-europeancleaningmaids-com",
+   "product": "chicago-construction",
+   "business": "European Maids & Carpet Cleaning Service Inc.",
+   "website": "https://europeancleaningmaids.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-themagichelpers-com",
+   "product": "austin-construction",
+   "business": "Magic Helpers Cleaning Co - Austin",
+   "website": "https://themagichelpers.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-hawxpestcontrol-com",
+   "product": "chicago-restaurant",
+   "business": "Hawx Pest Control (Chicago)",
+   "website": "https://hawxpestcontrol.com/locations/illinois/chicago-pest-control/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-evanstoncommercialcleaning-com",
+   "product": "chicago-construction",
+   "business": "Complex Janitorial & Commercial Cleaning",
+   "website": "https://evanstoncommercialcleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-trustworthycleaningserv-com",
+   "product": "austin-construction",
+   "business": "Trustworthy Cleaning Services",
+   "website": "https://www.trustworthycleaningserv.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-hoodcleanbros-com",
+   "product": "chicago-restaurant",
+   "business": "Hood Clean Bros",
+   "website": "https://hoodcleanbros.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-evergreencleaninggroup-com",
+   "product": "chicago-construction",
+   "business": "Evergreen Cleaning Group",
+   "website": "https://evergreencleaninggroup.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-txsparkleservice-com",
+   "product": "austin-construction",
+   "business": "Texas Sparkle Services",
+   "website": "https://txsparkleservice.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-hoodzinternational-com",
+   "product": "chicago-restaurant",
+   "business": "HOODZ of Downtown Chicago",
+   "website": "https://www.hoodzinternational.com/downtown-chicago/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-freshbubblescleaningservicesllc-com",
+   "product": "chicago-construction",
+   "business": "Fresh Bubbles Cleaning Services LLC",
+   "website": "https://freshbubblescleaningservicesllc.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-wgeservices-com",
+   "product": "austin-construction",
+   "business": "WGE Services",
+   "website": "https://wgeservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-intensepestcontrol-com",
+   "product": "chicago-restaurant",
+   "business": "INTENSE! Pest Control",
+   "website": "https://www.intensepestcontrol.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-freshtechmaids-com",
+   "product": "chicago-construction",
+   "business": "Fresh Tech Maids",
+   "website": "https://www.freshtechmaids.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-wowtotalcleaning-com",
+   "product": "austin-construction",
+   "business": "WOW Total Cleaning & Restoration",
+   "website": "https://wowtotalcleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-international-exterminator-com",
+   "product": "chicago-restaurant",
+   "business": "International Exterminator Co.",
+   "website": "https://www.international-exterminator.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-getting-it-done-com",
+   "product": "chicago-construction",
+   "business": "Get It Done",
+   "website": "https://www.getting-it-done.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-yallmaidaustincleaningservices-com",
+   "product": "austin-construction",
+   "business": "Yall Maid Austin Cleaning Services",
+   "website": "https://yallmaidaustincleaningservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-jolietpest-com",
+   "product": "chicago-restaurant",
+   "business": "Joliet Pest Co.",
+   "website": "https://jolietpest.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-goldentouchteam-com",
+   "product": "chicago-construction",
+   "business": "Golden Touch",
+   "website": "https://www.goldentouchteam.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-yourdreamclean-com",
+   "product": "austin-construction",
+   "business": "Your Dream Clean",
+   "website": "https://yourdreamclean.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-kitchenguard-com",
+   "product": "chicago-restaurant",
+   "business": "Kitchen Guard of Chicago",
+   "website": "https://kitchenguard.com/chicago/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-gp-cleaning-and-maintenance-com",
+   "product": "chicago-construction",
+   "business": "GP Cleaning and Maintenance",
+   "website": "https://gp-cleaning-and-maintenance.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-360clean-com",
+   "product": "austin-construction",
+   "business": "360clean of Austin",
+   "website": "https://360clean.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-lakecookpestcontrol-com",
+   "product": "chicago-restaurant",
+   "business": "Lake Cook Pest Control",
+   "website": "https://lakecookpestcontrol.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-greenmopllc-com",
+   "product": "chicago-construction",
+   "business": "Green Mop Service LLC",
+   "website": "https://greenmopllc.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-alltexhomeandcommercialservices-com",
+   "product": "austin-construction",
+   "business": "AllTex Home and Commercial Services",
+   "website": "https://www.alltexhomeandcommercialservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-mcknightspestmanagement-com",
+   "product": "chicago-restaurant",
+   "business": "McKnight's Pest Management",
+   "website": "https://www.mcknightspestmanagement.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-happymaids-com",
+   "product": "chicago-construction",
+   "business": "Happy Maids Inc.",
+   "website": "https://happymaids.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-atexcommercialcleaning-com",
+   "product": "austin-construction",
+   "business": "Atex Commercial Cleaning",
+   "website": "https://atexcommercialcleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-mibpestcontrol-com",
+   "product": "chicago-restaurant",
+   "business": "Men In Black Pest Control Services",
+   "website": "https://mibpestcontrol.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-imageoneelgin-com",
+   "product": "chicago-construction",
+   "business": "Image One Elgin",
+   "website": "https://www.imageoneelgin.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-atexpressurepros-com",
+   "product": "austin-construction",
+   "business": "Atex Pressure Pros",
+   "website": "https://atexpressurepros.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-midwestext-com",
+   "product": "chicago-restaurant",
+   "business": "Midwest Exterminating",
+   "website": "https://midwestext.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-imageonewaukegan-com",
+   "product": "chicago-construction",
+   "business": "Image One Waukegan",
+   "website": "https://www.imageonewaukegan.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-atomiccleaning-co",
+   "product": "austin-construction",
+   "business": "Atomic Cleaning",
+   "website": "https://atomiccleaning.co/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-monroepest-com",
+   "product": "chicago-restaurant",
+   "business": "Monroe Pest Control",
+   "website": "https://monroepest.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-janitorialchicago-com",
+   "product": "chicago-construction",
+   "business": "Chicago Janitorial (Janitorial Service)",
+   "website": "https://janitorialchicago.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-austinpressurewashingllc-com",
+   "product": "austin-construction",
+   "business": "ATX Pressure Washing",
+   "website": "https://www.austinpressurewashingllc.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-myfrontlinepest-com",
+   "product": "chicago-restaurant",
+   "business": "Frontline Pest Control",
+   "website": "https://www.myfrontlinepest.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-jbmjanitorial-com",
+   "product": "chicago-construction",
+   "business": "JBM Janitorial",
+   "website": "https://jbmjanitorial.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-austinpressurewashingservices-com",
+   "product": "austin-construction",
+   "business": "Austin Pressure Washing Services",
+   "website": "https://austinpressurewashingservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-oakparkpestcontrolpros-com",
+   "product": "chicago-restaurant",
+   "business": "Oak Park Pest Control Pros",
+   "website": "https://oakparkpestcontrolpros.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-karensgreenmaids-com",
+   "product": "chicago-construction",
+   "business": "Karen's Green Maids",
+   "website": "https://karensgreenmaids.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-beyondeco-net",
+   "product": "austin-construction",
+   "business": "Beyond Eco",
+   "website": "https://www.beyondeco.net/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-olympiamaintenance-com",
+   "product": "chicago-restaurant",
+   "business": "Olympia Maintenance",
+   "website": "https://www.olympiamaintenance.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-kesapclean-com",
+   "product": "chicago-construction",
+   "business": "Kesap Clean House Cleaning Service",
+   "website": "https://kesapclean.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-blacktieaustin-com",
+   "product": "austin-construction",
+   "business": "Black Tie Window Cleaning",
+   "website": "https://blacktieaustin.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-patriotductcleaning-com",
+   "product": "chicago-restaurant",
+   "business": "Patriot Duct Cleaning Group",
+   "website": "https://www.patriotductcleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-lajascleaningservices-com",
+   "product": "chicago-construction",
+   "business": "Lajas Cleaning Services (LCS)",
+   "website": "https://lajascleaningservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-bmfcleaningservicesllc-com",
+   "product": "austin-construction",
+   "business": "BMF Cleaning Services",
+   "website": "https://bmfcleaningservicesllc.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-pestmanagementservices-com",
+   "product": "chicago-restaurant",
+   "business": "Pest Management Services Inc",
+   "website": "https://pestmanagementservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-lakeshoreproclean-com",
+   "product": "chicago-construction",
+   "business": "Lakeshore Pro Clean",
+   "website": "https://lakeshoreproclean.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-centexofficepros-com",
+   "product": "austin-construction",
+   "business": "Centex Office Pros",
+   "website": "https://centexofficepros.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-pestmaster-com",
+   "product": "chicago-restaurant",
+   "business": "PestMaster of Chicago",
+   "website": "https://www.pestmaster.com/chicago/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-lavorosc-com",
+   "product": "chicago-construction",
+   "business": "Lavoro Services Corp.",
+   "website": "https://www.lavorosc.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-centexpressurewashing-com",
+   "product": "austin-construction",
+   "business": "Centex Pressure Washing Service",
+   "website": "https://centexpressurewashing.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-pestsbuster-com",
+   "product": "chicago-restaurant",
+   "business": "Pest Busters Pest Control",
+   "website": "https://www.pestsbuster.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-lizmariecleaningservices-com",
+   "product": "chicago-construction",
+   "business": "LizMarie Cleaning Services",
+   "website": "https://www.lizmariecleaningservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-citywidebuildingservices-com",
+   "product": "austin-construction",
+   "business": "City Wide Building Services",
+   "website": "https://citywidebuildingservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-plunketts-net",
+   "product": "chicago-restaurant",
+   "business": "Plunkett's Pest Control (Chicago)",
+   "website": "https://plunketts.net/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-lkcorpil-com",
+   "product": "chicago-construction",
+   "business": "LK Corp",
+   "website": "https://lkcorpil.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-cleandude-com",
+   "product": "austin-construction",
+   "business": "Cleaning Service Solutions",
+   "website": "https://www.cleandude.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-pointepestcontrol-net",
+   "product": "chicago-restaurant",
+   "business": "Pointe Pest Control",
+   "website": "https://www.pointepestcontrol.net/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-lpjservices-com",
+   "product": "chicago-construction",
+   "business": "LPJ Services LLC",
+   "website": "https://lpjservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-cleangreenpowerwashing-com",
+   "product": "austin-construction",
+   "business": "Clean Green Power Washing",
+   "website": "https://cleangreenpowerwashing.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-proactivepestmanagement-com",
+   "product": "chicago-restaurant",
+   "business": "ProActive Pest Management",
+   "website": "https://proactivepestmanagement.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-lunamaids-net",
+   "product": "chicago-construction",
+   "business": "Luna Maids Cleaning Services",
+   "website": "https://lunamaids.net/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-cleansolutionsusa-com",
+   "product": "austin-construction",
+   "business": "Clean Solutions USA",
+   "website": "https://www.cleansolutionsusa.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-proguardpestsolutions-com",
+   "product": "chicago-restaurant",
+   "business": "ProGuard Pest Solutions",
+   "website": "https://www.proguardpestsolutions.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-magicfresh-cleaning",
+   "product": "chicago-construction",
+   "business": "Magic Fresh Cleaning",
+   "website": "https://www.magicfresh.cleaning/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-cnlproclean-com",
+   "product": "austin-construction",
+   "business": "CNL ProClean",
+   "website": "https://cnlproclean.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-promastershoodvent-com",
+   "product": "chicago-restaurant",
+   "business": "ProMasters Hood & Vent Experts",
+   "website": "https://www.promastershoodvent.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-maidgreenfoxvalley-com",
+   "product": "chicago-construction",
+   "business": "Maid Green Fox Valley",
+   "website": "https://maidgreenfoxvalley.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-coverall-com",
+   "product": "austin-construction",
+   "business": "Coverall of Austin",
+   "website": "https://www.coverall.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-qmcchicago-com",
+   "product": "chicago-restaurant",
+   "business": "QMC LLC",
+   "website": "https://qmcchicago.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-manicmaids-com",
+   "product": "chicago-construction",
+   "business": "Manic Maids Inc.",
+   "website": "https://manicmaids.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-duopressurewashing-com",
+   "product": "austin-construction",
+   "business": "Duo Home & Commercial Services",
+   "website": "https://duopressurewashing.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-quickcleanchicago-com",
+   "product": "chicago-restaurant",
+   "business": "Quick Cleaning",
+   "website": "https://quickcleanchicago.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-mbmservicesinc-com",
+   "product": "chicago-construction",
+   "business": "MBM Services Inc.",
+   "website": "https://www.mbmservicesinc.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-ecsoftexas-com",
+   "product": "austin-construction",
+   "business": "ECS of Texas",
+   "website": "https://www.ecsoftexas.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-quickkillext-com",
+   "product": "chicago-restaurant",
+   "business": "Quick Kill Exterminating",
+   "website": "https://quickkillext.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-melissaandamop-com",
+   "product": "chicago-construction",
+   "business": "Melissa & A Mop",
+   "website": "https://melissaandamop.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-editacleaningservice-com",
+   "product": "austin-construction",
+   "business": "Edita Cleaning Service",
+   "website": "https://editacleaningservice.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-rbpestsolutions-com",
+   "product": "chicago-restaurant",
+   "business": "R.B. Pest Solutions",
+   "website": "https://rbpestsolutions.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-midwaybuildingservices-com",
+   "product": "chicago-construction",
+   "business": "Midway Building Services",
+   "website": "https://midwaybuildingservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-enviro-master-com",
+   "product": "austin-construction",
+   "business": "Enviro-Master of Austin",
+   "website": "https://enviro-master.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-rose-us",
+   "product": "chicago-restaurant",
+   "business": "Rose Pest Solutions",
+   "website": "https://rose.us/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-mmcjanitorialservices-com",
+   "product": "chicago-construction",
+   "business": "Multisystem Management Company (MMC Janitorial)",
+   "website": "https://mmcjanitorialservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-epwpressurewashers-com",
+   "product": "austin-construction",
+   "business": "Extreme Pressure Washers",
+   "website": "https://epwpressurewashers.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-shepppestcontrol-com",
+   "product": "chicago-restaurant",
+   "business": "Shepp Pest Control",
+   "website": "https://shepppestcontrol.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-mschclean-com",
+   "product": "chicago-construction",
+   "business": "MSCH Maintenance Services Chicago",
+   "website": "https://mschclean.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-eternityjanitorialusa-com",
+   "product": "austin-construction",
+   "business": "Austin Janitorial Pros (Eternity Janitorial Services)",
+   "website": "https://eternityjanitorialusa.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-smithereen-com",
+   "product": "chicago-restaurant",
+   "business": "Smithereen Pest Management Services",
+   "website": "https://www.smithereen.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-mumscleaningserviceschicago-com",
+   "product": "chicago-construction",
+   "business": "Mums Cleaning Services Chicago",
+   "website": "https://mumscleaningserviceschicago.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-expresscommercialcleaning-com",
+   "product": "austin-construction",
+   "business": "Express Commercial Cleaning",
+   "website": "https://www.expresscommercialcleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-southwestpestcontrolil-com",
+   "product": "chicago-restaurant",
+   "business": "Southwest Pest Control of New Lenox",
+   "website": "https://www.southwestpestcontrolil.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-myklaborservicescorp-com",
+   "product": "chicago-construction",
+   "business": "MYK Labor Services Corp.",
+   "website": "https://myklaborservicescorp.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-firstclasscleann-com",
+   "product": "austin-construction",
+   "business": "First Class Cleann",
+   "website": "https://firstclasscleann.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-uspestcontrolco-com",
+   "product": "chicago-restaurant",
+   "business": "U.S. Pest Control",
+   "website": "https://www.uspestcontrolco.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-mywindowwashing-com",
+   "product": "chicago-construction",
+   "business": "My Window Washing (Chicago Home Services Inc.)",
+   "website": "https://www.mywindowwashing.com/",
+   "trade_vertical": "exterior_turnkey"
+  },
+  {
+   "prospect_id": "ac-ftfexteriorsolutions-com",
+   "product": "austin-construction",
+   "business": "For The Family Exterior Solutions",
+   "website": "https://www.ftfexteriorsolutions.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-vextechpest-com",
+   "product": "chicago-restaurant",
+   "business": "VexTech Pest Management",
+   "website": "https://www.vextechpest.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-nissicleaningservice-com",
+   "product": "chicago-construction",
+   "business": "Nissi Cleaning Service",
+   "website": "https://nissicleaningservice.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-fullcolorcleaners-com",
+   "product": "austin-construction",
+   "business": "Full Color Cleaners",
+   "website": "https://fullcolorcleaners.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-airflowschicago-com",
+   "product": "chicago-restaurant",
+   "business": "Air Flows Chicago",
+   "website": "https://airflowschicago.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-northshoremaid-com",
+   "product": "chicago-construction",
+   "business": "Inna Cleaning LLC (Northshore Maid)",
+   "website": "https://northshoremaid.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-gocitywide-com",
+   "product": "austin-construction",
+   "business": "City Wide Facility Solutions - Austin",
+   "website": "https://gocitywide.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-brouwerbrothers-com",
+   "product": "chicago-restaurant",
+   "business": "Brouwer Brothers Services",
+   "website": "https://brouwerbrothers.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-oliviarosecleaningsolutions-com",
+   "product": "chicago-construction",
+   "business": "Olivia Rose Cleaning Solutions LLC",
+   "website": "https://oliviarosecleaningsolutions.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-harvardmaint-com",
+   "product": "austin-construction",
+   "business": "Harvard Maintenance",
+   "website": "https://www.harvardmaint.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-chicagolandpowerwash-com",
+   "product": "chicago-restaurant",
+   "business": "Chicagoland Power Washing",
+   "website": "https://www.chicagolandpowerwash.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-pattys-cleaning-service-com",
+   "product": "chicago-construction",
+   "business": "Patty's Cleaning Service",
+   "website": "https://pattys-cleaning-service.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-hillcountryexteriorrestoration-com",
+   "product": "austin-construction",
+   "business": "Hill Country Exterior Restoration",
+   "website": "https://www.hillcountryexteriorrestoration.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-chicagorestaurantcleaningservice-com",
+   "product": "chicago-restaurant",
+   "business": "AC Commercial Kitchen Cleaning Services",
+   "website": "https://chicagorestaurantcleaningservice.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-pawlicajanitorial-com",
+   "product": "chicago-construction",
+   "business": "Pawlica Janitorial Services",
+   "website": "https://pawlicajanitorial.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-hitechpowerwash-com",
+   "product": "austin-construction",
+   "business": "Hi-Tech Power Wash",
+   "website": "https://www.hitechpowerwash.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-cleanestrestaurant-com",
+   "product": "chicago-restaurant",
+   "business": "Cleanest Restaurant Group",
+   "website": "https://www.cleanestrestaurant.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-pristinecleaningchicago-com",
+   "product": "chicago-construction",
+   "business": "Pristine Cleaning Service",
+   "website": "https://pristinecleaningchicago.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-itssoclean-net",
+   "product": "austin-construction",
+   "business": "It's So Clean Window and Power Wash",
+   "website": "https://www.itssoclean.net/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-enviromatic-com",
+   "product": "chicago-restaurant",
+   "business": "Enviromatic Corporation of America",
+   "website": "https://www.enviromatic.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-progancleaning-com",
+   "product": "chicago-construction",
+   "business": "Progan Cleaning LLC",
+   "website": "https://progancleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-jan-pro-com",
+   "product": "austin-construction",
+   "business": "JAN-PRO of Austin",
+   "website": "https://jan-pro.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-expresscleanco-com",
+   "product": "chicago-restaurant",
+   "business": "Express Clean Chicago",
+   "website": "https://expresscleanco.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-reyesservicesillinois-com",
+   "product": "chicago-construction",
+   "business": "Reyes Services of Illinois LLC",
+   "website": "https://reyesservicesillinois.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-jani-kingaustin-com",
+   "product": "austin-construction",
+   "business": "Jani-King of Austin",
+   "website": "https://jani-kingaustin.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-maidthis-com",
+   "product": "chicago-restaurant",
+   "business": "MaidThis Cleaning of Chicago",
+   "website": "https://maidthis.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-rovercleaningserviceschicago-com",
+   "product": "chicago-construction",
+   "business": "Rover Cleaning Services Chicago",
+   "website": "https://rovercleaningserviceschicago.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-kandmsteamcleaning-com",
+   "product": "austin-construction",
+   "business": "K&M Steam Cleaning",
+   "website": "https://kandmsteamcleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-phoenixici-com",
+   "product": "chicago-restaurant",
+   "business": "Phoenix Industrial Cleaning",
+   "website": "https://www.phoenixici.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-royalblueservice-com",
+   "product": "chicago-construction",
+   "business": "Royal Blue Service",
+   "website": "https://www.royalblueservice.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-krystalklean-com",
+   "product": "austin-construction",
+   "business": "Krystal Klean Austin",
+   "website": "https://www.krystalklean.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-ramproclean-com",
+   "product": "chicago-restaurant",
+   "business": "RamPro Facility Services",
+   "website": "https://ramproclean.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-sapphirehomecleaning-com",
+   "product": "chicago-construction",
+   "business": "Sapphire Home Cleaning",
+   "website": "https://www.sapphirehomecleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-laketravispowerwashing-com",
+   "product": "austin-construction",
+   "business": "Lake Travis Power Washing",
+   "website": "https://laketravispowerwashing.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-servicemasterbyzaba-com",
+   "product": "chicago-restaurant",
+   "business": "ServiceMaster by Zaba",
+   "website": "https://www.servicemasterbyzaba.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-scrubking-com",
+   "product": "chicago-construction",
+   "business": "Scrub King",
+   "website": "https://scrubking.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-leanderpressurewashing-com",
+   "product": "austin-construction",
+   "business": "Leander Pressure Washing",
+   "website": "https://leanderpressurewashing.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-skywardbuildingservices-com",
+   "product": "chicago-restaurant",
+   "business": "Skyward Building Services",
+   "website": "https://skywardbuildingservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-servicemasteroflincolnpark-com",
+   "product": "chicago-construction",
+   "business": "ServiceMaster of Lincoln Park",
+   "website": "https://servicemasteroflincolnpark.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-leekscleaning-com",
+   "product": "austin-construction",
+   "business": "Leek's Cleaning Services",
+   "website": "https://www.leekscleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-splashpowerllc-com",
+   "product": "chicago-restaurant",
+   "business": "Splash Pressure Wash LLC",
+   "website": "https://www.splashpowerllc.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-shineupcleaning-com",
+   "product": "chicago-construction",
+   "business": "Shine Up Cleaning",
+   "website": "https://shineupcleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-liveoakservicesaustin-com",
+   "product": "austin-construction",
+   "business": "Live Oak Exterior Cleaning",
+   "website": "https://www.liveoakservicesaustin.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cr-stakleenchicago-com",
+   "product": "chicago-restaurant",
+   "business": "Sta-Kleen",
+   "website": "https://www.stakleenchicago.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-shynlicleaningservice-com",
+   "product": "chicago-construction",
+   "business": "Shynli Cleaning",
+   "website": "https://shynlicleaningservice.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-lukespressurewashingtx-com",
+   "product": "austin-construction",
+   "business": "Luke's Pressure Washing",
+   "website": "https://lukespressurewashingtx.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-skylinejanitorialservices-com",
+   "product": "chicago-construction",
+   "business": "Skyline Commercial Cleaning",
+   "website": "https://skylinejanitorialservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-mintcommercialcleaning-com",
+   "product": "austin-construction",
+   "business": "Mint Commercial Cleaning",
+   "website": "https://mintcommercialcleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-solutionscleaning-services",
+   "product": "chicago-construction",
+   "business": "Solutions Cleaning Services",
+   "website": "https://solutionscleaning.services/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-naecleaningsolutions-com",
+   "product": "austin-construction",
+   "business": "NAE Cleaning Solutions",
+   "website": "https://naecleaningsolutions.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-sparkmaids-com",
+   "product": "chicago-construction",
+   "business": "Spark Maids LLC",
+   "website": "https://sparkmaids.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-newpointservices-com",
+   "product": "austin-construction",
+   "business": "Newpoint Services",
+   "website": "https://www.newpointservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-specialtouchcleaningfrankfort-com",
+   "product": "chicago-construction",
+   "business": "Special Touch Cleaning Company",
+   "website": "https://specialtouchcleaningfrankfort.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-orionexteriorcleaning-com",
+   "product": "austin-construction",
+   "business": "Orion Exterior Cleaning",
+   "website": "https://orionexteriorcleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-standardhomeandspace-com",
+   "product": "chicago-construction",
+   "business": "Standard Home and Space",
+   "website": "https://www.standardhomeandspace.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-powerhousehcs-com",
+   "product": "austin-construction",
+   "business": "Powerhouse Home & Commercial Services",
+   "website": "https://www.powerhousehcs.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-stratusclean-com",
+   "product": "chicago-construction",
+   "business": "Stratus Clean of Downers Grove",
+   "website": "https://www.stratusclean.com/locations/chicago-central/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-powerrinsepro-com",
+   "product": "austin-construction",
+   "business": "PowerRinsePro",
+   "website": "https://powerrinsepro.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-superiorlaborsolution-com",
+   "product": "chicago-construction",
+   "business": "Superior Labor Solutions (Superior Companies)",
+   "website": "https://www.superiorlaborsolution.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-pressurewasheraustin-com",
+   "product": "austin-construction",
+   "business": "Pressure Washer Austin",
+   "website": "https://pressurewasheraustin.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-svmallservices-com",
+   "product": "chicago-construction",
+   "business": "ServiceMaster Restoration Services (Lisle)",
+   "website": "https://svmallservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-pressurewashingroundrock-com",
+   "product": "austin-construction",
+   "business": "Round Rock Pressure Washing",
+   "website": "https://pressurewashingroundrock.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-tribecalledclean-com",
+   "product": "chicago-construction",
+   "business": "A Tribe Called Clean (Tribe Cleaning Solutions)",
+   "website": "https://tribecalledclean.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-rigdoninc-com",
+   "product": "austin-construction",
+   "business": "Rigdon, Inc.",
+   "website": "https://www.rigdoninc.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-wilmettemaids-com",
+   "product": "chicago-construction",
+   "business": "Wilmette Maids",
+   "website": "https://wilmettemaids.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-rollingsudspowerwashing-com",
+   "product": "austin-construction",
+   "business": "Rolling Suds of San Marcos / Austin",
+   "website": "https://www.rollingsudspowerwashing.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-wonderfullauracleaningllc-com",
+   "product": "chicago-construction",
+   "business": "Wonderful Laura Cleaning LLC",
+   "website": "https://wonderfullauracleaningllc.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-segurcleaning-com",
+   "product": "austin-construction",
+   "business": "Segur Cleaning",
+   "website": "https://www.segurcleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-ybhcleaningservices-com",
+   "product": "chicago-construction",
+   "business": "Your Bright Home Cleaning Services",
+   "website": "https://ybhcleaningservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-shemarriedthemop-com",
+   "product": "austin-construction",
+   "business": "She Married the Mop",
+   "website": "https://shemarriedthemop.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-ziggycleaning-com",
+   "product": "chicago-construction",
+   "business": "Ziggy's Cleaning Service Inc.",
+   "website": "https://ziggycleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-smtxwash-com",
+   "product": "austin-construction",
+   "business": "San Marcos Window & Pressure Washing",
+   "website": "https://www.smtxwash.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-soluteliteservices-com",
+   "product": "austin-construction",
+   "business": "SolutElite Services",
+   "website": "https://soluteliteservices.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-supremepowerwash-com",
+   "product": "austin-construction",
+   "business": "Supreme Power Wash",
+   "website": "https://www.supremepowerwash.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-surfacesolutionstx-com",
+   "product": "austin-construction",
+   "business": "Surface Solutions",
+   "website": "https://surfacesolutionstx.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-thecleaningladiesbastrop-com",
+   "product": "austin-construction",
+   "business": "The Cleaning Ladies",
+   "website": "https://thecleaningladiesbastrop.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-thefairyservice-com",
+   "product": "austin-construction",
+   "business": "Fairy Commercial Cleaning",
+   "website": "https://thefairyservice.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-tpwtexas-com",
+   "product": "austin-construction",
+   "business": "Total Pressure Washing",
+   "website": "https://tpwtexas.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-vanguardcleaning-com",
+   "product": "austin-construction",
+   "business": "Vanguard Cleaning Systems of Austin",
+   "website": "https://www.vanguardcleaning.com/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-webeworks-net",
+   "product": "austin-construction",
+   "business": "WeBe Works",
+   "website": "https://webeworks.net/",
+   "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "ac-westlakepowerwashing-com",
+   "product": "austin-construction",
+   "business": "Westlake Home & Commercial Services",
+   "website": "https://westlakepowerwashing.com/",
+   "trade_vertical": "commercial_cleaning"
+  }
+ ]
 }

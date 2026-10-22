@@ -213,7 +213,9 @@ def keep(r, since, today):
     if not issued or issued < since or issued > today:
         return None, "issued outside the window"
     approved = (r.get("license_approved_for_issuance") or "")[:10]
-    if approved and approved < since:     # a re-dated old license ("Domino's" 2971586, approved 2024; holdout 1, Oct 22)
+    # a re-dated old license: approved long before it was issued ("Domino's" 2971586, approved 2024, issued Oct 2026; holdout 1).
+    # A license approved a few weeks or months before payment and issue is still new (McDonald's at O'Hare; holdout 2, round 3).
+    if approved and approved < (dt.date.fromisoformat(issued) - dt.timedelta(days=180)).isoformat():
         return None, "not a new license (renewal or change)"
     if (r.get("license_status") or "").upper() != "AAI":   # AAI: issued; AAC cancelled, REV revoked, INQ under inquiry
         return None, "license not active (cancelled or revoked)"
@@ -737,6 +739,8 @@ def selftest():
              address="4100 S ASHLAND AVE OUTSIDE 636"),                                              # market stall: out
         dict(base, license_number="18", doing_business_as_name="OLD PIZZA STORE", legal_name="OPS INC", license_description="Retail Food Establishment",
              license_approved_for_issuance="2024-06-26T00:00:00.000", address="1700 W LAKE ST"),     # approved in 2024, re-dated: out
+        dict(base, license_number="25", doing_business_as_name="AIRPORT BURGERS", legal_name="AB INC", license_description="Retail Food Establishment",
+             license_approved_for_issuance="2026-08-20T00:00:00.000", address="2100 W LAKE ST"),     # approved 8 weeks before issue: new, kept
         dict(base, license_number="19", doing_business_as_name="ACME CONSULTING", legal_name="AC LLC", license_description="Limited Business License",
              address="980 N MICHIGAN AVE STE 1090 #453522"),                                        # private mailbox: out
         dict(base, license_number="20", doing_business_as_name="STEW KITCHEN", legal_name="SK LLC", license_description="Shared Kitchen User (Long Term)",
@@ -759,7 +763,7 @@ def selftest():
     dnl_add("L:7", tf)
     dnl_add(dnl_key_name("Main Street Phones", "1300 W. Lake St."), tf)
     gone, why = build(rows, loop, today, dnl=dnl_load(tf))
-    assert {r["license"] for r in gone} == {"1", "4", "5", "23"} and why[DNL_REASON] == 2, (sorted(r["license"] for r in gone), dict(why))
+    assert {r["license"] for r in gone} == {"1", "4", "5", "23", "25"} and why[DNL_REASON] == 2, (sorted(r["license"] for r in gone), dict(why))
     try:
         json.dump({"salt": "wrong", "keys": []}, open(tf, "w")); dnl_load(tf)
         raise AssertionError("a broken do-not-list must stop the build")
@@ -767,7 +771,7 @@ def selftest():
         pass
     recs, reasons = build(rows, loop, today, dnl=set())
     by = {r["license"]: r for r in recs}
-    assert set(by) == {"1", "4", "5", "7", "14", "23"}, sorted(by)
+    assert set(by) == {"1", "4", "5", "7", "14", "23", "25"}, sorted(by)
     assert by["23"]["segment"] == "food" and by["23"]["otherTypes"] == ["Retail Food Establishment"] and by["23"]["_lics"] == ["23", "24"], by["23"]
     assert [by[k]["segment"] for k in ("1", "4", "5", "7", "14")] == ["food", "beauty", "auto", "care", "retail"], by
     assert by["1"]["business"] == "Luna Tacos" and by["1"]["communityArea"] == "Loop" and by["1"]["address"] == "100 W Randolph St"
@@ -787,7 +791,7 @@ def selftest():
     assert renewed == {"5"}, renewed
     assert [(by[k]["history"], by[k]["since"]) for k in ("1", "4", "5", "7", "14")] == [
         ("first", ""), ("added", "2019"), ("first", ""), ("first", ""), ("site", "2015")], [(by[k]["history"], by[k]["since"]) for k in by]
-    assert calls == [6], calls
+    assert calls == [7], calls
     # food inspections: food rows only; the License inspection under the site's second license; a canvass before the license
     food = {"2": [("2026-10-02", "License"), ("2026-10-09", "License Re-Inspection"), ("2025-01-01", "License"), ("2025-03-04", "Canvass")],
             "5": [("2026-10-17", "License")], "4": [("2026-10-01", "License")]}
@@ -836,7 +840,7 @@ def selftest():
     def boom(*a):
         raise SystemExit("fetch failed")
     got, ch = run_checks(r2, rs2, today, fake_hist, boom, lambda: ({"300SWABASHAVE"}, {"400WLAKEST"}))
-    assert {r["license"] for r in got} == {"1", "4", "7", "14", "23"} and rs2[MAILBOX_REASON] == 2, (sorted(r["license"] for r in got), dict(rs2))
+    assert {r["license"] for r in got} == {"1", "4", "7", "14", "23", "25"} and rs2[MAILBOX_REASON] == 2, (sorted(r["license"] for r in got), dict(rs2))
     assert ch == {"buildings": True, "history": True, "foodInspections": False} and all(r["foodInsp"] == "" for r in got), ch
     strip_internal(recs)
     assert not any(k.startswith("_") for r in recs for k in r), "account and site numbers never leave the runner"

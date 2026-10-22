@@ -1,64 +1,68 @@
 {
  "product": "Chicago Restaurant Inspection Leads",
- "asOf": "2026-10-19",
- "asOfText": "Oct 19, 2026",
- "through": "2026-10-16",
- "throughText": "Oct 16, 2026",
+ "asOf": "2026-10-22",
+ "asOfText": "Oct 22, 2026",
+ "through": "2026-10-21",
+ "throughText": "Oct 21, 2026",
  "window": {
-  "from": "2026-09-17",
-  "to": "2026-10-16",
-  "newFrom": "2026-10-10",
-  "repeatFrom": "2026-07-19"
+  "from": "2026-09-22",
+  "to": "2026-10-21",
+  "newFrom": "2026-10-15",
+  "repeatFrom": "2026-07-24"
  },
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-19T13:55:24+00:00",
-  "rowsUpdatedAt": "2026-10-18T09:08:05+00:00",
+  "fetchedAt": "2026-10-22T21:47:49+00:00",
+  "rowsUpdatedAt": "2026-10-22T09:08:25+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "places": 246,
-  "flagged": 118,
-  "opening": 130,
-  "repeat": 23,
-  "new": 53,
+  "places": 259,
+  "flagged": 130,
+  "opening": 132,
+  "repeat": 25,
+  "new": 59,
   "byCat": {
-   "pests": 82,
-   "hood": 23,
-   "drain": 13,
-   "clean": 94
+   "pests": 90,
+   "hood": 26,
+   "drain": 18,
+   "clean": 100
   },
-  "flaggedFail": 99,
-  "openingPassed": 92,
+  "flaggedFail": 103,
+  "openingPassed": 95,
   "excluded": {
-   "business name is a person's name": 4,
-   "school, day care, hospital, senior or mobile vendor": 70,
-   "the City's latest result is out of business or not located": 1
+   "business name is a person's name": 5,
+   "school, day care, hospital, senior or mobile vendor": 61,
+   "the City's latest result is out of business or not located": 2
   },
-  "rowsRead": 1125,
-  "historyRead": 744,
+  "rowsRead": 1259,
+  "historyRead": 843,
   "areas": [
    [
-    "Near West Side",
-    14
+    "West Town",
+    18
+   ],
+   [
+    "Logan Square",
+    13
    ],
    [
     "Loop",
-    14
-   ],
-   [
-    "West Town",
-    14
+    12
    ],
    [
     "Lake View",
     12
    ],
    [
-    "Logan Square",
+    "Near West Side",
     11
+   ],
+   [
+    "Austin",
+    10
    ],
    [
     "West Ridge",
@@ -69,15 +73,15 @@
     9
    ],
    [
-    "Austin",
-    9
-   ],
-   [
     "Albany Park",
     8
    ],
    [
-    "Grand Boulevard",
+    "Lincoln Park",
+    8
+   ],
+   [
+    "McKinley Park",
     7
    ],
    [
@@ -86,22 +90,42 @@
    ],
    [
     "Uptown",
-    6
-   ],
-   [
-    "Lincoln Park",
-    6
-   ],
-   [
-    "Near North Side",
-    6
-   ],
-   [
-    "Auburn Gresham",
-    5
+    7
    ],
    [
     "O'Hare",
+    6
+   ],
+   [
+    "Lower West Side",
+    6
+   ],
+   [
+    "Grand Boulevard",
+    6
+   ],
+   [
+    "South Shore",
+    6
+   ],
+   [
+    "Gage Park",
+    5
+   ],
+   [
+    "Near North Side",
+    5
+   ],
+   [
+    "Lincoln Square",
+    5
+   ],
+   [
+    "Brighton Park",
+    5
+   ],
+   [
+    "Hyde Park",
     5
    ],
    [
@@ -109,23 +133,7 @@
     5
    ],
    [
-    "Lower West Side",
-    5
-   ],
-   [
-    "South Shore",
-    5
-   ],
-   [
-    "Chatham",
-    5
-   ],
-   [
-    "McKinley Park",
-    4
-   ],
-   [
-    "Gage Park",
+    "Dunning",
     4
    ],
    [
@@ -133,31 +141,15 @@
     4
    ],
    [
-    "Hyde Park",
+    "Chatham",
     4
    ],
    [
-    "Greater Grand Crossing",
-    4
-   ],
-   [
-    "Brighton Park",
-    4
-   ],
-   [
-    "Lincoln Square",
-    4
-   ],
-   [
-    "Roseland",
+    "Edgewater",
     3
    ],
    [
-    "Dunning",
-    3
-   ],
-   [
-    "Garfield Ridge",
+    "Belmont Cragin",
     3
    ],
    [
@@ -165,7 +157,15 @@
     3
    ],
    [
-    "North Center",
+    "Roseland",
+    3
+   ],
+   [
+    "Greater Grand Crossing",
+    3
+   ],
+   [
+    "Auburn Gresham",
     3
    ],
    [
@@ -173,15 +173,11 @@
     3
    ],
    [
-    "Avondale",
-    2
+    "North Center",
+    3
    ],
    [
-    "Edgewater",
-    2
-   ],
-   [
-    "Beverly",
+    "Englewood",
     2
    ],
    [
@@ -189,7 +185,23 @@
     2
    ],
    [
-    "South Deering",
+    "Beverly",
+    2
+   ],
+   [
+    "Avondale",
+    2
+   ],
+   [
+    "Jefferson Park",
+    2
+   ],
+   [
+    "Rogers Park",
+    2
+   ],
+   [
+    "Garfield Ridge",
     2
    ],
    [
@@ -197,7 +209,7 @@
     2
    ],
    [
-    "Rogers Park",
+    "South Deering",
     2
    ],
    [
@@ -209,23 +221,19 @@
     2
    ],
    [
-    "Englewood",
-    2
-   ],
-   [
     "Near South Side",
     2
    ],
    [
-    "Portage Park",
-    2
-   ],
-   [
-    "West Englewood",
+    "Edison Park",
     1
    ],
    [
     "Ashburn",
+    1
+   ],
+   [
+    "West Englewood",
     1
    ],
    [
@@ -253,10 +261,6 @@
     1
    ],
    [
-    "Archer Heights",
-    1
-   ],
-   [
     "Mount Greenwood",
     1
    ],
@@ -265,7 +269,7 @@
     1
    ],
    [
-    "Belmont Cragin",
+    "Portage Park",
     1
    ]
   ]
@@ -300,9 +304,19 @@
   "flagged": [
    {
     "type": "Restaurant",
-    "area": "Grand Boulevard",
-    "date": "2026-10-16",
+    "area": "Belmont Cragin",
+    "date": "2026-10-20",
     "result": "Fail",
+    "inspectionType": "Short Form Complaint",
+    "categories": [
+     "Pests"
+    ]
+   },
+   {
+    "type": "Restaurant",
+    "area": "Logan Square",
+    "date": "2026-10-20",
+    "result": "Pass w/ Conditions",
     "inspectionType": "Complaint",
     "categories": [
      "Pests",
@@ -311,22 +325,10 @@
    },
    {
     "type": "Restaurant",
-    "area": "Lake View",
-    "date": "2026-10-16",
+    "area": "West Town",
+    "date": "2026-10-20",
     "result": "Fail",
-    "inspectionType": "Complaint",
-    "categories": [
-     "Pests",
-     "Grease trap and drains",
-     "Cleaning"
-    ]
-   },
-   {
-    "type": "Restaurant",
-    "area": "West Elsdon",
-    "date": "2026-10-15",
-    "result": "Fail",
-    "inspectionType": "Complaint",
+    "inspectionType": "Canvass",
     "categories": [
      "Pests",
      "Cleaning"
@@ -334,6 +336,28 @@
    }
   ],
   "repeat": [
+   {
+    "type": "Restaurant",
+    "area": "O'Hare",
+    "date": "2026-10-20",
+    "result": "Fail",
+    "inspectionType": "Canvass Re-Inspection",
+    "categories": [
+     "Pests",
+     "Hood and exhaust",
+     "Cleaning"
+    ]
+   },
+   {
+    "type": "Restaurant",
+    "area": "O'Hare",
+    "date": "2026-10-15",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "categories": [
+     "Cleaning"
+    ]
+   },
    {
     "type": "Restaurant",
     "area": "Roseland",
@@ -344,55 +368,33 @@
      "Pests",
      "Cleaning"
     ]
-   },
-   {
-    "type": "Not given",
-    "area": "South Lawndale",
-    "date": "2026-10-14",
-    "result": "Fail",
-    "inspectionType": "Complaint Re-Inspection",
-    "categories": [
-     "Pests"
-    ]
-   },
-   {
-    "type": "Restaurant",
-    "area": "South Lawndale",
-    "date": "2026-10-14",
-    "result": "Fail",
-    "inspectionType": "Short Form Complaint",
-    "categories": [
-     "Pests",
-     "Hood and exhaust",
-     "Cleaning"
-    ]
    }
   ],
   "opening": [
    {
-    "name": "La Michoacana",
-    "address": "2740 W 59th St",
-    "area": "Gage Park",
+    "name": "Taqueria Y Carnitas Don Valdez",
+    "address": "4503 N Kedzie Ave",
+    "area": "Albany Park",
     "type": "Restaurant",
-    "date": "2026-10-16",
+    "date": "2026-10-21",
     "result": "Pass",
     "inspectionType": "License"
    },
    {
-    "name": "Da's Catering LLC",
-    "address": "7117 S State St",
-    "area": "Greater Grand Crossing",
-    "type": "Restaurant",
-    "date": "2026-10-15",
+    "name": "Alsakka Food Market Inc.",
+    "address": "2959 W Devon Ave",
+    "area": "West Ridge",
+    "type": "Grocery Store",
+    "date": "2026-10-20",
     "result": "Pass",
     "inspectionType": "License"
    },
    {
-    "name": "Gibsons Tavern",
-    "address": "925 W Fulton Market",
-    "area": "Near West Side",
+    "name": "Geja's Cafe",
+    "address": "340-346 W Armitage Ave",
+    "area": "Lincoln Park",
     "type": "Restaurant",
-    "date": "2026-10-15",
+    "date": "2026-10-20",
     "result": "Pass",
     "inspectionType": "License"
    }

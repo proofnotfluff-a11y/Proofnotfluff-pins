@@ -1,0 +1,45 @@
+{
+ "ranAt": "2026-10-22T17:43:58+00:00",
+ "source": "ydr8-5enu",
+ "note": "Counts only. Contractor names are normalized (case, punctuation, legal suffix) and counted in the runner, never written.",
+ "rowsFetched": 1109,
+ "days90": {
+  "days": 90,
+  "permits": 280,
+  "permitsWithoutContractor": 0,
+  "contractors": 34,
+  "nationalFirms": 6,
+  "nationalBrands": 4,
+  "nationalBrandsByKey": {
+   "otis": 2,
+   "kone": 1,
+   "schindler": 2,
+   "tk_elevator": 1
+  },
+  "independents": 28,
+  "independentsWith5OrMorePermits": 11,
+  "permitContractorPairsNational": 128,
+  "permitContractorPairsIndependent": 152,
+  "independentPermitsMedian": 3
+ },
+ "days365": {
+  "days": 365,
+  "permits": 1109,
+  "permitsWithoutContractor": 0,
+  "contractors": 49,
+  "nationalFirms": 8,
+  "nationalBrands": 5,
+  "nationalBrandsByKey": {
+   "schindler": 3,
+   "otis": 2,
+   "kone": 1,
+   "mitsubishi": 1,
+   "tk_elevator": 1
+  },
+  "independents": 41,
+  "independentsWith5OrMorePermits": 24,
+  "permitContractorPairsNational": 542,
+  "permitContractorPairsIndependent": 567,
+  "independentPermitsMedian": 9
+ }
+}

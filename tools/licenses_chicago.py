@@ -367,11 +367,13 @@ def add_name_history(recs, fetch, start):
         for x in fetch(blds[i:i + 15]):
             d = (x.get("date_issued") or "")[:10]
             if d and d < start and x.get("address"):
-                seen[(building_key(x["address"]), name_key(x.get("doing_business_as_name")))].append(d)
+                seen[building_key(x["address"])].append((name_key(x.get("doing_business_as_name")), d))
+    same = lambda a, b: a == b or (min(len(a), len(b)) >= 8 and (a.startswith(b) or b.startswith(a)))   # "La Quinta Inn and Suites" +"Chicago Downtown"
     for r in recs:
         if r.get("history") not in ("first", "site"):
             continue
-        ds = seen.get((building_key(r.get("_addr") or r["address"]), name_key(r["business"])))
+        rk = name_key(r["business"])
+        ds = [d for nk, d in seen.get(building_key(r.get("_addr") or r["address"]), []) if nk and same(nk, rk)]
         if ds:
             r["history"], r["since"] = "added", min(ds)[:4]
     return recs
@@ -710,10 +712,14 @@ def selftest():
     # the same business under another account at the same building is an added license, not a first (Blackstone Hotel)
     hrec = [{"license": "x", "business": "The Blackstone Hotel", "address": "636 S Michigan Ave", "_addr": "636 S MICHIGAN AVE",
              "history": "first", "since": ""},
-            {"license": "y", "business": "New Cafe", "address": "636 S Michigan Ave", "_addr": "636 S MICHIGAN AVE", "history": "first", "since": ""}]
+            {"license": "y", "business": "New Cafe", "address": "636 S Michigan Ave", "_addr": "636 S MICHIGAN AVE", "history": "first", "since": ""},
+            {"license": "z", "business": "La Quinta Inn and Suites Chicago Downtown", "address": "1 S Franklin St", "_addr": "1 S FRANKLIN ST",
+             "history": "site", "since": "2020"}]
     add_name_history(hrec, lambda b: [{"address": "636 S MICHIGAN AVE LL-23", "doing_business_as_name": "BLACKSTONE HOTEL",
-                                       "date_issued": "2018-10-16T00:00:00.000"}], "2026-09-22")
-    assert [(h["history"], h["since"]) for h in hrec] == [("added", "2018"), ("first", "")], hrec
+                                       "date_issued": "2018-10-16T00:00:00.000"},
+                                      {"address": "1 S FRANKLIN ST", "doing_business_as_name": "LA QUINTA INN AND SUITES", "date_issued": "2016-05-01T00:00:00"},
+                                      {"address": "636 S MICHIGAN AVE", "doing_business_as_name": "NEW", "date_issued": "2010-01-01"}], "2026-09-22")
+    assert [(h["history"], h["since"]) for h in hrec] == [("added", "2018"), ("first", ""), ("added", "2016")], hrec
     # run_checks drops what the City's records rule out, counts the reasons, and marks a check that cannot fetch
     r2, rs2 = build(rows, loop, today, dnl=set())
     def boom(*a):

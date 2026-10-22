@@ -1,0 +1,207 @@
+{
+ "about": "The store layer of proofnotfluff.com (Todd, Oct 22, 2026; seo/STORE.md): the products the home and /shop/ sell, the trade picker on the home page, which paid list each calculator points to, and the refund text. tools/make_site.py reads it; numbers on the cards come from each product's own data file at build time, never from here.",
+ "products": [
+  {
+   "key": "chicago-restaurant-inspection-leads",
+   "audience": "trade",
+   "tag": "Chicago · Restaurants",
+   "name": "Chicago Restaurant Inspection Leads",
+   "short": "Restaurant Inspection Leads",
+   "per": "a month",
+   "what": "Chicago restaurants with a fresh failed or conditional City inspection, sorted by the violation that fits your trade, and places that just had the license inspection the City does before a food license.",
+   "card": "Fresh failed or conditional City inspections, sorted by violation, and places about to open.",
+   "for": "For hood cleaning, pest control, grease trap and kitchen cleaning companies.",
+   "gets": [
+    "Every place named, with address and community area",
+    "The City's result, date and violation codes, and 24 months of history",
+    "A members' web app with a map, filters and CSV export, plus an Excel file",
+    "A pitch kit: a call opener and an email for each trade"
+   ]
+  },
+  {
+   "key": "chicago-construction-cleaning-leads",
+   "audience": "trade",
+   "tag": "Chicago · Construction",
+   "name": "Chicago Construction Cleaning Leads",
+   "short": "Construction Cleaning Leads",
+   "per": "a month",
+   "what": "Every open Chicago permit of $500,000 or more with a business as general contractor, closest to a final clean first.",
+   "card": "Open apartment and commercial projects of $500,000 or more, the builder on each, closest to a final clean first.",
+   "for": "For post-construction cleaning, window cleaning and pressure washing companies.",
+   "gets": [
+    "The builder, address and permit on every project",
+    "New permits and near-finish jobs flagged, with a neighborhood filter",
+    "A members' web app with a map, plus an Excel file",
+    "A pitch kit: a capability sheet outline and an email to builders"
+   ]
+  },
+  {
+   "key": "austin-construction-cleaning-leads",
+   "audience": "trade",
+   "tag": "Austin · Construction",
+   "name": "Austin Construction Cleaning Leads",
+   "short": "Construction Cleaning Leads",
+   "per": "a month",
+   "what": "Every open Austin commercial and apartment project valued at $500,000 or more with a business as general contractor.",
+   "card": "Open commercial and apartment projects of $500,000 or more in Austin and the builders running them.",
+   "for": "For post-construction cleaning, window cleaning and pressure washing companies.",
+   "gets": [
+    "The builder, address and permit on every project",
+    "Projects with permits already finaled flagged",
+    "A members' web app, plus an Excel file",
+    "A pitch kit for builders"
+   ]
+  },
+  {
+   "key": "ecommerce-13-week-cash-flow",
+   "audience": "ecom",
+   "tag": "E-commerce brands",
+   "name": "13-Week E-commerce Cash Flow",
+   "short": "13-Week E-commerce Cash Flow",
+   "page": "ecommerce-13-week-cash-flow-calculator",
+   "price": "79",
+   "per": "one time",
+   "checkout": "https://proofnotfluff.gumroad.com/l/13-week-cash-flow",
+   "campaign": "13-week-cash-flow",
+   "what": "See the week your cash bottoms out, and how much you need to cover it, before a purchase order lands.",
+   "card": "See the week your cash bottoms out before a purchase order lands. Excel and Google Sheets.",
+   "for": "For Shopify, Amazon, TikTok Shop and retail brands planning inventory.",
+   "nums": [
+    [
+     "13",
+     "weeks, by each channel's payout lag"
+    ],
+    [
+     "6",
+     "POs as deposit plus balance"
+    ]
+   ],
+   "gets": [
+    "Each channel's payout lag: Amazon, TikTok Shop, your own store, retail",
+    "Up to six POs as deposit plus balance, with freight",
+    "Factoring cost in dollars, a credit line, side-by-side scenarios and a PO planner",
+    "Excel and Google Sheets"
+   ],
+   "source": "Built by a finance executive. The free 13 week calculator uses the same maths."
+  }
+ ],
+ "coming": {
+  "key": "chicago-new-business-licenses",
+  "tag": "Chicago · New businesses",
+  "name": "Chicago New Business Licenses",
+  "for": "For commercial cleaning and pest control companies."
+ },
+ "trades": [
+  {
+   "label": "Hood cleaning",
+   "where": "Chicago",
+   "to": "chicago-restaurant-inspection-leads",
+   "tab": "hood"
+  },
+  {
+   "label": "Pest control",
+   "where": "Chicago",
+   "to": "chicago-restaurant-inspection-leads",
+   "tab": "pests"
+  },
+  {
+   "label": "Grease traps",
+   "where": "Chicago",
+   "to": "chicago-restaurant-inspection-leads",
+   "tab": "drain"
+  },
+  {
+   "label": "Kitchen cleaning",
+   "where": "Chicago",
+   "to": "chicago-restaurant-inspection-leads",
+   "tab": "clean"
+  },
+  {
+   "label": "Construction cleanup",
+   "where": "Chicago",
+   "to": "chicago-construction-cleaning-leads"
+  },
+  {
+   "label": "Construction cleanup",
+   "where": "Austin",
+   "to": "austin-construction-cleaning-leads"
+  },
+  {
+   "label": "Windows and pressure washing",
+   "where": "Chicago",
+   "to": "chicago-construction-cleaning-leads"
+  },
+  {
+   "label": "E-commerce brand",
+   "where": "Cash flow, any city",
+   "to": "ecommerce-13-week-cash-flow"
+  }
+ ],
+ "calcProducts": {
+  "cleaning-price-per-square-foot-calculator": [
+   "chicago-construction-cleaning-leads",
+   "austin-construction-cleaning-leads"
+  ],
+  "window-cleaning-price-calculator": [
+   "chicago-construction-cleaning-leads",
+   "austin-construction-cleaning-leads"
+  ],
+  "pressure-washing-price-calculator": [
+   "chicago-construction-cleaning-leads",
+   "austin-construction-cleaning-leads"
+  ],
+  "pressure-washing-price-per-square-foot-calculator": [
+   "chicago-construction-cleaning-leads",
+   "austin-construction-cleaning-leads"
+  ],
+  "soft-wash-pricing-calculator": [
+   "chicago-construction-cleaning-leads",
+   "austin-construction-cleaning-leads"
+  ],
+  "house-cleaning-price-calculator": [
+   "chicago-construction-cleaning-leads",
+   "austin-construction-cleaning-leads"
+  ],
+  "cleaning-business-startup-cost-calculator": [
+   "chicago-construction-cleaning-leads",
+   "chicago-restaurant-inspection-leads"
+  ],
+  "contractor-hourly-rate-calculator": [
+   "chicago-restaurant-inspection-leads",
+   "chicago-construction-cleaning-leads"
+  ],
+  "employer-cost-calculator": [
+   "chicago-restaurant-inspection-leads",
+   "chicago-construction-cleaning-leads"
+  ],
+  "inventory-reorder-point-calculator": [
+   "ecommerce-13-week-cash-flow"
+  ],
+  "inventory-turnover-calculator": [
+   "ecommerce-13-week-cash-flow"
+  ],
+  "shipping-cost-calculator": [
+   "ecommerce-13-week-cash-flow"
+  ],
+  "profit-and-loss-calculator": [
+   "ecommerce-13-week-cash-flow"
+  ],
+  "break-even-calculator": [
+   "ecommerce-13-week-cash-flow"
+  ],
+  "unit-cost-calculator": [
+   "ecommerce-13-week-cash-flow"
+  ],
+  "customer-concentration-calculator": [
+   "ecommerce-13-week-cash-flow"
+  ]
+ },
+ "calcTitles": {
+  "trade": "Priced it? Now find the jobs.",
+  "ecom": "Plan the cash behind your next order."
+ },
+ "refunds": {
+  "updated": "2026-10-22",
+  "lists": "No refunds on lead lists or the workbook, because you get the data the moment you pay. Cancel a list any time and you won't be charged again. If a list doesn't arrive or a file won't open, email hello@proofnotfluff.com and we'll fix it or refund that month."
+ }
+}

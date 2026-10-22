@@ -3799,7 +3799,17 @@
     ]
    ],
    "sources": "City of Chicago Data Portal, Food Inspections.",
-   "checkout": "https://proofnotfluff.gumroad.com/l/mlyiiz?utm_source=proofnotfluff&utm_medium=site&utm_campaign=chicago-restaurant-leads"
+   "checkout": "https://proofnotfluff.gumroad.com/l/mlyiiz?utm_source=proofnotfluff&utm_medium=site&utm_campaign=chicago-restaurant-leads",
+   "links": [
+    [
+     "contractor-hourly-rate-calculator",
+     "Contractor hourly rate calculator"
+    ],
+    [
+     "employer-cost-calculator",
+     "Cost of an employee calculator"
+    ]
+   ]
   },
   {
    "slug": "chicago-new-business-licenses",
@@ -3965,7 +3975,12 @@
      "read Oct 22, 2026"
     ]
    ],
-   "footnote": "Numbers from the City of Chicago Data Portal, Building Permits, pulled {asOf}, filtered by ProofNotFluff as the free sample page describes."
+   "footnote": "Numbers from the City of Chicago Data Portal, Building Permits, pulled {asOf}, filtered by ProofNotFluff as the free sample page describes.",
+   "calculator": [
+    "cleaning-price-per-square-foot-calculator",
+    "cleaning price per square foot calculator",
+    "Price the final clean from your own costs before you call a builder:"
+   ]
   },
   {
    "slug": "austin-post-construction-cleanup-contacts",
@@ -4077,7 +4092,12 @@
      "read Oct 22, 2026"
     ]
    ],
-   "footnote": "Numbers from the City of Austin's Issued Construction Permits data, pulled {asOf}, filtered by ProofNotFluff as the free sample page describes."
+   "footnote": "Numbers from the City of Austin's Issued Construction Permits data, pulled {asOf}, filtered by ProofNotFluff as the free sample page describes.",
+   "calculator": [
+    "cleaning-price-per-square-foot-calculator",
+    "cleaning price per square foot calculator",
+    "Price the final clean from your own costs before you call a builder:"
+   ]
   },
   {
    "slug": "chicago-hood-cleaning-first-restaurant-clients",
@@ -4190,7 +4210,12 @@
      "read Oct 22, 2026"
     ]
    ],
-   "footnote": "Numbers from the City of Chicago Data Portal, Food Inspections, records through {through}, pulled {asOf}, filtered by ProofNotFluff as the free sample page describes; categories are our reading of the City's violation codes, and inspector notes are not republished."
+   "footnote": "Numbers from the City of Chicago Data Portal, Food Inspections, records through {through}, pulled {asOf}, filtered by ProofNotFluff as the free sample page describes; categories are our reading of the City's violation codes, and inspector notes are not republished.",
+   "calculator": [
+    "contractor-hourly-rate-calculator",
+    "contractor hourly rate calculator",
+    "Know your floor before you quote a hood visit:"
+   ]
   }
  ]
 }

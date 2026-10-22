@@ -70,33 +70,34 @@ def page_html(p):
     cta_html = (f'<section class="block" id="ldCta"><div class="cta ld-cta"><div><h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
                 + (f'<p class="ld-price">${E(str(price))} a month when it opens.</p>' if price and not checkout else "")
                 + f'<p class="ld-buybtn">{buy()}</p></div></div></section>')
-    body = (f'<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>'
+    crumb, crumb_ld = M.crumbs(rel, [("Home", ""), ("Shop", "shop/"), (p["h1"], None)])
+    body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>'
             f'<div class="ld-heroact rl-act">{buy()}<a class="ld-textlink" href="#sample">See this week\'s sample</a></div>{note}</div>'
             f'{tiles}{trades}{sample}{method}{cta_html}{M.faq_block(p["faq"])}')
-    ld = ('<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@type": "FAQPage",
-          "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}) + "</script>"
-          "<style>.ld-page .asof,.ld-page footer p{color:#555B68}.rl-act{margin:18px 0 8px}"
-          ".lc-pill{background:#E3EFED;color:#2E6B66}.rl3 .ld-pill{margin:0 0 10px}.rl3 .ld-ptop{margin:0 0 12px}"
+    ld = (M.ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
+          "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}, crumb_ld)
+          + "<style>.ld-page .asof,.ld-page footer p{color:var(--muted)}.rl-act{margin:18px 0 8px}"
+          ".lc-pill{background:var(--chip-near-bg);color:var(--chip-near)}.rl3 .ld-pill{margin:0 0 10px}.rl3 .ld-ptop{margin:0 0 12px}"
           ".lc-area{font-size:24px;line-height:1.2}.lc-h3{font:600 18px/1.3 Poppins,system-ui,sans-serif;margin:26px 0 10px;color:var(--ink)}"
-          ".lc-h3 span{font:400 15px/1.3 system-ui,sans-serif;color:#555B68}"
+          ".lc-h3 span{font:400 15px/1.3 system-ui,sans-serif;color:var(--muted)}"
           ".ld-page .ld-tiles .tile .lab{letter-spacing:.04em;overflow-wrap:anywhere}.ld-page .ld-tiles .tile .sub{text-wrap:balance}"
           "@media(max-width:600px){.ld-page .ld-tiles .tile .lab{font-size:10.5px;letter-spacing:.02em}}"
           "@media(min-width:1000px){.ld-list.rl3{grid-template-columns:repeat(3,minmax(0,1fr))}}"
-          ".rl-trades{list-style:none;margin:14px 0 0;padding:0;background:#fff;border:1px solid var(--line);border-radius:12px;max-width:760px}"
-          ".rl-trades li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 16px;border-top:1px solid #EFEBE4}"
+          ".rl-trades{list-style:none;margin:14px 0 0;padding:0;background:var(--card);border:1px solid var(--line);border-radius:12px;max-width:760px}"
+          ".rl-trades li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 16px;border-top:1px solid var(--rule)}"
           "section.block .rl-trades li{max-width:none}.rl-trades li:first-child{border-top:0}.rl-trades .nm{font-weight:600;color:var(--ink)}"
-          ".rl-trades .nm small{display:block;font-size:13.5px;font-weight:400;color:#555B68;margin-top:2px}"
+          ".rl-trades .nm small{display:block;font-size:13.5px;font-weight:400;color:var(--muted);margin-top:2px}"
           ".rl-trades .n{font:700 18px/1 Poppins,system-ui,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}"
           ".ld-page .ld-cta p.ld-buybtn{margin-top:16px}.ld-page h2,.ld-page h3,.ld-page summary{text-wrap:balance}</style>")
     robots = "" if M.is_live(p) else '<meta name="robots" content="noindex, nofollow">'
     src = d["source"]
-    foot = (f'</main>\n<footer><div class="wrap">'
+    foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             f'<p>Source: {E(src["name"])} ({E(src["url"])}), pulled {E(pulled)}. {E(src["modified"])} A license shows the City issued it on '
             'that date; it does not say a business is open today or buying anything. No business named here has endorsed or works with '
             'ProofNotFluff. Public information for planning sales calls; not legal or business advice and no promise of work.</p>'
             f'<p>{E(M.CITY_DISCLAIMER["Chicago"])}</p><p>ProofNotFluff is not affiliated with or endorsed by the City of Chicago.</p>'
             '<p>Made by ProofNotFluff with AI assistance from public City data. The page counts visits with Cloudflare Web Analytics, which sets no '
-            'cookies, and loads its heading font from Google Fonts.</p></div></footer>\n</body></html>')
+            'cookies.</p></div></footer>\n</body></html>')
     return (M.HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=M.SHOP, ld=ld, bodycls=' class="ld-page"',
                           robots=robots, analytics=M.analytics_tag()) + body + foot)
 

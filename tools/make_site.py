@@ -22,28 +22,76 @@ BASE = "https://proofnotfluff.com/"
 SHOP = "https://proofnotfluff.etsy.com"
 E = html.escape
 
-HEAD = """<!doctype html>
+# Store build (Todd, Oct 22, 2026; seo/STORE.md): the heading font is served from this site with a preload (it was a
+# render-blocking Google Fonts stylesheet, about 1.5 s of LCP on every page), the header leads to the shop, the footer
+# carries the refund page on every page, and each page gets its own Open Graph image (docs/assets/og/<slug>.png).
+HEAD_TPL = """<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title><meta name="description" content="{desc}">
-<link rel="canonical" href="{url}">{robots}{analytics}<meta property="og:title" content="{title}"><meta property="og:description" content="{desc}">
-<meta property="og:type" content="website"><meta property="og:url" content="{url}">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="canonical" href="{url}">{robots}{analytics}<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="{title}"><meta property="og:description" content="{desc}">
+<meta property="og:type" content="website"><meta property="og:url" content="{url}">{og}
+<link rel="preload" href="{rel}assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{rel}assets/pnf.css">
 {ld}
 </head><body{bodycls}>
-<header class="top"><div class="wrap"><div><a class="brand" href="{rel}">ProofNotFluff</a><div class="bars"><i></i><i></i><i></i><i></i><i></i></div></div>
-<nav class="top"><a href="{rel}">Free calculators</a><a href="{shop}">Etsy shop</a></nav></div></header>
-<main class="wrap">"""
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap"><a class="brandlink" href="{rel}"><span class="brand">ProofNotFluff</span><span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></a>
+{nav}</div></header>
+<main class="wrap" id="main">"""
 
-FOOT = """</main>
+FOOT_TPL = """</main>
 <footer><div class="wrap">
+{fnav}
 <p>Estimates for planning only, based on the numbers you enter. Not tax, legal or financial advice. {sources}</p>
 <p>Made by ProofNotFluff with AI assistance, reviewed and tested by the shop owner. Calculators run in your browser; nothing you type is sent anywhere.</p>
 </div></footer>
 <script src="{rel}assets/pnf-calc.js"></script>
 {script}
 </body></html>"""
+
+LIVE_QUESTIONS = []   # live question pages, set by main() before any page is written (the Questions link shows only when one is live)
+CURRENT = {}          # the page being written: {"nav": "shop" | "calc" | "questions" | ""} for aria-current
+
+
+def nav_html(rel, current=""):
+    items = [("shop", f"{rel}shop/", "Shop"), ("calc", f"{rel}#calculators", "Free calculators")]
+    if LIVE_QUESTIONS:
+        items.append(("questions", f"{rel}questions/", "Questions"))
+    cur = ' aria-current="page"'
+    links = "".join(f'<a href="{h}"{cur if k == current else ""}>{t}</a>' for k, h, t in items)
+    return f'<nav class="top" aria-label="Main">{links}</nav>'
+
+
+def foot_nav(rel):
+    """The footer links on every page: the shop, the calculators, the refund page, the Etsy workbooks and the mailbox."""
+    q = f'<a href="{rel}questions/">Questions</a>' if LIVE_QUESTIONS else ""
+    return (f'<nav class="fnav" aria-label="Footer"><a href="{rel}shop/">Shop</a><a href="{rel}#calculators">Free calculators</a>{q}'
+            f'<a href="{rel}refunds/">Refunds and cancelling</a><a href="{SHOP}">Workbooks on Etsy</a>'
+            '<a href="mailto:hello@proofnotfluff.com">hello@proofnotfluff.com</a></nav>')
+
+
+def og_tags(url):
+    slug = url[len(BASE):].strip("/") or "home"
+    rel = f"assets/og/{slug.replace('/', '-')}.png"
+    if not os.path.isfile(os.path.join(DOCS, rel)):
+        rel = "assets/og/home.png"
+    return (f'<meta property="og:image" content="{BASE}{rel}"><meta property="og:image:width" content="1200">'
+            f'<meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">')
+
+
+class _Tpl(str):
+    """HEAD and FOOT keep their old .format() keywords (tools/rest_site.py, lic_site.py and question_site.py call them);
+    the store's new pieces (nav, footer links, Open Graph image) are filled in here."""
+    def format(self, **kw):
+        kw.setdefault("nav", nav_html(kw.get("rel", ""), CURRENT.get("nav", "")))
+        kw.setdefault("og", og_tags(kw["url"]) if "url" in kw else "")
+        kw.setdefault("fnav", foot_nav(kw.get("rel", "")))
+        return str.format(self, **kw)
+
+
+HEAD = _Tpl(HEAD_TPL)
+FOOT = _Tpl(FOOT_TPL)
 
 
 def field(key, label, value, hint="", pre="", suf="", step="any"):
@@ -72,9 +120,9 @@ def cta(page):
     c = page["cta"]
     bullets = " ".join(E(b) for b in c["bullets"])
     return (f'<section class="block"><div class="cta"><div><h2>{E(c["title"])}</h2><p>{bullets}</p></div>'
-            + (f'<div><a class="btn" href="{E(c["url"])}">{E(c["button"])}</a><br>' if c.get("url")
-               else f'<div><span class="btn soon" aria-disabled="true">{E(c["button"])}</span><br>')
-            + f'<a class="btn ghost" href="{SHOP}">All ProofNotFluff tools</a></div></div></section>')
+            + (f'<div><a class="btn" href="{E(c["url"])}">{E(c["button"])}</a>' if c.get("url")
+               else f'<div><span class="btn soon" aria-disabled="true">{E(c["button"])}</span>')
+            + '</div></div></section>')
 
 
 def service_page(p):
@@ -1629,8 +1677,9 @@ def leads_page_html(p):
     # hero: two lines of promise, then the price and the action on the first screen (design director, Oct 17)
     lede = (f'{kept:,} open apartment and commercial projects of $500,000 or more in {E(p["city"])}, about {M(cost, True)} {"in City valuation" if p.get("costLabel") == "Valuation" else "of work"}, '
             f'and the builders running them. {E(p["lede"])}')
-    if checkout:
-        hero_act = (f'<div class="ld-heroact" id="ldHeroCta">{buy()}<a class="ld-textlink" href="#near">See this week\'s sample</a></div>'
+    if checkout:   # the free sample first, then subscribe (store design, Oct 22)
+        hero_act = (f'<div class="ld-heroact" id="ldHeroCta"><a class="btn ld-btnbig" href="{"#near" if near else "#sample"}">See this week\'s free sample</a>'
+                    f'<a class="ld-textlink" href="{E(checkout)}" rel="noopener">Subscribe, ${price} a month</a></div>'
                     '<p class="ld-heronote">New list every Monday. Cancel any time.</p>')
     elif p.get("kitForm"):
         hero_act = '<div class="ld-heroact" id="ldHeroCta"><a class="ld-textlink" href="#ldCta">Join the waitlist</a></div>'
@@ -1673,7 +1722,7 @@ def leads_page_html(p):
     areas = sorted({x.get("communityArea") for x in d["projects"] if x.get("communityArea")})
     opts = "".join(f'<option value="{E(a)}">{E(a)}</option>' for a in areas)
     big_line = (f'The {n_big} biggest of {kept:,} open projects. Members get all {kept:,}, with {area_filter} and near-finish and new tabs, plus the Excel file.')
-    big_html = ('<section class="block"><h2>Biggest open projects</h2>'
+    big_html = ('<section class="block" id="sample"><h2>Biggest open projects</h2>'
                 '<div class="ld-filter" role="group" aria-label="Filter projects">'
                 '<button type="button" class="ld-chip" aria-pressed="true" data-f="all">All</button>'
                 '<button type="button" class="ld-chip" aria-pressed="false" data-f="new">New buildings</button>'
@@ -1722,7 +1771,7 @@ def leads_page_html(p):
         form = form.replace("Join the waitlist", "Keep me posted")
         cta_html = ('<section class="block" id="ldCta"><div class="cta ld-cta ld-buy"><div>'
                     f'<h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
-                    f'<p class="ld-buybtn">{buy()}</p><p class="ld-secure">Secure checkout by Gumroad. Cancel any time.</p></div>'
+                    f'<p class="ld-buybtn">{buy()}</p><p class="ld-secure">Secure checkout by Gumroad. Cancel any time. <a href="{rel}refunds/">Refunds and cancelling</a></p></div>'
                     + (f'<div class="ld-later"><p><b>Not ready yet?</b> Leave your email and we will let you know when the list adds new cities or features.</p>{form}'
                        '<small class="ld-note">Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div>' if p.get("kitForm") else "")
                     + '</div></section>')
@@ -1739,7 +1788,8 @@ def leads_page_html(p):
                     f'<p class="ld-price">Planned price: ${price} a month. Joining the waitlist is free and commits you to nothing.</p></div>'
                     f'<div>{form}<small class="ld-note">We email you when the weekly list opens. Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div></div></section>')
         sbar = ""
-    body = (f'<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>{hero_act}</div>{tiles}'
+    crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Shop", "shop/"), (p["h1"], None)])
+    body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>{hero_act}</div>{tiles}'
             f'{near_html}{gc_html}{big_html}{method}{shots}{cta_html}{faq_block(p["faq"])}')
     script = r"""<script>(function(){var list=document.getElementById('ldList');if(list){
 var cards=[].slice.call(list.querySelectorAll('.ld-proj')),chips=[].slice.call(document.querySelectorAll('.ld-chip')),
@@ -1754,15 +1804,17 @@ var hv=true,cv=false,link=bar.querySelector('a');
 function set(){var on=!hv&&!cv;bar.classList.toggle('on',on);bar.setAttribute('aria-hidden',String(!on));link.tabIndex=on?0:-1}
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.target===hero)hv=e.isIntersecting;else cv=e.isIntersecting});set()});
 io.observe(hero);io.observe(cta)})();</script>"""
-    ld = ('<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@type": "FAQPage",
-          "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}) + "</script>")
+    prod = next((x for x in store_products() if x["key"] == p["slug"]), None)
+    ld = ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
+                  "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]},
+                 crumb_ld, product_ld(prod, url) if prod else None)
     robots = "" if is_live(p) else '<meta name="robots" content="noindex, nofollow">'
-    foot = (f'</main>\n<footer><div class="wrap">'
+    foot = (f'</main>\n<footer><div class="wrap">{foot_nav(rel)}'
             f'<p>Source: {E(src["name"])} ({E(src["url"])}), City data as of {E(asof)}, the day it was pulled. {E(src["modified"])} '
             f'{E(p.get("costNote", "Reported cost is the figure filed with the City, not a contract value."))}{E(odd_note(c))} No contractor named here has endorsed or works with ProofNotFluff. '
             'Public information for planning sales calls; not legal or business advice and no promise of work.</p>'
             f'<p>{E(p.get("disclaimer") or CITY_DISCLAIMER.get(p["city"], ""))}</p>'
-            f'<p>Made by ProofNotFluff with AI assistance from public City data.{" The waitlist form sends your email address to Kit." if p.get("kitForm") else ""} The page counts visits with Cloudflare Web Analytics, which sets no cookies, and loads its heading font from Google Fonts.</p>'
+            f'<p>Made by ProofNotFluff with AI assistance from public City data.{" The waitlist form sends your email address to Kit." if p.get("kitForm") else ""} The page counts visits with Cloudflare Web Analytics, which sets no cookies.</p>'
             f'</div></footer>\n{sbar}\n{script}\n</body></html>')
     bodycls = ' class="ld-page' + (' has-sbar' if sbar else '') + '"'
     return (HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=SHOP, ld=ld, bodycls=bodycls,
@@ -1788,9 +1840,22 @@ def page_html(p):
             f'<div class="grid">{form}{results}</div>'
             f'<section class="block"><h2>How it works</h2>{"".join(f"<p>{E(x)}</p>" for x in p["method"])}</section>'
             f'<section class="block"><h2>A worked example</h2><p>{E(p["example"])}</p></section>'
-            f'{extra_cards(p["slug"])}{cta(p)}{faq_block(p["faq"])}')
+            f'{extra_cards(p["slug"])}{find_customers(p["slug"], rel)}{cta(p)}{faq_block(p["faq"])}')
     robots = '<meta name="robots" content="noindex, nofollow">' if p.get("draft") else ""
-    return (HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=SHOP, ld=ld_json(p, url), bodycls=' class="has-mbar"', robots=robots, analytics=analytics_tag()) + body +
+    crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Free calculators", "#calculators"), (p["h1"], None)])
+    body = crumb + body
+    extra_ld = []
+    if p.get("kind") == "cashflow":   # the free calculator is the kit's own page: its Product data lives here
+        kit = next((x for x in store_products() if x["key"] == "ecommerce-13-week-cash-flow"), None)
+        if kit:
+            extra_ld.append(product_ld(kit, url))
+            up = (f'<section class="block"><div class="fc"><div><h2>Real payouts land late. The full workbook plans for it.</h2>'
+                  f'<p>{E(" ".join(p["cta"]["bullets"]))} ${E(kit["price"])} {E(kit["per"])}.</p></div><div class="fc-acts">'
+                  f'<a class="btn" href="{E(utm(kit["checkout"], "site", kit["campaign"]))}" rel="noopener">Get the workbook, ${E(kit["price"])}</a>'
+                  f'<span class="st-note">Secure checkout by Gumroad. <a href="{rel}refunds/">Refunds</a></span></div></div></section>')
+            body = body.replace('<section class="block"><h2>How it works</h2>', up + '<section class="block"><h2>How it works</h2>', 1)
+    ld = ld_json(p, url) + ld_tags(crumb_ld, *extra_ld)
+    return (HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=SHOP, ld=ld, bodycls=' class="has-mbar"', robots=robots, analytics=analytics_tag()) + body +
             FOOT.format(rel=rel, script=script, sources=E(p["sources"])))
 
 
@@ -1952,20 +2017,432 @@ def write_hub_and_redirects(pages):
 
 
 
+# ---------------------------------------------------------------------------------------------------------------------
+# The store (Todd, Oct 22, 2026; seo/STORE.md; design canvas https://claude.ai/artifact/LqgDbvVYjWCetbybrZ9JiY).
+# site/store.json names the products, the home page's trade picker, the calculator-to-product map and the refund text;
+# every number on a card is read here from the product's own committed data file, so a Monday refresh updates the store.
+
+ARROW = ('<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" '
+         'stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>')
+
+
+def load_store():
+    f = os.path.join(ROOT, "site", "store.json")
+    return json.load(open(f, encoding="utf-8")) if os.path.exists(f) else {"products": [], "trades": [], "calcProducts": {}}
+
+
+def _pages_by_slug():
+    return {p["slug"]: p for p in json.load(open(os.path.join(ROOT, "site", "pages.json"), encoding="utf-8"))["pages"]}
+
+
+def utm(url, medium, campaign, content=""):
+    """A checkout link with our own utm tags (the medium says which kind of page sent the buyer)."""
+    base = url.split("?")[0]
+    out = f"{base}?utm_source=proofnotfluff&utm_medium={medium}&utm_campaign={campaign}"
+    return out + (f"&utm_content={content}" if content else "")
+
+
+def _campaign(url):
+    import re
+    m = re.search(r"utm_campaign=([^&]+)", url or "")
+    return m.group(1) if m else "store"
+
+
+def store_products():
+    """The store's products, each merged with its page spec and this week's two headline numbers from its own data."""
+    st, pages = load_store(), _pages_by_slug()
+    out = []
+    for s in st.get("products", []):
+        x = dict(s)
+        page = pages.get(s.get("page", s["key"]))
+        if not page or not is_live(page):
+            continue
+        x["page"] = page["slug"]
+        x["href"] = page["slug"] + "/"
+        x.setdefault("price", str(page.get("price", "")))
+        x.setdefault("checkout", page.get("checkout"))
+        x.setdefault("campaign", _campaign(page.get("checkout")))
+        x["kitForm"] = s.get("kitForm") or page.get("kitForm")
+        if page.get("kind") == "leads":
+            d = json.load(open(os.path.join(ROOT, page["data"]), encoding="utf-8"))
+            c = d["counts"]
+            m = lambda v: money(v, True, bool(page.get("billions2")))
+            x["nums"] = [[f'{c["kept"]:,}', f'open projects, about {m(c["keptCost"])}']]
+            near = c.get("nearFinish", len(d.get("nearFinish", [])))
+            if near >= 5:
+                x["nums"].append([f"{near:,}", page.get("nearSub", "near finish")])
+            else:
+                x["nums"].append([f'{c["keptByType"].get("New construction", 0):,}', f'new buildings, at least {c.get("keptUnits", 0):,} {page.get("unitsWord", "apartments")}'])
+            x["asof"] = nice_date(d["source"]["fetchedAt"])
+            x["source"] = (f'{d["source"]["name"]}: {c["kept"]:,} open projects of $500,000 or more, about {m(c["keptCost"])}, '
+                           f'City data as of {x["asof"]}.')
+            x["sample"] = "#near" if d.get("nearFinish") else "#sample"
+            x["counts"] = c
+        elif page.get("kind") == "restleads":
+            d = json.load(open(os.path.join(ROOT, page["data"]), encoding="utf-8"))
+            c = d["counts"]
+            x["nums"] = [[f'{c["flagged"]:,}', "failed or conditional, last 30 days"], [f'{c["opening"]:,}', "license inspections, about to open"]]
+            x["asof"] = d["asOfText"]
+            x["source"] = (f'{d["source"]["name"]}: {c["flagged"]:,} failed or conditional and {c["opening"]:,} license inspections in the '
+                           f'30 days to {d["throughText"]}, pulled {d["asOfText"]}.')
+            x["sample"] = "#sample"
+            x["counts"] = c
+        else:
+            x["sample"] = ""
+        out.append(x)
+    return out
+
+
+def store_coming():
+    """The next list (licenses), with this week's numbers, while its page is a draft or not on sale."""
+    st, pages = load_store(), _pages_by_slug()
+    c = st.get("coming")
+    if not c or c["key"] not in pages:
+        return None
+    page = pages[c["key"]]
+    if page.get("checkout") and is_live(page):
+        return None
+    d = json.load(open(os.path.join(ROOT, page["data"]), encoding="utf-8"))
+    n = d["counts"]
+    x = dict(c)
+    x["text"] = (f'{n["keptWeek"]:,} Chicago business sites got a new City business license in the week to {nice_date(d["window"]["to"])}, '
+                 f'and {n["kept30"]:,} in the last 30 days. {c["for"]}')
+    x["kitForm"] = page.get("kitForm")
+    x["notify"] = page.get("notify") or "mailto:hello@proofnotfluff.com?subject=Chicago%20New%20Business%20Licenses%3A%20tell%20me%20when%20it%20opens"
+    return x
+
+
+def kit_form(form_id, label, button, field_id, note="One email when it opens. Stored with Kit, our email provider, and never sold."):
+    """A Kit sign-up form (Kit's own subscribe endpoint, no script)."""
+    return (f'<form class="st-form" action="https://app.kit.com/forms/{E(form_id)}/subscriptions" method="post">'
+            f'<label for="{field_id}">{E(label)}</label><div class="st-frow">'
+            f'<input id="{field_id}" name="email_address" type="email" required autocomplete="email" placeholder="you@company.com">'
+            f'<button class="st-btn2" type="submit">{E(button)}</button></div><span class="st-note">{E(note)}</span></form>')
+
+
+def crumbs(rel, items):
+    """Visible breadcrumbs plus their BreadcrumbList data. items: [(name, path or None for the current page)]."""
+    lis, ld = [], []
+    for i, (name, path) in enumerate(items, 1):
+        lis.append(f'<li><a href="{rel}{path}">{E(name)}</a></li>' if path is not None else f'<li aria-current="page">{E(name)}</li>')
+        ld.append({"@type": "ListItem", "position": i, "name": name, **({"item": BASE + path} if path is not None else {})})
+    html_ = f'<nav class="crumbs" aria-label="Breadcrumb"><ol>{"".join(lis)}</ol></nav>'
+    return html_, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": ld}
+
+
+def ld_tags(*objs):
+    return "".join(f'<script type="application/ld+json">{json.dumps(o, ensure_ascii=False)}</script>' for o in objs if o)
+
+
+def product_ld(x, url):
+    """Product data for a paid list or workbook: a monthly price for the lists, a one-time price for the workbook."""
+    offer = {"@type": "Offer", "price": str(x["price"]), "priceCurrency": "USD", "availability": "https://schema.org/InStock",
+             "url": utm(x["checkout"], "site", x["campaign"]) if x.get("checkout") else url}
+    if x.get("per") == "a month":
+        offer["priceSpecification"] = {"@type": "UnitPriceSpecification", "price": str(x["price"]), "priceCurrency": "USD",
+                                       "billingDuration": 1, "billingIncrement": 1, "unitCode": "MON", "referenceQuantity": {"@type": "QuantitativeValue", "value": 1, "unitCode": "MON"}}
+    slug = url[len(BASE):].strip("/") or "home"
+    return {"@context": "https://schema.org", "@type": "Product", "name": x["name"], "description": x["what"], "url": url,
+            "image": BASE + f"assets/og/{slug}.png", "brand": {"@type": "Brand", "name": "ProofNotFluff"}, "offers": offer}
+
+
+def product_card(x, rel, medium):
+    nums = "".join(f'<div><b>{E(a)}</b><span>{E(b)}</span></div>' for a, b in x.get("nums", []))
+    if x["audience"] == "ecom":
+        prim = f'<a class="btn" href="{rel}{x["href"]}">Try the free calculator</a>'
+        sec = f'<a class="st-link" href="{E(utm(x["checkout"], medium, x["campaign"]))}" rel="noopener">Buy, ${E(x["price"])}</a>'
+    else:
+        prim = f'<a class="btn" href="{rel}{x["href"]}{x["sample"]}">See this week\'s free sample</a>'
+        sec = (f'<a class="st-link" href="{E(utm(x["checkout"], medium, x["campaign"]))}" rel="noopener">Subscribe</a>' if x.get("checkout") else "")
+    return (f'<article class="st-card"><div class="st-top"><span class="st-tag">{E(x["tag"])}</span>'
+            f'<span class="st-price">${E(x["price"])}<small> {E(x["per"])}</small></span></div>'
+            f'<h3>{E(x["short"])}</h3><p>{E(x["card"])}</p><div class="st-nums">{nums}</div>'
+            f'<p>{E(x["for"])}</p><div class="st-act">{prim}{sec}</div></article>')
+
+
+def coming_card(c, rel, field_id, cls="st-card soon", h="h3"):
+    form = (kit_form(c["kitForm"], "Email me when it opens", "Notify me", field_id) if c.get("kitForm") else
+            f'<div class="st-act"><a class="st-btn2" href="{E(c["notify"])}">Tell me when it opens</a></div>')
+    return (f'<article class="{cls}"><div class="st-top"><span class="st-tag">{E(c["tag"])}</span><span class="st-soon">Coming next</span></div>'
+            f'<{h}>{E(c["name"])}</{h}><p>{E(c["text"])}</p>{form}</article>')
+
+
+def home_html(pages, live):
+    """The store home: what we sell and who for on the first screen, the lists, how it works, the calculators."""
+    CURRENT["nav"] = ""
+    st = load_store()
+    prods = store_products()
+    by = {x["key"]: x for x in prods}
+    trades = ""
+    for t in st.get("trades", []):
+        x = by.get(t["to"])
+        if not x:
+            continue
+        frag = (x["sample"] if t.get("tab") is None else f'?trade={t["tab"]}#sample') if x["audience"] != "ecom" else ""
+        trades += (f'<li><a href="{x["href"]}{frag}"><span><b>{E(t["label"])}</b><small>{E(t["where"])}</small></span>{ARROW}</a></li>')
+    week = ""
+    rest, chi, aus = by.get("chicago-restaurant-inspection-leads"), by.get("chicago-construction-cleaning-leads"), by.get("austin-construction-cleaning-leads")
+    rows = []
+    if rest:
+        rows.append((rest["nums"][0][0], "Chicago food businesses failed or passed with conditions, last 30 days"))
+    if chi:
+        rows.append((f'{chi["counts"]["kept"]:,}', "open Chicago projects of $500,000 or more"))
+    if aus:
+        rows.append((f'{aus["counts"]["kept"]:,}', "open Austin projects of $500,000 or more"))
+    if rows:
+        dates = sorted({x["asof"] for x in (rest, chi, aus) if x})
+        week = ('<aside class="card st-week" aria-label="This week in the records"><p class="lab">This week in the records</p><dl>'
+                + "".join(f"<div><dt>{E(t)}</dt><dd>{E(n)}</dd></div>" for n, t in rows)
+                + f'</dl><p class="asof">City data pulled {E(" and ".join(dates))}. Refreshed every Monday.</p></aside>')
+    hero = ('<section class="st-hero" aria-labelledby="hero-title"><div><p class="eyebrow">Lead lists from public records</p>'
+            '<h1 id="hero-title">Your next customers are already in the City\'s records.</h1>'
+            '<p class="lede">Weekly lists for cleaning, hood cleaning and pest control companies in Chicago and Austin. Each one has a free sample, new every Monday.</p>'
+            f'<h2 class="st-pick">Pick your trade to see this week\'s sample</h2><ul class="st-trades">{trades}</ul></div>{week}</section>')
+    coming = store_coming()
+    cards = "".join(product_card(x, "", "home") for x in prods) + (coming_card(coming, "", "homeLic") if coming else "")
+    lists = ('<section class="st-sec" aria-labelledby="lists-title"><h2 id="lists-title">The lists</h2>'
+             '<p>A free sample on every page. Members get every record, named, in a web app and an Excel file, every Monday. Cancel any time.</p>'
+             f'<div class="st-grid">{cards}</div></section>')
+    how = ('<section class="st-sec" aria-labelledby="how-title"><h2 id="how-title">How it works</h2><ol class="st-steps">'
+           '<li><span class="n" aria-hidden="true">1</span><div><h3>Open the free sample</h3><p>Real records from this week\'s pull sit on each list\'s page. No sign-up.</p></div></li>'
+           '<li><span class="n" aria-hidden="true">2</span><div><h3>Subscribe when it fits</h3><p>$29 or $39 a month, paid through Gumroad. Cancel any time.</p></div></li>'
+           '<li><span class="n" aria-hidden="true">3</span><div><h3>Work the list</h3><p>Every Monday: the named list, an Excel file and a pitch kit for your trade.</p></div></li></ol></section>')
+    calc_cards = "".join(f'<li><a href="{p["slug"]}/"><b>{E(p["h1"])}</b><span>{E(p["card"])}</span></a></li>'
+                         for p in live if p.get("kind") not in ("leads", "restleads", "licleads", "question"))
+    extras = "".join(f'<a class="card" href="{E(x["slug"])}/"><h3>{E(x["h1"])}</h3><p>{E(x["card"])}</p></a>' for x in live_extras())
+    calcs = ('<section class="st-sec" id="calculators" aria-labelledby="calc-title"><h2 id="calc-title">Free calculators</h2>'
+             '<p>Price the job before you call. Same maths as our tested Excel and Google Sheets workbooks, and nothing you type leaves your browser.</p>'
+             f'<ul class="st-calcs">{calc_cards}</ul></section>'
+             + (f'<section class="st-sec" aria-labelledby="print-title"><h2 id="print-title">Free printables</h2><div class="tools">{extras}</div></section>' if extras else ""))
+    qs = ""
+    if LIVE_QUESTIONS:
+        qs = ('<section class="st-sec" aria-labelledby="q-title"><h2 id="q-title">Questions owners ask</h2>'
+              '<p>Plain answers with this week\'s numbers, written by a finance executive.</p><ul class="st-qs">'
+              + "".join(f'<li><a href="{q["slug"]}/"><span><b>{E(q["h1"])}</b><small>{E(q.get("eyebrow", ""))}</small></span>{ARROW}</a></li>' for q in LIVE_QUESTIONS[:5])
+              + '</ul></section>')
+    band = ('<section class="st-band" aria-labelledby="trust-title"><h2 id="trust-title">Public records, read by a finance executive.</h2>'
+            '<p>Every number here comes from the cities\' own open data or our tested workbooks, with the date we pulled it. No business on a list '
+            'endorses or works with ProofNotFluff, and we never contact anyone for you.</p></section>')
+    org = {"@context": "https://schema.org", "@type": "Organization", "name": "ProofNotFluff", "url": BASE, "logo": BASE + "assets/og/home.png",
+           "email": "hello@proofnotfluff.com"}
+    items = {"@context": "https://schema.org", "@type": "ItemList", "name": "ProofNotFluff lead lists and tools",
+             "itemListElement": [{"@type": "ListItem", "position": i, "url": BASE + x["href"], "name": x["name"]} for i, x in enumerate(prods, 1)]}
+    body = hero + lists + how + calcs + qs + band
+    return (HEAD.format(title="Lead lists from public records, and free pricing calculators | ProofNotFluff",
+                        desc="Weekly lead lists for cleaning, hood cleaning and pest control companies in Chicago and Austin, from City permits and inspections, with a free sample every Monday. Plus free pricing calculators.",
+                        url=BASE, rel="", shop=SHOP, ld=ld_tags(org, items), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
+            FOOT.format(rel="", script="", sources="City of Chicago and City of Austin open data, pulled as dated on each list. IRS Topic 554 and IRS standard mileage rates, checked Oct 6, 2026."))
+
+
+def shop_html():
+    CURRENT["nav"] = "shop"
+    rel = "../"
+    url = BASE + "shop/"
+    prods = store_products()
+    crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Shop", None)])
+    rows = ""
+    for x in prods:
+        gets = "".join(f"<li>{E(g)}</li>" for g in x.get("gets", []))
+        if x["audience"] == "ecom":
+            acts = (f'<a class="btn" href="{rel}{x["href"]}">Try the free calculator</a>'
+                    f'<a class="st-btn2" href="{E(utm(x["checkout"], "shop", x["campaign"]))}" rel="noopener">Buy the workbook, ${E(x["price"])}</a>')
+            cadence = "Instant download."
+        else:
+            acts = (f'<a class="btn" href="{rel}{x["href"]}{x["sample"]}">See this week\'s free sample</a>'
+                    + (f'<a class="st-btn2" href="{E(utm(x["checkout"], "shop", x["campaign"]))}" rel="noopener">Subscribe, ${E(x["price"])} {E(x["per"])}</a>' if x.get("checkout") else ""))
+            cadence = "New list every Monday. Cancel any time."
+        rows += (f'<article class="sh-item" data-aud="{x["audience"]}"><div class="sh-main"><p class="st-tag">{E(x["tag"])}</p>'
+                 f'<h2>{E(x["name"])}</h2><p>{E(x["what"])}</p></div>'
+                 f'<div class="sh-buy"><div class="amt">${E(x["price"])}<small> {E(x["per"])}</small></div><p>{cadence}</p>{acts}'
+                 f'<p class="st-note">Secure checkout by Gumroad. <a href="{rel}refunds/">Refunds and cancelling</a></p></div>'
+                 f'<div class="sh-gets"><h3 class="sr">What you get</h3><ul class="checks">{gets}</ul><p class="sh-src">{E(x.get("source", ""))}</p></div></article>')
+    coming = store_coming()
+    if coming:
+        rows += coming_card(coming, rel, "shopLic", cls="sh-item soon", h="h2").replace('<article class="sh-item soon">', '<article class="sh-item soon" data-aud="trade">', 1)
+    filt = ('<div class="st-filter" role="group" aria-label="Show products for" id="shFilter" hidden>'
+            '<button type="button" aria-pressed="true" data-a="all">All</button>'
+            '<button type="button" aria-pressed="false" data-a="trade">Trades</button>'
+            '<button type="button" aria-pressed="false" data-a="ecom">E-commerce</button></div>')
+    body = (f'{crumb}<p class="eyebrow">Lead lists and finance tools</p><h1>Pick the list that finds your customers.</h1>'
+            '<p class="lede">Every list opens with this week\'s free sample. Subscribe when it fits; cancel any time.</p>'
+            f'{filt}<div class="sh-list" id="shList">{rows}</div>'
+            '<div class="sh-two"><div class="card"><h2>Refunds and cancelling</h2>'
+            f'<p>{E(load_store().get("refunds", {}).get("lists", ""))}</p><p><a href="{rel}refunds/">The full policy</a></p></div>'
+            '<div class="card"><h2>What these lists are, and are not</h2><p>Public City records, filtered and sorted for one trade, with the date '
+            'we pulled them. We never contact anyone for you, and no business on a list endorses or works with ProofNotFluff. Not legal or '
+            'business advice and no promise of work.</p></div></div>')
+    script = ("<script>(function(){var f=document.getElementById('shFilter');if(!f)return;f.hidden=false;"
+              "var bs=[].slice.call(f.querySelectorAll('button')),it=[].slice.call(document.querySelectorAll('#shList [data-aud]'));"
+              "bs.forEach(function(b){b.addEventListener('click',function(){var a=b.dataset.a;bs.forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});"
+              "it.forEach(function(e){e.hidden=!(a==='all'||e.dataset.aud===a)})})})})();</script>")
+    ld = ld_tags(crumb_ld, *[product_ld(x, BASE + x["href"]) for x in prods])
+    return (HEAD.format(title="Shop: lead lists for cleaning, hood cleaning and pest control | ProofNotFluff",
+                        desc="Weekly lead lists from Chicago and Austin public records, $29 or $39 a month with a free sample on every page, and the 13-Week E-commerce Cash Flow workbook.",
+                        url=url, rel=rel, shop=SHOP, ld=ld, bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
+            FOOT.format(rel=rel, script=script, sources="Numbers on each list as dated on its page."))
+
+
+def refunds_html():
+    CURRENT["nav"] = ""
+    rel = "../"
+    url = BASE + "refunds/"
+    r = load_store().get("refunds", {})
+    crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Refunds and cancelling", None)])
+    body = (f'{crumb}<article class="prose"><p class="eyebrow">Policy</p><h1>Refunds and cancelling</h1>'
+            f'<p class="lede">{E(r.get("lists", ""))}</p>'
+            '<h2>Cancelling a list</h2><p>Each list is a monthly membership through Gumroad, our checkout. Cancel from the link in your Gumroad '
+            'receipt or from your Gumroad library, any time, and you won\'t be charged again.</p>'
+            '<h2>If something goes wrong</h2><p>If a Monday list does not arrive, the members\' app does not open or a file is broken, write to '
+            '<a href="mailto:hello@proofnotfluff.com">hello@proofnotfluff.com</a> with your Gumroad receipt. We fix it, or refund that month.</p>'
+            '<h2>Before you buy</h2><p>Every list has a free sample of this week\'s records on its page, and the workbook has a free calculator '
+            'with the same maths, so you can see what you get first.</p>'
+            f'<p class="asof">Policy updated {E(nice_date(r.get("updated", "")))}. ProofNotFluff LLC, Chicago.</p></article>')
+    return (HEAD.format(title="Refunds and cancelling | ProofNotFluff", desc="ProofNotFluff's refund and cancellation policy for the weekly lead lists and the workbook.",
+                        url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
+            FOOT.format(rel=rel, script="", sources=""))
+
+
+def questions_html():
+    CURRENT["nav"] = "questions"
+    rel = "../"
+    url = BASE + "questions/"
+    crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Questions", None)])
+    lis = "".join(f'<li><a href="{rel}{q["slug"]}/"><span><b>{E(q["h1"])}</b><small>{E(q.get("eyebrow", ""))}</small></span>{ARROW}</a></li>' for q in LIVE_QUESTIONS)
+    body = (f'{crumb}<p class="eyebrow">Questions owners ask</p><h1>Plain answers, with this week\'s numbers</h1>'
+            '<p class="lede">Real questions trade and e-commerce owners asked in public, answered from City records and our own workbooks. Written by a finance executive.</p>'
+            f'<ul class="st-qs">{lis}</ul>')
+    return (HEAD.format(title="Questions owners ask | ProofNotFluff", desc="Plain answers to questions cleaning, hood cleaning, pest control and e-commerce owners ask, with this week's numbers.",
+                        url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
+            FOOT.format(rel=rel, script="", sources=""))
+
+
+def find_customers(slug, rel="../"):
+    """On a calculator page: the paid list (or the workbook) that fits the person who just priced a job."""
+    st = load_store()
+    keys = st.get("calcProducts", {}).get(slug)
+    if not keys:
+        return ""
+    by = {x["key"]: x for x in store_products()}
+    xs = [by[k] for k in keys if k in by]
+    if not xs:
+        return ""
+    ecom = xs[0]["audience"] == "ecom"
+    title = st.get("calcTitles", {}).get("ecom" if ecom else "trade", "")
+    if ecom:
+        x = xs[0]
+        text = f'{x["name"]}: {x["what"]} ${x["price"]} {x["per"]}, Excel and Google Sheets.'
+        acts = (f'<a class="btn" href="{rel}{x["href"]}">See how it works</a>'
+                f'<a class="st-link" href="{E(utm(x["checkout"], "calculator", x["campaign"], slug))}" rel="noopener">Buy, ${E(x["price"])}</a>')
+    else:
+        text = " ".join(f'{x["name"]}: {x["nums"][0][0]} {x["nums"][0][1]}, ${x["price"]} {x["per"]}.' for x in xs) + " Free sample on each page, new every Monday."
+        acts = "".join(f'<a class="btn" href="{rel}{x["href"]}{x["sample"]}">{E(x["tag"].split(" · ")[0])}: free sample</a>' for x in xs)
+    return (f'<section class="block"><div class="fc"><div><h2>{E(title)}</h2><p>{E(text)}</p></div>'
+            f'<div class="fc-acts">{acts}</div></div></section>')
+
+
+# Open Graph images: one 1200 x 630 card per page, drawn here with the brand's own fonts (docs/assets/fonts) so a shared link
+# shows the page's promise. A card is redrawn only when its words change (the words' hash is kept in the PNG), so the
+# committed images stay byte for byte what this script makes (tools/check_repo.py site-sync).
+OG_DIR = os.path.join(DOCS, "assets", "og")
+
+
+def og_image(slug, eyebrow, title, sub=""):
+    import hashlib
+    try:
+        from PIL import Image, ImageDraw, ImageFont
+        from PIL.PngImagePlugin import PngInfo
+    except ImportError:
+        return
+    os.makedirs(OG_DIR, exist_ok=True)
+    f = os.path.join(OG_DIR, slug + ".png")
+    key = hashlib.sha256(json.dumps([1, eyebrow, title, sub]).encode()).hexdigest()[:16]
+    if os.path.isfile(f):
+        try:
+            if Image.open(f).text.get("pnf") == key:
+                return
+        except Exception:
+            pass
+    fonts = os.path.join(DOCS, "assets", "fonts")
+    P7, P6, I4 = (os.path.join(fonts, n) for n in ("poppins-700.woff2", "poppins-600.woff2", "inter-400.woff2"))
+    W, H = 1200, 630
+    im = Image.new("RGB", (W, H), "#f3f1ec")
+    d = ImageDraw.Draw(im)
+    x0 = 80
+    for i, c in enumerate(("#c8502f", "#2e6b66", "#6b4fa0", "#2f5f9e", "#a87c1f")):
+        d.rounded_rectangle([x0 + i * 62, 78, x0 + i * 62 + 52, 90], 6, fill=c)
+    d.text((x0, 132), eyebrow.upper(), font=ImageFont.truetype(P6, 26), fill="#a63e21")
+
+    def wrap(text, font, width):
+        lines, cur = [], ""
+        for w in text.split():
+            t = (cur + " " + w).strip()
+            if d.textlength(t, font=font) <= width:
+                cur = t
+            else:
+                lines.append(cur); cur = w
+        return lines + [cur] if cur else lines
+    size = 66
+    while True:
+        ft = ImageFont.truetype(P7, size)
+        lines = wrap(title, ft, W - 2 * x0)
+        if len(lines) <= 3 or size <= 44:
+            break
+        size -= 4
+    y = 180
+    for ln in lines[:4]:
+        d.text((x0, y), ln, font=ft, fill="#1d2433")
+        y += int(size * 1.14)
+    if sub:
+        fs = ImageFont.truetype(I4, 28)
+        for ln in wrap(sub, fs, W - 2 * x0)[:2]:
+            y += 6
+            d.text((x0, y + 10), ln, font=fs, fill="#4a5163")
+            y += 38
+    d.rectangle([0, H - 96, W, H], fill="#1d2433")
+    d.text((x0, H - 66), "ProofNotFluff", font=ImageFont.truetype(P7, 30), fill="#ffffff")
+    d.text((W - x0, H - 62), "proofnotfluff.com", font=ImageFont.truetype(P6, 24), fill="#c9cfdb", anchor="ra")
+    meta = PngInfo()
+    meta.add_text("pnf", key)
+    im.save(f, "PNG", pnginfo=meta, optimize=True)
+
+
+def og_all(pages, live):
+    og_image("home", "Lead lists from public records", "Your next customers are already in the City's records.",
+             "Weekly lists for cleaning, hood cleaning and pest control in Chicago and Austin.")
+    og_image("shop", "ProofNotFluff shop", "Pick the list that finds your customers.", "Free sample on every list, new every Monday.")
+    og_image("refunds", "Policy", "Refunds and cancelling")
+    og_image("questions", "Questions owners ask", "Plain answers, with this week's numbers")
+    import re
+    clean = lambda t: re.sub(r"\s+", " ", re.sub(r"\{[^}]*\}", "", t or "")).strip()
+    for p in pages:
+        if p.get("kind") in ("leads", "restleads", "question", "licleads") and not os.path.isfile(os.path.join(ROOT, p["data"])):
+            continue
+        og_image(p["slug"], clean(p.get("eyebrow")) or "ProofNotFluff", clean(p["h1"]), clean(p.get("card")))
+
+
 def main():
     spec = json.load(open(os.path.join(ROOT, "site", "pages.json"), encoding="utf-8"))
     pages = spec["pages"]
+    live = [p for p in pages if is_live(p)]
+    LIVE_QUESTIONS[:] = [p for p in live if p.get("kind") == "question"]
+    og_all(pages, live)
     for p in pages:
         if p.get("kind") in ("leads", "restleads", "question", "licleads") and not os.path.isfile(os.path.join(ROOT, p["data"])):
             print("skipped", p["slug"], "(no data yet)")
             continue
+        CURRENT["nav"] = "questions" if p.get("kind") == "question" else ("shop" if p.get("kind") in ("leads", "restleads", "licleads") else "calc")
         out = os.path.join(DOCS, p["slug"]); os.makedirs(out, exist_ok=True)
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page_html(p))
         print("wrote", p["slug"])
-    live = [p for p in pages if is_live(p)]
-    open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(index_html(live))
+    open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(home_html(pages, live))
+    store = [("shop", shop_html()), ("refunds", refunds_html())] + ([("questions", questions_html())] if LIVE_QUESTIONS else [])
+    for slug, page in store:
+        d = os.path.join(DOCS, slug); os.makedirs(d, exist_ok=True)
+        open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(page)
+    CURRENT["nav"] = ""
     write_hub_and_redirects(pages)
-    urls = [BASE, BASE + "go/"] + [BASE + p["slug"] + "/" for p in live] + [BASE + x["slug"] + "/" for x in live_extras()]
+    urls = ([BASE] + [BASE + slug + "/" for slug, _ in store] + [BASE + "go/"] + [BASE + p["slug"] + "/" for p in live]
+            + [BASE + x["slug"] + "/" for x in live_extras()])
     open(os.path.join(DOCS, "sitemap.xml"), "w").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
         "".join(f"  <url><loc>{u}</loc><lastmod>{spec['updated']}</lastmod></url>\n" for u in urls) + "</urlset>\n")

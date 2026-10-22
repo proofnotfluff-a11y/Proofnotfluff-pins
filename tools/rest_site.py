@@ -38,17 +38,20 @@ def page_html(p):
     asof = E(d["asOfText"])
     w = d["window"]
 
+    keyof = {c["label"]: c["key"] for c in d.get("categories", [])}
+
     def card_anon(x):
         cats = ", ".join(x["categories"]) or "None in a category"
         kind = x["type"] if x["type"] not in ("", "Not given") else "Food business"
-        return (f'<article class="ld-proj"><p class="ld-pill rp-{_res_cls(x["result"])}">City result: {E(x["result"])}</p>'
+        keys = " ".join(keyof.get(k, "") for k in x["categories"]).strip()
+        return (f'<article class="ld-proj" data-cats="{E(keys)}"><p class="ld-pill rp-{_res_cls(x["result"])}">City result: {E(x["result"])}</p>'
                 f'<p class="rl-lock">{LOCK_S}Name and address on the members\' list</p>'
                 f'<div class="ld-ptop"><span class="ld-cost" style="font-size:20px">{E(kind)} in {E(x["area"])}</span></div>'
                 f'<dl class="ld-meta"><div><dt>Categories</dt><dd>{E(cats)}</dd></div>'
                 f'<div><dt>Inspected</dt><dd>{E(M.nice_date(x["date"]))}, {E(x["inspectionType"])}</dd></div></dl></article>')
 
     def card_open(x):
-        return (f'<article class="ld-proj"><p class="ld-pill rp-{_res_cls(x["result"])}">License inspection: {E(x["result"])}</p>'
+        return (f'<article class="ld-proj" data-cats="open"><p class="ld-pill rp-{_res_cls(x["result"])}">License inspection: {E(x["result"])}</p>'
                 f'<div class="ld-ptop"><span class="ld-cost" style="font-size:20px">{E(x["name"])}</span><span class="ld-type">{E(x["type"])}</span></div>'
                 f'<dl class="ld-meta"><div><dt>Where</dt><dd>{E(x["address"])}, {E(x["area"])}</dd></div>'
                 f'<div><dt>Inspected</dt><dd>{E(M.nice_date(x["date"]))}, {E(x["inspectionType"])}</dd></div></dl></article>')
@@ -63,7 +66,9 @@ def page_html(p):
 
     lede = (f'{c["flagged"]:,} Chicago food businesses failed or passed with conditions in the last 30 days, and {c["opening"]:,} had '
             f'the license inspection Chicago does before it issues a food license. {E(p["lede"])}')
-    hero_act = (f'<div class="ld-heroact rl-act" id="ldHeroCta">{buy()}<a class="ld-textlink" href="#sample">See this week\'s sample</a></div>'
+    sub_link = (f'<a class="ld-textlink" href="{E(checkout)}" rel="noopener">Subscribe, ${price} a month</a>' if checkout else
+                f'<a class="ld-textlink" href="{E(notify)}">Tell me when it opens</a>')
+    hero_act = (f'<div class="ld-heroact rl-act" id="ldHeroCta"><a class="btn ld-btnbig" href="#sample">See this week\'s free sample</a>{sub_link}</div>'
                 + ('<p class="ld-heronote">New list every Monday. Cancel any time.</p>' if checkout else
                    f'<p class="ld-heronote">${price} a month when it opens. New list every Monday.</p>'))
     bc = c["byCat"]
@@ -73,46 +78,81 @@ def page_html(p):
              f'<div class="tile"><div class="lab">Failed more than once</div><div class="val">{c["repeat"]:,}</div><div class="sub">2 or more fails in 90 days</div></div>'
              f'<div class="tile"><div class="lab">New this week</div><div class="val">{c["new"]:,}</div><div class="sub">inspected in the last 7 days</div></div></div>'
              f'<p class="asof">City records through {E(d["throughText"])}, pulled {asof}. Refreshed every Monday.</p>')
-    trades = [("Pest control", bc["pests"], "with a pest violation"), ("Hood and exhaust cleaning", bc["hood"], "with a hood or exhaust violation"),
-              ("Grease trap and drains", bc["drain"], "with a grease trap or drain violation"), ("Kitchen cleaning", bc["clean"], "with a cleaning violation"),
-              ("POS, linen and new-account vendors", c["opening"], "with a license inspection")]
-    trade_html = ('<section class="block"><h2>Leads by trade this week</h2><p>Places on the failed or conditional list, by the violation '
-                  'category that fits your work, and places that had a license inspection.</p><ol class="rl-trades">'
-                  + "".join(f'<li><span class="nm">{E(t)}<small>{E(s)}</small></span><span class="n">{n:,}</span></li>' for t, n, s in trades)
-                  + '</ol></section>')
+    tabs = [("all", "All", c.get("places", c["flagged"] + c["opening"]), "on this week's lists: failed or conditional in our four categories, or a license inspection."),
+            ("hood", "Hood and exhaust", bc["hood"], "failed or passed with conditions with a hood or exhaust violation."),
+            ("pests", "Pests", bc["pests"], "failed or passed with conditions with a pest violation."),
+            ("drain", "Grease trap", bc["drain"], "failed or passed with conditions with a grease trap or drain violation."),
+            ("clean", "Kitchen cleaning", bc["clean"], "failed or passed with conditions with a cleaning violation."),
+            ("open", "Opening soon", c["opening"], "had the license inspection the City does before it issues a food license. This sample names only places that passed.")]
+    tab_btns = "".join(f'<button type="button" aria-pressed="{"true" if k == "all" else "false"}" data-t="{k}" data-n="{n:,}" data-b="{E(b)}">'
+                       f'{E(lab)}<span class="c">{n:,}</span></button>' for k, lab, n, b in tabs)
     ex = d["examples"]
-    sample = (f'<section class="block" id="sample"><h2>Failed or conditional: a sample</h2>'
-              '<p>The members\' list names each place, with its address, its 24-month City inspection history and the City\'s violation codes. '
-              'This public sample shows the record without the name.</p>'
-              f'<div class="ld-list rl3">{"".join(card_anon(x) for x in ex["flagged"])}</div></section>'
-              f'<section class="block"><h2>Opening soon: a sample</h2><p>Chicago inspects a food business before it issues a food license, so many '
-              'of these places are about to open or just opened. A new food business usually needs pest control, cleaning, linen and a point of '
-              'sale, and many need hood and grease service. This public sample names only places that passed.</p>'
-              f'<div class="ld-list rl3">{"".join(card_open(x) for x in ex["opening"])}</div></section>')
-    method = ('<section class="block"><h2>How to use this list</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"]) + "</section>")
+    seen, anon = set(), []
+    for x in ex.get("flagged", []) + ex.get("repeat", []):   # repeat fails are failed records too; each record shows once
+        k = (x.get("area"), x.get("date"), x.get("inspectionType"), tuple(x.get("categories", [])))
+        if k not in seen:
+            seen.add(k); anon.append(x)
+    cards = "".join(card_anon(x) for x in anon) + "".join(card_open(x) for x in ex["opening"])
+    sample = (f'<section class="block" id="sample"><h2>This week\'s free sample</h2>'
+              '<p>Real records from this week\'s pull. Failed and conditional places show the record without the name; the members\' list names '
+              'each place, with its address, its 24-month City inspection history and the City\'s violation codes. Places that passed a license '
+              'inspection are named here, because a license inspection is a step toward opening.</p>'
+              f'<div class="rl-tabs" role="group" aria-label="Show records for" id="rlTabs" hidden>{tab_btns}</div>'
+              f'<p class="rl-tabnote" id="rlNote" aria-live="polite"><b>{tabs[0][2]:,} places</b> {E(tabs[0][3])}</p>'
+              f'<div class="ld-list rl3" id="rlList">{cards}</div>'
+              '<p class="rl-empty" id="rlEmpty" hidden>No place in this week\'s free sample has this category. Members see every one.</p>'
+              f'<p class="rl-more" id="rlMore">Members see every place on all three lists, named, with address, the City\'s violation codes and 24 months of history. '
+              + (f'<a href="{E(checkout)}" rel="noopener">Subscribe, ${price} a month</a>.' if checkout else "") + '</p></section>')
+    links = "".join(f'<li><a href="{rel}{E(l[0])}/">{E(l[1])}</a></li>' for l in p.get("links", []))
+    method = ('<section class="block"><h2>How to use this list</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"])
+              + (f'<p>Price the visit before you call:</p><ul>{links}</ul>' if links else "") + "</section>")
+    later = ""
+    if p.get("kitForm"):
+        later = (f'<div class="ld-later"><p><b>Not ready yet?</b> Leave your email and we will let you know when the list adds new areas or features.</p>'
+                 f'<form class="ld-form" action="https://app.kit.com/forms/{E(p["kitForm"])}/subscriptions" method="post"><label for="ldEmail">Email</label>'
+                 '<div class="ld-frow"><input id="ldEmail" name="email_address" type="email" required autocomplete="email"><button class="btn" type="submit">Keep me posted</button></div></form>'
+                 '<small class="ld-note">Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div>')
     if checkout:
         cta_html = (f'<section class="block" id="ldCta"><div class="cta ld-cta ld-buy"><div><h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
-                    f'<p class="ld-buybtn">{buy()}</p><p class="ld-secure">Secure checkout by Gumroad. Cancel any time.</p></div></div></section>')
+                    f'<p class="ld-buybtn">{buy()}</p><p class="ld-secure">Secure checkout by Gumroad. Cancel any time. <a href="{rel}refunds/">Refunds and cancelling</a></p></div>{later}</div></section>')
     else:
         cta_html = (f'<section class="block" id="ldCta"><div class="cta ld-cta"><div><h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
                     f'<p class="ld-price">${price} a month when it opens.</p><p class="ld-buybtn">{buy()}</p></div></div></section>')
-    body = (f'<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>{hero_act}</div>{tiles}'
-            f'{trade_html}{sample}{method}{cta_html}{M.faq_block(p["faq"])}')
-    ld = ('<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@type": "FAQPage",
-          "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}) + "</script>"
+    crumb, crumb_ld = M.crumbs(rel, [("Home", ""), ("Shop", "shop/"), (p["h1"], None)])
+    body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>{hero_act}</div>{tiles}'
+            f'{sample}{method}{cta_html}{M.faq_block(p["faq"])}')
+    sbar = (f'<div class="ld-sbar" id="ldBar" aria-hidden="true"><div class="wrap"><p><b>${price} a month</b><span> · <span class="ld-sbl">full list </span>every Monday</span></p>'
+            f'<a class="btn" href="{E(checkout)}" rel="noopener" tabindex="-1">Subscribe</a></div></div>') if checkout else ""
+    script = r"""<script>(function(){var tb=document.getElementById('rlTabs');if(tb){tb.hidden=false;
+var bs=[].slice.call(tb.querySelectorAll('button')),cs=[].slice.call(document.querySelectorAll('#rlList .ld-proj')),
+note=document.getElementById('rlNote'),empty=document.getElementById('rlEmpty');
+function pick(t){var n=0;bs.forEach(function(b){var on=b.dataset.t===t;b.setAttribute('aria-pressed',String(on));if(on){note.innerHTML='<b>'+b.dataset.n+' places</b> '+b.dataset.b}});
+cs.forEach(function(c){var ok=t==='all'||(' '+c.dataset.cats+' ').indexOf(' '+t+' ')>=0;c.hidden=!ok;if(ok)n++});empty.hidden=n>0}
+bs.forEach(function(b){b.addEventListener('click',function(){pick(b.dataset.t)})});
+var q=(location.search.match(/[?&]trade=([a-z]+)/)||[])[1];if(q&&bs.some(function(b){return b.dataset.t===q}))pick(q)}
+var bar=document.getElementById('ldBar'),hero=document.getElementById('ldHeroCta'),cta=document.getElementById('ldCta');
+if(!bar||!hero||!cta||!('IntersectionObserver' in window))return;
+var hv=true,cv=false,link=bar.querySelector('a');
+function set(){var on=!hv&&!cv;bar.classList.toggle('on',on);bar.setAttribute('aria-hidden',String(!on));link.tabIndex=on?0:-1}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.target===hero)hv=e.isIntersecting;else cv=e.isIntersecting});set()});
+io.observe(hero);io.observe(cta)})();</script>"""
+    prod = next((x for x in M.store_products() if x["key"] == p["slug"]), None)
+    ld = (M.ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
+          "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]},
+          crumb_ld, M.product_ld(prod, url) if prod else None)
           # small grey text darkened to pass WCAG AA on the warm canvas (axe, Oct 2026); scoped to this page only
-          + "<style>.ld-page .asof,.ld-page footer p{color:#555B68}"
-          ".ld-pill.rp-fail{background:#FBEAE4;color:#A63E21}.ld-pill.rp-pwc{background:#F6EDD5;color:#7A5A12}"
-          ".ld-pill.rp-pass{background:#E3EFED;color:#2E6B66}.ld-pill.rp-oth{background:#E6EDF6;color:#2F5F9E}"
+          + "<style>.ld-page .asof,.ld-page footer p{color:var(--muted)}"
+          ".ld-pill.rp-fail{background:var(--rp-fail-bg);color:var(--rp-fail)}.ld-pill.rp-pwc{background:var(--rp-pwc-bg);color:var(--rp-pwc)}"
+          ".ld-pill.rp-pass{background:var(--chip-near-bg);color:var(--chip-near)}.ld-pill.rp-oth{background:var(--chip-insp-bg);color:var(--chip-insp)}"
           ".rl-act{margin:18px 0 24px}.ld-page .ld-tiles .tile .lab{letter-spacing:.04em;overflow-wrap:anywhere}"
           "@media(max-width:600px){.ld-page .ld-tiles .tile .lab{font-size:10.5px;letter-spacing:.02em}}"
           ".rl3 .ld-pill{margin:0 0 10px}.rl3 .ld-ptop{margin:0 0 12px}"
-          ".rl-lock{display:flex;align-items:center;gap:6px;margin:0 0 6px;font-size:13px;color:#555B68}.rl-lock svg{flex:none}"
+          ".rl-lock{display:flex;align-items:center;gap:6px;margin:0 0 6px;font-size:13px;color:var(--muted)}.rl-lock svg{flex:none}"
           "@media(min-width:1000px){.ld-list.rl3{grid-template-columns:repeat(3,minmax(0,1fr))}}"
-          ".rl-trades{list-style:none;margin:14px 0 0;padding:0;background:#fff;border:1px solid var(--line);border-radius:12px}"
-          ".rl-trades li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 16px;border-top:1px solid #EFEBE4}"
+          ".rl-trades{list-style:none;margin:14px 0 0;padding:0;background:var(--card);border:1px solid var(--line);border-radius:12px}"
+          ".rl-trades li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 16px;border-top:1px solid var(--rule)}"
           ".rl-trades li:first-child{border-top:0}.rl-trades .nm{font-weight:600;color:var(--ink)}"
-          ".rl-trades .nm small{display:block;font-size:13.5px;font-weight:400;color:#555B68;margin-top:2px}"
+          ".rl-trades .nm small{display:block;font-size:13.5px;font-weight:400;color:var(--muted);margin-top:2px}"
           ".rl-trades .n{font:700 18px/1 Poppins,system-ui,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}"
           # design director round 2: the trade card is the FAQ's measure (C1), the price line clears the button (C2),
           # and no heading or question leaves one word alone on a phone (C3)
@@ -121,7 +161,7 @@ def page_html(p):
           ".ld-page h2,.ld-page summary{text-wrap:balance}</style>")
     robots = "" if M.is_live(p) else '<meta name="robots" content="noindex, nofollow">'
     src = d["source"]
-    foot = (f'</main>\n<footer><div class="wrap">'
+    foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             f'<p>Source: {E(src["name"])} ({E(src["url"])}), City records through {E(d["throughText"])}, pulled {asof}. Filtered by ProofNotFluff: '
             'inspections of the last 30 days at food businesses, less the places under "Who is left out?" above, with a City result of Fail or '
             'Pass w/ Conditions and a violation in one of '
@@ -131,8 +171,8 @@ def page_html(p):
             'not legal or business advice and no promise of work.</p>'
             f'<p>{E(M.CITY_DISCLAIMER["Chicago"])}</p>'
             '<p>Made by ProofNotFluff with AI assistance from public City data. The page counts visits with Cloudflare Web Analytics, which sets no '
-            'cookies, and loads its heading font from Google Fonts.</p></div></footer>\n</body></html>')
-    return (M.HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=M.SHOP, ld=ld, bodycls=' class="ld-page"',
+            f'cookies.</p></div></footer>\n{sbar}\n{script}\n</body></html>')
+    return (M.HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=M.SHOP, ld=ld, bodycls=' class="ld-page' + (' has-sbar' if sbar else '') + '"',
                           robots=robots, analytics=M.analytics_tag()) + body + foot)
 
 

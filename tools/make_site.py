@@ -2242,7 +2242,7 @@ def home_html(pages, live):
         if not x:
             continue
         frag = (x["sample"] if t.get("tab") is None else f'?trade={t["tab"]}#sample') if x["audience"] != "ecom" else ""
-        trades += (f'<li><a href="{x["href"]}{frag}" aria-label="{E(t["label"])}, {E(t["where"])}"><span><b>{E(t["label"])}</b><small>{E(t["where"])}</small></span>{ARROW}</a></li>')
+        trades += (f'<li><a href="{x["href"]}{frag}"><span><b>{E(t["label"])}</b><span class="sr">, </span><small>{E(t["where"])}</small></span>{ARROW}</a></li>')
     week = ""
     rest, chi, aus = by.get("chicago-restaurant-inspection-leads"), by.get("chicago-construction-cleaning-leads"), by.get("austin-construction-cleaning-leads")
     rows = []

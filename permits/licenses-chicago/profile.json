@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-10-22T19:13:16+00:00",
+ "fetchedAt": "2026-10-22T21:28:28+00:00",
  "rowsUpdatedAt": "2026-10-22T09:55:53+00:00",
  "columns": [
   "id",
@@ -186,15 +186,15 @@
  "keptByLicense": [
   [
    "Limited Business License",
-   96
+   113
   ],
   [
    "Retail Food Establishment",
-   59
+   66
   ],
   [
    "Regulated Business License",
-   13
+   17
   ],
   [
    "Tobacco",
@@ -209,15 +209,19 @@
    4
   ],
   [
-   "Public Place of Amusement",
-   4
-  ],
-  [
    "Commercial Garage",
    3
   ],
   [
+   "Public Place of Amusement",
+   3
+  ],
+  [
    "Private Booting Registration",
+   3
+  ],
+  [
+   "Children's Services Facility License",
    3
   ],
   [
@@ -233,16 +237,12 @@
    2
   ],
   [
+   "Manufacturing Establishments",
+   2
+  ],
+  [
    "Filling Station",
    2
-  ],
-  [
-   "Children's Services Facility License",
-   2
-  ],
-  [
-   "Manufacturing Establishments",
-   1
   ],
   [
    "Pawnbroker",

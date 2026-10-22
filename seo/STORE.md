@@ -45,5 +45,14 @@ Design: Claude Design canvas https://claude.ai/artifact/LqgDbvVYjWCetbybrZ9JiY (
 ### Publishing rule (Todd, Oct 22)
 Minor changes publish once every gate passes and get one line in seo/RESULTS.md; major ones go to Todd first, any day. Definitions: coo/CONSTITUTION.md section 2. The store build (Phase 1) is major.
 
+## Phase 1 and 2 (done Oct 22)
+Todd, Oct 22, 2026, 4:03 pm [stated]: "ship plan"; 4:44 pm [stated]: "go". Live from branch store-v1, merged to main.
+- Stranger test (built-in browser, phone): PASS, 1 tap to the hood sample, 1 to Gumroad, 0 dead ends.
+- Technical SEO: PASS after fix round 1 (sitemap, 0 broken links, Product, FAQ, Article, Breadcrumb, og:image, canonical).
+- Lighthouse mobile (local, Lighthouse 13.5.0): 98 to 100 except Best Practices 96 (sandbox blocks the Cloudflare beacon), LCP 1.1 to 1.8 s, CLS 0.
+- Accessibility: third check found 1 blocker (trade link names), fixed; axe 0 violations on 11 pages x 2 widths x 2 schemes.
+- Copy and facts: third check flagged 8 unsourced wording items, all fixed, not rechecked.
+- Design: three reviews at 4.25 (house 4.43), under the 4.6 bar; Todd chose to ship ("ship plan").
+
 ## Next step
-Phase 1 build on branch store-v1, then the Phase 2 checks, then Todd's go on the store.
+Phase 3: the question-pages skill (.claude/skills/question-pages/SKILL.md) as a cloud scheduled task, Mon, Wed, Fri.

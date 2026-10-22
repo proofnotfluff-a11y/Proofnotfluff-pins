@@ -17,7 +17,7 @@ One job: draft one question page from seo/BACKLOG.md, gate it, and publish it if
    b. Search intent: does the page answer the question better than the current top 3 results? PASS or FAIL with reasons.
    One fix round per gate; a second FAIL stops the page and goes to Todd.
 6. Both PASS: remove "draft", rebuild, check_repo exits 0, commit, push to main (pull --rebase once on a reject; never force). Add the row to seo/QUESTIONS.md and one line to seo/RESULTS.md: date, slug, "published, gates PASS".
-7. Fridays: one line per live question page in seo/RESULTS.md from Search Console (impressions, clicks, average position, 28 days), read in the built-in browser. First Friday of a month: list pages at average position 8 to 20 as refresh candidates; refreshing one is a run of its own.
+7. Fridays: one line per live question page in seo/RESULTS.md from Search Console (impressions, clicks, average position, 28 days), read in the built-in browser; if the browser can't be reached, write "Search Console not read" with the date and tell Todd. First Friday of a month: list pages at average position 8 to 20 as refresh candidates; refreshing one is a run of its own.
 
 ## Outputs (Writes)
 - site/pages.json (one spec), docs/ through tools/make_site.py only, seo/QUESTIONS.md, seo/RESULTS.md.

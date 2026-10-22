@@ -7,5 +7,5 @@
 - Senders: hello@proofnotfluff.com (25 a day), sales@getproofnotfluff.com (Apps Script ramp).
 - Trade verticals: commercial_cleaning, exterior_turnkey (Chicago, Partial Occupancy Approved only). interior_finish and security_access only after exterior gets replies. The copy gate is built for permit leads; a non-permit signal needs Todd's OK for a gate extension first.
 - Copy test 1 (Todd, Oct 22): variants A and B in templates.md, arm fixed by prospect id, `variant` on every draft (copy_gate --assign). Up to two follow-ups. C waits for test 2. research_notes/cold-email-2026-10-22.md.
-- Open for Todd: launches/chicago-new-business-licenses.md (built, not launched): licenses or building violations next.
+- Open for Todd (growth doc, Oct 22): licenses go at $29 (recommended over violations: 232 businesses a month vs 59 sellable buildings); copy gate extension for license and citation signals; elevator buyer-count probe (launches/chicago-elevator-violations.md); restaurant product has no template under the Oct 22 rules.
 - Skills: permit-ingestion, outreach-drafter, prospect-matching, product-builder; on request: growth-research, remotion-walkthrough.

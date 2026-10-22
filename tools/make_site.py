@@ -31,6 +31,7 @@ HEAD_TPL = """<!doctype html>
 <link rel="canonical" href="{url}">{robots}{analytics}<meta name="color-scheme" content="light dark">
 <meta property="og:title" content="{title}"><meta property="og:description" content="{desc}">
 <meta property="og:type" content="website"><meta property="og:url" content="{url}">{og}
+<link rel="icon" href="{rel}assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="{rel}assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{rel}assets/pnf.css">
 {ld}
@@ -1752,13 +1753,13 @@ def leads_page_html(p):
                  f'<figure class="ld-shot">'
                  + (f'<picture><source media="(max-width:600px)" srcset="{rel}assets/{sdir}/members-list-phone.png" width="{png_size(lphone_f)[0]}" height="{png_size(lphone_f)[1]}">'
                     if os.path.isfile(lphone_f) else "")
-                 + f'<img src="{rel}assets/{sdir}/members-list.png" width="{w1}" height="{h1}" loading="eager" decoding="async" '
+                 + f'<img src="{rel}assets/{sdir}/members-list.png" width="{w1}" height="{h1}" loading="lazy" decoding="async" '
                  f'alt="{E(alt1)}">' + ('</picture>' if os.path.isfile(lphone_f) else "") +
                  '<figcaption>The members\' app, updated every Monday</figcaption></figure>'
                  f'<figure class="ld-shot">'
                  + (f'<picture><source media="(max-width:600px)" srcset="{rel}assets/{sdir}/workbook-phone.png" width="{png_size(phone_f)[0]}" height="{png_size(phone_f)[1]}">'
                     if os.path.isfile(phone_f) else "")
-                 + f'<img src="{rel}assets/{sdir}/workbook.png" width="{w2}" height="{h2}" loading="eager" decoding="async" alt="{E(alt2)}">'
+                 + f'<img src="{rel}assets/{sdir}/workbook.png" width="{w2}" height="{h2}" loading="lazy" decoding="async" alt="{E(alt2)}">'
                  + ('</picture>' if os.path.isfile(phone_f) else "") +
                  f'<figcaption>{E(p.get("shotCapBook", "The Excel file, filters on every column"))}</figcaption></figure></div></section>')
     if p.get("kitForm"):
@@ -2259,7 +2260,7 @@ def shop_html():
     coming = store_coming()
     if coming:
         rows += coming_card(coming, rel, "shopLic", cls="sh-item soon", h="h2").replace('<article class="sh-item soon">', '<article class="sh-item soon" data-aud="trade">', 1)
-    filt = ('<div class="st-filter" role="group" aria-label="Show products for" id="shFilter" hidden>'
+    filt = ('<div class="st-filter" role="group" aria-label="Show products for" id="shFilter">'
             '<button type="button" aria-pressed="true" data-a="all">All</button>'
             '<button type="button" aria-pressed="false" data-a="trade">Trades</button>'
             '<button type="button" aria-pressed="false" data-a="ecom">E-commerce</button></div>')
@@ -2271,7 +2272,7 @@ def shop_html():
             '<div class="card"><h2>What these lists are, and are not</h2><p>Public City records, filtered and sorted for one trade, with the date '
             'we pulled them. We never contact anyone for you, and no business on a list endorses or works with ProofNotFluff. Not legal or '
             'business advice and no promise of work.</p></div></div>')
-    script = ("<script>(function(){var f=document.getElementById('shFilter');if(!f)return;f.hidden=false;"
+    script = ("<script>(function(){var f=document.getElementById('shFilter');if(!f)return;"
               "var bs=[].slice.call(f.querySelectorAll('button')),it=[].slice.call(document.querySelectorAll('#shList [data-aud]'));"
               "bs.forEach(function(b){b.addEventListener('click',function(){var a=b.dataset.a;bs.forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});"
               "it.forEach(function(e){e.hidden=!(a==='all'||e.dataset.aud===a)})})})})();</script>")
@@ -2355,7 +2356,7 @@ def og_image(slug, eyebrow, title, sub=""):
         return
     os.makedirs(OG_DIR, exist_ok=True)
     f = os.path.join(OG_DIR, slug + ".png")
-    key = hashlib.sha256(json.dumps([1, eyebrow, title, sub]).encode()).hexdigest()[:16]
+    key = hashlib.sha256(json.dumps([3, eyebrow, title, sub]).encode()).hexdigest()[:16]
     if os.path.isfile(f):
         try:
             if Image.open(f).text.get("pnf") == key:
@@ -2369,7 +2370,7 @@ def og_image(slug, eyebrow, title, sub=""):
     d = ImageDraw.Draw(im)
     x0 = 80
     for i, c in enumerate(("#c8502f", "#2e6b66", "#6b4fa0", "#2f5f9e", "#a87c1f")):
-        d.rounded_rectangle([x0 + i * 62, 78, x0 + i * 62 + 52, 90], 6, fill=c)
+        d.rounded_rectangle([x0 + i * 62, 76, x0 + i * 62 + 52, 90], 7, fill=c)
     d.text((x0, 132), eyebrow.upper(), font=ImageFont.truetype(P6, 26), fill="#a63e21")
 
     def wrap(text, font, width):
@@ -2392,12 +2393,12 @@ def og_image(slug, eyebrow, title, sub=""):
     for ln in lines[:4]:
         d.text((x0, y), ln, font=ft, fill="#1d2433")
         y += int(size * 1.14)
-    if sub:
+    if sub and y < H - 96 - 110:
         fs = ImageFont.truetype(I4, 28)
+        y += 26
         for ln in wrap(sub, fs, W - 2 * x0)[:2]:
-            y += 6
-            d.text((x0, y + 10), ln, font=fs, fill="#4a5163")
-            y += 38
+            d.text((x0, y), ln, font=fs, fill="#4a5163")
+            y += 40
     d.rectangle([0, H - 96, W, H], fill="#1d2433")
     d.text((x0, H - 66), "ProofNotFluff", font=ImageFont.truetype(P7, 30), fill="#ffffff")
     d.text((W - x0, H - 62), "proofnotfluff.com", font=ImageFont.truetype(P6, 24), fill="#c9cfdb", anchor="ra")

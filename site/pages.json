@@ -3812,13 +3812,13 @@
    "desc": "Free weekly sample of new Chicago business licenses by trade: restaurants, shops, salons, venues and auto shops licensed in the last 30 days, for vendors who sell to new businesses.",
    "eyebrow": "Free sample, updated every Monday",
    "h1": "Chicago New Business Licenses",
-   "lede": "For vendors who sell to a business in its first months: POS and payments, signs, insurance, bookkeeping, cleaning, pest control, waste and supplies.",
+   "lede": "For vendors who sell to new businesses and new locations: POS and payments, signs, insurance, bookkeeping, cleaning, pest control, waste and supplies.",
    "card": "New Chicago businesses licensed in the last 30 days, sorted by trade, for vendors who sell to new businesses.",
    "method": [
     "Pick the trades that buy from you. A new restaurant and a new salon need different vendors, so the list is sorted by what each business does.",
     "Reach out in the first weeks. A business with a new license is often still choosing its vendors, and the license date tells you how recent it is.",
     "Visit or call the business at its licensed address, name the license and its date, and say in one line what you do for businesses like it.",
-    "If you also have Chicago Restaurant Inspection Leads: food businesses usually get a City food license inspection before the license is issued, most often one to three weeks before, and that product lists those inspections as Opening soon. So you may already have seen most of the food businesses here. Each food row with that inspection is marked in the members' list, so you can hide them. Nearly all businesses in the other trades are only here."
+    "If you also have Chicago Restaurant Inspection Leads: food businesses usually get a City food license inspection before the license is issued, usually within three weeks before, and that product lists those inspections as Opening soon. So you may already have seen most of the food businesses here. Each food row with that inspection is marked in the members' list, so you can hide them. Nearly all businesses in the other trades are only here."
    ],
    "cta": {
     "title": "Get the full list every Monday",
@@ -3831,7 +3831,7 @@
     ],
     [
      "Is every license a brand-new business?",
-     "Most are. A business that opens another site, adds a new license type at a site it already has, or takes over a site under a new owner also gets a new license. The members' list reads the City's earlier licenses for each business and marks which is which: first license, new site, added license or relicensed."
+     "Most are, and each row says which. A business that opens another site, adds a new license type at a site it already has, or takes over a site under a new owner also gets a new license. The members' list reads the City's earlier licenses for each business and marks which is which: first license, new site, added license or relicensed."
     ],
     [
      "Who is left out?",
@@ -3839,7 +3839,7 @@
     ],
     [
      "Does it overlap with Chicago Restaurant Inspection Leads?",
-     "Partly, and only for food businesses. That product lists the City's food license inspection, which most often comes one to three weeks before the food license this list shows. The members' list marks every food row with that inspection in the 120 days before its license, so a member of both can hide them. Nearly all shops, salons, venues, auto shops and day care centers are only here."
+     "Partly, and only for food businesses. That product lists the City's food license inspection, which usually comes within three weeks before the food license this list shows. The members' list marks every food row with that inspection in the 120 days before its license, so a member of both can hide them. Nearly all shops, salons, venues, auto shops and day care centers are only here."
     ],
     [
      "Is every business on the list open?",

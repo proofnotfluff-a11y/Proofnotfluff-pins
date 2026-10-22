@@ -219,7 +219,7 @@ PAGE = r"""<!doctype html>
 <form class="gate-card" id="gate" novalidate>
 <span class="chip s2"><svg class="ico s" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Members</span>
 <h1>This week's new Chicago business licenses</h1>
-<p class="sub">List of __ASOF__. New business licenses the City issued in the last 30 days at Chicago business sites, one row per business and site, sorted by trade, for vendors who sell to new businesses.</p>
+<p class="sub">List of __ASOF__. New business licenses the City issued in the last 30 days at Chicago business sites, one row per business and site, sorted by trade, for vendors who sell to new businesses and new locations.</p>
 <label for="pw">Members' password</label>
 <div class="pw"><input id="pw" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="err pwHelp">
 <button type="button" class="eye" id="eye" aria-label="Show password" aria-pressed="false"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path id="eyeslash" d="M3 3l18 18" hidden/></svg></button></div>

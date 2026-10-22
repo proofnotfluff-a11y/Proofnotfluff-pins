@@ -79,11 +79,13 @@ LEFT_OUT = ("Renewals and changes (including an older license the City re-dated)
             "plain words with none of our business words (such as shop, grill, salon, parking or dog), no possessive, no \"and\" "
             "or \"&\", and not starting with \"The\", with or without LLC or Inc, such as \"Golden Dragon\". That check is strict "
             "on purpose and leaves out many real businesses, because a wrong omission costs less than printing a person's name. "
-            "A name with a business word stays, even when it also holds a person's name, such as \"Maria's Kitchen\". A business with two licenses at one site is listed once. If a business on the list goes by a "
+            "Names are also checked against a list of common first names, so a name that starts with a person's full name, such "
+            "as \"Maria Lopez Cleaning\", is left out too; the check can miss one. A name with a business word and no full name "
+            "stays, such as \"Maria's Kitchen\". A business with two licenses at one site is listed once. If a business on the list goes by a "
             "person's name, or asks to be left out, write to hello@proofnotfluff.com and it is removed from every later list.")
 
-OVERLAP = ("Food businesses usually get a City food license inspection before the City issues their food license, most often "
-           f"one to three weeks before, and {RESTAURANT} lists those inspections as Opening soon. A food and drink row here with a "
+OVERLAP = ("Food businesses usually get a City food license inspection before the City issues their food license, usually "
+           f"within three weeks before, and {RESTAURANT} lists those inspections as Opening soon. A food and drink row here with a "
            "date under Food license inspection had that inspection in the 120 days before its license, so a member of both "
            "products may already have seen the business there. The other food rows, and nearly all businesses in the other "
            "trades, are not on the restaurant product.")

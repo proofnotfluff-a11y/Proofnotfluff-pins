@@ -3867,7 +3867,6 @@
   {
    "slug": "chicago-post-construction-cleaning-contracts",
    "kind": "question",
-   "draft": true,
    "city": "Chicago",
    "product": "chicago-construction-cleaning-leads",
    "data": "permits/chicago/sample.json",
@@ -4083,12 +4082,12 @@
       "Source: Austin Peay State University construction standard, section 01 77 00.1 Final Cleaning. Every project's own spec governs; ask the builder for the cleaning section before you price."
      ]
     }
-   ]
+   ],
+   "published": "2026-10-22"
   },
   {
    "slug": "austin-post-construction-cleanup-contacts",
    "kind": "question",
-   "draft": true,
    "city": "Austin",
    "product": "austin-construction-cleaning-leads",
    "data": "permits/austin/sample.json",
@@ -4263,12 +4262,12 @@
       "Austin records a development's valuation on each of its building permits, so one project's figure can cover several buildings or phases. Treat it as a size signal, not a contract value. A builder on this list has not endorsed or worked with ProofNotFluff."
      ]
     }
-   ]
+   ],
+   "published": "2026-10-22"
   },
   {
    "slug": "chicago-hood-cleaning-first-restaurant-clients",
    "kind": "question",
-   "draft": true,
    "city": "Chicago",
    "product": "chicago-restaurant-inspection-leads",
    "data": "permits/inspections-chicago/rest-sample.json",
@@ -4467,7 +4466,8 @@
       "The 30 days through {through}. A place can fall in more than one category. Categories are our reading of the City's violation codes."
      ]
     }
-   ]
+   ],
+   "published": "2026-10-22"
   }
  ]
 }

@@ -32,7 +32,7 @@ HEAD_TPL = """<!doctype html>
 <title>{title}</title><meta name="description" content="{desc}">
 <link rel="canonical" href="{url}">{robots}{analytics}<meta name="color-scheme" content="light dark">
 <meta property="og:title" content="{title}"><meta property="og:description" content="{desc}">
-<meta property="og:type" content="website"><meta property="og:url" content="{url}">{og}
+<meta property="og:type" content="{ogtype}"><meta property="og:url" content="{url}">{og}
 <link rel="icon" href="{rel}assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="{rel}assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{rel}assets/pnf.css">
@@ -92,6 +92,7 @@ class _Tpl(str):
         kw.setdefault("og", og_tags(kw["url"]) if "url" in kw else "")
         kw.setdefault("fnav", foot_nav(kw.get("rel", "")))
         kw.setdefault("notices", "")
+        kw.setdefault("ogtype", "website")
         return str.format(self, **kw)
 
 
@@ -2403,7 +2404,7 @@ def questions_html():
     crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Questions", None)])
     lis = "".join(f'<li><a href="{rel}{q["slug"]}/"><span><b>{E(q["h1"])}</b><small>{E(q.get("eyebrow", ""))}</small></span>{ARROW}</a></li>' for q in LIVE_QUESTIONS)
     body = (f'{crumb}<p class="eyebrow">Questions owners ask</p><h1>Plain answers, with this week\'s numbers</h1>'
-            '<p class="lede">Real questions trade and e-commerce owners asked in public, answered from City records and our own workbooks. Written by a finance executive.</p>'
+            '<p class="lede">Real questions trade and e-commerce owners asked in public, answered from City records and our own workbooks. ProofNotFluff is run by a finance executive.</p>'
             f'<ul class="st-qs">{lis}</ul>')
     return (HEAD.format(title="Questions owners ask | ProofNotFluff", desc="Plain answers to questions cleaning, hood cleaning, pest control and e-commerce owners ask, with this week's numbers.",
                         url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +

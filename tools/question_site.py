@@ -42,6 +42,10 @@ def _top_gcs(c, k=3):
     return {f"gc{i + 1}": x["name"] for i, x in enumerate(g)} | {f"gc{i + 1}n": _n(x["projects"]) for i, x in enumerate(g)}
 
 
+def _slug(t):
+    return re.sub(r"[^a-z0-9]+", "-", t.lower()).strip("-")
+
+
 def stats(kind, d):
     """Formatted numbers for a question page, from the product's committed free-page data (one function per product)."""
     if kind in ("chicago_construction", "austin_construction"):
@@ -92,7 +96,8 @@ def page_html(p):
     pages = {x["slug"]: x for x in json.load(open(os.path.join(ROOT, "site", "pages.json"), encoding="utf-8"))["pages"]}
     prod = pages[p["product"]]
     s = stats(p["stats"], d) | {"price": "$" + str(prod["price"])}
-    F = lambda t: re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", E(fill(t, s)))
+    F = lambda t: re.sub(r"\[([^\]]+)\]\((\.\./[a-z0-9/#-]*)\)", r'<a href="\2">\1</a>',
+                         re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", E(fill(t, s))))
     url = M.BASE + p["slug"] + "/"
     rel = "../"
     checkout = prod.get("checkout")
@@ -118,12 +123,12 @@ def page_html(p):
         head = "".join(f'<th scope="col">{F(h)}</th>' for h in t["head"])
         body_rows = "".join("<tr>" + "".join((f'<th scope="row">{F(c)}</th>' if i == 0 else f"<td>{F(c)}</td>") for i, c in enumerate(r)) + "</tr>"
                             for r in rows)
-        return (f'<section class="block"><h2>{F(t["title"])}</h2>' + "".join(f"<p>{F(x)}</p>" for x in t.get("intro", []))
+        return (f'<section class="block" id="{_slug(t["title"])}"><h2>{F(t["title"])}</h2>' + "".join(f"<p>{F(x)}</p>" for x in t.get("intro", []))
                 + f'<div class="qa-tw"><table class="qa-t"><thead><tr>{head}</tr></thead><tbody>{body_rows}</tbody></table></div>'
                 + "".join(f'<p class="qa-tnote">{F(x)}</p>' for x in t.get("notes", [])) + "</section>")
 
     tables = "".join(table(t) for t in p.get("tables", []))
-    sections = "".join(f'<section class="block"><h2>{F(h)}</h2>' + "".join(f"<p>{F(x)}</p>" for x in paras) + "</section>"
+    sections = "".join(f'<section class="block" id="{_slug(h)}"><h2>{F(h)}</h2>' + "".join(f"<p>{F(x)}</p>" for x in paras) + "</section>"
                        for h, paras in p.get("sections", []))
     related = "".join(f'<li><a href="{rel}{E(slug)}/">{E(label)}</a></li>' for slug, label in p["related"]
                       if slug in pages and (M.is_live(pages[slug]) or p.get("draft")))
@@ -139,7 +144,7 @@ def page_html(p):
     calc = p.get("calculator")
     calc_html = (f'<p class="qa-calc">{E(calc[2])} <a href="{rel}{E(calc[0])}/">the free {E(calc[1])}</a>.</p>' if calc else "")
     body = (f'{crumb}<article class="qa"><p class="eyebrow">{F(p["eyebrow"])}</p><h1>{F(p["h1"])}</h1>'
-            f'<p class="asof qa-upd"><span class="qa-by">Written by a finance executive</span> · {F(p["updated"])}</p>'
+            f'<p class="asof qa-upd"><span class="qa-by">By ProofNotFluff, run by a finance executive</span> · {F(p["updated"])}</p>'
             f'<div class="qa-answer"><p class="qa-tag">The short answer</p>{answer}</div>'
             f'<div class="ld-heroact qa-act">{buy()}<a class="ld-textlink" href="{sample}">See this week\'s sample</a></div>'
             + ('<p class="ld-heronote">New list every Monday. Cancel any time.</p>' if checkout else '')
@@ -152,7 +157,7 @@ def page_html(p):
     mod = full[:10]
     article = {"@context": "https://schema.org", "@type": "Article", "headline": fill(p["h1"], s), "description": fill(p["desc"], s),
                "mainEntityOfPage": url, "image": M.BASE + f'assets/og/{p["slug"]}.png', "inLanguage": "en-US",
-               "author": {"@type": "Organization", "name": "ProofNotFluff", "url": M.BASE, "description": "Written by a finance executive"},
+               "author": {"@type": "Organization", "name": "ProofNotFluff", "url": M.BASE},
                "publisher": {"@type": "Organization", "name": "ProofNotFluff", "url": M.BASE}}
     if re.match(r"\d{4}-\d{2}-\d{2}$", mod):
         stamp = full.replace("Z", "+00:00") if "T" in full else mod + "T08:00:00-05:00"
@@ -192,7 +197,7 @@ def page_html(p):
             + '<p>Made by ProofNotFluff with AI assistance from public City data. The page counts visits with Cloudflare Web Analytics, '
             'which sets no cookies.</p></div></footer>\n</body></html>')
     return (M.HEAD.format(title=F(p["title"]), desc=F(p["desc"]), url=url, rel=rel, shop=M.SHOP, ld=ld, bodycls=' class="ld-page"',
-                          robots=robots, analytics=M.analytics_tag()) + body + foot)
+                          robots=robots, analytics=M.analytics_tag(), ogtype="article") + body + foot)
 
 
 def city_note(M, city, d):

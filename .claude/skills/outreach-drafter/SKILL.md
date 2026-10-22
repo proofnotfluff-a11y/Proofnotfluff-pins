@@ -26,7 +26,7 @@ One job: keep hello@ and sales@ replies true in the CRM (both days), then on Mon
 ## Templates
 ### T1 partial occupancy
 Stage: Partial Occupancy Approved
-Subject: {gc} on {street}
+Subject: Final clean on {street}
 ```text
 Hi {first},
 
@@ -46,7 +46,7 @@ Want me to send the general contractor's direct contact details?
 ```
 ### T3 certificate of occupancy
 Stage: Certificate of Occupancy Pending
-Subject: {gc} on {street}
+Subject: Final clean on {street}
 ```text
 Hi {first},
 

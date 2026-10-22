@@ -426,3 +426,12 @@ section.block details,.qa-rel,.ld-gcs{max-width:none}
 @media(max-width:599px){.crumbs li:last-child:not(:first-child){display:none}}
 .st-trades{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media(min-width:900px){.st-trades{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* final a11y pass, Oct 22 */
+.st-frow input::placeholder,.signup input::placeholder{color:var(--muted)}
+.st-frow input:focus-visible,.signup input:focus-visible,.ld-proj:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.ld-area select{border-color:var(--muted)}
+.field input,.field select{border-color:#8a6a1f}
+@media (prefers-color-scheme:dark){.field input,.field select{border-color:#b08a2a}}
+nav.top a{padding:0 8px}nav.top{gap:0 12px}
+.crumbs a{min-height:44px;display:inline-flex;align-items:center;padding:0}

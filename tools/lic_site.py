@@ -1,0 +1,128 @@
+#!/usr/bin/env python3
+"""The free weekly sample page for Chicago New Business Licenses (site/pages.json kind "licleads", written by
+tools/make_site.py, which calls page_html here). Data: permits/licenses-chicago/sample.json (tools/licenses_chicago.py),
+committed by .github/workflows/licenses-chicago.yml every Monday.
+
+Every business on the sample was just licensed by the City at a business site; names that could be a person's,
+person-held and event licenses and home addresses are already left out by the data layer. Until Todd launches, the
+spec carries "draft": true (noindex, off the index and the sitemap) and no "checkout" key, so the page shows a
+"Tell me when it opens" note to the ProofNotFluff mailbox and no buy button. With no "price" the page names no price.
+
+Usage: python3 tools/lic_site.py      selftest on the committed sample and planted rows
+"""
+import json, os
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+ORDER = ["food", "retail", "beauty", "venue", "auto", "care"]
+
+
+def page_html(p):
+    import make_site as M
+    E = M.E
+    d = json.load(open(os.path.join(ROOT, p["data"]), encoding="utf-8"))
+    c, w, names = d["counts"], d["window"], d["segmentNames"]
+    url = M.BASE + p["slug"] + "/"
+    rel = "../"
+    checkout, price = p.get("checkout"), p.get("price")
+    pulled = M.nice_date(d["source"]["fetchedAt"][:10])
+    notify = p.get("notify") or "mailto:hello@proofnotfluff.com?subject=Chicago%20New%20Business%20Licenses%3A%20tell%20me%20when%20it%20opens"
+
+    def buy(cls="btn ld-btnbig"):
+        if checkout:
+            return f'<a class="{cls}" href="{E(checkout)}" rel="noopener">Get the full list: ${E(str(price))} a month</a>'
+        return f'<a class="{cls}" href="{E(notify)}">Tell me when it opens</a>'
+
+    def card(x):
+        return (f'<article class="ld-proj"><p class="ld-pill lc-pill">Licensed {E(M.nice_date(x["issued"]))}</p>'
+                f'<div class="ld-ptop"><span class="ld-cost" style="font-size:20px">{E(x["business"])}</span></div>'
+                f'<dl class="ld-meta"><div><dt>Where</dt><dd>{E(x["address"])}{", " + E(x["communityArea"]) if x.get("communityArea") else ""}</dd></div>'
+                f'<div><dt>License</dt><dd>{E(x["licenseType"])}</dd></div>'
+                f'<div><dt>Activity</dt><dd>{E(x["activity"])}</dd></div></dl></article>')
+
+    s30, sw = c["segments30"], c["segmentsWeek"]
+    note = (f'<p class="ld-heronote">New list every Monday. Cancel any time.</p>' if checkout else
+            (f'<p class="ld-heronote">${E(str(price))} a month when it opens. New list every Monday.</p>' if price else
+             '<p class="ld-heronote">Not on sale yet. New list every Monday.</p>'))
+    lede = (f'{c["keptWeek"]:,} new businesses got a Chicago business license in the week to {E(M.nice_date(w["to"]))}, and '
+            f'{c["kept30"]:,} in the last 30 days. {E(p["lede"])}')
+    top_area = c["areasWeek"][0] if c.get("areasWeek") else None
+    tiles = (f'<div class="tiles ld-tiles">'
+             f'<div class="tile key"><div class="lab">New in 30 days</div><div class="val">{c["kept30"]:,}</div><div class="sub">licensed business sites</div></div>'
+             f'<div class="tile"><div class="lab">New this week</div><div class="val">{c["keptWeek"]:,}</div><div class="sub">licensed in the last 7 days</div></div>'
+             f'<div class="tile"><div class="lab">Food businesses</div><div class="val">{s30.get("food", 0):,}</div><div class="sub">restaurants, cafes, bars, shops</div></div>'
+             + (f'<div class="tile"><div class="lab">Busiest area this week</div><div class="val lc-area">{E(top_area[0])}</div><div class="sub">{top_area[1]:,} new licenses</div></div>' if top_area else "")
+             + f'</div><p class="asof">City records pulled {E(pulled)}. Refreshed every Monday.</p>')
+    trades = ('<section class="block"><h2>New businesses by trade, last 30 days</h2><p>Each new business on the list, sorted by what it does, '
+              'so you can work the trades that buy from you.</p><ol class="rl-trades">'
+              + "".join(f'<li><span class="nm">{E(names[k])}<small>{sw.get(k, 0):,} new this week</small></span><span class="n">{s30.get(k, 0):,}</span></li>'
+                        for k in ORDER if k in names)
+              + '</ol></section>')
+    segs = "".join(f'<h3 class="lc-h3">{E(names[k])} <span>({sw.get(k, 0):,} this week)</span></h3><div class="ld-list rl3">{"".join(card(x) for x in d["segments"][k][:3])}</div>'
+                   for k in ORDER if d["segments"].get(k))
+    sample = (f'<section class="block" id="sample"><h2>This week\'s sample</h2><p>Up to three new businesses per trade from the last 7 days. '
+              'The members\' list has every one from the last 30 days, with a map, filters by trade, area and date, and an Excel file.</p>'
+              f'{segs}</section>')
+    method = '<section class="block"><h2>How to use this list</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"]) + "</section>"
+    cta_html = (f'<section class="block" id="ldCta"><div class="cta ld-cta"><div><h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
+                + (f'<p class="ld-price">${E(str(price))} a month when it opens.</p>' if price and not checkout else "")
+                + f'<p class="ld-buybtn">{buy()}</p></div></div></section>')
+    body = (f'<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>'
+            f'<div class="ld-heroact rl-act">{buy()}<a class="ld-textlink" href="#sample">See this week\'s sample</a></div>{note}</div>'
+            f'{tiles}{trades}{sample}{method}{cta_html}{M.faq_block(p["faq"])}')
+    ld = ('<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@type": "FAQPage",
+          "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}) + "</script>"
+          "<style>.ld-page .asof,.ld-page footer p{color:#555B68}.rl-act{margin:18px 0 8px}"
+          ".lc-pill{background:#E3EFED;color:#2E6B66}.rl3 .ld-pill{margin:0 0 10px}.rl3 .ld-ptop{margin:0 0 12px}"
+          ".lc-area{font-size:24px;line-height:1.2}.lc-h3{font:600 18px/1.3 Poppins,system-ui,sans-serif;margin:26px 0 10px;color:var(--ink)}"
+          ".lc-h3 span{font:400 15px/1.3 system-ui,sans-serif;color:#555B68}"
+          ".ld-page .ld-tiles .tile .lab{letter-spacing:.04em;overflow-wrap:anywhere}.ld-page .ld-tiles .tile .sub{text-wrap:balance}"
+          "@media(max-width:600px){.ld-page .ld-tiles .tile .lab{font-size:10.5px;letter-spacing:.02em}}"
+          "@media(min-width:1000px){.ld-list.rl3{grid-template-columns:repeat(3,minmax(0,1fr))}}"
+          ".rl-trades{list-style:none;margin:14px 0 0;padding:0;background:#fff;border:1px solid var(--line);border-radius:12px;max-width:760px}"
+          ".rl-trades li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 16px;border-top:1px solid #EFEBE4}"
+          "section.block .rl-trades li{max-width:none}.rl-trades li:first-child{border-top:0}.rl-trades .nm{font-weight:600;color:var(--ink)}"
+          ".rl-trades .nm small{display:block;font-size:13.5px;font-weight:400;color:#555B68;margin-top:2px}"
+          ".rl-trades .n{font:700 18px/1 Poppins,system-ui,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}"
+          ".ld-page .ld-cta p.ld-buybtn{margin-top:16px}.ld-page h2,.ld-page h3,.ld-page summary{text-wrap:balance}</style>")
+    robots = "" if M.is_live(p) else '<meta name="robots" content="noindex, nofollow">'
+    src = d["source"]
+    foot = (f'</main>\n<footer><div class="wrap">'
+            f'<p>Source: {E(src["name"])} ({E(src["url"])}), pulled {E(pulled)}. {E(src["modified"])} A license shows the City issued it on '
+            'that date; it does not say a business is open today or buying anything. No business named here has endorsed or works with '
+            'ProofNotFluff. Public information for planning sales calls; not legal or business advice and no promise of work.</p>'
+            f'<p>{E(M.CITY_DISCLAIMER["Chicago"])}</p><p>ProofNotFluff is not affiliated with or endorsed by the City of Chicago.</p>'
+            '<p>Made by ProofNotFluff with AI assistance from public City data. The page counts visits with Cloudflare Web Analytics, which sets no '
+            'cookies, and loads its heading font from Google Fonts.</p></div></footer>\n</body></html>')
+    return (M.HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=M.SHOP, ld=ld, bodycls=' class="ld-page"',
+                          robots=robots, analytics=M.analytics_tag()) + body + foot)
+
+
+def selftest():
+    import re, sys, tempfile
+    sys.path.insert(0, HERE)
+    spec = [x for x in json.load(open(os.path.join(ROOT, "site", "pages.json"), encoding="utf-8"))["pages"] if x.get("kind") == "licleads"][0]
+    html = page_html(spec)
+    assert 'content="noindex' in html or not spec.get("draft"), "draft page must be noindex"
+    assert spec.get("checkout") or "Tell me when it opens" in html, "no buy button before launch"
+    assert "—" not in html and "–" not in html
+    assert "one’s own risk" in html or "one's own risk" in html
+    assert html.count("<h1>") == 1
+    # planted: a sample with an empty trade and no area still renders, and the counts on the page are the file's
+    d = json.load(open(os.path.join(ROOT, spec["data"]), encoding="utf-8"))
+    d["segments"] = {k: [] for k in d["segments"]} | {"food": [{"business": "Planted Grill", "address": "1 N State St", "communityArea": "Loop",
+                     "licenseType": "Retail Food Establishment", "activity": "Restaurant", "issued": d["window"]["to"]}]}
+    d["counts"]["areasWeek"], d["counts"]["kept30"] = [], 4321
+    tmp = tempfile.mkdtemp()
+    f = os.path.join(tmp, "s.json")
+    json.dump(d, open(f, "w"))
+    h2 = page_html(dict(spec, data=os.path.relpath(f, ROOT)))
+    assert "Planted Grill" in h2 and "4,321" in h2 and "Busiest area" not in h2
+    text = re.sub(r"<[^>]+>", " ", html).lower()
+    for w in ("guarantee", "dirty", "violator"):
+        assert w not in text, w
+    print("lic_site selftest ok")
+
+
+if __name__ == "__main__":
+    selftest()

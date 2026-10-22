@@ -3802,6 +3802,48 @@
    "checkout": "https://proofnotfluff.gumroad.com/l/mlyiiz?utm_source=proofnotfluff&utm_medium=site&utm_campaign=chicago-restaurant-leads"
   },
   {
+   "slug": "chicago-new-business-licenses",
+   "kind": "licleads",
+   "draft": true,
+   "segment": "home-services",
+   "city": "Chicago",
+   "data": "permits/licenses-chicago/sample.json",
+   "title": "Chicago New Business Licenses: This Week's New Businesses by Trade | ProofNotFluff",
+   "desc": "Free weekly sample of new Chicago business licenses by trade: restaurants, shops, salons, venues and auto shops licensed in the last 30 days, for vendors who sell to new businesses.",
+   "eyebrow": "Free sample, updated every Monday",
+   "h1": "Chicago New Business Licenses",
+   "lede": "For vendors who sell to a business in its first months: POS and payments, signs, insurance, bookkeeping, cleaning, pest control, waste and supplies.",
+   "card": "New Chicago businesses licensed in the last 30 days, sorted by trade, for vendors who sell to new businesses.",
+   "method": [
+    "Pick the trades that buy from you. A new restaurant and a new salon need different vendors, so the list is sorted by what each business does.",
+    "Reach out in the first weeks. A business that just got its license is setting up its accounts, and the license date tells you how new it is.",
+    "Visit or call the business at its licensed address, name the license and its date, and say in one line what you do for businesses like it.",
+    "If you also use our Chicago Restaurant Inspection Leads, expect some of the same food businesses: this list has them when the license is issued, the restaurant list when the City inspects them."
+   ],
+   "cta": {
+    "title": "Get the full list every Monday",
+    "text": "Every new business license the City issued in the last 30 days at a Chicago business site, one row per business and address, sorted by trade, with license type, business activity, issue date, address and community area, in a members' web app and an Excel file."
+   },
+   "faq": [
+    [
+     "Where does this data come from?",
+     "The City of Chicago Data Portal's Business Licenses dataset. We pull it every Monday and keep new licenses (application type Issue) the City issued in the last 30 days at a Chicago business site."
+    ],
+    [
+     "Who is left out?",
+     "Renewals and changes, cancelled or revoked licenses, licenses held by a person or for an event or season (such as peddlers, special events, pop-ups, tow trucks and home-sharing), home-based businesses and apartment addresses, sites outside Chicago, and any business whose shown name could be a person's name. A business with two licenses at one site is listed once."
+    ],
+    [
+     "Is every business on the list open?",
+     "Not necessarily. A license shows the City issued it on that date. Some businesses open the same week, some later."
+    ],
+    [
+     "Do you contact these businesses for me?",
+     "No. You make your own calls and visits. We never contact anyone on your behalf, and no business listed has endorsed or works with ProofNotFluff."
+    ]
+   ]
+  },
+  {
    "slug": "chicago-post-construction-cleaning-contracts",
    "kind": "question",
    "draft": true,

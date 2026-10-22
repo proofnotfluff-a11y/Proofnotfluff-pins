@@ -1775,6 +1775,9 @@ def page_html(p):
     if p.get("kind") == "restleads":   # Chicago Restaurant Inspection Leads (tools/rest_site.py)
         import rest_site
         return rest_site.page_html(p)
+    if p.get("kind") == "licleads":    # Chicago New Business Licenses (tools/lic_site.py)
+        import lic_site
+        return lic_site.page_html(p)
     if p.get("kind") == "question":    # question pages for the lead products (tools/question_site.py)
         import question_site
         return question_site.page_html(p)
@@ -1953,7 +1956,7 @@ def main():
     spec = json.load(open(os.path.join(ROOT, "site", "pages.json"), encoding="utf-8"))
     pages = spec["pages"]
     for p in pages:
-        if p.get("kind") in ("leads", "restleads", "question") and not os.path.isfile(os.path.join(ROOT, p["data"])):
+        if p.get("kind") in ("leads", "restleads", "question", "licleads") and not os.path.isfile(os.path.join(ROOT, p["data"])):
             print("skipped", p["slug"], "(no data yet)")
             continue
         out = os.path.join(DOCS, p["slug"]); os.makedirs(out, exist_ok=True)

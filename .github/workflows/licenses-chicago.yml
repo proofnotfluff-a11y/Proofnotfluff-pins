@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["tools/licenses_chicago.py", ".github/workflows/licenses-chicago.yml"]
+    paths: ["tools/licenses_chicago.py", "tools/lic_site.py", ".github/workflows/licenses-chicago.yml"]
   schedule:
     - cron: "40 11 * * 1"   # Mondays, about 6:40 am Chicago time in daylight time
 permissions:
@@ -24,11 +24,15 @@ jobs:
       - run: python3 tools/licenses_chicago.py --selftest
       - run: python3 tools/licenses_chicago.py --probe
       - run: python3 tools/licenses_chicago.py --full "$RUNNER_TEMP/licenses-full.json"
+      - name: Rebuild the site pages from the new sample (the free page stays a noindex draft until launch)
+        run: |
+          python3 tools/lic_site.py
+          python3 tools/make_site.py
       - name: Commit
         run: |
           git config user.name "proofnotfluff-bot"
           git config user.email "proofnotfluff-bot@users.noreply.github.com"
-          git add permits/licenses-chicago
+          git add permits/licenses-chicago docs
           if git diff --cached --quiet; then echo "no change"; exit 0; fi
           git commit -m "Chicago new business licenses data $(date -u +%Y-%m-%d)"
           for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done

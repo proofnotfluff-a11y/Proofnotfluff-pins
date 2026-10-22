@@ -3435,12 +3435,12 @@
    ],
    "cta": {
     "title": "Get the full list every Monday",
-    "text": "Every open permit in Chicago with a reported cost of $500,000 or more and a business as general contractor, updated every Monday: closest to a final clean first with a neighborhood filter, new permits and near-finish jobs flagged, the builder on each, in a members' app with a map and in an Excel file. Plus a pitch kit: a one-page capability sheet outline and an email to builders you can adapt."
+    "text": "Every open apartment and commercial permit in Chicago with a reported cost of $500,000 or more and a business as general contractor, updated every Monday: closest to a final clean first with a neighborhood filter, new permits and near-finish jobs flagged, the builder on each, in a members' app with a map and in an Excel file. Plus a pitch kit: a one-page capability sheet outline and an email to builders you can adapt."
    },
    "faq": [
     [
      "Where does this data come from?",
-     "The City of Chicago Data Portal's Building Permits dataset, which the City updates daily, Monday to Saturday. We pull it every Monday and keep permits issued in the last 24 months for apartment buildings of 4 or more homes and commercial work with a reported cost of $500,000 or more that are still open and list a business as general contractor."
+     "The City of Chicago Data Portal's Building Permits dataset. We pull it every Monday and keep permits issued in the last 24 months for apartment buildings of 4 or more homes and commercial work with a reported cost of $500,000 or more that are still open and list a business as general contractor."
     ],
     [
      "Why are some big projects missing?",
@@ -3502,7 +3502,7 @@
     "Start with the builders, not the buildings. A general contractor with several big jobs open hires subcontractors on each one, so getting on one builder's vendor list can put you in front of many projects.",
     "Call the builder's main office and ask who buys cleaning for the project you name. Have the master permit number and the address ready.",
     "Send a one-page capability sheet the same day: what you clean, crew size, insurance, equipment and two references.",
-    "Watch the stage. Permit issued is early, work under way means the City has extended a permit after an inspection or on request, and near finish means some of the project's building permits are already finaled."
+    "Watch the stage. Permit issued is early, work under way means the City has pushed the permit's expiry date past its first 180 days, and near finish means some of the project's building permits are already finaled."
    ],
    "links": [
     [
@@ -3765,7 +3765,7 @@
    "card": "Chicago restaurants with a fresh failed or conditional City inspection, sorted by violation category, and places with a new license inspection.",
    "method": [
     "Pick your category. A pest violation is a pest control lead, a ventilation or hood violation is a hood cleaning lead, and a waste water or grease trap violation is a grease trap lead.",
-    "Call within a few days of the inspection date, during a quiet hour (2 to 4 pm suits most kitchens). Name the City's public record and its date, and leave any judgment out of it.",
+    "Call within a few days of the inspection date, during a quiet hour, such as mid afternoon. Name the City's public record and its date, and leave any judgment out of it.",
     "Offer what helps before the re-inspection: a service visit, a service log or a cleaning record the inspector can see.",
     "Work the openings list early. A place that just had its license inspection may be choosing its first vendors."
    ],
@@ -3776,7 +3776,7 @@
    "faq": [
     [
      "Where does this data come from?",
-     "The City of Chicago Data Portal's Food Inspections dataset. We pull it every Monday and keep the last 30 days of inspections up to the newest one the City has published, because the City posts results a few days late."
+     "The City of Chicago Data Portal's Food Inspections dataset. We pull it every Monday and keep the last 30 days of inspections up to the newest one the City has published, because the City publishes results after the inspection date."
     ],
     [
      "What do the categories mean?",

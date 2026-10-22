@@ -1561,6 +1561,8 @@ def normalize_extra(slug, h1):
     t = re.sub(r'<nav class="top"[^>]*>.*?</nav>', nav_html("../"), t, count=1, flags=re.S)
     t = re.sub(r'<!--pnf-fnav-->.*?<!--/pnf-fnav-->', "", t, flags=re.S)
     t = t.replace('<footer><div class="wrap">', '<footer><div class="wrap"><!--pnf-fnav-->' + foot_nav("../") + '<!--/pnf-fnav-->', 1)
+    t = t.replace("<p>Made by ProofNotFluff.</p>", "<p>Made by ProofNotFluff with AI assistance, reviewed and tested by the shop owner.</p>")
+    t = t.replace("and a copy comes by email.", "and a link to it comes by email.")
     open(f, "w", encoding="utf-8").write(t)
 
 
@@ -1872,6 +1874,7 @@ def page_html(p):
             f'<section class="block"><h2>How it works</h2>{"".join(f"<p>{E(x)}</p>" for x in p["method"])}</section>'
             f'<section class="block"><h2>A worked example</h2><p>{E(p["example"])}</p></section>'
             f'{extra_cards(p["slug"])}{find_customers(p["slug"], rel)}{cta(p)}{faq_block(p["faq"])}')
+    city_numbers = any(k != "ecommerce-13-week-cash-flow" for k in load_store().get("calcProducts", {}).get(p["slug"], []))
     robots = '<meta name="robots" content="noindex, nofollow">' if p.get("draft") else ""
     crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Free calculators", "#calculators"), (p["h1"], None)])
     body = crumb + body
@@ -1889,7 +1892,7 @@ def page_html(p):
             body = body.replace('<section class="block"><h2>How it works</h2>', up + '<section class="block"><h2>How it works</h2>', 1)
     ld = ld_json(p, url) + ld_tags(crumb_ld, *extra_ld)
     return (HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=SHOP, ld=ld, bodycls=' class="has-mbar"', robots=robots, analytics=analytics_tag()) + body +
-            FOOT.format(rel=rel, script=script, sources=E(p["sources"])))
+            FOOT.format(rel=rel, script=script, sources=E(p["sources"]), notices=data_notices() if city_numbers else ""))
 
 
 def index_html(pages):
@@ -2017,8 +2020,9 @@ def hub_html(links, pages):
             f'{"<h2 class=hubh>Premium workbooks</h2><div class=hublist>" + prem + "</div>" if prem else ""}'
             f'<div class="hublist"><a class="hubbtn shop" href="{E(links.get("shop", SHOP))}" rel="noopener"><b>The whole shop on Etsy</b><span>Every tool, $2.99 each</span></a></div>'
             f'{groups}</section>')
+    _, hub_ld = crumbs("../", [("Home", ""), ("Links", None)])
     return (HEAD.format(title="ProofNotFluff: free calculators and $2.99 tools", desc="Free pricing and money calculators, and the Excel and Google Sheets workbooks behind them.",
-                        url=url, rel="../", shop=SHOP, ld="", bodycls=' class="hubpage"', robots="", analytics=analytics_tag()) + body +
+                        url=url, rel="../", shop=SHOP, ld=ld_tags(hub_ld), bodycls=' class="hubpage"', robots="", analytics=analytics_tag()) + body +
             FOOT.format(rel="../", script="", sources="Prices as listed on Etsy; checked " + links.get("updated", "") + "."))
 
 
@@ -2114,9 +2118,9 @@ def store_products():
         elif page.get("kind") == "restleads":
             d = json.load(open(os.path.join(ROOT, page["data"]), encoding="utf-8"))
             c = d["counts"]
-            x["nums"] = [[f'{c["flagged"]:,}', "failed or conditional, last 30 days"], [f'{c["opening"]:,}', "license inspections, about to open"]]
+            x["nums"] = [[f'{c["flagged"]:,}', "failed or conditional in our four categories, 30 days"], [f'{c["opening"]:,}', "license inspections, about to open"]]
             x["asof"] = d["asOfText"]
-            x["source"] = (f'{d["source"]["name"]}: {c["flagged"]:,} failed or conditional and {c["opening"]:,} license inspections in the '
+            x["source"] = (f'{d["source"]["name"]}: {c["flagged"]:,} failed or conditional with a pest, hood, grease trap or cleaning violation and {c["opening"]:,} license inspections in the '
                            f'30 days to {d["throughText"]}, pulled {d["asOfText"]}.')
             x["sample"] = "#sample"
             x["counts"] = c
@@ -2235,7 +2239,7 @@ def home_html(pages, live):
     rest, chi, aus = by.get("chicago-restaurant-inspection-leads"), by.get("chicago-construction-cleaning-leads"), by.get("austin-construction-cleaning-leads")
     rows = []
     if rest:
-        rows.append((rest["nums"][0][0], "Chicago food businesses failed or passed with conditions, last 30 days"))
+        rows.append((rest["nums"][0][0], "Chicago food businesses failed or passed with conditions with a pest, hood, grease trap or cleaning violation, last 30 days"))
     if chi:
         rows.append((f'{chi["counts"]["kept"]:,}', "open Chicago projects of $500,000 or more"))
     if aus:
@@ -2274,7 +2278,7 @@ def home_html(pages, live):
     calc_cards = "".join(f'<h3 class="st-cgroup">{E(t)}</h3><ul class="st-calcs">{"".join(li(p) for p in items)}</ul>' for t, items in groups)
     extras = "".join(f'<a class="card st-printable" href="{E(x["slug"])}/"><h3>{E(x["h1"])}</h3><p>{E(x["card"])}</p><span class="st-link">Get the sheet {ARROW}</span></a>' for x in live_extras())
     calcs = ('<section class="st-sec" id="calculators" aria-labelledby="calc-title"><h2 id="calc-title">Free calculators</h2>'
-             '<p>Price the job before you call. Same maths as our tested Excel and Google Sheets workbooks, and nothing you type leaves your browser.</p>'
+             '<p>Price the job before you call. The same maths as our Excel and Google Sheets workbooks, and nothing you type leaves your browser.</p>'
              f'{calc_cards}</section>'
              + (f'<section class="st-sec" aria-labelledby="print-title"><h2 id="print-title">Free printables</h2><div class="tools">{extras}</div></section>' if extras else ""))
     qs = ""
@@ -2284,8 +2288,8 @@ def home_html(pages, live):
               + "".join(f'<li><a href="{q["slug"]}/"><span><b>{E(q["h1"])}</b><small>{E(q.get("eyebrow", ""))}</small></span>{ARROW}</a></li>' for q in LIVE_QUESTIONS[:5])
               + '</ul></section>')
     band = ('<section class="st-band" aria-labelledby="trust-title"><h2 id="trust-title">Public records, read by a finance executive.</h2>'
-            '<p>Every number here comes from the cities\' own open data or our tested workbooks, with the date we pulled it. No business on a list '
-            'endorses or works with ProofNotFluff, and we never contact anyone for you.</p></section>')
+            '<p>Every number here comes from the cities\' own open data or our own workbooks, with the date we pulled it. No business on a list '
+            'endorses or works with ProofNotFluff, and we never contact anyone for you. Public information for planning sales calls; not legal or business advice and no promise of work.</p></section>')
     org = {"@context": "https://schema.org", "@type": "Organization", "name": "ProofNotFluff", "url": BASE, "logo": BASE + "assets/og/home.png",
            "email": "hello@proofnotfluff.com"}
     items = {"@context": "https://schema.org", "@type": "ItemList", "name": "ProofNotFluff lead lists and tools",

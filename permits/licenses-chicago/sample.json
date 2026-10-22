@@ -3,7 +3,7 @@
   "name": "City of Chicago Data Portal, Business Licenses",
   "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
   "rowsUpdatedAt": "2026-10-22T09:55:53+00:00",
-  "fetchedAt": "2026-10-22T20:19:30+00:00",
+  "fetchedAt": "2026-10-22T20:23:20+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: licenses held by a person or for an event or season (peddlers, special events, pop-ups, tow trucks, home-sharing, shared kitchen users), home and mail-drop addresses, and any business whose name could be a person's name. Business-level fields only."
  },
@@ -14,34 +14,34 @@
  },
  "counts": {
   "fetched": 740,
-  "kept30": 224,
+  "kept30": 232,
   "keptWeek": 53,
   "segmentsWeek": {
-   "food": 25,
+   "food": 26,
    "beauty": 6,
    "auto": 1,
    "care": 1,
-   "venue": 3,
+   "venue": 2,
    "retail": 17
   },
   "segments30": {
-   "food": 70,
+   "food": 74,
    "beauty": 39,
    "auto": 10,
    "care": 3,
-   "venue": 4,
-   "retail": 98
+   "venue": 3,
+   "retail": 103
   },
   "excluded": {
    "issued outside the window": 139,
-   "second license at the same site (listed once)": 15,
-   "not a new license (renewal or change)": 19,
-   "license held by a person or for an event or season": 263,
-   "home or apartment address": 22,
-   "name could be a person's": 34,
+   "second license at the same site (listed once)": 16,
+   "name could be a person's": 35,
+   "license held by a person or for an event or season": 265,
+   "home or apartment address": 23,
+   "site outside Chicago": 20,
    "license not active (cancelled or revoked)": 2,
-   "site outside Chicago": 18,
-   "virtual office or mailbox address": 4
+   "virtual office or mailbox address": 4,
+   "not a new license (renewal or change)": 4
   },
   "areasWeek": [
    [
@@ -91,12 +91,12 @@
    "foodInspections": true
   },
   "history30": {
-   "first": 134,
-   "relicensed": 35,
+   "first": 139,
+   "relicensed": 36,
    "added": 17,
-   "site": 38
+   "site": 40
   },
-  "foodInsp30": 66
+  "foodInsp30": 70
  },
  "segmentNames": {
   "food": "Restaurants, cafes, bars and food shops",
@@ -267,14 +267,6 @@
     "licenseType": "Public Place of Amusement",
     "activity": "Charges a Fee for Entertainment or Amusements or Recreational Activities | Retail Sales of General Merchandise and Non-Perishable Food",
     "issued": "2026-10-20"
-   },
-   {
-    "business": "The New Factory",
-    "address": "12050-12054 S Doty Ave",
-    "communityArea": "Riverdale",
-    "licenseType": "Public Place of Amusement",
-    "activity": "Charges a Fee for Entertainment or Amusements or Recreational Activities",
-    "issued": "2026-10-16"
    },
    {
     "business": "The Smart Bar",

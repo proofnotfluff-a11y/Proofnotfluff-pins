@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-10-22T20:19:30+00:00",
+ "fetchedAt": "2026-10-22T20:23:20+00:00",
  "rowsUpdatedAt": "2026-10-22T09:55:53+00:00",
  "columns": [
   "id",
@@ -186,11 +186,11 @@
  "keptByLicense": [
   [
    "Limited Business License",
-   103
+   108
   ],
   [
    "Retail Food Establishment",
-   62
+   66
   ],
   [
    "Regulated Business License",
@@ -209,11 +209,11 @@
    4
   ],
   [
-   "Public Place of Amusement",
-   4
+   "Commercial Garage",
+   3
   ],
   [
-   "Commercial Garage",
+   "Public Place of Amusement",
    3
   ],
   [

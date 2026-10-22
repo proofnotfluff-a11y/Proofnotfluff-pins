@@ -3902,7 +3902,7 @@
     [
      "Near finish",
      "{nearFinish}",
-     "partial occupancy stage"
+     "partial occupancy approved"
     ]
    ],
    "numbers": [
@@ -3936,7 +3936,7 @@
     ],
     [
      "Get in before the end of the job",
-     "Reach the builder while the job is still under way, not after it closes. A project at the City's partial occupancy stage is near the end. This week's count at that stage: {nearFinish}."
+     "Reach the builder while the job is still under way, not after it closes. A project whose permit shows partial occupancy approved is near the end. This week's count at that stage: {nearFinish}."
     ],
     [
      "Walk the site only to introduce yourself",
@@ -4005,7 +4005,7 @@
     [
      "Austin Peay State University, construction standard 01 77 00.1 Final Cleaning",
      "https://www.apsu.edu/univ-design-and-construction/appendix_3/01-77-00.1-Final-Cleaning.pdf",
-     "created Dec 2018, read Oct 22, 2026"
+     "marked Created 12/18, read Oct 22, 2026"
     ],
     [
      "ZenBusiness, How to Start a Post-Construction Cleaning Company",
@@ -4043,7 +4043,7 @@
     {
      "title": "What a final clean usually covers",
      "intro": [
-      "Builders work from the project's specifications, and most include a final cleaning section. Here is what one public university's construction standard asks for, as an example of the scope a builder will expect you to quote."
+      "Builders work from the project's specifications, which usually include a final cleaning section. Here is what one public university's construction standard asks for, as an example of the scope a builder will expect you to quote."
      ],
      "head": [
       "Area",
@@ -4064,7 +4064,7 @@
       ],
       [
        "Floors",
-       "Hard floors vacuumed and mopped; carpet vacuumed, and shampooed if soil remains"
+       "Hard floors vacuumed and mopped; carpet vacuumed, and cleaned to the manufacturer's recommendations if soil or stains remain"
       ],
       [
        "Glass and mirrors",
@@ -4268,7 +4268,7 @@
     [
      "What the builder will ask you to clean",
      [
-      "Builders quote from the project's own spec, and most specs have a final cleaning section. [Our Chicago guide shows one public spec line by line](../chicago-post-construction-cleaning-contracts/#what-a-final-clean-usually-covers); ask the Austin builder for its cleaning section before you price."
+      "Builders quote from the project's own spec, which usually include a final cleaning section. [Our Chicago guide shows one public spec line by line](../chicago-post-construction-cleaning-contracts/#what-a-final-clean-usually-covers); ask the Austin builder for its cleaning section before you price."
      ]
     ]
    ]
@@ -4306,7 +4306,7 @@
     [
      "Failed or conditional",
      "{flagged}",
-     "any inspection type, our four categories"
+     "routine, complaint or re-inspection, our four categories"
     ],
     [
      "New this week",
@@ -4333,11 +4333,11 @@
     ],
     [
      "Lead with the schedule",
-     "Owners have to keep the exhaust system inspected on a schedule. Show the table above, ask what they cook and how much, and offer the visit frequency that fits."
+     "NFPA 96 sets an inspection schedule for the exhaust system by the kind of cooking. Show the table above, ask what they cook and how much, and offer the visit frequency that fits."
     ],
     [
      "Book the next visit before you leave",
-     "Before you leave the first job, book the next visit and offer a simple recurring plan, so saying yes again is simple. A reply in the Jobber Community thread that asked this question gives the same advice."
+     "Before you leave the first job, book the next visit and offer a simple recurring plan, so saying yes again is simple. A reply in the Jobber Community thread that asked this question gives similar advice: lock in a service schedule from day one and offer a simple recurring plan."
     ],
     [
      "Keep them after the first job",
@@ -4402,7 +4402,7 @@
     [
      "Village of New Paltz, NY, Kitchen Hood Cleaning Requirements (citing 2017 NFPA 96, Table 11.4)",
      "https://www.villageofnewpaltz.gov/wp-content/uploads/2019/10/191022-Kitchen-Hood-Cleaning-Requirements.pdf",
-     "dated Oct 22, 2019, read Oct 22, 2026"
+     "posted Oct 2019 (file name 191022), read Oct 22, 2026"
     ],
     [
      "Jobber Community, Expertise is there, but how do we get the first KEC clients?",
@@ -4425,7 +4425,7 @@
     {
      "title": "How often a hood system should be inspected",
      "intro": [
-      "NFPA 96, the fire code standard for commercial kitchen exhaust, sets how often a system must be inspected for grease buildup, by the kind of cooking. It is the easiest way to explain why a restaurant needs you on a schedule."
+      "NFPA 96, the NFPA standard for commercial cooking ventilation and fire protection, sets how often a system must be inspected for grease buildup, by the kind of cooking. It is the easiest way to explain why a restaurant needs you on a schedule."
      ],
      "head": [
       "Kind of cooking",

@@ -98,7 +98,7 @@ def page_html(p):
 
     def buy(cls="btn ld-btnbig"):
         if checkout:
-            return f'<a class="{cls}" href="{E(checkout)}" rel="noopener">Get the full list, ${price} a month</a>'
+            return f'<a class="{cls}" href="{E(checkout)}" rel="noopener">Get the full list: ${price} a month</a>'
         return f'<a class="{cls}" href="{sample}">See the free sample</a>'
 
     answer = "".join(f"<p>{F(x)}</p>" for x in p["answer"])
@@ -116,10 +116,11 @@ def page_html(p):
                 + f'<p class="qa-free"><a href="{sample}">Or see this week\'s free sample first</a></p></div></div></section>')
     srcs = "".join(f'<li>{F(label)}: <a href="{E(fill(u, s))}" rel="noopener">{E(fill(u, s))}</a>, {F(when)}</li>'
                    for label, u, when in p["sources"])
-    body = (f'<article class="qa"><p class="eyebrow">{F(p["eyebrow"])}</p><h1>{F(p["h1"])}</h1>'
+    body = (f'<article class="qa"><p class="eyebrow">{F(p["eyebrow"])}</p><h1>{F(p["h1"])}</h1><p class="asof qa-upd">{F(p["updated"])}</p>'
             f'<div class="qa-answer"><p class="qa-tag">The short answer</p>{answer}</div>'
-            f'<div class="ld-heroact qa-act">{buy()}<a class="ld-textlink" href="{sample}">See this week\'s free sample</a></div>'
-            f'{numbers}'
+            f'<div class="ld-heroact qa-act">{buy()}<a class="ld-textlink" href="{sample}">See this week\'s sample</a></div>'
+            + ('<p class="ld-heronote">New list every Monday. Cancel any time.</p>' if checkout else '')
+            + f'{numbers}'
             f'<section class="block"><h2>{F(p["stepsTitle"])}</h2><ol class="qa-steps">{steps}</ol></section>'
             f'{cta_html}{M.faq_block([(fill(q, s), fill(a, s)) for q, a in p["faq"]])}'
             + (f'<section class="block"><h2>Related pages</h2><ul class="qa-rel">{related}</ul></section>' if related else "")
@@ -128,7 +129,7 @@ def page_html(p):
           "mainEntity": [{"@type": "Question", "name": fill(q, s), "acceptedAnswer": {"@type": "Answer", "text": fill(a, s)}}
                          for q, a in p["faq"]]}) + "</script>"
           "<style>.ld-page .asof,.ld-page footer p{color:#555B68}"
-          ".qa{max-width:760px}.qa h1{text-wrap:balance}.ld-page h2,.ld-page h3,.ld-page summary{text-wrap:balance}"
+          ".qa{max-width:none}.qa>h1,.qa>p,.qa-answer,.qa-act,.qa .block>h2,.qa .block>p,.qa-steps,.qa .block details,.qa-rel,.qa-src ul{max-width:760px}.qa-upd{margin:10px 0 0}.qa h1{text-wrap:balance}.ld-page h2,.ld-page h3,.ld-page summary{text-wrap:balance}"
           ".qa-answer{background:#fff;border:1px solid var(--line);border-left:4px solid var(--ink);border-radius:12px;padding:18px 20px;margin:18px 0 0}"
           ".qa-answer p{margin:0 0 12px;font-size:17.5px;line-height:1.6}.qa-answer p:last-child{margin:0}"
           ".qa-answer .qa-tag{font:600 12px/1 Poppins,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#555B68;margin:0 0 10px}"
@@ -136,16 +137,17 @@ def page_html(p):
           ".qa-steps{margin:14px 0 0;padding:0 0 0 22px}.qa-steps li{margin:0 0 16px;padding-left:4px}"
           ".qa-steps h3{font:600 17px/1.35 Poppins,system-ui,sans-serif;margin:0 0 6px;color:var(--ink)}.qa-steps p{margin:0;line-height:1.6}"
           ".qa-rel,.qa-src ul{margin:10px 0 0;padding-left:20px}.qa-rel li,.qa-src li{margin:0 0 8px;line-height:1.5}"
-          ".qa-src li{font-size:14.5px;color:#555B68;overflow-wrap:anywhere}"
+          ".qa-src li{font-size:14.5px;color:#555B68;overflow-wrap:break-word}"
           ".qa-free{margin:12px 0 0;font-size:15px}.ld-cta .qa-free a{color:#fff}.ld-page .ld-cta p.ld-buybtn{margin-top:16px}"
           ".ld-page .ld-tiles .tile .lab{letter-spacing:.04em;overflow-wrap:anywhere}"
-          "@media(max-width:600px){.ld-page .ld-tiles .tile .lab{font-size:10.5px;letter-spacing:.02em}.qa-answer p{font-size:16.5px}}</style>")
+          "@media(max-width:600px){.ld-page .ld-tiles .tile .lab{font-size:10.5px;letter-spacing:.02em}.qa h1{font-size:27px;line-height:1.12}.qa-answer{padding:14px 16px}.qa-answer p{font-size:16px;line-height:1.55}}</style>")
     robots = "" if M.is_live(p) else '<meta name="robots" content="noindex, nofollow">'
     foot = ('</main>\n<footer><div class="wrap">'
             f'<p>{F(p["footnote"])} Public information for planning sales calls; not legal or business advice and no promise of work. '
             'No business named here has endorsed or works with ProofNotFluff.</p>'
             f'<p>{E(prod.get("disclaimer") or city_note(M, p["city"], d))}</p>'
-            '<p>Made by ProofNotFluff with AI assistance from public City data. The page counts visits with Cloudflare Web Analytics, '
+            + ("" if prod.get("disclaimer") else f'<p>ProofNotFluff is not affiliated with or endorsed by the City of {E(p["city"])}.</p>')
+            + '<p>Made by ProofNotFluff with AI assistance from public City data. The page counts visits with Cloudflare Web Analytics, '
             'which sets no cookies, and loads its heading font from Google Fonts.</p></div></footer>\n</body></html>')
     return (M.HEAD.format(title=F(p["title"]), desc=F(p["desc"]), url=url, rel=rel, shop=M.SHOP, ld=ld, bodycls=' class="ld-page"',
                           robots=robots, analytics=M.analytics_tag()) + body + foot)

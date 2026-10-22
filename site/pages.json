@@ -3813,9 +3813,10 @@
    "desc": "How a small cleaning company finds post-construction cleaning work in Chicago: the City's building permits name the general contractor on {kept} open projects this week.",
    "card": "How a small cleaning company finds post-construction work in Chicago, with this week's open projects from City permits.",
    "eyebrow": "Chicago post-construction cleaning",
+   "updated": "Updated {asOf} from City of Chicago building permits. Refreshed every Monday.",
    "h1": "How does a small cleaning company get post-construction cleaning contracts in Chicago?",
    "answer": [
-    "Go to the general contractor's office, early, with a named project in hand. When you ask for the project manager on a job site you are usually sent to the builder or the developer, and in Chicago you do not have to guess who the builder is: the City's building permits list the general contractor on each job.",
+    "Go to the general contractor's office, early, with a named project in hand. In Chicago you do not have to guess who the builder is: the City's building permits list the general contractor on each job.",
     "This week the City's records show {kept} open commercial and apartment projects in Chicago with a reported cost of $500,000 or more and a business listed as general contractor. {nearFinish} of them are at the partial occupancy stage, near the end of the job."
    ],
    "numbersTitle": "Chicago this week, from the City's own records",
@@ -3852,7 +3853,7 @@
     ],
     [
      "Start with builders who have many jobs open",
-     "A builder with several open jobs needs cleaning on each of them. On this Monday's list, {gc1} has {gc1n} open projects, {gc2} has {gc2n} and {gc3} has {gc3n}."
+     "A builder with several open jobs may buy cleaning for more than one of them. On this Monday's list, {gc1} has {gc1n} open projects, {gc2} has {gc2n} and {gc3} has {gc3n}."
     ],
     [
      "Call the main office and name the project",
@@ -3860,7 +3861,7 @@
     ],
     [
      "Ask for a small first job",
-     "Offer one floor, one phase or the rough clean on a smaller project. A small job is an easy yes for a builder that has never used you, and a good one gives you a reference on its next project."
+     "Offer one floor, one phase or the rough clean on a smaller project. A small job is a smaller decision for a builder that has never used you, and good work there can lead to a reference."
     ],
     [
      "Get in before the end of the job",
@@ -3929,6 +3930,7 @@
    "desc": "Who to contact for post-construction cleanup work in Austin: the general contractor the City lists on the permit. {kept} active projects and {builders} builders this week.",
    "card": "Who to contact for post-construction cleanup work in Austin, with this week's active projects and builders from City permits.",
    "eyebrow": "Austin post-construction cleanup",
+   "updated": "Updated {asOf} from City of Austin issued construction permits. Refreshed every Monday.",
    "h1": "Who do I contact to get post-construction cleanup work in Austin?",
    "answer": [
     "The general contractor's office. The City of Austin lists the contractor on each building permit with its trade, and the one marked General Contractor is the builder running the job. Find the right person there, send a short sheet about your company, then ask to meet.",
@@ -3968,7 +3970,7 @@
     ],
     [
      "Start with builders who have several jobs",
-     "{topLine} One builder's vendor list can put you in front of several projects."
+     "{topLine} Getting on one builder's vendor list may put you in front of more than one project."
     ],
     [
      "Find the right person first",
@@ -3976,7 +3978,7 @@
     ],
     [
      "Ask to meet",
-     "Builders are busy. A short meeting at the office with your sheet and photos of past jobs puts a face to your name."
+     "A short meeting at the office with your sheet and photos of past jobs puts a face to your name."
     ],
     [
      "Watch the stage",
@@ -4020,6 +4022,11 @@
      "City of Austin, Issued Construction Permits (3syk-w9eu)",
      "{datasetUrl}",
      "pulled {asOf}"
+    ],
+    [
+     "City of Austin Open Data Terms of Use",
+     "https://data.austintexas.gov/stories/s/ranj-cccq",
+     "as referenced on the free sample page"
     ]
    ],
    "footnote": "Numbers from the City of Austin's Issued Construction Permits data, pulled {asOf}, filtered by ProofNotFluff as the free sample page describes."
@@ -4036,6 +4043,7 @@
    "desc": "How a new hood and kitchen exhaust cleaning company finds its first restaurant clients in Chicago, using the City's food inspection records: {opening} license inspections in 30 days.",
    "card": "How a new hood cleaning company finds its first Chicago restaurant clients, from the City's food inspection records.",
    "eyebrow": "Chicago hood and exhaust cleaning",
+   "updated": "City records through {through}, pulled {asOf}. Refreshed every Monday.",
    "h1": "How does a new hood cleaning company get its first restaurant clients in Chicago?",
    "answer": [
     "Start where the need is fresh: restaurants that are about to open, and restaurants the City just cited for a hood or exhaust problem. Both show up in the City of Chicago's public food inspection records, and both are places you can visit this week.",
@@ -4044,9 +4052,9 @@
    "numbersTitle": "Chicago in the last 30 days, from the City's own records",
    "tiles": [
     [
-     "Opening soon",
+     "License inspections",
      "{opening}",
-     "license inspections"
+     "{openingPassed} passed"
     ],
     [
      "Hood or exhaust",
@@ -4056,7 +4064,7 @@
     [
      "Failed or conditional",
      "{flagged}",
-     "all four categories"
+     "all violation categories we track"
     ],
     [
      "New this week",
@@ -4065,25 +4073,25 @@
     ]
    ],
    "numbers": [
-    "City records through {through}, pulled {asOf}. A record repeats the City's result on that date. It does not say a place has a problem today, and many places pass a re-inspection within days."
+    "City records through {through}, pulled {asOf}. A record repeats the City's result on that date. It does not say a place has a problem today, and a place may pass a re-inspection soon after."
    ],
    "stepsTitle": "How to do it",
    "steps": [
     [
      "Start with places about to open",
-     "The City's Retail Food License Readiness Checklist says an applicant should pay for the license only when construction is complete and the place is ready to operate, and that the health department then schedules an on-site inspection. A place with a fresh license inspection is close to opening and choosing its vendors for the first time."
+     "The City's Retail Food License Readiness Checklist says an applicant should pay for the license only when construction is complete and the place is ready to operate, and that the health department then schedules an on-site inspection. A place with a fresh license inspection is often close to opening and may be choosing its first vendors."
     ],
     [
      "Then the hood and exhaust citations",
-     "A hood or exhaust violation is a public record with a date. Get in touch within a few days, name the record and its date, leave any judgment out of it, and offer a service visit before the re-inspection."
+     "A hood or exhaust violation is a public record with a date. Get in touch within a few days, name the record and its date, leave any judgment out of it, and offer a service visit."
     ],
     [
      "Go in person",
-     "Visit between lunch and dinner, when a kitchen manager has time to talk. Bring a one-page sheet: what you clean, how often you can come, insurance and two references."
+     "Visit in a quiet hour, such as between lunch and dinner, and ask for the kitchen manager. Bring a one-page sheet: what you clean, how often you can come, insurance and two references."
     ],
     [
      "Offer a schedule from the first job",
-     "Before you leave the first job, book the next visit and offer a simple recurring plan, so saying yes again takes no effort."
+     "Before you leave the first job, book the next visit and offer a simple recurring plan, so saying yes again is simple."
     ]
    ],
    "cta": {
@@ -4097,7 +4105,7 @@
     ],
     [
      "Is a license inspection the same as opening?",
-     "No. It is the health inspection the City does after a business applies and pays for a food license. Per the City's checklist, an applicant should apply when construction is complete and the place is ready to operate, so many open soon after, but some take longer."
+     "No. It is the health inspection the City does after a business applies and pays for a food license. Per the City's checklist, an applicant should pay for the license only when construction is complete and the place is ready to operate, so many open soon after, but some take longer."
     ],
     [
      "Why doesn't this page name places?",

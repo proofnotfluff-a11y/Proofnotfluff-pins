@@ -30,7 +30,15 @@ Growth-research Phase B, Oct 22, 2026 (live session with Todd). Nothing is built
 ## Risks and Legal desk questions
 1. City data terms (source-terms.txt pattern) for resale of addresses from Building Violations.
 2. Residential buildings: an elevator building is never a single home, but condo and co-op buildings are people's homes. Is a building address with an open elevator citation acceptable, or keep only buildings with a business license (48 of 122)?
-3. Buyer count: how many independent elevator companies exist in Chicago (next probe: distinct contractor names on elevator permits, counted, never written).
+3. Buyer count: answered Oct 22, below (24 active independents a year).
 
 ## Next
 - [stated] Todd, Oct 22, 2026, live chat: "Elevator: run the buyer-count probe only. No build." Probe: tools/elevator_contractors.py and .github/workflows/elevator-contractors.yml (counts only, names never written), results below.
+
+## Buyer count (GitHub Actions run 39825200072, Oct 22, 2026; probes/elevator-contractors-2026-10-22.json)
+- Elevator equipment permits (ydr8-5enu): 280 in 90 days, 1,109 in 365 days; every one names an elevator contractor.
+- Distinct contractors: 34 in 90 days (6 national firm names across 4 brands, 28 independents); 49 in 365 days (8 national names across 5 brands, 41 independents).
+- Independents with 5 or more permits: 11 in 90 days, 24 in 365 days. Median independent: 3 permits in 90 days, 9 in a year.
+- The nationals hold 128 of 280 permit slots in 90 days (46%) and 542 of 1,109 in a year (49%).
+- Caveat: independents are counted after name normalization (case, punctuation, legal suffix); spelling variants of one firm still count twice, so 41 is a ceiling.
+- Verdict (Oct 22): the count does not support building a $99 list now. About 24 active independent firms is the whole market; $1,000 a month at $99 needs 11 of them paying, close to half the market from cold email. At best a small add-on. Stays spec only.

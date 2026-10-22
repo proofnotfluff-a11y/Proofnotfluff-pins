@@ -4,7 +4,7 @@ One job: draft one question page from seo/BACKLOG.md, gate it, and publish it if
 
 ## Inputs (Reads)
 - seo/BACKLOG.md (the queue), seo/QUESTIONS.md (pages made), seo/STORE.md (rules), seo/RESULTS.md.
-- Audience by day: Mon group A (lead trades), Wed group B (e-commerce, the kit), Fri group C (calculator trades). Take the top row of that group with no line in seo/QUESTIONS.md.
+- Audience by day: Mon group A (lead trades), Wed group B (e-commerce, the kit), Fri group C (calculator trades). Take the top row of that group with no line in seo/QUESTIONS.md. Drafts come first: if seo/QUESTIONS.md has a page still marked draft, take the oldest one instead, whatever the day, and run it from step 4 (its spec exists).
 - The paid product's data file (site/pages.json "data") and the matching free calculator (site/store.json calcProducts, or the row's calculator).
 
 ## Process (Executes)

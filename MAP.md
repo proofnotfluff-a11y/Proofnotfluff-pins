@@ -1,5 +1,7 @@
 # MAP: how ProofNotFluff fits together
 
+Oct 22, 2026 restructure: scheduled runs now start from CLAUDE.md (Layer 0), coo/HANDOFF.md (Layer 1) and one .claude/skills/<job>/SKILL.md; the memory ledger below is archived (archive/legacy-memory/README.md). The rest of this map is reference for the Etsy-era folders.
+
 Read this first, before any folder. It says where things are, who owns them, how they connect, and why they are shaped this way. It does not repeat the rules: those live in the ledger (Todd's memory, /areas/digital-products.md, read by every run) and in coo/CONSTITUTION.md. When this map and a rule disagree, the rule wins; fix the map in the same commit.
 
 Written Oct 17, 2026 (live session) after a day where an agent spent three rounds fixing a filter it could not see the data for. Keep it current: any commit that adds a folder, a tool or an agent, or moves an owner, updates this file.

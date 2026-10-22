@@ -1,5 +1,7 @@
 # Leads desk: the four runs that work the lead products
 
+Superseded for scheduled runs on Oct 22, 2026 by the stage contracts in .claude/skills/ (permit-ingestion, outreach-drafter, prospect-matching, product-builder) and email/SEND_RULES.md. Kept as reference; a run reads a section of it only when its SKILL.md names that section.
+
 Todd, Oct 18, 2026: "Let's make sure we are not wasting usage and putting it towards the leads products concerning R&D/product development, email marketing, quality checks." He then chose "You send after my yes", "Yes, one follow-up" and "Add all 4", and asked for a CRM "so we can track who we sent to and who responded". This file binds the four runs below. coo/CONSTITUTION.md binds them first; the ledger (memory /areas/digital-products.md) and the plan file's LEADS FOCUS section come next. Where this file and a run's prompt differ, this file wins, and the constitution wins over both.
 
 ## Shared places

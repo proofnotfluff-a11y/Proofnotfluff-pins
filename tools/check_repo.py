@@ -31,11 +31,22 @@ Checks
   fiverr-kit    tools/fiverr_kit.py: the paste-ready Fiverr copy in services/fiverr/ keeps to Fiverr's field limits
                 and our rules (AI-assisted, not-advice and license lines; no links, contacts, review bait or
                 off-Fiverr asks)
+  context       tools/context_gate.py: Layer 0 CLAUDE.md and Layer 1 coo/HANDOFF.md under 2 KB, each
+                .claude/skills/<job>/SKILL.md under 5 KB with Inputs, Process and Outputs sections, Layer 0 + Layer 1 + any
+                one SKILL.md under 10,240 bytes, no legacy areas/digital-products*.md outside archive/
+  moat          permits/downstream/gc_leads.json (when present): schema pnf.gc_lead.v1 and the Timing Moat Gate on every lead
+  schema        Two-Entity Schema and Inbox Gate: no prospect data tracked in this public repo (data/ or a pnf.prospect.v1
+                file), and a local data/prospects/prospects.json, when present, passes the named decision-maker rules
+  copy          tools/copy_gate.py: the outreach-drafter templates render under 75 words, link-free, downstream and
+                permission-based; a local data/work/drafts.json, when present, passes the same gate
+  gate-selftest tools/test_gates.py plants a failure for each of the four gates above and confirms each is caught
   gate-tests    tools/test_check_repo.py plants a failure for every check above in a throwaway copy and
                 confirms each one is caught and no secret value is printed (Todd's Oct 15 note: the checks get
                 tested too). An ERROR here means the gate itself is broken: tell Todd, never edit the gate to clear it
 
 Usage: python3 tools/check_repo.py [--only name,name]
+       python3 tools/check_repo.py --preflight <job>   the fast pre-run gate every scheduled run starts with: context
+                                                       (with that job's SKILL.md), moat, schema, copy and gate-selftest
 """
 import argparse, filecmp, glob, importlib.util, json, os, re, shutil, subprocess, sys, tempfile
 
@@ -321,16 +332,93 @@ def check_sender():
     ok("sender-tests", "; ".join(out))
 
 
+def _run_tool(args, timeout=300):
+    r = subprocess.run([sys.executable] + args, cwd=ROOT, capture_output=True, text=True, timeout=timeout)
+    lines = [l for l in (r.stdout + r.stderr).splitlines() if l.strip()]
+    return r.returncode, lines
+
+
+def check_context(skill=None):
+    code, lines = _run_tool([os.path.join("tools", "context_gate.py")] + (["--skill", skill] if skill else []))
+    if code:
+        err("context", "; ".join(l.replace("ERROR context: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
+    else:
+        ok("context", lines[-1].replace("OK context: ", "") if lines else "")
+
+
+def check_moat():
+    path = os.path.join(ROOT, "permits", "downstream", "gc_leads.json")
+    if not os.path.exists(path):
+        return ok("moat", "no permits/downstream/gc_leads.json yet (the downstream-leads workflow writes it)")
+    code, lines = _run_tool([os.path.join("tools", "validate_leads.py"), "gc", path])
+    if code:
+        err("moat", "; ".join(l.replace("ERROR gc: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
+    else:
+        ok("moat", lines[-1].replace("OK gc: ", "") if lines else "")
+
+
+def check_schema(files):
+    leaked = [f for f in files if f.startswith("data/")]
+    for f in files:
+        if f.endswith(".json") and not f.startswith("data/"):
+            try:
+                with open(os.path.join(ROOT, f), encoding="utf-8") as fh:
+                    head = fh.read(400)
+            except (OSError, UnicodeDecodeError):
+                continue
+            if '"pnf.prospect.v1"' in head:
+                leaked.append(f)
+    if leaked:
+        return err("schema", "prospect data (named people) is tracked in this public repo: " + ", ".join(leaked[:5]))
+    local = os.path.join(ROOT, "data", "prospects", "prospects.json")
+    if not os.path.exists(local):
+        return ok("schema", "no prospect data tracked; no local prospect file in this checkout")
+    code, lines = _run_tool([os.path.join("tools", "validate_leads.py"), "prospects", local])
+    if code:
+        err("schema", "; ".join(l.replace("ERROR prospects: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
+    else:
+        ok("schema", lines[-1].replace("OK prospects: ", "") if lines else "")
+
+
+def check_copy():
+    code, lines = _run_tool([os.path.join("tools", "copy_gate.py"), "--templates"])
+    if code:
+        return err("copy", "; ".join(l.replace("ERROR copy: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
+    detail = lines[-1].replace("OK copy: ", "") if lines else ""
+    drafts = os.path.join(ROOT, "data", "work", "drafts.json")
+    if os.path.exists(drafts):
+        code, lines = _run_tool([os.path.join("tools", "copy_gate.py"), drafts])
+        if code:
+            return err("copy", "; ".join(l.replace("ERROR copy: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
+        detail += "; " + (lines[-1].replace("OK copy: ", "") if lines else "")
+    ok("copy", detail)
+
+
+def check_gate_selftest():
+    code, lines = _run_tool([os.path.join("tools", "test_gates.py")])
+    if code:
+        err("gate-selftest", "a pipeline gate stopped catching a planted failure (" + "; ".join(l[5:] for l in lines if l.startswith("FAIL "))[:500]
+            + "); never edit the gates or tools/test_gates.py to clear this, tell Todd")
+    else:
+        ok("gate-selftest", lines[-1].split(": ", 1)[-1] if lines else "passed")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", default="")
-    only = {x.strip() for x in ap.parse_args().only.split(",") if x.strip()}
+    ap.add_argument("--preflight", metavar="JOB", default=None)
+    args = ap.parse_args()
+    only = {x.strip() for x in args.only.split(",") if x.strip()}
+    if args.preflight:
+        only = {"context", "moat", "schema", "copy", "gate-selftest"}
     files = tracked()
     checks = [("json", lambda: check_json(files)), ("python", lambda: check_python(files)), ("calc-tests", check_calc), ("sender-tests", check_sender),
               ("site-sync", lambda: check_site_sync(files)), ("drafts", check_drafts), ("em-dash", lambda: check_em_dash(files)),
               ("secrets", lambda: check_secrets(files)), ("permit-data", check_permit_data), ("builder-contacts", lambda: check_builder_contacts(files)), ("video-specs", lambda: check_video_specs(files)),
               ("voice", lambda: check_voice(files)),
               ("fiverr-kit", check_fiverr_kit),
+              ("context", lambda: check_context(args.preflight)), ("moat", check_moat), ("schema", lambda: check_schema(files)),
+              ("copy", check_copy), ("gate-selftest", check_gate_selftest),
               ("gate-tests", check_gate_tests)]
     for name, fn in checks:
         if only and name not in only:
@@ -342,7 +430,8 @@ def main():
     for status, name, detail in results:
         print(f"{status} {name}" + (f": {detail}" if status == "ERROR" else (f" ({detail})" if detail else "")))
     n = sum(1 for r in results if r[0] == "ERROR")
-    partial = f" (partial run: only {', '.join(sorted(only))}; run the full check before pushing)" if only else ""
+    partial = (f" (preflight for {args.preflight}: the four pipeline gates and their planted tests)" if args.preflight else
+               f" (partial run: only {', '.join(sorted(only))}; run the full check before pushing)" if only else "")
     print(f"check_repo: {n} error{'s' if n != 1 else ''}{partial}")
     sys.exit(1 if n else 0)
 

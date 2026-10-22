@@ -1,0 +1,35 @@
+name: Downstream GC leads
+# Entity A of the restructured leads pipeline (CLAUDE.md, .claude/skills/permit-ingestion/SKILL.md). The cloud agents
+# cannot reach the City portals, so this runner pulls Chicago and Austin permits in downstream completion stages, joins
+# them in code to the Certificate of Occupancy and health inspection signals, applies the Timing Moat Gate and commits
+# only business-level fields to permits/downstream/gc_leads.json. Any failed fetch or failed record exits 1 and commits
+# nothing (tools/ingest_downstream.py).
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "5 12 * * 1"   # Mondays 7:05 am Central (CDT), after permits-chicago, inspections-chicago and permits-austin
+permissions:
+  contents: write
+concurrency:
+  group: downstream-leads
+  cancel-in-progress: false
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/ingest_downstream.py --selftest
+      - run: python3 tools/test_gates.py
+      - name: Pull, join and gate
+        run: python3 tools/ingest_downstream.py --out permits/downstream/gc_leads.json
+      - name: Validate before commit
+        run: python3 tools/validate_leads.py gc permits/downstream/gc_leads.json
+      - name: Commit
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add permits/downstream/gc_leads.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Downstream GC leads $(date -u +%F)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 5; done

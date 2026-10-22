@@ -15,3 +15,6 @@ dashboard/shots/
 
 # Builder contacts stay encrypted in this public repo (Legal desk round 2, Fix 1): builder_contacts.enc.json only
 permits/chicago/builder_contacts.json
+
+# Entity B prospects and per-run work files: named people, never committed (CLAUDE.md invariant 5)
+data/

@@ -144,3 +144,18 @@ Weekly leads from the City's Food Inspections data for pest control, hood cleani
 - `tools/rest_app.py DATA.json OUT.xlsx docs/chicago-restaurant-leads-members/index.html` with `REST_LEADS_PASSWORD` (or `--pw-file`): the members' app (overview by trade, list with map and filters, place page with its inspection history, pitch kit, Terms, CSV, workbook download). Reuses leads_app.py's stylesheet and Leaflet pins by import and leads_page.py's encryption. `--selftest` checks ciphertext only, the City disclaimer word for word, Terms and pitch from rest_xlsx, browser helpers in node, voice and judgment words.
 - `tools/rest_site.py` (called by make_site.py for kind `restleads`): the free sample page; `python3 tools/rest_site.py` runs its selftest.
 - The inspections workflow runs all of it every Monday; the members' app is built only once the `REST_LEADS_PASSWORD` Actions secret exists.
+
+## Downstream leads pipeline (restructure, Oct 22, 2026)
+Code fetches, joins and checks; the agent only matches and drafts between gates; Todd verifies before anything sends. Every script exits 0 on pass and 1 on any violation, and a non-zero exit stops the stage.
+- `socrata.py`: the shared Socrata client (paged, checked against the portal's own count, retried, raises SocrataError).
+- `ingest_downstream.py`: Entity A. Chicago and Austin permits in downstream completion stages joined to Certificate of Occupancy and health inspection signals, Timing Moat Gate, writes permits/downstream/gc_leads.json. GitHub Actions only (downstream-leads.yml); `--selftest` runs offline.
+- `join_probe.py`: live hit counts for every join key, in probes/join-keys-<date>.json (data-probe.yml).
+- `prospects_import.py`: Entity B from Apollo, Hunter or Clay CSV exports into data/prospects/prospects.json (gitignored), Inbox Gate on every row, rejects listed with reasons.
+- `enrich_hunter.py`: one named decision-maker per business through Hunter's Domain Search and Email Verifier (needs HUNTER_API_KEY).
+- `crm_prospects.py`: the CRM listing (ArtifactData out_dir) into the validated prospect file and the stored matches.
+- `validate_leads.py gc | prospects | matches`: the Two-Entity Schema, Timing Moat and Inbox Gates.
+- `copy_gate.py [drafts.json] | --templates`: the Outreach Copy Gate (under 75 words, no link or domain, no upstream phrase, no pitch, named greeting, permission question).
+- `context_gate.py`: the ICM Context Gate (Layer 0 + Layer 1 + one SKILL.md under 10,240 bytes, no legacy ledger in active paths).
+- `test_gates.py`: planted failures for the four gates; check_repo runs it as gate-selftest.
+- `pnf_rules.py`: the rules themselves (stages, role inboxes, banned strings, schemas, address_key, footer).
+- `python3 tools/check_repo.py --preflight <job>`: the first command of every scheduled run.

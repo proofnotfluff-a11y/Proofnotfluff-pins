@@ -1,7 +1,7 @@
 {
  "started_at": "2026-10-17T18:19:43Z",
- "cash": 10.5246,
- "realized_pnl": 2.4957,
+ "cash": 29.1485,
+ "realized_pnl": 2.1303,
  "cohort": {
   "picked_at": "2026-10-17T18:19:43Z",
   "wallets": [
@@ -210,24 +210,24 @@
   }
  },
  "last_seen": {
-  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1792651088,
+  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1792672904,
   "0xcdcccd0f2d86e450d973da415ad2430e5cc7935a": 1792414119,
-  "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1792651251,
+  "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1792672865,
   "0x7c37b52eb226bcb9411375ec48b0169663fb6aeb": 1792261183,
-  "0x924379a79c64b77ad5816ad362122a5f6228658e": 1792493916,
+  "0x924379a79c64b77ad5816ad362122a5f6228658e": 1792659420,
   "0x63cf8544631c31e9fcea0b02141dd24d01d6e4d0": 1792261183,
-  "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": 1792629773,
-  "0x361b16e3ddfe1d415d41008daac2631d94ab74fe": 1792649285,
-  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1792485907,
-  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1792651262,
-  "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": 1792643277,
+  "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": 1792672917,
+  "0x361b16e3ddfe1d415d41008daac2631d94ab74fe": 1792661432,
+  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1792672736,
+  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1792672916,
+  "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": 1792672635,
   "0xb0e74df9430a089aa102e2207af5fde1967439d2": 1792261183,
   "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747": 1792435055,
-  "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c": 1792650698,
-  "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": 1792635252,
-  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1792650860,
+  "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c": 1792672896,
+  "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": 1792671942,
+  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1792672757,
   "0xd38b71f3e8ed1af71983e5c309eac3dfa9b35029": 1792637583,
-  "0x511f9c771449162349795d17becf8b37031acbe1": 1792651241,
+  "0x511f9c771449162349795d17becf8b37031acbe1": 1792672638,
   "0x0f6f76ced62a911bccef92f50faaff143854d977": 1792575788,
   "0xa2cced8bfae7d645f7f437fb76becf2fcbb70cbc": 1792629237
  },
@@ -244,8 +244,8 @@
    "shares": 46.6667,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.085,
-   "value": 3.9667
+   "last_price": 0.075,
+   "value": 3.5
   },
   "65139230827417363158752884968303867495725894165574887635816574090175320800482": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -259,8 +259,8 @@
    "shares": 46.6667,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.085,
-   "value": 3.9667
+   "last_price": 0.075,
+   "value": 3.5
   },
   "89524111316754281233016446935787527194216234343076592935555965327756401377156": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -274,8 +274,8 @@
    "shares": 6.7586,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.705,
-   "value": 4.7648
+   "last_price": 0.715,
+   "value": 4.8324
   },
   "38274379050640062523611849065721372699838119672720475300345842413156391540232": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -304,8 +304,8 @@
    "shares": 6.7586,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.705,
-   "value": 4.7648
+   "last_price": 0.725,
+   "value": 4.9
   },
   "34211495561850364902657006812472964732267678973593165677831288791451957431998": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -319,8 +319,8 @@
    "shares": 5.1363,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.876,
-   "value": 4.4994
+   "last_price": 0.8915,
+   "value": 4.579
   },
   "8818882580258325166337837102966293982190018467620490556947006190938951037006": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -349,8 +349,8 @@
    "shares": 12.3581,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.3115,
-   "value": 3.8495
+   "last_price": 0.308,
+   "value": 3.8063
   },
   "51971221506050097243705792157899572281015127216972300934938845878155423445294": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -364,8 +364,8 @@
    "shares": 5.9394,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.92,
-   "value": 5.4642
+   "last_price": 0.925,
+   "value": 5.4939
   },
   "5025646279751821747465277196511043885318485329317122457171454361662285580942": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -379,23 +379,8 @@
    "shares": 5.1228,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.952,
-   "value": 4.8769
-  },
-  "47741949625869287078479365362596112595414393647054952894820065470931218251823": {
-   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
-   "condition_id": "0x792a49f147f2a36a38beeddcf25a7c484b422665f1636b1007df51b1574955e4",
-   "title": "Will the highest temperature in Jeddah be 36\u00b0C on October 20?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-18T13:40:02Z",
-   "leader_price": 0.79,
-   "entry_price": 0.89,
-   "shares": 5.5056,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 1.0,
-   "value": 5.5056
+   "last_price": 0.967,
+   "value": 4.9537
   },
   "108767173380374027732080104990699635190337878673564806647896154227197681002646": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -409,23 +394,8 @@
    "shares": 5.3552,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.93,
-   "value": 4.9803
-  },
-  "54067234782064566757986954649290239732663264374027341052285058785312325589651": {
-   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
-   "condition_id": "0x1305840317bef6fedf19f9382e86b4d1baafae54054289a2759d38a12f613bce",
-   "title": "Will the highest temperature in Tel Aviv be 25\u00b0C on October 20?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-18T13:40:04Z",
-   "leader_price": 0.91,
-   "entry_price": 0.9,
-   "shares": 5.4444,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.9995,
-   "value": 5.4417
+   "last_price": 0.92,
+   "value": 4.9268
   },
   "2618138322856109565904469085316346602627882727483900432328802655317079880335": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -484,8 +454,8 @@
    "shares": 15.3125,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.355,
-   "value": 5.4359
+   "last_price": 0.34,
+   "value": 5.2063
   },
   "108188779790444016941848487602523982621927017413109885207453087351349250458729": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -499,38 +469,8 @@
    "shares": 6.5333,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.715,
-   "value": 4.6713
-  },
-  "68095207797142020283849185518171445977080871350745178377199281395319965060478": {
-   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
-   "condition_id": "0x809b8f9ab5700ab7ac31104cb7870b1b366e2776e12057378c807d64cfc808bc",
-   "title": "Will the highest temperature in Milan be 17\u00b0C on October 20?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-19T06:45:33Z",
-   "leader_price": 0.71,
-   "entry_price": 0.72,
-   "shares": 6.8056,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.9995,
-   "value": 6.8022
-  },
-  "21526447557476835539496175678457377196772437996920415397629734301227404557702": {
-   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
-   "condition_id": "0xbef3f22fca2201c4be5fc48ce717e5b3a436b99101670c917c05d68ffbe2b868",
-   "title": "Will the highest temperature in Milan be 15\u00b0C on October 20?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-19T06:45:34Z",
-   "leader_price": 0.82,
-   "entry_price": 0.835,
-   "shares": 5.8683,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.9935,
-   "value": 5.8302
+   "last_price": 0.675,
+   "value": 4.41
   },
   "103260758221019261190568249958083274029384820061909611626197177871555415590776": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -544,8 +484,8 @@
    "shares": 32.6667,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.11,
-   "value": 3.5933
+   "last_price": 0.145,
+   "value": 4.7367
   },
   "75699093204664657083852366089628829977790159055900435225255069244546773042089": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -559,8 +499,8 @@
    "shares": 11.2392,
    "cost": 2.9818,
    "fee_in": 0.0596,
-   "last_price": 0.0155,
-   "value": 0.1742
+   "last_price": 0.013,
+   "value": 0.1461
   },
   "48363336280603988612943937623657599900834676634371552666346986109028055383864": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -574,8 +514,8 @@
    "shares": 5.2973,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.92,
-   "value": 4.8735
+   "last_price": 0.925,
+   "value": 4.9
   },
   "39228840575449881837568889168840039857058636039550121318060583610152400585337": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -589,8 +529,8 @@
    "shares": 5.731,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.85,
-   "value": 4.8713
+   "last_price": 0.855,
+   "value": 4.9
   },
   "49623883646317551833983953447367709208833630053539939514921468402634058465859": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -604,8 +544,8 @@
    "shares": 9.0741,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.54,
-   "value": 4.9
+   "last_price": 0.63,
+   "value": 5.7167
   },
   "74897964775279535413258818950960058718976813244965274421640138167280313090417": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -619,8 +559,8 @@
    "shares": 5.2406,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9695,
-   "value": 5.0808
+   "last_price": 0.9725,
+   "value": 5.0965
   },
   "7468074245617883383328149411152835240206914737546139328673441854545577981992": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -637,21 +577,6 @@
    "last_price": 0.9935,
    "value": 5.3204
   },
-  "12141013396571480487500847105459374712250459137700375864943961262723548783792": {
-   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
-   "condition_id": "0x9d97ee7bc6a7e400266666d8d4457667177d5648dc5aca3b657ec20b372fb359",
-   "title": "Will the highest temperature in Karachi be 38\u00b0C on October 20?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-19T12:43:03Z",
-   "leader_price": 0.56,
-   "entry_price": 0.575,
-   "shares": 6.7991,
-   "cost": 3.9893,
-   "fee_in": 0.0798,
-   "last_price": 0.0005,
-   "value": 0.0034
-  },
   "38699476815399395356989015877555458187892757628739181486012435043187939472631": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
    "condition_id": "0xb80a1c20e18a3a2babaf682c70df6d3a090ba8f1e9e7cfed4451842eb3f680b0",
@@ -664,8 +589,8 @@
    "shares": 17.8182,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.29,
-   "value": 5.1673
+   "last_price": 0.28,
+   "value": 4.9891
   },
   "109041453333824724787956694268345880808926885765977607241792609988628032762835": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -679,8 +604,8 @@
    "shares": 7.9675,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.996,
-   "value": 7.9356
+   "last_price": 0.997,
+   "value": 7.9436
   },
   "51776006202310003455452345333266409738141462560357897258688690443656667766603": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -694,8 +619,8 @@
    "shares": 5.731,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.735,
-   "value": 4.2123
+   "last_price": 0.475,
+   "value": 2.7222
   },
   "109126953343967444296837167161034853621190361164110577504920019672405393754105": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -709,8 +634,8 @@
    "shares": 5.2128,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9885,
-   "value": 5.1529
+   "last_price": 0.9945,
+   "value": 5.1841
   },
   "91307526409079129986419046976313261406266696490639812655155070205067404146515": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -724,8 +649,8 @@
    "shares": 9.899,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.991,
-   "value": 9.8099
+   "last_price": 0.9905,
+   "value": 9.805
   },
   "10229340737584154978359500415623156606488248988978412976257532327635966656733": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -739,8 +664,8 @@
    "shares": 5.6322,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.85,
-   "value": 4.7874
+   "last_price": 0.86,
+   "value": 4.8437
   },
   "60186594918326728407185405226545526273084940240456698624096625852288751603361": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -754,8 +679,8 @@
    "shares": 12.6126,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.429,
-   "value": 5.4108
+   "last_price": 0.6445,
+   "value": 8.1288
   },
   "11128925845879348170706262358649886447119541463625558967934110995591843189690": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -769,8 +694,8 @@
    "shares": 5.8683,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.795,
-   "value": 4.6653
+   "last_price": 0.79,
+   "value": 4.636
   },
   "64289450132015960408802553393435281852973882298571992443681610123266032705590": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -784,8 +709,8 @@
    "shares": 14.2029,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.0275,
-   "value": 0.3906
+   "last_price": 0.0095,
+   "value": 0.1349
   },
   "38167221093448065335912357514267542110712664140978568101601851492969036059371": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -799,8 +724,8 @@
    "shares": 6.6216,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9895,
-   "value": 6.5521
+   "last_price": 0.9905,
+   "value": 6.5587
   },
   "558600218792430158020964384658762756367786275998757133304987611939841005404": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -814,8 +739,23 @@
    "shares": 6.6667,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.745,
-   "value": 4.9667
+   "last_price": 0.765,
+   "value": 5.1
+  },
+  "114162053248921295970711677068912896696658452611222321218045036204545003950942": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x54d2d30467e9dbcbca518485725eaa8dc016ddf7e35c04b93514d43b292b6fd4",
+   "title": "Will the highest temperature in Paris be 14\u00b0C on October 23?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-22T12:41:57Z",
+   "leader_price": 0.57,
+   "entry_price": 0.535,
+   "shares": 9.1589,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.525,
+   "value": 4.8084
   }
  },
  "closed": [
@@ -1678,12 +1618,112 @@
    "fee_out": 0.0,
    "pnl": 2.1014,
    "reason": "resolved"
+  },
+  {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x792a49f147f2a36a38beeddcf25a7c484b422665f1636b1007df51b1574955e4",
+   "title": "Will the highest temperature in Jeddah be 36\u00b0C on October 20?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-18T13:40:02Z",
+   "leader_price": 0.79,
+   "entry_price": 0.89,
+   "shares": 5.5056,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 1.0,
+   "value": 5.5056,
+   "closed_at": "2026-10-22T12:42:06Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 0.5056,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x1305840317bef6fedf19f9382e86b4d1baafae54054289a2759d38a12f613bce",
+   "title": "Will the highest temperature in Tel Aviv be 25\u00b0C on October 20?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-18T13:40:04Z",
+   "leader_price": 0.91,
+   "entry_price": 0.9,
+   "shares": 5.4444,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.9995,
+   "value": 5.4417,
+   "closed_at": "2026-10-22T12:42:07Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 0.4444,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x809b8f9ab5700ab7ac31104cb7870b1b366e2776e12057378c807d64cfc808bc",
+   "title": "Will the highest temperature in Milan be 17\u00b0C on October 20?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-19T06:45:33Z",
+   "leader_price": 0.71,
+   "entry_price": 0.72,
+   "shares": 6.8056,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.9995,
+   "value": 6.8022,
+   "closed_at": "2026-10-22T12:42:09Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 1.8056,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0xbef3f22fca2201c4be5fc48ce717e5b3a436b99101670c917c05d68ffbe2b868",
+   "title": "Will the highest temperature in Milan be 15\u00b0C on October 20?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-19T06:45:34Z",
+   "leader_price": 0.82,
+   "entry_price": 0.835,
+   "shares": 5.8683,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.9935,
+   "value": 5.8302,
+   "closed_at": "2026-10-22T12:42:09Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 0.8683,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x9d97ee7bc6a7e400266666d8d4457667177d5648dc5aca3b657ec20b372fb359",
+   "title": "Will the highest temperature in Karachi be 38\u00b0C on October 20?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-19T12:43:03Z",
+   "leader_price": 0.56,
+   "entry_price": 0.575,
+   "shares": 6.7991,
+   "cost": 3.9893,
+   "fee_in": 0.0798,
+   "last_price": 0.0005,
+   "value": 0.0034,
+   "closed_at": "2026-10-22T12:42:12Z",
+   "exit_price": 0.0,
+   "fee_out": 0.0,
+   "pnl": -3.9893,
+   "reason": "resolved"
   }
  ],
  "signals": {
-  "buy": 82,
+  "buy": 83,
   "sell": 2,
-  "skipped": 10982,
+  "skipped": 11540,
   "fallback_price": 0
  },
  "errors": 0

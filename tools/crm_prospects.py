@@ -71,6 +71,7 @@ def to_prospect(pid, d):
         "email_source": d.get("emailSource") or "",
         "email_status": d.get("emailStatus") or "",
         "area": d.get("area") or "",
+        "trade_vertical": d.get("tradeVertical") or R.TRADE_DEFAULT,
         "do_not_email": bool(d.get("doNotEmail")),
         "status": d.get("status") or "",
         "matched_lead_id": d.get("matchedLeadId") or "",
@@ -149,11 +150,13 @@ def main():
               open(os.path.join(ROOT, "data", "prospects", "followups.json"), "w", encoding="utf-8"), indent=1)
     json.dump({"ineligible": ineligible}, open(os.path.join(ROOT, "data", "prospects", "ineligible.json"), "w", encoding="utf-8"), indent=1)
 
-    leads = set()
+    leads = {}
     if os.path.exists(a.gc):
-        leads = {x["lead_id"] for x in json.load(open(a.gc, encoding="utf-8")).get("leads", [])}
+        leads = {x["lead_id"]: x for x in json.load(open(a.gc, encoding="utf-8")).get("leads", [])}
+    # a stored match is kept only when the lead is still current and the prospect's trade vertical may use its stage
     matches = [{"prospect_id": p["prospect_id"], "lead_id": p["matched_lead_id"], "reason": "stored match from the CRM"}
-               for p in eligible if p["matched_lead_id"] in leads and p["matched_lead_id"] != p["first_example"]]
+               for p in eligible if p["matched_lead_id"] in leads and p["matched_lead_id"] != p["first_example"]
+               and not R.trade_problems(p["product"], R.trade_of(p), leads[p["matched_lead_id"]])]
     json.dump({"schema": "pnf.match.v1", "matches": matches},
               open(os.path.join(ROOT, "data", "work", "matches.json"), "w", encoding="utf-8"), indent=1)
     role = sum(1 for x in ineligible if any("role-based" in r for r in x["reasons"]))

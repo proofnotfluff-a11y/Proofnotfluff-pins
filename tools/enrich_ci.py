@@ -2,7 +2,8 @@
 """GitHub-native decision-maker enrichment (runs in .github/workflows/prospect-enrichment.yml).
 
 Input: prospects/businesses.json (schema pnf.business.v1, business-level fields only, committed by the prospect-matching
-run): {"businesses": [{prospect_id, product, business, website}]}.
+run): {"businesses": [{prospect_id, product, business, website, trade_vertical}]}. trade_vertical is optional (blank
+means commercial_cleaning) and rides onto each sealed prospect by website domain.
 Sources, in order, for each business that has no decision-maker yet:
   1. Hunter (HUNTER_API_KEY secret): Domain Search plus Email Verifier (tools/enrich_hunter.py)
   2. Apollo (APOLLO_API_KEY secret): People Search plus People Match (tools/enrich_apollo.py)
@@ -36,7 +37,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BUSINESSES = os.path.join(ROOT, "prospects", "businesses.json")
 OUT = os.path.join(ROOT, "prospects", "enriched.sealed.json")
 DROPS = os.path.join(ROOT, "data", "enrichment")
-BUSINESS_KEYS = {"prospect_id", "product", "business", "website"}
+BUSINESS_KEYS = {"prospect_id", "product", "business", "website", "trade_vertical"}
 
 
 def validate_businesses(doc):
@@ -49,6 +50,8 @@ def validate_businesses(doc):
             p.append(f"{b.get('prospect_id')}: business-level fields only, found {sorted(extra)}")
         if b.get("product") not in R.PRODUCTS:
             p.append(f"{b.get('prospect_id')}: unknown product")
+        else:
+            p += [f"{b.get('prospect_id')}: {m}" for m in R.trade_problems(b["product"], R.trade_of(b))]
         if not R.domain_of(b.get("website")):
             p.append(f"{b.get('prospect_id')}: no website")
         if "@" in json.dumps(b):
@@ -122,6 +125,9 @@ def main():
         counts["rejected"] += rej
         found.update(kept)
 
+    trade = {(b["product"], R.domain_of(b["website"])): R.trade_of(b) for b in doc["businesses"]}
+    for x in found.values():
+        x["trade_vertical"] = trade.get((x["product"], x["website_domain"]), R.TRADE_DEFAULT)
     out = {"schema": "pnf.prospect.v1", "prospects": sorted(found.values(), key=lambda x: x["prospect_id"])}
     probs = R.validate_prospect_file(out)
     if probs:

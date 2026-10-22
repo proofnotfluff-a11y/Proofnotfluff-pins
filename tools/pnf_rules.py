@@ -4,8 +4,8 @@
 Two entities, never mixed:
   Entity A, GC lead (pnf.gc_lead.v1): a City permit in a downstream completion stage with an adjacent Certificate of
     Occupancy or health inspection signal. Business-level fields only; it is committed to this public repo.
-  Entity B, cleaning prospect (pnf.prospect.v1): the named decision-maker at a local commercial cleaning or pressure
-    washing business who gets our email. Personal data: it lives in the private CRM and in gitignored data/ files only.
+  Entity B, trade prospect (pnf.prospect.v1): the named decision-maker at a local finish-stage trade business (commercial
+    cleaning, pressure washing, exterior work; see TRADE_VERTICALS) who gets our email. Personal data: it lives in the private CRM and in gitignored data/ files only.
 
 Every validator returns a list of problem strings; an empty list is a pass. The CLIs (tools/validate_leads.py,
 tools/copy_gate.py, tools/context_gate.py) turn any problem into exit code 1.
@@ -66,6 +66,38 @@ OK_EMAIL_STATUS = {"verified", "valid", "deliverable", "catch_all", "accept_all"
 CATCH_ALL = {"catch_all", "accept_all"}
 PRODUCTS = {"chicago-construction": "chicago", "austin-construction": "austin", "chicago-restaurant": "chicago"}
 SOURCES = {"apollo", "hunter", "clay", "site", "manual"}
+
+# ------------------------------------------------------------------ trade verticals
+# Todd, Oct 22: one downstream permit can be pitched to non-competing finish-stage trades. Each vertical lists the
+# products its prospects may belong to and the lead stages its email may name; a prospect with no trade_vertical is
+# commercial_cleaning, so every record written before Oct 22 keeps working. exterior_turnkey (pressure washing, window
+# washing, lot striping and sealcoating) gets only Chicago Partial Occupancy Approved leads, where the timing claim holds.
+TRADE_DEFAULT = "commercial_cleaning"
+TRADE_VERTICALS = {
+    "commercial_cleaning": {"products": set(PRODUCTS), "stages": set(DOWNSTREAM)},
+    "exterior_turnkey": {"products": {"chicago-construction"}, "stages": {"Partial Occupancy Approved"}},
+}
+
+
+def trade_of(x):
+    """The record's trade vertical; blank or missing means commercial_cleaning."""
+    return str((x or {}).get("trade_vertical") or TRADE_DEFAULT)
+
+
+def trade_problems(product, trade, lead=None):
+    """A vertical that exists, a product it allows and, with a lead, a stage and city it allows."""
+    v = TRADE_VERTICALS.get(trade)
+    if v is None:
+        return [f"unknown trade_vertical {trade!r} (one of {sorted(TRADE_VERTICALS)})"]
+    p = []
+    if product not in v["products"]:
+        p.append(f"trade_vertical {trade} does not serve product {product!r}")
+    if lead is not None:
+        if lead.get("stage") not in v["stages"]:
+            p.append(f"trade_vertical {trade} cannot use a {lead.get('stage')!r} lead")
+        if lead.get("city") not in {PRODUCTS.get(x) for x in v["products"]}:
+            p.append(f"trade_vertical {trade} cannot use a {lead.get('city')!r} lead")
+    return p
 
 # ------------------------------------------------------------------ outreach copy
 MAX_WORDS = 75            # a draft fails at 75 words or more
@@ -295,6 +327,7 @@ def validate_prospect(x):
         p.append(f"{pid}: email_status {x.get('email_status')!r} is not deliverable")
     if x.get("do_not_email") is True:
         p.append(f"{pid}: do_not_email is set")
+    p += [f"{pid}: {m}" for m in trade_problems(x.get("product"), trade_of(x))]
     p += [f"{pid}: {m}" for m in inbox_problems(x.get("email"), x.get("website_domain"), x.get("first_name"), x.get("last_name"))]
     return p
 
@@ -346,6 +379,8 @@ def validate_matches(doc, leads_by_id, prospects_by_id):
         used.add(pid)
         if prospects_by_id[pid]["city"] != leads_by_id[lid]["city"]:
             p.append(f"match {pid}: prospect city and lead city differ")
+        pr = prospects_by_id[pid]
+        p += [f"match {pid}: {m}" for m in trade_problems(pr.get("product"), trade_of(pr), leads_by_id[lid])]
         if not str(m.get("reason") or "").strip():
             p.append(f"match {pid}: reason missing")
     return p
@@ -422,5 +457,6 @@ def validate_drafts(doc, leads_by_id, prospects_by_id, matches_by_prospect=None)
         if (d.get("to") or "").lower() != pr["email"].lower():
             p.append(f"draft {pid}: to address differs from the prospect's validated email")
         p += [f"draft {pid}: {m}" for m in inbox_problems(d.get("to"), pr.get("website_domain"), pr.get("first_name"), pr.get("last_name"))]
+        p += [f"draft {pid}: {m}" for m in trade_problems(pr.get("product"), trade_of(pr), ld)]
         p += [f"draft {pid}: {m}" for m in copy_problems(d.get("subject"), d.get("body"), pr["first_name"], ld)]
     return p

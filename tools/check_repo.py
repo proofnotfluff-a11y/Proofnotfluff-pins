@@ -37,8 +37,10 @@ Checks
   moat          permits/downstream/gc_leads.json (when present): schema pnf.gc_lead.v1 and the Timing Moat Gate on every lead
   schema        Two-Entity Schema and Inbox Gate: no prospect data tracked in this public repo (data/ or a pnf.prospect.v1
                 file), and a local data/prospects/prospects.json, when present, passes the named decision-maker rules
-  copy          tools/copy_gate.py: the outreach-drafter templates render under 75 words, link-free, downstream and
-                permission-based; a local data/work/drafts.json, when present, passes the same gate
+  copy          tools/copy_gate.py: every template in .claude/skills/outreach-drafter/templates.md (one or more per trade
+                vertical in pnf_rules.TRADE_VERTICALS) renders under 75 words, link-free, downstream and permission-based,
+                every live GC lead renders through each vertical allowed its stage and city, and a local
+                data/work/drafts.json, when present, passes the same gate
   gate-selftest tools/test_gates.py plants a failure for each of the four gates above and confirms each is caught
   gate-tests    tools/test_check_repo.py plants a failure for every check above in a throwaway copy and
                 confirms each one is caught and no secret value is printed (Todd's Oct 15 note: the checks get

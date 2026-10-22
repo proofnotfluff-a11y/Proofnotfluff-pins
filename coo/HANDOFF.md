@@ -6,4 +6,5 @@
 - Entity A: permits/downstream/gc_leads.json, 730 leads Oct 22 (downstream-leads.yml, Mondays 12:05 UTC).
 - Entity B: prospect-enrichment.yml (Hunter, Apollo) seals named decision-makers to prospects/enriched.sealed.json. Blocked until Todd adds GitHub secrets HUNTER_API_KEY and/or APOLLO_API_KEY plus PNF_DATA_KEY, and PNF_DATA_KEY in the cloud environment.
 - Senders: hello@proofnotfluff.com (25 a day), sales@getproofnotfluff.com (Apps Script ramp). The PNF send queue sheet is reachable only from sales@ in Todd's browser.
+- Trade verticals (Oct 22): commercial_cleaning plus exterior_turnkey (Chicago, Partial Occupancy Approved leads only). Templates in .claude/skills/outreach-drafter/templates.md. Next: interior_finish and security_access only after exterior gets replies; restaurant trades pitch off violation data, not permits.
 - Skills: permit-ingestion, outreach-drafter, prospect-matching, product-builder, remotion-walkthrough (on request).

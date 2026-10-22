@@ -181,12 +181,81 @@ def legacy_cases():
     expect("legacy: a later batch is not blocked", ["blocked"] if CP.legacy_batch({"batch": "2026-10-26"}) else [], False)
 
 
+def trade_cases():
+    """Trade verticals (Todd, Oct 22): exterior_turnkey gets only Chicago Partial Occupancy Approved leads, every vertical
+    needs a template that passes the copy gate, and a record with no vertical is commercial_cleaning."""
+    import copy_gate as CG
+    import enrich_ci as EC
+    ext = dict(PROSPECT, prospect_id="cc-washco-example", website_domain="washco.example", email="dana@washco.example",
+               trade_vertical="exterior_turnkey")
+    insp = dict(LEAD, lead_id="chi-2", stage="Inspections Under Way", stage_source="INSPECTIONS")
+    aus = dict(LEAD, lead_id="aus-1", city="austin", stage="Inspections Under Way", stage_source="Near finish")
+    expect("trade: exterior_turnkey Chicago prospect passes", R.validate_prospect(ext), False)
+    expect("trade: record with no vertical is commercial_cleaning and passes",
+           [] if R.trade_of(PROSPECT) == "commercial_cleaning" and not R.validate_prospect(PROSPECT) else ["not default"], False)
+    expect("trade: unknown vertical fails", R.validate_prospect(dict(ext, trade_vertical="locksmith")), True)
+    expect("trade: exterior_turnkey on Austin fails", R.validate_prospect(dict(ext, product="austin-construction", city="austin")), True)
+    expect("trade: exterior_turnkey on the restaurant product fails", R.validate_prospect(dict(ext, product="chicago-restaurant")), True)
+    leads = {"chi-1": LEAD, "chi-2": insp, "aus-1": aus}
+    pros = {ext["prospect_id"]: ext, PROSPECT["prospect_id"]: PROSPECT}
+    m = lambda pid, lid: {"schema": "pnf.match.v1", "matches": [{"prospect_id": pid, "lead_id": lid, "reason": "x"}]}
+    expect("trade: exterior match to Partial Occupancy Approved passes", R.validate_matches(m(ext["prospect_id"], "chi-1"), leads, pros), False)
+    expect("trade: exterior match to Inspections Under Way fails", R.validate_matches(m(ext["prospect_id"], "chi-2"), leads, pros), True)
+    expect("trade: cleaning match to Inspections Under Way passes", R.validate_matches(m(PROSPECT["prospect_id"], "chi-2"), leads, pros), False)
+
+    ts = {(tr, st): (s, b) for _n, s, b, st, tr in CG.templates(CG.TEMPLATES)}
+    s, b = ts.get(("exterior_turnkey", "Partial Occupancy Approved"), ("", ""))
+    fields = dict(CG.FIXTURE_FIELDS, first="Dana", gc="Bartlett Cocke", value="$45M", kind="school", street="N Hampton Dr")
+    subj, body = CG.fill(s, fields), CG.fill(b, fields)
+    expect("trade: exterior template renders and passes the copy gate",
+           R.copy_problems(subj, body, "Dana", LEAD) if body else ["no exterior template"], False)
+    expect("trade: live templates file passes", CG.check_templates(CG.TEMPLATES)[0], False)
+    draft = lambda lid, bd: {"schema": "pnf.draft.v1", "drafts": [{"prospect_id": ext["prospect_id"], "lead_id": lid, "to": ext["email"],
+                                                                   "subject": subj, "body": bd}]}
+    expect("trade: exterior draft on its Partial Occupancy lead passes", R.validate_drafts(draft("chi-1", body), leads, pros), False)
+    expect("trade: exterior draft on an Inspections lead fails", R.validate_drafts(draft("chi-2", body), leads, pros), True)
+    expect("trade: exterior draft with a link fails",
+           R.validate_drafts(draft("chi-1", body.replace("Want the", "See washco.com. Want the")), leads, pros), True)
+    expect("trade: exterior draft at 75 words fails",
+           R.validate_drafts(draft("chi-1", body.replace("Want the", " ".join(["more"] * 40) + " Want the")), leads, pros), True)
+    expect("trade: exterior draft to a role inbox fails",
+           R.validate_drafts({"schema": "pnf.draft.v1", "drafts": [dict(draft("chi-1", body)["drafts"][0], to="info@washco.example")]},
+                             leads, {ext["prospect_id"]: dict(ext, email="info@washco.example")}), True)
+    expect("trade: exterior draft with a generic greeting fails",
+           R.validate_drafts(draft("chi-1", body.replace("Hi Dana,", "Hi there,")), leads, pros), True)
+
+    def planted(fn):
+        tmp = tempfile.mkdtemp(prefix="pnf-trade-")
+        try:
+            path = os.path.join(tmp, "templates.md")
+            open(path, "w", encoding="utf-8").write(fn(open(CG.TEMPLATES, encoding="utf-8").read()))
+            return CG.check_templates(path)[0]
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+    head = "### T4 exterior turnkey"
+    expect("trade: a vertical with no template fails", planted(lambda x: x[:x.index(head)]), True)
+    expect("trade: exterior template on Inspections Under Way fails",
+           planted(lambda x: x.replace("Trade: exterior_turnkey\nStage: Partial Occupancy Approved", "Trade: exterior_turnkey\nStage: Inspections Under Way")), True)
+    expect("trade: template with an unknown Trade fails", planted(lambda x: x.replace("Trade: exterior_turnkey", "Trade: locksmith")), True)
+    expect("trade: second template for one vertical and stage fails", planted(lambda x: x + "\n" + x[x.index(head):]), True)
+    expect("trade: exterior template over 75 words fails",
+           planted(lambda x: x.replace("before final sign-off.", "before final sign-off. " + " ".join(["more"] * 40))), True)
+
+    biz = lambda **k: {"schema": "pnf.business.v1", "businesses": [dict({"prospect_id": "cc-washco-example", "product": "chicago-construction",
+                                                                         "business": "Wash Co", "website": "washco.example"}, **k)]}
+    expect("trade: business row with exterior_turnkey passes", EC.validate_businesses(biz(trade_vertical="exterior_turnkey")), False)
+    expect("trade: business row with an unknown vertical fails", EC.validate_businesses(biz(trade_vertical="locksmith")), True)
+    expect("trade: Austin business row with exterior_turnkey fails",
+           EC.validate_businesses(biz(product="austin-construction", trade_vertical="exterior_turnkey")), True)
+
+
 def main():
     moat_cases()
     inbox_cases()
     copy_cases()
     context_cases()
     legacy_cases()
+    trade_cases()
     bad = [(n, p) for n, good, p in results if not good]
     for n, p in bad:
         print(f"FAIL {n} {p}")

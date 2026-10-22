@@ -1,6 +1,6 @@
 # prospect-matching (Wednesdays 10:10 am)
 
-One job: turn local commercial cleaning and pressure washing businesses into validated Entity B prospects, one named decision-maker each, and pre-match each to this week's GC lead. You never contact a business, fill a form, sign up or buy.
+One job: turn local commercial cleaning, pressure washing and exterior finish businesses into validated Entity B prospects, one named decision-maker each, tagged with a trade_vertical, and pre-match each to this week's GC lead. You never contact a business, fill a form, sign up or buy.
 
 ## Inputs (Reads)
 - CRM prospects (ArtifactData list, out_dir data/crm) and meta/products.
@@ -8,15 +8,15 @@ One job: turn local commercial cleaning and pressure washing businesses into val
 - prospects/enriched.sealed.json: named decision-makers from .github/workflows/prospect-enrichment.yml (Hunter and Apollo keys are GitHub secrets), opened with PNF_DATA_KEY from this environment.
 
 ## Process (Executes)
-1. Find businesses (semantic): each product with live or outreachGo true keeps 80 businesses with status ready. Official lists first (City of Chicago business licenses, IDPH, Texas comptroller), then web search. Fit: the business's own site advertises post-construction, construction or commercial cleaning, or pressure washing, and serves the city. Two checker subagents re-read each site and return ok, fix or drop with the URL; keep what both pass.
-2. Add checked businesses with no named contact to prospects/businesses.json (pnf.business.v1: prospect_id, product, business, website only), commit and push after check_repo exits 0. The push starts prospect-enrichment.yml; wait for it to finish (GitHub MCP actions_list), then git pull.
+1. Find businesses (semantic): each product with live or outreachGo true keeps 80 businesses with status ready. Official lists first (City of Chicago business licenses, IDPH, Texas comptroller), then web search. Fit: the business's own site advertises post-construction, construction or commercial cleaning, or pressure washing, and serves the city. trade_vertical (pnf_rules.TRADE_VERTICALS): exterior_turnkey for a chicago-construction business whose site offers pressure washing, commercial window washing or lot striping and sealcoating but no interior cleaning; every other business is commercial_cleaning. Two checker subagents re-read each site and return ok, fix or drop with the URL; keep what both pass.
+2. Add checked businesses with no named contact to prospects/businesses.json (pnf.business.v1: prospect_id, product, business, website, trade_vertical only), commit and push after check_repo exits 0. The push starts prospect-enrichment.yml; wait for it to finish (GitHub MCP actions_list), then git pull.
 3. Enrich, deterministic, in Actions only. Then `python3 tools/data_box.py open prospects/enriched.sealed.json data/prospects/prospects.json`. A failed run or a missing PNF_DATA_KEY: skip to step 6 and tell Todd once with the ERROR line.
 4. Gate: `python3 tools/validate_leads.py prospects`. Exit 1 stops this step; record the ERROR lines in meta/desk.note. Never hand-edit a rejected address to pass.
-5. Pre-match (semantic): each validated prospect gets one lead_id from gc_leads.json in its city (same side of town when the area says so; Partial Occupancy Approved first, then valuation). Then `python3 tools/validate_leads.py matches` must exit 0.
+5. Pre-match (semantic): each validated prospect gets one lead_id from gc_leads.json in its city (same side of town when the area says so; Partial Occupancy Approved first, then valuation; exterior_turnkey only a Partial Occupancy Approved lead). Then `python3 tools/validate_leads.py matches` must exit 0.
 6. CRM writes, pinned to the version read, batches of up to 50. New ids: create only, skip an id that exists. An existing id gets only the contact fields and matchedLeadId, and never when it has firstSentAt (one first email per business, ever). Todd's own edits win. Tools: email/SEND_RULES.md "Tools".
 
 ## Outputs (Writes)
-- CRM prospects/<id> (id prefix cc-, cr-, ac- plus the website domain): {product, business, trade, area, website, contactType:"email", contact (the verified work email), contactFirstName, contactLastName, contactTitle, emailSource, emailStatus, matchedLeadId, sourceUrl, checkedAt, checkedBy:"twice", status:"ready", doNotEmail:false}. New businesses without a decision-maker: status candidate.
+- CRM prospects/<id> (id prefix cc-, cr-, ac- plus the website domain): {product, business, trade, tradeVertical, area, website, contactType:"email", contact (the verified work email), contactFirstName, contactLastName, contactTitle, emailSource, emailStatus, matchedLeadId, sourceUrl, checkedAt, checkedBy:"twice", status:"ready", doNotEmail:false}. New businesses without a decision-maker: status candidate.
 - Existing role-inbox prospects (info@, office@ ...) are left as they are; crm_prospects.py keeps them out of drafting.
 - CRM meta/desk.lastFinder (one sentence). Scoreboard agents/leads-finder idle with lastNote, counts only, never a name.
 - data/ stays local and gitignored: nothing about a person is committed.

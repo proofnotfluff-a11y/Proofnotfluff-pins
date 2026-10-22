@@ -69,12 +69,13 @@ def history_text(r):
 
 
 LEFT_OUT = ("Renewals and changes (including an older license the City re-dated), cancelled or revoked licenses, and licenses "
-            "issued to a person for their own work or for an event or a season are left out: peddler, special event, pop-up, raffle, tow truck, valet, "
+            "for one person's own work, for work done away from a fixed business site, or for an event or a season are left out: peddler, special event, pop-up, raffle, tow truck, valet, "
             "chauffeur, home-sharing, vacation rental, bed-and-breakfast, mobile food, shared kitchen user, home occupation, home "
             "repair, massage therapist, body art practitioner, scavenger and expediter licenses, and street performers, flea "
             "market vendors and market stalls. So are home and mail-drop addresses: businesses the City marks as home based, "
             "addresses with an apartment number, upper-floor units in a building where the City has licensed home-based "
-            "businesses, private mailboxes, and addresses with a City virtual office license. Office and shop suites stay. "
+            "businesses at two or more addresses, private mailboxes, and addresses with a current City virtual office license. "
+            "Office and shop suites stay. "
             "Sites outside Chicago are left out, and so is any business whose shown name could be a person's name: two to four "
             "plain words with none of our business words (such as shop, grill, salon, parking or dog), no possessive, no \"and\" "
             "or \"&\", and not starting with \"The\", with or without LLC or Inc, such as \"Golden Dragon\". That check is strict "

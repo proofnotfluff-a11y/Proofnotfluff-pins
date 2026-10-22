@@ -92,7 +92,9 @@ BUSINESS_WORDS = re.compile(
     r"MARISCOS|POLLERIA|TAQUERIAS|RESTAURANTE|PUPUSERIA|DULCERIA|DULCELANDIA|ABARROTES|SUPERMERCADO|LAVANDERIA|ESTETICA|SALONE|"
     r"HAIR|BRAIDING|BRAIDS|STUDIOS|ENTERTAINMENT|ENTERTAINING)\b", re.I)
 PLAIN_WORD = re.compile(r"^[A-Z][A-Z'\-]*\.?$")
-HOME_ADDRESS = re.compile(r"\b(?:APT|APARTMENT|UNIT\s+\d+[A-Z]?\s*$|#\s*\d+[A-Z]?\s*$|\d+(?:ST|ND|RD|TH)\s+FL(?:OOR)?\s+APT)\b", re.I)
+# "Unit 1" is not an apartment by itself: a shop unit stays like "Unit C-2" (holdout 2, round 3); "Apt", "Apartment" and a
+# trailing "#12" are.
+HOME_ADDRESS = re.compile(r"\b(?:APT|APARTMENT|#\s*\d+[A-Z]?\s*$|\d+(?:ST|ND|RD|TH)\s+FL(?:OOR)?\s+APT)\b", re.I)
 # A stall or booth at a market ("4100 S ASHLAND AVE OUTSIDE 636" is an outdoor flea market space): a vendor, not a site (Oct 22).
 STALL_ADDRESS = re.compile(r"\b(?:OUTSIDE\s+\d+|BOOTH|STALL)\b", re.I)
 # A private mailbox ("PMB 353", "#453522"): a mail drop, not a site a vendor can visit (holdout 1, Oct 22).
@@ -513,12 +515,16 @@ def flagged_buildings(recs, home, virtual):
     """{license: reason} for rows the City's other licenses place in a home or a mail drop (holdout 1, Oct 22). home and virtual
     are building keys (building_key) with a City Home Based Business or Home Occupation license, or a Virtual Office Services
     license, on record. A row in a home-based building is left out when its address has a unit above the ground floor (the
-    storefront of a mixed building stays); every row at a virtual-office address is left out."""
+    storefront of a mixed building stays). virtual maps a building key to the units of its current Virtual Office Services
+    licenses: a row is a mail drop when that license covers the whole building (no unit) or the row's own unit, so a gym in an
+    office tower with one virtual-office suite stays (Kinema Fitness, holdout 2, round 3)."""
     out = {}
+    norm = lambda u: re.sub(r"[^A-Z0-9]", "", (u or "").upper())
     for r in recs:
         b, unit = split_address(r.get("_addr") or r["address"])
         k = building_key(r.get("_addr") or r["address"])
-        if k in virtual:
+        vu = virtual.get(k) if isinstance(virtual, dict) else ({""} if k in virtual else None)
+        if vu is not None and ("" in vu or norm(unit) in vu):
             out[r["license"]] = MAILBOX_REASON
         elif k in home and unit and not GROUND_UNIT.match(unit.strip()):
             out[r["license"]] = RESIDENTIAL_REASON
@@ -538,8 +544,21 @@ def fetch_buildings():
             off += 50000
     # a building is residential when home-based licenses sit at two or more of its addresses (one home office in an office
     # tower or a loft building does not make it a home; holdout 2, round 2)
-    return (keys("upper(business_activity) like '%HOME BASED%' OR upper(license_description) like 'HOME OCCUPATION%'", 2),
-            keys("upper(business_activity) like '%VIRTUAL OFFICE%'", 1))
+    def virtual_units():
+        """{building key: {unit}} for virtual office licenses still current (not cancelled or expired): a cancelled one at
+        625 W Adams says nothing about the building today (holdout 2, round 3)."""
+        out, off = collections.defaultdict(set), 0
+        today = dt.date.today().isoformat()
+        while True:
+            page = get(f"{PORTAL}/resource/{DATASET}.json", {"$select": "address,license_status,expiration_date",
+                                                            "$where": "upper(business_activity) like '%VIRTUAL OFFICE%'", "$limit": 50000, "$offset": off})
+            for x in page:
+                if x.get("address") and (x.get("license_status") or "").upper() == "AAI" and (x.get("expiration_date") or "9999")[:10] >= today:
+                    out[building_key(x["address"])].add(re.sub(r"[^A-Z0-9]", "", split_address(x["address"])[1].upper()))
+            if len(page) < 50000:
+                return dict(out)
+            off += 50000
+    return (keys("upper(business_activity) like '%HOME BASED%' OR upper(license_description) like 'HOME OCCUPATION%'", 2), virtual_units())
 
 
 def run_checks(recs, reasons, today, f_hist, f_food, f_build, f_name=None, left=None):
@@ -825,6 +844,9 @@ def selftest():
              {"license": "e", "address": "500 N State St Ste 300"}]
     fl = flagged_buildings(probe, {"3950NLAKESHOREDR", "2049WBELMONTAVE", "500NSTATEST"}, {"1655SBLUEISLANDAVE"})
     assert fl == {"a": RESIDENTIAL_REASON, "c": MAILBOX_REASON, "d": RESIDENTIAL_REASON}, fl
+    gym = [{"license": "g", "address": "180 N Stetson Ave 1"}, {"license": "h", "address": "180 N Stetson Ave 35 3500"},
+           {"license": "i", "address": "1655 S Blue Island Ave 2 100"}]
+    assert flagged_buildings(gym, set(), {"180NSTETSONAVE": {"353500"}, "1655SBLUEISLANDAVE": {""}}) == {"h": MAILBOX_REASON, "i": MAILBOX_REASON}
     # same license type at the same site before: relicensed (a new owner or a new account), not added (holdout 1, round 2)
     rl = [{"license": "p", "business": "Plush Pup", "address": "5344 N Cumberland Ave", "_addr": "5344 N CUMBERLAND AVE", "licenseType": "Retail Food Establishment",
            "_acct": "9", "_site": "1", "issued": "2026-10-10", "segment": "food"},

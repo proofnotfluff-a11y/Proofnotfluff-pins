@@ -34,14 +34,7 @@ RECORD = "https://data.cityofchicago.org/resource/r5kz-chrr.json?license_number=
 RESTAURANT = "Chicago Restaurant Inspection Leads"
 
 # ---------------------------------------------------------------- trades (keys from tools/licenses_chicago.py SEGMENTS)
-TRADES = [  # key, tab, short label, what kinds of business
-    ("food", "1 Food and drink", "Food and drink", "Restaurants, cafes, bars, caterers, groceries and other food shops"),
-    ("retail", "2 Shops and services", "Shops and services", "Shops, offices, studios, manufacturers and other services"),
-    ("beauty", "3 Salons, spas, fitness", "Salons, spas, fitness", "Salons, barbers, nails, skin care, spas, gyms and studios"),
-    ("venue", "4 Venues and lodging", "Venues and lodging", "Event venues, entertainment, hotels and lodging"),
-    ("auto", "5 Auto shops", "Auto shops", "Auto repair, tire shops, car washes and gas stations"),
-    ("care", "6 Day care", "Day care", "Day care and children's services"),
-]
+from licenses_chicago import TRADES  # noqa: E402  (key, tab, short label, kinds: one source with the free page)
 TAB = {k: t for k, t, _, _ in TRADES}
 SHORT = {k: s for k, _, s, _ in TRADES}
 KINDS = {k: w for k, _, _, w in TRADES}

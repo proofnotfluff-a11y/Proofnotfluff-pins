@@ -56,6 +56,16 @@ SEGMENTS = [
      r"PUBLIC PLACE OF AMUSEMENT|AMUSEMENT|ENTERTAINMENT|HOTEL|MOTEL|HOSTEL|BANQUET|EVENT SPACE|THEATER|THEATRE"),
     ("retail", "Shops, offices and other services", r"."),
 ]
+# The trades as buyers read them (tab, short label, what kinds of business), in tab order: the workbook, the members' app
+# and the free page all use these names (tools/lic_xlsx.py, tools/lic_app.py, tools/lic_site.py).
+TRADES = [  # key, tab, short label, what kinds of business
+    ("food", "1 Food and drink", "Food and drink", "Restaurants, cafes, bars, caterers, groceries and other food shops"),
+    ("retail", "2 Shops and services", "Shops and services", "Shops, offices, studios, manufacturers and other services"),
+    ("beauty", "3 Salons, spas, fitness", "Salons, spas, fitness", "Salons, barbers, nails, skin care, spas, gyms and studios"),
+    ("venue", "4 Venues and lodging", "Venues and lodging", "Event venues, entertainment, hotels and lodging"),
+    ("auto", "5 Auto shops", "Auto shops", "Auto repair, tire shops, car washes and gas stations"),
+    ("care", "6 Day care", "Day care", "Day care and children's services"),
+]
 # A shown name could be a person's when it has two to four plain words and none of them is a business word.
 BUSINESS_WORDS = re.compile(
     r"\b(?:LLC|L\.L\.C|INC|CORP|CORPORATION|CO|COMPANY|LTD|LP|LLP|PLLC|PC|GROUP|HOLDINGS|ENTERPRISES?|SERVICES?|SOLUTIONS|"
@@ -131,10 +141,23 @@ def keep(r, since, today):
     num = lambda k: str(r.get(k) or "").split(".")[0]
     return {"license": num("license_number") or num("license_id"),
             "business": name_case(shown), "address": street(addr), "zip": (r.get("zip_code") or "")[:5],
-            "licenseType": desc, "otherTypes": [], "activity": re.sub(r"\s+", " ", (r.get("business_activity") or "").strip())[:160],
+            "licenseType": desc, "otherTypes": [], "activity": activity_text(r.get("business_activity")),
             "issued": issued, "segment": segment(desc, r.get("business_activity") or ""),
             "lat": _coord(r.get("latitude")), "lon": _coord(r.get("longitude")), "communityArea": "",
             "_acct": num("account_number"), "_site": num("site_number")}, ""
+
+
+def activity_text(a, cap=300):
+    """The City's business activity, whole activities only: a long list ends at the last full one (never mid-word)."""
+    a = re.sub(r"\s+", " ", (a or "").strip())
+    if len(a) <= cap:
+        return a
+    parts, out = a.split(" | "), []
+    for x in parts:
+        if len(" | ".join(out + [x])) > cap:
+            break
+        out.append(x)
+    return " | ".join(out) if out else a[:cap].rsplit(" ", 1)[0]
 
 
 def _coord(v):
@@ -494,6 +517,9 @@ def selftest():
             "not a new license (renewal or change)": 1, "issued outside the window": 1, "site outside Chicago": 1,
             "license not active (cancelled or revoked)": 1}
     assert dict(reasons) == want, dict(reasons)
+    long = " | ".join(["Retail Sales of General Merchandise and Non-Perishable Food"] * 8)
+    assert activity_text(long) == " | ".join(["Retail Sales of General Merchandise and Non-Perishable Food"] * 4), activity_text(long)
+    assert activity_text("Hair Services") == "Hair Services"
     print(f"licenses selftest ok (12 planted names, 7 planted trades, {len(rows)} planted licenses, 2 planted removals, 5 planted histories, 2 planted food inspections)")
 
 

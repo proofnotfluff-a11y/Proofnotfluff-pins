@@ -136,7 +136,7 @@ PAGE = r"""<!doctype html>
 .row .bd .mi.ty{white-space:normal}
 .row .nwt{color:var(--accent-ink);font-weight:700}
 .row .ctx{color:var(--teal);font-weight:700;display:inline-flex;align-items:center;gap:4px}
-.row .fit{color:var(--muted);font-size:13px}
+.row .fit{color:var(--muted);font-size:13.5px}.row .fit b{color:var(--ink2);font-weight:600}
 .row{grid-template-columns:minmax(0,1fr) auto}
 .row .rt{grid-row:1 / span 3;flex-direction:column;align-items:flex-end;flex-wrap:nowrap;max-width:220px;gap:6px}
 @media(max-width:600px){.row{grid-template-columns:minmax(0,1fr)}.row .rt{grid-row:auto;flex-direction:row;align-items:center;flex-wrap:wrap;max-width:none}}
@@ -201,7 +201,7 @@ PAGE = r"""<!doctype html>
 .terms{max-width:780px}.terms .tx p{max-width:none}.terms .tx h3{font:600 14px var(--body);letter-spacing:.04em;color:var(--ink);margin:18px 0 6px}
 .terms .tx h3:first-child{margin-top:0}
 #fsheetH:focus{outline:none;box-shadow:none}
-@media(max-width:860px){.vtog button{height:44px}.rbar .lnk,.ovl .lnk{min-height:44px;padding:0 4px}.tog{min-height:44px}}
+@media(max-width:860px){.rbar .lnk,.ovl .lnk{min-height:44px;padding:0 4px}.tog{min-height:44px}}
 .pick{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 14px;margin:14px 0 0}
 .pick .fld select{max-width:300px}
 .pick p{margin:0;color:var(--muted);font-size:14px;line-height:40px}
@@ -313,13 +313,13 @@ if(scroll){window.scrollTo(0,0);const h=app.querySelector("h1");if(h){h.setAttri
 
 /* a row in any list */
 function row(r,ov){const m=mk(r.id);
-const meta=[r.nw?'<span class="nwt">New</span>':"",`<span>Licensed ${dayShort(r.d)}</span>`,`<span>${esc(r.ty)}</span>`,
+const meta=[r.nw?'<span class="nwt">New</span>':"",`<span>Licensed ${dayShort(r.d)}</span>`,
  r.fi?`<span>License inspection ${dayShort(r.fi)}</span>`:"",m.c?`<span class="ctx">${ico("check","s")}Contacted</span>`:""].filter(Boolean)
- .map((t,i)=>`<span class="mi${i&&/^<span>[^<]{28,}/.test(t)?" ty":""}">${i?'<span class="dot" aria-hidden="true">&middot;</span>':""}${t}</span>`).join("");
+ .map((t,i)=>`<span class="mi">${i?'<span class="dot" aria-hidden="true">&middot;</span>':""}${t}</span>`).join("");
 return `<li><a class="row" href="#/biz/${encodeURIComponent(r.id)}" data-id="${esc(r.id)}">
 <span class="mn">${esc(r.n)}</span>
 <span class="ad">${esc(r.a)}${r.ar?`<span class="ar">, ${esc(r.ar)}</span>`:""}</span>
-<span class="bd">${meta}</span>${r.ac?`<span class="bd"><span class="fit">${esc(r.ac)}</span></span>`:""}
+<span class="bd">${meta}</span><span class="bd"><span class="fit"><b>${esc(r.ty)}</b>${r.ac&&r.ac!==r.ty?": "+esc(r.ac):""}</span></span>
 <span class="rt">${ov?tch(r.t):""}${hi(r)}</span>${ico("chev","chev")}</a></li>`;}
 function rowsHtml(list,limit,ov){if(!list.length)return "";const n=Math.min(limit||list.length,list.length);return `<ul class="list-rows">${list.slice(0,n).map(r=>row(r,ov)).join("")}</ul>`;}
 const newest=(a,b)=>b.d.localeCompare(a.d)||a.n.localeCompare(b.n);
@@ -374,7 +374,7 @@ const foodish=!f.t||f.t==="food";
 $("#app").innerHTML=`<div class="ph"><div><h1>${tr?esc(tr.short):"All businesses"}</h1></div></div>
 <nav class="lsw" aria-label="Trades"><a href="${writeF(Object.assign({},f,{t:"",type:""}))}"${!f.t?' aria-current="page"':""}>${ico("all")}All<span class="c num">${int(R.length)}</span></a>${TORD.map(k=>`<a href="${writeF(Object.assign({},f,{t:k,type:"",fi:k==="food"?f.fi:""}))}"${k===f.t?' aria-current="page"':""}>${ico(k)}${esc(TR[k].short)}<span class="c num">${int(inTrade(k).length)}</span></a>`).join("")}</nav>
 <p class="ldesc">${tr?esc(tr.kinds)+" with a new City license in the last 30 days.":"Every business with a new City license in the last 30 days, at a Chicago business site."} Newest first.</p>
-${foodish&&D.checks.food?`<p class="ovl"><b>Also a member of Chicago Restaurant Inspection Leads?</b> ${esc(W.overlap)} <button class="lnk" type="button" id="hideFood">Hide them here</button></p>`:""}
+${foodish&&D.checks.food?`<p class="ovl"><b>Also a member of Chicago Restaurant Inspection Leads?</b> Food businesses with a License inspection date most likely showed up on its Opening soon list first. <button class="lnk" type="button" id="hideFood">Hide them here</button></p>`:""}
 <div class="tool"><label class="search"><span class="sr">Search this list</span>${ico("search")}<input id="fq" type="search" placeholder="Search name, address, license or activity" value="${esc(f.q)}" autocomplete="off" enterkeyhint="search"><button type="button" class="clr" id="fqx" aria-label="Clear search"${f.q?"":" hidden"}>${ico("x","s")}</button></label>
 <div class="seg" id="fh" role="group" aria-label="On the City's record"></div>
 <button class="btn fbtn" id="fopen" type="button" aria-haspopup="dialog" aria-controls="fsheet">${ico("filter")}<span id="fopenT">Filters</span></button>

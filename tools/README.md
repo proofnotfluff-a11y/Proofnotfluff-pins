@@ -145,6 +145,16 @@ Weekly leads from the City's Food Inspections data for pest control, hood cleani
 - `tools/rest_site.py` (called by make_site.py for kind `restleads`): the free sample page; `python3 tools/rest_site.py` runs its selftest.
 - The inspections workflow runs all of it every Monday; the members' app is built only once the `REST_LEADS_PASSWORD` Actions secret exists.
 
+## Chicago New Business Licenses: licenses_chicago.py and lic_*.py (Oct 2026, product 4, not launched)
+
+Weekly leads from the City's Business Licenses data (r5kz-chrr) for commercial cleaning, pest control and other vendors to new businesses. The members' full list is built in the runner only; app and workbook are built from it there.
+
+- `tools/licenses_chicago.py --full FULL.json` (runner only): new licenses in the last 30 days at a Chicago business site, one row per business and site (the earliest license in the window, later ones in `otherTypes`), by trade, with the City record history (`first`, `site`, `added`, counted from before the window) and the newest City food license inspection (Food Inspections 4ijn-s7e5, any license at the site). Writes the free sample, profile and terms page. `--dnl-add --license N` (or `--name` and `--address`) adds a removal to `permits/licenses-chicago/do_not_list.json`. `--selftest`: names, trades, licenses, removals, histories, food inspections, activity trimming.
+- `tools/lic_xlsx.py FULL.json OUT.xlsx`: the workbook (Start Here, 1 Food and drink to 6 Day care, Pitch kit, Terms with the City's Data Terms of Use word for word from `permits/licenses-chicago/city-terms.json`). It holds the shared words (trades, LEFT_OUT, OVERLAP, history labels, PITCH, terms_text). `--terms-check TERMS.txt` stops the build when the City's fetched terms differ from the Legal desk's snapshot.
+- `tools/lic_app.py FULL.json OUT.xlsx docs/chicago-new-business-licenses-members/index.html` with `LIC_LEADS_PASSWORD` (or `--pw-file`), `--check` also proves the app's rows and every workbook tab match the runner's list field for field: the members' app (overview by trade, list with map and filters, business page, pitch kit, Terms before the password, CSV, workbook download). Reuses leads_app.py's stylesheet and Leaflet and leads_page.py's encryption.
+- `tools/lic_site.py` (called by make_site.py for kind `licleads`): the free sample page, a noindex draft with no checkout until launch.
+- The licenses workflow runs all of it every Monday; the members' app is built only once the `LIC_LEADS_PASSWORD` Actions secret exists. While `permits/licenses-chicago/list-seal.pub.pem` exists (gate runs only), the runner also seals the list to `list.sealed.json` for the crew's checks; the private key lives only with the live session.
+
 ## Downstream leads pipeline (restructure, Oct 22, 2026)
 Code fetches, joins and checks; the agent only matches and drafts between gates; Todd verifies before anything sends. Every script exits 0 on pass and 1 on any violation, and a non-zero exit stops the stage.
 - `socrata.py`: the shared Socrata client (paged, checked against the portal's own count, retried, raises SocrataError).

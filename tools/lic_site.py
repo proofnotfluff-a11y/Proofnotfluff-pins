@@ -21,7 +21,10 @@ def page_html(p):
     import make_site as M
     E = M.E
     d = json.load(open(os.path.join(ROOT, p["data"]), encoding="utf-8"))
-    c, w, names = d["counts"], d["window"], d["segmentNames"]
+    from licenses_chicago import TRADES      # the trade names the members' app and workbook use (one source)
+    c, w = d["counts"], d["window"]
+    names = {k: s for k, _, s, _ in TRADES}
+    kinds = {k: x for k, _, _, x in TRADES}
     url = M.BASE + p["slug"] + "/"
     rel = "../"
     checkout, price = p.get("checkout"), p.get("price")
@@ -53,14 +56,14 @@ def page_html(p):
              f'<div class="tile"><div class="lab">Food businesses</div><div class="val">{s30.get("food", 0):,}</div><div class="sub">restaurants, cafes, bars, shops</div></div>'
              + (f'<div class="tile"><div class="lab">Busiest area this week</div><div class="val lc-area">{E(top_area[0])}</div><div class="sub">{top_area[1]:,} new licenses</div></div>' if top_area else "")
              + f'</div><p class="asof">City records pulled {E(pulled)}. Refreshed every Monday.</p>')
-    trades = ('<section class="block"><h2>New businesses by trade, last 30 days</h2><p>Each new business on the list, sorted by what it does, '
+    trades = ('<section class="block"><h2>New licenses by trade, last 30 days</h2><p>Each business on the list, sorted by what it does, '
               'so you can work the trades that buy from you.</p><ol class="rl-trades">'
-              + "".join(f'<li><span class="nm">{E(names[k])}<small>{sw.get(k, 0):,} new this week</small></span><span class="n">{s30.get(k, 0):,}</span></li>'
+              + "".join(f'<li><span class="nm">{E(names[k])}<small>{E(kinds[k])}. {sw.get(k, 0):,} new this week</small></span><span class="n">{s30.get(k, 0):,}</span></li>'
                         for k in ORDER if k in names)
               + '</ol></section>')
     segs = "".join(f'<h3 class="lc-h3">{E(names[k])} <span>({sw.get(k, 0):,} this week)</span></h3><div class="ld-list rl3">{"".join(card(x) for x in d["segments"][k][:3])}</div>'
                    for k in ORDER if d["segments"].get(k))
-    sample = (f'<section class="block" id="sample"><h2>This week\'s sample</h2><p>Up to three new businesses per trade from the last 7 days. '
+    sample = (f'<section class="block" id="sample"><h2>This week\'s sample</h2><p>Up to three businesses per trade licensed in the last 7 days. '
               'The members\' list has every one from the last 30 days, with a map, filters by trade, area and date, and an Excel file.</p>'
               f'{segs}</section>')
     method = '<section class="block"><h2>How to use this list</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"]) + "</section>"

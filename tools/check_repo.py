@@ -370,6 +370,18 @@ def check_schema(files):
                 leaked.append(f)
     if leaked:
         return err("schema", "prospect data (named people) is tracked in this public repo: " + ", ".join(leaked[:5]))
+    sys.path.insert(0, os.path.join(ROOT, "tools"))
+    import enrich_ci
+    bpath = os.path.join(ROOT, "prospects", "businesses.json")
+    if os.path.exists(bpath):
+        probs = enrich_ci.validate_businesses(json.load(open(bpath, encoding="utf-8")))
+        if probs:
+            return err("schema", "prospects/businesses.json: " + "; ".join(probs[:4]))
+    box = os.path.join(ROOT, "prospects", "enriched.sealed.json")
+    if os.path.exists(box):
+        b = json.load(open(box, encoding="utf-8"))
+        if set(b) != {"v", "alg", "salt", "nonce", "ct"}:
+            return err("schema", "prospects/enriched.sealed.json is not a sealed box (tools/data_box.py); named people must never be committed in the clear")
     local = os.path.join(ROOT, "data", "prospects", "prospects.json")
     if not os.path.exists(local):
         return ok("schema", "no prospect data tracked; no local prospect file in this checkout")
@@ -385,6 +397,11 @@ def check_copy():
     if code:
         return err("copy", "; ".join(l.replace("ERROR copy: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
     detail = lines[-1].replace("OK copy: ", "") if lines else ""
+    if os.path.exists(os.path.join(ROOT, "permits", "downstream", "gc_leads.json")):
+        code, lines = _run_tool([os.path.join("tools", "copy_gate.py"), "--live"])
+        if code:
+            return err("copy", "; ".join(l.replace("ERROR copy: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
+        detail += "; " + (lines[-1].replace("OK copy: ", "") if lines else "")
     drafts = os.path.join(ROOT, "data", "work", "drafts.json")
     if os.path.exists(drafts):
         code, lines = _run_tool([os.path.join("tools", "copy_gate.py"), drafts])

@@ -73,15 +73,41 @@ def check_templates(path):
     return problems, len(ts)
 
 
+def check_live(skill, gc_path):
+    """Every live GC lead rendered through its stage's template must pass the gate (proves the templates and the
+    display helpers work on real City names and streets, not only on the fixture)."""
+    gc = json.load(open(gc_path, encoding="utf-8"))
+    ts = {stage: (subj, body) for _n, subj, body, stage in templates(skill)}
+    problems, n = [], 0
+    for ld in gc.get("leads", []):
+        if ld.get("stage") not in ts:
+            continue
+        subj, body = ts[ld["stage"]]
+        f = {"first": "Dana", "gc": R.gc_display(ld.get("gc_company")), "value": R.value_display(ld.get("valuation")),
+             "kind": "office", "street": R.street_display(ld.get("address")), "zip": ld.get("zip") or ""}
+        n += 1
+        problems += [f"{ld['lead_id']}: {p}" for p in R.copy_problems(fill(subj, f), fill(body, f), "Dana", ld)]
+    return problems, n
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("drafts", nargs="?", default=DRAFTS)
     ap.add_argument("--gc", default=GC)
     ap.add_argument("--prospects", default=PROSPECTS)
     ap.add_argument("--templates", nargs="?", const=SKILL, default=None)
+    ap.add_argument("--live", action="store_true", help="render every lead in --gc through its stage template")
     ap.add_argument("--matches", default=os.path.join(ROOT, "data", "work", "matches.json"),
                     help="every draft's lead_id must equal its validated match (pass '' for follow-ups)")
     a = ap.parse_args()
+    if a.live:
+        problems, n = check_live(SKILL, a.gc)
+        for p in problems[:40]:
+            print(f"ERROR copy: {p}")
+        if problems:
+            sys.exit(1)
+        print(f"OK copy: {n} of {n} live leads render through the templates and pass")
+        sys.exit(0)
     if a.templates:
         problems, n = check_templates(a.templates)
         for p in problems:

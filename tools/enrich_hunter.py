@@ -71,6 +71,36 @@ def best_contact(emails, domain):
     return cands[0] if cands else None
 
 
+def enrich(rows, key, pause=1.2):
+    """rows: dicts with business and website. Returns (found rows in HEAD shape, misses). Raises RuntimeError when the
+    API fails after retries, and SystemExit when the key is refused."""
+    found, misses = [], 0
+    for r in rows:
+        domain = R.domain_of(r.get("website") or r.get("domain") or "")
+        if not domain:
+            misses += 1
+            continue
+        try:
+            ds = call("domain-search", {"domain": domain, "type": "personal", "limit": 25}, key)
+        except RuntimeError as e:
+            raise RuntimeError(f"{domain}: {e}")
+        pick = best_contact((ds.get("data") or {}).get("emails"), domain)
+        if not pick:
+            misses += 1
+            continue
+        ver = call("email-verifier", {"email": pick["value"]}, key)
+        status = ((ver.get("data") or {}).get("status") or "").lower()
+        if status not in ("valid", "accept_all"):
+            misses += 1
+            continue
+        found.append({"First name": pick.get("first_name"), "Last name": pick.get("last_name"), "Position": pick.get("position"),
+                      "Email": pick["value"], "Email status": status,
+                      "Company": r.get("business") or (ds.get("data") or {}).get("organization") or "",
+                      "Website": domain, "Source": "hunter"})
+        time.sleep(pause)
+    return found, misses
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("businesses")
@@ -83,30 +113,11 @@ def main():
         print("ERROR hunter: HUNTER_API_KEY is not set in this environment")
         sys.exit(1)
     rows = list(csv.DictReader(open(a.businesses, newline="", encoding="utf-8-sig")))[: a.limit]
-    found, misses = [], 0
-    for r in rows:
-        domain = R.domain_of(r.get("website") or r.get("domain") or "")
-        if not domain:
-            misses += 1
-            continue
-        try:
-            ds = call("domain-search", {"domain": domain, "type": "personal", "limit": 25}, key)
-            pick = best_contact((ds.get("data") or {}).get("emails"), domain)
-            if not pick:
-                misses += 1
-                continue
-            ver = call("email-verifier", {"email": pick["value"]}, key)
-            status = ((ver.get("data") or {}).get("status") or "").lower()
-            if status not in ("valid", "accept_all"):
-                misses += 1
-                continue
-            found.append({"First name": pick.get("first_name"), "Last name": pick.get("last_name"), "Position": pick.get("position"),
-                          "Email": pick["value"], "Email status": status, "Company": r.get("business") or (ds.get("data") or {}).get("organization") or "",
-                          "Website": domain, "Source": "hunter"})
-        except RuntimeError as e:
-            print(f"ERROR hunter: {domain}: {e}")
-            sys.exit(1)
-        time.sleep(a.pause)
+    try:
+        found, misses = enrich(rows, key, a.pause)
+    except RuntimeError as e:
+        print(f"ERROR hunter: {e}")
+        sys.exit(1)
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
     with open(a.out, "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=HEAD)

@@ -1,0 +1,5 @@
+{
+ "schema": "pnf.business.v1",
+ "note": "Business-level fields only (prospect_id, product, business, website). Written by the prospect-matching run; read by .github/workflows/prospect-enrichment.yml.",
+ "businesses": []
+}

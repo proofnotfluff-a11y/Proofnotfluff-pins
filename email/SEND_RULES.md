@@ -34,7 +34,7 @@ Not interested? Reply "no thanks" and we will not email you again.
 - Scoreboard leadproducts/<slug>.outreach counts, counted fresh from the CRM (this stage is the only writer). One line to Todd with the counts.
 
 ## Tools
-- Only the repo, ArtifactData (CRM, scoreboard), web search and fetch, the Agent tool for checkers, Claude in Chrome on hello@'s Gmail and Bouncer, and (prospect-matching only) Google Drive read and download in the "PNF enrichment" folder. Never the Gmail connector (a different account), Zapier, Typefully, Lovable, QuickBooks, Canva, Adobe or Supermetrics.
+- Only the repo, ArtifactData (CRM, scoreboard), web search and fetch, the Agent tool for checkers, Claude in Chrome on hello@'s Gmail and Bouncer. Enrichment runs in GitHub Actions (prospect-enrichment.yml), never through Drive. Never Google Drive, the Gmail connector (a different account), Zapier, Typefully, Lovable, QuickBooks, Canva, Adobe or Supermetrics.
 
 ## Never
 - A second first email to anyone with firstSentAt. A follow-up after any reply, bounce or opt-out. More than one follow-up.

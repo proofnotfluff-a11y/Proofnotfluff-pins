@@ -18,3 +18,6 @@ permits/chicago/builder_contacts.json
 
 # Entity B prospects and per-run work files: named people, never committed (CLAUDE.md invariant 5)
 data/
+
+# Local enrichment CSV drops (named people), read by tools/enrich_ci.py, never committed
+data/enrichment/*.csv

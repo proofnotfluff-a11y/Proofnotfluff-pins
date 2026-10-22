@@ -1,9 +1,9 @@
 # Handoff (Layer 1): live state pointers, Oct 22, 2026
 
-- Restructure (one model, one folder): repo side COMPLETE Oct 22 (layers, skills, gates, downstream workflow). Switch-over WAITING on Todd's go in a live chat: four trigger prompts to one line each, ledger files to memory /archive/legacy-memory/. Exact text: the Oct 22 Morning Report. Until then the old prompts, the ledger and coo/LEADS_DESK.md still run everything.
-- Previous handoff: archive/legacy-handoff/HANDOFF-2026-10-20.md (open items 1 to 8 there still stand).
+- Restructure (one model, one folder): COMPLETE Oct 22 (Todd's go in a live chat). QA, finder and builder triggers run on one-line prompts and their skills. Outreach trigger: new prompt waits for Todd's approval on his Windows PC; until then its old prompt follows coo/LEADS_DESK.md, which now blocks follow-ups to the Oct 19 and 20 batches.
+- Ledger files archived in memory /archive/legacy-memory/; no run reads them. Previous handoff: archive/legacy-handoff/HANDOFF-2026-10-20.md.
 - Live: Chicago and Austin construction cleaning leads ($29 a month), Chicago restaurant inspection leads ($39 a month). 0 payers.
-- Outreach under the new skills drafts only to named decision-makers. The CRM holds role inboxes only. Blocker: an enrichment source (HUNTER_API_KEY in the cloud environment, or Apollo or Clay CSVs in Drive folder "PNF enrichment").
-- Data: permits/downstream/gc_leads.json from .github/workflows/downstream-leads.yml (Mondays 12:05 UTC); join-key counts in probes/join-keys-<date>.json.
-- Senders: hello@proofnotfluff.com (25 a day), sales@getproofnotfluff.com (Apps Script ramp from Oct 20).
-- Skills: permit-ingestion (Mon QA), outreach-drafter (Mon, Thu), prospect-matching (Wed), product-builder (Tue to Fri), remotion-walkthrough (on request).
+- Entity A: permits/downstream/gc_leads.json, 730 leads Oct 22 (downstream-leads.yml, Mondays 12:05 UTC).
+- Entity B: prospect-enrichment.yml (Hunter, Apollo) seals named decision-makers to prospects/enriched.sealed.json. Blocked until Todd adds GitHub secrets HUNTER_API_KEY and/or APOLLO_API_KEY plus PNF_DATA_KEY, and PNF_DATA_KEY in the cloud environment.
+- Senders: hello@proofnotfluff.com (25 a day), sales@getproofnotfluff.com (Apps Script ramp). The PNF send queue sheet is reachable only from sales@ in Todd's browser.
+- Skills: permit-ingestion, outreach-drafter, prospect-matching, product-builder, remotion-walkthrough (on request).

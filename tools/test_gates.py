@@ -101,6 +101,17 @@ def copy_cases():
     for bad in ("proofnotfluff dot com", "acme.ai", "leads.app", "acme.biz", "pnf.info", "proofnotfluff . com"):
         expect(f"copy: {bad!r} fails", R.copy_problems(SUBJECT, BODY.replace("Mind if", f"See {bad}. Mind if"), "Dana", LEAD), True)
     expect("copy: 'Inc. in' is not a link", R.copy_problems(SUBJECT, BODY.replace("That is", "Cocke Inc. in town. That is"), "Dana", LEAD), False)
+    for name in ("Henry Bros.Co.", "Acme L.L.C.", "Dunn Co. Inc.", "Ace Corp."):
+        lead = dict(LEAD, gc_company=name)
+        body = BODY.replace("Bartlett Cocke", R.gc_display(name))
+        expect(f"copy: GC name {name!r} is not a link", R.copy_problems(SUBJECT, body, "Dana", lead), False)
+    bg = dict(LEAD, gc_company="Breaking Ground Contractors Inc")
+    expect("copy: a builder named Breaking Ground is not an upstream phrase",
+           R.copy_problems(SUBJECT, BODY.replace("Bartlett Cocke", "Breaking Ground Contractors"), "Dana", bg), False)
+    expect("copy: 'acme.co' still fails", R.copy_problems(SUBJECT, BODY.replace("Mind if", "See acme.co. Mind if"), "Dana", LEAD), True)
+    expect("copy: 'St.com' style still fails", R.copy_problems(SUBJECT, BODY.replace("Mind if", "See main.net now. Mind if"), "Dana", LEAD), True)
+    expect("street display drops building and unit passes",
+           [] if R.street_display("8201 E Riverside Dr Bldg 6 Unit 650") == "E Riverside Dr" else ["wrong street"], False)
     expect("copy: leftover brace fails", R.copy_problems(SUBJECT, BODY.replace("Dana,\n", "Dana,\n{street} "), "Dana", LEAD), True)
     drafts = {"schema": "pnf.draft.v1", "drafts": [{"prospect_id": PROSPECT["prospect_id"], "lead_id": "chi-1", "to": "info@sparkleco.example",
                                                     "subject": SUBJECT, "body": BODY}]}

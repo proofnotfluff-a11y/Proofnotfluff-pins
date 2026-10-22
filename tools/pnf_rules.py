@@ -69,7 +69,7 @@ SOURCES = {"apollo", "hunter", "clay", "site", "manual"}
 
 # ------------------------------------------------------------------ outreach copy
 MAX_WORDS = 75            # a draft fails at 75 words or more
-MAX_SUBJECT_WORDS = 9
+MAX_SUBJECT_WORDS = 12
 TLDS = ("com|net|org|io|co|ai|app|biz|info|us|me|ly|xyz|site|online|store|shop|dev|tech|pro|link|page|ws|tv|gg|"
         "cc|so|to|in|uk|ca|club|live|world|today|agency|services|solutions|cleaning|network|email|website|web")
 URL_RE = re.compile(r"https?://|www\.|gumroad|bit\.ly|\b[a-z0-9-]+\.(?:%s)\b|\b[a-z0-9-]+\s\.\s?(?:com|net|org|io)\b|"
@@ -81,6 +81,28 @@ DASHES = ("\u2014", "\u2013")
 # against the 75 words because it is compliance, not copy.
 FOOTER = ("ProofNotFluff\n680 North Lake Shore Drive, Suite 110-2964, Chicago, IL 60611\n"
           "Not interested? Reply \"no thanks\" and we will not email you again.")
+
+
+ABBREV_RE = re.compile(r"\b(?:L\.L\.C|L\.L\.P|P\.L\.L\.C|Inc|Co|Corp|Ltd|Bros|Assoc|Dr|St|Ave|Blvd|Rd|Ln|Ct|Pl|Pkwy|Hwy|Ste|Jr|Sr|Mt|Ft|N|S|E|W)\.",
+                       re.I)
+
+
+def link_safe(text):
+    """Text with the dots of corporate and street abbreviations removed ('Henry Bros.Co.', 'L.L.C.', 'Dr.', 'St.'), so the
+    link check judges only real domains. 'acme.co', 'x.com' and 'www.' are untouched and still caught."""
+    t = text or ""
+    for _ in range(3):
+        t = ABBREV_RE.sub(lambda m: m.group(0)[:-1].replace(".", ""), t)
+    return t
+
+
+def street_display(address):
+    """The street as an email names it: no house number, no building, unit or frontage-road tail.
+    '7009 Ed Bluestein Blvd Svrd Nb Bldg 1' gives 'Ed Bluestein Blvd'."""
+    a = re.sub(r"^\s*\d+[A-Za-z]?\s+", "", address or "")
+    a = re.sub(r"\s+(?:#|Unit|Ste|Suite|Apt|Fl|Floor|Bldg|Building|Rm|Room|Spc|Space)\b.*$", "", a, flags=re.I)
+    a = re.sub(r"\s+Svrd(?:\s+[NSEW]b)?\b.*$", "", a, flags=re.I)
+    return a.strip()
 
 
 def words(text):
@@ -337,14 +359,15 @@ def copy_problems(subject, body, first_name=None, lead=None):
         p.append(f"body is {n} words, the limit is under {MAX_WORDS}")
     if len(words(s)) > MAX_SUBJECT_WORDS:
         p.append(f"subject is {len(words(s))} words, the limit is {MAX_SUBJECT_WORDS}")
+    gc_name = gc_display(lead.get("gc_company")) if lead else ""
     for label, t in (("subject", s), ("body", b)):
-        m = URL_RE.search(t)
+        m = URL_RE.search(link_safe(t))
         if m:
             p.append(f"{label} carries a link or domain ({m.group(0)!r})")
         for d in DASHES:
             if d in t:
                 p.append(f"{label} carries an em or en dash")
-        low = t.lower()
+        low = t.lower().replace(gc_name.lower(), " ") if gc_name else t.lower()   # a builder's legal name is not copy
         for ph in UPSTREAM_PHRASES:
             if ph in low:
                 p.append(f"{label} uses upstream phrase {ph!r}")
@@ -365,7 +388,7 @@ def copy_problems(subject, body, first_name=None, lead=None):
         for m in re.findall(r"\$\d+(?:\.\d+)?[MB]\b", b):
             if m != value_display(lead.get("valuation")):
                 p.append(f"body states {m}, the lead's valuation is {value_display(lead.get('valuation'))}")
-        street = re.sub(r"^\d+\s+", "", lead.get("address") or "").lower()
+        street = street_display(lead.get("address")).lower()
         if street and street not in b.lower():
             p.append(f"body does not name the lead's street ({street!r})")
         stage_words = {"Partial Occupancy Approved": "partial occupancy", "Inspections Under Way": "inspection",

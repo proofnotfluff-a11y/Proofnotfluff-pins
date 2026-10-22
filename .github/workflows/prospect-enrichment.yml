@@ -1,0 +1,40 @@
+name: Prospect enrichment
+# Entity B, GitHub-native (Todd, Oct 22, 2026): resolve one named decision-maker per cleaning business listed in
+# prospects/businesses.json (business-level fields only) with Hunter and/or Apollo, inside this runner. The validated
+# prospect file is sealed with PNF_DATA_KEY (tools/data_box.py) to prospects/enriched.sealed.json; no name or address is
+# ever committed in the clear or printed to the log. The prospect-matching run opens the box with the same key.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["prospects/businesses.json"]
+  schedule:
+    - cron: "40 16 * * 3"   # Wednesdays, after the 10:10 am CT prospect-matching run lists new businesses
+permissions:
+  contents: write
+concurrency:
+  group: prospect-enrichment
+  cancel-in-progress: false
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install --quiet cryptography
+      - run: python3 tools/data_box.py --selftest
+      - run: python3 tools/test_gates.py
+      - name: Enrich, gate and seal
+        env:
+          HUNTER_API_KEY: ${{ secrets.HUNTER_API_KEY }}
+          APOLLO_API_KEY: ${{ secrets.APOLLO_API_KEY }}
+          PNF_DATA_KEY: ${{ secrets.PNF_DATA_KEY }}
+        run: python3 tools/enrich_ci.py --businesses prospects/businesses.json --out prospects/enriched.sealed.json
+      - name: Commit the sealed box
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add prospects/enriched.sealed.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Prospect enrichment (sealed) $(date -u +%F)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 5; done

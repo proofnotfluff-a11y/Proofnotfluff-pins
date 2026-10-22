@@ -1,0 +1,5 @@
+{
+ "about": "Businesses that asked to be left out of Chicago New Business Licenses. Salted SHA-256 keys only; see tools/licenses_chicago.py.",
+ "salt": "proofnotfluff-licenses-dnl-v1",
+ "keys": []
+}

@@ -25,6 +25,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "permits", "licenses-chicago")
 PORTAL = "https://data.cityofchicago.org"
 DATASET = "r5kz-chrr"
+FOOD = "4ijn-s7e5"          # Food Inspections: the license inspection Chicago Restaurant Inspection Leads lists
 DATASET_PAGE = f"{PORTAL}/Community-Economic-Development/Business-Licenses/{DATASET}"
 TERMS = "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
 WINDOW_DAYS = 30      # members' list: licenses issued in the last 30 days; the free sample shows the last 7
@@ -44,9 +45,11 @@ SEGMENTS = [
      r"RETAIL FOOD|WHOLESALE FOOD|FOOD ESTABLISHMENT|SHARED KITCHEN|CONSUMPTION ON PREMISES|TAVERN|PACKAGE GOODS|LIQUOR|CATERER|"
      r"RESTAURANT|BAKERY|COFFEE|CAFE|GROCERY|FOOD|BEVERAGE"),
     ("beauty", "Salons, barbers, nails, spas and fitness",
-     r"BARBER|HAIR|NAIL|BEAUTY|COSMETOLOG|SALON|ESTHETIC|SPA\b|MASSAGE|TANNING|BODY ART|TATTOO|LASH|BROW|GYM|FITNESS|HEALTH CLUB|YOGA"),
+     r"BARBER|HAIR|NAIL|BEAUTY|COSMETOLOG|SALON|ESTHETIC|SPA\b|MASSAGE|TANNING|BODY ART|TATTOO|LASH|BROW|GYM|FITNESS|HEALTH CLUB|YOGA|"
+     r"SKIN ?CARE|WAXING|THREADING|MICROBLAD|ELECTROLYSIS"),
+    # "Commercial Garage" is the City's parking garage license, not a repair shop, so it stays with other services (Oct 22).
     ("auto", "Auto repair, tire and car wash shops",
-     r"MOTOR VEHICLE|\bAUTO\b|AUTO ?BODY|\bTIRES?\b|CAR WASH|AUTOMOTIVE|VEHICLE REPAIR|BODY SHOP|FILLING STATION|COMMERCIAL GARAGE"),
+     r"MOTOR VEHICLE|\bAUTO\b|AUTO ?BODY|\bTIRES?\b|CAR WASH|AUTOMOTIVE|VEHICLE REPAIR|BODY SHOP|FILLING STATION"),
     ("care", "Day care and children's services",
      r"CHILDREN'?S SERVICES|DAY ?CARE|CHILD CARE|EARLY LEARNING|PRESCHOOL"),
     ("venue", "Venues, entertainment and lodging",
@@ -67,6 +70,8 @@ BUSINESS_WORDS = re.compile(
     r"REALTY|PROPERTIES|INSURANCE|TAX|FINANCIAL|CONSULTING|MEDIA|PRINT\w*|SIGNS?|PHOTO\w*|ART|ARTS|CRAFTS?|GAMES?|TOYS?)\b", re.I)
 PLAIN_WORD = re.compile(r"^[A-Z][A-Z'\-]*\.?$")
 HOME_ADDRESS = re.compile(r"\b(?:APT|APARTMENT|UNIT\s+\d+[A-Z]?\s*$|#\s*\d+[A-Z]?\s*$|\d+(?:ST|ND|RD|TH)\s+FL(?:OOR)?\s+APT)\b", re.I)
+# A stall or booth at a market ("4100 S ASHLAND AVE OUTSIDE 636" is an outdoor flea market space): a vendor, not a site (Oct 22).
+STALL_ADDRESS = re.compile(r"\b(?:OUTSIDE\s+\d+|BOOTH|STALL)\b", re.I)
 
 
 def could_be_person(name):
@@ -118,33 +123,176 @@ def keep(r, since, today):
         return None, "no site address"
     if HOME_ADDRESS.search(addr):
         return None, "home or apartment address"
+    if STALL_ADDRESS.search(addr):
+        return None, "license held by a person or for an event or season"
     shown = (r.get("doing_business_as_name") or "").strip() or (r.get("legal_name") or "").strip()
     if could_be_person(shown) or could_be_person(r.get("legal_name") if not r.get("doing_business_as_name") else ""):
         return None, "name could be a person's"
-    return {"license": str(r.get("license_number") or r.get("license_id") or "").split(".")[0],
+    num = lambda k: str(r.get(k) or "").split(".")[0]
+    return {"license": num("license_number") or num("license_id"),
             "business": name_case(shown), "address": street(addr), "zip": (r.get("zip_code") or "")[:5],
-            "licenseType": desc, "activity": re.sub(r"\s+", " ", (r.get("business_activity") or "").strip())[:160],
+            "licenseType": desc, "otherTypes": [], "activity": re.sub(r"\s+", " ", (r.get("business_activity") or "").strip())[:160],
             "issued": issued, "segment": segment(desc, r.get("business_activity") or ""),
-            "lat": r.get("latitude"), "lon": r.get("longitude"), "communityArea": ""}, ""
+            "lat": _coord(r.get("latitude")), "lon": _coord(r.get("longitude")), "communityArea": "",
+            "_acct": num("account_number"), "_site": num("site_number")}, ""
 
 
-def build(rows, areas, today, days=WINDOW_DAYS):
+def _coord(v):
+    try:
+        return round(float(v), 6)
+    except (TypeError, ValueError):
+        return None
+
+
+# Do-not-list: a business that asks to be left out stays out of the members' list and the free sample on every later build.
+# permits/licenses-chicago/do_not_list.json holds salted SHA-256 keys, never a name, address or license in the clear:
+# "L:<license>" and "N:<name>|<address>" (letters and digits only, upper case). Add one with
+#   python3 tools/licenses_chicago.py --dnl-add --license 1234567        (the License on the business page or workbook)
+#   python3 tools/licenses_chicago.py --dnl-add --name "BUSINESS NAME" --address "123 W MAIN ST"
+# The salt is public, so a key can be checked against the City's records; it keeps the list free of names, not secret.
+DNL_FILE = os.path.join(OUT, "do_not_list.json")
+DNL_SALT = "proofnotfluff-licenses-dnl-v1"
+DNL_REASON = "the business asked to be left out"
+
+
+def dnl_hash(key):
+    import hashlib
+    return hashlib.sha256((DNL_SALT + "|" + key).encode("utf-8")).hexdigest()
+
+
+def dnl_key_name(name, address):
+    n = lambda t: re.sub(r"[^A-Z0-9]", "", (t or "").upper())
+    return "N:" + n(name) + "|" + n(address)
+
+
+def row_dnl_keys(r):
+    keys = set()
+    lic = str(r.get("license_number") or "").split(".")[0]
+    if lic:
+        keys.add("L:" + lic)
+    for nm in (r.get("doing_business_as_name"), r.get("legal_name")):
+        if (nm or "").strip() and (r.get("address") or "").strip():
+            keys.add(dnl_key_name(nm, r.get("address")))
+    return {dnl_hash(k) for k in keys}
+
+
+def dnl_load(path=DNL_FILE):
+    """The set of keys. A missing file is an empty list; a broken one stops the build, so a removal is never dropped."""
+    if not os.path.exists(path):
+        return set()
+    d = json.load(open(path, encoding="utf-8"))
+    keys = d.get("keys") if isinstance(d, dict) else None
+    if not isinstance(d, dict) or d.get("salt") != DNL_SALT or not isinstance(keys, list) or \
+            not all(isinstance(k, str) and re.fullmatch(r"[0-9a-f]{64}", k) for k in keys):
+        raise SystemExit(f"{path}: must be {{\"salt\": \"{DNL_SALT}\", \"keys\": [64-hex keys]}}")
+    return set(keys)
+
+
+def dnl_add(key, path=DNL_FILE):
+    d = json.load(open(path, encoding="utf-8")) if os.path.exists(path) else {}
+    keys = set(d.get("keys") or [])
+    keys.add(dnl_hash(key))
+    out = {"about": "Businesses that asked to be left out of Chicago New Business Licenses. Salted SHA-256 keys only; see "
+                    "tools/licenses_chicago.py.", "salt": DNL_SALT, "keys": sorted(keys)}
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(out, f, indent=1)
+        f.write("\n")
+    return len(keys)
+
+
+def build(rows, areas, today, days=WINDOW_DAYS, dnl=None):
     since = (today - dt.timedelta(days=days)).isoformat()
-    recs, reasons, seen = [], collections.Counter(), set()
+    dnl = dnl_load() if dnl is None else dnl
+    recs, reasons, seen = [], collections.Counter(), {}
     for r in rows:
         rec, why = keep(r, since, today.isoformat())
+        if rec and dnl and row_dnl_keys(r) & dnl:
+            rec, why = None, DNL_REASON
         if not rec:
             reasons[why] += 1
             continue
         k = (rec["business"].upper(), rec["address"].upper())     # one row per business site (a site often gets 2 licenses)
         if k in seen:
             reasons["second license at the same site (listed once)"] += 1
+            first = seen[k]
+            if rec["licenseType"] != first["licenseType"] and rec["licenseType"] not in first["otherTypes"]:
+                first["otherTypes"].append(rec["licenseType"])
             continue
-        seen.add(k)
-        rec["communityArea"] = area_of(rec.pop("lat"), rec.pop("lon"), areas) or (r.get("community_area_name") or "").title()
+        seen[k] = rec
+        rec["communityArea"] = area_of(rec["lat"], rec["lon"], areas) or (r.get("community_area_name") or "").title()
         recs.append(rec)
     recs.sort(key=lambda x: (x["issued"], x["business"]), reverse=True)
     return recs, reasons
+
+
+# ---------------------------------------------------------------- what the City's own records add to each row
+# Both run in the runner after build(): one grouped query per 40 accounts or licenses. A failed fetch leaves the field
+# blank and says so in counts (the list still ships; the app and workbook show the check as not run).
+HISTORY_WORDS = {"first": "First license on the City's record for this business",
+                 "site": "A new site for a business already licensed elsewhere in Chicago",
+                 "added": "A new license at a site where this business already held one"}
+
+
+def add_history(recs, fetch):
+    """history: "first" (no earlier Chicago license for this business account, 2002 on), "site" (the account held a license at
+    another site first: a new location or a move), "added" (the account already held a license at this site: a new license type
+    there). since: the year of the earliest such license. fetch(accounts) returns City rows with account_number, site_number and
+    date_issued for those accounts."""
+    accts = sorted({r["_acct"] for r in recs if r.get("_acct")})
+    hist = collections.defaultdict(list)
+    for i in range(0, len(accts), 40):
+        for x in fetch(accts[i:i + 40]):
+            a, d = str(x.get("account_number") or "").split(".")[0], (x.get("date_issued") or "")[:10]
+            if a and d:
+                hist[a].append((d, str(x.get("site_number") or "").split(".")[0]))
+    for r in recs:
+        prior = [(d, s) for d, s in hist.get(r.get("_acct") or "", []) if d < r["issued"]]
+        here = [d for d, s in prior if s == r.get("_site")]
+        if not r.get("_acct"):
+            r["history"], r["since"] = "", ""
+        elif here:
+            r["history"], r["since"] = "added", min(here)[:4]
+        elif prior:
+            r["history"], r["since"] = "site", min(d for d, _ in prior)[:4]
+        else:
+            r["history"], r["since"] = "first", ""
+    return recs
+
+
+def add_food_inspections(recs, fetch):
+    """foodInsp: the newest City food license inspection on file for the row's license number (the City's Food Inspections
+    dataset, 4ijn-s7e5, files it under the business license number), in the 120 days before the license was issued. That
+    inspection is what Chicago Restaurant Inspection Leads lists as "Opening soon". fetch(licenses) returns rows with license_
+    and inspection_date."""
+    lic = sorted({r["license"] for r in recs if r.get("license")})
+    seen = collections.defaultdict(list)
+    for i in range(0, len(lic), 40):
+        for x in fetch(lic[i:i + 40]):
+            n, d = str(x.get("license_") or "").split(".")[0], (x.get("inspection_date") or "")[:10]
+            if n and d:
+                seen[n].append(d)
+    for r in recs:
+        start = (dt.date.fromisoformat(r["issued"]) - dt.timedelta(days=120)).isoformat()
+        ds = [d for d in seen.get(r["license"], []) if start <= d <= r["issued"]]
+        r["foodInsp"] = max(ds) if ds else ""
+    return recs
+
+
+def strip_internal(recs):
+    for r in recs:
+        r.pop("_acct", None); r.pop("_site", None)
+    return recs
+
+
+def fetch_history(accts):
+    return get(f"{PORTAL}/resource/{DATASET}.json",
+               {"$select": "account_number,site_number,date_issued", "$where": f"account_number in ({','.join(accts)})", "$limit": 50000})
+
+
+def fetch_food(lics):
+    return get(f"{PORTAL}/resource/{FOOD}.json",
+               {"$select": "license_,inspection_date", "$where": f"license_ in ({','.join(lics)}) AND upper(inspection_type) like 'LICENSE%'",
+                "$limit": 50000})
 
 
 def pull(since):
@@ -192,6 +340,16 @@ def main():
     rows = pull((today - dt.timedelta(days=WINDOW_DAYS + 7)).isoformat())
     areas = load_areas()
     recs, reasons = build(rows, areas, today)
+    checks = {}
+    for name, fn in (("history", lambda: add_history(recs, fetch_history)), ("foodInspections", lambda: add_food_inspections(recs, fetch_food))):
+        try:
+            fn(); checks[name] = True
+        except SystemExit as e:                     # the list still ships; the app and workbook say the check did not run
+            print(f"{name} check did not run: {e}")
+            checks[name] = False
+            for r in recs:
+                r.setdefault("history", ""); r.setdefault("since", ""); r.setdefault("foodInsp", "")
+    strip_internal(recs)
     week_from = (today - dt.timedelta(days=7)).isoformat()
     week = [r for r in recs if r["issued"] >= week_from]
     labels = {k: lab for k, lab, _ in SEGMENTS}
@@ -208,7 +366,9 @@ def main():
                          "segmentsWeek": {k: sum(r["segment"] == k for r in week) for k in labels},
                          "segments30": {k: sum(r["segment"] == k for r in recs) for k in labels},
                          "excluded": dict(reasons),
-                         "areasWeek": collections.Counter(r["communityArea"] for r in week if r["communityArea"]).most_common(10)},
+                         "areasWeek": collections.Counter(r["communityArea"] for r in week if r["communityArea"]).most_common(10),
+                         "checks": checks, "history30": dict(collections.Counter(r["history"] or "unknown" for r in recs)),
+                         "foodInsp30": sum(bool(r["foodInsp"]) for r in recs)},
               "segmentNames": labels,
               "segments": {k: [public(r) for r in week if r["segment"] == k][: a.top] for k in labels}}
     profile = {"fetchedAt": source["fetchedAt"], "rowsUpdatedAt": upd_iso, "columns": cols,
@@ -223,7 +383,8 @@ def main():
     if a.full:
         json.dump({"source": source, "window": sample["window"], "counts": sample["counts"], "records": recs},
                   open(a.full, "w"), indent=1)
-    print(json.dumps({"fetched": len(rows), "kept30": len(recs), "keptWeek": len(week), "excluded": dict(reasons)}))
+    print(json.dumps({"fetched": len(rows), "kept30": len(recs), "keptWeek": len(week), "excluded": dict(reasons),
+                      "checks": checks, "history30": sample["counts"]["history30"], "foodInsp30": sample["counts"]["foodInsp30"]}))
 
 
 # ---------------------------------------------------------------- planted cases (invented businesses, real City field names)
@@ -238,7 +399,9 @@ def selftest():
     for desc, act, want in [("Regulated Business License", "Computer Consulting Services / Computer Automated Design", "retail"),
                             ("Motor Vehicle Services License", "Motor Vehicle Repair - Engine and Transmission Work", "auto"),
                             ("Limited Business License", "Hair Services", "beauty"), ("Filling Station", "", "auto"),
-                            ("Package Goods", "Retail Sales of Packaged Liquor", "food")]:
+                            ("Package Goods", "Retail Sales of Packaged Liquor", "food"),
+                            ("Limited Business License", "Skincare Services | Provide Waxing Services", "beauty"),
+                            ("Commercial Garage", "Provide 4 or More Parking Spaces For a Fee", "retail")]:
         assert segment(desc, act) == want, (desc, act, segment(desc, act))
     today = dt.date(2026, 10, 20)
     base = {"application_type": "ISSUE", "license_status": "AAI", "city": "CHICAGO", "zip_code": "60601", "latitude": "41.88",
@@ -276,22 +439,73 @@ def selftest():
         dict(base, license_number="16", doing_business_as_name="SUNNY FLEA GOODS", legal_name="SFG LLC",
              license_description="Limited Business License",
              business_activity="Sale of General Merchandise at Flea Market 181-365 Consecutive Days", address="1600 W LAKE ST"),
-        dict(base, license_number="14", doing_business_as_name="MAIN STREET PHONES", legal_name="MSP INC",
-             license_description="Limited Business License", business_activity="Retail Sales of Electronics", address="1300 W LAKE ST"),
+        dict(base, license_number="14", doing_business_as_name="MAIN STREET PHONES", legal_name="MSP INC", account_number="501",
+             site_number="2", license_description="Limited Business License", business_activity="Retail Sales of Electronics", address="1300 W LAKE ST"),
+        dict(base, license_number="17", doing_business_as_name="SWAP TOOLS", legal_name="ST LLC",
+             license_description="Limited Business License", business_activity="Retail Sales of General Merchandise",
+             address="4100 S ASHLAND AVE OUTSIDE 636"),                                              # market stall: out
     ]
-    recs, reasons = build(rows, [("Loop", [[[-87.7, 41.8], [-87.6, 41.8], [-87.6, 41.9], [-87.7, 41.9], [-87.7, 41.8]]])], today)
+    for r in rows:
+        r.setdefault("account_number", str(100 + int(r["license_number"])) + ".0"); r.setdefault("site_number", "1")
+    loop = [("Loop", [[[-87.7, 41.8], [-87.6, 41.8], [-87.6, 41.9], [-87.7, 41.9], [-87.7, 41.8]]])]
+    # the do-not-list: a planted removal by license, and one by name and address (case and punctuation do not matter)
+    import tempfile
+    tf = os.path.join(tempfile.mkdtemp(), "dnl.json")
+    dnl_add("L:7", tf)
+    dnl_add(dnl_key_name("Main Street Phones", "1300 W. Lake St."), tf)
+    gone, why = build(rows, loop, today, dnl=dnl_load(tf))
+    assert {r["license"] for r in gone} == {"1", "4", "5"} and why[DNL_REASON] == 2, (sorted(r["license"] for r in gone), dict(why))
+    try:
+        json.dump({"salt": "wrong", "keys": []}, open(tf, "w")); dnl_load(tf)
+        raise AssertionError("a broken do-not-list must stop the build")
+    except SystemExit:
+        pass
+    recs, reasons = build(rows, loop, today, dnl=set())
     by = {r["license"]: r for r in recs}
     assert set(by) == {"1", "4", "5", "7", "14"}, sorted(by)
     assert [by[k]["segment"] for k in ("1", "4", "5", "7", "14")] == ["food", "beauty", "auto", "care", "retail"], by
     assert by["1"]["business"] == "Luna Tacos" and by["1"]["communityArea"] == "Loop" and by["1"]["address"] == "100 W Randolph St"
+    assert by["1"]["otherTypes"] == ["Consumption on Premises - Incidental Activity"] and by["1"]["lat"] == 41.88, by["1"]
+    # the City's own history: account 101 (Luna Tacos) is new; 104 (the barbershop) held a license at this site since 2019;
+    # 501 (the phone shop) held one at another site since 2015; 107's only earlier row is the same day (not earlier)
+    hist = {"101": [], "104": [("2019-03-02", "1")], "105": [], "107": [("2026-10-16", "1")], "501": [("2015-06-01", "1"), ("2020-01-01", "1")]}
+    calls = []
+    def fake_hist(accts):
+        calls.append(len(accts))
+        return [{"account_number": a + ".0", "site_number": s, "date_issued": d + "T00:00:00.000"} for a in accts for d, s in hist.get(a, [])]
+    add_history(recs, fake_hist)
+    assert [(by[k]["history"], by[k]["since"]) for k in ("1", "4", "5", "7", "14")] == [
+        ("first", ""), ("added", "2019"), ("first", ""), ("first", ""), ("site", "2015")], [(by[k]["history"], by[k]["since"]) for k in by]
+    assert calls == [5], calls
+    food = {"1": ["2026-10-02", "2026-10-09", "2025-01-01"], "5": ["2026-10-17"]}
+    add_food_inspections(recs, lambda lics: [{"license_": n + ".0", "inspection_date": d + "T00:00:00.000"} for n in lics for d in food.get(n, [])])
+    assert by["1"]["foodInsp"] == "2026-10-09" and by["5"]["foodInsp"] == "" and by["4"]["foodInsp"] == "", "newest, 120 days before, never after the issue date"
+    strip_internal(recs)
+    assert not any(k.startswith("_") for r in recs for k in r), "account and site numbers never leave the runner"
     blob = json.dumps(recs).upper()
     assert "JOHN Q PUBLIC" not in blob and "LEGAL" not in blob, "a legal name leaked into the records"
     want = {"second license at the same site (listed once)": 1, "name could be a person's": 1,
-            "license held by a person or for an event or season": 3, "home or apartment address": 2,
+            "license held by a person or for an event or season": 4, "home or apartment address": 2,
             "not a new license (renewal or change)": 1, "issued outside the window": 1, "site outside Chicago": 1,
             "license not active (cancelled or revoked)": 1}
     assert dict(reasons) == want, dict(reasons)
-    print(f"licenses selftest ok (12 planted names, {len(rows)} planted licenses)")
+    print(f"licenses selftest ok (12 planted names, 7 planted trades, {len(rows)} planted licenses, 2 planted removals, 5 planted histories, 2 planted food inspections)")
+
+
+def dnl_cli(args):
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--dnl-add", action="store_true")
+    ap.add_argument("--license", default="")
+    ap.add_argument("--name", default="")
+    ap.add_argument("--address", default="")
+    a = ap.parse_args(args)
+    if a.license.strip():
+        n = dnl_add("L:" + re.sub(r"\D", "", a.license))
+    elif a.name.strip() and a.address.strip():
+        n = dnl_add(dnl_key_name(a.name, a.address))
+    else:
+        raise SystemExit("give --license N, or --name and --address")
+    print(f"do-not-list: {n} key(s); commit {os.path.relpath(DNL_FILE, ROOT)}")
 
 
 if __name__ == "__main__":
@@ -299,5 +513,7 @@ if __name__ == "__main__":
         probe()
     elif sys.argv[1:] == ["--selftest"]:
         selftest()
+    elif sys.argv[1:2] == ["--dnl-add"]:
+        dnl_cli(sys.argv[1:])
     else:
         main()

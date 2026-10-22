@@ -2,12 +2,14 @@ name: Chicago new business licenses
 # Lead product #4 (LEADS FOCUS line, coo/PIVOT.md): Chicago New Business Licenses, by trade. The cloud agents cannot reach
 # data.cityofchicago.org, so this runner pulls the City's Business Licenses data and commits only the free weekly sample
 # and column profile to permits/licenses-chicago/ (business-level fields; legal names never written). The members' full
-# list is built in the runner only. tools/licenses_chicago.py says what is kept.
+# list is built in the runner only: the workbook and the members' app are built from it here, the app encrypted under the
+# LIC_LEADS_PASSWORD secret (skipped until Todd adds it). tools/licenses_chicago.py says what is kept.
 on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["tools/licenses_chicago.py", "tools/lic_site.py", ".github/workflows/licenses-chicago.yml"]
+    paths: ["tools/licenses_chicago.py", "tools/lic_*.py", ".github/workflows/licenses-chicago.yml",
+            "permits/licenses-chicago/do_not_list.json", "permits/licenses-chicago/city-terms.json"]
   schedule:
     - cron: "40 11 * * 1"   # Mondays, about 6:40 am Chicago time in daylight time
 permissions:
@@ -18,12 +20,36 @@ concurrency:
 jobs:
   pull:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
-      - run: python3 tools/licenses_chicago.py --selftest
+      - run: pip install --quiet cryptography openpyxl pillow
+      - name: Self-checks (planted cases)
+        run: |
+          python3 tools/licenses_chicago.py --selftest
+          python3 tools/lic_xlsx.py --selftest
+          python3 tools/lic_app.py --selftest
       - run: python3 tools/licenses_chicago.py --probe
       - run: python3 tools/licenses_chicago.py --full "$RUNNER_TEMP/licenses-full.json"
+      - name: The City's Data Terms of Use match the Legal desk's snapshot (the members' list stops here if they changed)
+        run: python3 tools/lic_xlsx.py --terms-check permits/licenses-chicago/source-terms.txt
+      - name: Workbook, and a check copy of the members' app under a throwaway password; rows must match the runner's list
+        run: |
+          python3 tools/lic_xlsx.py "$RUNNER_TEMP/licenses-full.json" "$RUNNER_TEMP/lic-leads.xlsx"
+          umask 077
+          python3 -c "import secrets; open('$RUNNER_TEMP/check-pw', 'w').write(secrets.token_urlsafe(24))"
+          python3 tools/lic_app.py --check --pw-file "$RUNNER_TEMP/check-pw" "$RUNNER_TEMP/licenses-full.json" "$RUNNER_TEMP/lic-leads.xlsx" "$RUNNER_TEMP/check-app.html"
+          rm -f "$RUNNER_TEMP/check-pw" "$RUNNER_TEMP/check-app.html"
+      - name: Seal the members' list for the crew's gate checks (public-key box; only while the gate key is in the repo)
+        run: |
+          if [ ! -f permits/licenses-chicago/list-seal.pub.pem ]; then rm -f permits/licenses-chicago/list.sealed.json; exit 0; fi
+          python3 tools/rest_seal.py seal "$RUNNER_TEMP/licenses-full.json" permits/licenses-chicago/list.sealed.json --key permits/licenses-chicago/list-seal.pub.pem
+      - name: Build the members' app (encrypted; skipped until the LIC_LEADS_PASSWORD secret exists)
+        env:
+          LIC_LEADS_PASSWORD: ${{ secrets.LIC_LEADS_PASSWORD }}
+        run: |
+          if [ -z "$LIC_LEADS_PASSWORD" ]; then echo "no LIC_LEADS_PASSWORD secret yet; members' app not built"; exit 0; fi
+          python3 tools/lic_app.py --check "$RUNNER_TEMP/licenses-full.json" "$RUNNER_TEMP/lic-leads.xlsx" docs/chicago-new-business-licenses-members/index.html
       - name: Rebuild the site pages from the new sample (the free page stays a noindex draft until launch)
         run: |
           python3 tools/lic_site.py
@@ -32,7 +58,7 @@ jobs:
         run: |
           git config user.name "proofnotfluff-bot"
           git config user.email "proofnotfluff-bot@users.noreply.github.com"
-          git add permits/licenses-chicago docs
+          git add -A permits/licenses-chicago docs
           if git diff --cached --quiet; then echo "no change"; exit 0; fi
           git commit -m "Chicago new business licenses data $(date -u +%Y-%m-%d)"
           for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done

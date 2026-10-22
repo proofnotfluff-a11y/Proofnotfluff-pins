@@ -3800,6 +3800,342 @@
    ],
    "sources": "City of Chicago Data Portal, Food Inspections.",
    "checkout": "https://proofnotfluff.gumroad.com/l/mlyiiz?utm_source=proofnotfluff&utm_medium=site&utm_campaign=chicago-restaurant-leads"
+  },
+  {
+   "slug": "chicago-post-construction-cleaning-contracts",
+   "kind": "question",
+   "draft": true,
+   "city": "Chicago",
+   "product": "chicago-construction-cleaning-leads",
+   "data": "permits/chicago/sample.json",
+   "stats": "chicago_construction",
+   "title": "How to Get Post-Construction Cleaning Contracts in Chicago | ProofNotFluff",
+   "desc": "How a small cleaning company finds post-construction cleaning work in Chicago: the City's building permits name the general contractor on {kept} open projects this week.",
+   "card": "How a small cleaning company finds post-construction work in Chicago, with this week's open projects from City permits.",
+   "eyebrow": "Chicago post-construction cleaning",
+   "h1": "How does a small cleaning company get post-construction cleaning contracts in Chicago?",
+   "answer": [
+    "Go to the general contractor's office, early, with a named project in hand. When you ask for the project manager on a job site you are usually sent to the builder or the developer, and in Chicago you do not have to guess who the builder is: the City's building permits list the general contractor on each job.",
+    "This week the City's records show {kept} open commercial and apartment projects in Chicago with a reported cost of $500,000 or more and a business listed as general contractor. {nearFinish} of them are at the partial occupancy stage, near the end of the job."
+   ],
+   "numbersTitle": "Chicago this week, from the City's own records",
+   "tiles": [
+    [
+     "Open projects",
+     "{kept}",
+     "$500K+ with a builder named"
+    ],
+    [
+     "Reported cost",
+     "{cost}",
+     "all open projects"
+    ],
+    [
+     "New buildings",
+     "{newBuild}",
+     "the other {reno} are renovations"
+    ],
+    [
+     "Near finish",
+     "{nearFinish}",
+     "partial occupancy stage"
+    ]
+   ],
+   "numbers": [
+    "The most open projects are in {areas}. The count covers permits the City issued from {from} to {to}, pulled from the City on {asOf}."
+   ],
+   "stepsTitle": "How to do it",
+   "steps": [
+    [
+     "Find the builder on the permit",
+     "Look up the address in the City of Chicago's Building Permits data on data.cityofchicago.org. Each permit lists its contacts by role, and the contact marked as general contractor is the builder running the job."
+    ],
+    [
+     "Start with builders who have many jobs open",
+     "A builder with several open jobs needs cleaning on each of them. On this Monday's list, {gc1} has {gc1n} open projects, {gc2} has {gc2n} and {gc3} has {gc3n}."
+    ],
+    [
+     "Call the main office and name the project",
+     "Ask who buys cleaning for that project. Have the address and the permit number ready, and send a one-page capability sheet the same day: what you clean, crew size, insurance, equipment and two references."
+    ],
+    [
+     "Ask for a small first job",
+     "Offer one floor, one phase or the rough clean on a smaller project. A small job is an easy yes for a builder that has never used you, and a good one gives you a reference on its next project."
+    ],
+    [
+     "Get in before the end of the job",
+     "Reach the builder while the job is still under way, not after it closes. A project at the City's partial occupancy stage is near the end. This week's count at that stage: {nearFinish}."
+    ]
+   ],
+   "cta": {
+    "title": "Get every open project, every Monday",
+    "text": "The full Chicago list: every open project that passes the filter, {kept} this week, with the builder, address, reported cost, permit stage and permit number, in a members' web app with a map and in an Excel file. {price} a month."
+   },
+   "faq": [
+    [
+     "Where do I find the general contractor for a Chicago building?",
+     "In the City of Chicago's Building Permits data on data.cityofchicago.org. Each permit lists contacts with their relationship to the permit, and a contact marked CONTRACTOR-GENERAL CONTRACTOR is the builder."
+    ],
+    [
+     "Is this the same data I can get free from the City?",
+     "Yes, the source is the City's public data, and anyone can search it. The paid list saves the filtering: of the {fetched} permits we pulled this week we keep {kept}, open commercial and apartment projects of $500,000 or more with a business named as general contractor."
+    ],
+    [
+     "Does a project on the list need a cleaner?",
+     "Not necessarily. A permit shows that work is planned or under way and who the builder is. It does not say who cleans the job or whether that work is already taken. Ask the builder."
+    ],
+    [
+     "Do you contact builders for me?",
+     "No. You make your own calls and emails. We never contact anyone on your behalf, and no business listed has endorsed or works with ProofNotFluff."
+    ]
+   ],
+   "related": [
+    [
+     "chicago-construction-cleaning-leads",
+     "Chicago construction cleaning leads: this week's free sample"
+    ],
+    [
+     "austin-post-construction-cleanup-contacts",
+     "Austin: who to contact for post-construction cleanup work"
+    ],
+    [
+     "chicago-hood-cleaning-first-restaurant-clients",
+     "Chicago: how a hood cleaning company gets its first restaurant clients"
+    ]
+   ],
+   "sources": [
+    [
+     "City of Chicago Data Portal, Building Permits (ydr8-5enu)",
+     "{datasetUrl}",
+     "pulled {asOf}"
+    ],
+    [
+     "City of Chicago data disclaimer",
+     "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
+     "read Oct 22, 2026"
+    ]
+   ],
+   "footnote": "Numbers from the City of Chicago Data Portal, Building Permits, pulled {asOf}, filtered by ProofNotFluff as the free sample page describes."
+  },
+  {
+   "slug": "austin-post-construction-cleanup-contacts",
+   "kind": "question",
+   "draft": true,
+   "city": "Austin",
+   "product": "austin-construction-cleaning-leads",
+   "data": "permits/austin/sample.json",
+   "stats": "austin_construction",
+   "title": "Who to Contact for Post-Construction Cleanup Work in Austin | ProofNotFluff",
+   "desc": "Who to contact for post-construction cleanup work in Austin: the general contractor the City lists on the permit. {kept} active projects and {builders} builders this week.",
+   "card": "Who to contact for post-construction cleanup work in Austin, with this week's active projects and builders from City permits.",
+   "eyebrow": "Austin post-construction cleanup",
+   "h1": "Who do I contact to get post-construction cleanup work in Austin?",
+   "answer": [
+    "The general contractor's office. The City of Austin lists the contractor on each building permit with its trade, and the one marked General Contractor is the builder running the job. Find the right person there, send a short sheet about your company, then ask to meet.",
+    "This week the City's records show {kept} active commercial and apartment projects in Austin valued at $500,000 or more with a business listed as general contractor, run by {builders} different builders."
+   ],
+   "numbersTitle": "Austin this week, from the City's own records",
+   "tiles": [
+    [
+     "Active projects",
+     "{kept}",
+     "$500K+ with a builder named"
+    ],
+    [
+     "Builders",
+     "{builders}",
+     "general contractors on the list"
+    ],
+    [
+     "Project valuation",
+     "{cost}",
+     "all active projects"
+    ],
+    [
+     "New buildings",
+     "{newBuild}",
+     "new construction projects"
+    ]
+   ],
+   "numbers": [
+    "The most active projects are in ZIP codes {areas}. The count covers permits the City issued from {from} to {to}, pulled from the City on {asOf}. A project's valuation is the City's figure for the development, so treat it as a size signal, not a contract value."
+   ],
+   "stepsTitle": "How to do it",
+   "steps": [
+    [
+     "Find the builder on the permit",
+     "Look up the project in the City of Austin's Issued Construction Permits data on data.austintexas.gov. Each permit row names a contractor company and its trade; General Contractor is the builder."
+    ],
+    [
+     "Start with builders who have several jobs",
+     "{topLine} One builder's vendor list can put you in front of several projects."
+    ],
+    [
+     "Find the right person first",
+     "Call the builder's main office, name the project and the permit number, and ask who buys cleaning for it. Then send that person a one-page sheet: what you clean, crew size, insurance, equipment and two references."
+    ],
+    [
+     "Ask to meet",
+     "Builders are busy. A short meeting at the office with your sheet and photos of past jobs puts a face to your name."
+    ],
+    [
+     "Watch the stage",
+     "This week's count by stage: permit just issued {justIssued}, work under way {underWay}, near finish {nearFinish} (some of the project's building permits already finaled). Get in touch early, before the final clean is booked."
+    ]
+   ],
+   "cta": {
+    "title": "Get every active project, every Monday",
+    "text": "The full Austin list: every active project that passes the filter, {kept} this week, with the builder, address, valuation, stage and every building permit behind it, in a members' web app with a map and in an Excel file. {price} a month."
+   },
+   "faq": [
+    [
+     "Where do I find the general contractor for an Austin permit?",
+     "In the City of Austin's Issued Construction Permits dataset on data.austintexas.gov. Each row names a contractor company and its trade, and the trade General Contractor marks the builder."
+    ],
+    [
+     "Why is the valuation so big on some projects?",
+     "Austin records a development's valuation on each of its building permits, so a project's valuation can cover several buildings or phases. Treat it as a size signal, not a budget or a contract value."
+    ],
+    [
+     "Does a project on the list need a cleaner?",
+     "Not necessarily. A permit shows that work is planned or under way and who the builder is. It does not say who cleans the job or whether that work is already taken. Ask the builder."
+    ],
+    [
+     "Do you contact builders for me?",
+     "No. You make your own calls and emails. We never contact anyone on your behalf, and no business listed has endorsed or works with ProofNotFluff."
+    ]
+   ],
+   "related": [
+    [
+     "austin-construction-cleaning-leads",
+     "Austin construction cleaning leads: this week's free sample"
+    ],
+    [
+     "chicago-post-construction-cleaning-contracts",
+     "Chicago: how a small cleaning company gets post-construction contracts"
+    ]
+   ],
+   "sources": [
+    [
+     "City of Austin, Issued Construction Permits (3syk-w9eu)",
+     "{datasetUrl}",
+     "pulled {asOf}"
+    ]
+   ],
+   "footnote": "Numbers from the City of Austin's Issued Construction Permits data, pulled {asOf}, filtered by ProofNotFluff as the free sample page describes."
+  },
+  {
+   "slug": "chicago-hood-cleaning-first-restaurant-clients",
+   "kind": "question",
+   "draft": true,
+   "city": "Chicago",
+   "product": "chicago-restaurant-inspection-leads",
+   "data": "permits/inspections-chicago/rest-sample.json",
+   "stats": "chicago_restaurant",
+   "title": "How a Hood Cleaning Company Gets Its First Restaurant Clients in Chicago | ProofNotFluff",
+   "desc": "How a new hood and kitchen exhaust cleaning company finds its first restaurant clients in Chicago, using the City's food inspection records: {opening} license inspections in 30 days.",
+   "card": "How a new hood cleaning company finds its first Chicago restaurant clients, from the City's food inspection records.",
+   "eyebrow": "Chicago hood and exhaust cleaning",
+   "h1": "How does a new hood cleaning company get its first restaurant clients in Chicago?",
+   "answer": [
+    "Start where the need is fresh: restaurants that are about to open, and restaurants the City just cited for a hood or exhaust problem. Both show up in the City of Chicago's public food inspection records, and both are places you can visit this week.",
+    "In the 30 days from {from} through {through}, {opening} Chicago food businesses had the license inspection the City does before it issues a food license, and {hood} failed or passed with conditions with a hood or exhaust violation."
+   ],
+   "numbersTitle": "Chicago in the last 30 days, from the City's own records",
+   "tiles": [
+    [
+     "Opening soon",
+     "{opening}",
+     "license inspections"
+    ],
+    [
+     "Hood or exhaust",
+     "{hood}",
+     "failed or conditional"
+    ],
+    [
+     "Failed or conditional",
+     "{flagged}",
+     "all four categories"
+    ],
+    [
+     "New this week",
+     "{new}",
+     "inspected in the last 7 days"
+    ]
+   ],
+   "numbers": [
+    "City records through {through}, pulled {asOf}. A record repeats the City's result on that date. It does not say a place has a problem today, and many places pass a re-inspection within days."
+   ],
+   "stepsTitle": "How to do it",
+   "steps": [
+    [
+     "Start with places about to open",
+     "The City's Retail Food License Readiness Checklist says an applicant should pay for the license only when construction is complete and the place is ready to operate, and that the health department then schedules an on-site inspection. A place with a fresh license inspection is close to opening and choosing its vendors for the first time."
+    ],
+    [
+     "Then the hood and exhaust citations",
+     "A hood or exhaust violation is a public record with a date. Get in touch within a few days, name the record and its date, leave any judgment out of it, and offer a service visit before the re-inspection."
+    ],
+    [
+     "Go in person",
+     "Visit between lunch and dinner, when a kitchen manager has time to talk. Bring a one-page sheet: what you clean, how often you can come, insurance and two references."
+    ],
+    [
+     "Offer a schedule from the first job",
+     "Before you leave the first job, book the next visit and offer a simple recurring plan, so saying yes again takes no effort."
+    ]
+   ],
+   "cta": {
+    "title": "Get the full list every Monday",
+    "text": "Every place on the list, named, with its address, community area, the City's result and date, our violation category with the City's violation codes, and its 24-month inspection history, in a members' web app and an Excel file. {price} a month."
+   },
+   "faq": [
+    [
+     "What counts as a hood or exhaust violation here?",
+     "Our reading of the City's violation codes: violation 56 when it names a hood, filter, exhaust or grease. The members' list shows the City's code next to our category."
+    ],
+    [
+     "Is a license inspection the same as opening?",
+     "No. It is the health inspection the City does after a business applies and pays for a food license. Per the City's checklist, an applicant should apply when construction is complete and the place is ready to operate, so many open soon after, but some take longer."
+    ],
+    [
+     "Why doesn't this page name places?",
+     "On our public pages we never name a business with a failed result. Members get the full list, licensed to their own business for its own sales calls."
+    ],
+    [
+     "Do you contact restaurants for me?",
+     "No. You make your own calls and visits. We never contact anyone on your behalf, and no business listed has endorsed or works with ProofNotFluff."
+    ]
+   ],
+   "related": [
+    [
+     "chicago-restaurant-inspection-leads",
+     "Chicago restaurant inspection leads: this week's free sample"
+    ],
+    [
+     "chicago-post-construction-cleaning-contracts",
+     "Chicago: how a small cleaning company gets post-construction contracts"
+    ]
+   ],
+   "sources": [
+    [
+     "City of Chicago Data Portal, Food Inspections (4ijn-s7e5)",
+     "{datasetUrl}",
+     "pulled {asOf}"
+    ],
+    [
+     "City of Chicago, Retail Food License Readiness Checklist",
+     "https://www.chicago.gov/content/dam/city/depts/bacp/general/retailfoodchecklist021010.pdf",
+     "read Oct 22, 2026"
+    ],
+    [
+     "City of Chicago data disclaimer",
+     "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
+     "read Oct 22, 2026"
+    ]
+   ],
+   "footnote": "Numbers from the City of Chicago Data Portal, Food Inspections, records through {through}, pulled {asOf}, filtered by ProofNotFluff as the free sample page describes; categories are our reading of the City's violation codes, and inspector notes are not republished."
   }
  ]
 }

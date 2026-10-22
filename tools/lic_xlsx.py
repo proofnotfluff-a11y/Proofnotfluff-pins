@@ -50,9 +50,9 @@ FOOT = "Public City of Chicago business license records. See the Terms tab."
 
 # What the City's earlier records say about the business (tools/licenses_chicago.py add_history)
 HISTORY = {"first": "First license", "site": "New site", "added": "Added license", "": "Not checked"}
-HISTORY_LONG = {"first": "No earlier Chicago license on the City's record for this business (the record starts in 2002).",
-                "site": "The business already held a Chicago license at another site, so this is a new location.",
-                "added": "The business already held a license at this site; this one adds a new license type there.",
+HISTORY_LONG = {"first": "No Chicago license on the City's record for this business before the last 30 days (the record starts in 2002).",
+                "site": "The business held a Chicago license at another site before the last 30 days, so this is a new location.",
+                "added": "The business held a license at this site before the last 30 days; this one adds a new license type there.",
                 "": "The City's earlier records were not checked this week."}
 
 
@@ -383,7 +383,7 @@ def build(full, out):
 
 
 def start_here(wb, full, list_date, counts, cols):
-    ws = card_sheet(wb, "Start Here", PRODUCT, "Every new Chicago business license in the last 30 days, one row per business and site, by trade.",
+    ws = card_sheet(wb, "Start Here", PRODUCT, "New Chicago business licenses from the last 30 days, sorted by trade.",
                     list_date, "teal", position=0)
     rng = lambda k, key: f"'{TAB[k]}'!{cols[k][key]}12:{cols[k][key]}{11 + max(counts[k], 1)}"
     total = "=" + "+".join(f'COUNTIF({rng(k, "name")},"?*")' for k in ORDER)
@@ -393,7 +393,7 @@ def start_here(wb, full, list_date, counts, cols):
     w = full["window"]
     tiles = [("B", "D", "NEW LICENSES, 30 DAYS", total, f"issued {pretty(w['listFrom'])[:-6]} to {pretty(w['to'])[:-6]}", True),
              ("F", "H", "NEW THIS WEEK", new, f"issued {pretty(w['from'])[:-6]} or later", False),
-             ("J", "L", "FIRST LICENSE", first, "no earlier Chicago license", False),
+             ("J", "L", "FIRST LICENSE", first, "none before the last 30 days", False),
              ("N", "P", "FOOD AND DRINK", food, "restaurants, bars, food shops", False)]
     D.h(ws, 6, 10)
     for left, right, eb, fml, sub, dark in tiles:
@@ -403,7 +403,7 @@ def start_here(wb, full, list_date, counts, cols):
         ("step", (2, "Call or visit in the first weeks. Name the City's license and its date, nothing more.")),
         ("step", (3, "Send the matching email from the Pitch kit tab the same day.")),
     ])
-    r = card(ws, r, "Find your trade", [("lead", (SHORT[k], f"{TAB[k]}: {KINDS[k].lower()}.")) for k in ORDER])
+    r = card(ws, r, "Find your trade", [("lead", (TAB[k], f"{KINDS[k]}.")) for k in ORDER])
     r = card(ws, r, "How the list is made", [
         ("para", f"From the City of Chicago's Business Licenses data, pulled {as_of_text(full)}. Every license the City issued as a new "
                  f"license (application type Issue) from {pretty(w['listFrom'])} to {pretty(w['to'])}, at a Chicago business site."),

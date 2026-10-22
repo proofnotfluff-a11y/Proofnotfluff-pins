@@ -204,7 +204,8 @@ def build(rows, areas, today, days=WINDOW_DAYS, dnl=None):
     since = (today - dt.timedelta(days=days)).isoformat()
     dnl = dnl_load() if dnl is None else dnl
     recs, reasons, seen = [], collections.Counter(), {}
-    for r in rows:
+    # oldest first, so a site's row carries its first license in the window and later ones show as other licenses (Oct 22)
+    for r in sorted(rows, key=lambda x: ((x.get("date_issued") or "")[:10], str(x.get("license_number") or ""))):
         rec, why = keep(r, since, today.isoformat())
         if rec and dnl and row_dnl_keys(r) & dnl:
             rec, why = None, DNL_REASON
@@ -217,8 +218,10 @@ def build(rows, areas, today, days=WINDOW_DAYS, dnl=None):
             first = seen[k]
             if rec["licenseType"] != first["licenseType"] and rec["licenseType"] not in first["otherTypes"]:
                 first["otherTypes"].append(rec["licenseType"])
+            first["_lics"].append(rec["license"])
             continue
         seen[k] = rec
+        rec["_lics"] = [rec["license"]]
         rec["communityArea"] = area_of(rec["lat"], rec["lon"], areas) or (r.get("community_area_name") or "").title()
         recs.append(rec)
     recs.sort(key=lambda x: (x["issued"], x["business"]), reverse=True)
@@ -233,11 +236,12 @@ HISTORY_WORDS = {"first": "First license on the City's record for this business"
                  "added": "A new license at a site where this business already held one"}
 
 
-def add_history(recs, fetch):
-    """history: "first" (no earlier Chicago license for this business account, 2002 on), "site" (the account held a license at
-    another site first: a new location or a move), "added" (the account already held a license at this site: a new license type
-    there). since: the year of the earliest such license. fetch(accounts) returns City rows with account_number, site_number and
-    date_issued for those accounts."""
+def add_history(recs, fetch, start):
+    """history: "first" (no Chicago license for this business account before the list window starts, 2002 on: a business that
+    licenses in stages, say a food license on Oct 1 and a liquor license on Oct 19, is still new), "site" (the account held a
+    license at another site before the window: a new location or a move), "added" (the account held a license at this site
+    before the window: a new license type there). since: the year of the earliest such license. start: the window's first day.
+    fetch(accounts) returns City rows with account_number, site_number and date_issued for those accounts."""
     accts = sorted({r["_acct"] for r in recs if r.get("_acct")})
     hist = collections.defaultdict(list)
     for i in range(0, len(accts), 40):
@@ -246,7 +250,7 @@ def add_history(recs, fetch):
             if a and d:
                 hist[a].append((d, str(x.get("site_number") or "").split(".")[0]))
     for r in recs:
-        prior = [(d, s) for d, s in hist.get(r.get("_acct") or "", []) if d < r["issued"]]
+        prior = [(d, s) for d, s in hist.get(r.get("_acct") or "", []) if d < start]
         here = [d for d, s in prior if s == r.get("_site")]
         if not r.get("_acct"):
             r["history"], r["since"] = "", ""
@@ -264,7 +268,7 @@ def add_food_inspections(recs, fetch):
     dataset, 4ijn-s7e5, files it under the business license number), in the 120 days before the license was issued. That
     inspection is what Chicago Restaurant Inspection Leads lists as "Opening soon". fetch(licenses) returns rows with license_
     and inspection_date."""
-    lic = sorted({r["license"] for r in recs if r.get("license")})
+    lic = sorted({n for r in recs for n in (r.get("_lics") or [r["license"]]) if n})
     seen = collections.defaultdict(list)
     for i in range(0, len(lic), 40):
         for x in fetch(lic[i:i + 40]):
@@ -273,14 +277,14 @@ def add_food_inspections(recs, fetch):
                 seen[n].append(d)
     for r in recs:
         start = (dt.date.fromisoformat(r["issued"]) - dt.timedelta(days=120)).isoformat()
-        ds = [d for d in seen.get(r["license"], []) if start <= d <= r["issued"]]
+        ds = [d for n in (r.get("_lics") or [r["license"]]) for d in seen.get(n, []) if start <= d <= r["issued"]]
         r["foodInsp"] = max(ds) if ds else ""
     return recs
 
 
 def strip_internal(recs):
     for r in recs:
-        r.pop("_acct", None); r.pop("_site", None)
+        r.pop("_acct", None); r.pop("_site", None); r.pop("_lics", None)
     return recs
 
 
@@ -341,7 +345,7 @@ def main():
     areas = load_areas()
     recs, reasons = build(rows, areas, today)
     checks = {}
-    for name, fn in (("history", lambda: add_history(recs, fetch_history)), ("foodInspections", lambda: add_food_inspections(recs, fetch_food))):
+    for name, fn in (("history", lambda: add_history(recs, fetch_history, (today - dt.timedelta(days=WINDOW_DAYS)).isoformat())), ("foodInspections", lambda: add_food_inspections(recs, fetch_food))):
         try:
             fn(); checks[name] = True
         except SystemExit as e:                     # the list still ships; the app and workbook say the check did not run
@@ -468,16 +472,17 @@ def selftest():
     assert by["1"]["otherTypes"] == ["Consumption on Premises - Incidental Activity"] and by["1"]["lat"] == 41.88, by["1"]
     # the City's own history: account 101 (Luna Tacos) is new; 104 (the barbershop) held a license at this site since 2019;
     # 501 (the phone shop) held one at another site since 2015; 107's only earlier row is the same day (not earlier)
-    hist = {"101": [], "104": [("2019-03-02", "1")], "105": [], "107": [("2026-10-16", "1")], "501": [("2015-06-01", "1"), ("2020-01-01", "1")]}
+    hist = {"101": [], "104": [("2019-03-02", "1")], "105": [("2026-10-01", "1")], "107": [("2026-10-16", "1")],
+            "501": [("2015-06-01", "1"), ("2020-01-01", "1")]}   # 105: a license earlier in the window is still a new business
     calls = []
     def fake_hist(accts):
         calls.append(len(accts))
         return [{"account_number": a + ".0", "site_number": s, "date_issued": d + "T00:00:00.000"} for a in accts for d, s in hist.get(a, [])]
-    add_history(recs, fake_hist)
+    add_history(recs, fake_hist, "2026-09-20")
     assert [(by[k]["history"], by[k]["since"]) for k in ("1", "4", "5", "7", "14")] == [
         ("first", ""), ("added", "2019"), ("first", ""), ("first", ""), ("site", "2015")], [(by[k]["history"], by[k]["since"]) for k in by]
     assert calls == [5], calls
-    food = {"1": ["2026-10-02", "2026-10-09", "2025-01-01"], "5": ["2026-10-17"]}
+    food = {"2": ["2026-10-02", "2026-10-09", "2025-01-01"], "5": ["2026-10-17"]}   # filed under the site's second license
     add_food_inspections(recs, lambda lics: [{"license_": n + ".0", "inspection_date": d + "T00:00:00.000"} for n in lics for d in food.get(n, [])])
     assert by["1"]["foodInsp"] == "2026-10-09" and by["5"]["foodInsp"] == "" and by["4"]["foodInsp"] == "", "newest, 120 days before, never after the issue date"
     strip_internal(recs)

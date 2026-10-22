@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-10-22T19:33:52+00:00",
+ "fetchedAt": "2026-10-22T20:19:30+00:00",
  "rowsUpdatedAt": "2026-10-22T09:55:53+00:00",
  "columns": [
   "id",
@@ -186,15 +186,15 @@
  "keptByLicense": [
   [
    "Limited Business License",
-   96
+   103
   ],
   [
    "Retail Food Establishment",
-   59
+   62
   ],
   [
    "Regulated Business License",
-   13
+   16
   ],
   [
    "Tobacco",
@@ -221,6 +221,10 @@
    3
   ],
   [
+   "Children's Services Facility License",
+   3
+  ],
+  [
    "Consumption on Premises - Incidental Activity",
    3
   ],
@@ -233,16 +237,12 @@
    2
   ],
   [
+   "Manufacturing Establishments",
+   2
+  ],
+  [
    "Filling Station",
    2
-  ],
-  [
-   "Children's Services Facility License",
-   2
-  ],
-  [
-   "Manufacturing Establishments",
-   1
   ],
   [
    "Pawnbroker",

@@ -1569,6 +1569,7 @@ def normalize_extra(slug, h1):
     t = re.sub(r"<main( class=\"wrap\")?>", '<main class="wrap" id="main">', t, count=1)
     t = t.replace("<p>Made by ProofNotFluff.</p>", "<p>Made by ProofNotFluff with AI assistance, reviewed and tested by the shop owner.</p>")
     t = t.replace("and a copy comes by email.", "and a link to it comes by email.")
+    t = t.replace("IRS news release IR-2026-29)", "IRS Standard Mileage Rates page and Internal Revenue Bulletin 2026-29)")   # copy check, Oct 22
     open(f, "w", encoding="utf-8").write(t)
 
 
@@ -2258,7 +2259,7 @@ def home_html(pages, live):
                 + "".join(f"<div><dt>{E(t)}</dt><dd>{E(n)}</dd></div>" for n, t in rows)
                 + f'</dl><p class="asof">City data pulled {E(" and ".join(dates))}. Refreshed every Monday.</p></aside>')
     hero = ('<section class="st-hero" aria-labelledby="hero-title"><div><p class="eyebrow">Lead lists from public records</p>'
-            '<h1 id="hero-title">Your next customers are already in the City\'s records.</h1>'
+            '<h1 id="hero-title">Sales leads from the City\'s own records, every Monday.</h1>'
             '<p class="lede">Weekly lists for cleaning, hood cleaning and pest control companies in Chicago and Austin. Each one has a free sample, new every Monday.</p>'
             '<p class="st-cta"><a class="btn ld-btnbig" href="#lists-title">See this week\'s free samples</a></p>'
             f'</div>{week}</section><section class="st-pickrow" aria-labelledby="pick-title"><h2 class="st-pick" id="pick-title">Or go straight to your trade</h2><ul class="st-trades">{trades}</ul></section>')
@@ -2500,7 +2501,7 @@ def og_image(slug, eyebrow, title, sub=""):
 
 
 def og_all(pages, live):
-    og_image("home", "Lead lists from public records", "Your next customers are already in the City's records.",
+    og_image("home", "Lead lists from public records", "Sales leads from the City's own records, every Monday.",
              "Weekly lists for cleaning, hood cleaning and pest control in Chicago and Austin.")
     og_image("shop", "ProofNotFluff shop", "Pick the list that finds your customers.", "Free sample on every list, new every Monday.")
     og_image("refunds", "Policy", "Refunds and cancelling")

@@ -491,7 +491,7 @@ $("#app").innerHTML=`<a class="back" href="#/list" id="back">${ico("back")}Back<
 <div class="top"><span class="ty">${esc(r.ty)}</span></div><p class="act">Issued ${esc(day(r.d))}${r.ac?`. Business activity: ${esc(r.ac)}`:""}.</p>
 ${r.h?`<p class="why">${hi(r,true)}<br><span style="display:block;margin-top:8px">${esc(W.historyLong[r.h])}${r.hs?` The earliest such license on the City's record is from ${esc(r.hs)}.`:""}</span></p>`:`<p class="why">${esc(W.historyLong[""])}</p>`}
 ${r.fi?`<p class="why"><b>City food license inspection on ${esc(day(r.fi))}.</b> Chicago inspects a food business before it issues a food license. ${esc("Chicago Restaurant Inspection Leads lists those inspections as Opening soon, so a member of both products may already have seen this business there.")}</p>`:""}
-${r.is?`<p class="why"><b>City food inspections on file since ${esc(r.is)}.</b> The City inspected this business before this license was issued, which shows it was open before the license date.</p>`:""}
+${r.is?`<p class="why"><b>City food inspections on file since ${esc(r.is)}.</b> The City inspected this business, or an earlier operator under the same name at this site, before this license was issued, which shows the site was open under that name before the license date.</p>`:""}
 ${r.ot.length?`<p class="why"><b>Also licensed at this site in the last 30 days:</b> ${esc(r.ot.join("; "))}.</p>`:""}
 </section>
 <section class="panel pg-facts"><div class="sec-h"><h2>Facts from the City record</h2></div><dl class="facts">

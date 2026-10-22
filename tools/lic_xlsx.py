@@ -52,7 +52,7 @@ HISTORY_LONG = {"first": "We found no Chicago license for this business before t
                          "address); this one adds a new license type there. "
                          "Since: the year of its first license at this site.",
                 "relicensed": "The business, or one by the same name, held this same license type at this site before the last 30 days, "
-                              "so this is most likely a new owner or the same business under a new City account. Since: the year of the "
+                              "so this is a new owner, or the same business licensing the site again after an older license ended. Since: the year of the "
                               "earliest such license.",
                 "": "The City's earlier records were not checked this week."}
 
@@ -89,8 +89,9 @@ OVERLAP = ("Food businesses usually get a City food license inspection before th
            "date under Food license inspection had that inspection in the 120 days before its license, so a member of both "
            "products may already have seen the business there. The other food rows, and nearly all businesses in the other "
            "trades, are not on the restaurant product.")
-OPEN_BEFORE = ("Food inspections since: the year of the City's earliest routine or complaint food inspection on file for the "
-               "business before this license. It shows the business was open before the license was issued.")
+OPEN_BEFORE = ("Food inspections since: the year of the City's earliest routine or complaint food inspection on file at this site "
+               "for the business, or for an earlier operator under the same name, before this license. It shows the site was open "
+               "under that name before the license was issued.")
 
 OUR_NOTICE = ("For general business information only. Businesses appear because their licenses are public City of Chicago "
               "records. A new license shows the City issued it on that date; it does not say the business is open, hiring or "

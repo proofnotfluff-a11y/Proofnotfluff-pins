@@ -3,7 +3,7 @@
   "name": "City of Chicago Data Portal, Business Licenses",
   "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
   "rowsUpdatedAt": "2026-10-22T09:55:53+00:00",
-  "fetchedAt": "2026-10-22T22:38:43+00:00",
+  "fetchedAt": "2026-10-22T22:41:19+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: licenses held by a person or for an event or season, or for one person's own work or work away from a fixed business site (peddlers, special events, pop-ups, tow trucks, home-sharing, shared kitchen users, private booting), home and mail-drop addresses, and any business whose name could be a person's name. Business-level fields only."
  },
@@ -36,7 +36,7 @@
    "issued outside the window": 139,
    "second license at the same site (listed once)": 16,
    "name could be a person's": 33,
-   "license held by a person or for an event or season": 268,
+   "license for one person's own work, work away from a fixed site, or an event or season": 268,
    "home or apartment address": 22,
    "site outside Chicago": 20,
    "license not active (cancelled or revoked)": 2,

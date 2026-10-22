@@ -3818,11 +3818,11 @@
     "Pick the trades that buy from you. A new restaurant and a new salon need different vendors, so the list is sorted by what each business does.",
     "Reach out in the first weeks. A business with a new license is often still choosing its vendors, and the license date tells you how recent it is.",
     "Visit or call the business at its licensed address, name the license and its date, and say in one line what you do for businesses like it.",
-    "If you also have Chicago Restaurant Inspection Leads: food businesses usually get a City food license inspection before the license is issued, and that product lists those inspections as Opening soon. So you will have seen most of the food businesses here a few weeks earlier. Each one is marked in the members' list, so you can hide them. Nearly all businesses in the other trades are only here."
+    "If you also have Chicago Restaurant Inspection Leads: food businesses usually get a City food license inspection before the license is issued, most often one to three weeks before, and that product lists those inspections as Opening soon. So you may already have seen most of the food businesses here. Each food row with that inspection is marked in the members' list, so you can hide them. Nearly all businesses in the other trades are only here."
    ],
    "cta": {
     "title": "Get the full list every Monday",
-    "text": "Every new business license the City issued in the last 30 days at a Chicago business site, one row per business and site, sorted by trade, with license type, business activity, issue date, address, community area and what the City's earlier records say about the business, in a members' web app and an Excel file."
+    "text": "New business licenses the City issued in the last 30 days at Chicago business sites, except the ones left out on purpose, one row per business and site, sorted by trade, with license type, business activity, issue date, address, community area and what the City's earlier records say about the business, in a members' web app and an Excel file."
    },
    "faq": [
     [
@@ -3835,11 +3835,11 @@
     ],
     [
      "Who is left out?",
-     "Renewals and changes, cancelled or revoked licenses, licenses held by a person or for an event or season (such as peddlers, special events, pop-ups, tow trucks, home-sharing, bed-and-breakfasts, shared kitchen users, flea market vendors and market stalls), home and mail-drop addresses (home-based businesses, apartments, private mailboxes and virtual offices), sites outside Chicago, and any business whose shown name could be a person's name. A business with two licenses at one site is listed once."
+     "Renewals and changes, cancelled or revoked licenses, licenses issued to a person for their own work or for an event or season (such as peddlers, special events, pop-ups, tow trucks, home-sharing, bed-and-breakfasts, shared kitchen users, flea market vendors and market stalls), home and mail-drop addresses (home-based businesses, apartments, private mailboxes and virtual offices), sites outside Chicago, and any business whose shown name could be a person's name. A business with two licenses at one site is listed once."
     ],
     [
      "Does it overlap with Chicago Restaurant Inspection Leads?",
-     "Partly, and only for food businesses. That product lists the City's food license inspection, which usually comes a few weeks before the food license this list shows. The members' list marks every food row that had that inspection, so a member of both can hide them. Nearly all shops, salons, venues, auto shops and day care centers are only here."
+     "Partly, and only for food businesses. That product lists the City's food license inspection, which most often comes one to three weeks before the food license this list shows. The members' list marks every food row with that inspection in the 120 days before its license, so a member of both can hide them. Nearly all shops, salons, venues, auto shops and day care centers are only here."
     ],
     [
      "Is every business on the list open?",

@@ -47,8 +47,8 @@ def page_html(p):
     note = (f'<p class="ld-heronote">New list every Monday. Cancel any time.</p>' if checkout else
             (f'<p class="ld-heronote">${E(str(price))} a month when it opens. New list every Monday.</p>' if price else
              '<p class="ld-heronote">Not on sale yet. New list every Monday.</p>'))
-    lede = (f'{c["keptWeek"]:,} Chicago businesses got a new City business license in the week to {E(M.nice_date(w["to"]))}, and '
-            f'{c["kept30"]:,} in the last 30 days. {E(p["lede"])}')
+    lede = (f'{c["keptWeek"]:,} business sites on this week\'s list got a new City business license in the week to {E(M.nice_date(w["to"]))}, '
+            f'and {c["kept30"]:,} in the last 30 days. {E(p["lede"])}')
     top_area = c["areasWeek"][0] if c.get("areasWeek") else None
     tiles = (f'<div class="tiles ld-tiles">'
              f'<div class="tile key"><div class="lab">New in 30 days</div><div class="val">{c["kept30"]:,}</div><div class="sub">licensed business sites</div></div>'

@@ -219,7 +219,7 @@ PAGE = r"""<!doctype html>
 <form class="gate-card" id="gate" novalidate>
 <span class="chip s2"><svg class="ico s" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Members</span>
 <h1>This week's new Chicago business licenses</h1>
-<p class="sub">List of __ASOF__. Every new license the City issued in the last 30 days at a Chicago business site, one row per business and site, sorted by trade, for vendors who sell to new businesses.</p>
+<p class="sub">List of __ASOF__. New business licenses the City issued in the last 30 days at Chicago business sites, one row per business and site, sorted by trade, for vendors who sell to new businesses.</p>
 <label for="pw">Members' password</label>
 <div class="pw"><input id="pw" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="err pwHelp">
 <button type="button" class="eye" id="eye" aria-label="Show password" aria-pressed="false"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path id="eyeslash" d="M3 3l18 18" hidden/></svg></button></div>
@@ -373,8 +373,8 @@ STATE.areas=[...new Set(R.map(r=>r.ar).filter(Boolean))].sort();STATE.types=[...
 const foodish=!f.t||f.t==="food";
 $("#app").innerHTML=`<div class="ph"><div><h1>${tr?esc(tr.short):"All businesses"}</h1></div></div>
 <nav class="lsw" aria-label="Trades"><a href="${writeF(Object.assign({},f,{t:"",type:""}))}"${!f.t?' aria-current="page"':""}>${ico("all")}All<span class="c num">${int(R.length)}</span></a>${TORD.map(k=>`<a href="${writeF(Object.assign({},f,{t:k,type:"",fi:k==="food"?f.fi:""}))}"${k===f.t?' aria-current="page"':""}>${ico(k)}${esc(TR[k].short)}<span class="c num">${int(inTrade(k).length)}</span></a>`).join("")}</nav>
-<p class="ldesc">${tr?esc(tr.kinds)+" with a new City license in the last 30 days.":"Every business with a new City license in the last 30 days, at a Chicago business site."} Newest first.</p>
-${foodish&&D.checks.food?`<p class="ovl"><b>Also a member of Chicago Restaurant Inspection Leads?</b> Food businesses with a License inspection date most likely showed up on its Opening soon list first. <button class="lnk" type="button" id="hideFood">Hide them here</button></p>`:""}
+<p class="ldesc">${tr?esc(tr.kinds)+" with a new City license in the last 30 days.":"Businesses with a new City license in the last 30 days at a Chicago business site."} Newest first.</p>
+${foodish&&D.checks.food?`<p class="ovl"><b>Also a member of Chicago Restaurant Inspection Leads?</b> Food businesses with a License inspection date may already have shown up on its Opening soon list. <button class="lnk" type="button" id="hideFood">Hide them here</button></p>`:""}
 <div class="tool"><label class="search"><span class="sr">Search this list</span>${ico("search")}<input id="fq" type="search" placeholder="Search name, address, license or activity" value="${esc(f.q)}" autocomplete="off" enterkeyhint="search"><button type="button" class="clr" id="fqx" aria-label="Clear search"${f.q?"":" hidden"}>${ico("x","s")}</button></label>
 <div class="seg" id="fh" role="group" aria-label="On the City's record"></div>
 <button class="btn fbtn" id="fopen" type="button" aria-haspopup="dialog" aria-controls="fsheet">${ico("filter")}<span id="fopenT">Filters</span></button>
@@ -490,7 +490,7 @@ $("#app").innerHTML=`<a class="back" href="#/list" id="back">${ico("back")}Back<
 <section class="panel lic" aria-labelledby="lh"><h2 id="lh">The City's new license</h2>
 <div class="top"><span class="ty">${esc(r.ty)}</span></div><p class="act">Issued ${esc(day(r.d))}${r.ac?`. Business activity: ${esc(r.ac)}`:""}.</p>
 ${r.h?`<p class="why">${hi(r,true)}<br><span style="display:block;margin-top:8px">${esc(W.historyLong[r.h])}${r.hs?` The earliest such license on the City's record is from ${esc(r.hs)}.`:""}</span></p>`:`<p class="why">${esc(W.historyLong[""])}</p>`}
-${r.fi?`<p class="why"><b>City food license inspection on ${esc(day(r.fi))}.</b> Chicago inspects a food business before it issues a food license. ${esc("Chicago Restaurant Inspection Leads lists those inspections as Opening soon, so a member of both products most likely saw this business there first.")}</p>`:""}
+${r.fi?`<p class="why"><b>City food license inspection on ${esc(day(r.fi))}.</b> Chicago inspects a food business before it issues a food license. ${esc("Chicago Restaurant Inspection Leads lists those inspections as Opening soon, so a member of both products may already have seen this business there.")}</p>`:""}
 ${r.is?`<p class="why"><b>City food inspections on file since ${esc(r.is)}.</b> The City inspected this business before this license was issued, which shows it was open before the license date.</p>`:""}
 ${r.ot.length?`<p class="why"><b>Also licensed at this site in the last 30 days:</b> ${esc(r.ot.join("; "))}.</p>`:""}
 </section>

@@ -43,10 +43,12 @@ FOOT = "Public City of Chicago business license records. See the Terms tab."
 
 # What the City's earlier records say about the business (tools/licenses_chicago.py add_history)
 HISTORY = {"first": "First license", "site": "New site", "added": "Added license", "": "Not checked"}
-HISTORY_LONG = {"first": "No Chicago license on the City's record for this business before the last 30 days (the record starts in 2002).",
+HISTORY_LONG = {"first": "We found no Chicago license for this business before the last 30 days, under its City account or under its name at "
+                          "this address (the City's record starts in 2002).",
                 "site": "The business held a Chicago license at another site before the last 30 days, so this is a new location. "
                         "Since: the year of its first Chicago license.",
-                "added": "The business held a license at this site before the last 30 days; this one adds a new license type there. "
+                "added": "The business held a license at this site before the last 30 days (under its account, or under its name at this "
+                         "address); this one adds a new license type there. "
                          "Since: the year of its first license at this site.",
                 "": "The City's earlier records were not checked this week."}
 
@@ -61,7 +63,7 @@ def history_text(r):
 
 
 LEFT_OUT = ("Renewals and changes (including an older license the City re-dated), cancelled or revoked licenses, and licenses "
-            "held by a person or for an event or a season are left out: peddler, special event, pop-up, raffle, tow truck, valet, "
+            "issued to a person for their own work or for an event or a season are left out: peddler, special event, pop-up, raffle, tow truck, valet, "
             "chauffeur, home-sharing, vacation rental, bed-and-breakfast, mobile food, shared kitchen user, home occupation, home "
             "repair, massage therapist, body art practitioner, scavenger and expediter licenses, and street performers, flea "
             "market vendors and market stalls. So are home and mail-drop addresses: businesses the City marks as home based, "
@@ -69,15 +71,15 @@ LEFT_OUT = ("Renewals and changes (including an older license the City re-dated)
             "businesses, private mailboxes, and addresses with a City virtual office license. Office and shop suites stay. "
             "Sites outside Chicago are left out, and so is any business whose shown name could be a person's name: two to four "
             "plain words with no business word, with or without LLC or Inc, such as \"Golden Dragon\". "
-            "That check leaves some real businesses out on purpose, because a wrong omission costs less than printing a "
-            "person's name. A business with two licenses at one site is listed once. If a business on the list goes by a "
+            "That check is strict on purpose and leaves out many real businesses, because a wrong omission costs less than "
+            "printing a person's name. A business with two licenses at one site is listed once. If a business on the list goes by a "
             "person's name, or asks to be left out, write to hello@proofnotfluff.com and it is removed from every later list.")
 
-OVERLAP = ("Food businesses usually get a City food license inspection before the City issues their food license, and "
-           f"{RESTAURANT} lists those inspections as Opening soon. A food and drink row here with a date under Food license "
-           "inspection had that inspection in the 120 days before its license, so a member of both products most likely saw the "
-           "business there first. The other food rows, and nearly all businesses in the other trades, are not on the "
-           "restaurant product.")
+OVERLAP = ("Food businesses usually get a City food license inspection before the City issues their food license, most often "
+           f"one to three weeks before, and {RESTAURANT} lists those inspections as Opening soon. A food and drink row here with a "
+           "date under Food license inspection had that inspection in the 120 days before its license, so a member of both "
+           "products may already have seen the business there. The other food rows, and nearly all businesses in the other "
+           "trades, are not on the restaurant product.")
 OPEN_BEFORE = ("Food inspections since: the year of the City's earliest routine or complaint food inspection on file for the "
                "business before this license. It shows the business was open before the license was issued.")
 
@@ -406,8 +408,8 @@ def start_here(wb, full, list_date, counts, cols):
     ])
     r = card(ws, r, "Find your trade", [("lead", (TAB[k], f"{KINDS[k]}.")) for k in ORDER])
     r = card(ws, r, "How the list is made", [
-        ("para", f"From the City of Chicago's Business Licenses data, pulled {as_of_text(full)}. Every license the City issued as a new "
-                 f"license (application type Issue) from {pretty(w['listFrom'])} to {pretty(w['to'])}, at a Chicago business site."),
+        ("para", f"From the City of Chicago's Business Licenses data, pulled {as_of_text(full)}. New licenses (application type Issue) "
+                 f"the City issued from {pretty(w['listFrom'])} to {pretty(w['to'])} at Chicago business sites, except the ones under Left out."),
         ("lead", ("Trades", "Ours, from the City's license type and business activity. A business goes in the first trade that fits, in "
                             "the order of the tabs.")),
         ("lead", ("City record", "We read the City's earlier licenses for the same business. " + " ".join(

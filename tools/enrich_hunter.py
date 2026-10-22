@@ -30,6 +30,10 @@ API = "https://api.hunter.io/v2"
 HEAD = ["First name", "Last name", "Position", "Email", "Email status", "Company", "Website", "Source"]
 
 
+class QuotaReached(RuntimeError):
+    """Hunter answered 429 on every try: the plan's monthly usage limit (or the rate limit) is reached."""
+
+
 def call(path, params, key, tries=3):
     q = dict(params, api_key=key)
     url = f"{API}/{path}?{urllib.parse.urlencode(q)}"
@@ -50,6 +54,8 @@ def call(path, params, key, tries=3):
         except Exception as e:
             last = type(e).__name__
             time.sleep(3 * (i + 1))
+    if last == "HTTP 429":
+        raise QuotaReached(f"{path} failed: {last}")
     raise RuntimeError(f"{path} failed: {last}")
 
 
@@ -81,14 +87,22 @@ def enrich(rows, key, pause=1.2):
             misses += 1
             continue
         try:
-            ds = call("domain-search", {"domain": domain, "type": "personal", "limit": 25}, key)
+            # Hunter's Free plan refuses limit + offset above 10 with HTTP 400 pagination_error (API docs, checked Oct 22)
+            ds = call("domain-search", {"domain": domain, "type": "personal", "limit": 10}, key)
+        except QuotaReached:
+            print(f"NOTE hunter: usage limit reached after {len(found)} found, {misses} misses; keeping what was found")
+            break
         except RuntimeError as e:
             raise RuntimeError(f"{domain}: {e}")
         pick = best_contact((ds.get("data") or {}).get("emails"), domain)
         if not pick:
             misses += 1
             continue
-        ver = call("email-verifier", {"email": pick["value"]}, key)
+        try:
+            ver = call("email-verifier", {"email": pick["value"]}, key)
+        except QuotaReached:
+            print(f"NOTE hunter: verification limit reached after {len(found)} found, {misses} misses; keeping what was found")
+            break
         status = ((ver.get("data") or {}).get("status") or "").lower()
         if status not in ("valid", "accept_all"):
             misses += 1

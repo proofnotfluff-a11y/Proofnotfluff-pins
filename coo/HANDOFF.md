@@ -1,11 +1,12 @@
 # Handoff (Layer 1): live state pointers, Oct 22, 2026
 
 - Restructure COMPLETE Oct 22 (Todd, live chat). Outreach trigger's new prompt still waits for a device-signed approval from Todd's Windows PC; until then its old prompt follows coo/LEADS_DESK.md. Oct 19 and 20 batches never get a follow-up (crm_prospects.py LEGACY_BATCHES). Old ledger: archive/ only.
-- Live: Chicago and Austin construction cleaning leads ($29 a month), Chicago restaurant inspection leads ($39 a month). 0 payers, 0 replies so far.
+- Live: Chicago and Austin construction cleaning leads ($29 a month), Chicago restaurant inspection leads ($39 a month; outreach paused, CRM outreachGo false, until licenses is live). 0 payers, 0 replies.
 - Entity A: permits/downstream/gc_leads.json, 730 leads Oct 22 (downstream-leads.yml, Mondays 12:05 UTC).
-- Entity B (Todd, Oct 22): enrichment ladder, free rungs first: City owner record (Chicago), the business's own site, About-page owners from the finder's checkers, then Hunter at most 5 searches a run, valid only. info@ or office@ to a named owner only per pnf_rules.owner_read_inbox. Site addresses wait for Bouncer in the outreach run (data/prospects/verify.json). 4 pending owners sealed Oct 22, not yet in the CRM.
+- Entity B (Todd, Oct 22): ladder, free rungs first: City owner record (Chicago), the business's own site, About-page owners from the finder's checkers, then Hunter at most 5 searches a run, valid only. info@ or office@ to a named owner only per pnf_rules.owner_read_inbox. Site addresses wait for Bouncer in the outreach run (data/prospects/verify.json). 4 pending owners sealed Oct 22, not yet in the CRM.
 - Senders: hello@proofnotfluff.com (25 a day), sales@getproofnotfluff.com (Apps Script ramp).
-- Trade verticals: commercial_cleaning, exterior_turnkey (Chicago, Partial Occupancy Approved only). interior_finish and security_access only after exterior gets replies. The copy gate is built for permit leads; a non-permit signal needs Todd's OK for a gate extension first.
+- Trade verticals: commercial_cleaning, exterior_turnkey (Chicago, Partial Occupancy Approved only). interior_finish and security_access only after exterior gets replies.
 - Copy test 1 (Todd, Oct 22): variants A and B in templates.md, arm fixed by prospect id, `variant` on every draft (copy_gate --assign). Up to two follow-ups. C waits for test 2. research_notes/cold-email-2026-10-22.md.
-- Open for Todd (growth doc, Oct 22): licenses go at $29 (232 businesses a month vs 59 sellable violation buildings); gate extension for license and citation signals; elevator buyer probe; restaurant product has no template.
+- Todd, Oct 22 (launches/ records): licenses go at $29 for cleaning and pest, gates first; signal copy gate built (copy_gate --signal*, email/L1-OUTREACH.md T11 to T16); elevator: buyer probe only; no sender name.
+- Next: product-builder builds the licenses members' app and workbook. Price, go, Gumroad, secret, buyer test, outreach go: Todd.
 - Skills: permit-ingestion, outreach-drafter, prospect-matching, product-builder; on request: growth-research, remotion-walkthrough.

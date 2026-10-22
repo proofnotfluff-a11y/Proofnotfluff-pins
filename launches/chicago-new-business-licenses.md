@@ -1,8 +1,12 @@
-# Launch record: Chicago New Business Licenses (price not set), NOT LAUNCHED
+# Launch record: Chicago New Business Licenses ($29 a month planned, price and go are Todd's), NOT LAUNCHED
 
 Checklist: design/LAUNCH_CHECKLIST.md. Nothing is published, linked, emailed or promoted until every box is ticked with proof and Todd says go. Built by the leads desk builder run (coo/LEADS_DESK.md Run 4), product 4 in the LEADS FOCUS line (coo/PIVOT.md).
 
-Open question for Todd (coo/HANDOFF.md item 4): the live session suggested Chicago building violations for exterior trades instead of this product. Until Todd answers, the builder follows the stated order and builds this one. If he picks violations, this record and tools/licenses_chicago.py stay as they are and the builder switches.
+## Todd's decisions, Oct 22, 2026 (live chat, growth follow-up)
+- [stated] 1. "Licenses: go. The product-builder may build Chicago New Business Licenses at $29 a month for commercial cleaning and pest control buyers. Every gate in launches/chicago-new-business-licenses.md still runs first (self-checks, two holdouts, design director, Legal desk). Price and go, Gumroad, the members' secret, the buyer test and outreach go stay with me." This answers the licenses versus violations question: licenses.
+- [stated] 2. "Copy gate extension for license and citation signals: approved." Built Oct 22: pnf_rules.signal_copy_problems (every permit copy rule, plus the street as street_display gives it, no house number, the City date exactly ("Oct 16"), inside 30 days on the send day, the license words, the shown business name), lead schemas pnf.license_lead.v1 and pnf.citation_lead.v1, copy_gate --signal-templates, --signal-live and --signal, planted cases in tools/test_gates.py. The permit gate is unchanged.
+- [stated] 4. "Restaurant product: pause its outreach. No template and no batch until the licenses product is live; then we decide again, since both sell to the same pest, hood and grease buyers. The product and its weekly data keep running."
+- [stated] 5. "Sign-off: no sender name. Emails stay faceless, the footer is the only signature. No change during copy test 1."
 
 ## The product (planned)
 - Buyers: vendors who sell to a business in its first months (POS and payments, signs, insurance, bookkeeping and payroll, commercial cleaning, pest control, hood cleaning, waste, uniforms and supplies).
@@ -26,7 +30,8 @@ Open question for Todd (coo/HANDOFF.md item 4): the live session suggested Chica
 - Proposed first buyers and price: commercial cleaning and pest control, $29 a month. First email drafts and the copy gate extension they need: the growth research doc.
 
 ## 1. Gates (none run yet)
-- [ ] Built to standard: data rules done; free page draft done Oct 22; members' app (tools/leads_app.py pattern), workbook (tools/leads_xlsx.py pattern), free page (site/pages.json, "draft": true, noindex, no checkout), storefront copy and images, outreach email file with one follow-up: to do.
+- [ ] Built to standard: data rules done; free page draft done Oct 22; members' app (tools/leads_app.py pattern), workbook (tools/leads_xlsx.py pattern), storefront copy and images: to do.
+- [x] Outreach email file: done Oct 22. email/L1-OUTREACH.md, cleaning (T11 to T13) and pest control (T14 to T16): a first email and two follow-ups each, variant A, faceless. Gated: copy_gate --signal-templates passes 6 of 6; --signal-live renders all 28 sample leads through all 6 (168 renders) and passes. Outreach go stays with Todd.
 - [ ] Self-checks.
 - [ ] Holdout 1 and Holdout 2 (fresh agents; never open tools/ or tests): random sample against the City's records and every written promise.
 - [ ] Design director (no score under 4, average above 4.6).

@@ -29,8 +29,23 @@ Variants (Todd, Oct 22, 2026, live chat): a template may carry a 'Variant: <lett
 per trade vertical, stage and letter. Every draft carries 'variant' (the template id), must be that template filled in
 (its fixed words unchanged), and must be the prospect's arm. Follow-ups (run with --matches '') must name a lead the
 prospect has not been sent before (first_example and followup_examples).
+
+Signal leads (Todd, Oct 22, 2026, live chat, decision 2: gate extension for license and citation signals approved; the
+permit checks above are unchanged):
+       python3 tools/copy_gate.py --signal-templates
+           every signal product's outreach file (pnf_rules.SIGNAL_PRODUCTS, email/L1-OUTREACH.md for the licenses
+           product): a first email and two follow-ups per trade, each rendered on a fixture lead and passing
+           pnf_rules.signal_copy_problems (every permit copy rule, plus street, the City date, the 30-day window, the
+           signal words and, for a license, the shown business name).
+       python3 tools/copy_gate.py --signal-live
+           every lead in permits/licenses-chicago/sample.json rendered through every license template, on the pull date.
+       python3 tools/copy_gate.py --signal [data/work/signal_drafts.json] --leads data/work/signal_leads.json
+                                  [--prospects ...] [--matches ...] [--send-day YYYY-MM-DD]
+           signal drafts (pnf.signal_draft.v1) against a validated signal lead file; follow-ups with --matches ''.
 """
 import argparse
+import datetime as dt
+import hashlib
 import json
 import os
 import re
@@ -195,6 +210,195 @@ def check_live(path, gc_path):
     return problems, n, per
 
 
+# ------------------------------------------------------------------ signal leads (Todd, Oct 22, 2026, decision 2)
+# A signal product's outreach file (pnf_rules.SIGNAL_PRODUCTS[...]["templates"]) holds '### T<n>' blocks with Product,
+# Kind, Trade, Step (first, followup1, followup2) and Variant lines, a Subject line and a fenced body, checked here the
+# same way as the permit templates: rendered on a fixture lead of their kind, then on the live sample's real leads.
+SIGNAL_FIXTURES = {
+    "license": {"lead_id": "lic-fixture", "kind": "license", "business": "Stew Kitchen", "address": "4329 N Mozart St",
+                "community_area": "Irving Park", "license_type": "Retail Food Establishment", "issue_date": "2026-10-16",
+                "dataset": "r5kz-chrr", "record_id": "1", "source_url": "https://example.invalid/r5kz-chrr"},
+    "citation": {"lead_id": "cit-fixture", "kind": "citation", "address": "1600 W 63rd St", "community_area": "West Englewood",
+                 "bureau": "ELEVATOR", "description": "MAINTAIN OR REPAIR ELECT ELEVA", "citation_date": "2026-10-16", "open": True,
+                 "dataset": "22u3-xenr", "record_id": "1", "source_url": "https://example.invalid/22u3-xenr"},
+}
+SIGNAL_FIXTURE_SEND = "2026-10-19"
+SIGNAL_FIELDS = {"license": {"first", "business", "street", "date", "area"}, "citation": {"first", "street", "date", "area"}}
+LICENSE_SAMPLE = os.path.join(ROOT, "permits", "licenses-chicago", "sample.json")
+SIGNAL_DRAFTS = os.path.join(ROOT, "data", "work", "signal_drafts.json")
+SIGNAL_LEADS = os.path.join(ROOT, "data", "work", "signal_leads.json")
+
+
+def signal_fields(lead, first="Dana"):
+    k = R.SIGNAL_KINDS[lead["kind"]]
+    f = {"first": first, "street": R.street_display(lead.get("address")), "date": R.date_display(lead.get(k["date_field"])),
+         "area": lead.get("community_area") or ""}
+    if k["name_field"]:
+        f["business"] = lead.get(k["name_field"]) or ""
+    return f
+
+
+def signal_templates(path):
+    """Every '### T<n>' template block in a signal outreach file as a dict: id, letter, name, product, kind, trade, step,
+    subject, body."""
+    text = open(path, encoding="utf-8").read()
+    out = []
+    for m in re.finditer(r"^### (T(\d+)[^\n]*)\n(.*?)(?=^### |^## |\Z)", text, re.S | re.M):
+        name, num, chunk = m.group(1).strip(), m.group(2), m.group(3)
+        subj = re.search(r"^Subject:\s*(.+)$", chunk, re.M)
+        body = re.search(r"```(?:text)?\n(.*?)```", chunk, re.S)
+        if not (subj and body):
+            continue
+        line = lambda key: (re.search(r"^%s:\s*(.*)$" % key, chunk, re.M) or [None, ""])[1].strip()
+        out.append({"id": f"T{num}-{line('Variant') or 'A'}", "letter": line("Variant") or "A", "name": name,
+                    "product": line("Product"), "kind": line("Kind"), "trade": line("Trade") or R.TRADE_DEFAULT,
+                    "step": line("Step") or "first", "subject": subj.group(1).strip(), "body": body.group(1).strip("\n")})
+    return out
+
+
+def signal_template_files():
+    return {prod: os.path.join(ROOT, v["templates"]) for prod, v in R.SIGNAL_PRODUCTS.items()}
+
+
+def check_signal_templates(files=None):
+    """Each signal product's templates: well-formed slots, a full set of steps per trade with the same letters, ids
+    unique across the permit templates too, and every template rendered on a fixture lead of its kind passing the signal
+    copy check. Returns (problems, count)."""
+    files = files or signal_template_files()
+    problems, n = [], 0
+    ids = {t["id"] for t in variant_templates(TEMPLATES)} if os.path.exists(TEMPLATES) else set()
+    for prod, path in sorted(files.items()):
+        sig = R.SIGNAL_PRODUCTS[prod]
+        if not os.path.exists(path):
+            problems.append(f"{prod}: outreach file {os.path.relpath(path, ROOT)} is missing")
+            continue
+        ts = signal_templates(path)
+        if not ts:
+            problems.append(f"{prod}: no templates found in {os.path.relpath(path, ROOT)}")
+            continue
+        seen = set()
+        for t in ts:
+            n += 1
+            nm = f"{prod} {t['name']}"
+            if not re.match(r"^[A-Z]$", t["letter"]):
+                problems.append(f"{nm}: Variant {t['letter']!r} must be one capital letter")
+            if t["id"] in ids:
+                problems.append(f"{nm}: a second template with id {t['id']}")
+            ids.add(t["id"])
+            if t["product"] != prod:
+                problems.append(f"{nm}: Product {t['product']!r} is not {prod}")
+            if t["kind"] not in sig["kinds"]:
+                problems.append(f"{nm}: Kind {t['kind']!r} is not one {prod} sells ({sorted(sig['kinds'])})")
+                continue
+            if t["trade"] not in sig["trades"]:
+                problems.append(f"{nm}: Trade {t['trade']!r} does not buy {prod} ({sorted(sig['trades'])})")
+            if t["step"] not in R.SIGNAL_STEPS:
+                problems.append(f"{nm}: Step {t['step']!r} is not one of {list(R.SIGNAL_STEPS)}")
+            if (t["trade"], t["step"], t["letter"]) in seen:
+                problems.append(f"{nm}: a second {t['trade']} {t['step']} template, variant {t['letter']}")
+            seen.add((t["trade"], t["step"], t["letter"]))
+            unknown = set(re.findall(r"\{(\w+)\}", t["subject"] + t["body"])) - SIGNAL_FIELDS[t["kind"]]
+            if unknown:
+                problems.append(f"{nm}: unknown fields {sorted(unknown)}")
+            lead = SIGNAL_FIXTURES[t["kind"]]
+            f = signal_fields(lead)
+            for p in R.signal_copy_problems(fill(t["subject"], f), fill(t["body"], f), "Dana", lead, SIGNAL_FIXTURE_SEND):
+                problems.append(f"{nm}: {p}")
+        for trade in sorted(sig["trades"]):
+            letters = {s: sorted(l for tr, st, l in seen if tr == trade and st == s) for s in R.SIGNAL_STEPS}
+            for s in R.SIGNAL_STEPS:
+                if not letters[s]:
+                    problems.append(f"{prod}: trade {trade} has no {s} template")
+                elif letters[s] != letters["first"]:
+                    problems.append(f"{prod}: trade {trade} {s} variants {letters[s]} differ from first {letters['first']}")
+    return problems, n
+
+
+def license_leads_from_sample(path=LICENSE_SAMPLE):
+    """The committed free sample's rows as pnf.license_lead.v1 leads (business-level fields only), and its pull date."""
+    d = json.load(open(path, encoding="utf-8"))
+    leads = []
+    for seg in (d.get("segments") or {}).values():
+        for r in seg:
+            key = f"{r.get('business')}|{r.get('address')}|{r.get('issued')}"
+            leads.append({"lead_id": "lic-" + hashlib.sha256(key.encode("utf-8")).hexdigest()[:10], "kind": "license",
+                          "business": r.get("business"), "address": R.signal_address(r.get("address")),
+                          "community_area": r.get("communityArea") or "", "license_type": r.get("licenseType"),
+                          "issue_date": r.get("issued"), "dataset": "r5kz-chrr", "record_id": "",
+                          "source_url": (d.get("source") or {}).get("url") or ""})
+    return leads, (d.get("window") or {}).get("to") or ""
+
+
+def check_signal_live(files=None, sample=LICENSE_SAMPLE):
+    """Every lead in the committed license sample, rendered through every license template, passes the signal copy check
+    on the sample's pull date (real City names and streets, not only the fixture). Returns (problems, leads, renders)."""
+    files = files or signal_template_files()
+    leads, sent = license_leads_from_sample(sample)
+    problems, renders = [], 0
+    for prod, path in sorted(files.items()):
+        if "license" not in R.SIGNAL_PRODUCTS[prod]["kinds"] or not os.path.exists(path):
+            continue
+        for t in signal_templates(path):
+            if t["kind"] != "license":
+                continue
+            for ld in leads:
+                renders += 1
+                f = signal_fields(ld)
+                problems += [f"{ld['business']} {t['id']}: {p}"
+                             for p in R.signal_copy_problems(fill(t["subject"], f), fill(t["body"], f), "Dana", ld, sent)]
+    return problems, len(leads), renders
+
+
+def signal_variant_problems(drafts, ts, leads, prospects, followup=False):
+    """Each signal draft: a template id of the prospect's product, trade and the lead's kind; the right step (first, or
+    the next follow-up, at most two); the prospect's arm (fixed by id across the first-email letters); the template's
+    fixed words; and for a follow-up a lead the prospect has not been sent before."""
+    p = []
+    for d in (drafts.get("drafts") or []):
+        pid = d.get("prospect_id")
+        pr, ld = prospects.get(pid), leads.get(d.get("lead_id"))
+        if pr is None or ld is None:
+            continue
+        vid = str(d.get("variant") or "")
+        if not R.VARIANT_ID_RE.match(vid):
+            p.append(f"draft {pid}: variant {vid!r} must be a template id like T11-A")
+            continue
+        trade = R.trade_of(pr)
+        t = next((x for x in ts if x["id"] == vid), None)
+        if t is None or t["product"] != pr.get("product") or t["trade"] != trade or t["kind"] != ld.get("kind"):
+            p.append(f"draft {pid}: variant {vid} is not a {pr.get('product')} {trade} template for a {ld.get('kind')} lead")
+            continue
+        done = list(pr.get("followup_examples") or [])
+        if not followup:
+            want = "first"
+        elif len(done) >= R.MAX_FOLLOWUPS:
+            p.append(f"draft {pid}: already sent {len(done)} follow-ups, the limit is {R.MAX_FOLLOWUPS}")
+            continue
+        else:
+            want = f"followup{len(done) + 1}"
+        if t["step"] != want:
+            p.append(f"draft {pid}: variant {vid} is a {t['step']} template, this draft is the {want}")
+        firsts = [x["letter"] for x in ts if x["product"] == t["product"] and x["trade"] == trade and x["step"] == "first"]
+        arm = str(pr.get("variant") or "") or R.assign_variant(pid, firsts)
+        if t["letter"] != arm:
+            p.append(f"draft {pid}: variant {vid} is not the prospect's arm {arm}")
+        if not pattern(t["body"]).match((d.get("body") or "").strip("\n")):
+            p.append(f"draft {pid}: body is not template {vid} filled in (its fixed words changed)")
+        if not pattern(t["subject"]).match((d.get("subject") or "").strip()):
+            p.append(f"draft {pid}: subject is not template {vid}'s subject filled in")
+        if followup and d.get("lead_id") in ({pr.get("first_example") or ""} | set(done)):
+            p.append(f"draft {pid}: follow-up repeats a lead this prospect was already sent")
+    return p
+
+
+def chicago_today():
+    try:
+        from zoneinfo import ZoneInfo
+        return dt.datetime.now(ZoneInfo("America/Chicago")).date()
+    except Exception:
+        return dt.date.today()
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("drafts", nargs="?", default=DRAFTS)
@@ -206,7 +410,58 @@ def main():
                     help="every draft's lead_id must equal its validated match (pass '' for follow-ups)")
     ap.add_argument("--assign", nargs="?", const=os.path.join(ROOT, "data", "work", "matches.json"), default=None,
                     help="print the template id each validated match must use")
+    ap.add_argument("--signal-templates", action="store_true", help="check every signal product's outreach templates")
+    ap.add_argument("--signal-live", action="store_true", help="render the committed license sample through the license templates")
+    ap.add_argument("--signal", nargs="?", const=SIGNAL_DRAFTS, default=None, help="check signal drafts (pnf.signal_draft.v1)")
+    ap.add_argument("--leads", default=SIGNAL_LEADS, help="the validated signal lead file the signal drafts name")
+    ap.add_argument("--send-day", default=None, help="YYYY-MM-DD for the 30-day window (default: today in Chicago)")
     a = ap.parse_args()
+    if a.signal_templates:
+        problems, n = check_signal_templates()
+        for p in problems:
+            print(f"ERROR copy: {p}")
+        if problems:
+            sys.exit(1)
+        print(f"OK copy: {n} signal templates for {len(R.SIGNAL_PRODUCTS)} signal product(s) pass the signal check "
+              "(street, City date, 30-day window, signal words, business name)")
+        sys.exit(0)
+    if a.signal_live:
+        problems, n, renders = check_signal_live()
+        for p in problems[:40]:
+            print(f"ERROR copy: {p}")
+        if problems:
+            sys.exit(1)
+        print(f"OK copy: {n} of {n} sample license leads render through the license templates and pass ({renders} renders)")
+        sys.exit(0)
+    if a.signal:
+        try:
+            drafts = json.load(open(a.signal, encoding="utf-8"))
+            leads_doc = json.load(open(a.leads, encoding="utf-8"))
+            pr = json.load(open(a.prospects, encoding="utf-8"))
+            send = dt.date.fromisoformat(a.send_day) if a.send_day else chicago_today()
+        except (OSError, ValueError) as e:
+            print(f"ERROR copy: cannot read inputs ({e})")
+            sys.exit(1)
+        pre = R.validate_signal_file(leads_doc) + R.validate_prospect_file(pr)
+        if pre:
+            print(f"ERROR copy: inputs do not validate ({pre[0]})")
+            sys.exit(1)
+        matches = None
+        if a.matches and os.path.exists(a.matches):
+            matches = {m.get("prospect_id"): m.get("lead_id") for m in json.load(open(a.matches, encoding="utf-8")).get("matches", [])}
+        leads_by, pros_by = {x["lead_id"]: x for x in leads_doc["leads"]}, {x["prospect_id"]: x for x in pr["prospects"]}
+        ts = [t for path in signal_template_files().values() if os.path.exists(path) for t in signal_templates(path)]
+        problems = R.validate_signal_drafts(drafts, leads_by, pros_by, send, matches)
+        problems += signal_variant_problems(drafts, ts, leads_by, pros_by, followup=(a.matches == ""))
+        if not (drafts.get("drafts") or []):
+            problems.append("no drafts in the file")
+        for p in problems[:60]:
+            print(f"ERROR copy: {p}")
+        if problems:
+            print(f"copy: FAIL, {len(problems)} problems")
+            sys.exit(1)
+        print(f"OK copy: {len(drafts['drafts'])} signal drafts pass (send day {send.isoformat()})")
+        sys.exit(0)
     if a.assign:
         try:
             ms = json.load(open(a.assign, encoding="utf-8")).get("matches", [])

@@ -33,4 +33,4 @@ Growth-research Phase B, Oct 22, 2026 (live session with Todd). Nothing is built
 3. Buyer count: how many independent elevator companies exist in Chicago (next probe: distinct contractor names on elevator permits, counted, never written).
 
 ## Next
-- Probe distinct elevator contractors (market size); tools/elevator_chicago.py builds the sample once Todd says go.
+- [stated] Todd, Oct 22, 2026, live chat: "Elevator: run the buyer-count probe only. No build." Probe: tools/elevator_contractors.py and .github/workflows/elevator-contractors.yml (counts only, names never written), results below.

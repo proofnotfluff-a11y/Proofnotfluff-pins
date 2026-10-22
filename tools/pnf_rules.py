@@ -348,7 +348,11 @@ def validate_prospect(x, pending=False):
     for k in PROSPECT_REQUIRED:
         if not str(x.get(k) or "").strip():
             p.append(f"{pid}: missing {k}")
-    if x.get("product") not in PRODUCTS:
+    sig = SIGNAL_PRODUCTS.get(x.get("product"))
+    if sig is not None:
+        if x.get("city") != sig["city"]:
+            p.append(f"{pid}: city {x.get('city')!r} does not match product {x['product']}")
+    elif x.get("product") not in PRODUCTS:
         p.append(f"{pid}: unknown product {x.get('product')!r}")
     elif x.get("city") != PRODUCTS[x["product"]]:
         p.append(f"{pid}: city {x.get('city')!r} does not match product {x['product']}")
@@ -368,7 +372,11 @@ def validate_prospect(x, pending=False):
         p.append(f"{pid}: owner_source must be one of {sorted(OWNER_SOURCES)}")
     if x.get("do_not_email") is True:
         p.append(f"{pid}: do_not_email is set")
-    p += [f"{pid}: {m}" for m in trade_problems(x.get("product"), trade_of(x))]
+    if sig is not None:
+        if trade_of(x) not in sig["trades"]:
+            p.append(f"{pid}: trade_vertical {trade_of(x)} does not serve product {x.get('product')!r} (one of {sorted(sig['trades'])})")
+    else:
+        p += [f"{pid}: {m}" for m in trade_problems(x.get("product"), trade_of(x))]
     p += [f"{pid}: {m}" for m in inbox_problems(x.get("email"), x.get("website_domain"), x.get("first_name"), x.get("last_name"),
                                                 x.get("owner_source") or "", x.get("email_source") or "")]
     return p
@@ -511,4 +519,282 @@ def validate_drafts(doc, leads_by_id, prospects_by_id, matches_by_prospect=None)
                                                           pr.get("owner_source") or "", pr.get("email_source") or "")]
         p += [f"draft {pid}: {m}" for m in trade_problems(pr.get("product"), trade_of(pr), ld)]
         p += [f"draft {pid}: {m}" for m in copy_problems(d.get("subject"), d.get("body"), pr["first_name"], ld)]
+    return p
+
+
+# ------------------------------------------------------------------ signal leads (license, citation)
+# Todd, Oct 22, 2026, live chat (decision 2): "Copy gate extension for license and citation signals: approved". A signal
+# lead is a City record that is not a permit: a new business license (r5kz-chrr) or an open building citation (22u3-xenr).
+# Business-level fields only; the permit gate above is untouched. Each kind is one entry in SIGNAL_KINDS (its schema,
+# fields, date field and signal words), so a third kind (a restaurant inspection) is one more entry and one more
+# words function. The members' full lists stay in the runner; a signal lead file lives in data/work/ for a run.
+SIGNAL_WINDOW_DAYS = 30   # the honest claim: the City record is dated inside the last 30 days on the send day
+SIGNAL_STEPS = ("first", "followup1", "followup2")   # MAX_FOLLOWUPS follow-ups, each naming a lead not sent before
+MONTHS = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+DATE_IN_COPY = re.compile(r"\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2}\b"
+                          r"|\b\d{1,2}/\d{1,2}(?:/\d{2,4})?\b|\b\d{4}-\d{2}-\d{2}\b")
+PERSONAL_TEXT = re.compile(r"@|\(?\b\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}\b")
+STREET_TYPES = {"st", "ave", "av", "blvd", "rd", "dr", "pl", "ct", "ln", "pkwy", "hwy", "ter", "cir", "expy", "sq", "trl", "plz",
+                "way", "row"}
+UNIT_WORD = re.compile(r"^(?:#.*|unit|ste|suite|apt|fl|floor|bldg|building|rm|room|spc|space|bsmt|basement|mezz\.?|rear|front|"
+                       r"strfrnt|storefront)$", re.I)
+# Exterior repairs the City cites (the same words as tools/exterior_chicago.py EXTERIOR), matched on the lead's
+# description to find the trade, and on the email to find the repair it names.
+EXTERIOR_TRADES = {
+    "masonry": r"\b(?:exterior wall|parapet|lintels?|cornice|chimney|masonry|tuckpoint\w*|coping|brick\w*)\b",
+    "porch_stairs": r"\b(?:porch\w*|exterior stair\w*|fire escape\w*|balcon\w*)\b",
+    "windows_doors": r"\b(?:window\w*|exterior door\w*|screens?)\b",
+    "roof": r"\b(?:roof\w*|eaves|gutter\w*|downspout\w*|flashing)\b",
+    "fence": r"\b(?:fence\w*)\b",
+}
+ELEVATOR_WORD = re.compile(r"\belevators?\b", re.I)
+
+
+def signal_address(raw):
+    """A City address cut to house number and street, the form a signal lead stores: the first number of a range, no
+    unit, floor or suite. '495-499 N Milwaukee Ave Basement, 1, Mezz.' gives '495 N Milwaukee Ave'; '4329 N Mozart St 1f'
+    gives '4329 N Mozart St'; 'N Broadway 2 P105' keeps 'N Broadway'. '' when there is no house number."""
+    a = re.sub(r"\s+", " ", (raw or "").replace(",", " ")).strip()
+    m = re.match(r"^(\d+)(?:\s*-\s*\d+)?[A-Za-z]?\s+(.+)$", a)
+    if not m:
+        return ""
+    toks = m.group(2).split(" ")
+    last = max((i for i, t in enumerate(toks) if i >= 1 and t.lower().rstrip(".") in STREET_TYPES), default=None)
+    if last is not None:
+        toks = toks[:last + 1]              # anything after the last street type is a unit or floor
+    else:
+        cut = next((i for i, t in enumerate(toks) if i >= 1 and UNIT_WORD.match(t)), len(toks))
+        toks = toks[:cut]
+        while len(toks) > 1 and re.search(r"\d", toks[-1]):
+            toks = toks[:-1]
+    return f"{m.group(1)} {' '.join(toks)}".strip()
+
+
+def date_display(iso):
+    """A City record's date as an email states it: '2026-10-16' gives 'Oct 16'. '' when unreadable."""
+    try:
+        d = dt.date.fromisoformat(str(iso)[:10])
+    except ValueError:
+        return ""
+    return f"{MONTHS[d.month - 1]} {d.day}"
+
+
+def exterior_trades(text):
+    t = (text or "").lower()
+    return [k for k, rx in EXTERIOR_TRADES.items() if re.search(rx, t)]
+
+
+def _license_words(lead, low):
+    """A license email says 'business license', or 'food license' when the City's license type is a food license."""
+    p, food = [], bool(re.search(r"\bfood\b", str(lead.get("license_type") or ""), re.I))
+    has_biz, has_food = "business license" in low, "food license" in low
+    if not (has_biz or has_food):
+        p.append("body does not name the signal ('business license', or 'food license' for a food license type)")
+    if has_food and not food:
+        p.append(f"body calls a {lead.get('license_type')!r} license a food license")
+    return p
+
+
+def _citation_words(lead, low):
+    """A citation email names what the City cited: 'elevator' for the Elevator bureau, the cited exterior repair for a
+    Conservation citation, and nothing the City did not cite. It is about an open citation only."""
+    p, bureau = [], str(lead.get("bureau") or "").upper()
+    if lead.get("open") is not True:
+        p.append("the citation is not open in the City's data, and the email treats it as open")
+    named = exterior_trades(low)
+    if bureau == "ELEVATOR":
+        if not ELEVATOR_WORD.search(low):
+            p.append("body does not say 'elevator' for an Elevator bureau citation")
+        if named:
+            p.append(f"body names an exterior repair ({', '.join(named)}) on an elevator citation")
+    elif bureau == "CONSERVATION":
+        cited = exterior_trades(lead.get("description"))
+        if not cited:
+            p.append(f"citation description {lead.get('description')!r} is not an exterior repair the gate knows")
+        elif not set(named) & set(cited):
+            p.append(f"body does not name the cited repair ({', '.join(cited)} words, e.g. 'exterior wall')")
+        extra = sorted(set(named) - set(cited))
+        if cited and extra:
+            p.append(f"body names a repair the City did not cite ({', '.join(extra)})")
+        if ELEVATOR_WORD.search(low):
+            p.append("body says 'elevator' on an exterior citation")
+    else:
+        p.append(f"bureau {lead.get('bureau')!r} has no signal words in the gate (ELEVATOR or CONSERVATION)")
+    return p
+
+
+SIGNAL_KINDS = {
+    "license": {"schema": "pnf.license_lead.v1", "dataset": "r5kz-chrr", "date_field": "issue_date", "name_field": "business",
+                "fields": ("lead_id", "kind", "business", "address", "community_area", "license_type", "issue_date", "dataset",
+                           "record_id", "source_url"),
+                "words": _license_words,
+                "forbid": re.compile(r"\bcit(?:e|ed|es|ing|ation|ations)\b|\bviolations?\b|\belevators?\b", re.I)},
+    "citation": {"schema": "pnf.citation_lead.v1", "dataset": "22u3-xenr", "date_field": "citation_date", "name_field": None,
+                 "fields": ("lead_id", "kind", "address", "community_area", "bureau", "description", "citation_date", "open",
+                            "dataset", "record_id", "source_url"),
+                 "words": _citation_words,
+                 "forbid": re.compile(r"\b(?:business|food) licen[sc]e[sd]?\b|\bnewly licensed\b", re.I)},
+}
+# Which signal kinds a product sells and which trades buy it (Todd, Oct 22, 2026, decision 1: licenses for commercial
+# cleaning and pest control). pest_control is a signal trade only; the permit TRADE_VERTICALS are unchanged.
+SIGNAL_PRODUCTS = {
+    "chicago-licenses": {"city": "chicago", "kinds": {"license"}, "trades": {"commercial_cleaning", "pest_control"},
+                         "templates": "email/L1-OUTREACH.md"},
+}
+SIGNAL_OPTIONAL = {"record_id", "source_url", "community_area"}
+
+
+def validate_signal_lead(lead):
+    """Schema for one signal lead: its kind's fields and no others (business-level only), a clean house-number-and-street
+    address, a YYYY-MM-DD date, no email or phone anywhere, and for a license a shown name that could not be a person's."""
+    lid = (lead or {}).get("lead_id", "?")
+    if not isinstance(lead, dict):
+        return ["signal lead: not an object"]
+    k = SIGNAL_KINDS.get(lead.get("kind"))
+    if k is None:
+        return [f"{lid}: unknown signal kind {lead.get('kind')!r} (one of {sorted(SIGNAL_KINDS)})"]
+    p = []
+    for f in k["fields"]:
+        if f not in SIGNAL_OPTIONAL and lead.get(f) in (None, "", []):
+            p.append(f"{lid}: missing {f}")
+    for f in sorted(set(lead) - set(k["fields"])):
+        p.append(f"{lid}: {f} is not a business-level field of a {lead['kind']} lead")
+    if lead.get("dataset") and lead.get("dataset") != k["dataset"]:
+        p.append(f"{lid}: dataset {lead.get('dataset')!r} is not {k['dataset']}")
+    a = str(lead.get("address") or "")
+    if a and signal_address(a) != a:
+        p.append(f"{lid}: address {a!r} is not house number and street ({signal_address(a)!r}); units and suites stay out")
+    if not re.match(r"^\d{4}-\d{2}-\d{2}$", str(lead.get(k["date_field"]) or "")) or not date_display(lead.get(k["date_field"])):
+        p.append(f"{lid}: {k['date_field']} not YYYY-MM-DD")
+    for f in k["fields"]:
+        if isinstance(lead.get(f), str) and f not in ("source_url",) and PERSONAL_TEXT.search(lead[f]):
+            p.append(f"{lid}: {f} carries an email or phone number")
+    if lead["kind"] == "citation":
+        if not isinstance(lead.get("open"), bool):
+            p.append(f"{lid}: open must be true or false")
+        if str(lead.get("bureau") or "").upper() not in ("ELEVATOR", "CONSERVATION"):
+            p.append(f"{lid}: bureau {lead.get('bureau')!r} is not ELEVATOR or CONSERVATION")
+    if lead["kind"] == "license" and lead.get("business"):
+        try:
+            import licenses_chicago as LC   # the product's own person-name rule (planted cases in its selftest)
+            if LC.could_be_person(lead["business"]):
+                p.append(f"{lid}: business name could be a person's name; it stays out")
+        except ImportError:
+            p.append(f"{lid}: cannot load tools/licenses_chicago.py to judge the business name")
+    return p
+
+
+def validate_signal_file(doc):
+    """A signal lead file: one kind's schema, a list of leads, unique ids, every lead valid."""
+    if not isinstance(doc, dict):
+        return ["signal file: not a JSON object"]
+    kinds = {v["schema"]: k for k, v in SIGNAL_KINDS.items()}
+    if doc.get("schema") not in kinds:
+        return [f"signal file: schema must be one of {sorted(kinds)}"]
+    leads = doc.get("leads")
+    if not isinstance(leads, list) or not leads:
+        return ["signal file: leads must be a non-empty list"]
+    p, ids = [], [x.get("lead_id") for x in leads if isinstance(x, dict)]
+    if len(ids) != len(set(ids)):
+        p.append("signal file: duplicate lead_id")
+    for x in leads:
+        p += validate_signal_lead(x)
+        if isinstance(x, dict) and x.get("kind") != kinds[doc["schema"]]:
+            p.append(f"{x.get('lead_id')}: a {x.get('kind')} lead in a {doc['schema']} file")
+    return p
+
+
+def signal_copy_problems(subject, body, first_name, lead, send_day):
+    """The Outreach Copy Gate for one email built on a signal lead (body without the fixed footer). Every rule of
+    copy_problems still applies (under 75 words, no link, no pitch, no dash, 'Hi <first>,', the permission question);
+    the lead's shown business name is City text, so it is masked only for the pitch and phrase checks ('Discount Tire'
+    is a name, not a discount), never for the link or dash checks. Then: the street as street_display gives it, no house
+    number, the lead's date exactly as the City record has it ('Oct 16') and no other date, that date inside the last 30
+    days on send_day, the signal words of the lead's kind and none of another kind's, and a license email names the
+    shown business name."""
+    s, b = subject or "", body or ""
+    k = SIGNAL_KINDS.get((lead or {}).get("kind"))
+    if k is None:
+        return [f"unknown signal kind {(lead or {}).get('kind')!r} (one of {sorted(SIGNAL_KINDS)})"]
+    p = [f"lead {m}" for m in validate_signal_lead(lead)]
+    if not first_name:
+        p.append("a signal email needs the named decision-maker's first name")
+    name = str(lead.get(k["name_field"]) or "") if k["name_field"] else ""
+
+    def mask(t):
+        return re.sub(re.escape(name), lambda m: " ".join(["Name"] * max(1, len(words(m.group(0))))), t, flags=re.I) if name else t
+    p += copy_problems(mask(s), mask(b), first_name or None)
+    for label, t in (("subject", s), ("body", b)):
+        if not any(x.startswith(f"{label} carries a link") for x in p):
+            m = URL_RE.search(link_safe(t))
+            if m:
+                p.append(f"{label} carries a link or domain ({m.group(0)!r})")
+    low, both = b.lower(), (s + "\n" + b)
+    street = street_display(lead.get("address")).lower()
+    if not street or street not in low:
+        p.append(f"body does not name the lead's street ({street!r}, as street_display gives it)")
+    house = (re.match(r"^\s*(\d+)", str(lead.get("address") or "")) or [None, None])[1]
+    rest = re.sub(re.escape(name), " ", both, flags=re.I) if name else both
+    if house and re.search(r"(?<![\d$.,])%s(?![\d,%%])" % re.escape(house), rest):
+        p.append(f"email gives the house number {house}; the first touch names the street only")
+    want = date_display(lead.get(k["date_field"]))
+    if want and want not in b:
+        p.append(f"body does not state the lead's date as the City record has it ({want!r})")
+    for m in DATE_IN_COPY.findall(rest):
+        if m != want:
+            p.append(f"email states {m!r}, the City record says {want!r}")
+    try:
+        sent = send_day if isinstance(send_day, dt.date) else dt.date.fromisoformat(str(send_day))
+        age = (sent - dt.date.fromisoformat(str(lead.get(k["date_field"]))[:10])).days
+        if age < 0:
+            p.append(f"the lead's date {want} is after the send day {sent.isoformat()}")
+        elif age > SIGNAL_WINDOW_DAYS:
+            p.append(f"the lead's date {want} is {age} days before the send day, outside the {SIGNAL_WINDOW_DAYS}-day window")
+    except (TypeError, ValueError):
+        p.append("no readable send day or lead date to check the 30-day window")
+    p += k["words"](lead, re.sub(re.escape(name), " ", low, flags=re.I) if name else low)
+    m = k["forbid"].search(re.sub(re.escape(name), " ", both, flags=re.I) if name else both)
+    if m:
+        p.append(f"email uses {m.group(0)!r}, a word for another signal than a {lead['kind']}")
+    if name and name.lower() not in low:
+        p.append(f"body does not name the shown business name {name!r}")
+    return p
+
+
+def validate_signal_drafts(doc, leads_by_id, prospects_by_id, send_day, matches_by_prospect=None):
+    """Signal drafts (schema pnf.signal_draft.v1, never mixed with permit drafts): one per prospect, its validated match,
+    the prospect's own address through the Inbox Gate, a signal product that sells the lead's kind, and the signal copy
+    check on send_day."""
+    p = []
+    rows = doc.get("drafts") if isinstance(doc, dict) else None
+    if not isinstance(doc, dict) or doc.get("schema") != "pnf.signal_draft.v1" or not isinstance(rows, list):
+        return ["signal draft file: schema must be pnf.signal_draft.v1 with a drafts list"]
+    seen = set()
+    for d in rows:
+        if not isinstance(d, dict):
+            p.append("signal draft file: a draft is not an object")
+            continue
+        pid, lid = d.get("prospect_id"), d.get("lead_id")
+        if pid in seen:
+            p.append(f"draft {pid}: second draft to the same prospect in one batch")
+        seen.add(pid)
+        if matches_by_prospect is not None and matches_by_prospect.get(pid) != lid:
+            p.append(f"draft {pid}: lead_id differs from the validated match")
+        pr, ld = prospects_by_id.get(pid), leads_by_id.get(lid)
+        if pr is None or ld is None:
+            p.append(f"draft {pid}: prospect or lead not in the validated files")
+            continue
+        sig = SIGNAL_PRODUCTS.get(pr.get("product"))
+        if sig is None:
+            p.append(f"draft {pid}: product {pr.get('product')!r} is not a signal product")
+            continue
+        if ld.get("kind") not in sig["kinds"]:
+            p.append(f"draft {pid}: product {pr.get('product')} does not sell {ld.get('kind')!r} leads")
+        if trade_of(pr) not in sig["trades"]:
+            p.append(f"draft {pid}: trade_vertical {trade_of(pr)} does not serve product {pr.get('product')}")
+        if (d.get("to") or "").lower() != str(pr.get("email") or "").lower():
+            p.append(f"draft {pid}: to address differs from the prospect's validated email")
+        p += [f"draft {pid}: {m}" for m in inbox_problems(d.get("to"), pr.get("website_domain"), pr.get("first_name"), pr.get("last_name"),
+                                                          pr.get("owner_source") or "", pr.get("email_source") or "")]
+        p += [f"draft {pid}: {m}" for m in signal_copy_problems(d.get("subject"), d.get("body"), pr.get("first_name"), ld, send_day)]
     return p

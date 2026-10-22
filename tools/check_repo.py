@@ -40,7 +40,8 @@ Checks
   copy          tools/copy_gate.py: every template in .claude/skills/outreach-drafter/templates.md (one or more per trade
                 vertical in pnf_rules.TRADE_VERTICALS) renders under 75 words, link-free, downstream and permission-based,
                 every live GC lead renders through each vertical allowed its stage and city, and a local
-                data/work/drafts.json, when present, passes the same gate
+                data/work/drafts.json, when present, passes the same gate; signal products (pnf_rules.SIGNAL_PRODUCTS,
+                email/L1-OUTREACH.md) get the same: templates, the live license sample, local data/work/signal_drafts.json
   gate-selftest tools/test_gates.py plants a failure for each of the four gates above and confirms each is caught
   gate-tests    tools/test_check_repo.py plants a failure for every check above in a throwaway copy and
                 confirms each one is caught and no secret value is printed (Todd's Oct 15 note: the checks get
@@ -408,6 +409,23 @@ def check_copy():
     detail = lines[-1].replace("OK copy: ", "") if lines else ""
     if os.path.exists(os.path.join(ROOT, "permits", "downstream", "gc_leads.json")):
         code, lines = _run_tool([os.path.join("tools", "copy_gate.py"), "--live"])
+        if code:
+            return err("copy", "; ".join(l.replace("ERROR copy: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
+        detail += "; " + (lines[-1].replace("OK copy: ", "") if lines else "")
+    # Signal leads (Todd, Oct 22, 2026, decision 2): license and citation templates, the live license sample, and local
+    # signal drafts, checked the same way as the permit ones
+    code, lines = _run_tool([os.path.join("tools", "copy_gate.py"), "--signal-templates"])
+    if code:
+        return err("copy", "; ".join(l.replace("ERROR copy: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
+    detail += "; " + (lines[-1].replace("OK copy: ", "") if lines else "")
+    if os.path.exists(os.path.join(ROOT, "permits", "licenses-chicago", "sample.json")):
+        code, lines = _run_tool([os.path.join("tools", "copy_gate.py"), "--signal-live"])
+        if code:
+            return err("copy", "; ".join(l.replace("ERROR copy: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
+        detail += "; " + (lines[-1].replace("OK copy: ", "") if lines else "")
+    sdrafts = os.path.join(ROOT, "data", "work", "signal_drafts.json")
+    if os.path.exists(sdrafts):
+        code, lines = _run_tool([os.path.join("tools", "copy_gate.py"), "--signal", sdrafts])
         if code:
             return err("copy", "; ".join(l.replace("ERROR copy: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
         detail += "; " + (lines[-1].replace("OK copy: ", "") if lines else "")

@@ -1,0 +1,32 @@
+name: Chicago elevator contractors (buyer count)
+# Todd, Oct 22, 2026 live chat (decision 3): "Elevator: run the buyer-count probe only. No build." tools/elevator_contractors.py
+# counts distinct elevator contractors on elevator equipment permits (90 and 365 days), national firms versus
+# independents, and independents with 5 or more permits. The cloud agents cannot reach data.cityofchicago.org, so the
+# runner counts and commits probes/elevator-contractors-<date>.json. Counts only: no contractor or person name is written.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/elevator_contractors.py", ".github/workflows/elevator-contractors.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: probes-commit
+  cancel-in-progress: false
+jobs:
+  count:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/elevator_contractors.py --selftest
+      - run: python3 tools/elevator_contractors.py
+      - name: Commit the counts
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add probes/
+          git diff --cached --quiet && exit 0
+          git commit -m "Chicago elevator contractor counts $(date -u +%F)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done
+          exit 1

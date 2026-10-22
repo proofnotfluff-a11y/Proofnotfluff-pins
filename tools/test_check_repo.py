@@ -84,6 +84,10 @@ def plants(tmp):
     if live:
         out.append(("drafts", f"live page {live} made noindex", edit(f"docs/{live}/index.html",
                     lambda t: t.replace('<link rel="canonical"', '<meta name="robots" content="noindex, nofollow"><link rel="canonical"', 1))))
+    out.append(("copy", "a licenses outreach template over 75 words", edit("email/L1-OUTREACH.md",
+                lambda t: t.replace("in the first few weeks.", "in the first few weeks. " + " ".join(["more"] * 40), 1))))
+    out.append(("copy", "a licenses outreach template with the wrong signal word", edit("email/L1-OUTREACH.md",
+                lambda t: t.replace("got its new City business license", "was cited", 1))))
     out.append(("em-dash", "an em dash in docs/", new_file("docs/zz_planted.txt", "planted " + "—" + " dash\n")))
 
     # Secrets: values are built here at run time, so this file itself never matches a pattern.

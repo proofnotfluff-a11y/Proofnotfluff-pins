@@ -1,0 +1,40 @@
+{
+ "ranAt": "2026-10-22T16:43:03+00:00",
+ "activeLicenseSites": 31214,
+ "d30": {
+  "days": 30,
+  "conservationRows": 2496,
+  "exteriorBuildings": 358,
+  "atBusinessBuildings": 59,
+  "openAtBusinessBuildings": 59,
+  "businessBuildingsByTrade": {
+   "fence": 9,
+   "masonry": 38,
+   "porch_stairs": 23,
+   "roof": 16,
+   "windows_doors": 33
+  },
+  "businessViolationsByCategory": {
+   "COMPLAINT": 119,
+   "PERIODIC": 47
+  }
+ },
+ "d90": {
+  "days": 90,
+  "conservationRows": 7964,
+  "exteriorBuildings": 1129,
+  "atBusinessBuildings": 177,
+  "openAtBusinessBuildings": 177,
+  "businessBuildingsByTrade": {
+   "fence": 28,
+   "masonry": 87,
+   "porch_stairs": 70,
+   "roof": 38,
+   "windows_doors": 105
+  },
+  "businessViolationsByCategory": {
+   "COMPLAINT": 353,
+   "PERIODIC": 103
+  }
+ }
+}

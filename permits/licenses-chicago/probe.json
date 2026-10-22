@@ -1,6 +1,6 @@
 {
- "ranAt": "2026-10-20T16:26:12+00:00",
- "since": "2026-09-08",
+ "ranAt": "2026-10-22T16:40:46+00:00",
+ "since": "2026-09-10",
  "columns": [
   "id",
   "license_id",
@@ -45,90 +45,106 @@
   ":@computed_region_bdys_3d7i",
   ":@computed_region_43wa_7qmu"
  ],
- "rows": 845,
+ "rows": 817,
  "byLicense": [
   [
    "Limited Business License",
-   200
+   190
   ],
   [
    "Pop-Up Retail User",
-   114
+   120
   ],
   [
    "Retail Food Establishment",
-   96
+   102
   ],
   [
    "Regulated Business License",
-   89
+   87
   ],
   [
    "Special Event Food",
-   66
+   65
   ],
   [
    "Peddler License",
-   37
-  ],
-  [
-   "Towing - Tow Truck",
-   29
+   35
   ],
   [
    "Pharmaceutical Representative",
    28
   ],
   [
-   "Consumption on Premises - Incidental Activity",
-   24
+   "Special Event Liquor",
+   22
   ],
   [
-   "Special Event Liquor",
-   23
+   "Consumption on Premises - Incidental Activity",
+   20
   ],
   [
    "Shared Kitchen User (Long Term)",
-   16
+   17
   ],
   [
    "Tobacco",
-   16
+   15
+  ],
+  [
+   "Valet Parking Operator",
+   12
   ],
   [
    "Shared Housing Unit Operator",
-   13
+   12
   ],
   [
    "Children's Services Facility License",
-   11
+   10
   ],
   [
    "Motor Vehicle Services License",
    10
   ],
   [
-   "Valet Parking Operator",
-   10
+   "Outdoor Patio",
+   7
   ],
   [
    "Raffles",
-   9
+   7
   ],
   [
-   "Outdoor Patio",
-   8
+   "Public Place of Amusement",
+   6
   ],
   [
    "Manufacturing Establishments",
    6
   ],
   [
-   "Package Goods",
+   "Towing - Tow Truck",
+   5
+  ],
+  [
+   "Tavern",
    4
   ],
   [
-   "Public Place of Amusement",
+   "Commercial Garage",
+   4
+  ],
+  [
+   "Animal Care License",
+   4
+  ],
+  [
+   "Mobile Food License",
+   4
+  ],
+  [
+   "Package Goods",
    4
   ],
   [
@@ -140,32 +156,16 @@
    4
   ],
   [
-   "Commercial Garage",
-   4
+   "Caterer's Liquor License",
+   3
   ],
   [
-   "Mobile Food License",
+   "Shared Kitchen User (Short Term)",
    3
   ],
   [
    "Private Booting Registration",
    3
-  ],
-  [
-   "Animal Care License",
-   3
-  ],
-  [
-   "Shared Kitchen User (Short Term)",
-   2
-  ],
-  [
-   "Caterer's Liquor License",
-   2
-  ],
-  [
-   "Tavern",
-   2
   ],
   [
    "Emerging Business",
@@ -182,67 +182,59 @@
   [
    "Wholesale Food Establishment",
    1
-  ],
-  [
-   "Food - Shared Kitchen - Supplemental",
-   1
   ]
  ],
  "byActivity": [
   [
    "Sale of General Merchandise at Flea Market 181-365 Consecutive Days",
-   59
+   66
   ],
   [
    "Organizer of Event with Retail Vendors (1-5 Day Show)",
-   47
+   45
   ],
   [
    "5 Day Single Event  - Special Event Food",
-   39
+   38
   ],
   [
-   "Operation of a Tow Truck",
-   29
+   "Preparation of Food and Dining on Premises With Seating",
+   28
   ],
   [
    "Markets / Promotes Pharmaceuticals to Health Care Professionals and Conducts Bus",
    28
   ],
   [
-   "Preparation of Food and Dining on Premises With Seating",
-   27
-  ],
-  [
    "180 Day Multiple Events - Special Event Food",
    26
   ],
   [
-   "Consumption of Liquor on Premises",
+   "Sale of Food Prepared Onsite With Dining Area",
    23
   ],
   [
-   "Sale of Food Prepared Onsite With Dining Area",
-   20
+   "Retail Sales of General Merchandise",
+   19
+  ],
+  [
+   "Consumption of Liquor on Premises",
+   19
   ],
   [
    "Peddler- Retail Sales of General Merchandise, Whole Uncut Fruits/Vegetables, Flo",
-   20
-  ],
-  [
-   "Retail Sales of General Merchandise",
-   17
-  ],
-  [
-   "Retail Sales of General Merchandise and Non-Perishable Food",
-   16
+   18
   ],
   [
    "Shared Kitchen User - Long Term",
-   15
+   16
   ],
   [
    "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Pe",
+   14
+  ],
+  [
+   "Retail Sales of General Merchandise and Non-Perishable Food",
    14
   ],
   [
@@ -250,27 +242,31 @@
    13
   ],
   [
-   "Shared Housing Operator - Host of More Than One Shared Housing Unit",
-   13
-  ],
-  [
-   "Special Event Beer, Wine & Spirits",
+   "Valet Parking Operator",
    12
   ],
   [
-   "Operation of an Administrative Commercial Office",
-   11
-  ],
-  [
-   "Retail Sales of Flavored Tobacco Products | Retail Sales of Tobacco Products and",
-   11
+   "Shared Housing Operator - Host of More Than One Shared Housing Unit",
+   12
   ],
   [
    "Special Event Beer & Wine",
    11
   ],
   [
-   "Valet Parking Operator",
+   "Special Event Beer, Wine & Spirits",
+   11
+  ],
+  [
+   "Sale of Food Prepared Onsite Without Dining Area",
+   10
+  ],
+  [
+   "Nail Services",
+   10
+  ],
+  [
+   "Retail Sales of Flavored Tobacco Products | Retail Sales of Tobacco Products and",
    10
   ],
   [
@@ -278,7 +274,7 @@
    10
   ],
   [
-   "Nail Services",
+   "Debt Collecting - Administrative Commercial Office",
    9
   ],
   [
@@ -286,43 +282,39 @@
    9
   ],
   [
-   "Debt Collecting - Administrative Commercial Office",
+   "Operation of an Administrative Commercial Office",
    8
+  ],
+  [
+   "Sale of Food Prepared Onsite With Dining Area | Preparation and Sale of Coffee a",
+   7
   ],
   [
    "Miscellaneous Commercial Services",
-   8
+   7
   ],
   [
    "Sale of Liquor Outdoors on Private Property",
-   8
-  ],
-  [
-   "Sale of Food Prepared Onsite Without Dining Area",
-   8
-  ],
-  [
-   "Not-For-Profit Selling Raffles for Prizes of $50 or More",
-   8
+   7
   ],
   [
    "Other Home Based Businesses",
    7
   ],
   [
-   "Sale of Food Prepared Onsite With Dining Area | Preparation and Sale of Coffee a",
+   "Not-For-Profit Selling Raffles for Prizes of $50 or More",
    6
+  ],
+  [
+   "Charges a Fee for Entertainment or Amusements or Recreational Activities",
+   5
   ],
   [
    "Provide Business and Management Consulting",
    5
   ],
   [
-   "Preparation of Food, Coffee or Drinks | Retail Sales of Fresh Fruits and Vegetab",
-   5
-  ],
-  [
-   "Sale of Vehicle Parts and Accessories",
+   "Operation of a Tow Truck",
    5
   ],
   [
@@ -342,15 +334,15 @@
    5
   ],
   [
-   "Charges a Fee for Entertainment or Amusements or Recreational Activities",
+   "Tavern - Consumption of Liquor on Premises",
    4
   ],
   [
-   "Provide Home Health Care Services",
+   "Combination - Street Performer and Retail Sales of General Merchandise, Whole Un",
    4
   ],
   [
-   "Retail Sales of General Merchandise | Retail Sales of Flowers",
+   "Preparation and Sale of Food (ONLY) from a Mobile Food Truck (Mobile Food Prepar",
    4
   ],
   [
@@ -358,11 +350,15 @@
    4
   ],
   [
-   "Indoor Special Event",
+   "Preparation of Food, Coffee or Drinks | Retail Sales of Fresh Fruits and Vegetab",
    4
   ],
   [
-   "Provide 4 or More Parking Spaces For a Fee - Available and Advertised to the Pub",
+   "Sale of Vehicle Parts and Accessories",
+   4
+  ],
+  [
+   "Indoor Special Event",
    4
   ],
   [
@@ -378,6 +374,34 @@
    4
   ],
   [
+   "Catering of Liquor To Events",
+   3
+  ],
+  [
+   "Shared Kitchen User - Short Term (90 Days or Less - Not Renewable)",
+   3
+  ],
+  [
+   "Hair Services | Skincare Services",
+   3
+  ],
+  [
+   "Preparation of Food and Dining on Premises With Seating | Sale of Food Prepared ",
+   3
+  ],
+  [
+   "Skincare Services | Retail Sales of General Merchandise",
+   3
+  ],
+  [
+   "Private Booting Registration",
+   3
+  ],
+  [
+   "Retail Sales of General Merchandise | Retail Sales of Clothing / Accessories / S",
+   3
+  ],
+  [
    "Retail Sales of Packaged Liquor",
    3
   ],
@@ -386,7 +410,7 @@
    3
   ],
   [
-   "Preparation and Sale of Food (ONLY) from a Mobile Food Truck (Mobile Food Prepar",
+   "Provide Home Health Care Services",
    3
   ],
   [
@@ -394,44 +418,16 @@
    3
   ],
   [
-   "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Ge",
-   3
-  ],
-  [
    "Street Performer, Moving Along the Public Way (Special)",
    3
   ],
   [
-   "Private Booting Registration",
+   "Provide 4 or More Parking Spaces For a Fee - Available and Advertised to the Pub",
    3
-  ],
-  [
-   "Hair Services | Retail Sales of General Merchandise",
-   3
-  ],
-  [
-   "Combination - Street Performer and Retail Sales of General Merchandise, Whole Un",
-   3
-  ],
-  [
-   "Engage in Wholesale Sales",
-   3
-  ],
-  [
-   "Hair Services | Skincare Services",
-   3
-  ],
-  [
-   "Retail Sales of General Merchandise | Retail Sales of Clothing / Accessories / S",
-   3
-  ],
-  [
-   "Skincare Services | Provide Foot Massage - Fully Clothed/No Disrobing",
-   2
   ]
  ],
  "byStatus": {
-  "AAI": 843,
+  "AAI": 815,
   "AAC": 2
  }
 }

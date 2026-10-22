@@ -1,10 +1,10 @@
 # Handoff (Layer 1): live state pointers, Oct 22, 2026
 
-- Restructure (one model, one folder): COMPLETE Oct 22 (Todd's go in a live chat). QA, finder and builder triggers run on one-line prompts and their skills. Outreach trigger: new prompt still waits for a device-signed approval in a conversation linked to Todd's Windows PC (a cloud session cannot give it); until then its old prompt follows coo/LEADS_DESK.md. The Oct 19 and 20 batches never get a follow-up: tools/crm_prospects.py LEGACY_BATCHES enforces it in code.
-- Ledger files archived in memory /archive/legacy-memory/; no run reads them. Previous handoff: archive/legacy-handoff/HANDOFF-2026-10-20.md.
-- Live: Chicago and Austin construction cleaning leads ($29 a month), Chicago restaurant inspection leads ($39 a month). 0 payers.
+- Restructure COMPLETE Oct 22 (Todd, live chat). Outreach trigger's new prompt still waits for a device-signed approval from Todd's Windows PC; until then its old prompt follows coo/LEADS_DESK.md. Oct 19 and 20 batches never get a follow-up (crm_prospects.py LEGACY_BATCHES). Old ledger: archive/ only.
+- Live: Chicago and Austin construction cleaning leads ($29 a month), Chicago restaurant inspection leads ($39 a month). 0 payers, 0 replies so far.
 - Entity A: permits/downstream/gc_leads.json, 730 leads Oct 22 (downstream-leads.yml, Mondays 12:05 UTC).
-- Entity B (Todd, Oct 22 live chat, "go with your suggestion"): enrichment ladder, free rungs first: City owner record (Chicago), the business's own site, About-page owners from the finder's checkers, then Hunter capped at 5 searches a run, valid only. info@ or office@ to a named owner only when the name is from the City record or the site (pnf_rules.owner_read_inbox). Site addresses wait for Bouncer in the outreach run (data/prospects/verify.json). Secrets live in GitHub; PNF_DATA_KEY reaches only sessions started after it was added.
-- Senders: hello@proofnotfluff.com (25 a day), sales@getproofnotfluff.com (Apps Script ramp). The PNF send queue sheet is reachable only from sales@ in Todd's browser.
-- Trade verticals (Oct 22): commercial_cleaning plus exterior_turnkey (Chicago, Partial Occupancy Approved leads only). Templates in .claude/skills/outreach-drafter/templates.md. Next: interior_finish and security_access only after exterior gets replies; restaurant trades pitch off violation data, not permits.
-- Skills: permit-ingestion, outreach-drafter, prospect-matching, product-builder, remotion-walkthrough (on request).
+- Entity B (Todd, Oct 22): enrichment ladder, free rungs first: City owner record (Chicago), the business's own site, About-page owners from the finder's checkers, then Hunter at most 5 searches a run, valid only. info@ or office@ to a named owner only per pnf_rules.owner_read_inbox. Site addresses wait for Bouncer in the outreach run (data/prospects/verify.json). 4 pending owners sealed Oct 22, not yet in the CRM.
+- Senders: hello@proofnotfluff.com (25 a day), sales@getproofnotfluff.com (Apps Script ramp).
+- Trade verticals: commercial_cleaning, exterior_turnkey (Chicago, Partial Occupancy Approved only). interior_finish and security_access only after exterior gets replies. The copy gate is built for permit leads; a non-permit signal needs Todd's OK for a gate extension first.
+- Open for Todd: launches/chicago-new-business-licenses.md (built, not launched): licenses or building violations next.
+- Skills: permit-ingestion, outreach-drafter, prospect-matching, product-builder; on request: growth-research, remotion-walkthrough.

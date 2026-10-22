@@ -1561,6 +1561,9 @@ def normalize_extra(slug, h1):
     t = re.sub(r'<nav class="top"[^>]*>.*?</nav>', nav_html("../"), t, count=1, flags=re.S)
     t = re.sub(r'<!--pnf-fnav-->.*?<!--/pnf-fnav-->', "", t, flags=re.S)
     t = t.replace('<footer><div class="wrap">', '<footer><div class="wrap"><!--pnf-fnav-->' + foot_nav("../") + '<!--/pnf-fnav-->', 1)
+    if 'class="skip"' not in t:
+        t = t.replace("<body>", '<body><a class="skip" href="#main">Skip to content</a>', 1)
+    t = re.sub(r"<main( class=\"wrap\")?>", '<main class="wrap" id="main">', t, count=1)
     t = t.replace("<p>Made by ProofNotFluff.</p>", "<p>Made by ProofNotFluff with AI assistance, reviewed and tested by the shop owner.</p>")
     t = t.replace("and a copy comes by email.", "and a link to it comes by email.")
     open(f, "w", encoding="utf-8").write(t)
@@ -1829,7 +1832,8 @@ function run(){var a=area.value,n=0;cards.forEach(function(c){var ok=(f==='all'|
 count.textContent=(f==='all'&&!a)?count.dataset.all:'Showing '+n+' of '+cards.length+' projects in this free sample.';empty.hidden=n>0}
 chips.forEach(function(b){b.addEventListener('click',function(){f=b.dataset.f;chips.forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});run()})});
 area.addEventListener('change',run);run();
-var all=document.getElementById('ldAll');if(all){all.addEventListener('click',function(){list.classList.add('all');all.setAttribute('aria-expanded','true');all.parentNode.hidden=true})}
+var all=document.getElementById('ldAll');if(all){all.addEventListener('click',function(){list.classList.add('all');all.setAttribute('aria-expanded','true');all.parentNode.hidden=true;
+count.textContent='Showing all '+cards.length+' projects in this free sample.';var c=cards[9];if(c){c.tabIndex=-1;c.focus()}})}
 chips.concat([area]).forEach(function(x){x.addEventListener(x===area?'change':'click',function(){var on=f!=='all'||area.value;list.classList.toggle('all',!!on||(all&&all.getAttribute('aria-expanded')==='true'));if(all)all.parentNode.hidden=!!on||all.getAttribute('aria-expanded')==='true'})})}
 var bar=document.getElementById('ldBar'),hero=document.getElementById('ldHeroCta'),cta=document.getElementById('ldCta');
 if(!bar||!hero||!cta||!('IntersectionObserver' in window))return;

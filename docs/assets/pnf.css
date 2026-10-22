@@ -392,3 +392,25 @@ section.block details p{margin:0;padding:0 16px 14px}
 @media(min-width:880px){.grid>.sticky{position:sticky;top:16px;align-self:start}}
 .fc .st-btn2{min-height:46px}
 .fc-mail{margin-top:12px;max-width:560px}
+
+/* fix round 2, Oct 22 (design re-review, accessibility re-audit, stranger test) */
+.nw{white-space:nowrap}
+.st-pickrow{margin:28px 0 0}
+.st-cgroup{font-size:18px;line-height:1.3;margin:24px 0 8px}
+.st-printable{display:flex;flex-direction:column;gap:6px}.st-printable .st-link{min-height:0;gap:6px}
+.st-printable .st-link svg{color:var(--accent-text)}
+.st-strip,.sh-item.soon{align-items:flex-start}
+.ld-scl{display:block;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 2px}
+body.has-mbar .tiles .tile .lab{min-height:2.7em}
+@media(min-width:1000px){.rl3 .ld-ptop{min-height:58px;align-items:flex-start}}
+.qa-rel,section.block details{max-width:820px}
+/* email fields inside dark bands: their own field colors and a white focus ring */
+.ld-frow input{background:#fff;color:#1d2433}
+.ld-frow input::placeholder{color:#5c6270}
+.ld-frow input:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+@media(max-width:359px){.ld-sbar p span{display:none}}
+.ld-sbar p{min-width:0;overflow:hidden;text-overflow:ellipsis}
+p a:focus-visible,li a:focus-visible{outline-offset:1px}
+.st-note{display:block;margin-top:6px}
+.crumbs a{display:inline-block;padding:10px 0}
+.field input,.field select{min-height:44px}

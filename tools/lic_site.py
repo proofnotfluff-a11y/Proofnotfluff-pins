@@ -84,7 +84,7 @@ def page_html(p):
           ".lc-area{font-size:24px;line-height:1.2}.lc-h3{font:600 18px/1.3 Poppins,system-ui,sans-serif;margin:26px 0 10px;color:var(--ink)}"
           ".lc-h3 span{font:400 15px/1.3 system-ui,sans-serif;color:var(--muted)}"
           ".ld-page .ld-tiles .tile .lab{letter-spacing:.04em;overflow-wrap:anywhere}.ld-page .ld-tiles .tile .sub{text-wrap:balance}"
-          "@media(max-width:600px){.ld-page .ld-tiles .tile .lab{font-size:10.5px;letter-spacing:.02em}}"
+          "@media(max-width:600px){.ld-page .ld-tiles .tile .lab{font-size:11.5px;letter-spacing:.02em;white-space:normal}}"
           "@media(min-width:1000px){.ld-list.rl3{grid-template-columns:repeat(3,minmax(0,1fr))}}"
           ".rl-trades{list-style:none;margin:14px 0 0;padding:0;background:var(--card);border:1px solid var(--line);border-radius:12px;max-width:760px}"
           ".rl-trades li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 16px;border-top:1px solid var(--rule)}"

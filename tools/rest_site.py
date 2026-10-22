@@ -45,8 +45,8 @@ def page_html(p):
         kind = x["type"] if x["type"] not in ("", "Not given") else "Food business"
         keys = " ".join(keyof.get(k, "") for k in x["categories"]).strip()
         return (f'<article class="ld-proj" data-cats="{E(keys)}"><p class="ld-pill rp-{_res_cls(x["result"])}">City result: {E(x["result"])}</p>'
-                f'<p class="rl-lock">{LOCK_S}Name and address on the members\' list</p>'
-                f'<div class="ld-ptop"><span class="ld-cost" style="font-size:20px">{E(kind)} in {E(x["area"])}</span></div>'
+                f'<div class="ld-ptop"><span class="ld-cost" style="font-size:20px">{E(("An " if kind[:1].lower() in "aeiou" else "A ") + kind.lower())} in {E(x["area"])}</span></div>'
+                f'<p class="rl-lock">{LOCK_S}Name and address hidden: on the members\' list</p>'
                 f'<dl class="ld-meta"><div><dt>Categories</dt><dd>{E(cats)}</dd></div>'
                 f'<div><dt>Inspected</dt><dd>{E(M.nice_date(x["date"]))}, {E(x["inspectionType"])}</dd></div></dl></article>')
 
@@ -98,7 +98,7 @@ def page_html(p):
               'each place, with its address, its 24-month City inspection history and the City\'s violation codes. Places that passed a license '
               'inspection are named here, because a license inspection is a step toward opening.</p>'
               f'<div class="rl-tabs" role="group" aria-label="Show records for" id="rlTabs" hidden>{tab_btns}</div>'
-              f'<p class="rl-tabnote" id="rlNote" aria-live="polite"><b>{tabs[0][2]:,} places</b> {E(tabs[0][3])}</p>'
+              f'<p class="rl-tabnote" id="rlNote" aria-live="polite"><b>{tabs[0][2]:,} places</b> {E(tabs[0][3])} This free sample shows {len(anon) + len(ex["opening"])}.</p>'
               f'<div class="ld-list rl3" id="rlList">{cards}</div>'
               '<p class="rl-empty" id="rlEmpty" hidden>No place in this week\'s free sample has this category. Members see every one.</p>'
               f'<p class="rl-more" id="rlMore">Members see every place on all three lists, named, with address, the City\'s violation codes and 24 months of history. '
@@ -126,8 +126,9 @@ def page_html(p):
     script = r"""<script>(function(){var tb=document.getElementById('rlTabs');if(tb){tb.hidden=false;
 var bs=[].slice.call(tb.querySelectorAll('button')),cs=[].slice.call(document.querySelectorAll('#rlList .ld-proj')),
 note=document.getElementById('rlNote'),empty=document.getElementById('rlEmpty');
-function pick(t){var n=0;bs.forEach(function(b){var on=b.dataset.t===t;b.setAttribute('aria-pressed',String(on));if(on){note.innerHTML='<b>'+b.dataset.n+' places</b> '+b.dataset.b}});
-cs.forEach(function(c){var ok=t==='all'||(' '+c.dataset.cats+' ').indexOf(' '+t+' ')>=0;c.hidden=!ok;if(ok)n++});empty.hidden=n>0}
+function pick(t){var n=0;bs.forEach(function(b){var on=b.dataset.t===t;b.setAttribute('aria-pressed',String(on));});
+cs.forEach(function(c){var ok=t==='all'||(' '+c.dataset.cats+' ').indexOf(' '+t+' ')>=0;c.hidden=!ok;if(ok)n++});empty.hidden=n>0;
+bs.forEach(function(b){if(b.dataset.t===t)note.innerHTML='<b>'+b.dataset.n+' places</b> '+b.dataset.b+(n?' This free sample shows '+n+'.':'')})}
 bs.forEach(function(b){b.addEventListener('click',function(){pick(b.dataset.t)})});
 var q=(location.search.match(/[?&]trade=([a-z]+)/)||[])[1];if(q&&bs.some(function(b){return b.dataset.t===q}))pick(q)}
 var bar=document.getElementById('ldBar'),hero=document.getElementById('ldHeroCta'),cta=document.getElementById('ldCta');
@@ -145,7 +146,7 @@ io.observe(hero);io.observe(cta)})();</script>"""
           ".ld-pill.rp-fail{background:var(--rp-fail-bg);color:var(--rp-fail)}.ld-pill.rp-pwc{background:var(--rp-pwc-bg);color:var(--rp-pwc)}"
           ".ld-pill.rp-pass{background:var(--chip-near-bg);color:var(--chip-near)}.ld-pill.rp-oth{background:var(--chip-insp-bg);color:var(--chip-insp)}"
           ".rl-act{margin:18px 0 24px}.ld-page .ld-tiles .tile .lab{letter-spacing:.04em;overflow-wrap:anywhere}"
-          "@media(max-width:600px){.ld-page .ld-tiles .tile .lab{font-size:10.5px;letter-spacing:.02em}}"
+          "@media(max-width:600px){.ld-page .ld-tiles .tile .lab{font-size:11.5px;letter-spacing:.02em;white-space:normal}}"
           ".rl3 .ld-pill{margin:0 0 10px}.rl3 .ld-ptop{margin:0 0 12px}"
           ".rl-lock{display:flex;align-items:center;gap:6px;margin:0 0 6px;font-size:13px;color:var(--muted)}.rl-lock svg{flex:none}"
           "@media(min-width:1000px){.ld-list.rl3{grid-template-columns:repeat(3,minmax(0,1fr))}}"

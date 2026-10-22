@@ -212,5 +212,70 @@
   "10083878": "Chicago new business licenses waitlist",
   "10083882": "13-week cash flow kit updates",
   "10059686": "Cleaning price cheat sheet (confirmation email links the PDF)"
- }
+ },
+ "calcGroups": [
+  [
+   "Cleaning and trades",
+   [
+    "cleaning-price-per-square-foot-calculator",
+    "house-cleaning-price-calculator",
+    "window-cleaning-price-calculator",
+    "pressure-washing-price-calculator",
+    "pressure-washing-price-per-square-foot-calculator",
+    "soft-wash-pricing-calculator",
+    "junk-removal-price-calculator",
+    "junk-removal-pricing-calculator-by-truck-load",
+    "estate-cleanout-cost-calculator",
+    "lawn-care-price-calculator",
+    "auto-detailing-price-calculator",
+    "contractor-hourly-rate-calculator",
+    "handyman-hourly-rate-calculator",
+    "day-rate-calculator",
+    "employer-cost-calculator",
+    "cleaning-business-startup-cost-calculator",
+    "junk-removal-startup-cost-calculator",
+    "pressure-washing-startup-cost-calculator"
+   ]
+  ],
+  [
+   "E-commerce, Etsy and makers",
+   [
+    "ecommerce-13-week-cash-flow-calculator",
+    "inventory-reorder-point-calculator",
+    "inventory-turnover-calculator",
+    "shipping-cost-calculator",
+    "customer-concentration-calculator",
+    "etsy-fee-calculator",
+    "profit-margin-calculator",
+    "handmade-product-pricing-calculator",
+    "unit-cost-calculator",
+    "markup-calculator",
+    "craft-fair-break-even-calculator",
+    "cake-pricing-calculator"
+   ]
+  ],
+  [
+   "Money, tax and rentals",
+   [
+    "hourly-rate-calculator",
+    "freelance-hourly-rate-calculator",
+    "self-employment-tax-calculator",
+    "business-expense-tracker-calculator",
+    "profit-and-loss-calculator",
+    "break-even-calculator",
+    "rental-property-cash-flow-calculator",
+    "airbnb-nightly-rate-calculator",
+    "airbnb-break-even-nights-calculator"
+   ]
+  ],
+  [
+   "Home and personal",
+   [
+    "monthly-budget-calculator",
+    "debt-payoff-calculator",
+    "debt-snowball-calculator",
+    "chore-split-calculator"
+   ]
+  ]
+ ]
 }

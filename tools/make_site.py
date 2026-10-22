@@ -1645,7 +1645,7 @@ def project_card(x, pill=True, city="Chicago", permit_label="Permit", bil2=False
     pill_html = f'<p class="ld-pill s-{cls}">{E(lab)}</p>' if pill else ""
     return (f'<article class="ld-proj" data-type="{"new" if x["type"].startswith("New") else "ren"}" data-area="{E(area)}">{pill_html}'
             f'<div class="ld-ptop"><span class="ld-cost">{money(x["cost"], bil2=bil2)}</span><span class="ld-type">{E(x["type"])}{units}</span></div>'
-            f'<p class="ld-scope">{E((x["scope"] or "")[:1].upper() + (x["scope"] or "")[1:])}</p>'
+            f'<p class="ld-scope"><span class="ld-scl">City description</span>{E((x["scope"] or "")[:1].upper() + (x["scope"] or "")[1:])}</p>'
             f'<dl class="ld-meta{" wide" if len(permit_label) > 7 else ""}"><div><dt>Builder</dt><dd>{E(gc)}</dd></div>'
             f'<div><dt>Where</dt><dd>{E(x.get("address") or "").replace(" more)", "&nbsp;more)") if sep == ", " else E(x.get("address") or "")},{"&nbsp;" if str(area).isdigit() else " "}{E(area)}</dd></div>'
             f'<div><dt>{E(permit_label)}</dt><dd>{E(str(x.get("permit") or ""))}, issued {E(nice_date(x.get("issued", "")))}</dd></div></dl></article>')
@@ -1805,7 +1805,7 @@ def leads_page_html(p):
                        '<small class="ld-note">Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div>' if p.get("kitForm") else "")
                     + '</div></section>')
         sbar = (f'<div class="ld-sbar" id="ldBar" aria-hidden="true"><div class="wrap"><p><b>${price} a month</b><span> · <span class="ld-sbl">full list </span>every Monday</span></p>'
-                f'<a class="btn" href="{E(checkout)}" rel="noopener" tabindex="-1">Get it</a></div></div>')
+                f'<a class="btn" href="{E(checkout)}" rel="noopener" tabindex="-1">Subscribe</a></div></div>')
     elif not p.get("kitForm"):   # before launch, no waitlist: the offer and the planned price, no form (design director, Oct 18)
         cta_html = ('<section class="block" id="ldCta"><div class="cta ld-cta ld-solo"><div>'
                     f'<h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
@@ -2179,6 +2179,12 @@ def product_ld(x, url):
             "image": BASE + f"assets/og/{slug}.png", "brand": {"@type": "Brand", "name": "ProofNotFluff"}, "offers": offer}
 
 
+def nb(text):
+    """A title with its hyphenated words kept whole, so "E-commerce" never breaks at the hyphen (design check, Oct 22)."""
+    import re
+    return re.sub(r"(\S+-\S+)", r'<span class="nw">\1</span>', E(text))
+
+
 def product_card(x, rel, medium):
     nums = "".join(f'<div><b>{E(a)}</b><span>{E(b)}</span></div>' for a, b in x.get("nums", []))
     if x["audience"] == "ecom":
@@ -2189,7 +2195,7 @@ def product_card(x, rel, medium):
         sec = (f'<a class="st-link" href="{E(utm(x["checkout"], medium, x["campaign"]))}" rel="noopener">Subscribe</a>' if x.get("checkout") else "")
     return (f'<article class="st-card"><div class="st-top"><span class="st-tag">{E(x["tag"])}</span>'
             f'<span class="st-price">${E(x["price"])}<small> {E(x["per"])}</small></span></div>'
-            f'<h3>{E(x["short"])}</h3><p>{E(x["card"])}</p><div class="st-nums">{nums}</div>'
+            f'<h3>{nb(x["name"])}</h3><p>{E(x["card"])}</p><div class="st-nums">{nums}</div>'
             f'<p>{E(x["for"])}</p><div class="st-act">{prim}{sec}</div></article>')
 
 
@@ -2207,7 +2213,8 @@ def data_notices():
     f = os.path.join(ROOT, "permits", "austin", "sample.json")
     if os.path.isfile(f):
         src = json.load(open(f, encoding="utf-8"))["source"]
-        out.append(f'Austin data: {src["attribution"]}, published under {src["license"]}. The City of Austin has not reviewed or endorsed this site.')
+        attr = src["attribution"].replace(" - ", " (") + ")" if " - " in src["attribution"] else src["attribution"]
+        out.append(f'Austin data: {attr}, published under {src["license"]}. The City of Austin has not reviewed or endorsed this site.')
     return "".join(f"<p>{E(x)}</p>" for x in out)
 
 
@@ -2223,7 +2230,7 @@ def home_html(pages, live):
         if not x:
             continue
         frag = (x["sample"] if t.get("tab") is None else f'?trade={t["tab"]}#sample') if x["audience"] != "ecom" else ""
-        trades += (f'<li><a href="{x["href"]}{frag}"><span><b>{E(t["label"])}</b><small>{E(t["where"])}</small></span>{ARROW}</a></li>')
+        trades += (f'<li><a href="{x["href"]}{frag}" aria-label="{E(t["label"])}, {E(t["where"])}"><span><b>{E(t["label"])}</b><small>{E(t["where"])}</small></span>{ARROW}</a></li>')
     week = ""
     rest, chi, aus = by.get("chicago-restaurant-inspection-leads"), by.get("chicago-construction-cleaning-leads"), by.get("austin-construction-cleaning-leads")
     rows = []
@@ -2242,7 +2249,7 @@ def home_html(pages, live):
             '<h1 id="hero-title">Your next customers are already in the City\'s records.</h1>'
             '<p class="lede">Weekly lists for cleaning, hood cleaning and pest control companies in Chicago and Austin. Each one has a free sample, new every Monday.</p>'
             '<p class="st-cta"><a class="btn ld-btnbig" href="#lists-title">See this week\'s free samples</a></p>'
-            f'<h2 class="st-pick">Or go straight to your trade</h2><ul class="st-trades">{trades}</ul></div>{week}</section>')
+            f'</div>{week}</section><section class="st-pickrow" aria-labelledby="pick-title"><h2 class="st-pick" id="pick-title">Or go straight to your trade</h2><ul class="st-trades">{trades}</ul></section>')
     coming = store_coming()
     cards = "".join(product_card(x, "", "home") for x in prods)
     lists = ('<section class="st-sec" aria-labelledby="lists-title"><h2 id="lists-title">The lists</h2>'
@@ -2252,12 +2259,23 @@ def home_html(pages, live):
            '<li><span class="n" aria-hidden="true">1</span><div><h3>Open the free sample</h3><p>Real records from this week\'s pull sit on each list\'s page. No sign-up.</p></div></li>'
            '<li><span class="n" aria-hidden="true">2</span><div><h3>Subscribe when it fits</h3><p>$29 or $39 a month, paid through Gumroad. Cancel any time.</p></div></li>'
            '<li><span class="n" aria-hidden="true">3</span><div><h3>Work the list</h3><p>Every Monday: the named list, an Excel file and a pitch kit for your trade.</p></div></li></ol></section>')
-    calc_cards = "".join(f'<li><a href="{p["slug"]}/"><b>{E(p["h1"])}</b><span>{E(p["card"])}</span></a></li>'
-                         for p in live if p.get("kind") not in ("leads", "restleads", "licleads", "question"))
-    extras = "".join(f'<a class="card" href="{E(x["slug"])}/"><h3>{E(x["h1"])}</h3><p>{E(x["card"])}</p></a>' for x in live_extras())
+    calcs_live = [p for p in live if p.get("kind") not in ("leads", "restleads", "licleads", "question")]
+    by_slug = {p["slug"]: p for p in calcs_live}
+    groups, used = [], set()
+    for title, slugs in st.get("calcGroups", []):
+        items = [by_slug[x] for x in slugs if x in by_slug]
+        used |= {p["slug"] for p in items}
+        if items:
+            groups.append((title, items))
+    rest_ = [p for p in calcs_live if p["slug"] not in used]
+    if rest_:
+        groups.append(("More calculators", rest_))
+    li = lambda p: f'<li><a href="{p["slug"]}/"><b>{E(p["h1"])}</b><span>{E(p["card"])}</span></a></li>'
+    calc_cards = "".join(f'<h3 class="st-cgroup">{E(t)}</h3><ul class="st-calcs">{"".join(li(p) for p in items)}</ul>' for t, items in groups)
+    extras = "".join(f'<a class="card st-printable" href="{E(x["slug"])}/"><h3>{E(x["h1"])}</h3><p>{E(x["card"])}</p><span class="st-link">Get the sheet {ARROW}</span></a>' for x in live_extras())
     calcs = ('<section class="st-sec" id="calculators" aria-labelledby="calc-title"><h2 id="calc-title">Free calculators</h2>'
              '<p>Price the job before you call. Same maths as our tested Excel and Google Sheets workbooks, and nothing you type leaves your browser.</p>'
-             f'<ul class="st-calcs">{calc_cards}</ul></section>'
+             f'{calc_cards}</section>'
              + (f'<section class="st-sec" aria-labelledby="print-title"><h2 id="print-title">Free printables</h2><div class="tools">{extras}</div></section>' if extras else ""))
     qs = ""
     if LIVE_QUESTIONS:
@@ -2297,7 +2315,7 @@ def shop_html():
                     + (f'<a class="st-btn2" href="{E(utm(x["checkout"], "shop", x["campaign"]))}" rel="noopener">Subscribe, ${E(x["price"])} {E(x["per"])}</a>' if x.get("checkout") else ""))
             cadence = "New list every Monday. Cancel any time."
         rows += (f'<article class="sh-item" data-aud="{x["audience"]}"><div class="sh-main"><p class="st-tag">{E(x["tag"])}</p>'
-                 f'<h2>{E(x["name"])}</h2><p>{E(x["what"])}</p></div>'
+                 f'<h2>{nb(x["name"])}</h2><p>{E(x["what"])}</p></div>'
                  f'<div class="sh-buy"><div class="amt">${E(x["price"])}<small> {E(x["per"])}</small></div><p>{cadence}</p>{acts}'
                  f'<p class="st-note">Secure checkout by Gumroad. <a href="{rel}refunds/">Refunds and cancelling</a></p></div>'
                  f'<div class="sh-gets"><h3 class="sr">What you get</h3><ul class="checks">{gets}</ul><p class="sh-src">{E(x.get("source", ""))}</p></div></article>')

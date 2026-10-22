@@ -146,7 +146,7 @@ def page_html(p):
           + "<style>.ld-page .asof,.ld-page footer p{color:var(--muted)}"
           ".qa{max-width:none}.qa>h1{max-width:820px;text-wrap:pretty;font-size:clamp(28px,4vw,40px)}.qa p{max-width:72ch}.qa-answer p{max-width:62ch}.qa-steps li{max-width:72ch}.qa-upd{margin:10px 0 0}.ld-page h2,.ld-page h3,.ld-page summary{text-wrap:balance}"
           ".qa-answer strong{font-weight:700;color:var(--ink)}.ld-page .ld-tiles .tile .sub{text-wrap:balance}"
-          ".qa-rel{list-style:none;padding:0;margin:12px 0 0}.qa-rel li{margin:0 0 10px}.qa-rel a{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-weight:600;color:var(--ink);text-decoration:none}"
+          ".qa-rel{list-style:none;padding:0;margin:12px 0 0;max-width:820px}.qa-rel li{margin:0 0 10px}.qa-rel a{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-weight:600;color:var(--ink);text-decoration:none}"
           ".qa-rel a::after{content:'\\2192';font-weight:400;color:var(--muted)}.qa-rel a:hover{border-color:var(--ink)}"
           ".qa-answer{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ink);border-radius:12px;padding:18px 20px;margin:18px 0 0}"
           ".qa-answer p{margin:0 0 12px;font-size:17.5px;line-height:1.6}.qa-answer p:last-child{margin:0}"
@@ -159,7 +159,7 @@ def page_html(p):
           ".qa-by{font-weight:600;color:var(--ink2)}.qa-calc{margin:6px 0 0;font-size:16px}"
           ".qa-free{margin:12px 0 0;font-size:15px}.ld-cta .qa-free a{color:#fff}.ld-page .ld-cta p.ld-buybtn{margin-top:16px}"
           ".ld-page .ld-tiles .tile .lab{letter-spacing:.04em;overflow-wrap:anywhere}"
-          "@media(max-width:600px){.ld-page .ld-tiles .tile .lab{font-size:10.5px;letter-spacing:.02em}.qa h1{font-size:27px;line-height:1.12}.qa-answer{padding:14px 16px}.qa-answer p{font-size:16px;line-height:1.55}}</style>")
+          "@media(max-width:600px){.ld-page .ld-tiles .tile .lab{font-size:11.5px;letter-spacing:.02em;white-space:normal}.qa h1{font-size:27px;line-height:1.12}.qa-answer{padding:14px 16px}.qa-answer p{font-size:16px;line-height:1.55}}</style>")
     robots = "" if M.is_live(p) else '<meta name="robots" content="noindex, nofollow">'
     foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             f'<p>{F(p["footnote"])} Public information for planning sales calls; not legal or business advice and no promise of work. '

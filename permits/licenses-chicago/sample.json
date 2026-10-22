@@ -3,9 +3,9 @@
   "name": "City of Chicago Data Portal, Business Licenses",
   "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
   "rowsUpdatedAt": "2026-10-22T09:55:53+00:00",
-  "fetchedAt": "2026-10-22T18:30:08+00:00",
+  "fetchedAt": "2026-10-22T18:58:04+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
-  "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: licenses held by a person or for an event or season (peddlers, special events, pop-ups, tow trucks, home-sharing), home or apartment addresses, and any business whose name could be a person's name. Business-level fields only."
+  "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: licenses held by a person or for an event or season (peddlers, special events, pop-ups, tow trucks, home-sharing, shared kitchen users), home and mail-drop addresses, and any business whose name could be a person's name. Business-level fields only."
  },
  "window": {
   "from": "2026-10-15",
@@ -14,44 +14,42 @@
  },
  "counts": {
   "fetched": 740,
-  "kept30": 231,
-  "keptWeek": 58,
+  "kept30": 182,
+  "keptWeek": 45,
   "segmentsWeek": {
-   "food": 29,
-   "beauty": 6,
+   "food": 22,
+   "beauty": 5,
    "auto": 1,
    "care": 0,
-   "venue": 1,
-   "retail": 21
+   "venue": 2,
+   "retail": 15
   },
   "segments30": {
-   "food": 93,
-   "beauty": 38,
-   "auto": 7,
-   "care": 1,
-   "venue": 2,
-   "retail": 90
+   "food": 56,
+   "beauty": 37,
+   "auto": 8,
+   "care": 2,
+   "venue": 3,
+   "retail": 76
   },
   "excluded": {
    "issued outside the window": 139,
    "second license at the same site (listed once)": 11,
-   "name could be a person's": 61,
-   "home or apartment address": 24,
-   "license held by a person or for an event or season": 245,
-   "site outside Chicago": 27,
-   "license not active (cancelled or revoked)": 2
+   "not a new license (renewal or change)": 19,
+   "name could be a person's": 79,
+   "license held by a person or for an event or season": 263,
+   "home or apartment address": 23,
+   "license not active (cancelled or revoked)": 2,
+   "site outside Chicago": 18,
+   "virtual office or mailbox address": 4
   },
   "areasWeek": [
    [
-    "Lake View",
-    5
-   ],
-   [
-    "West Town",
+    "Lincoln Park",
     4
    ],
    [
-    "Lincoln Park",
+    "Lake View",
     4
    ],
    [
@@ -59,40 +57,45 @@
     3
    ],
    [
+    "West Town",
+    3
+   ],
+   [
     "Loop",
     3
-   ],
-   [
-    "Lower West Side",
-    3
-   ],
-   [
-    "Irving Park",
-    2
-   ],
-   [
-    "Uptown",
-    2
    ],
    [
     "McKinley Park",
     2
    ],
    [
-    "Lincoln Square",
+    "North Center",
     2
+   ],
+   [
+    "Logan Square",
+    2
+   ],
+   [
+    "South Shore",
+    1
+   ],
+   [
+    "Chatham",
+    1
    ]
   ],
   "checks": {
+   "buildings": true,
    "history": true,
    "foodInspections": true
   },
   "history30": {
-   "first": 162,
-   "added": 23,
-   "site": 46
+   "first": 127,
+   "added": 20,
+   "site": 35
   },
-  "foodInsp30": 61
+  "foodInsp30": 53
  },
  "segmentNames": {
   "food": "Restaurants, cafes, bars and food shops",
@@ -175,6 +178,14 @@
     "licenseType": "Retail Food Establishment",
     "activity": "Sale of Food Prepared Onsite With Dining Area",
     "issued": "2026-10-20"
+   },
+   {
+    "business": "Rainbow Boba Tea",
+    "address": "5160 S Pulaski Rd 118",
+    "communityArea": "West Elsdon",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Sale of Food Prepared Onsite With Dining Area",
+    "issued": "2026-10-20"
    }
   ],
   "beauty": [
@@ -232,6 +243,14 @@
   "care": [],
   "venue": [
    {
+    "business": "Play 424",
+    "address": "1415 N Ashland Ave 1 R1",
+    "communityArea": "West Town",
+    "licenseType": "Public Place of Amusement",
+    "activity": "Charges a Fee for Entertainment or Amusements or Recreational Activities | Retail Sales of General Merchandise and Non-Perishable Food",
+    "issued": "2026-10-20"
+   },
+   {
     "business": "The Smart Bar",
     "address": "3730 N Clark St Basement",
     "communityArea": "Lake View",
@@ -274,7 +293,7 @@
     "issued": "2026-10-21"
    },
    {
-    "business": "Coi Company",
+    "business": "COI Company",
     "address": "4444 S Kildare Blvd",
     "communityArea": "Archer Heights",
     "licenseType": "Manufacturing Establishments",
@@ -288,6 +307,38 @@
     "licenseType": "Limited Business License",
     "activity": "Miscellaneous Commercial Services",
     "issued": "2026-10-19"
+   },
+   {
+    "business": "Green Paws Chicago",
+    "address": "2049 W Belmont Ave 1 1",
+    "communityArea": "North Center",
+    "licenseType": "Limited Business License",
+    "activity": "Provide Dog Walking Services",
+    "issued": "2026-10-19"
+   },
+   {
+    "business": "Fotel 81",
+    "address": "2545 N Milwaukee Ave",
+    "communityArea": "Logan Square",
+    "licenseType": "Limited Business License",
+    "activity": "Retail Sales of General Merchandise | Provide Photography or Videography Services",
+    "issued": "2026-10-19"
+   },
+   {
+    "business": "Safecare",
+    "address": "8 S Michigan Ave 8th 801",
+    "communityArea": "Loop",
+    "licenseType": "Limited Business License",
+    "activity": "Provide Home Health Care Services",
+    "issued": "2026-10-16"
+   },
+   {
+    "business": "Pasture-To-Porch",
+    "address": "11102 S Kedzie Ave",
+    "communityArea": "Mount Greenwood",
+    "licenseType": "Limited Business License",
+    "activity": "Operation of an Administrative Commercial Office | Miscellaneous Commercial Services",
+    "issued": "2026-10-16"
    }
   ]
  }

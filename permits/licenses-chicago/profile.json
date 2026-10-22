@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-10-22T18:30:08+00:00",
+ "fetchedAt": "2026-10-22T18:58:04+00:00",
  "rowsUpdatedAt": "2026-10-22T09:55:53+00:00",
  "columns": [
   "id",
@@ -186,23 +186,19 @@
  "keptByLicense": [
   [
    "Limited Business License",
-   107
+   89
   ],
   [
    "Retail Food Establishment",
-   58
+   50
   ],
   [
    "Regulated Business License",
-   24
+   13
   ],
   [
    "Tobacco",
    8
-  ],
-  [
-   "Shared Kitchen User (Long Term)",
-   7
   ],
   [
    "Motor Vehicle Services License",
@@ -210,10 +206,6 @@
   ],
   [
    "Public Place of Amusement",
-   3
-  ],
-  [
-   "Private Booting Registration",
    3
   ],
   [
@@ -229,11 +221,11 @@
    2
   ],
   [
-   "Manufacturing Establishments",
+   "Consumption on Premises - Incidental Activity",
    2
   ],
   [
-   "Consumption on Premises - Incidental Activity",
+   "Private Booting Registration",
    2
   ],
   [
@@ -245,15 +237,7 @@
    1
   ],
   [
-   "Emerging Business",
-   1
-  ],
-  [
-   "Shared Kitchen User (Short Term)",
-   1
-  ],
-  [
-   "Filling Station",
+   "Manufacturing Establishments",
    1
   ]
  ],

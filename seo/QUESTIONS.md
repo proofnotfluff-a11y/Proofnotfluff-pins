@@ -1,3 +1,7 @@
 # Question pages: the questions we answer
 
 One line per question: date, product, the question in our words, where it was asked (URL), status.
+
+- 2026-10-22, chicago-construction-cleaning-leads: "How do small cleaning companies land large post-construction contracts?" Jobber Community forum, Cleaning and Property Maintenance, posted about 3 months before Oct 22, 2026 (the page shows a relative age only): https://community.getjobber.com/discussions/cleaning-and-property-maintenance/how-do-small-cleaning-companies-land-large-post-construction-contracts/14163 . Page: /chicago-post-construction-cleaning-contracts/ (draft, gates running).
+- 2026-10-22, austin-construction-cleaning-leads: "How do I contact the people in charge of post-construction cleanup?" The Grime Scene community forum, posted Aug 10, 2004: https://community.thegrimescene.com/topic/1836-post-construction-contacts . Page: /austin-post-construction-cleanup-contacts/ (draft, gates running).
+- 2026-10-22, chicago-restaurant-inspection-leads: "Expertise is there, but how do we get the first KEC (kitchen exhaust cleaning) clients?" Jobber Community forum, Marketing, posted about 5 months before Oct 22, 2026: https://community.getjobber.com/discussions/marketing-forum/expertise-is-there-but-how-do-we-get-the-first-kec-clients/10327 . Page: /chicago-hood-cleaning-first-restaurant-clients/ (draft, gates running).

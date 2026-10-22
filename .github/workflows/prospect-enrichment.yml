@@ -1,6 +1,7 @@
 name: Prospect enrichment
 # Entity B, GitHub-native (Todd, Oct 22, 2026): resolve one named decision-maker per cleaning business listed in
-# prospects/businesses.json (business-level fields only) with Hunter and/or Apollo, inside this runner. The validated
+# prospects/businesses.json (business-level fields only) inside this runner, free rungs first: the City's owner record,
+# the business's own site, then Hunter capped at 5 searches a run (tools/enrich_ci.py). The validated
 # prospect file is sealed with PNF_DATA_KEY (tools/data_box.py) to prospects/enriched.sealed.json; no name or address is
 # ever committed in the clear or printed to the log. The prospect-matching run opens the box with the same key.
 on:
@@ -24,6 +25,7 @@ jobs:
       - run: pip install --quiet cryptography
       - run: python3 tools/data_box.py --selftest
       - run: python3 tools/test_gates.py
+      - run: python3 tools/owners_chicago.py --selftest && python3 tools/site_emails.py --selftest
       - name: Enrich, gate and seal
         env:
           HUNTER_API_KEY: ${{ secrets.HUNTER_API_KEY }}
@@ -34,7 +36,7 @@ jobs:
         run: |
           git config user.name "proofnotfluff-bot"
           git config user.email "proofnotfluff-bot@users.noreply.github.com"
-          git add prospects/enriched.sealed.json
+          git add prospects/enriched.sealed.json prospects/enrich_state.json
           git diff --cached --quiet && exit 0
           git commit -m "Prospect enrichment (sealed) $(date -u +%F)"
           for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 5; done

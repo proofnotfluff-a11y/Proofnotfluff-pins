@@ -15,7 +15,7 @@ Read this, coo/HANDOFF.md, coo/CONSTITUTION.md (it binds first), then only the o
 1. First: `python3 tools/check_repo.py --preflight <job>`. Exit 1 stops the run; report the ERROR lines to Todd. Never edit a gate to pass.
 2. coo/CONSTITUTION.md binds every run.
 3. Nothing is sent, bought, published or submitted without Todd's word in chat for that batch.
-4. Cold email: plain text, under 75 words, no links, a named decision-maker, a downstream stage, asks permission.
+4. Cold email: plain text, under 75 words, no links, a named decision-maker (an owner-read inbox only per pnf_rules.owner_read_inbox), a downstream stage, asks permission.
 5. No person's data in the repo (except sealed with tools/data_box.py), scoreboard or logs. Named prospects live in the CRM and data/ (Todd, Oct 22).
 6. No em or en dashes. Plain words. No invented people, numbers or claims.
 7. Push: check_repo exits 0, git push origin HEAD:main, never force.

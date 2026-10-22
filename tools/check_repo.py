@@ -379,6 +379,13 @@ def check_schema(files):
         probs = enrich_ci.validate_businesses(json.load(open(bpath, encoding="utf-8")))
         if probs:
             return err("schema", "prospects/businesses.json: " + "; ".join(probs[:4]))
+    spath = os.path.join(ROOT, "prospects", "enrich_state.json")
+    if os.path.exists(spath):
+        st = json.load(open(spath, encoding="utf-8"))
+        allowed = {"checkedAt", "result", "rung", "hunterAt"}
+        if st.get("schema") != "pnf.enrich_state.v1" or "@" in json.dumps(st) or any(
+                set(v) - allowed for v in (st.get("domains") or {}).values()):
+            return err("schema", "prospects/enrich_state.json must be pnf.enrich_state.v1 with business-level fields only")
     box = os.path.join(ROOT, "prospects", "enriched.sealed.json")
     if os.path.exists(box):
         b = json.load(open(box, encoding="utf-8"))

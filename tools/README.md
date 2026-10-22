@@ -151,7 +151,10 @@ Code fetches, joins and checks; the agent only matches and drafts between gates;
 - `ingest_downstream.py`: Entity A. Chicago and Austin permits in downstream completion stages joined to Certificate of Occupancy and health inspection signals, Timing Moat Gate, writes permits/downstream/gc_leads.json. GitHub Actions only (downstream-leads.yml); `--selftest` runs offline.
 - `join_probe.py`: live hit counts for every join key, in probes/join-keys-<date>.json (data-probe.yml).
 - `prospects_import.py`: Entity B from Apollo, Hunter or Clay CSV exports into data/prospects/prospects.json (gitignored), Inbox Gate on every row, rejects listed with reasons.
-- `enrich_hunter.py`: one named decision-maker per business through Hunter's Domain Search and Email Verifier (needs HUNTER_API_KEY).
+- `enrich_hunter.py`: one named decision-maker per business through Hunter's Domain Search and Email Verifier (needs HUNTER_API_KEY); the capped paid fallback, valid addresses only.
+- `enrich_ci.py`: the enrichment ladder in GitHub Actions (City owner record, the business's own site, then Hunter at most 5 searches a run); carries the sealed box forward and keeps prospects/enrich_state.json (business-level).
+- `owners_chicago.py`: owner names for Chicago prospects from the City's Business Licenses and Business Owners datasets, exact name match only.
+- `site_emails.py`: addresses a business publishes on its own site; picks the owner's own address, else an owner-read inbox (pnf_rules.owner_read_inbox).
 - `crm_prospects.py`: the CRM listing (ArtifactData out_dir) into the validated prospect file and the stored matches.
 - `validate_leads.py gc | prospects | matches`: the Two-Entity Schema, Timing Moat and Inbox Gates.
 - `copy_gate.py [drafts.json] | --templates`: the Outreach Copy Gate (under 75 words, no link or domain, no upstream phrase, no pitch, named greeting, permission question).

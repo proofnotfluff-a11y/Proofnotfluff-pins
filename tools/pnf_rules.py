@@ -66,6 +66,15 @@ OK_EMAIL_STATUS = {"verified", "valid", "deliverable", "catch_all", "accept_all"
 CATCH_ALL = {"catch_all", "accept_all"}
 PRODUCTS = {"chicago-construction": "chicago", "austin-construction": "austin", "chicago-restaurant": "chicago"}
 SOURCES = {"apollo", "hunter", "clay", "site", "manual"}
+# Enrichment ladder (Todd, Oct 22, 2026, live chat: "Let's go with your suggestion"): the owner's name comes from a
+# public record first, then the business's own site, then Hunter as a capped fallback. owner_source records where the
+# name came from. A one-person business reads its own info@: an owner-read inbox published on the business's own site
+# may carry a named owner's email ("Hi Maria" to info@) only when the name comes from the City's owner record or the
+# business's own site. Every other role inbox stays out.
+OWNER_SOURCES = {"city_owner_record", "site_about", "hunter", "apollo", "clay", "manual"}
+OWNER_READ_SOURCES = {"city_owner_record", "site_about"}
+OWNER_READ_ROLES = {"info", "contact", "hello", "office", "admin", "mail", "general", "inquiries", "inquiry", "sales", "team"}
+PENDING_STATUS = "unverified"   # a site or pattern address waiting for the Bouncer check in the outreach run
 
 # ------------------------------------------------------------------ trade verticals
 # Todd, Oct 22: one downstream permit can be pitched to non-competing finish-stage trades. Each vertical lists the
@@ -285,15 +294,24 @@ PROSPECT_REQUIRED = ("prospect_id", "product", "business", "website_domain", "ci
                      "email", "email_source", "email_status")
 
 
-def inbox_problems(email, website_domain="", first_name="", last_name=""):
-    """The Inbox Gate for one address: syntax, no role-based local part, no free mail, on the business's own domain, and,
-    when the person's name is known, a local part built from that name (dana@, dreyes@, dana.reyes@, reyes@)."""
+def owner_read_inbox(email, owner_source="", email_source=""):
+    """True for the one role-inbox exception: an owner-read local part (info@, office@ ...) published on the business's
+    own site, addressed to an owner named by the City's owner record or the business's own site."""
+    local = (email or "").strip().lower().split("@", 1)[0]
+    return local in OWNER_READ_ROLES and owner_source in OWNER_READ_SOURCES and email_source == "site"
+
+
+def inbox_problems(email, website_domain="", first_name="", last_name="", owner_source="", email_source=""):
+    """The Inbox Gate for one address: syntax, no role-based local part (except the owner-read exception above), no free
+    mail, on the business's own domain, and, when the person's name is known, a local part built from that name (dana@,
+    dreyes@, dana.reyes@, reyes@)."""
     e = (email or "").strip()
     if not EMAIL_RE.match(e):
         return [f"{e or '(blank)'}: not a valid email address"]
     local, dom = e.lower().split("@", 1)
     p = []
-    if ROLE_RE.match(local):
+    owner_read = owner_read_inbox(e, owner_source, email_source)
+    if ROLE_RE.match(local) and not owner_read:
         p.append(f"{e}: role-based inbox ({local}@), a named decision-maker is required")
     if dom in FREEMAIL:
         p.append(f"{e}: free-mail domain, a work address on the business's own domain is required")
@@ -302,12 +320,14 @@ def inbox_problems(email, website_domain="", first_name="", last_name=""):
         p.append(f"{e}: domain {dom} does not match the business website {wd}")
     f, l = re.sub(r"[^a-z]", "", (first_name or "").lower()), re.sub(r"[^a-z]", "", (last_name or "").lower())
     flat = re.sub(r"[^a-z]", "", local)
-    if f and l and not (f in flat or l in flat or flat in (f[0] + l, f + l[0], f[0] + l[0])):
+    if f and l and not owner_read and not (f in flat or l in flat or flat in (f[0] + l, f + l[0], f[0] + l[0])):
         p.append(f"{e}: the address is not {first_name} {last_name}'s own (local part does not carry the name)")
     return p
 
 
-def validate_prospect(x):
+def validate_prospect(x, pending=False):
+    """One prospect. pending=True: the same rules, except the address must be waiting for its Bouncer check
+    (email_status unverified) instead of already deliverable."""
     p, pid = [], x.get("prospect_id", "?")
     for k in PROSPECT_REQUIRED:
         if not str(x.get(k) or "").strip():
@@ -323,12 +343,18 @@ def validate_prospect(x):
         p.append(f"{pid}: title {x.get('title')!r} is not a decision-maker role")
     if x.get("email_source") and x["email_source"] not in SOURCES:
         p.append(f"{pid}: email_source must be one of {sorted(SOURCES)}")
-    if x.get("email_status") and x["email_status"] not in OK_EMAIL_STATUS:
+    if pending:
+        if x.get("email_status") != PENDING_STATUS:
+            p.append(f"{pid}: a pending prospect must have email_status {PENDING_STATUS!r}")
+    elif x.get("email_status") and x["email_status"] not in OK_EMAIL_STATUS:
         p.append(f"{pid}: email_status {x.get('email_status')!r} is not deliverable")
+    if x.get("owner_source") and x["owner_source"] not in OWNER_SOURCES:
+        p.append(f"{pid}: owner_source must be one of {sorted(OWNER_SOURCES)}")
     if x.get("do_not_email") is True:
         p.append(f"{pid}: do_not_email is set")
     p += [f"{pid}: {m}" for m in trade_problems(x.get("product"), trade_of(x))]
-    p += [f"{pid}: {m}" for m in inbox_problems(x.get("email"), x.get("website_domain"), x.get("first_name"), x.get("last_name"))]
+    p += [f"{pid}: {m}" for m in inbox_problems(x.get("email"), x.get("website_domain"), x.get("first_name"), x.get("last_name"),
+                                                x.get("owner_source") or "", x.get("email_source") or "")]
     return p
 
 
@@ -356,6 +382,15 @@ def validate_prospect_file(doc):
         ca = sum(1 for x in rows if x.get("email_status") in CATCH_ALL)
         if ca * 10 > len(rows):
             p.append(f"prospect file: {ca} of {len(rows)} addresses are catch-all, over the 10% cap")
+    pend = doc.get("pending", [])
+    if not isinstance(pend, list):
+        return p + ["prospect file: pending must be a list"]
+    for x in pend:
+        p += validate_prospect(x, pending=True)
+        d = (x.get("product"), domain_of(x.get("website_domain")))
+        if d in seen_d:
+            p.append(f"{x.get('prospect_id')}: second contact at the same business for {d[0]} (one decision-maker per business)")
+        seen_d.add(d)
     return p
 
 
@@ -456,7 +491,8 @@ def validate_drafts(doc, leads_by_id, prospects_by_id, matches_by_prospect=None)
             continue
         if (d.get("to") or "").lower() != pr["email"].lower():
             p.append(f"draft {pid}: to address differs from the prospect's validated email")
-        p += [f"draft {pid}: {m}" for m in inbox_problems(d.get("to"), pr.get("website_domain"), pr.get("first_name"), pr.get("last_name"))]
+        p += [f"draft {pid}: {m}" for m in inbox_problems(d.get("to"), pr.get("website_domain"), pr.get("first_name"), pr.get("last_name"),
+                                                          pr.get("owner_source") or "", pr.get("email_source") or "")]
         p += [f"draft {pid}: {m}" for m in trade_problems(pr.get("product"), trade_of(pr), ld)]
         p += [f"draft {pid}: {m}" for m in copy_problems(d.get("subject"), d.get("body"), pr["first_name"], ld)]
     return p

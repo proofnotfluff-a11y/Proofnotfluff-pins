@@ -104,7 +104,8 @@ def enrich(rows, key, pause=1.2):
             print(f"NOTE hunter: verification limit reached after {len(found)} found, {misses} misses; keeping what was found")
             break
         status = ((ver.get("data") or {}).get("status") or "").lower()
-        if status not in ("valid", "accept_all"):
+        # valid only: catch-all (accept_all) cannot be confirmed and sank run 4 on the 10% cap (Todd, Oct 22)
+        if status != "valid":
             misses += 1
             continue
         found.append({"First name": pick.get("first_name"), "Last name": pick.get("last_name"), "Position": pick.get("position"),

@@ -249,6 +249,32 @@ def trade_cases():
            EC.validate_businesses(biz(product="austin-construction", trade_vertical="exterior_turnkey")), True)
 
 
+def ladder_cases():
+    """Enrichment ladder (Todd, Oct 22, 2026): the owner-read inbox exception is narrow, and pending means unverified."""
+    city = dict(PROSPECT, email="info@sparkleco.example", email_source="site", owner_source="city_owner_record")
+    expect("ladder: info@ for a City-named owner, published on the site, passes", R.validate_prospect(city), False)
+    expect("ladder: office@ for an owner named on the business's own site passes",
+           R.validate_prospect(dict(city, email="office@sparkleco.example", owner_source="site_about")), False)
+    expect("ladder: info@ for a Hunter-named owner fails", R.validate_prospect(dict(city, owner_source="hunter")), True)
+    expect("ladder: info@ not published on the site fails", R.validate_prospect(dict(city, email_source="hunter")), True)
+    expect("ladder: info@ with no owner source fails", R.validate_prospect(dict(city, owner_source="")), True)
+    for local in ("jobs", "careers", "billing", "noreply", "estimating"):
+        expect(f"ladder: {local}@ fails even for a City-named owner", R.validate_prospect(dict(city, email=f"{local}@sparkleco.example")), True)
+    expect("ladder: info@ on free mail fails", R.validate_prospect(dict(city, email="info@gmail.com")), True)
+    expect("ladder: unknown owner source fails", R.validate_prospect(dict(PROSPECT, owner_source="guess")), True)
+    pend = dict(city, email_status="unverified")
+    expect("ladder: unverified address passes as pending", R.validate_prospect(pend, pending=True), False)
+    expect("ladder: unverified address fails as ready", R.validate_prospect(pend), True)
+    expect("ladder: verified address fails as pending", R.validate_prospect(city, pending=True), True)
+    two = {"schema": "pnf.prospect.v1", "prospects": [PROSPECT], "pending": [dict(pend, prospect_id="cc-x")]}
+    expect("ladder: pending second contact at a business fails", R.validate_prospect_file(two), True)
+    d = lambda pr: {"schema": "pnf.draft.v1", "drafts": [{"prospect_id": pr["prospect_id"], "lead_id": "chi-1", "to": pr["email"],
+                                                         "subject": SUBJECT, "body": BODY}]}
+    expect("ladder: draft to info@ for a City-named owner passes", R.validate_drafts(d(city), {"chi-1": LEAD}, {city["prospect_id"]: city}), False)
+    hun = dict(city, owner_source="hunter")
+    expect("ladder: draft to info@ for a Hunter-named owner fails", R.validate_drafts(d(hun), {"chi-1": LEAD}, {hun["prospect_id"]: hun}), True)
+
+
 def main():
     moat_cases()
     inbox_cases()
@@ -256,6 +282,7 @@ def main():
     context_cases()
     legacy_cases()
     trade_cases()
+    ladder_cases()
     bad = [(n, p) for n, good, p in results if not good]
     for n, p in bad:
         print(f"FAIL {n} {p}")

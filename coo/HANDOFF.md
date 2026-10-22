@@ -4,7 +4,7 @@
 - Ledger files archived in memory /archive/legacy-memory/; no run reads them. Previous handoff: archive/legacy-handoff/HANDOFF-2026-10-20.md.
 - Live: Chicago and Austin construction cleaning leads ($29 a month), Chicago restaurant inspection leads ($39 a month). 0 payers.
 - Entity A: permits/downstream/gc_leads.json, 730 leads Oct 22 (downstream-leads.yml, Mondays 12:05 UTC).
-- Entity B: prospect-enrichment.yml (Hunter, Apollo) seals named decision-makers to prospects/enriched.sealed.json. Blocked until Todd adds GitHub secrets HUNTER_API_KEY and/or APOLLO_API_KEY plus PNF_DATA_KEY, and PNF_DATA_KEY in the cloud environment.
+- Entity B (Todd, Oct 22 live chat, "go with your suggestion"): enrichment ladder, free rungs first: City owner record (Chicago), the business's own site, About-page owners from the finder's checkers, then Hunter capped at 5 searches a run, valid only. info@ or office@ to a named owner only when the name is from the City record or the site (pnf_rules.owner_read_inbox). Site addresses wait for Bouncer in the outreach run (data/prospects/verify.json). Secrets live in GitHub; PNF_DATA_KEY reaches only sessions started after it was added.
 - Senders: hello@proofnotfluff.com (25 a day), sales@getproofnotfluff.com (Apps Script ramp). The PNF send queue sheet is reachable only from sales@ in Todd's browser.
 - Trade verticals (Oct 22): commercial_cleaning plus exterior_turnkey (Chicago, Partial Occupancy Approved leads only). Templates in .claude/skills/outreach-drafter/templates.md. Next: interior_finish and security_access only after exterior gets replies; restaurant trades pitch off violation data, not permits.
 - Skills: permit-ingestion, outreach-drafter, prospect-matching, product-builder, remotion-walkthrough (on request).

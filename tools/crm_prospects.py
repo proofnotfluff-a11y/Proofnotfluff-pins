@@ -7,6 +7,8 @@ prospects that carry a named decision-maker, have never had a first email (no fi
 passes the Inbox Gate), drops doNotEmail, replied, customer, opted-out and bounced records, and writes:
   data/prospects/prospects.json   schema pnf.prospect.v1 (eligible for drafting)
   data/prospects/followups.json   schema pnf.prospect.v1: emailed once, no reply, follow-up due, address still valid
+  data/prospects/verify.json      named owners whose site address (emailStatus unverified) waits for its Bouncer check;
+                                  the outreach run checks them first and writes emailStatus deliverable or bounced-precheck
   data/prospects/ineligible.json  every other prospect id with the reason (role inbox, no name, contact form ...)
   data/work/matches.json          schema pnf.match.v1 from each eligible prospect's matchedLeadId, kept only when that lead
                                   is in this week's permits/downstream/gc_leads.json
@@ -70,6 +72,7 @@ def to_prospect(pid, d):
         "email": (d.get("contact") or "").strip().lower() if d.get("contactType") == "email" else "",
         "email_source": d.get("emailSource") or "",
         "email_status": d.get("emailStatus") or "",
+        "owner_source": d.get("ownerSource") or "",
         "area": d.get("area") or "",
         "trade_vertical": d.get("tradeVertical") or R.TRADE_DEFAULT,
         "do_not_email": bool(d.get("doNotEmail")),
@@ -91,7 +94,7 @@ def main():
         print(f"ERROR crm: {a.listing} does not exist (list the CRM prospects with ArtifactData out_dir first)")
         sys.exit(1)
     want = {p for p in a.products.split(",") if p}
-    eligible, ineligible, followups = [], [], []
+    eligible, ineligible, followups, verify = [], [], [], []
     seen = set()
     today = __import__("datetime").date.today().isoformat()
     for pid, d in docs_from(a.listing):
@@ -116,6 +119,12 @@ def main():
                 followups.append(p)
             continue
         why = list(named)
+        # a named owner whose site address waits for its Bouncer check (enrichment ladder, Oct 22)
+        if (p["email_status"] == R.PENDING_STATUS and not d.get("firstSentAt") and not p["do_not_email"]
+                and p["status"] not in CLOSED and not R.validate_prospect(p, pending=True)):
+            verify.append(p)
+            ineligible.append({"prospect_id": pid, "reasons": ["waiting for its Bouncer check (data/prospects/verify.json)"]})
+            continue
         if p["do_not_email"] or p["status"] in CLOSED:
             why.append(f"closed ({p['status'] or 'doNotEmail'})")
         if d.get("firstSentAt"):
@@ -148,6 +157,8 @@ def main():
     json.dump(doc, open(os.path.join(ROOT, "data", "prospects", "prospects.json"), "w", encoding="utf-8"), indent=1)
     json.dump({"schema": "pnf.prospect.v1", "prospects": followups},
               open(os.path.join(ROOT, "data", "prospects", "followups.json"), "w", encoding="utf-8"), indent=1)
+    json.dump({"schema": "pnf.prospect.v1", "prospects": [], "pending": verify},
+              open(os.path.join(ROOT, "data", "prospects", "verify.json"), "w", encoding="utf-8"), indent=1)
     json.dump({"ineligible": ineligible}, open(os.path.join(ROOT, "data", "prospects", "ineligible.json"), "w", encoding="utf-8"), indent=1)
 
     leads = {}
@@ -161,7 +172,7 @@ def main():
               open(os.path.join(ROOT, "data", "work", "matches.json"), "w", encoding="utf-8"), indent=1)
     role = sum(1 for x in ineligible if any("role-based" in r for r in x["reasons"]))
     print(f"OK crm: {len(eligible)} eligible named decision-makers, {len(ineligible)} ineligible ({role} role inboxes), "
-          f"{len(matches)} stored matches still current, {len(followups)} follow-ups due")
+          f"{len(matches)} stored matches still current, {len(followups)} follow-ups due, {len(verify)} addresses to check with Bouncer")
     sys.exit(0)
 
 

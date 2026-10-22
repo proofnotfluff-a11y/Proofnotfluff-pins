@@ -1828,7 +1828,7 @@ def leads_page_html(p):
         sbar = ""
     crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Shop", "shop/"), (p["h1"], None)])
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>{hero_act}</div>{tiles}'
-            f'{near_html}{gc_html}{big_html}{method}{shots}{cta_html}{faq_block(p["faq"])}')
+            f'{near_html}{gc_html}{big_html}{method}{shots}{cta_html}{guides_block(p["slug"], rel=rel)}{faq_block(p["faq"])}')
     script = r"""<script>(function(){var list=document.getElementById('ldList');if(list){
 var cards=[].slice.call(list.querySelectorAll('.ld-proj')),chips=[].slice.call(document.querySelectorAll('.ld-chip')),
 area=document.getElementById('ldArea'),count=document.getElementById('ldCount'),empty=document.getElementById('ldEmpty'),f='all';
@@ -1882,7 +1882,7 @@ def page_html(p):
             f'<div class="grid">{form}{results}</div>'
             f'<section class="block"><h2>How it works</h2>{"".join(f"<p>{E(x)}</p>" for x in p["method"])}</section>'
             f'<section class="block"><h2>A worked example</h2><p>{E(p["example"])}</p></section>'
-            f'{extra_cards(p["slug"])}{find_customers(p["slug"], rel)}{cta(p)}{faq_block(p["faq"])}')
+            f'{extra_cards(p["slug"])}{find_customers(p["slug"], rel)}{guides_block(calc=p["slug"], rel=rel)}{cta(p)}{faq_block(p["faq"])}')
     city_numbers = any(k != "ecommerce-13-week-cash-flow" for k in load_store().get("calcProducts", {}).get(p["slug"], []))
     robots = '<meta name="robots" content="noindex, nofollow">' if p.get("draft") else ""
     crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Free calculators", "calculators/"), (p["h1"], None)])
@@ -2410,6 +2410,16 @@ def questions_html():
             FOOT.format(rel=rel, script="", sources=""))
 
 
+def guides_block(product=None, calc=None, rel="../"):
+    """Links from a product or calculator page to the live question pages that point at it, so links run both ways
+    (SEO change, Todd's go Oct 22, 2026). Empty until a question page is live."""
+    qs = [q for q in LIVE_QUESTIONS if (product and q.get("product") == product) or (calc and (q.get("calculator") or [None])[0] == calc)]
+    if not qs:
+        return ""
+    lis = "".join(f'<li><a href="{rel}{q["slug"]}/"><span><b>{E(q["h1"])}</b><small>{E(q.get("eyebrow", ""))}</small></span>{ARROW}</a></li>' for q in qs)
+    return f'<section class="block"><h2>Guides</h2><ul class="st-qs">{lis}</ul></section>'
+
+
 def find_customers(slug, rel="../"):
     """On a calculator page: the paid list (or the workbook) that fits the person who just priced a job."""
     st = load_store()
@@ -2542,9 +2552,18 @@ def main():
     write_hub_and_redirects(pages)
     urls = ([BASE] + [BASE + slug + "/" for slug, _ in store] + [BASE + "go/"] + [BASE + p["slug"] + "/" for p in live]
             + [BASE + x["slug"] + "/" for x in live_extras()])
+    lastmod = {}
+    for q in LIVE_QUESTIONS:   # a question page changes when its data does
+        try:
+            dd = json.load(open(os.path.join(ROOT, q["data"]), encoding="utf-8"))
+            m = ((dd.get("source") or {}).get("fetchedAt") or dd.get("asOf") or "")[:10]
+            if len(m) == 10 and m[4] == "-":
+                lastmod[BASE + q["slug"] + "/"] = m
+        except (OSError, ValueError):
+            pass
     open(os.path.join(DOCS, "sitemap.xml"), "w").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-        "".join(f"  <url><loc>{u}</loc><lastmod>{spec['updated']}</lastmod></url>\n" for u in urls) + "</urlset>\n")
+        "".join(f"  <url><loc>{u}</loc><lastmod>{lastmod.get(u, spec['updated'])}</lastmod></url>\n" for u in urls) + "</urlset>\n")
     open(os.path.join(DOCS, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\n\nSitemap: {BASE}sitemap.xml\n")
     for p in pages:
         if chr(0x2014) in json.dumps(p, ensure_ascii=False):

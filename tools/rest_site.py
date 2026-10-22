@@ -120,7 +120,7 @@ def page_html(p):
                     f'<p class="ld-price">${price} a month when it opens.</p><p class="ld-buybtn">{buy()}</p></div></div></section>')
     crumb, crumb_ld = M.crumbs(rel, [("Home", ""), ("Shop", "shop/"), (p["h1"], None)])
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>{hero_act}</div>{tiles}'
-            f'{sample}{method}{cta_html}{M.faq_block(p["faq"])}')
+            f'{sample}{method}{cta_html}{M.guides_block(p["slug"], rel=rel)}{M.faq_block(p["faq"])}')
     sbar = (f'<div class="ld-sbar" id="ldBar" aria-hidden="true"><div class="wrap"><p><b>${price} a month</b><span> · <span class="ld-sbl">full list </span>every Monday</span></p>'
             f'<a class="btn" href="{E(checkout)}" rel="noopener" tabindex="-1">Subscribe</a></div></div>') if checkout else ""
     script = r"""<script>(function(){var tb=document.getElementById('rlTabs');if(tb){tb.hidden=false;

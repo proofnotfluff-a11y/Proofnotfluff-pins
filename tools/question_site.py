@@ -53,6 +53,9 @@ def stats(kind, d):
         s["cost"] = _billions(c["keptCost"], 1 if kind == "chicago_construction" else 2)
         s["areas"] = _join(f"{a} ({_n(n)})" for a, n in c["topAreas"][:3])
         s |= _top_gcs(c)
+        s["gcRows"] = [[x["name"], _n(x["projects"]), _billions(x["cost"], 2) if x["cost"] >= 1e9 else f"${x['cost'] / 1e6:,.1f} million"]
+                       for x in c["topGCs"][:5]]
+        s["areaRows"] = [[a, _n(n)] for a, n in c["topAreas"][:5]]
         if kind == "austin_construction":
             s["builders"] = _n(c["builders"])
             top = max(x["projects"] for x in c["topGCs"])
@@ -71,7 +74,10 @@ def stats(kind, d):
                 "hood": _n(b["hood"]), "pests": _n(b["pests"]), "drain": _n(b["drain"]), "clean": _n(b["clean"]),
                 "new": _n(c["new"]), "repeat": _n(c["repeat"]), "from": _date(w["from"]), "through": d["throughText"],
                 "asOf": d["asOfText"], "dataset": d["source"]["name"], "datasetUrl": d["source"]["url"],
-                "areas": _join(f"{a} ({_n(n)})" for a, n in c["areas"][:3])}
+                "areas": _join(f"{a} ({_n(n)})" for a, n in c["areas"][:3]),
+                "areaRows": [[a, _n(n)] for a, n in c["areas"][:5]],
+                "catRows": [["Pests", _n(b["pests"])], ["Hood or exhaust", _n(b["hood"])], ["Grease trap or drain", _n(b["drain"])],
+                            ["Kitchen cleaning", _n(b["clean"])]]}
     raise KeyError(f"no stats for {kind}")
 
 
@@ -107,6 +113,18 @@ def page_html(p):
                     f'<div class="sub">{F(sub)}</div></div>' for i, (lab, val, sub) in enumerate(p["tiles"]))
     numbers = (f'<section class="block"><h2>{F(p["numbersTitle"])}</h2><div class="tiles ld-tiles">{tiles}</div>'
                + "".join(f"<p>{F(x)}</p>" for x in p["numbers"]) + "</section>")
+    def table(t):
+        rows = s[t["rows"]] if isinstance(t["rows"], str) else t["rows"]
+        head = "".join(f'<th scope="col">{F(h)}</th>' for h in t["head"])
+        body_rows = "".join("<tr>" + "".join((f'<th scope="row">{F(c)}</th>' if i == 0 else f"<td>{F(c)}</td>") for i, c in enumerate(r)) + "</tr>"
+                            for r in rows)
+        return (f'<section class="block"><h2>{F(t["title"])}</h2>' + "".join(f"<p>{F(x)}</p>" for x in t.get("intro", []))
+                + f'<div class="qa-tw"><table class="qa-t"><thead><tr>{head}</tr></thead><tbody>{body_rows}</tbody></table></div>'
+                + "".join(f'<p class="qa-tnote">{F(x)}</p>' for x in t.get("notes", [])) + "</section>")
+
+    tables = "".join(table(t) for t in p.get("tables", []))
+    sections = "".join(f'<section class="block"><h2>{F(h)}</h2>' + "".join(f"<p>{F(x)}</p>" for x in paras) + "</section>"
+                       for h, paras in p.get("sections", []))
     related = "".join(f'<li><a href="{rel}{E(slug)}/">{E(label)}</a></li>' for slug, label in p["related"]
                       if slug in pages and (M.is_live(pages[slug]) or p.get("draft")))
     cta_html = (f'<section class="block" id="ldCta"><div class="cta ld-cta{" ld-buy" if checkout else ""}"><div>'
@@ -125,9 +143,9 @@ def page_html(p):
             f'<div class="qa-answer"><p class="qa-tag">The short answer</p>{answer}</div>'
             f'<div class="ld-heroact qa-act">{buy()}<a class="ld-textlink" href="{sample}">See this week\'s sample</a></div>'
             + ('<p class="ld-heronote">New list every Monday. Cancel any time.</p>' if checkout else '')
-            + f'{numbers}'
+            + f'{numbers}{tables}'
             f'<section class="block"><h2>{F(p["stepsTitle"])}</h2><ol class="qa-steps">{steps}</ol>{calc_html}</section>'
-            f'{cta_html}{M.faq_block([(fill(q, s), fill(a, s)) for q, a in p["faq"]])}'
+            f'{sections}{cta_html}{M.faq_block([(fill(q, s), fill(a, s)) for q, a in p["faq"]])}'
             + (f'<section class="block"><h2>Related pages</h2><ul class="qa-rel">{related}</ul></section>' if related else "")
             + f'<section class="block qa-src"><h2>Sources</h2><ul>{srcs}</ul></section></article>')
     full = d.get("source", {}).get("fetchedAt") or d.get("asOf") or ""
@@ -140,6 +158,8 @@ def page_html(p):
         stamp = full.replace("Z", "+00:00") if "T" in full else mod + "T08:00:00-05:00"
         article["dateModified"] = stamp
         article["datePublished"] = p.get("published", stamp)
+    if p.get("published"):
+        article.setdefault("datePublished", p["published"])
     ld = (M.ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
           "mainEntity": [{"@type": "Question", "name": fill(q, s), "acceptedAnswer": {"@type": "Answer", "text": fill(a, s)}}
                          for q, a in p["faq"]]}, crumb_ld, article)
@@ -156,6 +176,9 @@ def page_html(p):
           ".qa-steps h3{font:600 17px/1.35 Poppins,system-ui,sans-serif;margin:0 0 6px;color:var(--ink)}.qa-steps p{margin:0;line-height:1.6}"
           ".qa-src ul{margin:10px 0 0;padding-left:20px}.qa-src li{margin:0 0 8px;line-height:1.5}"
           ".qa-src li{font-size:14.5px;color:var(--muted);overflow-wrap:break-word}"
+          ".qa-tw{overflow-x:auto;margin:14px 0 0;max-width:820px}.qa-t{border-collapse:collapse;width:100%;font-size:15.5px;background:var(--card);border:1px solid var(--line);border-radius:10px}"
+          ".qa-t th,.qa-t td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}.qa-t thead th{font:600 13px/1.3 Poppins,system-ui,sans-serif;letter-spacing:.03em;color:var(--muted);background:var(--canvas2)}"
+          ".qa-t tbody th{font-weight:600;color:var(--ink)}.qa-t tbody tr:last-child>*{border-bottom:0}.qa-t td:not(:first-child){font-variant-numeric:tabular-nums}.qa-tnote{font-size:14.5px;color:var(--muted);margin-top:10px}"
           ".qa-by{font-weight:600;color:var(--ink2)}.qa-calc{margin:6px 0 0;font-size:16px}"
           ".qa-free{margin:12px 0 0;font-size:15px}.ld-cta .qa-free a{color:#fff}.ld-page .ld-cta p.ld-buybtn{margin-top:16px}"
           ".ld-page .ld-tiles .tile .lab{letter-spacing:.04em;overflow-wrap:anywhere}"

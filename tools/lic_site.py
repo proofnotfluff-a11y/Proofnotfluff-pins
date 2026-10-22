@@ -75,7 +75,7 @@ def page_html(p):
     crumb, crumb_ld = M.crumbs(rel, [("Home", ""), ("Shop", "shop/"), (p["h1"], None)])
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>'
             f'<div class="ld-heroact rl-act">{buy()}<a class="ld-textlink" href="#sample">See this week\'s sample</a></div>{note}</div>'
-            f'{tiles}{trades}{sample}{method}{cta_html}{M.faq_block(p["faq"])}')
+            f'{tiles}{trades}{sample}{method}{cta_html}{M.guides_block(p["slug"], rel=rel)}{M.faq_block(p["faq"])}')
     ld = (M.ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
           "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}, crumb_ld)
           + "<style>.ld-page .asof,.ld-page footer p{color:var(--muted)}.rl-act{margin:18px 0 8px}"

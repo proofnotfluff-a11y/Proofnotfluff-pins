@@ -3,9 +3,9 @@
   "name": "City of Chicago Data Portal, Business Licenses",
   "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
   "rowsUpdatedAt": "2026-10-22T09:55:53+00:00",
-  "fetchedAt": "2026-10-22T22:18:03+00:00",
+  "fetchedAt": "2026-10-22T22:38:43+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
-  "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: licenses held by a person or for an event or season (peddlers, special events, pop-ups, tow trucks, home-sharing, shared kitchen users), home and mail-drop addresses, and any business whose name could be a person's name. Business-level fields only."
+  "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: licenses held by a person or for an event or season, or for one person's own work or work away from a fixed business site (peddlers, special events, pop-ups, tow trucks, home-sharing, shared kitchen users, private booting), home and mail-drop addresses, and any business whose name could be a person's name. Business-level fields only."
  },
  "window": {
   "from": "2026-10-15",
@@ -14,15 +14,15 @@
  },
  "counts": {
   "fetched": 740,
-  "kept30": 238,
-  "keptWeek": 54,
+  "kept30": 234,
+  "keptWeek": 53,
   "segmentsWeek": {
    "food": 26,
    "beauty": 7,
    "auto": 1,
    "care": 1,
    "venue": 2,
-   "retail": 17
+   "retail": 16
   },
   "segments30": {
    "food": 74,
@@ -30,17 +30,17 @@
    "auto": 10,
    "care": 3,
    "venue": 3,
-   "retail": 107
+   "retail": 103
   },
   "excluded": {
    "issued outside the window": 139,
    "second license at the same site (listed once)": 16,
    "name could be a person's": 33,
-   "license held by a person or for an event or season": 265,
+   "license held by a person or for an event or season": 268,
    "home or apartment address": 22,
    "site outside Chicago": 20,
    "license not active (cancelled or revoked)": 2,
-   "virtual office or mailbox address": 1,
+   "virtual office or mailbox address": 2,
    "not a new license (renewal or change)": 4
   },
   "areasWeek": [
@@ -77,11 +77,11 @@
     2
    ],
    [
-    "Lincoln Square",
+    "North Center",
     2
    ],
    [
-    "North Center",
+    "Logan Square",
     2
    ]
   ],
@@ -91,10 +91,10 @@
    "foodInspections": true
   },
   "history30": {
-   "first": 143,
+   "first": 142,
    "relicensed": 37,
    "added": 17,
-   "site": 41
+   "site": 38
   },
   "foodInsp30": 70
  },
@@ -319,14 +319,6 @@
     "issued": "2026-10-21"
    },
    {
-    "business": "Parking Enforcement of Illinois, Inc.",
-    "address": "2721-2729 W Lawrence Ave",
-    "communityArea": "Lincoln Square",
-    "licenseType": "Private Booting Registration",
-    "activity": "Private Booting Registration",
-    "issued": "2026-10-20"
-   },
-   {
     "business": "COI Company",
     "address": "4444 S Kildare Blvd",
     "communityArea": "Archer Heights",
@@ -365,6 +357,14 @@
     "licenseType": "Limited Business License",
     "activity": "Retail Sales of General Merchandise | Provide Photography or Videography Services",
     "issued": "2026-10-19"
+   },
+   {
+    "business": "Safecare",
+    "address": "8 S Michigan Ave 8th 801",
+    "communityArea": "Loop",
+    "licenseType": "Limited Business License",
+    "activity": "Provide Home Health Care Services",
+    "issued": "2026-10-16"
    }
   ]
  }

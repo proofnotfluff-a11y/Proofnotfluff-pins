@@ -34,7 +34,7 @@ WINDOW_DAYS = 30      # members' list: licenses issued in the last 30 days; the 
 SKIP_LICENSES = re.compile(r"^(?:PEDDLER|PHARMACEUTICAL REPRESENTATIVE|SPECIAL EVENT|POP-UP|RAFFLE|TOWING|TOW TRUCK|SHARED HOUSING|"
                            r"HOME OCCUPATION|HOME REPAIR|MOBILE FOOD|PUBLIC CHAUFFEUR|VALET|BED-AND-BREAKFAST|VACATION RENTAL|"
                            r"ITINERANT|MASSAGE THERAPIST|BODY ART PRACTITIONER|SCAVENGER|EXPEDITOR|BUSINESS AFFAIRS|"
-                           r"RESIDENTIAL REAL ESTATE DEVELOPER|SHARED KITCHEN USER)", re.I)   # a shared kitchen user cooks in someone else's kitchen (holdout 1, Oct 22)
+                           r"RESIDENTIAL REAL ESTATE DEVELOPER|SHARED KITCHEN USER|PRIVATE BOOTING)", re.I)   # a shared kitchen user cooks in someone else's kitchen (holdout 1, Oct 22)
 # The same kinds named only in the business activity, and any activity the City marks as home based.
 SKIP_ACTIVITY = re.compile(r"STREET PERFORMER|FLEA MARKET|ORGANIZER OF EVENT|VACATION RENTAL|SHARED HOUSING|TOW TRUCK|SCAVENGER VEHICLE|"
                            r"MOBILE FOOD|SPECIAL EVENT|PEDDLER|BED[- ]AND[- ]BREAKFAST|HOME REPAIR|SHARED KITCHEN USER", re.I)
@@ -59,7 +59,7 @@ SEGMENTS = [
 # The trades as buyers read them (tab, short label, what kinds of business), in tab order: the workbook, the members' app
 # and the free page all use these names (tools/lic_xlsx.py, tools/lic_app.py, tools/lic_site.py).
 TRADES = [  # key, tab, short label, what kinds of business
-    ("food", "1 Food and drink", "Food and drink", "Restaurants, cafes, bars, caterers, groceries and other food shops"),
+    ("food", "1 Food and drink", "Food and drink", "Restaurants, cafes, bars, caterers and food stores, by their City food or liquor license or food activity"),
     ("retail", "2 Shops and services", "Shops and services", "Shops, offices, studios, manufacturers and other services"),
     ("beauty", "3 Salons, spas, fitness", "Salons, spas, fitness", "Salons, barbers, nails, skin care, spas, gyms and studios"),
     ("venue", "4 Venues and lodging", "Venues and lodging", "Event venues, entertainment, hotels and lodging"),
@@ -524,7 +524,10 @@ def flagged_buildings(recs, home, virtual):
         b, unit = split_address(r.get("_addr") or r["address"])
         k = building_key(r.get("_addr") or r["address"])
         vu = virtual.get(k) if isinstance(virtual, dict) else ({""} if k in virtual else None)
-        if vu is not None and ("" in vu or norm(unit) in vu):
+        first_no = (re.findall(r"\d+", unit) or [""])[0]
+        # a box under a mail center's suite ("121-5113" under "1ST 121", My Mail Center at 332 S Michigan; holdout 2, round 4)
+        boxed = bool(first_no) and len(re.findall(r"\d+", unit)) >= 2 and any(re.findall(r"\d+", v) and re.findall(r"\d+", v)[-1] == first_no for v in (vu or ()))
+        if vu is not None and ("" in vu or norm(unit) in vu or boxed):
             out[r["license"]] = MAILBOX_REASON
         elif k in home and unit and not GROUND_UNIT.match(unit.strip()):
             out[r["license"]] = RESIDENTIAL_REASON
@@ -669,7 +672,8 @@ def main():
               "fetchedAt": now.isoformat(timespec="seconds"), "terms": TERMS,
               "modified": ("Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a "
                            "Chicago business site, one row per business and address. Left out: licenses held by a person or for an "
-                           "event or season (peddlers, special events, pop-ups, tow trucks, home-sharing, shared kitchen users), home "
+                           "event or season, or for one person's own work or work away from a fixed business site (peddlers, special events, pop-ups, "
+                           "tow trucks, home-sharing, shared kitchen users, private booting), home "
                            "and mail-drop addresses, and any business whose name could be a person's name. Business-level fields only.")}
     sample = {"source": source,
               "window": {"from": week_from, "to": today.isoformat(), "listFrom": (today - dt.timedelta(days=WINDOW_DAYS)).isoformat()},
@@ -847,6 +851,8 @@ def selftest():
     gym = [{"license": "g", "address": "180 N Stetson Ave 1"}, {"license": "h", "address": "180 N Stetson Ave 35 3500"},
            {"license": "i", "address": "1655 S Blue Island Ave 2 100"}]
     assert flagged_buildings(gym, set(), {"180NSTETSONAVE": {"353500"}, "1655SBLUEISLANDAVE": {""}}) == {"h": MAILBOX_REASON, "i": MAILBOX_REASON}
+    box = [{"license": "k", "address": "332 S Michigan Ave 121-5113"}, {"license": "l", "address": "332 S Michigan Ave 1200"}]
+    assert flagged_buildings(box, set(), {"332SMICHIGANAVE": {"1ST121"}}) == {"k": MAILBOX_REASON}, "a box under the mail center's suite"
     # same license type at the same site before: relicensed (a new owner or a new account), not added (holdout 1, round 2)
     rl = [{"license": "p", "business": "Plush Pup", "address": "5344 N Cumberland Ave", "_addr": "5344 N CUMBERLAND AVE", "licenseType": "Retail Food Establishment",
            "_acct": "9", "_site": "1", "issued": "2026-10-10", "segment": "food"},

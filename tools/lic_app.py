@@ -337,11 +337,11 @@ const top8=R.slice().sort(newest).slice(0,8),shown=new Set(top8.map(r=>r.id));
 const fresh=R.filter(r=>r.h==="first"&&!shown.has(r.id)).slice().sort(newest).slice(0,6);
 $("#app").innerHTML=`<section class="hero"><h1>${int(n)} new business licenses in Chicago in the last 30 days, ${int(nw)} of them this week</h1>
 <p>From City of Chicago business license records, issued ${esc(dayShort(D.window.listFrom))} to ${esc(day(D.window.to))}. List of ${esc(D.asOf)}. One row per business and site, sorted by trade.</p>
-<p class="kpis"><span><b class="num">${int(first)}</b> first Chicago license</span><span><b class="num">${int(n-first-R.filter(r=>!r.h).length)}</b> new site, added or relicensed</span>${D.checks.food?`<span><b class="num">${int(food)}</b> with a food license inspection</span>`:""}</p></section>
+<p class="kpis"><span><b class="num">${int(first)}</b> first license</span><span><b class="num">${int(n-first-R.filter(r=>!r.h).length)}</b> new site, added or relicensed</span>${D.checks.food?`<span><b class="num">${int(food)}</b> with a food license inspection</span>`:""}</p></section>
 <nav class="trades" aria-label="Businesses by trade">${TORD.map(tile).join("")}</nav>
 <div class="ov"><div class="ov-col">
 <section class="panel"><div class="sec-h"><h2>Newest licenses<span class="c num">${int(n)}</span></h2><a href="#/list">See all ${int(n)}</a></div>${rowsHtml(top8,0,true)}</section>
-${D.checks.history?`<section class="panel"><div class="sec-h"><h2>First Chicago license<span class="c num">${int(first)}</span></h2><a href="#/list?h=first">See all ${int(first)}</a></div><p class="rec" style="padding-top:0">${esc(W.historyLong.first)} Newest first, after the ones above.</p>${rowsHtml(fresh,0,true)}</section>`:""}
+${D.checks.history?`<section class="panel"><div class="sec-h"><h2>First license<span class="c num">${int(first)}</span></h2><a href="#/list?h=first">See all ${int(first)}</a></div><p class="rec" style="padding-top:0">${esc(W.historyLong.first)} Newest first, after the ones above.</p>${rowsHtml(fresh,0,true)}</section>`:""}
 </div><div class="ov-col">
 <section class="panel"><div class="sec-h"><h2>Where they are</h2><a href="#/list?view=map">Open the map</a></div>
 <p class="blg" aria-hidden="true"><span><i style="background:#C8502F"></i>First license</span><span><i style="background:#2F5F9E"></i>Other new licenses</span></p>

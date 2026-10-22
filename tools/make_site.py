@@ -16,6 +16,7 @@ pages in their "from" list, once their committed page has no robots meta (live_e
 """
 import html, json, os, sys
 
+sys.modules.setdefault("make_site", sys.modules[__name__])   # rest_site, lic_site and question_site share this module's state (nav, live questions)
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOCS = os.path.join(ROOT, "docs")
 BASE = "https://proofnotfluff.com/"
@@ -51,12 +52,13 @@ FOOT_TPL = """</main>
 {script}
 </body></html>"""
 
+CALC_GROUPS = []      # [(group title, [calculator pages])], set by home_html, used by calculators_html
 LIVE_QUESTIONS = []   # live question pages, set by main() before any page is written (the Questions link shows only when one is live)
 CURRENT = {}          # the page being written: {"nav": "shop" | "calc" | "questions" | ""} for aria-current
 
 
 def nav_html(rel, current=""):
-    items = [("shop", f"{rel}shop/", "Shop"), ("calc", f"{rel}#calculators", "Free calculators")]
+    items = [("shop", f"{rel}shop/", "Shop"), ("calc", f"{rel}calculators/", "Free calculators")]
     if LIVE_QUESTIONS:
         items.append(("questions", f"{rel}questions/", "Questions"))
     cur = ' aria-current="page"'
@@ -67,7 +69,7 @@ def nav_html(rel, current=""):
 def foot_nav(rel):
     """The footer links on every page: the shop, the calculators, the refund page, the Etsy workbooks and the mailbox."""
     q = f'<a href="{rel}questions/">Questions</a>' if LIVE_QUESTIONS else ""
-    return (f'<nav class="fnav" aria-label="Footer"><a href="{rel}shop/">Shop</a><a href="{rel}#calculators">Free calculators</a>{q}'
+    return (f'<nav class="fnav" aria-label="Footer"><a href="{rel}shop/">Shop</a><a href="{rel}calculators/">Free calculators</a>{q}'
             f'<a href="{rel}refunds/">Refunds and cancelling</a><a href="{SHOP}">Workbooks on Etsy</a>'
             '<a href="mailto:hello@proofnotfluff.com">hello@proofnotfluff.com</a></nav>')
 
@@ -1360,7 +1362,7 @@ def cleaning_sqft_page(p):
 <div class="tile"><div class="lab">Break-even per clean hour</div><div class="val" data-out="breakEven">$0</div></div>
 </div>
 <ul class="lines">
-<li><span>Cleaning hours (<span data-out="cleanHours" data-fmt="hrs">0</span>) and drive time at break-even</span><span data-out="laborCost">$0</span></li>
+<li><span>Clean and drive time at break-even (<span data-out="cleanHours" data-fmt="hrs">0</span> cleaning)</span><span data-out="laborCost">$0</span></li>
 <li><span>Vehicle</span><span data-out="vehicle">$0</span></li>
 <li><span>Supplies for this service</span><span data-out="supplies">$0</span></li>
 <li class="total"><span>Price floor, zero profit</span><span data-out="floor">$0</span></li>
@@ -1832,9 +1834,10 @@ function run(){var a=area.value,n=0;cards.forEach(function(c){var ok=(f==='all'|
 count.textContent=(f==='all'&&!a)?count.dataset.all:'Showing '+n+' of '+cards.length+' projects in this free sample.';empty.hidden=n>0}
 chips.forEach(function(b){b.addEventListener('click',function(){f=b.dataset.f;chips.forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});run()})});
 area.addEventListener('change',run);run();
-var all=document.getElementById('ldAll');if(all){all.addEventListener('click',function(){list.classList.add('all');all.setAttribute('aria-expanded','true');all.parentNode.hidden=true;
-count.textContent='Showing all '+cards.length+' projects in this free sample.';var c=cards[9];if(c){c.tabIndex=-1;c.focus()}})}
-chips.concat([area]).forEach(function(x){x.addEventListener(x===area?'change':'click',function(){var on=f!=='all'||area.value;list.classList.toggle('all',!!on||(all&&all.getAttribute('aria-expanded')==='true'));if(all)all.parentNode.hidden=!!on||all.getAttribute('aria-expanded')==='true'})})}
+var all=document.getElementById('ldAll'),lab=all?all.textContent:'';if(all){all.addEventListener('click',function(){var open=all.getAttribute('aria-expanded')!=='true';
+list.classList.toggle('all',open);all.setAttribute('aria-expanded',String(open));all.textContent=open?'Show the top 9':lab;
+count.textContent=open?'Showing all '+cards.length+' projects in this free sample.':count.dataset.all;if(open){var c=cards[9];if(c){c.tabIndex=-1;c.focus()}}})}
+chips.concat([area]).forEach(function(x){x.addEventListener(x===area?'change':'click',function(){var on=f!=='all'||area.value;list.classList.toggle('all',!!on||(all&&all.getAttribute('aria-expanded')==='true'));if(all)all.parentNode.hidden=!!on})})}
 var bar=document.getElementById('ldBar'),hero=document.getElementById('ldHeroCta'),cta=document.getElementById('ldCta');
 if(!bar||!hero||!cta||!('IntersectionObserver' in window))return;
 var hv=true,cv=false,link=bar.querySelector('a');
@@ -1880,7 +1883,7 @@ def page_html(p):
             f'{extra_cards(p["slug"])}{find_customers(p["slug"], rel)}{cta(p)}{faq_block(p["faq"])}')
     city_numbers = any(k != "ecommerce-13-week-cash-flow" for k in load_store().get("calcProducts", {}).get(p["slug"], []))
     robots = '<meta name="robots" content="noindex, nofollow">' if p.get("draft") else ""
-    crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Free calculators", "#calculators"), (p["h1"], None)])
+    crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Free calculators", "calculators/"), (p["h1"], None)])
     body = crumb + body
     extra_ld = []
     if p.get("kind") == "cashflow":   # the free calculator is the kit's own page: its Product data lives here
@@ -2243,7 +2246,7 @@ def home_html(pages, live):
     rest, chi, aus = by.get("chicago-restaurant-inspection-leads"), by.get("chicago-construction-cleaning-leads"), by.get("austin-construction-cleaning-leads")
     rows = []
     if rest:
-        rows.append((rest["nums"][0][0], "Chicago food businesses failed or passed with conditions with a pest, hood, grease trap or cleaning violation, last 30 days"))
+        rows.append((rest["nums"][0][0], "Chicago food businesses failed or conditional in our four trade categories, 30 days"))
     if chi:
         rows.append((f'{chi["counts"]["kept"]:,}', "open Chicago projects of $500,000 or more"))
     if aus:
@@ -2279,7 +2282,9 @@ def home_html(pages, live):
     if rest_:
         groups.append(("More calculators", rest_))
     li = lambda p: f'<li><a href="{p["slug"]}/"><b>{E(p["h1"])}</b><span>{E(p["card"])}</span></a></li>'
-    calc_cards = "".join(f'<h3 class="st-cgroup">{E(t)}</h3><ul class="st-calcs">{"".join(li(p) for p in items)}</ul>' for t, items in groups)
+    calc_cards = "".join(f'<h3 class="st-cgroup">{E(t)}</h3><ul class="st-calcs">{"".join(li(p) for p in items[:4])}</ul>' for t, items in groups)
+    calc_cards += f'<p class="st-all"><a class="st-btn2" href="calculators/">All {len(calcs_live)} free calculators</a></p>'
+    CALC_GROUPS[:] = groups
     extras = "".join(f'<a class="card st-printable" href="{E(x["slug"])}/"><h3>{E(x["h1"])}</h3><p>{E(x["card"])}</p><span class="st-link">Get the sheet {ARROW}</span></a>' for x in live_extras())
     calcs = ('<section class="st-sec" id="calculators" aria-labelledby="calc-title"><h2 id="calc-title">Free calculators</h2>'
              '<p>Price the job before you call. The same maths as our Excel and Google Sheets workbooks, and nothing you type leaves your browser.</p>'
@@ -2370,6 +2375,21 @@ def refunds_html():
             'with the same maths, so you can see what you get first.</p>'
             f'<p class="asof">Policy updated {E(nice_date(r.get("updated", "")))}. ProofNotFluff LLC, Chicago.</p></article>')
     return (HEAD.format(title="Refunds and cancelling | ProofNotFluff", desc="ProofNotFluff's refund and cancellation policy for the weekly lead lists and the workbook.",
+                        url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
+            FOOT.format(rel=rel, script="", sources=""))
+
+
+def calculators_html():
+    CURRENT["nav"] = "calc"
+    rel = "../"
+    url = BASE + "calculators/"
+    crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Free calculators", None)])
+    li = lambda p: f'<li><a href="{rel}{p["slug"]}/"><b>{E(p["h1"])}</b><span>{E(p["card"])}</span></a></li>'
+    groups = "".join(f'<h2 class="st-cgroup">{E(t)}</h2><ul class="st-calcs">{"".join(li(p) for p in items)}</ul>' for t, items in CALC_GROUPS)
+    n = sum(len(i) for _, i in CALC_GROUPS)
+    body = (f'{crumb}<p class="eyebrow">Free calculators</p><h1>Price the job before you call</h1>'
+            f'<p class="lede">{n} free calculators with the same maths as our Excel and Google Sheets workbooks. Nothing you type leaves your browser.</p>{groups}')
+    return (HEAD.format(title="Free pricing and money calculators | ProofNotFluff", desc=f"{n} free calculators for cleaning and trade pricing, e-commerce cash flow and margins, tax, rentals and household budgets.",
                         url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
             FOOT.format(rel=rel, script="", sources=""))
 
@@ -2484,6 +2504,7 @@ def og_all(pages, live):
     og_image("shop", "ProofNotFluff shop", "Pick the list that finds your customers.", "Free sample on every list, new every Monday.")
     og_image("refunds", "Policy", "Refunds and cancelling")
     og_image("questions", "Questions owners ask", "Plain answers, with this week's numbers")
+    og_image("calculators", "Free calculators", "Price the job before you call", "Free pricing and money calculators, the same maths as our workbooks.")
     for x in json.load(open(os.path.join(ROOT, "site", "extras.json"), encoding="utf-8")).get("pages", []) if os.path.exists(os.path.join(ROOT, "site", "extras.json")) else []:
         og_image(x["slug"], "Free printable", x["h1"], x.get("card", ""))
     import re
@@ -2509,7 +2530,7 @@ def main():
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page_html(p))
         print("wrote", p["slug"])
     open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(home_html(pages, live))
-    store = [("shop", shop_html()), ("refunds", refunds_html())] + ([("questions", questions_html())] if LIVE_QUESTIONS else [])
+    store = [("shop", shop_html()), ("refunds", refunds_html()), ("calculators", calculators_html())] + ([("questions", questions_html())] if LIVE_QUESTIONS else [])
     for slug, page in store:
         d = os.path.join(DOCS, slug); os.makedirs(d, exist_ok=True)
         open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(page)

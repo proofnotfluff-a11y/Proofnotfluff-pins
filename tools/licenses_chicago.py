@@ -49,7 +49,7 @@ SEGMENTS = [
      r"SKIN ?CARE|WAXING|THREADING|MICROBLAD|ELECTROLYSIS"),
     # "Commercial Garage" is the City's parking garage license, not a repair shop, so it stays with other services (Oct 22).
     ("auto", "Auto repair, tire and car wash shops",
-     r"MOTOR VEHICLE|\bAUTO\b|AUTO ?BODY|\bTIRES?\b|CAR WASH|AUTOMOTIVE|VEHICLE REPAIR|BODY SHOP|FILLING STATION"),
+     r"MOTOR VEHICLE|\bAUTO\b|AUTO ?BODY|\bTIRES?\b|CAR WASH|AUTOMOTIVE|VEHICLE REPAIR|VEHICLE PARTS|\bRIMS\b|BODY SHOP|FILLING STATION"),
     ("care", "Day care and children's services",
      r"CHILDREN'?S SERVICES|DAY ?CARE|CHILD CARE|EARLY LEARNING|PRESCHOOL"),
     ("venue", "Venues, entertainment and lodging",
@@ -180,6 +180,8 @@ def name_case(name):
     if re.match(r"\s*LA FITNESS\b", (name or "").upper()):   # the gym brand keeps its initials
         return dba_case(name)
     s = re.sub(r"^(LA|LAS|LOS) (?=[A-Z][a-z])", lambda m: m.group(1).capitalize() + " ", dba_case(name))
+    s = re.sub(r"\b(\d+)(ST|ND|RD|TH)\b", lambda m: m.group(1) + m.group(2).lower(), s)            # "87th Quick Stop" (holdout 2, round 5)
+    s = re.sub(r"(?<=\w )LA(?= [A-Z][a-z])", "La", s)                                              # "Neveria La Garrafita"
     for ac in re.findall(r"\(([A-Z0-9][A-Z0-9 .&-]{1,10})\)", name or ""):     # "(HAMOC)" stays in capitals (holdout 1, round 2)
         s = re.sub(r"\(" + re.escape(ac) + r"\)", "(" + ac + ")", s, flags=re.I)
     return re.sub(r"(?<=\w )(Las|Los)(?= \w)", lambda m: m.group(1).lower(), s)
@@ -717,7 +719,8 @@ def selftest():
     assert GROUND_UNIT.match("1 NW") and GROUND_UNIT.match("B") and not GROUND_UNIT.match("20TH 2021") and not GROUND_UNIT.match("2 2R")
     for raw, want in [("LA CASA DE LAS FLORES", "La Casa de las Flores"), ("LA CALACA CANTINA", "La Calaca Cantina"),
                       ("LA FITNESS", "LA Fitness"), ("YATES LIQUOR", "Yates Liquor"), ("The UPS Store", "The UPS Store"),
-                      ("ChaTraMue", "ChaTraMue"), ("(GEI-184)  Shop", "(GEI-184) Shop"), ("ACME (HAMOC)", "Acme (HAMOC)")]:
+                      ("ChaTraMue", "ChaTraMue"), ("(GEI-184)  Shop", "(GEI-184) Shop"), ("ACME (HAMOC)", "Acme (HAMOC)"),
+                      ("87TH QUICK STOP", "87th Quick Stop"), ("NEVERIA LA GARRAFITA", "Neveria La Garrafita")]:
         assert name_case(raw) == want, (raw, name_case(raw))
     for desc, act, want in [("Regulated Business License", "Computer Consulting Services / Computer Automated Design", "retail"),
                             ("Motor Vehicle Services License", "Motor Vehicle Repair - Engine and Transmission Work", "auto"),
@@ -732,6 +735,7 @@ def selftest():
                             ("Public Place of Amusement", "Charges a Fee for Entertainment | Retail Sales of General Merchandise and Non-Perishable Food", "venue"),
                             ("Retail Food Establishment", "Retail Sales of General Merchandise and Non-Perishable Food", "food"),
                             ("Animal Care License", "Dog Day Care | Boarding | Grooming", "retail"),
+                            ("Limited Business License", "Sale of Vehicle Parts and Accessories", "auto"),
                             ("Children's Services Facility License", "Day Care Center", "care"),
                             ("Limited Business License", "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Perishable Foods", "food")]:
         assert segment(desc, act) == want, (desc, act, segment(desc, act))

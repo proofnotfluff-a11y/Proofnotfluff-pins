@@ -3839,7 +3839,7 @@
    "faq": [
     [
      "Where does this data come from?",
-     "The City of Chicago Data Portal's Business Licenses dataset. We pull it every Monday and keep new licenses (application type Issue) the City issued in the last 30 days at a Chicago business site."
+     "The City of Chicago Data Portal's Business Licenses dataset. The list is refreshed every Monday from the City's latest records. It keeps new licenses (application type Issue) the City issued in the last 30 days at a Chicago business site."
     ],
     [
      "Is every license a brand-new business?",

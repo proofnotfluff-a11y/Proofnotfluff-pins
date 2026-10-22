@@ -3,7 +3,7 @@
   "name": "City of Chicago Data Portal, Business Licenses",
   "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
   "rowsUpdatedAt": "2026-10-22T09:55:53+00:00",
-  "fetchedAt": "2026-10-22T18:12:07+00:00",
+  "fetchedAt": "2026-10-22T18:21:12+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: licenses held by a person or for an event or season (peddlers, special events, pop-ups, tow trucks, home-sharing), home or apartment addresses, and any business whose name could be a person's name. Business-level fields only."
  },
@@ -15,31 +15,31 @@
  "counts": {
   "fetched": 740,
   "kept30": 231,
-  "keptWeek": 60,
+  "keptWeek": 58,
   "segmentsWeek": {
-   "food": 30,
+   "food": 29,
    "beauty": 6,
    "auto": 1,
    "care": 0,
-   "venue": 2,
+   "venue": 1,
    "retail": 21
   },
   "segments30": {
-   "food": 91,
+   "food": 93,
    "beauty": 38,
    "auto": 7,
    "care": 1,
-   "venue": 4,
+   "venue": 2,
    "retail": 90
   },
   "excluded": {
+   "issued outside the window": 139,
+   "second license at the same site (listed once)": 11,
    "name could be a person's": 61,
+   "home or apartment address": 24,
    "license held by a person or for an event or season": 245,
    "site outside Chicago": 27,
-   "home or apartment address": 24,
-   "license not active (cancelled or revoked)": 2,
-   "second license at the same site (listed once)": 11,
-   "issued outside the window": 139
+   "license not active (cancelled or revoked)": 2
   },
   "areasWeek": [
    [
@@ -88,11 +88,11 @@
    "foodInspections": true
   },
   "history30": {
-   "first": 159,
-   "added": 26,
+   "first": 162,
+   "added": 23,
    "site": 46
   },
-  "foodInsp30": 59
+  "foodInsp30": 61
  },
  "segmentNames": {
   "food": "Restaurants, cafes, bars and food shops",
@@ -247,14 +247,6 @@
   ],
   "care": [],
   "venue": [
-   {
-    "business": "Sal's on Tap",
-    "address": "1645 W Jackson Blvd 1 Mezzanine, & Patio",
-    "communityArea": "Near West Side",
-    "licenseType": "Public Place of Amusement",
-    "activity": "Charges a Fee for Entertainment or Amusements or Recreational Activities",
-    "issued": "2026-10-21"
-   },
    {
     "business": "The Smart Bar",
     "address": "3730 N Clark St Basement",

@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-10-22T18:12:07+00:00",
+ "fetchedAt": "2026-10-22T18:21:12+00:00",
  "rowsUpdatedAt": "2026-10-22T09:55:53+00:00",
  "columns": [
   "id",
@@ -190,7 +190,7 @@
   ],
   [
    "Retail Food Establishment",
-   55
+   58
   ],
   [
    "Regulated Business License",
@@ -205,12 +205,12 @@
    7
   ],
   [
-   "Public Place of Amusement",
+   "Motor Vehicle Services License",
    5
   ],
   [
-   "Motor Vehicle Services License",
-   5
+   "Public Place of Amusement",
+   3
   ],
   [
    "Private Booting Registration",
@@ -242,10 +242,6 @@
   ],
   [
    "Commercial Garage",
-   1
-  ],
-  [
-   "Package Goods",
    1
   ],
   [

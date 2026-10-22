@@ -100,6 +100,7 @@ STALL_ADDRESS = re.compile(r"\b(?:OUTSIDE\s+\d+|BOOTH|STALL)\b", re.I)
 # A private mailbox ("PMB 353", "#453522"): a mail drop, not a site a vendor can visit (holdout 1, Oct 22).
 MAILBOX_ADDRESS = re.compile(r"\bPMB\b|#\s*\d{5,}\b", re.I)
 MAILBOX_REASON = "virtual office or mailbox address"
+PERSON_EVENT_REASON = "license for one person's own work, work away from a fixed site, or an event or season"
 RESIDENTIAL_REASON = "home or apartment address"
 STREET_END = re.compile(r"^(?:ST|AVE|AV|BLVD|DR|RD|PL|PKWY|CT|HWY|TER|WAY|LN|SQ|PLZ|CIR|ROW|BROADWAY|WACKER)$", re.I)
 GROUND_UNIT = re.compile(r"^(?:(?:#\s*)?1(?:ST|F|R|FL|FLR)?(?:\s.*)?|1ST FL(?:OOR)?.*|GROUND.*|GRND.*|BSMT.*|BASEMENT.*|STORE.*|REAR.*|FRONT.*|"
@@ -224,10 +225,10 @@ def keep(r, since, today):
         return None, "license not active (cancelled or revoked)"
     desc = (r.get("license_description") or "").strip()
     if SKIP_LICENSES.search(desc):
-        return None, "license held by a person or for an event or season"
+        return None, PERSON_EVENT_REASON
     act = r.get("business_activity") or ""
     if SKIP_ACTIVITY.search(act):
-        return None, "license held by a person or for an event or season"
+        return None, PERSON_EVENT_REASON
     if HOME_BASED.search(act):
         return None, "home or apartment address"
     if (r.get("city") or "CHICAGO").upper().strip() != "CHICAGO":
@@ -238,7 +239,7 @@ def keep(r, since, today):
     if HOME_ADDRESS.search(addr):
         return None, "home or apartment address"
     if STALL_ADDRESS.search(addr):
-        return None, "license held by a person or for an event or season"
+        return None, PERSON_EVENT_REASON
     if MAILBOX_ADDRESS.search(addr):
         return None, MAILBOX_REASON
     shown = (r.get("doing_business_as_name") or "").strip() or (r.get("legal_name") or "").strip()
@@ -896,7 +897,7 @@ def selftest():
     blob = json.dumps(recs).upper()
     assert "JOHN Q PUBLIC" not in blob and "LEGAL" not in blob, "a legal name leaked into the records"
     want = {"second license at the same site (listed once)": 2, "name could be a person's": 1,
-            "license held by a person or for an event or season": 7, "home or apartment address": 2,
+            PERSON_EVENT_REASON: 7, "home or apartment address": 2,
             "not a new license (renewal or change)": 2, "issued outside the window": 1, "site outside Chicago": 1,
             "license not active (cancelled or revoked)": 1, MAILBOX_REASON: 1}
     assert dict(reasons) == want, dict(reasons)

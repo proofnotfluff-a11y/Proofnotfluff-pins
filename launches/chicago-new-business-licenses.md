@@ -18,6 +18,13 @@ Open question for Todd (coo/HANDOFF.md item 4): the live session suggested Chica
 - Oct 20, rule added from the probe's activity counts: the City marks some activities "(Home Based Business)" or "Other Home Based Businesses"; those rows are left out as home addresses, and street performers, flea market vendors, event organizers, vacation rentals and scavenger vehicles named only in the activity are left out with the person-held licenses. Planted cases 15 and 16.
 - Oct 22, 2026 (builder run 2): free page as a draft: tools/lic_site.py (page kind "licleads", selftest with a planted sample), site/pages.json entry with "draft": true and no checkout or price (noindex, off the index and sitemap, "Tell me when it opens" to hello@), docs/chicago-new-business-licenses/. The licenses workflow now rebuilds the site after each pull so the page follows the Monday sample. For the holdouts, seen on the Oct 20 sample: "1655 S Blue Island Ave 2 100" (suite or home office?), "32 W Randolph St 13-14" (address with a range), and a possessive name ("Julie's Salon and Spa") kept by the person-name rule as designed. Next: members' app and workbook, then outreach templates (a non-permit signal needs Todd's OK for a copy gate extension first, coo/HANDOFF.md).
 
+## Decision evidence, Oct 22, 2026 (growth-research Phase B, live session; Todd decides)
+- Recommendation: licenses next, ahead of building violations.
+- Real counts: the Oct 22 pull kept 232 new businesses in 30 days and 61 in the last 7 (food 91, shops and services 96, beauty 32, auto 8, venues 4).
+- Violations counted the same day (probes/exterior-chicago-2026-10-22.json): exterior citations hit 358 buildings in 30 days, but only 59 sit at an address with an active business license; the rest are homes or apartment buildings, which we will not sell. Elevator citations (122 buildings) suit a different buyer: launches/chicago-elevator-violations.md.
+- Buyers already in the CRM: 132 Chicago cleaning companies and 83 Chicago restaurant vendors (pest, hood, grease) can buy this list without a new enrichment segment.
+- Proposed first buyers and price: commercial cleaning and pest control, $29 a month. First email drafts and the copy gate extension they need: the growth research doc.
+
 ## 1. Gates (none run yet)
 - [ ] Built to standard: data rules done; free page draft done Oct 22; members' app (tools/leads_app.py pattern), workbook (tools/leads_xlsx.py pattern), free page (site/pages.json, "draft": true, noindex, no checkout), storefront copy and images, outreach email file with one follow-up: to do.
 - [ ] Self-checks.

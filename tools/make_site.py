@@ -16,7 +16,8 @@ pages in their "from" list, once their committed page has no robots meta (live_e
 """
 import html, json, os, sys
 
-sys.modules.setdefault("make_site", sys.modules[__name__])   # rest_site, lic_site and question_site share this module's state (nav, live questions)
+if __name__ in sys.modules:
+    sys.modules.setdefault("make_site", sys.modules[__name__])   # rest_site, lic_site and question_site share this module's state (nav, live questions)
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOCS = os.path.join(ROOT, "docs")
 BASE = "https://proofnotfluff.com/"

@@ -59,7 +59,7 @@ SEGMENTS = [
 # The trades as buyers read them (tab, short label, what kinds of business), in tab order: the workbook, the members' app
 # and the free page all use these names (tools/lic_xlsx.py, tools/lic_app.py, tools/lic_site.py).
 TRADES = [  # key, tab, short label, what kinds of business
-    ("food", "1 Food and drink", "Food and drink", "Restaurants, cafes, bars, caterers and food stores, by their City food or liquor license or food activity"),
+    ("food", "1 Food and drink", "Food and drink", "Restaurants, cafes, bars, caterers and food stores, by their City food or liquor license or a prepared or perishable food activity"),
     ("retail", "2 Shops and services", "Shops and services", "Shops, offices, studios, manufacturers and other services"),
     ("beauty", "3 Salons, spas, fitness", "Salons, spas, fitness", "Salons, barbers, nails, skin care, spas, gyms and studios"),
     ("venue", "4 Venues and lodging", "Venues and lodging", "Event venues, entertainment, hotels and lodging"),
@@ -672,8 +672,8 @@ def main():
     source = {"name": "City of Chicago Data Portal, Business Licenses", "url": DATASET_PAGE, "rowsUpdatedAt": upd_iso,
               "fetchedAt": now.isoformat(timespec="seconds"), "terms": TERMS,
               "modified": ("Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a "
-                           "Chicago business site, one row per business and address. Left out: licenses held by a person or for an "
-                           "event or season, or for one person's own work or work away from a fixed business site (peddlers, special events, pop-ups, "
+                           "Chicago business site, one row per business and address. Left out: licenses for one person's own work, for work "
+                           "away from a fixed business site, or for an event or season (peddlers, special events, pop-ups, "
                            "tow trucks, home-sharing, shared kitchen users, private booting), home "
                            "and mail-drop addresses, and any business whose name could be a person's name. Business-level fields only.")}
     sample = {"source": source,

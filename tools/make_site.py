@@ -46,7 +46,7 @@ FOOT_TPL = """</main>
 {fnav}
 <p>Estimates for planning only, based on the numbers you enter. Not tax, legal or financial advice. {sources}</p>
 <p>Made by ProofNotFluff with AI assistance, reviewed and tested by the shop owner. Calculators run in your browser; nothing you type is sent anywhere.</p>
-</div></footer>
+{notices}</div></footer>
 <script src="{rel}assets/pnf-calc.js"></script>
 {script}
 </body></html>"""
@@ -88,6 +88,7 @@ class _Tpl(str):
         kw.setdefault("nav", nav_html(kw.get("rel", ""), CURRENT.get("nav", "")))
         kw.setdefault("og", og_tags(kw["url"]) if "url" in kw else "")
         kw.setdefault("fnav", foot_nav(kw.get("rel", "")))
+        kw.setdefault("notices", "")
         return str.format(self, **kw)
 
 
@@ -1537,6 +1538,32 @@ def is_live(p):
     return not p.get("draft") and not (p.get("kind") == "leads" and not (p.get("kitForm") or p.get("checkout")))
 
 
+def normalize_extra(slug, h1):
+    """A hand-made page in site/extras.json gets the generated pages' head (own font, Open Graph image, breadcrumbs) and
+    header and footer links (technical SEO check, Oct 22). Idempotent: it only rewrites the parts it owns."""
+    import re
+    f = os.path.join(DOCS, slug, "index.html")
+    if not os.path.isfile(f):
+        return
+    t = open(f, encoding="utf-8").read()
+    url = BASE + slug + "/"
+    t = re.sub(r'<link rel="preconnect" href="https://fonts.googleapis.com">.*?display=swap" rel="stylesheet">\n?', "", t, flags=re.S)
+    t = re.sub(r'<!--pnf-head-->.*?<!--/pnf-head-->', "", t, flags=re.S)
+    m = re.search(r"<title>(.*?)</title>.*?<meta name=\"description\" content=\"(.*?)\"", t, flags=re.S)
+    title, desc = (m.group(1), m.group(2)) if m else (h1, "")
+    crumb, crumb_ld = crumbs("../", [("Home", ""), (h1, None)])
+    headbits = ('<!--pnf-head--><meta name="color-scheme" content="light dark">'
+                f'<meta property="og:title" content="{title}"><meta property="og:description" content="{desc}"><meta property="og:type" content="website">'
+                f'<meta property="og:url" content="{url}">{og_tags(url)}<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">'
+                '<link rel="preload" href="../assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>'
+                f'{ld_tags(crumb_ld)}<!--/pnf-head-->')
+    t = t.replace('<link rel="stylesheet" href="../assets/pnf.css">', headbits + '<link rel="stylesheet" href="../assets/pnf.css">', 1)
+    t = re.sub(r'<nav class="top"[^>]*>.*?</nav>', nav_html("../"), t, count=1, flags=re.S)
+    t = re.sub(r'<!--pnf-fnav-->.*?<!--/pnf-fnav-->', "", t, flags=re.S)
+    t = t.replace('<footer><div class="wrap">', '<footer><div class="wrap"><!--pnf-fnav-->' + foot_nav("../") + '<!--/pnf-fnav-->', 1)
+    open(f, "w", encoding="utf-8").write(t)
+
+
 def live_extras():
     """Hand-made pages listed in site/extras.json (the free cheat sheet sign-up page, Oct 17): this script never writes
     them, but once a page's committed docs/<slug>/index.html carries no robots meta it joins the sitemap, gets a card on
@@ -1618,7 +1645,7 @@ def project_card(x, pill=True, city="Chicago", permit_label="Permit", bil2=False
     pill_html = f'<p class="ld-pill s-{cls}">{E(lab)}</p>' if pill else ""
     return (f'<article class="ld-proj" data-type="{"new" if x["type"].startswith("New") else "ren"}" data-area="{E(area)}">{pill_html}'
             f'<div class="ld-ptop"><span class="ld-cost">{money(x["cost"], bil2=bil2)}</span><span class="ld-type">{E(x["type"])}{units}</span></div>'
-            f'<p class="ld-scope">{E(x["scope"])}</p>'
+            f'<p class="ld-scope">{E((x["scope"] or "")[:1].upper() + (x["scope"] or "")[1:])}</p>'
             f'<dl class="ld-meta{" wide" if len(permit_label) > 7 else ""}"><div><dt>Builder</dt><dd>{E(gc)}</dd></div>'
             f'<div><dt>Where</dt><dd>{E(x.get("address") or "").replace(" more)", "&nbsp;more)") if sep == ", " else E(x.get("address") or "")},{"&nbsp;" if str(area).isdigit() else " "}{E(area)}</dd></div>'
             f'<div><dt>{E(permit_label)}</dt><dd>{E(str(x.get("permit") or ""))}, issued {E(nice_date(x.get("issued", "")))}</dd></div></dl></article>')
@@ -1730,8 +1757,9 @@ def leads_page_html(p):
                 f'<button type="button" class="ld-chip" aria-pressed="false" data-f="ren">{E(p.get("renLabel", "Renovations"))}</button>'
                 f'<label class="ld-area"><span class="sr">{E(area_word)}</span><select id="ldArea"><option value="">{E(area_all)}</option>{opts}</select></label></div>'
                 f'<p class="ld-count" id="ldCount" aria-live="polite" data-all="{E(big_line)}">{E(big_line)}</p>'
-                f'<div class="ld-list" id="ldList">{"".join(card(x) for x in d["projects"])}</div>'
-                '<p class="ld-empty" id="ldEmpty" hidden>No projects in this sample match. The weekly list covers every open project.</p>'
+                f'<div class="ld-list ld-big" id="ldList">{"".join(card(x).replace("<article ", "<article data-x " if i >= 9 else "<article ", 1) for i, x in enumerate(d["projects"]))}</div>'
+                + (f'<p class="ld-showall"><button type="button" class="st-btn2" id="ldAll" aria-controls="ldList" aria-expanded="false">Show all {n_big} in this sample</button></p>'  if n_big > 9 else "")
+                + '<p class="ld-empty" id="ldEmpty" hidden>No projects in this sample match. The weekly list covers every open project.</p>'
                 + (f'<div class="ld-after"><p>That is the top {n_big}. The full list has all {kept:,}, closest to a final clean first, with {area_filter}.</p>{buy()}</div>' if checkout else "")
                 + '</section>')
     links = "".join(f'<li><a href="{rel}{E(l[0])}/">{E(l[1])}</a></li>' for l in p.get("links", []))
@@ -1798,7 +1826,9 @@ area=document.getElementById('ldArea'),count=document.getElementById('ldCount'),
 function run(){var a=area.value,n=0;cards.forEach(function(c){var ok=(f==='all'||c.dataset.type===f)&&(!a||c.dataset.area===a);c.hidden=!ok;if(ok)n++});
 count.textContent=(f==='all'&&!a)?count.dataset.all:'Showing '+n+' of '+cards.length+' projects in this free sample.';empty.hidden=n>0}
 chips.forEach(function(b){b.addEventListener('click',function(){f=b.dataset.f;chips.forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});run()})});
-area.addEventListener('change',run);run()}
+area.addEventListener('change',run);run();
+var all=document.getElementById('ldAll');if(all){all.addEventListener('click',function(){list.classList.add('all');all.setAttribute('aria-expanded','true');all.parentNode.hidden=true})}
+chips.concat([area]).forEach(function(x){x.addEventListener(x===area?'change':'click',function(){var on=f!=='all'||area.value;list.classList.toggle('all',!!on||(all&&all.getAttribute('aria-expanded')==='true'));if(all)all.parentNode.hidden=!!on||all.getAttribute('aria-expanded')==='true'})})}
 var bar=document.getElementById('ldBar'),hero=document.getElementById('ldHeroCta'),cta=document.getElementById('ldCta');
 if(!bar||!hero||!cta||!('IntersectionObserver' in window))return;
 var hv=true,cv=false,link=bar.querySelector('a');
@@ -1853,7 +1883,9 @@ def page_html(p):
             up = (f'<section class="block"><div class="fc"><div><h2>Real payouts land late. The full workbook plans for it.</h2>'
                   f'<p>{E(" ".join(p["cta"]["bullets"]))} ${E(kit["price"])} {E(kit["per"])}.</p></div><div class="fc-acts">'
                   f'<a class="btn" href="{E(utm(kit["checkout"], "site", kit["campaign"]))}" rel="noopener">Get the workbook, ${E(kit["price"])}</a>'
-                  f'<span class="st-note">Secure checkout by Gumroad. <a href="{rel}refunds/">Refunds</a></span></div></div></section>')
+                  f'<span class="st-note">Secure checkout by Gumroad. <a href="{rel}refunds/">Refunds</a></span></div></div>'
+                  + (f'<div class="fc-mail">{kit_form(kit["kitForm"], "Not ready? Get an email when the workbook gets an update", "Keep me posted", "kitEmail", note="Unsubscribe in one click. Stored with Kit, our email provider, and never sold.")}</div>' if kit.get("kitForm") else "")
+                  + '</section>')
             body = body.replace('<section class="block"><h2>How it works</h2>', up + '<section class="block"><h2>How it works</h2>', 1)
     ld = ld_json(p, url) + ld_tags(crumb_ld, *extra_ld)
     return (HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=SHOP, ld=ld, bodycls=' class="has-mbar"', robots=robots, analytics=analytics_tag()) + body +
@@ -2164,8 +2196,19 @@ def product_card(x, rel, medium):
 def coming_card(c, rel, field_id, cls="st-card soon", h="h3"):
     form = (kit_form(c["kitForm"], "Email me when it opens", "Notify me", field_id) if c.get("kitForm") else
             f'<div class="st-act"><a class="st-btn2" href="{E(c["notify"])}">Tell me when it opens</a></div>')
-    return (f'<article class="{cls}"><div class="st-top"><span class="st-tag">{E(c["tag"])}</span><span class="st-soon">Coming next</span></div>'
-            f'<{h}>{E(c["name"])}</{h}><p>{E(c["text"])}</p>{form}</article>')
+    return (f'<article class="{cls}"><div class="st-ctext"><div class="st-top"><span class="st-tag">{E(c["tag"])}</span><span class="st-soon">Coming next</span></div>'
+            f'<{h}>{E(c["name"])}</{h}><p>{E(c["text"])}</p></div><div class="st-cact">{form}</div></article>')
+
+
+def data_notices():
+    """The cities' own data notices, for pages that show their numbers (copy check, Oct 22): Chicago's required wording,
+    Austin's attribution and license from the source record."""
+    out = [CITY_DISCLAIMER["Chicago"]]
+    f = os.path.join(ROOT, "permits", "austin", "sample.json")
+    if os.path.isfile(f):
+        src = json.load(open(f, encoding="utf-8"))["source"]
+        out.append(f'Austin data: {src["attribution"]}, published under {src["license"]}. The City of Austin has not reviewed or endorsed this site.')
+    return "".join(f"<p>{E(x)}</p>" for x in out)
 
 
 def home_html(pages, live):
@@ -2198,12 +2241,13 @@ def home_html(pages, live):
     hero = ('<section class="st-hero" aria-labelledby="hero-title"><div><p class="eyebrow">Lead lists from public records</p>'
             '<h1 id="hero-title">Your next customers are already in the City\'s records.</h1>'
             '<p class="lede">Weekly lists for cleaning, hood cleaning and pest control companies in Chicago and Austin. Each one has a free sample, new every Monday.</p>'
-            f'<h2 class="st-pick">Pick your trade to see this week\'s sample</h2><ul class="st-trades">{trades}</ul></div>{week}</section>')
+            '<p class="st-cta"><a class="btn ld-btnbig" href="#lists-title">See this week\'s free samples</a></p>'
+            f'<h2 class="st-pick">Or go straight to your trade</h2><ul class="st-trades">{trades}</ul></div>{week}</section>')
     coming = store_coming()
-    cards = "".join(product_card(x, "", "home") for x in prods) + (coming_card(coming, "", "homeLic") if coming else "")
+    cards = "".join(product_card(x, "", "home") for x in prods)
     lists = ('<section class="st-sec" aria-labelledby="lists-title"><h2 id="lists-title">The lists</h2>'
              '<p>A free sample on every page. Members get every record, named, in a web app and an Excel file, every Monday. Cancel any time.</p>'
-             f'<div class="st-grid">{cards}</div></section>')
+             f'<div class="st-grid">{cards}</div>{coming_card(coming, "", "homeLic", cls="st-strip") if coming else ""}</section>')
     how = ('<section class="st-sec" aria-labelledby="how-title"><h2 id="how-title">How it works</h2><ol class="st-steps">'
            '<li><span class="n" aria-hidden="true">1</span><div><h3>Open the free sample</h3><p>Real records from this week\'s pull sit on each list\'s page. No sign-up.</p></div></li>'
            '<li><span class="n" aria-hidden="true">2</span><div><h3>Subscribe when it fits</h3><p>$29 or $39 a month, paid through Gumroad. Cancel any time.</p></div></li>'
@@ -2232,7 +2276,7 @@ def home_html(pages, live):
     return (HEAD.format(title="Lead lists from public records, and free pricing calculators | ProofNotFluff",
                         desc="Weekly lead lists for cleaning, hood cleaning and pest control companies in Chicago and Austin, from City permits and inspections, with a free sample every Monday. Plus free pricing calculators.",
                         url=BASE, rel="", shop=SHOP, ld=ld_tags(org, items), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
-            FOOT.format(rel="", script="", sources="City of Chicago and City of Austin open data, pulled as dated on each list. IRS Topic 554 and IRS standard mileage rates, checked Oct 6, 2026."))
+            FOOT.format(rel="", script="", notices=data_notices(), sources="City of Chicago and City of Austin open data, pulled as dated on each list. IRS Topic 554 and IRS standard mileage rates, checked Oct 6, 2026."))
 
 
 def shop_html():
@@ -2263,7 +2307,7 @@ def shop_html():
     filt = ('<div class="st-filter" role="group" aria-label="Show products for" id="shFilter">'
             '<button type="button" aria-pressed="true" data-a="all">All</button>'
             '<button type="button" aria-pressed="false" data-a="trade">Trades</button>'
-            '<button type="button" aria-pressed="false" data-a="ecom">E-commerce</button></div>')
+            '<button type="button" aria-pressed="false" data-a="ecom">E-commerce</button></div><p class="sr" id="shCount" aria-live="polite"></p>')
     body = (f'{crumb}<p class="eyebrow">Lead lists and finance tools</p><h1>Pick the list that finds your customers.</h1>'
             '<p class="lede">Every list opens with this week\'s free sample. Subscribe when it fits; cancel any time.</p>'
             f'{filt}<div class="sh-list" id="shList">{rows}</div>'
@@ -2275,12 +2319,13 @@ def shop_html():
     script = ("<script>(function(){var f=document.getElementById('shFilter');if(!f)return;"
               "var bs=[].slice.call(f.querySelectorAll('button')),it=[].slice.call(document.querySelectorAll('#shList [data-aud]'));"
               "bs.forEach(function(b){b.addEventListener('click',function(){var a=b.dataset.a;bs.forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});"
-              "it.forEach(function(e){e.hidden=!(a==='all'||e.dataset.aud===a)})})})})();</script>")
+              "var n=0;it.forEach(function(e){e.hidden=!(a==='all'||e.dataset.aud===a);if(!e.hidden)n++});"
+              "document.getElementById('shCount').textContent='Showing '+n+' of '+it.length+' products'})})})();</script>")
     ld = ld_tags(crumb_ld, *[product_ld(x, BASE + x["href"]) for x in prods])
     return (HEAD.format(title="Shop: lead lists for cleaning, hood cleaning and pest control | ProofNotFluff",
                         desc="Weekly lead lists from Chicago and Austin public records, $29 or $39 a month with a free sample on every page, and the 13-Week E-commerce Cash Flow workbook.",
                         url=url, rel=rel, shop=SHOP, ld=ld, bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
-            FOOT.format(rel=rel, script=script, sources="Numbers on each list as dated on its page."))
+            FOOT.format(rel=rel, script=script, notices=data_notices(), sources="Numbers on each list as dated on its page."))
 
 
 def refunds_html():
@@ -2332,11 +2377,11 @@ def find_customers(slug, rel="../"):
     if ecom:
         x = xs[0]
         text = f'{x["name"]}: {x["what"]} ${x["price"]} {x["per"]}, Excel and Google Sheets.'
-        acts = (f'<a class="btn" href="{rel}{x["href"]}">See how it works</a>'
+        acts = (f'<a class="st-btn2" href="{rel}{x["href"]}">See how it works</a>'
                 f'<a class="st-link" href="{E(utm(x["checkout"], "calculator", x["campaign"], slug))}" rel="noopener">Buy, ${E(x["price"])}</a>')
     else:
         text = " ".join(f'{x["name"]}: {x["nums"][0][0]} {x["nums"][0][1]}, ${x["price"]} {x["per"]}.' for x in xs) + " Free sample on each page, new every Monday."
-        acts = "".join(f'<a class="btn" href="{rel}{x["href"]}{x["sample"]}">{E(x["tag"].split(" · ")[0])}: free sample</a>' for x in xs)
+        acts = "".join(f'<a class="st-btn2" href="{rel}{x["href"]}{x["sample"]}">{E(x["tag"].split(" · ")[0])}: free sample</a>' for x in xs)
     return (f'<section class="block"><div class="fc"><div><h2>{E(title)}</h2><p>{E(text)}</p></div>'
             f'<div class="fc-acts">{acts}</div></div></section>')
 
@@ -2413,6 +2458,8 @@ def og_all(pages, live):
     og_image("shop", "ProofNotFluff shop", "Pick the list that finds your customers.", "Free sample on every list, new every Monday.")
     og_image("refunds", "Policy", "Refunds and cancelling")
     og_image("questions", "Questions owners ask", "Plain answers, with this week's numbers")
+    for x in json.load(open(os.path.join(ROOT, "site", "extras.json"), encoding="utf-8")).get("pages", []) if os.path.exists(os.path.join(ROOT, "site", "extras.json")) else []:
+        og_image(x["slug"], "Free printable", x["h1"], x.get("card", ""))
     import re
     clean = lambda t: re.sub(r"\s+", " ", re.sub(r"\{[^}]*\}", "", t or "")).strip()
     for p in pages:
@@ -2441,6 +2488,8 @@ def main():
         d = os.path.join(DOCS, slug); os.makedirs(d, exist_ok=True)
         open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(page)
     CURRENT["nav"] = ""
+    for x in live_extras():
+        normalize_extra(x["slug"], x["h1"])
     write_hub_and_redirects(pages)
     urls = ([BASE] + [BASE + slug + "/" for slug, _ in store] + [BASE + "go/"] + [BASE + p["slug"] + "/" for p in live]
             + [BASE + x["slug"] + "/" for x in live_extras()])

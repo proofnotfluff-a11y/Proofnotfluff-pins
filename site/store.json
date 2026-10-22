@@ -82,7 +82,8 @@
     "Factoring cost in dollars, a credit line, side-by-side scenarios and a PO planner",
     "Excel and Google Sheets"
    ],
-   "source": "Built by a finance executive. The free 13 week calculator uses the same maths."
+   "source": "Built by a finance executive. The free 13 week calculator uses the same maths.",
+   "kitForm": "10083882"
   }
  ],
  "coming": {
@@ -132,9 +133,9 @@
    "to": "chicago-construction-cleaning-leads"
   },
   {
-   "label": "E-commerce brand",
-   "where": "Cash flow, any city",
-   "to": "ecommerce-13-week-cash-flow"
+   "label": "Windows and pressure washing",
+   "where": "Austin",
+   "to": "austin-construction-cleaning-leads"
   }
  ],
  "calcProducts": {
@@ -203,5 +204,13 @@
  "refunds": {
   "updated": "2026-10-22",
   "lists": "No refunds on lead lists or the workbook, because you get the data the moment you pay. Cancel a list any time and you won't be charged again. If a list doesn't arrive or a file won't open, email hello@proofnotfluff.com and we'll fix it or refund that month."
+ },
+ "kitForms": {
+  "10059700": "Chicago construction leads waitlist",
+  "10083860": "Austin construction leads waitlist",
+  "10083871": "Chicago restaurant leads waitlist",
+  "10083878": "Chicago new business licenses waitlist",
+  "10083882": "13-week cash flow kit updates",
+  "10059686": "Cleaning price cheat sheet (confirmation email links the PDF)"
  }
 }

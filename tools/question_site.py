@@ -130,19 +130,21 @@ def page_html(p):
             f'{cta_html}{M.faq_block([(fill(q, s), fill(a, s)) for q, a in p["faq"]])}'
             + (f'<section class="block"><h2>Related pages</h2><ul class="qa-rel">{related}</ul></section>' if related else "")
             + f'<section class="block qa-src"><h2>Sources</h2><ul>{srcs}</ul></section></article>')
-    mod = (d.get("source", {}).get("fetchedAt") or d.get("asOf") or "")[:10]
+    full = d.get("source", {}).get("fetchedAt") or d.get("asOf") or ""
+    mod = full[:10]
     article = {"@context": "https://schema.org", "@type": "Article", "headline": fill(p["h1"], s), "description": fill(p["desc"], s),
                "mainEntityOfPage": url, "image": M.BASE + f'assets/og/{p["slug"]}.png', "inLanguage": "en-US",
                "author": {"@type": "Organization", "name": "ProofNotFluff", "url": M.BASE, "description": "Written by a finance executive"},
                "publisher": {"@type": "Organization", "name": "ProofNotFluff", "url": M.BASE}}
     if re.match(r"\d{4}-\d{2}-\d{2}$", mod):
-        article["dateModified"] = mod
-        article["datePublished"] = p.get("published", mod)
+        stamp = full.replace("Z", "+00:00") if "T" in full else mod + "T08:00:00-05:00"
+        article["dateModified"] = stamp
+        article["datePublished"] = p.get("published", stamp)
     ld = (M.ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
           "mainEntity": [{"@type": "Question", "name": fill(q, s), "acceptedAnswer": {"@type": "Answer", "text": fill(a, s)}}
                          for q, a in p["faq"]]}, crumb_ld, article)
           + "<style>.ld-page .asof,.ld-page footer p{color:var(--muted)}"
-          ".qa{max-width:none}.qa>h1{max-width:820px;text-wrap:pretty}.qa p{max-width:72ch}.qa-answer p{max-width:62ch}.qa-steps li{max-width:72ch}.qa-upd{margin:10px 0 0}.ld-page h2,.ld-page h3,.ld-page summary{text-wrap:balance}"
+          ".qa{max-width:none}.qa>h1{max-width:820px;text-wrap:pretty;font-size:clamp(28px,4vw,40px)}.qa p{max-width:72ch}.qa-answer p{max-width:62ch}.qa-steps li{max-width:72ch}.qa-upd{margin:10px 0 0}.ld-page h2,.ld-page h3,.ld-page summary{text-wrap:balance}"
           ".qa-answer strong{font-weight:700;color:var(--ink)}.ld-page .ld-tiles .tile .sub{text-wrap:balance}"
           ".qa-rel{list-style:none;padding:0;margin:12px 0 0}.qa-rel li{margin:0 0 10px}.qa-rel a{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-weight:600;color:var(--ink);text-decoration:none}"
           ".qa-rel a::after{content:'\\2192';font-weight:400;color:var(--muted)}.qa-rel a:hover{border-color:var(--ink)}"

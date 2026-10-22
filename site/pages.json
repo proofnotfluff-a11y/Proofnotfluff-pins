@@ -3553,7 +3553,8 @@
     ]
    ],
    "sources": "City of Austin, Issued Construction Permits.",
-   "checkout": "https://proofnotfluff.gumroad.com/l/vzokd?utm_source=proofnotfluff&utm_medium=site&utm_campaign=austin-construction-leads"
+   "checkout": "https://proofnotfluff.gumroad.com/l/vzokd?utm_source=proofnotfluff&utm_medium=site&utm_campaign=austin-construction-leads",
+   "kitForm": "10083860"
   },
   {
    "slug": "break-even-calculator",
@@ -3766,7 +3767,7 @@
     "Pick your category. A pest violation is a pest control lead, a ventilation or hood violation is a hood cleaning lead, and a waste water or grease trap violation is a grease trap lead.",
     "Call within a few days of the inspection date, during a quiet hour (2 to 4 pm suits most kitchens). Name the City's public record and its date, and leave any judgment out of it.",
     "Offer what helps before the re-inspection: a service visit, a service log or a cleaning record the inspector can see.",
-    "Work the openings list early. A place that just had its license inspection is choosing every vendor for the first time."
+    "Work the openings list early. A place that just had its license inspection may be choosing its first vendors."
    ],
    "cta": {
     "title": "Get the full list every Monday",
@@ -3809,7 +3810,8 @@
      "employer-cost-calculator",
      "Cost of an employee calculator"
     ]
-   ]
+   ],
+   "kitForm": "10083871"
   },
   {
    "slug": "chicago-new-business-licenses",
@@ -3828,7 +3830,7 @@
     "Pick the trades that buy from you. A new restaurant and a new salon need different vendors, so the list is sorted by what each business does.",
     "Reach out in the first weeks. A business with a new license is often still choosing its vendors, and the license date tells you how recent it is.",
     "Visit or call the business at its licensed address, name the license and its date, and say in one line what you do for businesses like it.",
-    "If you also have Chicago Restaurant Inspection Leads: food businesses usually get a City food license inspection before the license is issued, most often one to three weeks before, and that product lists those inspections as Opening soon. So you may already have seen most of the food businesses here. Each food row with that inspection is marked in the members' list, so you can hide them. Nearly all businesses in the other trades are only here."
+    "If you also have Chicago Restaurant Inspection Leads: food businesses usually get a City food license inspection before the license is issued, and that product lists those inspections as Opening soon. So you may already have seen most of the food businesses here. Each food row with that inspection is marked in the members' list, so you can hide them. Nearly all businesses in the other trades are only here."
    ],
    "cta": {
     "title": "Get the full list every Monday",
@@ -3849,7 +3851,7 @@
     ],
     [
      "Does it overlap with Chicago Restaurant Inspection Leads?",
-     "Partly, and only for food businesses. That product lists the City's food license inspection, which most often comes one to three weeks before the food license this list shows. The members' list marks every food row with that inspection in the 120 days before its license, so a member of both can hide them. Nearly all shops, salons, venues, auto shops and day care centers are only here."
+     "Partly, and only for food businesses. That product lists the City's food license inspection, which comes before the food license this list shows. The members' list marks every food row with that inspection in the 120 days before its license, so a member of both can hide them. Nearly all shops, salons, venues, auto shops and day care centers are only here."
     ],
     [
      "Is every business on the list open?",
@@ -3859,7 +3861,8 @@
      "Do you contact these businesses for me?",
      "No. You make your own calls and visits. We never contact anyone on your behalf, and no business listed has endorsed or works with ProofNotFluff."
     ]
-   ]
+   ],
+   "kitForm": "10083878"
   },
   {
    "slug": "chicago-post-construction-cleaning-contracts",

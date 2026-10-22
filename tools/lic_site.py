@@ -50,11 +50,14 @@ def page_html(p):
     lede = (f'{c["keptWeek"]:,} business sites on this week\'s list got a new City business license in the week to {E(M.nice_date(w["to"]))}, '
             f'and {c["kept30"]:,} in the last 30 days. {E(p["lede"])}')
     top_area = c["areasWeek"][0] if c.get("areasWeek") else None
+    if top_area:   # a tie names every area at the top count (copy check, Oct 22)
+        tied = [a for a, n in c["areasWeek"] if n == top_area[1]]
+        top_area = (" and ".join(tied) if len(tied) <= 2 else f"{len(tied)} areas", top_area[1], len(tied))
     tiles = (f'<div class="tiles ld-tiles">'
              f'<div class="tile key"><div class="lab">New in 30 days</div><div class="val">{c["kept30"]:,}</div><div class="sub">licensed business sites</div></div>'
              f'<div class="tile"><div class="lab">New this week</div><div class="val">{c["keptWeek"]:,}</div><div class="sub">licensed in the last 7 days</div></div>'
              f'<div class="tile"><div class="lab">Food businesses</div><div class="val">{s30.get("food", 0):,}</div><div class="sub">restaurants, cafes, bars, shops</div></div>'
-             + (f'<div class="tile"><div class="lab">Busiest area this week</div><div class="val lc-area">{E(top_area[0])}</div><div class="sub">{top_area[1]:,} new licenses</div></div>' if top_area else "")
+             + (f'<div class="tile"><div class="lab">Busiest area{"s" if top_area[2] > 1 else ""} this week</div><div class="val lc-area">{E(top_area[0])}</div><div class="sub">{top_area[1]:,} new licenses{" each" if top_area[2] > 1 else ""}</div></div>' if top_area else "")
              + f'</div><p class="asof">City records pulled {E(pulled)}. Refreshed every Monday.</p>')
     trades = ('<section class="block"><h2>New licenses by trade, last 30 days</h2><p>Each business on the list, sorted by what it does, '
               'so you can work the trades that buy from you.</p><ol class="rl-trades">'

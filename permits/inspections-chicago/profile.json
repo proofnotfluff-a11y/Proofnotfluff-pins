@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-10-22T21:47:49+00:00",
+ "fetchedAt": "2026-10-22T22:18:02+00:00",
  "rowsUpdatedAt": "2026-10-22T09:08:25+00:00",
  "columns": [
   "inspection_id",
@@ -30,8 +30,8 @@
   "Pass": 697,
   "Fail": 280,
   "Out of Business": 50,
-  "No Entry": 54,
-  "Not Ready": 49
+  "Not Ready": 49,
+  "No Entry": 54
  },
  "inspectionTypes": {
   "Canvass": 378,
@@ -67,10 +67,10 @@
   "Shared Kitchen User (Long Term)": 2,
   "Mobile Food Dispenser": 1,
   "TAVERN": 1,
-  "LIVE POULTRY": 1,
-  "CATERING/CAFE": 1,
   "VENDING COMMISSARY": 1,
   "GAS STATION/RESTAURANT": 1,
+  "CATERING/CAFE": 1,
+  "LIVE POULTRY": 1,
   "PRIVATE SCHOOL": 1,
   "Daycare (Under 2 Years)": 1,
   "BANQUET": 1,

@@ -1,5 +1,5 @@
 {
- "ranAt": "2026-10-22T21:47:43+00:00",
+ "ranAt": "2026-10-22T22:17:58+00:00",
  "since": "2026-09-10",
  "inspections": 1423,
  "codes": [
@@ -166,11 +166,11 @@
    "title": "INSECTS, RODENTS, & ANIMALS NOT PRESENT",
    "count": 329,
    "keywordHits": {
-    "flies": 52,
-    "roach": 50,
+    "insect": 49,
     "rodent": 89,
     "droppings": 57,
-    "insect": 49,
+    "roach": 50,
+    "flies": 52,
     "grease": 4,
     "grease_trap": 4,
     "exhaust": 2,
@@ -306,8 +306,8 @@
     "grease": 16,
     "rodent": 3,
     "insect": 1,
-    "flies": 1,
-    "droppings": 1
+    "droppings": 1,
+    "flies": 1
    }
   },
   {
@@ -316,8 +316,8 @@
    "count": 714,
    "keywordHits": {
     "plumbing": 69,
-    "hood": 4,
     "insect": 18,
+    "hood": 4,
     "exhaust": 8,
     "roach": 6,
     "grease": 63,
@@ -355,15 +355,15 @@
    "title": "PREVIOUS PRIORITY FOUNDATION VIOLATION CORRECTED",
    "count": 38,
    "keywordHits": {
+    "insect": 6,
     "roach": 10,
     "flies": 11,
-    "insect": 6,
     "rodent": 13,
     "droppings": 12,
     "grease": 5,
     "grease_trap": 1,
-    "plumbing": 8,
-    "exhaust": 1
+    "exhaust": 1,
+    "plumbing": 8
    }
   },
   {
@@ -455,11 +455,6 @@
    "count": 55
   },
   {
-   "result": "Pass",
-   "type": "License Re-Inspection",
-   "count": 53
-  },
-  {
    "result": "Out of Business",
    "type": "Canvass",
    "count": 53
@@ -467,6 +462,11 @@
   {
    "result": "Not Ready",
    "type": "License",
+   "count": 53
+  },
+  {
+   "result": "Pass",
+   "type": "License Re-Inspection",
    "count": 53
   },
   {
@@ -656,7 +656,11 @@
    1
   ],
   [
-   "LIVE POULTRY",
+   "VENDING COMMISSARY",
+   1
+  ],
+  [
+   "GAS STATION/RESTAURANT",
    1
   ],
   [
@@ -664,11 +668,7 @@
    1
   ],
   [
-   "VENDING COMMISSARY",
-   1
-  ],
-  [
-   "GAS STATION/RESTAURANT",
+   "LIVE POULTRY",
    1
   ],
   [

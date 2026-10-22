@@ -3,7 +3,7 @@
   "name": "City of Chicago Data Portal, Business Licenses",
   "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
   "rowsUpdatedAt": "2026-10-22T09:55:53+00:00",
-  "fetchedAt": "2026-10-22T18:58:04+00:00",
+  "fetchedAt": "2026-10-22T19:10:29+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: licenses held by a person or for an event or season (peddlers, special events, pop-ups, tow trucks, home-sharing, shared kitchen users), home and mail-drop addresses, and any business whose name could be a person's name. Business-level fields only."
  },
@@ -14,31 +14,31 @@
  },
  "counts": {
   "fetched": 740,
-  "kept30": 182,
-  "keptWeek": 45,
+  "kept30": 209,
+  "keptWeek": 52,
   "segmentsWeek": {
-   "food": 22,
-   "beauty": 5,
+   "food": 25,
+   "beauty": 6,
    "auto": 1,
    "care": 0,
-   "venue": 2,
-   "retail": 15
+   "venue": 3,
+   "retail": 17
   },
   "segments30": {
-   "food": 56,
-   "beauty": 37,
-   "auto": 8,
-   "care": 2,
-   "venue": 3,
-   "retail": 76
+   "food": 66,
+   "beauty": 38,
+   "auto": 10,
+   "care": 4,
+   "venue": 4,
+   "retail": 87
   },
   "excluded": {
    "issued outside the window": 139,
-   "second license at the same site (listed once)": 11,
+   "second license at the same site (listed once)": 15,
    "not a new license (renewal or change)": 19,
-   "name could be a person's": 79,
    "license held by a person or for an event or season": 263,
    "home or apartment address": 23,
+   "name could be a person's": 48,
    "license not active (cancelled or revoked)": 2,
    "site outside Chicago": 18,
    "virtual office or mailbox address": 4
@@ -65,24 +65,24 @@
     3
    ],
    [
+    "O'Hare",
+    2
+   ],
+   [
     "McKinley Park",
+    2
+   ],
+   [
+    "West Elsdon",
+    2
+   ],
+   [
+    "Lincoln Square",
     2
    ],
    [
     "North Center",
     2
-   ],
-   [
-    "Logan Square",
-    2
-   ],
-   [
-    "South Shore",
-    1
-   ],
-   [
-    "Chatham",
-    1
    ]
   ],
   "checks": {
@@ -91,11 +91,11 @@
    "foodInspections": true
   },
   "history30": {
-   "first": 127,
-   "added": 20,
-   "site": 35
+   "first": 131,
+   "added": 42,
+   "site": 36
   },
-  "foodInsp30": 53
+  "foodInsp30": 63
  },
  "segmentNames": {
   "food": "Restaurants, cafes, bars and food shops",
@@ -107,6 +107,14 @@
  },
  "segments": {
   "food": [
+   {
+    "business": "Plush Pup",
+    "address": "5344 N Cumberland Ave 1st",
+    "communityArea": "O'Hare",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Sale of Food Prepared Onsite With Dining Area",
+    "issued": "2026-10-21"
+   },
    {
     "business": "Pearl Club",
     "address": "495-499 N Milwaukee Ave Basement, 1, Mezz.",
@@ -178,14 +186,6 @@
     "licenseType": "Retail Food Establishment",
     "activity": "Sale of Food Prepared Onsite With Dining Area",
     "issued": "2026-10-20"
-   },
-   {
-    "business": "Rainbow Boba Tea",
-    "address": "5160 S Pulaski Rd 118",
-    "communityArea": "West Elsdon",
-    "licenseType": "Retail Food Establishment",
-    "activity": "Sale of Food Prepared Onsite With Dining Area",
-    "issued": "2026-10-20"
    }
   ],
   "beauty": [
@@ -212,6 +212,14 @@
     "licenseType": "Limited Business License",
     "activity": "Hair Services | Skincare Services",
     "issued": "2026-10-21"
+   },
+   {
+    "business": "Vaknin Aesthetics LLC",
+    "address": "6165 N Northwest Hwy 123",
+    "communityArea": "Norwood Park",
+    "licenseType": "Limited Business License",
+    "activity": "Skincare Services | Retail Sales of General Merchandise",
+    "issued": "2026-10-20"
    },
    {
     "business": "The Nail Edit",
@@ -249,6 +257,14 @@
     "licenseType": "Public Place of Amusement",
     "activity": "Charges a Fee for Entertainment or Amusements or Recreational Activities | Retail Sales of General Merchandise and Non-Perishable Food",
     "issued": "2026-10-20"
+   },
+   {
+    "business": "The New Factory",
+    "address": "12050-12054 S Doty Ave",
+    "communityArea": "Riverdale",
+    "licenseType": "Public Place of Amusement",
+    "activity": "Charges a Fee for Entertainment or Amusements or Recreational Activities",
+    "issued": "2026-10-16"
    },
    {
     "business": "The Smart Bar",
@@ -293,12 +309,28 @@
     "issued": "2026-10-21"
    },
    {
+    "business": "Parking Enforcement of Illinois, Inc.",
+    "address": "2721-2729 W Lawrence Ave",
+    "communityArea": "Lincoln Square",
+    "licenseType": "Private Booting Registration",
+    "activity": "Private Booting Registration",
+    "issued": "2026-10-20"
+   },
+   {
     "business": "COI Company",
     "address": "4444 S Kildare Blvd",
     "communityArea": "Archer Heights",
     "licenseType": "Manufacturing Establishments",
     "activity": "Manufacturing of Miscellaneous Items",
     "issued": "2026-10-20"
+   },
+   {
+    "business": "Xtreme Supplements",
+    "address": "1974 W Lawrence Ave",
+    "communityArea": "Lincoln Square",
+    "licenseType": "Limited Business License",
+    "activity": "Retail Sales of General Merchandise and Non-Perishable Food",
+    "issued": "2026-10-19"
    },
    {
     "business": "Prospect International Airport Services, LLC",
@@ -323,22 +355,6 @@
     "licenseType": "Limited Business License",
     "activity": "Retail Sales of General Merchandise | Provide Photography or Videography Services",
     "issued": "2026-10-19"
-   },
-   {
-    "business": "Safecare",
-    "address": "8 S Michigan Ave 8th 801",
-    "communityArea": "Loop",
-    "licenseType": "Limited Business License",
-    "activity": "Provide Home Health Care Services",
-    "issued": "2026-10-16"
-   },
-   {
-    "business": "Pasture-To-Porch",
-    "address": "11102 S Kedzie Ave",
-    "communityArea": "Mount Greenwood",
-    "licenseType": "Limited Business License",
-    "activity": "Operation of an Administrative Commercial Office | Miscellaneous Commercial Services",
-    "issued": "2026-10-16"
    }
   ]
  }

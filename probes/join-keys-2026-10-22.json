@@ -1,0 +1,51 @@
+{
+ "ranAt": "2026-10-22T03:34:59+00:00",
+ "since": "2024-10-22",
+ "lookback": "2026-06-24",
+ "chicagoMilestones": {
+  "INSPECTIONS": 1602,
+  "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)": 645,
+  "COMPLETE": 367,
+  "CERTIFICATE OF OCCUPANCY ISSUED": 290,
+  "PERMIT ISSUED (FEE DUE)": 126,
+  "CERTIFICATE OF OCCUPANCY PENDING (TEMPORARY OR PARTIAL OCCUPANCY APPROVED)": 37
+ },
+ "chicagoJoin": {
+  "downstreamPermits": 2547,
+  "permitKeys": 2085,
+  "licenseInspections": 973,
+  "foodKeys": 571,
+  "keyMatches": 35
+ },
+ "austinCoValues": {
+  "Yes": 5058,
+  "No": 3223
+ },
+ "austinFoodColumns": [
+  "restaurant_name",
+  "zip_code",
+  "inspection_date",
+  "score",
+  "address",
+  "facility_id",
+  "process_description",
+  "lat",
+  "lng",
+  "inspectionid",
+  "georeferenct",
+  "inspectionscorecategory",
+  ":@computed_region_q9nd_rr82"
+ ],
+ "austinFoodAddressShape": [
+  "str:",
+  "str:",
+  "str:"
+ ],
+ "austinFoodRows": 1275,
+ "austinJoin": {
+  "permitKeys": 235,
+  "foodKeys": 1048,
+  "keyMatches": 3
+ },
+ "failed": []
+}

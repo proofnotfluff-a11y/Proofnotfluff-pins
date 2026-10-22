@@ -1,0 +1,46 @@
+{
+ "ranAt": "2026-10-22T16:42:44+00:00",
+ "violations30": {
+  "days": 30,
+  "violations": 467,
+  "buildings": 122,
+  "buildingsOpen": 114,
+  "buildingsWithBusinessLicense": 48,
+  "byKind": {
+   "repair_hydraulic": 101,
+   "repair_electric": 346,
+   "other": 20
+  },
+  "byCategory": {
+   "PERMIT": 187,
+   "PERIODIC": 248,
+   "COMPLAINT": 32
+  }
+ },
+ "violations90": {
+  "days": 90,
+  "violations": 1805,
+  "buildings": 419,
+  "buildingsOpen": 375,
+  "buildingsWithBusinessLicense": 188,
+  "byKind": {
+   "repair_electric": 1233,
+   "repair_hydraulic": 488,
+   "other": 84
+  },
+  "byCategory": {
+   "PERMIT": 643,
+   "PERIODIC": 997,
+   "COMPLAINT": 165
+  }
+ },
+ "permits30": {
+  "days": 30,
+  "permits": 95,
+  "buildings": 82,
+  "byContact1Type": {
+   "CONTRACTOR-ELEVATOR": 95
+  }
+ },
+ "buildingsCitedAndPermitted30": 5
+}

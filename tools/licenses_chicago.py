@@ -138,6 +138,8 @@ def name_case(name):
     if re.match(r"\s*LA FITNESS\b", (name or "").upper()):   # the gym brand keeps its initials
         return dba_case(name)
     s = re.sub(r"^(LA|LAS|LOS) (?=[A-Z][a-z])", lambda m: m.group(1).capitalize() + " ", dba_case(name))
+    for ac in re.findall(r"\(([A-Z0-9][A-Z0-9 .&-]{1,10})\)", name or ""):     # "(HAMOC)" stays in capitals (holdout 1, round 2)
+        s = re.sub(r"\(" + re.escape(ac) + r"\)", "(" + ac + ")", s, flags=re.I)
     return re.sub(r"(?<=\w )(Las|Los)(?= \w)", lambda m: m.group(1).lower(), s)
 
 
@@ -155,6 +157,8 @@ def segment(desc, activity):
         return "food"
     if re.search(r"PUBLIC PLACE OF AMUSEMENT", d):
         return "venue"
+    if re.search(r"ANIMAL CARE", d):           # dog day care and grooming are services, not children's day care (holdout 1, round 2)
+        return "retail"
     text = f"{d} | {STOCK_FOOD.sub(' ', (activity or '').upper())}"
     pats = dict((k, p) for k, _, p in SEGMENTS)
     for key in ("beauty", "auto", "care", "venue", "food"):
@@ -319,38 +323,54 @@ HISTORY_WORDS = {"first": "First license on the City's record for this business"
                  "added": "A new license at a site where this business already held one"}
 
 
+def _label(r):
+    """history and since from r["_prior"]: [(date, type, here)] of the business's licenses before the window. "relicensed": it held
+    this same license type at this site before (a new owner, or the same business licensed again under a new account); "added":
+    it held other license types at this site, and this one is new there; "site": it held licenses only at other Chicago sites, so
+    this is a new location; "first": none found (holdout 1, round 2). since: the year of the earliest license that decides it."""
+    if r.get("_noacct"):
+        r["history"], r["since"] = "", ""
+        return
+    prior = r.get("_prior") or []
+    here = [(d, t) for d, t, h in prior if h]
+    same = [d for d, t in here if t and t.upper() == (r.get("licenseType") or "").upper()]
+    if same:
+        r["history"], r["since"] = "relicensed", min(same)[:4]
+    elif here:
+        r["history"], r["since"] = "added", min(d for d, _ in here)[:4]
+    elif prior:
+        r["history"], r["since"] = "site", min(d for d, _, _ in prior)[:4]
+    else:
+        r["history"], r["since"] = "first", ""
+
+
 def add_history(recs, fetch, start):
-    """history: "first" (no Chicago license for this business account before the list window starts, 2002 on: a business that
-    licenses in stages, say a food license on Oct 1 and a liquor license on Oct 19, is still new), "site" (the account held a
-    license at another site before the window: a new location or a move), "added" (the account held a license at this site
-    before the window: a new license type there). since: the year of the earliest such license. start: the window's first day.
-    fetch(accounts) returns City rows with account_number, site_number, license_number, application_type and date_issued.
-    Returns the license numbers that also carry a RENEW row: an old license the City re-dated, not a new one (holdout 1)."""
+    """The business's earlier Chicago licenses under its City account, before the list window starts (2002 on: a business that
+    licenses in stages inside the window, say a food license on Oct 1 and a liquor license on Oct 19, is still new). Labels come
+    from _label(). start: the window's first day. fetch(accounts) returns City rows with account_number, site_number,
+    license_number, license_description, application_type and date_issued. Returns the license numbers that also carry a RENEW
+    row: an old license the City re-dated, not a new one (holdout 1)."""
     accts = sorted({r["_acct"] for r in recs if r.get("_acct")})
     hist, renewed = collections.defaultdict(list), set()
     for i in range(0, len(accts), 40):
         for x in fetch(accts[i:i + 40]):
             a, d = str(x.get("account_number") or "").split(".")[0], (x.get("date_issued") or "")[:10]
+            n = str(x.get("license_number") or "").split(".")[0]
             if (x.get("application_type") or "").upper() == "RENEW":
-                renewed.add(str(x.get("license_number") or "").split(".")[0])
+                renewed.add(n)
             if a and d:
-                hist[a].append((d, str(x.get("site_number") or "").split(".")[0]))
+                hist[a].append((d, str(x.get("site_number") or "").split(".")[0], x.get("license_description") or "", n))
     for r in recs:
-        prior = [(d, s) for d, s in hist.get(r.get("_acct") or "", []) if d < start]
-        here = [d for d, s in prior if s == r.get("_site")]
-        if not r.get("_acct"):
-            r["history"], r["since"] = "", ""
-        elif here:
-            r["history"], r["since"] = "added", min(here)[:4]
-        elif prior:
-            r["history"], r["since"] = "site", min(d for d, _ in prior)[:4]
-        else:
-            r["history"], r["since"] = "first", ""
+        r["_noacct"] = not r.get("_acct")
+        rows = [x for x in hist.get(r.get("_acct") or "", []) if x[0] < start]
+        r["_prior"] = [(d, t, s == r.get("_site")) for d, s, t, _ in rows]
+        r["_oldlics"] = sorted({n for d, s, t, n in rows if s == r.get("_site") and n})
+        _label(r)
     return {r["license"] for r in recs if set(r.get("_lics") or [r["license"]]) & renewed}
 
 
 def name_key(name):
-    n = re.sub(r"\s+", " ", (name or "").upper().strip())
+    n = re.sub(r"\s+", " ", (name or "").upper().replace("&", " AND ").strip())
     while LEGAL_END.search(n):
         n = LEGAL_END.sub("", n).strip()
     return re.sub(r"[^A-Z0-9]", "", re.sub(r"^THE\s+", "", n))
@@ -358,30 +378,38 @@ def name_key(name):
 
 def add_name_history(recs, fetch, start):
     """The same business under another City account (holdout 2, Oct 22): "The Blackstone Hotel" holds licenses at 636 S Michigan
-    Ave under one account and its new license under another. A license issued before the window at the same building under the
-    same shown name makes a "first" or "site" row "added", with the year of the earliest one. fetch(buildings) returns City rows
-    with address, doing_business_as_name and date_issued for addresses starting with those buildings."""
-    blds = sorted({split_address(r.get("_addr") or r["address"])[0] for r in recs if r.get("history") in ("first", "site")})
+    Ave under one account and its new license under another. A license issued before the window at the same building (a range
+    "636-638" counts as 636) under the same shown name ("&" and "and" alike; a longer name that starts with the other, as in "La
+    Quinta Inn and Suites Chicago Downtown", counts) is the business's license at this site. fetch(buildings) returns City rows
+    with address, doing_business_as_name, license_description, license_number and date_issued at those buildings."""
+    blds = sorted({split_address(r.get("_addr") or r["address"])[0] for r in recs if not r.get("_noacct")})
     seen = collections.defaultdict(list)
     for i in range(0, len(blds), 15):
         for x in fetch(blds[i:i + 15]):
             d = (x.get("date_issued") or "")[:10]
             if d and d < start and x.get("address"):
-                seen[building_key(x["address"])].append((name_key(x.get("doing_business_as_name")), d))
-    same = lambda a, b: a == b or (min(len(a), len(b)) >= 8 and (a.startswith(b) or b.startswith(a)))   # "La Quinta Inn and Suites" +"Chicago Downtown"
+                seen[building_key(x["address"])].append((name_key(x.get("doing_business_as_name")), d, x.get("license_description") or "",
+                                                         str(x.get("license_number") or "").split(".")[0]))
+    same = lambda a, b: a == b or (min(len(a), len(b)) >= 8 and (a.startswith(b) or b.startswith(a)))
     for r in recs:
-        if r.get("history") not in ("first", "site"):
+        if r.get("_noacct"):
             continue
         rk = name_key(r["business"])
-        ds = [d for nk, d in seen.get(building_key(r.get("_addr") or r["address"]), []) if nk and same(nk, rk)]
-        if ds:
-            r["history"], r["since"] = "added", min(ds)[:4]
+        hits = [x for x in seen.get(building_key(r.get("_addr") or r["address"]), []) if x[0] and same(x[0], rk)]
+        if hits:
+            r["_prior"] = (r.get("_prior") or []) + [(d, t, True) for _, d, t, _ in hits]
+            r["_oldlics"] = sorted(set(r.get("_oldlics") or []) | {n for _, _, _, n in hits if n})
+            _label(r)
     return recs
 
 
 def fetch_by_building(blds):
-    q = lambda b: "starts_with(address, '" + b.replace("'", "''") + "')"
-    return get(f"{PORTAL}/resource/{DATASET}.json", {"$select": "address,doing_business_as_name,date_issued",
+    def q(b):
+        b = b.replace("'", "''")
+        m = re.match(r"^(\d+)(?:-\d+)? (.+)$", b)
+        alt = f" OR address like '{m.group(1)}-% {m.group(2)}%'" if m else ""      # "636 S MICHIGAN AVE" also finds "636-638 S MICHIGAN AVE"
+        return f"starts_with(address, '{b}'){alt}"
+    return get(f"{PORTAL}/resource/{DATASET}.json", {"$select": "address,doing_business_as_name,license_description,license_number,date_issued",
                                                      "$where": " OR ".join(q(b) for b in blds), "$limit": 50000})
 
 
@@ -393,7 +421,7 @@ def add_food_inspections(recs, fetch):
     canvass or a complaint) before the license was issued, which shows the business was open before this license. fetch(licenses)
     returns rows with license_, inspection_type and inspection_date."""
     food = [r for r in recs if r["segment"] == "food"]
-    lic = sorted({n for r in food for n in (r.get("_lics") or [r["license"]]) if n})
+    lic = sorted({n for r in food for n in (r.get("_lics") or [r["license"]]) + (r.get("_oldlics") or []) if n})
     seen = collections.defaultdict(list)
     for i in range(0, len(lic), 40):
         for x in fetch(lic[i:i + 40]):
@@ -405,8 +433,9 @@ def add_food_inspections(recs, fetch):
     for r in food:
         start = (dt.date.fromisoformat(r["issued"]) - dt.timedelta(days=120)).isoformat()
         got = [x for n in (r.get("_lics") or [r["license"]]) for x in seen.get(n, [])]
+        old = [x for n in (r.get("_oldlics") or []) for x in seen.get(n, [])]       # the same business's earlier licenses here
         ds = [d for d, t in got if t.startswith("LICENSE") and start <= d <= r["issued"]]
-        op = [d for d, t in got if not t.startswith("LICENSE") and d < r["issued"]]
+        op = [d for d, t in got + old if not t.startswith("LICENSE") and d < r["issued"]]
         r["foodInsp"], r["inspSince"] = (max(ds) if ds else ""), (min(op)[:4] if op else "")
     return recs
 
@@ -477,14 +506,14 @@ def run_checks(recs, reasons, today, f_hist, f_food, f_build, f_name=None):
 
 def strip_internal(recs):
     for r in recs:
-        for k in ("_acct", "_site", "_lics", "_addr"):
+        for k in ("_acct", "_site", "_lics", "_addr", "_prior", "_oldlics", "_noacct"):
             r.pop(k, None)
     return recs
 
 
 def fetch_history(accts):
     return get(f"{PORTAL}/resource/{DATASET}.json",
-               {"$select": "account_number,site_number,license_number,application_type,date_issued",
+               {"$select": "account_number,site_number,license_number,license_description,application_type,date_issued",
                 "$where": f"account_number in ({','.join(accts)})", "$limit": 50000})
 
 
@@ -586,7 +615,7 @@ def selftest():
         assert could_be_person(name) == want, (name, could_be_person(name), want)
     for raw, want in [("LA CASA DE LAS FLORES", "La Casa de las Flores"), ("LA CALACA CANTINA", "La Calaca Cantina"),
                       ("LA FITNESS", "LA Fitness"), ("YATES LIQUOR", "Yates Liquor"), ("The UPS Store", "The UPS Store"),
-                      ("ChaTraMue", "ChaTraMue"), ("(GEI-184)  Shop", "(GEI-184) Shop")]:
+                      ("ChaTraMue", "ChaTraMue"), ("(GEI-184)  Shop", "(GEI-184) Shop"), ("ACME (HAMOC)", "Acme (HAMOC)")]:
         assert name_case(raw) == want, (raw, name_case(raw))
     for desc, act, want in [("Regulated Business License", "Computer Consulting Services / Computer Automated Design", "retail"),
                             ("Motor Vehicle Services License", "Motor Vehicle Repair - Engine and Transmission Work", "auto"),
@@ -600,6 +629,8 @@ def selftest():
                             ("Limited Business License", "Hand Car Wash | Retail Sales of General Merchandise and Non-Perishable Food", "auto"),
                             ("Public Place of Amusement", "Charges a Fee for Entertainment | Retail Sales of General Merchandise and Non-Perishable Food", "venue"),
                             ("Retail Food Establishment", "Retail Sales of General Merchandise and Non-Perishable Food", "food"),
+                            ("Animal Care License", "Dog Day Care | Boarding | Grooming", "retail"),
+                            ("Children's Services Facility License", "Day Care Center", "care"),
                             ("Limited Business License", "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Perishable Foods", "food")]:
         assert segment(desc, act) == want, (desc, act, segment(desc, act))
     today = dt.date(2026, 10, 20)
@@ -709,6 +740,20 @@ def selftest():
              {"license": "e", "address": "500 N State St Ste 300"}]
     fl = flagged_buildings(probe, {"3950NLAKESHOREDR", "2049WBELMONTAVE", "500NSTATEST"}, {"1655SBLUEISLANDAVE"})
     assert fl == {"a": RESIDENTIAL_REASON, "c": MAILBOX_REASON, "d": RESIDENTIAL_REASON}, fl
+    # same license type at the same site before: relicensed (a new owner or a new account), not added (holdout 1, round 2)
+    rl = [{"license": "p", "business": "Plush Pup", "address": "5344 N Cumberland Ave", "_addr": "5344 N CUMBERLAND AVE", "licenseType": "Retail Food Establishment",
+           "_acct": "9", "_site": "1", "issued": "2026-10-10", "segment": "food"},
+          {"license": "q", "business": "Spa Two", "address": "1 W Main St", "_addr": "1 W MAIN ST", "licenseType": "Limited Business License",
+           "_acct": "8", "_site": "1", "issued": "2026-10-10", "segment": "beauty"}]
+    add_history(rl, lambda a: [{"account_number": "8", "site_number": "1", "license_number": "77", "license_description": "Limited Business License",
+                               "application_type": "ISSUE", "date_issued": "2014-02-01"},
+                              {"account_number": "8", "site_number": "1", "license_number": "78", "license_description": "Tobacco",
+                               "application_type": "ISSUE", "date_issued": "2010-02-01"}], "2026-09-22")
+    add_name_history(rl, lambda b: [{"address": "5344 N CUMBERLAND AVE", "doing_business_as_name": "PLUSH PUP", "license_description": "Retail Food Establishment",
+                                     "license_number": "1647850", "date_issued": "2005-03-01"}], "2026-09-22")
+    assert [(x["history"], x["since"]) for x in rl] == [("relicensed", "2005"), ("relicensed", "2014")], [(x["history"], x["since"]) for x in rl]
+    add_food_inspections(rl, lambda lics: [{"license_": "1647850", "inspection_type": "Canvass", "inspection_date": "2010-05-05"}] if "1647850" in lics else [])
+    assert rl[0]["inspSince"] == "2010", "the same business's earlier license at the site counts for food inspections since"
     # the same business under another account at the same building is an added license, not a first (Blackstone Hotel)
     hrec = [{"license": "x", "business": "The Blackstone Hotel", "address": "636 S Michigan Ave", "_addr": "636 S MICHIGAN AVE",
              "history": "first", "since": ""},

@@ -9,7 +9,7 @@ The repo holds only ciphertext, and only once the secret exists.
 
 Buyers: commercial cleaning and pest control companies first, and any vendor who sells to a business in its first months.
 Their job: pick the trades they sell to, open the businesses the City licensed in the last 30 days, see what the City's
-records say (first license, new site, added license; a food license inspection), call or visit.
+records say (first license, new site, added or relicensed; a food license inspection), call or visit.
 
 Drill-in: overview (businesses by trade), a filtered list with a map (#/list?t=<trade>&q=&area=&days=&type=&h=&fi=&new=1
 &fu=&sort=&view=map), a business page (#/biz/<license>), the pitch kit (#/pitch?b=clean|pest|any) and the Terms (#/terms,
@@ -125,7 +125,7 @@ PAGE = r"""<!doctype html>
 .hi{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;font-size:12.5px;font-weight:700;white-space:nowrap;line-height:1}
 .hi i{width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
 .hi.first{color:var(--first);background:var(--first-bg)}.hi.first i{border-radius:2px}
-.hi.site{color:var(--site);background:var(--site-bg)}.hi.added{color:var(--add);background:var(--add-bg)}
+.hi.site{color:var(--site);background:var(--site-bg)}.hi.added,.hi.relicensed{color:var(--add);background:var(--add-bg)}
 .hi.lg{height:32px;padding:0 14px;font-size:14px}
 .tch{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px 0 7px;border-radius:7px;font-size:12.5px;font-weight:600;color:var(--ink2);background:#F3F0EA;border:1px solid var(--line2);white-space:nowrap}
 .tch .ico{width:15px;height:15px;color:var(--muted)}
@@ -275,8 +275,8 @@ async function copyText(t){try{await navigator.clipboard.writeText(t);return tru
 /* trades and the City record */
 const TR={},TORD=W.trades.map(t=>t.key);W.trades.forEach(t=>{TR[t.key]=t;});
 const tch=k=>`<span class="tch">${ico(k)}${esc(TR[k].short)}</span>`;
-const HCLS=h=>h==="first"?"first":h==="site"?"site":h==="added"?"added":"";
-function hiText(r){if(r.h==="site"&&r.hs)return "New site, licensed since "+r.hs;if(r.h==="added"&&r.hs)return "Added license, here since "+r.hs;return W.history[r.h]||"";}
+const HCLS=h=>["first","site","added","relicensed"].includes(h)?h:"";
+function hiText(r){if(r.h==="site"&&r.hs)return "New site, licensed since "+r.hs;if(r.h==="added"&&r.hs)return "Added license, here since "+r.hs;if(r.h==="relicensed"&&r.hs)return "Relicensed, here since "+r.hs;return W.history[r.h]||"";}
 const hi=(r,lg)=>r.h?`<span class="hi ${HCLS(r.h)}${lg?" lg":""}"><i aria-hidden="true"></i>${esc(hiText(r))}</span>`:"";
 
 /* private marks and notes: this browser only */
@@ -337,7 +337,7 @@ const top8=R.slice().sort(newest).slice(0,8),shown=new Set(top8.map(r=>r.id));
 const fresh=R.filter(r=>r.h==="first"&&!shown.has(r.id)).slice().sort(newest).slice(0,6);
 $("#app").innerHTML=`<section class="hero"><h1>${int(n)} new business licenses in Chicago in the last 30 days, ${int(nw)} of them this week</h1>
 <p>From City of Chicago business license records, issued ${esc(dayShort(D.window.listFrom))} to ${esc(day(D.window.to))}. List of ${esc(D.asOf)}. One row per business and site, sorted by trade.</p>
-<p class="kpis"><span><b class="num">${int(first)}</b> first Chicago license</span><span><b class="num">${int(n-first-R.filter(r=>!r.h).length)}</b> new site or added license</span>${D.checks.food?`<span><b class="num">${int(food)}</b> with a food license inspection</span>`:""}</p></section>
+<p class="kpis"><span><b class="num">${int(first)}</b> first Chicago license</span><span><b class="num">${int(n-first-R.filter(r=>!r.h).length)}</b> new site, added or relicensed</span>${D.checks.food?`<span><b class="num">${int(food)}</b> with a food license inspection</span>`:""}</p></section>
 <nav class="trades" aria-label="Businesses by trade">${TORD.map(tile).join("")}</nav>
 <div class="ov"><div class="ov-col">
 <section class="panel"><div class="sec-h"><h2>Newest licenses<span class="c num">${int(n)}</span></h2><a href="#/list">See all ${int(n)}</a></div>${rowsHtml(top8,0,true)}</section>
@@ -355,7 +355,7 @@ ${D.checks.history?`<section class="panel"><div class="sec-h"><h2>First Chicago 
 const SORTS={newest:()=>newest,az:()=>(a,b)=>a.n.localeCompare(b.n),area:()=>(a,b)=>(a.ar||"~").localeCompare(b.ar||"~")||newest(a,b)};
 const DAYS=[["","Last 30 days"],["14","Last 14 days"],["7","Last 7 days"]];
 function readF(q){return{t:TR[q.get("t")]?q.get("t"):"",q:(q.get("q")||"").trim(),area:q.get("area")||"",days:["7","14"].includes(q.get("days"))?q.get("days"):"",
-type:q.get("type")||"",h:["first","site","added"].includes(q.get("h"))?q.get("h"):"",fi:["yes","no"].includes(q.get("fi"))?q.get("fi"):"",nw:q.get("new")==="1",
+type:q.get("type")||"",h:["first","site","added","relicensed"].includes(q.get("h"))?q.get("h"):"",fi:["yes","no"].includes(q.get("fi"))?q.get("fi"):"",nw:q.get("new")==="1",
 fu:["todo","mine"].includes(q.get("fu"))?q.get("fu"):"",sort:SORTS[q.get("sort")]?q.get("sort"):"newest",view:q.get("view")==="map"?"map":"list"};}
 function writeF(f){const q=new URLSearchParams();for(const k of ["t","q","area","days","type","h","fi"])if(f[k])q.set(k,f[k]);if(f.nw)q.set("new","1");if(f.fu)q.set("fu",f.fu);if(f.sort!=="newest")q.set("sort",f.sort);if(f.view==="map")q.set("view","map");const s=q.toString();return "#/list"+(s?"?"+s:"");}
 const norm=s=>String(s||"").toLowerCase().normalize("NFKD").replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
@@ -394,7 +394,7 @@ ${D.checks.food?`<div class="fld"><label for="ffi">Food license inspection</labe
 <div class="rbar" aria-live="polite"><span id="rcount"></span><button class="lnk" type="button" id="fclear" hidden>Clear filters</button></div>
 <div class="split" id="split" data-v="${f.view}"><section class="panel lst" aria-label="Businesses on this list"><div id="plist"></div></section>
 <div class="mapbox" id="mapbox"><div class="map" id="map" role="region" aria-label="Map of the businesses in the list. The list has the same businesses."></div>
-<div class="legend" aria-hidden="true"><span><i class="lg-1"></i>First license</span><span><i class="lg-2"></i>New site or added license</span><span><i class="lg-3"></i>Not checked</span></div>
+<div class="legend" aria-hidden="true"><span><i class="lg-1"></i>First license</span><span><i class="lg-2"></i>New site, added or relicensed</span><span><i class="lg-3"></i>Not checked</span></div>
 <p class="map-note" id="mapnote" hidden></p></div></div>`;
 const upd=patch=>{Object.assign(STATE.f,patch);STATE.shown=60;history.replaceState(history.state,"",writeF(STATE.f));STATE.trail[STATE.trail.length-1]=location.hash;refresh(true);};
 let tq;$("#fq").addEventListener("input",e=>{$("#fqx").hidden=!e.target.value;clearTimeout(tq);tq=setTimeout(()=>upd({q:e.target.value.trim()}),140);});
@@ -414,7 +414,7 @@ setTimeout(()=>{ensureMap();if(STATE.map){STATE.map.invalidateSize();drawMap(tru
 function syncVtog(){document.querySelectorAll(".vtog button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===STATE.f.view)));}
 function refresh(refit){const f=STATE.f,base=STATE.base;
 const facet=(skip,test)=>base.filter(r=>pass(r,f,skip)&&test(r)).length;
-const hb=D.checks.history?[["","Any record",()=>true],["first","First license",r=>r.h==="first"],["site","New site",r=>r.h==="site"],["added","Added license",r=>r.h==="added"]]:[];
+const hb=D.checks.history?[["","Any record",()=>true],["first","First license",r=>r.h==="first"],["site","New site",r=>r.h==="site"],["added","Added license",r=>r.h==="added"],["relicensed","Relicensed",r=>r.h==="relicensed"]]:[];
 $("#fh").hidden=!hb.length;
 $("#fh").innerHTML=hb.map(([k,t,fn])=>`<button type="button" data-k="${k}" aria-pressed="${f.h===k}">${k?`<span class="hi ${k}" style="height:auto;padding:0;background:none"><i aria-hidden="true"></i></span>`:""}${esc(t)}<span class="c num">${int(facet("h",fn))}</span></button>`).join("");
 $("#fh").querySelectorAll("button").forEach(b=>b.onclick=()=>STATE.upd({h:b.dataset.k}));
@@ -436,7 +436,7 @@ const m=$("#more");if(m)m.onclick=()=>{STATE.shown+=60;drawList();};
 el.querySelectorAll(".row").forEach(a=>{a.addEventListener("mouseenter",()=>hot(a.dataset.id,true));a.addEventListener("mouseleave",()=>hot(a.dataset.id,false));});}
 
 /* map */
-const MS={site:{radius:6.5,color:"#fff",weight:2,fillColor:"#2F5F9E",fillOpacity:1},added:{radius:6.5,color:"#fff",weight:2,fillColor:"#2F5F9E",fillOpacity:1},
+const MS={site:{radius:6.5,color:"#fff",weight:2,fillColor:"#2F5F9E",fillOpacity:1},added:{radius:6.5,color:"#fff",weight:2,fillColor:"#2F5F9E",fillOpacity:1},relicensed:{radius:6.5,color:"#fff",weight:2,fillColor:"#2F5F9E",fillOpacity:1},
 none:{radius:6,color:"#3A4152",weight:2.2,fillColor:"#fff",fillOpacity:1}};
 const PK=r=>r.h==="first"?"first":r.h?r.h:"none";
 function tiles(m){L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(m);}
@@ -447,7 +447,7 @@ function popup(r){return `<div class="pop"><span class="mn" style="font-size:16p
 function drawMap(refit){const m=STATE.map;const rows=STATE.rows||[];const geo=rows.filter(r=>r.lat&&r.lon);const note=$("#mapnote");
 if(note){const miss=rows.length-geo.length;note.hidden=!(miss||!rows.length);note.textContent=!rows.length?"No pins for these filters.":miss?`${plural(miss,"business","businesses")} in the list ${miss===1?"has":"have"} no map location in the City record.`:"";}
 if(!m)return;STATE.layer.clearLayers();STATE.mk={};
-const rank={none:0,added:1,site:1,first:2};
+const rank={none:0,added:1,site:1,relicensed:1,first:2};
 geo.slice().sort((a,b)=>rank[PK(a)]-rank[PK(b)]).forEach(r=>{const k=PK(r);const c=pin([r.lat,r.lon],k,1).bindPopup(popup(r),{maxWidth:280});c.addTo(STATE.layer);STATE.mk[r.id]=[c,k];});
 if(refit&&geo.length){const bb=L.latLngBounds(geo.map(r=>[r.lat,r.lon]));if(geo.length===1)m.setView(bb.getCenter(),15,{animate:false});else m.fitBounds(bb,{padding:[40,40],maxZoom:15,animate:false});}}
 /* first-license pins are the legend's square (a div icon); the others stay circles */
@@ -638,10 +638,10 @@ def selftest():
         fns = "\n".join(re.search(p, PAGE, re.M).group(0) for p in (r"^const MON=.*$", r"^function day\(s\).*$", r"^function dayShort\(s\).*$",
                                                                      r"^function cell\(v\).*$", r"^function hiText\(r\).*$"))
         js = ("const W={history:" + json.dumps(X.HISTORY) + "};\n" + fns + "\nconsole.log(JSON.stringify([day('2026-10-05'),dayShort('2026-10-15'),day(''),"
-              "[-87.6,'=SUM(A1)','-1 call','@x','a,b'].map(cell),[{h:'first'},{h:'site',hs:'2015'},{h:'added',hs:'2019'},{h:''}].map(hiText)]))")
+              "[-87.6,'=SUM(A1)','-1 call','@x','a,b'].map(cell),[{h:'first'},{h:'site',hs:'2015'},{h:'added',hs:'2019'},{h:'relicensed',hs:'2005'},{h:''}].map(hiText)]))")
         got = json.loads(subprocess.run([node, "-e", js], capture_output=True, text=True, check=True).stdout)
         assert got == ["Oct 5, 2026", "Oct 15", "", ["-87.6", "'=SUM(A1)", "'-1 call", "'@x", '"a,b"'],
-                       ["First license", "New site, licensed since 2015", "Added license, here since 2019", "Not checked"]], got
+                       ["First license", "New site, licensed since 2015", "Added license, here since 2019", "Relicensed, here since 2005", "Not checked"]], got
     else:
         print("node not found: browser helpers not checked here")
     text = PAGE + LEGAL + words_json()

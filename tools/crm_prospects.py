@@ -6,7 +6,7 @@ A run lists the CRM's prospects collection with ArtifactData (out_dir=data/crm) 
 prospects that carry a named decision-maker, have never had a first email (no firstSentAt) (contactFirstName, contactLastName, contactTitle and a contact email that
 passes the Inbox Gate), drops doNotEmail, replied, customer, opted-out and bounced records, and writes:
   data/prospects/prospects.json   schema pnf.prospect.v1 (eligible for drafting)
-  data/prospects/followups.json   schema pnf.prospect.v1: emailed once, no reply, follow-up due, address still valid
+  data/prospects/followups.json   schema pnf.prospect.v1: emailed, no reply, fewer than two follow-ups, one due, address valid
   data/prospects/verify.json      named owners whose site address (emailStatus unverified) waits for its Bouncer check;
                                   the outreach run checks them first and writes emailStatus deliverable or bounced-precheck
   data/prospects/ineligible.json  every other prospect id with the reason (role inbox, no name, contact form ...)
@@ -80,6 +80,8 @@ def to_prospect(pid, d):
         "matched_lead_id": d.get("matchedLeadId") or "",
         "first_example": d.get("firstExample") or "",
         "sender": d.get("sender") or "",
+        "variant": d.get("variant") or "",
+        "followup_examples": [str(x) for x in (d.get("followupExamples") or [])],
     }
 
 
@@ -107,12 +109,14 @@ def main():
         named = [w.split(": ", 1)[-1] for w in R.validate_prospect(p)]
         if d.get("contactType") != "email":
             named.append("contact form only")
-        # follow-up candidates: emailed once, nothing back, due, and a named address that still passes every gate
+        # follow-up candidates: emailed, nothing back, due, and a named address that still passes every gate
         if legacy_batch(d):
             ineligible.append({"prospect_id": pid, "reasons": ["legacy Oct 19 or 20 batch: no follow-up under the Oct 22 rules"]})
             continue
-        if (p["status"] == "sent" and d.get("firstSentAt") and not d.get("repliedAt") and not p["do_not_email"]
-                and (d.get("followupDueAt") or "9999") <= today and not d.get("followupSentAt")):
+        # Todd, Oct 22, 2026, live chat: up to two follow-ups (pnf_rules.MAX_FOLLOWUPS), each due 5 business days after the last
+        sent_fu = int(d.get("followupCount") or (1 if d.get("followupSentAt") else 0))
+        if (p["status"] in ("sent", "followed-up") and d.get("firstSentAt") and not d.get("repliedAt") and not p["do_not_email"]
+                and (d.get("followupDueAt") or "9999") <= today and sent_fu < R.MAX_FOLLOWUPS):
             if named:
                 ineligible.append({"prospect_id": pid, "reasons": sorted(set(["follow-up blocked"] + named))})
             else:

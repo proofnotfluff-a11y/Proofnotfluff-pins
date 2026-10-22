@@ -1,6 +1,6 @@
 # Send rules (read only after Todd says send)
 
-Condensed Oct 22, 2026 from coo/LEADS_DESK.md Run 2 for the outreach-drafter stage. Todd's words behind it: "You send after my yes", "Yes, one follow-up" (Oct 18), "use sales@getproofnotfluff.com in tandem with hello@proofnotfluff.com" (Oct 19), keep bounces near 0% (Oct 20).
+Condensed Oct 22, 2026 from coo/LEADS_DESK.md Run 2 for the outreach-drafter stage. Todd's words behind it: "You send after my yes", "Yes, one follow-up" (Oct 18), "use sales@getproofnotfluff.com in tandem with hello@proofnotfluff.com" (Oct 19), keep bounces near 0% (Oct 20); "Yes, two follow-ups" and test 1 with variants A and B (Oct 22, live chat).
 
 ## What Todd's send covers
 - Only the batch named in the message he answered. It is void once the next Monday's data refresh has run.
@@ -30,13 +30,13 @@ Not interested? Reply "no thanks" and we will not email you again.
 
 ## After each send
 - Confirm it shows in Sent (hello@) or in the sheet's Log (sales@). Scheduled mail counts as sent only once it shows in Sent.
-- CRM: first email `sent`, firstSentAt, followupDueAt = plus 5 business days, firstExample = the lead_id it named. Follow-up `followed-up`, followupSentAt.
+- CRM: first email `sent`, firstSentAt, followupDueAt = plus 5 business days, firstExample = the lead_id it named, variant = its arm letter. Each follow-up: `followed-up`, followupSentAt, followupCount plus 1, followupExamples gets its lead_id, followupDueAt plus 5 business days (removed after the second).
 - Scoreboard leadproducts/<slug>.outreach counts, counted fresh from the CRM (this stage is the only writer). One line to Todd with the counts.
 
 ## Tools
 - Only the repo, ArtifactData (CRM, scoreboard), web search and fetch, the Agent tool for checkers, Claude in Chrome on hello@'s Gmail and Bouncer. Enrichment runs in GitHub Actions (prospect-enrichment.yml), never through Drive. Never Google Drive, the Gmail connector (a different account), Zapier, Typefully, Lovable, QuickBooks, Canva, Adobe or Supermetrics.
 
 ## Never
-- A second first email to anyone with firstSentAt. A follow-up after any reply, bounce or opt-out. More than one follow-up.
+- A second first email to anyone with firstSentAt. A follow-up after any reply, bounce or opt-out. More than two follow-ups. Any follow-up to the Oct 19 and 20 batches.
 - Contact forms that ask for a phone number or a CAPTCHA, or say they are not for sales: list them for Todd.
 - A person's name, phone or words in the scoreboard, repo or logs. Their name and work email live in the CRM only.

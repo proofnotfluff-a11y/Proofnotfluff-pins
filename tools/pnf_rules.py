@@ -11,6 +11,7 @@ Every validator returns a list of problem strings; an empty list is a pass. The 
 tools/copy_gate.py, tools/context_gate.py) turn any problem into exit code 1.
 """
 import datetime as dt
+import hashlib
 import re
 
 # ------------------------------------------------------------------ timing moat
@@ -109,6 +110,21 @@ def trade_problems(product, trade, lead=None):
     return p
 
 # ------------------------------------------------------------------ outreach copy
+# Variants (Todd, Oct 22, 2026, live chat: "A and B, test 1" and the copy gate change). A template's id is its heading's
+# T number plus its Variant letter (T2-B); blank Variant means A. Each prospect gets one arm for life, by a fixed split on
+# its id, so the arms fill evenly and a rerun never moves anyone; its follow-ups use the same arm.
+VARIANT_ID_RE = re.compile(r"^T\d+-[A-Z]$")
+MAX_FOLLOWUPS = 2         # Todd, Oct 22, 2026, live chat: "Yes, two follow-ups", each with a new real job
+
+
+def assign_variant(prospect_id, letters):
+    """The test arm (a letter) for a prospect among the letters a template slot offers: sha256 of the id, mod the count."""
+    ls = sorted(set(letters))
+    if not ls:
+        return ""
+    return ls[int(hashlib.sha256(str(prospect_id).encode("utf-8")).hexdigest(), 16) % len(ls)]
+
+
 MAX_WORDS = 75            # a draft fails at 75 words or more
 MAX_SUBJECT_WORDS = 12
 TLDS = ("com|net|org|io|co|ai|app|biz|info|us|me|ly|xyz|site|online|store|shop|dev|tech|pro|link|page|ws|tv|gg|"

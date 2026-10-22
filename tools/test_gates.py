@@ -249,6 +249,59 @@ def trade_cases():
            EC.validate_businesses(biz(product="austin-construction", trade_vertical="exterior_turnkey")), True)
 
 
+def variant_cases():
+    """Variants (Todd, Oct 22, 2026, live chat: "A and B, test 1", gate change approved): one template per vertical, stage
+    and letter; every draft names its template id, uses the prospect's arm and the template's fixed words; a follow-up
+    keeps the recorded arm and never repeats a lead the prospect was sent."""
+    import copy_gate as CG
+    ts = CG.variant_templates(CG.TEMPLATES)
+    expect("variant: live templates carry A and B for every slot passes",
+           [] if all(sorted(CG.slot_letters(ts, t["trade"], t["stage"])) == ["A", "B"] for t in ts) else ["a slot lacks A or B"], False)
+    ids = [f"cc-test{i}" for i in range(400)]
+    arms = [R.assign_variant(i, ["B", "A"]) for i in ids]
+    expect("variant: the split is fixed and even passes",
+           [] if arms == [R.assign_variant(i, ["A", "B"]) for i in ids] and 160 <= arms.count("A") <= 240 else ["split moved or lopsided"], False)
+
+    def planted(fn):
+        tmp = tempfile.mkdtemp(prefix="pnf-var-")
+        try:
+            path = os.path.join(tmp, "templates.md")
+            open(path, "w", encoding="utf-8").write(fn(open(CG.TEMPLATES, encoding="utf-8").read()))
+            return CG.check_templates(path)[0]
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+    expect("variant: two B templates in one slot fail", planted(lambda x: x.replace("Variant: A\nStage: Inspections", "Variant: B\nStage: Inspections")), True)
+    expect("variant: a lowercase Variant letter fails", planted(lambda x: x.replace("Variant: B", "Variant: b", 1)), True)
+
+    insp = dict(LEAD, lead_id="chi-2", stage="Inspections Under Way", stage_source="INSPECTIONS")
+    insp3 = dict(insp, lead_id="chi-3")
+    leads = {"chi-1": LEAD, "chi-2": insp, "chi-3": insp3}
+    t2 = {t["letter"]: t for t in ts if t["trade"] == "commercial_cleaning" and t["stage"] == "Inspections Under Way"}
+    arm = R.assign_variant(PROSPECT["prospect_id"], list(t2))
+    other = "A" if arm == "B" else "B"
+    f = dict(CG.FIXTURE_FIELDS, first="Dana")
+    mk = lambda letter, lid="chi-2", **k: {"schema": "pnf.draft.v1", "drafts": [dict({
+        "prospect_id": PROSPECT["prospect_id"], "lead_id": lid, "to": PROSPECT["email"], "variant": t2[letter]["id"],
+        "subject": CG.fill(t2[letter]["subject"], f), "body": CG.fill(t2[letter]["body"], f)}, **k)]}
+    pros = {PROSPECT["prospect_id"]: PROSPECT}
+    expect("variant: draft on its arm's template passes", CG.variant_problems(mk(arm), ts, leads, pros), False)
+    expect("variant: draft on the other arm fails", CG.variant_problems(mk(other), ts, leads, pros), True)
+    expect("variant: draft with no variant fails", CG.variant_problems(mk(arm, variant=""), ts, leads, pros), True)
+    expect("variant: draft whose fixed words changed fails",
+           CG.variant_problems(mk(arm, body=CG.fill(t2[arm]["body"], f).replace("usually", "always")), ts, leads, pros), True)
+    expect("variant: draft naming a template for another stage fails",
+           CG.variant_problems(mk(arm, lead_id="chi-1"), ts, leads, pros), True)
+    fu = {PROSPECT["prospect_id"]: dict(PROSPECT, variant=other, first_example="chi-2")}
+    expect("variant: follow-up keeps the recorded arm and a new lead passes",
+           CG.variant_problems(mk(other, lid="chi-3"), ts, leads, fu, followup=True), False)
+    expect("variant: follow-up off its recorded arm fails", CG.variant_problems(mk(arm, lid="chi-3"), ts, leads, fu, followup=True), True)
+    expect("variant: follow-up repeating the first email's lead fails",
+           CG.variant_problems(mk(other, lid="chi-2"), ts, leads, fu, followup=True), True)
+    fu2 = {PROSPECT["prospect_id"]: dict(PROSPECT, variant=other, first_example="chi-2", followup_examples=["chi-3"])}
+    expect("variant: second follow-up repeating the first follow-up's lead fails",
+           CG.variant_problems(mk(other, lid="chi-3"), ts, leads, fu2, followup=True), True)
+
+
 def ladder_cases():
     """Enrichment ladder (Todd, Oct 22, 2026): the owner-read inbox exception is narrow, and pending means unverified."""
     city = dict(PROSPECT, email="info@sparkleco.example", email_source="site", owner_source="city_owner_record")
@@ -282,6 +335,7 @@ def main():
     context_cases()
     legacy_cases()
     trade_cases()
+    variant_cases()
     ladder_cases()
     bad = [(n, p) for n, good, p in results if not good]
     for n, p in bad:

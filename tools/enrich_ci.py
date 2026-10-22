@@ -150,7 +150,11 @@ def main():
 
     # rung 1: the City's owner record (Chicago products)
     owners = {}
-    chicago = [b for b in todo if R.PRODUCTS.get(b["product"]) == "chicago"]
+    def fresh(b):
+        at = state.get(R.domain_of(b["website"]), {}).get("checkedAt")
+        return bool(at) and (today - dt.date.fromisoformat(at)).days < a.retry_days
+    # the free rungs skip a business tried within --retry-days; such a business is in todo only for its Hunter turn
+    chicago = [b for b in todo if R.PRODUCTS.get(b["product"]) == "chicago" and not fresh(b)]
     if chicago:
         try:
             owners = owners_chicago.find(chicago)
@@ -162,7 +166,7 @@ def main():
         dom = R.domain_of(b["website"])
         owner = owners.get(dom)
         rec = None
-        if owner:
+        if owner and not fresh(b):
             addr, _kind = site_emails.choose(site_emails.collect(dom), dom, owner, "city_owner_record")
             if addr:
                 rec = ladder_record(b, owner, "city_owner_record", addr)

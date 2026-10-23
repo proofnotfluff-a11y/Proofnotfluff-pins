@@ -7,3 +7,14 @@
 - [stated] Todd, on the RatRadar model: "We should build something that pulls in traffic like the rat map and lookup pages. The key is pulling as many people as possible through SEO and having a variety of products available for anyone who might be visiting the site." Proposed in the plan doc, section "The traffic layer": New in your city first, then What's being built here; the restaurant inspection lookup names businesses with failed records, so it is major (CONSTITUTION 2) and waits for the Legal desk and Todd's go.
 - [stated] Todd: "Yes" to drafting New in Chicago. Built as a draft (noindex, off the index and the sitemap, no email form): docs/new-in-chicago/ from tools/newin_site.py (site/pages.json kind "newin"), data from the licenses pull's new "week" list (every business licensed in the last 7 days, business fields only, no Fail named). Goes live, and gets a real email form, only on Todd's go after he reviews it (major, CONSTITUTION 2).
 - New in Chicago published Oct 23 on Todd's go after every gate passed (launches/new-in-chicago.md). Waiting on Todd: the Kit form for the email.
+
+## Outside audit decisions, Oct 23, 2:26 pm (live chat)
+- [stated] Todd: "Ok let's go with all your recommendations for all requested approvals." Gemini's own "yes" lines were not taken as approval (CONSTITUTION 6); these are the session's recommendations, approved by Todd:
+  1. Daily pest and hood list for Chicago restaurants, built each morning after the City's refresh.
+  2. Listed business phone on every restaurant and license lead, free route first (the business's own site or open data); no paid lookup without a spend yes.
+  3. Middle option: the $39 weekly restaurant list stays, uncapped. New same-day daily tier, the "founding seat", $149 a month, real cap of 3 seats per trade in Chicago, kept for good. Gumroad checkout.
+  4. New Business Openings outreach aimed at commission-only sellers (independent commercial insurance agents, merchant services and POS resellers, equipment finance brokers, bookkeepers).
+  5. Home page: two front doors, "Find work" and "Run the numbers"; every calculator stays on proofnotfluff.com.
+  6. Pest cold email: the session's version (no business named, community area only, no price, asks for a reply). Names go only to a contractor who replies yes, after the Legal desk clears that step.
+- One-line summary on each daily row is written from the City's violation codes and our category words, never the inspector's notes (wording rule, Todd Oct 17, tools/rest_leads.py).
+- Order: moves 1 and 2 first; seat offer, home page and outreach after, each shown to Todd before it goes live or sends.

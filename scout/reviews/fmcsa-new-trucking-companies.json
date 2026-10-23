@@ -1,0 +1,67 @@
+{
+ "slug": "fmcsa-new-trucking-companies",
+ "reviews": [
+  {
+   "reviewer": "demand",
+   "verdict": "FAIL",
+   "score": 2,
+   "round": 1,
+   "date": "2026-10-23",
+   "reasons": [
+    "As a truck insurance agent I would not pay $29 a month for a weekly, business-only list with no phone or email when New Trucking Companies ($39, 1 state) and TruckerDB ($49) ship the MCS-150 phone, cell, email, officer name, insurer and policy date daily with a 7-day card-free trial and free sample digest; a $10 saving does not cover the lookup time the missing phone costs me on every lead.",
+    "The product's own privacy rule strips exactly the fields buyers pay for (phone, email, officer), and the file concedes this lowers its value, so the only edge left is price, which Carrier Hunt already beats with a free tier of 5 leads a day and Apify actors beat at about $5 per 1,000 leads with phone and email included.",
+    "The expected dollars do not move the goal: the row's own math gives a likely $62 net in January (6% of the $1,000 target, $165 in the high case) in a market the file itself calls crowded with at least eight sellers at $39 to $499.",
+    "The search evidence is real but thin: Google autocomplete returns the listed phrases, yet 'new trucking authority list' yields only two suggestions and none of the queries point to a weekly state list without contacts; TruckerDB's $1,630 MRR on 20 subscriptions confirms demand exists only for the daily, contact-rich version.",
+    "Competitor prices and the data source check out as stated, so the fail is about the offering, not the research."
+   ],
+   "checked": [
+    "https://newtruckingcompanies.com/",
+    "https://newtruckingcompanies.com/compare/",
+    "https://www.capterra.com.au/software/1105717/PollyAI",
+    "https://trustmrr.com/startup/truckerdb",
+    "https://data.transportation.gov/Trucking-and-Motorcoaches/Company-Census-File/az4n-8mr2",
+    "https://apify.com/deadwood_data_solutions/fmcsa-new-carrier-leads.md"
+   ]
+  },
+  {
+   "reviewer": "redteam",
+   "verdict": "FAIL",
+   "score": 2,
+   "round": 1,
+   "date": "2026-10-23",
+   "reasons": [
+    "Strictly worse product in a saturated market: eight sellers at $39 to $399 a month, most with phone and email; Carrier Hunt has a free tier; Apify actors sell new-carrier leads with contacts from $5 per 1,000; truckcodex.com browses MC records free; our business-only list without contacts competes on price alone.",
+    "The channel has a measured zero (57 cold emails, 0 replies) and the cited comparable (TruckerDB, $1,630 MRR on 20 subs) got every subscriber from SEO, which we do not have.",
+    "Build and data risk: the source is reachable only from GitHub Actions, the Motus rollout keeps changing the data, and new MC counts fell from 7,798 (Jul) to 2,520 (Sep).",
+    "Doubted number: buyer count 37,000 is every US independent P&C agency, not truck insurers; the reachable set shown is dozens. The 6,157 September count verifies exactly."
+   ],
+   "checked": [
+    "https://newtruckingcompanies.com/compare/",
+    "https://www.insurancejournal.com/news/national/2026/09/24/886639.htm",
+    "https://cabadvantage.com/fmcsas-new-authority-counts-fall-to-zero-after-motus-not-quite/",
+    "https://trustmrr.com/startup/truckerdb",
+    "https://truckcodex.com/authority/?state=WA",
+    "https://apify.com/industrious_emphasis/fmcsa-new-carrier-leads"
+   ]
+  },
+  {
+   "reviewer": "data-legal",
+   "verdict": "PASS",
+   "score": 4,
+   "round": 1,
+   "date": "2026-10-23",
+   "reasons": [
+    "Resale is not restricted: dataset Rights public, FMCSA shares the census at no charge with only liability and snapshot disclaimers, FMCSA acknowledges private vendors reach new registrants through its public listing, and federal works are not copyrightable; the portal terms page returned an error, a residual gap.",
+    "Person data is fixable by field choice: drop email, cell phone, officer names and the phone field; the LLC, INC and CORP suffix filter keeps about 84 percent of September's 8,520 active interstate adds.",
+    "Cadence is real: updated Oct 23, 2026; key on USDOT add_date because Motus registration data is unstable.",
+    "No seller rule broken if raw pulls stay in data/ or sealed.",
+    "Buyer terms must warn about TCPA for any numbers looked up, CAN-SPAM, and never implying FMCSA affiliation."
+   ],
+   "checked": [
+    "https://data.transportation.gov/Trucking-and-Motorcoaches/Company-Census-File/az4n-8mr2",
+    "https://www.fmcsa.dot.gov/registration/fmcsa-data-dissemination-program",
+    "https://www.fmcsa.dot.gov/registration/fraudulent-and-misleading-marketing-new-fmcsa-applicants"
+   ]
+  }
+ ]
+}

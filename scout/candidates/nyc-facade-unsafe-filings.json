@@ -1,0 +1,115 @@
+{
+ "schema": "pnf.opportunity.v1",
+ "slug": "nyc-facade-unsafe-filings",
+ "name": "NYC Unsafe Facade Filings",
+ "status": "new",
+ "addedAt": "2026-10-23",
+ "pitch": "Every NYC building whose Local Law 11 facade report was filed Unsafe or SWARMP in the last 30 days, for facade restoration and masonry contractors; Unsafe conditions must be repaired within 90 days and a shed goes up now.",
+ "categories": [
+  "facade restoration",
+  "masonry",
+  "waterproofing",
+  "sidewalk sheds"
+ ],
+ "provenAbroad": [],
+ "buyer": {
+  "who": "facade restoration and masonry contractors working on NYC buildings over six stories",
+  "count": 92,
+  "countSource": {
+   "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.csv?$select=count(distinct%20applicant_business_name)%20as%20firms&$where=upper(job_description)%20like%20'%25FISP%25'%20and%20issued_date%3E%3D'2025-10-01T00%3A00%3A00'",
+   "date": "2026-10-23"
+  },
+  "reach": "DOB NOW permits name the permittee business on every FISP repair job; email through the firm's own website contact page",
+  "reachSource": {
+   "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json",
+   "date": "2026-10-23"
+  }
+ },
+ "price": {
+  "monthly": 99,
+  "reason": "One facade job runs $100,000 to over $1 million, so one won job pays years; half of BuildDocket's $199 per trade per borough",
+  "competitors": [
+   {
+    "name": "BuildDocket full coverage (one trade, one borough; facade is a listed trade and FISP filings a listed source)",
+    "monthly": 199,
+    "url": "https://builddocket.com/",
+    "date": "2026-10-23"
+   },
+   {
+    "name": "ViolationWatch (owner side compliance alerts, per building, not a lead list)",
+    "monthly": 9,
+    "url": "https://violationwatch.nyc/pricing",
+    "date": "2026-10-23"
+   }
+  ]
+ },
+ "demand": {
+  "searchQueries": [
+   {
+    "q": "local law 11 facade repairs",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=local%20law%2011%20facade",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "local law 11 facade work",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=local%20law%2011%20facade",
+    "date": "2026-10-23"
+   }
+  ],
+  "aiQueries": [
+   {
+    "q": "Habitat: why unsafe facade filings rose to 13.3% of Cycle 9 filings and what repairs cost boards",
+    "url": "https://www.habitatmag.com/Publication-Content/Building-Operations/2026/August-2026/nyc-fisp-safety-rise",
+    "date": "2026-08-21"
+   },
+   {
+    "q": "Local Law 11 contractors NYC: 15 top firms (owners shopping for a facade contractor)",
+    "url": "https://idealrev.co/blog/local-law-11-contractors-nyc/",
+    "date": "2026-09-24"
+   }
+  ]
+ },
+ "data": {
+  "publisher": "NYC Department of Buildings (NYC Open Data)",
+  "dataset": "DOB NOW: Safety, Facades Compliance Filings (xubg-57si)",
+  "subject": "a facade inspection filing for a building over six stories (address, BIN, status, filing date)",
+  "url": "https://data.cityofnewyork.us/Housing-Development/DOB-NOW-Safety-Facades-Compliance-Filings/xubg-57si",
+  "apiUrl": "https://data.cityofnewyork.us/resource/xubg-57si.json",
+  "cadence": "daily",
+  "lastUpdated": "2026-10-21",
+  "recordsPerMonth": 162,
+  "recordsSource": {
+   "url": "https://data.cityofnewyork.us/resource/xubg-57si.csv?$select=current_status,count(distinct%20bin)%20as%20buildings&$where=filing_date%3E%3D'2026-09-01T00%3A00%3A00'%20and%20filing_date%3C%3D'2026-09-30T23%3A59%3A59'&$group=current_status",
+   "date": "2026-10-23"
+  },
+  "countQuery": "https://data.cityofnewyork.us/resource/xubg-57si.csv?$select=current_status,count(distinct%20bin)%20as%20buildings&$where=filing_date%3E%3D'2026-09-01T00%3A00%3A00'%20and%20filing_date%3C%3D'2026-09-30T23%3A59%3A59'&$group=current_status",
+  "countNote": "Distinct buildings (bin) filed in Sept 2026: Unsafe 82, SWARMP 80, Safe 140, no status 37. Filings by month, Unsafe: Jul 44, Aug 50, Sep 83, Oct 1 to 21 108 (Cycle 10 sub cycle A deadline is Feb 21, 2027, so volume rises into winter). Metadata: Update Frequency every weekday, automated.",
+  "apiStable": true,
+  "license": {
+   "commercialUse": "allowed",
+   "url": "https://www.nyc.gov/html/data/terms.html",
+   "date": "2026-10-23",
+   "note": "NYC Open Data terms: datasets are offered for information, the City gives no warranty and is not liable for errors, and users accept the NYC.gov terms plus any extra agency terms; nothing bars commercial reuse. The Open Data Law (Local Law 11 of 2012, Admin Code 23-502(d), https://intro.nyc/local-laws/2012-11) says public datasets are offered with no registration, no license and no limits on use; the agency may ask for credit. No indemnity clause found (unlike Chicago)."
+  }
+ },
+ "build": {
+  "days": 5,
+  "maintHoursMonth": 3,
+  "reuses": [
+   "tools/socrata.py",
+   "tools/leads_app.py",
+   "tools/leads_xlsx.py",
+   "GitHub Actions weekly refresh"
+  ]
+ },
+ "fit": {
+  "samePortal": false,
+  "existingTools": [
+   "tools/socrata.py",
+   "tools/leads_app.py",
+   "tools/leads_xlsx.py"
+  ],
+  "sameBuyerTypes": false
+ },
+ "overlap": "launches/chicago-exterior-violations.md (exterior repair citations, on hold as thin); this is a different city and signal. Owner and engineer person names in the dataset are dropped; many buildings are co-op or condo buildings, the same question the elevator spec raised for Legal."
+}

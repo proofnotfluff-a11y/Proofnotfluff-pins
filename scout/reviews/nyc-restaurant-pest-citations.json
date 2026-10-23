@@ -1,0 +1,67 @@
+{
+ "slug": "nyc-restaurant-pest-citations",
+ "reviews": [
+  {
+   "reviewer": "data-legal",
+   "verdict": "PASS",
+   "score": 4,
+   "round": 1,
+   "date": "2026-10-23",
+   "reasons": [
+    "Commercial reuse is allowed: NYC Open Data terms only disclaim warranty and liability, the dataset carries no extra agency terms, and the Open Data Law (Admin Code 23-502(d)) says public datasets come with no registration, license or limits on use; cite DOHMH dataset 43nn-pn8j and the pull date.",
+    "No field names a private person: the 31 columns are business, inspection, violation, grade and geography fields; a sole proprietor's DBA could be a personal name, so store business fields only and keep the list out of the public repo.",
+    "The source is live: rows updated 2026-10-22, daily and automated, latest inspection 2026-10-20, 295,422 rows.",
+    "Rows are sustained or not yet adjudicated violations and may hold errors: label each as a cited violation subject to appeal, carry the Legal README notice, never call a restaurant infested or failed; no NYC or NYS rule found barring marketing use (NYS requires a DEC registration for firms advertising pesticide services).",
+    "Constitution 2: any public page naming a business with a failed record is major and goes to Todd; names stay inside the paid file and the cold email names no restaurant."
+   ],
+   "checked": [
+    "https://www.nyc.gov/html/data/terms.html",
+    "https://intro.nyc/local-laws/2012-11",
+    "https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/43nn-pn8j",
+    "https://data.cityofnewyork.us/api/views/43nn-pn8j.json",
+    "https://dec.ny.gov/environmental-protection/pesticides/business-agency-information"
+   ]
+  },
+  {
+   "reviewer": "demand",
+   "verdict": "PASS",
+   "score": 3,
+   "round": 1,
+   "date": "2026-10-23",
+   "reasons": [
+    "As a small NYC rodent operator I would try $49 a month: about 900 distinct restaurants a month are cited under 04K, 04L, 04M, 04N and 08A with phone numbers on every row, so one won account repays a year.",
+    "Free city tools look up one restaurant at a time with no violation or date filter, and pulling pest codes from NYC Open Data takes a query a 3-truck operator will not write.",
+    "Competitor prices check out: RatRadar Territory Leads $299 a month per metro, Apify scrapemint $10 per 1,000 rows with no pest filter, so $49 sits in an open gap, though RatRadar adds 311 data and repeat-offender scoring.",
+    "The Chicago twin has zero payers, the closest real test of this offer; the reviewer saw $0.00 on its Gumroad page.",
+    "Seller-side risk caps the score: the 597-firm roster has no contact fields, 08A is a structural condition not a live infestation, and most cited restaurants already have a pest vendor, so the pitch is a switch pitch."
+   ],
+   "checked": [
+    "https://ratradar.com/b2b/pest-control",
+    "https://apify.com/scrapemint/restaurant-inspection-leads",
+    "https://proofnotfluff.gumroad.com/l/mlyiiz",
+    "https://data.cityofnewyork.us/resource/43nn-pn8j.json",
+    "https://data.ny.gov/resource/h8u2-6ejg.json"
+   ]
+  },
+  {
+   "reviewer": "redteam",
+   "verdict": "FAIL",
+   "score": 2,
+   "round": 1,
+   "date": "2026-10-23",
+   "reasons": [
+    "The same product with the same buyer and motion is live for Chicago at $39 with 0 payers from 57 emails and its outreach is paused; a second city tests the city, not the product.",
+    "597 firms are real but hard to reach: the DEC roster has no email, phone or website and many are sole proprietors; the firms with sales staff already buy RatRadar at $299.",
+    "A pest citation rarely means a vendor switch: most restaurants already have a pest contract and call it.",
+    "Doubted number: 926 places is driven by code 08A (904 places, a harborage condition); live pest codes in September were 04K 56, 04L 342, 04M 214, 04N 561 visits."
+   ],
+   "checked": [
+    "https://ratradar.com/b2b/pest-control",
+    "https://data.ny.gov/resource/h8u2-6ejg.json",
+    "https://data.cityofnewyork.us/resource/43nn-pn8j.json",
+    "https://mandmpestcontrol.com/pest-control-guide-for-nyc-restaurant-inspections/",
+    "https://instantly.ai/blog/cold-email-reply-rate-benchmarks"
+   ]
+  }
+ ]
+}

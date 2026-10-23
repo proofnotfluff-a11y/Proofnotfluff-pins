@@ -1,0 +1,124 @@
+{
+ "schema": "pnf.opportunity.v1",
+ "slug": "fmcsa-insurance-cancellations",
+ "name": "Truck Insurance Cancellations by State",
+ "status": "new",
+ "addedAt": "2026-10-23",
+ "pitch": "Trucking companies whose federal liability insurance filing was cancelled and not replaced this week, for truck insurance agencies: the carrier must refile within days or lose its authority to run",
+ "categories": [
+  "commercial truck insurance",
+  "insurance renewals"
+ ],
+ "provenAbroad": [
+  {
+   "what": "Same model, other sellers in the US market: TruckerDB sells daily new DOT carrier lists plus insurance renewal alerts to agents, dispatchers and lenders; Stripe-verified $1,630 MRR on 20 subscriptions, founded April 2026",
+   "url": "https://trustmrr.com/startup/truckerdb",
+   "date": "2026-10-23"
+  },
+  {
+   "what": "New Trucking Companies sells FMCSA insurance filing and suspension alerts by state from $39 a month with a 7-day trial",
+   "url": "https://newtruckingcompanies.com/",
+   "date": "2026-10-23"
+  }
+ ],
+ "buyer": {
+  "who": "Independent insurance agencies that write commercial truck insurance (a subset of the 37,000 US independent P&C agencies; the trucking share is not counted)",
+  "count": 37000,
+  "countSource": {
+   "url": "https://www.insurancejournal.com/news/national/2026/09/24/886639.htm",
+   "date": "2026-09-24"
+  },
+  "countNote": "all independent P&C agencies; trucking writers not counted",
+  "reach": "Agencies list their business inbox and phone on their own websites; trade roundups of truck insurance agencies link to them",
+  "reachSource": {
+   "url": "https://numeo.ai/blog/top-30-commercial-truck-insurance-agencies",
+   "date": "2026-02-08"
+  }
+ },
+ "price": {
+  "monthly": 49,
+  "reason": "A cancelled carrier is a hotter lead than a new one (it already buys cover and must replace it now); TruckerDB charges $99 for the tier that adds insurance renewals",
+  "competitors": [
+   {
+    "name": "TruckerDB Pro (adds insurance renewals)",
+    "monthly": 99,
+    "url": "https://newtruckingcompanies.com/compare/",
+    "date": "2026-10-23"
+   },
+   {
+    "name": "New Trucking Companies, 1 state (includes insurance filing events)",
+    "monthly": 39,
+    "url": "https://newtruckingcompanies.com/",
+    "date": "2026-10-23"
+   },
+   {
+    "name": "AuthorityAlerts Pro",
+    "monthly": 149,
+    "url": "https://newtruckingcompanies.com/compare/",
+    "date": "2026-10-23"
+   }
+  ]
+ },
+ "demand": {
+  "searchQueries": [
+   {
+    "q": "fmcsa insurance cancellation",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=fmcsa+insurance+cancellation",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "fmcsa pending insurance cancellation",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=fmcsa+insurance+cancellation",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "commercial trucking insurance leads",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=trucking+insurance+leads",
+    "date": "2026-10-23"
+   }
+  ],
+  "aiQueries": []
+ },
+ "data": {
+  "publisher": "Federal Motor Carrier Safety Administration (US DOT open data portal, Socrata)",
+  "dataset": "Motus InsHist, All With History (3uet-3z4i), joined to the Company Census File (az4n-8mr2) for name and state",
+  "subject": "a carrier's cancelled federal insurance filing (form, insurer, effective and cancel dates, USDOT and docket number)",
+  "url": "https://data.transportation.gov/d/3uet-3z4i",
+  "apiUrl": "https://data.transportation.gov/resource/3uet-3z4i.json",
+  "cadence": "weekly",
+  "lastUpdated": "2026-10-18",
+  "recordsPerMonth": 2112,
+  "recordsSource": {
+   "url": "https://data.transportation.gov/resource/3uet-3z4i.json?ins_form_code=BMC-91X&filing_status_reason=CANCEL&$where=cancl_effective_date%20like%20'202609%25'&$select=count(distinct%20usdot_number)%20as%20sep_cancel_carriers",
+   "date": "2026-10-23"
+  },
+  "countQuery": "https://data.transportation.gov/resource/3uet-3z4i.json?ins_form_code=BMC-91X&filing_status_reason=CANCEL&$where=cancl_effective_date%20like%20'202609%25'&$select=count(distinct%20usdot_number)",
+  "recordsNote": "Counted Oct 23, 2026: 2,112 distinct carriers with a BMC-91X liability filing cancelled (status CANCEL, not TERM/REPL) effective in Sept 2026; 2,170 rows (9,489 more were replaced). Aug 2026: 3,560 rows. Not yet split by state or filtered to business entities (needs the census join). FMCSA says Motus insurance data is updated daily; the portal showed rows updated Oct 18, so weekly is what we can promise.",
+  "privacy": "Join to the census and keep only carriers whose legal name carries an entity suffix; drop officer, cell phone and email fields. Policy numbers stay out of the product.",
+  "apiStable": false,
+  "apiNote": "Motus replaced the legacy insurance datasets in 2026 (this one created Jun 3, 2026; the pending-insurance history file stopped May 14, 2026), so ids may change again",
+  "license": {
+   "commercialUse": "allowed",
+   "url": "https://www.fmcsa.dot.gov/registration/fmcsa-data-dissemination-program",
+   "date": "2026-10-23",
+   "note": "FMCSA says it shares its census and safety data at no charge to the public; the page sets no resale or reuse limits, only disclaimers (a snapshot, informational only, no government liability). The portal metadata (api/views/metadata/v1) carries Rights: public and no license field. No restriction found; a US government work. Reviewer should confirm no separate DOT portal terms apply."
+  }
+ },
+ "build": {
+  "days": 8,
+  "maintHoursMonth": 4,
+  "reuses": [
+   "tools/socrata.py",
+   "tools/leads_xlsx.py"
+  ]
+ },
+ "fit": {
+  "samePortal": false,
+  "existingTools": [
+   "tools/socrata.py"
+  ],
+  "sameBuyerTypes": false
+ },
+ "overlap": "Shares source, buyer and reach with fmcsa-new-trucking-companies; best sold as a second tier of the same product",
+ "risks": "Many cancellations are carriers leaving the business, not shopping for cover. Motus data quality was reported as messy after the May 2026 launch (Overdrive coverage via Fusable, Jun 15, 2026)."
+}

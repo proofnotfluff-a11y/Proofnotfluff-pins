@@ -33,6 +33,14 @@ PROBES = {
     "seattle_500k_contractor_by_year": ("https://data.seattle.gov/resource/76t5-zqzr.json",
         {"$select": "date_extract_y(issueddate) AS yr,count(*),count(contractorcompanyname)",
          "$where": "issueddate>='2019-01-01' AND estprojectcost>=500000", "$group": "yr", "$order": "yr", "$limit": 20}),
+    # Radar fix round (Oct 23): NYC restaurants with live pest evidence (04K rats, 04L mice, 04M roaches, 04N flies), Sept 2026,
+    # without 08A (a harborage condition); distinct restaurants, counts only
+    "nyc_live_pest_places_sep2026": ("https://data.cityofnewyork.us/resource/43nn-pn8j.json",
+        {"$select": "count(distinct camis) AS places", "$where": "violation_code in('04K','04L','04M','04N') AND "
+         "inspection_date>='2026-09-01T00:00:00' AND inspection_date<'2026-10-01T00:00:00'"}),
+    "nyc_live_pest_places_by_code_sep2026": ("https://data.cityofnewyork.us/resource/43nn-pn8j.json",
+        {"$select": "violation_code,count(distinct camis) AS places", "$where": "violation_code in('04K','04L','04M','04N','08A') AND "
+         "inspection_date>='2026-09-01T00:00:00' AND inspection_date<'2026-10-01T00:00:00'", "$group": "violation_code", "$limit": 10}),
 }
 COLUMNS = {
     "chicago_food_inspections": "https://data.cityofchicago.org/api/views/4ijn-s7e5.json",

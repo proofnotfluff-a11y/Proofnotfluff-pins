@@ -1,0 +1,66 @@
+{
+ "slug": "colorado-new-business-entities",
+ "reviews": [
+  {
+   "reviewer": "data-legal",
+   "verdict": "PASS",
+   "score": 4,
+   "round": 1,
+   "date": "2026-10-23",
+   "reasons": [
+    "Resale is allowed: the dataset is Public Domain, data.colorado.gov terms set no limit on commercial use, and the Secretary of State sells the same weekly file itself; the product must carry the State's data disclaimer word for word and note the State may require distribution to stop.",
+    "Person data is real but fixable: in a 40-row sample of Oct 22 LLCs, 30 registered agents were individuals and about 22 principal addresses looked residential, so drop every agent field and the street line where the agent is a person or the address has an Apt, Unit or # marker, keeping entity name, type, city, ZIP and formation date (about 12,000 a month remain).",
+    "The cadence is real: rows updated Oct 22, 2026, daily; 9,852 domestic LLCs and corporations formed Oct 1 to Oct 22.",
+    "No Colorado rule blocks it: C.R.S. 6-1-733 covers invoice-style filing solicitations only; the Terms must tell buyers not to send invoice-style or government-looking mail.",
+    "No seller rule broken; FreshFilings and Apify actors already sell this feed, so differentiation rests on the city filter and the Excel file."
+   ],
+   "checked": [
+    "https://data.colorado.gov/terms",
+    "https://data.colorado.gov/api/views/4ykn-tg5h.json",
+    "https://www.coloradosos.gov/pubs/business/PDFFillable/WeeklyReportingServiceOfBusinessData.pdf",
+    "https://colorado.public.law/statutes/crs_6-1-733"
+   ]
+  },
+  {
+   "reviewer": "redteam",
+   "verdict": "FAIL",
+   "score": 2,
+   "round": 1,
+   "date": "2026-10-23",
+   "reasons": [
+    "No moat: the Colorado SOS sells the same weekly new-filing file for $200 a year and says the identical data is free on the state portal; FreshFilings sells a daily Colorado CSV for $49 with a free trial and free monthly pages; at least six Apify actors return the same feed with more fields.",
+    "The 'business address' pitch is false for many rows: in Sept 2026, 679 of 11,043 new LLCs used one registered-agent virtual office (1500 N Grant St, Denver) and a 25-row Oct 21 sample had 12 at agent addresses and most of the rest at homes; after dropping those the list is a few thousand mostly unreachable shells.",
+    "No evidence CPAs buy this: the one buyer thread found has no accountant willing to pay; the DORA roster has no email or website, so every email needs a hand lookup; the seller's funnel is 0 replies from 57.",
+    "Doubted number: 1,406 reachable firms; the count is right but the roster gives name, city and ZIP only, and includes shells. The 12,282 September count is exact."
+   ],
+   "checked": [
+    "https://data.colorado.gov/resource/7s5z-vewr.json",
+    "https://data.colorado.gov/resource/4ykn-tg5h.json",
+    "https://www.coloradoregisteredagent.com/?p=3839",
+    "https://www.coloradosos.gov/pubs/business/PDFFillable/WeeklyReportingServiceOfBusinessData.pdf",
+    "https://freshfilings.onrender.com/new-businesses/co",
+    "https://www.accountingweb.co.uk/node/230357"
+   ]
+  },
+  {
+   "reviewer": "demand",
+   "verdict": "FAIL",
+   "score": 2,
+   "round": 1,
+   "date": "2026-10-23",
+   "reasons": [
+    "The buyer already gets this free: the Secretary of State says its $200 a year weekly report is free on the Colorado portal, where the dataset can be filtered and exported by anyone.",
+    "Competitors are better or cheaper: FreshFilings sends the full list daily with agents and addresses for $49 with a trial; Apify sells the rows at $0.01 each.",
+    "The only willingness-to-pay evidence argues against it: 0 of 11 accountants in the cited thread would pay for a new-company digest.",
+    "Likely case is $64 net in January, 6 percent of the goal.",
+    "All three search entries point to the same generic suggest URL."
+   ],
+   "checked": [
+    "https://freshfilings.onrender.com/new-businesses/co",
+    "https://www.accountingweb.co.uk/node/230357",
+    "https://www.coloradosos.gov/pubs/business/PDFFillable/WeeklyReportingServiceOfBusinessData.pdf",
+    "https://data.colorado.gov/Business/Business-Entities-in-Colorado/4ykn-tg5h"
+   ]
+  }
+ ]
+}

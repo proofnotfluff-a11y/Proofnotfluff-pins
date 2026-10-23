@@ -218,6 +218,8 @@ def score_one(c, today):
     held = c.get("status") in ("go", "built")
     if ks:
         status, why = "killed", ks
+    elif c.get("status") == "dropped" and c.get("dropReason"):   # a FAIL the fix round cannot answer honestly
+        status, why = "dropped", [c["dropReason"]]
     else:
         rs, why = review_state(c.get("slug"), total)
         status = c.get("status") if held else rs or ("review" if total >= REVIEW_FLOOR else "parked")
@@ -353,6 +355,8 @@ def selftest():
     cases.append(("second FAIL on a strong idea goes to Todd", rv([F("demand"), F("demand", 2)], 80) == "todd", None))
     cases.append(("missing reviewer stays in review", rv([P("demand")]) == "review", None))
     REV = saved
+    dr = score_one({**copy.deepcopy(base), "status": "dropped", "dropReason": "demand FAIL has no honest fix"}, today)
+    cases.append(("a dropped idea stays dropped with its reason", dr["status"] == "dropped" and dr["why"], dr["why"]))
     cases.append(("validate catches an email", any("email" in p for p in validate({**base, "note": "a@b.com"}, "t.json")), None))
     cases.append(("validate catches a dash", any("dash" in p for p in validate({**base, "name": "a — b"}, "t.json")), None))
     for label, okay, detail in cases:

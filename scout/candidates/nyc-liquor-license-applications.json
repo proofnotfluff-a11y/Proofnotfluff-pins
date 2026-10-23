@@ -1,0 +1,126 @@
+{
+ "schema": "pnf.opportunity.v1",
+ "slug": "nyc-liquor-license-applications",
+ "name": "NYC New Liquor License Applications",
+ "status": "new",
+ "addedAt": "2026-10-23",
+ "pitch": "Every bar, restaurant and caterer in the five boroughs with a liquor license application pending at the State Liquor Authority, for hood cleaning, linen, pest and kitchen service firms; they apply weeks before opening, before vendors are picked.",
+ "categories": [
+  "kitchen exhaust hood cleaning",
+  "restaurant services",
+  "liquor liability insurance",
+  "merchant services"
+ ],
+ "provenAbroad": [
+  {
+   "what": "Ontario Liquor Licence Leads, new applications sold as vendor leads in Canada",
+   "url": "https://apify.com/siroluai/ontario-liquor-licence-leads",
+   "date": "2026-10-23"
+  },
+  {
+   "what": "New Liquor License Leads for Texas and California sold to suppliers, POS and insurance reps",
+   "url": "https://apify.com/rook-data-tools/new-liquor-license-leads",
+   "date": "2026-10-23"
+  }
+ ],
+ "buyer": {
+  "who": "FDNY certified commercial kitchen exhaust cleaning companies serving NYC",
+  "count": 100,
+  "countSource": {
+   "url": "https://www.nyc.gov/assets/fdny/downloads/pdf/business/approved-companies-commercial-cooking.pdf",
+   "date": "2026-10-15"
+  },
+  "reach": "FDNY's public list of certified cooking exhaust servicing companies (business name and address; 67 of 100 in the five boroughs); email through each firm's own website",
+  "reachSource": {
+   "url": "https://www.nyc.gov/assets/fdny/downloads/pdf/business/approved-companies-commercial-cooking.pdf",
+   "date": "2026-10-15"
+  }
+ },
+ "price": {
+  "monthly": 39,
+  "reason": "Same band as our Chicago restaurant list; a new restaurant hood contract is recurring quarterly service, so one account pays a year",
+  "competitors": [
+   {
+    "name": "CSVFirst NYC New Restaurant Openings dataset (Gumroad, page says $999 a month subscription with daily updates)",
+    "monthly": 999,
+    "url": "https://csvfirst.pythonanywhere.com/csv/nyc-newly-licensed-restaurant-dataset/",
+    "date": "2026-10-23"
+   },
+   {
+    "name": "Apify Liquor License New Openings Tracker (NY included, from $8.25 per 1,000 results, no monthly plan)",
+    "monthly": null,
+    "url": "https://apify.com/malonestar/liquor-license-new-openings-tracker",
+    "date": "2026-10-23"
+   }
+  ]
+ },
+ "demand": {
+  "searchQueries": [
+   {
+    "q": "new york liquor license application",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=new%20liquor%20license%20applications",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "current liquor licence applications",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=new%20liquor%20license%20applications",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "commercial hood cleaning leads",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=hood%20cleaning%20leads",
+    "date": "2026-10-23"
+   }
+  ],
+  "aiQueries": [
+   {
+    "q": "Starfleet Media sells a pre-opening restaurants database to restaurant vendors (page modified 2026-08-10, price on request)",
+    "url": "https://starfleetmedia.com/solutions/preopening-restaurants-resource/",
+    "date": "2026-08-10"
+   }
+  ]
+ },
+ "data": {
+  "publisher": "New York State Liquor Authority (data.ny.gov)",
+  "dataset": "Current SLA Pending Licenses (f8i8-k2gm)",
+  "subject": "a pending liquor license application at a business premises (legal business name, license kind, premises address, received date)",
+  "url": "https://data.ny.gov/Economic-Development/Current-SLA-Pending-Licenses/f8i8-k2gm",
+  "apiUrl": "https://data.ny.gov/resource/f8i8-k2gm.json",
+  "cadence": "daily",
+  "lastUpdated": "2026-10-22",
+  "recordsPerMonth": 203,
+  "recordsSource": {
+   "url": "https://data.ny.gov/resource/f8i8-k2gm.csv?$select=premises_county,count(application_id)&$where=received_date%3E%3D'2026-09-01'%20and%20received_date%3C'2026-10-01'&$group=premises_county&$order=count(application_id)%20DESC",
+   "date": "2026-10-23"
+  },
+  "countQuery": "https://data.ny.gov/resource/f8i8-k2gm.csv?$select=premises_county,count(application_id)&$where=received_date%3E%3D'2026-09-01'%20and%20received_date%3C'2026-10-01'&$group=premises_county&$order=count(application_id)%20DESC",
+  "countNote": "Applications received in Sept 2026 and still pending, five boroughs: New York 66, Kings 60, Queens 53, Bronx 19, Richmond 5 (statewide 396). All license kinds: statewide, restaurants are 1,172 and food and beverage businesses 472 of 2,937 pending; grocery and liquor stores (about a third) would be filtered out, so the paid list is nearer 110 to 130 a month (not counted). Latest received_date in the data 2026-10-22; Posting Frequency Daily.",
+  "apiStable": true,
+  "license": {
+   "commercialUse": "unclear",
+   "url": "https://data.ny.gov/api/views/f8i8-k2gm.json",
+   "date": "2026-10-23",
+   "note": "The dataset metadata names no license. The Open NY terms page (data.ny.gov) could not be read from the cloud; a 2016 summary of those terms says data may be used as you wish unless malicious, with no attribution or commercial bar, but users indemnify the State (https://reinventalbany.org/2016/08/ny-states-open-ny-dips-toe-into-creative-commons-licensing). Legal desk must read the current page."
+  }
+ },
+ "build": {
+  "days": 4,
+  "maintHoursMonth": 3,
+  "reuses": [
+   "tools/socrata.py",
+   "tools/lic_app.py",
+   "tools/lic_xlsx.py",
+   "GitHub Actions weekly refresh"
+  ]
+ },
+ "fit": {
+  "samePortal": false,
+  "existingTools": [
+   "tools/socrata.py",
+   "tools/lic_app.py",
+   "tools/lic_xlsx.py"
+  ],
+  "sameBuyerTypes": true
+ },
+ "overlap": "launches/chicago-new-business-licenses.md: same pre-opening signal and same buyer types in a second market. Pairs with nyc-restaurant-pest-citations (one NYC restaurant-vendor bundle)."
+}

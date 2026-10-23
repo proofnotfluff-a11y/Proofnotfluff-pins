@@ -1,0 +1,133 @@
+{
+ "schema": "pnf.opportunity.v1",
+ "slug": "nyc-restaurant-pest-citations",
+ "name": "NYC Restaurant Pest Citations",
+ "status": "new",
+ "addedAt": "2026-10-23",
+ "pitch": "Every NYC restaurant the Health Department cited for rats, mice, roaches or flies in the last 30 days, for small commercial pest control firms; the citation means a reinspection is coming and the owner needs a vendor now.",
+ "categories": [
+  "pest control",
+  "commercial pest control",
+  "restaurant services"
+ ],
+ "provenAbroad": [
+  {
+   "what": "RatRadar sells restaurant pest citation leads to pest control firms in Boston, Chicago, NYC and San Francisco at $299 a month a metro",
+   "url": "https://ratradar.com/b2b/pest-control",
+   "date": "2026-10-23"
+  },
+  {
+   "what": "Our own Chicago Restaurant Inspection Leads (same signal, live at $39 a month on the Chicago portal)",
+   "url": "https://proofnotfluff.gumroad.com/l/mlyiiz",
+   "date": "2026-10-18"
+  }
+ ],
+ "buyer": {
+  "who": "small structural and rodent pest control businesses in New York City",
+  "count": 597,
+  "countSource": {
+   "url": "https://data.ny.gov/resource/h8u2-6ejg.csv?$select=count(distinct%20registration_number)%20as%20nyc_structural_pest_businesses&$where=dec_region%3D'2'%20and%20pesticide_category_code%3D'7a'",
+   "date": "2026-10-23"
+  },
+  "reach": "NYS DEC public roster of registered pesticide businesses (business name, city, category 7a Structural and Rodent) gives the firm; email through the firm's own website contact page",
+  "reachSource": {
+   "url": "https://data.ny.gov/resource/h8u2-6ejg.json",
+   "date": "2026-10-23"
+  }
+ },
+ "price": {
+  "monthly": 49,
+  "reason": "NYC is about 8 times Chicago's monthly pest volume (926 places in Sept vs about 117 a week of all fail kinds in Chicago), so $10 over Chicago's $39 and far under RatRadar's $299 territory plan",
+  "competitors": [
+   {
+    "name": "RatRadar Territory Leads (one metro, monthly refresh)",
+    "monthly": 299,
+    "url": "https://ratradar.com/b2b/pest-control",
+    "date": "2026-10-23"
+   },
+   {
+    "name": "Apify Restaurant Inspection Leads (NYC included, $10 per 1,000 rows, pay per result, no monthly plan)",
+    "monthly": null,
+    "url": "https://apify.com/scrapemint/restaurant-inspection-leads",
+    "date": "2026-10-23"
+   }
+  ]
+ },
+ "demand": {
+  "searchQueries": [
+   {
+    "q": "commercial pest control leads",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=pest%20control%20leads",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "buy pest control leads",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=pest%20control%20leads",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "pest control leads for sale",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=pest%20control%20leads",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "nyc restaurant inspection data",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=nyc%20restaurant%20inspection",
+    "date": "2026-10-23"
+   }
+  ],
+  "aiQueries": [
+   {
+    "q": "A pest control sales guide says health inspection violations create immediate urgency for restaurant prospects (undated page, read today)",
+    "url": "https://www.convex.com/blog/pest-control-leads-property-intelligence-restaurant-prospects",
+    "date": "2026-10-23"
+   }
+  ]
+ },
+ "data": {
+  "publisher": "NYC Department of Health and Mental Hygiene (NYC Open Data)",
+  "dataset": "DOHMH New York City Restaurant Inspection Results (43nn-pn8j)",
+  "subject": "a restaurant inspection result with violation codes at a named food business",
+  "url": "https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/43nn-pn8j",
+  "apiUrl": "https://data.cityofnewyork.us/resource/43nn-pn8j.json",
+  "cadence": "daily",
+  "lastUpdated": "2026-10-22",
+  "recordsPerMonth": 926,
+  "recordsSource": {
+   "url": "https://data.cityofnewyork.us/resource/43nn-pn8j.json?$select=date_trunc_ym(inspection_date)%20as%20m,count(distinct%20camis)%20as%20pest_places&$where=violation_code%20in('04K','04L','04M','04N','08A')%20and%20inspection_date%3E'2026-06-30T23%3A59%3A59'&$group=m&$order=m",
+   "date": "2026-10-23"
+  },
+  "countQuery": "https://data.cityofnewyork.us/resource/43nn-pn8j.json?$select=date_trunc_ym(inspection_date)%20as%20m,count(distinct%20camis)%20as%20pest_places&$where=violation_code%20in('04K','04L','04M','04N','08A')%20and%20inspection_date%3E'2026-06-30T23%3A59%3A59'&$group=m&$order=m",
+  "countNote": "Distinct restaurants (camis) with a pest code 04K rats, 04L mice, 04M roaches, 04N flies or 08A not vermin proof: Jul 809, Aug 918, Sep 926, Oct 1 to 22 544. Metadata: Update Frequency Daily, automated, rows updated 2026-10-22.",
+  "apiStable": true,
+  "license": {
+   "commercialUse": "allowed",
+   "url": "https://www.nyc.gov/html/data/terms.html",
+   "date": "2026-10-23",
+   "note": "NYC Open Data terms: datasets are offered for information, the City gives no warranty and is not liable for errors, and users accept the NYC.gov terms plus any extra agency terms; nothing bars commercial reuse. The Open Data Law (Local Law 11 of 2012, Admin Code 23-502(d), https://intro.nyc/local-laws/2012-11) says public datasets are offered with no registration, no license and no limits on use; the agency may ask for credit. No indemnity clause found (unlike Chicago)."
+  }
+ },
+ "build": {
+  "days": 4,
+  "maintHoursMonth": 3,
+  "reuses": [
+   "tools/socrata.py",
+   "tools/rest_leads.py",
+   "tools/rest_app.py",
+   "tools/rest_xlsx.py",
+   "tools/leads_cities.py",
+   "GitHub Actions weekly refresh"
+  ]
+ },
+ "fit": {
+  "samePortal": false,
+  "existingTools": [
+   "tools/rest_leads.py",
+   "tools/rest_app.py",
+   "tools/rest_xlsx.py",
+   "tools/socrata.py"
+  ],
+  "sameBuyerTypes": true
+ },
+ "overlap": "launches/chicago-restaurant-inspection-leads.md: same product in a second city; Todd paused that product's outreach until the licenses product is live (decision 4, Oct 22). Hood cleaning is left out: ventilation code 10D hit only 50 NYC places in Sept, too thin."
+}

@@ -1,0 +1,96 @@
+{
+ "schema": "pnf.opportunity.v1",
+ "slug": "ttb-new-alcohol-permits",
+ "name": "New Federal Alcohol Permits Weekly",
+ "status": "new",
+ "addedAt": "2026-10-23",
+ "pitch": "Every new federal basic permit for wineries, distilleries, alcohol importers and wholesalers each week, for label printers, packaging and bottling suppliers who want to reach a new producer before it picks vendors",
+ "categories": [
+  "label printing",
+  "packaging",
+  "bottling equipment",
+  "beverage distribution"
+ ],
+ "provenAbroad": [
+  {
+   "what": "UK: lists of newly formed companies sold to service firms by subscription (Companies House directory about 30 GBP a month, cheaper digest software), the same new-entity model on a different register",
+   "url": "https://www.accountingweb.co.uk/any-answers/experience-of-buying-newly-incorporated-company-details",
+   "date": "2013-10-29"
+  },
+  {
+   "what": "US: a TTB permittee scraper is sold per result to spirits brokers, glass and closure vendors, label printers and bottling-line makers",
+   "url": "https://apify.com/haketa/ttb-alcohol-permittee-scraper",
+   "date": "2026-10-23"
+  }
+ ],
+ "buyer": {
+  "who": "Label printers and packaging suppliers that serve wineries and distilleries",
+  "count": 1465,
+  "countSource": {
+   "url": "https://www.ibisworld.com/united-states/number-of-businesses/packaging-labeling-services/1501",
+   "date": "2026-10-23"
+  },
+  "countNote": "IBISWorld: 1,465 Packaging and Labeling Services businesses in 2026; label printers inside general printing are not counted",
+  "reach": "Suppliers publish a business inbox on their own websites; the buyer trades are named by an existing reseller of this data",
+  "reachSource": {
+   "url": "https://apify.com/haketa/ttb-alcohol-permittee-scraper",
+   "date": "2026-10-23"
+  }
+ },
+ "price": {
+  "monthly": 29,
+  "reason": "Lowest band price; no competitor with a public monthly price was found, and the weekly volume is thin",
+  "competitors": []
+ },
+ "demand": {
+  "searchQueries": [
+   {
+    "q": "ttb permit list",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=ttb+permit+list",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "ttb wholesaler permit list",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=ttb+permit+list",
+    "date": "2026-10-23"
+   }
+  ],
+  "aiQueries": []
+ },
+ "data": {
+  "publisher": "Alcohol and Tobacco Tax and Trade Bureau (TTB), US Treasury",
+  "dataset": "Basic Permits Issued Since the Last Publication (FOIA frequently requested list, CSV)",
+  "subject": "a newly permitted alcohol business (permit number, owner and operating name, premises address, industry type)",
+  "url": "https://www.ttb.gov/public-information/foia/list-of-permittees",
+  "apiUrl": "https://www.ttb.gov/system/files/2025-04/FRL_Basic_Permits_Issued_Since_the_Last_Publication.csv",
+  "cadence": "weekly",
+  "lastUpdated": "2026-10-19",
+  "recordsPerMonth": null,
+  "recordsSource": null,
+  "countQuery": "https://www.ttb.gov/system/files/2025-04/FRL_Basic_Permits_Issued_Since_the_Last_Publication.csv",
+  "recordsNote": "Not counted per month: the file holds only the latest weekly publication. The Oct 19, 2026 file has 78 rows (25 importers, 26 wholesalers, 12 distilled spirits plants, 15 wine producers), all with a business suffix on the owner name. A monthly count needs four weekly snapshots. Breweries are not published (IRC 6103).",
+  "privacy": "All 78 owner names in the Oct 19 file carry a business suffix; keep that filter so a permit held by a named person never ships.",
+  "apiStable": true,
+  "license": {
+   "commercialUse": "allowed",
+   "url": "https://www.ttb.gov/about-ttb/linking-policy",
+   "date": "2026-10-23",
+   "note": "TTB says TTB.gov is a public domain website and anyone may download its information at no cost without special permission."
+  }
+ },
+ "build": {
+  "days": 4,
+  "maintHoursMonth": 2,
+  "reuses": [
+   "tools/leads_xlsx.py",
+   "tools/edition_delta.py"
+  ]
+ },
+ "fit": {
+  "samePortal": false,
+  "existingTools": [],
+  "sameBuyerTypes": false
+ },
+ "overlap": "",
+ "risks": "Thin: about 78 new permits a week nationally, and importers and wholesalers are weaker leads for label printers than producers. No paying competitor proves a monthly price."
+}

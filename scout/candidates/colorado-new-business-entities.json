@@ -1,0 +1,127 @@
+{
+ "schema": "pnf.opportunity.v1",
+ "slug": "colorado-new-business-entities",
+ "name": "Colorado New Business Filings",
+ "status": "dropped",
+ "addedAt": "2026-10-23",
+ "pitch": "Every LLC and corporation formed in Colorado this month with its business address and city, for small CPA firms, bookkeepers and business insurance agencies; a new company needs books, a tax election and a policy in its first weeks.",
+ "categories": [
+  "bookkeeping",
+  "accounting",
+  "business insurance",
+  "merchant services"
+ ],
+ "provenAbroad": [
+  {
+   "what": "UK Recently Formed: weekly lists of newly registered companies near a postcode sold to accountants at 10 pounds a month (2012 launch)",
+   "url": "https://cambridgenetwork.co.uk/news/accountants-generate-new-business-ps10-month",
+   "date": "2012-10-17"
+  },
+  {
+   "what": "UK New Company Leads from Companies House by SIC code",
+   "url": "https://apify.com/kaz_kakyo/uk-new-companies",
+   "date": "2026-10-23"
+  }
+ ],
+ "buyer": {
+  "who": "licensed public accounting firms in Colorado",
+  "count": 1406,
+  "countSource": {
+   "url": "https://data.colorado.gov/resource/7s5z-vewr.csv?$select=licensetype,count(licensenumber)%20as%20n&$where=state%3D'CO'%20and%20licensestatusdescription%3D'Active'%20and%20licensetype%20in('FRM')&$group=licensetype",
+   "date": "2026-10-23"
+  },
+  "reach": "Colorado DORA public license roster names every active Public Accounting Firm (license type FRM) with its city; email through the firm's own website",
+  "reachSource": {
+   "url": "https://data.colorado.gov/resource/7s5z-vewr.json",
+   "date": "2026-10-23"
+  }
+ },
+ "price": {
+  "monthly": 29,
+  "reason": "Our floor price; FreshFilings already sells the same Colorado feed at $49, so we compete on city filters and an Excel file, not price",
+  "competitors": [
+   {
+    "name": "FreshFilings Leads, Colorado daily new formations by email (7-day trial)",
+    "monthly": 49,
+    "url": "https://freshfilings.onrender.com/new-businesses/co",
+    "date": "2026-10-23"
+   },
+   {
+    "name": "Colorado Business Storefront (Gumroad CSV, price not shown)",
+    "monthly": null,
+    "url": "https://colorado-business-storefront.onrender.com/new-businesses",
+    "date": "2026-10-23"
+   }
+  ]
+ },
+ "demand": {
+  "searchQueries": [
+   {
+    "q": "how to get clients for bookkeeping business",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=how%20to%20get%20clients%20for%20bookkeeping",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "how to get clients for accounting firm",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=how%20to%20get%20clients%20for%20bookkeeping",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "how to get new clients for bookkeeping business",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=how%20to%20get%20clients%20for%20bookkeeping",
+    "date": "2026-10-23"
+   }
+  ],
+  "aiQueries": [
+   {
+    "q": "AccountingWeb: Anyone use Companies House to find new business? (asks if accountants would pay about 19 pounds a month for a weekly local digest; replies mostly skeptical)",
+    "url": "https://www.accountingweb.co.uk/node/230357",
+    "date": "2026-05-13"
+   }
+  ]
+ },
+ "data": {
+  "publisher": "Colorado Department of State (Colorado Information Marketplace)",
+  "dataset": "Business Entities in Colorado (4ykn-tg5h)",
+  "subject": "a newly formed business entity (legal business name, entity type, principal business address, formation date)",
+  "url": "https://data.colorado.gov/Business/Business-Entities-in-Colorado/4ykn-tg5h",
+  "apiUrl": "https://data.colorado.gov/resource/4ykn-tg5h.json",
+  "cadence": "daily",
+  "lastUpdated": "2026-10-22",
+  "recordsPerMonth": 12282,
+  "recordsSource": {
+   "url": "https://data.colorado.gov/resource/4ykn-tg5h.csv?$select=date_trunc_ym(entityformdate)%20as%20m,count(entityid)%20as%20formed&$where=principalstate%3D'CO'%20and%20entitytype%20in('DLLC','DPC')%20and%20entityformdate%3E'2026-06-30T23%3A59%3A59'&$group=m&$order=m",
+   "date": "2026-10-23"
+  },
+  "countQuery": "https://data.colorado.gov/resource/4ykn-tg5h.csv?$select=date_trunc_ym(entityformdate)%20as%20m,count(entityid)%20as%20formed&$where=principalstate%3D'CO'%20and%20entitytype%20in('DLLC','DPC')%20and%20entityformdate%3E'2026-06-30T23%3A59%3A59'&$group=m&$order=m",
+  "countNote": "Domestic LLCs and corporations with a Colorado principal address formed: Jul 14,119, Aug 13,305, Sep 12,282, Oct 1 to 22 9,404. Update schedule every day after midnight; rows updated 2026-10-22. Registered agent person name fields are dropped.",
+  "apiStable": true,
+  "license": {
+   "commercialUse": "allowed",
+   "url": "https://data.colorado.gov/terms",
+   "date": "2026-10-23",
+   "note": "The dataset carries a Public Domain license (metadata license id PUBLIC_DOMAIN). The portal terms disclaim all warranties, say use is at your own risk, require apps using the data to carry the State's disclaimer that the data was modified from its State of Colorado source, and let the State require that display or distribution stop. No indemnity clause."
+  }
+ },
+ "build": {
+  "days": 4,
+  "maintHoursMonth": 2,
+  "reuses": [
+   "tools/socrata.py",
+   "tools/lic_app.py",
+   "tools/lic_xlsx.py",
+   "GitHub Actions weekly refresh"
+  ]
+ },
+ "fit": {
+  "samePortal": false,
+  "existingTools": [
+   "tools/socrata.py",
+   "tools/lic_app.py",
+   "tools/lic_xlsx.py"
+  ],
+  "sameBuyerTypes": false
+ },
+ "overlap": "launches/chicago-new-business-licenses.md (new business signal, different buyers). Crowded: FreshFilings and several Apify actors already sell this exact Colorado feed. Many one person LLCs list a home as the principal address; the Legal desk decides whether to drop addresses that are not a commercial premises.",
+ "dropReason": "Dropped Oct 23 after demand and red team FAIL with no honest fix: the State says the same data is free on its portal, FreshFilings sends it daily for $49 with a trial, many addresses are registered-agent offices or homes, and the only accountant thread found had 0 of 11 willing to pay. Data and legal PASS."
+}

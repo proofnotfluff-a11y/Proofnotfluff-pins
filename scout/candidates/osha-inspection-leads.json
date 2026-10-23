@@ -1,0 +1,116 @@
+{
+ "schema": "pnf.opportunity.v1",
+ "slug": "osha-inspection-leads",
+ "name": "New OSHA Inspections and Citations by State",
+ "status": "new",
+ "addedAt": "2026-10-23",
+ "pitch": "Businesses OSHA opened an inspection on or cited this month in your state, for independent safety consultants who help employers answer citations and build safety programs",
+ "categories": [
+  "safety consulting",
+  "safety training"
+ ],
+ "provenAbroad": [
+  {
+   "what": "Same model sold in other US states: Citation Atlas sells weekly OSHA citation and inspection alerts at $29 a month per state or $79 for all states, and says other OSHA lead services start at $49",
+   "url": "https://citationatlas.com/pricing/",
+   "date": "2026-10-23"
+  }
+ ],
+ "buyer": {
+  "who": "Independent occupational safety consulting firms",
+  "count": 51691,
+  "countSource": {
+   "url": "https://img2.ibisworld.com/united-states/number-of-businesses/occupational-health-safety-services/5319/",
+   "date": "2026-10-23"
+  },
+  "countNote": "IBISWorld: 51,691 Occupational Health and Workplace Safety Services businesses in 2025; includes firms that are not consultants",
+  "reach": "Consulting firms publish a business inbox on their own websites; ASSP runs a consultants practice specialty inside its 35,000-member society",
+  "reachSource": {
+   "url": "https://assp.org/membership/communities/practice-specialties/consultants",
+   "date": "2026-10-23"
+  }
+ },
+ "price": {
+  "monthly": 29,
+  "reason": "Matches Citation Atlas per state; below the $49 floor it reports for other OSHA lead services",
+  "competitors": [
+   {
+    "name": "Citation Atlas, per state",
+    "monthly": 29,
+    "url": "https://citationatlas.com/pricing/",
+    "date": "2026-10-23"
+   },
+   {
+    "name": "Citation Atlas, all states plus API",
+    "monthly": 79,
+    "url": "https://citationatlas.com/pricing/",
+    "date": "2026-10-23"
+   }
+  ]
+ },
+ "demand": {
+  "searchQueries": [
+   {
+    "q": "recent osha citations",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=recent+osha+citations",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "recent osha violations 2026",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=recent+osha+citations",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "osha violations list by company",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=osha+violations+list",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "osha inspection database",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=osha+inspection+data",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "osha fines list",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=osha+violations+list",
+    "date": "2026-10-23"
+   }
+  ],
+  "aiQueries": []
+ },
+ "data": {
+  "publisher": "US Department of Labor, OSHA (DOL Open Data Portal API v4)",
+  "dataset": "OSHA Inspection (dataset 10334) and Violation (10338)",
+  "subject": "an establishment (employer worksite) OSHA inspected, with inspection type, NAICS, violation counts and penalties",
+  "url": "https://catalog.data.gov/dataset/dol-enforcement-data-inspection",
+  "apiUrl": "https://apiprod.dol.gov/v4/get/OSHA/inspection/json",
+  "cadence": "daily",
+  "lastUpdated": "2026-06-03",
+  "recordsPerMonth": null,
+  "recordsSource": null,
+  "countQuery": "https://apiprod.dol.gov/v4/get/OSHA/inspection/json?limit=10000&filter_object={\"field\":\"open_date\",\"operator\":\"gt\",\"value\":\"2026-09-01\"} (needs a free DOL API key; no count endpoint, count the rows)",
+  "recordsNote": "Not counted: the API needs a registered key (key sharing is banned) and osha.gov search pages refused the fetch. The DOL dataset list shows 'Daily' but last updated 2026-06-03, and the OSHA establishment search page said data through 05/07/2026; a reseller says it saw inspections opened Sep 17, 2026 as of Oct 16. Freshness must be probed before anything else.",
+  "privacy": "Establishments are employers, but some are sole proprietors named after a person; keep only entity-suffixed names. Never include inspection narratives about injured workers or fatality details.",
+  "apiStable": true,
+  "license": {
+   "commercialUse": "allowed",
+   "url": "https://www.dol.gov/general/aboutdol/copyright",
+   "date": "2026-10-23",
+   "note": "DOL says materials created by the federal government are generally public domain and may be used, reproduced and distributed without permission, but not in a way that implies DOL affiliation or endorsement. The API guide (updated Aug 5, 2024) requires a registered key and bans sharing it."
+  }
+ },
+ "build": {
+  "days": 10,
+  "maintHoursMonth": 4,
+  "reuses": [
+   "tools/leads_xlsx.py"
+  ]
+ },
+ "fit": {
+  "samePortal": false,
+  "existingTools": [],
+  "sameBuyerTypes": false
+ },
+ "overlap": "",
+ "risks": "Todd must register a DOL API key (an account step). Citations post about a month after issuance, so the list is slower than the name suggests. Incumbent already at $29."
+}

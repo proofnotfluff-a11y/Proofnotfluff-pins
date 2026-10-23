@@ -1,0 +1,378 @@
+{
+ "schema": "pnf.opportunities.v1",
+ "scoredAt": "2026-10-23",
+ "goal": "$1000 month by 2027-01-31",
+ "assumptions": {
+  "conversion": {
+   "low": 0.0025,
+   "likely": 0.0075,
+   "high": 0.02
+  },
+  "emailsPerWeek": 40,
+  "funnelDays": 28,
+  "gatesDays": 5,
+  "fees": "Gumroad 10% plus $0.50, processing about 2.9% plus $0.30",
+  "ownConversion": false
+ },
+ "ranked": [
+  {
+   "slug": "nyc-restaurant-pest-citations",
+   "name": "NYC Restaurant Pest Citations",
+   "score": 94,
+   "factors": {
+    "buyer": 5,
+    "pay": 5,
+    "demand": 5,
+    "data": 5,
+    "license": 5,
+    "effort": 4,
+    "speed": 5,
+    "fit": 3
+   },
+   "notes": {},
+   "kills": [],
+   "status": "fix",
+   "why": [
+    "redteam: The same product with the same buyer and motion is live for Chicago at $39 with 0 payers from 57 emails and its outreach is paused; a second city tests the city, not the product."
+   ],
+   "money": {
+    "netPerMember": 41.88,
+    "emailsByJan": 348,
+    "payers": {
+     "low": 0.9,
+     "likely": 2.6,
+     "high": 7.0
+    },
+    "janNet": {
+     "low": 36,
+     "likely": 109,
+     "high": 291
+    },
+    "shareOfGoal": {
+     "low": 0.04,
+     "likely": 0.11,
+     "high": 0.29
+    }
+   },
+   "confidence": "medium",
+   "firstDollar": "2026-11-29",
+   "price": 49,
+   "buyer": "small structural and rodent pest control businesses in New York City",
+   "source": "https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/43nn-pn8j"
+  },
+  {
+   "slug": "nyc-facade-unsafe-filings",
+   "name": "NYC Unsafe Facade Filings",
+   "score": 83,
+   "factors": {
+    "buyer": 3,
+    "pay": 5,
+    "demand": 4,
+    "data": 5,
+    "license": 5,
+    "effort": 4,
+    "speed": 5,
+    "fit": 2
+   },
+   "notes": {},
+   "kills": [],
+   "status": "review",
+   "why": [],
+   "money": {
+    "netPerMember": 85.43,
+    "emailsByJan": 92,
+    "payers": {
+     "low": 0.2,
+     "likely": 0.7,
+     "high": 1.8
+    },
+    "janNet": {
+     "low": 20,
+     "likely": 59,
+     "high": 157
+    },
+    "shareOfGoal": {
+     "low": 0.02,
+     "likely": 0.06,
+     "high": 0.16
+    }
+   },
+   "confidence": "medium",
+   "firstDollar": "2026-11-30",
+   "price": 99,
+   "buyer": "facade restoration and masonry contractors working on NYC buildings over six stories",
+   "source": "https://data.cityofnewyork.us/Housing-Development/DOB-NOW-Safety-Facades-Compliance-Filings/xubg-57si"
+  },
+  {
+   "slug": "nyc-liquor-license-applications",
+   "name": "NYC New Liquor License Applications",
+   "score": 82,
+   "factors": {
+    "buyer": 4,
+    "pay": 5,
+    "demand": 4,
+    "data": 5,
+    "license": 2,
+    "effort": 4,
+    "speed": 5,
+    "fit": 3
+   },
+   "notes": {
+    "license": "license unclear: the data and legal reviewer reads the terms"
+   },
+   "kills": [],
+   "status": "review",
+   "why": [],
+   "money": {
+    "netPerMember": 33.17,
+    "emailsByJan": 100,
+    "payers": {
+     "low": 0.2,
+     "likely": 0.8,
+     "high": 2.0
+    },
+    "janNet": {
+     "low": 8,
+     "likely": 25,
+     "high": 66
+    },
+    "shareOfGoal": {
+     "low": 0.01,
+     "likely": 0.03,
+     "high": 0.07
+    }
+   },
+   "confidence": "medium",
+   "firstDollar": "2026-11-29",
+   "price": 39,
+   "buyer": "FDNY certified commercial kitchen exhaust cleaning companies serving NYC",
+   "source": "https://data.ny.gov/Economic-Development/Current-SLA-Pending-Licenses/f8i8-k2gm"
+  },
+  {
+   "slug": "fmcsa-insurance-cancellations",
+   "name": "Truck Insurance Cancellations by State",
+   "score": 81,
+   "factors": {
+    "buyer": 5,
+    "pay": 5,
+    "demand": 3,
+    "data": 4,
+    "license": 5,
+    "effort": 3,
+    "speed": 5,
+    "fit": 2
+   },
+   "notes": {},
+   "kills": [],
+   "status": "review",
+   "why": [],
+   "money": {
+    "netPerMember": 41.88,
+    "emailsByJan": 325,
+    "payers": {
+     "low": 0.8,
+     "likely": 2.4,
+     "high": 6.5
+    },
+    "janNet": {
+     "low": 34,
+     "likely": 102,
+     "high": 272
+    },
+    "shareOfGoal": {
+     "low": 0.03,
+     "likely": 0.1,
+     "high": 0.27
+    }
+   },
+   "confidence": "medium",
+   "firstDollar": "2026-12-03",
+   "price": 49,
+   "buyer": "Independent insurance agencies that write commercial truck insurance (a subset of the 37,000 US independent P&C agencies; the trucking share is not counted)",
+   "source": "https://data.transportation.gov/d/3uet-3z4i"
+  },
+  {
+   "slug": "osha-inspection-leads",
+   "name": "New OSHA Inspections and Citations by State",
+   "score": 71,
+   "factors": {
+    "buyer": 5,
+    "pay": 5,
+    "demand": 5,
+    "data": 0,
+    "license": 5,
+    "effort": 3,
+    "speed": 5,
+    "fit": 0
+   },
+   "notes": {
+    "data": "stale: last update 2026-06-03 for a daily source"
+   },
+   "kills": [],
+   "status": "review",
+   "why": [],
+   "money": {
+    "netPerMember": 24.46,
+    "emailsByJan": 314,
+    "payers": {
+     "low": 0.8,
+     "likely": 2.4,
+     "high": 6.3
+    },
+    "janNet": {
+     "low": 19,
+     "likely": 58,
+     "high": 154
+    },
+    "shareOfGoal": {
+     "low": 0.02,
+     "likely": 0.06,
+     "high": 0.15
+    }
+   },
+   "confidence": "medium",
+   "firstDollar": "2026-12-05",
+   "price": 29,
+   "buyer": "Independent occupational safety consulting firms",
+   "source": "https://catalog.data.gov/dataset/dol-enforcement-data-inspection"
+  },
+  {
+   "slug": "ttb-new-alcohol-permits",
+   "name": "New Federal Alcohol Permits Weekly",
+   "score": 58,
+   "factors": {
+    "buyer": 5,
+    "pay": 0,
+    "demand": 2,
+    "data": 3,
+    "license": 5,
+    "effort": 4,
+    "speed": 5,
+    "fit": 0
+   },
+   "notes": {
+    "pay": "no dated competitor price",
+    "data": "monthly volume not counted from the source"
+   },
+   "kills": [],
+   "status": "parked",
+   "why": [
+    "code score 58 under the review floor 60"
+   ],
+   "money": {
+    "netPerMember": 24.46,
+    "emailsByJan": 348,
+    "payers": {
+     "low": 0.9,
+     "likely": 2.6,
+     "high": 7.0
+    },
+    "janNet": {
+     "low": 21,
+     "likely": 64,
+     "high": 170
+    },
+    "shareOfGoal": {
+     "low": 0.02,
+     "likely": 0.06,
+     "high": 0.17
+    }
+   },
+   "confidence": "medium",
+   "firstDollar": "2026-11-29",
+   "price": 29,
+   "buyer": "Label printers and packaging suppliers that serve wineries and distilleries",
+   "source": "https://www.ttb.gov/public-information/foia/list-of-permittees"
+  },
+  {
+   "slug": "fmcsa-new-trucking-companies",
+   "name": "New Trucking Companies by State",
+   "score": 92,
+   "factors": {
+    "buyer": 5,
+    "pay": 5,
+    "demand": 5,
+    "data": 5,
+    "license": 5,
+    "effort": 4,
+    "speed": 5,
+    "fit": 2
+   },
+   "notes": {},
+   "kills": [],
+   "status": "dropped",
+   "why": [
+    "Dropped Oct 23 after demand and red team FAIL with no honest fix: competitors at $39 to $49 ship the phone, email and officer fields our privacy rule strips, Carrier Hunt has a free tier and Apify sells contact-rich rows at about $5 per 1,000; the real reachable buyer is truck insurance agencies (dozens shown), not 37,000 P&C agencies. Data and legal PASS."
+   ],
+   "money": {
+    "netPerMember": 24.46,
+    "emailsByJan": 337,
+    "payers": {
+     "low": 0.8,
+     "likely": 2.5,
+     "high": 6.7
+    },
+    "janNet": {
+     "low": 21,
+     "likely": 62,
+     "high": 165
+    },
+    "shareOfGoal": {
+     "low": 0.02,
+     "likely": 0.06,
+     "high": 0.17
+    }
+   },
+   "confidence": "medium",
+   "firstDollar": "2026-12-01",
+   "price": 29,
+   "buyer": "Independent insurance agencies that write commercial truck insurance (a subset of the 37,000 US independent P&C agencies; the trucking share is not counted), plus freight factoring and dispatch firms",
+   "source": "https://data.transportation.gov/Trucking-and-Motorcoaches/Company-Census-File/az4n-8mr2"
+  },
+  {
+   "slug": "colorado-new-business-entities",
+   "name": "Colorado New Business Filings",
+   "score": 86,
+   "factors": {
+    "buyer": 5,
+    "pay": 4,
+    "demand": 4,
+    "data": 5,
+    "license": 5,
+    "effort": 4,
+    "speed": 5,
+    "fit": 2
+   },
+   "notes": {},
+   "kills": [],
+   "status": "dropped",
+   "why": [
+    "Dropped Oct 23 after demand and red team FAIL with no honest fix: the State says the same data is free on its portal, FreshFilings sends it daily for $49 with a trial, many addresses are registered-agent offices or homes, and the only accountant thread found had 0 of 11 willing to pay. Data and legal PASS."
+   ],
+   "money": {
+    "netPerMember": 24.46,
+    "emailsByJan": 348,
+    "payers": {
+     "low": 0.9,
+     "likely": 2.6,
+     "high": 7.0
+    },
+    "janNet": {
+     "low": 21,
+     "likely": 64,
+     "high": 170
+    },
+    "shareOfGoal": {
+     "low": 0.02,
+     "likely": 0.06,
+     "high": 0.17
+    }
+   },
+   "confidence": "medium",
+   "firstDollar": "2026-11-29",
+   "price": 29,
+   "buyer": "licensed public accounting firms in Colorado",
+   "source": "https://data.colorado.gov/Business/Business-Entities-in-Colorado/4ykn-tg5h"
+  }
+ ]
+}

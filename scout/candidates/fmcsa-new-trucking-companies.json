@@ -1,0 +1,160 @@
+{
+ "schema": "pnf.opportunity.v1",
+ "slug": "fmcsa-new-trucking-companies",
+ "name": "New Trucking Companies by State",
+ "status": "dropped",
+ "addedAt": "2026-10-23",
+ "pitch": "Every new interstate trucking company registered with FMCSA in your state each week, business entities only, for truck insurance agencies, freight factoring and dispatch services that win a new carrier in its first 30 days",
+ "categories": [
+  "commercial truck insurance",
+  "freight factoring",
+  "truck dispatch",
+  "ELD and compliance services"
+ ],
+ "provenAbroad": [
+  {
+   "what": "UK: the DVSA Traffic Commissioner operator licence register (Open Government Licence) is resold as weekly new and changed haulier leads for HGV insurance, fuel card, telematics and leasing sellers",
+   "url": "https://apify.com/dthen/uk-fleet-leads-dvsa",
+   "date": "2026-10-23"
+  },
+  {
+   "what": "Same model, other sellers in the US market: TruckerDB sells daily new DOT carrier lists plus insurance renewal alerts to agents, dispatchers and lenders; Stripe-verified $1,630 MRR on 20 subscriptions, founded April 2026",
+   "url": "https://trustmrr.com/startup/truckerdb",
+   "date": "2026-10-23"
+  },
+  {
+   "what": "UK: weekly digests of newly incorporated companies near a postcode sold to accountants (Recently Formed, about 10 GBP a month)",
+   "url": "https://cambridgenetwork.co.uk/news/accountants-generate-new-business-ps10-month",
+   "date": "2012-10-17"
+  }
+ ],
+ "buyer": {
+  "who": "Independent insurance agencies that write commercial truck insurance (a subset of the 37,000 US independent P&C agencies; the trucking share is not counted), plus freight factoring and dispatch firms",
+  "count": 37000,
+  "countSource": {
+   "url": "https://www.insurancejournal.com/news/national/2026/09/24/886639.htm",
+   "date": "2026-09-24"
+  },
+  "countNote": "37,000 is all independent P&C agencies (Big I 2026 Agency Universe Study); no count of trucking writers found",
+  "reach": "Agencies list their business inbox and phone on their own websites; trade roundups of truck insurance agencies link to them",
+  "reachSource": {
+   "url": "https://numeo.ai/blog/top-30-commercial-truck-insurance-agencies",
+   "date": "2026-02-08"
+  }
+ },
+ "price": {
+  "monthly": 29,
+  "reason": "Under every one-state competitor read on Oct 23, 2026 ($39 to $79 a state); our edge is a clean business-only list and the free Monday sample, not features",
+  "competitors": [
+   {
+    "name": "New Trucking Companies (newtruckingcompanies.com), 1 state",
+    "monthly": 39,
+    "url": "https://newtruckingcompanies.com/",
+    "date": "2026-10-23"
+   },
+   {
+    "name": "TruckerDB Starter",
+    "monthly": 49,
+    "url": "https://newtruckingcompanies.com/compare/",
+    "date": "2026-10-23"
+   },
+   {
+    "name": "Carrier Hunt Pro",
+    "monthly": 49,
+    "url": "https://newtruckingcompanies.com/compare/",
+    "date": "2026-10-23"
+   },
+   {
+    "name": "PollyAI base",
+    "monthly": 39,
+    "url": "https://www.capterra.com.au/software/1105717/PollyAI",
+    "date": "2026-10-23"
+   },
+   {
+    "name": "AuthorityAlerts Starter",
+    "monthly": 79,
+    "url": "https://newtruckingcompanies.com/compare/",
+    "date": "2026-10-23"
+   },
+   {
+    "name": "Carrier Network, per state",
+    "monthly": 39,
+    "url": "https://newtruckingcompanies.com/compare/",
+    "date": "2026-10-23"
+   }
+  ]
+ },
+ "demand": {
+  "searchQueries": [
+   {
+    "q": "new mc authority list",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=new+mc+authority+list",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "new mc authority list pdf",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=new+mc+authority+list",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "new motor carrier authority list",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=new+trucking+authority+list",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "commercial trucking insurance leads",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=trucking+insurance+leads",
+    "date": "2026-10-23"
+   },
+   {
+    "q": "best trucking insurance leads",
+    "url": "https://suggestqueries.google.com/complete/search?client=firefox&q=trucking+insurance+leads",
+    "date": "2026-10-23"
+   }
+  ],
+  "aiQueries": []
+ },
+ "data": {
+  "publisher": "Federal Motor Carrier Safety Administration (US DOT open data portal, Socrata)",
+  "dataset": "Company Census File (az4n-8mr2)",
+  "subject": "a motor carrier business registered with a USDOT number (add_date, operation type, fleet size, city and state)",
+  "url": "https://data.transportation.gov/Trucking-and-Motorcoaches/Company-Census-File/az4n-8mr2",
+  "apiUrl": "https://data.transportation.gov/resource/az4n-8mr2.json",
+  "cadence": "daily",
+  "lastUpdated": "2026-10-23",
+  "recordsPerMonth": 6157,
+  "recordsSource": {
+   "url": "https://data.transportation.gov/resource/az4n-8mr2.json?carrier_operation=A&status_code=A&$where=add_date%20like%20'202609%25'%20AND%20legal_name%20like%20'%25LLC'&$select=count(dot_number)%20as%20sep_interstate_llc",
+   "date": "2026-10-23"
+  },
+  "countQuery": "https://data.transportation.gov/resource/az4n-8mr2.json?carrier_operation=A&status_code=A&$where=add_date%20like%20'202609%25'%20AND%20legal_name%20like%20'%25LLC'&$select=count(dot_number)",
+  "recordsNote": "Counted Oct 23, 2026: new active interstate carriers (carrier_operation A) added in Sept 2026 whose legal name ends in LLC: 6,157 nationally (Aug 2026: 6,339), 249 in Illinois. INC and CORP names would add more. New MC dockets alone fell from 7,798 (Jul) to 5,433 (Aug) to 2,520 (Sep) after the Motus registration change, so the list keys on the USDOT add_date, not the MC number.",
+  "privacy": "Sole proprietor carriers are often named after a person, and the file carries company_officer_1 and 2, cell_phone and email fields. Keep only rows whose legal name carries an entity suffix (LLC, INC, CORP, CO, LTD, LP); never ship officer names, cell phone or email fields.",
+  "apiStable": true,
+  "license": {
+   "commercialUse": "allowed",
+   "url": "https://www.fmcsa.dot.gov/registration/fmcsa-data-dissemination-program",
+   "date": "2026-10-23",
+   "note": "FMCSA says it shares its census and safety data at no charge to the public; the page sets no resale or reuse limits, only disclaimers (a snapshot, informational only, no government liability). The portal metadata (api/views/metadata/v1) carries Rights: public and no license field. No restriction found; a US government work. Reviewer should confirm no separate DOT portal terms apply."
+  }
+ },
+ "build": {
+  "days": 6,
+  "maintHoursMonth": 3,
+  "reuses": [
+   "tools/socrata.py",
+   "tools/leads_xlsx.py",
+   "tools/data_box.py"
+  ]
+ },
+ "fit": {
+  "samePortal": false,
+  "existingTools": [
+   "tools/socrata.py"
+  ],
+  "sameBuyerTypes": false
+ },
+ "overlap": "",
+ "risks": "Crowded: at least eight sellers at $39 to $399 a month (compare page, prices checked Oct 15, 2026). Without the carrier phone (often a personal cell) the buyer must look the carrier up, which lowers the value against competitors that ship phone and email. The census is reachable only from GitHub Actions (cloud proxy refuses data.transportation.gov).",
+ "dropReason": "Dropped Oct 23 after demand and red team FAIL with no honest fix: competitors at $39 to $49 ship the phone, email and officer fields our privacy rule strips, Carrier Hunt has a free tier and Apify sells contact-rich rows at about $5 per 1,000; the real reachable buyer is truck insurance agencies (dozens shown), not 37,000 P&C agencies. Data and legal PASS."
+}

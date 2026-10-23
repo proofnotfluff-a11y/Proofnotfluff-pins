@@ -16,6 +16,7 @@ Usage: python3 tools/licenses_chicago.py --probe        column names and counts 
        python3 tools/licenses_chicago.py --selftest
 """
 import argparse, collections, datetime as dt, json, os, re, sys
+from zoneinfo import ZoneInfo
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from permits_chicago import get, terms_text  # noqa: E402
@@ -209,6 +210,10 @@ def segment(desc, activity):
         if re.search(pats[key], text):
             return key
     return "retail"
+
+
+def chicago_now():
+    return dt.datetime.now(ZoneInfo("America/Chicago")).replace(microsecond=0)
 
 
 def keep(r, since, today):
@@ -554,7 +559,7 @@ def fetch_buildings():
         """{building key: {unit}} for virtual office licenses still current (not cancelled or expired): a cancelled one at
         625 W Adams says nothing about the building today (holdout 2, round 3)."""
         out, off = collections.defaultdict(set), 0
-        today = dt.date.today().isoformat()
+        today = chicago_now().date().isoformat()
         while True:
             page = get(f"{PORTAL}/resource/{DATASET}.json", {"$select": "address,license_status,expiration_date",
                                                             "$where": "upper(business_activity) like '%VIRTUAL OFFICE%'", "$limit": 50000, "$offset": off})
@@ -634,7 +639,7 @@ def pull(since):
 
 def probe():
     meta = get(f"{PORTAL}/api/views/{DATASET}.json")
-    since = (dt.date.today() - dt.timedelta(days=42)).isoformat()
+    since = (chicago_now().date() - dt.timedelta(days=42)).isoformat()
     rows = pull(since)
     out = {"ranAt": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "since": since,
            "columns": [c.get("fieldName") for c in meta.get("columns", [])], "rows": len(rows),
@@ -652,7 +657,7 @@ def main():
     ap.add_argument("--top", type=int, default=10)
     a = ap.parse_args()
     os.makedirs(OUT, exist_ok=True)
-    now = dt.datetime.now(dt.timezone.utc)
+    now = chicago_now()          # Chicago time: a run at 7 pm Central is still today's list, not tomorrow's (CLAUDE.md 0)
     today = now.date()
     meta = get(f"{PORTAL}/api/views/{DATASET}.json")
     cols = [c.get("fieldName") for c in meta.get("columns", [])]

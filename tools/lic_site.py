@@ -28,7 +28,7 @@ def page_html(p):
     url = M.BASE + p["slug"] + "/"
     rel = "../"
     checkout, price = p.get("checkout"), p.get("price")
-    pulled = M.nice_date(d["source"]["fetchedAt"][:10])
+    pulled = M.nice_date(d["source"]["fetchedAt"])                     # the Chicago date of the pull
     notify = p.get("notify") or "mailto:hello@proofnotfluff.com?subject=Chicago%20New%20Business%20Licenses%3A%20tell%20me%20when%20it%20opens"
 
     def buy(cls="btn ld-btnbig"):
@@ -57,7 +57,7 @@ def page_html(p):
              f'<div class="tile"><div class="lab">Food businesses</div><div class="val">{s30.get("food", 0):,}</div><div class="sub">restaurants, cafes, bars, shops</div></div>'
              + (f'<div class="tile"><div class="lab">Busiest area this week</div><div class="val lc-area">{E(top_area[0])}</div><div class="sub">{top_area[1]:,} new licenses'
                 + (f', tied with {ties} more {"area" if ties == 1 else "areas"}' if ties else "") + '</div></div>' if top_area else "")
-             + f'</div><p class="asof">City records pulled {E(dt.date.fromisoformat(d["source"]["fetchedAt"][:10]).strftime("%A"))}, {E(pulled)}. The list is refreshed every Monday.</p>')
+             + f'</div><p class="asof">City records pulled {E(dt.datetime.strptime(pulled, "%b %d, %Y").strftime("%A"))}, {E(pulled)}. The list is refreshed every Monday.</p>')
     trades = ('<section class="block"><h2>New licenses by trade, last 30 days</h2><p>Each business on the list, sorted by what it does, '
               'so you can work the trades that buy from you.</p><ol class="rl-trades">'
               + "".join(f'<li><span class="nm">{E(names[k])}<small>{E(kinds[k])}. {sw.get(k, 0):,} new this week</small></span><span class="n">{s30.get(k, 0):,}</span></li>'

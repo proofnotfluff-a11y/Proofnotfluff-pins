@@ -253,8 +253,17 @@ def pretty(s):
     return f"{d.strftime('%b')} {d.day}, {d.year}" if d else ""
 
 
+def pull_day(full):
+    """The Chicago calendar date of the pull, as YYYY-MM-DD (a timestamp in UTC after 7 pm Central is still today)."""
+    iso = full["source"]["fetchedAt"]
+    if "T" in iso and (iso.endswith("Z") or "+" in iso[10:] or "-" in iso[10:]):
+        from zoneinfo import ZoneInfo
+        return dt.datetime.fromisoformat(iso.replace("Z", "+00:00")).astimezone(ZoneInfo("America/Chicago")).date().isoformat()
+    return iso[:10]
+
+
 def as_of_text(full):
-    return pretty(full["source"]["fetchedAt"][:10])
+    return pretty(pull_day(full))
 
 
 def by_trade(full):

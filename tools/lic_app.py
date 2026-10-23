@@ -68,10 +68,10 @@ def payload(full, xlsx_bytes):
                          "h": r.get("history") or "", "hs": r.get("since") or "", "fi": r.get("foodInsp") or "", "is": r.get("inspSince") or "", "nw": X.is_new(r, full),
                          "lat": r.get("lat"), "lon": r.get("lon")})
     checks = (full.get("counts") or {}).get("checks") or {}
-    return {"asOf": X.as_of_text(full), "asOfIso": full["source"]["fetchedAt"][:10], "window": full["window"],
+    return {"asOf": X.as_of_text(full), "asOfIso": X.pull_day(full), "window": full["window"],
             "trades": [{"key": k, "tab": t, "short": s, "kinds": w} for k, t, s, w in X.TRADES], "rows": rows,
             "checks": {"history": checks.get("history", True) is not False, "food": checks.get("foodInspections", True) is not False},
-            "record": X.RECORD, "fileName": f"chicago-new-business-licenses-{full['source']['fetchedAt'][:10]}.xlsx",
+            "record": X.RECORD, "fileName": f"chicago-new-business-licenses-{X.pull_day(full)}.xlsx",
             "xlsx": base64.b64encode(xlsx_bytes).decode()}
 
 

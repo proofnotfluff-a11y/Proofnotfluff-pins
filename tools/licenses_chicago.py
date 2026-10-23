@@ -513,17 +513,22 @@ def add_food_inspections(recs, fetch):
     4ijn-s7e5, files it under the business license number), in the 120 days before the license was issued: what Chicago
     Restaurant Inspection Leads lists as "Opening soon". inspSince: the year of the earliest other City food inspection (a
     canvass or a complaint) before the license was issued, which shows the business was open before this license. fetch(licenses)
-    returns rows with license_, inspection_type and inspection_date."""
+    returns rows with license_, inspection_type, inspection_date and results. _failed: any City food inspection on file for the
+    site's licenses (this one or the business's earlier ones) has a result of Fail; the free page never names such a business,
+    the same rule as Chicago Restaurant Inspection Leads (scoreboard todo licenses-names-crosscheck, Oct 23)."""
     food = [r for r in recs if r["segment"] == "food"]
     lic = sorted({n for r in food for n in (r.get("_lics") or [r["license"]]) + (r.get("_oldlics") or []) if n})
-    seen = collections.defaultdict(list)
+    seen, failed = collections.defaultdict(list), set()
     for i in range(0, len(lic), 40):
         for x in fetch(lic[i:i + 40]):
             n, d = str(x.get("license_") or "").split(".")[0], (x.get("inspection_date") or "")[:10]
             if n and d:
                 seen[n].append((d, (x.get("inspection_type") or "").upper()))
+            if n and (x.get("results") or "").strip().upper().startswith("FAIL"):
+                failed.add(n)
     for r in recs:
         r["foodInsp"], r["inspSince"] = "", ""
+        r["_failed"] = any(n in failed for n in (r.get("_lics") or [r["license"]]) + (r.get("_oldlics") or []))
     for r in food:
         start = (dt.date.fromisoformat(r["issued"]) - dt.timedelta(days=120)).isoformat()
         got = [x for n in (r.get("_lics") or [r["license"]]) for x in seen.get(n, [])]
@@ -587,7 +592,7 @@ def fetch_buildings():
     return (keys("upper(business_activity) like '%HOME BASED%' OR upper(license_description) like 'HOME OCCUPATION%'", 2), virtual_units())
 
 
-def run_checks(recs, reasons, today, f_hist, f_food, f_build, f_name=None, left=None):
+def run_checks(recs, reasons, today, f_hist, f_food, f_build, f_name=None, left=None, failed=None):
     """The City's own records on top of build(): the building checks (home and mail-drop addresses), the business's history
     (and old licenses the City re-dated), then the food inspections on the rows that are left. A check that cannot fetch is
     marked not run; the list still ships, and the app and workbook say so. Returns (records, checks)."""
@@ -619,12 +624,15 @@ def run_checks(recs, reasons, today, f_hist, f_food, f_build, f_name=None, left=
         print(f"foodInspections check did not run: {e}"); checks["foodInspections"] = False
         for r in recs:
             r["foodInsp"], r["inspSince"] = "", ""
+            r["_failed"] = r["segment"] == "food"     # check not run: no food business is named on the free page
+    if failed is not None:                        # licenses with a City Fail on file: kept off the free page only
+        failed.update(r["license"] for r in recs if r.get("_failed"))
     return strip_internal(recs), checks
 
 
 def strip_internal(recs):
     for r in recs:
-        for k in ("_acct", "_site", "_lics", "_addr", "_prior", "_oldlics", "_noacct"):
+        for k in ("_acct", "_site", "_lics", "_addr", "_prior", "_oldlics", "_noacct", "_failed"):
             r.pop(k, None)
     return recs
 
@@ -637,7 +645,7 @@ def fetch_history(accts):
 
 def fetch_food(lics):
     return get(f"{PORTAL}/resource/{FOOD}.json",
-               {"$select": "license_,inspection_type,inspection_date", "$where": f"license_ in ({','.join(lics)})", "$limit": 50000})
+               {"$select": "license_,inspection_type,inspection_date,results", "$where": f"license_ in ({','.join(lics)})", "$limit": 50000})
 
 
 def pull(since):
@@ -686,7 +694,8 @@ def main():
     areas = load_areas()
     left = []
     recs, reasons = build(rows, areas, today, left=left)
-    recs, checks = run_checks(recs, reasons, today, fetch_history, fetch_food, fetch_buildings, fetch_by_building, left=left)
+    failed = set()
+    recs, checks = run_checks(recs, reasons, today, fetch_history, fetch_food, fetch_buildings, fetch_by_building, left=left, failed=failed)
     week_from = (today - dt.timedelta(days=7)).isoformat()
     week = [r for r in recs if r["issued"] >= week_from]
     labels = {k: lab for k, lab, _ in SEGMENTS}
@@ -706,9 +715,10 @@ def main():
                          "excluded": dict(reasons),
                          "areasWeek": collections.Counter(r["communityArea"] for r in week if r["communityArea"]).most_common(10),
                          "checks": checks, "history30": dict(collections.Counter(r["history"] or "unknown" for r in recs)),
-                         "foodInsp30": sum(bool(r["foodInsp"]) for r in recs)},
+                         "foodInsp30": sum(bool(r["foodInsp"]) for r in recs),
+                         "freeLeftFailedWeek": sum(r["license"] in failed for r in week)},
               "segmentNames": labels,
-              "segments": {k: [public(r) for r in week if r["segment"] == k][: a.top] for k in labels}}
+              "segments": {k: [public(r) for r in week if r["segment"] == k and r["license"] not in failed][: a.top] for k in labels}}
     profile = {"fetchedAt": source["fetchedAt"], "rowsUpdatedAt": upd_iso, "columns": cols,
                "byLicense": collections.Counter(r.get("license_description") or "" for r in rows).most_common(60),
                "keptByLicense": collections.Counter(r["licenseType"] for r in recs).most_common(40), "areasLoaded": len(areas)}
@@ -870,6 +880,12 @@ def selftest():
     add_food_inspections(recs, fake_food)
     assert by["1"]["foodInsp"] == "2026-10-09" and by["1"]["inspSince"] == "2025", (by["1"]["foodInsp"], by["1"]["inspSince"])
     assert by["4"]["foodInsp"] == "" and "4" not in asked and by["5"]["foodInsp"] == "", "food rows only, never after the issue date"
+    assert not any(r.get("_failed") for r in recs), "no planted Fail yet"
+    add_food_inspections(recs, lambda lics: [{"license_": "2.0", "inspection_date": "2025-06-01T00:00:00.000", "inspection_type": "Canvass",
+                                              "results": "Fail"}] if "2" in lics else [])
+    assert by["1"]["_failed"] and not by["4"].get("_failed"), "a Fail on the site's license keeps the business off the free page"
+    add_food_inspections(recs, fake_food)
+    assert not by["1"]["_failed"], "Pass with Conditions or no result is not a Fail"
     # the building checks: a unit above the ground floor in a building with home-based licenses, any row at a virtual office
     assert split_address("3950 N LAKE SHORE DR 20TH 2021") == ("3950 N LAKE SHORE DR", "20TH 2021")
     assert split_address("11611-11613 S HALSTED ST 1ST") == ("11611-11613 S HALSTED ST", "1ST") and building_key("11611-11613 S Halsted St") == "11611SHALSTEDST"
@@ -918,7 +934,10 @@ def selftest():
     r2, rs2 = build(rows, loop, today, dnl=set())
     def boom(*a):
         raise SystemExit("fetch failed")
-    got, ch = run_checks(r2, rs2, today, fake_hist, boom, lambda: ({"300SWABASHAVE"}, {"400WLAKEST"}))
+    fl = set()
+    got, ch = run_checks(r2, rs2, today, fake_hist, boom, lambda: ({"300SWABASHAVE"}, {"400WLAKEST"}), failed=fl)
+    assert fl == {r["license"] for r in got if r["segment"] == "food"} and fl, ("food check not run: no food row on the free page", fl)
+    assert not any(k.startswith("_") for r in got for k in r), "the Fail flag never leaves run_checks"
     assert {r["license"] for r in got} == {"1", "4", "7", "14", "23", "25"} and rs2[MAILBOX_REASON] == 2, (sorted(r["license"] for r in got), dict(rs2))
     assert ch == {"buildings": True, "history": True, "foodInspections": False} and all(r["foodInsp"] == "" for r in got), ch
     strip_internal(recs)
@@ -933,7 +952,7 @@ def selftest():
     long = " | ".join(["Retail Sales of General Merchandise and Non-Perishable Food"] * 8)
     assert activity_text(long) == " | ".join(["Retail Sales of General Merchandise and Non-Perishable Food"] * 4) + " | and 4 more", activity_text(long)
     assert activity_text("Hair Services") == "Hair Services"
-    print(f"licenses selftest ok (17 planted names, 13 planted trades, {len(rows)} planted licenses, 2 planted removals, 5 planted histories, 2 planted food inspections)")
+    print(f"licenses selftest ok (17 planted names, 13 planted trades, {len(rows)} planted licenses, 2 planted removals, 5 planted histories, 3 planted food inspections, 1 planted Fail)")
 
 
 def dnl_cli(args):

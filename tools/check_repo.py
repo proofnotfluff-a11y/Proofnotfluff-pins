@@ -233,6 +233,13 @@ def check_permit_data():
                 bad.append(f"{os.path.relpath(f, ROOT)}: {keys}"); break
             if PERSON_TAG.search(p.get("scope", "")):   # a tag that can carry a person's name (Legal desk, Oct 15)
                 bad.append(f"{os.path.relpath(f, ROOT)}: permit {p.get('permit')} scope has a reviewer, consultant or owner tag"); break
+    # Move 2 (Oct 23): listed phones go only into sealed members' files (tools/phones.py), never a public data file
+    for f in glob.glob(os.path.join(ROOT, "permits", "**", "*.json"), recursive=True):
+        if f.endswith(".sealed.json"):
+            continue
+        t = open(f, encoding="utf-8").read()
+        if re.search(r'"phone"\s*:\s*"[^"]', t) or re.search(r"\(\d{3}\) \d{3}-\d{4}", t):
+            bad.append(f"{os.path.relpath(f, ROOT)}: a phone number in a public data file")
     err("permit-data", "; ".join(bad)) if bad else ok("permit-data")
 
 

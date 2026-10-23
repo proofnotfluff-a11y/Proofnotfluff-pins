@@ -57,7 +57,7 @@ Todd, Oct 22, 2026, 4:03 pm [stated]: "ship plan"; 4:44 pm [stated]: "go". Live 
 - Live check Oct 22, 4:58 pm (PageSpeed Insights, mobile): home 97/100/100/100, LCP 1.9 s, CLS 0; restaurant leads 100/100/100/100, LCP 1.5 s, CLS 0. /preview/ gone.
 
 ## Phase 3 (set up Oct 22)
-Scheduled task "PNF site: question pages", Mon, Wed, Fri 7:10 am Central, runs .claude/skills/question-pages/SKILL.md. First run Fri Oct 23 (group C plus Friday results).
+Scheduled task "PNF site: question pages", daily 7:10 am Central (Todd, Oct 22, 7:32 pm, "daily"; was Mon, Wed, Fri), runs .claude/skills/question-pages/SKILL.md. First run Fri Oct 23 (group C plus Friday results).
 
 ## Next step
 Watch the first three runs; open items: licenses page names against failed inspections not cross-checked (product-builder), calculator blank-input handling, design polish to reach 4.6.

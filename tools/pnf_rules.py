@@ -180,12 +180,15 @@ def gc_display(name):
 
 def value_display(v):
     """$45M style for an email: whole millions under $1 billion ($4.5M under $10M), $1.2B from $1 billion."""
-    v = float(v or 0)
-    if v >= 1e9:
-        return f"${v / 1e9:.1f}B"
-    if v >= 1e7:
-        return f"${v / 1e6:.0f}M"
-    return f"${v / 1e6:.1f}M"
+    # halves round up, exactly (Oct 22 checker: float formatting gave $9.4M for 9,450,000 and $38M for 38,500,000)
+    from decimal import Decimal, ROUND_HALF_UP
+    d = Decimal(str(v or 0))
+    q = lambda x, places: x.quantize(Decimal(places), rounding=ROUND_HALF_UP)
+    if d >= Decimal("1e9"):
+        return f"${q(d / Decimal('1e9'), '0.1')}B"
+    if d >= Decimal("1e7"):
+        return f"${q(d / Decimal('1e6'), '1')}M"
+    return f"${q(d / Decimal('1e6'), '0.1')}M"
 
 
 def domain_of(url_or_domain):

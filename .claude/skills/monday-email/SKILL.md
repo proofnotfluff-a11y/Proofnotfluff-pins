@@ -10,7 +10,7 @@ One job: build and draft the free Monday email for everyone who said yes, and th
 
 ## Process (Executes)
 1. `git fetch --depth=50 origin main` so the tool can compare with the previous edition; `python3 tools/check_repo.py --preflight monday-email`.
-2. Per city: `python3 tools/monday_email.py --city <city> --avoid <its subscribers' firstExample ids>`. Exit 3 (fewer than 2 fresh leads): no issue for that city; tell Todd in one line.
+2. Per city: `python3 tools/monday_email.py --city <city> --require-prev --avoid <its subscribers' firstExample ids>`. Exit 4: no earlier edition, fetch more history and rerun. Exit 3 (fewer than 2 fresh leads): no issue for that city; tell Todd in one line.
 3. Issue drafts: one per CRM subscriber of that city, not doNotEmail, with `--name <first> --office` at send time only (LEADS_PASSWORD set, builder office lines; never printed or logged). Kit broadcast for that city's site sign-ups: the same body with "Hi,"; its form numbers are in site/pages.json mondayForm once Todd makes them.
 4. Trial drafts on the Wednesday: each subscriber whose mondaysSent is 3 and trialOfferedAt is blank, `--trial --sent-n <leads they were sent>`. Kit side: broadcast filtered to people confirmed on or before the date of the third issue back; confirm the filter exists the first time.
 5. Write data/work/monday_drafts.json (schema pnf.monday_draft.v1) and run `python3 tools/monday_email.py --gate data/work/monday_drafts.json`. Exit 1: fix and rerun once, else drop that draft.

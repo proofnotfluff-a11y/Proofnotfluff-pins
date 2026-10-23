@@ -118,17 +118,16 @@ def pick(leads, city, today, prev=None, sent=(), avoid=(), n=3):
     mine = [x for x in leads if x.get("city") == city and x["lead_id"] not in set(sent) and x["lead_id"] not in set(avoid)]
     if prev is not None:
         old = {x["lead_id"]: x for x in prev.get("leads", [])}
-        since = (today - dt.timedelta(days=7)).isoformat()
+        # new this week, or its stage moved up; a dated food inspection alone never makes a lead fresh (Oct 22 checker:
+        # at a big building it can belong to another tenant)
         fresh = [x for x in mine if x["lead_id"] not in old
                  or STAGE_RANK.get(x["stage"], 0) > STAGE_RANK.get(old[x["lead_id"]]["stage"], 0)
-                 or (near_finish(x) and not near_finish(old[x["lead_id"]])) or dated(x) >= since]
+                 or (near_finish(x) and not near_finish(old[x["lead_id"]]))]
         mode = "compared with the previous edition"
     else:
-        since = (today - dt.timedelta(days=45)).isoformat()
-        fresh = [x for x in mine if near_finish(x) or dated(x) >= since]
-        mode = "first edition: no earlier file to compare, so closest to finish or a City signal in the last 45 days"
-    # closest to the final clean, then size; a dated signal only breaks ties (a food inspection at a big building's
-    # address can belong to another tenant, so it never outranks a bigger job)
+        fresh = list(mine)
+        mode = "first edition: no earlier file to compare, so closest to finish, then size"
+    # closest to the final clean, then size; a dated signal only breaks ties
     fresh.sort(key=lambda x: (near_finish(x), float(x.get("valuation") or 0), dated(x)), reverse=True)
     out, gcs = [], set()
     for x in fresh:
@@ -152,7 +151,7 @@ def stage_line(x):
     src = str(x.get("stage_source") or "")
     if x["city"] == "austin":
         if src.startswith("Near finish"):
-            return src.replace(" (", ", ").rstrip(")").replace("Near finish", "near finish")
+            return "near finish, some of its building permits already finaled by the City"
         co = any(s.get("type") == "co_flag" and "=Yes" in str(s.get("detail")) for s in x.get("signals", []))
         return "work under way after City inspections" + (", certificate of occupancy required" if co else "")
     if x["stage"] == "Partial Occupancy Approved":
@@ -292,6 +291,11 @@ def issue_problems(subject, body, picks, sp, sent=()):
         for want in (R.value_display(x.get("valuation")), x["address"], R.gc_display(x.get("gc_company"))):
             if want not in body:
                 p.append(f"{x['lead_id']}: {want!r} missing from the body")
+        c = CITIES[x["city"]]
+        for want, what in ((f'{c["permit_label"]} {x.get("master_permit_id") or x["permit_id"].replace(" BP", "")}, issued {nice_date(x["issue_date"])}', "permit and issue date"),
+                           (f"Stage: {stage_line(x)}", "stage")):
+            if want not in body:
+                p.append(f"{x['lead_id']}: {what} do not match the City record ({want!r} missing)")
         if x.get("site_contact"):
             p.append(f"{x['lead_id']}: carries a site contact (a person); leads are business fields only")
     for v in re.findall(r"\$\d+(?:\.\d+)?[MB]\b", body):
@@ -334,7 +338,9 @@ def selftest(sp, leads, today):
         ("issue: one lead only", lambda: issue_problems(s, b, picks[:1], sp)),
         ("issue: wrong valuation", lambda: issue_problems(s, b.replace(R.value_display(picks[0]["valuation"]), "$99M", 1), picks, sp)),
         ("issue: lead already sent", lambda: issue_problems(s, b, picks, sp, sent={picks[0]["lead_id"]})),
-        ("issue: same builder twice", lambda: issue_problems(s, b, [picks[0], dict(picks[1], gc_company=picks[0]["gc_company"])], sp)),
+        ("issue: same builder twice", lambda: issue_problems(s, b, [picks[0], dict(picks[1], gc_company=picks[0]["gc_company"])] + picks[2:], sp)),
+        ("issue: wrong permit number", lambda: issue_problems(s, b.replace(picks[0]["permit_id"], "100000001", 1), picks, sp)),
+        ("issue: wrong stage", lambda: issue_problems(s, b.replace("Stage: " + stage_line(picks[0]), "Stage: permit issued"), picks, sp)),
         ("issue: a person as site contact", lambda: issue_problems(s, b, [dict(picks[0], site_contact={"name": "x"})] + picks[1:], sp)),
         ("issue: over the word cap", lambda: issue_problems(s, b.replace("To use one:", " ".join(["word"] * 240) + " To use one:"), picks, sp)),
         ("issue: AI phrase", lambda: issue_problems(s, b.replace("To use one:", "This is a game changer. To use one:"), picks, sp)),
@@ -346,11 +352,20 @@ def selftest(sp, leads, today):
         ("trial: cancel line removed", lambda: trial_problems(t_s, re.sub(r"Cancel in your Gumroad.*?nothing\.", "", t_b), "chicago", sp)),
         ("trial: not marked as an offer", lambda: trial_problems(t_s, t_b.replace("This one is an offer, so skip it if the free email is enough. ", ""), "chicago", sp)),
     ]
+    expect = {"an em dash": "dash", "a link": "link", "price talk": "price or trial", "free trial mention": "price or trial",
+              "footer stop line removed": "footer", "mailing address changed": "mailing address", "one lead only": "needs 2 or 3",
+              "wrong valuation": "valuation", "lead already sent": "already sent", "same builder twice": "same builder",
+              "a person as site contact": "site contact", "over the word cap": "words, the limit", "AI phrase": "AI-sounding",
+              "no greeting": "must open", "wrong permit number": "permit and issue date", "wrong stage": "stage do not match",
+              "no price": "monthly price", "no link": "exactly one link", "a second link": "exactly one link",
+              "card line removed": "card goes in", "cancel line removed": "how to cancel", "not marked as an offer": "an offer"}
     for label, fn in plant:
-        if fn():
+        got = fn()
+        want = expect[label.split(": ", 1)[1]]
+        if any(want in g for g in got):
             ok += 1
         else:
-            cases.append(f"selftest: planted '{label}' was not caught")
+            cases.append(f"selftest: planted '{label}' was not caught by its own rule ({want!r})")
     if issue_problems(s, b, picks, sp) or trial_problems(t_s, t_b, "chicago", sp):
         cases.append("selftest: the clean render fails its own gate")
     return cases, ok, len(plant)
@@ -431,6 +446,7 @@ def main():
     ap.add_argument("--name", default="")
     ap.add_argument("--avoid", default="")
     ap.add_argument("--prev")
+    ap.add_argument("--require-prev", action="store_true", help="a real Monday run: exit 4 when no earlier edition is found")
     ap.add_argument("--trial", action="store_true")
     ap.add_argument("--sent-n", type=int, default=0)
     ap.add_argument("--office", action="store_true", help="add verified builder office lines (send time, needs LEADS_PASSWORD)")
@@ -455,6 +471,9 @@ def main():
     else:
         cur = load(GC)
         prev = load(a.prev) if a.prev else previous_edition(cur)
+        if prev is None and a.require_prev:
+            print("# no earlier edition found (shallow clone?): run git fetch --depth=50 origin main or pass --prev", file=sys.stderr)
+            sys.exit(4)
         picks, mode = pick(cur["leads"], a.city, gen_date(cur), prev, sent_ids(a.city), [x for x in a.avoid.split(",") if x])
         print(f"# {mode}; data {cur['generatedAt']}; leads {', '.join(x['lead_id'] for x in picks)}", file=sys.stderr)
         if len(picks) < 2:

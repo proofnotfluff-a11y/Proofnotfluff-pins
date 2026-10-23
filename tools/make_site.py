@@ -1899,6 +1899,9 @@ def page_html(p):
     if p.get("kind") == "licleads":    # Chicago New Business Licenses (tools/lic_site.py)
         import lic_site
         return lic_site.page_html(p)
+    if p.get("kind") == "newin":       # New in Chicago, the free traffic page (tools/newin_site.py)
+        import newin_site
+        return newin_site.page_html(p)
     if p.get("kind") == "question":    # question pages for the lead products (tools/question_site.py)
         import question_site
         return question_site.page_html(p)
@@ -2655,7 +2658,7 @@ def og_all(pages, live):
     import re
     clean = lambda t: re.sub(r"\s+", " ", re.sub(r"\{[^}]*\}", "", t or "")).strip()
     for p in pages:
-        if p.get("kind") in ("leads", "restleads", "question", "licleads") and not os.path.isfile(os.path.join(ROOT, p["data"])):
+        if p.get("kind") in ("leads", "restleads", "question", "licleads", "newin") and not os.path.isfile(os.path.join(ROOT, p["data"])):
             continue
         og_image(p["slug"], clean(p.get("eyebrow")) or "ProofNotFluff", clean(p["h1"]), clean(p.get("card")))
 
@@ -2667,10 +2670,10 @@ def main():
     LIVE_QUESTIONS[:] = [p for p in live if p.get("kind") == "question"]
     og_all(pages, live)
     for p in pages:
-        if p.get("kind") in ("leads", "restleads", "question", "licleads") and not os.path.isfile(os.path.join(ROOT, p["data"])):
+        if p.get("kind") in ("leads", "restleads", "question", "licleads", "newin") and not os.path.isfile(os.path.join(ROOT, p["data"])):
             print("skipped", p["slug"], "(no data yet)")
             continue
-        CURRENT["nav"] = "questions" if p.get("kind") == "question" else ("shop" if p.get("kind") in ("leads", "restleads", "licleads") else "calc")
+        CURRENT["nav"] = "questions" if p.get("kind") == "question" else ("shop" if p.get("kind") in ("leads", "restleads", "licleads") else ("" if p.get("kind") == "newin" else "calc"))
         out = os.path.join(DOCS, p["slug"]); os.makedirs(out, exist_ok=True)
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page_html(p))
         print("wrote", p["slug"])

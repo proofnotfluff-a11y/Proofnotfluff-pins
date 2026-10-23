@@ -718,7 +718,11 @@ def main():
                          "foodInsp30": sum(bool(r["foodInsp"]) for r in recs),
                          "freeLeftFailedWeek": sum(r["license"] in failed for r in week)},
               "segmentNames": labels,
-              "segments": {k: [public(r) for r in week if r["segment"] == k and r["license"] not in failed][: a.top] for k in labels}}
+              "segments": {k: [public(r) for r in week if r["segment"] == k and r["license"] not in failed][: a.top] for k in labels},
+              # New in Chicago (tools/newin_site.py, Todd's traffic layer, Oct 23): every business of the week, newest first, business
+              # fields only; a business with a City food inspection Fail on file is never named here either
+              "week": [dict(public(r), segment=r["segment"]) for r in sorted(week, key=lambda r: (r["issued"], r["business"]), reverse=True)
+                       if r["license"] not in failed]}
     profile = {"fetchedAt": source["fetchedAt"], "rowsUpdatedAt": upd_iso, "columns": cols,
                "byLicense": collections.Counter(r.get("license_description") or "" for r in rows).most_common(60),
                "keptByLicense": collections.Counter(r["licenseType"] for r in recs).most_common(40), "areasLoaded": len(areas)}

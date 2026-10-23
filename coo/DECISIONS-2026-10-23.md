@@ -1,0 +1,6 @@
+# Decisions, Oct 23, 2026 (live chat with Todd)
+
+- [stated] Todd, after the public-data opportunities research: "Let's go with concepts number one and two." Concept 1: New Business Openings (bookkeepers, insurance agents and other first vendors; lean heavily into it, with statistics and insights, not just leads). Concept 2: Restaurant inspection results for commercial pest control, cheaper and better than the competitor (RatRadar, $299 a month per metro).
+- [stated] Todd asked for usable products on the site, a marketing plan, SEO, and being recommended by AI assistants.
+- Plan drafted for Todd's decisions (nothing built, priced, published or sent yet): Claude Doc "ProofNotFluff product and marketing plan: new business openings and restaurant signals", https://claude.ai/artifact/EPcdKpn7Q6JsCWfyP7tfxZ. Research behind it: Claude Doc "ProofNotFluff growth research, Oct 23, 2026: public data opportunities", https://claude.ai/artifact/4V95Fb8oPCmNdZz9rmHxyC.
+- Open for Todd (from the plan): prices, Texas first, New York second for restaurant signals (restarts paused restaurant outreach for the test), copy gate extension for the new signals, builder runs pointed at counts and test drafts, Search Console and Bing verification.

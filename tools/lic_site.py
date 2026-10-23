@@ -37,12 +37,20 @@ def page_html(p):
             return f'<a class="{cls}" href="{E(checkout)}" rel="noopener">Get the full list: ${E(str(price))} a month</a>'
         return f'<a class="{cls}" href="{E(notify)}">Tell me when it opens</a>'
 
+    HIST = {"first": "First license", "site": "New site", "added": "Added license", "relicensed": "Relicensed"}
+
     def card(x):
-        return (f'<article class="ld-proj"><p class="ld-pill lc-pill">Licensed {E(M.nice_date(x["issued"]))}</p>'
+        from licenses_chicago import street_unit
+        st, un = street_unit(x["address"])
+        acts = [a for a in (x.get("activity") or "").split(" | ") if a]
+        act = E(acts[0]) + (f' <span class="lc-more">and {len(acts) - 1} more</span>' if len(acts) > 1 else "") if acts else ""
+        h = x.get("history") or ""
+        return (f'<article class="ld-proj"><p class="lc-pills"><span class="ld-pill lc-pill">Licensed {E(M.nice_date(x["issued"]))}</span>'
+                + (f'<span class="lc-hi {h}"><i></i>{HIST[h]}</span>' if h in HIST else "") + '</p>'
                 f'<div class="ld-ptop"><span class="ld-cost" style="font-size:20px">{E(x["business"])}</span></div>'
-                f'<dl class="ld-meta"><div><dt>Where</dt><dd>{E(x["address"])}{", " + E(x["communityArea"]) if x.get("communityArea") else ""}</dd></div>'
+                f'<dl class="ld-meta"><div><dt>Where</dt><dd>{E(st)}{" <span class=lc-more>&middot; " + E(un) + "</span>" if un else ""}{", " + E(x["communityArea"]) if x.get("communityArea") else ""}</dd></div>'
                 f'<div><dt>License</dt><dd>{E(x["licenseType"])}</dd></div>'
-                f'<div><dt>Activity</dt><dd class="lc-act" title="{E(x["activity"])}">{E(x["activity"])}</dd></div></dl></article>')
+                f'<div><dt>Activity</dt><dd>{act}</dd></div></dl></article>')
 
     s30, sw = c["segments30"], c["segmentsWeek"]
     note = (f'<p class="ld-heronote">New list every Monday. Cancel any time.</p>' if checkout else
@@ -66,7 +74,7 @@ def page_html(p):
               + '</ol></section>')
     segs = "".join(f'<h3 class="lc-h3">{E(names[k])} <span>({sw.get(k, 0):,} this week)</span></h3><div class="ld-list rl3">{"".join(card(x) for x in d["segments"][k][:3])}</div>'
                    for k in ORDER if d["segments"].get(k))
-    sample = (f'<section class="block" id="sample"><h2>This week\'s sample</h2><p>Up to three businesses per trade licensed in the last 7 days. '
+    sample = (f'<section class="block" id="sample"><h2>This week\'s sample</h2><p>Up to three per trade shown here, from a free sample of up to ten per trade licensed in the last 7 days. '
               f'The members\' list has all {c["kept30"]:,} from the last 30 days, with a map, filters by trade, area and date, and an Excel file.</p>'
               f'{segs}</section>')
     method = '<section class="block"><h2>How to use this list</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"]) + "</section>"
@@ -84,9 +92,10 @@ def page_html(p):
     ld = (M.ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
           "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}, crumb_ld)
           + "<style>.ld-page .asof,.ld-page footer p{color:var(--muted)}.rl-act{margin:18px 0 8px}"
-          ".lc-pill{background:var(--chip-near-bg);color:var(--chip-near)}.rl3 .ld-pill{margin:0 0 10px}.rl3 .ld-ptop{margin:0 0 12px}"
+          ".lc-pill{background:var(--chip-near-bg);color:var(--chip-near)}.rl3 .ld-pill{margin:0}.rl3 .ld-ptop{margin:0 0 12px}"
           ".ld-page .tile .val.lc-area{font-size:22px;line-height:1.25}"
-          ".lc-act{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}"
+          ".lc-more{color:var(--muted)}.lc-pills{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 10px}.lc-pills .ld-pill{margin:0}"
+          ".lc-hi.added,.lc-hi.relicensed{color:#3A4152;background:#ECE6DA}"
           ".crumbs+.lc-herogrid .eyebrow{margin-top:14px}"
           "@media(min-width:1000px){.lc-herogrid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:40px;align-items:center}.lc-herogrid .ld-hero .lede{max-width:none}}"
           ".lc-shot{margin:0 0 26px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 28px rgba(29,36,51,.08);overflow:hidden;max-width:460px}"

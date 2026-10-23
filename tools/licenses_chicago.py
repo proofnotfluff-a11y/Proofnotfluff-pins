@@ -119,6 +119,20 @@ def split_address(addr):
     return " ".join(words), ""
 
 
+def street_unit(addr):
+    """("8246 S Racine Ave", "1 2") from "8246 S Racine Ave 1 2", the City's case kept, for showing the unit muted after the
+    street (members' app, free page). No street suffix found keeps the whole address as the street."""
+    words = (addr or "").split()
+    ends = [i for i, w in enumerate(words) if i >= 2 and STREET_END.match(w.upper().strip(",."))]
+    if not ends:
+        return addr, ""
+    # "3509 S Dr Martin Luther King Jr Dr 2": a suffix followed by a name word is part of the street name; take the
+    # first suffix followed by a number or the end, else the first suffix
+    pick = next((i for i in ends if i + 1 >= len(words) or not (words[i + 1].isalpha() and len(words[i + 1]) > 3 and
+                                                                any(j > i for j in ends))), ends[0])
+    return " ".join(words[:pick + 1]).rstrip(" ,"), " ".join(words[pick + 1:]).strip(" ,")
+
+
 def building_key(addr):
     b, _ = split_address(addr)
     return re.sub(r"[^A-Z0-9]", "", re.sub(r"^(\d+)-\d+", r"\1", b))
@@ -676,7 +690,7 @@ def main():
     week_from = (today - dt.timedelta(days=7)).isoformat()
     week = [r for r in recs if r["issued"] >= week_from]
     labels = {k: lab for k, lab, _ in SEGMENTS}
-    public = lambda r: {k: r[k] for k in ("business", "address", "communityArea", "licenseType", "activity", "issued")}
+    public = lambda r: {k: r.get(k) or "" for k in ("business", "address", "communityArea", "licenseType", "activity", "issued", "history")}
     source = {"name": "City of Chicago Data Portal, Business Licenses", "url": DATASET_PAGE, "rowsUpdatedAt": upd_iso,
               "fetchedAt": now.isoformat(timespec="seconds"), "terms": TERMS,
               "modified": ("Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a "

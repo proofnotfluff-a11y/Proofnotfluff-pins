@@ -58,12 +58,16 @@ def legal_text():
     return LEGAL.replace("__CITY__", X.city_disclaimer())
 
 
+from licenses_chicago import street_unit  # noqa: E402
+
+
 def payload(full, xlsx_bytes):
     groups = X.by_trade(full)
     rows = []
     for k in X.ORDER:
         for r in groups.get(k, []):
-            rows.append({"id": r["license"], "n": r["business"], "a": r["address"], "z": r.get("zip") or "", "ar": r.get("communityArea") or "",
+            st, un = street_unit(r["address"])
+            rows.append({"id": r["license"], "n": r["business"], "a": r["address"], "st": st, "u": un, "z": r.get("zip") or "", "ar": r.get("communityArea") or "",
                          "t": k, "ty": r["licenseType"], "ot": r.get("otherTypes") or [], "ac": r.get("activity") or "", "d": r["issued"],
                          "h": r.get("history") or "", "hs": r.get("since") or "", "fi": r.get("foodInsp") or "", "is": r.get("inspSince") or "", "nw": X.is_new(r, full),
                          "lat": r.get("lat"), "lon": r.get("lon")})
@@ -135,6 +139,9 @@ PAGE = r"""<!doctype html>
 .row .bd .mi .dot{margin:0 0 0 7px}
 .row .bd .mi.ty{white-space:normal}
 .row .nwt{color:var(--teal);font-weight:600}
+.un{font-weight:400;color:var(--muted)}
+.badge.new{background:#E2EFEC;color:#1F524D}
+@media(min-width:861px){.tool .search{min-width:260px}.tool #fh{flex:0 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none;flex-wrap:nowrap}.tool #fh::-webkit-scrollbar{display:none}.tool #fh button{flex:none}}
 .row .ctx{color:var(--teal);font-weight:700;display:inline-flex;align-items:center;gap:4px}
 .row .fit{color:var(--muted);font-size:13.5px}.row .fit b{color:var(--ink2);font-weight:600}
 .row{grid-template-columns:minmax(0,1fr) auto}
@@ -172,8 +179,8 @@ PAGE = r"""<!doctype html>
 .ovl b{color:var(--ink)}
 .lg-1{width:12px;height:12px;background:#C8502F;box-shadow:0 0 0 1.5px #fff,0 0 0 2.5px #A63E21;border-radius:2px!important;margin:0 3px}
 .lg-2{width:10px;height:10px;background:#2F5F9E;border:2px solid #fff;box-shadow:0 0 0 1px #2F5F9E;margin:0 3px}
-.lg-4{width:10px;height:10px;background:#3A4152;border:2px solid #fff;box-shadow:0 0 0 1px #3A4152;margin:0 3px}
-.lg-3{width:10px;height:10px;background:#fff;border:2px solid #3A4152;margin:0 3px}
+.lg-4{width:12px;height:12px;background:#fff;border:2.4px solid #3A4152;margin:0 3px}
+.lg-3{width:10px;height:10px;background:#9AA0AB;border:1.5px solid #fff;box-shadow:0 0 0 1px #9AA0AB;margin:0 3px}
 .pin-f{background:#C8502F;border:1.5px solid #fff;box-shadow:0 0 0 1px #A63E21,0 1px 3px rgba(29,36,51,.3);border-radius:2px;box-sizing:border-box}
 .pin-f.hot{background:#1D2433;box-shadow:0 0 0 2px #C8502F}
 /* business page */
@@ -247,7 +254,7 @@ PAGE = r"""<!doctype html>
 <form class="gate-card" id="gate" novalidate>
 <span class="chip s2"><svg class="ico s" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Members</span>
 <h1>This week's new Chicago business licenses</h1>
-<p class="sub">List of __ASOF__. New business licenses the City issued in the last 30 days at Chicago business sites, one row per business and site, sorted by trade, for vendors who sell to new businesses and new locations.</p>
+<p class="sub">List of __ASOF__. New business licenses the City issued in the last 30 days at Chicago business sites, one row per business and site, sorted by trade, for commercial cleaning and pest control companies and any vendor who sells to new businesses.</p>
 <label for="pw">Members' password</label>
 <div class="pw"><input id="pw" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="err pwHelp">
 <button type="button" class="eye" id="eye" aria-label="Show password" aria-pressed="false"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path id="eyeslash" d="M3 3l18 18" hidden/></svg></button></div>
@@ -337,19 +344,23 @@ else if(v==="terms"){viewTerms();nav="";}
 else if(v==="biz"){app.innerHTML=`<div class="panel empty"><h3>That business is not on this week's list</h3><p>Businesses leave the list when their license is more than 30 days old.</p><a class="btn ink" href="#/list">See this week's list</a></div>`;nav="list";document.title="Not on this week's list | Chicago New Business Licenses";}
 else{viewOverview();nav="overview";}
 setNav(nav);app.classList.remove("view-enter");void app.offsetWidth;app.classList.add("view-enter");
-if(scroll){window.scrollTo(0,0);const h=app.querySelector("h1");if(h){h.setAttribute("tabindex","-1");h.focus({preventScroll:true});}}}
+fixDots(app);if(scroll){window.scrollTo(0,0);const h=app.querySelector("h1");if(h){h.setAttribute("tabindex","-1");h.focus({preventScroll:true});}}}
 
 /* a row in any list */
-function row(r,ov){const m=mk(r.id);
-const meta=[r.nw?'<span class="nwt">New</span>':"",`<span>Licensed ${dayShort(r.d)}</span>`,
+function row(r,ov,hideH){const m=mk(r.id);
+const meta=[r.nw?'<span class="nwt">New</span>':"",`<span>Licensed ${dayShort(r.d)}</span>`,r.fi?`<span>License inspection ${dayShort(r.fi)}</span>`:"",
  m.c?`<span class="ctx">${ico("check","s")}Contacted</span>`:""].filter(Boolean)
  .map((t,i)=>`<span class="mi">${i?'<span class="dot" aria-hidden="true">&middot;</span>':""}${t}</span>`).join("");
 return `<li><a class="row" href="#/biz/${encodeURIComponent(r.id)}" data-id="${esc(r.id)}">
 <span class="mn">${esc(r.n)}</span>
-<span class="ad">${esc(r.a)}${r.ar?`<span class="ar">, ${esc(r.ar)}</span>`:""}</span>
-<span class="bd">${meta}</span>${r.fi?`<span class="bd"><span class="mi">License inspection ${dayShort(r.fi)}</span></span>`:""}<span class="bd"><span class="fit"><b>${esc(r.ty)}</b>${r.ac&&r.ac!==r.ty?": "+esc(r.ac):""}</span></span>
-<span class="rt">${ov?tch(r.t):""}${hi(r)}</span>${ico("chev","chev")}</a></li>`;}
-function rowsHtml(list,limit,ov){if(!list.length)return "";const n=Math.min(limit||list.length,list.length);return `<ul class="list-rows">${list.slice(0,n).map(r=>row(r,ov)).join("")}</ul>`;}
+<span class="ad">${esc(r.st||r.a)}${r.u?`<span class="un"> &middot; ${esc(r.u)}</span>`:""}${r.ar?`<span class="ar">, ${esc(r.ar)}</span>`:""}</span>
+<span class="bd">${meta}</span><span class="bd"><span class="fit"><b>${esc(r.ty)}</b>${r.ac&&r.ac!==r.ty?": "+esc(r.ac):""}</span></span>
+<span class="rt">${ov?tch(r.t):""}${hideH?"":hi(r)}</span>${ico("chev","chev")}</a></li>`;}
+function rowsHtml(list,limit,ov,hideH){if(!list.length)return "";const n=Math.min(limit||list.length,list.length);return `<ul class="list-rows">${list.slice(0,n).map(r=>row(r,ov,hideH)).join("")}</ul>`;}
+/* a meta line that wraps never starts its second line with a dot */
+function fixDots(root){(root||document).querySelectorAll(".row .bd").forEach(b=>{let top=null;b.querySelectorAll(".mi").forEach(mi=>{const d=mi.querySelector(".dot");if(d)d.style.display="";});
+b.querySelectorAll(".mi").forEach(mi=>{const d=mi.querySelector(".dot");const t=mi.offsetTop;if(d&&top!==null&&t>top+2)d.style.display="none";top=t;});});}
+window.addEventListener("resize",()=>{clearTimeout(window._fd);window._fd=setTimeout(()=>fixDots(),120);});
 const newest=(a,b)=>b.d.localeCompare(a.d)||a.n.localeCompare(b.n);
 
 /* overview */
@@ -370,7 +381,7 @@ $("#app").innerHTML=`<section class="hero"><h1>${int(n)} new business licenses i
 <section class="panel"><div class="sec-h"><h2>Newest licenses<span class="c num">${int(n)}</span></h2><a href="#/list">See all ${int(n)}</a></div>${rowsHtml(top8,0,true)}</section>
 ${D.checks.history?`<section class="panel"><div class="sec-h"><h2>First license<span class="c num">${int(first)}</span></h2><a href="#/list?h=first">See all ${int(first)}</a></div><p class="rec" style="padding-top:0">${esc(W.historyLong.first)} Newest first, after the ones above.</p>${rowsHtml(fresh,0,true)}</section>`:""}
 </div><div class="ov-col">
-<section class="panel"><div class="sec-h"><h2>Where they are</h2><a href="#/list?view=map">Open the map</a></div>
+<section class="panel"><div class="sec-h"><h2>Where they are<span class="c">last 30 days</span></h2><a href="#/list?view=map">Open the map</a></div>
 <p class="blg" aria-hidden="true"><span><i style="background:#C8502F"></i>First license</span><span><i style="background:#2F5F9E"></i>Other new licenses</span></p>
 <ul class="bars" aria-label="Businesses on the list by community area"><li class="hd" aria-hidden="true"><span></span><span class="sp2"></span><span>First</span><span>All</span></li>${areas.map(([a,nn,v])=>`<li><a href="#/list?area=${encodeURIComponent(a)}" aria-label="${esc(a)}: ${plural(nn,"business","businesses")}, ${int(v[0])} with a first license"><span>${esc(a)}</span><span class="tr" style="width:${Math.max(3,Math.round(nn/amax*100))}%" aria-hidden="true">${v[0]?`<i style="flex-grow:${v[0]};background:#C8502F"></i>`:""}${v[1]?`<i style="flex-grow:${v[1]};background:#2F5F9E"></i>`:""}</span><span class="nv num${v[0]?"":" z"}" style="color:var(--first)">${int(v[0])}</span><span class="v num">${int(nn)}</span></a></li>`).join("")}</ul></section>
 <section class="panel"><div class="sec-h"><h2>Your follow-ups</h2>${cN||nN?`<a href="#/list?fu=mine">Show them</a>`:""}</div>
@@ -463,13 +474,13 @@ $("#fclear").hidden=!(f.q||f.h||ac);$("#fdone").textContent=rows.length?`Show ${
 drawList();drawMap(refit);}
 function drawList(){const rows=STATE.rows,n=Math.min(STATE.shown,rows.length);const el=$("#plist");
 if(!rows.length){const q=STATE.f.q;el.innerHTML=`<div class="empty"><h3>${q?`No businesses match "${esc(q)}"`:"No businesses match these filters"}</h3><p>${q?"Check the spelling, or clear the search":"Try another area or trade, or clear the filters"} to see all ${int(inTrade(STATE.f.t).length)}.</p><button class="btn ink" type="button" id="eclr">${q?"Clear search and filters":"Clear filters"}</button></div>`;$("#eclr").onclick=()=>$("#fclear").click();return;}
-el.innerHTML=rowsHtml(rows,n,!STATE.f.t)+(n<rows.length?`<div class="row-more"><button class="btn" type="button" id="more">Show ${int(Math.min(60,rows.length-n))} more</button><span>${int(n)} of ${int(rows.length)} shown</span></div>`:"");
-const m=$("#more");if(m)m.onclick=()=>{STATE.shown+=60;drawList();};
+el.innerHTML=rowsHtml(rows,n,!STATE.f.t,!!STATE.f.h)+(n<rows.length?`<div class="row-more"><button class="btn" type="button" id="more">Show ${int(Math.min(60,rows.length-n))} more</button><span>${int(n)} of ${int(rows.length)} shown</span></div>`:"");
+fixDots(el);const m=$("#more");if(m)m.onclick=()=>{STATE.shown+=60;drawList();};
 el.querySelectorAll(".row").forEach(a=>{a.addEventListener("mouseenter",()=>hot(a.dataset.id,true));a.addEventListener("mouseleave",()=>hot(a.dataset.id,false));});}
 
 /* map */
-const MS={site:{radius:6.5,color:"#fff",weight:2,fillColor:"#2F5F9E",fillOpacity:1},added:{radius:6.5,color:"#fff",weight:2,fillColor:"#3A4152",fillOpacity:1},relicensed:{radius:6.5,color:"#fff",weight:2,fillColor:"#3A4152",fillOpacity:1},
-none:{radius:6,color:"#3A4152",weight:2.2,fillColor:"#fff",fillOpacity:1}};
+const MS={site:{radius:6.5,color:"#fff",weight:2,fillColor:"#2F5F9E",fillOpacity:1},added:{radius:6,color:"#3A4152",weight:2.4,fillColor:"#fff",fillOpacity:1},relicensed:{radius:6,color:"#3A4152",weight:2.4,fillColor:"#fff",fillOpacity:1},
+none:{radius:5.5,color:"#fff",weight:1.5,fillColor:"#9AA0AB",fillOpacity:1}};
 const PK=r=>r.h==="first"?"first":r.h?r.h:"none";
 function tiles(m){L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(m);}
 function ensureMap(){if(STATE.map||!$("#map"))return;if(!window.L){const box=$("#mapbox");if(box&&!box.querySelector(".map-fail"))box.insertAdjacentHTML("beforeend",'<div class="map-fail"><p>The map did not load on this connection. The list has every business.</p></div>');if(!ensureMap.tries){ensureMap.tries=1;window.addEventListener("load",()=>{if($("#map")&&!STATE.map){const f=$("#mapbox .map-fail");f&&f.remove();ensureMap();}},{once:true});}return;}
@@ -516,7 +527,7 @@ const maps="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent
 const find="https://www.google.com/search?q="+encodeURIComponent(r.n+" "+r.a+" Chicago");
 $("#app").innerHTML=`<a class="back" href="#/list" id="back">${ico("back")}Back</a>
 <div class="pg"><section class="pg-head"><div class="ph-chips">${tch(r.t)}${r.nw?'<span class="badge new">New this week</span>':""}${m.c?`<span class="badge done">${ico("check","s")}Contacted ${esc(day(m.c))}</span>`:""}</div>
-<div class="p-title"><h1>${esc(r.n)}</h1><p class="sub">${esc(r.a)}, ${esc([r.ar,"Chicago"].filter(Boolean).join(", "))}</p></div>
+<div class="p-title"><h1>${esc(r.n)}</h1><p class="sub">${esc(r.st||r.a)}${r.u?`<span class="un"> &middot; ${esc(r.u)}</span>`:""}, ${esc([r.ar,"Chicago"].filter(Boolean).join(", "))}</p></div>
 <div class="acts"><button class="btn" type="button" id="cpy">${ico("copy","s")}Copy address</button><a class="btn" href="${maps}" target="_blank" rel="noopener">${ico("pin","s")}Map and phone<span class="sr"> (opens Google Maps in a new tab)</span></a><a class="btn" href="${find}" target="_blank" rel="noopener">${ico("search","s")}Search the web<span class="sr"> (opens in a new tab)</span></a></div></section>
 <div class="pg-main">
 <section class="panel lic" aria-labelledby="lh"><h2 id="lh" class="eb">The City's new license</h2>
@@ -560,10 +571,10 @@ const on=document.querySelector('.bk a[aria-current="page"]');if(on&&on.scrollIn
 /* terms */
 function termsHtml(){const lk=x=>esc(x).replace(/hello@proofnotfluff\.com/g,'<a href="mailto:hello@proofnotfluff.com">hello@proofnotfluff.com</a>');const para=t=>{const m=/^([A-Z][A-Za-z ]{1,40}?\.) (.+)$/.exec(t);return m?`<p><b>${esc(m[1])}</b> ${lk(m[2])}</p>`:`<p>${lk(t)}</p>`;};
 return `<div class="ph"><div><h1>Terms of Use</h1><p>${esc(W.version)}.<br>The same terms are on the Terms tab of the Excel file.</p></div></div>
-<div class="terms"><section class="panel" aria-labelledby="th1"><div class="sec-h"><h2 id="th1">City of Chicago Data Terms of Use</h2></div><div class="tx"><p>The City of Chicago's Data Terms of Use, word for word, as the City published them (checked ${esc(W.cityChecked)}). They apply to the City data on this list.</p>
+<div class="terms"><section class="panel" aria-labelledby="th2"><div class="sec-h"><h2 id="th2">Your membership terms</h2></div><div class="tx"><p>${esc(W.notice)}</p>${W.paras.map(para).join("")}</div></section>
+<section class="panel" aria-labelledby="th1"><div class="sec-h"><h2 id="th1">City of Chicago Data Terms of Use</h2></div><div class="tx"><p>The City of Chicago's Data Terms of Use, word for word, as the City published them (checked ${esc(W.cityChecked)}). They apply to the City data on this list.</p>
 ${W.citySections.map(([h,ps])=>`<h3>${esc(h)}</h3>${ps.map(p=>`<p>${esc(p)}</p>`).join("")}`).join("")}
-<p><a href="${esc(W.cityTerms)}" target="_blank" rel="noopener">City of Chicago Data Terms of Use<span class="sr"> (opens in a new tab)</span></a></p></div></section>
-<section class="panel" aria-labelledby="th2"><div class="sec-h"><h2 id="th2">ProofNotFluff</h2></div><div class="tx"><p>${esc(W.notice)}</p>${W.paras.map(para).join("")}</div></section></div>`;}
+<p><a href="${esc(W.cityTerms)}" target="_blank" rel="noopener">City of Chicago Data Terms of Use<span class="sr"> (opens in a new tab)</span></a></p></div></section></div>`;}
 function viewTerms(){document.title="Terms of Use | Chicago New Business Licenses";$("#app").innerHTML=`<a class="back" href="#/" id="back">${ico("back")}Back</a>`+termsHtml();$("#back").onclick=e=>{e.preventDefault();back("#/");};}
 function gateHash(){if(D)return;const t=(location.hash||"")==="#/terms";$("#gateView").hidden=t;$("#gateLegal").hidden=t;$("#app").hidden=!t;$("#appLegal").hidden=!t;
 if(t){document.title="Terms of Use | Chicago New Business Licenses";$("#app").innerHTML=`<a class="back" href="#/">${ico("back")}Back to the password</a>`+termsHtml();window.scrollTo(0,0);const h=$("#app h1");h.setAttribute("tabindex","-1");h.focus({preventScroll:true});}

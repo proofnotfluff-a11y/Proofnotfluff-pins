@@ -1,6 +1,6 @@
 # Launch record: Chicago New Business Licenses ($29 a month planned, price and go are Todd's), NOT LAUNCHED
 
-Status Oct 22, 2026 (list of Oct 22, 230 businesses): built, and every agent gate passed. What is left is Todd's (section 2).
+Status Oct 22, 2026, 9:21 pm: LIVE at $29 a month with a 7-day free trial (Todd, 8:50 pm: "Please finish everything yourself based on your recommendation. create the product with a 7 day free trial"). Gumroad: https://proofnotfluff.gumroad.com/l/chicago-new-business-licenses. Left: Todd's $0 trial test (step 6) and the outreach-drafter wiring before the first batch (step 7).
 
 Checklist: design/LAUNCH_CHECKLIST.md. Nothing is published, linked, emailed or promoted until every box is ticked with proof and Todd says go. Built by the leads desk builder run (coo/LEADS_DESK.md Run 4), product 4 in the LEADS FOCUS line (coo/PIVOT.md).
 
@@ -49,13 +49,13 @@ Checklist: design/LAUNCH_CHECKLIST.md. Nothing is published, linked, emailed or 
 - The crew's gate key is removed: the runner no longer seals a copy of the members' list (the private key lived only in the build session).
 
 ## 2. Todd's steps, in order
-1. [ ] Price and go ($29 a month). Take the three open Legal items to counsel first if you want.
-2. [ ] GitHub: add the Actions secret LIC_LEADS_PASSWORD (Settings, Secrets and variables, Actions), 12 characters or more. Never in this repo or in chat.
-3. [ ] Tell a session. It runs the licenses workflow once so the members' app is published at https://proofnotfluff.com/chicago-new-business-licenses-members/, and checks that #/terms opens without the password.
-4. [ ] Gumroad: new Membership product, tier `Monthly` at $29, monthly, no trial. Paste Name, Summary and Description from "Gumroad copy" below. Cover: launches/chicago-new-business-licenses/cover-1280x720.png. Thumbnail: launches/chicago-new-business-licenses/thumb-600x600.png. Post-purchase content: the members' link and the same password. Publish, then send the checkout link to the session.
-5. [ ] The session puts the checkout link on the free page (site/pages.json "checkout"), drops "draft", and rebuilds the site.
-6. [ ] Buy once as a buyer (then refund): receipt, password, app, workbook in Excel and Google Sheets.
-7. [ ] Outreach go: cleaning T11 to T13 and pest control T14 to T16 (email/L1-OUTREACH.md); restaurant outreach stays paused until then (decision 4).
+1. [x] Price and go: $29 a month with a 7-day free trial (Oct 22, 8:50 pm). Take the three open Legal items to counsel first if you want.
+2. [x] (Oct 22, Todd) GitHub: add the Actions secret LIC_LEADS_PASSWORD (Settings, Secrets and variables, Actions), 12 characters or more. Never in this repo or in chat.
+3. [x] (Oct 22, run 39887328304; the published app opens with the password in a Playwright run, and #/terms opens without it on the live site) Tell a session. It runs the licenses workflow once so the members' app is published at https://proofnotfluff.com/chicago-new-business-licenses-members/, and checks that #/terms opens without the password.
+4. [x] (Oct 22, the session in the built-in browser; Todd typed the password line; product apgisz, slug chicago-new-business-licenses, trial 1 week, cover and thumbnail uploaded, published 9:21 pm; the trial line from legal/reviews/2026-10-22-monday-email-and-trial.md item 12 is in the Description) Gumroad: new Membership product, tier `Monthly` at $29, monthly, no trial. Paste Name, Summary and Description from "Gumroad copy" below. Cover: launches/chicago-new-business-licenses/cover-1280x720.png. Thumbnail: launches/chicago-new-business-licenses/thumb-600x600.png. Post-purchase content: the members' link and the same password. Publish, then send the checkout link to the session.
+5. [x] (Oct 22, commit 70ebfdc: trial button, the note by it, the full trial disclosure and a trial FAQ; page indexable; shop card added) The session puts the checkout link on the free page (site/pages.json "checkout"), drops "draft", and rebuilds the site.
+6. [ ] Todd: start one 7-day trial on your own card ($0), check the receipt shows the trial and the charge date and that the password opens the app and workbook, then cancel in your Gumroad library and confirm no charge is scheduled.
+7. [x] Outreach go given Oct 22 (meta/products chicago-licenses outreachGo true). Before the first batch, a session wires the outreach-drafter for licenses (signal leads from the Monday list, copy_gate --signal). Outreach: cleaning T11 to T13 and pest control T14 to T16 (email/L1-OUTREACH.md); restaurant outreach stays paused until then (decision 4).
 
 ## Removal requests
 - A business that asks to be left out (or a row Todd judges to be a home) goes on permits/licenses-chicago/do_not_list.json (salted keys, no names): `python3 tools/licenses_chicago.py --dnl-add --license N` (the License number from the business page or the workbook), commit, and the next build leaves it out of every list and the sample.

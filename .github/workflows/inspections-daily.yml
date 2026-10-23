@@ -23,13 +23,22 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
-      - run: pip install --quiet cryptography
+      - run: pip install --quiet cryptography duckdb
       - name: Self-checks
         run: |
           python3 tools/inspections_chicago.py --selftest
           python3 tools/rest_leads.py --selftest
           python3 tools/rest_daily.py --selftest
           python3 tools/rest_seal.py --selftest
+          python3 tools/phones.py --selftest
+      - name: Newest Overture Maps release (open places data for the phone step)
+        id: overture
+        run: echo "release=$(python3 tools/phones.py --release)" >> "$GITHUB_OUTPUT"
+      - name: Chicago places from that release, kept between runs (one download a month)
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/overture
+          key: overture-chicago-${{ steps.overture.outputs.release }}
       - name: Pull the City's data (the weekly files it also writes are discarded below)
         run: python3 tools/inspections_chicago.py --full "$RUNNER_TEMP/inspections-full.json" --raw "$RUNNER_TEMP/inspections-raw.json"
       - name: Build the daily list
@@ -40,6 +49,11 @@ jobs:
           if [ -z "$REST_DAILY_KEY$REST_LEADS_PASSWORD" ]; then echo "no REST_DAILY_KEY or REST_LEADS_PASSWORD secret; the daily list needs one"; exit 1; fi
           python3 tools/rest_leads.py "$RUNNER_TEMP/inspections-raw.json" "$RUNNER_TEMP/rest-data.json"
           python3 tools/rest_daily.py "$RUNNER_TEMP/rest-data.json" "$RUNNER_TEMP/daily-named.json"
+      - name: Listed phone on each row (move 2; counts only in the log and the public file, numbers only in the sealed list)
+        run: |
+          mkdir -p "$RUNNER_TEMP/overture"
+          [ -s "$RUNNER_TEMP/overture/chicago.json" ] || python3 tools/phones.py --extract "$RUNNER_TEMP/overture/chicago.json" --release "${{ steps.overture.outputs.release }}" || echo "places download failed; the list ships with empty phones"
+          python3 tools/phones.py fill "$RUNNER_TEMP/daily-named.json" "$RUNNER_TEMP/overture/chicago.json" --public permits/inspections-chicago/daily.json || echo "phone step failed; the list ships with empty phones"
       - name: Seal the named list (it names businesses with failed records; the private key is never in the repo)
         run: |
           python3 tools/rest_seal.py seal "$RUNNER_TEMP/daily-named.json" permits/inspections-chicago/daily.sealed.json

@@ -28,7 +28,8 @@ Outputs:
   Public examples carry area, facility type, result and trade only: no date and no inspection type, so a single fail
     in a small area cannot be matched back to the City record.
 
-Phone (move 2): each row carries "phone" and "phoneSource", empty until the phone step fills them.
+Phone (move 2): each row carries "phone" and "phoneSource" (and the City's coordinates, for the match), filled by
+  tools/phones.py in the runner before the list is sealed. The public file gets only the count of rows with a phone.
 
 Usage: REST_DAILY_KEY=... python3 tools/rest_daily.py DATASET.json NAMED_OUT.json   (DATASET from rest_leads.py RAW OUT)
        python3 tools/rest_daily.py --selftest
@@ -92,7 +93,8 @@ def pick(data, seen, secret):
             items.append({"place": pk, "name": p["name"], "address": p["address"], "zip": p["zip"], "area": p["area"] or "Chicago",
                           "type": p["type"], "date": x["d"], "result": x["r"], "inspectionType": x["t"], "trades": trades,
                           "codes": {c: x["c"][c] for c in trades}, "summary": summary(x), "record": RL.RECORD + iid,
-                          "fails90": p["fails90"], "phone": "", "phoneSource": ""})
+                          "fails90": p["fails90"], "lat": p.get("lat"), "lon": p.get("lon"),
+                          "phone": "", "phoneSource": ""})
             mark += ids
             break
     items.sort(key=lambda it: (it["date"], it["name"]))

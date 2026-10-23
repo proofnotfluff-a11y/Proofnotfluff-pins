@@ -1,0 +1,25 @@
+name: Phone coverage probe (temporary, branch phone-probe only)
+# Move 2 (Oct 23, 2026): measures how many daily pest and hood rows and new license rows get a listed phone from the
+# free route (tools/phones.py). Counts only in the log; no file is committed, no number or name is printed.
+on:
+  push:
+    branches: [phone-probe]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install --quiet cryptography duckdb openpyxl pillow
+      - run: python3 tools/phones.py --selftest
+      - name: City data (restaurant inspections and new licenses), runner only
+        run: |
+          python3 tools/inspections_chicago.py --full "$RUNNER_TEMP/inspections-full.json" --raw "$RUNNER_TEMP/inspections-raw.json" > /dev/null
+          python3 tools/rest_leads.py "$RUNNER_TEMP/inspections-raw.json" "$RUNNER_TEMP/rest-data.json" > /dev/null
+          python3 tools/licenses_chicago.py --full "$RUNNER_TEMP/licenses-full.json" > /dev/null
+      - name: Overture places for Chicago
+        run: python3 tools/phones.py --extract "$RUNNER_TEMP/chicago.json"
+      - name: Coverage (counts only)
+        run: python3 tools/phones.py --probe "$RUNNER_TEMP/rest-data.json" "$RUNNER_TEMP/licenses-full.json" "$RUNNER_TEMP/chicago.json"

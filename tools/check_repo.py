@@ -46,6 +46,10 @@ Checks
                 city from the live GC leads, 2 or 3 fresh leads one per builder, no link, price or trial talk in the issue, the
                 footer with our mailing address and stop line byte for byte, the trial email's one Gumroad link, price, 7 days,
                 card and cancel lines; plus its planted selftest
+  radar         the radar agent's code (Todd, Oct 23, 2026): tools/product_wire.py (no live lead page without a complete
+                launches/WIRING.json entry; a non-legacy product missing any piece fails), tools/opportunity_score.py --check
+                on scout/candidates/ and scout/reviews/, and the planted selftests of opportunity_score, product_wire,
+                product_health and ai_visibility
   gate-selftest tools/test_gates.py plants a failure for each of the four gates above and confirms each is caught
   gate-tests    tools/test_check_repo.py plants a failure for every check above in a throwaway copy and
                 confirms each one is caught and no secret value is printed (Todd's Oct 15 note: the checks get
@@ -451,6 +455,22 @@ def check_monday():
         ok("monday", last[len("OK monday "):].strip("()"))
 
 
+def check_radar():
+    code, lines = _run_tool([os.path.join("tools", "product_wire.py")])
+    if code:
+        return err("radar", "; ".join(l for l in lines if l.startswith("ERROR"))[:600] or "product_wire exit 1")
+    warns = sum(1 for l in lines if l.startswith("WARN"))
+    code, olines = _run_tool([os.path.join("tools", "opportunity_score.py"), "--check"])
+    if code:
+        return err("radar", "; ".join(l for l in olines if l.startswith("ERROR"))[:600] or "opportunity_score --check exit 1")
+    for tool in ("opportunity_score.py", "product_wire.py", "product_health.py", "ai_visibility.py"):
+        code, tl = _run_tool([os.path.join("tools", tool), "--selftest"])
+        if code:
+            return err("radar", f"{tool} --selftest: " + "; ".join(l for l in tl if l.startswith(("FAIL", "ERROR")))[:500])
+    ok("radar", f"{sum(1 for l in lines if l.startswith('OK wire') or (l.startswith('WARN wire') and ' pieces wired' in l))} products wired"
+       f" ({warns} legacy gaps as WARN); {olines[-1].split(': ', 1)[-1] if olines else ''}; 4 selftests pass")
+
+
 def check_gate_selftest():
     code, lines = _run_tool([os.path.join("tools", "test_gates.py")])
     if code:
@@ -475,7 +495,7 @@ def main():
               ("voice", lambda: check_voice(files)),
               ("fiverr-kit", check_fiverr_kit),
               ("context", lambda: check_context(args.preflight)), ("moat", check_moat), ("schema", lambda: check_schema(files)),
-              ("copy", check_copy), ("monday", check_monday), ("gate-selftest", check_gate_selftest),
+              ("copy", check_copy), ("monday", check_monday), ("radar", check_radar), ("gate-selftest", check_gate_selftest),
               ("gate-tests", check_gate_tests)]
     for name, fn in checks:
         if only and name not in only:

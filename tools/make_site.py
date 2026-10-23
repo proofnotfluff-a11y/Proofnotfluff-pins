@@ -1876,7 +1876,7 @@ io.observe(hero);io.observe(cta)})();</script>"""
     prod = next((x for x in store_products() if x["key"] == p["slug"]), None)
     ld = ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
                   "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]},
-                 crumb_ld, product_ld(prod, url) if prod else None)
+                 crumb_ld, product_ld(prod, url) if prod else None, page_ld(p, url) if is_live(p) else None)
     robots = "" if is_live(p) else '<meta name="robots" content="noindex, nofollow">'
     foot = (f'</main>\n<footer><div class="wrap">{foot_nav(rel)}'
             f'<p>Source: {E(src["name"])} ({E(src["url"])}), City data as of {E(asof)}, the day it was pulled. {E(src["modified"])} '
@@ -2229,6 +2229,38 @@ def product_ld(x, url):
             "image": BASE + f"assets/og/{slug}.png", "brand": {"@type": "Brand", "name": "ProofNotFluff"}, "offers": offer}
 
 
+ORG = {"@type": "Organization", "name": "ProofNotFluff", "url": "https://proofnotfluff.com/", "email": "hello@proofnotfluff.com",
+       "sameAs": [SHOP, "https://proofnotfluff.gumroad.com"]}
+
+
+def data_date(rel):
+    """The day a page's data was pulled from the City (source.fetchedAt or asOf), or "" when the file has none."""
+    try:
+        dd = json.load(open(os.path.join(ROOT, rel), encoding="utf-8"))
+    except (OSError, ValueError, TypeError):
+        return ""
+    m = str((dd.get("source") or {}).get("fetchedAt") or dd.get("asOf") or "")[:10]
+    return m if len(m) == 10 and m[4] == "-" else ""
+
+
+def page_ld(p, url):
+    """WebPage data for a lead page with true dates (radar, Oct 23, 2026; research_notes/ai-recommendation-2026-10-23.md):
+    dateModified is the day its data was pulled, datePublished the launch day in launches/WIRING.json. Same publisher on
+    every page, so assistants and search engines read one consistent business."""
+    mod = data_date(p.get("data"))
+    if not mod:
+        return None
+    try:
+        w = json.load(open(os.path.join(ROOT, "launches", "WIRING.json"), encoding="utf-8"))["products"].get(p["slug"], {})
+    except (OSError, ValueError):
+        w = {}
+    d = {"@context": "https://schema.org", "@type": "WebPage", "url": url, "name": p.get("h1", ""), "description": p.get("desc", ""),
+         "dateModified": mod, "publisher": ORG}
+    if w.get("launchedAt") and w["launchedAt"] <= mod:
+        d["datePublished"] = w["launchedAt"]
+    return d
+
+
 def nb(text):
     """A title with its hyphenated words kept whole, so "E-commerce" never breaks at the hyphen (design check, Oct 22)."""
     import re
@@ -2345,8 +2377,7 @@ def home_html(pages, live):
     band = ('<section class="st-band" aria-labelledby="trust-title"><h2 id="trust-title">Public records, read by a finance executive.</h2>'
             '<p>Every number here comes from the cities\' own open data or our own workbooks, with the date we pulled it. No business on a list '
             'endorses or works with ProofNotFluff, and we never contact anyone for you. Public information for planning sales calls; not legal or business advice and no promise of work.</p></section>')
-    org = {"@context": "https://schema.org", "@type": "Organization", "name": "ProofNotFluff", "url": BASE, "logo": BASE + "assets/og/home.png",
-           "email": "hello@proofnotfluff.com"}
+    org = {"@context": "https://schema.org", **ORG, "url": BASE, "logo": BASE + "assets/og/home.png"}
     items = {"@context": "https://schema.org", "@type": "ItemList", "name": "ProofNotFluff lead lists and tools",
              "itemListElement": [{"@type": "ListItem", "position": i, "url": BASE + x["href"], "name": x["name"]} for i, x in enumerate(prods, 1)]}
     body = hero + lists + how + calcs + qs + band
@@ -2655,6 +2686,9 @@ def main():
     urls = ([BASE] + [BASE + slug + "/" for slug, _ in store] + [BASE + "go/"] + [BASE + p["slug"] + "/" for p in live]
             + [BASE + x["slug"] + "/" for x in live_extras()])
     lastmod = {}
+    for p in live:   # a lead page changes when its data does (radar, Oct 23): the sitemap says the true day
+        if p.get("kind") in ("leads", "restleads", "licleads") and data_date(p.get("data")):
+            lastmod[BASE + p["slug"] + "/"] = data_date(p.get("data"))
     for q in LIVE_QUESTIONS:   # a question page changes when its data does
         try:
             dd = json.load(open(os.path.join(ROOT, q["data"]), encoding="utf-8"))

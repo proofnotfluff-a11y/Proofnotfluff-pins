@@ -101,7 +101,8 @@ def page_html(p):
             f'<div class="ld-heroact rl-act">{buy()}<a class="ld-textlink" href="#sample">See this week\'s sample</a></div>{note}</div>{shot}</div>'
             f'{tiles}{trades}{sample}{method}{cta_html}{M.guides_block(p["slug"], rel=rel)}{M.faq_block(faq)}')
     ld = (M.ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
-          "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}, crumb_ld)
+          "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}, crumb_ld,
+          *((M.product_ld(prod, url), M.page_ld(p, url)) if (prod := next((x for x in M.store_products() if x["key"] == p["slug"]), None)) and M.is_live(p) else ()))
           + "<style>.ld-page .asof,.ld-page footer p{color:var(--muted)}.rl-act{margin:18px 0 8px}"
           ".lc-pill{background:var(--chip-near-bg);color:var(--chip-near)}.rl3 .ld-pill{margin:0}.rl3 .ld-ptop{margin:0 0 12px}"
           ".ld-page .tile .val.lc-area{font-size:22px;line-height:1.25}"

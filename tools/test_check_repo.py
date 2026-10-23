@@ -9,7 +9,7 @@ check_repo.py runs this file as its gate-tests check, so the nightly optimizer a
 import json, os, random, re, shutil, string, subprocess, sys, tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data", "builder-contacts", "video-specs", "voice", "fiverr-kit", "monday"]
+CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data", "builder-contacts", "video-specs", "voice", "fiverr-kit", "monday", "radar"]
 rng = random.Random()
 # Key markers are assembled here so this file never matches the secrets check itself.
 KEY_BEGIN = "-----BEGIN " + "RSA PRIVATE " + "KEY-----"
@@ -68,6 +68,13 @@ def plants(tmp):
         return go
 
     out.append(("json", "invalid JSON under site/", new_file("site/zz_planted.json", "{not json")))
+    out.append(("radar", "a live lead page with no wiring entry", edit("launches/WIRING.json", lambda t: re.sub(
+        r'"status": "live", "legacy": true, "launchedAt": "2026-10-22"', '"status": "building", "legacy": true, "launchedAt": "2026-10-22"', t))))
+    out.append(("radar", "a non-legacy product missing a piece", edit("launches/WIRING.json", lambda t: t.replace(
+        '"status": "live", "legacy": true, "launchedAt": "2026-10-17"', '"status": "live", "legacy": false, "launchedAt": "2026-10-17"').replace('"questionsMin": 3', '"questionsMin": 99', 1))))
+    out.append(("radar", "a candidate with an email address", new_file("scout/candidates/zz-planted.json", json.dumps(
+        {"schema": "pnf.opportunity.v1", "slug": "zz-planted", "name": "x", "note": "owner@example.com", "buyer": {}, "price": {},
+         "demand": {}, "data": {}, "build": {}, "fit": {}}))))
     out.append(("python", "a tools/ script that does not compile", new_file("tools/zz_planted.py", "def broken(:\n    pass\n")))
     out.append(("calc-tests", "a calculator answer off by $1", edit("docs/assets/pnf-calc.js", lambda t: t + (
         "\nif (typeof module !== 'undefined' && module.exports && module.exports.hourly) {"

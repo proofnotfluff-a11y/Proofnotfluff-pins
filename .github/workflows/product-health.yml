@@ -1,0 +1,40 @@
+name: Product health
+# Radar weekly health check (Todd, Oct 23, 2026; .claude/skills/radar/SKILL.md). The cloud agents cannot reach the City
+# portals or Gumroad, so this runner checks every live product in launches/WIRING.json: the source's columns and update
+# date, our data's age, 5 random published records looked up in the source, and the page, members' page and checkout
+# links. It commits qa/health/<date>.json (counts and results only). Manual runs only: the Monday schedule waits for
+# Todd's go in chat (CLAUDE.md 3), then the cron line below is uncommented.
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: "10 13 * * 1"   # Mondays, about 8:10 am Chicago time, after the Monday data pulls
+permissions:
+  contents: write
+concurrency:
+  group: product-health
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 tools/product_health.py --selftest
+      - name: Live checks
+        id: live
+        continue-on-error: true
+        run: python3 tools/product_health.py --live
+      - name: Commit the report
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add qa/health
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "Product health $(TZ=America/Chicago date +%Y-%m-%d)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done
+          exit 1
+      - name: Fail the run when a product failed
+        if: steps.live.outcome == 'failure'
+        run: exit 1

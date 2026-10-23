@@ -154,7 +154,7 @@ io.observe(hero);io.observe(cta)})();</script>"""
     prod = next((x for x in M.store_products() if x["key"] == p["slug"]), None)
     ld = (M.ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
           "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]},
-          crumb_ld, M.product_ld(prod, url) if prod else None)
+          crumb_ld, M.product_ld(prod, url) if prod else None, M.page_ld(p, url) if M.is_live(p) else None)
           # small grey text darkened to pass WCAG AA on the warm canvas (axe, Oct 2026); scoped to this page only
           + "<style>.ld-page .asof,.ld-page footer p{color:var(--muted)}"
           ".ld-pill.rp-fail{background:var(--rp-fail-bg);color:var(--rp-fail)}.ld-pill.rp-pwc{background:var(--rp-pwc-bg);color:var(--rp-pwc)}"

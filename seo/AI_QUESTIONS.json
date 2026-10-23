@@ -1,0 +1,18 @@
+{
+ "schema": "pnf.aiquestions.v1",
+ "about": "Questions our buyers ask, in the words a small business owner would type to an AI assistant. Rows marked backlog are the real public questions in seo/BACKLOG.md, reworded only enough to name the city the product covers; rows marked intent are the direct shopping question for the product. The radar run asks each one weekly (tools/ai_visibility.py). Add a row when a new product is wired (tools/product_wire.py checks the product's question pages, the radar run adds its questions here).",
+ "questions": [
+  {"id": "cc-1", "product": "chicago-construction-cleaning-leads", "source": "backlog A1", "q": "Is there a website where I can find post-construction cleaning jobs to bid on in Chicago?"},
+  {"id": "cc-2", "product": "chicago-construction-cleaning-leads", "source": "backlog A6", "q": "How do I get my new post-construction cleaning company in front of general contractors in Chicago?"},
+  {"id": "cc-3", "product": "chicago-construction-cleaning-leads", "source": "intent", "q": "Where can I get a list of large construction projects in Chicago and the general contractors running them?"},
+  {"id": "ac-1", "product": "austin-construction-cleaning-leads", "source": "backlog A3", "q": "I started a commercial post-construction cleaning company in Austin, Texas. How do I get my first clients?"},
+  {"id": "ac-2", "product": "austin-construction-cleaning-leads", "source": "backlog A7", "q": "Big buildings are going up near me in Austin. How do I approach the builders for construction cleanup work?"},
+  {"id": "ac-3", "product": "austin-construction-cleaning-leads", "source": "intent", "q": "Is there a list of new commercial construction permits in Austin with the contractor's name?"},
+  {"id": "cr-1", "product": "chicago-restaurant-inspection-leads", "source": "backlog A2", "q": "How do kitchen exhaust hood cleaning companies find new restaurant clients in Chicago?"},
+  {"id": "cr-2", "product": "chicago-restaurant-inspection-leads", "source": "backlog A4", "q": "How can a cleaning company land restaurant accounts in Chicago?"},
+  {"id": "cr-3", "product": "chicago-restaurant-inspection-leads", "source": "intent", "q": "Where can a pest control company find Chicago restaurants that just failed a health inspection?"},
+  {"id": "nl-1", "product": "chicago-new-business-licenses", "source": "backlog A8", "q": "How do I get steady commercial cleaning clients in Chicago without paying for ads?"},
+  {"id": "nl-2", "product": "chicago-new-business-licenses", "source": "backlog A12", "q": "What is the best way to land commercial cleaning contracts in Chicago?"},
+  {"id": "nl-3", "product": "chicago-new-business-licenses", "source": "intent", "q": "Where can I get a list of new businesses that just got a license in Chicago?"}
+ ]
+}

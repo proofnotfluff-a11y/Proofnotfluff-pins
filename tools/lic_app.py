@@ -140,6 +140,7 @@ PAGE = r"""<!doctype html>
 .row .bd .mi.ty{white-space:normal}
 .row .nwt{color:var(--teal);font-weight:600}
 .un{font-weight:400;color:var(--muted)}
+.row .bd .mi.nl{flex-basis:100%}.row .bd .mi.nl .dot{display:none}
 .badge.new{background:#E2EFEC;color:#1F524D}
 @media(min-width:861px){.tool .search{min-width:260px}.tool #fh{flex:0 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none;flex-wrap:nowrap}.tool #fh::-webkit-scrollbar{display:none}.tool #fh button{flex:none}}
 .row .ctx{color:var(--teal);font-weight:700;display:inline-flex;align-items:center;gap:4px}
@@ -211,8 +212,8 @@ PAGE = r"""<!doctype html>
 .terms .tx h3:first-child{margin-top:0}
 #fsheetH:focus{outline:none;box-shadow:none}
 #app h1[tabindex="-1"]:focus{outline:none;box-shadow:none}
-@media(min-width:861px){.tool .search{flex:1 1 220px;min-width:200px;max-width:420px}
- .tool .seg:not(.vtog) button{padding:0 11px}
+@media(min-width:861px){.tool{flex-wrap:nowrap}.tool .search{flex:0 0 260px;min-width:260px;max-width:420px}.tool .fbtn,.tool .csvb{flex:none}
+ .tool .seg:not(.vtog) button{padding:0 9px;font-size:13.5px}.tool .fbtn,.tool .csvb{padding-left:14px;padding-right:14px}
  .fbtn{display:inline-flex}.tsp{display:none}
  .filters{display:none}
  .filters.open{display:flex;flex-direction:column;gap:14px;position:fixed;z-index:1000;top:0;right:0;bottom:0;width:400px;max-width:100%;overflow:auto;background:#fff;padding:20px 24px;box-shadow:-10px 0 40px rgba(29,36,51,.18)}
@@ -358,8 +359,8 @@ return `<li><a class="row" href="#/biz/${encodeURIComponent(r.id)}" data-id="${e
 <span class="rt">${ov?tch(r.t):""}${hideH?"":hi(r)}</span>${ico("chev","chev")}</a></li>`;}
 function rowsHtml(list,limit,ov,hideH){if(!list.length)return "";const n=Math.min(limit||list.length,list.length);return `<ul class="list-rows">${list.slice(0,n).map(r=>row(r,ov,hideH)).join("")}</ul>`;}
 /* a meta line that wraps never starts its second line with a dot */
-function fixDots(root){(root||document).querySelectorAll(".row .bd").forEach(b=>{let top=null;b.querySelectorAll(".mi").forEach(mi=>{const d=mi.querySelector(".dot");if(d)d.style.display="";});
-b.querySelectorAll(".mi").forEach(mi=>{const d=mi.querySelector(".dot");const t=mi.offsetTop;if(d&&top!==null&&t>top+2)d.style.display="none";top=t;});});}
+function fixDots(root){(root||document).querySelectorAll(".row .bd").forEach(b=>{const ms=[...b.querySelectorAll(".mi")];ms.forEach(mi=>mi.classList.remove("nl"));
+let top=null;ms.forEach(mi=>{const t=mi.offsetTop;if(top!==null&&t>top+2){mi.classList.add("nl");}top=mi.offsetTop;});});}
 window.addEventListener("resize",()=>{clearTimeout(window._fd);window._fd=setTimeout(()=>fixDots(),120);});
 const newest=(a,b)=>b.d.localeCompare(a.d)||a.n.localeCompare(b.n);
 

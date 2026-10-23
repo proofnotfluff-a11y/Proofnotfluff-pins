@@ -1756,7 +1756,8 @@ def leads_page_html(p):
 
     gcs = "".join(f'<li><span class="ld-gname">{E(g["name"])}</span><span class="ld-gn">{g["projects"]}<span class="ld-gu"> open jobs</span></span>'
                   f'<span class="ld-gv">{M(g["cost"])}</span></li>' for g in c.get("topGCs", [])[:10])
-    gc_more = (f'<p class="ld-gmore">The full list ranks every builder with open work. <a href="{E(checkout)}" rel="noopener">Get it for ${price} a month</a>.</p>'
+    gc_more = (f'<p class="ld-gmore">The full list ranks every builder with open work. <a href="{E(checkout)}" rel="noopener">'
+               + (f'Try it free for {trial} days, then ${price} a month' if trial else f'Get it for ${price} a month') + '</a>.</p>'
                if checkout else "")
     gc_html = ('<section class="block"><h2>Builders with the most big jobs open</h2>'
                '<p>Counted from permits where the business is listed as general contractor.</p>'
@@ -1826,7 +1827,7 @@ def leads_page_html(p):
                        f'Then it is ${price} a month until you cancel. Cancel in your Gumroad library before day {trial} and you pay nothing. '
                        f'<a href="{rel}refunds/">Refunds and cancelling</a></p></div>' if trial else
                        f'<p class="ld-secure">Secure checkout by Gumroad. Cancel any time. <a href="{rel}refunds/">Refunds and cancelling</a></p></div>')
-                    + (f'<div class="ld-later" id="ldMonday"><p><b>Not ready to pay?</b> Get 2 or 3 jobs from this week\'s list free every Monday, by plain email.</p>{form}'
+                    + (f'<div class="ld-later" id="ldMonday"><p><b>Not ready to pay?</b> Get 2 or 3 new jobs from this week\'s list, free by plain email, on the Mondays there are new ones.</p>{form}'
                        f'<small class="ld-note">Kit, our email provider, asks you to confirm first. Unsubscribe in one click. Never sold. <a href="{rel}privacy/">Privacy</a></small></div>' if monday else
                        f'<div class="ld-later"><p><b>Not ready yet?</b> Leave your email and we will let you know when the list adds new cities or features.</p>{form}'
                        '<small class="ld-note">Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div>' if p.get("kitForm") else "")
@@ -1848,7 +1849,7 @@ def leads_page_html(p):
         sbar = ""
     faq = list(p["faq"])
     if trial or monday:   # one plain answer on the two free ways in (email/M1-MONDAY.md)
-        ways = ([f"The free Monday email sends 2 or 3 jobs from the week's list."] if monday else []) + (
+        ways = ([f"The free Monday email sends 2 or 3 new jobs from the week's list on the Mondays there are new ones."] if monday else []) + (
             [f"Or start a {trial}-day free trial on Gumroad: your card goes in at checkout, nothing is charged for {trial} days, "
              f"then it is ${price} a month until you cancel. Cancel before day {trial} and you pay nothing."] if trial else [])
         faq.append(["Can I try it before I pay?", "Yes. " + " ".join(ways).replace("Yes. Or start", "Yes. Start")])
@@ -2435,7 +2436,7 @@ def privacy_html():
                 "taken from public business records, the company&#39;s own website or an email finding service. We also keep your reply, "
                 "such as a yes or a stop.",
                 "When you buy a list: Gumroad, our checkout, gives us your name, your email and what you bought. Gumroad takes the card; "
-                "we never see your card number.",
+                "we never see your full card number.",
                 "Visits: Cloudflare Web Analytics counts page views without cookies and without identifying you. The calculators run in your "
                 "browser and send nothing. In the members&#39; apps, contacted marks and notes stay in your own browser."]) +
             '<h2>Why</h2>' + li([
@@ -2448,12 +2449,18 @@ def privacy_html():
                 "contacts and whether each said yes or stop.",
                 "Google runs our inbox, so the emails you send us and our replies sit in Gmail.",
                 "Gumroad holds checkout and membership records."]) +
-            '<p>Nobody else gets it. We never sell or rent your details, and never share them for anyone else&#39;s marketing.</p>'
+            '<p>Nobody else gets it. Our site code and a few encrypted contact records sit on GitHub, where only we hold the key, and the email '
+            'finding service gets only what we look up: a business website and, at times, the owner&#39;s name. We never sell or rent your '
+            'details, and never share them for anyone else&#39;s marketing.</p>'
             '<h2>How to stop</h2>' + li([
                 "Reply &quot;stop&quot; to any email from us, or use the unsubscribe link at the foot of any email Kit sends. "
-                "You won&#39;t get another one.",
+                "We take you off before the next send, and you won&#39;t get another one.",
                 f'Members cancel in their Gumroad library (see <a href="{rel}refunds/">Refunds and cancelling</a>).',
-                f"To see what we hold about you, or to have it deleted, write to {mail}."]) +
+                f"To see what we hold about you, or to have it deleted, write to {mail}. We keep only the note that you asked us to stop, "
+                "so we never email you again."]) +
+            '<h2>Changes and tracking</h2><p>If this policy changes, the date below changes and the new text goes on this page; we do not '
+            'email about changes. This site does not respond to browser Do Not Track signals, because it does not track you across sites '
+            'in the first place. The Monday email form sends your address straight to Kit, which has its own privacy policy.</p>' +
             '<h2>Contact</h2>'
             f'<p>ProofNotFluff LLC, 680 North Lake Shore Drive, Suite 110-2964, Chicago, IL 60611. {mail}</p>'
             f'<p class="asof">Policy updated {E(nice_date(r.get("updated", "")))}.</p></article>')

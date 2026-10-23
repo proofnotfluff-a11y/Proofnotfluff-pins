@@ -78,7 +78,8 @@ def page_html(p):
     segs = "".join(f'<h3 class="lc-h3">{E(names[k])} <span>({sw.get(k, 0):,} this week)</span></h3><div class="ld-list rl3">{"".join(card(x) for x in d["segments"][k][:3])}</div>'
                    for k in ORDER if d["segments"].get(k))
     sample = (f'<section class="block" id="sample"><h2>This week\'s sample</h2><p>Up to three per trade shown here, from a free sample of up to ten per trade licensed in the last 7 days. '
-              f'The members\' list has all {c["kept30"]:,} from the last 30 days, with a map, filters by trade, area and date, and an Excel file.</p>'
+              f'The members\' list has all {c["kept30"]:,} from the last 30 days, with a map, filters by trade, area and date, and an Excel file. '
+              f'This week\'s new businesses, by neighborhood, are free on <a href="{rel}new-in-chicago/">New in Chicago</a>.</p>'
               f'{segs}</section>')
     method = '<section class="block"><h2>How to use this list</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"]) + "</section>"
     cta_html = (f'<section class="block" id="ldCta"><div class="cta ld-cta"><div><h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
@@ -119,7 +120,7 @@ def page_html(p):
           ".lc-hi{display:inline-flex;align-items:center;gap:7px;height:28px;padding:0 11px;border-radius:999px;font-weight:700;font-size:13px;white-space:nowrap}"
           ".lc-hi i{width:8px;height:8px;background:currentColor;border-radius:50%}.lc-hi.first{color:#A63E21;background:#FBEAE4}.lc-hi.first i{border-radius:2px}"
           ".lc-hi.site{color:#2F5F9E;background:#E6EDF6}"
-          ".lc-shot figcaption{padding:10px 18px 12px;font-size:12.5px;color:var(--muted);background:var(--paper,#F7F5F0)}"
+          ".lc-shot figcaption{padding:10px 18px 12px;font-size:12.5px;color:var(--muted);background:var(--canvas2)}"
           ".lc-h3{font:600 18px/1.3 Poppins,system-ui,sans-serif;margin:26px 0 10px;color:var(--ink)}"
           ".lc-h3 span{font:400 15px/1.3 system-ui,sans-serif;color:var(--muted)}"
           ".ld-page .ld-tiles .tile .lab{letter-spacing:.04em;overflow-wrap:anywhere}.ld-page .ld-tiles .tile .sub{text-wrap:balance}"

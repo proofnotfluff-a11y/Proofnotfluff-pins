@@ -2351,7 +2351,7 @@ def home_html(pages, live):
            '<li><span class="n" aria-hidden="true">1</span><div><h3>Open the free sample</h3><p>Real records from this week\'s pull sit on each list\'s page. No sign-up.</p></div></li>'
            '<li><span class="n" aria-hidden="true">2</span><div><h3>Subscribe when it fits</h3><p>$29 or $39 a month, paid through Gumroad. Cancel any time.</p></div></li>'
            '<li><span class="n" aria-hidden="true">3</span><div><h3>Work the list</h3><p>Every Monday: the named list, an Excel file and a pitch kit for your trade.</p></div></li></ol></section>')
-    calcs_live = [p for p in live if p.get("kind") not in ("leads", "restleads", "licleads", "question")]
+    calcs_live = [p for p in live if p.get("kind") not in ("leads", "restleads", "licleads", "question", "newin")]
     by_slug = {p["slug"]: p for p in calcs_live}
     groups, used = [], set()
     for title, slugs in st.get("calcGroups", []):
@@ -2477,7 +2477,7 @@ def privacy_html():
             '<p class="lede">We collect as little as we can: an email address when you ask us for an email, and work contact details '
             'for the businesses we write to about leads. We never sell any of it.</p>'
             '<h2>What we collect</h2>' + li([
-                "Your email address, when you sign up on this site for the free Monday jobs email, a waitlist, product updates or the cleaning price cheat sheet.",
+                "Your email address, when you sign up on this site for the free Monday jobs email, the New in Chicago email, a waitlist, product updates or the cleaning price cheat sheet.",
                 "For businesses we email about leads: the business name, the decision maker&#39;s name and job title, and their work email, "
                 "taken from public business records, the company&#39;s own website or an email finding service. We also keep your reply, "
                 "such as a yes or a stop.",

@@ -3875,32 +3875,32 @@
   {
    "slug": "new-in-chicago",
    "kind": "newin",
-   "draft": true,
    "city": "Chicago",
    "data": "permits/licenses-chicago/sample.json",
    "vendorSlug": "chicago-new-business-licenses",
    "title": "New Businesses in Chicago This Week: Restaurants, Shops and Salons | ProofNotFluff",
-   "desc": "Every new business the City of Chicago licensed this week, by neighborhood and type: new restaurants, cafes, bars, shops, salons and more, from the City's own records, updated every Monday.",
-   "eyebrow": "Updated every Monday",
+   "desc": "New business licenses the City of Chicago issued this week, by neighborhood and type: new restaurants, cafes, bars, shops, salons and more, from the City's own records, updated every week.",
+   "eyebrow": "Updated every week",
    "h1": "New in Chicago this week",
-   "card": "Every new business the City licensed this week, by neighborhood: restaurants, shops, salons and more.",
+   "card": "New business licenses the City issued this week, by neighborhood: restaurants, shops, salons and more.",
    "method": [
-    "Every business here got a new City of Chicago business license in the last 7 days at a business address. We read the City's Business Licenses data every Monday and keep one row per business and address.",
-    "Left out on purpose: renewals, licenses held by one person or for an event or a season, home and mailbox addresses, names that could be a person's, and food businesses with a failed City inspection on file.",
+    "Every business here got a new City of Chicago business license in the last 7 days, at an address our checks show as a business site. We read the City's Business Licenses data every week and keep one row per business and address.",
+    "Most are first licenses. Some are a business's new site, a license added at a site it already has, or a site licensed again.",
+    "Left out on purpose: renewals, licenses for one person's own work or for an event or a season, home and mailbox addresses, names that could be a person's full name, and food businesses with a failed City inspection on file. A business can be missing for many reasons, and being listed or missing says nothing about its inspections, quality or standing.",
     "A license is not an opening date. Many places open a few weeks after the license, and a few never open. Check with the business before you go."
    ],
    "faq": [
     [
      "Is this every new business in Chicago?",
-     "It is every new City business license issued at a business address in the last 7 days, after the exclusions above. Some businesses, like many offices and online shops, need no City business license, so they are not here."
+     "No. It is the new City business licenses issued at business sites in the last 7 days, after the exclusions above. Some businesses, like many offices and online shops, need no City business license, so they are not here."
     ],
     [
      "How often does it change?",
-     "Every Monday, from the City's own records."
+     "Every week, from the City's own records. The date at the top says when the records were pulled."
     ],
     [
-     "Can a business ask to be removed?",
-     "Yes. Email hello@proofnotfluff.com from the business and we take it off the next page."
+     "Can a listing be removed or corrected?",
+     "Yes. Email hello@proofnotfluff.com with the name and address. If you run the business, or a listing shows your home or your name, we take it off before the next Monday page and keep it off the weekly email and the business list."
     ]
    ]
   },

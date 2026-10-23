@@ -26,6 +26,7 @@ from leads_xlsx import _FUNCS, _flat, cache_values, card_sheet  # noqa: E402
 from rest_xlsx import blue, card, lead_para  # noqa: E402
 from openpyxl.styles import Alignment, Border  # noqa: E402
 from leads_xlsx import rich  # noqa: E402
+from openpyxl.cell.rich_text import CellRichText  # noqa: E402
 from openpyxl.utils import get_column_letter as gl  # noqa: E402
 
 PRODUCT = "Chicago New Business Licenses"
@@ -33,6 +34,7 @@ VERSION = "Version 1, Oct 22, 2026"
 CITY_TERMS_FILE = os.path.join(ROOT, "permits", "licenses-chicago", "city-terms.json")
 RECORD = "https://data.cityofchicago.org/resource/r5kz-chrr.json?license_number="
 RESTAURANT = "Chicago Restaurant Inspection Leads"
+FOOD_URL = "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5"
 
 # ---------------------------------------------------------------- trades (keys from tools/licenses_chicago.py SEGMENTS)
 from licenses_chicago import TRADES  # noqa: E402  (key, tab, short label, kinds: one source with the free page)
@@ -40,7 +42,7 @@ TAB = {k: t for k, t, _, _ in TRADES}
 SHORT = {k: s for k, _, s, _ in TRADES}
 KINDS = {k: w for k, _, _, w in TRADES}
 ORDER = [k for k, _, _, _ in TRADES]
-FOOT = "Public City of Chicago business license records. See the Terms tab."
+FOOT = "Public City of Chicago business license and food inspection records. See the Terms tab."
 # The app's chip colors for what the City's record says (launch style.css .hi): (text, cell tint)
 CHIP = {"first": "A63E21", "site": "2F5F9E", "added": "3A4152", "relicensed": "3A4152"}   # the label in bold, its color; the rest plain
 
@@ -83,12 +85,12 @@ def history_text(r):
 LEFT_OUT = ("Renewals and changes (including an older license the City re-dated), cancelled or revoked licenses, and licenses "
             "for one person's own work, for work done away from a fixed business site, or for an event or a season are left out: peddler, special event, pop-up, raffle, tow truck, valet, "
             "chauffeur, home-sharing, vacation rental, bed-and-breakfast, mobile food, shared kitchen user, private booting, home "
-            "occupation, home repair, massage therapist, body art practitioner, pharmaceutical representative, scavenger and expediter licenses, and street performers, flea "
+            "occupation, home repair, dog walking, residential real estate developer, massage therapist, body art practitioner, pharmaceutical representative, scavenger and expediter licenses, and street performers, flea "
             "market vendors and market stalls. So are home and mail-drop addresses: businesses the City marks as home based, "
             "addresses with an apartment number, upper-floor units in a building where the City has licensed home-based "
             "businesses at two or more addresses, private mailboxes, and addresses with a current City virtual office license. "
             "Office and shop suites stay. "
-            "Sites outside Chicago are left out, and so is any business whose shown name could be a person's name: two to four "
+            "Sites outside Chicago are left out, and so is any business whose shown name could be a person's full name: two to four "
             "plain words with none of our business words (such as shop, grill, salon, parking or dog), no possessive, no \"and\" "
             "or \"&\", and not starting with \"The\", with or without LLC or Inc, such as \"Golden Dragon\". That check is strict "
             "on purpose and leaves out many real businesses, because a wrong omission costs less than printing a person's name. "
@@ -118,13 +120,14 @@ OUR_NOTICE = ("For general business information only. Businesses appear because 
 PITCH = [
     {"key": "clean", "buyer": "Commercial cleaning", "short": "Cleaning",
      "call": "Hi, this is [your name] with [company], a commercial cleaning company in Chicago. I saw the City issued [business] "
-             "a new [license type] license on [date], and new sites are often still choosing a cleaner. We clean [kind of "
-             "business] in [community area] on a schedule that fits your hours. Who looks after that for you?",
+             "a new [license type] license on [date]. We clean [kind of business] in [community area] on a schedule that fits your "
+             "hours. Who looks after cleaning for you?",
      "email": ["Subject: Cleaning for [business] at [address]",
                "Hi [business] team, I'm [your name] with [company]. City of Chicago records show a new [license type] license "
                "for [address] on [date]. We clean [kind of business] across Chicago, nightly or weekly, and can walk the space "
                "this week to give you a quote. Is there a good day?",
-               "[Your name], [company], [phone]"]},
+               "[Your name], [company], [phone], [company street address]",
+               "Not interested? Reply \"stop\" and I won't email again."]},
     {"key": "pest", "buyer": "Pest control", "short": "Pest control",
      "call": "Hi, this is [your name] with [company], a licensed pest control company in Chicago. I saw the City issued [business] "
              "a new [license type] license on [date]. We set new [kind of business] up with a service plan and a written service "
@@ -133,7 +136,8 @@ PITCH = [
                "Hi [business] team, I'm [your name] with [company], a licensed pest control company working across Chicago. City "
                "of Chicago records show a new [license type] license for [address] on [date].",
                "We can inspect this week, seal entry points and leave a dated service record. Would [day] work for a visit?",
-               "[Your name], [company], [phone], Illinois structural pest control license [number]"]},
+               "[Your name], [company], [phone], [company street address], Illinois structural pest control license [number]",
+               "Not interested? Reply \"stop\" and I won't email again."]},
     {"key": "any", "buyer": "Any vendor to new businesses (POS, signs, insurance, bookkeeping, waste, supplies)", "short": "Other vendors",
      "call": "Hi, this is [your name] with [company]. I saw the City issued [business] a new [license type] license on [date], "
              "so you may be setting up your accounts. We help new Chicago businesses with [your service]. Who is putting the "
@@ -142,12 +146,15 @@ PITCH = [
                "Hi [business] team, I'm [your name] with [company]. City of Chicago records show a new [license type] license for "
                "[address] on [date]. We set new Chicago businesses up with [your service], usually within [days] of the first "
                "call. Could I send a short quote?",
-               "[Your name], [company], [phone]"]},
+               "[Your name], [company], [phone], [company street address]",
+               "Not interested? Reply \"stop\" and I won't email again."]},
 ]
 PITCH_RULES = ["Name the City's license and its date, and stop there. Don't say the business is open, new to Chicago or in need "
                "of your service unless it tells you so.",
                "Keep every claim about your company true, and never say you work with the City.",
-               "One call and one email per business. Honor any request to stop, and follow the law on calls and email."]
+               "One call and one email per business. Honor any request to stop. Every email needs a true subject line, your real name "
+               "and company, your business street address and a way to say stop, and a stop request must be honored within 10 "
+               "business days (the federal CAN-SPAM Act covers business email). Check the rules that apply to your calls too."]
 
 
 # ---------------------------------------------------------------- the City's Data Terms of Use (word for word)
@@ -213,7 +220,9 @@ def terms_text(date):
         "or edited form, or use it to make a competing product.",
         "Ownership. The selection, layout, trades, text and formulas belong to ProofNotFluff. The license records themselves are public "
         "City of Chicago data. Buying a membership doesn't transfer ownership.",
-        "Accuracy. The list is built from the City of Chicago's Business Licenses data as of the list date above. City data can be "
+        "Information only. This list shares public records and general information for sales planning. It is not legal, tax, "
+        "accounting, financial or other professional advice, and it doesn't create a client relationship of any kind.",
+        "Accuracy. The list is built from the City of Chicago's Business Licenses data, and its Food Inspections data for food rows, as of the list date above. City data can be "
         "late, incomplete or wrong. A new license shows the City issued it on that date. Most go to new businesses, but a business "
         "that opens another site, or adds a new license type at a site it already has, gets one too; the On the City's record column "
         "reads the City's earlier licenses for the same business to tell these apart. The trades are ProofNotFluff's sorting of the "
@@ -236,7 +245,8 @@ def terms_text(date):
         "of Chicago, or by any business listed.",
         "AI assistance. This product was made with AI assistance and reviewed and tested by the shop owner.",
         "Help and cancelling. If the file won't open or something looks wrong, reply to your Gumroad receipt and it will be fixed. Cancel "
-        "any time from your Gumroad receipt or library; cancelling stops future charges.",
+        "any time from your Gumroad receipt or library; cancelling stops future charges. No refunds on a month already delivered; if a "
+        "list doesn't arrive or a file won't open, we fix it or refund that month.",
     ]
 
 
@@ -368,7 +378,7 @@ def data_sheet(wb, key, rows, list_date, food):
             elif ck == "also" and r.get(ck):
                 c.font = D.f(9, False, "ink2")
             elif ck == "new" and r.get(ck):
-                c.font = D.f(9, True, "accent")
+                c.font = D.f(9, True, "teal")
             elif ck == "record" and r.get("recordUrl"):
                 c.value = link_formula(r["recordUrl"], "City record"); c.font = D.f(10, False, "blue", underline="single")
             if ck in WRAP and c.value:
@@ -376,7 +386,7 @@ def data_sheet(wb, key, rows, list_date, food):
         D.h(ws, rr, need)
     if rows:
         ws.auto_filter.ref = f"{letters[0]}{head}:{letters[-1]}{f2}"
-    D.paint_canvas(ws, end + 1, gl(len(cols) + 6))
+    D.paint_canvas(ws, max(end + 1, 22), gl(len(cols) + 6))   # to row 61 at least: finish_sheet paints 60 rows in its lighter paper
     S.finish_sheet(ws, PRODUCT, end, span=("A", gut_r), freeze=f"{letters[1]}{f1}", protect=False, footer_notice=FOOT,
                    tab_color="accent" if key == "food" else "teal" if key in ("retail", "beauty") else None, canvas_cols=gl(len(cols) + 6))
     ws.print_area = f"A1:{gut_r}{end}"
@@ -390,7 +400,7 @@ def data_sheet(wb, key, rows, list_date, food):
 
 RULE_LEADS = ["Say only the record", "Keep it true", "Once, then stop"]
 LEFT_OUT_SHORT = ("Renewals, event and seasonal licenses, licenses for one person's own work or for work away from a fixed site, home "
-                  "and mail-drop addresses, sites outside Chicago, and names that could be a person's. The full rule is on the Terms tab.")
+                  "and mail-drop addresses, sites outside Chicago, and names that could be a person's full name. The full rule is on the Terms tab.")
 
 
 def numbered(n, lead, text):
@@ -410,7 +420,7 @@ def relink(ws):
 
 
 def finish_card(ws, r, tab):
-    D.paint_canvas(ws, r, "S")
+    D.paint_canvas(ws, max(r, 22), "S")
     S.finish_sheet(ws, PRODUCT, r - 1, span=("A", "Q"), protect=False, canvas_cols="S", footer_notice=FOOT, tab_color=tab)
 
 
@@ -436,12 +446,20 @@ def build(full, out):
     start_here(wb, full, list_date, counts, cols)
     wb.active = 0
     for ws in wb.worksheets:
+        for row in ws.iter_rows():
+            for c in row:
+                if c.font is not None and c.font.color is not None and str(c.font.color.rgb or "").upper().endswith(D.T["muted"].upper()):
+                    f = c.font
+                    c.font = D.f(f.sz or 10, bool(f.b), "5C6370", underline=f.u)
+                if ws.title in ("Start Here", "Pitch kit", "Terms") and type(c).__name__ == "Cell" and c.column == 3 and c.alignment.wrap_text \
+                        and c.alignment.vertical == "top" and isinstance(c.value, (str, CellRichText)) and len(str(c.value)) > 60:
+                    c.alignment = Alignment(horizontal=c.alignment.horizontal, vertical="center", wrap_text=True, indent=c.alignment.indent)
         # a blank in the first and last gutter cells: renderers that crop to the used area (LibreOffice's one-page
         # export, Sheets' print preview) keep the canvas margin on both sides, as Excel shows it
-        right = re.search(r"\$([A-Z]+)\$\d+$", ws.print_area).group(1)
-        for k in ("A", right):
-            if ws[f"{k}1"].value is None:
-                ws[f"{k}1"] = " "
+        right, bottom = re.search(r"\$([A-Z]+)\$(\d+)$", ws.print_area).groups()
+        for cell in ("A1", f"{right}1", f"A{int(bottom) + 2}"):
+            if ws[cell].value is None:
+                ws[cell] = " "
         for row in ws.iter_rows():
             for c in row:
                 if isinstance(c.value, str) and ("—" in c.value or "–" in c.value):
@@ -468,14 +486,14 @@ def start_here(wb, full, list_date, counts, cols):
     for left, right, eb, fml, sub, dark in tiles:
         D.tile(ws, 7, left, right, eb, fml, S.FMT["int"], sub, dark=dark, value_size=28 if dark else 20)
     r = card(ws, 12, "Three steps", [
-        numbered(1, "Pick your trades", "Open the tab for the trades you sell to. Filter New this week, or On the City's record for "
-                                     "First license."),
+        numbered(1, "Pick your trades", "Open your trade's tab. Filter New this week or First license."),
         numbered(2, "Call or visit", "In the first weeks. Name the City's license and its date, nothing more."),
         numbered(3, "Email", "Send the matching email from the Pitch kit tab the same day."),
     ])
     r = card(ws, r, "Find your trade", [("lead", (TAB[k], f"{KINDS[k]}.")) for k in ORDER])
+    S.page_break_before(ws, r)
     r = card(ws, r, "How the list is made", [
-        ("para", f"From the City of Chicago's Business Licenses data, pulled {as_of_text(full)}. New licenses (application type Issue) "
+        ("para", f"From the City of Chicago's Business Licenses data, and its Food Inspections data for food rows, pulled {as_of_text(full)}. New licenses (application type Issue) "
                  f"the City issued from {pretty(w['listFrom'])} to {pretty(w['to'])} at Chicago business sites, except the ones under Left out."),
         ("lead", ("Trades", "Ours, from the City's license type and business activity. A business goes in the first trade that fits, in "
                             "the order of the tabs.")),
@@ -488,13 +506,14 @@ def start_here(wb, full, list_date, counts, cols):
         ("lead", ("Not included", "The legal name of the business and anything about the people who own it. The legal name is read only "
                                   "to judge whether a name could be a person's, and is never written out.")),
         ("link", ("Source: City of Chicago Data Portal, Business Licenses", full["source"]["url"])),
+        ("link", ("Source: City of Chicago Data Portal, Food Inspections", FOOD_URL)),
     ])
     relink(ws)
     r = card(ws, r, "Before you rely on it", [
         ("notegrey", "For general information and planning only. This is not legal, tax, financial or other professional advice, and using it "
                      f"doesn't create a professional relationship. Figures come from City of Chicago records as of {as_of_text(full)} and can "
                      "change. See the Terms tab before you rely on anything here."),
-        ("gap", None), ("notegrey", OUR_NOTICE), ("gap", None), ("notegrey", city_disclaimer())])
+        ("notegrey", OUR_NOTICE), ("notegrey", city_disclaimer())])
     finish_card(ws, r, "teal")
     return ws
 
@@ -524,13 +543,11 @@ def terms(wb, full, list_date):
                      f"(checked {pretty(ct['checked'])}). They apply to the City data on this list.")]
     for h, paras in ct["sections"]:
         rows += [("gap", None), ("rich", [(h, True, "ink")])]
-        rows += [("para", p) for p in paras]
+        rows += [("para", p) for p in paras]          # paragraphs carry their own space (row heights fit Excel's line height)
     rows += [("gap", None), ("link", ("City of Chicago Data Terms of Use", ct["url"]))]
     r = card(ws, 6, "City of Chicago Data Terms of Use", rows)
     relink(ws)
-    ours = [("para", OUR_NOTICE)]
-    for x in t[1:]:
-        ours += [("gap", None), lead_para(x)]
+    ours = [("para", OUR_NOTICE)] + [lead_para(x) for x in t[1:]]
     r = card(ws, r, "ProofNotFluff", ours)
     finish_card(ws, r, "note")
     return ws

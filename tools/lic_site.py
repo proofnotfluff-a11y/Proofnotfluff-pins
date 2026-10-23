@@ -15,6 +15,7 @@ import datetime as dt, json, os
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 ORDER = ["food", "retail", "beauty", "venue", "auto", "care"]
+FOOD_URL = "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5"   # the same dataset lic_xlsx names
 
 
 def page_html(p):
@@ -41,7 +42,7 @@ def page_html(p):
                 f'<div class="ld-ptop"><span class="ld-cost" style="font-size:20px">{E(x["business"])}</span></div>'
                 f'<dl class="ld-meta"><div><dt>Where</dt><dd>{E(x["address"])}{", " + E(x["communityArea"]) if x.get("communityArea") else ""}</dd></div>'
                 f'<div><dt>License</dt><dd>{E(x["licenseType"])}</dd></div>'
-                f'<div><dt>Activity</dt><dd>{E(x["activity"])}</dd></div></dl></article>')
+                f'<div><dt>Activity</dt><dd class="lc-act" title="{E(x["activity"])}">{E(x["activity"])}</dd></div></dl></article>')
 
     s30, sw = c["segments30"], c["segmentsWeek"]
     note = (f'<p class="ld-heronote">New list every Monday. Cancel any time.</p>' if checkout else
@@ -54,7 +55,7 @@ def page_html(p):
     tiles = (f'<div class="tiles ld-tiles">'
              f'<div class="tile key"><div class="lab">New in 30 days</div><div class="val">{c["kept30"]:,}</div><div class="sub">licensed business sites</div></div>'
              f'<div class="tile"><div class="lab">New this week</div><div class="val">{c["keptWeek"]:,}</div><div class="sub">licensed in the last 7 days</div></div>'
-             f'<div class="tile"><div class="lab">Food businesses</div><div class="val">{s30.get("food", 0):,}</div><div class="sub">restaurants, cafes, bars, shops</div></div>'
+             f'<div class="tile"><div class="lab">Food businesses</div><div class="val">{s30.get("food", 0):,}</div><div class="sub">restaurants, bars, food shops</div></div>'
              + (f'<div class="tile"><div class="lab">Busiest area this week</div><div class="val lc-area">{E(top_area[0])}</div><div class="sub">{top_area[1]:,} new licenses'
                 + (f', tied with {ties} more {"area" if ties == 1 else "areas"}' if ties else "") + '</div></div>' if top_area else "")
              + f'</div><p class="asof">City records pulled {E(dt.datetime.strptime(pulled, "%b %d, %Y").strftime("%A"))}, {E(pulled)}. The list is refreshed every Monday.</p>')
@@ -73,14 +74,32 @@ def page_html(p):
                 + (f'<p class="ld-price">${E(str(price))} a month when it opens.</p>' if price and not checkout else "")
                 + f'<p class="ld-buybtn">{buy()}</p></div></div></section>')
     crumb, crumb_ld = M.crumbs(rel, [("Home", ""), ("Shop", "shop/"), (p["h1"], None)])
-    body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>'
-            f'<div class="ld-heroact rl-act">{buy()}<a class="ld-textlink" href="#sample">See this week\'s sample</a></div>{note}</div>'
+    shot = ('<figure class="lc-shot"><div class="lc-sh"><b>What members see</b><span>one row per business and site</span></div>'
+            '<div class="lc-r"><div><b>Cafe, Logan Square</b><span>Retail Food Establishment</span></div><span class="lc-hi first"><i></i>First license</span></div>'
+            '<div class="lc-r"><div><b>Tavern, Lake View</b><span>Tavern</span></div><span class="lc-hi site"><i></i>New site</span></div>'
+            '<figcaption>Illustration. The list shows each business\'s name, address, license and what the City\'s record says about it.</figcaption></figure>')
+    body = (f'{crumb}<div class="lc-herogrid"><div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>'
+            f'<div class="ld-heroact rl-act">{buy()}<a class="ld-textlink" href="#sample">See this week\'s sample</a></div>{note}</div>{shot}</div>'
             f'{tiles}{trades}{sample}{method}{cta_html}{M.guides_block(p["slug"], rel=rel)}{M.faq_block(p["faq"])}')
     ld = (M.ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
           "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}, crumb_ld)
           + "<style>.ld-page .asof,.ld-page footer p{color:var(--muted)}.rl-act{margin:18px 0 8px}"
           ".lc-pill{background:var(--chip-near-bg);color:var(--chip-near)}.rl3 .ld-pill{margin:0 0 10px}.rl3 .ld-ptop{margin:0 0 12px}"
-          ".lc-area{font-size:24px;line-height:1.2}.lc-h3{font:600 18px/1.3 Poppins,system-ui,sans-serif;margin:26px 0 10px;color:var(--ink)}"
+          ".ld-page .tile .val.lc-area{font-size:22px;line-height:1.25}"
+          ".lc-act{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}"
+          ".crumbs+.lc-herogrid .eyebrow{margin-top:14px}"
+          "@media(min-width:1000px){.lc-herogrid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:40px;align-items:center}.lc-herogrid .ld-hero .lede{max-width:none}}"
+          ".lc-shot{margin:0 0 26px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 28px rgba(29,36,51,.08);overflow:hidden;max-width:460px}"
+          ".lc-sh{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:14px 18px;border-bottom:1px solid var(--rule)}"
+          "@media(max-width:600px){.lc-sh{flex-direction:column;gap:2px}}"
+          ".lc-sh b{font:600 15px Poppins,system-ui,sans-serif;color:var(--ink)}.lc-sh span{font-size:12.5px;color:var(--muted)}"
+          ".lc-r{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--rule)}"
+          ".lc-r b{display:block;font:600 16px Poppins,system-ui,sans-serif;color:var(--ink)}.lc-r span{font-size:13.5px;color:var(--ink2)}"
+          ".lc-hi{display:inline-flex;align-items:center;gap:7px;height:28px;padding:0 11px;border-radius:999px;font-weight:700;font-size:13px;white-space:nowrap}"
+          ".lc-hi i{width:8px;height:8px;background:currentColor;border-radius:50%}.lc-hi.first{color:#A63E21;background:#FBEAE4}.lc-hi.first i{border-radius:2px}"
+          ".lc-hi.site{color:#2F5F9E;background:#E6EDF6}"
+          ".lc-shot figcaption{padding:10px 18px 12px;font-size:12.5px;color:var(--muted);background:var(--paper,#F7F5F0)}"
+          ".lc-h3{font:600 18px/1.3 Poppins,system-ui,sans-serif;margin:26px 0 10px;color:var(--ink)}"
           ".lc-h3 span{font:400 15px/1.3 system-ui,sans-serif;color:var(--muted)}"
           ".ld-page .ld-tiles .tile .lab{letter-spacing:.04em;overflow-wrap:anywhere}.ld-page .ld-tiles .tile .sub{text-wrap:balance}"
           "@media(max-width:600px){.ld-page .ld-tiles .tile .lab{font-size:11.5px;letter-spacing:.02em;white-space:normal}}"
@@ -94,7 +113,7 @@ def page_html(p):
     robots = "" if M.is_live(p) else '<meta name="robots" content="noindex, nofollow">'
     src = d["source"]
     foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
-            f'<p>Source: {E(src["name"])} ({E(src["url"])}), pulled {E(pulled)}. {E(src["modified"])} A license shows the City issued it on '
+            f'<p>Sources: {E(src["name"])} ({E(src["url"])}) and City of Chicago Data Portal, Food Inspections ({E(FOOD_URL)}), pulled {E(pulled)}. {E(src["modified"])} A license shows the City issued it on '
             'that date; it does not say a business is open today or buying anything. No business named here has endorsed or works with '
             'ProofNotFluff. Public information for planning sales calls; not legal or business advice and no promise of work.</p>'
             f'<p>{E(M.CITY_DISCLAIMER["Chicago"])}</p><p>ProofNotFluff is not affiliated with or endorsed by the City of Chicago.</p>'

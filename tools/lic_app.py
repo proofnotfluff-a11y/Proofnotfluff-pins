@@ -35,7 +35,7 @@ import lic_xlsx as X  # noqa: E402  (the trades, words, pitch kit and Terms: one
 FREE_PAGE = "https://proofnotfluff.com/chicago-new-business-licenses/"
 SLUG = "chicago-new-business-licenses-members"
 SECRET = "LIC_LEADS_PASSWORD"
-LEGAL = ("Public City of Chicago business license records, as of __ASOF__. __CITY__ ProofNotFluff is not affiliated with or endorsed by "
+LEGAL = ("Public City of Chicago business license and food inspection records, as of __ASOF__. __CITY__ ProofNotFluff is not affiliated with or endorsed by "
          "the City of Chicago, and no business listed has endorsed or works with ProofNotFluff. A listing repeats the City's license "
          "record; it does not say a business is open or buying anything. You make your own calls, visits and emails and are responsible "
          "for following the law when you do. Licensed to one business for its own prospecting; no reselling or republishing. Provided as "
@@ -134,7 +134,7 @@ PAGE = r"""<!doctype html>
 .row .bd .mi{white-space:nowrap;display:inline-flex;align-items:center;gap:7px}
 .row .bd .mi .dot{margin:0 0 0 7px}
 .row .bd .mi.ty{white-space:normal}
-.row .nwt{color:var(--accent-ink);font-weight:700}
+.row .nwt{color:var(--teal);font-weight:600}
 .row .ctx{color:var(--teal);font-weight:700;display:inline-flex;align-items:center;gap:4px}
 .row .fit{color:var(--muted);font-size:13.5px}.row .fit b{color:var(--ink2);font-weight:600}
 .row{grid-template-columns:minmax(0,1fr) auto}
@@ -155,7 +155,7 @@ PAGE = r"""<!doctype html>
 .trade.top{background:var(--ink);border-color:var(--ink);color:#fff}
 .trade.top .ti{background:rgba(255,255,255,.1);color:#fff}.trade.top .tm{color:#C9CFDB}.trade.top .tm b{color:#F7B9A5}
 .trade.zero{box-shadow:none;background:#FBFAF7}.trade.zero .tn{color:var(--muted)}
-@media(hover:hover){.trade:hover .tt{text-decoration:underline;text-underline-offset:3px}}
+@media(hover:hover) and (pointer:fine) and (min-width:861px){.trade:hover .tt{text-decoration:underline;text-underline-offset:3px}}
 @media(max-width:700px){.trade{display:grid;grid-template-columns:40px minmax(0,1fr) auto;column-gap:14px;align-items:center;padding:12px 14px}
  .trade .ti{margin:0;grid-row:1 / span 2}.trade .tn{grid-column:3;grid-row:1 / span 2;font-size:28px;margin:0;text-align:right}.trade .tt{grid-column:2}.trade .tm{grid-column:2}}
 .kpis{display:flex;flex-wrap:wrap;gap:8px 22px;margin:14px 0 0;font-size:14.5px;color:var(--ink2)}
@@ -172,6 +172,7 @@ PAGE = r"""<!doctype html>
 .ovl b{color:var(--ink)}
 .lg-1{width:12px;height:12px;background:#C8502F;box-shadow:0 0 0 1.5px #fff,0 0 0 2.5px #A63E21;border-radius:2px!important;margin:0 3px}
 .lg-2{width:10px;height:10px;background:#2F5F9E;border:2px solid #fff;box-shadow:0 0 0 1px #2F5F9E;margin:0 3px}
+.lg-4{width:10px;height:10px;background:#3A4152;border:2px solid #fff;box-shadow:0 0 0 1px #3A4152;margin:0 3px}
 .lg-3{width:10px;height:10px;background:#fff;border:2px solid #3A4152;margin:0 3px}
 .pin-f{background:#C8502F;border:1.5px solid #fff;box-shadow:0 0 0 1px #A63E21,0 1px 3px rgba(29,36,51,.3);border-radius:2px;box-sizing:border-box}
 .pin-f.hot{background:#1D2433;box-shadow:0 0 0 2px #C8502F}
@@ -203,7 +204,31 @@ PAGE = r"""<!doctype html>
 .terms .tx h3:first-child{margin-top:0}
 #fsheetH:focus{outline:none;box-shadow:none}
 #app h1[tabindex="-1"]:focus{outline:none;box-shadow:none}
-@media(min-width:861px){.tool .search{min-width:360px}}
+@media(min-width:861px){.tool .search{flex:1 1 220px;min-width:200px;max-width:420px}
+ .tool .seg:not(.vtog) button{padding:0 11px}
+ .fbtn{display:inline-flex}.tsp{display:none}
+ .filters{display:none}
+ .filters.open{display:flex;flex-direction:column;gap:14px;position:fixed;z-index:1000;top:0;right:0;bottom:0;width:400px;max-width:100%;overflow:auto;background:#fff;padding:20px 24px;box-shadow:-10px 0 40px rgba(29,36,51,.18)}
+ .filters.open .fld select{width:100%;max-width:none;height:46px}
+ .filters.open .sheet-h{display:flex;align-items:center;justify-content:space-between}.filters.open .sheet-h h2{font-size:19px}
+ .filters.open .sheet-f{display:flex;gap:10px;margin-top:auto;padding-top:10px}.filters.open .sheet-f .btn{flex:1;min-height:46px}
+ .scrim{position:fixed;inset:0;z-index:990;background:rgba(29,36,51,.35)}}
+.fchips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fchip{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 6px 0 12px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font:600 13px var(--body);cursor:pointer}
+.fchip .ico{width:14px;height:14px;color:var(--muted)}
+@media(max-width:860px){.fchip{min-height:44px}}
+.ovl{display:flex;align-items:center;gap:12px}.ovl>span{flex:1 1 0;min-width:0}.ovl .x{flex:none}.ovl .x{margin-left:auto;display:inline-grid;place-items:center;width:32px;height:32px;border:0;background:none;color:var(--muted);border-radius:8px;cursor:pointer}
+@media(max-width:860px){.ovl .x{width:44px;height:44px;margin:-10px -12px -10px auto}}
+@media(min-width:861px){.lsw{gap:6px}.lsw a{padding:0 12px;gap:6px;font-size:14px}}
+.terms .tx p{text-wrap:wrap}
+.lic h2.eb{font:600 12px/1.3 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.kpis span{white-space:nowrap}@media(min-width:601px){.kpis{flex-wrap:nowrap;max-width:none}}.kpis span+span::before{content:"\00b7";margin:0 10px 0 -12px;color:var(--muted)}
+@media(max-width:600px){.kpis{flex-direction:column;gap:2px}.kpis span+span::before{content:none}.rec,.mine{padding-left:16px;padding-right:16px}.ovl{padding:10px 16px}}
+.bk{scroll-padding:0 16px}
+.row .chev{top:50%;transform:translateY(-50%)}
+.row .rt{align-self:center;align-items:flex-end}
+.pg-head .tch,.pg-head .badge{height:26px;display:inline-flex;align-items:center;vertical-align:middle}
+@media(max-width:860px){.bnav{grid-template-columns:repeat(3,1fr)}.tool .seg:not(.vtog) button[data-k=""]{order:0}}
 @media(max-width:860px){.rbar .lnk,.ovl .lnk{min-height:44px;padding:0 4px}.tog{min-height:44px}}
 .pick{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 14px;margin:14px 0 0}
 .pick .fld select{max-width:300px}
@@ -368,6 +393,7 @@ if(skip!=="q"&&f.q){const t=norm(f.q);const hay=norm([r.n,r.a,r.ar,r.z,r.ty,r.ac
 if(skip!=="area"&&f.area&&r.ar!==f.area)return false;if(skip!=="days"&&f.days&&r.d<since(f.days))return false;if(skip!=="type"&&f.type&&r.ty!==f.type)return false;
 if(skip!=="h"&&f.h&&r.h!==f.h)return false;if(skip!=="fi"&&f.fi&&(!!r.fi)!==(f.fi==="yes"))return false;if(skip!=="new"&&f.nw&&!r.nw)return false;
 if(f.fu==="todo"&&mk(r.id).c)return false;if(f.fu==="mine"&&!(mk(r.id).c||(mk(r.id).n||"").trim()))return false;return true;}
+function ovlHidden(){try{return localStorage.getItem("lic-ovl")==="1";}catch(e){return false;}}
 function activeCount(f){return [f.area,f.days,f.type,f.h,f.fi,f.nw,f.fu].filter(Boolean).length;}
 function viewList(q){const f=readF(q);STATE.f=f;STATE.shown=60;const tr=TR[f.t];document.title=`${tr?tr.short:"All businesses"} | Chicago New Business Licenses`;
 STATE.base=R;
@@ -376,8 +402,8 @@ const foodish=!f.t||f.t==="food";
 $("#app").innerHTML=`<div class="ph"><div><h1>${tr?esc(tr.short):"All businesses"}</h1></div></div>
 <nav class="lsw" aria-label="Trades"><a href="${writeF(Object.assign({},f,{t:"",type:""}))}"${!f.t?' aria-current="page"':""}>${ico("all")}All<span class="c num">${int(R.length)}</span></a>${TORD.map(k=>`<a href="${writeF(Object.assign({},f,{t:k,type:"",fi:k==="food"?f.fi:""}))}"${k===f.t?' aria-current="page"':""}>${ico(k)}${esc(TR[k].short)}<span class="c num">${int(inTrade(k).length)}</span></a>`).join("")}</nav>
 <p class="ldesc">${tr?esc(tr.kinds)+" with a new City license in the last 30 days.":"Businesses with a new City license in the last 30 days at a Chicago business site."} Newest first.</p>
-${foodish&&D.checks.food?`<p class="ovl"><b>Also a member of Chicago Restaurant Inspection Leads?</b> Food businesses with a License inspection date may already have shown up on its Opening soon list. <button class="lnk" type="button" id="hideFood">Hide them here</button></p>`:""}
-<div class="tool"><label class="search"><span class="sr">Search this list</span>${ico("search")}<input id="fq" type="search" placeholder="Search name, address or activity" value="${esc(f.q)}" autocomplete="off" enterkeyhint="search"><button type="button" class="clr" id="fqx" aria-label="Clear search"${f.q?"":" hidden"}>${ico("x","s")}</button></label>
+${f.t==="food"&&D.checks.food&&!ovlHidden()?`<p class="ovl" id="ovl"><span><b>Also a member of Chicago Restaurant Inspection Leads?</b> Food businesses with a License inspection date may already have shown up on its Opening soon list. <button class="lnk" type="button" id="hideFood">Hide them here</button></span><button class="x" type="button" id="ovlx" aria-label="Dismiss this note">${ico("x","s")}</button></p>`:""}
+<div class="tool"><label class="search"><span class="sr">Search this list</span>${ico("search")}<input id="fq" type="search" placeholder="Search name or address" value="${esc(f.q)}" autocomplete="off" enterkeyhint="search"><button type="button" class="clr" id="fqx" aria-label="Clear search"${f.q?"":" hidden"}>${ico("x","s")}</button></label>
 <div class="seg" id="fh" role="group" aria-label="On the City's record"></div>
 <button class="btn fbtn" id="fopen" type="button" aria-haspopup="dialog" aria-controls="fsheet">${ico("filter")}<span id="fopenT">Filters</span></button>
 <span class="tsp"></span><button class="btn csvb" type="button" id="csv" aria-label="Export these businesses as a CSV file">${ico("csv","s")}<span class="t" aria-hidden="true">Export CSV</span><span class="m" aria-hidden="true">CSV</span></button>
@@ -393,10 +419,10 @@ ${D.checks.food?`<div class="fld"><label for="ffi">Food license inspection</labe
 <label class="tog"><input type="checkbox" id="fnew"><span id="fnewT">New this week</span></label>
 <div class="sheet-f"><button class="btn" type="button" id="freset">Clear filters</button><button class="btn ink" type="button" id="fdone">Show businesses</button></div>
 </div>
-<div class="rbar" aria-live="polite"><span id="rcount"></span><button class="lnk" type="button" id="fclear" hidden>Clear filters</button></div>
+<div class="rbar" aria-live="polite"><span id="rcount"></span><span class="fchips" id="fchips"></span><button class="lnk" type="button" id="fclear" hidden>Clear filters</button></div>
 <div class="split" id="split" data-v="${f.view}"><section class="panel lst" aria-label="Businesses on this list"><div id="plist"></div></section>
 <div class="mapbox" id="mapbox"><div class="map" id="map" role="region" aria-label="Map of the businesses in the list. The list has the same businesses."></div>
-<div class="legend" aria-hidden="true"><span><i class="lg-1"></i>First license</span><span><i class="lg-2"></i>New site, added or relicensed</span><span><i class="lg-3"></i>Not checked</span></div>
+<div class="legend" aria-hidden="true"><span><i class="lg-1"></i>First license</span><span><i class="lg-2"></i>New site</span><span><i class="lg-4"></i>Added license or relicensed</span>${R.some(r=>!r.h)?'<span><i class="lg-3"></i>Not checked</span>':""}</div>
 <p class="map-note" id="mapnote" hidden></p></div></div>`;
 const upd=patch=>{Object.assign(STATE.f,patch);STATE.shown=60;history.replaceState(history.state,"",writeF(STATE.f));STATE.trail[STATE.trail.length-1]=location.hash;refresh(true);};
 let tq;$("#fq").addEventListener("input",e=>{$("#fqx").hidden=!e.target.value;clearTimeout(tq);tq=setTimeout(()=>upd({q:e.target.value.trim()}),140);});
@@ -404,6 +430,7 @@ $("#fqx").onclick=()=>{$("#fq").value="";$("#fqx").hidden=true;upd({q:""});$("#f
 $("#fdays").onchange=e=>upd({days:e.target.value});$("#farea").onchange=e=>upd({area:e.target.value});$("#ftype").onchange=e=>upd({type:e.target.value});
 if($("#ffi"))$("#ffi").onchange=e=>upd({fi:e.target.value});
 $("#fsort").onchange=e=>upd({sort:e.target.value});$("#fnew").onchange=e=>upd({nw:e.target.checked});$("#ffu").onchange=e=>upd({fu:e.target.value});
+const ox=$("#ovlx");if(ox)ox.onclick=()=>{try{localStorage.setItem("lic-ovl","1");}catch(e){}$("#ovl").remove();$("#fq").focus();};
 const hf=$("#hideFood");if(hf)hf.onclick=()=>{upd({fi:"no"});toast("Businesses with a food license inspection are hidden");};
 const clear=()=>{$("#fq").value="";$("#fqx").hidden=true;upd({q:"",area:"",days:"",type:"",h:"",fi:"",nw:false,fu:""});};
 $("#fclear").onclick=clear;$("#freset").onclick=clear;$("#fopen").onclick=openSheet;$("#fclose").onclick=closeSheet;$("#fdone").onclick=closeSheet;
@@ -426,6 +453,9 @@ $("#farea").innerHTML=opt("","All community areas",null,!f.area)+STATE.areas.map
 $("#ftype").innerHTML=opt("","Any license type",null,!f.type)+STATE.types.map(t=>[t,facet("type",r=>r.ty===t)]).filter(([t,n])=>n||t===f.type).map(([t,n])=>opt(t,t,n,f.type===t)).join("");
 if($("#ffi"))$("#ffi").innerHTML=opt("","Any",null,!f.fi)+opt("yes","With one (likely on the restaurant list)",facet("fi",r=>!!r.fi),f.fi==="yes")+opt("no","Without one",facet("fi",r=>!r.fi),f.fi==="no");
 $("#fsort").value=f.sort;$("#fnew").checked=f.nw;$("#ffu").value=f.fu;$("#fnewT").textContent=`New this week (${int(facet("new",r=>r.nw))})`;
+const chips=[["days",f.days&&(DAYS.find(d=>d[0]===f.days)||[0,""])[1]],["area",f.area],["type",f.type],["fi",f.fi&&(f.fi==="yes"?"With a food license inspection":"Without a food license inspection")],["nw",f.nw&&"New this week"],["fu",f.fu&&(f.fu==="todo"?"Not contacted yet":"Contacted or with a note")]].filter(x=>x[1]);
+$("#fchips").innerHTML=chips.map(([k,t])=>`<button type="button" class="fchip" data-k="${k}" aria-label="Remove filter: ${esc(t)}">${esc(t)}${ico("x","s")}</button>`).join("");
+$("#fchips").querySelectorAll(".fchip").forEach(b=>b.onclick=()=>STATE.upd({[b.dataset.k]:b.dataset.k==="nw"?false:""}));
 const ac=activeCount(f);$("#fopenT").innerHTML=ac?`Filters <span class="fcount num">${ac}</span>`:"Filters";
 const rows=base.filter(r=>pass(r,f)).sort(SORTS[f.sort]());STATE.rows=rows;const tot=inTrade(f.t).length;
 $("#rcount").innerHTML=rows.length===tot?`<b class="num">${int(rows.length)}</b> ${rows.length===1?"business":"businesses"}`:`<b class="num">${int(rows.length)}</b> of <span class="num">${int(tot)}</span> businesses`;
@@ -438,7 +468,7 @@ const m=$("#more");if(m)m.onclick=()=>{STATE.shown+=60;drawList();};
 el.querySelectorAll(".row").forEach(a=>{a.addEventListener("mouseenter",()=>hot(a.dataset.id,true));a.addEventListener("mouseleave",()=>hot(a.dataset.id,false));});}
 
 /* map */
-const MS={site:{radius:6.5,color:"#fff",weight:2,fillColor:"#2F5F9E",fillOpacity:1},added:{radius:6.5,color:"#fff",weight:2,fillColor:"#2F5F9E",fillOpacity:1},relicensed:{radius:6.5,color:"#fff",weight:2,fillColor:"#2F5F9E",fillOpacity:1},
+const MS={site:{radius:6.5,color:"#fff",weight:2,fillColor:"#2F5F9E",fillOpacity:1},added:{radius:6.5,color:"#fff",weight:2,fillColor:"#3A4152",fillOpacity:1},relicensed:{radius:6.5,color:"#fff",weight:2,fillColor:"#3A4152",fillOpacity:1},
 none:{radius:6,color:"#3A4152",weight:2.2,fillColor:"#fff",fillOpacity:1}};
 const PK=r=>r.h==="first"?"first":r.h?r.h:"none";
 function tiles(m){L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(m);}
@@ -489,7 +519,7 @@ $("#app").innerHTML=`<a class="back" href="#/list" id="back">${ico("back")}Back<
 <div class="p-title"><h1>${esc(r.n)}</h1><p class="sub">${esc(r.a)}, ${esc([r.ar,"Chicago"].filter(Boolean).join(", "))}</p></div>
 <div class="acts"><button class="btn" type="button" id="cpy">${ico("copy","s")}Copy address</button><a class="btn" href="${maps}" target="_blank" rel="noopener">${ico("pin","s")}Map and phone<span class="sr"> (opens Google Maps in a new tab)</span></a><a class="btn" href="${find}" target="_blank" rel="noopener">${ico("search","s")}Search the web<span class="sr"> (opens in a new tab)</span></a></div></section>
 <div class="pg-main">
-<section class="panel lic" aria-labelledby="lh"><h2 id="lh">The City's new license</h2>
+<section class="panel lic" aria-labelledby="lh"><h2 id="lh" class="eb">The City's new license</h2>
 <div class="top"><span class="ty">${esc(r.ty)}</span></div><p class="act">Issued ${esc(day(r.d))}${r.ac?`. Business activity: ${esc(r.ac)}`:""}.</p>
 ${r.h?`<p class="why">${hi(r,true)}<br><span style="display:block;margin-top:8px">${esc(W.historyLong[r.h])}${r.hs?` The earliest such license on the City's record is from ${esc(r.hs)}.`:""}</span></p>`:`<p class="why">${esc(W.historyLong[""])}</p>`}
 ${r.fi?`<p class="why"><b>City food license inspection on ${esc(day(r.fi))}.</b> Chicago inspects a food business before it issues a food license. ${esc("Chicago Restaurant Inspection Leads lists those inspections as Opening soon, so a member of both products may already have seen this business there.")}</p>`:""}
@@ -525,10 +555,10 @@ $("#app").innerHTML=`<div class="ph"><div><h1>Pitch kit</h1><p>A short call open
 <ol class="rules">${W.rules.map(r=>`<li>${esc(r)}</li>`).join("")}</ol></section>
 <section class="panel mail"><div class="pk-h"><h2>Email</h2><button class="btn sm" type="button" data-copy="m">${ico("copy","s")}Copy</button></div><p class="sub">Send it the same day as the call.</p>${b.email.map(x=>`<p>${fill(x)}</p>`).join("")}</section></div>`;
 document.querySelectorAll("[data-copy]").forEach(x=>x.onclick=async()=>{toast(await copyText(x.dataset.copy==="c"?b.call:b.email.join("\n\n"))?"Copied":"Copy did not work. Select the text.");});
-const on=document.querySelector('.bk a[aria-current="page"]');if(on&&on.scrollIntoView)on.scrollIntoView({block:"nearest",inline:"center"});}
+const on=document.querySelector('.bk a[aria-current="page"]');if(on&&on.scrollIntoView){const rr=on.getBoundingClientRect();if(rr.left<16||rr.right>innerWidth-16)on.scrollIntoView({block:"nearest",inline:"center"});}}
 
 /* terms */
-function termsHtml(){const para=t=>{const m=/^([A-Z][A-Za-z ]{1,40}?\.) (.+)$/.exec(t);return m?`<p><b>${esc(m[1])}</b> ${esc(m[2])}</p>`:`<p>${esc(t)}</p>`;};
+function termsHtml(){const lk=x=>esc(x).replace(/hello@proofnotfluff\.com/g,'<a href="mailto:hello@proofnotfluff.com">hello@proofnotfluff.com</a>');const para=t=>{const m=/^([A-Z][A-Za-z ]{1,40}?\.) (.+)$/.exec(t);return m?`<p><b>${esc(m[1])}</b> ${lk(m[2])}</p>`:`<p>${lk(t)}</p>`;};
 return `<div class="ph"><div><h1>Terms of Use</h1><p>${esc(W.version)}.<br>The same terms are on the Terms tab of the Excel file.</p></div></div>
 <div class="terms"><section class="panel" aria-labelledby="th1"><div class="sec-h"><h2 id="th1">City of Chicago Data Terms of Use</h2></div><div class="tx"><p>The City of Chicago's Data Terms of Use, word for word, as the City published them (checked ${esc(W.cityChecked)}). They apply to the City data on this list.</p>
 ${W.citySections.map(([h,ps])=>`<h3>${esc(h)}</h3>${ps.map(p=>`<p>${esc(p)}</p>`).join("")}`).join("")}

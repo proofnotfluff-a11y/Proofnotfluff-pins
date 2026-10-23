@@ -38,7 +38,8 @@ SKIP_LICENSES = re.compile(r"^(?:PEDDLER|PHARMACEUTICAL REPRESENTATIVE|SPECIAL E
                            r"RESIDENTIAL REAL ESTATE DEVELOPER|SHARED KITCHEN USER|PRIVATE BOOTING)", re.I)   # a shared kitchen user cooks in someone else's kitchen (holdout 1, Oct 22)
 # The same kinds named only in the business activity, and any activity the City marks as home based.
 SKIP_ACTIVITY = re.compile(r"STREET PERFORMER|FLEA MARKET|ORGANIZER OF EVENT|VACATION RENTAL|SHARED HOUSING|TOW TRUCK|SCAVENGER VEHICLE|"
-                           r"MOBILE FOOD|SPECIAL EVENT|PEDDLER|BED[- ]AND[- ]BREAKFAST|HOME REPAIR|SHARED KITCHEN USER", re.I)
+                           r"MOBILE FOOD|SPECIAL EVENT|PEDDLER|BED[- ]AND[- ]BREAKFAST|HOME REPAIR|SHARED KITCHEN USER|"
+                           r"DOG WALKING|PET SITTING|RESIDENTIAL REAL ESTATE DEVELOPER", re.I)   # Legal desk, Oct 22: work away from a fixed site
 HOME_BASED = re.compile(r"HOME[- ]BASED", re.I)
 # Trade segments, first match wins: (key, label, license or activity pattern)
 SEGMENTS = [
@@ -682,7 +683,7 @@ def main():
                            "Chicago business site, one row per business and address. Left out: renewals, cancelled or revoked licenses, licenses for one person's own work, for work "
                            "away from a fixed business site, or for an event or season (peddlers, special events, pop-ups, "
                            "tow trucks, home-sharing, shared kitchen users, private booting), home "
-                           "and mail-drop addresses, and any business whose name could be a person's name. Business-level fields only.")}
+                           "and mail-drop addresses, and any business whose name could be a person's full name. Business-level fields only.")}
     sample = {"source": source,
               "window": {"from": week_from, "to": today.isoformat(), "listFrom": (today - dt.timedelta(days=WINDOW_DAYS)).isoformat()},
               "counts": {"fetched": len(rows), "kept30": len(recs), "keptWeek": len(week),
@@ -797,6 +798,11 @@ def selftest():
              business_activity="Bed and Breakfast Establishment, Owner-Occupied", address="1800 W LAKE ST"),   # bed and breakfast: out
         dict(base, license_number="22", doing_business_as_name="ZAS CONSULTING", legal_name="Z LLC", license_description="Limited Business License",
              business_activity="Home Repair Services | Snowplowing", address="1900 W LAKE ST"),       # home repair: out
+        dict(base, license_number="26", doing_business_as_name="GREEN DOG CO", legal_name="GD LLC", license_description="Limited Business License",
+             business_activity="Provide Dog Walking Services", address="2200 W LAKE ST 1 1"),         # dog walking: out (Legal desk)
+        dict(base, license_number="27", doing_business_as_name="BIRCH LOFTS LLC", legal_name="BL LLC", license_description="Regulated Business License",
+             business_activity="Acquisition and Improvement of Land/Residential Buildings (Residential Real Estate Developer)",
+             address="2300 W LAKE ST"),                                                               # residential developer: out (Legal desk)
         dict(base, license_number="23", doing_business_as_name="NEW FACTORY VENUE", legal_name="NF LLC", license_description="Public Place of Amusement",
              account_number="777", site_number="4", address="2000 W LAKE ST 1"),
         dict(base, license_number="24", doing_business_as_name="THE NEW FACTORY", legal_name="NF LLC", license_description="Retail Food Establishment",
@@ -906,7 +912,7 @@ def selftest():
     blob = json.dumps(recs).upper()
     assert "JOHN Q PUBLIC" not in blob and "LEGAL" not in blob, "a legal name leaked into the records"
     want = {"second license at the same site (listed once)": 2, "name could be a person's": 1,
-            PERSON_EVENT_REASON: 7, "home or apartment address": 2,
+            PERSON_EVENT_REASON: 9, "home or apartment address": 2,
             "not a new license (renewal or change)": 2, "issued outside the window": 1, "site outside Chicago": 1,
             "license not active (cancelled or revoked)": 1, MAILBOX_REASON: 1}
     assert dict(reasons) == want, dict(reasons)

@@ -3839,7 +3839,7 @@
    "faq": [
     [
      "Where does this data come from?",
-     "The City of Chicago Data Portal's Business Licenses dataset. The list is refreshed every Monday from the City's latest records. It keeps new licenses (application type Issue) the City issued in the last 30 days at a Chicago business site."
+     "The City of Chicago Data Portal's Business Licenses dataset, and its Food Inspections dataset for the food license inspection on food rows. The list is refreshed every Monday from the City's latest records. It keeps new licenses (application type Issue) the City issued in the last 30 days at a Chicago business site."
     ],
     [
      "Is every license a brand-new business?",
@@ -3847,7 +3847,7 @@
     ],
     [
      "Who is left out?",
-     "Renewals and changes, cancelled or revoked licenses, licenses for one person's own work, for work away from a fixed business site, or for an event or season (such as peddlers, special events, pop-ups, tow trucks, home-sharing, bed-and-breakfasts, shared kitchen users, flea market vendors and market stalls), home and mail-drop addresses (home-based businesses, apartments, private mailboxes and virtual offices), sites outside Chicago, and any business whose shown name could be a person's name. A business with two licenses at one site is listed once."
+     "Renewals and changes, cancelled or revoked licenses, licenses for one person's own work, for work away from a fixed business site, or for an event or season (such as peddlers, special events, pop-ups, tow trucks, home-sharing, bed-and-breakfasts, shared kitchen users, flea market vendors and market stalls), home and mail-drop addresses (home-based businesses, apartments, private mailboxes and virtual offices), sites outside Chicago, and any business whose shown name could be, or starts with, a person's full name. A business with two licenses at one site is listed once."
     ],
     [
      "Does it overlap with Chicago Restaurant Inspection Leads?",

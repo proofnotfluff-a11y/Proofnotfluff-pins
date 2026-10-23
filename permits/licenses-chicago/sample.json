@@ -3,49 +3,61 @@
   "name": "City of Chicago Data Portal, Business Licenses",
   "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
   "rowsUpdatedAt": "2026-10-22T09:55:53+00:00",
-  "fetchedAt": "2026-10-23T00:51:36+00:00",
+  "fetchedAt": "2026-10-22T19:54:34-05:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: renewals, cancelled or revoked licenses, licenses for one person's own work, for work away from a fixed business site, or for an event or season (peddlers, special events, pop-ups, tow trucks, home-sharing, shared kitchen users, private booting), home and mail-drop addresses, and any business whose name could be a person's name. Business-level fields only."
  },
  "window": {
-  "from": "2026-10-16",
-  "to": "2026-10-23",
-  "listFrom": "2026-09-23"
+  "from": "2026-10-15",
+  "to": "2026-10-22",
+  "listFrom": "2026-09-22"
  },
  "counts": {
-  "fetched": 707,
-  "kept30": 221,
-  "keptWeek": 45,
+  "fetched": 740,
+  "kept30": 234,
+  "keptWeek": 53,
   "segmentsWeek": {
-   "food": 22,
+   "food": 26,
    "beauty": 7,
    "auto": 1,
    "care": 1,
-   "venue": 1,
-   "retail": 13
+   "venue": 2,
+   "retail": 16
   },
   "segments30": {
-   "food": 72,
-   "beauty": 38,
-   "auto": 12,
+   "food": 74,
+   "beauty": 41,
+   "auto": 13,
    "care": 3,
    "venue": 3,
-   "retail": 93
+   "retail": 100
   },
   "excluded": {
-   "issued outside the window": 137,
-   "name could be a person's": 32,
-   "license for one person's own work, work away from a fixed site, or an event or season": 257,
+   "issued outside the window": 139,
+   "second license at the same site (listed once)": 16,
+   "name could be a person's": 33,
+   "license for one person's own work, work away from a fixed site, or an event or season": 268,
+   "home or apartment address": 22,
+   "site outside Chicago": 20,
    "license not active (cancelled or revoked)": 2,
-   "site outside Chicago": 19,
-   "home or apartment address": 18,
-   "second license at the same site (listed once)": 15,
    "virtual office or mailbox address": 2,
    "not a new license (renewal or change)": 4
   },
   "areasWeek": [
    [
+    "Lincoln Park",
+    4
+   ],
+   [
+    "Lake View",
+    4
+   ],
+   [
     "Near North Side",
+    3
+   ],
+   [
+    "West Town",
     3
    ],
    [
@@ -57,14 +69,6 @@
     2
    ],
    [
-    "West Town",
-    2
-   ],
-   [
-    "Lincoln Park",
-    2
-   ],
-   [
     "McKinley Park",
     2
    ],
@@ -73,16 +77,12 @@
     2
    ],
    [
-    "South Shore",
-    1
+    "North Center",
+    2
    ],
    [
-    "Chatham",
-    1
-   ],
-   [
-    "Hermosa",
-    1
+    "Logan Square",
+    2
    ]
   ],
   "checks": {
@@ -91,12 +91,12 @@
    "foodInspections": true
   },
   "history30": {
-   "first": 132,
-   "relicensed": 36,
+   "first": 142,
+   "relicensed": 37,
    "added": 17,
-   "site": 36
+   "site": 38
   },
-  "foodInsp30": 68
+  "foodInsp30": 70
  },
  "segmentNames": {
   "food": "Restaurants, cafes, bars and food shops",
@@ -275,6 +275,14 @@
     "licenseType": "Public Place of Amusement",
     "activity": "Charges a Fee for Entertainment or Amusements or Recreational Activities | Retail Sales of General Merchandise and Non-Perishable Food",
     "issued": "2026-10-20"
+   },
+   {
+    "business": "The Smart Bar",
+    "address": "3730 N Clark St Basement",
+    "communityArea": "Lake View",
+    "licenseType": "Public Place of Amusement",
+    "activity": "Charges a Fee for Entertainment or Amusements or Recreational Activities",
+    "issued": "2026-10-15"
    }
   ],
   "retail": [

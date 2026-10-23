@@ -8,7 +8,7 @@ Status: designed and drafted Oct 22. Nothing here is switched on. Each send need
 - Cold email yes, in any words that agree: the outreach-drafter inbox step sets the CRM prospect to status `monday` with mondayYesAt (the date of the reply) and mondayCity (chicago or austin, from its product). It drafts a one-line reply in the same thread ("Great, the first one comes Monday."), sent only when Todd names it. The reply in the inbox is the consent record; the CRM date points to it.
 - Site visitor: the product page form, one Kit form per city, double opt-in. Clicking Kit's confirm link is the consent. These are new forms. The old waitlist forms asked only for news about new cities and features, so nobody on them is moved to the Monday email.
 - Nobody else. No bought or scraped list, no one who replied anything but yes, no customer (a Gumroad sale moves the prospect to customer and off this list, since members already get the full list).
-- Stop: a reply of stop, no thanks, unsubscribe or anything like it sets opted-out and doNotEmail before the next send. Kit subscribers can also use Kit's own unsubscribe link.
+- Stop: a reply of stop, no thanks, unsubscribe or anything like it sets opted-out and doNotEmail before the next send. Kit subscribers can also use Kit's own unsubscribe link. A stop reply from an address that is a Kit subscriber (not in the CRM) is unsubscribed in Kit before the next broadcast; the run that reads the inbox lists it for Todd to unsubscribe in Kit if it cannot do it itself (Legal desk 1c, Oct 22; the /privacy/ page promises it).
 
 ## How each Monday's email is built
 1. The downstream-leads workflow refreshes permits/downstream/gc_leads.json (Mondays 12:05 UTC, about 7:05 am Chicago).

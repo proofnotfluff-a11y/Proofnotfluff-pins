@@ -3402,6 +3402,8 @@
    "city": "Chicago",
    "data": "permits/chicago/sample.json",
    "kitForm": "10059700",
+   "trialDays": 7,
+   "mondayForm": "10084986",
    "price": "29",
    "title": "Chicago Construction Cleaning Leads: Big Projects and Their Builders | ProofNotFluff",
    "desc": "Free weekly sample of Chicago's biggest open building permits: apartment and commercial projects of $500,000 or more, the general contractor on each, and the ones with partial occupancy approved.",
@@ -3460,7 +3462,7 @@
     ],
     [
      "Will you cover other cities?",
-     "Chicago first. Other large cities publish permit data too, so the waitlist decides where we go next."
+     "Chicago and Austin now. More cities with open permit data are next."
     ]
    ],
    "sources": "City of Chicago Data Portal, Building Permits.",
@@ -3549,12 +3551,14 @@
     ],
     [
      "What does it cost, and can I cancel?",
-     "$29 a month through Gumroad, with a new list in the members' app and the Excel file every Monday. Cancel any time from your Gumroad library; cancelling stops future charges."
+     "$29 a month through Gumroad after a 7-day free trial, with a new list in the members' app and the Excel file every Monday. Cancel any time from your Gumroad library; cancelling stops future charges."
     ]
    ],
    "sources": "City of Austin, Issued Construction Permits.",
    "checkout": "https://proofnotfluff.gumroad.com/l/vzokd?utm_source=proofnotfluff&utm_medium=site&utm_campaign=austin-construction-leads",
-   "kitForm": "10083860"
+   "kitForm": "10083860",
+   "trialDays": 7,
+   "mondayForm": "10084998"
   },
   {
    "slug": "break-even-calculator",

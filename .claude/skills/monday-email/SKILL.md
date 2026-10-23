@@ -15,7 +15,7 @@ One job: build and draft the free Monday email for everyone who said yes, and th
 4. Trial drafts on the Wednesday: each subscriber whose mondaysSent is 3 and trialOfferedAt is blank, `--trial --sent-n <leads they were sent>`. Kit side: broadcast filtered to people confirmed on or before the date of the third issue back; confirm the filter exists the first time.
 5. Write data/work/monday_drafts.json (schema pnf.monday_draft.v1) and run `python3 tools/monday_email.py --gate data/work/monday_drafts.json`. Exit 1: fix and rerun once, else drop that draft.
 6. One private review page with every draft in full; ask Todd "Reply send". Send by email/SEND_RULES.md senders and caps (hello@ Gmail drafts in Todd's Chrome, sales@ Apps Script queue, Kit broadcast in Todd's Chrome), the same inbox as the prospect's cold email, plain text, 8 to 10 am Central.
-- Stop, no thanks or unsubscribe in any words: opted-out and doNotEmail before the next send. A Gumroad sale: customer, off the list.
+- Stop, no thanks or unsubscribe in any words: opted-out and doNotEmail before the next send. A stop from a Kit subscriber who is not in the CRM: unsubscribed in Kit before the next broadcast, or listed for Todd to unsubscribe in Kit (the /privacy/ page promises it). A Gumroad sale: customer, off the list.
 
 ## Outputs (Writes)
 - After send: `python3 tools/monday_email.py --record --city <city> --week <date> --leads <ids>`, committed (lead ids only).

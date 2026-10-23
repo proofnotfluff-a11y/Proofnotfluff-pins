@@ -687,7 +687,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 </main>
 <p class="gate-legal" id="gateLegal">__LEGAL__</p>
 <main id="app" class="page" hidden tabindex="-1"></main>
-<footer class="foot-legal" id="appLegal" hidden><p>__LEGAL__</p><p>List of __ASOF__. Questions about your membership? Reply to your Gumroad receipt.</p><p class="leave">Thinking of cancelling? <a href="__SURVEY__" target="_blank" rel="noopener">Tell us why first<span class="sr"> (opens in a new tab)</span></a>. It takes a minute and decides what we fix next.</p></footer>
+<footer class="foot-legal" id="appLegal" hidden><p>__LEGAL__</p><p>List of __ASOF__. Questions about your membership? Reply to your Gumroad receipt. <a href="../privacy/">Privacy</a></p><p class="leave">Thinking of cancelling? <a href="__SURVEY__" target="_blank" rel="noopener">Tell us why first<span class="sr"> (opens in a new tab)</span></a>. It takes a minute and decides what we fix next.</p></footer>
 <nav class="bnav" id="bnav" aria-label="Sections" hidden></nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>

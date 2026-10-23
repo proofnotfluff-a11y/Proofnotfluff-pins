@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-10-22T23:45:18+00:00",
+ "fetchedAt": "2026-10-23T00:21:07+00:00",
  "rowsUpdatedAt": "2026-10-22T09:55:53+00:00",
  "columns": [
   "id",
@@ -48,46 +48,46 @@
  "byLicense": [
   [
    "Limited Business License",
-   176
+   165
   ],
   [
    "Pop-Up Retail User",
-   108
+   106
   ],
   [
    "Retail Food Establishment",
-   90
+   85
   ],
   [
    "Regulated Business License",
-   81
+   79
   ],
   [
    "Special Event Food",
-   63
+   62
   ],
   [
    "Peddler License",
-   31
+   30
   ],
   [
    "Pharmaceutical Representative",
-   28
+   25
   ],
   [
    "Consumption on Premises - Incidental Activity",
-   17
+   16
   ],
   [
    "Shared Kitchen User (Long Term)",
-   16
-  ],
-  [
-   "Special Event Liquor",
-   16
+   14
   ],
   [
    "Tobacco",
+   14
+  ],
+  [
+   "Special Event Liquor",
    14
   ],
   [
@@ -123,14 +123,6 @@
    5
   ],
   [
-   "Tavern",
-   4
-  ],
-  [
-   "Commercial Garage",
-   4
-  ],
-  [
    "Animal Care License",
    4
   ],
@@ -147,11 +139,15 @@
    4
   ],
   [
-   "Caterer's Liquor License",
+   "Tavern",
    3
   ],
   [
-   "Shared Kitchen User (Short Term)",
+   "Commercial Garage",
+   3
+  ],
+  [
+   "Caterer's Liquor License",
    3
   ],
   [
@@ -161,6 +157,10 @@
   [
    "Package Goods",
    3
+  ],
+  [
+   "Shared Kitchen User (Short Term)",
+   2
   ],
   [
    "Indoor Special Event",
@@ -186,11 +186,11 @@
  "keptByLicense": [
   [
    "Limited Business License",
-   112
+   102
   ],
   [
    "Retail Food Establishment",
-   66
+   64
   ],
   [
    "Regulated Business License",
@@ -238,7 +238,7 @@
   ],
   [
    "Filling Station",
-   2
+   1
   ],
   [
    "Pawnbroker",

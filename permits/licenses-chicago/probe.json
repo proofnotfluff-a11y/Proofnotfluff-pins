@@ -1,6 +1,6 @@
 {
- "ranAt": "2026-10-22T23:45:18+00:00",
- "since": "2026-09-10",
+ "ranAt": "2026-10-23T00:21:07+00:00",
+ "since": "2026-09-11",
  "columns": [
   "id",
   "license_id",
@@ -45,31 +45,31 @@
   ":@computed_region_bdys_3d7i",
   ":@computed_region_43wa_7qmu"
  ],
- "rows": 817,
+ "rows": 792,
  "byLicense": [
   [
    "Limited Business License",
-   190
+   187
   ],
   [
    "Pop-Up Retail User",
-   120
+   115
   ],
   [
    "Retail Food Establishment",
-   102
+   98
   ],
   [
    "Regulated Business License",
-   87
+   86
   ],
   [
    "Special Event Food",
-   65
+   64
   ],
   [
    "Peddler License",
-   35
+   34
   ],
   [
    "Pharmaceutical Representative",
@@ -77,11 +77,11 @@
   ],
   [
    "Special Event Liquor",
-   22
+   21
   ],
   [
    "Consumption on Premises - Incidental Activity",
-   20
+   18
   ],
   [
    "Shared Kitchen User (Long Term)",
@@ -101,19 +101,11 @@
   ],
   [
    "Children's Services Facility License",
-   10
+   9
   ],
   [
    "Motor Vehicle Services License",
-   10
-  ],
-  [
-   "Outdoor Patio",
-   7
-  ],
-  [
-   "Raffles",
-   7
+   9
   ],
   [
    "Public Place of Amusement",
@@ -122,6 +114,14 @@
   [
    "Manufacturing Establishments",
    6
+  ],
+  [
+   "Raffles",
+   6
+  ],
+  [
+   "Outdoor Patio",
+   5
   ],
   [
    "Towing - Tow Truck",
@@ -148,10 +148,6 @@
    4
   ],
   [
-   "Indoor Special Event",
-   4
-  ],
-  [
    "Filling Station",
    4
   ],
@@ -166,6 +162,10 @@
   [
    "Private Booting Registration",
    3
+  ],
+  [
+   "Indoor Special Event",
+   2
   ],
   [
    "Emerging Business",
@@ -191,39 +191,39 @@
   ],
   [
    "Organizer of Event with Retail Vendors (1-5 Day Show)",
-   45
+   40
   ],
   [
    "5 Day Single Event  - Special Event Food",
    38
   ],
   [
-   "Preparation of Food and Dining on Premises With Seating",
-   28
-  ],
-  [
    "Markets / Promotes Pharmaceuticals to Health Care Professionals and Conducts Bus",
    28
   ],
   [
-   "180 Day Multiple Events - Special Event Food",
+   "Preparation of Food and Dining on Premises With Seating",
    26
   ],
   [
+   "180 Day Multiple Events - Special Event Food",
+   25
+  ],
+  [
    "Sale of Food Prepared Onsite With Dining Area",
-   23
+   22
   ],
   [
    "Retail Sales of General Merchandise",
    19
   ],
   [
-   "Consumption of Liquor on Premises",
-   19
-  ],
-  [
    "Peddler- Retail Sales of General Merchandise, Whole Uncut Fruits/Vegetables, Flo",
    18
+  ],
+  [
+   "Consumption of Liquor on Premises",
+   17
   ],
   [
    "Shared Kitchen User - Long Term",
@@ -234,11 +234,11 @@
    14
   ],
   [
-   "Retail Sales of General Merchandise and Non-Perishable Food",
-   14
+   "Hair Services",
+   13
   ],
   [
-   "Hair Services",
+   "Retail Sales of General Merchandise and Non-Perishable Food",
    13
   ],
   [
@@ -254,14 +254,6 @@
    11
   ],
   [
-   "Special Event Beer, Wine & Spirits",
-   11
-  ],
-  [
-   "Sale of Food Prepared Onsite Without Dining Area",
-   10
-  ],
-  [
    "Nail Services",
    10
   ],
@@ -274,15 +266,19 @@
    10
   ],
   [
+   "Special Event Beer, Wine & Spirits",
+   10
+  ],
+  [
+   "Sale of Food Prepared Onsite Without Dining Area",
+   9
+  ],
+  [
    "Debt Collecting - Administrative Commercial Office",
    9
   ],
   [
    "Street Performer, Moving Along the Public Way",
-   9
-  ],
-  [
-   "Operation of an Administrative Commercial Office",
    8
   ],
   [
@@ -294,7 +290,7 @@
    7
   ],
   [
-   "Sale of Liquor Outdoors on Private Property",
+   "Operation of an Administrative Commercial Office",
    7
   ],
   [
@@ -310,6 +306,10 @@
    5
   ],
   [
+   "Sale of Liquor Outdoors on Private Property",
+   5
+  ],
+  [
    "Provide Business and Management Consulting",
    5
   ],
@@ -319,14 +319,6 @@
   ],
   [
    "Operation of a Health Club",
-   5
-  ],
-  [
-   "Supervision of, and Care for, Children 0-6 Years of Age, During the Day between ",
-   5
-  ],
-  [
-   "Retail Sales of Clothing / Accessories / Shoes",
    5
   ],
   [
@@ -358,7 +350,7 @@
    4
   ],
   [
-   "Indoor Special Event",
+   "Supervision of, and Care for, Children 0-6 Years of Age, During the Day between ",
    4
   ],
   [
@@ -367,6 +359,10 @@
   ],
   [
    "Online Sales (Home Based Business)",
+   4
+  ],
+  [
+   "Retail Sales of Clothing / Accessories / Shoes",
    4
   ],
   [
@@ -424,10 +420,14 @@
   [
    "Provide 4 or More Parking Spaces For a Fee - Available and Advertised to the Pub",
    3
+  ],
+  [
+   "Hair Services | Retail Sales of General Merchandise",
+   3
   ]
  ],
  "byStatus": {
-  "AAI": 815,
+  "AAI": 790,
   "AAC": 2
  }
 }

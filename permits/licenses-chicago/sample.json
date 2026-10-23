@@ -3,9 +3,9 @@
   "name": "City of Chicago Data Portal, Business Licenses",
   "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
   "rowsUpdatedAt": "2026-10-22T09:55:53+00:00",
-  "fetchedAt": "2026-10-22T19:54:34-05:00",
+  "fetchedAt": "2026-10-22T20:12:36-05:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
-  "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: renewals, cancelled or revoked licenses, licenses for one person's own work, for work away from a fixed business site, or for an event or season (peddlers, special events, pop-ups, tow trucks, home-sharing, shared kitchen users, private booting), home and mail-drop addresses, and any business whose name could be a person's name. Business-level fields only."
+  "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: renewals, cancelled or revoked licenses, licenses for one person's own work, for work away from a fixed business site, or for an event or season (peddlers, special events, pop-ups, tow trucks, home-sharing, shared kitchen users, private booting), home and mail-drop addresses, and any business whose name could be a person's full name. Business-level fields only."
  },
  "window": {
   "from": "2026-10-15",
@@ -14,42 +14,39 @@
  },
  "counts": {
   "fetched": 740,
-  "kept30": 234,
-  "keptWeek": 53,
+  "kept30": 230,
+  "keptWeek": 51,
   "segmentsWeek": {
    "food": 26,
-   "beauty": 7,
+   "beauty": 6,
    "auto": 1,
    "care": 1,
    "venue": 2,
-   "retail": 16
+   "retail": 15
   },
   "segments30": {
    "food": 74,
-   "beauty": 41,
+   "beauty": 40,
    "auto": 13,
    "care": 3,
    "venue": 3,
-   "retail": 100
+   "retail": 97
   },
   "excluded": {
    "issued outside the window": 139,
    "second license at the same site (listed once)": 16,
    "name could be a person's": 33,
-   "license for one person's own work, work away from a fixed site, or an event or season": 268,
+   "license for one person's own work, work away from a fixed site, or an event or season": 271,
    "home or apartment address": 22,
    "site outside Chicago": 20,
    "license not active (cancelled or revoked)": 2,
    "virtual office or mailbox address": 2,
-   "not a new license (renewal or change)": 4
+   "not a new license (renewal or change)": 4,
+   "the business asked to be left out": 1
   },
   "areasWeek": [
    [
     "Lincoln Park",
-    4
-   ],
-   [
-    "Lake View",
     4
    ],
    [
@@ -65,6 +62,10 @@
     3
    ],
    [
+    "Lake View",
+    3
+   ],
+   [
     "O'Hare",
     2
    ],
@@ -77,12 +78,12 @@
     2
    ],
    [
-    "North Center",
+    "Logan Square",
     2
    ],
    [
-    "Logan Square",
-    2
+    "South Shore",
+    1
    ]
   ],
   "checks": {
@@ -91,7 +92,7 @@
    "foodInspections": true
   },
   "history30": {
-   "first": 142,
+   "first": 138,
    "relicensed": 37,
    "added": 17,
    "site": 38
@@ -223,14 +224,6 @@
     "issued": "2026-10-20"
    },
    {
-    "business": "The Nail Edit",
-    "address": "2811 N Pine Grove Ave",
-    "communityArea": "Lake View",
-    "licenseType": "Limited Business License",
-    "activity": "Nail Services",
-    "issued": "2026-10-20"
-   },
-   {
     "business": "Tabitha African Hair Braiding",
     "address": "5806 W Division St",
     "communityArea": "Austin",
@@ -343,14 +336,6 @@
     "issued": "2026-10-19"
    },
    {
-    "business": "Green Paws Chicago",
-    "address": "2049 W Belmont Ave 1 1",
-    "communityArea": "North Center",
-    "licenseType": "Limited Business License",
-    "activity": "Provide Dog Walking Services",
-    "issued": "2026-10-19"
-   },
-   {
     "business": "Fotel 81",
     "address": "2545 N Milwaukee Ave",
     "communityArea": "Logan Square",
@@ -364,6 +349,14 @@
     "communityArea": "Loop",
     "licenseType": "Limited Business License",
     "activity": "Provide Home Health Care Services",
+    "issued": "2026-10-16"
+   },
+   {
+    "business": "Pasture-To-Porch",
+    "address": "11102 S Kedzie Ave",
+    "communityArea": "Mount Greenwood",
+    "licenseType": "Limited Business License",
+    "activity": "Operation of an Administrative Commercial Office | Miscellaneous Commercial Services",
     "issued": "2026-10-16"
    }
   ]

@@ -1720,7 +1720,7 @@ def leads_page_html(p):
             f'and the builders running them. {E(p["lede"])}')
     if checkout:   # the free sample first, then subscribe (store design, Oct 22)
         hero_act = (f'<div class="ld-heroact" id="ldHeroCta"><a class="btn ld-btnbig" href="{"#near" if near else "#sample"}">See this week\'s free sample</a>'
-                    + (f'<a class="ld-textlink" href="{E(checkout)}" rel="noopener">Try {trial} days free, then ${price} a month</a></div>'
+                    + (f'<a class="ld-textlink ld-trialbtn" href="{E(checkout)}" rel="noopener">Try {trial} days free, then ${price} a month</a></div>'
                        '<p class="ld-heronote">Card at checkout, nothing charged for 7 days. Cancel any time.</p>'
                        .replace("7 days", f"{trial} days") if trial else
                        f'<a class="ld-textlink" href="{E(checkout)}" rel="noopener">Subscribe, ${price} a month</a></div>'
@@ -2240,13 +2240,20 @@ def product_card(x, rel, medium):
     if x["audience"] == "ecom":
         prim = f'<a class="btn" href="{rel}{x["href"]}">Try the free calculator</a>'
         sec = f'<a class="st-link" href="{E(utm(x["checkout"], medium, x["campaign"]))}" rel="noopener">Buy, ${E(x["price"])}</a>'
+        t = 0
     else:
         prim = f'<a class="btn" href="{rel}{x["href"]}{x["sample"]}">See this week\'s free sample</a>'
-        sec = (f'<a class="st-link" href="{E(utm(x["checkout"], medium, x["campaign"]))}" rel="noopener">Subscribe</a>' if x.get("checkout") else "")
+        t = x.get("trial") if x.get("checkout") else 0
+        # a list with a Gumroad trial shows the trial button and its terms, as the shop does (Todd, Oct 23: the home cards
+        # said only "Subscribe")
+        sec = (f'<a class="st-btn2" href="{E(utm(x["checkout"], medium, x["campaign"]))}" rel="noopener">Start your {t}-day free trial</a>' if t else
+               f'<a class="st-link" href="{E(utm(x["checkout"], medium, x["campaign"]))}" rel="noopener">Subscribe</a>' if x.get("checkout") else "")
     return (f'<article class="st-card"><div class="st-top"><span class="st-tag">{E(x["tag"])}</span>'
             f'<span class="st-price">${E(x["price"])}<small> {E(x["per"])}</small></span></div>'
             f'<h3>{nb(x["name"])}</h3><p>{E(x["card"])}</p><div class="st-nums">{nums}</div>'
-            f'<p>{E(x["for"])}</p><div class="st-act">{prim}{sec}</div></article>')
+            f'<p>{E(x["for"])}</p><div class="st-act">{prim}{sec}</div>'
+            + (f'<p class="st-note st-trialnote">Card at checkout, nothing charged for {t} days. Cancel any time.</p>' if t else "")
+            + '</article>')
 
 
 def coming_card(c, rel, field_id, cls="st-card soon", h="h3"):

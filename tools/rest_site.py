@@ -70,7 +70,7 @@ def page_html(p):
 
     lede = (f'{c["flagged"]:,} Chicago food businesses failed or passed with conditions with a pest, hood, grease trap or cleaning violation in the last 30 days, and {c["opening"]:,} had '
             f'the license inspection Chicago does before it issues a food license. {E(p["lede"])}')
-    sub_link = (f'<a class="ld-textlink" href="{E(checkout)}" rel="noopener">Try {trial} days free, then ${price} a month</a>' if trial else
+    sub_link = (f'<a class="ld-textlink ld-trialbtn" href="{E(checkout)}" rel="noopener">Try {trial} days free, then ${price} a month</a>' if trial else
                 f'<a class="ld-textlink" href="{E(checkout)}" rel="noopener">Subscribe, ${price} a month</a>' if checkout else
                 f'<a class="ld-textlink" href="{E(notify)}">Tell me when it opens</a>')
     hero_act = (f'<div class="ld-heroact rl-act" id="ldHeroCta"><a class="btn ld-btnbig" href="#sample">See this week\'s free sample</a>{sub_link}</div>'

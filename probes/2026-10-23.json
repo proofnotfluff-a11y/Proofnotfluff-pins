@@ -1,0 +1,1180 @@
+{
+ "ranAt": "2026-10-23T16:17:01+00:00",
+ "since": "2026-09-11",
+ "weeks": 6,
+ "counts": {
+  "chicago_food_inspections_by_result_type": [
+   {
+    "results": "Pass",
+    "inspection_type": "Canvass",
+    "count": "251"
+   },
+   {
+    "results": "Pass",
+    "inspection_type": "Canvass Re-Inspection",
+    "count": "164"
+   },
+   {
+    "results": "Pass",
+    "inspection_type": "License",
+    "count": "129"
+   },
+   {
+    "results": "Pass",
+    "inspection_type": "Complaint Re-Inspection",
+    "count": "126"
+   },
+   {
+    "results": "Fail",
+    "inspection_type": "Canvass",
+    "count": "102"
+   },
+   {
+    "results": "Fail",
+    "inspection_type": "Complaint",
+    "count": "86"
+   },
+   {
+    "results": "Pass",
+    "inspection_type": "Complaint",
+    "count": "67"
+   },
+   {
+    "results": "Fail",
+    "inspection_type": "License",
+    "count": "59"
+   },
+   {
+    "results": "Out of Business",
+    "inspection_type": "Canvass",
+    "count": "54"
+   },
+   {
+    "results": "Pass",
+    "inspection_type": "License Re-Inspection",
+    "count": "52"
+   },
+   {
+    "results": "Not Ready",
+    "inspection_type": "License",
+    "count": "51"
+   },
+   {
+    "results": "Pass w/ Conditions",
+    "inspection_type": "Canvass",
+    "count": "50"
+   },
+   {
+    "results": "No Entry",
+    "inspection_type": "Non-Inspection",
+    "count": "45"
+   },
+   {
+    "results": "Pass",
+    "inspection_type": "Short Form Complaint",
+    "count": "34"
+   },
+   {
+    "results": "Fail",
+    "inspection_type": "Complaint Re-Inspection",
+    "count": "32"
+   },
+   {
+    "results": "Pass w/ Conditions",
+    "inspection_type": "Complaint",
+    "count": "31"
+   },
+   {
+    "results": "Fail",
+    "inspection_type": "Canvass Re-Inspection",
+    "count": "26"
+   },
+   {
+    "results": "Pass w/ Conditions",
+    "inspection_type": "License",
+    "count": "21"
+   },
+   {
+    "results": "No Entry",
+    "inspection_type": "Complaint",
+    "count": "14"
+   },
+   {
+    "results": "Pass w/ Conditions",
+    "inspection_type": "Canvass Re-Inspection",
+    "count": "13"
+   },
+   {
+    "results": "Pass w/ Conditions",
+    "inspection_type": "Complaint Re-Inspection",
+    "count": "11"
+   },
+   {
+    "results": "Pass w/ Conditions",
+    "inspection_type": "License Re-Inspection",
+    "count": "9"
+   },
+   {
+    "results": "Pass w/ Conditions",
+    "inspection_type": "Short Form Complaint",
+    "count": "9"
+   },
+   {
+    "results": "Fail",
+    "inspection_type": "Short Form Complaint",
+    "count": "8"
+   },
+   {
+    "results": "Fail",
+    "inspection_type": "License Re-Inspection",
+    "count": "6"
+   },
+   {
+    "results": "No Entry",
+    "inspection_type": "License",
+    "count": "3"
+   },
+   {
+    "results": "Out of Business",
+    "inspection_type": "Complaint",
+    "count": "2"
+   },
+   {
+    "results": "No Entry",
+    "inspection_type": "Canvass Re-Inspection",
+    "count": "2"
+   },
+   {
+    "results": "Pass w/ Conditions",
+    "inspection_type": "Suspected Food Poisoning",
+    "count": "2"
+   },
+   {
+    "results": "No Entry",
+    "inspection_type": "Complaint Re-Inspection",
+    "count": "2"
+   },
+   {
+    "results": "Pass",
+    "inspection_type": "Suspected Food Poisoning Re-inspection",
+    "count": "1"
+   },
+   {
+    "results": "Not Ready",
+    "inspection_type": "Short Form Complaint",
+    "count": "1"
+   },
+   {
+    "results": "Fail",
+    "inspection_type": "Suspected Food Poisoning",
+    "count": "1"
+   }
+  ],
+  "chicago_business_licenses_new_by_type": [
+   {
+    "license_description": "Limited Business License",
+    "count": "193"
+   },
+   {
+    "license_description": "Pop-Up Retail User",
+    "count": "118"
+   },
+   {
+    "license_description": "Retail Food Establishment",
+    "count": "100"
+   },
+   {
+    "license_description": "Regulated Business License",
+    "count": "89"
+   },
+   {
+    "license_description": "Special Event Food",
+    "count": "65"
+   },
+   {
+    "license_description": "Peddler License",
+    "count": "34"
+   },
+   {
+    "license_description": "Pharmaceutical Representative",
+    "count": "30"
+   },
+   {
+    "license_description": "Special Event Liquor",
+    "count": "21"
+   },
+   {
+    "license_description": "Consumption on Premises - Incidental Activity",
+    "count": "18"
+   },
+   {
+    "license_description": "Shared Kitchen User (Long Term)",
+    "count": "18"
+   },
+   {
+    "license_description": "Tobacco",
+    "count": "16"
+   },
+   {
+    "license_description": "Valet Parking Operator",
+    "count": "13"
+   },
+   {
+    "license_description": "Shared Housing Unit Operator",
+    "count": "13"
+   },
+   {
+    "license_description": "Motor Vehicle Services License",
+    "count": "10"
+   },
+   {
+    "license_description": "Children's Services Facility License",
+    "count": "9"
+   },
+   {
+    "license_description": "Raffles",
+    "count": "6"
+   },
+   {
+    "license_description": "Manufacturing Establishments",
+    "count": "6"
+   },
+   {
+    "license_description": "Public Place of Amusement",
+    "count": "6"
+   },
+   {
+    "license_description": "Towing - Tow Truck",
+    "count": "5"
+   },
+   {
+    "license_description": "Package Goods",
+    "count": "5"
+   },
+   {
+    "license_description": "Outdoor Patio",
+    "count": "5"
+   },
+   {
+    "license_description": "Animal Care License",
+    "count": "4"
+   },
+   {
+    "license_description": "Commercial Garage",
+    "count": "4"
+   },
+   {
+    "license_description": "Filling Station",
+    "count": "4"
+   },
+   {
+    "license_description": "Mobile Food License",
+    "count": "4"
+   },
+   {
+    "license_description": "Tavern",
+    "count": "4"
+   },
+   {
+    "license_description": "Shared Kitchen User (Short Term)",
+    "count": "3"
+   },
+   {
+    "license_description": "Private Booting Registration",
+    "count": "3"
+   },
+   {
+    "license_description": "Wholesale Food Establishment",
+    "count": "3"
+   },
+   {
+    "license_description": "Indoor Special Event",
+    "count": "3"
+   },
+   {
+    "license_description": "Caterer's Liquor License",
+    "count": "3"
+   },
+   {
+    "license_description": "Pawnbroker",
+    "count": "1"
+   },
+   {
+    "license_description": "Emerging Business",
+    "count": "1"
+   },
+   {
+    "license_description": "Secondhand Dealer",
+    "count": "1"
+   }
+  ],
+  "chicago_demolition_permits": [
+   {
+    "count": "96"
+   }
+  ],
+  "austin_commercial_500k": [
+   {
+    "count": "106",
+    "count_contractor_company_name": "106"
+   }
+  ],
+  "austin_all_500k_by_class": [
+   {
+    "permit_class_mapped": "Commercial",
+    "status_current": "Active",
+    "count": "105"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "status_current": "VOID",
+    "count": "1"
+   }
+  ],
+  "seattle_500k": [
+   {
+    "count": "111",
+    "count_contractorcompanyname": "2"
+   }
+  ],
+  "seattle_730_500k_by_class_type_status": [
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "New",
+    "statuscurrent": "Issued",
+    "count": "626",
+    "count_contractorcompanyname": "23"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "New",
+    "statuscurrent": "Completed",
+    "count": "270",
+    "count_contractorcompanyname": "3"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "Demolition",
+    "statuscurrent": "Completed",
+    "count": "256",
+    "count_contractorcompanyname": "6"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "Addition/Alteration",
+    "statuscurrent": "Issued",
+    "count": "197",
+    "count_contractorcompanyname": "7"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "Demolition",
+    "statuscurrent": "Issued",
+    "count": "192",
+    "count_contractorcompanyname": "1"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "Addition/Alteration",
+    "statuscurrent": "Completed",
+    "count": "177",
+    "count_contractorcompanyname": "9"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "Addition/Alteration",
+    "statuscurrent": "Issued",
+    "count": "140",
+    "count_contractorcompanyname": "5"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "statuscurrent": "Completed",
+    "count": "106",
+    "count_contractorcompanyname": "6"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "statuscurrent": "Issued",
+    "count": "72",
+    "count_contractorcompanyname": "5"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "Tenant Improvment",
+    "statuscurrent": "Completed",
+    "count": "64",
+    "count_contractorcompanyname": "1"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "Addition/Alteration",
+    "statuscurrent": "Completed",
+    "count": "44",
+    "count_contractorcompanyname": "4"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "New",
+    "statuscurrent": "Expired",
+    "count": "33",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "New",
+    "statuscurrent": "Issued",
+    "count": "30",
+    "count_contractorcompanyname": "3"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "Tenant Improvment",
+    "statuscurrent": "Issued",
+    "count": "28",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "statuscurrent": "Issued",
+    "count": "24",
+    "count_contractorcompanyname": "8"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "Demolition",
+    "statuscurrent": "Completed",
+    "count": "15",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "Demolition",
+    "statuscurrent": "Expired",
+    "count": "14",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "Temporary",
+    "statuscurrent": "Issued",
+    "count": "14",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "Demolition",
+    "statuscurrent": "Issued",
+    "count": "13",
+    "count_contractorcompanyname": "1"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "Addition/Alteration",
+    "statuscurrent": "Expired",
+    "count": "11",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "New",
+    "statuscurrent": "Withdrawn",
+    "count": "7",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "Addition/Alteration",
+    "statuscurrent": "Expired",
+    "count": "6",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "statuscurrent": "Completed",
+    "count": "6",
+    "count_contractorcompanyname": "4"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "statuscurrent": "Expired",
+    "count": "6",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "Demolition",
+    "statuscurrent": "Withdrawn",
+    "count": "5",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "Temporary",
+    "statuscurrent": "Completed",
+    "count": "4",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "New",
+    "statuscurrent": "Completed",
+    "count": "4",
+    "count_contractorcompanyname": "1"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "New",
+    "statuscurrent": "Phase Issued",
+    "count": "2",
+    "count_contractorcompanyname": "1"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "New",
+    "statuscurrent": "Phase Issued",
+    "count": "2",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "statuscurrent": "Expired",
+    "count": "2",
+    "count_contractorcompanyname": "1"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "Addition/Alteration",
+    "statuscurrent": "Inspections Completed",
+    "count": "2",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "Temporary",
+    "statuscurrent": "Completed",
+    "count": "2",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "New",
+    "statuscurrent": "Ready for Issuance",
+    "count": "2",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "Deconstruction",
+    "statuscurrent": "Issued",
+    "count": "2",
+    "count_contractorcompanyname": "2"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "New",
+    "statuscurrent": "Inspections Completed",
+    "count": "2",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "New",
+    "statuscurrent": "Expired",
+    "count": "1",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "New",
+    "statuscurrent": "Awaiting Information",
+    "count": "1",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "Addition/Alteration",
+    "statuscurrent": "Withdrawn",
+    "count": "1",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "Relocation",
+    "statuscurrent": "Issued",
+    "count": "1",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "Temporary",
+    "statuscurrent": "Issued",
+    "count": "1",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "Deconstruction",
+    "statuscurrent": "Issued",
+    "count": "1",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "Addition/Alteration",
+    "statuscurrent": "Phase Issued",
+    "count": "1",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Residential",
+    "permittypedesc": "Change of Use Only - No Construction",
+    "statuscurrent": "Expired",
+    "count": "1",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "Tenant Improvment",
+    "statuscurrent": "Withdrawn",
+    "count": "1",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "Addition/Alteration",
+    "statuscurrent": "Withdrawn",
+    "count": "1",
+    "count_contractorcompanyname": "0"
+   },
+   {
+    "permitclassmapped": "Non-Residential",
+    "permittypedesc": "Tenant Improvment",
+    "statuscurrent": "Expired",
+    "count": "1",
+    "count_contractorcompanyname": "0"
+   }
+  ],
+  "seattle_500k_contractor_by_year": [
+   {
+    "yr": "2019",
+    "count": "1105",
+    "count_contractorcompanyname": "226"
+   },
+   {
+    "yr": "2020",
+    "count": "1022",
+    "count_contractorcompanyname": "338"
+   },
+   {
+    "yr": "2021",
+    "count": "1070",
+    "count_contractorcompanyname": "161"
+   },
+   {
+    "yr": "2022",
+    "count": "1129",
+    "count_contractorcompanyname": "77"
+   },
+   {
+    "yr": "2023",
+    "count": "1013",
+    "count_contractorcompanyname": "56"
+   },
+   {
+    "yr": "2024",
+    "count": "1130",
+    "count_contractorcompanyname": "56"
+   },
+   {
+    "yr": "2025",
+    "count": "1195",
+    "count_contractorcompanyname": "54"
+   },
+   {
+    "yr": "2026",
+    "count": "1003",
+    "count_contractorcompanyname": "28"
+   }
+  ],
+  "austin_365_500k_by_class_status": [
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 329 Com Structures Other Than Bldg",
+    "status_current": "Active",
+    "count": "188"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 105 Five or More Family Bldgs",
+    "status_current": "Active",
+    "count": "92"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 321 Pkg Garage Bldg & Open Deck",
+    "status_current": "Active",
+    "count": "35"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 328 Commercial Other Nonresident Bldg",
+    "status_current": "Active",
+    "count": "31"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 437 Addn, Alter, Convn-NonRes",
+    "status_current": "Active",
+    "count": "17"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 324 Office, Bank & Professional Bldgs",
+    "status_current": "Active",
+    "count": "16"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 327 Stores & Customer Services",
+    "status_current": "Active",
+    "count": "14"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 326 Schools & Other Educational Bldgs",
+    "status_current": "Active",
+    "count": "12"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 104 Three & Four Family Bldgs",
+    "status_current": "Active",
+    "count": "10"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 318 Amusement, Social & Rec Bldgs",
+    "status_current": "Active",
+    "count": "8"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 320 Industrial Bldgs",
+    "status_current": "Active",
+    "count": "6"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C-1000 Commercial Remodel",
+    "status_current": "Final",
+    "count": "5"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 322 Service Station & Repair Garage",
+    "status_current": "Active",
+    "count": "4"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 329 Com Structures Other Than Bldg",
+    "status_current": "Final",
+    "count": "2"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 213 Hotels, Motels, & Tourist Cabins",
+    "status_current": "Active",
+    "count": "2"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 324 Office, Bank & Professional Bldgs",
+    "status_current": "Final",
+    "count": "2"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 322 Service Station & Repair Garage",
+    "status_current": "Final",
+    "count": "2"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 319 Churches and Othr Religious Bldgs",
+    "status_current": "Active",
+    "count": "2"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 319 Churches and Othr Religious Bldgs",
+    "status_current": "Final",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 329 Com Structures Other Than Bldg",
+    "status_current": "Pending Permit",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 105 Five or More Family Bldgs",
+    "status_current": "VOID",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 321 Pkg Garage Bldg & Open Deck",
+    "status_current": "Final",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 321 Pkg Garage Bldg & Open Deck",
+    "status_current": "Withdrawn",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Residential",
+    "permit_class": "R- 101 Single Family Houses",
+    "status_current": "Active",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 103 Two Family Bldgs",
+    "status_current": "Active",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 327 Stores & Customer Services",
+    "status_current": "Final",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 106 Mixed Use",
+    "status_current": "Expired",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 105 Five or More Family Bldgs",
+    "status_current": "Withdrawn",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Residential",
+    "permit_class": "R- 434 Addition & Alterations",
+    "status_current": "Active",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 318 Amusement, Social & Rec Bldgs",
+    "status_current": "Final",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 328 Commercial Other Nonresident Bldg",
+    "status_current": "Final",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 323 Hospital & Institutional Bldgs",
+    "status_current": "Active",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C-1000 Commercial Remodel",
+    "status_current": "Active",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 321 Pkg Garage Bldg & Open Deck",
+    "status_current": "Cancelled - Contractor Required",
+    "count": "1"
+   },
+   {
+    "permit_class_mapped": "Commercial",
+    "permit_class": "C- 437 Addn, Alter, Convn-NonRes",
+    "status_current": "Expired",
+    "count": "1"
+   }
+  ],
+  "austin_365_commercial_by_workclass": [
+   {
+    "work_class": "Remodel",
+    "count": "2835",
+    "count_total_job_valuation": "3",
+    "count_total_valuation_remodel": "2833"
+   },
+   {
+    "work_class": "New",
+    "count": "1022",
+    "count_total_job_valuation": "1009",
+    "count_total_valuation_remodel": "11"
+   },
+   {
+    "work_class": "Interior Demo Non-Structural",
+    "count": "195",
+    "count_total_job_valuation": "195",
+    "count_total_valuation_remodel": "0"
+   },
+   {
+    "work_class": "Demolition",
+    "count": "92",
+    "count_total_job_valuation": "92",
+    "count_total_valuation_remodel": "0"
+   },
+   {
+    "work_class": "Shell",
+    "count": "56",
+    "count_total_job_valuation": "56",
+    "count_total_valuation_remodel": "0"
+   },
+   {
+    "work_class": "Addition and Remodel",
+    "count": "34",
+    "count_total_job_valuation": "34",
+    "count_total_valuation_remodel": "34"
+   },
+   {
+    "work_class": "Addition",
+    "count": "16",
+    "count_total_job_valuation": "16",
+    "count_total_valuation_remodel": "0"
+   },
+   {
+    "work_class": "Repair",
+    "count": "3",
+    "count_total_job_valuation": "3",
+    "count_total_valuation_remodel": "3"
+   }
+  ]
+ },
+ "columns": {
+  "chicago_food_inspections": {
+   "name": "Food Inspections",
+   "rowsUpdatedAt": 1792746572,
+   "license": "See Terms of Use",
+   "attribution": "City of Chicago",
+   "fields": [
+    "inspection_id",
+    "dba_name",
+    "aka_name",
+    "license_",
+    "facility_type",
+    "risk",
+    "address",
+    "city",
+    "state",
+    "zip",
+    "inspection_date",
+    "inspection_type",
+    "results",
+    "violations",
+    "latitude",
+    "longitude",
+    "location",
+    ":@computed_region_awaf_s7ux",
+    ":@computed_region_6mkv_f3dw",
+    ":@computed_region_vrxf_vc4k",
+    ":@computed_region_bdys_3d7i",
+    ":@computed_region_43wa_7qmu"
+   ]
+  },
+  "chicago_business_licenses": {
+   "name": "Business Licenses",
+   "rowsUpdatedAt": 1792749561,
+   "license": "See Terms of Use",
+   "attribution": "City of Chicago",
+   "fields": [
+    "id",
+    "license_id",
+    "account_number",
+    "site_number",
+    "legal_name",
+    "doing_business_as_name",
+    "address",
+    "city",
+    "state",
+    "zip_code",
+    "ward",
+    "precinct",
+    "ward_precinct",
+    "police_district",
+    "community_area",
+    "community_area_name",
+    "neighborhood",
+    "license_code",
+    "license_description",
+    "business_activity_id",
+    "business_activity",
+    "license_number",
+    "application_type",
+    "application_created_date",
+    "application_requirements_complete",
+    "payment_date",
+    "conditional_approval",
+    "license_start_date",
+    "expiration_date",
+    "license_approved_for_issuance",
+    "date_issued",
+    "license_status",
+    "license_status_change_date",
+    "ssa",
+    "latitude",
+    "longitude",
+    "location",
+    ":@computed_region_vrxf_vc4k",
+    ":@computed_region_awaf_s7ux",
+    ":@computed_region_6mkv_f3dw",
+    ":@computed_region_bdys_3d7i",
+    ":@computed_region_43wa_7qmu"
+   ]
+  },
+  "austin_permits": {
+   "name": "Issued Construction Permits",
+   "rowsUpdatedAt": 1792761761,
+   "license": "Public Domain U.S. Government",
+   "attribution": "City of Austin, Texas - data.austintexas.gov",
+   "fields": [
+    "permittype",
+    "permit_type_desc",
+    "permit_number",
+    "permit_class_mapped",
+    "permit_class",
+    "work_class",
+    "condominium",
+    "permit_location",
+    "description",
+    "tcad_id",
+    "legal_description",
+    "applieddate",
+    "issue_date",
+    "day_issued",
+    "calendar_year_issued",
+    "fiscal_year_issued",
+    "issued_in_last_30_days",
+    "issue_method",
+    "status_current",
+    "statusdate",
+    "expiresdate",
+    "completed_date",
+    "total_existing_bldg_sqft",
+    "remodel_repair_sqft",
+    "total_new_add_sqft",
+    "total_valuation_remodel",
+    "total_job_valuation",
+    "number_of_floors",
+    "housing_units",
+    "building_valuation",
+    "building_valuation_remodel",
+    "electrical_valuation",
+    "electrical_valuation_remodel",
+    "mechanical_valuation",
+    "mechanical_valuation_remodel",
+    "plumbing_valuation",
+    "plumbing_valuation_remodel",
+    "medgas_valuation",
+    "medgas_valuation_remodel",
+    "original_address1",
+    "original_city",
+    "original_state",
+    "original_zip",
+    "council_district",
+    "jurisdiction",
+    "link",
+    "project_id",
+    "masterpermitnum",
+    "latitude",
+    "longitude",
+    "location",
+    "contractor_trade",
+    "contractor_company_name",
+    "contractor_full_name",
+    "contractor_phone",
+    "contractor_address1",
+    "contractor_address2",
+    "contractor_city",
+    "contractor_zip",
+    "applicant_full_name",
+    "applicant_org",
+    "applicant_phone",
+    "applicant_address1",
+    "applicant_address2",
+    "applicant_city",
+    "applicantzip",
+    "certificate_of_occupancy",
+    "total_lot_sq_ft",
+    ":@computed_region_8spj_utxs",
+    ":@computed_region_q9nd_rr82",
+    ":@computed_region_e9j2_6w3z",
+    ":@computed_region_m2th_e4b7",
+    ":@computed_region_rxpj_nzrk",
+    ":@computed_region_a3it_2a2z",
+    ":@computed_region_qwte_z96m",
+    ":@computed_region_i2aj_cj5t",
+    ":@computed_region_xzeg_zdjk",
+    ":@computed_region_6gig_z43c"
+   ]
+  },
+  "seattle_permits": {
+   "name": "Building Permits",
+   "rowsUpdatedAt": 1792717826,
+   "license": "Public Domain",
+   "attribution": "City of Seattle",
+   "fields": [
+    "permitnum",
+    "permitclass",
+    "permitclassmapped",
+    "permittypemapped",
+    "permittypedesc",
+    "description",
+    "housingunits",
+    "housingunitsremoved",
+    "housingunitsadded",
+    "estprojectcost",
+    "applieddate",
+    "issueddate",
+    "expiresdate",
+    "completeddate",
+    "statuscurrent",
+    "relatedmup",
+    "originaladdress1",
+    "originalcity",
+    "originalstate",
+    "originalzip",
+    "contractorcompanyname",
+    "link",
+    "latitude",
+    "longitude",
+    "location1",
+    "totaldaysplanreview",
+    "daysinitialplanreview",
+    "daysplanreviewcity",
+    "daysoutcorrections",
+    "numberreviewcycles",
+    "initialreviewcompletedate",
+    "planreviewcompletedate",
+    "daysissuepermitcity",
+    "readytoissuedate",
+    "zoning",
+    "dwellingunittype",
+    "standardplan",
+    "dependentbuilding",
+    "parentpermitnum",
+    "housingcategory",
+    "development_site"
+   ]
+  }
+ }
+}

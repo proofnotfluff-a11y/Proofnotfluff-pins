@@ -188,7 +188,7 @@ def check_templates(path):
 def check_live(path, gc_path):
     """Every live GC lead rendered through each vertical's template for its stage must pass the gate (proves the
     templates and the display helpers work on real City names and streets, not only on the fixture). A vertical renders
-    only the leads its products' cities and its stages allow. Returns (problems, leads, renders per vertical)."""
+    only the leads pnf_rules.trade_fits allows: its products' cities, its stages, work types and valuation floor. Returns (problems, leads, renders per vertical)."""
     gc = json.load(open(gc_path, encoding="utf-8"))
     ts = {}
     for t in variant_templates(path):
@@ -200,7 +200,7 @@ def check_live(path, gc_path):
         hit = False
         for trade, v in R.TRADE_VERTICALS.items():
             key = (trade, ld.get("stage"))
-            if key not in ts or ld.get("city") not in {R.PRODUCTS.get(x) for x in v["products"]}:
+            if key not in ts or not R.trade_fits(trade, ld):
                 continue
             hit = True
             per[trade] += 1

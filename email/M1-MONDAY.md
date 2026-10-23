@@ -23,6 +23,8 @@ Status: designed and drafted Oct 22. Nothing here is switched on. Each send need
 4. Drafts: one per CRM subscriber in that city, "Hi {first},", from the same inbox that sent their cold email (hello@ as a Gmail draft, sales@ through the Apps Script queue), inside each sender's daily cap. Site subscribers get the same body as one Kit broadcast per city, opening "Hi,". Gated again with `--gate`.
 5. Todd says send. After it goes: `--record` writes the lead ids to email/monday/sent.json, and each subscriber's CRM record gets mondaysSent plus 1 and mondayLastAt.
 
+Step 2 buyer types (Todd, Oct 22, 2026, 10:55 pm: "Let's go with your recommendations"): `--trade` picks only leads pnf_rules.trade_fits allows for window_cleaning, dumpster_rental and security, so a subscriber never gets a job its cold email's timing claim would not cover, and fills {buys} for that trade (tools/monday_email.py TRADES). Cleaning and exterior subscribers keep the whole list. A subscriber's first issue (CRM mondaysSent 0, `--first`) adds the FirstReply line after the "To use one" line, since replies help inbox placement; the Kit broadcast carries it only on a city's first broadcast.
+
 Rules every Monday email keeps: plain text, under 200 words above the footer, no links, no price or trial talk, no em or en dash, only City facts from the live file, the footer below byte for byte (our mailing address and the stop line).
 
 ## The trial offer
@@ -45,13 +47,18 @@ Subject: This week's {n} big {City} jobs and their builders
 ```text
 Hi{name},
 
-Here are {n} big {City} jobs from this week's City permit data, with the builder and how far along each one is.
+Here are {n} big {City} jobs from this week's City permit data, with the builder and stage of each.
 
 {leads}
 
-To use one: call the builder's main office, give the address and the permit number, and ask who buys the final clean.
+To use one: call the builder's main office, give the address and the permit number, and ask who buys {buys}.
 
 The full list has all {total} open {City} projects of $500,000 or more, with the builder on each, every Monday.
+```
+
+### FirstReply
+```text
+Was this useful? A quick reply helps these reach your inbox.
 ```
 
 ### Lead

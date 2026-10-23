@@ -15,8 +15,10 @@ Usage:
   python3 tools/monday_email.py --gate data/work/monday_drafts.json
       gates a draft file (schema pnf.monday_draft.v1: {schema, drafts:[{prospect_id, to, kind, city, week, subject,
       body, lead_ids}]}) before Todd sees it
-  python3 tools/monday_email.py --record --city chicago --week 2026-10-26 --leads id,id,id
+  python3 tools/monday_email.py --record --city chicago [--trade security] --week 2026-10-26 --leads id,id,id
       after Todd's send: appends the issue's lead ids to email/monday/sent.json (lead ids only, no people)
+  --trade <vertical> picks only leads that vertical's cold email may name (step 2 types) and fills who buys what;
+  --first adds the first-issue reply line (CRM mondaysSent 0)
 
 Freshness: a lead is fresh when its id was not in the previous edition (at least 3 days older, from git history or
 --prev), when its stage moved up, or when it has a dated City signal in the last 7 days. With no earlier edition the
@@ -45,6 +47,13 @@ CITIES = {"chicago": {"City": "Chicago", "slug": "chicago-construction-cleaning-
 ISSUE_MAX, TRIAL_MAX = 200, 140   # words above the fixed footer, which is compliance, not copy
 STAGE_RANK = {"Inspections Under Way": 1, "Final Inspection Scheduled": 2, "Certificate of Occupancy Pending": 3,
               "Partial Occupancy Approved": 4}
+# Who buys what at the builder, per trade vertical (Todd, Oct 22, 2026, 10:55 pm, step 2), and whether the issue picks only
+# leads the vertical may name (pnf_rules.trade_fits). Cleaning and exterior keep the whole list, as before.
+TRADES = {"commercial_cleaning": {"buys": "the final clean", "fit": False},
+          "exterior_turnkey": {"buys": "the final clean", "fit": False},
+          "window_cleaning": {"buys": "the window clean", "fit": True},
+          "dumpster_rental": {"buys": "the roll-off dumpsters", "fit": True},
+          "security": {"buys": "site security", "fit": True}}
 BANNED_ISSUE = re.compile(r"\$\s?\d+\s*(?:a|per|/)\s*mo|\btrial\b|\bsubscri\w*|\bcheckout\b|\bdiscount\b|\bpric(?:e|ing)\b", re.I)
 
 
@@ -98,10 +107,12 @@ def previous_edition(cur):
     return None
 
 
-def sent_ids(city, path=SENT):
+def sent_ids(city, path=SENT, trade=R.TRADE_DEFAULT):
+    """Lead ids an earlier issue sent to this city's subscribers of this trade (a record with no trade is cleaning)."""
     if not os.path.exists(path):
         return set()
-    return {i for x in load(path).get("issues", []) if x.get("city") == city for i in x.get("lead_ids", [])}
+    return {i for x in load(path).get("issues", []) if x.get("city") == city
+            and (x.get("trade") or R.TRADE_DEFAULT) == trade for i in x.get("lead_ids", [])}
 
 
 def dated(lead):
@@ -113,9 +124,12 @@ def near_finish(lead):
     return lead.get("stage") == "Partial Occupancy Approved" or str(lead.get("stage_source", "")).startswith("Near finish")
 
 
-def pick(leads, city, today, prev=None, sent=(), avoid=(), n=3):
-    """(picks, mode) for one city: fresh leads, closest to the final clean first, one per builder."""
-    mine = [x for x in leads if x.get("city") == city and x["lead_id"] not in set(sent) and x["lead_id"] not in set(avoid)]
+def pick(leads, city, today, prev=None, sent=(), avoid=(), n=3, trade=R.TRADE_DEFAULT):
+    """(picks, mode) for one city: fresh leads, closest to the final clean first, one per builder. A step 2 trade picks
+    only leads its vertical may name."""
+    fit = TRADES[trade]["fit"]
+    mine = [x for x in leads if x.get("city") == city and x["lead_id"] not in set(sent) and x["lead_id"] not in set(avoid)
+            and (not fit or R.trade_fits(trade, x))]
     if prev is not None:
         old = {x["lead_id"]: x for x in prev.get("leads", [])}
         # new this week, or its stage moved up; a dated food inspection alone never makes a lead fresh (Oct 22 checker:
@@ -151,9 +165,9 @@ def stage_line(x):
     src = str(x.get("stage_source") or "")
     if x["city"] == "austin":
         if src.startswith("Near finish"):
-            return "near finish, some of its building permits already finaled by the City"
+            return "near finish, some building permits finaled by the City"
         co = any(s.get("type") == "co_flag" and "=Yes" in str(s.get("detail")) for s in x.get("signals", []))
-        return "work under way after City inspections" + (", certificate of occupancy required" if co else "")
+        return "City inspections under way" + (", certificate of occupancy required" if co else "")
     if x["stage"] == "Partial Occupancy Approved":
         return "partial occupancy approved by the City"
     if "REQUIRED" in src.upper():
@@ -161,7 +175,7 @@ def stage_line(x):
     return "City inspections under way"
 
 
-def scope_line(s, limit=12):
+def scope_line(s, limit=9):
     parts = [x.strip() for x in re.split(r"(?<=[A-Za-z0-9)])[.;](?:\s|$)", (s or "").strip().rstrip(".")) if x.strip()]
     s = next((x for x in parts if len(x.split()) >= 3), parts[0] if parts else "")   # skip City stubs like 'Incluced.'
     if s.isupper():
@@ -200,26 +214,28 @@ def footer(sp):
     return sp["Footer"][1]
 
 
-def issue(city, picks, sp=None, name="", with_office=False):
+def issue(city, picks, sp=None, name="", with_office=False, trade=R.TRADE_DEFAULT, first=False):
     sp = sp or spec()
     c = CITIES[city]
     total = load(os.path.join(ROOT, c["sample"]))["counts"]["kept"]
     leads = "\n\n".join(lead_block(sp["Lead"][1], i + 1, x, office_for(x) if with_office else None) for i, x in enumerate(picks))
     subj = fill(sp["Issue"][0], n=len(picks), City=c["City"])
     body = fill(sp["Issue"][1], name=(" " + name) if name else "", n=len(picks), City=c["City"], leads=leads,
-                total=f"{total:,}") + "\n\n" + footer(sp)
-    return subj, body
+                total=f"{total:,}", buys=TRADES[trade]["buys"])
+    if first:   # the subscriber's first issue only: ask for a reply, which helps inbox placement
+        body = re.sub(r"(^To use one:[^\n]*\n)", lambda m: m.group(1) + "\n" + sp["FirstReply"][1] + "\n", body, count=1, flags=re.M)
+    return subj, body + "\n\n" + footer(sp)
 
 
-def build_issue(city, picks, sp=None, name="", with_office=False, sent=()):
+def build_issue(city, picks, sp=None, name="", with_office=False, sent=(), trade=R.TRADE_DEFAULT, first=False):
     """(subject, body, picks, problems): 3 leads, or the best 2 when 3 run over the word cap."""
     sp = sp or spec()
-    s, b = issue(city, picks, sp, name, with_office)
-    probs = issue_problems(s, b, picks, sp, sent)
+    s, b = issue(city, picks, sp, name, with_office, trade, first)
+    probs = issue_problems(s, b, picks, sp, sent, trade, first)
     if len(picks) == 3 and any("words, the limit" in x for x in probs):
         picks = picks[:2]
-        s, b = issue(city, picks, sp, name, with_office)
-        probs = issue_problems(s, b, picks, sp, sent)
+        s, b = issue(city, picks, sp, name, with_office, trade, first)
+        probs = issue_problems(s, b, picks, sp, sent, trade, first)
     return s, b, picks, probs
 
 
@@ -267,8 +283,20 @@ def common(subject, body, sp):
     return p
 
 
-def issue_problems(subject, body, picks, sp, sent=()):
+def issue_problems(subject, body, picks, sp, sent=(), trade=R.TRADE_DEFAULT, first=None):
     p = common(subject, body, sp)
+    if trade not in TRADES:
+        p.append(f"unknown trade {trade!r} (one of {sorted(TRADES)})")
+        trade = R.TRADE_DEFAULT
+    if f"ask who buys {TRADES[trade]['buys']}." not in body:
+        p.append(f"the 'To use one' line does not say who buys {TRADES[trade]['buys']} ({trade})")
+    reply = sp["FirstReply"][1] in body
+    if first is not None and reply != bool(first):
+        p.append("the reply line belongs on a subscriber's first issue only" if reply else "a first issue needs the reply line")
+    if TRADES[trade]["fit"]:
+        for x in picks:
+            if not R.trade_fits(trade, x):
+                p.append(f"{x['lead_id']}: not a lead the {trade} cold email may name (pnf_rules.trade_fits)")
     n = copy_words(body, sp)
     if n >= ISSUE_MAX:
         p.append(f"issue is {n} words, the limit is under {ISSUE_MAX}")
@@ -345,6 +373,10 @@ def selftest(sp, leads, today):
         ("issue: over the word cap", lambda: issue_problems(s, b.replace("To use one:", " ".join(["word"] * 240) + " To use one:"), picks, sp)),
         ("issue: AI phrase", lambda: issue_problems(s, b.replace("To use one:", "This is a game changer. To use one:"), picks, sp)),
         ("issue: no greeting", lambda: issue_problems(s, b.replace("Hi Dana,", "Hello there", 1), picks, sp)),
+        ("issue: reply line on a later issue", lambda: issue_problems(*issue("chicago", picks, sp, name="Dana", first=True), picks, sp, first=False)),
+        ("issue: first issue without the reply line", lambda: issue_problems(s, b, picks, sp, first=True)),
+        ("issue: wrong buyer for the trade", lambda: issue_problems(s, b, picks, sp, trade="security")),
+        ("issue: lead the trade may not name", lambda: issue_problems(s, b.replace("the final clean.", "site security."), picks, sp, trade="security")),
         ("trial: no price", lambda: trial_problems(t_s, t_b.replace("$29 a month", "monthly"), "chicago", sp)),
         ("trial: no link", lambda: trial_problems(t_s, t_b.replace(trial_link("chicago"), ""), "chicago", sp)),
         ("trial: a second link", lambda: trial_problems(t_s, t_b.replace("either way.", "either way. https://proofnotfluff.com/"), "chicago", sp)),
@@ -356,7 +388,9 @@ def selftest(sp, leads, today):
               "footer stop line removed": "footer", "mailing address changed": "mailing address", "one lead only": "needs 2 or 3",
               "wrong valuation": "valuation", "lead already sent": "already sent", "same builder twice": "same builder",
               "a person as site contact": "site contact", "over the word cap": "words, the limit", "AI phrase": "AI-sounding",
-              "no greeting": "must open", "wrong permit number": "permit and issue date", "wrong stage": "stage do not match",
+              "no greeting": "must open", "reply line on a later issue": "first issue only",
+              "first issue without the reply line": "needs the reply line", "wrong buyer for the trade": "who buys",
+              "lead the trade may not name": "may name", "wrong permit number": "permit and issue date", "wrong stage": "stage do not match",
               "no price": "monthly price", "no link": "exactly one link", "a second link": "exactly one link",
               "card line removed": "card goes in", "cancel line removed": "how to cancel", "not marked as an offer": "an offer"}
     for label, fn in plant:
@@ -389,7 +423,19 @@ def run_check():
         else:
             s, b, picks, ip = build_issue(city, picks, sp, sent=sent_ids(city))
             probs += [f"{city} issue: {x}" for x in ip]
-            lines.append(f"{city}: {len(picks)} leads, {copy_words(b, sp)} words ({mode.split(':')[0]})")
+            s1, b1, p1, ip1 = build_issue(city, picks, sp, sent=sent_ids(city), first=True)
+            probs += [f"{city} first issue: {x}" for x in ip1]
+            lines.append(f"{city}: {len(picks)} leads, {copy_words(b, sp)} words, first issue {len(p1)} leads "
+                         f"{copy_words(b1, sp)} words ({mode.split(':')[0]})")
+        for tr in (t for t in TRADES if TRADES[t]["fit"]):
+            tp, _m = pick(cur["leads"], city, today, prev, sent_ids(city, trade=tr), trade=tr)
+            if len(tp) < 2:
+                lines.append(f"{city} {tr}: {len(tp)} fresh leads, no issue")
+                continue
+            ts_, tb_, tp, tip = build_issue(city, tp, sp, sent=sent_ids(city, trade=tr), trade=tr, first=True)
+            probs += [f"{city} {tr} first issue: {x}" for x in tip]
+            if len(tp) < 3:
+                probs.append(f"{city} {tr} first issue fits only {len(tp)} leads under {ISSUE_MAX} words")
         ts, tb = trial(city, 9)
         probs += [f"{city} trial: {x}" for x in trial_problems(ts, tb, city, sp)]
     bad, ok, n = selftest(sp, cur["leads"], today)
@@ -419,7 +465,9 @@ def run_gate(path):
             picks = [leads[i] for i in d.get("lead_ids", []) if i in leads]
             if len(picks) != len(d.get("lead_ids", [])):
                 probs.append(f"{pid}: a lead id is not in the live file")
-            probs += [f"{pid}: {x}" for x in issue_problems(d.get("subject", ""), d.get("body", ""), picks, sp, sent_ids(city))]
+            probs += [f"{pid}: {x}" for x in issue_problems(d.get("subject", ""), d.get("body", ""), picks, sp,
+                                                            sent_ids(city, trade=d.get("trade") or R.TRADE_DEFAULT),
+                                                            d.get("trade") or R.TRADE_DEFAULT, bool(d.get("first")))]
         else:
             probs += [f"{pid}: {x}" for x in trial_problems(d.get("subject", ""), d.get("body", ""), city, sp)]
     for x in probs:
@@ -428,12 +476,12 @@ def run_gate(path):
     return 1 if probs else 0
 
 
-def run_record(city, week, ids):
+def run_record(city, week, ids, trade=R.TRADE_DEFAULT):
     doc = load(SENT) if os.path.exists(SENT) else {"schema": "pnf.monday_sent.v1", "issues": []}
-    if any(x["city"] == city and x["week"] == week for x in doc["issues"]):
-        print(f"ERROR record: {city} {week} is already recorded")
+    if any(x["city"] == city and x["week"] == week and (x.get("trade") or R.TRADE_DEFAULT) == trade for x in doc["issues"]):
+        print(f"ERROR record: {city} {trade} {week} is already recorded")
         return 1
-    doc["issues"].append({"city": city, "week": week, "lead_ids": ids})
+    doc["issues"].append(dict({"city": city, "week": week, "lead_ids": ids}, **({} if trade == R.TRADE_DEFAULT else {"trade": trade})))
     os.makedirs(os.path.dirname(SENT), exist_ok=True)
     json.dump(doc, open(SENT, "w", encoding="utf-8"), indent=1)
     print(f"recorded {city} {week}: {len(ids)} leads")
@@ -455,13 +503,15 @@ def main():
     ap.add_argument("--record", action="store_true")
     ap.add_argument("--week")
     ap.add_argument("--leads", default="")
+    ap.add_argument("--trade", choices=sorted(TRADES), default=R.TRADE_DEFAULT, help="the subscriber's CRM tradeVertical")
+    ap.add_argument("--first", action="store_true", help="the subscriber's first issue (CRM mondaysSent 0): adds the reply line")
     a = ap.parse_args()
     if a.check:
         sys.exit(run_check())
     if a.gate:
         sys.exit(run_gate(a.gate))
     if a.record:
-        sys.exit(run_record(a.city, a.week, [x for x in a.leads.split(",") if x]))
+        sys.exit(run_record(a.city, a.week, [x for x in a.leads.split(",") if x], a.trade))
     if not a.city:
         ap.error("--city is required")
     sp = spec()
@@ -474,12 +524,13 @@ def main():
         if prev is None and a.require_prev:
             print("# no earlier edition found (shallow clone?): run git fetch --depth=50 origin main or pass --prev", file=sys.stderr)
             sys.exit(4)
-        picks, mode = pick(cur["leads"], a.city, gen_date(cur), prev, sent_ids(a.city), [x for x in a.avoid.split(",") if x])
+        picks, mode = pick(cur["leads"], a.city, gen_date(cur), prev, sent_ids(a.city, trade=a.trade),
+                           [x for x in a.avoid.split(",") if x], trade=a.trade)
         print(f"# {mode}; data {cur['generatedAt']}; leads {', '.join(x['lead_id'] for x in picks)}", file=sys.stderr)
         if len(picks) < 2:
             print(f"# {len(picks)} fresh leads: no Monday email for {a.city} this week", file=sys.stderr)
             sys.exit(3)
-        s, b, picks, probs = build_issue(a.city, picks, sp, a.name, a.office, sent_ids(a.city))
+        s, b, picks, probs = build_issue(a.city, picks, sp, a.name, a.office, sent_ids(a.city, trade=a.trade), a.trade, a.first)
     print(f"Subject: {s}\n\n{b}")
     for x in probs:
         print("ERROR", x, file=sys.stderr)

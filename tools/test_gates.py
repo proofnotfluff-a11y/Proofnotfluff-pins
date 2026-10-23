@@ -250,6 +250,68 @@ def trade_cases():
            EC.validate_businesses(biz(product="austin-construction", trade_vertical="exterior_turnkey")), True)
 
 
+def step2_cases():
+    """Step 2 buyer types (Todd, Oct 22, 2026, 10:55 pm): window_cleaning gets partial occupancy and new builds under
+    inspection; dumpster_rental only jobs under inspection; security only new builds of $5M or more; none of them serves
+    the restaurant product; each has an A and B template that passes the copy gate on a lead it may use."""
+    import copy_gate as CG
+    import enrich_ci as EC
+    new = dict(LEAD, work_type="New construction")
+    insp_new = dict(new, lead_id="chi-3", stage="Inspections Under Way", stage_source="INSPECTIONS")
+    insp_reno = dict(insp_new, lead_id="chi-4", work_type="Renovation")
+    aus_new = dict(insp_new, lead_id="aus-2", city="austin", stage_source="Work under way")
+    small_new = dict(insp_new, lead_id="chi-5", valuation=2_000_000)
+    small_reno = dict(insp_reno, lead_id="chi-6", valuation=2_000_000)
+    expect("step2: window on a new build at partial occupancy fits", [] if R.trade_fits("window_cleaning", new) else ["no"], False)
+    expect("step2: window on an interior renovation at partial occupancy fails",
+           R.trade_problems("chicago-construction", "window_cleaning", dict(LEAD, work_type="Renovation")), True)
+    expect("step2: window on a new build under inspection fits", [] if R.trade_fits("window_cleaning", insp_new) else ["no"], False)
+    expect("step2: window on a renovation under inspection fails", R.trade_problems("chicago-construction", "window_cleaning", insp_reno), True)
+    expect("step2: window on a floor build-out the City tags as new construction fails",
+           R.trade_problems("chicago-construction", "window_cleaning", dict(insp_new, scope="First time build out of 23rd floor office space")), True)
+    expect("step2: window on an Austin new build fits", [] if R.trade_fits("window_cleaning", aus_new) else ["no"], False)
+    expect("step2: dumpster on a $2M renovation under inspection fits", [] if R.trade_fits("dumpster_rental", small_reno) else ["no"], False)
+    expect("step2: dumpster on a $45M job under inspection fails", R.trade_problems("chicago-construction", "dumpster_rental", insp_reno), True)
+    expect("step2: security on a $19M new build fails",
+           R.trade_problems("chicago-construction", "security", dict(insp_new, valuation=19_000_000)), True)
+    expect("step2: dumpster on partial occupancy fails", R.trade_problems("chicago-construction", "dumpster_rental", new), True)
+    expect("step2: security on a $45M new build fits", [] if R.trade_fits("security", insp_new) else ["no"], False)
+    expect("step2: security on a $2M new build fails", R.trade_problems("chicago-construction", "security", small_new), True)
+    expect("step2: security on a renovation fails", R.trade_problems("chicago-construction", "security", dict(insp_reno)), True)
+    expect("step2: security on a lead with no work type fails", R.trade_problems("chicago-construction", "security", LEAD), True)
+    for tr in ("window_cleaning", "dumpster_rental", "security"):
+        pr = dict(PROSPECT, prospect_id=f"cc-{tr}-example", trade_vertical=tr)
+        expect(f"step2: {tr} Chicago prospect passes", R.validate_prospect(pr), False)
+        expect(f"step2: {tr} Austin prospect passes", R.validate_prospect(dict(pr, product="austin-construction", city="austin")), False)
+        expect(f"step2: {tr} on the restaurant product fails", R.validate_prospect(dict(pr, product="chicago-restaurant")), True)
+        expect(f"step2: {tr} business row passes", EC.validate_businesses({"schema": "pnf.business.v1", "businesses": [
+            {"prospect_id": pr["prospect_id"], "product": "austin-construction", "business": "X Co", "website": "xco.example",
+             "trade_vertical": tr}]}), False)
+    pros = {f"cc-{tr}-example": dict(PROSPECT, prospect_id=f"cc-{tr}-example", trade_vertical=tr)
+            for tr in ("window_cleaning", "dumpster_rental", "security")}
+    leads = {x["lead_id"]: x for x in (new, insp_new, insp_reno, small_new, small_reno)}
+    m = lambda pid, lid: {"schema": "pnf.match.v1", "matches": [{"prospect_id": pid, "lead_id": lid, "reason": "x"}]}
+    expect("step2: security match to a $2M build fails", R.validate_matches(m("cc-security-example", "chi-5"), leads, pros), True)
+    expect("step2: dumpster match to a $2M renovation under inspection passes",
+           R.validate_matches(m("cc-dumpster_rental-example", "chi-6"), leads, pros), False)
+    expect("step2: window match to a renovation under inspection fails",
+           R.validate_matches(m("cc-window_cleaning-example", "chi-4"), leads, pros), True)
+    ts = CG.variant_templates(CG.TEMPLATES)
+    f = dict(CG.FIXTURE_FIELDS)
+    for tr, ld in (("window_cleaning", new), ("window_cleaning", insp_new), ("dumpster_rental", small_reno),
+                   ("security", insp_new), ("security", new)):
+        slot = [t for t in ts if t["trade"] == tr and t["stage"] == ld["stage"]]
+        expect(f"step2: {tr} {ld['stage']} has A and B", [] if sorted(t["letter"] for t in slot) == ["A", "B"] else ["slot"], False)
+        f = dict(CG.FIXTURE_FIELDS, value=R.value_display(ld["valuation"]))
+        for t in slot:
+            expect(f"step2: {t['id']} renders and passes", R.copy_problems(CG.fill(t["subject"], f), CG.fill(t["body"], f), "Dana", ld), False)
+        a, b = (next((t for t in slot if t["letter"] == x), None) for x in "AB")
+        if a and b:
+            ab, bb = a["body"].split("\n\n"), b["body"].split("\n\n")
+            same = len(ab) == len(bb) and ab[0] == bb[0] and ab[2:] == bb[2:] and bb[1].endswith(ab[1]) and bb[1] != ab[1]
+            expect(f"step2: {a['id'][:2]} A and B differ only in B's first sentence", [] if same else ["differ"], False)
+
+
 def variant_cases():
     """Variants (Todd, Oct 22, 2026, live chat: "A and B, test 1", gate change approved): one template per vertical, stage
     and letter; every draft names its template id, uses the prospect's arm and the template's fixed words; a follow-up
@@ -526,6 +588,7 @@ def main():
     context_cases()
     legacy_cases()
     trade_cases()
+    step2_cases()
     variant_cases()
     ladder_cases()
     signal_cases()

@@ -82,10 +82,30 @@ PENDING_STATUS = "unverified"   # a site or pattern address waiting for the Boun
 # products its prospects may belong to and the lead stages its email may name; a prospect with no trade_vertical is
 # commercial_cleaning, so every record written before Oct 22 keeps working. exterior_turnkey (pressure washing, window
 # washing, lot striping and sealcoating) gets only Chicago Partial Occupancy Approved leads, where the timing claim holds.
+# window_cleaning (a business whose main service is commercial window cleaning) gets new builds at partial occupancy
+# or under inspection; dumpster_rental (roll-off rental and construction hauling) gets jobs under $5M under inspection,
+# where the GC may still call around for cans; security (construction site guards, patrols and camera towers) gets new
+# builds of $20M or more at either stage. A business offering two or more exterior trades stays
+# exterior_turnkey.
 TRADE_DEFAULT = "commercial_cleaning"
 TRADE_VERTICALS = {
     "commercial_cleaning": {"products": set(PRODUCTS), "stages": set(DOWNSTREAM)},
     "exterior_turnkey": {"products": {"chicago-construction"}, "stages": {"Partial Occupancy Approved"}},
+    # Step 2 buyer types (Todd, Oct 22, 2026, 10:55 pm, live chat: "Let's go with your recommendations"). Optional keys:
+    # work_types maps a stage to the City work types allowed there (a stage not listed allows any); min_valuation and
+    # max_valuation bound the permit valuation the vertical's email may name. Checker round 1 (Oct 22): interior fit-outs
+    # have no exterior glass, big jobs under inspection already have a hauler, and small builds never hire guards.
+    "window_cleaning": {"products": {"chicago-construction", "austin-construction"},
+                        "stages": {"Partial Occupancy Approved", "Inspections Under Way"},
+                        "work_types": {"Partial Occupancy Approved": {"New construction"}, "Inspections Under Way": {"New construction"}},
+                        # the City tags some floor build-outs as new construction; those have no exterior glass
+                        "exclude_scope": re.compile(r"build ?-?out|fit ?-?out|finish ?-?out|first time|interior (?:alteration|remodel|renovation|work)", re.I)},
+    "dumpster_rental": {"products": {"chicago-construction", "austin-construction"}, "stages": {"Inspections Under Way"},
+                        "max_valuation": 5_000_000},
+    "security": {"products": {"chicago-construction", "austin-construction"},
+                 "stages": {"Partial Occupancy Approved", "Inspections Under Way"},
+                 "work_types": {"Partial Occupancy Approved": {"New construction"}, "Inspections Under Way": {"New construction"}},
+                 "min_valuation": 20_000_000},
 }
 
 
@@ -107,7 +127,23 @@ def trade_problems(product, trade, lead=None):
             p.append(f"trade_vertical {trade} cannot use a {lead.get('stage')!r} lead")
         if lead.get("city") not in {PRODUCTS.get(x) for x in v["products"]}:
             p.append(f"trade_vertical {trade} cannot use a {lead.get('city')!r} lead")
+        wt = (v.get("work_types") or {}).get(lead.get("stage"))
+        if wt is not None and lead.get("work_type") not in wt:
+            p.append(f"trade_vertical {trade} cannot use a {lead.get('work_type')!r} lead at {lead.get('stage')!r}")
+        if v.get("min_valuation") and (lead.get("valuation") or 0) < v["min_valuation"]:
+            p.append(f"trade_vertical {trade} needs a valuation of {value_display(v['min_valuation'])} or more")
+        if v.get("exclude_scope") is not None and v["exclude_scope"].search(str(lead.get("scope") or "")):
+            p.append(f"trade_vertical {trade} cannot use an interior fit-out (scope says {v['exclude_scope'].search(str(lead.get('scope'))).group(0)!r})")
+        if v.get("max_valuation") and (lead.get("valuation") or 0) >= v["max_valuation"]:
+            p.append(f"trade_vertical {trade} needs a valuation under {value_display(v['max_valuation'])}")
     return p
+
+
+def trade_fits(trade, lead):
+    """True when the vertical may name this lead: its city, stage, work type and valuation."""
+    v = TRADE_VERTICALS.get(trade)
+    prods = sorted(x for x in (v or {}).get("products", ()) if PRODUCTS.get(x) == (lead or {}).get("city"))
+    return bool(prods) and not trade_problems(prods[0], trade, lead)
 
 # ------------------------------------------------------------------ outreach copy
 # Variants (Todd, Oct 22, 2026, live chat: "A and B, test 1" and the copy gate change). A template's id is its heading's
@@ -172,7 +208,7 @@ GC_SUFFIX = re.compile(r",?\s+\b(?:L\.?L\.?C|INC(?:ORPORATED)?|CORP(?:ORATION)?|
 def gc_display(name):
     """The general contractor as an email names it: the City's business name without a trailing legal suffix.
     'Bartlett Cocke General Contractors, LLC' gives 'Bartlett Cocke General Contractors'. Drafter and gate both use it."""
-    n = (name or "").strip()
+    n = re.sub(r"\s*\([^)]*\)\s*$", "", (name or "").strip())   # 'Onni Contracting (Chicago)': checker, Oct 22
     for _ in range(2):
         n = GC_SUFFIX.sub("", n).strip(" ,")
     return n

@@ -1,6 +1,6 @@
-# Radar schedule (waits for Todd's go in chat)
+# Radar schedule
 
-Nothing here is switched on. When Todd says go, the live session does both:
+[stated] Todd, Oct 23, 2026, 1:23 pm, live chat: "go" (on the weekly Monday radar run). Both steps below were done in that chat:
 
 1. In .github/workflows/product-health.yml, uncomment the two schedule lines (Mondays 13:10 UTC, about 8:10 am Chicago, after the Monday data pulls), commit and push.
 2. Create the scheduled task "PNF radar", Mondays 9:31 am Central (cron `CRON_TZ=America/Chicago 31 9 * * 1`), cloud, with this prompt:

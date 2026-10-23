@@ -2,12 +2,11 @@ name: Product health
 # Radar weekly health check (Todd, Oct 23, 2026; .claude/skills/radar/SKILL.md). The cloud agents cannot reach the City
 # portals or Gumroad, so this runner checks every live product in launches/WIRING.json: the source's columns and update
 # date, our data's age, 5 random published records looked up in the source, and the page, members' page and checkout
-# links. It commits qa/health/<date>.json (counts and results only). Manual runs only: the Monday schedule waits for
-# Todd's go in chat (CLAUDE.md 3), then the cron line below is uncommented.
+# links. It commits qa/health/<date>.json (counts and results only). Monday schedule on Todd's go in chat (Oct 23, 1:23 pm).
 on:
   workflow_dispatch:
-  # schedule:
-  #   - cron: "10 13 * * 1"   # Mondays, about 8:10 am Chicago time, after the Monday data pulls
+  schedule:
+    - cron: "10 13 * * 1"   # Mondays, about 8:10 am Chicago time (7:10 am after Nov 1), after the Monday data pulls
 permissions:
   contents: write
 concurrency:

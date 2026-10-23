@@ -8,5 +8,5 @@
 - Copy test 1: arm by prospect id, variant on every draft, up to two follow-ups; Oct 19 and 20 batches never.
 - Store and 3 question pages live, new page daily (seo/STORE.md).
 - To-do: scoreboard todos (coo/SCOREBOARD.md). Any run that finishes, starts or blocks a task updates its row.
-- Radar Oct 23 (.claude/skills/radar/SKILL.md): health (product-health workflow, 4 PASS), AI check (0 of 12 named), scout (scout/OPPORTUNITIES.md; NYC pest to Todd). launches/WIRING.json gates live lead pages in check_repo. Schedule waits: scout/SCHEDULE.md.
+- Radar Oct 23 (.claude/skills/radar/SKILL.md): health (product-health workflow, 4 PASS), AI check (0 of 12 named), scout (scout/OPPORTUNITIES.md; NYC pest to Todd). launches/WIRING.json gates live lead pages in check_repo. Mondays 9:31 am (Todd's go Oct 23).
 - Skills: .claude/skills/ (5 scheduled, 4 on request).

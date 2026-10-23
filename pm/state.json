@@ -1,7 +1,7 @@
 {
  "started_at": "2026-10-17T18:19:43Z",
- "cash": 4.1485,
- "realized_pnl": 2.1303,
+ "cash": 67.544,
+ "realized_pnl": 30.5258,
  "cohort": {
   "picked_at": "2026-10-17T18:19:43Z",
   "wallets": [
@@ -210,24 +210,24 @@
   }
  },
  "last_seen": {
-  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1792716237,
+  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1792737189,
   "0xcdcccd0f2d86e450d973da415ad2430e5cc7935a": 1792414119,
-  "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1792715670,
+  "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1792737425,
   "0x7c37b52eb226bcb9411375ec48b0169663fb6aeb": 1792261183,
   "0x924379a79c64b77ad5816ad362122a5f6228658e": 1792688946,
   "0x63cf8544631c31e9fcea0b02141dd24d01d6e4d0": 1792261183,
-  "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": 1792716227,
-  "0x361b16e3ddfe1d415d41008daac2631d94ab74fe": 1792698326,
-  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1792716014,
-  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1792716221,
-  "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": 1792716237,
+  "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": 1792737621,
+  "0x361b16e3ddfe1d415d41008daac2631d94ab74fe": 1792721861,
+  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1792737504,
+  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1792737621,
+  "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": 1792735941,
   "0xb0e74df9430a089aa102e2207af5fde1967439d2": 1792261183,
   "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747": 1792435055,
-  "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c": 1792716212,
-  "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": 1792693127,
-  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1792715703,
-  "0xd38b71f3e8ed1af71983e5c309eac3dfa9b35029": 1792716111,
-  "0x511f9c771449162349795d17becf8b37031acbe1": 1792715672,
+  "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c": 1792737207,
+  "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": 1792737219,
+  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1792736451,
+  "0xd38b71f3e8ed1af71983e5c309eac3dfa9b35029": 1792726350,
+  "0x511f9c771449162349795d17becf8b37031acbe1": 1792733435,
   "0x0f6f76ced62a911bccef92f50faaff143854d977": 1792575788,
   "0xa2cced8bfae7d645f7f437fb76becf2fcbb70cbc": 1792709574
  },
@@ -304,8 +304,8 @@
    "shares": 6.7586,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.72,
-   "value": 4.8662
+   "last_price": 0.735,
+   "value": 4.9676
   },
   "34211495561850364902657006812472964732267678973593165677831288791451957431998": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -319,8 +319,8 @@
    "shares": 5.1363,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.8855,
-   "value": 4.5482
+   "last_price": 0.9205,
+   "value": 4.728
   },
   "8818882580258325166337837102966293982190018467620490556947006190938951037006": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -334,8 +334,8 @@
    "shares": 5.1336,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.996,
-   "value": 5.1131
+   "last_price": 0.9955,
+   "value": 5.1105
   },
   "67556833911038516663762658580603672381492400838184408384897474335007438931935": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -349,8 +349,8 @@
    "shares": 12.3581,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.3055,
-   "value": 3.7754
+   "last_price": 0.4835,
+   "value": 5.9751
   },
   "51971221506050097243705792157899572281015127216972300934938845878155423445294": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -364,8 +364,8 @@
    "shares": 5.9394,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.905,
-   "value": 5.3752
+   "last_price": 0.935,
+   "value": 5.5533
   },
   "5025646279751821747465277196511043885318485329317122457171454361662285580942": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -379,8 +379,8 @@
    "shares": 5.1228,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9735,
-   "value": 4.987
+   "last_price": 0.9845,
+   "value": 5.0434
   },
   "108767173380374027732080104990699635190337878673564806647896154227197681002646": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -394,8 +394,8 @@
    "shares": 5.3552,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.925,
-   "value": 4.9536
+   "last_price": 0.92,
+   "value": 4.9268
   },
   "2618138322856109565904469085316346602627882727483900432328802655317079880335": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -439,8 +439,8 @@
    "shares": 8.0328,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.715,
-   "value": 5.7435
+   "last_price": 0.76,
+   "value": 6.1049
   },
   "60542622068067373528159211305579692149482525110661714547965603688547571465715": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -454,8 +454,8 @@
    "shares": 15.3125,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.38,
-   "value": 5.8187
+   "last_price": 0.36,
+   "value": 5.5125
   },
   "108188779790444016941848487602523982621927017413109885207453087351349250458729": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -469,8 +469,8 @@
    "shares": 6.5333,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.69,
-   "value": 4.508
+   "last_price": 0.665,
+   "value": 4.3446
   },
   "103260758221019261190568249958083274029384820061909611626197177871555415590776": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -484,8 +484,8 @@
    "shares": 32.6667,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.09,
-   "value": 2.94
+   "last_price": 0.095,
+   "value": 3.1033
   },
   "75699093204664657083852366089628829977790159055900435225255069244546773042089": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -499,8 +499,8 @@
    "shares": 11.2392,
    "cost": 2.9818,
    "fee_in": 0.0596,
-   "last_price": 0.016,
-   "value": 0.1798
+   "last_price": 0.0135,
+   "value": 0.1517
   },
   "48363336280603988612943937623657599900834676634371552666346986109028055383864": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -514,8 +514,8 @@
    "shares": 5.2973,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.93,
-   "value": 4.9265
+   "last_price": 0.925,
+   "value": 4.9
   },
   "39228840575449881837568889168840039857058636039550121318060583610152400585337": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -544,8 +544,8 @@
    "shares": 9.0741,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.615,
-   "value": 5.5806
+   "last_price": 0.61,
+   "value": 5.5352
   },
   "74897964775279535413258818950960058718976813244965274421640138167280313090417": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -574,8 +574,8 @@
    "shares": 5.3552,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.995,
-   "value": 5.3284
+   "last_price": 0.9955,
+   "value": 5.3311
   },
   "38699476815399395356989015877555458187892757628739181486012435043187939472631": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -589,8 +589,8 @@
    "shares": 17.8182,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.3,
-   "value": 5.3455
+   "last_price": 0.31,
+   "value": 5.5236
   },
   "109041453333824724787956694268345880808926885765977607241792609988628032762835": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -604,8 +604,8 @@
    "shares": 7.9675,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.6755,
-   "value": 5.382
+   "last_price": 1.0,
+   "value": 7.9675
   },
   "51776006202310003455452345333266409738141462560357897258688690443656667766603": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -619,38 +619,8 @@
    "shares": 5.731,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.068,
-   "value": 0.3897
-  },
-  "109126953343967444296837167161034853621190361164110577504920019672405393754105": {
-   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
-   "condition_id": "0x300f58fcd0955ac9f7309deef26d37cd0f5b16d3fcd7240b85920fe3dea10ab8",
-   "title": "Will the highest temperature in Mexico City be 20\u00b0C on October 21?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-21T06:41:00Z",
-   "leader_price": 0.9,
-   "entry_price": 0.94,
-   "shares": 5.2128,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.993,
-   "value": 5.1763
-  },
-  "91307526409079129986419046976313261406266696490639812655155070205067404146515": {
-   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
-   "condition_id": "0xd454f7d861098fd072eb15d1cbfb19f8c92e910ad7178ad4f15ef263b1474e47",
-   "title": "Will the highest temperature in Mexico City be 21\u00b0C on October 21?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-21T06:41:01Z",
-   "leader_price": 0.4600000969,
-   "entry_price": 0.495,
-   "shares": 9.899,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.9905,
-   "value": 9.805
+   "last_price": 0.0,
+   "value": 0.0
   },
   "10229340737584154978359500415623156606488248988978412976257532327635966656733": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -664,8 +634,8 @@
    "shares": 5.6322,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.865,
-   "value": 4.8719
+   "last_price": 0.84,
+   "value": 4.731
   },
   "60186594918326728407185405226545526273084940240456698624096625852288751603361": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -679,8 +649,8 @@
    "shares": 12.6126,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.4125,
-   "value": 5.2027
+   "last_price": 0.3965,
+   "value": 5.0009
   },
   "11128925845879348170706262358649886447119541463625558967934110995591843189690": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -694,8 +664,8 @@
    "shares": 5.8683,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.795,
-   "value": 4.6653
+   "last_price": 0.83,
+   "value": 4.8707
   },
   "64289450132015960408802553393435281852973882298571992443681610123266032705590": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -709,8 +679,8 @@
    "shares": 14.2029,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.0245,
-   "value": 0.348
+   "last_price": 0.0,
+   "value": 0.0
   },
   "38167221093448065335912357514267542110712664140978568101601851492969036059371": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -724,8 +694,8 @@
    "shares": 6.6216,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9795,
-   "value": 6.4859
+   "last_price": 1.0,
+   "value": 6.6216
   },
   "558600218792430158020964384658762756367786275998757133304987611939841005404": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -739,8 +709,8 @@
    "shares": 6.6667,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.765,
-   "value": 5.1
+   "last_price": 0.755,
+   "value": 5.0334
   },
   "114162053248921295970711677068912896696658452611222321218045036204545003950942": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -754,83 +724,8 @@
    "shares": 9.1589,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.2,
-   "value": 1.8318
-  },
-  "73216114842843361072920806409469589257546621359269901717614846719078854592838": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0x81f3339919e2978efa2b4e26886a9a7bfb54fcfddd8bfe16015f4486f15182b2",
-   "title": "Spread: Thunder (-7.5)",
-   "outcome": "Thunder",
-   "outcome_index": 0,
-   "opened_at": "2026-10-22T18:36:24Z",
-   "leader_price": 0.53,
-   "entry_price": 0.545,
-   "shares": 8.9908,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.525,
-   "value": 4.7202
-  },
-  "108771194802574569816384536962234850941764685095941130308829566616960836376666": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0xd51dded15c2bf3f4c30ccdac96c54366085faebd7a884c9a6c7ee550129f8c53",
-   "title": "Spread: Thunder (-9.5)",
-   "outcome": "Thunder",
-   "outcome_index": 0,
-   "opened_at": "2026-10-22T18:36:25Z",
-   "leader_price": 0.45,
-   "entry_price": 0.455,
-   "shares": 10.7692,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.445,
-   "value": 4.7923
-  },
-  "47143820649775261285769273208479791595125922415563427079836497537360222080484": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0xfa657d6b58e1b7cb79969d206b46093a17d6b16b8789c9308f46e4b87d7da056",
-   "title": "Cavaliers vs. 76ers",
-   "outcome": "76ers",
-   "outcome_index": 1,
-   "opened_at": "2026-10-22T18:36:25Z",
-   "leader_price": 0.5600001408,
-   "entry_price": 0.575,
-   "shares": 8.5217,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.175,
-   "value": 1.4913
-  },
-  "94314490909333560869177856746079072702444080282500413084079338569094306828785": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0x5d68e8a797b3aed418b2f7a51d3f98b0bf3db39c04bdbdd0d46c102f005dba91",
-   "title": "Spread: Bears (-2.5)",
-   "outcome": "Bears",
-   "outcome_index": 0,
-   "opened_at": "2026-10-22T18:36:26Z",
-   "leader_price": 0.54,
-   "entry_price": 0.545,
-   "shares": 8.9908,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.645,
-   "value": 5.7991
-  },
-  "35499248925386013206026120089134114086723295436770280842663059221688561730978": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0x9737a2f03e3ebe8e9ec95bfb4d68739f67a3532a326b6ff2f95d68dcb21508e2",
-   "title": "Spread: Bears (-3.5)",
-   "outcome": "Bears",
-   "outcome_index": 0,
-   "opened_at": "2026-10-22T18:36:27Z",
-   "leader_price": 0.44,
-   "entry_price": 0.445,
-   "shares": 11.0112,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.555,
-   "value": 6.1112
+   "last_price": 0.06,
+   "value": 0.5495
   }
  },
  "closed": [
@@ -1793,12 +1688,152 @@
    "fee_out": 0.0,
    "pnl": -3.9893,
    "reason": "resolved"
+  },
+  {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x300f58fcd0955ac9f7309deef26d37cd0f5b16d3fcd7240b85920fe3dea10ab8",
+   "title": "Will the highest temperature in Mexico City be 20\u00b0C on October 21?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-21T06:41:00Z",
+   "leader_price": 0.9,
+   "entry_price": 0.94,
+   "shares": 5.2128,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.993,
+   "value": 5.1763,
+   "closed_at": "2026-10-23T06:40:42Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 0.2128,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0xd454f7d861098fd072eb15d1cbfb19f8c92e910ad7178ad4f15ef263b1474e47",
+   "title": "Will the highest temperature in Mexico City be 21\u00b0C on October 21?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-21T06:41:01Z",
+   "leader_price": 0.4600000969,
+   "entry_price": 0.495,
+   "shares": 9.899,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.9905,
+   "value": 9.805,
+   "closed_at": "2026-10-23T06:40:43Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 4.899,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x81f3339919e2978efa2b4e26886a9a7bfb54fcfddd8bfe16015f4486f15182b2",
+   "title": "Spread: Thunder (-7.5)",
+   "outcome": "Thunder",
+   "outcome_index": 0,
+   "opened_at": "2026-10-22T18:36:24Z",
+   "leader_price": 0.53,
+   "entry_price": 0.545,
+   "shares": 8.9908,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.525,
+   "value": 4.7202,
+   "closed_at": "2026-10-23T06:40:46Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 3.9908,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0xd51dded15c2bf3f4c30ccdac96c54366085faebd7a884c9a6c7ee550129f8c53",
+   "title": "Spread: Thunder (-9.5)",
+   "outcome": "Thunder",
+   "outcome_index": 0,
+   "opened_at": "2026-10-22T18:36:25Z",
+   "leader_price": 0.45,
+   "entry_price": 0.455,
+   "shares": 10.7692,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.445,
+   "value": 4.7923,
+   "closed_at": "2026-10-23T06:40:46Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 5.7692,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0xfa657d6b58e1b7cb79969d206b46093a17d6b16b8789c9308f46e4b87d7da056",
+   "title": "Cavaliers vs. 76ers",
+   "outcome": "76ers",
+   "outcome_index": 1,
+   "opened_at": "2026-10-22T18:36:25Z",
+   "leader_price": 0.5600001408,
+   "entry_price": 0.575,
+   "shares": 8.5217,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.175,
+   "value": 1.4913,
+   "closed_at": "2026-10-23T06:40:46Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 3.5217,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x5d68e8a797b3aed418b2f7a51d3f98b0bf3db39c04bdbdd0d46c102f005dba91",
+   "title": "Spread: Bears (-2.5)",
+   "outcome": "Bears",
+   "outcome_index": 0,
+   "opened_at": "2026-10-22T18:36:26Z",
+   "leader_price": 0.54,
+   "entry_price": 0.545,
+   "shares": 8.9908,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.645,
+   "value": 5.7991,
+   "closed_at": "2026-10-23T06:40:46Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 3.9908,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x9737a2f03e3ebe8e9ec95bfb4d68739f67a3532a326b6ff2f95d68dcb21508e2",
+   "title": "Spread: Bears (-3.5)",
+   "outcome": "Bears",
+   "outcome_index": 0,
+   "opened_at": "2026-10-22T18:36:27Z",
+   "leader_price": 0.44,
+   "entry_price": 0.445,
+   "shares": 11.0112,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.555,
+   "value": 6.1112,
+   "closed_at": "2026-10-23T06:40:46Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 6.0112,
+   "reason": "resolved"
   }
  ],
  "signals": {
   "buy": 88,
   "sell": 2,
-  "skipped": 12961,
+  "skipped": 13619,
   "fallback_price": 0
  },
  "errors": 0

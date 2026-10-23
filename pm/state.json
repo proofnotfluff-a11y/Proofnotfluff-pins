@@ -1,7 +1,7 @@
 {
  "started_at": "2026-10-17T18:19:43Z",
- "cash": 67.544,
- "realized_pnl": 30.5258,
+ "cash": 47.1331,
+ "realized_pnl": 25.1149,
  "cohort": {
   "picked_at": "2026-10-17T18:19:43Z",
   "wallets": [
@@ -210,24 +210,24 @@
   }
  },
  "last_seen": {
-  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1792737189,
+  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1792758552,
   "0xcdcccd0f2d86e450d973da415ad2430e5cc7935a": 1792414119,
-  "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1792737425,
+  "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1792758963,
   "0x7c37b52eb226bcb9411375ec48b0169663fb6aeb": 1792261183,
   "0x924379a79c64b77ad5816ad362122a5f6228658e": 1792688946,
   "0x63cf8544631c31e9fcea0b02141dd24d01d6e4d0": 1792261183,
-  "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": 1792737621,
-  "0x361b16e3ddfe1d415d41008daac2631d94ab74fe": 1792721861,
-  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1792737504,
-  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1792737621,
-  "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": 1792735941,
+  "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": 1792759071,
+  "0x361b16e3ddfe1d415d41008daac2631d94ab74fe": 1792758600,
+  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1792759047,
+  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1792759077,
+  "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": 1792759073,
   "0xb0e74df9430a089aa102e2207af5fde1967439d2": 1792261183,
   "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747": 1792435055,
-  "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c": 1792737207,
-  "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": 1792737219,
-  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1792736451,
+  "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c": 1792759082,
+  "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": 1792758740,
+  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1792753845,
   "0xd38b71f3e8ed1af71983e5c309eac3dfa9b35029": 1792726350,
-  "0x511f9c771449162349795d17becf8b37031acbe1": 1792733435,
+  "0x511f9c771449162349795d17becf8b37031acbe1": 1792757361,
   "0x0f6f76ced62a911bccef92f50faaff143854d977": 1792575788,
   "0xa2cced8bfae7d645f7f437fb76becf2fcbb70cbc": 1792709574
  },
@@ -304,8 +304,8 @@
    "shares": 6.7586,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.735,
-   "value": 4.9676
+   "last_price": 0.74,
+   "value": 5.0014
   },
   "34211495561850364902657006812472964732267678973593165677831288791451957431998": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -319,8 +319,8 @@
    "shares": 5.1363,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9205,
-   "value": 4.728
+   "last_price": 0.9005,
+   "value": 4.6252
   },
   "8818882580258325166337837102966293982190018467620490556947006190938951037006": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -349,8 +349,8 @@
    "shares": 12.3581,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.4835,
-   "value": 5.9751
+   "last_price": 0.526,
+   "value": 6.5004
   },
   "51971221506050097243705792157899572281015127216972300934938845878155423445294": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -364,8 +364,8 @@
    "shares": 5.9394,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.935,
-   "value": 5.5533
+   "last_price": 0.89,
+   "value": 5.2861
   },
   "5025646279751821747465277196511043885318485329317122457171454361662285580942": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -379,8 +379,8 @@
    "shares": 5.1228,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9845,
-   "value": 5.0434
+   "last_price": 0.982,
+   "value": 5.0306
   },
   "108767173380374027732080104990699635190337878673564806647896154227197681002646": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -394,8 +394,8 @@
    "shares": 5.3552,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.92,
-   "value": 4.9268
+   "last_price": 0.925,
+   "value": 4.9536
   },
   "2618138322856109565904469085316346602627882727483900432328802655317079880335": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -439,8 +439,8 @@
    "shares": 8.0328,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.76,
-   "value": 6.1049
+   "last_price": 0.775,
+   "value": 6.2254
   },
   "60542622068067373528159211305579692149482525110661714547965603688547571465715": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -469,8 +469,8 @@
    "shares": 6.5333,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.665,
-   "value": 4.3446
+   "last_price": 0.66,
+   "value": 4.312
   },
   "103260758221019261190568249958083274029384820061909611626197177871555415590776": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -484,8 +484,8 @@
    "shares": 32.6667,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.095,
-   "value": 3.1033
+   "last_price": 0.08,
+   "value": 2.6133
   },
   "75699093204664657083852366089628829977790159055900435225255069244546773042089": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -514,8 +514,8 @@
    "shares": 5.2973,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.925,
-   "value": 4.9
+   "last_price": 0.935,
+   "value": 4.953
   },
   "39228840575449881837568889168840039857058636039550121318060583610152400585337": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -589,38 +589,8 @@
    "shares": 17.8182,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.31,
-   "value": 5.5236
-  },
-  "109041453333824724787956694268345880808926885765977607241792609988628032762835": {
-   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
-   "condition_id": "0x64544d737fbf41526b8a0be66bd8089f11b271dc3fc252e6c66a743fa335287a",
-   "title": "Will the highest temperature in Istanbul be 21\u00b0C on October 21?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-21T06:40:59Z",
-   "leader_price": 0.64,
-   "entry_price": 0.615,
-   "shares": 7.9675,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 1.0,
-   "value": 7.9675
-  },
-  "51776006202310003455452345333266409738141462560357897258688690443656667766603": {
-   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
-   "condition_id": "0x8ef2a6e5156437f977298346f9125b01d1be2b9695f5885d9ce95a82344f3560",
-   "title": "Will the highest temperature in Istanbul be 22\u00b0C on October 21?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-21T06:40:59Z",
-   "leader_price": 0.83,
-   "entry_price": 0.855,
-   "shares": 5.731,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.0,
-   "value": 0.0
+   "last_price": 0.275,
+   "value": 4.9
   },
   "10229340737584154978359500415623156606488248988978412976257532327635966656733": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -634,8 +604,8 @@
    "shares": 5.6322,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.84,
-   "value": 4.731
+   "last_price": 0.845,
+   "value": 4.7592
   },
   "60186594918326728407185405226545526273084940240456698624096625852288751603361": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -649,8 +619,8 @@
    "shares": 12.6126,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.3965,
-   "value": 5.0009
+   "last_price": 0.446,
+   "value": 5.6252
   },
   "11128925845879348170706262358649886447119541463625558967934110995591843189690": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -664,38 +634,8 @@
    "shares": 5.8683,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.83,
-   "value": 4.8707
-  },
-  "64289450132015960408802553393435281852973882298571992443681610123266032705590": {
-   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
-   "condition_id": "0x67c76417e48ef52fa1c0dbc4e3392b33d45591823b018e31892954508a3c0b8c",
-   "title": "Will the highest temperature in Lucknow be 31\u00b0C on October 21?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-21T06:41:04Z",
-   "leader_price": 0.38,
-   "entry_price": 0.345,
-   "shares": 14.2029,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.0,
-   "value": 0.0
-  },
-  "38167221093448065335912357514267542110712664140978568101601851492969036059371": {
-   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
-   "condition_id": "0x925ef58b103815cd8f69429b30ad38b44d9e622f517df0c51d81a19a6a2b1590",
-   "title": "Will the highest temperature in Lucknow be 30\u00b0C on October 21?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-21T06:41:05Z",
-   "leader_price": 0.65,
-   "entry_price": 0.74,
-   "shares": 6.6216,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 1.0,
-   "value": 6.6216
+   "last_price": 0.795,
+   "value": 4.6653
   },
   "558600218792430158020964384658762756367786275998757133304987611939841005404": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -724,8 +664,113 @@
    "shares": 9.1589,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.06,
-   "value": 0.5495
+   "last_price": 0.0125,
+   "value": 0.1145
+  },
+  "108587038225191871355030577171066853142535232042155117887981453750193713427381": {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x86bfb53af7250a40928975c551d12c185b762fa4ce0b40c6a64a50c946d72587",
+   "title": "Will the Republican Party control the Senate after the 2026 Midterm elections?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-23T12:38:00Z",
+   "leader_price": 0.6700000021,
+   "entry_price": 0.695,
+   "shares": 7.0504,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.685,
+   "value": 4.8295
+  },
+  "66525581428615379722785141552215127605605884303864880542181853788943488083291": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x1bfd4649a214dd42da39ec04648a9ce698df744744c421656ef8f3a1bac6ec36",
+   "title": "Will Minnesota Timberwolves win the 2027 NBA Finals?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-23T12:38:01Z",
+   "leader_price": 0.9506167276,
+   "entry_price": 0.96,
+   "shares": 5.1042,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.95,
+   "value": 4.849
+  },
+  "86244383967682722276671267649138716350905219852788359298490648253439988317095": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x97c8704c244c5c6eb076f2212347dc0aefcf1250e513f6c8aafa170f5398172d",
+   "title": "Will Boston Celtics win the 2027 NBA Finals?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-23T12:38:02Z",
+   "leader_price": 0.95,
+   "entry_price": 0.955,
+   "shares": 5.1309,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.945,
+   "value": 4.8487
+  },
+  "36239502843139056490017972775659052465829376116421868520754321803936920411142": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x422b44717de3606ba08c2e00503d29e8330583b00b0bed63f89772b9c384e41f",
+   "title": "Will Oklahoma City Thunder win the 2027 NBA Finals?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-23T12:38:02Z",
+   "leader_price": 0.77,
+   "entry_price": 0.775,
+   "shares": 6.3226,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.765,
+   "value": 4.8368
+  },
+  "34079851482053293361932351143019209193108191421795047260065638898939690262262": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x9b9c693020bd625462107ea7963bacfefe73e678dd0e001c2d11388395a3cc2e",
+   "title": "Will San Antonio Spurs win the 2027 NBA Finals?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-23T12:38:03Z",
+   "leader_price": 0.81,
+   "entry_price": 0.815,
+   "shares": 6.0123,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.805,
+   "value": 4.8399
+  },
+  "54949287641954727970495527675829776321290963944233443017122215153125602528873": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x9627e2834d3334df13c14242f6ea442317d9981d3a5e62d0248d832551ca9345",
+   "title": "Will New York Knicks win the 2027 NBA Finals?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-23T12:38:03Z",
+   "leader_price": 0.93,
+   "entry_price": 0.935,
+   "shares": 5.2406,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.925,
+   "value": 4.8476
+  },
+  "7390346044733703673979810981713454788217262553112973580159592257689325355057": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0xf44cf137562b90cf6205e0b81a03aa63001c491e4d8f04c0098bfb9233f9d04f",
+   "title": "Will Philadelphia 76ers win the 2027 NBA Finals?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-23T12:38:04Z",
+   "leader_price": 0.894,
+   "entry_price": 0.904,
+   "shares": 5.4204,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.894,
+   "value": 4.8458
   }
  },
  "closed": [
@@ -1828,12 +1873,92 @@
    "fee_out": 0.0,
    "pnl": 6.0112,
    "reason": "resolved"
+  },
+  {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x64544d737fbf41526b8a0be66bd8089f11b271dc3fc252e6c66a743fa335287a",
+   "title": "Will the highest temperature in Istanbul be 21\u00b0C on October 21?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-21T06:40:59Z",
+   "leader_price": 0.64,
+   "entry_price": 0.615,
+   "shares": 7.9675,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 1.0,
+   "value": 7.9675,
+   "closed_at": "2026-10-23T12:38:19Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 2.9675,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x8ef2a6e5156437f977298346f9125b01d1be2b9695f5885d9ce95a82344f3560",
+   "title": "Will the highest temperature in Istanbul be 22\u00b0C on October 21?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-21T06:40:59Z",
+   "leader_price": 0.83,
+   "entry_price": 0.855,
+   "shares": 5.731,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.0,
+   "value": 0.0,
+   "closed_at": "2026-10-23T12:38:19Z",
+   "exit_price": 0.0,
+   "fee_out": 0.0,
+   "pnl": -5.0,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x67c76417e48ef52fa1c0dbc4e3392b33d45591823b018e31892954508a3c0b8c",
+   "title": "Will the highest temperature in Lucknow be 31\u00b0C on October 21?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-21T06:41:04Z",
+   "leader_price": 0.38,
+   "entry_price": 0.345,
+   "shares": 14.2029,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.0,
+   "value": 0.0,
+   "closed_at": "2026-10-23T12:38:21Z",
+   "exit_price": 0.0,
+   "fee_out": 0.0,
+   "pnl": -5.0,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x925ef58b103815cd8f69429b30ad38b44d9e622f517df0c51d81a19a6a2b1590",
+   "title": "Will the highest temperature in Lucknow be 30\u00b0C on October 21?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-21T06:41:05Z",
+   "leader_price": 0.65,
+   "entry_price": 0.74,
+   "shares": 6.6216,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 1.0,
+   "value": 6.6216,
+   "closed_at": "2026-10-23T12:38:21Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 1.6216,
+   "reason": "resolved"
   }
  ],
  "signals": {
-  "buy": 88,
+  "buy": 95,
   "sell": 2,
-  "skipped": 13619,
+  "skipped": 14385,
   "fallback_price": 0
  },
  "errors": 0

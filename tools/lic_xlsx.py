@@ -426,10 +426,15 @@ def finish_card(ws, r, tab):
     S.finish_sheet(ws, PRODUCT, r - 1, span=("A", "Q"), protect=False, canvas_cols="S", footer_notice=FOOT, tab_color=tab)
 
 
+def more_text(extra):
+    """The second activity and a count of the rest, so a row stays two lines (the full list is in the app and the CSV)."""
+    return "" if not extra else extra[0] + (f" and {len(extra) - 1} more" if len(extra) > 1 else "")
+
+
 def row_of(r, full):
     return {"name": r["business"], "address": r["address"], "area": r.get("communityArea") or "", "issued": day(r["issued"]),
             "type": r["licenseType"], "activity": (r.get("activity") or "").split(" | ")[0],
-            "more": "; ".join((r.get("activity") or "").split(" | ")[1:]), "history": history_text(r), "hist": r.get("history") or "",
+            "more": more_text((r.get("activity") or "").split(" | ")[1:]), "history": history_text(r), "hist": r.get("history") or "",
             "food": day(r.get("foodInsp")), "since": r.get("inspSince") or "", "new": "New" if is_new(r, full) else "", "also": "; ".join(r.get("otherTypes") or []),
             "zip": r.get("zip") or "", "license": r["license"], "recordUrl": RECORD + r["license"], "record": "City record"}
 
@@ -528,7 +533,8 @@ def pitch_kit(wb, list_date):
     for i, x in enumerate(PITCH):
         if i:
             S.page_break_before(ws, r)
-        sub = [("note", x["buyer"].split("(", 1)[1].rstrip(")").capitalize() + ".")] if "(" in x["buyer"] else []
+        kinds = x["buyer"].split("(", 1)[1].rstrip(")") if "(" in x["buyer"] else ""
+        sub = [("note", kinds[0].upper() + kinds[1:].rsplit(", ", 1)[0] + " and " + kinds.rsplit(", ", 1)[1] + ".")] if kinds else []
         r = card(ws, r, x["short"], sub + [("lead", ("Call opener", blue(x["call"])))], eyebrow="CALL OR VISIT")
         lines = []
         for j, line in enumerate(x["email"]):

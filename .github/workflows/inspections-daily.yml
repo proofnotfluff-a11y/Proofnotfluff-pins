@@ -39,6 +39,12 @@ jobs:
         with:
           path: ${{ runner.temp }}/overture
           key: overture-chicago-${{ steps.overture.outputs.release }}
+      - name: Log of business websites read in the last 30 days (Legal desk, one read per site per 30 days)
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/phone-sites
+          key: phone-sites-${{ github.run_id }}
+          restore-keys: phone-sites-
       - name: Pull the City's data (the weekly files it also writes are discarded below)
         run: python3 tools/inspections_chicago.py --full "$RUNNER_TEMP/inspections-full.json" --raw "$RUNNER_TEMP/inspections-raw.json"
       - name: Build the daily list
@@ -53,7 +59,8 @@ jobs:
         run: |
           mkdir -p "$RUNNER_TEMP/overture"
           [ -s "$RUNNER_TEMP/overture/chicago.json" ] || python3 tools/phones.py --extract "$RUNNER_TEMP/overture/chicago.json" --release "${{ steps.overture.outputs.release }}" || echo "places download failed; the list ships with empty phones"
-          python3 tools/phones.py fill "$RUNNER_TEMP/daily-named.json" "$RUNNER_TEMP/overture/chicago.json" --public permits/inspections-chicago/daily.json || echo "phone step failed; the list ships with empty phones"
+          mkdir -p "$RUNNER_TEMP/phone-sites"
+          python3 tools/phones.py fill "$RUNNER_TEMP/daily-named.json" "$RUNNER_TEMP/overture/chicago.json" --public permits/inspections-chicago/daily.json --sites "$RUNNER_TEMP/phone-sites/sites.json" || echo "phone step failed; the list ships with empty phones"
       - name: Seal the named list (it names businesses with failed records; the private key is never in the repo)
         run: |
           python3 tools/rest_seal.py seal "$RUNNER_TEMP/daily-named.json" permits/inspections-chicago/daily.sealed.json

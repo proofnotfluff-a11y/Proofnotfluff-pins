@@ -19,7 +19,10 @@
     "result": "PASS",
     "sampled": 5,
     "found": 5,
-    "sameDate": 5
+    "sameDate": 5,
+    "http": {
+     "200": 5
+    }
    },
    "links": {
     "result": "PASS",
@@ -47,10 +50,13 @@
     "ageDays": 4
    },
    "holdout": {
-    "result": "FAIL",
+    "result": "PASS",
     "sampled": 5,
-    "found": 0,
-    "sameDate": 0
+    "found": 5,
+    "sameDate": 5,
+    "http": {
+     "200": 5
+    }
    },
    "links": {
     "result": "PASS",
@@ -62,7 +68,7 @@
     "priceOnCheckout": true,
     "trialOnGumroad": "confirmed"
    },
-   "result": "FAIL"
+   "result": "PASS"
   },
   {
    "slug": "chicago-restaurant-inspection-leads",
@@ -78,10 +84,13 @@
     "ageDays": 0
    },
    "holdout": {
-    "result": "FAIL",
+    "result": "PASS",
     "sampled": 5,
-    "found": 4,
-    "sameDate": 4
+    "found": 5,
+    "sameDate": 5,
+    "http": {
+     "200": 5
+    }
    },
    "links": {
     "result": "PASS",
@@ -93,7 +102,7 @@
     "priceOnCheckout": true,
     "trialOnGumroad": "confirmed"
    },
-   "result": "FAIL"
+   "result": "PASS"
   },
   {
    "slug": "chicago-new-business-licenses",
@@ -109,10 +118,13 @@
     "ageDays": 0
    },
    "holdout": {
-    "result": "FAIL",
+    "result": "PASS",
     "sampled": 5,
-    "found": 0,
-    "sameDate": 0
+    "found": 5,
+    "sameDate": 5,
+    "http": {
+     "200": 5
+    }
    },
    "links": {
     "result": "PASS",
@@ -124,8 +136,8 @@
     "priceOnCheckout": true,
     "trialOnGumroad": "confirmed"
    },
-   "result": "FAIL"
+   "result": "PASS"
   }
  ],
- "result": "FAIL"
+ "result": "PASS"
 }

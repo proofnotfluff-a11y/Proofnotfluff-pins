@@ -436,3 +436,6 @@ section.block details,.qa-rel,.ld-gcs{max-width:none}
 nav.top a{padding:0 8px}nav.top{gap:0 12px}
 .crumbs a{min-height:44px;display:inline-flex;align-items:center;padding:0}
 .crumbs ol{align-items:center}.crumbs li{display:inline-flex;align-items:center}
+/* Phone fix (Todd, Oct 23): the phone tap-size rule for inline links stripped the side padding off card links, so their
+   text sat on the border; card links keep their own padding. */
+@media(max-width:759px){main .st-trades li a{padding:12px 12px 12px 16px}main .qa-rel li a{padding:14px 16px}}

@@ -4475,6 +4475,210 @@
     }
    ],
    "published": "2026-10-22"
+  },
+  {
+   "slug": "shopify-payouts-supplier-deposits-cash-gap",
+   "kind": "question",
+   "published": "2026-10-23",
+   "product": "ecommerce-13-week-cash-flow",
+   "data": "site/pages.json",
+   "stats": "kit_cashflow",
+   "title": "Shopify Payouts vs Supplier Deposits: Plan the Cash Gap | ProofNotFluff",
+   "desc": "Plan your Shopify cash flow week by week before a bigger stock order: put each wire in the week it leaves, each payout in the week it lands, and find your lowest week first.",
+   "card": "How to see the week your cash runs short before a bigger stock order, with a worked 13 week example.",
+   "eyebrow": "E-commerce cash flow",
+   "updated": "Worked example from the 13-Week E-commerce Cash Flow workbook. Checked Oct 23, 2026.",
+   "h1": "How do you plan the cash gap between Shopify payouts and supplier deposits?",
+   "answer": [
+    "Plan it week by week, in cash, not sales. Put each supplier payment in the week the money leaves (the deposit, then the balance, then freight) and each payout in the week it reaches your bank. The lowest ending week is your gap.",
+    "In the worked example below, a brand with **{cash}** in the bank and **{net}** a week left over still drops to **{low}** in week {poWeek}, when a {po} balance is due. It needs {need} by then, or a later due date. Moving the balance one week later keeps every week above zero."
+   ],
+   "numbersTitle": "The worked example, in four numbers",
+   "tiles": [
+    [
+     "Lowest week",
+     "{low}",
+     "week {poWeek}, when the {po} balance is due"
+    ],
+    [
+     "Cash needed",
+     "{need}",
+     "to keep that week at zero"
+    ],
+    [
+     "One payout late",
+     "{lagLow}",
+     "if week {poWeek}'s payout lands a week later"
+    ],
+    [
+     "Balance due a week later",
+     "{moved}",
+     "week {movedWeek}, the lowest week then"
+    ]
+   ],
+   "numbers": [
+    "Every figure comes from the same inputs: {cash} to start, {in} a week in payouts after fees, {out} a week in payroll, fixed costs and ads, and one {po} purchase order balance due in week {poWeek}. By week 13 cash is back to {w13}. The squeeze is a timing problem, not a profit problem."
+   ],
+   "tables": [
+    {
+     "title": "Week by week: where the cash goes",
+     "intro": [
+      "Each week starts with last week's ending cash, adds the payouts that reach the bank and takes out costs and any supplier payment due that week."
+     ],
+     "head": [
+      "Week",
+      "Start",
+      "Payouts in",
+      "Costs out",
+      "Supplier payment",
+      "End"
+     ],
+     "rows": "weekRows",
+     "notes": [
+      "Weekly figures are the week 1 numbers from example 1 of the 13-Week E-commerce Cash Flow workbook; the starting cash and due week are changed to show a squeeze. In this example the deposit was paid before week 1, so only the balance falls inside the 13 weeks. Weeks 8 to 13 each add {net} and are left off the table. Use your own payouts and due dates."
+     ]
+    },
+    {
+     "title": "What moves the lowest week",
+     "intro": [
+      "The same example with one thing changed at a time. A one-week shift in timing is enough to move the low point by thousands of dollars."
+     ],
+     "head": [
+      "Change",
+      "Lowest week"
+     ],
+     "rows": [
+      [
+       "Nothing changed: balance due in week {poWeek}",
+       "{low}"
+      ],
+      [
+       "Week {poWeek}'s payout lands one week later",
+       "{lagLow}"
+      ],
+      [
+       "Balance due in week {movedWeek} instead",
+       "{moved}"
+      ],
+      [
+       "Balance split: {half} in week {poWeek}, {half} in week {splitWeek}",
+       "{splitLow}"
+      ]
+     ],
+     "notes": [
+      "A payout that slips into the next week does not shrink sales, but it can turn a small gap into a large one in the week a supplier is paid."
+     ]
+    }
+   ],
+   "stepsTitle": "How to plan it",
+   "steps": [
+    [
+     "Start from cash in the bank today",
+     "Use the balance you can spend this week, not your revenue or your profit."
+    ],
+    [
+     "Use payouts, in the week they land",
+     "Count the money that reaches your bank after fees and refunds, in the week it arrives. Shopify Payments lets you choose a daily, weekly or monthly payout schedule, and Shopify's help center says banks typically take 1 to 3 business days to process a deposit. Check your own payout schedule in your Shopify admin."
+    ],
+    [
+     "Give each supplier payment its own week",
+     "Put the deposit in the week you confirm the order, the balance in the week your supplier's terms say it is due, and freight and duties in the week you pay them. A single total for the order hides the week that hurts."
+    ],
+    [
+     "Take out the costs that never stop",
+     "Payroll, rent, apps, ads and loan payments go out every week whether or not stock has arrived."
+    ],
+    [
+     "Find the lowest week and the cash it needs",
+     "The lowest ending cash across the 13 weeks is your low point. If it is below zero, that amount is what you need by that week."
+    ],
+    [
+     "Test the timing before you place the order",
+     "Move the balance a week later, split the order in two, or switch to a shorter payout schedule, and see which change lifts the lowest week. In the example, moving the balance one week lifts the low point from {low} to {moved}."
+    ],
+    [
+     "Update it every week",
+     "Replace last week's estimate with what really landed and roll the plan forward one week."
+    ]
+   ],
+   "sections": [
+    [
+     "Why a profitable store still runs short",
+     [
+      "Sales are recorded when they happen, but payouts arrive later and stock is paid for before it sells. A bigger order makes the gap wider, because the deposit and balance leave before the new stock earns anything.",
+      "That is why the example brand, which adds {net} a week, still needs {need} in week {poWeek}: the money is coming, just not by the week the supplier is paid."
+     ]
+    ],
+    [
+     "If the lowest week is below zero",
+     [
+      "You need that much cash, credit or a later payment date by that week. A later due date is often the first lever to test, because it costs nothing if the supplier agrees. Any credit or financing has a cost, so compare its terms against your own numbers before you use it. This page is not financial advice."
+     ]
+    ]
+   ],
+   "calculator": [
+    "ecommerce-13-week-cash-flow-calculator",
+    "13 week cash flow calculator",
+    "Run your own cash, payouts and order in"
+   ],
+   "cta": {
+    "title": "Plan every deposit, balance and payout lag",
+    "text": "The 13-Week E-commerce Cash Flow workbook models each channel's payout lag (Amazon, TikTok Shop, your own store, retail), up to six purchase orders as deposit plus balance, with freight, plus a credit line, side-by-side scenarios and a PO planner. Excel and Google Sheets, {price} one time."
+   },
+   "faq": [
+    [
+     "How long do Shopify payouts take?",
+     "Shopify Payments lets you pick a daily, weekly or monthly payout schedule, and Shopify's help center says banks typically take 1 to 3 business days to process a deposit to your account. Your own payout schedule is in your Shopify admin."
+    ],
+    [
+     "Should I plan with sales or payouts?",
+     "Payouts: the money that reaches your bank after fees and refunds, in the week it arrives."
+    ],
+    [
+     "How much cash do I need before a bigger stock order?",
+     "Enough to keep your lowest week at zero once the deposit, balance and freight are each in their own week. In the worked example that is {need}, in week {poWeek}."
+    ],
+    [
+     "What if my lowest week is below zero?",
+     "You need that much cash, credit or a later payment date by that week. Test a later due date first, since it costs nothing if the supplier agrees, then a split order."
+    ],
+    [
+     "Is this financial advice?",
+     "No. It is a planning estimate based on the numbers you enter."
+    ]
+   ],
+   "related": [
+    [
+     "ecommerce-13-week-cash-flow-calculator",
+     "Free 13 week cash flow calculator"
+    ],
+    [
+     "inventory-reorder-point-calculator",
+     "Free inventory reorder point calculator"
+    ],
+    [
+     "break-even-calculator",
+     "Free break-even calculator"
+    ]
+   ],
+   "sources": [
+    [
+     "Shopify Help Center, Scheduling your Shopify Payments payouts",
+     "https://help.shopify.com/en/manual/payments/shopify-payments/getting-paid-with-shopify-payments/view-payouts/schedule-payouts",
+     "read Oct 23, 2026"
+    ],
+    [
+     "Shopify Community, the question as asked on the forum",
+     "https://community.shopify.com/t/supplier-deposits-and-shopify-payout-delays-how-do-you-currently-plan-the-cash-gap/698000",
+     "posted Oct 14, 2026, read Oct 23, 2026"
+    ],
+    [
+     "ProofNotFluff, 13 week cash flow calculator (example 1 of the 13-Week E-commerce Cash Flow workbook)",
+     "../ecommerce-13-week-cash-flow-calculator/",
+     "checked Oct 23, 2026"
+    ]
+   ],
+   "footnote": "The worked example uses the week 1 figures from example 1 of the 13-Week E-commerce Cash Flow workbook, with the starting cash and due week changed to show a squeeze."
   }
  ]
 }

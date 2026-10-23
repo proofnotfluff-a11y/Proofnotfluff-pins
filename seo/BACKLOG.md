@@ -38,6 +38,8 @@ Gaps: no verified pest control or grease trap question with buyer intent; only A
 | B9 | How do FBA sellers balance long lead times, reorder size and cash limits? | Amazon Seller Central forums | https://sellercentral.amazon.com/seller-forums/discussions/t/e0f89cc9-58b3-4a97-a43c-582e1a17ce60 | approx Apr 2026 |
 | B10 | New seller with about $2K in sales but a negative balance; will cash flow turn positive? | Amazon Seller Central forums | https://sellercentral.amazon.com/seller-forums/discussions/t/2d4b3592-0984-4355-8934-7a92a17739f2 | approx Oct 2024 |
 
+Oct 23, 2026: B1, B3, B4, B9 and B10 (Seller Central) cannot be fetched by the unattended run (the fetch asks for a permission no one answers); B1 skipped that day, still unused. C9 added Oct 23.
+
 Note: B2, B8 and B9 may be posted by people building tools or researching, not brand owners; they prove the topic, not a buyer, so B8 and B9 sit below the owner questions.
 
 ## C. Trades our calculators serve (8)
@@ -52,5 +54,6 @@ Note: B2, B8 and B9 may be posted by people building tools or researching, not b
 | C6 | What would you bid to wash a fast food restaurant, its concrete and dumpster area? | pressure-washing-price-calculator | chicago-restaurant-inspection-leads | Pressure Washing Resource | https://pressurewashingresource.com/community/t/is-this-easy-for-you-what-would-you-bid-on-this-kfc/40469 | Sep 12, 2025 |
 | C7 | What should I quote for a restaurant's back sidewalk, dumpster pad and fence? | pressure-washing-price-per-square-foot-calculator | chicago-restaurant-inspection-leads | Pressure Washing Resource | https://pressurewashingresource.com/community/t/restaurant-sidewalk-dumpster-pad/36938 | Jul 12, 2023 |
 | C8 | A janitorial company wants to add hood cleaning; how do I price it? | contractor-hourly-rate-calculator | chicago-restaurant-inspection-leads | Pressure Washing Resource | https://pressurewashingresource.com/community/t/hood-cleaning-pricing/5429 | Oct 27, 2015 |
+| C9 | New pressure washer bidding a managed property: 5,200 sq ft of concrete, 3,200 ft of curbing and 23 storm drains; what do I charge? | pressure-washing-price-per-square-foot-calculator | chicago-construction-cleaning-leads | Pressure Washing Resource | https://pressurewashingresource.com/community/t/have-a-chance-to-bid-on-a-commercial-job-but-dont-know-what-to-charge/3622 | May 2, 2014 (added Oct 23, 2026, fetched and read that day) |
 
 Note: "top calculators" by visits could not rank this group (Cloudflare shows about 172 visits a week, mostly the home page); the group follows the calculators that sit closest to a paid list. Re-rank once a calculator passes 30 visits a week.

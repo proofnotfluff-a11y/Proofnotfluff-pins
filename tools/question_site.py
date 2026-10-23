@@ -82,6 +82,25 @@ def stats(kind, d):
                 "areaRows": [[a, _n(n)] for a, n in c["areas"][:5]],
                 "catRows": [["Pests", _n(b["pests"])], ["Hood or exhaust", _n(b["hood"])], ["Grease trap or drain", _n(b["drain"])],
                             ["Kitchen cleaning", _n(b["clean"])]]}
+    if kind == "kit_cashflow":   # the kit's question pages: the free calculator's own defaults (workbook example 1, week 1)
+        c = next(x for x in d["pages"] if x["slug"] == "ecommerce-13-week-cash-flow-calculator")["defaults"]
+        num = lambda k: int(c[k].replace(",", ""))
+        cash, inn, out, po, wk = num("openingCash"), num("weeklyIn"), num("weeklyOut"), num("poAmount"), num("poWeek")
+        net = inn - out
+        end = lambda w, lag=0: cash + net * w - (po if w >= wk else 0) - (inn if lag and w == wk else 0)
+        low = end(wk)
+        m = lambda v: ("-$" if v < 0 else "$") + _n(abs(v))
+        rows = []
+        for w in range(1, 8):
+            rows.append([f"Week {w}", m(cash + net * (w - 1) - (po if w - 1 >= wk else 0)), m(inn), m(out),
+                         m(po) if w == wk else "$0", m(end(w))])
+        moved = cash + net * (wk + 1) - po
+        half = po // 2   # the balance split in two equal payments, weeks wk and wk + 2
+        split = min(cash + net * w - (half if w >= wk else 0) - (po - half if w >= wk + 2 else 0) for w in range(1, 14))
+        return {"cash": m(cash), "in": m(inn), "out": m(out), "net": m(net), "po": m(po), "poWeek": str(wk),
+                "preWeek": str(wk - 1), "pre": m(end(wk - 1)), "low": m(low), "need": m(-low) if low < 0 else "$0",
+                "lagLow": m(end(wk, lag=1)), "lagNeed": m(-end(wk, lag=1)), "moved": m(moved), "movedWeek": str(wk + 1),
+                "w13": m(end(13)), "weekRows": rows, "half": m(half), "splitWeek": str(wk + 2), "splitLow": m(split)}
     raise KeyError(f"no stats for {kind}")
 
 
@@ -94,7 +113,9 @@ def page_html(p):
     E = M.E
     d = json.load(open(os.path.join(ROOT, p["data"]), encoding="utf-8"))
     pages = {x["slug"]: x for x in json.load(open(os.path.join(ROOT, "site", "pages.json"), encoding="utf-8"))["pages"]}
-    prod = pages[p["product"]]
+    kit = None if p["product"] in pages else next(x for x in M.load_store()["products"] if x["key"] == p["product"])
+    prod = pages[p["product"]] if kit is None else {"slug": kit["page"], "price": kit["price"],
+                                                     "checkout": M.utm(kit["checkout"], "site", kit["campaign"])}
     s = stats(p["stats"], d) | {"price": "$" + str(prod["price"])}
     F = lambda t: re.sub(r"\[([^\]]+)\]\((\.\./[a-z0-9/#-]*)\)", r'<a href="\2">\1</a>',
                          re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", E(fill(t, s))))
@@ -108,6 +129,8 @@ def page_html(p):
     sample = f'{rel}{prod["slug"]}/'
 
     def buy(cls="btn ld-btnbig"):
+        if kit:
+            return f'<a class="{cls}" href="{E(checkout)}" rel="noopener">Get the workbook: ${price}</a>'
         if checkout:
             return f'<a class="{cls}" href="{E(checkout)}" rel="noopener">Get the full list: ${price} a month</a>'
         return f'<a class="{cls}" href="{sample}">See the free sample</a>'
@@ -135,8 +158,10 @@ def page_html(p):
     cta_html = (f'<section class="block" id="ldCta"><div class="cta ld-cta{" ld-buy" if checkout else ""}"><div>'
                 f'<h2>{F(p["cta"]["title"])}</h2><p>{F(p["cta"]["text"])}</p>'
                 f'<p class="ld-buybtn">{buy()}</p>'
-                + ('<p class="ld-secure">Secure checkout by Gumroad. Cancel any time.</p>' if checkout else "")
-                + f'<p class="qa-free"><a href="{sample}">Or see this week\'s free sample first</a></p></div></div></section>')
+                + (f'<p class="ld-secure">Secure checkout by Gumroad. One payment. <a href="{rel}refunds/">Refunds</a></p>' if kit else
+                   '<p class="ld-secure">Secure checkout by Gumroad. Cancel any time.</p>' if checkout else "")
+                + (f'<p class="qa-free"><a href="{sample}">Or try the free calculator first</a></p></div></div></section>' if kit else
+                   f'<p class="qa-free"><a href="{sample}">Or see this week\'s free sample first</a></p></div></div></section>'))
     srcs = "".join(f'<li><a href="{E(fill(u, s))}" rel="noopener">{F(label)}</a>, {F(when)}</li>'
                    for label, u, when in p["sources"])
     crumb, crumb_ld = M.crumbs(rel, [("Home", ""), ("Questions", "questions/"), (fill(p["eyebrow"], s), None)] if M.LIVE_QUESTIONS
@@ -146,8 +171,10 @@ def page_html(p):
     body = (f'{crumb}<article class="qa"><p class="eyebrow">{F(p["eyebrow"])}</p><h1>{F(p["h1"])}</h1>'
             f'<p class="asof qa-upd"><span class="qa-by">By ProofNotFluff, run by a finance executive</span> · {F(p["updated"])}</p>'
             f'<div class="qa-answer"><p class="qa-tag">The short answer</p>{answer}</div>'
-            f'<div class="ld-heroact qa-act">{buy()}<a class="ld-textlink" href="{sample}">See this week\'s sample</a></div>'
-            + ('<p class="ld-heronote">New list every Monday. Cancel any time.</p>' if checkout else '')
+            f'<div class="ld-heroact qa-act">{buy()}<a class="ld-textlink" href="{sample}">'
+            + ('Try the free calculator' if kit else 'See this week\'s sample') + '</a></div>'
+            + (f'<p class="ld-heronote">One payment of ${price}. Excel and Google Sheets.</p>' if kit else
+               '<p class="ld-heronote">New list every Monday. Cancel any time.</p>' if checkout else '')
             + f'{numbers}{tables}'
             f'<section class="block"><h2>{F(p["stepsTitle"])}</h2><ol class="qa-steps">{steps}</ol>{calc_html}</section>'
             f'{sections}{cta_html}{M.faq_block([(fill(q, s), fill(a, s)) for q, a in p["faq"]])}'
@@ -189,13 +216,21 @@ def page_html(p):
           ".ld-page .ld-tiles .tile .lab{letter-spacing:.04em;overflow-wrap:anywhere}"
           "@media(max-width:600px){.ld-page .ld-tiles .tile .lab{font-size:11.5px;letter-spacing:.02em;white-space:normal}.qa h1{font-size:27px;line-height:1.12}.qa-answer{padding:14px 16px}.qa-answer p{font-size:16px;line-height:1.55}}</style>")
     robots = "" if M.is_live(p) else '<meta name="robots" content="noindex, nofollow">'
-    foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
-            f'<p>{F(p["footnote"])} Public information for planning sales calls; not legal or business advice and no promise of work. '
-            'No business named here has endorsed or works with ProofNotFluff.</p>'
-            f'<p>{E(prod.get("disclaimer") or city_note(M, p["city"], d))}</p>'
-            + ("" if prod.get("disclaimer") else f'<p>ProofNotFluff is not affiliated with or endorsed by the City of {E(p["city"])}.</p>')
-            + '<p>Made by ProofNotFluff with AI assistance from public City data. The page counts visits with Cloudflare Web Analytics, '
-            'which sets no cookies.</p></div></footer>\n</body></html>')
+    if kit:
+        foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
+                f'<p>{F(p["footnote"])} Calculations are estimates for planning and depend on your inputs. They aren\'t accounting, tax '
+                'or financial advice. Check fees, payout timing and terms against your own statements and the provider\'s current terms.</p>'
+                '<p>ProofNotFluff is not affiliated with or endorsed by Shopify, Amazon or any platform named here.</p>'
+                '<p>Made by ProofNotFluff with AI assistance. The page counts visits with Cloudflare Web Analytics, '
+                'which sets no cookies.</p></div></footer>\n</body></html>')
+    else:
+        foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
+              f'<p>{F(p["footnote"])} Public information for planning sales calls; not legal or business advice and no promise of work. '
+              'No business named here has endorsed or works with ProofNotFluff.</p>'
+              f'<p>{E(prod.get("disclaimer") or city_note(M, p["city"], d))}</p>'
+              + ("" if prod.get("disclaimer") else f'<p>ProofNotFluff is not affiliated with or endorsed by the City of {E(p["city"])}.</p>')
+              + '<p>Made by ProofNotFluff with AI assistance from public City data. The page counts visits with Cloudflare Web Analytics, '
+              'which sets no cookies.</p></div></footer>\n</body></html>')
     return (M.HEAD.format(title=F(p["title"]), desc=F(p["desc"]), url=url, rel=rel, shop=M.SHOP, ld=ld, bodycls=' class="ld-page"',
                           robots=robots, analytics=M.analytics_tag(), ogtype="article") + body + foot)
 
@@ -221,7 +256,7 @@ def selftest():
         assert "{" not in re.sub(r"<script.*?</script>|<style.*?</style>", "", html, flags=re.S), p["slug"] + ": unfilled placeholder"
         assert html.count("<h1>") == 1, p["slug"] + ": one H1"
         assert ('noindex' in html) == bool(p.get("draft")), p["slug"] + ": draft pages are noindex, live pages are not"
-        assert "not legal or business advice" in html and "AI assistance" in html, p["slug"] + ": footer notices"
+        assert ("not legal or business advice" in html or "or financial advice" in html) and "AI assistance" in html, p["slug"] + ": footer notices"
         assert re.search(r"Source|Sources", text), p["slug"] + ": sources"
         for w in ("guarantee", "guaranteed", "will win", "you will get", "dirty", "filthy", "infested", "violator", "offender"):
             assert w not in text.lower(), (p["slug"], w)

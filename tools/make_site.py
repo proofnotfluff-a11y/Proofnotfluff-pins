@@ -2134,6 +2134,7 @@ def store_products():
         x.setdefault("price", str(page.get("price", "")))
         x.setdefault("checkout", page.get("checkout"))
         x.setdefault("campaign", _campaign(page.get("checkout")))
+        x["trial"] = int(page.get("trialDays") or 0) if x.get("checkout") else 0   # Gumroad free trial on (page key trialDays)
         x["kitForm"] = s.get("kitForm") or page.get("kitForm")
         if page.get("kind") == "leads":
             d = json.load(open(os.path.join(ROOT, page["data"]), encoding="utf-8"))
@@ -2361,14 +2362,18 @@ def shop_html():
                     f'<a class="st-btn2" href="{E(utm(x["checkout"], "shop", x["campaign"]))}" rel="noopener">Buy the workbook, ${E(x["price"])}</a>')
             cadence = "Instant download."
         else:
+            t = x.get("trial")
+            buy_label = f"Start your {t}-day free trial" if t else f"Subscribe, ${E(x['price'])} {E(x['per'])}"
             acts = (f'<a class="btn" href="{rel}{x["href"]}{x["sample"]}">See this week\'s free sample</a>'
-                    + (f'<a class="st-btn2" href="{E(utm(x["checkout"], "shop", x["campaign"]))}" rel="noopener">Subscribe, ${E(x["price"])} {E(x["per"])}</a>' if x.get("checkout") else ""))
-            cadence = "New list every Monday. Cancel any time."
+                    + (f'<a class="st-btn2" href="{E(utm(x["checkout"], "shop", x["campaign"]))}" rel="noopener">{buy_label}</a>' if x.get("checkout") else ""))
+            cadence = (f"New list every Monday. {t} days free, then ${E(x['price'])} {E(x['per'])}." if t else "New list every Monday. Cancel any time.")
         rows += (f'<article class="sh-item" data-aud="{x["audience"]}"><div class="sh-main"><p class="st-tag">{E(x["tag"])}</p>'
                  f'<h2>{nb(x["name"])}</h2><p>{E(x["what"])}</p></div>'
                  f'<div class="sh-buy"><div class="amt">${E(x["price"])}<small> {E(x["per"])}</small></div><p>{cadence}</p>{acts}'
-                 f'<p class="st-note">Secure checkout by Gumroad. <a href="{rel}refunds/">Refunds and cancelling</a></p></div>'
-                 f'<div class="sh-gets"><h3 class="sr">What you get</h3><ul class="checks">{gets}</ul><p class="sh-src">{E(x.get("source", ""))}</p></div></article>')
+                 + (f'<p class="st-note">Secure checkout by Gumroad. Your card goes in at checkout and nothing is charged for {x["trial"]} days. '
+                    f'Cancel in your Gumroad library before day {x["trial"]} and you pay nothing. <a href="{rel}refunds/">Refunds and cancelling</a></p></div>'
+                    if x.get("trial") else f'<p class="st-note">Secure checkout by Gumroad. <a href="{rel}refunds/">Refunds and cancelling</a></p></div>')
+                 + f'<div class="sh-gets"><h3 class="sr">What you get</h3><ul class="checks">{gets}</ul><p class="sh-src">{E(x.get("source", ""))}</p></div></article>')
     coming = store_coming()
     if coming:
         rows += coming_card(coming, rel, "shopLic", cls="sh-item soon", h="h2").replace('<article class="sh-item soon">', '<article class="sh-item soon" data-aud="trade">', 1)

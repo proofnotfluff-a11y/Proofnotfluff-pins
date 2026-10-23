@@ -9,7 +9,7 @@ check_repo.py runs this file as its gate-tests check, so the nightly optimizer a
 import json, os, random, re, shutil, string, subprocess, sys, tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data", "builder-contacts", "video-specs", "voice", "fiverr-kit"]
+CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data", "builder-contacts", "video-specs", "voice", "fiverr-kit", "monday"]
 rng = random.Random()
 # Key markers are assembled here so this file never matches the secrets check itself.
 KEY_BEGIN = "-----BEGIN " + "RSA PRIVATE " + "KEY-----"
@@ -88,6 +88,12 @@ def plants(tmp):
                 lambda t: t.replace("in the first few weeks.", "in the first few weeks. " + " ".join(["more"] * 40), 1))))
     out.append(("copy", "a licenses outreach template with the wrong signal word", edit("email/L1-OUTREACH.md",
                 lambda t: t.replace("got its new City business license", "was cited", 1))))
+    out.append(("monday", "a link in the free Monday email", edit("email/M1-MONDAY.md",
+                lambda t: t.replace("To use one: call", "See proofnotfluff.com. To use one: call", 1))))
+    out.append(("monday", "the stop line dropped from the Monday footer", edit("email/M1-MONDAY.md",
+                lambda t: t.replace(' Reply "stop" and you won\'t get another one.', "", 1))))
+    out.append(("monday", "the price dropped from the trial email", edit("email/M1-MONDAY.md",
+                lambda t: t.replace("it is ${price} a month until", "it renews until", 1))))
     out.append(("em-dash", "an em dash in docs/", new_file("docs/zz_planted.txt", "planted " + "—" + " dash\n")))
 
     # Secrets: values are built here at run time, so this file itself never matches a pattern.

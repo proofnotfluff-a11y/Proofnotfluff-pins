@@ -1,0 +1,17 @@
+# Todd's funnel decisions, Thu Oct 22, 2026, 7:57 pm, live chat
+
+[stated] "Let's do all of this as you recommend." The five decisions, as recorded in that chat:
+
+1. [stated] NEW FUNNEL (major, approved): cold email, then a yes to a free Monday email with 2 or 3 real leads, then after the 3rd free Monday a 1-week Gumroad free trial with the card entered at signup, then $29 a month ($39 for restaurant leads when it goes live). Gumroad only allows 1-week or 1-month trials; we chose 1 week.
+2. [stated] NEW BUYER TYPES (approved now, overriding the HANDOFF gate that waited for exterior replies): sell the permits we already pull to more kinds of buyers, such as dumpster rental, portable toilets, window cleaning, signage, security and commercial movers.
+3. [stated] MORE CITIES (approved): add cities with open permit data by reusing the Chicago and Austin scripts.
+4. [stated] ONE SHORT VIDEO (approved): a 20 to 30 second screen recording of the members' app, Remotion is fine, for the product page and follow-up emails only. Never in a first cold email. No ads.
+5. [stated] ADS SHELVED until about 5 paying subscribers and a known trial-to-paid rate. Any spend still needs Todd's yes.
+
+Order of work: step 1 in the Oct 22 chat; steps 2, 3 and 4 next, in that order, one chat each. Nothing is sent, published or switched on without Todd's word in chat.
+
+## Step 1 as built, Oct 22
+- Cold email ask on all 8 test 1 templates: "Want me to send you jobs like this free each Monday?" A and B still differ only in B's first sentence. No test 1 email had gone out (CRM, Oct 22: 57 sent, all in the legacy Oct 19 and 20 batches, none with a variant), so test 1 reads cleanly on the new ask from its first send.
+- Free Monday email and trial offer: email/M1-MONDAY.md, tools/monday_email.py, .claude/skills/monday-email/SKILL.md (not scheduled), first drafts email/monday/drafts-2026-10-22.md.
+- Site: tools/make_site.py supports `trialDays` and `mondayForm` on a lead page; both keys are off, so the live site is unchanged.
+- Legal desk: legal/reviews/2026-10-22-monday-email-and-trial.md, CLEARED WITH FIXES.

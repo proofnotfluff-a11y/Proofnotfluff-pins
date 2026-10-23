@@ -216,9 +216,9 @@ def trade_cases():
     expect("trade: exterior draft on its Partial Occupancy lead passes", R.validate_drafts(draft("chi-1", body), leads, pros), False)
     expect("trade: exterior draft on an Inspections lead fails", R.validate_drafts(draft("chi-2", body), leads, pros), True)
     expect("trade: exterior draft with a link fails",
-           R.validate_drafts(draft("chi-1", body.replace("Want the", "See washco.com. Want the")), leads, pros), True)
+           R.validate_drafts(draft("chi-1", body.replace("Want me", "See washco.com. Want me")), leads, pros), True)
     expect("trade: exterior draft at 75 words fails",
-           R.validate_drafts(draft("chi-1", body.replace("Want the", " ".join(["more"] * 40) + " Want the")), leads, pros), True)
+           R.validate_drafts(draft("chi-1", body.replace("Want me", " ".join(["more"] * 40) + " Want me")), leads, pros), True)
     expect("trade: exterior draft to a role inbox fails",
            R.validate_drafts({"schema": "pnf.draft.v1", "drafts": [dict(draft("chi-1", body)["drafts"][0], to="info@washco.example")]},
                              leads, {ext["prospect_id"]: dict(ext, email="info@washco.example")}), True)

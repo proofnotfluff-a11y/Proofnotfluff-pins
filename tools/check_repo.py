@@ -42,6 +42,10 @@ Checks
                 every live GC lead renders through each vertical allowed its stage and city, and a local
                 data/work/drafts.json, when present, passes the same gate; signal products (pnf_rules.SIGNAL_PRODUCTS,
                 email/L1-OUTREACH.md) get the same: templates, the live license sample, local data/work/signal_drafts.json
+  monday        tools/monday_email.py --check: the free Monday email and the trial offer (email/M1-MONDAY.md) render for each
+                city from the live GC leads, 2 or 3 fresh leads one per builder, no link, price or trial talk in the issue, the
+                footer with our mailing address and stop line byte for byte, the trial email's one Gumroad link, price, 7 days,
+                card and cancel lines; plus its planted selftest
   gate-selftest tools/test_gates.py plants a failure for each of the four gates above and confirms each is caught
   gate-tests    tools/test_check_repo.py plants a failure for every check above in a throwaway copy and
                 confirms each one is caught and no secret value is printed (Todd's Oct 15 note: the checks get
@@ -438,6 +442,15 @@ def check_copy():
     ok("copy", detail)
 
 
+def check_monday():
+    code, lines = _run_tool([os.path.join("tools", "monday_email.py"), "--check"])
+    last = next((l for l in reversed(lines) if l.startswith(("OK monday", "ERROR monday"))), "")
+    if code or not last.startswith("OK"):
+        err("monday", (last.split(": ", 1)[-1] if last else "monday_email.py --check failed")[:600])
+    else:
+        ok("monday", last[len("OK monday "):].strip("()"))
+
+
 def check_gate_selftest():
     code, lines = _run_tool([os.path.join("tools", "test_gates.py")])
     if code:
@@ -462,7 +475,7 @@ def main():
               ("voice", lambda: check_voice(files)),
               ("fiverr-kit", check_fiverr_kit),
               ("context", lambda: check_context(args.preflight)), ("moat", check_moat), ("schema", lambda: check_schema(files)),
-              ("copy", check_copy), ("gate-selftest", check_gate_selftest),
+              ("copy", check_copy), ("monday", check_monday), ("gate-selftest", check_gate_selftest),
               ("gate-tests", check_gate_tests)]
     for name, fn in checks:
         if only and name not in only:

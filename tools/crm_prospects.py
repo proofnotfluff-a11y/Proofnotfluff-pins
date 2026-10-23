@@ -27,7 +27,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pnf_rules as R  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CLOSED = {"replied", "customer", "opted-out", "bounced", "bounced-precheck", "skipped", "sent", "followed-up"}
+# "monday": said yes to the free Monday email (email/M1-MONDAY.md, Todd Oct 22): no more cold emails or follow-ups
+CLOSED = {"replied", "customer", "opted-out", "bounced", "bounced-precheck", "skipped", "sent", "followed-up", "monday"}
 # Todd, Oct 22, 2026: the Oct 19 and Oct 20 batches (a link in every email, sent to role inboxes) get no follow-up, ever
 LEGACY_BATCHES = {"2026-10-19", "2026-10-20"}
 

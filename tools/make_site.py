@@ -1698,8 +1698,11 @@ def leads_page_html(p):
     n_big = len(d["projects"])
     asof = nice_date(src["fetchedAt"])   # the Chicago date of the pull, the same date the members' pages and workbook print
     price = E(str(p["price"]))
-    buy_label = f"Get the full list: ${price} a month"
     checkout = p.get("checkout")
+    # funnel (Todd, Oct 22, 7:57 pm): a Gumroad free trial and the free Monday email, each switched on by its own key
+    # ("trialDays", "mondayForm") only after Todd turns the trial on in Gumroad and makes the Kit forms
+    trial = int(p.get("trialDays") or 0) if checkout else 0
+    buy_label = f"Start your {trial}-day free trial" if trial else f"Get the full list: ${price} a month"
     # per-city wording (Austin, Oct 17): every key is optional and defaults to the Chicago page's words
     city = p["city"]
     card = lambda x, pill=True: project_card(x, pill, city, p.get("permitLabel", "Permit"), bool(p.get("billions2")), p.get("metaSep", " · "))
@@ -1717,8 +1720,11 @@ def leads_page_html(p):
             f'and the builders running them. {E(p["lede"])}')
     if checkout:   # the free sample first, then subscribe (store design, Oct 22)
         hero_act = (f'<div class="ld-heroact" id="ldHeroCta"><a class="btn ld-btnbig" href="{"#near" if near else "#sample"}">See this week\'s free sample</a>'
-                    f'<a class="ld-textlink" href="{E(checkout)}" rel="noopener">Subscribe, ${price} a month</a></div>'
-                    '<p class="ld-heronote">New list every Monday. Cancel any time.</p>')
+                    + (f'<a class="ld-textlink" href="{E(checkout)}" rel="noopener">Try {trial} days free, then ${price} a month</a></div>'
+                       '<p class="ld-heronote">New list every Monday. Card at checkout, nothing charged for 7 days. Cancel any time.</p>'
+                       .replace("7 days", f"{trial} days") if trial else
+                       f'<a class="ld-textlink" href="{E(checkout)}" rel="noopener">Subscribe, ${price} a month</a></div>'
+                       '<p class="ld-heronote">New list every Monday. Cancel any time.</p>'))
     elif p.get("kitForm"):
         hero_act = '<div class="ld-heroact" id="ldHeroCta"><a class="ld-textlink" href="#ldCta">Join the waitlist</a></div>'
     else:   # before launch with no waitlist form: no action that leads nowhere (design director, Oct 18)
@@ -1800,7 +1806,12 @@ def leads_page_html(p):
                  + f'<img src="{rel}assets/{sdir}/workbook.png" width="{w2}" height="{h2}" loading="lazy" decoding="async" alt="{E(alt2)}">'
                  + ('</picture>' if os.path.isfile(phone_f) else "") +
                  f'<figcaption>{E(p.get("shotCapBook", "The Excel file, filters on every column"))}</figcaption></figure></div></section>')
-    if p.get("kitForm"):
+    monday = p.get("mondayForm") if checkout else None
+    if monday:   # the free Monday email (email/M1-MONDAY.md): its own double opt-in Kit form, never the old waitlist
+        form = (f'<form class="ld-form" action="https://app.kit.com/forms/{E(monday)}/subscriptions" method="post">'
+                '<label for="ldEmail">Email</label><div class="ld-frow"><input id="ldEmail" name="email_address" type="email" required autocomplete="email">'
+                '<button class="btn" type="submit">Send me Monday\'s jobs</button></div></form>')
+    elif p.get("kitForm"):
         form = (f'<form class="ld-form" action="https://app.kit.com/forms/{E(p["kitForm"])}/subscriptions" method="post">'
                 '<label for="ldEmail">Email</label><div class="ld-frow"><input id="ldEmail" name="email_address" type="email" required autocomplete="email">'
                 '<button class="btn" type="submit">Join the waitlist</button></div></form>')
@@ -1810,11 +1821,19 @@ def leads_page_html(p):
         form = form.replace("Join the waitlist", "Keep me posted")
         cta_html = ('<section class="block" id="ldCta"><div class="cta ld-cta ld-buy"><div>'
                     f'<h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
-                    f'<p class="ld-buybtn">{buy()}</p><p class="ld-secure">Secure checkout by Gumroad. Cancel any time. <a href="{rel}refunds/">Refunds and cancelling</a></p></div>'
-                    + (f'<div class="ld-later"><p><b>Not ready yet?</b> Leave your email and we will let you know when the list adds new cities or features.</p>{form}'
+                    f'<p class="ld-buybtn">{buy()}</p>'
+                    + (f'<p class="ld-secure">Secure checkout by Gumroad. Your card goes in at checkout and nothing is charged for {trial} days. '
+                       f'Then it is ${price} a month until you cancel. Cancel in your Gumroad library before day {trial} and you pay nothing. '
+                       f'<a href="{rel}refunds/">Refunds and cancelling</a></p></div>' if trial else
+                       f'<p class="ld-secure">Secure checkout by Gumroad. Cancel any time. <a href="{rel}refunds/">Refunds and cancelling</a></p></div>')
+                    + (f'<div class="ld-later" id="ldMonday"><p><b>Not ready to pay?</b> Get 2 or 3 jobs from this week\'s list free every Monday, by plain email.</p>{form}'
+                       '<small class="ld-note">Kit, our email provider, asks you to confirm first. Unsubscribe in one click. Never sold.</small></div>' if monday else
+                       f'<div class="ld-later"><p><b>Not ready yet?</b> Leave your email and we will let you know when the list adds new cities or features.</p>{form}'
                        '<small class="ld-note">Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div>' if p.get("kitForm") else "")
                     + '</div></section>')
-        sbar = (f'<div class="ld-sbar" id="ldBar" aria-hidden="true"><div class="wrap"><p><b>${price} a month</b><span> · <span class="ld-sbl">full list </span>every Monday</span></p>'
+        sbar = (f'<div class="ld-sbar" id="ldBar" aria-hidden="true"><div class="wrap"><p><b>{trial} days free</b><span> · then ${price} a month</span></p>'
+                f'<a class="btn" href="{E(checkout)}" rel="noopener" tabindex="-1">Try free</a></div></div>' if trial else
+                f'<div class="ld-sbar" id="ldBar" aria-hidden="true"><div class="wrap"><p><b>${price} a month</b><span> · <span class="ld-sbl">full list </span>every Monday</span></p>'
                 f'<a class="btn" href="{E(checkout)}" rel="noopener" tabindex="-1">Subscribe</a></div></div>')
     elif not p.get("kitForm"):   # before launch, no waitlist: the offer and the planned price, no form (design director, Oct 18)
         cta_html = ('<section class="block" id="ldCta"><div class="cta ld-cta ld-solo"><div>'
@@ -1827,9 +1846,15 @@ def leads_page_html(p):
                     f'<p class="ld-price">Planned price: ${price} a month. Joining the waitlist is free and commits you to nothing.</p></div>'
                     f'<div>{form}<small class="ld-note">We email you when the weekly list opens. Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div></div></section>')
         sbar = ""
+    faq = list(p["faq"])
+    if trial or monday:   # one plain answer on the two free ways in (email/M1-MONDAY.md)
+        ways = ([f"The free Monday email sends 2 or 3 jobs from the week's list."] if monday else []) + (
+            [f"Or start a {trial}-day free trial on Gumroad: your card goes in at checkout, nothing is charged for {trial} days, "
+             f"then it is ${price} a month until you cancel. Cancel before day {trial} and you pay nothing."] if trial else [])
+        faq.append(["Can I try it before I pay?", "Yes. " + " ".join(ways).replace("Yes. Or start", "Yes. Start")])
     crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Shop", "shop/"), (p["h1"], None)])
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>{hero_act}</div>{tiles}'
-            f'{near_html}{gc_html}{big_html}{method}{shots}{cta_html}{guides_block(p["slug"], rel=rel)}{faq_block(p["faq"])}')
+            f'{near_html}{gc_html}{big_html}{method}{shots}{cta_html}{guides_block(p["slug"], rel=rel)}{faq_block(faq)}')
     script = r"""<script>(function(){var list=document.getElementById('ldList');if(list){
 var cards=[].slice.call(list.querySelectorAll('.ld-proj')),chips=[].slice.call(document.querySelectorAll('.ld-chip')),
 area=document.getElementById('ldArea'),count=document.getElementById('ldCount'),empty=document.getElementById('ldEmpty'),f='all';
@@ -1849,7 +1874,7 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.target=
 io.observe(hero);io.observe(cta)})();</script>"""
     prod = next((x for x in store_products() if x["key"] == p["slug"]), None)
     ld = ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
-                  "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]},
+                  "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]},
                  crumb_ld, product_ld(prod, url) if prod else None)
     robots = "" if is_live(p) else '<meta name="robots" content="noindex, nofollow">'
     foot = (f'</main>\n<footer><div class="wrap">{foot_nav(rel)}'
@@ -1857,7 +1882,7 @@ io.observe(hero);io.observe(cta)})();</script>"""
             f'{E(p.get("costNote", "Reported cost is the figure filed with the City, not a contract value."))}{E(odd_note(c))} No contractor named here has endorsed or works with ProofNotFluff. '
             'Public information for planning sales calls; not legal or business advice and no promise of work.</p>'
             f'<p>{E(p.get("disclaimer") or CITY_DISCLAIMER.get(p["city"], ""))}</p>'
-            f'<p>Made by ProofNotFluff with AI assistance from public City data.{" The waitlist form sends your email address to Kit." if p.get("kitForm") else ""} The page counts visits with Cloudflare Web Analytics, which sets no cookies.</p>'
+            f'<p>Made by ProofNotFluff with AI assistance from public City data.{" The Monday email form sends your email address to Kit." if monday else " The waitlist form sends your email address to Kit." if p.get("kitForm") else ""} The page counts visits with Cloudflare Web Analytics, which sets no cookies.</p>'
             f'</div></footer>\n{sbar}\n{script}\n</body></html>')
     bodycls = ' class="ld-page' + (' has-sbar' if sbar else '') + '"'
     return (HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=SHOP, ld=ld, bodycls=bodycls,

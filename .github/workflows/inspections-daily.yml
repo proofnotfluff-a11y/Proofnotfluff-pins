@@ -1,0 +1,55 @@
+name: Chicago restaurant daily list
+# Move 1 (Todd, Oct 23, 2026): the founding-seat tier's daily pest and hood list. The City refreshes its Food
+# Inspections data overnight (about 4 am Chicago time on Oct 23), so this runs every morning after it. It commits only
+# the public counts (daily.json), the HMAC seen keys (daily-seen.json) and the sealed named list (daily.sealed.json).
+# The weekly $39 list keeps its own Monday workflow (inspections-chicago.yml); nothing here touches its files.
+# No push trigger: a rerun on edit is not needed, and a manual run on the same day rebuilds the same list.
+# Risk written down: the shared concurrency group keeps one waiting run, so a run queued behind another can be dropped;
+# the next morning's run still catches its places, because the window is two weeks wide.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "45 11 * * *"   # every day, about 6:45 am Chicago time in daylight time
+permissions:
+  contents: write
+concurrency:
+  group: inspections-chicago
+  cancel-in-progress: false
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - run: pip install --quiet cryptography
+      - name: Self-checks
+        run: |
+          python3 tools/inspections_chicago.py --selftest
+          python3 tools/rest_leads.py --selftest
+          python3 tools/rest_daily.py --selftest
+          python3 tools/rest_seal.py --selftest
+      - name: Pull the City's data (the weekly files it also writes are discarded below)
+        run: python3 tools/inspections_chicago.py --full "$RUNNER_TEMP/inspections-full.json" --raw "$RUNNER_TEMP/inspections-raw.json"
+      - name: Build the daily list
+        env:
+          REST_LEADS_PASSWORD: ${{ secrets.REST_LEADS_PASSWORD }}
+        run: |
+          if [ -z "$REST_LEADS_PASSWORD" ]; then echo "REST_LEADS_PASSWORD secret missing; the daily list needs it"; exit 1; fi
+          python3 tools/rest_leads.py "$RUNNER_TEMP/inspections-raw.json" "$RUNNER_TEMP/rest-data.json"
+          python3 tools/rest_daily.py "$RUNNER_TEMP/rest-data.json" "$RUNNER_TEMP/daily-named.json"
+      - name: Seal the named list (it names businesses with failed records; the private key is never in the repo)
+        run: |
+          python3 tools/rest_seal.py seal "$RUNNER_TEMP/daily-named.json" permits/inspections-chicago/daily.sealed.json
+          [ -f permits/inspections-chicago/daily.sealed.json ] || { echo "sealed list not written (public key missing?)"; exit 1; }
+      - name: Commit the daily files only
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add permits/inspections-chicago/daily.json permits/inspections-chicago/daily-seen.json permits/inspections-chicago/daily.sealed.json
+          git checkout -- . 2>/dev/null || true
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "Chicago restaurant daily list $(date -u +%Y-%m-%d)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; git rebase --abort 2>/dev/null || true; sleep 10; done
+          exit 1

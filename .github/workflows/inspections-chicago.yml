@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["tools/inspections_chicago.py", "tools/rest_*.py", ".github/workflows/inspections-chicago.yml"]
+    paths: ["tools/inspections_chicago.py", "tools/rest_leads.py", "tools/rest_app.py", "tools/rest_xlsx.py", "tools/rest_site.py", "tools/rest_seal.py", ".github/workflows/inspections-chicago.yml"]
   schedule:
     - cron: "30 11 * * 1"   # Mondays, about 6:30 am Chicago time in daylight time
 permissions:

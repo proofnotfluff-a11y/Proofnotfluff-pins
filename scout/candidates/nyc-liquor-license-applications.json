@@ -88,9 +88,9 @@
   "apiUrl": "https://data.ny.gov/resource/f8i8-k2gm.json",
   "cadence": "daily",
   "lastUpdated": "2026-10-22",
-  "recordsPerMonth": 203,
+  "recordsPerMonth": 114,
   "recordsSource": {
-   "url": "https://data.ny.gov/resource/f8i8-k2gm.csv?$select=premises_county,count(application_id)&$where=received_date%3E%3D'2026-09-01'%20and%20received_date%3C'2026-10-01'&$group=premises_county&$order=count(application_id)%20DESC",
+   "url": "https://data.ny.gov/resource/f8i8-k2gm.csv",
    "date": "2026-10-23"
   },
   "countQuery": "https://data.ny.gov/resource/f8i8-k2gm.csv?$select=premises_county,count(application_id)&$where=received_date%3E%3D'2026-09-01'%20and%20received_date%3C'2026-10-01'&$group=premises_county&$order=count(application_id)%20DESC",
@@ -122,5 +122,6 @@
   ],
   "sameBuyerTypes": true
  },
- "overlap": "launches/chicago-new-business-licenses.md: same pre-opening signal and same buyer types in a second market. Pairs with nyc-restaurant-pest-citations (one NYC restaurant-vendor bundle)."
+ "overlap": "launches/chicago-new-business-licenses.md: same pre-opening signal and same buyer types in a second market. Pairs with nyc-restaurant-pest-citations (one NYC restaurant-vendor bundle).",
+ "nextFix": "Next radar run, fix round for the red team FAIL (pool of 67 hood cleaners): count rosters for linen, POS and kitchen pest buyers before a second review; counted kitchen-relevant premises are 114 a month (demand reviewer, Oct 23)."
 }

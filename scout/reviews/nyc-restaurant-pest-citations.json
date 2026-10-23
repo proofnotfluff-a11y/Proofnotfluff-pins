@@ -62,6 +62,24 @@
     "https://mandmpestcontrol.com/pest-control-guide-for-nyc-restaurant-inspections/",
     "https://instantly.ai/blog/cold-email-reply-rate-benchmarks"
    ]
+  },
+  {
+   "reviewer": "redteam",
+   "verdict": "FAIL",
+   "score": 2,
+   "round": 2,
+   "date": "2026-10-23",
+   "reasons": [
+    "Same product, buyer and motion as the Chicago restaurant list, which has 0 payers and 0 replies and paused outreach; a second city does not change the conversion rate.",
+    "Calendar and capacity: the Chicago pipeline's first trial offer is due about Nov 11, the one sender is committed to Chicago and Austin, and the NYC roster has no contact fields, so 348 first emails by January is a pace never reached (57 sent in total).",
+    "RatRadar already sells pest-cited restaurants in 30+ cities including NYC; the Chicago result says the blocker is reach and trust for a faceless seller, not price.",
+    "Doubted number: 2.6 likely payers (0.75% email to payer); the only measured rate is 0. The round 1 count doubt was answered with counted data (923 places, probes/2026-10-23.json) and holds."
+   ],
+   "checked": [
+    "https://ratradar.com/b2b/pest-control",
+    "https://raw.githubusercontent.com/proofnotfluff-a11y/Proofnotfluff-pins/main/probes/2026-10-23.json",
+    "https://data.ny.gov/resource/h8u2-6ejg.csv"
+   ]
   }
  ]
 }

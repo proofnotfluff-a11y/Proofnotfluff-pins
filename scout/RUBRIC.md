@@ -12,7 +12,8 @@ Business-level facts only: no person's name or email anywhere. Every source is `
  "categories": ["trade words"],
  "provenAbroad": [{"what": "the same model sold elsewhere", "url": "...", "date": "..."}],
  "buyer": {"who": "the trade that pays", "count": 0, "countSource": {}, "reach": "how we reach an owner (their own site, a state roster)", "reachSource": {}},
- "price": {"monthly": 29, "reason": "why this price inside $29 to $199", "competitors": [{"name": "...", "monthly": 0, "url": "...", "date": "..."}]},
+ "price": {"monthly": 29, "reason": "why this price inside $29 to $199", "competitors": [{"name": "...", "monthly": 0, "url": "...", "date": "...", "richer": false}],
+           "freeSubstitute": {"note": "the source's own free export or a free tier, if one exists", "url": "...", "date": "..."}},
  "demand": {"searchQueries": [{"q": "...", "url": "...", "date": "..."}], "aiQueries": [{"q": "a question a buyer asked in public", "url": "...", "date": "..."}]},
  "data": {"publisher": "...", "dataset": "...", "subject": "what one record describes (a business, a building, a carrier)", "url": "...", "apiUrl": "...",
           "cadence": "daily|weekly|monthly|quarterly|yearly|static", "lastUpdated": "YYYY-MM-DD", "recordsPerMonth": 0, "recordsSource": {},
@@ -28,7 +29,7 @@ Business-level facts only: no person's name or email anywhere. Every source is `
 K1 no buyer we can name and reach. K2 terms forbid commercial use. K3 a never-sell category (medical, legal filing, immigration, investment advice). K4 longevity or supplement products before Sept 21, 2027 (Todd's non-compete with Cata-Kor). K5 private people as the subject (homes, residents, named individuals).
 
 ## Scores
-Eight factors, 0 to 5, weighted to 100: buyer 15, pay 15, demand 15, data 15, license 10, effort 10, speed 10, fit 10. Under 60 is parked without review. January net dollars assume 40 first emails a week from launch and 0.25%, 0.75% or 2% of them becoming paying members; first dollar is build days plus 5 days of gates plus 28 days of free Mondays and the 7-day trial. These are assumptions until a payer exists, so confidence tops out at medium.
+Eight factors, 0 to 5, weighted to 100: buyer 15, pay 15, demand 15, data 15, license 10, effort 10, speed 10, fit 10. Under 60 is parked without review. A sourced free substitute caps pay at 2, and a competitor at up to twice our price marked richer (it ships fields we cannot, such as contacts we strip) caps it at 1: the first run's reviewers dropped every idea with one, and the scout records both before scoring. January net dollars assume 40 first emails a week from launch and 0.25%, 0.75% or 2% of them becoming paying members; first dollar is build days plus 5 days of gates plus 28 days of free Mondays and the 7-day trial. These are assumptions until a payer exists, so confidence tops out at medium.
 
 ## Reviewers (each a fresh Agent subagent, model fable else opus, that never saw the scouting)
 Each gets the candidate file and the scorer's row only, checks the sources itself, and returns JSON: `{"reviewer", "verdict": "PASS|FAIL", "score": 1-5, "round", "date", "reasons": ["..."]}`. The run appends it to scout/reviews/<slug>.json.

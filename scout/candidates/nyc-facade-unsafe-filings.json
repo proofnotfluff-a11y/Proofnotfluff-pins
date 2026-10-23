@@ -2,7 +2,7 @@
  "schema": "pnf.opportunity.v1",
  "slug": "nyc-facade-unsafe-filings",
  "name": "NYC Unsafe Facade Filings",
- "status": "new",
+ "status": "dropped",
  "addedAt": "2026-10-23",
  "pitch": "Every NYC building whose Local Law 11 facade report was filed Unsafe or SWARMP in the last 30 days, for facade restoration and masonry contractors; Unsafe conditions must be repaired within 90 days and a shed goes up now.",
  "categories": [
@@ -111,5 +111,6 @@
   ],
   "sameBuyerTypes": false
  },
- "overlap": "launches/chicago-exterior-violations.md (exterior repair citations, on hold as thin); this is a different city and signal. Owner and engineer person names in the dataset are dropped; many buildings are co-op or condo buildings, the same question the elevator spec raised for Legal."
+ "overlap": "launches/chicago-exterior-violations.md (exterior repair citations, on hold as thin); this is a different city and signal. Owner and engineer person names in the dataset are dropped; many buildings are co-op or condo buildings, the same question the elevator spec raised for Legal.",
+ "dropReason": "Dropped Oct 23 after demand and red team FAIL with no honest fix: fresh Initial Unsafe filings are about 35 to 50 a month, the work is awarded through the engineer of record and board bids, the feed is free on NYC Open Data and DOB NOW, and BuildDocket sells a richer version at $199. Data and legal PASS."
 }

@@ -87,14 +87,14 @@
  "data": {
   "publisher": "NYC Department of Health and Mental Hygiene (NYC Open Data)",
   "dataset": "DOHMH New York City Restaurant Inspection Results (43nn-pn8j)",
-  "subject": "a restaurant inspection result with violation codes at a named food business",
+  "subject": "a restaurant cited by the NYC Health Department for live pest evidence (04K rats, 04L mice, 04M roaches, 04N flies) in its most recent inspection; 08A harborage alone is left out",
   "url": "https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/43nn-pn8j",
   "apiUrl": "https://data.cityofnewyork.us/resource/43nn-pn8j.json",
   "cadence": "daily",
   "lastUpdated": "2026-10-22",
-  "recordsPerMonth": 926,
+  "recordsPerMonth": 923,
   "recordsSource": {
-   "url": "https://data.cityofnewyork.us/resource/43nn-pn8j.json?$select=date_trunc_ym(inspection_date)%20as%20m,count(distinct%20camis)%20as%20pest_places&$where=violation_code%20in('04K','04L','04M','04N','08A')%20and%20inspection_date%3E'2026-06-30T23%3A59%3A59'&$group=m&$order=m",
+   "url": "https://github.com/proofnotfluff-a11y/Proofnotfluff-pins/blob/main/probes/2026-10-23.json",
    "date": "2026-10-23"
   },
   "countQuery": "https://data.cityofnewyork.us/resource/43nn-pn8j.json?$select=date_trunc_ym(inspection_date)%20as%20m,count(distinct%20camis)%20as%20pest_places&$where=violation_code%20in('04K','04L','04M','04N','08A')%20and%20inspection_date%3E'2026-06-30T23%3A59%3A59'&$group=m&$order=m",
@@ -129,5 +129,16 @@
   ],
   "sameBuyerTypes": true
  },
- "overlap": "launches/chicago-restaurant-inspection-leads.md: same product in a second city; Todd paused that product's outreach until the licenses product is live (decision 4, Oct 22). Hood cleaning is left out: ventilation code 10D hit only 50 NYC places in Sept, too thin."
+ "overlap": "launches/chicago-restaurant-inspection-leads.md: same product in a second city; Todd paused that product's outreach until the licenses product is live (decision 4, Oct 22). Hood cleaning is left out: ventilation code 10D hit only 50 NYC places in Sept, too thin.",
+ "fixRound": [
+  {
+   "date": "2026-10-23",
+   "answers": "redteam round 1",
+   "changes": [
+    "Counted in GitHub Actions (probes/2026-10-23.json): 923 distinct restaurants had live pest codes 04K to 04N in Sept 2026 without counting 08A (04K 56, 04L 342, 04M 214, 04N 561 places; 08A alone 904), so the doubted 926 holds; the list is narrowed to live pest codes.",
+    "Reach is unchanged: the DEC roster has no contact fields, so each email needs the firm's own website; the build estimate keeps that work.",
+    "Not fixable by sources: the Chicago twin of this product has 0 payers from its first emails, so this idea is a second city of an unproven product."
+   ]
+  }
+ ]
 }

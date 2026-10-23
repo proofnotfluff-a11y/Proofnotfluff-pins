@@ -31,9 +31,9 @@
    },
    "notes": {},
    "kills": [],
-   "status": "fix",
+   "status": "todd",
    "why": [
-    "redteam: The same product with the same buyer and motion is live for Chicago at $39 with 0 payers from 57 emails and its outreach is paused; a second city tests the city, not the product."
+    "second FAIL (redteam: Same product, buyer and motion as the Chicago restaurant list, which has 0 payers and 0 replies and paused outreach; a second city does not change the conversion rate.)"
    ],
    "money": {
     "netPerMember": 41.88,
@@ -61,49 +61,6 @@
    "source": "https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/43nn-pn8j"
   },
   {
-   "slug": "nyc-facade-unsafe-filings",
-   "name": "NYC Unsafe Facade Filings",
-   "score": 83,
-   "factors": {
-    "buyer": 3,
-    "pay": 5,
-    "demand": 4,
-    "data": 5,
-    "license": 5,
-    "effort": 4,
-    "speed": 5,
-    "fit": 2
-   },
-   "notes": {},
-   "kills": [],
-   "status": "review",
-   "why": [],
-   "money": {
-    "netPerMember": 85.43,
-    "emailsByJan": 92,
-    "payers": {
-     "low": 0.2,
-     "likely": 0.7,
-     "high": 1.8
-    },
-    "janNet": {
-     "low": 20,
-     "likely": 59,
-     "high": 157
-    },
-    "shareOfGoal": {
-     "low": 0.02,
-     "likely": 0.06,
-     "high": 0.16
-    }
-   },
-   "confidence": "medium",
-   "firstDollar": "2026-11-30",
-   "price": 99,
-   "buyer": "facade restoration and masonry contractors working on NYC buildings over six stories",
-   "source": "https://data.cityofnewyork.us/Housing-Development/DOB-NOW-Safety-Facades-Compliance-Filings/xubg-57si"
-  },
-  {
    "slug": "nyc-liquor-license-applications",
    "name": "NYC New Liquor License Applications",
    "score": 82,
@@ -121,8 +78,10 @@
     "license": "license unclear: the data and legal reviewer reads the terms"
    },
    "kills": [],
-   "status": "review",
-   "why": [],
+   "status": "fix",
+   "why": [
+    "redteam: The row's likely January net is $25 (3 percent of goal) and assumes 0.8 payers from 100 emails against an observed 0 of 57."
+   ],
    "money": {
     "netPerMember": 33.17,
     "emailsByJan": 100,
@@ -373,6 +332,51 @@
    "price": 29,
    "buyer": "licensed public accounting firms in Colorado",
    "source": "https://data.colorado.gov/Business/Business-Entities-in-Colorado/4ykn-tg5h"
+  },
+  {
+   "slug": "nyc-facade-unsafe-filings",
+   "name": "NYC Unsafe Facade Filings",
+   "score": 83,
+   "factors": {
+    "buyer": 3,
+    "pay": 5,
+    "demand": 4,
+    "data": 5,
+    "license": 5,
+    "effort": 4,
+    "speed": 5,
+    "fit": 2
+   },
+   "notes": {},
+   "kills": [],
+   "status": "dropped",
+   "why": [
+    "Dropped Oct 23 after demand and red team FAIL with no honest fix: fresh Initial Unsafe filings are about 35 to 50 a month, the work is awarded through the engineer of record and board bids, the feed is free on NYC Open Data and DOB NOW, and BuildDocket sells a richer version at $199. Data and legal PASS."
+   ],
+   "money": {
+    "netPerMember": 85.43,
+    "emailsByJan": 92,
+    "payers": {
+     "low": 0.2,
+     "likely": 0.7,
+     "high": 1.8
+    },
+    "janNet": {
+     "low": 20,
+     "likely": 59,
+     "high": 157
+    },
+    "shareOfGoal": {
+     "low": 0.02,
+     "likely": 0.06,
+     "high": 0.16
+    }
+   },
+   "confidence": "medium",
+   "firstDollar": "2026-11-30",
+   "price": 99,
+   "buyer": "facade restoration and masonry contractors working on NYC buildings over six stories",
+   "source": "https://data.cityofnewyork.us/Housing-Development/DOB-NOW-Safety-Facades-Compliance-Filings/xubg-57si"
   }
  ]
 }

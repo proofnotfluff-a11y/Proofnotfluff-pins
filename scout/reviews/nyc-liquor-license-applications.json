@@ -1,0 +1,64 @@
+{
+ "slug": "nyc-liquor-license-applications",
+ "reviews": [
+  {
+   "reviewer": "redteam",
+   "verdict": "FAIL",
+   "score": 2,
+   "round": 1,
+   "date": "2026-10-23",
+   "reasons": [
+    "The row's likely January net is $25 (3 percent of goal) and assumes 0.8 payers from 100 emails against an observed 0 of 57.",
+    "The buyer pool is 67 NYC hood cleaners on the FDNY list (verified, Oct 15, 2026); one pass burns it with no second wave.",
+    "The signal is weaker than the pitch: no field separates a new premises from an ownership or class change at a place that already has a hood cleaner; about a third of rows are grocery stores; the same rows are free on data.ny.gov; Open NY terms could not be read and a 2016 summary says users indemnify the State.",
+    "Doubted number: 203 a month holds by county but sellable restaurant rows are about 130."
+   ],
+   "checked": [
+    "https://www.nyc.gov/assets/fdny/downloads/pdf/business/approved-companies-commercial-cooking.pdf",
+    "https://data.ny.gov/resource/f8i8-k2gm.json",
+    "https://reinventalbany.org/2016/08/ny-states-open-ny-dips-toe-into-creative-commons-licensing",
+    "https://vicentellp.com/insights/what-every-buyer-needs-to-know-about-liquor-licensing-when-acquiring-a-new-york-city-restaurant-or-bar/"
+   ]
+  },
+  {
+   "reviewer": "demand",
+   "verdict": "PASS",
+   "score": 3,
+   "round": 1,
+   "date": "2026-10-23",
+   "reasons": [
+    "The count holds: 114 kitchen-relevant premises received in Sept 2026 and still pending in the five boroughs (Restaurant 77, Food and Beverage 22, Catering 7, Hotel 4, clubs 4) after dropping grocery and liquor stores; August restaurants alone were 82.",
+    "As a hood cleaner I would pay $39 for a weekly filtered sheet since one account repays a year, but the SLA links the full pending list free on data.ny.gov and community board notices list new applicants free, so the product sells convenience and the kitchen-only filter.",
+    "Competitor prices check out: CSVFirst $999 a month is a different dataset; Apify actors cover NY pending applications at about $8.25 per 1,000 results.",
+    "The data has no phone, email or contact name, which caps willingness to pay and must be said plainly.",
+    "Search evidence is accurate but weak on the buyer side."
+   ],
+   "checked": [
+    "https://data.ny.gov/Economic-Development/Current-SLA-Pending-Licenses/f8i8-k2gm",
+    "https://sla.ny.gov/public-query",
+    "https://apify.com/malonestar/liquor-license-new-openings-tracker",
+    "https://www.nyc.gov/assets/brooklyncb1/downloads/pdf/2026/notice-sla-20261028.pdf"
+   ]
+  },
+  {
+   "reviewer": "data-legal",
+   "verdict": "PASS",
+   "score": 4,
+   "round": 1,
+   "date": "2026-10-23",
+   "reasons": [
+    "Open NY Terms (read in full, last modified Mar 8, 2013) allow free download and use including private sector projects; the user indemnifies the State, so our Terms carry a no-warranty line and never claim State endorsement.",
+    "The dataset license is unspecified, so the site-wide terms govern.",
+    "No applicant-person field, but under 2 percent of five-borough rows are sole proprietors under a personal name; drop rows with no entity marker and no DBA.",
+    "Cadence is real: updated Oct 22, 2026, daily; it is a snapshot of pending applications, so the monthly list needs a stored diff.",
+    "No NYS solicitation restriction found in the terms or SLA pages, but the ABC Law search was not completed: unverified, not cleared."
+   ],
+   "checked": [
+    "https://data.ny.gov/download/77gx-ii52/application/pdf",
+    "https://data.ny.gov/Economic-Development/Current-SLA-Pending-Licenses/f8i8-k2gm/about_data",
+    "https://data.ny.gov/api/views/f8i8-k2gm.json",
+    "https://sla.ny.gov/public-query"
+   ]
+  }
+ ]
+}

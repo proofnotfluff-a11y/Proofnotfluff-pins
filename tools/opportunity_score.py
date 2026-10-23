@@ -123,6 +123,14 @@ def factors(c, today):
         f["pay"] = 5 if top >= 2 * ours else 4 if top >= ours else 2 if top >= 0.5 * ours else 1
     else:
         f["pay"], notes["pay"] = 0, "no dated competitor price"
+    # Learned from the first run's reviewers (Oct 23): every idea they dropped had a sourced free or richer substitute the
+    # code did not weigh. A dated free equivalent (the source's own export, a free tier) caps pay at 2; a competitor at or
+    # under our price that ships fields we cannot (contacts we strip) caps it at 1.
+    if src_ok(p.get("freeSubstitute"), today):
+        f["pay"], notes["pay"] = min(f["pay"], 2), "a free equivalent exists: " + str(p["freeSubstitute"].get("note", ""))[:80]
+    if any(src_ok(x, today) and x.get("richer") and isinstance(x.get("monthly"), (int, float)) and x["monthly"] <= 2 * (ours or 0)
+           for x in (p.get("competitors") or [])):
+        f["pay"], notes["pay"] = min(f["pay"], 1), "a competitor near our price ships fields we cannot"
     if ours and not (BAND[0] <= ours <= BAND[1]):
         notes["price"] = f"${ours} is outside the ${BAND[0]} to ${BAND[1]} band: Todd sets it"
     # demand: evidenced search wording and AI-style questions, one point each, five at most
@@ -333,6 +341,8 @@ def selftest():
     cases.append(("uncounted volume loses points", v(data__recordsSource=None)["factors"]["data"] < 5, None))
     cases.append(("no competitor price scores 0", v(price__competitors=[])["factors"]["pay"] == 0, None))
     cases.append(("old competitor price not counted", v(price__competitors=[{"name": "X", "monthly": 99, **S(dte="2024-01-01")}])["factors"]["pay"] == 0, None))
+    cases.append(("free substitute caps pay at 2", v(price__freeSubstitute={"note": "state portal export", **S()})["factors"]["pay"] == 2, None))
+    cases.append(("richer competitor caps pay at 1", v(price__competitors=[{"name": "X", "monthly": 49, "richer": True, **S()}])["factors"]["pay"] == 1, None))
     cases.append(("unclear license scores 2", v(data__license={"commercialUse": "unclear", **S()})["factors"]["license"] == 2, None))
     cases.append(("price outside band flagged", "price" in v(price__monthly=249)["notes"], None))
     cases.append(("slow build loses speed", v(build__days=90)["factors"]["speed"] == 0, None))

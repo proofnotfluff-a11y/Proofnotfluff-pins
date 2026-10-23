@@ -1,0 +1,64 @@
+{
+ "slug": "nyc-facade-unsafe-filings",
+ "reviews": [
+  {
+   "reviewer": "data-legal",
+   "verdict": "PASS",
+   "score": 4,
+   "round": 1,
+   "date": "2026-10-23",
+   "reasons": [
+    "Commercial reuse is allowed: NYC Open Data terms disclaim warranty and liability only, and the Open Data Law 23-502(d) allows no restrictions on use; cite source and version.",
+    "Person data is filterable: drop owner_name, qewi_name, qewi_nys_lic_no and the owner and engineer street fields; keep tr6_no, bin, address, borough, block, lot, status, filing date and owner_bus_name with an entity check (0 of 60 recent owner_bus_name values were individuals).",
+    "Residential buildings are business targets here: FISP covers buildings over six stories only; of 112 recent Unsafe or SWARMP filings, 46 are NYCHA and the rest co-op or condo corporations, LLCs, universities, hospitals and nonprofits; no row names a resident once person fields are dropped.",
+    "Cadence is real: rows updated Oct 21, 2026; 127 Unsafe and 63 SWARMP filings in 30 days, so 162 a month is conservative; filter on filing_date.",
+    "Constitution 2: a public page naming a business with a failed record is major and goes to Todd; cold email follows the owner-read-inbox rule."
+   ],
+   "checked": [
+    "https://data.cityofnewyork.us/api/views/xubg-57si.json",
+    "https://data.cityofnewyork.us/resource/xubg-57si.json",
+    "https://www.nyc.gov/html/data/terms.html",
+    "https://intro.nyc/local-laws/2012-11"
+   ]
+  },
+  {
+   "reviewer": "demand",
+   "verdict": "FAIL",
+   "score": 2,
+   "round": 1,
+   "date": "2026-10-23",
+   "reasons": [
+    "Unsafe counts are about 2x inflated: grouping by current_status catches amended and SWARMP reports; fresh Initial Unsafe reports are about 50 a month.",
+    "The job goes through the QEWI engineer, who writes specs and picks bidders; an address list does not get a contractor the work.",
+    "The dataset is public and DOB NOW shows every building's facade status, so the product is a saved filter on a free feed.",
+    "BuildDocket at $199 already lists FISP verdicts with owner, mailing address and managing agent; the row's likely case is $59 in January with the whole 92-firm universe emailed.",
+    "92 firms and the search wording check out."
+   ],
+   "checked": [
+    "https://builddocket.com/trades/facade-masonry",
+    "https://data.cityofnewyork.us/api/views/xubg-57si.json",
+    "https://www.habitatmag.com/Publication-Content/Building-Operations/2026/August-2026/nyc-fisp-safety-rise",
+    "https://cooperatornews.com/article/the-long-arm-of-local-law-11"
+   ]
+  },
+  {
+   "reviewer": "redteam",
+   "verdict": "FAIL",
+   "score": 2,
+   "round": 1,
+   "date": "2026-10-23",
+   "reasons": [
+    "Cold email at 0 of 57 replies to a universe of 92 firms (15 of them scaffold or rope access) gives an expected payer count well under 1.",
+    "Unsafe work runs through the engineer of record and board bids; the data has BIN and address only; BuildDocket sells a richer version at $199.",
+    "Cycle timing: 90-day deadlines with free extensions, slow boards and winter make December and January the quietest award months.",
+    "Doubted number: 162 a month; only about 35 a month are new Initial Unsafe filings, and many listed buildings already have a contractor."
+   ],
+   "checked": [
+    "https://data.cityofnewyork.us/resource/xubg-57si.csv",
+    "https://builddocket.com/",
+    "https://www.brickunderground.com/boards-and-buildings/right-architectural-and-engineering-firm-local-law-11-facade",
+    "https://www.ctaarchitects.com/newsandresources/fisp-cycle-10"
+   ]
+  }
+ ]
+}

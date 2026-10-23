@@ -20,6 +20,13 @@ jobs:
           python3 tools/rest_leads.py "$RUNNER_TEMP/inspections-raw.json" "$RUNNER_TEMP/rest-data.json" > /dev/null
           python3 tools/licenses_chicago.py --full "$RUNNER_TEMP/licenses-full.json" > /dev/null
       - name: Overture places for Chicago
-        run: python3 tools/phones.py --extract "$RUNNER_TEMP/chicago.json"
+        run: |
+          python3 tools/phones.py --release > "$RUNNER_TEMP/rel.txt" 2>&1 || true
+          echo "::notice title=release::$(tr '\n' ' ' < "$RUNNER_TEMP/rel.txt")"
+          if ! python3 tools/phones.py --extract "$RUNNER_TEMP/chicago.json" > "$RUNNER_TEMP/ex.txt" 2>&1; then
+            echo "::error title=extract::$(tail -c 900 "$RUNNER_TEMP/ex.txt" | tr '\n' ' ')"; exit 1; fi
+          echo "::notice title=extract::$(tail -c 900 "$RUNNER_TEMP/ex.txt" | tr '\n' ' ')"
       - name: Coverage (counts only)
-        run: python3 tools/phones.py --probe "$RUNNER_TEMP/rest-data.json" "$RUNNER_TEMP/licenses-full.json" "$RUNNER_TEMP/chicago.json"
+        run: |
+          python3 tools/phones.py --probe "$RUNNER_TEMP/rest-data.json" "$RUNNER_TEMP/licenses-full.json" "$RUNNER_TEMP/chicago.json" > "$RUNNER_TEMP/pr.txt" 2>&1; rc=$?
+          echo "::notice title=coverage::$(tail -c 900 "$RUNNER_TEMP/pr.txt" | tr '\n' ' ')"; exit $rc

@@ -19,3 +19,9 @@
 - One-line summary on each daily row is written from the City's violation codes and our category words, never the inspector's notes (wording rule, Todd Oct 17, tools/rest_leads.py).
 - Order: moves 1 and 2 first; seat offer, home page and outreach after, each shown to Todd before it goes live or sends.
 - Move 1 built Oct 23: tools/rest_daily.py and .github/workflows/inspections-daily.yml (daily 11:45 UTC, no push trigger). Public: daily.json (counts, unnamed examples), daily-seen.json (HMAC keys). Named list sealed in daily.sealed.json. Independent check: 3 blockers found and fixed, recheck "no blockers". HMAC key: REST_DAILY_KEY secret once Todd adds it, members' password until then.
+- [stated] Todd, Oct 23, 2:56 pm: "Yes go with your recommendations": the merged pest cold email below is the template carried into step 4. Not wired yet; it goes through email/COPY_REVIEW.md and the copy gate when the first batch is built, after the phone step (the phone line is untrue until then). {n} and {neighborhood} fill from the daily list (permits/inspections-chicago/daily.json, last 7 days of history; neighborhood from its examples). n = 1 switches to "1 failed or conditional restaurant inspection that cited rodents or insects, in {neighborhood}". Second variant for the A/B test later: neighborhood in the subject.
+  Subject: {n} Chicago kitchens flagged for pests this week
+  Hi {first name},
+  This week the City of Chicago posted {n} failed or conditional restaurant inspections that cited rodents or insects, including one in {neighborhood}.
+  Each morning I pull the new ones, with each kitchen's listed phone number. I'm opening that daily list to at most 3 Chicago pest companies, and all 3 seats are open.
+  Want tomorrow's list free to test?

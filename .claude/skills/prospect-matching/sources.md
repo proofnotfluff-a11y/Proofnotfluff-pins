@@ -7,4 +7,6 @@ Todd, Oct 22, 2026, 10:55 pm, live chat: "Let's go with your recommendations" (w
 - dumpster_rental: the site rents roll-off containers to contractors or hauls construction debris. Sources: Chicago CDOT Licensed Dumpster Providers list (chicago.gov, companies and phones only, no people), Austin "Haulers Licensed by City of Austin" (open data); then the site. Skip residential junk removal only.
 - security: the site offers construction site guards, patrols or camera towers. Sources: IDFPR private security contractor agency license lookup (Illinois) and Texas DPS Private Security company search (TOPS), checked for an active agency license; then the site. Skip alarm-only and residential-only firms. A license record's named person is not used as the contact; only the business's own site or Hunter supplies one.
 
+Official lists are looked up one business at a time, never pulled in bulk, and nothing from them (a person's name, a phone, a license number) is stored; read each site's terms once on first use (Legal desk, Oct 22, item 8).
+
 The ladder and limits do not change: the City's owner record, the business's own site, then Hunter at most 5 searches a run across every type; owner-read inboxes only; two checker subagents re-read each site; no form, call, sign-up or purchase.

@@ -135,6 +135,8 @@ def variant_problems(drafts, ts, leads, prospects, followup=False):
         arm = str(pr.get("variant") or "") or R.assign_variant(pid, slot_letters(ts, trade, t["stage"]))
         if t["letter"] != arm:
             p.append(f"draft {pid}: variant {vid} is not the prospect's arm {arm}")
+        if trade in R.STEP2_TRADES and "{kind}" in t["body"] and not re.search(r"\b%s\b" % re.escape(R.kind_display(ld)), d.get("body") or ""):
+            p.append(f"draft {pid}: {{kind}} must be {R.kind_display(ld)!r} (pnf_rules.kind_display of the City scope)")
         if not pattern(t["body"]).match((d.get("body") or "").strip("\n")):
             p.append(f"draft {pid}: body is not template {vid} filled in (its fixed words changed)")
         if not pattern(t["subject"]).match((d.get("subject") or "").strip()):
@@ -196,7 +198,7 @@ def check_live(path, gc_path):
     problems, n, per = [], 0, {t: 0 for t in R.TRADE_VERTICALS}
     for ld in gc.get("leads", []):
         f = {"first": "Dana", "gc": R.gc_display(ld.get("gc_company")), "value": R.value_display(ld.get("valuation")),
-             "kind": "office", "street": R.street_display(ld.get("address")), "zip": ld.get("zip") or ""}
+             "kind": R.kind_display(ld), "street": R.street_display(ld.get("address")), "zip": ld.get("zip") or ""}
         hit = False
         for trade, v in R.TRADE_VERTICALS.items():
             key = (trade, ld.get("stage"))

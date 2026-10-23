@@ -298,6 +298,20 @@ def step2_cases():
            R.validate_matches(m("cc-window_cleaning-example", "chi-4"), leads, pros), True)
     ts = CG.variant_templates(CG.TEMPLATES)
     f = dict(CG.FIXTURE_FIELDS)
+    for scope, want in (("New 6-story building with 110 dwelling units", "apartment"), ("New middle school", "school"),
+                        ("Core and shell for a one story quantum facility", "building"), ("Office and apartments", "apartment"), ("Multi Family Res with a Leasing Office", "apartment"),
+                        ("Full building for 5 new 3-story townhouses (R-2)", "townhouse"), ("New office and school", "building"),
+                        ("New Construction of Sports Facility to Include Admin Building with offices", "building")):
+        expect(f"step2: kind of {scope!r} is {want}", [] if R.kind_display({"scope": scope}) == want else [R.kind_display({"scope": scope})], False)
+    apt = dict(insp_new, lead_id="chi-7", scope="New 6-story building with 110 dwelling units")
+    wpid = "cc-window_cleaning-example"
+    arm = R.assign_variant(wpid, CG.slot_letters(ts, "window_cleaning", "Inspections Under Way"))
+    t6 = next(t for t in ts if t["trade"] == "window_cleaning" and t["stage"] == "Inspections Under Way" and t["letter"] == arm)
+    kd = lambda k: {"drafts": [{"prospect_id": wpid, "lead_id": "chi-7", "variant": t6["id"],
+                                "subject": CG.fill(t6["subject"], dict(f, kind=k)), "body": CG.fill(t6["body"], dict(f, kind=k))}]}
+    wpros = {wpid: dict(PROSPECT, prospect_id=wpid, trade_vertical="window_cleaning")}
+    expect("step2: draft with the kind from the City scope passes", CG.variant_problems(kd("apartment"), ts, {"chi-7": apt}, wpros), False)
+    expect("step2: draft calling an apartment build an office fails", CG.variant_problems(kd("office"), ts, {"chi-7": apt}, wpros), True)
     for tr, ld in (("window_cleaning", new), ("window_cleaning", insp_new), ("dumpster_rental", small_reno),
                    ("security", insp_new), ("security", new)):
         slot = [t for t in ts if t["trade"] == tr and t["stage"] == ld["stage"]]

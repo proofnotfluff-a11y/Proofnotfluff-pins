@@ -96,7 +96,7 @@ Want me to send you jobs like this free each Monday?
 ```
 
 ## Step 2 buyer types (Todd, Oct 22, 2026, 10:55 pm, live chat: "Let's go with your recommendations")
-Same test 1 rules: A is the observation and the Monday ask, B adds one who-and-why sentence first, nothing else differs. pnf_rules.TRADE_VERTICALS limits each to its stages, work types and valuations: window_cleaning new builds only, dumpster_rental jobs under $5M under inspection, security new builds of $20M or more. Subjects name the job, never a service, so they do not read like a quote request (checker round 1, Oct 22). {kind} must match the City scope (apartment for R-2 or units, school for E, office for B, hotel); when none fits, the drafter picks another lead.
+Same test 1 rules: A is the observation and the Monday ask, B adds one who-and-why sentence first, nothing else differs. pnf_rules.TRADE_VERTICALS limits each to its stages, work types and valuations: window_cleaning new builds of $5M or more, dumpster_rental jobs under $5M under inspection, security new builds of $20M or more. Subjects name the job, never a service, so they do not read like a quote request (checker round 1, Oct 22). {kind} is pnf_rules.kind_display of the City scope (townhouse, apartment, school, hotel, office, else building), and the gate checks it; these templates say "{kind} project" so the fallback reads "building project".
 
 ### T5 window cleaning partial occupancy
 Variant: A
@@ -106,7 +106,7 @@ Subject: The job on {street}
 ```text
 Hi {first},
 
-{gc} has partial occupancy from the city on the new {value} {kind} build on {street}. Floors turn over in stages from here, so the final glass clean is close if it is not already awarded.
+{gc} has partial occupancy from the city on the new {value} {kind} project on {street}. Space turns over in stages from here, so the final glass clean is close if it is not already awarded.
 
 Want me to send you jobs like this free each Monday?
 ```
@@ -118,7 +118,7 @@ Subject: The job on {street}
 ```text
 Hi {first},
 
-I track city building permits and pass window cleaners the jobs worth bidding. {gc} has partial occupancy from the city on the new {value} {kind} build on {street}. Floors turn over in stages from here, so the final glass clean is close if it is not already awarded.
+I track city building permits and pass window cleaners the jobs worth bidding. {gc} has partial occupancy from the city on the new {value} {kind} project on {street}. Space turns over in stages from here, so the final glass clean is close if it is not already awarded.
 
 Want me to send you jobs like this free each Monday?
 ```
@@ -130,7 +130,7 @@ Subject: The job on {street}
 ```text
 Hi {first},
 
-Saw the city has inspections under way on the new {value} {kind} build {gc} is running on {street}. The final glass clean is likely months out, but the GC's bid list for it usually gets built early.
+Saw the city has inspections under way on the new {value} {kind} project {gc} is running on {street}. The final glass clean is likely a long way off, but getting on the GC's list early helps.
 
 Want me to send you jobs like this free each Monday?
 ```
@@ -142,7 +142,7 @@ Subject: The job on {street}
 ```text
 Hi {first},
 
-I track city building permits and pass window cleaners the jobs worth bidding. Saw the city has inspections under way on the new {value} {kind} build {gc} is running on {street}. The final glass clean is likely months out, but the GC's bid list for it usually gets built early.
+I track city building permits and pass window cleaners the jobs worth bidding. Saw the city has inspections under way on the new {value} {kind} project {gc} is running on {street}. The final glass clean is likely a long way off, but getting on the GC's list early helps.
 
 Want me to send you jobs like this free each Monday?
 ```
@@ -154,7 +154,7 @@ Subject: The job on {street}
 ```text
 Hi {first},
 
-Saw the city has inspections under way on the {value} {kind} project {gc} is running on {street}. Smaller jobs like this often still need cans for finish work and the final cleanout.
+Saw the city has inspections under way on the {value} {kind} project {gc} is running on {street}. Jobs like this usually keep filling cans right up to the final cleanout.
 
 Want me to send you jobs like this free each Monday?
 ```
@@ -166,7 +166,7 @@ Subject: The job on {street}
 ```text
 Hi {first},
 
-I track city building permits and pass active jobs to local haulers. Saw the city has inspections under way on the {value} {kind} project {gc} is running on {street}. Smaller jobs like this often still need cans for finish work and the final cleanout.
+I track city building permits and pass haulers the jobs worth a call. Saw the city has inspections under way on the {value} {kind} project {gc} is running on {street}. Jobs like this usually keep filling cans right up to the final cleanout.
 
 Want me to send you jobs like this free each Monday?
 ```
@@ -178,7 +178,7 @@ Subject: The job on {street}
 ```text
 Hi {first},
 
-Saw the city has inspections under way on the new {value} {kind} build {gc} is running on {street}. Once a building is closed in, copper and gear start to walk, and GCs often add towers or guards.
+Saw the city has inspections under way on the new {value} {kind} project {gc} is running on {street}. Once a building is closed in, copper and gear start to walk, and GCs often add towers or guards.
 
 Want me to send you jobs like this free each Monday?
 ```
@@ -190,7 +190,7 @@ Subject: The job on {street}
 ```text
 Hi {first},
 
-I track city building permits and pass site security companies the jobs worth a call. Saw the city has inspections under way on the new {value} {kind} build {gc} is running on {street}. Once a building is closed in, copper and gear start to walk, and GCs often add towers or guards.
+I track city building permits and pass site security companies the jobs worth a call. Saw the city has inspections under way on the new {value} {kind} project {gc} is running on {street}. Once a building is closed in, copper and gear start to walk, and GCs often add towers or guards.
 
 Want me to send you jobs like this free each Monday?
 ```
@@ -202,7 +202,7 @@ Subject: The job on {street}
 ```text
 Hi {first},
 
-{gc} got partial occupancy approved by the city on the new {value} {kind} build on {street}. With tenants moving in while trades still work, the owner often adds a guard or cameras.
+{gc} got partial occupancy approved by the city on the new {value} {kind} project on {street}. The City now allows people in while work wraps up, which often changes what site security covers.
 
 Want me to send you jobs like this free each Monday?
 ```
@@ -214,7 +214,7 @@ Subject: The job on {street}
 ```text
 Hi {first},
 
-I track city building permits and pass site security companies the jobs worth a call. {gc} got partial occupancy approved by the city on the new {value} {kind} build on {street}. With tenants moving in while trades still work, the owner often adds a guard or cameras.
+I track city building permits and pass site security companies the jobs worth a call. {gc} got partial occupancy approved by the city on the new {value} {kind} project on {street}. The City now allows people in while work wraps up, which often changes what site security covers.
 
 Want me to send you jobs like this free each Monday?
 ```

@@ -15,3 +15,7 @@ Order of work: step 1 in the Oct 22 chat; steps 2, 3 and 4 next, in that order, 
 - Free Monday email and trial offer: email/M1-MONDAY.md, tools/monday_email.py, .claude/skills/monday-email/SKILL.md (not scheduled), first drafts email/monday/drafts-2026-10-22.md.
 - Site: tools/make_site.py supports `trialDays` and `mondayForm` on a lead page; both keys are off, so the live site is unchanged.
 - Legal desk: legal/reviews/2026-10-22-monday-email-and-trial.md, CLEARED WITH FIXES.
+
+## Step 2 as built, Oct 22, 10:55 pm to midnight
+- [stated] Todd, 10:55 pm: "Let's go with your recommendations and start now": build window cleaning, dumpster rental and security; skip portable toilets and commercial movers; hold signage; a drafts-only Wednesday trial run; keep the Monday cap at 200 and trim so the first-issue reply line fits.
+- Limits after two checker rounds: window_cleaning new builds of $5M or more, no interior build-outs; dumpster_rental jobs under $5M under inspection; security new builds of $20M or more. Templates T5 to T9, A and B. Legal desk: CLEARED WITH FIXES, all done.

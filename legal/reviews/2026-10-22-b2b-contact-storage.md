@@ -4,9 +4,10 @@
 "Effective immediately, the 'no person's name' rule is amended for ProofNotFluff B2B prospecting. You are authorized to store business decision-maker full names, job titles, and corporate work email addresses in the PNF pipeline and CRM."
 
 ## Scope
-- Who: the owner, founder, president, partner, director or general manager of a local commercial cleaning or pressure washing business that ProofNotFluff emails about its own product.
+- Who: the owner, founder, president, partner, director or general manager of a local commercial cleaning, pressure washing, window cleaning, dumpster (roll-off) rental or construction site security business in the Chicago or Austin market that ProofNotFluff emails about its own product (widened Oct 22, 2026 for step 2, legal/reviews/2026-10-22-step2-buyer-types.md item 9).
 - What: first name, last name, job title and the corporate work email on the business's own domain. Never a personal or free-mail address, a phone number, a home address or anything else about the person.
 - Sources: Hunter or Apollo through their APIs (GitHub Actions secrets), or CSV exports Todd provides.
+- Also: the City's owner record and the business's own website. Official lists (Chicago CDOT licensed dumpster providers, Austin licensed haulers, IDFPR, Texas DPS TOPS) identify the business only; no person, phone or license number from them is stored.
 
 ## Where the data may be
 - The private CRM artifact.

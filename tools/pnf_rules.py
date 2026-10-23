@@ -82,8 +82,8 @@ PENDING_STATUS = "unverified"   # a site or pattern address waiting for the Boun
 # products its prospects may belong to and the lead stages its email may name; a prospect with no trade_vertical is
 # commercial_cleaning, so every record written before Oct 22 keeps working. exterior_turnkey (pressure washing, window
 # washing, lot striping and sealcoating) gets only Chicago Partial Occupancy Approved leads, where the timing claim holds.
-# window_cleaning (a business whose main service is commercial window cleaning) gets new builds at partial occupancy
-# or under inspection; dumpster_rental (roll-off rental and construction hauling) gets jobs under $5M under inspection,
+# window_cleaning (a business whose main service is commercial window cleaning) gets new builds of $5M or more at
+# partial occupancy or under inspection; dumpster_rental (roll-off rental and construction hauling) gets jobs under $5M under inspection,
 # where the GC may still call around for cans; security (construction site guards, patrols and camera towers) gets new
 # builds of $20M or more at either stage. A business offering two or more exterior trades stays
 # exterior_turnkey.
@@ -99,6 +99,7 @@ TRADE_VERTICALS = {
                         "stages": {"Partial Occupancy Approved", "Inspections Under Way"},
                         "work_types": {"Partial Occupancy Approved": {"New construction"}, "Inspections Under Way": {"New construction"}},
                         # the City tags some floor build-outs as new construction; those have no exterior glass
+                        "min_valuation": 5_000_000,
                         "exclude_scope": re.compile(r"build ?-?out|fit ?-?out|finish ?-?out|first time|interior (?:alteration|remodel|renovation|work)", re.I)},
     "dumpster_rental": {"products": {"chicago-construction", "austin-construction"}, "stages": {"Inspections Under Way"},
                         "max_valuation": 5_000_000},
@@ -107,6 +108,8 @@ TRADE_VERTICALS = {
                  "work_types": {"Partial Occupancy Approved": {"New construction"}, "Inspections Under Way": {"New construction"}},
                  "min_valuation": 20_000_000},
 }
+
+STEP2_TRADES = {"window_cleaning", "dumpster_rental", "security"}   # their {kind} comes from kind_display, gate-checked
 
 
 def trade_of(x):
@@ -208,10 +211,39 @@ GC_SUFFIX = re.compile(r",?\s+\b(?:L\.?L\.?C|INC(?:ORPORATED)?|CORP(?:ORATION)?|
 def gc_display(name):
     """The general contractor as an email names it: the City's business name without a trailing legal suffix.
     'Bartlett Cocke General Contractors, LLC' gives 'Bartlett Cocke General Contractors'. Drafter and gate both use it."""
-    n = re.sub(r"\s*\([^)]*\)\s*$", "", (name or "").strip())   # 'Onni Contracting (Chicago)': checker, Oct 22
-    for _ in range(2):
-        n = GC_SUFFIX.sub("", n).strip(" ,")
+    n = (name or "").strip()
+    # checkers, Oct 22: a trailing '(Chicago)' or ' Chicago', a leading 'The ', and a glued 'Edwardsconstruction' go
+    n = re.sub(r"^The\s+(?=\S+\s+\S+\s+\S)", "", n)
+    n = re.sub(r"(?<=[a-z])(construction|contracting|builders)\b", lambda m: " " + m.group(1).capitalize(), n)
+    for _ in range(3):
+        n = re.sub(r"\s*\([^)]*\)\s*$", "", GC_SUFFIX.sub("", n).strip(" ,")).strip(" ,")
+        n = re.sub(r"(?:\s+-)?\s+(?:Chicago|Austin)$", "", n).strip(" ,-")
     return n
+
+
+KIND_WORDS = (("townhouse", re.compile(r"townhouses?|town homes?|townhomes?", re.I)),
+              ("apartment", re.compile(r"\bapartments?\b|dwelling units?|multi[- ]?family|\bR-2\b|residential", re.I)),
+              ("school", re.compile(r"\bschools?\b|academic|\bE[- ]educational|\bE occupancy", re.I)),
+              ("hotel", re.compile(r"\bhotels?\b", re.I)),
+              ("office", re.compile(r"\boffices?\b|\bB[- ]business", re.I)))
+
+
+# a scope naming another main use (a casino, a sports facility, a terminal) is a 'building', never one of the four words
+KIND_OTHER = re.compile(r"casino|sports?\b|stadium|arena|terminal|\bstation\b|hospital|warehouse|laborator|church|museum|"
+                        r"library|data cent|industrial|retail|restaurant|event cent|quantum", re.I)
+
+
+def kind_display(lead):
+    """The one {kind} word a step 2 email uses for a lead, from the City scope: townhouse or apartment when homes are
+    named, else school, hotel or office when exactly one matches, else 'building' (Legal desk and checkers, Oct 22: a
+    wrong kind word outs the sender)."""
+    s = str((lead or {}).get("scope") or "")
+    if KIND_OTHER.search(s):
+        return "building"
+    hits = [k for k, rx in KIND_WORDS if rx.search(s)]
+    if hits and hits[0] in ("townhouse", "apartment"):   # homes first: a 'leasing office' does not make it an office
+        return hits[0]
+    return hits[0] if len(hits) == 1 else "building"
 
 
 def value_display(v):

@@ -25,6 +25,7 @@ import pnf_dash as D  # noqa: E402
 from leads_xlsx import _FUNCS, _flat, cache_values, card_sheet  # noqa: E402
 from rest_xlsx import blue, card, lead_para  # noqa: E402
 from openpyxl.styles import Alignment, Border  # noqa: E402
+from leads_xlsx import rich  # noqa: E402
 from openpyxl.utils import get_column_letter as gl  # noqa: E402
 
 PRODUCT = "Chicago New Business Licenses"
@@ -40,6 +41,17 @@ SHORT = {k: s for k, _, s, _ in TRADES}
 KINDS = {k: w for k, _, _, w in TRADES}
 ORDER = [k for k, _, _, _ in TRADES]
 FOOT = "Public City of Chicago business license records. See the Terms tab."
+# The app's chip colors for what the City's record says (launch style.css .hi): (text, cell tint)
+CHIP = {"first": "A63E21", "site": "2F5F9E", "added": "3A4152", "relicensed": "3A4152"}   # the label in bold, its color; the rest plain
+
+
+def link_formula(url, text):
+    """A HYPERLINK formula rather than a cell link: the cell's own blue font then shows in Excel, Sheets and LibreOffice
+    alike (LibreOffice paints cell links in its own navy)."""
+    return f'=HYPERLINK("{url}","{text}")'
+
+
+_FUNCS.setdefault("HYPERLINK", lambda url, text=None: url if text is None else text)
 
 # What the City's earlier records say about the business (tools/licenses_chicago.py add_history)
 HISTORY = {"first": "First license", "site": "New site", "added": "Added license", "relicensed": "Relicensed", "": "Not checked"}
@@ -266,13 +278,13 @@ WRAP = ("name", "address", "area", "type", "activity", "history", "also")
 
 def data_sheet(wb, key, rows, list_date, food):
     """One trade's tab: a stat strip with the ink answer tile, then the table (WORKBOOK_STANDARD v3, rest_xlsx's layout)."""
-    cols = ([("name", "Business", 26, "left", None), ("address", "Address", 24, "left", None), ("area", "Community area", 16, "left", None),
-             ("issued", "Licensed", 13, "left", "date"), ("type", "License type", 22, "left", None),
-             ("activity", "Business activity", 30, "left", None), ("history", "On the City's record", 22, "left", None)]
-            + ([("food", "Food license inspection", 14, "left", "date"), ("since", "Food inspections since", 11, "left", None)] if food else [])
-            + [("new", "New this week", 9, "center", None), ("also", "Other licenses here", 22, "left", None),
-               ("zip", "ZIP", 8, "left", None), ("license", "License", 11, "left", None), ("record", "City record", 11, "left", None)])
-    print_cols = 8 if food else 7
+    cols = ([("name", "Business", 26, "left", None), ("address", "Address", 22, "left", None), ("area", "Community area", 17, "left", None),
+             ("issued", "Licensed", 13, "left", "date"), ("type", "License type", 21, "left", None),
+             ("activity", "Business activity", 26, "left", None), ("history", "On the City's record", 23, "left", None)]
+            + ([("food", "Food license inspection", 23, "left", "date"), ("since", "Food inspections since", 22, "left", None)] if food else [])
+            + [("new", "New this week", 15, "center", None), ("also", "Other licenses here", 21, "left", None),
+               ("zip", "ZIP", 7, "left", None), ("license", "License", 10, "left", None), ("record", "City record", 12, "left", None)])
+    print_cols = len(cols)
     ws = wb.create_sheet(TAB[key])
     letters = [gl(i + 3) for i in range(len(cols))]
     pad_r, gut_r = gl(len(cols) + 3), gl(len(cols) + 4)
@@ -317,9 +329,11 @@ def data_sheet(wb, key, rows, list_date, food):
                      "fmt": "mmm d, yyyy" if fmt == "date" else None, "bold": ck == "name"})
     f1, f2, end = D.table_card(ws, top, "B", pad_r, spec, max(len(rows), 1), row_height=30)
     head = f1 - 1
-    D.h(ws, head, 30)
+    D.h(ws, head, 24)
     for l, (ck, head_, w, align, fmt) in zip(letters, cols):
-        ws[f"{l}{head}"].alignment = Alignment(horizontal=align, vertical="bottom", wrap_text=True, indent=1 if align == "right" else 0)
+        c = ws[f"{l}{head}"]
+        c.value = head_; c.font = D.f(9, True, "ink")
+        c.alignment = Alignment(horizontal=align, vertical="bottom", wrap_text=False, indent=1 if ck == "history" else 0)
     if not rows:
         ws[f"{letters[1]}{f1}"] = "None in the last 30 days."           # not in the Business column, so no count includes it
         ws[f"{letters[1]}{f1}"].font = D.f(10, False, "muted")
@@ -334,30 +348,56 @@ def data_sheet(wb, key, rows, list_date, food):
             elif ck == "food" and not r.get(ck):
                 c.value = None
             elif ck == "history":
-                c.font = D.f(10, r.get("hist") == "first", "teal" if r.get("hist") == "first" else "ink2")
-            elif ck in ("address", "area", "issued", "type", "activity", "license", "zip", "food"):
+                ink = CHIP.get(r.get("hist"))
+                c.font = D.f(10, False, "ink2")
+                c.alignment = Alignment(horizontal="left", vertical="center", wrap_text=True, indent=1)
+                label = HISTORY.get(r.get("hist") or "")
+                if ink and c.value.startswith(label):
+                    c.value = rich([(label, True, ink)] + ([(c.value[len(label):], False, "ink2")] if c.value != label else []))
+            elif ck in ("address", "area", "issued", "type", "activity", "license", "zip", "food", "since"):
                 c.font = D.f(10, False, "ink2")
             elif ck == "also" and r.get(ck):
                 c.font = D.f(9, False, "ink2")
             elif ck == "new" and r.get(ck):
                 c.font = D.f(9, True, "accent")
             elif ck == "record" and r.get("recordUrl"):
-                c.hyperlink = r["recordUrl"]; c.font = D.f(10, False, "blue", underline="single")
+                c.value = link_formula(r["recordUrl"], "City record"); c.font = D.f(10, False, "blue", underline="single")
             if ck in WRAP and c.value:
-                need = max(need, S.text_height(str(c.value), w, 10, bold=ck == "name") + 8)
+                need = max(need, S.text_height(str(c.value), w - (2 if ck == "history" else 0), 10, bold=ck in ("name", "history")) + 8)
         D.h(ws, rr, need)
     if rows:
         ws.auto_filter.ref = f"{letters[0]}{head}:{letters[-1]}{f2}"
     D.paint_canvas(ws, end + 1, gl(len(cols) + 6))
     S.finish_sheet(ws, PRODUCT, end, span=("A", gut_r), freeze=f"{letters[1]}{f1}", protect=False, footer_notice=FOOT,
                    tab_color="accent" if key == "food" else "teal" if key in ("retail", "beauty") else None, canvas_cols=gl(len(cols) + 6))
-    ws.print_area = f"A1:{gl(print_cols + 2)}{end}"
+    ws.print_area = f"A1:{gut_r}{end}"
     ws.page_setup.orientation = "landscape"
     ws.page_setup.paperSize = ws.PAPERSIZE_LEGAL
     ws.page_setup.fitToWidth = 1
     ws.page_margins.left = ws.page_margins.right = 0.3
     ws.print_title_rows = f"{head}:{head}"
     return ws, col
+
+
+RULE_LEADS = ["Say only the record", "Keep it true", "Once, then stop"]
+LEFT_OUT_SHORT = ("Renewals, event and seasonal licenses, licenses for one person's own work or for work away from a fixed site, home "
+                  "and mail-drop addresses, sites outside Chicago, and names that could be a person's. The full rule is on the Terms tab.")
+
+
+def numbered(n, lead, text):
+    """A card row with an accent number and a bold lead-in in the first column, the text beside it (rows line up with
+    the lead-in rows of the other cards)."""
+    return ("lead", (rich([(f"{n}  ", True, "accent"), (lead, True, "ink")]), text))
+
+
+def relink(ws):
+    """Card link rows as HYPERLINK formulas (see link_formula)."""
+    for row in ws.iter_rows():
+        for c in row:
+            if c.hyperlink is not None and isinstance(c.value, str):
+                url = c.hyperlink.target
+                c.hyperlink = None
+                c.value = link_formula(url, c.value)
 
 
 def finish_card(ws, r, tab):
@@ -387,6 +427,12 @@ def build(full, out):
     start_here(wb, full, list_date, counts, cols)
     wb.active = 0
     for ws in wb.worksheets:
+        # a blank in the first and last gutter cells: renderers that crop to the used area (LibreOffice's one-page
+        # export, Sheets' print preview) keep the canvas margin on both sides, as Excel shows it
+        right = re.search(r"\$([A-Z]+)\$\d+$", ws.print_area).group(1)
+        for k in ("A", right):
+            if ws[f"{k}1"].value is None:
+                ws[f"{k}1"] = " "
         for row in ws.iter_rows():
             for c in row:
                 if isinstance(c.value, str) and ("—" in c.value or "–" in c.value):
@@ -413,9 +459,10 @@ def start_here(wb, full, list_date, counts, cols):
     for left, right, eb, fml, sub, dark in tiles:
         D.tile(ws, 7, left, right, eb, fml, S.FMT["int"], sub, dark=dark, value_size=28 if dark else 20)
     r = card(ws, 12, "Three steps", [
-        ("step", (1, "Open the tab for the trades you sell to. Filter New this week, or On the City's record for First license.")),
-        ("step", (2, "Call or visit in the first weeks. Name the City's license and its date, nothing more.")),
-        ("step", (3, "Send the matching email from the Pitch kit tab the same day.")),
+        numbered(1, "Pick your trades", "Open the tab for the trades you sell to. Filter New this week, or On the City's record for "
+                                     "First license."),
+        numbered(2, "Call or visit", "In the first weeks. Name the City's license and its date, nothing more."),
+        numbered(3, "Email", "Send the matching email from the Pitch kit tab the same day."),
     ])
     r = card(ws, r, "Find your trade", [("lead", (TAB[k], f"{KINDS[k]}.")) for k in ORDER])
     r = card(ws, r, "How the list is made", [
@@ -423,14 +470,17 @@ def start_here(wb, full, list_date, counts, cols):
                  f"the City issued from {pretty(w['listFrom'])} to {pretty(w['to'])} at Chicago business sites, except the ones under Left out."),
         ("lead", ("Trades", "Ours, from the City's license type and business activity. A business goes in the first trade that fits, in "
                             "the order of the tabs.")),
-        ("lead", ("City record", "We read the City's earlier licenses for the same business. " + " ".join(
-            f"{HISTORY[k]}: {HISTORY_LONG[k]}" for k in ("first", "site", "added", "relicensed")))),
-        ("lead", ("Restaurants", OVERLAP + " " + OPEN_BEFORE)),
-        ("lead", ("Left out", LEFT_OUT)),
+        ("lead", ("City record", "We read the City's earlier licenses for the same business, and the column On the City's record "
+                                "shows one of four labels.")),
+        *[("lead", (HISTORY[k], HISTORY_LONG[k])) for k in ("first", "site", "added", "relicensed")],
+        ("lead", ("Restaurants", OVERLAP)),
+        ("lead", ("Inspections since", OPEN_BEFORE.split(": ", 1)[1][0].upper() + OPEN_BEFORE.split(": ", 1)[1][1:])),
+        ("lead", ("Left out", LEFT_OUT_SHORT)),
         ("lead", ("Not included", "The legal name of the business and anything about the people who own it. The legal name is read only "
                                   "to judge whether a name could be a person's, and is never written out.")),
         ("link", ("Source: City of Chicago Data Portal, Business Licenses", full["source"]["url"])),
     ])
+    relink(ws)
     r = card(ws, r, "Before you rely on it", [
         ("notegrey", "For general information and planning only. This is not legal, tax, financial or other professional advice, and using it "
                      f"doesn't create a professional relationship. Figures come from City of Chicago records as of {as_of_text(full)} and can "
@@ -442,7 +492,7 @@ def start_here(wb, full, list_date, counts, cols):
 
 def pitch_kit(wb, list_date):
     ws = card_sheet(wb, "Pitch kit", "Pitch kit", "A call opener and an email for each buyer. Fill in the blue parts.", list_date, "teal")
-    r = card(ws, 6, "Three rules", [("step", (i + 1, t)) for i, t in enumerate(PITCH_RULES)])
+    r = card(ws, 6, "Three rules", [numbered(i + 1, lead, t) for i, (lead, t) in enumerate(zip(RULE_LEADS, PITCH_RULES))])
     for i, x in enumerate(PITCH):
         if i:
             S.page_break_before(ws, r)
@@ -468,6 +518,7 @@ def terms(wb, full, list_date):
         rows += [("para", p) for p in paras]
     rows += [("gap", None), ("link", ("City of Chicago Data Terms of Use", ct["url"]))]
     r = card(ws, 6, "City of Chicago Data Terms of Use", rows)
+    relink(ws)
     ours = [("para", OUR_NOTICE)]
     for x in t[1:]:
         ours += [("gap", None), lead_para(x)]
@@ -514,22 +565,25 @@ def selftest():
     assert wb.sheetnames == ["Start Here", *TAB.values(), "Pitch kit", "Terms"], wb.sheetnames
     f = wb[TAB["food"]]
     heads = [f[f"{gl(i)}11"].value for i in range(3, 3 + 8)]
-    assert heads == ["BUSINESS", "ADDRESS", "COMMUNITY AREA", "LICENSED", "LICENSE TYPE", "BUSINESS ACTIVITY", "ON THE CITY'S RECORD",
-                     "FOOD LICENSE INSPECTION"], heads
+    assert heads == ["Business", "Address", "Community area", "Licensed", "License type", "Business activity", "On the City's record",
+                     "Food license inspection"], heads
+    assert f["C11"].font.b and f["C11"].font.sz == 9 and not f["C11"].alignment.wrap_text, "headers: 9 pt bold, one line"
+    assert f.print_area.endswith("$R$" + f.print_area.split("$")[-1]) and f.print_options is not None, f.print_area
+    assert str(f["I12"].value) == "First license" and f["I12"].value[0].font.color.rgb.endswith(CHIP["first"]) and f["I12"].value[0].font.b
     assert f["C12"].value == "Corner Market" and f["C13"].value == "Luna Tacos", "newest first"
     assert f["F13"].number_format == "mmm d, yyyy" and f["J13"].number_format == "mmm d, yyyy"
     assert f["M13"].value == "Consumption on Premises - Incidental Activity" and f["L12"].value == "New" and f["K13"].value == "2025"
-    assert f["P13"].hyperlink.target == RECORD + "1" and f.auto_filter.ref.startswith("C11")
+    assert f["P13"].value == f'=HYPERLINK("{RECORD}1","City record")' and f.auto_filter.ref.startswith("C11")
     assert wb[TAB["venue"]]["D12"].value == "None in the last 30 days." and cached_note_ok(out)
     r = wb[TAB["retail"]]
-    assert r["I12"].value == "New site, licensed in Chicago since 2015" and r["E12"].value == "Not given"
-    assert wb[TAB["beauty"]]["I12"].value == "Added license, here since 2019" and wb[TAB["auto"]]["I12"].value == "Not checked"
+    assert str(r["I12"].value) == "New site, licensed in Chicago since 2015" and r["E12"].value == "Not given"
+    assert str(wb[TAB["beauty"]]["I12"].value) == "Added license, here since 2019" and wb[TAB["auto"]]["I12"].value == "Not checked"
     assert wb[TAB["care"]]["J12"].value is None, "only the food tab has the food inspection column"
     cached = load_workbook(out, data_only=True)
     sh = cached["Start Here"]
     assert [sh[c].value for c in ("C8", "G8", "K8", "O8")] == [6, 3, 3, 2], [sh[c].value for c in ("C8", "G8", "K8", "O8")]
     assert cached[TAB["food"]]["C8"].value == 2 and [cached[TAB["food"]][c].value for c in ("C8",)] == [2]
-    food_stats = [cached[TAB["food"]][f"{gl(i)}8"].value for i in range(3, 12) if cached[TAB["food"]][f"{gl(i)}8"].value is not None]
+    food_stats = [cached[TAB["food"]][f"{gl(i)}8"].value for i in range(3, 18) if cached[TAB["food"]][f"{gl(i)}8"].value is not None]
     assert food_stats == [2, 2, 2, 1], food_stats
     texts = [str(c.value) for ws in wb.worksheets for row in ws.iter_rows() for c in row if c.value is not None]
     blob = "\n".join(texts)

@@ -435,3 +435,4 @@ section.block details,.qa-rel,.ld-gcs{max-width:none}
 @media (prefers-color-scheme:dark){.field input,.field select{border-color:#b08a2a}}
 nav.top a{padding:0 8px}nav.top{gap:0 12px}
 .crumbs a{min-height:44px;display:inline-flex;align-items:center;padding:0}
+.crumbs ol{align-items:center}.crumbs li{display:inline-flex;align-items:center}

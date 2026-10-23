@@ -138,7 +138,8 @@ PAGE = r"""<!doctype html>
 .row .ctx{color:var(--teal);font-weight:700;display:inline-flex;align-items:center;gap:4px}
 .row .fit{color:var(--muted);font-size:13.5px}.row .fit b{color:var(--ink2);font-weight:600}
 .row{grid-template-columns:minmax(0,1fr) auto}
-.row .rt{grid-row:1 / span 3;flex-direction:column;align-items:flex-end;flex-wrap:nowrap;max-width:220px;gap:6px}
+.row .mn,.row .ad,.row .bd{grid-column:1}
+.row .rt{grid-row:1 / span 4;flex-direction:column;align-items:flex-end;flex-wrap:nowrap;max-width:220px;gap:6px}
 @media(max-width:600px){.row{grid-template-columns:minmax(0,1fr)}.row .rt{grid-row:auto;flex-direction:row;align-items:center;flex-wrap:wrap;max-width:none}}
 /* overview: businesses by trade (the signature) */
 .trades{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin:22px 0 26px}
@@ -201,6 +202,8 @@ PAGE = r"""<!doctype html>
 .terms{max-width:780px}.terms .tx p{max-width:none}.terms .tx h3{font:600 14px var(--body);letter-spacing:.04em;color:var(--ink);margin:18px 0 6px}
 .terms .tx h3:first-child{margin-top:0}
 #fsheetH:focus{outline:none;box-shadow:none}
+#app h1[tabindex="-1"]:focus{outline:none;box-shadow:none}
+@media(min-width:861px){.tool .search{min-width:360px}}
 @media(max-width:860px){.rbar .lnk,.ovl .lnk{min-height:44px;padding:0 4px}.tog{min-height:44px}}
 .pick{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 14px;margin:14px 0 0}
 .pick .fld select{max-width:300px}
@@ -314,12 +317,12 @@ if(scroll){window.scrollTo(0,0);const h=app.querySelector("h1");if(h){h.setAttri
 /* a row in any list */
 function row(r,ov){const m=mk(r.id);
 const meta=[r.nw?'<span class="nwt">New</span>':"",`<span>Licensed ${dayShort(r.d)}</span>`,
- r.fi?`<span>License inspection ${dayShort(r.fi)}</span>`:"",m.c?`<span class="ctx">${ico("check","s")}Contacted</span>`:""].filter(Boolean)
+ m.c?`<span class="ctx">${ico("check","s")}Contacted</span>`:""].filter(Boolean)
  .map((t,i)=>`<span class="mi">${i?'<span class="dot" aria-hidden="true">&middot;</span>':""}${t}</span>`).join("");
 return `<li><a class="row" href="#/biz/${encodeURIComponent(r.id)}" data-id="${esc(r.id)}">
 <span class="mn">${esc(r.n)}</span>
 <span class="ad">${esc(r.a)}${r.ar?`<span class="ar">, ${esc(r.ar)}</span>`:""}</span>
-<span class="bd">${meta}</span><span class="bd"><span class="fit"><b>${esc(r.ty)}</b>${r.ac&&r.ac!==r.ty?": "+esc(r.ac):""}</span></span>
+<span class="bd">${meta}</span>${r.fi?`<span class="bd"><span class="mi">License inspection ${dayShort(r.fi)}</span></span>`:""}<span class="bd"><span class="fit"><b>${esc(r.ty)}</b>${r.ac&&r.ac!==r.ty?": "+esc(r.ac):""}</span></span>
 <span class="rt">${ov?tch(r.t):""}${hi(r)}</span>${ico("chev","chev")}</a></li>`;}
 function rowsHtml(list,limit,ov){if(!list.length)return "";const n=Math.min(limit||list.length,list.length);return `<ul class="list-rows">${list.slice(0,n).map(r=>row(r,ov)).join("")}</ul>`;}
 const newest=(a,b)=>b.d.localeCompare(a.d)||a.n.localeCompare(b.n);
@@ -327,9 +330,8 @@ const newest=(a,b)=>b.d.localeCompare(a.d)||a.n.localeCompare(b.n);
 /* overview */
 function viewOverview(){document.title="Overview | Chicago New Business Licenses";
 const n=R.length,nw=R.filter(r=>r.nw).length,first=R.filter(r=>r.h==="first").length,food=R.filter(r=>r.fi).length;
-const counts=TORD.map(k=>[k,inTrade(k).length]);const topk=counts.slice().sort((a,b)=>b[1]-a[1])[0][0];
 const tile=k=>{const rs=inTrade(k);const nn=rs.filter(r=>r.nw).length;
-return `<a class="trade${k===topk?" top":""}${rs.length?"":" zero"}" href="#/list?t=${k}"><span class="ti">${ico(k)}</span><span class="tn num">${int(rs.length)}</span><span class="tt">${esc(TR[k].short)}</span><span class="tm num">${nn?`<b>${int(nn)} new</b> this week`:"none new this week"}</span></a>`;};
+return `<a class="trade${rs.length?"":" zero"}" href="#/list?t=${k}"><span class="ti">${ico(k)}</span><span class="tn num">${int(rs.length)}</span><span class="tt">${esc(TR[k].short)}</span><span class="tm num">${nn?`<b>${int(nn)} new</b> this week`:"none new this week"}</span></a>`;};
 const ac={};R.forEach(r=>{if(r.ar){const a=ac[r.ar]=ac[r.ar]||[0,0];a[r.h==="first"?0:1]++;}});
 const areas=Object.entries(ac).map(([a,v])=>[a,v[0]+v[1],v]).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,8);const amax=areas.length?areas[0][1]:1;
 const marked=Object.keys(MARKS).filter(id=>BYID[id]);const cN=marked.filter(id=>MARKS[id].c).length,nN=marked.filter(id=>(MARKS[id].n||"").trim()).length;
@@ -375,7 +377,7 @@ $("#app").innerHTML=`<div class="ph"><div><h1>${tr?esc(tr.short):"All businesses
 <nav class="lsw" aria-label="Trades"><a href="${writeF(Object.assign({},f,{t:"",type:""}))}"${!f.t?' aria-current="page"':""}>${ico("all")}All<span class="c num">${int(R.length)}</span></a>${TORD.map(k=>`<a href="${writeF(Object.assign({},f,{t:k,type:"",fi:k==="food"?f.fi:""}))}"${k===f.t?' aria-current="page"':""}>${ico(k)}${esc(TR[k].short)}<span class="c num">${int(inTrade(k).length)}</span></a>`).join("")}</nav>
 <p class="ldesc">${tr?esc(tr.kinds)+" with a new City license in the last 30 days.":"Businesses with a new City license in the last 30 days at a Chicago business site."} Newest first.</p>
 ${foodish&&D.checks.food?`<p class="ovl"><b>Also a member of Chicago Restaurant Inspection Leads?</b> Food businesses with a License inspection date may already have shown up on its Opening soon list. <button class="lnk" type="button" id="hideFood">Hide them here</button></p>`:""}
-<div class="tool"><label class="search"><span class="sr">Search this list</span>${ico("search")}<input id="fq" type="search" placeholder="Search name, address, license or activity" value="${esc(f.q)}" autocomplete="off" enterkeyhint="search"><button type="button" class="clr" id="fqx" aria-label="Clear search"${f.q?"":" hidden"}>${ico("x","s")}</button></label>
+<div class="tool"><label class="search"><span class="sr">Search this list</span>${ico("search")}<input id="fq" type="search" placeholder="Search name, address or activity" value="${esc(f.q)}" autocomplete="off" enterkeyhint="search"><button type="button" class="clr" id="fqx" aria-label="Clear search"${f.q?"":" hidden"}>${ico("x","s")}</button></label>
 <div class="seg" id="fh" role="group" aria-label="On the City's record"></div>
 <button class="btn fbtn" id="fopen" type="button" aria-haspopup="dialog" aria-controls="fsheet">${ico("filter")}<span id="fopenT">Filters</span></button>
 <span class="tsp"></span><button class="btn csvb" type="button" id="csv" aria-label="Export these businesses as a CSV file">${ico("csv","s")}<span class="t" aria-hidden="true">Export CSV</span><span class="m" aria-hidden="true">CSV</span></button>
@@ -572,7 +574,7 @@ def check(full, html, password, xlsx_path):
     seen = {}
     for key in X.ORDER:
         ws = wb[X.TAB[key]]
-        heads = {ws.cell(11, c).value: c for c in range(3, 20) if ws.cell(11, c).value}
+        heads = {str(ws.cell(11, c).value).upper(): c for c in range(3, 20) if ws.cell(11, c).value}
         for row in range(12, ws.max_row + 1):
             lic = ws.cell(row, heads["LICENSE"]).value
             if not lic:

@@ -291,7 +291,7 @@ def _coord(v):
 # The salt is public, so a key can be checked against the City's records; it keeps the list free of names, not secret.
 DNL_FILE = os.path.join(OUT, "do_not_list.json")
 DNL_SALT = "proofnotfluff-licenses-dnl-v1"
-DNL_REASON = "the business asked to be left out"
+DNL_REASON = "on the do-not-list (asked to be left out, or a likely home)"
 
 
 def dnl_hash(key):

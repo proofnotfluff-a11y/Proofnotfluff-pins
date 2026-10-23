@@ -7,7 +7,7 @@
 - Live: Chicago and Austin cleaning leads $29, restaurant $39, outreach paused. 0 payers, 0 replies. Entity A: permits/downstream/gc_leads.json, 730 leads, Mondays 12:05 UTC. Entity B ladder: City owner record, own site, About-page owners, Hunter at most 5 searches a run; site addresses wait for Bouncer; 4 owners sealed, not in CRM. Senders hello@ (25 a day), sales@ (Apps Script). Outreach task: cloud, one-line prompt with the "Nothing sends" line (Todd, Oct 23); next Mon Oct 26, 9:40 am. Licenses live Oct 22, 7-day trial; next: wire drafter.
 - Copy test 1: arm by prospect id, variant on every draft, up to two follow-ups; Oct 19 and 20 batches never.
 - Store and 3 question pages live, new page daily (seo/STORE.md).
-- To-do: scoreboard todos (coo/SCOREBOARD.md); every run keeps its row current.
+- To-do: scoreboard todos (coo/SCOREBOARD.md), kept current by every run.
 - Radar Oct 23 (.claude/skills/radar/SKILL.md): health (4 PASS), AI check (0 of 12 named), scout (scout/OPPORTUNITIES.md; NYC pest to Todd). launches/WIRING.json gates live lead pages. Mondays 9:31 am (Todd's go Oct 23).
 - Skills: .claude/skills/ (5 scheduled, 4 on request).
-- Gemini audit, Oct 23: 5 moves, 4 parked, waits on Todd (todos/decide-audit-moves).
+- Audit moves approved Oct 23 (coo/DECISIONS-2026-10-23.md); daily list 6:45 am; next: phone.

@@ -22,14 +22,15 @@ Outputs:
     with no business name and no street (community area only), for the free page and the cold email lede.
   permits/inspections-chicago/daily-seen.json (public): HMAC-SHA256 keys of inspection ids already listed, 60 days.
     City inspection ids count up, so a plain salted hash could be reversed by trying every id; the HMAC key is the
-    REST_LEADS_PASSWORD Actions secret, and the run stops if it is missing. If that password changes, old keys stop
-    matching and the next run relists up to RECENT_DAYS of places once.
+    REST_DAILY_KEY Actions secret, never given to buyers (until Todd adds it, the REST_LEADS_PASSWORD secret stands in),
+    and the run stops if neither is set. When the key changes, old keys stop matching and the next run relists up to
+    RECENT_DAYS of places once.
   Public examples carry area, facility type, result and trade only: no date and no inspection type, so a single fail
     in a small area cannot be matched back to the City record.
 
 Phone (move 2): each row carries "phone" and "phoneSource", empty until the phone step fills them.
 
-Usage: REST_LEADS_PASSWORD=... python3 tools/rest_daily.py DATASET.json NAMED_OUT.json   (DATASET from rest_leads.py RAW OUT)
+Usage: REST_DAILY_KEY=... python3 tools/rest_daily.py DATASET.json NAMED_OUT.json   (DATASET from rest_leads.py RAW OUT)
        python3 tools/rest_daily.py --selftest
 """
 import datetime as dt, hashlib, hmac, json, os, sys
@@ -50,7 +51,7 @@ WORDS = {k: w for k, _, w in TRADES}
 
 
 def key(inspection_id, secret):
-    assert secret, "no HMAC key: set REST_LEADS_PASSWORD"
+    assert secret, "no HMAC key: set REST_DAILY_KEY"
     return hmac.new(secret.encode(), (SALT + "|" + str(inspection_id)).encode(), hashlib.sha256).hexdigest()[:24]
 
 
@@ -221,9 +222,11 @@ if __name__ == "__main__":
     if a == ["--selftest"]:
         selftest()
     elif len(a) == 2:
-        secret = os.environ.get("REST_LEADS_PASSWORD", "")
+        secret = os.environ.get("REST_DAILY_KEY", "") or os.environ.get("REST_LEADS_PASSWORD", "")
         if not secret:
-            raise SystemExit("rest_daily: REST_LEADS_PASSWORD is not set; the seen keys need it. Stopping.")
+            raise SystemExit("rest_daily: neither REST_DAILY_KEY nor REST_LEADS_PASSWORD is set; the seen keys need one. Stopping.")
+        if not os.environ.get("REST_DAILY_KEY"):
+            print("rest_daily: REST_DAILY_KEY not set yet; using the members' password as the key")
         named, pub = run(json.load(open(a[0])), a[1], secret)
         print(json.dumps({"asOf": pub["asOf"], "through": pub["through"], **pub["counts"]}))
     else:

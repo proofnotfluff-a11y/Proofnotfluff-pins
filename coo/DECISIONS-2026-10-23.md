@@ -18,3 +18,4 @@
   6. Pest cold email: the session's version (no business named, community area only, no price, asks for a reply). Names go only to a contractor who replies yes, after the Legal desk clears that step.
 - One-line summary on each daily row is written from the City's violation codes and our category words, never the inspector's notes (wording rule, Todd Oct 17, tools/rest_leads.py).
 - Order: moves 1 and 2 first; seat offer, home page and outreach after, each shown to Todd before it goes live or sends.
+- Move 1 built Oct 23: tools/rest_daily.py and .github/workflows/inspections-daily.yml (daily 11:45 UTC, no push trigger). Public: daily.json (counts, unnamed examples), daily-seen.json (HMAC keys). Named list sealed in daily.sealed.json. Independent check: 3 blockers found and fixed, recheck "no blockers". HMAC key: REST_DAILY_KEY secret once Todd adds it, members' password until then.

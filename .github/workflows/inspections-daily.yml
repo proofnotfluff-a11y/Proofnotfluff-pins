@@ -34,9 +34,10 @@ jobs:
         run: python3 tools/inspections_chicago.py --full "$RUNNER_TEMP/inspections-full.json" --raw "$RUNNER_TEMP/inspections-raw.json"
       - name: Build the daily list
         env:
+          REST_DAILY_KEY: ${{ secrets.REST_DAILY_KEY }}
           REST_LEADS_PASSWORD: ${{ secrets.REST_LEADS_PASSWORD }}
         run: |
-          if [ -z "$REST_LEADS_PASSWORD" ]; then echo "REST_LEADS_PASSWORD secret missing; the daily list needs it"; exit 1; fi
+          if [ -z "$REST_DAILY_KEY$REST_LEADS_PASSWORD" ]; then echo "no REST_DAILY_KEY or REST_LEADS_PASSWORD secret; the daily list needs one"; exit 1; fi
           python3 tools/rest_leads.py "$RUNNER_TEMP/inspections-raw.json" "$RUNNER_TEMP/rest-data.json"
           python3 tools/rest_daily.py "$RUNNER_TEMP/rest-data.json" "$RUNNER_TEMP/daily-named.json"
       - name: Seal the named list (it names businesses with failed records; the private key is never in the repo)

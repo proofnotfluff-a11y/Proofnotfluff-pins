@@ -3,7 +3,7 @@
   "name": "City of Chicago Data Portal, Business Licenses",
   "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
   "rowsUpdatedAt": "2026-10-22T09:55:53+00:00",
-  "fetchedAt": "2026-10-22T20:19:21-05:00",
+  "fetchedAt": "2026-10-22T20:29:33-05:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: renewals, cancelled or revoked licenses, licenses for one person's own work, for work away from a fixed business site, or for an event or season (peddlers, special events, pop-ups, tow trucks, home-sharing, shared kitchen users, private booting), home and mail-drop addresses, and any business whose name could be a person's full name. Business-level fields only."
  },
@@ -115,7 +115,8 @@
     "communityArea": "O'Hare",
     "licenseType": "Retail Food Establishment",
     "activity": "Sale of Food Prepared Onsite With Dining Area",
-    "issued": "2026-10-21"
+    "issued": "2026-10-21",
+    "history": "relicensed"
    },
    {
     "business": "Pearl Club",
@@ -123,7 +124,8 @@
     "communityArea": "West Town",
     "licenseType": "Tavern",
     "activity": "Tavern - Consumption of Liquor on Premises",
-    "issued": "2026-10-21"
+    "issued": "2026-10-21",
+    "history": "added"
    },
    {
     "business": "Millennium Hall Casa Bonita",
@@ -131,7 +133,8 @@
     "communityArea": "Loop",
     "licenseType": "Caterer's Liquor License",
     "activity": "Catering of Liquor To Events",
-    "issued": "2026-10-21"
+    "issued": "2026-10-21",
+    "history": "added"
    },
    {
     "business": "La Posada Bar",
@@ -139,7 +142,8 @@
     "communityArea": "Hermosa",
     "licenseType": "Tavern",
     "activity": "Tavern - Consumption of Liquor on Premises",
-    "issued": "2026-10-21"
+    "issued": "2026-10-21",
+    "history": "first"
    },
    {
     "business": "Figurati Pizza & Italian Beef",
@@ -147,7 +151,8 @@
     "communityArea": "West Pullman",
     "licenseType": "Retail Food Establishment",
     "activity": "Sale of Food Prepared Onsite Without Dining Area",
-    "issued": "2026-10-21"
+    "issued": "2026-10-21",
+    "history": "first"
    },
    {
     "business": "Dunhuang Chicago LLC",
@@ -155,7 +160,8 @@
     "communityArea": "Armour Square",
     "licenseType": "Retail Food Establishment",
     "activity": "Preparation of Food and Dining on Premises With Seating",
-    "issued": "2026-10-21"
+    "issued": "2026-10-21",
+    "history": "first"
    },
    {
     "business": "Da Nang Kitchen",
@@ -163,7 +169,8 @@
     "communityArea": "Uptown",
     "licenseType": "Retail Food Establishment",
     "activity": "Sale of Food Prepared Onsite With Dining Area | Preparation and Sale of Coffee and/or Drinks",
-    "issued": "2026-10-21"
+    "issued": "2026-10-21",
+    "history": "first"
    },
    {
     "business": "Big Dawg Market Inc.",
@@ -171,7 +178,8 @@
     "communityArea": "Auburn Gresham",
     "licenseType": "Retail Food Establishment",
     "activity": "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Perishable Foods",
-    "issued": "2026-10-21"
+    "issued": "2026-10-21",
+    "history": "first"
    },
    {
     "business": "The Blackstone Hotel",
@@ -179,7 +187,8 @@
     "communityArea": "Loop",
     "licenseType": "Retail Food Establishment",
     "activity": "Preparation of Food and Dining on Premises With Seating | Sale of Food Prepared Onsite With Dining Area",
-    "issued": "2026-10-20"
+    "issued": "2026-10-20",
+    "history": "relicensed"
    },
    {
     "business": "Taquero LLC",
@@ -187,7 +196,8 @@
     "communityArea": "McKinley Park",
     "licenseType": "Retail Food Establishment",
     "activity": "Sale of Food Prepared Onsite With Dining Area",
-    "issued": "2026-10-20"
+    "issued": "2026-10-20",
+    "history": "first"
    }
   ],
   "beauty": [
@@ -197,7 +207,8 @@
     "communityArea": "Chatham",
     "licenseType": "Limited Business License",
     "activity": "Nail Services | Provide Waxing Services",
-    "issued": "2026-10-21"
+    "issued": "2026-10-21",
+    "history": "site"
    },
    {
     "business": "Lincoln Park Waxing Studio Inc.",
@@ -205,7 +216,8 @@
     "communityArea": "Lincoln Park",
     "licenseType": "Limited Business License",
     "activity": "Skincare Services | Provide Waxing Services",
-    "issued": "2026-10-21"
+    "issued": "2026-10-21",
+    "history": "relicensed"
    },
    {
     "business": "Emyves Spa",
@@ -213,7 +225,8 @@
     "communityArea": "Rogers Park",
     "licenseType": "Limited Business License",
     "activity": "Hair Services | Skincare Services",
-    "issued": "2026-10-21"
+    "issued": "2026-10-21",
+    "history": "first"
    },
    {
     "business": "Vaknin Aesthetics LLC",
@@ -221,7 +234,8 @@
     "communityArea": "Norwood Park",
     "licenseType": "Limited Business License",
     "activity": "Skincare Services | Retail Sales of General Merchandise",
-    "issued": "2026-10-20"
+    "issued": "2026-10-20",
+    "history": "first"
    },
    {
     "business": "Tabitha African Hair Braiding",
@@ -229,7 +243,8 @@
     "communityArea": "Austin",
     "licenseType": "Limited Business License",
     "activity": "Hair Services",
-    "issued": "2026-10-19"
+    "issued": "2026-10-19",
+    "history": "first"
    },
    {
     "business": "Montrose Foot Massage & Spa",
@@ -237,7 +252,8 @@
     "communityArea": "Irving Park",
     "licenseType": "Limited Business License",
     "activity": "Skincare Services | Provide Foot Massage - Fully Clothed/No Disrobing",
-    "issued": "2026-10-19"
+    "issued": "2026-10-19",
+    "history": "site"
    }
   ],
   "auto": [
@@ -247,7 +263,8 @@
     "communityArea": "Humboldt Park",
     "licenseType": "Motor Vehicle Services License",
     "activity": "Motor Vehicle Repair - Engine and Transmission Work",
-    "issued": "2026-10-19"
+    "issued": "2026-10-19",
+    "history": "first"
    }
   ],
   "care": [
@@ -257,7 +274,8 @@
     "communityArea": "Clearing",
     "licenseType": "Children's Services Facility License",
     "activity": "Instruction in Dance for Children Under 18 Years of Age",
-    "issued": "2026-10-20"
+    "issued": "2026-10-20",
+    "history": "site"
    }
   ],
   "venue": [
@@ -267,7 +285,8 @@
     "communityArea": "West Town",
     "licenseType": "Public Place of Amusement",
     "activity": "Charges a Fee for Entertainment or Amusements or Recreational Activities | Retail Sales of General Merchandise and Non-Perishable Food",
-    "issued": "2026-10-20"
+    "issued": "2026-10-20",
+    "history": "first"
    },
    {
     "business": "The Smart Bar",
@@ -275,7 +294,8 @@
     "communityArea": "Lake View",
     "licenseType": "Public Place of Amusement",
     "activity": "Charges a Fee for Entertainment or Amusements or Recreational Activities",
-    "issued": "2026-10-15"
+    "issued": "2026-10-15",
+    "history": "added"
    }
   ],
   "retail": [
@@ -285,7 +305,8 @@
     "communityArea": "Near North Side",
     "licenseType": "Commercial Garage",
     "activity": "Provide 4 or More Parking Spaces For a Fee - to Residents, Tenants, Users, Employees and/or Guests (Not Available or Advertised to the Public)",
-    "issued": "2026-10-21"
+    "issued": "2026-10-21",
+    "history": "first"
    },
    {
     "business": "Paws & Effect",
@@ -293,7 +314,8 @@
     "communityArea": "South Shore",
     "licenseType": "Animal Care License",
     "activity": "Provide Animal Grooming Services",
-    "issued": "2026-10-21"
+    "issued": "2026-10-21",
+    "history": "first"
    },
    {
     "business": "House of Fragrances Luxe",
@@ -301,7 +323,8 @@
     "communityArea": "Dunning",
     "licenseType": "Limited Business License",
     "activity": "Retail Sales of General Merchandise",
-    "issued": "2026-10-21"
+    "issued": "2026-10-21",
+    "history": "first"
    },
    {
     "business": "House of Fragrances Collective",
@@ -309,7 +332,8 @@
     "communityArea": "Portage Park",
     "licenseType": "Limited Business License",
     "activity": "Retail Sales of General Merchandise",
-    "issued": "2026-10-21"
+    "issued": "2026-10-21",
+    "history": "relicensed"
    },
    {
     "business": "COI Company",
@@ -317,7 +341,8 @@
     "communityArea": "Archer Heights",
     "licenseType": "Manufacturing Establishments",
     "activity": "Manufacturing of Miscellaneous Items",
-    "issued": "2026-10-20"
+    "issued": "2026-10-20",
+    "history": "site"
    },
    {
     "business": "Xtreme Supplements",
@@ -325,7 +350,8 @@
     "communityArea": "Lincoln Square",
     "licenseType": "Limited Business License",
     "activity": "Retail Sales of General Merchandise and Non-Perishable Food",
-    "issued": "2026-10-19"
+    "issued": "2026-10-19",
+    "history": "relicensed"
    },
    {
     "business": "Prospect International Airport Services, LLC",
@@ -333,7 +359,8 @@
     "communityArea": "O'Hare",
     "licenseType": "Limited Business License",
     "activity": "Miscellaneous Commercial Services",
-    "issued": "2026-10-19"
+    "issued": "2026-10-19",
+    "history": "first"
    },
    {
     "business": "Fotel 81",
@@ -341,7 +368,8 @@
     "communityArea": "Logan Square",
     "licenseType": "Limited Business License",
     "activity": "Retail Sales of General Merchandise | Provide Photography or Videography Services",
-    "issued": "2026-10-19"
+    "issued": "2026-10-19",
+    "history": "first"
    },
    {
     "business": "Safecare",
@@ -349,7 +377,8 @@
     "communityArea": "Loop",
     "licenseType": "Limited Business License",
     "activity": "Provide Home Health Care Services",
-    "issued": "2026-10-16"
+    "issued": "2026-10-16",
+    "history": "first"
    },
    {
     "business": "Pasture-To-Porch",
@@ -357,7 +386,8 @@
     "communityArea": "Mount Greenwood",
     "licenseType": "Limited Business License",
     "activity": "Operation of an Administrative Commercial Office | Miscellaneous Commercial Services",
-    "issued": "2026-10-16"
+    "issued": "2026-10-16",
+    "history": "first"
    }
   ]
  }

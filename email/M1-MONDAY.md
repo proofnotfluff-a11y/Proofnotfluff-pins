@@ -33,7 +33,7 @@ Rules every Monday email keeps: plain text, under 200 words above the footer, no
 - Restaurant leads: the same funnel at $39 once its outreach goes live; no template for it yet.
 
 ## Go-live list (after Todd's checklist; the site part is major and goes to Todd first)
-- site/pages.json on the Chicago and Austin lead pages: "trialDays": 7 and "mondayForm": the new Kit form number for that city.
+- site/pages.json on the Chicago and Austin lead pages: "trialDays": 7 and "mondayForm": "10084986" (Chicago) or "10084998" (Austin), made Oct 22 (email/KIT-SETUP.md). Kit mailing address set Oct 22. Gumroad trial, its line and Todd's $0 test trial done Oct 22 (Todd).
 - Chicago FAQ: "Will you cover other cities?" still says the waitlist decides; Austin is live and the waitlist form is gone from the page. New answer to show Todd: "Chicago and Austin now. More cities with open permit data are next."
 - A short /privacy/ page (Legal desk FIX 2), linked from the footer.
 - Rebuild, every gate in seo/STORE.md, then Todd's go, then push.

@@ -358,7 +358,7 @@ nav.top a{padding:0 4px}
 footer p{overflow-wrap:anywhere}
 .ld-page,.lm-page{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
 h1,h2,h3,summary,.st-card h3{text-wrap:balance}.lede,section.block p,.st-sec>p,.sh-main>p,.prose p{text-wrap:pretty}
-@media(max-width:759px){main p a:not(.btn):not(.st-btn2),main li a:not(.btn),.crumbs a,.st-note a,.ld-secure a{padding:10px 0}}
+@media(max-width:759px){main p a:not(.btn):not(.st-btn2),main li a:not(.btn),.crumbs a,.st-note a,.ld-secure a,.ld-note a{padding:10px 0}}
 .crumbs ol{flex-wrap:nowrap;min-width:0}.crumbs li{white-space:nowrap}.crumbs li:last-child{min-width:0;overflow:hidden;text-overflow:ellipsis}
 /* every FAQ in one style: the bold row with a plus on the right */
 section.block details{padding:0;margin:8px 0}

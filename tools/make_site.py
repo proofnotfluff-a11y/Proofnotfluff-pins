@@ -1721,7 +1721,7 @@ def leads_page_html(p):
     if checkout:   # the free sample first, then subscribe (store design, Oct 22)
         hero_act = (f'<div class="ld-heroact" id="ldHeroCta"><a class="btn ld-btnbig" href="{"#near" if near else "#sample"}">See this week\'s free sample</a>'
                     + (f'<a class="ld-textlink" href="{E(checkout)}" rel="noopener">Try {trial} days free, then ${price} a month</a></div>'
-                       '<p class="ld-heronote">New list every Monday. Card at checkout, nothing charged for 7 days. Cancel any time.</p>'
+                       '<p class="ld-heronote">Card at checkout, nothing charged for 7 days. Cancel any time.</p>'
                        .replace("7 days", f"{trial} days") if trial else
                        f'<a class="ld-textlink" href="{E(checkout)}" rel="noopener">Subscribe, ${price} a month</a></div>'
                        '<p class="ld-heronote">New list every Monday. Cancel any time.</p>'))
@@ -2431,7 +2431,7 @@ def privacy_html():
             '<p class="lede">We collect as little as we can: an email address when you ask us for an email, and work contact details '
             'for the businesses we write to about leads. We never sell any of it.</p>'
             '<h2>What we collect</h2>' + li([
-                "Your email address, when you sign up on this site for the free Monday jobs email, a waitlist or the cleaning price cheat sheet.",
+                "Your email address, when you sign up on this site for the free Monday jobs email, a waitlist, product updates or the cleaning price cheat sheet.",
                 "For businesses we email about leads: the business name, the decision maker&#39;s name and job title, and their work email, "
                 "taken from public business records, the company&#39;s own website or an email finding service. We also keep your reply, "
                 "such as a yes or a stop.",
@@ -2464,9 +2464,10 @@ def privacy_html():
             '<h2>Contact</h2>'
             f'<p>ProofNotFluff LLC, 680 North Lake Shore Drive, Suite 110-2964, Chicago, IL 60611. {mail}</p>'
             f'<p class="asof">Policy updated {E(nice_date(r.get("updated", "")))}.</p></article>')
+    foot = (f'</main>\n<footer><div class="wrap">{foot_nav(rel)}'
+            '<p>Made by ProofNotFluff LLC. Questions about this policy: hello@proofnotfluff.com.</p></div></footer>\n</body></html>')
     return (HEAD.format(title="Privacy | ProofNotFluff", desc="What ProofNotFluff collects, why, who holds it, and how to stop. We never sell your details.",
-                        url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
-            FOOT.format(rel=rel, script="", sources=""))
+                        url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body + foot)
 
 
 def calculators_html():

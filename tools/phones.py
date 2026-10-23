@@ -288,11 +288,14 @@ def extract(out, release):
     status = "operating_status" if "operating_status" in cols else "NULL"
     x0, y0, x1, y1 = BBOX
     q = f"""SELECT names.primary, (bbox.ymin + bbox.ymax) / 2, (bbox.xmin + bbox.xmax) / 2, phones, websites,
-                   addresses[1].freeform, addresses[1].postcode, confidence, list_transform(sources, s -> s.dataset), {status}
+                   addresses[1].freeform, addresses[1].postcode, confidence, {{lam}}, {status}
             FROM {src}
             WHERE bbox.xmin BETWEEN {x0} AND {x1} AND bbox.ymin BETWEEN {y0} AND {y1}
               AND (len(phones) > 0 OR len(websites) > 0) AND names.primary IS NOT NULL"""
-    rows = con.execute(q).fetchall()
+    try:                                      # DuckDB 1.4 and later: lambda syntax; older releases: the arrow
+        rows = con.execute(q.replace("{lam}", "list_transform(sources, lambda s: s.dataset)")).fetchall()
+    except duckdb.Error:
+        rows = con.execute(q.replace("{lam}", "list_transform(sources, s -> s.dataset)")).fetchall()
     places = [{"name": n, "lat": round(la, 6), "lon": round(lo, 6), "phones": list(ph or []), "websites": list(w or []),
                "address": a or "", "zip": (z or "")[:5], "confidence": round(c or 0, 3),
                "sources": sorted(set(s or [])), "status": st or "open"} for n, la, lo, ph, w, a, z, c, s, st in rows]

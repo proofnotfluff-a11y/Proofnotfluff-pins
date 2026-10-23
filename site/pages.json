@@ -3801,6 +3801,7 @@
    ],
    "sources": "City of Chicago Data Portal, Food Inspections.",
    "checkout": "https://proofnotfluff.gumroad.com/l/mlyiiz?utm_source=proofnotfluff&utm_medium=site&utm_campaign=chicago-restaurant-leads",
+   "trialDays": 7,
    "links": [
     [
      "contractor-hourly-rate-calculator",

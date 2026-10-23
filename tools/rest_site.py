@@ -35,6 +35,10 @@ def page_html(p):
     rel = "../"
     price = E(str(p["price"]))
     checkout = p.get("checkout")
+    trial = int(p.get("trialDays") or 0) if checkout else 0      # Gumroad free trial (Todd, Oct 22, 9:29 pm)
+    faq = list(p["faq"]) + ([["Can I try it before I pay?",
+                              f"Yes. Start a {trial}-day free trial on Gumroad: your card goes in at checkout, nothing is charged for {trial} days, "
+                              f"then it is ${p['price']} a month until you cancel. Cancel before day {trial} and you pay nothing."]] if trial else [])
     asof = E(d["asOfText"])
     w = d["window"]
 
@@ -61,15 +65,17 @@ def page_html(p):
     def buy(cls="btn ld-btnbig"):
         """The primary action: the checkout once the product is on sale, until then a note to the ProofNotFluff mailbox."""
         if checkout:
-            return f'<a class="{cls}" href="{E(checkout)}" rel="noopener">Get the full list, ${price} a month</a>'
+            return f'<a class="{cls}" href="{E(checkout)}" rel="noopener">' + (f"Start your {trial}-day free trial" if trial else f"Get the full list, ${price} a month") + '</a>'
         return f'<a class="{cls}" href="{E(notify)}">Tell me when it opens</a>'
 
     lede = (f'{c["flagged"]:,} Chicago food businesses failed or passed with conditions with a pest, hood, grease trap or cleaning violation in the last 30 days, and {c["opening"]:,} had '
             f'the license inspection Chicago does before it issues a food license. {E(p["lede"])}')
-    sub_link = (f'<a class="ld-textlink" href="{E(checkout)}" rel="noopener">Subscribe, ${price} a month</a>' if checkout else
+    sub_link = (f'<a class="ld-textlink" href="{E(checkout)}" rel="noopener">Try {trial} days free, then ${price} a month</a>' if trial else
+                f'<a class="ld-textlink" href="{E(checkout)}" rel="noopener">Subscribe, ${price} a month</a>' if checkout else
                 f'<a class="ld-textlink" href="{E(notify)}">Tell me when it opens</a>')
     hero_act = (f'<div class="ld-heroact rl-act" id="ldHeroCta"><a class="btn ld-btnbig" href="#sample">See this week\'s free sample</a>{sub_link}</div>'
-                + ('<p class="ld-heronote">New list every Monday. Cancel any time.</p>' if checkout else
+                + (f'<p class="ld-heronote">New list every Monday. Card at checkout, nothing charged for {trial} days. Cancel any time.</p>' if trial else
+                   '<p class="ld-heronote">New list every Monday. Cancel any time.</p>' if checkout else
                    f'<p class="ld-heronote">${price} a month when it opens. New list every Monday.</p>'))
     bc = c["byCat"]
     tiles = (f'<div class="tiles ld-tiles">'
@@ -102,7 +108,8 @@ def page_html(p):
               f'<div class="ld-list rl3" id="rlList">{cards}</div>'
               '<p class="rl-empty" id="rlEmpty" hidden>No place in this week\'s free sample has this category. Members see every one.</p>'
               f'<p class="rl-more" id="rlMore">Members see every place on all three lists, named, with address, the City\'s violation codes and 24 months of history. '
-              + (f'<a href="{E(checkout)}" rel="noopener">Subscribe, ${price} a month</a>.' if checkout else "") + '</p></section>')
+              + (f'<a href="{E(checkout)}" rel="noopener">Try {trial} days free, then ${price} a month</a>.' if trial else
+                 f'<a href="{E(checkout)}" rel="noopener">Subscribe, ${price} a month</a>.' if checkout else "") + '</p></section>')
     links = "".join(f'<li><a href="{rel}{E(l[0])}/">{E(l[1])}</a></li>' for l in p.get("links", []))
     method = ('<section class="block"><h2>How to use this list</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"])
               + (f'<p>Price the visit before you call:</p><ul>{links}</ul>' if links else "") + "</section>")
@@ -114,15 +121,22 @@ def page_html(p):
                  '<small class="ld-note">Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div>')
     if checkout:
         cta_html = (f'<section class="block" id="ldCta"><div class="cta ld-cta ld-buy"><div><h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
-                    f'<p class="ld-buybtn">{buy()}</p><p class="ld-secure">Secure checkout by Gumroad. Cancel any time. <a href="{rel}refunds/">Refunds and cancelling</a></p></div>{later}</div></section>')
+                    f'<p class="ld-buybtn">{buy()}</p>'
+                    + (f'<p class="ld-secure">Secure checkout by Gumroad. Your card goes in at checkout and nothing is charged for {trial} days. '
+                       f'Then it is ${price} a month until you cancel. Cancel in your Gumroad library before day {trial} and you pay nothing. '
+                       f'<a href="{rel}refunds/">Refunds and cancelling</a></p>' if trial else
+                       f'<p class="ld-secure">Secure checkout by Gumroad. Cancel any time. <a href="{rel}refunds/">Refunds and cancelling</a></p>')
+                    + f'</div>{later}</div></section>')
     else:
         cta_html = (f'<section class="block" id="ldCta"><div class="cta ld-cta"><div><h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
                     f'<p class="ld-price">${price} a month when it opens.</p><p class="ld-buybtn">{buy()}</p></div></div></section>')
     crumb, crumb_ld = M.crumbs(rel, [("Home", ""), ("Shop", "shop/"), (p["h1"], None)])
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>{hero_act}</div>{tiles}'
-            f'{sample}{method}{cta_html}{M.guides_block(p["slug"], rel=rel)}{M.faq_block(p["faq"])}')
-    sbar = (f'<div class="ld-sbar" id="ldBar" aria-hidden="true"><div class="wrap"><p><b>${price} a month</b><span> · <span class="ld-sbl">full list </span>every Monday</span></p>'
-            f'<a class="btn" href="{E(checkout)}" rel="noopener" tabindex="-1">Subscribe</a></div></div>') if checkout else ""
+            f'{sample}{method}{cta_html}{M.guides_block(p["slug"], rel=rel)}{M.faq_block(faq)}')
+    sbar = ((f'<div class="ld-sbar" id="ldBar" aria-hidden="true"><div class="wrap"><p><b>{trial} days free</b><span> · then ${price} a month</span></p>'
+             f'<a class="btn" href="{E(checkout)}" rel="noopener" tabindex="-1">Try free</a></div></div>') if trial else
+            (f'<div class="ld-sbar" id="ldBar" aria-hidden="true"><div class="wrap"><p><b>${price} a month</b><span> · <span class="ld-sbl">full list </span>every Monday</span></p>'
+             f'<a class="btn" href="{E(checkout)}" rel="noopener" tabindex="-1">Subscribe</a></div></div>') if checkout else "")
     script = r"""<script>(function(){var tb=document.getElementById('rlTabs');if(tb){tb.hidden=false;
 var bs=[].slice.call(tb.querySelectorAll('button')),cs=[].slice.call(document.querySelectorAll('#rlList .ld-proj')),
 note=document.getElementById('rlNote'),empty=document.getElementById('rlEmpty');
@@ -139,7 +153,7 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.target=
 io.observe(hero);io.observe(cta)})();</script>"""
     prod = next((x for x in M.store_products() if x["key"] == p["slug"]), None)
     ld = (M.ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
-          "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]},
+          "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]},
           crumb_ld, M.product_ld(prod, url) if prod else None)
           # small grey text darkened to pass WCAG AA on the warm canvas (axe, Oct 2026); scoped to this page only
           + "<style>.ld-page .asof,.ld-page footer p{color:var(--muted)}"
@@ -191,7 +205,9 @@ def selftest():
     assert 'content="noindex' in html or not spec.get("draft"), "draft page must be noindex"
     assert "Acme" not in html and "Fry House" not in html, "the free page names a place with a failed result"
     assert "New Place" in html, "openings are named"
-    assert "Tell me when it opens" in html or "Get the full list, $" in html, "a primary action on the page"
+    assert "Tell me when it opens" in html or "Get the full list, $" in html or "-day free trial</a>" in html, "a primary action on the page"
+    if spec.get("checkout") and spec.get("trialDays"):   # a trial is never offered without its terms next to it (Legal, trial review item 9)
+        assert html.count("nothing is charged for") >= 2 and "Can I try it before I pay?" in html, "trial terms on the page"
     assert "one’s own risk" in html or "one's own risk" in html.replace("&#x27;", "'")
     assert "—" not in html
     faq = dict((q, a) for q, a in spec["faq"])

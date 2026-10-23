@@ -35,6 +35,26 @@ Slug matches `launches/<slug>.md` where one exists. Seeded Oct 17: `chicago-cons
 | next | string | One line: the next step and who does it. |
 | updatedAt | ISO time | When the doc was last written. |
 
+## todos/<id> (Todd's project to-do list, from Oct 23, 2026)
+
+Todd's words, Oct 23, 9:33 am: "add a project to-do list to the artifact so I know exactly what's outstanding. With all the parallel chats going on, it's hard for me to keep track." The panel sits right under the money board, grouped by project.
+
+Every live chat and scheduled run that finishes, starts, blocks or adds a task updates its row before it ends (ArtifactData, pinned to the version it read): set `done: true` and `doneAt` when finished, change `state` or `detail` when it moves, add a new row for new work. Never delete a row; Todd ticks his own. Plain words, no names of prospects or buyers, no em or en dashes.
+
+| Field | Type | Meaning |
+|---|---|---|
+| title | string | The task, starting with a verb. Required. |
+| detail | string | One or two sentences: what and why, what unblocks it. |
+| project | string | Group heading ("Lead lists: sales and outreach", "New business licenses list", "Growth plan, steps 3 and 4", "Data checks and the site", "Business admin and legal"). |
+| projectOrder | number | Group position. |
+| owner | string | `todd` or `claude`. |
+| state | string | `now`, `next`, `later` or `waiting` (blocked on an event). |
+| order | number | Position within the group and state. |
+| where | string | Where it happens ("Gumroad, your account", "Needs a chat from you"). |
+| due | "YYYY-MM-DD" | Optional. |
+| done, doneAt | bool, ISO time | Ticked off. |
+| updatedAt | ISO time | Last write. |
+
 ## meta/money (one doc)
 
 | Field | Type | Meaning |

@@ -7,4 +7,5 @@
 - Live: Chicago and Austin cleaning leads $29, restaurant $39, outreach paused. 0 payers, 0 replies. Entity A: permits/downstream/gc_leads.json, 730 leads, Mondays 12:05 UTC. Entity B ladder: City owner record, own site, About-page owners, Hunter at most 5 searches a run; site addresses wait for Bouncer; 4 owners sealed, not in CRM. Senders hello@ (25 a day), sales@ (Apps Script). Outreach trigger prompt waits for Todd's PC approval. Licenses live Oct 22, 7-day trial; next: wire drafter.
 - Copy test 1: arm by prospect id, variant on every draft, up to two follow-ups; Oct 19 and 20 batches never.
 - Store and 3 question pages live, new page daily (seo/STORE.md).
+- To-do: scoreboard todos (coo/SCOREBOARD.md). Any run that finishes, starts or blocks a task updates its row.
 - Skills: .claude/skills/ (5 scheduled, 3 on request).

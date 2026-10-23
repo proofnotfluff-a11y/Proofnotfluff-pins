@@ -1,4 +1,4 @@
-# monday-email (Mondays after the leads refresh; not scheduled until Todd says so)
+# monday-email (Mondays 8:50 am Central, after the Monday QA run; scheduled task "PNF leads: Monday email", Todd, Oct 22, 9:56 pm)
 
 One job: build and draft the free Monday email for everyone who said yes, and the trial offer for anyone whose third Monday just went out. Design and wording: email/M1-MONDAY.md (Todd, Oct 22, 7:57 pm). Nothing sends until Todd says send in this session.
 

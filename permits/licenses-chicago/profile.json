@@ -1,6 +1,6 @@
 {
- "fetchedAt": "2026-10-22T21:40:34-05:00",
- "rowsUpdatedAt": "2026-10-22T09:55:53+00:00",
+ "fetchedAt": "2026-10-23T11:22:34-05:00",
+ "rowsUpdatedAt": "2026-10-23T09:59:21+00:00",
  "columns": [
   "id",
   "license_id",
@@ -48,19 +48,19 @@
  "byLicense": [
   [
    "Limited Business License",
-   176
+   171
   ],
   [
    "Pop-Up Retail User",
-   108
+   109
   ],
   [
    "Retail Food Establishment",
-   90
+   87
   ],
   [
    "Regulated Business License",
-   81
+   82
   ],
   [
    "Special Event Food",
@@ -68,39 +68,39 @@
   ],
   [
    "Peddler License",
-   31
+   30
   ],
   [
    "Pharmaceutical Representative",
-   28
+   27
   ],
   [
    "Consumption on Premises - Incidental Activity",
-   17
-  ],
-  [
-   "Shared Kitchen User (Long Term)",
-   16
-  ],
-  [
-   "Special Event Liquor",
    16
   ],
   [
    "Tobacco",
+   15
+  ],
+  [
+   "Shared Kitchen User (Long Term)",
+   15
+  ],
+  [
+   "Special Event Liquor",
    14
   ],
   [
    "Valet Parking Operator",
-   12
+   13
   ],
   [
    "Shared Housing Unit Operator",
-   12
+   13
   ],
   [
    "Motor Vehicle Services License",
-   7
+   8
   ],
   [
    "Public Place of Amusement",
@@ -123,11 +123,7 @@
    5
   ],
   [
-   "Tavern",
-   4
-  ],
-  [
-   "Commercial Garage",
+   "Package Goods",
    4
   ],
   [
@@ -147,11 +143,23 @@
    4
   ],
   [
-   "Caterer's Liquor License",
+   "Wholesale Food Establishment",
    3
   ],
   [
-   "Shared Kitchen User (Short Term)",
+   "Indoor Special Event",
+   3
+  ],
+  [
+   "Tavern",
+   3
+  ],
+  [
+   "Commercial Garage",
+   3
+  ],
+  [
+   "Caterer's Liquor License",
    3
   ],
   [
@@ -159,11 +167,7 @@
    3
   ],
   [
-   "Package Goods",
-   3
-  ],
-  [
-   "Indoor Special Event",
+   "Shared Kitchen User (Short Term)",
    2
   ],
   [
@@ -177,16 +181,12 @@
   [
    "Secondhand Dealer",
    1
-  ],
-  [
-   "Wholesale Food Establishment",
-   1
   ]
  ],
  "keptByLicense": [
   [
    "Limited Business License",
-   110
+   104
   ],
   [
    "Retail Food Establishment",
@@ -202,7 +202,7 @@
   ],
   [
    "Motor Vehicle Services License",
-   5
+   6
   ],
   [
    "Animal Care License",
@@ -237,8 +237,16 @@
    2
   ],
   [
+   "Wholesale Food Establishment",
+   1
+  ],
+  [
+   "Package Goods",
+   1
+  ],
+  [
    "Filling Station",
-   2
+   1
   ],
   [
    "Pawnbroker",

@@ -2,88 +2,88 @@
  "source": {
   "name": "City of Chicago Data Portal, Business Licenses",
   "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
-  "rowsUpdatedAt": "2026-10-22T09:55:53+00:00",
-  "fetchedAt": "2026-10-22T21:40:34-05:00",
+  "rowsUpdatedAt": "2026-10-23T09:59:21+00:00",
+  "fetchedAt": "2026-10-23T11:22:34-05:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: renewals, cancelled or revoked licenses, licenses for one person's own work, for work away from a fixed business site, or for an event or season (peddlers, special events, pop-ups, tow trucks, home-sharing, shared kitchen users, private booting), home and mail-drop addresses, and any business whose name could be a person's full name. Business-level fields only."
  },
  "window": {
-  "from": "2026-10-15",
-  "to": "2026-10-22",
-  "listFrom": "2026-09-22"
+  "from": "2026-10-16",
+  "to": "2026-10-23",
+  "listFrom": "2026-09-23"
  },
  "counts": {
-  "fetched": 740,
-  "kept30": 230,
-  "keptWeek": 51,
+  "fetched": 733,
+  "kept30": 226,
+  "keptWeek": 52,
   "segmentsWeek": {
    "food": 26,
-   "beauty": 6,
-   "auto": 1,
+   "beauty": 7,
+   "auto": 2,
    "care": 1,
-   "venue": 2,
+   "venue": 1,
    "retail": 15
   },
   "segments30": {
-   "food": 74,
-   "beauty": 40,
+   "food": 76,
+   "beauty": 38,
    "auto": 13,
    "care": 3,
    "venue": 3,
-   "retail": 97
+   "retail": 93
   },
   "excluded": {
-   "issued outside the window": 139,
-   "second license at the same site (listed once)": 16,
-   "name could be a person's": 33,
+   "issued outside the window": 138,
+   "name could be a person's": 34,
    "license for one person's own work, work away from a fixed site, or an event or season": 271,
-   "home or apartment address": 22,
-   "site outside Chicago": 20,
    "license not active (cancelled or revoked)": 2,
+   "site outside Chicago": 20,
+   "home or apartment address": 19,
+   "second license at the same site (listed once)": 16,
    "virtual office or mailbox address": 2,
    "not a new license (renewal or change)": 4,
    "on the do-not-list (asked to be left out, or a likely home)": 1
   },
   "areasWeek": [
    [
-    "Lincoln Park",
-    4
-   ],
-   [
     "Near North Side",
-    3
-   ],
-   [
-    "West Town",
-    3
+    4
    ],
    [
     "Loop",
     3
    ],
    [
-    "Lake View",
-    3
+    "New City",
+    2
+   ],
+   [
+    "Brighton Park",
+    2
+   ],
+   [
+    "Austin",
+    2
+   ],
+   [
+    "Lincoln Square",
+    2
    ],
    [
     "O'Hare",
     2
    ],
    [
+    "West Town",
+    2
+   ],
+   [
+    "Lincoln Park",
+    2
+   ],
+   [
     "McKinley Park",
     2
-   ],
-   [
-    "West Elsdon",
-    2
-   ],
-   [
-    "Logan Square",
-    2
-   ],
-   [
-    "South Shore",
-    1
    ]
   ],
   "checks": {
@@ -92,12 +92,13 @@
    "foodInspections": true
   },
   "history30": {
-   "first": 138,
-   "relicensed": 37,
-   "added": 17,
-   "site": 38
+   "relicensed": 38,
+   "first": 133,
+   "site": 38,
+   "added": 17
   },
-  "foodInsp30": 70
+  "foodInsp30": 71,
+  "freeLeftFailedWeek": 12
  },
  "segmentNames": {
   "food": "Restaurants, cafes, bars and food shops",
@@ -110,13 +111,13 @@
  "segments": {
   "food": [
    {
-    "business": "Plush Pup",
-    "address": "5344 N Cumberland Ave 1st",
-    "communityArea": "O'Hare",
+    "business": "Axum Cafe",
+    "address": "5842 N Broadway",
+    "communityArea": "Edgewater",
     "licenseType": "Retail Food Establishment",
-    "activity": "Sale of Food Prepared Onsite With Dining Area",
-    "issued": "2026-10-21",
-    "history": "relicensed"
+    "activity": "Operation of a Deli, Butcher or Bakery | Preparation of Food and Dining on Premises With Seating | Preparation of Food, Coffee or Drinks | Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Perishable Foods | Sale of Food Prepared Onsite With Dining Area | and 6 more",
+    "issued": "2026-10-22",
+    "history": "first"
    },
    {
     "business": "Pearl Club",
@@ -128,38 +129,11 @@
     "history": "added"
    },
    {
-    "business": "Millennium Hall Casa Bonita",
-    "address": "11 N Michigan Ave 1st",
-    "communityArea": "Loop",
-    "licenseType": "Caterer's Liquor License",
-    "activity": "Catering of Liquor To Events",
-    "issued": "2026-10-21",
-    "history": "added"
-   },
-   {
-    "business": "La Posada Bar",
-    "address": "4059 W Armitage Ave",
-    "communityArea": "Hermosa",
-    "licenseType": "Tavern",
-    "activity": "Tavern - Consumption of Liquor on Premises",
-    "issued": "2026-10-21",
-    "history": "first"
-   },
-   {
     "business": "Figurati Pizza & Italian Beef",
     "address": "11611-11613 S Halsted St 1st",
     "communityArea": "West Pullman",
     "licenseType": "Retail Food Establishment",
     "activity": "Sale of Food Prepared Onsite Without Dining Area",
-    "issued": "2026-10-21",
-    "history": "first"
-   },
-   {
-    "business": "Dunhuang Chicago LLC",
-    "address": "2002 S Wentworth Ave 100-102",
-    "communityArea": "Armour Square",
-    "licenseType": "Retail Food Establishment",
-    "activity": "Preparation of Food and Dining on Premises With Seating",
     "issued": "2026-10-21",
     "history": "first"
    },
@@ -182,15 +156,6 @@
     "history": "first"
    },
    {
-    "business": "The Blackstone Hotel",
-    "address": "636 S Michigan Ave",
-    "communityArea": "Loop",
-    "licenseType": "Retail Food Establishment",
-    "activity": "Preparation of Food and Dining on Premises With Seating | Sale of Food Prepared Onsite With Dining Area",
-    "issued": "2026-10-20",
-    "history": "relicensed"
-   },
-   {
     "business": "Taquero LLC",
     "address": "1734 W 35th St",
     "communityArea": "McKinley Park",
@@ -198,9 +163,54 @@
     "activity": "Sale of Food Prepared Onsite With Dining Area",
     "issued": "2026-10-20",
     "history": "first"
+   },
+   {
+    "business": "Christophes Fine Foods.",
+    "address": "2264 N Clark St",
+    "communityArea": "Lincoln Park",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Retail Sales of General Merchandise and Non-Perishable Food | Sale of Food Prepared Onsite Without Dining Area",
+    "issued": "2026-10-20",
+    "history": "first"
+   },
+   {
+    "business": "Big Baby's",
+    "address": "9926-9928 S Torrence Ave 1",
+    "communityArea": "South Deering",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Sale of Food Prepared Onsite Without Dining Area",
+    "issued": "2026-10-20",
+    "history": "first"
+   },
+   {
+    "business": "La Casa de las Flores",
+    "address": "2459 S Christiana Ave Strfrnt",
+    "communityArea": "South Lawndale",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Sale of Food Prepared Onsite With Dining Area",
+    "issued": "2026-10-19",
+    "history": "first"
+   },
+   {
+    "business": "La Calaca Cantina/Porkchop",
+    "address": "1800-1802 W Pershing Rd",
+    "communityArea": "McKinley Park",
+    "licenseType": "Consumption on Premises - Incidental Activity",
+    "activity": "Consumption of Liquor on Premises",
+    "issued": "2026-10-19",
+    "history": "added"
    }
   ],
   "beauty": [
+   {
+    "business": "Deeply Rooted Salon",
+    "address": "2150 S Canalport Ave 5 5c-8",
+    "communityArea": "Lower West Side",
+    "licenseType": "Limited Business License",
+    "activity": "Hair Services | Retail Sales of General Merchandise",
+    "issued": "2026-10-22",
+    "history": "first"
+   },
    {
     "business": "One Stop Nails & Spa",
     "address": "8145 S Cottage Grove Ave",
@@ -258,6 +268,15 @@
   ],
   "auto": [
    {
+    "business": "Cti",
+    "address": "4616 W Augusta Blvd 1",
+    "communityArea": "Austin",
+    "licenseType": "Motor Vehicle Services License",
+    "activity": "Storage or Use of Hazardous Materials On Site (MVR)",
+    "issued": "2026-10-22",
+    "history": "site"
+   },
+   {
     "business": "Bolts and Nuts",
     "address": "3353 W Division St 1",
     "communityArea": "Humboldt Park",
@@ -287,18 +306,36 @@
     "activity": "Charges a Fee for Entertainment or Amusements or Recreational Activities | Retail Sales of General Merchandise and Non-Perishable Food",
     "issued": "2026-10-20",
     "history": "first"
-   },
-   {
-    "business": "The Smart Bar",
-    "address": "3730 N Clark St Basement",
-    "communityArea": "Lake View",
-    "licenseType": "Public Place of Amusement",
-    "activity": "Charges a Fee for Entertainment or Amusements or Recreational Activities",
-    "issued": "2026-10-15",
-    "history": "added"
    }
   ],
   "retail": [
+   {
+    "business": "Operaxions",
+    "address": "420 W Grand Ave 1b",
+    "communityArea": "Near North Side",
+    "licenseType": "Limited Business License",
+    "activity": "Provide Business and Management Consulting | Provide Advertising or Marketing Services | Provide Computer Design/Development Consulting",
+    "issued": "2026-10-22",
+    "history": "first"
+   },
+   {
+    "business": "J&N Upholstry",
+    "address": "3809 S Kedzie Ave",
+    "communityArea": "Brighton Park",
+    "licenseType": "Limited Business License",
+    "activity": "Sale of Furniture",
+    "issued": "2026-10-22",
+    "history": "first"
+   },
+   {
+    "business": "Cmplex Studios",
+    "address": "3301 W 47th Pl A",
+    "communityArea": "Brighton Park",
+    "licenseType": "Limited Business License",
+    "activity": "Provide Photography or Videography Services",
+    "issued": "2026-10-22",
+    "history": "first"
+   },
    {
     "business": "Pro Plus Parking",
     "address": "1005 N State St 23,4,5,6rt",
@@ -360,33 +397,6 @@
     "licenseType": "Limited Business License",
     "activity": "Miscellaneous Commercial Services",
     "issued": "2026-10-19",
-    "history": "first"
-   },
-   {
-    "business": "Fotel 81",
-    "address": "2545 N Milwaukee Ave",
-    "communityArea": "Logan Square",
-    "licenseType": "Limited Business License",
-    "activity": "Retail Sales of General Merchandise | Provide Photography or Videography Services",
-    "issued": "2026-10-19",
-    "history": "first"
-   },
-   {
-    "business": "Safecare",
-    "address": "8 S Michigan Ave 8th 801",
-    "communityArea": "Loop",
-    "licenseType": "Limited Business License",
-    "activity": "Provide Home Health Care Services",
-    "issued": "2026-10-16",
-    "history": "first"
-   },
-   {
-    "business": "Pasture-To-Porch",
-    "address": "11102 S Kedzie Ave",
-    "communityArea": "Mount Greenwood",
-    "licenseType": "Limited Business License",
-    "activity": "Operation of an Administrative Commercial Office | Miscellaneous Commercial Services",
-    "issued": "2026-10-16",
     "history": "first"
    }
   ]

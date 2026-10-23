@@ -2,6 +2,12 @@
 
 One page per adjacent opportunity (coo/EVOLUTION.md section 4): what, who buys it, evidence with sources, Todd's unfair advantage, cost, Todd's hours, expected profit per month at 90 days, risk, the smallest test, the approve quest id. Newest first. The COO judges every case at its check date and writes the verdict here.
 
+## Parked, Oct 23, 2026, 12:06 pm: guardrails kit for unattended AI agents (Todd: "Yes, I agree with you.")
+- What: our run system sold as a kit: the ICM folder layout (open source, MIT, arXiv 2603.16021, credited) plus what we added: the context budget gate, the preflight check, the planted-case gate tests and the constitution pattern.
+- Evidence (Oct 23): one proven seller, ClaudeKit, $99 one time, $82,108 all time and $2,454 in 30 days, verified by its processor (https://trustmrr.com/startup/claudekit); small kits at $9 to $49 show no sales; template roundups are mostly free. No one found selling guardrails for unattended agents.
+- Why parked: pulls focus from the $1,000 month by Jan 31, 2027; the system has no paying results to show yet; thin market; platform features may date it.
+- Trigger to reopen: leads have a steady payer or a $1,000 month. Then the smallest test: a generic copy, a one-page offer at $79 to $99, a waitlist before the build. New product: Todd's go and the Legal desk first.
+
 ## Decision, Oct 15, 2026, 9:55 pm: the pivot (Todd: "Go")
 After 19 days at 0 orders (32 Etsy visits, 0 favorites, 3,444 Short views with no measurable visits, an ads budget Etsy would not spend), the portfolio narrows to one segment and one ladder: e-commerce and consumer brands; free calculators, the $79 13-week kit, Fiverr gigs at $60 to $550, Upwork later. Etsy runs on autopilot; the home-service and STR premium tests stop; Track C's three-segment test becomes the e-commerce line alone. Detail, each run's job and the Nov 12 check: coo/PIVOT.md, which overrides this file where they differ.
 

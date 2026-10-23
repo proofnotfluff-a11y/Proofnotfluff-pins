@@ -68,10 +68,16 @@ def plants(tmp):
         return go
 
     out.append(("json", "invalid JSON under site/", new_file("site/zz_planted.json", "{not json")))
-    out.append(("radar", "a live lead page with no wiring entry", edit("launches/WIRING.json", lambda t: re.sub(
-        r'"status": "live", "legacy": true, "launchedAt": "2026-10-22"', '"status": "building", "legacy": true, "launchedAt": "2026-10-22"', t))))
-    out.append(("radar", "a non-legacy product missing a piece", edit("launches/WIRING.json", lambda t: t.replace(
-        '"status": "live", "legacy": true, "launchedAt": "2026-10-17"', '"status": "live", "legacy": false, "launchedAt": "2026-10-17"').replace('"questionsMin": 3', '"questionsMin": 99', 1))))
+    def wiring(fn):
+        def go(t):
+            w = json.loads(t)
+            fn(w["products"])
+            return json.dumps(w, indent=1)
+        return go
+    out.append(("radar", "a live lead page with no wiring entry", edit("launches/WIRING.json", wiring(
+        lambda p: p["chicago-new-business-licenses"].update(status="building")))))
+    out.append(("radar", "a non-legacy product missing a piece", edit("launches/WIRING.json", wiring(
+        lambda p: p["chicago-construction-cleaning-leads"].update(legacy=False, questionsMin=99)))))
     out.append(("radar", "a candidate with an email address", new_file("scout/candidates/zz-planted.json", json.dumps(
         {"schema": "pnf.opportunity.v1", "slug": "zz-planted", "name": "x", "note": "owner@example.com", "buyer": {}, "price": {},
          "demand": {}, "data": {}, "build": {}, "fit": {}}))))

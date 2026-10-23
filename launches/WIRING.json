@@ -3,53 +3,208 @@
  "about": "One entry per lead product: every place it must be wired before it is live (Todd, Oct 23, 2026: 'Anytime we create a new product, I want to make sure that it's integrated with the overall system'). tools/product_wire.py checks each entry against the real files; check_repo fails when a live product is missing a piece. A piece that does not fit a product carries {\"na\": \"why\"}. Products live before Oct 23 are legacy: their gaps print as WARN and become to-dos, and a new product gets no such grace.",
  "products": {
   "chicago-construction-cleaning-leads": {
-   "status": "live", "legacy": true, "launchedAt": "2026-10-17",
-   "price": 29, "priceReason": "Floor of the $29 to $199 band (coo/CONSTITUTION.md 1); Todd's funnel decision of Oct 22 sets $29 a month for the permit lists after the 7-day trial.",
-   "kitForm": "10059700", "mondayForm": "10084986",
-   "outreach": {"templates": ".claude/skills/outreach-drafter/templates.md", "gate": "templates"},
-   "workflow": ".github/workflows/permits-chicago.yml", "data": "permits/chicago/sample.json", "profile": "permits/chicago/profile.json",
-   "members": "chicago-leads-members", "freshDays": 9,
-   "source": {"portal": "https://data.cityofchicago.org", "dataset": "ydr8-5enu", "expectColumns": ["permit_", "permit_type", "permit_status", "permit_milestone", "issue_date", "reported_cost", "street_number", "street_direction", "street_name", "work_description", "contact_1_type", "contact_1_name"]},
-   "holdout": {"path": "projects", "id": "permit", "field": "permit_", "date": "issued", "dateField": "issue_date"},
-   "questionsMin": 3, "launch": "launches/chicago-construction-cleaning-leads.md",
-   "scoreboard": {"leadproducts": "chicago-construction-cleaning-leads"}
+   "status": "live",
+   "legacy": true,
+   "launchedAt": "2026-10-17",
+   "price": 29,
+   "priceReason": "Floor of the $29 to $199 band (coo/CONSTITUTION.md 1); Todd's funnel decision of Oct 22 sets $29 a month for the permit lists after the 7-day trial.",
+   "kitForm": "10059700",
+   "mondayForm": "10084986",
+   "outreach": {
+    "templates": ".claude/skills/outreach-drafter/templates.md",
+    "gate": "templates"
+   },
+   "workflow": ".github/workflows/permits-chicago.yml",
+   "data": "permits/chicago/sample.json",
+   "profile": "permits/chicago/profile.json",
+   "members": "chicago-leads-members",
+   "freshDays": 9,
+   "source": {
+    "portal": "https://data.cityofchicago.org",
+    "dataset": "ydr8-5enu",
+    "expectColumns": [
+     "permit_",
+     "permit_type",
+     "permit_status",
+     "permit_milestone",
+     "issue_date",
+     "reported_cost",
+     "street_number",
+     "street_direction",
+     "street_name",
+     "work_description",
+     "contact_1_type",
+     "contact_1_name"
+    ]
+   },
+   "holdout": {
+    "path": "projects",
+    "id": "permit",
+    "field": "permit_",
+    "date": "issued",
+    "dateField": "issue_date"
+   },
+   "questionsMin": 3,
+   "launch": "launches/chicago-construction-cleaning-leads.md",
+   "scoreboard": {
+    "leadproducts": "chicago-construction-cleaning-leads"
+   }
   },
   "austin-construction-cleaning-leads": {
-   "status": "live", "legacy": true, "launchedAt": "2026-10-18",
-   "price": 29, "priceReason": "Same list and buyer as Chicago construction; floor of the band and the $29 permit-list price in Todd's Oct 22 funnel decision.",
-   "kitForm": "10083860", "mondayForm": "10084998",
-   "outreach": {"templates": ".claude/skills/outreach-drafter/templates.md", "gate": "templates"},
-   "workflow": ".github/workflows/permits-austin.yml", "data": "permits/austin/sample.json", "profile": "permits/austin/profile.json",
-   "members": "austin-leads-members", "freshDays": 9,
-   "source": {"portal": "https://data.austintexas.gov", "dataset": "3syk-w9eu", "expectColumns": ["permit_number", "masterpermitnum", "permittype", "permit_class_mapped", "issue_date", "status_current", "total_job_valuation", "total_valuation_remodel", "original_address1", "contractor_company_name"]},
-   "holdout": {"path": "projects", "id": "permit", "field": "permit_number", "date": null, "dateField": null},
-   "questionsMin": 3, "launch": "launches/austin-construction-cleaning-leads.md",
-   "scoreboard": {"leadproducts": "austin-construction-cleaning-leads"}
+   "status": "live",
+   "legacy": true,
+   "launchedAt": "2026-10-18",
+   "price": 29,
+   "priceReason": "Same list and buyer as Chicago construction; floor of the band and the $29 permit-list price in Todd's Oct 22 funnel decision.",
+   "kitForm": "10083860",
+   "mondayForm": "10084998",
+   "outreach": {
+    "templates": ".claude/skills/outreach-drafter/templates.md",
+    "gate": "templates"
+   },
+   "workflow": ".github/workflows/permits-austin.yml",
+   "data": "permits/austin/sample.json",
+   "profile": "permits/austin/profile.json",
+   "members": "austin-leads-members",
+   "freshDays": 9,
+   "source": {
+    "portal": "https://data.austintexas.gov",
+    "dataset": "3syk-w9eu",
+    "expectColumns": [
+     "permit_number",
+     "masterpermitnum",
+     "permittype",
+     "permit_class_mapped",
+     "issue_date",
+     "status_current",
+     "total_job_valuation",
+     "total_valuation_remodel",
+     "original_address1",
+     "contractor_company_name"
+    ]
+   },
+   "holdout": {
+    "path": "projects",
+    "id": "permit",
+    "field": [
+     "permit_number",
+     "masterpermitnum"
+    ],
+    "date": null,
+    "dateField": null
+   },
+   "questionsMin": 3,
+   "launch": "launches/austin-construction-cleaning-leads.md",
+   "scoreboard": {
+    "leadproducts": "austin-construction-cleaning-leads"
+   }
   },
   "chicago-restaurant-inspection-leads": {
-   "status": "live", "legacy": true, "launchedAt": "2026-10-18",
-   "price": 39, "priceReason": "Todd's Oct 22 funnel decision sets $39 a month for restaurant leads; a hood cleaning job is worth several hundred dollars, so one won account pays for a year.",
-   "kitForm": "10083871", "mondayForm": {"na": "The free Monday email (email/M1-MONDAY.md) is built for the permit lists only; restaurant outreach is paused pending Todd's decision (to-do restaurant-outreach-decision)."},
-   "outreach": {"templates": "email/R1-OUTREACH.md", "gate": "file"},
-   "workflow": ".github/workflows/inspections-chicago.yml", "data": "permits/inspections-chicago/rest-sample.json", "profile": "permits/inspections-chicago/profile.json",
-   "members": "chicago-restaurant-leads-members", "freshDays": 9,
-   "source": {"portal": "https://data.cityofchicago.org", "dataset": "4ijn-s7e5", "expectColumns": ["inspection_id", "dba_name", "license_", "facility_type", "address", "inspection_date", "inspection_type", "results", "violations"]},
-   "holdout": {"path": "examples", "id": null, "field": null, "date": "date", "dateField": "inspection_date", "match": {"result": "results", "inspectionType": "inspection_type", "type": "facility_type"}},
-   "questionsMin": 3, "launch": "launches/chicago-restaurant-inspection-leads.md",
-   "scoreboard": {"leadproducts": "chicago-restaurant-leads"}
+   "status": "live",
+   "legacy": true,
+   "launchedAt": "2026-10-18",
+   "price": 39,
+   "priceReason": "Todd's Oct 22 funnel decision sets $39 a month for restaurant leads; a hood cleaning job is worth several hundred dollars, so one won account pays for a year.",
+   "kitForm": "10083871",
+   "mondayForm": {
+    "na": "The free Monday email (email/M1-MONDAY.md) is built for the permit lists only; restaurant outreach is paused pending Todd's decision (to-do restaurant-outreach-decision)."
+   },
+   "outreach": {
+    "templates": "email/R1-OUTREACH.md",
+    "gate": "file"
+   },
+   "workflow": ".github/workflows/inspections-chicago.yml",
+   "data": "permits/inspections-chicago/rest-sample.json",
+   "profile": "permits/inspections-chicago/profile.json",
+   "members": "chicago-restaurant-leads-members",
+   "freshDays": 9,
+   "source": {
+    "portal": "https://data.cityofchicago.org",
+    "dataset": "4ijn-s7e5",
+    "expectColumns": [
+     "inspection_id",
+     "dba_name",
+     "license_",
+     "facility_type",
+     "address",
+     "inspection_date",
+     "inspection_type",
+     "results",
+     "violations"
+    ]
+   },
+   "holdout": {
+    "path": "examples",
+    "id": null,
+    "field": null,
+    "date": "date",
+    "dateField": "inspection_date",
+    "match": {
+     "result": "results",
+     "inspectionType": "inspection_type",
+     "type": "facility_type"
+    },
+    "upper": true
+   },
+   "questionsMin": 3,
+   "launch": "launches/chicago-restaurant-inspection-leads.md",
+   "scoreboard": {
+    "leadproducts": "chicago-restaurant-leads"
+   }
   },
   "chicago-new-business-licenses": {
-   "status": "live", "legacy": true, "launchedAt": "2026-10-22",
-   "price": 29, "priceReason": "Floor of the band; the launch record proposed $29 for commercial cleaning and pest control buyers and Todd launched it at $29 with the 7-day trial on Oct 22.",
-   "kitForm": {"na": "The page carries the trial checkout and a mailto; adding a Kit form is an email-capture change (major under coo/CONSTITUTION.md 2), held for Todd."},
-   "mondayForm": {"na": "The free Monday email is built for the permit lists only."},
-   "outreach": {"templates": "email/L1-OUTREACH.md", "gate": "signal-templates"},
-   "workflow": ".github/workflows/licenses-chicago.yml", "data": "permits/licenses-chicago/sample.json", "profile": "permits/licenses-chicago/profile.json",
-   "members": "chicago-new-business-licenses-members", "freshDays": 9,
-   "source": {"portal": "https://data.cityofchicago.org", "dataset": "r5kz-chrr", "expectColumns": ["license_id", "legal_name", "doing_business_as_name", "address", "license_description", "business_activity", "application_type", "date_issued", "license_start_date", "community_area_name"]},
-   "holdout": {"path": "segments", "id": "business", "field": "doing_business_as_name", "date": "issued", "dateField": "date_issued"},
-   "questionsMin": 3, "launch": "launches/chicago-new-business-licenses.md",
-   "scoreboard": {"leadproducts": "chicago-new-business-licenses"}
+   "status": "live",
+   "legacy": true,
+   "launchedAt": "2026-10-22",
+   "price": 29,
+   "priceReason": "Floor of the band; the launch record proposed $29 for commercial cleaning and pest control buyers and Todd launched it at $29 with the 7-day trial on Oct 22.",
+   "kitForm": {
+    "na": "The page carries the trial checkout and a mailto; adding a Kit form is an email-capture change (major under coo/CONSTITUTION.md 2), held for Todd."
+   },
+   "mondayForm": {
+    "na": "The free Monday email is built for the permit lists only."
+   },
+   "outreach": {
+    "templates": "email/L1-OUTREACH.md",
+    "gate": "signal-templates"
+   },
+   "workflow": ".github/workflows/licenses-chicago.yml",
+   "data": "permits/licenses-chicago/sample.json",
+   "profile": "permits/licenses-chicago/profile.json",
+   "members": "chicago-new-business-licenses-members",
+   "freshDays": 9,
+   "source": {
+    "portal": "https://data.cityofchicago.org",
+    "dataset": "r5kz-chrr",
+    "expectColumns": [
+     "license_id",
+     "legal_name",
+     "doing_business_as_name",
+     "address",
+     "license_description",
+     "business_activity",
+     "application_type",
+     "date_issued",
+     "license_start_date",
+     "community_area_name"
+    ]
+   },
+   "holdout": {
+    "path": "segments",
+    "id": "business",
+    "field": [
+     "doing_business_as_name",
+     "legal_name"
+    ],
+    "upper": true,
+    "date": "issued",
+    "dateField": "date_issued"
+   },
+   "questionsMin": 3,
+   "launch": "launches/chicago-new-business-licenses.md",
+   "scoreboard": {
+    "leadproducts": "chicago-new-business-licenses"
+   }
   }
  }
 }

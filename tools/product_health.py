@@ -69,33 +69,48 @@ def q(s):
 
 
 def holdout(e, data, fetch, rng):
+    """Up to SAMPLE_N random published records, each looked up in the source. holdout settings in launches/WIRING.json:
+    field (one source column or a list, any may match) and id (our key), or match {our key: source column}; date and
+    dateField compare the day; upper true compares text without case (our samples title-case names). A numeric column
+    rejects a quoted value with HTTP 400, so the lookup retries unquoted."""
     h = e.get("holdout") or {}
     portal, ds = e["source"]["portal"], e["source"]["dataset"]
     rows = records(data, h.get("path") or "")
     pick = rng.sample(rows, min(SAMPLE_N, len(rows))) if rows else []
     found = same = 0
+    codes = {}
+    col = (lambda c: f"upper({c})") if h.get("upper") else (lambda c: c)
+    lit = (lambda v: f"upper('{q(v)}')") if h.get("upper") else (lambda v: f"'{q(v)}'")
     for r in pick:
+        tries = []
         if h.get("field") and h.get("id"):
-            where = f"{h['field']}='{q(r.get(h['id']))}'"
-            if h["field"] == "doing_business_as_name":
-                where = f"({where} OR legal_name='{q(r.get(h['id']))}')"
+            fields = h["field"] if isinstance(h["field"], list) else [h["field"]]
+            v = r.get(h["id"])
+            tries.append("(" + " OR ".join(f"{col(f)}={lit(v)}" for f in fields) + ")")
+            if str(v).isdigit():
+                tries.append("(" + " OR ".join(f"{f}={v}" for f in fields) + ")")
         else:
-            parts = [f"{col}='{q(r.get(k))}'" for k, col in (h.get("match") or {}).items() if r.get(k) is not None]
+            parts = [f"{col(c)}={lit(r.get(k))}" for k, c in (h.get("match") or {}).items() if r.get(k) not in (None, "", "Not given")]
             if h.get("dateField") and r.get(h.get("date")):
                 parts.append(f"date_trunc_ymd({h['dateField']})='{q(r[h['date']])}T00:00:00.000'")
-            where = " AND ".join(parts)
-        url = f"{portal}/resource/{ds}.json?" + urllib.parse.urlencode({"$where": where, "$limit": 20})
-        code, body = fetch(url)
-        try:
-            got = json.loads(body) if code == 200 else []
-        except ValueError:
-            got = []
+            tries.append(" AND ".join(parts))
+        got = []
+        for where in tries:
+            url = f"{portal}/resource/{ds}.json?" + urllib.parse.urlencode({"$where": where, "$limit": 50})
+            code, body = fetch(url)
+            codes[str(code)] = codes.get(str(code), 0) + 1
+            try:
+                got = json.loads(body) if code == 200 else []
+            except ValueError:
+                got = []
+            if code != 400:
+                break
         if got:
             found += 1
             if not h.get("dateField") or not h.get("date") or any(str(g.get(h["dateField"], ""))[:10] == str(r.get(h["date"]))[:10] for g in got):
                 same += 1
     ok = bool(pick) and found == len(pick) and same == len(pick)
-    return {"result": "PASS" if ok else "FAIL", "sampled": len(pick), "found": found, "sameDate": same}
+    return {"result": "PASS" if ok else "FAIL", "sampled": len(pick), "found": found, "sameDate": same, "http": codes}
 
 
 def live_one(slug, e, fetch, on, rng):

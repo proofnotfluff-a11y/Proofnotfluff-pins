@@ -674,7 +674,7 @@ def main():
     source = {"name": "City of Chicago Data Portal, Business Licenses", "url": DATASET_PAGE, "rowsUpdatedAt": upd_iso,
               "fetchedAt": now.isoformat(timespec="seconds"), "terms": TERMS,
               "modified": ("Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a "
-                           "Chicago business site, one row per business and address. Left out: licenses for one person's own work, for work "
+                           "Chicago business site, one row per business and address. Left out: renewals, cancelled or revoked licenses, licenses for one person's own work, for work "
                            "away from a fixed business site, or for an event or season (peddlers, special events, pop-ups, "
                            "tow trucks, home-sharing, shared kitchen users, private booting), home "
                            "and mail-drop addresses, and any business whose name could be a person's name. Business-level fields only.")}

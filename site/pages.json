@@ -3816,9 +3816,9 @@
   {
    "slug": "chicago-new-business-licenses",
    "kind": "licleads",
-   "draft": true,
    "price": 29,
    "trialDays": 7,
+   "checkout": "https://proofnotfluff.gumroad.com/l/chicago-new-business-licenses?utm_source=proofnotfluff&utm_medium=site&utm_campaign=chicago-new-business-licenses",
    "segment": "home-services",
    "city": "Chicago",
    "data": "permits/licenses-chicago/sample.json",

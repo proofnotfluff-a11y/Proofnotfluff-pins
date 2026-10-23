@@ -3817,6 +3817,8 @@
    "slug": "chicago-new-business-licenses",
    "kind": "licleads",
    "draft": true,
+   "price": 29,
+   "trialDays": 7,
    "segment": "home-services",
    "city": "Chicago",
    "data": "permits/licenses-chicago/sample.json",

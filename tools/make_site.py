@@ -2159,6 +2159,15 @@ def store_products():
                            f'30 days to {d["throughText"]}, pulled {d["asOfText"]}.')
             x["sample"] = "#sample"
             x["counts"] = c
+        elif page.get("kind") == "licleads":
+            d = json.load(open(os.path.join(ROOT, page["data"]), encoding="utf-8"))
+            c = d["counts"]
+            x["nums"] = [[f'{c["kept30"]:,}', "new business licenses, last 30 days"], [f'{c["keptWeek"]:,}', "licensed this week"]]
+            x["asof"] = nice_date(d["source"]["fetchedAt"])
+            x["source"] = (f'{d["source"]["name"]}: {c["kept30"]:,} new business licenses at Chicago business sites in the 30 days to '
+                           f'{nice_date(d["window"]["to"])}, pulled {x["asof"]}.')
+            x["sample"] = "#sample"
+            x["counts"] = c
         else:
             x["sample"] = ""
         out.append(x)

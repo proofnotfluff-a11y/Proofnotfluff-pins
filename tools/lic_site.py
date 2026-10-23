@@ -29,12 +29,14 @@ def page_html(p):
     url = M.BASE + p["slug"] + "/"
     rel = "../"
     checkout, price = p.get("checkout"), p.get("price")
+    trial = int(p.get("trialDays") or 0) if checkout else 0      # Gumroad free trial (Todd, Oct 22, 8:50 pm: 7 days)
     pulled = M.nice_date(d["source"]["fetchedAt"])                     # the Chicago date of the pull
     notify = p.get("notify") or "mailto:hello@proofnotfluff.com?subject=Chicago%20New%20Business%20Licenses%3A%20tell%20me%20when%20it%20opens"
 
     def buy(cls="btn ld-btnbig"):
         if checkout:
-            return f'<a class="{cls}" href="{E(checkout)}" rel="noopener">Get the full list: ${E(str(price))} a month</a>'
+            label = f"Start your {trial}-day free trial" if trial else f"Get the full list: ${E(str(price))} a month"
+            return f'<a class="{cls}" href="{E(checkout)}" rel="noopener">{label}</a>'
         return f'<a class="{cls}" href="{E(notify)}">Tell me when it opens</a>'
 
     HIST = {"first": "First license", "site": "New site", "added": "Added license", "relicensed": "Relicensed"}
@@ -53,7 +55,8 @@ def page_html(p):
                 f'<div><dt>Activity</dt><dd>{act}</dd></div></dl></article>')
 
     s30, sw = c["segments30"], c["segmentsWeek"]
-    note = (f'<p class="ld-heronote">New list every Monday. Cancel any time.</p>' if checkout else
+    note = (f'<p class="ld-heronote">New list every Monday. Card at checkout, nothing charged for {trial} days, then ${E(str(price))} a month. Cancel any time.</p>' if trial else
+            f'<p class="ld-heronote">New list every Monday. Cancel any time.</p>' if checkout else
             (f'<p class="ld-heronote">${E(str(price))} a month when it opens. New list every Monday.</p>' if price else
              '<p class="ld-heronote">Not on sale yet. New list every Monday.</p>'))
     lede = (f'{c["keptWeek"]:,} business sites on this week\'s list got a new City business license in the week to {E(M.nice_date(w["to"]))}, '
@@ -80,7 +83,15 @@ def page_html(p):
     method = '<section class="block"><h2>How to use this list</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"]) + "</section>"
     cta_html = (f'<section class="block" id="ldCta"><div class="cta ld-cta"><div><h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
                 + (f'<p class="ld-price">${E(str(price))} a month when it opens.</p>' if price and not checkout else "")
-                + f'<p class="ld-buybtn">{buy()}</p></div></div></section>')
+                + f'<p class="ld-buybtn">{buy()}</p>'
+                + (f'<p class="ld-secure">Secure checkout by Gumroad. Your card goes in at checkout and nothing is charged for {trial} days. '
+                   f'Then it is ${E(str(price))} a month until you cancel. Cancel in your Gumroad library before day {trial} and you pay nothing. '
+                   f'<a href="{rel}refunds/">Refunds and cancelling</a></p>' if trial else
+                   f'<p class="ld-secure">Secure checkout by Gumroad. Cancel any time. <a href="{rel}refunds/">Refunds and cancelling</a></p>' if checkout else "")
+                + '</div></div></section>')
+    faq = list(p["faq"]) + ([["Can I try it before I pay?",
+                              f"Yes. Start a {trial}-day free trial on Gumroad: your card goes in at checkout, nothing is charged for {trial} days, "
+                              f"then it is ${price} a month until you cancel. Cancel before day {trial} and you pay nothing."]] if trial else [])
     crumb, crumb_ld = M.crumbs(rel, [("Home", ""), ("Shop", "shop/"), (p["h1"], None)])
     shot = ('<figure class="lc-shot"><div class="lc-sh"><b>What members see</b><span>one row per business and site</span></div>'
             '<div class="lc-r"><div><b>Cafe, Logan Square</b><span>Retail Food Establishment</span></div><span class="lc-hi first"><i></i>First license</span></div>'
@@ -88,9 +99,9 @@ def page_html(p):
             '<figcaption>Illustration. The list shows each business\'s name, address, license and what the City\'s record says about it.</figcaption></figure>')
     body = (f'{crumb}<div class="lc-herogrid"><div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>'
             f'<div class="ld-heroact rl-act">{buy()}<a class="ld-textlink" href="#sample">See this week\'s sample</a></div>{note}</div>{shot}</div>'
-            f'{tiles}{trades}{sample}{method}{cta_html}{M.guides_block(p["slug"], rel=rel)}{M.faq_block(p["faq"])}')
+            f'{tiles}{trades}{sample}{method}{cta_html}{M.guides_block(p["slug"], rel=rel)}{M.faq_block(faq)}')
     ld = (M.ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
-          "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}, crumb_ld)
+          "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}, crumb_ld)
           + "<style>.ld-page .asof,.ld-page footer p{color:var(--muted)}.rl-act{margin:18px 0 8px}"
           ".lc-pill{background:var(--chip-near-bg);color:var(--chip-near)}.rl3 .ld-pill{margin:0}.rl3 .ld-ptop{margin:0 0 12px}"
           ".ld-page .tile .val.lc-area{font-size:22px;line-height:1.25}"
@@ -153,6 +164,12 @@ def selftest():
     h2 = page_html(dict(spec, data=os.path.relpath(f, ROOT)))
     assert "Planted Grill" in h2 and "4,321" in h2 and "has all 4,321 from" in h2 and "Busiest area" not in h2
     assert not re.search(r"\{[a-z_]+\[|\{c\[", html), "a template placeholder reached the page (holdout 1, round 4)"
+    # planted: on sale with a 7-day trial, the button, the note by it, the full disclosure and the FAQ all say the same terms
+    h3 = page_html(dict(spec, checkout="https://example.gumroad.com/l/x", price=29, trialDays=7, draft=False))
+    assert "Start your 7-day free trial" in h3 and "nothing is charged for 7 days. Then it is $29 a month until you cancel" in h3
+    assert "Can I try it before I pay?" in h3 and "Tell me when it opens" not in h3 and 'content="noindex' not in h3, "trial page"
+    h4 = page_html(dict(spec, checkout="https://example.gumroad.com/l/x", price=29, trialDays=0, draft=False))
+    assert "Get the full list: $29 a month" in h4 and "free trial" not in h4, "no trial words without trialDays"
     text = re.sub(r"<[^>]+>", " ", html).lower()
     for w in ("guarantee", "dirty", "violator"):
         assert w not in text, w

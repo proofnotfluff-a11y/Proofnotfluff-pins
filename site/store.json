@@ -19,6 +19,23 @@
    ]
   },
   {
+   "key": "chicago-new-business-licenses",
+   "audience": "trade",
+   "tag": "Chicago · New businesses",
+   "name": "Chicago New Business Licenses",
+   "short": "New Business Licenses",
+   "per": "a month",
+   "what": "Every new business license the City of Chicago issued in the last 30 days at a business site, sorted by trade, each marked first license, new site, added license or relicensed.",
+   "card": "New Chicago business licenses from the last 30 days, sorted by trade, with what the City's record says about each business.",
+   "for": "For commercial cleaning and pest control companies, and any vendor who sells to new businesses.",
+   "gets": [
+    "The business, address, license type, activity and issue date",
+    "First license, new site, added license or relicensed, from the City's earlier records",
+    "A members' web app with a map, filters and CSV export, plus an Excel file",
+    "A pitch kit: a call opener and an email for cleaning, pest control and other vendors"
+   ]
+  },
+  {
    "key": "chicago-construction-cleaning-leads",
    "audience": "trade",
    "tag": "Chicago · Construction",
@@ -136,6 +153,11 @@
    "label": "Windows and pressure washing",
    "where": "Austin",
    "to": "austin-construction-cleaning-leads"
+  },
+  {
+   "label": "New businesses",
+   "where": "Chicago",
+   "to": "chicago-new-business-licenses"
   }
  ],
  "calcProducts": {

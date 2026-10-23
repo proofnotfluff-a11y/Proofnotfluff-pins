@@ -247,7 +247,7 @@ def terms_text(date):
         "of Chicago, or by any business listed.",
         "AI assistance. This product was made with AI assistance and reviewed and tested by the shop owner.",
         "Help and cancelling. If the file won't open or something looks wrong, email hello@proofnotfluff.com with your Gumroad receipt "
-        "and it will be fixed. Cancel any time from your Gumroad receipt or library (if you have a Gumroad account); cancelling stops future charges. No refunds on a month already delivered; if a "
+        "and it will be fixed. A free trial is charged $29 when it ends unless you cancel before then. Cancel any time from your Gumroad receipt or library (if you have a Gumroad account); cancelling stops future charges. No refunds on a month already delivered; if a "
         "list doesn't arrive or a file won't open, we fix it or refund that month.",
     ]
 

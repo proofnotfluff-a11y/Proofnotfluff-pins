@@ -68,10 +68,10 @@ def nav_html(rel, current=""):
 
 
 def foot_nav(rel):
-    """The footer links on every page: the shop, the calculators, the refund page, the Etsy workbooks and the mailbox."""
+    """The footer links on every page: the shop, the calculators, the refund and privacy pages, the Etsy workbooks and the mailbox."""
     q = f'<a href="{rel}questions/">Questions</a>' if LIVE_QUESTIONS else ""
     return (f'<nav class="fnav" aria-label="Footer"><a href="{rel}shop/">Shop</a><a href="{rel}calculators/">Free calculators</a>{q}'
-            f'<a href="{rel}refunds/">Refunds and cancelling</a><a href="{SHOP}">Workbooks on Etsy</a>'
+            f'<a href="{rel}refunds/">Refunds and cancelling</a><a href="{rel}privacy/">Privacy</a><a href="{SHOP}">Workbooks on Etsy</a>'
             '<a href="mailto:hello@proofnotfluff.com">hello@proofnotfluff.com</a></nav>')
 
 
@@ -1827,7 +1827,7 @@ def leads_page_html(p):
                        f'<a href="{rel}refunds/">Refunds and cancelling</a></p></div>' if trial else
                        f'<p class="ld-secure">Secure checkout by Gumroad. Cancel any time. <a href="{rel}refunds/">Refunds and cancelling</a></p></div>')
                     + (f'<div class="ld-later" id="ldMonday"><p><b>Not ready to pay?</b> Get 2 or 3 jobs from this week\'s list free every Monday, by plain email.</p>{form}'
-                       '<small class="ld-note">Kit, our email provider, asks you to confirm first. Unsubscribe in one click. Never sold.</small></div>' if monday else
+                       f'<small class="ld-note">Kit, our email provider, asks you to confirm first. Unsubscribe in one click. Never sold. <a href="{rel}privacy/">Privacy</a></small></div>' if monday else
                        f'<div class="ld-later"><p><b>Not ready yet?</b> Leave your email and we will let you know when the list adds new cities or features.</p>{form}'
                        '<small class="ld-note">Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div>' if p.get("kitForm") else "")
                     + '</div></section>')
@@ -2416,6 +2416,52 @@ def refunds_html():
             FOOT.format(rel=rel, script="", sources=""))
 
 
+def privacy_html():
+    """/privacy/ (Legal desk FIX 2, legal/reviews/2026-10-22-monday-email-and-trial.md): what we collect, why, who holds it,
+    never sold, how to stop, the contact. Every claim here matches how the funnel runs (email/M1-MONDAY.md, CLAUDE.md)."""
+    CURRENT["nav"] = ""
+    rel = "../"
+    url = BASE + "privacy/"
+    r = load_store().get("privacy", {})
+    li = lambda xs: "<ul>" + "".join(f"<li>{x}</li>" for x in xs) + "</ul>"
+    mail = '<a href="mailto:hello@proofnotfluff.com">hello@proofnotfluff.com</a>'
+    crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Privacy", None)])
+    body = (f'{crumb}<article class="prose"><p class="eyebrow">Policy</p><h1>Privacy</h1>'
+            '<p class="lede">We collect as little as we can: an email address when you ask us for an email, and work contact details '
+            'for the businesses we write to about leads. We never sell any of it.</p>'
+            '<h2>What we collect</h2>' + li([
+                "Your email address, when you sign up on this site for the free Monday jobs email, a waitlist or the cleaning price cheat sheet.",
+                "For businesses we email about leads: the business name, the decision maker&#39;s name and job title, and their work email, "
+                "taken from public business records, the company&#39;s own website or an email finding service. We also keep your reply, "
+                "such as a yes or a stop.",
+                "When you buy a list: Gumroad, our checkout, gives us your name, your email and what you bought. Gumroad takes the card; "
+                "we never see your card number.",
+                "Visits: Cloudflare Web Analytics counts page views without cookies and without identifying you. The calculators run in your "
+                "browser and send nothing. In the members&#39; apps, contacted marks and notes stay in your own browser."]) +
+            '<h2>Why</h2>' + li([
+                "To send the email you asked for and to answer you.",
+                "For businesses we email: to ask whether you want the free Monday email, with at most two follow ups, and to send it if you say yes.",
+                "For members: to deliver the list and run your membership."]) +
+            '<h2>Who holds it</h2>' + li([
+                "Kit, our email provider, holds sign ups from this site and sends the Monday email to them.",
+                "Our CRM, a private database only ProofNotFluff can open, kept in our Claude workspace (run by Anthropic), holds the business "
+                "contacts and whether each said yes or stop.",
+                "Google runs our inbox, so the emails you send us and our replies sit in Gmail.",
+                "Gumroad holds checkout and membership records."]) +
+            '<p>Nobody else gets it. We never sell or rent your details, and never share them for anyone else&#39;s marketing.</p>'
+            '<h2>How to stop</h2>' + li([
+                "Reply &quot;stop&quot; to any email from us, or use the unsubscribe link at the foot of any email Kit sends. "
+                "You won&#39;t get another one.",
+                f'Members cancel in their Gumroad library (see <a href="{rel}refunds/">Refunds and cancelling</a>).',
+                f"To see what we hold about you, or to have it deleted, write to {mail}."]) +
+            '<h2>Contact</h2>'
+            f'<p>ProofNotFluff LLC, 680 North Lake Shore Drive, Suite 110-2964, Chicago, IL 60611. {mail}</p>'
+            f'<p class="asof">Policy updated {E(nice_date(r.get("updated", "")))}.</p></article>')
+    return (HEAD.format(title="Privacy | ProofNotFluff", desc="What ProofNotFluff collects, why, who holds it, and how to stop. We never sell your details.",
+                        url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
+            FOOT.format(rel=rel, script="", sources=""))
+
+
 def calculators_html():
     CURRENT["nav"] = "calc"
     rel = "../"
@@ -2550,6 +2596,7 @@ def og_all(pages, live):
              "Weekly lists for cleaning, hood cleaning and pest control in Chicago and Austin.")
     og_image("shop", "ProofNotFluff shop", "Pick the list that finds your customers.", "Free sample on every list, new every Monday.")
     og_image("refunds", "Policy", "Refunds and cancelling")
+    og_image("privacy", "Policy", "Privacy", "What we collect, why, and how to stop. Never sold.")
     og_image("questions", "Questions owners ask", "Plain answers, with this week's numbers")
     og_image("calculators", "Free calculators", "Price the job before you call", "Free pricing and money calculators, the same maths as our workbooks.")
     for x in json.load(open(os.path.join(ROOT, "site", "extras.json"), encoding="utf-8")).get("pages", []) if os.path.exists(os.path.join(ROOT, "site", "extras.json")) else []:
@@ -2577,7 +2624,7 @@ def main():
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page_html(p))
         print("wrote", p["slug"])
     open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(home_html(pages, live))
-    store = [("shop", shop_html()), ("refunds", refunds_html()), ("calculators", calculators_html())] + ([("questions", questions_html())] if LIVE_QUESTIONS else [])
+    store = [("shop", shop_html()), ("refunds", refunds_html()), ("privacy", privacy_html()), ("calculators", calculators_html())] + ([("questions", questions_html())] if LIVE_QUESTIONS else [])
     for slug, page in store:
         d = os.path.join(DOCS, slug); os.makedirs(d, exist_ok=True)
         open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(page)

@@ -227,6 +227,9 @@
   "updated": "2026-10-22",
   "lists": "No refunds on lead lists or the workbook, because you get the data the moment you pay. Cancel a list any time and you won't be charged again. If a list doesn't arrive or a file won't open, email hello@proofnotfluff.com and we'll fix it or refund that month."
  },
+ "privacy": {
+  "updated": "2026-10-22"
+ },
  "kitForms": {
   "10059700": "Chicago construction leads waitlist",
   "10083860": "Austin construction leads waitlist",
@@ -234,8 +237,8 @@
   "10083878": "Chicago new business licenses waitlist",
   "10083882": "13-week cash flow kit updates",
   "10059686": "Cleaning price cheat sheet (confirmation email links the PDF)",
-  "10084986": "Free Monday jobs: Chicago (double opt-in, confirms to the Chicago leads page; not on the site until go-live)",
-  "10084998": "Free Monday jobs: Austin (double opt-in, confirms to the Austin leads page; not on the site until go-live)"
+  "10084986": "Free Monday jobs: Chicago (double opt-in, confirms to the Chicago leads page; on that page from the Oct 22 go-live)",
+  "10084998": "Free Monday jobs: Austin (double opt-in, confirms to the Austin leads page; on that page from the Oct 22 go-live)"
  },
  "calcGroups": [
   [

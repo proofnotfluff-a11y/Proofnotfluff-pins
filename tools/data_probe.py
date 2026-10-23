@@ -25,6 +25,14 @@ PROBES = {
          "$group": "permit_class_mapped,status_current", "$order": "count(*) DESC", "$limit": 40}),
     "seattle_500k": ("https://data.seattle.gov/resource/76t5-zqzr.json",
         {"$select": "count(*),count(contractorcompanyname)", "$where": f"issueddate>='{SINCE}' AND estprojectcost>=500000"}),
+    # Seattle Permits (product 5): does the City name a contractor often enough for a builder list? Counts only (Oct 23).
+    "seattle_730_500k_by_class_type_status": ("https://data.seattle.gov/resource/76t5-zqzr.json",
+        {"$select": "permitclassmapped,permittypedesc,statuscurrent,count(*),count(contractorcompanyname)",
+         "$where": f"issueddate>='{(dt.date.today() - dt.timedelta(days=730)).isoformat()}' AND estprojectcost>=500000",
+         "$group": "permitclassmapped,permittypedesc,statuscurrent", "$order": "count(*) DESC", "$limit": 80}),
+    "seattle_500k_contractor_by_year": ("https://data.seattle.gov/resource/76t5-zqzr.json",
+        {"$select": "date_extract_y(issueddate) AS yr,count(*),count(contractorcompanyname)",
+         "$where": "issueddate>='2019-01-01' AND estprojectcost>=500000", "$group": "yr", "$order": "yr", "$limit": 20}),
 }
 COLUMNS = {
     "chicago_food_inspections": "https://data.cityofchicago.org/api/views/4ijn-s7e5.json",

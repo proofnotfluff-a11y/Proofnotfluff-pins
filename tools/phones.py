@@ -46,7 +46,8 @@ UA = "ProofNotFluffBot/1.0 (+https://proofnotfluff.com; business phone lookup, o
 WEB_CAP, WEB_TIMEOUT, WEB_BYTES, CHAIN_DOMAIN = 80, 8, 1_500_000, 3
 NOT_OWN_SITE = re.compile(r"(?:^|\.)(?:facebook|fb|instagram|yelp|doordash|grubhub|ubereats|uber|seamless|postmates|tripadvisor|google|goo|"
                           r"linktr|toasttab|opentable|resy|tock|exploretock|chownow|slicelife|menufy|allmenus|menupages|zmenu|beyondmenu|"
-                          r"tiktok|twitter|x|yellowpages|mapquest|foursquare|squareup|clover)\.(?:com|ee|gl|co|net|io|site)$", re.I)
+                          r"tiktok|twitter|x|yellowpages|mapquest|foursquare|squareup|clover|ezcater|trycaviar|caviar|business|square|"
+                          r"online)\.(?:com|ee|gl|co|net|io|site|online)$", re.I)
 TOLL_FREE = {"800", "833", "844", "855", "866", "877", "888"}
 LEGAL = {"INC", "LLC", "L", "C", "CORP", "CORPORATION", "CO", "COMPANY", "LTD", "THE", "AND", "OF", "DBA", "A"}
 GENERIC = {"RESTAURANT", "RESTAURANTS", "GRILL", "BAR", "CAFE", "KITCHEN", "PIZZA", "PIZZERIA", "TAQUERIA", "FOOD", "FOODS", "MART",
@@ -77,28 +78,34 @@ def tokens(name):
     return [t for t in s.split() if t not in LEGAL]
 
 
+# Words that never identify a business on their own (articles, titles, colors and "lucky" words), on top of GENERIC.
+STOP = {"EL", "LA", "LAS", "LOS", "LE", "DE", "DEL", "DI", "DA", "MR", "MRS", "MS", "NEW", "OLD", "GOLDEN", "BIG", "LITTLE", "ROYAL",
+        "GRAND", "KING", "STAR", "LUCKY", "HAPPY", "ORIGINAL", "BEST", "GOOD", "SUN"}
+
+
 def name_score(a, b):
+    """1.0 when one name's words all appear in the other and at least one of them is the business's own word (not
+    "pizza", "golden" or "el"); 0.0 otherwise. Different numbers ("Pho 777", "Pho 888") never match. Strict on purpose:
+    a wrong number costs more than an empty one (independent check, Oct 23)."""
     ta, tb = tokens(a), tokens(b)
     if not ta or not tb:
         return 0.0
     if "".join(ta) == "".join(tb):
         return 1.0
-    seq = difflib.SequenceMatcher(None, " ".join(ta), " ".join(tb)).ratio()
-    da, db = set(ta) - GENERIC - {t for t in ta if t.isdigit()}, set(tb) - GENERIC - {t for t in tb if t.isdigit()}
-    if da and db:
-        # both names have their own words: compare those, so "Pizza Palace" and "Pizza Hut" do not match on "Pizza"
-        seq = difflib.SequenceMatcher(None, " ".join(t for t in ta if t in da), " ".join(t for t in tb if t in db)).ratio()
-        ov = len(da & db) / min(len(da), len(db))
-        # a distinctive word glued differently ("MC DONALDS" and "MCDONALDS") still counts
-        if ov < 1 and ("".join(sorted(da)) in "".join(tb) or "".join(sorted(db)) in "".join(ta)):
-            ov = max(ov, 0.9)
-    else:
-        ov = 0.8 * len(set(ta) & set(tb)) / min(len(set(ta)), len(set(tb)))
-    return round(max(seq, ov), 3)
+    na, nb = {t for t in ta if t.isdigit()}, {t for t in tb if t.isdigit()}
+    if na and nb and not (na & nb):
+        return 0.0
+    st = lambda t: t[:-1] if len(t) > 3 and t.endswith("S") else t
+    sa, sb = {st(t) for t in ta if not t.isdigit()}, {st(t) for t in tb if not t.isdigit()}
+    short, long_ = (sa, sb) if len(sa) <= len(sb) else (sb, sa)
+    if not (short - {st(g) for g in GENERIC} - STOP):
+        return 0.0
+    return 1.0 if short <= long_ else 0.0
 
 
 def addr_key(addr):
-    """"1234 W Main St" and "1234 West Main Street, Chicago" give the same key: (1234, "MAIN")."""
+    """"1234 W Main St" and "1234 West Main Street, Chicago" give the same key: (1234, "MAIN"). The direction is kept
+    apart (addr_dir) so "2 N State" and "2 S State" never match."""
     t = re.sub(r"[^A-Z0-9 -]", " ", str(addr or "").upper()).split()
     if not t:
         return None
@@ -109,6 +116,12 @@ def addr_key(addr):
     return (int(m.group(1)), rest[0]) if rest else None
 
 
+def addr_dir(addr):
+    t = re.sub(r"[^A-Z0-9 -]", " ", str(addr or "").upper()).split()
+    d = t[1] if len(t) > 1 and t[1] in DIRS else ""
+    return d[:1]
+
+
 def dist_m(a_lat, a_lon, b_lat, b_lon):
     if None in (a_lat, a_lon, b_lat, b_lon):
         return None
@@ -117,6 +130,7 @@ def dist_m(a_lat, a_lon, b_lat, b_lon):
 
 
 def domain(url):
+    url = str(url or "")
     try:
         h = urllib.parse.urlparse(url if "//" in url else "http://" + url).hostname or ""
     except ValueError:
@@ -157,14 +171,15 @@ class Places:
             x = self.p[i]
             d = dist_m(lat, lon, x.get("lat"), x.get("lon"))
             s = name_score(name, x.get("name"))
-            same_addr = ak is not None and addr_key(x.get("address")) == ak
+            ad, xd = addr_dir(address), addr_dir(x.get("address"))
+            same_addr = ak is not None and addr_key(x.get("address")) == ak and (not ad or not xd or ad == xd)
             by_addr = same_addr and s >= 0.5 and (d is None or d <= 300)
             ok = by_addr if strict else by_addr or (d is not None and ((d <= 120 and s >= 0.75) or (d <= 60 and s >= 0.6)))
             if ok:
                 good.append((s + (0.1 if same_addr else 0) - (d or 0) / 2000, s, d, i))
         if not good:
             return None, "no match"
-        good.sort(reverse=True)
+        good.sort(key=lambda g: g[0], reverse=True)
         best = good[0]
         bphone = first_phone(self.p[best[3]])
         for other in good[1:]:
@@ -181,10 +196,14 @@ def first_phone(x):
 
 
 # ---------------------------------------------------------------- the business's own site
-def _get(url, cap):
-    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html"})
+def _get(url, cap, html_only=True):
+    """One page. A redirect to another domain or a listing site gives "" (the business's own site only)."""
+    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html" if html_only else "text/plain"})
     with urllib.request.urlopen(req, timeout=WEB_TIMEOUT) as r:
-        if "html" not in (r.headers.get("Content-Type") or "html"):
+        final = domain(r.geturl())
+        if final != domain(url) or NOT_OWN_SITE.search(final):
+            return ""
+        if html_only and "html" not in (r.headers.get("Content-Type") or "html"):
             return ""
         return r.read(cap).decode(r.headers.get_content_charset() or "utf-8", "replace")
 
@@ -219,19 +238,28 @@ def site_phone(url, fetch=_get, pause=None):
     dom = domain(url)
     if not dom or NOT_OWN_SITE.search(dom):
         return "", "listing site"
+    import urllib.error
     base = f"{urllib.parse.urlparse(url).scheme}://{urllib.parse.urlparse(url).netloc}"
+    url = base + "/"                           # the home page only, whatever deeper page Overture lists
     try:
-        rp = urllib.robotparser.RobotFileParser()
-        rp.parse(fetch(base + "/robots.txt", 200_000).splitlines())
-        if not rp.can_fetch(UA, url):
-            return "", "robots.txt"
+        robots = fetch(base + "/robots.txt", 200_000, html_only=False)
+    except urllib.error.HTTPError as e:
+        if e.code >= 500:
+            return "", "robots.txt unavailable"   # RFC 9309: a server error means read nothing
+        robots = ""                               # no robots.txt (4xx): the page may be read
     except Exception:
-        pass                                   # no robots.txt (or unreadable): the usual rule is that the page may be read
+        return "", "robots.txt unreachable"
+    rp = urllib.robotparser.RobotFileParser()
+    rp.parse(robots.splitlines())
+    if not rp.can_fetch(UA, url):
+        return "", "robots.txt"
     pause(5)
     try:
-        text = fetch(url, WEB_BYTES)
+        text = fetch(url, WEB_BYTES, html_only=True)
     except Exception:
         return "", "site unreachable"
+    if not text:
+        return "", "not the business's own page"
     if NO_BOTS.search(re.sub(r"<[^>]+>", " ", text)):
         return "", "site terms ban automated access"
     ph = page_phone(text)
@@ -299,7 +327,8 @@ def fill(rows, places, web=True, fetch=_get, name_field=None, strict=True, relea
 
 PROVIDERS = {"meta": "Meta", "microsoft": "Microsoft", "pinmeto": "PinMeTo", "krick": "Krick", "renderseo": "RenderSEO", "dac": "DAC",
              "brightquery": "BrightQuery", "birdeye": "Birdeye", "uberall": "Uberall", "opentravel": "OpenTravel Alliance",
-             "opentravel alliance": "OpenTravel Alliance", "foursquare": "Foursquare", "alltheplaces": "AllThePlaces"}
+             "opentravel alliance": "OpenTravel Alliance", "foursquare": "Foursquare", "alltheplaces": "AllThePlaces",
+             "msft": "Microsoft", "fsq": "Foursquare", "atp": "AllThePlaces"}
 LICENSES_FILE = "legal/licenses/phone-sources.txt"
 TERMS_LINES = [
     "Phone numbers are the number each business lists publicly (from Overture Maps data or the business's own website). "
@@ -345,9 +374,16 @@ def optout_add(name, address, path=OPTOUT):
     """A business that asks for its phone to be dropped (Legal desk: within 5 business days). Its name and address are
     stored only as a hash; the row stays on the list with an empty phone."""
     keys = optout_load(path) | {optout_key(name, address)}
-    json.dump({"about": "Businesses that asked us to drop their phone number, as SHA-256 keys of name and street "
-                        "(tools/phones.py). No names, no numbers.", "salt": OPTOUT_SALT, "keys": sorted(keys)},
-              open(path, "w"), indent=1)
+    _save({"about": "Businesses that asked us to drop their phone number, as SHA-256 keys of name and street "
+                    "(tools/phones.py). No names, no numbers.", "salt": OPTOUT_SALT, "keys": sorted(keys)}, path, indent=1)
+
+
+def _save(obj, path, **kw):
+    """Written whole to a side file, then moved: a crash never leaves a half file to commit, cache or seal."""
+    tmp = path + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(obj, f, **kw)
+    os.replace(tmp, path)
 
 
 def stamp_public(path, counts):
@@ -356,7 +392,7 @@ def stamp_public(path, counts):
     pub["phones"] = {"rows": counts["rows"], "withPhone": counts["withPhone"], "coverage": counts["coverage"]}
     if pub.get("history"):
         pub["history"][-1]["withPhone"] = counts["withPhone"]
-    json.dump(pub, open(path, "w"), indent=1)
+    _save(pub, path, indent=1)
 
 
 # ---------------------------------------------------------------- Overture (runner only)
@@ -391,7 +427,7 @@ def extract(out, release):
     places = [{"name": n, "lat": round(la, 6), "lon": round(lo, 6), "phones": list(ph or []), "websites": list(w or []),
                "address": a or "", "zip": (z or "")[:5], "confidence": round(c or 0, 3),
                "sources": sorted(set(s or [])), "status": st or "open"} for n, la, lo, ph, w, a, z, c, s, st in rows]
-    json.dump({"release": release, "bbox": BBOX, "places": places}, open(out, "w"))
+    _save({"release": release, "bbox": BBOX, "places": places}, out)
     print(json.dumps({"release": release, "places": len(places), "withPhone": sum(1 for p in places if p["phones"])}))
 
 
@@ -436,10 +472,17 @@ def selftest():
     assert addr_key("1234-1236 N Clark St") == (1234, "CLARK") and addr_key("Suite 4") is None
     assert name_score("MCDONALD'S", "McDonalds") == 1.0 and name_score("Mc Donalds", "McDonald's") == 1.0
     assert name_score("Acme Tacos Inc", "ACME TACOS") == 1.0
-    assert name_score("Lou Malnati's Pizzeria", "Lou Malnatis") >= 0.9
-    assert name_score("Pizza Palace", "Pizza Hut") < 0.75, name_score("Pizza Palace", "Pizza Hut")
-    assert name_score("Golden Dragon", "Dunkin") < 0.5 and name_score("Subway #4521", "Subway") == 1.0
-    assert name_score("Golden Wok", "Golden Wok Restaurant") == 1.0 and name_score("La Pasadita", "La Pasadita Restaurant Inc") == 1.0
+    same = [("Lou Malnati's Pizzeria", "Lou Malnatis"), ("Subway #4521", "Subway"), ("Golden Wok", "Golden Wok Restaurant"),
+            ("La Pasadita", "La Pasadita Restaurant Inc"), ("J & J Fish", "J&J Fish and Chicken"), ("Dunkin", "Dunkin Donuts"),
+            ("7-Eleven", "7 Eleven"), ("Starbucks Coffee #2345", "Starbucks"), ("La Michoacana", "La Michoacana Premium")]
+    other = [("Pizza Palace", "Pizza Hut"), ("Golden Dragon", "Dunkin"), ("Taqueria El Rey", "Taqueria El Sol"),
+             ("Golden Dragon", "Golden Nugget"), ("Mr Beef", "Mr. Brown's Lounge"), ("New China", "China King"),
+             ("Golden House", "Golden Wok"), ("Pho 777", "Pho 888"), ("Cafe 23", "Cafe 32"), ("Taqueria El Rey", "Taqueria"),
+             ("Pizza", "Pizza Hut"), ("Mexican Restaurant", "Restaurant"), ("Mario", "Maria"), ("Little Caesars", "Little Italy"),
+             ("Lou Malnatis", "Lou Mitchells"), ("Kim Bap", "Kim Chi"), ("Thai Spoon", "Thai Basil"), ("Cafe Mexico", "Cafe Lucci")]
+    assert all(name_score(a, b) == 1.0 for a, b in same), [(a, b) for a, b in same if name_score(a, b) < 1]
+    assert all(name_score(a, b) < 0.5 for a, b in other), [(a, b) for a, b in other if name_score(a, b) >= 0.5]
+    assert addr_dir("2 N State St") == "N" and addr_dir("2 North State Street") == "N" and addr_dir("2 State St") == ""
     places = [
         P("Acme Tacos", 41.88010, -87.63010, ["+13122074410"], addr="1234 W Main St"),          # 1: name and address
         P("Pizza Hut", 41.88200, -87.63000, ["+13122074411"], addr="9 W Elm St"),               # 2: same address, other name
@@ -458,14 +501,14 @@ def selftest():
         P("No Bots Deli", 41.99500, -87.74500, [], ["https://nobotsdeli.com"], addr="8 N Pine St"),               # 12: terms ban bots
         P("Fsq Spot", 41.99800, -87.74800, ["+13122070004"], addr="9 N Pine St", src=("Foursquare",)),           # 13: Foursquare
     ]
-    pages = {"https://goldenwokchi.com/robots.txt": "", "https://goldenwokchi.com":
+    pages = {"https://goldenwokchi.com/robots.txt": "", "https://goldenwokchi.com/":
              '<html><a href="tel:+1-773-281-6060">Call</a> Reservations (773) 281-6060 <script>"x":"312-200-1111"</script></html>',
-             "https://robotsbistro.com/robots.txt": "User-agent: *\nDisallow: /", "https://robotsbistro.com": '<a href="tel:3122003333">',
-             "https://nobotsdeli.com/robots.txt": "", "https://nobotsdeli.com":
+             "https://robotsbistro.com/robots.txt": "User-agent: *\nDisallow: /", "https://robotsbistro.com/": '<a href="tel:3122003333">',
+             "https://nobotsdeli.com/robots.txt": "", "https://nobotsdeli.com/":
              '<a href="tel:3122004444"></a><p>Use of robots, spiders or scrapers on this site is prohibited.</p>'}
     calls, waits = [], []
 
-    def fake(url, cap):
+    def fake(url, cap, **kw):
         calls.append(url)
         if url not in pages:
             raise OSError("not planted")
@@ -497,7 +540,7 @@ def selftest():
     assert rows[2]["phoneRef"] == "https://goldenwokchi.com/" and rows[2]["phoneDate"] == "2026-10-24"
     assert c == {"rows": 13, "matched": 9, "overture": 3, "website": 1, "noMatch": 3, "unsure": 1, "noPhoneListed": 5,
                  "withPhone": 4, "coverage": 30.8}, c
-    assert waits == [5, 5] and "https://robotsbistro.com" not in calls and not any("yelp" in u or "bigchain" in u for u in calls), (waits, calls)
+    assert waits == [5, 5] and "https://robotsbistro.com/" not in calls and not any("yelp" in u or "bigchain" in u for u in calls), (waits, calls)
     assert sites["robotsbistro.com"]["phone"] == "" and sites["nobotsdeli.com"]["phone"] == "" and used == {"meta", "foursquare"}
     # a site read in the last 30 days is not read again; its logged result is used
     calls.clear()
@@ -505,7 +548,48 @@ def selftest():
     assert fill(again, places, fetch=fake, sites=sites, today="2026-11-10", pause=waits.append)["website"] == 1 and calls == []
     assert again[0]["phone"] == "(773) 281-6060" and again[0]["phoneDate"] == "2026-10-24"
     fill([dict(rows[2])], places, fetch=fake, sites=sites, today="2026-11-30", pause=waits.append)
-    assert calls == ["https://goldenwokchi.com/robots.txt", "https://goldenwokchi.com"], "a 30-day-old read was not refreshed"
+    assert calls == ["https://goldenwokchi.com/robots.txt", "https://goldenwokchi.com/"], "a 30-day-old read was not refreshed"
+    # a deep page Overture lists is never read: the home page is; robots.txt server errors and timeouts read nothing
+    import urllib.error
+    calls.clear()
+    assert site_phone("https://goldenwokchi.com/locations/chicago/menu", fake, lambda s: None)[0] == "(773) 281-6060"
+    assert calls == ["https://goldenwokchi.com/robots.txt", "https://goldenwokchi.com/"], calls
+
+    def err(code):
+        def f(url, cap, **kw):
+            if url.endswith("robots.txt"):
+                raise urllib.error.HTTPError(url, code, "x", {}, None) if code else OSError("timeout")
+            return '<a href="tel:3122005555">'
+        return f
+    assert site_phone("https://a.com", err(503), lambda s: None) == ("", "robots.txt unavailable")
+    assert site_phone("https://a.com", err(0), lambda s: None) == ("", "robots.txt unreachable")
+    assert site_phone("https://a.com", err(404), lambda s: None) == ("(312) 200-5555", "a.com")
+    # the real fetcher: a text/plain robots.txt is read (it was dropped as "not HTML" before), an off-domain redirect gives ""
+    import email.message, io
+    real_open = urllib.request.urlopen
+
+    class Resp(io.BytesIO):
+        def __init__(self, body, ctype, final):
+            super().__init__(body.encode()); self._u = final
+            self.headers = email.message.Message(); self.headers["Content-Type"] = ctype
+        def geturl(self): return self._u
+        def __enter__(self): return self
+        def __exit__(self, *a): self.close()
+    web = {"https://b.com/robots.txt": ("User-agent: *\nDisallow: /", "text/plain; charset=utf-8", "https://b.com/robots.txt"),
+           "https://b.com/": ('<a href="tel:3122006666">', "text/html", "https://b.com/"),
+           "https://c.com/robots.txt": ("", "text/plain", "https://c.com/robots.txt"),
+           "https://c.com/": ('<a href="tel:3122007777">', "text/html", "https://www.toasttab.com/c")}
+    urllib.request.urlopen = lambda req, timeout=0: Resp(*web[req.full_url])
+    try:
+        assert site_phone("https://b.com", _get, lambda s: None) == ("", "robots.txt"), "text/plain robots.txt ignored"
+        assert site_phone("https://c.com", _get, lambda s: None) == ("", "not the business's own page"), "off-domain redirect read"
+    finally:
+        urllib.request.urlopen = real_open
+    # opposite directions never match; a tie between a place with a point and one without does not crash the sort
+    dirs = [P("Acme Tacos", 41.88010, -87.63010, ["+13122074410"], addr="2 S State St")]
+    assert fill([{"name": "ACME TACOS", "address": "2 N State St", "lat": None, "lon": None}], dirs, web=False)["withPhone"] == 0
+    tie = [P("Twin Grill", 41.88, -87.63, ["+13122074420"], addr="11 W Elm St"), P("Twin Grill", None, None, ["+13122074421"], addr="11 W Elm St")]
+    assert fill([{"name": "TWIN GRILL", "address": "11 W Elm St", "lat": 41.88, "lon": -87.63}], tie, web=False)["unsure"] == 1
     # the looser rule (measured only) matches a close name nearby without the address
     loose = [dict(rows[10])]
     assert fill(loose, places, web=False, strict=False)["withPhone"] == 1 and fill([dict(rows[10])], places, web=False)["withPhone"] == 0
@@ -565,18 +649,19 @@ if __name__ == "__main__":
         except Exception:
             release = ""
         sites_path = opt("--sites")
-        sites = json.load(open(sites_path)) if sites_path and os.path.exists(sites_path) else {}
+        try:
+            sites = json.load(open(sites_path)) if sites_path and os.path.exists(sites_path) else {}
+        except Exception:
+            sites = {}                          # an unreadable log means sites are read again, never a failed step
         doc, used = json.load(open(rows_path)), set()
         counts = fill(doc[key], places, web="--no-web" not in a, release=release, sites=sites, optout=optout_load(), used=used)
         if sites_path:
-            json.dump(sites, open(sites_path, "w"))
+            _save(sites, sites_path)
         doc["phoneNote"] = ATTRIBUTION
         doc["phoneTerms"] = TERMS_LINES
         doc["phoneAttribution"] = attribution(used, release)
         doc["phoneLicenses"] = LICENSES_FILE
-        tmp = rows_path + ".tmp"                 # written whole, then moved, so a crash never leaves a half file to seal
-        json.dump(doc, open(tmp, "w"), indent=1)
-        os.replace(tmp, rows_path)
+        _save(doc, rows_path, indent=1)
         if pub:
             stamp_public(pub, counts)
         print(json.dumps(counts))              # counts only: never a number or a name in the log

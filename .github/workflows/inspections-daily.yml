@@ -18,12 +18,14 @@ concurrency:
 jobs:
   daily:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
           ref: main
-      - run: pip install --quiet cryptography duckdb
+      - run: pip install --quiet cryptography
+      - name: DuckDB for the phone step (the list still ships without it)
+        run: pip install --quiet duckdb || echo "duckdb unavailable; phones left empty"
       - name: Self-checks
         run: |
           python3 tools/inspections_chicago.py --selftest
@@ -35,12 +37,13 @@ jobs:
         id: overture
         run: echo "release=$(python3 tools/phones.py --release)" >> "$GITHUB_OUTPUT"
       - name: Chicago places from that release, kept between runs (one download a month)
-        uses: actions/cache@v4
+        id: places
+        uses: actions/cache/restore@v4
         with:
           path: ${{ runner.temp }}/overture
           key: overture-chicago-${{ steps.overture.outputs.release }}
       - name: Log of business websites read in the last 30 days (Legal desk, one read per site per 30 days)
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: ${{ runner.temp }}/phone-sites
           key: phone-sites-${{ github.run_id }}
@@ -56,11 +59,29 @@ jobs:
           python3 tools/rest_leads.py "$RUNNER_TEMP/inspections-raw.json" "$RUNNER_TEMP/rest-data.json"
           python3 tools/rest_daily.py "$RUNNER_TEMP/rest-data.json" "$RUNNER_TEMP/daily-named.json"
       - name: Listed phone on each row (move 2; counts only in the log and the public file, numbers only in the sealed list)
+        id: phones
+        timeout-minutes: 9
+        continue-on-error: true
         run: |
-          mkdir -p "$RUNNER_TEMP/overture"
-          [ -s "$RUNNER_TEMP/overture/chicago.json" ] || python3 tools/phones.py --extract "$RUNNER_TEMP/overture/chicago.json" --release "${{ steps.overture.outputs.release }}" || echo "places download failed; the list ships with empty phones"
-          mkdir -p "$RUNNER_TEMP/phone-sites"
-          python3 tools/phones.py fill "$RUNNER_TEMP/daily-named.json" "$RUNNER_TEMP/overture/chicago.json" --public permits/inspections-chicago/daily.json --sites "$RUNNER_TEMP/phone-sites/sites.json" || echo "phone step failed; the list ships with empty phones"
+          mkdir -p "$RUNNER_TEMP/overture" "$RUNNER_TEMP/phone-sites"
+          if [ ! -s "$RUNNER_TEMP/overture/chicago.json" ]; then
+            if timeout 300 python3 tools/phones.py --extract "$RUNNER_TEMP/overture/chicago.json" --release "${{ steps.overture.outputs.release }}"; then
+              echo "fresh=1" >> "$GITHUB_OUTPUT"
+            else echo "places download failed; the list ships with empty phones"; fi
+          fi
+          timeout 240 python3 tools/phones.py fill "$RUNNER_TEMP/daily-named.json" "$RUNNER_TEMP/overture/chicago.json" --public permits/inspections-chicago/daily.json --sites "$RUNNER_TEMP/phone-sites/sites.json" || echo "phone step failed; the list ships with empty phones"
+      - name: Keep this month's places file (only after a good download)
+        if: always() && steps.phones.outputs.fresh == '1'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/overture
+          key: overture-chicago-${{ steps.overture.outputs.release }}
+      - name: Keep the website log, even when a later step fails
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/phone-sites
+          key: phone-sites-${{ github.run_id }}
       - name: Seal the named list (it names businesses with failed records; the private key is never in the repo)
         run: |
           python3 tools/rest_seal.py seal "$RUNNER_TEMP/daily-named.json" permits/inspections-chicago/daily.sealed.json

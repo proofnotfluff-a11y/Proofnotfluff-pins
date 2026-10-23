@@ -19,3 +19,11 @@ For the owner's attorney (no wording change can settle these):
 3. Telemarketing: the FTC Telemarketing Sales Rule's business-to-business exemption excludes calls selling nondurable office or cleaning supplies, and the 2024 amendments reach business calls. What falls on members, and what exposure comes from supplying the scripts? Any Illinois telephone solicitation rules?
 
 Sources read by the reviewer (Oct 22, 2026): webapps1.chicago.gov/ChicagoTif/disclaimer.html; catalog.data.gov/dataset/food-inspections; gumroad.com/help/article/192 and 139; ftc.gov CAN-SPAM compliance guide; Federal Register Apr 16, 2024 (2024-07182).
+
+## Round 2 (same reviewer, verified every round 1 fix against the files): FIX
+All round 1 fixes VERIFIED except item 5 (the live City page still would not load from the reviewer's sandbox; the runner's weekly terms check covers it). New: M1 the pitch kit email rule adds "a plain line saying it is a sales email" and its source (FTC, CAN-SPAM Act: A Compliance Guide for Business, read Oct 22, 2026), and every email says "This is a sales email from [company]."; L1 sample size wording matches the sample file; L2 help line points to hello@proofnotfluff.com like the refunds page; L3 "may already have seen"; L4 the do-not-list count label no longer says the business asked. All applied as worded (commit 224c564).
+
+## Round 3: two low fixes, then cleared
+Round 2 items all VERIFIED; the Terms reorder (membership terms first), the new free page lede, the sample's City record labels and the workbook's new column checked word for word. Two low fixes applied as worded (commit b32c21e): the license date "tells you how recently the City licensed the business at that site", and "POS, signs, insurance, bookkeeping, waste and supplies."
+
+legal.status: cleared (with fixes, every fix applied as worded). Attorney items 1 to 3 above stay open for the owner. Four rows a reviewer flagged as maybe residential (an office tower suite, a "1/2" street number, a second floor over shops, a 7th floor suite) were kept: no stated rule covers them, and the owner can add any to the do-not-list.

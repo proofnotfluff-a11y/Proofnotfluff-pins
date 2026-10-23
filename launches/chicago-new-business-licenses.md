@@ -1,5 +1,7 @@
 # Launch record: Chicago New Business Licenses ($29 a month planned, price and go are Todd's), NOT LAUNCHED
 
+Status Oct 22, 2026 (list of Oct 22, 230 businesses): built, and every agent gate passed. What is left is Todd's (section 2).
+
 Checklist: design/LAUNCH_CHECKLIST.md. Nothing is published, linked, emailed or promoted until every box is ticked with proof and Todd says go. Built by the leads desk builder run (coo/LEADS_DESK.md Run 4), product 4 in the LEADS FOCUS line (coo/PIVOT.md).
 
 ## Todd's decisions, Oct 22, 2026 (live chat, growth follow-up)
@@ -8,7 +10,14 @@ Checklist: design/LAUNCH_CHECKLIST.md. Nothing is published, linked, emailed or 
 - [stated] 4. "Restaurant product: pause its outreach. No template and no batch until the licenses product is live; then we decide again, since both sell to the same pest, hood and grease buyers. The product and its weekly data keep running."
 - [stated] 5. "Sign-off: no sender name. Emails stay faceless, the footer is the only signature. No change during copy test 1."
 
-## The product (planned)
+## The product
+- Members' web app: tools/lic_app.py (overview by trade, list with map, filters by trade, City record, date, area, license type, food license inspection and follow-up, search, CSV, business page, pitch kit, Terms readable before the password, workbook download). Encrypted with the password in the GitHub Actions secret LIC_LEADS_PASSWORD; built only in the runner, at docs/chicago-new-business-licenses-members/, once the secret exists.
+- Workbook: tools/lic_xlsx.py (Start Here, one tab per trade, Pitch kit, Terms with the City's Data Terms of Use word for word). The runner builds it from the same list and checks app and workbook rows against it field by field.
+- Free sample page: docs/chicago-new-business-licenses/ (site/pages.json "licleads", draft, noindex, no price, no checkout).
+- Storefront: launches/chicago-new-business-licenses/cover-1280x720.png and thumb-600x600.png (from cover.html and thumb.html).
+- This week's list (pulled Thursday, Oct 22, 2026): 230 businesses, 51 this week; food and drink 74, shops and services 97, salons 40, venues 3, auto 13, day care 3; first license 138, new site 38, added license 17, relicensed 37; 70 food rows with a license inspection in the 120 days before the license.
+
+## The product, as planned Oct 20
 - Buyers: vendors who sell to a business in its first months (POS and payments, signs, insurance, bookkeeping and payroll, commercial cleaning, pest control, hood cleaning, waste, uniforms and supplies).
 - What members get each Monday: every new business license the City issued in the last 30 days at a Chicago business site, one row per business and address, sorted by trade (restaurants and food shops; salons, barbers, spas and fitness; auto shops; day care; venues and lodging; shops, offices and other services), with license type, business activity, issue date, address and community area.
 - Left out on purpose (planted cases in `tools/licenses_chicago.py --selftest`): renewals and changes, cancelled or revoked licenses, licenses held by a person or for an event or season (peddler, special event, pop-up, tow truck, home-sharing, home occupation, home repair, mobile food), apartment or unit addresses, sites outside Chicago, and any business whose shown name could be a person's name (two to four plain words with no business word; "Golden Dragon" is left out too, on purpose: a wrong omission costs less than printing a person's name). The legal name is read only to judge that and is never written out.
@@ -29,16 +38,70 @@ Checklist: design/LAUNCH_CHECKLIST.md. Nothing is published, linked, emailed or 
 - Buyers already in the CRM: 132 Chicago cleaning companies and 83 Chicago restaurant vendors (pest, hood, grease) can buy this list without a new enrichment segment.
 - Proposed first buyers and price: commercial cleaning and pest control, $29 a month. First email drafts and the copy gate extension they need: the growth research doc.
 
-## 1. Gates (none run yet)
-- [ ] Built to standard: data rules done; free page draft done Oct 22; members' app (tools/leads_app.py pattern), workbook (tools/leads_xlsx.py pattern), storefront copy and images: to do.
+## 1. Gates (all agent gates passed Oct 22, 2026)
+- [x] Built to standard: members' app on the tools/leads_app.py pattern, workbook on WORKBOOK_STANDARD v3 (tools/leads_xlsx.py and rest_xlsx.py card helpers), free page draft, storefront copy, cover and thumbnail.
 - [x] Outreach email file: done Oct 22. email/L1-OUTREACH.md, cleaning (T11 to T13) and pest control (T14 to T16): a first email and two follow-ups each, variant A, faceless. Gated: copy_gate --signal-templates passes 6 of 6; --signal-live renders all 28 sample leads through all 6 (168 renders) and passes. Outreach go stays with Todd.
-- [ ] Self-checks.
-- [ ] Holdout 1 and Holdout 2 (fresh agents; never open tools/ or tests): random sample against the City's records and every written promise.
-- [ ] Design director (no score under 4, average above 4.6).
-- [ ] Legal desk (legal/README.md; the City's data terms word for word).
+- [x] Self-checks: licenses_chicago --selftest (17 planted names, 13 planted trades, 27 planted licenses, 2 planted removals, 5 planted histories, 2 planted food inspections), lic_xlsx, lic_app (node checks), lic_site; runner check: app and workbook rows match the runner's list 230 of 230 field by field; render_xlsx ERROR VALUES: 0 on screen and print; Playwright at 390 and 1280: every view, no console errors, no horizontal scroll, axe WCAG 2.1 AA 0 violations, CSV and back button; free page PASS at 390 and 1280 (noindex, 0 checkout links, no price); workbook and PNG metadata say ProofNotFluff only; check_repo 0 errors on a clean checkout before every push.
+- [x] Holdout 1 and Holdout 2 (fresh agents, never opened tools/ or tests): Holdout 2 PASS in round 5 (601 of 601 City rows accounted for, 0 misses, 0 wrong reasons, no false promise); Holdout 1 PASS in round 6 (seed 673018965: fields 30/30, City record 30/30, food 6/6, left out 25/25, every count true). Every earlier finding fixed with a planted case. After the holdouts, Legal's round 1 added three left-out activities (dog walking, pet sitting, residential real estate developer; planted cases 26 and 27) and one do-not-list address: 4 rows out, nothing else changed.
+- [x] Design director: round 1 FAIL 4.00, round 2 FAIL 4.14, round 3 FAIL 4.14 (every change list applied: commits 9f93ee6, 61fd098, 224c564, 065bb46); the round 3 reviewer judged again from fresh renders: PASS 4.71, then its two last items applied (b32c21e) and re-judged: PASS 5.00, every score 5. Live session's calls the reviewer accepted: the app lands on Overview; full-page screenshots draw the sticky map once.
+- [x] Legal desk: CLEARED WITH FIXES (legal/reviews/chicago-new-business-licenses-2026-10-22.md). Round 1 FIX (5 medium, 6 low), round 2 FIX (1 medium, 4 low), round 3 two low fixes; every fix applied as worded. City Data Terms of Use word for word in the Terms and the required disclaimer on every surface; 0 person's full names in 230 rows; overlap with the restaurant product stated plainly. The live City terms page would not load for the reviewer; the runner fetches it every week and stops the members' list if it differs from the Legal desk's snapshot (passed on every Oct 22 run).
+- Still open for Todd, from Legal (no wording change): counsel on (1) the City data terms' indemnity and duty to defend, (2) the Illinois Automatic Contract Renewal Act and federal ROSCA for a monthly Gumroad membership, (3) the call and email scripts under the Telemarketing Sales Rule (2024 changes), Illinois telephone solicitation rules and CAN-SPAM templates members send. Four rows a reviewer flagged as maybe residential were kept (office tower suites and a second floor over shops; no rule fits): Todd can add any to the do-not-list.
+- The crew's gate key is removed: the runner no longer seals a copy of the members' list (the private key lived only in the build session).
 
-## 2. Todd's steps (after every gate passes)
-1. [ ] Price and go.
-2. [ ] GitHub Actions secret for the members' app password (name set when the app is built; never in this repo).
-3. [ ] Gumroad product, cover and thumbnail, post-purchase content.
-4. [ ] Buyer test, then outreach go.
+## 2. Todd's steps, in order
+1. [ ] Price and go ($29 a month). Take the three open Legal items to counsel first if you want.
+2. [ ] GitHub: add the Actions secret LIC_LEADS_PASSWORD (Settings, Secrets and variables, Actions), 12 characters or more. Never in this repo or in chat.
+3. [ ] Tell a session. It runs the licenses workflow once so the members' app is published at https://proofnotfluff.com/chicago-new-business-licenses-members/, and checks that #/terms opens without the password.
+4. [ ] Gumroad: new Membership product, tier `Monthly` at $29, monthly, no trial. Paste Name, Summary and Description from "Gumroad copy" below. Cover: launches/chicago-new-business-licenses/cover-1280x720.png. Thumbnail: launches/chicago-new-business-licenses/thumb-600x600.png. Post-purchase content: the members' link and the same password. Publish, then send the checkout link to the session.
+5. [ ] The session puts the checkout link on the free page (site/pages.json "checkout"), drops "draft", and rebuilds the site.
+6. [ ] Buy once as a buyer (then refund): receipt, password, app, workbook in Excel and Google Sheets.
+7. [ ] Outreach go: cleaning T11 to T13 and pest control T14 to T16 (email/L1-OUTREACH.md); restaurant outreach stays paused until then (decision 4).
+
+## Removal requests
+- A business that asks to be left out (or a row Todd judges to be a home) goes on permits/licenses-chicago/do_not_list.json (salted keys, no names): `python3 tools/licenses_chicago.py --dnl-add --license N` (the License number from the business page or the workbook), commit, and the next build leaves it out of every list and the sample.
+
+## Gumroad copy (paste as is)
+
+Name:
+```
+Chicago New Business Licenses
+```
+
+Summary:
+```
+Every Monday: new business licenses the City of Chicago issued in the last 30 days, sorted by trade, each marked first license, new site, added license or relicensed.
+```
+
+Description:
+```
+A weekly lead list for Chicago commercial cleaning and pest control companies, and for any vendor who sells to new businesses and new locations.
+
+Each Monday we pull the City of Chicago's business license records (and its food inspection records, for food rows) and keep the new licenses the City issued in the last 30 days at Chicago business sites, one row per business and site, sorted by trade: food and drink; shops and services; salons, spas and fitness; venues and lodging; auto shops; day care.
+
+For each business: the license type, the business activity, the issue date, the address and community area, and what the City's earlier records say about it: its first Chicago license, a new site of a business already licensed elsewhere, a new license type at a site it already has, or the same license type again at a site it held before (most often a new owner, or the same business licensing the site again).
+
+What you get:
+- A members' web app: pick a trade, filter by date, community area, license type and City record, see the businesses on a map (a few City records have no map point), open its page, mark who you called and keep private notes (saved only in your own browser), and export any view to CSV.
+- The same list as an Excel file that also opens in Google Sheets, one tab per trade.
+- A pitch kit: a short call opener and an email for commercial cleaning, pest control and other vendors.
+
+If you also have Chicago Restaurant Inspection Leads: food businesses usually get a City food license inspection within three weeks before their food license is issued, and that product lists those inspections as Opening soon. Every food row here with one in the 120 days before its license is marked, and one click hides them, so you can skip the food businesses you may already have seen there. Nearly all shops, salons, venues, auto shops and day care centers are only on this list.
+
+What it is not: a license shows the City issued it on that date. It does not say a business is open or buying anything, and no business listed has endorsed or works with ProofNotFluff. Renewals, event licenses, licenses for one person's own work or for work away from a fixed site, home and mail-drop addresses, and businesses whose name could be a person's full name are left out on purpose; the full rule is in the Terms. You make your own calls and emails.
+
+$29 a month. Cancel any time from the link in your Gumroad receipt or from your Gumroad library (if you have a Gumroad account); cancelling stops future charges. Your membership renews monthly until you cancel.
+
+Terms of Use, readable before you buy: https://proofnotfluff.com/chicago-new-business-licenses-members/#/terms
+
+This site provides applications using data that has been modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one’s own risk.
+
+ProofNotFluff is not affiliated with or endorsed by the City of Chicago. Licensed to one business for its own prospecting.
+
+Made with AI assistance and reviewed and tested by the shop owner.
+Information and planning tool only, not legal, tax, financial or other professional advice.
+Digital membership: a web app and an Excel file. Nothing ships.
+No refunds on a month already delivered. If a list doesn't arrive or a file won't open, we fix it or refund that month: https://proofnotfluff.com/refunds/
+```
+
+Tier name: `Monthly`. Price: `$29`.
+

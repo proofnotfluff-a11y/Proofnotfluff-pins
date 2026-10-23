@@ -3,46 +3,34 @@
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
   "rowsUpdatedAt": "2026-10-22T09:08:25+00:00",
-  "fetchedAt": "2026-10-22T22:18:02+00:00",
+  "fetchedAt": "2026-10-23T02:33:36+00:00",
   "modified": "Filtered by ProofNotFluff: food inspections of the last 7 days at licensed food businesses (schools, day care, hospitals, senior meal sites and mobile vendors left out) that failed with pest violations, failed or passed with conditions with hood, grease or grease trap violations, had a license (pre-opening) inspection, or failed twice in 30 days. Violation notes are read only to set category labels; inspector notes are not republished. Business-level fields only.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
-  "from": "2026-10-15",
-  "to": "2026-10-22"
+  "from": "2026-10-16",
+  "to": "2026-10-23"
  },
  "counts": {
-  "fetched": 1259,
-  "kept": 70,
+  "fetched": 1208,
+  "kept": 46,
   "segments": {
-   "pests": 19,
-   "hoodGrease": 9,
-   "newOpening": 47,
+   "pests": 13,
+   "hoodGrease": 8,
+   "newOpening": 29,
    "repeatFail": 1
   },
   "excluded": {
-   "no lead segment (passed, or no buyer-relevant violation)": 83,
-   "institution or mobile vendor": 32
+   "no lead segment (passed, or no buyer-relevant violation)": 53,
+   "institution or mobile vendor": 22
   },
   "areas": [
    [
     "West Town",
-    10
-   ],
-   [
-    "Loop",
     9
    ],
    [
-    "Edgewater",
-    5
-   ],
-   [
     "Lincoln Park",
-    4
-   ],
-   [
-    "Near West Side",
     4
    ],
    [
@@ -50,11 +38,11 @@
     3
    ],
    [
-    "Lake View",
+    "Edgewater",
     3
    ],
    [
-    "West Elsdon",
+    "Lake View",
     3
    ],
    [
@@ -63,6 +51,18 @@
    ],
    [
     "Albany Park",
+    2
+   ],
+   [
+    "Austin",
+    2
+   ],
+   [
+    "Lincoln Square",
+    2
+   ],
+   [
+    "Loop",
     2
    ]
   ]
@@ -320,18 +320,6 @@
      "Grease trap",
      "Hood and ventilation",
      "Plumbing"
-    ]
-   },
-   {
-    "business": "LA Mom Kitchen",
-    "address": "5357 N Broadway",
-    "communityArea": "Edgewater",
-    "facilityType": "Restaurant",
-    "result": "Pass w/ Conditions",
-    "inspectionType": "Canvass Re-Inspection",
-    "date": "2026-10-15",
-    "categories": [
-     "Hood and ventilation"
     ]
    }
   ],

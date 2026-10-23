@@ -1,12 +1,10 @@
-ProofNotFluff members' lists: licenses for the phone numbers
-============================================================
+Phone number sources and licenses
+=================================
 
-Ships with every members' file that carries a phone column (tools/phones.py; Legal desk review
-legal/reviews/2026-10-23-phone-sources.md). The numbers are facts each business lists publicly. They come from:
+The phone numbers on this list are facts each business lists publicly. They come from two places.
 
-1. Overture Maps Foundation places data (overturemaps.org), places theme only. Per-source lines, from
-   docs.overturemaps.org/attribution (read Oct 23, 2026); a members' file also lists the lines for the providers
-   behind its own rows (its "phoneAttribution" field):
+1. Overture Maps Foundation places data (overturemaps.org), places theme. Any lines for the providers behind this
+   list's numbers come first. The full set of provider lines (docs.overturemaps.org/attribution, read Oct 23, 2026):
    Data from Meta. Available under CDLA Permissive 2.0.
    Data from Microsoft. Available under CDLA Permissive 2.0.
    Data from PinMeTo. Available under CDLA Permissive 2.0.
@@ -18,22 +16,22 @@ legal/reviews/2026-10-23-phone-sources.md). The numbers are facts each business 
    Data from Uberall. Available under CDLA Permissive 2.0.
    Data from OpenTravel Alliance. Available under CDLA Permissive 2.0.
    Data from Foursquare. Copyright 2024 Foursquare Labs, Inc. All rights reserved. Available under Apache 2.0.
-   Foursquare data was transformed to the Overture schema.
+   Foursquare data was transformed to the Overture schema. When this list carries numbers from Foursquare, Foursquare's
+   NOTICE text (https://opensource.foursquare.com/places-notice-txt/) is included with it word for word.
    Data from AllThePlaces. Available under CC0 1.0.
-   Overture Maps Foundation Open Map Data was accessed on the release date shown in the file from
+   Overture Maps Foundation Open Map Data was accessed on the release date shown above from
    https://registry.opendata.aws/overture.
-   Foursquare's NOTICE text: https://opensource.foursquare.com/places-notice-txt/ (its verbatim text is added here
-   before the first members' delivery; the page could not be read from the build sandbox on Oct 23, 2026).
 
-2. The business's own website (a tel: link or schema.org telephone field on its home page). A phone number is a
-   fact and carries no license; no other site content is copied.
+2. The business's own website (a phone link, a phone field, or the one phone number shown on its home page). A phone number is a fact; no other
+   site content is copied.
 
-No OpenStreetMap data is used.
+No OpenStreetMap data is used for phone numbers.
 
 
 ------------------------------------------------------------
-Community Data License Agreement - Permissive - Version 2.0 (verbatim, SPDX license-list-data)
+Full license text
 ------------------------------------------------------------
+
 Community Data License Agreement - Permissive - Version 2.0
 
 This is the Community Data License Agreement - Permissive, Version 2.0 (the "agreement"). Data Provider(s) and Data Recipient(s) agree as follows:
@@ -72,8 +70,9 @@ NO DATA PROVIDER SHALL HAVE ANY LIABILITY FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
 
 
 ------------------------------------------------------------
-Apache License, Version 2.0 (verbatim, SPDX license-list-data)
+Full license text
 ------------------------------------------------------------
+
 Apache License
 Version 2.0, January 2004
 http://www.apache.org/licenses/

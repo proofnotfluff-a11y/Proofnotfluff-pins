@@ -30,11 +30,17 @@ from openpyxl.cell.rich_text import CellRichText  # noqa: E402
 from openpyxl.utils import get_column_letter as gl  # noqa: E402
 
 PRODUCT = "Chicago New Business Licenses"
-VERSION = "Version 1, Oct 22, 2026"
+VERSION = "Version 2, Oct 23, 2026"
 CITY_TERMS_FILE = os.path.join(ROOT, "permits", "licenses-chicago", "city-terms.json")
 RECORD = "https://data.cityofchicago.org/resource/r5kz-chrr.json?license_number="
 RESTAURANT = "Chicago Restaurant Inspection Leads"
 FOOD_URL = "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5"
+PHONE_LICENSES = os.path.join(ROOT, "legal", "licenses", "phone-sources.txt")
+# Phone numbers (move 2, Todd's go Oct 23, 2026): tools/phones.py fills them in the runner; the Terms lines are the Legal
+# desk's exact wording (legal/reviews/2026-10-23-phone-sources.md).
+from phones import TERMS_LINES as PHONE_TERMS  # noqa: E402
+PHONE_LEAD = ("The number the business lists publicly, from Overture Maps data or the business's own website, shown only when "
+              "the business's name and street address both match the City record. Not listed means we found none we could match.")
 
 # ---------------------------------------------------------------- trades (keys from tools/licenses_chicago.py SEGMENTS)
 from licenses_chicago import TRADES  # noqa: E402  (key, tab, short label, kinds: one source with the free page)
@@ -229,6 +235,9 @@ def terms_text(date):
         "that opens another site, or adds a new license type at a site it already has, gets one too; the On the City's record column "
         "reads the City's earlier licenses for the same business to tell these apart. The trades are ProofNotFluff's sorting of the "
         "City's license type and business activity, not the City's labels. Confirm anything you rely on with the business or the City.",
+        "Phones. " + PHONE_TERMS[0] + " A number is shown only when the business's name and street address both match the "
+        "City record, so some rows have none. " + PHONE_TERMS[1] + " Phone data from Overture Maps Foundation places data is used "
+        "under the CDLA Permissive 2.0, Apache 2.0 and CC0 1.0 licenses; the sources and license texts follow these terms.",
         "Who is left out. " + LEFT_OUT,
         "What the list does not say. A business on the list holds a new City license. The list does not say it is open, hiring or "
         "buying, or that it needs any service. Don't present the list, or anything in it, as a judgment about a business.",
@@ -299,7 +308,8 @@ WRAP = ("name", "address", "area", "type", "activity", "history", "also", "more"
 
 def data_sheet(wb, key, rows, list_date, food):
     """One trade's tab: a stat strip with the ink answer tile, then the table (WORKBOOK_STANDARD v3, rest_xlsx's layout)."""
-    cols = ([("name", "Business", 26, "left", None), ("address", "Address", 22, "left", None), ("area", "Community area", 17, "left", None),
+    cols = ([("name", "Business", 26, "left", None), ("address", "Address", 22, "left", None), ("phone", "Phone", 16, "left", None),
+             ("area", "Community area", 17, "left", None),
              ("issued", "Licensed", 13, "left", "date"), ("type", "License type", 21, "left", None),
              ("activity", "Business activity", 34, "left", None), ("history", "On the City's record", 23, "left", None)]
             + ([("food", "Food license inspection", 23, "left", "date"), ("since", "Food inspections since", 22, "left", None)] if food else [])
@@ -366,6 +376,8 @@ def data_sheet(wb, key, rows, list_date, food):
             c.alignment = Alignment(horizontal=align, vertical="center", wrap_text=ck in WRAP)
             if ck in ("area", "zip") and not r.get(ck):
                 c.value = "Not given"; c.font = D.f(10, False, "muted")
+            elif ck == "phone" and not r.get(ck):
+                c.value = r.get("phoneNone") or "Not listed"; c.font = D.f(10, False, "muted")
             elif ck == "food" and not r.get(ck):
                 c.value = None
             elif ck == "history":
@@ -375,7 +387,7 @@ def data_sheet(wb, key, rows, list_date, food):
                 label = HISTORY.get(r.get("hist") or "")
                 if ink and c.value.startswith(label):
                     c.value = rich([(label, True, ink)] + ([(c.value[len(label):], False, "ink2")] if c.value != label else []))
-            elif ck in ("address", "area", "issued", "type", "activity", "license", "zip", "food", "since"):
+            elif ck in ("address", "phone", "area", "issued", "type", "activity", "license", "zip", "food", "since"):
                 c.font = D.f(10, False, "ink2")
             elif ck in ("also", "more") and r.get(ck):
                 c.font = D.f(9, False, "ink2")
@@ -432,7 +444,8 @@ def more_text(extra):
 
 
 def row_of(r, full):
-    return {"name": r["business"], "address": r["address"], "area": r.get("communityArea") or "", "issued": day(r["issued"]),
+    return {"name": r["business"], "address": r["address"], "phone": r.get("phone") or "",
+            "phoneNone": "Not listed" if phones_checked(full) else "Not checked", "area": r.get("communityArea") or "", "issued": day(r["issued"]),
             "type": r["licenseType"], "activity": (r.get("activity") or "").split(" | ")[0],
             "more": more_text((r.get("activity") or "").split(" | ")[1:]), "history": history_text(r), "hist": r.get("history") or "",
             "food": day(r.get("foodInsp")), "since": r.get("inspSince") or "", "new": "New" if is_new(r, full) else "", "also": "; ".join(r.get("otherTypes") or []),
@@ -510,6 +523,8 @@ def start_here(wb, full, list_date, counts, cols):
         *[("lead", (HISTORY[k], HISTORY_LONG[k])) for k in ("first", "site", "added", "relicensed")],
         ("lead", ("Restaurants", OVERLAP)),
         ("lead", ("Inspections since", OPEN_BEFORE.split(": ", 1)[1][0].upper() + OPEN_BEFORE.split(": ", 1)[1][1:])),
+        ("lead", ("Phone", PHONE_LEAD + ("" if phones_checked(full) else
+                           " This week's phone check did not run, so the Phone column says Not checked."))),
         ("lead", ("Left out", LEFT_OUT_SHORT)),
         ("lead", ("Not included", "The legal name of the business and anything about the people who own it. The legal name is read only "
                                   "to judge whether a name could be a person's, and is never written out.")),
@@ -559,9 +574,34 @@ def terms(wb, full, list_date):
     ours = [("para", OUR_NOTICE)] + [lead_para(x) for x in t[1:]]
     r = card(ws, 6, "Your membership terms", ours)
     r = card(ws, r, "City of Chicago Data Terms of Use", rows)
+    r = card(ws, r, "Phone number sources and licenses", [("para", p) for p in phone_sources(full)])
     relink(ws)
     finish_card(ws, r, "note")
     return ws
+
+
+def phone_sources(full):
+    """The phone attribution lines for this list's providers, then legal/licenses/phone-sources.txt as paragraphs
+    (CDLA Permissive 2.0 and Apache 2.0 word for word; each provider line its own paragraph). One source: the workbook's
+    Terms tab and the app's Terms view."""
+    paras = list(full.get("phoneAttribution") or [])
+    own_line = re.compile(r"^(?:Data from |Overture Maps Foundation Open Map Data|Foursquare data was transformed)")
+    for block in re.split(r"\n\s*\n", open(PHONE_LICENSES, encoding="utf-8").read()):
+        lines = [l.strip() for l in block.splitlines() if l.strip() and not re.fullmatch(r"[-=]{5,}", l.strip())]
+        if not lines or lines == ["Phone number sources and licenses"]:      # the card already carries the title
+            continue
+        cur = []
+        for l in lines:
+            if own_line.match(l) and cur:
+                paras.append(" ".join(cur)); cur = []
+            cur.append(l)
+        paras.append(" ".join(cur))
+    return paras
+
+
+def phones_checked(full):
+    """False when the runner's phone step did not run this week (the column then says Not checked, never Not listed)."""
+    return bool(full.get("phoneNote"))
 
 
 # ---------------------------------------------------------------- planted list (invented businesses, real field names)
@@ -571,6 +611,7 @@ def _planted():
                                                  "issued": issued, "segment": seg, "communityArea": "Loop", "lat": 41.88, "lon": -87.63,
                                                  "history": "first", "since": "", "foodInsp": ""}, **kw)
     recs = [R("1", "Luna Tacos", "food", "2026-10-20", licenseType="Retail Food Establishment", foodInsp="2026-10-02", inspSince="2025",
+              phone="(312) 207-4410", phoneSource="overture:meta",
               otherTypes=["Consumption on Premises - Incidental Activity"]),
             R("2", "Bright Kids Academy", "care", "2026-10-01", licenseType="Children's Services Facility License"),
             R("3", "Fresh Cuts Barbershop", "beauty", "2026-10-19", history="added", since="2019"),
@@ -581,7 +622,8 @@ def _planted():
                        "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
                        "fetchedAt": "2026-10-22T16:40:46+00:00", "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"},
             "window": {"from": "2026-10-15", "to": "2026-10-22", "listFrom": "2026-09-22"},
-            "counts": {"checks": {"history": True, "foodInspections": True}}, "records": recs}
+            "counts": {"checks": {"history": True, "foodInspections": True}}, "records": recs,
+            "phoneAttribution": ["Data from Meta. Available under CDLA Permissive 2.0."], "phoneNote": "x"}
 
 
 def cached_note_ok(path):
@@ -601,21 +643,22 @@ def selftest():
     wb = load_workbook(out, rich_text=True)
     assert wb.sheetnames == ["Start Here", *TAB.values(), "Pitch kit", "Terms"], wb.sheetnames
     f = wb[TAB["food"]]
-    heads = [f[f"{gl(i)}11"].value for i in range(3, 3 + 8)]
-    assert heads == ["Business", "Address", "Community area", "Licensed", "License type", "Business activity", "On the City's record",
+    heads = [f[f"{gl(i)}11"].value for i in range(3, 3 + 9)]
+    assert heads == ["Business", "Address", "Phone", "Community area", "Licensed", "License type", "Business activity", "On the City's record",
                      "Food license inspection"], heads
+    assert f["E13"].value == "(312) 207-4410" and f["E12"].value == "Not listed", "phone column: the number, or Not listed"
     assert f["C11"].font.b and f["C11"].font.sz == 9 and not f["C11"].alignment.wrap_text, "headers: 9 pt bold, one line"
-    assert f.print_area.endswith("$S$" + f.print_area.split("$")[-1]) and f.print_options is not None, f.print_area
-    assert str(f["I12"].value) == "First license" and f["I12"].value[0].font.color.rgb.endswith(CHIP["first"]) and f["I12"].value[0].font.b
+    assert f.print_area.endswith("$T$" + f.print_area.split("$")[-1]) and f.print_options is not None, f.print_area
+    assert str(f["J12"].value) == "First license" and f["J12"].value[0].font.color.rgb.endswith(CHIP["first"]) and f["J12"].value[0].font.b
     assert f["C12"].value == "Corner Market" and f["C13"].value == "Luna Tacos", "newest first"
-    assert f["F13"].number_format == "mmm d, yyyy" and f["J13"].number_format == "mmm d, yyyy"
-    assert f["M13"].value == "Consumption on Premises - Incidental Activity" and f["L12"].value == "New" and f["K13"].value == "2025"
-    assert f["Q13"].value == f'=HYPERLINK("{RECORD}1","City record")' and f.auto_filter.ref.startswith("C11")
+    assert f["G13"].number_format == "mmm d, yyyy" and f["K13"].number_format == "mmm d, yyyy"
+    assert f["N13"].value == "Consumption on Premises - Incidental Activity" and f["M12"].value == "New" and f["L13"].value == "2025"
+    assert f["R13"].value == f'=HYPERLINK("{RECORD}1","City record")' and f.auto_filter.ref.startswith("C11")
     assert wb[TAB["venue"]]["D12"].value == "None in the last 30 days." and cached_note_ok(out)
     r = wb[TAB["retail"]]
-    assert str(r["I12"].value) == "New site, licensed in Chicago since 2015" and r["E12"].value == "Not given"
-    assert str(wb[TAB["beauty"]]["I12"].value) == "Added license, here since 2019" and wb[TAB["auto"]]["I12"].value == "Not checked"
-    assert wb[TAB["care"]]["J12"].value is None, "only the food tab has the food inspection column"
+    assert str(r["J12"].value) == "New site, licensed in Chicago since 2015" and r["F12"].value == "Not given"
+    assert str(wb[TAB["beauty"]]["J12"].value) == "Added license, here since 2019" and wb[TAB["auto"]]["J12"].value == "Not checked"
+    assert wb[TAB["care"]]["K12"].value is None, "only the food tab has the food inspection column"
     cached = load_workbook(out, data_only=True)
     sh = cached["Start Here"]
     assert [sh[c].value for c in ("C8", "G8", "K8", "O8")] == [6, 3, 3, 2], [sh[c].value for c in ("C8", "G8", "K8", "O8")]
@@ -627,7 +670,19 @@ def selftest():
     assert city_disclaimer() in blob and LEFT_OUT in blob and OVERLAP in blob and OUR_NOTICE in blob
     for h, paras in city_terms()["sections"]:
         assert h in blob and all(p in blob for p in paras), f"City terms section {h} not word for word"
-    assert any(VERSION in t for t in texts) and "Version 1" in blob
+    assert any(VERSION in t for t in texts) and "Version 2" in blob
+    assert all(t in blob for t in PHONE_TERMS) and "Data from Meta. Available under CDLA Permissive 2.0." in blob
+    assert "Community Data License Agreement - Permissive - Version 2.0" in blob and "Apache License" in blob, "license texts in the Terms tab"
+    assert "SPDX" not in blob and "Data from Microsoft. Available under CDLA Permissive 2.0." in phone_sources({}), "one paragraph per provider"
+    assert all(len(p) < 30_000 for p in phone_sources(full)), "a paragraph longer than a cell"
+    # a week the phone step did not run: the column says Not checked, and Start Here says why
+    nofill = _planted()
+    del nofill["phoneNote"]
+    out2 = os.path.join(tempfile.mkdtemp(), "t2.xlsx")
+    build(nofill, out2)
+    w2 = load_workbook(out2, rich_text=True)
+    assert w2[TAB["food"]]["E12"].value == "Not checked" and any("phone check did not run" in str(c.value)
+                                                                for row in w2["Start Here"].iter_rows() for c in row if c.value)
     from make_site import CITY_DISCLAIMER as SITE_CITY
     assert city_disclaimer() == SITE_CITY["Chicago"], "one City disclaimer on the site and in the product"
     assert len(wb["Pitch kit"].row_breaks.brk) == len(PITCH) - 1

@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["tools/licenses_chicago.py", "tools/lic_*.py", ".github/workflows/licenses-chicago.yml",
+    paths: ["tools/licenses_chicago.py", "tools/lic_*.py", "tools/phones.py", "legal/licenses/phone-sources.txt", ".github/workflows/licenses-chicago.yml",
             "permits/licenses-chicago/do_not_list.json", "permits/licenses-chicago/city-terms.json"]
   schedule:
     - cron: "40 11 * * 1"   # Mondays, about 6:40 am Chicago time in daylight time
@@ -20,17 +20,64 @@ concurrency:
 jobs:
   pull:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
       - run: pip install --quiet cryptography openpyxl pillow
+      - name: DuckDB for the phone step (the list still ships without it)
+        run: pip install --quiet duckdb || echo "duckdb unavailable; phones left empty"
       - name: Self-checks (planted cases)
         run: |
           python3 tools/licenses_chicago.py --selftest
           python3 tools/lic_xlsx.py --selftest
           python3 tools/lic_app.py --selftest
+          python3 tools/phones.py --selftest
       - run: python3 tools/licenses_chicago.py --probe
       - run: python3 tools/licenses_chicago.py --full "$RUNNER_TEMP/licenses-full.json"
+      - name: Newest Overture Maps release (open places data for the phone step)
+        id: overture
+        run: echo "release=$(python3 tools/phones.py --release)" >> "$GITHUB_OUTPUT"
+      - name: Chicago places from that release (shared with the daily restaurant list)
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/overture
+          key: overture-chicago-${{ steps.overture.outputs.release }}
+      - name: Log of business websites read in the last 30 days (Legal desk, one read per site per 30 days)
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/phone-sites
+          key: phone-sites-lic-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: phone-sites-lic-
+      - name: The other list's website log, read only (one read per site per 30 days across both lists)
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/phone-sites-other
+          key: phone-sites-daily-none
+          restore-keys: phone-sites-daily-
+      - name: Listed phone on each row (move 2, Todd's go Oct 23; counts only in the log, numbers only in the members' files)
+        id: phones
+        timeout-minutes: 9
+        continue-on-error: true
+        run: |
+          mkdir -p "$RUNNER_TEMP/overture" "$RUNNER_TEMP/phone-sites"
+          if [ ! -s "$RUNNER_TEMP/overture/chicago.json" ]; then
+            if timeout 300 python3 tools/phones.py --extract "$RUNNER_TEMP/overture/chicago.json" --release "${{ steps.overture.outputs.release }}"; then
+              echo "fresh=1" >> "$GITHUB_OUTPUT"
+            else echo "places download failed; the list ships with empty phones"; fi
+          fi
+          timeout 240 python3 tools/phones.py fill "$RUNNER_TEMP/licenses-full.json" "$RUNNER_TEMP/overture/chicago.json" --key records --sites "$RUNNER_TEMP/phone-sites/sites.json" --sites-also "$RUNNER_TEMP/phone-sites-other/sites.json" || echo "phone step failed; the list ships with empty phones"
+      - name: Keep this month's places file (only after a good download)
+        if: always() && steps.phones.outputs.fresh == '1'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/overture
+          key: overture-chicago-${{ steps.overture.outputs.release }}
+      - name: Keep the website log, even when a later step fails
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/phone-sites
+          key: phone-sites-lic-${{ github.run_id }}-${{ github.run_attempt }}
       - name: The City's Data Terms of Use match the Legal desk's snapshot (the members' list stops here if they changed)
         run: python3 tools/lic_xlsx.py --terms-check permits/licenses-chicago/source-terms.txt
       - name: Workbook, and a check copy of the members' app under a throwaway password; rows must match the runner's list

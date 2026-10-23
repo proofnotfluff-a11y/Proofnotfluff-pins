@@ -359,6 +359,59 @@ def attribution(used, release):
     return out
 
 
+NOTICE_URL = "https://opensource.foursquare.com/places-notice-txt/"
+
+
+def foursquare_notice(fetch=None):
+    """Foursquare's NOTICE text, read in the runner (Apache 2.0 section 4(d): it goes with every file that carries
+    Foursquare data). Only a plain-text response or a <pre> block counts, it must read as a NOTICE (the word NOTICE and
+    "Foursquare Labs" or "Apache"), and it is kept as written (tags removed, nothing else changed). Anything else gives "",
+    and the caller then drops the Foursquare numbers rather than ship a page's menus labeled as the NOTICE."""
+    try:
+        if fetch:
+            text, ctype = fetch(NOTICE_URL)
+        else:
+            req = urllib.request.Request(NOTICE_URL, headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=20) as r:
+                ctype = r.headers.get("Content-Type") or ""
+                text = r.read(400_000).decode(r.headers.get_content_charset() or "utf-8", "replace")
+    except Exception:
+        return ""
+    if "text/plain" in (ctype or "").lower():
+        body = text
+    else:
+        m = re.search(r"<pre[^>]*>(.*?)</pre>", text, re.S | re.I)
+        if not m:
+            return ""
+        body = html.unescape(re.sub(r"<[^>]+>", "", m.group(1)))
+    body = body.strip()
+    if not (20 <= len(body) <= 30_000) or "NOTICE" not in body or not re.search(r"Foursquare Labs|Apache", body):
+        return ""
+    return body
+
+
+def is_fsq(source):
+    return any(PROVIDERS.get(k) == "Foursquare" for k in source.replace("overture:", "", 1).split("+")) if source.startswith("overture:") else False
+
+
+def keep_notice(rows, used, attribution_lines, notice):
+    """With the NOTICE text, it joins the attribution lines; without it, Foursquare numbers are dropped (Legal desk)."""
+    fsq = {k for k in used if PROVIDERS.get(k) == "Foursquare"}
+    if not fsq:
+        return 0
+    if notice:
+        attribution_lines.append("Foursquare NOTICE (word for word): " + notice)
+        return 0
+    dropped = 0
+    for r in rows:
+        if is_fsq(r.get("phoneSource", "")):
+            r["phone"], r["phoneSource"], r["phoneRef"], r["phoneDate"] = "", "", "", ""
+            dropped += 1
+    used -= fsq
+    attribution_lines[:] = [l for l in attribution_lines if "Foursquare" not in l]
+    return dropped
+
+
 OPTOUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "permits", "phone-optout.json")
 OPTOUT_SALT = "proofnotfluff-phone-optout-v1"
 
@@ -610,6 +663,21 @@ def selftest():
     at = attribution({"meta", "foursquare"}, "2026-10-21.0")
     assert at[0].startswith("Data from Foursquare. Copyright 2024") and "Data from Meta. Available under CDLA Permissive 2.0." in at
     assert at[-1].startswith("Overture Maps Foundation Open Map Data (release 2026-10-21.0) was accessed on 2026-10-21") and attribution(set(), "x") == []
+    # Foursquare NOTICE: plain text or a <pre> block that reads as a NOTICE, kept as written; else the numbers are dropped
+    pre = "<html><nav>Foursquare home</nav><pre>Foursquare Labs NOTICE\n\nThis product  includes data &amp; more.</pre></html>"
+    assert foursquare_notice(lambda u: (pre, "text/html")) == "Foursquare Labs NOTICE\n\nThis product  includes data & more."
+    assert foursquare_notice(lambda u: ("Copyright Foursquare Labs, Inc.\nNOTICE\nApache 2.0", "text/plain; charset=utf-8")).startswith("Copyright")
+    nav = "<html><nav>Foursquare Labs | Products | NOTICE | Careers</nav><p>Apache</p></html>"
+    assert foursquare_notice(lambda u: (nav, "text/html")) == "", "a page without a <pre> block is not the NOTICE"
+    assert foursquare_notice(lambda u: ("<pre>" + "Foursquare Labs NOTICE " * 2000 + "</pre>", "text/html")) == "", "too long for a cell"
+    assert foursquare_notice(lambda u: ("<pre>Some other text that is long enough here</pre>", "text/html")) == ""
+    assert foursquare_notice(lambda u: (_ for _ in ()).throw(OSError("down"))) == ""
+    assert is_fsq("overture:meta+fsq") and is_fsq("overture:foursquare") and not is_fsq("overture:meta") and not is_fsq("website")
+    fr = [{"phone": "(312) 207-0004", "phoneSource": "overture:foursquare"}, {"phone": "(312) 207-4410", "phoneSource": "overture:meta"}]
+    lines, u = attribution({"meta", "foursquare"}, "2026-10-21.0"), {"meta", "foursquare"}
+    assert keep_notice(fr, u, lines, "") == 1 and fr[0]["phone"] == "" and fr[1]["phone"] and not any("Foursquare" in l for l in lines)
+    lines2 = attribution({"foursquare"}, "r")
+    assert keep_notice([dict(fr[1])], {"foursquare"}, lines2, "NOTICE text") == 0 and lines2[-1] == "Foursquare NOTICE (word for word): NOTICE text"
     # page rules: two different tel links with no majority give nothing; JSON-LD counts; two plain numbers give nothing
     assert page_phone('<a href="tel:3122001111"></a><a href="tel:3122002222"></a>') == ""
     assert page_phone('<script type="application/ld+json">{"telephone": "+1 312-200-1111"}</script>') == "(312) 200-1111"
@@ -654,17 +722,30 @@ if __name__ == "__main__":
         except Exception:
             release = ""
         sites_path = opt("--sites")
-        try:
-            sites = json.load(open(sites_path)) if sites_path and os.path.exists(sites_path) else {}
-        except Exception:
-            sites = {}                          # an unreadable log means sites are read again, never a failed step
+        sites = {}
+        for sp in (sites_path, opt("--sites-also")):    # the other list's log too: one read per site per 30 days across both
+            try:
+                other = json.load(open(sp)) if sp and os.path.exists(sp) else {}
+            except Exception:
+                other = {}                      # an unreadable log means sites are read again, never a failed step
+            for dom, v in other.items():
+                if isinstance(v, dict) and v.get("date", "") > sites.get(dom, {}).get("date", ""):
+                    sites[dom] = v
         doc, used = json.load(open(rows_path)), set()
         counts = fill(doc[key], places, web="--no-web" not in a, release=release, sites=sites, optout=optout_load(), used=used)
         if sites_path:
             _save(sites, sites_path)
-        doc["phoneNote"] = ATTRIBUTION
+        if places:                              # no places file means the phones were not checked this run (Not checked)
+            doc["phoneNote"] = ATTRIBUTION
         doc["phoneTerms"] = TERMS_LINES
         doc["phoneAttribution"] = attribution(used, release)
+        need = any(PROVIDERS.get(k) == "Foursquare" for k in used)
+        dropped = keep_notice(doc[key], used, doc["phoneAttribution"], foursquare_notice() if need else "")
+        if dropped:                             # recount: those rows now carry no phone
+            counts["overture"] -= dropped
+            counts["withPhone"] -= dropped
+            counts["coverage"] = round(100 * counts["withPhone"] / counts["rows"], 1) if counts["rows"] else 0.0
+            counts["droppedNoNotice"] = dropped
         doc["phoneLicenses"] = LICENSES_FILE
         _save(doc, rows_path, indent=1)
         if pub:

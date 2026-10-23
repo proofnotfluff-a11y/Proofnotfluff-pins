@@ -70,11 +70,12 @@ def payload(full, xlsx_bytes):
             rows.append({"id": r["license"], "n": r["business"], "a": r["address"], "st": st, "u": un, "z": r.get("zip") or "", "ar": r.get("communityArea") or "",
                          "t": k, "ty": r["licenseType"], "ot": r.get("otherTypes") or [], "ac": r.get("activity") or "", "d": r["issued"],
                          "h": r.get("history") or "", "hs": r.get("since") or "", "fi": r.get("foodInsp") or "", "is": r.get("inspSince") or "", "nw": X.is_new(r, full),
-                         "lat": r.get("lat"), "lon": r.get("lon")})
+                         "lat": r.get("lat"), "lon": r.get("lon"), "ph": r.get("phone") or ""})
     checks = (full.get("counts") or {}).get("checks") or {}
     return {"asOf": X.as_of_text(full), "asOfIso": X.pull_day(full), "window": full["window"],
             "trades": [{"key": k, "tab": t, "short": s, "kinds": w} for k, t, s, w in X.TRADES], "rows": rows,
             "checks": {"history": checks.get("history", True) is not False, "food": checks.get("foodInspections", True) is not False},
+            "phoneAttr": list(full.get("phoneAttribution") or []), "phoneNone": "Not listed" if X.phones_checked(full) else "Not checked this week",
             "record": X.RECORD, "fileName": f"chicago-new-business-licenses-{X.pull_day(full)}.xlsx",
             "xlsx": base64.b64encode(xlsx_bytes).decode()}
 
@@ -92,7 +93,8 @@ def words_json():
     return json.dumps({"version": t[0], "paras": t[1:], "city": X.city_disclaimer(), "cityTerms": ct["url"], "citySections": ct["sections"],
                        "cityChecked": X.pretty(ct["checked"]), "notice": X.OUR_NOTICE, "leftOut": X.LEFT_OUT, "overlap": X.OVERLAP,
                        "history": X.HISTORY, "historyLong": X.HISTORY_LONG, "kits": X.PITCH, "rules": X.PITCH_RULES,
-                       "trades": [{"key": k, "short": s, "kinds": w} for k, _, s, w in X.TRADES]},
+                       "trades": [{"key": k, "short": s, "kinds": w} for k, _, s, w in X.TRADES],
+                       "phoneLicenses": X.phone_sources({})},
                       ensure_ascii=False).replace("</", "<\\/")
 
 
@@ -512,9 +514,9 @@ if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}else if
 /* CSV of the current view */
 function cell(v){v=v==null?"":String(v);if(/^[=+\-@\t\r]/.test(v)&&!/^-?\d+(\.\d+)?$/.test(v))v="'"+v;return /[",\r\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;}
 function exportCsv(){const rows=STATE.rows||[];if(!rows.length)return;
-const head=["Business","Address","ZIP","Community area","Trade","Licensed","License type","Business activity","On the City's record","Food license inspection","Other licenses here","New this week","License","City record","Contacted","Contacted on","Your note","Latitude","Longitude"];
+const head=["Business","Address","Phone","ZIP","Community area","Trade","Licensed","License type","Business activity","On the City's record","Food license inspection","Other licenses here","New this week","License","City record","Contacted","Contacted on","Your note","Latitude","Longitude"];
 const lines=[head.map(cell).join(",")];
-rows.forEach(r=>{const m=mk(r.id);lines.push([r.n,r.a,r.z,r.ar,TR[r.t].short,r.d,r.ty,r.ac,hiText(r),r.fi,r.ot.join("; "),r.nw?"Yes":"",r.id,D.record+r.id,m.c?"Yes":"",m.c||"",(m.n||"").trim(),r.lat||"",r.lon||""].map(cell).join(","));});
+rows.forEach(r=>{const m=mk(r.id);lines.push([r.n,r.a,r.ph||"",r.z,r.ar,TR[r.t].short,r.d,r.ty,r.ac,hiText(r),r.fi,r.ot.join("; "),r.nw?"Yes":"",r.id,D.record+r.id,m.c?"Yes":"",m.c||"",(m.n||"").trim(),r.lat||"",r.lon||""].map(cell).join(","));});
 const blob=new Blob(["﻿"+lines.join("\r\n")+"\r\n"],{type:"text/csv;charset=utf-8"});
 const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`chicago-new-business-licenses-${D.asOfIso}-${STATE.f.t||"all"}-${rows.length}.csv`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);
 toast(`CSV exported: ${plural(rows.length,"business","businesses")}`);}
@@ -529,7 +531,7 @@ const find="https://www.google.com/search?q="+encodeURIComponent(r.n+" "+r.a+" C
 $("#app").innerHTML=`<a class="back" href="#/list" id="back">${ico("back")}Back</a>
 <div class="pg"><section class="pg-head"><div class="ph-chips">${tch(r.t)}${r.nw?'<span class="badge new">New this week</span>':""}${m.c?`<span class="badge done">${ico("check","s")}Contacted ${esc(day(m.c))}</span>`:""}</div>
 <div class="p-title"><h1>${esc(r.n)}</h1><p class="sub">${esc(r.st||r.a)}${r.u?`<span class="un"> &middot; ${esc(r.u)}</span>`:""}, ${esc([r.ar,"Chicago"].filter(Boolean).join(", "))}</p></div>
-<div class="acts"><button class="btn" type="button" id="cpy">${ico("copy","s")}Copy address</button><a class="btn" href="${maps}" target="_blank" rel="noopener">${ico("pin","s")}Map and phone<span class="sr"> (opens Google Maps in a new tab)</span></a><a class="btn" href="${find}" target="_blank" rel="noopener">${ico("search","s")}Search the web<span class="sr"> (opens in a new tab)</span></a></div></section>
+<div class="acts">${r.ph?`<a class="btn" href="tel:+1${r.ph.replace(/\D/g,"")}">${ico("phone","s")}Call ${esc(r.ph)}</a>`:""}<button class="btn" type="button" id="cpy">${ico("copy","s")}Copy address</button><a class="btn" href="${maps}" target="_blank" rel="noopener">${ico("pin","s")}Map and phone<span class="sr"> (opens Google Maps in a new tab)</span></a><a class="btn" href="${find}" target="_blank" rel="noopener">${ico("search","s")}Search the web<span class="sr"> (opens in a new tab)</span></a></div></section>
 <div class="pg-main">
 <section class="panel lic" aria-labelledby="lh"><h2 id="lh" class="eb">The City's new license</h2>
 <div class="top"><span class="ty">${esc(r.ty)}</span></div><p class="act">Issued ${esc(day(r.d))}${r.ac?`. Business activity: ${esc(r.ac)}`:""}.</p>
@@ -539,7 +541,7 @@ ${r.is?`<p class="why"><b>City food inspections on file since ${esc(r.is)}.</b> 
 ${r.ot.length?`<p class="why"><b>Also licensed at this site in the last 30 days:</b> ${esc(r.ot.join("; "))}.</p>`:""}
 </section>
 <section class="panel pg-facts"><div class="sec-h"><h2>Facts from the City record</h2></div><dl class="facts">
-<div><dt>License type</dt>${fv(r.ty)}</div><div><dt>Issued</dt>${fv(day(r.d))}</div><div><dt>Community area</dt>${fv(r.ar)}</div><div><dt>ZIP</dt>${fv(r.z,"num")}</div>
+<div><dt>Phone</dt>${r.ph?fv(r.ph,"num"):`<dd class="nv">${esc(D.phoneNone||"Not listed")}</dd>`}</div><div><dt>License type</dt>${fv(r.ty)}</div><div><dt>Issued</dt>${fv(day(r.d))}</div><div><dt>Community area</dt>${fv(r.ar)}</div><div><dt>ZIP</dt>${fv(r.z,"num")}</div>
 <div><dt>License number</dt>${fv(r.id,"num")}</div><div><dt>Trade</dt>${fv(TR[r.t].short,"",TR[r.t].kinds)}</div><div><dt>On the City's record</dt>${fv(hiText(r)||"")}</div><div><dt>Food license inspection</dt>${r.fi?fv(day(r.fi)):'<dd class="nv">None on file</dd>'}</div></dl>
 <p class="rec" style="padding-top:12px"><a href="${esc(D.record+r.id)}" target="_blank" rel="noopener">City record for license ${esc(r.id)}<span class="sr"> (opens in a new tab)</span></a></p>
 ${r.lat&&r.lon?'<div class="minimap" id="minimap" role="region" aria-label="Map of the business site"></div>':""}</section>
@@ -575,7 +577,8 @@ return `<div class="ph"><div><h1>Terms of Use</h1><p>${esc(W.version)}.<br>The s
 <div class="terms"><section class="panel" aria-labelledby="th2"><div class="sec-h"><h2 id="th2">Your membership terms</h2></div><div class="tx"><p>${esc(W.notice)}</p>${W.paras.map(para).join("")}</div></section>
 <section class="panel" aria-labelledby="th1"><div class="sec-h"><h2 id="th1">City of Chicago Data Terms of Use</h2></div><div class="tx"><p>The City of Chicago's Data Terms of Use, word for word, as the City published them (checked ${esc(W.cityChecked)}). They apply to the City data on this list.</p>
 ${W.citySections.map(([h,ps])=>`<h3>${esc(h)}</h3>${ps.map(p=>`<p>${esc(p)}</p>`).join("")}`).join("")}
-<p><a href="${esc(W.cityTerms)}" target="_blank" rel="noopener">City of Chicago Data Terms of Use<span class="sr"> (opens in a new tab)</span></a></p></div></section></div>`;}
+<p><a href="${esc(W.cityTerms)}" target="_blank" rel="noopener">City of Chicago Data Terms of Use<span class="sr"> (opens in a new tab)</span></a></p></div></section>
+<section class="panel" aria-labelledby="th3"><div class="sec-h"><h2 id="th3">Phone number sources and licenses</h2></div><div class="tx">${((D&&D.phoneAttr)||[]).concat(W.phoneLicenses).map(t=>`<p>${esc(t)}</p>`).join("")}</div></section></div>`;}
 function viewTerms(){document.title="Terms of Use | Chicago New Business Licenses";$("#app").innerHTML=`<a class="back" href="#/" id="back">${ico("back")}Back</a>`+termsHtml();$("#back").onclick=e=>{e.preventDefault();back("#/");};}
 function gateHash(){if(D)return;const t=(location.hash||"")==="#/terms";$("#gateView").hidden=t;$("#gateLegal").hidden=t;$("#app").hidden=!t;$("#appLegal").hidden=!t;
 if(t){document.title="Terms of Use | Chicago New Business Licenses";$("#app").innerHTML=`<a class="back" href="#/">${ico("back")}Back to the password</a>`+termsHtml();window.scrollTo(0,0);const h=$("#app h1");h.setAttribute("tabindex","-1");h.focus({preventScroll:true});}
@@ -610,7 +613,8 @@ def check(full, html, password, xlsx_path):
         g = got[k]
         pairs = [(g["n"], r["business"]), (g["a"], r["address"]), (g["ar"], r.get("communityArea") or ""), (g["ty"], r["licenseType"]),
                  (g["ac"], r.get("activity") or ""), (g["d"], r["issued"]), (g["t"], r["segment"]), (g["h"], r.get("history") or ""),
-                 (g["fi"], r.get("foodInsp") or ""), (g["is"], r.get("inspSince") or ""), (g["ot"], r.get("otherTypes") or []), (g["z"], r.get("zip") or "")]
+                 (g["fi"], r.get("foodInsp") or ""), (g["is"], r.get("inspSince") or ""), (g["ot"], r.get("otherTypes") or []), (g["z"], r.get("zip") or ""),
+                 (g["ph"], r.get("phone") or "")]
         assert all(a == b for a, b in pairs), f"license {k}: app field differs from the runner's list"
     wb = load_workbook(xlsx_path)
     seen = {}
@@ -625,7 +629,9 @@ def check(full, html, password, xlsx_path):
             issued = ws.cell(row, heads["LICENSED"]).value
             assert r["segment"] == key and ws.cell(row, heads["BUSINESS"]).value == r["business"] and \
                 ws.cell(row, heads["ADDRESS"]).value == r["address"] and ws.cell(row, heads["LICENSE TYPE"]).value == r["licenseType"] and \
-                issued is not None and issued.strftime("%Y-%m-%d") == r["issued"], f"workbook row {X.TAB[key]}!{row} differs"
+                issued is not None and issued.strftime("%Y-%m-%d") == r["issued"] and \
+                ws.cell(row, heads["PHONE"]).value == (r.get("phone") or ("Not listed" if X.phones_checked(full) else "Not checked")), \
+                f"workbook row {X.TAB[key]}!{row} differs"
             seen[str(lic)] = key
     assert set(seen) == set(want), f"{len(set(want) ^ set(seen))} licenses differ between the runner's list and the workbook"
     by = {k: sum(1 for v in seen.values() if v == k) for k in X.ORDER}
@@ -660,6 +666,10 @@ def selftest():
     by = {r["n"]: r for r in d["rows"]}
     assert [r["t"] for r in d["rows"]] == ["food", "food", "retail", "beauty", "auto", "care"], "trade order, newest first inside"
     assert by["Luna Tacos"]["fi"] == "2026-10-02" and by["Luna Tacos"]["nw"] and by["Luna Tacos"]["ot"] and not by["Bright Kids Academy"]["nw"]
+    assert "207-4410" not in html and "2074410" not in html, "a phone number outside the ciphertext"
+    assert by["Luna Tacos"]["ph"] == "(312) 207-4410" and by["Corner Market"]["ph"] == "" and d["phoneAttr"] == full["phoneAttribution"]
+    assert d["phoneNone"] == "Not listed"
+    assert words["phoneLicenses"] == X.phone_sources({}) and 'id="th3">Phone number sources and licenses' in html and 'href="tel:+1' in html
     assert by["Main Street Phones"]["h"] == "site" and by["Main Street Phones"]["hs"] == "2015" and d["checks"] == {"history": True, "food": True}
     assert d["xlsx"] and d["fileName"] == "chicago-new-business-licenses-2026-10-22.xlsx"
     assert check(full, html, "correct horse battery", out)["rows"] == 6

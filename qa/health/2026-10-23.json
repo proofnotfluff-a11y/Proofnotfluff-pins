@@ -1,0 +1,131 @@
+{
+ "schema": "pnf.health.v1",
+ "date": "2026-10-23",
+ "products": [
+  {
+   "slug": "chicago-construction-cleaning-leads",
+   "source": {
+    "result": "PASS",
+    "http": 200,
+    "missingColumns": [],
+    "rowsUpdatedAt": "2026-10-23"
+   },
+   "fresh": {
+    "result": "PASS",
+    "fetchedAt": "2026-10-19",
+    "ageDays": 4
+   },
+   "holdout": {
+    "result": "PASS",
+    "sampled": 5,
+    "found": 5,
+    "sameDate": 5
+   },
+   "links": {
+    "result": "PASS",
+    "page": 200,
+    "members": 200,
+    "checkout": 200,
+    "pageSaysTrial": true,
+    "checkoutOnPage": true,
+    "priceOnCheckout": true,
+    "trialOnGumroad": "confirmed"
+   },
+   "result": "PASS"
+  },
+  {
+   "slug": "austin-construction-cleaning-leads",
+   "source": {
+    "result": "PASS",
+    "http": 200,
+    "missingColumns": [],
+    "rowsUpdatedAt": "2026-10-23"
+   },
+   "fresh": {
+    "result": "PASS",
+    "fetchedAt": "2026-10-19",
+    "ageDays": 4
+   },
+   "holdout": {
+    "result": "FAIL",
+    "sampled": 5,
+    "found": 0,
+    "sameDate": 0
+   },
+   "links": {
+    "result": "PASS",
+    "page": 200,
+    "members": 200,
+    "checkout": 200,
+    "pageSaysTrial": true,
+    "checkoutOnPage": true,
+    "priceOnCheckout": true,
+    "trialOnGumroad": "confirmed"
+   },
+   "result": "FAIL"
+  },
+  {
+   "slug": "chicago-restaurant-inspection-leads",
+   "source": {
+    "result": "PASS",
+    "http": 200,
+    "missingColumns": [],
+    "rowsUpdatedAt": "2026-10-23"
+   },
+   "fresh": {
+    "result": "PASS",
+    "fetchedAt": "2026-10-23",
+    "ageDays": 0
+   },
+   "holdout": {
+    "result": "FAIL",
+    "sampled": 5,
+    "found": 4,
+    "sameDate": 4
+   },
+   "links": {
+    "result": "PASS",
+    "page": 200,
+    "members": 200,
+    "checkout": 200,
+    "pageSaysTrial": true,
+    "checkoutOnPage": true,
+    "priceOnCheckout": true,
+    "trialOnGumroad": "confirmed"
+   },
+   "result": "FAIL"
+  },
+  {
+   "slug": "chicago-new-business-licenses",
+   "source": {
+    "result": "PASS",
+    "http": 200,
+    "missingColumns": [],
+    "rowsUpdatedAt": "2026-10-23"
+   },
+   "fresh": {
+    "result": "PASS",
+    "fetchedAt": "2026-10-23",
+    "ageDays": 0
+   },
+   "holdout": {
+    "result": "FAIL",
+    "sampled": 5,
+    "found": 0,
+    "sameDate": 0
+   },
+   "links": {
+    "result": "PASS",
+    "page": 200,
+    "members": 200,
+    "checkout": 200,
+    "pageSaysTrial": true,
+    "checkoutOnPage": true,
+    "priceOnCheckout": true,
+    "trialOnGumroad": "confirmed"
+   },
+   "result": "FAIL"
+  }
+ ],
+ "result": "FAIL"
+}

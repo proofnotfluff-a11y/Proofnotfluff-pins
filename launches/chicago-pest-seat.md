@@ -26,6 +26,7 @@ Nothing is published, sold, linked or emailed until Todd reviews the offer, crea
 - Legal desk (legal/reviews/2026-10-24-pest-seat.md): cleared with fixes; 1 to 12, 14 and 15 applied; 13 (subject wording) goes to Todd.
 - Copy review: round 1 FAIL 4.0, rewrites applied; round 2 PASS 4.62 (fresh reviewer), its rewrites applied; changed lines re-checked PASS.
 - Accessibility: browser suite 147 PASS, 0 FAIL; axe-core 4.10.2 WCAG 2.1 AA 0 violations on the offer page, the members' sign-in, list and Terms, at 390 and 1280, light and dark.
+- Design director: round 1 FAIL (offer 4.00, members 3.86), fixes applied; round 2 offer PASS 4.71, members FAIL 4.57, fixes applied; round 3 (members) pending.
 - check_repo: 0 errors on every push (copy gate now runs --pest-templates).
 
 ## Gumroad copy for the seat product (Todd pastes)

@@ -227,7 +227,7 @@ button,input,textarea{font:inherit;color:inherit}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border:0;border-radius:10px;background:var(--btn);color:var(--btn-ink);
 font-weight:700;text-decoration:none;cursor:pointer}
 .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
-.btn.sm{min-height:44px;padding:0 14px;font-size:15px}
+.btn.sm{min-height:44px;padding:0 14px;font-size:15px;font-variant-numeric:tabular-nums}
 /* gate */
 .gate{padding:40px 16px 24px}
 .gate-card{max-width:520px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:28px 24px}
@@ -254,12 +254,15 @@ font-weight:700;text-decoration:none;cursor:pointer}
 .tile.key{background:var(--band);border-color:var(--band);color:#fff}
 .tile .lab{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
 .tile.key .lab{color:var(--band-text)}
-.tile .val{font:700 clamp(24px,6vw,34px)/1.1 var(--head);margin-top:4px}
+.tile .val{font:700 clamp(24px,6vw,34px)/1.1 var(--head);margin-top:4px;font-variant-numeric:tabular-nums}
 .tile .sub{font-size:13.5px;color:var(--muted);margin-top:2px}.tile.key .sub{color:var(--band-text)}
-@media(max-width:560px){.tiles{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.tiles .tile:last-child{grid-column:1 / -1}}
+@media(max-width:560px){.tiles{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.tiles .tile.key{grid-column:1 / -1}
+.card .acts{display:grid;grid-template-columns:auto 1fr;column-gap:16px;row-gap:4px;justify-items:start}.card .acts .called{grid-column:1 / -1}.card details{margin-top:0}}
 .tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 14px}
 .search{flex:1 1 260px;min-width:0}
 .search input{width:100%;height:48px;border:1.5px solid var(--muted);border-radius:10px;padding:0 12px;background:var(--card)}
+#q::placeholder{color:var(--muted);opacity:1}
+#main:focus,#main:focus-visible{outline:none}
 .seg{display:flex;flex-wrap:wrap;gap:8px}
 .seg button{min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);font-weight:600;font-size:15px;cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--ink);color:var(--canvas);border-color:var(--ink)}
@@ -402,11 +405,11 @@ return `<a class="back" href="#/">${D?"Back to today's list":"Back to sign in"}<
 ${W.paras.map(p=>{const m=p.match(/^([^.]{2,40}\.)\s(.*)$/s);return m?`<p><b>${esc(m[1])}</b> ${esc(m[2])}</p>`:`<p>${esc(p)}</p>`;}).join("")}<h2>About this list</h2><p>${esc(W.notice)}</p><h2>City of Chicago data</h2><p>${esc(W.city)}</p>
 <h2 id="th3">Phone number sources and licenses</h2>${ph.map(t=>`<p>${esc(t)}</p>`).join("")}`;}
 function route(){const t=location.hash.startsWith("#/terms");$("#termsView").hidden=!t;
-if(t){$("#termsView").innerHTML=termsHtml();$("#gateView").hidden=true;$("#app").hidden=true;document.title="Terms: Chicago Pest Daily List | ProofNotFluff";$("#main").focus();return;}
+if(t){$("#termsView").innerHTML=termsHtml();$("#gateView").hidden=true;$("#app").hidden=true;document.title="Terms: Chicago Pest Daily List | ProofNotFluff";$("#main").focus({preventScroll:true});scrollTo(0,0);return;}
 document.title="Members: Chicago Pest Daily List | ProofNotFluff";
 if(D){$("#gateView").hidden=true;$("#app").hidden=false;if(!$("#results"))home();}else{$("#gateView").hidden=false;$("#app").hidden=true;}}
 async function unlock(pw,keep,quiet){try{D=await openBox(pw);}catch(e){D=null;if(!quiet){$("#err").textContent="That password doesn't match. Check it on your Gumroad purchase page and try again.";$("#pw").focus();}return false;}
-if(keep){try{localStorage.setItem(PKEY,pw);}catch(e){}}$("#err").textContent="";route();$("#main").focus();return true;}
+if(keep){try{localStorage.setItem(PKEY,pw);}catch(e){}}$("#err").textContent="";route();$("#main").focus({preventScroll:true});scrollTo(0,0);return true;}
 $("#gate").addEventListener("submit",async e=>{e.preventDefault();const pw=$("#pw").value.trim();if(!pw){$("#err").textContent="Enter the seat password.";$("#pw").focus();return;}
 $("#go").disabled=true;$("#go").textContent="Opening…";await unlock(pw,$("#keep").checked,false);$("#go").disabled=false;$("#go").textContent="Open today's list";});
 $("#eye").addEventListener("click",()=>{const i=$("#pw"),on=i.type==="password";i.type=on?"text":"password";$("#eye").setAttribute("aria-pressed",String(on));$("#eye").setAttribute("aria-label",on?"Hide password":"Show password");});

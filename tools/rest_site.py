@@ -103,7 +103,7 @@ SEAT_CSS = (".sb .sb-card{background:var(--card);border:1px solid var(--line);bo
             ".sb-dots{display:inline-flex;gap:5px}.sb-dots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--teal)}.sb-dots i.on{background:var(--teal)}"
             ".sb-terms{margin:0 0 12px;font-size:17px}.sb-lede{margin:0 0 18px;color:var(--ink2)}"
             ".sb-fig{margin:0 0 16px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--canvas2)}"
-            ".sb-fig figcaption{display:flex;flex-direction:column;gap:2px;margin:0 0 12px}.sb-fig figcaption span{color:var(--muted);font-size:14px}"
+            ".sb-fig figcaption b{text-wrap:balance}.sb-fig figcaption{display:flex;flex-direction:column;gap:2px;margin:0 0 12px}.sb-fig figcaption span{color:var(--muted);font-size:14px}"
             ".sb-chart{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:4px;align-items:end;height:150px}"
             ".sb-chart li{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;min-width:0}"
             ".sb-chart .sb-b{display:block;width:100%;max-width:28px;background:var(--teal);border-radius:4px 4px 0 0;flex:none}"

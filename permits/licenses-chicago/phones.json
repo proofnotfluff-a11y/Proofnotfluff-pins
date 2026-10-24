@@ -1,0 +1,18 @@
+{
+ "asOf": "2026-10-24",
+ "release": "2026-10-21.0",
+ "rows": 236,
+ "withPhone": 54,
+ "coverage": 22.9,
+ "overture": 53,
+ "website": 1,
+ "noPhoneWhy": {
+  "a place at the address under another name": 129,
+  "no Overture place with this name or address": 45,
+  "the name nearby, at another or no street address": 4,
+  "matched, chain or listing site only": 2,
+  "two close matches": 1,
+  "website: no number (read before the reason was logged)": 1
+ },
+ "routes": "Overture Maps places and the business's own site only (legal/reviews/2026-10-23-phone-sources.md)"
+}

@@ -1,0 +1,44 @@
+name: Site links
+# Todd's go, Oct 24, 2026 (coo/DECISIONS-2026-10-24.md item 4): lychee in offline mode over the built site's internal
+# links (docs/, the pages GitHub Pages serves; the site-sync check in tools/check_repo.py keeps it equal to a fresh
+# tools/make_site.py build). Lychee is built from a pinned commit of its source (cargo --locked) and cached, not
+# downloaded as a release. Planted broken links run first (tools/site_links.py --selftest). Read-only: never commits.
+on:
+  push:
+    branches: [main]
+    paths: ['docs/**', 'site/**', 'tools/make_site.py', 'tools/site_links.py', '.github/workflows/site-links.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  LYCHEE_COMMIT: 2bba271688c1abb1503097a064e6c3bc1d1b6a9b   # tag lychee-v0.24.2
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        id: ly
+        with:
+          path: ~/lychee-bin
+          key: lychee-${{ env.LYCHEE_COMMIT }}
+      - name: Build lychee from the pinned commit
+        if: steps.ly.outputs.cache-hit != 'true'
+        run: cargo install --locked --git https://github.com/lycheeverse/lychee --rev "$LYCHEE_COMMIT" --root "$HOME/lychee-bin" lychee
+      - name: Put lychee on the path
+        run: |
+          echo "$HOME/lychee-bin/bin" >> "$GITHUB_PATH"
+          "$HOME/lychee-bin/bin/lychee" --version
+      - name: Planted broken links are caught
+        run: |
+          set -o pipefail
+          python3 tools/site_links.py --selftest | tee links.txt
+      - name: Check the built site
+        run: |
+          set -o pipefail
+          python3 tools/site_links.py | tee -a links.txt
+      - name: Summary
+        if: always()
+        run: |
+          { echo "### Site links"; echo; sed 's/^/    /' links.txt 2>/dev/null || echo "no output"; } >> "$GITHUB_STEP_SUMMARY"

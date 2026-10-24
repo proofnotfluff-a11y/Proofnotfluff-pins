@@ -1,0 +1,52 @@
+name: Leak scan, full history
+# Todd's go, Oct 24, 2026 (coo/DECISIONS-2026-10-24.md item 2): gitleaks once over every commit in the repo's history,
+# with the same pinned binary and .gitleaks.toml as the push scan. It runs when this file lands on main and again
+# only when someone starts it by hand. A finding fails the run and prints rule, file, line and commit only.
+# History is never rewritten by an agent (CLAUDE.md invariant 7: never force); what to do with an old finding is
+# Todd's call. Read-only: never commits.
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/leak-scan-history.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  GITLEAKS_COMMIT: 83d9cd684c87d95d656c1458ef04895a7f1cbd8e   # tag v8.30.1
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/cache@v4
+        id: gl
+        with:
+          path: ~/gitleaks-bin
+          key: gitleaks-${{ env.GITLEAKS_COMMIT }}-go1.24
+      - uses: actions/setup-go@v5
+        if: steps.gl.outputs.cache-hit != 'true'
+        with:
+          go-version: '1.24.x'
+          cache: false
+      - name: Build gitleaks from the pinned commit
+        if: steps.gl.outputs.cache-hit != 'true'
+        run: GOBIN="$HOME/gitleaks-bin" go install "github.com/zricethezav/gitleaks/v8@${GITLEAKS_COMMIT}"
+      - name: Put gitleaks on the path
+        run: |
+          echo "$HOME/gitleaks-bin" >> "$GITHUB_PATH"
+          "$HOME/gitleaks-bin/gitleaks" version
+      - name: Planted leaks are caught
+        run: |
+          set -o pipefail
+          python3 tools/leak_scan.py selftest | tee leak.txt
+      - name: Scan the whole history
+        run: |
+          set -o pipefail
+          python3 tools/leak_scan.py history | tee -a leak.txt
+      - name: Summary
+        if: always()
+        run: |
+          { echo "### Leak scan, full history"; echo; sed 's/^/    /' leak.txt 2>/dev/null || echo "no output"; } >> "$GITHUB_STEP_SUMMARY"

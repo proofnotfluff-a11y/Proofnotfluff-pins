@@ -1,0 +1,112 @@
+# Gitleaks rules for this public repo (Todd's go, Oct 24, 2026, coo/DECISIONS-2026-10-24.md item 2).
+# Run by .github/workflows/leak-scan.yml on every push and once over the full history by
+# .github/workflows/leak-scan-history.yml, always with the plain gitleaks binary built from a pinned commit.
+# Gitleaks' own default rules stay on; ours add emails, US phone numbers and the Hunter, Gumroad, Kit and
+# Bouncer keys. Planted tests for every rule and every allowlist entry: python3 tools/leak_scan.py selftest.
+# Go regex (RE2): no lookbehind, so boundaries are matched and the value is taken from capture group 1.
+
+title = "ProofNotFluff leak rules"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "pnf-email"
+description = "An email address that is not ours (a person's, a prospect's or a builder's inbox)"
+regex = '''(?:^|[^A-Za-z0-9._%+-])([A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,24})(?:[^A-Za-z0-9-]|$)'''
+secretGroup = 1
+keywords = ["@"]
+
+  # Sender simulator fixtures: invented mailboxes on throwaway domains (a@x.com, z@bad.com) that the
+  # Apps Script sender tests need to look like real addresses. Keys are still caught in these files.
+  [[rules.allowlists]]
+  description = "email/sender test fixtures"
+  paths = ['''^email/sender/test[a-z_]*\.js$''']
+
+[[rules]]
+id = "pnf-phone"
+description = "A US phone number written with separators"
+regex = '''(?:^|[^0-9A-Za-z_.-])((?:\+?1[ .-]?)?(?:\([2-9][0-9]{2}\) ?|[2-9][0-9]{2}[ .-])[2-9][0-9]{2}[ .-][0-9]{4})(?:[^0-9A-Za-z_-]|$)'''
+secretGroup = 1
+keywords = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+  # 555-0100 to 555-0199 are reserved for fiction; 911 and Poison Control appear in product copy.
+  [[rules.allowlists]]
+  description = "fictional and public emergency numbers"
+  regexes = ['''555[ .-]01[0-9]{2}$''', '''^(?:\+?1[ .-]?)?\(?800\)?[ .-]?222[ .-]1222$''']
+
+[[rules]]
+id = "pnf-hunter-key"
+description = "Hunter.io API key"
+regex = '''(?i)(?:hunter[a-z0-9_.-]{0,24}["']?\s*[:=]\s*["']?|hunter\.io/[^\s"']*[?&]api_key=)([a-f0-9]{40})(?:[^a-f0-9]|$)'''
+secretGroup = 1
+keywords = ["hunter"]
+
+[[rules]]
+id = "pnf-gumroad-token"
+description = "Gumroad API access token"
+regex = '''(?i)(?:gumroad[a-z0-9_.-]{0,24}["']?\s*[:=]\s*["']?|gumroad\.com/[^\s"']*[?&]access_token=)([A-Za-z0-9_-]{30,80})(?:[^A-Za-z0-9_-]|$)'''
+secretGroup = 1
+entropy = 3.0
+keywords = ["gumroad"]
+
+  [[rules.allowlists]]
+  description = "plain words and env lookups, not values"
+  regexes = ['''^[a-z_-]+$''', '''^[A-Z_]+$''']
+
+[[rules]]
+id = "pnf-kit-key"
+description = "Kit (ConvertKit) API key or secret"
+regex = '''(?i)(?:(?:convert)?kit[a-z0-9_.-]{0,12}(?:key|secret|token)["']?\s*[:=]\s*["']?|api_secret=|(?:convert)?kit\.com/[^\s"']*[?&]api_(?:key|secret)=)([A-Za-z0-9_-]{20,80})(?:[^A-Za-z0-9_-]|$)'''
+secretGroup = 1
+entropy = 3.0
+keywords = ["kit", "api_secret"]
+
+  [[rules.allowlists]]
+  description = "plain words and env lookups, not values"
+  regexes = ['''^[a-z_-]+$''', '''^[A-Z_]+$''']
+
+[[rules]]
+id = "pnf-kit-v4-key"
+description = "Kit v4 API key (kit_ prefix)"
+regex = '''(?:^|[^A-Za-z0-9_])(kit_[A-Za-z0-9]{24,})(?:[^A-Za-z0-9_]|$)'''
+secretGroup = 1
+entropy = 3.0
+keywords = ["kit_"]
+
+[[rules]]
+id = "pnf-bouncer-key"
+description = "Bouncer (usebouncer.com) API key"
+regex = '''(?i)(?:bouncer[a-z0-9_.-]{0,24}["']?\s*[:=]\s*["']?|usebouncer\.com/[^\s"']*[?&]api_key=|x-api-key["']?\s*[:=]\s*["']?)([A-Za-z0-9_-]{20,80})(?:[^A-Za-z0-9_-]|$)'''
+secretGroup = 1
+entropy = 3.0
+keywords = ["bouncer", "x-api-key"]
+
+  [[rules.allowlists]]
+  description = "plain words and env lookups, not values"
+  regexes = ['''^[a-z_-]+$''', '''^[A-Z_]+$''']
+
+# Our own addresses, and domains reserved for examples (RFC 2606), for every rule.
+[[allowlists]]
+description = "our own addresses and reserved example domains"
+regexTarget = "secret"
+regexes = [
+  '''(?i)^[a-z0-9._%+-]+@(?:get)?proofnotfluff\.com$''',
+  '''(?i)^proofnotfluff(?:\+[a-z0-9-]+)?@gmail\.com$''',
+  '''(?i)^outlandiastays@gmail\.com$''',
+  '''(?i)^[a-z0-9._%+-]+@users\.noreply\.github\.com$''',
+  '''(?i)^noreply@(?:anthropic|github)\.com$''',
+  '''(?i)@(?:[a-z0-9-]+\.)*(?:example\.(?:com|org|net)|example|test|invalid|localhost)$''',
+]
+
+# Sealed boxes are ciphertext (tools/data_box.py, the RSA and PBKDF2 boxes). tools/leak_scan.py sealed fails the
+# push if any file with these names is not a well-formed box, so a plain file cannot hide behind this entry.
+# Binary media and fonts carry no text worth scanning. This file holds the rules themselves.
+[[allowlists]]
+description = "sealed boxes, binaries and this config"
+paths = [
+  '''\.sealed\.json$''',
+  '''\.enc\.json$''',
+  '''\.(?:png|jpe?g|gif|webp|ico|mp4|mov|mp3|wav|m4a|opus|zip|pdf|xlsx|xls|docx|pptx|ttf|otf|woff2?|parquet|npz|onnx|bin)$''',
+  '''^\.gitleaks\.toml$''',
+]

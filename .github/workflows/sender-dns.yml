@@ -1,0 +1,36 @@
+name: Sender DNS
+# Todd's go, Oct 24, 2026 (coo/DECISIONS-2026-10-24.md item 3): checkdmarc weekly on proofnotfluff.com and
+# getproofnotfluff.com, plus a DKIM lookup (tools/sender_dns.py). Fails loudly: a red run (GitHub emails the repo
+# owner on a failed scheduled run), an error annotation per problem and the lines in the run summary. Planted bad
+# results and a planted bad live domain are checked first, so a check that can no longer fail is caught too.
+# Mondays 13:43 UTC (8:43 am Chicago in summer time, 7:43 am in winter). Read-only: never commits, never edits DNS.
+on:
+  schedule:
+    - cron: '43 13 * * 1'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['tools/sender_dns.py', '.github/workflows/sender-dns.yml']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install checkdmarc
+        run: pip install --quiet checkdmarc==6.0.4
+      - name: Planted failures are caught
+        run: |
+          set -o pipefail
+          python3 tools/sender_dns.py --selftest | tee dns.txt
+          python3 tools/sender_dns.py --selftest-live | tee -a dns.txt
+      - name: Check both sender domains
+        run: |
+          set -o pipefail
+          python3 tools/sender_dns.py | tee -a dns.txt
+      - name: Summary
+        if: always()
+        run: |
+          { echo "### Sender DNS"; echo; sed 's/^/    /' dns.txt 2>/dev/null || echo "no output"; } >> "$GITHUB_STEP_SUMMARY"

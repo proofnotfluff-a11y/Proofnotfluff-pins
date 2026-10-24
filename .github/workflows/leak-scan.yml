@@ -1,0 +1,61 @@
+name: Leak scan
+# Todd's go, Oct 24, 2026 (coo/DECISIONS-2026-10-24.md item 2): the plain gitleaks binary, not gitleaks-action, on
+# every push. Rules: .gitleaks.toml (gitleaks' defaults plus ours for emails, US phone numbers and the Hunter, Gumroad,
+# Kit and Bouncer keys; our own addresses and the sealed boxes allowlisted). The binary is built from a pinned
+# gitleaks commit (Go's checksum database verifies every module) and cached. Before the real scan, planted leaks
+# prove each rule still fires (tools/leak_scan.py selftest). Findings print rule, file, line and commit, never the
+# value. A reviewed test fixture line can carry an inline "gitleaks:allow" comment. Read-only: never commits.
+on:
+  push:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: leak-scan-${{ github.sha }}
+  cancel-in-progress: false
+env:
+  GITLEAKS_COMMIT: 83d9cd684c87d95d656c1458ef04895a7f1cbd8e   # tag v8.30.1
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/cache@v4
+        id: gl
+        with:
+          path: ~/gitleaks-bin
+          key: gitleaks-${{ env.GITLEAKS_COMMIT }}-go1.24
+      - uses: actions/setup-go@v5
+        if: steps.gl.outputs.cache-hit != 'true'
+        with:
+          go-version: '1.24.x'
+          cache: false
+      - name: Build gitleaks from the pinned commit
+        if: steps.gl.outputs.cache-hit != 'true'
+        run: GOBIN="$HOME/gitleaks-bin" go install "github.com/zricethezav/gitleaks/v8@${GITLEAKS_COMMIT}"
+      - name: Put gitleaks on the path
+        run: |
+          echo "$HOME/gitleaks-bin" >> "$GITHUB_PATH"
+          "$HOME/gitleaks-bin/gitleaks" version
+      - name: Planted leaks are caught
+        run: |
+          set -o pipefail
+          python3 tools/leak_scan.py selftest | tee leak.txt
+      - name: Sealed files are boxes
+        run: |
+          set -o pipefail
+          python3 tools/leak_scan.py sealed | tee -a leak.txt
+      - name: Scan this push
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          set -o pipefail
+          python3 tools/leak_scan.py push --before "$BEFORE" --after "$AFTER" | tee -a leak.txt
+      - name: Summary
+        if: always()
+        run: |
+          { echo "### Leak scan"; echo; sed 's/^/    /' leak.txt 2>/dev/null || echo "no output"; } >> "$GITHUB_STEP_SUMMARY"

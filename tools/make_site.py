@@ -2,7 +2,7 @@
 """Build the free calculator site (GitHub Pages, served from docs/) from site/pages.json.
 
 Usage: python3 tools/make_site.py            writes docs/<slug>/index.html, docs/index.html,
-                                             docs/sitemap.xml and docs/robots.txt
+                                             docs/sitemap.xml, docs/robots.txt and the IndexNow key file docs/<key>.txt
 Each page is one search phrase with a working calculator whose maths is the paid workbook's
 (docs/assets/pnf-calc.js, tested by `node docs/assets/pnf-calc.test.js`), a worked example
 with the workbook's own numbers, a short method, an FAQ (FAQPage structured data) and one
@@ -22,6 +22,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOCS = os.path.join(ROOT, "docs")
 BASE = "https://proofnotfluff.com/"
 SHOP = "https://proofnotfluff.etsy.com"
+# IndexNow key (Todd's go, Oct 23, 2026): main() writes docs/<key>.txt holding the key, the proof of ownership Bing and
+# the other IndexNow engines read; tools/indexnow_submit.py imports it from here, so the two can never drift.
+INDEXNOW_KEY = "cdccc9befa99e9cfa2a85549b2b1160d"
 E = html.escape
 
 # Store build (Todd, Oct 22, 2026; seo/STORE.md): the heading font is served from this site with a preload (it was a
@@ -2704,6 +2707,7 @@ def main():
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
         "".join(f"  <url><loc>{u}</loc><lastmod>{lastmod.get(u, spec['updated'])}</lastmod></url>\n" for u in urls) + "</urlset>\n")
     open(os.path.join(DOCS, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\n\nSitemap: {BASE}sitemap.xml\n")
+    open(os.path.join(DOCS, INDEXNOW_KEY + ".txt"), "w").write(INDEXNOW_KEY)
     for p in pages:
         if chr(0x2014) in json.dumps(p, ensure_ascii=False):
             sys.exit(f"em dash in {p['slug']}")

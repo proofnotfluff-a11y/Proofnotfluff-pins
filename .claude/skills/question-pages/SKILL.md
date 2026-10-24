@@ -19,7 +19,7 @@ One job: draft one question page from seo/BACKLOG.md, gate it, and publish it if
    c. `python3 tools/question_overlap.py <slug>` exits 0 (no other question page shares over 30 percent of its words in 8-word runs), and the search gate also compares the page with every live question page: same main search wording as a live page, or a thin rewrite of one, is a FAIL.
    One fix round per gate; a second FAIL stops the page and goes to Todd.
 6. All of a, b and c pass: remove "draft", set "published" to today (YYYY-MM-DD), rebuild, check_repo exits 0, commit, push to main (pull --rebase once on a reject; never force). Add the row to seo/QUESTIONS.md with its group letter and one line to seo/RESULTS.md: date, slug, "published, gates PASS". If the built-in browser is reachable, ask Search Console (URL property https://proofnotfluff.com/) to index the new URL with URL inspection, Request indexing; else note "indexing not requested".
-7. Fridays: one line per live question page in seo/RESULTS.md from Search Console (impressions, clicks, average position, 28 days), read in the built-in browser; if the browser can't be reached, write "Search Console not read" with the date and tell Todd. First Friday of a month: list pages at average position 8 to 20 as refresh candidates; refreshing one is a run of its own.
+7. Fridays: the Search Console lines (impressions, clicks, average position, 28 days, per live question page) and the indexing requests are written by .claude/skills/index-request/SKILL.md, which runs at 7:40 am on Todd's PC in the built-in browser. This run does not read Search Console.
 
 ## Outputs (Writes)
 - site/pages.json (one spec), docs/ through tools/make_site.py only, seo/QUESTIONS.md, seo/RESULTS.md.

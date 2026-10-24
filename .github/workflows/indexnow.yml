@@ -1,22 +1,59 @@
 name: IndexNow submit
+# Tells Bing (and Yandex, Seznam, Naver and the other IndexNow engines) about new or changed live pages within
+# minutes (Todd's go, Oct 23, 2026). Sends only pages in docs/sitemap.xml with no noindex tag: tools/indexnow_submit.py.
+# Base commit: the head of this workflow's last successful run, so a failed or skipped run is caught up next time.
+# Pushes made by other workflows with GITHUB_TOKEN start no push event, so their completion (workflow_run) and a daily
+# schedule catch those docs/ changes too.
 on:
   push:
     branches: [main]
-    paths: ["docs/sitemap.xml"]
+    paths: ["docs/**"]
+  workflow_run:
+    workflows: ["Chicago new business licenses", "Chicago inspection leads", "Chicago restaurant daily list", "Hub featured products", "Chicago permit leads sample", "Austin permit leads sample"]
+    types: [completed]
+    branches: [main]
+  schedule:
+    - cron: "20 17 * * *"
   workflow_dispatch:
     inputs:
       all:
-        description: "Submit every sitemap URL"
+        description: "Submit every live sitemap URL"
+        type: boolean
         required: false
-        default: "false"
+        default: false
 permissions:
   contents: read
+  actions: read
+  pages: read
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
 jobs:
   submit:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
-      - run: python3 tools/indexnow_submit.py ${{ github.event.inputs.all == 'true' && '--all' || '' }}
+          ref: main
+          fetch-depth: 1
+      - name: Find the last commit already sent
+        id: base
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          last=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/indexnow.yml/runs?status=success&branch=main&per_page=1" --jq '.workflow_runs[0].head_sha // empty' || true)
+          echo "sha=${last:-$BEFORE}" >> "$GITHUB_OUTPUT"
+          echo "Base commit: ${last:-$BEFORE} (last successful run: ${last:-none}; push before: ${BEFORE:-none})"
+      - name: Send new or changed live pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ALL: ${{ inputs.all }}
+          BASE: ${{ steps.base.outputs.sha }}
+        run: |
+          if [ "$ALL" = "true" ]; then
+            python3 tools/indexnow_submit.py --all
+          else
+            python3 tools/indexnow_submit.py --since "$BASE"
+          fi

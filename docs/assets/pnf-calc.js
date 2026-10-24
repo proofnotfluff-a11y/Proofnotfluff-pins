@@ -731,6 +731,7 @@
     r.pos = jobs > 0 && spend > 0 && profit >= 0 && perJob > 0 ? 1 : 0;
     r.neg = jobs > 0 && profit < 0 && perJob > 0 ? 1 : 0;
     r.noJobs = jobs === 0 && spend > 0 ? 1 : 0;
+    r.noSpend = jobs > 0 && spend === 0 ? 1 : 0;
     r.underwater = jobs > 0 && perJob <= 0 ? 1 : 0;
     r.odd = (quotes > leads && leads > 0) || (jobs > quotes && quotes > 0) ? 1 : 0;
     r.none = spend > 0 || leads > 0 || jobs > 0 ? 0 : 1;

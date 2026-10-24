@@ -1578,6 +1578,7 @@ def lead_cost_page(p):
 <div class="callout warn" data-show-if="underwater > 0">The direct cost of a job is as high as its price, so no number of leads can make these jobs pay. Check the price first.</div>
 <div class="callout warn" data-show-if="odd > 0">More quotes than leads, or more jobs than quotes? Check the counts: the rates below the tiles use them.</div>
 <div class="callout warn" data-show-if="none > 0">Type one month of lead spend, leads and jobs.</div>
+<div class="callout" data-show-if="noSpend > 0">Type what you paid for leads to see the lead cost of each job.</div>
 </div></div>
 <div class="mbar" aria-hidden="true"><span>Per won job <b data-out="cpj" data-never="No jobs yet" data-never-if="cpjNone">$0</b></span><span>Profit <b data-out="profit" data-fmt="money0">$0</b></span></div>"""
     by = {x["key"]: x for x in store_products()}

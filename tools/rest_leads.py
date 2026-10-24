@@ -152,7 +152,7 @@ INSTITUTION_TYPE = re.compile(r"(?<!COOKING )\bSCHOOL|CHILDREN|CHILD\b|DAY ?CARE
 INSTITUTION_NAME = re.compile(r"(?<!COOKING )\bSCHOOL\b|\bACADEMY\b|\bELEMENTARY\b|\bELEM\b|\bMIDDLE SCHOOL|\bHIGH SCHOOL|\bH/?S\)|\bCOLLEGE PREP|"
                               r"\bCHARTER\b|\bCAMPUS\b|\bPRE-?K\b|\bPRESCHOOL|\bPRE-SCHOOL|\bMONTESSORI|\bDAY ?CARE|\bCHILD ?CARE|\bCHILDREN|"
                               r"\bKIDS?\b|\bKIDZ\b|\bKIDDIE|\bTOTS?\b|\bINFANT|\bTODDLER|\bHEAD START|\bLEARNING CENTER|\bEARLY LEARNING|"
-                              r"\bCPS\b|\bCICS\b|\bKIPP\b|\bHOSPITAL|\bMEDICAL CENTER|\bNURSING|\bSENIORS?\b|\bASSISTED LIVING|\bUNIVERSITY\b|"
+                              r"\bCPS\b|\bCICS\b|\bKIPP\b|\bHOSPITAL|\bMEDICAL CENTER|\bPATIENTS?\b|\bNURSING|\bSENIORS?\b|\bASSISTED LIVING|\bUNIVERSITY\b|"
                               r"\bCLASSICAL\b|\bMAGNET\b|\bYCCS\b|\bCOLLEGE\b", re.I)
 # Words that make a name a business, not a person ("Sofia Bakery", "Paul House", "George Street Pub").
 BIZ = set("""RESTAURANT RESTAURANTE CAFE CAFFE COFFEE TEA BOBA KITCHEN GRILL GRILLE BAR PUB TAVERN LOUNGE CLUB BAKERY PANADERIA PASTRY
@@ -609,7 +609,8 @@ def selftest():
                     ({"facility_type": "Restaurant", "dba_name": "KIPP ONE ACADEMY"}, True), ({"facility_type": "", "dba_name": "TINY TOTS UNIVERSITY"}, True),
                     ({"facility_type": "Restaurant", "dba_name": "WISE OWL DAYCARE"}, True), ({"facility_type": "Mobile Food Preparer", "dba_name": "X"}, True),
                     ({"facility_type": "COOKING SCHOOL", "dba_name": "THE CHOPPING BLOCK"}, False), ({"facility_type": "Restaurant", "dba_name": "SUBWAY"}, False),
-                    ({"facility_type": "Grocery Store", "dba_name": "LA GLORIA MARKET"}, False), ({"facility_type": "Restaurant", "dba_name": "ACADEMY"}, True)]:
+                    ({"facility_type": "Grocery Store", "dba_name": "LA GLORIA MARKET"}, False), ({"facility_type": "Restaurant", "dba_name": "ACADEMY"}, True),
+                    ({"facility_type": "Restaurant", "dba_name": "X FOOD SERVICES", "aka_name": "CAFE & PATIENT KITCHEN"}, True)]:
         assert institution(r) == want, (r, want)
     # planted inspections: one of each list, each exclusion, a duplicate report, an out-of-window fail
     base = {"address": "1234 W MAIN ST ", "zip": "60601", "latitude": "41.88", "longitude": "-87.63", "risk": "Risk 1 (High)", "_area": "Loop",

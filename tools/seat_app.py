@@ -114,13 +114,23 @@ def pest_rows(named):
     return out
 
 
+def later_text(lt):
+    """The place's newer City result, in the same plain words as the summary (holdout, Oct 24)."""
+    if not lt:
+        return ""
+    kind = lt["inspectionType"].lower()
+    kind = kind if kind.endswith("inspection") else kind + " inspection"
+    return f"Newer City result: {lt['result']} on a {kind}, {RL.pretty(lt['date'])}."
+
+
 def payload(named):
     rows = []
     for new, r in pest_rows(named):
         rows.append({"id": r["place"], "n": r["name"], "a": r["address"], "z": r.get("zip") or "", "ar": r.get("area") or "",
                      "ty": r.get("type") or "", "d": r["date"], "r": r["result"], "it": r.get("inspectionType") or "",
                      "c": (r.get("codes") or {}).get(TRADE) or [], "s": r.get("summary") or "", "rec": r.get("record") or "",
-                     "f90": int(r.get("fails90") or 0), "lo": r.get("listedOn") or named["asOf"], "nw": new, "ph": r.get("phone") or ""})
+                     "f90": int(r.get("fails90") or 0), "lo": r.get("listedOn") or named["asOf"], "nw": new, "ph": r.get("phone") or "",
+                     "lt": later_text(r.get("later"))})
     return {"asOfIso": named["asOf"], "asOf": RL.pretty(named["asOf"]), "through": RL.pretty(named["through"]),
             "phonesChecked": bool(named.get("phoneNote")), "phoneAttr": list(named.get("phoneAttribution") or []), "rows": rows,
             "fileName": f"chicago-pest-daily-{named['asOf']}.csv"}
@@ -263,6 +273,7 @@ font-weight:700;text-decoration:none;cursor:pointer}
 .card .ad{margin:0 0 8px;color:var(--ink2);overflow-wrap:anywhere}
 .card .sm{margin:0 0 6px}
 .card .rep{margin:0 0 6px;color:var(--fail);font-weight:600;font-size:15px}
+.card .lt{margin:0 0 6px;color:var(--teal);font-weight:600;font-size:15px}
 .card .acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
 .card .ph{font-variant-numeric:tabular-nums}
 .card .noph{color:var(--muted);font-size:15px;min-height:44px;display:inline-flex;align-items:center}
@@ -339,7 +350,7 @@ return `<article class="card${m.c?" done":""}" data-id="${esc(r.id)}" aria-label
 <h3 id="h-${esc(r.id)}">${esc(r.n)}</h3>
 <p class="ad">${esc(r.a)}${r.z?", "+esc(r.z):""}${r.ar?" · "+esc(r.ar):""}${r.ty?" · "+esc(r.ty):""}</p>
 <p class="sm">${esc(r.s)}</p>
-${r.f90>=2?`<p class="rep">${r.f90} failed City inspections in the last 90 days</p>`:""}
+${r.lt?`<p class="lt">${esc(r.lt)}</p>`:""}${r.f90>=2?`<p class="rep">${r.f90} failed City inspections in the last 90 days, not counting license inspections</p>`:""}
 <div class="acts">${ph}${r.rec?`<a class="rec" href="${esc(r.rec)}" target="_blank" rel="noopener">City record<span class="sr"> for ${esc(r.n)} (opens in a new tab)</span></a>`:""}
 <label class="called"><input type="checkbox" data-act="called" ${m.c?"checked":""}> Called${m.c&&m.on?` <span class="sr">on ${esc(day(m.on))}</span>`:""}</label></div>
 <details${m.n?" open":""}><summary>${m.n?"Your note":"Add a note"}</summary><label class="sr" for="n-${esc(r.id)}">Note for ${esc(r.n)}</label>
@@ -378,8 +389,8 @@ $("#results").addEventListener("change",e=>{const c=e.target.closest(".card");if
 if(e.target.dataset.act==="called"){m.c=e.target.checked;m.on=m.c?chicagoToday():"";c.classList.toggle("done",m.c);save();toast(m.c?"Marked as called":"Mark removed");}});
 $("#results").addEventListener("input",e=>{if(e.target.dataset.act!=="note")return;const id=e.target.closest(".card").dataset.id;const m=MARKS[id]=mark(id);m.n=e.target.value;save();});}
 function cell(v){let s=String(v==null?"":v);if(/^[=+\-@\t\r]/.test(s))s="'"+s;return /[",\n\r]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;}
-function csv(){const head=["Sent on","Business","Address","ZIP","Community area","Facility type","Phone","City result","Inspection type","Inspection date","Pest violation codes","Summary","Failed City inspections in 90 days","City record","Called","Called on","Your note"];
-const lines=[head.map(cell).join(",")].concat(D.rows.map(r=>{const m=mark(r.id);return[r.lo,r.n,r.a,r.z,r.ar,r.ty,r.ph,r.r,r.it,r.d,r.c.join(" "),r.s,r.f90,r.rec,m.c?"Yes":"",m.on||"",m.n||""].map(cell).join(",");}));
+function csv(){const head=["Sent on","Business","Address","ZIP","Community area","Facility type","Phone","City result","Inspection type","Inspection date","Pest violation codes","Summary","Newer City result","Failed City inspections in 90 days (not counting license inspections)","City record","Called","Called on","Your note"];
+const lines=[head.map(cell).join(",")].concat(D.rows.map(r=>{const m=mark(r.id);return[r.lo,r.n,r.a,r.z,r.ar,r.ty,r.ph,r.r,r.it,r.d,r.c.join(" "),r.s,r.lt,r.f90,r.rec,m.c?"Yes":"",m.on||"",m.n||""].map(cell).join(",");}));
 const blob=new Blob(["﻿"+lines.join("\r\n")+"\r\n"],{type:"text/csv;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=D.fileName;
 document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);toast("CSV downloaded");}
 function termsHtml(){const ph=((D&&D.phoneAttr)||[]).concat(W.phoneLicenses);
@@ -418,7 +429,8 @@ def _planted():
                   "listedOn": "2026-10-24", "phone": ""})
     earlier = rows({"place": "L4", "name": "Corner Mart", "address": "5 S Wells St", "type": "Grocery Store", "date": "2026-10-15", "result": "Fail",
                     "trades": ["pests"], "codes": {"pests": [38]}, "summary": "Fail on a canvass inspection, Oct 15, 2026. The City cited pests (code 38).",
-                    "listedOn": "2026-10-23", "phone": "(773) 555-0199", "phoneSource": "website"},
+                    "listedOn": "2026-10-23", "phone": "(773) 555-0199", "phoneSource": "website",
+                    "later": {"date": "2026-10-22", "result": "Pass", "inspectionType": "Canvass Re-Inspection"}},
                    {"place": "L1", "name": "Acme Tacos", "address": "1234 W Main St", "date": "2026-10-10", "result": "Fail", "trades": ["pests"],
                     "codes": {"pests": [38]}, "summary": "old", "listedOn": "2026-10-20", "phone": ""})
     return {"product": "Chicago Restaurant Daily List", "asOf": "2026-10-24", "through": "2026-10-23", "recentFrom": "2026-10-10",
@@ -433,6 +445,7 @@ def selftest():
     assert [r["n"] for r in pl["rows"]] == ["Acme Tacos", "=Bad Name Cafe", "Corner Mart"], "pest rows only, today first, one row per place"
     assert [r["nw"] for r in pl["rows"]] == [True, True, False] and pl["rows"][2]["lo"] == "2026-10-23"
     assert pl["rows"][0]["c"] == [38] and pl["rows"][1]["c"] == [38], "only pest codes in the code column"
+    assert pl["rows"][2]["lt"] == "Newer City result: Pass on a canvass re-inspection, Oct 22, 2026." and pl["rows"][0]["lt"] == ""
     c = counts(named)
     assert c == {"asOf": "2026-10-24", "places14": 3, "new": 2, "withPhone14": 2, "coverage14": 66.7, "phonesChecked": True}, c
     pw = "planted-seat-pw"

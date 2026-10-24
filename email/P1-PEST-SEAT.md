@@ -5,7 +5,9 @@ Todd's go: Oct 23, 2026, 2:56 pm (the merged template), Oct 24, 10:40 am (subjec
 Rules the copy gate checks (`python3 tools/copy_gate.py --pest-templates` and `--pest data/work/pest_drafts.json`):
 - {n} is `pestLast7.restaurantInspections` in permits/inspections-chicago/daily.json: failed or conditional inspections at places the City types Restaurant, dated in the 7 days ending on the newest date the City has published. Never `counts.places`, `counts.pests`, the 14-day chart total or `seat.places14`. The file must be at most 1 day old on the draft day.
 - {neighborhood} is one of `pestLast7.areas` (community areas with such an inspection in those 7 days).
-- n = 1 uses the singular template (T1 Variant S).
+- n = 1 uses the singular template of each step (Variant S); n = 0 holds the email to a morning with a count of 1 or more.
+- {neighborhood} reads "the Loop" for the Loop (the gate maps it back to the City's area name).
+- Copy review round 1 (Oct 24): FAIL at 4.0; its rewrites applied here with "no lock-in" in place of "no contract" (Todd, Oct 24, 11:52 am). "Recorded", not "posted": the count is by the City's inspection date.
 - "all 3 seats are open" only while site/pages.json seat.taken is 0; "most of them" only while seat.coverage14 is 50% or more.
 - Body under 75 words, plain text, no link, no price, no business named, no dash, opens "Hi {first},", ends with the question. The sender appends the footer (tools/pnf_rules.py FOOTER).
 - Wording: "with a pest violation" (Oct 24 build session): on Oct 24, 1 of the 22 inspections was a City code 38 citation for a door gap with no rodents or insects seen, so "cited rodents or insects" would overstate it. The subject's "cited pests" names the City's pest code and stays.
@@ -21,13 +23,12 @@ Body:
 ```text
 Hi {first},
 
-This week the City of Chicago posted {n} failed or conditional restaurant inspections with a pest violation, including one in {neighborhood}.
+This week the City of Chicago recorded {n} failed or conditional restaurant inspections with a pest violation, including one in {neighborhood}.
 
-Each morning I pull the new ones, with a listed phone number for most of them. I'm opening that daily list to at most 3 Chicago pest companies, and all 3 seats are open.
+Each morning I put the new ones on a private page by name and street, with a listed phone number for most of them. I'm opening that daily list to at most 3 Chicago pest companies, and all 3 seats are open.
 
 Want tomorrow's list free to test?
 ```
-
 
 ### T1S
 Product: chicago-pest-seat
@@ -38,13 +39,12 @@ Body:
 ```text
 Hi {first},
 
-This week the City of Chicago posted 1 failed or conditional restaurant inspection with a pest violation, in {neighborhood}.
+This week the City of Chicago recorded 1 failed or conditional restaurant inspection with a pest violation, in {neighborhood}.
 
-Each morning I pull the new ones, with a listed phone number for most of them. I'm opening that daily list to at most 3 Chicago pest companies, and all 3 seats are open.
+Each morning I put the new ones on a private page by name and street, with a listed phone number for most of them. I'm opening that daily list to at most 3 Chicago pest companies, and all 3 seats are open.
 
 Want tomorrow's list free to test?
 ```
-
 
 ### T2
 Product: chicago-pest-seat
@@ -55,13 +55,28 @@ Body:
 ```text
 Hi {first},
 
-A fresh count: in the last 7 days the City posted {n} failed or conditional restaurant inspections with a pest violation, including one in {neighborhood}.
+A fresh count: in the last 7 days the City recorded {n} failed or conditional restaurant inspections with a pest violation, including one in {neighborhood}.
 
-The daily list still has all 3 seats open. A free morning of it costs you nothing and shows the names, streets and phones.
+The list also shows each place's City violation codes and how many times it failed in the last 90 days, so you know which ones to call first. All 3 seats are still open, no lock-in.
 
 Want tomorrow's list free to test?
 ```
 
+### T2S
+Product: chicago-pest-seat
+Step: followup1
+Variant: S
+Subject: Re: {first_subject}
+Body:
+```text
+Hi {first},
+
+A fresh count: in the last 7 days the City recorded 1 failed or conditional restaurant inspection with a pest violation, in {neighborhood}.
+
+The list also shows each place's City violation codes and how many times it failed in the last 90 days, so you know which ones to call first. All 3 seats are still open, no lock-in.
+
+Want tomorrow's list free to test?
+```
 
 ### T3
 Product: chicago-pest-seat
@@ -72,10 +87,28 @@ Body:
 ```text
 Hi {first},
 
-Last note from me. This week the City posted {n} failed or conditional restaurant inspections with a pest violation, including one in {neighborhood}.
+Last note from me. In the last 7 days the City recorded {n} failed or conditional restaurant inspections with a pest violation, including one in {neighborhood}.
 
-If a free morning of the named list would help, reply yes and it's yours. If not, no reply needed and I won't write again.
+Miss a morning and nothing is lost: the list keeps the last 14 days. If it's not a fit, no need to reply and you won't hear from me again.
+
+Want tomorrow's list free to test?
 ```
 
+### T3S
+Product: chicago-pest-seat
+Step: followup2
+Variant: S
+Subject: Re: {first_subject}
+Body:
+```text
+Hi {first},
+
+Last note from me. In the last 7 days the City recorded 1 failed or conditional restaurant inspection with a pest violation, in {neighborhood}.
+
+Miss a morning and nothing is lost: the list keeps the last 14 days. If it's not a fit, no need to reply and you won't hear from me again.
+
+Want tomorrow's list free to test?
+```
 
 ## Review verdicts
+- Copy review round 1, Oct 24, 2026: FAIL, average 4.0 (value before the ask 3, follow-up 3). Rewrites applied as above; round 2 pending.

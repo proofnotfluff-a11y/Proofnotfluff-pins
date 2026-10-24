@@ -440,18 +440,18 @@ def pest_problems(subject, body, step, daily, seat, send_day, first=None, letter
         want = f"{n} Chicago restaurant inspections cited pests this week" if n != 1 else "1 Chicago restaurant inspection cited pests this week"
         if subject != want:
             p.append(f"subject must be {want!r} (n is pestLast7.restaurantInspections = {n}), got {subject!r}")
-        if n == 1 and letter != "S":
-            p.append("n is 1: use the singular template T1S")
-        if n != 1 and letter == "S":
-            p.append(f"n is {n}: the singular template T1S is for n = 1 only")
     elif not (subject or "").startswith("Re: "):
         p.append("a follow-up keeps the first email's subject as a reply (Re: ...)")
+    if n == 1 and letter != "S":
+        p.append("n is 1: use this step's singular template (Variant S)")
+    if n != 1 and letter == "S":
+        p.append(f"n is {n}: a singular template (Variant S) is for n = 1 only")
     if n < 1:
         p.append("n is 0 this week: no pest email until the City posts one")
     totals = {"counts.places": daily.get("counts", {}).get("places"), "counts.pests": daily.get("counts", {}).get("pests"),
               "the 14-day chart total": sum(x.get("pests", 0) for x in daily.get("pestByDate") or []),
               "seat.places14": (daily.get("seat") or {}).get("places14"), "pestLast7.inspections": l7.get("inspections")}
-    fixed = re.sub(r"at most 3 Chicago pest|all 3 seats|last 7 days", " ", (subject or "") + " " + (body or ""))
+    fixed = re.sub(r"(?i)at most 3 Chicago pest|all 3 seats|last 7 days|last 90 days|last 14 days", " ", (subject or "") + " " + (body or ""))
     nums = [int(x) for x in re.findall(r"(?<![\d,.])(\d+)(?![\d,.])", fixed)]
     for k in nums:
         if k != n:
@@ -461,11 +461,12 @@ def pest_problems(subject, body, step, daily, seat, send_day, first=None, letter
         p.append(f"the body does not carry this week's count {n}")
     areas = set(l7.get("areas") or [])
     named = re.search(r"(?:including one in|, in) ([^,.]+)\.", body or "")
-    if not named or named.group(1) not in areas:
+    place = re.sub(r"^the ", "", named.group(1)) if named else ""
+    if not named or place not in areas or (place == "Loop") != named.group(1).startswith("the "):
         p.append(f"the neighborhood {named.group(1) if named else '(none)'!r} has no pest-cited restaurant inspection this week "
                  f"(pestLast7.areas: {', '.join(sorted(areas)) or 'none'})")
     taken = int(seat.get("taken") or 0)
-    if "all 3 seats" in body and taken:
+    if "all 3 seats" in body.lower() and taken:
         p.append(f"{taken} of 3 seats are taken: 'all 3 seats are open' is no longer true")
     if "most of them" in body and float((daily.get("seat") or {}).get("coverage14") or 0) < 50:
         p.append("phone coverage is under 50%: 'a listed phone number for most of them' is no longer true")
@@ -484,7 +485,7 @@ def pest_problems(subject, body, step, daily, seat, send_day, first=None, letter
         p.append("the footer is in the body; the sender appends it")
     if first is not None and not (body or "").startswith(f"Hi {first},"):
         p.append(f"must open 'Hi {first},'")
-    if step != "followup2" and not (body or "").rstrip().endswith("?"):
+    if not (body or "").rstrip().endswith("?"):
         p.append("must end with the permission question")
     for word in ("dirty", "filthy", "infested", "unsafe", "violator", "rodents or insects"):
         if word in (body or "").lower():
@@ -495,7 +496,8 @@ def pest_problems(subject, body, step, daily, seat, send_day, first=None, letter
 def pest_fill(t, daily, first="Dana", area=None, first_subject=None):
     n = pest_n(daily)
     area = area or (sorted(daily["pestLast7"].get("areas") or ["Chicago"]))[0]
-    f = {"first": first, "n": n, "neighborhood": area,
+    area = re.sub(r"^the ", "", area)
+    f = {"first": first, "n": n, "neighborhood": "the Loop" if area == "Loop" else area,
          "first_subject": first_subject or f"{n} Chicago restaurant inspections cited pests this week"}
     return fill(t["subject"], f), fill(t["body"], f)
 
@@ -543,6 +545,7 @@ def check_pest_templates(path=PEST_FILE, daily_path=PEST_DAILY, today=None):
             ("stale file", None, "first", P, {"taken": 0}, day + dt.timedelta(days=3), "A"),
             ("area outside the week", "area", "first", P, {"taken": 0}, day, "A"),
             ("seat taken", None, "first", P, {"taken": 1}, day, "A"),
+            ("Loop without the", None, "first", dict(P, pestLast7=dict(P["pestLast7"], areas=sorted(set(P["pestLast7"]["areas"]) | {"Loop"}))), {"taken": 0}, day, "A"),
             ("n is 1 on the plural template", None, "first", dict(P, pestLast7=dict(P["pestLast7"], restaurantInspections=1)), {"taken": 0}, day, "A"),
         ]
         for label, override, step, d, st, sd, letter in cases:
@@ -553,6 +556,8 @@ def check_pest_templates(path=PEST_FILE, daily_path=PEST_DAILY, today=None):
                 body = body.replace(f" {n} ", " 45 ", 1)
             elif override == "area":
                 body = re.sub(r"including one in [^,.]+\.", "including one in Hegewisch Park Ridge.", body)
+            elif label == "Loop without the":
+                body = re.sub(r"including one in [^,.]+\.", "including one in Loop.", body)
             if not pest_problems(subj, body, step, d, st, sd, "Dana", letter):
                 problems.append(f"planted case not caught: {label}")
             planted += 1
@@ -591,7 +596,7 @@ def check_pest_drafts(drafts_path, prospects_path, send_day):
         if t is None:
             problems.append(f"{pid}: unknown template {dft.get('variant')!r}")
             continue
-        area = (re.search(r"(?:including one in|, in) ([^,.]+)\.", dft.get("body") or "") or [None, ""])[1]
+        area = (re.search(r"(?:including one in|, in) ([^,.]+)\.", dft.get("body") or "") or [None, ""])[1] or "(none)"
         subj, body = pest_fill(t, daily, pr.get("first_name"), area, dft.get("first_subject"))
         if (dft.get("subject"), dft.get("body")) != (subj, body):
             problems.append(f"{pid}: not template {t['id']} filled with this morning's count and its own neighborhood (fixed words changed)")

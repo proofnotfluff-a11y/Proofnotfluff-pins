@@ -79,9 +79,18 @@ def summary(x):
     return f"{x['r']} on a {kind}, {RL.pretty(x['d'])}. The City cited {cited}."
 
 
-def row(pk, p, iid, x, trades, listed_on):
+def later(p, iid, x, I):
+    """The place's newest City inspection when it is newer than the listed one (a re-inspection that passed, say), so a
+    member sees it next to the old result (holdout, Oct 24). None when the listed inspection is the newest."""
+    lt = I.get(p.get("latestId") or "")
+    if not lt or p["latestId"] == iid or lt["d"] < x["d"] or iid in (lt.get("dup") or []):
+        return None
+    return {"date": lt["d"], "result": lt["r"], "inspectionType": lt["t"]}
+
+
+def row(pk, p, iid, x, trades, listed_on, I=None):
     """One named row for the members' list. listedOn: the morning this place first went out on a daily list."""
-    return {"place": pk, "name": p["name"], "address": p["address"], "zip": p["zip"], "area": p["area"] or "Chicago",
+    return {"later": later(p, iid, x, I or {}), "place": pk, "name": p["name"], "address": p["address"], "zip": p["zip"], "area": p["area"] or "Chicago",
             "type": p["type"], "date": x["d"], "result": x["r"], "inspectionType": x["t"], "trades": trades,
             "codes": {c: x["c"][c] for c in trades}, "summary": summary(x), "record": RL.RECORD + iid,
             "fails90": p["fails90"], "lat": p.get("lat"), "lon": p.get("lon"), "listedOn": listed_on,
@@ -106,7 +115,7 @@ def earlier(data, seen, secret, recent_from, today_places):
                 continue
             days = [before[key(i, secret)] for i in [iid] + list(x.get("dup") or []) if key(i, secret) in before]
             if days:
-                out.append(row(pk, p, iid, x, trades, min(days)))
+                out.append(row(pk, p, iid, x, trades, min(days), I))
             break
     out.sort(key=lambda it: (it["date"], it["name"]))
     out.sort(key=lambda it: (it["listedOn"], it["date"]), reverse=True)
@@ -160,7 +169,7 @@ def pick(data, seen, secret):
             ids = [iid] + list(x.get("dup") or [])
             if any(key(i, secret) in seen for i in ids):
                 break                                      # this place's newest qualifying visit is already out
-            items.append(row(pk, p, iid, x, trades, data["asOf"]))
+            items.append(row(pk, p, iid, x, trades, data["asOf"], I))
             mark += ids
             break
     items.sort(key=lambda it: (it["date"], it["name"]))
@@ -294,6 +303,12 @@ def selftest():
     assert n3["items"] == [] and p3["counts"] == {"pests": 0, "hood": 0, "places": 0}, n3["items"]
     assert [it["name"] for it in n3["earlier"]] == ["Acme Tacos", "Corner Mart", "Late Post Diner", "Very Late Grill", "Both Grill", "Fry House"], [it["name"] for it in n3["earlier"]]
     assert n3["earlier"][0]["date"] == "2026-10-22" and n3["earlier"][0]["listedOn"] == "2026-10-23", "earlier row lost the newer visit"
+    # a newer City result after the listed one is shown next to it (holdout, Oct 24)
+    day4 = day2 + [R(14, "BOTH GRILL", "555", "Canvass Re-Inspection", "Pass", "2026-10-23", "", _area="West Town")]
+    n4, _ = run(RL.build(raw(day4, "2026-10-25T12:00:00+00:00"), set()), out_p, SK, pub_p, seen_p)
+    bg = next(it for it in n4["earlier"] if it["name"] == "Both Grill")
+    assert bg["later"] == {"date": "2026-10-23", "result": "Pass", "inspectionType": "Canvass Re-Inspection"}, bg["later"]
+    assert next(it for it in n4["earlier"] if it["name"] == "Acme Tacos")["later"] is None
     s = json.load(open(seen_p))
     assert s["salt"] == SALT and len(s["keys"]) == 8, s
     # seen keys age out after KEEP_DAYS

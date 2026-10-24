@@ -24,7 +24,7 @@ Nothing is published, sold, linked or emailed until Todd reviews the offer, crea
 (filled below as each verdict comes in)
 - Holdout round 1 (Oct 24): 2 blockers (a hospital patient kitchen on the list; f90 label), fixed with planted cases. Round 2 (fresh checker): BLOCKERS 0, 41 of 41 places rebuilt from the City rows, every offer and email number matches.
 - Legal desk (legal/reviews/2026-10-24-pest-seat.md): cleared with fixes; 1 to 12, 14 and 15 applied; 13 (subject wording) goes to Todd.
-- Copy review round 1: FAIL 4.0; rewrites applied. Round 2: pending.
+- Copy review: round 1 FAIL 4.0, rewrites applied; round 2 PASS 4.62 (fresh reviewer), its rewrites applied; changed lines re-checked PASS.
 - Accessibility: browser suite 147 PASS, 0 FAIL; axe-core 4.10.2 WCAG 2.1 AA 0 violations on the offer page, the members' sign-in, list and Terms, at 390 and 1280, light and dark.
 - check_repo: 0 errors on every push (copy gate now runs --pest-templates).
 

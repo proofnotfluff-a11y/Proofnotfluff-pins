@@ -117,3 +117,4 @@ Want tomorrow's list free to test?
 ## Review verdicts
 - Copy review round 1, Oct 24, 2026: FAIL, average 4.0 (value before the ask 3, follow-up 3). Rewrites applied.
 - Copy review round 2, Oct 24, 2026 (fresh reviewer): PASS, average 4.62, lowest 4 (value before the ask, subject as given). Its R1 and R3 applied (R1 with "the City's violation codes" in place of "what the City found", which the rows do not state); changed text re-checked below.
+- Re-check of the changed lines, Oct 24, 2026 (fresh reviewer): PASS (value 4, true 4, phone 4, voice 5). "that list" in place of Legal fix 14's "that daily list" keeps every area under 75 words with a long first name; same meaning.

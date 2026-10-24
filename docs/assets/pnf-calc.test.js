@@ -616,5 +616,29 @@ check("#12 changed: $0 rate drops labor", P.handmadePrice({ materials: 6.5, minu
 check("#12 price under cost: loss", P.handmadePrice({ materials: 6.5, minutes: 15, rate: 20, packaging: 0.6, feePct: 0, price: 10 }).loss, 2.1);
 check("blank handmade: none flag", P.handmadePrice({}).none, 1);
 check("handmade 100% fees stays finite", P.handmadePrice({ materials: 5, feePct: 100 }).floor, 500);
+// Lead cost per won job: hand-worked, every figure is the owner's own (no workbook behind this page)
+const LC = P.leadCost({ spend: "1,200", leads: 40, quotes: 18, jobs: 6, avgJob: 280, jobCost: 110 }, [39, 29]);
+check("lead cost per lead", LC.cpl, 30); check("lead cost per quote", LC.cpq, 66.6667); check("lead cost per won job", LC.cpj, 200);
+check("lead job profit before leads", LC.perJob, 170); check("lead profit after lead spend", LC.profit, -180);
+check("lead loss per job", LC.afterLead, -30); check("lead win rate", LC.winRate, 0.3333); check("lead break-even jobs", LC.breakEvenJobs, 8);
+check("lead $39 list covered by 1 job", LC.cover0, 1); check("lead loss flag", LC.neg, 1);
+check("lead $39 list, $15 job profit: 3 jobs", P.leadCost({ avgJob: 40, jobCost: 25 }, [39]).cover0, 3);
+check("lead no jobs: flag, no divide by zero", P.leadCost({ spend: 500, leads: 10 }).noJobs + P.leadCost({ spend: 500, leads: 10 }).cpj, 1);
+check("lead blank: none", P.leadCost({}).none, 1);
+check("lead jobs over quotes: odd", P.leadCost({ spend: 100, leads: 5, quotes: 2, jobs: 3 }).odd, 1);
+// Amazon DD+7 (help page G202124090, read Oct 24, 2026): sold Jan 1, delivered Jan 6, available Jan 14 = day 14
+const AZ = P.payoutGap({ sales: 1000, fulfil: 0, deliverDays: 5, schedule: 1, bankDays: 0, cash: 0, costs: 0 });
+check("DD+7 Amazon example: available on day 14", AZ.first, 14);
+const DS = P.payoutGap({ sales: 1000, fulfil: 0, deliverDays: 3, schedule: 0, nextPayout: 14, bankDays: 1, cash: 10000, costs: 700 });
+check("DD+7 14-day: fastest order to bank", DS.fastest, 12); check("DD+7 14-day: slowest", DS.slowest, 25);
+check("DD+7 14-day: held peak", DS.heldMax, 25000); check("DD+7 14-day: held floor", DS.heldMin, 12000);
+check("DD+7 14-day: first money day 15", DS.first, 15); check("DD+7 14-day: low point", DS.low, -6600);
+check("DD+7 14-day: low on day 28", DS.lowDay, 28); check("DD+7 14-day: cash needed", DS.need, 6600);
+const DD = P.payoutGap({ sales: 1000, fulfil: 0, deliverDays: 3, schedule: 1, bankDays: 1, cash: 10000, costs: 700 });
+check("DD+7 daily: order to bank", DD.slowest, 12); check("DD+7 daily: held", DD.heldMax, 12000); check("DD+7 daily: low", DD.low, 1600);
+const DM = P.payoutGap({ sales: 1000, fulfil: 1, tracked: 0, deliverDays: 4, eddDays: 7, schedule: 0, nextPayout: 14, bankDays: 5, cash: 10000, costs: 700 });
+check("DD+7 merchant, no valid tracking: uses latest EDD", DM.dateDays, 7); check("DD+7 merchant slowest", DM.slowest, 33);
+check("DD+7 merchant tracked: uses delivery", P.payoutGap({ sales: 1, fulfil: 1, tracked: 1, deliverDays: 4, eddDays: 7 }).dateDays, 4);
+check("DD+7 blank: no sales flag", P.payoutGap({}).noSales, 1);
 
 process.exit(fails ? 1 : 0);

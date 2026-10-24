@@ -710,7 +710,82 @@
       atMinimum: sqft > 0 && visit <= minC + 0.001 ? 1 : 0, sqft: sqft };
   }
 
-  var api = { seTax: seTax, hourly: hourly, service: service, serviceSqft: serviceSqft, dayRate: dayRate, cleaningSqft: cleaningSqft, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
+  // Lead cost per won job (free page for cleaning and pest owners who buy platform leads; no workbook behind it).
+  // Every figure is the owner's own month: cost per lead = spend / leads, per quote = spend / quotes, per won job =
+  // spend / jobs won; profit after lead spend = jobs x (average job - direct cost per job) - spend. "prices" are our
+  // own list prices (the page passes them in): jobs a month a list must win to pay for itself = price / job profit,
+  // rounded up. No conversion rate is assumed anywhere.
+  function leadCost(i, prices) {
+    var spend = Math.max(0, num(i.spend)), leads = Math.max(0, Math.round(num(i.leads)));
+    var quotes = Math.max(0, Math.round(num(i.quotes))), jobs = Math.max(0, Math.round(num(i.jobs)));
+    var avg = Math.max(0, num(i.avgJob)), cost = Math.max(0, num(i.jobCost));
+    var perJob = avg - cost, revenue = jobs * avg, direct = jobs * cost, gross = revenue - direct, profit = gross - spend;
+    var cpj = jobs > 0 ? spend / jobs : 0;
+    var r = { spend: spend, leads: leads, quotes: quotes, jobs: jobs, revenue: revenue, direct: direct, gross: gross, profit: profit,
+      cpl: leads > 0 ? spend / leads : 0, cpq: quotes > 0 ? spend / quotes : 0, cpj: cpj, perJob: perJob,
+      afterLead: jobs > 0 ? perJob - cpj : 0, profitPerJob: jobs > 0 ? profit / jobs : 0,
+      quoteRate: leads > 0 ? quotes / leads : 0, winRate: quotes > 0 ? jobs / quotes : 0, leadToJob: leads > 0 ? jobs / leads : 0,
+      leadShare: revenue > 0 ? spend / revenue : 0, eatsShare: perJob > 0 && jobs > 0 ? cpj / perJob : 0,
+      breakEvenJobs: perJob > 0 ? Math.ceil(spend / perJob - 1e-9) : 0, loss: profit < 0 ? -profit : 0 };
+    r.hasJobs = jobs > 0 ? 1 : 0;
+    r.pos = jobs > 0 && profit >= 0 && perJob > 0 ? 1 : 0;
+    r.neg = jobs > 0 && profit < 0 && perJob > 0 ? 1 : 0;
+    r.noJobs = jobs === 0 && spend > 0 ? 1 : 0;
+    r.underwater = jobs > 0 && perJob <= 0 ? 1 : 0;
+    r.odd = (quotes > leads && leads > 0) || (jobs > quotes && quotes > 0) ? 1 : 0;
+    r.none = spend > 0 || leads > 0 || jobs > 0 ? 0 : 1;
+    (prices || []).forEach(function (p, n) {
+      r["list" + n] = p;
+      r["cover" + n] = perJob > 0 ? Math.ceil(p / perJob - 1e-9) : 0;
+      r["coverNever" + n] = perJob > 0 ? 0 : 1;
+    });
+    return r;
+  }
+
+  // Amazon payout gap under the delivery date-based reserve (DD+7). Rules from Amazon's own US help pages, read
+  // Oct 24, 2026: funds are reserved until delivery plus 7 days, and Amazon's worked example (sold Jan 1, delivered
+  // Jan 6, available starting Jan 14) puts availability 8 calendar days after the delivery day, so this model does
+  // too (G202124090); with no valid tracking from an integrated carrier Amazon uses the latest estimated delivery
+  // date (G202124090); the scheduled payout period is 14 days (G19301); Disburse on Demand pays the available balance
+  // once every 24 hours (GSCWUZNYQRY4LEZH); bank arrival is the seller's input (Express Payout within 24 hours,
+  // standard ACH 3 to 5 business days, GA24UN79VBPKXZXX). Order day t: available day t + days to the delivery date
+  // used + 8; payout started that day (daily) or on the next scheduled payout day (nextPayout, nextPayout + 14, ...);
+  // in the bank bankDays later. Held on day t = sold through day t less what reached the bank through day t.
+  // Bank on day t = cash + arrived - daily costs x t, from a standing start (no sales held on day 0).
+  function payoutGap(i) {
+    var sales = Math.max(0, num(i.sales)), mfn = Math.round(num(i.fulfil)) === 1 ? 1 : 0;
+    var tracked = Math.round(num(i.tracked)) === 0 ? 0 : 1, daily = Math.round(num(i.schedule)) === 1 ? 1 : 0;
+    var deliver = Math.max(0, Math.round(num(i.deliverDays))), edd = Math.max(0, Math.round(num(i.eddDays)));
+    var bank = Math.max(0, Math.round(num(i.bankDays))), cash = num(i.cash), costs = Math.max(0, num(i.costs));
+    var next = Math.min(14, Math.max(1, Math.round(num(i.nextPayout)) || 14));
+    var dateDays = mfn && !tracked ? edd : deliver, avail = dateDays + 8;
+    var fastest = avail + bank, slowest = daily ? fastest : avail + 13 + bank;
+    var H = Math.max(120, slowest + 60), arrive = [], held = [], bal = [], soldCum = 0, inCum = 0;
+    for (var d = 0; d <= H + slowest + 1; d++) arrive[d] = 0;
+    for (var t = 1; t <= H; t++) {
+      var a = t + avail, start = daily ? a : (a <= next ? next : next + Math.ceil((a - next) / 14) * 14);
+      var land = start + bank;
+      if (land <= H + slowest) arrive[land] += sales;
+    }
+    var low = cash, lowDay = 0, first = 0;
+    for (t = 1; t <= H; t++) {
+      soldCum += sales; inCum += arrive[t];
+      if (!first && arrive[t] > 0) first = t;
+      held[t] = soldCum - inCum; bal[t] = cash + inCum - costs * t;
+      if (bal[t] < low) { low = bal[t]; lowDay = t; }
+    }
+    var hMax = 0, hMin = Infinity;
+    for (t = H - 27; t <= H; t++) { if (held[t] > hMax) hMax = held[t]; if (held[t] < hMin) hMin = held[t]; }
+    if (!isFinite(hMin)) hMin = 0;
+    return { sales: sales, mfn: mfn, eddUsed: mfn && !tracked ? 1 : 0, scheduled: daily ? 0 : 1, dateDays: dateDays, avail: avail,
+      fastest: fastest, slowest: slowest, heldMax: hMax, heldMin: hMin, heldDays: sales > 0 ? hMax / sales : 0,
+      first: first, waitDays: first ? first - 1 : 0, low: low, lowDay: lowDay, need: low < 0 ? -low : 0,
+      endBal: bal[H], horizon: H, hasCosts: costs > 0 ? 1 : 0, noCosts: costs > 0 ? 0 : 1,
+      short: costs > 0 && low < 0 ? 1 : 0, ok: costs > 0 && low >= 0 ? 1 : 0, losing: costs > sales && sales > 0 ? 1 : 0,
+      noSales: sales > 0 ? 0 : 1, range: daily ? 0 : 1 };
+  }
+
+  var api = { leadCost: leadCost, payoutGap: payoutGap, seTax: seTax, hourly: hourly, service: service, serviceSqft: serviceSqft, dayRate: dayRate, cleaningSqft: cleaningSqft, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
     strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, profitLoss: profitLoss, cakeQuote: cakeQuote, unitCost: unitCost, handmadePrice: handmadePrice, markup: markup, breakEven: breakEven, choreSplit: choreSplit, clientMix: clientMix, cakeSizes: CAKE_SIZES, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;

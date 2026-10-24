@@ -1507,7 +1507,174 @@ PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
     return form, results, script
 
 
-PAGE_KINDS = {"day_rate": day_rate_page, "cleaning_sqft": cleaning_sqft_page, "service": service_page, "service_sqft": service_sqft_page, "hourly": hourly_page, "cashflow": cashflow_page,
+def _lead_lists(p):
+    """The City-record lists the lead cost page compares with: our price and this week's counts, read from each list's
+    own data file at build time (store_products), so the Monday refresh updates the page. Spec key "lists": [[key, trade]]."""
+    by = {x["key"]: x for x in store_products()}
+    out = []
+    for key, trade in p.get("lists", []):
+        x = by.get(key)
+        if not x or not x.get("checkout"):
+            continue
+        c = x.get("counts", {})
+        if key == "chicago-restaurant-inspection-leads":
+            pests = c.get("byCat", {}).get("pests", 0)
+            count = f'{pests:,} Chicago food places failed or passed with conditions with a pest violation in the last 30 days'
+        elif key == "chicago-new-business-licenses":
+            count = f'{c.get("keptWeek", 0):,} new business licenses at Chicago business sites in the latest week, {c.get("kept30", 0):,} in 30 days'
+        else:
+            near = c.get("nearFinish", 0)
+            count = (f'{c.get("kept", 0):,} open {x["tag"].split(" · ")[0]} projects of $500,000 or more' + (f', {near:,} of them near finish' if near >= 5 else ""))
+        count += f' (City data pulled {x["asof"]})'
+        out.append({"key": key, "trade": trade, "name": x["name"], "tag": x["tag"], "price": int(x["price"]), "per": x["per"],
+                    "trial": x.get("trial", 0), "checkout": x["checkout"], "campaign": x["campaign"], "href": x["href"],
+                    "sample": x.get("sample", ""), "count": count, "asof": x.get("asof", "")})
+    return out
+
+
+def lead_cost_page(p):
+    """Lead cost per won job (PNF.leadCost): a cleaning or pest owner's own month of platform leads, then a plain
+    comparison with our City-record lists using only our prices and this week's counts."""
+    d = p["defaults"]
+    lists = _lead_lists(p)
+    prices = [x["price"] for x in lists]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>One month of platform leads</legend>
+{field("spend", "What you paid for leads this month", d["spend"], "Angi, Thumbtack, HomeAdvisor, Bark, Google and the like, all together", pre="$")}
+{field("leads", "Leads you paid for", d["leads"], "Every lead charged, good or bad")}
+{field("quotes", "Quotes you sent", d["quotes"], "Leads you priced a job for")}
+{field("jobs", "Jobs you won", d["jobs"], "Quotes the customer said yes to")}
+</fieldset>
+<fieldset><legend>An average won job</legend>
+{field("avgJob", "Average job revenue", d["avgJob"], "What the customer pays for one job", pre="$")}
+{field("jobCost", "Direct cost of one job", d["jobCost"], "Labor you pay, supplies or chemicals, gas. Not the lead.", pre="$")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Lead cost per won job</div><div class="val" data-out="cpj" data-never="No jobs yet" data-never-if="noJobs">$0</div><div class="sub">What you paid in leads for each yes</div></div>
+<div class="tile"><div class="lab">Cost per lead</div><div class="val" data-out="cpl">$0</div><div class="sub">Per quote: <span data-out="cpq">$0</span></div></div>
+<div class="tile"><div class="lab">Profit left after lead spend</div><div class="val" data-out="profit" data-fmt="money0">$0</div><div class="sub">This month, all won jobs</div></div>
+<div class="tile"><div class="lab">Leads that became jobs</div><div class="val" data-pct="leadToJob">0%</div><div class="sub">Quotes won: <span data-pct="winRate">0%</span></div></div>
+</div>
+<ul class="lines">
+<li><span>Revenue from won jobs</span><span data-out="revenue" data-fmt="money0">$0</span></li>
+<li><span>Direct cost of those jobs</span><span data-out="direct" data-fmt="money0">$0</span></li>
+<li class="total"><span>Left before lead spend</span><span data-out="gross" data-fmt="money0">$0</span></li>
+<li><span>Lead spend</span><span data-out="spend" data-fmt="money0">$0</span></li>
+<li class="total"><span>Profit left after lead spend</span><span data-out="profit" data-fmt="money0">$0</span></li>
+<li><span>One job: profit before the lead</span><span data-out="perJob">$0</span></li>
+<li><span>One job: after its share of lead spend</span><span data-out="afterLead">$0</span></li>
+<li><span>Lead spend as a share of job revenue</span><span data-pct="leadShare">0%</span></li>
+</ul>
+<div class="callout" data-show-if="pos > 0">Leads ate <b data-pct="eatsShare">0%</b> of what each job left you. You need <b data-out="breakEvenJobs" data-fmt="int">0</b> won jobs a month to cover this lead spend.</div>
+<div class="callout warn" data-show-if="neg > 0">These leads cost <b data-out="loss" data-fmt="money0">$0</b> more than the jobs left you. You needed <b data-out="breakEvenJobs" data-fmt="int">0</b> won jobs, not <b data-out="jobs" data-fmt="int">0</b>, to cover the spend.</div>
+<div class="callout warn" data-show-if="noJobs > 0">No jobs won yet, so every lead dollar this month is a loss so far. Type the jobs you won to see the cost of each.</div>
+<div class="callout warn" data-show-if="underwater > 0">The direct cost of a job is as high as its price, so no number of leads can make these jobs pay. Check the price first.</div>
+<div class="callout warn" data-show-if="odd > 0">More quotes than leads, or more jobs than quotes? Check the counts: the rates below the tiles use them.</div>
+<div class="callout warn" data-show-if="none > 0">Type one month of lead spend, leads and jobs.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Per won job <b data-out="cpj">$0</b></span><span>Profit <b data-out="profit" data-fmt="money0">$0</b></span></div>"""
+    by = {x["key"]: x for x in store_products()}
+    rows, cards = "", ""
+    for n, x in enumerate(lists):
+        rows += (f'<tr><th scope="row"><b>{E(x["name"])}</b><br><small>For {E(x["trade"])}. {E(x["count"])}</small></th>'
+                 f'<td>${x["price"]}<br><small>{E(x["per"])}</small></td>'
+                 f'<td><span data-out="cover{n}" data-fmt="int" data-never="None" data-never-if="coverNever{n}">0</span></td></tr>')
+        # the shop's own card; its Gumroad link also names this page (utm_content) so paid starts from here can be counted
+        tag = f'utm_campaign={x["campaign"]}"'
+        cards += product_card(by[x["key"]], "../", "calculator").replace(tag, f'utm_campaign={x["campaign"]}&amp;utm_content={p["slug"]}"')
+    compare = (f'<section class="block" id="compare"><h2>{E(p["compare"]["title"])}</h2>'
+               + "".join(f"<p>{E(t)}</p>" for t in p["compare"]["intro"])
+               + '<table class="mt lc-tbl"><thead><tr><th scope="col">List</th><th scope="col">Price</th>'
+               '<th scope="col">Jobs to pay for it</th></tr></thead>'
+               f'<tbody>{rows}</tbody></table>'
+               + "".join(f'<p class="asof">{E(t)}</p>' for t in p["compare"]["notes"])
+               + f'<div class="st-grid lc-cards">{cards}</div></section>')
+    checklist = (f'<section class="block"><details class="lc-keep"><summary>{E(p["keep"]["title"])}</summary>'
+                 + f'<p>{E(p["keep"]["lead"])}</p><ul class="checks">' + "".join(f"<li>{E(t)}</li>" for t in p["keep"]["items"])
+                 + f'</ul><p>{E(p["keep"]["tail"])}</p></details></section>')
+    script = f"""<script>
+(function(){{var f=document.getElementById("calc"),L={json.dumps(prices)};
+/* Maths: PNF.leadCost in assets/pnf-calc.js; L is our list prices, read from site/store.json at build. */
+var M=function(i){{return PNF.leadCost(i,L);}};
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;}})();</script>"""
+    return form, results + "\n<!--LC-EXTRA-->" + compare + checklist, script
+
+
+def _dd7_next(p):
+    """Where the DD+7 page sends a seller next: the $79 workbook (Gumroad, utm-tagged so paid starts can be counted)
+    and the Shopify payouts question page."""
+    nx, pages = p["next"], _pages_by_slug()
+    kit = next((x for x in store_products() if x["key"] == "ecommerce-13-week-cash-flow"), None)
+    q = pages.get(nx["question"])
+    out = f'<section class="block"><h2>{E(nx["title"])}</h2>'
+    if kit:
+        out += f'<p>{E(nx["workbook"])} <a href="../{kit["href"]}">13 week cash flow calculator</a></p>'
+    if q and is_live(q):
+        out += f'<p>{E(nx["shopify"])} <a href="../{q["slug"]}/">{E(q["h1"])}</a></p>'
+    return out + '</section>'
+
+
+def dd7_page(p):
+    """Amazon DD+7 payout gap (PNF.payoutGap): money held, days from order to bank and the low point, from rules on
+    Amazon's own US help pages (spec "rules", each with the URL and the date read)."""
+    d = p["defaults"]
+    sel = lambda key, label, hint, opts, val: (
+        f'<div class="row"><label for="{key}">{E(label)}{f"<small>{E(hint)}</small>" if hint else ""}</label>'
+        f'<div class="field"><select id="{key}" data-in="{key}">'
+        + "".join(f'<option value="{v}"{" selected" if str(v) == str(val) else ""}>{E(t)}</option>' for v, t in opts)
+        + '</select></div></div>')
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>Your Amazon sales</legend>
+{field("sales", "Daily sales, after Amazon fees", d["sales"], "What Amazon pays you per day: sales less referral and FBA fees", pre="$")}
+{sel("fulfil", "Who ships the orders", "Fulfilled by Amazon, or merchant fulfilled (you ship)", [(0, "FBA"), (1, "Merchant")], d["fulfil"])}
+{field("deliverDays", "Days from order to delivery", d["deliverDays"], "Your usual, from the order date")}
+<div data-show-if="mfn > 0">{sel("tracked", "Tracking on your shipments", "Valid tracking from an integrated carrier lets Amazon use the actual delivery date", [(1, "Valid"), (0, "None")], d["tracked"])}</div>
+<div data-show-if="eddUsed > 0">{field("eddDays", "Days from order to the latest estimated delivery date", d["eddDays"], "Without valid tracking, Amazon counts from this date")}</div>
+</fieldset>
+<fieldset><legend>How you get paid</legend>
+{sel("schedule", "Payout schedule", "Amazon's scheduled payout every 14 days, or a payout you request daily", [(0, "14 days"), (1, "Daily")], d["schedule"])}
+<div data-show-if="scheduled > 0">{field("nextPayout", "Days until your next scheduled payout", d["nextPayout"], "1 to 14. Manage Payouts or the Payments dashboard shows the date")}</div>
+{field("bankDays", "Days for a payout to reach your bank", d["bankDays"], "Express Payout: within 24 hours, so 1. Standard: 3 to 5 business days")}
+</fieldset>
+<fieldset><legend>Your cash (for the low point)</legend>
+{field("cash", "Cash in the bank today", d["cash"], "All business accounts together", pre="$")}
+{field("costs", "What you pay out per day", d["costs"], "Stock, ads, shipping, payroll and bills, as a daily average", pre="$")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Money Amazon holds at the most</div><div class="val" data-out="heldMax" data-fmt="money0">$0</div><div class="sub"><span data-out="heldDays" data-fmt="int">0</span> days of sales not yet in your bank</div></div>
+<div class="tile"><div class="lab">Order to bank</div><div class="val"><span data-out="fastest" data-fmt="int">0</span><span data-show-if="range > 0"> to <span data-out="slowest" data-fmt="int">0</span></span> days</div><div class="sub"><span data-show-if="range > 0">Depends on the order's day in the payout cycle</span><span data-show-if="scheduled < 1">For every order, with a daily request</span></div></div>
+<div class="tile"><div class="lab">Your bank's low point</div><div class="val" data-out="low" data-fmt="money0">$0</div><div class="sub"><span data-show-if="hasCosts > 0">On day <span data-out="lowDay" data-fmt="int">0</span>, if sales start today</span><span data-show-if="noCosts > 0">Add what you pay out per day</span></div></div>
+<div class="tile"><div class="lab">Cash needed to stay above $0</div><div class="val" data-out="need" data-fmt="money0">$0</div><div class="sub">Before the first payouts catch up</div></div>
+</div>
+<ul class="lines">
+<li><span>Days to the delivery date Amazon uses</span><span data-out="dateDays" data-fmt="int">0</span></li>
+<li><span>Days from order until Amazon makes it available</span><span data-out="avail" data-fmt="int">0</span></li>
+<li><span>Day the first money reaches your bank, from a standing start</span><span data-out="first" data-fmt="int">0</span></li>
+<li data-show-if="range > 0"><span>Money Amazon holds at the least</span><span data-out="heldMin" data-fmt="money0">$0</span></li>
+</ul>
+<div class="callout warn" data-show-if="short > 0">Your bank runs <b data-out="need" data-fmt="money0">$0</b> short on day <b data-out="lowDay" data-fmt="int">0</b>. Have that much more ready, or slow what you pay out before then.</div>
+<div class="callout" data-show-if="ok > 0">Your cash covers the wait: the lowest it gets is <b data-out="low" data-fmt="money0">$0</b>, on day <b data-out="lowDay" data-fmt="int">0</b>.</div>
+<div class="callout warn" data-show-if="losing > 0">You pay out more per day than Amazon pays you, so cash keeps falling whatever the payout timing.</div>
+<div class="callout warn" data-show-if="eddUsed > 0">Without valid tracking, each order waits for its latest estimated delivery date, not the real one.</div>
+<div class="callout" data-show-if="noCosts > 0">Add what you pay out per day to see your low point.</div>
+<div class="callout warn" data-show-if="noSales > 0">Type your daily sales after Amazon fees.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Held <b data-out="heldMax" data-fmt="money0">$0</b></span><span>Low <b data-out="low" data-fmt="money0">$0</b></span></div>"""
+    rules = "".join(f'<li><span>{E(r["rule"])} Source: <a href="{E(r["url"])}" rel="noopener">{E(r["page"])}</a>.</span></li>' for r in p["rules"])
+    extra = (f'<section class="block"><h2>{E(p["rulesTitle"])}</h2><ul class="checks">{rules}</ul>'
+             + "".join(f"<p>{E(t)}</p>" for t in p["rulesNotes"]) + '</section>'
+             + _dd7_next(p))
+    script = """<script>
+(function(){var f=document.getElementById("calc");
+/* Maths: PNF.payoutGap in assets/pnf-calc.js; rules and dates in its comment and on this page. */
+var M=function(i){return PNF.payoutGap(i);};
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+    return form, results + "\n<!--LC-EXTRA-->" + extra, script
+
+
+PAGE_KINDS = {"lead_cost": lead_cost_page, "dd7_payout": dd7_page, "day_rate": day_rate_page, "cleaning_sqft": cleaning_sqft_page, "service": service_page, "service_sqft": service_sqft_page, "hourly": hourly_page, "cashflow": cashflow_page,
               "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
               "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
               "reorder_point": reorder_point_page, "str_breakeven": str_breakeven_page,
@@ -1919,12 +2086,13 @@ def page_html(p):
     url = BASE + p["slug"] + "/"
     rel = "../"
     form, results, script = PAGE_KINDS[p["kind"]](p)
+    results, _, after_grid = results.partition("\n<!--LC-EXTRA-->")   # sections a page puts right under the calculator
     body = (f'<p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{E(p["lede"])}</p>'
-            f'<div class="grid">{form}{results}</div>'
+            f'<div class="grid">{form}{results}</div>{after_grid}'
             f'<section class="block"><h2>How it works</h2>{"".join(f"<p>{E(x)}</p>" for x in p["method"])}</section>'
             f'<section class="block"><h2>A worked example</h2><p>{E(p["example"])}</p></section>'
-            f'{extra_cards(p["slug"])}{find_customers(p["slug"], rel)}{guides_block(calc=p["slug"], rel=rel)}{cta(p)}{faq_block(p["faq"])}')
-    city_numbers = any(k != "ecommerce-13-week-cash-flow" for k in load_store().get("calcProducts", {}).get(p["slug"], []))
+            f'{extra_cards(p["slug"])}{find_customers(p["slug"], rel)}{guides_block(calc=p["slug"], rel=rel)}{cta(p) if p.get("cta") else ""}{faq_block(p["faq"])}')
+    city_numbers = bool(p.get("lists")) or any(k != "ecommerce-13-week-cash-flow" for k in load_store().get("calcProducts", {}).get(p["slug"], []))
     robots = '<meta name="robots" content="noindex, nofollow">' if p.get("draft") else ""
     crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Free calculators", "calculators/"), (p["h1"], None)])
     body = crumb + body

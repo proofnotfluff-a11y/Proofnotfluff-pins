@@ -1,0 +1,64 @@
+{
+ "product": "Chicago Restaurant Daily List",
+ "asOf": "2026-10-24",
+ "asOfText": "Oct 24, 2026",
+ "through": "2026-10-23",
+ "throughText": "Oct 23, 2026",
+ "recentFrom": "2026-10-10",
+ "source": {
+  "name": "City of Chicago Data Portal, Food Inspections",
+  "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
+  "fetchedAt": "2026-10-24T12:07:21+00:00",
+  "rowsUpdatedAt": "2026-10-24T09:08:34+00:00",
+  "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
+  "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
+ },
+ "counts": {
+  "pests": 42,
+  "hood": 11,
+  "places": 48
+ },
+ "history": [
+  {
+   "asOf": "2026-10-24",
+   "through": "2026-10-23",
+   "pests": 42,
+   "hood": 11,
+   "places": 48,
+   "withPhone": 30
+  }
+ ],
+ "examples": [
+  {
+   "area": "O'Hare",
+   "type": "Restaurant",
+   "result": "Fail",
+   "trades": [
+    "pests"
+   ]
+  },
+  {
+   "area": "West Town",
+   "type": "Restaurant",
+   "result": "Fail",
+   "trades": [
+    "pests",
+    "hood and exhaust"
+   ]
+  },
+  {
+   "area": "Lower West Side",
+   "type": "Restaurant",
+   "result": "Fail",
+   "trades": [
+    "pests"
+   ]
+  }
+ ],
+ "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
+ "phones": {
+  "rows": 48,
+  "withPhone": 30,
+  "coverage": 62.5
+ }
+}

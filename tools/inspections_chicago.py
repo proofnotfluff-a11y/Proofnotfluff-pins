@@ -363,6 +363,10 @@ def main():
               "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"}
     sample = {"source": source, "window": {"from": (today - dt.timedelta(days=7)).isoformat(), "to": today.isoformat()},
               "counts": {"fetched": len(rows), "kept": len(recs), "segments": seg_counts, "excluded": dict(reasons),
+                         # food businesses (one per license number) that had a first license inspection this week, any
+                         # result; re-inspections and task force visits left out (the license count email, Oct 24)
+                         "licensePlaces": len({r["license"] or (r["business"] + "|" + r["address"]) for r in recs
+                                               if r["inspectionType"].upper() == "LICENSE"}),
                          "areas": collections.Counter(r["communityArea"] for r in recs if r["communityArea"]).most_common(10)},
               "segments": {k: [public(r) for r in recs if k in r["segments"]][: a.top] for k in SEGMENTS},
               "segmentNames": SEGMENTS}

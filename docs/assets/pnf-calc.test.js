@@ -629,6 +629,7 @@ check("lead scenario: 0 jobs is the list price lost", P.leadCost({ avgJob: 280, 
 check("lead $39 list, $15 job profit: 3 jobs", P.leadCost({ avgJob: 40, jobCost: 25 }, [39]).cover0, 3);
 check("lead no jobs: flag, no divide by zero", P.leadCost({ spend: 500, leads: 10 }).noJobs + P.leadCost({ spend: 500, leads: 10 }).cpj, 1);
 check("lead blank: none", P.leadCost({}).none, 1);
+check("lead no spend, jobs won: break-even 0, no pos callout", P.leadCost({ jobs: 4, avgJob: 200, jobCost: 50 }).breakEvenJobs + P.leadCost({ jobs: 4, avgJob: 200, jobCost: 50 }).pos, 0);
 check("lead jobs over quotes: odd", P.leadCost({ spend: 100, leads: 5, quotes: 2, jobs: 3 }).odd, 1);
 // Amazon DD+7 (help page G202124090, read Oct 24, 2026): sold Jan 1, delivered Jan 6, available Jan 14 = day 14
 const AZ = P.payoutGap({ sales: 1000, fulfil: 0, deliverDays: 5, schedule: 1, bankDays: 0, cash: 0, costs: 0 });

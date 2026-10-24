@@ -726,9 +726,9 @@
       afterLead: jobs > 0 ? perJob - cpj : 0, profitPerJob: jobs > 0 ? profit / jobs : 0,
       quoteRate: leads > 0 ? quotes / leads : 0, winRate: quotes > 0 ? jobs / quotes : 0, leadToJob: leads > 0 ? jobs / leads : 0,
       leadShare: revenue > 0 ? spend / revenue : 0, eatsShare: perJob > 0 && jobs > 0 ? cpj / perJob : 0,
-      breakEvenJobs: perJob > 0 ? Math.ceil(spend / perJob - 1e-9) : 0, loss: profit < 0 ? -profit : 0 };
+      breakEvenJobs: perJob > 0 ? Math.max(0, Math.ceil(spend / perJob - 1e-9)) : 0, loss: profit < 0 ? -profit : 0 };
     r.hasJobs = jobs > 0 ? 1 : 0;
-    r.pos = jobs > 0 && profit >= 0 && perJob > 0 ? 1 : 0;
+    r.pos = jobs > 0 && spend > 0 && profit >= 0 && perJob > 0 ? 1 : 0;
     r.neg = jobs > 0 && profit < 0 && perJob > 0 ? 1 : 0;
     r.noJobs = jobs === 0 && spend > 0 ? 1 : 0;
     r.underwater = jobs > 0 && perJob <= 0 ? 1 : 0;

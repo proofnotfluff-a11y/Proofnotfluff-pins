@@ -1584,8 +1584,8 @@ def lead_cost_page(p):
     rows, cards = "", ""
     for n, x in enumerate(lists):
         rows += (f'<tr><th scope="row"><b>{E(x["name"])}</b><br><small>For {E(x["trade"])}</small></th>'
-                 f'<td>${x["price"]}<br><small>{E(x["per"])}</small></td>'
-                 f'<td><span data-out="cover{n}" data-fmt="int" data-never="None" data-never-if="coverNever{n}">0</span></td>'
+                 f'<td>${x["price"]}/mo</td>'
+                 f'<td><span data-out="cover{n}" data-fmt="int" data-never="Can&#39;t" data-never-if="coverNever{n}">0</span></td>'
                  f'<td><span data-out="scen{n}" data-fmt="money0">$0</span></td></tr>')
         # the shop's own card; its Gumroad link also names this page (utm_content) so paid starts from here can be counted
         tag = f'utm_campaign={x["campaign"]}"'

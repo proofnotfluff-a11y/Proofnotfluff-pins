@@ -6,8 +6,7 @@ One job: keep hello@ and sales@ replies true in the CRM (both days), then on Mon
 - CRM prospects (ArtifactData list, out_dir data/crm), meta/products, meta/desk.
 - permits/downstream/gc_leads.json (Entity A, at most 2 days old).
 - data/prospects/prospects.json, data/work/matches.json (written by tools/crm_prospects.py).
-- email/SEND_RULES.md, at step 6.
-- email/approved_templates.json (tools/approved_templates.py), at step 6.
+- email/SEND_RULES.md and email/approved_templates.json, at step 6.
 - .claude/skills/outreach-drafter/templates.md, at step 4 only.
 
 ## Process (Executes)
@@ -16,7 +15,7 @@ One job: keep hello@ and sales@ replies true in the CRM (both days), then on Mon
 3. Match (semantic, the only judgment): each prospect without a current match gets one lead in its city, same side of town when its area says so, Partial Occupancy Approved first, then larger valuation, never its firstExample; the lead must fit the prospect's trade_vertical (pnf_rules.trade_fits, enforced by validate_leads matches: exterior_turnkey only Chicago Partial Occupancy Approved; window_cleaning a new build of $5M or more at partial occupancy or under inspection, never an interior fit-out; dumpster_rental a job under $5M under inspection; security a new build of $20M or more at either stage). Append to data/work/matches.json with a one-line reason. Run `python3 tools/validate_leads.py matches`.
 4. Draft: `python3 tools/copy_gate.py --assign` prints each match's template id (trade, stage and the prospect's fixed test arm, Todd Oct 22); fill exactly that template in templates.md, fixed words unchanged. Fields come only from the two validated files: {first}, {gc} (pnf_rules.gc_display), {value} (pnf_rules.value_display), {kind} (window_cleaning, dumpster_rental, security: pnf_rules.kind_display of the City scope; every other vertical: one word that matches the scope, school, office, hotel or apartment, none fits, pick another lead), {street} (pnf_rules.street_display). Write data/work/drafts.json with `variant` = that id.
 5. `python3 tools/copy_gate.py`. Exit 1: fix wording only, rerun once, else drop the draft.
-6. Send decision (email/SEND_RULES.md, "Standing send rule"): if the batch qualifies, send it by SEND_RULES with no ask, then one line to Todd. If not, one private review page with every draft in full; ask Todd "Reply send", with the reason it did not qualify. Either way follow email/SEND_RULES.md exactly. Sender appends the footer.
+6. Send: a batch that qualifies under the standing send rule (email/SEND_RULES.md) sends with no ask, then one line to Todd; else one review page with every draft and the reason, and ask Todd "Reply send". Follow SEND_RULES exactly. Sender appends the footer.
 - Follow-ups (Todd, Oct 22: "Yes, two follow-ups"): at most two, each 5 business days after the last email, same thread, the prospect's recorded variant for a lead it was never sent (`--assign` on the follow-up matches), gated with `python3 tools/copy_gate.py data/work/followups.json --prospects data/prospects/followups.json --matches ''`. Never after a reply, never to the Oct 19 and 20 batches (crm_prospects.py LEGACY_BATCHES).
 - License count emails (Todd, Oct 24): steps in email/L2-COMMISSION.md; sales@ only, never hello@.
 - A yes: tell Todd; from then the monday-email stage owns that prospect.

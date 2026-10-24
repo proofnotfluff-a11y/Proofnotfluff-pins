@@ -83,6 +83,7 @@ def to_prospect(pid, d):
         "sender": d.get("sender") or "",
         "variant": d.get("variant") or "",
         "followup_examples": [str(x) for x in (d.get("followupExamples") or [])],
+        "checked_at": d.get("checkedAt") or "",
     }
 
 

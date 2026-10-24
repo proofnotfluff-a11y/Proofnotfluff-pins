@@ -1,4 +1,4 @@
-# Launch record: Chicago Pest Daily List, the $149 founding seat (move 3), NOT ON SALE
+# Launch record: Chicago Pest Daily List, the $149 founding seat (move 3), LIVE Oct 24, 2026
 
 Decided: Todd, Oct 23 (outside audit, move 3: "$149 a month, real cap of 3 seats per trade in Chicago, kept for good. Gumroad checkout") and Oct 24 (pest control only, hood waits; kill date; subject rule; "no lock-in" and the funnel stages). coo/DECISIONS-2026-10-23.md, coo/DECISIONS-2026-10-24.md. Scoreboard rows move3-founding-seat, move6-pest-email; leadproducts/chicago-pest-seat.
 
@@ -75,3 +75,8 @@ Post-purchase content: the members' link https://proofnotfluff.com/chicago-pest-
 ## Open
 - Subject wording (Legal fix 13): Todd's call.
 - Named pest owners: 1 of 50 pest companies in the CRM has a named owner with an owner-read email (Oct 24). The kill rule needs 100 delivered first emails by Nov 30, so prospect-matching must add pest owners (and about 50 more pest companies). The Oct 24 site checks could not run: reading company sites from the prospect file needs Todd's approval in chat.
+
+## Launched Oct 24, 2026
+- Todd added REST_SEAT_PASSWORD; the daily workflow built the members' page (41 places, 29 phones); the seat password opens it and #/terms opens without it.
+- Gumroad https://proofnotfluff.gumroad.com/l/bzemcy published by Todd: $149 monthly, tier Founding Seat, limit 3 ("3 left" checked), free trial off. The session added the cover and thumbnail (launches/chicago-pest-seat/cover-1280x720.png, thumb-600x600.png), the summary, three details (Seats, Updated, Kept on your page) and the receipt button and message (no password in the receipt).
+- Todd, 1:47 pm: "go". site/pages.json seat.checkout set; the offer, both seat buttons and the daily and weekly headlines are live (seo/RESULTS.md).

@@ -1,0 +1,14 @@
+@font-face{font-family:P;font-weight:600;src:url(../../docs/assets/fonts/poppins-600.woff2)}
+@font-face{font-family:P;font-weight:700;src:url(../../docs/assets/fonts/poppins-700.woff2)}
+@font-face{font-family:In;font-weight:400;src:url(../../docs/assets/fonts/inter-400.woff2)}
+@font-face{font-family:In;font-weight:600;src:url(../../docs/assets/fonts/inter-600.woff2)}
+@font-face{font-family:In;font-weight:700;src:url(../../docs/assets/fonts/inter-700.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+.res{display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 12px;border-radius:999px;font:700 14px In;white-space:nowrap}
+.res i{width:8px;height:8px;background:currentColor;border-radius:2px}
+.fail{color:#A63E21;background:#FBEAE4}.pwc{color:#7A5A12;background:#F6EDD5}.pass{color:#2E6B66;background:#E3EFED}.pass i{border-radius:50%;transform:none}
+.cat{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px 0 8px;border-radius:8px;font:600 13.5px In;color:#1D2433;background:#fff;border:1px solid #CFC8BB}
+.cat svg{width:16px;height:16px;stroke:#565D6F;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.bar{display:block;height:13px;border-radius:7px;background:#1D2433}
+.bar.bl{background:#D9D3C7;height:10px;margin-top:9px}
+.bars5{display:flex;gap:6px}.bars5 b{width:26px;height:5px;border-radius:3px}

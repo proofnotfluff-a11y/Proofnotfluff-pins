@@ -2934,6 +2934,7 @@ def main():
         normalize_extra(x["slug"], x["h1"])
     write_hub_and_redirects(pages)
     write_answer_drafts(pages)   # Todd, Oct 24: visible AI-search changes built as drafts first
+    write_compare_draft()
     write_stage_pages(pages)
     urls = ([BASE] + [BASE + slug + "/" for slug, _ in store] + [BASE + "go/"] + [BASE + p["slug"] + "/" for p in live]
             + [BASE + x["slug"] + "/" for x in live_extras()])
@@ -3005,6 +3006,35 @@ def write_answer_drafts(pages):
         html = html.replace("</head>", style + "</head>", 1)
         out = os.path.join(DOCS, "answer-draft-" + p["slug"]); os.makedirs(out, exist_ok=True)
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(html)
+
+
+def write_compare_draft():
+    """The honest comparison page (research_notes/ai-recommendation-2026-10-23.md item 7), from site/compare-chicago-construction.json:
+    every price read on a vendor page in the build session, third-party estimates labeled, our row labeled and never ranked
+    first. Draft only: noindex, not in the sitemap, not linked, until Todd's go (Oct 24: "Build as drafts")."""
+    f = os.path.join(ROOT, "site", "compare-chicago-construction.json")
+    if not os.path.isfile(f):
+        return
+    d = json.load(open(f, encoding="utf-8"))
+    rel = "../"
+    kind = {"vendor": "the company's own page", "third-party": "a third-party estimate", "ours": "our page"}
+    rows = "".join(
+        f'<article class="cmp-row{" cmp-ours" if x.get("sourceKind") == "ours" else ""}"><h2>{E(x["name"])}</h2><p>{E(x["what"])}</p>'
+        f'<dl class="ld-meta"><div><dt>Price</dt><dd>{E(x["price"])}</dd></div><div><dt>What you get</dt><dd>{E(x["gets"])}</dd></div>'
+        f'<div><dt>The catch</dt><dd>{E(x["con"])}</dd></div></dl>'
+        f'<p class="cmp-src">Source: <a href="{E(x["sourceUrl"])}" rel="noopener">{E(kind.get(x.get("sourceKind"), "source"))}</a>, read {E(nice_date(x["readOn"]))}.</p></article>'
+        for x in d["sources"])
+    body = (f'<p class="eyebrow">Compared, with prices</p><h1>{E(d["title"])}</h1><p class="lede">{E(d["intro"])}</p>'
+            f'<div class="cmp-list">{rows}</div>'
+            '<style>.cmp-list{display:grid;gap:16px;margin:24px 0 0;max-width:860px}.cmp-row{background:var(--card);border:1px solid var(--line);'
+            'border-radius:12px;padding:18px 20px}.cmp-row h2{font-size:21px;line-height:1.25;margin:0 0 6px}.cmp-row>p{margin:0 0 10px;color:var(--ink2)}'
+            '.cmp-ours{border-left:4px solid var(--accent)}.cmp-src{font-size:14px;color:var(--muted)!important;margin:10px 0 0!important}</style>')
+    url = BASE + d["slug"] + "/"
+    html = (HEAD.format(title=E(d["title"]) + " | ProofNotFluff", desc=E(d["intro"]), url=url, rel=rel, shop=SHOP, ld="", bodycls="",
+                        robots='<meta name="robots" content="noindex, nofollow">', analytics=analytics_tag()) + body +
+            FOOT.format(rel=rel, script="", notices="", sources="Each row names its source page and the day it was read."))
+    out = os.path.join(DOCS, d["slug"]); os.makedirs(out, exist_ok=True)
+    open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(html)
 
 
 def add_product(argv):

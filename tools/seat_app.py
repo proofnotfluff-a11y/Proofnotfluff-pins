@@ -86,7 +86,7 @@ def terms_text(date):
         "Trademarks. Gumroad and Microsoft Excel are trademarks of their owners, and business names on the list belong to those "
         "businesses. ProofNotFluff isn't affiliated with, sponsored or endorsed by them, by the City of Chicago, or by any business listed.",
         "AI assistance. This product was made with AI assistance and reviewed and tested by the shop owner.",
-        f"Price, contract and cancelling. ${PRICE} a month, billed by Gumroad, with no contract. Cancel any time from your Gumroad "
+        f"Price and cancelling. ${PRICE} a month, billed by Gumroad, with no lock-in: no minimum term. Cancel any time from your Gumroad "
         "receipt or library; cancelling stops future charges. If the page won't open or something looks wrong, reply to your Gumroad "
         "receipt and it will be fixed.",
     ]
@@ -457,7 +457,7 @@ def selftest():
     lic = " ".join(words["phoneLicenses"])
     assert "CDLA" in lic and "Apache License" in lic, "phone-sources license texts missing"
     assert words["city"] == CITY_DISCLAIMER and "one's own risk" in CITY_DISCLAIMER
-    assert "at most 3 Chicago pest control businesses at a time" in blob and "not capped" in blob and "no contract" in blob
+    assert "at most 3 Chicago pest control businesses at a time" in blob and "not capped" in blob and "no lock-in" in blob
     assert 'id="th3">Phone number sources and licenses' in html and 'content="noindex, nofollow"' in html
     assert "prefers-color-scheme:dark" in html and 'name="color-scheme" content="light dark"' in html
     assert "#/terms" in html and 'autocomplete="current-password"' in html
@@ -479,7 +479,7 @@ def selftest():
     empty = dict(named, items=[], earlier=[])
     assert payload(empty)["rows"] == [] and counts(empty)["coverage14"] == 0.0
     print("seat_app selftest ok (5 planted rows: pest only, today first, one row per place, box and wrong password, "
-          "phone terms lines, license texts, seat cap and no contract in the Terms, dark mode, counts-only stamp, empty list)")
+          "phone terms lines, license texts, seat cap and no lock-in in the Terms, dark mode, counts-only stamp, empty list)")
 
 
 if __name__ == "__main__":

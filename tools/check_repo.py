@@ -438,6 +438,17 @@ def check_copy():
         if code:
             return err("copy", "; ".join(l.replace("ERROR copy: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
         detail += "; " + (lines[-1].replace("OK copy: ", "") if lines else "")
+    # Pest seat email (Todd, Oct 24, 2026): {n} is the 7-day restaurant count, never the daily file's total
+    code, lines = _run_tool([os.path.join("tools", "copy_gate.py"), "--pest-templates"])
+    if code:
+        return err("copy", "; ".join(l.replace("ERROR copy: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
+    detail += "; " + (lines[-1].replace("OK copy: ", "") if lines else "")
+    pdrafts = os.path.join(ROOT, "data", "work", "pest_drafts.json")
+    if os.path.exists(pdrafts):
+        code, lines = _run_tool([os.path.join("tools", "copy_gate.py"), "--pest", pdrafts])
+        if code:
+            return err("copy", "; ".join(l.replace("ERROR copy: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
+        detail += "; " + (lines[-1].replace("OK copy: ", "") if lines else "")
     sdrafts = os.path.join(ROOT, "data", "work", "signal_drafts.json")
     if os.path.exists(sdrafts):
         code, lines = _run_tool([os.path.join("tools", "copy_gate.py"), "--signal", sdrafts])

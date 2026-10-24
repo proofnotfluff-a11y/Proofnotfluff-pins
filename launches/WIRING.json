@@ -150,6 +150,30 @@
    "launch": "launches/chicago-restaurant-inspection-leads.md",
    "scoreboard": {
     "leadproducts": "chicago-restaurant-leads"
+   },
+   "tiers": {
+    "chicago-pest-seat": {
+     "price": 149,
+     "priceReason": "Todd, Oct 23 (\"go with your recommendations\", move 3): $149 a month founding seat, a real cap of 3 per trade in Chicago; inside the $29 to $199 band (coo/CONSTITUTION.md 1). RatRadar sells a metro for $299 a month.",
+     "trade": "pest control only (Todd, Oct 24)",
+     "seats": 3,
+     "spec": "site/pages.json restleads seat",
+     "workflow": ".github/workflows/inspections-daily.yml",
+     "data": "permits/inspections-chicago/daily.json",
+     "members": "chicago-pest-daily-members",
+     "secret": "REST_SEAT_PASSWORD",
+     "outreach": {
+      "templates": "email/P1-PEST-SEAT.md",
+      "gate": "pest"
+     },
+     "launch": "launches/chicago-pest-seat.md",
+     "scoreboard": {
+      "leadproducts": "chicago-pest-seat"
+     },
+     "trial": {
+      "na": "No Gumroad trial: a trial would hold one of only 3 seats and hand out the shared password. The free test is one named morning sent by reply (legal/reviews/2026-10-24-pest-seat.md). Todd's call at the Gumroad step."
+     }
+    }
    }
   },
   "chicago-new-business-licenses": {

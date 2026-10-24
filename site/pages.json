@@ -3818,7 +3818,15 @@
      "Cost of an employee calculator"
     ]
    ],
-   "kitForm": "10083871"
+   "kitForm": "10083871",
+   "seat": {
+    "price": "149",
+    "seats": 3,
+    "taken": 0,
+    "data": "permits/inspections-chicago/daily.json",
+    "eyebrow": "Free sample. Full list weekly, pest list daily",
+    "ctaTitle": "Get the full list every week"
+   }
   },
   {
    "slug": "chicago-new-business-licenses",

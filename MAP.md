@@ -85,4 +85,5 @@ GitHub Actions (public data the cloud cannot reach): permits-chicago (Mondays 6:
 | whether a claim is allowed on a page | legal/README.md |
 | how a product must look | design/WORKBOOK_STANDARD.md, design/DESIGN_DIRECTOR.md |
 | the Chicago restaurant leads product | tools/rest_leads.py (lists, categories, exclusions), tools/rest_xlsx.py (workbook, pitch kit, terms), tools/rest_app.py (members' app), tools/rest_site.py (free page), tools/rest_seal.py, launches/chicago-restaurant-inspection-leads.md |
+| the $149 pest founding seat (move 3) | tools/rest_daily.py (daily list, 14 days, pest counts), tools/seat_app.py (members' page, counts stamp), tools/rest_site.py seat_html (offer on the restaurant page, shown once site/pages.json seat.checkout exists), email/P1-PEST-SEAT.md with tools/copy_gate.py --pest, launches/chicago-pest-seat.md | inspections-daily workflow |
 | the Chicago leads product | email/A1-OUTREACH.md, tools/permits_chicago.py (filter and selftest), tools/leads_xlsx.py, tools/leads_page.py, tools/leads_app.py (the v2 web app), tools/builder_contacts.py (builder phone, email, site) |

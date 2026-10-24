@@ -110,9 +110,9 @@ jobs:
         env:
           REST_SEAT_PASSWORD: ${{ secrets.REST_SEAT_PASSWORD }}
         run: python3 tools/seat_app.py build "$RUNNER_TEMP/daily-named.json" docs/chicago-pest-daily-members/index.html
-      - name: Restaurant page refresh with the 14-day pest counts (only once the seat offer is live, site/pages.json seatCheckout)
+      - name: Restaurant page refresh with the 14-day pest counts (only once the seat offer is live, site/pages.json seat.checkout)
         run: |
-          if python3 -c "import json,sys; p=[x for x in json.load(open('site/pages.json'))['pages'] if x.get('kind')=='restleads'][0]; sys.exit(0 if p.get('seatCheckout') else 1)"; then
+          if python3 -c "import json,sys; p=[x for x in json.load(open('site/pages.json'))['pages'] if x.get('kind')=='restleads'][0]; sys.exit(0 if (p.get('seat') or {}).get('checkout') else 1)"; then
             python3 tools/make_site.py && echo "refresh=1" >> "$GITHUB_ENV"
           fi
       - name: Commit the daily files only

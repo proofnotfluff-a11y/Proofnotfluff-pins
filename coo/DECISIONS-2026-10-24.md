@@ -29,3 +29,12 @@
 ## Standing send rule, 2:03 to 2:08 pm
 - [stated] Todd, 2:03 pm: "I agree that I should only approve the template once - let's change this rule so it takes me out of the equation for each batch." 2:08 pm: "I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change."
 - Done: coo/CONSTITUTION.md section 2 bullet, CLAUDE.md invariant 3, email/SEND_RULES.md "Standing send rule", outreach-drafter step 6, the outreach scheduled task's prompt, email/approved_templates.json (18 construction templates). Not yet approved: the license (L1) and pest (P1) templates; each one's first batch goes to Todd, then a live chat records it after his yes. "stop sends" sets CRM meta/desk.sendsStopped.
+
+## Repo research, 2:37 to 2:52 pm
+- Research: about 40 open-source repos checked in four passes (owner finding, matching, sender and repo safety, agent and SEO tools). Verdicts in the Research Wiki (Sources and Tools, Oct 24). Baselines read: the free enrichment rungs named an owner for 4 of 283 domains (prospects/enrich_state.json); daily phone coverage 63.8%, 30 of 47 (permits/inspections-chicago/daily.json).
+- [stated] Todd, 2:52 pm: "go 1 to 4". The four, as put to him:
+  1. A free owner-name rung in tools/enrich_ci.py: owner names a business publishes on its own site (extruct for schema.org founder fields, spaCy en_core_web_sm for a person named beside owner or founder, probablepeople for person versus company). No email is guessed; names stay in the runner and leave only sealed. A counts-only dry run on the domains that found no owner comes before it goes live.
+  2. Gitleaks (MIT, the plain binary, not gitleaks-action) on every push and once over the full history, with our own rules for emails, phone numbers and the Hunter, Gumroad, Kit and Bouncer keys.
+  3. checkdmarc (Apache-2.0), weekly on proofnotfluff.com and getproofnotfluff.com, plus a DKIM lookup; fails loudly.
+  4. lychee (MIT or Apache-2.0) in offline mode over the built site's internal links, pinned to a commit.
+- Each is built and tested in its own chat (scoreboard todos owner-name-rung and repo-checks). Measure first, not approved: usaddress-scourgify, RapidFuzz, Splink (run phones.py --stats first). Open for Todd: a free records request to the Illinois Department of Public Health for its licensed pest control business list (todo idph-pest-list).

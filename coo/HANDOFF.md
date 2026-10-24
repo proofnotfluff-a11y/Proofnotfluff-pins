@@ -6,7 +6,7 @@
 - Next, one chat each: step 3 cities, step 4 video. Guardrails kit parked Oct 23 (coo/OPPORTUNITIES.md).
 - Live: Chicago and Austin cleaning leads $29, restaurant $39, outreach paused. 0 payers, 0 replies. Entity A: permits/downstream/gc_leads.json, 730 leads, Mondays 12:05 UTC. Entity B ladder: City owner record, own site, About-page owners, Hunter max 5 a run; site addresses wait for Bouncer; 4 owners sealed, not in CRM. Senders hello@ (25/day), sales@. Outreach task: cloud, "Nothing sends" prompt; next Mon Oct 26, 9:40 am. Licenses live Oct 22; next: wire drafter.
 - Copy test 1: arm by prospect id, variant per draft, 2 follow-ups max.
-- Question pages daily; backlog fronts B4 (DD+7), C11 (lead cost). DD+7 calculator live Oct 24, stage reading Nov 7; lead-cost draft paused, next: break-even rework.
+- Question pages daily; backlog fronts B4 (DD+7), C11 (lead cost). Free calculators live Oct 24: amazon-dd7-payout-calculator, cost-per-lead-calculator (break-even only); stage counts in e/<page>/; first reading Nov 7 (todo dd7-stage-reading).
 - To-do: scoreboard todos (coo/SCOREBOARD.md), kept current.
 - Radar Oct 23: health 4 PASS, AI check 0 of 12, scout (scout/OPPORTUNITIES.md). launches/WIRING.json gates live lead pages. Mondays 9:31 am (Todd's go Oct 23).
 - Skills: 6 scheduled, 4 on request. Index: Bing ok, IndexNow on changes, index-request Fri 7:40, 35 left.

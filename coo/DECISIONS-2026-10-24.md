@@ -9,3 +9,7 @@
   5. Chicago construction page leads with the near-finish projects: built Oct 24 (tools/make_site.py "leadNear", Chicago only, floor of 5).
 - Copy and fact fixes from both audits shipped as minor (seo/RESULTS.md, Oct 24). Not taken: Argon's site findings (waitlist, "Coming next", Etsy-only exits, count mismatches were not on the live site), hiding Austin's near-finish count, the sponsor newsletter idea. Email footer already carries the postal address and opt-out; whether CAN-SPAM needs an "ad" label goes to counsel (scoreboard todo attorney-questions).
 - Benchmarks checked: Belkins 2025 study, 0.45% replies per email sent (0.57% owners, 0.72% for 0 to 10 person companies). Gumroad: 10% + $0.50 per sale; its pricing page does not say whether card processing is extra.
+
+## Opportunity research, 11:07 am (proposed, waiting on Todd)
+- Claude's pass and Kimi's compared (Argon's second report did not arrive). Claude Doc: https://claude.ai/artifact/XFkFkearuXoEy6KJzTWFyH.
+- Proposed: the pest seat stays the one paid bet with all outreach; two free calculators reached through search only (lead cost per won job for cleaning and pest owners buying Angi and Thumbtack leads; Amazon DD+7 payout gap feeding the $79 workbook), each killed Dec 31 under 100 visits or 0 paid starts; the question-page engine points at their searches. Parked until Nov 30: elevator citations, Shopify payout matcher, a $19 lead tracker, license repricing, bookkeeper pack. Waiting on Todd's go (scoreboard todo decide-free-calculators).

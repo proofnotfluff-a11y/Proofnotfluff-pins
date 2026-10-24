@@ -65,6 +65,10 @@ def page_html(p):
                 f'<div><dt>License</dt><dd>{E(x["licenseType"])}</dd></div>'
                 f'<div><dt>Activity</dt><dd>{act}</dd></div></dl></article>')
 
+    # the same hero as the other lists: the free sample first, the trial as a text link (Todd, Oct 24, design review)
+    hero_link = (f'<a class="ld-textlink ld-trialbtn" href="{E(checkout)}" rel="noopener">Try {trial} days free, then ${E(str(price))} a month</a>' if trial else
+                 f'<a class="ld-textlink" href="{E(checkout)}" rel="noopener">Subscribe, ${E(str(price))} a month</a>' if checkout else
+                 f'<a class="ld-textlink" href="{E(notify)}">Tell me when it opens</a>')
     s30, sw = c["segments30"], c["segmentsWeek"]
     note = (f'<p class="ld-heronote">New list every Monday. Card at checkout, nothing charged for {trial} days, then ${E(str(price))} a month. No lock-in, cancel any time.</p>' if trial else
             f'<p class="ld-heronote">New list every Monday. No lock-in, cancel any time.</p>' if checkout else
@@ -110,7 +114,7 @@ def page_html(p):
             '<div class="lc-r"><div><b>Tavern, Lake View</b><span>Tavern</span></div><span class="lc-hi site"><i></i>New site</span></div>'
             '<figcaption>Illustration. The list shows each business\'s name, address, license and what the City\'s record says about it.</figcaption></figure>')
     body = (f'{crumb}<div class="lc-herogrid"><div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>'
-            f'<div class="ld-heroact rl-act">{buy()}<a class="ld-textlink" href="#sample">See this week\'s sample</a></div>{note}</div>{shot}</div>'
+            f'<div class="ld-heroact rl-act" id="ldHeroCta"><a class="btn ld-btnbig" href="#sample">See this week\'s free sample</a>{hero_link}</div>{note}</div>{shot}</div>'
             f'{tiles}{trades}{sample}{method}{cta_html}{M.guides_block(p["slug"], rel=rel)}{M.faq_block(faq)}')
     ld = (M.ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
           "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}, crumb_ld,

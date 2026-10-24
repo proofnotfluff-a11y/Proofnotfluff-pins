@@ -319,7 +319,8 @@ def selftest():
     for w in ("dirty", "filthy", "infested", "violator", "offender"):
         assert w not in re.sub(r"<[^>]+>", " ", html).lower(), w
     # the founding seat offer (move 3): hidden until its checkout exists, the cap as the headline, counts from daily.json
-    assert 'id="seat"' not in page_html(dict(p, seat=dict(spec["seat"]))) or os.environ.get("PNF_SEAT_PREVIEW") == "1", "seat shown with no checkout"
+    # (Oct 24: the seat now has its checkout in site/pages.json, so the no-checkout case is planted by blanking it)
+    assert 'id="seat"' not in page_html(dict(p, seat=dict(spec["seat"], checkout=""))) or os.environ.get("PNF_SEAT_PREVIEW") == "1", "seat shown with no checkout"
     days = [{"date": f"2026-10-{10 + i:02d}", "pests": [0, 0, 0, 4, 8, 5, 4, 0, 0, 7, 11, 4, 1, 1][i], "restaurant": 0} for i in range(14)]
     dj = os.path.join(tmp, "daily.json")
     json.dump({"pestByDate": days, "throughText": "Oct 23, 2026", "asOfText": "Oct 24, 2026", "seat": {"places14": 42, "withPhone14": 29, "coverage14": 69.0, "phonesChecked": True}}, open(dj, "w"))

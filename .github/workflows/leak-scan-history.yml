@@ -50,3 +50,7 @@ jobs:
         if: always()
         run: |
           { echo "### Leak scan, full history"; echo; sed 's/^/    /' leak.txt 2>/dev/null || echo "no output"; } >> "$GITHUB_STEP_SUMMARY"
+          # the same lines as annotations: readable on the run page and through the API (check-run annotations)
+          [ -f leak.txt ] && grep -E '^(OK|WARN|ERROR) ' leak.txt | while IFS= read -r l; do
+            case "$l" in ERROR*) echo "::error::$l";; WARN*) echo "::warning::$l";; *) echo "::notice::$l";; esac
+          done || true

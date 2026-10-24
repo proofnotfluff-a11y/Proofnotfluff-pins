@@ -34,3 +34,7 @@ jobs:
         if: always()
         run: |
           { echo "### Sender DNS"; echo; sed 's/^/    /' dns.txt 2>/dev/null || echo "no output"; } >> "$GITHUB_STEP_SUMMARY"
+          # the same lines as annotations: readable on the run page and through the API (check-run annotations)
+          [ -f dns.txt ] && grep -E '^(OK|WARN|ERROR) ' dns.txt | while IFS= read -r l; do
+            case "$l" in ERROR*) echo "::error::$l";; WARN*) echo "::warning::$l";; *) echo "::notice::$l";; esac
+          done || true

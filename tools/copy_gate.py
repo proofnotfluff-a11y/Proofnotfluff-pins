@@ -590,8 +590,9 @@ def check_pest_drafts(drafts_path, prospects_path, send_day):
         if pr is None:
             problems.append(f"{pid}: not in the prospect file")
             continue
-        for q in R.inbox_problems(dft.get("to"), pr.get("website"), pr.get("first_name"), pr.get("last_name"),
-                                  pr.get("owner_source", ""), pr.get("email_source", "")):
+        role = R.pest_role_inbox(pr)   # pest seat role inbox, no named person: the email opens "Hi there," (Legal desk, Oct 24)
+        for q in R.inbox_problems(dft.get("to"), pr.get("website_domain"), pr.get("first_name"), pr.get("last_name"),
+                                  pr.get("owner_source", ""), pr.get("email_source", ""), pest_ok=role):
             problems.append(f"{pid}: {q}")
         if dft.get("to") != pr.get("email"):
             problems.append(f"{pid}: To is not the prospect's address")
@@ -602,10 +603,11 @@ def check_pest_drafts(drafts_path, prospects_path, send_day):
             problems.append(f"{pid}: unknown template {dft.get('variant')!r}")
             continue
         area = (re.search(r"(?:including one in|, in) ([^,.]+)\.", dft.get("body") or "") or [None, ""])[1] or "(none)"
-        subj, body = pest_fill(t, daily, pr.get("first_name"), area, dft.get("first_subject"))
+        first = pr.get("first_name") or ("there" if role else "")
+        subj, body = pest_fill(t, daily, first, area, dft.get("first_subject"))
         if (dft.get("subject"), dft.get("body")) != (subj, body):
             problems.append(f"{pid}: not template {t['id']} filled with this morning's count and its own neighborhood (fixed words changed)")
-        for q in pest_problems(dft.get("subject"), dft.get("body"), t["step"], daily, seat, send_day, pr.get("first_name"), t["letter"]):
+        for q in pest_problems(dft.get("subject"), dft.get("body"), t["step"], daily, seat, send_day, first, t["letter"]):
             problems.append(f"{pid}: {q}")
     return problems, len(drafts.get("drafts") or [])
 

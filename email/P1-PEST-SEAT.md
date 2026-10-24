@@ -9,7 +9,7 @@ Rules the copy gate checks (`python3 tools/copy_gate.py --pest-templates` and `-
 - {neighborhood} reads "the Loop" for the Loop and "the ... Side" for the Side areas (the gate maps it back to the City's area name). A prospect's follow-ups use an area not used in its earlier emails when the week allows.
 - Copy review round 1 (Oct 24): FAIL at 4.0; its rewrites applied here with "no lock-in" in place of "no contract" (Todd, Oct 24, 11:52 am). "Recorded", not "posted": the count is by the City's inspection date.
 - "all 3 seats are open" only while site/pages.json seat.taken is 0; "most of them" only while seat.coverage14 is 50% or more.
-- Body under 75 words, plain text, no link, no price, no business named, no dash, opens "Hi {first},", ends with the question. The sender appends the footer (tools/pnf_rules.py FOOTER).
+- Body under 75 words, plain text, no link, no price, no business named, no dash, opens "Hi {first},", ends with the question. Role inbox with no named owner (pnf_rules.pest_role_inbox; Todd, Oct 24; legal/reviews/2026-10-24-pest-role-inbox.md): {first} is "there", so it opens "Hi there,". The sender appends the footer (tools/pnf_rules.py FOOTER).
 - Wording: "with a pest violation" (Oct 24 build session and Legal desk): on Oct 24, 7 of the 22 inspections carried City code 38 for a door gap, a propped door or an incomplete pest log, with no insect or rodent noted, so "cited rodents or insects" would overstate it. Legal desk fix 13 recommends the subject "{n} Chicago restaurant inspections with a pest violation this week" for the same reason; Todd took it on Oct 24 (live chat).
 
 ## How a batch runs (outreach-drafter, Todd's live ask or a Monday; outreachGo true since Oct 24, 3:30 pm)

@@ -84,6 +84,9 @@ def to_prospect(pid, d):
         "variant": d.get("variant") or "",
         "followup_examples": [str(x) for x in (d.get("followupExamples") or [])],
         "checked_at": d.get("checkedAt") or "",
+        "crm_trade": (d.get("trade") or "").strip().lower(),
+        "email_source_url": d.get("emailSourceUrl") or "",
+        "site_notice": d.get("siteNotice") or "",
     }
 
 
@@ -107,6 +110,14 @@ def main():
     eligible, ineligible, followups, verify = [], [], [], []
     seen = set()
     today = __import__("datetime").date.today().isoformat()
+    # one first email per business, ever (Legal desk, Oct 24, fix 4): with --crm-trade, a domain any CRM record has emailed
+    # or closed (any product, inbox or batch) is skipped
+    touched = set()
+    if a.crm_trade:
+        for _, dd in docs_from(a.listing):
+            if dd.get("firstSentAt") or dd.get("doNotEmail"):
+                touched.add(R.domain_of(dd.get("website") or ""))
+        touched.discard("")
     for pid, d in docs_from(a.listing):
         if pid in seen or not pid:
             continue
@@ -117,6 +128,9 @@ def main():
         if a.trades and R.trade_of(p) not in a.trades.split(","):
             continue
         if a.crm_trade and (d.get("trade") or "").strip().lower() not in {t.strip().lower() for t in a.crm_trade.split(",") if t.strip()}:
+            continue
+        if a.crm_trade and p["website_domain"] in touched and not d.get("firstSentAt"):
+            ineligible.append({"prospect_id": pid, "reasons": ["another record for this business was already emailed or closed"]})
             continue
         named = [w.split(": ", 1)[-1] for w in R.validate_prospect(p)]
         if d.get("contactType") != "email":

@@ -390,7 +390,29 @@ def owner_read_inbox(email, owner_source="", email_source=""):
     return local in OWNER_READ_ROLES and owner_source in OWNER_READ_SOURCES and email_source == "site"
 
 
-def inbox_problems(email, website_domain="", first_name="", last_name="", owner_source="", email_source=""):
+# Pest seat role inboxes (Todd, Oct 24, 2026, live chat: "Allow info@ inboxes (Recommended)"; Legal desk cleared with
+# fixes, legal/reviews/2026-10-24-pest-role-inbox.md): for the pest seat only, a role inbox the company publishes on its own
+# site counts without a named owner. Exact local parts only (info.chicago@ does not count), never guessed.
+PEST_ROLE_LOCALS = {"info", "office", "contact", "hello", "mail", "team", "admin", "general", "inquiry", "sales"}
+
+
+def pest_role_inbox(x):
+    """True only when every Legal desk fix 1 and 2 condition holds for a prospect record (crm_prospects.to_prospect shape):
+    product chicago-restaurant, CRM trade pest control, no named person, an exact PEST_ROLE_LOCALS address on the business's
+    own website domain, email_source site, the page it was read from (email_source_url) on that domain, and site_notice
+    "none" (robots.txt allows that page and the site has no no-solicitation or no-transfer notice)."""
+    e = str(x.get("email") or "").strip().lower()
+    if "@" not in e or x.get("first_name") or x.get("last_name"):
+        return False
+    local, dom = e.split("@", 1)
+    wd = domain_of(x.get("website_domain") or "")
+    su = domain_of(x.get("email_source_url") or "")
+    return (local in PEST_ROLE_LOCALS and x.get("product") == "chicago-restaurant"
+            and str(x.get("crm_trade") or "").strip().lower() == "pest control" and x.get("email_source") == "site"
+            and bool(wd) and dom == wd and bool(su) and (su == wd or su.endswith("." + wd)) and x.get("site_notice") == "none")
+
+
+def inbox_problems(email, website_domain="", first_name="", last_name="", owner_source="", email_source="", pest_ok=False):
     """The Inbox Gate for one address: syntax, no role-based local part (except the owner-read exception above), no free
     mail, on the business's own domain, and, when the person's name is known, a local part built from that name (dana@,
     dreyes@, dana.reyes@, reyes@)."""
@@ -399,7 +421,7 @@ def inbox_problems(email, website_domain="", first_name="", last_name="", owner_
         return [f"{e or '(blank)'}: not a valid email address"]
     local, dom = e.lower().split("@", 1)
     p = []
-    owner_read = owner_read_inbox(e, owner_source, email_source)
+    owner_read = owner_read_inbox(e, owner_source, email_source) or bool(pest_ok)
     if ROLE_RE.match(local) and not owner_read:
         p.append(f"{e}: role-based inbox ({local}@), a named decision-maker is required")
     if dom in FREEMAIL:
@@ -418,7 +440,10 @@ def validate_prospect(x, pending=False):
     """One prospect. pending=True: the same rules, except the address must be waiting for its Bouncer check
     (email_status unverified) instead of already deliverable."""
     p, pid = [], x.get("prospect_id", "?")
+    role = pest_role_inbox(x)   # the pest seat's role inbox has no named person, so no name or title is required
     for k in PROSPECT_REQUIRED:
+        if role and k in ("first_name", "last_name", "title"):
+            continue
         if not str(x.get(k) or "").strip():
             p.append(f"{pid}: missing {k}")
     sig = SIGNAL_PRODUCTS.get(x.get("product"))
@@ -452,7 +477,7 @@ def validate_prospect(x, pending=False):
     else:
         p += [f"{pid}: {m}" for m in trade_problems(x.get("product"), trade_of(x))]
     p += [f"{pid}: {m}" for m in inbox_problems(x.get("email"), x.get("website_domain"), x.get("first_name"), x.get("last_name"),
-                                                x.get("owner_source") or "", x.get("email_source") or "")]
+                                                x.get("owner_source") or "", x.get("email_source") or "", pest_ok=role)]
     return p
 
 

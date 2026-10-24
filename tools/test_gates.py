@@ -595,6 +595,27 @@ def signal_cases():
         R.SIGNAL_KINDS.pop("inspection", None)
 
 
+def pest_role_cases():
+    """Pest seat role inboxes (Todd, Oct 24; Legal desk fixes 1 to 3): the exact conditions, each broken once."""
+    base = {"prospect_id": "cr-acmepest-com", "product": "chicago-restaurant", "business": "Acme Pest", "website_domain": "acmepest.com",
+            "city": "chicago", "first_name": "", "last_name": "", "title": "", "email": "info@acmepest.com", "email_source": "site",
+            "email_status": "unverified", "owner_source": "", "crm_trade": "pest control",
+            "email_source_url": "https://www.acmepest.com/contact/", "site_notice": "none", "trade_vertical": "commercial_cleaning"}
+    expect("pest role: info@ on its own site passes", R.validate_prospect(dict(base), pending=True), False)
+    for name, change in (("info.chicago@ fails", {"email": "info.chicago@acmepest.com"}),
+                         ("another domain fails", {"email": "info@acme-mail.com"}),
+                         ("no source page fails", {"email_source_url": ""}),
+                         ("a source page elsewhere fails", {"email_source_url": "https://directory.example.com/acme"}),
+                         ("a site notice fails", {"site_notice": "no solicitations"}),
+                         ("not checked for a notice fails", {"site_notice": ""}),
+                         ("another trade fails", {"crm_trade": "hood cleaning"}),
+                         ("another product fails", {"product": "chicago-construction", "prospect_id": "cc-acmepest-com"}),
+                         ("support@ fails", {"email": "support@acmepest.com"}),
+                         ("a guessed source fails", {"email_source": "pattern"})):
+        x = dict(base); x.update(change)
+        expect("pest role: " + name, R.validate_prospect(x, pending=True), True)
+
+
 def main():
     moat_cases()
     inbox_cases()
@@ -606,6 +627,7 @@ def main():
     variant_cases()
     ladder_cases()
     signal_cases()
+    pest_role_cases()
     bad =[(n, p) for n, good, p in results if not good]
     for n, p in bad:
         print(f"FAIL {n} {p}")

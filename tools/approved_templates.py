@@ -26,7 +26,7 @@ import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RECORD = os.path.join(ROOT, "email", "approved_templates.json")
-FILES = (".claude/skills/outreach-drafter/templates.md", "email/L1-OUTREACH.md", "email/P1-PEST-SEAT.md")
+FILES = (".claude/skills/outreach-drafter/templates.md", "email/L1-OUTREACH.md", "email/P1-PEST-SEAT.md", "email/L2-COMMISSION.md")
 BLOCK = re.compile(r"^### (T(\d+)[^\n]*)\n(.*?)(?=^### |^## |\Z)", re.S | re.M)
 
 

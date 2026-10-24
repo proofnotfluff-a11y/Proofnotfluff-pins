@@ -9,5 +9,5 @@
 - Question pages daily; backlog fronts B4, C11. Free DD+7 and lead-cost calculators live Oct 24, stage counts e/<page>/, reading Nov 7.
 - To-do: scoreboard todos (coo/SCOREBOARD.md), kept current.
 - Radar Oct 23: health 4 PASS, AI check 0 of 12, scout (scout/OPPORTUNITIES.md). launches/WIRING.json gates live lead pages. Mondays 9:31 am (Todd's go Oct 23).
-- Skills: 6 scheduled, 4 on request. Index: Bing ok, IndexNow on changes, index-request Fri 7:40, 35 left.
+- Skills: 7 scheduled, 4 on request. Index: Bing ok, IndexNow on changes, index-request Fri 7:40, 35 left.
 - Pest seat live Oct 24 (gumroad.com/l/bzemcy, 3 seats, launches/chicago-pest-seat.md). Next: outreach go from Todd, subject call, pest owners (todo pest-owners-100).

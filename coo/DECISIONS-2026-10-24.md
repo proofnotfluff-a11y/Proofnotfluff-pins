@@ -38,3 +38,7 @@
   3. checkdmarc (Apache-2.0), weekly on proofnotfluff.com and getproofnotfluff.com, plus a DKIM lookup; fails loudly.
   4. lychee (MIT or Apache-2.0) in offline mode over the built site's internal links, pinned to a commit.
 - Each is built and tested in its own chat (scoreboard todos owner-name-rung and repo-checks). Measure first, not approved: usaddress-scourgify, RapidFuzz, Splink (run phones.py --stats first). Open for Todd: a free records request to the Illinois Department of Public Health for its licensed pest control business list (todo idph-pest-list).
+
+## Weekly repo scout, 3:00 pm
+- [stated] Todd, 3:00 pm: "Please set up a scheduled task to periodically do deep research on repos / skills that will be useful for our operation"
+- Done: .claude/skills/repo-scout/SKILL.md (research and file only; at most 3 "Decide: add" rows a run on the scoreboard; findings in scout/REPOS.md; the Research Wiki is filed by a live chat after Todd's call) and the scheduled task "PNF repo scout", Sundays 9:45 am Central. The paused Oct 7 capability scout (Etsy era, reads the archived ledger) is left paused and untouched.

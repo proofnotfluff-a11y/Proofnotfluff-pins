@@ -1,6 +1,6 @@
 {
- "fetchedAt": "2026-10-23T16:43:26-05:00",
- "rowsUpdatedAt": "2026-10-23T09:59:21+00:00",
+ "fetchedAt": "2026-10-24T10:23:03-05:00",
+ "rowsUpdatedAt": "2026-10-24T09:53:08+00:00",
  "columns": [
   "id",
   "license_id",
@@ -52,23 +52,23 @@
   ],
   [
    "Pop-Up Retail User",
-   109
+   110
   ],
   [
    "Retail Food Establishment",
-   87
+   93
   ],
   [
    "Regulated Business License",
-   82
+   86
   ],
   [
    "Special Event Food",
-   63
+   65
   ],
   [
    "Peddler License",
-   30
+   31
   ],
   [
    "Pharmaceutical Representative",
@@ -76,7 +76,7 @@
   ],
   [
    "Consumption on Premises - Incidental Activity",
-   16
+   18
   ],
   [
    "Tobacco",
@@ -84,19 +84,23 @@
   ],
   [
    "Shared Kitchen User (Long Term)",
-   15
-  ],
-  [
-   "Special Event Liquor",
    14
-  ],
-  [
-   "Valet Parking Operator",
-   13
   ],
   [
    "Shared Housing Unit Operator",
    13
+  ],
+  [
+   "Valet Parking Operator",
+   12
+  ],
+  [
+   "Special Event Liquor",
+   12
+  ],
+  [
+   "Video Gaming Location",
+   11
   ],
   [
    "Motor Vehicle Services License",
@@ -111,6 +115,14 @@
    6
   ],
   [
+   "Video Gaming Terminal",
+   5
+  ],
+  [
+   "Filling Station",
+   5
+  ],
+  [
    "Outdoor Patio",
    5
   ],
@@ -121,10 +133,6 @@
   [
    "Raffles",
    5
-  ],
-  [
-   "Package Goods",
-   4
   ],
   [
    "Animal Care License",
@@ -139,11 +147,11 @@
    4
   ],
   [
-   "Filling Station",
-   4
+   "Wholesale Food Establishment",
+   3
   ],
   [
-   "Wholesale Food Establishment",
+   "Package Goods",
    3
   ],
   [
@@ -186,19 +194,23 @@
  "keptByLicense": [
   [
    "Limited Business License",
-   104
+   100
   ],
   [
    "Retail Food Establishment",
-   66
+   72
   ],
   [
    "Regulated Business License",
    15
   ],
   [
-   "Tobacco",
+   "Video Gaming Location",
    9
+  ],
+  [
+   "Tobacco",
+   8
   ],
   [
    "Motor Vehicle Services License",
@@ -225,11 +237,11 @@
    3
   ],
   [
-   "Tavern",
+   "Filling Station",
    2
   ],
   [
-   "Caterer's Liquor License",
+   "Tavern",
    2
   ],
   [
@@ -245,7 +257,7 @@
    1
   ],
   [
-   "Filling Station",
+   "Caterer's Liquor License",
    1
   ],
   [

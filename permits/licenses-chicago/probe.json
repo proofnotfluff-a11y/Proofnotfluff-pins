@@ -1,6 +1,6 @@
 {
- "ranAt": "2026-10-23T21:43:26+00:00",
- "since": "2026-09-11",
+ "ranAt": "2026-10-24T15:23:03+00:00",
+ "since": "2026-09-12",
  "columns": [
   "id",
   "license_id",
@@ -45,7 +45,7 @@
   ":@computed_region_bdys_3d7i",
   ":@computed_region_43wa_7qmu"
  ],
- "rows": 818,
+ "rows": 838,
  "byLicense": [
   [
    "Limited Business License",
@@ -53,38 +53,38 @@
   ],
   [
    "Pop-Up Retail User",
-   118
+   119
   ],
   [
    "Retail Food Establishment",
-   100
+   105
   ],
   [
    "Regulated Business License",
-   89
+   91
   ],
   [
    "Special Event Food",
-   65
+   66
   ],
   [
    "Peddler License",
-   34
+   33
   ],
   [
    "Pharmaceutical Representative",
-   30
+   31
   ],
   [
    "Special Event Liquor",
-   21
-  ],
-  [
-   "Shared Kitchen User (Long Term)",
-   18
+   20
   ],
   [
    "Consumption on Premises - Incidental Activity",
+   19
+  ],
+  [
+   "Shared Kitchen User (Long Term)",
    18
   ],
   [
@@ -100,27 +100,27 @@
    13
   ],
   [
+   "Video Gaming Location",
+   11
+  ],
+  [
    "Motor Vehicle Services License",
-   10
+   9
   ],
   [
    "Children's Services Facility License",
-   9
+   8
   ],
   [
    "Public Place of Amusement",
    6
   ],
   [
-   "Manufacturing Establishments",
-   6
+   "Video Gaming Terminal",
+   5
   ],
   [
-   "Raffles",
-   6
-  ],
-  [
-   "Package Goods",
+   "Filling Station",
    5
   ],
   [
@@ -130,6 +130,14 @@
   [
    "Towing - Tow Truck",
    5
+  ],
+  [
+   "Raffles",
+   5
+  ],
+  [
+   "Package Goods",
+   4
   ],
   [
    "Tavern",
@@ -144,11 +152,11 @@
    4
   ],
   [
-   "Mobile Food License",
+   "Manufacturing Establishments",
    4
   ],
   [
-   "Filling Station",
+   "Mobile Food License",
    4
   ],
   [
@@ -187,23 +195,23 @@
  "byActivity": [
   [
    "Sale of General Merchandise at Flea Market 181-365 Consecutive Days",
-   66
-  ],
-  [
-   "Organizer of Event with Retail Vendors (1-5 Day Show)",
-   41
+   69
   ],
   [
    "5 Day Single Event  - Special Event Food",
+   40
+  ],
+  [
+   "Organizer of Event with Retail Vendors (1-5 Day Show)",
    39
   ],
   [
    "Markets / Promotes Pharmaceuticals to Health Care Professionals and Conducts Bus",
-   30
+   31
   ],
   [
    "Preparation of Food and Dining on Premises With Seating",
-   26
+   27
   ],
   [
    "180 Day Multiple Events - Special Event Food",
@@ -211,27 +219,27 @@
   ],
   [
    "Sale of Food Prepared Onsite With Dining Area",
-   22
+   24
   ],
   [
    "Retail Sales of General Merchandise",
    20
   ],
   [
-   "Peddler- Retail Sales of General Merchandise, Whole Uncut Fruits/Vegetables, Flo",
-   18
+   "Consumption of Liquor on Premises",
+   17
   ],
   [
    "Shared Kitchen User - Long Term",
    17
   ],
   [
-   "Consumption of Liquor on Premises",
-   17
+   "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Pe",
+   16
   ],
   [
-   "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Pe",
-   14
+   "Peddler- Retail Sales of General Merchandise, Whole Uncut Fruits/Vegetables, Flo",
+   15
   ],
   [
    "Valet Parking Operator",
@@ -242,23 +250,31 @@
    13
   ],
   [
-   "Hair Services",
+   "Retail Sales of General Merchandise and Non-Perishable Food",
    13
   ],
   [
-   "Retail Sales of General Merchandise and Non-Perishable Food",
-   13
+   "Hair Services",
+   12
   ],
   [
    "Retail Sales of Flavored Tobacco Products | Retail Sales of Tobacco Products and",
    11
   ],
   [
-   "Special Event Beer & Wine",
+   "Provide Video Gaming Terminals for Customer Use",
    11
   ],
   [
+   "Sale of Food Prepared Onsite Without Dining Area",
+   10
+  ],
+  [
    "Nail Services",
+   10
+  ],
+  [
+   "Special Event Beer & Wine",
    10
   ],
   [
@@ -270,20 +286,12 @@
    10
   ],
   [
-   "Sale of Food Prepared Onsite Without Dining Area",
+   "Street Performer, Moving Along the Public Way",
    9
   ],
   [
    "Debt Collecting - Administrative Commercial Office",
    9
-  ],
-  [
-   "Street Performer, Moving Along the Public Way",
-   8
-  ],
-  [
-   "Operation of an Administrative Commercial Office",
-   8
   ],
   [
    "Sale of Food Prepared Onsite With Dining Area | Preparation and Sale of Coffee a",
@@ -294,12 +302,20 @@
    7
   ],
   [
-   "Other Home Based Businesses",
+   "Operation of an Administrative Commercial Office",
    7
   ],
   [
-   "Not-For-Profit Selling Raffles for Prizes of $50 or More",
+   "Other Home Based Businesses",
    6
+  ],
+  [
+   "Own, Service, or Maintain Video Gaming Terminals for Placement in Licensed Estab",
+   5
+  ],
+  [
+   "Private Scavenger Vehicle",
+   5
   ],
   [
    "Preparation of Food, Coffee or Drinks | Retail Sales of Fresh Fruits and Vegetab",
@@ -326,8 +342,16 @@
    5
   ],
   [
+   "Not-For-Profit Selling Raffles for Prizes of $50 or More",
+   5
+  ],
+  [
    "Vacation Rental Building Containing Five or More Dwelling Units For Transient Oc",
    5
+  ],
+  [
+   "Residential Cleaning (Home Based Business)",
+   4
   ],
   [
    "Retail Sales of Packaged Liquor",
@@ -366,23 +390,15 @@
    4
   ],
   [
-   "Online Sales (Home Based Business)",
-   4
-  ],
-  [
    "Retail Sales of Clothing / Accessories / Shoes",
    4
   ],
   [
-   "Private Scavenger Vehicle",
-   4
-  ],
-  [
-   "Indoor Special Event",
+   "Operation of a Fuel Filling Station",
    3
   ],
   [
-   "Residential Cleaning (Home Based Business)",
+   "Indoor Special Event",
    3
   ],
   [
@@ -402,10 +418,6 @@
    3
   ],
   [
-   "Preparation of Food and Dining on Premises With Seating | Sale of Food Prepared ",
-   3
-  ],
-  [
    "Skincare Services | Retail Sales of General Merchandise",
    3
   ],
@@ -420,14 +432,10 @@
   [
    "Motor Vehicle Repair -  Engine and Transmission Work",
    3
-  ],
-  [
-   "Provide Home Health Care Services",
-   3
   ]
  ],
  "byStatus": {
-  "AAI": 816,
+  "AAI": 836,
   "AAC": 2
  }
 }

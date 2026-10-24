@@ -2,87 +2,87 @@
  "source": {
   "name": "City of Chicago Data Portal, Business Licenses",
   "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
-  "rowsUpdatedAt": "2026-10-23T09:59:21+00:00",
-  "fetchedAt": "2026-10-23T16:43:26-05:00",
+  "rowsUpdatedAt": "2026-10-24T09:53:08+00:00",
+  "fetchedAt": "2026-10-24T10:23:03-05:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: renewals, cancelled or revoked licenses, licenses for one person's own work, for work away from a fixed business site, or for an event or season (peddlers, special events, pop-ups, tow trucks, home-sharing, shared kitchen users, private booting), home and mail-drop addresses, and any business whose name could be a person's full name. Business-level fields only."
  },
  "window": {
-  "from": "2026-10-16",
-  "to": "2026-10-23",
-  "listFrom": "2026-09-23"
+  "from": "2026-10-17",
+  "to": "2026-10-24",
+  "listFrom": "2026-09-24"
  },
  "counts": {
-  "fetched": 733,
-  "kept30": 226,
-  "keptWeek": 52,
+  "fetched": 761,
+  "kept30": 236,
+  "keptWeek": 63,
   "segmentsWeek": {
-   "food": 26,
-   "beauty": 7,
+   "food": 28,
+   "beauty": 9,
    "auto": 2,
    "care": 1,
    "venue": 1,
-   "retail": 15
+   "retail": 22
   },
   "segments30": {
-   "food": 76,
-   "beauty": 38,
-   "auto": 13,
+   "food": 82,
+   "beauty": 37,
+   "auto": 12,
    "care": 3,
    "venue": 3,
-   "retail": 93
+   "retail": 99
   },
   "excluded": {
-   "issued outside the window": 138,
-   "name could be a person's": 34,
-   "license for one person's own work, work away from a fixed site, or an event or season": 271,
-   "license not active (cancelled or revoked)": 2,
-   "site outside Chicago": 20,
-   "home or apartment address": 19,
-   "second license at the same site (listed once)": 16,
+   "issued outside the window": 144,
+   "name could be a person's": 35,
+   "license for one person's own work, work away from a fixed site, or an event or season": 273,
+   "site outside Chicago": 24,
+   "home or apartment address": 22,
+   "second license at the same site (listed once)": 19,
    "virtual office or mailbox address": 2,
    "not a new license (renewal or change)": 4,
+   "license not active (cancelled or revoked)": 1,
    "on the do-not-list (asked to be left out, or a likely home)": 1
   },
   "areasWeek": [
    [
-    "Near North Side",
+    "West Town",
+    5
+   ],
+   [
+    "Irving Park",
     4
    ],
    [
     "Loop",
+    4
+   ],
+   [
+    "Near North Side",
     3
    ],
    [
-    "New City",
+    "Portage Park",
     2
    ],
    [
-    "Brighton Park",
+    "Auburn Gresham",
     2
    ],
    [
-    "Austin",
+    "Clearing",
     2
    ],
    [
-    "Lincoln Square",
+    "Mount Greenwood",
     2
    ],
    [
-    "O'Hare",
+    "Garfield Ridge",
     2
    ],
    [
-    "West Town",
-    2
-   ],
-   [
-    "Lincoln Park",
-    2
-   ],
-   [
-    "McKinley Park",
+    "Logan Square",
     2
    ]
   ],
@@ -92,13 +92,13 @@
    "foodInspections": true
   },
   "history30": {
-   "relicensed": 38,
-   "first": 133,
-   "site": 38,
-   "added": 17
+   "added": 24,
+   "relicensed": 39,
+   "first": 136,
+   "site": 37
   },
-  "foodInsp30": 71,
-  "freeLeftFailedWeek": 12
+  "foodInsp30": 77,
+  "freeLeftFailedWeek": 13
  },
  "segmentNames": {
   "food": "Restaurants, cafes, bars and food shops",
@@ -110,6 +110,51 @@
  },
  "segments": {
   "food": [
+   {
+    "business": "Subway",
+    "address": "3700 W Addison St",
+    "communityArea": "Irving Park",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Preparation of Food and Dining on Premises With Seating",
+    "issued": "2026-10-23",
+    "history": "first"
+   },
+   {
+    "business": "Rke Foods and Meat",
+    "address": "1850 W 79th St",
+    "communityArea": "Auburn Gresham",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Perishable Foods",
+    "issued": "2026-10-23",
+    "history": "first"
+   },
+   {
+    "business": "Mos Food and Deli",
+    "address": "100 E 47th St 1st",
+    "communityArea": "Grand Boulevard",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Perishable Foods",
+    "issued": "2026-10-23",
+    "history": "first"
+   },
+   {
+    "business": "Icann Breakfast Buffet",
+    "address": "1829 W Chicago Ave",
+    "communityArea": "West Town",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Sale of Food Prepared Onsite With Dining Area",
+    "issued": "2026-10-23",
+    "history": "first"
+   },
+   {
+    "business": "Da's Catering LLC",
+    "address": "7117 S State St 1st",
+    "communityArea": "Greater Grand Crossing",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Sale of Food Prepared Onsite Without Dining Area",
+    "issued": "2026-10-23",
+    "history": "site"
+   },
    {
     "business": "Axum Cafe",
     "address": "5842 N Broadway",
@@ -154,54 +199,27 @@
     "activity": "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Perishable Foods",
     "issued": "2026-10-21",
     "history": "first"
-   },
-   {
-    "business": "Taquero LLC",
-    "address": "1734 W 35th St",
-    "communityArea": "McKinley Park",
-    "licenseType": "Retail Food Establishment",
-    "activity": "Sale of Food Prepared Onsite With Dining Area",
-    "issued": "2026-10-20",
-    "history": "first"
-   },
-   {
-    "business": "Christophes Fine Foods.",
-    "address": "2264 N Clark St",
-    "communityArea": "Lincoln Park",
-    "licenseType": "Retail Food Establishment",
-    "activity": "Retail Sales of General Merchandise and Non-Perishable Food | Sale of Food Prepared Onsite Without Dining Area",
-    "issued": "2026-10-20",
-    "history": "first"
-   },
-   {
-    "business": "Big Baby's",
-    "address": "9926-9928 S Torrence Ave 1",
-    "communityArea": "South Deering",
-    "licenseType": "Retail Food Establishment",
-    "activity": "Sale of Food Prepared Onsite Without Dining Area",
-    "issued": "2026-10-20",
-    "history": "first"
-   },
-   {
-    "business": "La Casa de las Flores",
-    "address": "2459 S Christiana Ave Strfrnt",
-    "communityArea": "South Lawndale",
-    "licenseType": "Retail Food Establishment",
-    "activity": "Sale of Food Prepared Onsite With Dining Area",
-    "issued": "2026-10-19",
-    "history": "first"
-   },
-   {
-    "business": "La Calaca Cantina/Porkchop",
-    "address": "1800-1802 W Pershing Rd",
-    "communityArea": "McKinley Park",
-    "licenseType": "Consumption on Premises - Incidental Activity",
-    "activity": "Consumption of Liquor on Premises",
-    "issued": "2026-10-19",
-    "history": "added"
    }
   ],
   "beauty": [
+   {
+    "business": "Sore Wellness/L.A. Tan",
+    "address": "345 W North Ave 1",
+    "communityArea": "Near North Side",
+    "licenseType": "Regulated Business License",
+    "activity": "Operation of a Tanning Facility",
+    "issued": "2026-10-23",
+    "history": "first"
+   },
+   {
+    "business": "Color Me Bad Chicago",
+    "address": "1621 E 55th St",
+    "communityArea": "Hyde Park",
+    "licenseType": "Limited Business License",
+    "activity": "Hair Services",
+    "issued": "2026-10-23",
+    "history": "site"
+   },
    {
     "business": "Deeply Rooted Salon",
     "address": "2150 S Canalport Ave 5 5c-8",
@@ -310,98 +328,278 @@
   ],
   "retail": [
    {
-    "business": "Operaxions",
-    "address": "420 W Grand Ave 1b",
-    "communityArea": "Near North Side",
-    "licenseType": "Limited Business License",
-    "activity": "Provide Business and Management Consulting | Provide Advertising or Marketing Services | Provide Computer Design/Development Consulting",
-    "issued": "2026-10-22",
-    "history": "first"
-   },
-   {
-    "business": "J&N Upholstry",
-    "address": "3809 S Kedzie Ave",
-    "communityArea": "Brighton Park",
-    "licenseType": "Limited Business License",
-    "activity": "Sale of Furniture",
-    "issued": "2026-10-22",
-    "history": "first"
-   },
-   {
-    "business": "Cmplex Studios",
-    "address": "3301 W 47th Pl A",
-    "communityArea": "Brighton Park",
-    "licenseType": "Limited Business License",
-    "activity": "Provide Photography or Videography Services",
-    "issued": "2026-10-22",
-    "history": "first"
-   },
-   {
-    "business": "Pro Plus Parking",
-    "address": "1005 N State St 23,4,5,6rt",
-    "communityArea": "Near North Side",
-    "licenseType": "Commercial Garage",
-    "activity": "Provide 4 or More Parking Spaces For a Fee - to Residents, Tenants, Users, Employees and/or Guests (Not Available or Advertised to the Public)",
-    "issued": "2026-10-21",
-    "history": "first"
-   },
-   {
-    "business": "Paws & Effect",
-    "address": "2459 E 75th St",
-    "communityArea": "South Shore",
-    "licenseType": "Animal Care License",
-    "activity": "Provide Animal Grooming Services",
-    "issued": "2026-10-21",
-    "history": "first"
-   },
-   {
-    "business": "House of Fragrances Luxe",
-    "address": "3351 N Harlem Ave",
-    "communityArea": "Dunning",
-    "licenseType": "Limited Business License",
-    "activity": "Retail Sales of General Merchandise",
-    "issued": "2026-10-21",
-    "history": "first"
-   },
-   {
-    "business": "House of Fragrances Collective",
-    "address": "3211 N Central Ave",
+    "business": "The Windsor Tavern & Grill",
+    "address": "4530 N Milwaukee Ave 1",
     "communityArea": "Portage Park",
-    "licenseType": "Limited Business License",
-    "activity": "Retail Sales of General Merchandise",
-    "issued": "2026-10-21",
-    "history": "relicensed"
+    "licenseType": "Video Gaming Location",
+    "activity": "Provide Video Gaming Terminals for Customer Use",
+    "issued": "2026-10-23",
+    "history": "added"
    },
    {
-    "business": "COI Company",
-    "address": "4444 S Kildare Blvd",
-    "communityArea": "Archer Heights",
-    "licenseType": "Manufacturing Establishments",
-    "activity": "Manufacturing of Miscellaneous Items",
-    "issued": "2026-10-20",
-    "history": "site"
+    "business": "Miskas Liquors",
+    "address": "6410-6416 W 63rd St",
+    "communityArea": "Clearing",
+    "licenseType": "Video Gaming Location",
+    "activity": "Provide Video Gaming Terminals for Customer Use",
+    "issued": "2026-10-23",
+    "history": "added"
    },
    {
-    "business": "Xtreme Supplements",
-    "address": "1974 W Lawrence Ave",
-    "communityArea": "Lincoln Square",
-    "licenseType": "Limited Business License",
-    "activity": "Retail Sales of General Merchandise and Non-Perishable Food",
-    "issued": "2026-10-19",
-    "history": "relicensed"
+    "business": "Miller's Pub Restaurant",
+    "address": "134 S Wabash Ave 1",
+    "communityArea": "Loop",
+    "licenseType": "Video Gaming Location",
+    "activity": "Provide Video Gaming Terminals for Customer Use",
+    "issued": "2026-10-23",
+    "history": "added"
    },
    {
-    "business": "Prospect International Airport Services, LLC",
-    "address": "10000 W Ohare St",
-    "communityArea": "O'Hare",
+    "business": "Lawlors Bar",
+    "address": "3908 W 111th St 1",
+    "communityArea": "Mount Greenwood",
+    "licenseType": "Video Gaming Location",
+    "activity": "Provide Video Gaming Terminals for Customer Use",
+    "issued": "2026-10-23",
+    "history": "added"
+   },
+   {
+    "business": "Lawlor's Bar",
+    "address": "6854 W Archer Ave 1",
+    "communityArea": "Garfield Ridge",
+    "licenseType": "Video Gaming Location",
+    "activity": "Provide Video Gaming Terminals for Customer Use",
+    "issued": "2026-10-23",
+    "history": "added"
+   },
+   {
+    "business": "Gritmind",
+    "address": "233 S Wacker Dr 44 4400",
+    "communityArea": "Loop",
     "licenseType": "Limited Business License",
-    "activity": "Miscellaneous Commercial Services",
-    "issued": "2026-10-19",
+    "activity": "Operation of an Administrative Commercial Office | Provide Computer Design/Development Consulting | Web / Software Development",
+    "issued": "2026-10-23",
     "history": "first"
+   },
+   {
+    "business": "GHL Events",
+    "address": "2545 W Diversey Ave",
+    "communityArea": "Logan Square",
+    "licenseType": "Limited Business License",
+    "activity": "Operation of an Indoor Event Venue (Less Than 100 Person Occupancy)",
+    "issued": "2026-10-23",
+    "history": "first"
+   },
+   {
+    "business": "Danny's Pizza Place",
+    "address": "6021 S Archer Ave 1",
+    "communityArea": "Garfield Ridge",
+    "licenseType": "Video Gaming Location",
+    "activity": "Provide Video Gaming Terminals for Customer Use",
+    "issued": "2026-10-23",
+    "history": "added"
+   },
+   {
+    "business": "D'Agostinos Pizza",
+    "address": "1351 W Addison St Ll-1",
+    "communityArea": "Lake View",
+    "licenseType": "Video Gaming Location",
+    "activity": "Provide Video Gaming Terminals for Customer Use",
+    "issued": "2026-10-23",
+    "history": "added"
+   },
+   {
+    "business": "D'Agostino's II",
+    "address": "752 N Ogden Ave",
+    "communityArea": "West Town",
+    "licenseType": "Video Gaming Location",
+    "activity": "Provide Video Gaming Terminals for Customer Use",
+    "issued": "2026-10-23",
+    "history": "added"
    }
   ]
  },
  "week": [
+  {
+   "business": "The Windsor Tavern & Grill",
+   "address": "4530 N Milwaukee Ave 1",
+   "communityArea": "Portage Park",
+   "licenseType": "Video Gaming Location",
+   "activity": "Provide Video Gaming Terminals for Customer Use",
+   "issued": "2026-10-23",
+   "history": "added",
+   "segment": "retail"
+  },
+  {
+   "business": "Subway",
+   "address": "3700 W Addison St",
+   "communityArea": "Irving Park",
+   "licenseType": "Retail Food Establishment",
+   "activity": "Preparation of Food and Dining on Premises With Seating",
+   "issued": "2026-10-23",
+   "history": "first",
+   "segment": "food"
+  },
+  {
+   "business": "Sore Wellness/L.A. Tan",
+   "address": "345 W North Ave 1",
+   "communityArea": "Near North Side",
+   "licenseType": "Regulated Business License",
+   "activity": "Operation of a Tanning Facility",
+   "issued": "2026-10-23",
+   "history": "first",
+   "segment": "beauty"
+  },
+  {
+   "business": "Rke Foods and Meat",
+   "address": "1850 W 79th St",
+   "communityArea": "Auburn Gresham",
+   "licenseType": "Retail Food Establishment",
+   "activity": "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Perishable Foods",
+   "issued": "2026-10-23",
+   "history": "first",
+   "segment": "food"
+  },
+  {
+   "business": "Mos Food and Deli",
+   "address": "100 E 47th St 1st",
+   "communityArea": "Grand Boulevard",
+   "licenseType": "Retail Food Establishment",
+   "activity": "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Perishable Foods",
+   "issued": "2026-10-23",
+   "history": "first",
+   "segment": "food"
+  },
+  {
+   "business": "Miskas Liquors",
+   "address": "6410-6416 W 63rd St",
+   "communityArea": "Clearing",
+   "licenseType": "Video Gaming Location",
+   "activity": "Provide Video Gaming Terminals for Customer Use",
+   "issued": "2026-10-23",
+   "history": "added",
+   "segment": "retail"
+  },
+  {
+   "business": "Miller's Pub Restaurant",
+   "address": "134 S Wabash Ave 1",
+   "communityArea": "Loop",
+   "licenseType": "Video Gaming Location",
+   "activity": "Provide Video Gaming Terminals for Customer Use",
+   "issued": "2026-10-23",
+   "history": "added",
+   "segment": "retail"
+  },
+  {
+   "business": "Lawlors Bar",
+   "address": "3908 W 111th St 1",
+   "communityArea": "Mount Greenwood",
+   "licenseType": "Video Gaming Location",
+   "activity": "Provide Video Gaming Terminals for Customer Use",
+   "issued": "2026-10-23",
+   "history": "added",
+   "segment": "retail"
+  },
+  {
+   "business": "Lawlor's Bar",
+   "address": "6854 W Archer Ave 1",
+   "communityArea": "Garfield Ridge",
+   "licenseType": "Video Gaming Location",
+   "activity": "Provide Video Gaming Terminals for Customer Use",
+   "issued": "2026-10-23",
+   "history": "added",
+   "segment": "retail"
+  },
+  {
+   "business": "Icann Breakfast Buffet",
+   "address": "1829 W Chicago Ave",
+   "communityArea": "West Town",
+   "licenseType": "Retail Food Establishment",
+   "activity": "Sale of Food Prepared Onsite With Dining Area",
+   "issued": "2026-10-23",
+   "history": "first",
+   "segment": "food"
+  },
+  {
+   "business": "Gritmind",
+   "address": "233 S Wacker Dr 44 4400",
+   "communityArea": "Loop",
+   "licenseType": "Limited Business License",
+   "activity": "Operation of an Administrative Commercial Office | Provide Computer Design/Development Consulting | Web / Software Development",
+   "issued": "2026-10-23",
+   "history": "first",
+   "segment": "retail"
+  },
+  {
+   "business": "GHL Events",
+   "address": "2545 W Diversey Ave",
+   "communityArea": "Logan Square",
+   "licenseType": "Limited Business License",
+   "activity": "Operation of an Indoor Event Venue (Less Than 100 Person Occupancy)",
+   "issued": "2026-10-23",
+   "history": "first",
+   "segment": "retail"
+  },
+  {
+   "business": "Danny's Pizza Place",
+   "address": "6021 S Archer Ave 1",
+   "communityArea": "Garfield Ridge",
+   "licenseType": "Video Gaming Location",
+   "activity": "Provide Video Gaming Terminals for Customer Use",
+   "issued": "2026-10-23",
+   "history": "added",
+   "segment": "retail"
+  },
+  {
+   "business": "Da's Catering LLC",
+   "address": "7117 S State St 1st",
+   "communityArea": "Greater Grand Crossing",
+   "licenseType": "Retail Food Establishment",
+   "activity": "Sale of Food Prepared Onsite Without Dining Area",
+   "issued": "2026-10-23",
+   "history": "site",
+   "segment": "food"
+  },
+  {
+   "business": "D'Agostinos Pizza",
+   "address": "1351 W Addison St Ll-1",
+   "communityArea": "Lake View",
+   "licenseType": "Video Gaming Location",
+   "activity": "Provide Video Gaming Terminals for Customer Use",
+   "issued": "2026-10-23",
+   "history": "added",
+   "segment": "retail"
+  },
+  {
+   "business": "D'Agostino's II",
+   "address": "752 N Ogden Ave",
+   "communityArea": "West Town",
+   "licenseType": "Video Gaming Location",
+   "activity": "Provide Video Gaming Terminals for Customer Use",
+   "issued": "2026-10-23",
+   "history": "added",
+   "segment": "retail"
+  },
+  {
+   "business": "Color Me Bad Chicago",
+   "address": "1621 E 55th St",
+   "communityArea": "Hyde Park",
+   "licenseType": "Limited Business License",
+   "activity": "Hair Services",
+   "issued": "2026-10-23",
+   "history": "site",
+   "segment": "beauty"
+  },
+  {
+   "business": "Bar 106",
+   "address": "10649 S Pulaski Rd 1",
+   "communityArea": "Mount Greenwood",
+   "licenseType": "Video Gaming Location",
+   "activity": "Provide Video Gaming Terminals for Customer Use",
+   "issued": "2026-10-23",
+   "history": "added",
+   "segment": "retail"
+  },
   {
    "business": "Operaxions",
    "address": "420 W Grand Ave 1b",
@@ -721,86 +919,6 @@
    "issued": "2026-10-19",
    "history": "first",
    "segment": "auto"
-  },
-  {
-   "business": "The New Factory",
-   "address": "12050-12054 S Doty Ave",
-   "communityArea": "Riverdale",
-   "licenseType": "Retail Food Establishment",
-   "activity": "Preparation of Food and Dining on Premises With Seating",
-   "issued": "2026-10-16",
-   "history": "first",
-   "segment": "food"
-  },
-  {
-   "business": "Safecare",
-   "address": "8 S Michigan Ave 8th 801",
-   "communityArea": "Loop",
-   "licenseType": "Limited Business License",
-   "activity": "Provide Home Health Care Services",
-   "issued": "2026-10-16",
-   "history": "first",
-   "segment": "retail"
-  },
-  {
-   "business": "Rest + Recreation",
-   "address": "1359 N Wells St 1",
-   "communityArea": "Near North Side",
-   "licenseType": "Retail Food Establishment",
-   "activity": "Sale of Food Prepared Onsite With Dining Area",
-   "issued": "2026-10-16",
-   "history": "first",
-   "segment": "food"
-  },
-  {
-   "business": "Penelope's Vegan Taqueria",
-   "address": "311 W Chicago Ave 1st",
-   "communityArea": "Near North Side",
-   "licenseType": "Retail Food Establishment",
-   "activity": "Preparation of Food and Dining on Premises With Seating",
-   "issued": "2026-10-16",
-   "history": "site",
-   "segment": "food"
-  },
-  {
-   "business": "Pasture-To-Porch",
-   "address": "11102 S Kedzie Ave",
-   "communityArea": "Mount Greenwood",
-   "licenseType": "Limited Business License",
-   "activity": "Operation of an Administrative Commercial Office | Miscellaneous Commercial Services",
-   "issued": "2026-10-16",
-   "history": "first",
-   "segment": "retail"
-  },
-  {
-   "business": "Illumination Consulting Group LLC",
-   "address": "3509 S Dr Martin Luther King Jr Dr 2 2b Off. A",
-   "communityArea": "Douglas",
-   "licenseType": "Limited Business License",
-   "activity": "Provide Business and Management Consulting",
-   "issued": "2026-10-16",
-   "history": "first",
-   "segment": "retail"
-  },
-  {
-   "business": "Green Lines Quick Mart, Inc.",
-   "address": "347 E 47th St 1st",
-   "communityArea": "Grand Boulevard",
-   "licenseType": "Limited Business License",
-   "activity": "Retail Sales of General Merchandise and Non-Perishable Food",
-   "issued": "2026-10-16",
-   "history": "first",
-   "segment": "retail"
-  },
-  {
-   "business": "Glorias Pizza",
-   "address": "704 W 47th St",
-   "communityArea": "New City",
-   "licenseType": "Retail Food Establishment",
-   "activity": "Sale of Food Prepared Onsite Without Dining Area",
-   "issued": "2026-10-16",
-   "history": "first",
-   "segment": "food"
   }
  ]
 }

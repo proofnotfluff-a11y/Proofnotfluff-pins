@@ -244,6 +244,7 @@ def page_html(p):
             # store v2 (design review, Oct 24, 2026): the free sample comes first and the $149 seat right after it; the hero note
             # still links pest control owners straight to #seat
             f'{sample}{seat_html(p, seat, rel) if seat else ""}{method}{cta_html}{M.guides_block(p["slug"], rel=rel)}{M.faq_block(faq)}')
+    body = M.otp_bar(body)
     sbar = ((f'<div class="ld-sbar" id="ldBar" aria-hidden="true"><div class="wrap"><p><b>{trial} days free</b><span> · then ${price} a month</span></p>'
              f'<a class="btn" href="{E(checkout)}" rel="noopener" tabindex="-1">Try free</a></div></div>') if trial else
             (f'<div class="ld-sbar" id="ldBar" aria-hidden="true"><div class="wrap"><p><b>${price} a month</b><span> · <span class="ld-sbl">full list </span>{"every week" if seat and seat.get("checkout") else "every Monday"}</span></p>'

@@ -39,7 +39,7 @@ HEAD_TPL = """<!doctype html>
 <link rel="icon" href="{rel}assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="{rel}assets/favicon-48.png" sizes="48x48" type="image/png">
 <link rel="apple-touch-icon" href="{rel}assets/apple-touch-icon.png"><meta name="theme-color" content="#f3f1ec" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#12161f" media="(prefers-color-scheme: dark)">
 <link rel="preload" href="{rel}assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="{rel}assets/pnf.css">
+<link rel="stylesheet" href="{rel}assets/pnf.css"><script src="{rel}assets/pnf-ui.js" defer></script>
 {ld}
 </head><body{bodycls}>
 <a class="skip" href="#main">Skip to content</a>
@@ -70,6 +70,10 @@ def nav_html(rel, current=""):
     cur = ' aria-current="page"'
     links = "".join(f'<a href="{h}"{cur if k == current else ""}>{t}</a>' for k, h, t in items)
     # one clear action in every header (design review, Oct 24, 2026): the trade picker on the home hero, one tap from a free sample
+    # store v2 quick-find (hidden until assets/pnf-ui.js wires it, so no dead button without the script)
+    links += ('<button type="button" class="qf-btn" data-qf hidden aria-label="Search calculators, lead lists and guides">'
+              '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>'
+              '<span class="qf-lab">Search</span><kbd aria-hidden="true">/</kbd></button>')
     links += f'<a class="navcta" href="{rel or "./"}#trades">Free samples</a>'
     return f'<nav class="top" aria-label="Main">{links}</nav>'
 
@@ -2097,6 +2101,7 @@ def leads_page_html(p):
                     '<figcaption>A screen from the members\' app; its counts are from the week it was captured</figcaption></figure>')
     body = (f'{crumb}<div class="ld-herogrid{" has-shot" if heroshot else ""}"><div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>{hero_act}</div>{heroshot}</div>{tiles}'
             f'{near_html}{gc_html}{big_html}{method}{shots}{cta_html}{guides_block(p["slug"], rel=rel)}{faq_block(faq)}')
+    body = otp_bar(body)
     script = r"""<script>(function(){var list=document.getElementById('ldList');if(list){
 var cards=[].slice.call(list.querySelectorAll('.ld-proj')),chips=[].slice.call(document.querySelectorAll('.ld-chip')),
 area=document.getElementById('ldArea'),count=document.getElementById('ldCount'),empty=document.getElementById('ldEmpty'),f='all';
@@ -2131,6 +2136,39 @@ io.observe(hero);io.observe(cta)})();</script>"""
                         robots=robots, analytics=analytics_tag()) + body + foot)
 
 
+OTP_LABELS = {"Partial occupancy approved": "Near finish", "Builders with the most big jobs open": "Builders", "Biggest open projects": "Sample",
+              "This week's free sample": "Free sample", "This week's sample": "Sample", "How to use this list": "How to use it",
+              "What members get": "What you get", "Questions": "FAQ", "New licenses by trade, last 30 days": "By trade"}
+
+
+def otp_bar(body):
+    """Store v2 round 2 (Oct 24, 2026): a sticky "on this page" bar on the long lead pages, so a visitor on a phone can jump
+    to the sample, the seat or the price, and sees where they are (assets/pnf-ui.js marks the section in view). Sections
+    without an id get one from their heading; Guides stays out of the bar."""
+    import re
+    links, used = [], set()
+    def tag(m):
+        attrs, title = m.group(1), html.unescape(m.group(2))
+        idm = re.search(r'id="([^"]+)"', attrs)
+        sid = idm.group(1) if idm else "s-" + re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")[:40]
+        if title not in ("Guides", "Related pages", "Sources") and sid not in used:
+            used.add(sid)
+            links.append((sid, OTP_LABELS.get(title, title if len(title) <= 24 else title[:22].rsplit(" ", 1)[0])))
+        return m.group(0) if idm else m.group(0).replace("<section ", f'<section id="{sid}" ', 1)
+    body = re.sub(r'<section (class="block[^"]*"[^>]*)><h2[^>]*>(.*?)</h2>', tag, body)
+    if 'id="seat"' in body:   # the pest seat sits after the sample
+        at = next((i for i, (s, _) in enumerate(links) if s == "sample"), -1)
+        links.insert(at + 1, ("seat", "Pest seat"))
+    if 'id="ldCta"' in body:
+        links.insert(len(links) - (1 if links and links[-1][1] == "FAQ" else 0), ("ldCta", "Pricing"))
+    if len(links) < 3:
+        return body
+    nav = ('<nav class="otp" aria-label="On this page"><div class="otp-in">'
+           + "".join(f'<a href="#{s}">{E(l)}</a>' for s, l in links) + '</div></nav>')
+    j = min([k for k in (body.find('<section class="block'), body.find('<section id="')) if k >= 0], default=-1)
+    return body[:j] + nav + body[j:] if j >= 0 else body
+
+
 def page_html(p):
     if p.get("kind") == "leads":
         return leads_page_html(p)
@@ -2150,7 +2188,7 @@ def page_html(p):
     rel = "../"
     form, results, script = PAGE_KINDS[p["kind"]](p)
     results, _, after_grid = results.partition("\n<!--LC-EXTRA-->")   # sections a page puts right under the calculator
-    body = (f'<p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{E(p["lede"])}</p>'
+    body = (f'<p class="eyebrow">{E(p["eyebrow"])}</p><h1 style="view-transition-name:c-{p["slug"]}">{E(p["h1"])}</h1><p class="lede">{E(p["lede"])}</p>'
             f'<div class="grid">{form}{results}</div>{after_grid}'
             f'<section class="block"><h2>How it works</h2>{"".join(f"<p>{E(x)}</p>" for x in p["method"])}</section>'
             f'<section class="block"><h2>A worked example</h2><p>{E(p["example"])}</p></section>'
@@ -2555,6 +2593,81 @@ def data_notices():
     return "".join(f"<p>{E(x)}</p>" for x in out)
 
 
+def bento_html(by):
+    """Store v2 round 2 (Oct 24, 2026; research: Stripe and Resend bento grids, Stripe and Attio numbers as proof): a dark
+    band of this week's numbers, each tile linking to its list, every figure read from the lists' own data, plus what a
+    member gets. No figure here that the list pages do not already show."""
+    def pick(key, i):
+        x = by.get(key)
+        return (x, x["nums"][i]) if x and len(x.get("nums", [])) > i else (None, None)
+    tiles = []
+    for key, i, cls, line in (("chicago-construction-cleaning-leads", 1, "bt-wide", "Chicago projects with temporary or partial occupancy approved, so a final clean is close. The builder is on each."),
+                              ("chicago-restaurant-inspection-leads", 1, "", "Chicago restaurants had the license inspection the City does before it opens."),
+                              ("chicago-new-business-licenses", 1, "", "new Chicago business licenses this week, sorted by trade."),
+                              ("austin-construction-cleaning-leads", 0, "", "open Austin projects of $500,000 or more, with the builders running them.")):
+        x, num = pick(key, i)
+        if not x:
+            continue
+        tiles.append(f'<a class="bt {cls}" href="{x["href"]}{x["sample"]}"><span class="bt-tag">{E(x["tag"])}</span>'
+                     f'<b class="bt-n">{E(num[0])}</b><span class="bt-l">{E(line)}</span><span class="bt-go">See the free sample{ARROW}</span></a>')
+    book = ""
+    if os.path.isfile(os.path.join(DOCS, "assets", "leads", "workbook.png")):
+        wp, ww, wh = webp_of("assets/leads/workbook.png", width=720)
+        book = (f'<img src="{wp}" width="{ww}" height="{wh}" loading="lazy" decoding="async" alt="The Excel file members get: the near finish tab with address, reported cost and builder columns">')
+    tiles.append('<div class="bt bt-tall"><span class="bt-tag">Every Monday</span><b class="bt-h">The full list, three ways</b>'
+                 '<ul class="bt-ul"><li>A members\' web app with filters and a map</li><li>An Excel file, filters on every column</li><li>A pitch kit for your trade</li></ul>'
+                 f'<div class="bt-shot">{book}</div></div>')
+    return ('<section class="bento" aria-labelledby="bento-title"><div class="bento-in"><p class="eyebrow">This week in the lists</p>'
+            '<h2 id="bento-title">Real records, counted from the City\'s own data</h2>'
+            f'<div class="bt-grid">{"".join(tiles)}</div></div></section>')
+
+
+def hero_feed(rows, dates):
+    """The home hero's moving product view (store v2 round 2, Oct 24, 2026, Todd: "scrolling animation"): this week's
+    counts, then real records from the free samples rolling past, the way the members' app lists them. Only what the free
+    sample pages already show: builders on City permits, places that passed a license inspection by name, and failed or
+    conditional places without their name. Still under prefers-reduced-motion (pnf.css), and readable without motion."""
+    pb = _pages_by_slug()
+    items = []
+    try:
+        d = json.load(open(os.path.join(ROOT, pb["chicago-construction-cleaning-leads"]["data"]), encoding="utf-8"))
+        for x in (d.get("nearFinish") or [])[:4]:
+            gc = (x.get("gc") or [""])[0]
+            items.append(("Near finish", "chicago-construction-cleaning-leads/#near",
+                          f'{money(x["cost"])} {x.get("type", "").lower()}, {x["address"]}', f'{x.get("communityArea", "")}' + (f' · {gc}' if gc else "")))
+    except (OSError, KeyError, ValueError, TypeError):
+        pass
+    try:
+        r = json.load(open(os.path.join(ROOT, pb["chicago-restaurant-inspection-leads"]["data"]), encoding="utf-8"))
+        ex = r.get("examples") or {}
+        fl = [(f'Failed inspection', "chicago-restaurant-inspection-leads/#sample", f'A {x.get("type", "place").lower()} in {x.get("area", "Chicago")}',
+               f'{", ".join(x.get("categories", []))} · {nice_date(x["date"]).rsplit(",", 1)[0]}') for x in ex.get("flagged", [])[:3]]
+        op = [("Opening soon", "chicago-restaurant-inspection-leads/#sample", f'{x["name"]}, {x["address"]}',
+               f'Passed its license inspection · {nice_date(x["date"]).rsplit(",", 1)[0]}') for x in ex.get("opening", [])[:3]]
+        mix = []
+        for i in range(max(len(items), len(fl), len(op))):
+            for src in (items, fl, op):
+                if i < len(src):
+                    mix.append(src[i])
+        items = mix
+    except (OSError, KeyError, ValueError, TypeError):
+        pass
+    short = {"Chicago food businesses failed or conditional in our four trade categories, 30 days": "food places failed, last 30 days",
+             "open Chicago projects of $500,000 or more": "open Chicago projects, $500K+",
+             "open Austin projects of $500,000 or more": "open Austin projects, $500K+"}
+    stats = "".join(f'<div><dd>{E(n)}</dd><dt>{E(short.get(tx, tx))}</dt></div>' for n, tx in rows)
+    li = lambda x, dup=False: (f'<li><a href="{x[1]}"{" tabindex=\"-1\"" if dup else ""}><span class="hf-tag hf-{"near" if x[0] == "Near finish" else "fail" if x[0].startswith("Failed") else "open"}">{E(x[0])}</span>'
+                    f'<b>{E(x[2])}</b><span>{E(x[3])}</span></a></li>')
+    feed = ""
+    if items:
+        # WCAG 2.2.2: the roll pauses on hover or focus, and the Pause button stops it (assets/pnf-ui.js)
+        feed = (f'<div class="hf" role="region" aria-label="Records from this week\'s free samples"><div class="hf-track"><ul class="hf-list">{"".join(li(x) for x in items)}</ul>'
+                f'<ul class="hf-list hf-dup" aria-hidden="true">{"".join(li(x, True) for x in items)}</ul></div></div>')
+    return (f'<aside class="hx-week" aria-label="This week in the records"><p class="lab"><span class="hf-dot" aria-hidden="true"></span>This week in the City\'s records'
+            + ('<button type="button" class="hf-pause" hidden aria-pressed="false">Pause</button>' if feed else "") + '</p>'
+            f'<dl class="hx-stats">{stats}</dl>{feed}<p class="asof">City data pulled {E(" and ".join(dates))}. From this week\'s free samples.</p></aside>')
+
+
 def home_html(pages, live, doors=False):
     """The store home: what we sell and who for on the first screen, the lists, how it works, the calculators.
     doors=True is the two front doors draft (Todd, Oct 23, approved move 5: "Find work" and "Run the numbers", every
@@ -2594,7 +2707,7 @@ def home_html(pages, live, doors=False):
         # below the trade picker on phones, so no fetch priority; phones get the 720 px copy (Lighthouse, Oct 24: LCP 2.0 s)
         shot = (f'<div class="hx-frame"><img src="{wp}" srcset="{sp} {sw}w, {wp} {ww}w" sizes="(min-width:1000px) 540px, 100vw" width="{ww}" height="{wh}" loading="lazy" decoding="async" '
                 'alt="A screen from the members\' app for Chicago Construction Cleaning Leads: projects sorted closest to finish, with filters and a map"></div>')
-    week_hx = week.replace('class="card st-week"', 'class="hx-week"', 1) if week else ""
+    week_hx = hero_feed(rows, sorted({x["asof"] for x in (rest, chi, aus) if x})) if rows else ""
     hero = ('<section class="hx" aria-labelledby="hero-title"><div class="hx-copy"><p class="eyebrow">Lead lists from public records</p>'
             '<h1 id="hero-title">Sales leads from the City\'s own records, every Monday.</h1>'
             '<p class="lede">Weekly lists for cleaning, hood cleaning and pest control companies in Chicago and Austin. Each one has a free sample, new every Monday.</p>'
@@ -2671,7 +2784,7 @@ def home_html(pages, live, doors=False):
             "publisher": {"@type": "Organization", "name": "ProofNotFluff", "url": BASE}}
     items = {"@context": "https://schema.org", "@type": "ItemList", "name": "ProofNotFluff lead lists and tools",
              "itemListElement": [{"@type": "ListItem", "position": i, "url": BASE + x["href"], "name": x["name"]} for i, x in enumerate(prods, 1)]}
-    body = hero + lists + how + calcs + qs + band
+    body = hero + (bento_html(by) if not doors else "") + lists + how + calcs + qs + band
     if doors:
         body += ("<style>.st-doors{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px;margin:28px 0 0}"
                  ".st-door{display:flex;flex-direction:column;padding:22px 22px 20px}.st-door h2{font-size:24px;line-height:1.2;margin:0 0 6px}"
@@ -2842,23 +2955,69 @@ def privacy_html():
 
 
 def calculators_html():
+    """The calculator catalog (store v2, Oct 24, 2026, Todd: "organizing calculators with a search feature given the large
+    number we have"): instant search with synonyms and category chips, every card in the HTML so search engines and
+    no-script readers still see all of them; the script in assets/pnf-ui.js only hides what does not match."""
     CURRENT["nav"] = "calc"
     rel = "../"
     url = BASE + "calculators/"
+    st = load_store()
+    syn = st.get("searchSynonyms", {})
     crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Free calculators", None)])
-    li = lambda p: f'<li><a href="{rel}{p["slug"]}/"><b>{E(p["h1"])}</b><span>{E(p["card"])}</span></a></li>'
-    groups = "".join(f'<h2 class="st-cgroup">{E(t)}</h2><ul class="st-calcs">{"".join(li(p) for p in items)}</ul>' for t, items in CALC_GROUPS)
     n = sum(len(i) for _, i in CALC_GROUPS)
-    # the h1 names what the hub holds (SEO audit, Oct 24, 2026: the old h1 shared no words with the title); the old line leads the lede
+    gid = lambda t: "".join(ch if ch.isalnum() else "-" for ch in t.lower()).strip("-").replace("--", "-")
+    chips = ('<button type="button" class="cx-chip" aria-pressed="true" data-g="">All <span>' + str(n) + '</span></button>'
+             + "".join(f'<button type="button" class="cx-chip" aria-pressed="false" data-g="{gid(t)}">{E(t)} <span>{len(items)}</span></button>' for t, items in CALC_GROUPS))
+    start = [p for s_ in st.get("doorCalcs", [])[:4] for _, items in CALC_GROUPS for p in items if p["slug"] == s_]
+    card = lambda p, g, vt=True: (f'<li class="cx-item" data-g="{gid(g)}" data-k="{E((p["h1"] + " " + p["card"] + " " + g + " " + syn.get(p["slug"], "")).lower())}">'
+                         f'<a href="{rel}{p["slug"]}/"><span class="cx-tag">{E(g)}</span><b{f' style="view-transition-name:c-{p["slug"]}"' if vt else ""}>{E(p["h1"])}</b><span class="cx-d">{E(p["card"])}</span></a></li>')
+    groups = "".join(f'<section class="cx-group" data-g="{gid(t)}" aria-labelledby="cx-{gid(t)}"><h2 class="st-cgroup" id="cx-{gid(t)}">{E(t)}</h2>'
+                     f'<ul class="cx-grid">{"".join(card(p, t) for p in items)}</ul></section>' for t, items in CALC_GROUPS)
+    start_html = (f'<section class="cx-start" aria-labelledby="cx-start"><h2 class="st-cgroup" id="cx-start">Start here</h2><ul class="cx-grid">'
+                  + "".join(card(p, next(t for t, items in CALC_GROUPS if p in items), False) for p in start) + '</ul></section>') if start else ""
+    # the h1 names what the hub holds (SEO audit, Oct 24, 2026); the old line leads the lede
     body = (f'{crumb}<p class="eyebrow">Free calculators</p><h1>Free pricing and money calculators</h1>'
-            f'<p class="lede">Price the job before you call. {n} free calculators with the same math as our Excel and Google Sheets workbooks. Nothing you type leaves your browser.</p>{groups}')
+            f'<p class="lede">Price the job before you call. {n} free calculators with the same math as our Excel and Google Sheets workbooks. Nothing you type leaves your browser.</p>'
+            '<div class="cx-bar" id="cxBar"><label class="cx-search"><span class="sr">Search the calculators</span>'
+            '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>'
+            '<input id="cxQ" type="search" placeholder="Search: house cleaning, Amazon, hourly rate..." autocomplete="off" enterkeyhint="search"><kbd aria-hidden="true">/</kbd></label>'
+            f'<div class="cx-chips" role="group" aria-label="Filter by category">{chips}</div>'
+            '<p class="cx-count" id="cxCount" aria-live="polite"></p></div>'
+            f'<div id="cxAll">{start_html}{groups}</div>'
+            '<div class="cx-empty" id="cxEmpty" hidden><p><b>No calculator matches that yet.</b> Try a trade (cleaning, junk, lawn), a platform (Amazon, Etsy, Airbnb) or a word like price, rate or tax.</p>'
+            '<p><button type="button" class="st-btn2" id="cxClear">Show all calculators</button> <a class="st-link" href="mailto:hello@proofnotfluff.com?subject=Calculator%20idea">Suggest a calculator</a></p></div>')
     coll = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Free pricing and money calculators", "url": url,
             "mainEntity": {"@type": "ItemList", "numberOfItems": n, "itemListElement": [
                 {"@type": "ListItem", "position": i, "url": BASE + p["slug"] + "/", "name": p["h1"]}
                 for i, p in enumerate((p for _, items in CALC_GROUPS for p in items), 1)]}}
     return (HEAD.format(title="Free pricing and money calculators | ProofNotFluff", desc=f"{n} free calculators for cleaning and trade pricing, e-commerce cash flow and margins, tax, rentals and household budgets.",
-                        url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld, coll), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
+                        url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld, coll), bodycls=' class="st-page cx-page"', robots="", analytics=analytics_tag()) + body +
             FOOT.format(rel=rel, script="", sources=""))
+
+
+def search_index(live):
+    """docs/assets/search.json for the site-wide quick-find (store v2): every live calculator, lead list and question page,
+    with the words a visitor might type. Loaded only when someone opens the search."""
+    st = load_store()
+    syn = st.get("searchSynonyms", {})
+    group_of = {p["slug"]: t for t, items in CALC_GROUPS for p in items}
+    out = []
+    for x in store_products():
+        out.append({"t": x["name"], "s": x["href"], "g": "Lead list" if x["audience"] != "ecom" else "Workbook",
+                    "d": x.get("card", ""), "k": " ".join([x.get("tag", ""), x.get("for", "")]).lower()})
+    seat = (_pages_by_slug().get("chicago-restaurant-inspection-leads") or {}).get("seat") or {}
+    if seat.get("checkout"):
+        out.append({"t": "Chicago Pest Control Daily Seat", "s": "chicago-restaurant-inspection-leads/#seat", "g": "Lead list",
+                    "d": f"At most {seat['seats']} pest control companies, ${seat['price']} a month, new places each morning", "k": "pest control exterminator daily seat restaurants rodents"})
+    for q in LIVE_QUESTIONS:
+        out.append({"t": q["h1"], "s": q["slug"] + "/", "g": "Guide", "d": q.get("eyebrow", ""), "k": q.get("eyebrow", "").lower()})
+    for p in live:
+        if p["slug"] in group_of:
+            out.append({"t": p["h1"], "s": p["slug"] + "/", "g": "Calculator", "d": p.get("card", ""), "k": (group_of[p["slug"]] + " " + syn.get(p["slug"], "")).lower()})
+    for s_, t_, d_ in (("shop/", "Shop: every lead list", "Compare the lists and prices"), ("calculators/", "All free calculators", "Search and filter all calculators"),
+                       ("questions/", "Questions owners ask", "Plain answers with this week's numbers"), ("refunds/", "Refunds and cancelling", "The policy in plain words")):
+        out.append({"t": t_, "s": s_, "g": "Page", "d": d_, "k": ""})
+    return json.dumps(out, ensure_ascii=False, separators=(",", ":"))
 
 
 def questions_html():
@@ -3070,6 +3229,7 @@ def main():
         d = os.path.join(DOCS, slug); os.makedirs(d, exist_ok=True)
         open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(page)
     open(os.path.join(DOCS, "404.html"), "w", encoding="utf-8").write(notfound_html())
+    open(os.path.join(DOCS, "assets", "search.json"), "w", encoding="utf-8").write(search_index(live))
     CURRENT["nav"] = ""
     for x in live_extras():
         normalize_extra(x["slug"], x["h1"])

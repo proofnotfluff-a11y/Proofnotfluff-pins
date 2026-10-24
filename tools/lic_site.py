@@ -116,6 +116,7 @@ def page_html(p):
     body = (f'{crumb}<div class="lc-herogrid"><div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>'
             f'<div class="ld-heroact rl-act" id="ldHeroCta"><a class="btn ld-btnbig" href="#sample">See this week\'s free sample</a>{hero_link}</div>{note}</div>{shot}</div>'
             f'{tiles}{trades}{sample}{method}{cta_html}{M.guides_block(p["slug"], rel=rel)}{M.faq_block(faq)}')
+    body = M.otp_bar(body)
     ld = (M.ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
           "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}, crumb_ld,
           *((M.product_ld(prod, url), M.page_ld(p, url)) if (prod := next((x for x in M.store_products() if x["key"] == p["slug"]), None)) and M.is_live(p) else ()))

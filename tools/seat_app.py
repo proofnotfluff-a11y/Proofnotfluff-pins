@@ -203,7 +203,7 @@ PAGE = r"""<!doctype html>
 --head:Poppins,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--body:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
 @media (prefers-color-scheme:dark){:root{--canvas:#12161f;--card:#1b2130;--ink:#eef0f4;--ink2:#c9ced8;--muted:#a3aab6;--line:#2c3343;--rule:#242b3a;
 --accent:#ef8c6b;--btn:#be4a2a;--btn-ink:#fff;--teal:#7fcdc3;--teal-bg:#1d3533;--link:#9cc2ff;--fail:#f4b29c;--fail-bg:#3a2219;--pwc:#e8d49b;--pwc-bg:#332a12;
---band:#0b0e14;--band-text:#c9cfdb;--warn-bg:#332a12;--warn-ink:#f1dea6;--focus:rgba(127,205,195,.7);--sh:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.3)}}
+--band:#0b0e14;--band-text:#c9cfdb;--warn-bg:#332a12;--key-bg:#16302c;--key-line:#2d5a54;--warn-ink:#f1dea6;--focus:rgba(127,205,195,.7);--sh:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.3)}}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;color-scheme:light dark}
 body{margin:0;background:var(--canvas);color:var(--ink);font:16px/1.5 var(--body);-webkit-font-smoothing:antialiased}
@@ -251,7 +251,7 @@ font-weight:700;text-decoration:none;cursor:pointer}
 .stale{background:var(--warn-bg);color:var(--warn-ink);border-radius:10px;padding:12px 14px;margin:0 0 18px;font-weight:600}
 .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 22px}
 .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;min-width:0}
-.tile.key{background:var(--band);border-color:var(--band);color:#fff}
+.tile.key{background:var(--key-bg,var(--band));border-color:var(--key-line,var(--band));color:#fff}
 .tile .lab{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
 .tile.key .lab{color:var(--band-text)}
 .tile .val{font:700 clamp(24px,6vw,34px)/1.1 var(--head);margin-top:4px;font-variant-numeric:tabular-nums}
@@ -370,7 +370,7 @@ const days=Object.keys(by).sort().reverse();
 let h=`<p class="count" aria-live="polite">${rows.length} of ${D.rows.length} place${D.rows.length===1?"":"s"} shown</p>`;
 if(!rows.length){h+=`<div class="empty">${D.rows.length?"No place matches. Clear the search or pick All.":"No pest places in the last 14 days of the City's records."}</div>`;return h;}
 days.forEach(d=>{const lab=d===D.asOfIso?"New this morning":"Sent "+wday(d)+", "+day(d);
-h+=`<h2 class="group">${esc(lab)}<small>${by[d].length} place${by[d].length===1?"":"s"}</small></h2><div class="list">${by[d].map(card).join("")}</div>`;});
+h+=`<h2 class="group">${esc(lab)} <small>${by[d].length} place${by[d].length===1?"":"s"}</small></h2><div class="list">${by[d].map(card).join("")}</div>`;});
 return h;}
 function drawList(){$("#results").innerHTML=listHtml();}
 function home(){const nNew=D.rows.filter(r=>r.nw).length,nPh=D.rows.filter(r=>r.ph).length,today=chicagoToday();
@@ -391,7 +391,7 @@ drawList();
 $("#q").addEventListener("input",e=>{F.q=e.target.value;drawList();});
 document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{F.v=b.dataset.v;document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));drawList();}));
 $("#csv").addEventListener("click",csv);
-$("#out").addEventListener("click",()=>{try{localStorage.removeItem(PKEY);}catch(e){}location.hash="#/";location.reload();});
+$("#out").addEventListener("click",()=>{try{localStorage.removeItem(PKEY);sessionStorage.removeItem(PKEY);}catch(e){}location.hash="#/";location.reload();});
 $("#results").addEventListener("change",e=>{const c=e.target.closest(".card");if(!c)return;const id=c.dataset.id;const m=MARKS[id]=mark(id);
 if(e.target.dataset.act==="called"){m.c=e.target.checked;m.on=m.c?chicagoToday():"";c.classList.toggle("done",m.c);save();toast(m.c?"Marked as called":"Mark removed");}});
 $("#results").addEventListener("input",e=>{if(e.target.dataset.act!=="note")return;const id=e.target.closest(".card").dataset.id;const m=MARKS[id]=mark(id);m.n=e.target.value;save();});}
@@ -409,13 +409,13 @@ if(t){$("#termsView").innerHTML=termsHtml();$("#gateView").hidden=true;$("#app")
 document.title="Members: Chicago Pest Daily List | ProofNotFluff";
 if(D){$("#gateView").hidden=true;$("#app").hidden=false;if(!$("#results"))home();}else{$("#gateView").hidden=false;$("#app").hidden=true;}}
 async function unlock(pw,keep,quiet){try{D=await openBox(pw);}catch(e){D=null;if(!quiet){$("#err").textContent="That password doesn't match. Check it on your Gumroad purchase page and try again.";$("#pw").focus();}return false;}
-if(keep){try{localStorage.setItem(PKEY,pw);}catch(e){}}$("#err").textContent="";route();$("#main").focus({preventScroll:true});scrollTo(0,0);return true;}
+try{sessionStorage.setItem(PKEY,pw);}catch(e){}if(keep){try{localStorage.setItem(PKEY,pw);}catch(e){}}$("#err").textContent="";route();$("#main").focus({preventScroll:true});scrollTo(0,0);return true;}
 $("#gate").addEventListener("submit",async e=>{e.preventDefault();const pw=$("#pw").value.trim();if(!pw){$("#err").textContent="Enter the seat password.";$("#pw").focus();return;}
 $("#go").disabled=true;$("#go").textContent="Opening…";await unlock(pw,$("#keep").checked,false);$("#go").disabled=false;$("#go").textContent="Open today's list";});
 $("#eye").addEventListener("click",()=>{const i=$("#pw"),on=i.type==="password";i.type=on?"text":"password";$("#eye").setAttribute("aria-pressed",String(on));$("#eye").setAttribute("aria-label",on?"Hide password":"Show password");});
 $("#skip").addEventListener("click",e=>{e.preventDefault();const t=D||location.hash.startsWith("#/terms")?$("#main"):$("#pw");t.focus();});
 window.addEventListener("hashchange",route);
-(async()=>{let pw="";try{pw=localStorage.getItem(PKEY)||"";}catch(e){}if(pw&&await unlock(pw,false,true))return;if(pw){try{localStorage.removeItem(PKEY);}catch(e){}}route();})();
+(async()=>{let pw="";try{pw=sessionStorage.getItem(PKEY)||localStorage.getItem(PKEY)||"";}catch(e){}if(pw&&await unlock(pw,false,true))return;if(pw){try{localStorage.removeItem(PKEY);sessionStorage.removeItem(PKEY);}catch(e){}}route();})();
 </script>
 </body></html>""".replace("__LOCK__", ICO_LOCK)
 

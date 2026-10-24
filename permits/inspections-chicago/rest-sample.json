@@ -13,7 +13,7 @@
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-24T18:01:10+00:00",
+  "fetchedAt": "2026-10-24T18:16:10+00:00",
   "rowsUpdatedAt": "2026-10-24T09:08:34+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="

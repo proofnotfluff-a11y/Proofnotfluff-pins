@@ -42,7 +42,7 @@ permit checks above are unchanged):
        python3 tools/copy_gate.py --signal [data/work/signal_drafts.json] --leads data/work/signal_leads.json
                                   [--prospects ...] [--matches ...] [--send-day YYYY-MM-DD]
            signal drafts (pnf.signal_draft.v1) against a validated signal lead file; follow-ups with --matches ''.
-Pest seat email (Todd, Oct 24, 2026: subject "{n} Chicago restaurant inspections cited pests this week", {n} the 7-day
+Pest seat email (Todd, Oct 24, 2026, Legal fix 13: subject "{n} Chicago restaurant inspections with a pest violation this week", {n} the 7-day
 count only, never the daily file's total; "extend the copy gate to check that"):
        python3 tools/copy_gate.py --pest-templates
            email/P1-PEST-SEAT.md: every step present, rendered on today's permits/inspections-chicago/daily.json and on
@@ -422,7 +422,7 @@ def pest_the(area):
 
 
 def pest_n(daily):
-    """The email's {n}: the 7-day count of failed or conditional Restaurant inspections that cited pests. Never the daily
+    """The email's {n}: the 7-day count of failed or conditional Restaurant inspections with a pest violation. Never the daily
     file's totals (counts.places, counts.pests), the 14-day chart total or the seat's 14-day places."""
     return int(daily["pestLast7"]["restaurantInspections"])
 
@@ -442,7 +442,7 @@ def pest_problems(subject, body, step, daily, seat, send_day, first=None, letter
         p.append(f"daily.json is from {daily.get('asOf')}, {age} days before the send day: refill from this morning's file")
     m = re.search(r"\b(\d+)\b", subject or "")
     if step == "first":
-        want = f"{n} Chicago restaurant inspections cited pests this week" if n != 1 else "1 Chicago restaurant inspection cited pests this week"
+        want = f"{n} Chicago restaurant inspections with a pest violation this week" if n != 1 else "1 Chicago restaurant inspection with a pest violation this week"
         if subject != want:
             p.append(f"subject must be {want!r} (n is pestLast7.restaurantInspections = {n}), got {subject!r}")
     elif not (subject or "").startswith("Re: "):
@@ -503,7 +503,7 @@ def pest_fill(t, daily, first="Dana", area=None, first_subject=None):
     area = area or (sorted(daily["pestLast7"].get("areas") or ["Chicago"]))[0]
     area = re.sub(r"^the ", "", area)
     f = {"first": first, "n": n, "neighborhood": ("the " + area) if pest_the(area) else area,
-         "first_subject": first_subject or f"{n} Chicago restaurant inspections cited pests this week"}
+         "first_subject": first_subject or f"{n} Chicago restaurant inspections with a pest violation this week"}
     return fill(t["subject"], f), fill(t["body"], f)
 
 

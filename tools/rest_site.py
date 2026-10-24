@@ -95,7 +95,7 @@ def seat_html(p, seat, rel):
 
 
 SEAT_CSS = (".sb .sb-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 20px}"
-            ".sb .sb-card>p,.sb .sb-get{max-width:68ch;text-wrap:pretty}.sb .sb-fig{max-width:820px}"
+            ".sb .sb-card>p,.sb .sb-get{max-width:68ch;text-wrap:pretty}.sb .sb-fig{max-width:none}"
             ".sb .ld-secure{font-size:14px;color:var(--muted)}.sb .ld-secure a{color:var(--teal)}"
             ".sb .sb-top{margin:4px 0 18px}"
             ".sb .sb-eye{margin:0 0 6px}.sb h2{margin:0 0 10px}"
@@ -333,7 +333,7 @@ def selftest():
         assert want in t.replace("&#x27;", "'").replace("&#39;", "'"), want
     assert live.count("Take a founding seat, $149 a month</a>") == 2, "a second seat button under the price line"
     assert live.count('<span class="sb-b"') == 14 and "height:96px" in live, "14 bars, the tallest at full height"
-    assert "Free sample. Weekly list. Daily pest seat" in live and "cited pests" not in live and "Get the full list every week" in live, "headlines daily and weekly once the seat is on sale"
+    assert "Free sample, weekly list, daily pest seat" in live and "cited pests" not in live and "Get the full list every week" in live, "headlines daily and weekly once the seat is on sale"
     assert "every Monday" not in live.split("<main")[1].split('id="sample"')[0].replace("Full list every Monday.", "").replace("Refreshed every Monday.", ""), "bare Monday headline"
     full = page_html(dict(p, seat=dict(spec["seat"], data=os.path.relpath(dj, ROOT), checkout="https://example.gumroad.com/l/seat", taken=3)))
     assert "0 of 3 seats open" in full and "Take a founding seat" not in full and 'class="sb-top"' not in full and "Ask for the next open seat" in full, "a full cap sells no seat"

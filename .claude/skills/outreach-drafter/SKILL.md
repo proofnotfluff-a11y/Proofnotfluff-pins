@@ -17,7 +17,7 @@ One job: keep hello@ and sales@ replies true in the CRM (both days), then on Mon
 5. `python3 tools/copy_gate.py`. Exit 1: fix wording only, rerun once, else drop the draft.
 6. Send: a batch that qualifies under the standing send rule (email/SEND_RULES.md) sends with no ask, then one line to Todd; else one review page with every draft and the reason, and ask Todd "Reply send". Follow SEND_RULES exactly. Sender appends the footer.
 - Follow-ups (Todd, Oct 22: "Yes, two follow-ups"): at most two, each 5 business days after the last email, same thread, the prospect's recorded variant for a lead it was never sent (`--assign` on the follow-up matches), gated with `python3 tools/copy_gate.py data/work/followups.json --prospects data/prospects/followups.json --matches ''`. Never after a reply, never to the Oct 19 and 20 batches (crm_prospects.py LEGACY_BATCHES).
-- License count emails (Todd, Oct 24): steps in email/L2-COMMISSION.md; sales@ only, never hello@.
+- License and pest seat emails (Todd, Oct 24): steps in email/L2-COMMISSION.md (sales@) and email/P1-PEST-SEAT.md.
 - A yes: tell Todd; from then the monday-email stage owns that prospect.
 
 ## Outputs (Writes)

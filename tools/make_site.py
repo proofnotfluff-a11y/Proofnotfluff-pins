@@ -2468,7 +2468,7 @@ def product_card(x, rel, medium):
     nums = "".join(f'<div><b>{E(a)}</b><span>{E(b)}</span></div>' for a, b in x.get("nums", []))
     if x["audience"] == "ecom":
         prim = f'<a class="btn" href="{rel}{x["href"]}">Try the free calculator</a>'
-        sec = f'<a class="st-link" href="{E(utm(x["checkout"], medium, x["campaign"]))}" rel="noopener">Buy, ${E(x["price"])}</a>'
+        sec = f'<a class="st-btn2" href="{E(utm(x["checkout"], medium, x["campaign"]))}" rel="noopener">Buy the workbook, ${E(x["price"])}</a>'
         t = 0
     else:
         prim = f'<a class="btn" href="{rel}{x["href"]}{x["sample"]}">See this week\'s free sample</a>'
@@ -2481,7 +2481,7 @@ def product_card(x, rel, medium):
             f'<span class="st-price">${E(x["price"])}<small> {E(x["per"])}</small></span></div>'
             f'<h3>{nb(x["name"])}</h3><p>{E(x["card"])}</p><div class="st-nums">{nums}</div>'
             f'<p>{E(x["for"])}</p><div class="st-act">{prim}{sec}</div>'
-            + (f'<p class="st-note st-trialnote">Card at checkout, nothing charged for {t} days. Cancel any time.</p>' if t else "")
+            + (f'<p class="st-note st-trialnote">Card at checkout, nothing charged for {t} days. No lock-in, cancel any time.</p>' if t else "")
             + '</article>')
 
 

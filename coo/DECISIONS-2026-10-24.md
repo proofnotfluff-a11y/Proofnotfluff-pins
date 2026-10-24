@@ -42,3 +42,8 @@
 ## Weekly repo scout, 3:00 pm
 - [stated] Todd, 3:00 pm: "Please set up a scheduled task to periodically do deep research on repos / skills that will be useful for our operation"
 - Done: .claude/skills/repo-scout/SKILL.md (research and file only; at most 3 "Decide: add" rows a run on the scoreboard; findings in scout/REPOS.md; the Research Wiki is filed by a live chat after Todd's call) and the scheduled task "PNF repo scout", Sundays 9:45 am Central. The paused Oct 7 capability scout (Etsy era, reads the archived ledger) is left paused and untouched.
+
+## Open calls cleared, about 3:30 pm (live chat, scoreboard clean-up)
+- [stated] Todd, answering four questions: pest subject "Legal's wording (Recommended)"; pest outreach "Yes, build batches (Recommended)"; NYC Restaurant Pest Citations "Hold (Recommended)"; Seattle "Park with step 3 (Recommended)".
+- Applied: email/P1-PEST-SEAT.md, tools/copy_gate.py and the seat members' page say "{n} Chicago restaurant inspections with a pest violation this week" (n = 1: "1 Chicago restaurant inspection with a pest violation this week"), Legal desk fix 13. CRM meta/products.chicago-pest-seat.outreachGo true: the outreach run drafts pest batches; P1 is not on email/approved_templates.json, so the first batch comes to Todd as a review page and nothing sends without his word.
+- NYC pest held until a Chicago list earns its first payer. Seattle parked with step 3 (new cities wait until 3 pest seats sell); the city is chosen then.

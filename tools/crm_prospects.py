@@ -96,6 +96,9 @@ def main():
     ap.add_argument("--prefix", default="", help="file name prefix for the outputs: 'lic_' for the license count emails "
                     "(python3 tools/crm_prospects.py data/crm --products chicago-licenses --trades pos_merchant,commercial_insurance --prefix lic_)")
     ap.add_argument("--trades", default="", help="keep only these trade verticals")
+    ap.add_argument("--crm-trade", default="", help="keep only CRM records whose trade field is one of these, e.g. 'pest control' "
+                    "for the pest seat emails (python3 tools/crm_prospects.py data/crm --products chicago-restaurant "
+                    "--crm-trade 'pest control' --prefix pest_)")
     a = ap.parse_args()
     if not os.path.exists(a.listing):
         print(f"ERROR crm: {a.listing} does not exist (list the CRM prospects with ArtifactData out_dir first)")
@@ -112,6 +115,8 @@ def main():
         if want and p["product"] not in want:
             continue
         if a.trades and R.trade_of(p) not in a.trades.split(","):
+            continue
+        if a.crm_trade and (d.get("trade") or "").strip().lower() not in {t.strip().lower() for t in a.crm_trade.split(",") if t.strip()}:
             continue
         named = [w.split(": ", 1)[-1] for w in R.validate_prospect(p)]
         if d.get("contactType") != "email":

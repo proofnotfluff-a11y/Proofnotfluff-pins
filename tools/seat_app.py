@@ -311,7 +311,7 @@ footer p{margin:0 0 10px;overflow-wrap:anywhere}
 <form class="gate-card" id="gate" novalidate>
 <span class="chip">__LOCK__Founding seat</span>
 <h1>Chicago pest daily list</h1>
-<p class="sub">List of __ASOF__. Chicago food places whose failed or conditional City inspection cited pests, the morning the City posts them, with the last 14 days kept.</p>
+<p class="sub">List of __ASOF__. Chicago food places whose failed or conditional City inspection had a pest violation, the morning the City posts them, with the last 14 days kept.</p>
 <label class="f" for="pw">Seat password</label>
 <div class="pw"><input id="pw" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="err pwHelp">
 <button type="button" class="eye" id="eye" aria-label="Show password" aria-pressed="false"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>

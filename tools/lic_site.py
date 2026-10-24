@@ -61,7 +61,7 @@ def page_html(p):
         return (f'<article class="ld-proj"><p class="lc-pills"><span class="ld-pill lc-pill">Licensed {E(M.nice_date(x["issued"]))}</span>'
                 + (f'<span class="lc-hi {h}"><i></i>{HIST[h]}</span>' if h in HIST else "") + '</p>'
                 f'<div class="ld-ptop"><span class="ld-cost" style="font-size:20px">{E(x["business"])}</span></div>'
-                f'<dl class="ld-meta"><div><dt>Where</dt><dd>{E(st)}{", " + E(x["communityArea"]) if x.get("communityArea") else ""}{" <span class=lc-more>&middot; " + E(un) + "</span>" if un else ""}</dd></div>'
+                f'<dl class="ld-meta"><div><dt>Where</dt><dd>{E(st)}{", " + E(x["communityArea"]) if x.get("communityArea") else ""}</dd></div>'
                 f'<div><dt>License</dt><dd>{E(x["licenseType"])}</dd></div>'
                 f'<div><dt>Activity</dt><dd>{act}</dd></div></dl></article>')
 

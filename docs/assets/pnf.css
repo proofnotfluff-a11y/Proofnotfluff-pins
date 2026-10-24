@@ -297,7 +297,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .st-filter button[aria-pressed="true"]{background:var(--ink);color:var(--card);border-color:var(--ink)}
 .sh-list{display:flex;flex-direction:column;gap:16px;margin:20px 0 0}
 .sh-item{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"main" "buy" "gets";gap:16px 32px}
-@media(min-width:760px){.sh-item{grid-template-columns:minmax(0,1fr) minmax(260px,340px);grid-template-areas:"main buy" "gets buy";align-items:start}}
+@media(min-width:760px){.sh-item{grid-template-columns:minmax(0,1fr) minmax(260px,340px);grid-template-areas:"main buy" "gets buy";align-items:start;grid-template-rows:auto 1fr}}
 .sh-item.soon{background:transparent;box-shadow:none;border:1.5px dashed var(--dash);display:flex;flex-wrap:wrap;align-items:flex-end}
 .sh-item.soon>*{flex:1 1 300px}
 .sh-main{grid-area:main;min-width:0}.sh-gets{grid-area:gets;min-width:0}.sh-gets p{max-width:none}
@@ -443,3 +443,6 @@ nav.top a{padding:0 8px}nav.top{gap:0 12px}
 .ld-heroact .ld-trialbtn:hover{background:var(--ink);color:var(--card)}}
 .st-trialnote{margin:8px 0 0}
 @media(max-width:479px){table.lc-tbl th small{display:none}}
+/* store polish, Oct 24 design review: shop tags teal as on home; the records card lines up with the hero eyebrow */
+.sh-main>p.st-tag{color:var(--teal)}
+@media(min-width:1000px){.st-hero>.st-week{margin-top:28px}}

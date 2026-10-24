@@ -55,8 +55,9 @@ def extract(html, domain):
     return out
 
 
-def fetch_pages(domain, opener=None, pause=1.0, timeout=20, paths=PATHS):
-    """{path: html} for the business's own pages that answered; a missing page is simply left out."""
+def fetch_pages(domain, opener=None, pause=1.0, timeout=20, paths=PATHS, stop_if_home_fails=False):
+    """{path: html} for the business's own pages that answered; a missing page is simply left out. With
+    stop_if_home_fails, a site whose home page does not answer costs one try, not one per path."""
     opener = opener or urllib.request.urlopen
     pages = {}
     for path in paths:
@@ -65,7 +66,9 @@ def fetch_pages(domain, opener=None, pause=1.0, timeout=20, paths=PATHS):
             with opener(urllib.request.Request(url, headers=UA), timeout=timeout) as r:
                 pages[path] = r.read(600000).decode("utf-8", "replace")
         except Exception:
-            pass   # a missing page is normal; the business simply has fewer pages
+            if stop_if_home_fails and path == "" and not pages:
+                return pages
+            # otherwise a missing page is normal; the business simply has fewer pages
         time.sleep(pause)
     return pages
 

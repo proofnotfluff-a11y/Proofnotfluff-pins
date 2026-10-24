@@ -12,7 +12,10 @@ The enrichment ladder (Todd, Oct 22, 2026, live chat), for each business with no
   2b. Owner names the business publishes on its own site (tools/site_owners.py, Todd, Oct 24, 2026), only with
      --site-owners: schema.org founder fields, a person named beside an owner word, probablepeople for person versus
      company. The address again comes only from tools/site_emails.py (owner_source "site_about"); none is guessed.
-     Each domain is read once (siteOwnerAt in the state file), whatever its last checkedAt.
+     Each domain is read once (siteOwnerAt in the state file), whatever its last checkedAt, at most
+     --site-owners-max sites that answer a run (and twice that many tries); a site that does not answer costs one
+     home-page try, is tried again after 7 days, and is given up after 3 tries.
+     A business in the run only for this read never reaches the City, Hunter or Apollo rungs.
   3. Hunter (HUNTER_API_KEY secret), the paid fallback: at most --hunter-max domain searches a run, each domain once
      ever, "valid" addresses only. Apollo (APOLLO_API_KEY) only when Hunter is not used for that business.
   4. Local CSV drops data/enrichment/<product>-*.csv (gitignored), for runs on a machine where Todd dropped a file.
@@ -111,7 +114,7 @@ def site_owner_record(b, st, today):
     import site_owners   # imported here so the ladder runs without the rung's libraries when the rung is off
     dom = R.domain_of(b["website"])
     try:
-        pages = site_emails.fetch_pages(dom, pause=0.5, timeout=12, paths=site_owners.PATHS)
+        pages = site_emails.fetch_pages(dom, pause=0.5, timeout=12, paths=site_owners.PATHS, stop_if_home_fails=True)
         if not pages:
             return None, "no pages"   # the site did not answer: tried again next run
         owner, _reason = site_owners.find_owner(pages, domain=dom, business=b.get("business", ""))
@@ -146,7 +149,7 @@ def main():
     ap.add_argument("--hunter-max", type=int, default=5, help="Hunter domain searches per run (the paid fallback)")
     ap.add_argument("--retry-days", type=int, default=28, help="days before a business with no owner is tried again")
     ap.add_argument("--site-owners", action="store_true", help="rung 2b: owner names the business publishes on its site")
-    ap.add_argument("--site-owners-max", type=int, default=60, help="sites rung 2b reads per run")
+    ap.add_argument("--site-owners-max", type=int, default=60, help="sites that answer rung 2b reads per run")
     a = ap.parse_args()
     key = data_box.passphrase()   # exits 1 before any paid API call when the box cannot be sealed
     if a.site_owners:
@@ -187,7 +190,7 @@ def main():
     # in this run only for the owner-name read: never for the City, the site address rung, Hunter or Apollo
     site_only = {b["prospect_id"] for b in todo if a.site_owners and fresh_at(state, b, today, a.retry_days)
                  and not (hunter and not state.get(R.domain_of(b["website"]), {}).get("hunterAt"))}
-    counts = {"businesses": len(todo), "city": 0, "site": 0, "site_owner": 0, "hunter": 0, "apollo": 0, "csv": 0, "rejected": 0,
+    counts = {"businesses": len(todo), "city": 0, "site": 0, "site_owner": 0, "site_owner_reads": 0, "hunter": 0, "apollo": 0, "csv": 0, "rejected": 0,
               "hunter_searched": 0, "carried": len(found) + len(pending)}
 
     # rung 1: the City's owner record (Chicago products)
@@ -224,15 +227,26 @@ def main():
             left.append(b)
     # rung 2b: owner names the business publishes on its own site, each domain once (--site-owners)
     if a.site_owners:
-        still, read = [], 0
+        still, read, tries = [], 0, 0
         for b in left:
             dom = R.domain_of(b["website"])
             st = state.setdefault(dom, {})
-            if st.get("siteOwnerAt") or read >= a.site_owners_max:
+            tried = st.get("siteOwnerTry")
+            if st.get("siteOwnerAt") or read >= a.site_owners_max or tries >= 2 * a.site_owners_max or (
+                    tried and (today - dt.date.fromisoformat(tried)).days < 7):
                 still.append(b)
                 continue
-            read += 1
+            tries += 1
             rec, outcome = site_owner_record(b, st, today)
+            if outcome not in ("no pages", "error"):
+                read += 1   # only a site that answered counts toward --site-owners-max
+                counts["site_owner_reads"] += 1
+            else:
+                # the site did not answer: try again in a week, give up after the third try
+                st["siteOwnerTry"] = today.isoformat()
+                st["siteOwnerTries"] = st.get("siteOwnerTries", 0) + 1
+                if st["siteOwnerTries"] >= 3:
+                    st["siteOwnerAt"] = today.isoformat()
             if rec:
                 pending[rec["prospect_id"]] = rec
                 counts["site_owner"] += 1
@@ -301,7 +315,7 @@ def main():
         f.write("\n")
     print(f"OK enrich: {len(out['prospects'])} verified and {len(out['pending'])} waiting for Bouncer "
           f"({counts['carried']} carried forward; this run: {counts['businesses']} businesses tried, city+site {counts['city']}, "
-          f"site owner {counts['site_owner']}, "
+          f"site owner {counts['site_owner']} from {counts['site_owner_reads']} site reads, "
           f"hunter {counts['hunter']} from {counts['hunter_searched']} searches, apollo {counts['apollo']}, csv {counts['csv']}, "
           f"rejected {counts['rejected']})")
     sys.exit(0)

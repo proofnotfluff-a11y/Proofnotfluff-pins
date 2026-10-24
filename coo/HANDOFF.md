@@ -11,3 +11,4 @@
 - Radar Oct 23 (.claude/skills/radar/SKILL.md): health (4 PASS), AI check (0 of 12 named), scout (scout/OPPORTUNITIES.md; NYC pest to Todd). launches/WIRING.json gates live lead pages. Mondays 9:31 am (Todd's go Oct 23).
 - Skills: 6 scheduled, 4 on request. Index: Bing ok, IndexNow on changes, index-request Fri 7:40, 35 left.
 - Audit moves (coo/DECISIONS-2026-10-23.md): daily and license lists carry phones; next: move 3 seat.
+- Gemini audit read Oct 24 (live chat): built on a site snapshot from about Oct 19; its nav, waitlist and pest-email findings are already fixed or superseded. Nothing adopted yet; open picks for Todd are the daily-tier headline (after the seat checkout), a phone line on the license page, and the calculator lead box (major, CONSTITUTION 2).

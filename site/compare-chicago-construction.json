@@ -9,9 +9,9 @@
    "what": "The city's open dataset of every building permit issued since 2006, updated daily.",
    "price": "Free (no fee shown; reuse governed by the portal's terms of use)",
    "gets": "Raw permit rows: address, work description, fees, and contact columns with each contact's role (general contractor, owner, architect) and name, plus city, state and ZIP. No phone or email.",
-   "con": "Hard to use as is: the city says the file is too big to open fully in Excel, it mixes small and large jobs, and you must filter it and find GC phone or email yourself.",
-   "sourceUrl": "https://data.cityofchicago.org/api/views/ydr8-5enu.json",
-   "sourceKind": "vendor",
+   "con": "Hard to use as is: it mixes small and large jobs, and you must filter it and find the builder's phone or email yourself.",
+   "sourceUrl": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
+   "sourceKind": "city",
    "readOn": "2026-10-24"
   },
   {
@@ -37,7 +37,7 @@
   {
    "name": "BuildZoom (for contractors)",
    "what": "Marketplace that matches homeowner projects to contractors.",
-   "price": "Not published: a flat connection fee per project or a referral fee as a percentage of the contract if hired; the page lists no amounts or rates",
+   "price": "Not published: a flat connection fee per project once you connect, plus a referral percentage if hired; amounts appear only on each project",
    "gets": "Homeowner project requests, checked with the homeowner and matched to your work. No GC leads.",
    "con": "Aimed at residential remodel and construction trades, not commercial post-construction cleanup; fee amounts only appear project by project.",
    "sourceUrl": "https://www.buildzoom.com/contractor-faq/fees",
@@ -47,7 +47,7 @@
   {
    "name": "Angi Leads (formerly HomeAdvisor Pro)",
    "what": "Pay-per-lead homeowner marketplace for home service pros, including cleaning.",
-   "price": "Not published by Angi (its pro FAQ says lead fees vary by job size and to call for pricing). Third-party estimate: about $15 to $85 per lead plus about $300/yr membership",
+   "price": "Not published by Angi. Third-party estimate: about $15 to $85 per lead plus about $300 a year membership",
    "gets": "Homeowner service requests, charged as soon as each lead is sent, whether or not you win the job.",
    "con": "Leads are often shared with several pros and you pay even if the homeowner never answers; homeowner cleaning, not builder cleanup.",
    "sourceUrl": "https://www.housecallpro.com/resources/what-is-angis-list-how-angi-works/",
@@ -57,9 +57,9 @@
   {
    "name": "Thumbtack (pay per lead)",
    "what": "Local services marketplace where pros pay for customer leads.",
-   "price": "Not published by Thumbtack; no subscription. Third-party summary says pros report about $10 to over $100 per lead, set partly by the pro's own max lead price",
+   "price": "Not published by Thumbtack; no subscription. Third-party summary: pros report about $10 to over $100 per lead",
    "gets": "Homeowner requests matched automatically or chosen by you; you pay per lead and can cap weekly spend.",
-   "con": "No refunds when a customer goes quiet or hires someone else; leads are shared and lead cost rises in busy markets like Chicago.",
+   "con": "No refunds when a customer goes quiet or hires someone else, and the price per lead varies by market and job.",
    "sourceUrl": "https://www.housecallpro.com/resources/what-is-thumbtack-how-it-works/",
    "sourceKind": "third-party",
    "readOn": "2026-10-24"
@@ -81,7 +81,7 @@
    "gets": "GC bid invitations and project listings with plans; some projects and invite details need a paid plan.",
    "con": "Built around bidding from plans, so a cleanup scope competes with every trade's invites; no public price.",
    "sourceUrl": "https://www.capterra.com/p/179042/PlanHub/pricing/",
-   "sourceKind": "third-party",
+   "sourceKind": "listing",
    "readOn": "2026-10-24"
   },
   {

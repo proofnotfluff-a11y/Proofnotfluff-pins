@@ -3017,7 +3017,7 @@ def write_compare_draft():
         return
     d = json.load(open(f, encoding="utf-8"))
     rel = "../"
-    kind = {"vendor": "the company's own page", "third-party": "a third-party estimate", "ours": "our page"}
+    kind = {"vendor": "the company's own page", "third-party": "a third-party estimate", "listing": "a third-party listing", "city": "the City's dataset page", "ours": "our page"}
     rows = "".join(
         f'<article class="cmp-row{" cmp-ours" if x.get("sourceKind") == "ours" else ""}"><h2>{E(x["name"])}</h2><p>{E(x["what"])}</p>'
         f'<dl class="ld-meta"><div><dt>Price</dt><dd>{E(x["price"])}</dd></div><div><dt>What you get</dt><dd>{E(x["gets"])}</dd></div>'

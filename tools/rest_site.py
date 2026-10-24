@@ -51,13 +51,15 @@ def seat_html(p, seat, rel):
         f'<li><span class="sb-n num">{x["pests"]}</span><span class="sb-b" style="height:{max(2, round(96 * x["pests"] / top))}px"></span>'
         f'<span class="sb-d">{E(md(x["date"]).split(" ")[1])}</span></li>' for x in days)
     rows = "".join(f'<tr><th scope="row">{E(M.nice_date(x["date"]))}</th><td>{x["pests"]}</td></tr>' for x in days)
-    rng = f'{E(md(days[0]["date"]))} to {E(md(days[-1]["date"]))}'
+    rng = f'{E(md(days[0]["date"])).replace(" ", "&nbsp;")} to {E(md(days[-1]["date"])).replace(" ", "&nbsp;")}'
     per_day = f"{total / len(days):.1f}".rstrip("0").rstrip(".")
     phone = (f'A listed phone on <b>{st["withPhone14"]} of {st["places14"]}</b> pest places from the last 14 days ({st["coverage14"]:g}%). '
              'A number is shown only when the business name and street address both match the City record, so some places have none.'
              if st.get("phonesChecked") and st["places14"] else "Phones are checked each morning; this morning's check did not run.")
     co = seat.get("checkout")
     terms = rel + "chicago-pest-daily-members/#/terms"
+    top_btn = (f'<p class="sb-top"><a class="btn ld-btnbig" href="{E(co)}" rel="noopener">Take a founding seat, ${price} a month</a></p>'
+               if left and co else "")
     if left and co:
         act = (f'<p class="ld-buybtn"><a class="btn ld-btnbig" href="{E(co)}" rel="noopener">Take a founding seat, ${price} a month</a></p>'
                f'<p class="ld-secure">Secure checkout by Gumroad. ${price} is charged at checkout and again each month until you cancel. '
@@ -74,7 +76,7 @@ def seat_html(p, seat, rel):
             f'<h2 id="seatH">At most {cap} Chicago pest control companies hold a seat at a time.</h2>'
             f'<p class="sb-left"><span class="sb-dots" aria-hidden="true">{"".join("<i class=on></i>" if i < left else "<i></i>" for i in range(cap))}</span>'
             f'<b>{left} of {cap} seats open</b></p>'
-            f'<p class="sb-terms"><b>No lock-in.</b> ${price} a month, cancel any time.</p>'
+            f'<p class="sb-terms"><b>No lock-in.</b> ${price} a month, cancel any time.</p>{top_btn}'
             '<p class="sb-lede">The City\'s public records, cleaned and on your members\' page each morning after the City\'s overnight update: the Chicago food '
             'places whose failed or conditional inspection had a pest violation, named, with street address, the City\'s violation codes and the listed '
             'phone when we find one. License inspections and the places under "Who is left out?" are not included.</p>'
@@ -92,7 +94,10 @@ def seat_html(p, seat, rel):
             f'{act}</div></section>')
 
 
-SEAT_CSS = (".sb .sb-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 20px;max-width:820px}"
+SEAT_CSS = (".sb .sb-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 20px}"
+            ".sb .sb-card>p,.sb .sb-get{max-width:68ch;text-wrap:pretty}.sb .sb-fig{max-width:820px}"
+            ".sb .ld-secure{font-size:14px;color:var(--muted)}.sb .ld-secure a{color:var(--teal)}"
+            ".sb .sb-top{margin:4px 0 18px}"
             ".sb .sb-eye{margin:0 0 6px}.sb h2{margin:0 0 10px}"
             ".sb-left{display:flex;align-items:center;gap:10px;margin:0 0 6px;font-size:17px}"
             ".sb-dots{display:inline-flex;gap:5px}.sb-dots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--teal)}.sb-dots i.on{background:var(--teal)}"
@@ -325,11 +330,12 @@ def selftest():
                  "29 of 42", "(69%)", "45 failed or conditional inspections in 14 days, about 3.2 a day", "not capped", "one free morning", "Take a founding seat, $149 a month",
                  "charged at checkout and again each month", "Refreshed every morning", "A separate $149 daily pest list"):
         assert want in t.replace("&#x27;", "'").replace("&#39;", "'"), want
+    assert live.count("Take a founding seat, $149 a month</a>") == 2, "a second seat button under the price line"
     assert live.count('<span class="sb-b"') == 14 and "height:96px" in live, "14 bars, the tallest at full height"
-    assert "Full list weekly, plus a daily pest seat" in live and "cited pests" not in live and "Get the full list every week" in live, "headlines daily and weekly once the seat is on sale"
+    assert "Free sample. Weekly list. Daily pest seat" in live and "cited pests" not in live and "Get the full list every week" in live, "headlines daily and weekly once the seat is on sale"
     assert "every Monday" not in live.split("<main")[1].split('id="sample"')[0].replace("Full list every Monday.", "").replace("Refreshed every Monday.", ""), "bare Monday headline"
     full = page_html(dict(p, seat=dict(spec["seat"], data=os.path.relpath(dj, ROOT), checkout="https://example.gumroad.com/l/seat", taken=3)))
-    assert "0 of 3 seats open" in full and "Take a founding seat" not in full and "Ask for the next open seat" in full, "a full cap sells no seat"
+    assert "0 of 3 seats open" in full and "Take a founding seat" not in full and 'class="sb-top"' not in full and "Ask for the next open seat" in full, "a full cap sells no seat"
     assert "—" not in live and "–" not in live
     print("rest_site selftest ok (sample page and the founding seat offer)")
 

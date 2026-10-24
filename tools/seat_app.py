@@ -205,7 +205,7 @@ PAGE = r"""<!doctype html>
 --accent:#ef8c6b;--btn:#be4a2a;--btn-ink:#fff;--teal:#7fcdc3;--teal-bg:#1d3533;--link:#9cc2ff;--fail:#f4b29c;--fail-bg:#3a2219;--pwc:#e8d49b;--pwc-bg:#332a12;
 --band:#0b0e14;--band-text:#c9cfdb;--warn-bg:#332a12;--warn-ink:#f1dea6;--focus:rgba(127,205,195,.7);--sh:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.3)}}
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;color-scheme:light dark}
 body{margin:0;background:var(--canvas);color:var(--ink);font:16px/1.5 var(--body);-webkit-font-smoothing:antialiased}
 h1,h2,h3{font-family:var(--head);letter-spacing:-.015em;line-height:1.2;margin:0;text-wrap:balance}
 a{color:var(--link);text-underline-offset:3px}
@@ -229,7 +229,7 @@ font-weight:700;text-decoration:none;cursor:pointer}
 .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
 .btn.sm{min-height:44px;padding:0 14px;font-size:15px}
 /* gate */
-.gate{padding:40px 0 24px}
+.gate{padding:40px 16px 24px}
 .gate-card{max-width:520px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:28px 24px}
 .chip{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;background:var(--teal-bg);color:var(--teal);font-size:13px;font-weight:700}
 .gate-card h1{font-size:clamp(24px,5vw,30px);margin:14px 0 8px}
@@ -243,9 +243,9 @@ font-weight:700;text-decoration:none;cursor:pointer}
 .gate-card .btn{width:100%}
 .err{color:var(--fail);font-weight:600;min-height:24px;margin:10px 0 0}
 .help{border-top:1px solid var(--rule);margin-top:16px;padding-top:14px;color:var(--ink2);font-size:15px}.help p{margin:0 0 8px}
-.help a{display:inline-flex;align-items:center;min-height:44px}
+.help a{display:inline;padding:12px 0}
 /* app */
-.page{padding:28px 0 32px}
+.page{padding:28px 16px 32px}
 .page h1{font-size:clamp(26px,5vw,36px);margin:0 0 6px}
 .meta{color:var(--ink2);margin:0 0 18px}
 .stale{background:var(--warn-bg);color:var(--warn-ink);border-radius:10px;padding:12px 14px;margin:0 0 18px;font-weight:600}
@@ -268,7 +268,7 @@ font-weight:700;text-decoration:none;cursor:pointer}
 .group small{font:600 14px/1.3 var(--body);color:var(--muted);margin-left:6px}
 .list{display:grid;gap:12px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:16px 16px 14px;min-width:0}
-.card.done{opacity:.72}
+.card.done{background:var(--canvas)}.card.done h3{text-decoration:line-through;text-decoration-thickness:2px}
 .card .top{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 8px}
 .pill{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;font-size:13px;font-weight:700;white-space:nowrap}
 .pill.fail{background:var(--fail-bg);color:var(--fail)}.pill.pwc{background:var(--pwc-bg);color:var(--pwc)}
@@ -282,15 +282,15 @@ font-weight:700;text-decoration:none;cursor:pointer}
 .card .ph{font-variant-numeric:tabular-nums}
 .card .noph{color:var(--muted);font-size:15px;min-height:44px;display:inline-flex;align-items:center}
 .card .rec{min-height:44px;display:inline-flex;align-items:center;padding:0 6px;font-size:15px}
-.card .called{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 6px;font-weight:600;font-size:15px;cursor:pointer}
+.card .called{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 6px 0 2px;font-weight:600;font-size:15px;cursor:pointer}
 .card .called input{width:22px;height:22px;accent-color:var(--teal)}
 .card details{margin-top:6px}
 .card summary{min-height:44px;display:inline-flex;align-items:center;cursor:pointer;color:var(--link);font-weight:600;font-size:15px}
 .card textarea{width:100%;min-height:80px;border:1.5px solid var(--muted);border-radius:10px;padding:10px 12px;background:var(--card);resize:vertical}
 .empty{background:var(--card);border:1px dashed var(--line);border-radius:var(--r);padding:20px;color:var(--ink2)}
-.terms{padding:28px 0 32px;max-width:760px}
+.terms{padding:28px 16px 32px;max-width:792px}
 .terms h1{font-size:clamp(24px,5vw,32px);margin:0 0 6px}.terms h2{font-size:19px;margin:26px 0 8px}
-.terms p{margin:0 0 12px;overflow-wrap:anywhere}.terms .ver{color:var(--muted);font-size:14px}
+.terms p{margin:0 0 12px;overflow-wrap:anywhere}.terms p b{color:var(--ink)}.terms .ver{color:var(--muted);font-size:14px}
 .terms .back{display:inline-flex;align-items:center;min-height:44px;font-weight:600}
 footer{border-top:1px solid var(--line);margin-top:16px;padding:20px 0 36px;color:var(--muted);font-size:14px}
 footer p{margin:0 0 10px;overflow-wrap:anywhere}
@@ -350,7 +350,7 @@ function card(r){const m=mark(r.id),t=telHref(r.ph);
 const ph=r.ph&&t?`<a class="btn sm" href="${t}"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Call <span class="ph">${esc(r.ph)}</span></a>`
 :`<span class="noph">${D.phonesChecked?"No listed phone found":"Phone not checked this morning"}</span>`;
 return `<article class="card${m.c?" done":""}" data-id="${esc(r.id)}" aria-labelledby="h-${esc(r.id)}">
-<div class="top"><span class="pill ${resCls(r.r)}">City result: ${esc(r.r)}</span>${r.nw?'<span class="pill new">New this morning</span>':""}</div>
+<div class="top"><span class="pill ${resCls(r.r)}">City result: ${esc(r.r)}</span></div>
 <h3 id="h-${esc(r.id)}">${esc(r.n)}</h3>
 <p class="ad">${esc(r.a)}${r.z?", "+esc(r.z):""}${r.ar?" · "+esc(r.ar):""}${r.ty?" · "+esc(r.ty):""}</p>
 <p class="sm">${esc(r.s)}</p>
@@ -383,7 +383,7 @@ ${noneToday}
 <div class="seg" role="group" aria-label="Show">${[["all","All"],["new","New this morning"],["todo","Not called yet"]].map(([k,l])=>`<button type="button" data-v="${k}" aria-pressed="${F.v===k}">${l}</button>`).join("")}</div>
 <button class="btn ghost sm" type="button" id="csv"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Download CSV</button></div>
 <div id="results"></div>
-<p class="meta" style="margin-top:22px">${STORE?"Called marks and notes stay in this browser on this device.":"This browser is not saving called marks or notes."} <button class="btn ghost sm" type="button" id="out">Sign out on this device</button></p>`;
+<p class="meta" style="margin-top:22px">${STORE?"Called marks and notes stay in this browser on this device.":"This browser is not saving called marks or notes."}</p><p><button class="btn ghost sm" type="button" id="out">Sign out on this device</button></p>`;
 drawList();
 $("#q").addEventListener("input",e=>{F.q=e.target.value;drawList();});
 document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{F.v=b.dataset.v;document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));drawList();}));
@@ -398,8 +398,8 @@ const lines=[head.map(cell).join(",")].concat(D.rows.map(r=>{const m=mark(r.id);
 const blob=new Blob(["﻿"+lines.join("\r\n")+"\r\n"],{type:"text/csv;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=D.fileName;
 document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);toast("CSV downloaded");}
 function termsHtml(){const ph=((D&&D.phoneAttr)||[]).concat(W.phoneLicenses);
-return `<a class="back" href="#/">${D?"Back to today's list":"Back to sign in"}</a><h1>Terms of Use</h1><p class="ver">${esc(W.version)}</p>
-${W.paras.map(p=>`<p>${esc(p)}</p>`).join("")}<h2>About this list</h2><p>${esc(W.notice)}</p><h2>City of Chicago data</h2><p>${esc(W.city)}</p>
+return `<a class="back" href="#/">${D?"Back to today's list":"Back to sign in"}</a><h1>Terms of Use</h1><p class="ver">${esc(W.version.split(" | ").join(" · "))}</p>
+${W.paras.map(p=>{const m=p.match(/^([^.]{2,40}\.)\s(.*)$/s);return m?`<p><b>${esc(m[1])}</b> ${esc(m[2])}</p>`:`<p>${esc(p)}</p>`;}).join("")}<h2>About this list</h2><p>${esc(W.notice)}</p><h2>City of Chicago data</h2><p>${esc(W.city)}</p>
 <h2 id="th3">Phone number sources and licenses</h2>${ph.map(t=>`<p>${esc(t)}</p>`).join("")}`;}
 function route(){const t=location.hash.startsWith("#/terms");$("#termsView").hidden=!t;
 if(t){$("#termsView").innerHTML=termsHtml();$("#gateView").hidden=true;$("#app").hidden=true;document.title="Terms: Chicago Pest Daily List | ProofNotFluff";$("#main").focus();return;}

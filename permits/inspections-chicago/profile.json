@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-10-24T20:02:01+00:00",
+ "fetchedAt": "2026-10-24T20:25:14+00:00",
  "rowsUpdatedAt": "2026-10-24T09:08:34+00:00",
  "columns": [
   "inspection_id",
@@ -67,10 +67,10 @@
   "Shared Kitchen User (Long Term)": 2,
   "Mobile Food Dispenser": 1,
   "TAVERN": 1,
+  "LIVE POULTRY": 1,
+  "CATERING/CAFE": 1,
   "VENDING COMMISSARY": 1,
   "GAS STATION/RESTAURANT": 1,
-  "CATERING/CAFE": 1,
-  "LIVE POULTRY": 1,
   "PRIVATE SCHOOL": 1,
   "Daycare (Under 2 Years)": 1,
   "BANQUET": 1,

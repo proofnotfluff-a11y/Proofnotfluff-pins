@@ -3831,14 +3831,14 @@
    "desc": "Free weekly sample of new Chicago business licenses by trade: restaurants, shops, salons, venues and auto shops licensed in the last 30 days, for vendors who sell to new businesses.",
    "eyebrow": "Free sample, updated every Monday",
    "h1": "Chicago New Business Licenses",
-   "lede": "Built for commercial cleaning and pest control companies, and for any vendor who sells to new businesses.",
+   "lede": "Built for commercial cleaning and pest control companies, and for vendors a new business buys from early: POS and payments, insurance, equipment finance and bookkeeping.",
    "card": "New Chicago businesses licensed in the last 30 days, sorted by trade, for vendors who sell to new businesses.",
    "method": [
     "Who it is for: commercial cleaning and pest control companies first, and any vendor a new business needs, such as POS and payments, signs, insurance, bookkeeping, waste and supplies.",
     "Pick the trades that buy from you. A new restaurant and a new salon need different vendors, so the list is sorted by what each business does.",
     "Reach out in the first weeks. The license date tells you how recently the City licensed the business at that site, so you can reach out early.",
     "Visit or call the business at its licensed address, name the license and its date, and say in one line what you do for businesses like it.",
-    "If you also have Chicago Restaurant Inspection Leads: food businesses usually get a City food license inspection before the license is issued, usually within three weeks before, and that product lists those inspections as Opening soon. So you may already have seen most of the food businesses here. Each food row with that inspection is marked in the members' list, so you can hide them. Nearly all businesses in the other trades are only here."
+    "If you also have Chicago Restaurant Inspection Leads: food businesses usually get a City food license inspection before the license is issued, and that product lists those inspections as Opening soon. So you may already have seen most of the food businesses here. Each food row with that inspection is marked in the members' list, so you can hide them. Nearly all businesses in the other trades are only here."
    ],
    "cta": {
     "title": "Get the full list every Monday",
@@ -3851,7 +3851,7 @@
     ],
     [
      "Is every license a brand-new business?",
-     "Most are, and each row says which. A business that opens another site, adds a new license type at a site it already has, or licenses a site again (a new owner, or the same business after an older license ended) also gets a new license. The members' list reads the City's earlier licenses for each business and marks which is which: first license, new site, added license or relicensed."
+     "Most are: about 6 in 10 on recent lists are a first license, and each row says which. A business that opens another site, adds a new license type at a site it already has, or licenses a site again (a new owner, or the same business after an older license ended) also gets a new license. The members' list reads the City's earlier licenses for each business and marks which is which: first license, new site, added license or relicensed."
     ],
     [
      "Who is left out?",
@@ -3859,7 +3859,7 @@
     ],
     [
      "Does it overlap with Chicago Restaurant Inspection Leads?",
-     "Partly, and only for food businesses. That product lists the City's food license inspection, which usually comes within three weeks before the food license this list shows. The members' list marks every food row with that inspection in the 120 days before its license, so a member of both can hide them. Nearly all shops, salons, venues, auto shops and day care centers are only here."
+     "Partly, and only for food businesses. That product lists the City's food license inspection, which usually comes before the food license this list shows. The members' list marks every food row with that inspection in the 120 days before its license, so a member of both can hide them. Nearly all shops, salons, venues, auto shops and day care centers are only here."
     ],
     [
      "Is every business on the list open?",

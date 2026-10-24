@@ -10,4 +10,4 @@
 - To-do: scoreboard todos (coo/SCOREBOARD.md), kept current.
 - Radar Oct 23 (.claude/skills/radar/SKILL.md): health (4 PASS), AI check (0 of 12 named), scout (scout/OPPORTUNITIES.md; NYC pest to Todd). launches/WIRING.json gates live lead pages. Mondays 9:31 am (Todd's go Oct 23).
 - Skills: 6 scheduled, 4 on request. Index: Bing ok, IndexNow on changes, index-request Fri 7:40, 35 left.
-- Audit moves (coo/DECISIONS-2026-10-23.md): daily and license lists carry phones; next: move 3 seat.
+- Audits: coo/DECISIONS-2026-10-23.md, phones live; next: move 3. Oct 24: todo decide-audit-oct24.

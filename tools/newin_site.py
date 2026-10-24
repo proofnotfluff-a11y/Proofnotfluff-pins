@@ -96,15 +96,17 @@ def page_html(p):
         return (f'<li class="ni-c"><b>{E(x["business"])}</b><span class="ni-k">{E(plain(x))}</span>'
                 f'<span class="ni-m">{where}</span><span class="ni-m">Licensed <span class="ni-d">{E(M.nice_date(x["issued"]))}</span></span></li>')
 
-    lede = (f'{n:,} businesses got a new City of Chicago license in the week to {E(M.nice_date(w["to"]))}, {food:,} of them food and drink.')
+    wk = c.get("keptWeek", n)
+    lede = (f'{wk:,} Chicago business sites got a new City license in the week to {E(M.nice_date(w["to"]))}. This page shows {n:,} of them, {food:,} food and drink.'
+            if wk > n else f'{n:,} businesses got a new City of Chicago license in the week to {E(M.nice_date(w["to"]))}, {food:,} of them food and drink.')
     tiles = ('<div class="tiles ld-tiles">'
-             f'<div class="tile key"><div class="lab">New this week</div><div class="val">{n:,}</div><div class="sub">businesses on this page</div></div>'
+             f'<div class="tile key"><div class="lab">On this page</div><div class="val">{n:,}</div><div class="sub">new this week, named here</div></div>'
              f'<div class="tile"><div class="lab">Food and drink</div><div class="val">{food:,}</div><div class="sub">restaurants, cafes, bars, food shops</div></div>'
              f'<div class="tile"><div class="lab">Neighborhoods</div><div class="val">{len(named):,}</div><div class="sub">with a new license this week</div></div>'
              + (f'<div class="tile ni-top"><div class="lab">Top area</div><div class="val">{E(top[0])}</div><div class="sub">{len(top[1]):,} new this week</div></div>'
                 if top and not ties else "")
              + f'</div><p class="asof">From City records pulled {E(pulled)}. New page every week.</p>'
-             f'<p class="ni-strip"><span>Sell to new businesses? All {c["kept30"]:,} from the last 30 days, sorted by trade.</span>'
+             f'<p class="ni-strip"><span>Sell to new businesses? The members\' list has all {c["kept30"]:,} from the last 30 days, including this week\'s {wk:,}, sorted by trade.</span>'
              f'<a href="{rel}{E(p.get("vendorSlug", "chicago-new-business-licenses"))}/">See the business list</a></p>')
     chips = ('<p class="ni-chips">' + "".join(f'<a href="#t-{k}">{E(label[k])} <span>{by_type[k]:,}</span></a>' for k in ORDER if by_type.get(k)) + '</p>')
     groups = [f'<h3 class="lc-h3 ni-h3" id="t-{k}">{E(label[k])} <span class="ni-n">{by_type[k]:,}</span></h3><ul class="ni-l">{"".join(card(x) for x in rows if x["segment"] == k)}</ul>'

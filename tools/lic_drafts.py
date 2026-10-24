@@ -29,6 +29,8 @@ def main():
     ap.add_argument("--out", default=C.LIC_DRAFTS)
     ap.add_argument("--pending", default="", help="also draft the addresses still waiting for Bouncer (data/prospects/lic_verify.json), "
                     "for Todd's review only; they cannot send before the check")
+    ap.add_argument("--named-only", action="store_true", help="leave out owner-read inboxes (info@, sales@ ... to a named owner): "
+                    "a staffed shared inbox reads 'Hi <first>' oddly (independent checker, Oct 24); they are listed as held")
     a = ap.parse_args()
     pdoc = json.load(open(a.prospects, encoding="utf-8"))
     pros = list(pdoc["prospects"])
@@ -40,6 +42,8 @@ def main():
     lic, insp = json.load(open(C.LIC_SAMPLE, encoding="utf-8")), json.load(open(C.INSP_SAMPLE, encoding="utf-8"))
     first = {t["trade"]: t for t in C.signal_templates(C.LIC_FILE) if t["step"] == "first" and t["letter"] == "A"}
     pros = [p for p in pros if R.trade_of(p) in ORDER and not p.get("first_example") and not p.get("do_not_email")]
+    held = [p for p in pros if a.named_only and R.owner_read_inbox(p["email"], p.get("owner_source") or "", p.get("email_source") or "")]
+    pros = [p for p in pros if p not in held]
     pros.sort(key=lambda p: (ORDER.index(R.trade_of(p)), p.get("checked_at") or "", p["prospect_id"]))
     drafts = []
     for p in pros[:a.max]:
@@ -49,9 +53,10 @@ def main():
                        "sender": R.SALES_SENDER, "trade": R.trade_of(p), "window_from": lic["window"]["from"],
                        "emailStatus": p.get("email_status") or ""})
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
-    json.dump({"schema": "pnf.lic_draft.v1", "drafts": drafts}, open(a.out, "w", encoding="utf-8"), indent=1)
+    json.dump({"schema": "pnf.lic_draft.v1", "drafts": drafts, "held": [{"prospect_id": p["prospect_id"], "trade": R.trade_of(p),
+               "reason": "owner-read shared inbox"} for p in held]}, open(a.out, "w", encoding="utf-8"), indent=1)
     by = {tr: sum(1 for d in drafts if d["trade"] == tr) for tr in ORDER}
-    print(f"OK lic drafts: {len(drafts)} written ({', '.join(f'{k} {v}' for k, v in by.items())}), "
+    print(f"OK lic drafts: {len(drafts)} written ({', '.join(f'{k} {v}' for k, v in by.items())}), {len(held)} held, "
           f"window {lic['window']['from']} to {lic['window']['to']}, sender {R.SALES_SENDER}")
 
 

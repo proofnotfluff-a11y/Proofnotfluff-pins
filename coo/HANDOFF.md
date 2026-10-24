@@ -10,4 +10,4 @@
 - To-do: scoreboard todos (coo/SCOREBOARD.md), kept current.
 - Radar Oct 23: health 4 PASS, AI check 0 of 12, scout (scout/OPPORTUNITIES.md). launches/WIRING.json gates live lead pages. Mondays 9:31 am (Todd's go Oct 23).
 - Skills: 6 scheduled, 4 on request. Index: Bing ok, IndexNow on changes, index-request Fri 7:40, 35 left.
-- Move 3 (Oct 24): $149 pest seat built, all gates passed, offer hidden until seat.checkout (launches/chicago-pest-seat.md). Waiting on Todd: REST_SEAT_PASSWORD secret, separate Gumroad membership, subject call (Legal fix 13). Pest email P1 + copy_gate --pest; 1 of 50 pest prospects has an owner email (todo pest-owners-100).
+- Move 3 done Oct 24, gates passed (launches/chicago-pest-seat.md). Todd: seat secret, Gumroad, subject call. 1 pest owner email (todo pest-owners-100).

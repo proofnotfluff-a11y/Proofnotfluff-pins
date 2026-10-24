@@ -1,4 +1,4 @@
-# Send rules (read only after Todd says send)
+# Send rules (read only after Todd says send, or for a batch under the standing send rule)
 
 Condensed Oct 22, 2026 from coo/LEADS_DESK.md Run 2 for the outreach-drafter stage. Todd's words behind it: "You send after my yes", "Yes, one follow-up" (Oct 18), "use sales@getproofnotfluff.com in tandem with hello@proofnotfluff.com" (Oct 19), keep bounces near 0% (Oct 20); "Yes, two follow-ups" and test 1 with variants A and B (Oct 22, live chat).
 
@@ -9,6 +9,13 @@ Condensed Oct 22, 2026 from coo/LEADS_DESK.md Run 2 for the outreach-drafter sta
 ## Which drafts go
 - Only drafts of CRM prospects with status drafted and batch = the named batch date, matched by To address and subject (follow-ups: the reply draft in that prospect's thread). Leave every other draft alone. One at a time, a few seconds apart, each Gmail step in a new tab you open.
 - The text typed into Gmail must equal data/work/drafts.json plus the footer, character for character; read each draft back after saving.
+
+## Standing send rule (CONSTITUTION 2, Todd, Oct 24, 2026)
+- A cold email batch sends without Todd's per-batch word only when all of these hold: `python3 tools/approved_templates.py --check-drafts <batch file> --file <its template file>` exits 0 (every draft on a template Todd approved, unchanged since); every step under "Before any email leaves" passes; CRM meta/desk.sendsStopped is not true; it is a weekday; and each sender stays inside its cap.
+- Any one fails: the batch goes to Todd as before ("Reply send"), with the reason in one line.
+- Each send day: one SendUserMessage to Todd, one line: what sent, from which inbox, on which templates, and the running totals (delivered, replies, yes, payers).
+- "stop sends" from Todd in any chat: that chat sets meta/desk.sendsStopped true with the time; only his "resume sends" clears it.
+- A new or edited template: its first batch goes to Todd; after his yes, that live chat records it with `--record` and his words.
 
 ## Before any email leaves
 1. `python3 tools/copy_gate.py` exits 0 on the exact batch file. A draft edited after the gate is gated again.

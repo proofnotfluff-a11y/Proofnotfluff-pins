@@ -1,0 +1,95 @@
+{
+ "schema": "pnf.approved_templates.v1",
+ "templates": {
+  ".claude/skills/outreach-drafter/templates.md#T1-A": {
+   "sha256": "fef955205d24bfcc2efd282a475c0640c0f5e41866648b7fa16dc45130ac22c1",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  },
+  ".claude/skills/outreach-drafter/templates.md#T1-B": {
+   "sha256": "d41c6072d1b9c373765f743363769a438375a295c51e9839c6244d4f2a1538ce",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  },
+  ".claude/skills/outreach-drafter/templates.md#T2-A": {
+   "sha256": "3b7df28ad53dffe141975dc892af859c378236c49da6feef0aeadb8494b65612",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  },
+  ".claude/skills/outreach-drafter/templates.md#T2-B": {
+   "sha256": "e19ac12f3ed122e6b1432904e6ab00a144c3b0a5ea87fc2194e70e2cdafa0579",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  },
+  ".claude/skills/outreach-drafter/templates.md#T3-A": {
+   "sha256": "700242cb3a6d4992ffe8efaae1627010106246abca846eaf2c45135a37df438c",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  },
+  ".claude/skills/outreach-drafter/templates.md#T3-B": {
+   "sha256": "84e06de7025ea0a0d30c93895d1ea53778e095db5ebcf2d4f317a50ae5adef09",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  },
+  ".claude/skills/outreach-drafter/templates.md#T4-A": {
+   "sha256": "317968064732510b92f646ba5e629d240af2418e5c7b98c1e374db4013d03062",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  },
+  ".claude/skills/outreach-drafter/templates.md#T4-B": {
+   "sha256": "30c1709b6f3137d74a1fc292969ebbd60223b65209f50d4250a9e957c51e6de2",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  },
+  ".claude/skills/outreach-drafter/templates.md#T5-A": {
+   "sha256": "f28011db478295c95ff446434402d707fa5c9d74c2c9e801ce0a758dc5abdd4f",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  },
+  ".claude/skills/outreach-drafter/templates.md#T5-B": {
+   "sha256": "4008b1a3782a3f69111fc63aa55e7d1797fe8bc922db962c2a1d0520f6551c74",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  },
+  ".claude/skills/outreach-drafter/templates.md#T6-A": {
+   "sha256": "09589ab9233c366b905525e1dc4ca124742b70a9fdf1acd796671407b56842d5",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  },
+  ".claude/skills/outreach-drafter/templates.md#T6-B": {
+   "sha256": "ca30aeece509bc75706d1a630e3b70b3a0a1b5d34a90032b664af2be5e097fbc",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  },
+  ".claude/skills/outreach-drafter/templates.md#T7-A": {
+   "sha256": "da45fc2b6f42ac04cc394e955920bea96f47268a1842c656ed8f9aac996d69ed",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  },
+  ".claude/skills/outreach-drafter/templates.md#T7-B": {
+   "sha256": "a0046641687a546ce4a8c4be7a669cac98be769182cd94fd3fbeb2e803d7923e",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  },
+  ".claude/skills/outreach-drafter/templates.md#T8-A": {
+   "sha256": "04deb567035a6cba69b0b08b9225366e119a935156ec2d460e2e920b2e761170",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  },
+  ".claude/skills/outreach-drafter/templates.md#T8-B": {
+   "sha256": "e06355f44cdcc308f52c1f4a671e4233463994a11d87d975705f574216d08587",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  },
+  ".claude/skills/outreach-drafter/templates.md#T9-A": {
+   "sha256": "6ff9803c16423cacf930deb4d9fe3db0824a77ff1217a95549350d171f4a8c55",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  },
+  ".claude/skills/outreach-drafter/templates.md#T9-B": {
+   "sha256": "ae7fc421352f15caa0197759ae2149b455c76e867182ade01a60ccdf9ea135f6",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  }
+ }
+}

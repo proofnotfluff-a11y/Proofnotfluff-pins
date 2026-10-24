@@ -69,6 +69,8 @@ def nav_html(rel, current=""):
         items.append(("questions", f"{rel}questions/", "Questions"))
     cur = ' aria-current="page"'
     links = "".join(f'<a href="{h}"{cur if k == current else ""}>{t}</a>' for k, h, t in items)
+    # one clear action in every header (design review, Oct 24, 2026): the trade picker on the home hero, one tap from a free sample
+    links += f'<a class="navcta" href="{rel or "./"}#trades">Free samples</a>'
     return f'<nav class="top" aria-label="Main">{links}</nav>'
 
 
@@ -1802,6 +1804,32 @@ def png_size(path):
     return struct.unpack(">II", head[16:24])
 
 
+def webp_of(rel_png, width=None, quality=82):
+    """A WebP copy of a committed PNG for the page hero (SEO and speed audit, Oct 24, 2026: the PNGs ran 129 to 388 KB).
+    The file name carries the PNG's hash, so it is written once per screenshot and the build stays byte for byte the same
+    (tools/check_repo.py site-sync); older copies of the same screenshot and width are removed. Returns (path under docs/, w, h)."""
+    import hashlib, glob, re
+    src = os.path.join(DOCS, rel_png)
+    h = hashlib.sha1(open(src, "rb").read()).hexdigest()[:10]
+    stem, tag = rel_png[:-4], (f"-{width}" if width else "")
+    out_rel = f"{stem}.{h}{tag}.webp"
+    out = os.path.join(DOCS, out_rel)
+    w0, h0 = png_size(src)
+    w, hh = (width, round(h0 * width / w0)) if width and w0 > width else (w0, h0)
+    if not os.path.isfile(out):
+        from PIL import Image
+        im = Image.open(src).convert("RGB")
+        if (w, hh) != (w0, h0):
+            im = im.resize((w, hh), Image.LANCZOS)
+        im.save(out, "WEBP", quality=quality, method=6)
+        mine = re.compile(r"^[0-9a-f]{10}" + re.escape(tag) + r"$")
+        for old in glob.glob(os.path.join(DOCS, stem + ".*.webp")):
+            mid = os.path.basename(old)[len(os.path.basename(stem)) + 1:-5]
+            if old != out and mine.match(mid):
+                os.remove(old)
+    return out_rel, w, hh
+
+
 def money(v, spell_billion=False, bil2=False):
     """One money rule on the leads pages (design director, Oct 17): $770K under $1M, $2.0M under $100M, whole millions
     from $100M up; "billion" is spelled out only in the hero tile. bil2 (Austin, design director Oct 18): $1 billion and up
@@ -1987,7 +2015,7 @@ def leads_page_html(p):
                 + '</section>')
     links = "".join(f'<li><a href="{rel}{E(l[0])}/">{E(l[1])}</a></li>' for l in p.get("links", []))
     method = ('<section class="block"><h2>How to use this list</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"])
-              + (f'<p>Price the work before you call:</p><ul>{links}</ul>' if links else "") + "</section>")
+              + (f'<p>Price the work before you call:</p><ul class="qa-rel">{links}</ul>' if links else "") + "</section>")
     shots = ""
     sdir = p.get("shotsDir", "leads")   # each city's own screenshots (Austin: docs/assets/leads/austin/, tools/leads_check.py --capture)
     shot_f = [os.path.join(DOCS, "assets", sdir, f) for f in ("members-list.png", "workbook.png")]
@@ -2016,11 +2044,11 @@ def leads_page_html(p):
     monday = p.get("mondayForm") if checkout else None
     if monday:   # the free Monday email (email/M1-MONDAY.md): its own double opt-in Kit form, never the old waitlist
         form = (f'<form class="ld-form" action="https://app.kit.com/forms/{E(monday)}/subscriptions" method="post">'
-                '<label for="ldEmail">Email</label><div class="ld-frow"><input id="ldEmail" name="email_address" type="email" required autocomplete="email">'
+                '<label for="ldEmail">Email</label><div class="ld-frow"><input id="ldEmail" name="email_address" type="email" required autocomplete="email" placeholder="you@company.com">'
                 '<button class="btn" type="submit">Send me Monday\'s jobs</button></div></form>')
     elif p.get("kitForm"):
         form = (f'<form class="ld-form" action="https://app.kit.com/forms/{E(p["kitForm"])}/subscriptions" method="post">'
-                '<label for="ldEmail">Email</label><div class="ld-frow"><input id="ldEmail" name="email_address" type="email" required autocomplete="email">'
+                '<label for="ldEmail">Email</label><div class="ld-frow"><input id="ldEmail" name="email_address" type="email" required autocomplete="email" placeholder="you@company.com">'
                 '<button class="btn" type="submit">Join the waitlist</button></div></form>')
     else:
         form = '<p><span class="btn soon" aria-disabled="true">Waitlist opens soon</span></p>'
@@ -2060,7 +2088,14 @@ def leads_page_html(p):
              f"then it is ${price} a month until you cancel. Cancel before day {trial} and you pay nothing."] if trial else [])
         faq.append(["Can I try it before I pay?", "Yes. " + " ".join(ways).replace("Yes. Or start", "Yes. Start")])
     crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Shop", "shop/"), (p["h1"], None)])
-    body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>{hero_act}</div>{tiles}'
+    # store v2 (design review, Oct 24, 2026): the members' app beside the promise on wide screens, so the product is on the
+    # first screen; a WebP copy keeps it light, loaded first because it is the largest thing above the fold
+    heroshot = ""
+    if shots and os.path.isfile(shot_f[0]):
+        wp, ww, wh = webp_of(os.path.relpath(shot_f[0], DOCS).replace(os.sep, "/"))
+        heroshot = (f'<figure class="ld-heroshot"><img src="{rel}{wp}" width="{ww}" height="{wh}" fetchpriority="high" decoding="async" alt="{E(alt1)}">'
+                    '<figcaption>A screen from the members\' app; its counts are from the week it was captured</figcaption></figure>')
+    body = (f'{crumb}<div class="ld-herogrid{" has-shot" if heroshot else ""}"><div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>{hero_act}</div>{heroshot}</div>{tiles}'
             f'{near_html}{gc_html}{big_html}{method}{shots}{cta_html}{guides_block(p["slug"], rel=rel)}{faq_block(faq)}')
     script = r"""<script>(function(){var list=document.getElementById('ldList');if(list){
 var cards=[].slice.call(list.querySelectorAll('.ld-proj')),chips=[].slice.call(document.querySelectorAll('.ld-chip')),
@@ -2483,14 +2518,15 @@ def product_card(x, rel, medium):
     nums = "".join(f'<div><b>{E(a)}</b><span>{E(b)}</span></div>' for a, b in x.get("nums", []))
     if x["audience"] == "ecom":
         prim = f'<a class="btn" href="{rel}{x["href"]}">Try the free calculator</a>'
-        sec = f'<a class="st-btn2" href="{E(utm(x["checkout"], medium, x["campaign"]))}" rel="noopener">Buy the workbook, ${E(x["price"])}</a>'
+        sec = f'<a class="st-link" href="{E(utm(x["checkout"], medium, x["campaign"]))}" rel="noopener">Buy the workbook, ${E(x["price"])}{ARROW}</a>'
         t = 0
     else:
         prim = f'<a class="btn" href="{rel}{x["href"]}{x["sample"]}">See this week\'s free sample</a>'
         t = x.get("trial") if x.get("checkout") else 0
         # a list with a Gumroad trial shows the trial button and its terms, as the shop does (Todd, Oct 23: the home cards
         # said only "Subscribe")
-        sec = (f'<a class="st-btn2" href="{E(utm(x["checkout"], medium, x["campaign"]))}" rel="noopener">Start your {t}-day free trial</a>' if t else
+        # one primary action per card (design review, Oct 24): the sample is the button, the trial a text link beside it
+        sec = (f'<a class="st-link" href="{E(utm(x["checkout"], medium, x["campaign"]))}" rel="noopener">or try {t} days free{ARROW}</a>' if t else
                f'<a class="st-link" href="{E(utm(x["checkout"], medium, x["campaign"]))}" rel="noopener">Subscribe</a>' if x.get("checkout") else "")
     return (f'<article class="st-card"><div class="st-top"><span class="st-tag">{E(x["tag"])}</span>'
             f'<span class="st-price">${E(x["price"])}<small> {E(x["per"])}</small></span></div>'
@@ -2549,11 +2585,22 @@ def home_html(pages, live, doors=False):
         week = ('<aside class="card st-week" aria-label="This week in the records"><p class="lab">This week in the records</p><dl>'
                 + "".join(f"<div><dt>{E(t)}</dt><dd>{E(n)}</dd></div>" for n, t in rows)
                 + f'</dl><p class="asof">City data pulled {E(" and ".join(dates))}. Refreshed every Monday.</p></aside>')
-    hero = ('<section class="st-hero" aria-labelledby="hero-title"><div><p class="eyebrow">Lead lists from public records</p>'
+    # store v2 hero (design review, Oct 24, 2026): the product on the first screen and the trade picker in the hero, so a
+    # visitor is one tap from a free sample; the counts sit on the product shot instead of a separate card
+    shot = ""
+    if os.path.isfile(os.path.join(DOCS, "assets", "leads", "members-list.png")):
+        wp, ww, wh = webp_of("assets/leads/members-list.png")
+        sp, sw, _ = webp_of("assets/leads/members-list.png", width=720)
+        # below the trade picker on phones, so no fetch priority; phones get the 720 px copy (Lighthouse, Oct 24: LCP 2.0 s)
+        shot = (f'<div class="hx-frame"><img src="{wp}" srcset="{sp} {sw}w, {wp} {ww}w" sizes="(min-width:1000px) 540px, 100vw" width="{ww}" height="{wh}" loading="lazy" decoding="async" '
+                'alt="A screen from the members\' app for Chicago Construction Cleaning Leads: projects sorted closest to finish, with filters and a map"></div>')
+    week_hx = week.replace('class="card st-week"', 'class="hx-week"', 1) if week else ""
+    hero = ('<section class="hx" aria-labelledby="hero-title"><div class="hx-copy"><p class="eyebrow">Lead lists from public records</p>'
             '<h1 id="hero-title">Sales leads from the City\'s own records, every Monday.</h1>'
             '<p class="lede">Weekly lists for cleaning, hood cleaning and pest control companies in Chicago and Austin. Each one has a free sample, new every Monday.</p>'
-            '<p class="st-cta"><a class="btn ld-btnbig" href="#lists-title">See this week\'s free samples</a></p>'
-            f'</div>{week}</section><section class="st-pickrow" aria-labelledby="pick-title"><h2 class="st-pick" id="pick-title">Or go straight to your trade</h2><ul class="st-trades">{trades}</ul></section>')
+            '<p class="hx-cta"><a class="btn ld-btnbig" href="#trades">Pick your trade</a><a class="st-link" href="#calc-title">Pricing a job? Try a free calculator</a></p></div>'
+            f'<div class="hx-side">{shot}{week_hx}</div>'
+            f'<div class="hx-pickrow"><h2 class="hx-pick" id="trades">Open this week\'s free sample for your trade</h2><ul class="st-trades hx-trades">{trades}</ul></div></section>')
     calcs_live = [p for p in live if p.get("kind") not in ("leads", "restleads", "licleads", "question", "newin")]
     if doors:
         by_calc = {p["slug"]: p for p in calcs_live}
@@ -2576,7 +2623,8 @@ def home_html(pages, live, doors=False):
                 # phones: both doors before the counts, so the second door is not five screens down
                 + (week.replace('class="card st-week"', 'class="card st-week st-weeklow"', 1) if week else ""))
     coming = store_coming()
-    cards = "".join(product_card(x, "", "home") for x in prods)
+    cards = "".join(product_card(x, "", "home") for x in prods if x["audience"] != "ecom") + "".join(
+        product_card(x, "", "home").replace('<article class="st-card">', '<article class="st-card st-wide">', 1) for x in prods if x["audience"] == "ecom")
     lists = ('<section class="st-sec" aria-labelledby="lists-title"><h2 id="lists-title">The lists</h2>'
              '<p>A free sample on every page. Members get every record, named, in a web app and an Excel file, every Monday. Cancel any time.</p>'
              f'<div class="st-grid">{cards}</div>{coming_card(coming, "", "homeLic", cls="st-strip") if coming else ""}</section>')
@@ -2596,7 +2644,11 @@ def home_html(pages, live, doors=False):
     if rest_:
         groups.append(("More calculators", rest_))
     li = lambda p: f'<li><a href="{p["slug"]}/"><b>{E(p["h1"])}</b><span>{E(p["card"])}</span></a></li>'
-    calc_cards = "".join(f'<h3 class="st-cgroup">{E(t)}</h3><ul class="st-calcs">{"".join(li(p) for p in items[:4])}</ul>' for t, items in groups)
+    feat4 = [by_slug[x] for x in st.get("doorCalcs", []) if x in by_slug][:4]
+    if doors or not feat4:
+        calc_cards = "".join(f'<h3 class="st-cgroup">{E(t)}</h3><ul class="st-calcs">{"".join(li(p) for p in items[:4])}</ul>' for t, items in groups)
+    else:   # store v2: four owner calculators, the rest one tap away (design review, Oct 24: 16 entries made a lead-list store read like a hobby site)
+        calc_cards = f'<ul class="st-calcs st-calc4">{"".join(li(p) for p in feat4)}</ul>'
     calc_cards += f'<p class="st-all"><a class="st-btn2" href="calculators/">All {len(calcs_live)} free calculators</a></p>'
     if not doors:   # the calculators page reads the live home's groups, never the draft's
         CALC_GROUPS[:] = groups
@@ -2637,6 +2689,26 @@ def home_html(pages, live, doors=False):
             FOOT.format(rel="", script="", notices=data_notices(), sources="City of Chicago and City of Austin open data, pulled as dated on each list. IRS Topic 554 and IRS standard mileage rates, checked Oct 6, 2026."))
 
 
+def shop_seat_row(rel):
+    """The Chicago pest control daily seat as a shop row, in the restaurant page's own cleared words; its button opens the
+    offer on the restaurant page (#seat), where the terms and the checkout sit, so the shop adds no new checkout."""
+    p = _pages_by_slug().get("chicago-restaurant-inspection-leads")
+    seat = (p or {}).get("seat") or {}
+    if not p or not seat.get("checkout"):
+        return ""
+    cap, price = int(seat["seats"]), E(str(seat["price"]))
+    gets = ["New places each morning, after the City's overnight refresh, with the last 14 days kept so a missed morning loses nothing.",
+            "Each place: name, street, ZIP, community area, the City's result, date and violation codes, failed visits in 90 days, and a link to the City's record.",
+            "A Call button, called marks and private notes on your phone or computer, and a CSV download."]
+    return (f'<article class="sh-item" data-aud="trade" data-key="chicago-pest-seat"><div class="sh-main"><p class="st-tag">Chicago · Pest control, daily</p>'
+            f'<h2>Chicago Pest Control Daily Seat</h2><p>At most {cap} Chicago pest control companies hold a seat at a time. Each morning, the Chicago food places '
+            'whose failed or conditional inspection had a pest violation, named, with street address and the City\'s violation codes.</p></div>'
+            f'<div class="sh-buy"><div class="amt">${price}<small> a month</small></div><p>No lock-in, cancel any time. At most {cap} seats.</p>'
+            f'<a class="btn" href="{rel}chicago-restaurant-inspection-leads/#seat">See the pest seat</a>'
+            f'<p class="st-note">Checkout and seat terms are on the next page. <a href="{rel}refunds/">Refunds and cancelling</a></p></div>'
+            f'<div class="sh-gets"><h3 class="sr">What you get</h3><ul class="checks">{"".join(f"<li>{E(g)}</li>" for g in gets)}</ul></div></article>')
+
+
 def shop_html():
     CURRENT["nav"] = "shop"
     rel = "../"
@@ -2648,21 +2720,25 @@ def shop_html():
         gets = "".join(f"<li>{E(g)}</li>" for g in x.get("gets", []))
         if x["audience"] == "ecom":
             acts = (f'<a class="btn" href="{rel}{x["href"]}">Try the free calculator</a>'
-                    f'<a class="st-btn2" href="{E(utm(x["checkout"], "shop", x["campaign"]))}" rel="noopener">Buy the workbook, ${E(x["price"])}</a>')
+                    f'<a class="st-link" href="{E(utm(x["checkout"], "shop", x["campaign"]))}" rel="noopener">Buy the workbook, ${E(x["price"])}{ARROW}</a>')
             cadence = "Instant download."
         else:
             t = x.get("trial")
             buy_label = f"Start your {t}-day free trial" if t else f"Subscribe, ${E(x['price'])} {E(x['per'])}"
             acts = (f'<a class="btn" href="{rel}{x["href"]}{x["sample"]}">See this week\'s free sample</a>'
-                    + (f'<a class="st-btn2" href="{E(utm(x["checkout"], "shop", x["campaign"]))}" rel="noopener">{buy_label}</a>' if x.get("checkout") else ""))
+                    + (f'<a class="st-link" href="{E(utm(x["checkout"], "shop", x["campaign"]))}" rel="noopener">{"or " + buy_label[0].lower() + buy_label[1:] if t else buy_label}{ARROW}</a>' if x.get("checkout") else ""))
             cadence = (f"New list every Monday. {t} days free, then ${E(x['price'])} {E(x['per'])}." if t else "New list every Monday. Cancel any time.")
-        rows += (f'<article class="sh-item" data-aud="{x["audience"]}"><div class="sh-main"><p class="st-tag">{E(x["tag"])}</p>'
+        rows += (f'<article class="sh-item" data-aud="{x["audience"]}" data-key="{E(x["key"])}"><div class="sh-main"><p class="st-tag">{E(x["tag"])}</p>'
                  f'<h2>{nb(x["name"])}</h2><p>{E(x["what"])}</p></div>'
                  f'<div class="sh-buy"><div class="amt">${E(x["price"])}<small> {E(x["per"])}</small></div><p>{cadence}</p>{acts}'
                  + (f'<p class="st-note">Secure checkout by Gumroad. Your card goes in at checkout and nothing is charged for {x["trial"]} days. '
                     f'Cancel in your Gumroad library before day {x["trial"]} and you pay nothing. <a href="{rel}refunds/">Refunds and cancelling</a></p></div>'
                     if x.get("trial") else f'<p class="st-note">Secure checkout by Gumroad. <a href="{rel}refunds/">Refunds and cancelling</a></p></div>')
                  + f'<div class="sh-gets"><h3 class="sr">What you get</h3><ul class="checks">{gets}</ul><p class="sh-src">{E(x.get("source", ""))}</p></div></article>')
+    seat_row = shop_seat_row(rel)
+    if seat_row:   # the $149 daily pest seat sits right under the restaurant list it comes from (design review, Oct 24)
+        cut = rows.find('<article class="sh-item"', rows.find('data-key="chicago-restaurant-inspection-leads"') + 1)
+        rows = rows + seat_row if cut < 0 or 'data-key="chicago-restaurant-inspection-leads"' not in rows else rows[:cut] + seat_row + rows[cut:]
     coming = store_coming()
     if coming:
         rows += coming_card(coming, rel, "shopLic", cls="sh-item soon", h="h2").replace('<article class="sh-item soon">', '<article class="sh-item soon" data-aud="trade">', 1)
@@ -2672,7 +2748,7 @@ def shop_html():
             '<button type="button" aria-pressed="false" data-a="ecom">E-commerce</button></div><p class="sr" id="shCount" aria-live="polite"></p>')
     body = (f'{crumb}<p class="eyebrow">Lead lists and finance tools</p><h1>Pick the list that finds your customers.</h1>'
             '<p class="lede">Every list opens with this week\'s free sample. Subscribe when it fits; cancel any time.</p>'
-            f'{filt}<div class="sh-list" id="shList">{rows}</div>'
+            f'<div class="sh-list" id="shList">{rows}</div>'
             '<div class="sh-two"><div class="card"><h2>Refunds and cancelling</h2>'
             f'<p>{E(load_store().get("refunds", {}).get("lists", ""))}</p><p><a href="{rel}refunds/">The full policy</a></p></div>'
             '<div class="card"><h2>What these lists are, and are not</h2><p>Public City records, filtered and sorted for one trade, with the date '
@@ -2684,6 +2760,7 @@ def shop_html():
               "var n=0;it.forEach(function(e){e.hidden=!(a==='all'||e.dataset.aud===a);if(!e.hidden)n++});"
               "document.getElementById('shCount').textContent='Showing '+n+' of '+it.length+' products'})})})();</script>")
     ld = ld_tags(crumb_ld, *[product_ld(x, BASE + x["href"]) for x in prods])
+    script = ""   # the All / Trades / E-commerce filter came off with six products (design review, Oct 24)
     return (HEAD.format(title="Shop: lead lists for cleaning, hood cleaning and pest control | ProofNotFluff",
                         desc="Weekly lead lists from Chicago and Austin public records, $29 or $39 a month with a free sample on every page, and the 13-Week E-commerce Cash Flow workbook.",
                         url=url, rel=rel, shop=SHOP, ld=ld, bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +

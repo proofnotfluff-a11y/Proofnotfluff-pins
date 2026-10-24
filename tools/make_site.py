@@ -1579,7 +1579,7 @@ def lead_cost_page(p):
 <div class="callout warn" data-show-if="odd > 0">More quotes than leads, or more jobs than quotes? Check the counts: the rates below the tiles use them.</div>
 <div class="callout warn" data-show-if="none > 0">Type one month of lead spend, leads and jobs.</div>
 </div></div>
-<div class="mbar" aria-hidden="true"><span>Per won job <b data-out="cpj">$0</b></span><span>Profit <b data-out="profit" data-fmt="money0">$0</b></span></div>"""
+<div class="mbar" aria-hidden="true"><span>Per won job <b data-out="cpj" data-never="No jobs yet" data-never-if="cpjNone">$0</b></span><span>Profit <b data-out="profit" data-fmt="money0">$0</b></span></div>"""
     by = {x["key"]: x for x in store_products()}
     rows, cards = "", ""
     for n, x in enumerate(lists):

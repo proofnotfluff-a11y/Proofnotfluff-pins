@@ -3635,8 +3635,8 @@
    "title": "Cost Per Lead Calculator: Your Real Cost Per Won Job | ProofNotFluff",
    "desc": "Free cost per lead calculator for cleaning and pest control owners who buy Angi, Thumbtack or similar leads. Type a month of lead spend, leads, quotes and jobs won to see cost per lead, cost per won job and the profit left after lead spend.",
    "eyebrow": "Free calculator",
-   "h1": "Cost Per Lead Calculator: What Each Won Job Really Costs",
-   "lede": "For cleaning and pest control owners who pay Angi, Thumbtack, HomeAdvisor or a similar site for leads. Type one month of lead spend, leads, quotes and jobs won. You get your cost per lead, the lead cost of each job you actually won, and the profit those jobs left after the lead bill. Free, no sign-up.",
+   "h1": "Cost Per Lead Calculator: Your Real Cost Per Won Job",
+   "lede": "For cleaning and pest control owners who pay Angi, Thumbtack, HomeAdvisor or a similar site for leads. Type one month of lead spend, leads, quotes and jobs won. You get your cost per lead, the lead cost of each job you actually won, and the profit those jobs left after the lead bill. The math is the same for any trade that buys leads. Free, no sign-up.",
    "card": "Cost per lead, lead cost per won job and the profit left after lead spend, from your own month of platform leads.",
    "defaults": {
     "spend": "1,200",
@@ -3728,9 +3728,9 @@
   {
    "slug": "amazon-dd7-payout-calculator",
    "kind": "dd7_payout",
-   "draft": true,
+   "draft": false,
    "segment": "ecommerce-finance",
-   "title": "Amazon DD+7 Payout Calculator: Days to Your Bank | ProofNotFluff",
+   "title": "Amazon DD+7 Seller Payout Calculator: Days to Your Bank | ProofNotFluff",
    "desc": "Free Amazon DD+7 calculator. Type daily sales, FBA or merchant fulfilled, delivery days and your payout schedule to see how much Amazon holds, the days from order to bank and your cash low point. Rules from Amazon's own help pages.",
    "eyebrow": "Free calculator",
    "h1": "Amazon DD+7 Payout Calculator",
@@ -3750,7 +3750,7 @@
    },
    "method": [
     "Amazon's help page on payments based on delivery date says funds are reserved until delivery plus 7 days. Its own example: sold January 1, delivered January 6, available for payout starting January 14. So the calculator makes each day's sales available 8 days after the delivery date it uses.",
-    "Which delivery date: with valid tracking from an integrated carrier, Amazon uses the actual delivery date; without it, the latest estimated delivery date. For FBA orders, type how long your orders usually take to arrive.",
+    "Which delivery date: with valid tracking from an integrated carrier, Amazon uses the actual delivery date; without it, the latest estimated delivery date. Amazon's page does not say how it dates FBA deliveries, so for FBA orders the calculator uses the days to delivery you type.",
     "Then the payout. On the scheduled payout every 14 days, money that becomes available waits for the next payout day, so an order can wait up to 13 more days. If you request a payout every day, it goes out the day it becomes available. Then add the days your bank takes.",
     "Money held is everything sold but not yet in your bank, once sales have run long enough to settle into the cycle. The low point starts from a standing start: sales at this rate begin today, nothing is held yet, and your daily spend goes out from day 1. That is the squeeze a new store, a new product or a jump in sales feels. To test a jump, type only the extra daily sales and the extra daily spend.",
     "Not included: refunds, A-to-z claims and chargebacks that Amazon can hold as an account level reserve, a reserve period extended after a risk review, and charges billed outside the order such as ads."
@@ -3830,7 +3830,7 @@
     ],
     [
      "Is DD+7 different for FBA and merchant fulfilled orders?",
-     "The rule is the same: delivery plus 7 days. What changes is the delivery date Amazon uses. Without valid tracking from an integrated carrier, Amazon uses the latest estimated delivery date, which can be later than the real one."
+     "Amazon's page gives one rule for every shipment: delivery plus 7 days. What can change is the delivery date it uses: the actual one with valid tracking from an integrated carrier, or the latest estimated delivery date without it, which can be later. The page does not single out FBA."
     ],
     [
      "Does requesting a payout every day get around DD+7?",
@@ -3845,7 +3845,24 @@
      "No. It is a planning estimate from the numbers you type and Amazon's published rules."
     ]
    ],
-   "sources": "Rules from Amazon's US Seller Central help pages, read Oct 24, 2026 and linked above: Payments based on delivery date (G202124090), Deferred transactions (GLRNLZDAKHDBBVBY), Why didn't I get paid? (G19301), Disburse on Demand (GSCWUZNYQRY4LEZH), Express Payout FAQ (GA24UN79VBPKXZXX), What is account level reserve? (G200136810). No fees or rates are assumed: every figure is yours."
+   "sources": "Rules from Amazon's US Seller Central help pages, read Oct 24, 2026 and linked above. No fees or rates are assumed: every figure is yours. ProofNotFluff is not affiliated with or endorsed by Amazon.",
+   "where": {
+    "title": "Where to see your own numbers in Seller Central",
+    "items": [
+     {
+      "text": "Each order still held, and the day Amazon expects to release it: in New Seller Central, Manage Transactions filtered to Deferred; in Legacy Seller Central, Payments, Transaction View filtered to Deferred transactions.",
+      "page": "Deferred transactions for accounting and payment reconciliation",
+      "url": "https://sellercentral.amazon.com/help/hub/reference/external/GLRNLZDAKHDBBVBY"
+     },
+     {
+      "text": "Your next payout date: Manage Payouts in New Seller Central, or the Payments dashboard in Legacy Seller Central.",
+      "page": "Why didn't I get paid?",
+      "url": "https://sellercentral.amazon.com/help/hub/reference/external/G19301"
+     }
+    ]
+   },
+   "stages": true,
+   "published": "2026-10-24"
   },
   {
    "slug": "markup-calculator",

@@ -751,7 +751,8 @@
   // standard ACH 3 to 5 business days, GA24UN79VBPKXZXX). Order day t: available day t + days to the delivery date
   // used + 8; payout started that day (daily) or on the next scheduled payout day (nextPayout, nextPayout + 14, ...);
   // in the bank bankDays later. Held on day t = sold through day t less what reached the bank through day t.
-  // Bank on day t = cash + arrived - daily costs x t, from a standing start (no sales held on day 0).
+  // Bank on day t = cash + arrived - daily costs x t, from a standing start (no sales held on day 0). When daily spend
+  // is at or above daily sales the balance never stops falling, so the page shows that instead of a horizon-bound low.
   function payoutGap(i) {
     var sales = Math.max(0, num(i.sales)), mfn = Math.round(num(i.fulfil)) === 1 ? 1 : 0;
     var tracked = Math.round(num(i.tracked)) === 0 ? 0 : 1, daily = Math.round(num(i.schedule)) === 1 ? 1 : 0;
@@ -781,11 +782,38 @@
       fastest: fastest, slowest: slowest, heldMax: hMax, heldMin: hMin, heldDays: sales > 0 ? hMax / sales : 0,
       first: first, waitDays: first ? first - 1 : 0, low: low, lowDay: lowDay, need: low < 0 ? -low : 0,
       endBal: bal[H], horizon: H, hasCosts: costs > 0 ? 1 : 0, noCosts: costs > 0 ? 0 : 1,
-      short: costs > 0 && low < 0 ? 1 : 0, ok: costs > 0 && low >= 0 ? 1 : 0, losing: costs > sales && sales > 0 ? 1 : 0,
+      falling: costs > 0 && costs >= sales ? 1 : 0, firstText: first ? "Day " + first : "None yet",
+      short: costs > 0 && costs < sales && low < 0 ? 1 : 0, ok: costs > 0 && costs < sales && low >= 0 ? 1 : 0,
+      lowOn: costs > 0 && costs < sales ? 1 : 0, losing: costs >= sales && sales > 0 && costs > 0 ? 1 : 0,
       noSales: sales > 0 ? 0 : 1, range: daily ? 0 : 1 };
   }
 
-  var api = { leadCost: leadCost, payoutGap: payoutGap, seTax: seTax, hourly: hourly, service: service, serviceSqft: serviceSqft, dayRate: dayRate, cleaningSqft: cleaningSqft, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
+  // Stage counts (Todd, Oct 24, 2026): a calculator page can count that it was used and that an upgrade link was
+  // clicked, keeping the privacy promise: nothing typed leaves the browser and no cookies. Each count loads one fixed,
+  // same-site address (e/<slug>/use/ or e/<slug>/upgrade/) in a hidden frame; that page carries only the cookie-free
+  // Cloudflare Web Analytics tag, which records it as a page view. Each count fires at most once per page load.
+  function stages(form, base) {
+    var done = {};
+    function count(kind, then) {
+      if (done[kind]) { if (then) then(); return; }
+      done[kind] = 1;
+      var f = document.createElement("iframe"), fired = false, go = function () { if (!fired) { fired = true; if (then) then(); } };
+      f.src = base + kind + "/"; f.title = "Anonymous count"; f.tabIndex = -1; f.setAttribute("aria-hidden", "true");
+      f.style.cssText = "position:absolute;width:0;height:0;border:0;visibility:hidden";
+      f.addEventListener("load", function () { setTimeout(go, 300); });
+      setTimeout(go, 900);
+      document.body.appendChild(f);
+    }
+    form.addEventListener("input", function () { count("use"); });
+    document.querySelectorAll('a[data-stage="upgrade"]').forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0 || a.target === "_blank") { count("upgrade"); return; }
+        e.preventDefault(); count("upgrade", function () { location.href = a.href; });
+      });
+    });
+  }
+
+  var api = { stages: stages, leadCost: leadCost, payoutGap: payoutGap, seTax: seTax, hourly: hourly, service: service, serviceSqft: serviceSqft, dayRate: dayRate, cleaningSqft: cleaningSqft, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
     strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, profitLoss: profitLoss, cakeQuote: cakeQuote, unitCost: unitCost, handmadePrice: handmadePrice, markup: markup, breakEven: breakEven, choreSplit: choreSplit, clientMix: clientMix, cakeSizes: CAKE_SIZES, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;

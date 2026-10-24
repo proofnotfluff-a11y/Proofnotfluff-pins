@@ -1609,7 +1609,7 @@ def _dd7_next(p):
     q = pages.get(nx["question"])
     out = f'<section class="block"><h2>{E(nx["title"])}</h2>'
     if kit:
-        out += f'<p>{E(nx["workbook"])} <a href="../{kit["href"]}">13 week cash flow calculator</a></p>'
+        out += f'<p>{E(nx["workbook"])} <a href="../{kit["href"]}">13 week cash flow calculator</a>.</p>'
     if q and is_live(q):
         out += f'<p>{E(nx["shopify"])} <a href="../{q["slug"]}/">{E(q["h1"])}</a></p>'
     return out + '</section>'
@@ -1634,43 +1634,48 @@ def dd7_page(p):
 </fieldset>
 <fieldset><legend>How you get paid</legend>
 {sel("schedule", "Payout schedule", "Amazon's scheduled payout every 14 days, or a payout you request daily", [(0, "14 days"), (1, "Daily")], d["schedule"])}
-<div data-show-if="scheduled > 0">{field("nextPayout", "Days until your next scheduled payout", d["nextPayout"], "1 to 14. Manage Payouts or the Payments dashboard shows the date")}</div>
-{field("bankDays", "Days for a payout to reach your bank", d["bankDays"], "Express Payout: within 24 hours, so 1. Standard: 3 to 5 business days")}
 </fieldset>
 <fieldset><legend>Your cash (for the low point)</legend>
 {field("cash", "Cash in the bank today", d["cash"], "All business accounts together", pre="$")}
 {field("costs", "What you pay out per day", d["costs"], "Stock, ads, shipping, payroll and bills, as a daily average", pre="$")}
+</fieldset>
+<fieldset><legend>Fine tune (optional)</legend>
+<div data-show-if="scheduled > 0">{field("nextPayout", "Days until your next scheduled payout", d["nextPayout"], "1 to 14. Manage Payouts or the Payments dashboard shows the date")}</div>
+{field("bankDays", "Days for a payout to reach your bank", d["bankDays"], "Express Payout: within 24 hours, so 1. Standard: 3 to 5 business days")}
 </fieldset></form>"""
     results = """<div class="sticky"><div class="card" aria-live="polite">
 <div class="tiles">
 <div class="tile key"><div class="lab">Money Amazon holds at the most</div><div class="val" data-out="heldMax" data-fmt="money0">$0</div><div class="sub"><span data-out="heldDays" data-fmt="int">0</span> days of sales not yet in your bank</div></div>
 <div class="tile"><div class="lab">Order to bank</div><div class="val"><span data-out="fastest" data-fmt="int">0</span><span data-show-if="range > 0"> to <span data-out="slowest" data-fmt="int">0</span></span> days</div><div class="sub"><span data-show-if="range > 0">Depends on the order's day in the payout cycle</span><span data-show-if="scheduled < 1">For every order, with a daily request</span></div></div>
-<div class="tile"><div class="lab">Your bank's low point</div><div class="val" data-out="low" data-fmt="money0">$0</div><div class="sub"><span data-show-if="hasCosts > 0">On day <span data-out="lowDay" data-fmt="int">0</span>, if sales start today</span><span data-show-if="noCosts > 0">Add what you pay out per day</span></div></div>
-<div class="tile"><div class="lab">Cash needed to stay above $0</div><div class="val" data-out="need" data-fmt="money0">$0</div><div class="sub">Before the first payouts catch up</div></div>
+<div class="tile"><div class="lab">Your bank's low point</div><div class="val" data-out="low" data-fmt="money0" data-never="Keeps falling" data-never-if="falling">$0</div><div class="sub"><span data-show-if="lowOn > 0">On day <span data-out="lowDay" data-fmt="int">0</span>, if sales start today</span><span data-show-if="falling > 0">You pay out more than Amazon pays you</span><span data-show-if="noCosts > 0">Add what you pay out per day</span></div></div>
+<div class="tile"><div class="lab">Cash needed to stay above $0</div><div class="val" data-out="need" data-fmt="money0" data-never="No set amount" data-never-if="falling">$0</div><div class="sub"><span data-show-if="falling < 1">Before the first payouts catch up</span><span data-show-if="falling > 0">Until spend drops below sales</span></div></div>
 </div>
 <ul class="lines">
 <li><span>Days to the delivery date Amazon uses</span><span data-out="dateDays" data-fmt="int">0</span></li>
 <li><span>Days from order until Amazon makes it available</span><span data-out="avail" data-fmt="int">0</span></li>
-<li><span>Day the first money reaches your bank, from a standing start</span><span data-out="first" data-fmt="int">0</span></li>
+<li><span>First money in your bank</span><span data-out="firstText" data-fmt="text">Day 0</span></li>
 <li data-show-if="range > 0"><span>Money Amazon holds at the least</span><span data-out="heldMin" data-fmt="money0">$0</span></li>
 </ul>
 <div class="callout warn" data-show-if="short > 0">Your bank runs <b data-out="need" data-fmt="money0">$0</b> short on day <b data-out="lowDay" data-fmt="int">0</b>. Have that much more ready, or slow what you pay out before then.</div>
 <div class="callout" data-show-if="ok > 0">Your cash covers the wait: the lowest it gets is <b data-out="low" data-fmt="money0">$0</b>, on day <b data-out="lowDay" data-fmt="int">0</b>.</div>
-<div class="callout warn" data-show-if="losing > 0">You pay out more per day than Amazon pays you, so cash keeps falling whatever the payout timing.</div>
-<div class="callout warn" data-show-if="eddUsed > 0">Without valid tracking, each order waits for its latest estimated delivery date, not the real one.</div>
+<div class="callout warn" data-show-if="falling > 0">You pay out as much as Amazon pays you or more, so cash keeps falling whatever the payout timing. Lower the daily spend to see a low point.</div>
+<div class="callout" data-show-if="eddUsed > 0">Without valid tracking, each order waits for its latest estimated delivery date, not the real one.</div>
 <div class="callout" data-show-if="noCosts > 0">Add what you pay out per day to see your low point.</div>
 <div class="callout warn" data-show-if="noSales > 0">Type your daily sales after Amazon fees.</div>
 </div></div>
-<div class="mbar" aria-hidden="true"><span>Held <b data-out="heldMax" data-fmt="money0">$0</b></span><span>Low <b data-out="low" data-fmt="money0">$0</b></span></div>"""
+<div class="mbar" aria-hidden="true"><span>Held <b data-out="heldMax" data-fmt="money0">$0</b></span><span>Low <b data-out="low" data-fmt="money0" data-never="Falling" data-never-if="falling">$0</b></span></div>"""
     rules = "".join(f'<li><span>{E(r["rule"])} Source: <a href="{E(r["url"])}" rel="noopener">{E(r["page"])}</a>.</span></li>' for r in p["rules"])
     extra = (f'<section class="block"><h2>{E(p["rulesTitle"])}</h2><ul class="checks">{rules}</ul>'
              + "".join(f"<p>{E(t)}</p>" for t in p["rulesNotes"]) + '</section>'
+             + (f'<section class="block"><h2>{E(p["where"]["title"])}</h2><ul class="checks">'
+                + "".join(f'<li><span>{E(w["text"])} Source: <a href="{E(w["url"])}" rel="noopener">{E(w["page"])}</a>.</span></li>' for w in p["where"]["items"])
+                + '</ul></section>' if p.get("where") else "")
              + _dd7_next(p))
     script = """<script>
 (function(){var f=document.getElementById("calc");
 /* Maths: PNF.payoutGap in assets/pnf-calc.js; rules and dates in its comment and on this page. */
 var M=function(i){return PNF.payoutGap(i);};
-PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;})();</script>"""
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;PNF.stages(f,"../e/amazon-dd7-payout-calculator/");})();</script>"""
     return form, results + "\n<!--LC-EXTRA-->" + extra, script
 
 
@@ -2108,6 +2113,8 @@ def page_html(p):
                   + (f'<div class="fc-mail">{kit_form(kit["kitForm"], "Not ready? Get an email when the workbook gets an update", "Keep me posted", "kitEmail", note="Unsubscribe in one click. Stored with Kit, our email provider, and never sold.")}</div>' if kit.get("kitForm") else "")
                   + '</section>')
             body = body.replace('<section class="block"><h2>How it works</h2>', up + '<section class="block"><h2>How it works</h2>', 1)
+    if p.get("stages"):   # stage counts: Gumroad links count an upgrade click (PNF.stages, docs/e/<slug>/)
+        body = body.replace('href="https://proofnotfluff.gumroad.com', 'data-stage="upgrade" href="https://proofnotfluff.gumroad.com')
     ld = ld_json(p, url) + ld_tags(crumb_ld, *extra_ld)
     return (HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=SHOP, ld=ld, bodycls=' class="has-mbar"', robots=robots, analytics=analytics_tag()) + body +
             FOOT.format(rel=rel, script=script, sources=E(p["sources"]), notices=data_notices() if city_numbers else ""))
@@ -2663,7 +2670,8 @@ def privacy_html():
                 "When you buy a list: Gumroad, our checkout, gives us your name, your email and what you bought. Gumroad takes the card; "
                 "we never see your full card number.",
                 "Visits: Cloudflare Web Analytics counts page views without cookies and without identifying you. The calculators run in your "
-                "browser and send nothing. In the members&#39; apps, contacted marks and notes stay in your own browser."]) +
+                "browser and never send what you type. Some calculators also count, as an anonymous page view of a fixed address on this site, "
+                "that someone used the calculator or clicked through to buy; no number you type is part of that count. In the members&#39; apps, contacted marks and notes stay in your own browser."]) +
             '<h2>Why</h2>' + li([
                 "To send the email you asked for and to answer you.",
                 "For businesses we email: to ask whether you want the free Monday email, with at most two follow ups, and to send it if you say yes.",
@@ -2842,6 +2850,20 @@ def og_all(pages, live):
         og_image(p["slug"], clean(p.get("eyebrow")) or "ProofNotFluff", clean(p["h1"]), clean(p.get("card")))
 
 
+def write_stage_pages(pages):
+    """docs/e/<slug>/use/ and docs/e/<slug>/upgrade/ for pages with "stages": tiny noindex pages holding only the
+    cookie-free analytics tag, loaded in a hidden frame by PNF.stages so Cloudflare Web Analytics counts each stage
+    as a page view of a fixed address. No number a visitor types is ever part of the address or sent anywhere."""
+    for p in pages:
+        if not p.get("stages") or not is_live(p):
+            continue
+        for kind in ("use", "upgrade"):
+            d = os.path.join(DOCS, "e", p["slug"], kind); os.makedirs(d, exist_ok=True)
+            open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(
+                f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow">'
+                f'<link rel="icon" href="data:,"><title>Count: {E(kind)}</title>{analytics_tag()}</head><body></body></html>')
+
+
 def main():
     spec = json.load(open(os.path.join(ROOT, "site", "pages.json"), encoding="utf-8"))
     pages = spec["pages"]
@@ -2865,6 +2887,7 @@ def main():
     for x in live_extras():
         normalize_extra(x["slug"], x["h1"])
     write_hub_and_redirects(pages)
+    write_stage_pages(pages)
     urls = ([BASE] + [BASE + slug + "/" for slug, _ in store] + [BASE + "go/"] + [BASE + p["slug"] + "/" for p in live]
             + [BASE + x["slug"] + "/" for x in live_extras()])
     lastmod = {}

@@ -198,6 +198,14 @@ class Places:
         if any(name_score(name, x.get("name")) >= 0.5 for x in at):
             return "name and address match, but over 300 m or the opposite direction"
         if at:
+            own = lambda n: {t[:-1] if len(t) > 3 and t.endswith("S") else t for t in tokens(n) if not t.isdigit()} - GENERIC - STOP
+            mine, flat = own(name), "".join(t for t in tokens(name) if t not in GENERIC)
+            close = max((difflib.SequenceMatcher(None, flat, "".join(t for t in tokens(x.get("name")) if t not in GENERIC)).ratio()
+                         for x in at), default=0)
+            if close >= 0.85:
+                return "a place at the address under another name (spelled close)"
+            if any(mine & own(x.get("name")) for x in at):
+                return "a place at the address under another name (shares a word)"
             return "a place at the address under another name"
         near = [self.p[i] for i in self.near(lat, lon)]
         close = lambda x: (lambda d: d is not None and d <= 120)(dist_m(lat, lon, x.get("lat"), x.get("lon")))

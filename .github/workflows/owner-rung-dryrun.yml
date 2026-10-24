@@ -17,14 +17,17 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
       - name: Install the audited libraries (hash-pinned, no unchecked build tools)
         run: |
           grep '^setuptools==' tools/requirements-owner-rung.txt > /tmp/build-req.txt
-          pip install --quiet --require-hashes -r /tmp/build-req.txt
-          pip install --quiet --require-hashes --no-build-isolation -r tools/requirements-owner-rung.txt
+          pip install --quiet --require-hashes --only-binary :all: -r /tmp/build-req.txt
+          pip install --quiet --require-hashes --no-build-isolation --only-binary :all: --no-binary jstyleson \
+            -r tools/requirements-owner-rung.txt
       - run: python3 tools/site_emails.py --selftest
       - run: python3 tools/site_owners.py --selftest
       - name: Dry run (counts only)

@@ -54,7 +54,24 @@ NOT_OURS = re.compile(r"\b(?:business|home|property|building|restaurant|store|sh
                       r"company|small[- ]business|land|pet|dog|car|vehicle|former|previous|past|prior|new|vice|"
                       r"assistant|deputy|chapter|association|club|board|chamber)\s+(?:co-?owner|owner|president|founder)\b"
                       r"|\b(?:owners?|president|founder)\s+of\s+(?:the\s+)?(?:a|an|another|several|many|local)\b", re.I)
-DROP_BLOCKS = re.compile(r"testimonial|review|quote|rating|comment|feedback|client-say|clients-say|what-our", re.I)
+DROP_BLOCKS = re.compile(r"testimonial|review|quote|rating|comment|feedback|client-say|clients-say|what-our|slide|swiper|"
+                         r"slick|carousel|owl-|trustindex|elfsight|yelp|google|stars|project|portfolio|case-stud|gallery",
+                         re.I)
+# lines that are a project card, a credit or a login link, never the business's own owner
+DROP_LINES = re.compile(r"\b(?:architect|general contractor|square feet|sq\.? ?ft|completed in|client:|website by|"
+                        r"designed by|powered by|built by|log ?in)\b", re.I)
+PROJECT_LABEL = re.compile(r"\s*(?:architect|general contractor|gc|client|square feet|sq\.? ?ft|completed|scope|"
+                           r"location|project|budget)\s*:", re.I)
+# a founder from long ago or one who has died is not who reads the inbox
+PAST = re.compile(r"\b(?:memory|memoriam|late|passed|legacy|grand(?:father|mother)|father|mother|in (?:18|19)\d\d)\b",
+                  re.I)
+# what may sit between a name and its owner word: a comma, a colon, a bracket, "is the", "our"
+BEFORE_OK = re.compile(r"^[\s,:(]*(?:is\s+)?(?:the\s+|our\s+)?$", re.I)
+AFTER_OK = re.compile(r"^[\s,:]*(?:is\s+)?$", re.I)
+BUSINESS_TYPES = re.compile(r"organization|business|restaurant|contractor|service|store|company|corporation|"
+                            r"cleaning|plumber|electrician|roofing|establishment|place", re.I)
+NESTED_NOT_OURS = {"review", "reviews", "author", "comment", "comments", "itemreviewed", "creator", "publisher",
+                   "contributor", "editor", "sponsor", "funder", "brand", "manufacturer"}
 # a word that makes a name a business, not a person (probablepeople alone reads "Sparkle Co" as a person)
 BIZ_WORDS = {"co", "inc", "llc", "ltd", "corp", "corporation", "company", "group", "services", "service", "cleaning",
              "cleaners", "clean", "janitorial", "maids", "maid", "solutions", "enterprises", "enterprise", "pros", "pro",
@@ -62,7 +79,6 @@ BIZ_WORDS = {"co", "inc", "llc", "ltd", "corp", "corporation", "company", "group
              "kitchen", "grill", "cafe", "bar", "the", "and", "of", "chicago", "austin", "texas", "illinois", "team",
              "crew", "family", "partners", "associates", "holdings", "management", "facility", "facilities", "commercial",
              "residential", "window", "windows", "dumpster", "security", "office", "studio", "shop", "store", "us", "our"}
-WINDOW = 5          # tokens between the person and the owner word
 MAX_BLOCKS = 60     # text blocks with an owner word read per site
 MAX_BLOCK_CHARS = 600
 PERSON_TYPES = ("person",)
@@ -111,7 +127,9 @@ def person_name(raw):
     import probablepeople
     s = re.sub(r"\s+", " ", str(raw or "")).strip(" ,.;:-")
     s = re.sub(r"^(?:mr|mrs|ms|miss|dr)\.?\s+", "", s, flags=re.I)
-    s = re.sub(r",?\s+(?:jr|sr|ii|iii|iv)\.?$", "", s, flags=re.I)
+    if re.search(r"\b(?:sr|senior|ii|iii|iv)\b\.?", s, re.I):
+        return None   # a Sr. or a numbered name is usually the founder of an older generation
+    s = re.sub(r",?\s+jr\.?$", "", s, flags=re.I)
     if not s or len(s) > 60 or any(ch.isdigit() for ch in s) or "@" in s or len(s.split()) > 4:
         return None
     if any(w.lower().strip(".,&'") in BIZ_WORDS for w in s.split()):
@@ -130,34 +148,45 @@ def person_name(raw):
     for part in (first, last):
         if not R.NAME_RE.match(part) or sum(c.isalpha() for c in part) < 2:
             return None
+    if last.lower() == "doe":
+        return None   # theme placeholder ("John Doe")
     return {"first_name": first, "last_name": last}
 
 
 def _items(node):
-    """Every dict inside JSON-LD or microdata output, microdata items flattened to their properties."""
-    stack = [node]
+    """(dict, keys above it) for every dict inside JSON-LD or microdata output, microdata items flattened to their
+    properties."""
+    stack = [(node, ())]
     while stack:
-        x = stack.pop()
+        x, keys = stack.pop()
         if isinstance(x, list):
-            stack.extend(x)
+            stack.extend((v, keys) for v in x)
         elif isinstance(x, dict):
             if isinstance(x.get("properties"), dict):
                 d = dict(x["properties"])
                 d.setdefault("@type", x.get("type"))
-                stack.extend(d.values())
-                yield d
             else:
-                stack.extend(x.values())
-                yield x
+                d = x
+            stack.extend((v, keys + (str(k).lower(),)) for k, v in d.items())
+            yield d, keys
+
+
+def _type(d):
+    t = d.get("@type") or d.get("type") or ""
+    return (" ".join(t) if isinstance(t, list) else str(t)).lower()
+
+
+def _on_site(d, domain):
+    url = d.get("url") or d.get("@id") or ""
+    url = url[0] if isinstance(url, list) and url else url
+    return not domain or not isinstance(url, str) or not url.startswith("http") or R.domain_of(url) == domain
 
 
 def _is_person(d):
-    t = d.get("@type") or d.get("type") or ""
-    t = " ".join(t) if isinstance(t, list) else str(t)
-    return any(p in t.lower().rsplit("/", 1)[-1] for p in PERSON_TYPES)
+    return any(p in _type(d).rsplit("/", 1)[-1] for p in PERSON_TYPES)
 
 
-def structured_candidates(html):
+def structured_candidates(html, domain=""):
     from extruct.jsonld import JsonLdExtractor
     from extruct.w3cmicrodata import MicrodataExtractor
     data = []
@@ -167,8 +196,11 @@ def structured_candidates(html):
         except Exception:
             pass
     out = []
-    for d in _items(data):
-        for key in ("founder", "founders"):
+    for d, keys in _items(data):
+        if NESTED_NOT_OURS & set(keys):
+            continue   # a reviewer, an author, a web agency: not this business's owner
+        biz = BUSINESS_TYPES.search(_type(d)) and not _is_person(d) and _on_site(d, domain)
+        for key in (("founder", "founders") if biz else ()):
             for f in (d.get(key) if isinstance(d.get(key), list) else [d.get(key)]):
                 name = f.get("name") if isinstance(f, dict) else f
                 p = person_name(name) if isinstance(name, str) else None
@@ -179,7 +211,7 @@ def structured_candidates(html):
             jt = " ".join(jt) if isinstance(jt, list) else str(jt or "")
             m = ROLE_RX.search(jt)
             p = person_name(d["name"])
-            if m and p and not NOT_OURS.search(jt):
+            if m and p and not NOT_OURS.search(jt) and not re.search(r"\b(?:of|at)\b|,", jt) and _on_site(d, domain):
                 out.append(dict(p, title=title_for(m.group(1)), via="structured"))
     return out
 
@@ -192,14 +224,18 @@ def text_blocks(html):
         tree = lxml.html.fromstring(html)
     except Exception:
         return []
-    for el in tree.xpath("//script|//style|//noscript|//template|//blockquote|//q|//cite|//form"):
+    for el in tree.xpath("//script|//style|//noscript|//template|//blockquote|//q|//cite|//form|//footer|//nav"):
         el.drop_tree()
     for el in tree.xpath("//*[@class or @id]"):
         if el.getparent() is not None and DROP_BLOCKS.search(f"{el.get('class', '')} {el.get('id', '')}"):
             el.drop_tree()
     text = html_text.extract_text(tree, guess_layout=True)
     blocks = [re.sub(r"\s+", " ", b).strip() for b in re.split(r"\n+", text)]
-    return [b[:MAX_BLOCK_CHARS] for b in blocks if b and ROLE_RX.search(b) and not re.search(r"[\"“”]", b)]
+    if any(PROJECT_LABEL.match(b) for b in blocks):
+        # a project page: "Owner: ..." there is the client who owned the building
+        blocks = [b for b in blocks if not re.match(r"\s*(?:co-?owner|owner)\s*:", b, re.I)]
+    return [b[:MAX_BLOCK_CHARS] for b in blocks if b and ROLE_RX.search(b) and not DROP_LINES.search(b)
+            and not re.search("[\"\u201c\u201d\u2018\u2019\u00ab\u00bb]", b)]
 
 
 def spans(sent):
@@ -218,55 +254,70 @@ def spans(sent):
     return sorted(out, key=lambda e: e.start_char)
 
 
-def text_candidates(blocks):
+def _of_other(s, re_, business):
+    """True when the owner word is followed by "of X", "at X" or ", X" and X is not this business."""
+    m = re.match(r"\s*(?:,\s*|\s+(?:of|at)\s+(?:the\s+)?)([A-Z][\w&'.-]*(?:\s+[A-Z][\w&'.-]*){0,4})", s[re_:])
+    if not m:
+        return False
+    tail = re.sub(r"[^a-z0-9 ]", "", m.group(1).lower()).split()
+    own = [w for w in re.sub(r"[^a-z0-9 ]", "", (business or "").lower()).split() if w not in {"the", "and", "of"}]
+    return not (own and tail and tail[0] == own[0])
+
+
+def text_candidates(blocks, business=""):
+    """People bound to an owner word. Each owner word binds to one name only: the name right after it if there is one
+    ("owner Dana Reyes", "founded by Dana Reyes"), else the name right before it ("Dana Reyes, owner"), with nothing
+    between them but a comma, a colon, a bracket or "is the"."""
     out = []
     for doc in nlp().pipe(blocks[:MAX_BLOCKS], batch_size=16):
         for sent in doc.sents:
             s = sent.text
-            roles = [(m.start(), m.end(), m.group(1)) for m in ROLE_RX.finditer(s)]
-            if not roles:
-                continue
             bad = [(m.start(), m.end()) for m in NOT_OURS.finditer(s)]
-            people = spans(sent)
-            for e in people:
+            roles_at = [(m.start(), m.end()) for m in ROLE_RX.finditer(s)]
+            people = []   # (span, name) for spans probablepeople reads as a person, never a role word itself
+            for e in spans(sent):
                 es, ee = e.start_char - sent.start_char, e.end_char - sent.start_char
-                best = None
-                for rs, re_, word in roles:
-                    if any(bs <= rs < be for bs, be in bad):
-                        continue
-                    if word.lower().endswith(" by") and es < re_:
-                        continue   # "founded by", "owned by": only the name after the phrase is its owner
-                    a, b = (ee, rs) if ee <= rs else (re_, es)
-                    if a > b:
-                        continue
-                    between = s[a:b]
-                    gap = len([t for t in re.findall(r"[A-Za-z0-9']+", between)])
-                    other = any(o is not e and a <= o.start_char - sent.start_char < b for o in people)
-                    if gap <= WINDOW and not other and not re.search(r"[.;!?]", between):
-                        if best is None or gap < best[0]:
-                            best = (gap, word)
-                if best:
-                    p = person_name(e.text)
-                    if p:
-                        out.append(dict(p, title=title_for(best[1]), via="text"))
+                if re.match(r"['\u2019]s\b", s[ee:]) or any(rs < ee and es < re_ for rs, re_ in roles_at):
+                    continue
+                name = person_name(e.text)
+                if name:
+                    people.append((e, name))
+            for m in ROLE_RX.finditer(s):
+                rs, re_, word = m.start(), m.end(), m.group(1)
+                if any(bs <= rs < be for bs, be in bad) or re.match(r"['\u2019]s\b", s[re_:]):
+                    continue   # a customer's or past holder's role, or "the owner's son"
+                title = title_for(word)
+                if title in ("Founder", "Co-Founder") and PAST.search(s):
+                    continue
+                after = [(e, n) for e, n in people if e.start_char - sent.start_char >= re_
+                         and AFTER_OK.match(s[re_:e.start_char - sent.start_char])]
+                bound = after[:1]
+                if not bound and not word.lower().endswith(" by"):
+                    if _of_other(s, re_, business):
+                        continue   # "Mike Brown, President of ABC Development": someone else's company
+                    before = [(e, n) for e, n in people if e.end_char - sent.start_char <= rs
+                              and BEFORE_OK.match(s[e.end_char - sent.start_char:rs])]
+                    bound = before[-1:]
+                for _e, name in bound:
+                    out.append(dict(name, title=title, via="text"))
     return out
 
 
-def find_owner(pages, counter=None):
-    """(owner, reason). owner = {first_name, last_name, title, via}. Structured data beats text; within each, the best
-    title, then the most mentions, then the first seen."""
+def find_owner(pages, counter=None, domain="", business=""):
+    """(owner, reason). owner = {first_name, last_name, title, via, pages}. Structured data beats text; within each,
+    the best title, then the most mentions. Two people tied on both is ambiguous: no owner."""
     counter = counter if counter is not None else {}
     with no_network(counter):
         try:
             structured, text = [], []
             for path, html in pages.items():
-                structured += [dict(c, page=path) for c in structured_candidates(html)]
+                structured += [dict(c, page=path) for c in structured_candidates(html, domain)]
             if not structured:
                 seen = set()
                 for path, html in pages.items():
                     blocks = [b for b in text_blocks(html) if b not in seen]
                     seen.update(blocks)
-                    text += [dict(c, page=path) for c in text_candidates(blocks)]
+                    text += [dict(c, page=path) for c in text_candidates(blocks, business)]
         except NetworkRefused:
             return None, "network refused"
     cands = structured or text
@@ -282,6 +333,8 @@ def find_owner(pages, counter=None):
         if RANK[c["title"]] < RANK[tally[k]["title"]]:
             tally[k]["title"] = c["title"]
     ranked = sorted(tally.values(), key=lambda c: (RANK[c["title"]], -c["n"]))
+    if len(ranked) > 1 and (RANK[ranked[0]["title"]], ranked[0]["n"]) == (RANK[ranked[1]["title"]], ranked[1]["n"]):
+        return None, "ambiguous"
     best = {k: ranked[0][k] for k in ("first_name", "last_name", "title", "via")}
     best["pages"] = len(ranked[0]["pages"])
     return best, ("one person" if len(ranked) == 1 else "several people, best title kept")
@@ -303,7 +356,7 @@ def _tried_none(state_path, businesses_path):
         st = state.get(dom)
         if dom and st and st.get("result") != "named" and dom not in seen:
             seen.add(dom)
-            out.append((dom, b["product"]))
+            out.append((dom, b["product"], b.get("business", "")))
     return out
 
 
@@ -316,13 +369,16 @@ def dry_run(a):
     nlp()   # load once before the threads start fetching
 
     def fetch(item):
-        dom, _product = item
         try:
-            return item, site_emails.fetch_pages(dom, pause=a.pause, timeout=a.timeout, paths=PATHS)
+            return item, site_emails.fetch_pages(item[0], pause=a.pause, timeout=a.timeout, paths=PATHS)
         except Exception:
             return item, {}
-    with cf.ThreadPoolExecutor(max_workers=a.workers) as pool:
-        for (dom, product), pages in pool.map(fetch, todo):
+    batches = [todo[i:i + a.batch] for i in range(0, len(todo), a.batch)]
+    for chunk in batches:
+        # fetch the whole batch first, then parse with the network guard on: no fetch runs while a parse does
+        with cf.ThreadPoolExecutor(max_workers=a.workers) as pool:
+            fetched = list(pool.map(fetch, chunk))
+        for (dom, product, business), pages in fetched:
             p = by_product[product]
             c["domains"] += 1
             p["domains"] += 1
@@ -333,7 +389,7 @@ def dry_run(a):
                 continue
             c["sites reached"] += 1
             try:
-                owner, reason = find_owner(pages, net)
+                owner, reason = find_owner(pages, net, dom, business)
             except Exception:
                 owner, reason = None, "parse error"
             if not owner:
@@ -420,6 +476,42 @@ CASES = [
     ("text: family surname only", "<p>Family owned and operated by the Reyes family since 1990.</p>", None, None, None, None),
     ("text: label and colon", "<p>Owner: Priya Natarajan</p>", "Priya", "Natarajan", "Owner", "text"),
     ("text: CEO before name", "<p>CEO Marcus Bell started the firm with one van.</p>", "Marcus", "Bell", "CEO", "text"),
+    # wrong-person phrasings from the Oct 24 review: each must name nobody, or the right person
+    ("bound to the next name", "<p>Executive Chef John Carter and owner Maria Lopez run the kitchen.</p>",
+     "Maria", "Lopez", "Owner", "text"),
+    ("verb then owner", "<p>The league team is coached by owner Sam Ortiz every spring.</p>", "Sam", "Ortiz", "Owner", "text"),
+    ("two names around the role", "<p>Mia Francesca owner Scott Harris opened a second room.</p>",
+     "Scott", "Harris", "Owner", "text"),
+    ("assistant to the owner", "<p>Lisa Grant, assistant to the owner, books every job.</p>", None, None, None, None),
+    ("works for the owner", "<p>Lisa Grant manages the office for owner Dana Reyes.</p>", "Dana", "Reyes", "Owner", "text"),
+    ("alongside the owner", "<p>Lisa Grant has worked alongside the owner since 2010.</p>", None, None, None, None),
+    ("reports to the president", "<p>Lisa Grant reports directly to the president.</p>", None, None, None, None),
+    ("relative of the owner", "<p>Ana Lopez, wife of owner Carlos, runs the front desk.</p>", None, None, None, None),
+    ("the owner's son", "<p>Jose Garcia, the owner's son, leads crew two.</p>", None, None, None, None),
+    ("owner's representative", "<p>John Smith, Owner's Representative</p>", None, None, None, None),
+    ("project card with a class", '<div class="project-card"><p>Owner: John Smith</p><p>Architect: Studio K</p></div>',
+     None, None, None, None),
+    ("project card without a class", "<p>Owner: John Smith</p><p>Architect: Studio K</p><p>Completed: 2023</p>",
+     None, None, None, None),
+    ("president of a client", "<p>Mike Brown, President of ABC Development, hired us twice.</p>", None, None, None, None),
+    ("testimonial slider", '<div class="swiper-slide"><p>Sarah Kim, Owner of Kim Dental</p></div>', None, None, None, None),
+    ("curly single quotes", "<p>\u2018Great job\u2019 Mark Lee, owner, Lee Dental</p>", None, None, None, None),
+    ("namesake restaurant", "<p>Lou Malnati's owner, Marc Malnati, greets every guest.</p>",
+     "Marc", "Malnati", "Owner", "text", "Lou Malnati's"),
+    ("founder in memory", "<p>In loving memory of our founder, Joe Smith.</p>", None, None, None, None),
+    ("founder long ago", "<p>Founded by Giuseppe Rossi in 1952, we still use his recipes.</p>", None, None, None, None),
+    ("founder senior", "<p>Joe Smith Sr., founder, opened the first shop.</p>", None, None, None, None),
+    ("footer credit", "<footer>Website by Jane Webb | Owner Login</footer><p>We clean.</p>", None, None, None, None),
+    ("review author in JSON-LD", '<script type="application/ld+json">{"@type":"LocalBusiness","review":{"@type":"Review",'
+     '"author":{"@type":"Person","name":"Sarah Kim","jobTitle":"Owner, Kim Dental"}}}</script>'
+     "<p>Dana Reyes, owner, answers every call.</p>", "Dana", "Reyes", "Owner", "text"),
+    ("web agency founder", '<script type="application/ld+json">{"@type":"Organization","url":"https://webagency.example",'
+     '"founder":"Pat Morgan"}</script><p>We clean.</p>', None, None, None, None),
+    ("placeholder founder", '<script type="application/ld+json">{"@type":"LocalBusiness","founder":"John Doe"}</script>',
+     None, None, None, None),
+    ("two owners tied", "<p>Dana Reyes, owner, quotes jobs.</p><p>Marcus Bell, owner, runs crews.</p>",
+     None, None, None, None),
+    ("signature with our name", "<p>Dana Reyes, Owner, Sparkle Co</p>", "Dana", "Reyes", "Owner", "text"),
     ("no owner anywhere", "<p>Commercial cleaning for offices and new builds.</p>", None, None, None, None),
     ("broken JSON-LD ignored", '<script type="application/ld+json">{"@type": "LocalBusiness", founder: }</script>'
      "<p>Nothing here.</p>", None, None, None, None),
@@ -435,12 +527,14 @@ def selftest():
         if got != want:
             bad.append(f"{name}: got {got!r}, want {want!r}")
 
-    for label, html, first, last, title, via in CASES:
-        owner, _reason = find_owner({"": html})
+    for case in CASES:
+        label, html, first, last, title, via = case[:6]
+        business = case[6] if len(case) > 6 else "Sparkle Co"
+        owner, _reason = find_owner({"": html}, domain=SITE, business=business)
         got = (owner["first_name"], owner["last_name"], owner["title"], owner["via"]) if owner else None
         check(label, got, (first, last, title, via) if first else None)
     two = find_owner({"": "<p>Dana Reyes, owner, answers every call.</p>",
-                      "about": "<h3>Meet our owner, Dana Reyes</h3>"})[0]
+                      "about": "<h3>Meet our owner, Dana Reyes</h3>"}, domain=SITE, business="Sparkle Co")[0]
     check("owner counted on each page that names her", (two or {}).get("pages"), 2)
     # person versus company
     check("probablepeople person", person_name("DANA REYES"), {"first_name": "Dana", "last_name": "Reyes"})
@@ -483,6 +577,7 @@ def main():
     ap.add_argument("--state", default=os.path.join(ROOT, "prospects", "enrich_state.json"))
     ap.add_argument("--limit", type=int, default=400)
     ap.add_argument("--workers", type=int, default=8)
+    ap.add_argument("--batch", type=int, default=40, help="domains fetched before each parsing pass")
     ap.add_argument("--pause", type=float, default=0.5)
     ap.add_argument("--timeout", type=float, default=12)
     a = ap.parse_args()

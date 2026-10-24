@@ -101,16 +101,23 @@ def load_state(path):
         return {}
 
 
+def fresh_at(state, b, today, retry_days):
+    at = state.get(R.domain_of(b["website"]), {}).get("checkedAt")
+    return bool(at) and (today - dt.date.fromisoformat(at)).days < retry_days
+
+
 def site_owner_record(b, st, today):
     """Rung 2b for one business: (pending record or None, outcome). Reads the site once and marks siteOwnerAt."""
     import site_owners   # imported here so the ladder runs without the rung's libraries when the rung is off
     dom = R.domain_of(b["website"])
-    st["siteOwnerAt"] = today.isoformat()
     try:
-        pages = site_emails.fetch_pages(dom, paths=site_owners.PATHS)
-        owner, _reason = site_owners.find_owner(pages) if pages else (None, "no pages")
+        pages = site_emails.fetch_pages(dom, pause=0.5, timeout=12, paths=site_owners.PATHS)
+        if not pages:
+            return None, "no pages"   # the site did not answer: tried again next run
+        owner, _reason = site_owners.find_owner(pages, domain=dom, business=b.get("business", ""))
     except Exception:
-        return None, "error"
+        return None, "error"          # not marked read: tried again next run
+    st["siteOwnerAt"] = today.isoformat()
     if not owner:
         return None, "none"
     addr, _kind = site_emails.choose(site_emails.collect_from(pages, dom), dom, owner, "site_about")
@@ -139,8 +146,17 @@ def main():
     ap.add_argument("--hunter-max", type=int, default=5, help="Hunter domain searches per run (the paid fallback)")
     ap.add_argument("--retry-days", type=int, default=28, help="days before a business with no owner is tried again")
     ap.add_argument("--site-owners", action="store_true", help="rung 2b: owner names the business publishes on its site")
+    ap.add_argument("--site-owners-max", type=int, default=60, help="sites rung 2b reads per run")
     a = ap.parse_args()
     key = data_box.passphrase()   # exits 1 before any paid API call when the box cannot be sealed
+    if a.site_owners:
+        try:   # a missing library must stop the run, not mark every site as read
+            import site_owners
+            site_owners.nlp()
+            import extruct.jsonld, extruct.w3cmicrodata, probablepeople, html_text  # noqa: F401
+        except Exception:
+            print("ERROR enrich: owner rung libraries missing (tools/requirements-owner-rung.txt)")
+            sys.exit(1)
     hunter, apollo = os.environ.get("HUNTER_API_KEY", ""), os.environ.get("APOLLO_API_KEY", "")
     drops = sorted(glob.glob(os.path.join(DROPS, "*.csv")))
     try:
@@ -168,6 +184,9 @@ def main():
                 hunter and not st.get("hunterAt")) and not (a.site_owners and not st.get("siteOwnerAt")):
             continue
         todo.append(b)
+    # in this run only for the owner-name read: never for the City, the site address rung, Hunter or Apollo
+    site_only = {b["prospect_id"] for b in todo if a.site_owners and fresh_at(state, b, today, a.retry_days)
+                 and not (hunter and not state.get(R.domain_of(b["website"]), {}).get("hunterAt"))}
     counts = {"businesses": len(todo), "city": 0, "site": 0, "site_owner": 0, "hunter": 0, "apollo": 0, "csv": 0, "rejected": 0,
               "hunter_searched": 0, "carried": len(found) + len(pending)}
 
@@ -205,13 +224,14 @@ def main():
             left.append(b)
     # rung 2b: owner names the business publishes on its own site, each domain once (--site-owners)
     if a.site_owners:
-        still = []
+        still, read = [], 0
         for b in left:
             dom = R.domain_of(b["website"])
             st = state.setdefault(dom, {})
-            if st.get("siteOwnerAt"):
+            if st.get("siteOwnerAt") or read >= a.site_owners_max:
                 still.append(b)
                 continue
+            read += 1
             rec, outcome = site_owner_record(b, st, today)
             if rec:
                 pending[rec["prospect_id"]] = rec
@@ -220,7 +240,7 @@ def main():
             else:
                 counts["rejected"] += outcome == "rejected"
                 still.append(b)
-        left = still
+        left = [b for b in still if b["prospect_id"] not in site_only]
     # rung 3: Hunter, capped, each domain at most once, valid addresses only
     try:
         for b in left:
@@ -268,7 +288,7 @@ def main():
            "pending": sorted(pending.values(), key=lambda x: x["prospect_id"])}
     probs = R.validate_prospect_file(out)
     if probs:
-        print(f"ERROR enrich: the result fails validation ({len(probs)} problems; first: {probs[0].split(':')[-1].strip()})")
+        print(f"ERROR enrich: the result fails validation ({len(probs)} problems)")   # the message can carry a name
         sys.exit(1)
     box = data_box.seal(json.dumps(out).encode("utf-8"), key)
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)

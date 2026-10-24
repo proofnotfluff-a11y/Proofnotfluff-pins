@@ -1,6 +1,7 @@
 # Libraries for the owner-name rung (tools/site_owners.py), Python 3.13 on ubuntu-latest x86_64 only.
 # Every file read and hash-checked Oct 24, 2026 (legal/reviews/2026-10-24-owner-rung-libraries.md). Install with:
-#   pip install --require-hashes --only-binary :all: --no-binary jstyleson -r tools/requirements-owner-rung.txt
+#   pip install --require-hashes --only-binary :all: <the setuptools line alone>, then
+#   pip install --require-hashes --no-build-isolation --only-binary :all: --no-binary jstyleson -r tools/requirements-owner-rung.txt
 # Change a version only after the same read; never drop --require-hashes.
 annotated-doc==0.0.5 --hash=sha256:117bac03a25ede5df5440e855b32d556049ca169ead221505badf432fed4b101
 annotated-types==0.8.0 --hash=sha256:f072f4d804ea359e4eaf198b1af7a8b0943881a87f31bb764f8bf219bb9419e0

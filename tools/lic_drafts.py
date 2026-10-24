@@ -27,8 +27,16 @@ def main():
     ap.add_argument("--max", type=int, default=25)
     ap.add_argument("--prospects", default=C.LIC_PROSPECTS)
     ap.add_argument("--out", default=C.LIC_DRAFTS)
+    ap.add_argument("--pending", default="", help="also draft the addresses still waiting for Bouncer (data/prospects/lic_verify.json), "
+                    "for Todd's review only; they cannot send before the check")
     a = ap.parse_args()
-    pros = json.load(open(a.prospects, encoding="utf-8"))["prospects"]
+    pdoc = json.load(open(a.prospects, encoding="utf-8"))
+    pros = list(pdoc["prospects"])
+    if a.pending:
+        pend = json.load(open(a.pending, encoding="utf-8")).get("pending") or []
+        pros += pend
+        pdoc["pending"] = pend
+        json.dump(pdoc, open(a.prospects, "w", encoding="utf-8"), indent=1)   # the gate reads both lists from one file
     lic, insp = json.load(open(C.LIC_SAMPLE, encoding="utf-8")), json.load(open(C.INSP_SAMPLE, encoding="utf-8"))
     first = {t["trade"]: t for t in C.signal_templates(C.LIC_FILE) if t["step"] == "first" and t["letter"] == "A"}
     pros = [p for p in pros if R.trade_of(p) in ORDER and not p.get("first_example") and not p.get("do_not_email")]
@@ -38,7 +46,8 @@ def main():
         t = first[R.trade_of(p)]
         subj, body = C.lic_fill(t, lic, insp, p["first_name"])
         drafts.append({"prospect_id": p["prospect_id"], "to": p["email"], "subject": subj, "body": body, "variant": t["id"],
-                       "sender": R.SALES_SENDER, "trade": R.trade_of(p), "window_from": lic["window"]["from"]})
+                       "sender": R.SALES_SENDER, "trade": R.trade_of(p), "window_from": lic["window"]["from"],
+                       "emailStatus": p.get("email_status") or ""})
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
     json.dump({"schema": "pnf.lic_draft.v1", "drafts": drafts}, open(a.out, "w", encoding="utf-8"), indent=1)
     by = {tr: sum(1 for d in drafts if d["trade"] == tr) for tr in ORDER}

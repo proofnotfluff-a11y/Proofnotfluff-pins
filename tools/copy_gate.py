@@ -821,7 +821,11 @@ def check_lic_templates(path=LIC_FILE, today=None):
 def check_lic_drafts(drafts_path, prospects_path, send_day):
     try:
         drafts = json.load(open(drafts_path, encoding="utf-8"))
-        pros = {x["prospect_id"]: x for x in json.load(open(prospects_path, encoding="utf-8"))["prospects"]}
+        pdoc = json.load(open(prospects_path, encoding="utf-8"))
+        pros = {x["prospect_id"]: x for x in pdoc["prospects"]}
+        # addresses still waiting for their Bouncer check may be drafted for Todd's review, never sent (SEND_RULES step 2)
+        pending = {x["prospect_id"]: x for x in pdoc.get("pending") or []}
+        pros.update(pending)
         lic, insp = json.load(open(LIC_SAMPLE, encoding="utf-8")), json.load(open(INSP_SAMPLE, encoding="utf-8"))
     except (OSError, ValueError, KeyError) as e:
         return [f"cannot read inputs ({e})"], 0
@@ -837,7 +841,9 @@ def check_lic_drafts(drafts_path, prospects_path, send_day):
         if pr is None:
             problems.append(f"{pid}: not in the prospect file")
             continue
-        problems += [f"{pid}: {q}" for q in R.validate_prospect(pr)]
+        problems += [f"{pid}: {q}" for q in R.validate_prospect(pr, pending=pid in pending)]
+        if pid in pending and dft.get("emailStatus") != R.PENDING_STATUS:
+            problems.append(f"{pid}: the address still waits for its Bouncer check; the draft must say emailStatus unverified")
         if pr.get("product") != "chicago-licenses":
             problems.append(f"{pid}: product {pr.get('product')!r} is not chicago-licenses")
         if dft.get("to") != pr.get("email"):
@@ -859,7 +865,7 @@ def check_lic_drafts(drafts_path, prospects_path, send_day):
             problems.append(f"{pid}: not template {t['id']} filled with this week's counts (fixed words changed)")
         problems += [f"{pid}: {q}" for q in lic_count_problems(dft.get("subject"), dft.get("body"), t["step"], t["trade"], lic, insp,
                                                               send_day, pr.get("first_name"), dft.get("sender"), names)]
-    return problems, len(drafts.get("drafts") or [])
+    return problems, len(drafts.get("drafts") or []), sum(1 for d in drafts.get("drafts") or [] if d.get("prospect_id") in pending)
 
 
 def chicago_today():
@@ -902,7 +908,7 @@ def main():
     if a.lic:
         send = dt.date.fromisoformat(a.send_day) if a.send_day else chicago_today()
         pp = a.prospects if a.prospects != PROSPECTS else LIC_PROSPECTS
-        problems, nd = check_lic_drafts(a.lic, pp, send)
+        problems, nd, npend = check_lic_drafts(a.lic, pp, send)
         if not nd:
             problems.append("no drafts in the file")
         for p in problems[:60]:
@@ -910,7 +916,8 @@ def main():
         if problems:
             print(f"copy: FAIL, {len(problems)} problems")
             sys.exit(1)
-        print(f"OK copy: {nd} license count drafts pass (send day {send.isoformat()}, sender {R.SALES_SENDER})")
+        print(f"OK copy: {nd} license count drafts pass (send day {send.isoformat()}, sender {R.SALES_SENDER})"
+              + (f"; {npend} addresses still owe their Bouncer check, so those drafts cannot send yet" if npend else ""))
         sys.exit(0)
     if a.pest_templates:
         problems, nt, planted, live, n = check_pest_templates()

@@ -13,28 +13,28 @@
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-24T17:00:11+00:00",
+  "fetchedAt": "2026-10-24T17:14:17+00:00",
   "rowsUpdatedAt": "2026-10-24T09:08:34+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "places": 255,
-  "flagged": 129,
+  "places": 254,
+  "flagged": 128,
   "opening": 131,
   "repeat": 21,
   "new": 58,
   "byCat": {
-   "pests": 90,
+   "pests": 89,
    "hood": 28,
-   "drain": 19,
-   "clean": 101
+   "drain": 18,
+   "clean": 100
   },
-  "flaggedFail": 101,
+  "flaggedFail": 100,
   "openingPassed": 96,
   "excluded": {
    "business name is a person's name": 4,
-   "school, day care, hospital, senior or mobile vendor": 54,
+   "school, day care, hospital, senior or mobile vendor": 55,
    "the City's latest result is out of business or not located": 2
   },
   "rowsRead": 1273,
@@ -53,12 +53,12 @@
     12
    ],
    [
-    "Lake View",
+    "Austin",
     11
    ],
    [
-    "Austin",
-    11
+    "Lake View",
+    10
    ],
    [
     "Near West Side",
@@ -85,15 +85,15 @@
     7
    ],
    [
-    "McKinley Park",
-    7
-   ],
-   [
     "Brighton Park",
     7
    ],
    [
     "Lower West Side",
+    7
+   ],
+   [
+    "McKinley Park",
     7
    ],
    [
@@ -133,11 +133,11 @@
     4
    ],
    [
-    "Edgewater",
+    "Douglas",
     3
    ],
    [
-    "North Lawndale",
+    "Edgewater",
     3
    ],
    [
@@ -145,7 +145,7 @@
     3
    ],
    [
-    "Douglas",
+    "North Lawndale",
     3
    ],
    [
@@ -173,10 +173,6 @@
     2
    ],
    [
-    "Englewood",
-    2
-   ],
-   [
     "Kenwood",
     2
    ],
@@ -189,15 +185,19 @@
     2
    ],
    [
+    "Englewood",
+    2
+   ],
+   [
     "Jefferson Park",
     2
    ],
    [
-    "North Center",
+    "South Deering",
     2
    ],
    [
-    "South Deering",
+    "North Center",
     2
    ],
    [
@@ -209,11 +209,11 @@
     2
    ],
    [
-    "Washington Park",
+    "Bridgeport",
     1
    ],
    [
-    "Bridgeport",
+    "Washington Park",
     1
    ],
    [
@@ -225,19 +225,19 @@
     1
    ],
    [
-    "Rogers Park",
-    1
-   ],
-   [
     "New City",
     1
    ],
    [
-    "Ashburn",
+    "Rogers Park",
     1
    ],
    [
     "West Englewood",
+    1
+   ],
+   [
+    "Ashburn",
     1
    ],
    [

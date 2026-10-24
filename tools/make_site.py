@@ -1719,8 +1719,15 @@ def leads_page_html(p):
         return f'<a class="{cls}" href="{E(checkout)}" rel="noopener">{label}</a>' if checkout else ""
 
     # hero: two lines of promise, then the price and the action on the first screen (design director, Oct 17)
-    lede = (f'{kept:,} open apartment and commercial projects of $500,000 or more in {E(p["city"])}, about {M(cost, True)} {"in City valuation" if p.get("costLabel") == "Valuation" else "of work"}, '
-            f'and the builders running them. {E(p["lede"])}')
+    # near finish first (Todd, Oct 24, "5 yes", from the Kimi audit): lead with the jobs closest to a final clean when
+    # there are enough of them to sell on; below the floor the page keeps the total-projects lede
+    lead_near = bool(p.get("leadNear")) and n_near >= int(p.get("leadNearMin", 5))
+    if lead_near:
+        lede = (f'{n_near:,} big {E(p["city"])} projects have {E(p.get("nearLede", near_sub))}, so a final clean is close. You get the builder on each, '
+                f'and on all {kept:,} open apartment and commercial projects of $500,000 or more. {E(p["lede"])}')
+    else:
+        lede = (f'{kept:,} open apartment and commercial projects of $500,000 or more in {E(p["city"])}, about {M(cost, True)} {"in City valuation" if p.get("costLabel") == "Valuation" else "of work"}, '
+                f'and the builders running them. {E(p["lede"])}')
     if checkout:   # the free sample first, then subscribe (store design, Oct 22)
         hero_act = (f'<div class="ld-heroact" id="ldHeroCta"><a class="btn ld-btnbig" href="{"#near" if near else "#sample"}">See this week\'s free sample</a>'
                     + (f'<a class="ld-textlink ld-trialbtn" href="{E(checkout)}" rel="noopener">Try {trial} days free, then ${price} a month</a></div>'
@@ -1732,11 +1739,12 @@ def leads_page_html(p):
         hero_act = '<div class="ld-heroact" id="ldHeroCta"><a class="ld-textlink" href="#ldCta">Join the waitlist</a></div>'
     else:   # before launch with no waitlist form: no action that leads nowhere (design director, Oct 18)
         hero_act = f'<p class="ld-heronote" id="ldHeroCta">Planned price: ${price} a month, new list every Monday. Not on sale yet.</p>'
-    tiles = (f'<div class="tiles ld-tiles">'
-             f'<div class="tile key"><div class="lab">Open projects</div><div class="val">{kept:,}</div><div class="sub">issued in the last {window_months(d)}, still&nbsp;open</div></div>'
+    t_open = f'<div class="tile{"" if lead_near else " key"}"><div class="lab">Open projects</div><div class="val">{kept:,}</div><div class="sub">issued in the last {window_months(d)}, still&nbsp;open</div></div>'
+    t_near = f'<div class="tile{" key" if lead_near else ""}"><div class="lab">Near finish</div><div class="val">{n_near:,}</div><div class="sub">{E(near_sub)}</div></div>'
+    tiles = (f'<div class="tiles ld-tiles">' + (t_near + t_open if lead_near else t_open) +
              f'<div class="tile"><div class="lab">{E(p.get("costLabel", "Reported cost"))}</div><div class="val">{M(cost, True)}</div><div class="sub">{E(p.get("costSub", "as filed with the City"))}</div></div>'
              f'<div class="tile"><div class="lab">New buildings</div><div class="val">{new_n:,}</div><div class="sub">at least {c.get("keptUnits", 0):,} new {E(p.get("unitsWord", "apartments"))}</div></div>'
-             f'<div class="tile"><div class="lab">Near finish</div><div class="val">{n_near:,}</div><div class="sub">{E(near_sub)}</div></div></div>'
+             + ("" if lead_near else t_near) + '</div>'
              f'<p class="asof">City data as of {E(asof)}. Refreshed every Monday.</p>')
 
     # near finish: the most valuable segment for a final clean, so the free page shows 2 and holds the rest back (owner, Oct 17)

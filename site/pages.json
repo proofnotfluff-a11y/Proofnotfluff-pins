@@ -3398,6 +3398,8 @@
   {
    "slug": "chicago-construction-cleaning-leads",
    "kind": "leads",
+   "leadNear": true,
+   "nearLede": "temporary or partial occupancy approved",
    "segment": "home-services",
    "city": "Chicago",
    "data": "permits/chicago/sample.json",

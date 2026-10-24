@@ -155,6 +155,7 @@ def cmd_selftest():
     dom = "mailbox" + _rand(6, string.ascii_lowercase) + ".com"
     hunter, gumroad, kitsec, kit4, bouncer, bouncer2 = (_rand(40, hexs), _rand(43, b64u), _rand(43, alnum),
                                                        "kit_" + _rand(32, alnum), _rand(40, alnum), _rand(36, alnum))
+    generic, beacon = "Zq" + _rand(30, alnum) + "9x", _rand(32, hexs)
     at, dash = "@", "-"
     ph1, ph2, ph3 = f"(773) 482{dash}7719", f"312.640.{'2283'}", f"+1 312{dash}640{dash}2284"
     catch = {   # path -> (text, rule ids that must be found in that file)
@@ -166,6 +167,8 @@ def cmd_selftest():
         "email/e.json": (f'{{"kit_api_secret": "{kitsec}", "key": "{kit4}"}}\n', {"pnf-kit-key", "pnf-kit-v4-key"}),
         "tools/f.sh": (f'BOUNCER_API_KEY="{bouncer}"\ncurl -H "x-api-key: {bouncer2}" https://api.usebouncer.com/v1.1/email/verify\n',
                        {"pnf-bouncer-key"}),
+        # gitleaks' own generic rule still fires on a token that is not the analytics beacon
+        "site/g.json": (f'{{"api_token": "{generic}"}}\n', {"generic-api-key"}),
         # the sender fixtures' path allowlist covers emails only: a key in the same file is still caught
         "email/sender/test.js": (f"const HUNTER_KEY = '{hunter}';\n", {"pnf-hunter-key"}),
     }
@@ -181,9 +184,11 @@ def cmd_selftest():
         "email/sender/test.js": (f"send('a{at}x.com'); send('z{at}bad.com'); send('lead{at}co90.com');\n"),
         "prospects/enriched.sealed.json": ('{"v": 1, "alg": "x", "salt": "AAAA", "nonce": "AAAA", "ct": "'
                                            + f"owner{at}{dom} {ph1}" + '"}\n'),
+        "docs/q/index.html": ('<script defer src="https://static.cloudflareinsights.com/beacon.min.js" '
+                              f'data-cf-beacon=\'{{"token": "{beacon}"}}\'></script>\n'),
         "kdp/book.pdf": (f"%PDF-1.4 call {ph1} jane{at}{dom}\n"),
     }
-    planted_values = [f"jane.planted{at}{dom}", ph1, ph2, ph3, hunter, gumroad, kitsec, kit4, bouncer, bouncer2]
+    planted_values = [f"jane.planted{at}{dom}", ph1, ph2, ph3, hunter, gumroad, kitsec, kit4, bouncer, bouncer2, generic]
     fails, n = [], 0
     base = tempfile.mkdtemp(prefix="leakscan-")
     try:

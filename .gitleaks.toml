@@ -99,6 +99,14 @@ regexes = [
   '''(?i)@(?:[a-z0-9-]+\.)*(?:example\.(?:com|org|net)|example|test|invalid|localhost)$''',
 ]
 
+# The Cloudflare Web Analytics beacon token is public by design: tools/make_site.py writes it into every page's
+# data-cf-beacon tag. Only gitleaks' generic-api-key rule, and only on that tag's line, is excused.
+[[allowlists]]
+description = "Cloudflare analytics beacon on site pages"
+targetRules = ["generic-api-key"]
+regexTarget = "line"
+regexes = ['''data-cf-beacon=['"]\{"token":\s*"[0-9a-f]{32}"\}['"]''']
+
 # Sealed boxes are ciphertext (tools/data_box.py, the RSA and PBKDF2 boxes). tools/leak_scan.py sealed fails the
 # push if any file with these names is not a well-formed box, so a plain file cannot hide behind this entry.
 # Binary media and fonts carry no text worth scanning. This file holds the rules themselves.

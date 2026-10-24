@@ -629,10 +629,14 @@ def lic_counts(lic, insp):
     """The numbers a count email may state, read from the two weekly files: {n} new licenses in the week, {m} food license
     inspections in the same week, {food} food and drink licenses, and the community areas with their counts."""
     c = lic.get("counts") or {}
-    return {"n": int(c["keptWeek"]), "m": int(((insp.get("counts") or {}).get("segments") or {})["newOpening"]),
+    return {"n": int(c["keptWeek"]), "m": int((insp.get("counts") or {})["licensePlaces"]),
             "food": int((c.get("segmentsWeek") or {}).get("food", 0)),
             "areas": {a: int(k) for a, k in (c.get("areasWeek") or [])},
             "from": R.date_display(lic["window"]["from"]), "to": R.date_display(lic["window"]["to"])}
+
+
+def lic_subject(v):
+    return f"{v['n']} new Chicago business licenses, {v['from']} to {v['to']}"
 
 
 def lic_fill(t, lic, insp, first="Dana", area=None, first_subject=None):
@@ -640,7 +644,7 @@ def lic_fill(t, lic, insp, first="Dana", area=None, first_subject=None):
     area = area if area in v["areas"] else max(sorted(v["areas"]), key=lambda a: v["areas"][a]) if v["areas"] else ""
     f = {"first": first, "n": v["n"], "m": v["m"], "food": v["food"], "area": ("the " + area) if pest_the(area) else area,
          "k": v["areas"].get(area, 0), "from": v["from"], "to": v["to"],
-         "first_subject": first_subject or f"{v['n']} new Chicago business licenses this week"}
+         "first_subject": first_subject or lic_subject(v)}
     return fill(t["subject"], f), fill(t["body"], f)
 
 
@@ -650,7 +654,7 @@ def lic_count_problems(subject, body, step, trade, lic, insp, send_day, first=No
     try:
         v = lic_counts(lic, insp)
     except (KeyError, TypeError, ValueError):
-        return ["the weekly files have no keptWeek, newOpening or window: no count email can be filled"]
+        return ["the weekly files have no keptWeek, licensePlaces or window: no count email can be filled"]
     if (lic.get("window") or {}).get("from") != (insp.get("window") or {}).get("from") or \
             (lic.get("window") or {}).get("to") != (insp.get("window") or {}).get("to"):
         p.append(f"the license window {lic.get('window')} and the inspection window {insp.get('window')} differ: "
@@ -668,7 +672,7 @@ def lic_count_problems(subject, body, step, trade, lic, insp, send_day, first=No
     if v["n"] < 2 or v["m"] < 2:
         p.append(f"this week's counts are too small to lead an email (n = {v['n']}, m = {v['m']}): hold until next Monday")
     if step == "first":
-        want = f"{v['n']} new Chicago business licenses this week"
+        want = lic_subject(v)
         if s != want:
             p.append(f"subject must be {want!r} (n is counts.keptWeek = {v['n']}), got {s!r}")
     elif not s.startswith("Re: "):
@@ -676,12 +680,12 @@ def lic_count_problems(subject, body, step, trade, lic, insp, send_day, first=No
     # every number is one of this week's counts; every date is the window's
     rest = re.sub(r"\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{1,2}\b", " ", b)
     allowed = {v["n"], v["m"], v["food"]}
-    named = re.search(r"including (\d+) in ([^,.]+)[.,]", b)
-    area = re.sub(r"^the ", "", named.group(2)) if named else ""
+    named = re.search(r"(?:including (\d+)|(\d+) of them) in ([^,.]+)[.,]", b)
+    area = re.sub(r"^the ", "", named.group(3)) if named else ""
     if named:
-        if area not in v["areas"] or int(named.group(1)) != v["areas"][area] or pest_the(area) != named.group(2).startswith("the "):
-            p.append(f"'including {named.group(1)} in {named.group(2)}' does not match this week's areas "
-                     f"({area!r} has {v['areas'].get(area, 0)})")
+        cnt = int(named.group(1) or named.group(2))
+        if area not in v["areas"] or cnt != v["areas"][area] or pest_the(area) != named.group(3).startswith("the "):
+            p.append(f"'{named.group(0)}' does not match this week's areas ({area!r} has {v['areas'].get(area, 0)})")
         else:
             allowed.add(v["areas"][area])
     for k in (int(x) for x in re.findall(r"(?<![\d,.$])(\d+)(?![\d,.%])", rest)):
@@ -689,9 +693,12 @@ def lic_count_problems(subject, body, step, trade, lic, insp, send_day, first=No
             p.append(f"the number {k} is not one of this week's counts (n {v['n']}, m {v['m']}, food {v['food']})")
     if f"at least {v['n']} " not in b:
         p.append(f"the body must carry 'at least {v['n']}' (the list leaves some licenses out on purpose)")
-    if " license inspections" in b and f" {v['m']} license inspections" not in b:
-        p.append(f"the license inspection count must be {v['m']} (counts.segments.newOpening)")
-    if re.search(r"(\d+) of them to food", b) and int(re.search(r"(\d+) of them to food", b).group(1)) != v["food"]:
+    if step == "first" and f"{v['m']} food businesses at their license inspection" not in b:
+        p.append(f"the first email carries this week's food license inspections as '{v['m']} food businesses at their license "
+                 "inspection' (counts.licensePlaces, one per business, re-inspections left out)")
+    if re.search(r"about to open|applied to open|opening soon|getting ready to open", b, re.I):
+        p.append("a license inspection also comes with a change of owner: never 'about to open' or 'applied to open'")
+    if re.search(r"(\d+)(?: of them)? to food", b) and int(re.search(r"(\d+)(?: of them)? to food", b).group(1)) != v["food"]:
         p.append(f"the food and drink count must be {v['food']}")
     for d in R.DATE_IN_COPY.findall(s + " " + b):
         if d not in (v["from"], v["to"]):
@@ -787,12 +794,12 @@ def check_lic_templates(path=LIC_FILE, today=None):
             ("stale week", subj, body, "first", "pos_merchant", lic, insp, day + dt.timedelta(days=9), R.SALES_SENDER),
             ("windows differ", subj, body, "first", "pos_merchant", lic, other_insp, day, R.SALES_SENDER),
             ("business named", subj, body.replace("Want me", f"{(names or ['Luna Tacos'])[0]} is one. Want me"), "first", "pos_merchant", lic, insp, day, R.SALES_SENDER),
-            ("phone promise", subj, body.replace("with the address", "with the address and phone"), "first", "pos_merchant", lic, insp, day, R.SALES_SENDER),
+            ("phone promise", subj, body.replace("Want me", "Each comes with a phone. Want me"), "first", "pos_merchant", lic, insp, day, R.SALES_SENDER),
             ("trial line", subj, body.replace("Want me", "Try it on a free trial. Want me"), "first", "pos_merchant", lic, insp, day, R.SALES_SENDER),
-            ("insurance words on the POS email", subj, body.replace("card payments or POS", "insurance"), "first", "pos_merchant", lic, insp, day, R.SALES_SENDER),
-            ("POS words on the insurance email", isub, ibody.replace("commercial policies", "card payments"), "first", "commercial_insurance", lic, insp, day, R.SALES_SENDER),
+            ("insurance words on the POS email", subj, body.replace("Want me", "Great for insurance. Want me"), "first", "pos_merchant", lic, insp, day, R.SALES_SENDER),
+            ("POS words on the insurance email", isub, ibody.replace("Want me", "Great for card payments. Want me"), "first", "commercial_insurance", lic, insp, day, R.SALES_SENDER),
             ("no 'at least'", subj, body.replace("at least ", ""), "first", "pos_merchant", lic, insp, day, R.SALES_SENDER),
-            ("wrong inspection count", subj, body.replace(f" {v['m']} license", f" {v['m'] + 7} license"), "first", "pos_merchant", lic, insp, day, R.SALES_SENDER),
+            ("wrong inspection count", subj, body.replace(f" {v['m']} food businesses", f" {v['m'] + 7} food businesses"), "first", "pos_merchant", lic, insp, day, R.SALES_SENDER),
             ("street named", subj, body.replace("Want me", "One is on 1234 W Main St. Want me"), "first", "pos_merchant", lic, insp, day, R.SALES_SENDER),
             ("other date", subj, body.replace(f"to {v['to']}", "to Oct 30", 1), "first", "pos_merchant", lic, insp, day, R.SALES_SENDER),
         ]
@@ -800,12 +807,12 @@ def check_lic_templates(path=LIC_FILE, today=None):
             if not lic_count_problems(cs, cb, st, tr, l, i, sd, "Dana", snd, names):
                 problems.append(f"planted case not caught: {label}")
             planted += 1
-        f2 = next((t for t in ts if t["step"] == "followup2" and t["trade"] == "pos_merchant"), None)
+        f2 = next((t for t in ts if t["step"] == "followup1" and t["trade"] == "pos_merchant"), None)
         if f2 and v["areas"]:
             a = max(sorted(v["areas"]), key=lambda x: v["areas"][x])
             s2, b2 = lic_fill(f2, lic, insp, area=a)
-            b2 = re.sub(r"including \d+ in", f"including {v['areas'][a] + 3} in", b2)
-            if not lic_count_problems(s2, b2, "followup2", "pos_merchant", lic, insp, day, "Dana", R.SALES_SENDER, names):
+            b2 = re.sub(r"\d+ of them in", f"{v['areas'][a] + 3} of them in", b2)
+            if not lic_count_problems(s2, b2, "followup1", "pos_merchant", lic, insp, day, "Dana", R.SALES_SENDER, names):
                 problems.append("planted case not caught: wrong area count")
             planted += 1
     return problems, len(ts), planted, f"n = {lic_counts(lic, insp)['n']}, m = {lic_counts(lic, insp)['m']}, {lic['window']['from']} to {lic['window']['to']}"
@@ -846,7 +853,7 @@ def check_lic_drafts(drafts_path, prospects_path, send_day):
         if t["step"] != "first" and (not dft.get("prev_window_from") or str(dft["prev_window_from"]) >= lic["window"]["from"]):
             problems.append(f"{pid}: a follow-up needs a newer week than the email before it (prev_window_from "
                             f"{dft.get('prev_window_from')!r}, this week from {lic['window']['from']}): 'a fresh count' would not be true")
-        area = (re.search(r"including \d+ in (?:the )?([^,.]+)[.,]", dft.get("body") or "") or [None, None])[1]
+        area = (re.search(r"(?:including \d+|\d+ of them) in (?:the )?([^,.]+)[.,]", dft.get("body") or "") or [None, None])[1]
         subj, body = lic_fill(t, lic, insp, pr.get("first_name"), area, dft.get("first_subject"))
         if (dft.get("subject"), dft.get("body")) != (subj, body):
             problems.append(f"{pid}: not template {t['id']} filled with this week's counts (fixed words changed)")

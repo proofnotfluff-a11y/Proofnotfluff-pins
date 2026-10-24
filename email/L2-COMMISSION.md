@@ -6,8 +6,8 @@ Product: Chicago New Business Licenses, $29 a month (launches/chicago-new-busine
 `python3 tools/copy_gate.py --lic-templates` and `--lic data/work/lic_drafts.json` (pnf_rules.lic_count_problems):
 - The hook is the City's own counts for one week, from the two committed weekly files, never a business:
   - {n}: `counts.keptWeek` in permits/licenses-chicago/sample.json, new business licenses issued at a Chicago business address from `window.from` to `window.to`. The list leaves some out (renewals, event and one-person licenses, homes, names that could be a person's), so the email says "at least {n}".
-  - {m}: `counts.segments.newOpening` in permits/inspections-chicago/sample.json, the City's license inspections at food businesses in the same window (the inspection the City does before it issues a food license; any result).
-  - {food}: `counts.segmentsWeek.food` (licenses); {area} and {k}: one community area in `counts.areasWeek` and its count.
+  - {m}: `counts.licensePlaces` in permits/inspections-chicago/sample.json: food businesses (one per license number) that had a License inspection in the same window, any result; re-inspections and task force visits left out (copy review round 1: `segments.newOpening` counts re-inspections, so one place could count twice). A license inspection also comes with a change of owner, so the email says "{m} food businesses at their license inspection", never "about to open". The first email of each trade carries {m}.
+  - {food}: `counts.segmentsWeek.food` (licenses); {area} and {k}: one community area in `counts.areasWeek` and its count ("{k} of them in {area}").
   - {from} and {to}: the window as the City date ("Oct 17"). Both files must cover the same window; the newest file at most 7 days old on the send day.
 - No business named, no street, no price, no trial or free-trial line, no promise of phone numbers (the word "phone" is not used), nothing about inspection results or violations.
 - The POS email never says insurance, and the insurance email never says POS, card payments or merchant services.
@@ -32,13 +32,13 @@ Kind: license_count
 Trade: pos_merchant
 Step: first
 Variant: A
-Subject: {n} new Chicago business licenses this week
+Subject: {n} new Chicago business licenses, {from} to {to}
 ```text
 Hi {first},
 
-From {from} to {to}, the City of Chicago issued at least {n} new business licenses at storefront and office addresses, and ran {m} license inspections at food businesses that applied to open.
+If you set up POS and card payments for new businesses, here is the City of Chicago's count from {from} to {to}: at least {n} new business licenses, {food} to food and drink places, and {m} food businesses at their license inspection.
 
-If you set up card payments or POS for new businesses: I list the new licenses each Monday, sorted by trade, with the address and license type.
+Each Monday I list the new licenses by trade, with address, license type and whether it is a first license.
 
 Want me to send you this week's sample?
 ```
@@ -53,9 +53,9 @@ Subject: Re: {first_subject}
 ```text
 Hi {first},
 
-A fresh count: from {from} to {to}, the City issued at least {n} new business licenses in Chicago, {food} of them to food and drink places, and ran {m} license inspections at food businesses that applied to open.
+A fresh count: from {from} to {to}, the City issued at least {n} new business licenses in Chicago, {k} of them in {area}.
 
-Each Monday's list shows whether it is a first license or a new location, so you can start with the brand new ones.
+The City's data is raw. My list leaves out renewals, event licenses and home addresses, and marks each one first license, new site, added license or relicensed.
 
 Want me to send you this week's sample?
 ```
@@ -70,11 +70,11 @@ Subject: Re: {first_subject}
 ```text
 Hi {first},
 
-Last note from me. From {from} to {to}, the City issued at least {n} new business licenses in Chicago, including {k} in {area}.
+Last note from me. From {from} to {to}, the City issued at least {n} new business licenses in Chicago, {food} of them to food and drink places.
 
 If new businesses are not who you sell payments to, no need to reply and you won't hear from me again.
 
-Want me to send you this week's sample?
+If they are, want me to send you this week's sample?
 ```
 
 ### T24 Insurance, first email
@@ -83,13 +83,13 @@ Kind: license_count
 Trade: commercial_insurance
 Step: first
 Variant: A
-Subject: {n} new Chicago business licenses this week
+Subject: {n} new Chicago business licenses, {from} to {to}
 ```text
 Hi {first},
 
-From {from} to {to}, the City of Chicago issued at least {n} new business licenses at storefront and office addresses, and ran {m} license inspections at food businesses that applied to open.
+If you write commercial policies for new businesses, here is the City of Chicago's count from {from} to {to}: at least {n} new business licenses, {food} to food and drink places, and {m} food businesses at their license inspection.
 
-If you write commercial policies for new businesses: I list the new licenses each Monday, sorted by trade, with the address and license type.
+Each Monday I list the new licenses by trade, with address, license type and whether it is a first license.
 
 Want me to send you this week's sample?
 ```
@@ -104,9 +104,9 @@ Subject: Re: {first_subject}
 ```text
 Hi {first},
 
-A fresh count: from {from} to {to}, the City issued at least {n} new business licenses in Chicago, {food} of them to food and drink places, and ran {m} license inspections at food businesses that applied to open.
+A fresh count: from {from} to {to}, the City issued at least {n} new business licenses in Chicago, {k} of them in {area}.
 
-Each Monday's list shows whether it is a first license or a new location, so you can start with the brand new ones.
+Each one shows its license type and business activity, so you know the class of risk before you reach out. Renewals, event licenses and home addresses are left out.
 
 Want me to send you this week's sample?
 ```
@@ -121,11 +121,11 @@ Subject: Re: {first_subject}
 ```text
 Hi {first},
 
-Last note from me. From {from} to {to}, the City issued at least {n} new business licenses in Chicago, including {k} in {area}.
+Last note from me. From {from} to {to}, the City issued at least {n} new business licenses in Chicago, {food} of them to food and drink places.
 
 If new businesses are not who you write policies for, no need to reply and you won't hear from me again.
 
-Want me to send you this week's sample?
+If they are, want me to send you this week's sample?
 ```
 
 ## Review verdicts

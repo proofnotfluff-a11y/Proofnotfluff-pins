@@ -31,6 +31,17 @@ def page_html(p):
     checkout, price = p.get("checkout"), p.get("price")
     trial = int(p.get("trialDays") or 0) if checkout else 0      # Gumroad free trial (Todd, Oct 22, 8:50 pm: 7 days)
     pulled = M.nice_date(d["source"]["fetchedAt"])                     # the Chicago date of the pull
+    # exact phone coverage on the members' list (research copy fix 5, Oct 24): the counts-only file tools/phones.py writes
+    # in the weekly run; said only when it covers the same 30-day list this page counts, never a rounded or old figure
+    ph = {}
+    try:
+        ph = json.load(open(os.path.join(ROOT, "permits", "licenses-chicago", "phones.json"), encoding="utf-8"))
+    except (OSError, ValueError):
+        pass
+    phone_line = (f' {ph["withPhone"]:,} of those {ph["rows"]:,} ({ph["coverage"]:g}%) have a listed phone, only where the business name and the street '
+                  'address both match an open map listing or the business\'s own site; the free sample never shows a phone.'
+                  if isinstance(ph, dict) and ph.get("rows") == c["kept30"] and ph.get("asOf") == str(d["source"].get("fetchedAt", ""))[:10]
+                  and isinstance(ph.get("withPhone"), int) and ph["withPhone"] > 0 and isinstance(ph.get("coverage"), (int, float)) else "")
     notify = p.get("notify") or "mailto:hello@proofnotfluff.com?subject=Chicago%20New%20Business%20Licenses%3A%20tell%20me%20when%20it%20opens"
 
     def buy(cls="btn ld-btnbig"):
@@ -55,8 +66,8 @@ def page_html(p):
                 f'<div><dt>Activity</dt><dd>{act}</dd></div></dl></article>')
 
     s30, sw = c["segments30"], c["segmentsWeek"]
-    note = (f'<p class="ld-heronote">New list every Monday. Card at checkout, nothing charged for {trial} days, then ${E(str(price))} a month. Cancel any time.</p>' if trial else
-            f'<p class="ld-heronote">New list every Monday. Cancel any time.</p>' if checkout else
+    note = (f'<p class="ld-heronote">New list every Monday. Card at checkout, nothing charged for {trial} days, then ${E(str(price))} a month. No lock-in, cancel any time.</p>' if trial else
+            f'<p class="ld-heronote">New list every Monday. No lock-in, cancel any time.</p>' if checkout else
             (f'<p class="ld-heronote">${E(str(price))} a month when it opens. New list every Monday.</p>' if price else
              '<p class="ld-heronote">Not on sale yet. New list every Monday.</p>'))
     lede = (f'{c["keptWeek"]:,} business sites on this week\'s list got a new City business license in the week to {E(M.nice_date(w["to"]))}, '
@@ -69,7 +80,7 @@ def page_html(p):
              f'<div class="tile"><div class="lab">Food businesses</div><div class="val">{s30.get("food", 0):,}</div><div class="sub">restaurants, bars, food shops</div></div>'
              + (f'<div class="tile"><div class="lab">Busiest area this week</div><div class="val lc-area">{E(top_area[0])}</div><div class="sub">{top_area[1]:,} new licenses'
                 + (f', tied with {ties} more {"area" if ties == 1 else "areas"}' if ties else "") + '</div></div>' if top_area else "")
-             + f'</div><p class="asof">City records pulled {E(dt.datetime.strptime(pulled, "%b %d, %Y").strftime("%A"))}, {E(pulled)}. The list is refreshed every Monday.</p>')
+             + f'</div><p class="asof">The City\'s own public license records, cleaned and sorted by trade. City records pulled {E(dt.datetime.strptime(pulled, "%b %d, %Y").strftime("%A"))}, {E(pulled)}. The list is refreshed every Monday.</p>')
     trades = ('<section class="block"><h2>New licenses by trade, last 30 days</h2><p>Each business on the list, sorted by what it does, '
               'so you can work the trades that buy from you.</p><ol class="rl-trades">'
               + "".join(f'<li><span class="nm">{E(names[k])}<small>{E(kinds[k])}. {sw.get(k, 0):,} new this week</small></span><span class="n">{s30.get(k, 0):,}</span></li>'
@@ -78,7 +89,7 @@ def page_html(p):
     segs = "".join(f'<h3 class="lc-h3">{E(names[k])} <span>({sw.get(k, 0):,} this week)</span></h3><div class="ld-list rl3">{"".join(card(x) for x in d["segments"][k][:3])}</div>'
                    for k in ORDER if d["segments"].get(k))
     sample = (f'<section class="block" id="sample"><h2>This week\'s sample</h2><p>Up to three per trade shown here, from a free sample of up to ten per trade licensed in the last 7 days. '
-              f'The members\' list has all {c["kept30"]:,} from the last 30 days, with a map, filters by trade, area and date, and an Excel file. '
+              f'The members\' list has all {c["kept30"]:,} from the last 30 days, with a map, filters by trade, area and date, and an Excel file.{phone_line} '
               f'This week\'s new businesses, by neighborhood, are free on <a href="{rel}new-in-chicago/">New in Chicago</a>.</p>'
               f'{segs}</section>')
     method = '<section class="block"><h2>How to use this list</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"]) + "</section>"

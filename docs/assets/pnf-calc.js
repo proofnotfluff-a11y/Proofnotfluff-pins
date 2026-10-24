@@ -272,7 +272,7 @@
     var perStayClean = stay > 0 ? kept / stay : 0;
     var perNight = rate * (1 - fee) + perStayClean;
     var exact = perNight > 0 ? fixed / perNight : 0;
-    var nights = perNight > 0 ? Math.ceil(exact - 1e-9) : 0;
+    var nights = perNight > 0 ? Math.max(0, Math.ceil(exact - 1e-9)) : 0;
     var half = month / 2;
     var rateAtHalf = (1 - fee) > 0 ? Math.max(0, (fixed / half - perStayClean) / (1 - fee)) : 0;
     var never = perNight <= 0 && fixed > 0 ? 1 : 0;
@@ -298,8 +298,9 @@
       gap: income > 0 && profit > 0 && cash < 0 ? 1 : 0, noIncome: income > 0 ? 0 : 1, noMonths: income > 0 && m === 0 ? 1 : 0 };
   }
 
+  // a value that rounds to zero never prints a minus sign ("-$0", "-0 nights" on a blank input, store build open item)
   function money(x, cents) {
-    var neg = x < 0; x = Math.abs(x);
+    var neg = x < 0 && (cents === false ? Math.round(-x) > 0 : Math.round(-x * 100) > 0); x = Math.abs(x);
     var s = cents === false ? Math.round(x).toLocaleString("en-US")
                             : x.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     return (neg ? "-$" : "$") + s;
@@ -319,9 +320,9 @@
         var key = el.getAttribute("data-out"), fmt = el.getAttribute("data-fmt") || "money";
         var v = r[key];
         el.textContent = fmt === "text" ? String(v) : fmt === "mult" ? v.toFixed(2) + "x"
-                       : fmt === "week" ? "Week " + v : fmt === "int" ? Math.round(v).toLocaleString("en-US")
-                       : fmt === "hrs" ? v.toFixed(2) + " hrs" : fmt === "money3" ? (v < 0 ? "-$" : "$") + Math.abs(v).toFixed(3)
-                       : fmt === "dec1" ? (Math.round(v * 10) / 10).toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+                       : fmt === "week" ? "Week " + v : fmt === "int" ? (Math.round(v) || 0).toLocaleString("en-US")
+                       : fmt === "hrs" ? v.toFixed(2) + " hrs" : fmt === "money3" ? (Math.round(-v * 1000) > 0 ? "-$" : "$") + Math.abs(v).toFixed(3)
+                       : fmt === "dec1" ? (Math.round(v * 10) / 10 || 0).toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 })
                        : fmt === "money0" ? money(v, false) : money(v);
         el.classList.toggle("neg", v < 0);
       });
@@ -345,7 +346,7 @@
       var r = M(v);
       document.querySelectorAll("[data-pct]").forEach(function (e) {
         var x = r[e.getAttribute("data-pct")];
-        e.textContent = (isFinite(x) ? (x * 100).toFixed(1) : "0.0") + "%"; e.classList.toggle("neg", x < 0);
+        e.textContent = (isFinite(x) ? ((Math.round(x * 1000) / 10) || 0).toFixed(1) : "0.0") + "%"; e.classList.toggle("neg", x < 0);
       });
       document.querySelectorAll("[data-never]").forEach(function (e) {
         if (r[e.getAttribute("data-never-if") || "never"]) { e.textContent = e.getAttribute("data-never"); e.classList.add("neg"); }

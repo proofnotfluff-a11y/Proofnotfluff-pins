@@ -186,7 +186,7 @@ def page_html(p):
              f'<div class="tile"><div class="lab">Opening soon</div><div class="val">{c["opening"]:,}</div><div class="sub">license inspections</div></div>'
              f'<div class="tile"><div class="lab">Failed more than once</div><div class="val">{c["repeat"]:,}</div><div class="sub">2 or more fails in 90 days</div></div>'
              f'<div class="tile"><div class="lab">New this week</div><div class="val">{c["new"]:,}</div><div class="sub">inspected in the last 7 days</div></div></div>'
-             f'<p class="asof">City records through {E(d["throughText"])}, pulled {asof}. Refreshed every Monday.</p>')
+             f'<p class="asof">The City\'s own public inspection records, cleaned and sorted by the violation that fits your trade. City records through {E(d["throughText"])}, pulled {asof}. Refreshed every Monday.</p>')
     tabs = [("all", "All", c.get("places", c["flagged"] + c["opening"]), "on this week's lists: failed or conditional in our four categories, or a license inspection."),
             ("hood", "Hood and exhaust", bc["hood"], "failed or passed with conditions with a hood or exhaust violation."),
             ("pests", "Pests", bc["pests"], "failed or passed with conditions with a pest violation."),

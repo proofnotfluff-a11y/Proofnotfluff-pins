@@ -1911,10 +1911,10 @@ def leads_page_html(p):
     if checkout:   # the free sample first, then subscribe (store design, Oct 22)
         hero_act = (f'<div class="ld-heroact" id="ldHeroCta"><a class="btn ld-btnbig" href="{"#near" if near else "#sample"}">See this week\'s free sample</a>'
                     + (f'<a class="ld-textlink ld-trialbtn" href="{E(checkout)}" rel="noopener">Try {trial} days free, then ${price} a month</a></div>'
-                       '<p class="ld-heronote">Card at checkout, nothing charged for 7 days. Cancel any time.</p>'
+                       '<p class="ld-heronote">Card at checkout, nothing charged for 7 days. No lock-in, cancel any time.</p>'
                        .replace("7 days", f"{trial} days") if trial else
                        f'<a class="ld-textlink" href="{E(checkout)}" rel="noopener">Subscribe, ${price} a month</a></div>'
-                       '<p class="ld-heronote">New list every Monday. Cancel any time.</p>'))
+                       '<p class="ld-heronote">New list every Monday. No lock-in, cancel any time.</p>'))
     elif p.get("kitForm"):
         hero_act = '<div class="ld-heroact" id="ldHeroCta"><a class="ld-textlink" href="#ldCta">Join the waitlist</a></div>'
     else:   # before launch with no waitlist form: no action that leads nowhere (design director, Oct 18)
@@ -1925,7 +1925,7 @@ def leads_page_html(p):
              f'<div class="tile"><div class="lab">{E(p.get("costLabel", "Reported cost"))}</div><div class="val">{M(cost, True)}</div><div class="sub">{E(p.get("costSub", "as filed with the City"))}</div></div>'
              f'<div class="tile"><div class="lab">New buildings</div><div class="val">{new_n:,}</div><div class="sub">at least {c.get("keptUnits", 0):,} new {E(p.get("unitsWord", "apartments"))}</div></div>'
              + ("" if lead_near else t_near) + '</div>'
-             f'<p class="asof">City data as of {E(asof)}. Refreshed every Monday.</p>')
+             f'<p class="asof">The City\'s own public permit records, cleaned and sorted, with the builder on each. City data as of {E(asof)}. Refreshed every Monday.</p>')
 
     # near finish: the most valuable segment for a final clean, so the free page shows 2 and holds the rest back (owner, Oct 17)
     near_html = ""

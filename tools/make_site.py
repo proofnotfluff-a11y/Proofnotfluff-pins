@@ -2933,6 +2933,7 @@ def main():
     for x in live_extras():
         normalize_extra(x["slug"], x["h1"])
     write_hub_and_redirects(pages)
+    write_answer_drafts(pages)   # Todd, Oct 24: visible AI-search changes built as drafts first
     write_stage_pages(pages)
     urls = ([BASE] + [BASE + slug + "/" for slug, _ in store] + [BASE + "go/"] + [BASE + p["slug"] + "/" for p in live]
             + [BASE + x["slug"] + "/" for x in live_extras()])
@@ -2956,6 +2957,54 @@ def main():
     for p in pages:
         if chr(0x2014) in json.dumps(p, ensure_ascii=False):
             sys.exit(f"em dash in {p['slug']}")
+
+
+def answer_text(p):
+    """The 2 to 3 sentence dated answer for the top of a lead page (research_notes/ai-recommendation-2026-10-23.md item 4),
+    every number read from the page's own data file. Draft only until Todd's go (Oct 24: "Build as drafts")."""
+    d = json.load(open(os.path.join(ROOT, p["data"]), encoding="utf-8"))
+    c, asof = d.get("counts") or {}, nice_date(d["source"]["fetchedAt"])
+    k = p.get("kind")
+    if k == "leads":
+        near = int(c.get("nearFinish") or 0)
+        near_s = (f' {near:,} {"has" if near == 1 else "have"} {E(p.get("nearLede", p.get("nearSub", "partial occupancy approved")))}, so a final clean is close.'
+                  if near else "")
+        return (f'Where to find post-construction cleaning leads in {E(p["city"])}: the City\'s building permit records list the general contractor '
+                f'on big jobs. As of {E(asof)}, {int(c["kept"]):,} apartment and commercial projects of $500,000 or more are open.{near_s} '
+                'This page lists them with the builder on each, refreshed every Monday.')
+    if k == "restleads":
+        return ('How pest control, hood cleaning and kitchen cleaning companies find restaurant clients in Chicago: the City posts its food '
+                'inspections, and a failed or conditional result with a pest, hood, grease trap or cleaning violation is a dated reason to call. '
+                f'In the 30 days to {E(d.get("throughText") or asof)}, {int(c["flagged"]):,} Chicago food businesses had one. This page sorts them by the violation that fits your trade.')
+    if k == "licleads":
+        return ('How vendors find new businesses in Chicago: the City records each new business license with its address and license type. '
+                f'In the week to {E(nice_date(d["window"]["to"]))}, {int(c["keptWeek"]):,} business sites got one, and {int(c["kept30"]):,} in the last 30 days. '
+                'This page sorts them by trade, refreshed every Monday.')
+    return ""
+
+
+def write_answer_drafts(pages):
+    """Draft copies of the live lead pages with the dated answer under the h1: docs/answer-draft-<slug>/index.html,
+    noindex, not in the sitemap, not linked. The live pages are unchanged until Todd's go (visible change, major)."""
+    style = ("<style>.ld-answer{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ink);border-radius:12px;"
+             "padding:16px 20px;margin:14px 0 4px;max-width:760px}.ld-answer .qa-tag{font:600 12px/1 Poppins,system-ui,sans-serif;"
+             "letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}.ld-answer p:last-child{margin:0;font-size:17px;"
+             "line-height:1.6;color:var(--ink)}</style>")
+    for p in pages:
+        if p.get("kind") not in ("leads", "restleads", "licleads") or not is_live(p):
+            continue
+        live = os.path.join(DOCS, p["slug"], "index.html")
+        if not os.path.isfile(live):
+            continue
+        html = open(live, encoding="utf-8").read()
+        text = answer_text(p)
+        if not text or "</h1>" not in html or "<head>" not in html:
+            continue
+        block = f'<div class="ld-answer" role="note"><p class="qa-tag">The short answer</p><p>{text}</p></div>'
+        html = html.replace("</h1>", "</h1>" + block, 1).replace("<head>", '<head><meta name="robots" content="noindex, nofollow">', 1)
+        html = html.replace("</head>", style + "</head>", 1)
+        out = os.path.join(DOCS, "answer-draft-" + p["slug"]); os.makedirs(out, exist_ok=True)
+        open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(html)
 
 
 def add_product(argv):

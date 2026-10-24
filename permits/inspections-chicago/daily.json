@@ -8,7 +8,7 @@
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-24T16:35:26+00:00",
+  "fetchedAt": "2026-10-24T16:47:45+00:00",
   "rowsUpdatedAt": "2026-10-24T09:08:34+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
@@ -131,7 +131,24 @@
   "from": "2026-10-17",
   "to": "2026-10-23",
   "inspections": 24,
-  "restaurantInspections": 22
+  "restaurantInspections": 22,
+  "areas": [
+   "Belmont Cragin",
+   "Bridgeport",
+   "Brighton Park",
+   "Douglas",
+   "Dunning",
+   "Gage Park",
+   "Grand Boulevard",
+   "Lake View",
+   "Lincoln Square",
+   "Logan Square",
+   "Loop",
+   "Lower West Side",
+   "McKinley Park",
+   "O'Hare",
+   "West Town"
+  ]
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {

@@ -640,5 +640,8 @@ const DM = P.payoutGap({ sales: 1000, fulfil: 1, tracked: 0, deliverDays: 4, edd
 check("DD+7 merchant, no valid tracking: uses latest EDD", DM.dateDays, 7); check("DD+7 merchant slowest", DM.slowest, 33);
 check("DD+7 merchant tracked: uses delivery", P.payoutGap({ sales: 1, fulfil: 1, tracked: 1, deliverDays: 4, eddDays: 7 }).dateDays, 4);
 check("DD+7 blank: no sales flag", P.payoutGap({}).noSales, 1);
+const DF = P.payoutGap({ sales: 500, fulfil: 0, deliverDays: 3, schedule: 0, nextPayout: 14, bankDays: 1, cash: 10000, costs: 700 });
+check("DD+7 spend above sales: falling, no short or ok", DF.falling * 10 + DF.short + DF.ok, 10);
+check("DD+7 no sales with spend: falling", P.payoutGap({ costs: 100, cash: 1000 }).falling, 1);
 
 process.exit(fails ? 1 : 0);

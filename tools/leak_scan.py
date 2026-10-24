@@ -184,6 +184,9 @@ def cmd_selftest():
         "email/sender/test.js": (f"send('a{at}x.com'); send('z{at}bad.com'); send('lead{at}co90.com');\n"),
         "prospects/enriched.sealed.json": ('{"v": 1, "alg": "x", "salt": "AAAA", "nonce": "AAAA", "ct": "'
                                            + f"owner{at}{dom} {ph1}" + '"}\n'),
+        "docs/form/index.html": ('<input type="email" placeholder="you@company.com">\n'
+                                 'const PKEY="pnf-pest-seat-pw",SKEY="pnf-pest-seat-marks-v2";\n'),
+        "tools/site.py": ('INDEXNOW_KEY = "cdccc9befa99e9cfa2a85549b2b1160d"\n'),
         "docs/q/index.html": ('<script defer src="https://static.cloudflareinsights.com/beacon.min.js" '
                               f'data-cf-beacon=\'{{"token": "{beacon}"}}\'></script>\n'),
         "kdp/book.pdf": (f"%PDF-1.4 call {ph1} jane{at}{dom}\n"),

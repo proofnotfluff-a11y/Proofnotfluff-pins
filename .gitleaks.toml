@@ -96,6 +96,7 @@ regexes = [
   '''(?i)^outlandiastays@gmail\.com$''',
   '''(?i)^[a-z0-9._%+-]+@users\.noreply\.github\.com$''',
   '''(?i)^noreply@(?:anthropic|github)\.com$''',
+  '''(?i)^you@company\.com$''',   # the sign-up form's placeholder (tools/make_site.py)
   '''(?i)@(?:[a-z0-9-]+\.)*(?:example\.(?:com|org|net)|example|test|invalid|localhost)$''',
 ]
 
@@ -106,6 +107,13 @@ description = "Cloudflare analytics beacon on site pages"
 targetRules = ["generic-api-key"]
 regexTarget = "line"
 regexes = ['''data-cf-beacon=['"]\{"token":\s*"[0-9a-f]{32}"\}['"]''']
+
+# Also public by design, for gitleaks' generic rule only: the IndexNow key (the protocol publishes it at
+# proofnotfluff.com/<key>.txt, tools/make_site.py) and the members apps' browser storage names (PKEY, SKEY = "pnf-...").
+[[allowlists]]
+description = "IndexNow key and browser storage names"
+targetRules = ["generic-api-key"]
+regexes = ['''^cdccc9befa99e9cfa2a85549b2b1160d$''', '''^pnf-[a-z0-9-]+$''']
 
 # Sealed boxes are ciphertext (tools/data_box.py, the RSA and PBKDF2 boxes). tools/leak_scan.py sealed fails the
 # push if any file with these names is not a well-formed box, so a plain file cannot hide behind this entry.

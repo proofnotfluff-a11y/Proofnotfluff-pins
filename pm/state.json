@@ -3,126 +3,126 @@
  "cash": 15.8057,
  "realized_pnl": 13.7875,
  "cohort": {
-  "picked_at": "2026-10-17T18:19:43Z",
+  "picked_at": "2026-10-24T18:31:25Z",
   "wallets": [
    {
     "user_id": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
     "user_name": "BreakTheBank",
-    "pnl": 4799922.746117812,
+    "pnl": 8095761.618049075,
     "rank": 1
    },
    {
     "user_id": "0xcdcccd0f2d86e450d973da415ad2430e5cc7935a",
     "user_name": "joseph00677",
-    "pnl": 4645693.94831029,
+    "pnl": 6510251.92660286,
     "rank": 2
    },
    {
     "user_id": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
     "user_name": "e46m3",
-    "pnl": 2878310.1016078214,
+    "pnl": 3507346.350630894,
     "rank": 3
    },
    {
     "user_id": "0x7c37b52eb226bcb9411375ec48b0169663fb6aeb",
     "user_name": "Diabolical-Prize",
-    "pnl": 2238518.868224997,
+    "pnl": 2851407.245134473,
     "rank": 4
-   },
-   {
-    "user_id": "0x924379a79c64b77ad5816ad362122a5f6228658e",
-    "user_name": "Kch-Temp",
-    "pnl": 1638931.3511655056,
-    "rank": 5
-   },
-   {
-    "user_id": "0x63cf8544631c31e9fcea0b02141dd24d01d6e4d0",
-    "user_name": "halvanicus",
-    "pnl": 1541520.0712579987,
-    "rank": 6
-   },
-   {
-    "user_id": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
-    "user_name": "UpTheBlues",
-    "pnl": 1488503.6989920111,
-    "rank": 7
-   },
-   {
-    "user_id": "0x361b16e3ddfe1d415d41008daac2631d94ab74fe",
-    "user_name": "0x361b16e3ddfe1d415d41008daac2631d94ab74fe",
-    "pnl": 1339022.7639716398,
-    "rank": 8
-   },
-   {
-    "user_id": "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b",
-    "user_name": "Papeasy",
-    "pnl": 1252756.5382374297,
-    "rank": 9
    },
    {
     "user_id": "0x5268527977f700f9bf9b6d5cd843859e4e70135d",
     "user_name": "HomeRunHazard",
-    "pnl": 1218968.3671482075,
-    "rank": 10
+    "pnl": 2032949.1666690474,
+    "rank": 5
+   },
+   {
+    "user_id": "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b",
+    "user_name": "Papeasy",
+    "pnl": 1977243.8245929051,
+    "rank": 6
    },
    {
     "user_id": "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d",
     "user_name": "mooseborzoii",
-    "pnl": 1072635.4849239313,
-    "rank": 11
+    "pnl": 1676717.9865802918,
+    "rank": 7
    },
    {
-    "user_id": "0xb0e74df9430a089aa102e2207af5fde1967439d2",
-    "user_name": "0xb0e74DF9430A089Aa102e2207Af5fde1967439D2-1789545517033",
-    "pnl": 1003652.6534490912,
-    "rank": 12
-   },
-   {
-    "user_id": "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747",
-    "user_name": "juice-fruit",
-    "pnl": 941905.36198803,
-    "rank": 13
-   },
-   {
-    "user_id": "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c",
-    "user_name": "omnibus-076daa",
-    "pnl": 938687.1818936939,
-    "rank": 14
-   },
-   {
-    "user_id": "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3",
-    "user_name": "0xBc43c8bfBC4d77c2FC9011adaD38Ba43b88996d3-1765231687816",
-    "pnl": 756838.5606632801,
-    "rank": 15
-   },
-   {
-    "user_id": "0x96489abcb9f583d6835c8ef95ffc923d05a86825",
-    "user_name": "anoin123",
-    "pnl": 718585.6304921542,
-    "rank": 16
-   },
-   {
-    "user_id": "0xd38b71f3e8ed1af71983e5c309eac3dfa9b35029",
-    "user_name": "primm",
-    "pnl": 713128.0341418558,
-    "rank": 17
+    "user_id": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
+    "user_name": "UpTheBlues",
+    "pnl": 1599892.0577560184,
+    "rank": 8
    },
    {
     "user_id": "0x511f9c771449162349795d17becf8b37031acbe1",
     "user_name": "Bigggggggg",
-    "pnl": 692246.927156907,
+    "pnl": 1467555.9908563972,
+    "rank": 9
+   },
+   {
+    "user_id": "0xe6ca6ebbec97e8a46ff3dbdb2a99d46254fbbff4",
+    "user_name": "SmartPredictOrNot",
+    "pnl": 1433138.6521169997,
+    "rank": 10
+   },
+   {
+    "user_id": "0xb0e74df9430a089aa102e2207af5fde1967439d2",
+    "user_name": "0xb0e74DF9430A089Aa102e2207Af5fde1967439D2-1789545517033",
+    "pnl": 1429716.2985416206,
+    "rank": 11
+   },
+   {
+    "user_id": "0x5a218c7ad04135830a45c41aaed7294df7809318",
+    "user_name": "balthazar",
+    "pnl": 1105417.2756764733,
+    "rank": 12
+   },
+   {
+    "user_id": "0x1387d145aaf01f6e33b66525dda6e1f51f6955f8",
+    "user_name": "Lucerys",
+    "pnl": 1011141.4063327941,
+    "rank": 13
+   },
+   {
+    "user_id": "0x361b16e3ddfe1d415d41008daac2631d94ab74fe",
+    "user_name": "RichieRicher",
+    "pnl": 1010859.4694063934,
+    "rank": 14
+   },
+   {
+    "user_id": "0x924379a79c64b77ad5816ad362122a5f6228658e",
+    "user_name": "Kch-Temp",
+    "pnl": 958010.3543065633,
+    "rank": 15
+   },
+   {
+    "user_id": "0x57a85952044f2c8e4d31b475aab6987d2f98ebc2",
+    "user_name": "Mooseborzoiii",
+    "pnl": 949700.6705412974,
+    "rank": 16
+   },
+   {
+    "user_id": "0x2b5920274740ca61745eeb077587bf5bb4ff9db6",
+    "user_name": "aHjCz",
+    "pnl": 865129.4167040687,
+    "rank": 17
+   },
+   {
+    "user_id": "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3",
+    "user_name": "0xBc43c8bfBC4d77c2FC9011adaD38Ba43b88996d3-1765231687816",
+    "pnl": 761098.3561895951,
     "rank": 18
    },
    {
-    "user_id": "0x0f6f76ced62a911bccef92f50faaff143854d977",
-    "user_name": "totoro3miyazaki",
-    "pnl": 589267.6757544994,
+    "user_id": "0x4868c31e81040e002b41984842b84bae8923a1c1",
+    "user_name": "alex20011",
+    "pnl": 757108.7306816609,
     "rank": 19
    },
    {
-    "user_id": "0xa2cced8bfae7d645f7f437fb76becf2fcbb70cbc",
-    "user_name": "justwins",
-    "pnl": 572901.215220895,
+    "user_id": "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747",
+    "user_name": "juice-fruit",
+    "pnl": 737681.40135458,
     "rank": 20
    }
   ]
@@ -146,10 +146,6 @@
   },
   "0x924379a79c64b77ad5816ad362122a5f6228658e": {
    "name": "Kch-Temp",
-   "since": "2026-10-17T18:19:43Z"
-  },
-  "0x63cf8544631c31e9fcea0b02141dd24d01d6e4d0": {
-   "name": "halvanicus",
    "since": "2026-10-17T18:19:43Z"
   },
   "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": {
@@ -180,56 +176,66 @@
    "name": "juice-fruit",
    "since": "2026-10-17T18:19:43Z"
   },
-  "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c": {
-   "name": "omnibus-076daa",
-   "since": "2026-10-17T18:19:43Z"
-  },
   "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": {
    "name": "0xBc43c8bfBC4d77c2FC9011adaD38Ba43b88996d3-1765231687816",
-   "since": "2026-10-17T18:19:43Z"
-  },
-  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": {
-   "name": "anoin123",
-   "since": "2026-10-17T18:19:43Z"
-  },
-  "0xd38b71f3e8ed1af71983e5c309eac3dfa9b35029": {
-   "name": "primm",
    "since": "2026-10-17T18:19:43Z"
   },
   "0x511f9c771449162349795d17becf8b37031acbe1": {
    "name": "Bigggggggg",
    "since": "2026-10-17T18:19:43Z"
   },
-  "0x0f6f76ced62a911bccef92f50faaff143854d977": {
-   "name": "totoro3miyazaki",
-   "since": "2026-10-17T18:19:43Z"
+  "0xe6ca6ebbec97e8a46ff3dbdb2a99d46254fbbff4": {
+   "name": "SmartPredictOrNot",
+   "since": "2026-10-24T18:31:25Z"
   },
-  "0xa2cced8bfae7d645f7f437fb76becf2fcbb70cbc": {
-   "name": "justwins",
-   "since": "2026-10-17T18:19:43Z"
+  "0x5a218c7ad04135830a45c41aaed7294df7809318": {
+   "name": "balthazar",
+   "since": "2026-10-24T18:31:25Z"
+  },
+  "0x1387d145aaf01f6e33b66525dda6e1f51f6955f8": {
+   "name": "Lucerys",
+   "since": "2026-10-24T18:31:25Z"
+  },
+  "0x57a85952044f2c8e4d31b475aab6987d2f98ebc2": {
+   "name": "Mooseborzoiii",
+   "since": "2026-10-24T18:31:25Z"
+  },
+  "0x2b5920274740ca61745eeb077587bf5bb4ff9db6": {
+   "name": "aHjCz",
+   "since": "2026-10-24T18:31:25Z"
+  },
+  "0x4868c31e81040e002b41984842b84bae8923a1c1": {
+   "name": "alex20011",
+   "since": "2026-10-24T18:31:25Z"
   }
  },
  "last_seen": {
-  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1792844603,
-  "0xcdcccd0f2d86e450d973da415ad2430e5cc7935a": 1792414119,
-  "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1792845275,
+  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1792866584,
+  "0xcdcccd0f2d86e450d973da415ad2430e5cc7935a": 1792857432,
+  "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1792866650,
   "0x7c37b52eb226bcb9411375ec48b0169663fb6aeb": 1792261183,
-  "0x924379a79c64b77ad5816ad362122a5f6228658e": 1792844894,
+  "0x924379a79c64b77ad5816ad362122a5f6228658e": 1792864188,
   "0x63cf8544631c31e9fcea0b02141dd24d01d6e4d0": 1792261183,
   "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": 1792845329,
-  "0x361b16e3ddfe1d415d41008daac2631d94ab74fe": 1792842692,
-  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1792845233,
-  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1792845318,
-  "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": 1792845318,
+  "0x361b16e3ddfe1d415d41008daac2631d94ab74fe": 1792866530,
+  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1792866648,
+  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1792866680,
+  "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": 1792866678,
   "0xb0e74df9430a089aa102e2207af5fde1967439d2": 1792261183,
-  "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747": 1792435055,
+  "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747": 1792858289,
   "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c": 1792845297,
-  "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": 1792840491,
+  "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": 1792866678,
   "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1792845260,
   "0xd38b71f3e8ed1af71983e5c309eac3dfa9b35029": 1792818993,
-  "0x511f9c771449162349795d17becf8b37031acbe1": 1792845288,
+  "0x511f9c771449162349795d17becf8b37031acbe1": 1792865979,
   "0x0f6f76ced62a911bccef92f50faaff143854d977": 1792575788,
-  "0xa2cced8bfae7d645f7f437fb76becf2fcbb70cbc": 1792834263
+  "0xa2cced8bfae7d645f7f437fb76becf2fcbb70cbc": 1792834263,
+  "0xe6ca6ebbec97e8a46ff3dbdb2a99d46254fbbff4": 1792866685,
+  "0x5a218c7ad04135830a45c41aaed7294df7809318": 1792866685,
+  "0x1387d145aaf01f6e33b66525dda6e1f51f6955f8": 1792866685,
+  "0x57a85952044f2c8e4d31b475aab6987d2f98ebc2": 1792866685,
+  "0x2b5920274740ca61745eeb077587bf5bb4ff9db6": 1792866685,
+  "0x4868c31e81040e002b41984842b84bae8923a1c1": 1792866685
  },
  "positions": {
   "33156410999665902694791064431724433042010245771106314074312009703157423879038": {
@@ -319,8 +325,8 @@
    "shares": 5.1363,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9045,
-   "value": 4.6458
+   "last_price": 0.9035,
+   "value": 4.6406
   },
   "8818882580258325166337837102966293982190018467620490556947006190938951037006": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -349,8 +355,8 @@
    "shares": 12.3581,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.3845,
-   "value": 4.7517
+   "last_price": 0.444,
+   "value": 5.487
   },
   "51971221506050097243705792157899572281015127216972300934938845878155423445294": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -364,8 +370,8 @@
    "shares": 5.9394,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.895,
-   "value": 5.3158
+   "last_price": 0.91,
+   "value": 5.4049
   },
   "5025646279751821747465277196511043885318485329317122457171454361662285580942": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -394,8 +400,8 @@
    "shares": 5.3552,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.89,
-   "value": 4.7661
+   "last_price": 0.88,
+   "value": 4.7126
   },
   "2618138322856109565904469085316346602627882727483900432328802655317079880335": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -424,8 +430,8 @@
    "shares": 5.2128,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.935,
-   "value": 4.874
+   "last_price": 0.93,
+   "value": 4.8479
   },
   "66072327615726046499669264247360148320766479710839940112360677274067132727584": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -439,8 +445,8 @@
    "shares": 8.0328,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.75,
-   "value": 6.0246
+   "last_price": 0.625,
+   "value": 5.0205
   },
   "60542622068067373528159211305579692149482525110661714547965603688547571465715": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -454,8 +460,8 @@
    "shares": 15.3125,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.37,
-   "value": 5.6656
+   "last_price": 0.365,
+   "value": 5.5891
   },
   "108188779790444016941848487602523982621927017413109885207453087351349250458729": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -469,8 +475,8 @@
    "shares": 6.5333,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.695,
-   "value": 4.5406
+   "last_price": 0.67,
+   "value": 4.3773
   },
   "103260758221019261190568249958083274029384820061909611626197177871555415590776": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -484,8 +490,8 @@
    "shares": 32.6667,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.065,
-   "value": 2.1233
+   "last_price": 0.075,
+   "value": 2.45
   },
   "75699093204664657083852366089628829977790159055900435225255069244546773042089": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -499,8 +505,8 @@
    "shares": 11.2392,
    "cost": 2.9818,
    "fee_in": 0.0596,
-   "last_price": 0.0095,
-   "value": 0.1068
+   "last_price": 0.01,
+   "value": 0.1124
   },
   "48363336280603988612943937623657599900834676634371552666346986109028055383864": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -514,8 +520,8 @@
    "shares": 5.2973,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.935,
-   "value": 4.953
+   "last_price": 0.92,
+   "value": 4.8735
   },
   "39228840575449881837568889168840039857058636039550121318060583610152400585337": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -589,8 +595,8 @@
    "shares": 17.8182,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.29,
-   "value": 5.1673
+   "last_price": 0.275,
+   "value": 4.9
   },
   "10229340737584154978359500415623156606488248988978412976257532327635966656733": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -604,8 +610,8 @@
    "shares": 5.6322,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.895,
-   "value": 5.0408
+   "last_price": 0.91,
+   "value": 5.1253
   },
   "60186594918326728407185405226545526273084940240456698624096625852288751603361": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -619,8 +625,8 @@
    "shares": 12.6126,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.4595,
-   "value": 5.7955
+   "last_price": 0.434,
+   "value": 5.4739
   },
   "11128925845879348170706262358649886447119541463625558967934110995591843189690": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -634,8 +640,8 @@
    "shares": 5.8683,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.8,
-   "value": 4.6946
+   "last_price": 0.77,
+   "value": 4.5186
   },
   "558600218792430158020964384658762756367786275998757133304987611939841005404": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -664,8 +670,8 @@
    "shares": 7.0504,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.67,
-   "value": 4.7238
+   "last_price": 0.665,
+   "value": 4.6885
   },
   "66525581428615379722785141552215127605605884303864880542181853788943488083291": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -679,8 +685,8 @@
    "shares": 5.1042,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9455,
-   "value": 4.826
+   "last_price": 0.9465,
+   "value": 4.8311
   },
   "86244383967682722276671267649138716350905219852788359298490648253439988317095": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -754,8 +760,8 @@
    "shares": 5.4204,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.891,
-   "value": 4.8296
+   "last_price": 0.8925,
+   "value": 4.8377
   },
   "44228841638106976312311756070964931486206207912533799720886034328840862003816": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -769,8 +775,8 @@
    "shares": 5.9036,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.82,
-   "value": 4.841
+   "last_price": 0.825,
+   "value": 4.8705
   },
   "16732794503241344955211759129081935831471333136077396410104877315365094912870": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -784,8 +790,8 @@
    "shares": 16.3333,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.3,
-   "value": 4.9
+   "last_price": 0.305,
+   "value": 4.9817
   },
   "35770751885924798388281446298756041002177848619471659098755120133048843736673": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -2098,7 +2104,7 @@
  "signals": {
   "buy": 103,
   "sell": 2,
-  "skipped": 17575,
+  "skipped": 18163,
   "fallback_price": 0
  },
  "errors": 0

@@ -642,6 +642,7 @@ check("DD+7 merchant tracked: uses delivery", P.payoutGap({ sales: 1, fulfil: 1,
 check("DD+7 blank: no sales flag", P.payoutGap({}).noSales, 1);
 const DF = P.payoutGap({ sales: 500, fulfil: 0, deliverDays: 3, schedule: 0, nextPayout: 14, bankDays: 1, cash: 10000, costs: 700 });
 check("DD+7 spend above sales: falling, no short or ok", DF.falling * 10 + DF.short + DF.ok, 10);
-check("DD+7 no sales with spend: falling", P.payoutGap({ costs: 100, cash: 1000 }).falling, 1);
+check("DD+7 no sales with spend: not falling, no low", P.payoutGap({ costs: 100, cash: 1000 }).falling + P.payoutGap({ costs: 100, cash: 1000 }).need, 0);
+check("DD+7 spend equal to sales: settles, low found", P.payoutGap({ sales: 700, deliverDays: 3, schedule: 0, nextPayout: 14, bankDays: 1, cash: 10000, costs: 700 }).falling, 0);
 
 process.exit(fails ? 1 : 0);

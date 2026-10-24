@@ -1647,18 +1647,18 @@ def dd7_page(p):
 <div class="tiles">
 <div class="tile key"><div class="lab">Money Amazon holds at the most</div><div class="val" data-out="heldMax" data-fmt="money0">$0</div><div class="sub"><span data-out="heldDays" data-fmt="int">0</span> days of sales not yet in your bank</div></div>
 <div class="tile"><div class="lab">Order to bank</div><div class="val"><span data-out="fastest" data-fmt="int">0</span><span data-show-if="range > 0"> to <span data-out="slowest" data-fmt="int">0</span></span> days</div><div class="sub"><span data-show-if="range > 0">Depends on the order's day in the payout cycle</span><span data-show-if="scheduled < 1">For every order, with a daily request</span></div></div>
-<div class="tile"><div class="lab">Your bank's low point</div><div class="val" data-out="low" data-fmt="money0" data-never="Keeps falling" data-never-if="falling">$0</div><div class="sub"><span data-show-if="lowOn > 0">On day <span data-out="lowDay" data-fmt="int">0</span>, if sales start today</span><span data-show-if="falling > 0">You pay out more than Amazon pays you</span><span data-show-if="noCosts > 0">Add what you pay out per day</span></div></div>
+<div class="tile"><div class="lab">Your bank's low point</div><div class="val" data-out="low" data-fmt="money0" data-never="Keeps falling" data-never-if="falling">$0</div><div class="sub"><span data-show-if="lowOn > 0">On day <span data-out="lowDay" data-fmt="int">0</span>, if sales start today</span><span data-show-if="falling > 0">You pay out more than Amazon pays you</span><span data-show-if="noSales > 0">Type your daily sales</span><span data-show-if="noCosts > 0">Add what you pay out per day</span></div></div>
 <div class="tile"><div class="lab">Cash needed to stay above $0</div><div class="val" data-out="need" data-fmt="money0" data-never="No set amount" data-never-if="falling">$0</div><div class="sub"><span data-show-if="falling < 1">Before the first payouts catch up</span><span data-show-if="falling > 0">Until spend drops below sales</span></div></div>
 </div>
 <ul class="lines">
 <li><span>Days to the delivery date Amazon uses</span><span data-out="dateDays" data-fmt="int">0</span></li>
-<li><span>Days from order until Amazon makes it available</span><span data-out="avail" data-fmt="int">0</span></li>
+<li><span>Days until Amazon releases the money</span><span data-out="avail" data-fmt="int">0</span></li>
 <li><span>First money in your bank</span><span data-out="firstText" data-fmt="text">Day 0</span></li>
 <li data-show-if="range > 0"><span>Money Amazon holds at the least</span><span data-out="heldMin" data-fmt="money0">$0</span></li>
 </ul>
 <div class="callout warn" data-show-if="short > 0">Your bank runs <b data-out="need" data-fmt="money0">$0</b> short on day <b data-out="lowDay" data-fmt="int">0</b>. Have that much more ready, or slow what you pay out before then.</div>
 <div class="callout" data-show-if="ok > 0">Your cash covers the wait: the lowest it gets is <b data-out="low" data-fmt="money0">$0</b>, on day <b data-out="lowDay" data-fmt="int">0</b>.</div>
-<div class="callout warn" data-show-if="falling > 0">You pay out as much as Amazon pays you or more, so cash keeps falling whatever the payout timing. Lower the daily spend to see a low point.</div>
+<div class="callout warn" data-show-if="falling > 0">You pay out more than Amazon pays you, so cash keeps falling whatever the payout timing. Lower the daily spend to see a low point.</div>
 <div class="callout" data-show-if="eddUsed > 0">Without valid tracking, each order waits for its latest estimated delivery date, not the real one.</div>
 <div class="callout" data-show-if="noCosts > 0">Add what you pay out per day to see your low point.</div>
 <div class="callout warn" data-show-if="noSales > 0">Type your daily sales after Amazon fees.</div>

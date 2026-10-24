@@ -752,7 +752,7 @@
   // used + 8; payout started that day (daily) or on the next scheduled payout day (nextPayout, nextPayout + 14, ...);
   // in the bank bankDays later. Held on day t = sold through day t less what reached the bank through day t.
   // Bank on day t = cash + arrived - daily costs x t, from a standing start (no sales held on day 0). When daily spend
-  // is at or above daily sales the balance never stops falling, so the page shows that instead of a horizon-bound low.
+  // is above daily sales the balance never stops falling, so the page shows that instead of a horizon-bound low.
   function payoutGap(i) {
     var sales = Math.max(0, num(i.sales)), mfn = Math.round(num(i.fulfil)) === 1 ? 1 : 0;
     var tracked = Math.round(num(i.tracked)) === 0 ? 0 : 1, daily = Math.round(num(i.schedule)) === 1 ? 1 : 0;
@@ -775,6 +775,7 @@
       held[t] = soldCum - inCum; bal[t] = cash + inCum - costs * t;
       if (bal[t] < low) { low = bal[t]; lowDay = t; }
     }
+    if (!sales) { low = cash; lowDay = 0; }   // nothing typed yet: no low point to show
     var hMax = 0, hMin = Infinity;
     for (t = H - 27; t <= H; t++) { if (held[t] > hMax) hMax = held[t]; if (held[t] < hMin) hMin = held[t]; }
     if (!isFinite(hMin)) hMin = 0;
@@ -782,9 +783,9 @@
       fastest: fastest, slowest: slowest, heldMax: hMax, heldMin: hMin, heldDays: sales > 0 ? hMax / sales : 0,
       first: first, waitDays: first ? first - 1 : 0, low: low, lowDay: lowDay, need: low < 0 ? -low : 0,
       endBal: bal[H], horizon: H, hasCosts: costs > 0 ? 1 : 0, noCosts: costs > 0 ? 0 : 1,
-      falling: costs > 0 && costs >= sales ? 1 : 0, firstText: first ? "Day " + first : "None yet",
-      short: costs > 0 && costs < sales && low < 0 ? 1 : 0, ok: costs > 0 && costs < sales && low >= 0 ? 1 : 0,
-      lowOn: costs > 0 && costs < sales ? 1 : 0, losing: costs >= sales && sales > 0 && costs > 0 ? 1 : 0,
+      falling: sales > 0 && costs > sales ? 1 : 0, firstText: first ? "Day " + first : "None yet",
+      short: sales > 0 && costs > 0 && costs <= sales && low < 0 ? 1 : 0, ok: sales > 0 && costs > 0 && costs <= sales && low >= 0 ? 1 : 0,
+      lowOn: sales > 0 && costs > 0 && costs <= sales ? 1 : 0, losing: sales > 0 && costs > sales ? 1 : 0,
       noSales: sales > 0 ? 0 : 1, range: daily ? 0 : 1 };
   }
 

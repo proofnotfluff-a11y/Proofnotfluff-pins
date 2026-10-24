@@ -3734,7 +3734,7 @@
    "desc": "Free Amazon DD+7 calculator. Type daily sales, FBA or merchant fulfilled, delivery days and your payout schedule to see how much Amazon holds, the days from order to bank and your cash low point. Rules from Amazon's own help pages.",
    "eyebrow": "Free calculator",
    "h1": "Amazon DD+7 Payout Calculator",
-   "lede": "Amazon holds your money until 7 days after delivery, then pays it on its schedule. Type your daily sales, delivery time and payout schedule to see how much Amazon is holding, how many days an order takes to reach your bank, and the lowest your cash gets. Every rule comes from Amazon's own help pages. Free, no sign-up.",
+   "lede": "Amazon holds your money until 7 days after delivery, then pays it on its schedule. Type your daily sales, delivery time and payout schedule to see what Amazon is holding, how long an order takes to reach your bank, and the lowest your cash gets. Free, no sign-up.",
    "card": "How much Amazon holds under DD+7, days from order to bank and your cash low point.",
    "defaults": {
     "sales": "1,000",
@@ -3802,7 +3802,7 @@
     }
    ],
    "rulesNotes": [
-    "All six are Amazon's US Seller Central help pages, read Oct 24, 2026. Amazon can change them, so open a link to check today's wording."
+    "All sources are Amazon's US Seller Central help pages, read Oct 24, 2026. Amazon can change them, so open a link to check today's wording."
    ],
    "next": {
     "title": "Plan the cash around the gap",

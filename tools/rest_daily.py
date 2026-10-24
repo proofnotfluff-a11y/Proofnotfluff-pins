@@ -74,7 +74,9 @@ def summary(x):
     parts = [f"{WORDS[c]} (code{'s' if len(x['c'][c]) > 1 else ''} {', '.join(str(n) for n in x['c'][c])})"
              for c in TRADE_KEYS if c in x["c"]]
     cited = parts[0] if len(parts) == 1 else " and ".join(parts)
-    return f"{x['r']} on a {x['t'].lower()} inspection, {RL.pretty(x['d'])}. The City cited {cited}."
+    kind = x["t"].lower()
+    kind = kind if kind.endswith("inspection") else kind + " inspection"    # "Canvass Re-Inspection" is not doubled
+    return f"{x['r']} on a {kind}, {RL.pretty(x['d'])}. The City cited {cited}."
 
 
 def row(pk, p, iid, x, trades, listed_on):
@@ -120,7 +122,8 @@ def pest_counts(data, recent_from):
     through = dt.date.fromisoformat(data["through"])
     days = [(through - dt.timedelta(days=i)).isoformat() for i in range(RECENT_DAYS - 1, -1, -1)]
     by = {d: {"date": d, "pests": 0, "restaurant": 0} for d in days}
-    done = set()
+    done, areas = set(), set()
+    seven = days[-7:]
     for pk in data["lists"]["flagged"]:
         p = P[pk]
         for iid in p["flaggedIds"]:
@@ -130,9 +133,12 @@ def pest_counts(data, recent_from):
             done.add(iid)
             by[x["d"]]["pests"] += 1
             by[x["d"]]["restaurant"] += p["type"] == "Restaurant"
-    seven = days[-7:]
+            if p["type"] == "Restaurant" and x["d"] >= seven[0] and p["area"]:
+                areas.add(p["area"])
+    # areas: community areas with a pest-cited restaurant inspection in those 7 days, for the email's {neighborhood}
+    # ("including one in ..."); names only, no count, no date, no place
     last7 = {"from": seven[0], "to": seven[-1], "inspections": sum(by[d]["pests"] for d in seven),
-             "restaurantInspections": sum(by[d]["restaurant"] for d in seven)}
+             "restaurantInspections": sum(by[d]["restaurant"] for d in seven), "areas": sorted(areas)}
     return [by[d] for d in days], last7
 
 
@@ -277,9 +283,11 @@ def selftest():
     assert len(p2["pestByDate"]) == 14 and p2["pestByDate"][0]["date"] == "2026-10-09" and p2["pestByDate"][-1]["date"] == "2026-10-22"
     assert (bd["2026-10-21"]["pests"], bd["2026-10-22"]["pests"], bd["2026-10-22"]["restaurant"], bd["2026-10-20"]["pests"]) == (2, 2, 1, 1), bd
     assert sum(b["pests"] for b in p2["pestByDate"]) == 5 and bd["2026-10-12"]["pests"] == 0, "hood-only visit counted as pests"
-    assert p2["pestLast7"] == {"from": "2026-10-16", "to": "2026-10-22", "inspections": 5, "restaurantInspections": 4}, p2["pestLast7"]
+    assert p2["pestLast7"] == {"from": "2026-10-16", "to": "2026-10-22", "inspections": 5, "restaurantInspections": 4,
+                               "areas": ["Loop", "West Town"]}, p2["pestLast7"]
     assert "Corner" not in json.dumps(p2) and "Acme" not in json.dumps(p2), "public counts name a place"
     assert n2["items"][0]["date"] == "2026-10-22", "a new visit to a listed place comes back once"
+    assert n2["items"][0]["summary"].startswith("Fail on a canvass re-inspection, Oct 22, 2026."), n2["items"][0]["summary"]
     assert [h["asOf"] for h in p2["history"]] == ["2026-10-22", "2026-10-23"] and p2["history"][-1]["places"] == 4, p2["history"]
     # day 3: nothing new posted, so nothing is listed twice
     n3, p3 = run(RL.build(raw(day2, "2026-10-24T12:00:00+00:00"), set()), out_p, SK, pub_p, seen_p)

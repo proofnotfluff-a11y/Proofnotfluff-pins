@@ -42,6 +42,15 @@ permit checks above are unchanged):
        python3 tools/copy_gate.py --signal [data/work/signal_drafts.json] --leads data/work/signal_leads.json
                                   [--prospects ...] [--matches ...] [--send-day YYYY-MM-DD]
            signal drafts (pnf.signal_draft.v1) against a validated signal lead file; follow-ups with --matches ''.
+Pest seat email (Todd, Oct 24, 2026: subject "{n} Chicago restaurant inspections cited pests this week", {n} the 7-day
+count only, never the daily file's total; "extend the copy gate to check that"):
+       python3 tools/copy_gate.py --pest-templates
+           email/P1-PEST-SEAT.md: every step present, rendered on today's permits/inspections-chicago/daily.json and on
+           planted files, passing pest_problems; planted wrong counts (the daily total, the 14-day total, a stale file, an
+           area outside the week, n = 1 on the plural template, a seat line that is no longer true) must all be caught.
+       python3 tools/copy_gate.py --pest [data/work/pest_drafts.json] [--prospects data/prospects/pest_prospects.json]
+                                  [--send-day YYYY-MM-DD]
+           pest drafts (pnf.pest_draft.v1) against today's daily.json, the seat spec and the prospects they name.
 """
 import argparse
 import datetime as dt
@@ -393,6 +402,204 @@ def signal_variant_problems(drafts, ts, leads, prospects, followup=False):
     return p
 
 
+# ------------------------------------------------------------------ pest seat email (Todd, Oct 24, 2026)
+PEST_FILE = os.path.join(ROOT, "email", "P1-PEST-SEAT.md")
+PEST_DAILY = os.path.join(ROOT, "permits", "inspections-chicago", "daily.json")
+PEST_DRAFTS = os.path.join(ROOT, "data", "work", "pest_drafts.json")
+PEST_PROSPECTS = os.path.join(ROOT, "data", "prospects", "pest_prospects.json")
+PEST_STEPS = ("first", "followup1", "followup2")
+PEST_FIELDS = {"first", "n", "neighborhood", "first_subject"}
+
+
+def pest_seat():
+    pages = json.load(open(os.path.join(ROOT, "site", "pages.json"), encoding="utf-8"))["pages"]
+    return next(x for x in pages if x.get("kind") == "restleads").get("seat") or {}
+
+
+def pest_n(daily):
+    """The email's {n}: the 7-day count of failed or conditional Restaurant inspections that cited pests. Never the daily
+    file's totals (counts.places, counts.pests), the 14-day chart total or the seat's 14-day places."""
+    return int(daily["pestLast7"]["restaurantInspections"])
+
+
+def pest_problems(subject, body, step, daily, seat, send_day, first=None, letter="A"):
+    """Every rule the pest seat email must meet, on one filled draft."""
+    p = []
+    l7 = daily.get("pestLast7") or {}
+    if not l7 or "restaurantInspections" not in l7:
+        return ["daily.json has no pestLast7 count (rest_daily.py older than Oct 24): no pest email can be filled"]
+    n = pest_n(daily)
+    try:
+        age = (send_day - dt.date.fromisoformat(daily["asOf"])).days
+    except (KeyError, ValueError):
+        age = 99
+    if age < 0 or age > 1:
+        p.append(f"daily.json is from {daily.get('asOf')}, {age} days before the send day: refill from this morning's file")
+    m = re.search(r"\b(\d+)\b", subject or "")
+    if step == "first":
+        want = f"{n} Chicago restaurant inspections cited pests this week" if n != 1 else "1 Chicago restaurant inspection cited pests this week"
+        if subject != want:
+            p.append(f"subject must be {want!r} (n is pestLast7.restaurantInspections = {n}), got {subject!r}")
+        if n == 1 and letter != "S":
+            p.append("n is 1: use the singular template T1S")
+        if n != 1 and letter == "S":
+            p.append(f"n is {n}: the singular template T1S is for n = 1 only")
+    elif not (subject or "").startswith("Re: "):
+        p.append("a follow-up keeps the first email's subject as a reply (Re: ...)")
+    if n < 1:
+        p.append("n is 0 this week: no pest email until the City posts one")
+    totals = {"counts.places": daily.get("counts", {}).get("places"), "counts.pests": daily.get("counts", {}).get("pests"),
+              "the 14-day chart total": sum(x.get("pests", 0) for x in daily.get("pestByDate") or []),
+              "seat.places14": (daily.get("seat") or {}).get("places14"), "pestLast7.inspections": l7.get("inspections")}
+    fixed = re.sub(r"at most 3 Chicago pest|all 3 seats|last 7 days", " ", (subject or "") + " " + (body or ""))
+    nums = [int(x) for x in re.findall(r"(?<![\d,.])(\d+)(?![\d,.])", fixed)]
+    for k in nums:
+        if k != n:
+            hit = [name for name, v in totals.items() if v == k and v != n]
+            p.append(f"the number {k} is not this week's count {n}" + (f" (it is {', '.join(hit)})" if hit else ""))
+    if f" {n} " not in f" {body} " and not (n == 1 and " 1 " in f" {body} "):
+        p.append(f"the body does not carry this week's count {n}")
+    areas = set(l7.get("areas") or [])
+    named = re.search(r"(?:including one in|, in) ([^,.]+)\.", body or "")
+    if not named or named.group(1) not in areas:
+        p.append(f"the neighborhood {named.group(1) if named else '(none)'!r} has no pest-cited restaurant inspection this week "
+                 f"(pestLast7.areas: {', '.join(sorted(areas)) or 'none'})")
+    taken = int(seat.get("taken") or 0)
+    if "all 3 seats" in body and taken:
+        p.append(f"{taken} of 3 seats are taken: 'all 3 seats are open' is no longer true")
+    if "most of them" in body and float((daily.get("seat") or {}).get("coverage14") or 0) < 50:
+        p.append("phone coverage is under 50%: 'a listed phone number for most of them' is no longer true")
+    w = len(R.words(body))
+    if w >= R.MAX_WORDS:
+        p.append(f"body is {w} words, the limit is under {R.MAX_WORDS}")
+    if R.URL_RE.search(R.link_safe(subject + " " + body)):
+        p.append("a link or domain in the email")
+    if R.PITCH_RE.search(body) or "$" in body:
+        p.append("a price or subscription pitch in a first-touch email")
+    if any(d in subject + body for d in R.DASHES):
+        p.append("an em or en dash")
+    if re.search(r"[{}\[\]]", subject + body):
+        p.append("a leftover placeholder")
+    if "FOOTER" in body or R.FOOTER.splitlines()[0] + "\n" in body:
+        p.append("the footer is in the body; the sender appends it")
+    if first is not None and not (body or "").startswith(f"Hi {first},"):
+        p.append(f"must open 'Hi {first},'")
+    if step != "followup2" and not (body or "").rstrip().endswith("?"):
+        p.append("must end with the permission question")
+    for word in ("dirty", "filthy", "infested", "unsafe", "violator", "rodents or insects"):
+        if word in (body or "").lower():
+            p.append(f"the word {word!r}: the City's record, in our words, without judgment or overstatement")
+    return p
+
+
+def pest_fill(t, daily, first="Dana", area=None, first_subject=None):
+    n = pest_n(daily)
+    area = area or (sorted(daily["pestLast7"].get("areas") or ["Chicago"]))[0]
+    f = {"first": first, "n": n, "neighborhood": area,
+         "first_subject": first_subject or f"{n} Chicago restaurant inspections cited pests this week"}
+    return fill(t["subject"], f), fill(t["body"], f)
+
+
+def check_pest_templates(path=PEST_FILE, daily_path=PEST_DAILY, today=None):
+    """The pest templates: well formed, all three steps, each rendered on today's daily file passing pest_problems, and the
+    planted wrong counts caught."""
+    problems = []
+    ts = signal_templates(path)
+    if not ts:
+        return [f"{os.path.relpath(path, ROOT)}: no templates"], 0
+    steps = {t["step"] for t in ts}
+    for s in PEST_STEPS:
+        if s not in steps:
+            problems.append(f"no {s} template")
+    for t in ts:
+        bad = set(re.findall(r"\{(\w+)\}", t["subject"] + t["body"])) - PEST_FIELDS
+        if bad:
+            problems.append(f"{t['name']}: unknown slot(s) {sorted(bad)}")
+    seat = pest_seat()
+    daily = json.load(open(daily_path, encoding="utf-8")) if os.path.exists(daily_path) else None
+    live = daily is not None and "pestLast7" in daily
+    base = daily if live else {"asOf": "2026-10-24", "counts": {"places": 48, "pests": 42}, "seat": {"places14": 42, "coverage14": 69.0},
+                               "pestByDate": [{"pests": 45}], "pestLast7": {"inspections": 24, "restaurantInspections": 22, "areas": ["West Town", "Loop"]}}
+    day = today or dt.date.fromisoformat(base["asOf"])
+    for t in ts:
+        d = base if (t["letter"] == "S") == (pest_n(base) == 1) else None
+        if d is None:                                        # the other plural form: render on a planted count that fits it
+            d = json.loads(json.dumps(base))
+            d["pestLast7"]["restaurantInspections"] = 1 if t["letter"] == "S" else 22
+            d["pestLast7"]["inspections"] = max(d["pestLast7"]["inspections"], d["pestLast7"]["restaurantInspections"])
+        subj, body = pest_fill(t, d)
+        for q in pest_problems(subj, body, t["step"], d, seat if live else {"taken": 0}, day, "Dana", t["letter"]):
+            problems.append(f"{t['name']}: {q}")
+    # planted failures the gate must catch (the rule Todd set: never the daily file's total)
+    t1 = next((t for t in ts if t["step"] == "first" and t["letter"] == "A"), None)
+    planted = 0
+    if t1:
+        P = json.loads(json.dumps(base))
+        P["counts"]["places"], P["pestLast7"]["restaurantInspections"] = 48, 22
+        n = 22
+        cases = [
+            ("daily total in the subject", t1["subject"].replace("{n}", "48"), "first", P, {"taken": 0}, day, "A"),
+            ("14-day total in the body", None, "first", P, {"taken": 0}, day, "A"),
+            ("stale file", None, "first", P, {"taken": 0}, day + dt.timedelta(days=3), "A"),
+            ("area outside the week", "area", "first", P, {"taken": 0}, day, "A"),
+            ("seat taken", None, "first", P, {"taken": 1}, day, "A"),
+            ("n is 1 on the plural template", None, "first", dict(P, pestLast7=dict(P["pestLast7"], restaurantInspections=1)), {"taken": 0}, day, "A"),
+        ]
+        for label, override, step, d, st, sd, letter in cases:
+            subj, body = pest_fill(t1, d)
+            if label == "daily total in the subject":
+                subj = override
+            elif label == "14-day total in the body":
+                body = body.replace(f" {n} ", " 45 ", 1)
+            elif override == "area":
+                body = re.sub(r"including one in [^,.]+\.", "including one in Hegewisch Park Ridge.", body)
+            if not pest_problems(subj, body, step, d, st, sd, "Dana", letter):
+                problems.append(f"planted case not caught: {label}")
+            planted += 1
+    return problems, len(ts), planted, live, pest_n(base)
+
+
+def check_pest_drafts(drafts_path, prospects_path, send_day):
+    try:
+        drafts = json.load(open(drafts_path, encoding="utf-8"))
+        pros = {x["prospect_id"]: x for x in json.load(open(prospects_path, encoding="utf-8"))["prospects"]}
+        daily = json.load(open(PEST_DAILY, encoding="utf-8"))
+    except (OSError, ValueError, KeyError) as e:
+        return [f"cannot read inputs ({e})"], 0
+    ts = {t["id"]: t for t in signal_templates(PEST_FILE)}
+    seat, problems = pest_seat(), []
+    if drafts.get("schema") != "pnf.pest_draft.v1":
+        problems.append("schema must be pnf.pest_draft.v1")
+    seen = set()
+    for dft in drafts.get("drafts") or []:
+        pid = dft.get("prospect_id", "?")
+        pr = pros.get(pid)
+        if pid in seen:
+            problems.append(f"{pid}: two drafts")
+        seen.add(pid)
+        if pr is None:
+            problems.append(f"{pid}: not in the prospect file")
+            continue
+        for q in R.inbox_problems(dft.get("to"), pr.get("website"), pr.get("first_name"), pr.get("last_name"),
+                                  pr.get("owner_source", ""), pr.get("email_source", "")):
+            problems.append(f"{pid}: {q}")
+        if dft.get("to") != pr.get("email"):
+            problems.append(f"{pid}: To is not the prospect's address")
+        if pr.get("do_not_email") or pr.get("first_sent_at"):
+            problems.append(f"{pid}: already emailed or do-not-email")
+        t = ts.get(dft.get("variant"))
+        if t is None:
+            problems.append(f"{pid}: unknown template {dft.get('variant')!r}")
+            continue
+        area = (re.search(r"(?:including one in|, in) ([^,.]+)\.", dft.get("body") or "") or [None, ""])[1]
+        subj, body = pest_fill(t, daily, pr.get("first_name"), area, dft.get("first_subject"))
+        if (dft.get("subject"), dft.get("body")) != (subj, body):
+            problems.append(f"{pid}: not template {t['id']} filled with this morning's count and its own neighborhood (fixed words changed)")
+        for q in pest_problems(dft.get("subject"), dft.get("body"), t["step"], daily, seat, send_day, pr.get("first_name"), t["letter"]):
+            problems.append(f"{pid}: {q}")
+    return problems, len(drafts.get("drafts") or [])
+
+
 def chicago_today():
     try:
         from zoneinfo import ZoneInfo
@@ -417,7 +624,31 @@ def main():
     ap.add_argument("--signal", nargs="?", const=SIGNAL_DRAFTS, default=None, help="check signal drafts (pnf.signal_draft.v1)")
     ap.add_argument("--leads", default=SIGNAL_LEADS, help="the validated signal lead file the signal drafts name")
     ap.add_argument("--send-day", default=None, help="YYYY-MM-DD for the 30-day window (default: today in Chicago)")
+    ap.add_argument("--pest-templates", action="store_true", help="check email/P1-PEST-SEAT.md on today's daily file")
+    ap.add_argument("--pest", nargs="?", const=PEST_DRAFTS, default=None, help="check pest seat drafts (pnf.pest_draft.v1)")
     a = ap.parse_args()
+    if a.pest_templates:
+        problems, nt, planted, live, n = check_pest_templates()
+        for p in problems:
+            print(f"ERROR copy: {p}")
+        if problems:
+            sys.exit(1)
+        print(f"OK copy: {nt} pest seat templates pass on {'this morning' if live else 'a planted'} daily file (n = {n}, the 7-day "
+              f"restaurant count); {planted} planted wrong counts caught")
+        sys.exit(0)
+    if a.pest:
+        send = dt.date.fromisoformat(a.send_day) if a.send_day else chicago_today()
+        pp = a.prospects if a.prospects != PROSPECTS else PEST_PROSPECTS
+        problems, nd = check_pest_drafts(a.pest, pp, send)
+        if not nd:
+            problems.append("no drafts in the file")
+        for p in problems[:60]:
+            print(f"ERROR copy: {p}")
+        if problems:
+            print(f"copy: FAIL, {len(problems)} problems")
+            sys.exit(1)
+        print(f"OK copy: {nd} pest seat drafts pass (send day {send.isoformat()})")
+        sys.exit(0)
     if a.signal_templates:
         problems, n = check_signal_templates()
         for p in problems:

@@ -37,7 +37,9 @@
   2. Gitleaks (MIT, the plain binary, not gitleaks-action) on every push and once over the full history, with our own rules for emails, phone numbers and the Hunter, Gumroad, Kit and Bouncer keys.
   3. checkdmarc (Apache-2.0), weekly on proofnotfluff.com and getproofnotfluff.com, plus a DKIM lookup; fails loudly.
   4. lychee (MIT or Apache-2.0) in offline mode over the built site's internal links, pinned to a commit.
-- Each is built and tested in its own chat (scoreboard todos owner-name-rung and repo-checks). Measure first, not approved: usaddress-scourgify, RapidFuzz, Splink (run phones.py --stats first). Open for Todd: a free records request to the Illinois Department of Public Health for its licensed pest control business list (todo idph-pest-list).
+- Each is built and tested in its own chat (scoreboard todos owner-name-rung and repo-checks).
+- Owner-name rung built (tools/site_owners.py; libraries audited, legal/reviews/2026-10-24-owner-rung-libraries.md). Dry run on the 279 domains with no owner: 26 named an owner, 10 with a usable published address (3 the owner's own, 7 an owner-read inbox).
+- [stated] Todd, 4:24 pm: "owner rung go". Applied: prospect-enrichment.yml installs the pinned libraries and passes --site-owners (60 sites that answer a run, job timeout 45 minutes). First live run: the Wednesday schedule. Measure first, not approved: usaddress-scourgify, RapidFuzz, Splink (run phones.py --stats first). Open for Todd: a free records request to the Illinois Department of Public Health for its licensed pest control business list (todo idph-pest-list).
 
 ## Weekly repo scout, 3:00 pm
 - [stated] Todd, 3:00 pm: "Please set up a scheduled task to periodically do deep research on repos / skills that will be useful for our operation"

@@ -1,7 +1,8 @@
 name: Prospect enrichment
 # Entity B, GitHub-native (Todd, Oct 22, 2026): resolve one named decision-maker per cleaning business listed in
 # prospects/businesses.json (business-level fields only) inside this runner, free rungs first: the City's owner record,
-# the business's own site, then Hunter capped at 5 searches a run (tools/enrich_ci.py). The validated
+# the business's own site, owner names the site publishes (tools/site_owners.py, Todd's go Oct 24, 2026: "owner rung
+# go"; 60 sites that answer a run), then Hunter capped at 5 searches a run (tools/enrich_ci.py). The validated
 # prospect file is sealed with PNF_DATA_KEY (tools/data_box.py) to prospects/enriched.sealed.json; no name or address is
 # ever committed in the clear or printed to the log. The prospect-matching run opens the box with the same key.
 on:
@@ -19,19 +20,28 @@ concurrency:
 jobs:
   enrich:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"   # the owner rung's libraries are pinned for 3.13 (tools/requirements-owner-rung.txt)
+      - name: Install the owner rung's audited libraries (hash-pinned, no unchecked build tools)
+        run: |
+          grep '^setuptools==' tools/requirements-owner-rung.txt > /tmp/build-req.txt
+          pip install --quiet --require-hashes --only-binary :all: -r /tmp/build-req.txt
+          pip install --quiet --require-hashes --no-build-isolation --only-binary :all: --no-binary jstyleson \
+            -r tools/requirements-owner-rung.txt
       - run: pip install --quiet cryptography
       - run: python3 tools/data_box.py --selftest
       - run: python3 tools/test_gates.py
-      - run: python3 tools/owners_chicago.py --selftest && python3 tools/site_emails.py --selftest
+      - run: python3 tools/owners_chicago.py --selftest && python3 tools/site_emails.py --selftest && python3 tools/site_owners.py --selftest
       - name: Enrich, gate and seal
         env:
           HUNTER_API_KEY: ${{ secrets.HUNTER_API_KEY }}
           APOLLO_API_KEY: ${{ secrets.APOLLO_API_KEY }}
           PNF_DATA_KEY: ${{ secrets.PNF_DATA_KEY }}
-        run: python3 tools/enrich_ci.py --businesses prospects/businesses.json --out prospects/enriched.sealed.json
+        run: python3 tools/enrich_ci.py --businesses prospects/businesses.json --out prospects/enriched.sealed.json --site-owners 2>/dev/null
       - name: Commit the sealed box
         run: |
           git config user.name "proofnotfluff-bot"

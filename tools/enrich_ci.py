@@ -9,8 +9,8 @@ The enrichment ladder (Todd, Oct 22, 2026, live chat), for each business with no
   2. The business's own site: tools/site_emails.py picks the owner's own published address, else a published owner-read
      inbox (info@, office@ ...). These leave as "pending" with email_status unverified: Bouncer checks them in the
      outreach run before any draft.
-  2b. Owner names the business publishes on its own site (tools/site_owners.py, Todd, Oct 24, 2026), only with
-     --site-owners: schema.org founder fields, a person named beside an owner word, probablepeople for person versus
+  2b. Owner names the business publishes on its own site (tools/site_owners.py, Todd, Oct 24, 2026, live from his
+     "owner rung go" the same day; prospect-enrichment.yml passes --site-owners): schema.org founder fields, a person named beside an owner word, probablepeople for person versus
      company. The address again comes only from tools/site_emails.py (owner_source "site_about"); none is guessed.
      Each domain is read once (siteOwnerAt in the state file), whatever its last checkedAt, at most
      --site-owners-max sites that answer a run (and twice that many tries); a site that does not answer costs one
@@ -19,6 +19,7 @@ The enrichment ladder (Todd, Oct 22, 2026, live chat), for each business with no
   3. Hunter (HUNTER_API_KEY secret), the paid fallback: at most --hunter-max domain searches a run, each domain once
      ever, "valid" addresses only. Apollo (APOLLO_API_KEY) only when Hunter is not used for that business.
   4. Local CSV drops data/enrichment/<product>-*.csv (gitignored), for runs on a machine where Todd dropped a file.
+  (The prospect-matching run's checkers also read About pages for owners; those arrive through that run, not here.)
 The previous box is opened and carried forward, so a business named once is never searched again. Which domains each
 rung tried is kept in prospects/enrich_state.json (business-level only, committed). Every record goes through the Inbox
 Gate. The validated pnf.prospect.v1 file ({prospects, pending}) is sealed with tools/data_box.py (PNF_DATA_KEY secret)

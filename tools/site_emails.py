@@ -55,18 +55,30 @@ def extract(html, domain):
     return out
 
 
-def collect(domain, opener=None, pause=1.0, timeout=20):
+def fetch_pages(domain, opener=None, pause=1.0, timeout=20, paths=PATHS):
+    """{path: html} for the business's own pages that answered; a missing page is simply left out."""
     opener = opener or urllib.request.urlopen
-    out = set()
-    for path in PATHS:
+    pages = {}
+    for path in paths:
         url = f"https://{domain}/{path}"
         try:
             with opener(urllib.request.Request(url, headers=UA), timeout=timeout) as r:
-                out |= extract(r.read(600000).decode("utf-8", "replace"), domain)
+                pages[path] = r.read(600000).decode("utf-8", "replace")
         except Exception:
             pass   # a missing page is normal; the business simply has fewer pages
         time.sleep(pause)
+    return pages
+
+
+def collect_from(pages, domain):
+    out = set()
+    for html in pages.values():
+        out |= extract(html, domain)
     return sorted(out)
+
+
+def collect(domain, opener=None, pause=1.0, timeout=20):
+    return collect_from(fetch_pages(domain, opener, pause, timeout), domain)
 
 
 def choose(addresses, domain, owner, owner_source):

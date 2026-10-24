@@ -9,10 +9,13 @@ The enrichment ladder (Todd, Oct 22, 2026, live chat), for each business with no
   2. The business's own site: tools/site_emails.py picks the owner's own published address, else a published owner-read
      inbox (info@, office@ ...). These leave as "pending" with email_status unverified: Bouncer checks them in the
      outreach run before any draft.
+  2b. Owner names the business publishes on its own site (tools/site_owners.py, Todd, Oct 24, 2026), only with
+     --site-owners: schema.org founder fields, a person named beside an owner word, probablepeople for person versus
+     company. The address again comes only from tools/site_emails.py (owner_source "site_about"); none is guessed.
+     Each domain is read once (siteOwnerAt in the state file), whatever its last checkedAt.
   3. Hunter (HUNTER_API_KEY secret), the paid fallback: at most --hunter-max domain searches a run, each domain once
      ever, "valid" addresses only. Apollo (APOLLO_API_KEY) only when Hunter is not used for that business.
   4. Local CSV drops data/enrichment/<product>-*.csv (gitignored), for runs on a machine where Todd dropped a file.
-  (Owner names read from the business's own About page come from the prospect-matching run's checkers, not from here.)
 The previous box is opened and carried forward, so a business named once is never searched again. Which domains each
 rung tried is kept in prospects/enrich_state.json (business-level only, committed). Every record goes through the Inbox
 Gate. The validated pnf.prospect.v1 file ({prospects, pending}) is sealed with tools/data_box.py (PNF_DATA_KEY secret)
@@ -21,7 +24,7 @@ to prospects/enriched.sealed.json; the plain file never leaves the runner. Outpu
 Exit 0 when the sealed box was written; 1 when PNF_DATA_KEY is missing, an API fails, or the result fails validation.
 
 Usage: python3 tools/enrich_ci.py [--businesses prospects/businesses.json] [--out prospects/enriched.sealed.json]
-                                  [--state prospects/enrich_state.json] [--limit 400] [--hunter-max 5]
+                                  [--state prospects/enrich_state.json] [--limit 400] [--hunter-max 5] [--site-owners]
 """
 import argparse
 import csv
@@ -98,6 +101,25 @@ def load_state(path):
         return {}
 
 
+def site_owner_record(b, st, today):
+    """Rung 2b for one business: (pending record or None, outcome). Reads the site once and marks siteOwnerAt."""
+    import site_owners   # imported here so the ladder runs without the rung's libraries when the rung is off
+    dom = R.domain_of(b["website"])
+    st["siteOwnerAt"] = today.isoformat()
+    try:
+        pages = site_emails.fetch_pages(dom, paths=site_owners.PATHS)
+        owner, _reason = site_owners.find_owner(pages) if pages else (None, "no pages")
+    except Exception:
+        return None, "error"
+    if not owner:
+        return None, "none"
+    addr, _kind = site_emails.choose(site_emails.collect_from(pages, dom), dom, owner, "site_about")
+    if not addr:
+        return None, "no address"
+    rec = ladder_record(b, owner, "site_about", addr)
+    return (None, "rejected") if R.validate_prospect(rec, pending=True) else (rec, "named")
+
+
 def ladder_record(b, owner, owner_source, email):
     """A pending prospect (address waiting for Bouncer) from a business row, its owner and a site address."""
     return {"prospect_id": b["prospect_id"], "product": b["product"], "business": b["business"],
@@ -116,6 +138,7 @@ def main():
     ap.add_argument("--limit", type=int, default=400, help="businesses read per run (the free rungs)")
     ap.add_argument("--hunter-max", type=int, default=5, help="Hunter domain searches per run (the paid fallback)")
     ap.add_argument("--retry-days", type=int, default=28, help="days before a business with no owner is tried again")
+    ap.add_argument("--site-owners", action="store_true", help="rung 2b: owner names the business publishes on its site")
     a = ap.parse_args()
     key = data_box.passphrase()   # exits 1 before any paid API call when the box cannot be sealed
     hunter, apollo = os.environ.get("HUNTER_API_KEY", ""), os.environ.get("APOLLO_API_KEY", "")
@@ -142,10 +165,10 @@ def main():
         if dom in have or b["prospect_id"] in found or b["prospect_id"] in pending:
             continue
         if st.get("checkedAt") and (today - dt.date.fromisoformat(st["checkedAt"])).days < a.retry_days and not (
-                hunter and not st.get("hunterAt")):
+                hunter and not st.get("hunterAt")) and not (a.site_owners and not st.get("siteOwnerAt")):
             continue
         todo.append(b)
-    counts = {"businesses": len(todo), "city": 0, "site": 0, "hunter": 0, "apollo": 0, "csv": 0, "rejected": 0,
+    counts = {"businesses": len(todo), "city": 0, "site": 0, "site_owner": 0, "hunter": 0, "apollo": 0, "csv": 0, "rejected": 0,
               "hunter_searched": 0, "carried": len(found) + len(pending)}
 
     # rung 1: the City's owner record (Chicago products)
@@ -180,6 +203,24 @@ def main():
             if rec:
                 counts["rejected"] += 1
             left.append(b)
+    # rung 2b: owner names the business publishes on its own site, each domain once (--site-owners)
+    if a.site_owners:
+        still = []
+        for b in left:
+            dom = R.domain_of(b["website"])
+            st = state.setdefault(dom, {})
+            if st.get("siteOwnerAt"):
+                still.append(b)
+                continue
+            rec, outcome = site_owner_record(b, st, today)
+            if rec:
+                pending[rec["prospect_id"]] = rec
+                counts["site_owner"] += 1
+                st.update({"checkedAt": today.isoformat(), "result": "named", "rung": "site_owner"})
+            else:
+                counts["rejected"] += outcome == "rejected"
+                still.append(b)
+        left = still
     # rung 3: Hunter, capped, each domain at most once, valid addresses only
     try:
         for b in left:
@@ -240,6 +281,7 @@ def main():
         f.write("\n")
     print(f"OK enrich: {len(out['prospects'])} verified and {len(out['pending'])} waiting for Bouncer "
           f"({counts['carried']} carried forward; this run: {counts['businesses']} businesses tried, city+site {counts['city']}, "
+          f"site owner {counts['site_owner']}, "
           f"hunter {counts['hunter']} from {counts['hunter_searched']} searches, apollo {counts['apollo']}, csv {counts['csv']}, "
           f"rejected {counts['rejected']})")
     sys.exit(0)

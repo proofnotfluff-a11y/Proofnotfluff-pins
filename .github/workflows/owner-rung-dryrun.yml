@@ -1,0 +1,37 @@
+name: Owner-name rung dry run
+# Counts-only dry run of the free owner-name rung (tools/site_owners.py; Todd, Oct 24, 2026, "go 1 to 4", item 1) over
+# the domains that found no owner in prospects/enrich_state.json. Reads each business's own pages, counts how many name
+# an owner and how many publish a usable address. Nothing is sealed, stored, committed or printed except counts: no
+# secrets are passed in, the job can only read the repo, and the log carries no names, addresses or page text.
+# Run by hand only; the live rung is enrich_ci.py --site-owners, switched on after Todd sees this yield.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: owner-rung-dryrun
+  cancel-in-progress: false
+jobs:
+  dryrun:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install the audited libraries (hash-pinned, no unchecked build tools)
+        run: |
+          grep '^setuptools==' tools/requirements-owner-rung.txt > /tmp/build-req.txt
+          pip install --quiet --require-hashes -r /tmp/build-req.txt
+          pip install --quiet --require-hashes --no-build-isolation -r tools/requirements-owner-rung.txt
+      - run: python3 tools/site_emails.py --selftest
+      - run: python3 tools/site_owners.py --selftest
+      - name: Dry run (counts only)
+        run: |
+          set -o pipefail
+          python3 tools/site_owners.py --dry-run 2>/dev/null | tee dryrun.txt
+      - name: Summary
+        if: always()
+        run: |
+          { echo "### Owner-name rung dry run (counts only)"; echo; sed 's/^/    /' dryrun.txt 2>/dev/null || echo "no output"; } >> "$GITHUB_STEP_SUMMARY"

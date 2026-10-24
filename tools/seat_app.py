@@ -44,6 +44,7 @@ SLUG = "chicago-pest-daily-members"
 SECRET = "REST_SEAT_PASSWORD"
 FREE_PAGE = "https://proofnotfluff.com/chicago-restaurant-inspection-leads/"
 TERMS_VERSION = "Version 1, Oct 24, 2026"
+COMPANY = "ProofNotFluff LLC"
 TRADE = "pests"
 
 
@@ -52,18 +53,21 @@ def terms_text(date):
     Legal desk's phone lines word for word. One source: this page's #/terms view."""
     P = phones.TERMS_LINES
     return [
-        f"ProofNotFluff | {PRODUCT} (founding seat) | {TERMS_VERSION} | List of {date}",
+        f"{COMPANY} | {PRODUCT} (founding seat) | {TERMS_VERSION} | List of {date}",
         "License. Your seat gives you a license to use this list for one business you own, for its own sales prospecting. You may "
         "edit it and print it for that use. You may not resell, share, give away, upload, publish or redistribute it, in original or "
         "edited form, share the password, or use it to make a competing product.",
         f"The seat cap. ProofNotFluff sells this daily list to at most {SEATS} Chicago pest control businesses at a time. When a seat "
-        "ends, it can be sold again. The same City records also appear on ProofNotFluff's weekly Chicago Restaurant Inspection Leads "
-        "list each Monday, which is not capped; the seat gets them the morning the City posts them.",
+        "ends, the members' password changes before the seat can be sold again. Before buying, a pest control company may get one free "
+        "morning of the list by email. The same City records also appear on ProofNotFluff's weekly Chicago Restaurant Inspection Leads "
+        "list each Monday, which is not capped. Seats are for pest control businesses that serve Chicago; if a buyer is not one, we "
+        "refund the payment and cancel the seat.",
         "Ownership. The selection, layout, categories and text belong to ProofNotFluff. The inspection records themselves are public "
         "City of Chicago data. Buying a seat doesn't transfer ownership.",
         "Delivery. Each morning, after the City's overnight data refresh, the members' page shows the places the City posted since the "
         "last list, and keeps every place sent in the last 14 days. The page says when it was last updated. Some mornings the City "
-        "posts nothing new, or posts late, and the list can be short or empty.",
+        "posts nothing new, or posts late, and the list can be short or empty. The list is built by an automated job each morning. If a "
+        "build fails or runs late, the next one catches up, and the 14 days kept on the page mean nothing is lost.",
         "Accuracy. The list is built from City of Chicago food inspection records as of the list date above. City data can be late, "
         "incomplete or wrong. The City says its dataset may contain duplicate reports, and that each result and the violations noted "
         "reflect what the inspector found at the time of that inspection and may not reflect other times. A place's result can change at "
@@ -72,7 +76,8 @@ def terms_text(date):
         "Phones. " + P[0] + " A number is shown only when the business's name and street address both match the City record, so some "
         "rows have none. " + P[1] + " Phone data from Overture Maps Foundation places data is used under the CDLA Permissive 2.0, "
         "Apache 2.0 and CC0 1.0 licenses; the sources and license texts follow these terms.",
-        "Who is left out. " + RL.LEFT_OUT,
+        "Who is left out. " + RL.LEFT_OUT + " The daily list also leaves out license inspections, the check the City does before it "
+        "issues a food license.",
         "What the list does not say. A place on the list has a public inspection record; the list does not say it is clean or unsafe, "
         "open or closed, or in need of any service. Don't present the list, or anything in it, as a judgment about a business, and "
         "never say or imply that you call for the City.",
@@ -86,9 +91,10 @@ def terms_text(date):
         "Trademarks. Gumroad and Microsoft Excel are trademarks of their owners, and business names on the list belong to those "
         "businesses. ProofNotFluff isn't affiliated with, sponsored or endorsed by them, by the City of Chicago, or by any business listed.",
         "AI assistance. This product was made with AI assistance and reviewed and tested by the shop owner.",
-        f"Price and cancelling. ${PRICE} a month, billed by Gumroad, with no lock-in: no minimum term. Cancel any time from your Gumroad "
-        "receipt or library; cancelling stops future charges. If the page won't open or something looks wrong, reply to your Gumroad "
-        "receipt and it will be fixed.",
+        f"Price and cancelling. ${PRICE} a month, billed by Gumroad, with no lock-in: no minimum term. Your seat renews each month until "
+        "you cancel. Cancel any time from your Gumroad receipt or library; cancelling stops future charges, and the page stays open until "
+        "the end of the month you paid for. If the page won't open or something looks wrong, write to hello@proofnotfluff.com with your "
+        "Gumroad receipt and we will fix it or refund that month.",
     ]
 
 
@@ -118,9 +124,7 @@ def later_text(lt):
     """The place's newer City result, in the same plain words as the summary (holdout, Oct 24)."""
     if not lt:
         return ""
-    kind = lt["inspectionType"].lower()
-    kind = kind if kind.endswith("inspection") else kind + " inspection"
-    return f"Newer City result: {lt['result']} on a {kind}, {RL.pretty(lt['date'])}."
+    return f"Newer City result: {lt['result']} on {RL.pretty(lt['date'])}, {lt['inspectionType']}."    # Legal desk fix 9 pattern
 
 
 def payload(named):
@@ -318,7 +322,7 @@ footer p{margin:0 0 10px;overflow-wrap:anywhere}
 <div class="wrap page" id="app" hidden></div>
 <div class="wrap terms" id="termsView" hidden></div>
 </main>
-<footer><div class="wrap"><p>__CITY__</p><p>ProofNotFluff is not affiliated with or endorsed by the City of Chicago, and no business listed has endorsed or works with ProofNotFluff. Licensed to one business for its own prospecting. Made with AI assistance. <a href="#/terms">Terms of Use</a> · <a href="../privacy/">Privacy</a> · Questions? Reply to your Gumroad receipt.</p></div></footer>
+<footer><div class="wrap"><p>__CITY__</p><p>ProofNotFluff is not affiliated with or endorsed by the City of Chicago, and no business listed has endorsed or works with ProofNotFluff. Licensed to one business for its own prospecting. Made with AI assistance. <a href="#/terms">Terms of Use</a> · <a href="../privacy/">Privacy</a> · Questions? Write to hello@proofnotfluff.com.</p></div></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 "use strict";
@@ -445,7 +449,7 @@ def selftest():
     assert [r["n"] for r in pl["rows"]] == ["Acme Tacos", "=Bad Name Cafe", "Corner Mart"], "pest rows only, today first, one row per place"
     assert [r["nw"] for r in pl["rows"]] == [True, True, False] and pl["rows"][2]["lo"] == "2026-10-23"
     assert pl["rows"][0]["c"] == [38] and pl["rows"][1]["c"] == [38], "only pest codes in the code column"
-    assert pl["rows"][2]["lt"] == "Newer City result: Pass on a canvass re-inspection, Oct 22, 2026." and pl["rows"][0]["lt"] == ""
+    assert pl["rows"][2]["lt"] == "Newer City result: Pass on Oct 22, 2026, Canvass Re-Inspection." and pl["rows"][0]["lt"] == ""
     c = counts(named)
     assert c == {"asOf": "2026-10-24", "places14": 3, "new": 2, "withPhone14": 2, "coverage14": 66.7, "phonesChecked": True}, c
     pw = "planted-seat-pw"
@@ -471,6 +475,8 @@ def selftest():
     assert "CDLA" in lic and "Apache License" in lic, "phone-sources license texts missing"
     assert words["city"] == CITY_DISCLAIMER and "one's own risk" in CITY_DISCLAIMER
     assert "at most 3 Chicago pest control businesses at a time" in blob and "not capped" in blob and "no lock-in" in blob
+    assert "password changes before the seat can be sold again" in blob and "leaves out license inspections" in blob and "renews each month" in blob
+    assert terms_text("x")[0].startswith("ProofNotFluff LLC |")
     assert 'id="th3">Phone number sources and licenses' in html and 'content="noindex, nofollow"' in html
     assert "prefers-color-scheme:dark" in html and 'name="color-scheme" content="light dark"' in html
     assert "#/terms" in html and 'autocomplete="current-password"' in html

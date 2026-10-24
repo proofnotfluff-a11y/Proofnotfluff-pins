@@ -294,10 +294,16 @@ def fill(rows, places, web=True, fetch=_get, name_field=None, strict=True, relea
         x = hit[0]
         c["matched"] += 1
         ph = first_phone(x)
+        # only providers whose license and credit line Overture publishes (Legal desk, Oct 24, fix 12): "overture" and
+        # "overture-signals" are not on docs.overturemaps.org/attribution, so a number backed only by them stays blank
+        src = [s.lower() for s in x.get("sources") or []]
+        known = [s for s in src if s in PROVIDERS]
+        if ph and not known:
+            c["unconfirmedSource"] = c.get("unconfirmedSource", 0) + 1
+            ph = ""
         if ph:
-            src = [s.lower() for s in x.get("sources") or []] or ["unknown"]
-            r["phone"], r["phoneSource"], r["phoneRef"], r["phoneDate"] = ph, "overture:" + "+".join(src), release, release[:10]
-            used.update(src)
+            r["phone"], r["phoneSource"], r["phoneRef"], r["phoneDate"] = ph, "overture:" + "+".join(known), release, release[:10]
+            used.update(known)
             c["overture"] += 1
             continue
         own = [w for w in x.get("websites") or [] if domain(w) and idx.domains[domain(w)] < CHAIN_DOMAIN]
@@ -691,6 +697,16 @@ def selftest():
     assert json.load(open(tf))["phones"] == {"rows": 13, "withPhone": 4, "coverage": 30.8} and "207" not in blob and "Acme" not in blob
     for t in (__doc__ or "", ATTRIBUTION, *TERMS_LINES, *at):
         assert chr(0x2014) not in t and chr(0x2013) not in t
+    # a number backed only by sources Overture does not list (overture, overture-signals) stays blank; mixed keeps the listed one
+    un = [P("Signal Cafe", 41.99000, -87.74000, ["+13122075501"], addr="8 N Pine St", src=("overture", "overture-signals")),
+          P("Mixed Cafe", 41.99500, -87.74500, ["+13122075502"], addr="9 N Pine St", src=("overture", "meta"))]
+    ur = [{"name": "Signal Cafe", "address": "8 N Pine St", "lat": 41.99000, "lon": -87.74000},
+          {"name": "Mixed Cafe", "address": "9 N Pine St", "lat": 41.99500, "lon": -87.74500}]
+    uu = set()
+    cu = fill(ur, un, web=False, release="2026-10-21.0", used=uu)
+    assert ur[0]["phone"] == "" and cu.get("unconfirmedSource") == 1, (ur[0], cu)
+    assert ur[1]["phone"] == "(312) 207-5502" and ur[1]["phoneSource"] == "overture:meta" and uu == {"meta"}, (ur[1], uu)
+    assert not any("through Overture Maps" in l for l in attribution(uu, "2026-10-21.0"))
     print("phones selftest ok (13 planted rows: name and address both required, two close matches, closed, toll-free, chain and "
           "listing sites, robots.txt, site terms, 5-second gap, 30-day site log, opt-out, attribution, counts-only public stamp)")
 

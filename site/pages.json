@@ -4069,7 +4069,7 @@
     "seats": 3,
     "taken": 0,
     "data": "permits/inspections-chicago/daily.json",
-    "eyebrow": "Free sample. Full list weekly, pest list daily",
+    "eyebrow": "Free sample. Full list weekly, plus a daily pest seat",
     "ctaTitle": "Get the full list every week"
    }
   },

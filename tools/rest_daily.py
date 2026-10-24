@@ -71,8 +71,9 @@ def load_seen(path=SEEN):
 
 def summary(x):
     """One plain line from the City's fields: result, inspection type, date, and the codes in our words."""
-    parts = [f"{WORDS[c]} (code{'s' if len(x['c'][c]) > 1 else ''} {', '.join(str(n) for n in x['c'][c])})"
-             for c in TRADE_KEYS if c in x["c"]]
+    one = {"pests": "pest", "hood": "hood and exhaust"}
+    parts = [f"a {one[c]} violation (code{'s' if len(x['c'][c]) > 1 else ''} {', '.join(str(n) for n in x['c'][c])})"
+             for c in TRADE_KEYS if c in x["c"]]                # "a pest violation", never "cited pests" (Legal desk, Oct 24)
     cited = parts[0] if len(parts) == 1 else " and ".join(parts)
     kind = x["t"].lower()
     kind = kind if kind.endswith("inspection") else kind + " inspection"    # "Canvass Re-Inspection" is not doubled
@@ -249,7 +250,7 @@ def selftest():
     assert names == ["Acme Tacos", "Both Grill", "Fry House"], names
     both = next(it for it in n1["items"] if it["name"] == "Both Grill")
     assert both["trades"] == ["pests", "hood"] and both["codes"] == {"pests": [38], "hood": [56]}, both
-    assert both["summary"] == "Fail on a canvass inspection, Oct 21, 2026. The City cited pests (code 38) and hood and exhaust (code 56).", both["summary"]
+    assert both["summary"] == "Fail on a canvass inspection, Oct 21, 2026. The City cited a pest violation (code 38) and a hood and exhaust violation (code 56).", both["summary"]
     assert p1["counts"] == {"pests": 2, "hood": 2, "places": 3}, p1["counts"]
     assert n1["recentFrom"] == "2026-10-08", n1["recentFrom"]
     assert n1["earlier"] == [] and p1["pestLast7"]["inspections"] == 2 and p1["pestLast7"]["restaurantInspections"] == 2, p1["pestLast7"]

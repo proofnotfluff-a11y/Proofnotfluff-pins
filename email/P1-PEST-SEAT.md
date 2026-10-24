@@ -10,9 +10,9 @@ Rules the copy gate checks (`python3 tools/copy_gate.py --pest-templates` and `-
 - Copy review round 1 (Oct 24): FAIL at 4.0; its rewrites applied here with "no lock-in" in place of "no contract" (Todd, Oct 24, 11:52 am). "Recorded", not "posted": the count is by the City's inspection date.
 - "all 3 seats are open" only while site/pages.json seat.taken is 0; "most of them" only while seat.coverage14 is 50% or more.
 - Body under 75 words, plain text, no link, no price, no business named, no dash, opens "Hi {first},", ends with the question. The sender appends the footer (tools/pnf_rules.py FOOTER).
-- Wording: "with a pest violation" (Oct 24 build session): on Oct 24, 1 of the 22 inspections was a City code 38 citation for a door gap with no rodents or insects seen, so "cited rodents or insects" would overstate it. The subject's "cited pests" names the City's pest code and stays.
+- Wording: "with a pest violation" (Oct 24 build session and Legal desk): on Oct 24, 7 of the 22 inspections carried City code 38 for a door gap, a propped door or an incomplete pest log, with no insect or rodent noted, so "cited rodents or insects" would overstate it. Legal desk fix 13 recommends the subject "{n} Chicago restaurant inspections with a pest violation this week" for the same reason; the approved subject stays until Todd decides.
 
-What a yes gets: one free morning of the named list, sent by Todd as a reply after the Legal desk's conditions (legal/reviews/2026-10-24-pest-seat.md, "Free test day"). Nothing named goes out before that review is cleared and Todd says send.
+What a yes gets: one free morning of the named list, sent by Todd as a reply under the Legal desk's conditions and exact header, row and footer text (legal/reviews/2026-10-24-pest-seat.md, "Free test day"). Nothing named goes out before that review is cleared and Todd says send.
 
 ### T1
 Product: chicago-pest-seat
@@ -25,7 +25,7 @@ Hi {first},
 
 This week the City of Chicago recorded {n} failed or conditional restaurant inspections with a pest violation, including one in {neighborhood}.
 
-Each morning I put the new ones on a private page by name and street, with a listed phone number for most of them. I'm opening that daily list to at most 3 Chicago pest companies, and all 3 seats are open.
+Each morning I put the new ones on a private page by name and street, with a listed phone number for most of them. I'm opening seats on that daily list to at most 3 Chicago pest companies, and all 3 seats are open.
 
 Want tomorrow's list free to test?
 ```
@@ -41,7 +41,7 @@ Hi {first},
 
 This week the City of Chicago recorded 1 failed or conditional restaurant inspection with a pest violation, in {neighborhood}.
 
-Each morning I put the new ones on a private page by name and street, with a listed phone number for most of them. I'm opening that daily list to at most 3 Chicago pest companies, and all 3 seats are open.
+Each morning I put the new ones on a private page by name and street, with a listed phone number for most of them. I'm opening seats on that daily list to at most 3 Chicago pest companies, and all 3 seats are open.
 
 Want tomorrow's list free to test?
 ```

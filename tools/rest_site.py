@@ -60,8 +60,8 @@ def seat_html(p, seat, rel):
     terms = rel + "chicago-pest-daily-members/#/terms"
     if left and co:
         act = (f'<p class="ld-buybtn"><a class="btn ld-btnbig" href="{E(co)}" rel="noopener">Take a founding seat, ${price} a month</a></p>'
-               f'<p class="ld-secure">Secure checkout by Gumroad. No lock-in: cancel any time in your Gumroad library and you are not charged '
-               f'again. <a href="{rel}refunds/">Refunds and cancelling</a> · <a href="{E(terms)}">Seat Terms</a></p>')
+               f'<p class="ld-secure">Secure checkout by Gumroad. ${price} is charged at checkout and again each month until you cancel. '
+               f'No lock-in: cancel any time from your Gumroad receipt or library and you are not charged again. <a href="{rel}refunds/">Refunds and cancelling</a> · <a href="{E(terms)}">Seat Terms</a></p>')
     elif left:
         act = (f'<p class="ld-buybtn"><span class="btn ld-btnbig sb-off" aria-disabled="true">Take a founding seat, ${price} a month</span></p>'
                '<p class="ld-secure">Preview: the checkout link goes here once the Gumroad tier exists.</p>')
@@ -71,22 +71,24 @@ def seat_html(p, seat, rel):
                'when one opens.</p>')
     return (f'<section class="block sb" id="seat" aria-labelledby="seatH"><div class="sb-card">'
             '<p class="eyebrow sb-eye">Founding seat for pest control</p>'
-            f'<h2 id="seatH">At most {cap} Chicago pest control companies get this list.</h2>'
+            f'<h2 id="seatH">At most {cap} Chicago pest control companies hold a seat at a time.</h2>'
             f'<p class="sb-left"><span class="sb-dots" aria-hidden="true">{"".join("<i class=on></i>" if i < left else "<i></i>" for i in range(cap))}</span>'
             f'<b>{left} of {cap} seats open</b></p>'
             f'<p class="sb-terms"><b>No lock-in.</b> ${price} a month, cancel any time.</p>'
-            '<p class="sb-lede">The City\'s public records, cleaned and on your members\' page the morning they post: every Chicago food place '
-            'whose failed or conditional inspection cited pests, named, with its street address, the City\'s violation codes and its listed phone.</p>'
-            f'<figure class="sb-fig"><figcaption><b>Inspections that cited pests, by City inspection date, {rng}</b>'
-            f'<span>{total:,} failed or conditional inspections in 14 days, about {per_day} a day. The newest days fill in as the City posts results, often a few days after the inspection.</span></figcaption>'
+            '<p class="sb-lede">The City\'s public records, cleaned and on your members\' page each morning after the City\'s overnight update: the Chicago food '
+            'places whose failed or conditional inspection had a pest violation, named, with street address, the City\'s violation codes and the listed '
+            'phone when we find one. License inspections and the places under "Who is left out?" are not included.</p>'
+            f'<figure class="sb-fig"><figcaption><b>Inspections with a pest violation, by City inspection date, {rng}</b>'
+            f'<span>{total:,} failed or conditional inspections in 14 days, about {per_day} a day. The newest days fill in as the City posts results, often a few days after the inspection. A pest violation can be insects or rodents seen, or a gap or record the City says lets pests in; each record says which.</span></figcaption>'
             f'<ol class="sb-chart" aria-hidden="true">{bars}</ol>'
-            f'<table class="sr"><caption>Failed or conditional inspections that cited pests, by City inspection date</caption>'
+            f'<table class="sr"><caption>Failed or conditional inspections with a pest violation, by City inspection date</caption>'
             f'<thead><tr><th scope="col">Date</th><th scope="col">Inspections</th></tr></thead><tbody>{rows}</tbody></table></figure>'
             f'<p class="sb-phone">{phone}</p>'
+            f'<p class="sb-asof">City records through {E(d["throughText"])}, pulled {E(d["asOfText"])}. Refreshed every morning.</p>'
             '<ul class="sb-get"><li>New places each morning, after the City\'s overnight refresh, with the last 14 days kept so a missed morning loses nothing.</li>'
             '<li>Each place: name, street, ZIP, community area, the City\'s result, date and violation codes, failed visits in 90 days, and a link to the City\'s record.</li>'
             '<li>A Call button, called marks and private notes on your phone or computer, and a CSV download.</li></ul>'
-            f'<p class="sb-same">The same records reach our weekly list (${E(str(p["price"]))} a month, not capped) each Monday. A seat gets them the morning the City posts them.</p>'
+            f'<p class="sb-same">The same records reach our weekly list (${E(str(p["price"]))} a month, not capped) each Monday, and a pest control company that asks can get one free morning of this list by email before it decides. A seat gets them each morning.</p>'
             f'{act}</div></section>')
 
 
@@ -103,7 +105,7 @@ SEAT_CSS = (".sb .sb-card{background:var(--card);border:1px solid var(--line);bo
             ".sb-chart .sb-n{font-size:12.5px;font-weight:700;color:var(--ink);margin:0 0 3px}"
             ".sb-chart .sb-d{font-size:12px;color:var(--muted);margin:5px 0 0;border-top:1px solid var(--line);width:100%;text-align:center;padding-top:4px}"
             "@media(max-width:420px){.sb-chart{gap:2px}.sb-chart .sb-n,.sb-chart .sb-d{font-size:11px}}"
-            ".sb-phone{margin:0 0 12px}.sb-get{margin:0 0 12px;padding-left:20px}.sb-get li{margin:0 0 6px}"
+            ".sb-phone{margin:0 0 4px}.sb-asof{margin:0 0 12px;color:var(--muted);font-size:14px}.sb-get{margin:0 0 12px;padding-left:20px}.sb-get li{margin:0 0 6px}"
             ".sb-same{margin:0 0 6px;color:var(--ink2)}.sb .ld-buybtn{margin-top:16px}"
             ".sb-off{opacity:.55;cursor:not-allowed}")
 
@@ -127,11 +129,14 @@ def page_html(p):
     if seat and seat.get("checkout"):            # "every Monday" headlines become daily and weekly once the seat tier exists
         p = dict(p, eyebrow=seat["eyebrow"], cta=dict(p["cta"], title=seat["ctaTitle"]))
     if seat:
+        faq = [[q, a + " The daily pest list also leaves out license inspections, the check the City does before it issues a food license."]
+               if q == "Who is left out?" else [q, a] for q, a in faq]
         faq = faq + [["What is the founding seat?",
                       f"A ${seat['price']} a month membership for Chicago pest control companies only, capped at {seat['seats']} companies at a time. "
-                      "Each morning, after the City's overnight refresh, your members' page shows the food places whose failed or conditional "
-                      "inspection cited pests, named, with the listed phone when the name and address match, and keeps the last 14 days. No lock-in: "
-                      "cancel any time in your Gumroad library. The same records reach the weekly list each Monday."]]
+                      "Each morning, after the City's overnight update, your members' page shows the food places whose failed or conditional "
+                      "inspection had a pest violation, named, with the listed phone when the name and address match, and keeps the last 14 days. "
+                      "It renews monthly until you cancel. No lock-in: cancel any time from your Gumroad receipt or library. The same records reach "
+                      "the weekly list each Monday."]]
 
     keyof = {c["label"]: c["key"] for c in d.get("categories", [])}
 
@@ -164,8 +169,8 @@ def page_html(p):
     sub_link = (f'<a class="ld-textlink ld-trialbtn" href="{E(checkout)}" rel="noopener">Try {trial} days free, then ${price} a month</a>' if trial else
                 f'<a class="ld-textlink" href="{E(checkout)}" rel="noopener">Subscribe, ${price} a month</a>' if checkout else
                 f'<a class="ld-textlink" href="{E(notify)}">Tell me when it opens</a>')
-    seat_note = (f' Pest control? <a href="#seat">At most {seat["seats"]} companies get the daily pest list</a>.' if seat and seat.get("checkout") else "")
-    every = "Full list every Monday, pest list every morning." if seat and seat.get("checkout") else "New list every Monday."
+    seat_note = (f' Pest control? <a href="#seat">A separate ${seat["price"]} daily pest list has at most {seat["seats"]} seats</a>.' if seat and seat.get("checkout") else "")
+    every = "Full list every Monday." if seat and seat.get("checkout") else "New list every Monday."
     hero_act = (f'<div class="ld-heroact rl-act" id="ldHeroCta"><a class="btn ld-btnbig" href="#sample">See this week\'s free sample</a>{sub_link}</div>'
                 + (f'<p class="ld-heronote">{every} Card at checkout, nothing charged for {trial} days. No lock-in, cancel any time.{seat_note}</p>' if trial else
                    '<p class="ld-heronote">New list every Monday. Cancel any time.</p>' if checkout else
@@ -312,16 +317,17 @@ def selftest():
     assert 'id="seat"' not in page_html(dict(p, seat=dict(spec["seat"]))) or os.environ.get("PNF_SEAT_PREVIEW") == "1", "seat shown with no checkout"
     days = [{"date": f"2026-10-{10 + i:02d}", "pests": [0, 0, 0, 4, 8, 5, 4, 0, 0, 7, 11, 4, 1, 1][i], "restaurant": 0} for i in range(14)]
     dj = os.path.join(tmp, "daily.json")
-    json.dump({"pestByDate": days, "seat": {"places14": 42, "withPhone14": 29, "coverage14": 69.0, "phonesChecked": True}}, open(dj, "w"))
+    json.dump({"pestByDate": days, "throughText": "Oct 23, 2026", "asOfText": "Oct 24, 2026", "seat": {"places14": 42, "withPhone14": 29, "coverage14": 69.0, "phonesChecked": True}}, open(dj, "w"))
     live = page_html(dict(p, seat=dict(spec["seat"], data=os.path.relpath(dj, ROOT), checkout="https://example.gumroad.com/l/seat")))
     t = re.sub(r"<[^>]+>", " ", live)
-    assert '<h2 id="seatH">At most 3 Chicago pest control companies get this list.</h2>' in live, "the cap is the seat headline"
-    for want in ("3 of 3 seats open", "No lock-in.", "$149 a month", "The City's public records, cleaned", "the morning they post",
-                 "29 of 42", "(69%)", "45 failed or conditional inspections in 14 days, about 3.2 a day", "not capped", "Take a founding seat, $149 a month"):
+    assert '<h2 id="seatH">At most 3 Chicago pest control companies hold a seat at a time.</h2>' in live, "the cap is the seat headline"
+    for want in ("3 of 3 seats open", "No lock-in.", "$149 a month", "The City's public records, cleaned", "each morning after the City's overnight update", "License inspections",
+                 "29 of 42", "(69%)", "45 failed or conditional inspections in 14 days, about 3.2 a day", "not capped", "one free morning", "Take a founding seat, $149 a month",
+                 "charged at checkout and again each month", "Refreshed every morning", "A separate $149 daily pest list"):
         assert want in t.replace("&#x27;", "'").replace("&#39;", "'"), want
     assert live.count('<span class="sb-b"') == 14 and "height:96px" in live, "14 bars, the tallest at full height"
-    assert "Full list weekly, pest list daily" in live and "Get the full list every week" in live, "headlines daily and weekly once the seat is on sale"
-    assert "every Monday" not in live.split("<main")[1].split('id="sample"')[0].replace("Full list every Monday, pest list every morning", "").replace("Refreshed every Monday.", ""), "bare Monday headline"
+    assert "Full list weekly, plus a daily pest seat" in live and "cited pests" not in live and "Get the full list every week" in live, "headlines daily and weekly once the seat is on sale"
+    assert "every Monday" not in live.split("<main")[1].split('id="sample"')[0].replace("Full list every Monday.", "").replace("Refreshed every Monday.", ""), "bare Monday headline"
     full = page_html(dict(p, seat=dict(spec["seat"], data=os.path.relpath(dj, ROOT), checkout="https://example.gumroad.com/l/seat", taken=3)))
     assert "0 of 3 seats open" in full and "Take a founding seat" not in full and "Ask for the next open seat" in full, "a full cap sells no seat"
     assert "—" not in live and "–" not in live

@@ -8,7 +8,7 @@
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-24T12:07:21+00:00",
+  "fetchedAt": "2026-10-24T16:35:26+00:00",
   "rowsUpdatedAt": "2026-10-24T09:08:34+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
@@ -55,10 +55,96 @@
    ]
   }
  ],
+ "pestByDate": [
+  {
+   "date": "2026-10-10",
+   "pests": 0,
+   "restaurant": 0
+  },
+  {
+   "date": "2026-10-11",
+   "pests": 0,
+   "restaurant": 0
+  },
+  {
+   "date": "2026-10-12",
+   "pests": 0,
+   "restaurant": 0
+  },
+  {
+   "date": "2026-10-13",
+   "pests": 4,
+   "restaurant": 2
+  },
+  {
+   "date": "2026-10-14",
+   "pests": 8,
+   "restaurant": 7
+  },
+  {
+   "date": "2026-10-15",
+   "pests": 5,
+   "restaurant": 4
+  },
+  {
+   "date": "2026-10-16",
+   "pests": 4,
+   "restaurant": 4
+  },
+  {
+   "date": "2026-10-17",
+   "pests": 0,
+   "restaurant": 0
+  },
+  {
+   "date": "2026-10-18",
+   "pests": 0,
+   "restaurant": 0
+  },
+  {
+   "date": "2026-10-19",
+   "pests": 7,
+   "restaurant": 5
+  },
+  {
+   "date": "2026-10-20",
+   "pests": 11,
+   "restaurant": 11
+  },
+  {
+   "date": "2026-10-21",
+   "pests": 4,
+   "restaurant": 4
+  },
+  {
+   "date": "2026-10-22",
+   "pests": 1,
+   "restaurant": 1
+  },
+  {
+   "date": "2026-10-23",
+   "pests": 1,
+   "restaurant": 1
+  }
+ ],
+ "pestLast7": {
+  "from": "2026-10-17",
+  "to": "2026-10-23",
+  "inspections": 24,
+  "restaurantInspections": 22
+ },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {
   "rows": 48,
   "withPhone": 30,
   "coverage": 62.5
+ },
+ "seat": {
+  "asOf": "2026-10-24",
+  "places14": 42,
+  "new": 42,
+  "withPhone14": 29,
+  "coverage14": 69.0,
+  "phonesChecked": true
  }
 }

@@ -42,7 +42,7 @@ Oct 23, 2026: B1, B3, B4, B9 and B10 (Seller Central) cannot be fetched by the u
 
 Note: B2, B8 and B9 may be posted by people building tools or researching, not brand owners; they prove the topic, not a buyer, so B8 and B9 sit below the owner questions.
 
-## C. Trades our calculators serve (8)
+## C. Trades our calculators serve (10)
 
 | # | Question (our words) | Calculator | Product | Source | URL | Posted |
 |---|---|---|---|---|---|---|
@@ -55,5 +55,6 @@ Note: B2, B8 and B9 may be posted by people building tools or researching, not b
 | C7 | What should I quote for a restaurant's back sidewalk, dumpster pad and fence? | pressure-washing-price-per-square-foot-calculator | chicago-restaurant-inspection-leads | Pressure Washing Resource | https://pressurewashingresource.com/community/t/restaurant-sidewalk-dumpster-pad/36938 | Jul 12, 2023 |
 | C8 | A janitorial company wants to add hood cleaning; how do I price it? | contractor-hourly-rate-calculator | chicago-restaurant-inspection-leads | Pressure Washing Resource | https://pressurewashingresource.com/community/t/hood-cleaning-pricing/5429 | Oct 27, 2015 |
 | C9 | New pressure washer bidding a managed property: 5,200 sq ft of concrete, 3,200 ft of curbing and 23 storm drains; what do I charge? | pressure-washing-price-per-square-foot-calculator | chicago-construction-cleaning-leads | Pressure Washing Resource | https://pressurewashingresource.com/community/t/have-a-chance-to-bid-on-a-commercial-job-but-dont-know-what-to-charge/3622 | May 2, 2014 (added Oct 23, 2026, fetched and read that day) |
+| C10 | A Panda Express wants its lot washed 13 times a year, not quarterly; did I underbid at $350 a wash for about 7,500 sq ft plus curbing? | pressure-washing-price-per-square-foot-calculator | chicago-restaurant-inspection-leads | Pressure Washing Resource | https://pressurewashingresource.com/community/t/monthly-vs-single-time-pricing/12481 | Apr 17, 2018 (added Oct 24, 2026, fetched and read that day) |
 
 Note: "top calculators" by visits could not rank this group (Cloudflare shows about 172 visits a week, mostly the home page); the group follows the calculators that sit closest to a paid list. Re-rank once a calculator passes 30 visits a week.

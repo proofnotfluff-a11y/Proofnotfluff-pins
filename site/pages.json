@@ -4712,6 +4712,297 @@
     ]
    ],
    "footnote": "The worked example uses the week 1 figures from example 1 of the 13-Week E-commerce Cash Flow workbook, with the starting cash and due week changed to show a squeeze."
+  },
+  {
+   "slug": "price-post-construction-cleaning-bid",
+   "kind": "question",
+   "city": "Chicago",
+   "product": "chicago-construction-cleaning-leads",
+   "data": "permits/chicago/sample.json",
+   "stats": "chicago_construction",
+   "title": "How to Price Post-Construction Cleaning Without Cutting | ProofNotFluff",
+   "desc": "Should you cut your price to win a post-construction cleaning contract? Find your floor, trim the scope instead, and check the going rates per square foot.",
+   "card": "A builder called your post-construction quote too high. How to find your floor, what to trim instead of the price, and the going rates.",
+   "eyebrow": "Post-construction cleaning pricing",
+   "updated": "Updated {asOf} from City of Chicago building permits. Refreshed every Monday.",
+   "h1": "How do you price post-construction cleaning without cutting your price?",
+   "answer": [
+    "Usually you should not cut it. Price the job from your own costs, not from the client's budget, and when a builder says the quote is too high, change the scope, the schedule or the phases before you touch the rate. A bid under your floor pays you less than your own goal for every hour on site.",
+    "One lost bid also tells you little: the builder may already have a cleaner, or a lower number from someone who has not counted their costs. The answer to one lost contract is more bids. In Chicago this week **{kept}** open projects of $500,000 or more name a builder you can ask."
+   ],
+   "numbersTitle": "Where the next bids are: Chicago this week",
+   "tiles": [
+    [
+     "Open projects",
+     "{kept}",
+     "$500K+ with a builder named"
+    ],
+    [
+     "New buildings",
+     "{newBuild}",
+     "new construction, not renovation"
+    ],
+    [
+     "Near finish",
+     "{nearFinish}",
+     "partial occupancy approved"
+    ],
+    [
+     "Permits checked",
+     "{fetched}",
+     "issued in the last 24 months"
+    ]
+   ],
+   "numbers": [
+    "These are City of Chicago building permits issued between {from} and {to} and still open when we pulled them on {asOf}. Losing one builder's job leaves plenty of others to quote; {areas} hold the most."
+   ],
+   "tables": [
+    {
+     "title": "Worked example: the floor under one crew day",
+     "intro": [
+      "The free cleaning price per square foot calculator's example business wants $48,000 a year take-home with a 12% income tax estimate, has $505 a month of business costs, and works 48 weeks of 45 hours, cleaning for 70% of them. That gives a break-even rate of $46.98 per clean hour: pay goal, taxes and costs covered, no profit.",
+      "Fixr lists 2 workers for 8 hours as a common minimum for post-construction labor, so take one crew day as the job."
+     ],
+     "head": [
+      "Line",
+      "Amount"
+     ],
+     "rows": [
+      [
+       "Break-even per clean hour",
+       "$46.98"
+      ],
+      [
+       "Crew time on site",
+       "2 people x 8 hours = 16 person-hours"
+      ],
+      [
+       "Floor, zero profit",
+       "16 x $46.98 = $751.68"
+      ],
+      [
+       "Price at a 15% margin, rounded up to $5",
+       "$885"
+      ],
+      [
+       "The same bid cut by 20%",
+       "$708, which is $43.68 under the floor"
+      ],
+      [
+       "Area that crew day covers, at Fixr's pace",
+       "1,600 to 3,200 sq ft"
+      ],
+      [
+       "The $885 bid per sq ft",
+       "about $0.28 to $0.55"
+      ]
+     ],
+     "notes": [
+      "Fixr says a worker usually cleans 100 to 200 sq ft an hour in a new construction home, so 16 person-hours covers about 1,600 to 3,200 sq ft, and $885 lands inside Fixr's $0.20 to $0.60 range for a final clean. Price the area you will actually clean, not the building's gross size.",
+      "The $885 bid works out to $55.31 per person-hour, above the $30 to $50 per worker Fixr's home guide lists. If the buyers you quote pay less than your floor, the fix is a faster crew, a smaller scope or a different buyer, not a price under the floor.",
+      "Drive time, supplies, debris hauling and windows are left out to keep the sum short; add your own. The margin works as in the calculator: the floor divided by 0.85. Swap in your own numbers in the calculator before you quote."
+     ]
+    },
+    {
+     "title": "What to trim instead of the price",
+     "intro": [
+      "The reply marked as the solution in the forum thread that asked this question put it simply: a big contract that does not cover its costs is a liability, so adjust the scope, the timeline or the package instead of the price. Here is what that can look like on a construction clean."
+     ],
+     "head": [
+      "Option",
+      "What changes"
+     ],
+     "rows": [
+      [
+       "Split the phases",
+       "Quote rough, final and touch-up cleaning as separate lines, so the builder can buy the final clean alone"
+      ],
+      [
+       "Drop the outside",
+       "Fixr prices external work (outside windows, debris, pressure washing) as its own line; leave it to another trade or a later visit"
+      ],
+      [
+       "Move the debris",
+       "Fixr lists debris removal at $200 to $600 as a separate cost; the builder's own dumpster and laborers may already cover it"
+      ],
+      [
+       "Stretch the schedule",
+       "A wider window lets a smaller crew do the same scope over more days"
+      ],
+      [
+       "Start with one phase",
+       "Offer one floor or one phase at your full rate, so the builder can test you on a smaller decision"
+      ]
+     ],
+     "notes": [
+      "Each option lowers the total by taking work out, while your rate per hour stays the same."
+     ]
+    },
+    {
+     "title": "Going rates per square foot, by phase",
+     "intro": [
+      "Use published ranges to sanity check a bid, not to set it. Fixr's cost guide gives these ranges for post-construction cleaning."
+     ],
+     "head": [
+      "Phase",
+      "Per sq ft",
+      "What it covers"
+     ],
+     "rows": [
+      [
+       "Rough clean",
+       "$0.15 to $0.40",
+       "Debris and bulk dust"
+      ],
+      [
+       "Final clean",
+       "$0.20 to $0.60",
+       "The last dust, fingerprints, stickers and surface wipe-downs"
+      ],
+      [
+       "Touch-up",
+       "$0.25 to $0.60",
+       "Dust that settles after the final clean; a smaller scope, so a lower total"
+      ],
+      [
+       "External",
+       "$0.29 to $0.60",
+       "Outside windows, debris and pressure washing"
+      ]
+     ],
+     "notes": [
+      "Source: Fixr, updated Jan 31, 2025. Its figures lean toward homes, and it says commercial pricing depends on the property type.",
+      "For commercial work, ThePricer (updated Oct 8, 2026, citing a 2026 commercial cleaning rate guide) lists rough cleaning at $0.10 to $0.30 per sq ft, final cleaning at $0.30 to $0.75 and touch-up at $0.10 to $0.20. If your price sits above the range, check your speed and scope before you check your rate."
+     ]
+    }
+   ],
+   "stepsTitle": "How to price the next bid so you can hold it",
+   "steps": [
+    [
+     "Know your floor first",
+     "Work out your break-even rate per clean hour from your pay goal, taxes and business costs. That number, times the hours a job takes, is the lowest price that still pays you."
+    ],
+    [
+     "Get the cleaning section of the spec",
+     "Ask the builder for the project's final cleaning specification and walk the site. Price what the spec asks for, not a guess at a typical job."
+    ],
+    [
+     "Count person-hours by phase",
+     "Estimate rough, final and touch-up time separately, with crew size. Time on your past jobs is the best guide, or Fixr's 100 to 200 sq ft per worker-hour if you have none; the calculator's speed field takes it."
+    ],
+    [
+     "Price each phase as its own line",
+     "A line-by-line quote shows the builder what each part costs and gives you room to remove a part without cutting your rate."
+    ],
+    [
+     "Add your margin last",
+     "Divide the floor by one minus your margin, then compare the total per square foot with the going rates above."
+    ],
+    [
+     "Ask which line is too high",
+     "When the builder pushes back, ask what number they need and what they compared you with. Then offer a smaller scope at the same rate."
+    ],
+    [
+     "Walk away below the floor",
+     "If the only way to win is a price under your floor, decline politely and ask to stay on the builder's bidders list for the next job."
+    ],
+    [
+     "Send more bids",
+     "Builders with several open projects have more than one job to clean. Quote the next named project instead of lowering this one."
+    ]
+   ],
+   "calculator": [
+    "cleaning-price-per-square-foot-calculator",
+    "cleaning price per square foot calculator",
+    "Find your own floor before you send the next bid:"
+   ],
+   "sections": [
+    [
+     "Is the price too high, or the client wrong for you?",
+     [
+      "Before you lower a number, check what it was compared with. A builder holding a lower bid may be comparing a full rough, final and touch-up scope with a final clean only, so ask what the other quote covered.",
+      "Replies in the forum thread warned against buying a contract with a low price. One cleaner described winning a client with a low price so they would keep coming back, then going unpaid for the final cleaning when the client stopped answering. Another pointed out that a discount teaches a client to expect the next one. A deliberate lower margin can make sense for a clear reason, such as a first job with a builder who has many projects, but that is a choice you make with your floor in view, not a cut under it."
+     ]
+    ]
+   ],
+   "cta": {
+    "title": "More bids beat a lower price",
+    "text": "Each Monday the full Chicago list gives you every open project that passes our filter ({kept} this week) with its builder, address, reported cost, permit stage and permit number. It comes as a members' web app with a map plus an Excel file, for {price} a month."
+   },
+   "faq": [
+    [
+     "How much should I charge per square foot for post-construction cleaning?",
+     "Start from your own floor: your break-even rate per clean hour times the hours the job takes, plus your margin. A worker usually cleans 100 to 200 sq ft an hour in a new construction home, per Fixr. Then compare with published ranges: Fixr lists $0.20 to $0.60 per sq ft for a final clean and $0.15 to $0.40 for a rough clean."
+    ],
+    [
+     "Should I lower my price to win a big contract?",
+     "Not below your floor. Above it, a smaller margin can be a deliberate choice for a clear reason. Otherwise trim the scope, split the phases or change the schedule, and keep your rate."
+    ],
+    [
+     "How do I bid post-construction cleaning jobs?",
+     "Get the project's cleaning specification, walk the site, estimate person-hours for each phase, price each phase as a line from your break-even rate, then add your margin."
+    ],
+    [
+     "What do I say when a builder says my quote is too high?",
+     "Ask which part is too high and what the other quote covered. Offer a smaller scope, such as the final clean without the outside work, at the same rate."
+    ],
+    [
+     "Where do I find more post-construction jobs to bid in Chicago?",
+     "City of Chicago building permits name the general contractor on large projects. This week {kept} open commercial and apartment projects of $500,000 or more pass our filter."
+    ],
+    [
+     "Will you send my bids or call builders for me?",
+     "No. You quote and contact builders yourself. ProofNotFluff contacts no one for you, and no builder listed has endorsed or works with us."
+    ]
+   ],
+   "related": [
+    [
+     "chicago-construction-cleaning-leads",
+     "Chicago construction cleaning leads: this week's free sample"
+    ],
+    [
+     "chicago-post-construction-cleaning-contracts",
+     "Chicago: how to get post-construction cleaning contracts"
+    ],
+    [
+     "austin-post-construction-cleanup-contacts",
+     "Austin: how to find post-construction cleaning jobs"
+    ]
+   ],
+   "sources": [
+    [
+     "Jobber Community, I Lost a Big Post-Construction Contract (the question and its replies)",
+     "https://community.getjobber.com/discussions/cleaning-and-property-maintenance/i-lost-a-big-post-construction-contract/14161",
+     "posted about July 2026, read Oct 24, 2026"
+    ],
+    [
+     "Fixr, How much does it cost to clean a house after construction?",
+     "https://www.fixr.com/costs/post-construction-cleaning",
+     "updated Jan 31, 2025, read Oct 24, 2026"
+    ],
+    [
+     "ThePricer, How Much Does Post Construction Clean Up Cost?",
+     "https://thepricer.org/post-construction-clean-up-cost",
+     "updated Oct 8, 2026, read Oct 24, 2026"
+    ],
+    [
+     "ProofNotFluff cleaning price per square foot calculator, example inputs",
+     "https://proofnotfluff.com/cleaning-price-per-square-foot-calculator/",
+     "read Oct 24, 2026"
+    ],
+    [
+     "City of Chicago Data Portal, Building Permits (ydr8-5enu)",
+     "{datasetUrl}",
+     "pulled {asOf}"
+    ],
+    [
+     "City of Chicago data disclaimer",
+     "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
+     "read Oct 24, 2026"
+    ]
+   ],
+   "footnote": "Project counts from the City of Chicago Data Portal, Building Permits, pulled {asOf} and filtered by ProofNotFluff as the free sample page explains. Prices are worked examples, not quotes.",
+   "published": "2026-10-24"
   }
  ]
 }

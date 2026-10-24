@@ -3635,7 +3635,7 @@
    "title": "Cost Per Lead Calculator: Your Real Cost Per Won Job | ProofNotFluff",
    "desc": "Free cost per lead calculator for cleaning and pest control owners who buy Angi, Thumbtack or similar leads. Type a month of lead spend, leads, quotes and jobs won to see cost per lead, cost per won job and the profit left after lead spend.",
    "eyebrow": "Free calculator",
-   "h1": "Cost Per Lead Calculator: Your Real Cost Per Won Job",
+   "h1": "Cost Per Lead Calculator",
    "lede": "For cleaning and pest control owners who pay Angi, Thumbtack, HomeAdvisor or a similar site for leads. Type one month of lead spend, leads, quotes and jobs won. You get your cost per lead, the lead cost of each job you actually won, and the profit those jobs left after the lead bill. The math is the same for any trade that buys leads. Free, no sign-up.",
    "card": "Cost per lead, lead cost per won job and the profit left after lead spend, from your own month of platform leads.",
    "defaults": {
@@ -3644,7 +3644,8 @@
     "quotes": "18",
     "jobs": "6",
     "avgJob": "280",
-    "jobCost": "110"
+    "jobCost": "110",
+    "scenJobs": "1"
    },
    "lists": [
     [
@@ -3665,18 +3666,18 @@
     ]
    ],
    "compare": {
-    "title": "How that compares with our City-record lists",
+    "title": "Break-even against our City-record lists",
     "intro": [
-     "A platform lead is a person who asked for a quote. Our lists are something else: the City's own public records, cleaned and sorted by trade, such as a restaurant whose latest inspection cited pests or a business that just got its license. Nobody on them has asked for a quote, and you make the first contact, so we can't tell you how many become jobs and we don't guess.",
-     "What you can compare is price against what one job leaves you. The last column uses the job profit you typed above: the won jobs a month a list needs before it pays for itself."
+     "A platform lead is a person who asked for a quote. Our lists are something else: the City's own public records, cleaned and sorted by trade, such as a restaurant whose latest inspection cited pests or a business that just got its license. Nobody on them has asked for a quote, and you make the first contact.",
+     "So this section shows break-even only, on your numbers: how many won jobs a month each list needs to cover its price at your job profit, and what it would leave you if it won the number of jobs you guessed above. We don't say any list costs less per won job than a platform, because we have no data on how many records become jobs."
     ],
     "notes": [
-     "Prices are each list's price today. Counts come from each list's own page and change every week."
+     "Prices are each list's price today. Each card's counts come from that list's own page and change every week."
     ]
    },
    "keep": {
-    "title": "Records worth keeping if you ask a platform for a credit",
-    "lead": "Each platform sets its own rules for lead credits and decides each request. If you plan to ask, keep these records for every lead you dispute:",
+    "title": "If you ask a platform for a credit",
+    "lead": "Each platform sets its own rules for lead credits and decides each request. If you plan to ask, these records are worth keeping for every lead you dispute:",
     "items": [
      "The date and time the lead arrived and the amount you were charged for it.",
      "The request exactly as the platform sent it: the service, the location and the job details.",
@@ -3690,9 +3691,10 @@
    "method": [
     "Cost per lead is what you paid for leads divided by the leads you were charged for. Cost per won job divides the same spend by the jobs you won, so it carries the leads that went nowhere. That second number is the one to set against what a job leaves you.",
     "Profit left after lead spend is the revenue from the jobs you won, less their direct cost (labor you pay, supplies or chemicals, gas) and less the month's lead bill. Your own time and fixed bills such as insurance and the truck payment stay out, so this is what the leads left you to cover them.",
-    "The rates come from your own counts: leads that became quotes, quotes that became jobs. The page uses nobody else's close rates, and neither does the comparison with our lists."
+    "The most a won job can cost is what one job leaves you before the lead: average job revenue less its direct cost. Pay more than that in leads for each job you win and the jobs lose money.",
+    "The rates come from your own counts: leads that became quotes, quotes that became jobs. The page uses nobody else's close rates. The break-even against our lists uses only our prices, your job profit and your own guess of jobs."
    ],
-   "example": "Say a house cleaner paid $1,200 for 40 leads in a month, sent 18 quotes and won 6 jobs at $280 each, with $110 of labor, supplies and gas per job. That is $30.00 a lead, $66.67 a quote and $200.00 in leads for each job won. The 6 jobs brought in $1,680 and cost $660 to do, leaving $1,020, so after the $1,200 lead bill the month lost $180. Each job left $170.00 before its lead cost and $30.00 less than nothing after it; covering that lead bill took 8 won jobs, not 6.",
+   "example": "Say a house cleaner paid $1,200 for 40 leads in a month, sent 18 quotes and won 6 jobs at $280 each, with $110 of labor, supplies and gas per job. That is $30.00 a lead, $66.67 a quote and $200.00 in leads for each job won. The 6 jobs brought in $1,680 and cost $660 to do, leaving $1,020, so after the $1,200 lead bill the month lost $180. Each job left $170.00 before its lead cost and $30.00 less than nothing after it; covering that lead bill took 8 won jobs, not 6. The most a won job could cost was $170.00, so each one ran $30.00 over. At that job profit, one won job a month covers a $39 or a $29 list; if a list won 1 job a month, the guess in the example, it would leave $131 after a $39 price.",
    "faq": [
     [
      "How do I calculate cost per lead?",
@@ -3715,6 +3717,10 @@
      "Each platform has its own rules and decides each request, so this page can't tell you. The checklist above lists records worth keeping if you ask."
     ],
     [
+     "Do your lists cost less per won job than Angi or Thumbtack?",
+     "We can't say. Nobody on our lists has asked for a quote, and we have no data on how many records become jobs. The page shows break-even instead: the won jobs a month each list needs to cover its price, at your own job profit."
+    ],
+    [
      "How are your City-record lists different from platform leads?",
      "A platform lead is a person who asked for a quote. Our lists are City records, such as food inspections, new business licenses and building permits, sorted by trade. Nobody on them has asked for a quote, so you make the first contact."
     ],
@@ -3723,7 +3729,8 @@
      "No. It is arithmetic on the numbers you type."
     ]
    ],
-   "sources": "No outside rates are used on this page: every figure in the calculator is yours. List prices are our own; the counts come from each list's data file, built from the City of Chicago and City of Austin data portals and refreshed weekly. Page built Oct 24, 2026."
+   "sources": "No outside rates are used on this page: every figure in the calculator is yours. List prices are our own; the counts come from each list's data file, built from the City of Chicago and City of Austin data portals and refreshed weekly. Page built Oct 24, 2026.",
+   "stages": true
   },
   {
    "slug": "amazon-dd7-payout-calculator",

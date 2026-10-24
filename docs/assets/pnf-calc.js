@@ -734,10 +734,18 @@
     r.underwater = jobs > 0 && perJob <= 0 ? 1 : 0;
     r.odd = (quotes > leads && leads > 0) || (jobs > quotes && quotes > 0) ? 1 : 0;
     r.none = spend > 0 || leads > 0 || jobs > 0 ? 0 : 1;
+    // Break-even against a list (Todd, Oct 24: break-even only, never a claim that a list costs less per won job):
+    // the most a won job can cost in leads is what one job leaves (perJob); "scenJobs" is the owner's own guess of
+    // jobs a month a list might win, so the scenario profit = scenJobs x perJob - list price.
+    var scen = Math.max(0, Math.round(num(i.scenJobs)));
+    r.maxCost = perJob > 0 ? perJob : 0; r.scenJobs = scen; r.cpjNone = jobs === 0 ? 1 : 0;
+    r.overMax = jobs > 0 && perJob > 0 && cpj > perJob ? 1 : 0; r.underMax = jobs > 0 && perJob > 0 && cpj <= perJob ? 1 : 0;
+    r.overBy = cpj - perJob;
     (prices || []).forEach(function (p, n) {
       r["list" + n] = p;
       r["cover" + n] = perJob > 0 ? Math.ceil(p / perJob - 1e-9) : 0;
       r["coverNever" + n] = perJob > 0 ? 0 : 1;
+      r["scen" + n] = scen * perJob - p;
     });
     return r;
   }

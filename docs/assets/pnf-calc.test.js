@@ -622,6 +622,10 @@ check("lead cost per lead", LC.cpl, 30); check("lead cost per quote", LC.cpq, 66
 check("lead job profit before leads", LC.perJob, 170); check("lead profit after lead spend", LC.profit, -180);
 check("lead loss per job", LC.afterLead, -30); check("lead win rate", LC.winRate, 0.3333); check("lead break-even jobs", LC.breakEvenJobs, 8);
 check("lead $39 list covered by 1 job", LC.cover0, 1); check("lead loss flag", LC.neg, 1);
+check("lead most a won job can cost", LC.maxCost, 170); check("lead cost per won job over the max", LC.overMax, 1);
+const LS = P.leadCost({ spend: 1200, leads: 40, quotes: 18, jobs: 6, avgJob: 280, jobCost: 110, scenJobs: 1 }, [39, 29]);
+check("lead scenario: 1 job, $39 list", LS.scen0, 131); check("lead scenario: 1 job, $29 list", LS.scen1, 141);
+check("lead scenario: 0 jobs is the list price lost", P.leadCost({ avgJob: 280, jobCost: 110, scenJobs: 0 }, [39]).scen0, -39);
 check("lead $39 list, $15 job profit: 3 jobs", P.leadCost({ avgJob: 40, jobCost: 25 }, [39]).cover0, 3);
 check("lead no jobs: flag, no divide by zero", P.leadCost({ spend: 500, leads: 10 }).noJobs + P.leadCost({ spend: 500, leads: 10 }).cpj, 1);
 check("lead blank: none", P.leadCost({}).none, 1);

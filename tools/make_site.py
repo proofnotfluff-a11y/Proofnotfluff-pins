@@ -1533,8 +1533,9 @@ def _lead_lists(p):
 
 
 def lead_cost_page(p):
-    """Lead cost per won job (PNF.leadCost): a cleaning or pest owner's own month of platform leads, then a plain
-    comparison with our City-record lists using only our prices and this week's counts."""
+    """Lead cost per won job (PNF.leadCost): a cleaning or pest owner's own month of platform leads, then break-even
+    only against our City-record lists (Todd, Oct 24): jobs to cover each list's price, the most a won job can cost,
+    and a scenario on the owner's own guess. Never a claim that a list costs less per won job (no conversion data)."""
     d = p["defaults"]
     lists = _lead_lists(p)
     prices = [x["price"] for x in lists]
@@ -1548,13 +1549,16 @@ def lead_cost_page(p):
 <fieldset><legend>An average won job</legend>
 {field("avgJob", "Average job revenue", d["avgJob"], "What the customer pays for one job", pre="$")}
 {field("jobCost", "Direct cost of one job", d["jobCost"], "Labor you pay, supplies or chemicals, gas. Not the lead.", pre="$")}
+</fieldset>
+<fieldset><legend>A scenario on your numbers (optional)</legend>
+{field("scenJobs", "Won jobs a month a City-record list might bring you", d["scenJobs"], "Your own guess. We have no data on how many records become jobs")}
 </fieldset></form>"""
     results = """<div class="sticky"><div class="card" aria-live="polite">
 <div class="tiles">
-<div class="tile key"><div class="lab">Lead cost per won job</div><div class="val" data-out="cpj" data-never="No jobs yet" data-never-if="noJobs">$0</div><div class="sub">What you paid in leads for each yes</div></div>
+<div class="tile key"><div class="lab">Lead cost per won job</div><div class="val" data-out="cpj" data-never="No jobs yet" data-never-if="cpjNone">$0</div><div class="sub">What you paid in leads for each yes</div></div>
 <div class="tile"><div class="lab">Cost per lead</div><div class="val" data-out="cpl">$0</div><div class="sub">Per quote: <span data-out="cpq">$0</span></div></div>
 <div class="tile"><div class="lab">Profit left after lead spend</div><div class="val" data-out="profit" data-fmt="money0">$0</div><div class="sub">This month, all won jobs</div></div>
-<div class="tile"><div class="lab">Leads that became jobs</div><div class="val" data-pct="leadToJob">0%</div><div class="sub">Quotes won: <span data-pct="winRate">0%</span></div></div>
+<div class="tile"><div class="lab">Most a won job can cost</div><div class="val" data-out="maxCost">$0</div><div class="sub">In leads, before the job loses money</div></div>
 </div>
 <ul class="lines">
 <li><span>Revenue from won jobs</span><span data-out="revenue" data-fmt="money0">$0</span></li>
@@ -1565,6 +1569,8 @@ def lead_cost_page(p):
 <li><span>One job: profit before the lead</span><span data-out="perJob">$0</span></li>
 <li><span>One job: after its share of lead spend</span><span data-out="afterLead">$0</span></li>
 <li><span>Lead spend as a share of job revenue</span><span data-pct="leadShare">0%</span></li>
+<li><span>Leads that became jobs</span><span data-pct="leadToJob">0%</span></li>
+<li><span>Quotes won</span><span data-pct="winRate">0%</span></li>
 </ul>
 <div class="callout" data-show-if="pos > 0">Leads ate <b data-pct="eatsShare">0%</b> of what each job left you. You need <b data-out="breakEvenJobs" data-fmt="int">0</b> won jobs a month to cover this lead spend.</div>
 <div class="callout warn" data-show-if="neg > 0">These leads cost <b data-out="loss" data-fmt="money0">$0</b> more than the jobs left you. You needed <b data-out="breakEvenJobs" data-fmt="int">0</b> won jobs, not <b data-out="jobs" data-fmt="int">0</b>, to cover the spend.</div>
@@ -1577,27 +1583,28 @@ def lead_cost_page(p):
     by = {x["key"]: x for x in store_products()}
     rows, cards = "", ""
     for n, x in enumerate(lists):
-        rows += (f'<tr><th scope="row"><b>{E(x["name"])}</b><br><small>For {E(x["trade"])}. {E(x["count"])}</small></th>'
+        rows += (f'<tr><th scope="row"><b>{E(x["name"])}</b><br><small>For {E(x["trade"])}</small></th>'
                  f'<td>${x["price"]}<br><small>{E(x["per"])}</small></td>'
-                 f'<td><span data-out="cover{n}" data-fmt="int" data-never="None" data-never-if="coverNever{n}">0</span></td></tr>')
+                 f'<td><span data-out="cover{n}" data-fmt="int" data-never="None" data-never-if="coverNever{n}">0</span></td>'
+                 f'<td><span data-out="scen{n}" data-fmt="money0">$0</span></td></tr>')
         # the shop's own card; its Gumroad link also names this page (utm_content) so paid starts from here can be counted
         tag = f'utm_campaign={x["campaign"]}"'
         cards += product_card(by[x["key"]], "../", "calculator").replace(tag, f'utm_campaign={x["campaign"]}&amp;utm_content={p["slug"]}"')
     compare = (f'<section class="block" id="compare"><h2>{E(p["compare"]["title"])}</h2>'
                + "".join(f"<p>{E(t)}</p>" for t in p["compare"]["intro"])
                + '<table class="mt lc-tbl"><thead><tr><th scope="col">List</th><th scope="col">Price</th>'
-               '<th scope="col">Jobs to pay for it</th></tr></thead>'
+               '<th scope="col">Jobs to cover it</th><th scope="col">At your guess</th></tr></thead>'
                f'<tbody>{rows}</tbody></table>'
                + "".join(f'<p class="asof">{E(t)}</p>' for t in p["compare"]["notes"])
                + f'<div class="st-grid lc-cards">{cards}</div></section>')
-    checklist = (f'<section class="block"><details class="lc-keep"><summary>{E(p["keep"]["title"])}</summary>'
+    checklist = (f'<section class="block"><h2>{E(p["keep"]["title"])}</h2>'
                  + f'<p>{E(p["keep"]["lead"])}</p><ul class="checks">' + "".join(f"<li>{E(t)}</li>" for t in p["keep"]["items"])
-                 + f'</ul><p>{E(p["keep"]["tail"])}</p></details></section>')
+                 + f'</ul><p>{E(p["keep"]["tail"])}</p></section>')
     script = f"""<script>
 (function(){{var f=document.getElementById("calc"),L={json.dumps(prices)};
 /* Maths: PNF.leadCost in assets/pnf-calc.js; L is our list prices, read from site/store.json at build. */
 var M=function(i){{return PNF.leadCost(i,L);}};
-PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;}})();</script>"""
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;PNF.stages(f,"../e/{p["slug"]}/");}})();</script>"""
     return form, results + "\n<!--LC-EXTRA-->" + compare + checklist, script
 
 

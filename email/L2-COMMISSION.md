@@ -6,14 +6,14 @@ Product: Chicago New Business Licenses, $29 a month (launches/chicago-new-busine
 `python3 tools/copy_gate.py --lic-templates` and `--lic data/work/lic_drafts.json` (pnf_rules.lic_count_problems):
 - The hook is the City's own counts for one week, from the two committed weekly files, never a business:
   - {n}: `counts.keptWeek` in permits/licenses-chicago/sample.json, new business licenses issued at a Chicago business address from `window.from` to `window.to`. The list leaves some out (renewals, event and one-person licenses, homes, names that could be a person's), so the email says "at least {n}".
-  - {m}: `counts.licensePlaces` in permits/inspections-chicago/sample.json: food businesses (one per license number) that had a License inspection in the same window, any result; re-inspections and task force visits left out (copy review round 1: `segments.newOpening` counts re-inspections, so one place could count twice). A license inspection also comes with a change of owner, so the email says "{m} food businesses at their license inspection, which usually comes before a food license", in its own sentence so it never reads as part of {n} (cold readers, round 2), and never "about to open". The first email of each trade carries {m}.
+  - {m}: `counts.licensePlaces` in permits/inspections-chicago/sample.json: food businesses (one per license number) that had a License inspection in the same window, any result; re-inspections and task force visits left out (copy review round 1: `segments.newOpening` counts re-inspections, so one place could count twice). A license inspection also comes with a change of owner, so the email says "at least {m} food businesses at their license inspection, which usually comes before a food license" (the count leaves out schools, hospitals, mobile vendors and results such as No Entry; Legal desk Oct 24, fix 4), in its own sentence so it never reads as part of {n} (cold readers, round 2), and never "about to open". The first email of each trade carries {m}.
   - {food}: `counts.segmentsWeek.food` (licenses); {area} and {k}: one community area in `counts.areasWeek` and its count ("{k} of them in {area}").
   - {from} and {to}: the window as the City date ("Oct 17"). Both files must cover the same window; the newest file at most 7 days old on the send day.
 - No business named, no street, no price, no trial or free-trial line, no promise of phone numbers (the word "phone" is not used), nothing about inspection results or violations.
 - The POS email never says insurance, and the insurance email never says POS, card payments or merchant services.
 - Body under 75 words, plain text, no link, no dash, opens "Hi {first},", ends with the question. The sender appends the footer (tools/pnf_rules.py FOOTER).
 - Sender: sales@getproofnotfluff.com only (the Apps Script queue). hello@ is kept for the pest seat (Todd, Oct 24). The gate fails any draft with another sender.
-- Follow-ups: at most two, each 5 business days after the last, in the same thread (subject "Re: " plus the first subject), each with a newer week's counts than the email before it (the draft carries `prev_window_from`; the gate fails a follow-up on the same week). Never after a reply, an opt-out or a bounce.
+- Follow-ups: at most two, each 5 business days after the last, in the same thread (subject "Re: " plus the first subject), each with a newer week's counts than the email before it (the draft carries `prev_window_from`; the gate fails a follow-up on the same week). Never after a reply, an opt-out or a bounce. After the second follow-up the prospect is closed for every product (CRM doNotEmail true, reason "promised no further email"), since T23 and T26 promise no more email (Legal desk Oct 24, fix 7).
 
 ## How a batch runs (outreach-drafter, Todd's live ask or a Monday)
 1. Inbox step and Bouncer as the SKILL says, then `python3 tools/crm_prospects.py data/crm --products chicago-licenses --trades pos_merchant,commercial_insurance --prefix lic_`.
@@ -24,7 +24,14 @@ Product: Chicago New Business Licenses, $29 a month (launches/chicago-new-busine
 
 Funnel (Todd, Oct 24, 11:52 am, the same stages as the pest seat): per prospect firstSentAt (delivered), repliedAt, sampleRequestedAt, yesAt, trialStartedAt, paidAt; totals in CRM meta/products.chicago-licenses.funnel and scoreboard leadproducts/chicago-new-business-licenses.funnel, counted fresh from the CRM.
 
-What a yes gets ("Want me to send you this week's sample?"): a reply, drafted in the thread and sent only on Todd's word, with the public free sample page and its 7-day trial (launches/chicago-new-business-licenses.md). No other list is sent.
+What a yes gets (Legal desk Oct 24, fix 8): this reply in the thread, sent only on Todd's word and only after launch step 6 (Todd's $0 trial test) is ticked, with the footer under it. "Want me to send you this week's sample?" is answered only with this text; no other list is sent.
+```text
+Hi {first},
+
+Here it is: https://proofnotfluff.com/chicago-new-business-licenses/
+
+That page shows part of this week's list free. The full list, updated each Monday, is $29 a month with a 7-day free trial: your card is entered at checkout and charged $29 when the 7 days end, then monthly until you cancel. Cancel in your Gumroad library before then and you pay nothing.
+```
 
 ### T21 POS, first email
 Product: chicago-licenses
@@ -36,9 +43,9 @@ Subject: {n} new Chicago business licenses, {from} to {to}
 ```text
 Hi {first},
 
-If you set up POS and card payments for new businesses: from {from} to {to}, the City issued at least {n} new Chicago business licenses, {food} to food and drink places.
+If you set up POS and card payments for new businesses: from {from} to {to}, the City issued at least {n} new business licenses, {food} to food and drink places.
 
-It also logged {m} food businesses at their license inspection, which usually comes before a food license.
+It logged at least {m} food businesses at their license inspection, which usually comes before a food license.
 
 Each Monday I list the new licenses by trade, with address and license type.
 
@@ -89,9 +96,9 @@ Subject: {n} new Chicago business licenses, {from} to {to}
 ```text
 Hi {first},
 
-If you write commercial policies for new businesses: from {from} to {to}, the City issued at least {n} new Chicago business licenses, {food} to food and drink places.
+If you write commercial policies for new businesses: from {from} to {to}, the City issued at least {n} new business licenses, {food} to food and drink places.
 
-It also logged {m} food businesses at their license inspection, which usually comes before a food license.
+It logged at least {m} food businesses at their license inspection, which usually comes before a food license.
 
 Each Monday I list the new licenses by trade, with address and license type.
 

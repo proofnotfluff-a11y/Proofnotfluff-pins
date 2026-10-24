@@ -109,9 +109,12 @@ def name_score(a, b):
     # and the shorter name needs a word of its own (not "nails" or "golden"), so "Pizza" never matches "Pizzaria Uno".
     ja, jb = "".join(t for t in ta if not t.isdigit()), "".join(t for t in tb if not t.isdigit())
     js, jl = (ja, jb) if len(ja) <= len(jb) else (jb, ja)
-    sh = ta if js == ja else tb
+    sh, lg = (ta, tb) if js == ja else (tb, ta)
     own = "".join(t for t in sh if t not in GENERIC and t not in STOP and not t.isdigit())
-    if len(js) >= 6 and own and jl.startswith(js):
+    # Legal desk Oct 24, fix 14: the run-together name must end where one of the longer name's words ends, so
+    # "Marias" never matches "Mariascos Mexican" and "Thai Ruby" never matches "Thai Rubyfruit Cafe"
+    ends = {len("".join(t for t in lg[:k] if not t.isdigit())) for k in range(1, len(lg) + 1)}
+    if len(js) >= 6 and own and jl.startswith(js) and len(js) in ends:
         return 1.0
     return 0.0
 
@@ -322,7 +325,7 @@ def site_phone(url, fetch=_get, pause=None):
     if NO_BOTS.search(re.sub(r"<[^>]+>", " ", page)):
         return "", "site terms ban automated access"
     ph = page_phone(page)
-    return (ph, dom + " contact") if ph else ("", "no number on home or contact page")
+    return (ph, "contact " + link) if ph else ("", "no number on home or contact page")
 
 
 CONTACT_WORDS = re.compile(r"\bcontact(?:[\s_-]?us)?\b|\bfind[\s_-]?us\b|\bvisit[\s_-]?us\b|\breach[\s_-]?us\b", re.I)
@@ -402,14 +405,16 @@ def fill(rows, places, web=True, fetch=_get, name_field=None, strict=True, relea
     urls = {domain(u): u for _, u in todo}
     with concurrent.futures.ThreadPoolExecutor(8) as ex:
         for dom, (ph, note) in zip(need[:WEB_CAP], ex.map(lambda d: site_phone(urls[d], fetch, pause), need[:WEB_CAP])):
-            sites[dom] = {"date": today, "phone": ph, "why": "" if ph else note, "page": "contact" if ph and note.endswith(" contact") else ""}
+            sites[dom] = {"date": today, "phone": ph, "why": "" if ph else note,
+                          "page": note[len("contact "):] if ph and note.startswith("contact ") else ""}
     for r, u in todo:
         dom = domain(u)
         hit = sites.get(dom) if dom not in skipped else None
         if hit and hit.get("phone"):
-            r["phone"], r["phoneSource"], r["phoneRef"], r["phoneDate"] = hit["phone"], "website", f"https://{dom}/", hit["date"]
+            # Legal desk Oct 24, fix 13: a number read on the contact page cites that page
+            r["phone"], r["phoneSource"], r["phoneRef"], r["phoneDate"] = hit["phone"], "website", hit.get("page") or f"https://{dom}/", hit["date"]
             c["website"] += 1
-            if hit.get("page") == "contact":
+            if hit.get("page"):
                 why["website contact page (counted in withPhone)"] += 1
         else:
             c["noPhoneListed"] += 1
@@ -629,7 +634,8 @@ def selftest():
              ("Lou Malnatis", "Lou Mitchells"), ("Kim Bap", "Kim Chi"), ("Thai Spoon", "Thai Basil"), ("Cafe Mexico", "Cafe Lucci")]
     same += [("Sunnyside Nails", "Sunny Side Nails Spa"), ("The Cut Barbershop", "The Cut Barber Shop"), ("Bella Vista Salon", "Bellavista Salon")]
     other += [("Pizza", "Pizzaria Uno"), ("Mario", "Maria"), ("Sun Nails", "Sunny Side Nails"), ("Barber Shop", "Barbershop Supreme Cuts"),
-              ("Golden Nails", "Goldennugget Nails"), ("Luna Tacos", "Luna Salon")]
+              ("Golden Nails", "Goldennugget Nails"), ("Luna Tacos", "Luna Salon"),
+              ("Marias", "Mariascos Mexican"), ("Thai Ruby", "Thai Rubyfruit Cafe")]
     assert all(name_score(a, b) == 1.0 for a, b in same), [(a, b) for a, b in same if name_score(a, b) < 1]
     assert all(name_score(a, b) < 0.5 for a, b in other), [(a, b) for a, b in other if name_score(a, b) >= 0.5]
     assert addr_dir("2 N State St") == "N" and addr_dir("2 North State Street") == "N" and addr_dir("2 State St") == ""
@@ -810,7 +816,7 @@ def selftest():
         if url not in cp:
             raise OSError("not planted")
         return cp[url]
-    assert site_phone("https://e.com", cfake, gaps.append) == ("(312) 200-8888", "e.com contact") and gaps == [5, 5], (seen, gaps)
+    assert site_phone("https://e.com", cfake, gaps.append) == ("(312) 200-8888", "contact https://e.com/contact-us/") and gaps == [5, 5], (seen, gaps)
     assert "https://other.com/contact" not in seen and "https://e.com/menu" not in seen
     assert site_phone("https://f.com", cfake, lambda s: None) == ("", "robots.txt (contact page)") and "https://f.com/contact" not in seen
     assert site_phone("https://g.com", cfake, lambda s: None) == ("", "site terms ban automated access")

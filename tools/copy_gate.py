@@ -691,10 +691,10 @@ def lic_count_problems(subject, body, step, trade, lic, insp, send_day, first=No
     for k in (int(x) for x in re.findall(r"(?<![\d,.$])(\d+)(?![\d,.%])", rest)):
         if k not in allowed:
             p.append(f"the number {k} is not one of this week's counts (n {v['n']}, m {v['m']}, food {v['food']})")
-    if f"at least {v['n']} " not in b:
+    if f"at least {v['n']} new business licenses" not in b:
         p.append(f"the body must carry 'at least {v['n']}' (the list leaves some licenses out on purpose)")
-    if step == "first" and f"{v['m']} food businesses at their license inspection" not in b:
-        p.append(f"the first email carries this week's food license inspections as '{v['m']} food businesses at their license "
+    if step == "first" and f"at least {v['m']} food businesses at their license inspection" not in b:
+        p.append(f"the first email carries this week's food license inspections as 'at least {v['m']} food businesses at their license "
                  "inspection' (counts.licensePlaces, one per business, re-inspections left out)")
     if re.search(r"about to open|applied to open|opening soon|getting ready to open", b, re.I):
         p.append("a license inspection also comes with a change of owner: never 'about to open' or 'applied to open'")

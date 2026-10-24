@@ -1,5 +1,5 @@
 Source: https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html
-Fetched: 2026-10-24T19:00:41+00:00
+Fetched: 2026-10-24T19:04:31+00:00
 
 City of Chicago :: Data Terms of Use
 Skip to main content

@@ -7,8 +7,10 @@
  "overture": 53,
  "website": 1,
  "noPhoneWhy": {
-  "a place at the address under another name": 129,
+  "a place at the address under another name": 103,
   "no Overture place with this name or address": 45,
+  "a place at the address under another name (shares a word)": 22,
+  "a place at the address under another name (spelled close)": 4,
   "the name nearby, at another or no street address": 4,
   "matched, chain or listing site only": 2,
   "two close matches": 1,

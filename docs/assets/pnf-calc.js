@@ -824,6 +824,29 @@
     });
   }
 
+  // Design polish (Oct 24, independent design review): a result that changes flashes once, so the eye finds it (the
+  // animation lives in pnf.css under prefers-reduced-motion: no-preference, nothing moves otherwise), and on phones the
+  // sticky result bar steps aside while the result card itself is on screen (it used to sit on top of it).
+  if (typeof document !== "undefined" && typeof window !== "undefined") {
+    var onReady = function (fn) { if (document.readyState !== "loading") fn(); else document.addEventListener("DOMContentLoaded", fn); };
+    onReady(function () {
+      var bar = document.querySelector(".mbar"), card = document.querySelector(".sticky .card");
+      if (bar && card && "IntersectionObserver" in window) {
+        new IntersectionObserver(function (es) { document.body.classList.toggle("mbar-off", es[0].isIntersecting); },
+          { threshold: 0.2 }).observe(card);
+      }
+      if (!("MutationObserver" in window)) return;
+      document.querySelectorAll(".tile [data-out], .lines [data-out]").forEach(function (el) {
+        var last = el.textContent;
+        new MutationObserver(function () {
+          if (el.textContent === last) return;
+          last = el.textContent;
+          el.classList.remove("pnf-pop"); void el.offsetWidth; el.classList.add("pnf-pop");
+        }).observe(el, { childList: true, characterData: true, subtree: true });
+      });
+    });
+  }
+
   var api = { stages: stages, leadCost: leadCost, payoutGap: payoutGap, seTax: seTax, hourly: hourly, service: service, serviceSqft: serviceSqft, dayRate: dayRate, cleaningSqft: cleaningSqft, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
     strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, profitLoss: profitLoss, cakeQuote: cakeQuote, unitCost: unitCost, handmadePrice: handmadePrice, markup: markup, breakEven: breakEven, choreSplit: choreSplit, clientMix: clientMix, cakeSizes: CAKE_SIZES, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after };

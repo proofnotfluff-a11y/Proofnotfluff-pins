@@ -99,7 +99,7 @@
     "Factoring cost in dollars, a credit line, side-by-side scenarios and a PO planner",
     "Excel and Google Sheets"
    ],
-   "source": "Built by a finance executive. The free 13 week calculator uses the same maths.",
+   "source": "Built by a finance executive. The free 13 week calculator uses the same math.",
    "kitForm": "10083882"
   }
  ],
@@ -312,5 +312,89 @@
   "cleaning-price-per-square-foot-calculator",
   "contractor-hourly-rate-calculator",
   "amazon-dd7-payout-calculator"
- ]
+ ],
+ "calcRelated": [
+  [
+   "cost-per-lead-calculator",
+   "house-cleaning-price-calculator",
+   "cleaning-price-per-square-foot-calculator",
+   "window-cleaning-price-calculator",
+   "contractor-hourly-rate-calculator",
+   "employer-cost-calculator",
+   "cleaning-business-startup-cost-calculator"
+  ],
+  [
+   "cost-per-lead-calculator",
+   "pressure-washing-price-calculator",
+   "pressure-washing-price-per-square-foot-calculator",
+   "soft-wash-pricing-calculator",
+   "window-cleaning-price-calculator",
+   "lawn-care-price-calculator",
+   "auto-detailing-price-calculator",
+   "pressure-washing-startup-cost-calculator"
+  ],
+  [
+   "cost-per-lead-calculator",
+   "junk-removal-price-calculator",
+   "junk-removal-pricing-calculator-by-truck-load",
+   "estate-cleanout-cost-calculator",
+   "junk-removal-startup-cost-calculator"
+  ],
+  [
+   "cost-per-lead-calculator",
+   "contractor-hourly-rate-calculator",
+   "handyman-hourly-rate-calculator",
+   "day-rate-calculator",
+   "employer-cost-calculator",
+   "hourly-rate-calculator",
+   "freelance-hourly-rate-calculator"
+  ],
+  [
+   "cleaning-business-startup-cost-calculator",
+   "junk-removal-startup-cost-calculator",
+   "pressure-washing-startup-cost-calculator",
+   "break-even-calculator",
+   "cost-per-lead-calculator"
+  ],
+  [
+   "amazon-dd7-payout-calculator",
+   "ecommerce-13-week-cash-flow-calculator",
+   "inventory-reorder-point-calculator",
+   "inventory-turnover-calculator",
+   "shipping-cost-calculator",
+   "profit-and-loss-calculator"
+  ],
+  [
+   "etsy-fee-calculator",
+   "profit-margin-calculator",
+   "handmade-product-pricing-calculator",
+   "unit-cost-calculator",
+   "markup-calculator",
+   "craft-fair-break-even-calculator",
+   "cake-pricing-calculator",
+   "shipping-cost-calculator"
+  ],
+  [
+   "hourly-rate-calculator",
+   "freelance-hourly-rate-calculator",
+   "self-employment-tax-calculator",
+   "business-expense-tracker-calculator",
+   "profit-and-loss-calculator",
+   "break-even-calculator",
+   "customer-concentration-calculator"
+  ],
+  [
+   "rental-property-cash-flow-calculator",
+   "airbnb-nightly-rate-calculator",
+   "airbnb-break-even-nights-calculator",
+   "break-even-calculator"
+  ],
+  [
+   "monthly-budget-calculator",
+   "debt-payoff-calculator",
+   "debt-snowball-calculator",
+   "chore-split-calculator"
+  ]
+ ],
+ "calcRelatedNote": "Related calculators block on every calculator page (SEO audit Oct 24, 2026: 37 of 45 calculators linked to no other calculator). A page shows up to 6 others from every cluster it sits in, in cluster order; the strategy calculators lead their clusters."
 }

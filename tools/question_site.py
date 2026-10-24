@@ -147,7 +147,7 @@ def page_html(p):
         body_rows = "".join("<tr>" + "".join((f'<th scope="row">{F(c)}</th>' if i == 0 else f"<td>{F(c)}</td>") for i, c in enumerate(r)) + "</tr>"
                             for r in rows)
         return (f'<section class="block" id="{_slug(t["title"])}"><h2>{F(t["title"])}</h2>' + "".join(f"<p>{F(x)}</p>" for x in t.get("intro", []))
-                + f'<div class="qa-tw"><table class="qa-t"><thead><tr>{head}</tr></thead><tbody>{body_rows}</tbody></table></div>'
+                + f'<div class="qa-tw" role="region" tabindex="0" aria-label="{F(t["title"])}"><table class="qa-t"><thead><tr>{head}</tr></thead><tbody>{body_rows}</tbody></table></div>'
                 + "".join(f'<p class="qa-tnote">{F(x)}</p>' for x in t.get("notes", [])) + "</section>")
 
     tables = "".join(table(t) for t in p.get("tables", []))
@@ -192,6 +192,10 @@ def page_html(p):
         article["datePublished"] = p.get("published", stamp)
     if p.get("published"):
         article.setdefault("datePublished", p["published"])
+    article.setdefault("dateModified", article.get("datePublished"))
+    if str(article.get("dateModified", ""))[:10] < str(article.get("datePublished", ""))[:10]:   # a page published after its data pull
+        article["dateModified"] = article["datePublished"]   # a page with no data date still says when it changed (SEO audit, Oct 24)
+    article["publisher"]["logo"] = {"@type": "ImageObject", "url": M.BASE + "assets/logo-512.png", "width": 512, "height": 512}
     ld = (M.ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
           "mainEntity": [{"@type": "Question", "name": fill(q, s), "acceptedAnswer": {"@type": "Answer", "text": fill(a, s)}}
                          for q, a in p["faq"]]}, crumb_ld, article)
@@ -209,7 +213,7 @@ def page_html(p):
           ".qa-src ul{margin:10px 0 0;padding-left:20px}.qa-src li{margin:0 0 8px;line-height:1.5}"
           ".qa-src li{font-size:14.5px;color:var(--muted);overflow-wrap:break-word}"
           ".qa-tw{overflow-x:auto;margin:14px 0 0;max-width:820px}.qa-t{border-collapse:collapse;width:100%;font-size:15.5px;background:var(--card);border:1px solid var(--line);border-radius:10px}"
-          ".qa-t th,.qa-t td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}.qa-t thead th{font:600 13px/1.3 Poppins,system-ui,sans-serif;letter-spacing:.03em;color:var(--muted);background:var(--canvas2)}"
+          ".qa-t th,.qa-t td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}.qa-t thead th{font:700 12px/1.3 system-ui,-apple-system,\"Segoe UI\",Roboto,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--canvas2)}"
           ".qa-t tbody th{font-weight:600;color:var(--ink)}.qa-t tbody tr:last-child>*{border-bottom:0}.qa-t td:not(:first-child){font-variant-numeric:tabular-nums}.qa-tnote{font-size:14.5px;color:var(--muted);margin-top:10px}"
           ".qa-by{font-weight:600;color:var(--ink2)}.qa-calc{margin:6px 0 0;font-size:16px}"
           ".qa-free{margin:12px 0 0;font-size:15px}.ld-cta .qa-free a{color:#fff}.ld-page .ld-cta p.ld-buybtn{margin-top:16px}"

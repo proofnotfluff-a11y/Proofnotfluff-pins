@@ -446,3 +446,20 @@ nav.top a{padding:0 8px}nav.top{gap:0 12px}
 /* store polish, Oct 24 design review: shop tags teal as on home; the records card lines up with the hero eyebrow */
 .sh-main>p.st-tag{color:var(--teal)}
 @media(min-width:1000px){.st-hero>.st-week{margin-top:28px}}
+/* design polish, Oct 24 (independent review, inside the templates): tighter heading leading, a raised key tile in dark
+   mode, calm hover on link cards, inspection types kept whole, and the calculator result motion (transitions.dev
+   "number pop-in" idea, rebuilt on our tokens; nothing moves under prefers-reduced-motion) */
+:root{--pop:rgba(200,80,47,.16)}
+h2,h3{line-height:1.2}section.block h2{line-height:1.2}
+.tile.key .val{font-size:clamp(20px,16cqi,44px)}
+.ld-meta dd{overflow-wrap:break-word;hyphens:manual}
+.tiles [data-out],.lines [data-out]{border-radius:6px}
+@media (prefers-color-scheme:dark){:root{--pop:rgba(239,140,107,.24)}
+.tile.key{background:#273044;border-color:#33405a;box-shadow:inset 0 3px 0 #ef8c6b}}
+@media (prefers-reduced-motion:no-preference){
+.pnf-pop{animation:pnf-pop .5s ease-out}
+@keyframes pnf-pop{0%{background:var(--pop)}100%{background:transparent}}
+.tools a.card,.st-trades a,.st-printable,.qa-rel a{transition:transform .12s ease,border-color .12s ease,box-shadow .12s ease}
+.tools a.card:hover,.st-trades a:hover,.st-printable:hover,.qa-rel a:hover{transform:translateY(-2px)}
+.mbar{transition:transform .2s ease}}
+body.mbar-off .mbar{transform:translateY(110%)}

@@ -36,7 +36,8 @@ HEAD_TPL = """<!doctype html>
 <link rel="canonical" href="{url}">{robots}{analytics}<meta name="color-scheme" content="light dark">
 <meta property="og:title" content="{title}"><meta property="og:description" content="{desc}">
 <meta property="og:type" content="{ogtype}"><meta property="og:url" content="{url}">{og}
-<link rel="icon" href="{rel}assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="{rel}assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="{rel}assets/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="{rel}assets/apple-touch-icon.png"><meta name="theme-color" content="#f3f1ec" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#12161f" media="(prefers-color-scheme: dark)">
 <link rel="preload" href="{rel}assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{rel}assets/pnf.css">
 {ld}
@@ -58,6 +59,7 @@ FOOT_TPL = """</main>
 
 CALC_GROUPS = []      # [(group title, [calculator pages])], set by home_html, used by calculators_html
 LIVE_QUESTIONS = []   # live question pages, set by main() before any page is written (the Questions link shows only when one is live)
+PAGES_LIVE = []       # every live page, set by main() (related calculators read it)
 CURRENT = {}          # the page being written: {"nav": "shop" | "calc" | "questions" | ""} for aria-current
 
 
@@ -91,6 +93,10 @@ class _Tpl(str):
     """HEAD and FOOT keep their old .format() keywords (tools/rest_site.py, lic_site.py and question_site.py call them);
     the store's new pieces (nav, footer links, Open Graph image) are filled in here."""
     def format(self, **kw):
+        # a title over 60 characters drops the brand suffix, so search results show the words that match the query
+        # (SEO audit, Oct 24, 2026: 56 of 63 titles ran past 60; Google appends the site name on its own)
+        if "title" in kw and len(html.unescape(kw["title"])) > 60 and kw["title"].endswith(" | ProofNotFluff"):
+            kw["title"] = kw["title"][:-len(" | ProofNotFluff")]
         kw.setdefault("nav", nav_html(kw.get("rel", ""), CURRENT.get("nav", "")))
         kw.setdefault("og", og_tags(kw["url"]) if "url" in kw else "")
         kw.setdefault("fnav", foot_nav(kw.get("rel", "")))
@@ -1738,10 +1744,16 @@ def normalize_extra(slug, h1):
     t = re.sub(r'<!--pnf-head-->.*?<!--/pnf-head-->', "", t, flags=re.S)
     m = re.search(r"<title>(.*?)</title>.*?<meta name=\"description\" content=\"(.*?)\"", t, flags=re.S)
     title, desc = (m.group(1), m.group(2)) if m else (h1, "")
+    if len(html.unescape(title)) > 60 and title.endswith(" | ProofNotFluff"):   # same rule as HEAD (SEO audit, Oct 24)
+        short = title[:-len(" | ProofNotFluff")]
+        t = t.replace(f"<title>{title}</title>", f"<title>{short}</title>", 1)
+        title = short
     crumb, crumb_ld = crumbs("../", [("Home", ""), (h1, None)])
     headbits = ('<!--pnf-head--><meta name="color-scheme" content="light dark">'
                 f'<meta property="og:title" content="{title}"><meta property="og:description" content="{desc}"><meta property="og:type" content="website">'
                 f'<meta property="og:url" content="{url}">{og_tags(url)}<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">'
+                '<link rel="icon" href="../assets/favicon-48.png" sizes="48x48" type="image/png"><link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">'
+                '<meta name="theme-color" content="#f3f1ec" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#12161f" media="(prefers-color-scheme: dark)">'
                 '<link rel="preload" href="../assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>'
                 f'{ld_tags(crumb_ld)}<!--/pnf-head-->')
     t = t.replace('<link rel="stylesheet" href="../assets/pnf.css">', headbits + '<link rel="stylesheet" href="../assets/pnf.css">', 1)
@@ -1751,6 +1763,9 @@ def normalize_extra(slug, h1):
     if 'class="skip"' not in t:
         t = t.replace("<body>", '<body><a class="skip" href="#main">Skip to content</a>', 1)
     t = re.sub(r"<main( class=\"wrap\")?>", '<main class="wrap" id="main">', t, count=1)
+    # the visible trail matches the BreadcrumbList above (SEO audit, Oct 24, 2026)
+    t = re.sub(r'<!--pnf-crumb-->.*?<!--/pnf-crumb-->', "", t, flags=re.S)
+    t = t.replace('<main class="wrap" id="main">', '<main class="wrap" id="main"><!--pnf-crumb-->' + crumb + '<!--/pnf-crumb-->', 1)
     t = t.replace("<p>Made by ProofNotFluff.</p>", "<p>Made by ProofNotFluff with AI assistance, reviewed and tested by the shop owner.</p>")
     t = t.replace("and a copy comes by email.", "and a link to it comes by email.")
     t = t.replace("IRS news release IR-2026-29)", "IRS Standard Mileage Rates page and Internal Revenue Bulletin 2026-29)")   # copy check, Oct 22
@@ -2104,7 +2119,7 @@ def page_html(p):
             f'<div class="grid">{form}{results}</div>{after_grid}'
             f'<section class="block"><h2>How it works</h2>{"".join(f"<p>{E(x)}</p>" for x in p["method"])}</section>'
             f'<section class="block"><h2>A worked example</h2><p>{E(p["example"])}</p></section>'
-            f'{extra_cards(p["slug"])}{find_customers(p["slug"], rel)}{guides_block(calc=p["slug"], rel=rel)}{cta(p) if p.get("cta") else ""}{faq_block(p["faq"])}')
+            f'{extra_cards(p["slug"])}{find_customers(p["slug"], rel)}{guides_block(calc=p["slug"], rel=rel)}{cta(p) if p.get("cta") else ""}{related_calcs(p["slug"], rel)}{faq_block(p["faq"])}')
     city_numbers = bool(p.get("lists")) or any(k != "ecommerce-13-week-cash-flow" for k in load_store().get("calcProducts", {}).get(p["slug"], []))
     robots = '<meta name="robots" content="noindex, nofollow">' if p.get("draft") else ""
     crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Free calculators", "calculators/"), (p["h1"], None)])
@@ -2133,7 +2148,7 @@ def index_html(pages):
     extras = "".join(f'<a class="card" href="{E(x["slug"])}/"><h3>{E(x["h1"])}</h3><p>{E(x["card"])}</p></a>' for x in live_extras())
     body = ('<p class="eyebrow">Free tools</p><h1>Pricing calculators that show their work</h1>'
             '<p class="lede">Free calculators for people who sell their time: find your real hourly rate and price a job so it pays you. '
-            'Each one uses the same maths as our tested Excel and Google Sheets workbooks.</p>'
+            'Each one uses the same math as our tested Excel and Google Sheets workbooks.</p>'
             f'<div class="tools">{cards}</div>'
             + (f'<section class="block"><h2>Free printables</h2><div class="tools">{extras}</div></section>' if extras else ""))
     return (HEAD.format(title="Free pricing calculators for service businesses | ProofNotFluff",
@@ -2226,7 +2241,7 @@ def featured_html(links):
         cards += (f'<div class="hubfeat"><p class="hubfeat-hook">{E(it["hook"])}</p>'
                   f'<a class="hubbtn shop" href="{E(product_url(p))}" rel="noopener"><b>{E(p["name"])}</b><span>Get the workbook: {E(price)}</span></a>')
         if it["free"]:
-            cards += f'<a class="hubbtn" href="{E(it["free"])}"><b>Try the free calculator first</b><span>Same maths, in your browser</span></a>'
+            cards += f'<a class="hubbtn" href="{E(it["free"])}"><b>Try the free calculator first</b><span>Same math, in your browser</span></a>'
         cards += '</div>'
     return f'<h2 class="hubh">From our latest videos</h2><div class="hublist">{cards}</div>'
 
@@ -2244,8 +2259,8 @@ def hub_html(links, pages):
         rows = "".join(f'<a class="hubbtn" href="{E(product_url(by[i]))}" rel="noopener"><b>{E(by[i]["name"])}</b><span>$2.99 on Etsy</span></a>' for i in g["ids"] if i in by)
         if rows:
             groups += f'<h2 class="hubh">{E(g["title"])}</h2><div class="hublist">{rows}</div>'
-    lede = ('The Etsy workbooks are $2.99 each, the premium workbooks are on Gumroad, and the free calculators use the same maths.'
-            if links.get("gumroad") else 'Every paid workbook is $2.99 on Etsy, and the free calculators use the same maths.')
+    lede = ('The Etsy workbooks are $2.99 each, the premium workbooks are on Gumroad, and the free calculators use the same math.'
+            if links.get("gumroad") else 'Every paid workbook is $2.99 on Etsy, and the free calculators use the same math.')
     body = ('<section class="hub"><p class="eyebrow">ProofNotFluff</p><h1>Calculators that show their work</h1>'
             f'<p class="lede">Saw a video? It is right here. {E(lede)}</p>'
             f'{featured_html(links)}'
@@ -2255,7 +2270,7 @@ def hub_html(links, pages):
             f'{groups}</section>')
     _, hub_ld = crumbs("../", [("Home", ""), ("Links", None)])
     return (HEAD.format(title="ProofNotFluff: free calculators and $2.99 tools", desc="Free pricing and money calculators, and the Excel and Google Sheets workbooks behind them.",
-                        url=url, rel="../", shop=SHOP, ld=ld_tags(hub_ld), bodycls=' class="hubpage"', robots="", analytics=analytics_tag()) + body +
+                        url=url, rel="../", shop=SHOP, ld=ld_tags(hub_ld), bodycls=' class="hubpage"', robots='<meta name="robots" content="noindex, follow">', analytics=analytics_tag()) + body +
             FOOT.format(rel="../", script="", sources="Prices as listed on Etsy; checked " + links.get("updated", "") + "."))
 
 
@@ -2587,7 +2602,7 @@ def home_html(pages, live, doors=False):
         CALC_GROUPS[:] = groups
     extras = "".join(f'<a class="card st-printable" href="{E(x["slug"])}/"><h3>{E(x["h1"])}</h3><p>{E(x["card"])}</p><span class="st-link">Get the sheet {ARROW}</span></a>' for x in live_extras())
     calcs = ('<section class="st-sec" id="calculators" aria-labelledby="calc-title"><h2 id="calc-title">Free calculators</h2>'
-             '<p>Price the job before you call. The same maths as our Excel and Google Sheets workbooks, and nothing you type leaves your browser.</p>'
+             '<p>Price the job before you call. The same math as our Excel and Google Sheets workbooks, and nothing you type leaves your browser.</p>'
              f'{calc_cards}</section>'
              + (f'<section class="st-sec" aria-labelledby="print-title"><h2 id="print-title">Free printables</h2><div class="tools">{extras}</div></section>' if extras else ""))
     qs = ""
@@ -2599,7 +2614,9 @@ def home_html(pages, live, doors=False):
     band = ('<section class="st-band" aria-labelledby="trust-title"><h2 id="trust-title">Public records, read by a finance executive.</h2>'
             '<p>Every number here comes from the cities\' own open data or our own workbooks, with the date we pulled it. No business on a list '
             'endorses or works with ProofNotFluff, and we never contact anyone for you. Public information for planning sales calls; not legal or business advice and no promise of work.</p></section>')
-    org = {"@context": "https://schema.org", **ORG, "url": BASE, "logo": BASE + "assets/og/home.png"}
+    org = {"@context": "https://schema.org", **ORG, "url": BASE, "logo": BASE + "assets/logo-512.png"}
+    site = {"@context": "https://schema.org", "@type": "WebSite", "name": "ProofNotFluff", "alternateName": "Proof Not Fluff", "url": BASE,
+            "publisher": {"@type": "Organization", "name": "ProofNotFluff", "url": BASE}}
     items = {"@context": "https://schema.org", "@type": "ItemList", "name": "ProofNotFluff lead lists and tools",
              "itemListElement": [{"@type": "ListItem", "position": i, "url": BASE + x["href"], "name": x["name"]} for i, x in enumerate(prods, 1)]}
     body = hero + lists + how + calcs + qs + band
@@ -2616,7 +2633,7 @@ def home_html(pages, live, doors=False):
                  ".st-door h2{scroll-margin-top:16px}}</style>")
     return (HEAD.format(title="Lead lists from public records, and free pricing calculators | ProofNotFluff",
                         desc="Weekly lead lists for cleaning, hood cleaning and pest control companies in Chicago and Austin, from City permits and inspections, with a free sample every Monday. Plus free pricing calculators.",
-                        url=BASE, rel="", shop=SHOP, ld=ld_tags(org, items), bodycls=' class="st-page"', robots='<meta name="robots" content="noindex, nofollow">' if doors else "", analytics=analytics_tag()) + body +
+                        url=BASE, rel="", shop=SHOP, ld=ld_tags(site, org, items), bodycls=' class="st-page"', robots='<meta name="robots" content="noindex, nofollow">' if doors else "", analytics=analytics_tag()) + body +
             FOOT.format(rel="", script="", notices=data_notices(), sources="City of Chicago and City of Austin open data, pulled as dated on each list. IRS Topic 554 and IRS standard mileage rates, checked Oct 6, 2026."))
 
 
@@ -2686,7 +2703,7 @@ def refunds_html():
             '<h2>If something goes wrong</h2><p>If a Monday list does not arrive, the members\' app does not open or a file is broken, write to '
             '<a href="mailto:hello@proofnotfluff.com">hello@proofnotfluff.com</a> with your Gumroad receipt. We fix it, or refund that month.</p>'
             '<h2>Before you buy</h2><p>Every list has a free sample of this week\'s records on its page, and the workbook has a free calculator '
-            'with the same maths, so you can see what you get first.</p>'
+            'with the same math, so you can see what you get first.</p>'
             f'<p class="asof">Policy updated {E(nice_date(r.get("updated", "")))}. ProofNotFluff LLC, Chicago.</p></article>')
     return (HEAD.format(title="Refunds and cancelling | ProofNotFluff", desc="ProofNotFluff's refund and cancellation policy for the weekly lead lists and the workbook.",
                         url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
@@ -2743,7 +2760,7 @@ def privacy_html():
             f'<p class="asof">Policy updated {E(nice_date(r.get("updated", "")))}.</p></article>')
     foot = (f'</main>\n<footer><div class="wrap">{foot_nav(rel)}'
             '<p>Made by ProofNotFluff LLC. Questions about this policy: hello@proofnotfluff.com.</p></div></footer>\n</body></html>')
-    return (HEAD.format(title="Privacy | ProofNotFluff", desc="What ProofNotFluff collects, why, who holds it, and how to stop. We never sell your details.",
+    return (HEAD.format(title="Privacy: what this site collects and why | ProofNotFluff", desc="What ProofNotFluff collects, why, who holds it, and how to stop. We never sell your details.",
                         url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body + foot)
 
 
@@ -2755,10 +2772,15 @@ def calculators_html():
     li = lambda p: f'<li><a href="{rel}{p["slug"]}/"><b>{E(p["h1"])}</b><span>{E(p["card"])}</span></a></li>'
     groups = "".join(f'<h2 class="st-cgroup">{E(t)}</h2><ul class="st-calcs">{"".join(li(p) for p in items)}</ul>' for t, items in CALC_GROUPS)
     n = sum(len(i) for _, i in CALC_GROUPS)
-    body = (f'{crumb}<p class="eyebrow">Free calculators</p><h1>Price the job before you call</h1>'
-            f'<p class="lede">{n} free calculators with the same maths as our Excel and Google Sheets workbooks. Nothing you type leaves your browser.</p>{groups}')
+    # the h1 names what the hub holds (SEO audit, Oct 24, 2026: the old h1 shared no words with the title); the old line leads the lede
+    body = (f'{crumb}<p class="eyebrow">Free calculators</p><h1>Free pricing and money calculators</h1>'
+            f'<p class="lede">Price the job before you call. {n} free calculators with the same math as our Excel and Google Sheets workbooks. Nothing you type leaves your browser.</p>{groups}')
+    coll = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Free pricing and money calculators", "url": url,
+            "mainEntity": {"@type": "ItemList", "numberOfItems": n, "itemListElement": [
+                {"@type": "ListItem", "position": i, "url": BASE + p["slug"] + "/", "name": p["h1"]}
+                for i, p in enumerate((p for _, items in CALC_GROUPS for p in items), 1)]}}
     return (HEAD.format(title="Free pricing and money calculators | ProofNotFluff", desc=f"{n} free calculators for cleaning and trade pricing, e-commerce cash flow and margins, tax, rentals and household budgets.",
-                        url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
+                        url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld, coll), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
             FOOT.format(rel=rel, script="", sources=""))
 
 
@@ -2768,12 +2790,33 @@ def questions_html():
     url = BASE + "questions/"
     crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Questions", None)])
     lis = "".join(f'<li><a href="{rel}{q["slug"]}/"><span><b>{E(q["h1"])}</b><small>{E(q.get("eyebrow", ""))}</small></span>{ARROW}</a></li>' for q in LIVE_QUESTIONS)
-    body = (f'{crumb}<p class="eyebrow">Questions owners ask</p><h1>Plain answers, with this week\'s numbers</h1>'
+    body = (f'{crumb}<p class="eyebrow">Plain answers, with this week\'s numbers</p><h1>Questions owners ask</h1>'
             '<p class="lede">Real questions trade and e-commerce owners asked in public, answered from City records and our own workbooks. ProofNotFluff is run by a finance executive.</p>'
             f'<ul class="st-qs">{lis}</ul>')
+    coll = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Questions owners ask", "url": url,
+            "mainEntity": {"@type": "ItemList", "numberOfItems": len(LIVE_QUESTIONS), "itemListElement": [
+                {"@type": "ListItem", "position": i, "url": BASE + q["slug"] + "/", "name": q["h1"]} for i, q in enumerate(LIVE_QUESTIONS, 1)]}}
     return (HEAD.format(title="Questions owners ask | ProofNotFluff", desc="Plain answers to questions cleaning, hood cleaning, pest control and e-commerce owners ask, with this week's numbers.",
-                        url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
+                        url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld, coll), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
             FOOT.format(rel=rel, script="", sources=""))
+
+
+def notfound_html():
+    """docs/404.html: the host serves it for any missing address, so every link is root-relative (SEO audit, Oct 24, 2026:
+    a dead pin or old link landed on the host's bare 404 with no way back in)."""
+    CURRENT["nav"] = ""
+    rel = "/"
+    picks = [("chicago-restaurant-inspection-leads", "Chicago restaurant inspection leads", "This week's free sample for pest control, hood and kitchen cleaning"),
+             ("chicago-construction-cleaning-leads", "Chicago construction cleaning leads", "Open projects near a final clean, with the builder on each"),
+             ("cost-per-lead-calculator", "Cost per lead calculator", "What a won job really costs you in leads"),
+             ("amazon-dd7-payout-calculator", "Amazon DD+7 payout calculator", "How long Amazon holds your money, and your cash low point")]
+    lis = "".join(f'<li><a href="/{s}/"><b>{E(h)}</b><span>{E(c)}</span></a></li>' for s, h, c in picks if os.path.isdir(os.path.join(DOCS, s)))
+    body = ('<p class="eyebrow">Page not found</p><h1>That page isn\'t here.</h1>'
+            '<p class="lede">The link may be old or mistyped. These are the pages most people come for, or start from the <a href="/">home page</a>.</p>'
+            f'<ul class="st-calcs">{lis}</ul><p class="st-all"><a class="st-btn2" href="/shop/">All lead lists</a> <a class="st-btn2" href="/calculators/">All free calculators</a></p>')
+    return (HEAD.format(title="Page not found | ProofNotFluff", desc="This page isn't here. Find the lead lists and free calculators from the links on this page.",
+                        url=BASE + "404.html", rel=rel, shop=SHOP, ld="", bodycls=' class="st-page"', robots='<meta name="robots" content="noindex">', analytics=analytics_tag())
+            + body + FOOT.format(rel=rel, script="", sources=""))
 
 
 def guides_block(product=None, calc=None, rel="../"):
@@ -2784,6 +2827,25 @@ def guides_block(product=None, calc=None, rel="../"):
         return ""
     lis = "".join(f'<li><a href="{rel}{q["slug"]}/"><span><b>{E(q["h1"])}</b><small>{E(q.get("eyebrow", ""))}</small></span>{ARROW}</a></li>' for q in qs)
     return f'<section class="block"><h2>Guides</h2><ul class="st-qs">{lis}</ul></section>'
+
+
+def related_calcs(slug, rel="../"):
+    """Related calculators on a calculator page: up to 6 live calculators from every cluster in site/store.json
+    calcRelated that holds this page, in cluster order (SEO audit, Oct 24, 2026: 37 of 45 calculators linked to no other
+    calculator, so search engines saw 45 loose tools instead of topic clusters)."""
+    live = {p["slug"]: p for p in PAGES_LIVE}
+    seen, out = {slug}, []
+    for cluster in load_store().get("calcRelated", []):
+        if slug not in cluster:
+            continue
+        for s in cluster:
+            if s not in seen and s in live:
+                seen.add(s)
+                out.append(live[s])
+    if not out:
+        return ""
+    lis = "".join(f'<li><a href="{rel}{p["slug"]}/"><b>{E(p["h1"])}</b><span>{E(p["card"])}</span></a></li>' for p in out[:6])
+    return f'<section class="block rel-calcs" aria-labelledby="rel-title"><h2 id="rel-title">Related calculators</h2><ul class="st-calcs">{lis}</ul></section>'
 
 
 def find_customers(slug, rel="../"):
@@ -2883,7 +2945,7 @@ def og_all(pages, live):
     og_image("refunds", "Policy", "Refunds and cancelling")
     og_image("privacy", "Policy", "Privacy", "What we collect, why, and how to stop. Never sold.")
     og_image("questions", "Questions owners ask", "Plain answers, with this week's numbers")
-    og_image("calculators", "Free calculators", "Price the job before you call", "Free pricing and money calculators, the same maths as our workbooks.")
+    og_image("calculators", "Free calculators", "Price the job before you call", "Free pricing and money calculators, the same math as our workbooks.")
     for x in json.load(open(os.path.join(ROOT, "site", "extras.json"), encoding="utf-8")).get("pages", []) if os.path.exists(os.path.join(ROOT, "site", "extras.json")) else []:
         og_image(x["slug"], "Free printable", x["h1"], x.get("card", ""))
     import re
@@ -2913,6 +2975,7 @@ def main():
     pages = spec["pages"]
     live = [p for p in pages if is_live(p)]
     LIVE_QUESTIONS[:] = [p for p in live if p.get("kind") == "question"]
+    PAGES_LIVE[:] = live
     og_all(pages, live)
     for p in pages:
         if p.get("kind") in ("leads", "restleads", "question", "licleads", "newin") and not os.path.isfile(os.path.join(ROOT, p["data"])):
@@ -2929,6 +2992,7 @@ def main():
     for slug, page in store:
         d = os.path.join(DOCS, slug); os.makedirs(d, exist_ok=True)
         open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(page)
+    open(os.path.join(DOCS, "404.html"), "w", encoding="utf-8").write(notfound_html())
     CURRENT["nav"] = ""
     for x in live_extras():
         normalize_extra(x["slug"], x["h1"])
@@ -2936,7 +3000,7 @@ def main():
     write_answer_drafts(pages)   # Todd, Oct 24: visible AI-search changes built as drafts first
     write_compare_draft()
     write_stage_pages(pages)
-    urls = ([BASE] + [BASE + slug + "/" for slug, _ in store] + [BASE + "go/"] + [BASE + p["slug"] + "/" for p in live]
+    urls = ([BASE] + [BASE + slug + "/" for slug, _ in store] + [BASE + p["slug"] + "/" for p in live]
             + [BASE + x["slug"] + "/" for x in live_extras()])
     lastmod = {}
     for p in live:   # a lead page changes when its data does (radar, Oct 23): the sitemap says the true day

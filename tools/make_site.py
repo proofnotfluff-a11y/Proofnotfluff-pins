@@ -2504,8 +2504,11 @@ def data_notices():
     return "".join(f"<p>{E(x)}</p>" for x in out)
 
 
-def home_html(pages, live):
-    """The store home: what we sell and who for on the first screen, the lists, how it works, the calculators."""
+def home_html(pages, live, doors=False):
+    """The store home: what we sell and who for on the first screen, the lists, how it works, the calculators.
+    doors=True is the two front doors draft (Todd, Oct 23, approved move 5: "Find work" and "Run the numbers", every
+    calculator stays on proofnotfluff.com); a home layout change is major (CONSTITUTION 2), so it is written only as the
+    noindex draft docs/home-two-doors.html until Todd's go."""
     CURRENT["nav"] = ""
     st = load_store()
     prods = store_products()
@@ -2536,6 +2539,26 @@ def home_html(pages, live):
             '<p class="lede">Weekly lists for cleaning, hood cleaning and pest control companies in Chicago and Austin. Each one has a free sample, new every Monday.</p>'
             '<p class="st-cta"><a class="btn ld-btnbig" href="#lists-title">See this week\'s free samples</a></p>'
             f'</div>{week}</section><section class="st-pickrow" aria-labelledby="pick-title"><h2 class="st-pick" id="pick-title">Or go straight to your trade</h2><ul class="st-trades">{trades}</ul></section>')
+    calcs_live = [p for p in live if p.get("kind") not in ("leads", "restleads", "licleads", "question", "newin")]
+    if doors:
+        by_calc = {p["slug"]: p for p in calcs_live}
+        feat = [by_calc[x] for x in st.get("doorCalcs", []) if x in by_calc][:4]
+        feat_li = "".join(f'<li><a href="{p["slug"]}/"><b>{E(p["h1"])}</b><span>{E(p["card"])}</span></a></li>' for p in feat)
+        hero = ('<section class="st-hero" aria-labelledby="hero-title"><div><p class="eyebrow">Public records and plain maths</p>'
+                '<h1 id="hero-title">Find work from the City\'s own records, or run the numbers first.</h1>'
+                '<p class="lede">Weekly lead lists for cleaning, hood cleaning and pest control companies in Chicago and Austin, and free calculators for any small business owner.</p>'
+                f'</div>{week}</section>'
+                '<section class="st-doors" aria-label="Two ways in">'
+                '<div class="card st-door"><p class="st-cap">Find work</p><h2 id="door-work">Lead lists, with a free sample on each</h2>'
+                '<p>Open this week\'s sample with no sign-up, then subscribe if it fits. No lock-in, cancel any time.</p>'
+                f'<ul class="st-trades">{trades}</ul>'
+                '<p class="st-dooract"><a class="btn ld-btnbig" href="#lists-title">See this week\'s free samples</a></p></div>'
+                '<div class="card st-door"><p class="st-cap">Run the numbers</p><h2 id="door-num">Free calculators, right here</h2>'
+                '<p>Price a job, see what your leads really cost, or plan around a payout hold. Nothing you type leaves your browser.</p>'
+                f'<ul class="st-calcs">{feat_li}</ul>'
+                f'<p class="st-dooract"><a class="st-btn2" href="#calculators">All {len(calcs_live)} free calculators</a></p></div></section>'
+                # phones: both doors before the counts, so the second door is not five screens down
+                + (week.replace('class="card st-week"', 'class="card st-week st-weeklow"', 1) if week else ""))
     coming = store_coming()
     cards = "".join(product_card(x, "", "home") for x in prods)
     lists = ('<section class="st-sec" aria-labelledby="lists-title"><h2 id="lists-title">The lists</h2>'
@@ -2545,7 +2568,6 @@ def home_html(pages, live):
            '<li><span class="n" aria-hidden="true">1</span><div><h3>Open the free sample</h3><p>Real records from this week\'s pull sit on each list\'s page. No sign-up.</p></div></li>'
            '<li><span class="n" aria-hidden="true">2</span><div><h3>Subscribe when it fits</h3><p>$29 or $39 a month, paid through Gumroad. Cancel any time.</p></div></li>'
            '<li><span class="n" aria-hidden="true">3</span><div><h3>Work the list</h3><p>Every Monday: the named list, an Excel file and a pitch kit for your trade.</p></div></li></ol></section>')
-    calcs_live = [p for p in live if p.get("kind") not in ("leads", "restleads", "licleads", "question", "newin")]
     by_slug = {p["slug"]: p for p in calcs_live}
     groups, used = [], set()
     for title, slugs in st.get("calcGroups", []):
@@ -2578,9 +2600,17 @@ def home_html(pages, live):
     items = {"@context": "https://schema.org", "@type": "ItemList", "name": "ProofNotFluff lead lists and tools",
              "itemListElement": [{"@type": "ListItem", "position": i, "url": BASE + x["href"], "name": x["name"]} for i, x in enumerate(prods, 1)]}
     body = hero + lists + how + calcs + qs + band
+    if doors:
+        body += ("<style>.st-doors{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px;margin:28px 0 0}"
+                 ".st-door{display:flex;flex-direction:column;padding:22px 22px 20px}.st-door h2{font-size:24px;line-height:1.2;margin:0 0 6px}"
+                 ".st-door>p{color:var(--ink2);margin:0 0 16px}.st-door .st-trades{max-width:none;grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}"
+                 ".st-door .st-calcs{grid-template-columns:1fr}.st-dooract{margin:auto 0 0;padding-top:18px}.st-dooract .st-btn2{display:inline-flex}.st-weeklow{display:none}"
+                 "@media(max-width:700px){.st-hero .st-week{display:none}.st-weeklow{display:block;margin:20px 0 0}"
+                 ".st-door{padding:18px 16px}.st-door .st-trades{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}"
+                 ".st-door .st-trades a{min-height:56px;padding:8px 8px 8px 12px}.st-door .st-trades b{font-size:14px}}</style>")
     return (HEAD.format(title="Lead lists from public records, and free pricing calculators | ProofNotFluff",
                         desc="Weekly lead lists for cleaning, hood cleaning and pest control companies in Chicago and Austin, from City permits and inspections, with a free sample every Monday. Plus free pricing calculators.",
-                        url=BASE, rel="", shop=SHOP, ld=ld_tags(org, items), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
+                        url=BASE, rel="", shop=SHOP, ld=ld_tags(org, items), bodycls=' class="st-page"', robots='<meta name="robots" content="noindex, nofollow">' if doors else "", analytics=analytics_tag()) + body +
             FOOT.format(rel="", script="", notices=data_notices(), sources="City of Chicago and City of Austin open data, pulled as dated on each list. IRS Topic 554 and IRS standard mileage rates, checked Oct 6, 2026."))
 
 
@@ -2887,6 +2917,8 @@ def main():
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page_html(p))
         print("wrote", p["slug"])
     open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(home_html(pages, live))
+    # two front doors draft (move 5): noindex, not in the sitemap, not linked; goes live only on Todd's go
+    open(os.path.join(DOCS, "home-two-doors.html"), "w", encoding="utf-8").write(home_html(pages, live, doors=True))
     store = [("shop", shop_html()), ("refunds", refunds_html()), ("privacy", privacy_html()), ("calculators", calculators_html())] + ([("questions", questions_html())] if LIVE_QUESTIONS else [])
     for slug, page in store:
         d = os.path.join(DOCS, slug); os.makedirs(d, exist_ok=True)

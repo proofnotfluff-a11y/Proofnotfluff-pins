@@ -306,5 +306,11 @@
     "chore-split-calculator"
    ]
   ]
+ ],
+ "doorCalcs": [
+  "cost-per-lead-calculator",
+  "cleaning-price-per-square-foot-calculator",
+  "contractor-hourly-rate-calculator",
+  "amazon-dd7-payout-calculator"
  ]
 }

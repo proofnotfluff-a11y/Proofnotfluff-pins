@@ -255,6 +255,7 @@
     "estate-cleanout-cost-calculator",
     "lawn-care-price-calculator",
     "auto-detailing-price-calculator",
+    "cost-per-lead-calculator",
     "contractor-hourly-rate-calculator",
     "handyman-hourly-rate-calculator",
     "day-rate-calculator",
@@ -268,6 +269,7 @@
    "E-commerce, Etsy and makers",
    [
     "ecommerce-13-week-cash-flow-calculator",
+    "amazon-dd7-payout-calculator",
     "inventory-reorder-point-calculator",
     "inventory-turnover-calculator",
     "shipping-cost-calculator",

@@ -3628,6 +3628,226 @@
    ]
   },
   {
+   "slug": "cost-per-lead-calculator",
+   "kind": "lead_cost",
+   "draft": true,
+   "segment": "trades",
+   "title": "Cost Per Lead Calculator: Your Real Cost Per Won Job | ProofNotFluff",
+   "desc": "Free cost per lead calculator for cleaning and pest control owners who buy Angi, Thumbtack or similar leads. Type a month of lead spend, leads, quotes and jobs won to see cost per lead, cost per won job and the profit left after lead spend.",
+   "eyebrow": "Free calculator",
+   "h1": "Cost Per Lead Calculator: What Each Won Job Really Costs",
+   "lede": "For cleaning and pest control owners who pay Angi, Thumbtack, HomeAdvisor or a similar site for leads. Type one month of lead spend, leads, quotes and jobs won. You get your cost per lead, the lead cost of each job you actually won, and the profit those jobs left after the lead bill. Free, no sign-up.",
+   "card": "Cost per lead, lead cost per won job and the profit left after lead spend, from your own month of platform leads.",
+   "defaults": {
+    "spend": "1,200",
+    "leads": "40",
+    "quotes": "18",
+    "jobs": "6",
+    "avgJob": "280",
+    "jobCost": "110"
+   },
+   "lists": [
+    [
+     "chicago-restaurant-inspection-leads",
+     "pest control"
+    ],
+    [
+     "chicago-new-business-licenses",
+     "commercial cleaning and pest control"
+    ],
+    [
+     "chicago-construction-cleaning-leads",
+     "post-construction cleaning"
+    ],
+    [
+     "austin-construction-cleaning-leads",
+     "post-construction cleaning in Austin"
+    ]
+   ],
+   "compare": {
+    "title": "How that compares with our City-record lists",
+    "intro": [
+     "A platform lead is a person who asked for a quote. Our lists are something else: the City's own public records, cleaned and sorted by trade, such as a restaurant whose latest inspection cited pests or a business that just got its license. Nobody on them has asked for a quote, and you make the first contact, so we can't tell you how many become jobs and we don't guess.",
+     "What you can compare is price against what one job leaves you. The last column uses the job profit you typed above: the won jobs a month a list needs before it pays for itself."
+    ],
+    "notes": [
+     "Prices are each list's price today. Counts come from each list's own page and change every week."
+    ]
+   },
+   "keep": {
+    "title": "Records worth keeping if you ask a platform for a credit",
+    "lead": "Each platform sets its own rules for lead credits and decides each request. If you plan to ask, keep these records for every lead you dispute:",
+    "items": [
+     "The date and time the lead arrived and the amount you were charged for it.",
+     "The request exactly as the platform sent it: the service, the location and the job details.",
+     "Every call, text and message you sent the customer, with the time.",
+     "What did not match: a wrong or disconnected number, a duplicate, a job outside your service area, or a service you don't offer.",
+     "Screenshots of the lead and the charge, taken the day it arrived.",
+     "The platform's credit rule as it read that day, with the date you copied it."
+    ],
+    "tail": "Good records don't mean a credit will be given. Check the platform's current rules before you ask."
+   },
+   "method": [
+    "Cost per lead is what you paid for leads divided by the leads you were charged for. Cost per won job divides the same spend by the jobs you won, so it carries the leads that went nowhere. That second number is the one to set against what a job leaves you.",
+    "Profit left after lead spend is the revenue from the jobs you won, less their direct cost (labor you pay, supplies or chemicals, gas) and less the month's lead bill. Your own time and fixed bills such as insurance and the truck payment stay out, so this is what the leads left you to cover them.",
+    "The rates come from your own counts: leads that became quotes, quotes that became jobs. The page uses nobody else's close rates, and neither does the comparison with our lists."
+   ],
+   "example": "Say a house cleaner paid $1,200 for 40 leads in a month, sent 18 quotes and won 6 jobs at $280 each, with $110 of labor, supplies and gas per job. That is $30.00 a lead, $66.67 a quote and $200.00 in leads for each job won. The 6 jobs brought in $1,680 and cost $660 to do, leaving $1,020, so after the $1,200 lead bill the month lost $180. Each job left $170.00 before its lead cost and $30.00 less than nothing after it; covering that lead bill took 8 won jobs, not 6.",
+   "faq": [
+    [
+     "How do I calculate cost per lead?",
+     "Divide what you paid for leads by the number of leads you were charged for. In the example, $1,200 for 40 leads is $30.00 a lead."
+    ],
+    [
+     "What is cost per won job?",
+     "Your lead spend divided by the jobs you won from those leads. In the example, $1,200 and 6 won jobs is $200.00 a job, though each lead cost $30.00."
+    ],
+    [
+     "Are Angi or Thumbtack leads worth it?",
+     "Only your own numbers can say. If what a job leaves you after its direct cost is more than your lead cost per won job, the leads made money that month. In the example a job leaves $170.00 and the leads cost $200.00 per won job, so they lost $30.00 a job."
+    ],
+    [
+     "What counts as the direct cost of a job?",
+     "What you spend only because you did that job: labor you pay for it, supplies or chemicals, gas and parking. Leave out the lead itself and the fixed bills you pay anyway."
+    ],
+    [
+     "Will a platform give me a credit for a bad lead?",
+     "Each platform has its own rules and decides each request, so this page can't tell you. The checklist above lists records worth keeping if you ask."
+    ],
+    [
+     "How are your City-record lists different from platform leads?",
+     "A platform lead is a person who asked for a quote. Our lists are City records, such as food inspections, new business licenses and building permits, sorted by trade. Nobody on them has asked for a quote, so you make the first contact."
+    ],
+    [
+     "Is this financial advice?",
+     "No. It is arithmetic on the numbers you type."
+    ]
+   ],
+   "sources": "No outside rates are used on this page: every figure in the calculator is yours. List prices are our own; the counts come from each list's data file, built from the City of Chicago and City of Austin data portals and refreshed weekly. Page built Oct 24, 2026."
+  },
+  {
+   "slug": "amazon-dd7-payout-calculator",
+   "kind": "dd7_payout",
+   "draft": true,
+   "segment": "ecommerce-finance",
+   "title": "Amazon DD+7 Payout Calculator: Days to Your Bank | ProofNotFluff",
+   "desc": "Free Amazon DD+7 calculator. Type daily sales, FBA or merchant fulfilled, delivery days and your payout schedule to see how much Amazon holds, the days from order to bank and your cash low point. Rules from Amazon's own help pages.",
+   "eyebrow": "Free calculator",
+   "h1": "Amazon DD+7 Payout Calculator",
+   "lede": "Amazon holds your money until 7 days after delivery, then pays it on its schedule. Type your daily sales, delivery time and payout schedule to see how much Amazon is holding, how many days an order takes to reach your bank, and the lowest your cash gets. Every rule comes from Amazon's own help pages. Free, no sign-up.",
+   "card": "How much Amazon holds under DD+7, days from order to bank and your cash low point.",
+   "defaults": {
+    "sales": "1,000",
+    "fulfil": 0,
+    "deliverDays": "3",
+    "tracked": 1,
+    "eddDays": "7",
+    "schedule": 0,
+    "nextPayout": "14",
+    "bankDays": "1",
+    "cash": "10,000",
+    "costs": "700"
+   },
+   "method": [
+    "Amazon's help page on payments based on delivery date says funds are reserved until delivery plus 7 days. Its own example: sold January 1, delivered January 6, available for payout starting January 14. So the calculator makes each day's sales available 8 days after the delivery date it uses.",
+    "Which delivery date: with valid tracking from an integrated carrier, Amazon uses the actual delivery date; without it, the latest estimated delivery date. For FBA orders, type how long your orders usually take to arrive.",
+    "Then the payout. On the scheduled payout every 14 days, money that becomes available waits for the next payout day, so an order can wait up to 13 more days. If you request a payout every day, it goes out the day it becomes available. Then add the days your bank takes.",
+    "Money held is everything sold but not yet in your bank, once sales have run long enough to settle into the cycle. The low point starts from a standing start: sales at this rate begin today, nothing is held yet, and your daily spend goes out from day 1. That is the squeeze a new store, a new product or a jump in sales feels. To test a jump, type only the extra daily sales and the extra daily spend.",
+    "Not included: refunds, A-to-z claims and chargebacks that Amazon can hold as an account level reserve, a reserve period extended after a risk review, and charges billed outside the order such as ads."
+   ],
+   "example": "Say a brand sells $1,000 a day after Amazon fees through FBA, orders arrive in 3 days, it is on the 14-day payout with the next one 14 days out, and Express Payout lands it the next day. Each order becomes available 11 days after it was placed and reaches the bank 12 to 25 days after. Amazon holds between $12,000 and $25,000 at any time, up to 25 days of sales. Starting with $10,000 and paying out $700 a day, the first $3,000 lands on day 15, the next payout not until day 29, and cash bottoms at -$6,600 on day 28. Requesting a payout every day instead cuts order to bank to 12 days and the most held to $12,000, and the low point is $1,600 on day 12, with no extra cash needed.",
+   "rulesTitle": "The Amazon rules this calculator uses",
+   "rules": [
+    {
+     "rule": "Funds are reserved until delivery plus a 7-day reserve period. Amazon's example: sold January 1, delivered January 6, available January 14. The period can be extended after a review of risk and past performance.",
+     "page": "Payments based on delivery date",
+     "url": "https://sellercentral.amazon.com/help/hub/reference/external/G202124090",
+     "read": "Oct 24, 2026"
+    },
+    {
+     "rule": "With an integrated carrier, Amazon uses the actual delivery date. Without valid tracking, it uses the latest estimated delivery date.",
+     "page": "Payments based on delivery date",
+     "url": "https://sellercentral.amazon.com/help/hub/reference/external/G202124090",
+     "read": "Oct 24, 2026"
+    },
+    {
+     "rule": "Fees that are part of an order, such as referral and FBA fees, are held with the order and charged when it is released. Ad costs are charged when billed.",
+     "page": "Deferred transactions for accounting and payment reconciliation",
+     "url": "https://sellercentral.amazon.com/help/hub/reference/external/GLRNLZDAKHDBBVBY",
+     "read": "Oct 24, 2026"
+    },
+    {
+     "rule": "The scheduled payout period is 14 days.",
+     "page": "Why didn't I get paid?",
+     "url": "https://sellercentral.amazon.com/help/hub/reference/external/G19301",
+     "read": "Oct 24, 2026"
+    },
+    {
+     "rule": "Disburse on Demand lets you request your available balance once every 24 hours. Delivery date reserves still apply.",
+     "page": "Disburse on Demand",
+     "url": "https://sellercentral.amazon.com/help/hub/reference/external/GSCWUZNYQRY4LEZH",
+     "read": "Oct 24, 2026"
+    },
+    {
+     "rule": "Express Payout sends payouts to an eligible US bank account within 24 hours and is on by default for eligible sellers. Otherwise a payout takes 3 to 5 business days.",
+     "page": "Express Payout frequently asked questions",
+     "url": "https://sellercentral.amazon.com/help/hub/reference/external/GA24UN79VBPKXZXX",
+     "read": "Oct 24, 2026"
+    },
+    {
+     "rule": "An account level reserve for open A-to-z claims, chargebacks or an account review can hold more on top.",
+     "page": "What is account level reserve?",
+     "url": "https://sellercentral.amazon.com/help/hub/reference/external/G200136810",
+     "read": "Oct 24, 2026"
+    }
+   ],
+   "rulesNotes": [
+    "All six are Amazon's US Seller Central help pages, read Oct 24, 2026. Amazon can change them, so open a link to check today's wording."
+   ],
+   "next": {
+    "title": "Plan the cash around the gap",
+    "question": "shopify-payouts-supplier-deposits-cash-gap",
+    "workbook": "To put the gap into a week-by-week cash plan with your stock orders, try the free",
+    "shopify": "Selling on Shopify too? Read"
+   },
+   "cta": {
+    "title": "The full 13-week cash flow",
+    "bullets": [
+     "The 13-Week E-commerce Cash Flow workbook models each channel's payout lag, up to six POs as deposit plus balance and freight,",
+     "factoring cost in dollars, a credit line, side-by-side scenarios and a PO planner, for Excel and Google Sheets."
+    ],
+    "button": "Get the full workbook: $79",
+    "url": "https://proofnotfluff.gumroad.com/l/13-week-cash-flow?utm_source=proofnotfluff&utm_medium=calculator&utm_campaign=13-week-cash-flow&utm_content=amazon-dd7-payout-calculator"
+   },
+   "faq": [
+    [
+     "What does DD+7 mean on Amazon?",
+     "Delivery date plus 7 days. Amazon reserves the money from each order until 7 days after it is delivered. In Amazon's own example, an order delivered January 6 is available for payout starting January 14."
+    ],
+    [
+     "How long does Amazon take to pay sellers after an order?",
+     "The days to delivery, plus 8 in Amazon's example, plus the wait for your payout day, plus your bank's time. In the example, with 3-day delivery and the 14-day payout, that is 12 to 25 days."
+    ],
+    [
+     "Is DD+7 different for FBA and merchant fulfilled orders?",
+     "The rule is the same: delivery plus 7 days. What changes is the delivery date Amazon uses. Without valid tracking from an integrated carrier, Amazon uses the latest estimated delivery date, which can be later than the real one."
+    ],
+    [
+     "Does requesting a payout every day get around DD+7?",
+     "No. Disburse on Demand pays the balance that is already available, once every 24 hours. It skips the wait for the 14-day payout day, not the reserve."
+    ],
+    [
+     "Why is Amazon holding more than this page shows?",
+     "An account level reserve for open A-to-z claims, chargebacks or an account review can hold more on top, and Amazon can extend the reserve period after a review. This page leaves both out."
+    ],
+    [
+     "Is this financial advice?",
+     "No. It is a planning estimate from the numbers you type and Amazon's published rules."
+    ]
+   ],
+   "sources": "Rules from Amazon's US Seller Central help pages, read Oct 24, 2026 and linked above: Payments based on delivery date (G202124090), Deferred transactions (GLRNLZDAKHDBBVBY), Why didn't I get paid? (G19301), Disburse on Demand (GSCWUZNYQRY4LEZH), Express Payout FAQ (GA24UN79VBPKXZXX), What is account level reserve? (G200136810). No fees or rates are assumed: every figure is yours."
+  },
+  {
    "slug": "markup-calculator",
    "kind": "markup",
    "draft": false,

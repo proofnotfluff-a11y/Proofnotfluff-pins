@@ -25,12 +25,14 @@ Gaps: no verified pest control or grease trap question with buyer intent; only A
 
 ## B. E-commerce brands, 13-Week E-commerce Cash Flow kit (10)
 
+Oct 24, 2026 (Todd's go on the free calculators): B4, B1 and B3, the Amazon payout hold questions, moved to the front so the engine's next B pages feed the free Amazon DD+7 payout calculator (calculator: amazon-dd7-payout-calculator). All three fetched and read Oct 24 in a live chat: B4 shows 66 replies and 3.3K views, posted 9 months ago; B1 posted 2 years ago; B3 updated 3 years ago.
+
 | # | Question (our words) | Source | URL | Posted |
 |---|---|---|---|---|
-| B1 | Amazon holds my payouts 15+ days but half of each day's sales goes to production; how do I survive? | Amazon Seller Central forums | https://sellercentral.amazon.com/seller-forums/discussions/t/6356130d-825f-46e6-a529-94021f76293d | approx Oct 2024 |
-| B2 | Supplier deposits and Shopify payout delays: how do you plan the cash gap before a bigger stock order? | Shopify Community | https://community.shopify.com/t/supplier-deposits-and-shopify-payout-delays-how-do-you-currently-plan-the-cash-gap/698000 | Oct 14, 2026 |
-| B3 | FBA pays only every two weeks; how do sellers manage cash flow around that? | Amazon Seller Central forums | https://sellercentral.amazon.com/seller-forums/discussions/t/73abbaec-794c-4c49-bf4c-74681018910a | approx 2023 |
 | B4 | With DD+7 payout delays, how will you handle the cash flow hit? | Amazon Seller Central forums | https://sellercentral.amazon.com/seller-forums/discussions/t/bfe5525c-8c86-4876-85bd-f41b80df6912 | approx Jan 2026 |
+| B1 | Amazon holds my payouts 15+ days but half of each day's sales goes to production; how do I survive? | Amazon Seller Central forums | https://sellercentral.amazon.com/seller-forums/discussions/t/6356130d-825f-46e6-a529-94021f76293d | approx Oct 2024 |
+| B3 | FBA pays only every two weeks; how do sellers manage cash flow around that? | Amazon Seller Central forums | https://sellercentral.amazon.com/seller-forums/discussions/t/73abbaec-794c-4c49-bf4c-74681018910a | approx 2023 |
+| B2 | Supplier deposits and Shopify payout delays: how do you plan the cash gap before a bigger stock order? | Shopify Community | https://community.shopify.com/t/supplier-deposits-and-shopify-payout-delays-how-do-you-currently-plan-the-cash-gap/698000 | Oct 14, 2026 |
 | B5 | Amazon Lending is gone; are other lenders at 10% to 30% worth it? | Sellers Ask Sellers | https://sellersasksellers.com/t/amazon-lending-vs-other-lenders-listed-on-seller-central/6902 | Jan 21, 2026 |
 | B6 | Payouts take days but suppliers need paying now with two week lead times; how does timing work? | Shopify Community | https://community.shopify.com/t/receiving-payments-and-paying-suppliers/383226 | Dec 28, 2024 |
 | B7 | How do Shopify payouts affect cash flow when reserves keep payouts tiny? | Shopify Community | https://community.shopify.com/t/how-do-shopify-payouts-affect-cash-flow/309105 | Mar 28, 2024 |
@@ -42,10 +44,17 @@ Oct 23, 2026: B1, B3, B4, B9 and B10 (Seller Central) cannot be fetched by the u
 
 Note: B2, B8 and B9 may be posted by people building tools or researching, not brand owners; they prove the topic, not a buyer, so B8 and B9 sit below the owner questions.
 
-## C. Trades our calculators serve (10)
+## C. Trades our calculators serve (15)
+
+Oct 24, 2026 (Todd's go on the free calculators): C11 to C15 are lead-cost questions owners asked in public, at the front so the engine's next C pages feed the free cost per lead calculator. Pest control is thin: no pest owner started a thread found today; C15's pest voice is a reply. Each question page links the calculator and the City-record list in its Product column.
 
 | # | Question (our words) | Calculator | Product | Source | URL | Posted |
 |---|---|---|---|---|---|---|
+| C11 | Google Local Services Ads cost me about $500 a month and most leads are small jobs I turn down; is it still worth it? | cost-per-lead-calculator | chicago-construction-cleaning-leads | Pressure Washing Resource | https://pressurewashingresource.com/community/t/google-local-service-ad/40811 | May 3, 2026 (added Oct 24, 2026, fetched and read that day) |
+| C12 | A year of paid marketing, Thumbtack and Local Services Ads included, brings my carpet cleaning business mostly price shoppers; which channels and numbers actually work? | cost-per-lead-calculator | chicago-new-business-licenses | The Cleaning Standard | https://thecleaningstandard.com/forum/threads/im-looking-for-honest-advice-from-other-carpet-cleaning-business-owners-because-im-reaching-a-breaking-point.305377/post-4893565 | Jul 26, 2026 (added Oct 24, 2026, fetched and read that day) |
+| C13 | Work is slow; are paid lead sites like HomeAdvisor, Angi and Thumbtack worth trying again for a window cleaning business? | cost-per-lead-calculator | chicago-construction-cleaning-leads | Window Cleaning Resource | https://community.windowcleaner.com/t/lead-sources-good-bad-or-ugly/55799 | Aug 29, 2024 (added Oct 24, 2026, fetched and read that day) |
+| C14 | Why is Thumbtack charging me so much for leads, including ones I never got? | cost-per-lead-calculator | chicago-new-business-licenses | Thumbtack Community | https://community.thumbtack.com/discussion/comment/6251/ | May 2025 (added Oct 24, 2026, fetched and read that day) |
+| C15 | Is Angi worth the fee for a home service business? (a pest control owner's household replies that his Angi leads were hard to convert) | cost-per-lead-calculator | chicago-restaurant-inspection-leads | Jobber Community | https://community.getjobber.com/discussions/marketing-forum/is-angi-worth-it-for-home-service-business-owners/13803 | approx Jul 2026 (added Oct 24, 2026, fetched and read that day) |
 | C1 | Lost a big post-construction contract after my scope-based quote was called too high; should I have cut my price? | cleaning-price-per-square-foot-calculator | chicago-construction-cleaning-leads | Jobber Community | https://community.getjobber.com/discussions/cleaning-and-property-maintenance/i-lost-a-big-post-construction-contract/14161 | approx Jul 2026 |
 | C2 | First big commercial new-construction clean (glass, frames, debris): am I way off on price? | window-cleaning-price-calculator | chicago-construction-cleaning-leads | Window Cleaning Resource | https://community.windowcleaner.com/t/commercial-construction-clean/52879 | Apr 7, 2021 |
 | C3 | Residential cleaner moving to commercial: how do I price a fitness center under construction? | cleaning-price-per-square-foot-calculator | chicago-new-business-licenses | Jobber Community | https://community.getjobber.com/discussions/marketing-forum/contract---elite-gymfitness-center-cleaning/942 | approx Oct 2025 |

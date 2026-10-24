@@ -19,7 +19,7 @@ Condensed Oct 22, 2026 from coo/LEADS_DESK.md Run 2 for the outreach-drafter sta
 ```text
 ProofNotFluff
 680 North Lake Shore Drive, Suite 110-2964, Chicago, IL 60611
-Not interested? Reply "no thanks" and we will not email you again.
+This is a sales email. Not interested? Reply "no thanks" and we will not email you again.
 ```
 
 ## Senders and caps

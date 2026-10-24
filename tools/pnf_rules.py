@@ -175,8 +175,10 @@ PITCH_RE = re.compile(r"\$\s?\d+\s*(?:/|a|per)\s*(?:mo|month)\b|\bsubscri\w*|\bf
 DASHES = ("\u2014", "\u2013")
 # CAN-SPAM block the sender appends under every first email. It is fixed text, checked byte for byte, and not counted
 # against the 75 words because it is compliance, not copy.
+# Line 3 opens with the advertisement label 15 U.S.C. 7704(a)(5)(A)(i) asks of a cold email (no prior consent):
+# legal/reviews/2026-10-24-cold-email-ad-label.md (Todd, Oct 24: "research this yourself and come up with what you think is best").
 FOOTER = ("ProofNotFluff\n680 North Lake Shore Drive, Suite 110-2964, Chicago, IL 60611\n"
-          "Not interested? Reply \"no thanks\" and we will not email you again.")
+          "This is a sales email. Not interested? Reply \"no thanks\" and we will not email you again.")
 
 
 ABBREV_RE = re.compile(r"\b(?:L\.L\.C|L\.L\.P|P\.L\.L\.C|Inc|Co|Corp|Ltd|Bros|Assoc|Dr|St|Ave|Blvd|Rd|Ln|Ct|Pl|Pkwy|Hwy|Ste|Jr|Sr|Mt|Ft|N|S|E|W)\.",

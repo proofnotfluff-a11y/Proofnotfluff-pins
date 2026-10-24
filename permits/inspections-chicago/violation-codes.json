@@ -1,24 +1,24 @@
 {
- "ranAt": "2026-10-23T19:43:54+00:00",
- "since": "2026-09-11",
- "inspections": 1464,
+ "ranAt": "2026-10-24T17:00:08+00:00",
+ "since": "2026-09-12",
+ "inspections": 1452,
  "codes": [
   {
    "code": 1,
    "title": "PERSON IN CHARGE PRESENT, DEMONSTRATES KNOWLEDGE, AND PERFORMS DUTIES",
-   "count": 56,
+   "count": 55,
    "keywordHits": {}
   },
   {
    "code": 2,
    "title": "CITY OF CHICAGO FOOD SERVICE SANITATION CERTIFICATE",
-   "count": 101,
+   "count": 100,
    "keywordHits": {}
   },
   {
    "code": 3,
    "title": "MANAGEMENT, FOOD EMPLOYEE AND CONDITIONAL EMPLOYEE; KNOWLEDGE, RESPONSIBILITIES AND REPORTING",
-   "count": 41,
+   "count": 40,
    "keywordHits": {}
   },
   {
@@ -48,9 +48,9 @@
   {
    "code": 10,
    "title": "ADEQUATE HANDWASHING SINKS PROPERLY SUPPLIED AND ACCESSIBLE",
-   "count": 207,
+   "count": 205,
    "keywordHits": {
-    "plumbing": 14,
+    "plumbing": 13,
     "droppings": 1
    }
   },
@@ -83,7 +83,7 @@
   {
    "code": 16,
    "title": "FOOD-CONTACT SURFACES: CLEANED & SANITIZED",
-   "count": 100,
+   "count": 99,
    "keywordHits": {}
   },
   {
@@ -95,7 +95,7 @@
   {
    "code": 22,
    "title": "PROPER COLD HOLDING TEMPERATURES",
-   "count": 54,
+   "count": 53,
    "keywordHits": {}
   },
   {
@@ -139,7 +139,7 @@
   {
    "code": 33,
    "title": "PROPER COOLING METHODS USED; ADEQUATE EQUIPMENT FOR TEMPERATURE CONTROL",
-   "count": 45,
+   "count": 42,
    "keywordHits": {}
   },
   {
@@ -159,18 +159,18 @@
   {
    "code": 37,
    "title": "FOOD PROPERLY LABELED; ORIGINAL CONTAINER",
-   "count": 92,
+   "count": 91,
    "keywordHits": {}
   },
   {
    "code": 38,
    "title": "INSECTS, RODENTS, & ANIMALS NOT PRESENT",
-   "count": 336,
+   "count": 334,
    "keywordHits": {
-    "rodent": 91,
-    "droppings": 59,
-    "flies": 56,
-    "roach": 48,
+    "roach": 50,
+    "flies": 55,
+    "rodent": 89,
+    "droppings": 57,
     "insect": 50,
     "grease": 4,
     "grease_trap": 4,
@@ -181,12 +181,12 @@
   {
    "code": 39,
    "title": "CONTAMINATION PREVENTED DURING FOOD PREPARATION, STORAGE & DISPLAY",
-   "count": 104,
+   "count": 100,
    "keywordHits": {
-    "flies": 3,
+    "flies": 2,
     "insect": 1,
     "filter": 1,
-    "plumbing": 3,
+    "plumbing": 2,
     "grease": 1
    }
   },
@@ -199,7 +199,7 @@
   {
    "code": 41,
    "title": "WIPING CLOTHS: PROPERLY USED & STORED",
-   "count": 36,
+   "count": 37,
    "keywordHits": {}
   },
   {
@@ -235,7 +235,7 @@
   {
    "code": 47,
    "title": "FOOD & NON-FOOD CONTACT SURFACES CLEANABLE, PROPERLY DESIGNED, CONSTRUCTED & USED",
-   "count": 300,
+   "count": 295,
    "keywordHits": {
     "plumbing": 6,
     "hood": 1,
@@ -247,26 +247,26 @@
   {
    "code": 48,
    "title": "WAREWASHING FACILITIES: INSTALLED, MAINTAINED & USED; TEST STRIPS",
-   "count": 79,
+   "count": 76,
    "keywordHits": {
     "grease": 1,
     "grease_trap": 1,
-    "plumbing": 12
+    "plumbing": 11
    }
   },
   {
    "code": 49,
    "title": "NON-FOOD/FOOD CONTACT SURFACES CLEAN",
-   "count": 289,
+   "count": 288,
    "keywordHits": {
-    "grease": 93,
+    "grease": 92,
     "grease_trap": 10,
     "plumbing": 2,
     "flies": 2,
-    "exhaust": 3,
+    "exhaust": 2,
     "rodent": 1,
     "droppings": 1,
-    "hood": 2
+    "hood": 1
    }
   },
   {
@@ -278,9 +278,9 @@
   {
    "code": 51,
    "title": "PLUMBING INSTALLED; PROPER BACKFLOW DEVICES",
-   "count": 262,
+   "count": 258,
    "keywordHits": {
-    "plumbing": 186,
+    "plumbing": 183,
     "grease": 2,
     "grease_trap": 2
    }
@@ -288,17 +288,17 @@
   {
    "code": 52,
    "title": "SEWAGE & WASTE WATER PROPERLY DISPOSED",
-   "count": 27,
+   "count": 25,
    "keywordHits": {
-    "plumbing": 14,
-    "grease": 12,
-    "grease_trap": 12
+    "plumbing": 13,
+    "grease": 11,
+    "grease_trap": 11
    }
   },
   {
    "code": 53,
    "title": "TOILET FACILITIES: PROPERLY CONSTRUCTED, SUPPLIED, & CLEANED",
-   "count": 127,
+   "count": 124,
    "keywordHits": {
     "plumbing": 3
    }
@@ -306,7 +306,7 @@
   {
    "code": 54,
    "title": "GARBAGE & REFUSE PROPERLY DISPOSED; FACILITIES MAINTAINED",
-   "count": 91,
+   "count": 88,
    "keywordHits": {
     "insect": 2,
     "plumbing": 3,
@@ -319,35 +319,35 @@
   {
    "code": 55,
    "title": "PHYSICAL FACILITIES INSTALLED, MAINTAINED & CLEAN",
-   "count": 749,
+   "count": 732,
    "keywordHits": {
     "hood": 5,
-    "plumbing": 76,
+    "plumbing": 74,
     "grease": 65,
-    "insect": 16,
+    "insect": 15,
     "grease_trap": 15,
     "exhaust": 7,
     "roach": 6,
-    "rodent": 12,
-    "droppings": 5,
+    "rodent": 11,
+    "droppings": 4,
     "flies": 1
    }
   },
   {
    "code": 56,
    "title": "ADEQUATE VENTILATION & LIGHTING; DESIGNATED AREAS USED",
-   "count": 225,
+   "count": 221,
    "keywordHits": {
-    "exhaust": 73,
-    "hood": 95,
-    "filter": 45,
-    "grease": 32
+    "hood": 93,
+    "grease": 31,
+    "exhaust": 71,
+    "filter": 44
    }
   },
   {
    "code": 57,
    "title": "ALL FOOD EMPLOYEES HAVE FOOD HANDLER TRAINING",
-   "count": 116,
+   "count": 115,
    "keywordHits": {}
   },
   {
@@ -362,10 +362,10 @@
    "count": 44,
    "keywordHits": {
     "roach": 11,
-    "flies": 14,
+    "flies": 13,
     "insect": 6,
-    "rodent": 13,
-    "droppings": 12,
+    "rodent": 12,
+    "droppings": 11,
     "grease": 6,
     "grease_trap": 1,
     "plumbing": 9,
@@ -391,7 +391,7 @@
   {
    "code": 61,
    "title": "SUMMARY REPORT DISPLAYED AND VISIBLE TO THE PUBLIC",
-   "count": 15,
+   "count": 13,
    "keywordHits": {}
   },
   {
@@ -417,17 +417,17 @@
   {
    "result": "Pass",
    "type": "Canvass",
-   "count": 251
+   "count": 244
   },
   {
    "result": "Pass",
    "type": "Canvass Re-Inspection",
-   "count": 164
+   "count": 162
   },
   {
    "result": "Pass",
    "type": "License",
-   "count": 129
+   "count": 132
   },
   {
    "result": "Pass",
@@ -437,7 +437,7 @@
   {
    "result": "Fail",
    "type": "Canvass",
-   "count": 102
+   "count": 97
   },
   {
    "result": "Fail",
@@ -452,7 +452,7 @@
   {
    "result": "Fail",
    "type": "License",
-   "count": 59
+   "count": 61
   },
   {
    "result": "Out of Business",
@@ -460,14 +460,9 @@
    "count": 54
   },
   {
-   "result": "Pass",
-   "type": "License Re-Inspection",
-   "count": 52
-  },
-  {
    "result": "Not Ready",
    "type": "License",
-   "count": 51
+   "count": 53
   },
   {
    "result": "Pass w/ Conditions",
@@ -475,23 +470,28 @@
    "count": 50
   },
   {
+   "result": "Pass",
+   "type": "License Re-Inspection",
+   "count": 49
+  },
+  {
    "result": "No Entry",
    "type": "Non-Inspection",
-   "count": 45
+   "count": 43
   },
   {
    "result": "Pass",
    "type": "Short Form Complaint",
-   "count": 34
-  },
-  {
-   "result": "Fail",
-   "type": "Complaint Re-Inspection",
-   "count": 32
+   "count": 35
   },
   {
    "result": "Pass w/ Conditions",
    "type": "Complaint",
+   "count": 31
+  },
+  {
+   "result": "Fail",
+   "type": "Complaint Re-Inspection",
    "count": 31
   },
   {
@@ -507,7 +507,7 @@
   {
    "result": "No Entry",
    "type": "Complaint",
-   "count": 14
+   "count": 15
   },
   {
    "result": "Pass w/ Conditions",
@@ -525,12 +525,12 @@
    "count": 9
   },
   {
-   "result": "Pass w/ Conditions",
+   "result": "Fail",
    "type": "Short Form Complaint",
-   "count": 9
+   "count": 8
   },
   {
-   "result": "Fail",
+   "result": "Pass w/ Conditions",
    "type": "Short Form Complaint",
    "count": 8
   },
@@ -583,19 +583,19 @@
  "facilityTypes": [
   [
    "Restaurant",
-   862
+   864
   ],
   [
    "School",
-   230
+   215
   ],
   [
    "Grocery Store",
-   153
+   150
   ],
   [
    "Children's Services Facility",
-   63
+   65
   ],
   [
    "Daycare Above and Under 2 Years",
@@ -603,7 +603,7 @@
   ],
   [
    "",
-   27
+   28
   ],
   [
    "Bakery",
@@ -634,6 +634,10 @@
    6
   ],
   [
+   "Golden Diner",
+   4
+  ],
+  [
    "Catering",
    4
   ],
@@ -643,10 +647,6 @@
   ],
   [
    "Wholesale",
-   3
-  ],
-  [
-   "Golden Diner",
    3
   ],
   [

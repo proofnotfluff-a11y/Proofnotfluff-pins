@@ -1,52 +1,52 @@
 {
  "product": "Chicago Restaurant Inspection Leads",
- "asOf": "2026-10-23",
- "asOfText": "Oct 23, 2026",
- "through": "2026-10-22",
- "throughText": "Oct 22, 2026",
+ "asOf": "2026-10-24",
+ "asOfText": "Oct 24, 2026",
+ "through": "2026-10-23",
+ "throughText": "Oct 23, 2026",
  "window": {
-  "from": "2026-09-23",
-  "to": "2026-10-22",
-  "newFrom": "2026-10-16",
-  "repeatFrom": "2026-07-25"
+  "from": "2026-09-24",
+  "to": "2026-10-23",
+  "newFrom": "2026-10-17",
+  "repeatFrom": "2026-07-26"
  },
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-23T19:43:58+00:00",
-  "rowsUpdatedAt": "2026-10-23T09:09:32+00:00",
+  "fetchedAt": "2026-10-24T17:00:11+00:00",
+  "rowsUpdatedAt": "2026-10-24T09:08:34+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "places": 268,
-  "flagged": 140,
-  "opening": 133,
-  "repeat": 22,
-  "new": 62,
+  "places": 255,
+  "flagged": 129,
+  "opening": 131,
+  "repeat": 21,
+  "new": 58,
   "byCat": {
-   "pests": 99,
-   "hood": 32,
-   "drain": 21,
-   "clean": 109
+   "pests": 90,
+   "hood": 28,
+   "drain": 19,
+   "clean": 101
   },
-  "flaggedFail": 110,
-  "openingPassed": 98,
+  "flaggedFail": 101,
+  "openingPassed": 96,
   "excluded": {
-   "business name is a person's name": 5,
-   "school, day care, hospital, senior or mobile vendor": 60,
+   "business name is a person's name": 4,
+   "school, day care, hospital, senior or mobile vendor": 54,
    "the City's latest result is out of business or not located": 2
   },
-  "rowsRead": 1324,
-  "historyRead": 866,
+  "rowsRead": 1273,
+  "historyRead": 809,
   "areas": [
    [
     "Loop",
-    20
+    21
    ],
    [
     "West Town",
-    19
+    17
    ],
    [
     "Logan Square",
@@ -61,27 +61,31 @@
     11
    ],
    [
-    "West Ridge",
-    10
+    "Near West Side",
+    9
    ],
    [
-    "Near West Side",
-    10
+    "West Ridge",
+    9
    ],
    [
     "South Lawndale",
     9
    ],
    [
+    "Gage Park",
+    8
+   ],
+   [
     "Humboldt Park",
     8
    ],
    [
-    "Albany Park",
-    8
+    "Grand Boulevard",
+    7
    ],
    [
-    "Grand Boulevard",
+    "McKinley Park",
     7
    ],
    [
@@ -93,14 +97,6 @@
     7
    ],
    [
-    "McKinley Park",
-    7
-   ],
-   [
-    "Gage Park",
-    7
-   ],
-   [
     "Uptown",
     7
    ],
@@ -109,7 +105,7 @@
     6
    ],
    [
-    "South Shore",
+    "Albany Park",
     6
    ],
    [
@@ -125,23 +121,23 @@
     5
    ],
    [
-    "Hyde Park",
+    "South Shore",
     5
+   ],
+   [
+    "Hyde Park",
+    4
    ],
    [
     "West Elsdon",
     4
    ],
    [
-    "Chatham",
-    4
-   ],
-   [
-    "Douglas",
+    "Edgewater",
     3
    ],
    [
-    "Edgewater",
+    "North Lawndale",
     3
    ],
    [
@@ -149,7 +145,7 @@
     3
    ],
    [
-    "North Lawndale",
+    "Douglas",
     3
    ],
    [
@@ -173,11 +169,11 @@
     3
    ],
    [
-    "Washington Heights",
+    "Belmont Cragin",
     2
    ],
    [
-    "Belmont Cragin",
+    "Englewood",
     2
    ],
    [
@@ -193,23 +189,7 @@
     2
    ],
    [
-    "Englewood",
-    2
-   ],
-   [
     "Jefferson Park",
-    2
-   ],
-   [
-    "Garfield Ridge",
-    2
-   ],
-   [
-    "South Deering",
-    2
-   ],
-   [
-    "New City",
     2
    ],
    [
@@ -217,11 +197,7 @@
     2
    ],
    [
-    "Rogers Park",
-    2
-   ],
-   [
-    "West Lawn",
+    "South Deering",
     2
    ],
    [
@@ -229,11 +205,19 @@
     2
    ],
    [
+    "Chatham",
+    2
+   ],
+   [
+    "Washington Park",
+    1
+   ],
+   [
     "Bridgeport",
     1
    ],
    [
-    "Washington Park",
+    "Washington Heights",
     1
    ],
    [
@@ -241,11 +225,19 @@
     1
    ],
    [
-    "West Englewood",
+    "Rogers Park",
+    1
+   ],
+   [
+    "New City",
     1
    ],
    [
     "Ashburn",
+    1
+   ],
+   [
+    "West Englewood",
     1
    ],
    [
@@ -258,6 +250,10 @@
    ],
    [
     "Armour Square",
+    1
+   ],
+   [
+    "West Lawn",
     1
    ],
    [
@@ -274,6 +270,10 @@
    ],
    [
     "Mount Greenwood",
+    1
+   ],
+   [
+    "Garfield Ridge",
     1
    ]
   ]
@@ -309,7 +309,7 @@
    {
     "type": "Restaurant",
     "area": "O'Hare",
-    "date": "2026-10-22",
+    "date": "2026-10-23",
     "result": "Fail",
     "inspectionType": "Canvass Re-Inspection",
     "categories": [
@@ -346,7 +346,7 @@
    {
     "type": "Restaurant",
     "area": "O'Hare",
-    "date": "2026-10-22",
+    "date": "2026-10-23",
     "result": "Fail",
     "inspectionType": "Canvass Re-Inspection",
     "categories": [
@@ -379,6 +379,24 @@
   ],
   "opening": [
    {
+    "name": "Billal's",
+    "address": "131 N Clinton St",
+    "area": "Near West Side",
+    "type": "Restaurant",
+    "date": "2026-10-23",
+    "result": "Pass",
+    "inspectionType": "License"
+   },
+   {
+    "name": "Cava",
+    "address": "1830 W Fullerton Ave",
+    "area": "Lincoln Park",
+    "type": "Restaurant",
+    "date": "2026-10-22",
+    "result": "Pass",
+    "inspectionType": "License"
+   },
+   {
     "name": "Best Amigos Grill",
     "address": "3944 W Chicago Ave",
     "area": "Humboldt Park",
@@ -386,24 +404,6 @@
     "date": "2026-10-21",
     "result": "Pass",
     "inspectionType": "License Re-Inspection"
-   },
-   {
-    "name": "La Michoacana Premium Express Inc.",
-    "address": "3429 S Archer Ave",
-    "area": "McKinley Park",
-    "type": "Restaurant",
-    "date": "2026-10-21",
-    "result": "Pass",
-    "inspectionType": "License Re-Inspection"
-   },
-   {
-    "name": "Mirus Coffee",
-    "address": "1356 W Diversey Pkwy",
-    "area": "Lake View",
-    "type": "Restaurant",
-    "date": "2026-10-21",
-    "result": "Pass",
-    "inspectionType": "License"
    }
   ]
  }

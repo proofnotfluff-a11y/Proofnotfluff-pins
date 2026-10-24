@@ -2,27 +2,27 @@
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "rowsUpdatedAt": "2026-10-23T09:09:32+00:00",
-  "fetchedAt": "2026-10-23T19:43:58+00:00",
+  "rowsUpdatedAt": "2026-10-24T09:08:34+00:00",
+  "fetchedAt": "2026-10-24T17:00:11+00:00",
   "modified": "Filtered by ProofNotFluff: food inspections of the last 7 days at licensed food businesses (schools, day care, hospitals, senior meal sites and mobile vendors left out) that failed with pest violations, failed or passed with conditions with hood, grease or grease trap violations, had a license (pre-opening) inspection, or failed twice in 30 days. Violation notes are read only to set category labels; inspector notes are not republished. Business-level fields only.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
-  "from": "2026-10-16",
-  "to": "2026-10-23"
+  "from": "2026-10-17",
+  "to": "2026-10-24"
  },
  "counts": {
-  "fetched": 1324,
-  "kept": 68,
+  "fetched": 1273,
+  "kept": 66,
   "segments": {
-   "pests": 23,
-   "hoodGrease": 15,
-   "newOpening": 39,
-   "repeatFail": 2
+   "pests": 22,
+   "hoodGrease": 12,
+   "newOpening": 41,
+   "repeatFail": 3
   },
   "excluded": {
-   "no lead segment (passed, or no buyer-relevant violation)": 97,
-   "institution or mobile vendor": 32
+   "institution or mobile vendor": 31,
+   "no lead segment (passed, or no buyer-relevant violation)": 80
   },
   "areas": [
    [
@@ -31,7 +31,11 @@
    ],
    [
     "Loop",
-    6
+    9
+   ],
+   [
+    "Lincoln Park",
+    5
    ],
    [
     "Gage Park",
@@ -42,28 +46,24 @@
     4
    ],
    [
-    "Lake View",
-    4
-   ],
-   [
-    "McKinley Park",
-    4
-   ],
-   [
-    "Lincoln Park",
-    4
-   ],
-   [
-    "Brighton Park",
+    "O'Hare",
     3
    ],
    [
-    "Austin",
+    "Lake View",
+    3
+   ],
+   [
+    "McKinley Park",
     3
    ],
    [
     "Edgewater",
     3
+   ],
+   [
+    "Logan Square",
+    2
    ]
   ]
  },
@@ -76,11 +76,37 @@
     "facilityType": "Restaurant",
     "result": "Fail",
     "inspectionType": "Canvass Re-Inspection",
+    "date": "2026-10-23",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Macaroni Grill",
+    "address": "11601 W Touhy Ave",
+    "communityArea": "O'Hare",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass Re-Inspection",
     "date": "2026-10-22",
     "categories": [
      "Cleaning and sanitation",
      "Grease buildup",
      "Hood and ventilation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Ann Sather Restaurant",
+    "address": "3042 N Broadway",
+    "communityArea": "Lake View",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "License",
+    "date": "2026-10-22",
+    "categories": [
      "Pests"
     ]
    },
@@ -175,36 +201,23 @@
      "Pests",
      "Plumbing"
     ]
-   },
+   }
+  ],
+  "hoodGrease": [
    {
-    "business": "Popeyes Chicken",
-    "address": "156 N Wabash Ave Fl 1",
-    "communityArea": "Loop",
+    "business": "Macaroni Grill",
+    "address": "11601 W Touhy Ave",
+    "communityArea": "O'Hare",
     "facilityType": "Restaurant",
     "result": "Fail",
-    "inspectionType": "Complaint Re-Inspection",
-    "date": "2026-10-20",
+    "inspectionType": "Canvass Re-Inspection",
+    "date": "2026-10-23",
     "categories": [
      "Cleaning and sanitation",
      "Grease buildup",
      "Pests"
     ]
    },
-   {
-    "business": "New Archview Restaurant Inc.",
-    "address": "3480 S Archer Ave",
-    "communityArea": "McKinley Park",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Complaint",
-    "date": "2026-10-20",
-    "categories": [
-     "Cleaning and sanitation",
-     "Pests"
-    ]
-   }
-  ],
-  "hoodGrease": [
    {
     "business": "Macaroni Grill",
     "address": "11601 W Touhy Ave",
@@ -334,22 +347,96 @@
      "Grease trap",
      "Pests"
     ]
-   },
-   {
-    "business": "Iyanze Bronze",
-    "address": "308 E 51st St",
-    "communityArea": "Grand Boulevard",
-    "facilityType": "Restaurant",
-    "result": "Pass w/ Conditions",
-    "inspectionType": "Canvass",
-    "date": "2026-10-19",
-    "categories": [
-     "Cleaning and sanitation",
-     "Grease buildup"
-    ]
    }
   ],
   "newOpening": [
+   {
+    "business": "Billal's",
+    "address": "131 N Clinton St",
+    "communityArea": "Near West Side",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-10-23",
+    "categories": [
+     "Cleaning and sanitation",
+     "Plumbing"
+    ]
+   },
+   {
+    "business": "Donut Dudes",
+    "address": "4901 S Western Blvd",
+    "communityArea": "Gage Park",
+    "facilityType": "",
+    "result": "Not Ready",
+    "inspectionType": "License",
+    "date": "2026-10-22",
+    "categories": []
+   },
+   {
+    "business": "Client Dining Room",
+    "address": "10 S Dearborn St",
+    "communityArea": "Loop",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "License",
+    "date": "2026-10-22",
+    "categories": []
+   },
+   {
+    "business": "Client Dining Room",
+    "address": "10 S Dearborn St",
+    "communityArea": "Loop",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "License",
+    "date": "2026-10-22",
+    "categories": []
+   },
+   {
+    "business": "Client Dining Room",
+    "address": "10 S Dearborn St",
+    "communityArea": "Loop",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "License",
+    "date": "2026-10-22",
+    "categories": []
+   },
+   {
+    "business": "Cava",
+    "address": "1830 W Fullerton Ave",
+    "communityArea": "Lincoln Park",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-10-22",
+    "categories": [
+     "Pests"
+    ]
+   },
+   {
+    "business": "Atomic Wings",
+    "address": "4059 W Diversey Ave",
+    "communityArea": "Logan Square",
+    "facilityType": "",
+    "result": "Not Ready",
+    "inspectionType": "License",
+    "date": "2026-10-22",
+    "categories": []
+   },
+   {
+    "business": "Ann Sather Restaurant",
+    "address": "3042 N Broadway",
+    "communityArea": "Lake View",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "License",
+    "date": "2026-10-22",
+    "categories": [
+     "Pests"
+    ]
+   },
    {
     "business": "The Siam Lotus Thai Cuisine LLC",
     "address": "3445 W 51st St",
@@ -373,97 +460,23 @@
     "inspectionType": "License",
     "date": "2026-10-21",
     "categories": []
-   },
-   {
-    "business": "Taqueria Y Carnitas Don Valdez",
-    "address": "4503 N Kedzie Ave",
-    "communityArea": "Albany Park",
-    "facilityType": "Restaurant",
-    "result": "Pass",
-    "inspectionType": "License",
-    "date": "2026-10-21",
-    "categories": [
-     "Cleaning and sanitation"
-    ]
-   },
-   {
-    "business": "Mirus Coffee",
-    "address": "1356 W Diversey Pkwy",
-    "communityArea": "Lake View",
-    "facilityType": "Restaurant",
-    "result": "Pass",
-    "inspectionType": "License",
-    "date": "2026-10-21",
-    "categories": []
-   },
-   {
-    "business": "LA Michoacana Premium Express Inc.",
-    "address": "3429 S Archer Ave",
-    "communityArea": "McKinley Park",
-    "facilityType": "Restaurant",
-    "result": "Pass",
-    "inspectionType": "License Re-Inspection",
-    "date": "2026-10-21",
-    "categories": []
-   },
-   {
-    "business": "Espiga Dorada",
-    "address": "1153 N Pulaski Rd",
-    "communityArea": "Humboldt Park",
-    "facilityType": "Grocery Store",
-    "result": "Pass w/ Conditions",
-    "inspectionType": "License Re-Inspection",
-    "date": "2026-10-21",
-    "categories": [
-     "Cleaning and sanitation"
-    ]
-   },
-   {
-    "business": "Canopy by Hilton / Hilton Garden Inn",
-    "address": "226 W Jackson Blvd",
-    "communityArea": "Loop",
-    "facilityType": "",
-    "result": "Not Ready",
-    "inspectionType": "License",
-    "date": "2026-10-21",
-    "categories": []
-   },
-   {
-    "business": "Best Amigos Grill",
-    "address": "3944 W Chicago Ave",
-    "communityArea": "Humboldt Park",
-    "facilityType": "Restaurant",
-    "result": "Pass",
-    "inspectionType": "License Re-Inspection",
-    "date": "2026-10-21",
-    "categories": []
-   },
-   {
-    "business": "Avocado Supermarket",
-    "address": "4755 W Madison St",
-    "communityArea": "Austin",
-    "facilityType": "Grocery Store",
-    "result": "Pass w/ Conditions",
-    "inspectionType": "License",
-    "date": "2026-10-21",
-    "categories": [
-     "Cleaning and sanitation",
-     "Pests",
-     "Plumbing"
-    ]
-   },
-   {
-    "business": "Xiao Long Ji Soup Dumplings",
-    "address": "2132 W Chicago Ave",
-    "communityArea": "West Town",
-    "facilityType": "Restaurant",
-    "result": "Pass",
-    "inspectionType": "License",
-    "date": "2026-10-20",
-    "categories": []
    }
   ],
   "repeatFail": [
+   {
+    "business": "Macaroni Grill",
+    "address": "11601 W Touhy Ave",
+    "communityArea": "O'Hare",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass Re-Inspection",
+    "date": "2026-10-23",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Pests"
+    ]
+   },
    {
     "business": "Macaroni Grill",
     "address": "11601 W Touhy Ave",

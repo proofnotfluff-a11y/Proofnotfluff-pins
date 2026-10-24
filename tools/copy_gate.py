@@ -416,6 +416,11 @@ def pest_seat():
     return next(x for x in pages if x.get("kind") == "restleads").get("seat") or {}
 
 
+def pest_the(area):
+    """City community areas written with "the" in a sentence: the Loop and the Side areas (the Lower West Side)."""
+    return area == "Loop" or area.endswith(" Side")
+
+
 def pest_n(daily):
     """The email's {n}: the 7-day count of failed or conditional Restaurant inspections that cited pests. Never the daily
     file's totals (counts.places, counts.pests), the 14-day chart total or the seat's 14-day places."""
@@ -462,7 +467,7 @@ def pest_problems(subject, body, step, daily, seat, send_day, first=None, letter
     areas = set(l7.get("areas") or [])
     named = re.search(r"(?:including one in|, in) ([^,.]+)\.", body or "")
     place = re.sub(r"^the ", "", named.group(1)) if named else ""
-    if not named or place not in areas or (place == "Loop") != named.group(1).startswith("the "):
+    if not named or place not in areas or pest_the(place) != named.group(1).startswith("the "):
         p.append(f"the neighborhood {named.group(1) if named else '(none)'!r} has no pest-cited restaurant inspection this week "
                  f"(pestLast7.areas: {', '.join(sorted(areas)) or 'none'})")
     taken = int(seat.get("taken") or 0)
@@ -497,7 +502,7 @@ def pest_fill(t, daily, first="Dana", area=None, first_subject=None):
     n = pest_n(daily)
     area = area or (sorted(daily["pestLast7"].get("areas") or ["Chicago"]))[0]
     area = re.sub(r"^the ", "", area)
-    f = {"first": first, "n": n, "neighborhood": "the Loop" if area == "Loop" else area,
+    f = {"first": first, "n": n, "neighborhood": ("the " + area) if pest_the(area) else area,
          "first_subject": first_subject or f"{n} Chicago restaurant inspections cited pests this week"}
     return fill(t["subject"], f), fill(t["body"], f)
 

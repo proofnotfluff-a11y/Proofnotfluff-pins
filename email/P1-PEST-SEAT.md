@@ -6,7 +6,7 @@ Rules the copy gate checks (`python3 tools/copy_gate.py --pest-templates` and `-
 - {n} is `pestLast7.restaurantInspections` in permits/inspections-chicago/daily.json: failed or conditional inspections at places the City types Restaurant, dated in the 7 days ending on the newest date the City has published. Never `counts.places`, `counts.pests`, the 14-day chart total or `seat.places14`. The file must be at most 1 day old on the draft day.
 - {neighborhood} is one of `pestLast7.areas` (community areas with such an inspection in those 7 days).
 - n = 1 uses the singular template of each step (Variant S); n = 0 holds the email to a morning with a count of 1 or more.
-- {neighborhood} reads "the Loop" for the Loop (the gate maps it back to the City's area name).
+- {neighborhood} reads "the Loop" for the Loop and "the ... Side" for the Side areas (the gate maps it back to the City's area name). A prospect's follow-ups use an area not used in its earlier emails when the week allows.
 - Copy review round 1 (Oct 24): FAIL at 4.0; its rewrites applied here with "no lock-in" in place of "no contract" (Todd, Oct 24, 11:52 am). "Recorded", not "posted": the count is by the City's inspection date.
 - "all 3 seats are open" only while site/pages.json seat.taken is 0; "most of them" only while seat.coverage14 is 50% or more.
 - Body under 75 words, plain text, no link, no price, no business named, no dash, opens "Hi {first},", ends with the question. The sender appends the footer (tools/pnf_rules.py FOOTER).
@@ -25,7 +25,9 @@ Hi {first},
 
 This week the City of Chicago recorded {n} failed or conditional restaurant inspections with a pest violation, including one in {neighborhood}.
 
-Each morning I put the new ones on a private page by name and street, with a listed phone number for most of them. I'm opening seats on that daily list to at most 3 Chicago pest companies, and all 3 seats are open.
+New ones go on a private page each morning: name, street, the City's violation codes and a listed phone for most of them.
+
+I'm opening seats on that list to at most 3 Chicago pest companies, and all 3 seats are open.
 
 Want tomorrow's list free to test?
 ```
@@ -41,7 +43,9 @@ Hi {first},
 
 This week the City of Chicago recorded 1 failed or conditional restaurant inspection with a pest violation, in {neighborhood}.
 
-Each morning I put the new ones on a private page by name and street, with a listed phone number for most of them. I'm opening seats on that daily list to at most 3 Chicago pest companies, and all 3 seats are open.
+New ones go on a private page each morning: name, street, the City's violation codes and a listed phone for most of them.
+
+I'm opening seats on that list to at most 3 Chicago pest companies, and all 3 seats are open.
 
 Want tomorrow's list free to test?
 ```
@@ -89,7 +93,7 @@ Hi {first},
 
 Last note from me. In the last 7 days the City recorded {n} failed or conditional restaurant inspections with a pest violation, including one in {neighborhood}.
 
-Miss a morning and nothing is lost: the list keeps the last 14 days. If it's not a fit, no need to reply and you won't hear from me again.
+A seat opens with the last 14 days on the page, so day one has two weeks of places to call. If it's not a fit, no need to reply and you won't hear from me again.
 
 Want tomorrow's list free to test?
 ```
@@ -105,10 +109,11 @@ Hi {first},
 
 Last note from me. In the last 7 days the City recorded 1 failed or conditional restaurant inspection with a pest violation, in {neighborhood}.
 
-Miss a morning and nothing is lost: the list keeps the last 14 days. If it's not a fit, no need to reply and you won't hear from me again.
+A seat opens with the last 14 days on the page, so day one has two weeks of places to call. If it's not a fit, no need to reply and you won't hear from me again.
 
 Want tomorrow's list free to test?
 ```
 
 ## Review verdicts
-- Copy review round 1, Oct 24, 2026: FAIL, average 4.0 (value before the ask 3, follow-up 3). Rewrites applied as above; round 2 pending.
+- Copy review round 1, Oct 24, 2026: FAIL, average 4.0 (value before the ask 3, follow-up 3). Rewrites applied.
+- Copy review round 2, Oct 24, 2026 (fresh reviewer): PASS, average 4.62, lowest 4 (value before the ask, subject as given). Its R1 and R3 applied (R1 with "the City's violation codes" in place of "what the City found", which the rows do not state); changed text re-checked below.

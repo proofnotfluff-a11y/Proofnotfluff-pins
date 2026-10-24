@@ -38,7 +38,7 @@ def legacy_batch(d):
     return str(d.get("batch") or "")[:10] in LEGACY_BATCHES or str(d.get("firstSentAt") or "")[:10] in LEGACY_BATCHES
 
 
-CITY = {"chicago-construction": "chicago", "chicago-restaurant": "chicago", "austin-construction": "austin"}
+CITY = {"chicago-construction": "chicago", "chicago-restaurant": "chicago", "austin-construction": "austin", "chicago-licenses": "chicago"}
 
 
 def docs_from(path):
@@ -92,6 +92,9 @@ def main():
     ap.add_argument("--products", default="austin-construction,chicago-construction",
                     help="the construction products only: the templates are construction emails")
     ap.add_argument("--gc", default=os.path.join(ROOT, "permits", "downstream", "gc_leads.json"))
+    ap.add_argument("--prefix", default="", help="file name prefix for the outputs: 'lic_' for the license count emails "
+                    "(python3 tools/crm_prospects.py data/crm --products chicago-licenses --trades pos_merchant,commercial_insurance --prefix lic_)")
+    ap.add_argument("--trades", default="", help="keep only these trade verticals")
     a = ap.parse_args()
     if not os.path.exists(a.listing):
         print(f"ERROR crm: {a.listing} does not exist (list the CRM prospects with ArtifactData out_dir first)")
@@ -106,6 +109,8 @@ def main():
         seen.add(pid)
         p = to_prospect(pid, d)
         if want and p["product"] not in want:
+            continue
+        if a.trades and R.trade_of(p) not in a.trades.split(","):
             continue
         named = [w.split(": ", 1)[-1] for w in R.validate_prospect(p)]
         if d.get("contactType") != "email":
@@ -159,12 +164,12 @@ def main():
         sys.exit(1)
     os.makedirs(os.path.join(ROOT, "data", "prospects"), exist_ok=True)
     os.makedirs(os.path.join(ROOT, "data", "work"), exist_ok=True)
-    json.dump(doc, open(os.path.join(ROOT, "data", "prospects", "prospects.json"), "w", encoding="utf-8"), indent=1)
+    json.dump(doc, open(os.path.join(ROOT, "data", "prospects", a.prefix + "prospects.json"), "w", encoding="utf-8"), indent=1)
     json.dump({"schema": "pnf.prospect.v1", "prospects": followups},
-              open(os.path.join(ROOT, "data", "prospects", "followups.json"), "w", encoding="utf-8"), indent=1)
+              open(os.path.join(ROOT, "data", "prospects", a.prefix + "followups.json"), "w", encoding="utf-8"), indent=1)
     json.dump({"schema": "pnf.prospect.v1", "prospects": [], "pending": verify},
-              open(os.path.join(ROOT, "data", "prospects", "verify.json"), "w", encoding="utf-8"), indent=1)
-    json.dump({"ineligible": ineligible}, open(os.path.join(ROOT, "data", "prospects", "ineligible.json"), "w", encoding="utf-8"), indent=1)
+              open(os.path.join(ROOT, "data", "prospects", a.prefix + "verify.json"), "w", encoding="utf-8"), indent=1)
+    json.dump({"ineligible": ineligible}, open(os.path.join(ROOT, "data", "prospects", a.prefix + "ineligible.json"), "w", encoding="utf-8"), indent=1)
 
     leads = {}
     if os.path.exists(a.gc):
@@ -174,7 +179,7 @@ def main():
                for p in eligible if p["matched_lead_id"] in leads and p["matched_lead_id"] != p["first_example"]
                and not R.trade_problems(p["product"], R.trade_of(p), leads[p["matched_lead_id"]])]
     json.dump({"schema": "pnf.match.v1", "matches": matches},
-              open(os.path.join(ROOT, "data", "work", "matches.json"), "w", encoding="utf-8"), indent=1)
+              open(os.path.join(ROOT, "data", "work", a.prefix + "matches.json"), "w", encoding="utf-8"), indent=1)
     role = sum(1 for x in ineligible if any("role-based" in r for r in x["reasons"]))
     print(f"OK crm: {len(eligible)} eligible named decision-makers, {len(ineligible)} ineligible ({role} role inboxes), "
           f"{len(matches)} stored matches still current, {len(followups)} follow-ups due, {len(verify)} addresses to check with Bouncer")

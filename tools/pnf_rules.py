@@ -445,8 +445,9 @@ def validate_prospect(x, pending=False):
         p.append(f"{pid}: owner_source must be one of {sorted(OWNER_SOURCES)}")
     if x.get("do_not_email") is True:
         p.append(f"{pid}: do_not_email is set")
+    cnt = COUNT_PRODUCTS.get(x.get("product")) or {}
     if sig is not None:
-        if trade_of(x) not in sig["trades"]:
+        if trade_of(x) not in sig["trades"] and trade_of(x) not in cnt.get("trades", ()):
             p.append(f"{pid}: trade_vertical {trade_of(x)} does not serve product {x.get('product')!r} (one of {sorted(sig['trades'])})")
     else:
         p += [f"{pid}: {m}" for m in trade_problems(x.get("product"), trade_of(x))]
@@ -715,6 +716,15 @@ SIGNAL_PRODUCTS = {
                          "templates": "email/L1-OUTREACH.md"},
 }
 SIGNAL_OPTIONAL = {"record_id", "source_url", "community_area"}
+# Count emails (Todd, Oct 24, 2026, live chat): the licenses list sold to commission sellers, POS and merchant services
+# resellers first, then independent commercial insurance agents. The hook is the City's own weekly counts, never a
+# business, so these trades never take the L1 templates (validate_signal_drafts rejects them) and their drafts go through
+# copy_gate --lic. They send from sales@ only: hello@ is kept for the pest seat.
+SALES_SENDER = "sales@getproofnotfluff.com"
+COUNT_PRODUCTS = {
+    "chicago-licenses": {"city": "chicago", "trades": ("pos_merchant", "commercial_insurance"), "sender": SALES_SENDER,
+                         "templates": "email/L2-COMMISSION.md"},
+}
 
 
 def validate_signal_lead(lead):

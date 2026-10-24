@@ -443,6 +443,18 @@ def check_copy():
     if code:
         return err("copy", "; ".join(l.replace("ERROR copy: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
     detail += "; " + (lines[-1].replace("OK copy: ", "") if lines else "")
+    # License count email to commission sellers (Todd, Oct 24, 2026): the City's weekly counts, no business named, sales@ only
+    if os.path.exists(os.path.join(ROOT, "permits", "inspections-chicago", "sample.json")):
+        code, lines = _run_tool([os.path.join("tools", "copy_gate.py"), "--lic-templates"])
+        if code:
+            return err("copy", "; ".join(l.replace("ERROR copy: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
+        detail += "; " + (lines[-1].replace("OK copy: ", "") if lines else "")
+    ldrafts = os.path.join(ROOT, "data", "work", "lic_drafts.json")
+    if os.path.exists(ldrafts):
+        code, lines = _run_tool([os.path.join("tools", "copy_gate.py"), "--lic", ldrafts])
+        if code:
+            return err("copy", "; ".join(l.replace("ERROR copy: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
+        detail += "; " + (lines[-1].replace("OK copy: ", "") if lines else "")
     pdrafts = os.path.join(ROOT, "data", "work", "pest_drafts.json")
     if os.path.exists(pdrafts):
         code, lines = _run_tool([os.path.join("tools", "copy_gate.py"), "--pest", pdrafts])

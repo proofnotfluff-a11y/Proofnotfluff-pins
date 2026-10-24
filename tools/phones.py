@@ -102,7 +102,18 @@ def name_score(a, b):
     short, long_ = (sa, sb) if len(sa) <= len(sb) else (sb, sa)
     if not (short - {st(g) for g in GENERIC} - STOP):
         return 0.0
-    return 1.0 if short <= long_ else 0.0
+    if short <= long_:
+        return 1.0
+    # one word or two (Oct 24): "Sunnyside Nails" and "Sunny Side Nails Spa", "Barbershop" and "Barber Shop". The shorter
+    # name, run together, must open the longer one run together, at 6 letters or more, and its own words (not "nails")
+    # and the shorter name needs a word of its own (not "nails" or "golden"), so "Pizza" never matches "Pizzaria Uno".
+    ja, jb = "".join(t for t in ta if not t.isdigit()), "".join(t for t in tb if not t.isdigit())
+    js, jl = (ja, jb) if len(ja) <= len(jb) else (jb, ja)
+    sh = ta if js == ja else tb
+    own = "".join(t for t in sh if t not in GENERIC and t not in STOP and not t.isdigit())
+    if len(js) >= 6 and own and jl.startswith(js):
+        return 1.0
+    return 0.0
 
 
 def addr_key(addr):
@@ -616,6 +627,9 @@ def selftest():
              ("Golden House", "Golden Wok"), ("Pho 777", "Pho 888"), ("Cafe 23", "Cafe 32"), ("Taqueria El Rey", "Taqueria"),
              ("Pizza", "Pizza Hut"), ("Mexican Restaurant", "Restaurant"), ("Mario", "Maria"), ("Little Caesars", "Little Italy"),
              ("Lou Malnatis", "Lou Mitchells"), ("Kim Bap", "Kim Chi"), ("Thai Spoon", "Thai Basil"), ("Cafe Mexico", "Cafe Lucci")]
+    same += [("Sunnyside Nails", "Sunny Side Nails Spa"), ("The Cut Barbershop", "The Cut Barber Shop"), ("Bella Vista Salon", "Bellavista Salon")]
+    other += [("Pizza", "Pizzaria Uno"), ("Mario", "Maria"), ("Sun Nails", "Sunny Side Nails"), ("Barber Shop", "Barbershop Supreme Cuts"),
+              ("Golden Nails", "Goldennugget Nails"), ("Luna Tacos", "Luna Salon")]
     assert all(name_score(a, b) == 1.0 for a, b in same), [(a, b) for a, b in same if name_score(a, b) < 1]
     assert all(name_score(a, b) < 0.5 for a, b in other), [(a, b) for a, b in other if name_score(a, b) >= 0.5]
     assert addr_dir("2 N State St") == "N" and addr_dir("2 North State Street") == "N" and addr_dir("2 State St") == ""

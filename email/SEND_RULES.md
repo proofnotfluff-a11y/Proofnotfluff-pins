@@ -24,6 +24,7 @@ This is a sales email. Not interested? Reply "no thanks" and we will not email y
 
 ## Senders and caps
 - Every prospect gets one sender, written to its CRM field `sender`; its follow-up goes from the same inbox, as a reply in the first email's thread.
+- License count emails (email/L2-COMMISSION.md, Todd Oct 24): sales@ only, through the queue. hello@ is kept for the pest seat.
 - hello@proofnotfluff.com: Gmail drafts in Todd's Chrome, at most 25 a day, Schedule send on weekdays 8 to 10 am Central, oldest checkedAt first. Steps to 40 only after a week under 2% bounces.
 - sales@getproofnotfluff.com: the Apps Script sender (email/sender/, sheet "PNF send queue"), ramp 10, 20, 30, 40 a day by week from Oct 20, 2026, enforced in code.
 - Plain text only: no links, images, tracking pixels or attachments.

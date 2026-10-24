@@ -22,3 +22,44 @@ Nothing is published, sold, linked or emailed until Todd reviews the offer, crea
 
 ## Gates
 (filled below as each verdict comes in)
+- Holdout round 1 (Oct 24): 2 blockers (a hospital patient kitchen on the list; f90 label), fixed with planted cases. Round 2 (fresh checker): BLOCKERS 0, 41 of 41 places rebuilt from the City rows, every offer and email number matches.
+- Legal desk (legal/reviews/2026-10-24-pest-seat.md): cleared with fixes; 1 to 12, 14 and 15 applied; 13 (subject wording) goes to Todd.
+- Copy review round 1: FAIL 4.0; rewrites applied. Round 2: pending.
+- Accessibility: browser suite 147 PASS, 0 FAIL; axe-core 4.10.2 WCAG 2.1 AA 0 violations on the offer page, the members' sign-in, list and Terms, at 390 and 1280, light and dark.
+- check_repo: 0 errors on every push (copy gate now runs --pest-templates).
+
+## Gumroad copy for the seat product (Todd pastes)
+
+Name:
+```
+Chicago Pest Daily List: founding seat
+```
+
+Summary:
+```
+Every morning: Chicago food places whose failed or conditional City inspection had a pest violation, named, with street, City codes and the listed phone when we find one. At most 3 Chicago pest control companies hold a seat at a time.
+```
+
+Description:
+```
+A daily lead list for Chicago pest control companies.
+
+Each morning, after the City of Chicago's overnight update, your members' page shows the food places whose failed or conditional City inspection had a pest violation, with the last 14 days kept so a missed morning loses nothing. Each place: name, street, ZIP, community area, the City's result, inspection type, date and violation codes, a newer City result when there is one, failed visits in the last 90 days, the listed phone when the business name and address both match, and a link to the City's own record. Mark who you called, keep private notes, and download a CSV.
+
+What it is not: the list repeats the City's recorded result and codes. A pest violation can be insects or rodents seen, or a gap or record the City says lets pests in. It does not say any place is clean, unsafe or open today, and no business listed has endorsed or works with ProofNotFluff. License inspections, schools, day care and other children's sites, hospitals, care sites, shelters, mobile vendors and places whose name is only a person's name are left out. You make your own calls and follow calling laws.
+
+$149 a month, billed by Gumroad. Renews monthly until you cancel. No lock-in: cancel any time from your Gumroad receipt or library; cancelling stops future charges.
+
+At most 3 Chicago pest control companies hold a seat at a time. The same City records reach the weekly Chicago Restaurant Inspection Leads list ($39 a month, not capped) each Monday.
+
+Terms of Use, readable before you buy: https://proofnotfluff.com/chicago-pest-daily-members/#/terms
+
+This site provides applications using data that has been modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one's own risk.
+
+ProofNotFluff is not affiliated with or endorsed by the City of Chicago. Licensed to one pest control business for its own prospecting.
+
+Made with AI assistance and reviewed and tested by the shop owner.
+```
+
+Tier name: `Founding seat`. Price: `$149` monthly. Free trial: off. Sales limit: 3 if Gumroad offers it (Legal fix 8).
+Post-purchase content: the members' link https://proofnotfluff.com/chicago-pest-daily-members/ and the seat password (from the build session; never in this repo).

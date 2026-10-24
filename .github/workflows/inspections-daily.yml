@@ -6,8 +6,16 @@ name: Chicago restaurant daily list
 # No push trigger: a rerun on edit is not needed, and a manual run on the same day rebuilds the same list.
 # Risk written down: the shared concurrency group keeps one waiting run, so a run queued behind another can be dropped;
 # the next morning's run still catches its places, because the window is two weeks wide.
+# Move 3 (Oct 24): the seat counts on daily.json, the founding seat members' page (once REST_SEAT_PASSWORD exists) and,
+# once the seat offer is live, the restaurant page with fresh 14-day pest counts. A manual run with gate: true also
+# seals the raw pull for the live session's independent checks.
 on:
   workflow_dispatch:
+    inputs:
+      gate:
+        description: "Also seal the raw City pull for the live session's independent checks (raw.sealed.json)"
+        type: boolean
+        default: false
   schedule:
     - cron: "45 11 * * *"   # every day, about 6:45 am Chicago time in daylight time
 permissions:
@@ -23,7 +31,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
-      - run: pip install --quiet cryptography
+      - run: pip install --quiet cryptography openpyxl   # openpyxl: the seat page reads the shared Terms and license texts
       - name: DuckDB for the phone step (the list still ships without it)
         run: pip install --quiet duckdb || echo "duckdb unavailable; phones left empty"
       - name: Self-checks
@@ -33,6 +41,7 @@ jobs:
           python3 tools/rest_daily.py --selftest
           python3 tools/rest_seal.py --selftest
           python3 tools/phones.py --selftest
+          python3 tools/seat_app.py --selftest
       - name: Newest Overture Maps release (open places data for the phone step)
         id: overture
         run: echo "release=$(python3 tools/phones.py --release)" >> "$GITHUB_OUTPUT"
@@ -75,7 +84,7 @@ jobs:
               echo "fresh=1" >> "$GITHUB_OUTPUT"
             else echo "places download failed; the list ships with empty phones"; fi
           fi
-          timeout 240 python3 tools/phones.py fill "$RUNNER_TEMP/daily-named.json" "$RUNNER_TEMP/overture/chicago.json" --public permits/inspections-chicago/daily.json --sites "$RUNNER_TEMP/phone-sites/sites.json" --sites-also "$RUNNER_TEMP/phone-sites-other/sites.json" || echo "phone step failed; the list ships with empty phones"
+          timeout 240 python3 tools/phones.py fill "$RUNNER_TEMP/daily-named.json" "$RUNNER_TEMP/overture/chicago.json" --key items,earlier --public permits/inspections-chicago/daily.json --sites "$RUNNER_TEMP/phone-sites/sites.json" --sites-also "$RUNNER_TEMP/phone-sites-other/sites.json" || echo "phone step failed; the list ships with empty phones"
       - name: Keep this month's places file (only after a good download)
         if: always() && steps.phones.outputs.fresh == '1'
         uses: actions/cache/save@v4
@@ -92,11 +101,28 @@ jobs:
         run: |
           python3 tools/rest_seal.py seal "$RUNNER_TEMP/daily-named.json" permits/inspections-chicago/daily.sealed.json
           [ -f permits/inspections-chicago/daily.sealed.json ] || { echo "sealed list not written (public key missing?)"; exit 1; }
+      - name: Seal the raw pull too, on a manual gate run only (the live session's holdout checks)
+        if: github.event_name == 'workflow_dispatch' && inputs.gate
+        run: python3 tools/rest_seal.py seal "$RUNNER_TEMP/inspections-raw.json" permits/inspections-chicago/raw.sealed.json
+      - name: Seat counts on the public file (move 3; counts only, never a name or a number)
+        run: python3 tools/seat_app.py stamp "$RUNNER_TEMP/daily-named.json" permits/inspections-chicago/daily.json
+      - name: Founding seat members' page (built only once the REST_SEAT_PASSWORD secret exists)
+        env:
+          REST_SEAT_PASSWORD: ${{ secrets.REST_SEAT_PASSWORD }}
+        run: python3 tools/seat_app.py build "$RUNNER_TEMP/daily-named.json" docs/chicago-pest-daily-members/index.html
+      - name: Restaurant page refresh with the 14-day pest counts (only once the seat offer is live, site/pages.json seatCheckout)
+        run: |
+          if python3 -c "import json,sys; p=[x for x in json.load(open('site/pages.json'))['pages'] if x.get('kind')=='restleads'][0]; sys.exit(0 if p.get('seatCheckout') else 1)"; then
+            python3 tools/make_site.py && echo "refresh=1" >> "$GITHUB_ENV"
+          fi
       - name: Commit the daily files only
         run: |
           git config user.name "proofnotfluff-bot"
           git config user.email "proofnotfluff-bot@users.noreply.github.com"
           git add permits/inspections-chicago/daily.json permits/inspections-chicago/daily-seen.json permits/inspections-chicago/daily.sealed.json
+          [ -f docs/chicago-pest-daily-members/index.html ] && git add docs/chicago-pest-daily-members/index.html
+          [ "${{ github.event_name == 'workflow_dispatch' && inputs.gate }}" = "true" ] && git add permits/inspections-chicago/raw.sealed.json
+          [ "${refresh:-}" = "1" ] && git add docs/chicago-restaurant-inspection-leads/index.html
           git checkout -- . 2>/dev/null || true
           if git diff --cached --quiet; then echo "no change"; exit 0; fi
           git commit -m "Chicago restaurant daily list $(date -u +%Y-%m-%d)"

@@ -28,7 +28,7 @@ phoneDate. The members' delivery ships legal/licenses/phone-sources.txt and the 
 Usage (runner):
   python3 tools/phones.py --release                         the newest Overture release name
   python3 tools/phones.py --extract OUT.json [--release R]  Chicago places with a phone or a website (needs duckdb)
-  python3 tools/phones.py fill ROWS.json PLACES.json [--key items|records] [--public daily.json] [--sites LOG.json] [--no-web]
+  python3 tools/phones.py fill ROWS.json PLACES.json [--key items|records|items,earlier] [--public daily.json] [--sites LOG.json] [--no-web]
   python3 tools/phones.py --optout-add "BUSINESS NAME" "STREET ADDRESS"
   python3 tools/phones.py --probe REST_DATA.json LICENSES_FULL.json PLACES.json   coverage counts only
   python3 tools/phones.py --selftest
@@ -732,7 +732,9 @@ if __name__ == "__main__":
                 if isinstance(v, dict) and v.get("date", "") > sites.get(dom, {}).get("date", ""):
                     sites[dom] = v
         doc, used = json.load(open(rows_path)), set()
-        counts = fill(doc[key], places, web="--no-web" not in a, release=release, sites=sites, optout=optout_load(), used=used)
+        keys = [k for k in key.split(",") if k]          # "items,earlier": one fill over both lists (the daily list, move 3)
+        rows = [r for k in keys for r in doc.get(k) or []]
+        counts = fill(rows, places, web="--no-web" not in a, release=release, sites=sites, optout=optout_load(), used=used)
         if sites_path:
             _save(sites, sites_path)
         if places:                              # no places file means the phones were not checked this run (Not checked)
@@ -740,7 +742,7 @@ if __name__ == "__main__":
         doc["phoneTerms"] = TERMS_LINES
         doc["phoneAttribution"] = attribution(used, release)
         need = any(PROVIDERS.get(k) == "Foursquare" for k in used)
-        dropped = keep_notice(doc[key], used, doc["phoneAttribution"], foursquare_notice() if need else "")
+        dropped = keep_notice(rows, used, doc["phoneAttribution"], foursquare_notice() if need else "")
         if dropped:                             # recount: those rows now carry no phone
             counts["overture"] -= dropped
             counts["withPhone"] -= dropped
@@ -748,8 +750,10 @@ if __name__ == "__main__":
             counts["droppedNoNotice"] = dropped
         doc["phoneLicenses"] = LICENSES_FILE
         _save(doc, rows_path, indent=1)
-        if pub:
-            stamp_public(pub, counts)
+        if pub:                                 # the public stamp counts the first list only (today's new rows)
+            first = doc.get(keys[0]) or []
+            got = sum(1 for r in first if r.get("phone"))
+            stamp_public(pub, {"rows": len(first), "withPhone": got, "coverage": round(100 * got / len(first), 1) if first else 0.0})
         print(json.dumps(counts))              # counts only: never a number or a name in the log
     else:
         raise SystemExit(__doc__)

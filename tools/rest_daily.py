@@ -25,6 +25,11 @@ Outputs:
     REST_DAILY_KEY Actions secret, never given to buyers (until Todd adds it, the REST_LEADS_PASSWORD secret stands in),
     and the run stops if neither is set. When the key changes, old keys stop matching and the next run relists up to
     RECENT_DAYS of places once.
+  daily.json also carries pestByDate (failed or conditional inspections that cited pests, per City date, for each of
+    the 14 days, with the Restaurant facility type split out) and pestLast7 (the 7 days ending on the newest City date):
+    the seat offer's 14-day counts and the pest cold email's {n} (Todd, Oct 24). Counts only.
+  The named file also carries "earlier": places sent on an earlier morning whose inspection is still in the window,
+    rebuilt each morning from the data and the seen keys, so the members' page shows 14 days and nothing named is kept.
   Public examples carry area, facility type, result and trade only: no date and no inspection type, so a single fail
     in a small area cannot be matched back to the City record.
 
@@ -72,6 +77,65 @@ def summary(x):
     return f"{x['r']} on a {x['t'].lower()} inspection, {RL.pretty(x['d'])}. The City cited {cited}."
 
 
+def row(pk, p, iid, x, trades, listed_on):
+    """One named row for the members' list. listedOn: the morning this place first went out on a daily list."""
+    return {"place": pk, "name": p["name"], "address": p["address"], "zip": p["zip"], "area": p["area"] or "Chicago",
+            "type": p["type"], "date": x["d"], "result": x["r"], "inspectionType": x["t"], "trades": trades,
+            "codes": {c: x["c"][c] for c in trades}, "summary": summary(x), "record": RL.RECORD + iid,
+            "fails90": p["fails90"], "lat": p.get("lat"), "lon": p.get("lon"), "listedOn": listed_on,
+            "phone": "", "phoneSource": ""}
+
+
+def earlier(data, seen, secret, recent_from, today_places):
+    """Places already sent on an earlier morning whose newest qualifying inspection is still inside the window, so a
+    member who missed a morning loses nothing (move 3, Oct 24). Rebuilt each morning from the City's data and the seen
+    keys, so nothing named is stored between runs. listedOn is the morning the place first went out."""
+    before = {k: v for k, v in seen.items() if v < data["asOf"]}
+    P, I = data["places"], data["inspections"]
+    out = []
+    for pk in data["lists"]["flagged"]:
+        if pk in today_places:
+            continue
+        p = P[pk]
+        for iid in p["flaggedIds"]:                       # newest first
+            x = I[iid]
+            trades = [c for c in TRADE_KEYS if c in x["c"]]
+            if x["d"] < recent_from or not trades:
+                continue
+            days = [before[key(i, secret)] for i in [iid] + list(x.get("dup") or []) if key(i, secret) in before]
+            if days:
+                out.append(row(pk, p, iid, x, trades, min(days)))
+            break
+    out.sort(key=lambda it: (it["date"], it["name"]))
+    out.sort(key=lambda it: (it["listedOn"], it["date"]), reverse=True)
+    return out
+
+
+def pest_counts(data, recent_from):
+    """Public counts for the seat offer and the cold email (Todd, Oct 24): failed or conditional inspections that cited
+    pests, one per visit (duplicate reports are already merged), by the City's inspection date, for every day of the
+    window. "restaurant": those at places whose City facility type is Restaurant. last7: the 7 days ending on the newest
+    date the City has published (the email's {n}; never the daily file's total). Counts only, no names, no places."""
+    P, I = data["places"], data["inspections"]
+    through = dt.date.fromisoformat(data["through"])
+    days = [(through - dt.timedelta(days=i)).isoformat() for i in range(RECENT_DAYS - 1, -1, -1)]
+    by = {d: {"date": d, "pests": 0, "restaurant": 0} for d in days}
+    done = set()
+    for pk in data["lists"]["flagged"]:
+        p = P[pk]
+        for iid in p["flaggedIds"]:
+            x = I[iid]
+            if iid in done or x["d"] not in by or "pests" not in x["c"]:
+                continue
+            done.add(iid)
+            by[x["d"]]["pests"] += 1
+            by[x["d"]]["restaurant"] += p["type"] == "Restaurant"
+    seven = days[-7:]
+    last7 = {"from": seven[0], "to": seven[-1], "inspections": sum(by[d]["pests"] for d in seven),
+             "restaurantInspections": sum(by[d]["restaurant"] for d in seven)}
+    return [by[d] for d in days], last7
+
+
 def pick(data, seen, secret):
     """New pest and hood rows: (items, ids to mark seen). One item per place, its newest qualifying inspection.
     Keys first seen today do not count, so a same-day rerun gives the same list."""
@@ -90,11 +154,7 @@ def pick(data, seen, secret):
             ids = [iid] + list(x.get("dup") or [])
             if any(key(i, secret) in seen for i in ids):
                 break                                      # this place's newest qualifying visit is already out
-            items.append({"place": pk, "name": p["name"], "address": p["address"], "zip": p["zip"], "area": p["area"] or "Chicago",
-                          "type": p["type"], "date": x["d"], "result": x["r"], "inspectionType": x["t"], "trades": trades,
-                          "codes": {c: x["c"][c] for c in trades}, "summary": summary(x), "record": RL.RECORD + iid,
-                          "fails90": p["fails90"], "lat": p.get("lat"), "lon": p.get("lon"),
-                          "phone": "", "phoneSource": ""})
+            items.append(row(pk, p, iid, x, trades, data["asOf"]))
             mark += ids
             break
     items.sort(key=lambda it: (it["date"], it["name"]))
@@ -111,9 +171,11 @@ def public(data, items, recent_from, old=None):
     hist = sorted(hist, key=lambda h: h["asOf"])[-HISTORY_DAYS:]
     ex = [{"area": it["area"], "type": it["type"], "result": it["result"], "trades": [WORDS[c] for c in it["trades"]]}
           for it in items if it["area"] and it["area"] != "Chicago"][:3]
+    by_date, last7 = pest_counts(data, recent_from)
     return {"product": "Chicago Restaurant Daily List", "asOf": data["asOf"], "asOfText": data["asOfText"],
             "through": data["through"], "throughText": data["throughText"], "recentFrom": recent_from,
             "source": data["source"], "counts": counts, "history": hist, "examples": ex,
+            "pestByDate": by_date, "pestLast7": last7,
             "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest "
                     "or a hood and exhaust violation. Business names are sent only to members."}
 
@@ -121,6 +183,7 @@ def public(data, items, recent_from, old=None):
 def run(data, named_out, secret, public_path=PUBLIC, seen_path=SEEN):
     seen = load_seen(seen_path)
     items, mark, recent_from = pick(data, seen, secret)
+    before = earlier(data, seen, secret, recent_from, {it["place"] for it in items})
     today = data["asOf"]
     for k in mark:
         seen.setdefault(key(k, secret), today)
@@ -129,7 +192,8 @@ def run(data, named_out, secret, public_path=PUBLIC, seen_path=SEEN):
     old = json.load(open(public_path)) if os.path.exists(public_path) else None
     pub = public(data, items, recent_from, old)
     named = {"product": "Chicago Restaurant Daily List", "asOf": today, "through": data["through"], "recentFrom": recent_from,
-             "source": data["source"], "counts": pub["counts"], "items": items}
+             "source": data["source"], "counts": pub["counts"], "items": items, "earlier": before,
+             "pestByDate": pub["pestByDate"], "pestLast7": pub["pestLast7"]}
     json.dump(named, open(named_out, "w"), indent=1)
     json.dump(pub, open(public_path, "w"), indent=1)
     json.dump({"about": "Inspection ids already sent on a daily list, as HMAC-SHA256 keys under a secret (tools/rest_daily.py). No names, no ids.",
@@ -173,6 +237,7 @@ def selftest():
     assert both["summary"] == "Fail on a canvass inspection, Oct 21, 2026. The City cited pests (code 38) and hood and exhaust (code 56).", both["summary"]
     assert p1["counts"] == {"pests": 2, "hood": 2, "places": 3}, p1["counts"]
     assert n1["recentFrom"] == "2026-10-08", n1["recentFrom"]
+    assert n1["earlier"] == [] and p1["pestLast7"]["inspections"] == 2 and p1["pestLast7"]["restaurantInspections"] == 2, p1["pestLast7"]
     blob = json.dumps(p1) + open(seen_p).read()
     for leak in ("Acme", "Fry House", "Both Grill", "Main St", "MAIN", "111", "444", "2026-10-21", "Canvass"):
         assert leak not in json.dumps(p1["examples"]) + open(seen_p).read(), f"public file identifies a failed place: {leak}"
@@ -199,24 +264,37 @@ def selftest():
     # day 2: the same rows, a late post (dated 2 days back), a very late post (10 days back) and a new fail at a listed place
     day2 = day1 + [R(10, "LATE POST DINER", "1212", "Canvass", "Fail", "2026-10-20", pest_v),
                    R(11, "ACME TACOS", "111", "Canvass Re-Inspection", "Fail", "2026-10-22", pest_v),
-                   R(12, "VERY LATE GRILL", "1313", "Complaint", "Fail", "2026-10-12", hood_v)]
+                   R(12, "VERY LATE GRILL", "1313", "Complaint", "Fail", "2026-10-12", hood_v),
+                   R(13, "CORNER MART", "1414", "Canvass", "Fail", "2026-10-22", pest_v, facility_type="Grocery Store")]
     d2 = RL.build(raw(day2, "2026-10-23T12:00:00+00:00"), set())
     n2, p2 = run(d2, out_p, SK, pub_p, seen_p)
-    assert [it["name"] for it in n2["items"]] == ["Acme Tacos", "Late Post Diner", "Very Late Grill"], [it["name"] for it in n2["items"]]
+    assert [it["name"] for it in n2["items"]] == ["Acme Tacos", "Corner Mart", "Late Post Diner", "Very Late Grill"], [it["name"] for it in n2["items"]]
+    assert all(it["listedOn"] == "2026-10-23" for it in n2["items"])
+    # earlier mornings stay on the members' list while their inspection is in the window (move 3); today's places are not repeated
+    assert [(it["name"], it["listedOn"]) for it in n2["earlier"]] == [("Both Grill", "2026-10-22"), ("Fry House", "2026-10-22")], n2["earlier"]
+    # pest counts by City date: one per visit, every day of the window, restaurant type split, the 7 days ending on "through"
+    bd = {b["date"]: b for b in p2["pestByDate"]}
+    assert len(p2["pestByDate"]) == 14 and p2["pestByDate"][0]["date"] == "2026-10-09" and p2["pestByDate"][-1]["date"] == "2026-10-22"
+    assert (bd["2026-10-21"]["pests"], bd["2026-10-22"]["pests"], bd["2026-10-22"]["restaurant"], bd["2026-10-20"]["pests"]) == (2, 2, 1, 1), bd
+    assert sum(b["pests"] for b in p2["pestByDate"]) == 5 and bd["2026-10-12"]["pests"] == 0, "hood-only visit counted as pests"
+    assert p2["pestLast7"] == {"from": "2026-10-16", "to": "2026-10-22", "inspections": 5, "restaurantInspections": 4}, p2["pestLast7"]
+    assert "Corner" not in json.dumps(p2) and "Acme" not in json.dumps(p2), "public counts name a place"
     assert n2["items"][0]["date"] == "2026-10-22", "a new visit to a listed place comes back once"
-    assert [h["asOf"] for h in p2["history"]] == ["2026-10-22", "2026-10-23"] and p2["history"][-1]["places"] == 3, p2["history"]
+    assert [h["asOf"] for h in p2["history"]] == ["2026-10-22", "2026-10-23"] and p2["history"][-1]["places"] == 4, p2["history"]
     # day 3: nothing new posted, so nothing is listed twice
     n3, p3 = run(RL.build(raw(day2, "2026-10-24T12:00:00+00:00"), set()), out_p, SK, pub_p, seen_p)
     assert n3["items"] == [] and p3["counts"] == {"pests": 0, "hood": 0, "places": 0}, n3["items"]
+    assert [it["name"] for it in n3["earlier"]] == ["Acme Tacos", "Corner Mart", "Late Post Diner", "Very Late Grill", "Both Grill", "Fry House"], [it["name"] for it in n3["earlier"]]
+    assert n3["earlier"][0]["date"] == "2026-10-22" and n3["earlier"][0]["listedOn"] == "2026-10-23", "earlier row lost the newer visit"
     s = json.load(open(seen_p))
-    assert s["salt"] == SALT and len(s["keys"]) == 7, s
+    assert s["salt"] == SALT and len(s["keys"]) == 8, s
     # seen keys age out after KEEP_DAYS
     run(RL.build(raw(day2, "2026-12-31T12:00:00+00:00"), set()), out_p, SK, pub_p, seen_p)
     assert json.load(open(seen_p))["keys"] == {}, "old seen keys kept"
     for t in (__doc__ or "", summary.__doc__ or "", pick.__doc__ or ""):
         assert chr(0x2014) not in t and chr(0x2013) not in t
-    print("rest_daily selftest ok (12 planted inspections over 4 days: window, trades, duplicates, late posts, same-day rerun, "
-          "no repeats, HMAC keys, no names in public files)")
+    print("rest_daily selftest ok (13 planted inspections over 4 days: window, trades, duplicates, late posts, same-day rerun, "
+          "no repeats, earlier mornings kept, pest counts by date and last 7 days, HMAC keys, no names in public files)")
 
 
 if __name__ == "__main__":

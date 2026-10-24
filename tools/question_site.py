@@ -171,8 +171,10 @@ def page_html(p):
     body = (f'{crumb}<article class="qa"><p class="eyebrow">{F(p["eyebrow"])}</p><h1>{F(p["h1"])}</h1>'
             f'<p class="asof qa-upd"><span class="qa-by">By ProofNotFluff, run by a finance executive</span> · {F(p["updated"])}</p>'
             f'<div class="qa-answer"><p class="qa-tag">The short answer</p>{answer}</div>'
-            f'<div class="ld-heroact qa-act">{buy()}<a class="ld-textlink" href="{sample}">'
-            + ('Try the free calculator' if kit else 'See this week\'s sample') + '</a></div>'
+            # store v2 (design review, Oct 24, 2026): a reader from search gets the free step first, the purchase as the text link
+            + (f'<div class="ld-heroact qa-act"><a class="btn ld-btnbig" href="{sample}">'
+               + ('Try the free calculator' if kit else 'See this week\'s free sample') + f'</a>{buy("ld-textlink")}</div>'
+               if checkout else f'<div class="ld-heroact qa-act">{buy()}</div>')
             + (f'<p class="ld-heronote">One payment of ${price}. Excel and Google Sheets.</p>' if kit else
                '<p class="ld-heronote">New list every Monday. Cancel any time.</p>' if checkout else '')
             + f'{numbers}{tables}'
@@ -200,7 +202,7 @@ def page_html(p):
           "mainEntity": [{"@type": "Question", "name": fill(q, s), "acceptedAnswer": {"@type": "Answer", "text": fill(a, s)}}
                          for q, a in p["faq"]]}, crumb_ld, article)
           + "<style>.ld-page .asof,.ld-page footer p{color:var(--muted)}"
-          ".qa{max-width:none}.qa>h1{max-width:820px;text-wrap:pretty;font-size:clamp(28px,4vw,40px)}.qa p{max-width:72ch}.qa-answer p{max-width:62ch}.qa-steps li{max-width:72ch}.qa-upd{margin:10px 0 0}.ld-page h2,.ld-page h3,.ld-page summary{text-wrap:balance}"
+          ".qa{max-width:none}.qa-answer,.qa .qa-tw,.qa-rel,.qa details,.qa .qa-steps,.qa .qa-src ul{max-width:760px}.qa>h1{max-width:820px;text-wrap:pretty;font-size:clamp(28px,4vw,40px)}.qa p{max-width:72ch}.qa-answer p{max-width:62ch}.qa-steps li{max-width:72ch}.qa-upd{margin:10px 0 0}.ld-page h2,.ld-page h3,.ld-page summary{text-wrap:balance}"
           ".qa-answer strong{font-weight:700;color:var(--ink)}.ld-page .ld-tiles .tile .sub{text-wrap:balance}"
           ".qa-rel{list-style:none;padding:0;margin:12px 0 0;max-width:820px}.qa-rel li{margin:0 0 10px}.qa-rel a{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-weight:600;color:var(--ink);text-decoration:none}"
           ".qa-rel a::after{content:'\\2192';font-weight:400;color:var(--muted)}.qa-rel a:hover{border-color:var(--ink)}"

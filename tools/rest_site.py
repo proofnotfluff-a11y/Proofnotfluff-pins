@@ -74,20 +74,22 @@ def seat_html(p, seat, rel):
     return (f'<section class="block sb" id="seat" aria-labelledby="seatH"><div class="sb-card">'
             '<p class="eyebrow sb-eye">Founding seat for pest control</p>'
             f'<h2 id="seatH">At most {cap} Chicago pest control companies hold a seat at a time.</h2>'
+            '<div class="sb-cols"><div class="sb-main">'
             f'<p class="sb-left"><span class="sb-dots" aria-hidden="true">{"".join("<i class=on></i>" if i < left else "<i></i>" for i in range(cap))}</span>'
             f'<b>{left} of {cap} seats open</b></p>'
             f'<p class="sb-terms"><b>No lock-in.</b> ${price} a month, cancel any time.</p>{top_btn}'
             '<p class="sb-lede">The City\'s public records, cleaned and on your members\' page each morning after the City\'s overnight update: the Chicago food '
             'places whose failed or conditional inspection had a pest violation, named, with street address, the City\'s violation codes and the listed '
             'phone when we find one. License inspections and the places under "Who is left out?" are not included.</p>'
+            '</div><div class="sb-side">'
             f'<figure class="sb-fig"><figcaption><b>Inspections with a pest violation, by City inspection date, {rng}</b>'
             f'<span>{total:,} failed or conditional inspections in 14 days, about {per_day} a day. The newest days fill in as the City posts results, often a few days after the inspection. A pest violation can be insects or rodents seen, or a gap or record the City says lets pests in; each record says which.</span></figcaption>'
             f'<ol class="sb-chart" aria-hidden="true">{bars}</ol>'
             f'<table class="sr"><caption>Failed or conditional inspections with a pest violation, by City inspection date</caption>'
             f'<thead><tr><th scope="col">Date</th><th scope="col">Inspections</th></tr></thead><tbody>{rows}</tbody></table></figure>'
             f'<p class="sb-phone">{phone}</p>'
-            f'<p class="sb-asof">City records through {E(d["throughText"])}, pulled {E(d["asOfText"])}. Refreshed every morning.</p>'
-            '<ul class="sb-get"><li>New places each morning, after the City\'s overnight refresh, with the last 14 days kept so a missed morning loses nothing.</li>'
+            f'<p class="sb-asof">City records through {E(d["throughText"])}, pulled {E(d["asOfText"])}. Refreshed every morning.</p></div></div>'
+            '<ul class="sb-get checks"><li>New places each morning, after the City\'s overnight refresh, with the last 14 days kept so a missed morning loses nothing.</li>'
             '<li>Each place: name, street, ZIP, community area, the City\'s result, date and violation codes, failed visits in 90 days, and a link to the City\'s record.</li>'
             '<li>A Call button, called marks and private notes on your phone or computer, and a CSV download.</li></ul>'
             f'<p class="sb-same">The same records reach our weekly list (${E(str(p["price"]))} a month, not capped) each Monday, and a pest control company that asks can get one free morning of this list by email before it decides. A seat gets them each morning.</p>'
@@ -112,7 +114,11 @@ SEAT_CSS = (".sb .sb-card{background:var(--card);border:1px solid var(--line);bo
             "@media(max-width:420px){.sb-chart{gap:2px}.sb-chart .sb-n,.sb-chart .sb-d{font-size:11px}}"
             ".sb-phone{margin:0 0 4px}.sb-asof{margin:0 0 12px;color:var(--muted);font-size:14px}.sb-get{margin:0 0 12px;padding-left:20px}.sb-get li{margin:0 0 6px}"
             ".sb-same{margin:0 0 6px;color:var(--ink2)}.sb .ld-buybtn{margin-top:16px}"
-            ".sb-off{opacity:.55;cursor:not-allowed}")
+            ".sb-off{opacity:.55;cursor:not-allowed}"
+            # store v2 (design review, Oct 24): the offer and the chart side by side on wide screens, the details under both
+            ".sb-cols{display:grid;grid-template-columns:minmax(0,1fr);gap:0 32px;align-items:start}"
+            "@media(min-width:960px){.sb-cols{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)}.sb .sb-lede{margin-bottom:0}}"
+            ".sb-get.checks{padding-left:0;margin:18px 0 14px}@media(min-width:960px){.sb-get.checks{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 24px;max-width:none}}")
 
 
 def page_html(p):
@@ -153,13 +159,13 @@ def page_html(p):
                 f'<div class="ld-ptop"><span class="ld-cost" style="font-size:20px">{E(("An " if kind[:1].lower() in "aeiou" else "A ") + kind.lower())} in {E(x["area"])}</span></div>'
                 f'<p class="rl-lock">{LOCK_S}Name and address hidden: on the members\' list</p>'
                 f'<dl class="ld-meta"><div><dt>Categories</dt><dd>{E(cats)}</dd></div>'
-                f'<div><dt>Inspected</dt><dd>{E(M.nice_date(x["date"]))}, {E(x["inspectionType"])}</dd></div></dl></article>')
+                f'<div><dt>Inspected</dt><dd>{E(M.nice_date(x["date"]))}, {M.nb(x["inspectionType"])}</dd></div></dl></article>')
 
     def card_open(x):
         return (f'<article class="ld-proj" data-cats="open"><p class="ld-pill rp-{_res_cls(x["result"])}">License inspection: {E(x["result"])}</p>'
                 f'<div class="ld-ptop"><span class="ld-cost" style="font-size:20px">{E(x["name"])}</span><span class="ld-type">{E(x["type"])}</span></div>'
                 f'<dl class="ld-meta"><div><dt>Where</dt><dd>{E(x["address"])}, {E(x["area"])}</dd></div>'
-                f'<div><dt>Inspected</dt><dd>{E(M.nice_date(x["date"]))}, {E(x["inspectionType"])}</dd></div></dl></article>')
+                f'<div><dt>Inspected</dt><dd>{E(M.nice_date(x["date"]))}, {M.nb(x["inspectionType"])}</dd></div></dl></article>')
 
     notify = p.get("notify") or "mailto:hello@proofnotfluff.com?subject=Chicago%20Restaurant%20Inspection%20Leads%3A%20tell%20me%20when%20it%20opens"
 
@@ -215,12 +221,12 @@ def page_html(p):
                  f'<a href="{E(checkout)}" rel="noopener">Subscribe, ${price} a month</a>.' if checkout else "") + '</p></section>')
     links = "".join(f'<li><a href="{rel}{E(l[0])}/">{E(l[1])}</a></li>' for l in p.get("links", []))
     method = ('<section class="block"><h2>How to use this list</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"])
-              + (f'<p>Price the visit before you call:</p><ul>{links}</ul>' if links else "") + "</section>")
+              + (f'<p>Price the visit before you call:</p><ul class="qa-rel">{links}</ul>' if links else "") + "</section>")
     later = ""
     if p.get("kitForm"):
         later = (f'<div class="ld-later"><p><b>Not ready yet?</b> Leave your email and we will let you know when the list adds new areas or features.</p>'
                  f'<form class="ld-form" action="https://app.kit.com/forms/{E(p["kitForm"])}/subscriptions" method="post"><label for="ldEmail">Email</label>'
-                 '<div class="ld-frow"><input id="ldEmail" name="email_address" type="email" required autocomplete="email"><button class="btn" type="submit">Keep me posted</button></div></form>'
+                 '<div class="ld-frow"><input id="ldEmail" name="email_address" type="email" required autocomplete="email" placeholder="you@company.com"><button class="btn" type="submit">Keep me posted</button></div></form>'
                  '<small class="ld-note">Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div>')
     if checkout:
         cta_html = (f'<section class="block" id="ldCta"><div class="cta ld-cta ld-buy"><div><h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
@@ -235,7 +241,9 @@ def page_html(p):
                     f'<p class="ld-price">${price} a month when it opens.</p><p class="ld-buybtn">{buy()}</p></div></div></section>')
     crumb, crumb_ld = M.crumbs(rel, [("Home", ""), ("Shop", "shop/"), (p["h1"], None)])
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>{hero_act}</div>{tiles}'
-            f'{seat_html(p, seat, rel) if seat else ""}{sample}{method}{cta_html}{M.guides_block(p["slug"], rel=rel)}{M.faq_block(faq)}')
+            # store v2 (design review, Oct 24, 2026): the free sample comes first and the $149 seat right after it; the hero note
+            # still links pest control owners straight to #seat
+            f'{sample}{seat_html(p, seat, rel) if seat else ""}{method}{cta_html}{M.guides_block(p["slug"], rel=rel)}{M.faq_block(faq)}')
     sbar = ((f'<div class="ld-sbar" id="ldBar" aria-hidden="true"><div class="wrap"><p><b>{trial} days free</b><span> · then ${price} a month</span></p>'
              f'<a class="btn" href="{E(checkout)}" rel="noopener" tabindex="-1">Try free</a></div></div>') if trial else
             (f'<div class="ld-sbar" id="ldBar" aria-hidden="true"><div class="wrap"><p><b>${price} a month</b><span> · <span class="ld-sbl">full list </span>{"every week" if seat and seat.get("checkout") else "every Monday"}</span></p>'
@@ -266,7 +274,7 @@ var st=document.getElementById('seat');if(st)io.observe(st);io.observe(hero);io.
           "@media(max-width:600px){.ld-page .ld-tiles .tile .lab{font-size:11.5px;letter-spacing:.02em;white-space:normal}}"
           ".rl3 .ld-pill{margin:0 0 10px}.rl3 .ld-ptop{margin:0 0 12px}"
           ".rl-lock{display:flex;align-items:center;gap:6px;margin:0 0 6px;font-size:13px;color:var(--muted)}.rl-lock svg{flex:none}"
-          "@media(min-width:1000px){.ld-list.rl3{grid-template-columns:repeat(3,minmax(0,1fr))}}"
+          "@media(min-width:1000px){.ld-list.rl3{grid-template-columns:repeat(4,minmax(0,1fr))}}"
           ".rl-trades{list-style:none;margin:14px 0 0;padding:0;background:var(--card);border:1px solid var(--line);border-radius:12px}"
           ".rl-trades li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 16px;border-top:1px solid var(--rule)}"
           ".rl-trades li:first-child{border-top:0}.rl-trades .nm{font-weight:600;color:var(--ink)}"

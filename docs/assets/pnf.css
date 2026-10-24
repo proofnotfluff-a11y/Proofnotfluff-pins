@@ -463,3 +463,59 @@ h2,h3{line-height:1.2}section.block h2{line-height:1.2}
 .tools a.card:hover,.st-trades a:hover,.st-printable:hover,.qa-rel a:hover{transform:translateY(-2px)}
 .mbar{transition:transform .2s ease}}
 body.mbar-off .mbar{transform:translateY(110%)}
+/* store v2, Oct 24, 2026 (design review; major, on Todd's go): header action, home hero with the product and the trade
+   picker, one primary action per card, the e-commerce card full width, four featured calculators, lead page hero shot,
+   footer in two columns */
+nav.top a.navcta{margin-left:4px;padding:0 16px;min-height:40px;border-radius:10px;background:var(--btn);color:#fff;text-decoration:none;font-size:15px}
+nav.top a.navcta:hover{background:var(--accent-ink);color:#fff}
+@media(max-width:599px){nav.top a.navcta{display:none}}
+.hx{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;align-items:center;padding-top:8px}
+@media(min-width:1000px){.hx{grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:48px}}
+.hx h1{font-size:clamp(31px,4.2vw,50px);line-height:1.08;letter-spacing:-.015em;max-width:600px}
+.hx .lede{max-width:540px;margin-bottom:22px}
+.hx-cta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin:0}
+.hx-cta .st-link{min-height:44px}
+.hx-pickrow{margin:8px 0 0;min-width:0}@media(min-width:1000px){.hx-pickrow{grid-column:1/-1}}@media(max-width:999px){.hx-copy{order:1}.hx-pickrow{order:2;margin:0}.hx-side{order:3}.hx-cta .btn{display:none}}
+.hx-pick{font:700 13px/1.3 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;scroll-margin-top:16px}
+.hx-trades{grid-template-columns:repeat(auto-fill,minmax(186px,1fr));max-width:none}
+.hx-trades a{min-height:60px}
+@media(min-width:1000px){.hx-trades{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(max-width:560px){.hx-trades{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.hx-trades li:last-child:nth-child(odd){grid-column:1/-1}.hx-trades a{padding:8px 8px 8px 12px}.hx-trades b{font-size:14px}}
+.hx-side{position:relative;min-width:0;padding-bottom:4px}
+.hx-frame{border-radius:14px;border:1px solid var(--line);overflow:hidden;background:var(--card);box-shadow:0 18px 44px rgba(20,24,36,.13)}
+.hx-frame img{display:block;width:100%;height:auto}
+.hx-week{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:14px 16px;position:relative;margin:-48px 0 0 -20px;max-width:330px}
+.hx-week .lab{margin:0 0 2px;font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.hx-week dl{margin:0}.hx-week dl div{display:flex;gap:12px;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--rule)}
+.hx-week dl div:last-child{border-bottom:0}
+.hx-week dd{order:1;margin:0;min-width:60px;font:700 21px/1.1 Poppins,system-ui,sans-serif;font-variant-numeric:tabular-nums}
+.hx-week dt{order:2;font-size:13.5px;line-height:1.35;color:var(--ink2)}
+.hx-week .asof{margin:6px 0 0;font-size:12px;color:var(--muted)}
+@media(max-width:999px){.hx-frame img{height:250px;object-fit:cover;object-position:left top}.hx-week{margin:-36px 10px 0;max-width:none}}
+@media(prefers-color-scheme:dark){.hx-frame{border-color:#2b3344;box-shadow:0 18px 44px rgba(0,0,0,.45)}.hx-frame img,.ld-heroshot img{filter:brightness(.92)}}
+.st-act .st-link{gap:6px}.st-link svg{flex:0 0 18px}
+.st-card.st-wide{grid-column:1/-1}
+@media(min-width:760px){.st-card.st-wide{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);column-gap:28px;align-items:start}
+.st-card.st-wide>*{grid-column:1}.st-card.st-wide>.st-nums,.st-card.st-wide>.st-act{grid-column:2}
+.st-card.st-wide>.st-top{grid-column:1/-1}.st-card.st-wide>.st-nums{grid-row:2/4;align-self:start}.st-card.st-wide>.st-act{grid-row:4;margin-top:0}}
+.st-calc4{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.sh-buy .st-link{justify-content:center;gap:6px}
+.ld-herogrid{display:grid;grid-template-columns:minmax(0,1fr);gap:8px 40px;align-items:center}
+@media(min-width:1024px){.ld-herogrid.has-shot{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}.ld-herogrid.has-shot .lede{max-width:600px}}
+.ld-heroshot{margin:0 0 18px;min-width:0}
+.ld-heroshot img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);box-shadow:0 12px 32px rgba(20,24,36,.10)}
+.ld-heroshot figcaption{font-size:13px;color:var(--muted);margin-top:8px}
+@media(max-width:1023px){.ld-heroshot img{height:240px;object-fit:cover;object-position:left top}}
+@media(min-width:900px){footer .wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:40px;align-items:start}footer .wrap>.fnav{grid-column:1/-1}footer .wrap>p{max-width:68ch}}
+/* store v2 fix round 1 (independent design review, Oct 24): tabular figures, link lists as rows, full-width guides, hover on nav and question rows, phone shots fit instead of crop */
+.tile .val,.st-nums b,.hx-week dd,.st-week dd,.sh-buy .amt,.qa-t td,.lines li span:last-child{font-variant-numeric:tabular-nums}
+.ld-hero .lede{max-width:68ch}
+.qa-rel{list-style:none;padding:0;margin:12px 0 0;max-width:760px}.qa-rel li{margin:0 0 10px;max-width:none}
+.qa-rel a{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-weight:600;color:var(--ink);text-decoration:none}
+.qa-rel a::after{content:"\2192";font-weight:400;color:var(--muted)}.qa-rel a:hover{border-color:var(--ink)}
+section.block .st-qs li{max-width:none}
+.st-qs a:hover b{text-decoration:underline;text-underline-offset:3px}
+nav.top a:not(.navcta):hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px;text-decoration-color:var(--line)}
+.sticky .tiles .lab{min-height:2.7em}
+@media(max-width:999px){.hx-frame img{height:auto;object-fit:initial}}
+@media(max-width:1023px){.ld-heroshot img{height:auto;object-fit:initial}}

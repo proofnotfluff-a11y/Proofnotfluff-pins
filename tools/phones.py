@@ -5,9 +5,10 @@ Where a number comes from, in order:
   1 Overture Maps places (open data, read anonymously from the Overture S3 bucket in the runner). Its upstream
     sources carry CDLA Permissive 2.0, Apache 2.0 or CC0 licenses; the Legal desk review is
     legal/reviews/2026-10-23-phone-sources.md, and the attribution line is ATTRIBUTION below.
-  2 The business's own website, when Overture gives a website but no usable phone: the home page is read at most once
-    in 30 days (robots.txt read fresh, 5 seconds between requests, a page whose terms ban bots left alone), and a number is taken only from a tel: link, a schema.org telephone field, or the one phone number the
-    page shows. Chain sites (a domain shared by 3 or more Chicago places) and listing sites (Yelp, delivery apps, social)
+  2 The business's own website, when Overture gives a website but no usable phone: the home page, and when it shows no
+    number one contact page it links to on the same site, are read at most once in 30 days (robots.txt read fresh,
+    5 seconds between requests, a page whose terms ban bots left alone), and a number is taken only from a tel: link, a
+    schema.org telephone field, or the one phone number the page shows. Chain sites (a domain shared by 3 or more Chicago places) and listing sites (Yelp, delivery apps, social)
     are never read, because their number is not the location's own.
 No paid lookup and no API key (Todd, Oct 23: no spend without his yes). OpenStreetMap is not used (share-alike terms,
 see the review).
@@ -29,6 +30,7 @@ Usage (runner):
   python3 tools/phones.py --release                         the newest Overture release name
   python3 tools/phones.py --extract OUT.json [--release R]  Chicago places with a phone or a website (needs duckdb)
   python3 tools/phones.py fill ROWS.json PLACES.json [--key items|records|items,earlier] [--public daily.json] [--sites LOG.json] [--no-web]
+                                                            [--stats COVERAGE.json]  counts only: coverage and why rows have none
   python3 tools/phones.py --optout-add "BUSINESS NAME" "STREET ADDRESS"
   python3 tools/phones.py --probe REST_DATA.json LICENSES_FULL.json PLACES.json   coverage counts only
   python3 tools/phones.py --selftest
@@ -188,6 +190,22 @@ class Places:
         return (self.p[best[3]], best[1], best[2]), ""
 
 
+    def miss_reason(self, name, address, lat, lon):
+        """Why a row found no place, counts only: no Overture place with a phone or site at that street address, a
+        place there under another name, or the name found nearby at another or no address."""
+        ak = addr_key(address)
+        at = [self.p[i] for i in self.by_addr.get(ak, [])] if ak else []
+        if any(name_score(name, x.get("name")) >= 0.5 for x in at):
+            return "name and address match, but over 300 m or the opposite direction"
+        if at:
+            return "a place at the address under another name"
+        near = [self.p[i] for i in self.near(lat, lon)]
+        close = lambda x: (lambda d: d is not None and d <= 120)(dist_m(lat, lon, x.get("lat"), x.get("lon")))
+        if any(name_score(name, x.get("name")) >= 0.5 and close(x) for x in near):
+            return "the name nearby, at another or no street address"
+        return "no Overture place with this name or address"
+
+
 def first_phone(x):
     for ph in x.get("phones") or []:
         if norm_phone(ph):
@@ -265,21 +283,65 @@ def site_phone(url, fetch=_get, pause=None):
     if NO_BOTS.search(re.sub(r"<[^>]+>", " ", text)):
         return "", "site terms ban automated access"
     ph = page_phone(text)
-    return (ph, dom) if ph else ("", "no number on page")
+    if ph:
+        return ph, dom
+    # One contact page (Legal desk, Oct 23, condition 3: "at most the home page and one contact page per business per
+    # 30 days"): the first link on the home page, on the same site, whose address or words say contact, find us or
+    # visit us. robots.txt must allow it, 5 seconds after the home page, and the same terms check applies.
+    link = contact_link(text, base)
+    if not link:
+        return "", "no number on page"
+    if not rp.can_fetch(UA, link):
+        return "", "robots.txt (contact page)"
+    pause(5)
+    try:
+        page = fetch(link, WEB_BYTES, html_only=True)
+    except Exception:
+        return "", "contact page unreachable"
+    if not page:
+        return "", "no number on page"
+    if NO_BOTS.search(re.sub(r"<[^>]+>", " ", page)):
+        return "", "site terms ban automated access"
+    ph = page_phone(page)
+    return (ph, dom + " contact") if ph else ("", "no number on home or contact page")
+
+
+CONTACT_WORDS = re.compile(r"\bcontact(?:[\s_-]?us)?\b|\bfind[\s_-]?us\b|\bvisit[\s_-]?us\b|\breach[\s_-]?us\b", re.I)
+
+
+def contact_link(text, base):
+    """The one contact page a site read may add: the first same-site link whose path or words say contact (contact,
+    contact us, find us, visit us, reach us). Never another domain, a mailto, tel or script link, or a file."""
+    host = domain(base)
+    for m in re.finditer(r"""<a\b[^>]*?href\s*=\s*["']([^"'#][^"']*)["'][^>]*>(.*?)</a>""", text, re.I | re.S):
+        href, words = html.unescape(m.group(1)).strip(), re.sub(r"<[^>]+>", " ", m.group(2))
+        if re.match(r"(?:mailto|tel|javascript|sms|data):", href, re.I):
+            continue
+        url = urllib.parse.urljoin(base + "/", href)
+        u = urllib.parse.urlparse(url)
+        if u.scheme not in ("http", "https") or domain(url) != host or re.search(r"\.(?:pdf|jpe?g|png|gif|zip|docx?)$", u.path, re.I):
+            continue
+        if u.path.rstrip("/") in ("", "/") and not u.query:
+            continue                                   # the home page again is not a second page
+        if CONTACT_WORDS.search(u.path.replace("/", " ")) or CONTACT_WORDS.search(words):
+            return urllib.parse.urlunparse((u.scheme, u.netloc, u.path or "/", "", u.query, ""))
+    return ""
 
 
 # ---------------------------------------------------------------- filling rows
 def fill(rows, places, web=True, fetch=_get, name_field=None, strict=True, release="", sites=None, today=None, optout=None,
-         pause=None, used=None):
+         pause=None, used=None, why=None):
     """Sets phone, phoneSource, phoneRef and phoneDate on each row (rows need a name or business, address, lat, lon).
     sites: the 30-day log of website reads (domain: {"date", "phone"}), read and updated in place. used: a set that
-    collects the Overture providers behind the numbers (for the attribution lines). Returns counts only."""
+    collects the Overture providers behind the numbers (for the attribution lines). why: a Counter that collects, counts
+    only, the reason each row has no phone (for the public coverage file). Returns counts only."""
     import datetime as dt
     idx = places if isinstance(places, Places) else Places(places)
     today = today or dt.date.today().isoformat()
     sites = {} if sites is None else sites
     used = set() if used is None else used
     c = collections.Counter(rows=len(rows))
+    why = collections.Counter() if why is None else why
     todo = []
     for r in rows:
         r["phone"], r["phoneSource"], r["phoneRef"], r["phoneDate"] = "", "", "", ""
@@ -287,9 +349,10 @@ def fill(rows, places, web=True, fetch=_get, name_field=None, strict=True, relea
         if optout and optout_key(nm, r.get("address")) in optout:
             c["optedOut"] += 1
             continue
-        hit, why = idx.match(nm, r.get("address"), r.get("lat"), r.get("lon"), strict=strict)
+        hit, why_ = idx.match(nm, r.get("address"), r.get("lat"), r.get("lon"), strict=strict)
         if not hit:
-            c["noMatch" if why == "no match" else "unsure"] += 1
+            c["noMatch" if why_ == "no match" else "unsure"] += 1
+            why[idx.miss_reason(nm, r.get("address"), r.get("lat"), r.get("lon")) if why_ == "no match" else "two close matches"] += 1
             continue
         x = hit[0]
         c["matched"] += 1
@@ -311,6 +374,7 @@ def fill(rows, places, web=True, fetch=_get, name_field=None, strict=True, relea
             todo.append((r, own[0]))
         else:
             c["noPhoneListed"] += 1
+            why["matched, no phone and no own website" if not (x.get("websites") or []) else "matched, chain or listing site only"] += 1
     # A site read in the last 30 days is not read again (Legal desk): its logged result is used, number or none.
     cut = (dt.date.fromisoformat(today) - dt.timedelta(days=30)).isoformat()
     fresh = lambda dom: dom in sites and sites[dom].get("date", "") >= cut
@@ -318,16 +382,19 @@ def fill(rows, places, web=True, fetch=_get, name_field=None, strict=True, relea
     skipped = set(need[WEB_CAP:])                  # past the cap, a row keeps an empty phone rather than a slow run
     urls = {domain(u): u for _, u in todo}
     with concurrent.futures.ThreadPoolExecutor(8) as ex:
-        for dom, (ph, _) in zip(need[:WEB_CAP], ex.map(lambda d: site_phone(urls[d], fetch, pause), need[:WEB_CAP])):
-            sites[dom] = {"date": today, "phone": ph}
+        for dom, (ph, note) in zip(need[:WEB_CAP], ex.map(lambda d: site_phone(urls[d], fetch, pause), need[:WEB_CAP])):
+            sites[dom] = {"date": today, "phone": ph, "why": "" if ph else note, "page": "contact" if ph and note.endswith(" contact") else ""}
     for r, u in todo:
         dom = domain(u)
         hit = sites.get(dom) if dom not in skipped else None
         if hit and hit.get("phone"):
             r["phone"], r["phoneSource"], r["phoneRef"], r["phoneDate"] = hit["phone"], "website", f"https://{dom}/", hit["date"]
             c["website"] += 1
+            if hit.get("page") == "contact":
+                why["website contact page (counted in withPhone)"] += 1
         else:
             c["noPhoneListed"] += 1
+            why["website: " + ("not read this run (cap)" if dom in skipped else (hit or {}).get("why") or "no number (read before the reason was logged)")] += 1
     c["withPhone"] = c["overture"] + c["website"]
     c["coverage"] = round(100 * c["withPhone"] / c["rows"], 1) if c["rows"] else 0.0
     return dict(c)
@@ -707,8 +774,34 @@ def selftest():
     assert ur[0]["phone"] == "" and cu.get("unconfirmedSource") == 1, (ur[0], cu)
     assert ur[1]["phone"] == "(312) 207-5502" and ur[1]["phoneSource"] == "overture:meta" and uu == {"meta"}, (ur[1], uu)
     assert not any("through Overture Maps" in l for l in attribution(uu, "2026-10-21.0"))
+    # one contact page: read only when the home page has no number, same site, robots allows it, 5 seconds later
+    cp = {"https://e.com/robots.txt": "", "https://e.com/": '<a href="mailto:x@e.com">contact</a><a href="https://other.com/contact">Contact</a>'
+          '<a href="/menu">Menu</a><a href="/contact-us/">Contact Us</a>', "https://e.com/contact-us/": "<p>Call 312-200-8888</p>",
+          "https://f.com/robots.txt": "User-agent: *\nDisallow: /contact", "https://f.com/": '<a href="/contact">Contact</a>',
+          "https://g.com/robots.txt": "", "https://g.com/": '<a href="/find-us">Find us</a>',
+          "https://g.com/find-us": "<p>Scraping of this site is prohibited.</p><p>312-200-9999</p>",
+          "https://h.com/robots.txt": "", "https://h.com/": '<a href="tel:3122001212">Call</a><a href="/contact">Contact</a>'}
+    seen, gaps = [], []
+
+    def cfake(url, cap, **kw):
+        seen.append(url)
+        if url not in cp:
+            raise OSError("not planted")
+        return cp[url]
+    assert site_phone("https://e.com", cfake, gaps.append) == ("(312) 200-8888", "e.com contact") and gaps == [5, 5], (seen, gaps)
+    assert "https://other.com/contact" not in seen and "https://e.com/menu" not in seen
+    assert site_phone("https://f.com", cfake, lambda s: None) == ("", "robots.txt (contact page)") and "https://f.com/contact" not in seen
+    assert site_phone("https://g.com", cfake, lambda s: None) == ("", "site terms ban automated access")
+    seen.clear()
+    assert site_phone("https://h.com", cfake, lambda s: None)[0] == "(312) 200-1212" and seen == ["https://h.com/robots.txt", "https://h.com/"]
+    assert contact_link('<a href="/">Home</a><a href="/about">About</a>', "https://k.com") == ""
+    # the reasons for an empty phone are counts with no name or number
+    w = collections.Counter()
+    fill([dict(rows[1]), dict(rows[10]), dict(rows[3])], places, web=False, why=w)
+    assert w == {"a place at the address under another name": 1, "the name nearby, at another or no street address": 1,
+                 "two close matches": 1}, w
     print("phones selftest ok (13 planted rows: name and address both required, two close matches, closed, toll-free, chain and "
-          "listing sites, robots.txt, site terms, 5-second gap, 30-day site log, opt-out, attribution, counts-only public stamp)")
+          "listing sites, robots.txt, site terms, 5-second gap, 30-day site log, opt-out, attribution, counts-only public stamp, one contact page, why counts)")
 
 if __name__ == "__main__":
     a = sys.argv[1:]
@@ -750,7 +843,8 @@ if __name__ == "__main__":
         doc, used = json.load(open(rows_path)), set()
         keys = [k for k in key.split(",") if k]          # "items,earlier": one fill over both lists (the daily list, move 3)
         rows = [r for k in keys for r in doc.get(k) or []]
-        counts = fill(rows, places, web="--no-web" not in a, release=release, sites=sites, optout=optout_load(), used=used)
+        why = collections.Counter()
+        counts = fill(rows, places, web="--no-web" not in a, release=release, sites=sites, optout=optout_load(), used=used, why=why)
         if sites_path:
             _save(sites, sites_path)
         if places:                              # no places file means the phones were not checked this run (Not checked)
@@ -770,6 +864,13 @@ if __name__ == "__main__":
             first = doc.get(keys[0]) or []
             got = sum(1 for r in first if r.get("phone"))
             stamp_public(pub, {"rows": len(first), "withPhone": got, "coverage": round(100 * got / len(first), 1) if first else 0.0})
+        if opt("--stats"):                      # counts only, committed: coverage and why the rest have none
+            import datetime as dt
+            _save({"asOf": dt.date.today().isoformat(), "release": release, "rows": counts["rows"], "withPhone": counts["withPhone"],
+                   "coverage": counts["coverage"], "overture": counts.get("overture", 0), "website": counts.get("website", 0),
+                   "noPhoneWhy": dict(why.most_common()),
+                   "routes": "Overture Maps places and the business's own site only (legal/reviews/2026-10-23-phone-sources.md)"},
+                  opt("--stats"), indent=1)
         print(json.dumps(counts))              # counts only: never a number or a name in the log
     else:
         raise SystemExit(__doc__)

@@ -34,3 +34,9 @@
 - Todd: "can we schedule this so it happens daily?" Answers: posting "Post when all checks pass"; time "11:40 am"; slides "Build in code" (Canva cannot hand the images to a scheduled run).
 - Done: tools/make_carousel.py renders the slides; .claude/skills/social-carousel/SKILL.md is daily with the posting steps; scheduled task "PNF social carousel" daily 11:40 am Central on Todd's PC.
 - Pending Todd: the standing carousel post rule in coo/CONSTITUTION.md section 2 (and CLAUDE.md rule 3 pointing to it). The session's edit was blocked by a permission check. Until it is there, the daily run builds and gates, then sends Todd the slides and stops before posting.
+
+## Chief of Staff, 3:59 pm
+- [stated] Todd: "1. Yes 2. Yes 3. Yes 4. Yes 5. Twice per day" (to the five questions in the design doc https://claude.ai/artifact/9AWyGK1WPci1SRhqnEZByY).
+- So: build it as designed; the daily inbox sweep takes over the outreach run's inbox step (one writer of reply status); inbox read in Chrome on Todd's PC, no Gmail connector; one message plus a brief panel at the top of the scoreboard.
+- Times, read as: the brief twice a day on weekdays, 7:45 am and 12:45 pm (after the 7:30 and 12:30 sweeps); Sunday review 5 pm. Todd corrects in chat if he meant otherwise.
+- Not built or scheduled yet: next chat builds, tests and schedules (todo chief-of-staff-build).

@@ -12,4 +12,4 @@
 - Skills: 7 scheduled, 4 on request. Index: Bing ok, IndexNow on changes, index-request Fri 7:40, 35 left.
 - Pest seat live Oct 24 (3 seats, launches/chicago-pest-seat.md). Outreach on, Legal subject (Oct 24); batches go to Todd; role inboxes allowed (pest_role_inbox); 12 sendable after Bouncer (todo pest-owners-100).
 - Oct 25: credits plan live (DECISIONS-2026-10-25): pest runs Oct 26, 27; audit 28; page bursts 29, Nov 2. ACP skipped, Kimi by hand: coo/KIMI_AUDIT.md.
-- Oct 25: Chief of Staff designed, not built: todo chief-of-staff-go.
+- Oct 25: Chief of Staff approved; build next chat: todo chief-of-staff-build.

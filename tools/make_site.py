@@ -68,13 +68,18 @@ def nav_html(rel, current=""):
     if LIVE_QUESTIONS:
         items.append(("questions", f"{rel}questions/", "Questions"))
     cur = ' aria-current="page"'
-    links = "".join(f'<a href="{h}"{cur if k == current else ""}>{t}</a>' for k, h, t in items)
+    plain = "".join(f'<a href="{h}"{cur if k == current else ""}>{t}</a>' for k, h, t in items)
+    links = f'<span class="nav-links">{plain}</span>'
     # one clear action in every header (design review, Oct 24, 2026): the trade picker on the home hero, one tap from a free sample
     # store v2 quick-find (hidden until assets/pnf-ui.js wires it, so no dead button without the script)
     links += ('<button type="button" class="qf-btn" data-qf hidden aria-label="Search calculators, lead lists and guides">'
               '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>'
               '<span class="qf-lab">Search</span><kbd aria-hidden="true">/</kbd></button>')
     links += f'<a class="navcta" href="{rel or "./"}#trades">Free samples</a>'
+    # phones: one slim row (logo, search, menu) with the links in a sheet; a details element, so it works without script
+    # (store v2 review round 3, Oct 24: the header wrapped to two or three rows at 390)
+    links += ('<details class="navm"><summary aria-label="Menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>'
+              f'<div class="navm-sheet">{plain}<a class="btn" href="{rel or "./"}#trades">Free samples</a></div></details>')
     return f'<nav class="top" aria-label="Main">{links}</nav>'
 
 
@@ -2663,9 +2668,9 @@ def hero_feed(rows, dates):
         # WCAG 2.2.2: the roll pauses on hover or focus, and the Pause button stops it (assets/pnf-ui.js)
         feed = (f'<div class="hf" role="region" aria-label="Records from this week\'s free samples"><div class="hf-track"><ul class="hf-list">{"".join(li(x) for x in items)}</ul>'
                 f'<ul class="hf-list hf-dup" aria-hidden="true">{"".join(li(x, True) for x in items)}</ul></div></div>')
-    return (f'<aside class="hx-week" aria-label="This week in the records"><p class="lab"><span class="hf-dot" aria-hidden="true"></span>This week in the City\'s records'
+    return (f'<div class="hx-week"><p class="lab"><span class="hf-dot" aria-hidden="true"></span>This week in the City\'s records'
             + ('<button type="button" class="hf-pause" hidden aria-pressed="false">Pause</button>' if feed else "") + '</p>'
-            f'<dl class="hx-stats">{stats}</dl>{feed}<p class="asof">City data pulled {E(" and ".join(dates))}. From this week\'s free samples.</p></aside>')
+            f'<dl class="hx-stats">{stats}</dl>{feed}<p class="asof">City data pulled {E(" and ".join(dates))}. From this week\'s free samples.</p></div>')
 
 
 def home_html(pages, live, doors=False):
@@ -3004,7 +3009,7 @@ def search_index(live):
     out = []
     for x in store_products():
         out.append({"t": x["name"], "s": x["href"], "g": "Lead list" if x["audience"] != "ecom" else "Workbook",
-                    "d": x.get("card", ""), "k": " ".join([x.get("tag", ""), x.get("for", "")]).lower()})
+                    "d": x.get("card", ""), "k": " ".join([x.get("tag", ""), x.get("for", ""), st.get("searchListWords", {}).get(x["key"], "")]).lower()})
     seat = (_pages_by_slug().get("chicago-restaurant-inspection-leads") or {}).get("seat") or {}
     if seat.get("checkout"):
         out.append({"t": "Chicago Pest Control Daily Seat", "s": "chicago-restaurant-inspection-leads/#seat", "g": "Lead list",

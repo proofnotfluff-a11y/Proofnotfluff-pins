@@ -1,22 +1,22 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-10-24",
- "asOfText": "Oct 24, 2026",
+ "asOf": "2026-10-25",
+ "asOfText": "Oct 25, 2026",
  "through": "2026-10-23",
  "throughText": "Oct 23, 2026",
  "recentFrom": "2026-10-10",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-24T18:38:06+00:00",
-  "rowsUpdatedAt": "2026-10-24T09:08:34+00:00",
+  "fetchedAt": "2026-10-25T12:05:41+00:00",
+  "rowsUpdatedAt": "2026-10-25T09:11:25+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "pests": 41,
-  "hood": 11,
-  "places": 47
+  "pests": 0,
+  "hood": 0,
+  "places": 0
  },
  "history": [
   {
@@ -26,35 +26,17 @@
    "hood": 11,
    "places": 47,
    "withPhone": 30
-  }
- ],
- "examples": [
-  {
-   "area": "O'Hare",
-   "type": "Restaurant",
-   "result": "Fail",
-   "trades": [
-    "pests"
-   ]
   },
   {
-   "area": "West Town",
-   "type": "Restaurant",
-   "result": "Fail",
-   "trades": [
-    "pests",
-    "hood and exhaust"
-   ]
-  },
-  {
-   "area": "Lower West Side",
-   "type": "Restaurant",
-   "result": "Fail",
-   "trades": [
-    "pests"
-   ]
+   "asOf": "2026-10-25",
+   "through": "2026-10-23",
+   "pests": 0,
+   "hood": 0,
+   "places": 0,
+   "withPhone": 0
   }
  ],
+ "examples": [],
  "pestByDate": [
   {
    "date": "2026-10-10",
@@ -152,14 +134,14 @@
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {
-  "rows": 47,
-  "withPhone": 30,
-  "coverage": 63.8
+  "rows": 0,
+  "withPhone": 0,
+  "coverage": 0.0
  },
  "seat": {
-  "asOf": "2026-10-24",
+  "asOf": "2026-10-25",
   "places14": 41,
-  "new": 41,
+  "new": 0,
   "withPhone14": 29,
   "coverage14": 70.7,
   "phonesChecked": true

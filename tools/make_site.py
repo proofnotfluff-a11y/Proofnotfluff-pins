@@ -2858,7 +2858,8 @@ def shop_html():
             t = x.get("trial")
             buy_label = f"Start your {t}-day free trial" if t else f"Subscribe, ${E(x['price'])} {E(x['per'])}"
             acts = (f'<a class="btn" href="{rel}{x["href"]}{x["sample"]}">See this week\'s free sample</a>'
-                    + (f'<a class="st-link" href="{E(utm(x["checkout"], "shop", x["campaign"]))}" rel="noopener">{"or " + buy_label[0].lower() + buy_label[1:] if t else buy_label}{ARROW}</a>' if x.get("checkout") else ""))
+                    # shop keeps the trial as a full button (Todd's go on store v2, Oct 24, 2026: shoppers here are comparing lists to buy)
+                    + (f'<a class="st-btn2" href="{E(utm(x["checkout"], "shop", x["campaign"]))}" rel="noopener">{buy_label}</a>' if x.get("checkout") else ""))
             cadence = (f"New list every Monday. {t} days free, then ${E(x['price'])} {E(x['per'])}." if t else "New list every Monday. Cancel any time.")
         rows += (f'<article class="sh-item" data-aud="{x["audience"]}" data-key="{E(x["key"])}"><div class="sh-main"><p class="st-tag">{E(x["tag"])}</p>'
                  f'<h2>{nb(x["name"])}</h2><p>{E(x["what"])}</p></div>'

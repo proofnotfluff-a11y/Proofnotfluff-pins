@@ -1,6 +1,6 @@
 {
- "ranAt": "2026-10-24T20:25:10+00:00",
- "since": "2026-09-12",
+ "ranAt": "2026-10-25T01:01:38+00:00",
+ "since": "2026-09-13",
  "inspections": 1452,
  "codes": [
   {
@@ -262,8 +262,8 @@
     "grease": 92,
     "grease_trap": 10,
     "plumbing": 2,
-    "flies": 2,
     "exhaust": 2,
+    "flies": 2,
     "rodent": 1,
     "droppings": 1,
     "hood": 1
@@ -322,10 +322,10 @@
    "count": 732,
    "keywordHits": {
     "hood": 5,
-    "plumbing": 74,
     "grease": 65,
-    "insect": 15,
+    "plumbing": 74,
     "grease_trap": 15,
+    "insect": 15,
     "exhaust": 7,
     "roach": 6,
     "rodent": 11,
@@ -368,8 +368,8 @@
     "droppings": 11,
     "grease": 6,
     "grease_trap": 1,
-    "plumbing": 9,
-    "exhaust": 1
+    "exhaust": 1,
+    "plumbing": 9
    }
   },
   {
@@ -666,7 +666,11 @@
    1
   ],
   [
-   "LIVE POULTRY",
+   "VENDING COMMISSARY",
+   1
+  ],
+  [
+   "GAS STATION/RESTAURANT",
    1
   ],
   [
@@ -674,11 +678,7 @@
    1
   ],
   [
-   "VENDING COMMISSARY",
-   1
-  ],
-  [
-   "GAS STATION/RESTAURANT",
+   "LIVE POULTRY",
    1
   ],
   [

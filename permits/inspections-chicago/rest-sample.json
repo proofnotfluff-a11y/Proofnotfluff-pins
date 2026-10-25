@@ -13,7 +13,7 @@
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-24T20:25:14+00:00",
+  "fetchedAt": "2026-10-25T01:01:41+00:00",
   "rowsUpdatedAt": "2026-10-24T09:08:34+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
@@ -37,8 +37,8 @@
    "school, day care, hospital, senior or mobile vendor": 55,
    "the City's latest result is out of business or not located": 2
   },
-  "rowsRead": 1273,
-  "historyRead": 809,
+  "rowsRead": 1223,
+  "historyRead": 790,
   "areas": [
    [
     "Loop",

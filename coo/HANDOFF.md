@@ -5,7 +5,7 @@
 - Step 2 done Oct 22: window, dumpster, security buyer types (legal/reviews/2026-10-22-step2-buyer-types.md). Lede held until a dumpster or security yes.
 - Step 3 cities (and Seattle) parked until 3 pest seats sell; step 4 video after. NYC pest held. Drafts for Todd: /answer-draft-<slug>/, /compare-draft-chicago-construction-cleaning-leads/.
 - Site Oct 24: SEO batch live (seo/RESULTS.md). Store v2 live Oct 24 (Todd: "It's all a go"); two-doors draft superseded.
-- Live: Chicago and Austin cleaning leads $29, restaurant $39, outreach paused. 0 payers, 0 replies. Entity A: 730 GC leads. Entity B ladder: City record, own site, About owners, site_owners (live Oct 24, dry run 10 of 279), Hunter 5; Bouncer first. Senders hello@ (25/day), sales@. Outreach task: cloud, standing send rule; next Mon Oct 26, 9:40 am. Licenses: L2 on sales@, batch 1 waits.
+- Live: Chicago and Austin cleaning leads $29, restaurant $39, outreach paused. 0 payers, 0 replies. Entity A: 730 GC leads. Entity B ladder: City record, own site, About owners, site_owners (live Oct 24, dry run 10 of 279), Hunter 5; Bouncer first. Senders hello@ (25/day), sales@. Outreach task: cloud, standing send rule; next Mon Oct 26, 9:40 am. Licenses: L2 sales@, T21 and T24 standing; 9 go Mon.
 - Copy test 1: arm by prospect id, 2 follow-ups max.
 - Question pages daily; backlog fronts B4, C11. Free DD+7 and lead-cost calculators live Oct 24, stage counts e/<page>/, reading Nov 7.
 - To-do: scoreboard todos (coo/SCOREBOARD.md). Repo checks Oct 24: leak-scan, sender-dns, site-links workflows.

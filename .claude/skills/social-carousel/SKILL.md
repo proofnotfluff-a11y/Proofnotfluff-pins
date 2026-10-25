@@ -1,6 +1,6 @@
 # social-carousel (weekly; Todd, Oct 25, 2026)
 
-One job: build one on-brand LinkedIn carousel in Canva from this week's real data, gate it, and hand it to Todd to post. Organic only. Never post, schedule or publish anywhere; Todd posts (CONSTITUTION 3).
+One job: build one on-brand carousel in Canva from this week's real data, gate it, and hand it to Todd. Organic only. Platforms: Instagram and the Facebook Page; LinkedIn off for now (Todd, Oct 25). Posting only in step 7, in a live session, after Todd's "post it" on the final version (coo/DECISIONS-2026-10-25.md).
 
 ## Inputs (Reads)
 - design/CAROUSEL_STANDARD.md (the look), design/DESIGN_DIRECTOR.md (the gate), cmo/CONVERSION_STANDARD.md sections 1, 2 and 5, cmo/HOOKS.md (hook formulas), coo/DECISIONS-2026-10-25.md, cmo/CAROUSELS.md (past carousels, the rotation).
@@ -14,9 +14,11 @@ One job: build one on-brand LinkedIn carousel in Canva from this week's real dat
 3. Canva build. `list-brand-kits`; if a "ProofNotFluff" kit exists use `generate-design` (design_type instagram_post, brand_kit_id), else `create-design` (format "Instagram Post (Portrait)"). The brief carries the standard's exact hex values, sizes, margins, the five bars and every slide's exact text. Pick the candidate closest to the standard, then `create-design-from-candidate`.
 4. Enforce with `read-design` (open_transaction) and `edit-design`: replace any text that differs from the json; `recolor_element` and `format_text` to the exact hexes and sizes; `insert_shape` the five bars and footer where missing; `delete_element` stock art, icons, gradients and stray shapes. Read thumbnails of every page; if not ready, wait and read again. Show nothing to Todd until the commit.
 5. Design gate: a fresh Agent (model opus) that never saw the build gets the thumbnails, design/DESIGN_DIRECTOR.md and design/CAROUSEL_STANDARD.md, loads the `anthropic-skills:impeccable` critique and `design:accessibility-review` skills, and scores the seven criteria. Pass: none under 4, average 4.61 or more. One fix round through step 4; a second FAIL goes to Todd with the scores.
-6. Commit the edit transaction only after all three gates PASS. Export a PDF with `export-design` (link for Todd; this sandbox cannot download it).
+6. Commit the edit transaction only after the facts gate and buyer test PASS; Todd sets the font to Poppins in Canva (the edit API cannot), then the design gate runs on fresh thumbnails. Send Todd the edit link from `read-design` design_metadata (urls.edit_url; stored links go stale).
+7. Post (Todd, Oct 25: "use chrome"): only in a live session, after Todd's "post it" on the final version. Export each slide as JPG with `export-design`. Claude in Chrome on Todd's connected browser: Instagram, switch to the proofnotfluff account (never outlandiastays), Create, add the 7 JPGs in order, paste captions.instagram, Share; then the Proofnotfluff Facebook Page (id 1359232440606337), photo post with the 7 JPGs and captions.facebook. Screenshot before each Share and check account, slide order and caption. Zapier (Instagram for Business, Facebook Pages) is the backup once CLAUDE.md rule 8 allows it.
 
 ## Outputs (Writes)
 - cmo/carousels/<date>.json and one line in cmo/CAROUSELS.md: date, topic, Canva link, gate scores, the UTM link. check_repo exits 0, push to main.
-- One PushNotification to Todd: the Canva edit link, the caption (hook first, 60 to 120 words, no link in the body), the first comment ("Free sample: <url>?utm_source=linkedin&utm_medium=social&utm_campaign=carousel&utm_content=<date>-<topic>"), and the gate scores. On a blocker (preflight, a gate's second FAIL, Canva unreachable) the notification says what and stops.
-- Never: posting, a Canva brand kit or account change, a paid Canva feature, Higgsfield or any video tool.
+- One PushNotification to Todd: the Canva edit link, captions.instagram (ends "Free sample: link in bio (proofnotfluff.com).") and captions.facebook (ends with proofnotfluff.com/go/free-<page slug>/), 60 to 120 words, hook first, and the gate scores. On a blocker (preflight, a gate's second FAIL, Canva unreachable) the notification says what and stops.
+- After posting: both post links in the carousel json and the cmo/CAROUSELS.md line.
+- Never: posting from a scheduled run or without Todd's "post it", posting as any account but proofnotfluff, a Canva brand kit or account change, a paid Canva feature, Higgsfield or any video tool.

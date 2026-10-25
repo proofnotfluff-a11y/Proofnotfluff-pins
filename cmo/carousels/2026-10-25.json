@@ -181,6 +181,14 @@
           "file": "site/pages.json",
           "key": "chicago-construction-cleaning-leads.cta.text ('closest to a final clean first')"
         }
+      ],
+      "barLabels": [
+        "Permits in",
+        "Worth a call"
+      ],
+      "barValues": [
+        "3,061",
+        "1,133"
       ]
     },
     {
@@ -225,7 +233,7 @@
       "role": "cta",
       "ground": "ink",
       "eyebrow": "FREE SAMPLE EVERY MONDAY",
-      "title": "See this week's free sample",
+      "title": "See this week’s free sample",
       "domain": "proofnotfluff.com",
       "facts": [
         {
@@ -242,8 +250,8 @@
   },
   "canva": {
     "design": "DAHZBYo0Dkk",
-    "edit_url": "https://www.canva.com/d/Gez_zzFuMB2xboY",
-    "status": "rebuilt and saved Oct 25 (transaction 5028789099791623701 committed); text in Canva default sans until Todd switches to Poppins"
+    "edit_url": "https://www.canva.com/design/DAHZBYo0Dkk/edit",
+    "status": "final saved Oct 25 2:30 pm; Poppins set in the editor via Chrome"
   },
   "gates": {
     "facts": "PASS after 1 fix (caption builder line)",
@@ -256,7 +264,9 @@
     "todd_oct25": "Todd approved the three buyer-test fixes and Instagram plus Facebook posting after his 'post it' (coo/DECISIONS-2026-10-25.md)",
     "buyer_oct25_3": "FAIL: slide 4 and captions named the occupancy signal; fixed (Todd-approved copy, one fix round)",
     "buyer_oct25_4": "PASS (final copy)",
-    "design_final": "pending: rerun on renders after Todd's Poppins switch"
+    "design_final": "pending: rerun on renders after Todd's Poppins switch",
+    "design_round1_final": "FAIL 4.43 (5,4,4,5,4,4,5): fixed slide 4 focal number, body widows, slide 5 bar values, slide 7 centering",
+    "design_round2_final": "FAIL 4.29 (4,4,5,4,4,4,5); second FAIL to Todd; Todd: 'fix and post'. Applied: slides 1 and 6 centered, slide 5 short labels, slide 7 eyebrow #E88062. Skipped: wider titles (would orphan a word on slides 2 to 4); source line already ink2."
   },
   "captions": {
     "instagram": "1,133 big Chicago building projects are still open in the City's permits, and every one names its builder.\n\nThat matters if you clean, wash windows or pressure wash. The general contractor buys the subcontracted work on each job, so the builder's office is the one to ask about cleaning.\n\nIn this week's list ($500,000+ jobs, last 24 months):\n335 new buildings and 798 renovations\nThe Loop leads with 160\n21 are flagged as close to the final clean\n\nEvery number traces back to City permit records. We do the sorting so you don't have to. Free sample: link in bio (proofnotfluff.com).\n\n#Chicago #CommercialCleaning #Construction",

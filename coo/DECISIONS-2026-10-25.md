@@ -21,3 +21,11 @@
 - [stated] Todd, 12:52 pm: "I want you to post for me". 1:05 pm: "Is LinkedIn the best platform to post on?" 1:19 pm: "do instagram and facebook for now". 1:21 pm: "sounds good" to the plan as written in chat: "Agents may post approved carousels to Instagram and the Facebook page through Zapier, after Todd's 'post it' on the final version. LinkedIn stays off for now." and to the three copy fixes (slide 1 subline, slide 5, caption line).
 - Flow: rebuild and save in Canva, send Todd the link and captions, Todd switches the text to Poppins and replies "post it", then publish through Zapier Instagram for Business (Publish Photo(s), carousel) and Facebook Pages (Todd connects it in Zapier).
 - Pending: CLAUDE.md rule 8 still lists Zapier as never; the live session's edit to narrow it was blocked by a permission check, so Todd edits it or approves that edit. Until then only a live session with Todd posts.
+
+## Carousel posting through Chrome, 2:00 pm
+- Todd: "use chrome". Agents post approved carousels through Claude in Chrome on Todd's connected browser (his tmillen89 Chrome profile), Instagram as proofnotfluff and the Proofnotfluff Facebook Page, in a live session after his "post it" on the final version. Written into .claude/skills/social-carousel/SKILL.md step 7, which is what CLAUDE.md rule 8 requires for Chrome.
+- Facebook Pages is connected in Zapier (page id 1359232440606337), but Zapier stays the backup: the plan is at 102 of 100 tasks this month and CLAUDE.md rule 8 still lists Zapier as never.
+
+## Carousel design gate and Facebook Page, 2:30 pm
+- Design gate FAIL twice (4.43, then 4.29); second FAIL went to Todd. Todd: "fix and post". Final fixes saved in Canva DAHZBYo0Dkk (cmo/carousels/2026-10-25.json gates).
+- Todd: "fill out the ProofNotFluff Facebook profile page". Done in Chrome: P.NF profile picture, cover (homepage lines), bio, website proofnotfluff.com/go, Instagram link, categories Product/service and Business service, service areas Chicago and Austin. Open: Page name to "ProofNotFluff"; public contact email (Todd to choose).

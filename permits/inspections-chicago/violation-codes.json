@@ -1,5 +1,5 @@
 {
- "ranAt": "2026-10-25T01:01:38+00:00",
+ "ranAt": "2026-10-25T22:21:00+00:00",
  "since": "2026-09-13",
  "inspections": 1452,
  "codes": [
@@ -168,9 +168,9 @@
    "count": 334,
    "keywordHits": {
     "roach": 50,
-    "flies": 55,
     "rodent": 89,
     "droppings": 57,
+    "flies": 55,
     "insect": 50,
     "grease": 4,
     "grease_trap": 4,
@@ -339,8 +339,8 @@
    "count": 221,
    "keywordHits": {
     "hood": 93,
-    "grease": 31,
     "exhaust": 71,
+    "grease": 31,
     "filter": 44
    }
   },

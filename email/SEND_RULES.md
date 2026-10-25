@@ -4,7 +4,7 @@ Condensed Oct 22, 2026 from coo/LEADS_DESK.md Run 2 for the outreach-drafter sta
 
 ## What Todd's send covers
 - Only the batch named in the message he answered. It is void once the next Monday's data refresh has run.
-- First re-run the inbox step and re-read each prospect from the CRM. Skip anyone now replied, customer, opted-out, bounced or doNotEmail, and delete their draft.
+- First the inbox check (the chief-of-staff sweep ran within 3 hours; outreach-drafter step 1) and re-read each prospect from the CRM. Skip anyone now replied, customer, opted-out, bounced or doNotEmail, and delete their draft.
 
 ## Which drafts go
 - Only drafts of CRM prospects with status drafted and batch = the named batch date, matched by To address and subject (follow-ups: the reply draft in that prospect's thread). Leave every other draft alone. One at a time, a few seconds apart, each Gmail step in a new tab you open.

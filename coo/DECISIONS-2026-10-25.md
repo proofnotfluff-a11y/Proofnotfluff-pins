@@ -46,3 +46,8 @@
 - Sweep set to 7:20 am and 12:20 pm, not 7:30 and 12:30, so two inboxes have 25 minutes before each brief. Todd corrects in chat if he wants 7:30.
 - Dry run: brief PASS and Sunday review PASS on the live list; the inbox half needs this chat linked to Todd's PC. Todd: "I'll link my PC now". Nothing scheduled until it passes.
 - Held, not on main: the outreach run's inbox step moving to the sweep (archive/pending/2026-10-25-cos-outreach-handoff.patch), so Monday's outreach reads the inbox as before until the sweep is live. With it: the outreach task runs Mondays only.
+
+## Chief of Staff live, 4:46 to 5:05 pm (go chat)
+- [stated] Todd: "If it passes: git apply archive/pending/2026-10-25-cos-outreach-handoff.patch, push after check_repo, change the outreach task to Mondays only, and schedule the three Chief of Staff tasks."
+- Dry run (list view only, nothing opened, no CRM write, no draft): hello@ /u/3/ and sales@ /u/4/ reached, labels match; since Oct 22 7:50 am: hello@ inbox 10, Spam 0; sales@ inbox 1, Spam 0; 0 exact prospect matches, 0 replies, 0 opt-outs, 1 permanent bounce (officeprojanitorial.com, Oct 22 11:46 am, still "sent" in the CRM, the first live sweep marks it), 10 FYI (tool onboarding and Workspace mail); inbox doc check-doc PASS.
+- Done: patch applied (outreach-drafter no longer writes reply status), "PNF leads: outreach and inbox" now Mondays 9:40 am only; scheduled "PNF chief of staff: inbox sweep" (weekdays 7:20, 12:20, Todd's PC), "PNF chief of staff: brief" (weekdays 7:45, 12:45, cloud), "PNF chief of staff: Sunday review" (Sundays 5 pm, cloud; first run tonight).

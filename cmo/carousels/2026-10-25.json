@@ -133,7 +133,7 @@
       "ground": "canvas",
       "eyebrow": "WHY IT MATTERS",
       "title": "21 are close to the final clean",
-      "body": "The City has approved temporary or partial occupancy on 21 of these projects. Each permit names the builder to call.",
+      "body": "The City has approved temporary or partial occupancy on 21 of these projects. We list the builder on each one for you.",
       "source": "Source: City of Chicago Data Portal, Building Permits, pulled Oct 19, 2026",
       "facts": [
         {
@@ -154,7 +154,7 @@
       "ground": "canvas",
       "eyebrow": "WHAT WE DO EVERY MONDAY",
       "title": "3,061 permits in. 1,133 worth a call.",
-      "body": "We drop closed jobs, houses and permits with no builder, then rank the rest by how close each one is to a final clean.",
+      "body": "We sort every permit and rank the rest by how close each job is to a final clean, so you call the right office first.",
       "source": "Source: City of Chicago Data Portal, Building Permits, pulled Oct 19, 2026",
       "facts": [
         {
@@ -220,7 +220,7 @@
       "n": 7,
       "role": "cta",
       "ground": "ink",
-      "eyebrow": "FREE EVERY MONDAY",
+      "eyebrow": "FREE SAMPLE EVERY MONDAY",
       "title": "See this week's free sample",
       "domain": "proofnotfluff.com",
       "sub": "Link in the first comment",
@@ -237,18 +237,20 @@
     "left": "ProofNotFluff",
     "right": "n/7"
   },
-  "caption": "1,133 big Chicago building projects are still open in the City's permits, and every one names its builder.\n\nThat matters if you clean, wash windows or pressure wash. The general contractor buys the subcontracted work on each job, so the permit tells you whose office to ask about cleaning.\n\nFrom City of Chicago permits of $500,000 or more, issued in the last 24 months and still open:\n335 new buildings and 798 renovations\nThe Loop leads with 160\n21 have temporary or partial occupancy approved, so a final clean is close\n\nEvery number traces back to City permit records. We do the sorting so you don't have to. The free sample is in the first comment.\n\n#Chicago #CommercialCleaning #Construction",
+  "caption": "1,133 big Chicago building projects are still open in the City's permits, and every one names its builder.\n\nThat matters if you clean, wash windows or pressure wash. The general contractor buys the subcontracted work on each job, so the builder's office is the one to ask about cleaning.\n\nFrom City of Chicago permits of $500,000 or more, issued in the last 24 months and still open:\n335 new buildings and 798 renovations\nThe Loop leads with 160\n21 have temporary or partial occupancy approved, so a final clean is close\n\nEvery number traces back to City permit records. We do the sorting so you don't have to. The free sample is in the first comment.\n\n#Chicago #CommercialCleaning #Construction",
   "firstComment": "Free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/?utm_source=linkedin&utm_medium=social&utm_campaign=carousel&utm_content=2026-10-25-construction",
   "canva": {
     "design": "DAHZBYo0Dkk",
     "edit_url": "https://www.canva.com/d/304u8DTyyhTf3An",
-    "status": "draft not committed (edit transaction open), design gate second FAIL"
+    "status": "edit session expired before commit; rebuild after copy is settled"
   },
   "gates": {
     "facts": "PASS after 1 fix (caption builder line)",
     "design_round1": "FAIL 3.86 (4,4,3,4,4,4,4)",
     "design_round2": "FAIL 3.86 (4,4,3,4,4,4,4)",
     "blocker": "Canva edit API cannot set a font family; text renders in Arial/Liberation Sans, not Poppins/Inter (typography 3)",
-    "facts_round2": "pending (slide 5 and caption reworked, Todd Oct 25)"
+    "facts_round2": "PASS (slide 5 and caption reworked)",
+    "buyer_round1": "FAIL: slide 5 read as a how-to, slide 4 said to look up the builder on the permit",
+    "buyer_round2": "FAIL: slide 1 subline and caption read as a filter recipe ($500K+, dates, status, dataset); builder line adds nothing; buyer asks whether a contact is included. Sent to Todd."
   }
 }

@@ -682,3 +682,17 @@ body{overflow-x:clip}
 .ld-page .navm summary,.navm summary{padding:0;font-size:inherit;justify-content:center}.ld-page .navm summary::after,.navm summary::after{content:none}
 @media(max-width:380px){table.lc-tbl th,table.lc-tbl td{white-space:normal}}
 .ld-page .navm,.navm{margin:0}.ld-page header.top .brandlink{padding:0}
+/* store v2 fix round 4 (independent review, Oct 24): hero text clear of the records card, roll fade below the stats,
+   lede rest under the tiles, rhythm after card blocks, scroll-edge fades, menu and empty-state polish */
+@media(min-width:1000px){.hx-copy{padding-right:40px}}
+.hf{margin-top:14px;-webkit-mask-image:linear-gradient(transparent,#000 18%,#000 84%,transparent);mask-image:linear-gradient(transparent,#000 18%,#000 84%,transparent)}
+.lede-rest{max-width:68ch;margin:14px 0 0;font-size:16px;color:var(--ink2)}
+.sb+section,.st-grid+section,section.block+section.block{margin-top:52px}
+.sb-card+*,.st-grid+h2{margin-top:48px}
+.otp-in{-webkit-mask-image:linear-gradient(90deg,#000 90%,transparent);mask-image:linear-gradient(90deg,#000 90%,transparent)}
+.otp-in.at-end,.cx-chips.at-end{-webkit-mask-image:none;mask-image:none}
+.cx-empty p:first-child{text-wrap:balance}.cx-empty p:last-child{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center}
+.qa-tnote{font-size:16px;color:var(--ink2)}
+.cx-search input::-webkit-search-cancel-button{filter:grayscale(1)}
+.hf-pause[aria-pressed="true"]{background:var(--ink);color:var(--card);border-color:var(--ink)}
+@media(max-width:879px){body.has-mbar{scroll-padding-bottom:84px}}

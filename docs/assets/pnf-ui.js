@@ -100,7 +100,8 @@
     if (btns.length) doc.addEventListener("keydown", function (e) {
       var t = e.target, typing = t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.tagName === "SELECT" || t.isContentEditable);
       if (((e.key === "k" || e.key === "K") && (e.metaKey || e.ctrlKey)) || (e.key === "/" && !typing && !doc.getElementById("cxQ"))) {
-        e.preventDefault(); open(null);
+        e.preventDefault();
+        if (dlg && dlg.open && (e.key === "k" || e.key === "K")) dlg.close(); else if (!(dlg && dlg.open)) open(null);
       }
     });
 
@@ -146,9 +147,22 @@
     var hf = doc.querySelector(".hf"), hp = hf && doc.querySelector(".hf-pause");
     if (hp && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
       hp.hidden = false;
-      hp.removeAttribute("aria-pressed");
-      hp.addEventListener("click", function () { var on = !hf.classList.contains("paused"); hf.classList.toggle("paused", on); hp.textContent = on ? "Play" : "Pause"; });
+      hp.setAttribute("aria-pressed", "false");   // a toggle with one fixed name; the pressed state says paused
+      hp.addEventListener("click", function () { var on = !hf.classList.contains("paused"); hf.classList.toggle("paused", on); hp.setAttribute("aria-pressed", String(on)); });
     }
+
+    /* 6. phone menu: closes on Escape, on a tap outside, and when a link is chosen */
+    var menu = doc.querySelector(".navm");
+    if (menu) {
+      doc.addEventListener("keydown", function (e) { if (e.key === "Escape" && menu.open) { menu.open = false; menu.querySelector("summary").focus(); } });
+      doc.addEventListener("click", function (e) { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+      menu.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", function () { menu.open = false; }); });
+    }
+    /* 7. sideways rows (chips, on-this-page bar): drop the edge fade once scrolled to the end */
+    [].forEach.call(doc.querySelectorAll(".cx-chips, .otp-in"), function (row) {
+      var edge = function () { row.classList.toggle("at-end", row.scrollLeft + row.clientWidth >= row.scrollWidth - 2); };
+      row.addEventListener("scroll", edge, { passive: true }); window.addEventListener("resize", edge); edge();
+    });
 
     /* 4. on-this-page bar: mark the section in view */
     var otp = doc.querySelector(".otp");

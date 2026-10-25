@@ -2104,7 +2104,7 @@ def leads_page_html(p):
         wp, ww, wh = webp_of(os.path.relpath(shot_f[0], DOCS).replace(os.sep, "/"))
         heroshot = (f'<figure class="ld-heroshot"><img src="{rel}{wp}" width="{ww}" height="{wh}" fetchpriority="high" decoding="async" alt="{E(alt1)}">'
                     '<figcaption>A screen from the members\' app; its counts are from the week it was captured</figcaption></figure>')
-    body = (f'{crumb}<div class="ld-herogrid{" has-shot" if heroshot else ""}"><div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>{hero_act}</div>{heroshot}</div>{tiles}'
+    body = (f'{crumb}<div class="ld-herogrid{" has-shot" if heroshot else ""}"><div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{split_lede(lede)[0]}</p>{hero_act}</div>{heroshot}</div>{tiles}{lede_rest(split_lede(lede)[1])}'
             f'{near_html}{gc_html}{big_html}{method}{shots}{cta_html}{guides_block(p["slug"], rel=rel)}{faq_block(faq)}')
     body = otp_bar(body)
     script = r"""<script>(function(){var list=document.getElementById('ldList');if(list){
@@ -2141,7 +2141,21 @@ io.observe(hero);io.observe(cta)})();</script>"""
                         robots=robots, analytics=analytics_tag()) + body + foot)
 
 
-OTP_LABELS = {"Partial occupancy approved": "Near finish", "Builders with the most big jobs open": "Builders", "Biggest open projects": "Sample",
+def split_lede(lede):
+    """Store v2 review round 4 (Oct 24, 2026): on phones the lead pages showed a 9-line lede before any number. The hero
+    keeps the first sentence; the rest of the same words follows the stat tiles (lede_rest). Nothing is cut."""
+    import re
+    m = re.search(r"\.\s+(?=[A-Z0-9$])", lede)
+    if not m or m.end() >= len(lede) - 1:
+        return lede, ""
+    return lede[:m.start() + 1], lede[m.end():]
+
+
+def lede_rest(rest):
+    return f'<p class="lede-rest">{rest}</p>' if rest else ""
+
+
+OTP_LABELS = {"Partial occupancy approved": "Near finish", "Builders with the most big jobs open": "Builders", "Biggest open projects": "Biggest projects",
               "This week's free sample": "Free sample", "This week's sample": "Sample", "How to use this list": "How to use it",
               "What members get": "What you get", "Questions": "FAQ", "New licenses by trade, last 30 days": "By trade"}
 

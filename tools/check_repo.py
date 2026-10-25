@@ -496,12 +496,12 @@ def check_radar():
     code, olines = _run_tool([os.path.join("tools", "opportunity_score.py"), "--check"])
     if code:
         return err("radar", "; ".join(l for l in olines if l.startswith("ERROR"))[:600] or "opportunity_score --check exit 1")
-    for tool in ("opportunity_score.py", "product_wire.py", "product_health.py", "ai_visibility.py"):
+    for tool in ("opportunity_score.py", "product_wire.py", "product_health.py", "ai_visibility.py", "kimi_intake.py"):
         code, tl = _run_tool([os.path.join("tools", tool), "--selftest"])
         if code:
             return err("radar", f"{tool} --selftest: " + "; ".join(l for l in tl if l.startswith(("FAIL", "ERROR")))[:500])
     ok("radar", f"{sum(1 for l in lines if l.startswith('OK wire') or (l.startswith('WARN wire') and ' pieces wired' in l))} products wired"
-       f" ({warns} legacy gaps as WARN); {olines[-1].split(': ', 1)[-1] if olines else ''}; 4 selftests pass")
+       f" ({warns} legacy gaps as WARN); {olines[-1].split(': ', 1)[-1] if olines else ''}; 5 selftests pass")
 
 
 def check_cos():

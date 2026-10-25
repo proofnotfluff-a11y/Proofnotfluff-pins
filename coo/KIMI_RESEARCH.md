@@ -1,0 +1,173 @@
+# Kimi research rounds (Oct 25, 2026)
+
+Todd, Oct 25, 2026, live chat: turn Kimi K3.1 Pro into a research master that finds where the market opportunity sits and where ProofNotFluff can fill the gaps: forums and reviews, what digital products and services land and what does not, white space, public databases beyond the City of Chicago, and places AI takes things to the next level.
+
+Kimi is run by hand only (Plus plan, personal interactive use; coo/KIMI_AUDIT.md). It never builds, posts, spends or edits anything. Its job is the front end of the radar: find evidence and candidates. Our own gates still decide (scout/RUBRIC.md: scorer, then the demand, data-legal and redteam reviewers, then Todd's go).
+
+## Why it is aimed this way
+Our scout already finds public-data ideas; the reviewers kill most of them for a free substitute or a richer rival, and the live products have 0 payers and 0 replies. More ideas are not the gap. Evidence of buyer pain and willingness to pay, and data nobody packages yet, are. So the rounds go buyer first (R1), market second (R2), data third (R3, R4), and a cross-model kill pass last (R5).
+
+## The rounds
+| Round | Asks | Output (brief section 9) | Lands in |
+|---|---|---|---|
+| R1 | Which small B2B trades complain in public about finding work, what they pay now, which public record would fix it | Schema A, pains | research_notes/kimi-<date>-r1.md (our summary) |
+| R2 | Which public-data and lead products actually sell, how they get customers, what their customers complain about | Schema B, products and gaps | research_notes/kimi-<date>-r2.md |
+| R3 | County, state and federal datasets with a business event a trade would pay for, Cook County and Illinois first | Schema C, ideas | scout/candidates after verification |
+| R4 | Public records locked in PDFs, agendas and free text that AI can now turn into a list | Schema C, ideas | scout/candidates after verification |
+| R5 | Red team: kill our top-ranked ideas | Schema D, verdicts | advisory objections for the fix round |
+
+Repeat R3 and R4 every two weeks with a new Focus line (another metro, another record type). R5 runs after the scorer ranks the new candidates.
+
+## How Todd runs it (about 10 minutes of his time a round, the rest is Kimi's)
+1. In Kimi, start a new task with web search on. Attach coo/kimi/RESEARCH_BRIEF.md.
+2. Paste R1. When it finishes, paste R2 in the same task, then R3, then R4, so each round can use the earlier findings.
+3. Copy each reply whole into one Claude chat with "Kimi R1 reply" (R2, ...) on top.
+4. For R5, Claude sends a candidates file; attach it with the brief in a new Kimi task and paste R5.
+
+## What Claude does with a reply (intake)
+1. Save the reply to data/work/kimi/<date>/<round>.txt and run `python3 tools/kimi_intake.py read <file>`. It parses the JSON, normalizes dashes, drops quotes over 15 words, refuses emails, phones and usernames, runs the scorer's own schema and kill rules (K1 to K5) on every idea, flags duplicates of our products and candidates, and writes the URL list to check.
+2. Open every URL on that list with WebFetch in the same chat, and record each with `kimi_intake.py mark <date> ok|dead|mismatch <url> ...`. A source that is dead or does not say what Kimi says is a mismatch. The rubric's rule stands: every source is fetched and read by us, this run.
+3. `kimi_intake.py promote <date> <slug>` copies an idea into scout/candidates/<slug>.json only when every one of its URLs is marked ok, no kill rule fires and the slug is new. Ideas with a dead or mismatched source are fixed with our own sources or left out.
+4. `python3 tools/opportunity_score.py`, then the radar's reviewers (.claude/skills/radar/SKILL.md step 4) on the top ideas; Decide rows go to Todd as usual.
+5. R1 and R2 become one research note each in our own words (no quotes over 15 words, no usernames), and their pains and gaps are cited in candidate files where they apply.
+6. R5 verdicts do not vote. Each FAIL reason becomes an objection the fix round must answer with sources.
+7. A round with 2 or more invented sources in its first 10 checked is set aside whole, noted in the log, and the prompt is tightened before the next round.
+
+## R1, buyer pain mining
+
+```
+Round: R1, buyer pain mining. Read the attached brief first; it binds this task, including its evidence rules (section 8) and output schemas (section 9).
+Focus: small business-to-business service companies in the US that win work by reaching the right building, project or business at the right moment.
+
+The question: which small-business buyers say, in their own words and in public, that finding good jobs or customers is painful and expensive; what do they pay today to solve it; and which of those pains could a public record solve better than what they use now?
+
+How to work:
+1. Start wide. Run searches like these, swapping the trade (commercial cleaning, pest control, hood cleaning, grease trap, fire protection, elevator, roofing, restoration, pressure washing, parking lot striping, signage, commercial HVAC, security systems, commercial insurance, equipment leasing, POS and payments, linen and uniform, waste hauling):
+   - "where do you get your commercial leads" [trade]
+   - "[lead seller] leads waste of money" or "cancelled [lead seller]" (Angi, Thumbtack, HomeAdvisor, Yelp Ads, Bark, Networx, BuildZoom, ConstructConnect, Dodge, Construction Monitor, Shovels, Apollo, ZoomInfo, Data Axle)
+   - "how do I find new restaurants before they open", "how to find new construction projects to bid", "how to get commercial contracts" [trade]
+2. Read where owners talk: Reddit (r/sweatystartup, r/smallbusiness, trade subreddits), ContractorTalk, trade association forums, Quora, BiggerPockets, YouTube comments, Indie Hackers. Read reviews of the lead sellers above on Trustpilot, G2, Capterra and BBB. Read only.
+3. Go deep on the 6 to 10 trades with the strongest signal. For each: the pain, how many separate threads show it, what they pay now (per lead, per month, per job), the typical job size, and what they wish existed.
+4. For each pain, name the public record that would answer it (a permit, an inspection, a license, a filing, a violation, a contract award, a registration), or write "none".
+5. Look for the opposite too: trades that say referrals give them all the work they can handle. They are not buyers; list them so we skip them.
+
+Do not tell us what we want to hear. If the evidence says small operators will not pay for leads, say it plainly. Stop at 10 pains.
+
+Reply in exactly this shape:
+
+R1 | DATE: (today) | SEARCHES RUN: n | PAGES OPENED: n | BLOCKED: sites that refused you
+
+SUMMARY: five plain sentences: which buyers hurt most, what they pay now, where public records fit, and the one finding that surprised you.
+
+SKIP LIST: trades that do not need leads, one line each with a URL.
+
+Then one fenced json block in Schema A.
+```
+
+## R2, what is selling and what is not
+
+```
+Round: R2, what is selling and what is not. The attached brief binds this task, including sections 8 and 9. If R1 is earlier in this conversation, use its pains.
+Focus: paid products and small services built on public records or open data and sold to small businesses, plus the low-priced lead and data tools those same buyers already pay for.
+
+The question: which of these have real paying customers, how did they get them, what do their own customers complain about, and where is a gap a one-person shop could take?
+
+How to work:
+1. List 20 to 30 sellers. Search TrustMRR, Indie Hackers, Acquire.com, Microns, Flippa, Product Hunt, and the G2 and Capterra categories for sales leads, construction leads and permit data, plus searches like "building permit leads subscription", "new business leads list monthly", "health inspection leads", "liquor license leads", "UCC filing leads", "government contract award leads", "new LLC filings list", "public records leads for contractors".
+2. For each seller, open its own pricing page. Record the list or tool, the public source it rests on, the buyer, the price, and traction you can verify: revenue shown on TrustMRR or Indie Hackers, a sale listing with revenue on Acquire or Flippa, review counts, a stated customer count, years trading. Write "no traction found" when that is the truth.
+3. For the ones with traction, find how they get customers: cold email, search, a marketplace, an app store, partners, a community. Use their blog, their pages that rank, their affiliate program, their founders' own growth posts.
+4. Read their reviews and any shutdown or sale posts. What do customers complain about (stale data, wrong contacts, too broad, too dear, hard to cancel)? Why did the failed ones fail?
+5. Name the gaps: a buyer served badly, a city or county nobody covers, a freshness gap (weekly where a daily signal exists), a missing "why now" field, a price gap, or a format gap (a raw dump where the buyer wants a call list).
+
+Reply in exactly this shape:
+
+R2 | DATE: | SEARCHES RUN: n | PAGES OPENED: n | BLOCKED:
+
+SUMMARY: five plain sentences: what is landing, what is not, how the winners get customers, and the clearest gap.
+
+Then one fenced json block in Schema B.
+```
+
+## R3, public data white space
+
+```
+Round: R3, public data white space. The attached brief binds this task, including sections 5, 6, 8 and 9. If R1 and R2 are earlier in this conversation, tie every idea to their pains and gaps.
+Focus: Cook County and the State of Illinois first, then the counties around the 10 largest US metros.
+
+The question: which public datasets record a business event that a specific trade would pay to hear about within days, and that nobody packages well for that trade yet?
+
+A dataset qualifies only if all of these hold:
+- One record is a business, a commercial building or a project, never a private person or a home.
+- It records a dated event: filed, issued, failed, cited, awarded, registered, cancelled, expired or approved.
+- It refreshes at least weekly and has at least 100 events a month in the area we would sell.
+- The event creates a job or a sale for someone within weeks (a failed fire inspection needs a fire protection contractor; a new liquor license needs POS, insurance, signage and linen vendors; a county contract award needs subcontractors and suppliers).
+- Its terms allow commercial reuse.
+
+Places to start (open each and check; do not trust this list): Cook County open data and offices (Assessor, Treasurer, Clerk, Board of Review, Department of Public Health, procurement and contract awards, Land Bank); Illinois Secretary of State business data, Liquor Control Commission, Department of Public Health, Department of Financial and Professional Regulation, Illinois EPA, Office of the State Fire Marshal (elevators, boilers, storage tanks), Capital Development Board, Illinois Procurement Bulletin, IDOT lettings; federal records filtered to a county (SAM.gov and USAspending awards, SBA loans, OSHA, EPA ECHO, FCC, Census business formation); then other metros' city and county portals, to find a model that works in one place with no seller in another.
+
+Before you include an idea:
+1. Count the events with a query URL or a page that states the number. Cannot count it: null, and say why.
+2. Search for the free substitute (the agency's own alert, search or download a buyer would actually use). Record the URL or the searches you ran.
+3. Search for competitors selling it, with prices, and say whether they ship richer fields than we would.
+4. Find the buyer count from a primary source (a state license roster, Census County Business Patterns, a trade association) and how we would reach an owner by email.
+5. Write the "why call now" line a buyer would read.
+
+Reply in exactly this shape:
+
+R3 | DATE: | FOCUS: | DATASETS OPENED: n | BLOCKED:
+
+SUMMARY: five plain sentences, best idea first, and the richest area you did not have time to finish.
+
+REJECTED: one line per dataset you checked and threw out, with the reason (free substitute, too few events, person-level, terms, rival). This list matters as much as the ideas.
+
+Then one fenced json block in Schema C, at most 8 ideas, best first, round "R3".
+```
+
+## R4, the AI unlock
+
+```
+Round: R4, the AI unlock. The attached brief binds this task, including sections 5, 6, 8 and 9. If earlier rounds are in this conversation, use their pains and gaps and do not repeat their ideas.
+Focus: public records that are free but locked in PDFs, scans, meeting agendas, free-text fields or one-record-at-a-time search pages; Illinois first, then anywhere in the US.
+
+The question: where is valuable business information public but unusable without a person reading it, so nobody sells it cleanly yet, and AI can now turn it into a clean weekly list a trade would pay for?
+
+Where to look (check each yourself):
+- Agendas and minutes of zoning boards, plan commissions, city councils, liquor commissions, county boards, school boards and park districts: special uses, variances, new liquor licenses, approved developments, awarded contracts.
+- Bid and award notices posted as PDFs by cities, counties, school districts, transit and water agencies: who won, what was bought, when it renews.
+- Public notices where the subject is a business or a project (never foreclosures on homes or anything about a private person).
+- Free-text fields inside open datasets (permit work descriptions, inspection comments, violation narratives) where a classifier finds a trade's jobs that keyword filters miss.
+- Scanned filings and slow search portals that show one record at a time.
+Check each source's terms. If it forbids automated collection, drop it and say so.
+
+For each idea also answer, inside kimi.aiAngle and kimi.inferred:
+- What exactly the AI does (read a PDF table, classify a description, match a name to a business, pull a date), how accurate it must be, and how we would check it.
+- How many useful records a month, counted from real pages you opened (for example, the items on the last 4 agendas).
+- Why nobody has done it: too small, too messy, or already done (search for it and say what you found).
+
+Reply in exactly this shape:
+
+R4 | DATE: | FOCUS: | SOURCES OPENED: n | BLOCKED:
+
+SUMMARY: five plain sentences.
+
+REJECTED: one line per source thrown out, with the reason.
+
+Then one fenced json block in Schema C, at most 6 ideas, round "R4", with kimi.aiAngle filled in for every idea.
+```
+
+## R5, red team (after our scorer ranks the new ideas)
+
+```
+Round: R5, red team. Two files are attached: our brief (it binds this task, including sections 8 and 9) and a candidates file with the ideas our scorer ranked highest and our sources.
+
+Your job is to kill these ideas. For each one, argue as hard and as honestly as you can that it makes $0 by Jan 31, 2027, then say whether your best argument holds.
+
+For each idea:
+1. Open its data source and terms yourself. Is the count real, is the cadence real, is reuse allowed?
+2. Search for a free substitute the buyer would actually use, and for any competitor cheaper than our price or richer in fields. Use at least five different phrasings.
+3. From the buyer's own words in public (forums, reviews), not from our file, would they pay our price?
+4. Name the one number in our file you trust least, and why.
+5. If it survives, name the cheapest test inside our rules (no ads, no forum posts, no spend) that would show demand in 14 days, and the pass mark.
+
+Reply: R5 | DATE: | IDEAS REVIEWED: n, then one fenced json block in Schema D.
+```

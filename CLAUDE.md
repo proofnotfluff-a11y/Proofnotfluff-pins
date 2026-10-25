@@ -19,4 +19,4 @@ Read this, coo/HANDOFF.md, coo/CONSTITUTION.md (it binds first), then only the o
 5. No person's data in the repo (except sealed with tools/data_box.py), scoreboard or logs. Named prospects live in the CRM and data/ (Todd, Oct 22).
 6. No em or en dashes. Plain words. No invented people, numbers or claims.
 7. Push: check_repo exits 0, git push origin HEAD:main, never force.
-8. Tools: the repo, GitHub MCP, ArtifactData, Claude Docs for write-ups, web search and fetch, Agent checkers, Claude in Chrome only where a SKILL says. Never Drive, the Gmail connector, Zapier, Typefully, Lovable, QuickBooks, Canva, Adobe or Supermetrics.
+8. Tools: the repo, GitHub MCP, ArtifactData, Claude Docs for write-ups, web search and fetch, Agent checkers, Claude in Chrome only where a SKILL says. Never Drive, the Gmail connector, Zapier, Typefully, Lovable, QuickBooks, Adobe or Supermetrics.

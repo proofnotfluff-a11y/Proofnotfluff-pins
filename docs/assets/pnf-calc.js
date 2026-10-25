@@ -20,7 +20,14 @@
   "use strict";
   var SE_RATE = 0.153, SE_BASE = 0.9235; // IRS Topic 554, Schedule SE (checked Oct 6, 2026)
 
-  function num(v) { var n = parseFloat(String(v).replace(/[$,%\s]/g, "")); return isFinite(n) ? n : 0; }
+  // Postel's law (Oct 25, UX principles): "$1,200", "1200", "25%" and "1.2k" all read as numbers; anything else counts as 0
+  function parseNum(v) {
+    var s = String(v).trim().toLowerCase().replace(/[$,%\s]/g, ""), mult = 1;
+    if (/^-?[\d.]+k$/.test(s)) { mult = 1e3; s = s.slice(0, -1); } else if (/^-?[\d.]+m$/.test(s)) { mult = 1e6; s = s.slice(0, -1); }
+    if (!/^-?(\d+\.?\d*|\.\d+)$/.test(s)) return NaN;
+    return parseFloat(s) * mult;
+  }
+  function num(v) { var n = parseNum(v); return isFinite(n) ? n : 0; }
   function ceilTo(x, step) { return Math.ceil(x / step - 1e-9) * step; }
 
   // #20 Hourly Rate Quick Calculator
@@ -835,6 +842,35 @@
         new IntersectionObserver(function (es) { document.body.classList.toggle("mbar-off", es[0].isIntersecting); },
           { threshold: 0.2 }).observe(card);
       }
+      /* Errors (Oct 25, UX principles: prevent errors, make them recoverable): a blank, a word or a negative number gets a
+         short note under its field (the math still runs), and "Reset to the example" puts every field back. */
+      var calc = document.getElementById("calc");
+      if (calc) {
+        var ins = [].slice.call(calc.querySelectorAll("input[data-in]"));
+        var check = function (el) {
+          var raw = el.value.trim(), n = parseNum(raw), msg = raw === "" ? "Type a number. Use 0 if there is none." :
+            !isFinite(n) ? "Use digits, like 1200 or 1,200." : n < 0 ? "Use 0 or more." : "";
+          var id = el.id + "-err", note = document.getElementById(id);
+          if (msg && !note) {
+            note = document.createElement("small"); note.id = id; note.className = "calc-err";
+            var row = el.closest(".row") || el.parentNode; row.appendChild(note);
+          }
+          if (note) note.textContent = msg;
+          if (msg) { el.setAttribute("aria-invalid", "true"); el.setAttribute("aria-describedby", id); }
+          else { el.removeAttribute("aria-invalid"); if (el.getAttribute("aria-describedby") === id) el.removeAttribute("aria-describedby"); if (note) note.remove(); }
+        };
+        calc.addEventListener("input", function (e) { if (e.target.matches && e.target.matches("input[data-in]")) check(e.target); });
+        var bar = document.createElement("div"); bar.className = "calc-reset";
+        bar.innerHTML = '<button type="button" class="st-btn2">Reset to the example</button><span class="sr" aria-live="polite"></span>';
+        calc.appendChild(bar);
+        bar.querySelector("button").addEventListener("click", function () {
+          ins.forEach(function (el) { el.value = el.defaultValue; check(el); });
+          calc.querySelectorAll("select[data-in]").forEach(function (s) { [].forEach.call(s.options, function (o) { o.selected = o.defaultSelected; }); });
+          calc.dispatchEvent(new Event("input", { bubbles: true }));
+          bar.querySelector("span").textContent = "Back to the example numbers.";
+        });
+      }
+
       if (!("MutationObserver" in window)) return;
       document.querySelectorAll(".tile [data-out], .lines [data-out]").forEach(function (el) {
         var last = el.textContent;
@@ -849,6 +885,6 @@
 
   var api = { stages: stages, leadCost: leadCost, payoutGap: payoutGap, seTax: seTax, hourly: hourly, service: service, serviceSqft: serviceSqft, dayRate: dayRate, cleaningSqft: cleaningSqft, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
     strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, profitLoss: profitLoss, cakeQuote: cakeQuote, unitCost: unitCost, handmadePrice: handmadePrice, markup: markup, breakEven: breakEven, choreSplit: choreSplit, clientMix: clientMix, cakeSizes: CAKE_SIZES, num: num, money: money, ceilTo: ceilTo,
-    wire: wire, after: after };
+    wire: wire, after: after, parseNum: parseNum };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;
 })(this);

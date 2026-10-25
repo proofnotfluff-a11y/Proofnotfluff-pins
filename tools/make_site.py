@@ -2795,9 +2795,12 @@ def home_html(pages, live, doors=False):
               '<p>Plain answers with this week\'s numbers, written by a finance executive.</p><ul class="st-qs">'
               + "".join(f'<li><a href="{q["slug"]}/"><span><b>{E(q["h1"])}</b><small>{E(q.get("eyebrow", ""))}</small></span>{ARROW}</a></li>' for q in LIVE_QUESTIONS[:5])
               + '</ul></section>')
+    # peak-end and serial position (Oct 25, UX principles): the page ends on the trust promise and the one next step
     band = ('<section class="st-band" aria-labelledby="trust-title"><h2 id="trust-title">Public records, read by a finance executive.</h2>'
             '<p>Every number here comes from the cities\' own open data or our own workbooks, with the date we pulled it. No business on a list '
-            'endorses or works with ProofNotFluff, and we never contact anyone for you. Public information for planning sales calls; not legal or business advice and no promise of work.</p></section>')
+            'endorses or works with ProofNotFluff, and we never contact anyone for you. Public information for planning sales calls; not legal or business advice and no promise of work.</p>'
+            + ('<p class="st-band-act"><a class="btn ld-btnbig" href="#trades">Pick your trade, see this week\'s sample</a></p>' if not doors else "")
+            + '</section>')
     org = {"@context": "https://schema.org", **ORG, "url": BASE, "logo": BASE + "assets/logo-512.png"}
     site = {"@context": "https://schema.org", "@type": "WebSite", "name": "ProofNotFluff", "alternateName": "Proof Not Fluff", "url": BASE,
             "publisher": {"@type": "Organization", "name": "ProofNotFluff", "url": BASE}}

@@ -40,7 +40,7 @@
       if (index) return cb();
       fetch(base + "assets/search.json").then(function (r) { return r.json(); }).then(function (d) {
         index = d.map(function (x) { x.h = norm(x.t + " " + x.g + " " + x.d + " " + x.k); return x; }); cb();
-      }).catch(function () { index = []; status.textContent = "Search could not load. Try the menu links instead."; });
+      }).catch(function () { index = null; if (status) status.textContent = "Search could not load. Try the menu links instead."; });
     }
     function titleHits(x, words) { var tt = " " + norm(x.t), n = 0; words.forEach(function (w) { if (tt.indexOf(" " + w) >= 0) n++; }); return n; }
     function render() {
@@ -96,7 +96,12 @@
       input.value = ""; input.focus();
       load(render);
     }
-    btns.forEach(function (b) { b.hidden = false; b.addEventListener("click", function () { open(b); }); });
+    // Doherty threshold (Oct 25, UX principles): fetch the index when a hand heads for the button, so results show at once
+    var warm = function () { if (!index) load(function () {}); };
+    btns.forEach(function (b) {
+      b.hidden = false; b.addEventListener("click", function () { open(b); });
+      ["pointerenter", "focus", "touchstart"].forEach(function (ev) { b.addEventListener(ev, warm, { passive: true, once: true }); });
+    });
     if (btns.length) doc.addEventListener("keydown", function (e) {
       var t = e.target, typing = t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.tagName === "SELECT" || t.isContentEditable);
       if (((e.key === "k" || e.key === "K") && (e.metaKey || e.ctrlKey)) || (e.key === "/" && !typing && !doc.getElementById("cxQ"))) {

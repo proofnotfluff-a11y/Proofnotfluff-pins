@@ -53,8 +53,8 @@ Every source you cite is opened again by a second AI before anything is built. I
 1. Open every page you cite. If a page will not open, do not cite it; name the site under BLOCKED.
 2. Every source is {"url": "...", "date": "YYYY-MM-DD"}: the date it was posted or published, or the day you read it when it has no date.
 3. Quotes are 15 words or fewer. No usernames, and no person's name, email or phone, ever.
-4. Prefer the last 24 months. Older sources are marked "old" in the note.
-5. Count, never estimate: a count is a number a page states or a query you ran (for Socrata portals, a $select=count(*) URL with a date filter). Otherwise null, with the reason.
+4. For Schema C (R3, R4), every source date must be within the last 12 months (terms of use pages: 10 years), or our scorer gives that factor 0. For Schemas A, B, D and E, prefer the last 24 months and mark older sources "old".
+5. Count, never estimate: a count is a number a page states or a query you ran (for Socrata portals, a $select=count(*) URL with a date filter; put that URL in recordsSource.url and paste the exact value the portal returned, such as [{"count":"412"}], in kimi.observed). If you could not run the query, the count is null, with the reason.
 6. Label claims OBSERVED (a source states it) or INFERRED (your reasoning).
 7. Read only. Never post, comment, sign up, download software or message anyone. Skip any site whose terms forbid automated collection.
 8. Honest beats hopeful. Fewer real findings beat many padded ones. "Not found" is a useful answer.
@@ -62,17 +62,30 @@ Every source you cite is opened again by a second AI before anything is built. I
 
 ## 9. Output schemas (copy the keys exactly)
 
+Schema E, live buyers (round R0):
+```json
+{"round": "R0", "buyers": [
+ {"buyer": "one of the four live buyers in section 2",
+  "paysFor": [{"form": "per lead|monthly list|pay on close|bid service|ads|none found", "seller": "", "price": "as the source states it, or null", "url": "", "date": ""}],
+  "channels": [{"channel": "how a seller reached them: cold email, search, trade show, association, marketplace, referral, phone", "url": "", "date": "", "label": "OBSERVED"}],
+  "wants": "the offer form they say they want, in your words",
+  "evidence": [{"url": "", "date": "", "quote": "15 words or fewer", "kind": "forum|review|video|article|job post", "label": "OBSERVED"}],
+  "diagnosis": "wrong buyer|wrong offer form|wrong channel|wrong price|unclear", "why": "two sentences", "change": "the one change most likely to get a first payer", "confidence": "high|medium|low"}]}
+```
+
 Schema A, pains (round R1):
 ```json
 {"round": "R1", "pains": [
  {"id": "p1", "buyer": "the trade in plain words", "pain": "one line in your words", "threads": 0,
-  "paysNow": {"amount": "$40 a lead, $300 a month", "for": "what they buy", "source": {"url": "", "date": ""}},
+  "paysNow": {"amount": "one figure with its unit, as the source states it, or null", "for": "what they buy", "source": {"url": "", "date": ""}},
   "jobValue": {"amount": "typical job size", "source": {"url": "", "date": ""}},
   "publicRecord": "the record that would solve it, or none",
   "evidence": [{"url": "", "date": "", "quote": "15 words or fewer", "kind": "forum|review|video|article|job post", "label": "OBSERVED"}],
   "confidence": "high|medium|low"}]}
 ```
-`threads` is the number of distinct threads or reviews you read that show this pain.
+`threads` must equal the number of entries in `evidence`: one entry per thread or review you opened, each with its own URL. A thread you did not open does not count.
+
+Every example value in these schemas is a placeholder. Replace it or use null.
 
 Schema B, products and gaps (round R2):
 ```json
@@ -91,7 +104,7 @@ Schema C, ideas (rounds R3 and R4; this is our scorer's own format, so every key
  {"schema": "pnf.opportunity.v1", "slug": "lowercase-words-with-hyphens", "name": "buyer-facing product name", "status": "new",
   "addedAt": "YYYY-MM-DD", "pitch": "one line: what list, for whom, why now", "categories": ["trade words"],
   "provenAbroad": [{"what": "the same model sold in another place or market", "url": "", "date": ""}],
-  "buyer": {"who": "the trade that pays", "count": null, "countSource": {"url": "", "date": ""},
+  "buyer": {"who": "the trade that pays", "count": null, "countSource": {"url": "the page that shows the number itself (a Census table URL with NAICS and county, or a roster search result), not a landing page", "date": ""},
             "reach": "how we reach an owner by email", "reachSource": {"url": "", "date": ""}},
   "price": {"monthly": 29, "reason": "why this price, inside $29 to $199",
             "competitors": [{"name": "", "monthly": 0, "url": "", "date": "", "richer": false}],
@@ -101,7 +114,7 @@ Schema C, ideas (rounds R3 and R4; this is our scorer's own format, so every key
   "data": {"publisher": "", "dataset": "", "subject": "what one record describes (a business, a building, a project)",
            "url": "", "apiUrl": "", "cadence": "daily|weekly|monthly", "lastUpdated": "YYYY-MM-DD",
            "recordsPerMonth": null, "recordsSource": {"url": "", "date": ""}, "apiStable": true,
-           "license": {"commercialUse": "allowed|forbidden|unclear", "url": "", "date": "", "note": "the terms in your words"}},
+           "license": {"commercialUse": "allowed|forbidden|unclear", "url": "the terms page itself, not the dataset page", "date": "", "note": "the clause that allows or forbids commercial reuse, quoted, 15 words or fewer"}},
   "build": {"days": 0, "maintHoursMonth": 0, "reuses": []},
   "fit": {"samePortal": false, "existingTools": [], "sameBuyerTypes": false},
   "overlap": "a product in section 6 this touches, or empty",

@@ -5,11 +5,12 @@ Todd, Oct 25, 2026, live chat: turn Kimi K3.1 Pro into a research master that fi
 Kimi is run by hand only (Plus plan, personal interactive use; coo/KIMI_AUDIT.md). It never builds, posts, spends or edits anything. Its job is the front end of the radar: find evidence and candidates. Our own gates still decide (scout/RUBRIC.md: scorer, then the demand, data-legal and redteam reviewers, then Todd's go).
 
 ## Why it is aimed this way
-Our scout already finds public-data ideas; the reviewers kill most of them for a free substitute or a richer rival, and the live products have 0 payers and 0 replies. More ideas are not the gap. Evidence of buyer pain and willingness to pay, and data nobody packages yet, are. So the rounds go buyer first (R1), market second (R2), data third (R3, R4), and a cross-model kill pass last (R5).
+Our scout already finds public-data ideas; the reviewers kill most of them for a free substitute or a richer rival, and the live products have 0 payers and 0 replies. More ideas are not the gap. Evidence of buyer pain and willingness to pay, and data nobody packages yet, are. So the rounds start with the buyers we already have (R0: why 0 replies, the wrong buyer, offer form, channel or price), then buyer pain (R1), the market (R2), data (R3, R4), and a cross-model kill pass last (R5). R0 is the round most likely to move the first payer.
 
 ## The rounds
 | Round | Asks | Output (brief section 9) | Lands in |
 |---|---|---|---|
+| R0 | For our four live buyers: who pays anyone for leads today, in what form, through which channel, and why we get 0 replies | Schema E, live buyers | coo/DECISIONS proposal to Todd; nothing changes without his word |
 | R1 | Which small B2B trades complain in public about finding work, what they pay now, which public record would fix it | Schema A, pains | research_notes/kimi-<date>-r1.md (our summary) |
 | R2 | Which public-data and lead products actually sell, how they get customers, what their customers complain about | Schema B, products and gaps | research_notes/kimi-<date>-r2.md |
 | R3 | County, state and federal datasets with a business event a trade would pay for, Cook County and Illinois first | Schema C, ideas | scout/candidates after verification |
@@ -20,8 +21,8 @@ Repeat R3 and R4 every two weeks with a new Focus line (another metro, another r
 
 ## How Todd runs it (about 10 minutes of his time a round, the rest is Kimi's)
 1. In Kimi, start a new task with web search on. Attach coo/kimi/RESEARCH_BRIEF.md.
-2. Paste R1. When it finishes, paste R2 in the same task, then R3, then R4, so each round can use the earlier findings.
-3. Copy each reply whole into one Claude chat with "Kimi R1 reply" (R2, ...) on top.
+2. Paste R0. When it finishes, paste R1 in the same task, then R2, R3 and R4, so each round can use the earlier findings.
+3. Copy each reply whole into one Claude chat with "Kimi R0 reply" (R1, ...) on top.
 4. For R5, Claude sends a candidates file; attach it with the brief in a new Kimi task and paste R5.
 
 ## What Claude does with a reply (intake)
@@ -32,6 +33,31 @@ Repeat R3 and R4 every two weeks with a new Focus line (another metro, another r
 5. R1 and R2 become one research note each in our own words (no quotes over 15 words, no usernames), and their pains and gaps are cited in candidate files where they apply.
 6. R5 verdicts do not vote. Each FAIL reason becomes an objection the fix round must answer with sources.
 7. A round with 2 or more invented sources in its first 10 checked is set aside whole, noted in the log, and the prompt is tightened before the next round.
+
+## R0, why our live buyers have not replied
+
+```
+Round: R0, our live buyers. Read the attached brief first; it binds this task, including its evidence rules (section 8) and output schemas (section 9).
+Focus: the four buyers we already sell to: post-construction cleaning companies, pest control companies, vendors to restaurants (hood cleaning, grease trap, POS), and vendors to newly licensed businesses. Chicago and Austin first, then anywhere in the US.
+
+The question: do these exact trades pay anyone for leads today; in what form (per lead, a monthly list, pay on close, a bid service, ads); through which channel did the seller reach them; and so, is our 0 replies on about 57 cold emails most likely the wrong buyer, the wrong offer form, the wrong channel or the wrong price?
+
+How to work:
+1. For each buyer, find sellers that sell leads, lists, bid feeds or appointments to that trade, and open their pricing pages. Record the form and the price as the page states it.
+2. Find how those sellers reach the trade: trade associations and their vendor programs, trade shows, Facebook-style groups that are public, marketplaces, search pages that rank, cold email, phone teams, software the trade already uses (field service and route software with built-in lead or marketplace features).
+3. Read the trade's own words (forums, reviews of lead sellers, YouTube comments, trade magazine articles) on buying leads: what made them pay, what made them cancel, whether they read cold email at all, and what they want instead.
+4. For each buyer, give a diagnosis with evidence and the one change most likely to get a first payer. Our options include a different buyer inside the same data, a different form (pay per lead, a one-time list, a free week), a different channel inside our rules, or a different price.
+
+Do not tell us what we want to hear. If these trades do not buy leads in any form, say it.
+
+Reply in exactly this shape:
+
+R0 | DATE: (today) | SEARCHES RUN: n | PAGES OPENED: n | BLOCKED: sites that refused you
+
+SUMMARY: four plain sentences, one per buyer: their diagnosis and the change.
+
+Then one fenced json block in Schema E.
+```
 
 ## R1, buyer pain mining
 
@@ -46,7 +72,7 @@ How to work:
    - "where do you get your commercial leads" [trade]
    - "[lead seller] leads waste of money" or "cancelled [lead seller]" (Angi, Thumbtack, HomeAdvisor, Yelp Ads, Bark, Networx, BuildZoom, ConstructConnect, Dodge, Construction Monitor, Shovels, Apollo, ZoomInfo, Data Axle)
    - "how do I find new restaurants before they open", "how to find new construction projects to bid", "how to get commercial contracts" [trade]
-2. Read where owners talk: Reddit (r/sweatystartup, r/smallbusiness, trade subreddits), ContractorTalk, trade association forums, Quora, BiggerPockets, YouTube comments, Indie Hackers. Read reviews of the lead sellers above on Trustpilot, G2, Capterra and BBB. Read only.
+2. Read where owners talk: Reddit (r/sweatystartup, r/smallbusiness, trade subreddits), ContractorTalk, trade association forums, Quora, BiggerPockets, YouTube comments, Indie Hackers. Read reviews of the lead sellers above on Trustpilot and BBB. Skip G2 and Capterra unless you can open the page and their terms allow it; if you skip them, say so under BLOCKED. Read only.
 3. Go deep on the 6 to 10 trades with the strongest signal. For each: the pain, how many separate threads show it, what they pay now (per lead, per month, per job), the typical job size, and what they wish existed.
 4. For each pain, name the public record that would answer it (a permit, an inspection, a license, a filing, a violation, a contract award, a registration), or write "none".
 5. Look for the opposite too: trades that say referrals give them all the work they can handle. They are not buyers; list them so we skip them.
@@ -73,10 +99,10 @@ Focus: paid products and small services built on public records or open data and
 The question: which of these have real paying customers, how did they get them, what do their own customers complain about, and where is a gap a one-person shop could take?
 
 How to work:
-1. List 20 to 30 sellers. Search TrustMRR, Indie Hackers, Acquire.com, Microns, Flippa, Product Hunt, and the G2 and Capterra categories for sales leads, construction leads and permit data, plus searches like "building permit leads subscription", "new business leads list monthly", "health inspection leads", "liquor license leads", "UCC filing leads", "government contract award leads", "new LLC filings list", "public records leads for contractors".
+1. List 12 to 15 sellers, each with its pricing page open. Search TrustMRR, Indie Hackers, Acquire.com, Microns, Flippa, Product Hunt, and the G2 and Capterra categories for sales leads, construction leads and permit data, plus searches like "building permit leads subscription", "new business leads list monthly", "health inspection leads", "liquor license leads", "UCC filing leads", "government contract award leads", "new LLC filings list", "public records leads for contractors".
 2. For each seller, open its own pricing page. Record the list or tool, the public source it rests on, the buyer, the price, and traction you can verify: revenue shown on TrustMRR or Indie Hackers, a sale listing with revenue on Acquire or Flippa, review counts, a stated customer count, years trading. Write "no traction found" when that is the truth.
 3. For the ones with traction, find how they get customers: cold email, search, a marketplace, an app store, partners, a community. Use their blog, their pages that rank, their affiliate program, their founders' own growth posts.
-4. Read their reviews and any shutdown or sale posts. What do customers complain about (stale data, wrong contacts, too broad, too dear, hard to cancel)? Why did the failed ones fail?
+4. Read their reviews and any shutdown or sale posts. What do customers complain about (stale data, wrong contacts, too broad, too expensive, hard to cancel)? Why did the failed ones fail?
 5. Name the gaps: a buyer served badly, a city or county nobody covers, a freshness gap (weekly where a daily signal exists), a missing "why now" field, a price gap, or a format gap (a raw dump where the buyer wants a call list).
 
 Reply in exactly this shape:
@@ -92,7 +118,7 @@ Then one fenced json block in Schema B.
 
 ```
 Round: R3, public data white space. The attached brief binds this task, including sections 5, 6, 8 and 9. If R1 and R2 are earlier in this conversation, tie every idea to their pains and gaps.
-Focus: Cook County and the State of Illinois first, then the counties around the 10 largest US metros.
+Focus: Cook County and the State of Illinois only. Other metros come in later runs with their own Focus line.
 
 The question: which public datasets record a business event that a specific trade would pay to hear about within days, and that nobody packages well for that trade yet?
 
@@ -152,7 +178,7 @@ SUMMARY: five plain sentences.
 
 REJECTED: one line per source thrown out, with the reason.
 
-Then one fenced json block in Schema C, at most 6 ideas, round "R4", with kimi.aiAngle filled in for every idea.
+Then one fenced json block in Schema C, at most 6 ideas, round "R4" at the top level and in kimi.round, with kimi.aiAngle filled in for every idea.
 ```
 
 ## R5, red team (after our scorer ranks the new ideas)

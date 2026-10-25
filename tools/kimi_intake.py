@@ -5,7 +5,7 @@ Kimi K3.1 Pro is run by hand as an outside researcher. Its replies are data, nev
 pasted reply into checked work files and lets an idea into scout/candidates only after we have opened every source
 ourselves (scout/RUBRIC.md: every source fetched and read by us, this run).
 
-  read <reply.txt> [--date D]          parse the fenced JSON (brief schemas A to D), clean it, run the scorer's own
+  read <reply.txt> [--date D]          parse the fenced JSON (brief schemas A to E), clean it, run the scorer's own
                                        schema and kill rules on ideas, flag duplicates, write
                                        data/work/kimi/<date>/<round>.json and urls.txt (every URL to open)
   mark <date> ok|dead|mismatch <url>.. record what we found when we opened each URL (data/work/kimi/<date>/verified.json)
@@ -28,14 +28,13 @@ WORK = os.path.join(ROOT, "data", "work", "kimi")
 CAND = osc.CAND
 LAUNCHES = os.path.join(ROOT, "launches")
 OPP_JSON = osc.OUT_JSON
-ROUNDS = ("R1", "R2", "R3", "R4", "R5")
-LIST_KEY = {"R1": "pains", "R2": "products", "R3": "ideas", "R4": "ideas", "R5": "verdicts"}
+ROUNDS = ("R0", "R1", "R2", "R3", "R4", "R5")
+LIST_KEY = {"R0": "buyers", "R1": "pains", "R2": "products", "R3": "ideas", "R4": "ideas", "R5": "verdicts"}
 QUOTE_MAX = 15
 EMAIL = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]+")
 PHONE = re.compile(r"(?<!\d)(\+?1[\s.-]?)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}(?!\d)")
 USERNAME = re.compile(r"(?<![\w/])(u/|/u/|@)[A-Za-z0-9_-]{3,}")
 FENCE = re.compile(r"```(?:json)?\s*\n(.*?)\n```", re.S)
-URL_KEYS = ("url", "apiUrl", "countQuery")
 
 
 def chicago_today():
@@ -174,7 +173,7 @@ def cmd_read(path, date):
     for e in errs:
         print(f"FAIL parse: {e}")
     if not blocks:
-        print("FAIL parse: no fenced JSON block with a round R1 to R5 found; ask Kimi to resend the JSON block only")
+        print("FAIL parse: no fenced JSON block with a round R0 to R5 found; ask Kimi to resend the JSON block only")
         return 1
     os.makedirs(day_dir(date), exist_ok=True)
     allurls = {}
@@ -199,7 +198,10 @@ def cmd_read(path, date):
                 allurls.setdefault(u, []).append(f"{rnd}:{label}")
             kept.append(it)
         out = os.path.join(day_dir(date), f"{rnd}.json")
-        json.dump({"round": rnd, "readAt": date, key: kept}, open(out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+        extra = {"gaps": clean(b.get("gaps") or [])[0]} if rnd == "R2" else {}
+        json.dump({"round": rnd, "readAt": date, key: kept, **extra}, open(out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+        for u in urls_in(extra):
+            allurls.setdefault(u, []).append(f"{rnd}:gaps")
         print(f"OK {rnd}: {len(kept)} of {len(items)} kept -> {os.path.relpath(out, ROOT)}")
     up = os.path.join(day_dir(date), "urls.txt")
     prior = {}
@@ -375,7 +377,10 @@ def selftest():
         # R1 carries trailing commas, a planted model slip that loads_loose must tolerate
         r1 = ('{"round": "R1", "pains": [{"id": "p1", "buyer": "pest control", "pain": "x", '
               '"evidence": [{"url": "https://example.org/p", "date": "2026-08-01", "quote": "short and fine",},],},],}')
-        reply = f"R3 | DATE: 2026-10-25\nSUMMARY: x\n```json\n{r3}\n```\n\n```json\n{r1}\n```\n\n```json\n{{not json\n```\n"
+        r2 = json.dumps({"round": "R2", "products": [], "gaps": [{"id": "g1", "gap": "no daily list \u2014 anywhere", "buyer": "pest"}]})
+        r0 = json.dumps({"round": "R0", "buyers": [{"buyer": "pest control", "evidence": [{"url": "https://example.org/r0", "date": "2026-10-01", "quote": "ok"}]}]})
+        reply = (f"R3 | DATE: 2026-10-25\nSUMMARY: x\n```json\n{r3}\n```\n\n```json\n{r1}\n```\n\n```json\n{{not json\n```\n"
+                 f"```json\n{r2}\n```\n```json\n{r0}\n```\n")
         rp = os.path.join(tmp, "reply.txt")
         open(rp, "w").write(reply)
         import io, contextlib
@@ -399,6 +404,9 @@ def selftest():
         want("dash replaced" in out, "an em dash is replaced")
         want("OK R1: 1 of 1 kept" in out, "trailing commas in a block are tolerated and R1 is kept")
         saved_r3 = json.load(open(os.path.join(WORK, "2026-10-25", "R3.json")))
+        r2s = json.load(open(os.path.join(WORK, "2026-10-25", "R2.json")))
+        want(r2s.get("gaps") and "\u2014" not in r2s["gaps"][0]["gap"], "R2 gaps are kept and cleaned")
+        want("OK R0: 1 of 1 kept" in out and "https://example.org/r0" in open(os.path.join(WORK, "2026-10-25", "urls.txt")).read(), "R0 is read and its urls listed")
         raw3 = json.dumps(saved_r3, ensure_ascii=False)
         want("owner@example.com" not in raw3 and "555-0142" not in raw3 and "cleanpro99" not in raw3, "no email, phone or username is saved")
         want("—" not in json.dumps(saved_r3, ensure_ascii=False), "no em dash is saved")

@@ -115,7 +115,7 @@ def page_html(p):
             '<figcaption>Illustration. The list shows each business\'s name, address, license and what the City\'s record says about it.</figcaption></figure>')
     body = (f'{crumb}<div class="lc-herogrid"><div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{M.split_lede(lede)[0]}</p>'
             f'<div class="ld-heroact rl-act" id="ldHeroCta"><a class="btn ld-btnbig" href="#sample">See this week\'s free sample</a>{hero_link}</div>{note}</div>{shot}</div>'
-            f'{tiles}{M.lede_rest(M.split_lede(lede)[1])}{trades}{sample}{method}{cta_html}{M.guides_block(p["slug"], rel=rel)}{M.faq_block(faq)}')
+            f'{tiles}{M.lede_rest(M.split_lede(lede)[1])}{M.answer_box(p) if M.is_live(p) else ""}{trades}{sample}{method}{cta_html}{M.guides_block(p["slug"], rel=rel)}{M.faq_block(faq)}')
     body = M.otp_bar(body)
     ld = (M.ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
           "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}, crumb_ld,

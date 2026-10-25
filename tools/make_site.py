@@ -2104,7 +2104,7 @@ def leads_page_html(p):
         wp, ww, wh = webp_of(os.path.relpath(shot_f[0], DOCS).replace(os.sep, "/"))
         heroshot = (f'<figure class="ld-heroshot"><img src="{rel}{wp}" width="{ww}" height="{wh}" fetchpriority="high" decoding="async" alt="{E(alt1)}">'
                     '<figcaption>A screen from the members\' app; its counts are from the week it was captured</figcaption></figure>')
-    body = (f'{crumb}<div class="ld-herogrid{" has-shot" if heroshot else ""}"><div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{split_lede(lede)[0]}</p>{hero_act}</div>{heroshot}</div>{tiles}{lede_rest(split_lede(lede)[1])}'
+    body = (f'{crumb}<div class="ld-herogrid{" has-shot" if heroshot else ""}"><div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{split_lede(lede)[0]}</p>{hero_act}</div>{heroshot}</div>{tiles}{lede_rest(split_lede(lede)[1])}{answer_box(p) if is_live(p) else ""}'
             f'{near_html}{gc_html}{big_html}{method}{shots}{cta_html}{guides_block(p["slug"], rel=rel)}{faq_block(faq)}')
     body = otp_bar(body)
     script = r"""<script>(function(){var list=document.getElementById('ldList');if(list){
@@ -3032,6 +3032,9 @@ def search_index(live):
     if seat.get("checkout"):
         out.append({"t": "Chicago Pest Control Daily Seat", "s": "chicago-restaurant-inspection-leads/#seat", "g": "Lead list",
                     "d": f"At most {seat['seats']} pest control companies, ${seat['price']} a month, new places each morning", "k": "pest control exterminator daily seat restaurants rodents"})
+    if compare_page():
+        cp = compare_page()
+        out.append({"t": cp["h1"], "s": cp["slug"] + "/", "g": "Guide", "d": "Compared, with prices", "k": "compare constructconnect dodge buildzoom angi thumbtack planhub post construction cleaning leads chicago"})
     for q in LIVE_QUESTIONS:
         out.append({"t": q["h1"], "s": q["slug"] + "/", "g": "Guide", "d": q.get("eyebrow", ""), "k": q.get("eyebrow", "").lower()})
     for p in live:
@@ -3048,7 +3051,8 @@ def questions_html():
     rel = "../"
     url = BASE + "questions/"
     crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Questions", None)])
-    lis = "".join(f'<li><a href="{rel}{q["slug"]}/"><span><b>{E(q["h1"])}</b><small>{E(q.get("eyebrow", ""))}</small></span>{ARROW}</a></li>' for q in LIVE_QUESTIONS)
+    hub = LIVE_QUESTIONS + ([compare_page()] if compare_page() else [])
+    lis = "".join(f'<li><a href="{rel}{q["slug"]}/"><span><b>{E(q["h1"])}</b><small>{E(q.get("eyebrow", ""))}</small></span>{ARROW}</a></li>' for q in hub)
     body = (f'{crumb}<p class="eyebrow">Plain answers, with this week\'s numbers</p><h1>Questions owners ask</h1>'
             '<p class="lede">Real questions trade and e-commerce owners asked in public, answered from City records and our own workbooks. ProofNotFluff is run by a finance executive.</p>'
             f'<ul class="st-qs">{lis}</ul>')
@@ -3082,6 +3086,9 @@ def guides_block(product=None, calc=None, rel="../"):
     """Links from a product or calculator page to the live question pages that point at it, so links run both ways
     (SEO change, Todd's go Oct 22, 2026). Empty until a question page is live."""
     qs = [q for q in LIVE_QUESTIONS if (product and q.get("product") == product) or (calc and (q.get("calculator") or [None])[0] == calc)]
+    cp = compare_page()
+    if cp and product == "chicago-construction-cleaning-leads":   # the honest comparison sits with the Chicago construction guides
+        qs = qs + [cp]
     if not qs:
         return ""
     lis = "".join(f'<li><a href="{rel}{q["slug"]}/"><span><b>{E(q["h1"])}</b><small>{E(q.get("eyebrow", ""))}</small></span>{ARROW}</a></li>' for q in qs)
@@ -3257,11 +3264,11 @@ def main():
     for x in live_extras():
         normalize_extra(x["slug"], x["h1"])
     write_hub_and_redirects(pages)
-    write_answer_drafts(pages)   # Todd, Oct 24: visible AI-search changes built as drafts first
+    # Todd's go, Oct 25: the dated answers are on the live lead pages (answer_box) and the comparison page is live
     write_compare_draft()
     write_stage_pages(pages)
     urls = ([BASE] + [BASE + slug + "/" for slug, _ in store] + [BASE + p["slug"] + "/" for p in live]
-            + [BASE + x["slug"] + "/" for x in live_extras()])
+            + [BASE + x["slug"] + "/" for x in live_extras()] + ([BASE + compare_page()["slug"] + "/"] if compare_page() else []))
     lastmod = {}
     for p in live:   # a lead page changes when its data does (radar, Oct 23): the sitemap says the true day
         if p.get("kind") in ("leads", "restleads", "licleads") and data_date(p.get("data")):
@@ -3308,6 +3315,22 @@ def answer_text(p):
     return ""
 
 
+def answer_box(p):
+    """The dated short answer on a live lead page (Todd's go, Oct 25, 2026, on the Oct 24 drafts; research_notes/
+    ai-recommendation-2026-10-23.md: answer-first, dated, sourced passages get cited more). It sits right after the counts,
+    inside the first screen or two, and every number comes from the page's own data file."""
+    text = answer_text(p)
+    if not text:
+        return ""
+    try:
+        d = json.load(open(os.path.join(ROOT, p["data"]), encoding="utf-8"))
+        when = nice_date((d.get("source") or {}).get("fetchedAt") or d.get("asOf") or "")
+    except (OSError, ValueError, KeyError):
+        when = ""
+    tag = "The short answer" + (f' <span>· updated {E(when)}</span>' if when else "")
+    return f'<div class="ld-answer" role="note"><p class="qa-tag">{tag}</p><p>{text}</p></div>'
+
+
 def write_answer_drafts(pages):
     """Draft copies of the live lead pages with the dated answer under the h1: docs/answer-draft-<slug>/index.html,
     noindex, not in the sitemap, not linked. The live pages are unchanged until Todd's go (visible change, major)."""
@@ -3332,14 +3355,25 @@ def write_answer_drafts(pages):
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(html)
 
 
+COMPARE_FILE = os.path.join(ROOT, "site", "compare-chicago-construction.json")
+
+
+def compare_page():
+    """The comparison page's slug and title, or None (used by the sitemap, the guides and the search index)."""
+    if not os.path.isfile(COMPARE_FILE):
+        return None
+    d = json.load(open(COMPARE_FILE, encoding="utf-8"))
+    return {"slug": d["slug"], "h1": d["title"], "eyebrow": "Compared, with prices", "updated": d.get("updated", "")}
+
+
 def write_compare_draft():
     """The honest comparison page (research_notes/ai-recommendation-2026-10-23.md item 7), from site/compare-chicago-construction.json:
-    every price read on a vendor page in the build session, third-party estimates labeled, our row labeled and never ranked
-    first. Draft only: noindex, not in the sitemap, not linked, until Todd's go (Oct 24: "Build as drafts")."""
-    f = os.path.join(ROOT, "site", "compare-chicago-construction.json")
-    if not os.path.isfile(f):
+    every price read on a vendor page, third-party estimates labeled, our row labeled and never ranked first. Live on Todd's go
+    (Oct 25, 2026); it was a noindex draft from Oct 24. Ends on the next step, quietly (peak-end)."""
+    if not os.path.isfile(COMPARE_FILE):
         return
-    d = json.load(open(f, encoding="utf-8"))
+    d = json.load(open(COMPARE_FILE, encoding="utf-8"))
+    CURRENT["nav"] = "questions" if LIVE_QUESTIONS else ""
     rel = "../"
     kind = {"vendor": "the company's own page", "third-party": "a third-party estimate", "listing": "a third-party listing", "city": "the City's dataset page", "ours": "our page"}
     rows = "".join(
@@ -3348,17 +3382,29 @@ def write_compare_draft():
         f'<div><dt>The catch</dt><dd>{E(x["con"])}</dd></div></dl>'
         f'<p class="cmp-src">Source: <a href="{E(x["sourceUrl"])}" rel="noopener">{E(kind.get(x.get("sourceKind"), "source"))}</a>, read {E(nice_date(x["readOn"]))}.</p></article>'
         for x in d["sources"])
-    body = (f'<p class="eyebrow">Compared, with prices</p><h1>{E(d["title"])}</h1><p class="lede">{E(d["intro"])}</p>'
-            f'<div class="cmp-list">{rows}</div>'
+    url = BASE + d["slug"] + "/"
+    crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Questions", "questions/"), ("Compared, with prices", None)] if LIVE_QUESTIONS else [("Home", ""), ("Compared, with prices", None)])
+    chi = next((x for x in store_products() if x["key"] == "chicago-construction-cleaning-leads"), None)
+    nxt = ('<section class="block"><h2>Next step</h2><ul class="qa-rel">'
+           + (f'<li><a href="{rel}{chi["href"]}{chi["sample"]}">See this week\'s free sample of the City-record list</a></li>' if chi else "")
+           + f'<li><a href="{rel}cost-per-lead-calculator/">Work out what a won job costs you in leads</a></li>'
+           + f'<li><a href="{rel}price-post-construction-cleaning-bid/">Price the bid before you call</a></li></ul></section>')
+    body = (f'{crumb}<article class="qa"><p class="eyebrow">Compared, with prices</p><h1>{E(d["title"])}</h1><p class="lede">{E(d["intro"])}</p>'
+            f'<p class="asof">Updated {E(nice_date(d.get("updated", "")))}. Prices change; each row links the page it came from.</p>'
+            f'<div class="cmp-list">{rows}</div>{nxt}</article>'
             '<style>.cmp-list{display:grid;gap:16px;margin:24px 0 0;max-width:860px}.cmp-row{background:var(--card);border:1px solid var(--line);'
             'border-radius:12px;padding:18px 20px}.cmp-row h2{font-size:21px;line-height:1.25;margin:0 0 6px}.cmp-row>p{margin:0 0 10px;color:var(--ink2)}'
             '.cmp-ours{border-left:4px solid var(--accent)}.cmp-src{font-size:14px;color:var(--muted)!important;margin:10px 0 0!important}</style>')
-    url = BASE + d["slug"] + "/"
-    html = (HEAD.format(title=E(d["title"]) + " | ProofNotFluff", desc=E(d["intro"]), url=url, rel=rel, shop=SHOP, ld="", bodycls="",
-                        robots='<meta name="robots" content="noindex, nofollow">', analytics=analytics_tag()) + body +
+    art = {"@context": "https://schema.org", "@type": "Article", "headline": d["title"], "description": d["intro"], "mainEntityOfPage": url,
+           "inLanguage": "en-US", "datePublished": d.get("updated", ""), "dateModified": d.get("updated", ""),
+           "author": {"@type": "Organization", "name": "ProofNotFluff", "url": BASE},
+           "publisher": {"@type": "Organization", "name": "ProofNotFluff", "url": BASE, "logo": {"@type": "ImageObject", "url": BASE + "assets/logo-512.png", "width": 512, "height": 512}}}
+    html = (HEAD.format(title=E(d["title"]) + " | ProofNotFluff", desc=E(d.get("desc", d["intro"])[:158]), url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld, art),
+                        bodycls=' class="ld-page"', robots="", analytics=analytics_tag(), ogtype="article") + body +
             FOOT.format(rel=rel, script="", notices="", sources="Each row names its source page and the day it was read."))
     out = os.path.join(DOCS, d["slug"]); os.makedirs(out, exist_ok=True)
     open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(html)
+    CURRENT["nav"] = ""
 
 
 def add_product(argv):

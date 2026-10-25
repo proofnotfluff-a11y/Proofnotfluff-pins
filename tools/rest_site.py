@@ -240,7 +240,7 @@ def page_html(p):
         cta_html = (f'<section class="block" id="ldCta"><div class="cta ld-cta"><div><h2>{E(p["cta"]["title"])}</h2><p>{E(p["cta"]["text"])}</p>'
                     f'<p class="ld-price">${price} a month when it opens.</p><p class="ld-buybtn">{buy()}</p></div></div></section>')
     crumb, crumb_ld = M.crumbs(rel, [("Home", ""), ("Shop", "shop/"), (p["h1"], None)])
-    body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{M.split_lede(lede)[0]}</p>{hero_act}</div>{tiles}{M.lede_rest(M.split_lede(lede)[1])}'
+    body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{M.split_lede(lede)[0]}</p>{hero_act}</div>{tiles}{M.lede_rest(M.split_lede(lede)[1])}{M.answer_box(p) if M.is_live(p) else ""}'
             # store v2 (design review, Oct 24, 2026): the free sample comes first and the $149 seat right after it; the hero note
             # still links pest control owners straight to #seat
             f'{sample}{seat_html(p, seat, rel) if seat else ""}{method}{cta_html}{M.guides_block(p["slug"], rel=rel)}{M.faq_block(faq)}')

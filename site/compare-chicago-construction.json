@@ -1,18 +1,18 @@
 {
- "slug": "compare-draft-chicago-construction-cleaning-leads",
+ "slug": "find-post-construction-cleaning-leads-chicago",
  "title": "Ways to find post-construction cleaning leads in Chicago",
- "updated": "2026-10-24",
- "intro": "The ways cleaning companies find builder work in Chicago, with what each costs and what you actually get. Prices were read from each company's own page on Oct 24, 2026 unless marked as a third-party estimate. One of these is ours, and it is labeled.",
+ "updated": "2026-10-25",
+ "intro": "The ways cleaning companies find builder work in Chicago, with what each costs and what you actually get. Prices were read from each company's own page on Oct 25, 2026 unless marked as a third-party estimate. One of these is ours, and it is labeled.",
  "sources": [
   {
    "name": "City of Chicago Data Portal: Building Permits",
-   "what": "The city's open dataset of every building permit issued since 2006, updated daily.",
+   "what": "The city's open dataset of building permits issued since 2006, updated often (last refreshed Oct 24, 2026).",
    "price": "Free (no fee shown; reuse governed by the portal's terms of use)",
    "gets": "Raw permit rows: address, work description, fees, and contact columns with each contact's role (general contractor, owner, architect) and name, plus city, state and ZIP. No phone or email.",
    "con": "Hard to use as is: it mixes small and large jobs, and you must filter it and find the builder's phone or email yourself.",
    "sourceUrl": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
    "sourceKind": "city",
-   "readOn": "2026-10-24"
+   "readOn": "2026-10-25"
   },
   {
    "name": "ConstructConnect (Project Intelligence)",
@@ -22,37 +22,37 @@
    "con": "Built for trades bidding plans; full contact details need the annual Professional contract, and cost scales per market and per seat.",
    "sourceUrl": "https://www.constructconnect.com/pricing",
    "sourceKind": "vendor",
-   "readOn": "2026-10-24"
+   "readOn": "2026-10-25"
   },
   {
    "name": "Dodge Construction Network (Dodge One)",
    "what": "Commercial construction project data and market intelligence covering North America.",
    "price": "Price on request (Dodge says it does not publish a standard price list)",
    "gets": "Project reports from planning through construction start, contact intelligence on decision makers, plan room, saved searches and alerts.",
-   "con": "Quote-only enterprise sales process with a demo; pricing depends on region, users and contract length, so small cleaning firms cannot compare costs up front.",
+   "con": "Quote only: pricing comes after a demo with a product specialist and depends on region, users and contract length, so small cleaning firms cannot compare costs up front.",
    "sourceUrl": "https://www.construction.com/what-is-dodge-construction-network-the-dodge-report-explained/",
    "sourceKind": "vendor",
-   "readOn": "2026-10-24"
+   "readOn": "2026-10-25"
   },
   {
    "name": "BuildZoom (for contractors)",
    "what": "Marketplace that matches homeowner projects to contractors.",
    "price": "Not published: a flat connection fee per project once you connect, plus a referral percentage if hired; amounts appear only on each project",
-   "gets": "Homeowner project requests, checked with the homeowner and matched to your work. No GC leads.",
-   "con": "Aimed at residential remodel and construction trades, not commercial post-construction cleanup; fee amounts only appear project by project.",
+   "gets": "Homeowner project requests, each checked with the homeowner and matched to the work you do.",
+   "con": "Projects come from homeowners, not general contractors, so it is not built for builder post-construction cleanup; fee amounts only appear project by project.",
    "sourceUrl": "https://www.buildzoom.com/contractor-faq/fees",
    "sourceKind": "vendor",
-   "readOn": "2026-10-24"
+   "readOn": "2026-10-25"
   },
   {
-   "name": "Angi Leads (formerly HomeAdvisor Pro)",
+   "name": "Angi Leads (Angi's pay-per-lead program for pros)",
    "what": "Pay-per-lead homeowner marketplace for home service pros, including cleaning.",
    "price": "Not published by Angi. Third-party estimate: about $15 to $85 per lead plus about $300 a year membership",
    "gets": "Homeowner service requests, charged as soon as each lead is sent, whether or not you win the job.",
    "con": "Leads are often shared with several pros and you pay even if the homeowner never answers; homeowner cleaning, not builder cleanup.",
    "sourceUrl": "https://www.housecallpro.com/resources/what-is-angis-list-how-angi-works/",
    "sourceKind": "third-party",
-   "readOn": "2026-10-24"
+   "readOn": "2026-10-25"
   },
   {
    "name": "Thumbtack (pay per lead)",
@@ -62,27 +62,27 @@
    "con": "No refunds when a customer goes quiet or hires someone else, and the price per lead varies by market and job.",
    "sourceUrl": "https://www.housecallpro.com/resources/what-is-thumbtack-how-it-works/",
    "sourceKind": "third-party",
-   "readOn": "2026-10-24"
+   "readOn": "2026-10-25"
   },
   {
    "name": "GC bidder lists and local networking (example: BOMA/Chicago)",
    "what": "Asking general contractors to add you to their subcontractor or vendor list, plus joining a local building-industry group to meet buyers.",
    "price": "GC lists: free to ask. BOMA/Chicago Introductory Affiliate: $1,500 for the calendar year (prorated to $375 from Oct 1); full Affiliate dues not published",
    "gets": "Direct relationships with GCs and property managers; BOMA gives member-rate events and an Affiliate Directory listing, but not the Building Member Directory.",
-   "con": "Slow and relationship driven; you still need to know which GCs are active. BOMA serves commercial property managers rather than builders.",
+   "con": "Slow and relationship driven; you still need to know which GCs are active. BOMA connects you with commercial building owners and managers rather than builders.",
    "sourceUrl": "https://www.bomachicago.org/affiliate-membership/",
    "sourceKind": "vendor",
-   "readOn": "2026-10-24"
+   "readOn": "2026-10-25"
   },
   {
    "name": "PlanHub (bid board)",
    "what": "Construction bid platform where GCs post projects and invite subcontractors to bid.",
-   "price": "Not published (Capterra lists the subcontractor plan as a custom quote, billed yearly)",
-   "gets": "GC bid invitations and project listings with plans; some projects and invite details need a paid plan.",
-   "con": "Built around bidding from plans, so a cleanup scope competes with every trade's invites; no public price.",
-   "sourceUrl": "https://www.capterra.com/p/179042/PlanHub/pricing/",
-   "sourceKind": "listing",
-   "readOn": "2026-10-24"
+   "price": "Subcontractor Premier plans $799 to $3,499 a year, priced by mileage radius (25 miles to unlimited), after a free trial",
+   "gets": "GC bid invitations and project listings within your radius; paid plans add full plan room access, the full GC bid list, and the awarded GC's name and contact.",
+   "con": "Built around bidding from plans, so a cleanup scope competes with every trade's invites; billed yearly, and a wider radius costs more.",
+   "sourceUrl": "https://www.planhub.com/pricing/",
+   "sourceKind": "vendor",
+   "readOn": "2026-10-25"
   },
   {
    "name": "ProofNotFluff Chicago Construction Cleaning Leads (ours)",
@@ -92,7 +92,7 @@
    "con": "Chicago only and weekly, not daily; it names the builder but not a phone or email, so you still make the first call; it is our own product.",
    "sourceUrl": "https://proofnotfluff.com/chicago-construction-cleaning-leads/",
    "sourceKind": "ours",
-   "readOn": "2026-10-24"
+   "readOn": "2026-10-25"
   }
  ]
 }

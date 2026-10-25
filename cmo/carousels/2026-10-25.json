@@ -3,7 +3,7 @@
   "topic": "construction",
   "hookId": "H10",
   "product": "chicago-construction-cleaning-leads",
-  "format": "1080 x 1350, 7 slides, LinkedIn PDF document",
+  "format": "1080 x 1350, 7 slides, Instagram and Facebook carousel (JPG per slide)",
   "data": {
     "file": "permits/chicago/sample.json",
     "stats": "tools/question_site.py stats(\"chicago_construction\", d)",
@@ -17,7 +17,7 @@
       "eyebrow": "CHICAGO CONSTRUCTION",
       "number": "1,133",
       "title": "open Chicago projects that name their builder",
-      "sub": "City permits of $500,000 or more, issued Oct 19, 2024 to Oct 19, 2026",
+      "sub": "$500,000+ jobs, Oct 19, 2024 to Oct 19, 2026, ranked by how close each is to the final clean",
       "facts": [
         {
           "text": "1,133",
@@ -133,7 +133,7 @@
       "ground": "canvas",
       "eyebrow": "WHY IT MATTERS",
       "title": "21 are close to the final clean",
-      "body": "The City has approved temporary or partial occupancy on 21 of these projects. We list the builder on each one for you.",
+      "body": "These are the jobs nearest the end, flagged for you each week, with the builder listed on each one.",
       "source": "Source: City of Chicago Data Portal, Building Permits, pulled Oct 19, 2026",
       "facts": [
         {
@@ -146,7 +146,11 @@
           "file": "site/pages.json",
           "key": "chicago-construction-cleaning-leads.nearLede"
         }
-      ]
+      ],
+      "card": {
+        "label": "CLOSEST TO THE FINAL CLEAN",
+        "value": "21"
+      }
     },
     {
       "n": 5,
@@ -154,7 +158,7 @@
       "ground": "canvas",
       "eyebrow": "WHAT WE DO EVERY MONDAY",
       "title": "3,061 permits in. 1,133 worth a call.",
-      "body": "We sort every permit and rank the rest by how close each job is to a final clean, so you call the right office first.",
+      "body": "We check every permit each week and rank the 1,133 by how close each job is to a final clean.",
       "source": "Source: City of Chicago Data Portal, Building Permits, pulled Oct 19, 2026",
       "facts": [
         {
@@ -223,7 +227,6 @@
       "eyebrow": "FREE SAMPLE EVERY MONDAY",
       "title": "See this week's free sample",
       "domain": "proofnotfluff.com",
-      "sub": "Link in the first comment",
       "facts": [
         {
           "text": "free sample, every Monday",
@@ -237,12 +240,10 @@
     "left": "ProofNotFluff",
     "right": "n/7"
   },
-  "caption": "1,133 big Chicago building projects are still open in the City's permits, and every one names its builder.\n\nThat matters if you clean, wash windows or pressure wash. The general contractor buys the subcontracted work on each job, so the builder's office is the one to ask about cleaning.\n\nFrom City of Chicago permits of $500,000 or more, issued in the last 24 months and still open:\n335 new buildings and 798 renovations\nThe Loop leads with 160\n21 have temporary or partial occupancy approved, so a final clean is close\n\nEvery number traces back to City permit records. We do the sorting so you don't have to. The free sample is in the first comment.\n\n#Chicago #CommercialCleaning #Construction",
-  "firstComment": "Free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/?utm_source=linkedin&utm_medium=social&utm_campaign=carousel&utm_content=2026-10-25-construction",
   "canva": {
     "design": "DAHZBYo0Dkk",
     "edit_url": "https://www.canva.com/d/304u8DTyyhTf3An",
-    "status": "edit session expired before commit; rebuild after copy is settled"
+    "status": "rebuilt and saved Oct 25 (transaction 5028789099791623701 committed); text in Canva default sans until Todd switches to Poppins"
   },
   "gates": {
     "facts": "PASS after 1 fix (caption builder line)",
@@ -251,6 +252,18 @@
     "blocker": "Canva edit API cannot set a font family; text renders in Arial/Liberation Sans, not Poppins/Inter (typography 3)",
     "facts_round2": "PASS (slide 5 and caption reworked)",
     "buyer_round1": "FAIL: slide 5 read as a how-to, slide 4 said to look up the builder on the permit",
-    "buyer_round2": "FAIL: slide 1 subline and caption read as a filter recipe ($500K+, dates, status, dataset); builder line adds nothing; buyer asks whether a contact is included. Sent to Todd."
-  }
+    "buyer_round2": "FAIL: slide 1 subline and caption read as a filter recipe ($500K+, dates, status, dataset); builder line adds nothing; buyer asks whether a contact is included. Sent to Todd.",
+    "todd_oct25": "Todd approved the three buyer-test fixes and Instagram plus Facebook posting after his 'post it' (coo/DECISIONS-2026-10-25.md)",
+    "buyer_oct25_3": "FAIL: slide 4 and captions named the occupancy signal; fixed (Todd-approved copy, one fix round)",
+    "buyer_oct25_4": "PASS (final copy)",
+    "design_final": "pending: rerun on renders after Todd's Poppins switch"
+  },
+  "captions": {
+    "instagram": "1,133 big Chicago building projects are still open in the City's permits, and every one names its builder.\n\nThat matters if you clean, wash windows or pressure wash. The general contractor buys the subcontracted work on each job, so the builder's office is the one to ask about cleaning.\n\nIn this week's list ($500,000+ jobs, last 24 months):\n335 new buildings and 798 renovations\nThe Loop leads with 160\n21 are flagged as close to the final clean\n\nEvery number traces back to City permit records. We do the sorting so you don't have to. Free sample: link in bio (proofnotfluff.com).\n\n#Chicago #CommercialCleaning #Construction",
+    "facebook": "1,133 big Chicago building projects are still open in the City's permits, and every one names its builder.\n\nThat matters if you clean, wash windows or pressure wash. The general contractor buys the subcontracted work on each job, so the builder's office is the one to ask about cleaning.\n\nIn this week's list ($500,000+ jobs, last 24 months):\n335 new buildings and 798 renovations\nThe Loop leads with 160\n21 are flagged as close to the final clean\n\nEvery number traces back to City permit records. We do the sorting so you don't have to. Free sample: proofnotfluff.com/go/free-chicago-construction-cleaning-leads/\n\n#Chicago #CommercialCleaning #Construction"
+  },
+  "platforms": [
+    "instagram",
+    "facebook"
+  ]
 }

@@ -16,3 +16,8 @@
 ## Source framing and the buyer test, 11:32 am
 - [stated] Todd, 10:53 am: "Do we really wanna make it so obvious that it comes from free data? I feel like this will deter people from subscribing and just try to go get the free data on their own." Then "Yes" (11:32 am) to the proposal: add a buyer test to the carousel skill, add the rule to the marketing standard, run it on the Oct 25 carousel with a new slide 5.
 - So: social-carousel SKILL step 2b (buyer test); cmo/CONVERSION_STANDARD.md section 5 (no piece shows how to get the value without us; the source is named for trust, never as a how-to); design/CAROUSEL_STANDARD.md slide 5 is now "What we do to the data".
+
+## Carousel platforms and posting, 1:21 pm
+- [stated] Todd, 12:52 pm: "I want you to post for me". 1:05 pm: "Is LinkedIn the best platform to post on?" 1:19 pm: "do instagram and facebook for now". 1:21 pm: "sounds good" to the plan as written in chat: "Agents may post approved carousels to Instagram and the Facebook page through Zapier, after Todd's 'post it' on the final version. LinkedIn stays off for now." and to the three copy fixes (slide 1 subline, slide 5, caption line).
+- Flow: rebuild and save in Canva, send Todd the link and captions, Todd switches the text to Poppins and replies "post it", then publish through Zapier Instagram for Business (Publish Photo(s), carousel) and Facebook Pages (Todd connects it in Zapier).
+- Pending: CLAUDE.md rule 8 still lists Zapier as never; the live session's edit to narrow it was blocked by a permission check, so Todd edits it or approves that edit. Until then only a live session with Todd posts.

@@ -190,6 +190,18 @@ def cmd_read(path, date):
             for w in warns:
                 print(f"WARN {rnd} {label}: {w}")
             if key == "ideas":
+                for path in (("buyer", "count"), ("data", "recordsPerMonth"), ("price", "monthly")):
+                    holder = it.get(path[0]) if isinstance(it.get(path[0]), dict) else {}
+                    val = holder.get(path[1])
+                    if isinstance(val, str):
+                        num = re.sub(r"[$,\s]", "", val)
+                        holder[path[1]] = float(num) if re.fullmatch(r"\d+(\.\d+)?", num) else None
+                        warns.append(f"{'.'.join(path)} {val!r} read as {holder[path[1]]}")
+                        print(f"WARN {rnd} {label}: {warns[-1]}")
+                for comp in ((it.get("price") or {}).get("competitors") or []):
+                    if isinstance(comp, dict) and isinstance(comp.get("monthly"), str):
+                        num = re.sub(r"[$,\s]", "", comp["monthly"])
+                        comp["monthly"] = float(num) if re.fullmatch(r"\d+(\.\d+)?", num) else None
                 it.setdefault("status", "new")
                 it["addedAt"] = date
                 probs, ks, dups = check_idea(it, today)
@@ -376,6 +388,8 @@ def selftest():
             idea("email-leak", pitch="call the owner at owner@example.com or 312-555-0142, posted by u/cleanpro99"),
             idea("old-idea", name="New Trucking Companies by State"),
             idea("zero-days", build={"days": 0}),
+            idea("string-count", buyer={"who": "fire protection contractors", "count": "1,240", "countSource": src,
+                                        "reach": "their own websites", "reachSource": src}),
             idea("long-quote", demand={"searchQueries": [], "aiQueries": [{"q": " ".join(["word"] * 20), "url": "https://example.org/q", "date": "2026-09-01"}]}),
         ]})
         # R1 carries trailing commas, a planted model slip that loads_loose must tolerate
@@ -406,6 +420,7 @@ def selftest():
         want("FAIL R3 old-idea" in out or "WARN R3 old-idea" in out, "an existing slug is flagged")
         want("quote over 15 words dropped" in out, "a long quote is dropped")
         want("FAIL R3 zero-days" in out, "a 0 day build placeholder fails")
+        want("buyer.count '1,240' read as 1240.0" in out, "a quoted count is read as a number")
         want("dash replaced" in out, "an em dash is replaced")
         want("OK R1: 1 of 1 kept" in out, "trailing commas in a block are tolerated and R1 is kept")
         saved_r3 = json.load(open(os.path.join(WORK, "2026-10-25", "R3.json")))

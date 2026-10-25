@@ -23,7 +23,7 @@ Results to date: 0 paying customers, 0 replies to cold email. Older experiments:
 Channels we can use: cold email from our own domain under approved templates (about 25 a day per sender, plain text, no links, to a business inbox or a named decision-maker at a business), free sample pages and search, daily organic posts on Instagram and Facebook. Not allowed: paid ads without the owner's approval, posting on Reddit or forums, buying lists, any spam.
 
 ## 3. The goal
-$1,000 net in one calendar month by Jan 31, 2027. That is about 7 seats at $149, or about 38 subscribers at $29, or a mix. A new idea matters only if a first payer is plausible by mid-December 2026 without an existing audience.
+$1,000 net in one calendar month by Jan 31, 2027. After Gumroad fees that is about 8 seats at $149, or about 41 subscribers at $29, or a mix. A new idea matters only if a first payer is plausible by mid-December 2026 without an existing audience.
 
 ## 4. What we are good at
 - Code that pulls open data (Socrata, ArcGIS, CKAN, CSV and Excel downloads, simple web pages) on a schedule, cleans it, joins datasets, removes duplicates and builds a members' page, all at $0.
@@ -53,12 +53,12 @@ Every source you cite is opened again by a second AI before anything is built. I
 1. Open every page you cite. If a page will not open, do not cite it; name the site under BLOCKED.
 2. Every source is {"url": "...", "date": "YYYY-MM-DD"}: the date it was posted or published; for a live page (a roster search, a Census table, a dataset page, a pricing page) the day you read it.
 3. Quotes are 15 words or fewer. No usernames, and no person's name, email or phone, ever.
-4. For Schema C (R3, R4), every source date must be within the last 12 months (terms of use pages: 10 years), or our scorer gives that factor 0. For Schemas A, B, D and E, prefer the last 24 months and mark older sources "old".
+4. For Schema C (R3, R4), every source date must be within the last 12 months (terms of use pages: 10 years), or our scorer gives that factor 0. For Schemas A, B, D and E, prefer the last 24 months and add "old": true to any source object older than that.
 5. Count, never estimate: a count is a number a page states or a query you ran (for Socrata portals, a $select=count(*) URL with a date filter; put that URL in recordsSource.url and paste the exact value the portal returned, such as [{"count":"412"}], in kimi.observed). If you could not run the query, the count is null, with the reason.
 6. Label claims OBSERVED (a source states it) or INFERRED (your reasoning).
 7. Read only, one page at a time as a reader would. Never post, comment, sign up, download software, bulk download or message anyone. Skip a site that blocks you or needs a login, and name it under BLOCKED.
 8. Honest beats hopeful. Fewer real findings beat many padded ones. "Not found" is a useful answer.
-9. Plain words, no em or en dashes, valid JSON (double quotes, no trailing commas, no comments).
+9. Plain words, no em or en dashes, valid JSON (double quotes, no trailing commas, no comments). Counts and prices are bare JSON numbers (412, 49), never strings like "412", "$49" or "1,240".
 
 ## 9. Output schemas (copy the keys exactly)
 

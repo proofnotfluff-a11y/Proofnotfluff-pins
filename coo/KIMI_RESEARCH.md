@@ -22,7 +22,7 @@ Repeat R3 and R4 every two weeks with a new Focus line (another metro, another r
 ## How Todd runs it (about 10 minutes of his time a round, the rest is Kimi's)
 1. In Kimi, start a new task with web search on. Attach coo/kimi/RESEARCH_BRIEF.md.
 2. Paste R0. When it finishes, paste R1 in the same task, then R2.
-3. Start a second Kimi task with the brief attached. Paste the SUMMARY and SKIP LIST lines of R0 to R2 at the top of your message, then R3. When it finishes, paste R4 in that task. (Long replies crowd a single chat, so the heavy rounds get a fresh one.)
+3. Start a second Kimi task with the brief attached. Paste the SUMMARY lines of R0 to R2 and the SKIP LIST from R1 at the top of your message, then R3. When it finishes, paste R4 in that task. (Long replies crowd a single chat, so the heavy rounds get a fresh one.)
 4. Copy each reply whole into one Claude chat with "Kimi R0 reply" (R1, ...) on top.
 5. For R5, Claude sends a candidates file; attach it with the brief in a new Kimi task and paste R5.
 
@@ -33,7 +33,7 @@ Repeat R3 and R4 every two weeks with a new Focus line (another metro, another r
 4. `python3 tools/opportunity_score.py`, then the radar's reviewers (.claude/skills/radar/SKILL.md step 4) on the top ideas; Decide rows go to Todd as usual.
 5. R1 and R2 become one research note each in our own words (no quotes over 15 words, no usernames), and their pains and gaps are cited in candidate files where they apply.
 6. R5 verdicts do not vote. Each FAIL reason becomes an objection the fix round must answer with sources.
-7. A round with 2 or more invented sources in its first 10 checked is set aside whole, noted in the log, and the prompt is tightened before the next round.
+7. A day's replies with 2 or more invented sources in the first 10 checked are set aside whole, noted in the log, and the prompt is tightened before the next round.
 
 ## R0, why our live buyers have not replied
 

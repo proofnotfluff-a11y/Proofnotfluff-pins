@@ -40,3 +40,9 @@
 - So: build it as designed; the daily inbox sweep takes over the outreach run's inbox step (one writer of reply status); inbox read in Chrome on Todd's PC, no Gmail connector; one message plus a brief panel at the top of the scoreboard.
 - Times, read as: the brief twice a day on weekdays, 7:45 am and 12:45 pm (after the 7:30 and 12:30 sweeps); Sunday review 5 pm. Todd corrects in chat if he meant otherwise.
 - Not built or scheduled yet: next chat builds, tests and schedules (todo chief-of-staff-build).
+
+## Chief of Staff build, 4:00 to 5:15 pm (build chat)
+- Built: .claude/skills/chief-of-staff/SKILL.md, tools/cos_agenda.py (45-case selftest, in check_repo as "cos" and in the chief-of-staff preflight), the brief panel at the top of the scoreboard (meta/brief, meta/cos). An independent reviewer's fixes applied (exact sender match before any CRM change, fixed reason list and numbers-only inbox doc, missed sweep fails loud, Kit stop handling, customerAt).
+- Sweep set to 7:20 am and 12:20 pm, not 7:30 and 12:30, so two inboxes have 25 minutes before each brief. Todd corrects in chat if he wants 7:30.
+- Dry run: brief PASS and Sunday review PASS on the live list; the inbox half needs this chat linked to Todd's PC. Todd: "I'll link my PC now". Nothing scheduled until it passes.
+- Held, not on main: the outreach run's inbox step moving to the sweep (archive/pending/2026-10-25-cos-outreach-handoff.patch), so Monday's outreach reads the inbox as before until the sweep is live. With it: the outreach task runs Mondays only.

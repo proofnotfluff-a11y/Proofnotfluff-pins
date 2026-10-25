@@ -1,0 +1,248 @@
+{
+  "date": "2026-10-25",
+  "topic": "construction",
+  "hookId": "H10",
+  "product": "chicago-construction-cleaning-leads",
+  "format": "1080 x 1350, 7 slides, LinkedIn PDF document",
+  "data": {
+    "file": "permits/chicago/sample.json",
+    "stats": "tools/question_site.py stats(\"chicago_construction\", d)",
+    "asOf": "source.fetchedAt 2026-10-19"
+  },
+  "slides": [
+    {
+      "n": 1,
+      "role": "hook",
+      "ground": "ink",
+      "eyebrow": "CHICAGO CONSTRUCTION",
+      "number": "1,133",
+      "title": "open Chicago projects that name their builder",
+      "sub": "City permits of $500,000 or more, issued Oct 19, 2024 to Oct 19, 2026",
+      "facts": [
+        {
+          "text": "1,133",
+          "file": "permits/chicago/sample.json",
+          "key": "counts.kept"
+        },
+        {
+          "text": "$500,000 or more",
+          "file": "permits/chicago/sample.json",
+          "key": "source.modified"
+        },
+        {
+          "text": "Oct 19, 2024 to Oct 19, 2026",
+          "file": "permits/chicago/sample.json",
+          "key": "window.from, window.to"
+        },
+        {
+          "text": "name their builder",
+          "file": "permits/chicago/sample.json",
+          "key": "counts.excluded['no business listed as general contractor'] (all kept list a business as GC)"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "role": "proof",
+      "ground": "canvas",
+      "eyebrow": "THE 1,133, BROKEN DOWN",
+      "title": "New buildings and big renovations",
+      "tiles": [
+        {
+          "label": "NEW BUILDINGS",
+          "value": "335"
+        },
+        {
+          "label": "RENOVATIONS",
+          "value": "798"
+        },
+        {
+          "label": "REPORTED COST",
+          "value": "$8.7B"
+        }
+      ],
+      "source": "Source: City of Chicago Data Portal, Building Permits, pulled Oct 19, 2026",
+      "facts": [
+        {
+          "text": "335",
+          "file": "permits/chicago/sample.json",
+          "key": "counts.keptByType['New construction']"
+        },
+        {
+          "text": "798",
+          "file": "permits/chicago/sample.json",
+          "key": "counts.keptByType['Renovation']"
+        },
+        {
+          "text": "$8.7B",
+          "file": "permits/chicago/sample.json",
+          "key": "counts.keptCost (8,744,415,902)"
+        },
+        {
+          "text": "Oct 19, 2026",
+          "file": "permits/chicago/sample.json",
+          "key": "source.fetchedAt"
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "role": "where",
+      "ground": "canvas",
+      "eyebrow": "WHERE THE WORK IS",
+      "title": "The Loop leads with 160 open projects",
+      "rows": [
+        [
+          "1",
+          "Loop",
+          "160"
+        ],
+        [
+          "2",
+          "Near North Side",
+          "139"
+        ],
+        [
+          "3",
+          "Near West Side",
+          "103"
+        ],
+        [
+          "4",
+          "West Town",
+          "68"
+        ],
+        [
+          "5",
+          "Lincoln Park",
+          "55"
+        ]
+      ],
+      "source": "Source: City of Chicago Data Portal, Building Permits, pulled Oct 19, 2026",
+      "facts": [
+        {
+          "text": "rows 1 to 5",
+          "file": "permits/chicago/sample.json",
+          "key": "counts.topAreas[0:5]"
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "role": "why",
+      "ground": "canvas",
+      "eyebrow": "WHY IT MATTERS",
+      "title": "21 are close to the final clean",
+      "body": "The City has approved temporary or partial occupancy on 21 of these projects. Each permit names the builder to call.",
+      "source": "Source: City of Chicago Data Portal, Building Permits, pulled Oct 19, 2026",
+      "facts": [
+        {
+          "text": "21",
+          "file": "permits/chicago/sample.json",
+          "key": "counts.nearFinish"
+        },
+        {
+          "text": "temporary or partial occupancy",
+          "file": "site/pages.json",
+          "key": "chicago-construction-cleaning-leads.nearLede"
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "role": "check",
+      "ground": "canvas",
+      "eyebrow": "CHECK IT YOURSELF",
+      "title": "It all comes from free City data",
+      "body": "City of Chicago Data Portal, Building Permits. We keep permits of $500,000 or more, still open, with a business as general contractor.",
+      "link": "data.cityofchicago.org",
+      "facts": [
+        {
+          "text": "City of Chicago Data Portal, Building Permits",
+          "file": "permits/chicago/sample.json",
+          "key": "source.name"
+        },
+        {
+          "text": "data.cityofchicago.org",
+          "file": "permits/chicago/sample.json",
+          "key": "source.url"
+        },
+        {
+          "text": "$500,000 or more, still open, business as general contractor",
+          "file": "permits/chicago/sample.json",
+          "key": "source.modified"
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "role": "offer",
+      "ground": "canvas",
+      "eyebrow": "THE FULL LIST",
+      "title": "Chicago Construction Cleaning Leads",
+      "body": "All 1,133 projects with the builder, address and stage, every Monday.",
+      "price": "7 days free, then $29 a month",
+      "terms": "No lock-in, cancel any time.",
+      "facts": [
+        {
+          "text": "Chicago Construction Cleaning Leads",
+          "file": "site/pages.json",
+          "key": "chicago-construction-cleaning-leads.h1"
+        },
+        {
+          "text": "every Monday",
+          "file": "site/pages.json",
+          "key": "chicago-construction-cleaning-leads.cta.text"
+        },
+        {
+          "text": "7 days free",
+          "file": "site/pages.json",
+          "key": "chicago-construction-cleaning-leads.trialDays"
+        },
+        {
+          "text": "$29 a month",
+          "file": "site/pages.json",
+          "key": "chicago-construction-cleaning-leads.price (live page: then $29 a month)"
+        },
+        {
+          "text": "No lock-in, cancel any time.",
+          "file": "docs/chicago-construction-cleaning-leads/index.html",
+          "key": "hero offer line"
+        }
+      ]
+    },
+    {
+      "n": 7,
+      "role": "cta",
+      "ground": "ink",
+      "eyebrow": "FREE EVERY MONDAY",
+      "title": "See this week's free sample",
+      "domain": "proofnotfluff.com",
+      "sub": "Link in the first comment",
+      "facts": [
+        {
+          "text": "free sample, every Monday",
+          "file": "site/pages.json",
+          "key": "chicago-construction-cleaning-leads.eyebrow"
+        }
+      ]
+    }
+  ],
+  "footer": {
+    "left": "ProofNotFluff",
+    "right": "n/7"
+  },
+  "caption": "1,133 big Chicago building projects are still open in the City's permits, and every one names its builder.\n\nThat matters if you clean, wash windows or pressure wash for a living. The general contractor buys the subcontracted work on each job, so the permit tells you whose office to ask about cleaning.\n\nFrom City of Chicago permits of $500,000 or more, issued in the last 24 months and still open:\n335 new buildings and 798 renovations\nThe Loop leads with 160\n21 have temporary or partial occupancy approved, so a final clean is close\n\nEvery number comes from the City's public data. The free sample is in the first comment.\n\n#Chicago #CommercialCleaning #Construction",
+  "firstComment": "Free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/?utm_source=linkedin&utm_medium=social&utm_campaign=carousel&utm_content=2026-10-25-construction",
+  "canva": {
+    "design": "DAHZBYo0Dkk",
+    "edit_url": "https://www.canva.com/d/304u8DTyyhTf3An",
+    "status": "draft not committed (edit transaction open), design gate second FAIL"
+  },
+  "gates": {
+    "facts": "PASS after 1 fix (caption builder line)",
+    "design_round1": "FAIL 3.86 (4,4,3,4,4,4,4)",
+    "design_round2": "FAIL 3.86 (4,4,3,4,4,4,4)",
+    "blocker": "Canva edit API cannot set a font family; text renders in Arial/Liberation Sans, not Poppins/Inter (typography 3)"
+  }
+}

@@ -39,6 +39,7 @@ Oct 24, 2026 (Todd's go on the free calculators): B4, B1 and B3, the Amazon payo
 | B8 | How do you decide how much cash you can safely commit to a big spend? | Shopify Community | https://community.shopify.com/t/shopify-merchants-how-do-you-decide-if-you-can-actually-afford-your-next-big-spend/692341 | Oct 5, 2026 |
 | B9 | How do FBA sellers balance long lead times, reorder size and cash limits? | Amazon Seller Central forums | https://sellercentral.amazon.com/seller-forums/discussions/t/e0f89cc9-58b3-4a97-a43c-582e1a17ce60 | approx Apr 2026 |
 | B10 | New seller with about $2K in sales but a negative balance; will cash flow turn positive? | Amazon Seller Central forums | https://sellercentral.amazon.com/seller-forums/discussions/t/2d4b3592-0984-4355-8934-7a92a17739f2 | approx Oct 2024 |
+| B11 | A Shopify payout has been missing for weeks and half my orders sit on hold for lack of funds; how do I keep fulfilling? | Shopify Community | https://community.shopify.com/t/urgent-payout-missing-since-april-24-business-impacted/418440 | Jun 9, 2025 (added Oct 25, 2026, fetched and read that day) |
 
 Oct 23, 2026: B1, B3, B4, B9 and B10 (Seller Central) cannot be fetched by the unattended run (the fetch asks for a permission no one answers); B1 skipped that day, still unused. C9 added Oct 23.
 

@@ -5279,6 +5279,282 @@
    ],
    "footnote": "Project counts from the City of Chicago Data Portal, Building Permits, pulled {asOf} and filtered by ProofNotFluff as the free sample page explains. Prices are worked examples, not quotes.",
    "published": "2026-10-24"
+  },
+  {
+   "slug": "chicago-post-construction-cleaning-bid-sites",
+   "kind": "question",
+   "city": "Chicago",
+   "product": "chicago-construction-cleaning-leads",
+   "data": "permits/chicago/sample.json",
+   "stats": "chicago_construction",
+   "title": "Where to Bid on Post-Construction Cleaning Jobs in Chicago | ProofNotFluff",
+   "desc": "Is there a website to bid on post-construction cleaning? Agencies post their own bids; builders hire the final clean. Permits name the builder on {kept} Chicago jobs.",
+   "card": "Which websites post cleaning bids in Chicago, why the final clean of a building is rarely one of them, and where the builders are this week.",
+   "eyebrow": "Chicago cleaning bids",
+   "updated": "Updated {asOf} from City of Chicago building permits. Portals checked Oct 25, 2026.",
+   "h1": "Is there a website to bid on post-construction cleaning jobs in Chicago?",
+   "answer": [
+    "Only for public work, and even there rarely for the final clean of a building. The City of Chicago, the Chicago Housing Authority and Chicago Public Schools post their own contracts on free portals. On a building project, though, final cleaning is a section of the construction specifications the general contractor works from, so the builder decides who cleans.",
+    "The site that helps is the City's own permit data. This week it names the builder on **{kept}** open commercial and apartment projects of $500,000 or more in Chicago, and {nearFinish} of them are near the end. Get on those builders' bidders lists, and you can be considered when they bid out the clean."
+   ],
+   "numbersTitle": "Where the builders are this week, from City permits",
+   "tiles": [
+    [
+     "Open projects",
+     "{kept}",
+     "$500K+ with a builder named"
+    ],
+    [
+     "Near finish",
+     "{nearFinish}",
+     "partial occupancy approved"
+    ],
+    [
+     "New buildings",
+     "{newBuild}",
+     "the other {reno} are renovations"
+    ],
+    [
+     "Most for one builder",
+     "{gc1n}",
+     "open projects for {gc1}"
+    ]
+   ],
+   "numbers": [
+    "Counts cover permits the City issued from {from} to {to}, pulled from the City on {asOf}. Of the {fetched} permits pulled, {kept} pass the filter: open, commercial or apartment, $500,000 or more, with a business named as general contractor."
+   ],
+   "tables": [
+    {
+     "title": "Where cleaning bids are posted in Chicago",
+     "intro": [
+      "Each portal below posts that buyer's own contracts. Search the titles for cleaning, janitorial and custodial, and expect most weeks to have none."
+     ],
+     "head": [
+      "Where",
+      "What is posted",
+      "What it takes to respond"
+     ],
+     "rows": [
+      [
+       "City of Chicago, Department of Procurement Services",
+       "Department of Procurement Services bids, RFPs and RFQs, all advertised through the City's eProcurement system, reached through the iSupplier portal, plus a Bid Opportunity List PDF at chicago.gov/bids and the DPS Alerts email",
+       "Registration with the City as a vendor; a new vendor attaches a W-9 or tax ID as a PDF, and the legal name must match it"
+      ],
+      [
+       "Chicago Housing Authority",
+       "Open bids and bid documents on its Contracting Opportunities page",
+       "An account on the CHA Supplier Portal, with a W-9 and compliance certificates uploaded"
+      ],
+      [
+       "Chicago Public Schools",
+       "Solicitations released daily on its Contracting Opportunities page",
+       "A response to a posted solicitation; CPS says it does not accept unsolicited vendor applications"
+      ],
+      [
+       "Federal and other public buyers",
+       "SAM.gov for federal work, and aggregators such as BidNet and GovWin that collect public bids, as SweptWorks lists them",
+       "Each buyer's own registration and rules"
+      ],
+      [
+       "Private builders",
+       "Usually nothing public for the final clean",
+       "A place on the builder's bidders list, then an invitation"
+      ]
+     ],
+     "notes": [
+      "On the City's Bid Opportunity List of Aug 11, 2025, which we read, none of the solicitations was for cleaning or janitorial work. Portal details read Oct 25, 2026; each buyer's own page governs."
+     ]
+    },
+    {
+     "title": "Worked example: the builders to ask first",
+     "intro": [
+      "Instead of waiting for a bid to be posted, start from the builders with the most open work. These five lead this week's Chicago list, from the same City permits."
+     ],
+     "head": [
+      "Builder",
+      "Open projects",
+      "Reported cost"
+     ],
+     "rows": "gcRows",
+     "notes": [
+      "{gc1} alone has {gc1n} open projects, so one place on its bidders list can cover many jobs. Reported cost is the figure on the permit application, a size signal, not the value of any cleaning work. No builder named here has endorsed or worked with ProofNotFluff."
+     ]
+    }
+   ],
+   "stepsTitle": "How to get invited to bid",
+   "steps": [
+    [
+     "Pick builders, not websites",
+     "List the general contractors with open jobs near you. {gc1} leads this week with {gc1n} open projects, ahead of {gc2} ({gc2n}) and {gc3} ({gc3n})."
+    ],
+    [
+     "Write to the main office",
+     "Ask to be placed on the builder's bidders list for cleaning, and include your insurance, licenses, references and proof of what your crew can do, as the trade magazine Cleaning & Maintenance Management advises."
+    ],
+    [
+     "Ask how the builder qualifies new trades",
+     "Some builders want a form or a document set before they invite anyone. Ask the office what it needs, send it the same week, and ask who to call about cleaning on a named project."
+    ],
+    [
+     "Use public awards to find more builders",
+     "The City's Department of Procurement Services publishes bid tabulations, awarded contracts and a contract information search. The firm that won a City construction contract is the one to ask about cleaning on that job."
+    ],
+    [
+     "Register once for the work agencies buy themselves",
+     "Set up the City's iSupplier registration and the CHA Supplier Portal account, sign up for DPS Alerts, and check the CPS Contracting Opportunities page. These carry building cleaning and janitorial contracts when an agency buys them directly."
+    ],
+    [
+     "Call before the end of the job",
+     "A permit with partial occupancy approved is near the end, when the final clean gets bought. This week's count at that stage: {nearFinish}."
+    ],
+    [
+     "Know your price before the invitation comes",
+     "A builder that invites you will want a number quickly. Work out your floor from your own costs first."
+    ]
+   ],
+   "calculator": [
+    "cleaning-price-per-square-foot-calculator",
+    "cleaning price per square foot calculator",
+    "Set your floor before a builder asks for a number:"
+   ],
+   "sections": [
+    [
+     "Why no website lists the final clean",
+     [
+      "The person who asked this on the Jobber Community forum got one substantive reply, and it named no website: the replier did not know of one and had contacted realtors and construction companies directly instead. That matches how the work is bought.",
+      "Final cleaning is written into the project's specifications. One public university's construction standard, section 01 77 00.1 Final Cleaning, says to \"employ experienced workers or professional cleaners for final cleaning\", which leaves the choice of cleaner to whoever runs the job. Bid software exists for builders, but it serves their side: ClockShark describes SmartBid as a tool that lets a builder send invitations to bid and prequalify subcontractors. The builder picks who is invited."
+     ]
+    ],
+    [
+     "What to have ready for a public bid",
+     [
+      "A W-9 or tax ID in your legal business name for the City's registration, and compliance certificates for the CHA Supplier Portal. The City also runs an M/WBE certification program; SweptWorks notes that many organizations require supplier registration, and that minority-owned, women-owned or veteran-owned certifications can open set-aside contracts.",
+      "Read each solicitation's own instructions and deadline. The City's eProcurement guide says to check for addenda, because a quote's status changes to Resubmission Required when one is issued."
+     ]
+    ]
+   ],
+   "cta": {
+    "title": "Every open builder job, every Monday",
+    "text": "The full Chicago list: {kept} open commercial and apartment projects this week, each with the builder, address, reported cost, permit stage and permit number, near-finish jobs first, in a members' web app with a map and an Excel file. {price} a month."
+   },
+   "faq": [
+    [
+     "Is there a website to bid on post-construction cleaning jobs?",
+     "For public agencies' own contracts, yes: the City of Chicago, the Chicago Housing Authority and Chicago Public Schools post them on their portals. The final clean of a private building is usually bought by the general contractor, so get on the builder's bidders list instead."
+    ],
+    [
+     "Where does the City of Chicago post bids?",
+     "At chicago.gov/bids, which links a Bid Opportunity List PDF and the eProcurement bid opportunities. All Department of Procurement Services bids, RFPs and RFQs are advertised through the City's eProcurement system, reached through the iSupplier portal, and responding online needs a City vendor registration."
+    ],
+    [
+     "How do I find the builder on a Chicago project?",
+     "Look up the address in the City of Chicago's Building Permits data on data.cityofchicago.org. The contact marked as general contractor is the builder. This week {kept} open projects of $500,000 or more name one."
+    ],
+    [
+     "Are paid lead or bid sites worth it?",
+     "Check what a won job would cost you first. The free cost per lead calculator turns a monthly lead spend and your close rate into the cost of each job you win."
+    ],
+    [
+     "Does a project on the list need a cleaner?",
+     "Not necessarily. A permit shows that work is planned or under way and who the builder is. It does not say who cleans the job or whether that work is already taken."
+    ],
+    [
+     "Do you bid or call builders for me?",
+     "No. You make your own calls and bids. We never contact anyone on your behalf, and no business listed has endorsed or works with ProofNotFluff."
+    ]
+   ],
+   "related": [
+    [
+     "chicago-construction-cleaning-leads",
+     "Chicago construction cleaning leads: this week's free sample"
+    ],
+    [
+     "chicago-post-construction-cleaning-contracts",
+     "Chicago: how to get post-construction cleaning contracts"
+    ],
+    [
+     "price-post-construction-cleaning-bid",
+     "Should you cut your post-construction cleaning price?"
+    ],
+    [
+     "cost-per-lead-calculator",
+     "Free cost per lead calculator: what a won job really costs"
+    ]
+   ],
+   "sources": [
+    [
+     "City of Chicago Data Portal, Building Permits (ydr8-5enu)",
+     "{datasetUrl}",
+     "pulled {asOf}"
+    ],
+    [
+     "Jobber Community, New Commercial Cleaning Business (\"Does anyone know of a website where you can bid on post construction builds?\")",
+     "https://community.getjobber.com/discussions/cleaning-and-property-maintenance/new-commercial-cleaning-business/4939",
+     "posted about a year before Oct 25, 2026, read Oct 25, 2026"
+    ],
+    [
+     "City of Chicago, Current Bid Opportunities",
+     "https://chicago.gov/bids",
+     "read Oct 25, 2026"
+    ],
+    [
+     "City of Chicago, eProcurement 101 (Department of Procurement Services)",
+     "https://www.chicago.gov/content/dam/city/depts/dps/Outreach/EPROCUREMENT_101.pdf",
+     "read Oct 25, 2026"
+    ],
+    [
+     "City of Chicago, Bid Opportunity List, Aug 11, 2025",
+     "https://www.chicago.gov/content/dam/city/depts/dps/WeeklyBidOpportunities/2025WeeklyBidOpportunities/081125.pdf",
+     "read Oct 25, 2026"
+    ],
+    [
+     "City of Chicago, Department of Procurement Services, Vendor, Contractor and Supplier Information",
+     "https://chicago.gov/city/en/depts/dps/provdrs.html",
+     "read Oct 25, 2026"
+    ],
+    [
+     "City of Chicago, Department of Procurement Services, Supplier Information",
+     "https://chicago.gov/city/en/depts/dps/supp_info.html",
+     "read Oct 25, 2026"
+    ],
+    [
+     "Chicago Housing Authority, Getting Started",
+     "https://thecha.org/node/446",
+     "read Oct 25, 2026"
+    ],
+    [
+     "Chicago Public Schools, Vendor Information",
+     "https://cps.edu/procurement/Pages/vendor.aspx",
+     "read Oct 25, 2026"
+    ],
+    [
+     "SweptWorks, Finding Jobs to Bid On (Jaclyn Tyson)",
+     "https://learn.sweptworks.com/find-open-bids-cleaning-contracts",
+     "posted Oct 10, 2025, read Oct 25, 2026"
+    ],
+    [
+     "Cleaning & Maintenance Management, Construction Site Cleanup Opportunities (Thomas Anthony)",
+     "https://cmmonline.com/articles/construction-site-cleanup-opportunities",
+     "posted Mar 3, 2011, read Oct 25, 2026"
+    ],
+    [
+     "Austin Peay State University, construction standard 01 77 00.1 Final Cleaning",
+     "https://www.apsu.edu/univ-design-and-construction/appendix_3/01-77-00.1-Final-Cleaning.pdf",
+     "read Oct 25, 2026"
+    ],
+    [
+     "ClockShark, BuildingConnected review and alternatives",
+     "https://www.clockshark.com/Blog/buildingconnected-review",
+     "updated Aug 15, 2023, read Oct 25, 2026"
+    ],
+    [
+     "City of Chicago data disclaimer",
+     "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
+     "read Oct 22, 2026"
+    ]
+   ],
+   "footnote": "Numbers from the City of Chicago Data Portal, Building Permits, pulled {asOf}, filtered by ProofNotFluff as the free sample page describes. Portal details from each agency's own pages, read Oct 25, 2026.",
+   "published": "2026-10-25"
   }
  ]
 }

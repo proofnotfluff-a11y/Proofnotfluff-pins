@@ -51,12 +51,12 @@ Every source you cite is opened again by a second AI before anything is built. I
 
 ## 8. Evidence rules (every round)
 1. Open every page you cite. If a page will not open, do not cite it; name the site under BLOCKED.
-2. Every source is {"url": "...", "date": "YYYY-MM-DD"}: the date it was posted or published, or the day you read it when it has no date.
+2. Every source is {"url": "...", "date": "YYYY-MM-DD"}: the date it was posted or published; for a live page (a roster search, a Census table, a dataset page, a pricing page) the day you read it.
 3. Quotes are 15 words or fewer. No usernames, and no person's name, email or phone, ever.
 4. For Schema C (R3, R4), every source date must be within the last 12 months (terms of use pages: 10 years), or our scorer gives that factor 0. For Schemas A, B, D and E, prefer the last 24 months and mark older sources "old".
 5. Count, never estimate: a count is a number a page states or a query you ran (for Socrata portals, a $select=count(*) URL with a date filter; put that URL in recordsSource.url and paste the exact value the portal returned, such as [{"count":"412"}], in kimi.observed). If you could not run the query, the count is null, with the reason.
 6. Label claims OBSERVED (a source states it) or INFERRED (your reasoning).
-7. Read only. Never post, comment, sign up, download software or message anyone. Skip any site whose terms forbid automated collection.
+7. Read only, one page at a time as a reader would. Never post, comment, sign up, download software, bulk download or message anyone. Skip a site that blocks you or needs a login, and name it under BLOCKED.
 8. Honest beats hopeful. Fewer real findings beat many padded ones. "Not found" is a useful answer.
 9. Plain words, no em or en dashes, valid JSON (double quotes, no trailing commas, no comments).
 
@@ -112,10 +112,10 @@ Schema C, ideas (rounds R3 and R4; this is our scorer's own format, so every key
   "demand": {"searchQueries": [{"q": "", "url": "", "date": ""}],
              "aiQueries": [{"q": "a buyer's real question in public, 15 words or fewer", "url": "", "date": ""}]},
   "data": {"publisher": "", "dataset": "", "subject": "what one record describes (a business, a building, a project)",
-           "url": "", "apiUrl": "", "cadence": "daily|weekly|monthly", "lastUpdated": "YYYY-MM-DD",
+           "url": "", "apiUrl": "", "cadence": "daily|weekly|monthly", "lastUpdated": "the newest record's date or the portal's last-updated stamp, YYYY-MM-DD",
            "recordsPerMonth": null, "recordsSource": {"url": "", "date": ""}, "apiStable": true,
            "license": {"commercialUse": "allowed|forbidden|unclear", "url": "the terms page itself, not the dataset page", "date": "", "note": "the clause that allows or forbids commercial reuse, quoted, 15 words or fewer"}},
-  "build": {"days": 0, "maintHoursMonth": 0, "reuses": []},
+  "build": {"days": null, "maintHoursMonth": null, "reuses": []},
   "fit": {"samePortal": false, "existingTools": [], "sameBuyerTypes": false},
   "overlap": "a product in section 6 this touches, or empty",
   "kimi": {"round": "R3", "whyNow": "the line a buyer reads", "aiAngle": "what AI does that is hard by hand, or none",

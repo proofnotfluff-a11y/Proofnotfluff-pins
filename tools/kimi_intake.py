@@ -159,6 +159,9 @@ def check_idea(idea, today):
     probs = osc.validate(idea, f"{idea.get('slug', 'missing-slug')}.json")
     if not re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", str(idea.get("slug", ""))):
         probs.append("slug must be lowercase words joined by hyphens")
+    days = (idea.get("build") or {}).get("days")
+    if days is not None and (not isinstance(days, (int, float)) or days <= 0):
+        probs.append("build.days must be null or a real estimate above 0 (a 0 placeholder would score best)")
     return probs, osc.kills(idea, today), dup_of(idea)
 
 
@@ -372,6 +375,7 @@ def selftest():
             idea("home-owner-list", pitch="homeowners with expired permits", data={"subject": "homeowners", "license": {}}),
             idea("email-leak", pitch="call the owner at owner@example.com or 312-555-0142, posted by u/cleanpro99"),
             idea("old-idea", name="New Trucking Companies by State"),
+            idea("zero-days", build={"days": 0}),
             idea("long-quote", demand={"searchQueries": [], "aiQueries": [{"q": " ".join(["word"] * 20), "url": "https://example.org/q", "date": "2026-09-01"}]}),
         ]})
         # R1 carries trailing commas, a planted model slip that loads_loose must tolerate
@@ -401,6 +405,7 @@ def selftest():
         want("FAIL parse: block 3" in out, "a broken block is reported, not skipped silently")
         want("FAIL R3 old-idea" in out or "WARN R3 old-idea" in out, "an existing slug is flagged")
         want("quote over 15 words dropped" in out, "a long quote is dropped")
+        want("FAIL R3 zero-days" in out, "a 0 day build placeholder fails")
         want("dash replaced" in out, "an em dash is replaced")
         want("OK R1: 1 of 1 kept" in out, "trailing commas in a block are tolerated and R1 is kept")
         saved_r3 = json.load(open(os.path.join(WORK, "2026-10-25", "R3.json")))

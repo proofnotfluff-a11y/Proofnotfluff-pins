@@ -21,9 +21,10 @@ Repeat R3 and R4 every two weeks with a new Focus line (another metro, another r
 
 ## How Todd runs it (about 10 minutes of his time a round, the rest is Kimi's)
 1. In Kimi, start a new task with web search on. Attach coo/kimi/RESEARCH_BRIEF.md.
-2. Paste R0. When it finishes, paste R1 in the same task, then R2, R3 and R4, so each round can use the earlier findings.
-3. Copy each reply whole into one Claude chat with "Kimi R0 reply" (R1, ...) on top.
-4. For R5, Claude sends a candidates file; attach it with the brief in a new Kimi task and paste R5.
+2. Paste R0. When it finishes, paste R1 in the same task, then R2.
+3. Start a second Kimi task with the brief attached. Paste the SUMMARY and SKIP LIST lines of R0 to R2 at the top of your message, then R3. When it finishes, paste R4 in that task. (Long replies crowd a single chat, so the heavy rounds get a fresh one.)
+4. Copy each reply whole into one Claude chat with "Kimi R0 reply" (R1, ...) on top.
+5. For R5, Claude sends a candidates file; attach it with the brief in a new Kimi task and paste R5.
 
 ## What Claude does with a reply (intake)
 1. Save the reply to data/work/kimi/<date>/<round>.txt and run `python3 tools/kimi_intake.py read <file>`. It parses the JSON, normalizes dashes, drops quotes over 15 words, refuses emails, phones and usernames, runs the scorer's own schema and kill rules (K1 to K5) on every idea, flags duplicates of our products and candidates, and writes the URL list to check.
@@ -45,7 +46,7 @@ The question: do these exact trades pay anyone for leads today; in what form (pe
 How to work:
 1. For each buyer, find sellers that sell leads, lists, bid feeds or appointments to that trade, and open their pricing pages. Record the form and the price as the page states it.
 2. Find how those sellers reach the trade: trade associations and their vendor programs, trade shows, Facebook-style groups that are public, marketplaces, search pages that rank, cold email, phone teams, software the trade already uses (field service and route software with built-in lead or marketplace features).
-3. Read the trade's own words (forums, reviews of lead sellers, YouTube comments, trade magazine articles) on buying leads: what made them pay, what made them cancel, whether they read cold email at all, and what they want instead.
+3. Read the trade's own words (forums, reviews of lead sellers, trade magazine articles) on buying leads: what made them pay, what made them cancel, whether they read cold email at all, and what they want instead.
 4. For each buyer, give a diagnosis with evidence and the one change most likely to get a first payer. Our options include a different buyer inside the same data, a different form (pay per lead, a one-time list, a free week), a different channel inside our rules, or a different price.
 
 Do not tell us what we want to hear. If these trades do not buy leads in any form, say it.
@@ -72,7 +73,7 @@ How to work:
    - "where do you get your commercial leads" [trade]
    - "[lead seller] leads waste of money" or "cancelled [lead seller]" (Angi, Thumbtack, HomeAdvisor, Yelp Ads, Bark, Networx, BuildZoom, ConstructConnect, Dodge, Construction Monitor, Shovels, Apollo, ZoomInfo, Data Axle)
    - "how do I find new restaurants before they open", "how to find new construction projects to bid", "how to get commercial contracts" [trade]
-2. Read where owners talk: Reddit (r/sweatystartup, r/smallbusiness, trade subreddits), ContractorTalk, trade association forums, Quora, BiggerPockets, YouTube comments, Indie Hackers. Read reviews of the lead sellers above on Trustpilot and BBB. Skip G2 and Capterra unless you can open the page and their terms allow it; if you skip them, say so under BLOCKED. Read only.
+2. Read where owners talk: Reddit (r/sweatystartup, r/smallbusiness, trade subreddits), ContractorTalk, trade association forums, Quora, BiggerPockets, Indie Hackers. Read reviews of the lead sellers above on Trustpilot and BBB. Skip G2 and Capterra unless you can open the page and their terms allow it; if you skip them, say so under BLOCKED. Read only.
 3. Go deep on the 6 to 10 trades with the strongest signal. For each: the pain, how many separate threads show it, what they pay now (per lead, per month, per job), the typical job size, and what they wish existed.
 4. For each pain, name the public record that would answer it (a permit, an inspection, a license, a filing, a violation, a contract award, a registration), or write "none".
 5. Look for the opposite too: trades that say referrals give them all the work they can handle. They are not buyers; list them so we skip them.
@@ -129,7 +130,7 @@ A dataset qualifies only if all of these hold:
 - The event creates a job or a sale for someone within weeks (a failed fire inspection needs a fire protection contractor; a new liquor license needs POS, insurance, signage and linen vendors; a county contract award needs subcontractors and suppliers).
 - Its terms allow commercial reuse.
 
-Places to start (open each and check; do not trust this list): Cook County open data and offices (Assessor, Treasurer, Clerk, Board of Review, Department of Public Health, procurement and contract awards, Land Bank); Illinois Secretary of State business data, Liquor Control Commission, Department of Public Health, Department of Financial and Professional Regulation, Illinois EPA, Office of the State Fire Marshal (elevators, boilers, storage tanks), Capital Development Board, Illinois Procurement Bulletin, IDOT lettings; federal records filtered to a county (SAM.gov and USAspending awards, SBA loans, OSHA, EPA ECHO, FCC, Census business formation); then other metros' city and county portals, to find a model that works in one place with no seller in another.
+Places to start (open each and check; do not trust this list): Cook County open data and offices (Assessor, Treasurer, Clerk, Board of Review, Department of Public Health, procurement and contract awards, Land Bank); Illinois Secretary of State business data, Liquor Control Commission, Department of Public Health, Department of Financial and Professional Regulation, Illinois EPA, Office of the State Fire Marshal (elevators, boilers, storage tanks), Capital Development Board, Illinois Procurement Bulletin, IDOT lettings; federal records filtered to a county (SAM.gov and USAspending awards, SBA loans, OSHA, EPA ECHO, FCC, Census business formation).
 
 Before you include an idea:
 1. Count the events with a query URL or a page that states the number. Cannot count it: null, and say why.
@@ -146,7 +147,7 @@ SUMMARY: five plain sentences, best idea first, and the richest area you did not
 
 REJECTED: one line per dataset you checked and threw out, with the reason (free substitute, too few events, person-level, terms, rival). This list matters as much as the ideas.
 
-Then one fenced json block in Schema C, at most 8 ideas, best first, round "R3".
+Then one fenced json block in Schema C, at most 5 ideas, best first, round "R3".
 ```
 
 ## R4, the AI unlock
@@ -178,7 +179,7 @@ SUMMARY: five plain sentences.
 
 REJECTED: one line per source thrown out, with the reason.
 
-Then one fenced json block in Schema C, at most 6 ideas, round "R4" at the top level and in kimi.round, with kimi.aiAngle filled in for every idea.
+Then one fenced json block in Schema C, at most 4 ideas, round "R4" at the top level and in kimi.round, with kimi.aiAngle filled in for every idea.
 ```
 
 ## R5, red team (after our scorer ranks the new ideas)

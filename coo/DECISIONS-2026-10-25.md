@@ -29,3 +29,8 @@
 ## Carousel design gate and Facebook Page, 2:30 pm
 - Design gate FAIL twice (4.43, then 4.29); second FAIL went to Todd. Todd: "fix and post". Final fixes saved in Canva DAHZBYo0Dkk (cmo/carousels/2026-10-25.json gates).
 - Todd: "fill out the ProofNotFluff Facebook profile page". Done in Chrome: P.NF profile picture, cover (homepage lines), bio, website proofnotfluff.com/go, Instagram link, categories Product/service and Business service, service areas Chicago and Austin. Open: Page name to "ProofNotFluff"; public contact email (Todd to choose).
+
+## Daily carousel, 3:05 pm
+- Todd: "can we schedule this so it happens daily?" Answers: posting "Post when all checks pass"; time "11:40 am"; slides "Build in code" (Canva cannot hand the images to a scheduled run).
+- Done: tools/make_carousel.py renders the slides; .claude/skills/social-carousel/SKILL.md is daily with the posting steps; scheduled task "PNF social carousel" daily 11:40 am Central on Todd's PC.
+- Pending Todd: the standing carousel post rule in coo/CONSTITUTION.md section 2 (and CLAUDE.md rule 3 pointing to it). The session's edit was blocked by a permission check. Until it is there, the daily run builds and gates, then sends Todd the slides and stops before posting.

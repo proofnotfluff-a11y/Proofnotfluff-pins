@@ -3,7 +3,7 @@
   "topic": "construction",
   "hookId": "H10",
   "product": "chicago-construction-cleaning-leads",
-  "format": "1080 x 1350, 7 slides, Instagram and Facebook carousel (JPG per slide)",
+  "format": "1080 x 1350, 7 slides, rendered by tools/make_carousel.py; Instagram and Facebook carousel",
   "data": {
     "file": "permits/chicago/sample.json",
     "stats": "tools/question_site.py stats(\"chicago_construction\", d)",
@@ -157,7 +157,7 @@
       "role": "work",
       "ground": "canvas",
       "eyebrow": "WHAT WE DO EVERY MONDAY",
-      "title": "3,061 permits in. 1,133 worth a call.",
+      "title": "3,061 permits in.\n1,133 worth a call.",
       "body": "We check every permit each week and rank the 1,133 by how close each job is to a final clean.",
       "source": "Source: City of Chicago Data Portal, Building Permits, pulled Oct 19, 2026",
       "facts": [
@@ -182,13 +182,15 @@
           "key": "chicago-construction-cleaning-leads.cta.text ('closest to a final clean first')"
         }
       ],
-      "barLabels": [
-        "Permits in",
-        "Worth a call"
-      ],
-      "barValues": [
-        "3,061",
-        "1,133"
+      "bars": [
+        {
+          "label": "Permits in",
+          "value": "3,061"
+        },
+        {
+          "label": "Worth a call",
+          "value": "1,133"
+        }
       ]
     },
     {

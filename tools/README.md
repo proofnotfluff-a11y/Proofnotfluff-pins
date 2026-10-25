@@ -174,3 +174,5 @@ Code fetches, joins and checks; the agent only matches and drafts between gates;
 - `test_gates.py`: planted failures for the four gates; check_repo runs it as gate-selftest.
 - `pnf_rules.py`: the rules themselves (stages, role inboxes, banned strings, schemas, address_key, footer).
 - `python3 tools/check_repo.py --preflight <job>`: the first command of every scheduled run.
+
+`python3 tools/make_carousel.py cmo/carousels/<date>.json --out <dir>` renders a social carousel: 1080 x 1350 JPGs, one per slide, plus sheet.jpg, in the design system (Poppins and Inter from docs/assets/fonts, balanced wrapping). Exit 1 on an em or en dash or text that runs into the source line. Used by .claude/skills/social-carousel/SKILL.md (Todd, Oct 25: "Build in code").

@@ -90,6 +90,16 @@
    "sha256": "ae7fc421352f15caa0197759ae2149b455c76e867182ade01a60ccdf9ea135f6",
    "approvedOn": "2026-10-24",
    "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
+  },
+  "email/L2-COMMISSION.md#T21-A": {
+   "sha256": "a17de7a6a961ace028f145a437a640f7611b657d9e228d3d2e363a2e51def780",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 8:52 pm, live chat: \"Go with recommendation\", answering the choice 'Reply approve T21 and T24 (my recommendation). That approves the two first-email templates under your standing send rule ... Follow-ups would still need your yes.'"
+  },
+  "email/L2-COMMISSION.md#T24-A": {
+   "sha256": "abd1db30025bc2f4b5d590b50ea0dfdc2d5d4bd6d25939f84cba7614bf399584",
+   "approvedOn": "2026-10-24",
+   "note": "Todd, Oct 24, 2026, 8:52 pm, live chat: \"Go with recommendation\", answering the choice 'Reply approve T21 and T24 (my recommendation). That approves the two first-email templates under your standing send rule ... Follow-ups would still need your yes.'"
   }
  }
 }

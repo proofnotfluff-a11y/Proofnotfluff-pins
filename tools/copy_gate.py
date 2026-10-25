@@ -759,6 +759,13 @@ def check_lic_templates(path=LIC_FILE, today=None):
     if not ts:
         return [f"{os.path.relpath(path, ROOT)}: no templates"], 0, 0, ""
     lic, insp = json.load(open(LIC_SAMPLE, encoding="utf-8")), json.load(open(INSP_SAMPLE, encoding="utf-8"))
+    # The two weekly files are pulled by two workflows and can sit a day apart between Mondays. That blocks a batch
+    # (check_lic_drafts and lic_count_problems stay strict), but it says nothing about the templates, so the template
+    # check renders on the inspection file's counts moved onto the license window and keeps the mismatch as a planted
+    # case below (Oct 24: a day-apart pull had blocked every push).
+    insp_live, aligned = insp, (lic.get("window") or {}).get("from") == (insp.get("window") or {}).get("from")
+    if not aligned:
+        insp = dict(insp, window={"from": lic["window"]["from"], "to": lic["window"]["to"]})
     trades = R.COUNT_PRODUCTS["chicago-licenses"]["trades"]
     for tr in trades:
         for st in PEST_STEPS:
@@ -817,7 +824,11 @@ def check_lic_templates(path=LIC_FILE, today=None):
             if not lic_count_problems(s2, b2, "followup1", "pos_merchant", lic, insp, day, "Dana", R.SALES_SENDER, names):
                 problems.append("planted case not caught: wrong area count")
             planted += 1
-    return problems, len(ts), planted, f"n = {lic_counts(lic, insp)['n']}, m = {lic_counts(lic, insp)['m']}, {lic['window']['from']} to {lic['window']['to']}"
+    info = f"n = {lic_counts(lic, insp)['n']}, m = {lic_counts(lic, insp)['m']}, {lic['window']['from']} to {lic['window']['to']}"
+    if not aligned:
+        info += (f"; the inspection file covers {insp_live['window']['from']} to {insp_live['window']['to']}, so no batch can go "
+                 "until both files cover one week")
+    return problems, len(ts), planted, info
 
 
 def check_lic_drafts(drafts_path, prospects_path, send_day):

@@ -12,4 +12,4 @@
 - Radar Oct 23: health 4 PASS, AI check 0 of 12, scout (scout/OPPORTUNITIES.md). launches/WIRING.json gates live lead pages. Mondays 9:31 am.
 - Skills: 7 scheduled, 4 on request. Index: Bing ok, IndexNow on changes, index-request Fri 7:40, 35 left.
 - Pest seat live Oct 24 (gumroad.com/l/bzemcy, 3 seats, launches/chicago-pest-seat.md). Outreach on, Legal subject (Oct 24); batches go to Todd; role inboxes allowed (pest_role_inbox); 12 sendable after Bouncer (todo pest-owners-100).
-- Oct 25: $204 cloud credit ends Nov 5; plan waits on Todd (todo cloud-credits-plan). pest-owners-100 unblocked.
+- Oct 25: credits plan live (DECISIONS-2026-10-25): pest runs Oct 26, 27; audit 28; page bursts 29, Nov 2.

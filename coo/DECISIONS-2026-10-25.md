@@ -7,3 +7,8 @@
 - Video tools (Higgsfield or similar): later, not approved yet; any paid plan needs Todd's yes (CONSTITUTION 1).
 - Test proposed in chat (not yet stated as approved): one post a week for 4 weeks to Nov 30, a tagged link to the free sample, stop if 4 posts bring under about 10 sample clicks.
 - First carousel built Oct 25 in Canva (design DAHZBYCZ3Mo, "Chicago pest inspections LinkedIn carousel", 6 square slides): 22 restaurant inspections citing pests Oct 17 to 23, day by day 0, 0, 5, 11, 4, 1, 1, 15 community areas, 29 of the last 41 places with a listed phone, $149 founding seat, 3 seats, no lock-in. Every number checked against permits/inspections-chicago/daily.json (asOf Oct 25). Not posted; Todd posts it.
+
+## Cloud credits plan, 8:53 am
+- [stated] Todd: "go" (to the plan in chat: extra one-off cloud runs to use $204 of free cloud session credit before Nov 5).
+- Scheduled (one-off, cloud): pest list run 1 Mon Oct 26 12:37 pm; pest list run 2 Tue Oct 27 1:37 pm; fresh-eyes conversion audit Wed Oct 28 1:37 pm (read only, findings as Decide rows); question page bursts of 5 Thu Oct 29 and Mon Nov 2, 1:37 pm (minor publishes, every gate); credits check back in the live chat Fri Oct 30 12:23 pm.
+- Change from the plan as first written: the owner lookup on the 279 cleaning prospects already ran Oct 24 (26 owners named, 10 usable) and retries only after 28 days, so that slot went to a second pest list run.

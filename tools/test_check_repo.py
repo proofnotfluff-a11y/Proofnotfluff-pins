@@ -9,7 +9,7 @@ check_repo.py runs this file as its gate-tests check, so the nightly optimizer a
 import json, os, random, re, shutil, string, subprocess, sys, tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data", "builder-contacts", "video-specs", "voice", "fiverr-kit", "monday", "radar"]
+CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data", "builder-contacts", "video-specs", "voice", "fiverr-kit", "monday", "radar", "cos"]
 rng = random.Random()
 # Key markers are assembled here so this file never matches the secrets check itself.
 KEY_BEGIN = "-----BEGIN " + "RSA PRIVATE " + "KEY-----"
@@ -81,6 +81,7 @@ def plants(tmp):
     out.append(("radar", "a candidate with an email address", new_file("scout/candidates/zz-planted.json", json.dumps(
         {"schema": "pnf.opportunity.v1", "slug": "zz-planted", "name": "x", "note": "owner@example.com", "buyer": {}, "price": {},
          "demand": {}, "data": {}, "build": {}, "fit": {}}))))
+    out.append(("cos", "a brief allowed 4 do-now items", edit("tools/cos_agenda.py", lambda t: t.replace("MAX_NOW = 3", "MAX_NOW = 4", 1))))
     out.append(("python", "a tools/ script that does not compile", new_file("tools/zz_planted.py", "def broken(:\n    pass\n")))
     out.append(("calc-tests", "a calculator answer off by $1", edit("docs/assets/pnf-calc.js", lambda t: t + (
         "\nif (typeof module !== 'undefined' && module.exports && module.exports.hourly) {"

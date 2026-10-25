@@ -13,6 +13,7 @@
   var base = me ? new URL("..", me.src).href : "/";   // the site root, from this file's own address
 
   function onReady(fn) { if (doc.readyState !== "loading") fn(); else doc.addEventListener("DOMContentLoaded", fn); }
+  function href(s) { return /^https?:/.test(s) ? s : base + s; }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function norm(s) { return String(s || "").toLowerCase().replace(/[^a-z0-9+&$ ]+/g, " ").replace(/\s+/g, " ").trim(); }
   // every typed word must start some word of the entry (so "pres wash" finds pressure washing)
@@ -51,10 +52,11 @@
         }).slice(0, words.length ? 12 : 8);
       sel = items.length ? 0 : -1;
       list.innerHTML = items.map(function (x, i) {
-        return '<li role="option" id="qf-o' + i + '"' + (i === sel ? ' aria-selected="true"' : "") + '><a href="' + esc(base + x.s) + '" tabindex="-1">'
+        return '<li role="option" id="qf-o' + i + '"' + (i === sel ? ' aria-selected="true"' : "") + '><a href="' + esc(href(x.s)) + '" tabindex="-1">'
           + '<span class="qf-g">' + esc(x.g) + '</span><b>' + esc(x.t) + '</b><span class="qf-d">' + esc(x.d) + "</span></a></li>";
       }).join("");
       input.setAttribute("aria-activedescendant", sel >= 0 ? "qf-o" + sel : "");
+      status.classList.toggle("qf-none", !items.length);
       status.textContent = items.length ? (words.length ? items.length + (items.length === 1 ? " match" : " matches") : "Popular") :
         "Nothing matches. Try a trade (cleaning, pest, junk), a platform (Amazon, Etsy) or a word like price or rate.";
     }
@@ -80,7 +82,7 @@
       input.addEventListener("keydown", function (e) {
         if (e.key === "ArrowDown") { e.preventDefault(); move(1); }
         else if (e.key === "ArrowUp") { e.preventDefault(); move(-1); }
-        else if (e.key === "Enter" && sel >= 0) { e.preventDefault(); location.href = base + items[sel].s; }
+        else if (e.key === "Enter" && sel >= 0) { e.preventDefault(); location.href = href(items[sel].s); }
       });
       dlg.querySelector(".qf-x").addEventListener("click", function () { dlg.close(); });
       dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
@@ -116,8 +118,13 @@
         groups.forEach(function (s) { s.hidden = !s.querySelector(".cx-item:not([hidden])"); });
         if (start) start.hidden = !!(words.length || g);
         empty.hidden = n > 0;
+        chips.forEach(function (b) {   // live counts per chip for the current words
+          var gg = b.dataset.g, c = 0;
+          cards.forEach(function (card) { if ((!gg || card.dataset.g === gg) && matches(norm(card.dataset.k), words)) c++; });
+          var s = b.querySelector("span"); if (s) s.textContent = c;
+        });
         count.textContent = words.length || g ? "Showing " + n + " of " + total + " calculators" : total + " calculators";
-        try { var u = new URL(location.href); if (q.value) u.searchParams.set("q", q.value); else u.searchParams.delete("q"); history.replaceState(null, "", u); } catch (e) {}
+        try { var u = new URL(location.href); if (q.value) u.searchParams.set("q", q.value); else u.searchParams.delete("q"); if (g) u.searchParams.set("cat", g); else u.searchParams.delete("cat"); history.replaceState(null, "", u); } catch (e) {}
       };
       q.addEventListener("input", run);
       chips.forEach(function (b) {
@@ -127,7 +134,11 @@
       doc.addEventListener("keydown", function (e) {
         var t = e.target; if (e.key === "/" && t !== q && !(t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA"))) { e.preventDefault(); q.focus(); }
       });
-      try { var p = new URL(location.href).searchParams.get("q"); if (p) q.value = p; } catch (e) {}
+      try {
+        var sp = new URL(location.href).searchParams, p = sp.get("q"), pc = sp.get("cat");
+        if (p) q.value = p;
+        if (pc) chips.forEach(function (x) { if (x.dataset.g === pc) { g = pc; } x.setAttribute("aria-pressed", String(x.dataset.g === (g || ""))); });
+      } catch (e) {}
       run();
     }
 
@@ -135,7 +146,8 @@
     var hf = doc.querySelector(".hf"), hp = hf && doc.querySelector(".hf-pause");
     if (hp && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
       hp.hidden = false;
-      hp.addEventListener("click", function () { var on = !hf.classList.contains("paused"); hf.classList.toggle("paused", on); hp.setAttribute("aria-pressed", String(on)); hp.textContent = on ? "Play" : "Pause"; });
+      hp.removeAttribute("aria-pressed");
+      hp.addEventListener("click", function () { var on = !hf.classList.contains("paused"); hf.classList.toggle("paused", on); hp.textContent = on ? "Play" : "Pause"; });
     }
 
     /* 4. on-this-page bar: mark the section in view */

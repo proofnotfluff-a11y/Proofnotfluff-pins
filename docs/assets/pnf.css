@@ -632,3 +632,53 @@ a.bt:hover{border-color:#6b7488;background:rgba(255,255,255,.07)}
 .bt-shot{margin-top:auto;padding-top:14px}.bt-shot img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--band-rule)}
 @media(prefers-reduced-motion:no-preference){a.bt{transition:transform .14s ease,border-color .14s ease,background .14s ease}a.bt:hover{transform:translateY(-3px)}}
 @supports(animation-timeline:view()){@media(prefers-reduced-motion:no-preference){.bt{animation:pnf-rise linear both;animation-timeline:view();animation-range:entry 0% entry 40%}}}
+/* store v2 fix round 3 (independent review, Oct 24): phone header in one sticky row with a menu sheet, one section
+   rhythm on home, catalog spacing, phone card padding, landing offsets, art-directed glow behind the product */
+nav.top{align-items:center}.nav-links{display:contents}
+.navm{display:none;position:relative}
+.navm summary{list-style:none;display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);cursor:pointer}
+.navm summary::-webkit-details-marker{display:none}
+.navm[open] summary{border-color:var(--ink)}
+.navm-sheet{position:absolute;right:0;top:calc(100% + 8px);z-index:40;min-width:240px;display:flex;flex-direction:column;gap:2px;padding:8px;border:1px solid var(--line);border-radius:14px;background:var(--card);box-shadow:0 18px 44px rgba(20,24,36,.18)}
+nav.top .navm-sheet a{min-height:48px;padding:0 12px;border-radius:10px}nav.top .navm-sheet a:hover{background:var(--canvas2);text-decoration:none}
+nav.top .navm-sheet a.btn{justify-content:center;margin-top:6px;color:#fff}
+@media(max-width:759px){
+header.top{position:sticky;top:0;z-index:30;background:var(--glass);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--glass-line);padding:8px 0}
+header.top .wrap{flex-wrap:nowrap}header.top .bars{margin-top:4px}header.top .bars i{width:20px;height:4px}
+.nav-links{display:none}nav.top a.navcta{display:none}.navm{display:block}
+nav.top{flex-wrap:nowrap;gap:8px}.qf-btn{margin-left:0}
+.otp{top:61px}section[id],div[id="ldCta"]{scroll-margin-top:132px}}
+@media(min-width:760px){section[id],div[id="ldCta"]{scroll-margin-top:136px}}
+/* phone tap-target rule must not strip card padding */
+@media(max-width:759px){main li.cx-item a,main .hf-list a,main .qa-rel a,main .st-trades a,main .st-calcs a{padding:16px}main .st-calcs a{padding:12px 2px}main .hf-list a{padding:9px 2px}main .st-trades a{padding:8px 8px 8px 12px}}
+/* one rhythm on home: sections 88px apart on desktop, 60px on phones; headings 8px over their intro */
+.st-page .st-sec{margin:88px 0 0}.st-page .st-sec>h2{margin:0 0 8px}.st-page .st-sec>p{margin:0 0 22px}
+.st-page .st-band{margin-top:88px}.bento{margin-top:72px}
+@media(max-width:759px){.st-page .st-sec{margin-top:60px}.st-page .st-band{margin-top:60px}.bento{margin-top:48px}}
+.st-page .tools{max-width:560px}
+/* catalog: heading belongs to its cards */
+.cx-start,.cx-group{margin:0 0 44px}.cx-page .st-cgroup{margin:0 0 4px}
+.cx-group .cx-tag{display:none}
+@media(hover:none){.cx-search kbd,.qf-btn kbd{display:none}}
+.cx-chips{-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+@media(min-width:900px){.cx-chips{-webkit-mask-image:none;mask-image:none}}
+/* hero: wider records card that leaves the map in view, tag over the line, a soft brand glow behind the product */
+.hx-side::before{content:"";position:absolute;inset:-12% -10% 0 -6%;z-index:-1;background:radial-gradient(48% 52% at 62% 34%,rgba(46,107,102,.20),transparent 70%),radial-gradient(40% 44% at 22% 82%,rgba(200,80,47,.16),transparent 72%);filter:blur(8px);pointer-events:none}
+.hx-side{isolation:isolate}
+@media(prefers-color-scheme:dark){.hx-side::before{background:radial-gradient(48% 52% at 62% 34%,rgba(108,192,182,.18),transparent 70%),radial-gradient(40% 44% at 22% 82%,rgba(239,140,107,.14),transparent 72%)}}
+@media(min-width:1000px){.hx-week{max-width:420px;margin:-64px 0 0 -48px}}
+.hf-list a{grid-template-columns:1fr;gap:3px 0}.hf-tag{grid-row:auto;justify-self:start;padding:2px 7px}
+.hf-list span:not(.hf-tag){grid-column:1}.hf{height:196px}
+@media(max-width:999px){.hx-cta{margin-top:-10px}}
+.qf-s.qf-none{text-transform:none;letter-spacing:0;font-size:14px;font-weight:400;padding-bottom:12px}
+.qf-box:has(.qf-none) .qf-foot{display:none}
+@media(max-width:380px){table.lc-tbl{font-size:13px}table.lc-tbl th,table.lc-tbl td{padding-left:4px;padding-right:4px}}
+.navm{background:none;border:0;padding:0;margin:0;max-width:none;border-radius:0}
+body{overflow-x:clip}
+@media(max-width:1199px){.hx-side::before{inset:-8% 0 0 0}}
+.hx{overflow-x:clip;overflow-y:visible}
+@media(max-width:759px){.ld-page nav.top,nav.top{flex-wrap:nowrap}.cx-bar{top:64px}}
+@media(min-width:760px){.cx-bar{top:60px}}
+.ld-page .navm summary,.navm summary{padding:0;font-size:inherit;justify-content:center}.ld-page .navm summary::after,.navm summary::after{content:none}
+@media(max-width:380px){table.lc-tbl th,table.lc-tbl td{white-space:normal}}
+.ld-page .navm,.navm{margin:0}.ld-page header.top .brandlink{padding:0}

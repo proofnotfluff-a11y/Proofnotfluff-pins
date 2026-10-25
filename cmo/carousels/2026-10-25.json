@@ -150,27 +150,32 @@
     },
     {
       "n": 5,
-      "role": "check",
+      "role": "work",
       "ground": "canvas",
-      "eyebrow": "CHECK IT YOURSELF",
-      "title": "It all comes from free City data",
-      "body": "City of Chicago Data Portal, Building Permits. We keep permits of $500,000 or more, still open, with a business as general contractor.",
-      "link": "data.cityofchicago.org",
+      "eyebrow": "WHAT WE DO EVERY MONDAY",
+      "title": "3,061 permits in. 1,133 worth a call.",
+      "body": "We drop closed jobs, houses and permits with no builder, then rank the rest by how close each one is to a final clean.",
+      "source": "Source: City of Chicago Data Portal, Building Permits, pulled Oct 19, 2026",
       "facts": [
         {
-          "text": "City of Chicago Data Portal, Building Permits",
+          "text": "3,061",
           "file": "permits/chicago/sample.json",
-          "key": "source.name"
+          "key": "counts.fetched"
         },
         {
-          "text": "data.cityofchicago.org",
+          "text": "1,133",
           "file": "permits/chicago/sample.json",
-          "key": "source.url"
+          "key": "counts.kept"
         },
         {
-          "text": "$500,000 or more, still open, business as general contractor",
+          "text": "closed jobs, houses, permits with no builder",
           "file": "permits/chicago/sample.json",
-          "key": "source.modified"
+          "key": "counts.excluded['closed, complete or suspended'], ['house or 2 to 3 flat'], ['no business listed as general contractor']"
+        },
+        {
+          "text": "rank by how close to a final clean",
+          "file": "site/pages.json",
+          "key": "chicago-construction-cleaning-leads.cta.text ('closest to a final clean first')"
         }
       ]
     },
@@ -232,7 +237,7 @@
     "left": "ProofNotFluff",
     "right": "n/7"
   },
-  "caption": "1,133 big Chicago building projects are still open in the City's permits, and every one names its builder.\n\nThat matters if you clean, wash windows or pressure wash for a living. The general contractor buys the subcontracted work on each job, so the permit tells you whose office to ask about cleaning.\n\nFrom City of Chicago permits of $500,000 or more, issued in the last 24 months and still open:\n335 new buildings and 798 renovations\nThe Loop leads with 160\n21 have temporary or partial occupancy approved, so a final clean is close\n\nEvery number comes from the City's public data. The free sample is in the first comment.\n\n#Chicago #CommercialCleaning #Construction",
+  "caption": "1,133 big Chicago building projects are still open in the City's permits, and every one names its builder.\n\nThat matters if you clean, wash windows or pressure wash. The general contractor buys the subcontracted work on each job, so the permit tells you whose office to ask about cleaning.\n\nFrom City of Chicago permits of $500,000 or more, issued in the last 24 months and still open:\n335 new buildings and 798 renovations\nThe Loop leads with 160\n21 have temporary or partial occupancy approved, so a final clean is close\n\nEvery number traces back to City permit records. We do the sorting so you don't have to. The free sample is in the first comment.\n\n#Chicago #CommercialCleaning #Construction",
   "firstComment": "Free sample: https://proofnotfluff.com/chicago-construction-cleaning-leads/?utm_source=linkedin&utm_medium=social&utm_campaign=carousel&utm_content=2026-10-25-construction",
   "canva": {
     "design": "DAHZBYo0Dkk",
@@ -243,6 +248,7 @@
     "facts": "PASS after 1 fix (caption builder line)",
     "design_round1": "FAIL 3.86 (4,4,3,4,4,4,4)",
     "design_round2": "FAIL 3.86 (4,4,3,4,4,4,4)",
-    "blocker": "Canva edit API cannot set a font family; text renders in Arial/Liberation Sans, not Poppins/Inter (typography 3)"
+    "blocker": "Canva edit API cannot set a font family; text renders in Arial/Liberation Sans, not Poppins/Inter (typography 3)",
+    "facts_round2": "pending (slide 5 and caption reworked, Todd Oct 25)"
   }
 }

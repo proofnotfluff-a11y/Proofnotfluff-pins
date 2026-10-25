@@ -30,7 +30,7 @@ Mix: canvas about 60%, ink about 30%, accent at most 10% (one element per slide)
 2. Proof: the number broken down (a bar chart or 3 tiles: white cards, label 22 px uppercase muted, value 96 px ink).
 3. Where: neighborhoods or builders as a ranked list in a card, 5 rows at most.
 4. Why it matters to the buyer: one sentence, one fact, no claim the data does not show.
-5. Check it yourself: the free public source, named.
+5. What we do to the data: what comes in, what we drop and why, what is left, with the counts from the data file (Todd, Oct 25: the source is named for trust on the data slides' source line, never as a how-to).
 6. The offer (one product, its live price and terms from site/pages.json).
 7. CTA (ink): "See this week's free sample" and the domain; the link itself goes in the first comment.
 

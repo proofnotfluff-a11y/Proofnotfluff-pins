@@ -43,4 +43,4 @@ Which link each piece carries:
 - Every slate records, per piece, the link it carried and the number it led with, so the COO can tie clicks back to pieces.
 
 ## 5. Things that never ship
-Engagement bait, fake urgency, invented customers, AI-generated people or faces, stock b-roll of other people's work, claims about income or results, anything that needs an AI-content label on the platform, and any post whose only link is the shop page.
+Engagement bait, fake urgency, invented customers, AI-generated people or faces, stock b-roll of other people's work, claims about income or results, anything that needs an AI-content label on the platform, and any post whose only link is the shop page. Also never: a piece that shows how to get the value without us (Todd, Oct 25). We name the public source for trust, never as a how-to; the content shows the work we do on top of it (the filtering, the ranking, the weekly refresh). Social carousels check this with the buyer test (.claude/skills/social-carousel/SKILL.md step 2b).

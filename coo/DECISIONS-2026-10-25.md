@@ -12,3 +12,7 @@
 - [stated] Todd: "go" (to the plan in chat: extra one-off cloud runs to use $204 of free cloud session credit before Nov 5).
 - Scheduled (one-off, cloud): pest list run 1 Mon Oct 26 12:37 pm; pest list run 2 Tue Oct 27 1:37 pm; fresh-eyes conversion audit Wed Oct 28 1:37 pm (read only, findings as Decide rows); question page bursts of 5 Thu Oct 29 and Mon Nov 2, 1:37 pm (minor publishes, every gate); credits check back in the live chat Fri Oct 30 12:23 pm.
 - Change from the plan as first written: the owner lookup on the 279 cleaning prospects already ran Oct 24 (26 owners named, 10 usable) and retries only after 28 days, so that slot went to a second pest list run.
+
+## Source framing and the buyer test, 11:32 am
+- [stated] Todd, 10:53 am: "Do we really wanna make it so obvious that it comes from free data? I feel like this will deter people from subscribing and just try to go get the free data on their own." Then "Yes" (11:32 am) to the proposal: add a buyer test to the carousel skill, add the rule to the marketing standard, run it on the Oct 25 carousel with a new slide 5.
+- So: social-carousel SKILL step 2b (buyer test); cmo/CONVERSION_STANDARD.md section 5 (no piece shows how to get the value without us; the source is named for trust, never as a how-to); design/CAROUSEL_STANDARD.md slide 5 is now "What we do to the data".

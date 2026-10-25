@@ -3,7 +3,7 @@
 Todd runs Kimi K3.1 Pro by hand as an outside auditor. Kimi's guidelines limit the Plus plan to personal interactive use, so this is never scheduled or scripted (Research Wiki, Tools, Oct 25).
 
 How to use it:
-1. Open Kimi Code Desktop and open the proofnotfluff-pins folder on your PC.
+1. Download a fresh copy of the repo (it is public, and the download never includes data/): https://github.com/proofnotfluff-a11y/proofnotfluff-pins/archive/refs/heads/main.zip . Extract it, then in Kimi start a new task and pick the extracted folder, the one with CLAUDE.md directly inside, before pasting. With no folder picked, Kimi sees nothing (first try, Oct 25).
 2. Paste the prompt below. To aim it at one thing, replace the Focus line; otherwise leave it as is.
 3. Paste Kimi's whole reply into a Claude chat. Claude checks every finding against the files before anything changes.
 

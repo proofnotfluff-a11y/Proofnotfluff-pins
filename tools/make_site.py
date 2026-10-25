@@ -2459,7 +2459,7 @@ def store_products():
         elif page.get("kind") == "restleads":
             d = json.load(open(os.path.join(ROOT, page["data"]), encoding="utf-8"))
             c = d["counts"]
-            x["nums"] = [[f'{c["flagged"]:,}', "failed or conditional in our four categories, 30 days"], [f'{c["opening"]:,}', "license inspections, about to open"]]
+            x["nums"] = [[f'{c["flagged"]:,}', "failed or conditional in our four categories, 30 days"], [f'{c["opening"]:,}', "license inspections before a food license"]]
             x["asof"] = d["asOfText"]
             x["source"] = (f'{d["source"]["name"]}: {c["flagged"]:,} failed or conditional with a pest, hood, grease trap or cleaning violation and {c["opening"]:,} license inspections in the '
                            f'30 days to {d["throughText"]}, pulled {d["asOfText"]}.')

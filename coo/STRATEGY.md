@@ -32,7 +32,7 @@ Reach to buyers who pay. Both products can now take money; the only demand test 
 
 ## Unit economics (assumptions marked)
 - Leads A1: $29 a month, Gumroad fee about 10% (assumption until the first payout statement), so about $26 net per subscriber per month. $1,000 a month needs about 38 subscribers net. From email: if 36 emails give 2 payers (Todd's pass mark, 5.6%), 40 emails a week for 10 weeks gives about 22 subscribers before churn. That alone misses Jan 31; it takes two or three city-trade lists in parallel or a second channel. Binding factor: outreach volume, which is Todd's send time (about 20 minutes per 36).
-- Kit: $79, about $71 net. 14 sales a month alone reach $1,000. Traffic to its page is not split out yet; at 20 site visits a day across 47 pages it is low single digits.
+- Kit: $79, about $70.60 net (10% + $0.50). 15 sales a month alone reach $1,000 (corrected Oct 25; 14 net $988.40). Traffic to its page is not split out yet; at 20 site visits a day across 47 pages it is low single digits.
 - Etsy: 32 listings x about 0.05 visits a day; paused. 0.6 orders a month at best.
 
 ## Experiments in flight (live strategy experiments: ecom-ladder-pivot; probes: permit-leads-pilot A1, pm-copy-top-wallets C1, affiliate-tools-probe armed)

@@ -3439,7 +3439,7 @@
    ],
    "cta": {
     "title": "Get the full list every Monday",
-    "text": "Every open apartment and commercial permit in Chicago with a reported cost of $500,000 or more and a business as general contractor, updated every Monday: closest to a final clean first with a neighborhood filter, new permits and near-finish jobs flagged, the builder on each, in a members' app with a map and in an Excel file. Plus a pitch kit: a one-page capability sheet outline and an email to builders you can adapt."
+    "text": "Open apartment and commercial permits in Chicago with a reported cost of $500,000 or more and a business as general contractor (the FAQ lists what is left out), updated every Monday: closest to a final clean first with a neighborhood filter, new permits and near-finish jobs flagged, the builder on each, in a members' app with a map and in an Excel file. Plus a pitch kit: a one-page capability sheet outline and an email to builders you can adapt."
    },
    "faq": [
     [
@@ -3528,7 +3528,7 @@
    ],
    "cta": {
     "title": "Get the full list every Monday",
-    "text": "Every open Austin commercial and apartment project valued at $500,000 or more with a business as general contractor, updated every Monday: closest to a final clean first with a ZIP code filter, new permits and near-finish projects flagged, the builder on each and every building permit behind it, in a members' app with a map and in an Excel file. Plus a pitch kit: a one-page capability sheet outline and an email to builders you can adapt."
+    "text": "Open Austin commercial and apartment projects valued at $500,000 or more with a business as general contractor (the FAQ lists what is left out), updated every Monday: closest to a final clean first with a ZIP code filter, new permits and near-finish projects flagged, the builder on each and every building permit behind it, in a members' app with a map and in an Excel file. Plus a pitch kit: a one-page capability sheet outline and an email to builders you can adapt."
    },
    "faq": [
     [
@@ -5434,7 +5434,7 @@
     ]
    ],
    "cta": {
-    "title": "Every open builder job, every Monday",
+    "title": "Open builder jobs, every Monday",
     "text": "The full Chicago list: {kept} open commercial and apartment projects this week, each with the builder, address, reported cost, permit stage and permit number, near-finish jobs first, in a members' web app with a map and an Excel file. {price} a month."
    },
    "faq": [

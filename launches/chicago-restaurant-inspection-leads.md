@@ -1,4 +1,4 @@
-# Launch record: Chicago Restaurant Inspection Leads ($39 a month), NOT LAUNCHED
+# Launch record: Chicago Restaurant Inspection Leads ($39 a month), LIVE since Oct 18, 2026
 
 Checklist: design/LAUNCH_CHECKLIST.md. Nothing is published, linked, emailed or promoted until every box below is ticked with proof and Todd says go. Status as of Oct 18, 2026 (list of Oct 17, City records through Oct 16). All four gates are done; what is left is Todd's.
 

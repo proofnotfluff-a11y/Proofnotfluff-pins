@@ -9,7 +9,7 @@
    "short": "Restaurant Inspection Leads",
    "per": "a month",
    "what": "Chicago restaurants with a fresh failed or conditional City inspection, sorted by the violation that fits your trade, and places that just had the license inspection the City does before a food license.",
-   "card": "Fresh failed or conditional City inspections, sorted by violation, and places about to open.",
+   "card": "Fresh failed or conditional City inspections, sorted by violation, and places getting their food license.",
    "for": "For hood cleaning, pest control, grease trap and kitchen cleaning companies.",
    "gets": [
     "Every place named, with address and community area",
@@ -42,7 +42,7 @@
    "name": "Chicago Construction Cleaning Leads",
    "short": "Construction Cleaning Leads",
    "per": "a month",
-   "what": "Every open apartment and commercial permit in Chicago of $500,000 or more with a business as general contractor, closest to a final clean first.",
+   "what": "Open apartment and commercial permits in Chicago of $500,000 or more with a business as general contractor, closest to a final clean first.",
    "card": "Open apartment and commercial projects of $500,000 or more, the builder on each, closest to a final clean first.",
    "for": "For post-construction cleaning, window cleaning and pressure washing companies.",
    "gets": [
@@ -59,7 +59,7 @@
    "name": "Austin Construction Cleaning Leads",
    "short": "Construction Cleaning Leads",
    "per": "a month",
-   "what": "Every open Austin commercial and apartment project valued at $500,000 or more with a business as general contractor.",
+   "what": "Open Austin commercial and apartment projects valued at $500,000 or more with a business as general contractor.",
    "card": "Open commercial and apartment projects of $500,000 or more in Austin and the builders running them.",
    "for": "For post-construction cleaning, window cleaning and pressure washing companies.",
    "gets": [

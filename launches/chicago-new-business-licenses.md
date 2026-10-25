@@ -1,4 +1,4 @@
-# Launch record: Chicago New Business Licenses ($29 a month planned, price and go are Todd's), NOT LAUNCHED
+# Launch record: Chicago New Business Licenses ($29 a month), LIVE since Oct 22, 2026
 
 Status Oct 22, 2026, 9:21 pm: LIVE at $29 a month with a 7-day free trial (Todd, 8:50 pm: "Please finish everything yourself based on your recommendation. create the product with a 7 day free trial"). Gumroad: https://proofnotfluff.gumroad.com/l/chicago-new-business-licenses. Left: Todd's $0 trial test (step 6) and the outreach-drafter wiring before the first batch (step 7).
 

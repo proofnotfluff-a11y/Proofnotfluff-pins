@@ -105,8 +105,8 @@ Every Thursday run, before product work, and only with $0 spend:
 ## Rules for all four
 - Tools: only the repo, the ArtifactData tool (CRM and scoreboard), the memory tools, web search and fetch, the Agent tool for checkers, and (Run 2 only) Claude in Chrome on hello@'s Gmail and the prospects' contact forms. Never call the Gmail connector, Zapier, Typefully, Lovable, QuickBooks, Canva, Adobe, Supermetrics, Google Drive or Claude Docs tools, even though they are attached to the task.
 - No em dashes. Plain, human words. No invented people, numbers or claims.
-- Nothing is bought, nobody is messaged except Todd, and no email or form goes out without Todd's "send" for that batch in chat.
-- No person's name, phone or personal email in any lead data, page, file, CRM field or message. Business contact details printed on the business's own site are fine in the CRM only.
+- Nothing is bought and nobody is messaged except Todd. No email or form goes out without Todd's "send" for that batch in chat, except cold email under the standing send rule (coo/CONSTITUTION.md section 2, Oct 24), which wins over this line.
+- No person's name, phone or personal email in any lead data, page, file or message. The CRM may hold business decision-makers' full names, titles and work emails (coo/CONSTITUTION.md section 4, Oct 22), never the repo except sealed. Business contact details printed on the business's own site are fine in the CRM only.
 - Never read or write another person's message text into the CRM, scoreboard, repo or ledger beyond the one-line summary.
 - Repo: commit with the session's attribution lines, run tools/check_repo.py to 0 errors before every push, push with git push origin HEAD:main (pull --rebase once on a reject). Never force-push.
 - Decision log: one line per run appended to memory /areas/digital-products-log.md (memory_read it first for its version).

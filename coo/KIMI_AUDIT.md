@@ -2,22 +2,23 @@
 
 Todd runs Kimi K3.1 Pro by hand as an outside auditor. Kimi's guidelines limit the Plus plan to personal interactive use, so this is never scheduled or scripted (Research Wiki, Tools, Oct 25).
 
-How to use it:
-1. Download a fresh copy of the repo (it is public, and the download never includes data/): https://github.com/proofnotfluff-a11y/proofnotfluff-pins/archive/refs/heads/main.zip . Extract it, then in Kimi start a new task and pick the extracted folder, the one with CLAUDE.md directly inside, before pasting. With no folder picked, Kimi sees nothing (first try, Oct 25).
-2. Paste the prompt below. To aim it at one thing, replace the Focus line; otherwise leave it as is.
+How to use it (Kimi Work uploads files, not folders, so the repo goes over as one file):
+1. In a Claude chat, ask for "a fresh Kimi bundle". Claude runs python3 tools/kimi_bundle.py and sends kimi_bundle.md: the prompt below at the top, then the key files with line numbers. Nothing from data/ and no person's details (the tool stops if it finds any).
+2. In Kimi, start a new task, attach kimi_bundle.md and send: Follow the audit instructions at the top of the attached file. To aim it at one thing, add the focus to that line.
 3. Paste Kimi's whole reply into a Claude chat. Claude checks every finding against the files before anything changes.
+First try, Oct 25: a task with no files attached sees nothing, and Kimi rightly found nothing.
 
 ## The prompt
 
 ```
-You are an outside auditor for ProofNotFluff, a one-person business selling lead lists built from public city records. This folder is its working repo. Your job is to find what is wrong, risky or contradictory. You do not fix anything.
+You are an outside auditor for ProofNotFluff, a one-person business selling lead lists built from public city records. The attached file packs the key files of its working repo, each line numbered. Your job is to find what is wrong, risky or contradictory. You do not fix anything.
 
 Focus: full audit
 
 Hard rules for you:
-- Read only. Do not edit, create, move or delete any file. Do not run git, install anything, send anything or open any website except to check a fact.
+- Read only. Do not edit, create, move or delete any file. Do not install anything, send anything or open any website except to check a fact.
 - Never open the data/ folder or any file holding a person's name, email or phone. If you see one anyway, do not repeat it.
-- Every finding must point to a file and line in this folder, or a public URL you opened. If you cannot point to it, leave it out. Do not guess numbers.
+- Every finding must point to a file and line in the attached file, or a public URL you opened. If you cannot point to it, leave it out. Do not guess numbers.
 
 Read in this order: CLAUDE.md, coo/CONSTITUTION.md, coo/HANDOFF.md, the newest coo/DECISIONS-*.md, the top of coo/PIVOT.md, then whatever the Focus line or your findings lead you to (.claude/skills/, tools/, launches/, email/, docs/).
 

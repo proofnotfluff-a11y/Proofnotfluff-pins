@@ -13,4 +13,3 @@
 - Skills: 7 scheduled, 4 on request. Index: Bing ok, IndexNow on changes, index-request Fri 7:40, 35 left.
 - Pest seat live Oct 24 (gumroad.com/l/bzemcy, 3 seats, launches/chicago-pest-seat.md). Outreach on, Legal subject (Oct 24); batches go to Todd; role inboxes allowed (pest_role_inbox); 12 sendable after Bouncer (todo pest-owners-100).
 - Oct 25: credits plan live (DECISIONS-2026-10-25): pest runs Oct 26, 27; audit 28; page bursts 29, Nov 2. ACP skipped, Kimi by hand only (wiki).
-- Carousel Oct 25 (construction, Canva DAHZBYo0Dkk): facts PASS, design FAIL x2 on font (Canva API cannot set Poppins). Draft uncommitted; awaits Todd: commit and fix font in Canva, or accept.

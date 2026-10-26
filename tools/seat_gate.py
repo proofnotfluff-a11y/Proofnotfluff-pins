@@ -151,6 +151,18 @@ def check_seat_templates(path=SEAT_FILE, today=None):
                 probs += [f"{ld['lead_id']} {t['name']}: {x}" for x in
                           seat_problems(subj, body, t["step"], ld, ca, seat, cfg, week_doc, send, first_subject=f["first_subject"])]
                 live += 1
+    # worst case: every template on the longest builder, street and value in the live file with the longest seat name, so a
+    # template can never pass on short names and break the word limit on long ones (copy review round 3, Oct 26)
+    if os.path.exists(GC):
+        chi = [x for x in json.load(open(GC))["leads"] if x.get("city") == "chicago"]
+        if chi:
+            seat_l = max(open_seats, key=lambda x: len(x["name"]))
+            wk_l = {"slug": seat_l["slug"], "open": 9999}
+            for t in ts:
+                worst = max((len(R.words(fill(t["body"], fields(dict(ld, stage=t["stage"] or ld.get("stage")), seat_l, wk_l)))), ld["lead_id"])
+                            for ld in chi)
+                if worst[0] >= R.MAX_WORDS:
+                    probs.append(f"{t['name']}: {worst[0]} words on {worst[1]} with the longest seat name (limit under {R.MAX_WORDS})")
     # planted wrong drafts, each must be caught
     first = next(t for t in ts if t["step"] == "first" and t["stage"] == "Partial Occupancy Approved")
     ld = dict(fix, stage="Partial Occupancy Approved")
@@ -164,7 +176,7 @@ def check_seat_templates(path=SEAT_FILE, today=None):
         ("stale counts", good_s, good_b, fixture_area, seat0, cfg, week_doc, send + dt.timedelta(days=MAX_AGE + 1)),
         ("other seat named", good_s, good_b.replace(seat0["name"], other["name"]), fixture_area, seat0, cfg, week_doc, send),
         ("a price", good_s, good_b.replace("Want the 5", "It is $149 a month. Want the 5"), fixture_area, seat0, cfg, week_doc, send),
-        ("a link", good_s, good_b.replace("look over?", "look over at proofnotfluff.com?"), fixture_area, seat0, cfg, week_doc, send),
+        ("a link", good_s, good_b.replace("go after?", "go after at proofnotfluff.com?"), fixture_area, seat0, cfg, week_doc, send),
         ("wrong subject", "Leads for you", good_b, fixture_area, seat0, cfg, week_doc, send),
         ("no area on file", good_s, good_b, "", seat0, cfg, week_doc, send),
         ("an extra count", good_s, good_b.replace("area this week,", "area this week, 12 near finish,"), fixture_area, seat0, cfg, week_doc, send),

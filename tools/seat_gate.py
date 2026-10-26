@@ -7,7 +7,7 @@ One filled draft passes seat_problems when it meets every cleaning cold email ru
   - that seat is not held (site/area_seats.json), and "still open" appears only while it is not
   - {open} is that seat's open count in permits/chicago/area_week.json, at most 8 days old on the send day, and no other
     count appears (the lead's value, its street's numbers and "5 newest" aside)
-  - the subject is "Final clean on <street>" on a first email and "Re: <first subject>" on a follow-up
+  - the subject is "Final clean on <street>" on a first email and "Re: Final clean on <street>" on a follow-up
 """
 import datetime as dt, json, os, re, sys
 
@@ -58,8 +58,8 @@ def seat_problems(subject, body, step, lead, area_of_lead, seat, cfg, week_doc, 
             p.append(f"{lead.get('lead_id')}: no community area on file (gc_areas.json), so its seat cannot be checked")
         elif A.territory_of(area_of_lead, cfg) != seat["slug"]:
             p.append(f"{lead.get('lead_id')} is in {area_of_lead}, not in the {seat['name']} seat")
-    if f"our {seat['name']} area" not in body:
-        p.append(f"the body must name the seat as 'our {seat['name']} area'" if step != "third" else "")
+    if f"the {seat['name']} area" not in body:
+        p.append(f"the body must name the seat as 'the {seat['name']} area'")
     try:
         age = (send_day - dt.date.fromisoformat(week_doc["fetchedAt"][:10])).days
     except (KeyError, ValueError):
@@ -73,10 +73,10 @@ def seat_problems(subject, body, step, lead, area_of_lead, seat, cfg, week_doc, 
         want = f"Final clean on {R.street_display((lead or {}).get('address'))}"
         if subject != want:
             p.append(f"subject must be {want!r}, got {subject!r}")
-    elif not (subject or "").startswith("Re: "):
-        p.append("a follow-up keeps the first email's subject as a reply (Re: ...)")
-    if "still open" in body and seat["slug"] in held:
-        p.append("'still open' is no longer true")
+    elif not re.match(r"^Re: Final clean on \S", subject or ""):
+        p.append("a follow-up keeps the first email's subject as a reply (Re: Final clean on <street>)")
+    if seat["slug"] in held and re.search(r"still open|has taken that area yet|no cleaning company has taken", body, re.I):
+        p.append("the area is held: 'no cleaning company has taken that area yet' is no longer true")
     # every number in the body is the seat's open count, except the lead's value, its street and "5 newest"
     rest = body
     if lead is not None:
@@ -158,7 +158,7 @@ def check_seat_templates(path=SEAT_FILE, today=None):
     good_s, good_b = fill(first["subject"], f), fill(first["body"], f)
     other = next((x for x in cfg["territories"] if x["slug"] != seat0["slug"]), seat0)
     planted = [
-        ("wrong open count", good_s, good_b.replace(f"{wk0['open']} open jobs", f"{wk0['open'] + 7} open jobs"), fixture_area, seat0, cfg, week_doc, send),
+        ("wrong open count", good_s, good_b.replace(f"{wk0['open']} open projects", f"{wk0['open'] + 7} open projects"), fixture_area, seat0, cfg, week_doc, send),
         ("lead outside the seat", good_s, good_b, other["areas"][0], seat0, cfg, week_doc, send),
         ("held seat", good_s, good_b, fixture_area, seat0, dict(cfg, held=[seat0["slug"]]), week_doc, send),
         ("stale counts", good_s, good_b, fixture_area, seat0, cfg, week_doc, send + dt.timedelta(days=MAX_AGE + 1)),

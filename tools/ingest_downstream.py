@@ -399,12 +399,37 @@ def selftest():
     check("unjoined lead rejected by moat", rej.get("no adjacent CO or health signal") == 1)
     check("austin stage map", R.AUSTIN_STAGES.get("Permit issued") is None and R.AUSTIN_STAGES["Near finish"] == "Inspections Under Way")
     check("co flag reading", co_flag_on("Yes") and not co_flag_on("No") and not co_flag_on(""))
+
+    # area seats (Oct 26, 2026): a held seat's Chicago permits leave the file, the rest keep their community area
+    class _Api:
+        def require_columns(self, *a, **k):
+            return True
+
+        def pull(self, *a, **k):
+            row = lambda pid, ca: {"permit_": pid, "id": pid, "permit_status": "ACTIVE", "issue_date": "2026-06-01T00:00:00",
+                                   "permit_type": "PERMIT - RENOVATION/ALTERATION", "permit_milestone": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
+                                   "work_description": "INTERIOR RENOVATION OF EXISTING OFFICE SPACE ON 5TH FLOOR", "contact_1_type": "CONTRACTOR-GENERAL CONTRACTOR",
+                                   "contact_1_name": "ACME CONSTRUCTION LLC", "reported_cost": "900000", "community_area": ca,
+                                   "street_number": pid, "street_direction": "W", "street_name": "RANDOLPH ST"}
+            return [row("101", "32"), row("202", "41")]   # Loop, Hyde Park
+    global held_area_numbers
+    real = held_area_numbers
+    try:
+        held_area_numbers = lambda: set()
+        out, _, _ = chicago_permits(_Api(), "2024-10-26T00:00:00")
+        check("nothing held keeps both permits, areas on file", [x["lead_id"] for x in out] == ["chi-101", "chi-202"]
+              and AREAS_OUT.get("chi-101") == "Loop" and all("_ca" not in x for x in out))
+        held_area_numbers = lambda: {"32", "33"}
+        out, why, _ = chicago_permits(_Api(), "2024-10-26T00:00:00")
+        check("a held seat's permit leaves the file", [x["lead_id"] for x in out] == ["chi-202"] and why.get("in an area held by a seat") == 1)
+    finally:
+        held_area_numbers = real
     if fails:
         for f in fails:
             print(f"FAIL {f}")
         print(f"ingest_downstream selftest: {len(fails)} failed")
         sys.exit(1)
-    print("ingest_downstream selftest: PASS 15 checks")
+    print("ingest_downstream selftest: PASS 17 checks")
     sys.exit(0)
 
 

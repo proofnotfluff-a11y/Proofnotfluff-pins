@@ -43,7 +43,7 @@ Drawn from permits/chicago/area_counts.json (tools/exclusive_areas.py, GitHub Ac
 - Holdout A, counts against the City (Oct 26): PASS, BLOCKERS 0. 77 of 77 areas in exactly one seat, each seat connected, every number on the offer and in the launch table recomputed from the files, ours at or under the City's raw count in all 36 area-months checked (12-month City raw 1,558 against our 878), 25 of 25 sample permits in the right seat. Its wording note (an offer bullet said "Every open project") fixed.
 - Holdout B, exclusivity and promises (Oct 26): BLOCKERS 2, both fixed: the email gate's fixtures were pinned to the Loop seat (now an open seat, so a sale never breaks the gate), and "held areas leave the downstream emails file" was not provable (now tools/seat_gate.py fails check_repo if any lead in permits/downstream/gc_leads.json sits in a held seat, with planted cases; permits/downstream/gc_areas.json comes from the downstream workflow). Also fixed: the seat footer licence line, one set of open counts on the map and the cards. Round 2: pending gc_areas.json.
 - Legal desk (legal/reviews/2026-10-26-area-seats.md): CLEARED WITH FIXES; fixes 1 to 10 and 13 applied in code and copy; fix 11 built (shows when seats go on sale or an area is held) with Todd's paste, notice email and refund decision; fix 12 is Todd's Gumroad setting.
-- Copy review round 1: FAIL 4.2 (building build, an unclear ask, a 75-word worst case, a builder-digit gate bug); rewrites and the gate fix applied, then the Legal desk wording. Cold readers (2, no product context): both read it as a lead-list offer; one would reply. Round 2: pending.
+- Copy review round 1: FAIL 4.2 (building build, an unclear ask, a 75-word worst case, a builder-digit gate bug); rewrites and the gate fix applied, then the Legal desk wording. Cold readers (2, no product context): both read it as a lead-list offer; one would reply. Rounds 2 and 3: FAIL 4.45 each, rewrites applied. Round 4: PASS 4.70, nothing under 4; two cold readers would both reply and neither read it as a job offer. Its optional rewrites applied; the changed lines re-checked by a fresh reviewer: PASS 4.66.
 - Design director round 1: FAIL (offer 4.14, seat page 4.00, map 4.57); the fixes applied (price under the headline, stats on two lines, the sticky $29 bar steps aside, nav entry, map legend and badges, olive area 6, faint internal lines, seat chip and area in the headlines, no focus box on headlines, honest zero states, seat gate link, page depth for fonts and links). Round 2: pending.
 - check_repo: 0 errors on every push (the seat email gate runs in it).
 
@@ -157,4 +157,12 @@ Areas held by an area seat holder are left out of this list from the Monday afte
 ```
 
 ## Todd's steps
-(written at hand-over)
+(given in chat Oct 26, most important first; only what the session cannot do)
+1. The DKIM check (scoreboard todos/decide-add-dkim-check, still open): 0 replies may be delivery, which no offer fixes.
+2. Go or changes on the offer: $149 a month per area, 6 seats, the 5 newest projects free by reply, the $29 list kept for areas nobody holds.
+3. Approve the six emails (email/S1-AREA-SEAT.md) or send changes, and say whether they go in batches you review or under the standing send rule.
+4. Decide the one-month refund for a $29 member whose area is taken (Legal desk fix 11.5). No: the last sentence of HELD_AREAS comes out.
+5. At go: add the GitHub Actions secret AREA_SEAT_KEY (the session gives the value in chat then); the next Monday run builds the six seat pages.
+6. Gumroad: six Membership products from the copy page (claude.ai/artifact/PSK8W9Ddn45T9q1J29wtwC): tier Area seat, $149 monthly, free trial off, sales limit 1, cover and thumbnail, content link and password (given at go). Or reply "fill Gumroad" for unpublished drafts set up in your Chrome.
+7. Paste the $29 line into Chicago Construction Cleaning Leads on Gumroad.
+8. Send the six checkout links: the session puts them in site/pages.json and the offer appears on the page (a major change, so only on that word).

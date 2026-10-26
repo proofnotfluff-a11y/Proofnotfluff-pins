@@ -2,7 +2,7 @@
 
 One page per adjacent opportunity (coo/EVOLUTION.md section 4): what, who buys it, evidence with sources, Todd's unfair advantage, cost, Todd's hours, expected profit per month at 90 days, risk, the smallest test, the approve quest id. Newest first. The COO judges every case at its check date and writes the verdict here.
 
-## Parked, Oct 23, 2026, 12:06 pm: guardrails kit for unattended AI agents (Todd: "Yes, I agree with you.")
+## Reopened Oct 26, 2026, 12:38 pm as a side test (Todd: "Let's build number one."; coo/DECISIONS-2026-10-26.md). Was: parked, Oct 23, 2026, 12:06 pm: guardrails kit for unattended AI agents (Todd: "Yes, I agree with you.")
 - What: our run system sold as a kit: the ICM folder layout (open source, MIT, arXiv 2603.16021, credited) plus what we added: the context budget gate, the preflight check, the planted-case gate tests and the constitution pattern.
 - Evidence (Oct 23): one proven seller, ClaudeKit, $99 one time, $82,108 all time and $2,454 in 30 days, verified by its processor (https://trustmrr.com/startup/claudekit); small kits at $9 to $49 show no sales; template roundups are mostly free. No one found selling guardrails for unattended agents.
 - Why parked: pulls focus from the $1,000 month by Jan 31, 2027; the system has no paying results to show yet; thin market; platform features may date it.

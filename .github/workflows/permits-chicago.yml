@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["tools/permits_chicago.py", ".github/workflows/permits-chicago.yml"]
+    paths: ["tools/permits_chicago.py", ".github/workflows/permits-chicago.yml", "site/area_seats.json"]
   schedule:
     - cron: "20 11 * * 1"   # Mondays, about 6:20 am Chicago time in daylight time
 permissions:
@@ -23,6 +23,12 @@ jobs:
       - run: python3 tools/permits_chicago.py --selftest
       - run: python3 tools/builder_contacts.py --selftest
       - run: python3 tools/permits_chicago.py --full "$RUNNER_TEMP/chicago-full.json"
+      - name: Area seats (site/area_seats.json; Todd, Oct 26, 2026): held areas leave the shared list and the free sample
+        run: |
+          python3 tools/area_seats.py --selftest
+          python3 tools/area_seats.py --shared "$RUNNER_TEMP/chicago-full.json" "$RUNNER_TEMP/chicago-shared.json"
+          python3 tools/area_seats.py --shared-sample permits/chicago/sample.json
+          python3 tools/area_seats.py --week-counts "$RUNNER_TEMP/chicago-full.json"
       - name: Keep the full weekly list out of the repo (short-lived artifact for the paid list)
         uses: actions/upload-artifact@v4
         with:
@@ -38,10 +44,17 @@ jobs:
           python3 tools/leads_xlsx.py --selftest
           python3 tools/leads_page.py --selftest
           python3 tools/leads_app.py --selftest
-          python3 tools/leads_xlsx.py "$RUNNER_TEMP/chicago-full.json" "$RUNNER_TEMP/leads.xlsx"
+          python3 tools/leads_xlsx.py "$RUNNER_TEMP/chicago-shared.json" "$RUNNER_TEMP/leads.xlsx"
           # the members' app (v2, live since Todd's go on Oct 17, 2026); rollback to the v1 page: see MAP.md
-          python3 tools/leads_app.py "$RUNNER_TEMP/chicago-full.json" "$RUNNER_TEMP/leads.xlsx" docs/chicago-leads-members/index.html
-          python3 tools/leads_page.py --review "$RUNNER_TEMP/chicago-full.json" permits/chicago/review.enc.json
+          python3 tools/leads_app.py "$RUNNER_TEMP/chicago-shared.json" "$RUNNER_TEMP/leads.xlsx" docs/chicago-leads-members/index.html
+          python3 tools/leads_page.py --review "$RUNNER_TEMP/chicago-shared.json" permits/chicago/review.enc.json
+      - name: Build the area seat pages (one password each; skipped until the AREA_SEAT_KEY secret exists)
+        env:
+          LEADS_PASSWORD: ${{ secrets.LEADS_PASSWORD }}
+          AREA_SEAT_KEY: ${{ secrets.AREA_SEAT_KEY }}
+        run: |
+          if [ -z "$AREA_SEAT_KEY" ]; then echo "no AREA_SEAT_KEY secret yet; seat pages not built"; exit 0; fi
+          python3 tools/area_seats.py --build "$RUNNER_TEMP/chicago-full.json"
       - name: Rebuild the site pages from the new sample
         run: python3 tools/make_site.py
       - name: Commit the sample

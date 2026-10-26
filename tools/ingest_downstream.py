@@ -122,7 +122,7 @@ def chicago_permits(api, since):
             "site_contact": None,
             "signals": sigs,
             "source_url": f"{CHI}/resource/{CHI_PERMITS}.json?permit_={r.get('permit_')}",
-            "_rev": [], "_ref": [],
+            "_rev": [], "_ref": [], "_ca": str(r.get("community_area") or "").split(".")[0],
         })
         if hasattr(P, "refs"):
             out[-1]["_rev"], out[-1]["_ref"] = P.refs((r.get("work_description") or "").upper())
@@ -133,10 +133,25 @@ def chicago_permits(api, since):
     _left, dropped = P.dedupe(view)
     reasons["revision or repeat of a listed job"] += len(dropped)
     out = [x for x in out if x["permit_id"] not in set(dropped)]
+    # area seats (site/area_seats.json; Todd, Oct 26, 2026): a held seat's projects never reach this public file, so no email
+    # to another cleaning company names one
+    held = held_area_numbers()
+    if held:
+        reasons["in an area held by a seat"] += sum(1 for x in out if x["_ca"] in held)
+        out = [x for x in out if x["_ca"] not in held]
     for x in out:
         x.pop("_rev", None)
         x.pop("_ref", None)
+        x.pop("_ca", None)
     return out, reasons, len(rows)
+
+
+def held_area_numbers():
+    try:
+        import area_seats
+        return area_seats.held_numbers(area_seats.load())
+    except (OSError, ValueError, KeyError):
+        return set()
 
 
 def chicago_health(api, lookback_since):

@@ -1,0 +1,126 @@
+{
+ "schema": "pnf.areaseats.v1",
+ "decided": "Todd, live chat, Oct 26, 2026, 8:24 am (coo/DECISIONS-2026-10-26.md). Territories drawn Oct 26 from permits/chicago/area_counts.json (12 full months, Oct 2025 to Sep 2026): each averages 10 or more new qualifying projects a month and is one connected piece; tools/area_seats.py --selftest checks both.",
+ "held": [],
+ "territories": [
+  {
+   "slug": "loop",
+   "name": "Loop and South Loop",
+   "areas": [
+    "Loop",
+    "Near South Side"
+   ],
+   "marker": "Loop"
+  },
+  {
+   "slug": "near-north",
+   "name": "Near North and Lincoln Park",
+   "areas": [
+    "Near North Side",
+    "Lincoln Park"
+   ],
+   "marker": "Near North Side"
+  },
+  {
+   "slug": "west",
+   "name": "West Loop and West Side",
+   "areas": [
+    "Near West Side",
+    "Lower West Side",
+    "East Garfield Park",
+    "West Garfield Park",
+    "North Lawndale",
+    "South Lawndale",
+    "Austin"
+   ],
+   "marker": "Near West Side"
+  },
+  {
+   "slug": "northwest",
+   "name": "West Town, Logan Square and Northwest",
+   "areas": [
+    "West Town",
+    "Logan Square",
+    "Humboldt Park",
+    "Avondale",
+    "Hermosa",
+    "Belmont Cragin",
+    "Portage Park",
+    "O'Hare",
+    "Dunning",
+    "Norwood Park",
+    "Jefferson Park",
+    "Montclare",
+    "Edison Park"
+   ],
+   "marker": "Portage Park"
+  },
+  {
+   "slug": "north",
+   "name": "Lake View to Rogers Park",
+   "areas": [
+    "Lake View",
+    "North Center",
+    "Lincoln Square",
+    "Uptown",
+    "Edgewater",
+    "Rogers Park",
+    "West Ridge",
+    "North Park",
+    "Albany Park",
+    "Irving Park",
+    "Forest Glen"
+   ],
+   "marker": "Lincoln Square"
+  },
+  {
+   "slug": "south",
+   "name": "South Side",
+   "areas": [
+    "Archer Heights",
+    "Armour Square",
+    "Ashburn",
+    "Auburn Gresham",
+    "Avalon Park",
+    "Beverly",
+    "Bridgeport",
+    "Brighton Park",
+    "Burnside",
+    "Calumet Heights",
+    "Chatham",
+    "Chicago Lawn",
+    "Clearing",
+    "Douglas",
+    "East Side",
+    "Englewood",
+    "Fuller Park",
+    "Gage Park",
+    "Garfield Ridge",
+    "Grand Boulevard",
+    "Greater Grand Crossing",
+    "Hegewisch",
+    "Hyde Park",
+    "Kenwood",
+    "McKinley Park",
+    "Morgan Park",
+    "Mount Greenwood",
+    "New City",
+    "Oakland",
+    "Pullman",
+    "Riverdale",
+    "Roseland",
+    "South Chicago",
+    "South Deering",
+    "South Shore",
+    "Washington Heights",
+    "Washington Park",
+    "West Elsdon",
+    "West Englewood",
+    "West Lawn",
+    "West Pullman",
+    "Woodlawn"
+   ],
+   "marker": "Washington Park"
+  }
+ ]
+}

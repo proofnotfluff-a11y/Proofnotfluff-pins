@@ -508,11 +508,13 @@ def terms_text(date):
             "Help and cancelling. If the file won't open or something looks wrong, reply to your Gumroad receipt and it will be fixed. Cancel any "
             "time from your Gumroad receipt or library; cancelling stops future charges.",
         ]
+    seat = [C["seatClause"]] if C.get("seatClause") else []   # an area seat's own clause (tools/area_seats.py city_for)
     return [
         f"ProofNotFluff | {PRODUCT} | Version 2, {date}",
         "License. Your membership gives you a license to use this list for one business you own, for its own sales prospecting. You may edit "
         "it and print it for that use. You may not resell, share, give away, upload or redistribute it, in original or edited form, or use it "
         "to make a competing product.",
+    ] + seat + [
         "Ownership. The selection, layout, text and formulas belong to ProofNotFluff. The permit records themselves are public City of Chicago "
         "data. Buying a membership doesn't transfer ownership.",
         "Accuracy. The list is built from City of Chicago permit records as of the date above. City data can be late, incomplete or wrong, and "

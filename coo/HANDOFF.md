@@ -1,4 +1,4 @@
-# Handoff (Layer 1): live state pointers, Oct 25
+# Handoff (Layer 1), Oct 26
 
 - [stated] Todd, Oct 22, 7:57 pm: "Let's do all of this as you recommend." Decisions: coo/DECISIONS-2026-10-2*.md.
 - Step 1 live Oct 22: trial and Monday Kit forms on Chicago and Austin pages. Tasks: Monday email (Mon 8:50 am, Todd's PC, drafts) and Wednesday trial offer (Wed 9:50 am, cloud; first offer about Nov 11).
@@ -10,7 +10,6 @@
 - Radar Mon 9:31: health 4 PASS, AI 0 of 12, scout/OPPORTUNITIES.md; launches/WIRING.json gates lead pages.
 - Skills: 7 scheduled, 4 on request. Index: Bing, IndexNow, Fri 7:40, 35 left.
 - Pest seat live Oct 24 (3 seats, launches/chicago-pest-seat.md). Outreach on, Legal subject (Oct 24); batches go to Todd; role inboxes allowed (pest_role_inbox); 12 sendable after Bouncer (todo pest-owners-100).
-- Oct 25: credits plan (DECISIONS-2026-10-25): pest runs Oct 26, 27; audit 28; bursts 29, Nov 2. Kimi R0 to R4: research_notes/kimi-2026-10-25-summary.md.
+- Oct 25: credits plan (DECISIONS-2026-10-25): pest runs Oct 26, 27; audit 28; bursts 29, Nov 2. Kimi: area seats await Todd's go (launches/chicago-cleaning-area-seats.md).
 - Oct 26: 5 Trends calculators live (seo/RESULTS.md); rat page draft, Todd's call; backlog D.
-- Oct 26: Cleaning area seats built, not live (launches/chicago-cleaning-area-seats.md): 6 areas, $149, all gates pass (design 4.71, copy 4.70, Legal cleared with fixes); waits on Todd's go, refund call, AREA_SEAT_KEY, six Gumroad products. Emails S1-AREA-SEAT not approved. Sign leads dropped; Texas parked. gc_areas.json waits on a completed downstream run.
 - Oct 25: Chief of Staff live (DECISIONS-2026-10-25): sweep 7:20, 12:20 weekdays (PC, sole reply-status writer), brief 7:45, 12:45, review Sun 5 pm. Outreach Mondays only. Sweep marks officeprojanitorial.com bounce.

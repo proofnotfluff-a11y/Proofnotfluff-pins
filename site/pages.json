@@ -3472,8 +3472,15 @@
    "areaSeats": {
     "price": "149",
     "seats": 6,
-    "checkout": {},
-    "decided": "Todd, live chat, Oct 26, 2026 (coo/DECISIONS-2026-10-26.md). One Gumroad product per area, sales limit 1; each link goes in checkout.<slug> only on Todd's go."
+    "checkout": {
+     "loop": "https://proofnotfluff.gumroad.com/l/tggcevn?utm_source=proofnotfluff&utm_medium=site&utm_campaign=cleaning-area-loop",
+     "near-north": "https://proofnotfluff.gumroad.com/l/wgxzjo?utm_source=proofnotfluff&utm_medium=site&utm_campaign=cleaning-area-near-north",
+     "west": "https://proofnotfluff.gumroad.com/l/kzoprr?utm_source=proofnotfluff&utm_medium=site&utm_campaign=cleaning-area-west",
+     "northwest": "https://proofnotfluff.gumroad.com/l/nnegzp?utm_source=proofnotfluff&utm_medium=site&utm_campaign=cleaning-area-northwest",
+     "north": "https://proofnotfluff.gumroad.com/l/lkjya?utm_source=proofnotfluff&utm_medium=site&utm_campaign=cleaning-area-north",
+     "south": "https://proofnotfluff.gumroad.com/l/avxwuo?utm_source=proofnotfluff&utm_medium=site&utm_campaign=cleaning-area-south"
+    },
+    "decided": "Todd, live chat, Oct 26, 2026 (coo/DECISIONS-2026-10-26.md). One Gumroad product per area, sales limit 1; each link goes in checkout.<slug> only on Todd's go. Links added on Todd's go, Oct 26, 2026, 2:55 pm (six products published)."
    }
   },
   {

@@ -196,53 +196,6 @@
    "source": "https://catalog.data.gov/dataset/dol-enforcement-data-inspection"
   },
   {
-   "slug": "chicago-storefront-sign-leads",
-   "name": "Chicago Storefront Sign Leads",
-   "score": 65,
-   "factors": {
-    "buyer": 4,
-    "pay": 2,
-    "demand": 0,
-    "data": 5,
-    "license": 2,
-    "effort": 5,
-    "speed": 5,
-    "fit": 4
-   },
-   "notes": {
-    "pay": "a free equivalent exists: The City's Business Licenses dataset is free to query and export with no login; ",
-    "demand": "no dated search or question evidence",
-    "license": "license unclear: the data and legal reviewer reads the terms"
-   },
-   "kills": [],
-   "status": "review",
-   "why": [],
-   "money": {
-    "netPerMember": 68.01,
-    "emailsByJan": 192,
-    "payers": {
-     "low": 0.5,
-     "likely": 1.4,
-     "high": 3.8
-    },
-    "janNet": {
-     "low": 33,
-     "likely": 98,
-     "high": 261
-    },
-    "shareOfGoal": {
-     "low": 0.03,
-     "likely": 0.1,
-     "high": 0.26
-    }
-   },
-   "confidence": "medium",
-   "firstDollar": "2026-12-01",
-   "price": 79,
-   "buyer": "sign companies that install storefront signs in Chicago",
-   "source": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr"
-  },
-  {
    "slug": "ttb-new-alcohol-permits",
    "name": "New Federal Alcohol Permits Weekly",
    "score": 58,
@@ -424,6 +377,55 @@
    "price": 99,
    "buyer": "facade restoration and masonry contractors working on NYC buildings over six stories",
    "source": "https://data.cityofnewyork.us/Housing-Development/DOB-NOW-Safety-Facades-Compliance-Filings/xubg-57si"
+  },
+  {
+   "slug": "chicago-storefront-sign-leads",
+   "name": "Chicago Storefront Sign Leads",
+   "score": 65,
+   "factors": {
+    "buyer": 4,
+    "pay": 2,
+    "demand": 0,
+    "data": 5,
+    "license": 2,
+    "effort": 5,
+    "speed": 5,
+    "fit": 4
+   },
+   "notes": {
+    "pay": "a free equivalent exists: The City's Business Licenses dataset is free to query and export with no login; ",
+    "demand": "no dated search or question evidence",
+    "license": "license unclear: the data and legal reviewer reads the terms"
+   },
+   "kills": [],
+   "status": "dropped",
+   "why": [
+    "Oct 26 reviews: demand FAIL 2 and red team FAIL 2 on the offer itself, which no better source can fix: the free City export already carries the community area, a paid feed sells the same filtered rows at about 2 cents a lead, a license usually comes after the sign is ordered, and only 4 areas clear 10 storefronts a month (ceiling $316 a month). Data-legal PASS 3."
+   ],
+   "money": {
+    "netPerMember": 68.01,
+    "emailsByJan": 192,
+    "payers": {
+     "low": 0.5,
+     "likely": 1.4,
+     "high": 3.8
+    },
+    "janNet": {
+     "low": 33,
+     "likely": 98,
+     "high": 261
+    },
+    "shareOfGoal": {
+     "low": 0.03,
+     "likely": 0.1,
+     "high": 0.26
+    }
+   },
+   "confidence": "medium",
+   "firstDollar": "2026-12-01",
+   "price": 79,
+   "buyer": "sign companies that install storefront signs in Chicago",
+   "source": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr"
   }
  ]
 }

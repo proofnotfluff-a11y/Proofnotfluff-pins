@@ -139,11 +139,23 @@ def chicago_permits(api, since):
     if held:
         reasons["in an area held by a seat"] += sum(1 for x in out if x["_ca"] in held)
         out = [x for x in out if x["_ca"] not in held]
+    names = area_names()
     for x in out:
         x.pop("_rev", None)
         x.pop("_ref", None)
-        x.pop("_ca", None)
+        AREAS_OUT[x["lead_id"]] = names.get(x.pop("_ca", None), "")
     return out, reasons, len(rows)
+
+
+AREAS_OUT = {}   # lead_id: the City community area name (Chicago), written beside gc_leads.json as gc_areas.json
+
+
+def area_names():
+    try:
+        import area_seats
+        return {str(a["number"]): a["name"] for a in json.load(open(area_seats.GEO))["areas"] if a.get("number")}
+    except (OSError, ValueError, KeyError):
+        return {}
 
 
 def held_area_numbers():
@@ -343,6 +355,13 @@ def main():
         json.dump(doc, f, indent=1, ensure_ascii=False)
         f.write("\n")
     os.replace(tmp, a.out)
+    # the community area of each Chicago lead (public City field) for the area seat emails: a separate file, so the
+    # gc lead schema (pnf_rules.validate_gc_lead) does not change
+    leads_ids = {x["lead_id"] for x in doc["leads"]}
+    with open(os.path.join(os.path.dirname(a.out), "gc_areas.json"), "w", encoding="utf-8") as f:
+        json.dump({"schema": "pnf.gcareas.v1", "generatedAt": doc.get("generatedAt"),
+                   "areas": {k: v for k, v in sorted(AREAS_OUT.items()) if k in leads_ids}}, f, indent=1)
+        f.write("\n")
     c = doc["report"]["cities"]
     print(f"OK ingest: {len(doc['leads'])} downstream GC leads (chicago {c['chicago']['kept']}, austin {c['austin']['kept']}) -> "
           f"{os.path.relpath(a.out, ROOT)}")

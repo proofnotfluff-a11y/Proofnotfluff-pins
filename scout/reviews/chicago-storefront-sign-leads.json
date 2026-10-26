@@ -1,0 +1,46 @@
+{
+ "slug": "chicago-storefront-sign-leads",
+ "reviews": [
+  {
+   "reviewer": "demand",
+   "verdict": "FAIL",
+   "score": 2,
+   "round": 1,
+   "date": "2026-10-26",
+   "reasons": [
+    "The buyer already gets this free: the City dataset needs no login, carries the community area name, license type, issue date and business name, and was updated Oct 24, so a sign shop can filter its own area in one export. https://data.cityofchicago.org/api/views/r5kz-chrr.json",
+    "A paid feed already does the filtering: an Apify actor returns new Chicago licenses only, with neighborhood and ward, at $20 per 1,000 results, about 2 cents a lead. https://apify.com/leadsignal-data/chicago-new-business-leads",
+    "Counts are thin: 4 community areas average 10 or more storefronts a month, a 4 seat ceiling of $316 a month gross, and the Illinois Sign Association lists 5 member shops with a Chicago address. https://www.isa-sign.com/sigh-shop-member-listing",
+    "Demand evidence is old and generic: three forum threads from 2012 to 2016, none asking for a paid Chicago list. https://www.signs101.com/threads/best-way-to-get-new-customers.131942",
+    "MorningSheet supports the price, not a Chicago market: its pricing page names Washington records only. https://themorningsheet.com/pricing/"
+   ]
+  },
+  {
+   "reviewer": "data-legal",
+   "verdict": "PASS",
+   "score": 3,
+   "round": 1,
+   "date": "2026-10-26",
+   "reasons": [
+    "The City's terms neither permit nor forbid resale in words; they require the modified-data disclaimer, indemnity, and let the City order distribution stopped. https://webapps1.chicago.gov/ChicagoTif/disclaimer.html and permits/licenses-chicago/source-terms.txt",
+    "The Open Data Executive Order expects reuse and asks third parties to name the dataset and describe changes. https://www.chicago.gov/city/en/narr/foia/open_data_executiveorder.html",
+    "Legal and business names can be a person's; passes only with the live list's filters (person-named, home and one-person rows dropped). https://data.cityofchicago.org/resource/r5kz-chrr.json",
+    "Cadence is real: daily, last update Oct 24, 2026, newest issue date Oct 23. https://data.cityofchicago.org/api/views/r5kz-chrr.json",
+    "No CONSTITUTION 2 or legal/README.md rule broken; a new product and price stays Todd's call."
+   ]
+  },
+  {
+   "reviewer": "redteam",
+   "verdict": "FAIL",
+   "score": 2,
+   "round": 1,
+   "date": "2026-10-26",
+   "reasons": [
+    "Timing: a Chicago license is issued at or after build-out, so the storefront's sign is often already ordered and permitted by then; 2,042 City sign permits in 12 months name the installer before opening. https://data.cityofchicago.org/resource/ydr8-5enu.json",
+    "The shops that could pay run on contractor and franchise ties; sign permits are concentrated in a few large installers, and our cold email record is 0 replies on about 57 sends. https://www.isa-sign.com/sigh-shop-member-listing",
+    "Free and cheaper substitutes carry the same rows: the City export, and about $12 a month of Apify data for the whole city against $79 for one area. https://apify.com/leadsignal-data/chicago-new-business-leads",
+    "Number doubted: buyer.count 192 counts electricians, general contractors and duplicate spellings; reachable sign shops are nearer 30 to 50. The Loop seat misses 10 a month in 5 of 12 months. permits/licenses-chicago/area_counts.json"
+   ]
+  }
+ ]
+}

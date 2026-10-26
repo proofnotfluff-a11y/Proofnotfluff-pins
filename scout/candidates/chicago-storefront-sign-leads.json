@@ -2,7 +2,7 @@
  "schema": "pnf.opportunity.v1",
  "slug": "chicago-storefront-sign-leads",
  "name": "Chicago Storefront Sign Leads",
- "status": "new",
+ "status": "dropped",
  "addedAt": "2026-10-26",
  "pitch": "Each week, the new Chicago businesses that just got a City license at a street-level storefront, sold to one sign company per community area; a new storefront usually needs a permitted sign before it opens.",
  "categories": [
@@ -136,5 +136,6 @@
   "areasAt10": 4,
   "buyersWithChicagoAddressInISA": 5,
   "note": "Todd asked for one sign company per community area: 4 areas clear 10 a month, so the ceiling is 4 seats at $79, $316 a month gross."
- }
+ },
+ "dropReason": "Oct 26 reviews: demand FAIL 2 and red team FAIL 2 on the offer itself, which no better source can fix: the free City export already carries the community area, a paid feed sells the same filtered rows at about 2 cents a lead, a license usually comes after the sign is ordered, and only 4 areas clear 10 storefronts a month (ceiling $316 a month). Data-legal PASS 3."
 }

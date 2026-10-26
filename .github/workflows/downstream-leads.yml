@@ -6,6 +6,9 @@ name: Downstream GC leads
 # nothing (tools/ingest_downstream.py).
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/ingest_downstream.py", ".github/workflows/downstream-leads.yml"]
   schedule:
     - cron: "5 12 * * 1"   # Mondays 7:05 am Central (CDT), after permits-chicago, inspections-chicago and permits-austin
 permissions:
@@ -29,7 +32,7 @@ jobs:
         run: |
           git config user.name "proofnotfluff-bot"
           git config user.email "proofnotfluff-bot@users.noreply.github.com"
-          git add permits/downstream/gc_leads.json
+          git add permits/downstream/gc_leads.json permits/downstream/gc_areas.json
           git diff --cached --quiet && exit 0
           git commit -m "Downstream GC leads $(date -u +%F)"
           for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 5; done

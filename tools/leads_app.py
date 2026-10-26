@@ -510,7 +510,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .lg2{width:10px;height:10px;background:#fff;border:2px solid var(--iss);margin:0 2px}
 .map-note{position:absolute;z-index:500;left:12px;bottom:12px;max-width:calc(100% - 140px);background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12.5px;color:var(--muted)}
 .map-fail{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;color:var(--muted);font-size:14px}
-.split.nomap{display:flex;flex-direction:column-reverse;align-items:stretch;gap:12px;max-width:860px}.split.nomap .mapbox{position:static;height:auto;min-height:0;display:block!important}.split.nomap .mapbox .map,.split.nomap .legend{display:none}.split.nomap .map-fail{position:static;display:flex;gap:8px;justify-content:center;padding:14px 20px}.split.nomap .map-fail p{margin:0}.split.nomap .map-fail{flex-wrap:wrap;align-items:center}@media(min-width:861px){#mfl{display:none}}.split[data-v=list] #mfl{display:none}
+.split.nomap{display:flex;flex-direction:column-reverse;align-items:stretch;gap:12px;max-width:860px}.split.nomap .mapbox{position:static;height:auto;min-height:0;display:block!important}.split.nomap .mapbox .map,.split.nomap .legend,.split.nomap .map-note{display:none}.split.nomap .map-fail{position:static;display:flex;gap:8px;justify-content:center;padding:14px 20px}.split.nomap .map-fail p{margin:0}.split.nomap .map-fail{flex-wrap:wrap;align-items:center}@media(min-width:861px){#mfl{display:none}}.split[data-v=list] #mfl{display:none}
 .leaflet-container{font-family:var(--body);background:#E9E6E0}
 .leaflet-tile-pane{filter:grayscale(1) sepia(.18) contrast(.88) brightness(1.06)}
 .leaflet-control-attribution{font-size:11px;background:rgba(255,255,255,.9)!important}
@@ -924,7 +924,7 @@ const m=L.map("map",{preferCanvas:true,zoomControl:true,scrollWheelZoom:true,att
 m.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');tiles(m);STATE.map=m;STATE.layer=L.layerGroup().addTo(m);STATE.mk={};m.on("zoomend",declutter);drawMap(true);}
 function popup(p){const b=p.g.length?B[p.g[0]]:null;return `<div class="pop"><span class="mn num">${money(p.c)}</span><span class="ad">${esc(p.a)}</span><span class="bd">${esc(b?pn(p,0):"No builder listed")}</span>${chip(p.st)}<p style="margin:10px 0 0"><a class="btn ink" href="#/project/${encodeURIComponent(p.id)}">Open project</a></p></div>`;}
 function drawMap(refit){const m=STATE.map;const rows=STATE.rows||[];const geo=rows.filter(p=>p.lat&&p.lon);const note=$("#mapnote");
-if(note){const miss=rows.length-geo.length;note.hidden=!(miss||!rows.length);note.textContent=!rows.length?"No pins for these filters.":miss?`${plural(miss,"project")} in the list ${miss===1?"has":"have"} ${CITY.noGeo}.`:"";}
+if(note){const miss=rows.length-geo.length;note.hidden=!m||!(miss||!rows.length);note.textContent=!rows.length?"No pins for these filters.":miss?`${plural(miss,"project")} in the list ${miss===1?"has":"have"} ${CITY.noGeo}.`:"";}
 if(!m)return;STATE.layer.clearLayers();STATE.mk={};
 STATE.near=[];geo.slice().sort((a,b)=>b.st-a.st).forEach(p=>{let ring=null;if(p.st===0){ring=L.circleMarker([p.lat,p.lon],{radius:12,color:"#1F4E4A",weight:2,fill:false,interactive:false}).addTo(STATE.layer);}
 const c=L.circleMarker([p.lat,p.lon],MS[p.st]).bindPopup(popup(p),{maxWidth:280});c.addTo(STATE.layer);STATE.mk[p.id]=c;if(ring)STATE.near.push({p,c,ring});});declutter();

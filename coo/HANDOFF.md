@@ -12,4 +12,5 @@
 - Pest seat live Oct 24 (3 seats, launches/chicago-pest-seat.md). Outreach on, Legal subject (Oct 24); batches go to Todd; role inboxes allowed (pest_role_inbox); 12 sendable after Bouncer (todo pest-owners-100).
 - Oct 25: credits plan (DECISIONS-2026-10-25): pest runs Oct 26, 27; audit 28; bursts 29, Nov 2. Kimi R0 to R4: research_notes/kimi-2026-10-25-summary.md.
 - Oct 26: 5 Trends calculators live (seo/RESULTS.md); rat page draft, Todd's call; backlog D.
+- Oct 26: Cleaning area seats built, not live (launches/chicago-cleaning-area-seats.md): 6 areas, $149, all gates pass (design 4.71, copy 4.70, Legal cleared with fixes); waits on Todd's go, refund call, AREA_SEAT_KEY, six Gumroad products. Emails S1-AREA-SEAT not approved. Sign leads dropped; Texas parked. gc_areas.json waits on a completed downstream run.
 - Oct 25: Chief of Staff live (DECISIONS-2026-10-25): sweep 7:20, 12:20 weekdays (PC, sole reply-status writer), brief 7:45, 12:45, review Sun 5 pm. Outreach Mondays only. Sweep marks officeprojanitorial.com bounce.

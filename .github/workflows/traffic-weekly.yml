@@ -1,0 +1,37 @@
+name: Weekly traffic report
+# How much traffic proofnotfluff.com gets and which free pages bring it in (Todd's go, Oct 26, 2026). Reads Cloudflare
+# Web Analytics with the read-only CF_ANALYTICS_TOKEN secret and commits counts only to seo/traffic/ (tools/traffic_report.py
+# says what is kept). The Monday scheduled task "PNF site: traffic report" copies the result to the scoreboard.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/traffic_report.py", ".github/workflows/traffic-weekly.yml"]
+  schedule:
+    - cron: "5 12 * * 1"   # Mondays, about 7:05 am Chicago time in standard time (6:05 am in daylight time)
+permissions:
+  contents: write
+concurrency:
+  group: traffic-weekly
+  cancel-in-progress: false
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Self-check (planted answers)
+        run: python3 tools/traffic_report.py --selftest
+      - name: Pull last week's counts
+        env:
+          CF_ANALYTICS_TOKEN: ${{ secrets.CF_ANALYTICS_TOKEN }}
+        run: python3 tools/traffic_report.py || echo "pull failed; the reason is in seo/traffic/weekly.json"
+      - name: Commit
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add -A seo/traffic
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "Traffic report $(TZ=America/Chicago date +%Y-%m-%d)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done
+          exit 1

@@ -13,10 +13,11 @@ One job: ask Google to index the live proofnotfluff.com pages it has not indexed
 3. Order the live list newest first: URLs added to docs/sitemap.xml since the last index-request line, then the rest in reverse sitemap order (site/pages.json appends new pages last).
 4. For each URL: the top search box, URL Inspection, wait for the result. "URL is on Google" counts as indexed. Otherwise, unless seo/index-requests.json shows it requested in the last 7 days (a repeat request changes nothing), click Request indexing and wait for the dialog: "Indexing requested" counts as requested (write today in seo/index-requests.json); "Quota Exceeded" or any error counts as refused with its reason. After the first Quota Exceeded, request nothing more today and keep inspecting. Close every dialog with its Dismiss button before the next URL, never by pressing Return.
 5. Friday Search Console lines (question-pages step 7 points here): Performance, Search results, last 28 days, Pages filter, one line per live question page in seo/RESULTS.md: page, impressions, clicks, average position, date. First Friday of a month, list pages at average position 8 to 20 as refresh candidates (a refresh is a run of its own).
+5b. Every Friday, for the weekly traffic report (Todd's go, Oct 26, 2026): Performance, Search results, last 7 days, Pages tab, every page with an impression: write seo/search-console.json {"date": today, "window": "7 days", "pages": {slug: {"impressions", "clicks", "position"}}}, slug = the page path without slashes ("home" for /). Counts only; no queries. tools/traffic_report.py attaches it to the Monday report.
 6. Read numbers from the page text (get_page_text, read_page); screenshots only to read a dialog.
 7. One line in seo/RESULTS.md: "YYYY-MM-DD (index-request): inspected N, already indexed N, requested N, refused N (reason), not requested N (quota or requested in the last 7 days)". `python3 tools/check_repo.py` exits 0, commit seo/ only, git push origin HEAD:main (pull --rebase once on a reject, never force).
 
 ## Outputs (Writes)
-- seo/RESULTS.md (the run line and the Friday Search Console lines), seo/index-requests.json.
+- seo/RESULTS.md (the run line and the Friday Search Console lines), seo/index-requests.json, seo/search-console.json (Fridays).
 - Scoreboard agents/index-request {state, lastRun, lastStatus, lastNote}: counts only.
 - A message to Todd only when the run could not start or a count is off (inspected not equal to the live list).

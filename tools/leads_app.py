@@ -323,7 +323,8 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .bar .dl{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-radius:8px;border:1px solid rgba(255,255,255,.22);background:transparent;color:#fff;font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap}
 .bar .dl:hover{background:rgba(255,255,255,.08)}
 .bar .dl .ico{width:18px;height:18px}
-@media(max-width:860px){.tabs{display:none}.bar .dl span{display:none}.bar .dl{width:44px;height:44px;padding:0;justify-content:center}}
+.bar .dl .sh{display:none}
+@media(max-width:860px){.tabs{display:none}.bar .dl .lg{display:none}.bar .dl .sh{display:inline}.bar .dl{height:44px;padding:0 12px;gap:6px}}
 /* bottom nav (phone) */
 .bnav{display:none}
 @media(max-width:860px){
@@ -370,6 +371,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .pw{position:relative}
 .pw input{width:100%;height:50px;font-size:16px;padding:0 52px 0 14px;border:1px solid var(--field);border-radius:10px;background:#fff}
 .pw input:focus{outline:none;border-color:var(--blue);box-shadow:var(--focus)}
+.pw input[aria-invalid=true]{border:2px solid var(--accent)}.pw input[aria-invalid=true]:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(200,80,47,.2)}
 .eye{position:absolute;right:3px;top:3px;width:44px;height:44px;border:0;background:transparent;border-radius:8px;color:var(--muted);cursor:pointer;display:grid;place-items:center}
 .eye:hover{background:#F3F1EC}
 .gate .btn.pri{width:100%;height:50px;margin-top:12px;font-size:16px}
@@ -383,6 +385,8 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .ov{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:20px;align-items:start}
 @media(max-width:1020px){.ov{grid-template-columns:minmax(0,1fr)}}
 .ov-col{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;min-width:0}
+.nb{display:flex;align-items:center;justify-content:space-between;gap:12px 16px;flex-wrap:wrap;padding:16px 20px}.nb p{margin:0;color:var(--ink2);font-size:15px;flex:1 1 260px}.nb b{color:var(--ink)}
+.stn.z .n{color:var(--muted)}
 .hero h1{font-size:34px;font-weight:700}
 .hero p{margin:8px 0 0;color:var(--muted);font-size:16px;max-width:60ch}
 @media(max-width:600px){.hero h1{font-size:26px}.hero p{font-size:15px}}
@@ -397,7 +401,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .stn.s0 .n{color:var(--teal)}
 .stn .t{display:block;font-weight:600;font-size:15px}
 .stn .m{display:block;color:var(--muted);font-size:13.5px;margin-top:2px}
-@media(hover:hover){.stn:hover .t{text-decoration:underline;text-underline-offset:3px}}
+@media(hover:hover){a.stn:hover .t{text-decoration:underline;text-underline-offset:3px}}
 .flag{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;color:var(--ink);width:120px}
 .flag .t{display:block;font-weight:600;font-size:15px;margin-top:16px}.flag .m{display:block;color:var(--muted);font-size:13.5px;margin-top:2px}
 .flag .dot{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--accent);color:#fff}
@@ -426,7 +430,8 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .row .nc{color:var(--muted);font-size:13px;white-space:nowrap}
 .row .bd{flex-wrap:wrap;row-gap:2px}.row .bd>span:not(.nc){white-space:normal;overflow:visible}
 .mine .btn{white-space:normal;text-align:center;height:auto;min-height:44px;padding-top:10px;padding-bottom:10px;max-width:100%}
-.minimap:empty::after{content:"The map did not load on this connection. The address is above.";display:flex;align-items:center;justify-content:center;height:100%;padding:0 20px;text-align:center;color:var(--muted);font-size:14px}
+.minimap:empty{height:auto}
+.minimap:empty::after{content:"The map did not load on this connection. The address is above.";display:flex;align-items:center;justify-content:center;gap:8px;min-height:72px;padding:16px 20px 16px 48px;text-align:center;color:var(--muted);font-size:14px;background:no-repeat 20px 50%/18px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7180' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z'/%3E%3Ccircle cx='12' cy='10' r='2.5'/%3E%3C/svg%3E")}
 .row .bd{align-items:baseline}.row .bd .ico{align-self:center}
 .row.hl{background:#F6F3EC}
 .grp{display:flex;align-items:baseline;gap:8px;margin:0;padding:10px 20px;border-top:1px solid var(--line2);background:#FAF8F4;font:600 13px var(--body);color:var(--ink2);letter-spacing:0}
@@ -436,10 +441,10 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 @media(max-width:600px){.row{grid-template-columns:minmax(0,1fr);padding:14px 16px;gap:3px}.row .rt{grid-column:1;grid-row:auto;order:-1;justify-content:flex-start;max-width:none;margin:0 0 4px}.row .rt:empty{display:none}.row .chev{display:none}}
 .mini-b{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 12px;padding:12px 20px;border-top:1px solid var(--line2);text-decoration:none;color:inherit}
 @media(hover:hover) and (pointer:fine){.mini-b:hover{background:#FBFAF7}}
-.mini-b b{font-weight:600;font-size:14.5px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mini-b b{font-weight:600;font-size:14.5px;color:var(--ink);overflow-wrap:anywhere}
 .mini-b span{font-size:13.5px;color:var(--muted)}
-.mini-b .r{grid-column:2;grid-row:1 / span 2;text-align:right;font:700 16px var(--head)}
-.mini-b .r small{display:block;font:500 12.5px var(--body);color:var(--muted)}
+.mini-b .r{grid-column:2;grid-row:1 / span 2;text-align:right;font:600 14.5px var(--body);color:var(--ink);white-space:nowrap;min-width:5.5em}
+.mini-b .r small{font:inherit;color:var(--muted);margin-left:5px}
 .bars{list-style:none;margin:0;padding:4px 20px 18px}
 .bars li{margin:0}
 .bars a{display:grid;grid-template-columns:minmax(0,9rem) minmax(0,1fr) 2.6rem 2.6rem;align-items:center;gap:12px;min-height:40px;padding:4px 0;text-decoration:none;color:var(--ink);font-size:14px;border-radius:6px}
@@ -502,6 +507,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .lg2{width:10px;height:10px;background:#fff;border:2px solid var(--iss);margin:0 2px}
 .map-note{position:absolute;z-index:500;left:12px;bottom:12px;max-width:calc(100% - 140px);background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12.5px;color:var(--muted)}
 .map-fail{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;color:var(--muted);font-size:14px}
+.split.nomap{display:flex;flex-direction:column-reverse;align-items:stretch;gap:12px}.split.nomap .mapbox{position:static;height:auto;min-height:0;display:block!important}.split.nomap .mapbox .map,.split.nomap .legend{display:none}.split.nomap .map-fail{position:static;display:flex;gap:8px;justify-content:center;padding:14px 20px}.split.nomap .map-fail p{margin:0}
 .leaflet-container{font-family:var(--body);background:#E9E6E0}
 .leaflet-tile-pane{filter:grayscale(1) sepia(.18) contrast(.88) brightness(1.06)}
 .leaflet-control-attribution{font-size:11px;background:rgba(255,255,255,.9)!important}
@@ -531,7 +537,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
  .tool .vtog{flex:1;margin-left:0;padding:2px;height:44px}.tool .vtog button{flex:1;justify-content:center;height:38px;padding:0 8px}
  .btool{display:grid;grid-template-columns:1fr 1fr}.btool .search{grid-column:1 / -1}.btool .fld select{width:100%;max-width:none}.btool .tog{width:100%}
  .vtog{display:inline-flex}
- .tool .seg:not(.vtog){display:flex;gap:8px;width:calc(100% + 32px);margin:0 -16px;padding:0 16px;background:none;border:0;border-radius:0;overflow-x:auto;scroll-padding:16px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 24px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 24px),transparent)}
+ .tool .seg:not(.vtog){display:flex;flex-wrap:wrap;gap:8px;width:100%;margin:0;padding:0;background:none;border:0;border-radius:0;overflow:visible}
  .tool .seg:not(.vtog) button{flex:none;height:44px;padding:0 14px;border:1px solid var(--field);border-radius:999px;background:#fff}
  .tool .seg:not(.vtog) button[data-k=""]{order:1}
  .c-austin .tool .seg:not(.vtog) button[data-k=""]{order:0}
@@ -656,6 +662,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 @media(max-width:700px){.bt thead{display:none}.bt td.n{display:none}.bt .nm small.mob{display:block;color:var(--ink2)}.bt td a{padding:13px 16px}}
 /* pitch kit */
 .pk{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+@media(min-width:901px){.pk .mail{position:sticky;top:calc(var(--bar-h) + 16px)}}
 @media(max-width:900px){.pk{grid-template-columns:minmax(0,1fr)}}
 .pk .panel{padding:20px}
 .pk-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin:0 0 12px}
@@ -688,7 +695,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 <a class="brand" href="#/" aria-label="ProofNotFluff, __PRODUCT__, overview"><b>ProofNotFluff</b><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><small>__RIBBON__</small></a>
 <nav class="tabs" id="tabs" aria-label="Sections" hidden></nav>
 <span class="bar-sp"></span>
-<button class="dl" id="dlTop" type="button" hidden><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Download workbook</span><b class="sr">Download this week's Excel workbook</b></button>
+<button class="dl" id="dlTop" type="button" hidden><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span class="lg">Download workbook</span><span class="sh">Workbook</span><b class="sr">Download this week's Excel workbook</b></button>
 </div></header>
 <main id="gateView" class="gate">
 <form class="gate-card" id="gate" novalidate>
@@ -814,17 +821,19 @@ const addrs=new Set(P.map(p=>p.a)).size;
 const top=Object.values(B).sort((a,b)=>b.near-a.near||b.n-a.n||b.cost-a.cost).slice(0,6);
 const ac={};P.forEach(p=>{if(p.ca){const a=ac[p.ca]=ac[p.ca]||[0,0,0];a[p.st]++;}});const areas=Object.entries(ac).map(([a,c])=>[a,c[0]+c[1]+c[2],c]).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,8);const amax=areas.length?areas[0][1]:1;
 const marked=Object.keys(MARKS).filter(id=>BYID[id]);const cN=marked.filter(id=>MARKS[id].c).length,nN=marked.filter(id=>(MARKS[id].n||"").trim()).length;
-const stn=s=>`<a class="stn s${s}" href="#/projects?stage=${["near","insp","issued"][s]}"><span class="dot">${ico(["check","search","crane"][s])}</span><span class="n num">${int(by[s].length)}</span><span class="tx"><span class="t">${STG[s]}</span><span class="m num">${bigMoney(by[s].reduce((x,p)=>x+p.c,0))} ${CITY.costShort}</span></span></a>`;
+const stn=s=>`<${by[s].length?"a":"span"} class="stn s${s}${by[s].length?"":" z"}"${by[s].length?` href="#/projects?stage=${["near","insp","issued"][s]}"`:""}><span class="dot">${ico(["check","search","crane"][s])}</span><span class="n num">${int(by[s].length)}</span><span class="tx"><span class="t">${STG[s]}</span><span class="m num">${bigMoney(by[s].reduce((x,p)=>x+p.c,0))} ${CITY.costShort}</span></span></${by[s].length?"a":"span"}>`;
 $("#app").innerHTML=`<section class="hero">${CITY.seatName?`<p class="seatchip">Your seat: ${esc(CITY.seatName)}</p>`:""}<h1>${by[0].length||!by[1].length?`${int(by[0].length)} ${by[0].length===1?"project is":"projects are"} close to a final clean this week`:`${int(by[1].length)} ${by[1].length===1?"project has":"projects have"} ${esc(STG[1].toLowerCase())}, none at ${esc(STG[0].toLowerCase())} yet`}</h1>
 <p>${CITY.key==="austin"?`${int(P.length)} open projects on the list (${int(P.reduce((x,p)=>x+(p.b||0),0))} building permits), ${bigMoney(TOTAL)} in valuation`:`${int(P.length)} open permits on the list, ${bigMoney(TOTAL)} in reported cost at ${int(addrs)} addresses`}. Built from ${esc(CITY.records)}, list of ${esc(D.asOf)}.</p></section>
 <nav class="line" aria-label="Projects by stage, from permit to final clean">${stn(2)}${stn(1)}${stn(0)}<span class="flag"><span class="dot">${ico("flag")}</span><span class="tx"><span class="t">Final clean</span><span class="m">Your bid</span></span></span></nav>
 <div class="ov"><div class="ov-col">
-${near.length||!nw.length?`<section class="panel"><div class="sec-h"><h2>Closest to a final clean<span class="c num">${int(near.length)}</span></h2>${near.length?`<a href="#/projects?stage=near">See all ${int(near.length)}</a>`:""}</div>${near.length?rowsHtml(near,0,"near"):`<p class="empty">${esc(CITY.nearEmpty)}</p>`}</section>`:""}
-<section class="panel"><div class="sec-h"><h2>New this week<span class="c num">${int(nw.length)}</span></h2>${nw.length?`<a href="#/projects?new=1">See all ${int(nw.length)}</a>`:""}</div>${nw.length?rowsHtml(nw,5,"new"):`<p class="empty">No permits on the list were issued in the last 7 days.</p>`}</section>
-${!near.length&&nw.length?`<section class="panel"><div class="sec-h"><h2>Closest to a final clean<span class="c num">${int(near.length)}</span></h2>${near.length?`<a href="#/projects?stage=near">See all ${int(near.length)}</a>`:""}</div>${near.length?rowsHtml(near,0,"near"):`<p class="empty">${esc(CITY.nearEmpty)}</p>`}</section>`:""}
-</div><div class="ov-col">
-<section class="panel"><div class="sec-h"><h2>Builders to call first</h2><a href="#/builders">All ${int(Object.keys(B).length)} builders</a></div>
+${near.length?`<section class="panel"><div class="sec-h"><h2>Closest to a final clean<span class="c num">${int(near.length)}</span></h2><a href="#/projects?stage=near">See all ${int(near.length)}</a></div>${rowsHtml(near,0,"near")}</section>
+<section class="panel"><div class="sec-h"><h2>New this week<span class="c num">${int(nw.length)}</span></h2>${nw.length?`<a href="#/projects?new=1">See all ${int(nw.length)}</a>`:""}</div>${nw.length?rowsHtml(nw,5,"new"):`<p class="empty">No permits on the list were issued in the last 7 days.</p>`}</section>`:`<section class="panel"><div class="sec-h"><h2>Builders to call first</h2><a href="#/builders">All ${int(Object.keys(B).length)} builders</a></div>
 ${top.map(b=>`<a class="mini-b" href="#/builder/${encodeURIComponent(b.key)}"><b>${esc(b.name)}</b><span>${plural(b.n,CITY.bNoun)}${CITY.bWeek}${CITY.contacts?", "+(b.ok?"contact on file":"no contact on file yet"):""}</span>${top.some(x=>x.near)?`<span class="r num">${int(b.near)}<small>near finish</small></span>`:`<span class="r num">${int(b.n)}<small>${b.n===1?"project":"projects"}</small></span>`}</a>`).join("")}</section>
+<section class="panel"><div class="sec-h"><h2>New this week<span class="c num">${int(nw.length)}</span></h2>${nw.length?`<a href="#/projects?new=1">See all ${int(nw.length)}</a>`:""}</div>${nw.length?rowsHtml(nw,5,"new"):`<p class="empty">No permits on the list were issued in the last 7 days.</p>`}</section>
+<section class="panel nb"><p><b>None at ${esc(STG[0].toLowerCase())} this week.</b> The ${plural(by[1].length,"project")} with ${esc(STG[1].toLowerCase())} ${by[1].length===1?"is":"are"} next closest.</p>${by[1].length?`<a class="btn sm" href="#/projects?stage=insp">Open the ${int(by[1].length)}</a>`:""}</section>`}
+</div><div class="ov-col">
+${near.length?`<section class="panel"><div class="sec-h"><h2>Builders to call first</h2><a href="#/builders">All ${int(Object.keys(B).length)} builders</a></div>
+${top.map(b=>`<a class="mini-b" href="#/builder/${encodeURIComponent(b.key)}"><b>${esc(b.name)}</b><span>${plural(b.n,CITY.bNoun)}${CITY.bWeek}${CITY.contacts?", "+(b.ok?"contact on file":"no contact on file yet"):""}</span>${top.some(x=>x.near)?`<span class="r num">${int(b.near)}<small>near finish</small></span>`:`<span class="r num">${int(b.n)}<small>${b.n===1?"project":"projects"}</small></span>`}</a>`).join("")}</section>`:""}
 <section class="panel"><div class="sec-h"><h2>Where the work is</h2><a href="#/projects?view=map">Open the map</a></div>
 <p class="blg" aria-hidden="true"><span><i class="b0"></i>${STG_SHORT[0]}</span><span><i class="b1"></i>${STG_SHORT[1]}</span><span><i class="b2"></i>${STG_SHORT[2]}</span></p>
 <ul class="bars" aria-label="Open projects by ${CITY.areaLower} and stage"><li class="hd" aria-hidden="true"><span></span><span class="sp2"></span><span>Near finish</span><span>All</span></li>${areas.map(([a,n,c])=>`<li><a href="#/projects?area=${encodeURIComponent(a)}" aria-label="${esc(a)}: ${plural(n,"project")}, ${int(c[0])} near finish, ${int(c[1])} ${CITY.midWords}, ${int(c[2])} permit issued" title="${int(c[0])} near finish, ${int(c[1])} ${STG_SHORT[1].toLowerCase()}, ${int(c[2])} permit issued"><span>${esc(a)}</span><span class="tr" style="width:${Math.max(3,Math.round(n/amax*100))}%" aria-hidden="true">${[0,1,2].filter(s=>c[s]).map(s=>`<i class="b${s}" style="flex-grow:${c[s]}"></i>`).join("")}</span><span class="nv num${c[0]?"":" z"}">${int(c[0])}</span><span class="v num">${int(n)}</span></a></li>`).join("")}</ul></section>
@@ -904,7 +913,7 @@ el.querySelectorAll(".row").forEach(a=>{a.addEventListener("mouseenter",()=>hot(
 /* map */
 const MS=[{radius:9,color:"#fff",weight:2.5,fillColor:"#2E6B66",fillOpacity:1},{radius:6,color:"#fff",weight:1.5,fillColor:"#2F5F9E",fillOpacity:.92},{radius:5.5,color:"#3A4152",weight:2,fillColor:"#fff",fillOpacity:1}];
 function tiles(m){L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(m);}
-function ensureMap(){STATE.lazyMap=false;if(STATE.map||!$("#map"))return;if(!window.L){const box=$("#mapbox");if(box&&!box.querySelector(".map-fail"))box.insertAdjacentHTML("beforeend",'<div class="map-fail"><p>The map did not load on this connection. The list has every project.</p></div>');if(!ensureMap.tries){ensureMap.tries=1;window.addEventListener("load",()=>{if($("#map")&&!STATE.map){const f=$("#mapbox .map-fail");f&&f.remove();ensureMap();}},{once:true});}return;}
+function ensureMap(){STATE.lazyMap=false;if(STATE.map||!$("#map"))return;if(!window.L){const box=$("#mapbox");if(box&&!box.querySelector(".map-fail"))box.insertAdjacentHTML("beforeend",'<div class="map-fail"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><p>The map did not load on this connection. The list has every project.</p></div>');const sp=$("#split");sp&&sp.classList.add("nomap");if(!ensureMap.tries){ensureMap.tries=1;window.addEventListener("load",()=>{if($("#map")&&!STATE.map){const f=$("#mapbox .map-fail");f&&f.remove();const sp=$("#split");sp&&sp.classList.remove("nomap");ensureMap();}},{once:true});}return;}
 const m=L.map("map",{preferCanvas:true,zoomControl:true,scrollWheelZoom:true,attributionControl:true}).setView(CITY.center,CITY.zoom);
 m.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');tiles(m);STATE.map=m;STATE.layer=L.layerGroup().addTo(m);STATE.mk={};m.on("zoomend",declutter);drawMap(true);}
 function popup(p){const b=p.g.length?B[p.g[0]]:null;return `<div class="pop"><span class="mn num">${money(p.c)}</span><span class="ad">${esc(p.a)}</span><span class="bd">${esc(b?pn(p,0):"No builder listed")}</span>${chip(p.st)}<p style="margin:10px 0 0"><a class="btn ink" href="#/project/${encodeURIComponent(p.id)}">Open project</a></p></div>`;}
@@ -999,8 +1008,8 @@ ${p.lat&&p.lon?'<div class="minimap" id="minimap" role="region" aria-label="Map 
 <section class="panel"><div class="sec-h"><h2>Permit details</h2></div><dl class="facts">
 <div><dt>Reported cost</dt><dd class="num">$${int(p.c)}</dd></div><div><dt>Type</dt><dd>${esc(p.t)}</dd></div><div><dt>Homes</dt><dd class="num">${p.u?int(p.u):"None listed"}</dd></div>${p.sl?`<div><dt>Sleeping units</dt><dd class="num">${int(p.sl)}</dd></div>`:""}<div><dt>Issued</dt><dd>${esc(day(p.i))}</dd></div>
 <div><dt>Permit number</dt><dd class="num">${esc(p.id)}</dd></div><div><dt>City permit status</dt><dd>${esc(p.cs||"Not given")}</dd></div><div><dt>Community area</dt><dd>${esc(p.ca||"Not given")}</dd></div><div><dt>Stage</dt><dd>${STG[p.st]}</dd></div></dl></section>
-<section class="panel"><div class="sec-h"><h2>What the permit covers</h2></div><p class="scope">${esc(nbh(p.sf||p.s))}</p>
-<p class="rec">From the City's permit text, tidied for reading. <a href="${esc(D.record+encodeURIComponent(p.id))}" target="_blank" rel="noopener">See the City's raw record for permit ${esc(p.id)}<span class="sr"> (opens in a new tab)</span></a></p>
+<section class="panel"><div class="sec-h"><h2>What the permit covers</h2></div><p class="scope">${esc(nbh(String(p.sf||p.s).replace(/\s*(\.\.\.|\u2026)$/,"")))}</p>
+<p class="rec">From the City's permit text, tidied for reading${/(\.\.\.|\u2026)$/.test(String(p.sf||p.s))?"; shortened here, and the City's record has the rest":""}. <a href="${esc(D.record+encodeURIComponent(p.id))}" target="_blank" rel="noopener">See the City's raw record for permit ${esc(p.id)}<span class="sr"> (opens in a new tab)</span></a></p>
 ${p.lat&&p.lon?'<div class="minimap" id="minimap" role="region" aria-label="Map of the project location"></div>':""}</section>`}
 </div></div>`;
 $("#back").onclick=e=>{e.preventDefault();back("#/projects");};
@@ -1062,7 +1071,7 @@ document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=async()=>{toast(aw
 
 $("#skip").onclick=e=>{e.preventDefault();const t=$("#app").hidden?$("#pw"):($("#app h1")||$("#app"));if(t){t.setAttribute("tabindex",t.id==="pw"?"0":"-1");t.focus();}};
 /* gate */
-const pw=$("#pw"),eye=$("#eye");
+const pw=$("#pw"),eye=$("#eye");pw.addEventListener("input",()=>{pw.removeAttribute("aria-invalid");});
 eye.onclick=()=>{const show=pw.type==="password";pw.type=show?"text":"password";eye.setAttribute("aria-pressed",String(show));eye.setAttribute("aria-label",show?"Hide password":"Show password");$("#eyeslash").hidden=!show;pw.focus();};
 $("#gate").onsubmit=async e=>{e.preventDefault();const err=$("#err"),btn=$("#go");
 if(!pw.value.trim()){err.textContent="Type the password from your Gumroad purchase page.";pw.focus();return;}
@@ -1070,7 +1079,7 @@ btn.disabled=true;btn.textContent="Opening the list...";err.textContent="";
 try{const d=await openBox(pw.value.trim());pw.value="";prep(d);
 $("#gateView").hidden=true;$("#gateLegal").hidden=true;$("#app").hidden=false;$("#appLegal").hidden=false;$("#tabs").hidden=false;$("#bnav").hidden=false;$("#dlTop").hidden=false;document.body.classList.add("in");
 $("#dlTop").onclick=downloadWorkbook;window.removeEventListener("hashchange",gateHash);window.addEventListener("hashchange",onHash);STATE.trail=[location.hash||"#/"];route(true);}
-catch(x){btn.disabled=false;btn.textContent="Open this week's list";err.textContent="That password did not open the list. Check your Gumroad purchase page, or reply to your receipt for help.";pw.select();}};
+catch(x){btn.disabled=false;btn.textContent="Open this week's list";err.textContent="That password did not open the list. Check your Gumroad purchase page, or reply to your receipt for help.";pw.setAttribute("aria-invalid","true");pw.focus();}};
 </script></body></html>
 """
 

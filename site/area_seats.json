@@ -1,6 +1,6 @@
 {
  "schema": "pnf.areaseats.v1",
- "decided": "Todd, live chat, Oct 26, 2026, 8:24 am (coo/DECISIONS-2026-10-26.md). Territories drawn Oct 26 from permits/chicago/area_counts.json (12 full months, Oct 2025 to Sep 2026): each averages 10 or more new qualifying projects a month and is one connected piece; tools/area_seats.py --selftest checks both.",
+ "decided": "Todd, live chat, Oct 26, 2026, 8:24 am (coo/DECISIONS-2026-10-26.md). Territories drawn Oct 26 from permits/chicago/area_counts.json (12 full months, Oct 2025 to Sep 2026): each averages 10 or more new qualifying projects a month and is one connected piece; tools/area_seats.py --selftest checks both. Go to sell: Todd, live chat, Oct 26, 2026, 11:49 am; seat pages built once the AREA_SEAT_KEY secret was added (11:57 am).",
  "held": [],
  "territories": [
   {

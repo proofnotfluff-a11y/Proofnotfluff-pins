@@ -26,7 +26,16 @@ CSS = ("<style>"
        "font:600 13px system-ui,sans-serif;color:#c9cfdb}"
        ".ak-term figcaption i{display:inline-block;width:9px;height:9px;border-radius:50%;flex:none}"
        ".ak-term.ok figcaption i{background:#6cc0b6}.ak-term.stop figcaption i{background:#ef8c6b}"
-       ".ak-term pre{margin:0;padding:14px;overflow-x:auto;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#e8ebf0;white-space:pre-wrap;word-break:break-word}"
+       ".ak-term pre{margin:0;padding:14px;overflow-x:auto;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#e8ebf0;white-space:pre-wrap;overflow-wrap:normal}"
+       ".ak-term pre .c{display:block;white-space:nowrap}@media(min-width:900px){.ak-term pre{font-size:12px}}"
+       ".ld-hero .eyebrow{text-wrap:balance}"
+       ".ak-hero{display:grid;gap:28px;align-items:center}.ak-hero .ak-term{display:none}"
+       "@media(min-width:1000px){.ak-hero{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)}.ak-hero .ak-term{display:block}}"
+       ".ak-hero .ld-heroact .st-btn2{min-height:52px;padding:0 20px;border-radius:12px;font-size:17px}"
+       ".ak-tree{margin:12px 0 0;padding:12px 14px;border-radius:10px;background:var(--canvas2);border:1px solid var(--line);"
+       "font:12.5px/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink);white-space:pre;overflow-x:auto}"
+       ".ak-tree:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
+       "@media(max-width:899px){.ak-page main{padding-bottom:76px}}@media(min-width:900px){.ak-page .ld-sbar{display:none}}"
        ".ak-term pre:focus-visible{outline:3px solid #9fe0d7;outline-offset:-3px}"
        ".ak-term .c{color:#9aa1ae}.ak-term .g{color:#8fd8ce}.ak-term .r{color:#f6ad94}"
        ".ak-terms{display:grid;gap:14px;margin-top:12px}@media(min-width:900px){.ak-terms{grid-template-columns:repeat(3,minmax(0,1fr))}}"
@@ -40,8 +49,8 @@ CSS = ("<style>"
        "border-radius:50%;background:var(--teal-tint);color:var(--teal-ink);font-weight:700;margin-bottom:8px}"
        ".ak-steps h3{margin:0 0 4px;font-size:17px}.block .ak-steps p{margin:0;color:var(--ink2);max-width:none}"
        ".ak-list{margin:12px 0 0;padding-left:22px}.ak-list li{margin:7px 0}"
-       ".ak-two{display:grid;gap:16px}@media(min-width:900px){.ak-two{grid-template-columns:1fr 1fr}}"
-       ".ak-two>div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px}"
+       ".ak-two{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}@media(min-width:900px){.ak-two{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}"
+       ".ak-two>div{min-width:0;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px}"
        ".ak-two h2{margin-top:0}"
        ".ak-facts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:12px}"
        ".block .ld-cta .ak-price{margin:10px 0 0;color:#fff;font-weight:600}"
@@ -51,7 +60,7 @@ CSS = ("<style>"
 
 
 def load_lite_proof():
-    """Rerun the lite kit in a throwaway folder: the clean pass, the rules line removed, and the gate weakened."""
+    """Rerun the lite kit in a throwaway folder: the clean pass, the rulebook taken out of the router, the gate weakened."""
     out = {}
     with tempfile.TemporaryDirectory() as tmp:
         with tarfile.open(LITE) as t:
@@ -64,7 +73,6 @@ def load_lite_proof():
         d = os.path.join(tmp, "norules"); shutil.copytree(base, d)
         f = os.path.join(d, "CLAUDE.md"); s = open(f, encoding="utf-8").read()
         s = s.replace("Read this file, ops/HANDOFF.md and ops/CONSTITUTION.md (it binds first)", "Read this file and ops/HANDOFF.md")
-        s = s.replace("2. ops/CONSTITUTION.md binds every run.", "2. Follow the rules.")
         open(f, "w", encoding="utf-8").write(s)
         p = run(d)
         out["norules"] = (p.returncode, p.stdout.strip().splitlines())
@@ -77,12 +85,16 @@ def load_lite_proof():
     return out
 
 
-def term(t, rel_e):
+def term(t, rel_e, hidden=False):
     E = rel_e
     lines = []
     for x in t["lines"]:
         cls = "g" if x.startswith("OK") or (x.startswith("preflight") and "0 errors" in x) else ("r" if x.startswith(("ERROR", "preflight")) else "")
-        lines.append(f'<span class="{cls}">{E(x)}</span>' if cls else E(x))
+        x = E(x).replace("(exit ", "(exit&nbsp;")   # keep "exit 0" together
+        lines.append(f'<span class="{cls}">{x}</span>' if cls else x)
+    if hidden:   # the hero copy of a panel shown again under Proof: hidden from screen readers, out of the tab order
+        return (f'<figure class="ak-term {E(t["tone"])}" aria-hidden="true"><figcaption><i></i>{E(t["title"])}</figcaption>'
+                f'<pre><span class="c">$ {E(t["cmd"])}</span>\n' + "\n".join(lines) + "</pre></figure>")
     return (f'<figure class="ak-term {E(t["tone"])}"><figcaption><i aria-hidden="true"></i>{E(t["title"])}</figcaption>'
             f'<pre tabindex="0" aria-label="{E(t["title"])}: terminal output"><span class="c">$ {E(t["cmd"])}</span>\n'
             + "\n".join(lines) + "</pre></figure>")
@@ -97,7 +109,7 @@ def page_html(p):
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
               "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}
     head = M.HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=M.SHOP, ld=M.ld_tags(crumb_ld, faq_ld) + CSS,
-                         bodycls=' class="ld-page"', robots=robots, analytics=M.analytics_tag())
+                         bodycls=' class="ld-page ak-page"', robots=robots, analytics=M.analytics_tag())
     w = p["waitlist"]
     if p.get("kitForm"):
         form = (f'<form class="ld-form" action="https://app.kit.com/forms/{E(p["kitForm"])}/subscriptions" method="post">'
@@ -106,34 +118,48 @@ def page_html(p):
                 f'<p class="ak-fine">{E(w["fine"])}</p>')
     else:
         form = '<p class="ld-buybtn"><span class="btn soon" aria-disabled="true">Waitlist opens soon</span></p>'
-    hero = (f'<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{E(p["lede"])}</p>'
-            f'<div class="ld-heroact"><a class="btn ld-btnbig" href="#waitlist">{E(p["heroCta"])}</a>'
-            f'<a class="st-btn2" href="#proof">{E(p["heroCta2"])}</a></div>'
-            f'<p class="ak-note">{E(p["heroNote"])}</p></div>')
+    open_ = bool(p.get("kitForm"))   # before the Kit form exists, no button points at a waitlist that cannot take an email
+    acts = (f'<a class="btn ld-btnbig" href="#waitlist">{E(p["heroCta"])}</a><a class="st-btn2" href="#proof">{E(p["heroCta2"])}</a>' if open_
+            else f'<a class="btn ld-btnbig" href="#proof">{E(p["heroCtaSoon"])}</a>')
+    hero_term = next(t for t in p["proof"]["terms"] if t["key"] == p["proof"].get("heroKey", "norules"))
+    hero = (f'<div class="ld-hero ak-hero"><div><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{E(p["lede"])}</p>'
+            f'<div class="ld-heroact" id="akHeroCta">{acts}</div>'
+            f'<p class="ak-note">{E(p["heroNote"])}</p></div>{term(hero_term, E, hidden=True)}</div>')
+    otp = ('<nav class="otp" aria-label="On this page"><div class="otp-in">'
+           + "".join(f'<a href="#{s}">{E(l)}</a>' for s, l in p["otp"]) + '</div></nav>')
     proof = (f'<section class="block" id="proof"><h2>{E(p["proof"]["title"])}</h2><p>{E(p["proof"]["text"])}</p>'
              '<div class="ak-terms">' + "".join(term(t, E) for t in p["proof"]["terms"]) + '</div>'
              f'<p class="asof">{E(p["proof"]["asof"])}</p></section>')
-    fears = (f'<section class="block"><h2>{E(p["fears"]["title"])}</h2><ul class="ak-grid">'
+    fears = (f'<section class="block" id="fears"><h2>{E(p["fears"]["title"])}</h2><ul class="ak-grid">'
              + "".join(f'<li class="ak-card"><h3>{E(h)}</h3><p>{E(t)}</p></li>' for h, t in p["fears"]["items"]) + '</ul></section>')
-    how = (f'<section class="block"><h2>{E(p["how"]["title"])}</h2><ol class="ak-steps">'
+    how = (f'<section class="block" id="how"><h2>{E(p["how"]["title"])}</h2><ol class="ak-steps">'
            + "".join(f'<li><h3>{E(h)}</h3><p>{E(t)}</p></li>' for h, t in p["how"]["steps"]) + '</ol></section>')
-    inside = (f'<section class="block"><h2>{E(p["inside"]["title"])}</h2><ul class="ak-list">'
+    inside = (f'<section class="block" id="inside"><h2>{E(p["inside"]["title"])}</h2><ul class="ak-list">'
               + "".join(f"<li>{E(x)}</li>" for x in p["inside"]["items"]) + f'</ul><p class="asof">{E(p["inside"]["note"])}</p></section>')
     lite = p["lite"]
     lite_act = (f'<p class="ld-buybtn"><a class="st-btn2" href="{E(p["liteUrl"])}" rel="noopener">{E(lite["button"])}</a></p>' if p.get("liteUrl")
                 else f'<p class="asof">{E(lite["pending"])}</p>')
     facts = p["facts"]
-    two = ('<section class="block"><div class="ak-two">'
-           f'<div><h2>{E(lite["title"])}</h2><p>{E(lite["text"])}</p>{lite_act}</div>'
+    tree = (f'<pre class="ak-tree" tabindex="0" aria-label="What the lite version holds">{E(chr(10).join(lite["tree"]))}</pre>')
+    two = ('<section class="block" id="lite"><div class="ak-two">'
+           f'<div><h2>{E(lite["title"])}</h2><p>{E(lite["text"])}</p>{tree}{lite_act}</div>'
            f'<div><h2>{E(facts["title"])}</h2><p>{E(facts["text"])}</p><div class="ak-facts">'
            + "".join(f'<div class="tile"><div class="lab">{E(a)}</div><div class="val">{E(b)}</div><div class="sub">{E(c)}</div></div>' for a, b, c in facts["tiles"])
            + f'</div><p class="asof">{E(facts["asof"])}</p></div></div></section>')
-    notfor = (f'<section class="block"><h2>{E(p["notFor"]["title"])}</h2><ul class="ak-list">'
+    notfor = (f'<section class="block" id="notfor"><h2>{E(p["notFor"]["title"])}</h2><ul class="ak-list">'
               + "".join(f"<li>{E(x)}</li>" for x in p["notFor"]["items"]) + '</ul></section>')
     wait = (f'<section class="block ak-wait" id="waitlist"><div class="cta ld-cta"><div><h2>{E(w["title"])}</h2><p>{E(w["text"])}</p>'
             f'<p class="ak-price">{E(w["price"])}</p>{form}</div></div></section>')
-    body = (crumb + hero + proof + fears + how + inside + two + notfor + wait + M.faq_block(p["faq"])
-            + f'<p class="rl-act"><a class="btn" href="#waitlist">{E(p["heroCta"])}</a></p>')
+    body = (crumb + hero + otp + proof + fears + how + inside + two + notfor + wait + M.faq_block(p["faq"])
+            + (f'<p class="rl-act"><a class="btn" href="#waitlist">{E(p["heroCta"])}</a></p>' if open_ else ""))
+    if open_:   # phones: a slim bar after the hero, hidden while the hero buttons or the waitlist band are on screen
+        body += (f'<div class="ld-sbar" id="ldBar" aria-hidden="true"><div class="wrap"><p><b>{E(p["bar"])}</b></p>'
+                 f'<a class="btn" href="#waitlist" tabindex="-1">{E(p["heroCta"])}</a></div></div>'
+                 "<script>(function(){var bar=document.getElementById('ldBar'),hero=document.getElementById('akHeroCta'),cta=document.getElementById('waitlist');"
+                 "if(!bar||!hero||!cta||!('IntersectionObserver' in window))return;var hv=true,cv=false,link=bar.querySelector('a');"
+                 "function set(){var on=!hv&&!cv;bar.classList.toggle('on',on);bar.setAttribute('aria-hidden',String(!on));link.tabIndex=on?0:-1}"
+                 "var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.target===hero)hv=e.isIntersecting;else cv=e.isIntersecting});set()});"
+                 "io.observe(hero);io.observe(cta)})();</script>")
     foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             f'<p>{E(p["credit"])}</p>'
             '<p>Not legal, security or financial advice. You are responsible for what your agent does; the kit helps you set rules and checks, '
@@ -164,6 +190,9 @@ def selftest():
         assert key in shown, f"proof panel {key} missing"
         assert shown[key]["lines"] == lines, f"panel {key} no longer matches the lite kit: {lines}"
         assert code == (0 if key == "pass" else 1), f"panel {key} exit {code}"
+    import re
+    n = re.search(r"(\d+) planted failures caught", " ".join(proof["pass"][1])).group(1)
+    assert f"its {n} planted-failure tests" in spec["lite"]["text"], f"the lite text must say {n} planted-failure tests"
     print(f"agentkit_site selftest: ok ({sum(len(v[1]) for v in proof.values())} terminal lines match the lite kit)")
 
 

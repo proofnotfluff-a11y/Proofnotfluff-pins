@@ -6181,7 +6181,7 @@
    "kind": "agentkit",
    "draft": true,
    "title": "Unattended Agent Kit for Claude Code | ProofNotFluff",
-   "desc": "Run Claude Code on a schedule with rules it reads first and checks that stop the run when one fails. Free lite version; the full kit is $79 one time. Waitlist open.",
+   "desc": "Run Claude Code on a schedule with rules it reads first and checks that stop the run when one fails. Free lite version; the full kit is planned at $79 one time. Waitlist first.",
    "eyebrow": "For Claude Code jobs that run on a schedule",
    "h1": "Let your agent run while you are away. Keep your rules in charge.",
    "lede": "A starter system for coding agents that run unattended: a rulebook every run reads first, one job per skill, and a preflight that stops the run when a check fails. Each check comes with tests that break it on purpose, so you can see it still works.",
@@ -6190,7 +6190,7 @@
    "heroNote": "$79 one time when it opens. Waitlist first, nothing to pay today.",
    "proof": {
     "title": "What a stopped run looks like",
-    "text": "Three runs of the free lite version. First the rules are in place and the run may start. Then someone deletes the line that sends runs to the rulebook. Then someone weakens the gate itself, and the planted tests catch that too.",
+    "text": "Three runs of the free lite version. First the rules are in place and the run may start. Then someone takes the rulebook out of the router. Then someone weakens the gate itself, and the planted tests catch that too.",
     "terms": [
      {
       "key": "pass",
@@ -6198,15 +6198,15 @@
       "title": "Rules in place",
       "cmd": "python3 tools/preflight.py daily-report",
       "lines": [
-       "OK context: L0 895 B, L1 518 B, largest pre-run load 2474 of 8192 B",
-       "OK gate-test: 10 of 10 cases right (1 clean pass, 9 planted failures caught)",
+       "OK context: L0 892 B, L1 518 B, rules 2249 B, largest pre-run load 4720 of 10240 B",
+       "OK gate-test: 11 of 11 cases right (1 clean pass, 10 planted failures caught)",
        "preflight daily-report: 0 errors. The run may start."
       ]
      },
      {
       "key": "norules",
       "tone": "stop",
-      "title": "Rules line deleted",
+      "title": "Rulebook taken out of the router",
       "cmd": "python3 tools/preflight.py daily-report",
       "lines": [
        "ERROR context: CLAUDE.md does not send runs to ops/CONSTITUTION.md",
@@ -6220,18 +6220,19 @@
       "title": "Gate weakened",
       "cmd": "python3 tools/preflight.py daily-report",
       "lines": [
-       "OK context: L0 895 B, L1 518 B, largest pre-run load 2474 of 8192 B",
+       "OK context: L0 892 B, L1 518 B, rules 2249 B, largest pre-run load 4720 of 10240 B",
        "ERROR gate-test: planted case not caught: router stops naming the constitution (exit 0)",
        "ERROR gate-test: planted case not caught: router stops naming the preflight (exit 0)",
-       "ERROR gate-test: 2 of 10 cases wrong",
+       "ERROR gate-test: 2 of 11 cases wrong",
        "preflight daily-report: 1 gate(s) failed. Stop the run and report the ERROR lines."
       ]
      }
     ],
-    "asof": "Real output of the lite version, captured Oct 26, 2026. A stopped run exits with code 1, so a scheduler or a CI job sees the failure too."
+    "asof": "Real output of the lite version, captured Oct 26, 2026. A stopped run exits with code 1, so a scheduler or a CI job sees the failure too.",
+    "heroKey": "norules"
    },
    "fears": {
-    "title": "The four things people fear from an unattended agent",
+    "title": "The four things people fear from an unattended agent, and what the full kit is planned to do about each",
     "items": [
      [
       "It spends money",
@@ -6256,7 +6257,7 @@
     "steps": [
      [
       "The router loads first",
-      "CLAUDE.md names the rulebook, the live state and the one job this run does. Each layer has a size cap, so the rules are never the part that gets cut."
+      "CLAUDE.md names the rulebook, the live state and the one job this run does. Each layer has a size cap, so the rules stay small enough to load in full on every run."
      ],
      [
       "One job per skill",
@@ -6264,7 +6265,7 @@
      ],
      [
       "A preflight on every run",
-      "The gates run before any work. One ERROR line stops the run and says why. Planted tests prove each gate still catches its case."
+      "The gates run before any work. One ERROR line stops the run and says why. Planted tests check that each gate still catches its case."
      ]
     ]
    },
@@ -6283,23 +6284,31 @@
    },
    "lite": {
     "title": "Free lite version",
-    "text": "The router, handoff and constitution templates, the preflight, the context gate and its 9 planted-failure tests. MIT license, Python 3.8 or later, nothing to install.",
+    "text": "The router, handoff, constitution and decisions templates, an example job, the preflight, the context gate and its 10 planted-failure tests. MIT license, Python 3.8 or later, nothing to install.",
     "button": "Get the lite version on GitHub",
-    "pending": "It goes up on GitHub when the waitlist opens."
+    "pending": "It goes up on GitHub when the waitlist opens.",
+    "tree": [
+     "CLAUDE.md             router",
+     "ops/CONSTITUTION.md   fixed rules",
+     "ops/HANDOFF.md        live state",
+     "ops/DECISIONS.md      your words, dated",
+     ".claude/skills/<job>  one job each",
+     "tools/preflight.py    runs first"
+    ]
    },
    "facts": {
     "title": "Built from a system that runs daily",
-    "text": "This is the pattern ProofNotFluff uses for its own scheduled jobs. Each one starts with the preflight. The kit is a clean, generic copy with none of our data or business rules in it.",
+    "text": "This is the pattern ProofNotFluff uses for its own jobs, and its router starts every run with the preflight. The kit is a clean, generic copy with none of our data or business rules in it.",
     "tiles": [
      [
-      "Jobs on a schedule",
-      "8",
-      "each starts with the preflight"
+      "Jobs, one skill each",
+      "14",
+      "each with Inputs, Process, Outputs"
      ],
      [
-      "Planted test cases",
+      "Gate test cases",
       "311",
-      "rerun before each run"
+      "242 of them planted failures"
      ]
     ],
     "asof": "Counts from our own repo, Oct 26, 2026."
@@ -6309,17 +6318,17 @@
     "items": [
      "You want a hard sandbox. Rules in a file guide the model; real limits come from permission settings, containers, separate accounts, spending caps and backups. The kit sets up the first and tells you where the rest go.",
      "You watch every step of every run. You do not need gates.",
-     "You want an agent that spends or sends without review. The kit is built to stop exactly that.",
+     "You want an agent that spends or sends without review. The kit is built to require your word first.",
      "You need a compliance or security certification.",
      "You will not edit a rules file. The kit only works once the rules are yours."
     ]
    },
    "waitlist": {
     "title": "Join the waitlist",
-    "text": "One email when the kit opens, with the founding price and the free lite version. Nothing else.",
-    "price": "$79 one time, the founding price for people on the list. Nothing to pay today.",
+    "text": "One email when the kit opens, with the price and the free lite version. Nothing else.",
+    "price": "$79 one time for people on the list. Nothing to pay today.",
     "button": "Join the waitlist",
-    "fine": "Unsubscribe in one click. Stored with Kit, our email provider, and never sold."
+    "fine": "One email when the kit opens. Check your inbox to confirm. Unsubscribe in one click. Stored with Kit (kit.com), our email provider, and never sold."
    },
    "faq": [
     [
@@ -6332,7 +6341,7 @@
     ],
     [
      "What do I need?",
-     "Python 3.8 or later and a git repo. No packages, no service to sign up for, no account with us."
+     "Python 3.8 or later. No packages, no service to sign up for, no account with us."
     ],
     [
      "Is this a security product?",
@@ -6344,11 +6353,43 @@
     ],
     [
      "Where does the folder layout come from?",
-     "The Interpretable Context Methodology by Jake Van Clief and David McDermott (MIT license, arXiv 2603.16021). The constitution, the preflight, the budget gate and the planted tests are our additions."
+     "It is adapted from the Interpretable Context Methodology by Jake Van Clief and David McDermott (MIT license, arXiv 2603.16021). The constitution, the preflight, the budget gate and the planted tests are our additions. The authors have not reviewed this kit."
     ]
    ],
-   "credit": "Folder layout: the Interpretable Context Methodology, Jake Van Clief and David McDermott, MIT license, arXiv 2603.16021 (github.com/RinDig/Interpretable-Context-Methodology-ICM).",
-   "sources": "Lite kit output captured Oct 26, 2026."
+   "credit": "Folder layout adapted from the Interpretable Context Methodology, Jake Van Clief and David McDermott, MIT license, arXiv 2603.16021 (github.com/RinDig/Interpretable-Context-Methodology-ICM). The authors are not affiliated with and have not reviewed this kit.",
+   "sources": "Lite kit output captured Oct 26, 2026.",
+   "heroCtaSoon": "See it stop a run",
+   "bar": "$79 one time, waitlist first",
+   "otp": [
+    [
+     "proof",
+     "See it work"
+    ],
+    [
+     "fears",
+     "The four fears"
+    ],
+    [
+     "how",
+     "How it works"
+    ],
+    [
+     "inside",
+     "What is inside"
+    ],
+    [
+     "lite",
+     "Free version"
+    ],
+    [
+     "notfor",
+     "Not for"
+    ],
+    [
+     "waitlist",
+     "Waitlist"
+    ]
+   ]
   }
  ]
 }

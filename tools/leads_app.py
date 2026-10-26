@@ -385,7 +385,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .ov{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:20px;align-items:start}
 @media(max-width:1020px){.ov{grid-template-columns:minmax(0,1fr)}}
 .ov-col{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;min-width:0}
-.nc1{margin:0 0 14px;font-size:14px;line-height:1.5;color:var(--muted)}
+.bc .who+.nc1{margin-left:58px}.nc1{margin:14px 0;font-size:14px;line-height:1.5;color:var(--muted)}
 .bnote{margin:0;padding:0 20px 12px;font-size:14px;color:var(--muted)}
 .nb{display:flex;align-items:center;justify-content:space-between;gap:12px 16px;flex-wrap:wrap;padding:16px 20px}.nb p{margin:0;color:var(--ink2);font-size:15px;flex:1 1 260px}.nb b{color:var(--ink)}
 .stn.z .n,.stn.s0.z .n{color:var(--muted)}.stn.z .dot,.stn.s0.z .dot,.stn.s1.z .dot{background:var(--card,#fff);border:2px dashed #C9C2B5;color:var(--muted);box-shadow:none}
@@ -393,8 +393,8 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .hero p{margin:8px 0 0;color:var(--muted);font-size:16px;max-width:60ch}
 @media(max-width:600px){.hero h1{font-size:26px}.hero p{font-size:15px}}
 /* the finish line: the signature */
-.line{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:0;margin:22px 0 28px;padding:0}
-.line::before{content:"";position:absolute;left:24px;right:96px;top:23px;height:2px;background:repeating-linear-gradient(90deg,#C9C2B5 0 8px,transparent 8px 14px)}
+.line{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:22px 0 28px;padding:0;max-width:980px}
+.line::before{content:"";position:absolute;left:24px;right:calc(25% - 24px);top:23px;height:2px;background:repeating-linear-gradient(90deg,#C9C2B5 0 8px,transparent 8px 14px)}
 .stn{position:relative;display:block;text-decoration:none;color:var(--ink);padding:0 16px 0 0;min-width:0}
 .stn .dot{position:relative;z-index:1;display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:#fff;border:2px solid var(--iss);color:var(--iss)}
 .stn.s1 .dot{border-color:var(--blue);color:var(--blue)}
@@ -404,7 +404,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .stn .t{display:block;font-weight:600;font-size:15px}
 .stn .m{display:block;color:var(--muted);font-size:13.5px;margin-top:2px}
 @media(hover:hover){a.stn:hover .t{text-decoration:underline;text-underline-offset:3px}}
-.flag{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;color:var(--ink);width:120px}
+.flag{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;color:var(--ink);min-width:0}
 .flag .t{display:block;font-weight:600;font-size:15px;margin-top:16px}.flag .m{display:block;color:var(--muted);font-size:13.5px;margin-top:2px}
 .flag .dot{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--accent);color:#fff}
 @media(max-width:700px){
@@ -478,7 +478,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .seg::-webkit-scrollbar{display:none}
 .seg button{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 12px;border:0;border-radius:7px;background:none;color:var(--ink2);font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap}
 .seg button .c{color:var(--muted);font-weight:600}
-.seg button[aria-pressed=true]{background:var(--ink);color:#fff}.seg button:disabled{opacity:.45;cursor:default;background:none}.tog.off{opacity:.45}.seg button[aria-pressed=true] .c{color:#C9CFDB}
+.seg button[aria-pressed=true]{background:var(--ink);color:#fff}.seg button:disabled{cursor:default;color:var(--muted);background:none;border-style:dashed}.seg button:disabled .c{color:var(--muted)}.tog.off{opacity:.45}.seg button[aria-pressed=true] .c{color:#C9CFDB}
 .seg button:hover:not([aria-pressed=true]):not(:disabled){background:#F5F2EC}
 .filters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;align-items:end}
 .filters .fld select{width:100%;max-width:none}.filters .tog{width:100%}
@@ -510,7 +510,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .lg2{width:10px;height:10px;background:#fff;border:2px solid var(--iss);margin:0 2px}
 .map-note{position:absolute;z-index:500;left:12px;bottom:12px;max-width:calc(100% - 140px);background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12.5px;color:var(--muted)}
 .map-fail{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;color:var(--muted);font-size:14px}
-.split.nomap{display:flex;flex-direction:column-reverse;align-items:stretch;gap:12px}.split.nomap .mapbox{position:static;height:auto;min-height:0;display:block!important}.split.nomap .mapbox .map,.split.nomap .legend{display:none}.split.nomap .map-fail{position:static;display:flex;gap:8px;justify-content:center;padding:14px 20px}.split.nomap .map-fail p{margin:0}.split.nomap .map-fail{flex-wrap:wrap;align-items:center}@media(min-width:861px){#mfl{display:none}}.split[data-v=list] #mfl{display:none}
+.split.nomap{display:flex;flex-direction:column-reverse;align-items:stretch;gap:12px;max-width:860px}.split.nomap .mapbox{position:static;height:auto;min-height:0;display:block!important}.split.nomap .mapbox .map,.split.nomap .legend{display:none}.split.nomap .map-fail{position:static;display:flex;gap:8px;justify-content:center;padding:14px 20px}.split.nomap .map-fail p{margin:0}.split.nomap .map-fail{flex-wrap:wrap;align-items:center}@media(min-width:861px){#mfl{display:none}}.split[data-v=list] #mfl{display:none}
 .leaflet-container{font-family:var(--body);background:#E9E6E0}
 .leaflet-tile-pane{filter:grayscale(1) sepia(.18) contrast(.88) brightness(1.06)}
 .leaflet-control-attribution{font-size:11px;background:rgba(255,255,255,.9)!important}
@@ -580,7 +580,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .track{padding:20px}
 .track h2{font-size:17px;font-weight:600;margin:0 0 18px}
 .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:relative}
-.steps li{position:relative;padding:0 10px 0 0;font-size:13.5px;color:var(--muted)}
+.steps li{position:relative;padding:0 24px 0 0;font-size:13.5px;color:var(--muted)}
 .steps li::before{content:"";position:absolute;left:14px;right:-14px;top:13px;height:2px;background:var(--line)}
 .steps li:last-child::before{display:none}
 .steps li.done::before{background:var(--ink2)}
@@ -604,7 +604,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .facts dt{font-size:12.5px;color:var(--muted);font-weight:600;margin:0 0 3px}
 .facts dd{margin:0;font-weight:600;font-size:15px;overflow-wrap:anywhere}
 @media(max-width:700px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.scope{padding:0 20px 20px;font-size:15.5px;line-height:1.6;color:var(--ink2);margin:0;text-wrap:pretty}
+.scope{padding:0 20px 12px;font-size:15.5px;line-height:1.6;color:var(--ink2);margin:0;text-wrap:pretty}
 .rec{padding:0 20px 18px;font-size:14px;color:var(--muted)}
 .bps{list-style:none;margin:0 0 14px;padding:0;border-top:1px solid var(--line2)}
 .bps li{padding:12px 20px;border-bottom:1px solid var(--line2)}
@@ -653,7 +653,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .bt td.n{padding:12px 20px}
 .bt tbody tr{cursor:pointer}
 @media(hover:hover) and (pointer:fine){.bt tr:hover td{background:#FBFAF7}}
-.bt .n{text-align:right;white-space:nowrap;color:var(--ink)}
+.bt .n{text-align:right;white-space:nowrap;color:var(--ink)}.bt th.n{text-align:right}
 .bt .nm b{font-weight:600}.bt td.cv,.bt th.cv{width:40px;padding:0 12px 0 0;color:var(--field);text-align:right}@media(hover:hover){.bt tbody tr:hover .nm b{text-decoration:underline;text-underline-offset:3px}}
 .bt .nm small{display:flex;align-items:center;gap:5px;color:var(--muted);font-size:13px;margin-top:2px}
 .bt .nm small .ico{color:var(--teal)}
@@ -816,7 +816,7 @@ return `<li><a class="row" href="#/project/${encodeURIComponent(p.id)}" data-id=
 <span class="ad">${CITY.key==="austin"?esc(p.a).replace(/ more\)/g,"&nbsp;more)"):esc(p.a)}${p.ca?`<span class="ar">,${CITY.key==="austin"?"&nbsp;":" "}${esc(p.ca)}</span>`:""}</span>
 ${ctx&&ctx!=="near"&&ctx!=="new"?(other?`<span class="bd"><span>With ${esc(pn(p,p.g.indexOf(other)))}</span></span>`:""):`<span class="bd">${b&&b.ok?ico(b.contact.phone?"phone":"mail","s")+'<span class="sr">Contact on file: </span>':""}<span>${esc(b?pn(p,0):"No builder listed")}${p.g.length>1?` <span class="ar">and ${int(p.g.length-1)} more</span>`:""}</span>${b&&!b.ok&&CITY.contacts&&!noC()?'<span class="nc">No contact yet</span>':""}</span>`}
 <span class="rt">${ctx&&ctx!=="new"?"":chip(p.st)}${p.n&&ctx!=="new"?'<span class="badge new">New this week</span>':""}${m.c?`<span class="badge done">${ico("check","s")}Contacted</span>`:""}</span>${ico("chev","chev")}</a></li>`;}
-function shortScope(t){t=String(t||"");if(!/(\.\.\.|\u2026)$/.test(t))return t;t=t.replace(/\s*(\.\.\.|\u2026)$/,"");let u;do{u=t;t=t.replace(/[\s,;:(]+(and|also|at|of|to|in|on|for|with|the|a|an|by|from|or|including|plus|per)$/i,"").replace(/[\s,;:(]+$/,"");}while(t!==u);return t+"...";}
+function shortScope(t){t=String(t||"");if(!/(\.\.\.|\u2026)$/.test(t))return t;t=t.replace(/\s*(\.\.\.|\u2026)$/,"");const cut=Math.max(t.lastIndexOf(", "),t.lastIndexOf(". "),t.lastIndexOf("; "));if(cut>t.length*.4)t=t.slice(0,cut);let u;do{u=t;t=t.replace(/[\s,;:(]+(and|also|at|of|to|in|on|for|with|the|a|an|by|from|or|including|plus|per)$/i,"").replace(/[\s,;:(]+$/,"");}while(t!==u);return t+"...";}
 function rowsHtml(list,limit,ctx){if(!list.length)return "";const n=Math.min(limit||list.length,list.length);return `<ul class="list-rows">${list.slice(0,n).map(p=>row(p,ctx)).join("")}</ul>`;}
 
 /* overview */
@@ -978,9 +978,9 @@ if(b.ok){body=`${c.phone?`<a class="btn pri call" href="tel:+1${esc(c.tel)}">${i
 else if(!CITY.contacts){body=`<div class="none"><b>Reach the builder's main office</b>We list the general contractor the City names on the permits. Search for their main office and ask for the project manager or the estimator ${onBuilderPage?"on your project, with its":"on this project, with the"} address and ${esc(CITY.permitLower)} number ready.</div>
 <div class="foot"><a class="btn" href="https://www.google.com/search?q=${encodeURIComponent(b.name+" "+CITY.city)}" target="_blank" rel="noopener">${ico("search","s")}Search the web for this builder<span class="sr"> (opens in a new tab)</span></a></div>`;}
 else if(noC()){body=`<p class="nc1">No office phone or email on file yet; we list them only after reading them on the builder's own website.</p>
-<div class="foot"><a class="btn" href="https://www.google.com/search?q=${encodeURIComponent(b.name+" "+CITY.city)}" target="_blank" rel="noopener">${ico("search","s")}Search the web for this builder<span class="sr"> (opens in a new tab)</span></a></div>`;}
+<div class="foot"><a class="btn pri" href="https://www.google.com/search?q=${encodeURIComponent(b.name+" "+CITY.city)}" target="_blank" rel="noopener">${ico("search","s")}Search the web for this builder<span class="sr"> (opens in a new tab)</span></a></div>`;}
 else{body=`<div class="none"><b>No contact on file yet</b>We list a builder's office phone and general email only after reading them on the builder's own website. This builder is not checked yet, we found no website that is clearly theirs, or their site does not show them.</div>
-<div class="foot"><a class="btn" href="https://www.google.com/search?q=${encodeURIComponent(b.name+" "+CITY.city)}" target="_blank" rel="noopener">${ico("search","s")}Search the web for this builder<span class="sr"> (opens in a new tab)</span></a></div>`;}
+<div class="foot"><a class="btn pri" href="https://www.google.com/search?q=${encodeURIComponent(b.name+" "+CITY.city)}" target="_blank" rel="noopener">${ico("search","s")}Search the web for this builder<span class="sr"> (opens in a new tab)</span></a></div>`;}
 return `<section class="panel bc" aria-label="${onBuilderPage?"Contact":"Builder"}">${onBuilderPage?`<h2>Contact</h2>`:`<div class="who"><span class="av">${ico("build")}</span><div><h2>${esc(shown||b.name)}</h2><p class="meta num">${plural(b.n,CITY.bNoun)}${CITY.bWeek}<br>${money(b.cost)} ${CITY.costShort}${b.near?`, ${int(b.near)} near finish`:""}</p></div></div>`}${body}
 ${showLink?`<div class="foot"><a class="btn" href="#/builder/${encodeURIComponent(b.key)}">See all ${plural(b.n,"project")} by this builder</a></div>`:""}</section>`;}
 

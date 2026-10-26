@@ -210,7 +210,7 @@ def city_for(t, geo=None):
         "storageKey": f"pnf-cas-{t['slug']}-v1",
         "center": [round(lat, 4), round(lon, 4)], "zoom": 13 if len(t["areas"]) <= 2 else (11 if len(t["areas"]) > 20 else 12),
         "gateSub": (f"Your seat: {t['name']}. Projects close to a final clean in your area, the builder on each, and the builder's "
-                    "office phone or email where their own website lists one."),
+                    "office phone or email when their own website lists one."),
         "legal": LC.CHICAGO["legal"].replace(
             "Licensed to one business for its own prospecting;",
             f"Licensed to one business, the only seat holder for {t['name']}, for its own prospecting;"),

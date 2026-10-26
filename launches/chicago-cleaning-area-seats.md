@@ -38,7 +38,14 @@ Drawn from permits/chicago/area_counts.json (tools/exclusive_areas.py, GitHub Ac
 - Not in email/approved_templates.json: nothing sends until Todd approves the wording in chat and says send.
 
 ## Gates
-(filled as each verdict comes in)
+(each a fresh subagent that never saw the build; filled as each verdict comes in)
+- Accessibility (axe-core 4.10.2, WCAG 2.1 AA, Oct 26): PASS, 0 violations in 16 states (offer section, seat sign-in, list and Terms; 390 and 1280; light and dark), rerun after the round 1 fixes: 0.
+- Holdout A, counts against the City (Oct 26): PASS, BLOCKERS 0. 77 of 77 areas in exactly one seat, each seat connected, every number on the offer and in the launch table recomputed from the files, ours at or under the City's raw count in all 36 area-months checked (12-month City raw 1,558 against our 878), 25 of 25 sample permits in the right seat. Its wording note (an offer bullet said "Every open project") fixed.
+- Holdout B, exclusivity and promises (Oct 26): BLOCKERS 2, both fixed: the email gate's fixtures were pinned to the Loop seat (now an open seat, so a sale never breaks the gate), and "held areas leave the downstream emails file" was not provable (now tools/seat_gate.py fails check_repo if any lead in permits/downstream/gc_leads.json sits in a held seat, with planted cases; permits/downstream/gc_areas.json comes from the downstream workflow). Also fixed: the seat footer licence line, one set of open counts on the map and the cards. Round 2: pending gc_areas.json.
+- Legal desk (legal/reviews/2026-10-26-area-seats.md): CLEARED WITH FIXES; fixes 1 to 10 and 13 applied in code and copy; fix 11 built (shows when seats go on sale or an area is held) with Todd's paste, notice email and refund decision; fix 12 is Todd's Gumroad setting.
+- Copy review round 1: FAIL 4.2 (building build, an unclear ask, a 75-word worst case, a builder-digit gate bug); rewrites and the gate fix applied, then the Legal desk wording. Cold readers (2, no product context): both read it as a lead-list offer; one would reply. Round 2: pending.
+- Design director round 1: FAIL (offer 4.14, seat page 4.00, map 4.57); the fixes applied (price under the headline, stats on two lines, the sticky $29 bar steps aside, nav entry, map legend and badges, olive area 6, faint internal lines, seat chip and area in the headlines, no focus box on headlines, honest zero states, seat gate link, page depth for fonts and links). Round 2: pending.
+- check_repo: 0 errors on every push (the seat email gate runs in it).
 
 ## Gumroad copy (Todd pastes; one Membership product per area, sales limit 1)
 Same for all six: tier `Area seat`, `$149` monthly, free trial off, sales limit 1, seller ProofNotFluff, cover and thumbnail from the build session.

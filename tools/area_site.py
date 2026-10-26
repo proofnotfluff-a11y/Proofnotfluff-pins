@@ -105,7 +105,7 @@ def seats_html(p, spec, rel):
         f'projects a month from {E(rng)}.</figcaption>'
         f'<p class="as-note">New projects a month: permits the City issued from {E(rng)} that passed the list\'s rules when issued, '
         f'whatever their status today, about {lo} to {hi} an area. Months vary: every area had some months under 10. {asof}</p></figure>'
-        '<ul class="sb-get checks"><li>Every open project in your area, closest to a final clean first, with the builder on each and the builder\'s office phone or email where their own website lists one.</li>'
+        '<ul class="sb-get checks"><li>Every open apartment and commercial project of $500,000 or more in your area with a business as general contractor, closest to a final clean first, with the builder on each and the builder\'s office phone or email where their own website lists one.</li>'
         '<li>New permits each Monday, in a members\' app with a map and in an Excel file, plus the pitch kit.</li>'
         '<li>Your area only, and only you. The permits are public City of Chicago records that anyone can read on the City\'s site; '
         'exclusive means we sell your area\'s list to you alone.</li></ul></div>'

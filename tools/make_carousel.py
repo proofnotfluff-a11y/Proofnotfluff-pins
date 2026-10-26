@@ -112,7 +112,7 @@ def slide(s, i, n, footer):
     elif role == "where":
         rows = "".join(f'<div class="row"><span class="r">{esc(r[0])}</span><span class="n">{esc(r[1])}</span>'
                        f'<span class="v">{esc(r[2])}</span></div>' for r in s["rows"][:5])
-        inner = f'{eb}{title}<div class="card rows">{rows}</div>'
+        inner = f'{eb}{title}<div class="card rows">{rows}</div>{body}'
     elif role == "why":
         c = s["card"]
         inner = f'{eb}{title}{body}<div class="card mt"><div class="lab">{esc(c["label"])}</div><div class="huge">{esc(c["value"])}</div></div>'
@@ -130,7 +130,8 @@ def slide(s, i, n, footer):
         inner = (f'{eb}{title}{body}<div class="card mt"><div class="lead">{esc(lead)}</div>'
                  f'<div class="price">{esc(price)}</div><div class="terms">{esc(s.get("terms"))}</div></div>')
     elif role == "cta":
-        inner = f'{eb}{title}<div class="btn">{esc(s["domain"])}</div>'
+        sub = f'<div class="b">{esc(s.get("sub"))}</div>' if s.get("sub") else ""
+        inner = f'{eb}{title}<div class="btn">{esc(s["domain"])}</div>{sub}'
     else:
         raise SystemExit(f"unknown role {role} on slide {i}")
     bars = "".join(f'<i style="background:{c}"></i>' for c in T["bars"])

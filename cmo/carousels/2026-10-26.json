@@ -1,0 +1,263 @@
+{
+  "date": "2026-10-26",
+  "topic": "licenses",
+  "hookId": "H12",
+  "product": "chicago-new-business-licenses",
+  "format": "1080 x 1350, 7 slides, rendered by tools/make_carousel.py; Instagram and Facebook carousel",
+  "data": {
+    "file": "permits/licenses-chicago/sample.json",
+    "asOf": "source.fetchedAt 2026-10-26"
+  },
+  "slides": [
+    {
+      "n": 1,
+      "role": "hook",
+      "ground": "ink",
+      "eyebrow": "CHICAGO NEW BUSINESSES",
+      "number": "216",
+      "title": "new Chicago businesses licensed in 30 days",
+      "sub": "Sep 26 to Oct 26, 2026, sorted by trade for cleaning and pest control companies",
+      "facts": [
+        {
+          "text": "216",
+          "file": "permits/licenses-chicago/sample.json",
+          "key": "counts.kept30"
+        },
+        {
+          "text": "Sep 26 to Oct 26, 2026",
+          "file": "permits/licenses-chicago/sample.json",
+          "key": "window.listFrom, window.to"
+        },
+        {
+          "text": "sorted by trade, for cleaning and pest control companies",
+          "file": "site/pages.json",
+          "key": "chicago-new-business-licenses.lede, .card"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "role": "proof",
+      "ground": "canvas",
+      "eyebrow": "TOP TRADES IN THE 216",
+      "title": "Shops, food and salons lead the month",
+      "tiles": [
+        {
+          "label": "SHOPS AND OFFICES",
+          "value": "87"
+        },
+        {
+          "label": "RESTAURANTS AND FOOD",
+          "value": "80"
+        },
+        {
+          "label": "SALONS AND FITNESS",
+          "value": "35"
+        }
+      ],
+      "source": "Source: City of Chicago license records, pulled Oct 26, 2026",
+      "facts": [
+        {
+          "text": "87",
+          "file": "permits/licenses-chicago/sample.json",
+          "key": "counts.segments30.retail (Shops, offices and other services)"
+        },
+        {
+          "text": "80",
+          "file": "permits/licenses-chicago/sample.json",
+          "key": "counts.segments30.food"
+        },
+        {
+          "text": "35",
+          "file": "permits/licenses-chicago/sample.json",
+          "key": "counts.segments30.beauty (Salons, barbers, nails, spas and fitness)"
+        },
+        {
+          "text": "Oct 26, 2026",
+          "file": "permits/licenses-chicago/sample.json",
+          "key": "source.fetchedAt"
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "role": "where",
+      "ground": "canvas",
+      "eyebrow": "LAST 7 DAYS, BY AREA",
+      "title": "West Town leads with 5 new licenses",
+      "rows": [
+        [
+          "1",
+          "West Town",
+          "5"
+        ],
+        [
+          "2",
+          "Irving Park",
+          "4"
+        ],
+        [
+          "2",
+          "Loop",
+          "4"
+        ],
+        [
+          "4",
+          "Near North Side",
+          "3"
+        ]
+      ],
+      "source": "Source: City of Chicago license records, pulled Oct 26, 2026",
+      "facts": [
+        {
+          "text": "this week",
+          "file": "permits/licenses-chicago/sample.json",
+          "key": "window.from 2026-10-19 to window.to 2026-10-26 (keptWeek 63)"
+        },
+        {
+          "text": "rows 1 to 4 (ties share a rank)",
+          "file": "permits/licenses-chicago/sample.json",
+          "key": "counts.areasWeek[0:4]"
+        }
+      ],
+      "body": "The newest licenses this week. The full list keeps all 30 days, sorted by trade."
+    },
+    {
+      "n": 4,
+      "role": "why",
+      "ground": "canvas",
+      "eyebrow": "WHY IT MATTERS",
+      "title": "Most hold their first City license",
+      "body": "Likely new to vendors too. The full list marks each one.",
+      "source": "Source: City of Chicago license records, pulled Oct 26, 2026",
+      "card": {
+        "label": "FIRST LICENSE, OF THE 216",
+        "value": "122"
+      },
+      "facts": [
+        {
+          "text": "122",
+          "file": "permits/licenses-chicago/sample.json",
+          "key": "counts.history30.first"
+        },
+        {
+          "text": "Each row says which it is",
+          "file": "site/pages.json",
+          "key": "chicago-new-business-licenses.faq[1] (first license, new site, added license or relicensed)"
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "role": "work",
+      "ground": "canvas",
+      "eyebrow": "WHAT WE DO EVERY MONDAY",
+      "title": "704 licenses in.\n216 worth a visit.",
+      "body": "We read every new license each week and keep the ones worth your visit, sorted by trade.",
+      "source": "Source: City of Chicago license records, pulled Oct 26, 2026",
+      "bars": [
+        {
+          "label": "Licenses in",
+          "value": "704"
+        },
+        {
+          "label": "Worth a visit",
+          "value": "216"
+        }
+      ],
+      "facts": [
+        {
+          "text": "704",
+          "file": "permits/licenses-chicago/sample.json",
+          "key": "counts.fetched"
+        },
+        {
+          "text": "216",
+          "file": "permits/licenses-chicago/sample.json",
+          "key": "counts.kept30 (704 less 488 excluded)"
+        },
+        {
+          "text": "sort by trade",
+          "file": "site/pages.json",
+          "key": "chicago-new-business-licenses.card"
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "role": "offer",
+      "ground": "canvas",
+      "eyebrow": "THE FULL LIST",
+      "title": "Chicago New Business Licenses",
+      "body": "Every Monday: new licenses from the last 30 days, by trade, with address and license date.",
+      "price": "7 days free, then $29 a month",
+      "terms": "No lock-in, cancel any time.",
+      "facts": [
+        {
+          "text": "Chicago New Business Licenses",
+          "file": "site/pages.json",
+          "key": "chicago-new-business-licenses.h1"
+        },
+        {
+          "text": "every Monday, last 30 days, by trade, address, issue date",
+          "file": "site/pages.json",
+          "key": "chicago-new-business-licenses.cta.text"
+        },
+        {
+          "text": "7 days free",
+          "file": "site/pages.json",
+          "key": "chicago-new-business-licenses.trialDays"
+        },
+        {
+          "text": "$29 a month",
+          "file": "site/pages.json",
+          "key": "chicago-new-business-licenses.price"
+        },
+        {
+          "text": "No lock-in, cancel any time.",
+          "file": "docs/chicago-new-business-licenses/index.html",
+          "key": "hero offer line"
+        }
+      ]
+    },
+    {
+      "n": 7,
+      "role": "cta",
+      "ground": "ink",
+      "eyebrow": "FREE SAMPLE EVERY MONDAY",
+      "title": "See this week’s free sample",
+      "domain": "proofnotfluff.com",
+      "facts": [
+        {
+          "text": "free sample, every Monday",
+          "file": "site/pages.json",
+          "key": "chicago-new-business-licenses.eyebrow"
+        }
+      ],
+      "sub": "A free look at the list, every Monday."
+    }
+  ],
+  "footer": {
+    "left": "ProofNotFluff",
+    "right": "n/7"
+  },
+  "captions": {
+    "instagram": "216 new Chicago businesses got a City license in the last 30 days.\n\nIf you run a cleaning or pest control company, each one is a new place to introduce yourself, ideally in its first weeks.\n\nIn this month's list:\n87 shops and offices, 80 restaurants and food shops, 35 salons and fitness\n122 hold their first City license\nWest Town led this week with 5\n\nEvery number traces back to City license records. We do the sorting so you don't have to. Free sample: link in bio (proofnotfluff.com).\n\n#Chicago #CommercialCleaning #PestControl",
+    "facebook": "216 new Chicago businesses got a City license in the last 30 days.\n\nIf you run a cleaning or pest control company, each one is a new place to introduce yourself, ideally in its first weeks.\n\nIn this month's list:\n87 shops and offices, 80 restaurants and food shops, 35 salons and fitness\n122 hold their first City license\nWest Town led this week with 5\n\nEvery number traces back to City license records. We do the sorting so you don't have to. Free sample: proofnotfluff.com/go/free-chicago-new-business-licenses/\n\n#Chicago #CommercialCleaning #PestControl"
+  },
+  "platforms": [
+    "instagram",
+    "facebook"
+  ],
+  "gates": {
+    "facts_round1": "FAIL: slide 5 'set aside the ones you can't sell to' misdescribed the 488 dropped (135 were outside the window); fixed",
+    "buyer_round1": "FAIL: source line named the portal and dataset, slide 5 read as a filter recipe, slide 2 eyebrow implied the tiles sum to 216; fixed (source now 'City of Chicago license records')",
+    "facts_round2": "PASS (changed lines)",
+    "buyer_round2": "PASS (owner would grab the free sample; no how-to)",
+    "design_round1": "FAIL 4.14 (5,4,4,4,4,4,4): sparse slides 3 and 7, repeated 122 on slide 4, week vs month on slide 3, title order on slide 2",
+    "design_fix": "copy: slide 1 title, slide 2 title order, slide 3 eyebrow LAST 7 DAYS BY AREA plus body, slide 4 title Most, slide 7 sub line; tool: where role renders body, cta role renders sub (additive, 2026-10-25 renders byte-identical); facts gate PASS on changed lines",
+    "design_round2": "FAIL 4.43 (5,4,4,5,4,4,5): middle slides 2 to 5 leave 170 to 280 px empty, slide 6 starts lower than slides 2 to 5, slide 3 list type small and ranks 1,2,2,4, slide 4 sentence above the card, slide 7 eyebrow and sub repeat; second FAIL, stopped, sent to Todd"
+  },
+  "posted": null,
+  "status": "stopped after second design FAIL; not posted. This cloud run also had no Claude in Chrome or computer link, so it could not have posted."
+}

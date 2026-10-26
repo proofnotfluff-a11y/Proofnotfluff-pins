@@ -1,0 +1,140 @@
+{
+ "schema": "pnf.opportunity.v1",
+ "slug": "chicago-storefront-sign-leads",
+ "name": "Chicago Storefront Sign Leads",
+ "status": "new",
+ "addedAt": "2026-10-26",
+ "pitch": "Each week, the new Chicago businesses that just got a City license at a street-level storefront, sold to one sign company per community area; a new storefront usually needs a permitted sign before it opens.",
+ "categories": [
+  "signs",
+  "sign companies",
+  "storefront signage"
+ ],
+ "provenAbroad": [
+  {
+   "what": "MorningSheet sells new business openings from public records to vendors, signage among its buyer lines, at $79 a month shared, $349 for a 7-day exclusive head start and $899 to own a county (Washington state; Kimi R3, rechecked Oct 26)",
+   "url": "https://themorningsheet.com/pricing/",
+   "date": "2026-10-26"
+  }
+ ],
+ "buyer": {
+  "who": "sign companies that install storefront signs in Chicago",
+  "count": 192,
+  "countSource": {
+   "url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?$select=count(distinct%20contact_1_name)&$where=permit_type='PERMIT%20-%20SIGNS'%20AND%20issue_date%3E'2025-10-26'",
+   "date": "2026-10-26",
+   "note": "192 distinct first contacts on 2,042 City sign permits in 12 months; includes electricians, general contractors, owners and duplicate spellings, so real sign shops are fewer. The Illinois Sign Association lists 50 member shops, 5 with a Chicago address."
+  },
+  "reach": "each sign company's own website and phone, found from the contractor named on its City sign permits; the Illinois Sign Association member listing gives address, phone and email for 50 shops",
+  "reachSource": {
+   "url": "https://www.isa-sign.com/sigh-shop-member-listing",
+   "date": "2026-10-26"
+  }
+ },
+ "price": {
+  "monthly": 79,
+  "reason": "One community area, one sign company, at MorningSheet's shared price and well under its $349 exclusive tier; anything higher has to beat a free City export and Apify feeds at $0.01 to $20 per 1,000 rows",
+  "competitors": [
+   {
+    "name": "MorningSheet Second Look (shared, a week late, one county and line; Chicago listed in its coverage menu, not confirmed live)",
+    "monthly": 79,
+    "url": "https://themorningsheet.com/pricing/",
+    "date": "2026-10-26",
+    "richer": false
+   },
+   {
+    "name": "MorningSheet First Look (7-day exclusive head start in a county and line)",
+    "monthly": 349,
+    "url": "https://themorningsheet.com/pricing/",
+    "date": "2026-10-26",
+    "richer": false
+   },
+   {
+    "name": "Apify leadsignal-data Chicago New Business Leads: new licenses only, renewals and pop-ups removed, neighborhood and ward, $20 per 1,000 results (about 580 rows a month)",
+    "monthly": 12,
+    "url": "https://apify.com/leadsignal-data/chicago-new-business-leads",
+    "date": "2026-10-17",
+    "richer": false
+   },
+   {
+    "name": "Chicago Cityscape Businesses Snapshot: new business licenses by area of Chicago, paid membership, price behind a login",
+    "monthly": null,
+    "url": "https://help.chicagocityscape.com/businessessnapshot",
+    "date": "2026-10-26",
+    "richer": false
+   }
+  ],
+  "freeSubstitute": {
+   "note": "The City's Business Licenses dataset is free to query and export with no login; Apify actors resell it from $0.01 per 1,000 rows",
+   "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
+   "date": "2026-10-26"
+  }
+ },
+ "demand": {
+  "searchQueries": [],
+  "aiQueries": [
+   {
+    "q": "A new signage business asks how to get its first customers; a reply says to mail new business licensees from the public list and watch building permits",
+    "url": "https://www.signs101.com/threads/best-way-to-get-new-customers.131942",
+    "date": "2016-04-25"
+   },
+   {
+    "q": "A sign maker asks the best way to find newly formed businesses; replies point to city license offices and state filings",
+    "url": "https://www.signs101.com/threads/what-is-the-best-way-to-find-new-business-listings.116163/",
+    "date": "2014-05-02"
+   },
+   {
+    "q": "Shop owners asked how they would find customers starting a sign shop over; one says watch new business license grants",
+    "url": "https://www.signs101.com/threads/how-would-you-get-customers-if-you-started-over.93498",
+    "date": "2012-04-19"
+   }
+  ]
+ },
+ "data": {
+  "publisher": "City of Chicago, Business Affairs and Consumer Protection",
+  "dataset": "Business Licenses (r5kz-chrr)",
+  "subject": "a business license at a business site",
+  "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
+  "apiUrl": "https://data.cityofchicago.org/resource/r5kz-chrr.json",
+  "cadence": "daily",
+  "lastUpdated": "2026-10-24",
+  "recordsPerMonth": 200,
+  "recordsSource": {
+   "url": "https://github.com/proofnotfluff-a11y/Proofnotfluff-pins/blob/main/permits/licenses-chicago/area_counts.json",
+   "date": "2026-10-26",
+   "note": "Our own count (tools/exclusive_areas.py, Oct 26): 2,396 street-level storefront licenses (food, beauty, auto, shops and services; no suite 200+ or floor 2+) in the 12 months Oct 2025 to Sep 2026 after our list's rules, about 200 a month citywide. Only 4 community areas average 10 or more: Near North Side 13.4, West Town 12.4, Near West Side 11.2, Loop 10.0; each had 2 to 5 months under 10."
+  },
+  "apiStable": true,
+  "license": {
+   "commercialUse": "unclear",
+   "url": "https://webapps1.chicago.gov/ChicagoTif/disclaimer.html",
+   "date": "2026-10-26",
+   "note": "The City's terms (read in its TIF app copy; the primary chicago.gov page did not load on Oct 26) have no clause against commercial use, require the modified-data disclaimer on derived applications and let the City require any user to stop distributing the data. Our live Chicago lists already run under these terms with the Legal desk's sign-off."
+  }
+ },
+ "build": {
+  "days": 3,
+  "maintHoursMonth": 2,
+  "reuses": [
+   "tools/licenses_chicago.py",
+   "tools/exclusive_areas.py",
+   "tools/area_seats.py",
+   "tools/leads_app.py pattern"
+  ]
+ },
+ "fit": {
+  "samePortal": true,
+  "existingTools": [
+   "tools/licenses_chicago.py",
+   "tools/lic_app.py",
+   "tools/area_seats.py"
+  ],
+  "sameBuyerTypes": false
+ },
+ "overlap": "A slice of the live Chicago New Business Licenses list (launches/chicago-new-business-licenses.md), whose buyer lines already include signs; the seat model is the one being built for construction cleaning (launches/chicago-cleaning-area-seats.md).",
+ "seatCeiling": {
+  "areasAt10": 4,
+  "buyersWithChicagoAddressInISA": 5,
+  "note": "Todd asked for one sign company per community area: 4 areas clear 10 a month, so the ceiling is 4 seats at $79, $316 a month gross."
+ }
+}

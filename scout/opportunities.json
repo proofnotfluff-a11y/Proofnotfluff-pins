@@ -1,6 +1,6 @@
 {
  "schema": "pnf.opportunities.v1",
- "scoredAt": "2026-10-23",
+ "scoredAt": "2026-10-26",
  "goal": "$1000 month by 2027-01-31",
  "assumptions": {
   "conversion": {
@@ -37,25 +37,25 @@
    ],
    "money": {
     "netPerMember": 41.88,
-    "emailsByJan": 348,
+    "emailsByJan": 331,
     "payers": {
-     "low": 0.9,
-     "likely": 2.6,
-     "high": 7.0
+     "low": 0.8,
+     "likely": 2.5,
+     "high": 6.6
     },
     "janNet": {
-     "low": 36,
-     "likely": 109,
-     "high": 291
+     "low": 35,
+     "likely": 104,
+     "high": 277
     },
     "shareOfGoal": {
      "low": 0.04,
-     "likely": 0.11,
-     "high": 0.29
+     "likely": 0.1,
+     "high": 0.28
     }
    },
    "confidence": "medium",
-   "firstDollar": "2026-11-29",
+   "firstDollar": "2026-12-02",
    "price": 49,
    "buyer": "small structural and rodent pest control businesses in New York City",
    "source": "https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/43nn-pn8j"
@@ -102,7 +102,7 @@
     }
    },
    "confidence": "medium",
-   "firstDollar": "2026-11-29",
+   "firstDollar": "2026-12-02",
    "price": 39,
    "buyer": "FDNY certified commercial kitchen exhaust cleaning companies serving NYC",
    "source": "https://data.ny.gov/Economic-Development/Current-SLA-Pending-Licenses/f8i8-k2gm"
@@ -127,25 +127,25 @@
    "why": [],
    "money": {
     "netPerMember": 41.88,
-    "emailsByJan": 325,
+    "emailsByJan": 308,
     "payers": {
      "low": 0.8,
-     "likely": 2.4,
-     "high": 6.5
+     "likely": 2.3,
+     "high": 6.2
     },
     "janNet": {
-     "low": 34,
-     "likely": 102,
-     "high": 272
+     "low": 32,
+     "likely": 97,
+     "high": 258
     },
     "shareOfGoal": {
      "low": 0.03,
      "likely": 0.1,
-     "high": 0.27
+     "high": 0.26
     }
    },
    "confidence": "medium",
-   "firstDollar": "2026-12-03",
+   "firstDollar": "2026-12-06",
    "price": 49,
    "buyer": "Independent insurance agencies that write commercial truck insurance (a subset of the 37,000 US independent P&C agencies; the trucking share is not counted)",
    "source": "https://data.transportation.gov/d/3uet-3z4i"
@@ -172,28 +172,75 @@
    "why": [],
    "money": {
     "netPerMember": 24.46,
-    "emailsByJan": 314,
+    "emailsByJan": 297,
     "payers": {
-     "low": 0.8,
-     "likely": 2.4,
-     "high": 6.3
+     "low": 0.7,
+     "likely": 2.2,
+     "high": 5.9
     },
     "janNet": {
-     "low": 19,
-     "likely": 58,
-     "high": 154
+     "low": 18,
+     "likely": 54,
+     "high": 145
     },
     "shareOfGoal": {
      "low": 0.02,
-     "likely": 0.06,
-     "high": 0.15
+     "likely": 0.05,
+     "high": 0.14
     }
    },
    "confidence": "medium",
-   "firstDollar": "2026-12-05",
+   "firstDollar": "2026-12-08",
    "price": 29,
    "buyer": "Independent occupational safety consulting firms",
    "source": "https://catalog.data.gov/dataset/dol-enforcement-data-inspection"
+  },
+  {
+   "slug": "chicago-storefront-sign-leads",
+   "name": "Chicago Storefront Sign Leads",
+   "score": 65,
+   "factors": {
+    "buyer": 4,
+    "pay": 2,
+    "demand": 0,
+    "data": 5,
+    "license": 2,
+    "effort": 5,
+    "speed": 5,
+    "fit": 4
+   },
+   "notes": {
+    "pay": "a free equivalent exists: The City's Business Licenses dataset is free to query and export with no login; ",
+    "demand": "no dated search or question evidence",
+    "license": "license unclear: the data and legal reviewer reads the terms"
+   },
+   "kills": [],
+   "status": "review",
+   "why": [],
+   "money": {
+    "netPerMember": 68.01,
+    "emailsByJan": 192,
+    "payers": {
+     "low": 0.5,
+     "likely": 1.4,
+     "high": 3.8
+    },
+    "janNet": {
+     "low": 33,
+     "likely": 98,
+     "high": 261
+    },
+    "shareOfGoal": {
+     "low": 0.03,
+     "likely": 0.1,
+     "high": 0.26
+    }
+   },
+   "confidence": "medium",
+   "firstDollar": "2026-12-01",
+   "price": 79,
+   "buyer": "sign companies that install storefront signs in Chicago",
+   "source": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr"
   },
   {
    "slug": "ttb-new-alcohol-permits",
@@ -220,25 +267,25 @@
    ],
    "money": {
     "netPerMember": 24.46,
-    "emailsByJan": 348,
+    "emailsByJan": 331,
     "payers": {
-     "low": 0.9,
-     "likely": 2.6,
-     "high": 7.0
+     "low": 0.8,
+     "likely": 2.5,
+     "high": 6.6
     },
     "janNet": {
-     "low": 21,
-     "likely": 64,
-     "high": 170
+     "low": 20,
+     "likely": 61,
+     "high": 162
     },
     "shareOfGoal": {
      "low": 0.02,
      "likely": 0.06,
-     "high": 0.17
+     "high": 0.16
     }
    },
    "confidence": "medium",
-   "firstDollar": "2026-11-29",
+   "firstDollar": "2026-12-02",
    "price": 29,
    "buyer": "Label printers and packaging suppliers that serve wineries and distilleries",
    "source": "https://www.ttb.gov/public-information/foia/list-of-permittees"
@@ -265,25 +312,25 @@
    ],
    "money": {
     "netPerMember": 24.46,
-    "emailsByJan": 337,
+    "emailsByJan": 320,
     "payers": {
      "low": 0.8,
-     "likely": 2.5,
-     "high": 6.7
+     "likely": 2.4,
+     "high": 6.4
     },
     "janNet": {
-     "low": 21,
-     "likely": 62,
-     "high": 165
+     "low": 20,
+     "likely": 59,
+     "high": 157
     },
     "shareOfGoal": {
      "low": 0.02,
      "likely": 0.06,
-     "high": 0.17
+     "high": 0.16
     }
    },
    "confidence": "medium",
-   "firstDollar": "2026-12-01",
+   "firstDollar": "2026-12-04",
    "price": 29,
    "buyer": "Independent insurance agencies that write commercial truck insurance (a subset of the 37,000 US independent P&C agencies; the trucking share is not counted), plus freight factoring and dispatch firms",
    "source": "https://data.transportation.gov/Trucking-and-Motorcoaches/Company-Census-File/az4n-8mr2"
@@ -310,25 +357,25 @@
    ],
    "money": {
     "netPerMember": 24.46,
-    "emailsByJan": 348,
+    "emailsByJan": 331,
     "payers": {
-     "low": 0.9,
-     "likely": 2.6,
-     "high": 7.0
+     "low": 0.8,
+     "likely": 2.5,
+     "high": 6.6
     },
     "janNet": {
-     "low": 21,
-     "likely": 64,
-     "high": 170
+     "low": 20,
+     "likely": 61,
+     "high": 162
     },
     "shareOfGoal": {
      "low": 0.02,
      "likely": 0.06,
-     "high": 0.17
+     "high": 0.16
     }
    },
    "confidence": "medium",
-   "firstDollar": "2026-11-29",
+   "firstDollar": "2026-12-02",
    "price": 29,
    "buyer": "licensed public accounting firms in Colorado",
    "source": "https://data.colorado.gov/Business/Business-Entities-in-Colorado/4ykn-tg5h"
@@ -373,7 +420,7 @@
     }
    },
    "confidence": "medium",
-   "firstDollar": "2026-11-30",
+   "firstDollar": "2026-12-03",
    "price": 99,
    "buyer": "facade restoration and masonry contractors working on NYC buildings over six stories",
    "source": "https://data.cityofnewyork.us/Housing-Development/DOB-NOW-Safety-Facades-Compliance-Filings/xubg-57si"

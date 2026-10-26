@@ -3,18 +3,18 @@
   "name": "City of Chicago Data Portal, Business Licenses",
   "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
   "rowsUpdatedAt": "2026-10-24T09:53:08+00:00",
-  "fetchedAt": "2026-10-24T20:01:51-05:00",
+  "fetchedAt": "2026-10-26T09:00:38-05:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: renewals, cancelled or revoked licenses, licenses for one person's own work, for work away from a fixed business site, or for an event or season (peddlers, special events, pop-ups, tow trucks, home-sharing, shared kitchen users, private booting), home and mail-drop addresses, and any business whose name could be a person's full name. Business-level fields only."
  },
  "window": {
-  "from": "2026-10-17",
-  "to": "2026-10-24",
-  "listFrom": "2026-09-24"
+  "from": "2026-10-19",
+  "to": "2026-10-26",
+  "listFrom": "2026-09-26"
  },
  "counts": {
-  "fetched": 761,
-  "kept30": 236,
+  "fetched": 704,
+  "kept30": 216,
   "keptWeek": 63,
   "segmentsWeek": {
    "food": 28,
@@ -25,20 +25,20 @@
    "retail": 22
   },
   "segments30": {
-   "food": 82,
-   "beauty": 37,
-   "auto": 12,
-   "care": 3,
+   "food": 80,
+   "beauty": 35,
+   "auto": 9,
+   "care": 2,
    "venue": 3,
-   "retail": 99
+   "retail": 87
   },
   "excluded": {
-   "issued outside the window": 144,
-   "name could be a person's": 35,
-   "license for one person's own work, work away from a fixed site, or an event or season": 273,
-   "site outside Chicago": 24,
-   "home or apartment address": 22,
-   "second license at the same site (listed once)": 19,
+   "issued outside the window": 135,
+   "license for one person's own work, work away from a fixed site, or an event or season": 256,
+   "home or apartment address": 20,
+   "name could be a person's": 32,
+   "site outside Chicago": 20,
+   "second license at the same site (listed once)": 17,
    "virtual office or mailbox address": 2,
    "not a new license (renewal or change)": 4,
    "license not active (cancelled or revoked)": 1,
@@ -93,11 +93,11 @@
   },
   "history30": {
    "added": 24,
-   "relicensed": 39,
-   "first": 136,
-   "site": 37
+   "relicensed": 36,
+   "first": 122,
+   "site": 34
   },
-  "foodInsp30": 77,
+  "foodInsp30": 75,
   "freeLeftFailedWeek": 13
  },
  "segmentNames": {

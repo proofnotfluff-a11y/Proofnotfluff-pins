@@ -138,6 +138,7 @@ Before you include an idea:
 3. Search for competitors selling it, with prices, and say whether they ship richer fields than we would.
 4. Find the buyer count from a primary source (a state license roster, Census County Business Patterns, a trade association) and how we would reach an owner by email.
 5. Write the "why call now" line a buyer would read.
+6. Say, in kimi.inferred, whether the list could be sold to one company per area of the county, and how many areas the monthly event count would support at 10 or more events per area. Buyers pay for exclusive leads; a list every rival also gets is the weak spot of our current products.
 
 Reply in exactly this shape:
 

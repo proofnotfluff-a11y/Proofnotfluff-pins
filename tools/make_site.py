@@ -1764,7 +1764,7 @@ def lights_page(p):
     results = """<div class="sticky"><div class="card" aria-live="polite">
 <div class="tiles">
 <div class="tile key"><div class="lab">Quote for this house</div><div class="val" data-out="quote" data-fmt="money0">$0</div><div class="sub">Install and takedown, rounded up to the next $5</div></div>
-<div class="tile"><div class="lab">Price per foot of roofline</div><div class="val" data-out="perFt">$0</div><div class="sub">Break-even <span data-out="floorPerFt">$0</span> a foot</div></div>
+<div class="tile" data-show-if="perFtOn > 0"><div class="lab">Price per foot of roofline</div><div class="val" data-out="perFt">$0</div><div class="sub">Break-even <span data-out="floorPerFt">$0</span> a foot</div></div>
 <div class="tile"><div class="lab">Profit in the quote</div><div class="val" data-out="profit">$0</div></div>
 <div class="tile"><div class="lab">Install, crew on site</div><div class="val" data-out="crewHrs" data-fmt="hrs">0</div><div class="sub">Clock hours, crew working together</div></div>
 </div>
@@ -1776,8 +1776,8 @@ def lights_page(p):
 <li class="total"><span>Price floor, zero profit</span><span data-out="floor">$0</span></li>
 </ul>
 <p class="asof">Takedown adds <span data-out="takedownHrs" data-fmt="hrs">0</span> of work (person-hours), counted in labor.</p>
-<div class="callout" data-show-if="bought > 0">Next season the customer already owns the lights: the same house quotes at <b data-out="quote2" data-fmt="money0">$0</b>, with <b data-out="profit2">$0</b> of profit.</div>
-<div class="callout" data-show-if="owned > 0">Your lights cost <b data-out="matAll">$0</b> for this house, spread over the seasons they last. A returning customer quotes the same next season.</div>
+<div class="callout" data-show-if="boughtOn > 0">Next season the customer already owns the lights: the same house quotes at <b data-out="quote2" data-fmt="money0">$0</b>, with <b data-out="profit2">$0</b> of profit.</div>
+<div class="callout" data-show-if="ownedOn > 0">Your lights cost <b data-out="matAll">$0</b> for this house, spread over the seasons they last. A returning customer quotes the same next season.</div>
 <div class="callout warn" data-show-if="noMargin > 0">Use a margin under 100%: the quote is your cost divided by one less the margin.</div>
 <div class="callout warn" data-show-if="noRate > 0">Type how many feet one person hangs an hour to price the roofline.</div>
 <div class="callout warn" data-show-if="noLabor > 0">Add a labor cost per person-hour, even if it is your own time.</div>
@@ -1813,16 +1813,16 @@ def snow_page(p):
 <div class="tile key"><div class="lab">Price per push</div><div class="val" data-out="quote" data-fmt="money0">$0</div><div class="sub">Rounded up to the next $5</div></div>
 <div class="tile"><div class="lab">Seasonal contract</div><div class="val" data-out="season" data-fmt="money0">$0</div><div class="sub"><span data-show-if="monthsOn > 0"><span data-out="monthly" data-fmt="money0">$0</span> a month</span><span data-show-if="monthsOn < 1">Type the months you bill over</span></div></div>
 <div class="tile" data-show-if="deepOn > 0"><div class="lab">Deep storm push</div><div class="val" data-out="deepQuote" data-fmt="money0">$0</div><div class="sub">At your deep storm minutes</div></div>
-<div class="tile" data-show-if="seasonOn > 0"><div class="lab">Contract covers</div><div class="val"><span data-out="covers" data-fmt="int">0</span> pushes</div><div class="sub">Before the season costs more than it pays</div></div>
+<div class="tile" data-show-if="seasonOn > 0"><div class="lab">Pushes the contract covers</div><div class="val" data-out="covers" data-fmt="int">0</div><div class="sub">Before the season costs more than it pays</div></div>
 </div>
 <ul class="lines">
 <li><span>Cost of one push</span><span data-out="cost">$0</span></li>
 <li><span>Profit in one push</span><span data-out="profit">$0</span></li>
 <li data-show-if="deepOn > 0"><span>Cost of a deep storm push</span><span data-out="deepCost">$0</span></li>
 <li data-show-if="seasonOn > 0"><span>Season profit, expected pushes</span><span data-out="seasonProfit">$0</span></li>
-<li><span>Per push, per hour on this stop</span><span data-out="hourly">$0</span></li>
+<li><span>Price per hour on this stop, one push</span><span data-out="hourly">$0</span></li>
 </ul>
-<div class="callout" data-show-if="seasonOn > 0">A seasonal price of <b data-out="season" data-fmt="money0">$0</b> pays you whether it snows or not. It turns into a loss after <b data-out="covers" data-fmt="int">0</b> pushes.</div>
+<div class="callout" data-show-if="seasonOn > 0">A seasonal price of <b data-out="season" data-fmt="money0">$0</b> pays you whether it snows or not. It turns into a loss once your pushes pass <b data-out="covers" data-fmt="int">0</b>.</div>
 <div class="callout warn" data-show-if="noMargin > 0">Use a margin under 100%: the quote is your cost divided by one less the margin.</div>
 <div class="callout warn" data-show-if="deepLow > 0">Your deep storm minutes are under a normal push. Check the two times.</div>
 <div class="callout warn" data-show-if="noEvents > 0">Type how many pushes you expect in a season to price a seasonal contract.</div>
@@ -1860,7 +1860,7 @@ def hood_page(p):
     results = """<div class="sticky"><div class="card" aria-live="polite">
 <div class="tiles">
 <div class="tile key"><div class="lab">Price per visit</div><div class="val" data-out="quote" data-fmt="money0">$0</div><div class="sub">Rounded up to the next $5</div></div>
-<div class="tile"><div class="lab">Visits a year</div><div class="val"><span data-out="visits" data-fmt="int">0</span> visits</div><div class="sub">NFPA 96 inspection frequency</div></div>
+<div class="tile"><div class="lab">Visits a year</div><div class="val" data-out="visits" data-fmt="int">0</div><div class="sub">NFPA 96 inspection frequency</div></div>
 <div class="tile"><div class="lab">Yearly contract</div><div class="val" data-out="year" data-fmt="money0">$0</div><div class="sub"><span data-out="monthly" data-fmt="money0">$0</span> a month</div></div>
 <div class="tile"><div class="lab">Profit a year</div><div class="val" data-out="yearProfit" data-fmt="money0">$0</div></div>
 </div>
@@ -1906,7 +1906,7 @@ def missed_calls_page(p):
 <div class="tiles">
 <div class="tile key"><div class="lab">Profit lost a month</div><div class="val" data-out="lostProfit" data-fmt="money0">$0</div><div class="sub"><span data-out="year" data-fmt="money0">$0</span> a year<span data-show-if="repeat > 0">, counting each lost customer's first year</span></div></div>
 <div class="tile"><div class="lab">Jobs lost a month</div><div class="val" data-out="lostJobs" data-fmt="dec1">0</div><div class="sub">From <span data-out="lostCallers" data-fmt="dec1">0</span> callers who went elsewhere</div></div>
-<div class="tile"><div class="lab">Revenue lost a month</div><div class="val" data-out="lostRev" data-fmt="money0">$0</div></div>
+<div class="tile"><div class="lab">Revenue lost a month</div><div class="val" data-out="lostRev" data-fmt="money0">$0</div><div class="sub" data-show-if="repeat > 0">Each lost customer's first year</div></div>
 <div class="tile" data-show-if="costOn > 0"><div class="lab">Customers to cover the option</div><div class="val" data-out="cover" data-fmt="int">0</div><div class="sub">Saved new customers a month</div></div>
 </div>
 <ul class="lines">
@@ -1918,7 +1918,7 @@ def missed_calls_page(p):
 <li data-show-if="costOn > 0"><span>Monthly cost of the option</span><span data-out="cost" data-fmt="money0">$0</span></li>
 <li data-show-if="costOn > 0" class="total"><span>Left after the option, if it saved every one</span><span data-out="net" data-fmt="money0">$0</span></li>
 </ul>
-<div class="callout" data-show-if="pays > 0">The option costs less than the profit you lose. It pays for itself if it saves <b data-out="cover" data-fmt="int">0</b> new customers a month.</div>
+<div class="callout" data-show-if="pays > 0">The option costs less than the profit you lose. New customers it must save each month to pay for itself: <b data-out="cover" data-fmt="int">0</b>.</div>
 <div class="callout warn" data-show-if="notPays > 0">The option costs as much as or more than the profit these calls lose you. Fix the missed calls another way, or price the option lower.</div>
 <div class="callout warn" data-show-if="noMargin > 0">Add your gross margin on a job to see the profit lost.</div>
 <div class="callout warn" data-show-if="none > 0">Type how many new-customer calls you get a week.</div>
@@ -1944,7 +1944,7 @@ def price_raise_page(p):
 </fieldset></form>"""
     results = """<div class="sticky"><div class="card" aria-live="polite">
 <div class="tiles">
-<div class="tile key"><div class="lab">New price</div><div class="val" data-out="rounded" data-fmt="money0">$0</div><div class="sub">Up <span data-out="raise">$0</span>, <span data-pct="raisePct">0%</span></div></div>
+<div class="tile key"><div class="lab">New price</div><div class="val" data-out="rounded" data-fmt="money0">$0</div><div class="sub">Up <span data-out="raise" data-fmt="money0">$0</span>, <span data-pct="raisePct">0%</span></div></div>
 <div class="tile"><div class="lab">Lost each month without a raise</div><div class="val" data-out="squeeze" data-fmt="money0">$0</div><div class="sub">The cost rise, at today's price</div></div>
 <div class="tile"><div class="lab">Profit a month after the raise</div><div class="val" data-out="after" data-fmt="money0">$0</div><div class="sub">Today: <span data-out="profitNow" data-fmt="money0">$0</span></div></div>
 <div class="tile"><div class="lab">Clients you can lose</div><div class="val" data-pct="maxLose">0%</div><div class="sub">Before profit falls below today's</div></div>
@@ -1956,7 +1956,7 @@ def price_raise_page(p):
 <li><span>Your margin today</span><span data-pct="marginNow">0%</span></li>
 <li class="total"><span>Change in monthly profit after the raise</span><span data-out="change" data-fmt="money0">$0</span></li>
 </ul>
-<div class="callout" data-show-if="better > 0">At <b data-out="rounded" data-fmt="money0">$0</b> you keep today's profit even with the clients you expect to lose.</div>
+<div class="callout" data-show-if="better > 0">At <b data-out="rounded" data-fmt="money0">$0</b> your monthly profit stays at or above today's, after the clients you expect to lose.</div>
 <div class="callout warn" data-show-if="worse > 0">With the clients you expect to lose, profit ends <b data-out="shortBy" data-fmt="money0">$0</b> a month below today's. Raise a little more, or keep more clients.</div>
 <div class="callout warn" data-show-if="under > 0">The job costs as much as you charge now. Price it from your costs first.</div>
 <div class="callout warn" data-show-if="noCost > 0">Type what one job costs you now: labor, supplies and gas.</div>

@@ -27,7 +27,7 @@ FEW = 10   # under 10 complaints a year earlier, a percent change is noise: the 
 
 
 def area_change(a):
-    return "too few" if a["prev30"] < FEW else pct(a["change"])
+    return "too few" if a["prev30"] < FEW else pct((a["d30"] / a["prev30"] - 1) * 100)   # from the counts, rounded once
 
 
 def pct(x):
@@ -52,7 +52,7 @@ CSS = ("<style>.rc-bars{margin:12px 0 8px;padding:16px 18px;background:var(--car
        ".rc-wk{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:6px;align-items:end;height:170px;margin:12px 0 4px;padding:16px 18px 10px;"
        "background:var(--card);border:1px solid var(--line);border-radius:12px}"
        ".rc-wk div{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:4px}"
-       ".rc-wk i{display:block;width:100%;max-width:38px;border-radius:5px 5px 0 0;background:var(--accent);opacity:.55}.rc-wk div:last-child i{opacity:1}"
+       ".rc-wk i{flex:none;display:block;width:100%;max-width:38px;border-radius:5px 5px 0 0;background:var(--accent);opacity:.55}.rc-wk div:last-child i{opacity:1}"
        ".rc-wk b{font:600 12.5px system-ui,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}"
        ".rc-wk span{font-size:11.5px;color:var(--muted);white-space:nowrap}"
        ".rc-tw{overflow-x:auto;margin:12px 0 0;border:1px solid var(--line);border-radius:12px;background:var(--card)}"
@@ -101,17 +101,17 @@ def page_html(p):
     bars = ('<figure class="rc-bars" aria-label="Community areas with the most rat complaints in the last 30 days">'
             '<figcaption>Most rat complaints, last 30 days</figcaption>'
             + "".join(f'<div class="rc-bar"><span>{E(a["name"])}</span><i style="width:{max(6, round(a["d30"] / peak * 100))}%"></i><b>{a["d30"]:,}</b>'
-                      f'<small>{a["d7"]:,} in the last 7 days · {"too few a year ago to compare" if a["prev30"] < FEW else ("same as a year ago" if pct(a["change"]) == "same" else E(pct(a["change"])) + " on a year ago")}</small></div>' for a in top[:10])
+                      f'<small>{a["d7"]:,} in the last 7 days · {"too few a year ago to compare" if a["prev30"] < FEW else ("same as a year ago" if area_change(a) == "same" else E(area_change(a)) + " on a year ago")}</small></div>' for a in top[:10])
             + '</figure>')
     wpeak = max((x["count"] for x in d["weeks"]), default=1) or 1
     weeks = ('<div class="rc-wk" role="img" aria-label="Rat complaints each week for the last 12 weeks, '
              + E(", ".join(f'{x["count"]:,}' for x in d["weeks"])) + '">'
-             + "".join(f'<div><b>{x["count"]:,}</b><i style="height:{max(3, round(x["count"] / wpeak * 100))}%"></i>'
+             + "".join(f'<div><b>{x["count"]:,}</b><i style="height:{max(3, round(x["count"] / wpeak * 78))}%"></i>'
                        f'<span>{E(M.nice_date(x["from"]).rsplit(",", 1)[0])}</span></div>' for x in d["weeks"])
              + '</div><p class="asof">Each bar is 7 days, oldest on the left; the last bar is the week to '
              + E(M.nice_date(w["to"])) + '.</p>')
     row = lambda a: (f'<tr><th scope="row">{E(a["name"])}</th><td>{a["d7"]:,}</td><td>{a["d30"]:,}</td><td>{a["prev30"]:,}</td>'
-                     f'<td{" class=rc-up" if a["prev30"] >= FEW and (a["change"] or 0) >= 25 else ""}>{E(area_change(a))}</td></tr>')
+                     f'<td{" class=rc-up" if a["prev30"] >= FEW and a["d30"] >= a["prev30"] * 1.25 else ""}>{E(area_change(a))}</td></tr>')
     thead = ('<thead><tr><th scope="col">Community area</th><th scope="col">7 days</th><th scope="col">30 days</th>'
              f'<th scope="col">Same 30 days, {E(w["prevTo"][:4])}</th><th scope="col">Change</th></tr></thead>')
     tbl = lambda rs, label: (f'<div class="rc-tw" role="region" aria-label="{E(label)}" tabindex="0"><table class="rc-t">{thead}'
@@ -120,7 +120,7 @@ def page_html(p):
     table = (tbl(top[:SHOW], f"Rat complaints, the {min(SHOW, len(top))} community areas with the most")
              + (f'<details class="rc-more-t"><summary>Show the other {len(top) - SHOW} community areas</summary>'
                 + tbl(top[SHOW:], "Rat complaints, the other community areas") + '</details>' if len(top) > SHOW else "")
-             + f'<p class="asof">Change compares the last 30 days with the same 30 days a year earlier; under {FEW} complaints a year earlier it shows as too few to compare.'
+             + f'<p class="asof">Change compares the last 30 days with the same 30 days a year earlier, rounded to a whole percent; within 1% shows as same, and under {FEW} complaints a year earlier as too few to compare.'
              + (f' {c["noArea30"]:,} of the last 30 days\' complaints had no community area on the record and count only in the city total.' if c.get("noArea30") else "")
              + '</p>')
     resident = p["resident"]

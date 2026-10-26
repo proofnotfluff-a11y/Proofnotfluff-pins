@@ -905,13 +905,14 @@
     var labor = (installHrs + takedownHrs) * rate, driveHrs = trips * people * tripMin / 60;
     var drive = driveHrs * rate + trips * miles * perMile;
     var matAll = feet * matFt + shrubs * matShrub, materials = owned ? matAll / seasons : matAll;
-    var floor = labor + drive + materials + storage, quote = quoteFrom(floor, margin, 5);
-    var floor2 = labor + drive + storage, quote2 = owned ? quote : quoteFrom(floor2, margin, 5);
+    var cents = function (x) { return Math.round(x * 100) / 100; };
+    var floor = cents(labor + drive + materials + storage), quote = quoteFrom(floor, margin, 5);
+    var floor2 = cents(labor + drive + storage), quote2 = owned ? quote : quoteFrom(floor2, margin, 5);
     var has = any && !noPace ? 1 : 0;
     if (!has) { labor = 0; drive = 0; materials = 0; matAll = 0; floor = 0; }
     return { feet: feet, installHrs: installHrs, takedownHrs: takedownHrs, workHrs: installHrs + takedownHrs, crewHrs: installHrs / people, labor: labor, drive: drive,
       materials: materials, matAll: matAll, storage: storage, floor: has ? floor : 0, quote: has ? quote : 0, profit: has ? quote - floor : 0,
-      perFt: has && feet > 0 ? quote / feet : 0, floorPerFt: has && feet > 0 ? floor / feet : 0, trips: has ? trips : 0, owned: owned, bought: owned ? 0 : 1,
+      perFt: has && feet > 0 ? quote / feet : 0, floorPerFt: has && feet > 0 ? floor / feet : 0, trips: has ? trips : 0, owned: owned, bought: owned ? 0 : 1, ownedOn: has && owned ? 1 : 0, boughtOn: has && !owned && margin < 1 ? 1 : 0, perFtOn: has && feet > 0 ? 1 : 0,
       quote2: has ? quote2 : 0, profit2: has ? (owned ? quote - floor : quote2 - floor2) : 0, noRate: noPace ? 1 : 0,
       none: any ? 0 : 1, ok: has && rate > 0 ? 1 : 0, noLabor: has && rate === 0 ? 1 : 0, noMargin: has && margin >= 1 ? 1 : 0 };
   }
@@ -948,7 +949,9 @@
     var supplies = Math.max(0, num(i.supplies)), tripMin = Math.max(0, num(i.tripMin)), miles = Math.max(0, num(i.tripMiles));
     var perMile = Math.max(0, num(i.perMile)), margin = Math.max(0, num(i.margin)) / 100;
     var crewHrs = hoods * perHood + duct, labor = crewHrs * rate * (1 + night), drive = people * tripMin / 60 * rate + miles * perMile;
-    var has = crewHrs > 0 ? 1 : 0, cost = has ? labor + drive + supplies : 0, quote = quoteFrom(cost, margin, 5);
+    var has = crewHrs > 0 ? 1 : 0;
+    if (!has) { drive = 0; supplies = 0; }
+    var cost = has ? labor + drive + supplies : 0, quote = quoteFrom(cost, margin, 5);
     return { visits: visits, crewHrs: crewHrs, siteHrs: crewHrs / people, labor: labor, drive: drive, supplies: supplies, cost: cost,
       quote: quote, profit: quote - cost, year: quote * visits, yearProfit: (quote - cost) * visits, perHood: hoods > 0 ? quote / hoods : 0,
       monthly: quote * visits / 12, perCrewHr: crewHrs > 0 ? quote / crewHrs : 0, hoodsOn: hoods > 0 ? 1 : 0,
@@ -966,10 +969,10 @@
     var cost = Math.max(0, num(i.answerCost)), wk = 52 / 12;
     var missedMo = calls * missed * wk, lostCallers = missedMo * gone, lostJobs = lostCallers * book;
     // money lost = the first-year value of the customers lost this month (jobs a new customer books in a year)
-    var lostRev = lostJobs * job * jobsPer, lostProfit = lostRev * gm, perJobProfit = job * gm * jobsPer;
+    var lostRev = lostJobs * job * jobsPer, lostProfit = Math.round(lostRev * gm), perJobProfit = job * gm * jobsPer;  // whole dollars once, so year and net tie to the tile
     var cover = cost > 0 && perJobProfit > 0 ? Math.ceil(cost / perJobProfit - 1e-9) : 0;
     return { missedMo: missedMo, lostCallers: lostCallers, lostJobs: lostJobs, lostRev: lostRev, lostProfit: lostProfit, year: lostProfit * 12,
-      perJobProfit: perJobProfit, cost: cost, net: lostProfit - cost, cover: cover, costOn: cost > 0 ? 1 : 0,
+      perJobProfit: perJobProfit, cost: cost, net: lostProfit - cost, cover: cover, costOn: cost > 0 && perJobProfit > 0 ? 1 : 0,
       pays: cost > 0 && lostProfit > cost ? 1 : 0, notPays: cost > 0 && lostProfit <= cost && lostProfit > 0 ? 1 : 0, repeat: jobsPer > 1 ? 1 : 0,
       noMargin: job > 0 && gm === 0 ? 1 : 0, none: calls > 0 ? 0 : 1 };
   }
@@ -984,7 +987,8 @@
     var newCost = cost * (1 + up), m = price > 0 ? (price - cost) / price : 0, ok = price > 0 && cost > 0 && price > cost ? 1 : 0;
     var keepDollars = price + (newCost - cost), keepMargin = ok && m < 1 ? newCost / (1 - m) : 0;
     var newPrice = ok ? (keep ? keepMargin : keepDollars) : 0, rounded = ok ? ceilTo(newPrice, 1) : 0;
-    var profitNow = ok ? jobs * (price - cost) : 0, squeezed = ok ? jobs * (price - newCost) : 0, after = ok ? jobs * (1 - lose) * (rounded - newCost) : 0;
+    var profitNow = ok ? jobs * (price - cost) : 0, squeezed = ok ? jobs * (price - newCost) : 0;
+    var after = !ok ? 0 : up === 0 ? profitNow : jobs * (1 - lose) * (rounded - newCost);   // no cost rise: no raise, no client loss from it
     var raisedAll = jobs * (rounded - newCost), maxLose = ok && raisedAll > 0 && profitNow > 0 ? Math.max(0, 1 - profitNow / raisedAll) : 0;
     return { newCost: ok ? newCost : 0, keepDollars: ok ? keepDollars : 0, keepMargin: keepMargin, newPrice: newPrice, rounded: rounded,
       raise: ok ? rounded - price : 0, raisePct: ok && price > 0 ? (rounded - price) / price : 0, profitNow: profitNow, squeezed: squeezed,

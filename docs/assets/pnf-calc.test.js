@@ -653,8 +653,8 @@ check("DD+7 spend equal to sales: settles, low found", P.payoutGap({ sales: 700,
 // Trade season calculators (Oct 26, 2026): hand-worked examples from each page's own worked example
 const MC = P.missedCalls({ calls: 20, missedPct: 25, gonePct: 50, bookPct: 40, avgJob: 250, marginPct: 45, jobsPerCustomer: 1, answerCost: 300 });
 check("missed calls a month", MC.missedMo, 21.67); check("missed: jobs lost", MC.lostJobs, 4.33); check("missed: revenue lost", MC.lostRev, 1083.33);
-check("missed: profit lost", MC.lostProfit, 487.5); check("missed: a year", MC.year, 5850); check("missed: jobs to cover $300", MC.cover, 3);
-check("missed: left after the option", MC.net, 187.5); check("missed: pays flag", MC.pays, 1);
+check("missed: profit lost, whole dollars", MC.lostProfit, 488); check("missed: a year, 12 x the tile", MC.year, 5856); check("missed: jobs to cover $300", MC.cover, 3);
+check("missed: left after the option", MC.net, 188); check("missed: pays flag", MC.pays, 1);
 check("missed: repeat customers multiply revenue", P.missedCalls({ calls: 20, missedPct: 25, gonePct: 50, bookPct: 40, avgJob: 250, marginPct: 45, jobsPerCustomer: 3 }).lostRev, 3250);
 check("missed: option above the loss", P.missedCalls({ calls: 4, missedPct: 25, gonePct: 50, bookPct: 40, avgJob: 250, marginPct: 45, answerCost: 300 }).notPays, 1);
 check("missed: blank is none", P.missedCalls({}).none, 1);
@@ -673,10 +673,10 @@ const LQ = { feet: 150, ftPerHour: 40, shrubs: 4, shrubMin: 20, people: 2, rate:
 const LT = P.lightsQuote(LQ);
 check("lights: install hours", LT.installHrs, 5.08); check("lights: install and takedown hours", LT.workHrs, 7.63); check("lights: crew hours on site", LT.crewHrs, 2.54); check("lights: labor", LT.labor, 343.13);
 check("lights: drive", LT.drive, 150.4); check("lights: owned lights this season", LT.materials, 120); check("lights: floor", LT.floor, 638.53);
-check("lights: quote", LT.quote, 915); check("lights: per foot", LT.perFt, 6.1); check("lights: profit", LT.profit, 276.48);
+check("lights: quote", LT.quote, 915); check("lights: per foot", LT.perFt, 6.1); check("lights: profit, quote less the floor in cents", LT.profit, 276.47);
 const LB = P.lightsQuote(Object.assign({}, LQ, { owner: 1 }));
 check("lights: customer buys, quote", LB.quote, 1220); check("lights: customer buys, next season", LB.quote2, 710); check("lights: no storage when sold", LB.storage, 0);
-check("lights: owned, next season equals this one", LT.quote2, 915); check("lights: owned, next season profit", LT.profit2, 276.48);
+check("lights: owned, next season equals this one", LT.quote2, 915); check("lights: owned, next season profit", LT.profit2, 276.47);
 check("lights: a service call adds a trip", P.lightsQuote(Object.assign({}, LQ, { serviceCalls: 1 })).drive, 225.6);
 check("lights: zero pace flag", P.lightsQuote(Object.assign({}, LQ, { ftPerHour: 0 })).noRate, 1);
 check("lights: blank is none", P.lightsQuote({}).none, 1);
@@ -699,6 +699,7 @@ check("hood: blank is none", P.hoodQuote({}).none, 1);
 check("hood: price per crew hour", HQ.perCrewHr, 94.17);
 check("margin at 100% flags, lights snow hood", P.lightsQuote(Object.assign({}, LQ, { margin: 100 })).noMargin + P.snowQuote({ pushMin: 20, rate: 40, margin: 150 }).noMargin + P.hoodQuote({ hoods: 1, hoodHrs: 1, rate: 40, margin: 100 }).noMargin, 3);
 
+check("missed: equal option and loss, net 0", P.missedCalls({ calls: 20, missedPct: 25, gonePct: 50, bookPct: 40, avgJob: 250, marginPct: 45, answerCost: 488 }).net, 0);
 // checker round 1 fixes (Oct 26): guards that keep the cards consistent
 const MR = P.missedCalls({ calls: 20, missedPct: 25, gonePct: 50, bookPct: 40, avgJob: 250, marginPct: 45, jobsPerCustomer: 12, answerCost: 300 });
 check("missed: repeat customer, first-year profit each", MR.perJobProfit, 1350); check("missed: repeat, profit lost ties to jobs x customer", MR.lostProfit, 5850); check("missed: repeat, customers to cover", MR.cover, 1);

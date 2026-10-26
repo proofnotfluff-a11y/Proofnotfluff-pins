@@ -5555,6 +5555,208 @@
    ],
    "footnote": "Numbers from the City of Chicago Data Portal, Building Permits, pulled {asOf}, filtered by ProofNotFluff as the free sample page describes. Portal details from each agency's own pages, read Oct 25, 2026.",
    "published": "2026-10-25"
+  },
+  {
+   "slug": "amazon-dd7-cash-flow-hit",
+   "kind": "question",
+   "product": "ecommerce-13-week-cash-flow",
+   "data": "site/pages.json",
+   "stats": "kit_dd7",
+   "title": "Amazon DD+7 Cash Flow Hit: How to Handle It | ProofNotFluff",
+   "desc": "Size the Amazon DD+7 cash flow hit in dollars, then shrink it: a daily payout request, valid tracking and a cash reserve, with a worked example.",
+   "card": "How much cash Amazon's DD+7 hold ties up, and which levers shrink it, with a worked example.",
+   "eyebrow": "E-commerce cash flow",
+   "updated": "Worked example from the free Amazon DD+7 payout calculator. Checked Oct 26, 2026.",
+   "h1": "How do you handle the cash flow hit from Amazon DD+7?",
+   "answer": [
+    "Size it in dollars first, then shrink it. Under DD+7, Amazon holds each order's money until 7 days after the delivery date it uses, then pays it on your payout schedule. The cash tied up is about your daily payout times the days from order to bank. Have that much ready before it bites, request your payout every day, and keep valid tracking on orders you ship yourself.",
+    "In the worked example below, a store paid **{sales}** a day after fees has up to **{baseHeld}** held on the 14-day payout and runs **{baseNeed}** short on day {baseLowDay}. Requesting the payout daily cuts the most held to {dailyHeld}, and cash never drops below {dailyLow}."
+   ],
+   "numbersTitle": "The worked example, in four numbers",
+   "tiles": [
+    [
+     "Held at most",
+     "{baseHeld}",
+     "{baseHeldDays} days from order to bank, on the 14-day payout"
+    ],
+    [
+     "Cash needed",
+     "{baseNeed}",
+     "to stay above $0 on day {baseLowDay}"
+    ],
+    [
+     "Payout requested daily",
+     "{dailyHeld}",
+     "held at most; low point {dailyLow}"
+    ],
+    [
+     "Shipped yourself, no tracking",
+     "{mfnNeed}",
+     "cash needed on the 14-day payout"
+    ]
+   ],
+   "numbers": [
+    "Every figure comes from the free DD+7 calculator's example: {sales} a day after Amazon fees, fulfilled by Amazon, delivered {deliver} days after the order, the 14-day payout with the next one 14 days out, Express Payout landing the next day, {cash} in the bank and {costs} a day going out. On the 14-day payout each order becomes available {baseAvail} days after it was placed and reaches the bank {baseFast} to {baseSlow} days after.",
+    "The low point assumes sales at this rate start on day 1 with nothing held yet, as the calculator does. That is the squeeze of a new store or a jump in sales. The drop in deposits comes once, but the money held stays tied up for as long as you sell at that rate."
+   ],
+   "tables": [
+    {
+     "title": "What each lever does to the same store",
+     "intro": [
+      "The same example with one setting changed at a time. The daily payout request shrinks the hit far more than the other two. Tracking and bank time each move the money by 4 days here, and each adds $4,000 to the most held."
+     ],
+     "head": [
+      "Setup",
+      "Held at most",
+      "Order to bank",
+      "Low point",
+      "Cash needed"
+     ],
+     "rows": "leverRows",
+     "notes": [
+      "Run through the free DD+7 calculator's model. Without valid tracking, Amazon counts from the latest estimated delivery date, set here at {edd} days after the order instead of {deliver}. 5 days to the bank stands in for a standard payout, which Amazon says takes 3 to 5 business days when Express Payout is off."
+     ]
+    }
+   ],
+   "stepsTitle": "How to handle it",
+   "steps": [
+    [
+     "See what Amazon is holding now",
+     "In New Seller Central, Manage Transactions filtered to Deferred lists each order still held and the day Amazon expects to release it. In Legacy Seller Central it is Payments, Transaction View, filtered to Deferred transactions."
+    ],
+    [
+     "Put a dollar figure on the hit",
+     "Multiply what Amazon pays you per day, after referral and FBA fees, by the days from order to bank. In the example that is {sales} a day for up to {baseHeldDays} days, or {baseHeld}. Fees in an order are held with it, but ad costs are charged when billed, so ads keep going out while sales wait."
+    ],
+    [
+     "Have the cash ready before the low point",
+     "The low point is the most you need on hand at once. In the example it is {baseNeed}, on day {baseLowDay}. In the Seller Forums DD+7 thread, one seller says they started building a reserve the day the first notice arrived."
+    ],
+    [
+     "Request your payout every day",
+     "Disburse on Demand lets you request your available balance once every 24 hours. It skips the wait for the next 14-day payout day, not the 7-day reserve. In the example it cuts the most held from {baseHeld} to {dailyHeld} and the cash needed from {baseNeed} to {dailyNeed}."
+    ],
+    [
+     "Keep valid tracking on orders you ship",
+     "With valid tracking from an integrated carrier, Amazon uses the actual delivery date. Without it, Amazon waits for the latest estimated delivery date, which can be later. In the example, merchant orders with no valid tracking need {mfnNeed} on the 14-day payout, against {baseNeed} for FBA."
+    ],
+    [
+     "Keep Express Payout on",
+     "Express Payout sends payouts to an eligible US bank account within 24 hours and is on by default for eligible sellers; otherwise a payout takes 3 to 5 business days. With a daily request and 5 days to the bank, the example needs {slowBankNeed} instead of {dailyNeed}."
+    ],
+    [
+     "Plan stock and ads around the weeks money lands",
+     "Put each payout in the week it reaches your bank and each supplier payment and ad bill in the week it leaves, then check the lowest week before you place a bigger order. Asking a supplier to take the balance a week later costs nothing if they agree; [the Shopify cash gap page](../shopify-payouts-supplier-deposits-cash-gap/) shows how much one week can move the low point."
+    ]
+   ],
+   "sections": [
+    [
+     "When Amazon holds more than DD+7",
+     [
+      "The 7-day reserve is not the only hold. Amazon can extend the reserve period after a review of risk and past performance, and an account level reserve for open A-to-z claims, chargebacks or an account review can hold more on top. In a Seller Central thread read Oct 26, 2026, a seller reports three orders held until delivery plus 22 days, with Amazon pointing to an extended reserve period.",
+      "Neither shows up in the example above, so if your Deferred list shows release dates well past delivery plus 7, plan with your own dates, not the rule."
+     ]
+    ],
+    [
+     "If the cash needed is more than you have",
+     [
+      "You need that much cash, credit or a slower spend by the day of the low point. A daily payout request and valid tracking cost nothing, so test those first. Any loan or credit line has a cost, so compare its terms against your own numbers before you use it. This page is not financial advice."
+     ]
+    ]
+   ],
+   "calculator": [
+    "amazon-dd7-payout-calculator",
+    "Amazon DD+7 payout calculator",
+    "Run your own sales, delivery days and payout schedule in"
+   ],
+   "cta": {
+    "title": "Plan the hold into all 13 weeks",
+    "text": "The 13-Week E-commerce Cash Flow workbook puts Amazon's payout lag next to your other channels (TikTok Shop, your own store, retail), with up to six purchase orders as deposit plus balance and freight, a credit line, side-by-side scenarios and a PO planner. Excel and Google Sheets, {price} one time."
+   },
+   "faq": [
+    [
+     "How much cash does Amazon DD+7 tie up?",
+     "About what Amazon pays you per day after fees, times the days from order to bank. In the example, {sales} a day on the 14-day payout ties up {baseHeldMin} to {baseHeld} at any time."
+    ],
+    [
+     "Is the DD+7 cash flow hit a one-time hit?",
+     "The drop in deposits comes once, when orders first wait the longer hold, and again whenever sales jump. The money held stays tied up for as long as you sell at that rate."
+    ],
+    [
+     "How much cash reserve do I need for DD+7?",
+     "Enough to cover your low point, the most you are short at once before payouts catch up. In the example that is {baseNeed} on the 14-day payout and {dailyNeed} with a payout requested every day."
+    ],
+    [
+     "Does DD+7 hit merchant fulfilled orders harder than FBA?",
+     "The 7-day rule is the same. The date it counts from is not: orders you ship without valid tracking from an integrated carrier wait for the latest estimated delivery date. In the example that lifts the most held from {baseHeld} to {mfnHeld}."
+    ],
+    [
+     "Is this financial advice?",
+     "No. It is a planning estimate from the numbers you enter and Amazon's published rules."
+    ]
+   ],
+   "related": [
+    [
+     "amazon-dd7-payout-calculator",
+     "Free Amazon DD+7 payout calculator"
+    ],
+    [
+     "ecommerce-13-week-cash-flow-calculator",
+     "Free 13 week cash flow calculator"
+    ],
+    [
+     "shopify-payouts-supplier-deposits-cash-gap",
+     "How do you plan the cash gap between Shopify payouts and supplier deposits?"
+    ],
+    [
+     "inventory-reorder-point-calculator",
+     "Free inventory reorder point calculator"
+    ]
+   ],
+   "sources": [
+    [
+     "Amazon Seller Central help, Payments based on delivery date",
+     "https://sellercentral.amazon.com/help/hub/reference/external/G202124090",
+     "read Oct 24, 2026"
+    ],
+    [
+     "Amazon Seller Central help, Disburse on Demand",
+     "https://sellercentral.amazon.com/help/hub/reference/external/GSCWUZNYQRY4LEZH",
+     "read Oct 24, 2026"
+    ],
+    [
+     "Amazon Seller Central help, Express Payout frequently asked questions",
+     "https://sellercentral.amazon.com/help/hub/reference/external/GA24UN79VBPKXZXX",
+     "read Oct 24, 2026"
+    ],
+    [
+     "Amazon Seller Central help, Deferred transactions for accounting and payment reconciliation",
+     "https://sellercentral.amazon.com/help/hub/reference/external/GLRNLZDAKHDBBVBY",
+     "read Oct 24, 2026"
+    ],
+    [
+     "Amazon Seller Central help, What is account level reserve?",
+     "https://sellercentral.amazon.com/help/hub/reference/external/G200136810",
+     "read Oct 24, 2026"
+    ],
+    [
+     "Amazon Seller Forums, the question as asked (The DD+7 Update)",
+     "https://sellercentral.amazon.com/seller-forums/discussions/t/bfe5525c-8c86-4876-85bd-f41b80df6912",
+     "posted about 9 months before Oct 26, 2026, read Oct 26, 2026"
+    ],
+    [
+     "Amazon Seller Forums, DD+7 sure, but DD+22?",
+     "https://sellercentral.amazon.com/seller-forums/discussions/t/150b55e0-5a1c-4180-b0e0-f157e27508a6",
+     "posted about 7 months before Oct 26, 2026, read Oct 26, 2026"
+    ],
+    [
+     "ProofNotFluff, Amazon DD+7 payout calculator (example inputs)",
+     "../amazon-dd7-payout-calculator/",
+     "checked Oct 26, 2026"
+    ]
+   ],
+   "footnote": "The worked example uses the free Amazon DD+7 payout calculator's example inputs and Amazon's US help pages as read Oct 24, 2026.",
+   "published": "2026-10-26"
   }
  ]
 }

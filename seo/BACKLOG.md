@@ -40,8 +40,9 @@ Oct 24, 2026 (Todd's go on the free calculators): B4, B1 and B3, the Amazon payo
 | B9 | How do FBA sellers balance long lead times, reorder size and cash limits? | Amazon Seller Central forums | https://sellercentral.amazon.com/seller-forums/discussions/t/e0f89cc9-58b3-4a97-a43c-582e1a17ce60 | approx Apr 2026 |
 | B10 | New seller with about $2K in sales but a negative balance; will cash flow turn positive? | Amazon Seller Central forums | https://sellercentral.amazon.com/seller-forums/discussions/t/2d4b3592-0984-4355-8934-7a92a17739f2 | approx Oct 2024 |
 | B11 | A Shopify payout has been missing for weeks and half my orders sit on hold for lack of funds; how do I keep fulfilling? | Shopify Community | https://community.shopify.com/t/urgent-payout-missing-since-april-24-business-impacted/418440 | Jun 9, 2025 (added Oct 25, 2026, fetched and read that day) |
+| B12 | Amazon says DD+7, but three of our orders were held until delivery plus 22 days under an "extended reserve period"; why, and has anyone else seen it? | Amazon Seller Central forums | https://sellercentral.amazon.com/seller-forums/discussions/t/150b55e0-5a1c-4180-b0e0-f157e27508a6 | approx Mar 2026 (added Oct 26, 2026, fetched and read that day; 251 replies, 5.1K views) |
 
-Oct 23, 2026: B1, B3, B4, B9 and B10 (Seller Central) cannot be fetched by the unattended run (the fetch asks for a permission no one answers); B1 skipped that day, still unused. C9 added Oct 23.
+Oct 26, 2026: Seller Central threads can be fetched once a WebSearch returns their URL (B4 read that way). Oct 23, 2026: B1, B3, B4, B9 and B10 (Seller Central) cannot be fetched by the unattended run (the fetch asks for a permission no one answers); B1 skipped that day, still unused. C9 added Oct 23.
 
 Note: B2, B8 and B9 may be posted by people building tools or researching, not brand owners; they prove the topic, not a buyer, so B8 and B9 sit below the owner questions.
 

@@ -101,6 +101,31 @@ def stats(kind, d):
                 "preWeek": str(wk - 1), "pre": m(end(wk - 1)), "low": m(low), "need": m(-low) if low < 0 else "$0",
                 "lagLow": m(end(wk, lag=1)), "lagNeed": m(-end(wk, lag=1)), "moved": m(moved), "movedWeek": str(wk + 1),
                 "w13": m(end(13)), "weekRows": rows, "half": m(half), "splitWeek": str(wk + 2), "splitLow": m(split)}
+    if kind == "kit_dd7":   # Amazon DD+7 question pages: the free DD+7 calculator's own model (PNF.payoutGap) and defaults
+        import subprocess
+        c = next(x for x in d["pages"] if x["slug"] == "amazon-dd7-payout-calculator")["defaults"]
+        base = {k: float(str(v).replace(",", "")) for k, v in c.items()}
+        cases = {"base": {}, "daily": {"schedule": 1}, "mfn": {"fulfil": 1, "tracked": 0},
+                 "mfnDaily": {"fulfil": 1, "tracked": 0, "schedule": 1}, "slowBank": {"schedule": 1, "bankDays": 5}}
+        js = ('const P=require(process.argv[1]);const b=JSON.parse(process.argv[2]),c=JSON.parse(process.argv[3]);const o={};'
+              'for(const k in c)o[k]=P.payoutGap(Object.assign({},b,c[k]));console.log(JSON.stringify(o));')
+        out = json.loads(subprocess.run(["node", "-e", js, os.path.join(ROOT, "docs", "assets", "pnf-calc.js"), json.dumps(base),
+                                         json.dumps(cases)], capture_output=True, text=True, check=True).stdout)
+        m = lambda v: ("-$" if v < 0 else "$") + _n(abs(round(v)))
+        s = {"sales": m(base["sales"]), "deliver": str(int(base["deliverDays"])), "edd": str(int(base["eddDays"])),
+             "cash": m(base["cash"]), "costs": m(base["costs"]), "bank": str(int(base["bankDays"]))}
+        for k, r in out.items():
+            s |= {k + "Held": m(r["heldMax"]), k + "HeldMin": m(r["heldMin"]), k + "HeldDays": str(r["heldDays"]),
+                  k + "Fast": str(r["fastest"]), k + "Slow": str(r["slowest"]), k + "Low": m(r["low"]),
+                  k + "LowDay": str(r["lowDay"]), k + "Need": m(r["need"]), k + "First": str(r["first"]), k + "Avail": str(r["avail"])}
+        s["heldDiff"] = m(out["base"]["heldMax"] - out["daily"]["heldMax"])
+        row = lambda label, k: [label, s[k + "Held"], s[k + "Fast"] + (" to " + s[k + "Slow"] if s[k + "Fast"] != s[k + "Slow"] else "") + " days",
+                                s[k + "Low"] + " (day " + s[k + "LowDay"] + ")", s[k + "Need"]]
+        s["leverRows"] = [row("FBA, 14-day scheduled payout", "base"), row("FBA, payout requested every day", "daily"),
+                          row("FBA, daily request, 5 days to the bank", "slowBank"),
+                          row("Merchant fulfilled, no valid tracking, 14-day payout", "mfn"),
+                          row("Merchant fulfilled, no valid tracking, daily request", "mfnDaily")]
+        return s
     raise KeyError(f"no stats for {kind}")
 
 

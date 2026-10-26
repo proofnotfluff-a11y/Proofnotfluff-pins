@@ -16,11 +16,12 @@ Attach this file to every Kimi research task. It is the context the prompts assu
 | Chicago restaurant inspection leads | $39 a month | pest control, hood cleaning and other restaurant vendors | Oct 18 |
 | Chicago new business licenses | $29 a month, 7-day trial | vendors that sell to new businesses | Oct 22 |
 | Chicago pest daily list, founding seat | $149 a month, 3 seats | pest control companies | Oct 24 |
+| Chicago construction cleaning area seats (going live) | $149 a month, one company per area, 6 areas | post-construction cleaning companies | Oct 26 |
 | Free pages: weekly samples, a "New in Chicago" page, question pages, two calculators | free | traffic | Oct 17 to 24 |
 
 How a buyer starts today (Oct 22 funnel): a cold email asks permission; a yes gets a free Monday email with 2 or 3 real leads; after the third free Monday comes a 1-week free trial on Gumroad, then the monthly price. The pest seat has no free trial; a free sample goes out on request.
 
-Results to date: 0 paying customers, 0 replies to about 57 cold emails. Email authentication (DKIM signing) on our two sender domains is not yet confirmed on a real send. Older experiments: an Etsy shop of $2.99 downloads (32 listings, 0 orders, paused) and a $79 cash flow workbook on Gumroad (0 sales).
+Results to date: 0 paying customers, 0 replies to about 57 cold emails. Email delivery checked Oct 26: SPF, DKIM and DMARC pass on both sender domains, so delivery is not the cause. Older experiments: an Etsy shop of $2.99 downloads (32 listings, 0 orders, paused) and a $79 cash flow workbook on Gumroad (0 sales).
 
 Channels we can use: cold email from our own domain under approved templates (about 25 a day per sender, plain text, no links, to a business inbox or a named decision-maker at a business), free sample pages and search, daily organic posts on Instagram and Facebook. Not allowed: paid ads without the owner's approval, posting on Reddit or forums, buying lists, any spam.
 
@@ -63,6 +64,25 @@ Every source you cite is opened again by a second AI before anything is built. I
 9. Plain words, no em or en dashes, valid JSON (double quotes, no trailing commas, no comments). Counts and prices are bare JSON numbers (412, 49), never strings like "412", "$49" or "1,240".
 
 ## 9. Output schemas (copy the keys exactly)
+
+Schema F, channels (round R6):
+```json
+{"round": "R6", "channels": [
+ {"id": "c1", "buyer": "pest control|post-construction cleaning|commercial cleaning|restaurant vendors|vendors to new businesses",
+  "type": "software marketplace|association|event|partner program|trade media|directory|other",
+  "name": "", "url": "the page that says how a vendor gets in",
+  "reach": null, "reachSource": {"url": "the page that states the member, user or attendee count", "date": ""},
+  "illinois": null, "illinoisSource": {"url": "", "date": ""},
+  "howToGetIn": "the steps as the page states them: apply, join, sponsor, list, exhibit",
+  "cost": null, "costSource": {"url": "", "date": ""},
+  "nextDate": null, "leadTime": "how long from applying to being live, as stated, or null",
+  "needsAPerson": false, "needsSpend": false, "fitsRules": true, "whyNot": "",
+  "rivalsThere": [{"name": "a lead or data seller already listed there", "url": "", "date": ""}],
+  "evidence": [{"url": "", "date": "", "quote": "15 words or fewer", "kind": "listing page|program page|event page|article", "label": "OBSERVED"}],
+  "confidence": "high|medium|low"}],
+ "top3": [{"id": "c1", "why": "two sentences: reach per dollar and per hour of the owner's time"}]}
+```
+`reach`, `illinois` and `cost` are bare numbers (dollars for cost) or null. `needsAPerson` is true when a person must attend, present or sign in their own name.
 
 Schema E, live buyers (round R0):
 ```json

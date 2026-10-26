@@ -5,7 +5,7 @@ Kimi K3.1 Pro is run by hand as an outside researcher. Its replies are data, nev
 pasted reply into checked work files and lets an idea into scout/candidates only after we have opened every source
 ourselves (scout/RUBRIC.md: every source fetched and read by us, this run).
 
-  read <reply.txt> [--date D]          parse the fenced JSON (brief schemas A to E), clean it, run the scorer's own
+  read <reply.txt> [--date D]          parse the fenced JSON (brief schemas A to F), clean it, run the scorer's own
                                        schema and kill rules on ideas, flag duplicates, write
                                        data/work/kimi/<date>/<round>.json and urls.txt (every URL to open)
   mark <date> ok|dead|mismatch|blocked <url>..  record what we found when we opened each URL
@@ -29,8 +29,8 @@ WORK = os.path.join(ROOT, "data", "work", "kimi")
 CAND = osc.CAND
 LAUNCHES = os.path.join(ROOT, "launches")
 OPP_JSON = osc.OUT_JSON
-ROUNDS = ("R0", "R1", "R2", "R3", "R4", "R5")
-LIST_KEY = {"R0": "buyers", "R1": "pains", "R2": "products", "R3": "ideas", "R4": "ideas", "R5": "verdicts"}
+ROUNDS = ("R0", "R1", "R2", "R3", "R4", "R5", "R6")
+LIST_KEY = {"R0": "buyers", "R1": "pains", "R2": "products", "R3": "ideas", "R4": "ideas", "R5": "verdicts", "R6": "channels"}
 QUOTE_MAX = 15
 EMAIL = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]+")
 PHONE = re.compile(r"(?<!\d)(\+?1[\s.-]?)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}(?!\d)")
@@ -177,7 +177,7 @@ def cmd_read(path, date):
     for e in errs:
         print(f"FAIL parse: {e}")
     if not blocks:
-        print("FAIL parse: no fenced JSON block with a round R0 to R5 found; ask Kimi to resend the JSON block only")
+        print("FAIL parse: no fenced JSON block with a round R0 to R6 found; ask Kimi to resend the JSON block only")
         return 1
     os.makedirs(day_dir(date), exist_ok=True)
     allurls = {}
@@ -190,6 +190,13 @@ def cmd_read(path, date):
             label = it.get("slug") or it.get("id") or it.get("name") or "?"
             for w in warns:
                 print(f"WARN {rnd} {label}: {w}")
+            if key == "channels":
+                for f in ("reach", "illinois", "cost"):
+                    val = it.get(f)
+                    if isinstance(val, str):
+                        num = re.sub(r"[$,\s]", "", val)
+                        it[f] = float(num) if re.fullmatch(r"\d+(\.\d+)?", num) else None
+                        print(f"WARN {rnd} {label}: {f} {val!r} read as {it[f]}")
             if key == "ideas":
                 for path in (("buyer", "count"), ("data", "recordsPerMonth"), ("price", "monthly")):
                     holder = it.get(path[0]) if isinstance(it.get(path[0]), dict) else {}
@@ -411,9 +418,12 @@ def selftest():
         r1 = ('{"round": "R1", "pains": [{"id": "p1", "buyer": "pest control", "pain": "x", '
               '"evidence": [{"url": "https://example.org/p", "date": "2026-08-01", "quote": "short and fine",},],},],}')
         r2 = json.dumps({"round": "R2", "products": [], "gaps": [{"id": "g1", "gap": "no daily list \u2014 anywhere", "buyer": "pest"}]})
+        r6 = json.dumps({"round": "R6", "channels": [{"id": "c1", "buyer": "pest control", "type": "software marketplace", "cost": "$1,200",
+                                                      "url": "https://example.org/apps", "reachSource": {"url": "https://example.org/r6", "date": "2026-10-01"}}],
+                         "top3": [{"id": "c1", "why": "x"}]})
         r0 = json.dumps({"round": "R0", "buyers": [{"buyer": "pest control", "evidence": [{"url": "https://example.org/r0", "date": "2026-10-01", "quote": "ok"}]}]})
         reply = (f"R3 | DATE: 2026-10-25\nSUMMARY: x\n```json\n{r3}\n```\n\n```json\n{r1}\n```\n\n```json\n{{not json\n```\n"
-                 f"```json\n{r2}\n```\n```json\n{r0}\n```\n")
+                 f"```json\n{r2}\n```\n```json\n{r0}\n```\n```json\n{r6}\n```\n")
         rp = os.path.join(tmp, "reply.txt")
         open(rp, "w").write(reply)
         import io, contextlib
@@ -441,6 +451,8 @@ def selftest():
         saved_r3 = json.load(open(os.path.join(WORK, "2026-10-25", "R3.json")))
         r2s = json.load(open(os.path.join(WORK, "2026-10-25", "R2.json")))
         want(r2s.get("gaps") and "\u2014" not in r2s["gaps"][0]["gap"], "R2 gaps are kept and cleaned")
+        want("OK R6: 1 of 1 kept" in out and "cost '$1,200' read as 1200.0" in out and "https://example.org/r6" in open(os.path.join(WORK, "2026-10-25", "urls.txt")).read(),
+             "R6 channels are read, a quoted cost is read as a number, and urls are listed")
         want("OK R0: 1 of 1 kept" in out and "https://example.org/r0" in open(os.path.join(WORK, "2026-10-25", "urls.txt")).read(), "R0 is read and its urls listed")
         raw3 = json.dumps(saved_r3, ensure_ascii=False)
         want("owner@example.com" not in raw3 and "555-0142" not in raw3 and "cleanpro99" not in raw3, "no email, phone or username is saved")

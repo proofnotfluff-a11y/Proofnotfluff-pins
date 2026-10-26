@@ -199,3 +199,38 @@ For each idea:
 
 Reply: R5 | DATE: | IDEAS REVIEWED: n, then one fenced json block in Schema D.
 ```
+
+## R6, channel map for our buyers (Todd, Oct 26, 5:58 pm: "let's do number 1")
+
+Why: rounds R0 to R4 point at the channel, not the data. R6 maps where our buyers can be reached without ads or forum posts. Intake as above; a channel becomes a proposal to Todd, never an action (joining, listing, sponsoring or attending needs his word, and anything with spend is a quest with the price).
+
+```
+Round: R6, channel map. Read the attached brief first; it binds this task, including sections 2, 5, 8 and 9 (Schema F).
+Focus: Chicago and Illinois first, then national channels that reach Chicago firms. Buyers: pest control companies, post-construction and commercial cleaning companies, and vendors to restaurants (hood cleaning, grease trap).
+
+The question: where can a small faceless data business reach the owners of these firms, other than cold email, ads or forum posts, and what does each channel cost in money and in the owner's time?
+
+Look in this order, and open each page yourself:
+1. App and partner marketplaces inside the software these trades already run on. Pest: FieldRoutes, PestPac and WorkWave, GorillaDesk, Briostack, ServiceTitan. Cleaning: Jobber, Housecall Pro, Swept, Janitorial Manager, ServiceTitan. Restaurants: Toast and Square partner or integration programs. For each: is there a public marketplace or integrations directory, can a data or lead provider list there, what does applying take (an API integration, a fee, a review), and are any lead or data sellers already listed?
+2. Trade associations with vendor, allied or supplier memberships: National Pest Management Association, the Illinois pest control association, ISSA, BSCAI (Building Service Contractors Association International), IKECA (kitchen exhaust cleaning), BOMA Chicago, the Illinois Restaurant Association. For each: member count as stated, how many in Illinois, the vendor membership cost, and what it includes (directory listing, member email, newsletter ad, event table).
+3. Trade media and newsletters these owners read (pest, cleaning and kitchen exhaust trade magazines and their e-newsletters): readership as stated, sponsored-content or classified rates, and whether a small vendor can buy a single placement.
+4. Events in the next 120 days in Illinois or national events that Chicago firms attend: dates, vendor cost, and whether a person must attend.
+5. Referral and partner programs at businesses that already sell to these trades and might resell or bundle a lead list (equipment and chemical suppliers, insurance agencies for contractors, franchise systems).
+
+Rules for this round:
+- Count only what a page states. Member and reader counts are bare numbers or null.
+- Mark needsAPerson true when someone must attend, present or sign in their own name; we are faceless, so those rank lower but stay on the list.
+- Mark needsSpend true for any cost; list it anyway with the price.
+- Name any lead or data seller already present in a channel (rivalsThere): it proves the channel works for sellers like us.
+- Do not sign up, apply, message or post anywhere.
+
+Reply in exactly this shape:
+
+R6 | DATE: | CHANNELS OPENED: n | BLOCKED:
+
+SUMMARY: five plain sentences: the best three channels by reach per dollar and per hour of the owner's time, what each would cost to try, and the one surprise.
+
+REJECTED: one line per channel checked and thrown out, with the reason (closed to vendors, too costly for the reach, no Illinois members, needs a person every time).
+
+Then one fenced json block in Schema F, at most 15 channels, best first, with top3 filled in.
+```

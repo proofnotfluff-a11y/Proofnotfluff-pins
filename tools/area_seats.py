@@ -216,6 +216,8 @@ def city_for(t, geo=None):
             f"Licensed to one business, the only seat holder for {t['name']}, for its own prospecting;"),
         "seatName": t["name"], "seatAreas": areas,
         "gateH1": f"This week's {t['name']} leads",
+        "rel": "../../",   # docs/chicago-cleaning-area-members/<slug>/ is one folder deeper than the $29 members' page
+        "helpLine": "Questions about your seat? Write to hello@proofnotfluff.com with your Gumroad receipt.",
         "ribbon": f"{t['name']} seat",
         "gateBuy": f'Not the seat holder? <a href="{OFFER_URL}">See the area seats</a>',
         # Legal desk, Oct 26, 2026, fix 3: the seat says plainly which copies of this area exist outside it

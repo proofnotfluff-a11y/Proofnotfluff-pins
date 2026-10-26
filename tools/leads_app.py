@@ -197,13 +197,19 @@ def use(c):
     return CITY
 
 
+def _depth(html):
+    rel = CITY.get("rel") or "../"
+    return html if rel == "../" else html.replace('"../assets/', f'"{rel}assets/').replace("url(../assets/", f"url({rel}assets/").replace('"../privacy/"', f'"{rel}privacy/"')
+
+
 def build_html(rows, fetched, xlsx_bytes, password, city_terms=None, city=None):
     """The app page for prepared rows (tools/leads_xlsx.py prep: each with a stage and a new flag), the list date and the workbook."""
     if city is not None:
         use(city)
     box = encrypt(password, json.dumps(payload(rows, fetched, xlsx_bytes), separators=(",", ":")).encode())
     as_of = pretty_date(fetched)
-    return (PAGE.replace("__BOX__", json.dumps(box)).replace("__TERMS__", terms_json(as_of, city_terms or CITY["termsUrl"]))
+    return _depth(PAGE.replace("__BOX__", json.dumps(box)).replace("__TERMS__", terms_json(as_of, city_terms or CITY["termsUrl"]))
+            .replace("__HELPLINE__", _esc(CITY.get("helpLine") or "Questions about your membership? Reply to your Gumroad receipt."))
             .replace("__GATEH1__", _esc(CITY.get("gateH1") or f"This week's {CITY['city']} leads"))
             .replace("__RIBBON__", _esc(CITY.get("ribbon") or CITY["product"]))
             .replace("__GATEBUY__", CITY.get("gateBuy") or 'Not a member yet? <a href="__FREE__">Get the full list: $29&nbsp;a&nbsp;month</a>')
@@ -697,7 +703,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 </main>
 <p class="gate-legal" id="gateLegal">__LEGAL__</p>
 <main id="app" class="page" hidden tabindex="-1"></main>
-<footer class="foot-legal" id="appLegal" hidden><p>__LEGAL__</p><p>List of __ASOF__. Questions about your membership? Reply to your Gumroad receipt. <a href="../privacy/">Privacy</a></p><p class="leave">Thinking of cancelling? <a href="__SURVEY__" target="_blank" rel="noopener">Tell us why first<span class="sr"> (opens in a new tab)</span></a>. It takes a minute and decides what we fix next.</p></footer>
+<footer class="foot-legal" id="appLegal" hidden><p>__LEGAL__</p><p>List of __ASOF__. __HELPLINE__ <a href="../privacy/">Privacy</a></p><p class="leave">Thinking of cancelling? <a href="__SURVEY__" target="_blank" rel="noopener">Tell us why first<span class="sr"> (opens in a new tab)</span></a>. It takes a minute and decides what we fix next.</p></footer>
 <nav class="bnav" id="bnav" aria-label="Sections" hidden></nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>

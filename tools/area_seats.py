@@ -33,6 +33,7 @@ Usage: python3 tools/area_seats.py --stats                    print the table
 """
 import base64, datetime as dt, hashlib, hmac, json, math, os, sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CFG = os.path.join(ROOT, "site", "area_seats.json")
 COUNTS = os.path.join(ROOT, "permits", "chicago", "area_counts.json")
@@ -219,8 +220,8 @@ def city_for(t, geo=None):
 
 
 def week_counts(full):
-    """Counts only, per seat, from this week's full list: open projects, new in the last 7 days, near finish, builders."""
-    import leads_xlsx
+    """Counts only, per seat, from this week's full list: open projects, new in the last 7 days, near finish, builders.
+    Standard library only: it runs before the workflow installs openpyxl."""
     cfg = load()
     by = split(full["projects"], cfg)
     near = ("OCCUPANCY PENDING", "PARTIAL OCCUPANCY")

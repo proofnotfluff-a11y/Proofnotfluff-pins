@@ -8,7 +8,8 @@ ourselves (scout/RUBRIC.md: every source fetched and read by us, this run).
   read <reply.txt> [--date D]          parse the fenced JSON (brief schemas A to E), clean it, run the scorer's own
                                        schema and kill rules on ideas, flag duplicates, write
                                        data/work/kimi/<date>/<round>.json and urls.txt (every URL to open)
-  mark <date> ok|dead|mismatch <url>.. record what we found when we opened each URL (data/work/kimi/<date>/verified.json)
+  mark <date> ok|dead|mismatch|blocked <url>..  record what we found when we opened each URL
+                                       (blocked: the site refused our fetcher, so it is unproven, not invented)
   status <date>                        per idea: URLs ok, open, bad; kill rules; duplicates
   promote <date> <slug>                copy one idea to scout/candidates/<slug>.json, only when every URL in it is ok,
                                        no kill rule fires, it validates and the slug is new
@@ -239,8 +240,8 @@ def load_verified(date):
 
 
 def cmd_mark(date, state, urls):
-    if state not in ("ok", "dead", "mismatch"):
-        print("FAIL mark: state must be ok, dead or mismatch")
+    if state not in ("ok", "dead", "mismatch", "blocked"):
+        print("FAIL mark: state must be ok, dead, mismatch or blocked")
         return 1
     v = load_verified(date)
     os.makedirs(day_dir(date), exist_ok=True)
@@ -264,7 +265,7 @@ def ideas_of(date):
 def url_state(idea, v):
     us = urls_in({k: x for k, x in idea.items() if k != "_intake"})
     ok = [u for u in us if v.get(u, {}).get("status") == "ok"]
-    badl = [u for u in us if v.get(u, {}).get("status") in ("dead", "mismatch")]
+    badl = [u for u in us if v.get(u, {}).get("status") in ("dead", "mismatch", "blocked")]
     return us, ok, badl, [u for u in us if u not in v]
 
 
@@ -281,7 +282,7 @@ def cmd_status(date):
               f"kills {len(it.get('kills') or [])}; problems {len(it.get('problems') or [])}; duplicates {len(it.get('duplicates') or [])}")
     checked = list(v.values())
     if len(checked) >= 10:
-        first = sorted(v.items(), key=lambda kv: kv[1]["at"])[:10]
+        first = [kv for kv in sorted(v.items(), key=lambda kv: kv[1]["at"]) if kv[1]["status"] != "blocked"][:10]
         invented = sum(1 for _, x in first if x["status"] in ("dead", "mismatch"))
         if invented >= 2:
             print(f"FAIL round trust: {invented} of the first 10 sources checked were dead or did not say what the reply said; "
@@ -462,6 +463,10 @@ def selftest():
         json.dump(v, open(os.path.join(WORK, "2026-10-25", "verified.json"), "w"))
         with contextlib.redirect_stdout(io.StringIO()):
             want(cmd_status("2026-10-25") == 1, "2 dead of the first 10 checked sets the reply aside")
+        v = {f"https://example.org/{i}": {"status": "blocked" if i < 2 else "ok", "at": f"2026-10-25T00:00:{i:02d}+00:00"} for i in range(12)}
+        json.dump(v, open(os.path.join(WORK, "2026-10-25", "verified.json"), "w"))
+        with contextlib.redirect_stdout(io.StringIO()):
+            want(cmd_status("2026-10-25") == 0, "sites that refuse our fetcher do not count as invented")
 
         want(bool(PHONE.search("call 312-555-0142 today")) and not PHONE.search("2026-10-25"), "phone pattern catches phones, not dates")
         want(bool(USERNAME.search("posted by u/cleanpro99")), "a reddit username is caught")

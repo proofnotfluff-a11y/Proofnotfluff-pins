@@ -217,6 +217,25 @@
   ],
   "customer-concentration-calculator": [
    "ecommerce-13-week-cash-flow"
+  ],
+  "christmas-light-installation-pricing-calculator": [
+   "chicago-construction-cleaning-leads",
+   "austin-construction-cleaning-leads"
+  ],
+  "snow-removal-pricing-calculator": [
+   "chicago-construction-cleaning-leads",
+   "austin-construction-cleaning-leads"
+  ],
+  "hood-cleaning-price-calculator": [
+   "chicago-restaurant-inspection-leads"
+  ],
+  "missed-call-cost-calculator": [
+   "chicago-restaurant-inspection-leads",
+   "chicago-construction-cleaning-leads"
+  ],
+  "price-increase-calculator": [
+   "chicago-construction-cleaning-leads",
+   "chicago-restaurant-inspection-leads"
   ]
  },
  "calcTitles": {
@@ -262,7 +281,12 @@
     "employer-cost-calculator",
     "cleaning-business-startup-cost-calculator",
     "junk-removal-startup-cost-calculator",
-    "pressure-washing-startup-cost-calculator"
+    "pressure-washing-startup-cost-calculator",
+    "christmas-light-installation-pricing-calculator",
+    "snow-removal-pricing-calculator",
+    "hood-cleaning-price-calculator",
+    "missed-call-cost-calculator",
+    "price-increase-calculator"
    ]
   ],
   [
@@ -394,6 +418,30 @@
    "debt-payoff-calculator",
    "debt-snowball-calculator",
    "chore-split-calculator"
+  ],
+  [
+   "snow-removal-pricing-calculator",
+   "christmas-light-installation-pricing-calculator",
+   "lawn-care-price-calculator",
+   "pressure-washing-price-calculator",
+   "price-increase-calculator",
+   "cost-per-lead-calculator"
+  ],
+  [
+   "hood-cleaning-price-calculator",
+   "cleaning-price-per-square-foot-calculator",
+   "contractor-hourly-rate-calculator",
+   "employer-cost-calculator",
+   "price-increase-calculator",
+   "cost-per-lead-calculator"
+  ],
+  [
+   "missed-call-cost-calculator",
+   "cost-per-lead-calculator",
+   "price-increase-calculator",
+   "profit-margin-calculator",
+   "markup-calculator",
+   "break-even-calculator"
   ]
  ],
  "calcRelatedNote": "Related calculators block on every calculator page (SEO audit Oct 24, 2026: 37 of 45 calculators linked to no other calculator). A page shows up to 6 others from every cluster it sits in, in cluster order; the strategy calculators lead their clusters.",
@@ -442,7 +490,12 @@
   "monthly-budget-calculator": "budget household spending",
   "debt-payoff-calculator": "debt payoff credit card loan",
   "debt-snowball-calculator": "debt snowball avalanche",
-  "chore-split-calculator": "chores household fair split"
+  "chore-split-calculator": "chores household fair split",
+  "christmas-light-installation-pricing-calculator": "holiday lights hanging christmas lights install price per foot",
+  "snow-removal-pricing-calculator": "snow plowing shoveling per push seasonal contract salting",
+  "hood-cleaning-price-calculator": "kitchen exhaust hood duct cleaning nfpa 96 restaurant",
+  "missed-call-cost-calculator": "missed calls answering service ai receptionist voicemail",
+  "price-increase-calculator": "raise prices price increase letter inflation costs went up"
  },
  "searchListWords": {
   "chicago-construction-cleaning-leads": "post construction cleaning window washing pressure washing power washing builders permits contractors",

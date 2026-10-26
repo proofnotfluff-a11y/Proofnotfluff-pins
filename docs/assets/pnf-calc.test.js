@@ -650,4 +650,23 @@ check("DD+7 spend above sales: falling, no short or ok", DF.falling * 10 + DF.sh
 check("DD+7 no sales with spend: not falling, no low", P.payoutGap({ costs: 100, cash: 1000 }).falling + P.payoutGap({ costs: 100, cash: 1000 }).need, 0);
 check("DD+7 spend equal to sales: settles, low found", P.payoutGap({ sales: 700, deliverDays: 3, schedule: 0, nextPayout: 14, bankDays: 1, cash: 10000, costs: 700 }).falling, 0);
 
+// Trade season calculators (Oct 26, 2026): hand-worked examples from each page's own worked example
+const MC = P.missedCalls({ calls: 20, missedPct: 25, gonePct: 50, bookPct: 40, avgJob: 250, marginPct: 45, jobsPerCustomer: 1, answerCost: 300 });
+check("missed calls a month", MC.missedMo, 21.67); check("missed: jobs lost", MC.lostJobs, 4.33); check("missed: revenue lost", MC.lostRev, 1083.33);
+check("missed: profit lost", MC.lostProfit, 487.5); check("missed: a year", MC.year, 5850); check("missed: jobs to cover $300", MC.cover, 3);
+check("missed: left after the option", MC.net, 187.5); check("missed: pays flag", MC.pays, 1);
+check("missed: repeat customers multiply revenue", P.missedCalls({ calls: 20, missedPct: 25, gonePct: 50, bookPct: 40, avgJob: 250, marginPct: 45, jobsPerCustomer: 3 }).lostRev, 3250);
+check("missed: option above the loss", P.missedCalls({ calls: 4, missedPct: 25, gonePct: 50, bookPct: 40, avgJob: 250, marginPct: 45, answerCost: 300 }).notPays, 1);
+check("missed: blank is none", P.missedCalls({}).none, 1);
+check("missed: shares above 100% are capped", P.missedCalls({ calls: 10, missedPct: 150, gonePct: 100, bookPct: 100, avgJob: 100, marginPct: 100 }).lostJobs, 43.33);
+const PR = P.priceRaise({ price: 150, cost: 90, costUpPct: 8, jobs: 60, keep: 1, losePct: 5 });
+check("raise: new cost", PR.newCost, 97.2); check("raise: keep margin price", PR.rounded, 162); check("raise: keep dollars price", PR.keepDollars, 157.2);
+check("raise: margin now", PR.marginNow, 0.4); check("raise: waiting costs a month", PR.squeeze, 432); check("raise: profit after, 5% lost", PR.after, 3693.6);
+check("raise: change", PR.change, 93.6); check("raise: most clients to lose", PR.maxLose, 0.0741); check("raise: better flag", PR.better, 1);
+const PD = P.priceRaise({ price: 150, cost: 90, costUpPct: 8, jobs: 60, keep: 0, losePct: 5 });
+check("raise: keep dollars rounds up to $158", PD.rounded, 158); check("raise: keep dollars, 5% lost, change", PD.change, -134.4); check("raise: worse flag", PD.worse, 1);
+check("raise: price at cost is under", P.priceRaise({ price: 90, cost: 90, costUpPct: 5 }).under, 1);
+check("raise: no rise keeps the price", P.priceRaise({ price: 150, cost: 90, costUpPct: 0, jobs: 10 }).rounded, 150);
+check("raise: blank is none", P.priceRaise({}).none, 1);
+
 process.exit(fails ? 1 : 0);

@@ -7,3 +7,8 @@
 - [stated] Todd: "Product 2 (prove first, then build): Chicago Storefront Sign Leads, one sign company per community area, from our own new business licenses data." Candidate file, recount from our own license files, the radar's three reviewers; "Decide: build" only if all three PASS. "No build before my go."
 - [stated] Todd: "Parked, do not build: Texas stormwater leads (the State's search page blocks automated collection)."
 - So: scoreboard todos/decide-exclusive-area ticked done. Nothing goes live, no Gumroad product, no site link and no email without his word in chat.
+
+## Free tools from Google Trends, 9:16 am
+- [stated] Todd: "Make all of them" (to the Oct 26 Trends brainstorm, doc claude.ai/artifact/7gKKssDBPgHzGjDfx3GZyV; notes research_notes/trends-2026-10-26.md).
+- So, the go covers: the Chicago rat and mouse complaint tracker (new page type), and free calculators for snow removal pricing, hood cleaning price and NFPA 96 frequency, missed-call cost, price increase, and Christmas light installation pricing; plus the seven question pages in the doc's content calendar, added to the question-pages backlog. Each page still publishes only after every gate passes (seo/STORE.md, the Oct 24 calculator gate set); a page that fails a gate stays a draft and goes back to Todd.
+- Christmas lights first (its search peaks in November), then the rodent tracker, snow, hood, missed-call, price increase.

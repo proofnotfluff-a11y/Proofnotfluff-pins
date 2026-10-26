@@ -1,0 +1,41 @@
+name: Chicago rat complaints
+# Free weekly page /chicago-rat-complaints/ (Todd's go, Oct 26, 2026, coo/DECISIONS-2026-10-26.md). The cloud agents
+# cannot reach data.cityofchicago.org, so this runner counts the City's 311 "Rodent Baiting/Rat Complaint" requests by
+# community area and commits only the counts (permits/rodents-chicago/weekly.json). tools/rodents_chicago.py says what is
+# kept: no address, location, request number or resident text ever leaves the runner.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/rodents_chicago.py", "tools/rodents_site.py", ".github/workflows/rodents-chicago.yml"]
+  schedule:
+    - cron: "20 11 * * 1"   # Mondays, about 6:20 am Chicago time in daylight time
+permissions:
+  contents: write
+concurrency:
+  group: rodents-chicago
+  cancel-in-progress: false
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install --quiet cryptography openpyxl pillow
+      - name: Self-checks (planted cases)
+        run: |
+          python3 tools/rodents_chicago.py --selftest
+          python3 tools/rodents_site.py --selftest
+      - name: Count the City's rat complaints
+        run: python3 tools/rodents_chicago.py
+      - name: Rebuild the site pages from the new counts
+        run: python3 tools/make_site.py
+      - name: Commit
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add -A permits/rodents-chicago docs
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "Chicago rat complaints data $(TZ=America/Chicago date +%Y-%m-%d)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done
+          exit 1

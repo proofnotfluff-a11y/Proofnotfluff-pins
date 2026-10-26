@@ -1704,7 +1704,264 @@ PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;PNF.stages(f,"../e/amazon-dd7-pa
     return form, results + "\n<!--LC-EXTRA-->" + extra, script
 
 
-PAGE_KINDS = {"lead_cost": lead_cost_page, "dd7_payout": dd7_page, "day_rate": day_rate_page, "cleaning_sqft": cleaning_sqft_page, "service": service_page, "service_sqft": service_sqft_page, "hourly": hourly_page, "cashflow": cashflow_page,
+def _sel(key, label, hint, opts, val):
+    """A labelled select feeding the model (data-in), as on the DD+7 page."""
+    return (f'<div class="row"><label for="{key}">{E(label)}{f"<small>{E(hint)}</small>" if hint else ""}</label>'
+            f'<div class="field"><select id="{key}" data-in="{key}">'
+            + "".join(f'<option value="{v}"{" selected" if str(v) == str(val) else ""}>{E(t)}</option>' for v, t in opts)
+            + '</select></div></div>')
+
+
+def _model_script(model, slug):
+    return f"""<script>
+(function(){{var f=document.getElementById("calc");
+/* Maths: PNF.{model} in assets/pnf-calc.js (trade season calculators, Oct 26, 2026). */
+var M=function(i){{return PNF.{model}(i);}};
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;PNF.stages(f,"../e/{slug}/");}})();</script>"""
+
+
+def _notes_block(p):
+    """Optional spec "notes": {"title", "items": [[text, url, page]], "tail": [..]} under the calculator (sourced rules)."""
+    n = p.get("notes")
+    if not n:
+        return ""
+    lis = "".join(f'<li><span>{E(t)}' + (f' Source: <a href="{E(u)}" rel="noopener">{E(pg)}</a>.' if u else "") + '</span></li>' for t, u, pg in n["items"])
+    return (f'<section class="block"><h2>{E(n["title"])}</h2><ul class="checks">{lis}</ul>'
+            + "".join(f"<p>{E(t)}</p>" for t in n.get("tail", [])) + '</section>')
+
+
+def lights_page(p):
+    """Christmas light installation quote (PNF.lightsQuote): roofline feet, bushes and trees, crew time for install and
+    takedown, trips, and lights either owned by the business (spread over the seasons they last, plus storage) or bought
+    by the customer (charged this year, dropped from next season's quote). Todd's go, Oct 26, 2026."""
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>The house</legend>
+{field("feet", "Feet of roofline to light", d["feet"], "Gutters, peaks and ridges you will run lights along")}
+{field("shrubs", "Bushes and trees to wrap", d["shrubs"], "0 if none")}
+</fieldset>
+<fieldset><legend>Your crew and pace</legend>
+{field("ftPerHour", "Feet one person hangs an hour", d["ftPerHour"], "Your own pace on this kind of roof, ladder moves included")}
+{field("shrubMin", "Minutes per bush or tree, one person", d["shrubMin"])}
+{field("people", "People on the crew", d["people"])}
+{field("rate", "Labor cost per person-hour", d["rate"], "What you pay, or your own break-even rate", pre="$")}
+{field("takedownPct", "Takedown time, share of install time", d["takedownPct"], "Removal and packing after the season", suf="%")}
+</fieldset>
+<fieldset><legend>The lights</legend>
+{_sel("owner", "Who owns the lights", "Lent each year and stored by you, or bought and kept by the customer", [(0, "We own them"), (1, "Customer buys them")], d["owner"])}
+{field("matPerFt", "Lights, wire and clips per foot", d["matPerFt"], "Your cost, per foot of roofline", pre="$")}
+{field("shrubMat", "Lights per bush or tree", d["shrubMat"], pre="$")}
+<div data-show-if="owned > 0">{field("seasons", "Seasons your lights last", d["seasons"], "Their cost is spread over these seasons")}
+{field("storage", "Storage and handling per customer, per year", d["storage"], "Bins, labels, shelf space, testing", pre="$")}</div>
+</fieldset>
+<fieldset><legend>Trips and margin</legend>
+{field("serviceCalls", "Service calls you expect", d["serviceCalls"], "Install and takedown trips are counted already")}
+{field("tripMin", "Drive time per trip, round trip", d["tripMin"], "Minutes")}
+{field("tripMiles", "Miles per trip, round trip", d["tripMiles"])}
+{field("perMile", "Vehicle cost per mile", d["perMile"], "IRS business rate: 76 cents (Jul to Dec 2026)", pre="$")}
+{field("margin", "Profit margin in the quote", d["margin"], "A share of the quote", suf="%")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Quote for this house</div><div class="val" data-out="quote" data-fmt="money0">$0</div><div class="sub">Install and takedown, rounded up to the next $5</div></div>
+<div class="tile"><div class="lab">Price per foot of roofline</div><div class="val" data-out="perFt">$0</div><div class="sub">Break-even <span data-out="floorPerFt">$0</span> a foot</div></div>
+<div class="tile"><div class="lab">Profit in the quote</div><div class="val" data-out="profit">$0</div></div>
+<div class="tile"><div class="lab">Install day on site</div><div class="val" data-out="crewHrs" data-fmt="hrs">0</div><div class="sub">For the whole crew together</div></div>
+</div>
+<ul class="lines">
+<li><span>Install, <span data-out="installHrs" data-fmt="hrs">0</span> of work</span><span data-out="labor">$0</span></li>
+<li><span>Drive time and miles, <span data-out="trips" data-fmt="int">0</span> trips</span><span data-out="drive">$0</span></li>
+<li><span>Lights for this season</span><span data-out="materials">$0</span></li>
+<li data-show-if="owned > 0"><span>Storage and handling</span><span data-out="storage">$0</span></li>
+<li class="total"><span>Price floor, zero profit</span><span data-out="floor">$0</span></li>
+</ul>
+<p class="asof">Labor covers install and takedown: <span data-out="takedownHrs" data-fmt="hrs">0</span> of the work is takedown.</p>
+<div class="callout" data-show-if="bought > 0">Next season the customer already owns the lights: the same house quotes at <b data-out="quote2" data-fmt="money0">$0</b>, with <b data-out="profit2">$0</b> of profit.</div>
+<div class="callout" data-show-if="owned > 0">Your lights cost <b data-out="matAll">$0</b> for this house, spread over the seasons they last. A returning customer quotes the same next season.</div>
+<div class="callout warn" data-show-if="noRate > 0">Type how many feet one person hangs an hour to price the roofline.</div>
+<div class="callout warn" data-show-if="noLabor > 0">Add a labor cost per person-hour, even if it is your own time.</div>
+<div class="callout warn" data-show-if="none > 0">Type the feet of roofline, or the bushes and trees, to see a quote.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Quote <b data-out="quote" data-fmt="money0">$0</b></span><span>Per foot <b data-out="perFt">$0</b></span></div>"""
+    return form, results + "\n<!--LC-EXTRA-->" + _notes_block(p), _model_script("lightsQuote", p["slug"])
+
+
+def snow_page(p):
+    """Snow removal per push and seasonal contract (PNF.snowQuote) for one stop on a route. Todd's go, Oct 26, 2026."""
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>One stop on your route</legend>
+{field("pushMin", "Minutes on site for a normal push", d["pushMin"], "Plowing or blowing at your trigger depth, shoveling walks included")}
+{field("deepMin", "Minutes on site for a deep storm", d["deepMin"], "Your time when the snow is well over the trigger. 0 to skip")}
+{field("driveMin", "Drive minutes to this stop", d["driveMin"], "From the stop before it on your route")}
+{field("salt", "Salt or ice melt per visit", d["salt"], "Your cost. 0 if you do not salt", pre="$")}
+</fieldset>
+<fieldset><legend>Crew and equipment</legend>
+{field("people", "People on this stop", d["people"])}
+{field("rate", "Labor cost per person-hour", d["rate"], "What you pay, or your own break-even rate", pre="$")}
+{field("equip", "Truck, plow or blower cost per hour", d["equip"], "Fuel, wear, repairs and payments, spread per working hour", pre="$")}
+{field("margin", "Profit margin in the quote", d["margin"], "A share of the quote", suf="%")}
+</fieldset>
+<fieldset><legend>A seasonal contract</legend>
+{field("events", "Pushes you expect in a season", d["events"], "Storms over your trigger depth. Check your own records")}
+{field("cushion", "Cushion for a heavy winter", d["cushion"], "Added on top of the expected pushes", suf="%")}
+{field("months", "Months you bill the contract over", d["months"], "November to March is 5")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Price per push</div><div class="val" data-out="quote" data-fmt="money0">$0</div><div class="sub">Rounded up to the next $5</div></div>
+<div class="tile"><div class="lab">Seasonal contract</div><div class="val" data-out="season" data-fmt="money0">$0</div><div class="sub"><span data-out="monthly" data-fmt="money0">$0</span> a month</div></div>
+<div class="tile"><div class="lab">Deep storm push</div><div class="val" data-out="deepQuote" data-fmt="money0">$0</div><div class="sub">At your deep storm minutes</div></div>
+<div class="tile"><div class="lab">Contract covers</div><div class="val"><span data-out="covers" data-fmt="int">0</span> pushes</div><div class="sub">Before the season costs more than it pays</div></div>
+</div>
+<ul class="lines">
+<li><span>Cost of one push</span><span data-out="cost">$0</span></li>
+<li><span>Profit in one push</span><span data-out="profit">$0</span></li>
+<li data-show-if="deepOn > 0"><span>Cost of a deep storm push</span><span data-out="deepCost">$0</span></li>
+<li data-show-if="seasonOn > 0"><span>Season profit at the pushes you expect</span><span data-out="seasonProfit">$0</span></li>
+<li><span>Per push, per hour on this stop</span><span data-out="hourly">$0</span></li>
+</ul>
+<div class="callout" data-show-if="seasonOn > 0">A seasonal price of <b data-out="season" data-fmt="money0">$0</b> pays you whether it snows or not. It turns into a loss after <b data-out="covers" data-fmt="int">0</b> pushes.</div>
+<div class="callout warn" data-show-if="noEvents > 0">Type how many pushes you expect in a season to price a seasonal contract.</div>
+<div class="callout warn" data-show-if="noRate > 0">Add a labor cost or an equipment cost per hour to see a price.</div>
+<div class="callout warn" data-show-if="none > 0">Type the minutes on site for a normal push.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Per push <b data-out="quote" data-fmt="money0">$0</b></span><span>Season <b data-out="season" data-fmt="money0">$0</b></span></div>"""
+    return form, results + "\n<!--LC-EXTRA-->" + _notes_block(p), _model_script("snowQuote", p["slug"])
+
+
+def hood_page(p):
+    """Kitchen exhaust hood cleaning price per visit and per year (PNF.hoodQuote); visits a year follow the NFPA 96
+    inspection frequency for the cooking type (sourced in the spec's "notes"). Todd's go, Oct 26, 2026."""
+    d = p["defaults"]
+    opts = [(n, t) for n, t in enumerate(p["cookingTypes"])]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>The kitchen</legend>
+{_sel("cooking", "Type of cooking", "Sets how often NFPA 96 calls for an inspection", opts, d["cooking"])}
+{field("hoods", "Hoods to clean", d["hoods"])}
+{field("hoodHrs", "Crew hours per hood", d["hoodHrs"], "Hood, filters and plenum, all people together")}
+{field("ductHrs", "Crew hours for duct and fan", d["ductHrs"], "Duct runs, the roof fan and the grease containment, all people together")}
+</fieldset>
+<fieldset><legend>Your crew and costs</legend>
+{field("people", "People on the crew", d["people"])}
+{field("rate", "Labor cost per person-hour", d["rate"], "What you pay, or your own break-even rate", pre="$")}
+{field("nightPct", "Night work premium on labor", d["nightPct"], "Most kitchens are cleaned after closing. 0 if none", suf="%")}
+{field("supplies", "Chemicals and supplies per visit", d["supplies"], "Degreaser, plastic, tape, filters, stickers", pre="$")}
+</fieldset>
+<fieldset><legend>Trip and margin</legend>
+{field("tripMin", "Drive time, round trip", d["tripMin"], "Minutes")}
+{field("tripMiles", "Miles, round trip", d["tripMiles"])}
+{field("perMile", "Vehicle cost per mile", d["perMile"], "IRS business rate: 76 cents (Jul to Dec 2026)", pre="$")}
+{field("margin", "Profit margin in the quote", d["margin"], "A share of the quote", suf="%")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Price per visit</div><div class="val" data-out="quote" data-fmt="money0">$0</div><div class="sub">Rounded up to the next $5</div></div>
+<div class="tile"><div class="lab">Visits a year</div><div class="val" data-out="visits" data-fmt="int">0</div><div class="sub">NFPA 96 inspection frequency</div></div>
+<div class="tile"><div class="lab">Yearly contract</div><div class="val" data-out="year" data-fmt="money0">$0</div><div class="sub"><span data-out="monthly" data-fmt="money0">$0</span> a month</div></div>
+<div class="tile"><div class="lab">Profit a year</div><div class="val" data-out="yearProfit" data-fmt="money0">$0</div></div>
+</div>
+<ul class="lines">
+<li><span>Labor, <span data-out="crewHrs" data-fmt="hrs">0</span> of crew time</span><span data-out="labor">$0</span></li>
+<li><span>Drive time and miles</span><span data-out="drive">$0</span></li>
+<li><span>Chemicals and supplies</span><span data-out="supplies">$0</span></li>
+<li class="total"><span>Cost of one visit</span><span data-out="cost">$0</span></li>
+<li><span>Profit per visit</span><span data-out="profit">$0</span></li>
+<li><span>Per hood, per visit</span><span data-out="perHood">$0</span></li>
+<li><span>Time on site for the crew</span><span data-out="siteHrs" data-fmt="hrs">0</span></li>
+</ul>
+<div class="callout warn" data-show-if="noRate > 0">Add a labor cost per person-hour, even if it is your own time.</div>
+<div class="callout warn" data-show-if="none > 0">Type the hoods and the crew hours per hood to see a price.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Per visit <b data-out="quote" data-fmt="money0">$0</b></span><span>Year <b data-out="year" data-fmt="money0">$0</b></span></div>"""
+    return form, results + "\n<!--LC-EXTRA-->" + _notes_block(p), _model_script("hoodQuote", p["slug"])
+
+
+def missed_calls_page(p):
+    """What unanswered new-customer calls cost a month (PNF.missedCalls), set beside the monthly cost of an answering
+    option the owner was quoted. Names and ranks no vendor. Todd's go, Oct 26, 2026."""
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>Your calls</legend>
+{field("calls", "New-customer calls a week", d["calls"], "People calling for a quote or a booking, not existing clients")}
+{field("missedPct", "Share of those calls nobody answers", d["missedPct"], "Check your phone log for a typical week", suf="%")}
+{field("gonePct", "Missed callers who never call back", d["gonePct"], "Your guess. Count the ones you never hear from again", suf="%")}
+{field("bookPct", "Answered new-customer calls that book", d["bookPct"], "From your own answered calls", suf="%")}
+</fieldset>
+<fieldset><legend>A typical job</legend>
+{field("avgJob", "Average job price", d["avgJob"], pre="$")}
+{field("marginPct", "Gross margin on a job", d["marginPct"], "What a job leaves after labor, supplies and gas", suf="%")}
+{field("jobsPerCustomer", "Jobs a new customer books in a year", d["jobsPerCustomer"], "1 for one-off work. More for repeat service")}
+</fieldset>
+<fieldset><legend>An answering option (optional)</legend>
+{field("answerCost", "Monthly cost you were quoted", d["answerCost"], "An answering service, an AI receptionist or a part-time hire. 0 to skip", pre="$")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Profit lost a month</div><div class="val" data-out="lostProfit" data-fmt="money0">$0</div><div class="sub"><span data-out="year" data-fmt="money0">$0</span> a year</div></div>
+<div class="tile"><div class="lab">Jobs lost a month</div><div class="val" data-out="lostJobs" data-fmt="dec1">0</div><div class="sub">From <span data-out="lostCallers" data-fmt="dec1">0</span> callers who went elsewhere</div></div>
+<div class="tile"><div class="lab">Revenue lost a month</div><div class="val" data-out="lostRev" data-fmt="money0">$0</div></div>
+<div class="tile"><div class="lab">Jobs to cover the option</div><div class="val" data-out="cover" data-fmt="int">0</div><div class="sub">Saved jobs a month at your margin</div></div>
+</div>
+<ul class="lines">
+<li><span>Missed new-customer calls a month</span><span data-out="missedMo" data-fmt="dec1">0</span></li>
+<li><span>Callers who never call back</span><span data-out="lostCallers" data-fmt="dec1">0</span></li>
+<li><span>Jobs those callers would have booked</span><span data-out="lostJobs" data-fmt="dec1">0</span></li>
+<li><span>Profit in one job</span><span data-out="perJobProfit">$0</span></li>
+<li class="total"><span>Profit lost a month</span><span data-out="lostProfit" data-fmt="money0">$0</span></li>
+<li data-show-if="costOn > 0"><span>Monthly cost of the option</span><span data-out="cost" data-fmt="money0">$0</span></li>
+<li data-show-if="costOn > 0" class="total"><span>Left after the option, if it saved every one</span><span data-out="net" data-fmt="money0">$0</span></li>
+</ul>
+<div class="callout" data-show-if="pays > 0">The option costs less than the profit you lose. It pays for itself if it saves <b data-out="cover" data-fmt="int">0</b> jobs a month.</div>
+<div class="callout warn" data-show-if="notPays > 0">The option costs more than the profit these calls lose you. Fix the missed calls another way, or price the option lower.</div>
+<div class="callout warn" data-show-if="noMargin > 0">Add your gross margin on a job to see the profit lost.</div>
+<div class="callout warn" data-show-if="none > 0">Type how many new-customer calls you get a week.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Lost <b data-out="lostProfit" data-fmt="money0">$0</b>/mo</span><span>Jobs <b data-out="lostJobs" data-fmt="dec1">0</b></span></div>"""
+    return form, results + "\n<!--LC-EXTRA-->" + _notes_block(p), _model_script("missedCalls", p["slug"])
+
+
+def price_raise_page(p):
+    """The price that keeps a job's profit after costs rise (PNF.priceRaise): hold the profit dollars or the margin, then
+    the client loss the raise can take. Todd's go, Oct 26, 2026."""
+    d = p["defaults"]
+    form = f"""<form class="card" id="calc" novalidate>
+<fieldset><legend>One job today</legend>
+{field("price", "Price you charge now", d["price"], "For one job or one visit", pre="$")}
+{field("cost", "Your cost for that job now", d["cost"], "Labor you pay, supplies, gas. Not your own pay if you count it as profit", pre="$")}
+{field("costUpPct", "How much those costs went up", d["costUpPct"], "Since you last set the price", suf="%")}
+{field("jobs", "Jobs a month at this price", d["jobs"])}
+</fieldset>
+<fieldset><legend>Your new price</legend>
+{_sel("keep", "What the new price keeps", "Your profit in dollars, or your margin as a share of the price", [(0, "My profit per job"), (1, "My margin")], d["keep"])}
+{field("losePct", "Clients you expect to lose over the raise", d["losePct"], "Your guess. 0 if you expect none", suf="%")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">New price</div><div class="val" data-out="rounded">$0</div><div class="sub">Up <span data-out="raise">$0</span>, <span data-pct="raisePct">0%</span></div></div>
+<div class="tile"><div class="lab">Lost each month without a raise</div><div class="val" data-out="squeeze" data-fmt="money0">$0</div><div class="sub">The cost rise, at today's price</div></div>
+<div class="tile"><div class="lab">Profit a month after the raise</div><div class="val" data-out="after" data-fmt="money0">$0</div><div class="sub">Today: <span data-out="profitNow" data-fmt="money0">$0</span></div></div>
+<div class="tile"><div class="lab">Clients you can lose</div><div class="val" data-pct="maxLose">0%</div><div class="sub">Before profit falls below today's</div></div>
+</div>
+<ul class="lines">
+<li><span>Cost per job after the rise</span><span data-out="newCost">$0</span></li>
+<li><span>Price that keeps your profit per job</span><span data-out="keepDollars">$0</span></li>
+<li><span>Price that keeps your margin</span><span data-out="keepMargin">$0</span></li>
+<li><span>Your margin today</span><span data-pct="marginNow">0%</span></li>
+<li class="total"><span>Change in monthly profit after the raise</span><span data-out="change" data-fmt="money0">$0</span></li>
+</ul>
+<div class="callout" data-show-if="better > 0">At <b data-out="rounded">$0</b> you keep today's profit even with the clients you expect to lose.</div>
+<div class="callout warn" data-show-if="worse > 0">With the clients you expect to lose, profit ends <b data-out="change" data-fmt="money0">$0</b> a month below today's. Raise a little more, or keep more clients.</div>
+<div class="callout warn" data-show-if="under > 0">The job costs as much as you charge now. Price it from your costs first.</div>
+<div class="callout" data-show-if="noUp > 0">Type how much your costs went up to see the price that keeps your profit.</div>
+<div class="callout warn" data-show-if="none > 0">Type the price you charge now.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>New price <b data-out="rounded">$0</b></span><span>Up <b data-pct="raisePct">0%</b></span></div>"""
+    return form, results + "\n<!--LC-EXTRA-->" + _notes_block(p), _model_script("priceRaise", p["slug"])
+
+
+
+PAGE_KINDS = {"lights": lights_page, "snow": snow_page, "hood": hood_page, "missed_calls": missed_calls_page, "price_raise": price_raise_page, "lead_cost": lead_cost_page, "dd7_payout": dd7_page, "day_rate": day_rate_page, "cleaning_sqft": cleaning_sqft_page, "service": service_page, "service_sqft": service_sqft_page, "hourly": hourly_page, "cashflow": cashflow_page,
               "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
               "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
               "reorder_point": reorder_point_page, "str_breakeven": str_breakeven_page,
@@ -2204,6 +2461,9 @@ def page_html(p):
     if p.get("kind") == "licleads":    # Chicago New Business Licenses (tools/lic_site.py)
         import lic_site
         return lic_site.page_html(p)
+    if p.get("kind") == "rodents":     # Chicago rat complaints, the free weekly 311 page (tools/rodents_site.py)
+        import rodents_site
+        return rodents_site.page_html(p)
     if p.get("kind") == "newin":       # New in Chicago, the free traffic page (tools/newin_site.py)
         import newin_site
         return newin_site.page_html(p)
@@ -3140,7 +3400,10 @@ def find_customers(slug, rel="../"):
                 f'<a class="st-link" href="{E(utm(x["checkout"], "calculator", x["campaign"], slug))}" rel="noopener">Buy, ${E(x["price"])}</a>')
     else:
         text = " ".join(f'{x["name"]}: {x["nums"][0][0]} {x["nums"][0][1]}, ${x["price"]} {x["per"]}.' for x in xs) + " Free sample on each page, new every Monday."
-        acts = "".join(f'<a class="st-btn2" href="{rel}{x["href"]}{x["sample"]}">{E(x["tag"].split(" · ")[0])}: free sample</a>' for x in xs)
+        labs = [x["tag"].split(" · ")[0] for x in xs]
+        if len(set(labs)) < len(labs):   # two lists in one city (Oct 26): name each list so the buttons differ
+            labs = [x["name"].replace("Chicago ", "").replace("Austin ", "") for x in xs]
+        acts = "".join(f'<a class="st-btn2" href="{rel}{x["href"]}{x["sample"]}">{E(lab)}: free sample</a>' for x, lab in zip(xs, labs))
     return (f'<section class="block"><div class="fc"><div><h2>{E(title)}</h2><p>{E(text)}</p></div>'
             f'<div class="fc-acts">{acts}</div></div></section>')
 

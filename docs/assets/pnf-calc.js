@@ -883,7 +883,110 @@
     });
   }
 
-  var api = { stages: stages, leadCost: leadCost, payoutGap: payoutGap, seTax: seTax, hourly: hourly, service: service, serviceSqft: serviceSqft, dayRate: dayRate, cleaningSqft: cleaningSqft, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
+  // Trade season calculators (Todd's go, Oct 26, 2026: "Make all of them", coo/DECISIONS-2026-10-26.md). Every one prices
+  // from the owner's own numbers; the page defaults are examples, never market prices. Margin is a share of the quote, as in
+  // PNF.service: quote = cost / (1 - margin), rounded up to the next $5 where the page says so.
+  function quoteFrom(cost, margin, step) { return margin < 1 && cost > 0 ? ceilTo(cost / (1 - margin), step || 5) : 0; }
+
+  // Christmas light installation. Person-hours: roofline feet / feet a person hangs an hour, plus each bush or tree at its
+  // minutes. Takedown is a share of the install hours. Drive: every trip (install, takedown, service calls) carries the
+  // crew's time at the labor rate and the vehicle's miles. Lights the business owns are spread over the seasons they last,
+  // plus storage; lights the customer buys are charged in full this year, and next season's quote drops them.
+  function lightsQuote(i) {
+    var feet = Math.max(0, num(i.feet)), fph = Math.max(0, num(i.ftPerHour)), shrubs = Math.max(0, num(i.shrubs));
+    var shrubMin = Math.max(0, num(i.shrubMin)), people = Math.max(1, Math.round(num(i.people)) || 1), rate = Math.max(0, num(i.rate));
+    var matFt = Math.max(0, num(i.matPerFt)), matShrub = Math.max(0, num(i.shrubMat)), owned = Math.round(num(i.owner)) === 1 ? 0 : 1;
+    var seasons = Math.max(1, num(i.seasons) || 1), takeShare = Math.max(0, num(i.takedownPct)) / 100, storage = owned ? Math.max(0, num(i.storage)) : 0;
+    var trips = 2 + Math.max(0, Math.round(num(i.serviceCalls))), tripMin = Math.max(0, num(i.tripMin)), miles = Math.max(0, num(i.tripMiles));
+    var perMile = Math.max(0, num(i.perMile)), margin = Math.max(0, num(i.margin)) / 100;
+    var installHrs = (fph > 0 ? feet / fph : 0) + shrubs * shrubMin / 60, takedownHrs = installHrs * takeShare;
+    var labor = (installHrs + takedownHrs) * rate, driveHrs = trips * people * tripMin / 60;
+    var drive = driveHrs * rate + trips * miles * perMile;
+    var matAll = feet * matFt + shrubs * matShrub, materials = owned ? matAll / seasons : matAll;
+    var floor = labor + drive + materials + storage, quote = quoteFrom(floor, margin, 5);
+    var floor2 = labor + drive + storage, quote2 = owned ? quote : quoteFrom(floor2, margin, 5);
+    var has = feet > 0 || shrubs > 0 ? 1 : 0;
+    return { feet: feet, installHrs: installHrs, takedownHrs: takedownHrs, crewHrs: installHrs / people, labor: labor, drive: drive,
+      materials: materials, matAll: matAll, storage: storage, floor: has ? floor : 0, quote: has ? quote : 0, profit: has ? quote - floor : 0,
+      perFt: has && feet > 0 ? quote / feet : 0, floorPerFt: has && feet > 0 ? floor / feet : 0, trips: trips, owned: owned, bought: owned ? 0 : 1,
+      quote2: has ? quote2 : 0, profit2: has ? (owned ? quote - floor : quote2 - floor2) : 0, noRate: has && fph === 0 && feet > 0 ? 1 : 0,
+      none: has ? 0 : 1, ok: has && rate > 0 ? 1 : 0, noLabor: has && rate === 0 ? 1 : 0 };
+  }
+
+  // Snow removal, one stop on a route. A push costs the crew's time on site and the drive to the stop at the labor rate,
+  // the truck or equipment's cost per hour for the same time, and any salt or ice melt put down on that visit. A deep
+  // storm push uses its own minutes. A seasonal contract is the per-push quote times the pushes the owner expects, plus a
+  // cushion for a heavy winter; it stops paying once the season's pushes cost more than the contract.
+  function snowQuote(i) {
+    var pushMin = Math.max(0, num(i.pushMin)), deepMin = Math.max(0, num(i.deepMin)), people = Math.max(1, Math.round(num(i.people)) || 1);
+    var rate = Math.max(0, num(i.rate)), equip = Math.max(0, num(i.equip)), salt = Math.max(0, num(i.salt)), driveMin = Math.max(0, num(i.driveMin));
+    var margin = Math.max(0, num(i.margin)) / 100, events = Math.max(0, num(i.events)), cushion = Math.max(0, num(i.cushion)) / 100;
+    var months = Math.max(1, Math.round(num(i.months)) || 1);
+    var cost = function (min) { return min > 0 ? ((min + driveMin) / 60) * (people * rate + equip) + salt : 0; };
+    var c = cost(pushMin), cd = cost(deepMin), q = quoteFrom(c, margin, 5), qd = quoteFrom(cd, margin, 5);
+    var season = events > 0 && q > 0 ? ceilTo(q * events * (1 + cushion), 5) : 0;
+    var covers = c > 0 && season > 0 ? Math.floor(season / c + 1e-9) : 0;
+    return { cost: c, quote: q, profit: q - c, deepCost: cd, deepQuote: qd, deepProfit: qd - cd, deepOn: deepMin > 0 && pushMin > 0 ? 1 : 0,
+      season: season, monthly: season / months, covers: covers, seasonProfit: season - c * events, events: events,
+      hourly: pushMin + driveMin > 0 ? q / ((pushMin + driveMin) / 60) : 0, seasonOn: season > 0 ? 1 : 0, noEvents: q > 0 && events === 0 ? 1 : 0,
+      none: pushMin > 0 ? 0 : 1, noRate: pushMin > 0 && rate === 0 && equip === 0 ? 1 : 0 };
+  }
+
+  // Kitchen exhaust hood cleaning. Visits a year come from the NFPA 96 inspection frequency for the cooking type the owner
+  // picks (FREQ, sourced on the page). A visit costs crew hours (hoods x hours per hood, plus duct and fan hours) at the
+  // labor rate with any night premium, the crew's drive time, the vehicle's miles, and chemicals and supplies.
+  var HOOD_FREQ = [12, 4, 2, 1];
+  function hoodQuote(i) {
+    var type = Math.min(3, Math.max(0, Math.round(num(i.cooking)))), visits = HOOD_FREQ[type];
+    var hoods = Math.max(0, num(i.hoods)), perHood = Math.max(0, num(i.hoodHrs)), duct = Math.max(0, num(i.ductHrs));
+    var people = Math.max(1, Math.round(num(i.people)) || 1), rate = Math.max(0, num(i.rate)), night = Math.max(0, num(i.nightPct)) / 100;
+    var supplies = Math.max(0, num(i.supplies)), tripMin = Math.max(0, num(i.tripMin)), miles = Math.max(0, num(i.tripMiles));
+    var perMile = Math.max(0, num(i.perMile)), margin = Math.max(0, num(i.margin)) / 100;
+    var crewHrs = hoods * perHood + duct, labor = crewHrs * rate * (1 + night), drive = people * tripMin / 60 * rate + miles * perMile;
+    var has = crewHrs > 0 ? 1 : 0, cost = has ? labor + drive + supplies : 0, quote = quoteFrom(cost, margin, 5);
+    return { visits: visits, crewHrs: crewHrs, siteHrs: crewHrs / people, labor: labor, drive: drive, supplies: supplies, cost: cost,
+      quote: quote, profit: quote - cost, year: quote * visits, yearProfit: (quote - cost) * visits, perHood: hoods > 0 ? quote / hoods : 0,
+      monthly: quote * visits / 12, none: has ? 0 : 1, noRate: has && rate === 0 ? 1 : 0 };
+  }
+
+  // Missed calls. New-customer calls a week that nobody answers, the share of those callers who never call back (the
+  // owner's guess), and the share of answered new-customer calls that book give the jobs lost a month (52 / 12 weeks).
+  // Profit lost uses the owner's gross margin on a job. An answering option pays for itself when it would save more
+  // profit than it costs; the page never assumes it saves every call.
+  function missedCalls(i) {
+    var calls = Math.max(0, num(i.calls)), missed = Math.min(100, Math.max(0, num(i.missedPct))) / 100;
+    var gone = Math.min(100, Math.max(0, num(i.gonePct))) / 100, book = Math.min(100, Math.max(0, num(i.bookPct))) / 100;
+    var job = Math.max(0, num(i.avgJob)), gm = Math.min(100, Math.max(0, num(i.marginPct))) / 100, jobsPer = Math.max(1, num(i.jobsPerCustomer) || 1);
+    var cost = Math.max(0, num(i.answerCost)), wk = 52 / 12;
+    var missedMo = calls * missed * wk, lostCallers = missedMo * gone, lostJobs = lostCallers * book;
+    var lostRev = lostJobs * job * jobsPer, lostProfit = lostRev * gm, perJobProfit = job * gm;
+    var cover = cost > 0 && perJobProfit > 0 ? Math.ceil(cost / perJobProfit - 1e-9) : 0;
+    return { missedMo: missedMo, lostCallers: lostCallers, lostJobs: lostJobs, lostRev: lostRev, lostProfit: lostProfit, year: lostProfit * 12,
+      perJobProfit: perJobProfit, cost: cost, net: lostProfit - cost, cover: cover, costOn: cost > 0 ? 1 : 0,
+      pays: cost > 0 && lostProfit > cost ? 1 : 0, notPays: cost > 0 && lostProfit <= cost && lostProfit > 0 ? 1 : 0,
+      noMargin: job > 0 && gm === 0 ? 1 : 0, none: calls > 0 ? 0 : 1 };
+  }
+
+  // Price increase. Costs per job rise by a percent. Holding profit dollars adds the cost rise to the price; holding the
+  // margin keeps profit as the same share of a bigger price: new cost / (1 - margin now). With the owner's guess of clients
+  // lost to the raise, monthly profit is compared with today's; the most clients the raise can lose before profit falls
+  // below today's is 1 - today's profit / the raised profit at the same job count.
+  function priceRaise(i) {
+    var price = Math.max(0, num(i.price)), cost = Math.max(0, num(i.cost)), up = Math.max(0, num(i.costUpPct)) / 100;
+    var jobs = Math.max(0, num(i.jobs)), keep = Math.round(num(i.keep)) === 1 ? 1 : 0, lose = Math.min(100, Math.max(0, num(i.losePct))) / 100;
+    var newCost = cost * (1 + up), m = price > 0 ? (price - cost) / price : 0, ok = price > 0 && price > cost ? 1 : 0;
+    var keepDollars = price + (newCost - cost), keepMargin = ok && m < 1 ? newCost / (1 - m) : 0;
+    var newPrice = ok ? (keep ? keepMargin : keepDollars) : 0, rounded = ok ? ceilTo(newPrice, 1) : 0;
+    var profitNow = jobs * (price - cost), squeezed = jobs * (price - newCost), after = jobs * (1 - lose) * (rounded - newCost);
+    var raisedAll = jobs * (rounded - newCost), maxLose = ok && raisedAll > 0 && profitNow > 0 ? Math.max(0, 1 - profitNow / raisedAll) : 0;
+    return { newCost: newCost, marginNow: m, keepDollars: ok ? keepDollars : 0, keepMargin: keepMargin, newPrice: newPrice, rounded: rounded,
+      raise: ok ? rounded - price : 0, raisePct: ok && price > 0 ? (rounded - price) / price : 0, profitNow: profitNow, squeezed: squeezed,
+      squeeze: profitNow - squeezed, after: after, change: after - profitNow, maxLose: maxLose, jobsOn: jobs > 0 ? 1 : 0,
+      better: ok && jobs > 0 && after >= profitNow ? 1 : 0, worse: ok && jobs > 0 && after < profitNow ? 1 : 0,
+      under: price > 0 && price <= cost ? 1 : 0, none: price > 0 ? 0 : 1, noUp: ok && up === 0 ? 1 : 0 };
+  }
+
+  var api = { lightsQuote: lightsQuote, snowQuote: snowQuote, hoodQuote: hoodQuote, hoodFreq: HOOD_FREQ, missedCalls: missedCalls, priceRaise: priceRaise, stages: stages, leadCost: leadCost, payoutGap: payoutGap, seTax: seTax, hourly: hourly, service: service, serviceSqft: serviceSqft, dayRate: dayRate, cleaningSqft: cleaningSqft, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
     strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, profitLoss: profitLoss, cakeQuote: cakeQuote, unitCost: unitCost, handmadePrice: handmadePrice, markup: markup, breakEven: breakEven, choreSplit: choreSplit, clientMix: clientMix, cakeSizes: CAKE_SIZES, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after, parseNum: parseNum };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;

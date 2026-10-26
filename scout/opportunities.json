@@ -61,141 +61,6 @@
    "source": "https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/43nn-pn8j"
   },
   {
-   "slug": "nyc-liquor-license-applications",
-   "name": "NYC New Liquor License Applications",
-   "score": 82,
-   "factors": {
-    "buyer": 4,
-    "pay": 5,
-    "demand": 4,
-    "data": 5,
-    "license": 2,
-    "effort": 4,
-    "speed": 5,
-    "fit": 3
-   },
-   "notes": {
-    "license": "license unclear: the data and legal reviewer reads the terms"
-   },
-   "kills": [],
-   "status": "fix",
-   "why": [
-    "redteam: The row's likely January net is $25 (3 percent of goal) and assumes 0.8 payers from 100 emails against an observed 0 of 57."
-   ],
-   "money": {
-    "netPerMember": 33.17,
-    "emailsByJan": 100,
-    "payers": {
-     "low": 0.2,
-     "likely": 0.8,
-     "high": 2.0
-    },
-    "janNet": {
-     "low": 8,
-     "likely": 25,
-     "high": 66
-    },
-    "shareOfGoal": {
-     "low": 0.01,
-     "likely": 0.03,
-     "high": 0.07
-    }
-   },
-   "confidence": "medium",
-   "firstDollar": "2026-12-02",
-   "price": 39,
-   "buyer": "FDNY certified commercial kitchen exhaust cleaning companies serving NYC",
-   "source": "https://data.ny.gov/Economic-Development/Current-SLA-Pending-Licenses/f8i8-k2gm"
-  },
-  {
-   "slug": "fmcsa-insurance-cancellations",
-   "name": "Truck Insurance Cancellations by State",
-   "score": 81,
-   "factors": {
-    "buyer": 5,
-    "pay": 5,
-    "demand": 3,
-    "data": 4,
-    "license": 5,
-    "effort": 3,
-    "speed": 5,
-    "fit": 2
-   },
-   "notes": {},
-   "kills": [],
-   "status": "review",
-   "why": [],
-   "money": {
-    "netPerMember": 41.88,
-    "emailsByJan": 308,
-    "payers": {
-     "low": 0.8,
-     "likely": 2.3,
-     "high": 6.2
-    },
-    "janNet": {
-     "low": 32,
-     "likely": 97,
-     "high": 258
-    },
-    "shareOfGoal": {
-     "low": 0.03,
-     "likely": 0.1,
-     "high": 0.26
-    }
-   },
-   "confidence": "medium",
-   "firstDollar": "2026-12-06",
-   "price": 49,
-   "buyer": "Independent insurance agencies that write commercial truck insurance (a subset of the 37,000 US independent P&C agencies; the trucking share is not counted)",
-   "source": "https://data.transportation.gov/d/3uet-3z4i"
-  },
-  {
-   "slug": "osha-inspection-leads",
-   "name": "New OSHA Inspections and Citations by State",
-   "score": 71,
-   "factors": {
-    "buyer": 5,
-    "pay": 5,
-    "demand": 5,
-    "data": 0,
-    "license": 5,
-    "effort": 3,
-    "speed": 5,
-    "fit": 0
-   },
-   "notes": {
-    "data": "stale: last update 2026-06-03 for a daily source"
-   },
-   "kills": [],
-   "status": "review",
-   "why": [],
-   "money": {
-    "netPerMember": 24.46,
-    "emailsByJan": 297,
-    "payers": {
-     "low": 0.7,
-     "likely": 2.2,
-     "high": 5.9
-    },
-    "janNet": {
-     "low": 18,
-     "likely": 54,
-     "high": 145
-    },
-    "shareOfGoal": {
-     "low": 0.02,
-     "likely": 0.05,
-     "high": 0.14
-    }
-   },
-   "confidence": "medium",
-   "firstDollar": "2026-12-08",
-   "price": 29,
-   "buyer": "Independent occupational safety consulting firms",
-   "source": "https://catalog.data.gov/dataset/dol-enforcement-data-inspection"
-  },
-  {
    "slug": "ttb-new-alcohol-permits",
    "name": "New Federal Alcohol Permits Weekly",
    "score": 58,
@@ -377,6 +242,145 @@
    "price": 99,
    "buyer": "facade restoration and masonry contractors working on NYC buildings over six stories",
    "source": "https://data.cityofnewyork.us/Housing-Development/DOB-NOW-Safety-Facades-Compliance-Filings/xubg-57si"
+  },
+  {
+   "slug": "nyc-liquor-license-applications",
+   "name": "NYC New Liquor License Applications",
+   "score": 82,
+   "factors": {
+    "buyer": 4,
+    "pay": 5,
+    "demand": 4,
+    "data": 5,
+    "license": 2,
+    "effort": 4,
+    "speed": 5,
+    "fit": 3
+   },
+   "notes": {
+    "license": "license unclear: the data and legal reviewer reads the terms"
+   },
+   "kills": [],
+   "status": "dropped",
+   "why": [
+    "Dropped Oct 26 without a second review: the Oct 23 red team FAIL is on the offer itself (67 NYC hood cleaners on the FDNY list, one pass burns the pool, no field separates a new kitchen from an ownership change, likely January net $25), which no better source can fix. Demand PASS 3, data-legal PASS 4."
+   ],
+   "money": {
+    "netPerMember": 33.17,
+    "emailsByJan": 100,
+    "payers": {
+     "low": 0.2,
+     "likely": 0.8,
+     "high": 2.0
+    },
+    "janNet": {
+     "low": 8,
+     "likely": 25,
+     "high": 66
+    },
+    "shareOfGoal": {
+     "low": 0.01,
+     "likely": 0.03,
+     "high": 0.07
+    }
+   },
+   "confidence": "medium",
+   "firstDollar": "2026-12-02",
+   "price": 39,
+   "buyer": "FDNY certified commercial kitchen exhaust cleaning companies serving NYC",
+   "source": "https://data.ny.gov/Economic-Development/Current-SLA-Pending-Licenses/f8i8-k2gm"
+  },
+  {
+   "slug": "fmcsa-insurance-cancellations",
+   "name": "Truck Insurance Cancellations by State",
+   "score": 81,
+   "factors": {
+    "buyer": 5,
+    "pay": 5,
+    "demand": 3,
+    "data": 4,
+    "license": 5,
+    "effort": 3,
+    "speed": 5,
+    "fit": 2
+   },
+   "notes": {},
+   "kills": [],
+   "status": "dropped",
+   "why": [
+    "Dropped Oct 26 after demand FAIL 2 and red team FAIL 2 on the offer itself: a competitor sells real-time cancellation alerts with insurer, phone and email from $49 with a trial, a weekly file is stale when the carrier must refile within days, and Motus was reported in Sept 2026 to mark replaced filings wrongly, so cancelled-and-not-replaced cannot be promised. Data-legal PASS 4."
+   ],
+   "money": {
+    "netPerMember": 41.88,
+    "emailsByJan": 308,
+    "payers": {
+     "low": 0.8,
+     "likely": 2.3,
+     "high": 6.2
+    },
+    "janNet": {
+     "low": 32,
+     "likely": 97,
+     "high": 258
+    },
+    "shareOfGoal": {
+     "low": 0.03,
+     "likely": 0.1,
+     "high": 0.26
+    }
+   },
+   "confidence": "medium",
+   "firstDollar": "2026-12-06",
+   "price": 49,
+   "buyer": "Independent insurance agencies that write commercial truck insurance (a subset of the 37,000 US independent P&C agencies; the trucking share is not counted)",
+   "source": "https://data.transportation.gov/d/3uet-3z4i"
+  },
+  {
+   "slug": "osha-inspection-leads",
+   "name": "New OSHA Inspections and Citations by State",
+   "score": 71,
+   "factors": {
+    "buyer": 5,
+    "pay": 5,
+    "demand": 5,
+    "data": 0,
+    "license": 5,
+    "effort": 3,
+    "speed": 5,
+    "fit": 0
+   },
+   "notes": {
+    "data": "stale: last update 2026-06-03 for a daily source"
+   },
+   "kills": [],
+   "status": "dropped",
+   "why": [
+    "Dropped Oct 26 after demand FAIL 2 and red team FAIL 2 on the offer itself: OSHA's own search is free by state and date, an incumbent sells the same weekly state list at $29 with a free tier, an Apify actor sells the rows at $3.50 per 1,000, and citations post about 30 days after the employer gets them. Data-legal PASS 3."
+   ],
+   "money": {
+    "netPerMember": 24.46,
+    "emailsByJan": 297,
+    "payers": {
+     "low": 0.7,
+     "likely": 2.2,
+     "high": 5.9
+    },
+    "janNet": {
+     "low": 18,
+     "likely": 54,
+     "high": 145
+    },
+    "shareOfGoal": {
+     "low": 0.02,
+     "likely": 0.05,
+     "high": 0.14
+    }
+   },
+   "confidence": "medium",
+   "firstDollar": "2026-12-08",
+   "price": 29,
+   "buyer": "Independent occupational safety consulting firms",
+   "source": "https://catalog.data.gov/dataset/dol-enforcement-data-inspection"
   },
   {
    "slug": "chicago-storefront-sign-leads",

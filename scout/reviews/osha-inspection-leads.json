@@ -1,0 +1,49 @@
+{
+ "slug": "osha-inspection-leads",
+ "reviews": [
+  {
+   "reviewer": "demand",
+   "verdict": "FAIL",
+   "score": 2,
+   "round": 1,
+   "date": "2026-10-26",
+   "reasons": [
+    "OSHA's own Industry Search filters by state and inspection open date for free (https://www.osha.gov/help/industry-search).",
+    "An incumbent sells the identical offer at the identical price, $29 a month per state with weekly alerts and a free top-10 tier (https://citationatlas.com/states/utah/).",
+    "An Apify actor returns every newly opened inspection at $3.50 per 1,000 rows, aimed at safety consultants (https://apify.com/tagadanar/osha-inspection-leads).",
+    "The freshness promised is not what the sources show: the incumbent's Utah page shows no inspections opened in the last 14 days, and OSHA's establishment search says data through 05/07/2026 (https://www.osha.gov/pls/imis/establishment.html).",
+    "Volume is fine (69,989 inspections opened in 2025) but the 51,691 buyer count includes clinics and non-consultants (https://safetyrecord.org/year/2025)."
+   ],
+   "fixable": false
+  },
+  {
+   "reviewer": "data-legal",
+   "verdict": "PASS",
+   "score": 3,
+   "round": 1,
+   "date": "2026-10-26",
+   "reasons": [
+    "DOL materials are generally public domain and may be reproduced and distributed, with no implied DOL endorsement (https://www.dol.gov/general/aboutdol/copyright).",
+    "The DOL API needs a registered key that may not be shared, so registration would be Todd's under CONSTITUTION 1 (https://www.dataportal.dol.gov/pdf/dol-api-user-guide.pdf).",
+    "The file's lastUpdated of 2026-06-03 matches no source: the catalog shows modified Mar 27, 2026 with daily periodicity, while a site reading the DOL API shows records to Oct 24, 2026, so the data score of 0 rests on catalog metadata (https://catalog.data.gov/dataset/dol-enforcement-data-inspection, https://safetyrecord.org/year/2026).",
+    "Establishment names can be a sole proprietor's name, so the entity-suffix filter must run in code (https://safetyrecord.org/).",
+    "Naming a business with a citation is major under CONSTITUTION 2, so each publish goes to Todd first (https://www.dol.gov/general/aboutdol/copyright)."
+   ],
+   "fixable": true
+  },
+  {
+   "reviewer": "redteam",
+   "verdict": "FAIL",
+   "score": 2,
+   "round": 1,
+   "date": "2026-10-26",
+   "reasons": [
+    "The product is free elsewhere: 50,124 inspections opened in 2026 are browsable by state at no stated charge, and an Apify actor sells the same rows at $3.50 per 1,000 (https://safetyrecord.org/year/2026, https://apify.com/tagadanar/osha-inspection-leads).",
+    "The file's own math gives a likely $54 January net, 5 percent of the goal, at a conversion rate the live lists have not shown.",
+    "The buying moment is wrong: consultants are hired when a citation arrives, but OSHA posts citations about 30 days later, and fresh openings carry no violation yet (https://apify.com/pyralislabs/osha-violations-penalty-screener).",
+    "Doubted number: the 51,691 buyer count is an industry figure that includes non-consultants, and the $29 price anchor page could not be fetched (https://citationatlas.com/pricing/)."
+   ],
+   "fixable": false
+  }
+ ]
+}

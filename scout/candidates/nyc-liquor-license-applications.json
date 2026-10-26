@@ -2,7 +2,7 @@
  "schema": "pnf.opportunity.v1",
  "slug": "nyc-liquor-license-applications",
  "name": "NYC New Liquor License Applications",
- "status": "new",
+ "status": "dropped",
  "addedAt": "2026-10-23",
  "pitch": "Every bar, restaurant and caterer in the five boroughs with a liquor license application pending at the State Liquor Authority, for hood cleaning, linen, pest and kitchen service firms; they apply weeks before opening, before vendors are picked.",
  "categories": [
@@ -123,5 +123,6 @@
   "sameBuyerTypes": true
  },
  "overlap": "launches/chicago-new-business-licenses.md: same pre-opening signal and same buyer types in a second market. Pairs with nyc-restaurant-pest-citations (one NYC restaurant-vendor bundle).",
- "nextFix": "Next radar run, fix round for the red team FAIL (pool of 67 hood cleaners): count rosters for linen, POS and kitchen pest buyers before a second review; counted kitchen-relevant premises are 114 a month (demand reviewer, Oct 23)."
+ "nextFix": "Next radar run, fix round for the red team FAIL (pool of 67 hood cleaners): count rosters for linen, POS and kitchen pest buyers before a second review; counted kitchen-relevant premises are 114 a month (demand reviewer, Oct 23).",
+ "dropReason": "Dropped Oct 26 without a second review: the Oct 23 red team FAIL is on the offer itself (67 NYC hood cleaners on the FDNY list, one pass burns the pool, no field separates a new kitchen from an ownership change, likely January net $25), which no better source can fix. Demand PASS 3, data-legal PASS 4."
 }

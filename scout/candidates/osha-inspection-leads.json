@@ -2,7 +2,7 @@
  "schema": "pnf.opportunity.v1",
  "slug": "osha-inspection-leads",
  "name": "New OSHA Inspections and Citations by State",
- "status": "new",
+ "status": "dropped",
  "addedAt": "2026-10-23",
  "pitch": "Businesses OSHA opened an inspection on or cited this month in your state, for independent safety consultants who help employers answer citations and build safety programs",
  "categories": [
@@ -112,5 +112,6 @@
   "sameBuyerTypes": false
  },
  "overlap": "",
- "risks": "Todd must register a DOL API key (an account step). Citations post about a month after issuance, so the list is slower than the name suggests. Incumbent already at $29."
+ "risks": "Todd must register a DOL API key (an account step). Citations post about a month after issuance, so the list is slower than the name suggests. Incumbent already at $29.",
+ "dropReason": "Dropped Oct 26 after demand FAIL 2 and red team FAIL 2 on the offer itself: OSHA's own search is free by state and date, an incumbent sells the same weekly state list at $29 with a free tier, an Apify actor sells the rows at $3.50 per 1,000, and citations post about 30 days after the employer gets them. Data-legal PASS 3."
 }

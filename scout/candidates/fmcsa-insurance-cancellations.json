@@ -2,7 +2,7 @@
  "schema": "pnf.opportunity.v1",
  "slug": "fmcsa-insurance-cancellations",
  "name": "Truck Insurance Cancellations by State",
- "status": "new",
+ "status": "dropped",
  "addedAt": "2026-10-23",
  "pitch": "Trucking companies whose federal liability insurance filing was cancelled and not replaced this week, for truck insurance agencies: the carrier must refile within days or lose its authority to run",
  "categories": [
@@ -120,5 +120,6 @@
   "sameBuyerTypes": false
  },
  "overlap": "Shares source, buyer and reach with fmcsa-new-trucking-companies; best sold as a second tier of the same product",
- "risks": "Many cancellations are carriers leaving the business, not shopping for cover. Motus data quality was reported as messy after the May 2026 launch (Overdrive coverage via Fusable, Jun 15, 2026)."
+ "risks": "Many cancellations are carriers leaving the business, not shopping for cover. Motus data quality was reported as messy after the May 2026 launch (Overdrive coverage via Fusable, Jun 15, 2026).",
+ "dropReason": "Dropped Oct 26 after demand FAIL 2 and red team FAIL 2 on the offer itself: a competitor sells real-time cancellation alerts with insurer, phone and email from $49 with a trial, a weekly file is stale when the carrier must refile within days, and Motus was reported in Sept 2026 to mark replaced filings wrongly, so cancelled-and-not-replaced cannot be promised. Data-legal PASS 4."
 }

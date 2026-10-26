@@ -7,3 +7,4 @@ scores the answers: mentioned (names us) and cited (links us). ChatGPT, Perplexi
 | Date | Asked | Mentioned | Cited | Top cited domains |
 |---|---|---|---|---|
 | 2026-10-23 | 12 | 0 | 0 | apify.com, catalog.data.gov, cmmonline.com, data.cityofchicago.org |
+| 2026-10-26 | 12 | 0 | 0 | data.cityofchicago.org, chicago.gov, constructconnect.com, help.chicagocityscape.com |

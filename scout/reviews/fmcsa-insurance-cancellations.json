@@ -1,0 +1,49 @@
+{
+ "slug": "fmcsa-insurance-cancellations",
+ "reviews": [
+  {
+   "reviewer": "demand",
+   "verdict": "FAIL",
+   "score": 2,
+   "round": 1,
+   "date": "2026-10-26",
+   "reasons": [
+    "A direct competitor sells this list with more in it: a Hot Cancellations feed with the cancelling insurer, effective date, owner, phone, email and fleet size, listed from $49 flat with a free trial, so an agency would not pay the same $49 for a weekly list without the phone and email (https://www.g2.com/sellers/truckr, https://hunted.space/product/truckr, https://www.capterra.ca/software/1216511/TRUCKR).",
+    "The price comparables check out but cancellation data is already an add-on inside products an agency would buy anyway: $39 one state with filing alerts and a 7-day trial, $49 and $99 tiers with renewals, $79 to $299 with insurance lapse as one stage, insurance lists from $149 per state (https://newtruckingcompanies.com/compare/).",
+    "The proof holds but is thin: the category leader shows about 20 paying subscriptions, proof agents pay for FMCSA-derived leads but a small market to enter as a late copy (https://trustmrr.com/startup/truckerdb).",
+    "The list is unreliable now: the trade press reported Sept 8, 2026 that Motus fails to cancel older filings when a replacement takes effect and in one case marked the wrong filing cancelled, so a cancelled-and-not-replaced feed will include covered carriers (https://www.ccjdigital.com/regulations/safety-compliance/article/15834317/how-motus-data-errors-threaten-fleet-compliance).",
+    "The 2,112 September count could not be rechecked (data.transportation.gov blocked for this session); the 37,000 buyer count is all independent agencies with no trucking split, and the reach page lists 30 providers, mostly national carriers, without contact lines (https://www.insurancejournal.com/news/national/2026/09/24/886639.htm, https://numeo.ai/blog/top-30-commercial-truck-insurance-agencies)."
+   ],
+   "fixable": true
+  },
+  {
+   "reviewer": "data-legal",
+   "verdict": "PASS",
+   "score": 4,
+   "round": 1,
+   "date": "2026-10-26",
+   "reasons": [
+    "FMCSA shares its files at no charge to the public with no words on resale either way, so repackaging is unrestricted rather than expressly granted (https://www.fmcsa.dot.gov/registration/fmcsa-data-dissemination-program).",
+    "The catalog record lists rights as public with no license field; the census record carries unknown-license, so the footing is that these are federal records published for the public (https://catalog.data.gov/dataset/motus-inshist-all-with-history).",
+    "The cadence is real: the catalog shows the dataset last updated Oct 25, 2026 and FMCSA says Motus files refresh daily, so weekly is conservative (https://catalog.data.gov/dataset/motus-inshist-all-with-history).",
+    "The census join brings legal and DBA names, phone, cell and email; a sole proprietor's legal name is a person, so the entity-suffix filter and the field drop must run as a code gate in tools/ (https://catalog.data.gov/dataset/motus-inshist-all-with-history).",
+    "No never-sell category is touched, but naming a business with a failed record is major under CONSTITUTION 2, and the dataset id changed in June 2026, confirming apiStable false (https://catalog.data.gov/dataset/inshist-all-with-history)."
+   ],
+   "fixable": true
+  },
+  {
+   "reviewer": "redteam",
+   "verdict": "FAIL",
+   "score": 2,
+   "round": 1,
+   "date": "2026-10-26",
+   "reasons": [
+    "Funded competitors already sell this in real time (a Hot Cancellations feed for all 50 states, and an Immediate Insurance Need stream with a free trial), and the carrier must refile within days, so a weekly file is mostly stale on arrival (https://hunted.space/product/truckr, https://www.wboc.com/online_features/press_releases/growing-usa-trucking-insurance-lead-platform-helping-agents-quote-faster/article_ef0a260a-66e9-5238-88b8-707d7f8d6e68.html).",
+    "The source is not trustworthy enough to sell: a carrier compliance vendor stopped using FMCSA insurance updates on May 14, 2026 over incomplete Motus data, and cancellation by replacement was reported broken on Sept 8, 2026, so a CANCEL filter cannot promise cancelled and not replaced (https://status.highway.com/incidents/0rgvgd2sy2xv, https://www.ccjdigital.com/regulations/safety-compliance/article/15834317/how-motus-data-errors-threaten-fleet-compliance).",
+    "Even on its own numbers the likely January net is $97, about 10 percent of the goal, at a conversion rate the 4 live lists have not shown (0 replies).",
+    "Doubted number: the proof cites $1,630 MRR on 20 subscriptions; the page on Oct 25, 2026 shows $1,581 on 19, and it proves daily new-carrier lists, not cancellation lists (https://trustmrr.com/startup/truckerdb?metric=mrr)."
+   ],
+   "fixable": false
+  }
+ ]
+}

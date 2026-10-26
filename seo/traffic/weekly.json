@@ -1,7 +1,7 @@
 {
  "ok": false,
  "reason": "Waiting for the Cloudflare key (the CF_ANALYTICS_TOKEN repo secret).",
- "fetchedAt": "2026-10-26T11:09:16-05:00",
+ "fetchedAt": "2026-10-26T11:15:01-05:00",
  "week": {
   "from": "2026-10-19",
   "to": "2026-10-25"

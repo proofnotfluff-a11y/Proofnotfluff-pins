@@ -3468,7 +3468,13 @@
     ]
    ],
    "sources": "City of Chicago Data Portal, Building Permits.",
-   "checkout": "https://proofnotfluff.gumroad.com/l/vpnaoq?utm_source=proofnotfluff&utm_medium=site&utm_campaign=chicago-leads"
+   "checkout": "https://proofnotfluff.gumroad.com/l/vpnaoq?utm_source=proofnotfluff&utm_medium=site&utm_campaign=chicago-leads",
+   "areaSeats": {
+    "price": "149",
+    "seats": 6,
+    "checkout": {},
+    "decided": "Todd, live chat, Oct 26, 2026 (coo/DECISIONS-2026-10-26.md). One Gumroad product per area, sales limit 1; each link goes in checkout.<slug> only on Todd's go."
+   }
   },
   {
    "slug": "austin-construction-cleaning-leads",

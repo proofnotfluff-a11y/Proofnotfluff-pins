@@ -2097,6 +2097,13 @@ def leads_page_html(p):
              f"then it is ${price} a month until you cancel. Cancel before day {trial} and you pay nothing."] if trial else [])
         faq.append(["Can I try it before I pay?", "Yes. " + " ".join(ways).replace("Yes. Or start", "Yes. Start")])
     crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Shop", "shop/"), (p["h1"], None)])
+    # area seats (Todd, Oct 26, 2026; tools/area_site.py): shown only once a seat has its checkout, or in a preview build
+    seats_block = ""
+    if p.get("areaSeats"):
+        import area_site
+        sp = area_site.seats_spec(p)
+        if sp:
+            seats_block = f'<style>{area_site.SEATS_CSS}</style>' + area_site.seats_html(p, sp, rel)
     # store v2 (design review, Oct 24, 2026): the members' app beside the promise on wide screens, so the product is on the
     # first screen; a WebP copy keeps it light, loaded first because it is the largest thing above the fold
     heroshot = ""
@@ -2105,7 +2112,7 @@ def leads_page_html(p):
         heroshot = (f'<figure class="ld-heroshot"><img src="{rel}{wp}" width="{ww}" height="{wh}" fetchpriority="high" decoding="async" alt="{E(alt1)}">'
                     '<figcaption>A screen from the members\' app; its counts are from the week it was captured</figcaption></figure>')
     body = (f'{crumb}<div class="ld-herogrid{" has-shot" if heroshot else ""}"><div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{split_lede(lede)[0]}</p>{hero_act}</div>{heroshot}</div>{tiles}{lede_rest(split_lede(lede)[1])}{answer_box(p) if is_live(p) else ""}'
-            f'{near_html}{gc_html}{big_html}{method}{shots}{cta_html}{guides_block(p["slug"], rel=rel)}{faq_block(faq)}')
+            f'{near_html}{gc_html}{big_html}{seats_block}{method}{shots}{cta_html}{guides_block(p["slug"], rel=rel)}{faq_block(faq)}')
     body = otp_bar(body)
     script = r"""<script>(function(){var list=document.getElementById('ldList');if(list){
 var cards=[].slice.call(list.querySelectorAll('.ld-proj')),chips=[].slice.call(document.querySelectorAll('.ld-chip')),

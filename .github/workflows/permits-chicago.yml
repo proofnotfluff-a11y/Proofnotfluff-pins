@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["tools/permits_chicago.py", ".github/workflows/permits-chicago.yml", "site/area_seats.json"]
+    paths: ["tools/permits_chicago.py", "tools/area_seats.py", ".github/workflows/permits-chicago.yml", "site/area_seats.json"]
   schedule:
     - cron: "20 11 * * 1"   # Mondays, about 6:20 am Chicago time in daylight time
 permissions:

@@ -12,3 +12,9 @@
 - [stated] Todd: "Make all of them" (to the Oct 26 Trends brainstorm, doc claude.ai/artifact/7gKKssDBPgHzGjDfx3GZyV; notes research_notes/trends-2026-10-26.md).
 - So, the go covers: the Chicago rat and mouse complaint tracker (new page type), and free calculators for snow removal pricing, hood cleaning price and NFPA 96 frequency, missed-call cost, price increase, and Christmas light installation pricing; plus the seven question pages in the doc's content calendar, added to the question-pages backlog. Each page still publishes only after every gate passes (seo/STORE.md, the Oct 24 calculator gate set); a page that fails a gate stays a draft and goes back to Todd.
 - Christmas lights first (its search peaks in November), then the rodent tracker, snow, hood, missed-call, price increase.
+
+## Area seats go, 11:49 am
+- [stated] Todd: "2. go 3. approve. 4. whatever you recommend" (to the Oct 26 hand-over checklist).
+- So: the area seat offer goes ahead as proposed ($149 a month per area, 6 seats, the 5 newest projects free by reply, the $29 list kept for areas nobody holds). The six S1-AREA-SEAT email templates are approved as worded; they are not added to the standing send rule, so batches still come to Todd. Refund: the session recommended yes (0 $29 members today, so it costs nothing now and keeps the shrink honest), so the one-month refund sentence stays in the $29 Terms (HELD_AREAS).
+- DKIM check done 11:47 am: test sends from hello@proofnotfluff.com and sales@getproofnotfluff.com to a separate Gmail both landed in the inbox with SPF, DKIM and DMARC PASS; both Admin consoles say "Authenticating email with DKIM". Delivery is not why there are 0 replies.
+- Still before anything sells: the AREA_SEAT_KEY secret (Todd), six Gumroad products (Todd), the $29 line on Gumroad (Todd), then the checkout links into site/pages.json. Outreach starts only once the offer is on the page.

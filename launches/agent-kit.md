@@ -26,15 +26,24 @@ Verdict: FAIL against the case's Oct 23 evidence. The worry is real; paying for 
 - Price: $79 one time, the founding price for the waitlist. Bottom of the $79 to $99 band because the closest safety products sell at $19 to $59 with no sales shown, and ClaudeKit's $99 buys a much broader framework.
 - Inside (planned; the page says it is in build): the layered layout with templates (router, handoff, constitution, decisions log), the constitution template (money, accounts, sending, deleting, secrets, stop words), the preflight and gates (context budget, send approval, secrets and personal-data scan, delete guard), planted-failure tests for every gate, Claude Code permission presets and a blocking hook, one scheduled job end to end, a setup guide.
 - Not for: people who want a hard sandbox, who watch every step, who want spending or sending without review, who need a certification, or who will not edit a rules file.
-- Free lite version (the proof): launches/agent-kit/lite.tar.gz, MIT. Router, handoff, constitution and decisions templates, an example skill, the preflight, the context gate (its budget set to 8,192 bytes so it binds below the three caps) and 9 planted-failure tests. Python 3.8 or later, nothing to install. Leak scan: 0 findings (see gates).
+- Free lite version (the proof): launches/agent-kit/lite.tar.gz, MIT, ProofNotFluff LLC. Router (two required lines checked word for word), handoff, constitution and decisions templates, an example skill, the preflight, the context gate (caps on the router, handoff, rules and each skill; a 10,240-byte budget below the sum of the caps) and 26 planted-failure tests, every size limit tested at and one byte under the limit. Python 3.8 or later, nothing to install.
 - Credit: the Interpretable Context Methodology, Jake Van Clief and David McDermott, MIT, arXiv 2603.16021, https://github.com/RinDig/Interpretable-Context-Methodology-ICM (title, authors and license read from the paper this run; the GitHub page could not be opened).
 
 ## 3. The draft page
 - docs/unattended-agent-kit/ from site/pages.json kind "agentkit" (tools/agentkit_site.py, its --selftest reruns the lite kit and fails if a terminal line on the page no longer matches). Draft: noindex, off the sitemap, index, hub and search, linked from nowhere.
-- Waitlist: shows "Waitlist opens soon" until the spec has kitForm (Todd makes the Kit form). Lite link shows only once the spec has liteUrl.
+- Waitlist: shows "Waitlist opens soon" (and the hero points at the proof) until the spec has kitForm. Lite link shows only once the spec has liteUrl.
 
-## Gates
-(filled as each verdict comes in)
+### Kit form (Todd makes it; then the session puts its number in site/pages.json "kitForm")
+Grow, Landing Pages & Forms, Create new, Form, Inline, any template. Name: Unattended Agent Kit waitlist. Settings, Incentive: "Send incentive email" ON (double opt-in). Subject: Confirm your spot on the agent kit waitlist. Button: Confirm my spot. After confirming, redirect to https://proofnotfluff.com/unattended-agent-kit/. No sequence (the page promises one email). Sender ProofNotFluff, footer address the LLC mailbox. Copy the number from the form's address bar.
+
+## Gates (Oct 26)
+- Holdout: round 1 BLOCKERS 2 (rules line named twice; rules file uncapped), fixed. Round 2 (fresh) BLOCKERS 4 (substring router check, unplanted checks, full kit in present tense, README step), fixed. Round 3 (fresh) BLOCKERS 2 (boundary and negation gaps), fixed by rebuilding the router check as two required lines word for word and planting every limit at and under it; verified by 34 of 34 mutations of the gate and router caught (scratchpad script), not by a fourth checker. Panels match real runs byte for byte (selftest).
+- Legal desk: CLEARED WITH FIXES, all 13 applied (wording, LLC copyright, Anthropic trademark line, "adapted from" credit, Kit consent line). Before any checkout: final contents, delivery, a paid license that sits with the MIT lite files, a kit refund line, Terms clauses, support contact (Legal item 7).
+- Design director: round 1 FAIL 4.57, fixes applied; round 2 (fresh) FAIL 4.29, fixes applied (cards, kit list box with price and button, hero folders, opaque page bar, dark band, shorter lede). Two FAILs: per DESIGN_DIRECTOR.md this goes to Todd, not a third loop. Not rejudged after round 2 fixes.
+- Accessibility: axe-core 4.10.2 WCAG 2.1 AA, 0 violations on 8 runs (390 and 1280, light and dark, with and without the form); no horizontal scroll at 390; sticky bar hidden from screen readers and out of tab order when off.
+- Leak scan: the lite kit, 0 findings on the repo's .gitleaks.toml rules, the secret patterns, a private-term list and dashes (local Python run; the gitleaks binary would not build here, 5 of 5 planted leaks caught by the scan); CI Leak scan (gitleaks) PASS on every push.
+- check_repo: 0 errors on every push. voice_lint 0 tells. agentkit_site --selftest PASS.
+- Not mine, seen on the way: CI Site links fails on 6 links from the six area-seat members pages to /chicago-construction-cleaning-leads/#areas (the anchor appears once the seat offer is on that page).
 
 ## 4. Channels (inside our rules; nothing runs before Todd's go on the page)
 - No word needed after the page go: question pages on proofnotfluff.com for the questions buyers search, each through the question-page gates, each ending on the waitlist. First five: how to run Claude Code on a schedule safely; how to stop Claude Code deleting files; why a scheduled claude -p run bills your API account and how to cap it; CLAUDE.md rules ignored, and what enforces them; what --dangerously-skip-permissions turns off.

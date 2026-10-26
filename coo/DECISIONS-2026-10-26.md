@@ -22,3 +22,4 @@
 ## Agent kit reopened, 12:38 pm (Kimi research chat)
 - [stated] Todd: "Let's build number one. Write the prompt" (to option 1, a kit for running AI agents unattended, the guardrails kit parked Oct 23 in coo/OPPORTUNITIES.md).
 - So: the parked case reopens as a side test next to the area seats. First step is the smallest test from the parked case (a one-page offer at $79 to $99 and a waitlist, before the build). A new product, page type and price, so the offer page and price still come to Todd before anything is published. Kickoff prompt given in chat; the build chat records its own decisions.
+- Build chat (no new words from Todd): step 1 done as drafts only. Evidence FAIL against Oct 23 (launches/agent-kit.md); offer proposed at $79 one time with a free MIT lite version; draft page docs/unattended-agent-kit/ (noindex, unlinked); kill rule proposed in coo/OPPORTUNITIES.md. Waiting on Todd: the offer, price and kill rule, the Kit form, the lite repo, and the go.

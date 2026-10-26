@@ -1,6 +1,6 @@
 {
  "schema": "pnf.gc_lead.v1",
- "generatedAt": "2026-10-26T15:35:43Z",
+ "generatedAt": "2026-10-26T16:23:04Z",
  "window": {
   "issuedSince": "2024-10-26",
   "signalLookbackSince": "2026-06-28",

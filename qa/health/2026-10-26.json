@@ -1,0 +1,143 @@
+{
+ "schema": "pnf.health.v1",
+ "date": "2026-10-26",
+ "products": [
+  {
+   "slug": "chicago-construction-cleaning-leads",
+   "source": {
+    "result": "PASS",
+    "http": 200,
+    "missingColumns": [],
+    "rowsUpdatedAt": "2026-10-26"
+   },
+   "fresh": {
+    "result": "PASS",
+    "fetchedAt": "2026-10-26",
+    "ageDays": 0
+   },
+   "holdout": {
+    "result": "PASS",
+    "sampled": 5,
+    "found": 5,
+    "sameDate": 5,
+    "http": {
+     "200": 5
+    }
+   },
+   "links": {
+    "result": "PASS",
+    "page": 200,
+    "members": 200,
+    "checkout": 200,
+    "pageSaysTrial": true,
+    "checkoutOnPage": true,
+    "priceOnCheckout": true,
+    "trialOnGumroad": "confirmed"
+   },
+   "result": "PASS"
+  },
+  {
+   "slug": "austin-construction-cleaning-leads",
+   "source": {
+    "result": "PASS",
+    "http": 200,
+    "missingColumns": [],
+    "rowsUpdatedAt": "2026-10-25"
+   },
+   "fresh": {
+    "result": "PASS",
+    "fetchedAt": "2026-10-19",
+    "ageDays": 7
+   },
+   "holdout": {
+    "result": "PASS",
+    "sampled": 5,
+    "found": 5,
+    "sameDate": 5,
+    "http": {
+     "200": 5
+    }
+   },
+   "links": {
+    "result": "PASS",
+    "page": 200,
+    "members": 200,
+    "checkout": 200,
+    "pageSaysTrial": true,
+    "checkoutOnPage": true,
+    "priceOnCheckout": true,
+    "trialOnGumroad": "confirmed"
+   },
+   "result": "PASS"
+  },
+  {
+   "slug": "chicago-restaurant-inspection-leads",
+   "source": {
+    "result": "PASS",
+    "http": 200,
+    "missingColumns": [],
+    "rowsUpdatedAt": "2026-10-25"
+   },
+   "fresh": {
+    "result": "PASS",
+    "fetchedAt": "2026-10-26",
+    "ageDays": 0
+   },
+   "holdout": {
+    "result": "PASS",
+    "sampled": 5,
+    "found": 5,
+    "sameDate": 5,
+    "http": {
+     "200": 5
+    }
+   },
+   "links": {
+    "result": "PASS",
+    "page": 200,
+    "members": 200,
+    "checkout": 200,
+    "pageSaysTrial": true,
+    "checkoutOnPage": true,
+    "priceOnCheckout": true,
+    "trialOnGumroad": "confirmed"
+   },
+   "result": "PASS"
+  },
+  {
+   "slug": "chicago-new-business-licenses",
+   "source": {
+    "result": "PASS",
+    "http": 200,
+    "missingColumns": [],
+    "rowsUpdatedAt": "2026-10-24"
+   },
+   "fresh": {
+    "result": "PASS",
+    "fetchedAt": "2026-10-26",
+    "ageDays": 0
+   },
+   "holdout": {
+    "result": "PASS",
+    "sampled": 5,
+    "found": 5,
+    "sameDate": 5,
+    "http": {
+     "200": 5
+    }
+   },
+   "links": {
+    "result": "PASS",
+    "page": 200,
+    "members": 200,
+    "checkout": 200,
+    "pageSaysTrial": true,
+    "checkoutOnPage": true,
+    "priceOnCheckout": true,
+    "trialOnGumroad": "confirmed"
+   },
+   "result": "PASS"
+  }
+ ],
+ "result": "PASS"
+}

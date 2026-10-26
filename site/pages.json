@@ -6184,7 +6184,7 @@
    "desc": "Run Claude Code on a schedule with rules it reads first and checks that stop the run when one fails. Free lite version; the full kit is planned at $79 one time. Waitlist first.",
    "eyebrow": "For Claude Code jobs that run on a schedule",
    "h1": "Let your agent run while you are away. Keep your rules in charge.",
-   "lede": "A starter system for coding agents that run unattended: a rulebook every run reads first, one job per skill, and a preflight that stops the run when a check fails. Each check comes with tests that break it on purpose, so you can see it still works.",
+   "lede": "A starter system for coding agents that run unattended: rules every run reads first, one job per skill, and a preflight that stops the run when a check fails.",
    "heroCta": "Join the waitlist",
    "heroCta2": "See it stop a run",
    "heroNote": "$79 one time when it opens. Waitlist first, nothing to pay today.",
@@ -6294,16 +6294,17 @@
      "ops/DECISIONS.md      your words, dated",
      ".claude/skills/<job>  one job each",
      "tools/preflight.py    runs first"
-    ]
+    ],
+    "treeCap": "What you get: the folders"
    },
    "facts": {
     "title": "Built from a system that runs daily",
     "text": "This is the pattern ProofNotFluff uses for its own jobs, and its router starts every run with the preflight. The kit is a clean, generic copy with none of our data or business rules in it.",
     "tiles": [
      [
-      "Jobs, one skill each",
+      "Jobs",
       "14",
-      "each with Inputs, Process, Outputs"
+      "one skill each, with Inputs, Process, Outputs"
      ],
      [
       "Gate test cases",
@@ -6326,7 +6327,7 @@
    "waitlist": {
     "title": "Join the waitlist",
     "text": "One email when the kit opens, with the price and the free lite version. Nothing else.",
-    "price": "$79 one time for people on the list. Nothing to pay today.",
+    "price": "$79 one time when it opens. Nothing to pay today.",
     "button": "Join the waitlist",
     "fine": "One email when the kit opens. Check your inbox to confirm. Unsubscribe in one click. Stored with Kit (kit.com), our email provider, and never sold."
    },

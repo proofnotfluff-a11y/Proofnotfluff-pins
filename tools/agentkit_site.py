@@ -28,9 +28,20 @@ CSS = ("<style>"
        ".ak-term.ok figcaption i{background:#6cc0b6}.ak-term.stop figcaption i{background:#ef8c6b}"
        ".ak-term pre{margin:0;padding:14px;overflow-x:auto;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#e8ebf0;white-space:pre-wrap;overflow-wrap:normal}"
        ".ak-term pre .c{display:block;white-space:nowrap}@media(min-width:900px){.ak-term pre{font-size:12px}}"
-       ".ld-hero .eyebrow{text-wrap:balance}"
-       ".ak-hero{display:grid;gap:28px;align-items:center}.ak-hero .ak-term{display:none}"
-       "@media(min-width:1000px){.ak-hero{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)}.ak-hero .ak-term{display:block}}"
+       ".ld-hero .eyebrow,.ak-hero h1{text-wrap:balance}.ak-hero h1{margin-bottom:20px}"
+       ".ak-side{display:grid;gap:12px;min-width:0}.ak-side .ak-term{display:none}@media(min-width:1000px){.ak-side .ak-term{display:block}}"
+       ".ak-side .ak-tree{margin:0}.ak-side figure{margin:0}.ak-side .ak-files figcaption{font-size:13px;font-weight:700;color:var(--muted);margin:0 0 6px}"
+       ".ak-card h3,.ak-steps h3{color:var(--ink);font-size:18px;margin-bottom:8px}"
+       ".ak-box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 20px 18px;margin-top:12px}"
+       "@media(min-width:900px){.ak-box .ak-list.cols{columns:2;column-gap:32px}.ak-box .ak-list.cols li{break-inside:avoid}}"
+       ".ak-boxfoot{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:14px;padding-top:14px;border-top:1px solid var(--rule)}"
+       ".block .ak-boxfoot p{margin:0;font-weight:700;color:var(--ink)}"
+       ".ak-two>div{display:flex;flex-direction:column}.ak-two .asof{margin-top:auto;padding-top:14px}"
+       ".ak-page .otp{background:var(--canvas);-webkit-backdrop-filter:none;backdrop-filter:none;border-bottom:1px solid var(--line)}"
+       ".ak-page .rl-act{margin:24px 0 0}"
+       "@media(prefers-color-scheme:dark){.ak-wait .cta{background:var(--card);border-color:var(--line)}}"
+       ".ak-hero{display:grid;gap:28px;align-items:center}"
+       "@media(min-width:1000px){.ak-hero{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)}}"
        ".ak-hero .ld-heroact .st-btn2{min-height:52px;padding:0 20px;border-radius:12px;font-size:17px}"
        ".ak-tree{margin:12px 0 0;padding:12px 14px;border-radius:10px;background:var(--canvas2);border:1px solid var(--line);"
        "font:12.5px/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink);white-space:pre;overflow-x:auto}"
@@ -124,7 +135,9 @@ def page_html(p):
     hero_term = next(t for t in p["proof"]["terms"] if t["key"] == p["proof"].get("heroKey", "norules"))
     hero = (f'<div class="ld-hero ak-hero"><div><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{E(p["lede"])}</p>'
             f'<div class="ld-heroact" id="akHeroCta">{acts}</div>'
-            f'<p class="ak-note">{E(p["heroNote"])}</p></div>{term(hero_term, E, hidden=True)}</div>')
+            f'<p class="ak-note">{E(p["heroNote"])}</p></div>'
+            f'<div class="ak-side">{term(hero_term, E, hidden=True)}'
+            f'<figure class="ak-files" aria-hidden="true"><figcaption>{E(p["lite"]["treeCap"])}</figcaption><pre class="ak-tree">{E(chr(10).join(p["lite"]["tree"]))}</pre></figure></div></div>')
     otp = ('<nav class="otp" aria-label="On this page"><div class="otp-in">'
            + "".join(f'<a href="#{s}">{E(l)}</a>' for s, l in p["otp"]) + '</div></nav>')
     proof = (f'<section class="block" id="proof"><h2>{E(p["proof"]["title"])}</h2><p>{E(p["proof"]["text"])}</p>'
@@ -134,8 +147,10 @@ def page_html(p):
              + "".join(f'<li class="ak-card"><h3>{E(h)}</h3><p>{E(t)}</p></li>' for h, t in p["fears"]["items"]) + '</ul></section>')
     how = (f'<section class="block" id="how"><h2>{E(p["how"]["title"])}</h2><ol class="ak-steps">'
            + "".join(f'<li><h3>{E(h)}</h3><p>{E(t)}</p></li>' for h, t in p["how"]["steps"]) + '</ol></section>')
-    inside = (f'<section class="block" id="inside"><h2>{E(p["inside"]["title"])}</h2><ul class="ak-list">'
-              + "".join(f"<li>{E(x)}</li>" for x in p["inside"]["items"]) + f'</ul><p class="asof">{E(p["inside"]["note"])}</p></section>')
+    foot_act = (f'<a class="btn" href="#waitlist">{E(p["heroCta"])}</a>' if open_ else "")
+    inside = (f'<section class="block" id="inside"><h2>{E(p["inside"]["title"])}</h2><div class="ak-box"><ul class="ak-list cols">'
+              + "".join(f"<li>{E(x)}</li>" for x in p["inside"]["items"])
+              + f'</ul><div class="ak-boxfoot"><p>{E(p["bar"])}</p>{foot_act}</div><p class="asof">{E(p["inside"]["note"])}</p></div></section>')
     lite = p["lite"]
     lite_act = (f'<p class="ld-buybtn"><a class="st-btn2" href="{E(p["liteUrl"])}" rel="noopener">{E(lite["button"])}</a></p>' if p.get("liteUrl")
                 else f'<p class="asof">{E(lite["pending"])}</p>')
@@ -146,8 +161,8 @@ def page_html(p):
            f'<div><h2>{E(facts["title"])}</h2><p>{E(facts["text"])}</p><div class="ak-facts">'
            + "".join(f'<div class="tile"><div class="lab">{E(a)}</div><div class="val">{E(b)}</div><div class="sub">{E(c)}</div></div>' for a, b, c in facts["tiles"])
            + f'</div><p class="asof">{E(facts["asof"])}</p></div></div></section>')
-    notfor = (f'<section class="block" id="notfor"><h2>{E(p["notFor"]["title"])}</h2><ul class="ak-list">'
-              + "".join(f"<li>{E(x)}</li>" for x in p["notFor"]["items"]) + '</ul></section>')
+    notfor = (f'<section class="block" id="notfor"><h2>{E(p["notFor"]["title"])}</h2><div class="ak-box"><ul class="ak-list">'
+              + "".join(f"<li>{E(x)}</li>" for x in p["notFor"]["items"]) + '</ul></div></section>')
     wait = (f'<section class="block ak-wait" id="waitlist"><div class="cta ld-cta"><div><h2>{E(w["title"])}</h2><p>{E(w["text"])}</p>'
             f'<p class="ak-price">{E(w["price"])}</p>{form}</div></div></section>')
     body = (crumb + hero + otp + proof + fears + how + inside + two + notfor + wait + M.faq_block(p["faq"])

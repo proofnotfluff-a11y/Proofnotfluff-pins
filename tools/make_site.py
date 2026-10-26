@@ -3135,6 +3135,34 @@ def shop_seat_row(rel):
             f'<div class="sh-gets"><h3 class="sr">What you get</h3><ul class="checks">{"".join(f"<li>{E(g)}</li>" for g in gets)}</ul></div></article>')
 
 
+def shop_area_row(rel):
+    """The Chicago cleaning area seats as a shop row (Todd, Oct 26, 2026), in the offer's own cleared words
+    (tools/area_site.py); its button opens the offer on the cleaning page (#areas), where the map, terms and the six
+    checkouts sit, so the shop adds no new checkout. Shown only while a seat has its checkout in site/pages.json."""
+    p = _pages_by_slug().get("chicago-construction-cleaning-leads")
+    spec = (p or {}).get("areaSeats") or {}
+    co = spec.get("checkout") or {}
+    if not p or not any(co.values()):
+        return ""
+    import area_seats as A
+    cfg = A.load()
+    cap = int(spec.get("seats") or len(cfg["territories"]))
+    left = sum(1 for t in cfg["territories"] if t["slug"] not in set(cfg.get("held", [])) and co.get(t["slug"]))
+    price = E(str(spec["price"]))
+    gets = ["Every open apartment and commercial project of $500,000 or more in your area with a business as general contractor, "
+            "closest to a final clean first, with the builder on each and the builder's office phone or email where their own website lists one.",
+            "New permits each Monday, in a members' app with a map and in an Excel file, plus the pitch kit.",
+            "Your area only, and only you. The permits are public City of Chicago records that anyone can read on the City's site; "
+            "exclusive means we sell your area's list to you alone."]
+    return (f'<article class="sh-item" data-aud="trade" data-key="chicago-cleaning-area-seats"><div class="sh-main"><p class="st-tag">Chicago · Construction cleaning, one company per area</p>'
+            f'<h2>Chicago Cleaning Leads: Area Seats</h2><p>One cleaning company per area of Chicago. Hold an area and we sell its list to you and to no other company. '
+            f'{left} of {cap} areas open.</p></div>'
+            f'<div class="sh-buy"><div class="amt">${price}<small> a month per area</small></div><p>No lock-in, cancel any time. One company per area.</p>'
+            f'<a class="btn" href="{rel}chicago-construction-cleaning-leads/#areas">See the areas</a>'
+            f'<p class="st-note">The map, seat terms and checkout are on the next page. <a href="{rel}refunds/">Refunds and cancelling</a></p></div>'
+            f'<div class="sh-gets"><h3 class="sr">What you get</h3><ul class="checks">{"".join(f"<li>{E(g)}</li>" for g in gets)}</ul></div></article>')
+
+
 def shop_html():
     CURRENT["nav"] = "shop"
     rel = "../"
@@ -3166,6 +3194,11 @@ def shop_html():
     if seat_row:   # the $149 daily pest seat sits right under the restaurant list it comes from (design review, Oct 24)
         cut = rows.find('<article class="sh-item"', rows.find('data-key="chicago-restaurant-inspection-leads"') + 1)
         rows = rows + seat_row if cut < 0 or 'data-key="chicago-restaurant-inspection-leads"' not in rows else rows[:cut] + seat_row + rows[cut:]
+    area_row = shop_area_row(rel)
+    if area_row:   # the area seats sit right under the $29 Chicago cleaning list they come from (as the pest seat does)
+        key = 'data-key="chicago-construction-cleaning-leads"'
+        cut = rows.find('<article class="sh-item"', rows.find(key) + 1) if key in rows else -1
+        rows = rows + area_row if cut < 0 else rows[:cut] + area_row + rows[cut:]
     coming = store_coming()
     if coming:
         rows += coming_card(coming, rel, "shopLic", cls="sh-item soon", h="h2").replace('<article class="sh-item soon">', '<article class="sh-item soon" data-aud="trade">', 1)

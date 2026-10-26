@@ -1725,8 +1725,8 @@ def _notes_block(p):
     n = p.get("notes")
     if not n:
         return ""
-    lis = "".join(f'<li><span>{E(t)}' + (f' Source: <a href="{E(u)}" rel="noopener">{E(pg)}</a>.' if u else "") + '</span></li>' for t, u, pg in n["items"])
-    return (f'<section class="block"><h2>{E(n["title"])}</h2><ul class="checks">{lis}</ul>'
+    lis = "".join(f'<li>{E(t)}' + (f' Source: <a href="{E(u)}" rel="noopener">{E(pg)}</a>.' if u else "") + '</li>' for t, u, pg in n["items"])
+    return (f'<section class="block"><h2>{E(n["title"])}</h2><ul class="src-list">{lis}</ul>'
             + "".join(f"<p>{E(t)}</p>" for t in n.get("tail", [])) + '</section>')
 
 
@@ -1766,7 +1766,7 @@ def lights_page(p):
 <div class="tile key"><div class="lab">Quote for this house</div><div class="val" data-out="quote" data-fmt="money0">$0</div><div class="sub">Install and takedown, rounded up to the next $5</div></div>
 <div class="tile"><div class="lab">Price per foot of roofline</div><div class="val" data-out="perFt">$0</div><div class="sub">Break-even <span data-out="floorPerFt">$0</span> a foot</div></div>
 <div class="tile"><div class="lab">Profit in the quote</div><div class="val" data-out="profit">$0</div></div>
-<div class="tile"><div class="lab">Install day on site</div><div class="val" data-out="crewHrs" data-fmt="hrs">0</div><div class="sub">Crew working together</div></div>
+<div class="tile"><div class="lab">Install, crew on site</div><div class="val" data-out="crewHrs" data-fmt="hrs">0</div><div class="sub">Clock hours, crew working together</div></div>
 </div>
 <ul class="lines">
 <li><span>Install and takedown, <span data-out="workHrs" data-fmt="hrs">0</span> of work</span><span data-out="labor">$0</span></li>
@@ -1775,7 +1775,7 @@ def lights_page(p):
 <li data-show-if="owned > 0"><span>Storage and handling</span><span data-out="storage">$0</span></li>
 <li class="total"><span>Price floor, zero profit</span><span data-out="floor">$0</span></li>
 </ul>
-<p class="asof">Labor covers install and takedown: <span data-out="takedownHrs" data-fmt="hrs">0</span> of the work is takedown.</p>
+<p class="asof">Takedown adds <span data-out="takedownHrs" data-fmt="hrs">0</span> of work (person-hours), counted in labor.</p>
 <div class="callout" data-show-if="bought > 0">Next season the customer already owns the lights: the same house quotes at <b data-out="quote2" data-fmt="money0">$0</b>, with <b data-out="profit2">$0</b> of profit.</div>
 <div class="callout" data-show-if="owned > 0">Your lights cost <b data-out="matAll">$0</b> for this house, spread over the seasons they last. A returning customer quotes the same next season.</div>
 <div class="callout warn" data-show-if="noMargin > 0">Use a margin under 100%: the quote is your cost divided by one less the margin.</div>
@@ -1811,19 +1811,20 @@ def snow_page(p):
     results = """<div class="sticky"><div class="card" aria-live="polite">
 <div class="tiles">
 <div class="tile key"><div class="lab">Price per push</div><div class="val" data-out="quote" data-fmt="money0">$0</div><div class="sub">Rounded up to the next $5</div></div>
-<div class="tile"><div class="lab">Seasonal contract</div><div class="val" data-out="season" data-fmt="money0">$0</div><div class="sub"><span data-out="monthly" data-fmt="money0">$0</span> a month</div></div>
-<div class="tile"><div class="lab">Deep storm push</div><div class="val" data-out="deepQuote" data-fmt="money0">$0</div><div class="sub">At your deep storm minutes</div></div>
-<div class="tile"><div class="lab">Contract covers</div><div class="val"><span data-out="covers" data-fmt="int">0</span> pushes</div><div class="sub">Before the season costs more than it pays</div></div>
+<div class="tile"><div class="lab">Seasonal contract</div><div class="val" data-out="season" data-fmt="money0">$0</div><div class="sub"><span data-show-if="monthsOn > 0"><span data-out="monthly" data-fmt="money0">$0</span> a month</span><span data-show-if="monthsOn < 1">Type the months you bill over</span></div></div>
+<div class="tile" data-show-if="deepOn > 0"><div class="lab">Deep storm push</div><div class="val" data-out="deepQuote" data-fmt="money0">$0</div><div class="sub">At your deep storm minutes</div></div>
+<div class="tile" data-show-if="seasonOn > 0"><div class="lab">Contract covers</div><div class="val"><span data-out="covers" data-fmt="int">0</span> pushes</div><div class="sub">Before the season costs more than it pays</div></div>
 </div>
 <ul class="lines">
 <li><span>Cost of one push</span><span data-out="cost">$0</span></li>
 <li><span>Profit in one push</span><span data-out="profit">$0</span></li>
 <li data-show-if="deepOn > 0"><span>Cost of a deep storm push</span><span data-out="deepCost">$0</span></li>
-<li data-show-if="seasonOn > 0"><span>Season profit at the pushes you expect</span><span data-out="seasonProfit">$0</span></li>
+<li data-show-if="seasonOn > 0"><span>Season profit, expected pushes</span><span data-out="seasonProfit">$0</span></li>
 <li><span>Per push, per hour on this stop</span><span data-out="hourly">$0</span></li>
 </ul>
 <div class="callout" data-show-if="seasonOn > 0">A seasonal price of <b data-out="season" data-fmt="money0">$0</b> pays you whether it snows or not. It turns into a loss after <b data-out="covers" data-fmt="int">0</b> pushes.</div>
 <div class="callout warn" data-show-if="noMargin > 0">Use a margin under 100%: the quote is your cost divided by one less the margin.</div>
+<div class="callout warn" data-show-if="deepLow > 0">Your deep storm minutes are under a normal push. Check the two times.</div>
 <div class="callout warn" data-show-if="noEvents > 0">Type how many pushes you expect in a season to price a seasonal contract.</div>
 <div class="callout warn" data-show-if="noRate > 0">Add a labor cost or an equipment cost per hour to see a price.</div>
 <div class="callout warn" data-show-if="none > 0">Type the minutes on site for a normal push.</div>
@@ -1839,7 +1840,7 @@ def hood_page(p):
     opts = [(n, t) for n, t in enumerate(p["cookingTypes"])]
     form = f"""<form class="card" id="calc" novalidate>
 <fieldset><legend>The kitchen</legend>
-{_sel("cooking", "Type of cooking", "Sets how often NFPA 96 calls for an inspection", opts, d["cooking"], wide=True)}
+{_sel("cooking", "Type of cooking", "High volume: 24-hour, charbroil or wok. Low volume: churches, day camps, seasonal. Sets how often NFPA 96 calls for an inspection", opts, d["cooking"], wide=True)}
 {field("hoods", "Hoods to clean", d["hoods"])}
 {field("hoodHrs", "Crew hours per hood", d["hoodHrs"], "Hood, filters and plenum, all people together")}
 {field("ductHrs", "Crew hours for duct and fan", d["ductHrs"], "Duct runs, the roof fan and the grease containment, all people together")}
@@ -1859,7 +1860,7 @@ def hood_page(p):
     results = """<div class="sticky"><div class="card" aria-live="polite">
 <div class="tiles">
 <div class="tile key"><div class="lab">Price per visit</div><div class="val" data-out="quote" data-fmt="money0">$0</div><div class="sub">Rounded up to the next $5</div></div>
-<div class="tile"><div class="lab">Visits a year</div><div class="val" data-out="visits" data-fmt="int">0</div><div class="sub">NFPA 96 inspection frequency</div></div>
+<div class="tile"><div class="lab">Visits a year</div><div class="val"><span data-out="visits" data-fmt="int">0</span> visits</div><div class="sub">NFPA 96 inspection frequency</div></div>
 <div class="tile"><div class="lab">Yearly contract</div><div class="val" data-out="year" data-fmt="money0">$0</div><div class="sub"><span data-out="monthly" data-fmt="money0">$0</span> a month</div></div>
 <div class="tile"><div class="lab">Profit a year</div><div class="val" data-out="yearProfit" data-fmt="money0">$0</div></div>
 </div>
@@ -1896,29 +1897,29 @@ def missed_calls_page(p):
 <fieldset><legend>A typical job</legend>
 {field("avgJob", "Average job price", d["avgJob"], pre="$")}
 {field("marginPct", "Gross margin on a job", d["marginPct"], "What a job leaves after labor, supplies and gas", suf="%")}
-{field("jobsPerCustomer", "Jobs a new customer books in a year", d["jobsPerCustomer"], "1 for one-off work. More for repeat service")}
+{field("jobsPerCustomer", "Jobs a new customer books in their first year", d["jobsPerCustomer"], "1 for one-off work. More for repeat service: the profit lost counts a full first year")}
 </fieldset>
 <fieldset><legend>An answering option (optional)</legend>
 {field("answerCost", "Monthly cost you were quoted", d["answerCost"], "An answering service, an AI receptionist or a part-time hire. 0 to skip", pre="$")}
 </fieldset></form>"""
     results = """<div class="sticky"><div class="card" aria-live="polite">
 <div class="tiles">
-<div class="tile key"><div class="lab">Profit lost a month</div><div class="val" data-out="lostProfit" data-fmt="money0">$0</div><div class="sub"><span data-out="year" data-fmt="money0">$0</span> a year</div></div>
+<div class="tile key"><div class="lab">Profit lost a month</div><div class="val" data-out="lostProfit" data-fmt="money0">$0</div><div class="sub"><span data-out="year" data-fmt="money0">$0</span> a year<span data-show-if="repeat > 0">, counting each lost customer's first year</span></div></div>
 <div class="tile"><div class="lab">Jobs lost a month</div><div class="val" data-out="lostJobs" data-fmt="dec1">0</div><div class="sub">From <span data-out="lostCallers" data-fmt="dec1">0</span> callers who went elsewhere</div></div>
 <div class="tile"><div class="lab">Revenue lost a month</div><div class="val" data-out="lostRev" data-fmt="money0">$0</div></div>
-<div class="tile"><div class="lab">Jobs to cover the option</div><div class="val" data-out="cover" data-fmt="int">0</div><div class="sub">Saved jobs a month at your margin</div></div>
+<div class="tile" data-show-if="costOn > 0"><div class="lab">Customers to cover the option</div><div class="val" data-out="cover" data-fmt="int">0</div><div class="sub">Saved new customers a month</div></div>
 </div>
 <ul class="lines">
 <li><span>Missed new-customer calls a month</span><span data-out="missedMo" data-fmt="dec1">0</span></li>
 <li><span>Callers who never call back</span><span data-out="lostCallers" data-fmt="dec1">0</span></li>
 <li><span>Jobs those callers would have booked</span><span data-out="lostJobs" data-fmt="dec1">0</span></li>
-<li><span>Profit in one job</span><span data-out="perJobProfit">$0</span></li>
+<li><span>Profit from one new customer, first year</span><span data-out="perJobProfit">$0</span></li>
 <li class="total"><span>Profit lost a month</span><span data-out="lostProfit" data-fmt="money0">$0</span></li>
 <li data-show-if="costOn > 0"><span>Monthly cost of the option</span><span data-out="cost" data-fmt="money0">$0</span></li>
 <li data-show-if="costOn > 0" class="total"><span>Left after the option, if it saved every one</span><span data-out="net" data-fmt="money0">$0</span></li>
 </ul>
-<div class="callout" data-show-if="pays > 0">The option costs less than the profit you lose. It pays for itself if it saves <b data-out="cover" data-fmt="int">0</b> jobs a month.</div>
-<div class="callout warn" data-show-if="notPays > 0">The option costs more than the profit these calls lose you. Fix the missed calls another way, or price the option lower.</div>
+<div class="callout" data-show-if="pays > 0">The option costs less than the profit you lose. It pays for itself if it saves <b data-out="cover" data-fmt="int">0</b> new customers a month.</div>
+<div class="callout warn" data-show-if="notPays > 0">The option costs as much as or more than the profit these calls lose you. Fix the missed calls another way, or price the option lower.</div>
 <div class="callout warn" data-show-if="noMargin > 0">Add your gross margin on a job to see the profit lost.</div>
 <div class="callout warn" data-show-if="none > 0">Type how many new-customer calls you get a week.</div>
 </div></div>
@@ -1943,7 +1944,7 @@ def price_raise_page(p):
 </fieldset></form>"""
     results = """<div class="sticky"><div class="card" aria-live="polite">
 <div class="tiles">
-<div class="tile key"><div class="lab">New price</div><div class="val" data-out="rounded">$0</div><div class="sub">Up <span data-out="raise">$0</span>, <span data-pct="raisePct">0%</span></div></div>
+<div class="tile key"><div class="lab">New price</div><div class="val" data-out="rounded" data-fmt="money0">$0</div><div class="sub">Up <span data-out="raise">$0</span>, <span data-pct="raisePct">0%</span></div></div>
 <div class="tile"><div class="lab">Lost each month without a raise</div><div class="val" data-out="squeeze" data-fmt="money0">$0</div><div class="sub">The cost rise, at today's price</div></div>
 <div class="tile"><div class="lab">Profit a month after the raise</div><div class="val" data-out="after" data-fmt="money0">$0</div><div class="sub">Today: <span data-out="profitNow" data-fmt="money0">$0</span></div></div>
 <div class="tile"><div class="lab">Clients you can lose</div><div class="val" data-pct="maxLose">0%</div><div class="sub">Before profit falls below today's</div></div>
@@ -1955,13 +1956,14 @@ def price_raise_page(p):
 <li><span>Your margin today</span><span data-pct="marginNow">0%</span></li>
 <li class="total"><span>Change in monthly profit after the raise</span><span data-out="change" data-fmt="money0">$0</span></li>
 </ul>
-<div class="callout" data-show-if="better > 0">At <b data-out="rounded">$0</b> you keep today's profit even with the clients you expect to lose.</div>
-<div class="callout warn" data-show-if="worse > 0">With the clients you expect to lose, profit ends <b data-out="change" data-fmt="money0">$0</b> a month below today's. Raise a little more, or keep more clients.</div>
+<div class="callout" data-show-if="better > 0">At <b data-out="rounded" data-fmt="money0">$0</b> you keep today's profit even with the clients you expect to lose.</div>
+<div class="callout warn" data-show-if="worse > 0">With the clients you expect to lose, profit ends <b data-out="shortBy" data-fmt="money0">$0</b> a month below today's. Raise a little more, or keep more clients.</div>
 <div class="callout warn" data-show-if="under > 0">The job costs as much as you charge now. Price it from your costs first.</div>
+<div class="callout warn" data-show-if="noCost > 0">Type what one job costs you now: labor, supplies and gas.</div>
 <div class="callout" data-show-if="noUp > 0">Type how much your costs went up to see the price that keeps your profit.</div>
 <div class="callout warn" data-show-if="none > 0">Type the price you charge now.</div>
 </div></div>
-<div class="mbar" aria-hidden="true"><span>New price <b data-out="rounded">$0</b></span><span>Up <b data-pct="raisePct">0%</b></span></div>"""
+<div class="mbar" aria-hidden="true"><span>New price <b data-out="rounded" data-fmt="money0">$0</b></span><span>Up <b data-pct="raisePct">0%</b></span></div>"""
     return form, results + "\n<!--LC-EXTRA-->" + _notes_block(p), _model_script("priceRaise", p["slug"])
 
 
@@ -3420,8 +3422,10 @@ def find_customers(slug, rel="../"):
     else:
         text = " ".join(f'{x["name"]}: {x["nums"][0][0]} {x["nums"][0][1]}, ${x["price"]} {x["per"]}.' for x in xs) + " Free sample on each page, new every Monday."
         labs = [x["tag"].split(" · ")[0] for x in xs]
-        if len(set(labs)) < len(labs):   # two lists in one city (Oct 26): name each list so the buttons differ
-            labs = [x["name"].replace("Chicago ", "").replace("Austin ", "") for x in xs]
+        if len(set(labs)) < len(labs):   # two lists in one city (Oct 26): a short trade word per list, one line at every width
+            SHORT = {"chicago-restaurant-inspection-leads": "Restaurants", "chicago-construction-cleaning-leads": "Construction",
+                     "austin-construction-cleaning-leads": "Austin construction", "chicago-new-business-licenses": "New businesses"}
+            labs = [SHORT.get(x["key"], x["name"]) for x in xs]
         acts = "".join(f'<a class="st-btn2" href="{rel}{x["href"]}{x["sample"]}">{E(lab)}: free sample</a>' for x, lab in zip(xs, labs))
     return (f'<section class="block"><div class="fc"><div><h2>{E(title)}</h2><p>{E(text)}</p></div>'
             f'<div class="fc-acts">{acts}</div></div></section>')
@@ -3536,7 +3540,7 @@ def main():
         if p.get("kind") in ("leads", "restleads", "question", "licleads", "newin") and not os.path.isfile(os.path.join(ROOT, p["data"])):
             print("skipped", p["slug"], "(no data yet)")
             continue
-        CURRENT["nav"] = "questions" if p.get("kind") == "question" else ("shop" if p.get("kind") in ("leads", "restleads", "licleads") else ("" if p.get("kind") == "newin" else "calc"))
+        CURRENT["nav"] = "questions" if p.get("kind") == "question" else ("shop" if p.get("kind") in ("leads", "restleads", "licleads") else ("" if p.get("kind") in ("newin", "rodents") else "calc"))
         out = os.path.join(DOCS, p["slug"]); os.makedirs(out, exist_ok=True)
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page_html(p))
         print("wrote", p["slug"])

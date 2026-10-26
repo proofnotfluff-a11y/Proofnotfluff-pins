@@ -899,18 +899,21 @@
     var seasons = Math.max(1, num(i.seasons) || 1), takeShare = Math.max(0, num(i.takedownPct)) / 100, storage = owned ? Math.max(0, num(i.storage)) : 0;
     var trips = 2 + Math.max(0, Math.round(num(i.serviceCalls))), tripMin = Math.max(0, num(i.tripMin)), miles = Math.max(0, num(i.tripMiles));
     var perMile = Math.max(0, num(i.perMile)), margin = Math.max(0, num(i.margin)) / 100;
+    var any = feet > 0 || shrubs > 0, noPace = feet > 0 && fph === 0;
+    if (!any || noPace) { feet = noPace ? feet : 0; shrubs = 0; trips = 0; storage = 0; matFt = 0; matShrub = 0; }
     var installHrs = (fph > 0 ? feet / fph : 0) + shrubs * shrubMin / 60, takedownHrs = installHrs * takeShare;
     var labor = (installHrs + takedownHrs) * rate, driveHrs = trips * people * tripMin / 60;
     var drive = driveHrs * rate + trips * miles * perMile;
     var matAll = feet * matFt + shrubs * matShrub, materials = owned ? matAll / seasons : matAll;
     var floor = labor + drive + materials + storage, quote = quoteFrom(floor, margin, 5);
     var floor2 = labor + drive + storage, quote2 = owned ? quote : quoteFrom(floor2, margin, 5);
-    var has = feet > 0 || shrubs > 0 ? 1 : 0;
+    var has = any && !noPace ? 1 : 0;
+    if (!has) { labor = 0; drive = 0; materials = 0; matAll = 0; floor = 0; }
     return { feet: feet, installHrs: installHrs, takedownHrs: takedownHrs, workHrs: installHrs + takedownHrs, crewHrs: installHrs / people, labor: labor, drive: drive,
       materials: materials, matAll: matAll, storage: storage, floor: has ? floor : 0, quote: has ? quote : 0, profit: has ? quote - floor : 0,
-      perFt: has && feet > 0 ? quote / feet : 0, floorPerFt: has && feet > 0 ? floor / feet : 0, trips: trips, owned: owned, bought: owned ? 0 : 1,
-      quote2: has ? quote2 : 0, profit2: has ? (owned ? quote - floor : quote2 - floor2) : 0, noRate: has && fph === 0 && feet > 0 ? 1 : 0,
-      none: has ? 0 : 1, ok: has && rate > 0 ? 1 : 0, noLabor: has && rate === 0 ? 1 : 0, noMargin: has && margin >= 1 ? 1 : 0 };
+      perFt: has && feet > 0 ? quote / feet : 0, floorPerFt: has && feet > 0 ? floor / feet : 0, trips: has ? trips : 0, owned: owned, bought: owned ? 0 : 1,
+      quote2: has ? quote2 : 0, profit2: has ? (owned ? quote - floor : quote2 - floor2) : 0, noRate: noPace ? 1 : 0,
+      none: any ? 0 : 1, ok: has && rate > 0 ? 1 : 0, noLabor: has && rate === 0 ? 1 : 0, noMargin: has && margin >= 1 ? 1 : 0 };
   }
 
   // Snow removal, one stop on a route. A push costs the crew's time on site and the drive to the stop at the labor rate,
@@ -922,12 +925,14 @@
     var rate = Math.max(0, num(i.rate)), equip = Math.max(0, num(i.equip)), salt = Math.max(0, num(i.salt)), driveMin = Math.max(0, num(i.driveMin));
     var margin = Math.max(0, num(i.margin)) / 100, events = Math.max(0, num(i.events)), cushion = Math.max(0, num(i.cushion)) / 100;
     var months = Math.max(1, Math.round(num(i.months)) || 1);
-    var cost = function (min) { return min > 0 ? ((min + driveMin) / 60) * (people * rate + equip) + salt : 0; };
+    var priced = people * rate + equip > 0;
+    var cost = function (min) { return min > 0 && priced ? ((min + driveMin) / 60) * (people * rate + equip) + salt : 0; };
+    var monthsOn = Math.round(num(i.months)) >= 1 ? 1 : 0;
     var c = cost(pushMin), cd = cost(deepMin), q = quoteFrom(c, margin, 5), qd = quoteFrom(cd, margin, 5);
     var season = events > 0 && q > 0 ? ceilTo(q * events * (1 + cushion), 5) : 0;
     var covers = c > 0 && season > 0 ? Math.floor(season / c + 1e-9) : 0;
     return { cost: c, quote: q, profit: q - c, deepCost: cd, deepQuote: qd, deepProfit: qd - cd, deepOn: deepMin > 0 && pushMin > 0 ? 1 : 0,
-      season: season, monthly: season / months, covers: covers, seasonProfit: season - c * events, events: events,
+      season: season, monthly: monthsOn ? season / months : 0, monthsOn: monthsOn, deepLow: deepMin > 0 && pushMin > 0 && deepMin < pushMin ? 1 : 0, covers: covers, seasonProfit: season - c * events, events: events,
       hourly: pushMin + driveMin > 0 ? q / ((pushMin + driveMin) / 60) : 0, seasonOn: season > 0 ? 1 : 0, noEvents: q > 0 && events === 0 ? 1 : 0,
       none: pushMin > 0 ? 0 : 1, noRate: pushMin > 0 && rate === 0 && equip === 0 ? 1 : 0, noMargin: pushMin > 0 && margin >= 1 ? 1 : 0 };
   }
@@ -960,11 +965,12 @@
     var job = Math.max(0, num(i.avgJob)), gm = Math.min(100, Math.max(0, num(i.marginPct))) / 100, jobsPer = Math.max(1, num(i.jobsPerCustomer) || 1);
     var cost = Math.max(0, num(i.answerCost)), wk = 52 / 12;
     var missedMo = calls * missed * wk, lostCallers = missedMo * gone, lostJobs = lostCallers * book;
-    var lostRev = lostJobs * job * jobsPer, lostProfit = lostRev * gm, perJobProfit = job * gm;
+    // money lost = the first-year value of the customers lost this month (jobs a new customer books in a year)
+    var lostRev = lostJobs * job * jobsPer, lostProfit = lostRev * gm, perJobProfit = job * gm * jobsPer;
     var cover = cost > 0 && perJobProfit > 0 ? Math.ceil(cost / perJobProfit - 1e-9) : 0;
     return { missedMo: missedMo, lostCallers: lostCallers, lostJobs: lostJobs, lostRev: lostRev, lostProfit: lostProfit, year: lostProfit * 12,
       perJobProfit: perJobProfit, cost: cost, net: lostProfit - cost, cover: cover, costOn: cost > 0 ? 1 : 0,
-      pays: cost > 0 && lostProfit > cost ? 1 : 0, notPays: cost > 0 && lostProfit <= cost && lostProfit > 0 ? 1 : 0,
+      pays: cost > 0 && lostProfit > cost ? 1 : 0, notPays: cost > 0 && lostProfit <= cost && lostProfit > 0 ? 1 : 0, repeat: jobsPer > 1 ? 1 : 0,
       noMargin: job > 0 && gm === 0 ? 1 : 0, none: calls > 0 ? 0 : 1 };
   }
 
@@ -975,16 +981,17 @@
   function priceRaise(i) {
     var price = Math.max(0, num(i.price)), cost = Math.max(0, num(i.cost)), up = Math.max(0, num(i.costUpPct)) / 100;
     var jobs = Math.max(0, num(i.jobs)), keep = Math.round(num(i.keep)) === 1 ? 1 : 0, lose = Math.min(100, Math.max(0, num(i.losePct))) / 100;
-    var newCost = cost * (1 + up), m = price > 0 ? (price - cost) / price : 0, ok = price > 0 && price > cost ? 1 : 0;
+    var newCost = cost * (1 + up), m = price > 0 ? (price - cost) / price : 0, ok = price > 0 && cost > 0 && price > cost ? 1 : 0;
     var keepDollars = price + (newCost - cost), keepMargin = ok && m < 1 ? newCost / (1 - m) : 0;
     var newPrice = ok ? (keep ? keepMargin : keepDollars) : 0, rounded = ok ? ceilTo(newPrice, 1) : 0;
-    var profitNow = jobs * (price - cost), squeezed = jobs * (price - newCost), after = jobs * (1 - lose) * (rounded - newCost);
+    var profitNow = ok ? jobs * (price - cost) : 0, squeezed = ok ? jobs * (price - newCost) : 0, after = ok ? jobs * (1 - lose) * (rounded - newCost) : 0;
     var raisedAll = jobs * (rounded - newCost), maxLose = ok && raisedAll > 0 && profitNow > 0 ? Math.max(0, 1 - profitNow / raisedAll) : 0;
-    return { newCost: newCost, marginNow: m, keepDollars: ok ? keepDollars : 0, keepMargin: keepMargin, newPrice: newPrice, rounded: rounded,
+    return { newCost: ok ? newCost : 0, keepDollars: ok ? keepDollars : 0, keepMargin: keepMargin, newPrice: newPrice, rounded: rounded,
       raise: ok ? rounded - price : 0, raisePct: ok && price > 0 ? (rounded - price) / price : 0, profitNow: profitNow, squeezed: squeezed,
       squeeze: profitNow - squeezed, after: after, change: after - profitNow, maxLose: maxLose, jobsOn: jobs > 0 ? 1 : 0,
-      better: ok && jobs > 0 && after >= profitNow ? 1 : 0, worse: ok && jobs > 0 && after < profitNow ? 1 : 0,
-      under: price > 0 && price <= cost ? 1 : 0, none: price > 0 ? 0 : 1, noUp: ok && up === 0 ? 1 : 0 };
+      better: ok && up > 0 && jobs > 0 && after >= profitNow ? 1 : 0, worse: ok && up > 0 && jobs > 0 && after < profitNow ? 1 : 0,
+      shortBy: after < profitNow ? profitNow - after : 0, marginNow: ok ? m : 0,
+      under: price > 0 && cost > 0 && price <= cost ? 1 : 0, noCost: price > 0 && cost === 0 ? 1 : 0, none: price > 0 ? 0 : 1, noUp: ok && up === 0 ? 1 : 0 };
   }
 
   var api = { lightsQuote: lightsQuote, snowQuote: snowQuote, hoodQuote: hoodQuote, hoodFreq: HOOD_FREQ, missedCalls: missedCalls, priceRaise: priceRaise, stages: stages, leadCost: leadCost, payoutGap: payoutGap, seTax: seTax, hourly: hourly, service: service, serviceSqft: serviceSqft, dayRate: dayRate, cleaningSqft: cleaningSqft, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,

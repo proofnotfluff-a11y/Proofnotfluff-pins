@@ -5789,10 +5789,10 @@
    "method": [
     "Only new-customer calls count here: people calling for a quote or a booking. A client who misses you usually calls back, so those calls stay out.",
     "Missed calls a month are your weekly new-customer calls times the share nobody answers, times 52 weeks over 12 months. Some of those callers try again; the share who never call back is your own guess, and the page never assumes every missed caller is lost.",
-    "The jobs lost are those callers times the share of your answered new-customer calls that book. Revenue lost is jobs lost times your average job price, times the jobs a new customer books in a year spread per month. Profit lost uses your gross margin: what a job leaves after labor, supplies and gas.",
-    "An answering option pays for itself when it would save more profit a month than it costs. The jobs needed to cover it are its monthly cost divided by the profit in one job, rounded up. The page names and ranks no vendor; type the price you were quoted."
+    "The jobs lost are those callers times the share of your answered new-customer calls that book. Revenue lost is jobs lost times your average job price, times the jobs a new customer books in their first year, so a repeat-service customer counts a full first year. Profit lost uses your gross margin: what a job leaves after labor, supplies and gas.",
+    "An answering option pays for itself when it would save more profit a month than it costs. The customers needed to cover it are its monthly cost divided by the profit one new customer brings in their first year, rounded up. The page names and ranks no vendor; type the price you were quoted."
    ],
-   "example": "Say a cleaning company gets 20 new-customer calls a week and misses 25% of them while on jobs. That is about 21.7 missed calls a month. If half of those callers never call back and 40% of answered new-customer calls book, about 4.3 jobs a month go elsewhere. At $250 a job that is $1,083 of revenue, and at a 45% gross margin $488 of profit a month, or $5,850 a year. One job leaves $112.50, so a $300 a month answering service pays for itself if it saves 3 jobs a month, and would leave $188 a month if it saved every one.",
+   "example": "Say a cleaning company gets 20 new-customer calls a week and misses 25% of them while on jobs. That is about 21.7 missed calls a month. If half of those callers never call back and 40% of answered new-customer calls book, about 4.3 jobs a month go elsewhere. At $250 a job that is $1,083 of revenue, and at a 45% gross margin $488 of profit a month, or $5,850 a year. A new customer who books once leaves $112.50, so a $300 a month answering service pays for itself if it saves 3 new customers a month, and would leave $188 a month if it saved every one.",
    "faq": [
     [
      "How much does a missed call cost a small business?",
@@ -5811,7 +5811,7 @@
      "A regular client who misses you usually calls back or texts. A new caller often calls the next company on the list, so those calls carry the cost."
     ]
    ],
-   "sources": "No outside rates are used on this page: every figure in the calculator is yours, and the defaults are an example, not industry averages. Page built Oct 26, 2026."
+   "sources": "No outside rates are used on this page: every figure in the calculator is yours, and the defaults are an example, not industry averages. Page built and checked Oct 26, 2026."
   },
   {
    "slug": "price-increase-calculator",
@@ -5858,7 +5858,7 @@
      "Margin keeps your profit growing with your prices; profit per job keeps the raise as small as possible. Pick the one you would rather explain to clients, and check the client loss each can take."
     ]
    ],
-   "sources": "No outside rates are used on this page: every figure in the calculator is yours, and the defaults are an example, not industry averages. Page built Oct 26, 2026."
+   "sources": "No outside rates are used on this page: every figure in the calculator is yours, and the defaults are an example, not industry averages. Page built and checked Oct 26, 2026."
   },
   {
    "slug": "chicago-rat-complaints",
@@ -5927,7 +5927,7 @@
    "stages": true,
    "title": "Christmas Light Installation Pricing Calculator | ProofNotFluff",
    "desc": "Free Christmas light installation pricing calculator. Quote a house from roofline feet, your crew's pace and your costs: price per foot, install and takedown, owned or sold lights.",
-   "eyebrow": "Free calculator",
+   "eyebrow": "Free calculator for installers",
    "h1": "Christmas Light Installation Pricing Calculator",
    "lede": "Quote a house from the feet of roofline, the bushes and trees, your crew's own pace and your costs. You get the quote, the price per foot, the profit in it and the hours on site, with takedown counted and your lights either lent each year or sold to the customer. Free, no sign-up.",
    "card": "Quote a house from roofline feet and your crew's pace: price per foot, takedown counted, owned or sold lights.",
@@ -5964,13 +5964,13 @@
       "ThePricer, How Much Does Christmas Light Installation Cost"
      ],
      [
-      "Jobber prices a bid as labor, materials and overhead divided by one less your target margin, the same math as this calculator.",
+      "Jobber divides labor, materials and overhead by one less your target margin; this calculator divides the same way.",
       "https://getjobber.com/academy/holiday-lighting/how-to-bid-christmas-light-installation/",
       "Jobber Academy, How to Price Christmas Light Installation"
      ]
     ],
     "tail": [
-     "These are other companies' published estimates, read Oct 26, 2026, not our data. None of them gives a pace in feet per hour, so the calculator uses yours. Time a few houses this season and use your real number next year."
+     "These are other companies' published estimates, checked Oct 26, 2026, not our data. None of them gives a pace in feet per hour, so the calculator uses yours. Time a few houses this season and use your real number next year."
     ]
    },
    "method": [
@@ -5979,7 +5979,7 @@
     "Lights you own and lend each year are spread over the seasons they last, plus storage and handling. Lights the customer buys are charged in full this year; next season the same house quotes without them.",
     "The price floor is labor, drive, lights and storage. The quote divides the floor by one less your margin and rounds up to the next $5. Price per foot is the quote over the feet of roofline."
    ],
-   "example": "A 150-foot roofline and 4 bushes, a 2-person crew that hangs 40 feet an hour each and wraps a bush in 20 minutes, at $45 a person-hour: 5.08 hours of install work, 2.54 hours on site for the crew, and half that again for takedown: 7.63 hours of work, $343.13 of labor. Two trips of 40 minutes and 20 miles add $150.40. Lights you own at $1.60 a foot and $30 a bush cost $360, spread over 3 seasons that is $120, plus $25 of storage. The floor is $638.53 and a 30% margin quotes $915, $6.10 a foot with $276.48 of profit. If the customer buys the lights instead, this year quotes $1,220 and next season $710.",
+   "example": "A 150-foot roofline and 4 bushes, a 2-person crew that hangs 40 feet an hour each and wraps a bush in 20 minutes, at $45 a person-hour: 5.08 hours of install work, 2.54 hours on site for the crew, and takedown at half the install hours: 7.63 hours of work, $343.13 of labor. Two trips of 40 minutes and 20 miles add $150.40. Lights you own at $1.60 a foot and $30 a bush cost $360, spread over 3 seasons that is $120, plus $25 of storage. The floor is $638.53 and a 30% margin quotes $915, $6.10 a foot with $276.48 of profit. If the customer buys the lights instead, this year quotes $1,220 and next season $710.",
    "faq": [
     [
      "How much should I charge to hang Christmas lights?",
@@ -5998,7 +5998,7 @@
      "Yes. Takedown hours are a share of install hours that you set, and the takedown trip is counted. Change the share if your takedowns run faster or slower."
     ]
    ],
-   "sources": "Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS Standard Mileage Rates page). Every other figure in the calculator is yours; the defaults are an example, not market prices. Published ranges read Oct 26, 2026 are linked on the page. Page built Oct 26, 2026."
+   "sources": "Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS Standard Mileage Rates page). Every other figure in the calculator is yours; the defaults are an example, not market prices. Published ranges checked Oct 26, 2026 are linked on the page. Page built Oct 26, 2026."
   },
   {
    "slug": "snow-removal-pricing-calculator",
@@ -6050,7 +6050,7 @@
      ]
     ],
     "tail": [
-     "The price ranges are other companies' published estimates, read Oct 26, 2026, not our data."
+     "The price ranges are other companies' published estimates, checked Oct 26, 2026, not our data."
     ]
    },
    "method": [
@@ -6078,7 +6078,7 @@
      "Type your minutes on site for a deep storm. Its price follows the extra time, so a 45-minute push prices higher than a 25-minute one at the same rates."
     ]
    ],
-   "sources": "Snowfall: National Weather Service Chicago, Chicago (O'Hare) 1991 to 2020 climate normals; Illinois State Climatologist, Chicago O'Hare climate normals (1981 to 2010). Every figure in the calculator is yours; the defaults are an example, not market prices. Published ranges read Oct 26, 2026 are linked on the page. Page built Oct 26, 2026."
+   "sources": "Snowfall: National Weather Service Chicago, Chicago (O'Hare) 1991 to 2020 climate normals; Illinois State Climatologist, Chicago O'Hare climate normals (1981 to 2010). Every figure in the calculator is yours; the defaults are an example, not market prices. Published ranges checked Oct 26, 2026 are linked on the page. Page built Oct 26, 2026."
   },
   {
    "slug": "hood-cleaning-price-calculator",
@@ -6093,10 +6093,10 @@
    "lede": "For kitchen exhaust cleaning companies pricing a restaurant. Pick the kind of cooking, type the hoods, the crew hours for hoods, duct and fan, and your costs. You get the price per visit, the visits a year under the NFPA 96 inspection schedule, and the yearly contract and profit it adds up to. Free, no sign-up.",
    "card": "Price a kitchen exhaust cleaning visit and the yearly contract, with visits from the NFPA 96 schedule.",
    "cookingTypes": [
-    "Solid fuel, wood or charcoal: monthly",
-    "High volume, 24-hour, charbroil or wok: every 3 months",
-    "Moderate volume: every 6 months",
-    "Low volume, such as churches or seasonal: yearly"
+    "Monthly: solid fuel",
+    "Every 3 months: high volume",
+    "Every 6 months: moderate",
+    "Yearly: low volume"
    ],
    "defaults": {
     "cooking": "1",
@@ -6142,7 +6142,7 @@
      ]
     ],
     "tail": [
-     "The price ranges are other companies' published estimates, read Oct 26, 2026, not our data. This page is a pricing tool, not fire code advice."
+     "The price ranges are other companies' published estimates, checked Oct 26, 2026, not our data. This page is a pricing tool, not fire code advice."
     ]
    },
    "method": [

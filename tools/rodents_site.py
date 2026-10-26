@@ -33,7 +33,7 @@ def area_change(a):
 def pct(x):
     if x is None:
         return "new"
-    return ("+" if x > 0 else "") + f"{x:.0f}%" if abs(x) >= 1 else "about the same"
+    return ("+" if x > 0 else "") + f"{x:.0f}%" if abs(x) >= 1 else "same"
 
 
 def change_words(x):
@@ -96,12 +96,12 @@ def page_html(p):
              f'<div class="tile"><div class="lab">Against a year ago</div><div class="val">{E(pct(c["change"]))}</div><div class="sub">{c["prev30"]:,} in the same 30 days of {E(w["prevTo"][:4])}</div></div>'
              + (f'<div class="tile"><div class="lab">Most complaints</div><div class="val rc-name">{E(lead["name"])}</div><div class="sub">{lead["d30"]:,} in 30 days</div></div>'
                 if lead and not tie else "")
-             + f'</div><p class="asof">From City of Chicago 311 records pulled {E(pulled)}. Updated every Monday.</p>')
+             + f'</div><p class="asof">Counts as of {E(M.nice_date(w["to"]))}, from City of Chicago 311 records pulled {E(pulled)}. Updated every Monday.</p>')
     peak = max((a["d30"] for a in top[:10]), default=1) or 1
     bars = ('<figure class="rc-bars" aria-label="Community areas with the most rat complaints in the last 30 days">'
             '<figcaption>Most rat complaints, last 30 days</figcaption>'
             + "".join(f'<div class="rc-bar"><span>{E(a["name"])}</span><i style="width:{max(6, round(a["d30"] / peak * 100))}%"></i><b>{a["d30"]:,}</b>'
-                      f'<small>{a["d7"]:,} in the last 7 days · {"too few a year ago to compare" if a["prev30"] < FEW else E(pct(a["change"])) + " on a year ago"}</small></div>' for a in top[:10])
+                      f'<small>{a["d7"]:,} in the last 7 days · {"too few a year ago to compare" if a["prev30"] < FEW else ("same as a year ago" if pct(a["change"]) == "same" else E(pct(a["change"])) + " on a year ago")}</small></div>' for a in top[:10])
             + '</figure>')
     wpeak = max((x["count"] for x in d["weeks"]), default=1) or 1
     weeks = ('<div class="rc-wk" role="img" aria-label="Rat complaints each week for the last 12 weeks, '
@@ -140,7 +140,8 @@ def page_html(p):
             f'<section class="block" id="top"><h2>Where the complaints are</h2>{bars}</section>'
             f'<section class="block" id="weeks"><h2>Week by week</h2>{weeks}</section>'
             f'<section class="block" id="areas"><h2>Every community area</h2>{table}</section>'
-            f'{two}{method}{M.faq_block(p["faq"])}')
+            f'{two}{method}{M.faq_block(p["faq"])}'
+            f'<p class="rl-act"><a class="btn" href="#areas">See every neighborhood</a> <a class="st-btn2" href="{E(resident["url"])}" rel="noopener">Report rats on CHI311</a></p>')
     foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             f'<p>Source: City of Chicago Data Portal, <a href="{E(src["url"])}">311 Service Requests dataset</a>, requests of type '
             f'{E(src["srType"])}, pulled {E(pulled)}'
@@ -148,6 +149,7 @@ def page_html(p):
             + '. A complaint is one report to 311; it does not say rats were found, and a count says nothing about any '
             'one building, block or business. Counts only: no address or report details are kept.</p>'
             f'<p>{E(M.CITY_DISCLAIMER["Chicago"])}</p><p>ProofNotFluff is not affiliated with or endorsed by the City of Chicago.</p>'
+            '<p>Public information, not legal, tax or financial advice, and not pest control advice for any property.</p>'
             '<p>Made by ProofNotFluff with AI assistance from public City data. The page counts visits with Cloudflare Web Analytics, which sets no '
             'cookies.</p></div></footer>\n</body></html>')
     return head(robots) + body + foot
@@ -170,7 +172,7 @@ def selftest():
         os.unlink(tmp.name)
     assert html.count("<h1>") == 1 and "—" not in html and "–" not in html, "one h1, no dashes"
     assert "Lake View" in html and "629 rat complaints came in" in html, "total in the lede"
-    assert ">+22%<" in html and ">too few<" in html and ">about the same<" in html, "change words"
+    assert ">+22%<" in html and ">too few<" in html and ">same<" in html, "change words"
     assert "9 of the last 30 days" in html and "too few to compare" in html, "notes under the table"
     assert M.E(M.CITY_DISCLAIMER["Chicago"]) in html, "City disclaimer"
     assert "address" not in json.dumps(d["areas"]), "counts only"

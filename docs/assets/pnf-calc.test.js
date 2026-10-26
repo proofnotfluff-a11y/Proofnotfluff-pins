@@ -699,4 +699,18 @@ check("hood: blank is none", P.hoodQuote({}).none, 1);
 check("hood: price per crew hour", HQ.perCrewHr, 94.17);
 check("margin at 100% flags, lights snow hood", P.lightsQuote(Object.assign({}, LQ, { margin: 100 })).noMargin + P.snowQuote({ pushMin: 20, rate: 40, margin: 150 }).noMargin + P.hoodQuote({ hoods: 1, hoodHrs: 1, rate: 40, margin: 100 }).noMargin, 3);
 
+// checker round 1 fixes (Oct 26): guards that keep the cards consistent
+const MR = P.missedCalls({ calls: 20, missedPct: 25, gonePct: 50, bookPct: 40, avgJob: 250, marginPct: 45, jobsPerCustomer: 12, answerCost: 300 });
+check("missed: repeat customer, first-year profit each", MR.perJobProfit, 1350); check("missed: repeat, profit lost ties to jobs x customer", MR.lostProfit, 5850); check("missed: repeat, customers to cover", MR.cover, 1);
+check("raise: cost 0 is not priced", P.priceRaise({ price: 150, cost: 0, costUpPct: 8, jobs: 60 }).rounded + P.priceRaise({ price: 150, cost: 0, costUpPct: 8, jobs: 60 }).profitNow, 0);
+check("raise: cost 0 flag", P.priceRaise({ price: 150, cost: 0 }).noCost, 1);
+check("raise: price under cost zeroes profits", P.priceRaise({ price: 80, cost: 90, costUpPct: 5, jobs: 60 }).after, 0);
+check("raise: no cost rise, no worse callout", P.priceRaise({ price: 150, cost: 90, costUpPct: 0, jobs: 60, losePct: 5 }).worse, 0);
+check("raise: short by is positive", P.priceRaise({ price: 150, cost: 90, costUpPct: 8, jobs: 60, keep: 0, losePct: 5 }).shortBy, 134.4);
+check("snow: no labor or equipment, no price", P.snowQuote({ pushMin: 25, salt: 15, margin: 25 }).quote, 0);
+check("snow: deep under normal flag", P.snowQuote({ pushMin: 25, deepMin: 10, rate: 40 }).deepLow, 1);
+check("snow: months 0, no monthly", P.snowQuote({ pushMin: 25, rate: 40, events: 8, months: 0 }).monthly, 0);
+check("lights: zero pace prices nothing", P.lightsQuote(Object.assign({}, LQ, { ftPerHour: 0 })).quote, 0);
+check("lights: blank shows no drive or storage", P.lightsQuote({ tripMin: 40, tripMiles: 20, perMile: 0.76, storage: 25, rate: 45 }).drive + P.lightsQuote({ storage: 25 }).storage, 0);
+
 process.exit(fails ? 1 : 0);

@@ -6075,6 +6075,97 @@
     ]
    ],
    "sources": "Snowfall: National Weather Service Chicago, Chicago (O'Hare) 1991 to 2020 climate normals; Illinois State Climatologist, Chicago O'Hare climate normals (1981 to 2010). Every figure in the calculator is yours; the defaults are an example, not market prices. Published ranges read Oct 26, 2026 are linked on the page. Page built Oct 26, 2026."
+  },
+  {
+   "slug": "hood-cleaning-price-calculator",
+   "kind": "hood",
+   "draft": true,
+   "segment": "trades",
+   "stages": true,
+   "title": "Hood Cleaning Price Calculator: Per Visit and Per Year | ProofNotFluff",
+   "desc": "Free hood cleaning price calculator for kitchen exhaust cleaners. Price a visit from hoods, duct and fan hours and your costs, with visits a year from the NFPA 96 schedule.",
+   "eyebrow": "Free calculator",
+   "h1": "Hood Cleaning Price Calculator",
+   "lede": "For kitchen exhaust cleaning companies pricing a restaurant. Pick the kind of cooking, type the hoods, the crew hours for hoods, duct and fan, and your costs. You get the price per visit, the visits a year under the NFPA 96 inspection schedule, and the yearly contract and profit it adds up to. Free, no sign-up.",
+   "card": "Price a kitchen exhaust cleaning visit and the yearly contract, with visits from the NFPA 96 schedule.",
+   "cookingTypes": [
+    "Solid fuel, wood or charcoal: monthly",
+    "High volume, 24-hour, charbroil or wok: every 3 months",
+    "Moderate volume: every 6 months",
+    "Low volume, such as churches or seasonal: yearly"
+   ],
+   "defaults": {
+    "cooking": "1",
+    "hoods": "2",
+    "hoodHrs": "2.5",
+    "ductHrs": "1",
+    "people": "2",
+    "rate": "40",
+    "nightPct": "10",
+    "supplies": "45",
+    "tripMin": "50",
+    "tripMiles": "25",
+    "perMile": "0.76",
+    "margin": "30"
+   },
+   "notes": {
+    "title": "The schedule and what others charge",
+    "items": [
+     [
+      "NFPA 96 sets how often a kitchen exhaust system is inspected: monthly for solid fuel, every 3 months for high volume (24-hour cooking, charbroiling or wok), every 6 months for moderate volume and yearly for low volume. This summary from the Massachusetts fire marshal cites the 2011 edition.",
+      "https://www.mass.gov/doc/cleaning-or-inspection-of-commercial-cooking-exhaust-systems/download",
+      "Massachusetts Department of Fire Services, Cleaning or Inspection of Commercial Cooking Exhaust Systems"
+     ],
+     [
+      "The schedule is for inspection. NFPA 96 calls for cleaning when the inspection finds grease deposits, so a kitchen can need cleaning more or less often than the schedule. This calculator prices one cleaning per scheduled visit.",
+      "https://fsc.ri.gov/media/246/download",
+      "Rhode Island State Fire Marshal, Bulletin 2025-01"
+     ],
+     [
+      "Chicago adopts the International Fire Code, 2024 edition, in part, and we found no City hood cleaning schedule of its own. The Chicago Fire Department's Fire Prevention Bureau is the authority to ask.",
+      "https://codelibrary.amlegal.com/codes/chicago/latest/chicago_il/0-0-0-2672411",
+      "Chicago Municipal Code 14F-1-001"
+     ],
+     [
+      "Angi puts a hood cleaning session at about $450 on average, with most from $200 to $1,500.",
+      "https://www.angi.com/articles/how-to-hire-kitchen-hood-cleaning-pro.htm",
+      "Angi, How to Hire a Kitchen Hood Cleaning Professional"
+     ],
+     [
+      "A hood cleaning company's 2019 guide lists $10 to $20 per linear foot of hood, $40 to $75 a fan and minimums around $400 to $450.",
+      "https://www.halorestorationservices.com/blog/hood-cleaning-cost/",
+      "Halo Restoration Services, What Does an Average Hood Cleaning Cost"
+     ]
+    ],
+    "tail": [
+     "The price ranges are other companies' published estimates, read Oct 26, 2026, not our data. This page is a pricing tool, not fire code advice."
+    ]
+   },
+   "method": [
+    "Visits a year follow the NFPA 96 inspection frequency for the kind of cooking you pick: 12, 4, 2 or 1. Change the pick if a kitchen's inspections find it needs cleaning on a different schedule.",
+    "A visit costs the crew hours for the hoods (hoods times hours per hood) and for the duct, fan and grease containment, at your labor rate plus any night premium. Add the crew's drive time at the same rate, the vehicle's miles and your chemicals and supplies.",
+    "The price per visit divides that cost by one less your margin and rounds up to the next $5. The yearly contract is the price per visit times the visits a year."
+   ],
+   "example": "A charbroil kitchen with 2 hoods, 2.5 crew hours per hood and 1 hour for duct and fan is 6 crew hours. At $40 an hour plus a 10% night premium that is $264. Two people driving 50 minutes round trip and 25 miles add $85.67, and supplies $45, so a visit costs $394.67. A 30% margin prices it at $565, $282.50 a hood. High volume means a visit every 3 months, so the yearly contract is $2,260, about $188 a month, with $681.33 of profit a year.",
+   "faq": [
+    [
+     "How often does a restaurant hood need to be cleaned?",
+     "NFPA 96 sets how often the exhaust system is inspected: monthly for solid fuel, every 3 months for high volume such as charbroiling or wok cooking, every 6 months for moderate volume and yearly for low volume. It calls for cleaning when the inspection finds grease deposits. Ask the local fire authority what it enforces."
+    ],
+    [
+     "How much should I charge to clean a restaurant hood?",
+     "Price from your crew hours, your rates and your costs. With the example numbers a 2-hood charbroil kitchen prices at $565 a visit and $2,260 a year. Type your own numbers to see yours."
+    ],
+    [
+     "Should I price per hood, per foot or per hour?",
+     "Customers compare per visit, so this calculator gives the visit price and what it works out to per hood. It builds the price from your hours, so it holds whether you quote per hood, per foot or per visit."
+    ],
+    [
+     "Does Chicago have its own hood cleaning schedule?",
+     "We found none. Chicago adopts the 2024 International Fire Code in part. Check with the Chicago Fire Department's Fire Prevention Bureau for what it enforces."
+    ]
+   ],
+   "sources": "Schedule: NFPA 96 inspection frequency as summarized by the Massachusetts Department of Fire Services (2011 edition) and the Rhode Island State Fire Marshal (2018 edition). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026. Every other figure in the calculator is yours; the defaults are an example, not market prices. Page built Oct 26, 2026."
   }
  ]
 }

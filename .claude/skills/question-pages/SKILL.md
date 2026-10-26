@@ -4,7 +4,7 @@ One job: draft one question page from seo/BACKLOG.md, gate it, and publish it if
 
 ## Inputs (Reads)
 - seo/BACKLOG.md (the queue), seo/QUESTIONS.md (pages made), seo/STORE.md (rules), seo/RESULTS.md.
-- Daily (Todd, Oct 22, 2026, 7:32 pm). Group: the one of A (lead trades), B (e-commerce, the kit), C (calculator trades) whose last page in seo/QUESTIONS.md is oldest (none yet counts as oldest; ties go A, B, C). Take the top row of that group with no line in seo/QUESTIONS.md; a group with no unused row is skipped. Drafts come first: if seo/QUESTIONS.md has a page still marked draft, take the oldest one instead, whatever the day, and run it from step 4 (its spec exists).
+- Daily (Todd, Oct 22, 2026, 7:32 pm). Group: the one of A (lead trades), B (e-commerce, the kit), C (calculator trades) whose last page in seo/QUESTIONS.md is oldest (none yet counts as oldest; ties go A, B, C). Take the top row of that group with no line in seo/QUESTIONS.md; a group with no unused row is skipped. Seasonal next (Todd's go, Oct 26, 2026): a group D row with no line in seo/QUESTIONS.md whose Publish by date is 21 days away or less goes before the rotation, earliest date first; a D row whose date has passed still goes, the same day. Drafts come first: if seo/QUESTIONS.md has a page still marked draft, take the oldest one instead, whatever the day, and run it from step 4 (its spec exists).
 - The paid product's data file (site/pages.json "data") and the matching free calculator (site/store.json calcProducts, or the row's calculator).
 
 ## Process (Executes)

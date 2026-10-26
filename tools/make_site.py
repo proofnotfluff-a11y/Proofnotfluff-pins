@@ -1870,6 +1870,7 @@ def hood_page(p):
 <li><span>Per hood, per visit</span><span data-out="perHood">$0</span></li>
 <li><span>Time on site for the crew</span><span data-out="siteHrs" data-fmt="hrs">0</span></li>
 </ul>
+<div class="callout" data-show-if="none < 1">NFPA 96 sets the inspection schedule; a kitchen is cleaned when the inspection finds grease deposits. This prices one cleaning per scheduled visit.</div>
 <div class="callout warn" data-show-if="noRate > 0">Add a labor cost per person-hour, even if it is your own time.</div>
 <div class="callout warn" data-show-if="none > 0">Type the hoods and the crew hours per hood to see a price.</div>
 </div></div>

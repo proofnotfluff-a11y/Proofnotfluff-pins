@@ -687,4 +687,14 @@ check("snow: two people double labor", P.snowQuote({ pushMin: 60, people: 2, rat
 check("snow: no pushes expected flag", P.snowQuote({ pushMin: 25, rate: 40, events: 0 }).noEvents, 1);
 check("snow: blank is none", P.snowQuote({}).none, 1);
 
+const HQ = P.hoodQuote({ cooking: 1, hoods: 2, hoodHrs: 2.5, ductHrs: 1, people: 2, rate: 40, nightPct: 10, supplies: 45, tripMin: 50, tripMiles: 25, perMile: 0.76, margin: 30 });
+check("hood: crew hours", HQ.crewHrs, 6); check("hood: labor with night premium", HQ.labor, 264); check("hood: drive", HQ.drive, 85.67);
+check("hood: visit cost", HQ.cost, 394.67); check("hood: visit price", HQ.quote, 565); check("hood: per hood", HQ.perHood, 282.5);
+check("hood: visits, high volume", HQ.visits, 4); check("hood: year", HQ.year, 2260); check("hood: year profit", HQ.yearProfit, 681.33);
+check("hood: solid fuel monthly", P.hoodQuote({ cooking: 0, hoods: 1, hoodHrs: 1, rate: 40 }).visits, 12);
+check("hood: moderate twice a year", P.hoodQuote({ cooking: 2, hoods: 1, hoodHrs: 1, rate: 40 }).visits, 2);
+check("hood: low yearly", P.hoodQuote({ cooking: 3, hoods: 1, hoodHrs: 1, rate: 40 }).visits, 1);
+check("hood: out of range cooking clamps to low", P.hoodQuote({ cooking: 9, hoods: 1, hoodHrs: 1, rate: 40 }).visits, 1);
+check("hood: blank is none", P.hoodQuote({}).none, 1);
+
 process.exit(fails ? 1 : 0);

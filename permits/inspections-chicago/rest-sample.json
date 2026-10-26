@@ -1,7 +1,7 @@
 {
  "product": "Chicago Restaurant Inspection Leads",
- "asOf": "2026-10-25",
- "asOfText": "Oct 25, 2026",
+ "asOf": "2026-10-26",
+ "asOfText": "Oct 26, 2026",
  "through": "2026-10-23",
  "throughText": "Oct 23, 2026",
  "window": {
@@ -13,7 +13,7 @@
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-25T22:21:03+00:00",
+  "fetchedAt": "2026-10-26T13:55:14+00:00",
   "rowsUpdatedAt": "2026-10-25T09:11:25+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
@@ -37,8 +37,8 @@
    "school, day care, hospital, senior or mobile vendor": 55,
    "the City's latest result is out of business or not located": 2
   },
-  "rowsRead": 1223,
-  "historyRead": 790,
+  "rowsRead": 1180,
+  "historyRead": 752,
   "areas": [
    [
     "Loop",
@@ -85,15 +85,15 @@
     7
    ],
    [
+    "McKinley Park",
+    7
+   ],
+   [
     "Brighton Park",
     7
    ],
    [
     "Lower West Side",
-    7
-   ],
-   [
-    "McKinley Park",
     7
    ],
    [
@@ -133,11 +133,11 @@
     4
    ],
    [
-    "Douglas",
+    "Edgewater",
     3
    ],
    [
-    "Edgewater",
+    "North Lawndale",
     3
    ],
    [
@@ -145,7 +145,7 @@
     3
    ],
    [
-    "North Lawndale",
+    "Douglas",
     3
    ],
    [
@@ -173,6 +173,10 @@
     2
    ],
    [
+    "Englewood",
+    2
+   ],
+   [
     "Kenwood",
     2
    ],
@@ -185,19 +189,15 @@
     2
    ],
    [
-    "Englewood",
-    2
-   ],
-   [
     "Jefferson Park",
     2
    ],
    [
-    "South Deering",
+    "North Center",
     2
    ],
    [
-    "North Center",
+    "South Deering",
     2
    ],
    [
@@ -209,11 +209,11 @@
     2
    ],
    [
-    "Bridgeport",
+    "Washington Park",
     1
    ],
    [
-    "Washington Park",
+    "Bridgeport",
     1
    ],
    [
@@ -225,19 +225,19 @@
     1
    ],
    [
-    "New City",
-    1
-   ],
-   [
     "Rogers Park",
     1
    ],
    [
-    "West Englewood",
+    "New City",
     1
    ],
    [
     "Ashburn",
+    1
+   ],
+   [
+    "West Englewood",
     1
    ],
    [

@@ -2488,6 +2488,9 @@ def page_html(p):
     if p.get("kind") == "newin":       # New in Chicago, the free traffic page (tools/newin_site.py)
         import newin_site
         return newin_site.page_html(p)
+    if p.get("kind") == "agentkit":    # Unattended Agent Kit offer and waitlist, a draft until Todd's go (tools/agentkit_site.py)
+        import agentkit_site
+        return agentkit_site.page_html(p)
     if p.get("kind") == "question":    # question pages for the lead products (tools/question_site.py)
         import question_site
         return question_site.page_html(p)
@@ -3540,7 +3543,7 @@ def main():
         if p.get("kind") in ("leads", "restleads", "question", "licleads", "newin") and not os.path.isfile(os.path.join(ROOT, p["data"])):
             print("skipped", p["slug"], "(no data yet)")
             continue
-        CURRENT["nav"] = "questions" if p.get("kind") == "question" else ("shop" if p.get("kind") in ("leads", "restleads", "licleads") else ("" if p.get("kind") in ("newin", "rodents") else "calc"))
+        CURRENT["nav"] = "questions" if p.get("kind") == "question" else ("shop" if p.get("kind") in ("leads", "restleads", "licleads") else ("" if p.get("kind") in ("newin", "rodents", "agentkit") else "calc"))
         out = os.path.join(DOCS, p["slug"]); os.makedirs(out, exist_ok=True)
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page_html(p))
         print("wrote", p["slug"])

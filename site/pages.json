@@ -6175,6 +6175,180 @@
    "sources": "Schedule: NFPA 96 inspection frequency as summarized by the Massachusetts Department of Fire Services (2011 edition) and the Rhode Island State Fire Marshal (2018 edition). Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026. Every other figure in the calculator is yours; the defaults are an example, not market prices. Page built Oct 26, 2026.",
    "draft": false,
    "published": "2026-10-26"
+  },
+  {
+   "slug": "unattended-agent-kit",
+   "kind": "agentkit",
+   "draft": true,
+   "title": "Unattended Agent Kit for Claude Code | ProofNotFluff",
+   "desc": "Run Claude Code on a schedule with rules it reads first and checks that stop the run when one fails. Free lite version; the full kit is $79 one time. Waitlist open.",
+   "eyebrow": "For Claude Code jobs that run on a schedule",
+   "h1": "Let your agent run while you are away. Keep your rules in charge.",
+   "lede": "A starter system for coding agents that run unattended: a rulebook every run reads first, one job per skill, and a preflight that stops the run when a check fails. Each check comes with tests that break it on purpose, so you can see it still works.",
+   "heroCta": "Join the waitlist",
+   "heroCta2": "See it stop a run",
+   "heroNote": "$79 one time when it opens. Waitlist first, nothing to pay today.",
+   "proof": {
+    "title": "What a stopped run looks like",
+    "text": "Three runs of the free lite version. First the rules are in place and the run may start. Then someone deletes the line that sends runs to the rulebook. Then someone weakens the gate itself, and the planted tests catch that too.",
+    "terms": [
+     {
+      "key": "pass",
+      "tone": "ok",
+      "title": "Rules in place",
+      "cmd": "python3 tools/preflight.py daily-report",
+      "lines": [
+       "OK context: L0 895 B, L1 518 B, largest pre-run load 2474 of 8192 B",
+       "OK gate-test: 10 of 10 cases right (1 clean pass, 9 planted failures caught)",
+       "preflight daily-report: 0 errors. The run may start."
+      ]
+     },
+     {
+      "key": "norules",
+      "tone": "stop",
+      "title": "Rules line deleted",
+      "cmd": "python3 tools/preflight.py daily-report",
+      "lines": [
+       "ERROR context: CLAUDE.md does not send runs to ops/CONSTITUTION.md",
+       "ERROR gate-test: the repo fails its own gate, so the planted cases were not run; fix the ERROR context lines first",
+       "preflight daily-report: 2 gate(s) failed. Stop the run and report the ERROR lines."
+      ]
+     },
+     {
+      "key": "weak",
+      "tone": "stop",
+      "title": "Gate weakened",
+      "cmd": "python3 tools/preflight.py daily-report",
+      "lines": [
+       "OK context: L0 895 B, L1 518 B, largest pre-run load 2474 of 8192 B",
+       "ERROR gate-test: planted case not caught: router stops naming the constitution (exit 0)",
+       "ERROR gate-test: planted case not caught: router stops naming the preflight (exit 0)",
+       "ERROR gate-test: 2 of 10 cases wrong",
+       "preflight daily-report: 1 gate(s) failed. Stop the run and report the ERROR lines."
+      ]
+     }
+    ],
+    "asof": "Real output of the lite version, captured Oct 26, 2026. A stopped run exits with code 1, so a scheduler or a CI job sees the failure too."
+   },
+   "fears": {
+    "title": "The four things people fear from an unattended agent",
+    "items": [
+     [
+      "It spends money",
+      "Spend and account rules it reads before every run: nothing bought, no card or password typed, no account created or terms accepted without your word in a live chat."
+     ],
+     [
+      "It deletes things",
+      "No delete without your word naming the thing, a _to_delete folder instead, and a hook that blocks the commands you list before they run."
+     ],
+     [
+      "It sends something wrong",
+      "A send gate: an email, post or deploy goes out only on a template you approved and nobody has changed since, under a daily cap, with a stop word."
+     ],
+     [
+      "It drifts from your rules",
+      "The rules load first on every run and stay small enough to load in full. A failed check stops the run instead of passing quietly."
+     ]
+    ]
+   },
+   "how": {
+    "title": "How it works",
+    "steps": [
+     [
+      "The router loads first",
+      "CLAUDE.md names the rulebook, the live state and the one job this run does. Each layer has a size cap, so the rules are never the part that gets cut."
+     ],
+     [
+      "One job per skill",
+      "Each SKILL.md says what the job reads, what it does and what it writes. A job that only writes a report has no step that sends anything."
+     ],
+     [
+      "A preflight on every run",
+      "The gates run before any work. One ERROR line stops the run and says why. Planted tests prove each gate still catches its case."
+     ]
+    ]
+   },
+   "inside": {
+    "title": "What the full kit will include",
+    "items": [
+     "The layered folder layout with ready templates: router, live handoff, constitution and a dated decisions log",
+     "A constitution template for money, accounts, sending, deleting, secrets and stop words",
+     "The preflight and its gates: context budget, send approval, secrets and personal data scan, delete guard",
+     "Planted-failure tests for every gate, so a weakened check fails loudly",
+     "Claude Code permission presets and a hook that blocks the commands you name",
+     "One scheduled job wired end to end, with its run log",
+     "A setup guide from an empty repo to the first scheduled run"
+    ],
+    "note": "The kit is in build. This is the list it is planned to ship with; any change shows here before anyone pays."
+   },
+   "lite": {
+    "title": "Free lite version",
+    "text": "The router, handoff and constitution templates, the preflight, the context gate and its 9 planted-failure tests. MIT license, Python 3.8 or later, nothing to install.",
+    "button": "Get the lite version on GitHub",
+    "pending": "It goes up on GitHub when the waitlist opens."
+   },
+   "facts": {
+    "title": "Built from a system that runs daily",
+    "text": "This is the pattern ProofNotFluff uses for its own scheduled jobs. Each one starts with the preflight. The kit is a clean, generic copy with none of our data or business rules in it.",
+    "tiles": [
+     [
+      "Jobs on a schedule",
+      "8",
+      "each starts with the preflight"
+     ],
+     [
+      "Planted test cases",
+      "311",
+      "rerun before each run"
+     ]
+    ],
+    "asof": "Counts from our own repo, Oct 26, 2026."
+   },
+   "notFor": {
+    "title": "Who it is not for",
+    "items": [
+     "You want a hard sandbox. Rules in a file guide the model; real limits come from permission settings, containers, separate accounts, spending caps and backups. The kit sets up the first and tells you where the rest go.",
+     "You watch every step of every run. You do not need gates.",
+     "You want an agent that spends or sends without review. The kit is built to stop exactly that.",
+     "You need a compliance or security certification.",
+     "You will not edit a rules file. The kit only works once the rules are yours."
+    ]
+   },
+   "waitlist": {
+    "title": "Join the waitlist",
+    "text": "One email when the kit opens, with the founding price and the free lite version. Nothing else.",
+    "price": "$79 one time, the founding price for people on the list. Nothing to pay today.",
+    "button": "Join the waitlist",
+    "fine": "Unsubscribe in one click. Stored with Kit, our email provider, and never sold."
+   },
+   "faq": [
+    [
+     "Does a rules file really stop an agent?",
+     "Not on its own. A model can misread a rule. The kit pairs the rules with checks in code that run before the work, permission settings that block commands outright, and a stop when any check fails."
+    ],
+    [
+     "Does it work with agents other than Claude Code?",
+     "The layout and templates are written for Claude Code. The gates and tests are plain Python, so another agent that reads a project file and runs shell commands can use them with small edits."
+    ],
+    [
+     "What do I need?",
+     "Python 3.8 or later and a git repo. No packages, no service to sign up for, no account with us."
+    ],
+    [
+     "Is this a security product?",
+     "No. It is a way to write down your rules and check them on every run. It is not a sandbox, an audit or security advice."
+    ],
+    [
+     "When does it ship, and what are the terms?",
+     "After the waitlist test. The price, what is included and the refund terms will be on this page before anyone pays."
+    ],
+    [
+     "Where does the folder layout come from?",
+     "The Interpretable Context Methodology by Jake Van Clief and David McDermott (MIT license, arXiv 2603.16021). The constitution, the preflight, the budget gate and the planted tests are our additions."
+    ]
+   ],
+   "credit": "Folder layout: the Interpretable Context Methodology, Jake Van Clief and David McDermott, MIT license, arXiv 2603.16021 (github.com/RinDig/Interpretable-Context-Methodology-ICM).",
+   "sources": "Lite kit output captured Oct 26, 2026."
   }
  ]
 }

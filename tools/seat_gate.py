@@ -110,18 +110,23 @@ def check_seat_templates(path=SEAT_FILE, today=None):
     cfg = A.load()
     week_doc = json.load(open(A.WEEK)) if os.path.exists(A.WEEK) else {"fetchedAt": today.isoformat(), "territories": []}
     send = dt.date.fromisoformat(week_doc["fetchedAt"][:10])
-    seat0 = cfg["territories"][0]
+    held = set(cfg.get("held", []))
+    open_seats = [x for x in cfg["territories"] if x["slug"] not in held]
+    if not open_seats:
+        return probs + ["every seat is held: no seat email can be drafted"], len(ts), 0, 0
+    seat0 = open_seats[0]   # fixtures use an open seat, so a sale never breaks the gate (holdout B, Oct 26)
+    fixture_area = seat0["areas"][0]
     wk0 = next((t for t in week_doc["territories"] if t["slug"] == seat0["slug"]), {"slug": seat0["slug"], "open": 170})
     if not week_doc["territories"]:
         week_doc = dict(week_doc, territories=[wk0])
-    fix = {"lead_id": "chi-fixture", "city": "chicago", "gc_company": "Bartlett Cocke, LLC", "address": "100 W Randolph St",
+    fix = {"lead_id": "chi-fixture", "city": "chicago", "gc_company": "Bartlett Cocke, LLC", "address": "100 W Fixture St",
            "valuation": 45000000, "work_type": "New construction", "scope": "office"}
     for t in ts:
         lead = dict(fix, stage=t["stage"]) if t["stage"] else None
         f = fields(dict(fix, stage=t["stage"] or "Inspections Under Way"), seat0, wk0)
         subj, body = fill(t["subject"], f), fill(t["body"], f)
         probs += [f"{t['name']} (fixture): {x}" for x in
-                  seat_problems(subj, body, t["step"], lead, "Loop" if lead else "", seat0, cfg, week_doc, send)]
+                  seat_problems(subj, body, t["step"], lead, fixture_area if lead else "", seat0, cfg, week_doc, send)]
         unknown = set(re.findall(r"\{(\w+)\}", t["subject"] + t["body"])) - set(f)
         if unknown:
             probs.append(f"{t['name']}: unknown fields {sorted(unknown)}")
@@ -152,16 +157,16 @@ def check_seat_templates(path=SEAT_FILE, today=None):
     good_s, good_b = fill(first["subject"], f), fill(first["body"], f)
     other = next((x for x in cfg["territories"] if x["slug"] != seat0["slug"]), seat0)
     planted = [
-        ("wrong open count", good_s, good_b.replace(f"{wk0['open']} open jobs", f"{wk0['open'] + 7} open jobs"), "Loop", seat0, cfg, week_doc, send),
-        ("lead outside the seat", good_s, good_b, "Hyde Park", seat0, cfg, week_doc, send),
-        ("held seat", good_s, good_b, "Loop", seat0, dict(cfg, held=[seat0["slug"]]), week_doc, send),
-        ("stale counts", good_s, good_b, "Loop", seat0, cfg, week_doc, send + dt.timedelta(days=MAX_AGE + 1)),
-        ("other seat named", good_s, good_b.replace(seat0["name"], other["name"]), "Loop", seat0, cfg, week_doc, send),
-        ("a price", good_s, good_b.replace("Want its", "It is $149 a month. Want its"), "Loop", seat0, cfg, week_doc, send),
-        ("a link", good_s, good_b.replace("judge it?", "judge it at proofnotfluff.com?"), "Loop", seat0, cfg, week_doc, send),
-        ("wrong subject", "Leads for you", good_b, "Loop", seat0, cfg, week_doc, send),
+        ("wrong open count", good_s, good_b.replace(f"{wk0['open']} open jobs", f"{wk0['open'] + 7} open jobs"), fixture_area, seat0, cfg, week_doc, send),
+        ("lead outside the seat", good_s, good_b, other["areas"][0], seat0, cfg, week_doc, send),
+        ("held seat", good_s, good_b, fixture_area, seat0, dict(cfg, held=[seat0["slug"]]), week_doc, send),
+        ("stale counts", good_s, good_b, fixture_area, seat0, cfg, week_doc, send + dt.timedelta(days=MAX_AGE + 1)),
+        ("other seat named", good_s, good_b.replace(seat0["name"], other["name"]), fixture_area, seat0, cfg, week_doc, send),
+        ("a price", good_s, good_b.replace("Want its", "It is $149 a month. Want its"), fixture_area, seat0, cfg, week_doc, send),
+        ("a link", good_s, good_b.replace("judge it?", "judge it at proofnotfluff.com?"), fixture_area, seat0, cfg, week_doc, send),
+        ("wrong subject", "Leads for you", good_b, fixture_area, seat0, cfg, week_doc, send),
         ("no area on file", good_s, good_b, "", seat0, cfg, week_doc, send),
-        ("an extra count", good_s, good_b.replace("this week,", "this week, 12 near finish,"), "Loop", seat0, cfg, week_doc, send),
+        ("an extra count", good_s, good_b.replace("this week,", "this week, 12 near finish,"), fixture_area, seat0, cfg, week_doc, send),
     ]
     caught = 0
     for name, s_, b_, ca, seat, c_, w_, day in planted:
@@ -169,9 +174,45 @@ def check_seat_templates(path=SEAT_FILE, today=None):
             caught += 1
         else:
             probs.append(f"planted case not caught: {name}")
-    if seat_problems(good_s, good_b, "first", ld, "Loop", seat0, cfg, week_doc, send):
-        probs.append("the planted good draft fails: " + "; ".join(seat_problems(good_s, good_b, "first", ld, "Loop", seat0, cfg, week_doc, send)))
+    if seat_problems(good_s, good_b, "first", ld, fixture_area, seat0, cfg, week_doc, send):
+        probs.append("the planted good draft fails: " + "; ".join(seat_problems(good_s, good_b, "first", ld, fixture_area, seat0, cfg, week_doc, send)))
+    probs += held_leads_problems(cfg)
+    # the same check on planted files: a held seat's lead left in the file, and a missing area file, are both caught
+    import tempfile
+    tmp = tempfile.mkdtemp()
+    pg, pa = os.path.join(tmp, "gc.json"), os.path.join(tmp, "areas.json")
+    json.dump({"leads": [{"lead_id": "chi-1", "city": "chicago"}, {"lead_id": "aus-1", "city": "austin"}]}, open(pg, "w"))
+    json.dump({"areas": {"chi-1": seat0["areas"][0]}}, open(pa, "w"))
+    held_cfg = dict(cfg, held=[seat0["slug"]])
+    for name, gpath, apath, c_, want in [("held lead left in the file", pg, pa, held_cfg, True),
+                                         ("area file missing", pg, os.path.join(tmp, "none.json"), held_cfg, True),
+                                         ("nothing held", pg, pa, dict(cfg, held=[]), False)]:
+        got = bool(held_leads_problems(c_, gpath, apath))
+        if got == want:
+            caught += want
+        else:
+            probs.append(f"planted downstream case wrong: {name}")
     return probs, len(ts), caught, live
+
+
+def held_leads_problems(cfg, gc_path=GC, areas_path=GC_AREAS):
+    """Every cleaning email draws its example job from gc_leads.json: while a seat is held, no Chicago lead there may sit in
+    it (tools/ingest_downstream.py leaves them out; this proves it on the committed files; holdout B, Oct 26)."""
+    held = set(cfg.get("held", []))
+    if not held:
+        return []
+    if not os.path.exists(areas_path):
+        return [f"a seat is held but {os.path.relpath(areas_path, ROOT)} is missing: the downstream file cannot be shown to leave it out"]
+    areas, p = json.load(open(areas_path))["areas"], []
+    for ld in json.load(open(gc_path))["leads"]:
+        if ld.get("city") != "chicago":
+            continue
+        ca = areas.get(ld["lead_id"])
+        if ca is None:
+            p.append(f"{ld['lead_id']}: no community area on file while a seat is held")
+        elif A.territory_of(ca, cfg) in held:
+            p.append(f"{ld['lead_id']} is in {ca}, a held seat, and is still in gc_leads.json")
+    return p
 
 
 if __name__ == "__main__":

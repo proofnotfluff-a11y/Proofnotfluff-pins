@@ -146,6 +146,9 @@ def pitch_json():
 
 
 def legal_text():
+    if CITY.get("seatName"):   # an area seat (tools/area_seats.py city_for): Chicago's line with the seat's licence words
+        return LEGAL.replace("Licensed to one business for its own prospecting;",
+                             f"Licensed to one business, the only seat holder for {CITY['seatName']}, for its own prospecting;")
     return LEGAL if CITY["key"] == "chicago" else CITY["legal"]
 
 

@@ -46,7 +46,9 @@ def seats_html(p, spec, rel):
     price = E(str(spec["price"]))
     cap = len(cfg["territories"])
     left = cap - len(held)
-    svg = A.svg(cfg, width=340, title="Map of the six Chicago cleaning lead areas")
+    # the map's text description uses the same open counts as the list (this week's when the weekly file exists; holdout B)
+    st_map = dict(st, territories=[dict(t, openNow=week.get(t["slug"], {}).get("open", t["openNow"])) for t in st["territories"]])
+    svg = A.svg(cfg, st=st_map, width=340, title="Map of the six Chicago cleaning lead areas")
     lo = min(t["avg"] for t in st["territories"])
     hi = max(t["avg"] for t in st["territories"])
     rng = f'{_month(st["from"])} to {_month(st["to"])}'

@@ -213,9 +213,12 @@ def check_seat_templates(path=SEAT_FILE, today=None):
     pg, pa = os.path.join(tmp, "gc.json"), os.path.join(tmp, "areas.json")
     json.dump({"leads": [{"lead_id": "chi-1", "city": "chicago"}, {"lead_id": "aus-1", "city": "austin"}]}, open(pg, "w"))
     json.dump({"areas": {"chi-1": seat0["areas"][0]}}, open(pa, "w"))
+    pb = os.path.join(tmp, "blank.json")
+    json.dump({"areas": {"chi-1": ""}}, open(pb, "w"))
     held_cfg = dict(cfg, held=[seat0["slug"]])
     for name, gpath, apath, c_, want in [("held lead left in the file", pg, pa, held_cfg, True),
                                          ("area file missing", pg, os.path.join(tmp, "none.json"), held_cfg, True),
+                                         ("blank area while a seat is held", pg, pb, held_cfg, True),
                                          ("nothing held", pg, pa, dict(cfg, held=[]), False)]:
         got = bool(held_leads_problems(c_, gpath, apath))
         if got == want:
@@ -238,7 +241,7 @@ def held_leads_problems(cfg, gc_path=GC, areas_path=GC_AREAS):
         if ld.get("city") != "chicago":
             continue
         ca = areas.get(ld["lead_id"])
-        if ca is None:
+        if not ca:   # a blank area is as unknown as a missing one (holdout B round 2, Oct 26)
             p.append(f"{ld['lead_id']}: no community area on file while a seat is held")
         elif A.territory_of(ca, cfg) in held:
             p.append(f"{ld['lead_id']} is in {ca}, a held seat, and is still in gc_leads.json")

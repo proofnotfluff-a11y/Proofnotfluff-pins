@@ -138,7 +138,9 @@ def chicago_permits(api, since):
     held = held_area_numbers()
     if held:
         reasons["in an area held by a seat"] += sum(1 for x in out if x["_ca"] in held)
-        out = [x for x in out if x["_ca"] not in held]
+        # a permit with no community area cannot be shown to sit outside the held seat, so it leaves too (holdout B round 2)
+        reasons["no community area while a seat is held"] += sum(1 for x in out if not x["_ca"])
+        out = [x for x in out if x["_ca"] and x["_ca"] not in held]
     names = area_names()
     for x in out:
         x.pop("_rev", None)
@@ -411,17 +413,19 @@ def selftest():
                                    "work_description": "INTERIOR RENOVATION OF EXISTING OFFICE SPACE ON 5TH FLOOR", "contact_1_type": "CONTRACTOR-GENERAL CONTRACTOR",
                                    "contact_1_name": "ACME CONSTRUCTION LLC", "reported_cost": "900000", "community_area": ca,
                                    "street_number": pid, "street_direction": "W", "street_name": "RANDOLPH ST"}
-            return [row("101", "32"), row("202", "41")]   # Loop, Hyde Park
+            return [row("101", "32"), row("202", "41"), row("303", None)]   # Loop, Hyde Park, no area
     global held_area_numbers
     real = held_area_numbers
     try:
         held_area_numbers = lambda: set()
         out, _, _ = chicago_permits(_Api(), "2024-10-26T00:00:00")
-        check("nothing held keeps both permits, areas on file", [x["lead_id"] for x in out] == ["chi-101", "chi-202"]
+        check("nothing held keeps every permit, areas on file", [x["lead_id"] for x in out] == ["chi-101", "chi-202", "chi-303"]
               and AREAS_OUT.get("chi-101") == "Loop" and all("_ca" not in x for x in out))
         held_area_numbers = lambda: {"32", "33"}
         out, why, _ = chicago_permits(_Api(), "2024-10-26T00:00:00")
-        check("a held seat's permit leaves the file", [x["lead_id"] for x in out] == ["chi-202"] and why.get("in an area held by a seat") == 1)
+        check("a held seat's permit leaves the file, and so does one with no area",
+              [x["lead_id"] for x in out] == ["chi-202"] and why.get("in an area held by a seat") == 1
+              and why.get("no community area while a seat is held") == 1)
     finally:
         held_area_numbers = real
     if fails:

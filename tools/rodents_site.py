@@ -61,11 +61,11 @@ CSS = ("<style>.rc-bars{margin:12px 0 8px;padding:16px 18px;background:var(--car
        ".rc-t th:first-child,.rc-t td:first-child{text-align:left}.rc-t thead th{font-size:13px;color:var(--muted);font-weight:700;background:var(--card);position:sticky;top:0}"
        ".rc-t tbody th{font-weight:600;color:var(--ink)}.rc-t tr:last-child td,.rc-t tr:last-child th{border-bottom:0}"
        ".rc-up{color:var(--warn-ink)}.rc-two{display:grid;gap:16px}@media(min-width:900px){.rc-two{grid-template-columns:1fr 1fr}}"
-       ".rc-two .cta{grid-template-columns:1fr;height:100%}.rc-two .cta h2{margin-top:0;text-wrap:balance}"
+       ".rc-two .cta{grid-template-columns:1fr;height:100%;align-items:start}.rc-two .cta h2{margin-top:0;text-wrap:balance}"
        ".rc-steps{margin:8px 0 0;padding-left:22px}section.block .cta .rc-steps li{margin:6px 0;color:var(--band-text)}.cta .rc-more,.cta .rc-more a{color:var(--band-text)}"
        ".rc-more-t{margin:12px 0 0}.rc-more-t summary{display:flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;font-weight:600;color:var(--ink)}"
        ".rc-more-t[open] summary{margin-bottom:8px}"
-       "@media(max-width:599px){.rc-t{min-width:0}.rc-t th:nth-child(2),.rc-t td:nth-child(2){display:none}.rc-t th,.rc-t td{padding:9px 8px}.rc-wk div:not(:first-child):not(:last-child) span{visibility:hidden}.rc-wk span{font-size:10.5px}.rc-wk{height:140px}.rc-wk div:not(:last-child) b{visibility:hidden}.rc-bar{grid-template-columns:minmax(96px,130px) 1fr 44px}}</style>")
+       "@media(max-width:599px){.rc-t{min-width:0}.rc-t th:nth-child(2),.rc-t td:nth-child(2){display:none}.rc-t th,.rc-t td{padding:9px 8px}.rc-wk div:not(:nth-child(3n+1)):not(:last-child) span{visibility:hidden}.rc-wk span{font-size:11.5px}.rc-wk{height:140px}.rc-wk div:not(:last-child) b{visibility:hidden}.rc-bar{grid-template-columns:minmax(96px,130px) 1fr 44px}}</style>")
 
 
 def page_html(p):

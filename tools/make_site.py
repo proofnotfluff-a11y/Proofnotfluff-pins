@@ -1907,7 +1907,7 @@ def missed_calls_page(p):
 <div class="tile key"><div class="lab">Profit lost a month</div><div class="val" data-out="lostProfit" data-fmt="money0">$0</div><div class="sub"><span data-out="year" data-fmt="money0">$0</span> a year<span data-show-if="repeat > 0">, counting each lost customer's first year</span></div></div>
 <div class="tile"><div class="lab">Jobs lost a month</div><div class="val" data-out="lostJobs" data-fmt="dec1">0</div><div class="sub">From <span data-out="lostCallers" data-fmt="dec1">0</span> callers who went elsewhere</div></div>
 <div class="tile"><div class="lab">Revenue lost a month</div><div class="val" data-out="lostRev" data-fmt="money0">$0</div><div class="sub" data-show-if="repeat > 0">Each lost customer's first year</div></div>
-<div class="tile" data-show-if="costOn > 0"><div class="lab">Customers to cover the option</div><div class="val" data-out="cover" data-fmt="int">0</div><div class="sub">Saved new customers a month</div></div>
+<div class="tile" data-show-if="optOn > 0"><div class="lab">Customers to cover the option</div><div class="val" data-out="cover" data-fmt="int">0</div><div class="sub">Saved new customers a month</div></div>
 </div>
 <ul class="lines">
 <li><span>Missed new-customer calls a month</span><span data-out="missedMo" data-fmt="dec1">0</span></li>
@@ -1915,8 +1915,8 @@ def missed_calls_page(p):
 <li><span>Jobs those callers would have booked</span><span data-out="lostJobs" data-fmt="dec1">0</span></li>
 <li><span>Profit from one new customer, first year</span><span data-out="perJobProfit">$0</span></li>
 <li class="total"><span>Profit lost a month</span><span data-out="lostProfit" data-fmt="money0">$0</span></li>
-<li data-show-if="costOn > 0"><span>Monthly cost of the option</span><span data-out="cost" data-fmt="money0">$0</span></li>
-<li data-show-if="costOn > 0" class="total"><span>Left after the option, if it saved every one</span><span data-out="net" data-fmt="money0">$0</span></li>
+<li data-show-if="optOn > 0"><span>Monthly cost of the option</span><span data-out="cost" data-fmt="money0">$0</span></li>
+<li data-show-if="optOn > 0" class="total"><span>Left after the option, if it saved every one</span><span data-out="net" data-fmt="money0">$0</span></li>
 </ul>
 <div class="callout" data-show-if="pays > 0">The option costs less than the profit you lose. New customers it must save each month to pay for itself: <b data-out="cover" data-fmt="int">0</b>.</div>
 <div class="callout warn" data-show-if="notPays > 0">The option costs as much as or more than the profit these calls lose you. Fix the missed calls another way, or price the option lower.</div>

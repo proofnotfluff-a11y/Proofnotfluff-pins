@@ -5767,7 +5767,6 @@
   {
    "slug": "missed-call-cost-calculator",
    "kind": "missed_calls",
-   "draft": true,
    "segment": "trades",
    "stages": true,
    "title": "Missed Call Cost Calculator for Service Businesses | ProofNotFluff",
@@ -5811,7 +5810,9 @@
      "A regular client who misses you usually calls back or texts. A new caller often calls the next company on the list, so those calls carry the cost."
     ]
    ],
-   "sources": "No outside rates are used on this page: every figure in the calculator is yours, and the defaults are an example, not industry averages. Page built and checked Oct 26, 2026."
+   "sources": "No outside rates are used on this page: every figure in the calculator is yours, and the defaults are an example, not industry averages. Page built and checked Oct 26, 2026.",
+   "draft": false,
+   "published": "2026-10-26"
   },
   {
    "slug": "price-increase-calculator",

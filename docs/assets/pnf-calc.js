@@ -972,7 +972,7 @@
     var lostRev = lostJobs * job * jobsPer, lostProfit = Math.round(lostRev * gm), perJobProfit = job * gm * jobsPer;  // whole dollars once, so year and net tie to the tile
     var cover = cost > 0 && perJobProfit > 0 ? Math.ceil(cost / perJobProfit - 1e-9) : 0;
     return { missedMo: missedMo, lostCallers: lostCallers, lostJobs: lostJobs, lostRev: lostRev, lostProfit: lostProfit, year: lostProfit * 12,
-      perJobProfit: perJobProfit, cost: cost, net: lostProfit - cost, cover: cover, costOn: cost > 0 && perJobProfit > 0 ? 1 : 0,
+      perJobProfit: perJobProfit, cost: cost, net: lostProfit - cost, cover: cover, costOn: cost > 0 && perJobProfit > 0 ? 1 : 0, optOn: cost > 0 && perJobProfit > 0 && calls > 0 ? 1 : 0,
       pays: cost > 0 && lostProfit > cost ? 1 : 0, notPays: cost > 0 && lostProfit <= cost && lostProfit > 0 ? 1 : 0, repeat: jobsPer > 1 ? 1 : 0,
       noMargin: job > 0 && gm === 0 ? 1 : 0, none: calls > 0 ? 0 : 1 };
   }

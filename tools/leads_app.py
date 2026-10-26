@@ -385,8 +385,10 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .ov{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:20px;align-items:start}
 @media(max-width:1020px){.ov{grid-template-columns:minmax(0,1fr)}}
 .ov-col{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;min-width:0}
+.nc1{margin:0 0 14px;font-size:14px;line-height:1.5;color:var(--muted)}
+.bnote{margin:0;padding:0 20px 12px;font-size:14px;color:var(--muted)}
 .nb{display:flex;align-items:center;justify-content:space-between;gap:12px 16px;flex-wrap:wrap;padding:16px 20px}.nb p{margin:0;color:var(--ink2);font-size:15px;flex:1 1 260px}.nb b{color:var(--ink)}
-.stn.z .n{color:var(--muted)}
+.stn.z .n,.stn.s0.z .n{color:var(--muted)}.stn.z .dot,.stn.s0.z .dot,.stn.s1.z .dot{background:var(--card,#fff);border:2px dashed #C9C2B5;color:var(--muted);box-shadow:none}
 .hero h1{font-size:34px;font-weight:700}
 .hero p{margin:8px 0 0;color:var(--muted);font-size:16px;max-width:60ch}
 @media(max-width:600px){.hero h1{font-size:26px}.hero p{font-size:15px}}
@@ -431,9 +433,10 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .row .bd{flex-wrap:wrap;row-gap:2px}.row .bd>span:not(.nc){white-space:normal;overflow:visible}
 .mine .btn{white-space:normal;text-align:center;height:auto;min-height:44px;padding-top:10px;padding-bottom:10px;max-width:100%}
 .minimap:empty{height:auto}
-.minimap:empty::after{content:"The map did not load on this connection. The address is above.";display:flex;align-items:center;justify-content:center;gap:8px;min-height:72px;padding:16px 20px 16px 48px;text-align:center;color:var(--muted);font-size:14px;background:no-repeat 20px 50%/18px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7180' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z'/%3E%3Ccircle cx='12' cy='10' r='2.5'/%3E%3C/svg%3E")}
+.minimap:empty::after{content:"The map did not load on this connection. The address is above.";display:flex;align-items:center;justify-content:flex-start;gap:8px;min-height:48px;padding:12px 20px 12px 48px;text-align:left;color:var(--muted);font-size:14px;background:no-repeat 20px 50%/18px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7180' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z'/%3E%3Ccircle cx='12' cy='10' r='2.5'/%3E%3C/svg%3E")}
 .row .bd{align-items:baseline}.row .bd .ico{align-self:center}
 .row.hl{background:#F6F3EC}
+#plist.onest .rt .chip{display:none}
 .grp{display:flex;align-items:baseline;gap:8px;margin:0;padding:10px 20px;border-top:1px solid var(--line2);background:#FAF8F4;font:600 13px var(--body);color:var(--ink2);letter-spacing:0}
 .grp .c{color:var(--muted)}
 .grp+.list-rows .row{border-top:1px solid var(--line2)}
@@ -475,8 +478,8 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .seg::-webkit-scrollbar{display:none}
 .seg button{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 12px;border:0;border-radius:7px;background:none;color:var(--ink2);font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap}
 .seg button .c{color:var(--muted);font-weight:600}
-.seg button[aria-pressed=true]{background:var(--ink);color:#fff}.seg button[aria-pressed=true] .c{color:#C9CFDB}
-.seg button:hover:not([aria-pressed=true]){background:#F5F2EC}
+.seg button[aria-pressed=true]{background:var(--ink);color:#fff}.seg button:disabled{opacity:.45;cursor:default;background:none}.tog.off{opacity:.45}.seg button[aria-pressed=true] .c{color:#C9CFDB}
+.seg button:hover:not([aria-pressed=true]):not(:disabled){background:#F5F2EC}
 .filters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;align-items:end}
 .filters .fld select{width:100%;max-width:none}.filters .tog{width:100%}
 @media(max-width:1100px){.filters{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -507,7 +510,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .lg2{width:10px;height:10px;background:#fff;border:2px solid var(--iss);margin:0 2px}
 .map-note{position:absolute;z-index:500;left:12px;bottom:12px;max-width:calc(100% - 140px);background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12.5px;color:var(--muted)}
 .map-fail{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;color:var(--muted);font-size:14px}
-.split.nomap{display:flex;flex-direction:column-reverse;align-items:stretch;gap:12px}.split.nomap .mapbox{position:static;height:auto;min-height:0;display:block!important}.split.nomap .mapbox .map,.split.nomap .legend{display:none}.split.nomap .map-fail{position:static;display:flex;gap:8px;justify-content:center;padding:14px 20px}.split.nomap .map-fail p{margin:0}
+.split.nomap{display:flex;flex-direction:column-reverse;align-items:stretch;gap:12px}.split.nomap .mapbox{position:static;height:auto;min-height:0;display:block!important}.split.nomap .mapbox .map,.split.nomap .legend{display:none}.split.nomap .map-fail{position:static;display:flex;gap:8px;justify-content:center;padding:14px 20px}.split.nomap .map-fail p{margin:0}.split.nomap .map-fail{flex-wrap:wrap;align-items:center}@media(min-width:861px){#mfl{display:none}}.split[data-v=list] #mfl{display:none}
 .leaflet-container{font-family:var(--body);background:#E9E6E0}
 .leaflet-tile-pane{filter:grayscale(1) sepia(.18) contrast(.88) brightness(1.06)}
 .leaflet-control-attribution{font-size:11px;background:rgba(255,255,255,.9)!important}
@@ -534,12 +537,12 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
  #csv .t{display:none}#csv .m{display:inline}#csv{min-height:44px;padding:0 12px}
  .tool{gap:8px}.tsp{display:none}.vtog{margin-left:auto}
  .tool .fbtn{padding:0 12px}
- .tool .vtog{flex:1;margin-left:0;padding:2px;height:44px}.tool .vtog button{flex:1;justify-content:center;height:38px;padding:0 8px}
+ .tool .vtog{flex:1;margin-left:0;padding:2px;height:50px}.tool .vtog button{flex:1;justify-content:center;height:44px;padding:0 8px}
  .btool{display:grid;grid-template-columns:1fr 1fr}.btool .search{grid-column:1 / -1}.btool .fld select{width:100%;max-width:none}.btool .tog{width:100%}
  .vtog{display:inline-flex}
- .tool .seg:not(.vtog){display:flex;flex-wrap:wrap;gap:8px;width:100%;margin:0;padding:0;background:none;border:0;border-radius:0;overflow:visible}
- .tool .seg:not(.vtog) button{flex:none;height:44px;padding:0 14px;border:1px solid var(--field);border-radius:999px;background:#fff}
- .tool .seg:not(.vtog) button[data-k=""]{order:1}
+ .tool .seg:not(.vtog){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:100%;margin:0;padding:0;background:none;border:0;border-radius:0;overflow:visible}
+ .tool .seg:not(.vtog) button{justify-content:center;height:44px;padding:0 12px;border:1px solid var(--field);border-radius:999px;background:#fff}
+ .tool .seg:not(.vtog) button[data-k=""]{order:0}
  .c-austin .tool .seg:not(.vtog) button[data-k=""]{order:0}
  .tool .seg:not(.vtog) button[aria-pressed=true]{background:var(--ink);border-color:var(--ink)}
  .rbar{gap:8px 12px}
@@ -651,7 +654,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .bt tbody tr{cursor:pointer}
 @media(hover:hover) and (pointer:fine){.bt tr:hover td{background:#FBFAF7}}
 .bt .n{text-align:right;white-space:nowrap;color:var(--ink)}
-.bt .nm b{font-weight:600}
+.bt .nm b{font-weight:600}.bt td.cv,.bt th.cv{width:40px;padding:0 12px 0 0;color:var(--field);text-align:right}@media(hover:hover){.bt tbody tr:hover .nm b{text-decoration:underline;text-underline-offset:3px}}
 .bt .nm small{display:flex;align-items:center;gap:5px;color:var(--muted);font-size:13px;margin-top:2px}
 .bt .nm small .ico{color:var(--teal)}
 .bt .z{color:var(--muted);font-weight:400}
@@ -756,6 +759,7 @@ flag:'<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',x:'<path d="M6 6l12 12M18 6 6 18"/>
 kit:'<path d="M8 4h8M9 4V3h6v1M6 6h12v15H6z"/><path d="M9 11h6M9 15h6"/>',csv:'<path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4M9 13h6M9 17h6"/>',
 ext:'<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>'};
 const ico=(n,c)=>`<svg class="ico${c?" "+c:""}" viewBox="0 0 24 24" aria-hidden="true">${I[n]}</svg>`;
+const noC=()=>CITY.contacts&&!Object.values(B).some(b=>b.ok);
 const chip=s=>`<span class="chip s${s}"><span class="pips" aria-hidden="true">${[0,1,2].map(i=>`<i${i<PIPS[s]?' class="f"':""}></i>`).join("")}</span>${STG[s]}</span>`;
 function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("on"),2500);}
 function untoast(){clearTimeout(toast.t);$("#toast").classList.remove("on");}
@@ -810,8 +814,9 @@ function row(p,ctx){const m=mk(p.id);const b=p.g.length?B[p.g[0]]:null;const oth
 return `<li><a class="row" href="#/project/${encodeURIComponent(p.id)}" data-id="${esc(p.id)}">
 <span class="mn num">${money(p.c)}<small>${esc(kind)}</small></span>
 <span class="ad">${CITY.key==="austin"?esc(p.a).replace(/ more\)/g,"&nbsp;more)"):esc(p.a)}${p.ca?`<span class="ar">,${CITY.key==="austin"?"&nbsp;":" "}${esc(p.ca)}</span>`:""}</span>
-${ctx&&ctx!=="near"&&ctx!=="new"?(other?`<span class="bd"><span>With ${esc(pn(p,p.g.indexOf(other)))}</span></span>`:""):`<span class="bd">${b&&b.ok?ico(b.contact.phone?"phone":"mail","s")+'<span class="sr">Contact on file: </span>':""}<span>${esc(b?pn(p,0):"No builder listed")}${p.g.length>1?` <span class="ar">and ${int(p.g.length-1)} more</span>`:""}</span>${b&&!b.ok&&CITY.contacts?'<span class="nc">No contact yet</span>':""}</span>`}
+${ctx&&ctx!=="near"&&ctx!=="new"?(other?`<span class="bd"><span>With ${esc(pn(p,p.g.indexOf(other)))}</span></span>`:""):`<span class="bd">${b&&b.ok?ico(b.contact.phone?"phone":"mail","s")+'<span class="sr">Contact on file: </span>':""}<span>${esc(b?pn(p,0):"No builder listed")}${p.g.length>1?` <span class="ar">and ${int(p.g.length-1)} more</span>`:""}</span>${b&&!b.ok&&CITY.contacts&&!noC()?'<span class="nc">No contact yet</span>':""}</span>`}
 <span class="rt">${ctx&&ctx!=="new"?"":chip(p.st)}${p.n&&ctx!=="new"?'<span class="badge new">New this week</span>':""}${m.c?`<span class="badge done">${ico("check","s")}Contacted</span>`:""}</span>${ico("chev","chev")}</a></li>`;}
+function shortScope(t){t=String(t||"");if(!/(\.\.\.|\u2026)$/.test(t))return t;t=t.replace(/\s*(\.\.\.|\u2026)$/,"");let u;do{u=t;t=t.replace(/[\s,;:(]+(and|also|at|of|to|in|on|for|with|the|a|an|by|from|or|including|plus|per)$/i,"").replace(/[\s,;:(]+$/,"");}while(t!==u);return t+"...";}
 function rowsHtml(list,limit,ctx){if(!list.length)return "";const n=Math.min(limit||list.length,list.length);return `<ul class="list-rows">${list.slice(0,n).map(p=>row(p,ctx)).join("")}</ul>`;}
 
 /* overview */
@@ -821,24 +826,24 @@ const addrs=new Set(P.map(p=>p.a)).size;
 const top=Object.values(B).sort((a,b)=>b.near-a.near||b.n-a.n||b.cost-a.cost).slice(0,6);
 const ac={};P.forEach(p=>{if(p.ca){const a=ac[p.ca]=ac[p.ca]||[0,0,0];a[p.st]++;}});const areas=Object.entries(ac).map(([a,c])=>[a,c[0]+c[1]+c[2],c]).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,8);const amax=areas.length?areas[0][1]:1;
 const marked=Object.keys(MARKS).filter(id=>BYID[id]);const cN=marked.filter(id=>MARKS[id].c).length,nN=marked.filter(id=>(MARKS[id].n||"").trim()).length;
-const stn=s=>`<${by[s].length?"a":"span"} class="stn s${s}${by[s].length?"":" z"}"${by[s].length?` href="#/projects?stage=${["near","insp","issued"][s]}"`:""}><span class="dot">${ico(["check","search","crane"][s])}</span><span class="n num">${int(by[s].length)}</span><span class="tx"><span class="t">${STG[s]}</span><span class="m num">${bigMoney(by[s].reduce((x,p)=>x+p.c,0))} ${CITY.costShort}</span></span></${by[s].length?"a":"span"}>`;
+const stn=s=>`<${by[s].length?"a":"span"} class="stn s${s}${by[s].length?"":" z"}"${by[s].length?` href="#/projects?stage=${["near","insp","issued"][s]}"`:""}><span class="dot">${by[s].length?ico(["check","search","crane"][s]):""}</span><span class="n num">${int(by[s].length)}</span><span class="tx"><span class="t">${STG[s]}</span><span class="m num">${by[s].length?bigMoney(by[s].reduce((x,p)=>x+p.c,0))+" "+CITY.costShort:"None this week"}</span></span></${by[s].length?"a":"span"}>`;
 $("#app").innerHTML=`<section class="hero">${CITY.seatName?`<p class="seatchip">Your seat: ${esc(CITY.seatName)}</p>`:""}<h1>${by[0].length||!by[1].length?`${int(by[0].length)} ${by[0].length===1?"project is":"projects are"} close to a final clean this week`:`${int(by[1].length)} ${by[1].length===1?"project has":"projects have"} ${esc(STG[1].toLowerCase())}, none at ${esc(STG[0].toLowerCase())} yet`}</h1>
 <p>${CITY.key==="austin"?`${int(P.length)} open projects on the list (${int(P.reduce((x,p)=>x+(p.b||0),0))} building permits), ${bigMoney(TOTAL)} in valuation`:`${int(P.length)} open permits on the list, ${bigMoney(TOTAL)} in reported cost at ${int(addrs)} addresses`}. Built from ${esc(CITY.records)}, list of ${esc(D.asOf)}.</p></section>
 <nav class="line" aria-label="Projects by stage, from permit to final clean">${stn(2)}${stn(1)}${stn(0)}<span class="flag"><span class="dot">${ico("flag")}</span><span class="tx"><span class="t">Final clean</span><span class="m">Your bid</span></span></span></nav>
 <div class="ov"><div class="ov-col">
 ${near.length?`<section class="panel"><div class="sec-h"><h2>Closest to a final clean<span class="c num">${int(near.length)}</span></h2><a href="#/projects?stage=near">See all ${int(near.length)}</a></div>${rowsHtml(near,0,"near")}</section>
-<section class="panel"><div class="sec-h"><h2>New this week<span class="c num">${int(nw.length)}</span></h2>${nw.length?`<a href="#/projects?new=1">See all ${int(nw.length)}</a>`:""}</div>${nw.length?rowsHtml(nw,5,"new"):`<p class="empty">No permits on the list were issued in the last 7 days.</p>`}</section>`:`<section class="panel"><div class="sec-h"><h2>Builders to call first</h2><a href="#/builders">All ${int(Object.keys(B).length)} builders</a></div>
-${top.map(b=>`<a class="mini-b" href="#/builder/${encodeURIComponent(b.key)}"><b>${esc(b.name)}</b><span>${plural(b.n,CITY.bNoun)}${CITY.bWeek}${CITY.contacts?", "+(b.ok?"contact on file":"no contact on file yet"):""}</span>${top.some(x=>x.near)?`<span class="r num">${int(b.near)}<small>near finish</small></span>`:`<span class="r num">${int(b.n)}<small>${b.n===1?"project":"projects"}</small></span>`}</a>`).join("")}</section>
-<section class="panel"><div class="sec-h"><h2>New this week<span class="c num">${int(nw.length)}</span></h2>${nw.length?`<a href="#/projects?new=1">See all ${int(nw.length)}</a>`:""}</div>${nw.length?rowsHtml(nw,5,"new"):`<p class="empty">No permits on the list were issued in the last 7 days.</p>`}</section>
-<section class="panel nb"><p><b>None at ${esc(STG[0].toLowerCase())} this week.</b> The ${plural(by[1].length,"project")} with ${esc(STG[1].toLowerCase())} ${by[1].length===1?"is":"are"} next closest.</p>${by[1].length?`<a class="btn sm" href="#/projects?stage=insp">Open the ${int(by[1].length)}</a>`:""}</section>`}
+${nw.length?`<section class="panel"><div class="sec-h"><h2>New this week<span class="c num">${int(nw.length)}</span></h2><a href="#/projects?new=1">See all ${int(nw.length)}</a></div>${rowsHtml(nw,5,"new")}</section>`:`<section class="panel nb"><p><b>Nothing new this week.</b> No permits on the list were issued in the last 7 days.</p><a class="btn sm" href="#/projects">See all ${plural(P.length,"project")}</a></section>`}`:`<section class="panel"><div class="sec-h"><h2>Builders to call first</h2><a href="#/builders">All ${int(Object.keys(B).length)} builders</a></div>${noC()?'<p class="bnote">No builder contacts on file this week. Each builder\'s page has a web search to find one.</p>':""}
+${top.map(b=>`<a class="mini-b" href="#/builder/${encodeURIComponent(b.key)}"><b>${esc(b.name)}</b><span>${plural(b.n,CITY.bNoun)}${CITY.bWeek}${CITY.contacts&&!noC()?", "+(b.ok?"contact on file":"no contact on file yet"):""}</span>${top.some(x=>x.near)?`<span class="r num">${int(b.near)}<small>near finish</small></span>`:`<span class="r num">${int(b.n)}<small>${b.n===1?"project":"projects"}</small></span>`}</a>`).join("")}</section>
+${nw.length?`<section class="panel"><div class="sec-h"><h2>New this week<span class="c num">${int(nw.length)}</span></h2><a href="#/projects?new=1">See all ${int(nw.length)}</a></div>${rowsHtml(nw,5,"new")}</section>`:`<section class="panel nb"><p><b>Nothing new this week.</b> No permits on the list were issued in the last 7 days.</p><a class="btn sm" href="#/projects">See all ${plural(P.length,"project")}</a></section>`}
+<section class="panel nb"><p><b>None at ${esc(STG[0].toLowerCase())} this week.</b> The ${plural(by[1].length,"project")} with ${esc(STG[1].toLowerCase())} ${by[1].length===1?"is":"are"} next closest.</p>${by[1].length?`<a class="btn sm" href="#/projects?stage=insp">Open the ${plural(by[1].length,"project")}</a>`:""}</section>`}
 </div><div class="ov-col">
-${near.length?`<section class="panel"><div class="sec-h"><h2>Builders to call first</h2><a href="#/builders">All ${int(Object.keys(B).length)} builders</a></div>
-${top.map(b=>`<a class="mini-b" href="#/builder/${encodeURIComponent(b.key)}"><b>${esc(b.name)}</b><span>${plural(b.n,CITY.bNoun)}${CITY.bWeek}${CITY.contacts?", "+(b.ok?"contact on file":"no contact on file yet"):""}</span>${top.some(x=>x.near)?`<span class="r num">${int(b.near)}<small>near finish</small></span>`:`<span class="r num">${int(b.n)}<small>${b.n===1?"project":"projects"}</small></span>`}</a>`).join("")}</section>`:""}
+${near.length?`<section class="panel"><div class="sec-h"><h2>Builders to call first</h2><a href="#/builders">All ${int(Object.keys(B).length)} builders</a></div>${noC()?'<p class="bnote">No builder contacts on file this week. Each builder\'s page has a web search to find one.</p>':""}
+${top.map(b=>`<a class="mini-b" href="#/builder/${encodeURIComponent(b.key)}"><b>${esc(b.name)}</b><span>${plural(b.n,CITY.bNoun)}${CITY.bWeek}${CITY.contacts&&!noC()?", "+(b.ok?"contact on file":"no contact on file yet"):""}</span>${top.some(x=>x.near)?`<span class="r num">${int(b.near)}<small>near finish</small></span>`:`<span class="r num">${int(b.n)}<small>${b.n===1?"project":"projects"}</small></span>`}</a>`).join("")}</section>`:""}
 <section class="panel"><div class="sec-h"><h2>Where the work is</h2><a href="#/projects?view=map">Open the map</a></div>
-<p class="blg" aria-hidden="true"><span><i class="b0"></i>${STG_SHORT[0]}</span><span><i class="b1"></i>${STG_SHORT[1]}</span><span><i class="b2"></i>${STG_SHORT[2]}</span></p>
+<p class="blg" aria-hidden="true">${[0,1,2].filter(x=>by[x].length).map(x=>`<span><i class="b${x}"></i>${STG_SHORT[x]}</span>`).join("")}</p>
 <ul class="bars" aria-label="Open projects by ${CITY.areaLower} and stage"><li class="hd" aria-hidden="true"><span></span><span class="sp2"></span><span>Near finish</span><span>All</span></li>${areas.map(([a,n,c])=>`<li><a href="#/projects?area=${encodeURIComponent(a)}" aria-label="${esc(a)}: ${plural(n,"project")}, ${int(c[0])} near finish, ${int(c[1])} ${CITY.midWords}, ${int(c[2])} permit issued" title="${int(c[0])} near finish, ${int(c[1])} ${STG_SHORT[1].toLowerCase()}, ${int(c[2])} permit issued"><span>${esc(a)}</span><span class="tr" style="width:${Math.max(3,Math.round(n/amax*100))}%" aria-hidden="true">${[0,1,2].filter(s=>c[s]).map(s=>`<i class="b${s}" style="flex-grow:${c[s]}"></i>`).join("")}</span><span class="nv num${c[0]?"":" z"}">${int(c[0])}</span><span class="v num">${int(n)}</span></a></li>`).join("")}</ul></section>
 <section class="panel"><div class="sec-h"><h2>Your follow-ups</h2>${cN||nN?`<a href="#/projects?fu=mine">Show them</a>`:""}</div>
-<div class="mine">${cN||nN?`<p class="mh"><b>${plural(cN,"project")}</b> marked contacted, <b>${plural(nN,"note")}</b> written.</p>`:`<p class="mh"><b class="blk">No follow-ups yet</b>Mark a project as contacted or add a note on its page, and it shows up here.</p>`}<p>${esc(STORE_LINE())}</p>${cN||nN?"":(by[0].length||!by[1].length?`<a class="btn" href="#/projects?stage=near">Open the ${plural(by[0].length,"near-finish project")}</a>`:`<a class="btn" href="#/projects?stage=insp">Open the ${plural(by[1].length,"project")} with ${esc(STG[1].toLowerCase())}</a>`)}</div></section>
+<div class="mine">${cN||nN?`<p class="mh"><b>${plural(cN,"project")}</b> marked contacted, <b>${plural(nN,"note")}</b> written.</p>`:`<p class="mh"><b class="blk">No follow-ups yet</b>Mark a project as contacted or add a note on its page, and it shows up here.</p>`}<p>${esc(STORE_LINE())}</p>${cN||nN||!by[0].length?"":(by[0].length||!by[1].length?`<a class="btn" href="#/projects?stage=near">Open the ${plural(by[0].length,"near-finish project")}</a>`:`<a class="btn" href="#/projects?stage=insp">Open the ${plural(by[1].length,"project")} with ${esc(STG[1].toLowerCase())}</a>`)}</div></section>
 </div></div>`;}
 
 /* projects: filters, list and map, in sync */
@@ -892,16 +897,17 @@ function syncVtog(){document.querySelectorAll(".vtog button").forEach(b=>b.setAt
 function filtered(){const f=STATE.f;return P.filter(p=>pass(p,f)).sort(ORDER[f.sort]);}
 function refresh(refit){const f=STATE.f;
 const facet=(skip,test)=>P.filter(p=>pass(p,f,skip)&&test(p)).length;
-$("#fstage").innerHTML=[["","All",()=>true],["near",STG_SHORT[0],p=>p.st===0],["insp",STG_SHORT[1],p=>p.st===1],["issued",STG_SHORT[2],p=>p.st===2]].map(([k,t,fn])=>`<button type="button" data-k="${k}" aria-pressed="${f.stage===k}">${t}<span class="c num">${int(facet("stage",fn))}</span></button>`).join("");
+$("#fstage").innerHTML=[["","All",()=>true],["near",STG_SHORT[0],p=>p.st===0],["insp",STG_SHORT[1],p=>p.st===1],["issued",STG_SHORT[2],p=>p.st===2]].map(([k,t,fn])=>(n=>`<button type="button" data-k="${k}" aria-pressed="${f.stage===k}"${!n&&k&&f.stage!==k?" disabled":""}>${t}<span class="c num">${int(n)}</span></button>`)(facet("stage",fn))).join("");
 $("#fstage").querySelectorAll("button").forEach(b=>b.onclick=()=>{Object.assign(STATE.f,{stage:b.dataset.k});STATE.shown=60;history.replaceState(history.state,"",writeF(STATE.f));STATE.trail[STATE.trail.length-1]=location.hash;refresh(true);});
 const opt=(v,t,n,sel)=>`<option value="${esc(v)}"${sel?" selected":""}>${esc(t)}${n==null?"":` (${int(n)})`}</option>`;
 $("#farea").innerHTML=opt("",CITY.areaAll,null,!f.area)+STATE.areas.map(a=>opt(a,a,facet("area",p=>p.ca===a),f.area===a)).join("");
 $("#fcost").innerHTML=COST.map(c=>opt(c[0],c[1],c[0]?facet("cost",p=>p.c>=c[2]&&p.c<c[3]):null,f.cost===c[0])).join("");
 $("#ftype").innerHTML=opt("","Any type",null,!f.type)+CITY.types.map(t=>opt(t,t,facet("type",p=>p.t===t),f.type===t)).join("");
-$("#fsort").value=f.sort;$("#fnew").checked=f.nw;$("#ffu").value=f.fu;$("#fnewT").textContent=`New this week (${int(facet("new",p=>p.n))})`;
+$("#fsort").value=f.sort;$("#fnew").checked=f.nw;$("#ffu").value=f.fu;$("#fnewT").textContent=`New this week (${int(facet("new",p=>p.n))})`;$("#fnew").disabled=!facet("new",p=>p.n)&&!f.nw;$("#fnew").closest(".tog").classList.toggle("off",$("#fnew").disabled);
 const ac=activeCount(f);$("#fopenT").innerHTML=ac?`Filters <span class="fcount num">${ac}</span>`:"Filters";
 const rows=filtered();STATE.rows=rows;const sum=rows.reduce((s,p)=>s+p.c,0);
-$("#rcount").innerHTML=!rows.length?`<b class="num">0</b> of <span class="num">${int(P.length)}</span> projects`:rows.length===P.length?`<b class="num">${int(rows.length)}</b> projects, <span class="num">${bigMoney(sum)}</span> ${CITY.costShort}`:`<b class="num">${int(rows.length)}</b> of <span class="num">${int(P.length)}</span> projects, <span class="num">${bigMoney(sum)}</span> ${CITY.costShort}`;
+const one=rows.length>1&&rows.every(p=>p.st===rows[0].st),sx=one?`, all ${rows[0].st===2?"at":"with"} ${esc(STG[rows[0].st].toLowerCase())}`:"";
+$("#rcount").innerHTML=!rows.length?`<b class="num">0</b> of <span class="num">${int(P.length)}</span> projects`:rows.length===P.length?`<b class="num">${int(rows.length)}</b> projects${sx}, <span class="num">${bigMoney(sum)}</span> ${CITY.costShort}`:`<b class="num">${int(rows.length)}</b> of <span class="num">${int(P.length)}</span> projects${sx}, <span class="num">${bigMoney(sum)}</span> ${CITY.costShort}`;$("#plist").classList.toggle("onest",one);
 $("#fclear").hidden=!(f.q||f.stage||ac);$("#fdone").textContent=rows.length?`Show ${plural(rows.length,"project")}`:"No projects match";$("#csv").disabled=!rows.length;
 drawList();drawMap(refit);}
 function drawList(){const rows=STATE.rows,n=Math.min(STATE.shown,rows.length);const el=$("#plist");
@@ -913,7 +919,7 @@ el.querySelectorAll(".row").forEach(a=>{a.addEventListener("mouseenter",()=>hot(
 /* map */
 const MS=[{radius:9,color:"#fff",weight:2.5,fillColor:"#2E6B66",fillOpacity:1},{radius:6,color:"#fff",weight:1.5,fillColor:"#2F5F9E",fillOpacity:.92},{radius:5.5,color:"#3A4152",weight:2,fillColor:"#fff",fillOpacity:1}];
 function tiles(m){L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(m);}
-function ensureMap(){STATE.lazyMap=false;if(STATE.map||!$("#map"))return;if(!window.L){const box=$("#mapbox");if(box&&!box.querySelector(".map-fail"))box.insertAdjacentHTML("beforeend",'<div class="map-fail"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><p>The map did not load on this connection. The list has every project.</p></div>');const sp=$("#split");sp&&sp.classList.add("nomap");if(!ensureMap.tries){ensureMap.tries=1;window.addEventListener("load",()=>{if($("#map")&&!STATE.map){const f=$("#mapbox .map-fail");f&&f.remove();const sp=$("#split");sp&&sp.classList.remove("nomap");ensureMap();}},{once:true});}return;}
+function ensureMap(){STATE.lazyMap=false;if(STATE.map||!$("#map"))return;if(!window.L){const box=$("#mapbox");if(box&&!box.querySelector(".map-fail"))box.insertAdjacentHTML("beforeend",'<div class="map-fail"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><p>The map did not load on this connection. The list has every project.</p><button class="btn sm" type="button" id="mfl">Show the list</button></div>');const mfl=$("#mfl");if(mfl)mfl.onclick=()=>{const lb=document.querySelector('.vtog button[data-v="list"]');lb&&lb.click();};const sp=$("#split");sp&&sp.classList.add("nomap");if(!ensureMap.tries){ensureMap.tries=1;window.addEventListener("load",()=>{if($("#map")&&!STATE.map){const f=$("#mapbox .map-fail");f&&f.remove();const sp=$("#split");sp&&sp.classList.remove("nomap");ensureMap();}},{once:true});}return;}
 const m=L.map("map",{preferCanvas:true,zoomControl:true,scrollWheelZoom:true,attributionControl:true}).setView(CITY.center,CITY.zoom);
 m.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');tiles(m);STATE.map=m;STATE.layer=L.layerGroup().addTo(m);STATE.mk={};m.on("zoomend",declutter);drawMap(true);}
 function popup(p){const b=p.g.length?B[p.g[0]]:null;return `<div class="pop"><span class="mn num">${money(p.c)}</span><span class="ad">${esc(p.a)}</span><span class="bd">${esc(b?pn(p,0):"No builder listed")}</span>${chip(p.st)}<p style="margin:10px 0 0"><a class="btn ink" href="#/project/${encodeURIComponent(p.id)}">Open project</a></p></div>`;}
@@ -971,6 +977,8 @@ if(b.ok){body=`${c.phone?`<a class="btn pri call" href="tel:+1${esc(c.tel)}">${i
 <p class="src">${c.note?esc(c.note.charAt(0).toUpperCase()+c.note.slice(1))+". ":""}Main office details from ${c.source?`<a href="${esc(c.source)}" target="_blank" rel="noopener">the builder's own website</a>`:"the builder's own website"}${c.checkedAt?`, checked ${esc(day(c.checkedAt))}`:""}. Ask for the project manager or the estimator on this job.</p>`;}
 else if(!CITY.contacts){body=`<div class="none"><b>Reach the builder's main office</b>We list the general contractor the City names on the permits. Search for their main office and ask for the project manager or the estimator ${onBuilderPage?"on your project, with its":"on this project, with the"} address and ${esc(CITY.permitLower)} number ready.</div>
 <div class="foot"><a class="btn" href="https://www.google.com/search?q=${encodeURIComponent(b.name+" "+CITY.city)}" target="_blank" rel="noopener">${ico("search","s")}Search the web for this builder<span class="sr"> (opens in a new tab)</span></a></div>`;}
+else if(noC()){body=`<p class="nc1">No office phone or email on file yet; we list them only after reading them on the builder's own website.</p>
+<div class="foot"><a class="btn" href="https://www.google.com/search?q=${encodeURIComponent(b.name+" "+CITY.city)}" target="_blank" rel="noopener">${ico("search","s")}Search the web for this builder<span class="sr"> (opens in a new tab)</span></a></div>`;}
 else{body=`<div class="none"><b>No contact on file yet</b>We list a builder's office phone and general email only after reading them on the builder's own website. This builder is not checked yet, we found no website that is clearly theirs, or their site does not show them.</div>
 <div class="foot"><a class="btn" href="https://www.google.com/search?q=${encodeURIComponent(b.name+" "+CITY.city)}" target="_blank" rel="noopener">${ico("search","s")}Search the web for this builder<span class="sr"> (opens in a new tab)</span></a></div>`;}
 return `<section class="panel bc" aria-label="${onBuilderPage?"Contact":"Builder"}">${onBuilderPage?`<h2>Contact</h2>`:`<div class="who"><span class="av">${ico("build")}</span><div><h2>${esc(shown||b.name)}</h2><p class="meta num">${plural(b.n,CITY.bNoun)}${CITY.bWeek}<br>${money(b.cost)} ${CITY.costShort}${b.near?`, ${int(b.near)} near finish`:""}</p></div></div>`}${body}
@@ -987,7 +995,7 @@ const maps="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent
 $("#app").innerHTML=`<a class="back" href="#/projects" id="back">${ico("back")}Back</a>
 <div class="pg"><section class="pg-head"><div class="ph-chips">${chip(p.st)}${p.n?'<span class="badge new">New this week</span>':""}${m.c?`<span class="badge done">${ico("check","s")}Contacted ${esc(day(m.c))}</span>`:""}</div>
 <div class="p-title"><h1>${esc(p.a)}</h1><p class="sub">${esc([p.ca,CITY.city].filter(Boolean).join(", "))}${aus&&p.di?`, council district ${esc(p.di)}`:""}</p></div>
-<div class="p-money"><b class="num">${money(p.c)}</b><span class="num">${esc(CITY.costLower)} ($${int(p.c)})</span></div>
+<div class="p-money"><b class="num">${money(p.c)}</b><span>${esc(CITY.costLower)}</span></div>
 <div class="acts"><button class="btn" type="button" id="cpy">${ico("copy","s")}Copy address</button><a class="btn" href="${maps}" target="_blank" rel="noopener">${ico("pin","s")}Directions<span class="sr"> (opens Google Maps in a new tab)</span></a></div></section>
 <aside class="pg-side" aria-label="Builder and your follow-up">
 ${bs.length?bs.map((b,i)=>builderCard(b,p,true,false,pn(p,i))).join(""):`<section class="panel bc"><div class="none"><b>No builder listed</b>The City record names no general contractor business for this ${esc(CITY.permitLower)}.</div></section>`}
@@ -1008,7 +1016,7 @@ ${p.lat&&p.lon?'<div class="minimap" id="minimap" role="region" aria-label="Map 
 <section class="panel"><div class="sec-h"><h2>Permit details</h2></div><dl class="facts">
 <div><dt>Reported cost</dt><dd class="num">$${int(p.c)}</dd></div><div><dt>Type</dt><dd>${esc(p.t)}</dd></div><div><dt>Homes</dt><dd class="num">${p.u?int(p.u):"None listed"}</dd></div>${p.sl?`<div><dt>Sleeping units</dt><dd class="num">${int(p.sl)}</dd></div>`:""}<div><dt>Issued</dt><dd>${esc(day(p.i))}</dd></div>
 <div><dt>Permit number</dt><dd class="num">${esc(p.id)}</dd></div><div><dt>City permit status</dt><dd>${esc(p.cs||"Not given")}</dd></div><div><dt>Community area</dt><dd>${esc(p.ca||"Not given")}</dd></div><div><dt>Stage</dt><dd>${STG[p.st]}</dd></div></dl></section>
-<section class="panel"><div class="sec-h"><h2>What the permit covers</h2></div><p class="scope">${esc(nbh(String(p.sf||p.s).replace(/\s*(\.\.\.|\u2026)$/,"")))}</p>
+<section class="panel"><div class="sec-h"><h2>What the permit covers</h2></div><p class="scope">${esc(nbh(shortScope(p.sf||p.s)))}</p>
 <p class="rec">From the City's permit text, tidied for reading${/(\.\.\.|\u2026)$/.test(String(p.sf||p.s))?"; shortened here, and the City's record has the rest":""}. <a href="${esc(D.record+encodeURIComponent(p.id))}" target="_blank" rel="noopener">See the City's raw record for permit ${esc(p.id)}<span class="sr"> (opens in a new tab)</span></a></p>
 ${p.lat&&p.lon?'<div class="minimap" id="minimap" role="region" aria-label="Map of the project location"></div>':""}</section>`}
 </div></div>`;
@@ -1021,21 +1029,21 @@ let tn;$("#nt").addEventListener("input",e=>{grow(e.target);clearTimeout(tn);$("
 if(p.lat&&p.lon){const mm=()=>{if(!window.L||!$("#minimap"))return;const m2=L.map("minimap",{scrollWheelZoom:false,dragging:!L.Browser.mobile,tap:false,zoomControl:true}).setView([p.lat,p.lon],15);m2.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');tiles(m2);if(p.st===0)L.circleMarker([p.lat,p.lon],{radius:17,color:"#1F4E4A",weight:2.5,fill:false,interactive:false}).addTo(m2);L.circleMarker([p.lat,p.lon],Object.assign({},MS[p.st],{radius:MS[p.st].radius*1.5})).addTo(m2);STATE.mini=m2;};if(window.L)mm();else window.addEventListener("load",mm,{once:true});}}
 
 /* builders */
-function viewBuilders(q){document.title="Builders | "+PROD;const s0=q.get("sort")||"near",q0=q.get("q")||"",ph=q.get("phone")==="1";
+function viewBuilders(q){document.title="Builders | "+PROD;const s0=q.get("sort")||(Object.values(B).some(b=>b.near)?"near":"n"),q0=q.get("q")||"",ph=q.get("phone")==="1";
 const all=Object.values(B);
 $("#app").innerHTML=`<div class="ph"><div><h1>Builders</h1><p>Every general contractor on this week's list. A ${esc(CITY.key==="austin"?"project":"permit")} with two builders counts for each.</p></div></div>
 <div class="tool btool"><label class="search"><span class="sr">Search builders</span>${ico("search")}<input id="bq" type="search" placeholder="Search builder name" value="${esc(q0)}" autocomplete="off"></label>
 <div class="fld"><label for="bsort" class="sr">Sort builders</label><select id="bsort"><option value="near">Most near finish</option><option value="n">Most projects</option><option value="cost">Biggest total</option><option value="az">Name, A to Z</option></select></div>
-<label class="tog"${CITY.contacts?"":" hidden"}><input type="checkbox" id="bph"${ph?" checked":""}><span>Has contact (${int(all.filter(b=>b.ok).length)})</span></label></div>
+<label class="tog"${CITY.contacts&&all.some(b=>b.ok)?"":" hidden"}><input type="checkbox" id="bph"${ph?" checked":""}><span>Has contact (${int(all.filter(b=>b.ok).length)})</span></label></div>
 <div class="rbar" aria-live="polite"><span id="bcount"></span></div><section class="panel" id="blist"></section>`;
 $("#bsort").value=s0;
 const draw=()=>{const t=norm($("#bq").value),so=$("#bsort").value,only=$("#bph").checked;
 const sorts={near:(a,b)=>b.near-a.near||b.n-a.n||b.cost-a.cost,n:(a,b)=>b.n-a.n||b.cost-a.cost,cost:(a,b)=>b.cost-a.cost,az:(a,b)=>a.name.localeCompare(b.name)};
 const rows=all.filter(b=>(!t||t.split(" ").every(w=>norm(b.name).includes(w)))&&(!only||b.ok)).sort(sorts[so]);
-const qs=new URLSearchParams();if(t)qs.set("q",$("#bq").value.trim());if(so!=="near")qs.set("sort",so);if(only)qs.set("phone","1");history.replaceState(history.state,"","#/builders"+(qs.toString()?"?"+qs:""));STATE.trail[STATE.trail.length-1]=location.hash;
+const qs=new URLSearchParams();if(t)qs.set("q",$("#bq").value.trim());if(so!==(all.some(b=>b.near)?"near":"n"))qs.set("sort",so);if(only)qs.set("phone","1");history.replaceState(history.state,"","#/builders"+(qs.toString()?"?"+qs:""));STATE.trail[STATE.trail.length-1]=location.hash;
 $("#bcount").innerHTML=`<b class="num">${int(rows.length)}</b> ${rows.length===1?"builder":"builders"}`;
-$("#blist").innerHTML=rows.length?`<table class="bt"><caption class="sr">Builders on this week's list</caption><thead><tr>${[["az","Builder",""],["n","Projects","n"],["near","Near finish","n"],["","New","n hm"],["cost",CITY.cost,"n hm"]].map(([k,t,c])=>`<th class="${c}"${k&&k===so?' aria-sort="'+(k==="az"?"ascending":"descending")+'"':""}>${t}${k&&k===so?ico(k==="az"?"up":"down"):""}</th>`).join("")}</tr></thead><tbody>${rows.map(b=>{const h="#/builder/"+encodeURIComponent(b.key);
-return `<tr><td class="nm"><a href="${h}"><b>${esc(b.name)}</b><small>${CITY.contacts?(b.ok?ico(b.contact.phone?"phone":"mail","s")+"Contact on file":"No contact on file yet")+(b.area?", mostly "+esc(b.area):""):(b.area?"Mostly in "+esc(CITY.areaLower)+" "+esc(b.area):"")}</small><small class="mob num">${plural(b.n,"project")}${b.near?`, ${int(b.near)} near finish`:""}, ${money(b.cost)}</small></a></td><td class="n num">${int(b.n)}</td><td class="n num${b.near?"":" z"}">${int(b.near)}</td><td class="n num hm${b.nw?"":" z"}">${int(b.nw)}</td><td class="n num hm">${money(b.cost)}</td></tr>`;}).join("")}</tbody></table>`
+$("#blist").innerHTML=rows.length?`<table class="bt"><caption class="sr">Builders on this week's list</caption><thead><tr>${[["az","Builder",""],["n","Projects","n"],["near","Near finish","n"],["","New","n hm"],["cost",CITY.cost,"n hm"]].map(([k,t,c])=>`<th class="${c}"${k&&k===so?' aria-sort="'+(k==="az"?"ascending":"descending")+'"':""}>${t}${k&&k===so?ico(k==="az"?"up":"down"):""}</th>`).join("")}<th class="cv"><span class="sr">Open</span></th></tr></thead><tbody>${rows.map(b=>{const h="#/builder/"+encodeURIComponent(b.key);
+return `<tr><td class="nm"><a href="${h}"><b>${esc(b.name)}</b><small>${CITY.contacts&&!noC()?(b.ok?ico(b.contact.phone?"phone":"mail","s")+"Contact on file":"No contact on file yet")+(b.area?", mostly "+esc(b.area):""):(b.area?"Mostly in "+esc(CITY.areaLower)+" "+esc(b.area):"")}</small><small class="mob num">${plural(b.n,"project")}${b.near?`, ${int(b.near)} near finish`:""}, ${money(b.cost)}</small></a></td><td class="n num">${int(b.n)}</td><td class="n num${b.near?"":" z"}">${int(b.near)}</td><td class="n num hm${b.nw?"":" z"}">${int(b.nw)}</td><td class="n num hm">${money(b.cost)}</td><td class="cv" aria-hidden="true">${ico("chev","chev")}</td></tr>`;}).join("")}</tbody></table>`
 :`<div class="empty"><h3>No builders match</h3><p>Check the spelling, or search part of the name.</p></div>`;};
 $("#blist").onclick=e=>{if(e.target.closest("a"))return;const tr=e.target.closest("tr");const a=tr&&tr.querySelector("a");if(a)go(a.getAttribute("href"));};
 let tb;$("#bq").addEventListener("input",()=>{clearTimeout(tb);tb=setTimeout(draw,120);});$("#bsort").onchange=draw;$("#bph").onchange=draw;draw();}

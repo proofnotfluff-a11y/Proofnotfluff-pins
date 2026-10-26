@@ -18,23 +18,39 @@ LIT = ["#2F5F9E", "#C8502F", "#2E6B66", "#A87C1F", "#8A5A8E", "#5F7F4F"]
 
 
 def map_svg(cfg, geo, slug, width, halo_w=8):
+    """The City's community areas, the seat's area lit with a soft ring. Returns (svg, height, bbox of the lit area)."""
     f, w, h = A._proj(geo, width)
     i = next(n for n, t in enumerate(cfg["territories"]) if t["slug"] == slug)
     mine = set(cfg["territories"][i]["areas"])
-    paths, halo = [], []
+    grey, halo, lit, pts = [], [], [], []
     for a in geo["areas"]:
         sizes = [abs(ring_area_centroid(r)[0]) for r in a["rings"]]
         rings = [r for r, z in zip(a["rings"], sizes) if z >= 0.12 * max(sizes)]   # no detached slivers at card size, Northerly Island included (design director, rounds 2 and 3)
-        d = " ".join("M" + " L".join(f"{px},{py}" for px, py in (f(x, y) for x, y in r)) + " Z" for r in rings)
-        on = a["name"] in mine
-        paths.append(f'<path d="{d}" fill="{LIT[i] if on else "#D9D3C7"}" stroke="#F3F1EC" stroke-width="{1.2 if on else 0.9}"/>')
-        if on:   # a soft ring in the seat colour so a small area still reads at Gumroad card size (design director, round 3)
+        proj = [[f(x, y) for x, y in r] for r in rings]
+        d = " ".join("M" + " L".join(f"{px:.1f},{py:.1f}" for px, py in r) + " Z" for r in proj)
+        if a["name"] in mine:
+            pts += [q for r in proj for q in r]
+            lit.append(f'<path d="{d}" fill="{LIT[i]}" stroke="#F3F1EC" stroke-width="1.2"/>')
+            # a soft ring in the seat colour so a small area still reads at Gumroad card size (design director, round 3)
             halo.append(f'<path d="{d}" fill="{LIT[i]}" stroke="{LIT[i]}" stroke-width="{halo_w}" stroke-opacity=".4" stroke-linejoin="round"/>')
-    grey = [x for x in paths if "#D9D3C7" in x]
-    lit = [x for x in paths if "#D9D3C7" not in x]
+        else:
+            grey.append(f'<path d="{d}" fill="#D9D3C7" stroke="#F3F1EC" stroke-width="0.9"/>')
+    xs, ys = [q[0] for q in pts], [q[1] for q in pts]
+    bbox = (min(xs), min(ys), max(xs), max(ys))
     pad = halo_w
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{-pad} {-pad} {w + 2 * pad} {h + 2 * pad}" width="{w + 2 * pad}" height="{h + 2 * pad}">'
-            f'{"".join(grey)}{"".join(halo)}{"".join(lit)}</svg>'), h + 2 * pad
+    body = "".join(grey) + "".join(halo) + "".join(lit)
+    svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{-pad} {-pad} {w + 2 * pad} {h + 2 * pad}" '
+           f'width="{w + 2 * pad}" height="{h + 2 * pad}">{body}</svg>')
+    return svg, h + 2 * pad, bbox, body
+
+
+def inset_svg(body, bbox, zoom_box=None):
+    """The same drawing zoomed on the lit area, for a round inset (thumbnails of the small areas; design director, round 4)."""
+    x0, y0, x1, y1 = bbox
+    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+    side = max(x1 - x0, y1 - y0) * 1.9
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{cx - side / 2:.1f} {cy - side / 2:.1f} {side:.1f} {side:.1f}" '
+            f'width="100%" height="100%" preserveAspectRatio="xMidYMid slice">{body}</svg>')
 
 
 CSS = f"""@font-face{{font-family:P;font-weight:700;src:url(file://{FONTS}/poppins-700.woff2)}}
@@ -45,35 +61,40 @@ CSS = f"""@font-face{{font-family:P;font-weight:700;src:url(file://{FONTS}/poppi
 .eb{{font:700 15px P;letter-spacing:.12em;color:#2E6B66}}
 .brand{{position:absolute;font:700 17px P}}.bars5{{display:flex;gap:6px;margin-top:6px}}.bars5 b{{width:26px;height:5px;border-radius:3px}}"""
 BARS = '<div class="bars5"><b style="background:#C8502F"></b><b style="background:#2E6B66"></b><b style="background:#6A4C93"></b><b style="background:#2F5F9E"></b><b style="background:#A87C1F"></b></div>'
+EYEBROW = "CHICAGO · CONSTRUCTION CLEANING · AREA SEAT"   # one string on covers and thumbnails (design director, round 4)
 
 
 def cover_html(t, svg, price):
+    # the text block is centred in one band (y 90 to 630) on all six, so one and two line titles share the same margins;
+    # nothing under 20 px, and the price is plain text, not a button (design director, round 4)
     return f"""<!doctype html><html><head><meta charset="utf-8"><style>{CSS}
-body{{width:1280px;height:720px}}.l{{position:absolute;left:64px;top:96px;width:640px}}
-h1{{font:700 52px/1.08 P;margin:18px 0 20px;letter-spacing:-.015em;text-wrap:balance}}.sub{{font-size:20px;line-height:1.5;color:#3A4152}}
-.fact{{display:inline-flex;align-items:center;gap:10px;margin:22px 0 0;padding:8px 14px;border-radius:999px;background:#E3EFED;color:#1E4C48;font:600 15px In}}
-.fact i{{width:12px;height:12px;border-radius:50%;background:#2E6B66}}
-ul{{list-style:none;margin:22px 0 0}}li{{font:600 18px P;margin:11px 0;display:flex;align-items:center;gap:12px}}
-li i{{width:22px;height:22px;border-radius:50%;background:#2E6B66;position:relative;flex:none}}
-li i:after{{content:"";position:absolute;left:7px;top:4px;width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}}
-.price{{display:flex;align-items:center;gap:16px;margin-top:36px}}.pill{{background:#C8502F;color:#fff;font:700 22px P;padding:12px 24px;border-radius:12px}}
-.cancel{{font-size:16px;color:#3A4152}}.map{{position:absolute;right:72px;top:40px}}.brand{{right:56px;bottom:40px;text-align:right}}.brand .bars5{{justify-content:flex-end}}
-</style></head><body><div class="l"><div class="eb">CHICAGO · CONSTRUCTION CLEANING · AREA SEAT</div>
+body{{width:1280px;height:720px}}.l{{position:absolute;left:64px;top:90px;height:540px;width:620px;display:flex;flex-direction:column;justify-content:center}}
+h1{{font:700 54px/1.08 P;margin:18px 0 18px;letter-spacing:-.015em;text-wrap:balance}}.sub{{font-size:22px;line-height:1.45;color:#3A4152;text-wrap:pretty;max-width:600px}}
+ul{{list-style:none;margin:26px 0 0}}li{{font:600 22px In;margin:12px 0;display:flex;align-items:center;gap:14px}}
+li i{{width:26px;height:26px;border-radius:50%;background:#2E6B66;position:relative;flex:none}}
+li i:after{{content:"";position:absolute;left:9px;top:5px;width:6px;height:12px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}}
+.price{{display:flex;align-items:baseline;gap:16px;margin-top:30px}}.amt{{font:700 32px P;color:#1D2433}}
+.cancel{{font-size:20px;color:#5C6270}}.map{{position:absolute;right:72px;top:40px}}.brand{{right:56px;bottom:40px;text-align:right}}.brand .bars5{{justify-content:flex-end}}
+</style></head><body><div class="l"><div class="eb">{EYEBROW}</div>
 <h1>{t['name']}</h1>
-<p class="sub">Open apartment and commercial projects of $500,000 or more in your area, with the builder on each, on your members' page every Monday.</p>
-<span class="fact"><i></i>One cleaning company holds this area</span>
-<ul><li><i></i>Closest to a final clean first</li><li><i></i>Builder's office phone or email where listed</li><li><i></i>Members' app, map and Excel file</li></ul>
-<div class="price"><span class="pill">${price} a month</span><span class="cancel">No lock-in. Cancel any time</span></div></div>
+<p class="sub">Open apartment and commercial projects of $500,000 or more in your area, with the builder on each, every Monday.</p>
+<ul><li><i></i>One cleaning company holds this area</li><li><i></i>Closest to a final clean first</li></ul>
+<div class="price"><span class="amt">${price} a month</span><span class="cancel">No lock-in. Cancel any time</span></div></div>
 <div class="map">{svg}</div><div class="brand">ProofNotFluff{BARS}</div></body></html>"""
 
 
-def thumb_html(t, svg):
+def thumb_html(t, svg, inset, colour):
+    # a bigger map to the right, the brand bottom left where the map leaves room, and for the small areas a round inset
+    # that shows the area three times larger (design director, round 4)
+    ins = (f'<div class="ins" style="border-color:#fff;box-shadow:0 0 0 2px {colour}66,0 6px 18px rgba(29,36,51,.18)">{inset}</div>'
+           if inset else "")
     return f"""<!doctype html><html><head><meta charset="utf-8"><style>{CSS}
 body{{width:600px;height:600px}}.t{{position:absolute;left:40px;top:36px;width:520px}}
-h1{{font:700 34px/1.12 P;margin:8px 0 0;text-wrap:balance}}.map{{position:absolute;left:50%;transform:translateX(-50%);top:172px}}
-.brand{{right:36px;bottom:32px;text-align:right;font-size:15px}}.brand .bars5{{justify-content:flex-end}}.brand .bars5 b{{width:20px}}
-</style></head><body><div class="t"><div class="eb">CHICAGO CLEANING LEADS · AREA SEAT</div><h1>{t['name']}</h1></div>
-<div class="map">{svg}</div><div class="brand">ProofNotFluff{BARS}</div></body></html>"""
+.eb{{font-size:13px}}h1{{font:700 34px/1.12 P;margin:8px 0 0;text-wrap:balance}}.map{{position:absolute;right:44px;top:168px}}
+.ins{{position:absolute;left:40px;top:250px;width:190px;height:190px;border-radius:50%;overflow:hidden;border:4px solid #fff;background:#F3F1EC}}
+.brand{{left:40px;bottom:32px;font-size:15px}}.brand .bars5 b{{width:20px}}
+</style></head><body><div class="t"><div class="eb">{EYEBROW}</div><h1>{t['name']}</h1></div>
+<div class="map">{svg}</div>{ins}<div class="brand">ProofNotFluff{BARS}</div></body></html>"""
 
 
 def size(svg, width):
@@ -87,11 +108,13 @@ async def render(out, price="149"):
     os.makedirs(out, exist_ok=True)
     async with async_playwright() as p:
         b = await p.chromium.launch()
-        for t in cfg["territories"]:
-            svg_c, _ = map_svg(cfg, geo, t["slug"], 500)
-            svg_t, _ = map_svg(cfg, geo, t["slug"], 420)
+        for n, t in enumerate(cfg["territories"]):
+            svg_c, _, _, _ = map_svg(cfg, geo, t["slug"], 500)
+            svg_t, _, bbox, body = map_svg(cfg, geo, t["slug"], 420, halo_w=6)
+            small = max(bbox[2] - bbox[0], bbox[3] - bbox[1]) < 0.22 * 420   # Loop, Near North, West
+            inset = inset_svg(body, bbox) if small else ""
             for name, html, (w, h) in [("cover-1280x720", cover_html(t, size(svg_c, 430), price), (1280, 720)),
-                                       ("thumb-600x600", thumb_html(t, size(svg_t, 284)), (600, 600))]:
+                                       ("thumb-600x600", thumb_html(t, size(svg_t, 330), inset, LIT[n]), (600, 600))]:
                 pg = await b.new_page(viewport={"width": w, "height": h})
                 path = os.path.join(out, f"{t['slug']}-{name}.html")
                 open(path, "w").write(html)

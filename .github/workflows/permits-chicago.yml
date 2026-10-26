@@ -23,7 +23,7 @@ jobs:
       - run: python3 tools/permits_chicago.py --selftest
       - run: python3 tools/builder_contacts.py --selftest
       - run: python3 tools/permits_chicago.py --full "$RUNNER_TEMP/chicago-full.json"
-      - name: Area seats (site/area_seats.json; Todd, Oct 26, 2026): held areas leave the shared list and the free sample
+      - name: Area seats, site/area_seats.json (Todd, Oct 26, 2026), held areas leave the shared list and the free sample
         run: |
           python3 tools/area_seats.py --selftest
           python3 tools/area_seats.py --shared "$RUNNER_TEMP/chicago-full.json" "$RUNNER_TEMP/chicago-shared.json"

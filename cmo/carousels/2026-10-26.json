@@ -39,7 +39,7 @@
       "n": 2,
       "role": "proof",
       "ground": "canvas",
-      "eyebrow": "TOP TRADES IN THE 216",
+      "eyebrow": "TOP TRADES, LAST 30 DAYS",
       "title": "Shops, food and salons lead the month",
       "tiles": [
         {
@@ -84,7 +84,7 @@
       "role": "where",
       "ground": "canvas",
       "eyebrow": "LAST 7 DAYS, BY AREA",
-      "title": "West Town leads with 5 new licenses",
+      "title": "West Town leads this week",
       "rows": [
         [
           "1",
@@ -131,8 +131,9 @@
       "body": "Likely new to vendors too. The full list marks each one.",
       "source": "Source: City of Chicago license records, pulled Oct 26, 2026",
       "card": {
-        "label": "FIRST LICENSE, OF THE 216",
-        "value": "122"
+        "label": "FIRST CITY LICENSE, OUT OF 216",
+        "value": "122",
+        "of": "216"
       },
       "facts": [
         {
@@ -152,7 +153,7 @@
       "role": "work",
       "ground": "canvas",
       "eyebrow": "WHAT WE DO EVERY MONDAY",
-      "title": "704 licenses in.\n216 worth a visit.",
+      "title": "Fewer than a third make the list",
       "body": "We read every new license each week and keep the ones worth your visit, sorted by trade.",
       "source": "Source: City of Chicago license records, pulled Oct 26, 2026",
       "bars": [
@@ -180,6 +181,11 @@
           "text": "sort by trade",
           "file": "site/pages.json",
           "key": "chicago-new-business-licenses.card"
+        },
+        {
+          "text": "fewer than a third",
+          "file": "permits/licenses-chicago/sample.json",
+          "key": "counts.kept30 216 / counts.fetched 704 = 30.7%"
         }
       ]
     },
@@ -189,7 +195,7 @@
       "ground": "canvas",
       "eyebrow": "THE FULL LIST",
       "title": "Chicago New Business Licenses",
-      "body": "Every Monday: new licenses from the last 30 days, by trade, with address and license date.",
+      "body": "Every Monday, the last 30 days.",
       "price": "7 days free, then $29 a month",
       "terms": "No lock-in, cancel any time.",
       "facts": [
@@ -217,7 +223,17 @@
           "text": "No lock-in, cancel any time.",
           "file": "docs/chicago-new-business-licenses/index.html",
           "key": "hero offer line"
+        },
+        {
+          "text": "includes: trade, address, community area, license type, issue date",
+          "file": "site/pages.json",
+          "key": "chicago-new-business-licenses.cta.text"
         }
+      ],
+      "includes": [
+        "Sorted by trade",
+        "Address and community area",
+        "License type and date"
       ]
     },
     {
@@ -234,7 +250,7 @@
           "key": "chicago-new-business-licenses.eyebrow"
         }
       ],
-      "sub": "A free look at the list, every Monday."
+      "sub": "Real rows from this week's list, with trade, area and license date."
     }
   ],
   "footer": {
@@ -256,8 +272,12 @@
     "buyer_round2": "PASS (owner would grab the free sample; no how-to)",
     "design_round1": "FAIL 4.14 (5,4,4,4,4,4,4): sparse slides 3 and 7, repeated 122 on slide 4, week vs month on slide 3, title order on slide 2",
     "design_fix": "copy: slide 1 title, slide 2 title order, slide 3 eyebrow LAST 7 DAYS BY AREA plus body, slide 4 title Most, slide 7 sub line; tool: where role renders body, cta role renders sub (additive, 2026-10-25 renders byte-identical); facts gate PASS on changed lines",
-    "design_round2": "FAIL 4.43 (5,4,4,5,4,4,5): middle slides 2 to 5 leave 170 to 280 px empty, slide 6 starts lower than slides 2 to 5, slide 3 list type small and ranks 1,2,2,4, slide 4 sentence above the card, slide 7 eyebrow and sub repeat; second FAIL, stopped, sent to Todd"
+    "design_round2": "FAIL 4.43 (5,4,4,5,4,4,5): middle slides 2 to 5 leave 170 to 280 px empty, slide 6 starts lower than slides 2 to 5, slide 3 list type small and ranks 1,2,2,4, slide 4 sentence above the card, slide 7 eyebrow and sub repeat; second FAIL, stopped, sent to Todd",
+    "todd_oct26": "Todd, live chat: 'create rules so the design has a higher chance of passing'; then 'Please just post it once it passes. don't wait on me'",
+    "design_round3_new_rules": "FAIL 4.43 (5,4,4,5,4,4,5) after the fill-the-frame rules; fixed: number said once, labels unified, part-of-whole bar, offer includes, ink slides share a top line, curly apostrophes",
+    "facts_round3": "PASS (changed lines)",
+    "design_round4": "PASS 4.71 (5,5,5,5,4,4,5)"
   },
   "posted": null,
-  "status": "stopped after second design FAIL; not posted. This cloud run also had no Claude in Chrome or computer link, so it could not have posted."
+  "status": "all three gates PASS; not posted: this cloud session has no Claude in Chrome or computer link. Slides sent to Todd."
 }

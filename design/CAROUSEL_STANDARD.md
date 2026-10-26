@@ -36,3 +36,17 @@ Mix: canvas about 60%, ink about 30%, accent at most 10% (one element per slide)
 
 ## Copy
 Plain words, second person, one idea per slide, every number from a repo data file read in the run, its source on the slide. No em or en dashes, no hype words (tools/legal_scan.py), no guarantees, no invented people or results, no restaurant or other business named with a failed record. Builders from City permits may be named as on the live pages.
+
+## Rules that pass the design gate (Todd, live chat, Oct 26, 2026: "create rules so the design has a higher chance of passing")
+Why carousels failed (Oct 25 and 26, six design gates, 3.86 to 4.43): the gate needs an average of 4.61, so at least 5 of the 7 scores must be a 5. Every fail had first impression at 5 and the rest stuck at 4 for the same few things: data slides top heavy with 170 to 370 px of empty canvas, the offer slide starting lower than the others, list type too small, a number said twice, eyebrow and sub saying the same thing, and a week count mixed into a month story. tools/make_carousel.py now builds the fixes in and refuses a render that breaks them.
+- Fill the frame: on canvas slides (2 to 6) the eyebrow starts at y 186 and the data card grows to the source line. A render with more than 120 px empty under the content fails (tool check).
+- Data is big: tiles carry a flat ink bar in proportion to their value; ranked rows are 40 px names and 56 px values, 3 to 5 rows, no rank column (the order is the rank; ties read as typos); the why card number is 280 px; bars are 96 px tall with 30 px Medium ink2 labels; the price is 112 px on one line.
+- Say each number once: the why card number never repeats in its title (tool check). Title the meaning ("Most hold their first City license"), card the number.
+- Order on every data slide: eyebrow, title, the data card, then one sentence under it.
+- Eyebrow and sub never repeat each other (tool check). Sentence case titles, except the product name on the offer slide (tool check).
+- One time window per carousel. A slide with a different window names it in the eyebrow ("LAST 7 DAYS, BY AREA").
+- Slide 7 carries one proof line under the button saying what the free sample shows, from the page or the data file, and starts on the same top line as slide 1 (tool sets it).
+- A number appears once per slide: a title never repeats a number its tiles, rows, bars or card show (tool check, all but the cover). Title the meaning ("Fewer than a third make the list").
+- Every card label looks the same: 22 px uppercase muted Poppins, chart labels included. Curly apostrophes everywhere (tool sets them).
+- A part of a whole gets a flat ink bar in proportion ("122 of 216": the why card takes "of" and draws it).
+- The offer card is top aligned and lists what the buyer gets in 2 to 4 short lines with teal checks ("includes", each from site/pages.json), so the card shows the deliverable rather than empty space.

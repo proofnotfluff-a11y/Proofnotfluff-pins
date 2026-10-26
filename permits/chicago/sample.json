@@ -2,64 +2,64 @@
  "source": {
   "name": "City of Chicago Data Portal, Building Permits",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
-  "rowsUpdatedAt": "2026-10-17T12:18:17+00:00",
-  "fetchedAt": "2026-10-19T11:45:50+00:00",
+  "rowsUpdatedAt": "2026-10-26T12:05:50+00:00",
+  "fetchedAt": "2026-10-26T12:46:25+00:00",
   "modified": "Filtered by ProofNotFluff: permits issued in the last 24 months, new construction or renovation, reported cost $500,000 or more, still open (City status Active or Phased Permitting; complete, suspended, cancelled, revoked and expired permits left out), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs a construction clean under its permit (foundation, superstructure, caisson, demolition, roof, facade, mechanical, equipment or site work only) left out; cleaning companies listed as contractor left out; a revision of a permit already on the list counted once; only project-level and business fields kept.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
-  "from": "2024-10-19",
-  "to": "2026-10-19"
+  "from": "2024-10-26",
+  "to": "2026-10-26"
  },
  "counts": {
-  "fetched": 3061,
-  "kept": 1133,
+  "fetched": 3069,
+  "kept": 1129,
   "excluded": {
-   "house or 2 to 3 flat": 590,
+   "house or 2 to 3 flat": 593,
    "no construction clean (foundation, demolition, roof, mechanical or site work only)": 248,
-   "no commercial or apartment wording": 82,
+   "no commercial or apartment wording": 84,
    "no interior finish work or new building named": 38,
+   "one home inside a larger building": 41,
    "common areas only, no homes worked on": 7,
-   "apartment building with no unit count (could be a 2 or 3 flat)": 9,
-   "one home inside a larger building": 40,
+   "apartment building with no unit count (could be a 2 or 3 flat)": 8,
    "no business listed as general contractor": 5,
-   "closed, complete or suspended": 894,
+   "closed, complete or suspended": 901,
    "revision or second listing of a permit already listed": 15
   },
   "keptByType": {
-   "New construction": 335,
-   "Renovation": 798
+   "New construction": 333,
+   "Renovation": 796
   },
-  "keptCost": 8744415902,
-  "keptUnits": 5798,
+  "keptCost": 8813039338,
+  "keptUnits": 5837,
   "topAreas": [
    [
     "Loop",
-    160
+    158
    ],
    [
     "Near North Side",
-    139
+    138
    ],
    [
     "Near West Side",
-    103
+    104
    ],
    [
     "West Town",
-    68
+    69
    ],
    [
     "Lincoln Park",
-    55
+    53
    ],
    [
     "Lake View",
-    41
+    40
    ],
    [
     "Logan Square",
-    31
+    29
    ],
    [
     "Uptown",
@@ -69,13 +69,13 @@
   "topGCs": [
    {
     "name": "Skender Construction LLC",
-    "projects": 25,
-    "cost": 557369145
+    "projects": 23,
+    "cost": 542640133
    },
    {
     "name": "Executive Construction, Inc.",
-    "projects": 24,
-    "cost": 67350800
+    "projects": 23,
+    "cost": 63080400
    },
    {
     "name": "JC Anderson Inc",
@@ -94,18 +94,13 @@
    },
    {
     "name": "Leopardo Construction Inc",
-    "projects": 16,
-    "cost": 79589105
+    "projects": 19,
+    "cost": 83639105
    },
    {
-    "name": "Development Solutions, Inc",
+    "name": "Bear Construction Company",
     "projects": 16,
-    "cost": 49137018
-   },
-   {
-    "name": "Redmond Construction Corp.",
-    "projects": 15,
-    "cost": 76275690
+    "cost": 25799000
    },
    {
     "name": "Clune Construction Company, L.P.",
@@ -113,9 +108,14 @@
     "cost": 61802408
    },
    {
-    "name": "Bear Construction Company",
+    "name": "Development Solutions, Inc",
     "projects": 15,
-    "cost": 22799000
+    "cost": 48036520
+   },
+   {
+    "name": "Redmond Construction Corp.",
+    "projects": 14,
+    "cost": 71125690
    },
    {
     "name": "Reed Construction LLC",
@@ -128,7 +128,7 @@
     "cost": 660489247
    }
   ],
-  "nearFinish": 21
+  "nearFinish": 17
  },
  "projects": [
   {
@@ -322,7 +322,7 @@
    "address": "400 S La Salle St",
    "communityArea": "Loop",
    "status": "Active",
-   "milestone": "Permit Issued (Fee Due)",
+   "milestone": "Inspections",
    "gc": [
     "Arco/Murray National Construction Company LLC"
    ],
@@ -364,6 +364,24 @@
    ],
    "lat": 41.886932,
    "lon": -87.725699
+  },
+  {
+   "permit": "101084000",
+   "issued": "2026-10-20",
+   "type": "New construction",
+   "scope": "Enclosure only permit for a 4-story stadium with no basement on piles. No MEP work. Piles only permit under 101075594, shallow foundations permit...",
+   "units": null,
+   "sleeping": null,
+   "cost": 94000000,
+   "address": "1331 S Wells St",
+   "communityArea": "Near South Side",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "Pepper Construction Company"
+   ],
+   "lat": 41.864778,
+   "lon": -87.633248
   },
   {
    "permit": "101071904",
@@ -466,7 +484,7 @@
    "address": "500 N Michigan Ave",
    "communityArea": "Near North Side",
    "status": "Phased Permitting",
-   "milestone": "Permit Issued (Fee Due)",
+   "milestone": "Inspections",
    "gc": [
     "Skender Construction LLC"
    ],
@@ -562,24 +580,6 @@
    ],
    "lat": 41.884586,
    "lon": -87.63101
-  },
-  {
-   "permit": "101075068",
-   "issued": "2026-06-03",
-   "type": "Renovation",
-   "scope": "Full building permit: mixed-use commercial 3 story building addition to united center and will include 266 off street parking spaces and 10 off...",
-   "units": null,
-   "sleeping": null,
-   "cost": 50000000,
-   "address": "1901 W Madison St",
-   "communityArea": "Near West Side",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "James McHugh Construction Co"
-   ],
-   "lat": 41.881241,
-   "lon": -87.674283
   }
  ],
  "nearFinish": [
@@ -602,24 +602,6 @@
    "lon": -87.620773
   },
   {
-   "permit": "101080622",
-   "issued": "2026-03-30",
-   "type": "New construction",
-   "scope": "First time build out of 23rd floor office space. Work to include construction of non-load bearing partitions, ceilings, finishes, and associated MEP...",
-   "units": null,
-   "sleeping": null,
-   "cost": 5279012,
-   "address": "333 W Wolf Point Plz",
-   "communityArea": "Near North Side",
-   "status": "Active",
-   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
-   "gc": [
-    "Skender Construction LLC"
-   ],
-   "lat": 41.887808,
-   "lon": -87.637533
-  },
-  {
    "permit": "101053170",
    "issued": "2025-02-11",
    "type": "New construction",
@@ -636,6 +618,24 @@
    ],
    "lat": 41.811829,
    "lon": -87.626299
+  },
+  {
+   "permit": "101079788",
+   "issued": "2026-03-18",
+   "type": "Renovation",
+   "scope": "Interior alterations to existing 8th floor office space. No change to existing use",
+   "units": null,
+   "sleeping": null,
+   "cost": 3700000,
+   "address": "360 N Green St",
+   "communityArea": "Near West Side",
+   "status": "Active",
+   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
+   "gc": [
+    "Big Construction LLC"
+   ],
+   "lat": 41.888632,
+   "lon": -87.648847
   },
   {
    "permit": "101070208",
@@ -674,24 +674,6 @@
    "lon": -87.634592
   },
   {
-   "permit": "101065575",
-   "issued": "2025-03-17",
-   "type": "Renovation",
-   "scope": "Existing zoning pd 779, no change. 14,834 s.f. Full/partial floor tenant interior improvements to the 25th floor of an existing 31 story building...",
-   "units": null,
-   "sleeping": null,
-   "cost": 2310400,
-   "address": "540 W Madison St",
-   "communityArea": "Near West Side",
-   "status": "Active",
-   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
-   "gc": [
-    "Executive Construction, Inc."
-   ],
-   "lat": 41.881966,
-   "lon": -87.641276
-  },
-  {
    "permit": "101075927",
    "issued": "2025-12-29",
    "type": "Renovation",
@@ -708,24 +690,6 @@
    ],
    "lat": 41.881967,
    "lon": -87.635165
-  },
-  {
-   "permit": "101071916",
-   "issued": "2025-09-29",
-   "type": "New construction",
-   "scope": "Erect new 3 story with basement 4 unit residential building with new 5 car detached garage with roof deck",
-   "units": 4,
-   "sleeping": null,
-   "cost": 2000000,
-   "address": "2644 N Lakewood Ave",
-   "communityArea": "Lincoln Park",
-   "status": "Active",
-   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
-   "gc": [
-    "Bachula Development Inc"
-   ],
-   "lat": 41.930214,
-   "lon": -87.661232
   },
   {
    "permit": "101076879",
@@ -762,6 +726,42 @@
    ],
    "lat": 41.910432,
    "lon": -87.637457
+  },
+  {
+   "permit": "101077418",
+   "issued": "2026-01-14",
+   "type": "Renovation",
+   "scope": "Interior alterations and renovations of existing restaurant tenant space at the street level and river level within existing 8-story building...",
+   "units": null,
+   "sleeping": null,
+   "cost": 1851000,
+   "address": "315 N La Salle Dr",
+   "communityArea": "Near North Side",
+   "status": "Active",
+   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
+   "gc": [
+    "Development Solutions, Inc"
+   ],
+   "lat": 41.887921,
+   "lon": -87.63236
+  },
+  {
+   "permit": "101065225",
+   "issued": "2025-03-24",
+   "type": "Renovation",
+   "scope": "Interior alterations to 12th & 14th floor offices. Work to include demo, new partitions, mechanical, electrical and plumbing...",
+   "units": null,
+   "sleeping": null,
+   "cost": 1750000,
+   "address": "222 S Riverside Plz",
+   "communityArea": "Near West Side",
+   "status": "Active",
+   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
+   "gc": [
+    "Interior Construction Group, Inc"
+   ],
+   "lat": 41.878582,
+   "lon": -87.638579
   }
  ]
 }

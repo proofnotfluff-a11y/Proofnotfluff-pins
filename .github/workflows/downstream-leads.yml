@@ -19,7 +19,7 @@ concurrency:
 jobs:
   pull:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 50   # Oct 26: two runs hit 30 minutes while the City API was slow; a good run takes about 9
     steps:
       - uses: actions/checkout@v4
       - run: python3 tools/ingest_downstream.py --selftest

@@ -1,0 +1,33 @@
+name: Exclusive-area counts
+# Todd, live chat, Oct 26, 2026 (coo/DECISIONS-2026-10-26.md): count qualifying construction cleaning projects and new business
+# licenses by community area and month, to draw exclusive seat areas. The cloud agents cannot reach data.cityofchicago.org, so
+# this runner pulls the City data and commits counts and the public community area outlines only (tools/exclusive_areas.py).
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/exclusive_areas.py", ".github/workflows/exclusive-areas.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: exclusive-areas
+  cancel-in-progress: false
+jobs:
+  count:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/exclusive_areas.py --selftest
+      - run: python3 tools/permits_chicago.py --selftest
+      - run: python3 tools/licenses_chicago.py --selftest
+      - run: python3 tools/exclusive_areas.py
+      - name: Commit the counts
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add permits/chicago/area_counts.json permits/chicago/community_areas.json permits/licenses-chicago/area_counts.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Exclusive-area counts $(date -u +%F)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done
+          exit 1

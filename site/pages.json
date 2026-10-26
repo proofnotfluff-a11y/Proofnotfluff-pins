@@ -5886,7 +5886,7 @@
    },
    "vendor": {
     "title": "Run a pest control company?",
-    "text": "Our Chicago restaurant list sorts food places whose latest City inspection cited rodents or insects, and the daily pest seat sends new ones each morning. Both come from City food inspection records, not from these complaints.",
+    "text": "Our Chicago restaurant list sorts food places whose latest City inspection cited a pest violation (rodents or insects seen, or conditions the inspector says let them in), and the daily pest seat sends new ones each morning. Both come from City food inspection records, not from these complaints.",
     "slug": "chicago-restaurant-inspection-leads",
     "button": "See the restaurant pest list"
    },
@@ -5905,8 +5905,12 @@
      "The table on this page ranks all 77 community areas by complaints in the last 30 days and updates every Monday. A higher count can also mean residents there report more often."
     ],
     [
+     "Which community area is my neighborhood in?",
+     "The City counts by its 77 community areas, which hold many neighborhoods: Bucktown and Wicker Park are in West Town, Wrigleyville is in Lake View, and Pilsen is in the Lower West Side."
+    ],
+    [
      "Does a complaint mean there are rats at an address?",
-     "No. A complaint is one report from a resident. It does not say rats were found, and this page keeps no addresses, so it says nothing about any one building or business."
+     "No. A complaint is one report to 311. It does not say rats were found, and this page keeps no addresses, so it says nothing about any one building or business."
     ],
     [
      "Are rat complaints up this year?",

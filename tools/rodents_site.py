@@ -65,7 +65,7 @@ CSS = ("<style>.rc-bars{margin:12px 0 8px;padding:16px 18px;background:var(--car
        ".rc-steps{margin:8px 0 0;padding-left:22px}section.block .cta .rc-steps li{margin:6px 0;color:var(--band-text)}.cta .rc-more,.cta .rc-more a{color:var(--band-text)}"
        ".rc-more-t{margin:12px 0 0}.rc-more-t summary{display:flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;font-weight:600;color:var(--ink)}"
        ".rc-more-t[open] summary{margin-bottom:8px}"
-       "@media(max-width:599px){.rc-t{min-width:0}.rc-t th:nth-child(4),.rc-t td:nth-child(4){display:none}.rc-t th,.rc-t td{padding:9px 8px}.rc-wk span{display:none}.rc-wk{height:140px}.rc-wk div:not(:last-child) b{visibility:hidden}.rc-bar{grid-template-columns:minmax(96px,130px) 1fr 44px}}</style>")
+       "@media(max-width:599px){.rc-t{min-width:0}.rc-t th:nth-child(2),.rc-t td:nth-child(2){display:none}.rc-t th,.rc-t td{padding:9px 8px}.rc-wk div:not(:first-child):not(:last-child) span{visibility:hidden}.rc-wk span{font-size:10.5px}.rc-wk{height:140px}.rc-wk div:not(:last-child) b{visibility:hidden}.rc-bar{grid-template-columns:minmax(96px,130px) 1fr 44px}}</style>")
 
 
 def page_html(p):
@@ -88,7 +88,7 @@ def page_html(p):
     top = sorted(areas, key=lambda a: (-a["d30"], a["name"]))
     lead = top[0] if top else None
     tie = bool(lead and len(top) > 1 and top[1]["d30"] == lead["d30"])
-    lede = (f'Chicago residents made {c["d30"]:,} rat complaints to 311 in the 30 days to {E(M.nice_date(w["to"]))}, '
+    lede = (f'{c["d30"]:,} rat complaints came in to Chicago 311 in the 30 days to {E(M.nice_date(w["to"]))}, '
             f'{change_words(c["change"])}. {c["d7"]:,} came in the last 7 days.')
     tiles = ('<div class="tiles ld-tiles">'
              f'<div class="tile key"><div class="lab">Last 7 days</div><div class="val">{c["d7"]:,}</div><div class="sub">rat complaints to 311</div></div>'
@@ -145,7 +145,7 @@ def page_html(p):
             f'<p>Source: City of Chicago Data Portal, <a href="{E(src["url"])}">311 Service Requests dataset</a>, requests of type '
             f'{E(src["srType"])}, pulled {E(pulled)}'
             + (", with requests the City marked as duplicates left out" if src.get("duplicatesLeftOut") else "")
-            + '. A complaint is one report from a resident; it does not say rats were found, and a count says nothing about any '
+            + '. A complaint is one report to 311; it does not say rats were found, and a count says nothing about any '
             'one building, block or business. Counts only: no address or report details are kept.</p>'
             f'<p>{E(M.CITY_DISCLAIMER["Chicago"])}</p><p>ProofNotFluff is not affiliated with or endorsed by the City of Chicago.</p>'
             '<p>Made by ProofNotFluff with AI assistance from public City data. The page counts visits with Cloudflare Web Analytics, which sets no '
@@ -169,7 +169,7 @@ def selftest():
     finally:
         os.unlink(tmp.name)
     assert html.count("<h1>") == 1 and "—" not in html and "–" not in html, "one h1, no dashes"
-    assert "Lake View" in html and "made 629 rat complaints" in html, "total in the lede"
+    assert "Lake View" in html and "629 rat complaints came in" in html, "total in the lede"
     assert ">+22%<" in html and ">too few<" in html and ">about the same<" in html, "change words"
     assert "9 of the last 30 days" in html and "too few to compare" in html, "notes under the table"
     assert M.E(M.CITY_DISCLAIMER["Chicago"]) in html, "City disclaimer"

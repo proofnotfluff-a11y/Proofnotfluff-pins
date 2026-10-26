@@ -13,7 +13,7 @@
    "marker": "Loop",
    "short": "Loop",
    "badgeOffset": [
-    30,
+    26,
     4
    ]
   },
@@ -46,8 +46,8 @@
    "marker": "Near West Side",
    "short": "West Side",
    "badgeOffset": [
-    -14,
-    4
+    -18,
+    6
    ]
   },
   {

@@ -57,7 +57,7 @@ def seats_html(p, spec, rel):
     lo = min(_whole(t["avg"]) for t in st["territories"])
     hi = max(_whole(t["avg"]) for t in st["territories"])
     rng = f'{_month(st["from"])} to {_month(st["to"])}'
-    legend = "".join(f'<li><span class="as-num as-t{i + 1}b">{i + 1}</span>{E(t.get("short") or t["name"])}</li>'
+    legend = "".join(f'<li><span class="as-num as-t{i + 1}b">{i + 1}</span>{E(t["name"])}</li>'
                      for i, t in enumerate(cfg["territories"]))
     items = []
     for i, (t, s) in enumerate(zip(cfg["territories"], st["territories"])):
@@ -94,7 +94,7 @@ def seats_html(p, spec, rel):
         f'<section class="block sb as" id="areas" aria-labelledby="asH"><div class="sb-card as-card">'
         '<p class="eyebrow sb-eye">Area seats for cleaning companies</p>'
         '<h2 id="asH">One cleaning company per area of Chicago.</h2>'
-        f'<p class="as-price"><b>${price} a month per area.</b> No lock-in, cancel any time.</p>'
+        f'<p class="as-price"><b>${price} a month per area.</b> No&nbsp;lock&#8209;in, cancel any time.</p>'
         f'<p class="sb-left"><span class="sb-dots" aria-hidden="true">{"".join("<i class=on></i>" if i < left else "<i></i>" for i in range(cap))}</span>'
         f'<b>{left} of {cap} areas open</b></p>'
         '<p class="sb-lede">Hold an area and we sell its list to you and to no other company. From the next Monday we take its projects '
@@ -103,19 +103,19 @@ def seats_html(p, spec, rel):
         f'{svg}<ol class="as-legend" aria-hidden="true">{legend}</ol>'
         f'<figcaption>Six areas drawn from the City\'s 77 community areas so each averaged 10 or more new qualifying '
         f'projects a month from {E(rng)}.</figcaption>'
-        f'<p class="as-note">New projects a month: permits the City issued from {E(rng)} that passed the list\'s rules when issued, '
-        f'whatever their status today, about {lo} to {hi} an area. Months vary: every area had some months under 10. {asof}</p></figure>'
+        f'<details class="as-how"><summary>How the numbers are counted</summary><p>New projects a month: permits the City issued from {E(rng)} that passed the list\'s rules when issued, '
+        f'whatever their status today, about {lo} to {hi} an area. Months vary: every area had some months under 10. {asof}</p></details></figure>'
         '<ul class="sb-get checks"><li>Every open apartment and commercial project of $500,000 or more in your area with a business as general contractor, closest to a final clean first, with the builder on each and the builder\'s office phone or email where their own website lists one.</li>'
         '<li>New permits each Monday, in a members\' app with a map and in an Excel file, plus the pitch kit.</li>'
         '<li>Your area only, and only you. The permits are public City of Chicago records that anyone can read on the City\'s site; '
         'exclusive means we sell your area\'s list to you alone.</li></ul></div>'
         f'<ol class="as-list" aria-label="The six areas">{"".join(items)}</ol></div>'
-        '<p class="sb-same">Want to see an area first? Write to hello@proofnotfluff.com and we will send its 5 newest projects free, for any area no one holds yet. '
+        '<p class="sb-same">Want to see an area first? <a href="mailto:hello@proofnotfluff.com?subject=5%20newest%20projects">Write to hello@proofnotfluff.com</a> and we will send its 5 newest projects free, for any area no one holds yet. '
         f'Prefer the whole city, shared? The weekly list stays ${E(str(p["price"]))} a month for every area no one holds.</p>'
         f'<p class="ld-secure">Secure checkout by Gumroad. ${price} is charged at checkout and again each month until you cancel. '
         f'No lock-in: cancel any time from your Gumroad receipt or library and you are not charged again. '
         f'<a href="{rel}refunds/">Refunds and cancelling</a> · <a href="{rel}chicago-cleaning-area-members/loop/#/terms">Seat Terms</a> '
-        '(the same for every area apart from the area named)</p>'
+        '(the same in every area except the area named)</p>'
         '</div></section>')
 
 
@@ -138,7 +138,10 @@ SEATS_CSS = (
     ".as-map figcaption{margin:10px 0 0;color:var(--muted);font-size:14px}"
     ".as-legend{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;color:var(--ink2)}"
     ".as-legend li{display:inline-flex;align-items:center;gap:6px}.as-legend .as-num{width:20px;height:20px;font-size:11.5px}"
-    ".as-note{margin:8px 0 0;color:var(--muted);font-size:13.5px}"
+    ".as .as-how{margin:8px 0 0;padding:0;border:0;background:none;box-shadow:none;max-width:none;font-size:13.5px;color:var(--muted)}"
+    ".as .as-how summary{min-height:44px;padding:10px 0;display:block;font-size:14px;font-weight:600;color:var(--teal);cursor:pointer;list-style:none;background:none;border:0}"
+    ".as .as-how summary::-webkit-details-marker{display:none}.as .as-how summary::after{content:' +';font-weight:700}.as .as-how[open] summary::after{content:' \\2212'}"
+    ".as .as-how p{margin:0;padding:0}.as-legend{flex-direction:column}.sb-same a{color:var(--teal)}"
     ".as-list{list-style:none;margin:0;padding:0;display:grid;gap:0}"
     ".as-item{display:grid;grid-template-columns:8px minmax(0,1fr);column-gap:12px;row-gap:10px;padding:16px 0;border-top:1px solid var(--line)}"
     ".as-item:first-child{border-top:0;padding-top:4px}"

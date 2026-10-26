@@ -272,7 +272,7 @@ def from_review(review_path, out, password, sample_path=None):
 
 
 PAGE = r"""<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="light">
 <meta name="robots" content="noindex, nofollow"><meta name="theme-color" content="#1D2433">
 <title>Members: __PRODUCT__ | ProofNotFluff</title>
 <link rel="preload" href="../assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -340,7 +340,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .ph h1{font-size:30px;font-weight:700}
 .ph p{margin:6px 0 0;color:var(--muted);font-size:15px;max-width:680px;text-wrap:pretty}
 @media(max-width:600px){.ph h1{font-size:24px}}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}
+.panel{min-width:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}
 .sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:18px 20px 12px}
 .sec-h h2{font-size:18px;font-weight:600}
 @media(max-width:600px){.sec-h{padding:16px 16px 10px}.sec-h h2{font-size:17px}.pg-main .sec-h{padding-left:20px;padding-right:20px}.grp{padding:10px 16px}}
@@ -382,7 +382,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 /* overview */
 .ov{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:20px;align-items:start}
 @media(max-width:1020px){.ov{grid-template-columns:minmax(0,1fr)}}
-.ov-col{display:grid;gap:20px;min-width:0}
+.ov-col{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;min-width:0}
 .hero h1{font-size:34px;font-weight:700}
 .hero p{margin:8px 0 0;color:var(--muted);font-size:16px;max-width:60ch}
 @media(max-width:600px){.hero h1{font-size:26px}.hero p{font-size:15px}}
@@ -424,6 +424,9 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 .row .rt{grid-column:2;grid-row:1 / span 3;display:flex;flex-wrap:wrap;justify-content:flex-end;align-content:flex-start;align-items:center;gap:6px;max-width:300px}
 .row .chev{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--field)}
 .row .nc{color:var(--muted);font-size:13px;white-space:nowrap}
+.row .bd{flex-wrap:wrap;row-gap:2px}.row .bd>span:not(.nc){white-space:normal;overflow:visible}
+.mine .btn{white-space:normal;text-align:center;height:auto;min-height:44px;padding-top:10px;padding-bottom:10px;max-width:100%}
+.minimap:empty::after{content:"The map did not load on this connection. The address is above.";display:flex;align-items:center;justify-content:center;height:100%;padding:0 20px;text-align:center;color:var(--muted);font-size:14px}
 .row .bd{align-items:baseline}.row .bd .ico{align-self:center}
 .row.hl{background:#F6F3EC}
 .grp{display:flex;align-items:baseline;gap:8px;margin:0;padding:10px 20px;border-top:1px solid var(--line2);background:#FAF8F4;font:600 13px var(--body);color:var(--ink2);letter-spacing:0}
@@ -816,8 +819,9 @@ $("#app").innerHTML=`<section class="hero">${CITY.seatName?`<p class="seatchip">
 <p>${CITY.key==="austin"?`${int(P.length)} open projects on the list (${int(P.reduce((x,p)=>x+(p.b||0),0))} building permits), ${bigMoney(TOTAL)} in valuation`:`${int(P.length)} open permits on the list, ${bigMoney(TOTAL)} in reported cost at ${int(addrs)} addresses`}. Built from ${esc(CITY.records)}, list of ${esc(D.asOf)}.</p></section>
 <nav class="line" aria-label="Projects by stage, from permit to final clean">${stn(2)}${stn(1)}${stn(0)}<span class="flag"><span class="dot">${ico("flag")}</span><span class="tx"><span class="t">Final clean</span><span class="m">Your bid</span></span></span></nav>
 <div class="ov"><div class="ov-col">
-<section class="panel"><div class="sec-h"><h2>Closest to a final clean<span class="c num">${int(near.length)}</span></h2>${near.length?`<a href="#/projects?stage=near">See all ${int(near.length)}</a>`:""}</div>${near.length?rowsHtml(near,0,"near"):`<p class="empty">${esc(CITY.nearEmpty)}</p>`}</section>
+${near.length||!nw.length?`<section class="panel"><div class="sec-h"><h2>Closest to a final clean<span class="c num">${int(near.length)}</span></h2>${near.length?`<a href="#/projects?stage=near">See all ${int(near.length)}</a>`:""}</div>${near.length?rowsHtml(near,0,"near"):`<p class="empty">${esc(CITY.nearEmpty)}</p>`}</section>`:""}
 <section class="panel"><div class="sec-h"><h2>New this week<span class="c num">${int(nw.length)}</span></h2>${nw.length?`<a href="#/projects?new=1">See all ${int(nw.length)}</a>`:""}</div>${nw.length?rowsHtml(nw,5,"new"):`<p class="empty">No permits on the list were issued in the last 7 days.</p>`}</section>
+${!near.length&&nw.length?`<section class="panel"><div class="sec-h"><h2>Closest to a final clean<span class="c num">${int(near.length)}</span></h2>${near.length?`<a href="#/projects?stage=near">See all ${int(near.length)}</a>`:""}</div>${near.length?rowsHtml(near,0,"near"):`<p class="empty">${esc(CITY.nearEmpty)}</p>`}</section>`:""}
 </div><div class="ov-col">
 <section class="panel"><div class="sec-h"><h2>Builders to call first</h2><a href="#/builders">All ${int(Object.keys(B).length)} builders</a></div>
 ${top.map(b=>`<a class="mini-b" href="#/builder/${encodeURIComponent(b.key)}"><b>${esc(b.name)}</b><span>${plural(b.n,CITY.bNoun)}${CITY.bWeek}${CITY.contacts?", "+(b.ok?"contact on file":"no contact on file yet"):""}</span>${top.some(x=>x.near)?`<span class="r num">${int(b.near)}<small>near finish</small></span>`:`<span class="r num">${int(b.n)}<small>${b.n===1?"project":"projects"}</small></span>`}</a>`).join("")}</section>

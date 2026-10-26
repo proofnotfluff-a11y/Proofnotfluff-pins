@@ -21,6 +21,7 @@ SEAT_FILE = os.path.join(ROOT, "email", "S1-AREA-SEAT.md")
 GC = os.path.join(ROOT, "permits", "downstream", "gc_leads.json")
 GC_AREAS = os.path.join(ROOT, "permits", "downstream", "gc_areas.json")
 MAX_AGE = 8
+STREET_TYPE = re.compile(r"\b(?:St|Ave|Av|Blvd|Dr|Rd|Pl|Pkwy|Ct|Way|Ln|Ter|Hwy|Sq|Plz|Cir|Row|Broadway|Wacker|Expy|Trl)\.?$", re.I)
 
 
 def templates(path=SEAT_FILE):
@@ -58,6 +59,8 @@ def seat_problems(subject, body, step, lead, area_of_lead, seat, cfg, week_doc, 
             p.append(f"{lead.get('lead_id')}: no community area on file (gc_areas.json), so its seat cannot be checked")
         elif A.territory_of(area_of_lead, cfg) != seat["slug"]:
             p.append(f"{lead.get('lead_id')} is in {area_of_lead}, not in the {seat['name']} seat")
+    if lead is not None and not STREET_TYPE.search(R.street_display(lead.get("address"))):
+        p.append(f"{lead.get('lead_id')}: the street {R.street_display(lead.get('address'))!r} has no street type; skip this lead (copy review round 4)")
     if f"the {seat['name']} area" not in body:
         p.append(f"the body must name the seat as 'the {seat['name']} area'")
     try:
@@ -137,7 +140,7 @@ def check_seat_templates(path=SEAT_FILE, today=None):
         areas = json.load(open(GC_AREAS))["areas"]
         for ld in json.load(open(GC))["leads"]:
             ca = areas.get(ld["lead_id"])
-            if ld.get("city") != "chicago" or not ca:
+            if ld.get("city") != "chicago" or not ca or not STREET_TYPE.search(R.street_display(ld.get("address"))):
                 continue
             seat = next((x for x in cfg["territories"] if x["slug"] == A.territory_of(ca, cfg)), None)
             wk = next((x for x in week_doc["territories"] if seat and x["slug"] == seat["slug"]), None)
@@ -154,7 +157,7 @@ def check_seat_templates(path=SEAT_FILE, today=None):
     # worst case: every template on the longest builder, street and value in the live file with the longest seat name, so a
     # template can never pass on short names and break the word limit on long ones (copy review round 3, Oct 26)
     if os.path.exists(GC):
-        chi = [x for x in json.load(open(GC))["leads"] if x.get("city") == "chicago"]
+        chi = [x for x in json.load(open(GC))["leads"] if x.get("city") == "chicago" and STREET_TYPE.search(R.street_display(x.get("address")))]
         if chi:
             seat_l = max(open_seats, key=lambda x: len(x["name"]))
             wk_l = {"slug": seat_l["slug"], "open": 9999}
@@ -181,7 +184,14 @@ def check_seat_templates(path=SEAT_FILE, today=None):
         ("no area on file", good_s, good_b, "", seat0, cfg, week_doc, send),
         ("an extra count", good_s, good_b.replace("area this week,", "area this week, 12 near finish,"), fixture_area, seat0, cfg, week_doc, send),
     ]
-    caught = 0
+    ld_air = dict(ld, address="10000 W Ohare Airport")
+    fa = fields(ld_air, seat0, wk0)
+    if seat_problems(fill(first["subject"], fa), fill(first["body"], fa), "first", ld_air, fixture_area, seat0, cfg, week_doc, send):
+        probs_caught_air = 1
+    else:
+        probs_caught_air = 0
+        probs.append("planted case not caught: a street with no street type")
+    caught = probs_caught_air
     for name, s_, b_, ca, seat, c_, w_, day in planted:
         if (s_, b_) == (good_s, good_b) and name not in ("lead outside the seat", "held seat", "stale counts", "no area on file"):
             probs.append(f"planted case {name!r} no longer changes the draft: update it to the template's wording")

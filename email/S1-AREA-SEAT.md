@@ -9,6 +9,8 @@ Rules the gate checks (`python3 tools/copy_gate.py --seat-templates`, run by too
 - {open} is that seat's open count in permits/chicago/area_week.json, and the file is at most 8 days old on the send day. No other count appears (numbers inside a builder's name, the value and the street aside).
 - Copy review round 1 (Oct 26): FAIL at 4.2; its rewrites applied here ("project" for every lead, "usually" on the certificate line, a shorter second paragraph, a clearer ask, the count in the follow-ups, a last note that lets the reader go). Copy review round 3 (Oct 26): FAIL 4.45; its rewrites applied (the builder leads line one, "to go after", shorter follow-ups so the longest names stay under 75 words, one question in the last note). T3 cannot fire on Chicago data today (the City's certificate milestone maps to partial occupancy); it stays for a source that reports it. Copy review round 2 (Oct 26): FAIL 4.45; its rewrites applied ("projects" for jobs, "Builders at this stage", no unexplained "seat" in the follow-ups, a last note that asks which area). Legal desk fix 5 (Oct 26): "we will sell that area's list to one cleaning company only" and "the only cleaning company we sell that area's list to", since the City and other sellers have the same records.
 - "has taken that area yet" (T4, T5) only while that seat is not held.
+- The lead's street ends in a street type (St, Ave, Blvd, Dr and so on): an address like "W Ohare Airport" makes a strange subject, so the drafter skips it.
+- Copy review round 4 (Oct 26): PASS 4.70, nothing under 4; two cold readers would both reply and neither read it as a job offer. Its optional rewrites applied (tighter first lines, "we" throughout since the sender is the company); changed lines re-checked by a fresh reviewer.
 - Pick the seat for the prospect's own area: the community area of the prospect's business address, else the area of most of the Chicago jobs on its website, else no seat email to that prospect.
 
 What a yes gets: the area's 5 newest projects with the builder on each, sent by Todd as a reply only after his word in chat (named lists to people who replied yes always wait for him; CONSTITUTION 2), under the same conditions as the $29 list's free sample. Nothing named goes out before the Legal desk review of this offer is cleared.
@@ -22,7 +24,7 @@ Body:
 ```text
 Hi {first},
 
-{gc} has partial occupancy approved by the city on the {value} {kind} project on {street}. That is usually when the final clean gets bid.
+{gc} has partial occupancy approved by the city on the {value} {kind} project on {street}, which is usually when the final clean gets bid.
 
 It is one of {open} open projects in the {area} area this week, and we will sell that area's list to one cleaning company only.
 
@@ -38,7 +40,7 @@ Body:
 ```text
 Hi {first},
 
-{gc} has city inspections under way on the {value} {kind} project on {street}. Builders at this stage usually line up the final clean soon.
+{gc} has city inspections under way on the {value} {kind} project on {street}, so the final clean there is still ahead.
 
 It is one of {open} open projects in the {area} area this week, and we will sell that area's list to one cleaning company only.
 
@@ -74,7 +76,7 @@ One more in the {area} area: {gc} has partial occupancy approved by the city on 
 
 No cleaning company has taken that area yet. This week's list has {open} open projects, and whoever takes it is the only cleaning company we sell that area's list to.
 
-Should I send the 5 newest projects?
+Should we send the 5 newest projects?
 ```
 
 ### T5 follow-up, inspections
@@ -90,7 +92,7 @@ One more in the {area} area: {gc} has city inspections under way on the {value} 
 
 No cleaning company has taken that area yet. This week's list has {open} open projects, and whoever takes it is the only cleaning company we sell that area's list to.
 
-Should I send the 5 newest projects?
+Should we send the 5 newest projects?
 ```
 
 ### T6 last note
@@ -101,7 +103,7 @@ Body:
 ```text
 Hi {first},
 
-Last note from me. If the {area} area is not where your crews work, tell me which part of Chicago is and I will send that area's 5 newest projects free instead.
+One last note. If the {area} area is not where your crews work, tell us which part of Chicago is and we will send that area's 5 newest projects free instead.
 
-If no part of Chicago fits, no reply needed. Otherwise, which area should I send?
+If no part of Chicago fits, no reply needed. Otherwise, which area should we send?
 ```

@@ -155,8 +155,8 @@ def svg(cfg, geo=None, st=None, width=420, title="Chicago cleaning lead areas"):
                          'stroke-width="1.2" aria-hidden="true"/>')
             parts.append(f'<circle cx="{px}" cy="{py}" r="2.2" fill="var(--map-pin,#14213d)" aria-hidden="true"/>')
             px, py = round(px + dx, 1), round(py + dy, 1)
-        parts.append(f'<g aria-hidden="true"><circle cx="{px}" cy="{py}" r="10" fill="var(--map-pin,#14213d)" stroke="var(--map-line,#fff)" stroke-width="1.5"/>'
-                     f'<text x="{px}" y="{round(py + 4.2, 1)}" text-anchor="middle" font-size="12" font-weight="700" fill="var(--map-pin-ink,#fff)" '
+        parts.append(f'<g aria-hidden="true"><circle cx="{px}" cy="{py}" r="12" fill="var(--map-pin,#14213d)" stroke="var(--map-line,#fff)" stroke-width="1.5"/>'
+                     f'<text x="{px}" y="{round(py + 4.9, 1)}" text-anchor="middle" font-size="14" font-weight="700" fill="var(--map-pin-ink,#fff)" '
                      f'font-family="system-ui,sans-serif">{i + 1}</text></g>')
     desc = "; ".join(f"{i + 1} {t['name']}: about {s['avg']:g} new projects a month, {s['openNow']} open now"
                      for i, (t, s) in enumerate(zip(cfg["territories"], st["territories"])))

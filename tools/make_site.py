@@ -1704,9 +1704,9 @@ PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;PNF.stages(f,"../e/amazon-dd7-pa
     return form, results + "\n<!--LC-EXTRA-->" + extra, script
 
 
-def _sel(key, label, hint, opts, val):
-    """A labelled select feeding the model (data-in), as on the DD+7 page."""
-    return (f'<div class="row"><label for="{key}">{E(label)}{f"<small>{E(hint)}</small>" if hint else ""}</label>'
+def _sel(key, label, hint, opts, val, wide=False):
+    """A labelled select feeding the model (data-in), as on the DD+7 page; wide = full-width (row pick) for long options."""
+    return (f'<div class="row{" pick" if wide else ""}"><label for="{key}">{E(label)}{f"<small>{E(hint)}</small>" if hint else ""}</label>'
             f'<div class="field"><select id="{key}" data-in="{key}">'
             + "".join(f'<option value="{v}"{" selected" if str(v) == str(val) else ""}>{E(t)}</option>' for v, t in opts)
             + '</select></div></div>')
@@ -1748,7 +1748,7 @@ def lights_page(p):
 {field("takedownPct", "Takedown time, share of install time", d["takedownPct"], "Removal and packing after the season", suf="%")}
 </fieldset>
 <fieldset><legend>The lights</legend>
-{_sel("owner", "Who owns the lights", "Lent each year and stored by you, or bought and kept by the customer", [(0, "We own them"), (1, "Customer buys them")], d["owner"])}
+{_sel("owner", "Who owns the lights", "Lent each year and stored by you, or bought and kept by the customer", [(0, "Ours"), (1, "Customer")], d["owner"])}
 {field("matPerFt", "Lights, wire and clips per foot", d["matPerFt"], "Your cost, per foot of roofline", pre="$")}
 {field("shrubMat", "Lights per bush or tree", d["shrubMat"], pre="$")}
 <div data-show-if="owned > 0">{field("seasons", "Seasons your lights last", d["seasons"], "Their cost is spread over these seasons")}
@@ -1766,10 +1766,10 @@ def lights_page(p):
 <div class="tile key"><div class="lab">Quote for this house</div><div class="val" data-out="quote" data-fmt="money0">$0</div><div class="sub">Install and takedown, rounded up to the next $5</div></div>
 <div class="tile"><div class="lab">Price per foot of roofline</div><div class="val" data-out="perFt">$0</div><div class="sub">Break-even <span data-out="floorPerFt">$0</span> a foot</div></div>
 <div class="tile"><div class="lab">Profit in the quote</div><div class="val" data-out="profit">$0</div></div>
-<div class="tile"><div class="lab">Install day on site</div><div class="val" data-out="crewHrs" data-fmt="hrs">0</div><div class="sub">For the whole crew together</div></div>
+<div class="tile"><div class="lab">Install day on site</div><div class="val" data-out="crewHrs" data-fmt="hrs">0</div><div class="sub">Crew working together</div></div>
 </div>
 <ul class="lines">
-<li><span>Install, <span data-out="installHrs" data-fmt="hrs">0</span> of work</span><span data-out="labor">$0</span></li>
+<li><span>Install and takedown, <span data-out="workHrs" data-fmt="hrs">0</span> of work</span><span data-out="labor">$0</span></li>
 <li><span>Drive time and miles, <span data-out="trips" data-fmt="int">0</span> trips</span><span data-out="drive">$0</span></li>
 <li><span>Lights for this season</span><span data-out="materials">$0</span></li>
 <li data-show-if="owned > 0"><span>Storage and handling</span><span data-out="storage">$0</span></li>
@@ -1837,7 +1837,7 @@ def hood_page(p):
     opts = [(n, t) for n, t in enumerate(p["cookingTypes"])]
     form = f"""<form class="card" id="calc" novalidate>
 <fieldset><legend>The kitchen</legend>
-{_sel("cooking", "Type of cooking", "Sets how often NFPA 96 calls for an inspection", opts, d["cooking"])}
+{_sel("cooking", "Type of cooking", "Sets how often NFPA 96 calls for an inspection", opts, d["cooking"], wide=True)}
 {field("hoods", "Hoods to clean", d["hoods"])}
 {field("hoodHrs", "Crew hours per hood", d["hoodHrs"], "Hood, filters and plenum, all people together")}
 {field("ductHrs", "Crew hours for duct and fan", d["ductHrs"], "Duct runs, the roof fan and the grease containment, all people together")}
@@ -1933,7 +1933,7 @@ def price_raise_page(p):
 {field("jobs", "Jobs a month at this price", d["jobs"])}
 </fieldset>
 <fieldset><legend>Your new price</legend>
-{_sel("keep", "What the new price keeps", "Your profit in dollars, or your margin as a share of the price", [(0, "My profit per job"), (1, "My margin")], d["keep"])}
+{_sel("keep", "What the new price keeps", "Your profit in dollars, or your margin as a share of the price", [(0, "Profit per job"), (1, "Margin")], d["keep"])}
 {field("losePct", "Clients you expect to lose over the raise", d["losePct"], "Your guess. 0 if you expect none", suf="%")}
 </fieldset></form>"""
     results = """<div class="sticky"><div class="card" aria-live="polite">

@@ -5873,8 +5873,13 @@
    "resident": {
     "title": "Seeing rats where you live?",
     "steps": [
-     "Call 311, or report it on CHI311 online or in the app.",
-     "Ask for rodent baiting and give the address or the alley where you saw rats."
+     "Call 311, or report a rat complaint on CHI311 online or in the app.",
+     "The City's Bureau of Rodent Control says it investigates every reported rat sighting: crews check the alley, replace damaged garbage carts and bait rat burrows.",
+     "A property owner can also ask the City to inspect the outside of a building."
+    ],
+    "more": [
+     "How the City handles rat complaints",
+     "https://www.chicago.gov/city/en/depts/streets/provdrs/rodent/svcs/rodent_baiting.html"
     ],
     "url": "https://311.chicago.gov/",
     "button": "Report it on CHI311"
@@ -5887,13 +5892,13 @@
    },
    "method": [
     "Every Monday we count the City of Chicago's 311 service requests of type Rodent Baiting/Rat Complaint from its public 311 Service Requests dataset, by the community area on each request.",
-    "Counts cover whole days in Chicago time and end the day before the pull. The year-ago column is the same 30 calendar days one year earlier. Requests the City marks as duplicates are left out when the dataset carries that flag.",
+    "Counts cover whole days in Chicago time and end the day before the pull. The year-ago column is the same 30 calendar days one year earlier. Requests the City marks as duplicates are left out.",
     "Only counts are kept. No address, location, request number or anything a resident wrote is stored or shown, so the page cannot point to any building, block or business."
    ],
    "faq": [
     [
      "How do I report rats in Chicago?",
-     "Call 311, or report it on CHI311 online or in the app, and ask for rodent baiting. Give the address or the alley where you saw them."
+     "Call 311, or make a rat complaint on CHI311 online or in the app. The City's Bureau of Rodent Control investigates reported rat sightings and baits rat burrows."
     ],
     [
      "Which Chicago neighborhoods have the most rat complaints?",
@@ -5909,6 +5914,167 @@
     ]
    ],
    "sources": "City of Chicago 311 Service Requests, dataset v6vf-nfxy."
+  },
+  {
+   "slug": "christmas-light-installation-pricing-calculator",
+   "kind": "lights",
+   "draft": true,
+   "segment": "trades",
+   "stages": true,
+   "title": "Christmas Light Installation Pricing Calculator | ProofNotFluff",
+   "desc": "Free Christmas light installation pricing calculator. Quote a house from roofline feet, your crew's pace and your costs: price per foot, install and takedown, owned or sold lights.",
+   "eyebrow": "Free calculator",
+   "h1": "Christmas Light Installation Pricing Calculator",
+   "lede": "Quote a house from the feet of roofline, the bushes and trees, your crew's own pace and your costs. You get the quote, the price per foot, the profit in it and the hours on site, with takedown counted and your lights either lent each year or sold to the customer. Free, no sign-up.",
+   "card": "Quote a house from roofline feet and your crew's pace: price per foot, takedown counted, owned or sold lights.",
+   "defaults": {
+    "feet": "150",
+    "shrubs": "4",
+    "ftPerHour": "40",
+    "shrubMin": "20",
+    "people": "2",
+    "rate": "45",
+    "takedownPct": "50",
+    "owner": "0",
+    "matPerFt": "1.60",
+    "shrubMat": "30",
+    "seasons": "3",
+    "storage": "25",
+    "serviceCalls": "0",
+    "tripMin": "40",
+    "tripMiles": "20",
+    "perMile": "0.76",
+    "margin": "30"
+   },
+   "notes": {
+    "title": "Check your quote against published ranges",
+    "items": [
+     [
+      "Service Autopilot puts per-foot pricing at $5 to $8 a linear foot and calls it the most common way to price.",
+      "https://www.serviceautopilot.com/christmas-lights/how-to-bid-christmas-light-installation/",
+      "Service Autopilot, How to Bid Christmas Light Installation"
+     ],
+     [
+      "ThePricer, a homeowner cost guide, lists $2 to $5 a foot for labor on the customer's own lights and $5 to $10 a foot with lights supplied, with storage at $50 to $150 a year.",
+      "https://www.thepricer.org/how-much-does-christmas-light-installation-cost/",
+      "ThePricer, How Much Does Christmas Light Installation Cost"
+     ],
+     [
+      "Jobber prices a bid as labor, materials and overhead divided by one less your target margin, the same math as this calculator.",
+      "https://getjobber.com/academy/holiday-lighting/how-to-bid-christmas-light-installation/",
+      "Jobber Academy, How to Price Christmas Light Installation"
+     ]
+    ],
+    "tail": [
+     "These are other companies' published estimates, read Oct 26, 2026, not our data. None of them gives a pace in feet per hour, so the calculator uses yours. Time a few houses this season and use your real number next year."
+    ]
+   },
+   "method": [
+    "Install hours are the feet of roofline divided by the feet one person hangs an hour, plus each bush or tree at your minutes. Takedown adds a share of those hours. All of it costs your labor rate per person-hour, whether you pay a crew or price your own time.",
+    "Every trip, install and takedown plus any service calls you expect, carries the whole crew's drive time at the same rate and the vehicle's miles.",
+    "Lights you own and lend each year are spread over the seasons they last, plus storage and handling. Lights the customer buys are charged in full this year; next season the same house quotes without them.",
+    "The price floor is labor, drive, lights and storage. The quote divides the floor by one less your margin and rounds up to the next $5. Price per foot is the quote over the feet of roofline."
+   ],
+   "example": "A 150-foot roofline and 4 bushes, a 2-person crew that hangs 40 feet an hour each and wraps a bush in 20 minutes, at $45 a person-hour: 5.08 hours of install work, 2.54 hours on site for the crew, and half that again for takedown: 7.63 hours of work, $343.13 of labor. Two trips of 40 minutes and 20 miles add $150.40. Lights you own at $1.60 a foot and $30 a bush cost $360, spread over 3 seasons that is $120, plus $25 of storage. The floor is $638.53 and a 30% margin quotes $915, $6.10 a foot with $276.48 of profit. If the customer buys the lights instead, this year quotes $1,220 and next season $710.",
+   "faq": [
+    [
+     "How much should I charge to hang Christmas lights?",
+     "Price from your own costs: your crew's time for install and takedown, the drive, the lights and your margin. With the example numbers a 150-foot roofline and 4 bushes quotes $915, or $6.10 a foot. Type your own numbers to see yours."
+    ],
+    [
+     "Should I charge per foot or per house?",
+     "Most installers quote per foot of roofline and add trees and bushes by the item. This calculator gives both: the house total and the price per foot it works out to."
+    ],
+    [
+     "Should I sell the lights or lease them?",
+     "Owning and lending them each year spreads their cost over the seasons they last and keeps the customer coming back, but you store and test them. Selling them charges the lights up front and makes next season's quote lower. Switch the lights option to compare."
+    ],
+    [
+     "Is takedown included?",
+     "Yes. Takedown hours are a share of install hours that you set, and the takedown trip is counted. Change the share if your takedowns run faster or slower."
+    ]
+   ],
+   "sources": "Vehicle: IRS business mileage rate 76 cents a mile for July 1 to December 31, 2026 (IRS Standard Mileage Rates page). Every other figure in the calculator is yours; the defaults are an example, not market prices. Published ranges read Oct 26, 2026 are linked on the page. Page built Oct 26, 2026."
+  },
+  {
+   "slug": "snow-removal-pricing-calculator",
+   "kind": "snow",
+   "draft": true,
+   "segment": "trades",
+   "stages": true,
+   "title": "Snow Removal Pricing Calculator: Per Push and Seasonal | ProofNotFluff",
+   "desc": "Free snow removal pricing calculator. Price a push from your minutes, crew, truck and salt costs, then a seasonal contract and the pushes it covers before it loses money.",
+   "eyebrow": "Free calculator",
+   "h1": "Snow Removal Pricing Calculator",
+   "lede": "Price one stop on your route from your own minutes on site, drive time, crew, truck or blower cost and salt. You get the price per push, a deep storm price, a seasonal contract with a cushion for a heavy winter, and how many pushes that contract covers before it costs you money. Free, no sign-up.",
+   "card": "Price per push, deep storm and seasonal contract for one stop, and the pushes a contract covers.",
+   "defaults": {
+    "pushMin": "25",
+    "deepMin": "45",
+    "driveMin": "10",
+    "salt": "15",
+    "people": "1",
+    "rate": "40",
+    "equip": "35",
+    "margin": "25",
+    "events": "8",
+    "cushion": "15",
+    "months": "5"
+   },
+   "notes": {
+    "title": "Check your prices and your season",
+    "items": [
+     [
+      "Chicago O'Hare's normal snowfall is 38.4 inches a season, most of it from December to February (1991 to 2020 normals).",
+      "https://www.weather.gov/lot/Chicago_normals",
+      "National Weather Service Chicago, Chicago (O'Hare) Climate Normals"
+     ],
+     [
+      "The older 1981 to 2010 normals counted 11.6 days a year at O'Hare with an inch of snow or more. A push at a 2 inch trigger happens on fewer days than that, so count your own past storms.",
+      "https://stateclimatologist.isws.illinois.edu/data/climate-data/chicago-ohare-international-airport-climate-normals/",
+      "Illinois State Climatologist, Chicago O'Hare Climate Normals"
+     ],
+     [
+      "Housecall Pro lists $30 to $75 a visit for a driveway and $300 to $700 for a residential season.",
+      "https://www.housecallpro.com/resources/snow-removal-prices/",
+      "Housecall Pro, Snow Removal Price Guide 2026"
+     ],
+     [
+      "Service Autopilot says a push usually starts at 2 to 3 inches of snow, and per-event pricing runs 20% to 30% above per-push.",
+      "https://www.serviceautopilot.com/snow-removal/how-much-to-charge-for-snow-removal/",
+      "Service Autopilot, How Much to Charge for Snow Removal"
+     ]
+    ],
+    "tail": [
+     "The price ranges are other companies' published estimates, read Oct 26, 2026, not our data."
+    ]
+   },
+   "method": [
+    "A push costs your time on site plus the drive to this stop from the one before it. Every minute carries the crew's labor rate and the truck, plow or blower's cost per hour, then any salt or ice melt you put down on that visit.",
+    "The price divides that cost by one less your margin and rounds up to the next $5. A deep storm uses its own minutes on site, so its price follows the extra time.",
+    "A seasonal contract is the per-push price times the pushes you expect, plus your cushion for a heavy winter, rounded up to the next $5. It pays the same whether it snows or not.",
+    "The pushes it covers are the contract divided by the cost of one push, rounded down. Past that number the season costs you more than the contract pays."
+   ],
+   "example": "One driveway on a route: 25 minutes on site, 10 minutes from the stop before, one person at $40 an hour, a truck and plow at $35 an hour and $15 of salt. A push costs $58.75 and a 25% margin prices it at $80. A deep storm at 45 minutes costs $83.75 and prices at $115. At 8 expected pushes and a 15% cushion, the seasonal contract is $740, or $148 a month over 5 months, with $270 of profit at 8 pushes. It covers 12 pushes before the season costs more than it pays.",
+   "faq": [
+    [
+     "How much should I charge per push?",
+     "Your minutes on site and the drive to the stop, at your labor and equipment cost per hour, plus salt, divided by one less your margin. With the example numbers a 25-minute driveway prices at $80 a push. Type your own numbers to see yours."
+    ],
+    [
+     "Is a seasonal contract better than per push?",
+     "A seasonal contract pays the same in a light or heavy winter, so you carry the risk of a heavy one. The calculator shows how many pushes the contract covers before it loses money, so you can set the cushion."
+    ],
+    [
+     "How many times will I plow in a Chicago winter?",
+     "It depends on your trigger depth and the winter. O'Hare averages 38.4 inches of snow a season, but a push needs a storm over your trigger. Count your own pushes from past seasons and use that number."
+    ],
+    [
+     "How do I price a big storm?",
+     "Type your minutes on site for a deep storm. Its price follows the extra time, so a 45-minute push prices higher than a 25-minute one at the same rates."
+    ]
+   ],
+   "sources": "Snowfall: National Weather Service Chicago, Chicago (O'Hare) 1991 to 2020 climate normals; Illinois State Climatologist, Chicago O'Hare climate normals (1981 to 2010). Every figure in the calculator is yours; the defaults are an example, not market prices. Published ranges read Oct 26, 2026 are linked on the page. Page built Oct 26, 2026."
   }
  ]
 }

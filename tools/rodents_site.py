@@ -23,6 +23,13 @@ def load(p):
     return json.load(open(f, encoding="utf-8")) if os.path.isfile(f) else None
 
 
+FEW = 10   # under 10 complaints a year earlier, a percent change is noise: the page says "too few" instead
+
+
+def area_change(a):
+    return "too few" if a["prev30"] < FEW else pct(a["change"])
+
+
 def pct(x):
     if x is None:
         return "new"
@@ -55,8 +62,10 @@ CSS = ("<style>.rc-bars{margin:12px 0 8px;padding:16px 18px;background:var(--car
        ".rc-t tbody th{font-weight:600;color:var(--ink)}.rc-t tr:last-child td,.rc-t tr:last-child th{border-bottom:0}"
        ".rc-up{color:var(--warn-ink)}.rc-two{display:grid;gap:16px}@media(min-width:900px){.rc-two{grid-template-columns:1fr 1fr}}"
        ".rc-two .cta{grid-template-columns:1fr;height:100%}.rc-two .cta h2{margin-top:0;text-wrap:balance}"
-       ".rc-steps{margin:8px 0 0;padding-left:22px}.rc-steps li{margin:6px 0}"
-       "@media(max-width:599px){.rc-wk span{display:none}.rc-wk{height:140px}.rc-bar{grid-template-columns:minmax(96px,130px) 1fr 44px}}</style>")
+       ".rc-steps{margin:8px 0 0;padding-left:22px}section.block .cta .rc-steps li{margin:6px 0;color:var(--band-text)}.cta .rc-more,.cta .rc-more a{color:var(--band-text)}"
+       ".rc-more-t{margin:12px 0 0}.rc-more-t summary{display:flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;font-weight:600;color:var(--ink)}"
+       ".rc-more-t[open] summary{margin-bottom:8px}"
+       "@media(max-width:599px){.rc-t{min-width:0}.rc-t th:nth-child(4),.rc-t td:nth-child(4){display:none}.rc-t th,.rc-t td{padding:9px 8px}.rc-wk span{display:none}.rc-wk{height:140px}.rc-wk div:not(:last-child) b{visibility:hidden}.rc-bar{grid-template-columns:minmax(96px,130px) 1fr 44px}}</style>")
 
 
 def page_html(p):
@@ -92,7 +101,7 @@ def page_html(p):
     bars = ('<figure class="rc-bars" aria-label="Community areas with the most rat complaints in the last 30 days">'
             '<figcaption>Most rat complaints, last 30 days</figcaption>'
             + "".join(f'<div class="rc-bar"><span>{E(a["name"])}</span><i style="width:{max(6, round(a["d30"] / peak * 100))}%"></i><b>{a["d30"]:,}</b>'
-                      f'<small>{a["d7"]:,} in the last 7 days · {E(pct(a["change"]))} on a year ago</small></div>' for a in top[:10])
+                      f'<small>{a["d7"]:,} in the last 7 days · {"too few a year ago to compare" if a["prev30"] < FEW else E(pct(a["change"])) + " on a year ago"}</small></div>' for a in top[:10])
             + '</figure>')
     wpeak = max((x["count"] for x in d["weeks"]), default=1) or 1
     weeks = ('<div class="rc-wk" role="img" aria-label="Rat complaints each week for the last 12 weeks, '
@@ -101,18 +110,25 @@ def page_html(p):
                        f'<span>{E(M.nice_date(x["from"]).rsplit(",", 1)[0])}</span></div>' for x in d["weeks"])
              + '</div><p class="asof">Each bar is 7 days, oldest on the left; the last bar is the week to '
              + E(M.nice_date(w["to"])) + '.</p>')
-    rows = "".join(f'<tr><th scope="row">{E(a["name"])}</th><td>{a["d7"]:,}</td><td>{a["d30"]:,}</td><td>{a["prev30"]:,}</td>'
-                   f'<td{" class=rc-up" if (a["change"] or 0) >= 25 else ""}>{E(pct(a["change"]))}</td></tr>' for a in top)
-    table = ('<div class="rc-tw" role="region" aria-label="Rat complaints by community area" tabindex="0"><table class="rc-t">'
-             '<thead><tr><th scope="col">Community area</th><th scope="col">7 days</th><th scope="col">30 days</th>'
-             f'<th scope="col">Same 30 days, {E(w["prevTo"][:4])}</th><th scope="col">Change</th></tr></thead><tbody>{rows}</tbody></table></div>'
-             + (f'<p class="asof">{c["noArea30"]:,} of the last 30 days\' complaints had no community area on the record and count only in the city total.</p>'
-                if c.get("noArea30") else ""))
+    row = lambda a: (f'<tr><th scope="row">{E(a["name"])}</th><td>{a["d7"]:,}</td><td>{a["d30"]:,}</td><td>{a["prev30"]:,}</td>'
+                     f'<td{" class=rc-up" if a["prev30"] >= FEW and (a["change"] or 0) >= 25 else ""}>{E(area_change(a))}</td></tr>')
+    thead = ('<thead><tr><th scope="col">Community area</th><th scope="col">7 days</th><th scope="col">30 days</th>'
+             f'<th scope="col">Same 30 days, {E(w["prevTo"][:4])}</th><th scope="col">Change</th></tr></thead>')
+    tbl = lambda rs, label: (f'<div class="rc-tw" role="region" aria-label="{E(label)}" tabindex="0"><table class="rc-t">{thead}'
+                             f'<tbody>{"".join(row(a) for a in rs)}</tbody></table></div>')
+    SHOW = 20
+    table = (tbl(top[:SHOW], f"Rat complaints, the {min(SHOW, len(top))} community areas with the most")
+             + (f'<details class="rc-more-t"><summary>Show the other {len(top) - SHOW} community areas</summary>'
+                + tbl(top[SHOW:], "Rat complaints, the other community areas") + '</details>' if len(top) > SHOW else "")
+             + f'<p class="asof">Change compares the last 30 days with the same 30 days a year earlier; under {FEW} complaints a year earlier it shows as too few to compare.'
+             + (f' {c["noArea30"]:,} of the last 30 days\' complaints had no community area on the record and count only in the city total.' if c.get("noArea30") else "")
+             + '</p>')
     resident = p["resident"]
     vendor = p["vendor"]
     two = ('<section class="block" id="help"><div class="rc-two">'
            f'<div class="cta ld-cta"><div><h2>{E(resident["title"])}</h2>'
            + '<ol class="rc-steps">' + "".join(f"<li>{E(t)}</li>" for t in resident["steps"]) + '</ol>'
+           + (f'<p class="rc-more"><a href="{E(resident["more"][1])}" rel="noopener">{E(resident["more"][0])}</a>, City of Chicago</p>' if resident.get("more") else "")
            + f'<p class="ld-buybtn"><a class="btn" href="{E(resident["url"])}" rel="noopener">{E(resident["button"])}</a></p></div></div>'
            f'<div class="cta ld-cta"><div><h2>{E(vendor["title"])}</h2><p>{E(vendor["text"])}</p>'
            + f'<p class="ld-buybtn"><a class="btn" href="{rel}{E(vendor["slug"])}/">{E(vendor["button"])}</a></p></div></div>'
@@ -154,8 +170,8 @@ def selftest():
         os.unlink(tmp.name)
     assert html.count("<h1>") == 1 and "—" not in html and "–" not in html, "one h1, no dashes"
     assert "Lake View" in html and "made 629 rat complaints" in html, "total in the lede"
-    assert ">+22%<" in html and ">new<" in html and ">about the same<" in html, "change words"
-    assert "9 of the last 30 days" in html, "no-area note"
+    assert ">+22%<" in html and ">too few<" in html and ">about the same<" in html, "change words"
+    assert "9 of the last 30 days" in html and "too few to compare" in html, "notes under the table"
     assert M.E(M.CITY_DISCLAIMER["Chicago"]) in html, "City disclaimer"
     assert "address" not in json.dumps(d["areas"]), "counts only"
     assert 'tabindex="0"' in html and 'role="region"' in html, "scrollable table reachable by keyboard"

@@ -906,7 +906,7 @@
     var floor = labor + drive + materials + storage, quote = quoteFrom(floor, margin, 5);
     var floor2 = labor + drive + storage, quote2 = owned ? quote : quoteFrom(floor2, margin, 5);
     var has = feet > 0 || shrubs > 0 ? 1 : 0;
-    return { feet: feet, installHrs: installHrs, takedownHrs: takedownHrs, crewHrs: installHrs / people, labor: labor, drive: drive,
+    return { feet: feet, installHrs: installHrs, takedownHrs: takedownHrs, workHrs: installHrs + takedownHrs, crewHrs: installHrs / people, labor: labor, drive: drive,
       materials: materials, matAll: matAll, storage: storage, floor: has ? floor : 0, quote: has ? quote : 0, profit: has ? quote - floor : 0,
       perFt: has && feet > 0 ? quote / feet : 0, floorPerFt: has && feet > 0 ? floor / feet : 0, trips: trips, owned: owned, bought: owned ? 0 : 1,
       quote2: has ? quote2 : 0, profit2: has ? (owned ? quote - floor : quote2 - floor2) : 0, noRate: has && fph === 0 && feet > 0 ? 1 : 0,

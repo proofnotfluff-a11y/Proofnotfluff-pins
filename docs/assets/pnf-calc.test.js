@@ -669,4 +669,22 @@ check("raise: price at cost is under", P.priceRaise({ price: 90, cost: 90, costU
 check("raise: no rise keeps the price", P.priceRaise({ price: 150, cost: 90, costUpPct: 0, jobs: 10 }).rounded, 150);
 check("raise: blank is none", P.priceRaise({}).none, 1);
 
+const LQ = { feet: 150, ftPerHour: 40, shrubs: 4, shrubMin: 20, people: 2, rate: 45, matPerFt: 1.6, shrubMat: 30, owner: 0, seasons: 3, takedownPct: 50, storage: 25, serviceCalls: 0, tripMin: 40, tripMiles: 20, perMile: 0.76, margin: 30 };
+const LT = P.lightsQuote(LQ);
+check("lights: install hours", LT.installHrs, 5.08); check("lights: install and takedown hours", LT.workHrs, 7.63); check("lights: crew hours on site", LT.crewHrs, 2.54); check("lights: labor", LT.labor, 343.13);
+check("lights: drive", LT.drive, 150.4); check("lights: owned lights this season", LT.materials, 120); check("lights: floor", LT.floor, 638.53);
+check("lights: quote", LT.quote, 915); check("lights: per foot", LT.perFt, 6.1); check("lights: profit", LT.profit, 276.48);
+const LB = P.lightsQuote(Object.assign({}, LQ, { owner: 1 }));
+check("lights: customer buys, quote", LB.quote, 1220); check("lights: customer buys, next season", LB.quote2, 710); check("lights: no storage when sold", LB.storage, 0);
+check("lights: owned, next season equals this one", LT.quote2, 915); check("lights: owned, next season profit", LT.profit2, 276.48);
+check("lights: a service call adds a trip", P.lightsQuote(Object.assign({}, LQ, { serviceCalls: 1 })).drive, 225.6);
+check("lights: zero pace flag", P.lightsQuote(Object.assign({}, LQ, { ftPerHour: 0 })).noRate, 1);
+check("lights: blank is none", P.lightsQuote({}).none, 1);
+const SQ = P.snowQuote({ pushMin: 25, deepMin: 45, people: 1, rate: 40, equip: 35, salt: 15, driveMin: 10, margin: 25, events: 8, cushion: 15, months: 5 });
+check("snow: push cost", SQ.cost, 58.75); check("snow: push price", SQ.quote, 80); check("snow: deep cost", SQ.deepCost, 83.75); check("snow: deep price", SQ.deepQuote, 115);
+check("snow: season", SQ.season, 740); check("snow: a month", SQ.monthly, 148); check("snow: pushes covered", SQ.covers, 12); check("snow: season profit", SQ.seasonProfit, 270);
+check("snow: two people double labor", P.snowQuote({ pushMin: 60, people: 2, rate: 40, margin: 0 }).cost, 80);
+check("snow: no pushes expected flag", P.snowQuote({ pushMin: 25, rate: 40, events: 0 }).noEvents, 1);
+check("snow: blank is none", P.snowQuote({}).none, 1);
+
 process.exit(fails ? 1 : 0);

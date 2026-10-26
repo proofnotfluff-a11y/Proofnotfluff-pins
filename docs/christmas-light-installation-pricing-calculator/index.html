@@ -55,6 +55,7 @@
 <p class="asof">Labor covers install and takedown: <span data-out="takedownHrs" data-fmt="hrs">0</span> of the work is takedown.</p>
 <div class="callout" data-show-if="bought > 0">Next season the customer already owns the lights: the same house quotes at <b data-out="quote2" data-fmt="money0">$0</b>, with <b data-out="profit2">$0</b> of profit.</div>
 <div class="callout" data-show-if="owned > 0">Your lights cost <b data-out="matAll">$0</b> for this house, spread over the seasons they last. A returning customer quotes the same next season.</div>
+<div class="callout warn" data-show-if="noMargin > 0">Use a margin under 100%: the quote is your cost divided by one less the margin.</div>
 <div class="callout warn" data-show-if="noRate > 0">Type how many feet one person hangs an hour to price the roofline.</div>
 <div class="callout warn" data-show-if="noLabor > 0">Add a labor cost per person-hour, even if it is your own time.</div>
 <div class="callout warn" data-show-if="none > 0">Type the feet of roofline, or the bushes and trees, to see a quote.</div>

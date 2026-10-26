@@ -1778,6 +1778,7 @@ def lights_page(p):
 <p class="asof">Labor covers install and takedown: <span data-out="takedownHrs" data-fmt="hrs">0</span> of the work is takedown.</p>
 <div class="callout" data-show-if="bought > 0">Next season the customer already owns the lights: the same house quotes at <b data-out="quote2" data-fmt="money0">$0</b>, with <b data-out="profit2">$0</b> of profit.</div>
 <div class="callout" data-show-if="owned > 0">Your lights cost <b data-out="matAll">$0</b> for this house, spread over the seasons they last. A returning customer quotes the same next season.</div>
+<div class="callout warn" data-show-if="noMargin > 0">Use a margin under 100%: the quote is your cost divided by one less the margin.</div>
 <div class="callout warn" data-show-if="noRate > 0">Type how many feet one person hangs an hour to price the roofline.</div>
 <div class="callout warn" data-show-if="noLabor > 0">Add a labor cost per person-hour, even if it is your own time.</div>
 <div class="callout warn" data-show-if="none > 0">Type the feet of roofline, or the bushes and trees, to see a quote.</div>
@@ -1822,6 +1823,7 @@ def snow_page(p):
 <li><span>Per push, per hour on this stop</span><span data-out="hourly">$0</span></li>
 </ul>
 <div class="callout" data-show-if="seasonOn > 0">A seasonal price of <b data-out="season" data-fmt="money0">$0</b> pays you whether it snows or not. It turns into a loss after <b data-out="covers" data-fmt="int">0</b> pushes.</div>
+<div class="callout warn" data-show-if="noMargin > 0">Use a margin under 100%: the quote is your cost divided by one less the margin.</div>
 <div class="callout warn" data-show-if="noEvents > 0">Type how many pushes you expect in a season to price a seasonal contract.</div>
 <div class="callout warn" data-show-if="noRate > 0">Add a labor cost or an equipment cost per hour to see a price.</div>
 <div class="callout warn" data-show-if="none > 0">Type the minutes on site for a normal push.</div>
@@ -1862,15 +1864,17 @@ def hood_page(p):
 <div class="tile"><div class="lab">Profit a year</div><div class="val" data-out="yearProfit" data-fmt="money0">$0</div></div>
 </div>
 <ul class="lines">
-<li><span>Labor, <span data-out="crewHrs" data-fmt="hrs">0</span> of crew time</span><span data-out="labor">$0</span></li>
+<li><span>Labor with night premium, <span data-out="crewHrs" data-fmt="hrs">0</span> of crew time</span><span data-out="labor">$0</span></li>
 <li><span>Drive time and miles</span><span data-out="drive">$0</span></li>
 <li><span>Chemicals and supplies</span><span data-out="supplies">$0</span></li>
 <li class="total"><span>Cost of one visit</span><span data-out="cost">$0</span></li>
 <li><span>Profit per visit</span><span data-out="profit">$0</span></li>
-<li><span>Per hood, per visit</span><span data-out="perHood">$0</span></li>
+<li data-show-if="hoodsOn > 0"><span>Per hood, per visit</span><span data-out="perHood">$0</span></li>
+<li><span>Price per crew hour</span><span data-out="perCrewHr">$0</span></li>
 <li><span>Time on site for the crew</span><span data-out="siteHrs" data-fmt="hrs">0</span></li>
 </ul>
 <div class="callout" data-show-if="none < 1">NFPA 96 sets the inspection schedule; a kitchen is cleaned when the inspection finds grease deposits. This prices one cleaning per scheduled visit.</div>
+<div class="callout warn" data-show-if="noMargin > 0">Use a margin under 100%: the quote is your cost divided by one less the margin.</div>
 <div class="callout warn" data-show-if="noRate > 0">Add a labor cost per person-hour, even if it is your own time.</div>
 <div class="callout warn" data-show-if="none > 0">Type the hoods and the crew hours per hood to see a price.</div>
 </div></div>

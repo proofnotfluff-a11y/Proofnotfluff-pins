@@ -910,7 +910,7 @@
       materials: materials, matAll: matAll, storage: storage, floor: has ? floor : 0, quote: has ? quote : 0, profit: has ? quote - floor : 0,
       perFt: has && feet > 0 ? quote / feet : 0, floorPerFt: has && feet > 0 ? floor / feet : 0, trips: trips, owned: owned, bought: owned ? 0 : 1,
       quote2: has ? quote2 : 0, profit2: has ? (owned ? quote - floor : quote2 - floor2) : 0, noRate: has && fph === 0 && feet > 0 ? 1 : 0,
-      none: has ? 0 : 1, ok: has && rate > 0 ? 1 : 0, noLabor: has && rate === 0 ? 1 : 0 };
+      none: has ? 0 : 1, ok: has && rate > 0 ? 1 : 0, noLabor: has && rate === 0 ? 1 : 0, noMargin: has && margin >= 1 ? 1 : 0 };
   }
 
   // Snow removal, one stop on a route. A push costs the crew's time on site and the drive to the stop at the labor rate,
@@ -929,7 +929,7 @@
     return { cost: c, quote: q, profit: q - c, deepCost: cd, deepQuote: qd, deepProfit: qd - cd, deepOn: deepMin > 0 && pushMin > 0 ? 1 : 0,
       season: season, monthly: season / months, covers: covers, seasonProfit: season - c * events, events: events,
       hourly: pushMin + driveMin > 0 ? q / ((pushMin + driveMin) / 60) : 0, seasonOn: season > 0 ? 1 : 0, noEvents: q > 0 && events === 0 ? 1 : 0,
-      none: pushMin > 0 ? 0 : 1, noRate: pushMin > 0 && rate === 0 && equip === 0 ? 1 : 0 };
+      none: pushMin > 0 ? 0 : 1, noRate: pushMin > 0 && rate === 0 && equip === 0 ? 1 : 0, noMargin: pushMin > 0 && margin >= 1 ? 1 : 0 };
   }
 
   // Kitchen exhaust hood cleaning. Visits a year come from the NFPA 96 inspection frequency for the cooking type the owner
@@ -946,7 +946,8 @@
     var has = crewHrs > 0 ? 1 : 0, cost = has ? labor + drive + supplies : 0, quote = quoteFrom(cost, margin, 5);
     return { visits: visits, crewHrs: crewHrs, siteHrs: crewHrs / people, labor: labor, drive: drive, supplies: supplies, cost: cost,
       quote: quote, profit: quote - cost, year: quote * visits, yearProfit: (quote - cost) * visits, perHood: hoods > 0 ? quote / hoods : 0,
-      monthly: quote * visits / 12, none: has ? 0 : 1, noRate: has && rate === 0 ? 1 : 0 };
+      monthly: quote * visits / 12, perCrewHr: crewHrs > 0 ? quote / crewHrs : 0, hoodsOn: hoods > 0 ? 1 : 0,
+      none: has ? 0 : 1, noRate: has && rate === 0 ? 1 : 0, noMargin: has && margin >= 1 ? 1 : 0 };
   }
 
   // Missed calls. New-customer calls a week that nobody answers, the share of those callers who never call back (the

@@ -696,5 +696,7 @@ check("hood: moderate twice a year", P.hoodQuote({ cooking: 2, hoods: 1, hoodHrs
 check("hood: low yearly", P.hoodQuote({ cooking: 3, hoods: 1, hoodHrs: 1, rate: 40 }).visits, 1);
 check("hood: out of range cooking clamps to low", P.hoodQuote({ cooking: 9, hoods: 1, hoodHrs: 1, rate: 40 }).visits, 1);
 check("hood: blank is none", P.hoodQuote({}).none, 1);
+check("hood: price per crew hour", HQ.perCrewHr, 94.17);
+check("margin at 100% flags, lights snow hood", P.lightsQuote(Object.assign({}, LQ, { margin: 100 })).noMargin + P.snowQuote({ pushMin: 20, rate: 40, margin: 150 }).noMargin + P.hoodQuote({ hoods: 1, hoodHrs: 1, rate: 40, margin: 100 }).noMargin, 3);
 
 process.exit(fails ? 1 : 0);

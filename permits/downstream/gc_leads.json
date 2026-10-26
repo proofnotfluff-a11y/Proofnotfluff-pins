@@ -1,6 +1,6 @@
 {
  "schema": "pnf.gc_lead.v1",
- "generatedAt": "2026-10-26T13:13:13Z",
+ "generatedAt": "2026-10-26T15:35:43Z",
  "window": {
   "issuedSince": "2024-10-26",
   "signalLookbackSince": "2026-06-28",
@@ -43,7 +43,7 @@
     }
    },
    "austin": {
-    "permitRows": 8796,
+    "permitRows": 8797,
     "foodRows": 1188,
     "healthJoins": 4,
     "coFlagValues": {
@@ -83,7 +83,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-025331 BP",
+     "record_id": "2026-025330 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -110,7 +110,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-154201 BP",
+     "record_id": "2025-154254 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -164,7 +164,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-160602 BP",
+     "record_id": "2025-160600 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -299,7 +299,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-130842 BP",
+     "record_id": "2025-130845 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -326,7 +326,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-156356 BP",
+     "record_id": "2025-156365 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -353,7 +353,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-047567 BP",
+     "record_id": "2025-047560 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -380,7 +380,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2024-084740 BP",
+     "record_id": "2024-084742 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -407,7 +407,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-038462 BP",
+     "record_id": "2025-038461 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     },
@@ -441,7 +441,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-130389 BP",
+     "record_id": "2025-130386 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -468,7 +468,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-054670 BP",
+     "record_id": "2025-054669 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -630,7 +630,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-141347 BP",
+     "record_id": "2025-141344 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -772,7 +772,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-055209 BP",
+     "record_id": "2025-055210 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -853,7 +853,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-035670 BP",
+     "record_id": "2026-035667 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -934,7 +934,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-099072 BP",
+     "record_id": "2026-099071 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -1123,7 +1123,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-037894 BP",
+     "record_id": "2026-037893 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -1562,7 +1562,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-087545 BP",
+     "record_id": "2025-087546 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -1832,7 +1832,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-115588 BP",
+     "record_id": "2025-115587 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -2568,7 +2568,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-050278 BP",
+     "record_id": "2025-050279 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3000,7 +3000,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-057403 BP",
+     "record_id": "2025-057421 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3027,7 +3027,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-057809 BP",
+     "record_id": "2025-057823 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3135,7 +3135,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-118079 BP",
+     "record_id": "2025-118080 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3162,7 +3162,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-102929 BP",
+     "record_id": "2025-102930 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3189,7 +3189,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-122126 BP",
+     "record_id": "2025-122132 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3243,7 +3243,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-036759 BP",
+     "record_id": "2026-036752 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3270,7 +3270,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-099851 BP",
+     "record_id": "2026-099857 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3432,7 +3432,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2020-118019 BP",
+     "record_id": "2020-118018 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }

@@ -33,7 +33,7 @@ Repeat R3 and R4 every two weeks with a new Focus line (another metro, another r
 4. `python3 tools/opportunity_score.py`, then the radar's reviewers (.claude/skills/radar/SKILL.md step 4) on the top ideas; Decide rows go to Todd as usual.
 5. R1 and R2 become one research note each in our own words (no quotes over 15 words, no usernames), and their pains and gaps are cited in candidate files where they apply.
 6. R5 verdicts do not vote. Each FAIL reason becomes an objection the fix round must answer with sources.
-7. A day's replies with 2 or more invented sources in the first 10 checked are set aside whole, noted in the log, and the prompt is tightened before the next round.
+7. A round with 2 or more dead or mismatched sources in its first 10 checked (at least 5 checked; a site that refuses our fetcher does not count) is set aside whole, noted in the log, and the prompt is tightened before the next round.
 
 ## R0, why our live buyers have not replied
 

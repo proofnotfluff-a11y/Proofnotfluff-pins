@@ -52,7 +52,7 @@ $1,000 net in one calendar month by Jan 31, 2027. After Gumroad fees that is abo
 Every source you cite is opened again by a second AI before anything is built. Ideas go through our scorer and three independent reviewers (demand, data and legal, red team). Invented links, numbers or quotes waste a round and get the whole reply set aside, so leave out anything you cannot point to.
 
 ## 8. Evidence rules (every round)
-1. Open every page you cite. If a page will not open, do not cite it; name the site under BLOCKED.
+1. Open every page you cite. If a page will not open, do not cite it; name the site under BLOCKED. For a review or a forum post, cite that one review's or post's own link, never a numbered page of a list: list pages shift as new reviews arrive, so the quote cannot be found again.
 2. Every source is {"url": "...", "date": "YYYY-MM-DD"}: the date it was posted or published; for a live page (a roster search, a Census table, a dataset page, a pricing page) the day you read it.
 3. Quotes are 15 words or fewer. No usernames, and no person's name, email or phone, ever.
 4. For Schema C (R3, R4), every source date must be within the last 12 months (terms of use pages: 10 years), or our scorer gives that factor 0. For Schemas A, B, D and E, prefer the last 24 months and add "old": true to any source object older than that.

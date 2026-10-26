@@ -280,15 +280,29 @@ def cmd_status(date):
         print(f"{'READY' if us and len(ok) == len(us) and not it.get('kills') and not it.get('problems') else 'HOLD'} "
               f"{i.get('slug')}: urls ok {len(ok)} of {len(us)}, bad {len(badl)}, open {len(open_)}; "
               f"kills {len(it.get('kills') or [])}; problems {len(it.get('problems') or [])}; duplicates {len(it.get('duplicates') or [])}")
-    checked = list(v.values())
-    if len(checked) >= 10:
-        first = [kv for kv in sorted(v.items(), key=lambda kv: kv[1]["at"]) if kv[1]["status"] != "blocked"][:10]
-        invented = sum(1 for _, x in first if x["status"] in ("dead", "mismatch"))
-        if invented >= 2:
-            print(f"FAIL round trust: {invented} of the first 10 sources checked were dead or did not say what the reply said; "
-                  "set this reply aside (coo/KIMI_RESEARCH.md intake step 7)")
-            return 1
-    return 0
+    rounds = {}
+    up = os.path.join(day_dir(date), "urls.txt")
+    if os.path.exists(up):
+        for line in open(up, encoding="utf-8"):
+            u, _, who = line.rstrip("\n").partition("\t")
+            for r in {w.split(":", 1)[0] for w in who.split(",") if w}:
+                rounds.setdefault(r, set()).add(u)
+    listed = set().union(*rounds.values()) if rounds else set()
+    rest = {u for u in v if u not in listed}
+    if rest:
+        rounds["unlisted"] = rest
+    code = 0
+    for r, us in sorted(rounds.items()):
+        seen = [kv for kv in sorted(((u, v[u]) for u in us if u in v), key=lambda kv: kv[1]["at"]) if kv[1]["status"] != "blocked"]
+        first = seen[:10]
+        bad = sum(1 for _, x in first if x["status"] in ("dead", "mismatch"))
+        if len(first) >= 5 and bad >= 2:
+            print(f"FAIL {r} trust: {bad} of the first {len(first)} sources checked were dead or did not say what the reply said; "
+                  "set this round aside (coo/KIMI_RESEARCH.md intake step 7)")
+            code = 1
+        elif first:
+            print(f"OK {r} trust: {bad} of the first {len(first)} checked were dead or mismatched")
+    return code
 
 
 def cmd_promote(date, slug):
@@ -467,6 +481,17 @@ def selftest():
         json.dump(v, open(os.path.join(WORK, "2026-10-25", "verified.json"), "w"))
         with contextlib.redirect_stdout(io.StringIO()):
             want(cmd_status("2026-10-25") == 0, "sites that refuse our fetcher do not count as invented")
+        v = {f"https://example.org/a{i}": {"status": "ok", "at": f"2026-10-25T00:00:{i:02d}+00:00"} for i in range(10)}
+        v.update({f"https://example.org/b{i}": {"status": "mismatch" if i < 3 else "ok", "at": f"2026-10-25T00:01:{i:02d}+00:00"} for i in range(6)})
+        json.dump(v, open(os.path.join(WORK, "2026-10-25", "verified.json"), "w"))
+        with open(os.path.join(WORK, "2026-10-25", "urls.txt"), "w") as fh:
+            fh.writelines(f"https://example.org/a{i}\tR0:x\n" for i in range(10))
+            fh.writelines(f"https://example.org/b{i}\tR1:y\n" for i in range(6))
+        buf2 = io.StringIO()
+        with contextlib.redirect_stdout(buf2):
+            rc = cmd_status("2026-10-25")
+        want(rc == 1 and "FAIL R1 trust" in buf2.getvalue() and "OK R0 trust" in buf2.getvalue(),
+             "a bad round is set aside even when an earlier round that day was clean")
 
         want(bool(PHONE.search("call 312-555-0142 today")) and not PHONE.search("2026-10-25"), "phone pattern catches phones, not dates")
         want(bool(USERNAME.search("posted by u/cleanpro99")), "a reddit username is caught")

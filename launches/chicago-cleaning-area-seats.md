@@ -156,6 +156,9 @@ $29 product (Chicago Construction Cleaning Leads, already live): add this line t
 Areas held by an area seat holder are left out of this list from the Monday after the seat begins; the product page shows which areas are held, and you can cancel any time.
 ```
 
+## Live (Oct 26, 2026, 3:10 pm)
+Gumroad: Loop https://proofnotfluff.gumroad.com/l/tggcevn, Near North /l/wgxzjo, West /l/kzoprr, Northwest /l/nnegzp, North /l/lkjya, South /l/avxwuo (tier Area seat, $149 monthly, trial off, 1 active member each). Offer on the Chicago cleaning page, 6 of 6 areas open. Seat pages built by permits-chicago with AREA_SEAT_KEY. When a seat sells: add its slug to site/area_seats.json held (on Todd's word).
+
 ## Todd's steps
 (given in chat Oct 26, most important first; only what the session cannot do)
 1. The DKIM check (scoreboard todos/decide-add-dkim-check, still open): 0 replies may be delivery, which no offer fixes.

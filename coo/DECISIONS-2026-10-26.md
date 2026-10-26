@@ -23,3 +23,7 @@
 - [stated] Todd: "Let's build number one. Write the prompt" (to option 1, a kit for running AI agents unattended, the guardrails kit parked Oct 23 in coo/OPPORTUNITIES.md).
 - So: the parked case reopens as a side test next to the area seats. First step is the smallest test from the parked case (a one-page offer at $79 to $99 and a waitlist, before the build). A new product, page type and price, so the offer page and price still come to Todd before anything is published. Kickoff prompt given in chat; the build chat records its own decisions.
 - Build chat (no new words from Todd): step 1 done as drafts only. Evidence FAIL against Oct 23 (launches/agent-kit.md); offer proposed at $79 one time with a free MIT lite version; draft page docs/unattended-agent-kit/ (noindex, unlinked); kill rule proposed in coo/OPPORTUNITIES.md. Waiting on Todd: the offer, price and kill rule, the Kit form, the lite repo, and the go.
+
+## Area seats live, 3:07 pm
+- [stated] Todd: "6 & 7 go - please do these" (11:58 am), "passwords in" (2:55 pm), "push the seat links live" (3:07 pm).
+- So: six Gumroad Membership products made by the session (Todd pasted each seat's password and published them): Loop tggcevn, Near North wgxzjo, West kzoprr, Northwest nnegzp, North lkjya, South avxwuo; tier Area seat, $149 monthly, trial off, 1 active member each. The held-areas line is on the $29 product. Checkout links in site/pages.json areaSeats.checkout; live on proofnotfluff.com Oct 26, 3:10 pm, 6 of 6 areas open.

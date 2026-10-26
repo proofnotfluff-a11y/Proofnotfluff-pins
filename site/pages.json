@@ -6190,7 +6190,7 @@
    "heroNote": "$79 one time when it opens. Waitlist first, nothing to pay today.",
    "proof": {
     "title": "What a stopped run looks like",
-    "text": "Three runs of the free lite version. First the rules are in place and the run may start. Then someone takes the rulebook out of the router. Then someone weakens the gate itself, and the planted tests catch that too.",
+    "text": "Three runs of the free lite version. First the rules are in place and the run may start. Then someone deletes the rules line from the router. Then someone switches off one check inside the gate itself, and the planted tests catch that too.",
     "terms": [
      {
       "key": "pass",
@@ -6198,18 +6198,18 @@
       "title": "Rules in place",
       "cmd": "python3 tools/preflight.py daily-report",
       "lines": [
-       "OK context: L0 892 B, L1 518 B, rules 2249 B, largest pre-run load 4720 of 10240 B",
-       "OK gate-test: 11 of 11 cases right (1 clean pass, 10 planted failures caught)",
+       "OK context: L0 949 B, L1 518 B, rules 2249 B, largest pre-run load 4777 of 10240 B",
+       "OK gate-test: 32 of 32 cases right (6 must pass, 26 planted failures caught)",
        "preflight daily-report: 0 errors. The run may start."
       ]
      },
      {
       "key": "norules",
       "tone": "stop",
-      "title": "Rulebook taken out of the router",
+      "title": "Rules line deleted",
       "cmd": "python3 tools/preflight.py daily-report",
       "lines": [
-       "ERROR context: CLAUDE.md does not send runs to ops/CONSTITUTION.md",
+       "ERROR context: CLAUDE.md lacks required line 1 word for word: - Read ops/CONSTITUTION.md before anything else....",
        "ERROR gate-test: the repo fails its own gate, so the planted cases were not run; fix the ERROR context lines first",
        "preflight daily-report: 2 gate(s) failed. Stop the run and report the ERROR lines."
       ]
@@ -6217,18 +6217,17 @@
      {
       "key": "weak",
       "tone": "stop",
-      "title": "Gate weakened",
+      "title": "Comment check switched off",
       "cmd": "python3 tools/preflight.py daily-report",
       "lines": [
-       "OK context: L0 892 B, L1 518 B, rules 2249 B, largest pre-run load 4720 of 10240 B",
-       "ERROR gate-test: planted case not caught: router stops naming the constitution (exit 0)",
-       "ERROR gate-test: planted case not caught: router stops naming the preflight (exit 0)",
-       "ERROR gate-test: 2 of 11 cases wrong",
+       "OK context: L0 949 B, L1 518 B, rules 2249 B, largest pre-run load 4777 of 10240 B",
+       "ERROR gate-test: planted case not caught: unclosed comment above the required lines (exit 0)",
+       "ERROR gate-test: 1 of 32 cases wrong",
        "preflight daily-report: 1 gate(s) failed. Stop the run and report the ERROR lines."
       ]
      }
     ],
-    "asof": "Real output of the lite version, captured Oct 26, 2026. A stopped run exits with code 1, so a scheduler or a CI job sees the failure too.",
+    "asof": "Real output of the lite version, captured Oct 26, 2026. A stopped run exits with code 1, so a scheduler or a CI job sees the failure too. A text check cannot judge what a sentence means, so the router carries two required lines word for word: change, delete, comment out or fence either one and the run stops. Every size limit is tested at the limit and one byte under it.",
     "heroKey": "norules"
    },
    "fears": {
@@ -6284,7 +6283,7 @@
    },
    "lite": {
     "title": "Free lite version",
-    "text": "The router, handoff, constitution and decisions templates, an example job, the preflight, the context gate and its 10 planted-failure tests. MIT license, Python 3.8 or later, nothing to install.",
+    "text": "The router, handoff, constitution and decisions templates, an example job, the preflight, the context gate and its 26 planted-failure tests. MIT license, Python 3.8 or later, nothing to install.",
     "button": "Get the lite version on GitHub",
     "pending": "It goes up on GitHub when the waitlist opens.",
     "tree": [
@@ -6299,7 +6298,7 @@
    },
    "facts": {
     "title": "Built from a system that runs daily",
-    "text": "This is the pattern ProofNotFluff uses for its own jobs, and its router starts every run with the preflight. The kit is a clean, generic copy with none of our data or business rules in it.",
+    "text": "This is the pattern ProofNotFluff uses for its own jobs, and its router starts every run with the preflight. The full kit is being built as a clean, generic copy with none of our data or business rules in it; the free lite version already is one.",
     "tiles": [
      [
       "Jobs",
@@ -6317,9 +6316,9 @@
    "notFor": {
     "title": "Who it is not for",
     "items": [
-     "You want a hard sandbox. Rules in a file guide the model; real limits come from permission settings, containers, separate accounts, spending caps and backups. The kit sets up the first and tells you where the rest go.",
+     "You want a hard sandbox. Rules in a file guide the model; real limits come from permission settings, containers, separate accounts, spending caps and backups. The full kit is planned to set up the first and tell you where the rest go.",
      "You watch every step of every run. You do not need gates.",
-     "You want an agent that spends or sends without review. The kit is built to require your word first.",
+     "You want an agent that spends or sends without review. The full kit is planned to require your word first.",
      "You need a compliance or security certification.",
      "You will not edit a rules file. The kit only works once the rules are yours."
     ]
@@ -6334,7 +6333,7 @@
    "faq": [
     [
      "Does a rules file really stop an agent?",
-     "Not on its own. A model can misread a rule. The kit pairs the rules with checks in code that run before the work, permission settings that block commands outright, and a stop when any check fails."
+     "Not on its own. A model can misread a rule. The full kit is planned to pair the rules with checks in code that run before the work, permission settings that block commands outright, and a stop when any check fails. The lite version has the checks and the stop."
     ],
     [
      "Does it work with agents other than Claude Code?",

@@ -13,7 +13,7 @@ on the date in "proofAsOf"; --selftest reruns the lite kit and fails if the page
 
 Usage: python3 tools/agentkit_site.py --selftest
 """
-import json, os, shutil, subprocess, sys, tarfile, tempfile
+import json, os, re, shutil, subprocess, sys, tarfile, tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -48,7 +48,7 @@ CSS = ("<style>"
        ".ak-tree:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
        "@media(max-width:899px){.ak-page main{padding-bottom:76px}}@media(min-width:900px){.ak-page .ld-sbar{display:none}}"
        ".ak-term pre:focus-visible{outline:3px solid #9fe0d7;outline-offset:-3px}"
-       ".ak-term .c{color:#9aa1ae}.ak-term .g{color:#8fd8ce}.ak-term .r{color:#f6ad94}"
+       ".ak-term .nw{white-space:nowrap}.ak-term .c{color:#9aa1ae}.ak-term .g{color:#8fd8ce}.ak-term .r{color:#f6ad94}"
        ".ak-terms{display:grid;gap:14px;margin-top:12px}@media(min-width:900px){.ak-terms{grid-template-columns:repeat(3,minmax(0,1fr))}}"
        ".ak-grid{display:grid;gap:14px;margin-top:12px;padding:0;list-style:none}@media(min-width:720px){.ak-grid{grid-template-columns:1fr 1fr}}"
        ".ak-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}"
@@ -71,7 +71,8 @@ CSS = ("<style>"
 
 
 def load_lite_proof():
-    """Rerun the lite kit in a throwaway folder: the clean pass, the rulebook taken out of the router, the gate weakened."""
+    """Rerun the lite kit in a throwaway folder: the clean pass, the rules line deleted from the router, and the
+    gate's comment check switched off."""
     out = {}
     with tempfile.TemporaryDirectory() as tmp:
         with tarfile.open(LITE) as t:
@@ -83,13 +84,13 @@ def load_lite_proof():
         out["pass"] = (p.returncode, p.stdout.strip().splitlines())
         d = os.path.join(tmp, "norules"); shutil.copytree(base, d)
         f = os.path.join(d, "CLAUDE.md"); s = open(f, encoding="utf-8").read()
-        s = s.replace("Read this file, ops/HANDOFF.md and ops/CONSTITUTION.md (it binds first)", "Read this file and ops/HANDOFF.md")
+        s = s.replace("- Read ops/CONSTITUTION.md before anything else. It binds every run.\n", "")
         open(f, "w", encoding="utf-8").write(s)
         p = run(d)
         out["norules"] = (p.returncode, p.stdout.strip().splitlines())
         d = os.path.join(tmp, "weak"); shutil.copytree(base, d)
         f = os.path.join(d, "tools", "context_gate.py"); s = open(f, encoding="utf-8").read()
-        s = s.replace('ROUTER_MUST_NAME = ("ops/CONSTITUTION.md", "tools/preflight.py")', "ROUTER_MUST_NAME = ()")
+        s = s.replace('    text = re.sub(r"<!--.*?(?:-->|\\Z)", "", text, flags=re.S)\n', "")
         open(f, "w", encoding="utf-8").write(s)
         p = run(d)
         out["weak"] = (p.returncode, p.stdout.strip().splitlines())
@@ -101,7 +102,7 @@ def term(t, rel_e, hidden=False):
     lines = []
     for x in t["lines"]:
         cls = "g" if x.startswith("OK") or (x.startswith("preflight") and "0 errors" in x) else ("r" if x.startswith(("ERROR", "preflight")) else "")
-        x = E(x).replace("(exit ", "(exit&nbsp;")   # keep "exit 0" together
+        x = re.sub(r"\(exit (\d+)\)", r'<span class="nw">(exit \1)</span>', E(x))   # keep "exit 0" together, plain space
         lines.append(f'<span class="{cls}">{x}</span>' if cls else x)
     if hidden:   # the hero copy of a panel shown again under Proof: hidden from screen readers, out of the tab order
         return (f'<figure class="ak-term {E(t["tone"])}" aria-hidden="true"><figcaption><i></i>{E(t["title"])}</figcaption>'

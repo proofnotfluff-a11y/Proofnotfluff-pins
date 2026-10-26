@@ -45,6 +45,7 @@ permit checks above are unchanged):
 Pest seat email (Todd, Oct 24, 2026, Legal fix 13: subject "{n} Chicago restaurant inspections with a pest violation this week", {n} the 7-day
 count only, never the daily file's total; "extend the copy gate to check that"):
        python3 tools/copy_gate.py --pest-templates
+       python3 tools/copy_gate.py --seat-templates      the area seat emails (email/S1-AREA-SEAT.md, tools/seat_gate.py)
            email/P1-PEST-SEAT.md: every step present, rendered on today's permits/inspections-chicago/daily.json and on
            planted files, passing pest_problems; planted wrong counts (the daily total, the 14-day total, a stale file, an
            area outside the week, n = 1 on the plural template, a seat line that is no longer true) must all be caught.
@@ -909,7 +910,17 @@ def main():
     ap.add_argument("--pest", nargs="?", const=PEST_DRAFTS, default=None, help="check pest seat drafts (pnf.pest_draft.v1)")
     ap.add_argument("--lic-templates", action="store_true", help="check email/L2-COMMISSION.md on this week's files")
     ap.add_argument("--lic", nargs="?", const=LIC_DRAFTS, default=None, help="check license count drafts (pnf.lic_draft.v1)")
+    ap.add_argument("--seat-templates", action="store_true", help="check email/S1-AREA-SEAT.md (tools/seat_gate.py)")
     a = ap.parse_args()
+    if a.seat_templates:   # area seats for construction cleaning (Todd, Oct 26, 2026)
+        import seat_gate
+        problems, nt, planted, live = seat_gate.check_seat_templates(today=chicago_today())
+        for p in problems[:60]:
+            print(f"ERROR copy: {p}")
+        if problems:
+            sys.exit(1)
+        print(f"OK copy: {nt} area seat templates pass ({live} live renders); {planted} planted wrong drafts caught")
+        sys.exit(0)
     if a.lic_templates:
         problems, nt, planted, info = check_lic_templates()
         for p in problems:

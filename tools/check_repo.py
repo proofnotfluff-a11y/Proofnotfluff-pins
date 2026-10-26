@@ -446,6 +446,12 @@ def check_copy():
     if code:
         return err("copy", "; ".join(l.replace("ERROR copy: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
     detail += "; " + (lines[-1].replace("OK copy: ", "") if lines else "")
+    # Area seat email for construction cleaning (Todd, Oct 26, 2026): the lead is in the seat it names, the seat is open,
+    # {open} is this week's count for that seat
+    code, lines = _run_tool([os.path.join("tools", "copy_gate.py"), "--seat-templates"])
+    if code:
+        return err("copy", "; ".join(l.replace("ERROR copy: ", "") for l in lines if l.startswith("ERROR"))[:600] or "exit 1")
+    detail += "; " + (lines[-1].replace("OK copy: ", "") if lines else "")
     # License count email to commission sellers (Todd, Oct 24, 2026): the City's weekly counts, no business named, sales@ only
     if os.path.exists(os.path.join(ROOT, "permits", "inspections-chicago", "sample.json")):
         code, lines = _run_tool([os.path.join("tools", "copy_gate.py"), "--lic-templates"])

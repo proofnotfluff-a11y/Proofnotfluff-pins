@@ -11,5 +11,5 @@
 - Radar Mon 9:31: health 4 PASS, AI 0 of 12, scout/OPPORTUNITIES.md; launches/WIRING.json gates lead pages.
 - Skills: 7 scheduled, 4 on request. Index: Bing, IndexNow, Fri 7:40, 35 left.
 - Pest seat live Oct 24 (3 seats, launches/chicago-pest-seat.md). Outreach on, Legal subject (Oct 24); batches go to Todd; role inboxes allowed (pest_role_inbox); 12 sendable after Bouncer (todo pest-owners-100).
-- Oct 25: credits plan (DECISIONS-2026-10-25): pest runs Oct 26, 27; audit 28; bursts 29, Nov 2. Kimi: coo/KIMI_AUDIT.md, coo/KIMI_RESEARCH.md.
+- Oct 25: credits plan (DECISIONS-2026-10-25): pest runs Oct 26, 27; audit 28; bursts 29, Nov 2. Kimi R0 to R4: research_notes/kimi-2026-10-25-summary.md.
 - Oct 25: Chief of Staff live (DECISIONS-2026-10-25): sweep 7:20, 12:20 weekdays (PC, sole reply-status writer), brief 7:45, 12:45, review Sun 5 pm. Outreach Mondays only. Sweep marks officeprojanitorial.com bounce.

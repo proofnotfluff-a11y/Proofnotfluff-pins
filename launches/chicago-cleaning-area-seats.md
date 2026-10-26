@@ -43,17 +43,19 @@ Drawn from permits/chicago/area_counts.json (tools/exclusive_areas.py, GitHub Ac
 ## Gumroad copy (Todd pastes; one Membership product per area, sales limit 1)
 Same for all six: tier `Area seat`, `$149` monthly, free trial off, sales limit 1, seller ProofNotFluff, cover and thumbnail from the build session.
 
-Description (all six; replace AREA and COMMUNITY AREAS with that seat's lines above):
+Description (all six; replace AREA, COMMUNITY AREAS, VOLUME SENTENCE and SLUG with that seat's lines below):
 ```
 A weekly lead list for one Chicago cleaning company per area.
 
-Every Monday, your members' page shows the open apartment and commercial building permits in AREA with a reported cost of $500,000 or more and a business as general contractor: closest to a final clean first, new permits and near-finish jobs flagged, the builder on each, and the builder's office phone or email where their own website lists one. Mark who you called, keep private notes, and download the Excel file and a CSV. Your area: the City of Chicago community areas COMMUNITY AREAS.
+Every Monday, your members' page shows the open apartment and commercial building permits in AREA with a reported cost of $500,000 or more and a business as general contractor: closest to a final clean first, new permits and near-finish jobs flagged, the builder on each, and the builder's office phone or email where their own website lists one. Mark who you called, keep private notes, and download the Excel file and a CSV. What is left out: permits with no business as general contractor, owner-builder permits, houses and 2 to 3 flats, single condo units, permits marked complete, suspended or cancelled, and work that never needs a construction clean under its own permit. Your area: the City of Chicago community areas COMMUNITY AREAS.
 
-Your seat: one cleaning company holds this area at a time. While your membership is active, ProofNotFluff sells this area's list to no other business and leaves its projects out of the shared Chicago list, the free sample page and the examples in its emails to other cleaning companies, starting with the first weekly list after you join. The permits are public City of Chicago records that anyone can read on the City's site, and other companies may sell lists made from them.
+Your seat: one cleaning company holds this area at a time. While your membership is active, ProofNotFluff sells this area's list to no other business and leaves its projects out of the shared Chicago list, the free sample page, the free Monday email and the examples and samples in its emails to other cleaning companies, starting with the first weekly list after you join. Before you joined, shared-list members had this area's projects and other companies may have had its 5 newest as a free sample; we cannot recall those copies. The permits are public City of Chicago records that anyone can read on the City's site, and other companies may sell lists made from them.
 
 What it is not: reported cost is the figure filed with the City, not a contract value. No builder listed has endorsed or works with ProofNotFluff, and a listing is not an invitation to bid. You make your own calls and emails and follow the law when you do.
 
-$149 a month, billed by Gumroad. Renews monthly until you cancel. No lock-in: cancel any time from your Gumroad receipt or library; cancelling stops future charges and frees the area.
+VOLUME SENTENCE
+
+$149 a month, billed by Gumroad. Renews monthly until you cancel. No lock-in: cancel any time from your Gumroad receipt or library; cancelling stops future charges, your seat stays yours to the end of the month you paid for, and the area is offered to another company only after that. Help: write to hello@proofnotfluff.com with your Gumroad receipt.
 
 Terms of Use, readable before you buy: https://proofnotfluff.com/chicago-cleaning-area-members/SLUG/#/terms
 
@@ -71,8 +73,10 @@ Chicago Cleaning Leads: Loop and South Loop seat
 ```
 Summary:
 ```
-Every open big construction project in Loop and South Loop, Chicago, with the builder on each, updated every Monday. One cleaning company holds this area at a time, and no other company we sell to gets its list.
+Open apartment and commercial projects of $500,000 or more in Loop and South Loop, Chicago, with a business as general contractor and the builder on each, updated every Monday. One cleaning company holds this area at a time, and no other company we sell to gets its list.
 ```
+VOLUME SENTENCE for this seat: `How many new permits appear each month varies with what the City issues; from Oct 2025 to Sep 2026 this area averaged about 16 a month, with months from 8 to 20, and some months under 10. Nothing here promises any number of projects.`
+SLUG: `loop`
 Post-purchase content: the link https://proofnotfluff.com/chicago-cleaning-area-members/loop/ and this seat's password (from the build session, never in this repo).
 
 #### 2. Near North and Lincoln Park
@@ -82,8 +86,10 @@ Chicago Cleaning Leads: Near North and Lincoln Park seat
 ```
 Summary:
 ```
-Every open big construction project in Near North and Lincoln Park, Chicago, with the builder on each, updated every Monday. One cleaning company holds this area at a time, and no other company we sell to gets its list.
+Open apartment and commercial projects of $500,000 or more in Near North and Lincoln Park, Chicago, with a business as general contractor and the builder on each, updated every Monday. One cleaning company holds this area at a time, and no other company we sell to gets its list.
 ```
+VOLUME SENTENCE for this seat: `How many new permits appear each month varies with what the City issues; from Oct 2025 to Sep 2026 this area averaged about 11 a month, with months from 3 to 23, and some months under 10. Nothing here promises any number of projects.`
+SLUG: `near-north`
 Post-purchase content: the link https://proofnotfluff.com/chicago-cleaning-area-members/near-north/ and this seat's password (from the build session, never in this repo).
 
 #### 3. West Loop and West Side
@@ -93,8 +99,10 @@ Chicago Cleaning Leads: West Loop and West Side seat
 ```
 Summary:
 ```
-Every open big construction project in West Loop and West Side, Chicago, with the builder on each, updated every Monday. One cleaning company holds this area at a time, and no other company we sell to gets its list.
+Open apartment and commercial projects of $500,000 or more in West Loop and West Side, Chicago, with a business as general contractor and the builder on each, updated every Monday. One cleaning company holds this area at a time, and no other company we sell to gets its list.
 ```
+VOLUME SENTENCE for this seat: `How many new permits appear each month varies with what the City issues; from Oct 2025 to Sep 2026 this area averaged about 13 a month, with months from 6 to 18, and some months under 10. Nothing here promises any number of projects.`
+SLUG: `west`
 Post-purchase content: the link https://proofnotfluff.com/chicago-cleaning-area-members/west/ and this seat's password (from the build session, never in this repo).
 
 #### 4. West Town, Logan Square and Northwest
@@ -104,8 +112,10 @@ Chicago Cleaning Leads: West Town, Logan Square and Northwest seat
 ```
 Summary:
 ```
-Every open big construction project in West Town, Logan Square and Northwest, Chicago, with the builder on each, updated every Monday. One cleaning company holds this area at a time, and no other company we sell to gets its list.
+Open apartment and commercial projects of $500,000 or more in West Town, Logan Square and Northwest, Chicago, with a business as general contractor and the builder on each, updated every Monday. One cleaning company holds this area at a time, and no other company we sell to gets its list.
 ```
+VOLUME SENTENCE for this seat: `How many new permits appear each month varies with what the City issues; from Oct 2025 to Sep 2026 this area averaged about 11 a month, with months from 4 to 17, and some months under 10. Nothing here promises any number of projects.`
+SLUG: `northwest`
 Post-purchase content: the link https://proofnotfluff.com/chicago-cleaning-area-members/northwest/ and this seat's password (from the build session, never in this repo).
 
 #### 5. Lake View to Rogers Park
@@ -115,8 +125,10 @@ Chicago Cleaning Leads: Lake View to Rogers Park seat
 ```
 Summary:
 ```
-Every open big construction project in Lake View to Rogers Park, Chicago, with the builder on each, updated every Monday. One cleaning company holds this area at a time, and no other company we sell to gets its list.
+Open apartment and commercial projects of $500,000 or more in Lake View to Rogers Park, Chicago, with a business as general contractor and the builder on each, updated every Monday. One cleaning company holds this area at a time, and no other company we sell to gets its list.
 ```
+VOLUME SENTENCE for this seat: `How many new permits appear each month varies with what the City issues; from Oct 2025 to Sep 2026 this area averaged about 10 a month, with months from 5 to 18, and some months under 10. Nothing here promises any number of projects.`
+SLUG: `north`
 Post-purchase content: the link https://proofnotfluff.com/chicago-cleaning-area-members/north/ and this seat's password (from the build session, never in this repo).
 
 #### 6. South Side
@@ -126,13 +138,15 @@ Chicago Cleaning Leads: South Side seat
 ```
 Summary:
 ```
-Every open big construction project in South Side, Chicago, with the builder on each, updated every Monday. One cleaning company holds this area at a time, and no other company we sell to gets its list.
+Open apartment and commercial projects of $500,000 or more in South Side, Chicago, with a business as general contractor and the builder on each, updated every Monday. One cleaning company holds this area at a time, and no other company we sell to gets its list.
 ```
+VOLUME SENTENCE for this seat: `How many new permits appear each month varies with what the City issues; from Oct 2025 to Sep 2026 this area averaged about 12 a month, with months from 5 to 22, and some months under 10. Nothing here promises any number of projects.`
+SLUG: `south`
 Post-purchase content: the link https://proofnotfluff.com/chicago-cleaning-area-members/south/ and this seat's password (from the build session, never in this repo).
 
-$29 product (Chicago Construction Cleaning Leads, already live): add one line to its description before the first seat sells:
+$29 product (Chicago Construction Cleaning Leads, already live): add this line to its description before the seat offer goes on the page (Legal desk fix 11):
 ```
-Areas held by an area seat holder are left out of this list, starting the Monday after the seat begins; the product page shows which areas are held.
+Areas held by an area seat holder are left out of this list from the Monday after the seat begins; the product page shows which areas are held, and you can cancel any time.
 ```
 
 ## Todd's steps

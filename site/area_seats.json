@@ -10,7 +10,12 @@
     "Loop",
     "Near South Side"
    ],
-   "marker": "Loop"
+   "marker": "Loop",
+   "short": "Loop",
+   "badgeOffset": [
+    30,
+    4
+   ]
   },
   {
    "slug": "near-north",
@@ -19,7 +24,12 @@
     "Near North Side",
     "Lincoln Park"
    ],
-   "marker": "Near North Side"
+   "marker": "Near North Side",
+   "short": "Near North",
+   "badgeOffset": [
+    6,
+    -6
+   ]
   },
   {
    "slug": "west",
@@ -33,7 +43,12 @@
     "South Lawndale",
     "Austin"
    ],
-   "marker": "Near West Side"
+   "marker": "Near West Side",
+   "short": "West Side",
+   "badgeOffset": [
+    -14,
+    4
+   ]
   },
   {
    "slug": "northwest",
@@ -53,7 +68,8 @@
     "Montclare",
     "Edison Park"
    ],
-   "marker": "Portage Park"
+   "marker": "Portage Park",
+   "short": "Northwest"
   },
   {
    "slug": "north",
@@ -71,7 +87,8 @@
     "Irving Park",
     "Forest Glen"
    ],
-   "marker": "Lincoln Square"
+   "marker": "Lincoln Square",
+   "short": "North Side"
   },
   {
    "slug": "south",
@@ -120,7 +137,8 @@
     "West Pullman",
     "Woodlawn"
    ],
-   "marker": "Washington Park"
+   "marker": "Washington Park",
+   "short": "South Side"
   }
  ]
 }

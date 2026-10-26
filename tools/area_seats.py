@@ -133,15 +133,15 @@ def svg(cfg, geo=None, st=None, width=420, title="Chicago cleaning lead areas"):
     st = st or stats(cfg)
     f, w, h = _proj(geo, width)
     order = {t["slug"]: i for i, t in enumerate(cfg["territories"])}
-    fills = ["#2f5f9e", "#c2603a", "#3d8a6b", "#8a5aa6", "#b38a1e", "#4f7f8f"]
+    fills = ["#3f5f8f", "#c8502f", "#2e6b66", "#b0841f", "#8a5a8e", "#8a9a3b"]
     parts = []
     for a in geo["areas"]:
         s = territory_of(a["name"], cfg)
         i = order.get(s, -1)
         d = " ".join("M" + " L".join(f"{px},{py}" for px, py in (f(x, y) for x, y in r)) + " Z" for r in a["rings"])
         held = s in set(cfg.get("held", []))
-        parts.append(f'<path d="{d}" fill="var(--t{i + 1},{fills[i] if i >= 0 else "#999"})" fill-opacity="{0.28 if held else 0.78}" '
-                     f'stroke="var(--map-line,#fff)" stroke-width="0.6"><title>{a["name"]}</title></path>')
+        parts.append(f'<path d="{d}" fill="var(--t{i + 1},{fills[i] if i >= 0 else "#999"})" fill-opacity="{0.28 if held else 0.82}" '
+                     f'stroke="var(--map-line,#fff)" stroke-opacity=".45" stroke-width="0.5" aria-hidden="true"><title>{a["name"]}</title></path>')
     # markers at the centre of each territory's busiest area
     counts = json.load(open(COUNTS))
     for t in cfg["territories"]:
@@ -149,6 +149,12 @@ def svg(cfg, geo=None, st=None, width=420, title="Chicago cleaning lead areas"):
         busiest = max(t["areas"], key=lambda n: counts["areas"].get(n, {}).get("total12", 0))
         cx, cy = next(a["centre"] for a in geo["areas"] if a["name"] == t.get("marker", busiest))
         px, py = f(cx, cy)
+        dx, dy = t.get("badgeOffset") or (0, 0)
+        if dx or dy:   # a badge moved off a crowded spot keeps a short leader line to its area (design director, Oct 26)
+            parts.append(f'<line x1="{px}" y1="{py}" x2="{round(px + dx, 1)}" y2="{round(py + dy, 1)}" stroke="var(--map-pin,#14213d)" '
+                         'stroke-width="1.2" aria-hidden="true"/>')
+            parts.append(f'<circle cx="{px}" cy="{py}" r="2.2" fill="var(--map-pin,#14213d)" aria-hidden="true"/>')
+            px, py = round(px + dx, 1), round(py + dy, 1)
         parts.append(f'<g aria-hidden="true"><circle cx="{px}" cy="{py}" r="10" fill="var(--map-pin,#14213d)" stroke="var(--map-line,#fff)" stroke-width="1.5"/>'
                      f'<text x="{px}" y="{round(py + 4.2, 1)}" text-anchor="middle" font-size="12" font-weight="700" fill="var(--map-pin-ink,#fff)" '
                      f'font-family="system-ui,sans-serif">{i + 1}</text></g>')
@@ -209,13 +215,53 @@ def city_for(t, geo=None):
             "Licensed to one business for its own prospecting;",
             f"Licensed to one business, the only seat holder for {t['name']}, for its own prospecting;"),
         "seatName": t["name"], "seatAreas": areas,
-        "seatClause": (f"Your seat. Your membership is the only seat for {t['name']}: the City of Chicago community areas "
-                       f"{areas}. While your membership is active, ProofNotFluff sells this area's list to no other business, "
-                       "and leaves this area's projects out of its shared Chicago list, its free sample page and the examples in "
-                       "its emails to other cleaning companies, starting with the first weekly list after you join. The permits "
-                       "are public City of Chicago records: anyone can read them on the City's site, and other companies may "
-                       "sell lists made from the same records. Exclusive means ProofNotFluff sells this area's list to you only."),
+        "gateH1": f"This week's {t['name']} leads",
+        "ribbon": f"{t['name']} seat",
+        "gateBuy": f'Not the seat holder? <a href="{OFFER_URL}">See the area seats</a>',
+        # Legal desk, Oct 26, 2026, fix 3: the seat says plainly which copies of this area exist outside it
+        "seatClause": (f"Your seat. Your membership is the only seat for {t['name']}: the City of Chicago community areas {areas}. "
+                       "While your membership is active, ProofNotFluff sells this area's list to no other business, and leaves this area's "
+                       "projects out of its shared Chicago list, its free sample page, its free Monday email and the examples and samples in "
+                       "its emails to other cleaning companies, starting with the first weekly list after you join. Before you joined, "
+                       "members of the shared list had this area's projects, and other cleaning companies may have received its 5 newest "
+                       "projects free as a sample; we cannot recall those copies. The permits are public City of Chicago records: anyone can "
+                       "read them on the City's site, and other companies may sell lists made from the same records. Exclusive means "
+                       "ProofNotFluff sells this area's list to you only."),
+        # fix 2
+        "seatHelp": ("Price, cancelling and help. $149 a month, billed by Gumroad, with no lock-in: no minimum term. Your seat renews each "
+                     "month until you cancel. Cancel any time from your Gumroad receipt or library; cancelling stops future charges, and "
+                     "your members' page and your seat stay yours until the end of the month you paid for. The area is offered to another "
+                     "company only after that. If the page won't open or something looks wrong, write to hello@proofnotfluff.com with "
+                     "your Gumroad receipt and we will fix it or refund that month."),
+        # fix 4, from the committed 12-month counts
+        "seatVolume": volume_sentence(t),
     })
+    return c
+
+
+def volume_sentence(t, counts=None):
+    st = next(x for x in stats({"territories": [t]}, counts)["territories"])
+    return (f"How many new permits appear each month varies with what the City issues; from {_mon(stats({'territories': [t]}, counts)['from'])} "
+            f"to {_mon(stats({'territories': [t]}, counts)['to'])} this area averaged about {int(st['avg'] + 0.5)} a month, with months from "
+            f"{st['low']} to {st['high']}" + (", and some months under 10" if st["under10"] else "") + ". Nothing here promises any number of projects.")
+
+
+def _mon(m):
+    return dt.date.fromisoformat(m + "-01").strftime("%b %Y")
+
+
+def shared_counts(counts, projects):
+    """The sample's headline counts recomputed on the shared list (held areas out); filter-reason counts stay as pulled."""
+    import collections
+    import permits_chicago as pc
+    near = ("OCCUPANCY PENDING", "PARTIAL OCCUPANCY")
+    c = dict(counts)
+    c.update({"kept": len(projects), "keptCost": sum(p.get("cost") or 0 for p in projects),
+              "keptByType": dict(collections.Counter(p.get("type") for p in projects)),
+              "keptUnits": sum(p.get("units") or 0 for p in projects if p.get("type") == "New construction"),
+              "topAreas": collections.Counter(p["communityArea"] for p in projects if p.get("communityArea")).most_common(8),
+              "topGCs": pc.top_builders(projects),
+              "nearFinish": sum(1 for p in projects if any(k in (p.get("milestone") or "").upper() for k in near))})
     return c
 
 
@@ -324,6 +370,9 @@ if __name__ == "__main__":
         cfg = load()
         for k in ("projects", "nearFinish"):
             sm[k] = shared(sm.get(k) or [], cfg)
+        if cfg.get("held") and len(sys.argv) > 3:   # the free page's counts from the shared list too (Legal desk, Oct 26, fix 11)
+            sm["counts"] = shared_counts(sm["counts"], shared(json.load(open(sys.argv[3]))["projects"], cfg))
+            sm["counts"]["heldAreas"] = [t["name"] for t in cfg["territories"] if t["slug"] in set(cfg["held"])]
         json.dump(sm, open(sys.argv[2], "w"), indent=1)
     elif sys.argv[1:2] == ["--week-counts"]:
         json.dump(week_counts(json.load(open(sys.argv[2]))), open(WEEK, "w"), indent=1)

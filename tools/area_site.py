@@ -29,7 +29,12 @@ def _month(m):
     return d.strftime("%b %Y")
 
 
+def _whole(x):
+    return int(x + 0.5)
+
+
 def seats_html(p, spec, rel):
+    import urllib.parse
     import make_site as M
     import area_seats as A
     E = M.E
@@ -49,91 +54,112 @@ def seats_html(p, spec, rel):
     # the map's text description uses the same open counts as the list (this week's when the weekly file exists; holdout B)
     st_map = dict(st, territories=[dict(t, openNow=week.get(t["slug"], {}).get("open", t["openNow"])) for t in st["territories"]])
     svg = A.svg(cfg, st=st_map, width=340, title="Map of the six Chicago cleaning lead areas")
-    lo = min(t["avg"] for t in st["territories"])
-    hi = max(t["avg"] for t in st["territories"])
+    lo = min(_whole(t["avg"]) for t in st["territories"])
+    hi = max(_whole(t["avg"]) for t in st["territories"])
     rng = f'{_month(st["from"])} to {_month(st["to"])}'
+    legend = "".join(f'<li><span class="as-num as-t{i + 1}b">{i + 1}</span>{E(t.get("short") or t["name"])}</li>'
+                     for i, t in enumerate(cfg["territories"]))
     items = []
     for i, (t, s) in enumerate(zip(cfg["territories"], st["territories"])):
         wk = week.get(t["slug"], {})
         open_n = wk.get("open", s["openNow"])
         new_n = wk.get("newWeek")
         link = co.get(t["slug"])
-        if t["slug"] in held:
-            act = '<span class="as-held">Held by a cleaning company</span>'
+        taken = t["slug"] in held
+        mail = "mailto:hello@proofnotfluff.com?subject=" + urllib.parse.quote(f"5 newest projects: {t['name']}")
+        if taken:
+            act = '<span class="as-held">Taken</span>'
         elif link:
-            act = f'<a class="btn as-btn" href="{E(link)}" rel="noopener" aria-label="Take the {E(t["name"])} seat, ${price} a month">Take this area</a>'
+            act = (f'<a class="btn as-btn" href="{E(link)}" rel="noopener" aria-label="Take the {E(t["name"])} seat, ${price} a month">Take this area</a>'
+                   f'<a class="as-free" href="{E(mail)}">Send me its 5 newest free</a>')
         else:
-            act = '<span class="btn as-btn sb-off" aria-disabled="true">Take this area</span>'
-        areas = ", ".join(t["areas"])
-        more = (f'<details class="as-more"><summary>The {s["areas"]} community areas</summary><p>{E(areas)}</p></details>'
-                if s["areas"] > 2 else f'<p class="as-ca">{E(areas)}</p>')
+            act = ('<span class="btn as-btn sb-off" aria-disabled="true">Take this area</span>'
+                   f'<a class="as-free" href="{E(mail)}">Send me its 5 newest free</a>')
+        cnt = json.load(open(A.COUNTS))["areas"]   # busiest community areas first
+        names = sorted(t["areas"], key=lambda n: (-cnt.get(n, {}).get("total12", 0), n))
+        if len(names) <= 3:
+            ca = f'<p class="as-ca">{E(", ".join(names))}</p>'
+        else:
+            ca = (f'<details class="as-more"><summary>{E(", ".join(names[:3]))} and {len(names) - 3} more</summary>'
+                  f'<p>{E(", ".join(names))}</p></details>')
         items.append(
-            f'<li class="as-item{" is-held" if t["slug"] in held else ""}"><span class="as-sw as-t{i + 1}" aria-hidden="true"></span>'
-            f'<div class="as-body"><h3><span class="as-num">{i + 1}</span> {E(t["name"])}</h3>'
-            f'<p class="as-stats"><b>About {s["avg"]:g} new projects a month</b> · {open_n:,} open now'
-            + (f' · {new_n} new this week' if new_n is not None else "") + '</p>'
-            f'<p class="as-range">Slowest month {s["low"]}, busiest {s["high"]}</p>{more}</div>'
+            f'<li class="as-item{" is-held" if taken else ""}"><span class="as-sw as-t{i + 1}" aria-hidden="true"></span>'
+            f'<div class="as-body"><h3><span class="as-num as-t{i + 1}b" aria-hidden="true">{i + 1}</span>{E(t["name"])}</h3>'
+            f'<p class="as-stats"><b>About {_whole(s["avg"])} new projects a month</b></p>'
+            f'<p class="as-sub">{open_n:,} open now' + (f' · {new_n} new this week' if new_n is not None else "")
+            + f'</p><p class="as-sub">Slowest month {s["low"]}, busiest {s["high"]}</p>{ca}</div>'
             f'<div class="as-act">{act}</div></li>')
     asof = f"Open counts from the list of {E(wk_asof)}." if wk_asof else f"Open counts from City records pulled {E(M.nice_date(st['ranAt']))}."
     return (
         f'<section class="block sb as" id="areas" aria-labelledby="asH"><div class="sb-card as-card">'
         '<p class="eyebrow sb-eye">Area seats for cleaning companies</p>'
         '<h2 id="asH">One cleaning company per area of Chicago.</h2>'
-        '<div class="as-top">'
+        f'<p class="as-price"><b>${price} a month per area.</b> No lock-in, cancel any time.</p>'
         f'<p class="sb-left"><span class="sb-dots" aria-hidden="true">{"".join("<i class=on></i>" if i < left else "<i></i>" for i in range(cap))}</span>'
         f'<b>{left} of {cap} areas open</b></p>'
-        f'<p class="sb-terms"><b>${price} a month per area.</b> No lock-in, cancel any time.</p>'
-        '<p class="sb-lede">Hold an area and its projects go to you and to no other company we sell to. We take them out of our $'
-        f'{E(str(p["price"]))} weekly list, our free sample and our emails to other cleaning companies from the next Monday.</p></div>'
-        '<div class="as-cols"><figure class="as-map">'
-        f'{svg}<figcaption>Six areas drawn from the City\'s 77 community areas so each one averaged 10 or more new qualifying '
-        f'projects a month from {E(rng)}.</figcaption></figure>'
-        f'<ol class="as-list" aria-label="The six areas">{"".join(items)}</ol></div>'
-        f'<p class="as-note">New projects a month: permits the City issued from {E(rng)} that pass the list\'s rules, about {lo:g} to {hi:g} '
-        'an area. Months vary: every area had some months under 10. ' + asof + '</p>'
+        '<p class="sb-lede">Hold an area and we sell its list to you and to no other company. From the next Monday we take its projects '
+        f'out of our ${E(str(p["price"]))} weekly list, our free sample and our emails to other cleaning companies.</p>'
+        '<div class="as-cols"><div class="as-side"><figure class="as-map">'
+        f'{svg}<ol class="as-legend" aria-hidden="true">{legend}</ol>'
+        f'<figcaption>Six areas drawn from the City\'s 77 community areas so each averaged 10 or more new qualifying '
+        f'projects a month from {E(rng)}.</figcaption>'
+        f'<p class="as-note">New projects a month: permits the City issued from {E(rng)} that passed the list\'s rules when issued, '
+        f'whatever their status today, about {lo} to {hi} an area. Months vary: every area had some months under 10. {asof}</p></figure>'
         '<ul class="sb-get checks"><li>Every open project in your area, closest to a final clean first, with the builder on each and the builder\'s office phone or email where their own website lists one.</li>'
         '<li>New permits each Monday, in a members\' app with a map and in an Excel file, plus the pitch kit.</li>'
         '<li>Your area only, and only you. The permits are public City of Chicago records that anyone can read on the City\'s site; '
-        'exclusive means we sell your area\'s list to you alone.</li></ul>'
-        f'<p class="sb-same">Want to see your area first? Write to hello@proofnotfluff.com and we will send its 5 newest projects free. '
+        'exclusive means we sell your area\'s list to you alone.</li></ul></div>'
+        f'<ol class="as-list" aria-label="The six areas">{"".join(items)}</ol></div>'
+        '<p class="sb-same">Want to see an area first? Write to hello@proofnotfluff.com and we will send its 5 newest projects free, for any area no one holds yet. '
         f'Prefer the whole city, shared? The weekly list stays ${E(str(p["price"]))} a month for every area no one holds.</p>'
         f'<p class="ld-secure">Secure checkout by Gumroad. ${price} is charged at checkout and again each month until you cancel. '
         f'No lock-in: cancel any time from your Gumroad receipt or library and you are not charged again. '
-        f'<a href="{rel}refunds/">Refunds and cancelling</a> · <a href="{rel}chicago-cleaning-area-members/loop/#/terms">Seat Terms</a></p>'
+        f'<a href="{rel}refunds/">Refunds and cancelling</a> · <a href="{rel}chicago-cleaning-area-members/loop/#/terms">Seat Terms</a> '
+        '(the same for every area apart from the area named)</p>'
         '</div></section>')
 
 
 # territory colours: six hues near the site's own (teal, terracotta), lighter in dark mode; the list carries every number in text
 SEATS_CSS = (
-    ":root{--t1:#3f5f8f;--t2:#c8502f;--t3:#2e6b66;--t4:#b0841f;--t5:#8a5a8e;--t6:#5f7f4f;--map-line:var(--card);--map-pin:var(--ink);--map-pin-ink:var(--card)}"
-    "@media (prefers-color-scheme: dark){:root{--t1:#8fb0e0;--t2:#ef8c6b;--t3:#6cc0b6;--t4:#e0b65a;--t5:#c99ad0;--t6:#a8c995}}"
+    ":root{--t1:#3f5f8f;--t2:#c8502f;--t3:#2e6b66;--t4:#b0841f;--t5:#8a5a8e;--t6:#8a9a3b;--map-line:var(--card);--map-pin:var(--ink);--map-pin-ink:var(--card)}"
+    "@media (prefers-color-scheme: dark){:root{--t1:#8fb0e0;--t2:#ef8c6b;--t3:#6cc0b6;--t4:#e0b65a;--t5:#c99ad0;--t6:#c9d27a}}"
     ".sb .sb-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 20px}"
-    ".sb .sb-card>p,.sb .sb-get{max-width:68ch;text-wrap:pretty}.sb .ld-secure{font-size:14px;color:var(--muted)}.sb .ld-secure a{color:var(--teal)}"
-    ".sb .sb-eye{margin:0 0 6px}.sb h2{margin:0 0 10px}"
-    ".sb-left{display:flex;align-items:center;gap:10px;margin:0 0 6px;font-size:17px}"
+    ".sb .sb-card>p{max-width:68ch;text-wrap:pretty}.sb .ld-secure{font-size:14px;color:var(--muted)}.sb .ld-secure a{color:var(--teal)}"
+    ".sb .sb-eye{margin:0 0 6px}.as h2{font-size:28px;line-height:1.2;margin:0 0 10px;text-wrap:balance}"
+    ".as-price{margin:0 0 8px;font-size:20px;color:var(--ink2)}.as-price b{color:var(--ink)}"
+    ".sb-left{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:16px}"
     ".sb-dots{display:inline-flex;gap:5px}.sb-dots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--teal)}.sb-dots i.on{background:var(--teal)}"
-    ".sb-terms{margin:0 0 12px;font-size:17px}.sb-lede{margin:0 0 18px;color:var(--ink2)}"
-    ".sb-get{margin:0 0 12px;padding-left:0}.sb-get li{margin:0 0 6px}.sb-same{margin:0 0 6px;color:var(--ink2)}.sb-off{opacity:.55;cursor:not-allowed}"
-    ".as-cols{display:grid;gap:20px;margin:4px 0 14px}"
-    "@media(min-width:880px){.as-cols{grid-template-columns:minmax(260px,340px) minmax(0,1fr);align-items:start}}"
+    ".sb-lede{margin:0 0 18px;color:var(--ink2)}"
+    ".sb-get{margin:14px 0 0;padding-left:0}.sb-get li{margin:0 0 6px}.sb-same{margin:16px 0 6px;color:var(--ink2)}.sb-off{opacity:.55;cursor:not-allowed}"
+    ".as-cols{display:grid;gap:20px;margin:4px 0 0}"
+    "@media(min-width:880px){.as-cols{grid-template-columns:minmax(280px,360px) minmax(0,1fr);align-items:start}}"
     ".as-map{margin:0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--canvas2)}"
-    ".as-map svg{display:block;width:100%;max-width:340px;height:auto;margin:0 auto}"
+    ".as-map svg{display:block;width:100%;max-width:340px;height:auto;margin:0 auto}.as-map svg path{stroke-linejoin:round}"
     ".as-map figcaption{margin:10px 0 0;color:var(--muted);font-size:14px}"
+    ".as-legend{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;color:var(--ink2)}"
+    ".as-legend li{display:inline-flex;align-items:center;gap:6px}.as-legend .as-num{width:20px;height:20px;font-size:11.5px}"
+    ".as-note{margin:8px 0 0;color:var(--muted);font-size:13.5px}"
     ".as-list{list-style:none;margin:0;padding:0;display:grid;gap:0}"
-    ".as-item{display:grid;grid-template-columns:10px minmax(0,1fr);column-gap:12px;row-gap:8px;padding:14px 0;border-top:1px solid var(--line)}"
+    ".as-item{display:grid;grid-template-columns:8px minmax(0,1fr);column-gap:12px;row-gap:10px;padding:16px 0;border-top:1px solid var(--line)}"
     ".as-item:first-child{border-top:0;padding-top:4px}"
-    "@media(min-width:560px){.as-item{grid-template-columns:10px minmax(0,1fr) auto;align-items:center}}"
-    ".as-sw{width:10px;align-self:stretch;border-radius:5px;min-height:44px}"
+    "@media(min-width:560px){.as-item{grid-template-columns:8px minmax(0,1fr) 190px;align-items:center}}"
+    ".as-sw{width:8px;align-self:stretch;border-radius:4px;min-height:44px}"
     ".as-t1{background:var(--t1)}.as-t2{background:var(--t2)}.as-t3{background:var(--t3)}.as-t4{background:var(--t4)}.as-t5{background:var(--t5)}.as-t6{background:var(--t6)}"
-    ".as-body h3{margin:0 0 4px;font-size:17px;line-height:1.3}.as-num{display:inline-block;min-width:1.4em;color:var(--muted);font-variant-numeric:tabular-nums}"
-    ".as-stats{margin:0;font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}.as-range,.as-ca{margin:2px 0 0;font-size:14px;color:var(--muted)}"
-    ".as .as-more{margin:4px 0 0;padding:0;border:0;background:none;box-shadow:none;font-size:14px;color:var(--muted)}"
-    ".as .as-more summary{cursor:pointer;color:var(--teal);font-size:14px;font-weight:600;padding:2px 0;min-height:32px;display:inline-flex;align-items:center;justify-content:flex-start;gap:6px;list-style:none;background:none;border:0}"
-    ".as .as-more summary::-webkit-details-marker{display:none}.as .as-more summary::after{content:'+';font-size:16px;font-weight:700;color:var(--teal)}.as .as-more[open] summary::after{content:'\\2212'}"
-    ".as .as-more p{margin:6px 0 0;padding:0}"
-    ".as-act{grid-column:2}@media(min-width:560px){.as-act{grid-column:3}}"
-    ".as-btn{white-space:nowrap;min-height:44px;display:inline-flex;align-items:center}"
-    ".as-held{display:inline-block;font-size:14px;font-weight:600;color:var(--muted);padding:10px 0}"
-    ".as-item.is-held .as-sw{opacity:.35}.as-note{margin:0 0 14px;color:var(--muted);font-size:14px}"
-    ".as-top{margin:0 0 6px}"
+    ".as-num{display:inline-flex;align-items:center;justify-content:center;flex:none;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--card);"
+    "font:700 12.5px/1 var(--sans,inherit);font-variant-numeric:tabular-nums;box-shadow:0 0 0 2px var(--card)}"
+    ".as-body h3{display:flex;align-items:center;gap:10px;margin:0 0 6px;font-size:17px;line-height:1.3}"
+    ".as-stats{margin:0;font-size:15.5px;color:var(--ink)}.as-sub{margin:2px 0 0;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}"
+    ".as-ca{margin:4px 0 0;font-size:14px;color:var(--muted)}"
+    ".as .as-more{margin:2px 0 0;padding:0;border:0;background:none;box-shadow:none;max-width:none;font-size:14px;color:var(--muted)}"
+    ".as .as-more summary{cursor:pointer;color:var(--teal);font-size:14px;font-weight:600;padding:12px 0;min-height:44px;display:block;"
+    "list-style:none;background:none;border:0;line-height:1.45}"
+    ".as .as-more summary::-webkit-details-marker{display:none}.as .as-more summary::after{content:' +';font-size:16px;font-weight:700;color:var(--teal)}"
+    ".as .as-more[open] summary::after{content:' \\2212'}.as .as-more p{margin:0 0 4px;padding:0}"
+    ".as-act{grid-column:2;display:flex;flex-direction:column;gap:6px;align-items:stretch}@media(min-width:560px){.as-act{grid-column:3}}"
+    ".as-btn{justify-content:center;white-space:nowrap;min-height:48px;display:inline-flex;align-items:center;width:100%}"
+    ".as-free{display:inline-flex;align-items:center;justify-content:center;min-height:44px;font-size:14px;font-weight:600;color:var(--teal)}"
+    ".as-held{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--line);"
+    "font-size:14px;font-weight:600;color:var(--muted)}"
+    ".as-item.is-held .as-sw{opacity:.35}"
+    ".as-t1b{}.as-t2b{}.as-t3b{}.as-t4b{}.as-t5b{}.as-t6b{}"
 )

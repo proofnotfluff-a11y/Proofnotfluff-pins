@@ -185,7 +185,9 @@ def city_json():
     keys = ("key", "city", "state", "product", "csvPrefix", "storageKey", "center", "zoom", "cityName", "records", "area", "areaLower",
             "areaAll", "areaPlural", "cost", "costLower", "costShort", "costAny", "bNoun", "bWeek", "permit", "permitLower", "types", "stages", "stagesShort",
             "stageLines", "contacts", "termsLabel", "nearEmpty", "midWords", "totalWord", "leaveList", "noGeo", "bil2")
-    return json.dumps({k: CITY[k] for k in keys}, ensure_ascii=False).replace("</", "<\\/")
+    out = {k: CITY[k] for k in keys}
+    out["seatName"] = CITY.get("seatName", "")   # an area seat (tools/area_seats.py): named above the overview headline
+    return json.dumps(out, ensure_ascii=False).replace("</", "<\\/")
 
 
 def use(c):
@@ -202,6 +204,9 @@ def build_html(rows, fetched, xlsx_bytes, password, city_terms=None, city=None):
     box = encrypt(password, json.dumps(payload(rows, fetched, xlsx_bytes), separators=(",", ":")).encode())
     as_of = pretty_date(fetched)
     return (PAGE.replace("__BOX__", json.dumps(box)).replace("__TERMS__", terms_json(as_of, city_terms or CITY["termsUrl"]))
+            .replace("__GATEH1__", _esc(CITY.get("gateH1") or f"This week's {CITY['city']} leads"))
+            .replace("__RIBBON__", _esc(CITY.get("ribbon") or CITY["product"]))
+            .replace("__GATEBUY__", CITY.get("gateBuy") or 'Not a member yet? <a href="__FREE__">Get the full list: $29&nbsp;a&nbsp;month</a>')
             .replace("__CITY__", city_json()).replace("__PRODUCT__", CITY["product"]).replace("__CITYNAME__", CITY["city"])
             .replace("__GATESUB__", _esc(CITY["gateSub"]))
             .replace("__LEGAL__", legal_html()).replace("__ASOF__", as_of)
@@ -287,6 +292,8 @@ h1,h2,h3{font-family:var(--head);letter-spacing:-.015em;line-height:1.15;margin:
 a{color:var(--blue);text-underline-offset:3px;text-decoration-thickness:1px}
 button,input,select,textarea{font:inherit;color:inherit}
 :focus-visible{outline:none;box-shadow:var(--focus);border-radius:8px}
+h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:none}
+.seatchip{display:inline-flex;align-items:center;gap:6px;margin:0 0 10px;padding:5px 12px;border-radius:999px;background:var(--teal-tint,#e2efec);color:var(--teal-ink,#1e4c48);font-weight:700;font-size:14px}
 .num{font-variant-numeric:tabular-nums}
 .skip{position:absolute;left:12px;top:-60px;z-index:2000;background:#fff;color:var(--ink);padding:12px 14px;min-height:44px;border-radius:8px;font-weight:600;box-shadow:var(--sh)}
 .skip:focus{top:10px}
@@ -669,7 +676,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 </style></head><body>
 <a class="skip" href="#/" id="skip">Skip to main content</a>
 <header class="bar"><div class="bar-in">
-<a class="brand" href="#/" aria-label="ProofNotFluff, __PRODUCT__, overview"><b>ProofNotFluff</b><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><small>__PRODUCT__</small></a>
+<a class="brand" href="#/" aria-label="ProofNotFluff, __PRODUCT__, overview"><b>ProofNotFluff</b><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><small>__RIBBON__</small></a>
 <nav class="tabs" id="tabs" aria-label="Sections" hidden></nav>
 <span class="bar-sp"></span>
 <button class="dl" id="dlTop" type="button" hidden><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Download workbook</span><b class="sr">Download this week's Excel workbook</b></button>
@@ -677,7 +684,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 <main id="gateView" class="gate">
 <form class="gate-card" id="gate" novalidate>
 <span class="chip s2"><svg class="ico s" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Members</span>
-<h1>This week's __CITYNAME__ leads</h1>
+<h1>__GATEH1__</h1>
 <p class="sub">List of __ASOF__. __GATESUB__</p>
 <label for="pw">Members' password</label>
 <div class="pw"><input id="pw" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="err pwHelp">
@@ -685,7 +692,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 <button class="btn pri" type="submit" id="go">Open this week's list</button>
 <p class="err" id="err" role="alert"></p>
 <div class="gate-help" id="pwHelp"><p>The password is on your Gumroad purchase page, linked from your receipt email. <a href="https://gumroad.com/library">Open your Gumroad library</a></p>
-<p>Not a member yet? <a href="__FREE__">Get the full list: $29&nbsp;a&nbsp;month</a></p></div>
+<p>__GATEBUY__</p></div>
 </form>
 </main>
 <p class="gate-legal" id="gateLegal">__LEGAL__</p>
@@ -799,20 +806,20 @@ const top=Object.values(B).sort((a,b)=>b.near-a.near||b.n-a.n||b.cost-a.cost).sl
 const ac={};P.forEach(p=>{if(p.ca){const a=ac[p.ca]=ac[p.ca]||[0,0,0];a[p.st]++;}});const areas=Object.entries(ac).map(([a,c])=>[a,c[0]+c[1]+c[2],c]).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,8);const amax=areas.length?areas[0][1]:1;
 const marked=Object.keys(MARKS).filter(id=>BYID[id]);const cN=marked.filter(id=>MARKS[id].c).length,nN=marked.filter(id=>(MARKS[id].n||"").trim()).length;
 const stn=s=>`<a class="stn s${s}" href="#/projects?stage=${["near","insp","issued"][s]}"><span class="dot">${ico(["check","search","crane"][s])}</span><span class="n num">${int(by[s].length)}</span><span class="tx"><span class="t">${STG[s]}</span><span class="m num">${bigMoney(by[s].reduce((x,p)=>x+p.c,0))} ${CITY.costShort}</span></span></a>`;
-$("#app").innerHTML=`<section class="hero"><h1>${int(by[0].length)} ${by[0].length===1?"project is":"projects are"} close to a final clean this week</h1>
+$("#app").innerHTML=`<section class="hero">${CITY.seatName?`<p class="seatchip">Your seat: ${esc(CITY.seatName)}</p>`:""}<h1>${by[0].length||!by[1].length?`${int(by[0].length)} ${by[0].length===1?"project is":"projects are"} close to a final clean this week`:`${int(by[1].length)} ${by[1].length===1?"project has":"projects have"} ${esc(STG[1].toLowerCase())}, none at ${esc(STG[0].toLowerCase())} yet`}</h1>
 <p>${CITY.key==="austin"?`${int(P.length)} open projects on the list (${int(P.reduce((x,p)=>x+(p.b||0),0))} building permits), ${bigMoney(TOTAL)} in valuation`:`${int(P.length)} open permits on the list, ${bigMoney(TOTAL)} in reported cost at ${int(addrs)} addresses`}. Built from ${esc(CITY.records)}, list of ${esc(D.asOf)}.</p></section>
 <nav class="line" aria-label="Projects by stage, from permit to final clean">${stn(2)}${stn(1)}${stn(0)}<span class="flag"><span class="dot">${ico("flag")}</span><span class="tx"><span class="t">Final clean</span><span class="m">Your bid</span></span></span></nav>
 <div class="ov"><div class="ov-col">
-<section class="panel"><div class="sec-h"><h2>Closest to a final clean<span class="c num">${int(near.length)}</span></h2><a href="#/projects?stage=near">See all ${int(near.length)}</a></div>${near.length?rowsHtml(near,0,"near"):`<p class="empty">${esc(CITY.nearEmpty)}</p>`}</section>
+<section class="panel"><div class="sec-h"><h2>Closest to a final clean<span class="c num">${int(near.length)}</span></h2>${near.length?`<a href="#/projects?stage=near">See all ${int(near.length)}</a>`:""}</div>${near.length?rowsHtml(near,0,"near"):`<p class="empty">${esc(CITY.nearEmpty)}</p>`}</section>
 <section class="panel"><div class="sec-h"><h2>New this week<span class="c num">${int(nw.length)}</span></h2>${nw.length?`<a href="#/projects?new=1">See all ${int(nw.length)}</a>`:""}</div>${nw.length?rowsHtml(nw,5,"new"):`<p class="empty">No permits on the list were issued in the last 7 days.</p>`}</section>
 </div><div class="ov-col">
 <section class="panel"><div class="sec-h"><h2>Builders to call first</h2><a href="#/builders">All ${int(Object.keys(B).length)} builders</a></div>
-${top.map(b=>`<a class="mini-b" href="#/builder/${encodeURIComponent(b.key)}"><b>${esc(b.name)}</b><span>${plural(b.n,CITY.bNoun)}${CITY.bWeek}${CITY.contacts?", "+(b.ok?"contact on file":"no contact on file yet"):""}</span><span class="r num">${int(b.near)}<small>near finish</small></span></a>`).join("")}</section>
+${top.map(b=>`<a class="mini-b" href="#/builder/${encodeURIComponent(b.key)}"><b>${esc(b.name)}</b><span>${plural(b.n,CITY.bNoun)}${CITY.bWeek}${CITY.contacts?", "+(b.ok?"contact on file":"no contact on file yet"):""}</span>${top.some(x=>x.near)?`<span class="r num">${int(b.near)}<small>near finish</small></span>`:`<span class="r num">${int(b.n)}<small>${b.n===1?"project":"projects"}</small></span>`}</a>`).join("")}</section>
 <section class="panel"><div class="sec-h"><h2>Where the work is</h2><a href="#/projects?view=map">Open the map</a></div>
 <p class="blg" aria-hidden="true"><span><i class="b0"></i>${STG_SHORT[0]}</span><span><i class="b1"></i>${STG_SHORT[1]}</span><span><i class="b2"></i>${STG_SHORT[2]}</span></p>
 <ul class="bars" aria-label="Open projects by ${CITY.areaLower} and stage"><li class="hd" aria-hidden="true"><span></span><span class="sp2"></span><span>Near finish</span><span>All</span></li>${areas.map(([a,n,c])=>`<li><a href="#/projects?area=${encodeURIComponent(a)}" aria-label="${esc(a)}: ${plural(n,"project")}, ${int(c[0])} near finish, ${int(c[1])} ${CITY.midWords}, ${int(c[2])} permit issued" title="${int(c[0])} near finish, ${int(c[1])} ${STG_SHORT[1].toLowerCase()}, ${int(c[2])} permit issued"><span>${esc(a)}</span><span class="tr" style="width:${Math.max(3,Math.round(n/amax*100))}%" aria-hidden="true">${[0,1,2].filter(s=>c[s]).map(s=>`<i class="b${s}" style="flex-grow:${c[s]}"></i>`).join("")}</span><span class="nv num${c[0]?"":" z"}">${int(c[0])}</span><span class="v num">${int(n)}</span></a></li>`).join("")}</ul></section>
 <section class="panel"><div class="sec-h"><h2>Your follow-ups</h2>${cN||nN?`<a href="#/projects?fu=mine">Show them</a>`:""}</div>
-<div class="mine">${cN||nN?`<p class="mh"><b>${plural(cN,"project")}</b> marked contacted, <b>${plural(nN,"note")}</b> written.</p>`:`<p class="mh"><b class="blk">No follow-ups yet</b>Mark a project as contacted or add a note on its page, and it shows up here.</p>`}<p>${esc(STORE_LINE())}</p>${cN||nN?"":`<a class="btn" href="#/projects?stage=near">Open the ${plural(by[0].length,"near-finish project")}</a>`}</div></section>
+<div class="mine">${cN||nN?`<p class="mh"><b>${plural(cN,"project")}</b> marked contacted, <b>${plural(nN,"note")}</b> written.</p>`:`<p class="mh"><b class="blk">No follow-ups yet</b>Mark a project as contacted or add a note on its page, and it shows up here.</p>`}<p>${esc(STORE_LINE())}</p>${cN||nN?"":(by[0].length||!by[1].length?`<a class="btn" href="#/projects?stage=near">Open the ${plural(by[0].length,"near-finish project")}</a>`:`<a class="btn" href="#/projects?stage=insp">Open the ${plural(by[1].length,"project")} with ${esc(STG[1].toLowerCase())}</a>`)}</div></section>
 </div></div>`;}
 
 /* projects: filters, list and map, in sync */

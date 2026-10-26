@@ -80,7 +80,8 @@ def seat_problems(subject, body, step, lead, area_of_lead, seat, cfg, week_doc, 
     # every number in the body is the seat's open count, except the lead's value, its street and "5 newest"
     rest = body
     if lead is not None:
-        rest = rest.replace(R.value_display(lead.get("valuation")), " ").replace(R.street_display(lead.get("address")), " ")
+        rest = (rest.replace(R.value_display(lead.get("valuation")), " ").replace(R.street_display(lead.get("address")), " ")
+                .replace(R.gc_display(lead.get("gc_company")), " "))   # a builder's name may hold a digit (4CC; copy review, Oct 26)
     rest = re.sub(r"\b5 newest\b", " ", rest)
     nums = [int(x) for x in re.findall(r"(?<![\d,.$])(\d+)(?![\d,.])", rest)]
     for k in nums:
@@ -162,18 +163,25 @@ def check_seat_templates(path=SEAT_FILE, today=None):
         ("held seat", good_s, good_b, fixture_area, seat0, dict(cfg, held=[seat0["slug"]]), week_doc, send),
         ("stale counts", good_s, good_b, fixture_area, seat0, cfg, week_doc, send + dt.timedelta(days=MAX_AGE + 1)),
         ("other seat named", good_s, good_b.replace(seat0["name"], other["name"]), fixture_area, seat0, cfg, week_doc, send),
-        ("a price", good_s, good_b.replace("Want its", "It is $149 a month. Want its"), fixture_area, seat0, cfg, week_doc, send),
-        ("a link", good_s, good_b.replace("judge it?", "judge it at proofnotfluff.com?"), fixture_area, seat0, cfg, week_doc, send),
+        ("a price", good_s, good_b.replace("Want the 5", "It is $149 a month. Want the 5"), fixture_area, seat0, cfg, week_doc, send),
+        ("a link", good_s, good_b.replace("look over?", "look over at proofnotfluff.com?"), fixture_area, seat0, cfg, week_doc, send),
         ("wrong subject", "Leads for you", good_b, fixture_area, seat0, cfg, week_doc, send),
         ("no area on file", good_s, good_b, "", seat0, cfg, week_doc, send),
-        ("an extra count", good_s, good_b.replace("this week,", "this week, 12 near finish,"), fixture_area, seat0, cfg, week_doc, send),
+        ("an extra count", good_s, good_b.replace("area this week,", "area this week, 12 near finish,"), fixture_area, seat0, cfg, week_doc, send),
     ]
     caught = 0
     for name, s_, b_, ca, seat, c_, w_, day in planted:
+        if (s_, b_) == (good_s, good_b) and name not in ("lead outside the seat", "held seat", "stale counts", "no area on file"):
+            probs.append(f"planted case {name!r} no longer changes the draft: update it to the template's wording")
         if seat_problems(s_, b_, "first", ld, ca, seat, c_, w_, day):
             caught += 1
         else:
             probs.append(f"planted case not caught: {name}")
+    ld4 = dict(ld, gc_company="4 Star Builders, LLC")
+    f4 = fields(ld4, seat0, wk0)
+    if seat_problems(fill(first["subject"], f4), fill(first["body"], f4), "first", ld4, fixture_area, seat0, cfg, week_doc, send):
+        probs.append("planted good draft with a digit in the builder's name fails: " + "; ".join(
+            seat_problems(fill(first["subject"], f4), fill(first["body"], f4), "first", ld4, fixture_area, seat0, cfg, week_doc, send)))
     if seat_problems(good_s, good_b, "first", ld, fixture_area, seat0, cfg, week_doc, send):
         probs.append("the planted good draft fails: " + "; ".join(seat_problems(good_s, good_b, "first", ld, fixture_area, seat0, cfg, week_doc, send)))
     probs += held_leads_problems(cfg)

@@ -509,7 +509,7 @@ def terms_text(date):
             "time from your Gumroad receipt or library; cancelling stops future charges.",
         ]
     seat = [C["seatClause"]] if C.get("seatClause") else []   # an area seat's own clause (tools/area_seats.py city_for)
-    return [
+    out = [
         f"ProofNotFluff | {PRODUCT} | Version 2, {date}",
         "License. Your membership gives you a license to use this list for one business you own, for its own sales prospecting. You may edit "
         "it and print it for that use. You may not resell, share, give away, upload or redistribute it, in original or edited form, or use it "
@@ -537,6 +537,28 @@ def terms_text(date):
         "Help and cancelling. If the file won't open or something looks wrong, reply to your Gumroad receipt and it will be fixed. Cancel any "
         "time from your Gumroad receipt or library; cancelling stops future charges.",
     ]
+    if not seat and C["key"] == "chicago" and seats_on_sale():   # the $29 list once seats are sold (Legal desk, Oct 26, fix 11)
+        out.insert(2, HELD_AREAS)
+    if seat:   # area seat Terms (Legal desk, Oct 26, 2026, fixes 1, 2 and 4): the LLC, a help route we answer, months vary
+        out[0] = out[0].replace("ProofNotFluff | ", "ProofNotFluff LLC | ", 1)
+        out[-1] = C["seatHelp"]
+        out = [x + " " + C["seatVolume"] if x.startswith("No promise of results.") else x for x in out]
+    return out
+
+
+HELD_AREAS = ("Held areas. ProofNotFluff sells area seats: one cleaning company per area of Chicago. From the Monday after a seat begins, "
+              "that area's projects leave this shared list, the free sample and the Monday email, and the product page shows which areas "
+              "are held. We tell members by email before the first Monday an area leaves. If an area you need is held, cancel any time; "
+              "write to hello@proofnotfluff.com with your Gumroad receipt within 30 days of that first Monday and we will refund that month.")
+
+
+def seats_on_sale():
+    """True once any area seat has its Gumroad checkout in site/pages.json (the offer is live)."""
+    try:
+        pages = json.load(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "site", "pages.json"), encoding="utf-8"))["pages"]
+    except (OSError, ValueError):
+        return False
+    return any(any(((x.get("areaSeats") or {}).get("checkout") or {}).values()) for x in pages)
 
 
 def terms(wb, src, list_date):

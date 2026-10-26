@@ -2213,7 +2213,8 @@ def leads_page_html(p):
     lead_near = bool(p.get("leadNear")) and n_near >= int(p.get("leadNearMin", 5))
     if lead_near:
         lede = (f'{n_near:,} big {E(p["city"])} projects have {E(p.get("nearLede", near_sub))}, so a final clean is close. You get the builder on each, '
-                f'and on all {kept:,} open apartment and commercial projects of $500,000 or more. {E(p["lede"])}')
+                f'and on all {kept:,} open apartment and commercial projects of $500,000 or more'
+                + (" in the areas no seat holder has taken" if c.get("heldAreas") else "") + f'. {E(p["lede"])}')
     else:
         lede = (f'{kept:,} open apartment and commercial projects of $500,000 or more in {E(p["city"])}, about {M(cost, True)} {"in City valuation" if p.get("costLabel") == "Valuation" else "of work"}, '
                 f'and the builders running them. {E(p["lede"])}')
@@ -2348,6 +2349,11 @@ def leads_page_html(p):
                     f'<div>{form}<small class="ld-note">We email you when the weekly list opens. Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div></div></section>')
         sbar = ""
     faq = list(p["faq"])
+    if c.get("heldAreas"):   # Legal desk, Oct 26, fix 11: the shared list says plainly which areas it leaves out
+        faq = [[q, a.replace("the weekly list covers every permit that passes the filter.",
+                             "the weekly list covers every permit that passes the filter in the areas no seat holder has taken.")] for q, a in faq]
+        faq.append(["Which areas are held?", "The area seats section on this page shows them: " + ", ".join(c["heldAreas"])
+                    + ". Their projects are not on this list."])
     if trial or monday:   # one plain answer on the two free ways in (email/M1-MONDAY.md)
         ways = ([f"The free Monday email sends 2 or 3 new jobs from the week's list on the Mondays there are new ones."] if monday else []) + (
             [f"Or start a {trial}-day free trial on Gumroad: your card goes in at checkout, nothing is charged for {trial} days, "
@@ -2388,6 +2394,11 @@ var hv=true,cv=false,link=bar.querySelector('a');
 function set(){var on=!hv&&!cv;bar.classList.toggle('on',on);bar.setAttribute('aria-hidden',String(!on));link.tabIndex=on?0:-1}
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.target===hero)hv=e.isIntersecting;else cv=e.isIntersecting});set()});
 io.observe(hero);io.observe(cta)})();</script>"""
+    if seats_block:   # the $29 sticky bar steps aside while the area seats are on screen (design director, Oct 26)
+        script = (script.replace("var hv=true,cv=false,link=bar.querySelector('a');", "var hv=true,cv=false,av=false,link=bar.querySelector('a'),seats=document.getElementById('areas');")
+                  .replace("var on=!hv&&!cv;", "var on=!hv&&!cv&&!av;")
+                  .replace("if(e.target===hero)hv=e.isIntersecting;else cv=e.isIntersecting", "if(e.target===hero)hv=e.isIntersecting;else if(e.target===seats)av=e.isIntersecting;else cv=e.isIntersecting")
+                  .replace("io.observe(hero);io.observe(cta)})", "io.observe(hero);io.observe(cta);if(seats)io.observe(seats)})"))
     prod = next((x for x in store_products() if x["key"] == p["slug"]), None)
     ld = ld_tags({"@context": "https://schema.org", "@type": "FAQPage",
                   "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]},
@@ -2442,6 +2453,9 @@ def otp_bar(body):
     if 'id="seat"' in body:   # the pest seat sits after the sample
         at = next((i for i, (s, _) in enumerate(links) if s == "sample"), -1)
         links.insert(at + 1, ("seat", "Pest seat"))
+    if 'id="areas"' in body:   # the area seats offer (tools/area_site.py) sits after the sample, before How to use it
+        at = next((i for i, (s, _) in enumerate(links) if s.startswith("s-how")), len(links))
+        links.insert(at, ("areas", "Area seats"))
     if 'id="ldCta"' in body:
         links.insert(len(links) - (1 if links and links[-1][1] == "FAQ" else 0), ("ldCta", "Pricing"))
     if len(links) < 3:

@@ -19,6 +19,7 @@ Our scout already finds public-data ideas; the reviewers kill most of them for a
 | R6 | Channels that reach our buyers besides cold email | Schema F, channels | research_notes/kimi-2026-10-26-r6.md |
 | R7 | Our live $149 offers from the buyer's chair, against rival offers to the same trades | its own schema, in the prompt | offer changes proposed to Todd |
 | R8 | First traffic for a new site: indexing, $0 listings, news hooks, proven cases, AI answers | its own schema, in the prompt | traffic moves proposed to Todd |
+| R9 | A bid writer for post-construction cleaners: what they use to bid, rivals, permit-based bids, pricing units | its own schema, in the prompt | build, test or drop, proposed to Todd |
 
 Repeat R3 and R4 every two weeks with a new Focus line (another metro, another record type). R5 runs after the scorer ranks the new candidates.
 
@@ -388,6 +389,66 @@ Then one fenced json block:
  "cases": [{"site": "", "url": "the post that states the numbers", "date": "", "built": "what the site is", "firstMoves": "what they did first, as stated", "numbers": "traffic or growth as stated", "label": "OBSERVED"}],
  "aiAnswers": [{"finding": "one line", "sample": null, "url": "", "date": ""}],
  "plan30": [{"rank": 1, "moveId": "m1", "week": 1, "why": "two sentences", "costDollars": 0}]}
+```
+Every example value above is a placeholder. Replace it or use null.
+````
+
+## R9, a bid writer for post-construction cleaners (Todd, Oct 27, 6:29 am: "Test it with Kimi first")
+
+Why: Todd asked about an AI CRM for the trades (6:19 am). The session's read: a CRM is the most crowded corner (Jobber, Housecall Pro, GorillaDesk, ZenMaid, Swept, all priced $19 to $329 a month); the open job is pricing and writing the bid for a big final clean, where we already hold the project, builder, size signal and stage. Intake as above: `kimi_intake.py read` keeps `tools` as the list to check and saves `permitBids`, `pricing`, `demand` and `verdict` beside it. A build, a page or a price is Todd's call.
+
+````
+Round: R9, a bid writer for post-construction cleaning companies. Everything you need is in this message; an attached brief is a backup only.
+
+WHO WE ARE
+ProofNotFluff LLC, Chicago. One owner, no staff, run with AI agents. Faceless: the brand sells, never the founder, so nothing may need the founder on calls, demos, video or at events. Site proofnotfluff.com: about 50 free pricing calculators for service businesses (including a cleaning price per square foot calculator) and weekly lists built from City of Chicago building permits. Every week we hold each big Chicago project (apartment and commercial permits of $500,000 or more): the address, the general contractor, the reported cost, the work type and the stage (most are at city inspections, a few at partial occupancy). We also sell one-company-per-area lead seats to cleaning companies at $149 a month. 0 paying customers so far.
+
+THE IDEA TO TEST
+A self-serve web tool for post-construction (and commercial) cleaning companies. The owner picks a project (from our permit data or typed in), enters the size and their own costs (labor rate, crew size, supplies, travel), and gets a priced bid for the rough, final and touch-up cleans plus a one-page proposal to send the general contractor. Every number comes from the owner's inputs or a public record; the tool never claims to know what rivals charge. Planned price: free to try, about $19 to $49 a month to save and send. Sold by search and our own pages, never by demos or sales calls.
+
+THE QUESTION
+Would small post-construction and commercial cleaning companies pay for this, what do they use today to price and write bids, and is anyone already doing it, especially with permit data?
+
+HOW TO WORK
+1. Find 8 to 12 tools that help cleaning companies price or write bids: commercial cleaning bidding and estimating software (for example CleanGuru and its CleanBid tool, and its rivals), proposal tools sold to cleaners, field service platforms with a bidding feature (Jobber, Housecall Pro, Swept, Janitorial Manager), and any tool that prices post-construction cleaning. Open each one's own pricing or product page and record what it states: price and unit, who it is for, whether it prices post-construction cleaning, whether it writes a proposal, any AI feature, any use of permit or project data, a free tier or trial, and proof shown (customer count, years). Write null when not stated.
+2. For the ones with stated traction, find how they get customers (search pages that rank, app marketplaces, associations, partners, ads, sales calls) from their own pages.
+3. Find anyone that turns building permits or construction project data into bids or quotes for cleaners or other trades. Open their page and record the price.
+4. How is post-construction cleaning priced? From cleaning company pages, trade association pages or published guides (not forums), record the pricing units and ranges stated (per square foot, per phase, per unit, hourly) with the date, and the phases commonly named.
+5. Demand you can count: the number of results or listings in a software directory category for cleaning bid or estimating software, the number of reviews on a bidding tool's own page, a stated user count. Count only what a page states.
+6. Verdict: does this idea have a real gap, a free substitute, or a stronger rival? Name the cheapest test inside our limits (a page and a waitlist, no ads, no spend, no forum posts) and the pass mark that would mean build it within 21 days.
+
+EVIDENCE RULES
+- Open every page you cite. Cite seller, pricing, product, association and guide pages. Do not cite or quote review sites, Reddit or forums this round.
+- Every source is {"url": "...", "date": "YYYY-MM-DD"}: the date posted, or for a live page the day you read it.
+- Quotes are 15 words or fewer, copied exactly. No person's name, email, phone or username, ever.
+- Label every claim OBSERVED (a page states it) or INFERRED (your reasoning).
+- Read only. Do not sign up, start a trial, request a demo, fill a form or message anyone.
+- Honest beats hopeful. If cleaners already get this free, or will not pay for a bid tool, say so plainly.
+- Plain words, no em or en dashes. Valid JSON: double quotes, no trailing commas, no comments. Prices and counts are bare numbers (49, 1200), never in quotes like "$49" or "1,200".
+
+REPLY IN EXACTLY THIS SHAPE
+
+R9 | DATE: (today) | PAGES OPENED: n | BLOCKED: sites that refused you
+
+SUMMARY: five plain sentences: what cleaners use today to bid, the closest rival and its price, whether anyone uses permit data, your verdict, and the test you would run.
+
+Then one fenced json block:
+```json
+{"round": "R9",
+ "tools": [
+  {"id": "t1", "name": "", "url": "the tool's own pricing or product page", "date": "",
+   "for": "residential cleaning|commercial cleaning|post-construction cleaning|all field service|other",
+   "price": null, "priceUnit": "month|user per month|one time|null", "freeTier": "as stated, or null",
+   "pricesPostConstruction": null, "writesProposal": null, "ai": "the AI feature as stated, or null", "usesProjectData": "as stated, or null",
+   "proof": "customer count, years or review count as stated, or null",
+   "acquisition": "how it gets customers, as its pages show it, labeled OBSERVED or INFERRED",
+   "evidence": [{"url": "", "date": "", "quote": "15 words or fewer", "label": "OBSERVED"}],
+   "beatsUsOn": "one line, INFERRED"}],
+ "permitBids": [{"name": "", "url": "", "date": "", "what": "as stated", "price": null, "priceUnit": "", "label": "OBSERVED"}],
+ "pricing": [{"unit": "per square foot|per phase|per unit|hourly|other", "range": "as stated", "phases": "as stated, or null", "url": "", "date": "", "label": "OBSERVED"}],
+ "demand": [{"what": "the count and what it counts", "number": null, "url": "", "date": "", "label": "OBSERVED"}],
+ "verdict": {"call": "build|test|drop", "why": "three sentences", "freeSubstitute": "the free way cleaners do this today, or null", "strongestRival": "t1",
+             "test": "the cheapest test inside our limits", "passMark": "the number in 21 days that means build", "confidence": "high|medium|low"}}
 ```
 Every example value above is a placeholder. Replace it or use null.
 ````

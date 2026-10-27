@@ -29,8 +29,8 @@ WORK = os.path.join(ROOT, "data", "work", "kimi")
 CAND = osc.CAND
 LAUNCHES = os.path.join(ROOT, "launches")
 OPP_JSON = osc.OUT_JSON
-ROUNDS = ("R0", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8")
-LIST_KEY = {"R0": "buyers", "R1": "pains", "R2": "products", "R3": "ideas", "R4": "ideas", "R5": "verdicts", "R6": "channels", "R7": "rivals", "R8": "moves"}
+ROUNDS = ("R0", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9")
+LIST_KEY = {"R0": "buyers", "R1": "pains", "R2": "products", "R3": "ideas", "R4": "ideas", "R5": "verdicts", "R6": "channels", "R7": "rivals", "R8": "moves", "R9": "tools"}
 QUOTE_MAX = 15
 EMAIL = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]+")
 PHONE = re.compile(r"(?<!\d)(\+?1[\s.-]?)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}(?!\d)")
@@ -177,7 +177,7 @@ def cmd_read(path, date):
     for e in errs:
         print(f"FAIL parse: {e}")
     if not blocks:
-        print("FAIL parse: no fenced JSON block with a round R0 to R8 found; ask Kimi to resend the JSON block only")
+        print("FAIL parse: no fenced JSON block with a round R0 to R9 found; ask Kimi to resend the JSON block only")
         return 1
     os.makedirs(day_dir(date), exist_ok=True)
     allurls = {}
@@ -191,6 +191,11 @@ def cmd_read(path, date):
             for w in warns:
                 print(f"WARN {rnd} {label}: {w}")
             if key == "rivals" and isinstance(it.get("price"), str):
+                num = re.sub(r"[$,\s]", "", it["price"])
+                val = it["price"]
+                it["price"] = float(num) if re.fullmatch(r"\d+(\.\d+)?", num) else None
+                print(f"WARN {rnd} {label}: price {val!r} read as {it['price']}")
+            if key == "tools" and isinstance(it.get("price"), str):
                 num = re.sub(r"[$,\s]", "", it["price"])
                 val = it["price"]
                 it["price"] = float(num) if re.fullmatch(r"\d+(\.\d+)?", num) else None
@@ -235,7 +240,8 @@ def cmd_read(path, date):
         out = os.path.join(day_dir(date), f"{rnd}.json")
         extra = ({"gaps": clean(b.get("gaps") or [])[0]} if rnd == "R2" else
                  {"ours": clean(b.get("ours") or [])[0], "top5": clean(b.get("top5") or [])[0]} if rnd == "R7" else
-                 {k: clean(b.get(k) or [])[0] for k in ("indexing", "cases", "aiAnswers", "plan30")} if rnd == "R8" else {})
+                 {k: clean(b.get(k) or [])[0] for k in ("indexing", "cases", "aiAnswers", "plan30")} if rnd == "R8" else
+                 {k: clean(b.get(k) or ([] if k != "verdict" else {}))[0] for k in ("permitBids", "pricing", "demand", "verdict")} if rnd == "R9" else {})
         json.dump({"round": rnd, "readAt": date, key: kept, **extra}, open(out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
         for u in urls_in(extra):
             allurls.setdefault(u, []).append(f"{rnd}:{'gaps' if rnd == 'R2' else 'ours' if rnd == 'R7' else 'extra'}")
@@ -444,8 +450,11 @@ def selftest():
         r8 = json.dumps({"round": "R8", "indexing": [{"issue": "thin \u2014 pages", "source": {"url": "https://example.org/r8i", "date": "2026-10-26"}}],
                          "moves": [{"id": "m1", "name": "x", "url": "https://example.org/r8m", "cost": "$0", "audience": "1,200"}],
                          "cases": [{"site": "x", "url": "https://example.org/r8c", "date": "2026-01-01"}], "aiAnswers": [], "plan30": [{"rank": 1, "moveId": "m1"}]})
+        r9 = json.dumps({"round": "R9", "tools": [{"id": "t1", "name": "x", "url": "https://example.org/r9t", "price": "$1,250"}],
+                         "permitBids": [{"name": "p", "url": "https://example.org/r9p"}], "pricing": [{"unit": "per square foot", "range": "a \u2014 b", "url": "https://example.org/r9u"}],
+                         "demand": [], "verdict": {"call": "test", "why": "x"}})
         reply = (f"R3 | DATE: 2026-10-25\nSUMMARY: x\n```json\n{r3}\n```\n\n```json\n{r1}\n```\n\n```json\n{{not json\n```\n"
-                 f"```json\n{r2}\n```\n```json\n{r0}\n```\n```json\n{r6}\n```\n```json\n{r7}\n```\n```json\n{r8}\n```\n")
+                 f"```json\n{r2}\n```\n```json\n{r0}\n```\n```json\n{r6}\n```\n```json\n{r7}\n```\n```json\n{r8}\n```\n```json\n{r9}\n```\n")
         rp = os.path.join(tmp, "reply.txt")
         open(rp, "w").write(reply)
         import io, contextlib
@@ -487,6 +496,12 @@ def selftest():
              and r8s.get("plan30") and "\u2014" not in json.dumps(r8s["indexing"], ensure_ascii=False)
              and all(u in urls8 for u in ("https://example.org/r8i", "https://example.org/r8m", "https://example.org/r8c")),
              "R8 moves are read, quoted cost and audience are numbers, the extras are kept and cleaned, and every url is listed")
+        r9s = json.load(open(os.path.join(WORK, "2026-10-25", "R9.json")))
+        urls9 = open(os.path.join(WORK, "2026-10-25", "urls.txt")).read()
+        want("OK R9: 1 of 1 kept" in out and r9s["tools"][0]["price"] == 1250.0 and r9s["verdict"].get("call") == "test"
+             and "\u2014" not in json.dumps(r9s["pricing"], ensure_ascii=False)
+             and all(u in urls9 for u in ("https://example.org/r9t", "https://example.org/r9p", "https://example.org/r9u")),
+             "R9 tools are read, a quoted price is a number, the extras and verdict are kept and cleaned, and every url is listed")
         want("OK R0: 1 of 1 kept" in out and "https://example.org/r0" in open(os.path.join(WORK, "2026-10-25", "urls.txt")).read(), "R0 is read and its urls listed")
         raw3 = json.dumps(saved_r3, ensure_ascii=False)
         want("owner@example.com" not in raw3 and "555-0142" not in raw3 and "cleanpro99" not in raw3, "no email, phone or username is saved")

@@ -40,3 +40,8 @@
 - "Get it live" is Todd's yes to the rat tracker with all 77 community areas, Edison Park included (scoreboard rat-page-edison-park): the legal scan's personal-detail flag on that one area name is cleared for this page only. The page says nothing about any person.
 - "The other items you suggest": free templates given for an email signup (new page type and email capture, built through every gate; the Kit form is Todd's step), and the seasonal calculators and weekly rat numbers in the daily carousels. A news tip to a reporter was asked, not suggested: it waits for his answer.
 - Kimi R8 (traffic) written: coo/KIMI_RESEARCH.md.
+
+## Software idea, Oct 27, 6:19 to 6:29 am (Kimi research chat)
+- [stated] Todd, 6:19 am: "What if instead of selling just lead lists we build an AI powered CRM tool for the trades?"
+- [stated] Todd, 6:29 am: "Test it with Kimi first" (to the narrower idea: a bid writer for post-construction cleaners that prices one job from the owner's own costs and public project data, not a CRM and not market-rate pricing).
+- So: Kimi R9 written (coo/KIMI_RESEARCH.md). Nothing built.

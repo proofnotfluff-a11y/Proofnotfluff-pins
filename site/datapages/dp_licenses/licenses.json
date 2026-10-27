@@ -11,23 +11,40 @@
  "faq": [
   [
    "Does a license from a suburb count in Chicago?",
-   "None of the City pages we read says a suburb's license counts in Chicago. For plumbing, the City says a State registered contractor also needs a City plumbing contractor license. Roofers hold one State license, and a Chicago roof permit still needs a City licensed general contractor. Check with the agency named in your trade's section."
+   "None of the City pages we read says a suburb's license counts in Chicago. For plumbing, the City says a State registered contractor also needs a City plumbing contractor license. Roofers hold one State license, and a Chicago roof permit still needs a City licensed general contractor.",
+   [
+    "gc",
+    "bacp_table"
+   ]
   ],
   [
    "Which general contractor class do I need?",
-   "The Department of Buildings sets the class by the largest single project value and the demolition allowed: Class E up to $500,000 with no demolition, D up to $2 million and C up to $5 million with ordinary demolition, B up to $10 million and A with no limit, both with ordinary or complex demolition. The picker on this page gives the smallest class that covers both. Check with the Department of Buildings before you apply."
+   "The Department of Buildings sets the class by the largest single project value and the demolition allowed: Class E up to $500,000 with no demolition, D up to $2 million and C up to $5 million with ordinary demolition, B up to $10 million and A with no limit, both with ordinary or complex demolition. The picker on this page gives the smallest class that covers both.",
+   [
+    "gc"
+   ]
   ],
   [
    "Does Chicago have an HVAC license?",
-   "No City page we read names a separate HVAC license. Permitted HVAC work needs a City general contractor license, Class A to E, and home heating and cooling work without a permit falls under the City home repair license. Refrigerant work needs EPA Section 608 certification."
+   "No City page we read names a separate HVAC license. Permitted HVAC work needs a City general contractor license, Class A to E, and home heating and cooling work without a permit falls under the City home repair license. Refrigerant work needs EPA Section 608 certification.",
+   [
+    "mech",
+    "epa608"
+   ]
   ],
   [
    "Does the surface cleaning permit cover pressure washing?",
-   "The Chicago Department of Public Health permit names sandblasting, grinding and chemical washing. The City pages we read do not mention power or pressure washing, so check with the Chicago Department of Public Health before a job."
+   "The Chicago Department of Public Health permit names sandblasting, grinding and chemical washing. The City pages we read do not mention power or pressure washing.",
+   [
+    "sandblast"
+   ]
   ],
   [
    "How current is this page?",
-   "Every line was read on its agency page on Oct 27, 2026, and each shows that date. Fees and rules change. BACP has posted a business license fee update dated Jan 27, 2026 that we could not open, so the City business license fees shown here may be out of date; the agency is the one that counts."
+   "Every line was read on its agency page on Oct 27, 2026, and each shows that date. Fees and rules change. BACP has posted a business license fee update dated Jan 27, 2026 that we could not open, so the City business license fees shown here may be out of date.",
+   [
+    "bacp_table"
+   ]
   ]
  ],
  "gc": {
@@ -1688,7 +1705,7 @@
    "name": "Pressure washing and surface cleaning",
    "h1": "Chicago pressure washing and surface cleaning rules",
    "title": "Chicago Pressure Washing and Surface Cleaning Rules",
-   "desc": "Chicago's Public Health permit for sandblasting, grinding and chemical washing, its fee, what the City says about pressure washing, and EPA lead rules.",
+   "desc": "Chicago's Public Health permit for sandblasting, grinding and chemical washing, its fee, what the City pages say about pressure washing, and EPA lead rules.",
    "card": "City permit for sandblasting, grinding and chemical washing",
    "summary": "The City's surface cleaning permit covers sandblasting, grinding and chemical washing. The City pages we read do not mention power or pressure washing.",
    "page_summary": "Chicago's Department of Public Health permits sandblasting, grinding and chemical washing of building surfaces. Here is that permit, its fee, what the pages say and do not say about pressure washing, and the lead rules.",
@@ -1797,7 +1814,7 @@
     {
      "topic": "federal",
      "src": "epa_pw",
-     "text": "EPA says pressure washing is allowed under its lead-safe (RRP) rule but follows the same containment rules, so no dust or debris, including in waste water, leaves the work area, and points to the local water treatment authority for disposing of waste water.",
+     "text": "EPA says pressure washing is not a prohibited practice under its lead-safe (RRP) rule and is subject to the same containment requirements, so no dust or debris, including in the waste water, leaves the work area. EPA points to the local water treatment authority about disposing of waste water.",
      "figures": []
     }
    ],
@@ -1814,7 +1831,7 @@
    "desc": "What a Chicago snow plowing or shoveling business needs: what BACP says about the City license, the City sidewalk clearing rules and fines, from agency pages.",
    "card": "City business license, City sidewalk rules",
    "summary": "No City or State page we read names a snow removal license. The City sidewalk rules set the path width and clearing times.",
-   "page_summary": "Snow plowing and shoveling have no license of their own on the City or State pages we read. Here is what the City says about a business license, and the City sidewalk rules every job follows.",
+   "page_summary": "Snow plowing and shoveling have no license of their own on the City or State pages we read. Here is what the City says about a business license, and the City sidewalk snow rules for property owners.",
    "check": [
     "bacp_table",
     "snow_cdot"

@@ -203,15 +203,27 @@ def bids_block(E, M, src, rel_short=False):
             + (f' Links checked {E(checked)}.' if checked else "") + '</p>')
 
 
-def reading_notes():
-    return ('<ul class="cc-read">'
-            '<li><b>Awards, not open bids</b>These are contracts the City has already approved. To bid on new work, use the City\'s bid lists on this page.</li>'
-            '<li><b>Award totals are not unit prices</b>An award is the most the City may spend over the whole contract, often years and many sites or items. It does not say what one job or one hour pays.</li>'
-            '<li><b>$0 means orders as needed</b>The City lists some blanket contracts at $0. The City orders as it needs, and no amount is promised. They are counted, but not in totals or medians.</li>'
-            '<li><b>Changes are counted separately</b>The first entry for a contract is the award. Later changes (more money, less money, more time) are shown on their own. Money taken out shows as a negative amount and is never subtracted from award totals.</li>'
-            '<li><b>End dates are mostly on blanket contracts</b>The City records end dates mostly on blanket contracts (repeat purchases). Many standard contracts, such as most construction, end when the work is accepted, so they do not show as ending.</li>'
-            '<li><b>Sorted by the contract\'s own words</b>A contract joins a trade when its description uses that trade\'s words. One contract can count in two trades, and work described in other words is missed.</li>'
-            '</ul>')
+def flags(trades):
+    """What the shown rows hold, so each note explains only what a visitor can see."""
+    rows = [r for t in trades for r in t["rows"]]
+    ends = [e for t in trades for e in t["ending"]]
+    return {"awards": any(r[1] == 0 for r in rows), "zero": any(r[1] == 0 and r[5] == 0 for r in rows) or any(e["requirements"] and e["value"] == 0 for e in ends),
+            "neg": any(r[5] < 0 for r in rows), "changes": any(r[1] > 0 for r in rows),
+            "withheld": any(r[4] == "Name withheld" for r in rows) or any(e["vendor"] == "Name withheld" for e in ends)}
+
+
+def reading_notes(f):
+    li = ['<li><b>Awards, not open bids</b>These are contracts the City has already approved. To bid on new work, use the City\'s bid lists on this page.</li>']
+    if f["awards"] or f["changes"]:
+        li.append('<li><b>Award totals are not unit prices</b>An award is the most the City may spend over the whole contract, often years and many sites or items. It does not say what one job or one hour pays.</li>')
+    if f["zero"]:
+        li.append('<li><b>$0 means orders as needed</b>The City lists some blanket contracts at $0. The City orders as it needs, and no amount is promised. They are counted, but not in totals or medians.</li>')
+    if f["changes"]:
+        li.append('<li><b>Changes are counted separately</b>The first entry for a contract is the award. Later changes (more money, less money, more time) are shown on their own'
+                  + (' and are never counted in award totals. Money taken out shows as a negative amount.</li>' if f["neg"] else ' and are never counted in award totals.</li>'))
+    li.append('<li><b>End dates are mostly on blanket contracts</b>The City records end dates mostly on blanket contracts (repeat purchases). Many standard contracts, such as most construction, end when the work is accepted, so they do not show as ending.</li>')
+    li.append('<li><b>Sorted by the contract\'s own words</b>A contract joins a trade when its description uses that trade\'s words. One contract can count in two trades, and work described in other words is missed.</li>')
+    return '<ul class="cc-read">' + "".join(li) + '</ul>'
 
 
 def trade_map(E, d, data_mod):
@@ -226,12 +238,13 @@ def trade_map(E, d, data_mod):
             'elevators from HVAC, holiday trees and tree inventories from landscaping). Contracts only for inspection or construction supervision are left out too.</p></details>')
 
 
-def footer(E, M, rel, d):
+def footer(E, M, rel, d, trades=None):
     s = d["source"]
+    wh_clause = "; a name that does not read as a business shows as Name withheld" if flags(trades or d["trades"])["withheld"] else ""
     return (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             f'<p>Source: City of Chicago Data Portal, <a href="{E(s["url"])}">Contracts dataset ({E(s["dataset"])})</a>, contracts the City has awarded since 1993 and the changes to them, '
             f'last updated by the City {E(M.nice_date(s["rowsUpdatedAt"]))}, read by us {E(M.nice_date(s["fetchedAt"]))}. We keep the awards and changes approved in the last 36 months and the contracts ending in the next 12, '
-            'sort them into trades by the words in their descriptions, and drop every vendor address. Vendor names are business names as the City lists them; a name that does not read as a business shows as Name withheld. </p>'
+            f'sort them into trades by the words in their descriptions, and drop every vendor address. Vendor names are business names as the City lists them{wh_clause}. </p>'
             f'<p>{E(M.CITY_DISCLAIMER["Chicago"])}</p><p>ProofNotFluff is not affiliated with or endorsed by the City of Chicago.</p>'
             '<p>Public information, not legal, tax or financial advice. Before you bid, check the solicitation and its rules with the City\'s Department of Procurement Services.</p>'
             '<p>Made by ProofNotFluff with AI assistance from public City data. The page counts visits with Cloudflare Web Analytics, which sets no cookies.</p></div></footer>\n</body></html>')
@@ -309,8 +322,9 @@ def page_html(p):
     d, src = load(p)
     robots = "" if M.is_live(p) else '<meta name="robots" content="noindex, nofollow">'
     crumb, crumb_ld = M.crumbs(rel, [("Home", ""), (p["h1"], None)])
+    faqs = [q for q in p["faq"] if (d and flags(d["trades"])["zero"]) or "$0" not in q[0]]
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
-              "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}
+              "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faqs]}
     if not d:
         return (head(M, E, p, url, rel, p["title"], p["desc"], M.ld_tags(crumb_ld), '<meta name="robots" content="noindex, nofollow">')
                 + f'{crumb}<div class="ld-hero"><h1>{E(p["h1"])}</h1><p class="lede">The first daily pull is on its way.</p></div></main></body></html>')
@@ -373,12 +387,12 @@ def page_html(p):
             + otp([("trades", "Trades"), ("ending", "Ending soon"), ("all", "All trades"), ("bids", "Open bids"), ("faq", "Questions")])
             + f'<section class="block" id="trades"><h2>Pick your trade</h2><p>Each trade has its own page with every award, change and ending contract, and a CSV to download.</p>{cards}</section>'
             f'<section class="block" id="ending"><h2>Contracts ending soonest</h2><p>When a City contract ends, the City may bid the work again. These end next.</p>{end_html}</section>'
-            f'<section class="block" id="all"><h2>Every trade at a glance</h2><details class="cc-sumd" open><summary>Compare all 12 trades side by side</summary>{summ}</details><p class="asof">Totals and medians use new awards with a dollar amount. Changes to contracts are on each trade\'s page.</p></section>'
+            f'<section class="block" id="all"><h2>Every trade at a glance</h2><details class="cc-sumd" open><summary>Compare all 12 trades side by side</summary>{summ}</details><p class="asof">Totals and medians use new awards only. Changes to contracts are on each trade\'s page.</p></section>'
             f'<section class="block" id="bids"><h2>Where open bids are</h2><p>This page shows awards. Open City bids live on the City\'s own lists.</p>{bids_block(E, M, src)}</section>'
-            f'<section class="block" id="read"><h2>How to read these numbers</h2>{reading_notes()}</section>'
+            f'<section class="block" id="read"><h2>How to read these numbers</h2>{reading_notes(flags(T))}</section>'
             f'<section class="block" id="map"><h2>The trade map</h2><p>How a contract is placed in a trade, word for word.</p>{trade_map(E, d, DD)}</section>'
             '<section class="block"><h2>How this page is made</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"]) + '</section>'
-            f'<div id="faq">{M.faq_block(p["faq"])}</div>'
+            f'<div id="faq">{M.faq_block(faqs)}</div>'
             '<div class="cc-act"><a class="btn" href="#trades">Pick your trade</a><a class="st-btn2" href="' + E(FALLBACK["eproc"]) + '" rel="noopener">See open City bids</a></div>')
     return head(M, E, p, url, rel, p["title"], p["desc"], M.ld_tags(crumb_ld, faq_ld, ds), robots) + body + footer(E, M, rel, d)
 
@@ -410,11 +424,14 @@ def trade_csv(d, t):
         wtr.writerow([safe(x) for x in [kind, r["approved"], r["end"], clean(r["description"]), r["department"], r["vendor"], f'{r["amount"]:.2f}',
                                          r["contractType"], r["procurementType"], r["spec"], r["contract"], max(r["revision"], 0), r["pdf"]]])
     s = d["source"]
+    fl = flags([t])
     wtr.writerow([])
     wtr.writerow([safe(f'Source: City of Chicago Data Portal, Contracts ({s["dataset"]}), {s["url"]}, read {s["fetchedAt"][:10]}. '
                        f'Awards and changes approved {d["window"]["from36"]} to {d["window"]["today"]}, and contracts whose latest end date falls from {d["window"]["today"]} to {d["window"]["endTo"]}, both days included. '
-                       'An award of 0 on a blanket contract means the City orders as needed and promises no amount. Negative amounts are changes that took money out. '
-                       'Award totals are not unit prices. Vendor addresses are not included; "Name withheld" marks a vendor name that does not read as a business.')])
+                       + ('An award of 0 on a blanket contract means the City orders as needed and promises no amount. ' if fl["zero"] else '')
+                       + ('Negative amounts are changes that took money out. ' if fl["neg"] else '')
+                       + ('Award totals are not unit prices. ' if fl["awards"] or fl["changes"] else '') + 'Vendor addresses are not included'
+                       + ('; "Name withheld" marks a vendor name that does not read as a business.' if fl["withheld"] else '.'))])
     wtr.writerow([safe(f'Trade words: {"; ".join(next(x for x in __import__("dp_contracts_data").TRADES if x["key"] == t["key"])["words"])}. '
                        'Purchases of goods, fleet upkeep, design and engineering, software, art, grants, leases, redevelopment deals, deals with other public bodies and airline-run airport terminal projects are left out.')])
     import make_site as M
@@ -448,7 +465,7 @@ def trade_page(p, d, src, t):
     moved = [r for r in rows if r["revision"] < 0]
     n_end = len(t["ending"])
     first = ((f'{plural(a36["awards"], "new City award")} matched {low(t)} in the last 36 months'
-              + (f', worth {usd_short(a36["total"])} in all' if a36["total"] else "")) if a36["awards"] else f'No new City award matched {low(t)} in the last 36 months')
+              + (f', worth {usd_short(a36["total"])}' + (" in all" if a36["paid"] > 1 else "") if a36["total"] else "")) if a36["awards"] else f'No new City award matched {low(t)} in the last 36 months')
     if not a36["awards"] and not n_end:
         lede = first + ', and no contract in this trade ends in the next 12 months.'
     else:
@@ -465,9 +482,9 @@ def trade_page(p, d, src, t):
              f'<div class="tile"><div class="lab">New awards, 36 months</div><div class="val">{a36["awards"]:,}</div><div class="sub">'
              + ((f'{E(usd_short(a36["total"]))}, median {E(usd_short(a36["median"]))}' if a36["paid"] > 1 else E(usd_short(a36["total"]))) if a36["median"] else ("none in 36 months" if not a36["awards"] else "no dollar total")) + '</div></div>'
              f'<div class="tile"><div class="lab">Changes, 36 months</div><div class="val">{a36["mods"]:,}</div><div class="sub">'
-             + (f'{E(usd_short(a36["modsUpTotal"]))} added' if a36["modsUpTotal"] else ("none in 36 months" if not a36["mods"] else ("no money changed" if not a36["modsDown"] else "no money added")))
+             + (f'{E(usd_short(a36["modsUpTotal"]))} added' if a36["modsUpTotal"] else ("none in 36 months" if not a36["mods"] else ("no money change" if not a36["modsDown"] else "no money added")))
              + (f', {E(usd_short(-a36["modsDownTotal"]))} taken out' if a36["modsDownTotal"] else "") + '</div></div></div>'
-             f'<p class="asof">City data as of {E(M.nice_date(s["rowsUpdatedAt"]))}. Totals and medians use new awards with a dollar amount; award totals are not unit prices.</p>')
+             f'<p class="asof">City data as of {E(M.nice_date(s["rowsUpdatedAt"]))}.' + (' Totals and medians use new awards only; award totals are not unit prices.' if a36["awards"] else '') + '</p>')
     erows = [f'<tr>{td(E(M.nice_date(e["end"])), "Ends", cls="dt")}'
              f'<td class="d" data-l="Covers">{E(clean(e["description"]))}<span class="cc-sub">{dept(E, e["department"])} · <span class="nw">contract {E(e["contract"])}</span>'
              + (f' · <span class="nw">spec {E(e["spec"])}</span>' if e["spec"] else "") + '</span></td>'
@@ -476,12 +493,12 @@ def trade_page(p, d, src, t):
              for e in t["ending"]]
     th_end = [("Ends", False), ("What it covers", False), ("Vendor", False), ("Value so far", True), ("First approved", False), ("Contract", False)]
     end_html = (table(f'{t["name"]} contracts ending in the next 12 months', th_end, erows[:5])
-                + (f'<details class="cc-more"><summary>Show the other {len(erows) - 5} ending</summary>'
+                + (f'<details class="cc-more"><summary>Show the other {len(erows) - 5} ending contracts</summary>'
                    + table(f'More {low(t)} contracts ending in the next 12 months', th_end, erows[5:]) + '</details>' if len(erows) > 5 else "")
                 + '<p class="asof">Sorted by the latest end date on the contract, after any time extensions. Value so far adds up the award and every change since. '
                   + (' A $0 value is a contract the City orders from as needed.' if any(e["requirements"] and e["value"] == 0 for e in t["ending"]) else '') + wh(t["ending"]) + '</p>') if erows else (
         f'<p class="cc-empty">No City contract that matched {E(low(t))} has an end date in the next 12 months. Many standard contracts, such as most construction, '
-        'end when the work is accepted, so they never show as ending.</p>')
+        'end when the work is accepted, so they do not show as ending.</p>')
     SHOW = 25
     nrow = lambda r: (f'<tr>{td(E(M.nice_date(r["approved"])), "Approved", cls="dt")}'
                       f'<td class="d" data-l="Covers">{E(clean(r["description"]))}<span class="cc-sub">{dept(E, r["department"])}</span></td>'
@@ -519,7 +536,7 @@ def trade_page(p, d, src, t):
                   [f'<tr><th scope="row">{E(v["name"])}</th>' + td(f'{v["n"]:,}', "New awards", True) + td(E(usd(v["total"])), "Total", True) + '</tr>' for v in t["topVendors"]])
             + '<p class="asof">Ranked by the dollar total of new awards in 36 months. Business names as the City lists them; one firm can appear under more than one spelling.'
             + (' A vendor shown as Name withheld is left out of this ranking.' if any(r["vendor"] == "Name withheld" for r in new) else "") + '</p>'
-            ) if t["topVendors"] else '<p class="cc-empty">No vendor won a new award with a dollar amount in this trade in the last 36 months.</p>'
+            ) if t["topVendors"] else '<p class="cc-empty">No vendor won a new award in this trade in the last 36 months.</p>'
     others = "".join(f'<li><a href="../{E(x["key"])}/"{" aria-current=page" if x["key"] == t["key"] else ""}>{E(x["short"])}</a></li>' for x in d["trades"])
     words = "; ".join(t["words"])
     ds = {"@context": "https://schema.org", "@type": "Dataset", "name": h1, "url": url, "description": desc, "isBasedOn": s["url"],
@@ -528,8 +545,8 @@ def trade_page(p, d, src, t):
     empty = not new and not mods and not t["ending"]
     zero_html = (f'<section class="block" id="none"><h2>No {E(low(t))} contracts in 36 months</h2><p class="cc-empty">No City contract matched {E(low(t))} from '
                  f'{E(M.nice_date(w["from36"]))} to {E(M.nice_date(w["today"]))}, and none ends in the next 12 months. Many standard contracts, such as most construction, '
-                 'end when the work is accepted, so they never show as ending.</p>'
-                 f'<ul class="cc-chips">{others}</ul></section>')
+                 'end when the work is accepted, so they do not show as ending.</p>'
+                 f'<p>Check another trade:</p><ul class="cc-chips">{others}</ul></section>')
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow"><span class="cc-pre">Free tracker of City awards · </span><span class="nw">{E(t["short"])}</span></p><h1>{E(h1)}</h1><p class="lede">{E(lede)}</p>'
             + (f'<div class="ld-heroact cc-act cc-hact"><a class="btn" href="#ending">See ending contracts</a><a class="st-btn2" href="{E(csv_name(t))}" download>Download the CSV</a></div></div>'
                if t["ending"] else f'<div class="ld-heroact cc-act cc-hact"><a class="btn" href="#bids">See open City bids</a><a class="st-btn2" href="{E(csv_name(t))}" download>Download the CSV</a></div></div>')
@@ -543,11 +560,11 @@ def trade_page(p, d, src, t):
             + f'<section class="block" id="bids"><h2>Where open bids are</h2>{bids_block(E, M, src)}</section>'
             f'<section class="block" id="words"><h2>What counts as {E(low(t))}</h2><p>A City contract joins this trade when its description uses any of these words: {E(words)}. '
             f'Purchases of goods, fleet upkeep, design and engineering, software, art, grants, leases, redevelopment deals, deals with other public bodies and airline-run airport terminal projects are left out. <a href="../#map">See the whole trade map</a>.</p>'
-            f'{reading_notes()}</section>'
+            f'{reading_notes(flags([t]))}</section>'
             + ("" if empty else f'<section class="block"><h2>All 12 trades</h2><ul class="cc-chips">{others}</ul></section>')
             + (f'<div class="cc-act"><a class="btn" href="{E(FALLBACK["eproc"])}" rel="noopener">See open City bids</a><a class="st-btn2" href="../">All trades</a></div>' if empty else
                f'<div class="cc-act"><a class="btn" href="{E(csv_name(t))}" download>Download the {E("HVAC" if t["key"] == "hvac" else t["short"].lower())} CSV</a><a class="st-btn2" href="../">All trades</a></div>'))
-    return head(M, E, p, url, rel, f'{h1} | ProofNotFluff', desc, M.ld_tags(crumb_ld, ds), robots) + body + footer(E, M, rel, d)
+    return head(M, E, p, url, rel, f'{h1} | ProofNotFluff', desc, M.ld_tags(crumb_ld, ds), robots) + body + footer(E, M, rel, d, [t])
 
 
 def extra_pages(p):

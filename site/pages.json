@@ -6822,8 +6822,8 @@
    "method": [
     "Every morning we read the City of Chicago's public Contracts dataset, which lists the contracts the City has awarded since 1993 and the changes to them, and is updated daily by the City.",
     "We keep the awards and changes approved in the last 36 months, plus every contract whose latest end date falls in the next 12 months, and sort them into trades by the words in each contract's description (the trade map above).",
-    "The first entry for a contract is the award; every later entry is a change and is counted separately, as is an entry that only moves a contract to a new number. A $0 award on a blanket contract means the City orders as needed. Totals and medians use new awards with a dollar amount.",
-    "We never pull the vendor's address. Vendor names are business names as the City lists them; a name that does not read as a business shows as Name withheld."
+    "The first entry for a contract is the award. Every later entry is a change and is counted separately, including one that only gives the contract a new number. Totals and medians use new awards only.",
+    "We never pull the vendor's address. Vendor names are business names as the City lists them, and a name that may be a person's is not shown."
    ],
    "faq": [
     [

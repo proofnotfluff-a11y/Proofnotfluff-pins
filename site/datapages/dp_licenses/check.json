@@ -1,0 +1,332 @@
+{
+ "checkedAt": "2026-10-27T18:31:32Z",
+ "dataChecked": "2026-10-27",
+ "sources": {
+  "bacp_apply": {
+   "url": "https://www.chicago.gov/city/en/depts/bacp/supp_info/applybusinesslicense.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 0
+  },
+  "bacp_brick": {
+   "url": "https://www.chicago.gov/city/en/sites/chicago-business-licensing/home/brickandmortarstore.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 1
+  },
+  "bacp_exempt": {
+   "url": "https://www.chicago.gov/city/en/sites/chicago-business-licensing/home/business-license-exemptions.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 0
+  },
+  "bacp_home": {
+   "url": "https://www.chicago.gov/city/en/sites/chicago-business-licensing/home/homebasedbusiness.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 0
+  },
+  "bacp_homerepair": {
+   "url": "https://www.chicago.gov/city/en/sites/chicago-business-licensing/home/homerepair.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 0
+  },
+  "bacp_homesheet": {
+   "url": "https://www.chicago.gov/content/dam/city/depts/bacp/Small%20Business%20Center/sbcfactsheets/Home_Based_Business_Fact_Sheet_10-12-17.pdf",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 0
+  },
+  "bacp_renew": {
+   "url": "https://www.chicago.gov/city/en/depts/bacp/supp_info/renewbusinesslicense.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 0
+  },
+  "bacp_table": {
+   "url": "https://chicago.gov/city/en/sites/chicago-business-licensing/home/business-licensing.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 1
+  },
+  "cd_recycling": {
+   "url": "https://www.chicago.gov/content/dam/city/depts/cdph/InspectionsandPermitting/ConstructionDemolitionRecyclingOrdinanceOverview.pdf",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 1
+  },
+  "cdot_crc": {
+   "url": "https://chicago.gov/content/dam/city/depts/cdot/permit/general/2017Docs/Refuse_Container_Permit_System_Industry.pdf",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 0
+  },
+  "cdph_env": {
+   "url": "https://www.chicago.gov/content/city/en/depts/cdph/supp_info/Environment/underground-storage-tanks.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 2
+  },
+  "el": {
+   "url": "https://www.chicago.gov/city/en/depts/bldgs/supp_info/TLdetails/ELcontractor.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 2
+  },
+  "epa608": {
+   "url": "https://epa.gov/section608/section-608-technician-certification-requirements",
+   "status": "ok",
+   "figures": 0,
+   "missing": []
+  },
+  "epa_pw": {
+   "url": "https://www.epa.gov/lead/how-do-rrp-requirements-apply-pressure-washing-what-containment-and-other-preparation-are",
+   "status": "blocked",
+   "why": "HTTP Error 404: Not Found",
+   "figures": 0
+  },
+  "epa_rrp_firm": {
+   "url": "https://www.epa.gov/lead/renovation-repair-and-painting-program-firm-certification",
+   "status": "ok",
+   "figures": 2,
+   "missing": []
+  },
+  "epa_rrp_rules": {
+   "url": "https://www.epa.gov/lead/lead-renovation-repair-and-painting-program-rules",
+   "status": "ok",
+   "figures": 0,
+   "missing": []
+  },
+  "formsc": {
+   "url": "https://www.chicago.gov/content/dam/city/depts/cdph/environmental_health_and_food/REVISEDFORMSC8102012.pdf",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 0
+  },
+  "gc": {
+   "url": "https://www.chicago.gov/city/en/depts/bldgs/supp_info/TLdetails/GC.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 12
+  },
+  "homerepair": {
+   "url": "https://chicago.gov/city/en/depts/bldgs/supp_info/TLdetails/homerepair.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 2
+  },
+  "hrra": {
+   "url": "https://ilga.gov/legislation/ilcs/documents/081505130K25.htm",
+   "status": "blocked",
+   "why": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
+   "figures": 5
+  },
+  "idfpr_brochure": {
+   "url": "https://IDFPR.illinois.gov/content/dam/soi/en/web/idfpr/forms/brochures/dfprillinoislicensedprofessions.pdf",
+   "status": "ok",
+   "figures": 0,
+   "missing": []
+  },
+  "idfpr_list": {
+   "url": "https://idfpr.illinois.gov/profs/proflist.html",
+   "status": "ok",
+   "figures": 0,
+   "missing": []
+  },
+  "idfpr_prof": {
+   "url": "https://idfpr.illinois.gov/dpr/professional-licensing-illinois.html",
+   "status": "ok",
+   "figures": 0,
+   "missing": []
+  },
+  "idoa_cert": {
+   "url": "https://agr.illinois.gov/pesticides/certification-and-licensing.html",
+   "status": "ok",
+   "figures": 7,
+   "missing": []
+  },
+  "idoa_test": {
+   "url": "https://agr.illinois.gov/pesticides/commercial-pesticide-applicator.html",
+   "status": "changed",
+   "figures": 2,
+   "missing": [
+    "35"
+   ]
+  },
+  "idph_lead": {
+   "url": "https://dph.illinois.gov/topics-services/environmental-health-protection/lead-poisoning-prevention/abatement-mitigation-licensure/license-qualifications-contractor.html",
+   "status": "ok",
+   "figures": 1,
+   "missing": []
+  },
+  "idph_plumb": {
+   "url": "https://dph.illinois.gov/topics-services/environmental-health-protection/plumbing.html",
+   "status": "ok",
+   "figures": 0,
+   "missing": []
+  },
+  "idph_plumbexam": {
+   "url": "https://dph.illinois.gov/content/dam/soi/en/web/idph/forms/topics-services/environmental-health-protection/plumbing/plumber-license-examination-application-06242021.pdf",
+   "status": "ok",
+   "figures": 1,
+   "missing": []
+  },
+  "idph_plumbform": {
+   "url": "https://dph.illinois.gov/content/dam/soi/en/web/idph/files/forms/plumbing-contractor-application-renewal-042616.pdf",
+   "status": "ok",
+   "figures": 7,
+   "missing": []
+  },
+  "idph_plumbrecip": {
+   "url": "https://dph.illinois.gov/content/dam/soi/en/web/idph/files/forms/plumber-license-reciprocity-chicago-application-042616.pdf",
+   "status": "ok",
+   "figures": 0,
+   "missing": []
+  },
+  "iepa_lead": {
+   "url": "https://epa.illinois.gov/topics/cleanup-programs/lead-based-paint/containment.html",
+   "status": "ok",
+   "figures": 0,
+   "missing": []
+  },
+  "iepa_transport": {
+   "url": "https://epa.illinois.gov/topics/waste-management/waste-disposal/special-waste/transportation-permits.html",
+   "status": "ok",
+   "figures": 0,
+   "missing": []
+  },
+  "junk_fact": {
+   "url": "https://www.chicago.gov/dam/city/depts/bacp/general/junkpeddlersfactsheet.pdf",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 1
+  },
+  "mech": {
+   "url": "https://chicago.gov/city/en/sites/guide-to-building-permits/home/instructions/EPP/MECH.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 0
+  },
+  "pa97": {
+   "url": "https://ilga.gov/ftp/Public%20Acts/97/097-0965.htm",
+   "status": "blocked",
+   "why": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
+   "figures": 0
+  },
+  "pcb809": {
+   "url": "https://pcb.illinois.gov/documents/dsweb/Get/Document-33449/PART%20809%20-%20NONHAZARDOUS%20SPECIAL%20WASTE%20HAULING%20AND%20THE%20UNIFORM%20PROGRAM.pdf",
+   "status": "ok",
+   "figures": 0,
+   "missing": []
+  },
+  "pest_bizapp": {
+   "url": "https://dph.illinois.gov/content/dam/soi/en/web/idph/forms/topics-services/environmental-health-protection/structural-pest-control/Commercial-Business-Application-2022.pdf",
+   "status": "ok",
+   "figures": 1,
+   "missing": []
+  },
+  "pest_faq": {
+   "url": "https://dph.illinois.gov/topics-services/environmental-health-protection/structural-pest-control/faq.html",
+   "status": "ok",
+   "figures": 1,
+   "missing": []
+  },
+  "pest_ins": {
+   "url": "https://dph.illinois.gov/content/dam/soi/en/web/idph/files/forms/insurance-certficate-041116.pdf",
+   "status": "ok",
+   "figures": 4,
+   "missing": []
+  },
+  "pest_main": {
+   "url": "https://dph.illinois.gov/topics-services/environmental-health-protection/structural-pest-control.html",
+   "status": "ok",
+   "figures": 2,
+   "missing": []
+  },
+  "pest_ru": {
+   "url": "https://dph.illinois.gov/content/dam/soi/en/web/idph/files/forms/structural-pest-control-technician-application-restricteduse.pdf",
+   "status": "ok",
+   "figures": 2,
+   "missing": []
+  },
+  "plc": {
+   "url": "https://chicago.gov/city/en/depts/bldgs/supp_info/TLdetails/PLcontractor.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 2
+  },
+  "plj": {
+   "url": "https://chicago.gov/city/en/depts/bldgs/supp_info/TLdetails/PLjourneyman.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 3
+  },
+  "plumblaw": {
+   "url": "https://ilga.gov/ftp/ILCS/Ch%200225/Act%200320/022503200K16.html",
+   "status": "blocked",
+   "why": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
+   "figures": 1
+  },
+  "recycling_ord": {
+   "url": "https://www.chicago.gov/content/dam/city/sites/chicago-recycles/pdfs/Chicago%20Recycling%20Ordinance,%20with%202023%20updates.pdf",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 1
+  },
+  "rf": {
+   "url": "https://idfpr.illinois.gov/content/dam/soi/en/web/idfpr/renewals/apply/forms/rf.pdf",
+   "status": "ok",
+   "figures": 5,
+   "missing": []
+  },
+  "rf_fees": {
+   "url": "https://my.ilga.gov/ftp/JCAR/AdminCode/068/068014600000800R.html",
+   "status": "blocked",
+   "why": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
+   "figures": 2
+  },
+  "rf_qp": {
+   "url": "https://idfpr.illinois.gov/content/dam/soi/en/web/idfpr/renewals/apply/forms/rf-qp.pdf",
+   "status": "ok",
+   "figures": 1,
+   "missing": []
+  },
+  "roofpermit": {
+   "url": "https://chicago.gov/city/en/sites/guide-to-building-permits/home/instructions/EPP/ROOF.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 1
+  },
+  "sandblast": {
+   "url": "https://chicago.gov/city/en/depts/bldgs/supp_info/sandblasting_permit.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 0
+  },
+  "snow_cdot": {
+   "url": "https://chicago.gov/city/en/depts/cdot/supp_info/sidewalk_snow_removal.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 3
+  },
+  "stateng": {
+   "url": "https://chicago.gov/city/en/depts/bldgs/supp_info/TLdetails/BRengineer.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 4
+  },
+  "supvel": {
+   "url": "https://chicago.gov/city/en/depts/bldgs/supp_info/TLdetails/SupvEL.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 3
+  },
+  "tlic": {
+   "url": "https://www.chicago.gov/city/en/depts/bldgs/provdrs/gen_contract/svcs/applyrenewlicense.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 0
+  }
+ }
+}

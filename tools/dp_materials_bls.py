@@ -17,7 +17,7 @@ Two outputs, both public statistics with no person or business in them:
 Usage: python3 tools/dp_materials_bls.py              catalog, then the chosen series
        python3 tools/dp_materials_bls.py --selftest   planted files, no network
 """
-import datetime as dt, io, json, os, re, sys, urllib.request
+import datetime as dt, json, os, re, sys, urllib.error, urllib.request
 from zoneinfo import ZoneInfo
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -32,15 +32,22 @@ WORDS = re.compile(r"copper|wire|cable|steel|iron|lumber|plywood|wood|millwork|a
                    r"electrical|conduit|nails|fastener|floor|tile|sheet metal|rebar|reinforcing|building", re.I)
 
 
+HEADERS = dict(UA, **{"Accept": "text/plain,*/*", "Accept-Language": "en-US,en;q=0.9"})
+
+
 def get(name, tries=3):
     last = None
     for _ in range(tries):
         try:
-            req = urllib.request.Request(BASE + name, headers=UA)
+            req = urllib.request.Request(BASE + name, headers=HEADERS)
             with urllib.request.urlopen(req, timeout=300) as r:
                 return r.read().decode("utf-8", "replace"), r.headers.get("Last-Modified", "")
+        except urllib.error.HTTPError as e:   # say what BLS answered, as an annotation the build chat can read
+            body = e.read()[:300].decode("utf-8", "replace").replace("\n", " ")
+            last = f"HTTP {e.code}: {body}"
         except Exception as e:   # network blips on the runner: try again, then fail loudly
-            last = e
+            last = repr(e)
+    print(f"::error title=BLS read failed::{BASE + name}: {last}")
     raise SystemExit(f"could not read {BASE + name}: {last}")
 
 

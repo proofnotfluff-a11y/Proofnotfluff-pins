@@ -427,7 +427,7 @@ def calculator(d, E, rel):
         '<li><span>Your other costs</span><span id="cc-o-oth">$0.00</span></li></ul>'
         f'<p class="cc-note" id="cc-pwnote" hidden>Public works: this assumes a weekday. Hours past {d["prevailing"]["otDailyAfter"]} are paid at the overtime multiple of base pay the schedule lists; Saturday, Sunday and holiday rates are not priced here. '
         'Some lines list extra amounts owed on overtime hours; those are in the full table and not in this total.</p>'
-        '<p class="cc-note">Not counted: overtime past 40 hours in a week. Workers\' comp, unemployment tax and benefits count only if you type them into your other costs. An estimate from public figures, not legal, tax or payroll advice; check with the agency.</p>'
+        '<p class="cc-note">Not counted: overtime past 40 hours in a week. Workers\' comp, unemployment tax and benefits other than public works fringes count only if you type them into your other costs. An estimate from public figures, not legal, tax or payroll advice; check with the agency.</p>'
         '<div class="cc-next"><a class="btn" href="' + rel + CALC_CONTRACTOR + '/">Set your contractor rate</a>'
         '<a class="st-btn2" href="' + rel + CALC_HANDYMAN + '/">Set your handyman rate</a></div>'
         '<p class="cc-reset"><button type="button" id="cc-reset">Reset to the example</button></p></div>'
@@ -666,7 +666,7 @@ def sub_page(p, d, role, M, E):
               '<th scope="col" class="md">Crew day</th><th scope="col">Wages</th><th scope="col">Social Security and Medicare</th><th scope="col">Chicago paid leave earned</th><th scope="col">Public works fringes</th></tr></thead>'
               f'<tbody>{ex_rows}</tbody></table></div>'
               f'<p class="asof">Social Security {i["ss"]:g}% and Medicare {i["medicare"]:g}% of wages (IRS, {i["year"]}). Chicago paid leave: covered employees earn 1 hour of paid leave and 1 of paid sick leave per 35 hours worked, valued at the hourly pay; the ordinance has exceptions. '
-              'Workers\' comp, unemployment tax and benefits are not in these totals; add yours in the calculator. An estimate from public figures, not legal, tax or payroll advice; check with the agency.</p>')
+              'Workers\' comp, unemployment tax and benefits other than public works fringes are not in these totals; add yours in the calculator. An estimate from public figures, not legal, tax or payroll advice; check with the agency.</p>')
     k0 = line_key(role, role["lines"][0])
     nxt = (f'<p class="rl-act" style="margin-top:14px"><a class="btn" href="../?trade={E(k0)}#crew">Work out your own crew day cost</a>'
            f'<a class="st-btn2" href="{rel}{CALC_CONTRACTOR}/">Set your contractor rate</a><a class="st-btn2" href="{rel}{CALC_HANDYMAN}/">Set your handyman rate</a></p>')
@@ -688,7 +688,7 @@ def sub_page(p, d, role, M, E):
             ans = (f"The Cook County schedule posted October 19, 2026 lists {', and '.join(parts)}, for public works. "
                    "Which line applies depends on the work; check with the Illinois Department of Labor.")
         faq.append((f"What is the Cook County prevailing wage for {PLURAL[role['key']]}?", ans))
-    faq.append(("Are these the rates I should charge customers?", "No. These are wages paid to employees: straight-time pay before overtime and premium pay, without benefits, and leaving out the self-employed. A rate you bill also has to cover your crew's unpaid time, your vehicle, insurance, overhead and profit."))
+    faq.append(("Are these the rates I should charge customers?", "No. These are wages paid to employees. The BLS figures are straight-time pay before overtime and premium pay, without benefits, and leave out the self-employed. A rate you bill also has to cover your crew's unpaid time, your vehicle, insurance, overhead and profit."))
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
               "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(h1)}</h1><p class="lede">{lede}</p></div>'

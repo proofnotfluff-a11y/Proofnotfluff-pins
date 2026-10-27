@@ -22,7 +22,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - run: sudo apt-get install -y -qq poppler-utils >/dev/null
+      - name: Install pdftotext (poppler)
+        run: command -v pdftotext || { sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils; }
       - name: Self-check
         run: python3 tools/dp_cdot_fees_pull.py --selftest
       - name: Download the City's fee schedule and extract its text

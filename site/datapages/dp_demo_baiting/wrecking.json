@@ -1,0 +1,736 @@
+{
+ "about": "Counts only, from City of Chicago Building Permits (ydr8-5enu): wrecking and demolition permits issued, by community area and week. No permit number, address, contact or description is kept. Built by tools/dp_permit_wait_data.py.",
+ "source": {
+  "name": "Building Permits",
+  "dataset": "ydr8-5enu",
+  "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
+  "fetchedAt": "2026-10-27T14:19:58-0500",
+  "rowsUpdatedAt": "2026-10-27T15:43:13+00:00",
+  "types": [
+   "PERMIT - WRECKING/DEMOLITION"
+  ]
+ },
+ "window": {
+  "from7": "2026-10-20",
+  "from30": "2026-09-27",
+  "from12": "2025-10-27",
+  "to": "2026-10-26"
+ },
+ "counts": {
+  "d7": 10,
+  "d30": 54,
+  "d365": 669,
+  "noArea30": 0,
+  "areasWith30": 30
+ },
+ "wait": {
+  "n": 669,
+  "med": 46,
+  "p80": 84,
+  "p90": 117,
+  "sameDay": 34.5,
+  "over90": 17.9,
+  "over365": 0.0
+ },
+ "areas": [
+  {
+   "a": 1,
+   "name": "Rogers Park",
+   "d7": 0,
+   "d30": 1,
+   "d365": 3
+  },
+  {
+   "a": 2,
+   "name": "West Ridge",
+   "d7": 0,
+   "d30": 1,
+   "d365": 4
+  },
+  {
+   "a": 3,
+   "name": "Uptown",
+   "d7": 1,
+   "d30": 1,
+   "d365": 8
+  },
+  {
+   "a": 4,
+   "name": "Lincoln Square",
+   "d7": 1,
+   "d30": 1,
+   "d365": 19
+  },
+  {
+   "a": 5,
+   "name": "North Center",
+   "d7": 0,
+   "d30": 3,
+   "d365": 38
+  },
+  {
+   "a": 6,
+   "name": "Lake View",
+   "d7": 0,
+   "d30": 7,
+   "d365": 58
+  },
+  {
+   "a": 7,
+   "name": "Lincoln Park",
+   "d7": 0,
+   "d30": 0,
+   "d365": 49
+  },
+  {
+   "a": 8,
+   "name": "Near North Side",
+   "d7": 0,
+   "d30": 0,
+   "d365": 15
+  },
+  {
+   "a": 9,
+   "name": "Edison Park",
+   "d7": 0,
+   "d30": 2,
+   "d365": 2
+  },
+  {
+   "a": 10,
+   "name": "Norwood Park",
+   "d7": 0,
+   "d30": 1,
+   "d365": 10
+  },
+  {
+   "a": 11,
+   "name": "Jefferson Park",
+   "d7": 0,
+   "d30": 0,
+   "d365": 2
+  },
+  {
+   "a": 12,
+   "name": "Forest Glen",
+   "d7": 0,
+   "d30": 2,
+   "d365": 5
+  },
+  {
+   "a": 13,
+   "name": "North Park",
+   "d7": 0,
+   "d30": 0,
+   "d365": 2
+  },
+  {
+   "a": 14,
+   "name": "Albany Park",
+   "d7": 0,
+   "d30": 0,
+   "d365": 5
+  },
+  {
+   "a": 15,
+   "name": "Portage Park",
+   "d7": 0,
+   "d30": 0,
+   "d365": 3
+  },
+  {
+   "a": 16,
+   "name": "Irving Park",
+   "d7": 0,
+   "d30": 1,
+   "d365": 20
+  },
+  {
+   "a": 17,
+   "name": "Dunning",
+   "d7": 0,
+   "d30": 0,
+   "d365": 2
+  },
+  {
+   "a": 18,
+   "name": "Montclare",
+   "d7": 0,
+   "d30": 0,
+   "d365": 2
+  },
+  {
+   "a": 19,
+   "name": "Belmont Cragin",
+   "d7": 0,
+   "d30": 0,
+   "d365": 0
+  },
+  {
+   "a": 20,
+   "name": "Hermosa",
+   "d7": 0,
+   "d30": 0,
+   "d365": 2
+  },
+  {
+   "a": 21,
+   "name": "Avondale",
+   "d7": 0,
+   "d30": 2,
+   "d365": 7
+  },
+  {
+   "a": 22,
+   "name": "Logan Square",
+   "d7": 0,
+   "d30": 3,
+   "d365": 29
+  },
+  {
+   "a": 23,
+   "name": "Humboldt Park",
+   "d7": 0,
+   "d30": 0,
+   "d365": 10
+  },
+  {
+   "a": 24,
+   "name": "West Town",
+   "d7": 0,
+   "d30": 2,
+   "d365": 55
+  },
+  {
+   "a": 25,
+   "name": "Austin",
+   "d7": 0,
+   "d30": 0,
+   "d365": 12
+  },
+  {
+   "a": 26,
+   "name": "West Garfield Park",
+   "d7": 0,
+   "d30": 0,
+   "d365": 5
+  },
+  {
+   "a": 27,
+   "name": "East Garfield Park",
+   "d7": 0,
+   "d30": 1,
+   "d365": 7
+  },
+  {
+   "a": 28,
+   "name": "Near West Side",
+   "d7": 0,
+   "d30": 1,
+   "d365": 16
+  },
+  {
+   "a": 29,
+   "name": "North Lawndale",
+   "d7": 0,
+   "d30": 0,
+   "d365": 16
+  },
+  {
+   "a": 30,
+   "name": "South Lawndale",
+   "d7": 0,
+   "d30": 0,
+   "d365": 2
+  },
+  {
+   "a": 31,
+   "name": "Lower West Side",
+   "d7": 0,
+   "d30": 1,
+   "d365": 7
+  },
+  {
+   "a": 32,
+   "name": "Loop",
+   "d7": 0,
+   "d30": 0,
+   "d365": 2
+  },
+  {
+   "a": 33,
+   "name": "Near South Side",
+   "d7": 0,
+   "d30": 0,
+   "d365": 1
+  },
+  {
+   "a": 34,
+   "name": "Armour Square",
+   "d7": 0,
+   "d30": 0,
+   "d365": 5
+  },
+  {
+   "a": 35,
+   "name": "Douglas",
+   "d7": 0,
+   "d30": 0,
+   "d365": 2
+  },
+  {
+   "a": 36,
+   "name": "Oakland",
+   "d7": 0,
+   "d30": 0,
+   "d365": 0
+  },
+  {
+   "a": 37,
+   "name": "Fuller Park",
+   "d7": 0,
+   "d30": 0,
+   "d365": 5
+  },
+  {
+   "a": 38,
+   "name": "Grand Boulevard",
+   "d7": 0,
+   "d30": 0,
+   "d365": 1
+  },
+  {
+   "a": 39,
+   "name": "Kenwood",
+   "d7": 0,
+   "d30": 0,
+   "d365": 0
+  },
+  {
+   "a": 40,
+   "name": "Washington Park",
+   "d7": 0,
+   "d30": 1,
+   "d365": 1
+  },
+  {
+   "a": 41,
+   "name": "Hyde Park",
+   "d7": 0,
+   "d30": 0,
+   "d365": 1
+  },
+  {
+   "a": 42,
+   "name": "Woodlawn",
+   "d7": 0,
+   "d30": 1,
+   "d365": 6
+  },
+  {
+   "a": 43,
+   "name": "South Shore",
+   "d7": 0,
+   "d30": 1,
+   "d365": 6
+  },
+  {
+   "a": 44,
+   "name": "Chatham",
+   "d7": 0,
+   "d30": 1,
+   "d365": 3
+  },
+  {
+   "a": 45,
+   "name": "Avalon Park",
+   "d7": 1,
+   "d30": 1,
+   "d365": 1
+  },
+  {
+   "a": 46,
+   "name": "South Chicago",
+   "d7": 2,
+   "d30": 2,
+   "d365": 13
+  },
+  {
+   "a": 47,
+   "name": "Burnside",
+   "d7": 0,
+   "d30": 0,
+   "d365": 1
+  },
+  {
+   "a": 48,
+   "name": "Calumet Heights",
+   "d7": 0,
+   "d30": 0,
+   "d365": 0
+  },
+  {
+   "a": 49,
+   "name": "Roseland",
+   "d7": 0,
+   "d30": 0,
+   "d365": 32
+  },
+  {
+   "a": 50,
+   "name": "Pullman",
+   "d7": 0,
+   "d30": 0,
+   "d365": 1
+  },
+  {
+   "a": 51,
+   "name": "South Deering",
+   "d7": 0,
+   "d30": 0,
+   "d365": 4
+  },
+  {
+   "a": 52,
+   "name": "East Side",
+   "d7": 0,
+   "d30": 0,
+   "d365": 0
+  },
+  {
+   "a": 53,
+   "name": "West Pullman",
+   "d7": 0,
+   "d30": 0,
+   "d365": 19
+  },
+  {
+   "a": 54,
+   "name": "Riverdale",
+   "d7": 0,
+   "d30": 1,
+   "d365": 10
+  },
+  {
+   "a": 55,
+   "name": "Hegewisch",
+   "d7": 0,
+   "d30": 0,
+   "d365": 0
+  },
+  {
+   "a": 56,
+   "name": "Garfield Ridge",
+   "d7": 0,
+   "d30": 0,
+   "d365": 2
+  },
+  {
+   "a": 57,
+   "name": "Archer Heights",
+   "d7": 0,
+   "d30": 0,
+   "d365": 0
+  },
+  {
+   "a": 58,
+   "name": "Brighton Park",
+   "d7": 0,
+   "d30": 0,
+   "d365": 1
+  },
+  {
+   "a": 59,
+   "name": "McKinley Park",
+   "d7": 0,
+   "d30": 0,
+   "d365": 5
+  },
+  {
+   "a": 60,
+   "name": "Bridgeport",
+   "d7": 0,
+   "d30": 1,
+   "d365": 5
+  },
+  {
+   "a": 61,
+   "name": "New City",
+   "d7": 0,
+   "d30": 3,
+   "d365": 14
+  },
+  {
+   "a": 62,
+   "name": "West Elsdon",
+   "d7": 0,
+   "d30": 0,
+   "d365": 0
+  },
+  {
+   "a": 63,
+   "name": "Gage Park",
+   "d7": 0,
+   "d30": 0,
+   "d365": 8
+  },
+  {
+   "a": 64,
+   "name": "Clearing",
+   "d7": 0,
+   "d30": 0,
+   "d365": 0
+  },
+  {
+   "a": 65,
+   "name": "West Lawn",
+   "d7": 0,
+   "d30": 0,
+   "d365": 2
+  },
+  {
+   "a": 66,
+   "name": "Chicago Lawn",
+   "d7": 0,
+   "d30": 0,
+   "d365": 4
+  },
+  {
+   "a": 67,
+   "name": "West Englewood",
+   "d7": 1,
+   "d30": 2,
+   "d365": 26
+  },
+  {
+   "a": 68,
+   "name": "Englewood",
+   "d7": 2,
+   "d30": 6,
+   "d365": 27
+  },
+  {
+   "a": 69,
+   "name": "Greater Grand Crossing",
+   "d7": 1,
+   "d30": 2,
+   "d365": 12
+  },
+  {
+   "a": 70,
+   "name": "Ashburn",
+   "d7": 0,
+   "d30": 0,
+   "d365": 0
+  },
+  {
+   "a": 71,
+   "name": "Auburn Gresham",
+   "d7": 0,
+   "d30": 1,
+   "d365": 7
+  },
+  {
+   "a": 72,
+   "name": "Beverly",
+   "d7": 0,
+   "d30": 0,
+   "d365": 0
+  },
+  {
+   "a": 73,
+   "name": "Washington Heights",
+   "d7": 1,
+   "d30": 1,
+   "d365": 4
+  },
+  {
+   "a": 74,
+   "name": "Mount Greenwood",
+   "d7": 0,
+   "d30": 0,
+   "d365": 3
+  },
+  {
+   "a": 75,
+   "name": "Morgan Park",
+   "d7": 0,
+   "d30": 0,
+   "d365": 4
+  },
+  {
+   "a": 76,
+   "name": "O'Hare",
+   "d7": 0,
+   "d30": 0,
+   "d365": 1
+  },
+  {
+   "a": 77,
+   "name": "Edgewater",
+   "d7": 0,
+   "d30": 0,
+   "d365": 10
+  }
+ ],
+ "weeks": [
+  {
+   "from": "2026-08-04",
+   "to": "2026-08-10",
+   "count": 11
+  },
+  {
+   "from": "2026-08-11",
+   "to": "2026-08-17",
+   "count": 6
+  },
+  {
+   "from": "2026-08-18",
+   "to": "2026-08-24",
+   "count": 10
+  },
+  {
+   "from": "2026-08-25",
+   "to": "2026-08-31",
+   "count": 12
+  },
+  {
+   "from": "2026-09-01",
+   "to": "2026-09-07",
+   "count": 9
+  },
+  {
+   "from": "2026-09-08",
+   "to": "2026-09-14",
+   "count": 9
+  },
+  {
+   "from": "2026-09-15",
+   "to": "2026-09-21",
+   "count": 27
+  },
+  {
+   "from": "2026-09-22",
+   "to": "2026-09-28",
+   "count": 18
+  },
+  {
+   "from": "2026-09-29",
+   "to": "2026-10-05",
+   "count": 11
+  },
+  {
+   "from": "2026-10-06",
+   "to": "2026-10-12",
+   "count": 11
+  },
+  {
+   "from": "2026-10-13",
+   "to": "2026-10-19",
+   "count": 17
+  },
+  {
+   "from": "2026-10-20",
+   "to": "2026-10-26",
+   "count": 10
+  }
+ ],
+ "monthly": [
+  {
+   "m": "2024-10",
+   "count": 68
+  },
+  {
+   "m": "2024-11",
+   "count": 48
+  },
+  {
+   "m": "2024-12",
+   "count": 34
+  },
+  {
+   "m": "2025-01",
+   "count": 68
+  },
+  {
+   "m": "2025-02",
+   "count": 42
+  },
+  {
+   "m": "2025-03",
+   "count": 26
+  },
+  {
+   "m": "2025-04",
+   "count": 57
+  },
+  {
+   "m": "2025-05",
+   "count": 32
+  },
+  {
+   "m": "2025-06",
+   "count": 50
+  },
+  {
+   "m": "2025-07",
+   "count": 93
+  },
+  {
+   "m": "2025-08",
+   "count": 66
+  },
+  {
+   "m": "2025-09",
+   "count": 47
+  },
+  {
+   "m": "2025-10",
+   "count": 81
+  },
+  {
+   "m": "2025-11",
+   "count": 44
+  },
+  {
+   "m": "2025-12",
+   "count": 55
+  },
+  {
+   "m": "2026-01",
+   "count": 58
+  },
+  {
+   "m": "2026-02",
+   "count": 54
+  },
+  {
+   "m": "2026-03",
+   "count": 47
+  },
+  {
+   "m": "2026-04",
+   "count": 42
+  },
+  {
+   "m": "2026-05",
+   "count": 63
+  },
+  {
+   "m": "2026-06",
+   "count": 59
+  },
+  {
+   "m": "2026-07",
+   "count": 67
+  },
+  {
+   "m": "2026-08",
+   "count": 47
+  },
+  {
+   "m": "2026-09",
+   "count": 69
+  }
+ ]
+}

@@ -14,8 +14,12 @@ Todd's go: Oct 27, 2026, 12:17 pm, "Let's do them all" (coo/DECISIONS-2026-10-27
 - Workflow: .github/workflows/dp_materials.yml runs tools/dp_materials_bls.py on push of its files, by hand, and weekdays 15:10 UTC; it commits only when a number changed. Each run uses 1 to 2 of the API's daily requests (25 series per request).
 - Page: tools/dp_materials.py (selftest: `python3 tools/dp_materials.py --selftest`). Flow: verify/flows/material-price-changes.json.
 
-## Gates
-(filled in at go-live)
+## Gates (fresh opus subagents, Oct 27, 2026)
+- Facts: PASS, 15 samples (group 13 values against BLS's Mid-Atlantic table, ids and titles against wp.item and BLS's 2013 notice, release date against BLS's schedule, 12-month diesel +115.2% against BLS's Economics Daily of Oct 21, 2026), 0 mismatches. Values for groups 05 to 10 and the Midwest series were not opened by the checker (the API needs a permission prompt here); they come straight from the BLS Public Data API.
+- Design director: PASS 4.71 on round 5 (5, 5, 4, 5, 4, 5, 5). Rounds 1 to 4 FAIL (4.57, 4.43, 4.57, 4.57); Todd, 2:43 pm: "Get design over the hurdle then go live".
+- Legal desk: PASS (BLS API terms: disclaimer word for word, retrieval date cited, no logo, derived numbers labeled as ours; guide named by its BLS title; no advice beyond "check with BLS"). legal_scan: 0 lines on this page.
+- Copy: PASS on the final build.
+- Build and verify: make_site, verify_site --changed --before --flows PASS 88 of 88, check_repo 0 errors.
 
 ## For the wrap-up
 - New workflow: dp_materials.yml. New data folder: site/datapages/dp_materials/.

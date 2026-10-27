@@ -29,8 +29,8 @@ SLUG = "material-price-changes"
 
 META = {"h1": "Material Price Changes Since Your Quote",
         "card": "How far lumber, copper wire, concrete, steel and other materials trades buy moved since the month you quoted, from BLS price indexes. Free calculator and CSV.",
-        "keywords": ["material prices", "material price increase", "price escalation", "producer price index", "PPI",
-                     "lumber prices", "copper wire prices", "steel prices", "concrete prices", "quote", "change order", "BLS"]}
+        "keywords": ("material prices material price increase price escalation producer price index PPI lumber prices "
+                     "copper wire prices steel prices concrete prices drywall roofing diesel quote change order BLS")}
 
 BLS_PPI = "https://www.bls.gov/ppi/"
 BLS_GUIDE = "https://www.bls.gov/ppi/publications/price-adjustment-guide-for-contracting-parties.htm"
@@ -691,6 +691,7 @@ def selftest():
         assert abs(cu["y12"] - (600 / 540 - 1) * 100) < 1e-9 and pct_txt(cu["y12"]) == "+11.1%", cu["y12"]
         assert pct_txt(next(m for m in d["mats"] if m["slug"] == "lumber")["y12"]) == "-8.5%"   # 260 against 284, 12 steps of -2
         assert next(m for m in d["mats"] if m["slug"] == "midwest-ready-mix-concrete")["area"] == "Midwest region"
+        assert isinstance(META["keywords"], str), "make_site's search index lower-cases a string"
         html = page_html(p)
         for bad in DASHES:
             assert bad not in html, "no em or en dashes"

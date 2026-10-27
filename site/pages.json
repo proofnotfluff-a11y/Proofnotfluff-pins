@@ -7100,7 +7100,7 @@
    "slug": "material-price-changes",
    "kind": "datapage",
    "module": "dp_materials",
-   "draft": true,
+   "draft": false,
    "title": "Material Price Changes Since Your Quote | ProofNotFluff",
    "desc": "Free calculator: how much lumber, copper wire, concrete, steel, drywall, roofing and diesel moved since the month you quoted, from BLS producer price indexes. Chart and CSV.",
    "eyebrow": "Free price index tracker",

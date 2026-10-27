@@ -290,7 +290,7 @@ EVIDENCE RULES
 - Label every claim OBSERVED (a page states it) or INFERRED (your reasoning).
 - Read only. Do not sign up, request a demo, fill a form, message anyone or download files.
 - Honest beats hopeful. If the right answer is that no $149 offer from an unknown faceless brand sells to these owners without a call, say it and say what would.
-- Plain words, no em or en dashes. Valid JSON: double quotes, no trailing commas, no comments. Prices and counts are bare numbers (149, 12.5), never "$149" or "149".
+- Plain words, no em or en dashes. Valid JSON: double quotes, no trailing commas, no comments. Prices and counts are bare numbers (149, 12.5), never in quotes like "$149" or "149".
 
 REPLY IN EXACTLY THIS SHAPE
 

@@ -23,25 +23,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          pip install --quiet cryptography openpyxl pillow pypdf
-      - name: Source check (terms page, columns, weekly bid list)
-        run: python3 tools/dp_contracts_probe.py --art /tmp/dpc-art --notices
+          pip install --quiet cryptography openpyxl pillow
       - name: Self-checks (planted rows)
         run: |
+          python3 tools/dp_contracts_probe.py --selftest
           if [ -f tools/dp_contracts_data.py ]; then python3 tools/dp_contracts_data.py --selftest; fi
           if [ -f tools/dp_contracts.py ]; then python3 tools/dp_contracts.py --selftest; fi
+      - name: Source check (terms page, where open bids live, the weekly bid list)
+        run: python3 tools/dp_contracts_probe.py
       - name: Pull the City's contract awards and group them by trade
         run: if [ -f tools/dp_contracts_data.py ]; then python3 tools/dp_contracts_data.py; fi
       - name: Rebuild the site pages from the new tables
         run: python3 tools/make_site.py
-      - name: Keep the sample rows for the build chat (never committed, 3 days)
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: dpc-probe
-          path: /tmp/dpc-art
-          retention-days: 3
-          if-no-files-found: ignore
       - name: Commit
         run: |
           git config user.name "proofnotfluff-bot"

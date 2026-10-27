@@ -170,7 +170,7 @@ CSS = ("<style>"
        ".cc-out.cc-inv ul,.cc-out.cc-inv #cc-ph{display:none}.cc-out .cc-fix{display:none;margin:8px 0 0;font-size:15px;color:var(--ink2)}.cc-out.cc-inv .cc-fix{display:block}"
        ".cc-out.cc-inv .val{font:600 16px/1.3 system-ui,sans-serif;margin:8px 0 0}.cc-bar span,.cc-bar a{white-space:nowrap}.cc-bar.cc-inv b{font:400 16px/1.2 system-ui,sans-serif}"
        ".cc-multi>[data-cc-line]+[data-cc-line],.cc-multi>[data-cc-line]+.cc-note{border-top:1px solid var(--line);margin-top:28px;padding-top:28px}.cc-multi>[data-cc-line]+.cc-note{padding-top:14px;margin-top:20px}"
-       ".cc-rules{align-items:start}.cc-t td:first-child{min-width:10em}"
+       ".cc-rules .cc-card{height:auto}.cc-t td:first-child{min-width:10em}"
        ".cc-two .cta>div{display:flex;flex-direction:column;height:100%}.cc-two .cta .ld-buybtn{margin-top:auto;padding-top:20px}"
        ".cc-reset{margin:12px 0 0}.cc-reset button{min-height:44px;padding:0 4px;border:0;background:none;color:var(--ink2);font:inherit;font-size:14.5px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer}"
        ".cc-reset button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
@@ -182,7 +182,7 @@ CSS = ("<style>"
        ".cc-pw{margin:16px 0 0;padding:14px 16px;border-radius:12px;background:var(--canvas2);border:1px solid var(--line)}"
        ".cc-pw h4{margin:0 0 6px;font-size:15.5px;color:var(--ink)}.cc-pw p{margin:4px 0 0;font-size:14.5px;color:var(--ink2)}"
        ".cc-pwl{width:100%;border-collapse:collapse;font-size:14.5px;margin:8px 0 0}.cc-pwl th,.cc-pwl td{padding:6px 4px;border-bottom:1px solid var(--rule);text-align:right;font-variant-numeric:tabular-nums}"
-       ".cc-pwl th:first-child,.cc-pwl td:first-child{text-align:left}.cc-pwl thead th{font-size:12.5px;color:var(--muted);font-weight:700}.cc-pwl tr:last-child td{border-bottom:0}"
+       ".cc-pwl th,.cc-pwl td{padding-left:12px;padding-right:12px}.cc-pwl th:first-child,.cc-pwl td:first-child{text-align:left}.cc-pwl thead th{font-size:12.5px;color:var(--muted);font-weight:700}.cc-pwl tr:last-child td{border-bottom:0}"
        ".cc-pwl .tot{font-weight:700;color:var(--ink)}"
        ".cc-calc{display:grid;gap:16px}@media(min-width:900px){.cc-calc{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}}"
        ".cc-form{padding:18px 20px;background:var(--card);border:1px solid var(--line);border-radius:14px}"
@@ -215,6 +215,7 @@ CSS = ("<style>"
        ".cc-t tbody th{font-weight:600;color:var(--ink);text-align:left;min-width:170px}.cc-t tbody th a{color:var(--ink)}.cc-t tr:last-child td,.cc-t tr:last-child th{border-bottom:0}"
        ".cc-t td.md,.cc-t th.md{font-weight:700;color:var(--ink)}.cc-t .cc-grp th{background:var(--canvas2);font-size:13px;color:var(--muted);font-weight:700}"
        ".cc-bt{display:block;margin-top:2px;font-size:12.5px;font-weight:400;color:var(--muted)}"
+       ".cc-scroll{margin:8px 0 0;font-size:13px;color:var(--muted)}.cc-full tbody th,.cc-full thead th:first-child{position:sticky;left:0;z-index:1;background:var(--card);box-shadow:1px 0 0 var(--rule)}"
        ".cc-swipe{display:none;margin:8px 0 0;font-size:13px;color:var(--muted)}"
        ".cc-rules{display:grid;gap:16px}@media(min-width:900px){.cc-rules{grid-template-columns:1fr 1fr}}"
        ".cc-rules .cc-card{margin:0}.cc-rules dl{margin:10px 0 0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15px}"
@@ -453,18 +454,18 @@ def pay_table(d, E, rel=None):
 
 
 def full_pw_table(d, E):
-    head = ('<thead><tr><th scope="col">Trade</th><th scope="col">Type</th><th scope="col">Class</th><th scope="col">Base</th><th scope="col">Foreman</th>'
+    head = ('<thead><tr><th scope="col">Trade</th><th scope="col">Base</th><th scope="col">Total</th><th scope="col">Type</th><th scope="col">Class</th><th scope="col">Foreman</th>'
             + "".join(f'<th scope="col">{E(n)}</th>' for _, n in FRINGE_NAMES)
-            + '<th scope="col">Total</th><th scope="col">Weekday OT</th><th scope="col">Added for OT hours at 1.5x</th><th scope="col">Added for OT hours at 2x</th></tr></thead>')
+            + '<th scope="col">Weekday OT</th><th scope="col">Added for OT hours at 1.5x</th><th scope="col">Added for OT hours at 2x</th></tr></thead>')
     body = ""
     for r in d["prevailing"]["rows"]:
         reg = {"E": " (east)", "W": " (west)"}.get(r["region"], "")
-        body += (f'<tr><th scope="row">{E(title_case(r["trade"]))}{reg}</th><td>{E(TYPE_NAMES.get(r["type"], r["type"] or ""))}</td><td>{E(r["class"] or "")}</td>'
-                 f'<td>{m2(r["base"])}</td><td>{m2(r["foreman"]) if r["foreman"] is not None else "none listed"}</td>'
+        body += (f'<tr><th scope="row">{E(title_case(r["trade"]))}{reg}</th><td>{m2(r["base"])}</td><td class="md">{m2(r["total"])}</td>'
+                 f'<td>{E(TYPE_NAMES.get(r["type"], r["type"] or ""))}</td><td>{E(r["class"] or "")}</td><td>{m2(r["foreman"]) if r["foreman"] is not None else "none listed"}</td>'
                  + "".join(f'<td>{m2(r[k]) if r[k] is not None else "none listed"}</td>' for k, _ in FRINGE_NAMES)
-                 + f'<td class="md">{m2(r["total"])}</td><td>{r["otMF"]:g}x</td>'
+                 + f'<td>{r["otMF"]:g}x</td>'
                  + f'<td>{m2(r["addOT15"]) if r["addOT15"] is not None else "none listed"}</td><td>{m2(r["addOT20"]) if r["addOT20"] is not None else "none listed"}</td></tr>')
-    return (f'<div class="cc-tw" role="region" aria-label="Every line of the Cook County prevailing wage schedule" tabindex="0"><table class="cc-t" style="min-width:1100px">{head}<tbody>{body}</tbody></table></div>')
+    return (f'<div class="cc-tw cc-full" role="region" aria-label="Every line of the Cook County prevailing wage schedule" tabindex="0"><table class="cc-t" style="min-width:1100px">{head}<tbody>{body}</tbody></table></div>')
 
 
 def rules_block(d, E):
@@ -582,7 +583,7 @@ def page_html(p):
               '<p class="cc-swipe">Swipe the table sideways for more columns.</p>'
               f'<div class="cc-tw" role="region" aria-label="Cook County public works rates for the trades on this page" tabindex="0">{pw_table(mrows, E, "cc-t")}</div>'
               f'<details class="cc-more cc-all"><summary><span class="o">Show all {len(d["prevailing"]["rows"])} schedule lines</span><span class="c">Hide the full schedule</span></summary>'
-              '<p class="cc-swipe">Swipe the table sideways for more columns.</p>'
+              '<p class="cc-scroll">Scroll the table sideways for more columns.</p>'
               f'{full_pw_table(d, E)}<p class="asof">"None listed" is a blank on the schedule. Type is the schedule\'s own split (building, highway, floating); class is the operating engineer or truck driver class; west truck driver rates cover {E(d["prevailing"]["truckWest"].replace("That part", "the part").replace(" West of ", " west of "))}, as the schedule says.</p></details>'
               '<p class="asof">Which line applies to a worker depends on the work done, and the public body on the project must tell contractors to comply. For a classification question, check with the Illinois Department of Labor.</p>')
     role_links = "".join(f'<li><a class="cc-r" href="{SLUG_NAMES[r["key"]]}/">{E(r["label"])}<span>{m2(r["lines"][0]["median"]) if len(r["lines"]) == 1 else str(len(r["lines"])) + " kinds"}</span></a></li>' for r in d["oews"]["roles"])

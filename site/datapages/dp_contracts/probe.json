@@ -1,0 +1,1752 @@
+{
+ "checkedAt": "2026-10-27T12:50:30-05:00",
+ "dataset": {
+  "name": "Contracts",
+  "rowsUpdatedAt": 1793089048,
+  "rowsUpdatedAtIso": "2026-10-27T03:17:28-05:00",
+  "columns": [
+   {
+    "field": "purchase_order_description",
+    "name": "Purchase Order Description",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "purchase_order_contract_number",
+    "name": "Purchase Order (Contract) Number",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "revision_number",
+    "name": "Revision Number",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "specification_number",
+    "name": "Specification Number",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "contract_type",
+    "name": "Contract Type",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "start_date",
+    "name": "Start Date",
+    "type": "calendar_date",
+    "description": ""
+   },
+   {
+    "field": "end_date",
+    "name": "End Date",
+    "type": "calendar_date",
+    "description": ""
+   },
+   {
+    "field": "approval_date",
+    "name": "Approval Date",
+    "type": "calendar_date",
+    "description": ""
+   },
+   {
+    "field": "department",
+    "name": "Department",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "vendor_name",
+    "name": "Vendor Name",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "vendor_id",
+    "name": "Vendor ID",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "address_1",
+    "name": "Address 1",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "address_2",
+    "name": "Address 2",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "city",
+    "name": "City",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "state",
+    "name": "State",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "zip",
+    "name": "Zip",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "award_amount",
+    "name": "Award Amount",
+    "type": "number",
+    "description": ""
+   },
+   {
+    "field": "procurement_type",
+    "name": "Procurement Type",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "contract_pdf",
+    "name": "Contract PDF",
+    "type": "url",
+    "description": "A link to the online PDF copy of the contract"
+   }
+  ],
+  "description": "Contracts and modifications awarded by the City of Chicago since 1993. This data is currently maintained in the City’s Financial Management and Purchasing System (FMPS), which is used throughout the City for contract management and payment. \r\nLegacy System Records: Purchase Order/Contract Numbers that begin with alpha characters identify records imported from legacy systems. Records with a null value in the Contract Type field were imported from legacy systems. \r\n\"Comptroller-Other\" Contract Type: Some records where the Contract Type is \"COMPTROLLER-OTHER\" are ordinance-based agreements and may have start dates earlier than 1993. \r\nDepends Upon Requirements Contracts: If the contract Award Amount is $0, the contract is not cancelled, and the contract is a blanket contract, then the contract award total Depends Upon Requirements. A Depends Upon Requirements contract is an indefinite quantities contract in which the City places orders as needed and the vendor is not guaranteed any particular contract award amount. \r\n\r\nBlanket vs. Standard Contracts: Only blanket contracts (contracts for repeated purchases) have FMPS end dates. Standard contracts (for example, construction contracts) terminate upon completion and acceptance of all deliverables. These dates are tracked outside of FMPS. \r\n\r\nNegative Modifications: Some contracts are modified to delete scope and money from a contract. These reductions are indicated by negative numbers in the Award Amount field of this dataset. \r\n\r\nData Owner: Procurement Services. \r\nTime Period: 1993 to present. \r\nFrequency: Data is updated daily.",
+  "attribution": "City of Chicago",
+  "license": null,
+  "category": "Administration & Finance",
+  "rows": "186024",
+  "by_contract_type": [
+   {
+    "contract_type": "DELEGATE AGENCY",
+    "n": "67631"
+   },
+   {
+    "n": "44526"
+   },
+   {
+    "contract_type": "COMPTROLLER-OTHER",
+    "n": "15447"
+   },
+   {
+    "contract_type": "CONSTRUCTION-LARGE $3MILLIONorABOVE",
+    "n": "8805"
+   },
+   {
+    "contract_type": "CONSTRUCTION-AVIATION",
+    "n": "7008"
+   },
+   {
+    "contract_type": "ARCH/ENGINEERING",
+    "n": "4837"
+   },
+   {
+    "contract_type": "WORK SERVICES / FACILITIES MAINT.",
+    "n": "4423"
+   },
+   {
+    "contract_type": "COMMODITIES",
+    "n": "4219"
+   },
+   {
+    "contract_type": "PRO SERV CONSULTING $250,000orABOVE",
+    "n": "3750"
+   },
+   {
+    "contract_type": "CONSTRUCTION-GENERAL",
+    "n": "3468"
+   },
+   {
+    "contract_type": "Modification",
+    "n": "2228"
+   },
+   {
+    "contract_type": "Time Extension",
+    "n": "2066"
+   },
+   {
+    "contract_type": "PROPERTY LEASE",
+    "n": "1981"
+   },
+   {
+    "contract_type": "CONSTRUCTION",
+    "n": "1791"
+   },
+   {
+    "contract_type": "VEHICLES/HEAVY EQUIPMENT (CAPITAL)",
+    "n": "1413"
+   },
+   {
+    "contract_type": "CONVERTED",
+    "n": "1207"
+   },
+   {
+    "contract_type": "Delegate Agency",
+    "n": "1110"
+   },
+   {
+    "contract_type": "COMMODITIES-SMALL ORDERS",
+    "n": "1052"
+   },
+   {
+    "contract_type": "Term Agreement",
+    "n": "1049"
+   },
+   {
+    "contract_type": "WORK SERV-AVIATION",
+    "n": "927"
+   },
+   {
+    "contract_type": "PRO SERV-AVIATION",
+    "n": "821"
+   },
+   {
+    "contract_type": "DEMOLITION-SMALL ORDERS",
+    "n": "673"
+   },
+   {
+    "contract_type": "JOC",
+    "n": "625"
+   },
+   {
+    "contract_type": "Construction",
+    "n": "595"
+   },
+   {
+    "contract_type": "One Shot",
+    "n": "559"
+   },
+   {
+    "contract_type": "EXHIBIT-A",
+    "n": "505"
+   },
+   {
+    "contract_type": "DEMOLITION",
+    "n": "463"
+   },
+   {
+    "contract_type": "Professional Services",
+    "n": "340"
+   },
+   {
+    "contract_type": "PRO SERV CONSULTING UNDER $250,000",
+    "n": "328"
+   },
+   {
+    "contract_type": "WORK SERVICES-SMALL ORDERS",
+    "n": "300"
+   },
+   {
+    "contract_type": "SOFTWARE",
+    "n": "287"
+   },
+   {
+    "contract_type": "EXHIBIT-B",
+    "n": "212"
+   },
+   {
+    "contract_type": "ARCH/ENGINEERING-AVIATION",
+    "n": "211"
+   },
+   {
+    "contract_type": "COMMODITIES-AVIATION",
+    "n": "201"
+   },
+   {
+    "contract_type": "HIRED TRUCK",
+    "n": "175"
+   },
+   {
+    "contract_type": "PRO SERV-SMALL ORDERS",
+    "n": "148"
+   },
+   {
+    "contract_type": "PRO SERV",
+    "n": "116"
+   },
+   {
+    "contract_type": "REVENUE",
+    "n": "102"
+   },
+   {
+    "contract_type": "CONSTRUCTION SERVICES",
+    "n": "74"
+   },
+   {
+    "contract_type": "UTILITIES-ELECTRICITY",
+    "n": "47"
+   },
+   {
+    "contract_type": "HARDWARE",
+    "n": "41"
+   },
+   {
+    "contract_type": "RELEASE REQUISITION",
+    "n": "35"
+   },
+   {
+    "contract_type": "Other",
+    "n": "34"
+   },
+   {
+    "contract_type": "DPS DELEGATE AGENCY",
+    "n": "33"
+   },
+   {
+    "contract_type": "TELECOMMUNICATIONS",
+    "n": "33"
+   },
+   {
+    "contract_type": "ROOFING",
+    "n": "28"
+   },
+   {
+    "contract_type": "Service Contract",
+    "n": "27"
+   },
+   {
+    "contract_type": "PRO SERV-SOFTWARE/HARDWARE",
+    "n": "21"
+   },
+   {
+    "contract_type": "Add Line Item",
+    "n": "18"
+   },
+   {
+    "contract_type": "Emergency",
+    "n": "13"
+   },
+   {
+    "contract_type": "PRO SERV-BUSINESS CONSULTING",
+    "n": "9"
+   },
+   {
+    "contract_type": "Demolition",
+    "n": "5"
+   },
+   {
+    "contract_type": "CONSTRUCTION-LARGE $5MILLIONorABOVE",
+    "n": "4"
+   },
+   {
+    "contract_type": "ONE SHOT",
+    "n": "1"
+   },
+   {
+    "contract_type": "07/23/02",
+    "n": "1"
+   },
+   {
+    "contract_type": "08/28/01",
+    "n": "1"
+   }
+  ],
+  "by_procurement_type": [
+   {
+    "n": "130847"
+   },
+   {
+    "procurement_type": "BID",
+    "n": "29733"
+   },
+   {
+    "procurement_type": "RFP",
+    "n": "14641"
+   },
+   {
+    "procurement_type": "MASTER AGREEMENT",
+    "n": "3537"
+   },
+   {
+    "procurement_type": "RFQ",
+    "n": "2980"
+   },
+   {
+    "procurement_type": "SOLE SOURCE",
+    "n": "2741"
+   },
+   {
+    "procurement_type": "EMERGENCY",
+    "n": "588"
+   },
+   {
+    "procurement_type": "JOINT PURCHASE",
+    "n": "282"
+   },
+   {
+    "procurement_type": "REFERENCE CONTRACT",
+    "n": "225"
+   },
+   {
+    "procurement_type": "CONTRACT ASSIGNMENT/TRANS",
+    "n": "152"
+   },
+   {
+    "procurement_type": "RFI",
+    "n": "133"
+   },
+   {
+    "procurement_type": "CM",
+    "n": "78"
+   },
+   {
+    "procurement_type": "CONTRACT ASSIGNMENT/TRANSFER",
+    "n": "71"
+   },
+   {
+    "procurement_type": "INNOVATIVE PROCUREMENT",
+    "n": "8"
+   },
+   {
+    "procurement_type": "TASK ORDER",
+    "n": "5"
+   },
+   {
+    "procurement_type": "NON-DPS",
+    "n": "3"
+   }
+  ],
+  "by_revision_number": [
+   {
+    "revision_number": "0",
+    "n": "89054"
+   },
+   {
+    "revision_number": "1",
+    "n": "20922"
+   },
+   {
+    "revision_number": "2",
+    "n": "13553"
+   },
+   {
+    "revision_number": "3",
+    "n": "8441"
+   },
+   {
+    "revision_number": "4",
+    "n": "5869"
+   },
+   {
+    "revision_number": "5",
+    "n": "4153"
+   },
+   {
+    "revision_number": "6",
+    "n": "3199"
+   },
+   {
+    "revision_number": "7",
+    "n": "2582"
+   },
+   {
+    "revision_number": "8",
+    "n": "2042"
+   },
+   {
+    "revision_number": "9",
+    "n": "1689"
+   },
+   {
+    "revision_number": "10",
+    "n": "1362"
+   },
+   {
+    "revision_number": "11",
+    "n": "1170"
+   },
+   {
+    "revision_number": "12",
+    "n": "1003"
+   },
+   {
+    "revision_number": "13",
+    "n": "854"
+   },
+   {
+    "revision_number": "14",
+    "n": "773"
+   },
+   {
+    "revision_number": "15",
+    "n": "672"
+   },
+   {
+    "revision_number": "16",
+    "n": "613"
+   },
+   {
+    "revision_number": "17",
+    "n": "563"
+   },
+   {
+    "revision_number": "18",
+    "n": "504"
+   },
+   {
+    "revision_number": "19",
+    "n": "461"
+   },
+   {
+    "revision_number": "20",
+    "n": "427"
+   },
+   {
+    "revision_number": "21",
+    "n": "384"
+   },
+   {
+    "revision_number": "22",
+    "n": "345"
+   },
+   {
+    "revision_number": "23",
+    "n": "311"
+   },
+   {
+    "revision_number": "24",
+    "n": "295"
+   },
+   {
+    "revision_number": "25",
+    "n": "267"
+   },
+   {
+    "revision_number": "26",
+    "n": "247"
+   },
+   {
+    "revision_number": "27",
+    "n": "227"
+   },
+   {
+    "revision_number": "28",
+    "n": "209"
+   },
+   {
+    "revision_number": "29",
+    "n": "191"
+   },
+   {
+    "revision_number": "30",
+    "n": "189"
+   },
+   {
+    "revision_number": "31",
+    "n": "180"
+   },
+   {
+    "revision_number": "32",
+    "n": "165"
+   },
+   {
+    "revision_number": "33",
+    "n": "163"
+   },
+   {
+    "revision_number": "35",
+    "n": "158"
+   },
+   {
+    "revision_number": "34",
+    "n": "158"
+   },
+   {
+    "revision_number": "36",
+    "n": "146"
+   },
+   {
+    "revision_number": "37",
+    "n": "140"
+   },
+   {
+    "revision_number": "38",
+    "n": "134"
+   },
+   {
+    "revision_number": "39",
+    "n": "131"
+   },
+   {
+    "revision_number": "40",
+    "n": "124"
+   },
+   {
+    "revision_number": "41",
+    "n": "121"
+   },
+   {
+    "revision_number": "44",
+    "n": "115"
+   },
+   {
+    "revision_number": "42",
+    "n": "113"
+   },
+   {
+    "revision_number": "43",
+    "n": "112"
+   },
+   {
+    "revision_number": "45",
+    "n": "108"
+   },
+   {
+    "revision_number": "46",
+    "n": "101"
+   },
+   {
+    "revision_number": "47",
+    "n": "93"
+   },
+   {
+    "revision_number": "48",
+    "n": "92"
+   },
+   {
+    "revision_number": "50",
+    "n": "89"
+   },
+   {
+    "revision_number": "51",
+    "n": "88"
+   },
+   {
+    "revision_number": "49",
+    "n": "87"
+   },
+   {
+    "revision_number": "52",
+    "n": "83"
+   },
+   {
+    "revision_number": "53",
+    "n": "80"
+   },
+   {
+    "revision_number": "54",
+    "n": "76"
+   },
+   {
+    "revision_number": "55",
+    "n": "75"
+   },
+   {
+    "revision_number": "56",
+    "n": "72"
+   },
+   {
+    "revision_number": "57",
+    "n": "71"
+   },
+   {
+    "revision_number": "58",
+    "n": "69"
+   },
+   {
+    "revision_number": "60",
+    "n": "68"
+   },
+   {
+    "revision_number": "59",
+    "n": "67"
+   },
+   {
+    "revision_number": "61",
+    "n": "63"
+   },
+   {
+    "revision_number": "62",
+    "n": "61"
+   },
+   {
+    "revision_number": "63",
+    "n": "59"
+   },
+   {
+    "revision_number": "64",
+    "n": "55"
+   },
+   {
+    "revision_number": "68",
+    "n": "52"
+   },
+   {
+    "revision_number": "67",
+    "n": "52"
+   },
+   {
+    "revision_number": "65",
+    "n": "51"
+   },
+   {
+    "revision_number": "70",
+    "n": "50"
+   },
+   {
+    "revision_number": "69",
+    "n": "50"
+   },
+   {
+    "revision_number": "71",
+    "n": "48"
+   },
+   {
+    "revision_number": "66",
+    "n": "47"
+   },
+   {
+    "revision_number": "73",
+    "n": "46"
+   },
+   {
+    "revision_number": "74",
+    "n": "45"
+   },
+   {
+    "revision_number": "72",
+    "n": "44"
+   },
+   {
+    "revision_number": "75",
+    "n": "42"
+   },
+   {
+    "revision_number": "79",
+    "n": "41"
+   },
+   {
+    "revision_number": "78",
+    "n": "39"
+   },
+   {
+    "revision_number": "80",
+    "n": "39"
+   },
+   {
+    "revision_number": "76",
+    "n": "39"
+   }
+  ],
+  "by_department": [
+   {
+    "department": "DEPARTMENT OF FAMILY AND SUPPORT SERVICES",
+    "n": "30979"
+   },
+   {
+    "department": "CHICAGO DEPARTMENT OF TRANSPORTATION",
+    "n": "21164"
+   },
+   {
+    "department": "DEPARTMENT OF HUMAN RESOURCES",
+    "n": "17768"
+   },
+   {
+    "department": "CHICAGO DEPARTMENT OF PUBLIC HEALTH",
+    "n": "14357"
+   },
+   {
+    "department": "DEPARTMENT OF BUILDINGS",
+    "n": "11251"
+   },
+   {
+    "department": "CHICAGO DEPARTMENT OF AVIATION",
+    "n": "11102"
+   },
+   {
+    "n": "10630"
+   },
+   {
+    "department": "DEPARTMENT OF WATER MANAGEMENT",
+    "n": "7458"
+   },
+   {
+    "department": "DEPARTMENT OF HOUSING",
+    "n": "5263"
+   },
+   {
+    "department": "DEPARTMENT OF PLANNING AND DEVELOPMENT",
+    "n": "4827"
+   },
+   {
+    "department": "DEPARTMENT OF CULTURAL AFFAIRS",
+    "n": "4382"
+   },
+   {
+    "department": "OHARE MODERNIZATION PROJECT",
+    "n": "4037"
+   },
+   {
+    "department": "DEPT OF GENERAL SERVICES",
+    "n": "3930"
+   },
+   {
+    "department": "MAYORS OFFICE OF WORKFORCE DEVELOPMENT",
+    "n": "3704"
+   },
+   {
+    "department": "PLANNING & DEVELOPMENT",
+    "n": "3665"
+   },
+   {
+    "department": "CHICAGO POLICE DEPARTMENT",
+    "n": "3290"
+   },
+   {
+    "department": "DEPARTMENT OF CULTURAL AFFAIRS AND SPECIAL EVENTS",
+    "n": "2936"
+   },
+   {
+    "department": "DEPARTMENT OF STREETS AND SANITATION",
+    "n": "2517"
+   },
+   {
+    "department": "DEPT OF FLEET MGMT",
+    "n": "2240"
+   },
+   {
+    "department": "CHICAGO FIRE DEPARTMENT",
+    "n": "2221"
+   },
+   {
+    "department": "DEPT ON AGING",
+    "n": "1667"
+   },
+   {
+    "department": "DEPT OF BUSINESS AFFAIRS & CONSUMER PROTECTION",
+    "n": "1666"
+   },
+   {
+    "department": "DEPARTMENT OF FINANCE",
+    "n": "1616"
+   },
+   {
+    "department": "CHICAGO PUBLIC LIBRARY",
+    "n": "1592"
+   },
+   {
+    "department": "DEPARTMENT OF CHILDREN AND YOUTH SERVICES",
+    "n": "1496"
+   },
+   {
+    "department": "OFFICE OF SPECIAL EVENTS",
+    "n": "1395"
+   },
+   {
+    "department": "OFFICE OF BUDGET & MANAGEMENT",
+    "n": "1264"
+   },
+   {
+    "department": "DEPARTMENT OF ENVIROMENT",
+    "n": "1122"
+   },
+   {
+    "department": "DEPT OF BUSINESS & INFORMATION SERVICES",
+    "n": "886"
+   },
+   {
+    "department": "DEPARTMENT OF BUSINESS AFFAIRS AND CONSUMER PROTECTION",
+    "n": "623"
+   },
+   {
+    "department": "OFFICE OF EMERGENCY MANAGEMENT AND COMMUNICATIONS",
+    "n": "616"
+   },
+   {
+    "department": "MAYORS OFFICE FOR PEOPLE WITH DISABILITIES",
+    "n": "604"
+   },
+   {
+    "department": "DEPARTMENT OF PROCUREMENT SERVICES",
+    "n": "540"
+   },
+   {
+    "department": "DEPARTMENT OF FLEET AND FACILITY MANAGEMENT",
+    "n": "415"
+   },
+   {
+    "department": "DEPARTMENT OF REVENUE",
+    "n": "410"
+   },
+   {
+    "department": "DEPT OF ASSETS INFORMATION AND SERVICES",
+    "n": "321"
+   },
+   {
+    "department": "DEPARTMENT OF LAW",
+    "n": "277"
+   },
+   {
+    "department": "DEPARTMENT OF PERSONNEL",
+    "n": "198"
+   },
+   {
+    "department": "OFFICE OF CITY CLERK",
+    "n": "189"
+   },
+   {
+    "department": "OFFICE OF THE MAYOR",
+    "n": "179"
+   },
+   {
+    "department": "OFFICE OF COMPLIANCE",
+    "n": "169"
+   },
+   {
+    "department": "DEPARTMENT OF TECHNOLOGY AND INNOVATION",
+    "n": "144"
+   },
+   {
+    "department": "DEPARTMENT OF CONSTRUCTION AND PERMITS",
+    "n": "121"
+   },
+   {
+    "department": "CITYWIDE/MULTIPLE",
+    "n": "97"
+   },
+   {
+    "department": "O'HARE MODERNIZATION PROGRAM",
+    "n": "93"
+   },
+   {
+    "department": "CHICAGO ANIMAL CARE AND CONTROL",
+    "n": "86"
+   },
+   {
+    "department": "GRAPHICS & REPRODUCTION CTR",
+    "n": "83"
+   },
+   {
+    "department": "OFFICE OF PUBLIC SAFETY ADMINISTRATION",
+    "n": "82"
+   },
+   {
+    "department": "DEPT OF CONSUMER SERVICES",
+    "n": "52"
+   },
+   {
+    "department": "CITY TREASURER'S OFFICE",
+    "n": "48"
+   },
+   {
+    "department": "DEPT OF INNOVATION & TECHNOLOGY",
+    "n": "37"
+   },
+   {
+    "department": "DEPARTMENT OF ENVIRONMENT",
+    "n": "36"
+   },
+   {
+    "department": "OFFICE OF CABLE COMMUNICATION ADM",
+    "n": "32"
+   },
+   {
+    "department": "DEPT OF ZONING & LAND USE PLANNING",
+    "n": "31"
+   },
+   {
+    "department": "DEPT OF LAW",
+    "n": "29"
+   },
+   {
+    "department": "CHICAGO COMMISSION ON HUMAN RELATIONS",
+    "n": "26"
+   },
+   {
+    "department": "ADMINISTRATIVE ADJUDICATION",
+    "n": "10"
+   },
+   {
+    "department": "DEPARTMENT OF ZONING",
+    "n": "8"
+   },
+   {
+    "department": "DEPT OF WATER",
+    "n": "7"
+   },
+   {
+    "department": "BOARD OF ETHICS",
+    "n": "6"
+   },
+   {
+    "department": "INDEPENDENT POLICE REVIEW AUTHORITY",
+    "n": "6"
+   },
+   {
+    "department": "DEPARTMENT OF BUSINESS AFFAIRS AND LICENSING",
+    "n": "6"
+   },
+   {
+    "department": "OFFICE OF INSPECTOR GENERAL",
+    "n": "4"
+   },
+   {
+    "department": "DEPARTMENT OF SPECIAL EVENTS",
+    "n": "3"
+   },
+   {
+    "department": "CHICAGO POLICE BOARD",
+    "n": "3"
+   },
+   {
+    "department": "FINANCE GENERAL",
+    "n": "2"
+   },
+   {
+    "department": "BOARD OF ELECTION COMMISSIONERS",
+    "n": "1"
+   },
+   {
+    "department": "DEPT OF ECONOMIC DEVELOPMENT",
+    "n": "1"
+   },
+   {
+    "department": "GENERAL ACCOUNTING",
+    "n": "1"
+   },
+   {
+    "department": "LIC COMM & LOCAL LIQ CTRL COMM",
+    "n": "1"
+   },
+   {
+    "department": "LICENSE APPEAL COMMISSION",
+    "n": "1"
+   },
+   {
+    "department": "DEPARTMENT OF ADMINISTRATIVE HEARINGS",
+    "n": "1"
+   }
+  ],
+  "amount_negative": "27000",
+  "amount_zero": "27557",
+  "amount_positive": "131467",
+  "amount_null": "0",
+  "range_approval_date": {
+   "lo": "1993-01-01T00:00:00.000",
+   "hi": "2026-10-23T00:00:00.000"
+  },
+  "range_start_date": {
+   "lo": "0201-03-01T00:00:00.000",
+   "hi": "2048-02-25T00:00:00.000"
+  },
+  "range_end_date": {
+   "lo": "1989-02-15T00:00:00.000",
+   "hi": "3030-11-30T00:00:00.000"
+  },
+  "recent_by_revision": [
+   {
+    "revision_number": "0",
+    "n": "3319",
+    "s": "6799716316.0"
+   },
+   {
+    "revision_number": "1",
+    "n": "1260",
+    "s": "292777927.4"
+   },
+   {
+    "revision_number": "2",
+    "n": "1094",
+    "s": "262267124.4"
+   },
+   {
+    "revision_number": "3",
+    "n": "470",
+    "s": "452936813.8"
+   },
+   {
+    "revision_number": "4",
+    "n": "407",
+    "s": "428448617.3"
+   },
+   {
+    "revision_number": "5",
+    "n": "190",
+    "s": "149523229.4"
+   },
+   {
+    "revision_number": "6",
+    "n": "128",
+    "s": "475267627.4"
+   },
+   {
+    "revision_number": "7",
+    "n": "103",
+    "s": "198591827.8"
+   },
+   {
+    "revision_number": "8",
+    "n": "64",
+    "s": "70030234.8"
+   },
+   {
+    "revision_number": "9",
+    "n": "40",
+    "s": "92194529.5"
+   },
+   {
+    "revision_number": "11",
+    "n": "28",
+    "s": "102517578.9"
+   },
+   {
+    "revision_number": "13",
+    "n": "24",
+    "s": "28026551.4"
+   },
+   {
+    "revision_number": "10",
+    "n": "23",
+    "s": "1760391064.9"
+   },
+   {
+    "revision_number": "12",
+    "n": "22",
+    "s": "103859381.3"
+   },
+   {
+    "revision_number": "15",
+    "n": "20",
+    "s": "88497967.1"
+   },
+   {
+    "revision_number": "14",
+    "n": "19",
+    "s": "7006796.6"
+   },
+   {
+    "revision_number": "17",
+    "n": "12",
+    "s": "8059241.1"
+   },
+   {
+    "revision_number": "22",
+    "n": "12",
+    "s": "75351992.4"
+   },
+   {
+    "revision_number": "18",
+    "n": "11",
+    "s": "8123101.8"
+   },
+   {
+    "revision_number": "16",
+    "n": "10",
+    "s": "42393517.7"
+   },
+   {
+    "revision_number": "23",
+    "n": "9",
+    "s": "1895327.5"
+   },
+   {
+    "revision_number": "19",
+    "n": "9",
+    "s": "9079288.9"
+   },
+   {
+    "revision_number": "21",
+    "n": "6",
+    "s": "28336104.2"
+   },
+   {
+    "revision_number": "20",
+    "n": "6",
+    "s": "11172190.9"
+   },
+   {
+    "revision_number": "24",
+    "n": "5",
+    "s": "154251.6"
+   },
+   {
+    "revision_number": "27",
+    "n": "3",
+    "s": "2823907.4"
+   },
+   {
+    "revision_number": "25",
+    "n": "3",
+    "s": "-20304"
+   },
+   {
+    "revision_number": "26",
+    "n": "3",
+    "s": "1018145.9"
+   },
+   {
+    "revision_number": "30",
+    "n": "2",
+    "s": "171887.8"
+   },
+   {
+    "revision_number": "29",
+    "n": "2",
+    "s": "1574019"
+   }
+  ]
+ },
+ "terms": {
+  "url": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
+  "ok": true,
+  "lines": 152
+ },
+ "dps": {
+  "overview": {
+   "url": "https://www.chicago.gov/city/en/depts/dps/provdrs/contract/svcs/DPSOverview.html",
+   "links": [
+    [
+     "Skip to main content",
+     "https://www.chicago.gov/city/en/depts/dps/provdrs/contract/svcs/DPSOverview.html#cds-main"
+    ],
+    [
+     "Current Bid Opportunities",
+     "https://www.cityofchicago.org/city/en/depts/dps/provdrs/contract/svcs/current_bid_opportunities.html"
+    ],
+    [
+     "Buying Plan",
+     "https://www.chicago.gov/city/en/depts/dps/provdrs/contract/svcs/city-of-chicago-consolidated-buying-plan.html"
+    ],
+    [
+     "Contract Administration",
+     "javascript:void(0);"
+    ],
+    [
+     "Current Bid Opportunities",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/current_bid_opportunities.html"
+    ],
+    [
+     "Awarded Contracts",
+     "https://www.cityofchicago.org/city/en/depts/dps/provdrs/contract/svcs/awarded_contracts.html"
+    ],
+    [
+     "Bid Tabulations",
+     "https://www.cityofchicago.org/city/en/depts/dps/provdrs/contract/svcs/bid_and_bond_bidtabulationsbidtabs.html"
+    ],
+    [
+     "Take Out List",
+     "https://www.cityofchicago.org/city/en/depts/dps/provdrs/contract/svcs/opportunity_takeoutlist.html"
+    ],
+    [
+     "eProcurement",
+     "https://www.cityofchicago.org/city/en/depts/dps/isupplier.html"
+    ],
+    [
+     "Contract Administration",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract.html"
+    ],
+    [
+     "Awarded Contracts",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/awarded_contracts.html"
+    ],
+    [
+     "Bid and Bond Bid Tabulations (Bid Tabs)",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/bid_and_bond_bidtabulationsbidtabs.html"
+    ],
+    [
+     "Bid and Bond Room",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/bid_and_bond_room.html"
+    ],
+    [
+     "City of Chicago Consolidated Buying Plan",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/city-of-chicago-consolidated-buying-plan.html"
+    ],
+    [
+     "Contract Information Search",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/contract_search.html"
+    ],
+    [
+     "Current Bid Opportunities",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/current_bid_opportunities.html"
+    ],
+    [
+     "DPS Searchable Buying Plan",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/dps-searchable-buying-plan.html"
+    ],
+    [
+     "Doing Business with the City of Chicago",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/DPSOverview.html"
+    ],
+    [
+     "Emergency Contracts",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/emergency_contracts.html"
+    ],
+    [
+     "Job Order Contracts (JOC) Sub-Order Releases",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/job_order_contractsjocsub-orderreleases.html"
+    ],
+    [
+     "Non-competitive Procurement, Sole Source",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/non-competitive_procurement.html"
+    ],
+    [
+     "Payment Information Search",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/payment_search.html"
+    ],
+    [
+     "Pre-Bid and Pre-Submittal Conference Attendees",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/pre-bid_and_pre-submittalconferenceattendees.html"
+    ],
+    [
+     "Solicitation and Contracting Protest Procedures",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/solicitation_andcontractingprocessprocedures.html"
+    ],
+    [
+     "Standard Forms and Agreements",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/forms_and_standardagreements.html"
+    ],
+    [
+     "Take Out List",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/opportunity_takeoutlist.html"
+    ],
+    [
+     "Vendor Information Search",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/vendor_contract_andpaymentsearch.html"
+    ],
+    [
+     "eProcurement",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/eprocurement.html"
+    ],
+    [
+     "Contract Administration",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract.html"
+    ],
+    [
+     "Services",
+     "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs.html"
+    ],
+    [
+     "www.chicago.gov/bids",
+     "http://www.chicago.gov/bids"
+    ],
+    [
+     "DPS homepage",
+     "https://www.chicago.gov/city/en/depts/dps/provdrs/contract/svcs/city-of-chicago-consolidated-buying-plan.html"
+    ],
+    [
+     "Past bids and contracts",
+     "https://www.chicago.gov/city/en/depts/dps/provdrs/contract/svcs/awarded_contracts.html"
+    ],
+    [
+     "DPS website",
+     "https://www.chicago.gov/bids"
+    ],
+    [
+     "City’s Vendor Contract, Payment search page",
+     "https://webapps1.chicago.gov/vcsearch/"
+    ],
+    [
+     "Contract Administration",
+     "https://www.chicago.gov/content/dam/city/depts/dps/Outreach/Resource%20Guide_ProcurementFundamentals_Aug2023_FINAL.pdf"
+    ],
+    [
+     "Contracts & Awards",
+     "https://www.cityofchicago.org/city/en/depts/dps/provdrs/contract/svcs/awarded_contracts.html"
+    ],
+    [
+     "Buying Plan",
+     "https://www.chicago.gov/city/en/depts/dps/provdrs/contract/svcs/city-of-chicago-consolidated-buying-plan.html"
+    ],
+    [
+     "Bid Opportunity List",
+     "https://www.cityofchicago.org/city/en/depts/dps/provdrs/contract/svcs/current_bid_opportunities.html"
+    ]
+   ],
+   "textHead": [
+    "City of Chicago :: Doing Business with the City of Chicago",
+    "Skip to main content",
+    "An official website of the City of Chicago",
+    "Here's how you know",
+    "The .gov means it's officialMunicipal government websites often end in .gov or .org. Before sharing sensitive information, make sure you're on a City of Chicago government site.",
+    "The site is secure.The https:// ensures that you are connecting to the official website and that any information you provide is encrypted and transmitted securely.",
+    "MENU",
+    "Chicago",
+    "I Want To",
+    "Apply For",
+    "Check Status Of",
+    "Find / Get",
+    "Pay for/ buy",
+    "Register",
+    "Report / File",
+    "Request",
+    "Signup for/ Volunteer",
+    "Programs and Initiatives",
+    "Affordable Chicago",
+    "Chicago Recovery Plan",
+    "Community Safety",
+    "Consumer Protection",
+    "Cut the Tape",
+    "Education",
+    "Environment",
+    "Food Service Establishments",
+    "Freedom of Information (FOIA)",
+    "Grants",
+    "Health & Wellness",
+    "Housing",
+    "Inspections, Permitting & Licensing",
+    "Jobs",
+    "Municipal Marketing",
+    "My CHI. My Future.",
+    "Public Safety",
+    "Taxes",
+    "Technology",
+    "Transparency",
+    "Transportation",
+    "Vendor Impact Fund",
+    "Government",
+    "Elected Officials",
+    "Mayor's Office City Clerk City Treasurer City Council (Your Ward & Aldermen)",
+    "Other City Agencies",
+    "City Colleges City Council Office of Financial Analysis Housing Authority (CHA) Park District Public Building Commission Public Schools Transit Authority (CTA) Metro Pier & Exposition Authority",
+    "Departments",
+    "311 City Services Administrative Hearings Animal Care & Control Aviation Budget & Management Buildings Bus. Affairs & Consumer Protection City of Chicago TV Civilian Office of Police Accountability Community Commission for Public Safety & AccountabilityCultural Affairs & Special Events Emergency Mgmt & Communications",
+    "Environment Ethics Family & Support Services Finance Fire Fleet & Facility Management Housing Human Relations Human Resources Inspector General Law License Appeal Commission People with Disabilities Planning & Development",
+    "Police Police Board Procurement Services Public Health Public Library Public Safety Administration Streets & Sanitation Technology & Innovation Transportation Water Management",
+    "Legislation and Regulation",
+    "Municipal Code Construction Codes Zoning and Land Use Ordinance City of Chicago Rules Portal",
+    "Other",
+    "Employee Phone Directory Boards & Commissions City Holidays (Offices Closed)",
+    "About",
+    "Chicago History",
+    "Facts and Statistics",
+    "Attractions",
+    "Social Media Accounts",
+    "Accessibility",
+    "Search",
+    "Procurement Services",
+    "We are the contracting authority for the procurement of goods and services for the City of Chicago",
+    "Quick Links",
+    "Department Overview",
+    "Sign-Up for DPS Alerts",
+    "Apply for Certification",
+    "Current Bid Opportunities",
+    "Buying Plan",
+    "Register for Workshops",
+    "City of Chicago Assist Agencies",
+    "DPS Resource Guides",
+    "Rules and Regulations",
+    "Submit a FOIA Request",
+    "Contract Administration",
+    "Current Bid Opportunities",
+    "Awarded Contracts",
+    "Bid Tabulations",
+    "Take Out List",
+    "Economic Disclosure Statement (EDS)",
+    "eProcurement"
+   ]
+  },
+  "subpages": [
+   {
+    "url": "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/current_bid_opportunities.html",
+    "error": "fetch failed: https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/current_bid_opportunities.html (HTTP Error 403: Forbidden)"
+   },
+   {
+    "url": "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/bid_and_bond_bidtabulationsbidtabs.html",
+    "error": "fetch failed: https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/bid_and_bond_bidtabulationsbidtabs.html (HTTP Error 403: Forbidden)"
+   },
+   {
+    "url": "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/bid_and_bond_room.html",
+    "error": "fetch failed: https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/bid_and_bond_room.html (HTTP Error 403: Forbidden)"
+   },
+   {
+    "url": "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/pre-bid_and_pre-submittalconferenceattendees.html",
+    "error": "fetch failed: https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/pre-bid_and_pre-submittalconferenceattendees.html (HTTP Error 403: Forbidden)"
+   },
+   {
+    "url": "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/opportunity_takeoutlist.html",
+    "error": "fetch failed: https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/opportunity_takeoutlist.html (HTTP Error 403: Forbidden)"
+   },
+   {
+    "url": "https://www.chicago.gov/city/en/depts/dps/provdrs/contract/svcs/awarded_contracts.html",
+    "text": "Past bids and contracts",
+    "links": [
+     [
+      "Department Overview",
+      "https://www.chicago.gov/content/dam/city/depts/dps/Outreach/ProcurementResourceOnePage_062221.pdf"
+     ],
+     [
+      "Current Bid Opportunities",
+      "https://www.cityofchicago.org/city/en/depts/dps/provdrs/contract/svcs/current_bid_opportunities.html"
+     ],
+     [
+      "Current Bid Opportunities",
+      "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/current_bid_opportunities.html"
+     ],
+     [
+      "Bid Tabulations",
+      "https://www.cityofchicago.org/city/en/depts/dps/provdrs/contract/svcs/bid_and_bond_bidtabulationsbidtabs.html"
+     ],
+     [
+      "Take Out List",
+      "https://www.cityofchicago.org/city/en/depts/dps/provdrs/contract/svcs/opportunity_takeoutlist.html"
+     ],
+     [
+      "eProcurement",
+      "https://www.cityofchicago.org/city/en/depts/dps/isupplier.html"
+     ],
+     [
+      "Certification One-Pager Overview",
+      "https://www.chicago.gov/content/dam/city/depts/dps/Certification/Certification%20Documents/CertificationOnePager_October2023.pdf"
+     ],
+     [
+      "Bid and Bond Bid Tabulations (Bid Tabs)",
+      "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/bid_and_bond_bidtabulationsbidtabs.html"
+     ],
+     [
+      "Bid and Bond Room",
+      "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/bid_and_bond_room.html"
+     ],
+     [
+      "Current Bid Opportunities",
+      "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/current_bid_opportunities.html"
+     ],
+     [
+      "Pre-Bid and Pre-Submittal Conference Attendees",
+      "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/pre-bid_and_pre-submittalconferenceattendees.html"
+     ],
+     [
+      "Solicitation and Contracting Protest Procedures",
+      "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/solicitation_andcontractingprocessprocedures.html"
+     ],
+     [
+      "Take Out List",
+      "https://www.chicago.gov/content/city/en/depts/dps/provdrs/contract/svcs/opportunity_takeoutlist.html"
+     ],
+     [
+      "eProcurement",
+      "https://www.chicago.gov/content/city/en/depts/dps/provdrs/eprocurement.html"
+     ],
+     [
+      "Jan",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2002AwardedContracts/Jan2002_Awards.pdf"
+     ],
+     [
+      "Feb",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2002AwardedContracts/Feb2002_Awards.pdf"
+     ],
+     [
+      "Mar",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2002AwardedContracts/Mar2002_Awards.pdf"
+     ],
+     [
+      "Apr",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2002AwardedContracts/Apr2002_Awards.pdf"
+     ],
+     [
+      "May",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2002AwardedContracts/May2002_Awards.pdf"
+     ],
+     [
+      "Jun",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2002AwardedContracts/June2002_Awards.pdf"
+     ],
+     [
+      "Jul",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2002AwardedContracts/July2002_Awards.pdf"
+     ],
+     [
+      "Aug",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2002AwardedContracts/Aug2002_Awards.pdf"
+     ],
+     [
+      "Sep",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2002AwardedContracts/Sept2002_Awards.pdf"
+     ],
+     [
+      "Oct",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2002AwardedContracts/Oct2002_Awards.pdf"
+     ],
+     [
+      "Nov",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2002AwardedContracts/Nov2002_Awards.pdf"
+     ],
+     [
+      "Dec",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2002AwardedContracts/Dec2002_Awards.pdf"
+     ],
+     [
+      "Jan",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2001AwardedContracts/Jan2001_Awards.pdf"
+     ],
+     [
+      "Feb",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2001AwardedContracts/Feb2001_Awards.pdf"
+     ],
+     [
+      "Mar",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2001AwardedContracts/Mar2001_Awards.pdf"
+     ],
+     [
+      "May",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2001AwardedContracts/May2001_Awards.pdf"
+     ],
+     [
+      "Jun",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2001AwardedContracts/June2001_Awards.pdf"
+     ],
+     [
+      "Jul",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2001AwardedContracts/July2001_Awards.pdf"
+     ],
+     [
+      "Aug",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2001AwardedContracts/Aug2001_Awards.pdf"
+     ],
+     [
+      "Sep",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2001AwardedContracts/Sept2001_Awards.pdf"
+     ],
+     [
+      "Oct",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2001AwardedContracts/Oct2001_Awards.pdf"
+     ],
+     [
+      "Nov",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2001AwardedContracts/Nov2001_Awards.pdf"
+     ],
+     [
+      "Dec",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2001AwardedContracts/Dec2001_Awards.pdf"
+     ],
+     [
+      "Jan",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2000AwardedContracts/Jan2000_Awards.pdf"
+     ],
+     [
+      "Feb",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2000AwardedContracts/Feb2000_Awards.pdf"
+     ],
+     [
+      "Mar",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2000AwardedContracts/Mar2000_Awards.pdf"
+     ],
+     [
+      "Apr",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2000AwardedContracts/Apr2000_Awards.pdf"
+     ],
+     [
+      "May",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2000AwardedContracts/May2000_Awards.pdf"
+     ],
+     [
+      "Jun",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2000AwardedContracts/June2000_Awards.pdf"
+     ],
+     [
+      "Jul",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2000AwardedContracts/July2000_Awards.pdf"
+     ],
+     [
+      "Aug",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2000AwardedContracts/Aug2000_Awards.pdf"
+     ],
+     [
+      "Sep",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2000AwardedContracts/Sept2000_Awards.pdf"
+     ],
+     [
+      "Oct",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2000AwardedContracts/Oct2000_Awards.pdf"
+     ],
+     [
+      "Nov",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2000AwardedContracts/Nov2000_Awards.pdf"
+     ],
+     [
+      "Dec",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/2000AwardedContracts/Dec2000_Awards.pdf"
+     ],
+     [
+      "Oct",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/1999AwardedContracts/Oct1999_Awards.pdf"
+     ],
+     [
+      "Nov",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/1999AwardedContracts/Nov1999_Awards.pdf"
+     ],
+     [
+      "Dec",
+      "https://www.chicago.gov/content/dam/city/depts/dps/AwardedContracts1999to2002/1999AwardedContracts/Dec1999_Awards.pdf"
+     ],
+     [
+      "Bid Opportunity List",
+      "https://www.cityofchicago.org/city/en/depts/dps/provdrs/contract/svcs/current_bid_opportunities.html"
+     ]
+    ],
+    "textHead": [
+     "City of Chicago :: Awarded Contracts",
+     "Skip to main content",
+     "An official website of the City of Chicago",
+     "Here's how you know",
+     "The .gov means it's officialMunicipal government websites often end in .gov or .org. Before sharing sensitive information, make sure you're on a City of Chicago government site.",
+     "The site is secure.The https:// ensures that you are connecting to the official website and that any information you provide is encrypted and transmitted securely.",
+     "MENU",
+     "Chicago",
+     "I Want To",
+     "Apply For",
+     "Check Status Of",
+     "Find / Get",
+     "Pay for/ buy",
+     "Register",
+     "Report / File",
+     "Request",
+     "Signup for/ Volunteer",
+     "Programs and Initiatives",
+     "Affordable Chicago",
+     "Chicago Recovery Plan",
+     "Community Safety",
+     "Consumer Protection",
+     "Cut the Tape",
+     "Education",
+     "Environment",
+     "Food Service Establishments",
+     "Freedom of Information (FOIA)",
+     "Grants",
+     "Health & Wellness",
+     "Housing",
+     "Inspections, Permitting & Licensing",
+     "Jobs",
+     "Municipal Marketing",
+     "My CHI. My Future.",
+     "Public Safety",
+     "Taxes",
+     "Technology",
+     "Transparency",
+     "Transportation",
+     "Vendor Impact Fund",
+     "Government",
+     "Elected Officials",
+     "Mayor's Office City Clerk City Treasurer City Council (Your Ward & Aldermen)",
+     "Other City Agencies",
+     "City Colleges City Council Office of Financial Analysis Housing Authority (CHA) Park District Public Building Commission Public Schools Transit Authority (CTA) Metro Pier & Exposition Authority",
+     "Departments",
+     "311 City Services Administrative Hearings Animal Care & Control Aviation Budget & Management Buildings Bus. Affairs & Consumer Protection City of Chicago TV Civilian Office of Police Accountability Community Commission for Public Safety & AccountabilityCultural Affairs & Special Events Emergency Mgmt & Communications",
+     "Environment Ethics Family & Support Services Finance Fire Fleet & Facility Management Housing Human Relations Human Resources Inspector General Law License Appeal Commission People with Disabilities Planning & Development",
+     "Police Police Board Procurement Services Public Health Public Library Public Safety Administration Streets & Sanitation Technology & Innovation Transportation Water Management",
+     "Legislation and Regulation",
+     "Municipal Code Construction Codes Zoning and Land Use Ordinance City of Chicago Rules Portal",
+     "Other",
+     "Employee Phone Directory Boards & Commissions City Holidays (Offices Closed)",
+     "About",
+     "Chicago History",
+     "Facts and Statistics",
+     "Attractions",
+     "Social Media Accounts",
+     "Accessibility",
+     "Search"
+    ]
+   }
+  ],
+  "weekly2026": []
+ },
+ "errors": []
+}

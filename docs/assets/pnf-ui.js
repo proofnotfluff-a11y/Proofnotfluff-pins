@@ -129,7 +129,7 @@
           cards.forEach(function (card) { if ((!gg || card.dataset.g === gg) && matches(norm(card.dataset.k), words)) c++; });
           var s = b.querySelector("span"); if (s) s.textContent = c;
         });
-        count.textContent = words.length || g ? "Showing " + n + " of " + total + " " + noun : total + " " + noun;
+        count.textContent = words.length || g ? "Showing " + n + " of " + total + " " + noun : (bar.dataset.quiet ? "" : total + " " + noun);   // the hub states its total in the All chip
         try { var u = new URL(location.href); if (q.value) u.searchParams.set("q", q.value); else u.searchParams.delete("q"); if (g) u.searchParams.set("cat", g); else u.searchParams.delete("cat"); history.replaceState(null, "", u); } catch (e) {}
       };
       q.addEventListener("input", run);

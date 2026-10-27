@@ -2,9 +2,8 @@
  "page": "chicago-data/",
  "steps": [
   {"expect_visible": "#cxBar"},
-  {"expect_text": "#cxCount", "matches": "^\\d+ data pages$"},
   {"fill": "#cxQ", "value": "snow", "screenshot": true},
-  {"expect_text": "#cxCount", "matches": "^Showing [1-9]\\d* of \\d+ data pages$"},
+  {"expect_text": "#cxCount", "matches": "^Showing [1-9]\\d* of \\d+ pages$"},
   {"expect_js": "[...document.querySelectorAll('#cxAll .cx-item')].some(c=>!c.hidden && c.querySelector('a').getAttribute('href').includes('snow'))"},
   {"fill": "#cxQ", "value": ""},
   {"click": ".cx-chip[data-g='permits']"},
@@ -13,7 +12,7 @@
   {"fill": "#cxQ", "value": "zzqx"},
   {"expect_visible": "#cxEmpty"},
   {"click": "#cxClear"},
-  {"expect_text": "#cxCount", "matches": "^\\d+ data pages$"},
+  {"expect_text": "#cxCount", "matches": "^$"},
   {"expect_count": "#cxAll .cx-item a[href^='../']", "min": 10},
   {"expect_count": ".st-band a[href='../#trades']", "min": 1}
  ]}

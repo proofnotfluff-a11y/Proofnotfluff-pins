@@ -750,7 +750,6 @@ body{overflow-x:clip}
 .dh-page .cx-group>.st-cgroup{font-size:24px;line-height:1.25;font-weight:700;margin:0 0 4px}
 .dh-page .dh-line{margin:0 0 6px}
 @media(min-width:760px){.dh-more .cx-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-.dh-page .cx-grid>li:only-child{grid-column:1/-1}.dh-page .cx-grid>li:only-child .cx-d{max-width:68ch}
 .dh-page .cx-grid>li:first-child:nth-last-child(5){grid-column:span 2}}
 .st-tlist a{padding-left:0;padding-right:0}
 .st-band-act .btn.ld-btnbig{white-space:normal;max-width:100%;text-align:center}
@@ -766,5 +765,6 @@ body{overflow-x:clip}
 .st-tcol>.st-tlist{grid-row:span 4;grid-template-rows:subgrid}}}
 @media(max-width:767px){.cx-search kbd{display:none}}
 @media(max-width:599px){.dh-page .cx-chips{flex-wrap:wrap;overflow:visible;-webkit-mask-image:none;mask-image:none}}
-main p.cx-xlink a{padding:14px 16px}
+main p.cx-xlink a:not(.btn):not(.st-btn2){padding:14px 16px}
 .st-band-act .btn.ld-btnbig{text-wrap:balance}
+.dh-more .cx-grid{margin-top:16px}.dh-page .cx-count:empty{display:none}

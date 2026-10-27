@@ -649,7 +649,13 @@
    "glance": [
     "General contractor license, Class A to E",
     "None found"
-   ]
+   ],
+   "facts": {
+    "fee": "$300 to $2,000 a year",
+    "insurance": "$1 million to $5 million per occurrence",
+    "bond": "None listed",
+    "renewal": "Every year"
+   }
   },
   {
    "slug": "electrical",
@@ -742,7 +748,13 @@
    "glance": [
     "Electrical contractor license, with a licensed supervising electrician",
     "None found"
-   ]
+   ],
+   "facts": {
+    "fee": "$150 a year",
+    "insurance": "None listed",
+    "bond": "None listed",
+    "renewal": "Every year"
+   }
   },
   {
    "slug": "plumbing",
@@ -893,7 +905,13 @@
    "glance": [
     "Plumbing contractor license and plumber licenses",
     "Public Health contractor registration and plumber license"
-   ]
+   ],
+   "facts": {
+    "fee": "$150 City, $150 State",
+    "insurance": "State: $100,000 general liability",
+    "bond": "$20,000 City and $20,000 State",
+    "renewal": "Every year"
+   }
   },
   {
    "slug": "hvac-mechanical",
@@ -1028,7 +1046,13 @@
    "glance": [
     "General contractor for permit work, home repair license for home work without a permit",
     "None found (federal: EPA Section 608 for refrigerant)"
-   ]
+   ],
+   "facts": {
+    "fee": "$300 to $2,000 a year (general contractor)",
+    "insurance": "$1 million to $5 million (general contractor)",
+    "bond": "None listed",
+    "renewal": "Every year (general contractor)"
+   }
   },
   {
    "slug": "roofing",
@@ -1141,7 +1165,13 @@
    "glance": [
     "Licensed general contractor on the roof permit",
     "Roofing contractor license, limited or unlimited"
-   ]
+   ],
+   "facts": {
+    "fee": "$125 State, then $62.50 a year",
+    "insurance": "$250,000 property, $500,000 liability",
+    "bond": "$10,000 or $25,000",
+    "renewal": "December 31, odd years"
+   }
   },
   {
    "slug": "pest-control",
@@ -1275,7 +1305,13 @@
    "glance": [
     "Not named; BACP sets the business license",
     "Public Health business license and a certified technician"
-   ]
+   ],
+   "facts": {
+    "fee": "$250 State business license",
+    "insurance": "$350,000 combined, or split limits",
+    "bond": "None listed",
+    "renewal": "December 31 each year"
+   }
   },
   {
    "slug": "cleaning",
@@ -1362,7 +1398,13 @@
    "glance": [
     "Not named; BACP sets the business license",
     "None found"
-   ]
+   ],
+   "facts": {
+    "fee": "$250 for two years (City)",
+    "insurance": "None listed",
+    "bond": "None listed",
+    "renewal": "One or two years (City)"
+   }
   },
   {
    "slug": "painting",
@@ -1473,7 +1515,13 @@
    "glance": [
     "Not named; BACP sets the business license",
     "None found (federal: EPA lead-safe firm for pre-1978 homes)"
-   ]
+   ],
+   "facts": {
+    "fee": "$250 for two years (City)",
+    "insurance": "None listed",
+    "bond": "None listed",
+    "renewal": "One or two years (City)"
+   }
   },
   {
    "slug": "landscaping-pesticides",
@@ -1591,7 +1639,13 @@
    "glance": [
     "Not named; BACP sets the business license",
     "Agriculture pesticide applicator or operator license for hire"
-   ]
+   ],
+   "facts": {
+    "fee": "$300 applicator, 3 years",
+    "insurance": "$100,000 per occurrence, for hire",
+    "bond": "Accepted instead of insurance",
+    "renewal": "Every 3 years"
+   }
   },
   {
    "slug": "junk-removal-hauling",
@@ -1703,7 +1757,13 @@
    "glance": [
     "Private Scavenger or Junk Peddler license",
     "Illinois EPA permit for special waste only"
-   ]
+   ],
+   "facts": {
+    "fee": "$250 for two years",
+    "insurance": "Vehicle insurance, no amount",
+    "bond": "None listed",
+    "renewal": "Every two years (junk peddler)"
+   }
   },
   {
    "slug": "pressure-washing",
@@ -1826,7 +1886,13 @@
    "glance": [
     "Public Health permit for sandblasting, grinding and chemical washing",
     "None found"
-   ]
+   ],
+   "facts": {
+    "fee": "$150 first month per building",
+    "insurance": "None listed",
+    "bond": "None listed",
+    "renewal": "Per job, by the month"
+   }
   },
   {
    "slug": "snow-removal",
@@ -1925,7 +1991,13 @@
    "glance": [
     "Not named; BACP sets the business license",
     "None found"
-   ]
+   ],
+   "facts": {
+    "fee": "$250 for two years (City)",
+    "insurance": "None listed",
+    "bond": "None listed",
+    "renewal": "Every two years"
+   }
   }
  ]
 }

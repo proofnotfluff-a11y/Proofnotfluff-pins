@@ -117,7 +117,7 @@ def lastmod(p):
 # ------------------------------------------------------------------ pieces
 CSS = ("<style>"
        ":root{--mp-up:#a63e21;--mp-dn:#00856f}@media(prefers-color-scheme:dark){:root{--mp-up:#e2683f;--mp-dn:#1fa293}}"
-       ".mp-hero h1{text-wrap:balance}@media(max-width:599px){.mp-calc .field select{font-size:15px}}.mp-hero .lede{max-width:780px}.mp-lead{border-top:3px solid var(--accent)}.mp-btns .btn,.mp-btns .st-btn2{min-height:48px;display:inline-flex;align-items:center;justify-content:center;padding-top:0;padding-bottom:0;box-sizing:border-box}.mp-btns{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}.mp-tw.mp-nar{max-width:720px}.mp-hero .ld-heroact{margin-bottom:20px}.mp-name,.mp-dv .n,.mp-t tbody th,.mp-rel a,.mp-res .sub{overflow-wrap:anywhere}.mp-tiles .lab,.mp-res .lab{white-space:normal}.mp-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}@media(min-width:900px){.mp-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}"
+       ".mp-hero h1{text-wrap:balance}.mp-fnote{margin:0 0 4px;font-size:14px;line-height:1.45}@media(max-width:599px){.mp-calc .field select{font-size:15px}}.mp-hero .lede{max-width:780px}.mp-lead{border-top:3px solid var(--accent)}.mp-btns .btn,.mp-btns .st-btn2{min-height:48px;display:inline-flex;align-items:center;justify-content:center;padding-top:0;padding-bottom:0;box-sizing:border-box}.mp-btns{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}.mp-tw.mp-nar{max-width:720px}.mp-hero .ld-heroact{margin-bottom:20px}.mp-name,.mp-dv .n,.mp-t tbody th,.mp-rel a,.mp-res .sub{overflow-wrap:anywhere}.mp-tiles .lab,.mp-res .lab{white-space:normal}.mp-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}@media(min-width:900px){.mp-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}"
        ".mp-tiles .val small{font-size:.55em;font-weight:600;color:inherit;opacity:.8}.mp-name{font-size:clamp(16px,9cqi,22px)!important;line-height:1.25}"
        ".mp-calc{margin-top:8px}@media(min-width:900px){.mp-calc{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}"
        ".mp-calc .row{grid-template-columns:1fr;gap:6px}.mp-calc .field select{text-align:left;padding-right:28px;min-height:44px}"
@@ -132,17 +132,17 @@ CSS = ("<style>"
        ".mp-key i{display:inline-block;width:18px;height:10px;border-radius:3px;margin-right:6px;vertical-align:0}"
        ".mp-dv{margin:12px 0 0;padding:14px 16px 10px;background:var(--card);border:1px solid var(--line);border-radius:12px}"
        ".mp-dv ol{list-style:none;margin:0;padding:0}section.block .mp-dv li,section.block .mp-rel li,section.block .mp-key li{max-width:none}"
-       ".mp-dv a{display:grid;grid-template-columns:minmax(150px,300px) minmax(0,520px) 76px;justify-content:start;gap:4px 12px;align-items:center;min-height:44px;"
+       ".mp-dv a{display:grid;grid-template-columns:minmax(150px,300px) minmax(0,1fr);gap:4px 12px;align-items:center;min-height:44px;"
        "padding:2px 6px;margin:0 -6px;border-radius:8px;color:var(--ink);text-decoration:none;position:relative}"
        ".mp-dv a:hover,.mp-dv a:focus-visible{background:var(--rule)}.mp-dv a:focus-visible{outline:3px solid var(--focus);outline-offset:1px}"
-       ".mp-dv .n{font-size:14.5px;font-weight:600;line-height:1.25}.mp-dv b{text-align:right;font:700 14.5px system-ui,sans-serif;font-variant-numeric:tabular-nums}"
-       ".mp-tr{position:relative;height:14px}.mp-tr::before{content:'';position:absolute;left:var(--z,50%);top:-6px;bottom:-6px;width:1px;background:var(--dash)}"
+       ".mp-dv .n{font-size:14.5px;font-weight:600;line-height:1.25}.mp-dv b{position:absolute;top:50%;transform:translateY(-50%);white-space:nowrap;font:700 14px system-ui,sans-serif;font-variant-numeric:tabular-nums;color:var(--ink)}"
+       ".mp-tr{position:relative;height:14px;align-self:center}.mp-tr::before{content:'';position:absolute;left:var(--z,50%);top:-6px;bottom:-6px;width:1px;background:var(--dash)}"
        ".mp-tr i{position:absolute;top:0;height:14px}.mp-up{background:var(--mp-up);border-radius:0 4px 4px 0}"
        ".mp-dn{background:var(--mp-dn);border-radius:4px 0 0 4px}"
-       ".mp-dv .tip{display:none;position:absolute;z-index:3;left:auto;right:70px;top:100%;margin-top:2px;padding:6px 10px;border-radius:8px;"
+       ".mp-dv .tip{display:none;position:absolute;z-index:3;left:auto;right:6px;top:100%;margin-top:2px;padding:6px 10px;border-radius:8px;"
        "background:var(--band);color:#fff;font-size:13px;white-space:nowrap;box-shadow:var(--shadow-soft);pointer-events:none}"
        ".mp-dv a:hover .tip,.mp-dv a:focus-visible .tip{display:block}"
-       "@media(max-width:599px){main .mp-dv li a{grid-template-columns:minmax(0,1fr) 70px;padding:6px 6px}main .mp-rel li a{padding:0 14px}.mp-dv .n{grid-column:1/-1}.mp-dv .mp-tr{grid-column:1}.mp-dv .tip{right:6px}}"
+       "@media(max-width:599px){main .mp-dv li a{grid-template-columns:minmax(0,1fr);padding:6px 6px}main .mp-rel li a{padding:0 14px}.mp-dv .n{grid-column:1/-1}.mp-dv .mp-tr{grid-column:1;margin-right:4px}.mp-dv .tip{right:6px}}"
        ".mp-tw{overflow-x:auto;margin:12px 0 0;border:1px solid var(--line);border-radius:12px;background:var(--card)}"
        ".mp-tw:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
        ".mp-t{width:100%;border-collapse:collapse;font-size:14.5px}.mp-t th,.mp-t td{padding:10px 12px;border-bottom:1px solid var(--rule);text-align:right;font-variant-numeric:tabular-nums;vertical-align:middle}"
@@ -209,6 +209,7 @@ def calc_html(d, E, default=DEFAULT, heading=True):
             f'<div class="field has-pre"><span class=pre>$</span><input id="mp-amt" type="text" inputmode="decimal" value="10,000" autocomplete="off" aria-describedby="mp-err"></div>'
             '<span class="calc-err" id="mp-err" hidden>Type an amount, like 10,000 or 2.5k.</span></div>'
             '</fieldset>'
+            '<p class="callout mp-fnote">A producer price index, not your supplier\'s price. Use it to see the size of a move; the price you pay is on your supplier\'s invoice.</p>'
             '<div class="calc-reset"><button type="button" class="st-btn2" data-mp-reset>Reset the example</button></div>'
             '</form>'
             '<div class="sticky"><div class="card mp-res" aria-live="polite">'
@@ -217,12 +218,11 @@ def calc_html(d, E, default=DEFAULT, heading=True):
             f'<div class="sub" data-mp="span">{E(dflt["title"])}, {mlabel(q)} to {mlabel(now[0])}</div></div>'
             f'<div class="tile"><div class="lab">Amount today</div><div class="val" data-mp="new">${new:,.0f}</div><div class="sub" data-mp="from">from ${amt:,.0f}</div></div>'
             f'<div class="tile"><div class="lab">Difference</div><div class="val" data-mp="diff">{"+" if new >= amt else "-"}${abs(new - amt):,.0f}</div>'
-            f'<div class="sub" data-mp="idx">index {then[1]:,.1f} then, {now[1]:,.1f} now</div></div>'
+            f'<div class="sub" data-mp="idx">index {then[1]:,.1f} to {now[1]:,.1f}</div></div>'
             '</div>'
             f'<p class="mp-say" data-mp="say">{say}</p>'
             f'<p class="mp-pnote" data-mp="pnote"{"" if pnote else " hidden"}>{E(pnote)}</p>'
             '<div class="mp-acts"><button type="button" class="st-btn2" data-mp-copy>Copy this as a sentence</button><span role="status" data-mp="copied"></span></div>'
-            f'<p class="mp-pnote">A producer price index, not your supplier\'s price. Use it to see the size of a move; the price you pay is on your supplier\'s invoice.</p>'
             '</div></div></div>')
 
 
@@ -252,7 +252,7 @@ function run(){var s=ser(mat.value),o=s[5],now=o[o.length-1],then=null;for(var i
  out('ch').textContent=pc(ch);out('span').textContent=s[1]+', '+lab(then[0])+' to '+lab(now[0]);
  out('new').textContent=money(Math.round(nw),0);out('from').textContent='from '+money(Math.round(a),0);
  out('diff').textContent=(Math.round(df)<0?'-':'+')+money(Math.abs(Math.round(df)),0);
- out('idx').textContent='index '+then[1].toFixed(1)+' then, '+now[1].toFixed(1)+' now';
+ out('idx').textContent='index '+then[1].toFixed(1)+' to '+now[1].toFixed(1);
  out('say').textContent=s[1]+' is '+words(ch)+' from '+lab(then[0])+' to '+lab(now[0])+'. '+money(a,2)+' at the '+lab(then[0])+' index is '+money(nw,2)+' at the '+lab(now[0])+' index.';
  var pl=[];if(then[2])pl.push(lab(then[0]));if(now[2])pl.push(lab(now[0]));var pn=out('pnote');
  pn.hidden=!pl.length;pn.textContent=pl.length?pl.join(' and ')+(pl.length>1?' are':' is')+' preliminary: BLS can revise '+(pl.length>1?'them':'it')+' for up to 4 months after '+(pl.length>1?'they first come':'it first comes')+' out.':'';
@@ -273,16 +273,19 @@ def diverging(d, E, rel):
     neg = max([0] + [-m["y12"] for m in mats])
     pos = max([0] + [m["y12"] for m in mats])
     span = (neg + pos) or 1
-    zero = neg / span * 100          # the zero line sits where the scale puts it, so one small drop does not waste half the width
+    FIT = 80                         # the longest bar fills 80% of the track, so its value fits at the tip
+    zero = neg / span * FIT          # the zero line sits where the scale puts it, so one small drop does not waste half the width
     rows = []
     for m in mats:
-        w = max(0.8, abs(m["y12"]) / span * 100)
+        w = max(0.8, abs(m["y12"]) / span * FIT)
         cls = "mp-up" if m["y12"] >= 0 else "mp-dn"
         where = f"left:{zero:.2f}%" if m["y12"] >= 0 else f"right:{100 - zero:.2f}%"
+        at = zero + (w if m["y12"] >= 0 else 0)   # the value sits at the bar's tip (a drop's value sits just right of zero)
         tip = f'{m["y12o"][1]:,.1f} in {mlabel(m["y12o"][0])}, {m["last"][1]:,.1f} in {mlabel(m["last"][0])}'
         rows.append(f'<li><a href="{rel}{SLUG}/{E(m["slug"])}/"><span class="n">{E(m["title"])}</span>'
-                    f'<span class="mp-tr" aria-hidden="true" style="--z:{zero:.2f}%"><i class="{cls}" style="{where};width:{w:.1f}%"></i></span>'
-                    f'<b>{pct_txt(m["y12"])}</b><span class="tip" aria-hidden="true">{E(tip)}</span></a></li>')
+                    f'<span class="sr">, {pct_txt(m["y12"])}</span>'
+                    f'<span class="mp-tr" aria-hidden="true" style="--z:{zero:.2f}%"><i class="{cls}" style="{where};width:{w:.1f}%"></i>'
+                    f'<b style="left:calc({at:.2f}% + 8px)">{pct_txt(m["y12"])}</b></span><span class="tip" aria-hidden="true">{E(tip)}</span></a></li>')
     return ('<figure class="mp-dv" aria-labelledby="mp-dv-cap"><figcaption id="mp-dv-cap" class="sr">12-month change in each material\'s price index, '
             f'{mlabel(d["latest"])} against {mlabel(ym_add(d["latest"], -12))}, largest rise first</figcaption><ol>' + "".join(rows) + '</ol>'
             '<ul class="mp-key" aria-hidden="true"><li><i style="background:var(--mp-up)"></i>Price index up</li><li><i style="background:var(--mp-dn)"></i>Price index down</li>'
@@ -551,10 +554,10 @@ def page_html(p):
     lede = (f'How far {len(d["mats"])} materials the trades buy have moved since the month you quoted, from the federal producer price index. '
             f'{n_up} of {len(ys)} are up from a year ago. Free, no sign-up.')
     tiles = ('<div class="tiles ld-tiles mp-tiles">'
-             f'<div class="tile mp-lead"><div class="lab">Top rise, 1\u00a0yr</div><div class="val">{pct_txt(top["y12"])}</div><div class="sub">{E(top["title"])}, since {nb(mlabel(top["y12o"][0]))}</div></div>'
-             f'<div class="tile"><div class="lab">{"Top drop" if low["y12"] < 0 else "Smallest rise"}, 1\u00a0yr</div><div class="val">{pct_txt(low["y12"])}</div><div class="sub">{E(low["title"])}, since {nb(mlabel(low["y12o"][0]))}</div></div>'
+             f'<div class="tile mp-lead"><div class="lab">Top rise, 1\u00a0yr</div><div class="val">{pct_txt(top["y12"])}</div><div class="sub">{E(top["title"])}<br>since {nb(mlabel(top["y12o"][0]))}</div></div>'
+             f'<div class="tile"><div class="lab">{"Top drop" if low["y12"] < 0 else "Smallest rise"}, 1\u00a0yr</div><div class="val">{pct_txt(low["y12"])}</div><div class="sub">{E(low["title"])}<br>since {nb(mlabel(low["y12o"][0]))}</div></div>'
              f'<div class="tile"><div class="lab">Up from a year ago</div><div class="val">{n_up} <small>of {len(ys)}</small></div><div class="sub">materials on this page</div></div>'
-             f'<div class="tile"><div class="lab">Latest month</div><div class="val">{L}</div><div class="sub">{"preliminary; " if d["latest"] in d["prelim"] else ""}'
+             f'<div class="tile"><div class="lab">Latest month</div><div class="val">{L}</div><div class="sub">{"preliminary<br>" if d["latest"] in d["prelim"] else ""}'
              + (f'next update {E(nb(nice(nx["date"])))}' if nx else "BLS updates monthly") + '</div></div>'
              '</div>'
              f'<p class="asof">BLS producer price indexes, {"national and Midwest region" if any(x["area"] != "national" for x in d["mats"]) else "national"}, not seasonally adjusted, through {L}, retrieved from BLS on {E(M.nice_date(d["fetched"][:10]))}.</p>')

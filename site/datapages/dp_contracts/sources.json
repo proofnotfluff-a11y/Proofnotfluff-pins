@@ -1,0 +1,34 @@
+{
+ "checkedAt": "2026-10-27T13:08:18-05:00",
+ "terms": {
+  "url": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
+  "status": 200,
+  "ok": true
+ },
+ "overview": {
+  "url": "https://www.chicago.gov/city/en/depts/dps/provdrs/contract/svcs/DPSOverview.html",
+  "status": 200
+ },
+ "bids": {
+  "url": "https://www.chicago.gov/city/en/depts/dps/provdrs/contract/svcs/current_bid_opportunities.html",
+  "status": 200,
+  "weekly": {
+   "url": "https://www.chicago.gov/content/dam/city/depts/dps/WeeklyBidOpportunities/2026WeeklyBidOpportunities/102626.pdf",
+   "text": "DOWNLOAD THE BID OPPORTUNITY LIST (PDF)",
+   "date": "2026-10-26",
+   "year": 2026,
+   "pdfStatus": 403,
+   "pdfOpened": false
+  },
+  "mentionsEproc": true
+ },
+ "eprocPage": {
+  "url": "https://www.chicago.gov/city/en/depts/dps/isupplier/current-bids.html",
+  "status": 200
+ },
+ "eprocList": {
+  "url": "https://eprocurement.cityofchicago.org/OA_HTML/OA.jsp?OAFunc=PON_ABSTRACT_PAGE",
+  "status": 200,
+  "loads": true
+ }
+}

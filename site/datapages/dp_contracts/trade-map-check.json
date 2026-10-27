@@ -38,7 +38,7 @@
   ]
  },
  "landscaping": {
-  "n36": 31,
+  "n36": 30,
   "top": [
    [
     "TARGET MARKET COMPREHENSIVE LANDSCAPE SERVICES",
@@ -106,10 +106,6 @@
    ],
    [
     "695787A: TREE STUMP AND DEBRIS REMOVAL SERVICES (Areas 1,2 & 3)",
-    1
-   ],
-   [
-    "Agreement between the City of Chicago North Lawndale Catalyst Initiati",
     1
    ],
    [
@@ -197,13 +193,8 @@
   ]
  },
  "painting": {
-  "n36": 4,
-  "top": [
-   [
-    "ASBESTOS ABATEMENT, LEAD BASED PAINT MITIGATION AND MICROBIAL REMEDIAT",
-    4
-   ]
-  ]
+  "n36": 0,
+  "top": []
  },
  "hvac": {
   "n36": 14,

@@ -174,7 +174,7 @@ def trade_html(t, d, E, h="h2", picker="", solo=False):
     pick = f'<div class="lf-gcwrap" id="gc"><{sub}>Which class do you need?</{sub}><p>{E(d["gc"]["intro"])}</p>{picker}</div>' if picker else ""
     head_ = (f'<{h} class="sr">{E(t["name"])}: City and State requirements</{h}>' if solo else f'<{h}>{E(t["name"])}</{h}><p class="lf-sum">{E(t["summary"])}</p>')
     return (f'<section class="lf-trade" id="{E(t["slug"])}" data-trade="{E(t["slug"])}">{head_}'
-            f'{facts_html(t, E)}{jump}<dl class="lf-dl">{"".join(rows)}</dl>{check_line(t, d, E)}{pick}</section>')
+            f'{facts_html(t, E)}{jump}<dl class="lf-dl">{"".join(rows)}</dl>{pick}{check_line(t, d, E)}</section>')
 
 
 FACTS = [("fee", "Fee", "fee"), ("insurance", "Insurance", "insurance"), ("bond", "Bond", "bond"), ("renewal", "Renewal", "renewal")]
@@ -308,7 +308,7 @@ def page_html(p):
             '<section class="block"><h2>How this page is made</h2>' + "".join(f"<p>{E(x)}</p>" for x in d["method"]) + '</section>'
             f'{faq_html(d, E)}'
             f'<section class="block" id="each"><h2>One page per trade</h2><p>The same facts on a page of their own, to save or send.</p>{grid}'
-            '<p class="rl-act lf-end"><a class="btn" href="#top" data-pick>Pick your trade</a><a class="st-btn2" href="#gc-class">Find your general contractor class</a></p></section>')
+            '<p class="rl-act lf-end"><a class="btn" href="#trades" data-pick>Pick your trade</a><a class="st-btn2" href="#gc-class">Find your general contractor class</a></p></section>')
     return head(p, M, E, url, rel, p["title"], p["desc"], robots, [crumb_ld, faq_ld]) + body + foot(d, rel, E, M)
 
 
@@ -324,7 +324,7 @@ def extra_pages(p):
         gc = t["slug"] == "general-contractor"
         others = "".join(f'<li><a href="../{E(x["slug"])}/"><span>{E(x["name"])}<small>{nb(E(x["card"]))}</small></span>{M.ARROW}</a></li>' for x in d["trades"] if x is not t)
         body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">Chicago trade license finder</p><h1>{E(t["h1"])}</h1>'
-                f'<p class="lede">{E(t["page_summary"])}</p><p class="asof">Every line read on the agency\'s own page on {E(nice(d["checked"]))}, with the page linked beside it. Public information, not legal advice: check with the agency before you apply or bid.</p>'
+                f'<p class="lede">{E(t["page_summary"])}</p><p class="asof">Every line checked on the agency\'s own page on {E(nice(d["checked"]))}, with the page linked beside it. Public information, not legal advice: check with the agency before you apply or bid.</p>'
                 + '<div class="ld-heroact rl-act">' + ('<a class="btn" href="#gc-class">Find your class</a>' if gc else "") + '<a class="st-btn2" href="../">See every trade</a></div></div>'
                 + trade_html(t, d, E, h="h2", picker=gc_picker(d, E) if gc else "", solo=True)
                 + f'<section class="block"><h2>Other trades</h2><ul class="lf-grid">{others}</ul><p class="rl-act lf-end"><a class="btn" href="../">See every trade on one page</a></p></section>')

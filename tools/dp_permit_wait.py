@@ -100,12 +100,24 @@ CSS = ("<style>"
        ".ld-heroact .btn,.ld-heroact .st-btn2,.pw-end .btn,.pw-end .st-btn2,.ld-buybtn .btn,.pw-dl{min-height:48px;display:inline-flex;align-items:center;box-sizing:border-box}"
        ".pw-end{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 0}.pw-two .cta .btn{margin-top:16px}"
        "details.pw-more{border:0;background:none;padding:0;box-shadow:none;max-width:none}"
-       ".pw-dates{grid-template-columns:repeat(3,minmax(0,1fr))}@media(max-width:599px){.pw-dates{grid-template-columns:1fr}}"
+       "#steps details.pw-more{max-width:820px}.pw-dates{grid-template-columns:repeat(3,minmax(0,1fr))}@media(max-width:599px){.pw-dates{grid-template-columns:1fr}}"
        "@media(min-width:860px){.pw-t tbody th{min-width:200px;white-space:nowrap}}"
        ".pw-yr td b{color:var(--ink)}"
        "@media (prefers-color-scheme:dark){:root:not([data-theme=light]) body .gm{--gm0:#5a4038;--gmn:#2f3646}:root:not([data-theme=light]) .ld-page .tile.key{box-shadow:none}}"
        ":root[data-theme=dark] body .gm{--gm0:#5a4038;--gmn:#2f3646}:root[data-theme=dark] .ld-page .tile.key{box-shadow:none}"
        "@media(max-width:599px){.ld-heroact .btn,.ld-heroact .st-btn2{padding-left:16px;padding-right:16px}}"
+       # design director round 2 (Oct 27): 44px jump links, row links with a chevron, phone column labels, names on two lines at most,
+       # the chart switch marked like the map switch, stronger 8 in 10 bars in dark mode
+       ".otp a{min-height:44px}"
+       ".pw-t tbody th a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;margin:-10px 0;text-decoration:none}"
+       ".pw-t tbody th a::after{content:'\\203A';font-size:22px;line-height:1;color:var(--muted);flex:none}.pw-t tbody th a:hover{text-decoration:underline}"
+       ".pw-sh{display:none}.pw-t small{white-space:nowrap}.pw-yr td:last-child{min-width:84px}.pw-nw{white-space:nowrap}"
+       ".pw-seg label:has(input:checked){background:var(--ink);border-color:var(--ink);color:var(--card)}"
+       ".pw-tv{font-size:20px!important;line-height:1.25!important}"
+       "@media(max-width:599px){.pw-lg{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.pw-sh{display:inline}"
+       ".pw-t th:first-child,.pw-t td:first-child{width:42%}.pw-yr th:first-child{width:30%}.pw-yr td:last-child{min-width:64px}.pw-yr td,.pw-yr th{padding-left:6px;padding-right:6px}.pw-tv{font-size:17px!important}}"
+       "@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .pw-bars .p8,:root:not([data-theme=light]) .pw-key i.lt{opacity:.5}}"
+       ":root[data-theme=dark] .pw-bars .p8,:root[data-theme=dark] .pw-key i.lt{opacity:.5}"
        "</style>")
 
 
@@ -131,7 +143,8 @@ def months_span(ms):
 def table(head, rows, label, E, hide=()):
     """head: [text]; rows: [[cell html]] with the first cell a row header. hide: column indexes dropped on phones."""
     hc = lambda i: ' class="pw-hide"' if i in hide else ""
-    th = "".join(f'<th scope="col"{hc(i)}>{h}</th>' for i, h in enumerate(head))
+    lab = lambda h: (f'<span class="pw-lg">{h[0]}</span><span class="pw-sh" aria-hidden="true">{h[1]}</span>' if isinstance(h, tuple) else h)
+    th = "".join(f'<th scope="col"{hc(i)}>{lab(h)}</th>' for i, h in enumerate(head))
     body = "".join("<tr>" + "".join((f'<th scope="row">{c}</th>' if i == 0 else f"<td{hc(i)}>{c}</td>") for i, c in enumerate(r)) + "</tr>" for r in rows)
     return f'<div class="pw-tw" role="region" aria-label="{E(label)}" tabindex="0"><table class="pw-t"><thead><tr>{th}</tr></thead><tbody>{body}</tbody></table></div>'
 
@@ -163,7 +176,7 @@ def wait_chart(monthly, E, caption, uid):
     say = "; ".join(f'{month_word(m["m"])}: half within {days(m["med"])}, 8 in 10 within {days(m["p80"])}' if m.get("med") is not None
                     else f'{month_word(m["m"])}: too few permits' for m in monthly)
     return (f'<figure class="pw-ch" id="{uid}"><figcaption>{E(caption)}</figcaption>'
-            '<p class="pw-key"><span><i></i>Half were issued within (days)</span><span><i class="lt"></i>8 in 10 were issued within</span></p>'
+            '<p class="pw-key"><span><i></i>Half were issued within (days)</span><span><i class="lt"></i>8 in 10 were issued within (days)</span></p>'
             f'<div class="pw-bars m24" role="img" aria-label="{E(caption)}. {E(say)}">{"".join(cols)}</div></figure>')
 
 
@@ -238,7 +251,8 @@ def path_rows(items, E, link=None):
     return rows
 
 
-PATH_HEAD = ["Review path", "Permits issued, 12 months", "Half within (days)", "8 in 10 within (days)", "9 in 10 within (days)", "Same day"]
+PATH_HEAD = ["Review path", ("Permits issued, 12 months", "Permits"), ("Half within (days)", "Half (days)"), ("8 in 10 within (days)", "8 in 10 (days)"),
+             ("9 in 10 within (days)", "9 in 10 (days)"), "Same day"]
 TYPE_HEAD = ["Permit type"] + PATH_HEAD[1:]
 
 
@@ -252,8 +266,8 @@ def area_rows(d, E):
     return rows
 
 
-AREA_HEAD = ["Community area", "Permits issued, 12 months", "Standard Plan Review permits", "Standard Plan Review, half within (days)",
-             "Standard Plan Review, 8 in 10 within (days)", "Express Permit Program, half within (days)"]
+AREA_HEAD = ["Community area", ("Permits issued, 12 months", "Permits"), "Standard Plan Review permits", ("Standard Plan Review, half within (days)", "Standard half (days)"),
+             "Standard Plan Review, 8 in 10 within (days)", ("Express Permit Program, half within (days)", "Express half (days)")]
 
 
 def map_block(d, E, M):
@@ -318,12 +332,13 @@ def trend_table(rows, E):
         if a.get("med") is None or b.get("med") is None:
             continue
         diff = a["med"] - b["med"]
-        ch = "Same" if diff == 0 else f'{abs(diff):,} day{"" if abs(diff) == 1 else "s"} {"longer" if diff > 0 else "shorter"}'
-        out.append([E(r["label"]), f'{a["med"]:,}<small>{a["n"]:,} permits</small>', f'{b["med"]:,}<small>{b["n"]:,} permits</small>', f"<b>{E(ch)}</b>"])
+        ch = "Same" if diff == 0 else (f'<span class="pw-nw">{abs(diff):,} day{"" if abs(diff) == 1 else "s"}</span> {"longer" if diff > 0 else "shorter"}')
+        out.append([E(r["label"]), f'{a["med"]:,}<small>{a["n"]:,} permits</small>', f'{b["med"]:,}<small>{b["n"]:,} permits</small>', f"<b>{ch}</b>"])
     if not out:
         return ""
     t0 = rows[0]["trend"]
-    head = ["Review path", f"{months_span(t0['months'])}: half within (days)", f"{months_span(t0['yearMonths'])}: half within (days)", "Change"]
+    head = ["Review path", (f"{months_span(t0['months'])}: half within (days)", f"{t0['months'][-1][:4]} (days)"),
+            (f"{months_span(t0['yearMonths'])}: half within (days)", f"{t0['yearMonths'][-1][:4]} (days)"), "Change"]
     return table(head, out, "Half within, the last 3 complete months against the same months a year earlier", E).replace('class="pw-t"', 'class="pw-t pw-yr"', 1)
 
 def by_key(items, key):
@@ -494,16 +509,16 @@ def page_html(p):
             '<div class="ld-heroact rl-act"><a class="btn" href="#types">Find your permit type</a>'
             + ('<a class="st-btn2" href="#map">Open the map</a>' if mapb else "") + '</div></div>'
             + tiles_html(d, E, M)
-            + otp([("paths", "Review path"), ("types", "Permit type"), ("months", "Month by month")] + ([("map", "Map")] if mapb else [])
+            + otp([("types", "Permit type"), ("paths", "Review path"), ("months", "Month by month")] + ([("map", "Map")] if mapb else [])
                   + [("areas", "Areas"), ("download", "CSV"), ("questions", "Questions")], E)
+            + f'<section class="block" id="types"><h2>By permit type</h2><p>Tap a permit type for its own page with every review path, month and community area.</p>{type_tbl}'
+            + '</section>'
             + ('<section class="block" id="paths"><h2>By review path</h2><p>The review path decides most of the wait. The Express Permit Program is the '
                f"City's online path for repairs, replacements and small improvements; Standard Plan Review and Self Certification are plan-based paths for "
                f'projects such as new construction and rehabs (<a href="{DOB_PERMITS}" rel="noopener">City permit application guide</a>). '
                f'Days are from the City starting review to the issue date, for permits issued in the last 12 months.</p>{path_tbl}')
             + '<p class="asof">Path names are the City\'s own, as they appear in its permit records.</p>'
             + '<p class="asof pw-phone">On a phone the 9 in 10 and same day columns are left out; they are in the CSV below.</p></section>'
-            + f'<section class="block" id="types"><h2>By permit type</h2><p>Tap a permit type for its own page with every review path, month and community area.</p>{type_tbl}'
-            + '</section>'
             + f'<section class="block" id="months"><h2>Month by month</h2><p>The last 24 complete months. Pick a review path; each column shows how long the permits issued that month took.</p>{charts}{mtab}'
             + (f'<h3>Against a year earlier</h3>{trends}' if trends else "") + '</section>'
             + (f'<section class="block" id="map"><h2>Wait times on the map</h2>{mapb}</section>' if mapb else "")
@@ -511,7 +526,7 @@ def page_html(p):
             + f'<p class="asof">Last 12 months. Fewer than {mn} permits on a path shows as too few.'
             + (f' {d["all"]["noArea12"]:,} permits had no community area on the record and count only in the city totals.' if d["all"].get("noArea12") else "") + '</p></section>'
             + f'<section class="block" id="download"><h2>Download the numbers</h2><p>Every figure on this page and its permit type pages, as one CSV file: citywide, by review path, permit type, community area and month.</p>'
-            + f'<p><a class="btn pw-dl" href="{CSV_NAME}" download>Download the CSV</a></p></section>'
+            + f'<p><a class="st-btn2 pw-dl" href="{CSV_NAME}" download>Download the CSV</a></p></section>'
             + '<section class="block"><div class="pw-two">'
             + '<div class="cta ld-cta"><div><h2>Planning a job around a permit?</h2><p>The 8 in 10 figure for your permit type and path is how long most permits took to come through; the 9 in 10 figure shows how long the slow ones ran. For your own permit, check with the Department of Buildings.</p>'
             + f'<p class="ld-buybtn"><a class="btn" href="{DOB_PERMITS}" rel="noopener">City permit application guide</a></p></div></div>'
@@ -557,7 +572,7 @@ def type_page(p, d, t, M):
              + (f'<div class="tile key"><div class="lab">Half within</div><div class="val">{s["med"]:,} days</div><div class="sub">last 12 months</div></div>'
                 f'<div class="tile"><div class="lab">8 in 10 within</div><div class="val">{s["p80"]:,} days</div><div class="sub">9 in 10 within {s["p90"]:,}</div></div>' if s.get("med") is not None else "")
              + f'<div class="tile"><div class="lab">Permits issued</div><div class="val">{s["n"]:,}</div><div class="sub">in the last 12 months</div></div>'
-             + (f'<div class="tile"><div class="lab">Most used path</div><div class="val" style="font-size:clamp(17px,9cqi,24px)">{E(top["label"])}</div><div class="sub">{top["last12"]["n"]:,} permits</div></div>' if top else "")
+             + (f'<div class="tile"><div class="lab">Most used path</div><div class="val pw-tv">{E(top["label"])}</div><div class="sub">{top["last12"]["n"]:,} permits</div></div>' if top else "")
              + f'</div><p class="asof">Figures as of {E(M.nice_date(w["to"]))}: issued from {E(M.nice_date(w["from12"]))} to {E(M.nice_date(w["to"]))}, from City of Chicago records pulled {E(M.nice_date(d["source"]["fetchedAt"][:10]))}. Updated weekly.</p>')
     series = [("all", "All review paths", t["monthly"])] + [(r["key"], r["label"], r["monthly"]) for r in reviews[:3]]
     trs = trend_table([dict(t, label="All review paths")] + reviews[:3], E)
@@ -566,7 +581,7 @@ def type_page(p, d, t, M):
         arows.append([E(a["name"]), f'{a["n"]:,}', cell_days(a, "med"), cell_days(a, "p80"), cell_days(a, "p90")])
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">Free Chicago permit tracker</p><h1>{E(h1)}</h1><p class="lede">{lede}</p>'
             f'<div class="ld-heroact rl-act"><a class="btn" href="#months">See it month by month</a><a class="st-btn2" href="#areas">Find your area</a></div></div>'
-            + tiles + otp([("paths", "Review path"), ("months", "Month by month"), ("areas", "Areas"), ("method", "Method")], E)
+            + tiles + otp([("paths", "Review path"), ("months", "Month by month"), ("areas", "Areas"), ("method", "How it's made")], E)
             + f'<section class="block" id="paths"><h2>By review path</h2>{table(PATH_HEAD, path_rows(reviews, E), "Wait days by review path, last 12 months", E, hide=(4, 5))}</section>'
             + f'<section class="block" id="months"><h2>Month by month</h2><p>The last 24 complete months, by month issued.</p>{chart_panes(series, E, "pwt", "")}{month_table(series, E, "Wait days by month issued")}'
             + (f'<h3>Against a year earlier</h3>{trs}' if trs else "") + '</section>'

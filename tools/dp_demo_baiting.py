@@ -41,9 +41,9 @@ OTHERS = ["Public Health: the demolition notice of intent, filed through the Cit
           "Water Management: a hydrant use permit or an approved other water source, such as a water truck.",
           "Only for some jobs: a pre-permit inspection for complex demolitions, Housing for buildings with dwelling units, Planning and Development for historic buildings, Transportation for the downtown freight tunnel area, Public Health for flammable liquid tanks, and soil contamination reviews in two areas."]
 
-TIMES = [("120 days", "An application with no activity for 120 days expires. One 90-day extension can be asked for before then."),
-         ("120 days", "After the City says the permit is ready, the fee must be paid within 120 days; the permit certificate is issued at payment."),
-         ("6 months", "Work must start within 6 months of payment and may not stop for more than 12 months in all.")]
+TIMES = [("Quiet application", "120 days", "An application with no activity for 120 days expires. One 90-day extension can be asked for before then."),
+         ("Paying the fee", "120 days", "After the City says the permit is ready, the fee must be paid within 120 days; the permit certificate is issued at payment."),
+         ("Starting work", "6 months", "Work must start within 6 months of payment and may not stop for more than 12 months in all.")]
 
 FAQ = [
     ("Does a Chicago demolition permit need rodent baiting?",
@@ -127,7 +127,7 @@ def page_html(p):
              f'<a href="{FORM_480}" rel="noopener">Form 480</a> (revised Aug 29, 2021), read {E(M.nice_date(STEPS_READ))}. Our words; the City\'s pages are the rule.</p>')
     others = ('<details class="pw-more"><summary>The other approvals on Form 480</summary><ul>'
               + "".join(f"<li>{E(x)}</li>" for x in OTHERS) + '</ul></details>')
-    times = "".join(f'<div class="tile"><div class="lab">{E(a)}</div><div class="sub" style="font-size:14px;color:var(--ink2)">{E(b)}</div></div>' for a, b in TIMES)
+    times = "".join(f'<div class="tile"><div class="lab">{E(a)}</div><div class="val">{E(v)}</div><div class="sub" style="font-size:14px;color:var(--ink2)">{E(b)}</div></div>' for a, v, b in TIMES)
     wk = W.count_chart(d["weeks"], E, "Wrecking and demolition permits issued each week, last 12 weeks",
                        lambda x: M.nice_date(x["from"]).rsplit(",", 1)[0])
     mapb = map_block(d, E)
@@ -156,7 +156,7 @@ def page_html(p):
             + '</section>'
             + '<section class="block" id="help"><div class="pw-two">'
             + f'<div class="cta ld-cta"><div><h2>Where rats are being reported</h2><p>Rat complaints to 311 by community area, the last 7 and 30 days against a year earlier, on a map. Updated weekly.</p>'
-            + f'<p class="ld-buybtn"><a class="btn" href="{rel}chicago-rat-complaints/">See rat complaints by neighborhood</a></p></div></div>'
+            + f'<p class="ld-buybtn"><a class="btn" href="{rel}chicago-rat-complaints/">See rat complaints</a></p></div></div>'
             + f'<div class="cta ld-cta"><div><h2>Applying for a demolition permit?</h2><p>The Department of Buildings page has every approval, document and form for the permit. For your own job, check with the agency.</p>'
             + f'<p class="ld-buybtn"><a class="btn" href="{DEMO_PAGE}" rel="noopener">City demolition permits page</a></p></div></div>'
             + '</div></section>'

@@ -6227,13 +6227,13 @@
    },
    "vendor": {
     "title": "Run a pest control company?",
-    "text": "Our Chicago restaurant list sorts food places whose latest City inspection cited a pest violation (rodents or insects seen, or conditions the inspector says let them in), and a daily email sends new ones each morning. Both come from City food inspection records, not from these complaints.",
+    "text": "Our Chicago restaurant list shows food places whose latest City inspection cited a pest violation (rodents or insects seen, or conditions the inspector says let them in), and a daily email sends new ones each morning. Both come from City food inspection records, not from these complaints.",
     "slug": "chicago-restaurant-inspection-leads",
     "button": "See the restaurant pest list"
    },
    "method": [
     "Every Monday we count the City of Chicago's 311 service requests of type Rodent Baiting/Rat Complaint from its public 311 Service Requests dataset, by the community area on each request.",
-    "Counts cover whole days in Chicago time and end the day before the pull. The year-ago column is the same 30 calendar days one year earlier. Requests the City marks as duplicates are left out.",
+    "Counts cover whole days in Chicago time and end the day before the pull. The year-ago figures are for the same 30 calendar days one year earlier. Requests the City marks as duplicates are left out.",
     "Only counts are kept. No address, location, request number or anything a resident wrote is stored or shown, so the page cannot point to any building, block or business.",
     "The Rat Index divides each community area's complaints by its residents, from the City of Chicago's ACS 5 Year Data by Community Area (U.S. Census Bureau estimates the City allocates to community areas), and ranks all 77 areas. The same residents are used for every period, so a rank change comes from the complaints alone. Areas with few residents, like Fuller Park or Burnside, can move a lot on a few complaints.",
     "Median days to close uses only the created and closed dates on the requests the City closed in the last 30 days. The yearly list covers October 1 to September 30 and comes out each October.",
@@ -6265,8 +6265,8 @@
      "No. A complaint is one report to 311. It does not say rats were found, and this page keeps no addresses, so it says nothing about any one building or business."
     ],
     [
-     "Are rat complaints up this year?",
-     "The tiles at the top compare the last 30 days with the same 30 days a year earlier, citywide and for each community area."
+     "Are there more rat complaints than a year ago?",
+     "The tiles at the top compare the last 30 days with the same 30 days a year earlier, and each area's page does the same for that area. The yearly list compares the 12 months to September 30 with the 12 months before."
     ]
    ],
    "sources": "City of Chicago 311 Service Requests, dataset v6vf-nfxy; ACS 5 Year Data by Community Area, dataset t68z-cikk; Food Inspections, dataset 4ijn-s7e5.",

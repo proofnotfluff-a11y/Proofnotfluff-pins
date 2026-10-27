@@ -385,7 +385,7 @@ BADGE_W, BADGE_H = 340, 104
 
 
 def badge_alt(name):
-    return f"Chicago Rat Index badge for {name}: its rank for the last 30 days among the city's 77 community areas, updated weekly, from City of Chicago 311 data, by ProofNotFluff"
+    return f"Chicago Rat Index badge for {dn(name)}: its rank for the last 30 days among the city's 77 community areas, updated weekly, from City of Chicago 311 data, by ProofNotFluff"
 
 
 def badge_svg(a, d):
@@ -460,7 +460,7 @@ def risers_block(ix, E, rel):
         return "<p>No community area with at least 10 complaints moved up the rank against the 30 days before.</p>"
     return ('<ol class="ri-list">' + "".join(
         f'<li><b>+{a["mom"]}</b><a href="{rel}{a["slug"]}/">{E(a["name"])}</a><span>{ordinal(a["kPrior"])} to {ordinal(a["k30"])}</span>'
-        f'<small>Up {a["mom"]} places: {a["r30"]:.2f} per 1,000 residents ({nn(a["d30"], "complaint")}), against {a["rPrior"]:.2f} ({a["prior30"]:,}) in the 30 days before</small></li>'
+        f'<small>{a["r30"]:.2f} per 1,000 residents ({nn(a["d30"], "complaint")}), against {a["rPrior"]:.2f} ({a["prior30"]:,}) in the 30 days before</small></li>'
         for a in rs) + '</ol>')
 
 
@@ -478,7 +478,7 @@ def edition_block(ix, d, E, rel, M):
             'It ranks complaints, which also reflect how often people in an area call 311; it is not a count of rats.</p>')
     items = "".join(
         f'<li><b>{a["kYear"]}</b><a href="{rel}{a["slug"]}/">{E(a["name"])}</a><span>{a["rYear"]:.2f} per 1,000 a year</span>'
-        f'<small>{a["year"]:,} complaints; {ordinal(a["kYearPrev"])} in the {ed["year"] - 1} edition</small></li>' for a in yrs)
+        f'<small>{a["year"]:,} complaints; {ordinal(a["kYearPrev"])} the year before</small></li>' for a in yrs)
     return f'<section class="block ri-ed" id="rattiest">{head}<ol class="ri-list">{items}</ol></section>'
 
 
@@ -520,20 +520,20 @@ def embed_block(ix, E, rel, one=None):
         opts = "".join(f'<option value="{x["slug"]}"{" selected" if x is a else ""}>{E(x["name"])}</option>'
                        for x in sorted(ix["areas"].values(), key=lambda x: x["name"]))
         pick = f'<label for="ri-area">Community area</label><select id="ri-area">{opts}</select>'
-    codes = {x["slug"]: embed_code(x) for x in ix["areas"].values()} if not one else {}
+    codes = {x["slug"]: [embed_code(x), f'Chicago Rat Index badge for {dn(x["name"])}'] for x in ix["areas"].values()} if not one else {}
     js = ""
     if not one:
         js = ('<script type="application/json" id="ri-codes">' + json.dumps(codes, ensure_ascii=False).replace("</", "<\\/") + '</script>'
               "<script>(function(){var s=document.getElementById('ri-area'),t=document.getElementById('ri-code'),i=document.getElementById('ri-img'),"
               "c=JSON.parse(document.getElementById('ri-codes').textContent),ok=document.querySelector('#embed .ri-ok');"
-              f"s.addEventListener('change',function(){{t.value=c[s.value];i.src='{rel}'+s.value+'/badge.svg';"
-              "i.alt='Chicago Rat Index badge for '+s.options[s.selectedIndex].text;if(ok)ok.textContent='';});})();</script>")
+              f"s.addEventListener('change',function(){{t.value=c[s.value][0];i.src='{rel}'+s.value+'/badge.svg';"
+              "i.alt=c[s.value][1];if(ok)ok.textContent='';});})();</script>")
     return ('<section class="block" id="embed"><h2>Put the Rat Index on your site</h2>'
             + (f'<p>A free badge for {E(dn(one["name"]))}: copy the code into your website. ' if one else '<p>A free badge for any community area: pick one, then copy the code into your website. ')
             + 'The badge updates by itself every Monday and links back to the numbers. '
             'Pest control companies, property managers and local news sites are welcome to use it.</p>'
             '<div class="ri-embed"><div>' + pick
-            + f'<img id="ri-img" src="{rel}{a["slug"]}/badge.svg" width="{BADGE_W}" height="{BADGE_H}" alt="Chicago Rat Index badge for {E(a["name"])}"'
+            + f'<img id="ri-img" src="{rel}{a["slug"]}/badge.svg" width="{BADGE_W}" height="{BADGE_H}" alt="Chicago Rat Index badge for {E(dn(a["name"]))}"'
             + (' style="margin-top:12px"' if pick else "") + '></div>'
             f'<div><label for="ri-code">Code to paste</label><textarea id="ri-code" readonly spellcheck="false">{E(embed_code(a))}</textarea>'
             '<div class="ri-act"><button type="button" class="btn ri-copy" data-for="ri-code">Copy the code</button><p class="ri-ok" role="status"></p></div></div></div></section>'
@@ -721,7 +721,7 @@ def page_html(p):
         links += [("embed", "Get the badge"), ("help", "Report rats")]
         jump = '<nav class="ri-jump" aria-label="On this page">' + "".join(f'<a href="#{k}">{E(t)}</a>' for k, t in links) + '</nav>'
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>'
-            f'<div class="ld-heroact rl-act"><a class="btn" href="#areas">See every neighborhood</a>'
+            f'<div class="ld-heroact rl-act"><a class="btn" href="#areas">See all 77 areas</a>'
             + ('<a class="st-btn2" href="#map">Open the map</a>' if mapb else "") + '</div></div>'
             f'{tiles}' + (jump if ix else "")
             + (f'<section class="block" id="map"><h2>Rat complaints on the map</h2>{mapb}</section>' if mapb else "")
@@ -731,7 +731,7 @@ def page_html(p):
             + (rest_block(ix, E, M) if ix and ix.get("rest") else "")
             + (embed_block(ix, E, "") if ix else "")
             + f'{two(rel)}{method}{M.faq_block(p["faq"])}'
-            f'<p class="rl-act ri-end"><a class="btn" href="#areas">See every neighborhood</a> <a class="st-btn2" href="{E(p["resident"]["url"])}" rel="noopener">Report rats on CHI311</a></p>'
+            f'<p class="rl-act ri-end"><a class="btn" href="#areas">See all 77 areas</a> <a class="st-btn2" href="{E(p["resident"]["url"])}" rel="noopener">Report rats on CHI311</a></p>'
             + (COPY_JS if ix else ""))
     return head(robots) + body + foot(rel, ix)
 
@@ -783,7 +783,7 @@ def area_html(p, d, ix, a, M):
     weeks = week_bars(d["weeks"], a["w12"], f'Rat complaints in {dn(a["name"])} each week for the last 12 weeks', E, M, w["to"])
     edition = (f'<section class="block"><h2>{E(dn(a["name"], True))} in the {ed["year"]} rattiest neighborhoods list</h2>'
                f'<p>In the 12 months from {E(M.nice_date(ed["from"]))} to {E(M.nice_date(ed["to"]))}, {E(dn(a["name"]))} had {a["year"]:,} rat complaints, '
-               f'{a["rYear"]:.2f} per 1,000 residents: {E(a["placeYear"])} of 77 (it was {ordinal(a["kYearPrev"])} in the {ed["year"] - 1} edition, with {a["yearPrev"]:,}). '
+               f'{a["rYear"]:.2f} per 1,000 residents: {E(a["placeYear"])} of 77 (it was {ordinal(a["kYearPrev"])} in the 12 months before, {E(M.nice_date(ed["prevFrom"]).split(" ")[0])} {ed["year"] - 2} to {E(M.nice_date(ed["prevTo"]).split(" ")[0])} {ed["year"] - 1}, with {a["yearPrev"]:,}). '
                f'The list ranks complaints to 311, not a count of rats. <a href="{up}#rattiest">See the {ed["year"]} top 10</a>.</p></section>')
     rest = ""
     if "insp" in a:
@@ -809,7 +809,7 @@ def area_html(p, d, ix, a, M):
             f'<div class="ri-dl"><a class="st-btn2" href="weekly.csv" download>Download weekly counts (CSV)</a>'
             f'<a class="st-btn2" href="{up}rat-index.csv" download>Download all 77 areas (CSV)</a></div></section>')
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">Chicago Rat Index, community area {a["n"]}</p><h1>{h1h}</h1><p class="lede">{lede}</p>'
-            f'<div class="ld-heroact rl-act"><a class="btn" href="{up}">See all 77 areas</a><a class="st-btn2" href="#embed">Get the badge</a></div></div>'
+            f'<div class="ld-heroact rl-act"><a class="btn" href="{up}#areas">See all 77 areas</a><a class="st-btn2" href="#embed">Get the badge</a></div></div>'
             f'{tiles}'
             f'<section class="block"><h2>How the rank moved</h2>{rank_t}</section>'
             f'<section class="block"><h2>Week by week in {E(dn(a["name"]))}</h2>{weeks}</section>'

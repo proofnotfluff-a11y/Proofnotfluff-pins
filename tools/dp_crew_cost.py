@@ -353,7 +353,7 @@ def role_card(d, role, lo, hi, E, rel, sub=False):
     lead = ('<p>The Cook County schedule says landscaping work on public works falls under its laborer, operating engineer and truck driver lines, '
             'and landscape laborers are paid as laborers. Here is the laborer line; which line applies depends on the work done, so check with the Illinois Department of Labor.</p>'
             if role["key"] == "landscapers" else
-            '<p>Lines on the Cook County schedule posted October 19, 2026 that this work usually falls under. Base pay plus the listed fringes, per hour.</p>')
+            '<p>Lines on the Cook County schedule posted October 19, 2026 that this work usually falls under. Base pay plus the listed fringes, per hour. Which line applies depends on the work done; check with the Illinois Department of Labor.</p>')
     pw_box = ('<div class="cc-pw"><h4>Cook County public works rate</h4>'
               + (lead
                  + f'<div class="cc-tw" role="region" aria-label="{E("Cook County public works rates for " + PLURAL[role["key"]])}" tabindex="0" style="margin-top:8px">{pw_table(pw, E)}</div>'
@@ -474,7 +474,7 @@ def rules_block(d, E):
             '<div class="cc-card"><h3>City of Chicago</h3><p class="cc-sub">From July 1, 2026. Minimum wage: employers with 4 or more employees</p>'
             f'<dl><dt>Minimum wage</dt><dd>{m2(c["minWage"])} an hour</dd><dt>Tipped workers</dt><dd>{m2(c["tipped"])} an hour</dd>'
             f'<dt>Overtime minimum</dt><dd>{m2(c["otMin"])} an hour</dd><dt>Tipped overtime</dt><dd>{m2(c["otTipped"])} an hour</dd></dl>'
-            f'<p class="cc-note">From the City\'s notice, effective July 1, 2026 and last updated May 27, 2026.</p></div>'
+            f'<p class="cc-note">From the City\'s notice, effective July 1, 2026 and last updated May 27, 2026. The ordinance has exceptions; check with the City\'s Office of Labor Standards.</p></div>'
             '<div class="cc-card"><h3>Cook County</h3><p class="cc-sub">From July 1, 2026, in towns that use the County rate</p>'
             f'<dl><dt>Minimum wage</dt><dd>{m2(k["minWage"])} an hour</dd><dt>Tipped workers</dt><dd>{m2(k["tipped"])} an hour</dd></dl>'
             f'<p class="cc-note">From the County\'s notice of {E(k["posted"])}. Check with the Cook County Commission on Human Rights for your town.</p></div>'
@@ -563,7 +563,7 @@ def page_html(p):
              f'<div class="tile"><div class="lab">Chicago</div><div class="val">{m2(c["minWage"])}</div><div class="sub">minimum wage an hour from July 1, 2026, employers with 4 or more employees</div></div>'
              f'<div class="tile"><div class="lab">Cook County</div><div class="val">{m2(k["minWage"])}</div><div class="sub">minimum wage an hour from July 1, 2026, where the County rate applies</div></div>'
              '<div class="tile"><div class="lab">Paid leave</div><div class="val">1 per 35</div><div class="sub">covered employees earn 1 hour of paid leave and 1 of paid sick leave per 35 hours worked in Chicago</div></div>'
-             '</div><p class="asof">Pay from BLS, May 2025. Public works rates posted by the Illinois Department of Labor October 19, 2026. Minimum wages and leave from the City and County notices for July 1, 2026.</p>')
+             '</div><p class="asof">Pay from BLS, May 2025. Public works rates posted by the Illinois Department of Labor October 19, 2026. Minimum wages and leave from the City and County notices for July 1, 2026. Estimates from public figures, not legal, tax or payroll advice; check with the agency.</p>')
     cards = "".join(role_card(d, r, lo, hi, E, rel) for r in d["oews"]["roles"])
     # main page: only the default trade's card shows until the picker changes
     cards = cards.replace('data-cc-card>', 'data-cc-card hidden>').replace(f'id="cc-card-{DEFAULT_ROLE}" data-cc-card hidden>', f'id="cc-card-{DEFAULT_ROLE}" data-cc-card>')
@@ -579,7 +579,7 @@ def page_html(p):
             seen.add(r["trade"])
             mrows.append(r)
     pw_sec = (f'<p>Illinois law sets what workers on public works must be paid: the base rate plus each fringe, for every hour. These are the Cook County lines for the trades on this page, '
-              f'for work on or after October 19, 2026. On public works the schedule also sets overtime: hours over {d["prevailing"]["otDailyAfter"]} a day Monday to Friday, and every hour on Saturdays, Sundays and holidays, at the multiple it lists.</p>'
+              f'for work on or after October 19, 2026. On public works the schedule also sets overtime, unless it notes otherwise for a line: hours over {d["prevailing"]["otDailyAfter"]} a day Monday to Friday, and every hour on Saturdays, Sundays and holidays, at the multiple it lists.</p>'
               '<p class="cc-swipe">Swipe the table sideways for more columns.</p>'
               f'<div class="cc-tw" role="region" aria-label="Cook County public works rates for the trades on this page" tabindex="0">{pw_table(mrows, E, "cc-t")}</div>'
               f'<details class="cc-more cc-all"><summary><span class="o">Show all {len(d["prevailing"]["rows"])} schedule lines</span><span class="c">Hide the full schedule</span></summary>'

@@ -1,0 +1,521 @@
+{
+ "checkedAt": "2026-10-27T17:50:57+00:00",
+ "dataset": "v6vf-nfxy",
+ "meta": {
+  "name": "311 Service Requests",
+  "description": "311 Service Requests received by the City of Chicago. This dataset includes requests created after the launch of the new 311 system on 12/18/2018 and some records from the previous system, indicated in the LEGACY_RECORD column.\r\n\r\nFor purposes of all columns indicating geographic areas or locations, please note that requests of the type 311 INFORMATION ONLY CALL often are entered with the address of the City's 311 Center.",
+  "attribution": "City of Chicago",
+  "attributionLink": "https://chicago.gov",
+  "license": {
+   "name": "See Terms of Use"
+  },
+  "category": "Service Requests",
+  "rowsUpdatedAt": 1793121595,
+  "metadata": {
+   "custom_fields": {
+    "Metadata": {
+     "Time Period": "12/18/2018 to present, plus some records ",
+     "Changes and Other Historical Information Useful to Understanding This Dataset": "https://www.google.com/search?q=site:data.cityofchicago.org/stories+\"Related+dataset+ID+s\"+\"v6vf-nfxy\"",
+     "Frequency": "Data are updated multiple times per day",
+     "Data Owner": "City of Chicago"
+    }
+   },
+   "rowLabel": "Service Request"
+  },
+  "columns": [
+   {
+    "field": "sr_number",
+    "name": "SR_NUMBER",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "sr_type",
+    "name": "SR_TYPE",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "sr_short_code",
+    "name": "SR_SHORT_CODE",
+    "type": "text",
+    "description": "An internal code corresponding to the Service Request Type. This code allows for searching and filtering more easily than using the full SR_TYPE value."
+   },
+   {
+    "field": "created_department",
+    "name": "CREATED_DEPARTMENT",
+    "type": "text",
+    "description": "The department, if any, that created the service request."
+   },
+   {
+    "field": "owner_department",
+    "name": "OWNER_DEPARTMENT",
+    "type": "text",
+    "description": "The department with initial responsibility for the service request."
+   },
+   {
+    "field": "status",
+    "name": "STATUS",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "origin",
+    "name": "ORIGIN",
+    "type": "text",
+    "description": "How the request was opened. Some values, such as Generated In House and Mass Entry result from the City's own operations."
+   },
+   {
+    "field": "created_date",
+    "name": "CREATED_DATE",
+    "type": "calendar_date",
+    "description": ""
+   },
+   {
+    "field": "last_modified_date",
+    "name": "LAST_MODIFIED_DATE",
+    "type": "calendar_date",
+    "description": ""
+   },
+   {
+    "field": "closed_date",
+    "name": "CLOSED_DATE",
+    "type": "calendar_date",
+    "description": ""
+   },
+   {
+    "field": "street_address",
+    "name": "STREET_ADDRESS",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "city",
+    "name": "CITY",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "state",
+    "name": "STATE",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "zip_code",
+    "name": "ZIP_CODE",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "street_number",
+    "name": "STREET_NUMBER",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "street_direction",
+    "name": "STREET_DIRECTION",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "street_name",
+    "name": "STREET_NAME",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "street_type",
+    "name": "STREET_TYPE",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "duplicate",
+    "name": "DUPLICATE",
+    "type": "checkbox",
+    "description": "Is this request a duplicate of another request?"
+   },
+   {
+    "field": "legacy_record",
+    "name": "LEGACY_RECORD",
+    "type": "checkbox",
+    "description": "Did this request originate in the previous 311 system?"
+   },
+   {
+    "field": "legacy_sr_number",
+    "name": "LEGACY_SR_NUMBER",
+    "type": "text",
+    "description": "If this request originated in the previous 311 system, the original Service Request Number."
+   },
+   {
+    "field": "parent_sr_number",
+    "name": "PARENT_SR_NUMBER",
+    "type": "text",
+    "description": "Parent Service Request of the record if applicable. If the current Service Request record has been identified as a duplicate request, the record will be created as a child of the original request."
+   },
+   {
+    "field": "community_area",
+    "name": "COMMUNITY_AREA",
+    "type": "number",
+    "description": ""
+   },
+   {
+    "field": "ward",
+    "name": "WARD",
+    "type": "number",
+    "description": ""
+   },
+   {
+    "field": "electrical_district",
+    "name": "ELECTRICAL_DISTRICT",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "electricity_grid",
+    "name": "ELECTRICITY_GRID",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "police_sector",
+    "name": "POLICE_SECTOR",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "police_district",
+    "name": "POLICE_DISTRICT",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "police_beat",
+    "name": "POLICE_BEAT",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "precinct",
+    "name": "PRECINCT",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "sanitation_division_days",
+    "name": "SANITATION_DIVISION_DAYS",
+    "type": "text",
+    "description": ""
+   },
+   {
+    "field": "created_hour",
+    "name": "CREATED_HOUR",
+    "type": "number",
+    "description": "The hour of the day component of CREATED_DATE."
+   },
+   {
+    "field": "created_day_of_week",
+    "name": "CREATED_DAY_OF_WEEK",
+    "type": "number",
+    "description": "The day of the week component of CREATED_DATE. Sunday=1"
+   },
+   {
+    "field": "created_month",
+    "name": "CREATED_MONTH",
+    "type": "number",
+    "description": "The month component of CREATED_DATE"
+   },
+   {
+    "field": "x_coordinate",
+    "name": "X_COORDINATE",
+    "type": "number",
+    "description": "The x coordinate of the location in State Plane Illinois East NAD 1983 projection."
+   },
+   {
+    "field": "y_coordinate",
+    "name": "Y_COORDINATE",
+    "type": "number",
+    "description": "The y coordinate of the location in State Plane Illinois East NAD 1983 projection."
+   },
+   {
+    "field": "latitude",
+    "name": "LATITUDE",
+    "type": "number",
+    "description": "The latitude of the location."
+   },
+   {
+    "field": "longitude",
+    "name": "LONGITUDE",
+    "type": "number",
+    "description": "The longitude of the location."
+   },
+   {
+    "field": "location",
+    "name": "LOCATION",
+    "type": "location",
+    "description": "The location in a format that allows for creation of maps and other geographic operations on this data portal."
+   },
+   {
+    "field": ":@computed_region_rpca_8um6",
+    "name": "Boundaries - ZIP Codes",
+    "type": "number",
+    "description": null
+   },
+   {
+    "field": ":@computed_region_vrxf_vc4k",
+    "name": "Community Areas",
+    "type": "number",
+    "description": null
+   },
+   {
+    "field": ":@computed_region_6mkv_f3dw",
+    "name": "Zip Codes",
+    "type": "number",
+    "description": null
+   },
+   {
+    "field": ":@computed_region_bdys_3d7i",
+    "name": "Census Tracts",
+    "type": "number",
+    "description": null
+   },
+   {
+    "field": ":@computed_region_43wa_7qmu",
+    "name": "Wards",
+    "type": "number",
+    "description": null
+   },
+   {
+    "field": ":@computed_region_du4m_ji7t",
+    "name": "Boundaries - Wards (2023-)",
+    "type": "number",
+    "description": "This column was automatically created in order to record in what polygon from the dataset 'Boundaries - Wards (2023-)' (du4m-ji7t) the point in column 'location' is located.  This enables the creation of region maps (choropleths) in the visualization canvas and data lens."
+   }
+  ]
+ },
+ "types": {
+  "Sewer Cave-In Inspection Request": {
+   "codes": [
+    "AAD"
+   ],
+   "months": {
+    "2025-10": 310,
+    "2025-11": 190,
+    "2025-12": 170,
+    "2026-01": 245,
+    "2026-02": 368,
+    "2026-03": 517,
+    "2026-04": 705,
+    "2026-05": 479,
+    "2026-06": 556,
+    "2026-07": 669,
+    "2026-08": 599,
+    "2026-09": 419
+   },
+   "first": "2018-07-05T09:24:23.000",
+   "allTime": 44582,
+   "noAreaLastMonth": 1
+  },
+  "Sewer Cleaning Inspection Request": {
+   "codes": [
+    "CHECKFOR"
+   ],
+   "months": {
+    "2025-10": 582,
+    "2025-11": 368,
+    "2025-12": 289,
+    "2026-01": 590,
+    "2026-02": 341,
+    "2026-03": 1476,
+    "2026-04": 1906,
+    "2026-05": 837,
+    "2026-06": 1279,
+    "2026-07": 1619,
+    "2026-08": 1375,
+    "2026-09": 793
+   },
+   "first": "2018-07-02T09:06:15.000",
+   "allTime": 85353,
+   "noAreaLastMonth": 0
+  },
+  "Water On Street Complaint": {
+   "codes": [
+    "AAE"
+   ],
+   "months": {
+    "2025-10": 566,
+    "2025-11": 245,
+    "2025-12": 598,
+    "2026-01": 1425,
+    "2026-02": 323,
+    "2026-03": 2719,
+    "2026-04": 3519,
+    "2026-05": 1097,
+    "2026-06": 2101,
+    "2026-07": 2398,
+    "2026-08": 1568,
+    "2026-09": 893
+   },
+   "first": "2018-12-18T12:48:51.000",
+   "allTime": 82130,
+   "noAreaLastMonth": 1
+  },
+  "Alley Sewer Inspection Request": {
+   "codes": [
+    "AAI"
+   ],
+   "months": {
+    "2025-10": 75,
+    "2025-11": 53,
+    "2025-12": 56,
+    "2026-01": 132,
+    "2026-02": 51,
+    "2026-03": 203,
+    "2026-04": 268,
+    "2026-05": 96,
+    "2026-06": 159,
+    "2026-07": 286,
+    "2026-08": 245,
+    "2026-09": 146
+   },
+   "first": "2018-07-09T16:49:54.000",
+   "allTime": 12146,
+   "noAreaLastMonth": 0
+  },
+  "No Water Complaint": {
+   "codes": [
+    "WBJ"
+   ],
+   "months": {
+    "2025-10": 228,
+    "2025-11": 214,
+    "2025-12": 370,
+    "2026-01": 1296,
+    "2026-02": 670,
+    "2026-03": 292,
+    "2026-04": 246,
+    "2026-05": 260,
+    "2026-06": 257,
+    "2026-07": 280,
+    "2026-08": 248,
+    "2026-09": 307
+   },
+   "first": "2019-01-12T07:34:48.000",
+   "allTime": 29841,
+   "noAreaLastMonth": 0
+  },
+  "Water Lead Test Visit Request": {
+   "codes": [
+    "WCA3"
+   ],
+   "months": {
+    "2025-10": 278,
+    "2025-11": 200,
+    "2025-12": 137,
+    "2026-01": 182,
+    "2026-02": 141,
+    "2026-03": 146,
+    "2026-04": 184,
+    "2026-05": 119,
+    "2026-06": 168,
+    "2026-07": 205,
+    "2026-08": 208,
+    "2026-09": 260
+   },
+   "first": "2018-12-18T13:57:16.000",
+   "allTime": 17821,
+   "noAreaLastMonth": 0
+  },
+  "Water Quality Concern": {
+   "codes": [
+    "WCA"
+   ],
+   "months": {
+    "2025-10": 57,
+    "2025-11": 44,
+    "2025-12": 37,
+    "2026-01": 54,
+    "2026-02": 56,
+    "2026-03": 63,
+    "2026-04": 60,
+    "2026-05": 56,
+    "2026-06": 53,
+    "2026-07": 57,
+    "2026-08": 60,
+    "2026-09": 128
+   },
+   "first": "2018-07-06T15:58:11.000",
+   "allTime": 6380,
+   "noAreaLastMonth": 1
+  },
+  "Low Water Pressure Complaint": {
+   "codes": [
+    "WBK"
+   ],
+   "months": {
+    "2025-10": 120,
+    "2025-11": 124,
+    "2025-12": 143,
+    "2026-01": 177,
+    "2026-02": 184,
+    "2026-03": 145,
+    "2026-04": 145,
+    "2026-05": 151,
+    "2026-06": 178,
+    "2026-07": 197,
+    "2026-08": 174,
+    "2026-09": 198
+   },
+   "first": "2018-07-14T11:10:08.000",
+   "allTime": 16123,
+   "noAreaLastMonth": 0
+  },
+  "Water in Basement Complaint": {
+   "codes": [
+    "AAF"
+   ],
+   "months": {
+    "2025-10": 271,
+    "2025-11": 174,
+    "2025-12": 375,
+    "2026-01": 959,
+    "2026-02": 241,
+    "2026-03": 976,
+    "2026-04": 1271,
+    "2026-05": 243,
+    "2026-06": 507,
+    "2026-07": 1698,
+    "2026-08": 754,
+    "2026-09": 416
+   },
+   "first": "2018-12-19T18:02:57.000",
+   "allTime": 70598,
+   "noAreaLastMonth": 0
+  },
+  "Water Lead Test Kit Request": {
+   "codes": [
+    "WCA2"
+   ],
+   "months": {
+    "2025-10": 1350,
+    "2025-11": 1059,
+    "2025-12": 920,
+    "2026-01": 940,
+    "2026-02": 966,
+    "2026-03": 942,
+    "2026-04": 715,
+    "2026-05": 746,
+    "2026-06": 3763,
+    "2026-07": 1422,
+    "2026-08": 1437,
+    "2026-09": 1438
+   },
+   "first": "2018-12-18T09:37:53.000",
+   "allTime": 120331,
+   "noAreaLastMonth": 1
+  }
+ },
+ "errors": []
+}

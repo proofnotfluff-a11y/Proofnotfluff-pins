@@ -43,7 +43,22 @@ def trade_of(m, code):
 def cited(d, m, c):
     """The City's own wording for a violation code: from the records, else from the mapping."""
     t = (d.get("desc") or {}).get(c) or (m["codes"].get(c) or {}).get("description") or ""
-    return t if t and t != "None" else "No description on the record"
+    return t if t and t != "None" else ""
+
+
+def city_words(d, m, c):
+    """The City's wording in quote marks, so it reads as verbatim; our own note when the record has none."""
+    t = cited(d, m, c)
+    return f"\u201c{sentence(t)}\u201d" if t else "(no description on the record)"
+
+
+def low(label):
+    """A trade label inside a sentence: first letter small, short forms (HVAC) kept."""
+    return label if label.split()[0].isupper() else label[:1].lower() + label[1:]
+
+
+def viol(n):
+    return f"{n:,} violation" + ("" if n == 1 else "s")
 
 
 ACR = {"CO", "HWH", "GFCI", "GFCI'S", "CIS", "PRV", "EM", "JBS", "D&H", "DU", "HVAC", "LIC", "WC", "HWT", "ELE", "FRT", "INT."}
@@ -173,13 +188,13 @@ def map_block(st, E, period):
     areas = {}
     for n in range(1, 78):
         rows = "".join(f'<dt>{E(t["short"])}</dt><dd>{by[t["key"]][n]["y12"]:,}</dd>' for t in T)
-        areas[n] = {"big": {t["key"]: (f'{by[t["key"]][n]["y12"]:,}', f'{t["label"].lower()} violations, {period}') for t in T},
-                    "say": {t["key"]: f'{by[t["key"]][n]["y12"]:,} {t["label"].lower()} violations' for t in T},
+        areas[n] = {"big": {t["key"]: (f'{by[t["key"]][n]["y12"]:,}', f'violations, {low(t["label"])}, {period}') for t in T},
+                    "say": {t["key"]: f'{viol(by[t["key"]][n]["y12"])}, {low(t["label"])}' for t in T},
                     "html": f'<p>New violations, {E(period)}, by trade:</p><dl>{rows}</dl>'}
     metrics = []
     for t in T:
         cuts = G.nice_breaks([a["y12"] for a in t["areas"]])
-        metrics.append({"key": t["key"], "label": t["short"], "legendTitle": f'{t["label"]} violations, {period}',
+        metrics.append({"key": t["key"], "label": t["short"], "legendTitle": f'Violations, {low(t["label"])}, {period}',
                         "cls": {a["n"]: f"q{G.klass(a['y12'], cuts)}" for a in t["areas"]}, "legend": range_legend(cuts)})
     lead = T[0]
     top3 = sorted(lead["areas"], key=lambda a: (-a["y12"], a["name"]))[:3]
@@ -251,11 +266,18 @@ def page_html(p):
     yr_before = f'{ym_name(d["months"][L - 23], True)} to {ym_name(d["months"][L - 12], True)}'
     T = st["trades"]
     big = max(T, key=lambda t: t["y12"])
-    lede = (f'The City\'s Department of Buildings wrote {st["traded12"]:,} new violations from {E(ym_name(first_m))} to {E(ym_name(st["lm"]))} '
-            f'that call for masonry, porch, electrical, HVAC, elevator or plumbing work. {E(big["label"])} led with {big["y12"]:,}. '
-            'Every trade, every community area, month by month.')
+    tuck = [c for c, v in d["codes"].items() if "TUCK" in cited(d, m, c).upper() and sum(v[max(0, L - 11):L + 1])]
+    faq = []
+    for q, a in p["faq"]:
+        if "tuckpointing" in q.lower() and tuck:
+            a = f"Yes, under {', '.join(city_words(d, m, c) for c in tuck)}, which this page counts only if the mapping above lists the code."
+        faq.append([q, a.replace("{period}", period)])
+    p = dict(p, faq=faq)
+    lede = (f'The City\'s Department of Buildings cited {st["traded12"]:,} violations from {E(ym_name(first_m))} to {E(ym_name(st["lm"]))} '
+            f'in six repair trades: masonry, porches, electrical, HVAC, elevators and plumbing. {E(big["label"])} led with {big["y12"]:,}. '
+            'See every trade in every community area, month by month.')
     grid = ('<div class="rd-grid">' + "".join(
-        f'<a href="#t-{t["key"]}" data-tab="{t["key"]}"{" class=lead" if t is big else ""}><b>{t["y12"]:,}</b><span>{E(t["label"])}{"<em>Most</em>" if t is big else ""}</span><small>{E(pct(t["ch"]))} on the 12 months before</small></a>' for t in T)
+        f'<a href="#t-{t["key"]}" data-tab="{t["key"]}"{" class=lead" if t is big else ""}><b>{t["y12"]:,}</b><span>{E(t["label"])}{"<em>Most</em>" if t is big else ""}</span><small>{E(pct(t["ch"]))} vs the 12 months before</small></a>' for t in T)
         + f'</div><p class="asof">New violations, {E(period)}. Counts to {E(M.nice_date(d["through"]))}, from City of Chicago building violation records pulled {E(pulled)}. Updated every day.</p>')
     mapb = map_block(st, E, period)
     tabs = ('<fieldset class="rd-tabs"><legend>Trade</legend>'
@@ -272,17 +294,17 @@ def page_html(p):
                  f'<th scope="col" class="rd-x">{E(ym_name(st["lm"], True))}</th></tr></thead>')
         tbl = lambda rs, lab: f'<div class="rd-tw" role="region" aria-label="{E(lab)}" tabindex="0"><table class="rd-t">{thead}<tbody>{"".join(row(a) for a in rs)}</tbody></table></div>'
         lead = top[0]
-        codes = "".join(f'<tr><td class="rd-d">{E(sentence(cited(d, m, c)))} <code>{E(c)}</code></td><td>{n:,}</td></tr>' for c, n in t["codes"][:8] if n)
+        codes = "".join(f'<tr><td class="rd-d">{E(city_words(d, m, c))} <code>{E(c)}</code></td><td>{n:,}</td></tr>' for c, n in t["codes"][:8] if n)
         panels += (f'<div class="rd-p" data-t="{t["key"]}"><div class="rd-card"><h3>{E(t["label"])}</h3><p>{E(t["who"])}</p>'
-                   f'<div class="rd-nums"><div><b>{t["y12"]:,}</b><small>new violations, {E(period)}</small></div><div><b>{E(pct(t["ch"]))}</b><small>against {E(yr_before)}</small></div>'
-                   f'<div><b>{t["m"]:,}</b><small>in {E(ym_name(st["lm"]))}</small></div><div><b>{E(lead["name"])}</b><small>most, with {lead["y12"]:,}</small></div></div>'
-                   + month_chart(t["city24"], st["labels"], t["ghost24"], E, f'{t["label"]} violations each month for 24 months, with the same month a year earlier behind each bar')
+                   f'<div class="rd-nums"><div><b>{t["y12"]:,}</b><small>new violations, {E(period)}</small></div><div><b>{E(pct(t["ch"]))}</b><small>vs the 12 months before</small></div>'
+                   f'<div><b>{t["m"]:,}</b><small>in {E(ym_name(st["lm"]))}</small></div><div><b>{E(lead["name"])}</b><small>most: {viol(lead["y12"])}</small></div></div>'
+                   + month_chart(t["city24"], st["labels"], t["ghost24"], E, f'Violations each month, {low(t["label"])}, for 24 months, with the same month a year earlier behind each bar')
                    + '<p class="rd-key"><span><i></i>That month</span><span class="k2"><i></i>Same month a year earlier</span></p></div>'
                    + f'<p class="up-key"><b>\u2191 Red</b> marks a rise of 25% or more on the 12 months before, where those months had at least {FEW}.</p>'
                    + '<p class="rd-swipe">Swipe the table sideways for more columns.</p>'
-                   + tbl(top[:15], f'{t["label"]} violations, the 15 community areas with the most')
-                   + f'<details class="rd-more"><summary>Show the other {len(top) - 15} community areas</summary>' + tbl(top[15:], f'{t["label"]} violations, the other community areas') + '</details>'
-                   + (f'<details class="rd-more"><summary>What the City cited most for {E(t["label"].lower())}</summary><div class="rd-tw"><table class="rd-t">'
+                   + tbl(top[:15], f'Violations, {low(t["label"])}: the 15 community areas with the most')
+                   + f'<details class="rd-more"><summary>Show the other {len(top) - 15} community areas</summary>' + tbl(top[15:], f'Violations, {low(t["label"])}: the other community areas') + '</details>'
+                   + (f'<details class="rd-more"><summary>What the City cited most for {E(low(t["label"]))}</summary><div class="rd-tw"><table class="rd-t">'
                       f'<thead><tr><th scope="col" class="rd-d">Violation as the City words it, with its code</th><th scope="col">12 months</th></tr></thead><tbody>{codes}</tbody></table></div></details>' if codes else "")
                    + '</div>')
     other12 = st["all12"] - st["traded12"]
@@ -300,9 +322,10 @@ def page_html(p):
         ps = [(x, v["series"]) for x, v in m["prefixes"].items() if v["trade"] == t["key"]]
         top = [c for c, n in next(x for x in T if x["key"] == t["key"])["codes"][:4] if n]
         mp_rows += (f'<tr><th scope="row">{E(t["label"])}</th><td class="rd-d">'
-                    + (E("Codes in the City's " + " and ".join(f"{x} ({b})" for x, b in ps) + (" code series" if len(ps) > 1 else " code series")) + (", and " if cs else ". ") if ps else "")
-                    + (f'{len(cs)} named codes' + ("" if ps else "") + ". " if cs else "")
-                    + ("Most cited, in the City's words:" + '<ul class="rd-chips">' + "".join(f"<li>{E(sentence(cited(d, m, c)))}</li>" for c in top) + "</ul>" if top else "")
+                    + (E("Codes in the City's " + (", ".join(f"{x} ({b})" for x, b in ps[:-1]) + " and " if len(ps) > 1 else "") + f"{ps[-1][0]} ({ps[-1][1]})"
+                         + (" code series" if len(ps) > 1 else " code series")) + (", plus " if cs else ". ") if ps else "")
+                    + ((f'{len(cs)} named codes. ' if ps else f'{len(cs)} named codes. ') if cs else "")
+                    + ("Most cited, in the City's words:" + '<ul class="rd-chips">' + "".join(f"<li>{E(city_words(d, m, c))}</li>" for c in top) + "</ul>" if top else "")
                     + '</td></tr>')
     left = sum(1 for v in m["codes"].values() if v["trade"] == "other")
     mapping = (f'<p>{E(m.get("about", ""))}</p><details class="rd-more"><summary>See how each trade is counted</summary>'
@@ -335,8 +358,7 @@ def page_html(p):
             f'<p class="rl-act"><a class="btn" href="#trades">See your trade by neighborhood</a> <a class="st-btn2" href="{rel}chicago-data/">More free Chicago data</a></p>{js}')
     foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             f'<p>Source: City of Chicago Data Portal, <a href="{E(src["url"])}">Building Violations dataset</a>, by violation date, pulled {E(pulled)}. '
-            'A violation is one item an inspector cited; it says nothing about whether the work is still open, and this page names no building, address or owner. '
-            'Counts only: no address, location or property detail is kept.</p>'
+            'A violation is one item an inspector cited; it says nothing about whether the work is still open, and this page names no building, address or owner.</p>'
             + "".join(f"<p>{E(x)}</p>" for x in p.get("sourceNotes", []))
             + f'<p>{E(M.CITY_DISCLAIMER["Chicago"])}</p><p>ProofNotFluff is not affiliated with or endorsed by the City of Chicago.</p>'
             '<p>Public information, not legal, code or building advice for any property. For a question about a violation, check with the Department of Buildings.</p>'
@@ -345,6 +367,8 @@ def page_html(p):
                "isAccessibleForFree": True, "creator": {"@type": "Organization", "name": "ProofNotFluff"}, "isBasedOn": src["url"],
                "temporalCoverage": f'{d["months"][0]}-01/{d["through"]}', "spatialCoverage": "Chicago, Illinois",
                "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": url + CSV_AREA}]}
+    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
+              "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}
     return head(robots, M.ld_tags(crumb_ld, faq_ld, data_ld)) + body + foot
 
 

@@ -46,23 +46,26 @@
 <div class="row"><label for="pct">Margin or markup<small>Covers overhead and profit</small></label><div class="field has-suf"><input id="pct" data-in="pct" type="text" inputmode="decimal" value="40" autocomplete="off"><span class=suf>%</span></div></div>
 </fieldset></form><div class="sticky"><div class="card" aria-live="polite">
 <div class="tiles">
-<div class="tile key"><div class="lab">Total bid</div><div class="val" data-out="price" data-fmt="money0">$0</div><div class="sub"><span data-out="perSqFt" data-fmt="money3">$0</span> a sq ft<span data-show-if="unitOn > 0">, <span data-out="perUnit" data-fmt="money0">$0</span> a unit</span></div></div>
+<div class="tile key"><div class="lab">Total bid</div><div class="val" data-out="price" data-fmt="money0">$0</div><div class="val bid-fix" hidden>Fix the highlighted field</div><div class="sub"><span data-out="perSqFt" data-fmt="money3">$0</span> a sq ft<span data-show-if="unitOn > 0">, <span data-out="perUnit" data-fmt="money0">$0</span> a unit</span></div></div>
 <div class="tile" data-show-if="roughOn > 0"><div class="lab">Rough clean</div><div class="val" data-out="roughPrice" data-fmt="money0">$0</div><div class="sub"><span data-out="roughHrs" data-fmt="dec1">0</span> cleaner-hours</div></div>
 <div class="tile" data-show-if="finalOn > 0"><div class="lab">Final clean</div><div class="val" data-out="finalPrice" data-fmt="money0">$0</div><div class="sub"><span data-out="finalHrs" data-fmt="dec1">0</span> cleaner-hours</div></div>
 <div class="tile" data-show-if="touchOn > 0"><div class="lab">Touch-up</div><div class="val" data-out="touchPrice" data-fmt="money0">$0</div><div class="sub"><span data-out="touchHrs" data-fmt="dec1">0</span> cleaner-hours</div></div>
 </div>
 <table class="bid-bt"><caption class="sr">Hours, days on site, cost and price for each clean</caption>
 <thead><tr><th scope="col">Clean</th><th scope="col">Hours</th><th scope="col">Days</th><th scope="col">Cost</th><th scope="col">Price</th></tr></thead><tbody>
-<tr data-show-if="roughOn > 0"><th scope="row">Rough</th><td data-out="roughHrs" data-fmt="dec1">0</td><td data-out="roughDays" data-fmt="int">0</td><td data-out="roughCost" data-fmt="money0">$0</td><td data-out="roughPrice" data-fmt="money0">$0</td></tr>
-<tr data-show-if="finalOn > 0"><th scope="row">Final</th><td data-out="finalHrs" data-fmt="dec1">0</td><td data-out="finalDays" data-fmt="int">0</td><td data-out="finalCost" data-fmt="money0">$0</td><td data-out="finalPrice" data-fmt="money0">$0</td></tr>
-<tr data-show-if="touchOn > 0"><th scope="row">Touch-up</th><td data-out="touchHrs" data-fmt="dec1">0</td><td data-out="touchDays" data-fmt="int">0</td><td data-out="touchCost" data-fmt="money0">$0</td><td data-out="touchPrice" data-fmt="money0">$0</td></tr>
-</tbody><tfoot><tr><th scope="row">Total</th><td data-out="hrs" data-fmt="dec1">0</td><td data-out="days" data-fmt="int">0</td><td data-out="cost" data-fmt="money0">$0</td><td data-out="price" data-fmt="money0">$0</td></tr></tfoot></table>
+<tr data-show-if="roughOn > 0"><th scope="row">Rough</th><td data-label="Hours" data-out="roughHrs" data-fmt="dec1">0</td><td data-label="Days" data-out="roughDays" data-fmt="int">0</td><td data-label="Cost" data-out="roughCost" data-fmt="money0">$0</td><td data-label="Price" data-out="roughPrice" data-fmt="money0">$0</td></tr>
+<tr data-show-if="finalOn > 0"><th scope="row">Final</th><td data-label="Hours" data-out="finalHrs" data-fmt="dec1">0</td><td data-label="Days" data-out="finalDays" data-fmt="int">0</td><td data-label="Cost" data-out="finalCost" data-fmt="money0">$0</td><td data-label="Price" data-out="finalPrice" data-fmt="money0">$0</td></tr>
+<tr data-show-if="touchOn > 0"><th scope="row">Touch-up</th><td data-label="Hours" data-out="touchHrs" data-fmt="dec1">0</td><td data-label="Days" data-out="touchDays" data-fmt="int">0</td><td data-label="Cost" data-out="touchCost" data-fmt="money0">$0</td><td data-label="Price" data-out="touchPrice" data-fmt="money0">$0</td></tr>
+</tbody><tfoot><tr><th scope="row">Total</th><td data-label="Hours" data-out="hrs" data-fmt="dec1">0</td><td data-label="Days" data-out="days" data-fmt="int">0</td><td data-label="Cost" data-out="cost" data-fmt="money0">$0</td><td data-label="Price" data-out="price" data-fmt="money0">$0</td></tr></tfoot></table>
 <ul class="lines">
 <li><span>Labor, cleaner-hours times your cost</span><span data-out="labor" data-fmt="money0">$0</span></li>
 <li><span>Supplies</span><span data-out="supplies" data-fmt="money0">$0</span></li>
 <li><span>Travel and parking, one trip a day</span><span data-out="travel" data-fmt="money0">$0</span></li>
 <li class="total"><span>Profit in the bid (<span data-pct="profitPct">0%</span> of the price)</span><span data-out="profit" data-fmt="money0">$0</span></li>
 </ul>
+<div class="callout warn" id="bidFixNote" hidden>A field above needs a fix. The bid shows again once it reads as a number.</div>
+<div class="callout" data-show-if="checkSize > 0">Check the size: <b data-out="sizeText" data-fmt="text">0</b>.</div>
+<div class="callout" data-show-if="checkPer > 0">Check your numbers: this bid works out to <b data-out="perText" data-fmt="text">$0</b> a sq ft.</div>
 <div class="callout warn" data-show-if="none > 0">Type the square feet to clean, or the units and their average size.</div>
 <div class="callout warn" data-show-if="noPhase > 0">Pick at least one clean: rough, final or touch-up.</div>
 <div class="callout warn" data-show-if="noRate > 0">A clean in the bid has no speed. Type the square feet one cleaner does in an hour.</div>
@@ -74,7 +77,7 @@
 <div class="callout" data-show-if="visitsRounded > 0">Touch-up visits are whole visits: this bid counts <b data-out="touchVisits" data-fmt="int">0</b>.</div>
 <div class="callout warn" data-show-if="flatLow > 0">Your flat touch-up price is under what the visits cost you: <b data-out="touchCost" data-fmt="money0">$0</b> at your rates.</div>
 </div></div>
-<div class="mbar" aria-hidden="true"><span>Bid <b data-out="price" data-fmt="money0">$0</b></span><span>Per sq ft <b data-out="perSqFt" data-fmt="money3">$0</b></span></div></div><section class="block" aria-labelledby="doc-title"><h2 id="doc-title">Your one-page proposal</h2>
+<div class="mbar" aria-hidden="true"><span>Bid <b data-out="price" data-fmt="money0">$0</b></span><span>Per sq ft <b data-out="perSqFt" data-fmt="money3">$0</b></span></div></div><section class="block bid-docsec" aria-labelledby="doc-title"><h2 id="doc-title">Your one-page proposal</h2>
 <p>Built from the prices above. Add your details, then print it or save it as a PDF to send to the builder. Anything you leave blank prints in [brackets] to fill by hand.</p>
 <form class="bid-docform" id="bidDoc" novalidate>
 <div><label for="bizName">Your business name</label><input id="bizName" type="text" autocomplete="off" placeholder="Your business name"></div>
@@ -117,6 +120,23 @@ f.addEventListener("focusout",function(e){var el=e.target;if(!el.matches||!el.ma
 if(WHOLE[el.id])n=Math.round(n);var s=n.toLocaleString("en-US",{maximumFractionDigits:2});if(s!==el.value){el.value=s;f.dispatchEvent(new Event("input",{bubbles:true}));}});
 function draw(){pv.innerHTML=PNF.bidProposal(M(read()),{business:val("bizName"),contact:val("bizContact"),builder:val("builder"),address:val("address"),work:val("work"),terms:val("terms"),date:PNF.bidToday()});}
 f.addEventListener("input",function(){show();draw();});doc.addEventListener("input",draw);
-PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;PNF.stages(f,"../e/post-construction-cleaning-bid-calculator/");show();draw();
+/* a field showing its error greys the results and the total says so (design round 2); 0 cleaners gets its own note */
+var card=document.querySelector("#calc+.sticky .card");
+function guard(){var c=document.getElementById("crew"),cn=PNF.parseNum(c.value),low=isFinite(cn)&&Math.round(cn)<1,note=document.getElementById("crew-min");
+if(low&&!note){note=document.createElement("small");note.id="crew-min";note.className="calc-err";note.textContent="At least 1 cleaner";c.closest(".row").appendChild(note);}
+if(!low&&note)note.remove();if(low){c.setAttribute("aria-invalid","true");c.setAttribute("aria-describedby","crew-min");}
+var bad=[].some.call(f.querySelectorAll('input[aria-invalid="true"]'),function(el){return el.offsetParent!==null;});
+card.classList.toggle("bid-err",bad);document.body.classList.toggle("bid-err-on",bad);card.querySelector(".bid-fix").hidden=!bad;card.querySelector('.tile.key [data-out="price"]').hidden=bad;
+document.getElementById("bidFixNote").hidden=!bad;
+/* the greyed figures are out of date while a field is wrong: inert, so nobody tabs to or reads them */
+card.querySelectorAll(".tile:not(.key),.bid-bt,.lines").forEach(function(x){if(bad){x.setAttribute("inert","");x.setAttribute("aria-hidden","true");}else{x.removeAttribute("inert");x.removeAttribute("aria-hidden");}});
+card.querySelectorAll(".tile .val").forEach(function(v){PNF.fitText(v,12);});
+/* a table too wide for its card shows each row as label and value pairs, so no figure wraps or runs off the card */
+var bt=card.querySelector(".bid-bt");bt.classList.remove("stack");if(bt.scrollWidth>bt.parentNode.clientWidth+1)bt.classList.add("stack");}
+f.addEventListener("input",function(){setTimeout(guard,0);});window.addEventListener("resize",guard);
+/* Ctrl+P prints the proposal too, with the same title as the Print button (assets/pnf-bid.css hides the rest for print) */
+var oldTitle=document.title;window.addEventListener("beforeprint",function(){draw();if(!document.body.classList.contains("bid-printing")){var a=val("address").trim();document.title="Proposal"+(a?", "+a:"");}});
+window.addEventListener("afterprint",function(){if(!document.body.classList.contains("bid-printing"))document.title=oldTitle;});
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;PNF.stages(f,"../e/post-construction-cleaning-bid-calculator/");show();draw();setTimeout(guard,0);
 document.getElementById("bidPrintBtn").addEventListener("click",function(){draw();PNF.bidPrint(pv.innerHTML,val("address"));});})();</script>
 </body></html>

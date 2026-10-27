@@ -42,7 +42,36 @@
  #bid-print .bid-sc{font-size:11pt}
 }
 
+/* Ctrl+P on the calculator page prints only the proposal, as the Print button does (design round 2, Oct 27) */
+@media print{
+ body:not(.bid-printing):has(.bid-docsec){background:#fff!important;padding:0!important;margin:0!important}
+ body:not(.bid-printing):has(.bid-docsec)>*:not(main),body:not(.bid-printing) main:has(.bid-docsec)>*:not(.bid-docsec),body:not(.bid-printing) .bid-docsec>*:not(.bid-paper){display:none!important}
+ body:not(.bid-printing) main:has(.bid-docsec){padding:0!important;margin:0!important;max-width:none!important}
+ body:not(.bid-printing) .bid-docsec{margin:0!important}
+ body:not(.bid-printing) .bid-paper{border:0!important;border-radius:0!important;background:#fff!important;padding:0.55in!important}
+ body:not(.bid-printing) .bid-paper .bid-doc{padding:0;max-width:none;border-radius:0;font-size:12.5pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
 /* the calculator page */
+#calc+.sticky .tile .val{white-space:nowrap;overflow:hidden;font-variant-numeric:tabular-nums}
+#calc+.sticky .tile .val.bid-fix{white-space:normal;font-size:17px;line-height:1.3}
+.bid-err .tiles .tile:not(.key),.bid-err .bid-bt,.bid-err .lines{opacity:.35}
+body.bid-err-on .mbar{display:none}
+@media(prefers-color-scheme:dark){#calc+.sticky .tile.key{background:#5a2f22;border-color:#ef8c6b;box-shadow:inset 0 3px 0 #ef8c6b}#calc+.sticky .tile.key .lab{color:#ffd9cc}#calc+.sticky .tile.key .sub{color:#ffe7df}}
+.bid-bt th,.bid-bt td{font-variant-numeric:tabular-nums}
+.bid-bt tbody th,.bid-bt tfoot th{font-variant-numeric:normal}
+.bid-bt.stack thead{display:none}
+.bid-bt.stack tr{display:block;padding:6px 0;border-bottom:1px solid var(--rule)}
+.bid-bt.stack tfoot tr{border-bottom:2px solid var(--ink)}
+.bid-bt.stack th,.bid-bt.stack td{display:flex;justify-content:space-between;gap:12px;border:0;padding:2px 0;white-space:nowrap;text-align:left}
+.bid-bt.stack td::before{content:attr(data-label);color:var(--muted);font-weight:400}
+@media(max-width:359px){
+ .bid-bt thead{display:none}
+ .bid-bt tr{display:block;padding:6px 0;border-bottom:1px solid var(--rule)}
+ .bid-bt tfoot tr{border-bottom:2px solid var(--ink)}
+ .bid-bt th,.bid-bt td{display:flex;justify-content:space-between;gap:12px;border:0!important;padding:2px 0!important;white-space:nowrap!important;text-align:left;overflow-wrap:normal!important}
+ .bid-bt td::before{content:attr(data-label);color:var(--muted);font-weight:400}
+}
 .bid-phs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:6px 0 10px;border-bottom:1px solid var(--rule)}
 .bid-ph{display:flex;align-items:center;gap:8px;min-height:44px;padding:6px 10px;border:1px solid var(--input-line);border-radius:10px;background:var(--input);color:var(--input-ink);font-weight:700;font-size:14.5px;cursor:pointer}
 .bid-ph input{width:20px;height:20px;margin:0;flex:none;accent-color:var(--teal)}
@@ -57,7 +86,6 @@
 .bid-bt tbody th{font-weight:600}
 .bid-bt tfoot th,.bid-bt tfoot td{font-weight:700;border-bottom:2px solid var(--ink)}
 @media(max-width:420px){.bid-bt{font-size:13px}.bid-bt th,.bid-bt td{padding-left:5px}}
-@media(max-width:360px){.bid-bt{font-size:12px;table-layout:fixed}.bid-bt th,.bid-bt td{white-space:normal;overflow-wrap:anywhere;padding-left:3px}.bid-bt th:first-child,.bid-bt td:first-child{width:22%}}
 .bid-paper{background:var(--canvas2);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
 .bid-docform{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;margin:0 0 16px}
 .bid-docform .wide{grid-column:1 / -1}

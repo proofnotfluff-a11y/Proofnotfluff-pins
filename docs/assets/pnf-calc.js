@@ -21,8 +21,12 @@
   var SE_RATE = 0.153, SE_BASE = 0.9235; // IRS Topic 554, Schedule SE (checked Oct 6, 2026)
 
   // Postel's law (Oct 25, UX principles): "$1,200", "1200", "25%" and "1.2k" all read as numbers; anything else counts as 0
+  // and a trailing unit is dropped (Oct 27, bid tools design round 2): "30/hr", "12,000 sq ft", "$40 a day", "8 hrs", "1,000 sq ft/hr"
+  var UNIT = /(\/\s*[a-z.]+|\b(?:per|an?|each)\s+[a-z. ]+|\bsq\.?\s*f(?:ee)?t\.?|\bsquare\s+f(?:ee|oo)t|\bsqft|\bsf|\bhrs?\.?|\bhours?|\bunits?|\bvisits?|\bdays?|\bcleaners?|\bpeople|\bft\.?|\bdollars?|\busd)\s*$/;
   function parseNum(v) {
-    var s = String(v).trim().toLowerCase().replace(/[$,%\s]/g, ""), mult = 1;
+    var s = String(v).trim().toLowerCase(), u;
+    while ((u = s.replace(UNIT, "").trim()) !== s && /\d/.test(u)) s = u;
+    s = s.replace(/[$,%\s]/g, ""); var mult = 1;
     if (/^-?[\d.]+k$/.test(s)) { mult = 1e3; s = s.slice(0, -1); } else if (/^-?[\d.]+m$/.test(s)) { mult = 1e6; s = s.slice(0, -1); }
     if (!/^-?(\d+\.?\d*|\.\d+)$/.test(s)) return NaN;
     return parseFloat(s) * mult;
@@ -1058,7 +1062,22 @@
     r.perSqFt = sqft > 0 ? r.price / sqft : 0; r.perUnit = mode && units > 0 && sqft > 0 ? r.price / units : 0; r.unitOn = r.perUnit > 0 ? 1 : 0;
     r.priced = r.price > 0 ? 1 : 0; r.none = sqft > 0 ? 0 : 1; r.noPhase = sqft > 0 && !r.anyOn ? 1 : 0; r.noMargin = r.anyOn && noMargin ? 1 : 0;
     r.noWage = r.anyOn && wage === 0 && r.hrs > 0 ? 1 : 0; r.loss = r.priced && r.profit < 0 ? 1 : 0;
+    // a soft check, never a block (design round 2, Oct 27): a size or a price a square foot far outside any real job
+    r.checkSize = sqft > BID_MAX_SQFT ? 1 : 0; r.checkPer = !r.checkSize && r.priced && (r.perSqFt < 0.02 || r.perSqFt > 5) ? 1 : 0;
+    r.sizeText = bidBig(sqft) + " sq ft"; r.perText = "$" + r.perSqFt.toFixed(3);
     return r;
+  }
+  var BID_MAX_SQFT = 5e6;
+  function bidBig(x) {
+    return x >= 1e9 ? (Math.round(x / 1e8) / 10).toLocaleString("en-US") + " billion" : x >= 1e7 ? (Math.round(x / 1e5) / 10).toLocaleString("en-US") + " million"
+      : Math.round(x).toLocaleString("en-US");
+  }
+  // Shrink a figure until it fits its box (tiles and the seat's total bar): numbers never wrap or spill out of their card
+  function fitText(el, min) {
+    if (!el) return;
+    el.style.fontSize = "";
+    var size = parseFloat(getComputedStyle(el).fontSize), floor = min || 13;
+    while (el.scrollWidth > el.clientWidth + 1 && size > floor) { size -= 1; el.style.fontSize = size + "px"; }
   }
 
   // The one-page proposal from a bidPrice result and the owner's words (t: business, contact, builder, address, work, stage,
@@ -1111,7 +1130,7 @@
     window.print();
   }
 
-  var api = { bidPrice: bidPrice, bidProposal: bidProposal, bidSize: bidSize, bidPrint: bidPrint, bidToday: bidToday, bidScope: BID_SCOPE, bidNames: BID_NAMES, lightsQuote: lightsQuote, snowQuote: snowQuote, hoodQuote: hoodQuote, hoodFreq: HOOD_FREQ, missedCalls: missedCalls, priceRaise: priceRaise, stages: stages, leadCost: leadCost, payoutGap: payoutGap, seTax: seTax, hourly: hourly, service: service, serviceSqft: serviceSqft, dayRate: dayRate, cleaningSqft: cleaningSqft, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
+  var api = { fitText: fitText, bidPrice: bidPrice, bidProposal: bidProposal, bidSize: bidSize, bidPrint: bidPrint, bidToday: bidToday, bidScope: BID_SCOPE, bidNames: BID_NAMES, lightsQuote: lightsQuote, snowQuote: snowQuote, hoodQuote: hoodQuote, hoodFreq: HOOD_FREQ, missedCalls: missedCalls, priceRaise: priceRaise, stages: stages, leadCost: leadCost, payoutGap: payoutGap, seTax: seTax, hourly: hourly, service: service, serviceSqft: serviceSqft, dayRate: dayRate, cleaningSqft: cleaningSqft, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
     strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, profitLoss: profitLoss, cakeQuote: cakeQuote, unitCost: unitCost, handmadePrice: handmadePrice, markup: markup, breakEven: breakEven, choreSplit: choreSplit, clientMix: clientMix, cakeSizes: CAKE_SIZES, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after, parseNum: parseNum };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;

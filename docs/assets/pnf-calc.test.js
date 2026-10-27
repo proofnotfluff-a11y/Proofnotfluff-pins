@@ -770,6 +770,17 @@ check("bid H2: 1.5 visits counts 2 and flags it", P.bidPrice(Object.assign({}, B
 check("bid H7: units blank prices nothing", P.bidPrice({ measure: 1, units: "", unitSize: 850, common: 2000, rough: 1, roughRate: 600, wage: 30 }).price, 0);
 check("bid H7: units blank is none, needs units", P.bidPrice({ measure: 1, units: "", unitSize: 850, common: 2000 }).none + P.bidPrice({ measure: 1, units: 40, unitSize: "", common: 2000 }).needUnits, 2);
 check("bid L2: no stage line unless given", P.bidProposal(BQ1, {}).indexOf("<dt>Stage</dt>") < 0 ? 1 : 0, 1);
+// design round 2 (Oct 27): trailing units read as numbers, and the soft plausibility check
+[["30/hr", 30], ["12,000 sq ft", 12000], ["$40 a day", 40], ["8 hrs", 8], ["1,000 sq ft/hr", 1000], ["850 sqft", 850], ["$30 per hour", 30], ["1k sq ft", 1000], ["2 visits", 2]]
+  .forEach(([s, n]) => check("parse " + JSON.stringify(s), P.parseNum(s), n));
+check("parse: an unknown word stays invalid", isNaN(P.parseNum("12 apples")) && isNaN(P.parseNum("sq ft")) ? 1 : 0, 1);
+check("parse: 1.2k and 25% unchanged", P.parseNum("1.2k") + P.parseNum("25%"), 1225);
+const BQX = P.bidPrice(Object.assign({}, BQA, { sqft: 2.6e9 }));
+check("bid check: 2.6 billion sq ft flags the size", BQX.checkSize, 1);
+check("bid check: size text", BQX.sizeText === "2.6 billion sq ft" ? 1 : 0, 1);
+check("bid check: the example is not flagged", BQ1.checkSize + BQ1.checkPer, 0);
+check("bid check: under 2 cents a sq ft flags", P.bidPrice(Object.assign({}, BQA, { wage: 0.1, supplies: 0, trip: 0, pct: 0 })).checkPer, 1);
+check("bid check: over $5 a sq ft flags", P.bidPrice(Object.assign({}, BQA, { sqft: 100, trip: 600 })).checkPer, 1);
 check("bid size line, units", P.bidSize(BQ2) === "40 units at about 850 sq ft each, plus 2,000 sq ft of common areas (36,000 sq ft)" ? 1 : 0, 1);
 
 process.exit(fails ? 1 : 0);

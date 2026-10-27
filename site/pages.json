@@ -6059,7 +6059,6 @@
    "kind": "bid",
    "segment": "trades",
    "stages": true,
-   "draft": true,
    "title": "Post-Construction Cleaning Bid Calculator: Rough, Final and Touch-Up | ProofNotFluff",
    "desc": "Free post-construction cleaning bid calculator. Price rough, final and touch-up cleans from your own crew speed, labor cost and margin, and print a proposal.",
    "eyebrow": "Free calculator",
@@ -6187,7 +6186,7 @@
     ]
    },
    "download": {
-    "kitForm": "KITFORM_TBD",
+    "kitForm": "10104524",
     "title": "Get the proposal template in Word",
     "text": "The same one-page proposal as a Word file you can type in and a printable PDF, with a page on how to price the three cleans and send the bid. Free by email.",
     "items": [

@@ -103,7 +103,7 @@ CSS = ("<style>"
        ".cc-t.cc-stack tr{padding:12px 14px;border-bottom:1px solid var(--rule)}.cc-t.cc-stack tr:last-child{border-bottom:0}"
        ".cc-t.cc-stack td,.cc-t.cc-stack th{border:0;padding:3px 0;text-align:left;min-width:0;white-space:normal}"
        ".cc-t.cc-stack td[data-l]:not(.d)::before{content:attr(data-l);display:inline-block;min-width:132px;margin-right:6px;font-size:12.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}"
-       ".cc-t.cc-stack td.d{font-weight:600;padding-bottom:6px}.cc-t.cc-stack td.n{text-align:left}"
+       ".cc-t.cc-stack td.d{font-weight:500;padding-bottom:6px}.cc-t.cc-stack td.n{text-align:left}"
        ".cc-pick{grid-template-columns:1fr}"
        ".cc-t.cc-stack td[data-l]:not(.d){display:grid;grid-template-columns:132px minmax(0,1fr);column-gap:8px;align-items:start}"
        ".cc-t.cc-stack td[data-l]:not(.d)::before{min-width:0;margin:0;padding-top:2px}"
@@ -118,6 +118,11 @@ CSS = ("<style>"
        "@media(max-width:699px){.cc-sumd>summary{display:flex;align-items:center;min-height:48px;padding:0 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;font-weight:600;color:var(--ink);list-style:none}"
        ".cc-sumd[open]>summary{margin-bottom:8px}}"
        ".cc-sum{min-width:0}.cc-sum th,.cc-sum td{padding:10px 10px}"
+       ".cc-sumd .cc-tw{border:0;border-top:1px solid var(--line);border-radius:0;margin:0}.cc-sumd{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);margin-top:12px}"
+       ".cc-nd{color:var(--muted);font-weight:400}.otp a{min-height:44px}"
+       ".fnav{gap:0;margin:0 -11px 10px}.fnav a{padding:0 11px;justify-content:center}"
+       "@media(max-width:699px){.cc-t.cc-stack td[data-l]>.cv>a{align-items:flex-start;padding-top:2px}"
+       ".cc-map td[data-l]:not(.d){display:block}.cc-map td[data-l]:not(.d)::before{content:none}.cc-sumd{border:0;background:none;overflow:visible}.cc-sumd .cc-tw{border:1px solid var(--line);border-radius:12px}}"
        "</style>"
        "<script>try{if(matchMedia('(max-width:699px)').matches){document.addEventListener('DOMContentLoaded',function(){var d=document.querySelector('.cc-sumd');if(d)d.removeAttribute('open')})}}catch(e){}</script>")
 
@@ -129,9 +134,14 @@ def table(label, head, rows, stack=True, cls=""):
             f'<thead><tr>{th}</tr></thead><tbody>{"".join(rows)}</tbody></table></div>')
 
 
-GROUPS = [("Buildings", ["janitorial", "painting", "roofing", "hvac", "electrical", "plumbing"]),
-          ("Grounds and seasonal", ["landscaping", "snow-removal", "pest-control", "pressure-washing"]),
-          ("Site work", ["demolition", "hauling"])]
+GROUPS = [("Building systems", ["hvac", "electrical", "plumbing", "roofing"]),
+          ("Building care", ["janitorial", "painting", "pest-control", "pressure-washing"]),
+          ("Grounds and site", ["landscaping", "snow-removal", "demolition", "hauling"])]
+
+
+def dept(E, x):
+    """A department, or a quiet note when the City left it blank."""
+    return '<span class="cc-nd">Department not stated</span>' if x in ("", "Not stated") else E(x)
 
 
 def otp(items):
@@ -146,7 +156,7 @@ def td(v, label, num=False, cls=""):
 
 
 def pdf_link(E, u, what):
-    return f'<a href="{E(u)}" rel="noopener">PDF<span class="sr"> of the contract for {E(clean(what)[:60])}</span></a>' if u else '<span class="cc-sub">No PDF listed</span>'
+    return f'<a href="{E(u)}" rel="noopener">PDF<span class="sr"> of the contract for {E(clean(what)[:60])}</span></a>' if u else '<span class="cc-sub nw">No PDF</span>'
 
 
 SR = "<style>.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}</style>"
@@ -205,7 +215,7 @@ def trade_map(E, d, data_mod):
     rows = []
     for t in data_mod.TRADES:
         rows.append(f'<tr><th scope="row">{E(t["name"])}</th>{td(E("; ".join(t["words"])), "Words")}</tr>')
-    return (table("The words that put a contract in each trade", [("Trade", False), ("A contract joins when its description uses", False)], rows)
+    return (table("The words that put a contract in each trade", [("Trade", False), ("A contract joins when its description uses", False)], rows, cls=" cc-map")
             + '<p class="asof">Matching ignores capital letters, and most words also find their longer forms (roof finds roofing). Left out of every trade: purchases of goods or equipment (supplies, parts, vehicles) '
             'unless the description also names work such as service, repair, maintenance or removal; upkeep of the City\'s own machines and fleet; design, engineering and consulting; '
             'software; art; grants to agencies; leases; and redevelopment deals. A few more words keep look-alikes out (rock salt from snow removal, lead paint removal from painting, '
@@ -325,10 +335,14 @@ def page_html(p):
         for e in t["ending"]:
             names.setdefault(e["contract"], []).append(t["short"])
     erows = [f'<tr>{td(E(M.nice_date(e["end"])), "Ends", cls="dt")}'
-             f'<td class="d" data-l="Covers">{E(clean(e["description"]))}<span class="cc-sub">{E(", ".join(names[e["contract"]]))} · {E(e["department"])}</span></td>'
+             f'<td class="d" data-l="Covers">{E(clean(e["description"]))}<span class="cc-sub">{E(", ".join(names[e["contract"]]))} · {dept(E, e["department"])}</span></td>'
              + td(E(e["vendor"]), "Vendor") + td(value_cell(E, e), "Value so far", True) + td(pdf_link(E, e["pdf"], e["description"]), "Contract") + '</tr>'
              for e, t in ending[:12]]
-    end_html = (table("City contracts in these trades ending soonest", [("Ends", False), ("What it covers", False), ("Vendor", False), ("Value so far", True), ("Contract", False)], erows)
+    ehead = [("Ends", False), ("What it covers", False), ("Vendor", False), ("Value so far", True), ("Contract", False)]
+    FIRST = 5
+    end_html = (table("City contracts in these trades ending soonest", ehead, erows[:FIRST])
+                + (f'<details class="cc-more"><summary>Show the other {len(erows) - FIRST} ending soonest</summary>'
+                   + table("More City contracts in these trades ending soon", ehead, erows[FIRST:]) + '</details>' if len(erows) > FIRST else "")
                 + (f'<p class="asof">The {min(12, len(ending))} that end soonest of {plural(len(ending), "contract")}. Every one is on its trade\'s page and in its CSV. '
                    'Value so far adds up the award and every change since.</p>') if ending else '<p class="cc-empty">No contract in these trades has an end date in the next 12 months.</p>')
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{E(lede)}</p>'
@@ -414,7 +428,7 @@ def trade_page(p, d, src, t):
             + (plural(ne, "contract") + " ending" if ne else "none ending") + ' in the next 12 months'
             + (', with vendors and contract PDFs' if na or ne else '') + '. Free, updated daily.')
     tiles = ('<div class="tiles ld-tiles">'
-             f'<div class="tile key"><div class="lab">Ending in 12 months</div><div class="val">{len(t["ending"]):,}</div><div class="sub">{"the work may go back out to bid" if t["ending"] else "none end in the next 12 months"}</div></div>'
+             f'<div class="tile{" key" if t["ending"] else ""}"><div class="lab">Ending in 12 months</div><div class="val">{len(t["ending"]):,}</div><div class="sub">{"the work may go back out to bid" if t["ending"] else "none end in the next 12 months"}</div></div>'
              f'<div class="tile"><div class="lab">New awards, 12 months</div><div class="val">{a12["awards"]:,}</div><div class="sub">{E(usd_short(a12["total"])) if a12["total"] else "no dollar total"}'
              + (f', plus {a12["zero"]:,} at $0' if a12["zero"] else "") + '</div></div>'
              f'<div class="tile"><div class="lab">New awards, 36 months</div><div class="val">{a36["awards"]:,}</div><div class="sub">'
@@ -424,8 +438,8 @@ def trade_page(p, d, src, t):
              + (f', {E(usd_short(-a36["modsDownTotal"]))} taken out' if a36["modsDownTotal"] else "") + '</div></div></div>'
              f'<p class="asof">City data as of {E(M.nice_date(s["rowsUpdatedAt"]))}. Totals and medians use new awards with a dollar amount; award totals are not unit prices.</p>')
     erows = [f'<tr>{td(E(M.nice_date(e["end"])), "Ends", cls="dt")}'
-             f'<td class="d" data-l="Covers">{E(clean(e["description"]))}<span class="cc-sub">{E(e["department"])} · contract {E(e["contract"])}'
-             + (f' · spec {E(e["spec"])}' if e["spec"] else "") + '</span></td>'
+             f'<td class="d" data-l="Covers">{E(clean(e["description"]))}<span class="cc-sub">{dept(E, e["department"])} · <span class="nw">contract {E(e["contract"])}</span>'
+             + (f' · <span class="nw">spec {E(e["spec"])}</span>' if e["spec"] else "") + '</span></td>'
              + td(E(e["vendor"]), "Vendor") + td(value_cell(E, e), "Value so far", True)
              + td(E(M.nice_date(e["approved"])) if e["approved"] else "Not stated", "First approved", cls="dt") + td(pdf_link(E, e["pdf"], e["description"]), "Contract") + '</tr>'
              for e in t["ending"]]
@@ -437,7 +451,7 @@ def trade_page(p, d, src, t):
         'end when the work is accepted and do not show here.</p>')
     SHOW = 25
     nrow = lambda r: (f'<tr>{td(E(M.nice_date(r["approved"])), "Approved", cls="dt")}'
-                      f'<td class="d" data-l="Covers">{E(clean(r["description"]))}<span class="cc-sub">{E(r["department"])}</span></td>'
+                      f'<td class="d" data-l="Covers">{E(clean(r["description"]))}<span class="cc-sub">{dept(E, r["department"])}</span></td>'
                       + td(E(r["vendor"]), "Vendor") + td(award_cell(r), "Award", True) + td(E(proc(r["procurementType"] or "Not stated")), "How bought")
                       + td(pdf_link(E, r["pdf"], r["description"]), "Contract") + '</tr>')
     nhead = [("Approved", False), ("What it covers", False), ("Vendor", False), ("Award", True), ("How bought", False), ("Contract", False)]
@@ -447,7 +461,7 @@ def trade_page(p, d, src, t):
                 + (f'<p class="asof">{wh(new).strip()}</p>' if wh(new) else "")
                 ) if new else f'<p class="cc-empty">No new City award matched {E(low(t))} from {E(M.nice_date(w["from36"]))} to {E(M.nice_date(w["today"]))}.' + (" Changes to older contracts are below." if mods else "") + '</p>'
     mrow = lambda r: (f'<tr>{td(E(M.nice_date(r["approved"])), "Approved", cls="dt")}'
-                      f'<td class="d" data-l="Covers">{E(clean(r["description"]))}<span class="cc-sub">{E(r["vendor"])} · contract {E(r["contract"])}, change {r["revision"]}</span></td>'
+                      f'<td class="d" data-l="Covers">{E(clean(r["description"]))}<span class="cc-sub">{E(r["vendor"])} · <span class="nw">contract {E(r["contract"])}</span>, <span class="nw">change {r["revision"]}</span></span></td>'
                       + td(("+" + usd(r["amount"])) if r["amount"] > 0 else (usd(r["amount"]) if r["amount"] < 0 else "No money change"), "Change", True)
                       + td(pdf_link(E, r["pdf"], r["description"]), "Contract") + '</tr>')
     mhead = [("Approved", False), ("Contract changed", False), ("Change", True), ("Contract", False)]
@@ -460,7 +474,7 @@ def trade_page(p, d, src, t):
                  + (f'<p class="asof">{wh(mods).strip()}</p>' if wh(mods) else ""))
                 if mods else '<p class="cc-empty">No changes to contracts in this trade in the last 36 months.</p>')
     grp = lambda xs, label, first: table(label, [(first, False), ("New awards", True), ("Total", True)],
-                                         [f'<tr><th scope="row">{E(proc(x["name"]) if first == "How bought" else x["name"])}</th>'
+                                         [f'<tr><th scope="row">{E(proc(x["name"])) if first == "How bought" else dept(E, x["name"])}</th>'
                                           + td(f'{x["n"]:,}' + (f' <span class="cc-sub">{x["zero"]:,} at $0</span>' if x["zero"] else ""), "New awards", True)
                                           + td(E(usd(x["total"])) if x["total"] else "None", "Total", True) + '</tr>' for x in xs])
     lo = low(t)
@@ -478,22 +492,27 @@ def trade_page(p, d, src, t):
     ds = {"@context": "https://schema.org", "@type": "Dataset", "name": h1, "url": url, "description": desc, "isBasedOn": s["url"],
           "creator": {"@type": "Organization", "name": "ProofNotFluff"}, "dateModified": s["fetchedAt"][:10],
           "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": url + csv_name(t)}]}
+    empty = not new and not mods and not t["ending"]
+    zero_html = (f'<section class="block" id="none"><h2>Nothing in {E(low(t))} yet</h2><p class="cc-empty">No City contract matched {E(low(t))} from '
+                 f'{E(M.nice_date(w["from36"]))} to {E(M.nice_date(w["today"]))}, and none ends in the next 12 months. Many standard contracts, such as most construction, '
+                 'end when the work is accepted and do not show here.</p>'
+                 f'<ul class="cc-chips">{others}</ul></section>')
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow"><span class="cc-pre">Free tracker of City awards · </span><span class="nw">{E(t["short"])}</span></p><h1>{E(h1)}</h1><p class="lede">{E(lede)}</p>'
             + (f'<div class="ld-heroact cc-act cc-hact"><a class="btn" href="#ending">See ending contracts</a><a class="st-btn2" href="{E(csv_name(t))}" download>Download the CSV</a></div></div>'
                if t["ending"] else f'<div class="ld-heroact cc-act cc-hact"><a class="btn" href="#bids">See open City bids</a><a class="st-btn2" href="{E(csv_name(t))}" download>Download the CSV</a></div></div>')
             + f'{tiles}'
-            + otp([("ending", "Ending"), ("new", "New awards"), ("vendors", "Who wins"), ("changes", "Changes"), ("bids", "Open bids")])
+            + (zero_html if empty else otp([("ending", "Ending"), ("new", "New awards"), ("vendors", "Who wins"), ("changes", "Changes"), ("bids", "Open bids")])
             + f'<section class="block" id="ending"><h2>Contracts ending in the next 12 months</h2>' + ('<p>When these end, the City may bid the work again. Watch the City\'s bid lists for any rebid.</p>' if t["ending"] else '') + f'{end_html}</section>'
             f'<section class="block" id="new"><h2>New awards, last 36 months</h2>{new_html}</section>'
             + (f'<section class="block" id="who"><h2>Who buys it, and how</h2>{who}</section>' if who else "")
             + f'<section class="block" id="vendors"><h2>Who wins it</h2>{vend}</section>'
-            f'<section class="block" id="changes"><h2>Changes to contracts</h2>{mod_html}</section>'
-            f'<section class="block" id="bids"><h2>Where open bids are</h2>{bids_block(E, M, src)}</section>'
+            f'<section class="block" id="changes"><h2>Changes to contracts</h2>{mod_html}</section>')
+            + f'<section class="block" id="bids"><h2>Where open bids are</h2>{bids_block(E, M, src)}</section>'
             f'<section class="block" id="words"><h2>What counts as {E(low(t))}</h2><p>A City contract joins this trade when its description uses any of these words: {E(words)}. '
             f'Purchases of goods, fleet upkeep, design and engineering, software, art, grants, leases and redevelopment deals are left out. <a href="../#map">See the whole trade map</a>.</p>'
             f'{reading_notes()}</section>'
-            f'<section class="block"><h2>All 12 trades</h2><ul class="cc-chips">{others}</ul></section>'
-            f'<div class="cc-act"><a class="btn" href="{E(csv_name(t))}" download>Download the {E("HVAC" if t["key"] == "hvac" else t["short"].lower())} CSV</a><a class="st-btn2" href="../">All trades</a></div>')
+            + ("" if empty else f'<section class="block"><h2>All 12 trades</h2><ul class="cc-chips">{others}</ul></section>')
+            + f'<div class="cc-act"><a class="btn" href="{E(csv_name(t))}" download>Download the {E("HVAC" if t["key"] == "hvac" else t["short"].lower())} CSV</a><a class="st-btn2" href="../">All trades</a></div>')
     return head(M, E, p, url, rel, f'{h1} | ProofNotFluff', desc, M.ld_tags(crumb_ld, ds), robots) + body + footer(E, M, rel, d)
 
 

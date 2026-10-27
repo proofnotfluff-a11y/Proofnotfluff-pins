@@ -166,9 +166,76 @@ def api_fallback(raw):
     return {"series": len(series), "codes": want}
 
 
+# ---------------------------------------------------------------- source extracts (committed, for the facts gate)
+EXTRACTS = os.path.join(OUTDIR, "extracts.json")
+
+
+def pdf_text(path):
+    from pypdf import PdfReader
+    return "\n\f\n".join((pg.extract_text() or "") for pg in PdfReader(path).pages)
+
+
+def html_text(body):
+    t = re.sub(r"(?is)<(script|style|noscript)[^>]*>.*?</\1>", " ", body)
+    t = re.sub(r"(?s)<[^>]+>", " ", t)
+    return re.sub(r"[ \t\r\f\v]+", " ", re.sub(r"\n\s*\n+", "\n", html.unescape(t))).strip()
+
+
+def oews_rows(path):
+    """The Chicago metro rows of the OEWS May 2025 metro file: every occupation whose title matches a role, plus every
+    helpers row, all columns as BLS wrote them. Public statistics only."""
+    import openpyxl
+    z = zipfile.ZipFile(path)
+    name = next(n for n in z.namelist() if n.lower().endswith(".xlsx"))
+    wb = openpyxl.load_workbook(io.BytesIO(z.read(name)), read_only=True)
+    ws = wb.worksheets[0]
+    it = ws.iter_rows(values_only=True)
+    head = [str(h).strip().upper() for h in next(it)]
+    want = {norm(t) for _, t in ROLES}
+    out = []
+    for r in it:
+        d = dict(zip(head, r))
+        if str(d.get("AREA")).split(".")[0] != MSA:
+            continue
+        t = norm(str(d.get("OCC_TITLE") or ""))
+        if t in want or t.startswith("helpers") or str(d.get("OCC_CODE")) in ("00-0000",):
+            out.append({k: (v if isinstance(v, (int, float)) or v is None else str(v)) for k, v in d.items()})
+    return {"file": name, "columns": head, "rows": out}
+
+
+def extract(raw):
+    import hashlib
+    man = json.load(open(os.path.join(raw, "manifest.json")))
+    ex = {"fetchedAt": man["fetchedAt"], "files": {}}
+    for key, rec in man["files"].items():
+        e = {k: rec.get(k) for k in ("url", "final", "status", "bytes", "followed") if rec.get(k) is not None}
+        f = rec.get("file") and os.path.join(raw, rec["file"])
+        if f and os.path.isfile(f):
+            b = open(f, "rb").read()
+            e["sha256"] = hashlib.sha256(b).hexdigest()
+            try:
+                if f.endswith(".pdf"):
+                    e["text"] = pdf_text(f)[:60000]
+                elif f.endswith(".zip"):
+                    e["oews"] = oews_rows(f)
+                elif key == "oe_occupation" or f.endswith(".bin"):
+                    e["text"] = "\n".join(l for l in b.decode("utf-8", "replace").splitlines() if re.search(r"(?i)helpers|janitor|maids|pest|landscap|roofer|painters, construction|electricians|plumbers|heating, air|carpenters|construction laborers", l))[:20000]
+                else:
+                    e["text"] = html_text(b.decode("utf-8", "replace"))[:40000]
+            except Exception as err:
+                e["error"] = f"{type(err).__name__}: {err}"[:300]
+        ex["files"][key] = e
+    api = os.path.join(raw, "oews_api.json")
+    if os.path.isfile(api):
+        ex["oews_api"] = json.load(open(api))
+    os.makedirs(OUTDIR, exist_ok=True)
+    json.dump(ex, open(EXTRACTS, "w"), indent=1, ensure_ascii=False)
+    print("extracts:", {k: (v.get("status"), len(v.get("text", "")) or len(json.dumps(v.get("oews", "")))) for k, v in ex["files"].items()})
+
+
 # ---------------------------------------------------------------- build (filled in once the raw files are seen)
 def build(raw):
-    raise SystemExit("build: parsers not written yet (first run is the probe)")
+    print("build: parsers not written yet (probe run); extracts only")
 
 
 def selftest():
@@ -185,6 +252,7 @@ if __name__ == "__main__":
     elif a[:1] == ["fetch"] and len(a) == 2:
         fetch(a[1])
     elif a[:1] == ["build"] and len(a) == 2:
+        extract(a[1])
         build(a[1])
     else:
         sys.exit(__doc__)

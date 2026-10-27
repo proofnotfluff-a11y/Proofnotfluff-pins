@@ -446,7 +446,7 @@ def method_html(d, E):
         nd = drop.get("noDays", 0) + drop.get("negative", 0)
         extra.append(f'{nd:,} issued permit{"" if nd == 1 else "s"} from {M.nice_date(d["window"]["from"])} to {M.nice_date(d["window"]["to"])} had no usable processing time and {"is" if nd == 1 else "are"} left out.')
     if k.get("checkedAgainstDates"):
-        extra.append(f'Check: on {k["matchesDates"]:,} of {k["checkedAgainstDates"]:,} permits issued in that time ({k["matchesDates"] / k["checkedAgainstDates"] * 100:.1f}%), the processing time equals the days between the two dates on the record.')
+        extra.append(f'Check: on {k["matchesDates"]:,} of {k["checkedAgainstDates"]:,} permits kept ({k["matchesDates"] / k["checkedAgainstDates"] * 100:.1f}%), the processing time equals the days between the two dates on the record.')
     paras = [E(x.format(**r)) for x in METHOD] + [E(x) for x in extra]
     return ('<section class="block" id="method"><h2>How this page is made</h2>' + "".join(f"<p>{x}</p>" for x in paras[:2])
             + '<details class="pw-more"><summary>Full method and checks</summary>' + "".join(f"<p>{x}</p>" for x in paras[2:]) + '</details></section>')
@@ -511,7 +511,7 @@ def page_html(p):
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
               "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]}
     ds_ld = {"@context": "https://schema.org", "@type": "Dataset", "name": "Chicago permit wait times by permit type, review path and community area",
-             "description": "Median and 80th percentile days from review start to issue for City of Chicago building permits, from the City's processing time field.",
+             "description": "Days for half and for 8 in 10 City of Chicago building permits, from review start to issue, from the City's processing time field.",
              "url": url, "isAccessibleForFree": True, "creator": {"@type": "Organization", "name": "ProofNotFluff"},
              "isBasedOn": d["source"]["url"], "temporalCoverage": f'{d["window"]["from"]}/{d["window"]["to"]}', "spatialCoverage": "Chicago, Illinois",
              "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": url + CSV_NAME}]}
@@ -630,7 +630,7 @@ def type_page(p, d, t, M):
             + (f'<h3>Against a year earlier</h3>{trs}' if trs else "") + '</section>'
             + f'<section class="block" id="areas"><h2>Every community area</h2>'
             + split_table(["Community area", ("Permits issued, 12 months", "Permits"), ("Half within (days)", "Half (days)"), ("8 in 10 within (days)", "8 in 10 (days)"), "9 in 10 within (days)"], arows,
-                          f"{t['label']} permit wait days by community area", E, show=20, hide=(4,), what="community areas")
+                          f"{type_name(t)} permit wait days by community area", E, show=20, hide=(4,), what="community areas")
             + f'<p class="asof">Areas with fewer than {mn} permits show as too few.'
             + (f' {t["noArea12"]:,} permit{"" if t["noArea12"] == 1 else "s"} had no community area on the record and count{"s" if t["noArea12"] == 1 else ""} only in the totals.' if t.get("noArea12") else "")
             + ((lambda z: f' {z:,} community area{"" if z == 1 else "s"} with no permits of this type in the last 12 months {"is" if z == 1 else "are"} left out.')(sum(1 for a in t["areas"] if not a["n"])) if any(not a["n"] for a in t["areas"]) else "") + '</p></section>'

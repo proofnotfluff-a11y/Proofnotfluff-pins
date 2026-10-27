@@ -6793,7 +6793,7 @@
    "module": "dp_permit_wait",
    "draft": true,
    "title": "Chicago Permit Wait Times | ProofNotFluff",
-   "desc": "How long Chicago building permits take: median and 80th percentile days from review start to issue, by permit type, review path and neighborhood, from City records, updated weekly.",
+   "desc": "How long Chicago building permits take: days for half and for 8 in 10 permits from review start to issue, by permit type, review path and neighborhood, from City records, updated weekly.",
    "eyebrow": "Free Chicago permit tracker",
    "h1": "Chicago Permit Wait Times",
    "card": "Days from review to issue, by permit type, review path and neighborhood"

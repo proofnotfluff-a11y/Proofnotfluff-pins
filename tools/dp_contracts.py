@@ -18,9 +18,8 @@ DIR = os.path.join(ROOT, "site", "datapages", "dp_contracts")
 
 META = {"h1": "Chicago City Contracts by Trade",
         "card": "Who wins City work in 12 trades, what it was worth, and which contracts end in the next 12 months",
-        "keywords": ["chicago city contracts", "city of chicago contracts", "chicago bids", "city of chicago bid opportunities",
-                     "chicago janitorial contract", "chicago snow removal contract", "chicago landscaping contract",
-                     "chicago demolition contract", "city contract awards chicago", "chicago procurement"]}
+        "keywords": ("chicago city contracts, city of chicago contracts, chicago bids, city of chicago bid opportunities, "
+                     "janitorial, snow removal, landscaping, demolition, roofing, hvac, electrical, plumbing, contract awards, procurement")}
 
 FALLBACK = {"bids": "https://www.chicago.gov/city/en/depts/dps/provdrs/contract/svcs/current_bid_opportunities.html",
             "eproc": "https://www.chicago.gov/city/en/depts/dps/isupplier/current-bids.html",
@@ -597,7 +596,7 @@ def selftest():
         json.dump(d, open(os.path.join(tmp, "contracts.json"), "w"))
         json.dump({"checkedAt": "2026-10-27T07:05:00-05:00", "bids": {"weekly": {"url": "https://www.chicago.gov/x/102626.pdf", "date": "2026-10-26"}}},
                   open(os.path.join(tmp, "sources.json"), "w"))
-        sp = dict(spec, data=os.path.relpath(os.path.join(tmp, "contracts.json"), ROOT))
+        sp = dict(spec, draft=True, data=os.path.relpath(os.path.join(tmp, "contracts.json"), ROOT))
         html = page_html(sp)
         extras = dict(extra_pages(sp))
     finally:
@@ -616,6 +615,7 @@ def selftest():
     assert ",-2000.00," in csvt, "a negative amount stays a number in the CSV"
     assert "\n'=HYPERLINK" not in csvt and ",'=HYPERLINK" in csvt, "no formula can start a CSV cell"
     assert len(extras) == 2 * len(DD.TRADES), "a page and a CSV per trade"
+    assert isinstance(META["keywords"], str), "make_site's search index reads keywords as one string"
     assert 'role="region"' in sub and 'tabindex="0"' in sub, "scrollable tables reachable by keyboard"
     assert page_html(dict(spec, data="site/datapages/dp_contracts/none.json")).count("noindex") == 1, "no data: an unindexed shell"
     print("dp_contracts selftest: ok")

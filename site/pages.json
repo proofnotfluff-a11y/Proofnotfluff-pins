@@ -6824,7 +6824,7 @@
    "slug": "chicago-city-contracts",
    "kind": "datapage",
    "module": "dp_contracts",
-   "draft": true,
+   "draft": false,
    "title": "Chicago City Contracts by Trade, Updated Daily | ProofNotFluff",
    "desc": "Free daily tracker of City of Chicago contract awards in 12 trades: who won, what it was worth, contracts ending in the next 12 months, contract PDFs and a CSV for each trade.",
    "eyebrow": "Free tracker of City awards",

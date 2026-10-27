@@ -117,9 +117,10 @@ BUSINESS = re.compile(r"\b(?:INC|INCORPORATED|LLC|L\.L\.C|CORP|CORPORATION|COMPA
                       r"NURSERY|NURSERIES|RECYCLING|DISPOSAL|TOWING|REMOVAL|CONCRETE|ASPHALT|HEATING|COOLING|LIGHTING|ENERGY|"
                       r"ABATEMENT|RESTORATION|FOUNDATION|ASSOCIATION|AUTHORITY|UNIVERSITY|COLLEGE|AIRLINES|AVIATION)\b|"
                       r"&\s*CO\b|\bCO\.?,?\s+(?:INC|LLC|LTD|CORP)\b")
-DBA = re.compile(r"\s*[,/]?\s*\b(?:D\s?/?\.?\s?B\s?/?\.?\s?A|T/A|A/K/A|AKA)\b\.?\s*", re.I)
-NOTE = re.compile(r"\s*\b(?:ATTN|C/O|CARE OF)\b:?\s*", re.I)
-PIECE = re.compile(r"\s+-\s+|\s+/\s*|\s*/\s+|[()|]")
+DBA = re.compile(r"\s*[,/]?\s*\b(?:D\s?/?\.?\s?B\s?/?\.?\s?A|T/A|A/K/A|AKA|DOING BUSINESS AS|TRADING AS)\b\.?:?\s*", re.I)
+NOTE = re.compile(r"\s*\b(?:ATTN|ATTENTION|C/O|CARE OF|FBO)\b:?\s*", re.I)
+PIECE = re.compile(r"\s+-\s+|\s*/\s*|[()|;:]|\s*,\s*(?!\s*(?:INC|LLC|L\.L\.C|CORP|CO|LTD|LP|LLP|PLLC|PC|JV)\b)", re.I)
+FORM = re.compile(r"\b(?:INC|INCORPORATED|LLC|L\.L\.C|CORP|CORPORATION|LTD|LLP|PLLC)\b\.?,?", re.I)
 STOPW = {"OF", "THE", "AND", "FOR", "IN", "AT", "ON", "TO", "BY", "A"}
 
 
@@ -203,6 +204,8 @@ def vendor(name):
     pieces = [p.strip(" ,.;:") for p in PIECE.split(NOTE.sub("|", DBA.sub("|", n))) if p.strip(" ,.;:")]
     if len(pieces) > 1 and any(personlike(p) for p in pieces):
         return "Name withheld"  # a person's name beside a business ("ACME INC C/O MARY JONES", "SMITH ELECTRIC (JOHN SMITH)")
+    if personlike(FORM.split(n)[-1].strip(" ,.;:/-")):
+        return "Name withheld"  # a person's name after the legal form ("ACME INC JOHN SMITH")
     return n
 
 
@@ -431,6 +434,11 @@ def selftest():
     assert vendor("AERO SNOW REMOVAL (ILL) LLC") == "AERO SNOW REMOVAL (ILL) LLC" and vendor("BRANDENBURG INDUSTRIAL SRVCS CO.|CLEANED-UP") == "BRANDENBURG INDUSTRIAL SRVCS CO."
     assert vendor("DAYSPRING PROFESSIONAL JANITOR") != "Name withheld" and vendor("ABM Aviation") == "ABM Aviation" and vendor("A SAFE HAVEN FOUNDATION") != "Name withheld"
     assert vendor("SEVEN-D CONSTRUCTION CO.") != "Name withheld" and vendor("SNOW SYSTEMS") != "Name withheld"
+    for p in ("BROWN HAULING INC, KEVIN BROWN", "ACME INC; JOHN SMITH", "ACME INC/JOHN SMITH", "ACME INC ATTENTION JOHN SMITH",
+              "ACME INC FBO JOHN SMITH", "ACME INC JOHN SMITH", "JOHN SMITH ROOFING, JOHN SMITH"):
+        assert vendor(p) == "Name withheld", p
+    assert vendor("KEVIN BROWN DOING BUSINESS AS BROWN HAULING") == "BROWN HAULING" and vendor("JOHN SMITH DBA: SMITH PLUMBING") == "SMITH PLUMBING"
+    assert vendor("IHC CONSTRUCTION CO., LLC.") != "Name withheld" and vendor("WASTE MANAGEMENT OF ILLINOIS INC/MTR") != "Name withheld"
     assert title_dept("DEPT OF FLEET AND FACILITY MANAGEMENT") == "Department of Fleet and Facility Management"
     print("dp_contracts_data selftest: ok")
 

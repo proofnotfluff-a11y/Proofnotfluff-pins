@@ -88,6 +88,8 @@ def check(now):
            "bids": {"url": BIDS_URL}, "eprocPage": {"url": EPROC_PAGE}, "eprocList": {"url": EPROC_LIST}}
     b, st = get(TERMS_URL)
     res["terms"]["status"] = st
+    if st != 200:
+        print(f"::warning::City Data Terms page returned {st}; disclaimer not re-checked today")
     if st == 200:
         _, lines = parse(b, TERMS_URL)
         start = next((i for i, x in enumerate(lines) if x == "Data Terms of Use"), 0)

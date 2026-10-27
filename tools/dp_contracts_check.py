@@ -30,6 +30,8 @@ def safe_params(p):
     for k in ("$select", "$where", "$group", "$order", "$having"):
         if BLOCKED.search(p.get(k, "")):
             raise SystemExit(f"blocked column in {k}: address, city, state, zip and vendor_id are never read")
+    if re.search(r"vendor_name\s*\)?\s+as\s+(?!\w*vendor)\w+", p["$select"], re.I):
+        raise SystemExit("vendor_name may be renamed only to a name containing 'vendor', so the answer is scrubbed")
     p.setdefault("$limit", "5000")
     return p
 
@@ -42,6 +44,8 @@ def scrub(rows):
         for k in list(r):   # vendor_name and any alias of it (max(vendor_name) AS v) pass the page's business-name test
             if "vendor" in k.lower() or k.lower() in ("v", "name") or str(k).startswith(("max_", "min_")) and isinstance(r[k], str) and not re.match(r"^[\d\-T:.]+$", r[k]):
                 r[k] = DD.vendor(r[k]) if isinstance(r[k], str) else r[k]
+        if "contract_pdf" in r and any(v == "Name withheld" for v in r.values()):
+            r["contract_pdf"] = ""
     return rows
 
 
@@ -74,6 +78,12 @@ def selftest():
             pass
     r = scrub([{"vendor_name": "JOHN SMITH", "zip": "60601", "award_amount": "1", "max_vendor_name": "JANE DOE", "max_approval_date": "2026-01-01T00:00:00.000"}])[0]
     assert r == {"vendor_name": "Name withheld", "award_amount": "1", "max_vendor_name": "Name withheld", "max_approval_date": "2026-01-01T00:00:00.000"}, r
+    for bad in ({"$select": "vendor_name AS who"}, {"$select": "upper(vendor_name) as u"}):
+        try:
+            safe_params(bad); raise AssertionError(bad)
+        except SystemExit:
+            pass
+    assert scrub([{"vendor_name": "JOHN SMITH", "contract_pdf": {"url": "http://x"}}])[0]["contract_pdf"] == ""
     print("dp_contracts_check selftest: ok")
 
 

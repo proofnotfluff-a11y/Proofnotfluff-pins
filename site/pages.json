@@ -6814,11 +6814,39 @@
    "kind": "datapage",
    "module": "dp_contracts",
    "draft": true,
-   "title": "Chicago City Contracts by Trade | ProofNotFluff",
-   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
+   "title": "Chicago City Contracts by Trade, Updated Daily | ProofNotFluff",
+   "desc": "Free daily tracker of City of Chicago contract awards in 12 trades: who won, what it was worth, contracts ending in the next 12 months, PDFs and a CSV.",
    "eyebrow": "Free tracker of City awards",
    "h1": "Chicago City Contracts by Trade",
-   "card": "Coming soon"
+   "card": "Who wins City work in 12 trades, what it was worth, and which contracts end in the next 12 months",
+   "method": [
+    "Every morning we read the City of Chicago's public Contracts dataset, which lists the contracts and modifications the City has awarded since 1993 and is updated daily by the City.",
+    "We keep the awards and changes approved in the last 36 months, plus every contract whose latest end date falls in the next 12 months, and sort them into trades by the words in each contract's description (the trade map above).",
+    "Revision 0 is the original award; every later revision is a change and is counted apart. A $0 award on a blanket contract means the City orders as needed. Totals and medians use new awards with a dollar amount.",
+    "We never pull the vendor's address. Vendor names are business names as the City lists them; a name that does not read as a business shows as Name withheld."
+   ],
+   "faq": [
+    [
+     "Can I bid on these contracts here?",
+     "No. These are contracts the City has already awarded. Open City bids are on the City's eProcurement bid opportunities list and the Department of Procurement Services Current Bid Opportunities page, linked on this page."
+    ],
+    [
+     "Does an award total tell me what the City pays per job?",
+     "No. An award is the most the City may spend over the whole contract, often several years and many sites or items. Read the contract PDF for its prices and terms."
+    ],
+    [
+     "Why do some contracts show $0?",
+     "The City lists some blanket contracts at $0 because their total depends on requirements: the City places orders as it needs them and promises no amount. We count them, but leave them out of totals and medians."
+    ],
+    [
+     "What does ending in the next 12 months mean?",
+     "It is the latest end date the City has recorded for the contract, after any time extensions. When a contract ends, the City may bid the work again, so it is a good time to watch the bid lists. Only blanket contracts carry an end date."
+    ],
+    [
+     "How often does this page change?",
+     "Every morning. The City updates its Contracts dataset daily, and this page and its CSV files are rebuilt from it each day."
+    ]
+   ]
   },
   {
    "slug": "chicago-trade-licenses",

@@ -41,19 +41,19 @@ FIELDS = ["purchase_order_description", "purchase_order_contract_number", "revis
 # description, in capitals, whole words where it matters. "out" words drop a match that is about something else.
 TRADES = [
     {"key": "janitorial", "name": "Janitorial and cleaning", "short": "Janitorial",
-     "words": ["janitor", "janitorial", "custodial", "cleaning services", "building cleaning", "window washing", "window cleaning"],
+     "words": ["janitor", "janitorial", "custodial", "cleaning services", "building cleaning", "cleaning of buildings, facilities or offices", "window washing", "window cleaning"],
      "re": r"\bJANITOR|\bCUSTODIAL|\bCLEANING SERV|\bBUILDING CLEANING|\bWINDOW (?:WASHING|CLEANING)|\bCLEANING OF (?:CITY )?(?:BUILDINGS?|FACILIT|OFFICES?)",
      "out": r"SEWER|CATCH BASIN|STREET CLEANING|STREET SWEEP|DUCT CLEANING|TANK CLEANING|LAGOON"},
     {"key": "pest-control", "name": "Pest control", "short": "Pest control",
-     "words": ["pest", "exterminating", "rodent", "termite", "bed bug", "mosquito", "bird control"],
+     "words": ["pest", "pests", "exterminating", "rodent", "termite", "bed bug", "mosquito", "bird control", "vector control"],
      "re": r"\bPEST\b|\bPESTS\b|EXTERMINAT|\bRODENT|\bTERMITE|\bBED ?BUG|\bMOSQUITO|\bBIRD CONTROL|\bVECTOR CONTROL",
      "out": r"PESTICIDE SUPPL"},
     {"key": "landscaping", "name": "Landscaping and tree work", "short": "Landscaping",
-     "words": ["landscaping", "tree", "mowing", "turf", "forestry", "stump", "pruning", "lawn", "weed"],
+     "words": ["landscape", "landscaping", "tree", "trees", "mow", "mowing", "turf", "forestry", "stump", "prune", "pruning", "lawn care", "lawn mowing", "lawn maintenance", "lawn service", "weed"],
      "re": r"\bLANDSCAP|\bTREES?\b|\bMOWING|\bMOW\b|\bTURF\b|\bFORESTRY|\bSTUMP|\bPRUN(?:E|ING)|\bLAWN (?:CARE|MOWING|MAINT|SERV)|\bWEED",
      "out": r"TREE OF LIFE|INVENTORY|TRAILERS?\b|HOLIDAY TREE|TREES STUDIO"},
     {"key": "snow-removal", "name": "Snow removal", "short": "Snow removal",
-     "words": ["snow", "plowing", "ice control", "de-icing"],
+     "words": ["snow", "plow", "plowing", "ice control", "de-icing", "ice and snow"],
      "re": r"\bSNOW|\bPLOW|\bICE CONTROL|\bDE-?ICING|\bICE (?:AND|&) SNOW",
      "out": r"\bROCK SALT\b|SODIUM CHLORIDE|DE-?ICING FLUID|GLYCOL|AIRCRAFT DE-?ICING|DEICING FACILITY|BLOWERS?\b|SNOW EQUIPMENT|CHASSIS"},
     {"key": "roofing", "name": "Roofing", "short": "Roofing",
@@ -61,19 +61,19 @@ TRADES = [
      "re": r"\bROOF",
      "out": ""},
     {"key": "painting", "name": "Painting", "short": "Painting",
-     "words": ["paint", "painting", "repainting", "coating"],
+     "words": ["paint", "painted", "painting", "repaint", "repainting", "protective coating", "coating services"],
      "re": r"\bPAINT(?:ING|ED)?\b|\bREPAINT|\bPROTECTIVE COATING|\bCOATING SERV",
      "out": r"PAVEMENT MARKING|TRAFFIC PAINT|LEAD[- ]BASED PAINT|\bMURAL|SPRAYERS?\b|ARTWORK|\bART\b|PAINTINGS\b"},
     {"key": "hvac", "name": "HVAC", "short": "HVAC",
-     "words": ["HVAC", "heating", "air conditioning", "boiler", "chiller", "cooling tower", "ventilation", "refrigeration"],
+     "words": ["HVAC", "heating", "air conditioning", "boiler", "chiller", "cooling tower", "ventilation", "refrigeration", "furnace"],
      "re": r"\bHVAC|\bHEATING|\bAIR CONDITION|\bBOILER|\bCHILLER|\bCOOLING TOWER|\bVENTILAT|\bREFRIGERAT|\bFURNACE|\bH\.V\.A\.C",
      "out": r"HEATING OIL|\bFUEL OIL|NATURAL GAS SUPPLY|ELEVATOR"},
     {"key": "electrical", "name": "Electrical", "short": "Electrical",
-     "words": ["electrical", "electrician", "wiring", "lighting maintenance", "street light", "traffic signal"],
+     "words": ["electrical", "electrician", "wiring", "street light", "streetlight", "lighting maintenance, installation, repair, retrofit or upgrade", "traffic signal", "electric work, service, repair or maintenance"],
      "re": r"\bELECTRICAL|\bELECTRICIAN|\bWIRING\b|\bSTREET ?LIGHT|\bLIGHTING (?:MAINT|INSTALL|REPAIR|RETROFIT|UPGRADE)|\bTRAFFIC SIGNAL|\bELECTRIC(?:AL)? (?:WORK|SERV|REPAIR|MAINT)",
      "out": r"ELECTRICITY SUPPLY|\bUTILIT(?:Y|IES)-ELECTRIC|ELECTRIC VEHICLE|ELECTRIC BUS|\bPOLES\b|\bBODY\b"},
     {"key": "plumbing", "name": "Plumbing", "short": "Plumbing",
-     "words": ["plumbing", "backflow", "water heater", "sewer repair", "drain"],
+     "words": ["plumbing", "plumber", "backflow", "water heater", "drain cleaning, repair or service", "sewer repair, rodding or cleaning service"],
      "re": r"\bPLUMB|\bBACKFLOW|\bWATER HEATER|\bDRAIN (?:CLEAN|REPAIR|SERV)|\bSEWER (?:REPAIR|RODDING|CLEANING) SERV",
      "out": ""},
     {"key": "demolition", "name": "Demolition", "short": "Demolition",
@@ -81,7 +81,7 @@ TRADES = [
      "re": r"\bDEMOLI|\bWRECKING",
      "out": r"REPROCESSABLE"},
     {"key": "hauling", "name": "Hauling and junk removal", "short": "Hauling",
-     "words": ["hauling", "junk", "debris removal", "refuse", "dumpster", "roll-off", "waste removal", "board-up", "clean and seal"],
+     "words": ["haul", "hauling", "junk", "debris removal", "debris hauling", "refuse", "dumpster", "roll-off", "waste removal, hauling or disposal", "board-up", "clean and seal"],
      "re": r"\bHAUL|\bJUNK\b|\bDEBRIS (?:REMOVAL|HAUL)|\bREFUSE\b|\bDUMPSTER|\bROLL[- ]?OFF|\bWASTE (?:REMOVAL|HAULING|DISPOSAL)|\bBOARD[- ]?UP|\bCLEAN (?:AND|&) SEAL",
      "out": r"HAULER LICENSE|REFUSE TRUCK|REFUSE BODY|REFUSE CART"},
     {"key": "pressure-washing", "name": "Pressure washing and graffiti", "short": "Pressure washing",
@@ -109,7 +109,9 @@ BUSINESS = re.compile(r"\b(?:INC|INCORPORATED|LLC|L\.L\.C|CORP|CORPORATION|CO|CO
                       r"DEMOLITION|WRECKING|ENVIRONMENTAL|TECHNOLOGIES|TECHNOLOGY|PARTNERS|HOLDINGS|INTERNATIONAL|MOTORS|EXCAVATING|"
                       r"PAVING|MAINTENANCE|CLEANING|JANITORIAL|SNOW|DBA|JV|VENTURE|BUILDERS|ENGINEERING|CONSULTING|MANAGEMENT|"
                       r"FACILITY|FACILITIES|INDUSTRIAL|NATIONAL|AMERICA|AMERICAN|MIDWEST|CHICAGO|ILLINOIS|UNITED|SALES|SUPPLIES|"
-                      r"TRUCKING|EXPRESS|ROOFERS|EXTERMINATING|CONTROL|PROPERTIES|DEVELOPMENT|WORKS|SHOP|CENTER|INC\.)\b|&|\bAND\b")
+                      r"TRUCKING|EXPRESS|ROOFERS|EXTERMINATING|CONTROL|PROPERTIES|DEVELOPMENT|WORKS|SHOP|CENTER|GARDENS?|DESIGNS?|LANDSCAPES?|"
+                      r"LAWN|TURF|FORESTRY|NURSERY|NURSERIES|SPRAY|WASTE|RECYCLING|DISPOSAL|TOWING|STEEL|IRON|CONCRETE|ASPHALT|SEWER|DRAIN|"
+                      r"HEATING|COOLING|AIR|LIGHTING|POWER|ENERGY|ABATEMENT|RESTORATION|BUILDING|SECURITY|SIGNS?|CORP\.|CO\.)\b|&|\bAND\b")
 FMT = "%Y-%m-%dT%H:%M:%S"
 
 
@@ -173,7 +175,7 @@ def pdf(r):
 
 
 def vendor(name):
-    n = re.sub(r"\s+", " ", (name or "").strip())
+    n = re.sub(r"\s+", " ", re.sub(r"\s*-{2,}\s*", " - ", (name or "").strip()))
     if not n:
         return "Not stated"
     return n if BUSINESS.search(n.upper()) else "Name withheld"

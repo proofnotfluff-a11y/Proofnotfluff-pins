@@ -1,0 +1,61 @@
+{
+ "about": "City contracts by trade: pick a trade from the cards, open its page, see its new awards and the contracts ending in the next 12 months, reach its CSV, then switch trade from the chips (Oct 27, 2026). Pages open by goto on the card's own link: a click across pages trips the site's view transition in headless Chromium.",
+ "page": "chicago-city-contracts/",
+ "steps": [
+  {
+   "expect_count": ".cc-pick li a",
+   "eq": 12
+  },
+  {
+   "expect_count": ".cc-pick a[href='landscaping/']",
+   "eq": 1
+  },
+  {
+   "expect_visible": "#bids .cc-bid.key .btn"
+  },
+  {
+   "scroll": "#trades",
+   "screenshot": true
+  },
+  {
+   "goto": "chicago-city-contracts/landscaping/"
+  },
+  {
+   "expect_text": "h1",
+   "contains": "Landscaping and tree work"
+  },
+  {
+   "expect_text": "#ending h2",
+   "contains": "ending in the next 12 months"
+  },
+  {
+   "expect_count": "#ending table tbody tr",
+   "min": 1,
+   "screenshot": true
+  },
+  {
+   "expect_count": "#new table tbody tr",
+   "min": 1
+  },
+  {
+   "expect_count": "a[download][href='chicago-city-contracts-landscaping.csv']",
+   "min": 1
+  },
+  {
+   "expect_count": ".cc-chips a[href='../snow-removal/']",
+   "eq": 1
+  },
+  {
+   "goto": "chicago-city-contracts/snow-removal/"
+  },
+  {
+   "expect_text": "h1",
+   "contains": "Snow removal"
+  },
+  {
+   "expect_count": "#new table tbody tr",
+   "min": 1,
+   "screenshot": true
+  }
+ ]
+}

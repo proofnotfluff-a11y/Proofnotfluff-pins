@@ -1,0 +1,36 @@
+name: Chicago City contracts facts check
+# The facts gate for /chicago-city-contracts/ (coo/PARALLEL_BUILDS.md gate 1): an independent checker writes the SoQL
+# queries it wants answered, and this runner asks the City's Contracts dataset (rsxa-ify5) exactly those and commits the
+# answers (site/datapages/dp_contracts/check/answers.json). By hand only. Address, city, state and ZIP are never read.
+on:
+  workflow_dispatch:
+    inputs:
+      queries:
+        description: 'JSON list of {"name": ..., "params": {"$select": ..., "$where": ...}}'
+        required: true
+permissions:
+  contents: write
+concurrency:
+  group: dp-contracts-check
+  cancel-in-progress: false
+jobs:
+  ask:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Self-check
+        run: python3 tools/dp_contracts_check.py --selftest
+      - name: Ask the City's dataset
+        env:
+          QUERIES: ${{ github.event.inputs.queries }}
+        run: python3 tools/dp_contracts_check.py
+      - name: Commit
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add site/datapages/dp_contracts/check
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "Chicago City contracts facts check answers $(TZ=America/Chicago date +%Y-%m-%d)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done
+          exit 1

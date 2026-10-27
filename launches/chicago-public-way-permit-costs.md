@@ -1,4 +1,4 @@
-# Launch record: Chicago Public Way Permit Cost Calculator (B6 item 1), Oct 27, 2026
+# Launch record: Chicago Public Way Permit Cost Calculator (B6 item 1), LIVE Oct 27, 2026
 
 Decided: the owner, Oct 27, 12:17 pm ("Let's do them all", coo/DECISIONS-2026-10-27.md, coo/PARALLEL_BUILDS.md), research_notes/kimi-2026-10-27-r10.md item 6. The owner's rule for this page: build only from the City's own CDOT 2026 Permit Fee Schedule PDF, never from other sites' numbers.
 
@@ -13,4 +13,12 @@ Decided: the owner, Oct 27, 12:17 pm ("Let's do them all", coo/DECISIONS-2026-10
 - The dumpster permits page links here once this page is live, and this page links back.
 
 ## Gates
-(filled in when the gates pass)
+- Facts: round 1 FAIL (unlabeled readings, a caption error, the owner's name in files), round 2 FAIL 16 of 18, round 3 FAIL 11 of 14 (method and FAQ wording), round 4 PASS 14 of 14: 194 table cells match the PDF images, 11 of 11 flow totals and 11 of 11 hand-worked cases match.
+- Design director: round 1 FAIL 3.79, round 2 FAIL 4.36, round 3 PASS 4.64 (no score under 4); its polish applied after.
+- Legal desk: round 1 NOT CLEARED (City disclaimer missing), round 2 NOT CLEARED (wording), round 3 NOT CLEARED (one uncredited rule), round 4 CLEARED. Open as on every Chicago page: the City's indemnity clause, for the owner's attorney.
+- Copy: round 1 FAIL 4.40, round 2 PASS 4.60.
+- verify_site: PASS at 390 and 1280, light and dark, axe 0; flow 27 of 27 steps. check_repo 0 errors on the live push.
+
+## For the wrap-up
+- Suggested backstop (not done here, shared file): a .gitignore line for site/datapages/dp_cdot_fees/*.pdf.
+- The Open Graph image subtitle is cut off at "from the City's fee" (shared OG generator in make_site).

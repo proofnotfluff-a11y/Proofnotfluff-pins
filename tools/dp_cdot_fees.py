@@ -311,7 +311,7 @@ def reference_html(E):
                + tbl("Opening fees", ["Placement", "Fee"], [[n, f"{money(f)} per {u}"] for n, f, u in OPEN]))
     out.append("<h3>Degradation fee on moratorium streets (page 11)</h3>"
                f"<p class=\"pf-note\">Fee = P times (length divided by 200) times {money(d['baseRate'])}, where P is the multiplier for the pavement's age in the table below. For a cut the length is set to 200 feet; for a trench the schedule says a minimum of 200 foot increments, which we read as at least 200 feet, prorated above that. "
-               "Residential homeowners are exempt on repairs to existing sewer and water services. Moratorium streets are on CDOT's <a href=\"https://chistreetwork.chicago.gov/map\" rel=\"noopener\">ChiStreetWork map</a>.</p>"
+               "The schedule says residential homeowners are exempt on repairs to existing sewer and water services. Moratorium streets are on CDOT's <a href=\"https://chistreetwork.chicago.gov/map\" rel=\"noopener\">ChiStreetWork map</a>.</p>"
                + tbl("Degradation multiplier", ["Age of the pavement", "Multiplier (P)"], [[m["label"], f'{m["P"]:g}'] for m in d["multiplier"]]))
     out.append("</section>")
     return "".join(out)
@@ -410,7 +410,7 @@ function draw(){var what=(f.querySelector("input[name=pf-what]:checked")||{}).va
   if(ty==="III"&&!cbd)W.push("The schedule defines Type III as routine maintenance inside the CBD. Outside it, ask CDOT which type applies.");
   if(!ft2||!dy2)W.push("Type the length closed and the days it stays.");
   if(R[1].length>1)blocks='<details class="pf-blocks"><summary>See each 30-day block</summary><ol>'+R[1].map(function(b){return"<li>Days "+b[0]+" to "+b[1]+": "+m(b[2])+"</li>"}).join("")+"</ol></details>";
-  N.push("Our reading: each 30-day block is the per-foot rate times the length or the minimum monthly fee, whichever is more. CDOT may price the whole permit at one column; ask CDOT. If your closure makes metered spaces unusable, CDOT charges for those too; this part of the schedule gives no amount and points to Municipal Code section 9-68-080.")}
+  N.push("Our reading: each 30-day block is the per-foot rate times the length or the minimum monthly fee, whichever is more. CDOT may price the whole permit at one column; ask CDOT. The schedule says permittees are charged for metered spaces their closure makes unusable; this part gives no amount and points to Municipal Code section 9-68-080.")}
  if(what==="open"){var o=D.open[+$("p-place").value],n=whole("p-count"),mor=$("p-mor").value==="1",tr=$("p-kind").value==="trench";
   rowVis("p-age",mor);rowVis("p-kind",mor);rowVis("p-trench",mor&&tr);
   var fee=o[1]*n*(mor?2:1);L.push([n+" "+o[2]+(n===1?"":"s")+" at "+m(o[1])+(mor?", doubled on a moratorium street":""),fee]);total=fee;

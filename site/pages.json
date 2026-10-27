@@ -6874,7 +6874,7 @@
    "slug": "chicago-public-way-permit-costs",
    "kind": "datapage",
    "module": "dp_cdot_fees",
-   "draft": true,
+   "draft": false,
    "title": "Chicago Public Way Permit Cost Calculator, 2026 Fees | ProofNotFluff",
    "desc": "Free calculator for 2026 CDOT permit fees: dumpsters, work vehicles and equipment, sidewalk and street closures, and openings, from the City's schedule.",
    "eyebrow": "Free calculator, 2026 CDOT fees",

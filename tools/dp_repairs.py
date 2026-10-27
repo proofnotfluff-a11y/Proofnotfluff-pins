@@ -86,7 +86,7 @@ def ym_name(ym, short=False):
 def pct(x):
     if x is None:
         return "new"
-    return ("+" if x > 0 else "") + f"{x:.0f}%" if abs(x) >= 1 else "same"
+    return ("+" if x > 0 else "\u2212" if x < 0 else "") + f"{abs(x):.0f}%" if abs(x) >= 1 else "same"   # a true minus sign
 
 
 def change(now, before):
@@ -153,13 +153,14 @@ CSS = ("<style>"
        ".rd-grid{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr));margin:8px 0}@media(min-width:900px){.rd-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}"
        ".rd-grid a{display:block;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);text-decoration:none;color:var(--ink);min-height:44px}"
        ".rd-grid a.lead{background:var(--band);border-color:var(--band-line);color:#fff;--focus:#fff}.rd-grid a.lead small{color:var(--band-text)}.rd-grid a.lead em{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:999px;background:var(--accent);color:#fff;font:700 11.5px/1.6 system-ui,sans-serif;font-style:normal;letter-spacing:.03em;text-transform:uppercase;vertical-align:2px}"
-       ".rd-grid a.on{box-shadow:0 0 0 3px var(--accent)}.rd-grid a:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
-       ".rd-grid a:hover{border-color:var(--ink)}.rd-grid b{display:block;font:700 26px/1.1 Poppins,system-ui,sans-serif;font-variant-numeric:tabular-nums}.rd-grid span{display:block;font-weight:700;margin-top:2px}.rd-grid small{display:block;color:var(--muted);font-size:13px;margin-top:2px}"
+       ".rd-grid a{position:relative}.rd-grid .lab{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-right:56px}.rd-grid a.lead .lab{color:var(--band-soft)}"
+       ".rd-grid a.lead em{position:absolute;top:10px;right:10px;margin:0}.rd-grid a:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
+       ".rd-grid a:hover{border-color:var(--ink)}.rd-grid b{display:block;font:700 26px/1.1 Poppins,system-ui,sans-serif;font-variant-numeric:tabular-nums;margin-top:6px}.rd-grid small{display:block;color:var(--muted);font-size:13px;margin-top:2px}"
        ".rd-two{display:grid;gap:16px}@media(min-width:900px){.rd-two{grid-template-columns:1fr 1fr}}.rd-two .cta{grid-template-columns:1fr;height:100%;align-items:start}.rd-two .cta h2{margin-top:0;text-wrap:balance}"
-       ".rd-p .rd-t td{white-space:nowrap}.rd-t td:last-child,.rd-t th:last-child{padding-right:16px}.rd-s{display:none}.rd-swipe{display:none;margin:8px 0 0;font-size:13px;color:var(--muted)}"
+       ".rd-p .rd-t td,.rd-p .rd-t thead th{white-space:nowrap}.rd-t td:last-child,.rd-t th:last-child{padding-right:16px}.rd-s{display:none}.rd-swipe{display:none;margin:8px 0 0;font-size:13px;color:var(--muted)}"
        ".rd-chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 0;padding:0;list-style:none}.rd-chips li{padding:2px 10px;border-radius:999px;background:var(--canvas2);border:1px solid var(--line);font-size:13px;color:var(--ink2)}"
        "@media(max-width:599px){.rd-l{display:none}.rd-s{display:inline}.rd-swipe{display:block}.rd-p .rd-t{min-width:420px}.rd-t th,.rd-t td{padding:9px 8px}"
-       ".rd-p .rd-t tbody th,.rd-p .rd-t thead th:first-child{position:sticky;left:0;z-index:1;background:var(--card);box-shadow:1px 0 0 var(--rule)}}"
+       ".rd-p .rd-t tbody th{min-width:140px;white-space:normal}.rd-p .rd-t tbody th,.rd-p .rd-t thead th:first-child{position:sticky;left:0;z-index:1;background:var(--card);box-shadow:1px 0 0 var(--rule)}}"
        "</style>")
 
 
@@ -277,7 +278,7 @@ def page_html(p):
             f'in six repair trades: masonry, porches, electrical, HVAC, elevators and plumbing. {E(big["label"])} led with {big["y12"]:,}. '
             'See every trade in every community area, month by month.')
     grid = ('<div class="rd-grid">' + "".join(
-        f'<a href="#t-{t["key"]}" data-tab="{t["key"]}"{" class=lead" if t is big else ""}><b>{t["y12"]:,}</b><span>{E(t["label"])}{"<em>Most</em>" if t is big else ""}</span><small>{E(pct(t["ch"]))} vs the 12 months before</small></a>' for t in T)
+        f'<a href="#t-{t["key"]}" data-tab="{t["key"]}"{" class=lead" if t is big else ""}><span class="lab">{E(t["label"])}</span>{"<em>Most</em>" if t is big else ""}<b>{t["y12"]:,}</b><small>new violations, last 12 months, {E(pct(t["ch"]))} vs the 12 months before</small></a>' for t in T)
         + f'</div><p class="asof">New violations, {E(period)}. Counts to {E(M.nice_date(d["through"]))}, from City of Chicago building violation records pulled {E(pulled)}. Updated every day.</p>')
     mapb = map_block(st, E, period)
     tabs = ('<fieldset class="rd-tabs"><legend>Trade</legend>'
@@ -333,19 +334,19 @@ def page_html(p):
                f'<tbody>{mp_rows}</tbody></table></div></details><p class="asof">{left} codes in those series are left out on purpose, because their '
                'wording is paperwork, a permit, plans, records or arranging an inspection rather than a repair. The full list, with the reason for each code left out, is in the mapping download.</p>')
     tr = p["trade"]
-    two = ('<section class="block" id="next"><div class="rd-two">'
+    two = ('<section class="block" id="next"><div class="rd-two pg-two">'
            + "".join(f'<div class="cta ld-cta"><div><h2>{E(c["title"])}</h2><p>{E(c["text"])}</p>'
                      f'<p class="ld-buybtn"><a class="btn" href="{rel}{E(c["slug"])}/">{E(c["button"])}</a></p></div></div>' for c in tr)
            + '</div></section>')
     method = '<section class="block" id="how"><h2>How this page is made</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"]) + "</section>"
     js = ('<script>(function(){var C=document.querySelectorAll("[data-tab]");'
-          'function mark(k){C.forEach(function(a){a.classList.toggle("on",a.dataset.tab===k);});'
+          'function mark(k){'
           'var r=document.querySelector("#repairmap .gm-seg input[value=\'"+k+"\']");if(r&&!r.checked){r.checked=true;r.dispatchEvent(new Event("change"));}}'
           'document.querySelectorAll("input[name=rdt]").forEach(function(i){i.addEventListener("change",function(){mark(i.value);});});'
-          'document.querySelectorAll("#repairmap .gm-seg input").forEach(function(i){i.addEventListener("change",function(){var t=document.getElementById("t-"+i.value);if(t&&!t.checked){t.checked=true;}C.forEach(function(a){a.classList.toggle("on",a.dataset.tab===i.value);});});});'
+          'document.querySelectorAll("#repairmap .gm-seg input").forEach(function(i){i.addEventListener("change",function(){var t=document.getElementById("t-"+i.value);if(t&&!t.checked){t.checked=true;}});});'
           'C.forEach(function(a){a.addEventListener("click",function(e){var i=document.getElementById("t-"+a.dataset.tab);'
           'if(!i)return;e.preventDefault();i.checked=true;mark(a.dataset.tab);document.getElementById("trades").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});i.focus({preventScroll:true});});});'
-          'var f=document.querySelector("input[name=rdt]:checked");if(f)C.forEach(function(a){a.classList.toggle("on",a.dataset.tab===f.value);});})();</script>'
+          '})();</script>'
           + __import__("dp_flooding").PG_JS)
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(META["h1"])}</h1><p class="lede">{lede}</p>'
             '<div class="ld-heroact rl-act"><a class="btn" href="#trades">See your trade by neighborhood</a><a class="st-btn2" href="#map">Open the map</a></div></div>'
@@ -356,13 +357,13 @@ def page_html(p):
             f'<section class="block" id="mapping"><h2>How violations are sorted into trades</h2>{mapping}</section>'
             + two + method + M.faq_block(p["faq"]).replace('<section class="block">', '<section class="block" id="faq">', 1) +
             f'<p class="rl-act"><a class="btn" href="#trades">See your trade by neighborhood</a> <a class="st-btn2" href="{rel}chicago-data/">More free Chicago data</a></p>{js}')
-    foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
+    foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}<div class="pg-notes">'
             f'<p>Source: City of Chicago Data Portal, <a href="{E(src["url"])}">Building Violations dataset</a>, by violation date, pulled {E(pulled)}. '
             'A violation is one item an inspector cited; it says nothing about whether the work is still open, and this page names no building, address or owner.</p>'
             + "".join(f"<p>{E(x)}</p>" for x in p.get("sourceNotes", []))
             + f'<p>{E(M.CITY_DISCLAIMER["Chicago"])}</p><p>ProofNotFluff is not affiliated with or endorsed by the City of Chicago.</p>'
             '<p>Public information, not legal, code or building advice for any property. For a question about a violation, check with the Department of Buildings.</p>'
-            '<p>Made by ProofNotFluff with AI assistance from public City data. The page counts visits with Cloudflare Web Analytics, which sets no cookies.</p></div></footer>\n</body></html>')
+            '<p>Made by ProofNotFluff with AI assistance from public City data. The page counts visits with Cloudflare Web Analytics, which sets no cookies.</p></div></div></footer>\n</body></html>')
     data_ld = {"@context": "https://schema.org", "@type": "Dataset", "name": META["h1"], "description": p["desc"], "url": url,
                "isAccessibleForFree": True, "creator": {"@type": "Organization", "name": "ProofNotFluff"}, "isBasedOn": src["url"],
                "temporalCoverage": f'{d["months"][0]}-01/{d["through"]}', "spatialCoverage": "Chicago, Illinois",

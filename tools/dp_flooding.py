@@ -69,7 +69,7 @@ def ym_name(ym, short=False):
 def pct(x):
     if x is None:
         return "new"
-    return ("+" if x > 0 else "") + f"{x:.0f}%" if abs(x) >= 1 else "same"
+    return ("+" if x > 0 else "\u2212" if x < 0 else "") + f"{abs(x):.0f}%" if abs(x) >= 1 else "same"   # a true minus sign
 
 
 def change(now, before):
@@ -162,7 +162,7 @@ CSS = ("<style>"
        ".bf-dl{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0}"
        ".bf-t td{white-space:nowrap}.bf-t td:last-child,.bf-t th:last-child{padding-right:16px}.bf-t thead th{max-width:9em}"
        ".bf-swipe{display:none;margin:8px 0 0;font-size:13px;color:var(--muted)}"
-       "@media(max-width:599px){.bf-t{min-width:600px}.bf-t tbody th{min-width:112px}.bf-t th,.bf-t td{padding:9px 8px}.bf-t tbody th,.bf-t thead th:first-child{position:sticky;left:0;z-index:1;background:var(--card);box-shadow:1px 0 0 var(--rule)}"
+       "@media(max-width:599px){.bf-t{min-width:600px}.bf-t tbody th{min-width:150px}.bf-t th,.bf-t td{padding:9px 8px}.bf-t tbody th,.bf-t thead th:first-child{position:sticky;left:0;z-index:1;background:var(--card);box-shadow:1px 0 0 var(--rule)}"
        ".bf-tw{background:linear-gradient(to left,var(--card) 0,var(--card) 100%)}.bf-swipe{display:block}.bf-days th,.bf-days td{padding:8px 6px}}"
        "</style>")
 
@@ -171,10 +171,14 @@ SHARED_CSS = ("<style>"
     "p.rl-act{display:flex;flex-wrap:wrap;gap:10px;align-items:center}"
     "@media(max-width:599px){.ld-heroact{display:grid;grid-template-columns:1fr;gap:10px}.ld-heroact .btn,.ld-heroact .st-btn2{width:100%}}"
     ".pg-nav{position:sticky;top:0;z-index:20;margin:0 -16px 8px;padding:8px 16px;background:var(--canvas);border-bottom:1px solid var(--rule)}"
-    ".pg-nav ul{display:flex;gap:6px;margin:0;padding:0;list-style:none;overflow-x:auto;scrollbar-width:none}.pg-nav ul::-webkit-scrollbar{display:none}"
-    ".pg-nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap}"
+    ".pg-nav ul{display:flex;flex-wrap:nowrap;gap:8px;margin:0;padding:0 0 2px;list-style:none;overflow-x:auto;scrollbar-width:none}.pg-nav li{flex-shrink:0}.pg-nav ul::-webkit-scrollbar{display:none}"
+    ".pg-nav a{display:inline-flex;align-items:center;flex-shrink:0;min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap}"
     ".pg-nav a[aria-current=true]{background:var(--ink);border-color:var(--ink);color:var(--card)}.pg-nav a:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
     "section.block{scroll-margin-top:64px}"
+    "@media(max-width:479px){.ld-hero .eyebrow{text-transform:none;letter-spacing:0;font-size:14px;font-weight:600}}"
+    ".pg-two .cta>div{display:flex;flex-direction:column;height:100%}.pg-two .cta>div>p:not(.ld-buybtn){margin-bottom:20px}.pg-two .ld-buybtn{margin-top:auto}"
+    "footer .wrap>.pg-notes{grid-column:1/-1;column-count:2;column-gap:40px}.pg-notes p{break-inside:avoid;margin:0 0 12px;max-width:none}@media(max-width:759px){footer .wrap>.pg-notes{column-count:1}}"
+    "@media(min-width:860px){.pg-map .gm-side{position:sticky;top:72px}}"
     "svg.ch-ph{display:none}@media(max-width:599px){svg.ch-ph{display:block}svg.ch-dt{display:none}}"
     ".ch-ph text{font-size:12px!important}"
     ".up-key{margin:8px 0 0;font-size:13.5px;color:var(--ink2)}.up-key b{color:var(--warn-ink)}"
@@ -327,9 +331,9 @@ def day_chart(vals, start, peaks, E, label, cls="b", ph=False):
             ticks += f'<line class="ax" x1="{x:.1f}" y1="{base}" x2="{x:.1f}" y2="{base + 5}"/>'
             if day.month % every == 1 % every and x < W - 30:
                 ticks += f'<text x="{x + 2:.1f}" y="{base + 19}">{E(day.strftime("%b"))}</text>'
-    peaks = peaks[:2] if ph else peaks
+    peaks = peaks
     xs = [x0 + (p["i"] + .5) * bw for p in peaks]
-    rows = peak_rows(peaks, xs, gap=100 if ph else 118)
+    rows = peak_rows(peaks, xs, gap=110 if ph else 118)
     pk = ""
     for p, x, r in zip(peaks, xs, rows):
         y = base - p["n"] / mx * (base - top)
@@ -539,7 +543,7 @@ def page_html(p):
              f'<div class="bf-dl"><a class="st-btn2" href="{CSV_AREA}" download>Download every area by month (CSV)</a>'
              f'<a class="st-btn2" href="{CSV_DAY}" download>Download citywide by day (CSV)</a></div>')
     tr = p["trade"]
-    two = ('<section class="block" id="next"><div class="bf-two">'
+    two = ('<section class="block" id="next"><div class="bf-two pg-two">'
            + "".join(f'<div class="cta ld-cta"><div><h2>{E(c["title"])}</h2><p>{E(c["text"])}</p>'
                      f'<p class="ld-buybtn"><a class="btn" href="{rel}{E(c["slug"])}/">{E(c["button"])}</a></p></div></div>' for c in tr)
            + '</div></section>')
@@ -558,7 +562,7 @@ def page_html(p):
             f'<p class="rl-act"><a class="btn" href="#areas">See every neighborhood</a> <a class="st-btn2" href="{rel}chicago-data/">More free Chicago data</a></p>'
             f'<script type="application/json" id="bf-data">{js_data}</script>{JS}{PG_JS}')
     types = " and ".join(E(t["srType"]) for t in d["types"])
-    foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
+    foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}<div class="pg-notes">'
             f'<p>Source: City of Chicago Data Portal, <a href="{E(src["url"])}">311 Service Requests dataset</a>, requests of type {types}, pulled {E(pulled)}'
             + (", with requests the City marked as duplicates left out" if src.get("duplicatesLeftOut") else "")
             + '. A call is one request to 311; it does not say what the City found, and a count says nothing about any one building or block.</p>'
@@ -570,7 +574,7 @@ def page_html(p):
             '<a href="https://www.chicago.gov/city/en/depts/water/provdrs/engineer/svcs/request_sewer_cleaninginspection.html">Sewer Cleaning Inspection</a> pages, read Oct 27, 2026.</p>'
             + f'<p>{E(M.CITY_DISCLAIMER["Chicago"])}</p><p>ProofNotFluff is not affiliated with or endorsed by the City of Chicago.</p>'
             '<p>Public information, not legal, insurance or plumbing advice for any property. For a problem at a property, check with the City or a licensed plumber.</p>'
-            '<p>Made by ProofNotFluff with AI assistance from public City data. The page counts visits with Cloudflare Web Analytics, which sets no cookies.</p></div></footer>\n</body></html>')
+            '<p>Made by ProofNotFluff with AI assistance from public City data. The page counts visits with Cloudflare Web Analytics, which sets no cookies.</p></div></div></footer>\n</body></html>')
     data_ld = {"@context": "https://schema.org", "@type": "Dataset", "name": META["h1"], "description": p["desc"], "url": url,
                "isAccessibleForFree": True, "license": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
                "creator": {"@type": "Organization", "name": "ProofNotFluff"}, "isBasedOn": src["url"],

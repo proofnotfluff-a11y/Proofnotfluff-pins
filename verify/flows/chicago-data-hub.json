@@ -12,7 +12,7 @@
   {"fill": "#cxQ", "value": "zzqx"},
   {"expect_visible": "#cxEmpty"},
   {"click": "#cxClear"},
-  {"expect_text": "#cxCount", "matches": "^$"},
+  {"expect_js": "document.getElementById('cxCount').textContent==='' && [...document.querySelectorAll('#cxAll .cx-item')].every(c=>!c.hidden)"},
   {"expect_count": "#cxAll .cx-item a[href^='../']", "min": 10},
   {"expect_count": ".st-band a[href='../#trades']", "min": 1}
  ]}

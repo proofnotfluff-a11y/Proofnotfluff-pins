@@ -6938,7 +6938,7 @@
    "data": "site/datapages/dp_flooding/monthly.json",
    "title": "Chicago Basement Flooding Calls by Neighborhood, Updated Daily | ProofNotFluff",
    "desc": "Free daily count of water in basement calls and sewer cleaning requests to Chicago 311 for all 77 community areas: month by month, vs the 12 months before, with the busiest days. From City records.",
-   "eyebrow": "Free daily tracker for plumbers, waterproofing and restoration companies",
+   "eyebrow": "Free daily tracker for plumbing and restoration trades",
    "h1": "Chicago Basement Flooding Calls by Neighborhood",
    "card": "Water in basement calls and sewer cleaning requests to Chicago 311 by community area, month by month, with the busiest days. Updated daily.",
    "trade": [

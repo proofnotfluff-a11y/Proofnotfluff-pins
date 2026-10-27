@@ -57,6 +57,13 @@ def low(label):
     return label if label.split()[0].isupper() else label[:1].lower() + label[1:]
 
 
+def arrow(x):
+    """The change on a tile: an arrow and the size, the sign in the arrow (design director, Oct 27)."""
+    if x is None:
+        return "new "
+    return "same " if abs(x) < 1 else ("\u2191 " if x > 0 else "\u2193 ") + f"{abs(x):.0f}% "
+
+
 def viol(n):
     return f"{n:,} violation" + ("" if n == 1 else "s")
 
@@ -153,9 +160,9 @@ CSS = ("<style>"
        ".rd-grid{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr));margin:8px 0}@media(min-width:900px){.rd-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}"
        ".rd-grid a{display:block;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);text-decoration:none;color:var(--ink);min-height:44px}"
        ".rd-grid a.lead{background:var(--band);border-color:var(--band-line);color:#fff;--focus:#fff}.rd-grid a.lead small{color:var(--band-text)}.rd-grid a.lead em{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:999px;background:var(--accent);color:#fff;font:700 11.5px/1.6 system-ui,sans-serif;font-style:normal;letter-spacing:.03em;text-transform:uppercase;vertical-align:2px}"
-       ".rd-grid a{position:relative}.rd-grid .lab{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-right:56px}.rd-grid a.lead .lab{color:var(--band-soft)}"
+       ".rd-grid a{position:relative}.rd-grid .lab{display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-right:56px}.rd-grid a.lead .lab{color:var(--band-soft)}"
        ".rd-grid a.lead em{position:absolute;top:10px;right:10px;margin:0}.rd-grid a:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
-       ".rd-grid a:hover{border-color:var(--ink)}.rd-grid b{display:block;font:700 26px/1.1 Poppins,system-ui,sans-serif;font-variant-numeric:tabular-nums;margin-top:6px}.rd-grid small{display:block;color:var(--muted);font-size:13px;margin-top:2px}"
+       ".rd-grid a:hover{border-color:var(--ink)}.rd-grid b{display:block;font:700 26px/1.1 Poppins,system-ui,sans-serif;font-variant-numeric:tabular-nums;margin-top:6px}.rd-grid small{display:block;color:var(--muted);font-size:13px;margin-top:2px}.rd-grid small.rd-ch{font-size:14px;font-weight:600;color:var(--ink2)}.rd-grid a.lead small.rd-ch{color:var(--band-text)}.rd-ls{display:none}@media(max-width:480px){.rd-lf{display:none}.rd-ls{display:inline}}"
        ".rd-two{display:grid;gap:16px}@media(min-width:900px){.rd-two{grid-template-columns:1fr 1fr}}.rd-two .cta{grid-template-columns:1fr;height:100%;align-items:start}.rd-two .cta h2{margin-top:0;text-wrap:balance}"
        ".rd-p .rd-t td,.rd-p .rd-t thead th{white-space:nowrap}.rd-t td:last-child,.rd-t th:last-child{padding-right:16px}.rd-s{display:none}.rd-swipe{display:none;margin:8px 0 0;font-size:13px;color:var(--muted)}"
        ".rd-chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 0;padding:0;list-style:none}.rd-chips li{padding:2px 10px;border-radius:999px;background:var(--canvas2);border:1px solid var(--line);font-size:13px;color:var(--ink2)}"
@@ -278,7 +285,7 @@ def page_html(p):
             f'in six repair trades: masonry, porches, electrical, HVAC, elevators and plumbing. {E(big["label"])} led with {big["y12"]:,}. '
             'See every trade in every community area, month by month.')
     grid = ('<div class="rd-grid">' + "".join(
-        f'<a href="#t-{t["key"]}" data-tab="{t["key"]}"{" class=lead" if t is big else ""}><span class="lab">{E(t["label"])}</span>{"<em>Most</em>" if t is big else ""}<b>{t["y12"]:,}</b><small>new violations, last 12 months, {E(pct(t["ch"]))} vs the 12 months before</small></a>' for t in T)
+        f'<a href="#t-{t["key"]}" data-tab="{t["key"]}"{" class=lead" if t is big else ""}><span class="lab"><span class="rd-lf">{E(t["label"])}</span><span class="rd-ls">{E(t["short"])}</span></span>{"<em>Most</em>" if t is big else ""}<b>{t["y12"]:,}</b><small class="rd-ch">{arrow(t["ch"])}vs the 12 months before</small></a>' for t in T)
         + f'</div><p class="asof">New violations, {E(period)}. Counts to {E(M.nice_date(d["through"]))}, from City of Chicago building violation records pulled {E(pulled)}. Updated every day.</p>')
     mapb = map_block(st, E, period)
     tabs = ('<fieldset class="rd-tabs"><legend>Trade</legend>'

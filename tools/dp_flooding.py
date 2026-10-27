@@ -72,6 +72,13 @@ def pct(x):
     return ("+" if x > 0 else "\u2212" if x < 0 else "") + f"{abs(x):.0f}%" if abs(x) >= 1 else "same"   # a true minus sign
 
 
+def arrow(x):
+    """A tile's change: an arrow and the size (the same pattern on both B8 pages)."""
+    if x is None:
+        return "new "
+    return "same " if abs(x) < 1 else ("\u2191 " if x > 0 else "\u2193 ") + f"{abs(x):.0f}% "
+
+
 def change(now, before):
     return None if not before else (now / before - 1) * 100
 
@@ -156,7 +163,7 @@ CSS = ("<style>"
        ".bf-nums{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}@media(min-width:700px){.bf-nums{grid-template-columns:repeat(4,minmax(0,1fr))}}"
        ".bf-nums div{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--canvas2)}.bf-nums b{display:block;font:700 24px/1.15 Poppins,system-ui,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}"
        ".bf-nums small{display:block;font-size:13px;color:var(--muted);margin-top:2px}"
-       ".bf-days{width:100%;border-collapse:collapse;font-size:14.5px}.bf-days th,.bf-days td{padding:8px 10px;border-bottom:1px solid var(--rule);text-align:right;font-variant-numeric:tabular-nums}"
+       ".bf-days{width:100%;max-width:640px;border-collapse:collapse;font-size:14.5px}.bf-days th,.bf-days td{padding:8px 10px;border-bottom:1px solid var(--rule);text-align:right;font-variant-numeric:tabular-nums}"
        ".bf-days th:first-child,.bf-days td:first-child{text-align:left;white-space:nowrap}.bf-days thead th{font-size:13px;color:var(--muted)}.bf-days tr:last-child td{border-bottom:0}"
        ".bf-two{display:grid;gap:16px}@media(min-width:900px){.bf-two{grid-template-columns:1fr 1fr}}.bf-two .cta{grid-template-columns:1fr;height:100%;align-items:start}.bf-two .cta h2{margin-top:0;text-wrap:balance}"
        ".bf-dl{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0}"
@@ -170,12 +177,13 @@ SHARED_CSS = ("<style>"
     ".ld-heroact{margin-bottom:24px}.ld-heroact .btn,.ld-heroact .st-btn2,p.rl-act .btn,p.rl-act .st-btn2{min-height:48px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin:0}"
     "p.rl-act{display:flex;flex-wrap:wrap;gap:10px;align-items:center}"
     "@media(max-width:599px){.ld-heroact{display:grid;grid-template-columns:1fr;gap:10px}.ld-heroact .btn,.ld-heroact .st-btn2{width:100%}}"
-    ".pg-nav{position:sticky;top:0;z-index:20;margin:0 -16px 8px;padding:8px 16px;background:var(--canvas);border-bottom:1px solid var(--rule)}"
-    ".pg-nav ul{display:flex;flex-wrap:nowrap;gap:8px;margin:0;padding:0 0 2px;list-style:none;overflow-x:auto;scrollbar-width:none}.pg-nav li{flex-shrink:0}.pg-nav ul::-webkit-scrollbar{display:none}"
-    ".pg-nav a{display:inline-flex;align-items:center;flex-shrink:0;min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap}"
-    ".pg-nav a[aria-current=true]{background:var(--ink);border-color:var(--ink);color:var(--card)}.pg-nav a:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
-    "section.block{scroll-margin-top:64px}"
-    "@media(max-width:479px){.ld-hero .eyebrow{text-transform:none;letter-spacing:0;font-size:14px;font-weight:600}}"
+    "section.block{scroll-margin-top:124px}.otp-in a{padding:0 16px}"
+    ".tile.key{box-shadow:inset 0 3px 0 var(--accent)}.tile .tch{display:block;font-size:14px;font-weight:600;margin:0 0 2px}"
+    "@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .tile.key,:root:not([data-theme=light]) .rd-grid a.lead{background:#262c3d;border-color:#3a4258;box-shadow:inset 0 3px 0 var(--accent)}}"
+    ":root[data-theme=dark] .tile.key,:root[data-theme=dark] .rd-grid a.lead{background:#262c3d;border-color:#3a4258;box-shadow:inset 0 3px 0 var(--accent)}"
+    ".bf-chart .b2,.rd-chart .b2{fill:#f0cabe;stroke:#c98f80;stroke-width:1;opacity:1}.bf-key .k2 i,.rd-key .k2 i{background:#f0cabe;box-shadow:inset 0 0 0 1px #c98f80;opacity:1}"
+    "@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .bf-chart .b2,:root:not([data-theme=light]) .rd-chart .b2{fill:#a85d4c;stroke:#c27463}:root:not([data-theme=light]) .bf-key .k2 i,:root:not([data-theme=light]) .rd-key .k2 i{background:#a85d4c;box-shadow:none}}"
+    ":root[data-theme=dark] .bf-chart .b2,:root[data-theme=dark] .rd-chart .b2{fill:#a85d4c;stroke:#c27463}:root[data-theme=dark] .bf-key .k2 i,:root[data-theme=dark] .rd-key .k2 i{background:#a85d4c;box-shadow:none}"
     ".pg-two .cta>div{display:flex;flex-direction:column;height:100%}.pg-two .cta>div>p:not(.ld-buybtn){margin-bottom:20px}.pg-two .ld-buybtn{margin-top:auto}"
     "footer .wrap>.pg-notes{grid-column:1/-1;column-count:2;column-gap:40px}.pg-notes p{break-inside:avoid;margin:0 0 12px;max-width:none}@media(max-width:759px){footer .wrap>.pg-notes{column-count:1}}"
     "@media(min-width:860px){.pg-map .gm-side{position:sticky;top:72px}}"
@@ -186,16 +194,14 @@ SHARED_CSS = ("<style>"
     ":root[data-theme=dark] .gm.pg-map{--gm0:#5b453d;--gmn:#323a4a;--gmedge:#58627a}"
     "</style>")
 
-PG_JS = ("<script>(function(){var n=document.querySelector('.pg-nav');if(!n||!('IntersectionObserver' in window))return;var L={};"
-         "n.querySelectorAll('a').forEach(function(a){L[a.getAttribute('href').slice(1)]=a;});"
-         "var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){n.querySelectorAll('a').forEach(function(a){a.removeAttribute('aria-current');});"
-         "var a=L[e.target.id];if(a){a.setAttribute('aria-current','true');a.scrollIntoView({block:'nearest',inline:'nearest'});}}});},{rootMargin:'-30% 0px -60% 0px'});"
-         "Object.keys(L).forEach(function(id){var s=document.getElementById(id);if(s)o.observe(s);});})();</script>")
+PG_JS = ""   # the site script (assets/pnf-ui.js) drives the .otp bar
 
 
 def pg_nav(items, E):
-    return ('<nav class="pg-nav" aria-label="On this page"><ul>'
-            + "".join(f'<li><a href="#{i}">{E(t)}</a></li>' for i, t in items) + '</ul></nav>')
+    """The site's own on-this-page bar (.otp in docs/assets/pnf.css, highlighted by assets/pnf-ui.js), so it looks and
+    behaves like the one on the lead pages (design director, Oct 27: one pattern site wide)."""
+    return ('<nav class="otp" aria-label="On this page"><div class="otp-in">'
+            + "".join(f'<a href="#{i}">{E(t)}</a>' for i, t in items) + '</div></nav>')
 
 
 def pg_map(fig):
@@ -278,7 +284,7 @@ def nice_step(mx, lines=4):
     import math
     raw = max(mx, 1) / lines
     p = 10 ** math.floor(math.log10(raw))
-    return next(m * p for m in (1, 2, 5, 10) if m * p >= raw)
+    return next(m * p for m in ((1, 2, 2.5, 5, 10) if p >= 10 else (1, 2, 5, 10)) if m * p >= raw)
 
 
 def short_num(v):
@@ -292,11 +298,11 @@ def short_ym(label):
 
 def grid(mx, base, top, x0, W, E):
     st = nice_step(mx)
-    out, v = "", st
+    out, v = f'<text class="gt" x="{x0 - 6}" y="{base + 4:.1f}" text-anchor="end">0</text>', st
     while v <= mx:
         y = base - v / mx * (base - top)
         out += (f'<line class="gl" x1="{x0}" y1="{y:.1f}" x2="{W}" y2="{y:.1f}"/>'
-                f'<text class="gt" x="{x0 - 6}" y="{y + 4:.1f}" text-anchor="end">{short_num(v)}</text>')
+                f'<text class="gt" x="{x0 - 6}" y="{y + 4:.1f}" text-anchor="end">{short_num(int(v)) if v == int(v) else v}</text>')
         v += st
     return out
 
@@ -379,9 +385,9 @@ def month_chart(vals, labels, ghost, E, label, ph=None):
 JS = r"""<script>(function(){var D=JSON.parse(document.getElementById("bf-data").textContent);
 document.querySelectorAll("[data-bf-show]").forEach(function(i){i.addEventListener("change",function(){var g=i.name;document.querySelectorAll("[data-bf-group='"+g+"']").forEach(function(el){el.hidden=el.dataset.bfKey!==i.value;});});});
 var sel=document.getElementById("bf-area-sel"),box=document.getElementById("bf-area-box");
-function step(mx){var r=Math.max(mx,1)/4,p=Math.pow(10,Math.floor(Math.log10(r)));return [1,2,5,10].map(function(m){return m*p;}).filter(function(x){return x>=r;})[0];}
+function step(mx){var r=Math.max(mx,1)/4,p=Math.pow(10,Math.floor(Math.log10(r)));return (p>=10?[1,2,2.5,5,10]:[1,2,5,10]).map(function(m){return m*p;}).filter(function(x){return x>=r;})[0];}
 function sn(v){return v>=1000?(v/1000)+"k":v.toLocaleString("en-US");}function sy(l){return /\d{4}$/.test(l)?l.slice(0,-4)+"\u2019"+l.slice(-2):l;}
-function bars(v,mx){var ph=window.matchMedia("(max-width:599px)").matches,W=ph?330:730,H=164,b=136,t=16,x0=ph?34:44,s=(W-x0)/v.length,o="",st=step(mx),k=ph?6:3;
+function bars(v,mx){var ph=window.matchMedia("(max-width:599px)").matches,W=ph?330:730,H=164,b=136,t=16,x0=ph?34:44,s=(W-x0)/v.length,o='<text class="gt" x="'+(x0-6)+'" y="'+(b+4)+'" text-anchor="end">0</text>',st=step(mx),k=ph?6:3;
 for(var g=st;g<=mx;g+=st){var gy=b-g/mx*(b-t);o+='<line class="gl" x1="'+x0+'" y1="'+gy.toFixed(1)+'" x2="'+W+'" y2="'+gy.toFixed(1)+'"/><text class="gt" x="'+(x0-6)+'" y="'+(gy+4).toFixed(1)+'" text-anchor="end">'+sn(g)+'</text>';}
 for(var i=0;i<v.length;i++){var h=v[i]/mx*(b-t),x=x0+i*s;o+='<rect class="b" x="'+(x+s*.2).toFixed(1)+'" y="'+(b-h).toFixed(1)+'" width="'+(s*.6).toFixed(1)+'" height="'+h.toFixed(1)+'"/>';
 if((v.length-1-i)%k===0){var last=i===v.length-1;o+='<text x="'+(last?x+s:x+s/2).toFixed(1)+'" y="'+(b+18)+'" text-anchor="'+(last?"end":"middle")+'">'+(ph?sy(D.labels[i]):D.labels[i])+'</text>';}}
@@ -472,9 +478,9 @@ def page_html(p):
             + f' Sewer requests were {updown(s["ch"])}.')
     peak = st["peaks"]["water"][0] if st["peaks"]["water"] else None
     tiles = ('<div class="tiles ld-tiles">'
-             f'<div class="tile key"><div class="lab">Basement calls</div><div class="val">{w["y12"]:,}</div><div class="sub">water in basement calls, last 12 months, {E(pct(w["ch"]))} vs the 12 months before</div></div>'
-             f'<div class="tile"><div class="lab">Sewer requests</div><div class="val">{s["y12"]:,}</div><div class="sub">sewer cleaning requests, last 12 months, {E(pct(s["ch"]))} vs the 12 months before</div></div>'
-             f'<div class="tile"><div class="lab">{E(ym_name(st["lm"], True))}</div><div class="val">{w["m"]:,}</div><div class="sub">water in basement calls; {w["my"] or 0:,} in {E(ym_name(d["months"][st["L"] - 12], True))}</div></div>'
+             f'<div class="tile key"><div class="lab">Basement calls</div><div class="val">{w["y12"]:,}</div><div class="sub"><b class="tch">{E(arrow(w["ch"]))}vs the 12 months before</b>water in basement calls, last 12 months</div></div>'
+             f'<div class="tile"><div class="lab">Sewer requests</div><div class="val">{s["y12"]:,}</div><div class="sub"><b class="tch">{E(arrow(s["ch"]))}vs the 12 months before</b>sewer cleaning requests, last 12 months</div></div>'
+             f'<div class="tile"><div class="lab">Last full month</div><div class="val">{w["m"]:,}</div><div class="sub">water in basement calls in {E(ym_name(st["lm"], True))}; {w["my"] or 0:,} in {E(ym_name(d["months"][st["L"] - 12], True))}</div></div>'
              + (f'<div class="tile"><div class="lab">Year&#39;s busiest day</div><div class="val">{peak["n"]:,}</div><div class="sub">water in basement calls on {E(M.nice_date(peak["day"]))}, the most in the last 365 days</div></div>' if peak else "")
              + f'</div><p class="asof">Counts to {E(M.nice_date(d["through"]))}, from City of Chicago 311 records pulled {E(pulled)}. Updated every day.</p>')
     mapb = map_block(st, pop, E, period) if p.get("map", True) else ""
@@ -554,8 +560,8 @@ def page_html(p):
             '<div class="ld-heroact rl-act"><a class="btn" href="#areas">See every neighborhood</a>'
             + ('<a class="st-btn2" href="#map">Open the map</a>' if mapb else "") + '</div></div>'
             f'{tiles}'
-            + pg_nav([("map", "Map"), ("days", "Busy days"), ("area", "One area"), ("areas", "Every area"), ("faq", "Questions")] if mapb else
-                     [("days", "Busy days"), ("area", "One area"), ("areas", "Every area"), ("faq", "Questions")], E)
+            + pg_nav([("map", "Map"), ("days", "Busiest days"), ("area", "One area"), ("areas", "Every area"), ("faq", "Questions")] if mapb else
+                     [("days", "Busiest days"), ("area", "One area"), ("areas", "Every area"), ("faq", "Questions")], E)
             + (f'<section class="block" id="map"><h2>Basement flooding calls on the map</h2>{mapb}</section>' if mapb else "")
             + f'<section class="block" id="days"><h2>The busiest days and months</h2>{toggle}{charts}{days_tbl}</section>'
             f'<section class="block" id="area"><h2>One community area, month by month</h2>{area_sec}</section>'

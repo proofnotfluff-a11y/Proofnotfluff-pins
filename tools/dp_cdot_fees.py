@@ -280,7 +280,7 @@ def reference_html(E):
                      [[k.capitalize() + " closure"] + [money(x) for x in APP["occupy"][k]] for k in ("full", "partial")]))
     unit = {"day_vehicle": "per day per vehicle", "vehicle": "per vehicle", "foot": "per foot", "foot_month": "per foot per month", "driveway": "per month for every 25 feet"}
     out.append("<h3>Vehicles, equipment and other items (page 7)</h3><p class=\"asof\">Names as the City's schedule prints them.</p>"
-               + f'<details class="pf-more"><summary>Show all {len(ITEMS)} items</summary>'
+               + f'<details class="pf-more"><summary>Show the {len(ITEMS)} items the calculator prices</summary>'
                + tbl("Vehicle and equipment fees", ["Item", "Outside CBD", "Inside CBD"],
                      [[f"{g}: {n}", f"{money(o)} {unit[u]}", f"{money(i)} {unit[u]}"] for g, n, o, i, u in ITEMS]) + "</details>")
     cols = ["1 to 3 days", "4 to 180", "181 to 360", "361 to 540", "541 to 720", "721 or more", "Type II, 4 to 540", "Type II, 541 or more"]
@@ -338,7 +338,7 @@ def page_html(p):
                 f'<h2>Apply with CDOT</h2><p>Permits are applied for and paid through CDOT. This page only estimates the fee.</p>')
              + "</div></div></section>")
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{E(p["lede"])}</p>{eff}'
-            '<div class="ld-heroact rl-act"><a class="btn" href="#calc">Price a permit</a><a class="st-btn2" href="#fees">See every fee</a></div></div>'
+            '<div class="ld-heroact rl-act"><a class="btn" href="#calc">Price a permit</a><a class="st-btn2" href="#fees">See the fee tables</a></div></div>'
             f'{calc}{reference_html(E)}{how}{links}{M.faq_block(faq) if faq else ""}')
     foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             f'<p>Source: City of Chicago Department of Transportation, <a href="{E(src["url"])}">2026 Permit Fee Schedule</a>, effective January 1, 2026; '
@@ -383,7 +383,7 @@ function draw(){var what=(f.querySelector("input[name=pf-what]:checked")||{}).va
   if(u==="vehicle"){use2=rate*ct;lab=ct+" vehicle"+(ct===1?"":"s")+" at "+m(rate)}
   if(u==="foot"){use2=rate*ft;lab=ft+" ft at "+m(rate)+" a foot";N.push("The schedule prices this item per foot and does not say over what period. Ask CDOT how long one charge covers.")}
   if(u==="foot_month"){use2=rate*ft*mo2;lab=ft+" ft x "+mo2+" month"+(mo2===1?"":"s")+" at "+m(rate)}
-  if(u==="driveway"){var inc=Math.ceil(ft/25);use2=rate*inc*mo2;lab=inc+" x 25 ft x "+mo2+" month"+(mo2===1?"":"s")+" at "+m(rate)}
+  if(u==="driveway"){var inc=Math.ceil(ft/25);use2=rate*inc*mo2;lab=inc+" x 25 ft x "+mo2+" month"+(mo2===1?"":"s")+" at "+m(rate);N.push("We count a part of 25 feet as a full increment; ask CDOT.")}
   L.push(["Application fee",app2]);L.push(["Usage, "+lab,use2]);total=app2+use2;sub="Application fee plus usage";
   N.push("The schedule applies this application fee to work vehicles, temporary driveways, barricades and operating equipment; ask CDOT whether it applies to your item.");
   if(!use2)W.push("Type the days, vehicles, length or months for this item.")}
@@ -392,7 +392,7 @@ function draw(){var what=(f.querySelector("input[name=pf-what]:checked")||{}).va
   if(ty==="III"&&!cbd)W.push("Type III covers routine maintenance inside the CBD only. Outside it, ask CDOT which type applies.");
   if(!ft2||!dy2)W.push("Type the length closed and the days it stays.");
   if(R[1].length>1)blocks='<details class="pf-blocks"><summary>See each 30-day block</summary><ol>'+R[1].map(function(b){return"<li>Days "+b[0]+" to "+b[1]+": "+m(b[2])+"</li>"}).join("")+"</ol></details>";
-  N.push("Each block is the per-foot rate times the length or the minimum monthly fee, whichever is more. If you block metered spaces, CDOT charges for those too; the schedule gives no amount.")}
+  N.push("Our reading: each 30-day block is the per-foot rate times the length or the minimum monthly fee, whichever is more. CDOT may price the whole permit at one column; ask CDOT. If your closure makes metered spaces unusable, CDOT charges for those too; this part of the schedule gives no amount and points to Municipal Code section 9-68-080.")}
  if(what==="open"){var o=D.open[+$("p-place").value],n=whole("p-count"),mor=$("p-mor").value==="1",tr=$("p-kind").value==="trench";
   rowVis("p-age",mor);rowVis("p-kind",mor);rowVis("p-trench",mor&&tr);
   var fee=o[1]*n*(mor?2:1);L.push([n+" "+o[2]+(n===1?"":"s")+" at "+m(o[1])+(mor?", doubled on a moratorium street":""),fee]);total=fee;
@@ -470,7 +470,7 @@ def selftest():
     import make_site as M
     spec = [x for x in json.load(open(os.path.join(ROOT, "site", "pages.json"), encoding="utf-8"))["pages"] if x.get("module") == "dp_cdot_fees"][0]
     html = page_html(spec)
-    assert html.count("<h1>") == 1 and "—" not in html and "–" not in html, "one h1, no dashes"
+    assert html.count("<h1>") == 1 and "\u2014" not in html and "\u2013" not in html, "one h1, no dashes"
     assert "January 1, 2026" in html and "Fees can change; confirm with CDOT" in html and src["url"] in html, "effective date, link, caution"
     assert all(money(x) in html for x in (92.63, 22.60, 56.51, 316.49, 158.25, 778.54, 389.26, 3840.00)), "the reference tables"
     assert isinstance(META["keywords"], str)

@@ -3,11 +3,14 @@ name: Chicago rat complaints
 # cannot reach data.cityofchicago.org, so this runner counts the City's 311 "Rodent Baiting/Rat Complaint" requests by
 # community area and commits only the counts (permits/rodents-chicago/weekly.json). tools/rodents_chicago.py says what is
 # kept: no address, location, request number or resident text ever leaves the runner.
+# Rat Index (Oct 27, 2026, coo/DECISIONS-2026-10-27.md): it also writes the community area population file
+# (site/geo/chicago-community-area-population.json, City dataset t68z-cikk) and the restaurant pest and ventilation counts
+# (permits/rodents-chicago/restaurants.json, Food Inspections 4ijn-s7e5, tools/rodents_restaurants.py), counts only.
 on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["tools/rodents_chicago.py", "tools/rodents_site.py", ".github/workflows/rodents-chicago.yml"]
+    paths: ["tools/rodents_chicago.py", "tools/rodents_restaurants.py", "tools/rodents_site.py", ".github/workflows/rodents-chicago.yml"]
   schedule:
     - cron: "20 11 * * 1"   # Mondays, about 6:20 am Chicago time in daylight time
 permissions:
@@ -25,9 +28,14 @@ jobs:
       - name: Self-checks (planted cases)
         run: |
           python3 tools/rodents_chicago.py --selftest
+          python3 tools/rodents_restaurants.py --selftest
           python3 tools/rodents_site.py --selftest
+      - name: Community area population (City ACS by community area; keeps the last good file if the pull fails)
+        run: python3 tools/rodents_chicago.py --population || test -f site/geo/chicago-community-area-population.json
       - name: Count the City's rat complaints
         run: python3 tools/rodents_chicago.py
+      - name: Count restaurant pest and ventilation citations (keeps the last good file if the pull fails)
+        run: python3 tools/rodents_restaurants.py || test -f permits/rodents-chicago/restaurants.json
       - name: Rebuild the site pages from the new counts
         run: python3 tools/make_site.py
       - name: Commit
@@ -35,6 +43,7 @@ jobs:
           git config user.name "proofnotfluff-bot"
           git config user.email "proofnotfluff-bot@users.noreply.github.com"
           git add -A permits/rodents-chicago docs
+          [ -f site/geo/chicago-community-area-population.json ] && git add site/geo/chicago-community-area-population.json
           if git diff --cached --quiet; then echo "no change"; exit 0; fi
           git commit -m "Chicago rat complaints data $(TZ=America/Chicago date +%Y-%m-%d)"
           for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done

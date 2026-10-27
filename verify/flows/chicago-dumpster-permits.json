@@ -52,8 +52,8 @@
    "eq": 1
   },
   {
-   "expect_count": "#cost .cta a.btn",
-   "eq": 2
+   "expect_count": "#next .cta a.btn",
+   "min": 1
   }
  ]
 }

@@ -17,7 +17,6 @@ ROOT = os.path.dirname(HERE)
 DATA = "site/datapages/dp_dumpsters/counts.json"
 FEW = 10   # under 10 permits in the year-ago window, a percent change is noise: the page says "too few"
 COST_SLUG = "chicago-public-way-permit-costs"
-FEE_PDF = "https://www.chicago.gov/content/dam/city/depts/cdot/permit/2026/CDOT%202026%20Permit%20Fee%20Schedule.pdf"
 
 META = {"h1": "Chicago Dumpster Permits by Neighborhood",
         "card": "Where Chicago's dumpster permits are going: issued CDOT permits by community area, the last 90 days against a year ago, month by month. Updated daily.",
@@ -79,12 +78,13 @@ CSS = ("<style>"
        ".dd-up{color:var(--warn-ink)}"
        ".dd-more{margin:12px 0 0}.dd-more summary{display:flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;font-weight:600;color:var(--ink)}"
        ".dd-more[open] summary{margin-bottom:8px}"
-       ".dd-two{display:grid;gap:16px}@media(min-width:900px){.dd-two{grid-template-columns:1fr 1fr}}"
+       ".dd-one .cta{grid-template-columns:1fr}.dd-two{display:grid;gap:16px}@media(min-width:900px){.dd-two{grid-template-columns:1fr 1fr}}"
        ".dd-two .cta{grid-template-columns:1fr;height:100%;align-items:start}.dd-two .cta h2{margin-top:0;text-wrap:balance}"
        ".dd-name{font-size:clamp(20px,2.6vw,26px);line-height:1.15}"
-       "@media(max-width:599px){.dd-t{min-width:0}.dd-t th:nth-child(4),.dd-t td:nth-child(4),.dd-t th:nth-child(6),.dd-t td:nth-child(6){display:none}"
+       ".dd-more .dd-tw{margin:0}@media(min-width:600px){.dd-t{table-layout:fixed}.dd-t .c1{width:9%}.dd-t .c2{width:29%}.dd-t .c3{width:15%}.dd-t .c4{width:20%}.dd-t .c5{width:13%}.dd-t .c6{width:14%}}"".dd-more summary{box-shadow:none}"".ld-page .ld-tiles{margin-top:22px}.ld-page .ld-heroact .st-btn2{min-height:50px}.ld-page .eyebrow{text-wrap:balance}""#dmap .gm-a path.sel{stroke:var(--ink);stroke-width:4;paint-order:stroke}"".dd-two .cta>div{display:flex;flex-direction:column;height:100%}.dd-two .cta .ld-buybtn{margin-top:auto;padding-top:8px}"
+              "@media(max-width:599px){.dd-t{min-width:0}.dd-t th:nth-child(4),.dd-t td:nth-child(4),.dd-t th:nth-child(6),.dd-t td:nth-child(6){display:none}"
        ".dd-t th,.dd-t td{padding:9px 7px}.dd-bars{height:150px;gap:3px;padding:14px 10px 8px}.dd-bars div:not(:nth-child(3n+1)):not(:last-child) span{visibility:hidden}"
-       ".dd-bars div:not(.cur) b{visibility:hidden}}"
+       ".dd-bars div:not(.cur) b{visibility:hidden}.dd-bars div:first-child span{align-self:flex-start}}"
        "</style>")
 
 
@@ -238,23 +238,23 @@ def page_html(p):
                      f'<td>{a["months"][lm]:,}</td></tr>')
     thead = ('<thead><tr><th scope="col">Rank</th><th scope="col">Community area</th><th scope="col">Last 90 days</th>'
              f'<th scope="col">Same 90 days, {E(yr)}</th><th scope="col">Change</th><th scope="col">{E(month_name(d["monthLabels"][lm], True))}</th></tr></thead>')
-    tbl = lambda rs, label: (f'<div class="dd-tw" role="region" aria-label="{E(label)}" tabindex="0"><table class="dd-t">{thead}'
+    cols = '<colgroup>' + "".join(f'<col class="c{i}">' for i in range(1, 7)) + '</colgroup>'
+    tbl = lambda rs, label: (f'<div class="dd-tw" role="region" aria-label="{E(label)}" tabindex="0"><table class="dd-t">{cols}{thead}'
                              f'<tbody>{"".join(row(a) for a in rs)}</tbody></table></div>')
     SHOW = 20
     table = (tbl(areas[:SHOW], f"Dumpster permits, the {SHOW} community areas with the most")
              + f'<details class="dd-more"><summary>Show the other {len(areas) - SHOW} community areas</summary>'
              + tbl(areas[SHOW:], "Dumpster permits, the other community areas") + "</details>"
-             + f'<p class="asof">Rank is by permits in the last 90 days, 1 for the most; areas with the same count share a rank. Change compares the last 90 days with the same 90 days a year earlier, rounded to a whole percent; within 1% shows as same, and under {FEW} permits a year earlier as too few to compare.'
+             + f'<p class="asof">Rank is by permits in the last 90 days, 1 for the most; areas with the same count share a rank. Change compares the last 90 days with the same 90 days a year earlier, rounded to a whole percent; within 1% shows as same, rises of 25% or more are in orange, and under {FEW} permits a year earlier show as too few to compare.'
              + ((f' 1 permit from the last 90 days had no map point inside a community area, so it counts only in the city total.' if c["noArea"]["d90"] == 1 else
                 f' {c["noArea"]["d90"]:,} permits from the last 90 days had no map point inside a community area, so they count only in the city total.') if c["noArea"]["d90"] else "")
+             + (f' A permit with locations in more than one community area counts in each, so the areas add up to a little more than the city total ({c["multiArea90"]:,} such permits in the last 90 days).' if c.get("multiArea90") else "")
              + f' <a href="chicago-dumpster-permits-by-community-area.csv" download>Download every area by month (CSV)</a>.</p>')
     cost, nxt = p["cost"], p["next"]
     cost_live = any(x.get("slug") == COST_SLUG for x in M.PAGES_LIVE)   # a live page never links to a draft
     cost_panel = (f'<div class="cta ld-cta"><div><h2>{E(cost["title"])}</h2><p>{E(cost["text"])}</p>'
-                  f'<p class="ld-buybtn"><a class="btn" href="{rel}{COST_SLUG}/">{E(cost["button"])}</a></p></div></div>' if cost_live else
-                  f'<div class="cta ld-cta"><div><h2>{E(cost["title"])}</h2><p>{E(cost["textOfficial"])}</p>'
-                  f'<p class="ld-buybtn"><a class="btn" href="{E(FEE_PDF)}" rel="noopener">{E(cost["buttonOfficial"])}</a></p></div></div>')
-    two = ('<section class="block" id="cost"><div class="dd-two">' + cost_panel
+                  f'<p class="ld-buybtn"><a class="btn" href="{rel}{COST_SLUG}/">{E(cost["button"])}</a></p></div></div>' if cost_live else "")
+    two = (f'<section class="block" id="next"><div class="{"dd-two" if cost_live else "dd-one"}">' + cost_panel
            + f'<div class="cta ld-cta"><div><h2>{E(nxt["title"])}</h2><p>{E(nxt["text"])}</p>'
            f'<p class="ld-buybtn"><a class="btn" href="{rel}{E(nxt["slug"])}/">{E(nxt["button"])}</a></p></div></div>'
            "</div></section>")
@@ -291,9 +291,12 @@ def selftest():
     sq = [[[-87.70, 41.90], [-87.60, 41.90], [-87.60, 41.95], [-87.70, 41.95], [-87.70, 41.90]]]
     sq2 = [[[-87.70, 41.80], [-87.60, 41.80], [-87.60, 41.85], [-87.70, 41.85], [-87.70, 41.80]]]
     areas = [(6, "Lake View", sq, (-87.70, 41.90, -87.60, 41.95)), (61, "New City", sq2, (-87.70, 41.80, -87.60, 41.85))]
-    r = lambda day, lat: {"applicationissueddate": day + "T10:00:00.000", "latitude": lat, "longitude": "-87.65", "applicationstatus": "Closed"}
+    import itertools
+    ids = itertools.count(1)
+    r = lambda day, lat: {"applicationnumber": f"T{next(ids)}", "applicationissueddate": day + "T10:00:00.000", "latitude": lat, "longitude": "-87.65", "applicationstatus": "Closed"}
     rows = ([r("2026-10-1%d" % (i % 10), "41.92") for i in range(24)] + [r("2025-10-1%d" % (i % 10), "41.92") for i in range(20)]
             + [r("2026-09-0%d" % (1 + i % 9), "41.82") for i in range(5)] + [r("2026-09-05", "40.0")])
+    rows.append(dict(rows[0], latitude="41.82"))   # one permit at a location in each area: once citywide, once in each
     d = P.build(rows, areas, w, "2026-10-27T07:05:00-0500", {}, {"Closed": len(rows)})
     tmp = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False, dir=ROOT)
     json.dump(d, tmp); tmp.close()
@@ -304,11 +307,11 @@ def selftest():
     finally:
         os.unlink(tmp.name)
     assert html.count("<h1>") == 1 and "—" not in html and "–" not in html, "one h1, no dashes"
-    assert "CDOT issued 30 dumpster permits" in html and "+20%" in html, "lede and change (24 against 20)"
+    assert "CDOT issued 30 dumpster permits" in html and "counts in each" in html and "+20%" in html, "lede and change (24 against 20)"
     assert ">too few<" in html, "New City: 0 a year earlier is too few"
     assert "1 permit from the last 90 days had" in html, "the point outside every area counts only in the city total"
     assert (f'href="../{COST_SLUG}/"' in html) == any(x.get("slug") == COST_SLUG for x in M.PAGES_LIVE), "the calculator link only once it is live"
-    assert f'href="../{COST_SLUG}/"' in html or M.E(FEE_PDF) in html, "a way to the fees either way"
+    assert "content/dam" not in html, "no link to a fee schedule file we could not open"
     assert 'tabindex="0"' in html and 'role="region"' in html and 'id="dmap"' in html, "table and map"
     assert M.E(M.CITY_DISCLAIMER["Chicago"]) in html, "City disclaimer"
     assert ex and ex[0][0].endswith(".csv") and "Lake View" in ex[0][1] and ex[0][1].count("\n") == 4, "CSV: 2 areas and the city"

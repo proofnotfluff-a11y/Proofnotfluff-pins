@@ -41,6 +41,9 @@ SLUG_NAMES = {"janitors": "janitors", "maids": "maids-and-housekeepers", "pest":
 SINGULAR = {"janitors": "janitor", "maids": "maid or housekeeper", "pest": "pest control worker", "landscapers": "landscaper",
             "roofers": "roofer", "painters": "painter", "helpers": "construction helper", "electricians": "electrician",
             "plumbers": "plumber or pipefitter", "hvac": "HVAC tech", "carpenters": "carpenter", "laborers": "construction laborer"}
+H1_NAMES = {"janitors": "Janitor", "maids": "Maid and Housekeeper", "pest": "Pest Control Worker", "landscapers": "Landscaper",
+            "roofers": "Roofer", "painters": "Painter", "helpers": "Construction Helper", "electricians": "Electrician",
+            "plumbers": "Plumber and Pipefitter", "hvac": "HVAC Tech", "carpenters": "Carpenter", "laborers": "Construction Laborer"}
 PLURAL = {"janitors": "janitors", "maids": "maids and housekeepers", "pest": "pest control workers", "landscapers": "landscapers",
           "roofers": "roofers", "painters": "painters", "helpers": "construction helpers", "electricians": "electricians",
           "plumbers": "plumbers and pipefitters", "hvac": "HVAC techs", "carpenters": "carpenters", "laborers": "construction laborers"}
@@ -426,7 +429,7 @@ def rules_block(d, E):
             '<li>Paid sick and safe leave: 1 hour for every 35 hours worked, up to 40 hours in a 12-month period, usable from the 30th day. Up to 80 hours carry over.</li>'
             '<li>Both apply to employees who work at least 80 hours within any 120-day period.</li>'
             '<li>When a job ends, employers with 51 or more employees pay out up to 56 hours of unused paid leave; employers with 1 to 50 do not.</li></ul>'
-            f'<p class="cc-note">From the City\'s notice, effective July 1, 2026 and last updated May 27, 2026 ({E(c["codes"])}).</p></div>'
+            f'<p class="cc-note">From the City\'s notice, effective July 1, 2026 and last updated May 27, 2026. The rules are in Chicago Municipal Code 6-105 (minimum wage) and 6-130 (paid leave).</p></div>'
             '<div class="cc-card"><h3>Cook County</h3><p class="cc-sub">From July 1, 2026, in towns that use the County rate</p>'
             f'<dl><dt>Minimum wage</dt><dd>{m2(k["minWage"])} an hour</dd><dt>Tipped workers</dt><dd>{m2(k["tipped"])} an hour</dd></dl>'
             '<ul><li>Covers employees over 18 working in Cook County for an employer with four or more employees (or a domestic worker), when the employer has a business facility or license in the County.</li>'
@@ -575,7 +578,7 @@ def sub_page(p, d, role, M, E):
     robots = "" if M.is_live(p) else '<meta name="robots" content="noindex, nofollow">'
     lab = role["label"]
     one = role["lines"][0] if len(role["lines"]) == 1 else None
-    h1 = f"{lab} Pay in Chicago"
+    h1 = f"{H1_NAMES[role['key']]} Pay in Chicago"
     crumb, crumb_ld = M.crumbs(rel, [("Home", ""), (META["h1"], p["slug"] + "/"), (lab, None)])   # 3 levels: a 4th runs off a phone
     lo, hi = scale(d)
     pw = pw_rows(d, role["key"])

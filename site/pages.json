@@ -6815,7 +6815,7 @@
    "module": "dp_contracts",
    "draft": true,
    "title": "Chicago City Contracts by Trade, Updated Daily | ProofNotFluff",
-   "desc": "Free daily tracker of City of Chicago contract awards in 12 trades: who won, what it was worth, contracts ending in the next 12 months, PDFs and a CSV.",
+   "desc": "Free daily tracker of City of Chicago contract awards in 12 trades: who won, what it was worth, contracts ending in the next 12 months, contract PDFs and a CSV for each trade.",
    "eyebrow": "Free tracker of City awards",
    "h1": "Chicago City Contracts by Trade",
    "card": "Who wins City work in 12 trades, what it was worth, and which contracts end in the next 12 months",
@@ -6828,7 +6828,7 @@
    "faq": [
     [
      "Can I bid on these contracts here?",
-     "No. These are contracts the City has already awarded. Open City bids are on the City's eProcurement bid opportunities list and the Department of Procurement Services Current Bid Opportunities page, linked on this page."
+     "No. These are contracts the City has already awarded. Open City bids are on the City's eProcurement bid opportunities list and the Department of Procurement Services current bid opportunities page, linked on this page."
     ],
     [
      "Does an award total tell me what the City pays per job?",

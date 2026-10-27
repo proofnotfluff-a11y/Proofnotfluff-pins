@@ -1818,7 +1818,7 @@ def lights_page(p):
 def snow_page(p):
     """Snow removal per push and seasonal contract (PNF.snowQuote) for one stop on a route. Todd's go, Oct 26, 2026."""
     d = p["defaults"]
-    fill, fill_js = _snow_fill()
+    fill, (fill_pre, fill_js) = _snow_fill()
     ev_hint = "Days with new snow at or over your trigger. Fill it from past winters below, or use your own records" if fill else "Storms over your trigger depth. Check your own records"
     form = f"""<form class="card" id="calc" novalidate>
 <fieldset><legend>One stop on your route</legend>
@@ -1860,56 +1860,73 @@ def snow_page(p):
 <div class="callout warn" data-show-if="none > 0">Type the minutes on site for a normal push.</div>
 </div></div>
 <div class="mbar" aria-hidden="true"><span>Per push <b data-out="quote" data-fmt="money0">$0</b></span><span>Season <b data-out="season" data-fmt="money0">$0</b></span></div>"""
-    return form, results + "\n<!--LC-EXTRA-->" + _notes_block(p), _model_script("snowQuote", p["slug"]) + fill_js
+    return form, results + "\n<!--LC-EXTRA-->" + _notes_block(p), fill_pre + _model_script("snowQuote", p["slug"]) + fill_js
 
 
 def _snow_fill():
     """Expected pushes from the free snow season board (tools/dp_snow.py), shown only once the board is live: station and
-    trigger depth, then light, middle or heavy winter fills "Pushes you expect in a season" (Todd's go, Oct 27, 2026)."""
+    trigger depth, then light, middle or heavy winter fills "Pushes you expect in a season". Opened from the board with
+    ?station=&trigger=, it fills the middle winter at once and says so (Todd's go, Oct 27, 2026)."""
     board = next((x for x in PAGES_LIVE if x.get("slug") == "chicago-snow-season"), None)
     if not board:
-        return "", ""
+        return "", ("", "")
     import dp_snow
     cc = dp_snow.calc_counts()
     if not cc:
-        return "", ""
+        return "", ("", "")
     st0, t0 = dp_snow.DEFAULT
-    n = cc[st0]["n"]
-    sts = "".join(f'<option value="{k}"{" selected" if k == st0 else ""}>{E(v["label"])}</option>' for k, v in cc.items())
-    ts = "".join(f'<option value="{t}"{" selected" if t == t0 else ""}>{E(dp_snow.inch(t))}</option>' for t in dp_snow.TRIGGERS)
+    seg = lambda name, legend, opts: (f'<fieldset class="sf-seg"><legend>{E(legend)}</legend>'
+                                      + "".join(f'<label><input type="radio" name="{name}" value="{v}"{" checked" if on else ""}>{lab}</label>' for v, lab, on in opts)
+                                      + '</fieldset>')
+    sts = seg("sfSt", "Station", [(k, E(v["label"]), k == st0) for k, v in cc.items()])
+    ts = seg("sfT", "Your trigger", [(t, f'<span aria-hidden="true">{t} in</span><span class="vh">{E(dp_snow.inch(t))}</span>', t == t0) for t in dp_snow.TRIGGERS])
     btn = lambda i, name: (f'<button type="button" class="sf-b" data-k="{i}" aria-pressed="false"><span>{name}</span>'
                            f'<b>{E(dp_snow.num(cc[st0]["t"][str(t0)][i]))}</b></button>')
-    html_ = ('<div class="sf" id="snowfill"><p class="sf-h">Fill it from past Chicago winters</p><p class="sf-c">Pick a station and trigger, then tap a winter to use its count.</p>'
-             f'<div class="sf-s"><label for="sfSt">Station<select id="sfSt">{sts}</select></label>'
-             f'<label for="sfT">Your trigger<select id="sfT">{ts}</select></label></div>'
+    html_ = ('<div class="sf" id="snowfill"><p class="sf-h">Fill it from past Chicago winters</p>'
+             '<p class="sf-c">Pick a station and trigger, then tap Light, Middle or Heavy to use that count.</p>'
+             f'<div class="sf-s">{sts}{ts}</div>'
              f'<div class="sf-bs" role="group" aria-label="Plowable days in a light, middle or heavy past winter">{btn(0, "Light")}{btn(1, "Middle")}{btn(2, "Heavy")}</div>'
-             f'<p class="sf-n" aria-live="polite">Days with new snow at or over your trigger in past winters at that station, from NOAA NCEI GHCN-Daily records. '
+             '<p class="sf-done" id="sfDone" aria-live="polite" hidden></p>'
+             '<p class="sf-n">Days with new snow at or over your trigger in past winters at that station, from NOAA\'s daily weather records. '
              f'Past winters only, not a forecast. <a id="sfLink" href="../{board["slug"]}/?station={st0}&amp;trigger={t0}">Open the snow season board</a></p></div>'
              '<style>.sf{margin:4px 0 6px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--canvas2)}'
              '.sf-h{margin:0;font-weight:700;font-size:14.5px;color:var(--ink)}.sf-c{margin:2px 0 10px;font-size:13px;color:var(--ink2)}'
-             '.sf-s{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sf-s label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600;color:var(--muted)}'
-             '.sf-s select{min-height:44px;font:inherit;font-weight:600;color:var(--input-ink);background:var(--input);border:1px solid var(--input-line);border-radius:8px;padding:6px 8px}'
-             '.sf-bs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:10px 0 0}'
+             '.sf-s{display:flex;flex-wrap:wrap;gap:10px 18px}.sf-seg{display:flex;flex-wrap:wrap;gap:6px;border:0;margin:0;padding:0;min-width:0}'
+             '.sf-seg legend{font-size:13px;font-weight:600;color:var(--muted);margin:0 0 4px;padding:0}'
+             '.sf-seg label{position:relative;display:inline-flex;align-items:center;min-height:44px;box-sizing:border-box;padding:0 13px;border:1.5px solid var(--line);'
+             'border-radius:10px;background:var(--card);color:var(--ink);font-weight:600;font-size:14.5px;cursor:pointer}'
+             '.sf-seg input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}'
+             '.sf-seg label:has(input:checked){background:var(--ink);border-color:var(--ink);color:var(--card)}'
+             '.sf-seg label:has(input:focus-visible){outline:3px solid var(--focus);outline-offset:2px}'
+             '.vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}'
+             '.sf-bs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0 0}'
              '.sf-b{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:56px;padding:6px 4px;border:1.5px solid var(--line);border-radius:10px;'
              'background:var(--card);color:var(--ink);font:inherit;font-size:13px;font-weight:600;cursor:pointer}'
              '.sf-b b{font-size:19px;font-variant-numeric:tabular-nums}.sf-b[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--card)}'
-             '.sf-b:focus-visible{outline:3px solid var(--focus);outline-offset:2px}.sf-n{margin:8px 0 0;font-size:12.5px;line-height:1.45;color:var(--muted)}</style>')
+             '.sf-b:focus-visible{outline:3px solid var(--focus);outline-offset:2px}.sf-done{margin:8px 0 0;font-size:13px;font-weight:600;color:var(--ink)}'
+             '.sf-n{margin:8px 0 0;font-size:12.5px;line-height:1.45;color:var(--muted)}</style>')
     data = json.dumps(cc, separators=(",", ":")).replace("</", "<\\/")
-    js = ('<script>(function(){var C=' + data + ',st=document.getElementById("sfSt"),tg=document.getElementById("sfT"),ev=document.getElementById("events"),'
-          'bs=[].slice.call(document.querySelectorAll("#snowfill .sf-b")),ln=document.getElementById("sfLink");if(!st||!ev)return;'
-          'var q=new URLSearchParams(location.search);if(C[q.get("station")])st.value=q.get("station");var qt=String(parseInt(q.get("trigger"),10));if(C[st.value].t[qt])tg.value=qt;'
+    # before the calculator wires up: a hand-off from the board sets the field first, so the first render uses it and no
+    # input event fires (the anonymous "use" count stays for people who type)
+    pre = ('<script>var PNF_SNOW=' + data + ';(function(){var q=new URLSearchParams(location.search),s=q.get("station"),t=String(parseInt(q.get("trigger"),10)),'
+           'e=document.getElementById("events");if(e&&PNF_SNOW[s]&&PNF_SNOW[s].t[t]){var v=PNF_SNOW[s].t[t][1];e.value=Math.round(v)===v?String(v):v.toFixed(1);}})();</script>')
+    js = ('<script>(function(){var C=PNF_SNOW,box=document.getElementById("snowfill"),ev=document.getElementById("events");if(!box||!ev)return;'
+          'var bs=[].slice.call(box.querySelectorAll(".sf-b")),ln=document.getElementById("sfLink"),done=document.getElementById("sfDone"),on=-1,N=["Light","Middle","Heavy"];'
+          'function val(n){return box.querySelector(\'input[name="\'+n+\'"]:checked\').value;}'
+          'function pick(n,v){var i=box.querySelector(\'input[name="\'+n+\'"][value="\'+v+\'"]\');if(i)i.checked=true;return !!i;}'
+          'function lab(n){return box.querySelector(\'input[name="\'+n+\'"]:checked\').parentNode;}'
           'function f(x){return Math.round(x)===x?String(x):x.toFixed(1);}'
-          'function paint(){var v=C[st.value].t[tg.value],cur=ev.value.trim()===""?NaN:Number(ev.value),on=-1;'
-          'bs.forEach(function(b,i){if(b.getAttribute("data-on")==="1"&&cur===v[i])on=i;});if(on<0)on=v.indexOf(cur);'
-          'bs.forEach(function(b,i){b.querySelector("b").textContent=f(v[i]);b.setAttribute("aria-pressed",String(i===on));});'
-          'ln.href=ln.getAttribute("href").split("?")[0]+"?station="+st.value+"&trigger="+tg.value;}'
-          'bs.forEach(function(b){b.addEventListener("click",function(){var v=C[st.value].t[tg.value][+b.getAttribute("data-k")];'
-          'bs.forEach(function(o){o.removeAttribute("data-on");});b.setAttribute("data-on","1");ev.value=f(v);'
-          'ev.dispatchEvent(new Event("input",{bubbles:true}));ev.dispatchEvent(new Event("change",{bubbles:true}));paint();});});'
-          'st.addEventListener("change",function(){bs.forEach(function(o){o.removeAttribute("data-on");});paint();});'
-          'tg.addEventListener("change",function(){bs.forEach(function(o){o.removeAttribute("data-on");});paint();});'
-          'ev.addEventListener("input",function(e){if(e.isTrusted){bs.forEach(function(o){o.removeAttribute("data-on");});paint();}});paint();})();</script>')
-    return html_, js
+          'function paint(){var v=C[val("sfSt")].t[val("sfT")];bs.forEach(function(b,i){b.querySelector("b").textContent=f(v[i]);b.setAttribute("aria-pressed",String(i===on));});'
+          'ln.href=ln.getAttribute("href").split("?")[0]+"?station="+val("sfSt")+"&trigger="+val("sfT");}'
+          'function use(k,from){var v=C[val("sfSt")].t[val("sfT")][k];on=k;if(!from){ev.value=f(v);ev.dispatchEvent(new Event("input",{bubbles:true}));'
+          'ev.dispatchEvent(new Event("change",{bubbles:true}));}paint();var w=lab("sfT").querySelector(".vh").textContent;'
+          'done.textContent=(from?"Filled from the snow season board: ":"Filled: ")+N[k].toLowerCase()+" winter at "+lab("sfSt").textContent+", "+w+"."+(from?" Tap Light or Heavy to change.":"");done.hidden=false;}'
+          'bs.forEach(function(b){b.addEventListener("click",function(){use(+b.getAttribute("data-k"),false);});});'
+          'box.addEventListener("change",function(e){if(e.target.name==="sfSt"||e.target.name==="sfT"){on=-1;done.hidden=true;paint();}});'
+          'ev.addEventListener("input",function(e){if(e.isTrusted){on=-1;done.hidden=true;paint();}});'
+          'var q=new URLSearchParams(location.search),qs=q.get("station"),qt=String(parseInt(q.get("trigger"),10));'
+          'if(qs&&C[qs]&&C[qs].t[qt]&&pick("sfSt",qs)&&pick("sfT",qt)){use(1,true);}else{paint();}})();</script>')
+    return html_, (pre, js)
 
 
 def hood_page(p):

@@ -57,7 +57,10 @@
    "goto": "snow-removal-pricing-calculator/?station=midway&trigger=2"
   },
   {
-   "expect_js": "location.pathname.indexOf('snow-removal-pricing-calculator') > -1 && document.getElementById('sfSt').value === 'midway' && document.getElementById('sfT').value === '2'"
+   "expect_js": "location.pathname.indexOf('snow-removal-pricing-calculator') > -1 && document.querySelector('#snowfill input[name=sfSt]:checked').value === 'midway' && document.querySelector('#snowfill input[name=sfT]:checked').value === '2'"
+  },
+  {
+   "expect_js": "document.getElementById('events').value === document.querySelector(\"#snowfill .sf-b[data-k='1'] b\").textContent.trim() && document.querySelector(\"#snowfill .sf-b[data-k='1']\").getAttribute('aria-pressed') === 'true' && !document.getElementById('sfDone').hidden"
   },
   {
    "click": "#snowfill .sf-b[data-k='2']"
@@ -70,8 +73,11 @@
    "screenshot": true
   },
   {
-   "select": "#sfT",
-   "value": "1"
+   "click": "#snowfill input[name='sfT'][value='1']",
+   "force": true
+  },
+  {
+   "expect_js": "document.querySelectorAll(\"#snowfill .sf-b[aria-pressed='true']\").length === 0"
   },
   {
    "click": "#snowfill .sf-b[data-k='1']"

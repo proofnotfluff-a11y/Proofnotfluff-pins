@@ -1,0 +1,42 @@
+name: Chicago snow season board
+# Free page /chicago-snow-season/ (Todd's go, Oct 27, 2026, "Let's do them all", coo/PARALLEL_BUILDS.md). The cloud
+# agents cannot reach ncei.noaa.gov, so this runner pulls NOAA NCEI GHCN-Daily snowfall and snow depth for Chicago's
+# airport stations (tools/dp_snow_fetch.py picks them from NOAA's own station search) and commits
+# site/datapages/dp_snow/daily.json, then rebuilds the site. Weather records only.
+# Daily in the snow season (October to April), on a change to its tools, and by hand.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/dp_snow_fetch.py", "tools/dp_snow.py", ".github/workflows/dp_snow.yml"]
+  schedule:
+    - cron: "35 12 * 1-4,10-12 *"   # about 7:35 am Chicago in daylight time, 6:35 am in standard time
+permissions:
+  contents: write
+concurrency:
+  group: dp-snow
+  cancel-in-progress: false
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install --quiet cryptography openpyxl pillow
+      - name: Self-checks (planted cases)
+        run: |
+          python3 tools/dp_snow_fetch.py --selftest
+          if [ -f tools/dp_snow.py ]; then python3 tools/dp_snow.py --selftest; fi
+      - name: Pull NOAA daily snowfall for the airport stations
+        run: python3 tools/dp_snow_fetch.py
+      - name: Rebuild the site pages from the new data
+        run: python3 tools/make_site.py
+      - name: Commit
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add -A site/datapages/dp_snow docs
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "Chicago snow season data $(TZ=America/Chicago date +%Y-%m-%d)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done
+          exit 1

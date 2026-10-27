@@ -665,7 +665,7 @@ def page_html(p):
                f'half of them within {days_txt(c.get("medClose"))} days of coming in (the median). Tap an area for its own page and badge.</p>'
                f'{table}'
                '<div class="ri-dl"><a class="btn" href="rat-index.csv" download>Download the Rat Index (CSV)</a></div>'
-               '<p class="asof">Our CSV is free to reuse under CC BY 4.0 with credit to ProofNotFluff; the City\'s data disclaimer at the foot of this page still applies.</p></section>'
+               '<p class="asof">Our CSV is free to reuse if you credit ProofNotFluff (license CC BY 4.0); the City\'s data disclaimer at the foot of this page still applies.</p></section>'
                '<section class="block" id="risers"><h2>Top risers</h2>'
                '<p>The community areas that climbed the most places on the Rat Index against the 30 days before (areas with at least 10 complaints).</p>'
                f'{risers_block(ix, E, "")}</section>')
@@ -720,7 +720,7 @@ def area_html(p, d, ix, a, M):
              f'<div class="tile key"><div class="lab">Rat Index</div><div class="val">{E(a["place"].replace("tied ", ""))}</div><div class="sub">of 77 community areas{", tied" if "tied" in a["place"] else ""}</div></div>'
              f'<div class="tile"><div class="lab">Per 1,000 residents</div><div class="val">{a["r30"]:.2f}</div><div class="sub">last 30 days; {a["pop"]:,} residents</div></div>'
              f'<div class="tile"><div class="lab">Last 30 days</div><div class="val">{a["d30"]:,}</div><div class="sub">{E(ch_t + " a year ago" if ch not in ("too few",) else ch_t)}</div></div>'
-             f'<div class="tile"><div class="lab">Days to close</div><div class="val">{E(days_txt(a.get("medClose")))}</div><div class="sub">half of {nn(a.get("closed30", 0), "request")} closed in 30 days took less</div></div>'
+             f'<div class="tile"><div class="lab">Days to close</div><div class="val">{E(days_txt(a.get("medClose")))}</div><div class="sub">{(f'half of {nn(a.get("closed30", 0), "request")} closed in 30 days took less' if a.get("medClose") is not None else ("none closed in 30 days" if not a.get("closed30") else f'only {nn(a["closed30"], "request")} closed in 30 days (under 5)'))}</div></div>'
              f'</div><p class="asof">Counts as of {E(when)}, from City of Chicago 311 records pulled {E(pulled)}. Updated every Monday.</p>')
     yr = E(w["prevTo"][:4])
     rows = [("Last 30 days", f'{M.nice_date(w["from30"])} to {when}', a["d30"], a["r30"], ordinal(a["k30"])),

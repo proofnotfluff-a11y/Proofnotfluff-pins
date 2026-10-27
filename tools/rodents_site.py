@@ -292,10 +292,11 @@ def map_block(d, E, ix=None, rel=""):
             + ('<p>Most complaints per resident:</p><ul class="gm-top">'
                + "".join(f'<li><button type="button" data-pick="{a["n"]}">{E(a["name"])}, {a["r30"]:.2f} per 1,000</button></li>' for a in top_rate) + '</ul>'
                if top_rate else "")
-            + '<p>Most complaints:</p><ul class="gm-top">'
+            + ('<div class="ri-hx">' if top_rate else "") + '<p>Most complaints:</p><ul class="gm-top">'
             + "".join(f'<li><button type="button" data-pick="{a["n"]}">{E(a["name"])}, {a["d30"]:,}</button></li>' for a in top3) + '</ul>'
             + ('<p>Biggest rises on a year ago:</p><ul class="gm-top">'
                + "".join(f'<li><button type="button" data-pick="{a["n"]}">{E(a["name"])}, +{a["d30"] - a["prev30"]:,}</button></li>' for a in rises) + '</ul>' if rises else "")
+            + ('</div>' if top_rate else "")
             + '<p class="gm-hint">Tap or hover any area on the map, or choose one from the list.</p>')
     cap = ("Community area outlines: City of Chicago, Boundaries - Community Areas. "
            + ("Residents: City of Chicago, ACS 5 Year Data by Community Area. Restaurant shares: City of Chicago Food Inspections. " if ix else "")
@@ -330,8 +331,15 @@ IX_CSS = ("<style>.ri-mv{white-space:nowrap}.ri-up{color:var(--warn-ink);font-we
           ".ri-t th:nth-child(9),.ri-t td:nth-child(9){display:none}.ri-list li{grid-template-columns:2em 1fr}.ri-list span{grid-column:2;text-align:left}}"
           ".ri-t th:nth-child(2),.ri-t td:nth-child(2){text-align:left}.ri-t td:first-child{width:3.2em}"
           "@media(min-width:900px){.ri-ed .ri-list{grid-template-columns:1fr 1fr;grid-auto-flow:column;grid-template-rows:repeat(5,auto)}}"
-          ".ri-nw{white-space:nowrap}main ul.ri-near li a{padding:0 14px}"
-          ".ri-jump{display:flex;gap:8px;overflow-x:auto;margin:18px 0 0;padding:2px 2px 6px;scrollbar-width:thin}"
+          ".ri-nw{white-space:nowrap}.ld-hero+.ld-tiles{margin-top:22px}.ri-hs{display:none}"
+          ".ri-act{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:10px}.ri-act .ri-copy{margin:0}.ri-act .ri-ok{margin:0;min-height:0}"
+          "@media(min-width:900px){.ri-embed{align-items:center}.ri-t th:nth-child(2),.ri-t td:nth-child(2){white-space:nowrap;min-width:190px}"
+          "#risers .ri-list{grid-template-columns:1fr 1fr}#risers .ri-list,#risers .ri-list li,.ri-ed .ri-list li{max-width:none}}"
+          "@media(max-width:599px){.ri-hl{display:none}.ri-hs{display:inline}.ri-t tbody th a{display:block;padding:12px 0}.ri-hx{display:none}}"
+          "@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .rc-wk i{opacity:1;background:#b8664f}:root:not([data-theme=light]) .rc-wk div:last-child i{background:var(--accent)}}"
+          ":root[data-theme=dark] .rc-wk i{opacity:1;background:#b8664f}:root[data-theme=dark] .rc-wk div:last-child i{background:var(--accent)}"
+          "main ul.ri-near li a{padding:0 14px}"
+          ".ri-jump{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:2px}"
           ".ri-jump a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);font-weight:600;font-size:14.5px;text-decoration:none}"
           ".ri-jump a:hover{border-color:var(--accent)}.ri-jump a:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
           ".ri-t{min-width:640px}@media(max-width:599px){.ri-t{min-width:0}.ri-t th,.ri-t td{padding:9px 6px}.ri-t thead th{font-size:12px}.ri-t th:nth-child(2),.ri-t td:nth-child(2){display:table-cell}}</style>")
@@ -391,7 +399,9 @@ def index_table(ix, d, E, rel):
     yr = E(d["window"]["prevTo"][:4])
     thead = ('<thead><tr><th scope="col">Rank</th><th scope="col">Community area</th><th scope="col">Per 1,000 residents</th>'
              '<th scope="col">7 days</th><th scope="col">30 days</th><th scope="col">Change on a year ago</th>'
-             '<th scope="col">Rank move, vs 30 days before</th><th scope="col">Rank move, vs a year ago</th><th scope="col">Median days to close</th></tr></thead>')
+             '<th scope="col"><span class="ri-hl">Rank move, vs 30 days before</span><span class="ri-hs">Move, 30 days</span></th>'
+             '<th scope="col"><span class="ri-hl">Rank move, vs a year ago</span><span class="ri-hs">Move, 1 year</span></th>'
+             '<th scope="col">Median days to close</th></tr></thead>')
     row = lambda a: (f'<tr><td class="ri-rk">{a["k30"]}</td><th scope="row"><a href="{rel}{a["slug"]}/">{E(a["name"])}</a></th><td>{a["r30"]:.2f}</td>'
                      f'<td>{a["d7"]:,}</td><td>{a["d30"]:,}</td>'
                      f'<td{" class=rc-up" if a["prev30"] >= FEW and a["d30"] >= a["prev30"] * 1.25 else ""}>{E(area_change(a))}</td>'
@@ -493,7 +503,7 @@ def embed_block(ix, E, rel, one=None):
             + f'<img id="ri-img" src="{rel}{a["slug"]}/badge.svg" width="{BADGE_W}" height="{BADGE_H}" alt="Chicago Rat Index badge for {E(a["name"])}"'
             + (' style="margin-top:12px"' if pick else "") + '></div>'
             f'<div><label for="ri-code">Code to paste</label><textarea id="ri-code" readonly spellcheck="false">{E(embed_code(a))}</textarea>'
-            '<button type="button" class="btn ri-copy" data-for="ri-code">Copy the code</button><p class="ri-ok" role="status"></p></div></div></section>'
+            '<div class="ri-act"><button type="button" class="btn ri-copy" data-for="ri-code">Copy the code</button><p class="ri-ok" role="status"></p></div></div></div></section>'
             + js)
 
 
@@ -634,7 +644,7 @@ def page_html(p):
     bars = ('<figure class="rc-bars" aria-label="Community areas with the most rat complaints in the last 30 days">'
             '<figcaption>Most rat complaints, last 30 days</figcaption>'
             + "".join(f'<div class="rc-bar"><span>{E(a["name"])}</span><i style="width:{max(6, round(a["d30"] / peak * 100))}%"></i><b>{a["d30"]:,}</b>'
-                      f'<small>{a["d7"]:,} in the last 7 days · {"too few a year ago to compare" if a["prev30"] < FEW else ("same as a year ago" if area_change(a) == "same" else E(area_change(a)) + " on a year ago")}</small></div>' for a in top[:10])
+                      f'<small>{a["d7"]:,} in the last 7 days · {"too few a year ago to compare" if a["prev30"] < FEW else ("about the same as a year ago" if area_change(a) == "same" else E(area_change(a)) + " on a year ago")}</small></div>' for a in top[:10])
             + '</figure>')
     weeks = week_bars(d["weeks"], [x["count"] for x in d["weeks"]], "Rat complaints each week for the last 12 weeks", E, M, w["to"])
     row = lambda a: (f'<tr><th scope="row">{E(a["name"])}</th><td>{a["d7"]:,}</td><td>{a["d30"]:,}</td><td>{a["prev30"]:,}</td>'
@@ -720,7 +730,7 @@ def area_html(p, d, ix, a, M):
              f'<div class="tile key"><div class="lab">Rat Index</div><div class="val">{E(a["place"].replace("tied ", ""))}</div><div class="sub">of 77 community areas{", tied" if "tied" in a["place"] else ""}</div></div>'
              f'<div class="tile"><div class="lab">Per 1,000 residents</div><div class="val">{a["r30"]:.2f}</div><div class="sub">last 30 days; {a["pop"]:,} residents</div></div>'
              f'<div class="tile"><div class="lab">Last 30 days</div><div class="val">{a["d30"]:,}</div><div class="sub">{E(ch_t + " a year ago" if ch not in ("too few",) else ch_t)}</div></div>'
-             f'<div class="tile"><div class="lab">Days to close</div><div class="val">{E(days_txt(a.get("medClose")))}</div><div class="sub">{(f'half of {nn(a.get("closed30", 0), "request")} closed in 30 days took less' if a.get("medClose") is not None else ("none closed in 30 days" if not a.get("closed30") else f'only {nn(a["closed30"], "request")} closed in 30 days (under 5)'))}</div></div>'
+             f'<div class="tile"><div class="lab">Days to close</div><div class="val">{E("none" if not a.get("closed30") else days_txt(a.get("medClose")))}</div><div class="sub">{(f'half of the {nn(a.get("closed30", 0), "request")} closed in the last 30 days took less time' if a.get("medClose") is not None else ("no requests closed in the last 30 days" if not a.get("closed30") else f'only {nn(a["closed30"], "request")} closed in 30 days (under 5)'))}</div></div>'
              f'</div><p class="asof">Counts as of {E(when)}, from City of Chicago 311 records pulled {E(pulled)}. Updated every Monday.</p>')
     yr = E(w["prevTo"][:4])
     rows = [("Last 30 days", f'{M.nice_date(w["from30"])} to {when}', a["d30"], a["r30"], ordinal(a["k30"])),

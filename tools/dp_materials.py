@@ -429,8 +429,8 @@ f.addEventListener('keydown',function(e){var s={ArrowLeft:-1,ArrowRight:1,ArrowD
 
 def read_right(d, E):
     nx = d.get("next")
-    upd = (f'BLS publishes the {mlabel(nx["month"], long=True)} numbers on {E(nice(nx["date"]))}, and this page picks them up the same day.' if nx else
-           "BLS publishes each month's numbers in the middle of the next month; this page picks them up that day.")
+    upd = (f'BLS publishes the {mlabel(nx["month"], long=True)} numbers on {E(nice(nx["date"]))}, and this page is set to update that day.' if nx else
+           "BLS publishes each month's numbers in the middle of the next month; this page is set to update that day.")
     by = {m["slug"]: m for m in d["mats"]}
     a, b = by.get("lumber"), by.get("steel-mill-products")
     pair = (f'a lumber index of {a["last"][1]:,.0f} and a steel mill products index of {b["last"][1]:,.0f} say nothing about which costs more'
@@ -478,14 +478,14 @@ def faqs(d):
          "BLS revises each month for up to 4 months after it first comes out, as late reports arrive. Months still open to revision carry a P on this page. "
          f"Right now {mlabel(d['prelim'][0]) if d['prelim'] else L} to {L} are preliminary."),
         ("Which index should I use for a material I buy?",
-         "Pick the one closest to what you buy: copper wire and cable for an electrician's wire, ready-mixed concrete for a pour, gypsum products for drywall. "
-         "Each material's page shows its BLS series ID, so anyone can look up the same numbers on bls.gov."),
+         "If your contract names an index, use that one. Each material's page shows its BLS series ID, so anyone can look up the same numbers on bls.gov; "
+         "for questions about an index, check with BLS."),
         ("Are these seasonally adjusted?",
          "No. These are the raw monthly numbers, with no smoothing for the seasons. That is the kind BLS's Producer Price Index (PPI) Guide for Price Adjustment says to use when a price follows an index."),
         ("When does this page update?",
          (f"BLS releases the producer price index once a month. The next release, for {mlabel(nx['month'])}, is on {nice(nx['date'])}, and the page "
-          "picks it up the same day, along with any revisions to the 4 months before it." if nx else
-          "BLS releases the producer price index once a month, around the middle of the month; the page picks it up the same day.")),
+          "is set to update that day, along with any revisions to the 4 months before it." if nx else
+          "BLS releases the producer price index once a month, around the middle of the month; the page is set to update that day.")),
         ("Can I download the numbers?",
          "Yes. The CSV on this page has every month since January " + d["mats"][0]["obs"][0][0][:4] + " for every material, with BLS's series ID and a column "
          "that says which months are preliminary. Each material's page has its own CSV too."),
@@ -493,10 +493,10 @@ def faqs(d):
 
 
 METHOD = [
-    "Every number comes from the U.S. Bureau of Labor Statistics producer price index by commodity, not seasonally adjusted, pulled from BLS's Public Data API every weekday, so a new release or revision lands the same day.",
+    "Every number comes from the U.S. Bureau of Labor Statistics producer price index by commodity, not seasonally adjusted, pulled from BLS's Public Data API every weekday, so a new release or revision usually shows up the same day.",
     "The materials are BLS series for what trade owners commonly buy: wood, concrete and masonry, steel, aluminum, copper wire, roofing, drywall, insulation, paint, pipe, fixtures, heating equipment and diesel. Each series ID and title is BLS's own.",
     "A change is the later index divided by the earlier one, less one, shown as a percent rounded to a tenth. The calculator multiplies your amount by the same ratio, which is how BLS's Producer Price Index (PPI) Guide for Price Adjustment shows a price following an index.",
-    "Index values are shown as BLS publishes them. The percent changes and calculator results are ProofNotFluff's arithmetic on those values. It is not a price quote, and it does not say what any contract allows; your contract does. For questions about an index, check with BLS.",
+    "Index values are shown as BLS publishes them. The percent changes and calculator results are ProofNotFluff's arithmetic on those values. They are not a price quote and do not say what any contract allows; your contract does. For questions about an index, check with BLS.",
 ]
 
 
@@ -513,6 +513,8 @@ def foot_html(M, E, rel, d, extra=""):
             f'<a href="{BLS_SCHED}">BLS PPI release schedule</a>. How a price follows an index: <a href="{BLS_GUIDE}">BLS Producer Price Index (PPI) Guide for Price Adjustment</a>.{extra}</p>'
             '<p>BLS.gov cannot vouch for the data or analyses derived from these data after the data have been retrieved from BLS.gov. '
             'ProofNotFluff is not affiliated with or endorsed by the U.S. Bureau of Labor Statistics.</p>'
+            '<p>Index values are shown as BLS publishes them. The percent changes and calculator results are ProofNotFluff\'s arithmetic on those values. '
+            'For questions about an index, check with BLS.</p>'
             '<p>Public information, not legal, tax or financial advice, and not a price quote from any supplier.</p>'
             '<p>Made by ProofNotFluff with AI assistance from public BLS data. The calculator runs in your browser; nothing you type in it is sent anywhere. '
             'The page counts visits with Cloudflare Web Analytics, which sets no cookies.</p></div></footer>\n')

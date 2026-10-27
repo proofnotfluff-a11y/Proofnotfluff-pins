@@ -363,12 +363,17 @@ def winters_chart(v, t, E):
             f'<div class="sn-tip" hidden></div></div><div class="sn-xl yr" aria-hidden="true">{xl}</div></figure>{note}')
 
 
+def one_dp(x):
+    """One decimal, a half rounds up (7 of 28 winters is 0.25, shown 0.3)."""
+    return f"{math.floor(x * 10 + 0.5 + 1e-9) / 10:.1f}"
+
+
 def avg_words(x):
-    return "under 0.1" if 0 < x < 0.05 else f"{x:.1f}"
+    return "under 0.1" if 0 < x < 0.05 else one_dp(x)
 
 
 def bar_words(x):
-    return "<0.1" if 0 < x < 0.05 else f"{x:.1f}"
+    return "<0.1" if 0 < x < 0.05 else one_dp(x)
 
 
 def months_chart(v, t, E):
@@ -662,7 +667,7 @@ def page_html(p):
             + sec("this-winter", "This winter so far", V(season_chart),
                   '<p class="asof">Past winters only; the shaded band shows where the light to heavy winters stood on each date, not where this one will go.</p>')
             + sec("winters", "Every winter in a table", VS(table),
-                  f'<p class="asof">Plowable days count days with new snow at or over each depth. Your trigger column is shaded. Newest winter first. Incomplete winters show no counts. n/a means NOAA\'s snow depth record has gaps that winter.</p><div class="sn-dl">{dls}</div>')
+                  f'<p class="asof">Plowable days count days with new snow at or over each depth. Your trigger column is shaded. Newest winter first. Incomplete winters show no counts. n/a means NOAA\'s snow depth record is missing more than 3 days between October and May that winter; a few missing days count as no snow on the ground.</p><div class="sn-dl">{dls}</div>')
             + sec("counts", "What counts on this page", defs)
             + sec("method", "How this page is made", method)
             + M.faq_block(faq(s0, sd))
@@ -713,6 +718,7 @@ def selftest():
     assert c["x"][0] == "Oct 1" and c["x"][-1] == "Apr 30" and c["now"][-1] == 1 and len(c["now"]) == 24, "running count to date"
     assert c["mid"][-1] == 2.5, "middle of past winters by April 30"
     assert "Incomplete" not in csv_text({"rows": rows, "end": e, "s": s}) and ",no,10," in csv_text({"rows": rows, "end": e, "s": s}), "csv marks incomplete"
+    assert one_dp(7 / 28) == "0.3" and one_dp(1 / 28) == "0.0" and avg_words(1 / 28) == "under 0.1" and one_dp(2.2142) == "2.2", "half up"
     assert num(1.5) == "1.5" and num(6.0) == "6" and num(3) == "3", "numbers"
     # the real page, if the data is here
     d = load()

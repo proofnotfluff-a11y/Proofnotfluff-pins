@@ -1,0 +1,40 @@
+name: Chicago crew cost data
+# Free page /chicago-crew-cost/ (Todd, Oct 27, 2026: "Let's do them all"; coo/PARALLEL_BUILDS.md). The cloud agents
+# cannot reach bls.gov, chicago.gov or the Illinois Department of Labor, so this runner pulls the official files,
+# keeps them only as a 7-day artifact, and commits the parsed tables (site/datapages/dp_crew_cost/data.json).
+# Prevailing wages change when contracts do, so it checks every Tuesday; wages and minimum wages change yearly.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/dp_crew_cost_fetch.py", ".github/workflows/dp-crew-cost.yml"]
+  schedule:
+    - cron: "20 12 * * 2"   # Tuesdays, about 7:20 am Chicago time in standard time
+permissions:
+  contents: write
+concurrency:
+  group: dp-crew-cost
+  cancel-in-progress: false
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install --quiet openpyxl pypdf
+      - run: python3 tools/dp_crew_cost_fetch.py --selftest
+      - name: Fetch the official files
+        run: python3 tools/dp_crew_cost_fetch.py fetch "$RUNNER_TEMP/crew-raw"
+      - name: Keep the raw files for checking (short-lived artifact, never committed)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: crew-cost-raw
+          path: ${{ runner.temp }}/crew-raw
+          retention-days: 7
+      - name: Parse into the page's tables
+        run: python3 tools/dp_crew_cost_fetch.py build "$RUNNER_TEMP/crew-raw"
+      - name: Rebuild the site pages
+        run: python3 tools/make_site.py
+      - name: Commit
+        run: bash tools/push_rebuilt.sh "Chicago crew cost data $(TZ=America/Chicago date +%Y-%m-%d)" site/datapages/dp_crew_cost

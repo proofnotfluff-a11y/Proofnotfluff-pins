@@ -159,15 +159,16 @@ CSS = ("<style>"
        ".cc-pcts small{display:block;font-size:12px;color:var(--muted);margin-top:2px}"
        ".cc-range{position:relative;height:30px;margin:16px 0 4px}"
        ".cc-range .tr{position:absolute;left:0;right:0;top:13px;height:4px;border-radius:2px;background:var(--rule)}"
-       ".cc-range .r9{position:absolute;top:10px;height:10px;border-radius:5px;background:var(--accent);opacity:.3}"
+       ".cc-range .r9{position:absolute;top:10px;height:10px;border-radius:5px;background:var(--accent);opacity:.42}"
        ".cc-range .r5{position:absolute;top:10px;height:10px;border-radius:5px;background:var(--accent);opacity:.75}"
        ".cc-range .md{position:absolute;top:5px;width:4px;height:20px;margin-left:-2px;border-radius:2px;background:var(--ink)}"
        ".cc-axis{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}"
        ".cc-key{display:flex;flex-wrap:wrap;gap:6px 16px;margin:6px 0 0;font-size:12.5px;color:var(--ink2)}.cc-key i{display:inline-block;width:16px;height:8px;border-radius:4px;margin-right:6px;vertical-align:middle;background:var(--accent)}"
-       ".cc-key .k9{opacity:.3}.cc-key .k5{opacity:.75}.cc-key .km{width:4px;height:14px;border-radius:2px;background:var(--ink)}"
+       ".cc-key .k9{opacity:.42}.cc-key .k5{opacity:.75}.cc-key .km{width:4px;height:14px;border-radius:2px;background:var(--ink)}"
        ".tile.key{box-shadow:inset 0 3px 0 var(--accent)}.tile .sub{text-wrap:pretty}"
        "section.block[id],#cc-out{scroll-margin-top:132px}@media(max-width:599px){.otp a{min-height:44px}}"
-       ".cc-out.cc-inv li span:last-child{color:var(--muted)}.cc-bar span,.cc-bar a{white-space:nowrap}.cc-bar.cc-inv b{font:400 16px/1.2 system-ui,sans-serif}"
+       ".cc-out.cc-inv ul,.cc-out.cc-inv #cc-ph{display:none}.cc-out .cc-fix{display:none;margin:8px 0 0;font-size:15px;color:var(--ink2)}.cc-out.cc-inv .cc-fix{display:block}"
+       ".cc-out.cc-inv .val{font:600 16px/1.3 system-ui,sans-serif;margin:8px 0 0}.cc-bar span,.cc-bar a{white-space:nowrap}.cc-bar.cc-inv b{font:400 16px/1.2 system-ui,sans-serif}"
        ".cc-multi>[data-cc-line]+[data-cc-line],.cc-multi>[data-cc-line]+.cc-note{border-top:1px solid var(--line);margin-top:28px;padding-top:28px}.cc-multi>[data-cc-line]+.cc-note{padding-top:14px;margin-top:20px}"
        ".cc-rules{align-items:start}.cc-t td:first-child{min-width:10em}"
        ".cc-two .cta>div{display:flex;flex-direction:column;height:100%}.cc-two .cta .ld-buybtn{margin-top:auto;padding-top:20px}"
@@ -222,7 +223,7 @@ CSS = ("<style>"
        "main .cc-roles li>a.cc-r{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:48px;padding:0 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font-weight:600;text-decoration:none}"
        "main .cc-roles li>a.cc-r span{color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}main .cc-roles li>a.cc-r:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
        "@media(max-width:599px){.cc-pwl thead{display:none}.cc-pwl,.cc-pwl tbody,.cc-pwl tr{display:block}.cc-pwl tr{padding:8px 0;border-bottom:1px solid var(--rule)}.cc-pwl tr:last-child{border-bottom:0}"
-       ".cc-pwl td{display:flex;justify-content:space-between;gap:12px;padding:3px 0;border:0;text-align:right}.cc-pwl td::before{content:attr(data-label);color:var(--muted);text-align:left}"
+       ".cc-pwl td{display:flex;justify-content:space-between;gap:12px;padding:3px 12px;border:0;text-align:right}.cc-pwl td::before{content:attr(data-label);color:var(--muted);text-align:left}"
        ".cc-pwl td:first-child{font-weight:700;color:var(--ink);font-size:15.5px}.cc-pwl td:first-child::before{content:none}}"
        "@media(max-width:599px){.cc-bt{display:none}.cc-t{min-width:600px}.cc-t th,.cc-t td{padding:9px 8px}.cc-t tbody th,.cc-t thead th:first-child{position:sticky;left:0;z-index:1;background:var(--card);box-shadow:1px 0 0 var(--rule)}"
        ".cc-swipe{display:block}.cc-big b{font-size:34px}.cc-out .val{font-size:38px}.cc-pcts{gap:4px}.cc-pcts b{font-size:14px}.cc-pcts li{padding:7px 4px}.cc-t tbody th a{display:block;padding:12px 0}.cc-form .row{grid-template-columns:1fr 118px}}"
@@ -253,7 +254,7 @@ var D=JSON.parse(document.getElementById('cc-data').textContent);
 var $=function(id){return document.getElementById(id)};
 var sel=$('cc-role'),lvl=$('cc-level'),rate=$('cc-rate'),crew=$('cc-crew'),hrs=$('cc-hours'),oth=$('cc-other'),tax=$('cc-tax'),lv=$('cc-leave');
 function money(x){return '$'+x.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
-function num(el){var v=String(el.value).replace(/[$,\s]/g,'');var k=/k$/i.test(v);v=parseFloat(v.replace(/k$/i,''));if(k)v*=1000;return isFinite(v)?v:NaN}
+function num(el){if(/%/.test(el.value))return NaN;var v=String(el.value).replace(/[$,\s]/g,'');var k=/k$/i.test(v);v=parseFloat(v.replace(/k$/i,''));if(k)v*=1000;return isFinite(v)?v:NaN}
 function line(){return D.lines[sel.value]}
 function fill(){
   var L=line(),o=['p10','p25','median','p75','p90'],names={p10:'10th percentile',p25:'25th percentile',median:'Median',p75:'75th percentile',p90:'90th percentile'};
@@ -399,13 +400,14 @@ def calculator(d, E, rel):
         '<div class="row"><label for="cc-rate">Hourly pay<small>Fills from the trade; type your own</small></label>'
         '<div class="field has-pre"><span class="pre">$</span><input class="cc-in" id="cc-rate" aria-describedby="cc-rate-err" type="text" inputmode="decimal" value="0" autocomplete="off"></div><p class="cc-err" id="cc-rate-err">Enter hourly pay from $1 to $999.</p></div>'
         '<div class="row"><label for="cc-other">Your other costs per hour worked<small>Workers\' comp, state and federal unemployment tax, health plan, uniforms</small></label>'
-        '<div class="field has-pre"><span class="pre">$</span><input class="cc-in" id="cc-other" aria-describedby="cc-other-err" type="text" inputmode="decimal" value="0" autocomplete="off"></div><p class="cc-err" id="cc-other-err">Enter $0 to $999 an hour.</p></div>'
+        '<div class="field has-pre"><span class="pre">$</span><input class="cc-in" id="cc-other" aria-describedby="cc-other-err" type="text" inputmode="decimal" value="0" autocomplete="off"></div><p class="cc-err" id="cc-other-err">Enter dollars an hour, $0 to $999, not a percent.</p></div>'
         f'<label class="cc-chk"><input type="checkbox" id="cc-tax" checked><span>Count employer Social Security and Medicare, {fica:.2f}%'
         f'<small>{d["irs"]["ss"]:g}% plus {d["irs"]["medicare"]:g}% of wages, IRS Publication 15 ({d["irs"]["year"]}). Counted on wages only, not on public works fringes; for how fringes are taxed, check with the IRS.</small></span></label>'
         '<label class="cc-chk" style="border-bottom:0"><input type="checkbox" id="cc-leave" checked><span>The crew works in Chicago'
         '<small>Covered employees earn 1 hour of paid leave and 1 hour of paid sick leave per 35 hours worked, each up to 40 hours in a 12-month period (City notice, July 1, 2026). Counted at the hourly pay. The ordinance has exceptions; check with the City\'s Office of Labor Standards.</small></span></label>'
         '</form>'
         '<div class="cc-out" id="cc-out" aria-live="polite"><div class="lab">Crew day cost</div><div class="val" id="cc-total">$0.00</div><div class="sub" id="cc-ph"></div>'
+        '<p class="cc-fix">Fix the field marked in red to see the total.</p>'
         '<ul><li><span id="cc-o-wl">Wages</span><span id="cc-o-wages">$0.00</span></li>'
         '<li><span>Public works fringes</span><span id="cc-o-fr">$0.00</span></li>'
         '<li><span>Employer Social Security and Medicare</span><span id="cc-o-tax">$0.00</span></li>'
@@ -457,7 +459,7 @@ def full_pw_table(d, E):
 def rules_block(d, E):
     c, k = d["chicago"], d["cook"]
     return ('<div class="cc-rules">'
-            '<div class="cc-card"><h3>City of Chicago</h3><p class="cc-sub">From July 1, 2026, employers with 4 or more employees</p>'
+            '<div class="cc-card"><h3>City of Chicago</h3><p class="cc-sub">From July 1, 2026. Minimum wage: employers with 4 or more employees</p>'
             f'<dl><dt>Minimum wage</dt><dd>{m2(c["minWage"])} an hour</dd><dt>Tipped workers</dt><dd>{m2(c["tipped"])} an hour</dd>'
             f'<dt>Overtime minimum</dt><dd>{m2(c["otMin"])} an hour</dd><dt>Tipped overtime</dt><dd>{m2(c["otTipped"])} an hour</dd></dl>'
             f'<ul><li>{E(c["domesticYouth"].replace("All Domestic Workers and Youth Workers", "Domestic workers and youth workers").replace("minimum wage", "minimum"))}.</li>'

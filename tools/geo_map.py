@@ -167,12 +167,12 @@ def klass(x, cuts):
 
 CSS = ("<style>"
        ".gm{--gm0:#fbe9e1;--gm1:#f3c0aa;--gm2:#e48d6a;--gm3:#c8502f;--gm4:#8a3017;--gmn:#ece8e1;"
-       "--gmd0:#1e4c48;--gmd1:#7fb5ae;--gmd2:#e4e0d8;--gmd3:#eeab90;--gmd4:#b4401f;--gmedge:#fff;"
+       "--gmd0:#1e4c48;--gmd1:#7fb5ae;--gmd2:#d6d0c4;--gmd3:#eeab90;--gmd4:#b4401f;--gmedge:#cfc6ba;--gmbg:#e6ecef;"
        "margin:12px 0 8px;padding:14px 14px 12px;background:var(--card);border:1px solid var(--line);border-radius:12px}"
-       "@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .gm{--gm0:#2e2a2c;--gm1:#5c3a30;--gm2:#94472d;--gm3:#d4653f;--gm4:#f6a383;--gmn:#262c38;"
-       "--gmd0:#7fd0c5;--gmd1:#2f5a56;--gmd2:#394050;--gmd3:#7f3d2b;--gmd4:#f0906d;--gmedge:#1b2130}}"
-       ":root[data-theme=dark] .gm{--gm0:#2e2a2c;--gm1:#5c3a30;--gm2:#94472d;--gm3:#d4653f;--gm4:#f6a383;--gmn:#262c38;"
-       "--gmd0:#7fd0c5;--gmd1:#2f5a56;--gmd2:#394050;--gmd3:#7f3d2b;--gmd4:#f0906d;--gmedge:#1b2130}"
+       "@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .gm{--gm0:#463a37;--gm1:#5c3a30;--gm2:#94472d;--gm3:#d4653f;--gm4:#f6a383;--gmn:#262c38;"
+       "--gmd0:#7fd0c5;--gmd1:#2f5a56;--gmd2:#4a5163;--gmd3:#7f3d2b;--gmd4:#f0906d;--gmedge:#3a4152;--gmbg:#141a24}}"
+       ":root[data-theme=dark] .gm{--gm0:#463a37;--gm1:#5c3a30;--gm2:#94472d;--gm3:#d4653f;--gm4:#f6a383;--gmn:#262c38;"
+       "--gmd0:#7fd0c5;--gmd1:#2f5a56;--gmd2:#4a5163;--gmd3:#7f3d2b;--gmd4:#f0906d;--gmedge:#3a4152;--gmbg:#141a24}"
        ".gm-bar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:end;justify-content:space-between;margin:0 0 10px}"
        ".gm-seg{display:flex;flex-wrap:wrap;gap:6px;border:0;margin:0;padding:0;min-width:0}"
        ".gm-seg legend{font-size:13px;font-weight:700;color:var(--muted);margin:0 0 6px;padding:0}"
@@ -186,7 +186,7 @@ CSS = ("<style>"
        "border:1px solid var(--line);border-radius:10px;padding:0 38px 0 12px;appearance:none;-webkit-appearance:none}"
        ".gm-find select:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
        ".gm-main{display:grid;gap:12px}@media(min-width:860px){.gm-main{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:start}}"
-       ".gm-stage{position:relative;border-radius:10px;overflow:hidden;background:var(--canvas2);touch-action:none}"
+       ".gm-stage{position:relative;border-radius:10px;overflow:hidden;background:var(--gmbg);touch-action:pan-y pinch-zoom}.gm-stage.zoomed{touch-action:none}"
        ".gm-stage svg{display:block;width:100%;height:auto;max-height:78vh;user-select:none;-webkit-user-select:none}"
        ".gm-stage.zoomed{cursor:grab}.gm-stage.dragging{cursor:grabbing}"
        ".gm-a path{stroke:var(--gmedge);stroke-width:.7;stroke-linejoin:round;vector-effect:non-scaling-stroke;fill:var(--gmn);transition:fill .25s}"
@@ -195,20 +195,25 @@ CSS = ("<style>"
        ".gm-a path.d0{fill:var(--gmd0)}.gm-a path.d1{fill:var(--gmd1)}.gm-a path.d2{fill:var(--gmd2)}.gm-a path.d3{fill:var(--gmd3)}.gm-a path.d4{fill:var(--gmd4)}"
        ".gm-a path.nx{fill:url(#gm-hatch)}"
        ".gm-a path:hover{stroke:var(--ink);stroke-width:1.6}.gm-a path.sel{stroke:var(--ink);stroke-width:2.6}"
-       ".gm-lab text{font:700 11px system-ui,sans-serif;fill:var(--muted);paint-order:stroke;stroke:var(--canvas2);stroke-width:3px;pointer-events:none;letter-spacing:.02em}"
+       ".gm-lab text{font:700 11px system-ui,sans-serif;fill:var(--ink);paint-order:stroke;stroke:var(--card);stroke-width:3px;stroke-linejoin:round;pointer-events:none;letter-spacing:.02em}"
        ".gm-lab text.gm-lake{font-weight:600;font-style:italic;fill:var(--muted);stroke:none}"
        ".gm-zoom{position:absolute;right:8px;top:8px;display:grid;gap:6px}"
-       ".gm-zoom button{width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:700 20px/1 system-ui,sans-serif;cursor:pointer;box-shadow:var(--shadow-soft)}"
+       ".gm-zoom .gm-zr{width:auto;padding:0 12px;font:700 14px/1 system-ui,sans-serif}.gm-zoom button{width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:700 20px/1 system-ui,sans-serif;cursor:pointer;box-shadow:var(--shadow-soft)}"
        ".gm-zoom button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}.gm-zoom button[hidden]{display:none}"
        ".gm-info{padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:var(--canvas2)}@media(min-width:860px){.gm-info{min-height:190px}}"
+       ".gm-big{display:flex;align-items:center;gap:10px;margin:2px 0 4px;font:700 32px/1.1 Poppins,system-ui,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}.gm-big i{width:14px;height:28px;border-radius:3px;flex:none}"
+       ".gm-big small{font:600 14px/1.3 inherit;color:var(--muted)}"
+       ".gm-top{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;padding:0;list-style:none}.gm-top button{min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:600 14px inherit;cursor:pointer}"
        ".gm-info h3{margin:0 0 4px;font-size:19px;color:var(--ink)}.gm-info p{margin:6px 0 0;color:var(--ink2);font-size:15px}"
        ".gm-info .gm-hint{color:var(--muted);font-size:14px}.gm-info b{color:var(--ink);font-variant-numeric:tabular-nums}"
        ".gm-info dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:10px 0 0;font-size:15px}"
-       ".gm-info dt{color:var(--muted)}.gm-info dd{margin:0;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}"
+       ".gm-info dt{color:var(--muted)}.gm-info dd{margin:0;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;text-align:right}.gm-info dl{max-width:320px}"
        ".gm-side{display:grid;gap:12px;align-content:start}"
        ".gm-leg{padding:12px 16px;border:1px solid var(--line);border-radius:10px}.gm-legt{margin:0 0 8px;font-size:13.5px;font-weight:700;color:var(--muted)}"
-       ".gm-leg ul{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px 14px;margin:0;padding:0;list-style:none;font-size:14px;color:var(--ink2)}"
-       ".gm-leg li{display:flex;align-items:center;gap:8px}.gm-leg i{flex:none;display:inline-block;width:22px;height:14px;border-radius:4px;border:1px solid var(--line)}"
+       ".gm-leg ul{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:2px;margin:0;padding:0;list-style:none;font-size:12.5px;line-height:1.25;color:var(--ink2)}"
+       ".gm-leg li{display:flex;flex-direction:column;gap:6px;min-width:0}.gm-leg i{display:block;height:12px;border-radius:2px}"
+       ".gm-leg li:first-child i{border-radius:6px 2px 2px 6px}.gm-leg li:last-child i{border-radius:2px 6px 6px 2px}"
+       ".gm-leg .gm-x{display:flex;align-items:center;gap:8px;margin:10px 0 0;font-size:13px;color:var(--ink2)}.gm-leg .gm-x i{width:22px;height:12px;border-radius:2px;flex:none}"
        ".gm figcaption{margin-top:8px;font-size:13px;color:var(--muted)}"
        "</style>")
 
@@ -220,8 +225,13 @@ function fmt(n){return (n||0).toLocaleString("en-US");}
 function paint(){var m=D.metrics.filter(function(x){return x.key===M;})[0];
 Object.keys(P).forEach(function(n){var c=(D.cls[M]||{})[n];P[n].setAttribute("class",(c||"")+(pick===n?" sel":""));var a=D.areas[n];
 var t=P[n].querySelector("title");if(t&&a)t.textContent=a.name+": "+(a.say[M]||"");});
-leg.innerHTML='<p class="gm-legt">'+m.legendTitle+'</p><ul>'+m.legend.map(function(l){return '<li><i style="background:'+l[1]+'"></i>'+l[2]+'</li>';}).join("")+'</ul>';}
-function show(n){var a=D.areas[n];if(!a){info.innerHTML=D.hint;return;}info.innerHTML='<h3>'+a.name+'</h3>'+a.html;}
+leg.innerHTML=legHtml(m);}
+function legHtml(m){var main=m.legend.filter(function(l){return l[0]!=="nx";}),x=m.legend.filter(function(l){return l[0]==="nx";});
+return '<p class="gm-legt">'+m.legendTitle+'</p><ul>'+main.map(function(l){return '<li><i style="background:'+l[1]+'"></i><span>'+l[2]+'</span></li>';}).join("")+'</ul>'+x.map(function(l){return '<p class="gm-x"><i style="background:'+l[1]+'"></i>'+l[2]+'</p>';}).join("");}
+function swatch(n){var c=(D.cls[M]||{})[n],m=D.metrics.filter(function(x){return x.key===M;})[0];for(var i=0;i<m.legend.length;i++)if(m.legend[i][0]===c)return m.legend[i][1];return "transparent";}
+function show(n){var a=D.areas[n];if(!a){info.innerHTML=D.hint;return;}var b=(a.big||{})[M]||["",""];
+info.innerHTML='<h3>'+a.name+'</h3><p class="gm-big"><i style="background:'+swatch(n)+'"></i><span>'+b[0]+'</span><small>'+b[1]+'</small></p>'+a.html;}
+info.addEventListener("click",function(e){var b=e.target.closest("[data-pick]");if(!b)return;choose(b.dataset.pick);focusOn(b.dataset.pick);});
 function choose(n,from){if(pick&&P[pick])P[pick].classList.remove("sel");pick=n||null;if(n&&P[n]){P[n].classList.add("sel");G.appendChild(P[n]);}
 if(from!=="select")sel.value=n||"";show(n);}
 G.addEventListener("pointerover",function(e){var n=e.target.dataset&&e.target.dataset.n;if(n&&!drag.moved&&e.pointerType==="mouse")show(n);});
@@ -230,9 +240,11 @@ G.addEventListener("click",function(e){var n=e.target.dataset&&e.target.dataset.
 sel.addEventListener("change",function(){choose(sel.value,"select");if(sel.value)focusOn(sel.value);});
 R.querySelectorAll(".gm-seg input").forEach(function(i){i.addEventListener("change",function(){M=i.value;paint();show(pick);});});
 var vb0=svg.viewBox.baseVal,W0=vb0.width,H0=vb0.height,vb={x:0,y:0,w:W0,h:H0};
-function setvb(){vb.w=Math.min(W0,Math.max(W0/8,vb.w));vb.h=vb.w*H0/W0;vb.x=Math.min(W0-vb.w,Math.max(0,vb.x));vb.y=Math.min(H0-vb.h,Math.max(0,vb.y));
+function setvb(){vb.w=Math.min(W0,Math.max(W0/8,vb.w));vb.h=vb.w*H0/W0;var full=vb.w>=W0-1,mx=full?0:vb.w/2,my=full?0:vb.h/2;vb.x=Math.min(W0-vb.w+mx,Math.max(-mx,vb.x));vb.y=Math.min(H0-vb.h+my,Math.max(-my,vb.y));if(full){vb.x=0;vb.y=0;}
 svg.setAttribute("viewBox",vb.x.toFixed(1)+" "+vb.y.toFixed(1)+" "+vb.w.toFixed(1)+" "+vb.h.toFixed(1));var z=vb.w<W0-1;st.classList.toggle("zoomed",z);R.querySelector(".gm-zr").hidden=!z;
-var f=vb.w/W0;R.querySelectorAll(".gm-lab text").forEach(function(t){t.style.fontSize=(11*f).toFixed(2)+"px";t.style.strokeWidth=(3*f).toFixed(2)+"px";});}
+labs();}
+function labs(){var cw=svg.clientWidth||W0,f=vb.w/cw;R.querySelector(".gm-lab").style.display=(cw<560&&vb.w>=W0-1)?"none":"";R.querySelectorAll(".gm-lab text").forEach(function(t){t.style.fontSize=(12*f).toFixed(2)+"px";t.style.strokeWidth=(3.5*f).toFixed(2)+"px";});}
+window.addEventListener("resize",labs);
 function zoom(f,cx,cy){cx=cx==null?vb.x+vb.w/2:cx;cy=cy==null?vb.y+vb.h/2:cy;var nw=Math.min(W0,Math.max(W0/8,vb.w*f));vb.x=cx-(cx-vb.x)*nw/vb.w;vb.y=cy-(cy-vb.y)*nw/vb.w;vb.w=nw;setvb();}
 function focusOn(n){var a=D.areas[n];if(!a)return;vb.w=W0/3;vb.h=H0/3;vb.x=a.x-vb.w/2;vb.y=a.y-vb.h/2;setvb();}
 R.querySelector(".gm-zi").addEventListener("click",function(){zoom(.6);});R.querySelector(".gm-zo").addEventListener("click",function(){zoom(1/.6);});
@@ -244,11 +256,13 @@ if(Math.abs(e.clientX-drag.s.px)+Math.abs(e.clientY-drag.s.py)>6){drag.moved=tru
 if(drag.moved){vb.x=drag.x-dx;vb.y=drag.y-dy;setvb();}});
 function end(){setTimeout(function(){drag.moved=false;},0);drag.on=false;st.classList.remove("dragging");}st.addEventListener("pointerup",end);st.addEventListener("pointercancel",end);
 st.addEventListener("dblclick",function(e){var p=pt(e);zoom(.6,p.x,p.y);});
-paint();show(null);})();</script>"""
+paint();show(null);setvb();})();</script>"""
 
 
 def choropleth(areas, metrics, uid="gm", title="Map", hint="", landmarks=True, geo=None, caption=""):
-    """areas: {area number: {"say": {metric key: short plain line}, "html": info panel html (already escaped)}}.
+    """areas: {area number: {"say": {metric key: short plain line}, "big": {metric key: (big number, its label)},
+    "html": info panel html (already escaped)}}. hint: the panel's html before anything is picked (already escaped);
+    a button with data-pick="<area number>" in it picks that area.
     metrics: [{"key", "label", "legendTitle", "cls": {area number: css class}, "legend": [(css class, css background, label)]}];
     the first metric is the one painted before any script runs. Returns the figure markup with its data and script."""
     o = outline(geo)
@@ -270,16 +284,18 @@ def choropleth(areas, metrics, uid="gm", title="Map", hint="", landmarks=True, g
     seg = "".join(f'<label><input type="radio" name="{uid}-m" value="{E(m["key"])}"{" checked" if i == 0 else ""}>{E(m["label"])}</label>'
                   for i, m in enumerate(metrics))
     leg = (f'<p class="gm-legt">{E(first["legendTitle"])}</p><ul>'
-           + "".join(f'<li><i style="background:{v}"></i>{E(t)}</li>' for c, v, t in first["legend"]) + "</ul>")
+           + "".join(f'<li><i style="background:{v}"></i><span>{E(t)}</span></li>' for c, v, t in first["legend"] if c != "nx") + "</ul>"
+           + "".join(f'<p class="gm-x"><i style="background:{v}"></i>{E(t)}</p>' for c, v, t in first["legend"] if c == "nx"))
     data = {"metrics": [{"key": m["key"], "legendTitle": E(m["legendTitle"]), "legend": [[c, v, E(t)] for c, v, t in m["legend"]]} for m in metrics],
             "cls": {m["key"]: {str(k): v for k, v in m["cls"].items()} for m in metrics},
             "areas": {str(a["n"]): {"name": E(a["name"]), "x": a["x"], "y": a["y"], "html": (areas.get(a["n"]) or {}).get("html", ""),
-                                    "say": {k: E(v) for k, v in ((areas.get(a["n"]) or {}).get("say") or {}).items()}} for a in o["areas"]},
-            "hint": f'<p class="gm-hint">{hint}</p>'}
+                                    "say": {k: E(v) for k, v in ((areas.get(a["n"]) or {}).get("say") or {}).items()},
+                                    "big": {k: [E(v[0]), E(v[1])] for k, v in ((areas.get(a["n"]) or {}).get("big") or {}).items()}} for a in o["areas"]},
+            "hint": hint}
     js = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     return (f'<figure class="gm" id="{uid}" aria-labelledby="{uid}-t">'
             f'<div class="gm-bar"><fieldset class="gm-seg"><legend>Color the map by</legend>{seg}</fieldset>'
-            f'<label class="gm-find">Find a community area<select><option value="">Pick one</option>{opts}</select></label></div>'
+            f'<label class="gm-find">Find a community area<select><option value="">Choose a community area</option>{opts}</select></label></div>'
             f'<div class="gm-main"><div class="gm-stage">'
             f'<svg viewBox="0 0 {o["w"]} {o["h"]}" role="img" aria-labelledby="{uid}-t" xmlns="http://www.w3.org/2000/svg">'
             f'<title id="{uid}-t">{E(title)}</title>'
@@ -287,8 +303,8 @@ def choropleth(areas, metrics, uid="gm", title="Map", hint="", landmarks=True, g
             '<rect width="6" height="6" fill="var(--gmn)"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--muted)" stroke-width="1.2" opacity=".45"/></pattern></defs>'
             f'<g class="gm-a">{paths}</g><g class="gm-lab" aria-hidden="true">{labs}</g></svg>'
             '<div class="gm-zoom"><button type="button" class="gm-zi" aria-label="Zoom in">+</button><button type="button" class="gm-zo" aria-label="Zoom out">&minus;</button>'
-            '<button type="button" class="gm-zr" aria-label="Show the whole city" hidden><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button></div></div>'
-            f'<div class="gm-side"><div class="gm-info" aria-live="polite"><p class="gm-hint">{hint}</p></div>'
+            '<button type="button" class="gm-zr" hidden>Whole city</button></div></div>'
+            f'<div class="gm-side"><div class="gm-info" aria-live="polite">{hint}</div>'
             f'<div class="gm-leg" aria-hidden="true">{leg}</div></div></div>'
             + (f'<figcaption>{caption}</figcaption>' if caption else "")
             + f'</figure><script type="application/json" id="{uid}-data">{js}</script>' + JS.replace("__UID__", uid))
@@ -315,7 +331,7 @@ def selftest():
     U = _anchor([(0, 0), (10, 0), (10, 10), (8, 10), (8, 2), (2, 2), (2, 10), (0, 10)])   # a U: centroid falls outside
     assert _inside(U[0], U[1], [(0, 0), (10, 0), (10, 10), (8, 10), (8, 2), (2, 2), (2, 10), (0, 10)]), "label inside odd shapes"
     m = [{"key": "a", "label": "A", "legendTitle": "A", "cls": {n: "q1" for n in R.AREAS}, "legend": [("q1", "var(--gm1)", "1 to 2")]}]
-    html = choropleth({1: {"say": {"a": "3 things"}, "html": "<p>x</p>"}}, m, uid="t", title="T", hint="Tap", geo=geo)
+    html = choropleth({1: {"say": {"a": "3 things"}, "big": {"a": ("3", "things")}, "html": "<p>x</p>"}}, m, uid="t", title="T", hint="<p>Tap</p>", geo=geo)
     assert html.count("<path data-n=") == 77 and 'class="q1"' in html and "Rogers Park: 3 things" in html, "paths painted"
     assert "</script" not in html.split('id="t-data">')[1].split("</script>")[0], "data cannot close its script"
     assert "—" not in html and "–" not in html, "no dashes"

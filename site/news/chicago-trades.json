@@ -63,7 +63,7 @@
    ],
    "headline": "Budget plan adds 28 City rat crews and 20 vacant lot cleanup crews",
    "what": "The proposed 2027 budget adds 28 rodent control crews and 20 crews to clear trash from vacant lots, and trims 15,000 more trees a year. It follows a July Inspector General audit that faulted the City for reacting to 311 rat calls instead of preventing them.",
-   "why": "Pest control firms may hear more from customers about sealing and sanitation, not only bait. The weekly 311 rat counts for every community area are on our free rat complaints page.",
+   "why": "Pest control firms may hear more from customers about sealing and sanitation, not only bait. The weekly 311 rat counts for every community area are on our free page.",
    "sources": [
     {
      "name": "WTTW, Johnson's proposed 2027 budget",
@@ -73,7 +73,11 @@
      "name": "WTTW, watchdog report on the City's rat program",
      "url": "https://news.wttw.com/2026/07/29/chicago-can-t-keep-trying-poison-its-way-out-rat-problem-watchdog-report"
     }
-   ]
+   ],
+   "link": {
+    "text": "See Chicago rat complaints by neighborhood",
+    "slug": "chicago-rat-complaints"
+   }
   },
   {
    "id": "social-security-wage-base-2027",
@@ -87,7 +91,7 @@
    ],
    "headline": "Social Security tax will apply to the first $192,300 of pay in 2027",
    "what": "The Social Security Administration raised the maximum earnings taxed for Social Security from $184,500 in 2026 to $192,300 in 2027. Medicare tax still has no earnings cap.",
-   "why": "Owners and crew members who earn more than $184,500 will owe Social Security tax on more of their pay next year. Make sure your payroll service and your 2027 estimated tax payments use the new number.",
+   "why": "Owners and crew members who earn more than $184,500 will owe Social Security tax on more of their pay next year. Check that your payroll service and your 2027 estimated tax payments use the new number.",
    "sources": [
     {
      "name": "Social Security Administration, 2027 fact sheet",
@@ -155,7 +159,7 @@
    ],
    "headline": "Illinois employers with more than 25 workers must pay for jury duty from 2027",
    "what": "The Governor signed HB 4844 on July 31, 2026, so employers must pay workers their regular rate for time on jury duty starting January 1, 2027. Employers with 25 or fewer employees still only have to give unpaid leave.",
-   "why": "If you have more than 25 employees, add paid jury duty to your handbook and payroll before January. Smaller shops keep giving unpaid time off for jury service.",
+   "why": "If you have more than 25 employees, review your handbook and payroll setup for paid jury duty before January. Smaller shops keep giving unpaid time off for jury service.",
    "sources": [
     {
      "name": "Illinois General Assembly, Public Act 104-0683",
@@ -164,6 +168,14 @@
     {
      "name": "Hinshaw, Illinois employment law changes for 2027",
      "url": "https://www.hinshawlaw.com/en/insights/blogs/employment-law-observer/illinois-employers-prepare-now-for-these-three-employment-law-changes-taking-effect-in-2027"
+    },
+    {
+     "name": "Illinois General Assembly, HB 4844 status",
+     "url": "https://www.ilga.gov/ftp/legislation/104/BillStatus/HTML/10400HB4844.html"
+    },
+    {
+     "name": "Kilpatrick Townsend, Illinois employers must pay for jury service",
+     "url": "https://ktslaw.com/insights/alert/2026/8/illinois-employers-now-must-pay-employees-for-jury-service"
     }
    ]
   },
@@ -233,7 +245,7 @@
    ],
    "headline": "Illinois posted new prevailing wage rates for public construction",
    "what": "The Illinois Department of Labor published new prevailing wage rates for every county and construction trade, in effect from July 15, 2026, from its yearly survey of wages and benefits. Workers on publicly funded construction must be paid at least these rates.",
-   "why": "If you bid public work in Cook County, such as City, school or park district jobs, check the 2026 Cook County rate for your trade before you bid.",
+   "why": "If you bid publicly funded construction in Cook County, check the 2026 Cook County rate for your trade on the IDOL prevailing wage page before you bid.",
    "sources": [
     {
      "name": "Illinois Department of Labor, 2026 prevailing wage rates",
@@ -253,11 +265,11 @@
    ],
    "headline": "Cook County's 2027 budget plan has no new taxes or fees",
    "what": "Board President Toni Preckwinkle's $9.69 billion plan for 2027 closes a $550.8 million gap without a property tax increase, new fees or layoffs. It uses reserves, interest on federal relief money and cuts 50 vacant jobs.",
-   "why": "County taxes and fees on businesses are not set to rise next year, though the Board still votes. The City of Chicago plan is separate and does include tax increases.",
+   "why": "County taxes and fees on businesses are not set to rise next year under this plan, but the County Board still has to vote on it.",
    "sources": [
     {
      "name": "WTTW, Cook County's 2027 budget plan",
-     "url": "https://news.wttw.com/node/55181"
+     "url": "https://news.wttw.com/2026/10/07/no-tax-hikes-or-layoffs-needed-close-cook-county-s-550m-gap-thanks-budget-magic"
     }
    ]
   },
@@ -279,7 +291,7 @@
    ],
    "headline": "Foundry Park breaks ground on the old Lincoln Yards site",
    "what": "JDL Development and Kayne Anderson Real Estate broke ground on October 21 on Foundry Park, a $3 billion project along the North Branch of the Chicago River. The first phase has more than 700 homes plus shops, parks and underground parking, and a $201.6 million TIF package covers roads, utilities, parks and riverfront work.",
-   "why": "This site will run for years, so subcontract and finish work, from MEP and interiors to landscaping and post-construction cleaning, comes in waves. Get on the bid lists of the builders once they are named.",
+   "why": "Phase one is only part of a plan for more than 3,700 homes, and no builders have been named yet. Watch for the general contractor announcements and ask about subcontract work, from MEP and interiors to landscaping and cleaning.",
    "sources": [
     {
      "name": "Chicago Sun-Times, Foundry Park breaks ground",
@@ -306,7 +318,7 @@
    ],
    "headline": "CTA seeks proposals for the Red Line Extension 120th Yard, shop and substation",
    "what": "The CTA is taking proposals for construction of the Red Line Extension's 120th Yard, shop and substation. Proposals are due November 5, 2026 at 3:30 pm, with the documents on the CTA's Bonfire portal.",
-   "why": "Prime bidders on a job like this will likely need electrical, mechanical and plumbing subs. Check the Bonfire documents for any subcontracting goals and ask likely bidders about joining their teams.",
+   "why": "If you do electrical, mechanical or plumbing work, check the Bonfire documents for the scope and any subcontracting goals, and ask likely prime bidders about joining their teams.",
    "sources": [
     {
      "name": "City of Chicago vendor search, CTA solicitation C26FI103384111",
@@ -355,7 +367,7 @@
    ],
    "headline": "New City review for data centers; a temporary pause is proposed",
    "what": "An executive order signed August 11 sends any data center that needs a new Planned Development through a review of power, water, backup generators, air, noise and neighborhood impact, and orders new air permit and noise rules. Mayor Johnson has also called on the City Council to pause new or expanded data centers until permanent rules are in place, and the Council has not voted on it.",
-   "why": "Electrical and mechanical contractors chasing data center work in the city should expect slower approvals and watch the Council for a vote on the pause.",
+   "why": "Electrical and mechanical contractors chasing data center work in the city should watch for the new air permit and noise rules, due around November 9, and for any Council vote on the pause.",
    "sources": [
     {
      "name": "Chicago Sun-Times, data center order and proposed pause",
@@ -460,8 +472,8 @@
     "Roofing"
    ],
    "headline": "Chicago's updated construction codes are required for permits filed from December 1",
-   "what": "The City Council passed ordinance SO2026-0024930 on June 17, 2026, updating Chicago's mechanical, fuel gas, energy and interim fire prevention codes to current model codes, with targeted changes to the building and rehab codes. The new codes have been optional since October 1 and are required for projects submitted from December 1, 2026, counted from the day the permit fee is paid.",
-   "why": "Design any job whose permit fee will not be paid before December 1 to the new codes. HVAC contractors should note that homes now need ducted make up air, and the energy code moves to the 2024 IECC.",
+   "what": "The City Council passed ordinance SO2026-0024930 on June 17, 2026, fully updating Chicago's mechanical, fuel gas, energy and interim fire prevention codes to current model codes, with general changes to the building and rehab codes. The new codes have been optional since October 1 and are required for projects submitted from December 1, 2026, counted from the day the permit fee is paid.",
+   "why": "Check which jobs will have their permit fee paid on or after December 1, since those must meet the new codes. HVAC contractors should note that all dwelling units now need ducted make up air, and the energy code moves to the 2024 IECC.",
    "sources": [
     {
      "name": "MAP Strategies, 2026 Chicago construction code updates",
@@ -485,7 +497,7 @@
    ],
    "headline": "Illinois Attorney General gets new powers to investigate employers from January 1",
    "what": "HB 4725, signed July 31, 2026, lets the Attorney General's Workplace Rights Bureau issue subpoenas, require sworn written answers, inspect non public parts of a business, copy records on site and interview workers, starting January 1, 2027. Knowingly hiding or destroying records under subpoena can be a Class A misdemeanor.",
-   "why": "Wage, hour and worker classification complaints can turn into on site state investigations. Get timesheets, pay records and your 1099 or W-2 decisions organized before January.",
+   "why": "Possible violations of any Illinois labor or employment law can now lead to state subpoenas, on site inspections and worker interviews without a court order. Check that your timesheets, pay records and worker classification files are complete before January.",
    "sources": [
     {
      "name": "Amundsen Davis, Attorney General investigation powers",
@@ -509,7 +521,7 @@
    ],
    "headline": "From 2027, job ads can ask for a driver's license only when driving is essential",
    "what": "A change to the Illinois Job Opportunities for Qualified Applicants Act, HB 4758, says that from January 1, 2027 a job posting may require a valid driver's license only when driving is an essential part of the job and a business necessity, and the posting must say why. It covers employers with 15 or more employees and employment agencies.",
-   "why": "Service techs who drive to calls will usually qualify, but the ad now has to say so. Drop the license line from postings for shop, warehouse or office jobs where driving is not part of the work.",
+   "why": "Review every job ad that asks for a driver's license before January. Check that driving is an essential part of that job and that the ad briefly explains why the license is needed.",
    "sources": [
     {
      "name": "Saul Ewing, Illinois employment law update",
@@ -518,6 +530,10 @@
     {
      "name": "Hinshaw, Illinois employment law changes for 2027",
      "url": "https://www.hinshawlaw.com/en/insights/blogs/employment-law-observer/illinois-employers-prepare-now-for-these-three-employment-law-changes-taking-effect-in-2027"
+    },
+    {
+     "name": "Illinois General Assembly, Public Act 104-0776",
+     "url": "https://ilga.gov/Legislation/PublicActs/View/104-0776"
     }
    ]
   },
@@ -540,8 +556,8 @@
      "url": "https://www.ilga.gov/Legislation/PublicActs/PrinterFriendly/104-0642"
     },
     {
-     "name": "Amundsen Davis, October 2026 updates",
-     "url": "https://www.amundsendavislaw.com/labor-employment-law-update/2026/10"
+     "name": "Amundsen Davis, did Illinois ban workplace drug testing",
+     "url": "https://www.amundsendavislaw.com/labor-employment-law-update/did-illinois-recently-ban-workplace-drug-testing"
     }
    ]
   }

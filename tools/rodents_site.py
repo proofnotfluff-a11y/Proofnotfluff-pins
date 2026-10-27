@@ -92,6 +92,10 @@ def range_legend(cuts):
     return out
 
 
+def ordinal(n):
+    return f"{n}{'th' if 10 <= n % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')}"
+
+
 def map_block(d, E):
     """The interactive community area map (Todd, Oct 27, 2026). Every number comes from the same weekly.json as the
     table; an area with no complaints in either window is shown in the lightest class."""
@@ -106,9 +110,11 @@ def map_block(d, E):
     for a in d["areas"]:
         ch = area_change(a)
         ch_say = "too few a year ago to compare" if ch == "too few" else ("about the same as a year ago" if ch == "same" else f"{ch} on a year ago")
-        rk = (f'<p>{"Tied at number" if same(a) else "Number"} {more(a) + 1} of {with30} areas with complaints, by the last 30 days.</p>' if a["d30"] else
+        rk = (f'<p>{"Tied " if same(a) else ""}{ordinal(more(a) + 1)} of {with30} areas for complaints in the last 30 days (1st has the most).</p>' if a["d30"] else
               "<p>No rat complaints in the last 30 days.</p>")
-        areas[a["n"]] = {"say": {"d30": f'{a["d30"]:,} complaints in 30 days', "d7": f'{a["d7"]:,} complaints in 7 days',
+        areas[a["n"]] = {"big": {"d30": (f'{a["d30"]:,}', "complaints, last 30 days"), "d7": (f'{a["d7"]:,}', "complaints, last 7 days"),
+                                 "ch": (("Too few" if ch == "too few" else "Same" if ch == "same" else ch), f"against the same 30 days of {yr}")},
+                         "say": {"d30": f'{a["d30"]:,} complaints in 30 days', "d7": f'{a["d7"]:,} complaints in 7 days',
                                  "ch": ch_say + f' ({a["d30"]:,} against {a["prev30"]:,})'},
                          "html": (rk + '<dl>'
                                   f'<dt>Last 7 days</dt><dd>{a["d7"]:,}</dd><dt>Last 30 days</dt><dd>{a["d30"]:,}</dd>'
@@ -119,8 +125,19 @@ def map_block(d, E):
                 "cls": {a["n"]: f"q{G.klass(a['d7'], c7)}" for a in d["areas"]}, "legend": range_legend(c7)},
                {"key": "ch", "label": "Change on a year ago", "legendTitle": f"Last 30 days against the same 30 days of {yr}",
                 "cls": {a["n"]: change_class(a) for a in d["areas"]}, "legend": CHANGE_BINS}]
+    c = d["counts"]
+    top3 = sorted([a for a in d["areas"] if a["d30"]], key=lambda a: (-a["d30"], a["name"]))[:3]
+    rises = sorted([a for a in d["areas"] if a["prev30"] >= FEW and a["d30"] > a["prev30"]],
+                   key=lambda a: (-(a["d30"] - a["prev30"]), a["name"]))[:5]
+    hint = ('<h3>Citywide</h3>'
+            f'<p class="gm-big"><span>{c["d30"]:,}</span><small>complaints, last 30 days, {E(pct(c["change"]))} on a year ago</small></p>'
+            '<p>Most complaints:</p><ul class="gm-top">'
+            + "".join(f'<li><button type="button" data-pick="{a["n"]}">{E(a["name"])}, {a["d30"]:,}</button></li>' for a in top3) + '</ul>'
+            + ('<p>Biggest rises on a year ago:</p><ul class="gm-top">'
+               + "".join(f'<li><button type="button" data-pick="{a["n"]}">{E(a["name"])}, +{a["d30"] - a["prev30"]:,}</button></li>' for a in rises) + '</ul>' if rises else "")
+            + '<p class="gm-hint">Tap or hover any area on the map, or choose one from the list.</p>')
     fig = G.choropleth(areas, metrics, uid="ratmap", title="Map of Chicago's 77 community areas, colored by rat complaints to 311",
-                       hint="Tap or hover a community area to see its numbers, or pick one from the list.",
+                       hint=hint,
                        caption=("Community area outlines: City of Chicago, Boundaries - Community Areas. The stronger the color, the more complaints. "
                                 "Every number on the map is also in the table below."))
     return G.CSS + fig if fig else ""

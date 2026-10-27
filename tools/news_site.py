@@ -78,6 +78,8 @@ def check(d):
         tr = it.get("trades") or []
         if not tr or any(t not in TRADES for t in tr):
             bad.append(f"{at}: trades {tr!r}")
+        if it.get("link") is not None and not (re.fullmatch(r"[a-z0-9-]+", str((it["link"] or {}).get("slug", ""))) and (it["link"] or {}).get("text")):
+            bad.append(f"{at}: link needs text and a site slug")
         src = it.get("sources") or []
         if not src:
             bad.append(f"{at}: no source")
@@ -137,39 +139,50 @@ CSS = ("<style>"
        ".tn-cat{display:inline-flex;align-items:center;min-height:26px;padding:0 10px;border-radius:999px;background:var(--teal-tint);color:var(--teal-ink);font-weight:700}"
        ".tn-st{display:inline-flex;align-items:center;min-height:26px;padding:0 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink);font-weight:700}"
        ".tn-st.soon{background:var(--warn-tint);border-color:transparent;color:var(--warn-ink)}"
-       ".tn-item h3{margin:0 0 8px;font-size:clamp(18px,2.4vw,21px);line-height:1.3;color:var(--ink);text-wrap:balance}"
+       ".tn-item h4{max-width:72ch;font-family:Poppins,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;font-weight:700;letter-spacing:-.01em;margin:0 0 8px;font-size:clamp(18px,2.4vw,21px);line-height:1.3;color:var(--ink);text-wrap:balance}"
        ".tn-item p{margin:0 0 8px;color:var(--ink2);max-width:72ch}.tn-item .tn-why{color:var(--ink)}.tn-item .tn-why b{color:var(--ink)}"
-       ".tn-tags{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;padding:0;list-style:none}.tn-tags li{font-size:13px;color:var(--ink2);padding:3px 9px;border-radius:7px;background:var(--rule)}"
+       ".tn-for{margin:10px 0 0;font-size:14px;color:var(--muted)}.tn-for b{color:var(--ink2);font-weight:600}.tn-more{margin:4px 0 0}.tn-more a{font-weight:700;color:var(--ink)}"
        ".tn-src{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;margin:12px 0 0;padding-top:10px;border-top:1px solid var(--rule);font-size:14px;color:var(--muted)}"
        ".tn-src a{display:inline-flex;align-items:center;min-height:32px;color:var(--ink);font-weight:600}"
-       ".tn-copy{margin-left:auto;min-height:36px;padding:0 10px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--ink2);font:600 13px inherit;cursor:pointer}"
+       ".tn-copy{margin-left:auto;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--ink2);font:600 13px inherit;cursor:pointer}.tn-copy svg{width:16px;height:16px}"
+       ".tn-st.new{background:var(--accent);border-color:var(--accent);color:#fff}"
+       ".tn-group{margin:22px 0 10px;font-size:19px}.tn-group small{font:600 14px inherit;color:var(--muted);margin-left:6px}"
+       ".ld-page .ld-tiles{margin-top:24px}.ld-heroact .st-btn2{min-height:52px}"
+       ".cta .st-btn2{border-color:rgba(255,255,255,.7);color:#fff}.cta .st-btn2:hover{background:#fff;color:var(--band)}"
        ".tn-soon{display:grid;gap:0;margin:8px 0 0;padding:0;list-style:none;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}"
-       ".tn-soon li{max-width:none;display:grid;grid-template-columns:118px 1fr;gap:12px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--rule)}.tn-soon li:last-child{border-bottom:0}"
-       ".tn-soon time{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}.tn-soon a{color:var(--ink);font-weight:600;display:inline-block;padding:6px 0}"
+       "section.block .tn-soon li{max-width:none}.tn-soon li{display:grid;grid-template-columns:118px 1fr;gap:12px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--rule)}.tn-soon li:last-child{border-bottom:0}"
+       ".tn-soon time{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}.tn-soon a{color:var(--ink);font-weight:600;display:inline-block;padding:6px 0;text-underline-offset:3px;text-decoration-color:color-mix(in srgb,currentColor 35%,transparent)}.tn-soon a:hover{text-decoration-color:currentColor}"
        ".tn-soon small{display:block;color:var(--muted);font-size:13px}"
        ".tn-empty{padding:18px;border:1px dashed var(--dash);border-radius:12px;color:var(--ink2)}"
        "@media(max-width:599px){.tn-item{padding:16px}.tn-soon li{grid-template-columns:1fr;gap:2px}.tn-bar{position:static}}"
        "</style>")
 
 
-def item_html(it, today, E):
+COPY_ICO = ('<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">'
+            '<path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>')
+
+
+def item_html(it, today, E, new=False, rel="../"):
     eff = _date(it.get("effective"))
     soon = bool(eff and 0 <= (eff - today).days <= 75)
     src = "".join(f'<a href="{E(s["url"])}" rel="noopener">{E(s["name"])}</a>' for s in it["sources"])
     data_tr = "|".join(it["trades"])
     return (f'<article class="tn-item" id="{E(it["id"])}" data-cat="{E(it["category"])}" data-trades="{E(data_tr)}" aria-labelledby="h-{E(it["id"])}">'
             f'<div class="tn-top"><span class="tn-cat">{E(it["category"])}</span><span class="tn-st{" soon" if soon else ""}">{E(stage_text(it, today))}</span>'
-            f'<span>Reported <time datetime="{E(it["date"])}">{E(nice(it["date"]))}</time></span></div>'
-            f'<h3 id="h-{E(it["id"])}">{E(it["headline"])}</h3><p>{E(it["what"])}</p>'
+            + ('<span class="tn-st new">New</span>' if new else "")
+            + f'<span>Reported <time datetime="{E(it["date"])}">{E(nice(it["date"]))}</time></span>'
+            f'<button class="tn-copy" type="button" data-copy="{E(it["id"])}" hidden>{COPY_ICO}Copy link<span class="sr"> to this item</span></button></div>'
+            f'<h4 id="h-{E(it["id"])}">{E(it["headline"])}</h4><p>{E(it["what"])}</p>'
             f'<p class="tn-why"><b>What it means for you:</b> {E(it["why"])}</p>'
-            '<ul class="tn-tags" aria-label="Trades">' + "".join(f"<li>{E(t)}</li>" for t in it["trades"]) + "</ul>"
-            f'<p class="tn-src"><span>Source{"s" if len(it["sources"]) > 1 else ""}:</span>{src}'
-            f'<button class="tn-copy" type="button" data-copy="{E(it["id"])}" hidden>Copy link</button></p></article>')
+            + (f'<p class="tn-more"><a href="{rel}{E(it["link"]["slug"])}/">{E(it["link"]["text"])}</a></p>' if it.get("link") else "")
+            + f'<p class="tn-for"><b>For:</b> {E(", ".join(it["trades"]))}</p>'
+            f'<p class="tn-src"><span>Source{"s" if len(it["sources"]) > 1 else ""}:</span>{src}</p></article>')
 
 
 JS = r"""<script>(function(){var R=document.getElementById("tn");if(!R)return;var items=[].slice.call(R.querySelectorAll(".tn-item")),sel=document.getElementById("tn-trade"),
 cnt=document.getElementById("tn-count"),cat="",bar=document.getElementById("tn-bar"),empty=document.getElementById("tn-empty");bar.hidden=false;
 function run(){var t=sel.value,n=0;items.forEach(function(a){var tr=a.dataset.trades.split("|");var ok=(!t||tr.indexOf(t)>=0||tr.indexOf("All trades")>=0)&&(!cat||a.dataset.cat===cat);a.hidden=!ok;if(ok)n++;});
+R.querySelectorAll(".tn-list").forEach(function(l){var h=l.previousElementSibling,v=[].filter.call(l.children,function(a){return !a.hidden;}).length;l.hidden=!v;if(h&&h.classList.contains("tn-group")){h.hidden=!v;h.querySelector("small").textContent=v;}});
 cnt.textContent=n===items.length?"Showing all "+n+" items":"Showing "+n+" of "+items.length+" items";empty.hidden=n>0;
 try{var u=new URL(location.href);t?u.searchParams.set("trade",t):u.searchParams.delete("trade");history.replaceState(null,"",u.pathname+u.search+u.hash);localStorage.setItem("pnf-tn-trade",t);}catch(e){}}
 var q="";try{q=new URL(location.href).searchParams.get("trade")||localStorage.getItem("pnf-tn-trade")||"";}catch(e){}
@@ -209,11 +222,14 @@ def page_html(p, today=None):
                    key=lambda x: (x["effective"], x["id"]))
     n_cat = {c: sum(1 for it in items if it["category"] == c) for c in CATEGORIES}
     nxt = ahead[0] if ahead else None
+    week_from = _date(d["updated"]) - dt.timedelta(days=7)
+    fresh = [it for it in items if _date(it["date"]) > week_from]
+    older = [it for it in items if _date(it["date"]) <= week_from]
     tiles = ('<div class="tiles ld-tiles">'
-             f'<div class="tile key"><div class="lab">In this brief</div><div class="val">{len(items)}</div><div class="sub">changes and projects, each with its source</div></div>'
+             f'<div class="tile key"><div class="lab">New this week</div><div class="val">{len(fresh)}</div><div class="sub">of {len(items)} items on the page, each with its source</div></div>'
              + (f'<div class="tile"><div class="lab">Next date</div><div class="val rc-name">{E(nice(nxt["effective"]))}</div><div class="sub">{E(nxt["headline"])}</div></div>' if nxt else "")
              + f'<div class="tile"><div class="lab">Tax and pay</div><div class="val">{n_cat["Tax and pay"]}</div><div class="sub">items on what you pay or earn</div></div>'
-             f'<div class="tile"><div class="lab">Rules and licenses</div><div class="val">{n_cat["Rules and permits"] + n_cat["Licensing"] + n_cat["Safety"]}</div><div class="sub">items on how you work</div></div>'
+             f'<div class="tile"><div class="lab">Rules and permits</div><div class="val">{n_cat["Rules and permits"]}</div><div class="sub">items on how you work</div></div>'
              f'</div><p class="asof">As of {E(nice(d["updated"]))}. A new brief every Tuesday. Every fact was read on the linked page the day it was written.</p>')
     soon = ""
     if ahead:
@@ -226,10 +242,11 @@ def page_html(p, today=None):
              + "".join(f'<button type="button" data-cat="{E(c)}" aria-pressed="false">{E(c)}</button>' for c in CATEGORIES if n_cat[c]))
     bar = (f'<div class="tn-bar" id="tn-bar" hidden><label for="tn-trade">Your trade<select id="tn-trade"><option value="">Every trade</option>{opts}</select></label>'
            f'<fieldset class="tn-chips"><legend>Topic</legend>{chips}</fieldset></div>')
-    lst = (f'<section class="block" id="tn" aria-labelledby="tn-h"><h2 id="tn-h">This week\'s brief</h2>{bar}'
+    grp = lambda h, xs, new: (f'<h3 class="tn-group">{h} <small>{len(xs)}</small></h3><div class="tn-list">{"".join(item_html(it, today, E, new, rel) for it in xs)}</div>' if xs else "")
+    lst = (f'<section class="block" id="tn" aria-labelledby="tn-h"><h2 id="tn-h">The brief</h2>{bar}'
            '<p class="tn-count" id="tn-count" aria-live="polite"></p>'
-           f'<div class="tn-list">{"".join(item_html(it, today, E) for it in items)}</div>'
-           '<div class="tn-empty" id="tn-empty" hidden><p>Nothing for that trade and topic this week. Items marked All trades show for everyone.</p>'
+           + grp("New this week", fresh, True) + grp("Still in play", older, False)
+           + '<div class="tn-empty" id="tn-empty" hidden><p>Nothing for that trade and topic this week. Items marked All trades show for everyone.</p>'
            '<button class="st-btn2" type="button" id="tn-clear">Show every item</button></div></section>')
     more = p.get("more") or {}
     cta = (f'<section class="block"><div class="cta ld-cta"><div><h2>{E(more["title"])}</h2><p>{E(more["text"])}</p>'
@@ -237,9 +254,9 @@ def page_html(p, today=None):
            f'<a class="st-btn2" href="{url}feed.xml">Follow by RSS</a></p></div></div></section>') if more else ""
     method = '<section class="block"><h2>How this page is made</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"]) + "</section>"
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{E(p["lede"])}</p>'
-            '<div class="ld-heroact rl-act"><a class="btn" href="#tn">Read this week\'s brief</a>'
+            '<div class="ld-heroact rl-act"><a class="btn" href="#tn">Read the brief</a>'
             + ('<a class="st-btn2" href="#dates">Dates coming up</a>' if ahead else "") + '</div></div>'
-            f'{tiles}{soon}{lst}{cta}{method}{M.faq_block(p["faq"])}')
+            f'{tiles}{soon}{lst}{method}{M.faq_block(p["faq"])}{cta}')
     foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             '<p>News in plain words, with the City, State, federal or news page each item comes from linked. Not legal, tax or financial '
             'advice: check the source, and ask your accountant, lawyer or licensing office before you act on any change.</p>'

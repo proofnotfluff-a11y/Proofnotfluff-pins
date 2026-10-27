@@ -85,7 +85,7 @@ CSS = ("<style>.rc-bars{margin:12px 0 8px;padding:16px 18px;background:var(--car
        "@media(max-width:599px){.rc-t{min-width:0}.rc-t th:nth-child(2),.rc-t td:nth-child(2){display:none}.rc-t th,.rc-t td{padding:9px 8px}.rc-wk div:not(:nth-child(3n+1)):not(:last-child) span{visibility:hidden}.rc-wk span{font-size:11.5px}.rc-wk{height:140px}.rc-wk div:not(:last-child) b{visibility:hidden}.rc-bar{grid-template-columns:minmax(96px,130px) 1fr 44px}}</style>")
 
 
-CHANGE_BINS = [("d0", "var(--gmd0)", "Down 25% or more", "-25%+"), ("d1", "var(--gmd1)", "Down 5 to 25%", "-5 to 25%"), ("d2", "var(--gmd2)", "Within 5%", "Same"),
+CHANGE_BINS = [("d0", "var(--gmd0)", "Down 25% or more", "-25%+"), ("d1", "var(--gmd1)", "Down 5 to 25%", "-5 to 25%"), ("d2", "var(--gmd2)", "Within 5%", "Within 5%"),
                ("d3", "var(--gmd3)", "Up 5 to 25%", "+5 to 25%"), ("d4", "var(--gmd4)", "Up 25% or more", "+25%+"),
                ("nx", "repeating-linear-gradient(45deg,var(--gmn) 0 4px,var(--dash) 4px 5.5px)", "Too few a year ago to compare")]
 
@@ -242,8 +242,10 @@ def map_block(d, E, ix=None, rel=""):
                   "<p>No rat complaints in the last 30 days.</p>")
         dl = (f'<dt>Last 7 days</dt><dd>{a["d7"]:,}</dd><dt>Last 30 days</dt><dd>{a["d30"]:,}</dd>'
               f'<dt>Same 30 days, {yr}</dt><dd>{a["prev30"]:,}</dd><dt>Change</dt><dd>{E(ch)}</dd>')
-        big = {"d30": (f'{a["d30"]:,}', "complaints, last 30 days"), "d7": (f'{a["d7"]:,}', "complaints, last 7 days"),
-               "ch": (("Too few" if ch == "too few" else "Same" if ch == "same" else ch), f"against the same 30 days of {yr}")}
+        big = {"d30": (f'{a["d30"]:,}', ("complaint" if a["d30"] == 1 else "complaints") + ", last 30 days"),
+               "d7": (f'{a["d7"]:,}', ("complaint" if a["d7"] == 1 else "complaints") + ", last 7 days"),
+               "ch": (("Too few" if ch == "too few" else "Same" if ch == "same" else ch),
+                      "too few a year ago to compare" if ch == "too few" else (f"within 1% of the same 30 days of {yr}" if ch == "same" else f"against the same 30 days of {yr}"))}
         say = {"d30": f'{nn(a["d30"], "complaint")} in 30 days', "d7": f'{nn(a["d7"], "complaint")} in 7 days',
                "ch": ch_say + f' ({a["d30"]:,} against {a["prev30"]:,})'}
         if x:
@@ -256,8 +258,9 @@ def map_block(d, E, ix=None, rel=""):
                        f'<dt>Citing pests (violation 38)</dt><dd>{x["pest"]:,}{f" ({ps}%)" if ps is not None else ""}</dd>'
                        f'<dt>Citing a hood or ventilation (56)</dt><dd>{x["vent"]:,}{f" ({vs}%)" if vs is not None else ""}</dd>')
                 few = f'too few restaurant inspections to give a share ({x["insp"]:,} in 12 weeks)'
-                big["rp"] = (f"{ps}%" if ps is not None else "Too few", f'of {x["insp"]:,} restaurant inspections cited pests')
-                big["rv"] = (f"{vs}%" if vs is not None else "Too few", f'of {x["insp"]:,} restaurant inspections cited a hood or ventilation')
+                fewsub = f'under {SHARE_FEW} restaurant inspections ({nn(x["insp"], "inspection")} in 12 weeks)'
+                big["rp"] = (f"{ps}%", f'of {nn(x["insp"], "restaurant inspection")} cited pests') if ps is not None else ("Too few", fewsub)
+                big["rv"] = (f"{vs}%", f'of {nn(x["insp"], "restaurant inspection")} cited a hood or ventilation') if vs is not None else ("Too few", fewsub)
                 say["rp"] = f'{ps}% of restaurant inspections cited pests ({x["pest"]:,} of {x["insp"]:,})' if ps is not None else few
                 say["rv"] = f'{vs}% of restaurant inspections cited a hood or ventilation ({x["vent"]:,} of {x["insp"]:,})' if vs is not None else few
             dl += ""
@@ -367,7 +370,7 @@ BADGE_W, BADGE_H = 340, 104
 
 
 def badge_alt(name):
-    return f"Chicago Rat Index badge for {name}: this week's rank among the city's 77 community areas, from City of Chicago 311 data, by ProofNotFluff"
+    return f"Chicago Rat Index badge for {name}: its rank for the last 30 days among the city's 77 community areas, updated weekly, from City of Chicago 311 data, by ProofNotFluff"
 
 
 def badge_svg(a, d):
@@ -456,7 +459,7 @@ def edition_block(ix, d, E, rel, M):
             f'<h2>The rattiest Chicago neighborhoods, {ed["year"]}</h2>'
             f'<p>Ranked by rat complaints to 311 per 1,000 residents in the 12 months from {E(M.nice_date(ed["from"]))} to {E(M.nice_date(ed["to"]))}: '
             f'{ed["total"]:,} complaints citywide, {E(ch)} '
-            f'({ed["prevTotal"]:,}). A new edition comes out each October, when the national rat lists do. '
+            f'({ed["prevTotal"]:,}). A new edition comes out each October, when pest control companies publish their national rattiest cities lists. '
             'It ranks complaints, which also reflect how often people in an area call 311; it is not a count of rats.</p>')
     items = "".join(
         f'<li><b>{a["kYear"]}</b><a href="{rel}{a["slug"]}/">{E(a["name"])}</a><span>{a["rYear"]:.2f} per 1,000 a year</span>'
@@ -692,7 +695,7 @@ def page_html(p):
                '<div class="ri-dl"><a class="st-btn2" href="rat-index.csv" download>Download the Rat Index (CSV)</a></div>'
                '<p class="asof">Our CSV is free to reuse if you credit ProofNotFluff (license CC BY 4.0); the City\'s data disclaimer at the foot of this page still applies.</p></section>'
                '<section class="block" id="risers"><h2>Top risers</h2>'
-               '<p>The community areas that climbed the most places on the Rat Index against the 30 days before (areas with at least 10 complaints).</p>'
+               '<p>The community areas that climbed the most places on the Rat Index against the 30 days before (areas with at least 10 complaints in the last 30 days).</p>'
                f'{risers_block(ix, E, "")}</section>')
     else:
         idx = f'<section class="block" id="areas"><h2>Every community area</h2>{table}</section>'
@@ -737,10 +740,14 @@ def area_html(p, d, ix, a, M):
                          bodycls=' class="ld-page"', robots=robots, analytics=M.analytics_tag())
     ch = area_change(a)
     ch_t = "too few a year ago to compare" if ch == "too few" else ("about the same as" if ch == "same" else f"{ch} on")
-    lede = (f'{E(a["name"])} is {a["place"]} of Chicago\'s 77 community areas on the Rat Index: {a["r30"]:.2f} rat complaints to 311 per 1,000 residents '
-            f'in the 30 days to {E(when)} ({nn(a["d30"], "complaint")}), against {ix["city"]["r30"]:.2f} citywide. '
-            + ("It is the same place as in the 30 days before." if not a["mom"] else
-               f'That is {move(a["mom"])} place{"s" if abs(a["mom"]) != 1 else ""} from the 30 days before, when it was {ordinal(a["kPrior"])}.'))
+    if a["d30"]:
+        lede = (f'{E(a["name"])} is {a["place"]} of Chicago\'s 77 community areas on the Rat Index: {a["r30"]:.2f} rat complaints to 311 per 1,000 residents '
+                f'in the 30 days to {E(when)} ({nn(a["d30"], "complaint")}), against {ix["city"]["r30"]:.2f} citywide. ')
+    else:
+        lede = (f'{E(a["name"])} had no rat complaints to 311 in the 30 days to {E(when)}, so it {"shares" if "tied" in a["place"] else "holds"} the bottom place on the Rat Index '
+                f'({a["place"]} of 77), against {ix["city"]["r30"]:.2f} per 1,000 residents citywide. ')
+    lede += ("" if not a["d30"] and not a["prior30"] else "It is the same place as in the 30 days before." if not a["mom"] else
+               f'That is {move(a["mom"])} place{"s" if abs(a["mom"]) != 1 else ""} from the 30 days before, when it was {ordinal(a["kPrior"])}.')
     tiles = ('<div class="tiles ld-tiles">'
              f'<div class="tile key"><div class="lab">Rat Index</div><div class="val">{E(a["place"].replace("tied ", ""))}</div><div class="sub">of 77 community areas{", tied" if "tied" in a["place"] else ""}</div></div>'
              f'<div class="tile"><div class="lab">Per 1,000 residents</div><div class="val">{a["r30"]:.2f}</div><div class="sub">last 30 days; {a["pop"]:,} residents</div></div>'
@@ -772,7 +779,8 @@ def area_html(p, d, ix, a, M):
                   f'<div class="tile"><div class="lab">Cited pests</div><div class="val">{a["pestShare"]}%</div><div class="sub">{nn(a["pest"], "inspection")}; {cc["pestShare"]}% citywide</div></div>'
                   f'<div class="tile"><div class="lab">Cited a hood or ventilation</div><div class="val">{a["ventShare"]}%</div><div class="sub">{nn(a["vent"], "inspection")}; {cc["ventShare"]}% citywide</div></div></div>')
         else:
-            rt = (f'<p>{a["insp"]:,} restaurant inspection{"" if a["insp"] == 1 else "s"} in 12 weeks: {a["pest"]:,} cited pests and {a["vent"]:,} cited a hood or ventilation. '
+            rt = ("<p>No restaurant inspections in these 12 weeks.</p>" if not a["insp"] else
+                  f'<p>{a["insp"]:,} restaurant inspection{"" if a["insp"] == 1 else "s"} in 12 weeks: {a["pest"]:,} cited pests and {a["vent"]:,} cited a hood or ventilation. '
                   f'That is too few to give a fair share (under {SHARE_FEW}).</p>')
         rest = (f'<section class="block"><h2>Restaurant inspections in {E(a["name"])}</h2>'
                 f'<p>City food inspections of restaurants in {E(a["name"])} from {E(M.nice_date(rw["from"]))} to {E(M.nice_date(rw["to"]))}: how many cited pests '

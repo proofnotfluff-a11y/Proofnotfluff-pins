@@ -85,8 +85,8 @@ CSS = ("<style>.rc-bars{margin:12px 0 8px;padding:16px 18px;background:var(--car
        "@media(max-width:599px){.rc-t{min-width:0}.rc-t th:nth-child(2),.rc-t td:nth-child(2){display:none}.rc-t th,.rc-t td{padding:9px 8px}.rc-wk div:not(:nth-child(3n+1)):not(:last-child) span{visibility:hidden}.rc-wk span{font-size:11.5px}.rc-wk{height:140px}.rc-wk div:not(:last-child) b{visibility:hidden}.rc-bar{grid-template-columns:minmax(96px,130px) 1fr 44px}}</style>")
 
 
-CHANGE_BINS = [("d0", "var(--gmd0)", "Down 25% or more", "-25%+"), ("d1", "var(--gmd1)", "Down 5 to 25%", "-5 to 25%"), ("d2", "var(--gmd2)", "Within 5%", "Within 5%"),
-               ("d3", "var(--gmd3)", "Up 5 to 25%", "+5 to 25%"), ("d4", "var(--gmd4)", "Up 25% or more", "+25%+"),
+CHANGE_BINS = [("d0", "var(--gmd0)", "At least 25% fewer", "25%+ fewer"), ("d1", "var(--gmd1)", "5 to 25% fewer", "5 to 25% fewer"), ("d2", "var(--gmd2)", "Within 5%", "Within 5%"),
+               ("d3", "var(--gmd3)", "5 to 25% more", "5 to 25% more"), ("d4", "var(--gmd4)", "At least 25% more", "25%+ more"),
                ("nx", "repeating-linear-gradient(45deg,var(--gmn) 0 4px,var(--dash) 4px 5.5px)", "Too few a year ago to compare")]
 
 
@@ -241,10 +241,10 @@ def map_block(d, E, ix=None, rel=""):
             rk = (f'<p>{"Tied " if same(a) else ""}{ordinal(more(a) + 1)} of {with30} areas for complaints in the last 30 days (1st has the most).</p>' if a["d30"] else
                   "<p>No rat complaints in the last 30 days.</p>")
         dl = (f'<dt>Last 7 days</dt><dd>{a["d7"]:,}</dd><dt>Last 30 days</dt><dd>{a["d30"]:,}</dd>'
-              f'<dt>Same 30 days, {yr}</dt><dd>{a["prev30"]:,}</dd><dt>Change</dt><dd>{E(ch)}</dd>')
+              f'<dt>Same 30 days, {yr}</dt><dd>{a["prev30"]:,}</dd><dt>Change</dt><dd>{E("about the same" if ch == "same" else ch)}</dd>')
         big = {"d30": (f'{a["d30"]:,}', ("complaint" if a["d30"] == 1 else "complaints") + ", last 30 days"),
                "d7": (f'{a["d7"]:,}', ("complaint" if a["d7"] == 1 else "complaints") + ", last 7 days"),
-               "ch": (("Too few" if ch == "too few" else "Same" if ch == "same" else ch),
+               "ch": (("Too few" if ch == "too few" else "About the same" if ch == "same" else ch),
                       "too few a year ago to compare" if ch == "too few" else (f"within 1% of the same 30 days of {yr}" if ch == "same" else f"against the same 30 days of {yr}"))}
         say = {"d30": f'{nn(a["d30"], "complaint")} in 30 days', "d7": f'{nn(a["d7"], "complaint")} in 7 days',
                "ch": ch_say + f' ({a["d30"]:,} against {a["prev30"]:,})'}
@@ -417,12 +417,12 @@ def index_table(ix, d, E, rel):
     yr = E(d["window"]["prevTo"][:4])
     thead = ('<thead><tr><th scope="col">Rank</th><th scope="col">Community area</th><th scope="col">Per 1,000 residents</th>'
              '<th scope="col">7 days</th><th scope="col">30 days</th><th scope="col">Change on a year ago</th>'
-             '<th scope="col"><span class="ri-hl">Rank move, vs 30 days before</span><span class="ri-hs">Move, 30 days</span></th>'
-             '<th scope="col"><span class="ri-hl">Rank move, vs a year ago</span><span class="ri-hs">Move, 1 year</span></th>'
+             '<th scope="col"><span class="ri-hl">Rank move, against 30 days before</span><span class="ri-hs">Move, 30 days</span></th>'
+             '<th scope="col"><span class="ri-hl">Rank move, against a year ago</span><span class="ri-hs">Move, 1 year</span></th>'
              '<th scope="col">Median days to close</th></tr></thead>')
     row = lambda a: (f'<tr><td class="ri-rk">{a["k30"]}</td><th scope="row"><a href="{rel}{a["slug"]}/">{E(a["name"])}</a></th><td>{a["r30"]:.2f}</td>'
                      f'<td>{a["d7"]:,}</td><td>{a["d30"]:,}</td>'
-                     f'<td{" class=rc-up" if a["prev30"] >= FEW and a["d30"] >= a["prev30"] * 1.25 else ""}>{E(area_change(a))}</td>'
+                     f'<td{" class=rc-up" if a["prev30"] >= FEW and a["d30"] >= a["prev30"] * 1.25 else ""}>{E("about the same" if area_change(a) == "same" else area_change(a))}</td>'
                      f'<td>{mv_cell(a["mom"])}</td><td>{mv_cell(a["yoy"])}</td><td>{days_txt(a.get("medClose"))}</td></tr>')
     tbl = lambda rs, label: (f'<div class="rc-tw" role="region" aria-label="{E(label)}" tabindex="0"><table class="rc-t ri-t">{thead}'
                              f'<tbody>{"".join(row(a) for a in rs)}</tbody></table></div>')
@@ -434,7 +434,7 @@ def index_table(ix, d, E, rel):
             + tbl(o[SHOW:], "Chicago Rat Index, the other community areas") + '</details>'
             + '<p class="asof">Rank 1 has the most rat complaints per 1,000 residents in the last 30 days. "Up 3" means an area moved 3 places toward 1st.</p>'
             '<details class="ri-how"><summary>How the ranks are counted</summary><p class="asof">Tied areas share a rank. '
-            f'"Up 3" means an area moved 3 places toward 1st. Change compares the last 30 days with the same 30 days of {yr}, rounded to a whole '
+            f'Change compares the last 30 days with the same 30 days of {yr}, rounded to a whole '
             f'percent; within 1% shows as same, and under {FEW} complaints a year earlier as too few. Median days to close is for the requests the '
             f'City closed in the last 30 days, from each request\'s created and closed dates; under 5 closed shows as too few.'
             + (f' {c["noArea30"]:,} of the last 30 days\' complaints had no community area on the record and count only in the city total.' if c.get("noArea30") else "")
@@ -645,7 +645,7 @@ def page_html(p):
             f'{change_words(c["change"])}. {c["d7"]:,} came in the last 7 days.')
     if ix:
         one = ix["order"][0]
-        lede += (f' Per resident, {E(one["name"])} is {one["place"].replace(ordinal(1), "first")} on the Rat Index, with {one["r30"]:.2f} complaints per 1,000 residents '
+        lede += (f' Per resident, {E(one["name"])} is {one["place"]} on the Rat Index, with {one["r30"]:.2f} complaints per 1,000 residents '
                  f'against {ix["city"]["r30"]:.2f} citywide.')
     tile4 = ""
     if ix:
@@ -754,7 +754,7 @@ def area_html(p, d, ix, a, M):
              f'<div class="tile key"><div class="lab">Rat Index</div><div class="val">{E(a["place"].replace("tied ", ""))}</div><div class="sub">of 77 community areas{", tied" if "tied" in a["place"] else ""}</div></div>'
              f'<div class="tile"><div class="lab">Per 1,000 residents</div><div class="val">{a["r30"]:.2f}</div><div class="sub">last 30 days; {a["pop"]:,} residents</div></div>'
              f'<div class="tile"><div class="lab">Last 30 days</div><div class="val">{a["d30"]:,}</div><div class="sub">{E(ch_t + " a year ago" if ch not in ("too few",) else ch_t)}</div></div>'
-             f'<div class="tile"><div class="lab">Days to close</div><div class="val">{E("none" if not a.get("closed30") else days_txt(a.get("medClose")))}</div><div class="sub">{(f'half of the {nn(a.get("closed30", 0), "request")} closed in the last 30 days took less time' if a.get("medClose") is not None else ("no requests closed in the last 30 days" if not a.get("closed30") else f'only {nn(a["closed30"], "request")} closed in 30 days (under 5)'))}</div></div>'
+             f'<div class="tile"><div class="lab">Days to close</div><div class="val">{E("none" if not a.get("closed30") else days_txt(a.get("medClose")))}</div><div class="sub">{(f'half of the {nn(a.get("closed30", 0), "request")} closed in the last 30 days took {days_txt(a["medClose"])} days or less' if a.get("medClose") is not None else ("no requests closed in the last 30 days" if not a.get("closed30") else f'only {nn(a["closed30"], "request")} closed in 30 days (under 5)'))}</div></div>'
              f'</div><p class="asof">Counts as of {E(when)}, from City of Chicago 311 records pulled {E(pulled)}. Updated every Monday.</p>')
     yr = E(w["prevTo"][:4])
     sd = lambda x: M.nice_date(x).rsplit(",", 1)[0]

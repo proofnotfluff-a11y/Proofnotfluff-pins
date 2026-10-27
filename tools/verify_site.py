@@ -264,6 +264,11 @@ class Run:
             for sc in self.schemes:
                 ctx = await self.context(browser, w, sc)
                 pg, ev, status = await self.open(ctx, page_url(base, page))
+                if not pg.url.startswith(base):   # a /go/ link page that forwards to Etsy or Gumroad: nothing of ours to judge
+                    if shots == "after" and w == self.widths[0] and sc == self.schemes[0]:
+                        self.note(f"{page}: a link page that forwards off the site, not judged")
+                    await ctx.close()
+                    continue
                 facts = await pg.evaluate(CUT_JS, w)
                 axe = await self.axe_run(pg)
                 name = f"{(page or 'home').replace('/', '_')}-{w}-{sc}.png"
@@ -402,6 +407,8 @@ async def main_async(a):
                         for w in widths:
                             for sc in schemes:
                                 n = f"{(page or 'home').replace('/', '_')}-{w}-{sc}.png"
+                                if not (os.path.isfile(os.path.join(out, "before", n)) and os.path.isfile(os.path.join(out, "after", n))):
+                                    continue
                                 os.makedirs(os.path.join(out, "diff"), exist_ok=True)
                                 pct = diff_images(os.path.join(out, "before", n), os.path.join(out, "after", n),
                                                   os.path.join(out, "diff", n), os.path.join(out, "diff", "pair-" + n))

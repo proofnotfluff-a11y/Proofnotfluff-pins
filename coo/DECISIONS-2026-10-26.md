@@ -27,3 +27,7 @@
 ## Area seats live, 3:07 pm
 - [stated] Todd: "6 & 7 go - please do these" (11:58 am), "passwords in" (2:55 pm), "push the seat links live" (3:07 pm).
 - So: six Gumroad Membership products made by the session (Todd pasted each seat's password and published them): Loop tggcevn, Near North wgxzjo, West kzoprr, Northwest nnegzp, North lkjya, South avxwuo; tier Area seat, $149 monthly, trial off, 1 active member each. The held-areas line is on the $29 product. Checkout links in site/pages.json areaSeats.checkout; live on proofnotfluff.com Oct 26, 3:10 pm, 6 of 6 areas open.
+
+## Channel spend, 7:09 pm (Kimi research chat)
+- [stated] Todd: "I don't want to spend $700" (to the BSCAI Service Provider listing from Kimi R6).
+- So: no paid association, event or media channel. Only $0 channels stay open: the FieldRoutes and Janitorial Manager partner applications (no fee stated). Correction to the R6 note: WorkWave's Referral partner type pays a commission for referring customers to WorkWave; it does not list us in front of pest companies, so it is dropped.

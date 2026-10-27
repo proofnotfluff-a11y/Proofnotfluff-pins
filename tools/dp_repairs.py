@@ -305,7 +305,7 @@ def page_html(p):
         codes = "".join(f'<tr><td class="rd-d">{E(city_words(d, m, c))} <code>{E(c)}</code></td><td>{n:,}</td></tr>' for c, n in t["codes"][:8] if n)
         panels += (f'<div class="rd-p" data-t="{t["key"]}"><div class="rd-card"><h3>{E(t["label"])}</h3><p>{E(t["who"])}</p>'
                    f'<div class="rd-nums"><div><b>{t["y12"]:,}</b><small>new violations, {E(period)}</small></div><div><b>{E(pct(t["ch"]))}</b><small>vs the 12 months before</small></div>'
-                   f'<div><b>{t["m"]:,}</b><small>in {E(ym_name(st["lm"]))}</small></div><div><b>{lead["y12"]:,}</b><small>most, in {E(lead["name"])}</small></div></div>'
+                   f'<div><b>{t["m"]:,}</b><small>in {E(ym_name(st["lm"]))}</small></div><div><b>{lead["y12"]:,}</b><small>Most: {E(lead["name"])}</small></div></div>'
                    + month_chart(t["city24"], st["labels"], t["ghost24"], E, f'Violations each month, {low(t["label"])}, for 24 months, with the same month a year earlier behind each bar')
                    + '<p class="rd-key"><span><i></i>That month</span><span class="k2"><i></i>Same month a year earlier</span></p></div>'
                    + f'<p class="up-key"><b>\u2191 Red</b> marks a rise of 25% or more vs the 12 months before, where those months had at least {FEW} violations.</p>'

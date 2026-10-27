@@ -250,6 +250,19 @@ def range_legend(cuts, fmt=lambda v: f"{v:,}"):
     return out
 
 
+def tenth_legend(cuts):
+    """Legend lines for classes cut in tenths (cuts are whole tenths): shown with one decimal, matching the table."""
+    f = lambda t: f"{t / 10:.1f}"
+    if not cuts:
+        return [("q0", "var(--gm0)", "Any")]
+    out = [("q0", "var(--gm0)", f"Under {f(cuts[0])}", f"<{f(cuts[0])}")]
+    for i in range(1, len(cuts)):
+        lo, hi = cuts[i - 1], cuts[i] - 1
+        out.append((f"q{i}", f"var(--gm{i})", f(lo) if lo == hi else f"{f(lo)} to {f(hi)}", f(lo)))
+    out.append((f"q{len(cuts)}", f"var(--gm{len(cuts)})", f"{f(cuts[-1])} or more", f"{f(cuts[-1])}+"))
+    return out
+
+
 def map_block(st, pop, E, period):
     import geo_map as G
     A = st["areas"]
@@ -278,9 +291,10 @@ def map_block(st, pop, E, period):
                {"key": "s", "label": "Sewer cleaning", "legendTitle": f"Sewer cleaning requests, {period}",
                 "cls": {a["n"]: f"q{G.klass(a['sewer12'], cs)}" for a in A}, "legend": range_legend(cs)}]
     if pop:
-        cp = G.nice_breaks([round(v) for v in per.values()])
+        tenths = {n: round(v * 10) for n, v in per.items()}          # the one-decimal value the table and tooltips show, in tenths
+        cp = G.nice_breaks(list(tenths.values()))
         metrics.append({"key": "p", "label": "Per 1,000 residents", "legendTitle": f"Water in basement calls per 1,000 residents, {period}",
-                        "cls": {n: f"q{G.klass(round(v), cp)}" for n, v in per.items()}, "legend": range_legend(cp)})
+                        "cls": {n: f"q{G.klass(t, cp)}" for n, t in tenths.items()}, "legend": tenth_legend(cp)})
     metrics.append({"key": "ch", "label": "Change vs the 12 months before", "legendTitle": "Water in basement calls vs the 12 months before",
                     "cls": {a["n"]: change_class(a["water12"], a["waterp12"]) for a in A}, "legend": CHANGE_BINS})
     w = st["types"]["water"]
@@ -514,7 +528,7 @@ def page_html(p):
         charts += (f'<div data-bf-group="bfc" data-bf-key="{k}"{" hidden" if k != "water" else ""}>'
                    f'<div class="bf-card"><p><b>{E(ty["label"])} {noun} each day, the last 365 days</b></p>'
                    + "".join(day_chart(st["days"][k], st["days"]["from"], peaks, E, f"{ty['label']} {noun} to 311 each day for the last 365 days; the busiest days at least a week apart are labeled", ph=ph) for ph in (False, True))
-                   + f'<p class="bf-cap">One bar per day, to {E(M.nice_date(d["through"]))}. The busiest days at least a week apart are labeled.</p></div>'
+                   + f'<p class="bf-cap">One bar per day, to {E(M.nice_date(d["through"]))}. The 3 busiest days at least a week apart are labeled.</p></div>'
                    f'<div class="bf-card"><p><b>{E(ty["label"])} {noun} each month</b></p>'
                    + month_chart(vals, mlab, ghost, E, f"{ty['label']} {noun} each month for 24 months, with the same month a year earlier behind each bar")
                    + '<p class="bf-key"><span><i></i>That month</span><span class="k2"><i></i>Same month a year earlier</span></p></div></div>')
@@ -553,15 +567,15 @@ def page_html(p):
                      + f'<td>{a["sewer12"]:,}</td><td class="bf-x">{E(area_change(a["sewer12"], a["sewerp12"]))}</td><td class="bf-x">{a["waterm"]:,}</td></tr>')
     thead = ('<thead><tr><th scope="col">Community area</th><th scope="col">Rank</th><th scope="col">Basement calls, 12 months</th><th scope="col">Basement change</th>'
              + ('<th scope="col" class="bf-x">Per 1,000 residents</th>' if has_pop else "")
-             + f'<th scope="col">Sewer requests, 12 months</th><th scope="col" class="bf-x">Sewer change</th><th scope="col" class="bf-x">{E(ym_name(st["lm"], True))}</th></tr></thead>')
+             + f'<th scope="col">Sewer requests, 12 months</th><th scope="col" class="bf-x">Sewer change</th><th scope="col" class="bf-x">Basement calls, {E(ym_name(st["lm"], True))}</th></tr></thead>')
     tbl = lambda rs, lab: f'<div class="bf-tw" role="region" aria-label="{E(lab)}" tabindex="0"><table class="bf-t">{thead}<tbody>{"".join(row(a) for a in rs)}</tbody></table></div>'
     SHOW = 20
-    table = (f'<p class="up-key"><b>\u2191 Red</b> marks a rise of 25% or more vs the 12 months before, where those months had at least {FEW} calls.</p>'
+    table = (f'<p class="up-key"><b>\u2191 Red</b> marks a basement call rise of 25% or more vs the 12 months before, where those months had at least {FEW} calls.</p>'
              '<p class="bf-swipe">Swipe the table sideways for more columns.</p>'
              + tbl(top[:SHOW], "Basement flooding calls, the 20 community areas with the most")
              + f'<details class="bf-more"><summary>Show the other {len(top) - SHOW} community areas</summary>' + tbl(top[SHOW:], "Basement flooding calls, the other community areas") + '</details>'
-             + f'<p class="asof">12 months is {E(period)}; change compares it with {E(yr_before)}, rounded to a whole percent. Within 1% shows as same, and under {FEW} calls in the earlier 12 months as too few. '
-             f'Rank is by water in basement calls; = marks a tie. The {E(ym_name(st["lm"], True))} column is water in basement calls that month.'
+             + f'<p class="asof">12 months is {E(period)}; change compares it with {E(yr_before)}, rounded to a whole percent. Within 1% shows as same, and under {FEW} in the earlier 12 months as too few. '
+             f'Rank is by water in basement calls; = marks a tie.'
              + (f' {w["noArea12"]:,} water in basement calls and {s["noArea12"]:,} sewer cleaning requests in those 12 months had no community area on the record and count only in the city totals.' if w["noArea12"] or s["noArea12"] else "")
              + (f' Per 1,000 residents uses the City\'s {E(pop_src.get("name", "population figures"))}' + (f' ({E(str(pop_src["acsYear"]))} estimates)' if pop_src.get("acsYear") else "") + '.' if has_pop else "")
              + '</p>'

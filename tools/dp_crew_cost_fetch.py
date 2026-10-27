@@ -203,6 +203,17 @@ def oews_rows(path):
     return {"file": name, "columns": head, "rows": out}
 
 
+def plain_dashes(x):
+    """Every em and en dash in every string becomes a plain hyphen (the repo's no-dash rule; check_repo em-dash)."""
+    if isinstance(x, str):
+        return x.replace("\u2014", "-").replace("\u2013", "-")
+    if isinstance(x, list):
+        return [plain_dashes(v) for v in x]
+    if isinstance(x, dict):
+        return {plain_dashes(k): plain_dashes(v) for k, v in x.items()}
+    return x
+
+
 def extract(raw):
     import hashlib
     man = json.load(open(os.path.join(raw, "manifest.json")))
@@ -229,6 +240,7 @@ def extract(raw):
     if os.path.isfile(api):
         ex["oews_api"] = json.load(open(api))
     os.makedirs(OUTDIR, exist_ok=True)
+    ex = plain_dashes(ex)   # repo rule: no em or en dashes in committed files (sha256 above stays on the original bytes)
     json.dump(ex, open(EXTRACTS, "w"), indent=1, ensure_ascii=False)
     print("extracts:", {k: (v.get("status"), len(v.get("text", "")) or len(json.dumps(v.get("oews", "")))) for k, v in ex["files"].items()})
 
@@ -240,6 +252,7 @@ def build(raw):
 
 def selftest():
     assert norm("Helpers--Carpenters") == "helpers carpenters"
+    assert plain_dashes({"a\u2014": ["x\u2013y", 1]}) == {"a-": ["x-y", 1]}
     assert links(b'<a href="/a/b.pdf">x</a><a href="mailto:x">', "https://x.gov/c/d.html") == ["https://x.gov/a/b.pdf"]
     assert safe_name("k", "https://x.gov/a/b.PDF") == "k.pdf" and safe_name("k", "https://x.gov/a/") == "k.html"
     print("dp_crew_cost_fetch selftest: ok")

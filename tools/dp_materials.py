@@ -15,7 +15,7 @@ Data, all under site/datapages/dp_materials/:
 What the page says, and why: these are national (and one Midwest) producer price indexes, what U.S. producers get for
 their goods, not what a Chicago supplier charges; BLS revises each month for up to 4 months, so preliminary months are
 labeled; index levels of different materials are not comparable, only their percent changes. The calculator does what
-BLS's own Price Adjustment Guide for Contracts shows: an amount at the quote month's index, times today's index over
+BLS's own PPI Guide for Price Adjustment shows: an amount at the quote month's index, times today's index over
 the quote month's index. It runs in the browser; nothing typed is sent anywhere.
 
 Usage: python3 tools/dp_materials.py --selftest
@@ -191,7 +191,7 @@ def calc_html(d, E, default=DEFAULT, heading=True):
     ch = pct(then[1], now[1])
     new = amt * now[1] / then[1]
     say = (f'{E(dflt["title"])} is {move_words(ch)} from {mlabel(q)} to {mlabel(now[0])}. '
-           f'${amt:,.2f} of it at the {mlabel(q)} index is ${new:,.2f} at the {mlabel(now[0])} index.')
+           f'${amt:,.2f} at the {mlabel(q)} index is ${new:,.2f} at the {mlabel(now[0])} index.')
     pnote = (f'{mlabel(now[0])} is preliminary: BLS can revise it for up to 4 months after it first comes out.' if "P" in now[2] else "")
     return ((f'<h2 id="quote-h">What your quote is worth now</h2><p>Pick the material, the month you priced the job and the material cost in your quote. '
              'The result moves with the BLS index for that material, the way BLS shows contracts adjusting a price.</p>' if heading else "")
@@ -222,7 +222,7 @@ def calc_html(d, E, default=DEFAULT, heading=True):
 
 
 def calc_js(d):
-    data = json.dumps({"s": calc_data(d), "dflt": DEFAULT}, separators=(",", ":"))
+    data = json.dumps({"s": calc_data(d), "dflt": DEFAULT, "got": nice(d["fetched"])}, separators=(",", ":"))
     return ("<script>(function(){var D=" + data + ";"
             r"""
 var root=document.querySelector('[data-mp-calc]');if(!root)return;
@@ -248,10 +248,10 @@ function run(){var s=ser(mat.value),o=s[5],now=o[o.length-1],then=null;for(var i
  out('new').textContent=money(nw,nw<1000?2:0);out('from').textContent='from '+money(a,a<1000?2:0);
  out('diff').textContent=(df<0?'-':'+')+money(Math.abs(df),Math.abs(df)<1000?2:0);
  out('idx').textContent='index '+then[1].toFixed(1)+' then, '+now[1].toFixed(1)+' now';
- out('say').textContent=s[1]+' is '+words(ch)+' from '+lab(then[0])+' to '+lab(now[0])+'. '+money(a,2)+' of it at the '+lab(then[0])+' index is '+money(nw,2)+' at the '+lab(now[0])+' index.';
+ out('say').textContent=s[1]+' is '+words(ch)+' from '+lab(then[0])+' to '+lab(now[0])+'. '+money(a,2)+' at the '+lab(then[0])+' index is '+money(nw,2)+' at the '+lab(now[0])+' index.';
  var pl=[];if(then[2])pl.push(lab(then[0]));if(now[2])pl.push(lab(now[0]));var pn=out('pnote');
- pn.hidden=!pl.length;pn.textContent=pl.length?pl.join(' and ')+(pl.length>1?' are':' is')+' preliminary: BLS can revise '+(pl.length>1?'them':'it')+' for up to 4 months after it first comes out.':'';
- last=s[1]+', BLS producer price index '+s[3]+' ('+s[4]+', not seasonally adjusted): '+then[1].toFixed(3)+' in '+lab(then[0])+(then[2]?' (preliminary)':'')+' and '+now[1].toFixed(3)+' in '+lab(now[0])+(now[2]?' (preliminary)':'')+', '+words(ch)+'. '+money(a,2)+' at the '+lab(then[0])+' index is '+money(nw,2)+' at the '+lab(now[0])+' index. Source: U.S. Bureau of Labor Statistics, via proofnotfluff.com/material-price-changes/';
+ pn.hidden=!pl.length;pn.textContent=pl.length?pl.join(' and ')+(pl.length>1?' are':' is')+' preliminary: BLS can revise '+(pl.length>1?'them':'it')+' for up to 4 months after '+(pl.length>1?'they first come':'it first comes')+' out.':'';
+ last=s[1]+', BLS producer price index '+s[3]+' ('+s[4]+', not seasonally adjusted): '+then[1].toFixed(3)+' in '+lab(then[0])+(then[2]?' (preliminary)':'')+' and '+now[1].toFixed(3)+' in '+lab(now[0])+(now[2]?' (preliminary)':'')+', '+words(ch)+'. '+money(a,2)+' at the '+lab(then[0])+' index is '+money(nw,2)+' at the '+lab(now[0])+' index. Source: U.S. Bureau of Labor Statistics, retrieved '+D.got+', via proofnotfluff.com/material-price-changes/';
  out('copied').textContent=''}
 mat.addEventListener('change',function(){fillMonths(mon.value);run()});mon.addEventListener('change',run);amt.addEventListener('input',run);
 root.querySelector('[data-mp-reset]').addEventListener('click',function(){mat.value=root.getAttribute('data-default')||D.dflt;fillMonths('');amt.value='10,000';run()});
@@ -421,7 +421,9 @@ def read_right(d, E):
     pair = (f'a lumber index of {a["last"][1]:,.0f} and a steel mill products index of {b["last"][1]:,.0f} say nothing about which costs more'
             if a and b else "two index numbers say nothing about which material costs more")
     blocks = [("National numbers, not Chicago prices",
-               "Each index tracks what U.S. producers get for that material across the country (one, ready-mix concrete, is also shown for the Midwest). "
+               "Each index tracks what U.S. producers get for that material across the country"
+               + (" (ready-mixed concrete is also shown for the Midwest region). " if any(x["area"] != "national" for x in d["mats"]) else ". ")
+               + 
                "It shows how far prices moved, not what a Chicago supplier charges you."),
               ("The last 4 months can still change",
                "BLS revises each month for up to 4 months after it first comes out. Those months carry a P. Run a quote again after a revision and the result can move a little."),
@@ -454,7 +456,8 @@ def faqs(d):
          f"${new:,.2f} at the {mlabel(m['last'][0])} index, {move_words(pct(q[1], m['last'][1]))}. The calculator on this page does the same math for every material here."),
         ("Are these Chicago prices?",
          "No. These are producer price indexes from the U.S. Bureau of Labor Statistics: what U.S. producers get for each material, measured across "
-         "the country. Ready-mix concrete is also shown for the Midwest region. Your supplier's price in Chicago can be higher or lower, and can move "
+         "the country. " + ("Ready-mixed concrete is also shown for the Midwest region. " if any(x["area"] != "national" for x in d["mats"]) else "")
+         + "Your supplier's price in Chicago can be higher or lower, and can move "
          "at a different speed. Use the index to see the size of a move."),
         ("Why did a number change after I used it?",
          "BLS revises each month for up to 4 months after it first comes out, as late reports arrive. Months still open to revision carry a P on this page. "
@@ -463,7 +466,7 @@ def faqs(d):
          "Pick the one closest to what you buy: copper wire and cable for an electrician's wire, ready-mixed concrete for a pour, gypsum products for drywall. "
          "Each material's page shows its BLS series ID, so anyone can look up the same numbers on bls.gov."),
         ("Are these seasonally adjusted?",
-         "No. Every index here is not seasonally adjusted, which is the kind BLS's Price Adjustment Guide for Contracts says to use when a price follows an index."),
+         "No. These are the raw monthly numbers, with no smoothing for the seasons. That is the kind BLS's PPI Guide for Price Adjustment says to use when a price follows an index."),
         ("When does this page update?",
          (f"BLS releases the producer price index once a month. The next release, for {mlabel(nx['month'])}, is on {nice(nx['date'])}, and the page "
           "picks it up the same day, along with any revisions to the 4 months before it." if nx else
@@ -475,10 +478,10 @@ def faqs(d):
 
 
 METHOD = [
-    "Every number comes from the U.S. Bureau of Labor Statistics producer price index by commodity, not seasonally adjusted, read through the BLS Public Data API on each weekday so a new release or revision lands the same day.",
+    "Every number comes from the U.S. Bureau of Labor Statistics producer price index by commodity, not seasonally adjusted, pulled from BLS's Public Data API every weekday, so a new release or revision lands the same day.",
     "The materials are BLS series for what trade owners commonly buy: wood, concrete and masonry, steel, aluminum, copper wire, roofing, drywall, insulation, paint, pipe, fixtures, heating equipment and diesel. Each series ID and title is BLS's own.",
-    "A change is the later index divided by the earlier one, less one, shown as a percent rounded to a tenth. The calculator multiplies your amount by the same ratio, which is how BLS's Price Adjustment Guide for Contracts shows a price following an index.",
-    "The page shows BLS's numbers as BLS publishes them and adds nothing to them. It is not a price quote, and it does not say what any contract allows; the contract and BLS's own pages do.",
+    "A change is the later index divided by the earlier one, less one, shown as a percent rounded to a tenth. The calculator multiplies your amount by the same ratio, which is how BLS's PPI Guide for Price Adjustment shows a price following an index.",
+    "Index values are shown as BLS publishes them. The percent changes and calculator results are ProofNotFluff's arithmetic on those values. It is not a price quote, and it does not say what any contract allows; your contract does. For questions about an index, check with BLS.",
 ]
 
 
@@ -492,7 +495,7 @@ def foot_html(M, E, rel, d, extra=""):
     return (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             f'<p>Source: U.S. Bureau of Labor Statistics, <a href="{BLS_PPI}">Producer Price Index</a> by commodity, not seasonally adjusted, '
             f'retrieved through the <a href="{BLS_API}">BLS Public Data API</a> on {E(pulled)}. Release dates: '
-            f'<a href="{BLS_SCHED}">BLS PPI release schedule</a>. How a price follows an index: <a href="{BLS_GUIDE}">BLS Price Adjustment Guide for Contracts</a>.{extra}</p>'
+            f'<a href="{BLS_SCHED}">BLS PPI release schedule</a>. How a price follows an index: <a href="{BLS_GUIDE}">BLS PPI Guide for Price Adjustment</a>.{extra}</p>'
             '<p>BLS.gov cannot vouch for the data or analyses derived from these data after the data have been retrieved from BLS.gov. '
             'ProofNotFluff is not affiliated with or endorsed by the U.S. Bureau of Labor Statistics.</p>'
             '<p>Public information, not legal, tax or financial advice, and not a price quote from any supplier.</p>'
@@ -526,14 +529,14 @@ def page_html(p):
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
               "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in fq]}
     ds_ld = {"@context": "https://schema.org", "@type": "Dataset", "name": "Material price indexes for trade owners (BLS PPI)",
-             "description": f"Monthly BLS producer price indexes for {len(d['mats'])} building materials and diesel fuel, not seasonally adjusted, with preliminary months marked.",
+             "description": f"Monthly BLS producer price indexes for {len(d['mats'])} materials trades buy, diesel fuel included, not seasonally adjusted, with preliminary months marked.",
              "url": url, "isAccessibleForFree": True, "creator": {"@type": "Organization", "name": "ProofNotFluff"},
              "isBasedOn": BLS_PPI, "temporalCoverage": f'{d["mats"][0]["obs"][0][0]}/{d["latest"]}',
              "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": url + "material-price-indexes.csv"}]}
     app_ld = {"@context": "https://schema.org", "@type": "WebApplication", "name": "Material price change since your quote calculator", "url": url + "#quote",
               "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "isAccessibleForFree": True,
               "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}
-    lede = (f'How far {len(d["mats"])} materials trades buy have moved since the month you quoted, from the federal producer price index. '
+    lede = (f'How far {len(d["mats"])} materials the trades buy have moved since the month you quoted, from the federal producer price index. '
             f'{n_up} of {len(ys)} are up on a year ago. Free, no sign-up.')
     tiles = ('<div class="tiles ld-tiles mp-tiles">'
              f'<div class="tile key"><div class="lab">Biggest rise, 12 months</div><div class="val mp-name">{E(top["title"])}</div><div class="sub" style="color:var(--band-text)">{pct_txt(top["y12"])} since {mlabel(top["y12o"][0])}</div></div>'
@@ -570,6 +573,19 @@ def source_link(src, E):
     return f'<a href="https://{E(path)}">{E(name)}</a>'
 
 
+SMALL = {"and", "of", "or", "the", "for", "in", "to"}
+
+
+def title_case(t):
+    return " ".join("/".join(w if (w.lower() in SMALL and i) else w[:1].upper() + w[1:] for w in part.split("/"))
+                    for i, part in enumerate(t.split(" ")))
+
+
+def mid(t):
+    """A BLS title inside a sentence: lower case first letter, except one that starts with an abbreviation (No. 2)."""
+    return t if t.startswith("No.") else t[:1].lower() + t[1:]
+
+
 def sub_html(p, m, d):
     import make_site as M
     E = M.E
@@ -580,12 +596,12 @@ def sub_html(p, m, d):
     first = m["obs"][0]
     since = pct(first[1], m["last"][1])
     h1 = f'{m["title"]} price index'
-    title = f'{m["title"]} Price Index: Change Since Your Quote | ProofNotFluff'
-    desc = (f'BLS producer price index for {m["title"].lower()}, {m["area"]}: {m["last"][1]:,.1f} in {L}, {move_words(m["m1"])} on the month and '
-            f'{move_words(m["y12"])} on a year. Free calculator, chart and CSV.')
+    title = f'{title_case(m["title"])} Price Index: Change Since Your Quote | ProofNotFluff'
+    desc = (f'BLS producer price index for {mid(m["title"])}, {m["area"]}: {m["last"][1]:,.1f} in {L}, {move_words(m["m1"])} on the month and '
+            f'{move_words(m["y12"])} over 12 months. Free calculator, chart and CSV.')
     crumb, crumb_ld = M.crumbs(rel, [("Home", ""), (p["h1"], p["slug"] + "/"), (m["title"], None)])
-    lede = (f'The {m["area"]} producer price index for {m["title"].lower()} was {m["last"][1]:,.1f} in {L}, '
-            f'{move_words(m["m1"])} on the month and {move_words(m["y12"])} on {mlabel(ym_add(m["last"][0], -12))}. Bought by {m["buyers"] if m["buyers"][1:2].isupper() else m["buyers"][0].lower() + m["buyers"][1:]}.')
+    lede = (f'The {m["area"]} producer price index for {mid(m["title"])} was {m["last"][1]:,.1f} in {L}, '
+            f'{move_words(m["m1"])} on the month and {move_words(m["y12"])} since {mlabel(ym_add(m["last"][0], -12))}. Bought by {m["buyers"] if m["buyers"][1:2].isupper() else m["buyers"][0].lower() + m["buyers"][1:]}.')
     tiles = ('<div class="tiles ld-tiles mp-tiles">'
              f'<div class="tile key"><div class="lab">Index, {L}</div><div class="val">{m["last"][1]:,.1f}</div><div class="sub" style="color:var(--band-text)">{"preliminary" if "P" in m["last"][2] else "final"}</div></div>'
              f'<div class="tile"><div class="lab">1 month</div><div class="val">{pct_txt(m["m1"])}</div><div class="sub">since {mlabel(ym_add(m["last"][0], -1))}</div></div>'

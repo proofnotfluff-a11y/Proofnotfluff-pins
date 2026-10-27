@@ -1,0 +1,54 @@
+name: Chicago City contracts by trade
+# Free daily page /chicago-city-contracts/ (Todd, live chat, Oct 27, 2026, 12:17 pm: "Let's do them all";
+# coo/PARALLEL_BUILDS.md). The cloud agents cannot reach data.cityofchicago.org or chicago.gov, so this runner reads the
+# City's Contracts dataset (rsxa-ify5), groups the awards by trade and commits only the tables the page shows
+# (site/datapages/dp_contracts/). No vendor address is ever kept. It also saves the City's Data Terms of Use page and
+# checks the Procurement Services 2026 weekly bid list (tools/dp_contracts_probe.py).
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/dp_contracts.py", "tools/dp_contracts_data.py", "tools/dp_contracts_probe.py", ".github/workflows/dp_contracts.yml"]
+  schedule:
+    - cron: "05 12 * * *"   # daily, about 7:05 am Chicago time in daylight time (the City updates the dataset daily)
+permissions:
+  contents: write
+concurrency:
+  group: dp-contracts
+  cancel-in-progress: false
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          pip install --quiet cryptography openpyxl pillow
+          sudo apt-get install -y -qq poppler-utils >/dev/null
+      - name: Source check (terms page, columns, weekly bid list)
+        run: python3 tools/dp_contracts_probe.py --art /tmp/dpc-art
+      - name: Self-checks (planted rows)
+        run: |
+          if [ -f tools/dp_contracts_data.py ]; then python3 tools/dp_contracts_data.py --selftest; fi
+          if [ -f tools/dp_contracts.py ]; then python3 tools/dp_contracts.py --selftest; fi
+      - name: Pull the City's contract awards and group them by trade
+        run: if [ -f tools/dp_contracts_data.py ]; then python3 tools/dp_contracts_data.py; fi
+      - name: Rebuild the site pages from the new tables
+        run: python3 tools/make_site.py
+      - name: Keep the sample rows for the build chat (never committed, 3 days)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dpc-probe
+          path: /tmp/dpc-art
+          retention-days: 3
+          if-no-files-found: ignore
+      - name: Commit
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add -A site/datapages/dp_contracts docs
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "Chicago City contracts data $(TZ=America/Chicago date +%Y-%m-%d)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done
+          exit 1

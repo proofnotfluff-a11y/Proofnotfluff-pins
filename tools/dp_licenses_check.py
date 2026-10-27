@@ -10,7 +10,7 @@ confirm each line's figures still appear on it. Writes site/datapages/dp_license
 "ok", "changed" (a figure is missing: the line needs a fresh read) or "blocked" (the page refused the runner, which
 proves nothing either way). Exit 1 when any source is "changed".
 
-Usage: python3 tools/dp_licenses_check.py [--fetch] [--selftest]
+Usage: python3 tools/dp_licenses_check.py [--fetch] [--selftest] [--print URL]
 """
 import datetime as dt, html, json, os, re, sys, urllib.request
 
@@ -160,6 +160,13 @@ def selftest():
 def main():
     if "--selftest" in sys.argv:
         return selftest()
+    if "--print" in sys.argv:   # read one page as text, for a line that needs a fresh read (the runner reaches what the cloud shell cannot)
+        url = sys.argv[sys.argv.index("--print") + 1]
+        try:
+            print(re.sub(r"\s+", " ", html.unescape(fetch_text(url)))[:20000])
+        except Exception as e:
+            print("could not read", url, e)
+        return
     d = json.load(open(DATA, encoding="utf-8"))
     errs = validate(d)
     for e in errs:

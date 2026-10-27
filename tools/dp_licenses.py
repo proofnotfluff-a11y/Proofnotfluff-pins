@@ -94,6 +94,13 @@ CSS = ("<style>"
        ".lf-g td{display:grid;grid-template-columns:62px minmax(0,1fr);gap:10px;margin:2px 0}"
        ".lf-g td::before{content:attr(data-l);font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding-top:2px}}"
        ".lf-pick[hidden],.lf-nojs[hidden]{display:none}"
+       "main .lf-grid li a{padding:12px 14px}.lf-grid svg{flex:none}.lf-nw{white-space:nowrap}"
+       "section.block p.lf-check,.lf-trade p.lf-check{max-width:none}"
+       ".ld-hero .lf-pick .asof{align-self:end;padding-bottom:14px}"
+       ".sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}"
+       "@media(max-width:599px){.lf-g tr.on{background:var(--teal-tint);box-shadow:inset 3px 0 var(--teal)}.lf-g tr.on th,.lf-g tr.on td{background:none}"
+       ".lf-g tbody th a{display:inline-flex;align-items:center;min-height:44px}"
+       ".lf-gcwrap .lf-calc{padding:0;border:0;background:none}.lf-trade{padding:16px}}"
        ".lf-pick{margin:18px 0 16px}.ld-hero .lf-pick .asof{margin:0;align-self:center}"
        "</style>")
 
@@ -108,7 +115,7 @@ def check_line(t, d, E):
     return f'<p class="lf-check">Check with the {links} before you apply or bid. Fees and rules change, and this page is not legal advice.</p>'
 
 
-def trade_html(t, d, E, h="h2", picker=""):
+def trade_html(t, d, E, h="h2", picker="", solo=False):
     rows = []
     for key, label in TOPICS:
         items = [x for x in t["rows"] if x["topic"] == key]
@@ -119,12 +126,20 @@ def trade_html(t, d, E, h="h2", picker=""):
     jump = '<p class="lf-src"><a href="#gc-class">Find your class</a> from the largest project you take on.</p>' if picker else ""
     sub = h.replace("2", "3") if h == "h2" else "h3"
     pick = f'<div class="lf-gcwrap" id="gc"><{sub}>Which class do you need?</{sub}><p>{E(d["gc"]["intro"])}</p>{picker}</div>' if picker else ""
-    return (f'<section class="lf-trade" id="{E(t["slug"])}" data-trade="{E(t["slug"])}"><{h}>{E(t["name"])}</{h}><p class="lf-sum">{E(t["summary"])}</p>'
+    head_ = (f'<{h} class="sr">{E(t["name"])}: City and State requirements</{h}>' if solo else f'<{h}>{E(t["name"])}</{h}><p class="lf-sum">{E(t["summary"])}</p>')
+    return (f'<section class="lf-trade" id="{E(t["slug"])}" data-trade="{E(t["slug"])}">{head_}'
             f'{jump}<dl class="lf-dl">{"".join(rows)}</dl>{check_line(t, d, E)}{pick}</section>')
 
 
+def nb(h):
+    """Display only: keep short phrases on one line (design review, Oct 27)."""
+    for w in ("A to E", "pre-1978"):
+        h = h.replace(w, f'<span class="lf-nw">{w}</span>')
+    return h
+
+
 def glance_html(d, E):
-    rows = "".join(f'<tr><th scope="row"><a href="#{E(t["slug"])}" data-go="{E(t["slug"])}">{E(t["name"])}</a></th><td data-l="City">{E(t["glance"][0])}</td><td data-l="State">{E(t["glance"][1])}</td></tr>'
+    rows = "".join(f'<tr><th scope="row"><a href="#{E(t["slug"])}" data-go="{E(t["slug"])}">{E(t["name"])}</a></th><td data-l="City">{nb(E(t["glance"][0]))}</td><td data-l="State">{nb(E(t["glance"][1]))}</td></tr>'
                    for t in d["trades"])
     return ('<div class="lf-tw" role="region" aria-label="Every trade at a glance: City and State requirements" tabindex="0"><table class="lf-t lf-g">'
             '<thead><tr><th scope="col">Trade</th><th scope="col">City of Chicago</th><th scope="col">State of Illinois</th></tr></thead>'
@@ -220,7 +235,7 @@ def page_html(p):
               "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in d["faq"]]}
     trades = d["trades"]
     opts = '<option value="">All 12 trades</option>'.replace("12", str(len(trades))) + "".join(f'<option value="{E(t["slug"])}">{E(t["name"])}</option>' for t in trades)
-    grid = ('<ul class="lf-grid">' + "".join(f'<li><a href="{E(t["slug"])}/"><span>{E(t["name"])}<small>{E(t["card"])}</small></span>{M.ARROW}</a></li>' for t in trades) + '</ul>')
+    grid = ('<ul class="lf-grid">' + "".join(f'<li><a href="{E(t["slug"])}/"><span>{E(t["name"])}<small>{nb(E(t["card"]))}</small></span>{M.ARROW}</a></li>' for t in trades) + '</ul>')
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(META["h1"])}</h1>'
             f'<p class="lede">{E(d["lede"])}</p>'
             f'<p class="asof">Every line read on the agency\'s own page on {E(nice(d["checked"]))}, with the page linked beside it.</p>'
@@ -230,9 +245,10 @@ def page_html(p):
             f'<section class="block" id="glance"><h2>Every trade at a glance</h2><p>The license each trade needs from the City and the State, on the pages we read. Tap a trade for the fee, insurance, bond, exam and renewal.</p>{glance_html(d, E)}</section>'
             '<section class="block" id="trades"><h2>Trade by trade</h2>'
             f'{"".join(trade_html(t, d, E, picker=gc_picker(d, E) if t["slug"] == "general-contractor" else "") for t in trades)}</section>'
-            f'<section class="block" id="each"><h2>One page per trade</h2><p>The same facts on a page of their own, to save or send.</p>{grid}</section>'
             '<section class="block"><h2>How this page is made</h2>' + "".join(f"<p>{E(x)}</p>" for x in d["method"]) + '</section>'
-            f'{M.faq_block(d["faq"])}')
+            f'{M.faq_block(d["faq"])}'
+            f'<section class="block" id="each"><h2>One page per trade</h2><p>The same facts on a page of their own, to save or send.</p>{grid}'
+            '<p class="rl-act"><a class="btn" href="#gc-class">Find your general contractor class</a></p></section>')
     return head(p, M, E, url, rel, p["title"], p["desc"], robots, [crumb_ld, faq_ld]) + body + foot(d, rel, E, M)
 
 
@@ -246,10 +262,10 @@ def extra_pages(p):
         url, rel = M.BASE + p["slug"] + "/" + t["slug"] + "/", "../../"
         crumb, crumb_ld = M.crumbs(rel, [("Home", ""), (META["h1"], p["slug"] + "/"), (t["name"], None)])
         gc = t["slug"] == "general-contractor"
-        others = "".join(f'<li><a href="../{E(x["slug"])}/"><span>{E(x["name"])}<small>{E(x["card"])}</small></span>{M.ARROW}</a></li>' for x in d["trades"] if x is not t)
+        others = "".join(f'<li><a href="../{E(x["slug"])}/"><span>{E(x["name"])}<small>{nb(E(x["card"]))}</small></span>{M.ARROW}</a></li>' for x in d["trades"] if x is not t)
         body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">Chicago trade license finder</p><h1>{E(t["h1"])}</h1>'
-                f'<p class="lede">{E(t["summary"])}</p><p class="asof">Every line checked on {E(nice(d["checked"]))} on the agency\'s own page, linked beside it.</p></div>'
-                + trade_html(dict(t, summary=t["page_summary"]), d, E, h="h2", picker=gc_picker(d, E) if gc else "")
+                f'<p class="lede">{E(t["page_summary"])}</p><p class="asof">Every line checked on {E(nice(d["checked"]))} on the agency\'s own page, linked beside it.</p></div>'
+                + trade_html(t, d, E, h="h2", picker=gc_picker(d, E) if gc else "", solo=True)
                 + f'<section class="block"><h2>Other trades</h2><p><a href="../">See every trade on one page</a>, or pick another.</p><ul class="lf-grid">{others}</ul></section>')
         title = t["title"]
         out.append((t["slug"] + "/index.html", head(p, M, E, url, rel, title, t["desc"], robots, [crumb_ld]) + body + foot(d, rel, E, M)))

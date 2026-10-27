@@ -6,7 +6,7 @@ name: Chicago trade license finder check
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [main, build-license-finder]
     paths: ["site/datapages/dp_licenses/licenses.json", "tools/dp_licenses.py", "tools/dp_licenses_check.py", ".github/workflows/dp_licenses.yml"]
 permissions:
   contents: write
@@ -23,6 +23,8 @@ jobs:
         run: python3 tools/dp_licenses_check.py --selftest
       - name: PDF reader
         run: pip install --quiet pypdf
+      - name: Read the BACP fee notice (one-off, build chat)
+        run: python3 tools/dp_licenses_check.py --print "https://www.chicago.gov/content/dam/city/depts/bacp/Small%20Business%20Center/20260127newfees.pdf"
       - name: Re-read every agency page
         id: fetch
         continue-on-error: true
@@ -34,7 +36,7 @@ jobs:
           git add site/datapages/dp_licenses/check.json
           if git diff --cached --quiet; then echo "no change"; else
             git commit -m "License finder source check $(TZ=America/Chicago date +%Y-%m-%d)"
-            for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 10; done
+            for i in 1 2 3; do git pull --rebase origin "$GITHUB_REF_NAME" && git push origin "HEAD:$GITHUB_REF_NAME" && break; sleep 10; done
           fi
       - name: Fail when a figure moved
         if: steps.fetch.outcome == 'failure'

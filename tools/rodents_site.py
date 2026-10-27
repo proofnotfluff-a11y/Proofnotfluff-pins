@@ -118,6 +118,18 @@ def nn(n, word, many=None):
     return f"{n:,} {word if n == 1 else (many or word + 's')}"
 
 
+THE = {"Loop", "Near North Side", "Near West Side", "Near South Side", "Lower West Side"}
+
+
+def dn(name, cap=False):
+    """The name in running text: 'the Loop' (or 'The Loop' at the start of a sentence); other areas as they are."""
+    return (("The " if cap else "the ") + name) if name in THE else name
+
+
+def same_say(x):
+    return "about the same" if x == "same" else x
+
+
 def slug_of(name):
     return re.sub(r"[^a-z0-9]+", "-", name.lower().replace("'", "")).strip("-")
 
@@ -245,7 +257,7 @@ def map_block(d, E, ix=None, rel=""):
         big = {"d30": (f'{a["d30"]:,}', ("complaint" if a["d30"] == 1 else "complaints") + ", last 30 days"),
                "d7": (f'{a["d7"]:,}', ("complaint" if a["d7"] == 1 else "complaints") + ", last 7 days"),
                "ch": (("Too few" if ch == "too few" else "About the same" if ch == "same" else ch),
-                      "too few a year ago to compare" if ch == "too few" else (f"within 1% of the same 30 days of {yr}" if ch == "same" else f"against the same 30 days of {yr}"))}
+                      f"under {FEW} a year ago" if ch == "too few" else (f"within 1% of the same 30 days of {yr}" if ch == "same" else f"against the same 30 days of {yr}"))}
         say = {"d30": f'{nn(a["d30"], "complaint")} in 30 days', "d7": f'{nn(a["d7"], "complaint")} in 7 days',
                "ch": ch_say + f' ({a["d30"]:,} against {a["prev30"]:,})'}
         if x:
@@ -258,7 +270,8 @@ def map_block(d, E, ix=None, rel=""):
                        f'<dt>Citing pests (violation 38)</dt><dd>{x["pest"]:,}{f" ({ps}%)" if ps is not None else ""}</dd>'
                        f'<dt>Citing a hood or ventilation (56)</dt><dd>{x["vent"]:,}{f" ({vs}%)" if vs is not None else ""}</dd>')
                 few = f'too few restaurant inspections to give a share ({x["insp"]:,} in 12 weeks)'
-                fewsub = f'under {SHARE_FEW} restaurant inspections ({nn(x["insp"], "inspection")} in 12 weeks)'
+                fewsub = ("no restaurant inspections in 12 weeks" if not x["insp"] else
+                          f'under {SHARE_FEW} restaurant inspections ({nn(x["insp"], "inspection")} in 12 weeks)')
                 big["rp"] = (f"{ps}%", f'of {nn(x["insp"], "restaurant inspection")} cited pests') if ps is not None else ("Too few", fewsub)
                 big["rv"] = (f"{vs}%", f'of {nn(x["insp"], "restaurant inspection")} cited a hood or ventilation') if vs is not None else ("Too few", fewsub)
                 say["rp"] = f'{ps}% of restaurant inspections cited pests ({x["pest"]:,} of {x["insp"]:,})' if ps is not None else few
@@ -291,14 +304,14 @@ def map_block(d, E, ix=None, rel=""):
                    key=lambda a: (-(a["d30"] - a["prev30"]), a["name"]))[:5]
     top_rate = ix["order"][:3] if ix else []
     hint = ('<h3>Citywide</h3>'
-            f'<p class="gm-big"><span>{c["d30"]:,}</span><small>complaints, last 30 days, {E(pct(c["change"]))} on a year ago</small></p>'
+            f'<p class="gm-big"><span>{c["d30"]:,}</span><small>complaints, last 30 days, {E(same_say(pct(c["change"])))} on a year ago</small></p>'
             + ('<p>Most complaints per resident:</p><ul class="gm-top">'
                + "".join(f'<li><button type="button" data-pick="{a["n"]}">{E(a["name"])}, {a["r30"]:.2f} per 1,000</button></li>' for a in top_rate) + '</ul>'
                if top_rate else "")
             + ('<div class="ri-hx">' if top_rate else "") + '<p>Most complaints:</p><ul class="gm-top">'
             + "".join(f'<li><button type="button" data-pick="{a["n"]}">{E(a["name"])}, {a["d30"]:,}</button></li>' for a in top3) + '</ul>'
-            + ('<p>Biggest rises on a year ago:</p><ul class="gm-top">'
-               + "".join(f'<li><button type="button" data-pick="{a["n"]}">{E(a["name"])}, +{a["d30"] - a["prev30"]:,}</button></li>' for a in rises) + '</ul>' if rises else "")
+            + ('<p>Biggest rises in complaints on a year ago:</p><ul class="gm-top">'
+               + "".join(f'<li><button type="button" data-pick="{a["n"]}">{E(a["name"])}, {a["d30"] - a["prev30"]:,} more</button></li>' for a in rises) + '</ul>' if rises else "")
             + ('</div>' if top_rate else "")
             + '<p class="gm-hint">Tap or hover any area on the map, or choose one from the list.</p>')
     cap = ("Community area outlines: City of Chicago, Boundaries - Community Areas. "
@@ -380,10 +393,10 @@ def badge_svg(a, d):
     to = d["window"]["to"]
     import make_site as M
     when = M.nice_date(to)
-    line = f'{a["place"]} of 77 areas · {a["r30"]:.2f} per 1,000 residents'
+    line = f'{a["place"][:1].upper() + a["place"][1:]} of 77 areas · {a["r30"]:.2f} per 1,000 residents'
     sub = f"311 rat complaints, 30 days to {when}"
     title = f'Chicago Rat Index: {a["name"]}, {a["place"]} of 77'
-    desc = (f'{a["name"]} ranks {a["place"]} of Chicago\'s 77 community areas for rat complaints to 311 per 1,000 residents: '
+    desc = (f'{dn(a["name"], True)} ranks {a["place"]} of Chicago\'s 77 community areas for rat complaints to 311 per 1,000 residents: '
             f'{a["r30"]:.2f} in the 30 days to {when} ({nn(a["d30"], "complaint")}). By ProofNotFluff, from City of Chicago data.')
     e = lambda s: str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
     font = "system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
@@ -435,7 +448,7 @@ def index_table(ix, d, E, rel):
             + '<p class="asof">Rank 1 has the most rat complaints per 1,000 residents in the last 30 days. "Up 3" means an area moved 3 places toward 1st.</p>'
             '<details class="ri-how"><summary>How the ranks are counted</summary><p class="asof">Tied areas share a rank. '
             f'Change compares the last 30 days with the same 30 days of {yr}, rounded to a whole '
-            f'percent; within 1% shows as same, and under {FEW} complaints a year earlier as too few. Median days to close is for the requests the '
+            f'percent; within 1% shows as about the same, and under {FEW} complaints a year earlier as too few. Median days to close is for the requests the '
             f'City closed in the last 30 days, from each request\'s created and closed dates; under 5 closed shows as too few.'
             + (f' {c["noArea30"]:,} of the last 30 days\' complaints had no community area on the record and count only in the city total.' if c.get("noArea30") else "")
             + '</p></details>')
@@ -516,7 +529,7 @@ def embed_block(ix, E, rel, one=None):
               f"s.addEventListener('change',function(){{t.value=c[s.value];i.src='{rel}'+s.value+'/badge.svg';"
               "i.alt='Chicago Rat Index badge for '+s.options[s.selectedIndex].text;if(ok)ok.textContent='';});})();</script>")
     return ('<section class="block" id="embed"><h2>Put the Rat Index on your site</h2>'
-            + (f'<p>A free badge for {E(one["name"])}: copy the code into your website. ' if one else '<p>A free badge for any community area: pick one, then copy the code into your website. ')
+            + (f'<p>A free badge for {E(dn(one["name"]))}: copy the code into your website. ' if one else '<p>A free badge for any community area: pick one, then copy the code into your website. ')
             + 'The badge updates by itself every Monday and links back to the numbers. '
             'Pest control companies, property managers and local news sites are welcome to use it.</p>'
             '<div class="ri-embed"><div>' + pick
@@ -657,7 +670,7 @@ def page_html(p):
     tiles = ('<div class="tiles ld-tiles">'
              f'<div class="tile key"><div class="lab">Last 7 days</div><div class="val">{c["d7"]:,}</div><div class="sub">rat complaints to 311</div></div>'
              f'<div class="tile"><div class="lab">Last 30 days</div><div class="val">{c["d30"]:,}</div><div class="sub">in {c["areasWith30"]:,} of 77 community areas</div></div>'
-             f'<div class="tile"><div class="lab">Against a year ago</div><div class="val">{E(pct(c["change"]))}</div><div class="sub">{c["prev30"]:,} in the same 30 days of {E(w["prevTo"][:4])}</div></div>'
+             f'<div class="tile"><div class="lab">Against a year ago</div><div class="val">{E("About the same" if pct(c["change"]) == "same" else pct(c["change"]))}</div><div class="sub">{c["prev30"]:,} in the same 30 days of {E(w["prevTo"][:4])}</div></div>'
              + tile4
              + f'</div><p class="asof">Counts as of {E(M.nice_date(w["to"]))}, from City of Chicago 311 records pulled {E(pulled)}. Updated every Monday.</p>')
     peak = max((a["d30"] for a in top[:10]), default=1) or 1
@@ -680,7 +693,7 @@ def page_html(p):
         table = (tbl(top[:SHOW], f"Rat complaints, the {min(SHOW, len(top))} community areas with the most")
                  + (f'<details class="rc-more-t"><summary>Show the other {len(top) - SHOW} community areas</summary>'
                     + tbl(top[SHOW:], "Rat complaints, the other community areas") + '</details>' if len(top) > SHOW else "")
-                 + f'<p class="asof">Change compares the last 30 days with the same 30 days a year earlier, rounded to a whole percent; within 1% shows as same, and under {FEW} complaints a year earlier as too few to compare.'
+                 + f'<p class="asof">Change compares the last 30 days with the same 30 days a year earlier, rounded to a whole percent; within 1% shows as about the same, and under {FEW} complaints a year earlier as too few to compare.'
                  + (f' {c["noArea30"]:,} of the last 30 days\' complaints had no community area on the record and count only in the city total.' if c.get("noArea30") else "")
                  + '</p>')
     mapb = map_block(d, E, ix, "") if p.get("map") else ""
@@ -731,10 +744,10 @@ def area_html(p, d, ix, a, M):
     w, ed = d["window"], d["edition"]
     two, foot, pulled = page_parts(p, d, M)
     when = M.nice_date(w["to"])
-    h1 = f'Rats in {a["name"]}, Chicago'
-    h1h = (f'Rats in <span class="ri-nw">{E(a["name"])},</span> Chicago' if len(a["name"]) <= 15 else E(h1))   # keep a short place name on one line
+    h1 = f'Rats in {dn(a["name"])}, Chicago'
+    h1h = (f'Rats in <span class="ri-nw">{E(dn(a["name"]))},</span> Chicago' if len(dn(a["name"])) <= 15 else E(h1))   # keep a short place name on one line
     title = f'{a["name"]} Rat Complaints and Rat Index, Chicago | ProofNotFluff'
-    desc = (f'{a["name"]} is {a["place"]} of Chicago\'s 77 areas for rat complaints: {a["r30"]:.2f} per 1,000 residents '
+    desc = (f'{dn(a["name"], True)} is {a["place"]} of Chicago\'s 77 areas for rat complaints: {a["r30"]:.2f} per 1,000 residents '
             f'in the 30 days to {when}, from City records.')
     crumb, crumb_ld = M.crumbs(rel, [("Home", ""), ("Chicago Rat Index", p["slug"] + "/"), (a["name"], None)])
     robots = "" if M.is_live(p) else '<meta name="robots" content="noindex, nofollow">'
@@ -743,10 +756,10 @@ def area_html(p, d, ix, a, M):
     ch = area_change(a)
     ch_t = "too few a year ago to compare" if ch == "too few" else ("about the same as" if ch == "same" else f"{ch} on")
     if a["d30"]:
-        lede = (f'{E(a["name"])} is {a["place"]} of Chicago\'s 77 community areas on the Rat Index: {a["r30"]:.2f} rat complaints to 311 per 1,000 residents '
+        lede = (f'{E(dn(a["name"], True))} is {a["place"]} of Chicago\'s 77 community areas on the Rat Index: {a["r30"]:.2f} rat complaints to 311 per 1,000 residents '
                 f'in the 30 days to {E(when)} ({nn(a["d30"], "complaint")}), against {ix["city"]["r30"]:.2f} citywide. ')
     else:
-        lede = (f'{E(a["name"])} had no rat complaints to 311 in the 30 days to {E(when)}, so it {"shares" if "tied" in a["place"] else "holds"} the bottom place on the Rat Index '
+        lede = (f'{E(dn(a["name"], True))} had no rat complaints to 311 in the 30 days to {E(when)}, so it {"shares" if "tied" in a["place"] else "holds"} the bottom place on the Rat Index '
                 f'({a["place"]} of 77), against {ix["city"]["r30"]:.2f} per 1,000 residents citywide. ')
     lede += ("" if not a["d30"] and not a["prior30"] else "It is the same place as in the 30 days before." if not a["mom"] else
                f'That is {move(a["mom"])} place{"s" if abs(a["mom"]) != 1 else ""} from the 30 days before, when it was {ordinal(a["kPrior"])}.')
@@ -767,11 +780,11 @@ def area_html(p, d, ix, a, M):
               + '</tbody></table></div>'
               f'<p class="asof">Rank against the 30 days before: {mv_cell(a["mom"])}. Rank against the same 30 days of {yr}: {mv_cell(a["yoy"])}. '
               'Rank 1 has the most complaints per resident; "up" means closer to 1st.</p>')
-    weeks = week_bars(d["weeks"], a["w12"], f'Rat complaints in {a["name"]} each week for the last 12 weeks', E, M, w["to"])
-    edition = (f'<section class="block"><h2>{E(a["name"])} in the {ed["year"]} rattiest neighborhoods list</h2>'
-               f'<p>In the 12 months from {E(M.nice_date(ed["from"]))} to {E(M.nice_date(ed["to"]))}, {E(a["name"])} had {a["year"]:,} rat complaints, '
+    weeks = week_bars(d["weeks"], a["w12"], f'Rat complaints in {dn(a["name"])} each week for the last 12 weeks', E, M, w["to"])
+    edition = (f'<section class="block"><h2>{E(dn(a["name"], True))} in the {ed["year"]} rattiest neighborhoods list</h2>'
+               f'<p>In the 12 months from {E(M.nice_date(ed["from"]))} to {E(M.nice_date(ed["to"]))}, {E(dn(a["name"]))} had {a["year"]:,} rat complaints, '
                f'{a["rYear"]:.2f} per 1,000 residents: {E(a["placeYear"])} of 77 (it was {ordinal(a["kYearPrev"])} in the {ed["year"] - 1} edition, with {a["yearPrev"]:,}). '
-               f'The list ranks complaints to 311, not a count of rats. <a href="{up}#rattiest">See the full {ed["year"]} list</a>.</p></section>')
+               f'The list ranks complaints to 311, not a count of rats. <a href="{up}#rattiest">See the {ed["year"]} top 10</a>.</p></section>')
     rest = ""
     if "insp" in a:
         cc = ix["city"]
@@ -784,8 +797,8 @@ def area_html(p, d, ix, a, M):
             rt = ("<p>No restaurant inspections in these 12 weeks.</p>" if not a["insp"] else
                   f'<p>{a["insp"]:,} restaurant inspection{"" if a["insp"] == 1 else "s"} in 12 weeks: {a["pest"]:,} cited pests and {a["vent"]:,} cited a hood or ventilation. '
                   f'That is too few to give a fair share (under {SHARE_FEW}).</p>')
-        rest = (f'<section class="block"><h2>Restaurant inspections in {E(a["name"])}</h2>'
-                f'<p>City food inspections of restaurants in {E(a["name"])} from {E(M.nice_date(rw["from"]))} to {E(M.nice_date(rw["to"]))}: how many cited pests '
+        rest = (f'<section class="block"><h2>Restaurant inspections in {E(dn(a["name"]))}</h2>'
+                f'<p>City food inspections of restaurants in {E(dn(a["name"]))} from {E(M.nice_date(rw["from"]))} to {E(M.nice_date(rw["to"]))}: how many cited pests '
                 '(violation 38) or a kitchen hood or ventilation (violation 56 with a hood or vent note). Counts only; no restaurant is named.</p>'
                 f'{rt}<p class="asof ri-page-how"><a href="{up}#restaurants">How these are counted</a></p></section>')
     i = ix["order"].index(a)
@@ -799,7 +812,7 @@ def area_html(p, d, ix, a, M):
             f'<div class="ld-heroact rl-act"><a class="btn" href="{up}">See all 77 areas</a><a class="st-btn2" href="#embed">Get the badge</a></div></div>'
             f'{tiles}'
             f'<section class="block"><h2>How the rank moved</h2>{rank_t}</section>'
-            f'<section class="block"><h2>Week by week in {E(a["name"])}</h2>{weeks}</section>'
+            f'<section class="block"><h2>Week by week in {E(dn(a["name"]))}</h2>{weeks}</section>'
             f'{edition}{rest}'
             + embed_block(ix, E, up, one=a).replace(f'src="{up}{a["slug"]}/badge.svg"', 'src="badge.svg"')
             + near + two(rel) + COPY_JS)

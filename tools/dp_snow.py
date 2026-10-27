@@ -61,7 +61,7 @@ FAQ = [
 
 
 def faq(s0, sd=None):
-    a1 = (f"It depends on your trigger. At O'Hare, the middle of the last {s0['n']} complete winters had {pushes(s0['mid'])} with "
+    a1 = (f"It depends on your trigger. At O'Hare, the middle winter of the last {s0['n']} complete ones had {pushes(s0['mid'])} with "
           f"{inch(s0['t'])} or more of new snow; a light winter had {num(s0['low'])} or fewer and a heavy one {num(s0['high'])} or more. "
           "Pick your trigger and station at the top of this page for your counts.")
     a4 = "Not always. These are two weather stations, one at O'Hare and one near Midway. Check your own storm records too."
@@ -380,7 +380,8 @@ def months_chart(v, t, E):
     sm = v["sum"][t]
     top = max((m["avg"] for m in sm["months"]), default=0)
     ymax = max(top, 0.1) * 1.18
-    cols = "".join(f'<div class="sn-col" data-tip="{E(m["name"])}|{E(avg_words(m["avg"]).capitalize())} a winter on average; {m["winters"]} of {sm["n"]} winters had {"one" if m["winters"] == 1 else "one or more"}">'
+    cols = "".join(f'<div class="sn-col" data-tip="{E(m["name"])}|{E(avg_words(m["avg"]).capitalize())} a winter on average; '
+                   f'{(str(m["winters"]) + " of " + str(sm["n"]) + " winters had at least one") if m["winters"] else ("None of the " + str(sm["n"]) + " winters had one")}">'
                    f'<b>{E(bar_words(m["avg"]))}</b><i style="height:{m["avg"] / ymax * 100:.2f}%"></i></div>' for m in sm["months"])
     xl = "".join(f'<span class="k">{E(m["name"])}</span>' for m in sm["months"])
     lab = (f'Average plowable days a winter by month at {inch(t)} or more at {v["s"]["label"]}: '
@@ -610,8 +611,8 @@ def page_html(p):
     v0 = sd[st0]
     s0 = v0["sum"][t0]
     checked = day_words(dt.date.fromisoformat(d["source"]["fetchedAt"][:10]), True)
-    lede = (f'At O\'Hare, the middle of the last {s0["n"]} complete winters had {pushes(s0["mid"])} with {inch(t0)} or more of new snow. '
-            'Each one is a plowable day.')
+    lede = (f'At O\'Hare, the middle winter of the last {s0["n"]} complete ones had {pushes(s0["mid"])} with {inch(t0)} or more of new snow. '
+            'This page calls each of those days a plowable day.')
     st_opts = "".join(f'<label><input type="radio" name="st" value="{k}"{" checked" if k == st0 else ""}>{E(v["s"]["label"])}</label>' for k, v in sd.items())
     t_opts = "".join(f'<label><input type="radio" name="t" value="{t}"{" checked" if t == t0 else ""}><span aria-hidden="true">{t} in</span>'
                      f'<span class="vh">{E(inch(t))}</span></label>' for t in TRIGGERS)
@@ -651,7 +652,7 @@ def page_html(p):
             '<li><b>Days with snow on the ground:</b> days NOAA measured 1 inch or more of snow depth. It shows how long snow stayed on the ground.</li></ul>')
     method = (f'<p>Every count here comes from NOAA\'s daily records: the Global Historical Climatology Network daily '
               f'(<a href="{GHCN[0]}" rel="noopener">GHCN-Daily</a>), read through the NCEI Access Data Service. It holds each station\'s new snowfall '
-              'and snow depth, in inches, one value a day. Station IDs come straight from NOAA\'s station list.</p>'
+              'and snow depth, in inches, one value a day. Station IDs come straight from NOAA\'s station list, and any value NOAA\'s quality checks flagged counts as missing.</p>'
               f'<ul class="sn-defs">{stations}</ul>'
               f'<p>The last {d["winters"][1] - d["winters"][0] + 1} finished winters are {wlabel(d["winters"][0])} to {wlabel(d["winters"][1])}. '
               'The page refreshes every morning from October to April; NOAA\'s file usually runs a few days behind today, and NOAA can revise recent daily values after its quality checks, so this winter\'s counts can change.</p>'

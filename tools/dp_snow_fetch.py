@@ -88,14 +88,29 @@ def num(v):
     return None if v == "" else float(v)
 
 
-def parse(rows, sid, name):
-    """{date: (snow, snwd)} from Access Data Service rows; every row must be the station asked for."""
+def qflag(r, el):
+    """NOAA's quality flag for one element (second field of <EL>_ATTRIBUTES: measurement, quality, source, time)."""
+    a = (r.get(el + "_ATTRIBUTES") or "").split(",")
+    return a[1].strip() if len(a) > 1 else ""
+
+
+def parse(rows, sid, name, dropped=None):
+    """{date: (snow, snwd)} from Access Data Service rows; every row must be the station asked for. A value NOAA's
+    quality checks flagged (any quality flag) is treated as missing, as GHCN-Daily's documentation advises."""
     days = {}
     for r in rows:
         if r.get("STATION") != sid or (r.get("NAME") and r["NAME"].strip() != name.strip()):
             sys.exit(f"row for {r.get('STATION')} {r.get('NAME')!r} in the reply for {sid} {name!r}: stopping")
         d = dt.date.fromisoformat(r["DATE"][:10])
         snow, snwd = num(r.get("SNOW")), num(r.get("SNWD"))
+        if snow is not None and qflag(r, "SNOW"):
+            snow = None
+            if dropped is not None:
+                dropped["SNOW"] = dropped.get("SNOW", 0) + 1
+        if snwd is not None and qflag(r, "SNWD"):
+            snwd = None
+            if dropped is not None:
+                dropped["SNWD"] = dropped.get("SNWD", 0) + 1
         for v, top in ((snow, 40), (snwd, 60)):
             if v is not None and not 0 <= v <= top:
                 sys.exit(f"{sid} {d}: value {v} out of range: stopping")
@@ -137,7 +152,8 @@ def build(search_pages, pull, today, fetched):
             if key == "ohare":
                 sys.exit("no O'Hare station in the NCEI search reply: stopping")
             continue
-        pulled = {sid: parse(pull(sid, today), sid, name) for sid, name in cands[key]}
+        drops = {sid: {} for sid, _ in cands[key]}
+        pulled = {sid: parse(pull(sid, today), sid, name, drops[sid]) for sid, name in cands[key]}
         best, scored = pick(key, cands[key], pulled)
         if not best:
             if key == "ohare":
@@ -148,7 +164,9 @@ def build(search_pages, pull, today, fetched):
         last = max((d for d, v in days.items() if v[0] is not None), default=None)
         if not last:
             continue
-        stations.append(station_doc(key, best, scored, days, last))
+        doc = station_doc(key, best, scored, days, last)
+        doc["flaggedDropped"] = drops[best[1]]
+        stations.append(doc)
     return {"about": "Daily snowfall (SNOW) and snow depth (SNWD) in inches at Chicago's airport weather stations, "
                      "from NOAA NCEI GHCN-Daily. Built by tools/dp_snow_fetch.py. Weather records only.",
             "source": {"name": "NOAA NCEI Global Historical Climatology Network daily (GHCN-Daily), daily-summaries",
@@ -158,7 +176,8 @@ def build(search_pages, pull, today, fetched):
 
 def pull_station(sid, today):
     return get(DATA, {"dataset": "daily-summaries", "stations": sid, "dataTypes": "SNOW,SNWD", "startDate": START.isoformat(),
-                      "endDate": today.isoformat(), "format": "json", "units": "standard", "includeStationName": "true"})
+                      "endDate": today.isoformat(), "format": "json", "units": "standard", "includeStationName": "true",
+                      "includeAttributes": "true"})
 
 
 def write(doc):
@@ -175,7 +194,8 @@ def selftest():
         while d <= dt.date(2026, 10, 20):
             if not (gaps and snow_months(d) and d.day % 3 == 0):
                 out.append({"STATION": "XX" if wrong and d == START else sid, "NAME": name, "DATE": d.isoformat(),
-                            "SNOW": " 2.5" if (d.month, d.day) == (1, 10) else "0.0", "SNWD": ""})
+                            "SNOW": " 2.5" if (d.month, d.day) == (1, 10) else ("9.0" if (d.month, d.day) == (2, 2) else "0.0"),
+                            "SNOW_ATTRIBUTES": ",I,7," if (d.month, d.day) == (2, 2) else ",,7,", "SNWD": ""})
             d += dt.timedelta(1)
         return out
     search = [{"results": [{"stations": [{"id": "USW1", "name": "CHICAGO OHARE INTERNATIONAL AIRPORT, IL US"}]},
@@ -194,6 +214,7 @@ def selftest():
     o = doc["stations"][0]
     assert o["end"] == "2026-10-20" and len(o["snow"]) == (dt.date(2026, 10, 20) - START).days + 1, "one value per day to the last report"
     assert o["snow"][(dt.date(1997, 1, 10) - START).days] == 2.5 and o["snwd"][0] is None, "values and nulls in place"
+    assert o["snow"][(dt.date(1997, 2, 2) - START).days] is None and o["flaggedDropped"]["SNOW"] >= 30, "a quality-flagged value is dropped"
     for bad in (lambda sid, today: rows(sid, names[sid], wrong=True),
                 lambda sid, today: [dict(r, SNOW="55.0") for r in rows(sid, names[sid])]):
         try:

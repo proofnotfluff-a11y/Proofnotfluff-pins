@@ -5785,7 +5785,7 @@
    "updated": "Worked example from the free Christmas light installation pricing calculator. Checked Oct 27, 2026.",
    "h1": "What do installers charge per foot to hang Christmas lights?",
    "answer": [
-    "Installers who post their prices land around $4 to $8 a foot of roofline, some with a job minimum, and one homeowner guide puts labor on the customer's own lights lower, at $2 to $5 a foot. Service Autopilot calls $5 to $8 a linear foot the most common way to price. In two installer forum threads, one charged $4 to $5 a foot with the lights lent, and another set $7 a foot as the minimum for C9 lights with an $850 job minimum.",
+    "In two installer forum threads from 2020 and 2021, one installer charged $4 to $5 a foot with the lights rented to the customer, and another at least $7 a foot for C9 lights with an $850 job minimum. Service Autopilot, a software company's guide for installers, calls per linear foot pricing the most common method and gives $5 to $8 a linear foot as its example. One homeowner guide puts labor on the customer's own lights lower, at $2 to $5 a foot.",
     "Treat those as a check, not your price. Work your rate out from your crew's pace, drive and lights. In the worked example below, a **{feet}-foot** roofline with {shrubs} bushes quotes **{baseQuote}**, or **{basePerFt} a foot**, and the same crew's floor is {baseFloorPerFt} a foot."
    ],
    "numbersTitle": "The worked example, in four numbers",
@@ -5838,7 +5838,7 @@
    "steps": [
     [
      "Measure the roofline and count the extras",
-     "Price the feet of roofline you will hang, then add each bush or tree by the item. Big trees are priced on their own: in the Pressure Washing Resource thread, installers price trees by height and how full they are, and raise the rate as trees get taller."
+     "Price the feet of roofline you will hang, then add each bush or tree by the item. Big trees are priced on their own: in the Pressure Washing Resource thread, one installer says to charge more per foot the higher the tree goes, and another has a per foot price for skinny, average and fat trees."
     ],
     [
      "Time your crew",
@@ -5858,21 +5858,21 @@
     ],
     [
      "Check it against the going rates",
-     "If your rate is well under the published ranges below, you may be leaving money on the table; well over, check your pace and costs before you cut it."
+     "Compare your rate with the prices installers and guides publish, below. If yours is far off, check your pace and costs first: the published numbers come from other markets and other years."
     ]
    ],
    "sections": [
     [
      "What installers and guides publish",
      [
-      "In the Pressure Washing Resource thread this page answers (November 2021), the asker charged $7 Canadian a foot for C9 lights. One reply set $7 a foot as the minimum for C9 with an $850 job minimum. In a Window Cleaning Resource thread from November 2020, a window cleaner charged $4 to $5 a foot with the lights lent, and said they expected the first season to pay about $30 to $50 an hour because the lights were bought that year, then about $70 to $100 an hour after. The same installer said in a later post that other companies have customers buy the lights, charge for labor only, and add $100 a year for storage.",
+      "In the Pressure Washing Resource thread this page answers (November 2021), the installer who asked said the price where they work is $7 Canadian a foot for C9 lights, and that few of their quotes close. Another installer in the thread said they charge at least $7 a foot for C9 and have an $850 job minimum, and a third said their prices in the mid-Atlantic are well above $7 Canadian. In a Window Cleaning Resource thread from November 2020, a window cleaning company said it charges $4 to $5 a foot depending on how hard the job is, with the lights rented to the customer. It said it expected about $30 to $50 an hour in the first year, when it buys the lights, and $70 to $100 an hour in later years. In a later post the same company said other companies have customers buy the lights, charge for labor only, and add $100 a year for storage, and in a third post that its residential price is moving toward $4 a foot.",
       "Guides written for homeowners run lower or wider. ThePricer lists $2 to $5 a foot for labor on the customer's own lights, $5 to $10 a foot with lights supplied, and $50 to $150 a year for storage. Angi's Washington, D.C. guide puts installation labor at $3.10 to $7.80 a linear foot, not counting the lights. These are other people's numbers, read Oct 27, 2026, not ours."
      ]
     ],
     [
      "Lend the lights or sell them?",
      [
-      "Lending keeps the customer coming back each year and spreads the lights over the seasons they last, but you store, test and fix them. Selling them charges the lights up front and lowers next season's quote. The calculator shows both for the same house."
+      "If you rent the lights to the customer, you buy, store and look after them, and the calculator spreads what they cost over the seasons they last. If the customer buys them, the lights are charged in full this year and next season's quote drops them. The window cleaning company in the 2020 thread rents its lights and keeps the same price every year, so later years pay more. The calculator shows both for the same house."
      ]
     ]
    ],
@@ -5888,11 +5888,11 @@
    "faq": [
     [
      "How much do installers charge per foot to hang Christmas lights?",
-     "Installer prices in public posts and guides run about $4 to $8 a foot of roofline, and labor on the customer's own lights runs lower. In the worked example, a {feet}-foot roofline with {shrubs} bushes quotes {basePerFt} a foot."
+     "In two installer forum threads from 2020 and 2021, one installer charged $4 to $5 a foot with the lights rented and another at least $7 a foot for C9 lights. Service Autopilot's guide calls per foot pricing the most common method, with $5 to $8 a linear foot as its example. In the worked example, a {feet}-foot roofline with {shrubs} bushes quotes {basePerFt} a foot."
     ],
     [
      "Do Christmas light installers charge a minimum?",
-     "Some do. One installer in a 2021 forum thread set an $850 job minimum. In the example, an {smallFeet}-foot roofline quotes {smallQuote}, which is {smallPerFt} a foot, because the trips and setup are spread over fewer feet."
+     "Some do. One installer in a 2021 forum thread has an $850 job minimum. In the example, an {smallFeet}-foot roofline quotes {smallQuote}, which is {smallPerFt} a foot, because the trips and setup are spread over fewer feet."
     ],
     [
      "Is takedown included in the price per foot?",
@@ -5900,7 +5900,7 @@
     ],
     [
      "What should I charge to hang a customer's own lights?",
-     "Less, since you do not supply or store the lights. In the example the same house quotes {ownQuote} on the customer's own lights, {ownPerFt} a foot, against {baseQuote} with your lights lent."
+     "Less, since you do not supply or store the lights; ThePricer lists $2 to $5 a foot for labor on the customer's own lights. In the example the same house quotes {ownQuote} on the customer's own lights, {ownPerFt} a foot, against {baseQuote} with your lights lent."
     ]
    ],
    "related": [
@@ -5919,7 +5919,7 @@
    ],
    "sources": [
     [
-     "Pressure Washing Resource, the question as asked (Christmas lights discussion)",
+     "Pressure Washing Resource, Christmas lights discussion (split off from winterizing thread), the question as asked in post 3",
      "https://pressurewashingresource.com/community/t/christmas-lights-discussion-split-off-from-winterizing-thread/32204",
      "posted Nov 6, 2021, read Oct 27, 2026"
     ],

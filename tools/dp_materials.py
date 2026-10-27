@@ -117,7 +117,7 @@ def lastmod(p):
 # ------------------------------------------------------------------ pieces
 CSS = ("<style>"
        ":root{--mp-up:#a63e21;--mp-dn:#00856f}@media(prefers-color-scheme:dark){:root{--mp-up:#e2683f;--mp-dn:#1fa293}}"
-       ".mp-hero h1{text-wrap:balance}.mp-fnote{margin:0 0 4px;font-size:14px;line-height:1.45}@media(max-width:599px){.mp-calc .field select{font-size:15px}}.mp-hero .lede{max-width:780px}.mp-lead{border-top:3px solid var(--accent)}.mp-btns .btn,.mp-btns .st-btn2{min-height:48px;display:inline-flex;align-items:center;justify-content:center;padding-top:0;padding-bottom:0;box-sizing:border-box}.mp-btns{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}.mp-tw.mp-nar{max-width:720px}.mp-hero .ld-heroact{margin-bottom:20px}.mp-name,.mp-dv .n,.mp-t tbody th,.mp-rel a,.mp-res .sub{overflow-wrap:anywhere}.mp-tiles .lab,.mp-res .lab{white-space:normal}.mp-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}@media(min-width:900px){.mp-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}"
+       ".mp-hero h1{text-wrap:balance}.mp-fnote{margin:0 0 4px;font-size:14px;line-height:1.45}@media(max-width:599px){.mp-calc .field select{font-size:15px}}.mp-hero .lede{max-width:780px}.mp-lead{box-shadow:inset 0 3px 0 var(--accent)}.asof .mp-p{margin-left:0;margin-right:2px}.mp-btns .btn,.mp-btns .st-btn2{min-height:48px;display:inline-flex;align-items:center;justify-content:center;padding-top:0;padding-bottom:0;box-sizing:border-box}.mp-btns{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}.mp-tw.mp-nar{max-width:720px}.mp-hero .ld-heroact{margin-bottom:20px}.mp-name,.mp-dv .n,.mp-t tbody th,.mp-rel a,.mp-res .sub{overflow-wrap:anywhere}.mp-tiles .lab,.mp-res .lab{white-space:normal}.mp-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}@media(min-width:900px){.mp-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}"
        ".mp-tiles .val small{font-size:.55em;font-weight:600;color:inherit;opacity:.8}.mp-name{font-size:clamp(16px,9cqi,22px)!important;line-height:1.25}"
        ".mp-calc{margin-top:8px}@media(min-width:900px){.mp-calc{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}"
        ".mp-calc .row{grid-template-columns:1fr;gap:6px}.mp-calc .field select{text-align:left;padding-right:28px;min-height:44px}"
@@ -153,7 +153,7 @@ CSS = ("<style>"
        ".mp-sp{display:block;width:96px;height:26px;margin-left:auto}"
        "@media(max-width:599px){.mp-t .c2,.mp-t .c5{display:none}.mp-t th,.mp-t td{padding:9px 8px}}"
        ".mp-read{display:grid;gap:12px;margin-top:12px}@media(min-width:900px){.mp-read{grid-template-columns:repeat(2,minmax(0,1fr))}}"
-       ".mp-read div{padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card)}.mp-read h3{margin:0 0 4px;font-size:16px}.mp-read p{margin:0;color:var(--ink2);font-size:15px}"
+       ".mp-read div{padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card)}.mp-read h3{margin:0 0 8px;font-size:16px}.mp-read p{margin:0;color:var(--ink2);font-size:15px}"
        ".mp-dl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}"
        ".mp-lc{position:relative;margin:12px 0 0;padding:14px 12px 8px;background:var(--card);border:1px solid var(--line);border-radius:12px}"
        ".mp-lc svg{display:block;width:100%;height:auto;touch-action:pan-y}.mp-lc svg.n{display:none}@media(max-width:599px){.mp-lc svg.w{display:none}.mp-lc svg.n{display:block}}.mp-lc:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
@@ -218,7 +218,7 @@ def calc_html(d, E, default=DEFAULT, heading=True):
             f'<div class="sub" data-mp="span">{E(dflt["title"])}, {mlabel(q)} to {mlabel(now[0])}</div></div>'
             f'<div class="tile"><div class="lab">Amount today</div><div class="val" data-mp="new">${new:,.0f}</div><div class="sub" data-mp="from">from ${amt:,.0f}</div></div>'
             f'<div class="tile"><div class="lab">Difference</div><div class="val" data-mp="diff">{"+" if new >= amt else "-"}${abs(new - amt):,.0f}</div>'
-            f'<div class="sub" data-mp="idx">index {then[1]:,.1f} to {now[1]:,.1f}</div></div>'
+            f'<div class="sub">index <span data-mp="idx" style="white-space:nowrap">{then[1]:,.1f} to {now[1]:,.1f}</span></div></div>'
             '</div>'
             f'<p class="mp-say" data-mp="say">{say}</p>'
             f'<p class="mp-pnote" data-mp="pnote"{"" if pnote else " hidden"}>{E(pnote)}</p>'
@@ -252,7 +252,7 @@ function run(){var s=ser(mat.value),o=s[5],now=o[o.length-1],then=null;for(var i
  out('ch').textContent=pc(ch);out('span').textContent=s[1]+', '+lab(then[0])+' to '+lab(now[0]);
  out('new').textContent=money(Math.round(nw),0);out('from').textContent='from '+money(Math.round(a),0);
  out('diff').textContent=(Math.round(df)<0?'-':'+')+money(Math.abs(Math.round(df)),0);
- out('idx').textContent='index '+then[1].toFixed(1)+' to '+now[1].toFixed(1);
+ out('idx').textContent=then[1].toFixed(1)+' to '+now[1].toFixed(1);
  out('say').textContent=s[1]+' is '+words(ch)+' from '+lab(then[0])+' to '+lab(now[0])+'. '+money(a,2)+' at the '+lab(then[0])+' index is '+money(nw,2)+' at the '+lab(now[0])+' index.';
  var pl=[];if(then[2])pl.push(lab(then[0]));if(now[2])pl.push(lab(now[0]));var pn=out('pnote');
  pn.hidden=!pl.length;pn.textContent=pl.length?pl.join(' and ')+(pl.length>1?' are':' is')+' preliminary: BLS can revise '+(pl.length>1?'them':'it')+' for up to 4 months after '+(pl.length>1?'they first come':'it first comes')+' out.':'';

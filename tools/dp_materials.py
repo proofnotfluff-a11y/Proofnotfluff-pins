@@ -58,6 +58,11 @@ def mlabel(ym, long=False):
     return f'{(MONTH_LONG if long else MON)[int(ym[5:7]) - 1]} {ym[:4]}'
 
 
+def nb(t):
+    """Keep a short phrase (a month and year) on one line."""
+    return t.replace(" ", "\u00a0")
+
+
 def pct(a, b):
     return None if not a else (b / a - 1) * 100
 
@@ -112,7 +117,7 @@ def lastmod(p):
 # ------------------------------------------------------------------ pieces
 CSS = ("<style>"
        ":root{--mp-up:#a63e21;--mp-dn:#00856f}@media(prefers-color-scheme:dark){:root{--mp-up:#e2683f;--mp-dn:#1fa293}}"
-       ".mp-hero .lede{max-width:780px}.mp-hero .ld-heroact{margin-bottom:20px}.mp-name,.mp-dv .n,.mp-t tbody th,.mp-rel a,.mp-res .sub{overflow-wrap:anywhere}.mp-tiles .lab,.mp-res .lab{white-space:normal}.mp-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}@media(min-width:900px){.mp-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}"
+       ".mp-hero .lede{max-width:780px}.mp-btns .btn,.mp-btns .st-btn2{min-height:48px;display:inline-flex;align-items:center;justify-content:center;padding-top:0;padding-bottom:0;box-sizing:border-box}.mp-btns{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}.mp-tw.mp-nar{max-width:720px}.mp-hero .ld-heroact{margin-bottom:20px}.mp-name,.mp-dv .n,.mp-t tbody th,.mp-rel a,.mp-res .sub{overflow-wrap:anywhere}.mp-tiles .lab,.mp-res .lab{white-space:normal}.mp-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}@media(min-width:900px){.mp-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}"
        ".mp-tiles .val small{font-size:.55em;font-weight:600;color:inherit;opacity:.8}.mp-name{font-size:clamp(16px,9cqi,22px)!important;line-height:1.25}"
        ".mp-calc{margin-top:8px}@media(min-width:900px){.mp-calc{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}"
        ".mp-calc .row{grid-template-columns:minmax(0,1fr) minmax(0,260px)}.mp-calc .field select{text-align:left;padding-right:28px;min-height:44px}"
@@ -210,7 +215,7 @@ def calc_html(d, E, default=DEFAULT, heading=True):
             '<div class="tiles">'
             f'<div class="tile key"><div class="lab">Change since your quote</div><div class="val" data-mp="ch">{pct_txt(ch)}</div>'
             f'<div class="sub" data-mp="span">{E(dflt["title"])}, {mlabel(q)} to {mlabel(now[0])}</div></div>'
-            f'<div class="tile"><div class="lab">Your amount today</div><div class="val" data-mp="new">${new:,.0f}</div><div class="sub" data-mp="from">from ${amt:,.0f}</div></div>'
+            f'<div class="tile"><div class="lab">Amount today</div><div class="val" data-mp="new">${new:,.0f}</div><div class="sub" data-mp="from">from ${amt:,.0f}</div></div>'
             f'<div class="tile"><div class="lab">Difference</div><div class="val" data-mp="diff">{"+" if new >= amt else "-"}${abs(new - amt):,.0f}</div>'
             f'<div class="sub" data-mp="idx">index {then[1]:,.1f} then, {now[1]:,.1f} now</div></div>'
             '</div>'
@@ -245,14 +250,15 @@ function run(){var s=ser(mat.value),o=s[5],now=o[o.length-1],then=null;for(var i
  var a=parse(amt.value),bad=!(a>=0)||!then;amt.setAttribute('aria-invalid',bad?'true':'false');err.hidden=!bad;root.querySelector('.mp-res').style.opacity=bad?.45:1;if(bad)return;
  var ch=(now[1]/then[1]-1)*100,nw=a*now[1]/then[1],df=nw-a;
  out('ch').textContent=pc(ch);out('span').textContent=s[1]+', '+lab(then[0])+' to '+lab(now[0]);
- out('new').textContent=money(nw,nw<1000?2:0);out('from').textContent='from '+money(a,a<1000?2:0);
- out('diff').textContent=(df<0?'-':'+')+money(Math.abs(df),Math.abs(df)<1000?2:0);
+ out('new').textContent=money(Math.round(nw),0);out('from').textContent='from '+money(Math.round(a),0);
+ out('diff').textContent=(Math.round(df)<0?'-':'+')+money(Math.abs(Math.round(df)),0);
  out('idx').textContent='index '+then[1].toFixed(1)+' then, '+now[1].toFixed(1)+' now';
  out('say').textContent=s[1]+' is '+words(ch)+' from '+lab(then[0])+' to '+lab(now[0])+'. '+money(a,2)+' at the '+lab(then[0])+' index is '+money(nw,2)+' at the '+lab(now[0])+' index.';
  var pl=[];if(then[2])pl.push(lab(then[0]));if(now[2])pl.push(lab(now[0]));var pn=out('pnote');
  pn.hidden=!pl.length;pn.textContent=pl.length?pl.join(' and ')+(pl.length>1?' are':' is')+' preliminary: BLS can revise '+(pl.length>1?'them':'it')+' for up to 4 months after '+(pl.length>1?'they first come':'it first comes')+' out.':'';
  last=s[1]+', BLS producer price index '+s[3]+' ('+s[4]+', not seasonally adjusted): '+then[1].toFixed(3)+' in '+lab(then[0])+(then[2]?' (preliminary)':'')+' and '+now[1].toFixed(3)+' in '+lab(now[0])+(now[2]?' (preliminary)':'')+', '+words(ch)+'. '+money(a,2)+' at the '+lab(then[0])+' index is '+money(nw,2)+' at the '+lab(now[0])+' index. Source: U.S. Bureau of Labor Statistics, retrieved '+D.got+', via proofnotfluff.com/material-price-changes/';
  out('copied').textContent=''}
+amt.addEventListener('blur',function(){var a=parse(amt.value);if(a>=0)amt.value=a.toLocaleString('en-US',{maximumFractionDigits:2})});
 mat.addEventListener('change',function(){fillMonths(mon.value);run()});mon.addEventListener('change',run);amt.addEventListener('input',run);
 root.querySelector('[data-mp-reset]').addEventListener('click',function(){mat.value=root.getAttribute('data-default')||D.dflt;fillMonths('');amt.value='10,000';run()});
 root.querySelector('[data-mp-copy]').addEventListener('click',function(){var st=out('copied');
@@ -385,13 +391,20 @@ def line_chart(m, E):
     lo_o, hi_o, o = min(obs, key=lambda o: o[1]), max(obs, key=lambda o: o[1]), obs[-1]
     aria = (f'Line chart of the {m["title"]} price index, {mlabel(obs[0][0])} to {mlabel(obs[-1][0])}: {obs[0][1]:,.1f} at the start, '
             f'high {hi_o[1]:,.1f} in {mlabel(hi_o[0])}, low {lo_o[1]:,.1f} in {mlabel(lo_o[0])}, {o[1]:,.1f} in {mlabel(o[0])}. Every month is in the table below.')
+    have = {x[0] for x in obs}
+    gaps, ym = [], obs[0][0]
+    while ym < obs[-1][0]:
+        if ym not in have:
+            gaps.append(mlabel(ym))
+        ym = ym_add(ym, 1)
+    gap_li = (f'<li>Gap: no BLS value for {", ".join(gaps[:4])}{" and more" if len(gaps) > 4 else ""}</li>' if gaps else "")
     # two drawings, one for wide screens and one for phones, so the axis text stays readable at both sizes
     return (f'<figure class="mp-lc" tabindex="0" role="img" aria-label="{E(aria)}">'
             + line_svg(m, 720, 300, 46, 52, 14, 30, "w") + line_svg(m, 360, 250, 38, 48, 12, 28, "n")
             + '<div class="tt" hidden></div></figure>'
             '<ul class="mp-key"><li><svg width="22" height="10" aria-hidden="true"><line x1="1" x2="21" y1="5" y2="5" stroke="var(--teal)" stroke-width="2"/></svg>Final</li>'
             '<li><svg width="22" height="10" aria-hidden="true"><line x1="1" x2="21" y1="5" y2="5" stroke="var(--teal)" stroke-width="2" stroke-dasharray="4 4"/></svg>Preliminary, may be revised</li>'
-            '<li>Hover, tap or use the arrow keys for any month</li></ul>')
+            + gap_li + '<li>Hover, tap or use the arrow keys for any month</li></ul>')
 
 
 LINE_JS = r"""<script>(function(){var f=document.querySelector('.mp-lc');if(!f)return;var tt=f.querySelector('.tt'),cur=-1;
@@ -539,25 +552,25 @@ def page_html(p):
     lede = (f'How far {len(d["mats"])} materials the trades buy have moved since the month you quoted, from the federal producer price index. '
             f'{n_up} of {len(ys)} are up on a year ago. Free, no sign-up.')
     tiles = ('<div class="tiles ld-tiles mp-tiles">'
-             f'<div class="tile key"><div class="lab">Biggest rise, 12 months</div><div class="val mp-name">{E(top["title"])}</div><div class="sub" style="color:var(--band-text)">{pct_txt(top["y12"])} since {mlabel(top["y12o"][0])}</div></div>'
-             f'<div class="tile"><div class="lab">{"Biggest drop" if low["y12"] < 0 else "Smallest rise"}, 12 months</div><div class="val mp-name">{E(low["title"])}</div><div class="sub">{pct_txt(low["y12"])} since {mlabel(low["y12o"][0])}</div></div>'
+             f'<div class="tile key"><div class="lab">Biggest rise, 1 year</div><div class="val mp-name">{E(top["title"])}</div><div class="sub" style="color:var(--band-text)">{pct_txt(top["y12"])} since {nb(mlabel(top["y12o"][0]))}</div></div>'
+             f'<div class="tile"><div class="lab">{"Biggest drop" if low["y12"] < 0 else "Smallest rise"}, 1 year</div><div class="val mp-name">{E(low["title"])}</div><div class="sub">{pct_txt(low["y12"])} since {nb(mlabel(low["y12o"][0]))}</div></div>'
              f'<div class="tile"><div class="lab">Up on a year ago</div><div class="val">{n_up} <small>of {len(ys)}</small></div><div class="sub">materials on this page</div></div>'
              f'<div class="tile"><div class="lab">Latest month</div><div class="val">{L}</div><div class="sub">{"preliminary; " if d["latest"] in d["prelim"] else ""}'
              + (f'next BLS update {E(nice(nx["date"]))}' if nx else "BLS updates monthly") + '</div></div>'
              '</div>'
              f'<p class="asof">BLS producer price indexes, national, not seasonally adjusted, through {L}, retrieved from BLS on {E(M.nice_date(d["fetched"][:10]))}.</p>')
     body = (f'{crumb}<div class="ld-hero mp-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{E(lede)}</p>'
-            '<div class="ld-heroact rl-act"><a class="btn" href="#quote">Check a quote</a><a class="st-btn2" href="#all">See every material</a></div></div>'
+            '<div class="ld-heroact rl-act mp-btns"><a class="btn" href="#quote">Check a quote</a><a class="st-btn2" href="#all">See every material</a></div></div>'
             f'{tiles}'
             f'<section class="block" id="quote" aria-labelledby="quote-h">{calc_html(d, E)}</section>'
             f'<section class="block" id="moves"><h2>Where prices moved in a year</h2><p>Change in each price index from {mlabel(ym_add(d["latest"], -12))} to {L}, largest rise first.</p>{diverging(d, E, rel)}</section>'
             f'<section class="block" id="all"><h2>Every material</h2>{table(d, E, rel)}'
-            f'<div class="mp-dl"><a class="st-btn2" href="material-price-indexes.csv" download>Download every month (CSV)</a>'
+            f'<div class="mp-dl mp-btns"><a class="st-btn2" href="material-price-indexes.csv" download>Download every month (CSV)</a>'
             f'<span class="asof" style="margin:0">{len(d["mats"])} series, {E(mlabel(d["mats"][0]["obs"][0][0]))} to {L}, with a preliminary column</span></div></section>'
             f'<section class="block" id="read"><h2>Read these numbers right</h2>{read_right(d, E)}</section>'
             '<section class="block"><h2>How this page is made</h2>' + "".join(f"<p>{E(x)}</p>" for x in METHOD) + '</section>'
             f'{M.faq_block(fq)}'
-            '<p class="rl-act"><a class="btn" href="#quote">Check a quote</a> <a class="st-btn2" href="material-price-indexes.csv" download>Download the CSV</a></p>')
+            '<p class="rl-act mp-btns"><a class="btn" href="#quote">Check a quote</a> <a class="st-btn2" href="material-price-indexes.csv" download>Download the CSV</a></p>')
     return (head_html(M, E, p["title"], p["desc"], url, rel, M.ld_tags(crumb_ld, app_ld, ds_ld, faq_ld), robots) + body
             + foot_html(M, E, rel, d) + calc_js(d) + "</body></html>")
 
@@ -595,7 +608,7 @@ def sub_html(p, m, d):
     L = mlabel(m["last"][0])
     first = m["obs"][0]
     since = pct(first[1], m["last"][1])
-    h1 = f'{m["title"]} price index'
+    h1 = f'{title_case(m["title"])} Price Index'
     title = f'{title_case(m["title"])} Price Index: Change Since Your Quote | ProofNotFluff'
     desc = (f'BLS producer price index for {mid(m["title"])}, {m["area"]}: {m["last"][1]:,.1f} in {L}, {move_words(m["m1"])} on the month and '
             f'{move_words(m["y12"])} over 12 months. Free calculator, chart and CSV.')
@@ -612,8 +625,8 @@ def sub_html(p, m, d):
                                f'<td>{pct_txt(pct(m["at"][ym_add(o[0], -12)][1], o[1])) if ym_add(o[0], -12) in m["at"] else "n/a"}</td></tr>' for o in os_)
     thead = '<thead><tr><th scope="col">Month</th><th scope="col">Index</th><th scope="col">1 month</th><th scope="col">12 months</th></tr></thead>'
     newest = list(reversed(m["obs"]))
-    tbl = (f'<div class="mp-tw" role="region" aria-label="{E(m["title"])} index by month, last 24 months" tabindex="0"><table class="mp-t">{thead}<tbody>{rows(newest[:24])}</tbody></table></div>'
-           + (f'<details class="mp-more"><summary>Show {len(newest) - 24} earlier months</summary><div class="mp-tw" role="region" aria-label="{E(m["title"])} index, earlier months" tabindex="0">'
+    tbl = (f'<div class="mp-tw" role="region" aria-label="{E(m["title"])} index by month, last 24 months" tabindex="0" style="max-width:720px"><table class="mp-t">{thead}<tbody>{rows(newest[:24])}</tbody></table></div>'
+           + (f'<details class="mp-more"><summary>Show {len(newest) - 24} earlier months</summary><div class="mp-tw" role="region" aria-label="{E(m["title"])} index, earlier months" tabindex="0" style="max-width:720px">'
               f'<table class="mp-t">{thead}<tbody>{rows(newest[24:])}</tbody></table></div></details>' if len(newest) > 24 else "")
            + '<p class="asof"><abbr class="mp-p" title="Preliminary">P</abbr> marks a preliminary month BLS can still revise. n/a: BLS has no value for the month compared.</p>')
     same = [x for x in d["mats"] if x["group"] == m["group"] and x is not m]
@@ -622,16 +635,16 @@ def sub_html(p, m, d):
              f'The series ID and title are BLS\'s own, as listed in {source_link(m["titleSource"], E)}. '
              'Anyone can look up the same numbers on bls.gov with this ID.</p>')
     body = (f'{crumb}<div class="ld-hero mp-hero"><p class="eyebrow">BLS producer price index</p><h1>{E(h1)}</h1><p class="lede">{E(lede)}</p>'
-            '<div class="ld-heroact rl-act"><a class="btn" href="#quote">Check a quote</a><a class="st-btn2" href="#months">See every month</a></div></div>'
+            '<div class="ld-heroact rl-act mp-btns"><a class="btn" href="#quote">Check a quote</a><a class="st-btn2" href="#months">See every month</a></div></div>'
             f'{tiles}'
             f'<section class="block" id="chart"><h2>{E(m["title"])} index since {mlabel(first[0])}</h2>{line_chart(m, E)}</section>'
             f'<section class="block" id="quote" aria-labelledby="quote-h">{calc_html(d, E, default=m["slug"])}</section>'
             f'<section class="block" id="months"><h2>Every month</h2>{tbl}'
-            f'<div class="mp-dl"><a class="st-btn2" href="{E(m["slug"])}.csv" download>Download this series (CSV)</a>'
+            f'<div class="mp-dl mp-btns"><a class="st-btn2" href="{E(m["slug"])}.csv" download>Download this series (CSV)</a>'
             f'<a class="st-btn2" href="../#all">All {len(d["mats"])} materials</a></div></section>'
             f'<section class="block"><h2>About this index</h2>{about}{read_right(d, E)}</section>'
             + (f'<section class="block"><h2>More in {E(m["group"].lower())}</h2>{rel_links}</section>' if rel_links else "")
-            + '<p class="rl-act"><a class="btn" href="#quote">Check a quote</a> <a class="st-btn2" href="../">Every material</a></p>')
+            + '<p class="rl-act mp-btns"><a class="btn" href="#quote">Check a quote</a> <a class="st-btn2" href="../">Every material</a></p>')
     js = calc_js(d).replace("var root=document.querySelector('[data-mp-calc]');", "var root=document.querySelector('[data-mp-calc]');if(root)root.setAttribute('data-default'," + json.dumps(m["slug"]) + ");")
     return (head_html(M, E, title, desc, url, rel, M.ld_tags(crumb_ld), robots) + body + foot_html(M, E, rel, d) + js + LINE_JS + "</body></html>")
 
@@ -683,7 +696,7 @@ def selftest():
         assert ex["material-price-indexes.csv"].splitlines()[0] == "series_id,bls_title,area,month,index,preliminary"
         assert len(ex["material-price-indexes.csv"].splitlines()) == 1 + 3 * 21
         sub = ex["lumber/index.html"]
-        assert "Lumber price index" in sub and sub.count('data-pts=') == 2 and "WPU081" in sub and "lumber.csv" in sub and sub.count("<h1>") == 1
+        assert "Lumber Price Index" in sub and sub.count('data-pts=') == 2 and "WPU081" in sub and "lumber.csv" in sub and sub.count("<h1>") == 1
         assert "'data-default',\"lumber\"" in sub, "sub-page calculator opens on its own material"
         assert all(b not in sub for b in DASHES)
         os.remove(os.path.join(tmp, "ppi.json"))

@@ -51,7 +51,7 @@ FOOT_TPL = """</main>
 <footer><div class="wrap">
 {fnav}
 <p>Estimates for planning only, based on the numbers you enter. Not tax, legal or financial advice. {sources}</p>
-<p>Made by ProofNotFluff with AI assistance, reviewed and tested by the shop owner. Calculators run in your browser; nothing you type is sent anywhere.</p>
+<p>Made by ProofNotFluff with AI assistance, reviewed and tested by the shop owner. Calculators run in your browser; nothing you type in them is sent anywhere.</p>
 {notices}</div></footer>
 <script src="{rel}assets/pnf-calc.js"></script>
 {script}
@@ -1975,6 +1975,14 @@ def price_raise_page(p):
 
 
 
+def _bid_sel(key, label, opts, val):
+    """A full-width select whose hint follows the chosen option (design director, Oct 27): opts [(hint, option text)]."""
+    hints = "".join(f'<small data-h="{i}"{"" if str(i) == str(val) else " hidden"}>{E(h)}</small>' for i, (h, _) in enumerate(opts))
+    return (f'<div class="row pick"><label for="{key}">{E(label)}{hints}</label><div class="field"><select id="{key}" data-in="{key}">'
+            + "".join(f'<option value="{i}"{" selected" if str(i) == str(val) else ""}>{E(o)}</option>' for i, (_, o) in enumerate(opts))
+            + '</select></div></div>')
+
+
 def _bid_check(key, label, on=True):
     return (f'<label class="bid-ph"><input type="checkbox" id="ph-{key}"{" checked" if on else ""}>{E(label)}</label>')
 
@@ -1987,7 +1995,7 @@ def bid_page(p):
     d, dl = p["defaults"], p["download"]
     form = f"""<link rel="stylesheet" href="../assets/pnf-bid.css"><form class="card" id="calc" novalidate>
 <fieldset><legend>The job</legend>
-{_sel("measure", "Price it by", "Apartments: units times their average size, plus hallways and other common areas", [(0, "Square feet"), (1, "Apartment units")], d["measure"], wide=True)}
+{_bid_sel("measure", "Price it by", [("Square feet of the whole job", "Square feet"), ("Units times their average size, plus hallways and other common areas", "Apartment units")], d["measure"])}
 <div data-bid="sqft">{field("sqft", "Square feet to clean", d["sqft"], "From the plans, the builder or a walk-through")}</div>
 <div data-bid="units" hidden>{field("units", "Units", d["units"])}
 {field("unitSize", "Average unit size", d["unitSize"], "Square feet")}
@@ -2010,7 +2018,7 @@ def bid_page(p):
 </fieldset>
 <fieldset><legend>Touch-up</legend>
 {field("visits", "Touch-up visits", d["visits"], "Return visits the builder wants")}
-{_sel("touchMode", "Touch-up price", "Flat: your own price for each visit", [(0, "From your rates"), (1, "Flat price a visit")], d["touchMode"], wide=True)}
+{_bid_sel("touchMode", "Touch-up price", [("Priced from your touch-up speed and costs, like the other cleans", "From your rates"), ("Your own price for each visit", "Flat price a visit")], d["touchMode"])}
 <div data-bid="flat" hidden>{field("touchFlat", "Your flat price a visit", d["touchFlat"], pre="$")}</div>
 </fieldset>
 <fieldset><legend>Your price</legend>
@@ -2031,17 +2039,20 @@ def bid_page(p):
 <tr data-show-if="touchOn > 0"><th scope="row">Touch-up</th><td data-out="touchHrs" data-fmt="dec1">0</td><td data-out="touchDays" data-fmt="int">0</td><td data-out="touchCost" data-fmt="money0">$0</td><td data-out="touchPrice" data-fmt="money0">$0</td></tr>
 </tbody><tfoot><tr><th scope="row">Total</th><td data-out="hrs" data-fmt="dec1">0</td><td data-out="days" data-fmt="int">0</td><td data-out="cost" data-fmt="money0">$0</td><td data-out="price" data-fmt="money0">$0</td></tr></tfoot></table>
 <ul class="lines">
-<li><span>Labor, cleaner-hours times your cost</span><span data-out="labor">$0</span></li>
-<li><span>Supplies</span><span data-out="supplies">$0</span></li>
-<li><span>Travel and parking, one trip a day</span><span data-out="travel">$0</span></li>
-<li class="total"><span>Profit in the bid (<span data-pct="profitPct">0%</span> of the price)</span><span data-out="profit">$0</span></li>
+<li><span>Labor, cleaner-hours times your cost</span><span data-out="labor" data-fmt="money0">$0</span></li>
+<li><span>Supplies</span><span data-out="supplies" data-fmt="money0">$0</span></li>
+<li><span>Travel and parking, one trip a day</span><span data-out="travel" data-fmt="money0">$0</span></li>
+<li class="total"><span>Profit in the bid (<span data-pct="profitPct">0%</span> of the price)</span><span data-out="profit" data-fmt="money0">$0</span></li>
 </ul>
-<div class="callout warn" data-show-if="none > 0">Type the square feet to clean, or the units and their size.</div>
+<div class="callout warn" data-show-if="none > 0">Type the square feet to clean, or the units and their average size.</div>
 <div class="callout warn" data-show-if="noPhase > 0">Pick at least one clean: rough, final or touch-up.</div>
 <div class="callout warn" data-show-if="noRate > 0">A clean in the bid has no speed. Type the square feet one cleaner does in an hour.</div>
 <div class="callout warn" data-show-if="noWage > 0">Type your labor cost per cleaner-hour, or the price leaves out your crew.</div>
 <div class="callout warn" data-show-if="noVisits > 0">Touch-up is in the bid with 0 visits. Type how many return visits.</div>
 <div class="callout warn" data-show-if="noMargin > 0">A margin of 100% or more has no price. Use a lower margin, or switch to markup.</div>
+<div class="callout warn" data-show-if="noDay > 0">Type the hours in a crew day. Until then each clean counts as one day on site, one trip.</div>
+<div class="callout warn" data-show-if="flatNoRate > 0">Type your touch-up speed, so the page can check your flat price against what the visits cost you.</div>
+<div class="callout" data-show-if="visitsRounded > 0">Touch-up visits are whole visits: this bid counts <b data-out="touchVisits" data-fmt="int">0</b>.</div>
 <div class="callout warn" data-show-if="flatLow > 0">Your flat touch-up price is under what the visits cost you: <b data-out="touchCost" data-fmt="money0">$0</b> at your rates.</div>
 </div></div>
 <div class="mbar" aria-hidden="true"><span>Bid <b data-out="price" data-fmt="money0">$0</b></span><span>Per sq ft <b data-out="perSqFt" data-fmt="money3">$0</b></span></div>"""
@@ -2083,11 +2094,16 @@ var M=function(i){{i.rough=cb("rough");i.final=cb("final");i.touch=cb("touch");r
 var val=function(id){{return document.getElementById(id).value;}};
 function read(){{var v={{}};f.querySelectorAll("[data-in]").forEach(function(e){{v[e.getAttribute("data-in")]=e.value;}});return v;}}
 function show(){{var u=val("measure")==="1";f.querySelector('[data-bid="sqft"]').hidden=u;f.querySelector('[data-bid="units"]').hidden=!u;
-f.querySelector('[data-bid="flat"]').hidden=val("touchMode")!=="1";}}
+f.querySelector('[data-bid="flat"]').hidden=val("touchMode")!=="1";
+["measure","touchMode"].forEach(function(id){{var s=document.getElementById(id);s.closest(".row").querySelectorAll("small[data-h]").forEach(function(h){{h.hidden=h.getAttribute("data-h")!==s.value;}});}});}}
+/* a typed "$2,000", "50%" or "1.2k" reads as a number at once and is shown clean when you leave the box; whole numbers where a count is whole */
+var WHOLE={{visits:1,crew:1,units:1}};
+f.addEventListener("focusout",function(e){{var el=e.target;if(!el.matches||!el.matches("input[data-in]"))return;var n=PNF.parseNum(el.value);if(!isFinite(n)||el.value.trim()==="")return;
+if(WHOLE[el.id])n=Math.round(n);var s=n.toLocaleString("en-US",{{maximumFractionDigits:2}});if(s!==el.value){{el.value=s;f.dispatchEvent(new Event("input",{{bubbles:true}}));}}}});
 function draw(){{pv.innerHTML=PNF.bidProposal(M(read()),{{business:val("bizName"),contact:val("bizContact"),builder:val("builder"),address:val("address"),work:val("work"),terms:val("terms"),date:PNF.bidToday()}});}}
 f.addEventListener("input",function(){{show();draw();}});doc.addEventListener("input",draw);
 PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;PNF.stages(f,"../e/{p["slug"]}/");show();draw();
-document.getElementById("bidPrintBtn").addEventListener("click",function(){{draw();PNF.bidPrint(pv.innerHTML);}});}})();</script>"""
+document.getElementById("bidPrintBtn").addEventListener("click",function(){{draw();PNF.bidPrint(pv.innerHTML,val("address"));}});}})();</script>"""
     return form, results + "\n<!--LC-EXTRA-->" + proposal + guide, script
 
 
@@ -2629,7 +2645,8 @@ def page_html(p):
             f'<div class="grid">{form}{results}</div>{after_grid}'
             f'<section class="block"><h2>How it works</h2>{"".join(f"<p>{E(x)}</p>" for x in p["method"])}</section>'
             f'<section class="block"><h2>A worked example</h2><p>{E(p["example"])}</p></section>'
-            f'{extra_cards(p["slug"])}{find_customers(p["slug"], rel)}{guides_block(calc=p["slug"], rel=rel)}{cta(p) if p.get("cta") else ""}{related_calcs(p["slug"], rel)}{faq_block(p["faq"])}')
+            f'{extra_cards(p["slug"])}{find_customers(p["slug"], rel)}{guides_block(calc=p["slug"], rel=rel)}{cta(p) if p.get("cta") else ""}{related_calcs(p["slug"], rel)}{faq_block(p["faq"])}'
+            + (find_customers(p["slug"], rel) if p.get("kind") == "bid" else ""))   # the bid page ends on the next step again (design director, Oct 27)
     city_numbers = bool(p.get("lists")) or any(k != "ecommerce-13-week-cash-flow" for k in load_store().get("calcProducts", {}).get(p["slug"], []))
     robots = '<meta name="robots" content="noindex, nofollow">' if p.get("draft") else ""
     crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Free calculators", "calculators/"), (p["h1"], None)])

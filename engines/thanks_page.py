@@ -16,8 +16,11 @@ def _size(path):
     return f"{n / 1024:.0f} KB" if n < 1024 * 1024 else f"{n / 1024 / 1024:.1f} MB"
 
 
-def write(root, slug, name, files, office_line, calc):
-    """files: [(filename, label, detail)], the first is the filled button. calc: (slug, link text)."""
+def write(root, slug, name, files, office_line, calc, note="", tail="", ui=False, crumb=""):
+    """files: [(filename, label, detail)], the first is the filled button. calc: (slug, link text). Optional (the bid
+    calculator, Oct 27, 2026): note, a line under the buttons; tail, HTML that ends the page; ui, the site script that wires
+    the header's Search, as on the page the form sits on; crumb, a short name for the page in the breadcrumb (it must fit a
+    320 px phone)."""
     page = os.path.join(root, "docs", slug, "index.html")
     src = open(page, encoding="utf-8").read()
     header = re.search(r'<header class="top">.*?</header>', src, re.S).group(0).replace('href="../', 'href="../../')
@@ -34,7 +37,7 @@ def write(root, slug, name, files, office_line, calc):
 <title>Your {E(name)} is ready</title>
 <meta name="description" content="Download your free {E(name)}.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="color-scheme" content="light dark"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="../../assets/favicon-48.png" sizes="48x48" type="image/png"><meta name="theme-color" content="#f3f1ec" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#12161f" media="(prefers-color-scheme: dark)"><link rel="preload" href="../../assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../../assets/pnf.css">
+<meta name="color-scheme" content="light dark"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="../../assets/favicon-48.png" sizes="48x48" type="image/png"><meta name="theme-color" content="#f3f1ec" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#12161f" media="(prefers-color-scheme: dark)"><link rel="preload" href="../../assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../../assets/pnf.css">{'<script src="../../assets/pnf-ui.js" defer></script>' if ui else ""}
 <style>
 .dls{{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;max-width:560px;margin:8px 0 18px}}
 .dl{{display:flex;flex-direction:column;justify-content:center;min-height:64px;padding:10px 18px;border-radius:12px;background:var(--btn);color:#fff;text-decoration:none;border:1.5px solid var(--btn)}}
@@ -46,13 +49,13 @@ def write(root, slug, name, files, office_line, calc):
 </style>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token": "b40d887129c342ccb476aa67aad72034"}}'></script></head><body><a class="skip" href="#main">Skip to content</a>
 {header}
-<main class="wrap tk" id="main"><nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../../">Home</a></li><li><a href="../">{E(h1)}</a></li><li aria-current="page">Download</li></ol></nav>
+<main class="wrap tk" id="main"><nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../../">Home</a></li><li><a href="../">{E(crumb or h1)}</a></li><li aria-current="page">Download</li></ol></nav>
 <p class="eyebrow">Thanks for signing up</p>
 <h1>Your template is ready</h1>
 <div class="dls">{''.join(btns)}</div>
-<p>{E(office_line)}</p>
+{f"<p>{E(note)}</p>" if note else ""}<p>{E(office_line)}</p>
 <p><a class="quiet" href="../../{E(calc[0])}/">{E(calc[1])}</a></p>
-</main>
+{tail}</main>
 {footer}
 </body></html>
 """

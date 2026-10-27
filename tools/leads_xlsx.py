@@ -546,6 +546,7 @@ def terms_text(date):
         if C.get("seatBid"):   # the bid sheet in the seat's app (Oct 27, 2026): one plain line, wording for the Legal desk
             i = next(n for n, x in enumerate(out) if x.startswith("No promise of results."))
             out.insert(i + 1, C["seatBid"])
+            out[0] = re.sub(r"\| Version 2, .*$", "| Version 3, Oct 27, 2026", out[0])   # the Terms with the bid line (Legal desk, Oct 27)
     return out
 
 

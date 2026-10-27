@@ -76,6 +76,13 @@ console.log(JSON.stringify({ html: P.bidProposal(r, t), scope: P.bidScope, names
     d = json.loads(out)
     d["html"] = d["html"].replace(", [n] visits", ', <span class="bid-f">[number of]</span> visits')
     assert "[n]" not in d["html"]
+    # the PDF matches the Word file (Legal desk, Oct 27): a Work line and a Not included line, as fields to fill
+    proj = '<div><dt>Project</dt><dd><span class="bid-f">[Project address]</span></dd></div>'
+    assert d["html"].count(proj) == 1
+    d["html"] = d["html"].replace(proj, proj + '<div><dt>Work</dt><dd><span class="bid-f">[Project, for example: 6-story apartment building]</span></dd></div>', 1)
+    terms_end = '[Your payment terms, and how long this price holds]</span></p>'
+    assert d["html"].count(terms_end) == 1
+    d["html"] = d["html"].replace(terms_end, terms_end + '<p class="bid-terms" style="margin-top:6px!important">Not included: <span class="bid-f">[anything outside the scope above]</span></p>', 1)
     return d
 
 
@@ -336,6 +343,13 @@ def render_pdf(html_text, path, title, subject):
         w.write(f)
 
 
+def find_jobs_band():
+    """The calculator page's closing band (paid lists that fit a construction cleaner), so the thanks page ends on the same next step."""
+    sys.path.insert(0, os.path.join(ROOT, "tools"))
+    import make_site
+    return make_site.find_customers(SLUG, "../../")
+
+
 def main():
     d = from_js()
     check_text(d)
@@ -349,7 +363,9 @@ def main():
                           [(NAME + ".docx", "Download the Word file", "The proposal to type in, with the how-to and Terms, 3 pages"),
                            (NAME + ".pdf", "Download the PDF", "Printable, 3 pages")],
                           "No Microsoft Word? Upload the .docx to Google Drive and open it with Google Docs. It works the same.",
-                          (SLUG, "Price the three cleans with the free bid calculator"))
+                          (SLUG, "Price the three cleans with the free bid calculator"),
+                          note="A sample form to adapt, not a legal document. Have a local attorney review it before you use it with clients.",
+                          tail=find_jobs_band(), ui=True, crumb="Bid calculator")
     print("built", NAME + ".docx", NAME + ".pdf")
 
 

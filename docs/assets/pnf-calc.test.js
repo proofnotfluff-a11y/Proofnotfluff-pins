@@ -754,6 +754,22 @@ check("bid proposal: escapes the owner's words", BQPR.indexOf("A &amp; B &lt;Cle
 check("bid proposal: blank builder prints a bracket", BQPR.indexOf("[Builder or general contractor]") >= 0 ? 1 : 0, 1);
 check("bid proposal: total and three cleans", (BQPR.indexOf("$5,775") >= 0) + (BQPR.match(/<tr><th scope="row">/g) || []).length, 4);
 check("bid proposal: only cleans in the bid", (P.bidProposal(BQ3, {}).match(/<tr><th scope="row">/g) || []).length, 1);
+// fix round 1 (Oct 27): whole-dollar rows that add up as shown, and the warnings the holdout asked for
+const BQR = P.bidPrice({ sqft: "1,000", rough: 1, final: 1, touch: 1, roughRate: 333, finalRate: 77, touchRate: 999, wage: 31.37, crew: 2, dayHrs: 7.5,
+  supplies: 13.33, trip: 17.5, visits: 3, pct: 35 });
+check("bid H5: cost rows add to the cost total", ["rough", "final", "touch"].reduce((s, k) => s + BQR[k + "Cost"], 0) - BQR.cost, 0);
+check("bid H5: every cost row whole dollars", ["rough", "final", "touch"].every(k => Number.isInteger(BQR[k + "Cost"]) && Number.isInteger(BQR[k + "Labor"])) ? 1 : 0, 1);
+check("bid H5: labor + supplies + travel = cost", BQR.labor + BQR.supplies + BQR.travel - BQR.cost, 0);
+check("bid H5: hour rows add to the hours total", Math.round((BQR.roughHrs + BQR.finalHrs + BQR.touchHrs) * 10) / 10 - BQR.hrs, 0);
+check("bid H5: profit whole dollars", Number.isInteger(BQR.profit) ? 1 : 0, 1);
+check("bid H5: final labor, 13.0 shown hours x 31.37 rounded", BQR.finalHrs * 1000 + BQR.finalLabor, 13408);
+check("bid H3: no crew day warns", P.bidPrice(Object.assign({}, BQA, { dayHrs: "" })).noDay, 1);
+check("bid H3: a crew day, no warning", BQ1.noDay, 0);
+check("bid H4: flat touch-up with no speed warns", P.bidPrice(Object.assign({}, BQA, { touchMode: 1, touchRate: 0 })).flatNoRate, 1);
+check("bid H2: 1.5 visits counts 2 and flags it", P.bidPrice(Object.assign({}, BQA, { visits: "1.5" })).touchVisits * 10 + P.bidPrice(Object.assign({}, BQA, { visits: "1.5" })).visitsRounded, 21);
+check("bid H7: units blank prices nothing", P.bidPrice({ measure: 1, units: "", unitSize: 850, common: 2000, rough: 1, roughRate: 600, wage: 30 }).price, 0);
+check("bid H7: units blank is none, needs units", P.bidPrice({ measure: 1, units: "", unitSize: 850, common: 2000 }).none + P.bidPrice({ measure: 1, units: 40, unitSize: "", common: 2000 }).needUnits, 2);
+check("bid L2: no stage line unless given", P.bidProposal(BQ1, {}).indexOf("<dt>Stage</dt>") < 0 ? 1 : 0, 1);
 check("bid size line, units", P.bidSize(BQ2) === "40 units at about 850 sq ft each, plus 2,000 sq ft of common areas (36,000 sq ft)" ? 1 : 0, 1);
 
 process.exit(fails ? 1 : 0);

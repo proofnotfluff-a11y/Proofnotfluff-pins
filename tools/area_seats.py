@@ -238,8 +238,11 @@ def city_for(t, geo=None):
         # fix 4, from the committed 12-month counts
         "seatVolume": volume_sentence(t),
         # the bid sheet (Todd's go, Oct 27, 2026): one plain line, sent to the Legal desk with the build
-        "seatBid": ("Bid sheet. The Price this job panel is a calculator that uses only the size, rates and margin you type. Its prices "
-                    "and proposals are your own estimates, not prices from ProofNotFluff."),
+        "seatBid": ("Bid sheet. The Price this job panel is a calculator. Its prices come only from the size, rates and margin in its fields, "
+                    "which hold example numbers, not market rates, until you change them. The prices and the proposal you print are your own "
+                    "estimate and your own document, not a price or offer from ProofNotFluff. The proposal is a sample to adapt, not a "
+                    "contract written for your state; have a local attorney review it before you use it with clients. Check the builder's "
+                    "name and the project address before you send it."),
     })
     return c
 
@@ -353,10 +356,11 @@ def selftest():
         tt = leads_xlsx.terms_text("Oct 27, 2026")
         i = next(n for n, x in enumerate(tt) if x.startswith("No promise of results."))
         assert tt[i + 1] == c["seatBid"] and sum(1 for x in tt if x.startswith("Bid sheet.")) == 1
+        assert tt[0].endswith("| Version 3, Oct 27, 2026"), tt[0]
     finally:
         leads_xlsx.use(leads_cities.CHICAGO)
     assert not any(x.startswith("Bid sheet.") for x in leads_xlsx.terms_text("Oct 27, 2026")), "the $29 list's Terms never carry the bid line"
-    print("area_seats selftest ok (19 planted cases)")
+    print("area_seats selftest ok (20 planted cases)")
     real = load()
     bad = check(real, json.load(open(GEO)))
     if bad:

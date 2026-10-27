@@ -1016,25 +1016,28 @@
     touch: "Before the walkthrough or move-in: dust and marks left by punch-list work cleaned again."
   };
   function bidPrice(i) {
-    var cents = function (x) { return Math.round(x * 100 + 1e-7) / 100; };
+    // Hours to one decimal and labor from those shown hours; whole dollars for every cost line (fix round 1, Oct 27): each clean's labor, supplies and travel round once to the dollar,
+    // so the rows on screen add up to the totals on screen, and the price is worked from that whole-dollar cost.
     var mode = Math.round(num(i.measure)) === 1 ? 1 : 0;
     var units = Math.max(0, num(i.units)), unitSize = Math.max(0, num(i.unitSize)), common = Math.max(0, num(i.common));
-    var sqft = mode ? units * unitSize + common : Math.max(0, num(i.sqft));
+    var needUnits = mode && (units <= 0 || unitSize <= 0) ? 1 : 0;   // units mode prices nothing until both are typed
+    var sqft = mode ? (needUnits ? 0 : units * unitSize + common) : Math.max(0, num(i.sqft));
     var crew = Math.max(1, Math.round(num(i.crew)) || 1), dayHrs = Math.max(0, num(i.dayHrs)), crewDay = crew * dayHrs;
     var wage = Math.max(0, num(i.wage)), sup = Math.max(0, num(i.supplies)), trip = Math.max(0, num(i.trip));
-    var visits = Math.max(0, Math.round(num(i.visits))), flat = Math.round(num(i.touchMode)) === 1 ? 1 : 0;
+    var rawVisits = Math.max(0, num(i.visits)), visits = Math.round(rawVisits), flat = Math.round(num(i.touchMode)) === 1 ? 1 : 0;
     var flatPrice = Math.max(0, num(i.touchFlat)), markup = Math.round(num(i.priceMode)) === 1 ? 1 : 0;
     var pct = Math.max(0, num(i.pct)) / 100, noMargin = !markup && pct >= 1 ? 1 : 0;
     var r = { sqft: sqft, units: mode ? units : 0, unitSize: mode ? unitSize : 0, common: mode ? common : 0, measure: mode, crew: crew,
       dayHrs: dayHrs, wage: wage, visits: visits, flat: flat, markup: markup, pct: pct, price: 0, cost: 0, hrs: 0, days: 0,
-      labor: 0, supplies: 0, travel: 0, anyOn: 0, noRate: 0, flatLow: 0, noVisits: 0, priced: 0 };
+      labor: 0, supplies: 0, travel: 0, anyOn: 0, noRate: 0, flatLow: 0, flatNoRate: 0, noVisits: 0, noDay: 0, visitsRounded: 0,
+      priced: 0, needUnits: needUnits };
     BID_KEYS.forEach(function (k) {
       var on = Math.round(num(i[k])) === 1 && sqft > 0 ? 1 : 0, rate = Math.max(0, num(i[k + "Rate"]));
       var n = k === "touch" ? visits : 1, isFlat = k === "touch" && flat;
       var per = rate > 0 ? sqft / rate : 0, daysPer = per > 0 ? (crewDay > 0 ? Math.ceil(per / crewDay - 1e-9) : 1) : 0;
-      var hrs = per * n, days = daysPer * n, labor = cents(hrs * wage), supplies = cents(sqft / 1000 * sup * n), travel = cents(days * trip);
-      var cost = cents(labor + supplies + travel), price = 0;
-      if (on && isFlat) price = cents(flatPrice * n);
+      var hrs = Math.round(per * n * 10) / 10, days = daysPer * n, labor = Math.round(hrs * wage), supplies = Math.round(sqft / 1000 * sup * n), travel = Math.round(days * trip);
+      var cost = labor + supplies + travel, price = 0;
+      if (on && isFlat) price = Math.round(flatPrice * n);
       else if (on && rate > 0 && cost > 0 && !noMargin) price = ceilTo(markup ? cost * (1 + pct) : cost / (1 - pct), 5);
       if (!on) { hrs = 0; days = 0; labor = 0; supplies = 0; travel = 0; cost = 0; }
       r[k + "On"] = on; r[k + "Off"] = on ? 0 : 1; r[k + "Hrs"] = hrs; r[k + "Days"] = days; r[k + "Labor"] = labor;
@@ -1044,12 +1047,15 @@
         r.anyOn = 1; r.price += price; r.cost += cost; r.hrs += hrs; r.days += days; r.labor += labor; r.supplies += supplies; r.travel += travel;
         if (rate === 0 && !isFlat) r.noRate = 1;
         if (k === "touch" && n === 0) r.noVisits = 1;
+        if (k === "touch" && rawVisits !== visits) r.visitsRounded = 1;
         if (isFlat && rate > 0 && n > 0 && price < cost) r.flatLow = 1;
+        if (isFlat && rate === 0 && n > 0) r.flatNoRate = 1;   // no speed: the flat price cannot be checked against its cost
+        if (per > 0 && crewDay === 0) r.noDay = 1;              // no crew day: each clean counts as one day on site
       }
     });
-    r.price = cents(r.price); r.cost = cents(r.cost); r.labor = cents(r.labor); r.supplies = cents(r.supplies); r.travel = cents(r.travel);
-    r.profit = cents(r.price - r.cost); r.profitPct = r.price > 0 ? r.profit / r.price : 0;
-    r.perSqFt = sqft > 0 ? r.price / sqft : 0; r.perUnit = mode && units > 0 ? r.price / units : 0; r.unitOn = mode && units > 0 ? 1 : 0;
+    r.hrs = Math.round(r.hrs * 10) / 10;
+    r.profit = r.price - r.cost; r.profitPct = r.price > 0 ? r.profit / r.price : 0;
+    r.perSqFt = sqft > 0 ? r.price / sqft : 0; r.perUnit = mode && units > 0 && sqft > 0 ? r.price / units : 0; r.unitOn = r.perUnit > 0 ? 1 : 0;
     r.priced = r.price > 0 ? 1 : 0; r.none = sqft > 0 ? 0 : 1; r.noPhase = sqft > 0 && !r.anyOn ? 1 : 0; r.noMargin = r.anyOn && noMargin ? 1 : 0;
     r.noWage = r.anyOn && wage === 0 && r.hrs > 0 ? 1 : 0; r.loss = r.priced && r.profit < 0 ? 1 : 0;
     return r;
@@ -1090,12 +1096,17 @@
   }
   function bidToday() { return new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }); }
   // Print only the proposal: a copy goes into #bid-print and the page's other content is hidden for print (assets/pnf-bid.css).
-  function bidPrint(html) {
+  // The window title becomes "Proposal" (plus the address when typed) while printing, and the page has no margin of its own
+  // (the 0.55in is padding on #bid-print), so the browser prints no header or footer with the page title or address
+  // (Legal desk, Oct 27: a seat's name and members' address must never print on a proposal).
+  function bidPrint(html, address) {
     var box = document.getElementById("bid-print");
     if (!box) { box = document.createElement("div"); box.id = "bid-print"; document.body.appendChild(box); }
     box.innerHTML = html;
+    var title = document.title, a = String(address || "").trim();
+    document.title = "Proposal" + (a ? ", " + a : "");
     document.body.classList.add("bid-printing");
-    var done = function () { document.body.classList.remove("bid-printing"); window.removeEventListener("afterprint", done); };
+    var done = function () { document.body.classList.remove("bid-printing"); document.title = title; window.removeEventListener("afterprint", done); };
     window.addEventListener("afterprint", done);
     window.print();
   }

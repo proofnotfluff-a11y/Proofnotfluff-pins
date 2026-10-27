@@ -321,7 +321,7 @@ def tiles_html(d, E, M):
              f'<div class="sub">half issued within; 8 in 10 within {a["p80"]:,}</div></div>')
     t.append(f'<div class="tile"><div class="lab">Permits issued</div><div class="val">{a["n"]:,}</div><div class="sub">in the last 12 months</div></div>')
     return (f'<div class="tiles ld-tiles">{"".join(t)}</div>'
-            f'<p class="asof">Issued permits from {E(M.nice_date(w["from12"]))} to {E(M.nice_date(w["to"]))}, from City of Chicago records pulled '
+            f'<p class="asof">Figures as of {E(M.nice_date(w["to"]))}: permits issued from {E(M.nice_date(w["from12"]))} to {E(M.nice_date(w["to"]))}, from City of Chicago records pulled '
             f'{E(M.nice_date(d["source"]["fetchedAt"][:10]))}. Updated every Monday.</p>')
 
 
@@ -490,7 +490,7 @@ def type_page(p, d, t, M):
                 f'<div class="tile"><div class="lab">8 in 10 within</div><div class="val">{s["p80"]:,} days</div><div class="sub">9 in 10 within {s["p90"]:,}</div></div>' if s.get("med") is not None else "")
              + f'<div class="tile"><div class="lab">Permits issued</div><div class="val">{s["n"]:,}</div><div class="sub">in the last 12 months</div></div>'
              + (f'<div class="tile"><div class="lab">Most used path</div><div class="val" style="font-size:clamp(17px,9cqi,24px)">{E(top["label"])}</div><div class="sub">{top["last12"]["n"]:,} permits</div></div>' if top else "")
-             + f'</div><p class="asof">Issued from {E(M.nice_date(w["from12"]))} to {E(M.nice_date(w["to"]))}, from City of Chicago records pulled {E(M.nice_date(d["source"]["fetchedAt"][:10]))}. Updated every Monday.</p>')
+             + f'</div><p class="asof">Figures as of {E(M.nice_date(w["to"]))}: issued from {E(M.nice_date(w["from12"]))} to {E(M.nice_date(w["to"]))}, from City of Chicago records pulled {E(M.nice_date(d["source"]["fetchedAt"][:10]))}. Updated every Monday.</p>')
     series = [("all", "All review paths", t["monthly"])] + [(r["key"], r["label"], r["monthly"]) for r in reviews[:3]]
     trs = "".join(f"<li>{trend_line(r, E)}</li>" for r in [dict(t, label="All review paths")] + reviews[:3] if trend_line(r, E))
     arows = []

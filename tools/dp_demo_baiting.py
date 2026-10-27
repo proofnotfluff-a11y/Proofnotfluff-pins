@@ -124,7 +124,7 @@ def page_html(p):
              f'<div class="tile"><div class="lab">Last 30 days</div><div class="val">{c["d30"]:,}</div><div class="sub">in {c["areasWith30"]:,} community areas</div></div>'
              f'<div class="tile"><div class="lab">Last 12 months</div><div class="val">{c["d365"]:,}</div><div class="sub">wrecking permits issued</div></div>'
              + (f'<div class="tile"><div class="lab">Half within</div><div class="val">{wait["med"]:,} days</div><div class="sub">of review start, last 12 months</div></div>' if wait.get("med") is not None else "")
-             + f'</div><p class="asof">Permits issued to {E(M.nice_date(w["to"]))}, from City of Chicago records pulled {E(M.nice_date(src["fetchedAt"][:10]))}. Updated every Monday.</p>')
+             + f'</div><p class="asof">Counts as of {E(M.nice_date(w["to"]))}, from City of Chicago records pulled {E(M.nice_date(src["fetchedAt"][:10]))}. Updated every Monday.</p>')
     steps = ('<ol class="pw-steps">' + "".join(f"<li><b>{E(t)}</b>{E(x)}</li>" for t, x in STEPS) + '</ol>'
              f'<p class="asof">From the Department of Buildings <a href="{DEMO_PAGE}" rel="noopener">demolition permits page</a> and '
              f'<a href="{FORM_480}" rel="noopener">Form 480</a> (revised Aug 29, 2021), read {E(M.nice_date(STEPS_READ))}. Our words; the City\'s pages are the rule.</p>')

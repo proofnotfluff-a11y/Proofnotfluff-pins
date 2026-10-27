@@ -94,10 +94,12 @@ TRADES = [
 SUPPLY = re.compile(r"\bSUPPL(?:Y|IES)\b|\bPARTS\b|\bMATERIALS?\b|\bPRODUCTS\b|\bCHEMICALS?\b|\bEQUIPMENT\b|\bVEHICLES?\b|\bTRUCKS?\b|\bSPREADERS?\b")
 WORK = re.compile(r"SERVIC|REPAIR|MAINT|INSTALL|REMOV|LABOR|\bWORK\b|CLEANING|ABATEMENT|CONTROL\b|REPLACE|REHAB|CONSTRUCT|RENOVAT")
 # Not trade work in any trade: buying goods or equipment, upkeep of the City's own machines, design and engineering,
-# software, art, grants and redevelopment deals.
+# software, art, grants and redevelopment deals, deals with other public bodies (Board of Education, intergovernmental
+# agreements) and airline-run terminal projects at O'Hare.
 NOT_WORK = re.compile(r"\bPURCHASE OF\b|\bPURCHASE AND DELIVERY\b|^PURCHASE\b|PARTS AND (?:REPAIR )?SERVICES?\b|\bFLEET\b|"
                       r"DESIGN ENGINEERING|ENGINEERING SERVICES|PROFESSIONAL DESIGN|CONSULTING SERVICES|\bSOFTWARE\b|"
-                      r"ARTWORK|\bGRANT\b|REDEVELOPMENT|INVENTORY MANAGEMENT|\bRENTAL OF HEAVY EQUIPMENT")
+                      r"ARTWORK|\bGRANT\b|REDEVELOPMENT|INVENTORY MANAGEMENT|\bRENTAL OF HEAVY EQUIPMENT|"
+                      r"BOARD OF EDUCATION|INTERGOVERNMENTAL|\bIGA\b|^(?:AMERICAN|UNITED|DELTA|SOUTHWEST) AIRLINES\b")
 # A revision 0 row that only moves an existing contract to a new number is not a new award (the City writes
 # "NOT A NEW AWARD", "TRANSFER FROM PO" or "See PO" on it): counted apart as a transfer.
 TRANSFER = re.compile(r"NOT A NEW AWARD|TRANSFER(?:RED)? FROM (?:PO|P\.O)|\bXFER|REPLACING PO|SEE PO\s*#", re.I)
@@ -362,7 +364,8 @@ def selftest():
             R("ROOF REPLACEMENT AND TREE TRIMMING", 50000, po="E", v="ROOF & TREE CO"), R("SEWER CLEANING", 9, po="F"),
             R("PEST CONTROL", 9, po="G", ct="DELEGATE AGENCY"), R("SNOW PLOWING SERVICES", 20000, po="H", ad="2023-09-01"),
             R("ROCK SALT FOR SNOW", 1, po="I"), R("NOT A NEW AWARD - Replacing PO # 1 - JANITORIAL SERVICES", 900, po="J"),
-            R("PARTS AND REPAIR SERVICES - MECHANICAL, ELECTRICAL", 5, po="L"), R("PURCHASE AND DELIVERY OF RODENTICIDES", 5, po="M")]
+            R("PARTS AND REPAIR SERVICES - MECHANICAL, ELECTRICAL", 5, po="L"), R("AMERICAN AIRLINES - TERMINAL 3 HVAC UPGRADES", 9, po="N"),
+            R("Agreement between the City of Chicago and Board of Education - TURF Field", 9, po="O"), R("PURCHASE AND DELIVERY OF RODENTICIDES", 5, po="M")]
     ending = [R("JANITORIAL SERVICES", 0, po="D", end="2027-01-31", v="JOHN Q SMITH"), R("JANITORIAL SERVICES", 0, rv=1, po="D", end="2027-03-31"),
               R("JANITORIAL SERVICES", 0, po="K", end="2026-12-31"), R("JANITORIAL SERVICES", 0, rv=1, po="K", end="2028-12-31")]
     d = build(rows, ending, today, {"name": "Contracts", "rowsUpdatedAtIso": "2026-10-27T03:17:28-05:00"}, "2026-10-27T08:00:00-05:00")
@@ -377,6 +380,7 @@ def selftest():
     assert any(r[4] == "Name withheld" for r in j["rows"]) and j["withheld"] == 1, "a person's name is withheld"
     assert "JOHN" not in json.dumps(d) and "MAIN ST" not in json.dumps(d) and "60601" not in json.dumps(d), "no person, no address"
     assert [e["contract"] for e in j["ending"]] == ["D"] and j["ending"][0]["end"] == "2027-03-31" and j["ending"][0]["requirements"], "latest revision sets the end"
+    assert T["hvac"]["m36"]["awards"] == 0 and T["landscaping"]["m36"]["awards"] == 1, "airline projects and school deals are not trade work"
     assert T["roofing"]["m36"]["awards"] == 1 and T["landscaping"]["m36"]["awards"] == 1, "one contract can name two trades"
     assert T["pest-control"]["m36"]["awards"] == 0, "delegate agency grants are not trade work"
     assert T["snow-removal"]["m36"]["awards"] == 0, "rock salt is a purchase; the plowing award is older than 36 months"

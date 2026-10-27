@@ -196,7 +196,7 @@ def map_block(st, E, period):
     areas = {}
     for n in range(1, 78):
         rows = "".join(f'<dt>{E(t["short"])}</dt><dd>{by[t["key"]][n]["y12"]:,}</dd>' for t in T)
-        areas[n] = {"big": {t["key"]: (f'{by[t["key"]][n]["y12"]:,}', f'violations, {low(t["label"])}, {period}') for t in T},
+        areas[n] = {"big": {t["key"]: (f'{by[t["key"]][n]["y12"]:,}', f'{"violation" if by[t["key"]][n]["y12"] == 1 else "violations"}, {low(t["label"])}, {period}') for t in T},
                     "say": {t["key"]: f'{viol(by[t["key"]][n]["y12"])}, {low(t["label"])}' for t in T},
                     "html": f'<p>New violations, {E(period)}, by trade:</p><dl>{rows}</dl>'}
     metrics = []
@@ -282,8 +282,8 @@ def page_html(p):
         faq.append([q, a.replace("{period}", period)])
     p = dict(p, faq=faq)
     lede = (f'The City\'s Department of Buildings cited {st["traded12"]:,} violations from {E(ym_name(first_m))} to {E(ym_name(st["lm"]))} '
-            f'in six repair trades: masonry, porches, electrical, HVAC, elevators and plumbing. {E(big["label"])} led with {big["y12"]:,}. '
-            'See every trade in every community area, month by month.')
+            f'that we sort into six repair trades: masonry, porches, electrical, HVAC, elevators and plumbing. {E(big["label"])} led with {big["y12"]:,}. '
+            'See every trade in every community area, with each month in the free download.')
     grid = ('<div class="rd-grid">' + "".join(
         f'<a href="#t-{t["key"]}" data-tab="{t["key"]}"{" class=lead" if t is big else ""}><span class="lab"><span class="rd-lf">{E(t["label"])}</span><span class="rd-ls">{E(t["short"])}</span></span>{"<em>Most</em>" if t is big else ""}<b>{t["y12"]:,}</b><small class="rd-ch">{arrow(t["ch"])}vs the 12 months before</small></a>' for t in T)
         + f'</div><p class="asof">New violations, {E(period)}. Counts to {E(M.nice_date(d["through"]))}, from City of Chicago building violation records pulled {E(pulled)}. Updated every day.</p>')
@@ -305,7 +305,7 @@ def page_html(p):
         codes = "".join(f'<tr><td class="rd-d">{E(city_words(d, m, c))} <code>{E(c)}</code></td><td>{n:,}</td></tr>' for c, n in t["codes"][:8] if n)
         panels += (f'<div class="rd-p" data-t="{t["key"]}"><div class="rd-card"><h3>{E(t["label"])}</h3><p>{E(t["who"])}</p>'
                    f'<div class="rd-nums"><div><b>{t["y12"]:,}</b><small>new violations, {E(period)}</small></div><div><b>{E(pct(t["ch"]))}</b><small>vs the 12 months before</small></div>'
-                   f'<div><b>{t["m"]:,}</b><small>in {E(ym_name(st["lm"]))}</small></div><div><b>{E(lead["name"])}</b><small>most: {viol(lead["y12"])}</small></div></div>'
+                   f'<div><b>{t["m"]:,}</b><small>in {E(ym_name(st["lm"]))}</small></div><div><b>{lead["y12"]:,}</b><small>most, in {E(lead["name"])}</small></div></div>'
                    + month_chart(t["city24"], st["labels"], t["ghost24"], E, f'Violations each month, {low(t["label"])}, for 24 months, with the same month a year earlier behind each bar')
                    + '<p class="rd-key"><span><i></i>That month</span><span class="k2"><i></i>Same month a year earlier</span></p></div>'
                    + f'<p class="up-key"><b>\u2191 Red</b> marks a rise of 25% or more vs the 12 months before, where those months had at least {FEW} violations.</p>'

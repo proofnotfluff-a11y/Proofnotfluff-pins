@@ -473,8 +473,8 @@ def page_html(p):
     in_prev = bool(td and d["months"][st["L"] - 23] <= td["day"][:7] <= d["months"][st["L"] - 12])
     lede = (f'Chicago 311 took {w["y12"]:,} water in basement calls and {s["y12"]:,} sewer cleaning requests in the 12 months from '
             f'{E(ym_name(first_m))} to {E(ym_name(st["lm"]))}. Basement calls were {updown(w["ch"])} vs the 12 months before'
-            + (f', which held the busiest day since {E(st["since"])}: {E(M.nice_date(td["day"]))}, with {td["water"]:,} water in basement calls.' if in_prev else
-               '.' + (f' The busiest day since {E(st["since"])} was {E(M.nice_date(td["day"]))}, with {td["water"]:,} water in basement calls.' if td else ""))
+            + (f', which held {E(M.nice_date(td["day"]))}: {td["water"]:,} water in basement calls, the most in one day in our records back to {E(ym_name(d["months"][0]))}.' if in_prev else
+               '.' + (f' The most in one day in our records back to {E(ym_name(d["months"][0]))} was {td["water"]:,} water in basement calls, on {E(M.nice_date(td["day"]))}.' if td else ""))
             + f' Sewer requests were {updown(s["ch"])}.')
     peak = st["peaks"]["water"][0] if st["peaks"]["water"] else None
     tiles = ('<div class="tiles ld-tiles">'
@@ -505,7 +505,7 @@ def page_html(p):
               '<label><input type="radio" name="bfc" value="water" data-bf-show checked>Water in basement</label>'
               '<label><input type="radio" name="bfc" value="sewer" data-bf-show>Sewer cleaning</label></fieldset>')
     days_rows = "".join(f'<tr><td>{E(M.nice_date(x["day"]))}</td><td>{x["water"]:,}</td><td>{x["sewer"]:,}</td></tr>' for x in st["topDays"])
-    days_tbl = (f'<div class="bf-card"><p><b>The 10 busiest days for water in basement calls since {E(st["since"])}</b></p>'
+    days_tbl = (f'<div class="bf-card"><p><b>The 10 busiest days for water in basement calls since {E(ym_name(d["months"][0]))}</b></p>'
                 '<div class="bf-tw" role="region" aria-label="Busiest days for water in basement calls" tabindex="0" style="border:0;margin:0"><table class="bf-days">'
                 '<thead><tr><th scope="col">Day</th><th scope="col">Water in basement</th><th scope="col">Sewer cleaning</th></tr></thead>'
                 f'<tbody>{days_rows}</tbody></table></div>'

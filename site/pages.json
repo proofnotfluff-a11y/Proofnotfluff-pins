@@ -7000,7 +7000,7 @@
    "draft": true,
    "data": "site/datapages/dp_repairs/monthly.json",
    "title": "Chicago Repair Demand by Trade and Neighborhood, Updated Daily | ProofNotFluff",
-   "desc": "Free daily count of new Chicago building violations by trade for all 77 community areas: masonry, porches, electrical, HVAC, elevators and plumbing, month by month. From City records.",
+   "desc": "Free daily count of new Chicago building violations by trade for all 77 community areas: masonry, porches, electrical, HVAC, elevators and plumbing, with each month in the free download. From City records.",
    "eyebrow": "Free daily tracker for repair trades",
    "h1": "Chicago Repair Demand by Trade",
    "card": "New Chicago building violations by trade and community area each month: masonry, porches, electrical, HVAC, elevators and plumbing. Updated daily.",

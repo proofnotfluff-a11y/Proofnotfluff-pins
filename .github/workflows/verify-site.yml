@@ -1,0 +1,38 @@
+name: Verify site
+# Every push that changes the site is checked the way a person would check it (Todd, Oct 27, 2026; .claude/skills/verify/SKILL.md):
+# a real Chromium opens each changed page at 390 and 1280 px in light and dark, runs every flow in verify/flows/, and
+# fails on a script error, a broken request, content cut off at the screen edge, or an accessibility violation.
+# The shots and the report are kept as the run's artifact for 14 days.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["docs/**", "tools/verify_site.py", "verify/**", ".github/workflows/verify-site.yml"]
+permissions:
+  contents: read
+concurrency:
+  group: verify-site
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet playwright pillow cryptography openpyxl
+      - run: python -m playwright install --with-deps chromium
+      - name: Self-checks (planted cases)
+        run: python3 tools/verify_site.py --selftest
+      - name: Verify the changed pages and every flow
+        run: python3 tools/verify_site.py --changed HEAD~1 --flows --out data/verify/ci
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verify-evidence
+          path: data/verify/ci
+          retention-days: 14

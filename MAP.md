@@ -48,6 +48,7 @@ A faceless brand selling money tools to small operators. Three shelves: $2.99 Et
 | services/ | Fiverr kit (skipped Oct 17) | none |
 | scout/ | capability scout findings | scout |
 | reports/, research/, research_notes/ | deep-research reports and notes | whoever ran them |
+| verify/ | flow files for tools/verify_site.py (what a person would click on each feature), Oct 27, 2026 | whoever ships the feature |
 | tools/ | every script; tools/README.md says how to run each | whoever changes one updates the README |
 
 ## 4. Agents and how they hand off

@@ -10,7 +10,7 @@ One job: refresh Chicago Trades News (site/news/chicago-trades.json, page /chica
 1. Date from bash. `python3 tools/check_repo.py --preflight trades-news`.
 2. Each beat agent returns items as JSON (headline, stage, date, effective, category, trades, what, why, sources with exact URLs it opened). Primary sources first (chicago.gov, cityclerk, cookcountyil.gov, ilga.gov, idol.illinois.gov, irs.gov, ssa.gov, osha.gov, illinois.gov, transitchicago.com); reputable Chicago news when no primary exists.
 3. Pick at most 4 new items (none is fine: then only update stages and dates and set "updated") a trade owner would act on. Drop duplicates of live items (update the live item instead: new stage, new date). Our own words only: no quotes, no em or en dashes, no named private people, proposed is never written as passed. Politics stays neutral: what the measure does, its stage, and that the Council or legislature still votes; no side's arguments.
-4. Write the items (checked = today), set "updated" to today, `python3 tools/news_site.py --check`, `python3 tools/make_site.py`, `python3 tools/check_repo.py`: all exit 0.
+4. Write the items (checked = today), set "updated" to today, `python3 tools/news_site.py --check`, `python3 tools/make_site.py`, `python3 tools/check_repo.py`, `python3 tools/verify_site.py --changed --before --flows` (.claude/skills/verify/SKILL.md): all exit 0.
 5. Gates, each a fresh Agent subagent that never saw the drafting:
    a. Facts: open every source URL; every number, date, name and stage in what and why must be on the linked page. PASS or FAIL per item.
    b. Copy: plain words, useful to a trade owner, no advice beyond "check", legal/README.md lines, `python3 tools/legal_scan.py` on the page.

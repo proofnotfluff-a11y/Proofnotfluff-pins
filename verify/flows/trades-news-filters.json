@@ -1,0 +1,14 @@
+{"about": "Chicago Trades News: pick a trade and a topic, see the list narrow, clear back to every item (Oct 27, 2026).",
+ "page": "chicago-trades-news/",
+ "steps": [
+  {"expect_text": "#tn-count", "matches": "^Showing all \\d+ items$"},
+  {"select": "#tn-trade", "value": "Pest control", "screenshot": true},
+  {"expect_text": "#tn-count", "matches": "^Showing \\d+ of \\d+ items$"},
+  {"expect_js": "[...document.querySelectorAll('.tn-item')].filter(a=>!a.hidden).every(a=>a.dataset.trades.split('|').some(t=>t==='Pest control'||t==='All trades'))"},
+  {"click": ".tn-chips button[data-cat='Tax and pay']"},
+  {"expect_js": "[...document.querySelectorAll('.tn-item')].filter(a=>!a.hidden).every(a=>a.dataset.cat==='Tax and pay')", "screenshot": true},
+  {"click": ".tn-chips button[data-cat='']"},
+  {"select": "#tn-trade", "value": ""},
+  {"expect_text": "#tn-count", "matches": "^Showing all \\d+ items$"},
+  {"expect_count": "a[href*='feed.xml']", "min": 1}
+ ]}

@@ -1,0 +1,9 @@
+{"about": "Phone header: the menu opens and lists Shop, Free calculators, Trades news, Questions and Free samples (Oct 27, 2026).",
+ "page": "",
+ "widths": [390],
+ "schemes": ["light", "dark"],
+ "steps": [
+  {"click": "details.navm summary"},
+  {"expect_visible": ".navm-sheet a[href*='chicago-trades-news']", "screenshot": true},
+  {"expect_count": ".navm-sheet a", "min": 5}
+ ]}

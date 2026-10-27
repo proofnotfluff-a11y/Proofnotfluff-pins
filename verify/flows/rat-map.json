@@ -1,0 +1,17 @@
+{"about": "Rat complaints map: tap an area, switch the metric, pick a neighborhood from the list, zoom in and back out (Oct 27, 2026).",
+ "page": "chicago-rat-complaints/",
+ "steps": [
+  {"scroll": "#map"},
+  {"expect_count": "#ratmap path[data-n]", "eq": 77},
+  {"click": "#ratmap path[data-n='6']", "force": true},
+  {"expect_text": "#ratmap .gm-info", "contains": "Lake View", "screenshot": true},
+  {"click": "#ratmap .gm-seg label:nth-of-type(3)"},
+  {"expect_text": "#ratmap .gm-leg", "contains": "same 30 days"},
+  {"select": "#ratmap select", "value": "9"},
+  {"expect_text": "#ratmap .gm-info", "contains": "Edison Park"},
+  {"expect_visible": "#ratmap .gm-zr", "screenshot": true},
+  {"click": "#ratmap .gm-zr"},
+  {"expect_hidden": "#ratmap .gm-zr"},
+  {"click": "#ratmap .gm-zi"},
+  {"expect_visible": "#ratmap .gm-zr"}
+ ]}

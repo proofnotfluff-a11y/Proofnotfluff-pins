@@ -158,8 +158,8 @@
    "why": "If you have more than 25 employees, add paid jury duty to your handbook and payroll before January. Smaller shops keep giving unpaid time off for jury service.",
    "sources": [
     {
-     "name": "Illinois General Assembly, HB 4844",
-     "url": "https://www.ilga.gov/ftp/legislation/104/BillStatus/HTML/10400HB4844.html"
+     "name": "Illinois General Assembly, Public Act 104-0683",
+     "url": "https://ilga.gov/Legislation/PublicActs/View/104-0683"
     },
     {
      "name": "Hinshaw, Illinois employment law changes for 2027",
@@ -206,8 +206,8 @@
    "why": "Check that helpers, cleaners and entry level crew working in the city get at least $17.05 an hour. Jobs in the suburbs follow the county or state rate.",
    "sources": [
     {
-     "name": "City of Chicago, Minimum Wage",
-     "url": "https://www.chicago.gov/city/en/depts/bacp/supp_info/minimumwageinformation.html"
+     "name": "Amundsen Davis, Chicago and Cook County minimum wage increases",
+     "url": "https://www.amundsendavislaw.com/labor-employment-law-update/chicago-and-cook-county-minimum-wage-increases-take-effect-july-1-employer-compliance-updates"
     },
     {
      "name": "ABC7 Chicago, minimum wage increases",
@@ -443,6 +443,105 @@
     {
      "name": "AHR Expo",
      "url": "https://ahrexpo.com/"
+    }
+   ]
+  },
+  {
+   "id": "chicago-construction-codes-dec-1",
+   "date": "2026-10-09",
+   "effective": "2026-12-01",
+   "checked": "2026-10-27",
+   "stage": "passed",
+   "category": "Rules and permits",
+   "trades": [
+    "General contractors",
+    "HVAC",
+    "Electrical",
+    "Roofing"
+   ],
+   "headline": "Chicago's updated construction codes are required for permits filed from December 1",
+   "what": "The City Council passed ordinance SO2026-0024930 on June 17, 2026, updating Chicago's mechanical, fuel gas, energy and interim fire prevention codes to current model codes, with targeted changes to the building and rehab codes. The new codes have been optional since October 1 and are required for projects submitted from December 1, 2026, counted from the day the permit fee is paid.",
+   "why": "Design any job whose permit fee will not be paid before December 1 to the new codes. HVAC contractors should note that homes now need ducted make up air, and the energy code moves to the 2024 IECC.",
+   "sources": [
+    {
+     "name": "MAP Strategies, 2026 Chicago construction code updates",
+     "url": "https://map-strategies.com/ideas/2026-chicago-construction-code-updates"
+    },
+    {
+     "name": "BOMA/Chicago, City advances construction code updates",
+     "url": "https://www.bomachicago.org/2026/07/30/city-advances-2024-construction-code-updates/"
+    }
+   ]
+  },
+  {
+   "id": "illinois-ag-workplace-investigations",
+   "date": "2026-08-05",
+   "effective": "2027-01-01",
+   "checked": "2026-10-27",
+   "stage": "passed",
+   "category": "Rules and permits",
+   "trades": [
+    "All trades"
+   ],
+   "headline": "Illinois Attorney General gets new powers to investigate employers from January 1",
+   "what": "HB 4725, signed July 31, 2026, lets the Attorney General's Workplace Rights Bureau issue subpoenas, require sworn written answers, inspect non public parts of a business, copy records on site and interview workers, starting January 1, 2027. Knowingly hiding or destroying records under subpoena can be a Class A misdemeanor.",
+   "why": "Wage, hour and worker classification complaints can turn into on site state investigations. Get timesheets, pay records and your 1099 or W-2 decisions organized before January.",
+   "sources": [
+    {
+     "name": "Amundsen Davis, Attorney General investigation powers",
+     "url": "https://www.amundsendavislaw.com/labor-employment-law-update/illinois-attorney-general-expanded-employer-investigation-powers"
+    },
+    {
+     "name": "Saul Ewing, Illinois employment law update",
+     "url": "https://www.saul.com/insights/blog/illinois-employment-law-update"
+    }
+   ]
+  },
+  {
+   "id": "illinois-drivers-license-job-ads",
+   "date": "2026-08-19",
+   "effective": "2027-01-01",
+   "checked": "2026-10-27",
+   "stage": "passed",
+   "category": "Rules and permits",
+   "trades": [
+    "All trades"
+   ],
+   "headline": "From 2027, job ads can ask for a driver's license only when driving is essential",
+   "what": "A change to the Illinois Job Opportunities for Qualified Applicants Act, HB 4758, says that from January 1, 2027 a job posting may require a valid driver's license only when driving is an essential part of the job and a business necessity, and the posting must say why. It covers employers with 15 or more employees and employment agencies.",
+   "why": "Service techs who drive to calls will usually qualify, but the ad now has to say so. Drop the license line from postings for shop, warehouse or office jobs where driving is not part of the work.",
+   "sources": [
+    {
+     "name": "Saul Ewing, Illinois employment law update",
+     "url": "https://www.saul.com/insights/blog/illinois-employment-law-update"
+    },
+    {
+     "name": "Hinshaw, Illinois employment law changes for 2027",
+     "url": "https://www.hinshawlaw.com/en/insights/blogs/employment-law-observer/illinois-employers-prepare-now-for-these-three-employment-law-changes-taking-effect-in-2027"
+    }
+   ]
+  },
+  {
+   "id": "illinois-gipa-biomarker-testing",
+   "date": "2026-10-02",
+   "effective": "2027-01-01",
+   "checked": "2026-10-27",
+   "stage": "passed",
+   "category": "Safety",
+   "trades": [
+    "All trades"
+   ],
+   "headline": "Illinois genetic privacy law expands to biomarker tests; drug testing questions raised",
+   "what": "Public Act 104-0642 extends the Genetic Information Privacy Act to biomarker testing, so employers may not require genetic or biomarker tests as a condition of work or act on the results. A law firm reports the change starts January 1, 2027 and that some employers worry the wording could reach workplace drug tests.",
+   "why": "If you run pre hire, random or post accident drug tests, ask your testing vendor or lawyer to review the program before January. The law does not mention drug testing by name.",
+   "sources": [
+    {
+     "name": "Illinois General Assembly, Public Act 104-0642",
+     "url": "https://www.ilga.gov/Legislation/PublicActs/PrinterFriendly/104-0642"
+    },
+    {
+     "name": "Amundsen Davis, October 2026 updates",
+     "url": "https://www.amundsendavislaw.com/labor-employment-law-update/2026/10"
     }
    ]
   }

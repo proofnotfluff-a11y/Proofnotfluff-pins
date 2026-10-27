@@ -13,7 +13,7 @@ of the newest weekly bid PDF, so the build chat can read their layout.
 
 Usage: python3 tools/dp_contracts_probe.py [--art DIR]
 """
-import argparse, datetime as dt, html.parser, json, os, re, subprocess, time, urllib.parse, urllib.request
+import argparse, datetime as dt, html.parser, json, os, re, time, urllib.parse, urllib.request
 from zoneinfo import ZoneInfo
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -77,7 +77,7 @@ def page(url):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--art", default=None); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("--art", default=None); ap.add_argument("--notices", action="store_true"); a = ap.parse_args()
     os.makedirs(OUT, exist_ok=True)
     now = dt.datetime.now(CHI)
     res = {"checkedAt": now.isoformat(timespec="seconds"), "dataset": {}, "terms": {}, "dps": {}, "errors": []}
@@ -154,14 +154,25 @@ def main():
         os.makedirs(a.art, exist_ok=True)
         open(os.path.join(a.art, "latest-weekly.pdf"), "wb").write(last)
         try:
-            art["latest_weekly_text"] = subprocess.run(["pdftotext", "-layout", os.path.join(a.art, "latest-weekly.pdf"), "-"],
-                                                       capture_output=True, text=True, timeout=60).stdout[:60000]
+            import io, pypdf
+            art["latest_weekly_text"] = "\n".join((pg.extract_text(extraction_mode="layout") or "") for pg in pypdf.PdfReader(io.BytesIO(last)).pages)[:60000]
         except Exception as e:
-            art["latest_weekly_text"] = f"pdftotext failed: {e}"
+            art["latest_weekly_text"] = f"pdf text failed: {e}"
     json.dump(res, open(os.path.join(OUT, "probe.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     if a.art:
         os.makedirs(a.art, exist_ok=True)
         json.dump(art, open(os.path.join(a.art, "art.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    # The runner's logs and artifacts are not readable from the cloud session, so the layout the build chat needs comes
+    # back as a few workflow notices: sample rows (business fields only) and the bid list text with contact lines left out.
+    if a.notices:
+        for i, r in enumerate((art.get("sample") or [])[:6] + (art.get("sample_zero") or [])[:3] + (art.get("sample_neg") or [])[:3]):
+            r = {k: (v if not isinstance(v, str) else v[:160]) for k, v in r.items()}
+            print(f"::notice title=sample {i}::" + json.dumps(r, ensure_ascii=False).replace("%", "%25").replace("\n", " ")[:3000])
+        txt = "\n".join(l for l in (art.get("latest_weekly_text") or "").split("\n")
+                         if not re.search(r"@|\(\d{3}\)|\d{3}[-.]\d{3}[-.]\d{4}|contact|buyer|specialist|officer|phone|e-?mail", l, re.I))
+        txt = re.sub(r"[ \t]{3,}", "  |  ", txt)
+        for i in range(0, min(len(txt), 30000), 2900):
+            print(f"::notice title=weekly {i // 2900}::" + txt[i:i + 2900].replace("%", "%25").replace("\r", "").replace("\n", "%0A"))
     print(json.dumps({"rows": res["dataset"].get("rows"), "terms": res["terms"].get("ok"), "weeks": len(weeks), "errors": res["errors"]}))
 
 

@@ -23,10 +23,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          pip install --quiet cryptography openpyxl pillow
-          sudo apt-get install -y -qq poppler-utils >/dev/null
+          pip install --quiet cryptography openpyxl pillow pypdf
       - name: Source check (terms page, columns, weekly bid list)
-        run: python3 tools/dp_contracts_probe.py --art /tmp/dpc-art
+        run: python3 tools/dp_contracts_probe.py --art /tmp/dpc-art --notices
       - name: Self-checks (planted rows)
         run: |
           if [ -f tools/dp_contracts_data.py ]; then python3 tools/dp_contracts_data.py --selftest; fi

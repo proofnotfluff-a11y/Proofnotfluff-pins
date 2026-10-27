@@ -1,0 +1,105 @@
+{
+ "checkedAt": "2026-10-27T14:16:01-05:00",
+ "allOk": true,
+ "items": [
+  {
+   "figure": "chicago.minWage",
+   "source": "https://www.chicago.gov/city/en/depts/bacp/supp_info/minimumwageinformation.html",
+   "http": 200,
+   "expect": "17.05",
+   "found": "17.05",
+   "line": "As of July 1, 2026, the minimum wage in Chicago is $17.05 per hour",
+   "ok": true
+  },
+  {
+   "figure": "chicago.tipped",
+   "source": "https://www.chicago.gov/city/en/depts/bacp/supp_info/minimumwageinformation.html",
+   "http": 200,
+   "expect": "12.96",
+   "found": "12.96",
+   "line": "have a minimum wage of $12.96 for employers with 4 or more employees",
+   "ok": true
+  },
+  {
+   "figure": "cook.minWage",
+   "source": "https://www.cookcountyil.gov/news/cook-county-issues-notice-minimum-wage-ordinance-5",
+   "http": 200,
+   "expect": "15.40",
+   "found": "15.40",
+   "line": "minimum wage will increase to $15.40 for non-tipped workers",
+   "ok": true
+  },
+  {
+   "figure": "cook.tipped",
+   "source": "https://www.cookcountyil.gov/news/cook-county-issues-notice-minimum-wage-ordinance-5",
+   "http": 200,
+   "expect": "9.25",
+   "found": "9.25",
+   "line": "for non-tipped workers and $9.25 for tipped employees",
+   "ok": true
+  },
+  {
+   "figure": "cook.effective",
+   "source": "https://www.cookcountyil.gov/news/cook-county-issues-notice-minimum-wage-ordinance-5",
+   "http": 200,
+   "expect": "July 1, 2026",
+   "found": "July 1, 2026",
+   "line": "Effective July 1, 2026, the Cook County minimum wage",
+   "ok": true
+  },
+  {
+   "figure": "cook.employers",
+   "source": "https://www.cookcountyil.gov/news/cook-county-issues-notice-minimum-wage-ordinance-5",
+   "http": 200,
+   "expect": "four or more employees",
+   "found": "four or more employees",
+   "line": "The employer has four or more employees",
+   "ok": true
+  },
+  {
+   "figure": "irs.year",
+   "source": "https://www.irs.gov/publications/p15",
+   "http": 200,
+   "expect": "2026",
+   "found": "2026",
+   "line": "Publication 15 (2026), (Circular E)",
+   "ok": true
+  },
+  {
+   "figure": "irs.ss",
+   "source": "https://www.irs.gov/publications/p15",
+   "http": 200,
+   "expect": "6.2",
+   "found": "6.2",
+   "line": "The rate of social security tax on taxable wages is 6.2% each for the employer and employee",
+   "ok": true
+  },
+  {
+   "figure": "irs.medicare",
+   "source": "https://www.irs.gov/publications/p15",
+   "http": 200,
+   "expect": "1.45",
+   "found": "1.45",
+   "line": "The Medicare tax rate is 1.45% each for the employee and employer",
+   "ok": true
+  },
+  {
+   "figure": "irs.ssBase",
+   "source": "https://www.irs.gov/publications/p15",
+   "http": 200,
+   "expect": "184,500",
+   "found": "184,500",
+   "line": "The social security wage base limit is $184,500",
+   "ok": true
+  },
+  {
+   "figure": "prevailing.effective",
+   "source": "https://labor.illinois.gov/laws-rules/conmed/current-prevailing-rates.html",
+   "http": 200,
+   "expect": "October 19, 2026",
+   "found": "October 19, 2026",
+   "line": "required to be paid for work performed on or after October 19, 2026",
+   "ok": true
+  }
+ ]
+}

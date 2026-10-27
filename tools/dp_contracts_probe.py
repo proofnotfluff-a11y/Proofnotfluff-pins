@@ -182,6 +182,11 @@ def main():
                 weeks.append({"date": "linked", "url": v, "bytes": len(b)}); last = b
                 break
     res["dps"]["linkedWeekly"] = tries
+    ep = "https://eprocurement.cityofchicago.org/OA_HTML/OA.jsp?OAFunc=PON_ABSTRACT_PAGE"
+    b, st, ct = get(ep, tries=2, raw=True)
+    t = Links(ep); t.feed(b.decode("utf-8", "replace"))
+    res["dps"]["eprocAbstract"] = {"url": ep, "status": st, "type": ct, "bytes": len(b),
+                                   "text": [x for x in (re.sub(r"\s+", " ", y).strip() for y in "".join(t.text).split("\n")) if len(x) > 2][:120]}
     res["dps"]["weekly2026"] = weeks
     if weeks and a.art:
         os.makedirs(a.art, exist_ok=True)

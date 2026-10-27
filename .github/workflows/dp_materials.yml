@@ -1,6 +1,6 @@
 name: Material price indexes (BLS PPI)
 # Free page /material-price-changes/ (tools/dp_materials.py; Todd, Oct 27, 2026: "Let's do them all"). The cloud agents
-# cannot reach bls.gov, so this runner reads BLS's public PPI flat files and commits the chosen series to
+# cannot reach bls.gov, so this runner reads the chosen series through the BLS Public Data API and commits them to
 # site/datapages/dp_materials/. BLS publishes the PPI once a month, mid month; the weekday run picks up each release
 # (and BLS's revisions) the same day and commits only when a number changed.
 on:

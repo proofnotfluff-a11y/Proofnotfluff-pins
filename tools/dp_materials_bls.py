@@ -3,19 +3,18 @@
 Todd's go: Oct 27, 2026, 12:17 pm, "Let's do them all" (coo/DECISIONS-2026-10-27.md, coo/PARALLEL_BUILDS.md).
 
 Runs in GitHub Actions (.github/workflows/dp_materials.yml), because the cloud agents cannot reach bls.gov. Source:
-U.S. Bureau of Labor Statistics, Producer Price Index by commodity (database "wp"), the public flat files at
-https://download.bls.gov/pub/time.series/wp/. BLS asks automated readers to send contact details in the User-Agent.
+U.S. Bureau of Labor Statistics, Producer Price Index by commodity (survey "wp"), read through the BLS Public Data API
+(https://api.bls.gov/publicAPI/), the door BLS offers for programs. BLS's flat files refuse GitHub's runners (HTTP 403,
+Oct 27, 2026), so they are not used.
 
-Two outputs, both public statistics with no person or business in them:
-- site/datapages/dp_materials/catalog.json: every active, not seasonally adjusted commodity series whose BLS title
-  matches a building-material word, with BLS's own id, title, base date and last period. This is how series are
-  chosen: ids and titles come from BLS on each run, never typed from memory.
-- site/datapages/dp_materials/ppi.json: for each series in site/datapages/dp_materials/series.json, BLS's title
-  (re-read from wp.series every run, so a renamed series shows BLS's new name) and every monthly value from
-  START_YEAR on, with BLS's footnote codes ("P" marks a preliminary value BLS may still revise).
+Reads site/datapages/dp_materials/series.json (the series the page shows, each with BLS's title as read from BLS) and
+writes site/datapages/dp_materials/ppi.json: every monthly value BLS returns for the last YEARS years, with BLS's
+footnote codes ("P" marks a preliminary value BLS may still revise). Also writes status.json: per series, whether BLS
+returned it, BLS's own catalog title when the API sends one, and BLS's messages, so a missing or renamed series is
+seen the same day. Public statistics only; no person or business is in either file.
 
-Usage: python3 tools/dp_materials_bls.py              catalog, then the chosen series
-       python3 tools/dp_materials_bls.py --selftest   planted files, no network
+Usage: python3 tools/dp_materials_bls.py              pull and write
+       python3 tools/dp_materials_bls.py --selftest   planted API answers, no network
 """
 import datetime as dt, json, os, re, sys, urllib.error, urllib.request
 from zoneinfo import ZoneInfo
@@ -23,101 +22,90 @@ from zoneinfo import ZoneInfo
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 OUT = os.path.join(ROOT, "site", "datapages", "dp_materials")
-BASE = "https://download.bls.gov/pub/time.series/wp/"
-UA = {"User-Agent": "ProofNotFluff free data page (hello@proofnotfluff.com; github.com/proofnotfluff-a11y/proofnotfluff-pins)"}
-START_YEAR = 2016
-WORDS = re.compile(r"copper|wire|cable|steel|iron|lumber|plywood|wood|millwork|asphalt|roof|concrete|cement|gypsum|"
-                   r"diesel|fuel oil|plastic|pipe|pvc|paint|insulation|brick|glass|aluminum|sand|gravel|stone|"
-                   r"construction|structural|plumbing|fixture|heating|air.?condition|furnace|water heater|"
-                   r"electrical|conduit|nails|fastener|floor|tile|sheet metal|rebar|reinforcing|building", re.I)
+API = {"v2": "https://api.bls.gov/publicAPI/v2/timeseries/data/", "v1": "https://api.bls.gov/publicAPI/v1/timeseries/data/"}
+UA = {"User-Agent": "ProofNotFluff free data page (hello@proofnotfluff.com; github.com/proofnotfluff-a11y/proofnotfluff-pins)",
+      "Content-Type": "application/json"}
+YEARS = 10            # the API without a key returns at most 10 years per request
+PER_CALL = 25         # and at most 25 series per request
 
 
-HEADERS = dict(UA, **{"Accept": "text/plain,*/*", "Accept-Language": "en-US,en;q=0.9"})
-
-
-def get(name, tries=3):
-    last = None
-    for _ in range(tries):
-        try:
-            req = urllib.request.Request(BASE + name, headers=HEADERS)
-            with urllib.request.urlopen(req, timeout=300) as r:
-                return r.read().decode("utf-8", "replace"), r.headers.get("Last-Modified", "")
-        except urllib.error.HTTPError as e:   # say what BLS answered, as an annotation the build chat can read
-            body = e.read()[:300].decode("utf-8", "replace").replace("\n", " ")
-            last = f"HTTP {e.code}: {body}"
-        except Exception as e:   # network blips on the runner: try again, then fail loudly
-            last = repr(e)
-    print(f"::error title=BLS read failed::{BASE + name}: {last}")
-    raise SystemExit(f"could not read {BASE + name}: {last}")
-
-
-def rows(text):
-    """BLS flat file (tab separated, header first, padded cells) to a list of dicts."""
-    lines = [ln for ln in text.splitlines() if ln.strip()]
-    head = [h.strip() for h in lines[0].split("\t")]
-    return [dict(zip(head, [c.strip() for c in ln.split("\t")])) for ln in lines[1:]]
-
-
-def active(r, year):
+def post(version, ids, start, end, catalog):
+    body = {"seriesid": ids, "startyear": str(start), "endyear": str(end)}
+    if catalog:
+        body["catalog"] = True
+    req = urllib.request.Request(API[version], data=json.dumps(body).encode(), headers=UA)
     try:
-        return int(r.get("end_year") or 0) >= year - 1
-    except ValueError:
-        return False
+        with urllib.request.urlopen(req, timeout=120) as r:
+            return json.loads(r.read().decode("utf-8", "replace"))
+    except urllib.error.HTTPError as e:
+        return {"status": f"HTTP {e.code}", "message": [e.read()[:200].decode("utf-8", "replace")]}
+    except Exception as e:
+        return {"status": "ERROR", "message": [repr(e)]}
 
 
-def catalog(series_rows, year):
+def months(series):
+    """API data rows to [[YYYY-MM, value, footnote codes]], oldest first; M13 (annual) and blank values left out."""
     out = []
-    for r in series_rows:
-        sid = r.get("series_id", "")
-        if not sid.startswith("WPU") or r.get("seasonal") != "U" or not active(r, year):
-            continue
-        if WORDS.search(r.get("series_title", "")):
-            out.append({"id": sid, "title": r["series_title"], "base": r.get("base_date", ""),
-                        "begin": f'{r.get("begin_year")}-{r.get("begin_period", "")[1:]}',
-                        "end": f'{r.get("end_year")}-{r.get("end_period", "")[1:]}'})
-    return sorted(out, key=lambda x: x["id"])
-
-
-def series_data(data_rows, wanted):
-    """{series_id: [[YYYY-MM, value, footnote codes]]} for the wanted ids, months only (M13 is the annual average)."""
-    out = {s: [] for s in wanted}
-    for r in data_rows:
-        sid, per = r.get("series_id", ""), r.get("period", "")
-        if sid not in out or not re.fullmatch(r"M(0[1-9]|1[0-2])", per):
+    for r in series.get("data") or []:
+        per = r.get("period", "")
+        if not re.fullmatch(r"M(0[1-9]|1[0-2])", per):
             continue
         try:
-            y, v = int(r["year"]), float(r["value"])
+            v = float(r["value"])
         except (KeyError, ValueError):
-            continue   # BLS writes "-" for a month it has no value for
-        if y >= START_YEAR:
-            out[sid].append([f"{y}-{per[1:]}", v, r.get("footnote_codes", "")])
-    for sid in out:
-        out[sid].sort()
-    return out
-
-
-def build(series_rows, data_rows, chosen, foot_rows, fetched, files):
-    by_id = {r["series_id"]: r for r in series_rows}
-    data = series_data(data_rows, [c["id"] for c in chosen])
-    series, missing = [], []
-    for c in chosen:
-        r = by_id.get(c["id"])
-        if not r or not data[c["id"]]:
-            missing.append(c["id"])
             continue
-        series.append({"id": c["id"], "title": r["series_title"], "base": r.get("base_date", ""), "seasonal": r.get("seasonal"),
-                       "obs": data[c["id"]]})
-    if missing:
-        raise SystemExit(f"BLS has no current series or no values for: {', '.join(missing)} (update series.json from catalog.json)")
-    latest = max(s["obs"][-1][0] for s in series)
-    return {"source": {"agency": "U.S. Bureau of Labor Statistics", "program": "Producer Price Index, commodity data (wp)",
-                       "files": files, "fetchedAt": fetched,
-                       "footnotes": {r.get("footnote_code", ""): r.get("footnote_text", "") for r in foot_rows if r.get("footnote_code")}},
-            "latest": latest, "startYear": START_YEAR, "series": series}
+        codes = "".join(sorted({(f or {}).get("code", "") for f in r.get("footnotes") or [] if (f or {}).get("code")}))
+        out.append([f'{r["year"]}-{per[1:]}', v, codes])
+    return sorted(out)
+
+
+def notes(series):
+    return {(f or {}).get("code"): (f or {}).get("text", "") for r in series.get("data") or [] for f in r.get("footnotes") or []
+            if (f or {}).get("code")}
+
+
+def pull(ids, start, end, call=post):
+    """{id: {"obs", "catalog", "notes"}}, the API version that answered, and BLS's messages."""
+    got, msgs, used = {}, [], None
+    for i in range(0, len(ids), PER_CALL):
+        chunk = ids[i:i + PER_CALL]
+        for version, catalog in (("v2", True), ("v1", False)):
+            ans = call(version, chunk, start, end, catalog)
+            msgs += [f"{version}: {m}" for m in ans.get("message") or []]
+            if ans.get("status") == "REQUEST_SUCCEEDED" and (ans.get("Results") or {}).get("series"):
+                used = used or version
+                for s in ans["Results"]["series"]:
+                    obs = months(s)
+                    if obs:
+                        got[s["seriesID"]] = {"obs": obs, "catalog": s.get("catalog") or {}, "notes": notes(s)}
+                break
+    return got, used, msgs
+
+
+def build(chosen, got, fetched, version):
+    series, foot = [], {}
+    for c in chosen:
+        g = got.get(c["id"])
+        if not g:
+            continue
+        foot.update(g["notes"])
+        series.append({"id": c["id"], "title": c["title"], "obs": g["obs"]})
+    if not series:
+        return None
+    return {"source": {"agency": "U.S. Bureau of Labor Statistics", "program": "Producer Price Index by commodity (wp), not seasonally adjusted",
+                       "api": API[version] if version else "", "fetchedAt": fetched, "footnotes": foot},
+            "latest": max(s["obs"][-1][0] for s in series), "series": series}
+
+
+def status(chosen, got, version, msgs, fetched):
+    return {"checkedAt": fetched, "api": version, "messages": sorted(set(msgs))[:60],
+            "series": [{"id": c["id"], "ourTitle": c["title"], "returned": c["id"] in got,
+                        "blsTitle": (got.get(c["id"]) or {}).get("catalog", {}).get("series_title", ""),
+                        "last": (got.get(c["id"]) or {}).get("obs", [[""]])[-1][0]} for c in chosen]}
 
 
 def write_if_changed(path, obj, same, **kw):
-    """Write only when the content changed, so a run that finds no new BLS release commits nothing."""
+    """Write only when the numbers changed, so a run that finds no new BLS release commits nothing."""
     if os.path.isfile(path):
         try:
             if same(json.load(open(path, encoding="utf-8")), obj):
@@ -131,49 +119,47 @@ def write_if_changed(path, obj, same, **kw):
 
 def main():
     now = dt.datetime.now(ZoneInfo("America/Chicago"))
-    os.makedirs(OUT, exist_ok=True)
-    stext, smod = get("wp.series")
-    srows = rows(stext)
-    cat = catalog(srows, now.year)
-    write_if_changed(os.path.join(OUT, "catalog.json"),
-                     {"fetchedAt": now.isoformat(timespec="seconds"), "file": BASE + "wp.series", "lastModified": smod,
-                      "count": len(cat), "series": cat}, lambda a, b: a.get("series") == b["series"], indent=1)
-    print("catalog:", len(cat), "series")
-    spec = os.path.join(OUT, "series.json")
-    if not os.path.isfile(spec):
-        print("no series.json yet: catalog only")
-        return
-    chosen = json.load(open(spec, encoding="utf-8"))["series"]
-    dtext, dmod = get("wp.data.0.Current")
-    ftext, _ = get("wp.footnote")
-    d = build(srows, rows(dtext), chosen, rows(ftext), now.isoformat(timespec="seconds"),
-              {"series": {"url": BASE + "wp.series", "lastModified": smod}, "data": {"url": BASE + "wp.data.0.Current", "lastModified": dmod}})
-    write_if_changed(os.path.join(OUT, "ppi.json"), d, lambda a, b: a.get("series") == b["series"],
-                     indent=0, separators=(",", ":"))
-    print("ppi:", len(d["series"]), "series, latest", d["latest"])
+    fetched = now.isoformat(timespec="seconds")
+    chosen = json.load(open(os.path.join(OUT, "series.json"), encoding="utf-8"))["series"]
+    got, version, msgs = pull([c["id"] for c in chosen], now.year - YEARS + 1, now.year)
+    write_if_changed(os.path.join(OUT, "status.json"), status(chosen, got, version, msgs, fetched),
+                     lambda a, b: {k: v for k, v in a.items() if k != "checkedAt"} == {k: v for k, v in b.items() if k != "checkedAt"}, indent=1)
+    for m in sorted(set(msgs))[:20]:
+        print(f"::notice title=BLS said::{m}")
+    if not got:
+        print("::error title=BLS API::no series came back")
+        raise SystemExit("BLS API returned no series")
+    d = build(chosen, got, fetched, version)
+    write_if_changed(os.path.join(OUT, "ppi.json"), d, lambda a, b: a.get("series") == b["series"], indent=0, separators=(",", ":"))
+    print("ppi:", len(d["series"]), "of", len(chosen), "series, latest", d["latest"], "via", version)
 
 
 def selftest():
-    s = ("series_id\tgroup_code\titem_code\tseasonal\tbase_date\tseries_title\tfootnote_codes\tbegin_year\tbegin_period\tend_year\tend_period\n"
-         "WPU081      \t08\t1\tU\t198200\tLumber\t\t1947\tM01\t2026\tM09\n"
-         "WPS081\t08\t1\tS\t198200\tLumber\t\t1947\tM01\t2026\tM09\n"
-         "WPU0111\t01\t11\tU\t198200\tFresh fruits\t\t1947\tM01\t2026\tM09\n"
-         "WPU1017\t10\t17\tU\t198200\tSteel mill products\t\t1947\tM01\t2009\tM12\n")
-    d = ("series_id\tyear\tperiod\tvalue\tfootnote_codes\n"
-         "WPU081\t2015\tM12\t180.0\t\nWPU081\t2025\tM09\t200.0\t\nWPU081\t2026\tM08\t210.5\tP\n"
-         "WPU081\t2026\tM09\t212.0\tP\nWPU081\t2025\tM13\t199.0\t\nWPU081\t2026\tM07\t-\t\n")
-    sr, dr = rows(s), rows(d)
-    cat = catalog(sr, 2026)
-    assert [c["id"] for c in cat] == ["WPU081"], cat   # NSA only, active only, building words only
-    out = build(sr, dr, [{"id": "WPU081"}], [{"footnote_code": "P", "footnote_text": "Preliminary."}], "2026-10-27T12:00:00-05:00", {})
-    obs = out["series"][0]["obs"]
-    assert obs == [["2025-09", 200.0, ""], ["2026-08", 210.5, "P"], ["2026-09", 212.0, "P"]], obs   # no M13, no "-", no pre-2016
-    assert out["latest"] == "2026-09" and out["source"]["footnotes"]["P"] == "Preliminary."
-    try:
-        build(sr, dr, [{"id": "WPU1017"}], [], "", {})
-        raise AssertionError("a series with no values must stop the run")
-    except SystemExit:
-        pass
+    def fake(version, ids, start, end, catalog):
+        if version == "v2":
+            return {"status": "REQUEST_NOT_PROCESSED", "message": ["planted: v2 refused"]}
+        series = []
+        for sid in ids:
+            if sid == "WPUBAD":
+                continue
+            series.append({"seriesID": sid, "data": [
+                {"year": "2026", "period": "M09", "value": "212.0", "footnotes": [{"code": "P", "text": "Preliminary."}]},
+                {"year": "2026", "period": "M08", "value": "210.5", "footnotes": [{"code": "P", "text": "Preliminary."}]},
+                {"year": "2025", "period": "M13", "value": "199.0", "footnotes": [{}]},
+                {"year": "2025", "period": "M10", "value": "-", "footnotes": [{}]},
+                {"year": "2025", "period": "M09", "value": "200.0", "footnotes": [{}]}]})
+        return {"status": "REQUEST_SUCCEEDED", "message": [f"Series does not exist for Series {s}" for s in ids if s == "WPUBAD"],
+                "Results": {"series": series}}
+    chosen = [{"id": "WPU081", "title": "Lumber"}, {"id": "WPUBAD", "title": "Nothing"}]
+    got, version, msgs = pull([c["id"] for c in chosen], 2017, 2026, call=fake)
+    assert version == "v1" and set(got) == {"WPU081"}, (version, got)
+    assert got["WPU081"]["obs"] == [["2025-09", 200.0, ""], ["2026-08", 210.5, "P"], ["2026-09", 212.0, "P"]], got   # no M13, no "-"
+    d = build(chosen, got, "2026-10-27T12:00:00-05:00", version)
+    assert d["latest"] == "2026-09" and d["source"]["footnotes"]["P"] == "Preliminary." and len(d["series"]) == 1
+    st = status(chosen, got, version, msgs, "x")
+    assert [s["returned"] for s in st["series"]] == [True, False] and any("does not exist" in m for m in st["messages"])
+    big = pull([f"WPU{i}" for i in range(30)], 2017, 2026, call=fake)[0]
+    assert len(big) == 30, "more than 25 series go in two requests"
     print("dp_materials_bls selftest: ok")
 
 

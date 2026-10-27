@@ -1,0 +1,125 @@
+{
+ "about": "Candidates, round 1 (Oct 27, 2026): titles for groups 05 to 10 are BLS's own, copied from download.bls.gov/pub/time.series/wp/wp.item this run; group 13 and the special index are ids to confirm with the BLS API (status.json), titles from BLS's catalog or another BLS page before any is shown.",
+ "series": [
+  {
+   "id": "WPU057303",
+   "title": "No. 2 diesel fuel"
+  },
+  {
+   "id": "WPU058102",
+   "title": "Asphalt"
+  },
+  {
+   "id": "WPU0621",
+   "title": "Prepared paint"
+  },
+  {
+   "id": "WPU07210603",
+   "title": "Plastics pipe"
+  },
+  {
+   "id": "WPU081",
+   "title": "Lumber"
+  },
+  {
+   "id": "WPU083",
+   "title": "Plywood"
+  },
+  {
+   "id": "WPU1017",
+   "title": "Steel mill products"
+  },
+  {
+   "id": "WPU101704",
+   "title": "Hot rolled steel bars, plates, and structural shapes"
+  },
+  {
+   "id": "WPU101706",
+   "title": "Steel pipe and tube"
+  },
+  {
+   "id": "WPU102501",
+   "title": "Aluminum mill shapes"
+  },
+  {
+   "id": "WPU10250239",
+   "title": "Copper and copper alloy pipe and tube"
+  },
+  {
+   "id": "WPU10260314",
+   "title": "Copper wire and cable"
+  },
+  {
+   "id": "WPU105",
+   "title": "Plumbing fixtures and fittings"
+  },
+  {
+   "id": "WPU106",
+   "title": "Heating equipment"
+  },
+  {
+   "id": "WPU107405",
+   "title": "Fabricated structural metal"
+  },
+  {
+   "id": "WPU10730120",
+   "title": "Sheet metal air-conditioning ducts and stove pipe"
+  },
+  {
+   "id": "WPU1083",
+   "title": "Lighting fixtures"
+  },
+  {
+   "id": "WPU1311",
+   "title": ""
+  },
+  {
+   "id": "WPU1321",
+   "title": ""
+  },
+  {
+   "id": "WPU1322",
+   "title": ""
+  },
+  {
+   "id": "WPU1331",
+   "title": ""
+  },
+  {
+   "id": "WPU1333",
+   "title": ""
+  },
+  {
+   "id": "WPU134",
+   "title": ""
+  },
+  {
+   "id": "WPU1342",
+   "title": ""
+  },
+  {
+   "id": "WPU136",
+   "title": ""
+  },
+  {
+   "id": "WPU1361",
+   "title": ""
+  },
+  {
+   "id": "WPU137",
+   "title": ""
+  },
+  {
+   "id": "WPU1392",
+   "title": ""
+  },
+  {
+   "id": "WPU1394",
+   "title": ""
+  },
+  {
+   "id": "WPUSI012011",
+   "title": ""
+  }
+ ]
+}

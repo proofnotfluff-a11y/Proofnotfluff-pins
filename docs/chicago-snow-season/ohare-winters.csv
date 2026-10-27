@@ -1,4 +1,4 @@
-winter,station_id,station_name,complete,days_missing_oct_to_may,snowfall_in,days_1in_plus,days_2in_plus,days_3in_plus,days_6in_plus,days_1in_plus_on_ground
+winter,station_id,station_name,records_complete,days_missing_oct_to_may,snowfall_in,days_1in_plus_new_snow,days_2in_plus_new_snow,days_3in_plus_new_snow,days_6in_plus_new_snow,days_1in_plus_on_ground
 1996-97,USW00094846,"CHICAGO OHARE INTERNATIONAL AIRPORT, IL US",no,40,,,,,,
 1997-98,USW00094846,"CHICAGO OHARE INTERNATIONAL AIRPORT, IL US",no,79,,,,,,
 1998-99,USW00094846,"CHICAGO OHARE INTERNATIONAL AIRPORT, IL US",yes,0,50.9,13,7,5,1,
@@ -29,4 +29,4 @@ winter,station_id,station_name,complete,days_missing_oct_to_may,snowfall_in,days
 2023-24,USW00094846,"CHICAGO OHARE INTERNATIONAL AIRPORT, IL US",yes,0,22.2,8,4,1,0,23
 2024-25,USW00094846,"CHICAGO OHARE INTERNATIONAL AIRPORT, IL US",yes,0,17.6,7,3,0,0,23
 2025-26,USW00094846,"CHICAGO OHARE INTERNATIONAL AIRPORT, IL US",yes,0,34.1,10,4,3,1,43
-2026-27 to 2026-10-24,USW00094846,"CHICAGO OHARE INTERNATIONAL AIRPORT, IL US",yes,0,0.0,0,0,0,0,0
+2026-27 so far (to 2026-10-24),USW00094846,"CHICAGO OHARE INTERNATIONAL AIRPORT, IL US",so far,0,0.0,0,0,0,0,0

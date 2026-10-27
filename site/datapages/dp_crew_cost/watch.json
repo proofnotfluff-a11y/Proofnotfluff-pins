@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-10-27T15:14:33-05:00",
+ "checkedAt": "2026-10-27T15:35:31-05:00",
  "allOk": true,
  "items": [
   {
@@ -54,6 +54,15 @@
    "expect": "four or more employees",
    "found": "four or more employees",
    "line": "The employer has four or more employees",
+   "ok": true
+  },
+  {
+   "figure": "cook.hours",
+   "source": "https://www.cookcountyil.gov/news/cook-county-issues-notice-minimum-wage-ordinance-5",
+   "http": 200,
+   "expect": "at least 2 hours in any two-week period",
+   "found": "at least 2 hours in any two-week period",
+   "line": "The employee has worked for an employer in Cook County for at least 2 hours in any two-week period",
    "ok": true
   },
   {

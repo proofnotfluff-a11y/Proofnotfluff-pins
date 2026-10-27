@@ -1894,8 +1894,8 @@ def _snow_fill():
              '.sf-h{margin:0;font-weight:700;font-size:14.5px;color:var(--ink)}.sf-c{margin:2px 0 10px;font-size:13px;color:var(--ink2)}'
              '.sf-s{display:flex;flex-wrap:wrap;gap:10px 18px}.sf-seg{display:flex;flex-wrap:wrap;gap:6px;border:0;margin:0;padding:0;min-width:0}'
              '.sf-seg legend{font-size:13px;font-weight:600;color:var(--muted);margin:0 0 4px;padding:0}'
-             '.sf-seg label{position:relative;display:inline-flex;align-items:center;min-height:44px;box-sizing:border-box;padding:0 13px;border:1.5px solid var(--line);'
-             'border-radius:10px;background:var(--canvas2);color:var(--ink);font-weight:600;font-size:14.5px;cursor:pointer}'
+             '.sf-seg label{position:relative;display:inline-flex;align-items:center;min-height:46px;box-sizing:border-box;padding:0 15px;border:1.5px solid var(--line);'
+             'border-radius:10px;background:var(--canvas2);color:var(--ink);font-weight:600;font-size:15px;cursor:pointer}'
              '.sf-seg input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}'
              '.sf-seg label:has(input:checked){background:var(--ink);border-color:var(--ink);color:var(--card)}'
              '.sf-seg label:has(input:focus-visible){outline:3px solid var(--focus);outline-offset:2px}'
@@ -1903,7 +1903,7 @@ def _snow_fill():
              '.sf-bs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0 0}'
              '.sf-b{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:56px;padding:6px 4px;border:1.5px solid var(--line);border-radius:10px;'
              'background:var(--card);color:var(--ink);font:inherit;font-size:13px;font-weight:600;cursor:pointer}'
-             '.sf-b b{font-size:19px;font-variant-numeric:tabular-nums}.sf-b[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--card)}'
+             '.sf-b b{font-size:19px;font-variant-numeric:tabular-nums}.sf-b[aria-pressed="true"]{border:2px solid var(--ink);box-shadow:0 0 0 1px var(--ink) inset;background:var(--card)}.sf-b[aria-pressed="true"] span::before{content:"\\2713  ";font-weight:700}'
              '.sf-b:focus-visible{outline:3px solid var(--focus);outline-offset:2px}.sf-done{margin:8px 0 0;font-size:13px;font-weight:600;color:var(--ink)}'
              '.sf-n{margin:8px 0 0;font-size:12.5px;line-height:1.45;color:var(--muted)}</style>')
     data = json.dumps(cc, separators=(",", ":")).replace("</", "<\\/")
@@ -1930,9 +1930,11 @@ def _snow_fill():
           'var q=new URLSearchParams(location.search),qs=q.get("station"),qt=String(parseInt(q.get("trigger"),10));'
           'function example(){var v=C[val("sfSt")].t[val("sfT")],k=v.indexOf(Number(ev.value));on=k;paint();'
           'if(k>-1){done.textContent="The example uses "+ev.value+", the "+N[k].toLowerCase()+" winter at "+lab("sfSt").textContent+", "+lab("sfT").querySelector(".vh").textContent+".";done.hidden=false;}else{done.hidden=true;}}'
-          'ev.form.addEventListener("input",function(e){if(e.target===ev.form){box.querySelectorAll("input[type=radio]").forEach(function(r){r.checked=r.defaultChecked;});last=null;example();}});'
-          'if(qs&&C[qs]&&C[qs].t[qt]&&pick("sfSt",qs)&&pick("sfT",qt)){use(1,true);'
-          'if(location.hash==="#season")window.addEventListener("load",function(){var s=document.getElementById("season");if(s)s.scrollIntoView();});}else{example();}})();</script>')
+          'ev.form.addEventListener("input",function(e){if(e.target===ev.form){box.querySelectorAll("input[type=radio]").forEach(function(r){r.checked=r.defaultChecked;});last=null;example();'
+          'if(location.search){try{history.replaceState(null,"",location.pathname+location.hash);}catch(x){}}}});'
+          'if(location.hash==="#season"){var again=function(){var s=document.getElementById("season");if(s)s.scrollIntoView();};window.addEventListener("load",again);'
+          'if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){setTimeout(again,60);});}'
+          'if(qs&&C[qs]&&C[qs].t[qt]&&pick("sfSt",qs)&&pick("sfT",qt)){use(1,true);}else{example();}})();</script>')
     return html_, (pre, js)
 
 

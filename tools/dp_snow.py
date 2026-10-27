@@ -272,16 +272,19 @@ CSS = ("<style>"
        ".sn-seg label:has(input:checked){background:var(--ink);border-color:var(--ink);color:var(--card)}"
        ".sn-seg label:has(input:focus-visible){outline:3px solid var(--focus);outline-offset:2px}"
        ".sn-top{margin-top:18px}section.block .sn-ctl .sn-ctl-h{flex-basis:100%;margin:0 0 -4px;font-size:17px;line-height:1.3}"
+       "@media(max-width:599px){.ld-hero .lede{margin-bottom:8px}.sn-top{margin-top:4px}.sn-tiles .tile.key{padding:12px 14px}.sn-act{margin-top:10px}.sn-ctl{margin-bottom:10px}}"
        "@media(max-width:599px){.sn-now{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.sn-ctl{padding:12px 14px;gap:10px 20px}}.sn-now{margin:0 0 10px;font-size:15px;color:var(--ink2)}.sn-now b{color:var(--ink)}"
-       ".sn-tiles{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.sn-tiles .tile.key{grid-column:1/-1;order:-1}"
+       ".sn-tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.sn-tiles .tile.key{grid-column:1/-1;order:-1}.sn-tiles .sn-cur{display:none}"
+       ".sn-strip{margin:12px 0 0;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);font-size:14.5px;color:var(--ink2)}.sn-strip b{color:var(--ink)}"
+       "@media(min-width:900px){.sn-tiles .sn-cur{display:block}.sn-strip{display:none}}"
        "@media(min-width:900px){.sn-tiles{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.sn-tiles .tile.key{grid-column:auto;order:0}}"
-       "@media(max-width:899px){.sn-tiles .tile:not(.key){padding:10px}.sn-tiles .tile:not(.key) .sub{font-size:12.5px}.sn-tiles .tile.key .val{font-size:40px}}"
+       "@media(max-width:899px){.sn-tiles .tile:not(.key){padding:12px}.sn-tiles .tile:not(.key) .val{font-size:28px}.sn-tiles .tile.key .val{font-size:40px}}"
        ".sn-tiles .tile .sub{font-size:13.5px;margin-top:4px;line-height:1.35}.sn-tiles .tile:not(.key) .sub{color:var(--ink2)}"
        ".sn-act{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0}"
        ".sn-fig{position:relative;margin:12px 0 6px;padding:16px 16px 12px;background:var(--card);border:1px solid var(--line);border-radius:12px}"
        ".sn-fig figcaption{font-weight:700;color:var(--ink);margin:0 0 2px}.sn-fig .sn-sub{font-size:13.5px;color:var(--muted);margin:0 0 12px}"
        ".sn-plot{position:relative;height:210px;margin:0 0 0 30px}"
-       ".sn-plot.m{height:150px}.sn-plot.m .sn-col i{max-width:40px}.sn-plot:focus-visible{outline:3px solid var(--focus);outline-offset:4px;border-radius:4px}"
+       ".sn-plot.m{height:150px}.sn-plot.m .sn-col i{max-width:64px}.sn-plot:focus-visible{outline:3px solid var(--focus);outline-offset:4px;border-radius:4px}"
        ".sn-gl{position:absolute;left:0;right:0;height:0;border-top:1px solid var(--sn-grid)}"
        ".sn-gl span{position:absolute;right:100%;margin-right:8px;transform:translateY(-50%);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}"
        ".sn-gl.base{border-top-color:var(--dash)}"
@@ -322,7 +325,7 @@ CSS = ("<style>"
        ".sn-more[open]>summary{border-bottom:1px solid var(--rule);margin-bottom:6px}.sn-more>:not(summary){max-width:820px}@media(max-width:599px){.sn-dl a{flex:1 1 100%}}.sn-dl{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0}"
        ".vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}"
        "@media(max-width:599px){.sn-plot,.sn-line{margin-left:24px}.sn-xl,.sn-mx{margin-left:24px}.sn-plot{height:180px}.sn-line{height:200px}"
-       ".sn-col b{font-size:11.5px}.sn-xl.yr span.k:not(.k0){visibility:hidden}.sn-t{min-width:0;font-size:13.5px}.sn-t th,.sn-t td{padding:8px 6px}.sn-t .gr{display:none}.sn-ctl{gap:12px}.sn-seg label{padding:0 13px}}"
+       ".sn-col b{font-size:11.5px}.sn-xl.yr span.k:not(.k0){visibility:hidden}.sn-t{min-width:0;font-size:13.5px}.sn-t th,.sn-t td{padding:8px 6px}.sn-t .gr,.asof.gr{display:none}section.block .asof,.sn-top .asof{font-size:13.5px}.sn-ctl{gap:12px}.sn-seg label{padding:0 13px}}"
        "</style>")
 
 
@@ -478,9 +481,15 @@ def tiles(v, t, E):
             f'<div class="sub">{E(mid_words)}</div></div>'
             f'<div class="tile"><div class="lab">Heavy winter</div><div class="val">{E(num(sm["high"]))}</div>'
             f'<div class="sub">{E(high_words)}</div></div>'
-            f'<div class="tile"><div class="lab">This winter so far</div><div class="val">{sm["cur"]}</div>'
+            f'<div class="tile sn-cur"><div class="lab">This winter so far</div><div class="val">{sm["cur"]}</div>'
             f'<div class="sub">{"None yet. " if not sm["cur"] else ""}Past winters\' middle by {E(short_day(end))}: {E(num(sm["toDate"]))}</div></div>'
             '</div>')
+
+
+def sofar(v, t, E):
+    sm = v["sum"][t]
+    return (f'<p class="sn-strip"><b>This winter so far: {sm["cur"]}</b> {"(none yet). " if not sm["cur"] else ". "}'
+            f'Past winters\' middle by {E(short_day(v["end"]))}: {E(num(sm["toDate"]))}.</p>')
 
 
 def dates_block(v, t, E):
@@ -634,7 +643,7 @@ def page_html(p):
                "; ".join(f'{sd[k]["s"]["label"]} {day_words(e, True)}' for k, e in ends.items()))
     top = (f'<section class="block sn-top" id="board" aria-labelledby="sn-h-board">{ctl}'
            f'<p class="sn-now" aria-live="polite">Showing <b id="sn-say">{E(v0["s"]["label"])}, {E(inch(t0))}</b>: days with new snow at or over your trigger. Every count, chart and table below follows.</p>'
-           f'{V(tiles)}<div class="sn-act">{calc_btn}<a class="st-btn2" href="#winters">See every winter</a></div>'
+           f'{V(tiles)}<div class="sn-act">{calc_btn}<a class="st-btn2" href="#winters">See every winter</a></div>{V(sofar)}'
            f'<p class="asof">Past winters only; this is not a forecast. NOAA records through {E(through)}, checked {E(checked)}. Updated daily from October to April.</p></section>')
     sec = lambda i, h, inner, extra="": f'<section class="block" id="{i}" aria-labelledby="sn-h-{i}"><h2 id="sn-h-{i}">{h}</h2>{inner}{extra}</section>'
     stations = "".join(f'<li><b>{E(v["s"]["label"])}:</b> NOAA station {E(v["s"]["id"])}, {E(v["s"]["name"].replace(", IL US", "").title().replace("Ohare", "O\'Hare").replace(" Sw", " SW"))}. '
@@ -670,7 +679,8 @@ def page_html(p):
             + sec("this-winter", "This winter so far", V(season_chart),
                   '<p class="asof">Past winters only; the shaded band shows where the light to heavy winters stood on each date, not where this one will go.</p>')
             + sec("winters", "Every winter in a table", VS(table),
-                  f'<p class="asof">Plowable days count days with new snow at or over each depth. Your trigger column is shaded. Newest winter first. Incomplete winters show no counts. n/a means NOAA\'s snow depth record is missing more than 3 days between October and May that winter; a few missing days count as no snow on the ground.</p><div class="sn-dl">{dls}</div>')
+                  f'<p class="asof">Plowable days count days with new snow at or over each depth; your trigger column is shaded. Newest winter first; incomplete winters show no counts.</p>'
+                  f'<p class="asof gr">n/a means NOAA\'s snow depth record is missing more than 3 days between October and May that winter; a few missing days count as no snow on the ground.</p><div class="sn-dl">{dls}</div>')
             + sec("counts", "What counts on this page",
                   '<p class="sn-lead">A plowable day is one station day with new snow at or over your trigger; a winter runs July 1 to June 30.</p>'
                   f'<details class="sn-more"><summary>Every definition on this page</summary>{defs}</details>')
@@ -734,7 +744,7 @@ def selftest():
         M.PAGES_LIVE[:] = []
         html = page_html(spec)
         assert html.count("<h1>") == 1 and "—" not in html and "–" not in html, "one h1, no dashes"
-        assert html.count('data-v="') == 8 * 5 + 2 and 'data-v="ohare-2">' in html, "every station and trigger, default shown"
+        assert html.count('data-v="') == 8 * 6 + 2 and 'data-v="ohare-2">' in html, "every station and trigger, default shown"
         for bad in ("forecast for this winter will", "expect this winter", "$"):
             assert bad not in html.split("<footer>")[0].split("</style>")[-1], f"no forecasts or prices: {bad}"
         assert "Half of the" not in html and "0 or fewer" not in html and "no push" not in html, "copy gate fixes hold"

@@ -69,10 +69,6 @@ jobs:
         run: python3 tools/make_site.py
       - name: Commit the sample
         run: |
-          git config user.name "proofnotfluff-bot"
-          git config user.email "proofnotfluff-bot@users.noreply.github.com"
-          git add permits/austin docs probes/austin-app-check.txt probes/austin-confirm.json
-          if git diff --cached --quiet; then echo "no change"; exit 0; fi
-          git commit -m "Austin permit sample $(date -u +%Y-%m-%d)"
-          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done
-          exit 1
+          # on a busy main the rebuilt pages conflict; the helper resets, rebuilds on origin/main and retries (QA Oct 26)
+          bash tools/push_rebuilt.sh "Austin permit sample $(date -u +%Y-%m-%d)" \
+            permits/austin docs/austin-leads-members docs/assets/leads/austin probes/austin-app-check.txt probes/austin-confirm.json

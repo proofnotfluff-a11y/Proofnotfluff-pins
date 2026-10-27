@@ -228,6 +228,23 @@ def austin_health(api, lookback_since):
     return idx, len(rows)
 
 
+DEAD = ("VOID", "WITHDRAWN", "CANCELLED", "CANCELED")
+
+
+def finaled_detail(pj, rows, flags):
+    """"F of N building permits finaled", counted the way the City lists them (QA Oct 26: aus-12853765 said 0 of 1 where
+    the City lists 2): N is every building permit of the master permit that carries the certificate of occupancy flag and
+    is not void, withdrawn or cancelled, F those of them the City shows as Final. Without any flagged permit, the
+    project's own counts stand."""
+    co = [r for r in rows if co_flag_on(flags.get(str(r.get("permit_number")), ""))
+          and not any(w in (r.get("status_current") or "").upper() for w in DEAD)]
+    if co:
+        n, f = len(co), sum(1 for r in co if (r.get("status_current") or "").strip().upper() == "FINAL")
+    else:
+        n, f = pj.get("buildings", 0) + pj.get("buildingsFinal", 0), pj.get("buildingsFinal", 0)
+    return f"{f} of {n} building permits finaled"
+
+
 def austin_leads(projects, by_master, flags):
     out, reasons = [], collections.Counter()
     for pj in projects:
@@ -243,7 +260,7 @@ def austin_leads(projects, by_master, flags):
                 sigs.append({"type": "co_flag", "dataset": AUS_PERMITS, "record_id": str(r.get("permit_number")),
                              "date": None, "detail": f"certificate_of_occupancy={v}"})
                 break
-        detail = f"{pj.get('buildingsFinal', 0)} of {pj.get('buildings', 0) + pj.get('buildingsFinal', 0)} building permits finaled"
+        detail = finaled_detail(pj, by_master.get(pj["permit"], []), flags)
         out.append({
             "lead_id": f"aus-{pj['permit']}",
             "city": "austin",
@@ -401,6 +418,16 @@ def selftest():
     check("unjoined lead rejected by moat", rej.get("no adjacent CO or health signal") == 1)
     check("austin stage map", R.AUSTIN_STAGES.get("Permit issued") is None and R.AUSTIN_STAGES["Near finish"] == "Inspections Under Way")
     check("co flag reading", co_flag_on("Yes") and not co_flag_on("No") and not co_flag_on(""))
+    # finaled count (QA Oct 26 FIX): N counts every flagged building permit of the master, as the City lists them
+    rr = lambda n, st: {"permit_number": n, "status_current": st}
+    pj1 = {"buildings": 1, "buildingsFinal": 0}
+    check("finaled N from the City's flagged permits (aus-12853765: 0 of 2)",
+          finaled_detail(pj1, [rr("a", "Active"), rr("b", "Active")], {"a": "Yes", "b": "Yes"}) == "0 of 2 building permits finaled")
+    check("finaled N of 8, one final, void and unflagged left out",
+          finaled_detail({"buildings": 4, "buildingsFinal": 0}, [rr(str(i), "Active") for i in range(7)] + [rr("7", "Final"), rr("v", "Void"), rr("u", "Active")],
+                         dict({str(i): "Yes" for i in range(8)}, v="Yes", u="No")) == "1 of 8 building permits finaled")
+    check("no flagged permit falls back to the project's counts",
+          finaled_detail({"buildings": 2, "buildingsFinal": 1}, [rr("a", "Active")], {"a": "No"}) == "1 of 3 building permits finaled")
 
     # area seats (Oct 26, 2026): a held seat's Chicago permits leave the file, the rest keep their community area
     class _Api:
@@ -433,7 +460,7 @@ def selftest():
             print(f"FAIL {f}")
         print(f"ingest_downstream selftest: {len(fails)} failed")
         sys.exit(1)
-    print("ingest_downstream selftest: PASS 17 checks")
+    print("ingest_downstream selftest: PASS 20 checks")
     sys.exit(0)
 
 

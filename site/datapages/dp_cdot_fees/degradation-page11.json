@@ -1,0 +1,21 @@
+{
+ "about": "Typed by hand from the Degradation Fee Schedule box on page 11 of 12 of the CDOT 2026 Permit Fee Schedule (the same PDF as source.json, sha256 009061e5936dd3335048de2e8b5ccceb216a2504c1b568e12c7dad2209fcd9b7). That box is an image in the PDF, so pdftotext does not extract it; every value here must be checked against that page by eye.",
+ "page": "Page 11 of 12 (PDF page 13), III. Additional Fees, A. Degradation Fees",
+ "appliesTo": "projects involving cuts or trenches in a public street when the pavement surface is less than five (5) years old (Moratorium street); assessed in addition to the required permit fee",
+ "formula": "F = P x (OL/200) x BR",
+ "baseRate": 1000,
+ "overallLengthForCuts": 200,
+ "trenchMinimumFeet": 200,
+ "multiplier": [
+  {"label": "More than 0 to 6 months", "maxMonths": 6, "P": 20},
+  {"label": "More than 6 and up to 12 months", "maxMonths": 12, "P": 15},
+  {"label": "More than 12 and up to 18 months", "maxMonths": 18, "P": 10},
+  {"label": "More than 18 and up to 24 months", "maxMonths": 24, "P": 5},
+  {"label": "More than 24 months, up to 5 years", "maxMonths": 60, "P": 2.5}
+ ],
+ "examples": [
+  {"case": "a 6 by 6 foot opening (1) in a street paved 6 months ago", "F": 20000},
+  {"case": "a 250 foot trench in a street paved 4 and a half years ago", "F": 3125}
+ ],
+ "exemption": "Residential homeowners are exempt on repairs to existing sewer and water services in the right-of-way."
+}

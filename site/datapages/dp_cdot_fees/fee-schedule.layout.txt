@@ -1,0 +1,612 @@
+2026 Permit Fee Schedule
+
+
+
+
+Valid as of January 1, 2026
+Contents
+I. Introduction ............................................................................................................................ 1
+
+
+
+II.    CDOT Public Right of Way Permit Fee Schedule ..................................................................... 2
+
+
+
+       1.       Application Fees ........................................................................................................... 2
+       2.       Dumpster Placement in the Public Way Usage Fee ..................................................... 2
+
+
+
+
+       1.       Application Fees ........................................................................................................... 6
+       2.       Monthly Usage Fees ..................................................................................................... 6
+
+
+       1.       Application Fees ........................................................................................................... 6
+       2.       Vehicles, Equipment, and Other Items in the Public Way ........................................... 7
+       3.       Monthly Usage Fees (Type I, II, and III) ........................................................................ 8
+
+
+       1.       Permit Fees ................................................................................................................. 10
+       2.       Technology Surcharge ................................................................................................ 10
+       3.       Permit Period .............................................................................................................. 10
+III. Additional Fees ..................................................................................................................... 11
+ Chicago Department of Transportation                                           2026 Permit Fee Schedule
+ Division of Infrastructure Management                                           Effective January 1, 2026
+
+
+
+  I.    Introduction
+            Background
+
+Chicago Department of Transportation (CDOT), Division of Infrastructure Management (DIM) charges
+permit fees for several different types of permits. The following document describes those permit fees.
+Permit fees cover the cost of processing the permit, including support and maintenance for the permitting
+database. Please be advised that permit fees may change year-to-year. It is incumbent upon permittees
+to review the Permit Fee Schedule prior to applying for a permit. By applying for a permit, permittees
+acknowledge and accept the fees posted in the Permit Fee Schedule. Furthermore, permittees must
+comply with all applicable rules and regulations related to public right of way activity including the
+Municipal Code of Chicago (MCC) and Rules and Regulations for Construction in the Public Way. Please
+visit the CDOT Permit Portal for additional information.
+
+            Commonly Used Acronyms and Phrases
+
+ ADA                                                Americans with Disabilities Act
+ BACP                                               Business Affairs and Consumer Protection
+ CBD (see MCC § 9-4-010 for boundaries)             Central Business District
+ CDOT                                               Chicago Department of Transportation
+ 811 Chicago                                        Chicago’s One-Call Service
+ CPI (see MCC § 10-29-040 for definition)           Consumer Price Index
+ DIM                                                Division of Infrastructure Management
+ LSD                                                Lake Shore Drive
+ MCC                                                Municipal Code of Chicago
+ OEMC                                               Office of Emergency Management and
+                                                    Communication
+
+
+
+
+                                              Page 1 of 12
+      Chicago Department of Transportation       Division of Infrastructure Management      2026 Permit Fee Schedule
+
+
+      II.    CDOT Public Right of Way Permit Fee Schedule
+                 Public Way Opening Permits Fees
+
+                                         Placement                 Per Opening/Cut
+                                  ADA Ramp installation         $389.26 per opening
+                                  Street / Alley                $778.54 per opening
+                                  Sidewalk                      $778.54 per opening
+                                  Parkway                       $389.26 per opening
+                                  Soil Borings - Street         $778.54 per opening
+                                  Soil Borings - Parkway        $389.26 per block
+                                  Well Monitoring               $778.54 per opening
+
+                                     Fees double and a degradation fee (See III) is added on moratorium streets
+                                     Fees increase 5% annually
+                                     You are required to contact 811 Chicago two (2) business days prior to
+                                     excavating. See 811 Chicago website for more information.
+             Notes on Opening
+                                     Per MCC § 10-21-050, effective January 1, 2023, CDOT will charge
+                   Fees
+                                     permittees “a separate permit fee for each subcontractor beyond the one
+                                     per discipline added to the permit.”
+                                     Applicant is required to restore any impacts per CDOT Rules and Regulations
+                                     for Construction in the Public Way
+
+                 Dumpster Permits
+
+                 1. Application Fees
+                                                                                                 NOTES
+                                                                           •     Application fee is a one-time charge to
+                                             Outside CBD
+                                                                                 cover the cost of processing the permit.
+                                       Residential      Arterial
+    Closure Type          CBD
+                                         Street          Street            •     Permittee is subject to additional usage
+    Full Closure        $92.63          $22.60            $56.51                 fees as described in this schedule.
+    Partial Closure     $92.63          $22.60            $56.51
+                                                                           •     Application fee may be increased by CPI
+                                                                                 annually (see MCC § 10-28-799).
+
+
+
+                 2. Dumpster Placement in the Public Way Usage Fee
+
+                          Class A (30 cubic yards or less)                      Class B (greater than 30 cubic yards)
+                      Outside CBD                Inside CBD                    Outside CBD                Inside CBD
+Placement     1-3 Days      Per Month      1-3 Days     Per Month      1-3 Days      Per Month       1-3 Days      Per Month
+Alley          $50.00        $100.00       $100.00       $200.00        $100.00        $200.00       $200.00        $400.00
+Curb Lane      $50.00        $100.00       $100.00       $200.00        $100.00        $200.00       $200.00        $400.00
+Parkway        $50.00        $100.00       $100.00       $200.00        $100.00        $200.00       $200.00        $400.00
+Sidewalk       $50.00        $100.00       $100.00       $200.00        $100.00        $200.00       $200.00        $400.00
+
+
+                                                      Page 2 of 12
+        Chicago Department of Transportation        Division of Infrastructure Management     2026 Permit Fee Schedule
+
+                    Truck Permits (Special Truck Use of Roadway)
+
+
+                                 FEES                                                               NOTES
+   Travel Permission                                 Greater than 5       •    Fees for “Overweight Vehicle over 100,000 lbs.”
+                                 1 - 5 Miles                                   and “Overweight Vehicle 80,000 to 100,000 lbs.”
+      Requested                                          Miles
+Oversized Vehicle                  $50.00               $50.00
+                                                                          •    Application fee may be increased by CPI annually
+Overweight Vehicle
+                                  $100.00                $150.00               every June 1st.
+over 100,000 lbs.
+Overweight Vehicle                                                        •    See MCC § 9-72-070
+                                   $50.00                $75.00
+80,000 to 100,000 lbs.
+Overweight Truck Axle          $50.00                    $50.00
+Truck Travel on the          $100.00 per               $100.00 per
+Industrial Corridor        vehicle (annual)          vehicle (annual)
+Truck Travel on LSD
+                                   $50.00                $50.00
+and Boulevards
+
+
+                    Special Event Permits
+
+                    Processing
+ Activity Type                                  Permit Fee                                  Special Instructions
+                       Fee
+ Athletic Event       $50.00                      $100.00                             OEMC and Police Approval
+    Parade            $50.00                     No Charge                            CDOT and Police Approval
+
+   Assembly         No Charge                    No Charge                       CDOT and Police Acknowledgement
+
+  Block Party       No Charge                    No Charge                      Requested and approved by Alderman
+
+                                   If street closures are required, an
+   Festival /                                                                 Requires Department of Cultural Affairs and
+                    No Charge       additional fee of $50.00 (double
+Farmers Market                                                                          Special Events Approval
+                                      in the CBD) per block per day
+Movie or Other
+                    No Charge                  $25.00 per day                       Requires Film Office Approval
+   Filming
+Sidewalk Sale       No Charge                  $25.00 per day                        Requires Alderman approval
+
+Outdoor Dining      No Charge                    No Charge                 Sidewalk café and liquor license fees may apply.
+
+  Boulevard -
+                    No Charge                  $25.00 per day
+Carnival/Festival
+  Walkathons         $50.00                       $100.00                             OEMC and Police Approval
+
+
+
+
+                                                         Page 3 of 12
+       Chicago Department of Transportation      Division of Infrastructure Management     2026 Permit Fee Schedule
+
+                     Miscellaneous Permitting in the Public Way
+
+    Activity Type          Processing Fee                 Permit Fee                           Special Instructions
+     Ad Bench                No Charge                 $8.79 per month
+      Art Fair               No Charge                  $25.00 per day                 Requires Department of Cultural
+                                                                                      Affairs and Special Events Approval
+Bus Way Use or Work          No Charge                      No Charge                     OEMC and METRA approval
+    Flower Cart              No Charge                      No Charge                  Must meet specifications of the
+                                                                                      Department of Business Affairs and
+                                                                                              Consumer Protection
+   Helicopter Lift           No Charge                  $339.09 per lift              Application fee may increase by CPI
+                                                                                                   annually.
+Horse Drawn Carriage         No Charge                      No Charge                     Special use outside of licensed
+                                                                                         operators by the Department of
+                                                                                         Business Affairs and Consumer
+                                                                                                    Protection.
+ Marine Boat Rental          No Charge                 $800.00 per day                     Police Department Services
+  Newspaper Rack             No Charge                    No Charge                         Police Approval Required
+ Newspaper Stand             No Charge                   $50.00 each                       Must adhere to construction
+                                                                                            guidelines and regulations
+ Overhead Work on            No Charge                       $25.00
+  Poles, Lines, etc.
+   Display Vehicle         $25.00 per day         $25.00 per day per vehicle
+                             per vehicle
+
+
+
+                     Distributed Antenna System (DAS)
+
+                                                                  •     CDOT Department of Electrical Operations
+                 Activity Type              Annual Permit Fee           (DEO) may impose additional fees related to
+                                                                        pole inspection
+        Pole Use - Light (Annual)               $270.00
+
+        Pole Use - Traffic (Annual)             $270.00
+
+
+
+                     Conduit Usage
+                                                                                          NOTES
+                                                                  •     See Business Affairs and Consumer Protection’s
+                                                                        (BACP) website for additional information about
+        Application Type              Permit Fee                        conduit permitting
+         Conduit Usage        $6 per linear foot annually               https://www.chicago.gov/city/en/depts/bacp/p
+                                                                        rovdrs/public_way.html
+
+
+
+
+                                                      Page 4 of 12
+        Chicago Department of Transportation     Division of Infrastructure Management    2026 Permit Fee Schedule
+
+                    Utilidor / Freight Tunnel
+            Fee                 Frequency and Basis of Charge
+          $287.04       Once. Fees increase annually based on CPI Index
+           $5.00                          Per day of usage
+          $500.00                              Once
+          $100.00                Once. Per liner foot of conduit
+
+
+                    Driveway Permits
+
+                                FEES                                                             NOTES
+               Driveway Size                        Annual Fee           •   The permit fee for each driveway located within
+                                                   One-time fee of           the Central Business District is double the amount
+Residential Driveways (4 units or less)                                      listed above.
+                                                      $10.00
+Commercial Driveways up to 25 ft wide                 $120.00            •   See MCC § 10-20-420.
+Commercial Driveways greater than 25 ft               $144.00
+                                                                         •   Please visit the driveway website or contact
+wide and less than 50 ft wide
+                                                                             cdotdriveways@cityofchicago.org with
+Commercial Driveways greater than or equal            $210.00                questions.
+to 50 ft wide and less than 80 ft wide
+Commercial Driveways greater than or equal            $282.00
+to 80 ft wide and less than 120 ft wide
+Commercial Driveways greater than or equal            $402.00
+to 120 ft wide and less than 200 ft wide
+Commercial Driveways greater than or equal            $762.00
+to 200 ft wide and less than 500 ft wide
+Commercial Driveways greater than or equal            $2,400.00
+to 500 ft wide
+
+
+
+
+                                                       Page 5 of 12
+     Chicago Department of Transportation       Division of Infrastructure Management    2026 Permit Fee Schedule
+
+
+
+                  Canopy Permits
+
+                  1. Application Fees
+                                                                                               NOTES
+                                                                        •   Application fee is a one-time charge to cover
+                                                                            the cost of processing the permit.
+                                       Non-CBD
+                                                                        •   Permittee is subject to additional usage fees as
+Closure Type          CBD       Residential  Arterial
+                                                                            described in this schedule.
+Full Closure        $103.99      $103.99     $103.99
+Partial Closure     $56.51        $56.51     $56.51                     •   Application fee may increase by CPI annually.
+
+                                                                        •   See MCC § 10-28-281.3
+
+                  2. Monthly Usage Fees
+    See the Monthly Usage Fees schedule for Occupy the Public Right of Way Permits (J.5) below for canopy
+    permit usage fees.
+
+
+
+
+                  Occupy the Public Right of Way Permits
+
+                  1. Application Fees
+
+   An application fee is applied to Work Vehicles, Temporary Driveways, Barricades, and Operating
+   Equipment work types.
+                                                                                          NOTES
+                                                                    •   Application fee is a one-time charge to
+                                                                        cover the cost of processing the permit.
+                                            Non-CBD
+                                                                    •   Permittee is subject to additional usage
+     Closure Type       CBD       Residential       Arterial
+                                                                        fees as described in this schedule
+     Full Closure     $316.49       $158.25         $158.25
+    Partial Closure   $22.60        $22.60           $22.60         •   Application fee may increase by CPI annually
+
+                                                                    •   See MCC § 10-28-281.3.
+
+
+
+
+                                                     Page 6 of 12
+                      Chicago Department of Transportation         Division of Infrastructure Management   2026 Permit Fee Schedule
+
+                                  2. Vehicles, Equipment, and Other Items in the Public Way
+
+                                   Placement                               Outside CBD                          Inside CBD
+                      Parking Moving Van                         $30.00 per day per vehicle        $60.00 per day per vehicle
+                      Citywide (Annual)                          $600.00 per vehicle               $600.00 per vehicle
+                      Residential (Annual)                       $100.00 per vehicle               $100.00 per vehicle
+                      Work Vehicle Daily-Alley                   $30.00 per day per vehicle        $60.00 per day per vehicle
+                      Work Vehicle Daily-Curb Lane               $30.00 per day per vehicle        $60.00 per day per vehicle
+                      Work Vehicle Daily-Curb/Traffic Lane       $30.00 per day per vehicle        $60.00 per day per vehicle
+                      Work Vehicle Daily-Traffic Lane            $30.00 per day per vehicle        $60.00 per day per vehicle
+                      Work Vehicle - Alley (if a lane of at
+                                                                 $6.00 per foot                    $12.00 per foot
+                      least 10 feet is left unobstructed)
+                      Work Vehicle - Alley (if a lane of at
+ Parking Vehicles
+
+
+
+
+                                                                 $12.00 per foot                   $24.00 per foot
+                      least 10 feet is not left unobstructed)
+                      Work Vehicle - Bicycle Lane                $5.00 per foot                    $10.00 per foot
+                      Work Vehicle - Curb Lane                   $12.00 per foot                   $24.00 per foot
+                      Work Vehicle - Traffic Lane                $24.00 per foot                   $48.00 per foot
+                      Work Vehicle - Sidewalk or parkway
+                                                                 $2.50 per foot                    $5.00 per foot
+                      partial closure
+                      Work Vehicle - Sidewalk or parkway
+                                                                 $5.00 per foot                    $10.00 per foot
+                      total closure
+                      Parking / Various Locations (Monthly) $20.00 per vehicle                     $100.00 per vehicle
+                      Parking / Various Locations (Semi-
+                                                                 $100.00 per vehicle               $500.00 per vehicle
+                      Annual)
+                      Media Parking                              No Charge                         No Charge
+                                    Placement                             Outside CBD                           Inside CBD
+                      Alley (if a lane of at least 10 feet is left
+                                                                   $3.00 per foot                  $6.00 per foot
+                      unobstructed)
+Operating Equipment
+
+
+
+
+                      Alley (if a lane of at least 10 feet is not
+                                                                  $6.00 per foot                   $12.00 per foot
+                      left unobstructed)
+                      Bicycle Lane                               $2.50 per foot                    $5.00 per foot
+                      Curb Lane                                  $6.00 per foot                    $12.00 per foot
+                      Sidewalk or parkway partial closure        $1.25 per foot                    $2.50 per foot
+                       Sidewalk or parkway total closure         $2.50 per foot                    $5.00 per foot
+                      Traffic Lane                               $12.00 per foot                   $24.00 per foot
+                                     Placement                              Outside CBD                          Inside CBD
+                      Barricade - Sidewalk or parkway
+                      closure                                    $2.50 per foot per month          $5.00 per foot per month
+                      Temporary Driveway
+Other
+
+
+
+
+                                                                 $100.00 per month for every 25 feet of driveway increment
+                      Utility Pole Storage in the Parkway        No charge, but only approved in conjunction with an opening permit
+                      Miscellaneous Obstruction                  $25.00 per object displayed
+                      Public Place Obstruction                   $50.00 (Type I and II)           $100.00 (Type III)
+
+
+
+
+                                                                         Page 7 of 12
+Chicago Department of Transportation    Division of Infrastructure Management   2026 Permit Fee Schedule
+
+             3. Monthly Usage Fees (Type I, II, and III)
+
+
+                                               NOTES
+       i.     Activity Types (see MCC 10-28-281.3)
+                  a. Type I activity “shall mean work on a building which involves alteration,
+                      repair of exterior facade, work conducted pursuant to the critical
+                      examination program, or demolition. This includes, but is not limited to,
+                      tuckpointing.”
+                  b. Type II activity “shall mean work which involves the construction of a new
+                      building.”
+                  c. Type III activity “shall mean any routine maintenance work on a building
+                      within the Central Business District, as defined in Section 9-4-010, which
+                      does not require the removal of any physical structures. This includes, but
+                      is not limited to, painting, cleaning and window washing.”
+
+       ii.    The fees for obstruction are based on the length of the obstruction and the number
+              of days the obstruction occupies the public right of way. Obstruction permits have
+              a minimum monthly fee.
+
+      iii.    All Occupy permits are issued for 30-day increments.
+
+      iv.     Length is calculated using each foot of frontage.
+
+       v.     Permittees will be charged for any metered spaces rendered unusable due to their
+              occupation. See MCC § 9-68-080 for more information.
+
+      vi.     The fees in the table below shall be subject to an annual CPI increase of up to 2.5%,
+              rounded up to the nearest whole dollar.
+
+
+
+
+                                             Page 8 of 12
+                          Chicago Department of Transportation         Division of Infrastructure Management   2026 Permit Fee Schedule
+
+
+
+
+   The permit fee amounts listed in the table are for locations in the Central Business District. For an obstruction of the public way outside the Central Business
+                                                      District the permit fees shall be one-half of the amounts
+A = Per footgae of obstruction
+B = Minimum Monthly Fee
+C = Previous monthly fee + $4.00 X length
+D = Previous monthly fee + $8.00 X length
+
+
+
+                                                   Types I,
+                                                                                              Types I & III                                        Type II
+                                                    II, & III
+                                                                    4 to 180       181 to 360     361 to 540    541 to 720                   4 to 540
+          Placement                Calculation     1 to 3 Days                                                             721 + Days                    541 + days
+                                                                      Days           Days           Days          Days                         Days
+ Sidewalk or parkway - partial           A         $       2.50    $       5.00    $     10.00    $    14.00 $ 19.00              C          $   5.00     $    10.00
+           closure                       B         $      48.00    $      96.00    $    192.00    $ 288.00 $ 384.00           $ 384.00       $ 96.00      $   192.00
+  Sidewalk or parkway - total            A         $       5.00    $      10.00    $     19.00    $    29.00 $ 38.00              D          $ 10.00      $    19.00
+           closure                       B         $      96.00    $     192.00    $    384.00    $ 576.00 $ 768.00           $ 768.00       $ 192.00     $   384.00
+                                         A         $       5.00    $      10.00    $     19.00    $    29.00 $ 38.00          $    38.00     $ 10.00      $    19.00
+  Bicycle lane - total closure
+                                         B         $      96.00    $     192.00    $    384.00    $ 576.00 $ 768.00           $ 768.00       $ 192.00     $   384.00
+Street lane containing parking           A         $      12.00    $      24.00    $     48.00    $    72.00 $ 96.00          $    96.00     $ 24.00      $    48.00
+              spaces                     B         $     240.00    $     480.00    $    960.00    $ 1,440.00 $ 1,920.00       $ 1,920.00     $ 480.00     $   960.00
+ Street lane normally used for           A         $      24.00    $      48.00    $     96.00    $ 144.00 $ 192.00           $ 192.00       $ 48.00      $    96.00
+ vehicular traffic, including a
+                                         B         $     480.00 $        960.00    $ 1,920.00 $ 2,880.00 $ 3,840.00           $ 3,840.00     $ 960.00 $ 1,920.00
+             bus lane
+Alley - if a lane of at least 10         A         $       6.00    $      12.00    $     24.00    $    36.00    $ 48.00       $    48.00     $ 12.00      $    24.00
+    feet is left unobstructed            B         $     120.00    $     240.00    $    480.00    $ 720.00      $ 960.00      $ 960.00       $ 240.00     $   480.00
+Alley - if a lane of at least 10         A         $      12.00    $      24.00    $     48.00    $    72.00    $ 96.00       $    96.00     $ 24.00      $    48.00
+ feet is not left unobstructed           B         $     240.00    $     480.00    $    960.00    $ 1,440.00    $ 1,920.00    $ 1,920.00     $ 480.00     $   960.00
+
+
+
+
+                                                                            Page 9 of 12
+       Chicago Department of Transportation       Division of Infrastructure Management   2026 Permit Fee Schedule
+
+                     Commercial Refuse Containers (CRC)
+
+
+                     1. Permit Fees
+Container Size                          Permit Fee              Note                                NOTES
+                                                      per tri-annual period        • Please visit the CRC homepage at,
+Under 1 cubic yard                       $20.00                                      https://www.chicago.gov/city/en/depts/c
+                                                      per container
+                                                                                     dot/
+                                                      per tri-annual period          provdrs/construction_information/svcs/
+1 to 2 cubic yards                       $36.00
+                                                      per container                  commercial_refusecontainerpermits.html
+                                                      per tri-annual period
+Over 2 to 10 cubic yards                 $72.00
+                                                      per container                • All CRC bills will include a technology
+                                         $184.00      per tri-annual period           surcharge as described below.
+Over 10 cubic yards
+                                                      per container
+Containers used exclusively for                                                    • Application fee may increase by CPI
+recyclable items (regardless of         No Charge                                    annually.
+size)
+Container used by a unit of local                                                  • See MCC § 7-28-215.
+government or school district that
+                                        No Charge                                  • CDOT is maintaining the triannual
+levies a property tax exclusively
+within the City of Chicago                                                           billing cycle until the new CRC
+                                                                                     workflow with monthly billing is live.
+
+
+                     2. Technology Surcharge
+
+     CDOT will impose a “technology surcharge” of 10% on all CRC fees. Funds collected through the
+     technology surcharge will be used to support the CRC program. See MCC § 7-28-215 for more
+     information.
+
+
+
+                     3. Permit Period
+
+
+              *to be followed until the new CRC workflow with monthly billing is live
+
+                           Permit Period                                  Payment Due Date
+              April 1 through July 31                                         July 15th
+              August 1 through November 30                                 November 15th
+              December 1 through March 31                                    March 15th
+
+
+
+
+                                                      Page 10 of 12
+ Chicago Department of Transportation     Division of Infrastructure Management    2026 Permit Fee Schedule
+
+
+III.    Additional Fees
+            Degradation Fees
+
+CDOT assess a degradation fee for any project involving cuts or trenches on a “Moratorium Street”-streets
+that require additional protection, including newly paved streets. CDOT approves permits on moratorium
+streets on a case-by-case basis upon request.
+
+                                                                                      NOTES
+
+                                                                   •   See CDOT’s Rules and Regulations for
+                                                                       Construction in the Public Way for
+                                                                       more          information           -
+                                                                       https://www.chicago.gov/city/en/de
+                                                                       pts/cdot/provdrs/construction_infor
+                                                                       mation/svcs/view_constructionstand
+                                                                       ards.html
+
+                                                                   •    Moratorium streets can be viewed at
+                                                                        ChiStreetWork                      -
+                                                                        https://chistreetwork.chicago.gov/
+                                                                        map.
+
+
+
+
+            City Provided OEMC or Police Services related to a Public Right of Way Permits
+                                           Service                     Hourly Rate
+                         Commander                                          $82.13
+                         Captain (hire back)                                $76.69
+                         Lieutenant (hire back)                             $70.51
+                         Sergeant (hire back)                               $60.82
+                         Police Officer (hire back)                         $49.22
+                         Police Officer (mounted)                           $53.60
+                         Canine (hire back)                                 $53.60
+                         Detective (hire back)                              $55.20
+                         Evidence Technician (hire back)                    $53.60
+                         Marine (hire back)                                 $53.60
+                         Explosive Tech I                                   $60.82
+                         Probationary Police Officer (hire back)            $37.51
+
+                                              Page 11 of 12
+       Chicago Department of Transportation     Division of Infrastructure Management      2026 Permit Fee Schedule
+
+
+
+
+                   City Provided Services related to a Public Right of Way Permit
+
+               Service                            Fee                                   Special Instructions
+Bicycle Rack Removal                    $150.00 per bicycle rack       None
+
+Demolition/Construction Inspection      $1.00 per ft
+
+Electrical Inspection Service
+                                        $80.00 per inspection          Department of Buildings
+(Buildings Department)
+Electrical Inspection Service (Bureau
+                                        $100.00 per inspection         Department of Transportation
+of Electricity)
+                                                                       Department of Finance. A “lost revenue” charge
+Parking Meter - Removed                 $150.00 per meter              will be assessed for each day the meter is out of
+                                                                       service
+                                                                       Department of Finance. A “lost revenue” charge
+Parking Pay Box - Removal               $1,000.00 per pay box          will be assessed for each day the pay box is out
+                                                                       of service
+Parking Restriction Signs               No Charge                      Department of Streets and Sanitation
+Sign Removal                            $150.00 per sign
+Re-Inspection Fee                       $100.00 per inspection         CDOT Inspectional Services
+
+
+
+
+                   Dedications/Vacations of the Public Right of Way and Street Closures
+
+                            Activity Type                              Permit Fee
+                  Alley/Street Dedication              Fee based on CDOT inspection findings
+                  Alley/Street Vacation                Fee based on CDOT inspection findings
+                  Street Full Closure                  Fee based on CDOT inspection findings
+                  Closures Street/Bridge               Fee based on CDOT inspection findings
+
+
+
+
+                                                       Page 12 of 12
+

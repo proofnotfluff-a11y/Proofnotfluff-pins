@@ -5,7 +5,6 @@ research_notes/kimi-2026-10-27-r10.md item 6).
 
 Runs in GitHub Actions (.github/workflows/dp_cdot_fees.yml), because the cloud agents cannot open chicago.gov PDFs.
 Downloads the City's own PDF, extracts its text with pdftotext (poppler) and writes, under site/datapages/dp_cdot_fees/:
-  fee-schedule.pdf          the City's file, byte for byte (so a checker can extract it again)
   fee-schedule.layout.txt   pdftotext -layout (columns kept, the page is built from this)
   fee-schedule.raw.txt      pdftotext default reading order (a second view for checkers)
   source.json               url, fetchedAt, bytes, sha256, pages, the PDF's own metadata
@@ -13,6 +12,7 @@ The fee figures on the page are typed into tools/dp_cdot_fees.py by hand from th
 every one of them still appears in this text, so a new City schedule fails the build instead of showing stale fees.
 
 Usage: python3 tools/dp_cdot_fees_pull.py            download and extract (needs network and pdftotext)
+       python3 tools/dp_cdot_fees_pull.py --from-file <pdf>   extract a copy of the City's PDF downloaded by hand
        python3 tools/dp_cdot_fees_pull.py --selftest  no network
 """
 import datetime as dt, hashlib, json, os, subprocess, sys, time, urllib.request
@@ -44,32 +44,48 @@ def is_pdf(b):
 
 
 def pdfinfo(path):
+    """Title, dates and page count only. The Author field (a City employee's name) is never kept."""
     out = subprocess.run(["pdfinfo", path], capture_output=True, text=True, check=True).stdout
     info = {}
     for line in out.splitlines():
         k, _, v = line.partition(":")
-        if k.strip() in ("Title", "Author", "Creator", "Producer", "CreationDate", "ModDate", "Pages"):
+        if k.strip() in ("Title", "CreationDate", "ModDate", "Pages"):
             info[k.strip()] = v.strip()
     return info
 
 
-def main():
-    body, ctype, final = fetch()
+def extract(body, how, final=URL, ctype="application/pdf"):
+    """Text only goes in the repo: the PDF is read from a temporary file and not kept (its metadata names a person)."""
+    import tempfile
     if not is_pdf(body):
         print(f"::warning title=CDOT fee schedule::not a PDF: {ctype!r}, {len(body)} bytes, starts {body[:80]!r}")
-        raise SystemExit(f"the download is not a PDF (Content-Type {ctype!r}, {len(body)} bytes, from {final}); nothing written")
+        raise SystemExit(f"not a PDF ({ctype!r}, {len(body)} bytes, from {final}); nothing written")
     os.makedirs(OUT, exist_ok=True)
-    pdf = os.path.join(OUT, "fee-schedule.pdf")
-    open(pdf, "wb").write(body)
-    subprocess.run(["pdftotext", "-layout", pdf, os.path.join(OUT, "fee-schedule.layout.txt")], check=True)
-    subprocess.run(["pdftotext", pdf, os.path.join(OUT, "fee-schedule.raw.txt")], check=True)
-    info = pdfinfo(pdf)
+    with tempfile.TemporaryDirectory() as tmp:
+        pdf = os.path.join(tmp, "fee-schedule.pdf")
+        open(pdf, "wb").write(body)
+        subprocess.run(["pdftotext", "-layout", pdf, os.path.join(OUT, "fee-schedule.layout.txt")], check=True)
+        subprocess.run(["pdftotext", pdf, os.path.join(OUT, "fee-schedule.raw.txt")], check=True)
+        info = pdfinfo(pdf)
+    for f in ("fee-schedule.layout.txt", "fee-schedule.raw.txt"):   # the site's no-dash rule covers site/ (check_repo em-dash)
+        t = os.path.join(OUT, f)
+        clean = open(t, encoding="utf-8").read().replace("\u2014", "-").replace("\u2013", "-")   # read fully, then write
+        open(t, "w", encoding="utf-8").write(clean)
     src = {"name": "CDOT 2026 Permit Fee Schedule", "publisher": "City of Chicago, Department of Transportation",
-           "url": URL, "finalUrl": final, "contentType": ctype, "bytes": len(body),
-           "sha256": hashlib.sha256(body).hexdigest(), "pages": int(info.get("Pages", "0") or 0), "pdf": info,
+           "url": URL, "finalUrl": final, "how": how, "bytes": len(body),
+           "sha256": hashlib.sha256(body).hexdigest(), "textNote": "pdftotext 24 output; em and en dashes replaced with plain hyphens; sha256 is of the City's PDF", "pages": int(info.get("Pages", "0") or 0), "pdf": info,
            "fetchedAt": dt.datetime.now(ZoneInfo("America/Chicago")).strftime("%Y-%m-%dT%H:%M:%S%z")}
     json.dump(src, open(os.path.join(OUT, "source.json"), "w", encoding="utf-8"), indent=1)
     print(json.dumps(src, indent=1))
+
+
+def main():
+    if "--from-file" in sys.argv:   # the City's PDF as Todd downloaded it in his own browser (Oct 27, 2026)
+        path = sys.argv[sys.argv.index("--from-file") + 1]
+        extract(open(path, "rb").read(), "downloaded from the URL by Todd in his own browser and attached in a build chat")
+        return
+    body, ctype, final = fetch()
+    extract(body, "downloaded by the GitHub Action", final, ctype)
 
 
 def selftest():

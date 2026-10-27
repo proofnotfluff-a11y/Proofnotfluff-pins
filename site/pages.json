@@ -6864,11 +6864,46 @@
    "kind": "datapage",
    "module": "dp_cdot_fees",
    "draft": true,
-   "title": "Chicago Public Way Permit Cost Calculator | ProofNotFluff",
-   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
-   "eyebrow": "Free permit cost calculator",
+   "title": "Chicago Public Way Permit Cost Calculator, 2026 Fees | ProofNotFluff",
+   "desc": "Free calculator for CDOT permit fees in 2026: dumpsters, work vehicles and equipment, sidewalk and street closures, and openings, from the City's fee schedule.",
+   "eyebrow": "Free calculator, from CDOT's 2026 fee schedule",
    "h1": "Chicago Public Way Permit Cost Calculator",
-   "card": "Coming soon"
+   "card": "What a CDOT permit costs in 2026: dumpster placement, work vehicles and equipment, sidewalk and street closures, and openings, from the City's fee schedule.",
+   "lede": "Pick what you are putting in the street, alley or sidewalk and see the CDOT fees it carries under the City's 2026 Permit Fee Schedule, with each line of the math shown.",
+   "method": [
+    "Every amount comes from CDOT's 2026 Permit Fee Schedule, effective January 1, 2026. The full tables are on this page with the schedule's page numbers, and the calculator only adds and multiplies them.",
+    "Dumpsters: the application fee depends on the street (CBD, or a residential or arterial street outside it), and the usage fee on the size class, inside or outside the CBD, for 1 to 3 days or per month. The schedule gives no rate between 3 days and a month, so the calculator asks you to pick one.",
+    "Sidewalk and street closures: the schedule issues these permits in 30-day increments and sets a per-foot rate and a minimum monthly fee that both rise the longer the closure stays. The calculator charges each 30-day block at the column for the days it falls in, at the per-foot rate times the length or the minimum, whichever is more, and halves it outside the CBD. Past 720 days, sidewalk and parkway closures add $4.00 or $8.00 a foot to the previous month, as the schedule says.",
+    "Openings on a moratorium street: the opening fee doubles and the degradation fee from page 11 is added, using the schedule's own formula and multipliers.",
+    "Some items in the schedule are priced per foot without a time period, and some charges, like metered spaces taken out of use, have no amount in the schedule. The calculator says so where it applies. CDOT sets the fee on each permit."
+   ],
+   "faq": [
+    [
+     "How much is a dumpster permit in Chicago in 2026?",
+     "Outside the Central Business District, a Class A dumpster (30 cubic yards or less) is $50.00 for 1 to 3 days or $100.00 a month, plus an application fee of $22.60 on a residential street or $56.51 on an arterial street. Inside the CBD the usage fees double and the application fee is $92.63."
+    ],
+    [
+     "Does the size of the dumpster change the fee?",
+     "Yes. Class B dumpsters, more than 30 cubic yards, cost twice Class A: $100.00 for 1 to 3 days or $200.00 a month outside the CBD, and $200.00 or $400.00 inside it."
+    ],
+    [
+     "What is the Central Business District?",
+     "It is the downtown district the Municipal Code defines in section 9-4-010. Many CDOT fees are higher there, and the monthly closure fees outside it are one-half of the CBD amounts."
+    ],
+    [
+     "What does a moratorium street add to an opening permit?",
+     "On a street paved less than five years ago, CDOT doubles the opening fee and adds a degradation fee. For a cut in a street paved 6 months ago the schedule's example is $20,000."
+    ],
+    [
+     "Will these fees change?",
+     "CDOT says permit fees may change year to year, and several fees can rise with inflation. Confirm the fee with CDOT before you apply."
+    ]
+   ],
+   "next": {
+    "title": "Where are dumpster permits going?",
+    "text": "See how many dumpster permits CDOT issued in each community area in the last 90 days, against a year ago, updated daily.",
+    "button": "See dumpster permits by neighborhood"
+   }
   },
   {
    "slug": "chicago-dumpster-permits",
@@ -6882,7 +6917,7 @@
    "card": "Where Chicago's dumpster permits are going: issued CDOT permits by community area, the last 90 days against a year ago, month by month. Updated daily.",
    "cost": {
     "title": "Need a permit for your own dumpster?",
-    "text": "Our free calculator prices a CDOT public way permit from the City's 2026 fee schedule: dumpster placement by days or by month, inside or outside the Loop, plus the application fee.",
+    "text": "Our free calculator prices a CDOT public way permit from the City's 2026 fee schedule: dumpster placement for 1 to 3 days or by the month, inside or outside the Central Business District, plus the application fee.",
     "button": "Price a dumpster permit"
    },
    "next": {

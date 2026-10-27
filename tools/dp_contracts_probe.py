@@ -77,7 +77,8 @@ def norm(u):
 
 BID_PAGES = ["https://www.chicago.gov/city/en/depts/dps/provdrs/contract/svcs/current_bid_opportunities.html",
              "https://www.chicago.gov/city/en/depts/dps/provdrs/contract/svcs/bid_and_bond_room.html",
-             "https://www.chicago.gov/city/en/depts/dps/provdrs/eprocurement.html"]
+             "https://www.chicago.gov/city/en/depts/dps/provdrs/eprocurement.html",
+             "https://www.chicago.gov/city/en/depts/dps/isupplier/current-bids.html"]
 
 
 def page(url):
@@ -169,6 +170,18 @@ def main():
                 weeks.append({"date": d.isoformat(), "url": u, "bytes": len(b)})
                 last = b
         d += dt.timedelta(days=1)
+    # the bid list the Current Bid Opportunities page links to right now, tried on each host form the City uses
+    linked = [u for b in res["dps"].get("bidPages", []) for t, u in b.get("links", []) if "WeeklyBidOpportunities" in u and u.lower().endswith(".pdf")]
+    tries = []
+    for u in dict.fromkeys(linked):
+        for v in dict.fromkeys([u, u.replace("://www.chicago.gov/", "://chicago.gov/"), u.replace("://www.chicago.gov/", "://www.cityofchicago.org/"),
+                                u.replace("https://", "http://")]):
+            b, st, ct = get(v, tries=2, raw=True)
+            tries.append({"url": v, "status": st, "type": ct, "bytes": len(b), "pdf": b[:4] == b"%PDF"})
+            if st == 200 and b[:4] == b"%PDF":
+                weeks.append({"date": "linked", "url": v, "bytes": len(b)}); last = b
+                break
+    res["dps"]["linkedWeekly"] = tries
     res["dps"]["weekly2026"] = weeks
     if weeks and a.art:
         os.makedirs(a.art, exist_ok=True)

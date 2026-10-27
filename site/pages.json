@@ -6863,7 +6863,7 @@
    "slug": "chicago-trade-licenses",
    "kind": "datapage",
    "module": "dp_licenses",
-   "draft": true,
+   "draft": false,
    "title": "Chicago Trade License Finder | ProofNotFluff",
    "desc": "What Chicago and Illinois require for 12 trades: license, fee, insurance, bond, exam and renewal, each line linked to the agency page.",
    "eyebrow": "Free license finder",

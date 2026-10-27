@@ -355,7 +355,7 @@ def selftest():
             assert r["src"] in d["sources"], (t["slug"], r["src"])
     subs = extra_pages(spec)
     assert len(subs) == 12 and all(s.count("<h1>") == 1 and not DASH.search(s) for _, s in subs), "12 sub-pages"
-    assert "noindex" in html, "a draft entry renders noindex"
+    assert ("noindex" in html) == (not M.is_live(spec)), "noindex exactly when the entry is a draft"
     print("dp_licenses selftest: ok")
 
 

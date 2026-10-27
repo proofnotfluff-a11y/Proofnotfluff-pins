@@ -405,15 +405,16 @@ METHOD = [
 
 
 def method_html(d, E):
+    import make_site as M
     r = d["rules"]
     k = d["counts"]
     drop = k["dropped"]
     extra = []
     if drop.get("noDays") or drop.get("negative"):
         nd = drop.get("noDays", 0) + drop.get("negative", 0)
-        extra.append(f'{nd:,} issued permit{"" if nd == 1 else "s"} in the 24 months had no usable processing time and {"is" if nd == 1 else "are"} left out.')
+        extra.append(f'{nd:,} issued permit{"" if nd == 1 else "s"} from {M.nice_date(d["window"]["from"])} to {M.nice_date(d["window"]["to"])} had no usable processing time and {"is" if nd == 1 else "are"} left out.')
     if k.get("checkedAgainstDates"):
-        extra.append(f'Check: on {k["matchesDates"]:,} of {k["checkedAgainstDates"]:,} permits ({k["matchesDates"] / k["checkedAgainstDates"] * 100:.1f}%), the processing time equals the days between the two dates on the record.')
+        extra.append(f'Check: on {k["matchesDates"]:,} of {k["checkedAgainstDates"]:,} permits issued in that time ({k["matchesDates"] / k["checkedAgainstDates"] * 100:.1f}%), the processing time equals the days between the two dates on the record.')
     return ('<section class="block" id="method"><h2>How this page is made</h2>'
             + "".join(f"<p>{E(x.format(**r))}</p>" for x in METHOD) + "".join(f"<p>{E(x)}</p>" for x in extra) + "</section>")
 
@@ -503,7 +504,7 @@ def page_html(p):
             + '<p class="asof pw-phone">On a phone the 9 in 10 and same day columns are left out; they are in the CSV below.</p></section>'
             + f'<section class="block" id="types"><h2>By permit type</h2><p>Tap a permit type for its own page with every review path, month and community area.</p>{type_tbl}'
             + '</section>'
-            + f'<section class="block" id="months"><h2>Month by month</h2><p>The last 24 complete months. Pick a review path; each column is the permits issued that month.</p>{charts}{mtab}'
+            + f'<section class="block" id="months"><h2>Month by month</h2><p>The last 24 complete months. Pick a review path; each column shows how long the permits issued that month took.</p>{charts}{mtab}'
             + (f'<h3>Against a year earlier</h3>{trends}' if trends else "") + '</section>'
             + (f'<section class="block" id="map"><h2>Wait times on the map</h2>{mapb}</section>' if mapb else "")
             + f'<section class="block" id="areas"><h2>Every community area</h2>{area_tbl}'
@@ -524,19 +525,36 @@ def page_html(p):
             + foot(M, rel, d["source"], "Measure: the City's processing time field, days from review start to issue, for issued permits only. "))
 
 
+H1_NAME = {"Signs": "Sign", "Reinstated Revoked Permits": "Reinstated Revoked"}
+
+
+def type_name(t):
+    """The permit type as it reads before "permit": "Sign", "Express Permit Program", "Renovation and Alteration"."""
+    return H1_NAME.get(t["label"], t["label"])
+
+
+def type_noun(t):
+    """Plural noun for running text: City path names keep their capitals, other types are lowercase."""
+    n = type_name(t)
+    return (n if n == "Express Permit Program" else n.lower()) + " permits"
+
+
+def within(x, verb="were issued"):
+    return f"{verb} the same day the City started review" if x == 0 else f"{verb} within {days(x)} of the City starting review"
+
 def type_page(p, d, t, M):
     E = M.E
     url, rel = M.BASE + p["slug"] + "/" + t["slug"] + "/", "../../"
     robots = "" if M.is_live(p) else '<meta name="robots" content="noindex, nofollow">'
-    h1 = f'{t["label"]} Permit Wait Times in Chicago'
+    h1 = f'{type_name(t)} Permit Wait Times in Chicago'
     crumb, crumb_ld = M.crumbs(rel, [("Home", ""), (META["h1"], p["slug"] + "/"), (t["label"], None)])
     s, w, mn = t["last12"], d["window"], d["rules"]["minN"]
-    lede = (f'Chicago issued {s["n"]:,} {E(t["label"].lower())} permits in the 12 months to {E(M.nice_date(w["to"]))}. '
-            + (f'Half were issued within {days(s["med"])} of the City starting review, and 8 in 10 within {days(s["p80"])}.' if s.get("med") is not None else ""))
+    lede = (f'Chicago issued {s["n"]:,} {E(type_noun(t))} in the 12 months to {E(M.nice_date(w["to"]))}. '
+            + (f'Half {within(s["med"])}, and 8 in 10 {"the same day" if s["p80"] == 0 else "within " + days(s["p80"])}.' if s.get("med") is not None else ""))
     reviews = [r for r in t["reviews"] if r["last12"]["n"]]
     top = reviews[0] if reviews else None
     tiles = ('<div class="tiles ld-tiles">'
-             + (f'<div class="tile key"><div class="lab">Half within</div><div class="val">{s["med"]:,} days</div><div class="sub">all review paths</div></div>'
+             + (f'<div class="tile key"><div class="lab">Half within</div><div class="val">{s["med"]:,} days</div><div class="sub">last 12 months</div></div>'
                 f'<div class="tile"><div class="lab">8 in 10 within</div><div class="val">{s["p80"]:,} days</div><div class="sub">9 in 10 within {s["p90"]:,}</div></div>' if s.get("med") is not None else "")
              + f'<div class="tile"><div class="lab">Permits issued</div><div class="val">{s["n"]:,}</div><div class="sub">in the last 12 months</div></div>'
              + (f'<div class="tile"><div class="lab">Most used path</div><div class="val" style="font-size:clamp(17px,9cqi,24px)">{E(top["label"])}</div><div class="sub">{top["last12"]["n"]:,} permits</div></div>' if top else "")
@@ -556,12 +574,13 @@ def type_page(p, d, t, M):
             + split_table(["Community area", "Permits issued, 12 months", "Half within (days)", "8 in 10 within (days)", "9 in 10 within (days)"], arows,
                           f"{t['label']} permit wait days by community area", E, show=20, hide=(4,), what="community areas")
             + f'<p class="asof">Fewer than {mn} permits shows as too few.'
-            + (f' {t["noArea12"]:,} permit{"" if t["noArea12"] == 1 else "s"} had no community area on the record and count only in the totals.' if t.get("noArea12") else "") + '</p></section>'
+            + (f' {t["noArea12"]:,} permit{"" if t["noArea12"] == 1 else "s"} had no community area on the record and count{"s" if t["noArea12"] == 1 else ""} only in the totals.' if t.get("noArea12") else "")
+            + (f' {sum(1 for a in t["areas"] if not a["n"]):,} community areas with no permits of this type in the last 12 months are left out.' if any(not a["n"] for a in t["areas"]) else "") + '</p></section>'
             + f'<section class="block" id="method"><h2>How this page is made</h2><p>{E(METHOD[0])}</p><p>{E(METHOD[1])}</p><p>{E(METHOD[3])}</p>'
             + f'<p>The full method and a CSV of every figure are on the <a href="{rel}{p["slug"]}/#method">main permit wait times page</a>.</p></section>'
             + f'<p class="pw-end"><a class="btn" href="{rel}{p["slug"]}/#types">Compare every permit type</a><a class="st-btn2" href="{rel}{p["slug"]}/{CSV_NAME}">Download the CSV</a></p>'
             + SEG_JS)
-    desc = f'How long {t["label"].lower()} permits take in Chicago: days from review start to issue by review path, month and neighborhood, from City records, updated weekly.'
+    desc = f'How long {type_noun(t)} take in Chicago: days from review start to issue by review path, month and neighborhood, from City records, updated weekly.'
     return (head_html(M, p, url, rel, f'{h1} | ProofNotFluff', desc, robots, M.ld_tags(crumb_ld)) + body
             + foot(M, rel, d["source"], "Measure: the City's processing time field, days from review start to issue, for issued permits only. "))
 

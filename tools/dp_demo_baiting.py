@@ -42,8 +42,8 @@ OTHERS = ["Public Health: the demolition notice of intent, filed through the Cit
           "Only for some jobs: a pre-permit inspection for complex demolitions, Housing for buildings with dwelling units, Planning and Development for historic buildings, Transportation for the downtown freight tunnel area, Public Health for flammable liquid tanks, and soil contamination reviews in two areas."]
 
 TIMES = [("120 days", "An application with no activity for 120 days expires. One 90-day extension can be asked for before then."),
-         ("120 days", "After the City says the permit is ready, the fee is paid within 120 days; the permit certificate is issued at payment."),
-         ("6 months", "Work starts within 6 months of payment and may not stop for more than 12 months in all.")]
+         ("120 days", "After the City says the permit is ready, the fee must be paid within 120 days; the permit certificate is issued at payment."),
+         ("6 months", "Work must start within 6 months of payment and may not stop for more than 12 months in all.")]
 
 FAQ = [
     ("Does a Chicago demolition permit need rodent baiting?",
@@ -57,7 +57,7 @@ FAQ = [
      "How many wrecking and demolition permits the City issued, by week and community area, from the City's Building Permits records. "
      "The rodent control step comes before a permit is issued, so the counts show where that step was recently needed, not where baiting is happening today."),
     ("How often is the page updated?",
-     "The permit counts update once a week, on Monday mornings. The steps are checked against the City's demolition permit page when the page is rebuilt by hand; the date they were read is on the page."),
+     "The permit counts update once a week, on Monday mornings. We check the steps against the City's demolition permits page by hand; the date we last read it is on the page."),
 ]
 
 
@@ -134,6 +134,7 @@ def page_html(p):
     rows = [[E(a["name"]), f'{a["d7"]:,}', f'{a["d30"]:,}', f'{a["d365"]:,}']
             for a in sorted([a for a in d["areas"] if a["d365"]], key=lambda a: (-a["d30"], -a["d365"], a["name"]))]
     na12 = c["d365"] - sum(a["d365"] for a in d["areas"])
+    zero = sum(1 for a in d["areas"] if not a["d365"])
     tbl = W.split_table(["Community area", "Last 7 days", "Last 30 days", "Last 12 months"], rows,
                         "Wrecking and demolition permits issued by community area", E, show=20, what="community areas")
     wait_line = (f'<p class="pw-note"><b>How long a wrecking and demolition permit takes.</b> Half of the wrecking and demolition permits issued in the last 12 months '
@@ -143,14 +144,15 @@ def page_html(p):
             '<div class="ld-heroact rl-act"><a class="btn" href="#steps">See the five steps</a>'
             + ('<a class="st-btn2" href="#map">Open the map</a>' if mapb else '<a class="st-btn2" href="#areas">Permits by area</a>') + '</div></div>'
             + tiles + W.otp([("steps", "Steps"), ("times", "Dates"), ("weeks", "Weekly")] + ([("map", "Map")] if mapb else []) + [("areas", "Areas"), ("questions", "Questions")], E)
-            + f'<section class="block" id="steps"><h2>The rodent control step, in five parts</h2><p>Form 480 lists rodent control from the Department of Streets and Sanitation among the approvals for every demolition permit applicant.</p>{steps}{others}</section>'
+            + f'<section class="block" id="steps"><h2>The rodent control step, in five steps</h2><p>Form 480 lists rodent control from the Department of Streets and Sanitation among the approvals for every demolition permit applicant.</p>{steps}{others}</section>'
             + f'<section class="block" id="times"><h2>Dates to keep in mind</h2><div class="tiles ld-tiles pw-dates">{times}</div>'
             + f'<p class="asof">From the Department of Buildings demolition permits page, read {E(M.nice_date(STEPS_READ))}.</p>{wait_line}</section>'
             + f'<section class="block" id="weeks"><h2>Wrecking and demolition permits, week by week</h2>{wk}'
             + f'<p class="asof">Each column is 7 days, oldest on the left; the last is the week to {E(M.nice_date(d["weeks"][-1]["to"]))}. The rodent control step comes before a permit is issued, so these counts show where it was recently needed.</p></section>'
             + (f'<section class="block" id="map"><h2>Where the wrecking and demolition permits are</h2>{mapb}</section>' if mapb else "")
             + f'<section class="block" id="areas"><h2>Every community area</h2>{tbl}'
-            + (f'<p class="asof">{na12:,} of the last 12 months\' permits had no community area on the record and count only in the city totals.</p>' if na12 else "")
+            + '<p class="asof">' + (f'The {zero:,} community areas with no wrecking and demolition permits in the last 12 months are left out. ' if zero else "")
+            + (f'{na12:,} of the last 12 months\' permits had no community area on the record and count only in the city totals.' if na12 else "") + '</p>'
             + '</section>'
             + '<section class="block" id="help"><div class="pw-two">'
             + f'<div class="cta ld-cta"><div><h2>Where rats are being reported</h2><p>Rat complaints to 311 by community area, the last 7 and 30 days against a year earlier, on a map. Updated weekly.</p>'

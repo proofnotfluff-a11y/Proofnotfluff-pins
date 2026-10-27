@@ -1,0 +1,316 @@
+{
+  "date": "2026-10-27",
+  "topic": "question",
+  "topicNote": "season skipped: Oct 27 is outside every season window in cmo/CAROUSEL_TOPICS.md (christmas lights starts Nov 1); question = newest page in seo/QUESTIONS.md (2026-10-27, /christmas-light-installation-price-per-foot/)",
+  "hookId": "H13",
+  "page": "christmas-light-installation-price-per-foot",
+  "product": "chicago-construction-cleaning-leads",
+  "format": "1080 x 1350, 7 slides, rendered by tools/make_carousel.py; Instagram and Facebook carousel",
+  "data": {
+    "file": "site/pages.json",
+    "stats": "tools/question_site.py stats(\"lights\", d): christmas-light-installation-pricing-calculator.defaults run through PNF.lightsQuote in docs/assets/pnf-calc.js",
+    "asOf": "calculator example checked Oct 27, 2026 (question page updated line)"
+  },
+  "slides": [
+    {
+      "n": 1,
+      "role": "hook",
+      "ground": "ink",
+      "eyebrow": "CHRISTMAS LIGHT PRICING",
+      "number": "$6.10",
+      "title": "a foot to hang Christmas lights, takedown counted",
+      "sub": "A $915 quote for 150 feet of roofline and 4 bushes, from our free calculator’s worked example",
+      "facts": [
+        {
+          "text": "$6.10",
+          "file": "site/pages.json",
+          "key": "stats('lights').basePerFt"
+        },
+        {
+          "text": "$915",
+          "file": "site/pages.json",
+          "key": "stats('lights').baseQuote"
+        },
+        {
+          "text": "150 feet, 4 bushes",
+          "file": "site/pages.json",
+          "key": "christmas-light-installation-pricing-calculator.defaults.feet, .shrubs"
+        },
+        {
+          "text": "takedown counted",
+          "file": "site/pages.json",
+          "key": "christmas-light-installation-pricing-calculator.defaults.takedownPct 50 and method[0]"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "role": "proof",
+      "ground": "canvas",
+      "eyebrow": "WHERE THE $915 GOES",
+      "title": "Profit is under a third of the quote",
+      "tiles": [
+        {
+          "label": "LABOR AND DRIVE",
+          "value": "$494"
+        },
+        {
+          "label": "LIGHTS AND STORAGE",
+          "value": "$145"
+        },
+        {
+          "label": "PROFIT",
+          "value": "$276",
+          "accent": true
+        }
+      ],
+      "source": "Source: our free Christmas light calculator, worked example, Oct 27, 2026",
+      "facts": [
+        {
+          "text": "$494",
+          "file": "site/pages.json",
+          "key": "stats('lights').baseLabor $343.13 + baseDrive $150.40 = $493.53"
+        },
+        {
+          "text": "$145",
+          "file": "site/pages.json",
+          "key": "stats('lights').baseMat $120.00 + defaults.storage $25"
+        },
+        {
+          "text": "$276",
+          "file": "site/pages.json",
+          "key": "stats('lights').baseProfit $276.47"
+        },
+        {
+          "text": "under a third",
+          "file": "site/pages.json",
+          "key": "276.47 / 915 = 30.2%"
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "role": "where",
+      "ground": "canvas",
+      "eyebrow": "PRICE PER FOOT, ONE THING CHANGED",
+      "title": "Small jobs and slow crews cost more a foot",
+      "rows": [
+        [
+          "1",
+          "Slower crew, 25 ft an hour each",
+          "$7.53"
+        ],
+        [
+          "2",
+          "Small house, 80 ft, no bushes",
+          "$6.31"
+        ],
+        [
+          "3",
+          "Faster crew, 60 ft an hour each",
+          "$5.30"
+        ],
+        [
+          "4",
+          "Customer’s own lights",
+          "$4.73"
+        ],
+        [
+          "5",
+          "Big house, 300 ft",
+          "$4.63"
+        ]
+      ],
+      "body": "Same crew as slide 1. Each row changes only what it names.",
+      "source": "Source: our free Christmas light calculator, worked example, Oct 27, 2026",
+      "facts": [
+        {
+          "text": "$7.53",
+          "file": "site/pages.json",
+          "key": "stats('lights').slowPerFt (ftPerHour 25)"
+        },
+        {
+          "text": "$6.31",
+          "file": "site/pages.json",
+          "key": "stats('lights').smallPerFt (feet 80, shrubs 0)"
+        },
+        {
+          "text": "$5.30",
+          "file": "site/pages.json",
+          "key": "stats('lights').fastPerFt (ftPerHour 60)"
+        },
+        {
+          "text": "$4.73",
+          "file": "site/pages.json",
+          "key": "stats('lights').ownPerFt (owner 1, no lights)"
+        },
+        {
+          "text": "$4.63",
+          "file": "site/pages.json",
+          "key": "stats('lights').bigPerFt (feet 300, 4 bushes)"
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "role": "why",
+      "ground": "canvas",
+      "eyebrow": "WHY SMALL JOBS COST MORE",
+      "title": "Every house carries two trips",
+      "card": {
+        "label": "INSTALL AND TAKEDOWN TRIPS, CREW TIME AND MILES",
+        "value": "$150"
+      },
+      "body": "On an 80-foot house with no bushes, the same drive is over 40% of the cost before profit.",
+      "source": "Source: our free Christmas light calculator, worked example, Oct 27, 2026",
+      "facts": [
+        {
+          "text": "$150",
+          "file": "site/pages.json",
+          "key": "stats('lights').baseDrive $150.40 (2 trips of 40 minutes and 20 miles at 76 cents, 2-person crew at $45)"
+        },
+        {
+          "text": "over 40%",
+          "file": "site/pages.json",
+          "key": "stats('lights').smallDrive $150.40 / smallFloor $353.07 = 42.6%"
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "role": "work",
+      "ground": "canvas",
+      "eyebrow": "WHAT THE FREE CALCULATOR DOES",
+      "title": "Your costs first, then your margin",
+      "bars": [
+        {
+          "label": "Cost before profit",
+          "value": "$639"
+        },
+        {
+          "label": "Quote at a 30% margin",
+          "value": "$915"
+        }
+      ],
+      "body": "Type your crew’s pace, rate and drive, and it shows your quote and the price a foot.",
+      "source": "Source: our free Christmas light calculator, worked example, Oct 27, 2026",
+      "facts": [
+        {
+          "text": "$639",
+          "file": "site/pages.json",
+          "key": "stats('lights').baseFloor $638.53"
+        },
+        {
+          "text": "$915",
+          "file": "site/pages.json",
+          "key": "stats('lights').baseQuote"
+        },
+        {
+          "text": "30% margin",
+          "file": "site/pages.json",
+          "key": "christmas-light-installation-pricing-calculator.defaults.margin"
+        },
+        {
+          "text": "quote and price per foot",
+          "file": "site/pages.json",
+          "key": "christmas-light-installation-pricing-calculator.lede"
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "role": "offer",
+      "ground": "canvas",
+      "eyebrow": "AFTER THE LIGHTS COME DOWN",
+      "title": "Chicago Construction Cleaning Leads",
+      "body": "Open Chicago projects that will need a final clean, and the builder on each, every Monday.",
+      "price": "7 days free, then $29 a month",
+      "terms": "No lock-in, cancel any time.",
+      "includes": [
+        "The builder on each project",
+        "Near-finish jobs flagged",
+        "Members’ app and Excel file"
+      ],
+      "facts": [
+        {
+          "text": "AFTER THE LIGHTS COME DOWN",
+          "file": "docs/christmas-light-installation-price-per-foot/index.html",
+          "key": "section 'Line up commercial work for after the lights come down'"
+        },
+        {
+          "text": "Chicago Construction Cleaning Leads",
+          "file": "site/pages.json",
+          "key": "chicago-construction-cleaning-leads.h1"
+        },
+        {
+          "text": "7 days free",
+          "file": "site/pages.json",
+          "key": "chicago-construction-cleaning-leads.trialDays"
+        },
+        {
+          "text": "$29 a month",
+          "file": "site/pages.json",
+          "key": "chicago-construction-cleaning-leads.price"
+        },
+        {
+          "text": "No lock-in, cancel any time.",
+          "file": "docs/chicago-construction-cleaning-leads/index.html",
+          "key": "hero offer line"
+        },
+        {
+          "text": "includes",
+          "file": "site/pages.json",
+          "key": "chicago-construction-cleaning-leads.cta.text (the builder on each, near-finish jobs flagged, members' app, Excel file)"
+        },
+        {
+          "text": "will need a final clean",
+          "file": "site/pages.json",
+          "key": "chicago-construction-cleaning-leads.cta.text ('closest to a final clean first')"
+        }
+      ]
+    },
+    {
+      "n": 7,
+      "role": "cta",
+      "ground": "ink",
+      "eyebrow": "FREE SAMPLE EVERY MONDAY",
+      "title": "See this week’s free sample",
+      "domain": "proofnotfluff.com",
+      "sub": "Real Chicago projects from this week’s list, near-finish jobs marked.",
+      "facts": [
+        {
+          "text": "free sample, every Monday",
+          "file": "site/pages.json",
+          "key": "chicago-construction-cleaning-leads.eyebrow"
+        },
+        {
+          "text": "near-finish jobs marked",
+          "file": "site/pages.json",
+          "key": "chicago-construction-cleaning-leads.cta.text"
+        }
+      ]
+    }
+  ],
+  "footer": {
+    "left": "ProofNotFluff",
+    "right": "n/7"
+  },
+  "captions": {
+    "instagram": "A 150-foot roofline with 4 bushes quotes $915 to hang Christmas lights, or $6.10 a foot, in our free calculator's worked example.\n\nThat quote counts a 2-person crew, takedown, two trips, the lights spread over 3 seasons and a 30% margin. Profit is $276.47 of it.\n\nWhat moves the price a foot:\nA slower crew: $7.53\nAn 80-foot house, no bushes: $6.31\nA 300-foot house: $4.63\n\nYour own pace and costs will move every number, so run yours in the free calculator. If you also clean windows or buildings in Chicago, line up commercial work for after the lights come down. Free sample: link in bio (proofnotfluff.com).\n\n#ChristmasLights #PressureWashing #WindowCleaning",
+    "facebook": "A 150-foot roofline with 4 bushes quotes $915 to hang Christmas lights, or $6.10 a foot, in our free calculator's worked example.\n\nThat quote counts a 2-person crew, takedown, two trips, the lights spread over 3 seasons and a 30% margin. Profit is $276.47 of it.\n\nWhat moves the price a foot:\nA slower crew: $7.53\nAn 80-foot house, no bushes: $6.31\nA 300-foot house: $4.63\n\nYour own pace and costs will move every number, so run yours in the free calculator. If you also clean windows or buildings in Chicago, line up commercial work for after the lights come down. Free sample: proofnotfluff.com/go/free-christmas-light-installation-price-per-foot/\n\n#ChristmasLights #PressureWashing #WindowCleaning"
+  },
+  "platforms": [
+    "instagram",
+    "facebook"
+  ],
+  "gates": {
+    "facts_round1": "FAIL: the 80 ft case has no bushes but slides 3, 4 and the captions implied slide 1's 4 bushes; fixed (rows, slide 4 body, captions), plus 'each' on crew paces",
+    "buyer_round1": "PASS (would open the free calculator; no how-to; no price as market advice); took the slide 6 final clean line and the slide 3 body fix",
+    "facts_round2": "PASS (changed lines: slide 3 rows and body, slide 4 body, slide 6 body, captions)",
+    "design_round1": "FAIL 4.57 (5,4,5,5,4,4,5): slide 2 profit bar not accent, slide 5 labels float between bars, slide 7 about 430 px empty, slide 3 sentence awkward",
+    "design_fix": "tool: proof tiles take accent: true (additive; 2026-10-26 renders byte-identical); slide 2 profit bar accent; slide 3 body reworded. Skipped: slide 5 label spacing and slide 7 fill (tool CSS changes that would move past renders)",
+    "design_round2": "FAIL 4.57 (5,4,4,5,4,5,5): slide 3 no accent value, slide 2 title line ends on 'a', slide 3 rows 1 and 3 run close to the values, slide 5 label spacing, slide 7 about 430 px empty ink; second FAIL, stopped"
+  },
+  "posted": null,
+  "status": "stopped after the second design FAIL (4.57 twice); not posted. Cloud run: no Claude in Chrome or computer link either. Slides sent to Todd."
+}

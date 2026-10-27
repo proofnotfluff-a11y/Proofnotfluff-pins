@@ -142,9 +142,9 @@ def page_html(p):
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(META["h1"])}</h1><p class="lede">{lede}</p>'
             '<div class="ld-heroact rl-act"><a class="btn" href="#steps">See the five steps</a>'
             + ('<a class="st-btn2" href="#map">Open the map</a>' if mapb else '<a class="st-btn2" href="#areas">Permits by area</a>') + '</div></div>'
-            + tiles
+            + tiles + W.otp([("steps", "Steps"), ("times", "Dates"), ("weeks", "Weekly")] + ([("map", "Map")] if mapb else []) + [("areas", "Areas"), ("questions", "Questions")], E)
             + f'<section class="block" id="steps"><h2>The rodent control step, in five parts</h2><p>Form 480 lists rodent control from the Department of Streets and Sanitation among the approvals for every demolition permit applicant.</p>{steps}{others}</section>'
-            + f'<section class="block" id="times"><h2>Dates to keep in mind</h2><div class="tiles ld-tiles">{times}</div>'
+            + f'<section class="block" id="times"><h2>Dates to keep in mind</h2><div class="tiles ld-tiles pw-dates">{times}</div>'
             + f'<p class="asof">From the Department of Buildings demolition permits page, read {E(M.nice_date(STEPS_READ))}.</p>{wait_line}</section>'
             + f'<section class="block" id="weeks"><h2>Wrecking and demolition permits, week by week</h2>{wk}'
             + f'<p class="asof">Each column is 7 days, oldest on the left; the last is the week to {E(M.nice_date(d["weeks"][-1]["to"]))}. The rodent control step comes before a permit is issued, so these counts show where it was recently needed.</p></section>'
@@ -162,8 +162,8 @@ def page_html(p):
             + f'<p>The steps are our plain summary of the City\'s demolition permits page and Form 480, read {E(M.nice_date(STEPS_READ))}. The City\'s own pages are the rule; when they change, they win.</p>'
             + '<p>The permit counts are wrecking and demolition permits the City issued, from its Building Permits dataset, counted by issue date and by the community area of each permit\'s primary address. Counts only: no permit number, address or contact is kept.</p>'
             + (f'<p>The wait days are the City\'s processing time field, days from the City starting review to the issue date, for the {wait["n"]:,} wrecking and demolition permits issued in the last 12 months.</p>' if wait.get("med") is not None else "")
-            + '</section>' + M.faq_block(FAQ)
-            + f'<p class="rl-act"><a class="btn" href="#steps">See the five steps</a> <a class="st-btn2" href="{rel}chicago-rat-complaints/">Rat complaints by neighborhood</a></p>')
+            + '</section>' + W.faq(M, FAQ)
+            + f'<p class="pw-end"><a class="btn" href="#steps">See the five steps</a><a class="st-btn2" href="{rel}chicago-rat-complaints/">Rat complaints by neighborhood</a></p>')
     return (W.head_html(M, p, url, rel, p["title"], p.get("desc", ""), robots, M.ld_tags(crumb_ld, faq_ld, howto_ld)) + body
             + W.foot(M, rel, src, "Wrecking and demolition permits by issue date. Steps from the Department of Buildings demolition permits page and Form 480. "))
 

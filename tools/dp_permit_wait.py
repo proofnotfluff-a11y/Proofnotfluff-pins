@@ -94,6 +94,18 @@ CSS = ("<style>"
        ".pw-two .cta{grid-template-columns:1fr;height:100%;align-items:start}.pw-two .cta h2{margin-top:0;text-wrap:balance}"
        "@media(max-width:599px){.pw-t th,.pw-t td{padding:9px 8px}.pw-t .pw-hide{display:none}.pw-bars{height:150px;gap:2px}"
        ".pw-bars.m24>div:not(:nth-child(6n+1)):not(:last-child) span,.pw-bars.w12>div:not(:nth-child(3n+1)):not(:last-child) span,.pw-bars.m24>div:nth-child(19) span,.pw-bars.w12>div:nth-child(10) span{visibility:hidden}.pw-bars>div:not(:last-child) b{visibility:hidden}.pw-ch{padding:14px 12px 10px}}"
+       # design director round 1 (Oct 27): hero spacing, equal buttons, end pair, card buttons, single-border accordions,
+       # names on one line, balanced eyebrow, dates grid, dark map low class and key tile
+       ".ld-page .ld-tiles .lab{white-space:normal;line-height:1.35}.ld-page .ld-heroact{gap:10px 12px;margin-bottom:24px}.ld-page .eyebrow{text-wrap:balance}"
+       ".ld-heroact .btn,.ld-heroact .st-btn2,.pw-end .btn,.pw-end .st-btn2,.ld-buybtn .btn,.pw-dl{min-height:48px;display:inline-flex;align-items:center;box-sizing:border-box}"
+       ".pw-end{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 0}.pw-two .cta .btn{margin-top:16px}"
+       "details.pw-more{border:0;background:none;padding:0;box-shadow:none;max-width:none}"
+       ".pw-dates{grid-template-columns:repeat(3,minmax(0,1fr))}@media(max-width:599px){.pw-dates{grid-template-columns:1fr}}"
+       "@media(min-width:860px){.pw-t tbody th{min-width:200px;white-space:nowrap}}"
+       ".pw-yr td b{color:var(--ink)}"
+       "@media (prefers-color-scheme:dark){:root:not([data-theme=light]) body .gm{--gm0:#5a4038;--gmn:#2f3646}:root:not([data-theme=light]) .ld-page .tile.key{box-shadow:none}}"
+       ":root[data-theme=dark] body .gm{--gm0:#5a4038;--gmn:#2f3646}:root[data-theme=dark] .ld-page .tile.key{box-shadow:none}"
+       "@media(max-width:599px){.ld-heroact .btn,.ld-heroact .st-btn2{padding-left:16px;padding-right:16px}}"
        "</style>")
 
 
@@ -178,13 +190,20 @@ def foot(M, rel, src, extra=""):
 
 
 def breaks(vals):
-    """Map class cuts from geo_map.nice_breaks, kept above zero so no class reads "under 0"."""
-    import geo_map as G
-    out = []
-    for c in G.nice_breaks(vals):
-        if c > 0 and (not out or c - out[-1] >= max(2, round(out[-1] * 0.1))):   # no one-value classes next to each other
-            out.append(c)
-    return out
+    """Up to four map class cuts in even steps (1, 2 or 5 times a power of ten) across the middle of the data, all above
+    zero, so the legend reads as plain ranges (design director, Oct 27: "Under 80 / 80 to 99 / 100 to 119 ...")."""
+    v = sorted(x for x in vals if x is not None)
+    if not v or v[-1] <= 0:
+        return []
+    lo, hi = v[int(len(v) * 0.2)], v[min(len(v) - 1, int(len(v) * 0.8))]
+    raw, e = max(hi - lo, 1) / 3, 1
+    while True:
+        step = next((m * e for m in (1, 2, 5) if m * e >= raw), None)
+        if step:
+            break
+        e *= 10
+    start = max(step, -(-lo // step) * step)
+    return [c for c in (start + i * step for i in range(4)) if c <= v[-1]]
 
 
 def legend(cuts, unit="", zero="None"):
@@ -279,6 +298,33 @@ def map_block(d, E, M):
                                            "A permit counts in the community area of its primary address. Every number on the map is also in the table below."))
     return G.CSS + fig if fig else ""
 
+
+def otp(items, E):
+    """The site's on-this-page bar (docs/assets/pnf.css .otp; pnf-ui.js marks the current section)."""
+    return ('<nav class="otp" aria-label="On this page"><div class="otp-in">'
+            + "".join(f'<a href="#{k}">{E(l)}</a>' for k, l in items) + '</div></nav>')
+
+
+def faq(M, items):
+    return M.faq_block(items).replace('<section class="block">', '<section class="block" id="questions">', 1)
+
+
+def trend_table(rows, E):
+    """Last 3 complete months against the same months a year earlier, one row per path: the same figures as trend_line."""
+    out = []
+    for r in rows:
+        t = r["trend"]
+        a, b = t["now"], t["then"]
+        if a.get("med") is None or b.get("med") is None:
+            continue
+        diff = a["med"] - b["med"]
+        ch = "Same" if diff == 0 else f'{abs(diff):,} day{"" if abs(diff) == 1 else "s"} {"longer" if diff > 0 else "shorter"}'
+        out.append([E(r["label"]), f'{a["med"]:,}<small>{a["n"]:,} permits</small>', f'{b["med"]:,}<small>{b["n"]:,} permits</small>', f"<b>{E(ch)}</b>"])
+    if not out:
+        return ""
+    t0 = rows[0]["trend"]
+    head = ["Review path", f"{months_span(t0['months'])}: half within (days)", f"{months_span(t0['yearMonths'])}: half within (days)", "Change"]
+    return table(head, out, "Half within, the last 3 complete months against the same months a year earlier", E).replace('class="pw-t"', 'class="pw-t pw-yr"', 1)
 
 def by_key(items, key):
     return next((x for x in items if x["key"] == key), None)
@@ -438,7 +484,7 @@ def page_html(p):
     pref = ["STANDARD PLAN REVIEW", "SELF CERT", "EXPRESS PERMIT PROGRAM"]
     ordered = sorted(paths, key=lambda r: (pref.index(r["key"]) if r["key"] in pref else 9, -r["last12"]["n"]))
     series = [(r["key"], r["label"], r["monthly"]) for r in ordered[:4]]
-    trends = "".join(f"<li>{trend_line(r, E)}</li>" for r in ordered[:4] if trend_line(r, E))
+    trends = trend_table(ordered[:4], E)
     charts = chart_panes(series, E, "pwc", "")
     mtab = month_table(series, E, "Permit wait days by month issued and review path") if series else ""
     mapb = map_block(d, E, M)
@@ -447,6 +493,8 @@ def page_html(p):
             '<div class="ld-heroact rl-act"><a class="btn" href="#types">Find your permit type</a>'
             + ('<a class="st-btn2" href="#map">Open the map</a>' if mapb else "") + '</div></div>'
             + tiles_html(d, E, M)
+            + otp([("paths", "Review path"), ("types", "Permit type"), ("months", "Month by month")] + ([("map", "Map")] if mapb else [])
+                  + [("areas", "Areas"), ("download", "CSV"), ("questions", "Questions")], E)
             + ('<section class="block" id="paths"><h2>By review path</h2><p>The review path decides most of the wait. The Express Permit Program is the '
                f"City's online path for repairs, replacements and small improvements; Standard Plan Review and Self Certification are plan-based paths for "
                f'projects such as new construction and rehabs (<a href="{DOB_PERMITS}" rel="noopener">City permit application guide</a>). '
@@ -456,7 +504,7 @@ def page_html(p):
             + f'<section class="block" id="types"><h2>By permit type</h2><p>Tap a permit type for its own page with every review path, month and community area.</p>{type_tbl}'
             + '</section>'
             + f'<section class="block" id="months"><h2>Month by month</h2><p>The last 24 complete months. Pick a review path; each column is the permits issued that month.</p>{charts}{mtab}'
-            + (f'<h3>Against a year earlier</h3><ul>{trends}</ul>' if trends else "") + '</section>'
+            + (f'<h3>Against a year earlier</h3>{trends}' if trends else "") + '</section>'
             + (f'<section class="block" id="map"><h2>Wait times on the map</h2>{mapb}</section>' if mapb else "")
             + f'<section class="block" id="areas"><h2>Every community area</h2>{area_tbl}'
             + f'<p class="asof">Last 12 months. Fewer than {mn} permits on a path shows as too few.'
@@ -469,8 +517,8 @@ def page_html(p):
             + f'<div class="cta ld-cta"><div><h2>More free Chicago data</h2><p>Trackers built from City records for trade owners: rat complaints by neighborhood, demolition rodent baiting, trades news and more.</p>'
             + f'<p class="ld-buybtn"><a class="btn" href="{rel}chicago-data/">See every free tracker</a></p></div></div>'
             + '</div></section>'
-            + method_html(d, E) + M.faq_block(FAQ)
-            + '<p class="rl-act"><a class="btn" href="#types">Find your permit type</a> <a class="st-btn2" href="#download">Download the CSV</a></p>'
+            + method_html(d, E) + faq(M, FAQ)
+            + '<p class="pw-end"><a class="btn" href="#types">Find your permit type</a><a class="st-btn2" href="#download">Download the CSV</a></p>'
             + SEG_JS)
     return (head_html(M, p, url, rel, p["title"], p.get("desc", ""), robots, M.ld_tags(crumb_ld, faq_ld, ds_ld)) + body
             + foot(M, rel, d["source"], "Measure: the City's processing time field, days from review start to issue, for issued permits only. "))
@@ -494,24 +542,24 @@ def type_page(p, d, t, M):
              + (f'<div class="tile"><div class="lab">Most used path</div><div class="val" style="font-size:clamp(17px,9cqi,24px)">{E(top["label"])}</div><div class="sub">{top["last12"]["n"]:,} permits</div></div>' if top else "")
              + f'</div><p class="asof">Figures as of {E(M.nice_date(w["to"]))}: issued from {E(M.nice_date(w["from12"]))} to {E(M.nice_date(w["to"]))}, from City of Chicago records pulled {E(M.nice_date(d["source"]["fetchedAt"][:10]))}. Updated weekly.</p>')
     series = [("all", "All review paths", t["monthly"])] + [(r["key"], r["label"], r["monthly"]) for r in reviews[:3]]
-    trs = "".join(f"<li>{trend_line(r, E)}</li>" for r in [dict(t, label="All review paths")] + reviews[:3] if trend_line(r, E))
+    trs = trend_table([dict(t, label="All review paths")] + reviews[:3], E)
     arows = []
     for a in sorted([a for a in t["areas"] if a["n"]], key=lambda a: (-a["n"], a["name"])):
         arows.append([E(a["name"]), f'{a["n"]:,}', cell_days(a, "med"), cell_days(a, "p80"), cell_days(a, "p90")])
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">Free Chicago permit tracker</p><h1>{E(h1)}</h1><p class="lede">{lede}</p>'
-            f'<div class="ld-heroact rl-act"><a class="btn" href="#paths">See every review path</a><a class="st-btn2" href="{rel}{p["slug"]}/">All permit types</a></div></div>'
-            + tiles
+            f'<div class="ld-heroact rl-act"><a class="btn" href="#months">See it month by month</a><a class="st-btn2" href="#areas">Find your area</a></div></div>'
+            + tiles + otp([("paths", "Review path"), ("months", "Month by month"), ("areas", "Areas"), ("method", "Method")], E)
             + f'<section class="block" id="paths"><h2>By review path</h2>{table(PATH_HEAD, path_rows(reviews, E), "Wait days by review path, last 12 months", E, hide=(4, 5))}</section>'
             + f'<section class="block" id="months"><h2>Month by month</h2><p>The last 24 complete months, by month issued.</p>{chart_panes(series, E, "pwt", "")}{month_table(series, E, "Wait days by month issued")}'
-            + (f'<h3>Against a year earlier</h3><ul>{trs}</ul>' if trs else "") + '</section>'
+            + (f'<h3>Against a year earlier</h3>{trs}' if trs else "") + '</section>'
             + f'<section class="block" id="areas"><h2>Every community area</h2>'
             + split_table(["Community area", "Permits issued, 12 months", "Half within (days)", "8 in 10 within (days)", "9 in 10 within (days)"], arows,
                           f"{t['label']} permit wait days by community area", E, show=20, hide=(4,), what="community areas")
             + f'<p class="asof">Fewer than {mn} permits shows as too few.'
             + (f' {t["noArea12"]:,} permit{"" if t["noArea12"] == 1 else "s"} had no community area on the record and count only in the totals.' if t.get("noArea12") else "") + '</p></section>'
-            + f'<section class="block"><h2>How this page is made</h2><p>{E(METHOD[0])}</p><p>{E(METHOD[1])}</p><p>{E(METHOD[3])}</p>'
+            + f'<section class="block" id="method"><h2>How this page is made</h2><p>{E(METHOD[0])}</p><p>{E(METHOD[1])}</p><p>{E(METHOD[3])}</p>'
             + f'<p>The full method and a CSV of every figure are on the <a href="{rel}{p["slug"]}/#method">main permit wait times page</a>.</p></section>'
-            + f'<p class="rl-act"><a class="btn" href="{rel}{p["slug"]}/#types">Compare every permit type</a> <a class="st-btn2" href="{rel}{p["slug"]}/{CSV_NAME}">Download the CSV</a></p>'
+            + f'<p class="pw-end"><a class="btn" href="{rel}{p["slug"]}/#types">Compare every permit type</a><a class="st-btn2" href="{rel}{p["slug"]}/{CSV_NAME}">Download the CSV</a></p>'
             + SEG_JS)
     desc = f'How long {t["label"].lower()} permits take in Chicago: days from review start to issue by review path, month and neighborhood, from City records, updated weekly.'
     return (head_html(M, p, url, rel, f'{h1} | ProofNotFluff', desc, robots, M.ld_tags(crumb_ld)) + body

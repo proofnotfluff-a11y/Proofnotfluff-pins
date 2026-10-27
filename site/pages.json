@@ -7049,7 +7049,7 @@
     ]
    ],
    "sourceNotes": [
-    "The City's note on this dataset: these data are historical, should not be relied on for real estate transactions, and do not necessarily reflect the current condition of a building. For closings, it points to the title commitment for enforcement actions in the Circuit Court of Cook County or the Chicago Department of Administrative Hearings."
+    "The Department of Buildings' note on this dataset, word for word: “Lenders and title companies, please note: These data are historical in nature and should not be relied upon for real estate transactions. For transactional purposes such as closings, please consult the title commitment for outstanding enforcement actions in the Circuit Court of Cook County or the Chicago Department of Administrative Hearings.” and “The information presented on this website is informational only and does not necessarily reflect the current condition of the building or property.”"
    ],
    "sources": "City of Chicago Building Violations, dataset 22u3-xenr.",
    "map": true

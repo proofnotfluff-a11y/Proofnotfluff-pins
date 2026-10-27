@@ -1,22 +1,80 @@
-{"about": "Basement flooding page: map tap and metric switch, the type toggle on the day and month charts, the area picker, the full table and both downloads (build B8, Oct 27, 2026).",
+{
+ "about": "Basement flooding page: map tap and metric switch, the type toggle on the day and month charts, the area picker, the full table and both downloads (build B8, Oct 27, 2026). The hero picker jumps to the chosen area.",
  "page": "chicago-basement-flooding/",
  "steps": [
-  {"scroll": "#map"},
-  {"expect_count": "#floodmap path[data-n]", "eq": 77},
-  {"click": "#floodmap path[data-n='70']", "force": true},
-  {"expect_text": "#floodmap .gm-info", "contains": "Ashburn", "screenshot": true},
-  {"click": "#floodmap .gm-seg label:nth-of-type(2)"},
-  {"expect_text": "#floodmap .gm-leg", "contains": "Sewer cleaning"},
-  {"scroll": "#days"},
-  {"expect_visible": "#days [data-bf-key='water']"},
-  {"click": "#days .bf-seg label:nth-of-type(2)"},
-  {"expect_visible": "#days [data-bf-key='sewer']"},
-  {"expect_hidden": "#days [data-bf-key='water']", "screenshot": true},
-  {"scroll": "#area"},
-  {"select": "#bf-area-sel", "value": "9"},
-  {"expect_text": "#bf-area-box", "contains": "Edison Park"},
-  {"expect_count": "#bf-area-box svg", "eq": 2, "screenshot": true},
-  {"click": "#areas .bf-more summary"},
-  {"expect_count": "#areas tbody tr", "eq": 77},
-  {"expect_count": "#areas a[download]", "eq": 2}
- ]}
+  {
+   "select": ".ld-hero select[data-jump]",
+   "value": "25"
+  },
+  {
+   "expect_text": "#bf-area-box",
+   "contains": "Austin"
+  },
+  {
+   "scroll": "#map"
+  },
+  {
+   "expect_count": "#floodmap path[data-n]",
+   "eq": 77
+  },
+  {
+   "click": "#floodmap path[data-n='70']",
+   "force": true
+  },
+  {
+   "expect_text": "#floodmap .gm-info",
+   "contains": "Ashburn",
+   "screenshot": true
+  },
+  {
+   "click": "#floodmap .gm-seg label:nth-of-type(2)"
+  },
+  {
+   "expect_text": "#floodmap .gm-leg",
+   "contains": "Sewer cleaning"
+  },
+  {
+   "scroll": "#days"
+  },
+  {
+   "expect_visible": "#days [data-bf-key='water']"
+  },
+  {
+   "click": "#days .bf-seg label:nth-of-type(2)"
+  },
+  {
+   "expect_visible": "#days [data-bf-key='sewer']"
+  },
+  {
+   "expect_hidden": "#days [data-bf-key='water']",
+   "screenshot": true
+  },
+  {
+   "scroll": "#area"
+  },
+  {
+   "select": "#bf-area-sel",
+   "value": "9"
+  },
+  {
+   "expect_text": "#bf-area-box",
+   "contains": "Edison Park"
+  },
+  {
+   "expect_count": "#bf-area-box svg",
+   "eq": 2,
+   "screenshot": true
+  },
+  {
+   "click": "#areas .bf-more summary"
+  },
+  {
+   "expect_count": "#areas tbody tr",
+   "eq": 77
+  },
+  {
+   "expect_count": "#areas a[download]",
+   "eq": 2
+  }
+ ]
+}

@@ -152,7 +152,7 @@ CSS = ("<style>"
        ".rd-chart .gl{stroke:var(--rule);stroke-width:1}.rd-chart text{font:600 11px system-ui,sans-serif;fill:var(--muted)}.rd-chart .gt{font-weight:500}"
        ".rd-key{display:flex;flex-wrap:wrap;gap:14px;margin:6px 0 0;font-size:13.5px;color:var(--ink2)}.rd-key i{display:inline-block;width:14px;height:10px;border-radius:2px;background:var(--accent);margin-right:6px;vertical-align:middle}.rd-key .k2 i{opacity:.35}"
        ".rd-tw{overflow-x:auto;margin:12px 0 0;border:1px solid var(--line);border-radius:12px;background:var(--card)}.rd-tw:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
-       ".rd-t{width:100%;border-collapse:collapse;font-size:14.5px}.rd-t th,.rd-t td{padding:9px 12px;border-bottom:1px solid var(--rule);text-align:right;font-variant-numeric:tabular-nums}"
+       ".rd-p .rd-t{max-width:760px}.rd-t{width:100%;border-collapse:collapse;font-size:14.5px}.rd-t th,.rd-t td{padding:9px 12px;border-bottom:1px solid var(--rule);text-align:right;font-variant-numeric:tabular-nums}"
        ".rd-t th:first-child,.rd-t td:first-child{text-align:left}.rd-t thead th{font-size:13px;color:var(--muted);font-weight:700;background:var(--card);vertical-align:bottom}"
        ".rd-t tbody th{font-weight:600;color:var(--ink);text-align:left}.rd-t tr:last-child td,.rd-t tr:last-child th{border-bottom:0}.rd-up{color:var(--warn-ink);font-weight:600}"
        ".rd-t td.rd-d,.rd-t th.rd-d{text-align:left;white-space:normal}.rd-t code{font-size:12.5px;color:var(--muted)}"
@@ -354,9 +354,10 @@ def page_html(p):
           'C.forEach(function(a){a.addEventListener("click",function(e){var i=document.getElementById("t-"+a.dataset.tab);'
           'if(!i)return;e.preventDefault();i.checked=true;mark(a.dataset.tab);document.getElementById("trades").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});i.focus({preventScroll:true});});});'
           '})();</script>'
-          + __import__("dp_flooding").PG_JS)
+          + __import__("dp_flooding").PG_JS + __import__("dp_flooding").HP_JS)
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(META["h1"])}</h1><p class="lede">{lede}</p>'
-            '<div class="ld-heroact rl-act"><a class="btn" href="#trades">See your trade by neighborhood</a><a class="st-btn2" href="#map">Open the map</a></div></div>'
+            '<div class="ld-heroact rl-act"><a class="btn" href="#trades">See your trade by neighborhood</a>'
+            + __import__("dp_flooding").hero_pick(names, "#repairmap select", "map", E) + '</div></div>'
             f'{grid}'
             + __import__("dp_flooding").pg_nav([("map", "Map"), ("trades", "By trade"), ("mapping", "How trades are sorted"), ("faq", "Questions")], E)
             + (f'<section class="block" id="map"><h2>Violations on the map</h2>{mapb}</section>' if mapb else "")

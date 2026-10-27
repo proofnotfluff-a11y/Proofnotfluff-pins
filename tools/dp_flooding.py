@@ -167,7 +167,7 @@ CSS = ("<style>"
        ".bf-days th:first-child,.bf-days td:first-child{text-align:left;white-space:nowrap}.bf-days thead th{font-size:13px;color:var(--muted)}.bf-days tr:last-child td{border-bottom:0}"
        ".bf-two{display:grid;gap:16px}@media(min-width:900px){.bf-two{grid-template-columns:1fr 1fr}}.bf-two .cta{grid-template-columns:1fr;height:100%;align-items:start}.bf-two .cta h2{margin-top:0;text-wrap:balance}"
        ".bf-dl{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0}"
-       ".bf-t td{white-space:nowrap}.bf-t td:last-child,.bf-t th:last-child{padding-right:16px}.bf-t thead th{max-width:9em}"
+       ".bf-t td{white-space:nowrap}.bf-t td:last-child,.bf-t th:last-child{padding-right:16px}.bf-t thead th{max-width:11em}"
        ".bf-swipe{display:none;margin:8px 0 0;font-size:13px;color:var(--muted)}"
        "@media(max-width:599px){.bf-t{min-width:600px}.bf-t tbody th{min-width:150px}.bf-t th,.bf-t td{padding:9px 8px}.bf-t tbody th,.bf-t thead th:first-child{position:sticky;left:0;z-index:1;background:var(--card);box-shadow:1px 0 0 var(--rule)}"
        ".bf-tw{background:linear-gradient(to left,var(--card) 0,var(--card) 100%)}.bf-swipe{display:block}.bf-days th,.bf-days td{padding:8px 6px}}"
@@ -178,12 +178,17 @@ SHARED_CSS = ("<style>"
     "p.rl-act{display:flex;flex-wrap:wrap;gap:10px;align-items:center}"
     "@media(max-width:599px){.ld-heroact{display:grid;grid-template-columns:1fr;gap:10px}.ld-heroact .btn,.ld-heroact .st-btn2{width:100%}}"
     "section.block{scroll-margin-top:124px}.otp-in a{padding:0 16px}"
+    ".hp-pick{display:grid;gap:6px;font-size:13px;font-weight:700;color:var(--muted);min-width:min(100%,280px)}"
+    ".hp-pick select{min-height:48px;font:inherit;font-size:15px;font-weight:600;color:var(--ink);background:var(--card) var(--sel-arrow) no-repeat right 14px center;border:1.5px solid var(--ink);border-radius:10px;padding:0 38px 0 14px;appearance:none;-webkit-appearance:none}"
+    ".hp-pick select:focus-visible{outline:3px solid var(--focus);outline-offset:2px}.ld-heroact{align-items:end;gap:12px}"
+    "section.block .asof,.bf-cap{font-size:13.5px;line-height:1.5}"
+    ".pg-two .cta+.cta .btn{background:transparent;border:1.5px solid #fff;color:#fff}"
     ".tile.key{box-shadow:inset 0 3px 0 var(--accent)}.tile .tch{display:block;font-size:14px;font-weight:600;margin:0 0 2px}"
-    "@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .tile.key,:root:not([data-theme=light]) .rd-grid a.lead{background:#262c3d;border-color:#3a4258;box-shadow:inset 0 3px 0 var(--accent)}}"
-    ":root[data-theme=dark] .tile.key,:root[data-theme=dark] .rd-grid a.lead{background:#262c3d;border-color:#3a4258;box-shadow:inset 0 3px 0 var(--accent)}"
-    ".bf-chart .b2,.rd-chart .b2{fill:#f0cabe;stroke:#c98f80;stroke-width:1;opacity:1}.bf-key .k2 i,.rd-key .k2 i{background:#f0cabe;box-shadow:inset 0 0 0 1px #c98f80;opacity:1}"
-    "@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .bf-chart .b2,:root:not([data-theme=light]) .rd-chart .b2{fill:#a85d4c;stroke:#c27463}:root:not([data-theme=light]) .bf-key .k2 i,:root:not([data-theme=light]) .rd-key .k2 i{background:#a85d4c;box-shadow:none}}"
-    ":root[data-theme=dark] .bf-chart .b2,:root[data-theme=dark] .rd-chart .b2{fill:#a85d4c;stroke:#c27463}:root[data-theme=dark] .bf-key .k2 i,:root[data-theme=dark] .rd-key .k2 i{background:#a85d4c;box-shadow:none}"
+    "@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .tile.key,:root:not([data-theme=light]) .rd-grid a.lead{background:#3a2622;border-color:#7a3f2e;box-shadow:inset 0 3px 0 var(--accent)}}"
+    ":root[data-theme=dark] .tile.key,:root[data-theme=dark] .rd-grid a.lead{background:#3a2622;border-color:#7a3f2e;box-shadow:inset 0 3px 0 var(--accent)}"
+    ".bf-chart .b2,.rd-chart .b2{fill:rgba(110,125,150,.16);stroke:#8c97ab;stroke-width:1;opacity:1}.bf-key .k2 i,.rd-key .k2 i{background:rgba(110,125,150,.16);box-shadow:inset 0 0 0 1px #8c97ab;opacity:1}"
+    "@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .bf-chart .b2,:root:not([data-theme=light]) .rd-chart .b2{fill:rgba(170,185,210,.12);stroke:#9aa6bd}:root:not([data-theme=light]) .bf-key .k2 i,:root:not([data-theme=light]) .rd-key .k2 i{background:rgba(170,185,210,.12);box-shadow:inset 0 0 0 1px #9aa6bd}}"
+    ":root[data-theme=dark] .bf-chart .b2,:root[data-theme=dark] .rd-chart .b2{fill:rgba(170,185,210,.12);stroke:#9aa6bd}:root[data-theme=dark] .bf-key .k2 i,:root[data-theme=dark] .rd-key .k2 i{background:rgba(170,185,210,.12);box-shadow:inset 0 0 0 1px #9aa6bd}"
     ".pg-two .cta>div{display:flex;flex-direction:column;height:100%}.pg-two .cta>div>p:not(.ld-buybtn){margin-bottom:20px}.pg-two .ld-buybtn{margin-top:auto}"
     "footer .wrap>.pg-notes{grid-column:1/-1;column-count:2;column-gap:40px}.pg-notes p{break-inside:avoid;margin:0 0 12px;max-width:none}@media(max-width:759px){footer .wrap>.pg-notes{column-count:1}}"
     "@media(min-width:860px){.pg-map .gm-side{position:sticky;top:72px}}"
@@ -202,6 +207,19 @@ def pg_nav(items, E):
     behaves like the one on the lead pages (design director, Oct 27: one pattern site wide)."""
     return ('<nav class="otp" aria-label="On this page"><div class="otp-in">'
             + "".join(f'<a href="#{i}">{E(t)}</a>' for i, t in items) + '</div></nav>')
+
+
+def hero_pick(names, target, section, E):
+    """'Find your community area' in the hero: picks the area in the page's own picker and jumps there (design
+    director, Oct 27: the visitor's own area one step from the first screen)."""
+    opts = "".join(f'<option value="{n}">{E(nm)}</option>' for n, nm in sorted(names.items(), key=lambda x: x[1]))
+    return (f'<label class="hp-pick">Find your community area<select data-jump="{E(target)}" data-to="{E(section)}">'
+            f'<option value="">Choose a community area</option>{opts}</select></label>')
+
+
+HP_JS = ("<script>(function(){document.querySelectorAll('select[data-jump]').forEach(function(s){s.addEventListener('change',function(){"
+         "var t=document.querySelector(s.dataset.jump);if(!t||!s.value)return;t.value=s.value;t.dispatchEvent(new Event('change'));"
+         "var to=document.getElementById(s.dataset.to);if(to)to.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});});});})();</script>")
 
 
 def pg_map(fig):
@@ -373,7 +391,7 @@ def month_chart(vals, labels, ghost, E, label, ph=None):
         g = ghost[i]
         if g:
             out += f'<rect class="b2" x="{x + slot * .1:.1f}" y="{base - g / mx * (base - top):.1f}" width="{slot * .8:.1f}" height="{g / mx * (base - top):.1f}"/>'
-        out += f'<rect class="b" x="{x + slot * .28:.1f}" y="{base - v / mx * (base - top):.1f}" width="{slot * .44:.1f}" height="{v / mx * (base - top):.1f}"/>'
+        out += f'<rect class="b" x="{x + slot * .32:.1f}" y="{base - v / mx * (base - top):.1f}" width="{slot * .36:.1f}" height="{v / mx * (base - top):.1f}"/>'
         if (n - 1 - i) % step == 0:      # counted back from the last month, so the gaps are even and the newest month is always named
             a = "end" if i == n - 1 else "middle"
             tx = x + slot if i == n - 1 else x + slot / 2
@@ -471,16 +489,15 @@ def page_html(p):
     updown = lambda x: "about the same" if x is None or abs(x) < 1 else f'{"up" if x > 0 else "down"} {abs(x):.0f}%'
     td = st["topDays"][0] if st["topDays"] and st["topDays"][0]["water"] else None
     in_prev = bool(td and d["months"][st["L"] - 23] <= td["day"][:7] <= d["months"][st["L"] - 12])
-    lede = (f'Chicago 311 took {w["y12"]:,} water in basement calls and {s["y12"]:,} sewer cleaning requests in the 12 months from '
-            f'{E(ym_name(first_m))} to {E(ym_name(st["lm"]))}. Basement calls were {updown(w["ch"])} vs the 12 months before'
-            + (f', which held {E(M.nice_date(td["day"]))}: {td["water"]:,} water in basement calls, the most in one day in our records back to {E(ym_name(d["months"][0]))}.' if in_prev else
-               '.' + (f' The most in one day in our records back to {E(ym_name(d["months"][0]))} was {td["water"]:,} water in basement calls, on {E(M.nice_date(td["day"]))}.' if td else ""))
-            + f' Sewer requests were {updown(s["ch"])}.')
+    lede = (f'Chicago 311 took {w["y12"]:,} water in basement calls from {E(ym_name(first_m))} to {E(ym_name(st["lm"]))}, '
+            f'{updown(w["ch"])} vs the 12 months before.'
+            + (f' Those months held the most calls in one day in our records: {td["water"]:,} on {E(M.nice_date(td["day"]))}.' if in_prev else
+               (f' The most in one day in our records back to {E(ym_name(d["months"][0]))}: {td["water"]:,} on {E(M.nice_date(td["day"]))}.' if td else "")))
     peak = st["peaks"]["water"][0] if st["peaks"]["water"] else None
     tiles = ('<div class="tiles ld-tiles">'
              f'<div class="tile key"><div class="lab">Basement calls</div><div class="val">{w["y12"]:,}</div><div class="sub"><b class="tch">{E(arrow(w["ch"]))}vs the 12 months before</b>water in basement calls, last 12 months</div></div>'
              f'<div class="tile"><div class="lab">Sewer requests</div><div class="val">{s["y12"]:,}</div><div class="sub"><b class="tch">{E(arrow(s["ch"]))}vs the 12 months before</b>sewer cleaning requests, last 12 months</div></div>'
-             f'<div class="tile"><div class="lab">Last full month</div><div class="val">{w["m"]:,}</div><div class="sub">water in basement calls in {E(ym_name(st["lm"], True))}; {w["my"] or 0:,} in {E(ym_name(d["months"][st["L"] - 12], True))}</div></div>'
+             f'<div class="tile"><div class="lab">Last full month</div><div class="val">{w["m"]:,}</div><div class="sub"><b class="tch">{E(arrow(change(w["m"], w["my"])))}vs {E(ym_name(d["months"][st["L"] - 12], True))}</b>water in basement calls, {E(ym_name(st["lm"], True))}</div></div>'
              + (f'<div class="tile"><div class="lab">Year&#39;s busiest day</div><div class="val">{peak["n"]:,}</div><div class="sub">water in basement calls on {E(M.nice_date(peak["day"]))}, the most in the last 365 days</div></div>' if peak else "")
              + f'</div><p class="asof">Counts to {E(M.nice_date(d["through"]))}, from City of Chicago 311 records pulled {E(pulled)}. Updated every day.</p>')
     mapb = map_block(st, pop, E, period) if p.get("map", True) else ""
@@ -534,9 +551,9 @@ def page_html(p):
                      + (f'<td class="bf-up">\u2191 {E(area_change(a["water12"], a["waterp12"]))}</td>' if a["waterp12"] >= FEW and a["water12"] >= a["waterp12"] * 1.25 else f'<td>{E(area_change(a["water12"], a["waterp12"]))}</td>')
                      + (f'<td class="bf-x">{a["water12"] / pop[a["n"]] * 1000:.1f}</td>' if has_pop else "")
                      + f'<td>{a["sewer12"]:,}</td><td class="bf-x">{E(area_change(a["sewer12"], a["sewerp12"]))}</td><td class="bf-x">{a["waterm"]:,}</td></tr>')
-    thead = ('<thead><tr><th scope="col">Community area</th><th scope="col">Rank</th><th scope="col">Water in basement, 12 months</th><th scope="col">Basement change</th>'
-             + ('<th scope="col" class="bf-x">Basement calls per 1,000 residents</th>' if has_pop else "")
-             + f'<th scope="col">Sewer cleaning, 12 months</th><th scope="col" class="bf-x">Sewer change</th><th scope="col" class="bf-x">{E(ym_name(st["lm"], True))}</th></tr></thead>')
+    thead = ('<thead><tr><th scope="col">Community area</th><th scope="col">Rank</th><th scope="col">Basement calls, 12 months</th><th scope="col">Basement change</th>'
+             + ('<th scope="col" class="bf-x">Per 1,000 residents</th>' if has_pop else "")
+             + f'<th scope="col">Sewer requests, 12 months</th><th scope="col" class="bf-x">Sewer change</th><th scope="col" class="bf-x">{E(ym_name(st["lm"], True))}</th></tr></thead>')
     tbl = lambda rs, lab: f'<div class="bf-tw" role="region" aria-label="{E(lab)}" tabindex="0"><table class="bf-t">{thead}<tbody>{"".join(row(a) for a in rs)}</tbody></table></div>'
     SHOW = 20
     table = (f'<p class="up-key"><b>\u2191 Red</b> marks a rise of 25% or more vs the 12 months before, where those months had at least {FEW} calls.</p>'
@@ -558,7 +575,7 @@ def page_html(p):
     method = '<section class="block" id="how"><h2>How this page is made</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"]) + "</section>"
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(META["h1"])}</h1><p class="lede">{lede}</p>'
             '<div class="ld-heroact rl-act"><a class="btn" href="#areas">See every neighborhood</a>'
-            + ('<a class="st-btn2" href="#map">Open the map</a>' if mapb else "") + '</div></div>'
+            + hero_pick(names, "#bf-area-sel", "area", E) + '</div></div>'
             f'{tiles}'
             + pg_nav([("map", "Map"), ("days", "Busiest days"), ("area", "One area"), ("areas", "Every area"), ("faq", "Questions")] if mapb else
                      [("days", "Busiest days"), ("area", "One area"), ("areas", "Every area"), ("faq", "Questions")], E)
@@ -568,7 +585,7 @@ def page_html(p):
             f'<section class="block" id="areas"><h2>Every community area</h2>{table}</section>'
             + two + method + M.faq_block(p["faq"]).replace('<section class="block">', '<section class="block" id="faq">', 1) +
             f'<p class="rl-act"><a class="btn" href="#areas">See every neighborhood</a> <a class="st-btn2" href="{rel}chicago-data/">More free Chicago data</a></p>'
-            f'<script type="application/json" id="bf-data">{js_data}</script>{JS}{PG_JS}')
+            f'<script type="application/json" id="bf-data">{js_data}</script>{JS}{PG_JS}{HP_JS}')
     types = " and ".join(E(t["srType"]) for t in d["types"])
     foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}<div class="pg-notes">'
             f'<p>Source: City of Chicago Data Portal, <a href="{E(src["url"])}">311 Service Requests dataset</a>, requests of type {types}, pulled {E(pulled)}'

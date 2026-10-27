@@ -27,7 +27,7 @@
   ],
   [
    "Does Chicago have an HVAC license?",
-   "No City page we read names a separate HVAC license. Permitted HVAC work needs a City general contractor license, Class A to E, and home heating and cooling work without a permit falls under the City home repair license. Refrigerant work needs EPA Section 608 certification.",
+   "No City page we read names a separate HVAC license. Permitted HVAC work needs a City general contractor license, Class A to E (an owner who lives at the address may act as contractor in some cases), and home heating and cooling work without a permit falls under the City home repair license. Refrigerant work needs EPA Section 608 certification.",
    [
     "mech",
     "homerepair",
@@ -920,7 +920,7 @@
    "title": "Chicago HVAC License: What the City Requires",
    "desc": "No separate HVAC license on the Chicago pages we read: permit work needs a City general contractor, other work a home repair license, refrigerant EPA 608.",
    "card": "General contractor or home repair license, federal refrigerant rule",
-   "summary": "No separate HVAC license on the City pages we read. Permitted HVAC work needs a City general contractor; refrigerant work needs EPA Section 608 certification.",
+   "summary": "No separate HVAC license on the City pages we read. Permitted HVAC work needs a City general contractor, though an owner who lives there may act as contractor in some cases; refrigerant work needs EPA Section 608 certification.",
    "page_summary": "The City pages we read name no separate HVAC or refrigeration contractor license. Here is which City license covers HVAC work with and without a permit, the stationary engineer license for boiler operators, and the federal refrigerant rule.",
    "check": [
     "mech",
@@ -1302,7 +1302,7 @@
     {
      "topic": "carryover",
      "src": "pest_faq",
-     "text": "Not stated. The IDPH program page and FAQ do not address licenses from other towns.",
+     "text": "Not stated. The IDPH program page and its questions page do not address licenses from other towns.",
      "figures": []
     }
    ],
@@ -1404,7 +1404,7 @@
     "None on State pages we read"
    ],
    "facts": {
-    "fee": "Limited Business: $250 for two years",
+    "fee": "Set by BACP; its table lists Limited Business at $250 for two years",
     "insurance": "None on the pages we read",
     "bond": "None on the pages we read",
     "renewal": "One or two years (City)"
@@ -1521,7 +1521,7 @@
     "None on State pages we read (federal: EPA lead-safe firm for pre-1978 homes)"
    ],
    "facts": {
-    "fee": "Limited Business: $250 for two years",
+    "fee": "Set by BACP; its table lists Limited Business at $250 for two years",
     "insurance": "None on the City license pages",
     "bond": "None on the City license pages",
     "renewal": "One or two years (City)"
@@ -1839,7 +1839,7 @@
     {
      "topic": "fee",
      "src": "bacp_brick",
-     "text": "Limited Business License: $250, issued for two years, as the BACP page read on Oct 27, 2026. Fees change, so check with BACP for the current fee.",
+     "text": "BACP's Brick-and-Mortar Store page lists a Limited Business License at $250, issued for two years, as read on Oct 27, 2026. Fees change, so check with BACP for the current fee.",
      "figures": [
       "$250"
      ]
@@ -1873,7 +1873,7 @@
     {
      "topic": "renewal",
      "src": "bacp_brick",
-     "text": "A Limited Business License is issued for two years and renewed before it expires.",
+     "text": "BACP's Brick-and-Mortar Store page says a Limited Business License is issued for two years and renewed before it expires.",
      "figures": []
     },
     {
@@ -1949,7 +1949,7 @@
     {
      "topic": "fee",
      "src": "bacp_brick",
-     "text": "Limited Business License: $250, issued for two years, as the BACP page read on Oct 27, 2026. Fees change, so check with BACP for the current fee.",
+     "text": "BACP's Brick-and-Mortar Store page lists a Limited Business License at $250, issued for two years, as read on Oct 27, 2026. Fees change, so check with BACP for the current fee.",
      "figures": [
       "$250"
      ]
@@ -1983,8 +1983,8 @@
     },
     {
      "topic": "renewal",
-     "src": "bacp_brick",
-     "text": "A Limited Business License is issued for two years and renewed before it expires.",
+     "src": "bacp_renew",
+     "text": "City business licenses run one or two years and renew online through Chicago Business Direct after BACP sends a notice.",
      "figures": []
     },
     {
@@ -1999,10 +1999,10 @@
     "None on State pages we read"
    ],
    "facts": {
-    "fee": "Limited Business: $250 for two years",
+    "fee": "Set by BACP; its table lists Limited Business at $250 for two years",
     "insurance": "None on the pages we read",
     "bond": "None on the pages we read",
-    "renewal": "Every two years (Limited Business)"
+    "renewal": "One or two years (City)"
    }
   }
  ]

@@ -158,7 +158,7 @@ def td(v, label, num=False, cls=""):
 
 
 def pdf_link(E, u, label):
-    """label names the record: "contract 75076" or "revision 10 to contract 32835"."""
+    """label names the record: "contract 75076" or "the change to contract 32835 approved Oct 9, 2026"."""
     return f'<a href="{E(u)}" rel="noopener">PDF<span class="sr"> of {E(label)}</span></a>' if u else '<span class="cc-sub nw">No PDF</span>'
 
 
@@ -334,7 +334,7 @@ def page_html(p):
           "isBasedOn": s["url"], "creator": {"@type": "Organization", "name": "ProofNotFluff"},
           "temporalCoverage": f'{w["from36"]}/{w["today"]}', "dateModified": s["fetchedAt"][:10],
           "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": f'{url}{t["key"]}/{csv_name(t)}'} for t in T]}
-    lede = (f'The City of Chicago publishes the contracts it awards. We sort the last three years into {len(T)} trades, so you can see who wins City work in yours, '
+    lede = (f'The City of Chicago publishes the contracts it awards. We sort the last 36 months into {len(T)} trades, so you can see who wins City work in yours, '
             f'what it was worth, and which contracts end in the next 12 months and may go back out to bid.')
     tiles = ('<div class="tiles ld-tiles">'
              f'<div class="tile key"><div class="lab">Ending in 12 months</div><div class="val">{S["ending"]:,}</div><div class="sub">contracts in these trades; the work may go back out to bid</div></div>'
@@ -511,9 +511,9 @@ def trade_page(p, d, src, t):
                 + (f'<p class="asof">{wh(new).strip()}</p>' if wh(new) else "")
                 ) if new else f'<p class="cc-empty">No new City award matched {E(low(t))} from {E(M.nice_date(w["from36"]))} to {E(M.nice_date(w["today"]))}.' + (" Changes to older contracts are below." if mods else "") + '</p>'
     mrow = lambda r: (f'<tr>{td(E(M.nice_date(r["approved"])), "Approved", cls="dt")}'
-                      f'<td class="d" data-l="Covers">{E(clean(r["description"]))}<span class="cc-sub">{E(r["vendor"])} · <span class="nw">contract {E(r["contract"])}</span>, <span class="nw">revision {r["revision"]}</span></span></td>'
+                      f'<td class="d" data-l="Covers">{E(clean(r["description"]))}<span class="cc-sub">{E(r["vendor"])} · <span class="nw">contract {E(r["contract"])}</span></span></td>'
                       + td(("+" + usd(r["amount"])) if r["amount"] > 0 else (usd(r["amount"]) if r["amount"] < 0 else "No money change"), "Change", True)
-                      + td(pdf_link(E, r["pdf"], f'revision {r["revision"]} to contract {r["contract"]}'), "Contract") + '</tr>')
+                      + td(pdf_link(E, r["pdf"], f'the change to contract {r["contract"]} approved {M.nice_date(r["approved"])}'), "Contract") + '</tr>')
     mhead = [("Approved", False), ("Contract changed", False), ("Change", True), ("Contract", False)]
     MSHOW = 10
     mod_html = ((f'<p>{E(mods_sentence(a36))}'

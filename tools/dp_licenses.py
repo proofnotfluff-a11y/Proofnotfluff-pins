@@ -242,7 +242,7 @@ def page_html(p):
             '<div class="lf-pick" hidden><div><label for="lf-trade">Your trade</label>'
             f'<select class="lf-sel" id="lf-trade">{opts}</select></div><p class="asof" id="lf-count" aria-live="polite"></p></div>'
             '<div class="ld-heroact rl-act"><a class="btn lf-nojs" href="#trades">See every trade</a><a class="st-btn2" href="#gc-class">Find your general contractor class</a></div></div>'
-            f'<section class="block" id="glance"><h2>Every trade at a glance</h2><p>The license each trade needs from the City and the State, on the pages we read. Tap a trade for the fee, insurance, bond, exam and renewal.</p>{glance_html(d, E)}</section>'
+            f'<section class="block" id="glance"><h2>Every trade at a glance</h2><p>The license each trade needs from the City and the State, on the pages we read. BACP is the City\'s Department of Business Affairs and Consumer Protection. Tap a trade for the fee, insurance, bond, exam and renewal.</p>{glance_html(d, E)}</section>'
             '<section class="block" id="trades"><h2>Trade by trade</h2>'
             f'{"".join(trade_html(t, d, E, picker=gc_picker(d, E) if t["slug"] == "general-contractor" else "") for t in trades)}</section>'
             '<section class="block"><h2>How this page is made</h2>' + "".join(f"<p>{E(x)}</p>" for x in d["method"]) + '</section>'
@@ -264,7 +264,7 @@ def extra_pages(p):
         gc = t["slug"] == "general-contractor"
         others = "".join(f'<li><a href="../{E(x["slug"])}/"><span>{E(x["name"])}<small>{nb(E(x["card"]))}</small></span>{M.ARROW}</a></li>' for x in d["trades"] if x is not t)
         body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">Chicago trade license finder</p><h1>{E(t["h1"])}</h1>'
-                f'<p class="lede">{E(t["page_summary"])}</p><p class="asof">Every line checked on {E(nice(d["checked"]))} on the agency\'s own page, linked beside it.</p></div>'
+                f'<p class="lede">{E(t["page_summary"])}</p><p class="asof">Every line read on the agency\'s own page on {E(nice(d["checked"]))}, with the page linked beside it.</p></div>'
                 + trade_html(t, d, E, h="h2", picker=gc_picker(d, E) if gc else "", solo=True)
                 + f'<section class="block"><h2>Other trades</h2><p><a href="../">See every trade on one page</a>, or pick another.</p><ul class="lf-grid">{others}</ul></section>')
         title = t["title"]

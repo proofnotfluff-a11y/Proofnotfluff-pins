@@ -54,6 +54,8 @@ def validate(d):
         for f in ("name", "h1", "title", "desc", "summary", "page_summary", "card", "glance", "check", "rows"):
             if not t.get(f):
                 errs.append(f"{n}: no {f}")
+        if len(t.get("desc", "")) >= 160 or len(t.get("title", "")) > 60:
+            errs.append(f"{n}: description 160 characters or more, or title over 60")
         if not re.match(r"^[a-z]+(-[a-z]+)*$", n):
             errs.append(f"{n}: slug is not lower-case words")
         for c in t.get("check", []):

@@ -101,6 +101,10 @@ CSS = ("<style>"
        ".lf-keys a:hover{text-decoration:underline}.lf-dl>div{scroll-margin-top:12px}"
        ".lf-grid small,.lf-g td,.lf-dl dd p,.lf-why,.lf-sum,.lf-keys a{text-wrap:pretty}"
        ".lf-hrow{display:flex;flex-wrap:wrap;align-items:end;gap:4px 20px}.lf-hrow .lf-pick{margin-bottom:0}.lf-hrow .ld-heroact{margin:14px 0 12px}"
+       "@media(min-width:600px){.lf-hrow .ld-heroact{margin:0 0 12px}.lf-hrow .st-btn2{min-height:48px}}"
+       ".lf-out .lf-check{background:none;padding:0;margin:12px 0 0;font-weight:400;font-size:13px;color:var(--muted)}.lf-out .lf-check a{color:var(--teal)}"
+       "@media(max-width:599px){.lf-trade .lf-gcwrap .lf-calc{padding:0;border:0;background:none;box-shadow:none}.lf-keys a{font-size:15.5px}}"
+       ".lf-keys a{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}"
        ".lf-all{margin:14px 0}.lf-end{display:flex;flex-wrap:wrap;gap:12px;align-items:center}"
        "main .lf-grid li a{padding:12px 14px}.lf-grid svg{flex:none}.lf-nw{white-space:nowrap}"
        "section.block p.lf-check,.lf-trade p.lf-check{max-width:none}"
@@ -117,9 +121,13 @@ CSS = ("<style>"
 
 
 def src_line(s, d, E):
-    when = nice(s.get("checked") or d["checked"]).rsplit(",", 1)[0]
+    when = nice(s.get("checked") or d["checked"])
     return (f'<p class="lf-src">Source: <a href="{E(s["url"])}" rel="noopener" title="{E(s["agency"])}">{E(s["title"])}</a>, '
             f'{E(s.get("short") or s["agency"])}, read {E(when)}</p>')
+
+
+def join_and(parts):
+    return parts[0] if len(parts) == 1 else ", ".join(parts[:-1]) + " and " + parts[-1]
 
 
 def uniq(ids, d):
@@ -135,17 +143,17 @@ def uniq(ids, d):
 def faq_html(d, E):
     out = []
     for q, a, chk in d["faq"]:
-        links = " and the ".join(f'<a href="{E(d["sources"][c]["url"])}" rel="noopener">{E(d["sources"][c]["agency"])}</a>' for c in uniq(chk, d))
+        links = join_and([f'<a href="{E(d["sources"][c]["url"])}" rel="noopener">{E(d["sources"][c]["agency"])}</a>' for c in uniq(chk, d)]).replace(", <a", ", the <a").replace(" and <a", " and the <a")
         out.append(f'<details><summary>{E(q)}</summary><p>{E(a)} Check with the {links} before you apply or bid.</p></details>')
     return f'<section class="block"><h2>Questions</h2>{"".join(out)}</section>'
 
 
 def faq_text(a, chk, d):
-    return a + " Check with the " + " and the ".join(d["sources"][c]["agency"] for c in uniq(chk, d)) + " before you apply or bid."
+    return a + " Check with the " + join_and(["the " + d["sources"][c]["agency"] if i else d["sources"][c]["agency"] for i, c in enumerate(uniq(chk, d))]) + " before you apply or bid."
 
 
 def check_line(t, d, E):
-    links = " and the ".join(f'<a href="{E(d["sources"][c]["url"])}" rel="noopener">{E(d["sources"][c]["agency"])}</a>' for c in uniq(t["check"], d))
+    links = join_and([f'<a href="{E(d["sources"][c]["url"])}" rel="noopener">{E(d["sources"][c]["agency"])}</a>' for c in uniq(t["check"], d)]).replace(", <a", ", the <a").replace(" and <a", " and the <a")
     return f'<p class="lf-check">Check with the {links} before you apply or bid. Fees and rules change, and this page is not legal advice.</p>'
 
 
@@ -186,10 +194,10 @@ def nb(h):
 
 
 def glance_html(d, E):
-    rows = "".join(f'<tr><th scope="row"><a href="#{E(t["slug"])}" data-go="{E(t["slug"])}">{E(t["name"])}</a></th><td data-l="City"><span>{nb(E(t["glance"][0]))}</span></td><td data-l="Fee"><span>{nb(E(t["facts"]["fee"]))}</span></td><td data-l="State"><span>{nb(E(t["glance"][1]))}</span></td></tr>'
+    rows = "".join(f'<tr><th scope="row"><a href="#{E(t["slug"])}" data-go="{E(t["slug"])}">{E(t["name"])}</a></th><td data-l="City"><span>{nb(E(t["glance"][0]))}</span></td><td data-l="State"><span>{nb(E(t["glance"][1]))}</span></td><td data-l="Fee"><span>{nb(E(t["facts"]["fee"]))}</span></td></tr>'
                    for t in d["trades"])
     return ('<div class="lf-tw" role="region" aria-label="Every trade at a glance: City and State requirements" tabindex="0"><table class="lf-t lf-g">'
-            '<thead><tr><th scope="col">Trade</th><th scope="col">City of Chicago</th><th scope="col">Fee</th><th scope="col">State of Illinois</th></tr></thead>'
+            '<thead><tr><th scope="col">Trade</th><th scope="col">City of Chicago</th><th scope="col">State of Illinois</th><th scope="col">Fee</th></tr></thead>'
             f'<tbody>{rows}</tbody></table></div>')
 
 
@@ -244,7 +252,7 @@ def script(d):
             "if(need>0&&lo.length&&rank[lo[lo.length-1].demo]<need)w+=' The project value alone would fit Class '+lo[lo.length-1]['class']+', but that class does not cover this demolition.';"
             "if(c['class']!=='A')w+=' A higher class covers it too.';el('lf-why').textContent=w;"
             "rows.forEach(function(r){if(r.getAttribute('data-cls')===c['class'])r.classList.add('on')})}"
-            "if(v){v.addEventListener('input',pick);dm.addEventListener('change',pick);pick()}"
+            "if(v){v.addEventListener('input',function(){var t=v.value.replace(/^\\s*\\$\\s*/,'');if(t!==v.value){var p=Math.max(0,(v.selectionStart||0)-(v.value.length-t.length));v.value=t;try{v.setSelectionRange(p,p)}catch(e){}}pick()});dm.addEventListener('change',pick);pick()}"
             "var s=document.getElementById('lf-trade');if(s){var all=document.querySelectorAll('.lf-trade');s.parentNode.parentNode.hidden=false;document.querySelectorAll('.lf-nojs').forEach(function(b){b.hidden=true});"
             "function show(k){all.forEach(function(t){t.classList.toggle('lf-hide',!!k&&t.getAttribute('data-trade')!==k)});"
             "document.querySelectorAll('.lf-all').forEach(function(b){b.hidden=!k});"
@@ -289,11 +297,12 @@ def page_html(p):
     grid = ('<ul class="lf-grid">' + "".join(f'<li><a href="{E(t["slug"])}/"><span>{E(t["name"])}<small>{nb(E(t["card"]))}</small></span>{M.ARROW}</a></li>' for t in trades) + '</ul>')
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(META["h1"])}</h1>'
             f'<p class="lede">{E(d["lede"])}</p>'
+            '<p class="asof">Public information, not legal advice: check with the agency before you apply or bid.</p>'
             '<div class="lf-hrow"><div class="lf-pick" hidden><div><label for="lf-trade">Your trade</label>'
             f'<select class="lf-sel" id="lf-trade">{opts}</select></div><p class="asof" id="lf-count" aria-live="polite"></p></div>'
             '<div class="ld-heroact rl-act"><a class="btn lf-nojs" href="#trades">See every trade</a><a class="st-btn2" href="#gc-class">Find your general contractor class</a></div></div></div>'
-            f'<section class="block" id="glance"><h2>Every trade at a glance</h2><p class="asof lf-note">Read on each agency\'s own page on {E(nice(d["checked"]))}. Public information, not legal advice: check with the agency before you apply or bid.</p>{glance_html(d, E)}'
-            '<p class="asof">BACP is the City\'s Department of Business Affairs and Consumer Protection. Tap a trade for its fee, insurance, bond, exam and renewal, each line linked to its source.</p></section>'
+            f'<section class="block" id="glance"><h2>Every trade at a glance</h2><p class="asof lf-note">Read on each agency\'s own page on {E(nice(d["checked"]))}. BACP is the City\'s Department of Business Affairs and Consumer Protection; EPA is the Environmental Protection Agency, U.S. or Illinois. Public information, not legal advice: check with the agency before you apply or bid.</p>{glance_html(d, E)}'
+            '<p class="asof">Tap a trade for its fee, insurance, bond, exam and renewal, each line linked to its source.</p></section>'
             '<section class="block" id="trades"><h2>Trade by trade</h2><p class="lf-all" hidden><button type="button" class="st-btn2">Show all 12 trades</button></p>'
             f'{"".join(trade_html(t, d, E, picker=gc_picker(d, E) if t["slug"] == "general-contractor" else "") for t in trades)}<p class="lf-all" hidden><button type="button" class="st-btn2">Show all 12 trades</button></p></section>'
             '<section class="block"><h2>How this page is made</h2>' + "".join(f"<p>{E(x)}</p>" for x in d["method"]) + '</section>'
@@ -316,7 +325,7 @@ def extra_pages(p):
         others = "".join(f'<li><a href="../{E(x["slug"])}/"><span>{E(x["name"])}<small>{nb(E(x["card"]))}</small></span>{M.ARROW}</a></li>' for x in d["trades"] if x is not t)
         body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">Chicago trade license finder</p><h1>{E(t["h1"])}</h1>'
                 f'<p class="lede">{E(t["page_summary"])}</p><p class="asof">Every line read on the agency\'s own page on {E(nice(d["checked"]))}, with the page linked beside it. Public information, not legal advice: check with the agency before you apply or bid.</p>'
-                + '<div class="ld-heroact rl-act">' + ('<a class="st-btn2" href="#gc-class">Find your class</a>' if gc else "") + '<a class="st-btn2" href="../">See every trade</a></div></div>'
+                + '<div class="ld-heroact rl-act">' + ('<a class="btn" href="#gc-class">Find your class</a>' if gc else "") + '<a class="st-btn2" href="../">See every trade</a></div></div>'
                 + trade_html(t, d, E, h="h2", picker=gc_picker(d, E) if gc else "", solo=True)
                 + f'<section class="block"><h2>Other trades</h2><ul class="lf-grid">{others}</ul><p class="rl-act lf-end"><a class="btn" href="../">See every trade on one page</a></p></section>')
         title = t["title"]

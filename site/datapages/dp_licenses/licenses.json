@@ -188,14 +188,14 @@
   },
   "mech": {
    "url": "https://chicago.gov/city/en/sites/guide-to-building-permits/home/instructions/EPP/MECH.html",
-   "title": "Mechanical (HVAC) work permits",
+   "title": "Mechanical work, Express Permit Program",
    "agency": "Chicago Department of Buildings",
    "short": "City of Chicago Buildings",
    "checked": "2026-10-27"
   },
   "roofpermit": {
    "url": "https://chicago.gov/city/en/sites/guide-to-building-permits/home/instructions/EPP/ROOF.html",
-   "title": "Roofing work permits",
+   "title": "Reroofing, Express Permit Program",
    "agency": "Chicago Department of Buildings",
    "short": "City of Chicago Buildings",
    "checked": "2026-10-27"
@@ -642,18 +642,18 @@
     {
      "topic": "federal",
      "src": "epa_rrp_rules",
-     "text": "Firms whose work disturbs lead-based paint in homes, child care facilities and kindergartens built before 1978 must be certified by EPA or an authorized state and use certified renovators.",
+     "text": "Firms whose work disturbs lead-based paint in homes, child care facilities and kindergartens built before 1978 must be certified by the U.S. Environmental Protection Agency (EPA) or an authorized state and use certified renovators.",
      "figures": []
     }
    ],
    "glance": [
     "General contractor license, Class A to E",
-    "None found"
+    "None on State pages we read"
    ],
    "facts": {
     "fee": "$300 to $2,000 a year",
     "insurance": "$1 million to $5 million per occurrence",
-    "bond": "None listed",
+    "bond": "None on the pages we read",
     "renewal": "Every year"
    }
   },
@@ -747,12 +747,12 @@
    ],
    "glance": [
     "Electrical contractor license, with a licensed supervising electrician",
-    "None found"
+    "None on State pages we read"
    ],
    "facts": {
     "fee": "$150 a year",
-    "insurance": "None listed",
-    "bond": "None listed",
+    "insurance": "None on the pages we read",
+    "bond": "None on the pages we read",
     "renewal": "Every year"
    }
   },
@@ -779,7 +779,7 @@
     {
      "topic": "city",
      "src": "plj",
-     "text": "Plumbers need a City plumber license, and a plumber license from the Illinois Department of Public Health is also valid in Chicago when the employer holds a City plumbing contractor license.",
+     "text": "Plumbers working for a City licensed plumbing contractor hold a City plumber license or an Illinois Department of Public Health plumber license; the State license is valid in Chicago when the employer holds a City plumbing contractor license.",
      "figures": []
     },
     {
@@ -915,11 +915,11 @@
   },
   {
    "slug": "hvac-mechanical",
-   "name": "HVAC and mechanical",
+   "name": "Heating, cooling and mechanical (HVAC)",
    "h1": "Chicago HVAC and mechanical licensing",
    "title": "Chicago HVAC License: What the City Requires",
    "desc": "No separate HVAC license on the Chicago pages we read: permit work needs a City general contractor, other work a home repair license, refrigerant EPA 608.",
-   "card": "General contractor or home repair license, EPA 608",
+   "card": "General contractor or home repair license, federal refrigerant rule",
    "summary": "No separate HVAC license on the City pages we read. Permitted HVAC work needs a City general contractor; refrigerant work needs EPA Section 608 certification.",
    "page_summary": "The City pages name no separate HVAC or refrigeration contractor license. Here is which City license covers HVAC work with and without a permit, the stationary engineer license for boiler operators, and the federal refrigerant rule.",
    "check": [
@@ -930,7 +930,7 @@
     {
      "topic": "city",
      "src": "mech",
-     "text": "The City permit page we read names no separate HVAC or refrigeration contractor license. A permit to replace HVAC equipment, add a heat pump or air conditioning, or install refrigeration equipment needs a licensed general contractor, Class A to E by project cost. In some cases an owner who lives at the address may act as contractor with Form 401.",
+     "text": "The City permit page we read names no separate HVAC or refrigeration contractor license. An Express Permit to replace HVAC equipment, add a heat pump or air conditioning, or install refrigeration equipment needs a licensed general contractor, Class A to E by project cost. In some cases an owner who lives at the address may act as contractor with Form 401.",
      "figures": []
     },
     {
@@ -942,10 +942,12 @@
     {
      "topic": "city",
      "src": "stateng",
-     "text": "Operating a steam boiler over 50 boiler horsepower or a hot water boiler over 160 psi needs a City stationary engineer license.",
+     "text": "Operating a steam boiler over 50 boiler horsepower or over 10 pounds per square inch, or a hot water boiler over 160 pounds per square inch or 250 degrees Fahrenheit, needs a City stationary engineer license.",
      "figures": [
       "50",
-      "160"
+      "10",
+      "160",
+      "250"
      ]
     },
     {
@@ -1039,18 +1041,18 @@
     {
      "topic": "federal",
      "src": "epa608",
-     "text": "Technicians who maintain, service, repair or dispose of equipment that could release refrigerant need EPA Section 608 certification (Type I, II, III or Universal) from an EPA approved certifying organization. The certification does not expire.",
+     "text": "Technicians who maintain, service, repair or dispose of equipment that could release refrigerant need U.S. Environmental Protection Agency (EPA) Section 608 certification (Type I, II, III or Universal) from an EPA approved certifying organization. The certification does not expire.",
      "figures": []
     }
    ],
    "glance": [
     "General contractor for permit work, home repair license for home work without a permit",
-    "None found (federal: EPA Section 608 for refrigerant)"
+    "None on State pages we read (federal: EPA Section 608 for refrigerant)"
    ],
    "facts": {
     "fee": "$300 to $2,000 a year (general contractor)",
     "insurance": "$1 million to $5 million (general contractor)",
-    "bond": "None listed",
+    "bond": "None on the pages we read",
     "renewal": "Every year (general contractor)"
    }
   },
@@ -1071,7 +1073,7 @@
     {
      "topic": "city",
      "src": "roofpermit",
-     "text": "A Chicago permit for roof repair (up to 25% of the roof), recover or replacement needs a licensed City general contractor, Class A to E by project cost, and the contractor or subcontractor doing the roofing holds a valid Illinois roofing contractor license.",
+     "text": "A Chicago Express Permit for roof repair (up to 25% of the roof), recover or replacement needs a licensed City general contractor, Class A to E by project cost, and the contractor or subcontractor doing the roofing holds a valid Illinois roofing contractor license.",
      "figures": [
       "25%"
      ]
@@ -1190,7 +1192,7 @@
     {
      "topic": "city",
      "src": "bacp_table",
-     "text": "No City page we read names a license for this trade. The license table of the Department of Business Affairs and Consumer Protection (BACP) lists a Limited Business license for general retail sales and services, says a business may need more than one license, and gives 312-74-GOBIZ as the number to call to find out which license applies.",
+     "text": "No City page we read names a license for this trade. The license table of the Department of Business Affairs and Consumer Protection (BACP) lists a Limited Business license for general retail sales and services, says a business may need more than one license, and gives 312-74-GOBIZ (312-744-6249) as the number to call to find out which license applies.",
      "figures": []
     },
     {
@@ -1303,13 +1305,13 @@
     }
    ],
    "glance": [
-    "Not named; BACP sets the business license",
+    "None named on City pages we read; BACP sets the license",
     "Public Health business license and a certified technician"
    ],
    "facts": {
     "fee": "$250 State business license",
     "insurance": "$350,000 combined, or split limits",
-    "bond": "None listed",
+    "bond": "None on the pages we read",
     "renewal": "December 31 each year"
    }
   },
@@ -1319,7 +1321,7 @@
    "h1": "Chicago cleaning business license",
    "title": "Chicago Cleaning Business License Rules",
    "desc": "What a Chicago house cleaning or janitorial business needs: what the City says about a business license, home business rules, fee and renewal.",
-   "card": "City business license, no State license found",
+   "card": "City business license; no State license on pages we read",
    "summary": "No City or State page we read names a cleaning license. BACP sets the City license from what the business does.",
    "page_summary": "House cleaning, janitorial and commercial cleaning have no license of their own on the City or State pages we read. Here is what the City says, the home business rules and the fee.",
    "check": [
@@ -1329,7 +1331,7 @@
     {
      "topic": "city",
      "src": "bacp_table",
-     "text": "No City page we read names a license for this trade. The license table of the Department of Business Affairs and Consumer Protection (BACP) lists a Limited Business license for general retail sales and services, says a business may need more than one license, and gives 312-74-GOBIZ as the number to call to find out which license applies.",
+     "text": "No City page we read names a license for this trade. The license table of the Department of Business Affairs and Consumer Protection (BACP) lists a Limited Business license for general retail sales and services, says a business may need more than one license, and gives 312-74-GOBIZ (312-744-6249) as the number to call to find out which license applies.",
      "figures": []
     },
     {
@@ -1396,14 +1398,14 @@
     }
    ],
    "glance": [
-    "Not named; BACP sets the business license",
-    "None found"
+    "None named on City pages we read; BACP sets the license",
+    "None on State pages we read"
    ],
    "facts": {
     "fee": "$250 for two years (City)",
-    "insurance": "None listed",
-    "bond": "None listed",
-    "renewal": "One or two years (City)"
+    "insurance": "None on the pages we read",
+    "bond": "None on the pages we read",
+    "renewal": "Every two years (City)"
    }
   },
   {
@@ -1412,9 +1414,9 @@
    "h1": "Chicago painting business license",
    "title": "Chicago Painting Business License Rules",
    "desc": "What a Chicago painting business needs: what the City says, no State painting license on the pages we read, and the EPA lead-safe rule for older homes.",
-   "card": "City business license, EPA lead-safe firm for pre-1978",
+   "card": "City business license, federal lead-safe rule for pre-1978 homes",
    "summary": "No City or State painting license on the pages we read. Painting in homes built before 1978 needs EPA lead-safe firm certification.",
-   "page_summary": "Painting has no license of its own on the City or State pages we read. Here is what the City says, the State lead rules, and the EPA lead-safe firm rule for older homes.",
+   "page_summary": "Painting has no license of its own on the City or State pages we read. Here is what the City says, the State lead rules, and the U.S. Environmental Protection Agency (EPA) lead-safe firm rule for older homes.",
    "check": [
     "bacp_table",
     "epa_rrp_firm"
@@ -1429,7 +1431,7 @@
     {
      "topic": "city",
      "src": "bacp_table",
-     "text": "No City page we read names a license for this trade. The license table of the Department of Business Affairs and Consumer Protection (BACP) lists a Limited Business license for general retail sales and services, says a business may need more than one license, and gives 312-74-GOBIZ as the number to call to find out which license applies.",
+     "text": "No City page we read names a license for this trade. The license table of the Department of Business Affairs and Consumer Protection (BACP) lists a Limited Business license for general retail sales and services, says a business may need more than one license, and gives 312-74-GOBIZ (312-744-6249) as the number to call to find out which license applies.",
      "figures": []
     },
     {
@@ -1487,7 +1489,7 @@
     {
      "topic": "exam",
      "src": "epa_rrp_firm",
-     "text": "No City or State painting exam on the pages we read. Under the EPA lead-safe rule, a certified renovator is assigned to each job in older homes.",
+     "text": "No City or State painting exam on the pages we read. Under the EPA lead-safe Renovation, Repair and Painting (RRP) rule, a certified renovator is assigned to each job in older homes.",
      "figures": []
     },
     {
@@ -1513,14 +1515,14 @@
     }
    ],
    "glance": [
-    "Not named; BACP sets the business license",
-    "None found (federal: EPA lead-safe firm for pre-1978 homes)"
+    "None named on City pages we read; BACP sets the license",
+    "None on State pages we read (federal: EPA lead-safe firm for pre-1978 homes)"
    ],
    "facts": {
     "fee": "$250 for two years (City)",
-    "insurance": "None listed",
-    "bond": "None listed",
-    "renewal": "One or two years (City)"
+    "insurance": "None on the pages we read",
+    "bond": "None on the pages we read",
+    "renewal": "Every two years (City)"
    }
   },
   {
@@ -1546,7 +1548,7 @@
     {
      "topic": "city",
      "src": "bacp_table",
-     "text": "No City page we read names a license for this trade. The license table of the Department of Business Affairs and Consumer Protection (BACP) lists a Limited Business license for general retail sales and services, says a business may need more than one license, and gives 312-74-GOBIZ as the number to call to find out which license applies.",
+     "text": "No City page we read names a license for this trade. The license table of the Department of Business Affairs and Consumer Protection (BACP) lists a Limited Business license for general retail sales and services, says a business may need more than one license, and gives 312-74-GOBIZ (312-744-6249) as the number to call to find out which license applies.",
      "figures": []
     },
     {
@@ -1637,12 +1639,12 @@
     }
    ],
    "glance": [
-    "Not named; BACP sets the business license",
+    "None named on City pages we read; BACP sets the license",
     "Agriculture pesticide applicator or operator license for hire"
    ],
    "facts": {
     "fee": "$300 applicator, 3 years",
-    "insurance": "$100,000 per occurrence, for hire",
+    "insurance": "$100,000 per occurrence bodily injury, for hire",
     "bond": "Accepted instead of insurance",
     "renewal": "Every 3 years"
    }
@@ -1658,7 +1660,8 @@
    "page_summary": "Chicago licenses refuse haulers as private scavengers and junk collectors as junk peddlers. Here is what each City page says, the recycling rules for haulers, and the State special waste permit.",
    "check": [
     "bacp_table",
-    "cdot_crc"
+    "cdot_crc",
+    "iepa_transport"
    ],
    "rows": [
     {
@@ -1682,7 +1685,7 @@
     {
      "topic": "city",
      "src": "recycling_ord",
-     "text": "Under the City recycling ordinance, every private hauler offers recycling, takes recyclables to a permitted facility, keeps a working GPS device on each vehicle and files a yearly report by February 28. A private scavenger license is not renewed if that report is late or incomplete.",
+     "text": "Under the City recycling ordinance, every private hauler offers recycling, takes recyclables to a permitted facility, keeps a working GPS (satellite location) tracker on each vehicle and files a yearly report by February 28. A private scavenger license is not renewed if that report is late or incomplete.",
      "figures": [
       "February 28"
      ]
@@ -1698,7 +1701,7 @@
     {
      "topic": "state",
      "src": "iepa_transport",
-     "text": "Illinois EPA requires a special waste hauling permit to haul special waste.",
+     "text": "The Illinois Environmental Protection Agency (Illinois EPA) requires a special waste hauling permit to haul special waste.",
      "figures": []
     },
     {
@@ -1756,12 +1759,12 @@
    ],
    "glance": [
     "Private Scavenger or Junk Peddler license",
-    "Illinois EPA permit for special waste only"
+    "Illinois EPA permit for special waste; none for household junk on pages we read"
    ],
    "facts": {
     "fee": "$250 for two years",
     "insurance": "Vehicle insurance, no amount",
-    "bond": "None listed",
+    "bond": "None on the pages we read",
     "renewal": "Every two years (junk peddler)"
    }
   },
@@ -1776,7 +1779,8 @@
    "page_summary": "Chicago's Department of Public Health permits sandblasting, grinding and chemical washing of building surfaces. Here is that permit, its fee, what the pages say and do not say about pressure washing, and the lead rules.",
    "check": [
     "sandblast",
-    "bacp_table"
+    "bacp_table",
+    "epa_pw"
    ],
    "rows": [
     {
@@ -1794,7 +1798,7 @@
     {
      "topic": "city",
      "src": "bacp_table",
-     "text": "No City page we read names a license for this trade. The license table of the Department of Business Affairs and Consumer Protection (BACP) lists a Limited Business license for general retail sales and services, says a business may need more than one license, and gives 312-74-GOBIZ as the number to call to find out which license applies.",
+     "text": "No City page we read names a license for this trade. The license table of the Department of Business Affairs and Consumer Protection (BACP) lists a Limited Business license for general retail sales and services, says a business may need more than one license, and gives 312-74-GOBIZ (312-744-6249) as the number to call to find out which license applies.",
      "figures": []
     },
     {
@@ -1818,7 +1822,7 @@
     {
      "topic": "state",
      "src": "iepa_lead",
-     "text": "For lead paint work, Illinois EPA says high or low pressure washing needs all liquid waste contained and collected for proper disposal.",
+     "text": "For lead paint work, the Illinois Environmental Protection Agency (Illinois EPA) says high or low pressure washing needs all liquid waste contained and collected for proper disposal.",
      "figures": []
     },
     {
@@ -1879,19 +1883,19 @@
     {
      "topic": "federal",
      "src": "epa_pw",
-     "text": "EPA says pressure washing is not a prohibited practice under its lead-safe (RRP) rule and is subject to the same containment requirements, so no dust or debris, including in the waste water, leaves the work area. EPA points to the local water treatment authority about disposing of waste water.",
+     "text": "The U.S. Environmental Protection Agency (EPA) says pressure washing is not a prohibited practice under its lead-safe Renovation, Repair and Painting (RRP) rule and is subject to the same containment requirements, so no dust or debris, including in the waste water, leaves the work area. EPA points to the local water treatment authority about disposing of waste water.",
      "figures": []
     }
    ],
    "glance": [
     "Public Health permit for sandblasting, grinding and chemical washing",
-    "None found"
+    "None on State pages we read"
    ],
    "facts": {
     "fee": "$150 first month per building",
-    "insurance": "None listed",
-    "bond": "None listed",
-    "renewal": "Per job, by the month"
+    "insurance": "None on the pages we read",
+    "bond": "None on the pages we read",
+    "renewal": "By the month, per building"
    }
   },
   {
@@ -1899,7 +1903,7 @@
    "name": "Snow removal",
    "h1": "Chicago snow removal business rules",
    "title": "Chicago Snow Removal Business License Rules",
-   "desc": "What a Chicago snow plowing or shoveling business needs: what the City says about a business license, the sidewalk clearing rules and fines, from agency pages.",
+   "desc": "What a Chicago snow plowing or shoveling business needs: what the City says about a business license, and the sidewalk clearing rules and fines.",
    "card": "City business license, City sidewalk rules",
    "summary": "No City or State page we read names a snow removal license. The City sidewalk rules set the path width and clearing times.",
    "page_summary": "Snow plowing and shoveling have no license of their own on the City or State pages we read. Here is what the City says about a business license, and the City sidewalk snow rules for property owners.",
@@ -1911,7 +1915,7 @@
     {
      "topic": "city",
      "src": "bacp_table",
-     "text": "No City page we read names a license for this trade. The license table of the Department of Business Affairs and Consumer Protection (BACP) lists a Limited Business license for general retail sales and services, says a business may need more than one license, and gives 312-74-GOBIZ as the number to call to find out which license applies.",
+     "text": "No City page we read names a license for this trade. The license table of the Department of Business Affairs and Consumer Protection (BACP) lists a Limited Business license for general retail sales and services, says a business may need more than one license, and gives 312-74-GOBIZ (312-744-6249) as the number to call to find out which license applies.",
      "figures": []
     },
     {
@@ -1989,14 +1993,14 @@
     }
    ],
    "glance": [
-    "Not named; BACP sets the business license",
-    "None found"
+    "None named on City pages we read; BACP sets the license",
+    "None on State pages we read"
    ],
    "facts": {
     "fee": "$250 for two years (City)",
-    "insurance": "None listed",
-    "bond": "None listed",
-    "renewal": "Every two years"
+    "insurance": "None on the pages we read",
+    "bond": "None on the pages we read",
+    "renewal": "Every two years (City)"
    }
   }
  ]

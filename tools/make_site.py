@@ -3368,7 +3368,7 @@ def home_html(pages, live, doors=False):
                  '<p>No sign-up. Public records counted for you, and the math to price the job.</p><div class="st-tools2">'
                  '<div class="st-tcol"><h3 class="st-cgroup">Free Chicago data</h3>'
                  f'<ul class="st-calcs st-tlist">{"".join(dli(e) for e in feat_d)}</ul>'
-                 f'<p class="st-all"><a class="st-btn2" href="chicago-data/">All {len(hub_es)} Chicago data pages</a></p></div>'
+                 f'<p class="st-all"><a class="st-btn2" href="chicago-data/">All {len(hub_es)} free Chicago data pages</a></p></div>'
                  '<div class="st-tcol"><h3 class="st-cgroup" id="calc-title">Free calculators</h3>'
                  + calc_cards.replace("st-calcs st-calc4", "st-calcs st-tlist", 1) + '</div></div></section>')
     else:
@@ -3630,7 +3630,7 @@ def calculators_html():
             f'<div id="cxAll">{start_html}{groups}</div>'
             '<div class="cx-empty" id="cxEmpty" hidden><p><b>No calculator matches that yet.</b> Try a trade (cleaning, junk, lawn), a platform (Amazon, Etsy, Airbnb) or a word like price, rate or tax.</p>'
             '<p><button type="button" class="st-btn2" id="cxClear">Show all calculators</button> <a class="st-link" href="mailto:hello@proofnotfluff.com?subject=Calculator%20idea">Suggest a calculator</a></p>'
-            + (f'<p class="cx-elink">Looking for permits, licenses or prices in Chicago? <a href="{rel}chicago-data/">See the free Chicago data</a></p>' if live_datapages() else "") + '</div>')
+            + (f'<p class="cx-elink">Looking for permits, licenses or prices in Chicago? <a href="{rel}chicago-data/">See the free Chicago data</a>.</p>' if live_datapages() else "") + '</div>')
     coll = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Free pricing and money calculators", "url": url,
             "mainEntity": {"@type": "ItemList", "numberOfItems": n, "itemListElement": [
                 {"@type": "ListItem", "position": i, "url": BASE + p["slug"] + "/", "name": p["h1"]}
@@ -3795,6 +3795,9 @@ def data_hub_html():
     crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Free Chicago data", None)])
     es = hub_entries()
     cfg = load_hub()
+    news = [e for e in es if e["group"] == "news"]   # the news brief is built from news outlets too (facts gate, Oct 27)
+    lede_n = len(es) - len(news)
+    news_bit = ", plus a daily trades news brief" if news else ""
     groups = [(g["id"], g["title"], g.get("line", "")) for g in cfg.get("groups", [])] + [("more", "More Chicago data", "")]
     groups = [(i, t, l, [e for e in es if e["group"] == i]) for i, t, l in groups]
     groups = [g for g in groups if g[3]]
@@ -3804,7 +3807,7 @@ def data_hub_html():
                    + (f'<p class="dh-line">{E(l)}</p>' if l else "")
                    + f'<ul class="cx-grid">{"".join(hub_card(e, rel, tag=False) for e in items)}</ul></section>' for i, t, l, items in groups)
     body = (f'{crumb}<p class="eyebrow">Free, from public records</p><h1>Free Chicago data for trade owners</h1>'
-            f'<p class="lede">{len(es)} free trackers and tools built from City, State and federal records. Every page names its source and the day its numbers were checked.</p>'
+            f'<p class="lede">{lede_n} free trackers and tools built from City, State and federal records{news_bit}. Every page names its source and the day its numbers were checked.</p>'
             '<div class="cx-bar" id="cxBar" data-noun="data pages" hidden><label class="cx-search"><span class="sr">Search the Chicago data pages</span>'
             '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>'
             '<input id="cxQ" type="search" placeholder="Search permits, rats, snow" autocomplete="off" enterkeyhint="search"><kbd aria-hidden="true">/</kbd></label>'
@@ -3815,7 +3818,7 @@ def data_hub_html():
             f'<p><button type="button" class="st-btn2" id="cxClear">Show all data pages</button> <a class="st-link" href="{rel}calculators/">Try the free calculators</a></p></div>'
             # peak-end (design/DESIGN_DIRECTOR.md 10): the hub ends on the one paid next step, the free sample
             '<section class="st-band" aria-labelledby="dh-band-title"><h2 id="dh-band-title">Want the names behind the counts?</h2>'
-            '<p>These pages count what the records show. Our lead lists name the projects and places for your trade, with a free sample every Monday and no sign-up.</p>'
+            '<p>These pages show what the records say. Our lead lists name the projects and places for your trade, with a free sample every Monday and no sign-up.</p>'
             f'<p class="st-band-act"><a class="btn ld-btnbig" href="{rel}#trades">See this week\'s free sample</a></p></section>')
     coll = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Free Chicago data for trade owners", "url": url,
             "mainEntity": {"@type": "ItemList", "numberOfItems": len(es), "itemListElement": [

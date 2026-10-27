@@ -271,7 +271,7 @@ def map_block(st, pop, E, period):
     areas = {}
     for a in A:
         ch = area_change(a["water12"], a["waterp12"])
-        ch_say = "too few in the 12 months before to compare" if ch == "too few" else ("same vs the 12 months before" if ch == "same" else f"{ch} vs the 12 months before")
+        ch_say = "too few in the 12 months before to compare" if ch == "too few" else ("same as the 12 months before" if ch == "same" else f"{ch} vs the 12 months before")
         big = {"w": (f'{a["water12"]:,}', f"water in basement calls, {period}"), "s": (f'{a["sewer12"]:,}', f"sewer cleaning requests, {period}"),
                "ch": ("Too few" if ch == "too few" else "Same" if ch == "same" else ch, "water in basement calls vs the 12 months before")}
         say = {"w": f'{a["water12"]:,} water in basement calls', "s": f'{a["sewer12"]:,} sewer cleaning requests',
@@ -307,7 +307,7 @@ def map_block(st, pop, E, period):
             + ('<p>Biggest rises:</p><ul class="gm-top">' + "".join(f'<li><button type="button" data-pick="{a["n"]}">{E(a["name"])}, +{a["water12"] - a["waterp12"]:,} calls</button></li>' for a in rises) + '</ul>' if rises else "")
             + '<p class="gm-hint">Tap or hover any area on the map, or choose one from the list.</p>')
     fig = G.choropleth(areas, metrics, uid="floodmap", title="Map of Chicago's 77 community areas, colored by the measure chosen above", hint=hint,
-                       caption="Community area outlines: City of Chicago, Boundaries - Community Areas. Every number on the map is also in the table below.")
+                       caption="Community area outlines: City of Chicago, Boundaries - Community Areas. The table below has every area\'s 12-month counts and changes.")
     return G.CSS + pg_map(fig) if fig else ""
 
 
@@ -505,12 +505,12 @@ def page_html(p):
     in_prev = bool(td and d["months"][st["L"] - 23] <= td["day"][:7] <= d["months"][st["L"] - 12])
     lede = (f'Chicago 311 took {w["y12"]:,} water in basement calls from {E(ym_name(first_m))} to {E(ym_name(st["lm"]))}, '
             f'{updown(w["ch"])} vs the 12 months before.'
-            + (f' Those months held the most calls in one day in our records: {td["water"]:,} on {E(M.nice_date(td["day"]))}.' if in_prev else
-               (f' The most in one day in our records back to {E(ym_name(d["months"][0]))}: {td["water"]:,} on {E(M.nice_date(td["day"]))}.' if td else "")))
+            + (f' The 12 months before held the busiest day since {E(ym_name(d["months"][0]))}: {td["water"]:,} calls on {E(M.nice_date(td["day"]))}.' if in_prev else
+               (f' The busiest day since {E(ym_name(d["months"][0]))} was {E(M.nice_date(td["day"]))}, with {td["water"]:,} calls.' if td else "")))
     peak = st["peaks"]["water"][0] if st["peaks"]["water"] else None
     tiles = ('<div class="tiles ld-tiles">'
-             f'<div class="tile key"><div class="lab">Basement calls</div><div class="val">{w["y12"]:,}</div><div class="sub"><b class="tch">{E(arrow(w["ch"]))}vs the 12 months before</b>water in basement calls, last 12 months</div></div>'
-             f'<div class="tile"><div class="lab">Sewer requests</div><div class="val">{s["y12"]:,}</div><div class="sub"><b class="tch">{E(arrow(s["ch"]))}vs the 12 months before</b>sewer cleaning requests, last 12 months</div></div>'
+             f'<div class="tile key"><div class="lab">Basement calls</div><div class="val">{w["y12"]:,}</div><div class="sub"><b class="tch">{E(arrow(w["ch"]))}vs the 12 months before</b>water in basement calls, {E(period)}</div></div>'
+             f'<div class="tile"><div class="lab">Sewer requests</div><div class="val">{s["y12"]:,}</div><div class="sub"><b class="tch">{E(arrow(s["ch"]))}vs the 12 months before</b>sewer cleaning requests, {E(period)}</div></div>'
              f'<div class="tile"><div class="lab">Last full month</div><div class="val">{w["m"]:,}</div><div class="sub"><b class="tch">{E(arrow(change(w["m"], w["my"])))}vs {E(ym_name(d["months"][st["L"] - 12], True))}</b>water in basement calls, {E(ym_name(st["lm"], True))}</div></div>'
              + (f'<div class="tile"><div class="lab">Year&#39;s busiest day</div><div class="val">{peak["n"]:,}</div><div class="sub">water in basement calls on {E(M.nice_date(peak["day"]))}, the most in the last 365 days</div></div>' if peak else "")
              + f'</div><p class="asof">Counts to {E(M.nice_date(d["through"]))}, from City of Chicago 311 records pulled {E(pulled)}. Updated every day.</p>')
@@ -540,7 +540,7 @@ def page_html(p):
                 '<div class="bf-tw" role="region" aria-label="Busiest days for water in basement calls" tabindex="0" style="border:0;margin:0"><table class="bf-days">'
                 '<thead><tr><th scope="col">Day</th><th scope="col">Water in basement</th><th scope="col">Sewer cleaning</th></tr></thead>'
                 f'<tbody>{days_rows}</tbody></table></div>'
-                '<p class="bf-cap">These are the days with the most calls in the City\'s records. This page holds no rainfall data; the National Weather Service keeps daily rain totals for Chicago.</p></div>')
+                f'<p class="bf-cap">These are the days with the most calls since {E(ym_name(d["months"][0]))}. This page holds no rainfall data; the National Weather Service keeps daily rain totals for Chicago.</p></div>')
     # one community area, month by month
     def ch_txt(now, before):
         c = area_change(now, before)

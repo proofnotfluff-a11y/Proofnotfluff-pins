@@ -113,7 +113,7 @@ BUSINESS = re.compile(r"\b(?:INC|INCORPORATED|LLC|L\.L\.C|CORP|CORPORATION|CO|CO
                       r"FACILITY|FACILITIES|INDUSTRIAL|NATIONAL|AMERICA|AMERICAN|MIDWEST|CHICAGO|ILLINOIS|UNITED|SALES|SUPPLIES|"
                       r"TRUCKING|EXPRESS|ROOFERS|EXTERMINATING|CONTROL|PROPERTIES|DEVELOPMENT|WORKS|SHOP|CENTER|GARDENS?|DESIGNS?|LANDSCAPES?|"
                       r"LAWN|TURF|FORESTRY|NURSERY|NURSERIES|SPRAY|WASTE|RECYCLING|DISPOSAL|TOWING|STEEL|IRON|CONCRETE|ASPHALT|SEWER|DRAIN|"
-                      r"HEATING|COOLING|AIR|LIGHTING|POWER|ENERGY|ABATEMENT|RESTORATION|BUILDING|SECURITY|SIGNS?|CORP\.|CO\.)\b|&|\bAND\b")
+                      r"HEATING|COOLING|AIR|LIGHTING|POWER|ENERGY|ABATEMENT|RESTORATION|BUILDING|SECURITY|SIGNS?|CORP\.|CO\.)\b")
 FMT = "%Y-%m-%dT%H:%M:%S"
 
 
@@ -386,7 +386,8 @@ def selftest():
     assert T["snow-removal"]["m36"]["awards"] == 0, "rock salt is a purchase; the plowing award is older than 36 months"
     assert d["window"] == {"today": "2026-10-27", "from12": "2025-10-27", "from36": "2023-10-27", "endTo": "2027-10-27"}
     assert match("MASTER AGREEMENT FOR DEMOLITION SERVICES") == ["demolition"] and match("TAXIWAY REHAB") == []
-    assert vendor("MIDWEST WRECKING COMPANY 01") != "Name withheld" and vendor("MAX MADSON") == "Name withheld"
+    assert vendor("MIDWEST WRECKING COMPANY 01") != "Name withheld" and vendor("MAX MADSON") == "Name withheld" and vendor("JOHN SMITH & MARY SMITH") == "Name withheld"
+    assert vendor("MARIA LOPEZ AND JOSE LOPEZ") == "Name withheld" and vendor("A & M GENERAL CONTRACTOR, INC.") != "Name withheld"
     assert title_dept("DEPT OF FLEET AND FACILITY MANAGEMENT") == "Department of Fleet and Facility Management"
     print("dp_contracts_data selftest: ok")
 

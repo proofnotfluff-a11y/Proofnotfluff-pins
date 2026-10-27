@@ -216,7 +216,7 @@ def footer(E, M, rel, d):
     return (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             f'<p>Source: City of Chicago Data Portal, <a href="{E(s["url"])}">Contracts dataset ({E(s["dataset"])})</a>, contracts the City has awarded since 1993 and the changes to them, '
             f'last updated by the City {E(M.nice_date(s["rowsUpdatedAt"]))}, read by us {E(M.nice_date(s["fetchedAt"]))}. We keep the awards and changes approved in the last 36 months and the contracts ending in the next 12, '
-            'sort them into trades by the words in their descriptions, and drop every vendor address. Vendor names are business names as the City lists them. </p>'
+            'sort them into trades by the words in their descriptions, and drop every vendor address. Vendor names are business names as the City lists them; a name that does not read as a business shows as Name withheld. </p>'
             f'<p>{E(M.CITY_DISCLAIMER["Chicago"])}</p><p>ProofNotFluff is not affiliated with or endorsed by the City of Chicago.</p>'
             '<p>Public information, not legal, tax or financial advice. Before you bid, check the solicitation and its rules with the City\'s Department of Procurement Services.</p>'
             '<p>Made by ProofNotFluff with AI assistance from public City data. The page counts visits with Cloudflare Web Analytics, which sets no cookies.</p></div></footer>\n</body></html>')
@@ -335,7 +335,7 @@ def page_html(p):
             f'{tiles}'
             + otp([("trades", "Trades"), ("ending", "Ending soon"), ("all", "All trades"), ("bids", "Open bids"), ("faq", "FAQ")])
             + f'<section class="block" id="trades"><h2>Pick your trade</h2><p>Each trade has its own page with every award, change and ending contract, and a CSV to download.</p>{cards}</section>'
-            f'<section class="block" id="ending"><h2>Contracts ending soonest</h2><p>When a City contract ends, the work often goes back out to bid. These end next.</p>{end_html}</section>'
+            f'<section class="block" id="ending"><h2>Contracts ending soonest</h2><p>When a City contract ends, the City may bid the work again. These end next.</p>{end_html}</section>'
             f'<section class="block" id="all"><h2>Every trade at a glance</h2><details class="cc-sumd" open><summary>Compare all 12 trades side by side</summary>{summ}</details><p class="asof">Totals and medians use new awards with a dollar amount. Changes to contracts are on each trade\'s page.</p></section>'
             f'<section class="block" id="bids"><h2>Where open bids are</h2><p>This page shows awards. Open City bids live on the City\'s own lists.</p>{bids_block(E, M, src)}</section>'
             f'<section class="block" id="read"><h2>How to read these numbers</h2>{reading_notes()}</section>'
@@ -482,7 +482,7 @@ def trade_page(p, d, src, t):
                if t["ending"] else f'<div class="ld-heroact cc-act cc-hact"><a class="btn" href="#bids">See open City bids</a><a class="st-btn2" href="{E(csv_name(t))}" download>Download the CSV</a></div></div>')
             + f'{tiles}'
             + otp([("ending", "Ending"), ("new", "New awards"), ("vendors", "Who wins"), ("changes", "Changes"), ("bids", "Open bids")])
-            + f'<section class="block" id="ending"><h2>Contracts ending in the next 12 months</h2>' + ('<p>When these end, the City may bid the work again. Watch the City\'s bid lists for the rebid.</p>' if t["ending"] else '') + f'{end_html}</section>'
+            + f'<section class="block" id="ending"><h2>Contracts ending in the next 12 months</h2>' + ('<p>When these end, the City may bid the work again. Watch the City\'s bid lists for any rebid.</p>' if t["ending"] else '') + f'{end_html}</section>'
             f'<section class="block" id="new"><h2>New awards, last 36 months</h2>{new_html}</section>'
             + (f'<section class="block" id="who"><h2>Who buys it, and how</h2>{who}</section>' if who else "")
             + f'<section class="block" id="vendors"><h2>Who wins it</h2>{vend}</section>'

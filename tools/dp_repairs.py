@@ -46,6 +46,18 @@ def cited(d, m, c):
     return t if t and t != "None" else "No description on the record"
 
 
+ACR = {"CO", "HWH", "GFCI", "GFCI'S", "CIS", "PRV", "EM", "JBS", "D&H", "DU", "HVAC", "LIC", "WC", "HWT", "ELE", "FRT", "INT."}
+
+
+def sentence(t):
+    """The City's capitals in sentence case, keeping its short forms (CO, D&H, GFCI) as written."""
+    words = t.split()
+    out = [w if w.upper() in ACR else w.lower() for w in words]
+    if out and out[0] == out[0].lower():
+        out[0] = out[0][:1].upper() + out[0][1:]
+    return " ".join(out)
+
+
 def lastmod(p):
     d = load(p)
     return d["through"] if d else None
@@ -115,13 +127,13 @@ CSS = ("<style>"
        ".rd-nums div{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--canvas2)}.rd-nums b{display:block;font:700 24px/1.15 Poppins,system-ui,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}"
        ".rd-nums small{display:block;font-size:13px;color:var(--muted);margin-top:2px}"
        ".rd-chart{display:block;width:100%;height:auto}.rd-chart .b{fill:var(--accent)}.rd-chart .b2{fill:var(--accent);opacity:.35}.rd-chart .ax{stroke:var(--line);stroke-width:1}"
-       ".rd-chart text{font:600 11px system-ui,sans-serif;fill:var(--muted)}"
+       ".rd-chart .gl{stroke:var(--rule);stroke-width:1}.rd-chart text{font:600 11px system-ui,sans-serif;fill:var(--muted)}.rd-chart .gt{font-weight:500}"
        ".rd-key{display:flex;flex-wrap:wrap;gap:14px;margin:6px 0 0;font-size:13.5px;color:var(--ink2)}.rd-key i{display:inline-block;width:14px;height:10px;border-radius:2px;background:var(--accent);margin-right:6px;vertical-align:middle}.rd-key .k2 i{opacity:.35}"
        ".rd-tw{overflow-x:auto;margin:12px 0 0;border:1px solid var(--line);border-radius:12px;background:var(--card)}.rd-tw:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
        ".rd-t{width:100%;border-collapse:collapse;font-size:14.5px}.rd-t th,.rd-t td{padding:9px 12px;border-bottom:1px solid var(--rule);text-align:right;font-variant-numeric:tabular-nums}"
        ".rd-t th:first-child,.rd-t td:first-child{text-align:left}.rd-t thead th{font-size:13px;color:var(--muted);font-weight:700;background:var(--card);vertical-align:bottom}"
        ".rd-t tbody th{font-weight:600;color:var(--ink);text-align:left}.rd-t tr:last-child td,.rd-t tr:last-child th{border-bottom:0}.rd-up{color:var(--warn-ink);font-weight:600}"
-       ".rd-t td.rd-d{text-align:left;white-space:normal}.rd-t code{font-size:12.5px;color:var(--muted)}"
+       ".rd-t td.rd-d,.rd-t th.rd-d{text-align:left;white-space:normal}.rd-t code{font-size:12.5px;color:var(--muted)}"
        ".rd-more{margin:12px 0 0}.rd-more summary{display:flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;font-weight:600;color:var(--ink)}"
        ".rd-more[open] summary{margin-bottom:8px}.rd-dl{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0}"
        ".rd-grid{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr));margin:8px 0}@media(min-width:900px){.rd-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}"
@@ -133,21 +145,9 @@ CSS = ("<style>"
 
 
 def month_chart(vals, labels, ghost, E, label):
-    n = len(vals)
-    W, H, top, base = 730, 220, 16, 190
-    slot = W / max(n, 1)
-    mx = max(vals + [g for g in ghost if g is not None] + [1])
-    out = ""
-    for i, v in enumerate(vals):
-        x = i * slot
-        g = ghost[i]
-        if g:
-            out += f'<rect class="b2" x="{x + slot * .1:.1f}" y="{base - g / mx * (base - top):.1f}" width="{slot * .8:.1f}" height="{g / mx * (base - top):.1f}"/>'
-        out += f'<rect class="b" x="{x + slot * .28:.1f}" y="{base - v / mx * (base - top):.1f}" width="{slot * .44:.1f}" height="{v / mx * (base - top):.1f}"/>'
-        if i % 3 == 0 or i == n - 1:
-            out += f'<text x="{x + slot / 2:.1f}" y="{base + 18}" text-anchor="middle">{E(labels[i])}</text>'
-    return (f'<svg class="rd-chart" viewBox="0 0 {W} {H}" role="img" aria-label="{E(label)}" xmlns="http://www.w3.org/2000/svg">'
-            f'<line class="ax" x1="0" y1="{base}" x2="{W}" y2="{base}"/>{out}</svg>')
+    """The same 24-month chart as the flooding page (gridlines, edge labels kept inside), in this page's classes."""
+    import dp_flooding
+    return dp_flooding.month_chart(vals, labels, ghost, E, label).replace('class="bf-chart"', 'class="rd-chart"')
 
 
 def range_legend(cuts):
@@ -267,7 +267,7 @@ def page_html(p):
                  f'<th scope="col" class="rd-x">{E(ym_name(st["lm"], True))}</th></tr></thead>')
         tbl = lambda rs, lab: f'<div class="rd-tw" role="region" aria-label="{E(lab)}" tabindex="0"><table class="rd-t">{thead}<tbody>{"".join(row(a) for a in rs)}</tbody></table></div>'
         lead = top[0]
-        codes = "".join(f'<tr><td class="rd-d">{E(cited(d, m, c))} <code>{E(c)}</code></td><td>{n:,}</td></tr>' for c, n in t["codes"][:8] if n)
+        codes = "".join(f'<tr><td class="rd-d">{E(sentence(cited(d, m, c)))} <code>{E(c)}</code></td><td>{n:,}</td></tr>' for c, n in t["codes"][:8] if n)
         panels += (f'<div class="rd-p" data-t="{t["key"]}"><div class="rd-card"><h3>{E(t["label"])}</h3><p>{E(t["who"])}</p>'
                    f'<div class="rd-nums"><div><b>{t["y12"]:,}</b><small>new violations, {E(period)}</small></div><div><b>{E(pct(t["ch"]))}</b><small>against {E(yr_before)}</small></div>'
                    f'<div><b>{t["m"]:,}</b><small>in {E(ym_name(st["lm"]))}</small></div><div><b>{E(lead["name"])}</b><small>most, with {lead["y12"]:,}</small></div></div>'
@@ -276,7 +276,7 @@ def page_html(p):
                    + tbl(top[:15], f'{t["label"]} violations, the 15 community areas with the most')
                    + f'<details class="rd-more"><summary>Show the other {len(top) - 15} community areas</summary>' + tbl(top[15:], f'{t["label"]} violations, the other community areas') + '</details>'
                    + (f'<details class="rd-more"><summary>What the City cited most for {E(t["label"].lower())}</summary><div class="rd-tw"><table class="rd-t">'
-                      f'<thead><tr><th scope="col">Violation as the City words it, with its code</th><th scope="col">12 months</th></tr></thead><tbody>{codes}</tbody></table></div></details>' if codes else "")
+                      f'<thead><tr><th scope="col" class="rd-d">Violation as the City words it, with its code</th><th scope="col">12 months</th></tr></thead><tbody>{codes}</tbody></table></div></details>' if codes else "")
                    + '</div>')
     other12 = st["all12"] - st["traded12"]
     note = (f'<p class="asof">12 months is {E(period)}; change compares it with {E(yr_before)}, rounded to a whole percent. Within 1% shows as same, and under {FEW} in the earlier 12 months as too few. '
@@ -295,10 +295,10 @@ def page_html(p):
         mp_rows += (f'<tr><th scope="row">{E(t["label"])}</th><td class="rd-d">'
                     + (E("Codes from the " + " and ".join(f"{b} bureau ({x})" for x, b in ps)) + (", and " if cs else ". ") if ps else "")
                     + (f'{len(cs)} named codes' + ("" if ps else "") + ". " if cs else "")
-                    + ("Most cited: " + E("; ".join(cited(d, m, c).capitalize() for c in top)) + "." if top else "")
+                    + ("Most cited: " + E("; ".join(sentence(cited(d, m, c)) for c in top)) + "." if top else "")
                     + '</td></tr>')
     left = sum(1 for v in m["codes"].values() if v["trade"] == "other")
-    mapping = ('<div class="rd-tw"><table class="rd-t"><thead><tr><th scope="col">Trade</th><th scope="col">What we count</th></tr></thead>'
+    mapping = ('<div class="rd-tw"><table class="rd-t"><thead><tr><th scope="col">Trade</th><th scope="col" class="rd-d">What we count</th></tr></thead>'
                f'<tbody>{mp_rows}</tbody></table></div><p class="asof">{E(m.get("about", ""))} {left} codes from those bureaus are left out on purpose, because their '
                'wording is paperwork, a permit, plans, records or arranging an inspection rather than a repair. The full list, with the reason for each code left out, is in the mapping download.</p>')
     tr = p["trade"]

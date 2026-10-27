@@ -120,8 +120,15 @@ def stats(d, names):
     top = sorted(range(len(w)), key=lambda i: (-w[i], i))[:10]
     out["topDays"] = [{"day": day(i), "water": w[i], "sewer": sw[i]} for i in sorted(top, key=lambda i: -w[i])]
     yr = list(range(max(0, len(w) - 365), len(w)))
-    out["peaks"] = {k: [{"day": day(i), "n": v[i], "i": i - yr[0]} for i in sorted(yr, key=lambda i: (-v[i], i))[:3] if v[i]]
-                    for k, v in (("water", w), ("sewer", sw))}
+    def spaced(v):     # the 3 busiest days at least 7 days apart, so one storm gets one label
+        out_ = []
+        for i in sorted(yr, key=lambda i: (-v[i], i)):
+            if v[i] and all(abs(i - j) >= 7 for j in out_):
+                out_.append(i)
+            if len(out_) == 3:
+                break
+        return [{"day": day(i), "n": v[i], "i": i - yr[0]} for i in out_]
+    out["peaks"] = {k: spaced(v) for k, v in (("water", w), ("sewer", sw))}
     out["since"] = d["dayFrom"][:4]
     return out
 
@@ -140,7 +147,7 @@ CSS = ("<style>"
        ".bf-seg input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}.bf-seg label:has(input:checked){background:var(--ink);border-color:var(--ink);color:var(--card)}"
        ".bf-seg label:has(input:focus-visible){outline:3px solid var(--focus);outline-offset:2px}"
        ".bf-chart{display:block;width:100%;height:auto}.bf-chart .b{fill:var(--accent)}.bf-chart .b2{fill:var(--accent);opacity:.35}.bf-chart .ax{stroke:var(--line);stroke-width:1}"
-       ".bf-chart text{font:600 11px system-ui,sans-serif;fill:var(--muted)}.bf-chart .pk{fill:var(--ink);font-weight:700}.bf-chart .pl{stroke:var(--ink);stroke-width:1;stroke-dasharray:2 2}"
+       ".bf-chart .gl{stroke:var(--rule);stroke-width:1}.bf-chart text{font:600 11px system-ui,sans-serif;fill:var(--muted)}.bf-chart .gt{font-weight:500}.bf-chart .pk{fill:var(--ink);font-weight:700}.bf-chart .pl{stroke:var(--ink);stroke-width:1;stroke-dasharray:2 2}"
        ".bf-cap{margin:8px 0 0;font-size:13.5px;color:var(--muted)}"
        ".bf-key{display:flex;flex-wrap:wrap;gap:14px;margin:6px 0 0;font-size:13.5px;color:var(--ink2)}.bf-key i{display:inline-block;width:14px;height:10px;border-radius:2px;background:var(--accent);margin-right:6px;vertical-align:middle}.bf-key .k2 i{opacity:.35}"
        ".bf-pick{display:grid;gap:6px;max-width:360px;font-size:13px;font-weight:700;color:var(--muted);margin:0 0 12px}"
@@ -227,33 +234,64 @@ def map_block(st, pop, E, period):
     return G.CSS + fig if fig else ""
 
 
+def nice_step(mx, lines=4):
+    """A round gridline step (1, 2 or 5 times a power of ten) giving about `lines` lines up to mx."""
+    import math
+    raw = max(mx, 1) / lines
+    p = 10 ** math.floor(math.log10(raw))
+    return next(m * p for m in (1, 2, 5, 10) if m * p >= raw)
+
+
+def grid(mx, base, top, x0, W, E):
+    st = nice_step(mx)
+    out, v = "", st
+    while v <= mx:
+        y = base - v / mx * (base - top)
+        out += (f'<line class="gl" x1="{x0}" y1="{y:.1f}" x2="{W}" y2="{y:.1f}"/>'
+                f'<text class="gt" x="{x0 - 6}" y="{y + 4:.1f}" text-anchor="end">{v:,}</text>')
+        v += st
+    return out
+
+
+def peak_rows(peaks, xs, gap=118):
+    """Rows for the peak labels so no two labels on one row sit closer than `gap` units."""
+    rows = []
+    for p, x in zip(peaks, xs):
+        r = 0
+        while any(abs(x - x2) < gap for x2, r2 in rows if r2 == r):
+            r += 1
+        rows.append((x, r))
+    return [r for _, r in rows]
+
+
 def day_chart(vals, start, peaks, E, label, cls="b"):
-    """One bar per day for the last 365 days, the 3 biggest days labeled. Inline SVG, readable with scripts off."""
+    """One bar per day for the last 365 days, the 3 busiest days labeled. Inline SVG, readable with scripts off."""
     n = len(vals)
-    W, H, top, base = 730, 230, 34, 200
-    bw = W / max(n, 1)
+    W, H, top, base, x0 = 730, 250, 58, 222, 44
+    bw = (W - x0) / max(n, 1)
     mx = max(vals) or 1
     d0 = dt.date.fromisoformat(start)
-    bars = "".join(f'<rect class="{cls}" x="{i * bw:.2f}" y="{base - v / mx * (base - top):.1f}" width="{max(bw - .3, .6):.2f}" height="{v / mx * (base - top):.1f}"/>'
+    bars = "".join(f'<rect class="{cls}" x="{x0 + i * bw:.2f}" y="{base - v / mx * (base - top):.1f}" width="{max(bw - .3, .6):.2f}" height="{v / mx * (base - top):.1f}"/>'
                    for i, v in enumerate(vals) if v)
     ticks = ""
     for i in range(n):
         day = d0 + dt.timedelta(days=i)
         if day.day == 1:
-            x = i * bw
+            x = x0 + i * bw
             ticks += f'<line class="ax" x1="{x:.1f}" y1="{base}" x2="{x:.1f}" y2="{base + 5}"/>'
-            if day.month % 2 == 1 or n < 200:
-                ticks += f'<text x="{x + 2:.1f}" y="{base + 18}">{E(day.strftime("%b"))}</text>'
+            if day.month % 2 == 1 and x < W - 30:
+                ticks += f'<text x="{x + 2:.1f}" y="{base + 19}">{E(day.strftime("%b"))}</text>'
+    xs = [x0 + (p["i"] + .5) * bw for p in peaks]
+    rows = peak_rows(peaks, xs)
     pk = ""
-    for j, p in enumerate(peaks):
-        x = (p["i"] + .5) * bw
+    for p, x, r in zip(peaks, xs, rows):
         y = base - p["n"] / mx * (base - top)
-        anchor = "end" if x > W - 90 else "start" if x < 90 else "middle"
-        ty = 14 + j * 0 if j == 0 else (14 if abs(x - (peaks[0]["i"] + .5) * bw) > 120 else 14 + 14 * j)
+        ty = 14 + 16 * r
+        anchor = "end" if x > W - 70 else "start" if x < x0 + 70 else "middle"
         pk += (f'<line class="pl" x1="{x:.1f}" y1="{ty + 4}" x2="{x:.1f}" y2="{y - 2:.1f}"/>'
                f'<text class="pk" x="{x:.1f}" y="{ty}" text-anchor="{anchor}">{E(nice_short(p["day"]))}: {p["n"]:,}</text>')
-    return (f'<svg class="bf-chart" viewBox="0 0 {W} {H}" role="img" aria-label="{E(label)}" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">'
-            f'<line class="ax" x1="0" y1="{base}" x2="{W}" y2="{base}"/>{bars}{ticks}{pk}</svg>')
+    return (f'<svg class="bf-chart" viewBox="0 0 {W} {H}" role="img" aria-label="{E(label)}" xmlns="http://www.w3.org/2000/svg">'
+            f'{grid(mx, base, top, x0, W, E)}<line class="ax" x1="{x0}" y1="{base}" x2="{W}" y2="{base}"/>{bars}{ticks}{pk}</svg>')
 
 
 def nice_short(day):
@@ -264,29 +302,33 @@ def nice_short(day):
 def month_chart(vals, labels, ghost, E, label):
     """Bars for the last 24 complete months, with the same month a year earlier as a pale bar behind each one."""
     n = len(vals)
-    W, H, top, base = 730, 220, 16, 190
-    slot = W / n
+    W, H, top, base, x0 = 730, 224, 14, 194, 44
+    slot = (W - x0) / n
     mx = max(vals + [g for g in ghost if g is not None]) or 1
     out = ""
     for i, v in enumerate(vals):
-        x = i * slot
+        x = x0 + i * slot
         g = ghost[i]
         if g:
             out += f'<rect class="b2" x="{x + slot * .1:.1f}" y="{base - g / mx * (base - top):.1f}" width="{slot * .8:.1f}" height="{g / mx * (base - top):.1f}"/>'
         out += f'<rect class="b" x="{x + slot * .28:.1f}" y="{base - v / mx * (base - top):.1f}" width="{slot * .44:.1f}" height="{v / mx * (base - top):.1f}"/>'
-        if i % 3 == 0 or i == n - 1:
-            out += f'<text x="{x + slot / 2:.1f}" y="{base + 18}" text-anchor="middle">{E(labels[i])}</text>'
+        if i % 3 == 0 and i <= n - 4 or i == n - 1:
+            a = "start" if i == 0 else "end" if i == n - 1 else "middle"
+            tx = x if i == 0 else x + slot if i == n - 1 else x + slot / 2
+            out += f'<text x="{tx:.1f}" y="{base + 19}" text-anchor="{a}">{E(labels[i])}</text>'
     return (f'<svg class="bf-chart" viewBox="0 0 {W} {H}" role="img" aria-label="{E(label)}" xmlns="http://www.w3.org/2000/svg">'
-            f'<line class="ax" x1="0" y1="{base}" x2="{W}" y2="{base}"/>{out}</svg>')
+            f'{grid(mx, base, top, x0, W, E)}<line class="ax" x1="{x0}" y1="{base}" x2="{W}" y2="{base}"/>{out}</svg>')
 
 
 JS = r"""<script>(function(){var D=JSON.parse(document.getElementById("bf-data").textContent);
 document.querySelectorAll("[data-bf-show]").forEach(function(i){i.addEventListener("change",function(){var g=i.name;document.querySelectorAll("[data-bf-group='"+g+"']").forEach(function(el){el.hidden=el.dataset.bfKey!==i.value;});});});
 var sel=document.getElementById("bf-area-sel"),box=document.getElementById("bf-area-box");
-function bars(v,mx){var W=730,H=150,b=128,s=W/v.length,o="";for(var i=0;i<v.length;i++){var h=v[i]/mx*(b-14);o+='<rect class="b" x="'+(i*s+s*.2).toFixed(1)+'" y="'+(b-h).toFixed(1)+'" width="'+(s*.6).toFixed(1)+'" height="'+h.toFixed(1)+'"/>';
-if(v[i]&&v[i]===mx)o+='<text class="pk" x="'+(i*s+s/2).toFixed(1)+'" y="'+(b-h-4).toFixed(1)+'" text-anchor="middle">'+v[i].toLocaleString("en-US")+'</text>';
-if(i%3===0||i===v.length-1)o+='<text x="'+(i*s+s/2).toFixed(1)+'" y="'+(b+16)+'" text-anchor="middle">'+D.labels[i]+'</text>';}
-return '<svg class="bf-chart" viewBox="0 0 '+W+' '+H+'" aria-hidden="true"><line class="ax" x1="0" y1="'+b+'" x2="'+W+'" y2="'+b+'"/>'+o+'</svg>';}
+function step(mx){var r=Math.max(mx,1)/4,p=Math.pow(10,Math.floor(Math.log10(r)));return [1,2,5,10].map(function(m){return m*p;}).filter(function(x){return x>=r;})[0];}
+function bars(v,mx){var W=730,H=164,b=136,t=16,x0=44,s=(W-x0)/v.length,o="",st=step(mx);
+for(var g=st;g<=mx;g+=st){var gy=b-g/mx*(b-t);o+='<line class="gl" x1="'+x0+'" y1="'+gy.toFixed(1)+'" x2="'+W+'" y2="'+gy.toFixed(1)+'"/><text class="gt" x="'+(x0-6)+'" y="'+(gy+4).toFixed(1)+'" text-anchor="end">'+g.toLocaleString("en-US")+'</text>';}
+for(var i=0;i<v.length;i++){var h=v[i]/mx*(b-t),x=x0+i*s;o+='<rect class="b" x="'+(x+s*.2).toFixed(1)+'" y="'+(b-h).toFixed(1)+'" width="'+(s*.6).toFixed(1)+'" height="'+h.toFixed(1)+'"/>';
+if((i%3===0&&i<=v.length-4)||i===v.length-1){var a=i===0?"start":(i===v.length-1?"end":"middle"),tx=i===0?x:(i===v.length-1?x+s:x+s/2);o+='<text x="'+tx.toFixed(1)+'" y="'+(b+18)+'" text-anchor="'+a+'">'+D.labels[i]+'</text>';}}
+return '<svg class="bf-chart" viewBox="0 0 '+W+' '+H+'" aria-hidden="true"><line class="ax" x1="'+x0+'" y1="'+b+'" x2="'+W+'" y2="'+b+'"/>'+o+'</svg>';}
 function show(n){var a=D.areas[n];if(!a)return;var mx=Math.max.apply(null,a.w.concat(a.s,[1]));
 box.innerHTML='<h3>'+a.name+'</h3><p>'+a.rank+'</p><div class="bf-nums"><div><b>'+a.w12+'</b><small>water in basement, '+D.period+'</small></div><div><b>'+a.wch+'</b><small>against the 12 months before</small></div><div><b>'+a.s12+'</b><small>sewer cleaning, '+D.period+'</small></div><div><b>'+a.sch+'</b><small>against the 12 months before</small></div></div>'
 +'<p><b>Water in basement calls each month</b></p>'+bars(a.w,mx)+'<p><b>Sewer cleaning requests each month</b></p>'+bars(a.s,mx)+'<p class="bf-cap">'+D.cap+'</p>';}
@@ -368,10 +410,10 @@ def page_html(p):
             f'Every one of the 77 community areas, month by month, with the storm days.')
     peak = st["peaks"]["water"][0] if st["peaks"]["water"] else None
     tiles = ('<div class="tiles ld-tiles">'
-             f'<div class="tile key"><div class="lab">Water in basement, 12 months</div><div class="val">{w["y12"]:,}</div><div class="sub">{E(pct(w["ch"]))} on the 12 months before</div></div>'
-             f'<div class="tile"><div class="lab">Sewer cleaning, 12 months</div><div class="val">{s["y12"]:,}</div><div class="sub">{E(pct(s["ch"]))} on the 12 months before</div></div>'
-             f'<div class="tile"><div class="lab">{E(ym_name(st["lm"]))}</div><div class="val">{w["m"]:,}</div><div class="sub">water in basement calls; {w["my"] or 0:,} in {E(ym_name(d["months"][st["L"] - 12], True))}</div></div>'
-             + (f'<div class="tile"><div class="lab">Busiest day, last 365</div><div class="val">{peak["n"]:,}</div><div class="sub">water in basement calls on {E(M.nice_date(peak["day"]))}</div></div>' if peak else "")
+             f'<div class="tile key"><div class="lab">Basement calls</div><div class="val">{w["y12"]:,}</div><div class="sub">water in basement, last 12 months, {E(pct(w["ch"]))} on the 12 before</div></div>'
+             f'<div class="tile"><div class="lab">Sewer requests</div><div class="val">{s["y12"]:,}</div><div class="sub">sewer cleaning, last 12 months, {E(pct(s["ch"]))} on the 12 before</div></div>'
+             f'<div class="tile"><div class="lab">{E(ym_name(st["lm"], True))}</div><div class="val">{w["m"]:,}</div><div class="sub">water in basement calls; {w["my"] or 0:,} in {E(ym_name(d["months"][st["L"] - 12], True))}</div></div>'
+             + (f'<div class="tile"><div class="lab">Busiest day</div><div class="val">{peak["n"]:,}</div><div class="sub">basement calls on {E(M.nice_date(peak["day"]))}, the most in the last 365 days</div></div>' if peak else "")
              + f'</div><p class="asof">Counts to {E(M.nice_date(d["through"]))}, from City of Chicago 311 records pulled {E(pulled)}. Updated every day.</p>')
     mapb = map_block(st, pop, E, period) if p.get("map", True) else ""
     # citywide charts with one toggle for the type
@@ -385,8 +427,8 @@ def page_html(p):
         nm = ty["label"].lower()
         charts += (f'<div data-bf-group="bfc" data-bf-key="{k}"{" hidden" if k != "water" else ""}>'
                    f'<div class="bf-card"><p><b>{E(ty["label"])} requests each day, the last 365 days</b></p>'
-                   + day_chart(st["days"][k], st["days"]["from"], peaks, E, f"{ty['label']} requests to 311 each day for the last 365 days; the 3 busiest days are labeled")
-                   + f'<p class="bf-cap">One bar per day, to {E(M.nice_date(d["through"]))}. The three busiest days are labeled.</p></div>'
+                   + day_chart(st["days"][k], st["days"]["from"], peaks, E, f"{ty['label']} requests to 311 each day for the last 365 days; the 3 busiest days at least a week apart are labeled")
+                   + f'<p class="bf-cap">One bar per day, to {E(M.nice_date(d["through"]))}. The three busiest days at least a week apart are labeled.</p></div>'
                    f'<div class="bf-card"><p><b>{E(ty["label"])} requests each month</b></p>'
                    + month_chart(vals, mlab, ghost, E, f"{ty['label']} requests each month for 24 months, with the same month a year earlier behind each bar")
                    + '<p class="bf-key"><span><i></i>That month</span><span class="k2"><i></i>Same month a year earlier</span></p></div></div>')
@@ -433,7 +475,7 @@ def page_html(p):
              + f'<p class="asof">12 months is {E(period)}; change compares it with {E(yr_before)}, rounded to a whole percent. Within 1% shows as same, and under {FEW} calls in the earlier 12 months as too few. '
              'Rank is by water in basement calls; = marks a tie.'
              + (f' {w["noArea12"]:,} water in basement calls and {s["noArea12"]:,} sewer cleaning requests in those 12 months had no community area on the record and count only in the city totals.' if w["noArea12"] or s["noArea12"] else "")
-             + (' Residents per community area: ' + E(pop_src.get("name", "City population figures")) + '.' if has_pop else "")
+             + (f' Per 1,000 residents uses the City\'s {E(pop_src.get("name", "population figures"))}' + (f' ({E(str(pop_src["acsYear"]))} estimates)' if pop_src.get("acsYear") else "") + '.' if has_pop else "")
              + '</p>'
              f'<div class="bf-dl"><a class="st-btn2" href="{CSV_AREA}" download>Download every area by month (CSV)</a>'
              f'<a class="st-btn2" href="{CSV_DAY}" download>Download citywide by day (CSV)</a></div>')
@@ -460,7 +502,9 @@ def page_html(p):
             + (", with requests the City marked as duplicates left out" if src.get("duplicatesLeftOut") else "")
             + '. A call is one request to 311; it does not say what the City found, and a count says nothing about any one building or block. '
             'Counts only: no address or request details are kept.</p>'
-            + (f'<p>Residents per community area: {E(pop_src.get("name", ""))}{", " + E(pop_src.get("url")) if pop_src.get("url") else ""}.</p>' if has_pop else "")
+            + (f'<p>Residents per community area: {E(pop_src.get("publisher", "City of Chicago"))}, <a href="{E(pop_src.get("url", ""))}">{E(pop_src.get("name", ""))}</a>'
+               f'{" (U.S. Census Bureau American Community Survey 5-year estimates, " + E(str(pop_src["acsYear"])) + ")" if pop_src.get("acsYear") else ""}; '
+               'per 1,000 residents is calls divided by residents, times 1,000.</p>' if has_pop else "")
             + f'<p>{E(M.CITY_DISCLAIMER["Chicago"])}</p><p>ProofNotFluff is not affiliated with or endorsed by the City of Chicago.</p>'
             '<p>Public information, not legal, insurance or plumbing advice for any property. For a problem at a property, check with the City or a licensed plumber.</p>'
             '<p>Made by ProofNotFluff with AI assistance from public City data. The page counts visits with Cloudflare Web Analytics, which sets no cookies.</p></div></footer>\n</body></html>')

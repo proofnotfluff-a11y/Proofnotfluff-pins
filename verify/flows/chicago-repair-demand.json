@@ -13,7 +13,7 @@
   {"scroll": "#map"},
   {"expect_count": "#repairmap path[data-n]", "eq": 77},
   {"click": "#repairmap .gm-seg label:nth-of-type(4)"},
-  {"expect_text": "#repairmap .gm-leg", "contains": "HVAC"},
+  {"expect_text": "#repairmap .gm-leg", "contains": "Heating, boilers"},
   {"select": "#repairmap select", "value": "9"},
   {"expect_text": "#repairmap .gm-info", "contains": "Edison Park", "screenshot": true},
   {"expect_count": "#trades a[download]", "eq": 2}

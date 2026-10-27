@@ -216,9 +216,10 @@ def trade_map(E, d, data_mod):
     for t in data_mod.TRADES:
         rows.append(f'<tr><th scope="row">{E(t["name"])}</th>{td(E("; ".join(t["words"])), "Words")}</tr>')
     return (table("The words that put a contract in each trade", [("Trade", False), ("A contract joins when its description uses", False)], rows, cls=" cc-map")
-            + '<p class="asof">Matching ignores capital letters, and most words also find their longer forms (roof finds roofing). Left out of every trade: purchases of goods or equipment (supplies, parts, vehicles) '
-            'unless the description also names work such as service, repair, maintenance or removal; upkeep of the City\'s own machines and fleet; design, engineering and consulting; '
-            'software; art; grants to agencies; leases; and redevelopment deals. A few more words keep look-alikes out (rock salt from snow removal, lead paint removal from painting, '
+            + '<p class="asof">Matching ignores capital letters, and most words also find their longer forms (roof finds roofing). Left out of every trade: anything the City buys rather than hires, meaning a contract described as a purchase, and lists of supplies, parts, products or vehicles '
+            'that name no work such as service, repair, maintenance or removal; upkeep of the City\'s own machines and fleet; design, engineering and consulting; '
+            'software; art; grants to agencies; leases; redevelopment deals; deals with other public bodies, such as the Board of Education and other intergovernmental agreements; '
+            'and terminal projects at O\'Hare that the City pays airlines to run (their vendor is the airline). A few more words keep look-alikes out (rock salt from snow removal, lead paint removal from painting, '
             'elevators from HVAC, holiday trees and tree inventories from landscaping). Contracts only for inspection or construction supervision are left out too.</p>')
 
 
@@ -376,6 +377,8 @@ CSV_COLS = ["record", "approval_date", "end_date", "description", "department", 
 
 def safe(v):
     """No spreadsheet formula can start a text cell (=, +, -, @): such text gets a leading apostrophe."""
+    if isinstance(v, str) and re.fullmatch(r"-?\d+(?:\.\d+)?", v):
+        return v   # an amount, negative or not, stays a number
     return "'" + v if isinstance(v, str) and v[:1] in ("=", "+", "-", "@") else v
 
 
@@ -397,7 +400,7 @@ def trade_csv(d, t):
                        'An award of 0 on a blanket contract means the City orders as needed and promises no amount. Negative amounts are changes that took money out. '
                        'Award totals are not unit prices. Vendor addresses are not included; "Name withheld" marks a vendor name that does not read as a business.')])
     wtr.writerow([safe(f'Trade words: {"; ".join(next(x for x in __import__("dp_contracts_data").TRADES if x["key"] == t["key"])["words"])}. '
-                       'Purchases of goods, fleet upkeep, design and engineering, software, art, grants, leases and redevelopment deals are left out.')])
+                       'Purchases of goods, fleet upkeep, design and engineering, software, art, grants, leases, redevelopment deals, deals with other public bodies and airline-run terminal projects are left out.')])
     import make_site as M
     wtr.writerow([M.CITY_DISCLAIMER["Chicago"]])
     return "\ufeff" + out.getvalue()   # a byte-order mark, so Excel reads the City's disclaimer (one\u2019s) word for word
@@ -519,7 +522,7 @@ def trade_page(p, d, src, t):
             f'<section class="block" id="changes"><h2>Changes to contracts</h2>{mod_html}</section>')
             + f'<section class="block" id="bids"><h2>Where open bids are</h2>{bids_block(E, M, src)}</section>'
             f'<section class="block" id="words"><h2>What counts as {E(low(t))}</h2><p>A City contract joins this trade when its description uses any of these words: {E(words)}. '
-            f'Purchases of goods, fleet upkeep, design and engineering, software, art, grants, leases and redevelopment deals are left out. <a href="../#map">See the whole trade map</a>.</p>'
+            f'Purchases of goods, fleet upkeep, design and engineering, software, art, grants, leases, redevelopment deals, deals with other public bodies and airline-run terminal projects at O\'Hare are left out. <a href="../#map">See the whole trade map</a>.</p>'
             f'{reading_notes()}</section>'
             + ("" if empty else f'<section class="block"><h2>All 12 trades</h2><ul class="cc-chips">{others}</ul></section>')
             + f'<div class="cc-act"><a class="btn" href="{E(csv_name(t))}" download>Download the {E("HVAC" if t["key"] == "hvac" else t["short"].lower())} CSV</a><a class="st-btn2" href="../">All trades</a></div>')
@@ -572,6 +575,7 @@ def selftest():
     assert "$0, orders as needed" in sub and "not unit prices" in sub, "zero-dollar label and the unit price note"
     assert "+$7,000" in sub and "-$2,000" in sub, "modifications apart, money out shown negative"
     assert "Jan 31, 2027" in sub and "Oct 26, 2026" in sub, "ending contract and the weekly list date"
+    assert ",-2000.00," in csvt, "a negative amount stays a number in the CSV"
     assert "\n'=HYPERLINK" not in csvt and ",'=HYPERLINK" in csvt, "no formula can start a CSV cell"
     assert len(extras) == 2 * len(DD.TRADES), "a page and a CSV per trade"
     assert 'role="region"' in sub and 'tabindex="0"' in sub, "scrollable tables reachable by keyboard"

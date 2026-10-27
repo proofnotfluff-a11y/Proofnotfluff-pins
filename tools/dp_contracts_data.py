@@ -115,7 +115,7 @@ BUSINESS = re.compile(r"\b(?:INC|INCORPORATED|LLC|L\.L\.C|CORP|CORPORATION|COMPA
                       r"PAVING|MAINTENANCE|CLEANING|JANITORIAL|JV|JOINT VENTURE|BUILDERS|ENGINEERING|CONSULTING|MANAGEMENT|"
                       r"FACILITY|FACILITIES|INDUSTRIAL|SUPPLIES|TRUCKING|ROOFERS|EXTERMINATING|PROPERTIES|DEVELOPMENT|"
                       r"NURSERY|NURSERIES|RECYCLING|DISPOSAL|TOWING|CONCRETE|ASPHALT|HEATING|COOLING|LIGHTING|ENERGY|"
-                      r"ABATEMENT|RESTORATION|FOUNDATION|ASSOCIATION|AUTHORITY|UNIVERSITY|COLLEGE|AIRLINES)\b|"
+                      r"ABATEMENT|RESTORATION|FOUNDATION|ASSOCIATION|AUTHORITY|UNIVERSITY|COLLEGE|AIRLINES|AVIATION)\b|"
                       r"&\s*CO\b|\bCO[.,]|\bCO\s+INC\b")
 DBA = re.compile(r"\s+(?:DBA|D/B/A|D\.B\.A\.?)\s+", re.I)
 FMT = "%Y-%m-%dT%H:%M:%S"
@@ -400,6 +400,7 @@ def selftest():
     for p in ("JOHN SNOW", "MICHAEL POWER", "JAMES STEEL", "ANNA CENTER", "LEE NATIONAL", "AL CO", "JOHN Q SMITH &", "AND", "JOHN SMITH D/B/A JS"):
         assert vendor(p) == "Name withheld", p
     assert vendor("JOHN SMITH DBA SMITH PLUMBING") == "SMITH PLUMBING" and vendor("ALFRED BENESCH & CO") != "Name withheld"
+    assert vendor("ABM Aviation") == "ABM Aviation" and vendor("A SAFE HAVEN FOUNDATION") != "Name withheld"
     assert vendor("SEVEN-D CONSTRUCTION CO.") != "Name withheld" and vendor("SNOW SYSTEMS") != "Name withheld"
     assert title_dept("DEPT OF FLEET AND FACILITY MANAGEMENT") == "Department of Fleet and Facility Management"
     print("dp_contracts_data selftest: ok")

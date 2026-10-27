@@ -5,13 +5,13 @@
  "method": [
   "We read every line on the issuing agency's own page: the City of Chicago Departments of Buildings, Business Affairs and Consumer Protection, Public Health and Transportation; the Illinois Departments of Public Health, Agriculture, and Financial and Professional Regulation; Illinois EPA; State law on the Illinois General Assembly site; and the U.S. EPA. Each line links to its page and the date we read it.",
   "Where an agency page is silent, the line says so, such as not stated or lists no bond, instead of filling the gap. A page we could not open is not used.",
-  "For trades the City pages we read do not name, such as cleaning, painting, pest control, landscaping, pressure washing and snow removal, the page reports what BACP says about how it picks a license and the fee in its license table, not a guess at which license applies.",
+  "For trades the City pages we read do not name, such as cleaning, painting, pest control, landscaping, pressure washing and snow removal, the page reports what BACP says about how it picks a license and the fee BACP prints, not a guess at which license applies.",
   "When this page's data changes, a checker re-reads the source pages it can reach and flags any figure that is no longer printed there. This is public information, not legal advice; the agency decides what your business needs."
  ],
  "faq": [
   [
    "Does a license from a suburb count in Chicago?",
-   "None of the City pages we read says a suburb's license counts in Chicago. For plumbing, the City says a plumbing contractor licensed by the State of Illinois must also get a City plumbing contractor license. Roofers hold one State license, and a Chicago roof permit still needs a City licensed general contractor.",
+   "None of the City pages we read says a suburb's license counts in Chicago. For plumbing, the City says a plumbing contractor licensed by the State of Illinois must also get a City plumbing contractor license. Roofers need a State roofing license, and a Chicago roof permit still needs a City licensed general contractor.",
    [
     "gc",
     "tlic",
@@ -42,7 +42,7 @@
   ],
   [
    "How current is this page?",
-   "Every line was read on its agency page on Oct 27, 2026, and each shows that date. Fees and rules change. BACP has posted a business license fee update dated Jan 27, 2026 that we could not open, so the City business license fees shown here may be out of date.",
+   "Every line was read on its agency page on Oct 27, 2026, and each shows that date. Fees and rules change, and the City business license fees shown here are as BACP printed them on Oct 27, 2026.",
    [
     "bacp_table"
    ]
@@ -203,7 +203,7 @@
    "url": "https://chicago.gov/city/en/depts/bldgs/supp_info/TLdetails/homerepair.html",
    "title": "Home Repair License",
    "agency": "Chicago Department of Business Affairs and Consumer Protection",
-   "short": "City of Chicago BACP",
+   "short": "City of Chicago Business Affairs and Consumer Protection",
    "checked": "2026-10-27"
   },
   "stateng": {
@@ -217,70 +217,70 @@
    "url": "https://chicago.gov/city/en/sites/chicago-business-licensing/home/business-licensing.html",
    "title": "Business Licensing",
    "agency": "Chicago Department of Business Affairs and Consumer Protection",
-   "short": "City of Chicago BACP",
+   "short": "City of Chicago Business Affairs and Consumer Protection",
    "checked": "2026-10-27"
   },
   "bacp_apply": {
    "url": "https://www.chicago.gov/city/en/depts/bacp/supp_info/applybusinesslicense.html",
    "title": "Applying for a Business License",
    "agency": "Chicago Department of Business Affairs and Consumer Protection",
-   "short": "City of Chicago BACP",
+   "short": "City of Chicago Business Affairs and Consumer Protection",
    "checked": "2026-10-27"
   },
   "bacp_renew": {
    "url": "https://www.chicago.gov/city/en/depts/bacp/supp_info/renewbusinesslicense.html",
    "title": "Renewing a Business License",
    "agency": "Chicago Department of Business Affairs and Consumer Protection",
-   "short": "City of Chicago BACP",
+   "short": "City of Chicago Business Affairs and Consumer Protection",
    "checked": "2026-10-27"
   },
   "bacp_home": {
    "url": "https://www.chicago.gov/city/en/sites/chicago-business-licensing/home/homebasedbusiness.html",
    "title": "Home Based Business",
    "agency": "Chicago Department of Business Affairs and Consumer Protection",
-   "short": "City of Chicago BACP",
+   "short": "City of Chicago Business Affairs and Consumer Protection",
    "checked": "2026-10-27"
   },
   "bacp_homesheet": {
    "url": "https://www.chicago.gov/content/dam/city/depts/bacp/Small%20Business%20Center/sbcfactsheets/Home_Based_Business_Fact_Sheet_10-12-17.pdf",
    "title": "Home-Based Businesses in Chicago fact sheet",
    "agency": "Chicago Department of Business Affairs and Consumer Protection",
-   "short": "City of Chicago BACP",
+   "short": "City of Chicago Business Affairs and Consumer Protection",
    "checked": "2026-10-27"
   },
   "bacp_homerepair": {
    "url": "https://www.chicago.gov/city/en/sites/chicago-business-licensing/home/homerepair.html",
    "title": "Home Repair",
    "agency": "Chicago Department of Business Affairs and Consumer Protection",
-   "short": "City of Chicago BACP",
+   "short": "City of Chicago Business Affairs and Consumer Protection",
    "checked": "2026-10-27"
   },
   "bacp_types": {
    "url": "https://chicago.gov/content/city/en/sites/chicago-business-licensing/home/businesslicensetypes.html",
    "title": "Business License Types",
    "agency": "Chicago Department of Business Affairs and Consumer Protection",
-   "short": "City of Chicago BACP",
+   "short": "City of Chicago Business Affairs and Consumer Protection",
    "checked": "2026-10-27"
   },
   "bacp_brick": {
    "url": "https://www.chicago.gov/city/en/sites/chicago-business-licensing/home/brickandmortarstore.html",
    "title": "Brick-and-Mortar Store",
    "agency": "Chicago Department of Business Affairs and Consumer Protection",
-   "short": "City of Chicago BACP",
+   "short": "City of Chicago Business Affairs and Consumer Protection",
    "checked": "2026-10-27"
   },
   "bacp_exempt": {
    "url": "https://www.chicago.gov/city/en/sites/chicago-business-licensing/home/business-license-exemptions.html",
    "title": "Business License Exemptions",
    "agency": "Chicago Department of Business Affairs and Consumer Protection",
-   "short": "City of Chicago BACP",
+   "short": "City of Chicago Business Affairs and Consumer Protection",
    "checked": "2026-10-27"
   },
   "junk_fact": {
    "url": "https://www.chicago.gov/dam/city/depts/bacp/general/junkpeddlersfactsheet.pdf",
    "title": "Junk Peddlers fact sheet",
    "agency": "Chicago Department of Business Affairs and Consumer Protection",
-   "short": "City of Chicago BACP",
+   "short": "City of Chicago Business Affairs and Consumer Protection",
    "checked": "2026-10-27"
   },
   "cdot_crc": {
@@ -569,7 +569,7 @@
     {
      "topic": "state",
      "src": "idfpr_list",
-     "text": "The State's professional regulation list has no general contractor entry; its only roofing entries are Roofing Contractor and Qualifying Party Roofing Contractor. No State agency page we read says the State licenses general contractors.",
+     "text": "The State's professional regulation list has no general contractor entry. No State agency page we read says the State licenses general contractors.",
      "figures": []
     },
     {
@@ -911,7 +911,7 @@
     {
      "topic": "city",
      "src": "mech",
-     "text": "The City has no separate HVAC or refrigeration contractor license on its permit pages. A permit to replace HVAC equipment, add a heat pump or air conditioning, or install refrigeration equipment needs a licensed general contractor, Class A to E by project cost. In some cases an owner who lives at the address may act as contractor with Form 401.",
+     "text": "The City permit page we read names no separate HVAC or refrigeration contractor license. A permit to replace HVAC equipment, add a heat pump or air conditioning, or install refrigeration equipment needs a licensed general contractor, Class A to E by project cost. In some cases an owner who lives at the address may act as contractor with Form 401.",
      "figures": []
     },
     {
@@ -923,8 +923,11 @@
     {
      "topic": "city",
      "src": "stateng",
-     "text": "Running most steam and hot water boilers needs a City stationary engineer license for the person who operates them.",
-     "figures": []
+     "text": "Operating a steam boiler over 50 boiler horsepower or a hot water boiler over 160 psi needs a City stationary engineer license.",
+     "figures": [
+      "50",
+      "160"
+     ]
     },
     {
      "topic": "state",
@@ -944,7 +947,7 @@
     {
      "topic": "fee",
      "src": "homerepair",
-     "text": "Home repair license: $250, valid two years, and $250 to renew. BACP has also posted a business license fee update dated Jan 27, 2026 that we could not open, so ask BACP for the current fee.",
+     "text": "Home repair license: $250, valid two years, and $250 to renew. Fees change, so check with the Department of Business Affairs and Consumer Protection (BACP) for the current fee.",
      "figures": [
       "$250"
      ]
@@ -1022,7 +1025,7 @@
     }
    ],
    "glance": [
-    "General contractor for permit work, home repair license otherwise",
+    "General contractor for permit work, home repair license for home work without a permit",
     "None found (federal: EPA Section 608 for refrigerant)"
    ]
   },
@@ -1203,7 +1206,7 @@
     {
      "topic": "fee",
      "src": "bacp_table",
-     "text": "Limited Business License: $250, in a column headed license application fee per 2 years, as the BACP license table read on Oct 27, 2026. BACP has also posted a business license fee update dated Jan 27, 2026 that we could not open, so ask BACP for the current fee.",
+     "text": "Limited Business License: $250 for two years, in the BACP license table read on Oct 27, 2026. Fees change, so check with BACP for the current fee.",
      "figures": [
       "$250"
      ]
@@ -1319,7 +1322,7 @@
     {
      "topic": "fee",
      "src": "bacp_table",
-     "text": "Limited Business License: $250, in a column headed license application fee per 2 years, as the BACP license table read on Oct 27, 2026. BACP has also posted a business license fee update dated Jan 27, 2026 that we could not open, so ask BACP for the current fee.",
+     "text": "Limited Business License: $250 for two years, in the BACP license table read on Oct 27, 2026. Fees change, so check with BACP for the current fee.",
      "figures": [
       "$250"
      ]
@@ -1421,7 +1424,7 @@
     {
      "topic": "fee",
      "src": "bacp_table",
-     "text": "Limited Business License: $250, in a column headed license application fee per 2 years, as the BACP license table read on Oct 27, 2026. BACP has also posted a business license fee update dated Jan 27, 2026 that we could not open, so ask BACP for the current fee.",
+     "text": "Limited Business License: $250 for two years, in the BACP license table read on Oct 27, 2026. Fees change, so check with BACP for the current fee.",
      "figures": [
       "$250"
      ]
@@ -1535,7 +1538,7 @@
     {
      "topic": "fee",
      "src": "bacp_table",
-     "text": "Limited Business License: $250, in a column headed license application fee per 2 years, as the BACP license table read on Oct 27, 2026. BACP has also posted a business license fee update dated Jan 27, 2026 that we could not open, so ask BACP for the current fee.",
+     "text": "Limited Business License: $250 for two years, in the BACP license table read on Oct 27, 2026. Fees change, so check with BACP for the current fee.",
      "figures": [
       "$250"
      ]
@@ -1586,7 +1589,7 @@
    ],
    "glance": [
     "Not named; BACP sets the business license",
-    "Agriculture pesticide applicator license for hire"
+    "Agriculture pesticide applicator or operator license for hire"
    ]
   },
   {
@@ -1652,7 +1655,7 @@
     {
      "topic": "fee",
      "src": "bacp_table",
-     "text": "Private Scavenger $250 and Junk Peddler $250, in a column headed per 2 years, as the BACP license table read on Oct 27, 2026. BACP has also posted a business license fee update dated Jan 27, 2026 that we could not open, so ask BACP for the current fee.",
+     "text": "Private Scavenger $250 and Junk Peddler $250 for two years each, in the BACP license table read on Oct 27, 2026. Fees change, so check with BACP for the current fee.",
      "figures": [
       "$250"
      ]
@@ -1706,7 +1709,7 @@
    "name": "Pressure washing and surface cleaning",
    "h1": "Chicago pressure washing and surface cleaning rules",
    "title": "Chicago Pressure Washing and Surface Cleaning Rules",
-   "desc": "Chicago's Public Health permit for sandblasting, grinding and chemical washing, its fee, what the City pages say about pressure washing, and EPA lead rules.",
+   "desc": "Chicago's permit for sandblasting, grinding and chemical washing, its fee and EPA lead rules. The City pages we read do not mention pressure washing.",
    "card": "City permit for sandblasting, grinding and chemical washing",
    "summary": "The City's surface cleaning permit covers sandblasting, grinding and chemical washing. The City pages we read do not mention power or pressure washing.",
    "page_summary": "Chicago's Department of Public Health permits sandblasting, grinding and chemical washing of building surfaces. Here is that permit, its fee, what the pages say and do not say about pressure washing, and the lead rules.",
@@ -1769,7 +1772,7 @@
     {
      "topic": "fee",
      "src": "bacp_brick",
-     "text": "Limited Business License: $250, issued for two years, as the BACP page read on Oct 27, 2026. BACP has also posted a business license fee update dated Jan 27, 2026 that we could not open, so ask BACP for the current fee.",
+     "text": "Limited Business License: $250, issued for two years, as the BACP page read on Oct 27, 2026. Fees change, so check with BACP for the current fee.",
      "figures": [
       "$250"
      ]
@@ -1829,7 +1832,7 @@
    "name": "Snow removal",
    "h1": "Chicago snow removal business rules",
    "title": "Chicago Snow Removal Business License Rules",
-   "desc": "What a Chicago snow plowing or shoveling business needs: what BACP says about the City license, the City sidewalk clearing rules and fines, from agency pages.",
+   "desc": "What a Chicago snow plowing or shoveling business needs: what the City says about a business license, the sidewalk clearing rules and fines, from agency pages.",
    "card": "City business license, City sidewalk rules",
    "summary": "No City or State page we read names a snow removal license. The City sidewalk rules set the path width and clearing times.",
    "page_summary": "Snow plowing and shoveling have no license of their own on the City or State pages we read. Here is what the City says about a business license, and the City sidewalk snow rules for property owners.",
@@ -1873,7 +1876,7 @@
     {
      "topic": "fee",
      "src": "bacp_brick",
-     "text": "Limited Business License: $250, issued for two years, as the BACP page read on Oct 27, 2026. BACP has also posted a business license fee update dated Jan 27, 2026 that we could not open, so ask BACP for the current fee.",
+     "text": "Limited Business License: $250, issued for two years, as the BACP page read on Oct 27, 2026. Fees change, so check with BACP for the current fee.",
      "figures": [
       "$250"
      ]

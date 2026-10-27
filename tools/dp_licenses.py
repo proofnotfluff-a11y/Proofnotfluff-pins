@@ -220,7 +220,7 @@ def script(d):
             "var w='A '+money(n)+' project'+(need===2?' with complex demolition':need===1?' with ordinary demolition':' with no demolition')+' fits Class '+c['class']+'.';"
             "var lo=C.filter(function(x){return x.max!==null&&n<=x.max});"
             "if(need>0&&lo.length&&rank[lo[lo.length-1].demo]<need)w+=' The project value alone would fit Class '+lo[lo.length-1]['class']+', but that class does not cover this demolition.';"
-            "w+=' A higher class covers it too.';el('lf-why').textContent=w;"
+            "if(c['class']!=='A')w+=' A higher class covers it too.';el('lf-why').textContent=w;"
             "rows.forEach(function(r){if(r.getAttribute('data-cls')===c['class'])r.classList.add('on')})}"
             "if(v){v.addEventListener('input',pick);dm.addEventListener('change',pick);pick()}"
             "var s=document.getElementById('lf-trade');if(s){var all=document.querySelectorAll('.lf-trade');s.parentNode.parentNode.hidden=false;document.querySelectorAll('.lf-nojs').forEach(function(b){b.hidden=true});"
@@ -233,14 +233,15 @@ def script(d):
             "})();</script>")
 
 
-def foot(d, rel, E, M):
+def foot(d, rel, E, M, picker=True):
     return (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             f'<p>Every line on this page was read on the issuing agency\'s own page on {E(nice(d["checked"]))} and links to it. Agencies change fees and rules; '
             'the agency page is the one that counts.</p>'
             '<p>Public information, not legal, tax or insurance advice. ProofNotFluff is not affiliated with or endorsed by the City of Chicago, '
             'the State of Illinois or any agency named here.</p>'
-            '<p>Made by ProofNotFluff with AI assistance, reviewed and tested by the shop owner. The class picker runs in your browser; nothing you type is sent '
-            'anywhere. The page counts visits with Cloudflare Web Analytics, which sets no cookies.</p></div></footer>\n'
+            '<p>Made by ProofNotFluff with AI assistance and checked against each agency page. '
+            + ('The class picker runs in your browser; nothing you type is sent anywhere. ' if picker else '')
+            + 'The page counts visits with Cloudflare Web Analytics, which sets no cookies.</p></div></footer>\n'
             + script(d) + '\n</body></html>')
 
 
@@ -294,7 +295,7 @@ def extra_pages(p):
                 + trade_html(t, d, E, h="h2", picker=gc_picker(d, E) if gc else "", solo=True)
                 + f'<section class="block"><h2>Other trades</h2><p><a href="../">See every trade on one page</a>, or pick another.</p><ul class="lf-grid">{others}</ul></section>')
         title = t["title"]
-        out.append((t["slug"] + "/index.html", head(p, M, E, url, rel, title, t["desc"], robots, [crumb_ld]) + body + foot(d, rel, E, M)))
+        out.append((t["slug"] + "/index.html", head(p, M, E, url, rel, title, t["desc"], robots, [crumb_ld]) + body + foot(d, rel, E, M, picker=gc)))
     return out
 
 

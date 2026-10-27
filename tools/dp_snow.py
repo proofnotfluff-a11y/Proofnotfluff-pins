@@ -97,11 +97,11 @@ def wlabel(y):
 
 
 def day_words(d, year=False):
-    return f"{MONTH_NAMES[d.month]} {d.day}" + (f", {d.year}" if year else "")
+    return f"{MONTH_NAMES[d.month]}\u00a0{d.day}" + (f", {d.year}" if year else "")
 
 
 def short_day(d):
-    return f"{MONTH_NAMES[d.month][:3]} {d.day}"
+    return f"{MONTH_NAMES[d.month][:3]}\u00a0{d.day}"
 
 
 def nr(vals, p):
@@ -218,7 +218,7 @@ def cumulative(rows, end, t):
         hi.append(nr(vals, HIGH_P))
         if x <= end:
             now.append(sum(1 for e in cur["dates"][t] if key(e) <= key(x)))
-    return {"x": [short_day(x) for x in xs], "start": xs[0].isoformat(), "mid": mid, "lo": lo, "hi": hi, "now": now}
+    return {"x": [f"{MONTH_NAMES[x.month][:3]} {x.day}" for x in xs], "start": xs[0].isoformat(), "mid": mid, "lo": lo, "hi": hi, "now": now}
 
 
 def station_data(d):
@@ -278,7 +278,7 @@ CSS = ("<style>"
        ".sn-fig{position:relative;margin:12px 0 6px;padding:16px 16px 12px;background:var(--card);border:1px solid var(--line);border-radius:12px}"
        ".sn-fig figcaption{font-weight:700;color:var(--ink);margin:0 0 2px}.sn-fig .sn-sub{font-size:13.5px;color:var(--muted);margin:0 0 12px}"
        ".sn-plot{position:relative;height:210px;margin:0 0 0 30px}"
-       ".sn-plot.m{height:150px;max-width:720px}.sn-xl.m{max-width:720px}.sn-plot:focus-visible{outline:3px solid var(--focus);outline-offset:4px;border-radius:4px}"
+       ".sn-plot.m{height:150px}.sn-fm{max-width:760px}.sn-plot:focus-visible{outline:3px solid var(--focus);outline-offset:4px;border-radius:4px}"
        ".sn-gl{position:absolute;left:0;right:0;height:0;border-top:1px solid var(--sn-grid)}"
        ".sn-gl span{position:absolute;right:100%;margin-right:8px;transform:translateY(-50%);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}"
        ".sn-gl.base{border-top-color:var(--dash)}"
@@ -288,7 +288,7 @@ CSS = ("<style>"
        ".sn-col{position:relative;flex:1 1 0;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;cursor:default}"
        ".sn-col i{display:block;width:100%;max-width:24px;background:var(--sn-a);border-radius:4px 4px 0 0}"
        ".sn-col.on i,.sn-col:hover i{filter:brightness(1.15)}"
-       ".sn-col.miss i{height:10px;background:repeating-linear-gradient(45deg,var(--sn-g) 0 2px,transparent 2px 5px);border-radius:2px}"
+       ".sn-col.miss i{height:18px;background:repeating-linear-gradient(45deg,var(--sn-g) 0 2px,transparent 2px 5px);border-radius:2px}"
        ".sn-col b{font:600 12.5px system-ui,sans-serif;color:var(--ink);margin-bottom:4px;font-variant-numeric:tabular-nums}"
        ".sn-xl{display:flex;gap:2px;margin:6px 0 0 30px}.sn-xl span{flex:1 1 0;min-width:0;display:flex;justify-content:center;font-size:11.5px;color:var(--muted);white-space:nowrap}"
        ".sn-xl.yr span:first-child{justify-content:flex-start}.sn-xl.yr span:last-child{justify-content:flex-end}"
@@ -311,7 +311,7 @@ CSS = ("<style>"
        ".sn-t{width:100%;border-collapse:collapse;font-size:14.5px;min-width:560px}.sn-t th,.sn-t td{padding:9px 12px;border-bottom:1px solid var(--rule);text-align:right;font-variant-numeric:tabular-nums}"
        ".sn-t th:first-child,.sn-t td:first-child{text-align:left}.sn-t thead th{font-size:13px;color:var(--muted);font-weight:700;vertical-align:bottom}"
        ".sn-t tbody th{font-weight:600;color:var(--ink)}.sn-t tr:last-child td,.sn-t tr:last-child th{border-bottom:0}"
-       ".sn-t td.x{color:var(--muted);text-align:left}.sn-t tbody th{white-space:nowrap}.sn-t thead th.grp{text-align:center;border-bottom:1px solid var(--line);white-space:nowrap}.sn-t th.gr,.sn-t td.gr{text-align:left;padding-left:22px;border-left:1px solid var(--rule)}.sn-t tr.cur th small{display:block;font-weight:400;font-size:12.5px;color:var(--muted)}"
+       ".sn-t td.x{color:var(--muted);text-align:left}.sn-t tbody th{white-space:nowrap}.sn-t thead th.grp{text-align:center;border-bottom:1px solid var(--line);white-space:nowrap}.sn-t th.gr,.sn-t td.gr{width:160px;padding-left:22px;border-left:1px solid var(--rule)}.sn-t tr.cur th small{display:block;font-weight:400;font-size:12.5px;color:var(--muted)}"
        "[data-sn-t='1'] .c1,[data-sn-t='2'] .c2,[data-sn-t='3'] .c3,[data-sn-t='6'] .c6{background:var(--sn-wash);font-weight:700;color:var(--ink)}"
        ".sn-defs{margin:8px 0 0;padding-left:20px}.sn-defs li{margin:8px 0;color:var(--ink2)}.sn-defs b{color:var(--ink)}"
        ".sn-end p{color:var(--ink2);margin:0 0 4px}.sn-dl{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0}"
@@ -385,7 +385,7 @@ def months_chart(v, t, E):
     xl = "".join(f'<span class="k">{E(m["name"])}</span>' for m in sm["months"])
     lab = (f'Average plowable days a winter by month at {inch(t)} or more at {v["s"]["label"]}: '
            + ", ".join(f'{m["name"]} {avg_words(m["avg"])}' for m in sm["months"]))
-    return (f'<figure class="sn-fig"><figcaption>Plowable days by month</figcaption>'
+    return (f'<figure class="sn-fig sn-fm"><figcaption>Plowable days by month</figcaption>'
             f'<p class="sn-sub">Average plowable days in each month, over the {sm["n"]} complete winters, at {E(inch(t))} or more.</p>'
             f'<div class="sn-plot m" tabindex="0" role="img" aria-label="{E(lab)}" data-sn-tips><div class="sn-gl base" style="bottom:0" aria-hidden="true"></div>'
             f'<div class="sn-cols">{cols}</div><div class="sn-tip" hidden></div></div>'
@@ -622,7 +622,7 @@ def page_html(p):
     VS = lambda fn: "".join(f'<div data-v="{k}"{"" if k == st0 else " hidden"}>{fn(v, E)}</div>' for k, v in sd.items())
     calc = next((x for x in M.PAGES_LIVE if x.get("kind") == "snow"), None)
     calc_link = lambda i: (f'<a class="btn" id="{i}" data-base="{rel}{E(calc["slug"])}/" href="{rel}{E(calc["slug"])}/?station={st0}&amp;trigger={t0}#season">'
-                           'Use these counts in the snow pricing calculator</a>' if calc else "")
+                           'Price it in the snow calculator</a>' if calc else "")
     calc_btn = calc_link("sn-calc")
     ends = {k: v["end"] for k, v in sd.items()}
     through = (f'{day_words(ends["ohare"], True)}' if len(set(ends.values())) == 1 else

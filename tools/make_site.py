@@ -1889,7 +1889,7 @@ def _snow_fill():
              '<p class="sf-done" id="sfDone" aria-live="polite" hidden></p>'
              '<p class="sf-n">Days with new snow at or over your trigger in past winters at that station, from NOAA\'s daily weather records. '
              f'Past winters only, not a forecast. <a id="sfLink" href="../{board["slug"]}/?station={st0}&amp;trigger={t0}">Open the snow season board</a></p></div>'
-             '<style>.sf{margin:4px 0 6px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--canvas2)}'
+             '<style>#season{scroll-margin-top:80px}.sf{margin:4px 0 6px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--canvas2)}'
              '.sf-h{margin:0;font-weight:700;font-size:14.5px;color:var(--ink)}.sf-c{margin:2px 0 10px;font-size:13px;color:var(--ink2)}'
              '.sf-s{display:flex;flex-wrap:wrap;gap:10px 18px}.sf-seg{display:flex;flex-wrap:wrap;gap:6px;border:0;margin:0;padding:0;min-width:0}'
              '.sf-seg legend{font-size:13px;font-weight:600;color:var(--muted);margin:0 0 4px;padding:0}'
@@ -1911,7 +1911,7 @@ def _snow_fill():
     pre = ('<script>var PNF_SNOW=' + data + ';(function(){var q=new URLSearchParams(location.search),s=q.get("station"),t=String(parseInt(q.get("trigger"),10)),'
            'e=document.getElementById("events");if(e&&PNF_SNOW[s]&&PNF_SNOW[s].t[t]){var v=PNF_SNOW[s].t[t][1];e.value=Math.round(v)===v?String(v):v.toFixed(1);}})();</script>')
     js = ('<script>(function(){var C=PNF_SNOW,box=document.getElementById("snowfill"),ev=document.getElementById("events");if(!box||!ev)return;'
-          'var bs=[].slice.call(box.querySelectorAll(".sf-b")),ln=document.getElementById("sfLink"),done=document.getElementById("sfDone"),on=-1,N=["Light","Middle","Heavy"];'
+          'var bs=[].slice.call(box.querySelectorAll(".sf-b")),ln=document.getElementById("sfLink"),done=document.getElementById("sfDone"),on=-1,N=["Light","Middle","Heavy"],last=null;'
           'function val(n){return box.querySelector(\'input[name="\'+n+\'"]:checked\').value;}'
           'function pick(n,v){var i=box.querySelector(\'input[name="\'+n+\'"][value="\'+v+\'"]\');if(i)i.checked=true;return !!i;}'
           'function lab(n){return box.querySelector(\'input[name="\'+n+\'"]:checked\').parentNode;}'
@@ -1920,10 +1920,12 @@ def _snow_fill():
           'ln.href=ln.getAttribute("href").split("?")[0]+"?station="+val("sfSt")+"&trigger="+val("sfT");}'
           'function use(k,from){var v=C[val("sfSt")].t[val("sfT")][k];on=k;if(!from){ev.value=f(v);ev.dispatchEvent(new Event("input",{bubbles:true}));'
           'ev.dispatchEvent(new Event("change",{bubbles:true}));}paint();var w=lab("sfT").querySelector(".vh").textContent;'
-          'done.textContent=(from?"Filled from the snow season board: ":"Filled: ")+N[k].toLowerCase()+" winter at "+lab("sfSt").textContent+", "+w+"."+(from?" Tap Light or Heavy to change.":"");done.hidden=false;}'
+          'done.textContent=(from?"Filled from the snow season board: ":"Filled: ")+N[k].toLowerCase()+" winter at "+lab("sfSt").textContent+", "+w+"."+(from?" Tap Light or Heavy to change.":"");done.hidden=false;'
+          'last={v:ev.value,where:lab("sfSt").textContent+", "+lab("sfT").querySelector("[aria-hidden]").textContent};}'
           'bs.forEach(function(b){b.addEventListener("click",function(){use(+b.getAttribute("data-k"),false);});});'
-          'box.addEventListener("change",function(e){if(e.target.name==="sfSt"||e.target.name==="sfT"){on=-1;done.hidden=true;paint();}});'
-          'ev.addEventListener("input",function(e){if(e.isTrusted){on=-1;done.hidden=true;paint();}});'
+          'box.addEventListener("change",function(e){if(e.target.name==="sfSt"||e.target.name==="sfT"){on=-1;paint();'
+          'if(last&&ev.value===last.v){done.textContent="Your count is still "+last.v+" ("+last.where+"). Tap Light, Middle or Heavy for "+lab("sfSt").textContent+", "+lab("sfT").querySelector("[aria-hidden]").textContent+".";done.hidden=false;}else{done.hidden=true;}}});'
+          'ev.addEventListener("input",function(e){if(e.isTrusted){on=-1;last=null;done.hidden=true;paint();}});'
           'var q=new URLSearchParams(location.search),qs=q.get("station"),qt=String(parseInt(q.get("trigger"),10));'
           'if(qs&&C[qs]&&C[qs].t[qt]&&pick("sfSt",qs)&&pick("sfT",qt)){use(1,true);}else{paint();}})();</script>')
     return html_, (pre, js)

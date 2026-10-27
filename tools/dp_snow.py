@@ -142,6 +142,19 @@ def winters(s, first, last):
     return out, end
 
 
+REF = dt.date(2001, 7, 1)   # a winter with no Feb 29, to turn dates into days since July 1 and back
+
+
+def mid_day(days):
+    """The median date as a (month offset, day) key: halfway between the two middle dates when the count is even,
+    rounded to the nearest day (a half day rounds later)."""
+    if not days:
+        return None
+    offs = [(key_day(key(d), REF.year) - REF).days for d in days]
+    m = math.floor(statistics.median(offs) + 0.5)
+    return key(REF + dt.timedelta(m))
+
+
 def summary(rows, end, t):
     past = [r for r in rows if not r["current"] and r["complete"]]
     cur = rows[-1]
@@ -163,9 +176,9 @@ def summary(rows, end, t):
     snow_to_date = None
     return {"t": t, "n": n, "counts": counts, "low": low, "high": high, "mid": mid, "lowN": sum(1 for c in counts if c <= low),
             "highN": sum(1 for c in counts if c >= high), "fewest": fewest, "most": most, "months": months,
-            "firstMid": statistics.median_low([key(d) for d in firsts]) if firsts else None,
+            "firstMid": mid_day(firsts),
             "firsts": firsts, "lasts": lasts,
-            "lastMid": statistics.median_low([key(d) for d in lasts]) if lasts else None,
+            "lastMid": mid_day(lasts),
             "none": n - len(firsts), "cur": cur["events"][t], "curDates": cur["dates"][t],
             "toDate": statistics.median(to_date), "toDateLow": nr(to_date, LOW_P), "toDateHigh": nr(to_date, HIGH_P),
             "end": end, "incomplete": [r for r in rows if not r["current"] and not r["complete"]], "snowToDate": snow_to_date}
@@ -463,7 +476,8 @@ def dates_block(v, t, E):
             f'<div class="tile"><div class="lab">Last plowable day, middle</div><div class="val">{E(short_day(key_day(sm["lastMid"], y0)))}</div>'
             f'<div class="sub">Earliest {E(day_words(e2, True))}; latest {E(day_words(l2, True))}</div></div>'
             + none + '</div>'
-            + f'<p class="asof">Middle is the middle date across the {sm["n"] - sm["none"]} complete winters that had a day at {E(inch(t))} or more.</p>'
+            + f'<p class="asof">Middle is the median date across the {sm["n"] - sm["none"]} complete winters that had a day at {E(inch(t))} or more; '
+              'with an even count it is halfway between the two middle dates, to the nearest day.</p>'
             + (NWS_NOTE if v["s"]["key"] == "ohare" else ""))
 
 
@@ -676,6 +690,8 @@ def selftest():
     assert abs(sm["months"][2]["avg"] - 0.5) < 1e-9, "December average over complete winters"
     s6 = summary(rows, e, 6)
     assert s6["none"] == 1 and key_day(s6["firstMid"], 2023) == dt.date(2024, 1, 5), "winters with none, first day"
+    assert key_day(sm["firstMid"], 2023) == dt.date(2023, 12, 1), "even count: halfway between Nov 30 and Dec 1, a half day rounds later"
+    assert key_day(summary(rows, e, 1)["lastMid"], 2023) == dt.date(2024, 1, 24), "even count: true median of Nov 30 and Mar 20"
     c = cumulative(rows, e, 1)
     assert c["x"][0] == "Oct 1" and c["x"][-1] == "Apr 30" and c["now"][-1] == 1 and len(c["now"]) == 24, "running count to date"
     assert c["mid"][-1] == 2.5, "middle of past winters by April 30"

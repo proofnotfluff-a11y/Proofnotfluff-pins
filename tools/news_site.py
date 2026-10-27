@@ -144,6 +144,7 @@ CSS = ("<style>"
        ".tn-for{margin:10px 0 0;font-size:14px;color:var(--muted)}.tn-for b{color:var(--ink2);font-weight:600}.tn-more{margin:4px 0 0}.tn-more a{font-weight:700;color:var(--ink)}"
        ".tn-src{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:baseline;margin:12px 0 0;padding-top:10px;border-top:1px solid var(--rule);font-size:14px;color:var(--muted)}"
        ".tn-src>span+span{display:flex;flex-wrap:wrap;gap:2px 14px}.tn-src a{display:inline-flex;align-items:center;min-height:28px;color:var(--ink);font-weight:600}"
+       "@media(max-width:759px){main .tn-src a{padding:8px 0;min-height:0}.tn-src>span+span{row-gap:0}}"
        "@media(max-width:599px){.tn-top .tn-copy{width:44px;padding:0;justify-content:center}.tn-top .tn-copy .tn-ct{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}"
        ".ld-page .cta .ld-buybtn{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}"
        ".tn-copy{margin-left:auto;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--ink2);font:inherit;font-size:13px;font-weight:600;cursor:pointer}.tn-copy svg{width:16px;height:16px}"
@@ -170,8 +171,7 @@ def item_html(it, today, E, new=False, rel="../"):
     src = "".join(f'<a href="{E(s["url"])}" rel="noopener">{E(s["name"])}</a>' for s in it["sources"])
     data_tr = "|".join(it["trades"])
     return (f'<article class="tn-item" id="{E(it["id"])}" data-cat="{E(it["category"])}" data-trades="{E(data_tr)}" aria-labelledby="h-{E(it["id"])}">'
-            f'<div class="tn-top"><span class="tn-cat">{E(it["category"])}</span><span class="tn-st{" soon" if soon else ""}">{E(stage_text(it, today))}</span>'
-            + ('<span class="tn-st new">New</span>' if new else "")
+            '<div class="tn-top">' + ('<span class="tn-st new">New</span>' if new else "") + f'<span class="tn-cat">{E(it["category"])}</span><span class="tn-st{" soon" if soon else ""}">{E(stage_text(it, today))}</span>'
             + f'<span>Reported <time datetime="{E(it["date"])}">{E(nice(it["date"]))}</time></span>'
             f'<button class="tn-copy" type="button" data-copy="{E(it["id"])}" hidden aria-label="Copy link to this item">{COPY_ICO}<span class="tn-ct">Copy link</span></button></div>'
             f'<h4 id="h-{E(it["id"])}">{E(it["headline"])}</h4><p>{E(it["what"])}</p>'

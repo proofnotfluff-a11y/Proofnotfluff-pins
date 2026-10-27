@@ -37,7 +37,12 @@ REVIEW_WORDS = {"EXPRESS PERMIT PROGRAM": "Express Permit Program", "STANDARD PL
                 "SELF CERT": "Self Certification", "SELF CERTIFICATION": "Self Certification", "EASY PERMIT WEB": "Easy Permit (online)",
                 "EASY PERMIT": "Easy Permit", "SIGNS": "Signs", "ELECTRIC WIRING": "Electrical wiring", "WRECKING/DEMOLITION": "Wrecking and demolition",
                 "DIRECT DEVELOPER SERVICES": "Direct Developer Services", "SCAFFOLDING": "Scaffolding", "ELEVATOR EQUIPMENT": "Elevator equipment",
-                "REVIEW PERMIT": "Review permit", "PORCH CONSTRUCTION": "Porch construction", "REINSTATE REVOKED PERMIT": "Reinstated permit"}
+                "REVIEW PERMIT": "Review permit", "PORCH CONSTRUCTION": "Porch construction", "REINSTATE REVOKED PERMIT": "Reinstated permit",
+                "SIGN PERMIT": "Signs", "CONVEYANCE DEVICE PERMIT": "Elevators and other conveyances", "DEMOLITION PERMIT": "Wrecking and demolition",
+                "TRADITIONAL DEVELOPER SERVICES": "Traditional Developer Services"}
+TYPE_WORDS = {"EXPRESS PERMIT PROGRAM": "Express Permit Program", "REINSTATE REVOKED PMT": "Reinstated Revoked Permits",
+              "EASY PERMIT PROCESS": "Easy Permit", "ELEVATOR EQUIPMENT": "Elevator Equipment"}
+DASHES = re.compile("[\u2012\u2013\u2014\u2015]")   # the City writes some type names with an en dash
 SMALL = {"and", "or", "of", "the", "a", "to", "for", "in"}
 
 
@@ -46,14 +51,18 @@ def title(s):
     return " ".join(w if (i and w in SMALL) else w[:1].upper() + w[1:] for i, w in enumerate(words) if w) or "Not given"
 
 
+def norm_key(v):
+    return re.sub(r"\s+", " ", DASHES.sub("-", (v or "").strip().upper()))
+
+
 def review_label(v):
-    k = re.sub(r"\s+", " ", (v or "").strip().upper())
+    k = norm_key(v)
     return REVIEW_WORDS.get(k) or title(k)
 
 
 def type_label(v):
-    k = re.sub(r"^PERMIT\s*-\s*", "", re.sub(r"\s+", " ", (v or "").strip().upper()))
-    return title(k.replace("/", " and ").replace("EASY PERMIT PROCESS", "EASY PERMIT"))
+    k = re.sub(r"^PERMIT\s*-\s*", "", norm_key(v))
+    return TYPE_WORDS.get(k) or title(k.replace("/", " and "))
 
 
 def slug(s):
@@ -137,7 +146,7 @@ def clean(rows, w):
         if st:
             checked += 1
             match += (iss - st).days == days
-        recs.append({"t": (r["permit_type"] or "").strip().upper(), "r": (r["review_type"] or "").strip().upper(),
+        recs.append({"t": norm_key(r["permit_type"]), "r": norm_key(r["review_type"]),
                      "a": area_of(r["community_area"]), "day": iss, "m": iss.strftime("%Y-%m"), "d": days})
     return recs, drop, {"checked": checked, "match": match}
 
@@ -327,6 +336,8 @@ def selftest():
     assert exp["label"] == "Express Permit Program" and exp["last12"] == {"n": 0} and exp["trend"]["then"]["n"] == 25 and exp["trend"]["then"]["sameDay"] == 100.0
     assert next(m for m in d["all"]["monthly"] if m["m"] == "2026-09")["n"] == 60
     assert review_label("SOME NEW PATH") == "Some New Path" and type_label("PERMIT - WRECKING/DEMOLITION") == "Wrecking and Demolition"
+    assert type_label("PERMIT \u2013 EXPRESS PERMIT PROGRAM") == "Express Permit Program" and norm_key("PERMIT \u2013 X") == "PERMIT - X", "en dash keys"
+    assert type_label("PERMIT - REINSTATE REVOKED PMT") == "Reinstated Revoked Permits" and review_label("CONVEYANCE DEVICE PERMIT") == "Elevators and other conveyances"
     assert d["all"]["noArea12"] == 1
     wr = build_wreck(rows, today, "2026-10-27T07:00:00-0500", None, names)
     assert wr["counts"]["d7"] == 3 and wr["counts"]["noArea30"] == 1 and wr["counts"]["areasWith30"] == 1, wr["counts"]

@@ -6206,11 +6206,11 @@
    "slug": "chicago-rat-complaints",
    "kind": "rodents",
    "data": "permits/rodents-chicago/weekly.json",
-   "title": "Chicago Rat Complaints by Neighborhood, Updated Weekly | ProofNotFluff",
-   "desc": "Free weekly count of rat complaints to Chicago 311 by community area: the last 7 and 30 days, a year ago, and the week-by-week trend. From City records.",
+   "title": "Chicago Rat Index: Rat Complaints by Neighborhood, Weekly | ProofNotFluff",
+   "desc": "Free Chicago Rat Index: rat complaints to 311 per 1,000 residents in all 77 community areas, with ranks, rank changes, days to close and a yearly list.",
    "eyebrow": "Free weekly page, from City 311 records",
-   "h1": "Chicago Rat Complaints by Neighborhood",
-   "card": "Rat complaints to Chicago 311 by community area, the last 7 and 30 days against a year ago. Updated every Monday.",
+   "h1": "Chicago Rat Index: Rat Complaints by Neighborhood",
+   "card": "Rat complaints to Chicago 311 per resident in all 77 community areas, ranked, with a page and a badge for each. Updated every Monday.",
    "resident": {
     "title": "Seeing rats where you live?",
     "steps": [
@@ -6234,7 +6234,10 @@
    "method": [
     "Every Monday we count the City of Chicago's 311 service requests of type Rodent Baiting/Rat Complaint from its public 311 Service Requests dataset, by the community area on each request.",
     "Counts cover whole days in Chicago time and end the day before the pull. The year-ago column is the same 30 calendar days one year earlier. Requests the City marks as duplicates are left out.",
-    "Only counts are kept. No address, location, request number or anything a resident wrote is stored or shown, so the page cannot point to any building, block or business."
+    "Only counts are kept. No address, location, request number or anything a resident wrote is stored or shown, so the page cannot point to any building, block or business.",
+    "The Rat Index divides each community area's complaints by its residents, from the City of Chicago's ACS 5 Year Data by Community Area (U.S. Census Bureau estimates the City allocates to community areas), and ranks all 77 areas. The same residents are used for every period, so a rank change comes from the complaints alone. Areas with few residents, like Fuller Park or Burnside, can move a lot on a few complaints.",
+    "Median days to close uses only the created and closed dates on the requests the City closed in the last 30 days. The yearly list covers October 1 to September 30 and comes out each October.",
+    "Restaurant pest and hood citations come from the City's Food Inspections dataset: inspections of places whose facility type names a restaurant, counted by the community area their location falls in. We count whether an inspection cited violation 38, and violation 56 with an inspector note naming a hood, filter, exhaust, ventilation, vent or fan. Names, addresses and notes are never kept or shown."
    ],
    "faq": [
     [
@@ -6243,7 +6246,15 @@
     ],
     [
      "Which Chicago neighborhoods have the most rat complaints?",
-     "The table on this page ranks all 77 community areas by complaints in the last 30 days and updates every Monday. A higher count can also mean residents there report more often."
+     "The Rat Index on this page ranks all 77 community areas by rat complaints to 311 per 1,000 residents in the last 30 days, and the bar chart shows the most complaints in total. Both update every Monday. A higher count can also mean residents there report more often."
+    ],
+    [
+     "What is the Chicago Rat Index?",
+     "Our weekly rank of Chicago's 77 community areas by rat complaints to 311 per 1,000 residents, from City records. Each area has its own page with its rank, how the rank moved, the last 12 weeks and restaurant pest citations."
+    ],
+    [
+     "Can I put the Rat Index on my website?",
+     "Yes, for free. Pick a community area in the badge section, copy the code and paste it into your page. The badge updates every Monday and links back here. You can also download all the numbers as a CSV."
     ],
     [
      "Which community area is my neighborhood in?",
@@ -6258,7 +6269,7 @@
      "The tiles at the top compare the last 30 days with the same 30 days a year earlier, citywide and for each community area."
     ]
    ],
-   "sources": "City of Chicago 311 Service Requests, dataset v6vf-nfxy.",
+   "sources": "City of Chicago 311 Service Requests, dataset v6vf-nfxy; ACS 5 Year Data by Community Area, dataset t68z-cikk; Food Inspections, dataset 4ijn-s7e5.",
    "map": true
   },
   {

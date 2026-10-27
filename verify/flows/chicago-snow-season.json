@@ -1,0 +1,106 @@
+{
+ "about": "Snow season board: change the trigger and the station and see the counts change, then fill the snow pricing calculator from the board (Oct 27, 2026). The board's calculator link is checked by its href and then opened with goto: a cross-page click raises a headless Chrome view transition error on every page of the site.",
+ "page": "chicago-snow-season/",
+ "steps": [
+  {
+   "expect_visible": "[data-v='ohare-2'] .sn-tiles"
+  },
+  {
+   "expect_hidden": "[data-v='ohare-6'] .sn-tiles"
+  },
+  {
+   "expect_js": "document.querySelector(\"[data-v='ohare-2'] .tile.key .val\").textContent.trim() !== document.querySelector(\"[data-v='ohare-6'] .tile.key .val\").textContent.trim()"
+  },
+  {
+   "click": "#sn-ctl input[name='t'][value='6']",
+   "force": true
+  },
+  {
+   "expect_visible": "[data-v='ohare-6'] .sn-tiles"
+  },
+  {
+   "expect_hidden": "[data-v='ohare-2'] .sn-tiles"
+  },
+  {
+   "expect_text": "#sn-say",
+   "contains": "6 inches",
+   "screenshot": true
+  },
+  {
+   "expect_js": "document.querySelector('#winters .sn-tw[data-sn-t]').getAttribute('data-sn-t') === '6'"
+  },
+  {
+   "click": "#sn-ctl input[name='st'][value='midway']",
+   "force": true
+  },
+  {
+   "expect_visible": "[data-v='midway-6'] .sn-tiles"
+  },
+  {
+   "expect_visible": "[data-v='midway'] table"
+  },
+  {
+   "expect_text": "#sn-say",
+   "contains": "Midway"
+  },
+  {
+   "expect_js": "location.search.indexOf('station=midway') > -1 && location.search.indexOf('trigger=6') > -1"
+  },
+  {
+   "click": "#sn-ctl input[name='t'][value='2']",
+   "force": true
+  },
+  {
+   "expect_js": "document.getElementById('sn-calc').getAttribute('href').indexOf('station=midway&trigger=2') > -1"
+  },
+  {
+   "goto": "snow-removal-pricing-calculator/?station=midway&trigger=2"
+  },
+  {
+   "expect_js": "location.pathname.indexOf('snow-removal-pricing-calculator') > -1 && document.querySelector('#snowfill input[name=sfSt]:checked').value === 'midway' && document.querySelector('#snowfill input[name=sfT]:checked').value === '2'"
+  },
+  {
+   "expect_js": "document.getElementById('events').value === document.querySelector(\"#snowfill .sf-b[data-k='1'] b\").textContent.trim() && document.querySelector(\"#snowfill .sf-b[data-k='1']\").getAttribute('aria-pressed') === 'true' && !document.getElementById('sfDone').hidden"
+  },
+  {
+   "click": "#snowfill .sf-b[data-k='2']"
+  },
+  {
+   "expect_js": "document.getElementById('events').value === document.querySelector(\"#snowfill .sf-b[data-k='2'] b\").textContent.trim()"
+  },
+  {
+   "expect_js": "document.querySelector(\"#snowfill .sf-b[data-k='2']\").getAttribute('aria-pressed') === 'true'",
+   "screenshot": true
+  },
+  {
+   "click": "#snowfill input[name='sfT'][value='1']",
+   "force": true
+  },
+  {
+   "expect_js": "document.querySelectorAll(\"#snowfill .sf-b[aria-pressed='true']\").length === 0"
+  },
+  {
+   "click": "#snowfill .sf-b[data-k='1']"
+  },
+  {
+   "expect_js": "document.getElementById('events').value === document.querySelector(\"#snowfill .sf-b[data-k='1'] b\").textContent.trim() && document.querySelector('[data-out=covers]').textContent.trim() !== '0'"
+  },
+  {
+   "goto": "chicago-snow-season/"
+  },
+  {
+   "click": "#sn-ctl input[name='t'][value='3']",
+   "force": true
+  },
+  {
+   "expect_visible": "[data-v='ohare-3'] .sn-tiles"
+  },
+  {
+   "scroll": "#by-winter"
+  },
+  {
+   "expect_js": "(function(){var b=document.querySelector(\"[data-v='ohare-3'] .sn-plot\");b.focus();b.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowLeft',bubbles:true}));var t=b.querySelector('.sn-tip');return !t.hidden && /\\d{4}-\\d{2}/.test(t.textContent) && t.textContent.indexOf('3 inches')>-1;})()",
+   "screenshot": true
+  }
+ ]
+}

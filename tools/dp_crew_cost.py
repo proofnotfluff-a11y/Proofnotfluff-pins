@@ -275,7 +275,7 @@ function calc(){
   var ok=true;[[crew,n>=1&&n<=100&&n%1===0],[hrs,h>0&&h<=24],[rate,r>=1&&r<1000],[oth,o>=0&&o<1000]].forEach(function(p){p[0].closest('.row').classList.toggle('cc-bad',!p[1]);if(p[1])p[0].removeAttribute('aria-invalid');else{p[0].setAttribute('aria-invalid','true');ok=false}});
   var bar=$('cc-bar');if(bar)bar.classList.toggle('cc-inv',!ok);$('cc-out').classList.toggle('cc-inv',!ok);
   if(!ok){$('cc-total').textContent='Check the fields';$('cc-ph').textContent='';$('cc-bar-v').textContent='Check the fields';
-    ['cc-o-wages','cc-o-fr','cc-o-tax','cc-o-leave','cc-o-oth'].forEach(function(id){$(id).textContent=''});return}
+    ['cc-o-wages','cc-o-fr','cc-o-tax','cc-o-leave','cc-o-oth'].forEach(function(id){$(id).textContent=''});$('cc-o-wl').textContent='Wages';$('cc-o-ll').textContent='Chicago paid leave earned';return}
   var reg=pw?Math.min(h,D.otAfter):h,ot=pw?Math.max(0,h-D.otAfter):0,mult=pw?pw.otMF:1;
   var c=function(x){return Math.round((x+1e-9)*100)/100};
   var wages=c(n*(reg*r+ot*r*mult)),t=tax.checked?c(wages*D.fica/100):0,lh=lv.checked?n*h/35:0,lvv=c(2*lh*r),fr=pw?c(n*h*pw.fringes):0,ox=c(n*h*o);
@@ -395,7 +395,7 @@ def calculator(d, E, rel):
         '<div class="row"><label for="cc-crew">People on the crew</label><div class="field"><input class="cc-in" id="cc-crew" aria-describedby="cc-crew-err" type="text" inputmode="decimal" value="2" autocomplete="off"></div>'
         '<p class="cc-err" id="cc-crew-err">Enter a whole number of people, 1 to 100.</p></div>'
         '<div class="row"><label for="cc-hours">Hours each person works that day<small>Paid hours, drive time included if you pay it</small></label>'
-        '<div class="field"><input class="cc-in" id="cc-hours" aria-describedby="cc-hours-err" type="text" inputmode="decimal" value="8" autocomplete="off"></div><p class="cc-err" id="cc-hours-err">Enter up to 24 hours.</p></div>'
+        '<div class="field"><input class="cc-in" id="cc-hours" aria-describedby="cc-hours-err" type="text" inputmode="decimal" value="8" autocomplete="off"></div><p class="cc-err" id="cc-hours-err">Enter hours above 0, up to 24.</p></div>'
         '<div class="row"><label for="cc-rate">Hourly pay<small>Fills from the trade; type your own</small></label>'
         '<div class="field has-pre"><span class="pre">$</span><input class="cc-in" id="cc-rate" aria-describedby="cc-rate-err" type="text" inputmode="decimal" value="0" autocomplete="off"></div><p class="cc-err" id="cc-rate-err">Enter hourly pay from $1 to $999.</p></div>'
         '<div class="row"><label for="cc-other">Your other costs per hour worked<small>Workers\' comp, state and federal unemployment tax, health plan, uniforms</small></label>'
@@ -413,7 +413,7 @@ def calculator(d, E, rel):
         '<li><span>Your other costs</span><span id="cc-o-oth">$0.00</span></li></ul>'
         f'<p class="cc-note" id="cc-pwnote" hidden>Public works: this assumes a weekday. Hours past {d["prevailing"]["otDailyAfter"]} are paid at the overtime multiple of base pay the schedule lists; Saturday, Sunday and holiday rates are not priced here. '
         'Some lines list extra amounts owed on overtime hours; those are in the full table and not in this total.</p>'
-        '<p class="cc-note">Not counted: overtime past 40 hours in a week, state and federal unemployment tax, and your own costs unless you type them in. An estimate from public figures, not legal, tax or payroll advice; check with the agency.</p>'
+        '<p class="cc-note">Not counted: overtime past 40 hours in a week. Workers\' comp, unemployment tax and benefits count only if you type them into your other costs. An estimate from public figures, not legal, tax or payroll advice; check with the agency.</p>'
         '<div class="cc-next"><a class="btn" href="' + rel + CALC_CONTRACTOR + '/">Set your contractor rate</a>'
         '<a class="st-btn2" href="' + rel + CALC_HANDYMAN + '/">Set your handyman rate</a></div>'
         '<p class="cc-reset"><button type="button" id="cc-reset">Reset to the example</button></p></div>'
@@ -468,7 +468,7 @@ def rules_block(d, E):
             f'<p class="cc-note">From the City\'s notice, effective July 1, 2026 and last updated May 27, 2026. The rules are in Chicago Municipal Code 6-105 (minimum wage) and 6-130 (paid leave).</p></div>'
             '<div class="cc-card"><h3>Cook County</h3><p class="cc-sub">From July 1, 2026, in towns that use the County rate</p>'
             f'<dl><dt>Minimum wage</dt><dd>{m2(k["minWage"])} an hour</dd><dt>Tipped workers</dt><dd>{m2(k["tipped"])} an hour</dd></dl>'
-            f'<ul><li>Covers employees over 18 who work in Cook County for {E(k["hours"])}, for an employer with 4 or more employees (or as a domestic worker), when the employer has a business facility or license in the County.</li>'
+            f'<ul><li>Covers employees over 18 who work in Cook County {E(k["hours"])}, for an employer with 4 or more employees (or as a domestic worker), when the employer has a business facility or license in the County.</li>'
             '<li>A town can opt out or set its own minimum wage. Chicago sets its own, shown in the City of Chicago box.</li></ul>'
             f'<p class="cc-note">From the County\'s notice of {E(k["posted"])}. Check with the Cook County Commission on Human Rights for your town.</p></div>'
             '</div>')
@@ -539,7 +539,7 @@ def page_html(p):
     fica = i["ss"] + i["medicare"]
     lede = (f'In the Chicago metro, half of electricians earn more than {m2(med("electricians"))} an hour, construction laborers {m2(med("laborers"))} '
             f'and janitors {m2(med("janitors"))} (BLS, May 2025).')
-    intro = ('Pick a trade to see its full pay range and its Cook County public works rate, '
+    intro = ('Pick a trade to see its full pay range and its Cook County public works rate if it has one, '
              'then work out what a crew day costs you once employer Social Security, Medicare and Chicago paid leave are counted.')
     ex = example_day(d, by[DEFAULT_ROLE]["lines"][0])
     tiles = ('<div class="tiles ld-tiles">'
@@ -566,7 +566,7 @@ def page_html(p):
               f'for work on or after October 19, 2026. On public works the schedule also sets overtime: hours over {d["prevailing"]["otDailyAfter"]} a day Monday to Friday, and every hour on Saturdays, Sundays and holidays, at the multiple it lists.</p>'
               f'<div class="cc-tw" role="region" aria-label="Cook County public works rates for the trades on this page" tabindex="0">{pw_table(mrows, E, "cc-t")}</div>'
               f'<details class="cc-more"><summary>Show all {len(d["prevailing"]["rows"])} lines of the Cook County schedule</summary>'
-              f'{full_pw_table(d, E)}<p class="asof">"None listed" is a blank on the schedule. Type is the schedule\'s own split (building, highway, floating); class is the operating engineer or truck driver class; west truck driver rates cover {E(d["prevailing"]["truckWest"][:1].lower() + d["prevailing"]["truckWest"][1:])}, as the schedule says.</p></details>'
+              f'{full_pw_table(d, E)}<p class="asof">"None listed" is a blank on the schedule. Type is the schedule\'s own split (building, highway, floating); class is the operating engineer or truck driver class; west truck driver rates cover {E(d["prevailing"]["truckWest"].replace("That part", "the part").replace(" West of ", " west of "))}, as the schedule says.</p></details>'
               '<p class="asof">Which line applies to a worker depends on the work done, and the public body on the project must tell contractors to comply. For a classification question, check with the Illinois Department of Labor.</p>')
     role_links = "".join(f'<li><a class="cc-r" href="{SLUG_NAMES[r["key"]]}/">{E(r["label"])}<span>{m2(r["lines"][0]["median"]) if len(r["lines"]) == 1 else str(len(r["lines"])) + " kinds"}</span></a></li>' for r in d["oews"]["roles"])
     pay_sec = (pay_table(d, E, rel="")
@@ -667,10 +667,10 @@ def sub_page(p, d, role, M, E):
                    "check with the Illinois Department of Labor.")
         else:
             parts = [f"{title_case(x['trade'])} at {m2(x['base'])} an hour base plus {m2(x['fringes'])} of fringes, {m2(x['total'])} in all" for x in pw]
-            ans = (f"The Cook County schedule posted October 19, 2026 lists {' and '.join(parts)}, for public works. "
+            ans = (f"The Cook County schedule posted October 19, 2026 lists {', and '.join(parts)}, for public works. "
                    "Which line applies depends on the work; check with the Illinois Department of Labor.")
         faq.append((f"What is the Cook County prevailing wage for {PLURAL[role['key']]}?", ans))
-    faq.append(("Are these the rates I should charge customers?", "No. BLS counts the straight-time pay employers give employees, before overtime and premium pay and without benefits. It leaves out the self-employed, and a rate you bill a customer also has to cover your costs and profit."))
+    faq.append(("Are these the rates I should charge customers?", "No. These are wages paid to employees: straight-time pay before overtime and premium pay, without benefits, and leaving out the self-employed. A rate you bill also has to cover your crew's unpaid time, your vehicle, insurance, overhead and profit."))
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
               "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(h1)}</h1><p class="lede">{lede}</p></div>'

@@ -27,3 +27,9 @@
 ## Verification skill, 10:08 am (trades news chat)
 - [stated] Todd, 10:08 am: "Ensure this is a skill we bake into the PNF system" (Kem at Glitch Cat Club on verification: agents check their own work by using it, with Playwright, DevTools, image diff, Storybook and Sentry, packaged as a skill with its own CLI).
 - So: .claude/skills/verify/SKILL.md and its CLI tools/verify_site.py (Playwright hands at 390 and 1280 px in light and dark, DevTools eyes through Playwright's error and network events, axe, before/after pixel diff against origin/main, flow files in verify/flows/); CLAUDE.md invariant 9 makes it required for any docs/ change; question-pages, trades-news and product-builder call it; the Verify site workflow runs it on every push that touches docs/. Storybook skipped (no component library; flows cover each feature's states). Sentry on watch: it needs an account, a script on every page and a privacy change, so it waits for Todd's word and more traffic.
+
+## Build every R10 free feature (Todd, Oct 27, 2026, 12:17 pm, live chat: "Let's do them all. Write me the necessary prompts and I'll get them all going in parallel")
+- Scope: the merged R10 list (research_notes/kimi-2026-10-27-r10.md), items 1 to 14, as free pages; not the avoid list, and no free busiest contractors leaderboard (default no stands).
+- Run as 9 parallel build chats plus a quarterly report and a wrap-up after them; shared rules in coo/PARALLEL_BUILDS.md.
+- Plumbing (minor, no visible change): tools/make_site.py takes pages of kind "datapage" from their own modules (tools/dp_*.py), with sub-pages, lastmod, search entries, a /chicago-data/ hub and a footer link once one is live; 12 draft entries in site/pages.json render as noindex stubs until built.
+- Each page goes live only after its facts, design (average over 4.6), legal, copy and verify gates pass. Email capture, checkout, outreach, accounts and scheduled tasks still need Todd's word.

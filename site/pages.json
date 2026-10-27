@@ -6775,6 +6775,138 @@
      "Waitlist"
     ]
    ]
+  },
+  {
+   "slug": "chicago-snow-season",
+   "kind": "datapage",
+   "module": "dp_snow",
+   "draft": true,
+   "title": "Chicago Snow Season Board for Plow Owners | ProofNotFluff",
+   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
+   "eyebrow": "Free Chicago snow season board",
+   "h1": "Chicago Snow Season Board for Plow Owners",
+   "card": "Coming soon"
+  },
+  {
+   "slug": "chicago-permit-wait-times",
+   "kind": "datapage",
+   "module": "dp_permit_wait",
+   "draft": true,
+   "title": "Chicago Permit Wait Times | ProofNotFluff",
+   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
+   "eyebrow": "Free Chicago permit tracker",
+   "h1": "Chicago Permit Wait Times",
+   "card": "Coming soon"
+  },
+  {
+   "slug": "chicago-demolition-rodent-baiting",
+   "kind": "datapage",
+   "module": "dp_demo_baiting",
+   "draft": true,
+   "title": "Chicago Demolition Rodent Baiting | ProofNotFluff",
+   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
+   "eyebrow": "Free guide for pest control and wreckers",
+   "h1": "Chicago Demolition Rodent Baiting",
+   "card": "Coming soon"
+  },
+  {
+   "slug": "chicago-city-contracts",
+   "kind": "datapage",
+   "module": "dp_contracts",
+   "draft": true,
+   "title": "Chicago City Contracts by Trade | ProofNotFluff",
+   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
+   "eyebrow": "Free tracker of City awards",
+   "h1": "Chicago City Contracts by Trade",
+   "card": "Coming soon"
+  },
+  {
+   "slug": "chicago-trade-licenses",
+   "kind": "datapage",
+   "module": "dp_licenses",
+   "draft": true,
+   "title": "Chicago Trade License Finder | ProofNotFluff",
+   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
+   "eyebrow": "Free license finder",
+   "h1": "Chicago Trade License Finder",
+   "card": "Coming soon"
+  },
+  {
+   "slug": "chicago-public-way-permit-costs",
+   "kind": "datapage",
+   "module": "dp_cdot_fees",
+   "draft": true,
+   "title": "Chicago Public Way Permit Cost Calculator | ProofNotFluff",
+   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
+   "eyebrow": "Free permit cost calculator",
+   "h1": "Chicago Public Way Permit Cost Calculator",
+   "card": "Coming soon"
+  },
+  {
+   "slug": "chicago-dumpster-permits",
+   "kind": "datapage",
+   "module": "dp_dumpsters",
+   "draft": true,
+   "title": "Chicago Dumpster Permits by Neighborhood | ProofNotFluff",
+   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
+   "eyebrow": "Free neighborhood tracker",
+   "h1": "Chicago Dumpster Permits by Neighborhood",
+   "card": "Coming soon"
+  },
+  {
+   "slug": "chicago-crew-cost",
+   "kind": "datapage",
+   "module": "dp_crew_cost",
+   "draft": true,
+   "title": "What a Chicago Crew Costs | ProofNotFluff",
+   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
+   "eyebrow": "Free pay and labor cost benchmark",
+   "h1": "What a Chicago Crew Costs",
+   "card": "Coming soon"
+  },
+  {
+   "slug": "chicago-basement-flooding",
+   "kind": "datapage",
+   "module": "dp_flooding",
+   "draft": true,
+   "title": "Chicago Basement Flooding Calls by Neighborhood | ProofNotFluff",
+   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
+   "eyebrow": "Free neighborhood tracker",
+   "h1": "Chicago Basement Flooding Calls by Neighborhood",
+   "card": "Coming soon"
+  },
+  {
+   "slug": "chicago-repair-demand",
+   "kind": "datapage",
+   "module": "dp_repairs",
+   "draft": true,
+   "title": "Chicago Repair Demand by Trade | ProofNotFluff",
+   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
+   "eyebrow": "Free neighborhood tracker",
+   "h1": "Chicago Repair Demand by Trade",
+   "card": "Coming soon"
+  },
+  {
+   "slug": "material-price-changes",
+   "kind": "datapage",
+   "module": "dp_materials",
+   "draft": true,
+   "title": "Material Price Changes Since Your Quote | ProofNotFluff",
+   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
+   "eyebrow": "Free price index tracker",
+   "h1": "Material Price Changes Since Your Quote",
+   "card": "Coming soon"
+  },
+  {
+   "slug": "chicago-trades-quarterly",
+   "kind": "datapage",
+   "module": "dp_quarterly",
+   "draft": true,
+   "title": "Chicago Trades Quarterly | ProofNotFluff",
+   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
+   "eyebrow": "Free quarterly report",
+   "h1": "Chicago Trades Quarterly",
+   "card": "Coming soon"
   }
  ]
 }

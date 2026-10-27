@@ -62,6 +62,26 @@ LIVE_QUESTIONS = []   # live question pages, set by main() before any page is wr
 PAGES_LIVE = []       # every live page, set by main() (related calculators read it)
 PAGES_ALL = []        # every page in site/pages.json, live or draft, set by main() (a live page never links to a draft)
 CURRENT = {}          # the page being written: {"nav": "shop" | "calc" | "questions" | ""} for aria-current
+EXTRA_URLS = {}       # sub-pages a data page writes under its own folder (extra_pages), {url: lastmod}, for the sitemap
+
+
+# Free Chicago data pages built in parallel (Todd, Oct 27, 2026: "Let's do them all"; coo/PARALLEL_BUILDS.md). A page of
+# kind "datapage" names its own module in tools/ (dp_*.py), which owns everything about it: page_html(p), META
+# {h1, card, keywords}, and optionally lastmod(p) and extra_pages(p) -> [(relative path, html)]. This file never needs
+# editing to add one: the page entry in site/pages.json and the module are enough.
+def datapage_ready(p):
+    return bool(p.get("module")) and os.path.isfile(os.path.join(ROOT, "tools", p["module"] + ".py"))
+
+
+def kind_module(p):
+    """The module that renders a page outside this file, for the kinds that can add sub-pages or a lastmod."""
+    import importlib
+    name = p.get("module") if p.get("kind") == "datapage" else {"rodents": "rodents_site", "tradesnews": "news_site"}.get(p.get("kind"))
+    return importlib.import_module(name) if name and (p.get("kind") != "datapage" or datapage_ready(p)) else None
+
+
+def live_datapages():
+    return [p for p in PAGES_LIVE if p.get("kind") == "datapage"]
 
 
 def nav_html(rel, current=""):
@@ -93,6 +113,7 @@ def foot_nav(rel):
     # the free Chicago data pages that are no calculator (rat tracker live Oct 26 on Todd's go): linked from every page
     q += "".join(f'<a href="{rel}{p["slug"]}/">Chicago rat complaints</a>' for p in PAGES_LIVE if p.get("kind") == "rodents")
     q += "".join(f'<a href="{rel}{p["slug"]}/">Chicago trades news</a>' for p in PAGES_LIVE if p.get("kind") == "tradesnews")   # Todd, Oct 27
+    q += f'<a href="{rel}chicago-data/">Free Chicago data</a>' if live_datapages() else ""   # the hub of the data pages (Oct 27)
     return (f'<nav class="fnav" aria-label="Footer"><a href="{rel}shop/">Shop</a><a href="{rel}calculators/">Free calculators</a>{q}'
             f'<a href="{rel}refunds/">Refunds and cancelling</a><a href="{rel}privacy/">Privacy</a><a href="{SHOP}">Workbooks on Etsy</a>'
             '<a href="mailto:hello@proofnotfluff.com">hello@proofnotfluff.com</a></nav>')
@@ -2162,7 +2183,8 @@ STAGES = [("PARTIAL OCCUPANCY", "Partial occupancy approved", "hot"), ("OCCUPANC
 
 def is_live(p):
     """A page is public when its draft flag is off; a leads page also needs its Kit waitlist form."""
-    return not p.get("draft") and not (p.get("kind") == "leads" and not (p.get("kitForm") or p.get("checkout")))
+    return (not p.get("draft") and not (p.get("kind") == "leads" and not (p.get("kitForm") or p.get("checkout")))
+            and not (p.get("kind") == "datapage" and not datapage_ready(p)))
 
 
 def normalize_extra(slug, h1):
@@ -2657,6 +2679,8 @@ def page_html(p):
     if p.get("kind") == "question":    # question pages for the lead products (tools/question_site.py)
         import question_site
         return question_site.page_html(p)
+    if p.get("kind") == "datapage":    # a free Chicago data page with its own module (coo/PARALLEL_BUILDS.md)
+        return kind_module(p).page_html(p)
     url = BASE + p["slug"] + "/"
     rel = "../"
     form, results, script = PAGE_KINDS[p["kind"]](p)
@@ -3528,6 +3552,11 @@ def search_index(live):
     for p in live:   # the free Chicago pages that are no calculator (Todd, Oct 27: trades news; the rat map)
         if p.get("kind") == "tradesnews":
             out.append({"t": p["h1"], "s": p["slug"] + "/", "g": "Guide", "d": p.get("card", ""), "k": "news regulations permits licenses tax pay wages projects contractors trades chicago"})
+        if p.get("kind") == "datapage":
+            m = kind_module(p).META
+            out.append({"t": m["h1"], "s": p["slug"] + "/", "g": "Chicago data", "d": m.get("card", ""), "k": m.get("keywords", "").lower()})
+    if live_datapages():
+        out.append({"t": "Free Chicago data", "s": "chicago-data/", "g": "Page", "d": "Every free Chicago data page in one place", "k": "chicago data trackers maps permits snow contracts"})
     for p in live:
         if p["slug"] in group_of:
             out.append({"t": p["h1"], "s": p["slug"] + "/", "g": "Calculator", "d": p.get("card", ""), "k": (group_of[p["slug"]] + " " + syn.get(p["slug"], "")).lower()})
@@ -3551,6 +3580,26 @@ def questions_html():
             "mainEntity": {"@type": "ItemList", "numberOfItems": len(LIVE_QUESTIONS), "itemListElement": [
                 {"@type": "ListItem", "position": i, "url": BASE + q["slug"] + "/", "name": q["h1"]} for i, q in enumerate(LIVE_QUESTIONS, 1)]}}
     return (HEAD.format(title="Questions owners ask | ProofNotFluff", desc="Plain answers to questions cleaning, hood cleaning, pest control and e-commerce owners ask, with this week's numbers.",
+                        url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld, coll), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
+            FOOT.format(rel=rel, script="", sources=""))
+
+
+def data_hub_html():
+    """docs/chicago-data/: every free Chicago data page in one list, written once a data page is live (Oct 27, 2026)."""
+    CURRENT["nav"] = ""
+    rel = "../"
+    url = BASE + "chicago-data/"
+    crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Free Chicago data", None)])
+    hub = ([(p["slug"], p["h1"], p.get("card", "")) for p in PAGES_LIVE if p.get("kind") in ("tradesnews", "rodents")]
+           + [(p["slug"], kind_module(p).META["h1"], kind_module(p).META.get("card", "")) for p in live_datapages()])
+    lis = "".join(f'<li><a href="{rel}{s}/"><span><b>{E(h)}</b><small>{E(c)}</small></span>{ARROW}</a></li>' for s, h, c in hub)
+    body = (f'{crumb}<p class="eyebrow">Free, from public records</p><h1>Free Chicago data for trade owners</h1>'
+            '<p class="lede">Trackers and tools built from City, County, state and federal records, refreshed on their own schedule. Each page says where its numbers come from and when they were checked.</p>'
+            f'<ul class="st-qs">{lis}</ul>')
+    coll = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Free Chicago data for trade owners", "url": url,
+            "mainEntity": {"@type": "ItemList", "numberOfItems": len(hub), "itemListElement": [
+                {"@type": "ListItem", "position": i, "url": BASE + s + "/", "name": h} for i, (s, h, _) in enumerate(hub, 1)]}}
+    return (HEAD.format(title="Free Chicago Data for Trade Owners | ProofNotFluff", desc="Free Chicago trackers and tools for trade business owners, built from public records: permits, snow, City contracts, rats and more.",
                         url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld, coll), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
             FOOT.format(rel=rel, script="", sources=""))
 
@@ -3715,6 +3764,8 @@ def og_all(pages, live):
     for p in pages:
         if p.get("kind") in ("leads", "restleads", "question", "licleads", "newin") and not os.path.isfile(os.path.join(ROOT, p["data"])):
             continue
+        if p.get("kind") == "datapage" and not datapage_ready(p):
+            continue
         og_image(p["slug"], clean(p.get("eyebrow")) or "ProofNotFluff", clean(p["h1"]), clean(p.get("card")))
 
 
@@ -3744,17 +3795,38 @@ def main():
         if p.get("kind") in ("leads", "restleads", "question", "licleads", "newin") and not os.path.isfile(os.path.join(ROOT, p["data"])):
             print("skipped", p["slug"], "(no data yet)")
             continue
-        CURRENT["nav"] = "questions" if p.get("kind") == "question" else ("shop" if p.get("kind") in ("leads", "restleads", "licleads") else ("news" if p.get("kind") == "tradesnews" else "" if p.get("kind") in ("newin", "rodents", "agentkit") else "calc"))
+        if p.get("kind") == "datapage" and not datapage_ready(p):   # a noindex stub until its module lands (never live, never linked)
+            CURRENT["nav"] = ""
+            out = os.path.join(DOCS, p["slug"]); os.makedirs(out, exist_ok=True)
+            open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(
+                HEAD.format(title=E(p["title"]), desc=E(p.get("eyebrow", "")), url=BASE + p["slug"] + "/", rel="../", shop=SHOP, ld="", bodycls=' class="st-page"',
+                            robots='<meta name="robots" content="noindex, nofollow">', analytics="")
+                + f'<h1>{E(p["h1"])}</h1><p class="lede">This page is being built.</p>' + FOOT.format(rel="../", script="", sources=""))
+            print("stub", p["slug"], f"(no tools/{p.get('module')}.py yet)")
+            continue
+        CURRENT["nav"] = "questions" if p.get("kind") == "question" else ("shop" if p.get("kind") in ("leads", "restleads", "licleads") else ("news" if p.get("kind") == "tradesnews" else "" if p.get("kind") in ("newin", "rodents", "agentkit", "datapage") else "calc"))
         out = os.path.join(DOCS, p["slug"]); os.makedirs(out, exist_ok=True)
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page_html(p))
         if p.get("kind") == "tradesnews":   # the brief's RSS feed sits next to it
             import news_site
             open(os.path.join(out, "feed.xml"), "w", encoding="utf-8").write(news_site.feed_xml(p, news_site.load(p)))
+        mod = kind_module(p) if p.get("kind") in ("rodents", "datapage") else None
+        if mod and hasattr(mod, "extra_pages"):   # sub-pages under the page's own folder (one per community area, say)
+            for relpath, page in mod.extra_pages(p):
+                f = os.path.normpath(os.path.join(out, relpath))
+                if not f.startswith(out + os.sep):
+                    sys.exit(f"{p['slug']}: extra page outside its folder: {relpath}")
+                os.makedirs(os.path.dirname(f), exist_ok=True)
+                open(f, "w", encoding="utf-8").write(page)
+                if is_live(p) and relpath.endswith("index.html"):
+                    EXTRA_URLS[BASE + p["slug"] + "/" + relpath[:-len("index.html")]] = mod.lastmod(p) if hasattr(mod, "lastmod") else None
+        CURRENT["nav"] = ""
         print("wrote", p["slug"])
     open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(home_html(pages, live))
     # two front doors draft (move 5): noindex, not in the sitemap, not linked; goes live only on Todd's go
     open(os.path.join(DOCS, "home-two-doors.html"), "w", encoding="utf-8").write(home_html(pages, live, doors=True))
-    store = [("shop", shop_html()), ("refunds", refunds_html()), ("privacy", privacy_html()), ("calculators", calculators_html())] + ([("questions", questions_html())] if LIVE_QUESTIONS else [])
+    store = ([("shop", shop_html()), ("refunds", refunds_html()), ("privacy", privacy_html()), ("calculators", calculators_html())] + ([("questions", questions_html())] if LIVE_QUESTIONS else [])
+             + ([("chicago-data", data_hub_html())] if live_datapages() else []))
     for slug, page in store:
         d = os.path.join(DOCS, slug); os.makedirs(d, exist_ok=True)
         open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(page)
@@ -3776,6 +3848,12 @@ def main():
         if p.get("kind") == "tradesnews":
             import news_site
             lastmod[BASE + p["slug"] + "/"] = news_site.load(p)["updated"]
+        if p.get("kind") == "datapage" and hasattr(kind_module(p), "lastmod") and kind_module(p).lastmod(p):
+            lastmod[BASE + p["slug"] + "/"] = kind_module(p).lastmod(p)
+    for u, m in EXTRA_URLS.items():   # a data page's sub-pages (extra_pages)
+        urls.append(u)
+        if m:
+            lastmod[u] = m
     for q in LIVE_QUESTIONS:   # a question page changes when its data does
         try:
             dd = json.load(open(os.path.join(ROOT, q["data"]), encoding="utf-8"))

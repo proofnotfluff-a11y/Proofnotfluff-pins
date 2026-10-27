@@ -6969,7 +6969,7 @@
    "slug": "chicago-crew-cost",
    "kind": "datapage",
    "module": "dp_crew_cost",
-   "draft": true,
+   "draft": false,
    "title": "What a Chicago Crew Costs: Trade Pay, Public Works Rates, Minimum Wage | ProofNotFluff",
    "desc": "Chicago metro hourly pay for 12 trades (BLS, May 2025), Cook County prevailing wage with fringes, the 2026 Chicago minimum wage and paid leave, and a free crew day cost calculator.",
    "eyebrow": "Free pay and labor cost benchmark",

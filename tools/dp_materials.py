@@ -117,7 +117,7 @@ def lastmod(p):
 # ------------------------------------------------------------------ pieces
 CSS = ("<style>"
        ":root{--mp-up:#a63e21;--mp-dn:#00856f}@media(prefers-color-scheme:dark){:root{--mp-up:#e2683f;--mp-dn:#1fa293}}"
-       ".mp-hero .lede{max-width:780px}.mp-lead{border-top:3px solid var(--accent)}@media(min-width:900px){.mp-calc{align-items:stretch}.mp-calc>form.card{display:flex;flex-direction:column}.mp-calc>form.card .calc-reset{margin-top:auto}}.mp-btns .btn,.mp-btns .st-btn2{min-height:48px;display:inline-flex;align-items:center;justify-content:center;padding-top:0;padding-bottom:0;box-sizing:border-box}.mp-btns{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}.mp-tw.mp-nar{max-width:720px}.mp-hero .ld-heroact{margin-bottom:20px}.mp-name,.mp-dv .n,.mp-t tbody th,.mp-rel a,.mp-res .sub{overflow-wrap:anywhere}.mp-tiles .lab,.mp-res .lab{white-space:normal}.mp-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}@media(min-width:900px){.mp-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}"
+       ".mp-hero h1{text-wrap:balance}@media(max-width:599px){.mp-calc .field select{font-size:15px}}.mp-hero .lede{max-width:780px}.mp-lead{border-top:3px solid var(--accent)}.mp-btns .btn,.mp-btns .st-btn2{min-height:48px;display:inline-flex;align-items:center;justify-content:center;padding-top:0;padding-bottom:0;box-sizing:border-box}.mp-btns{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}.mp-tw.mp-nar{max-width:720px}.mp-hero .ld-heroact{margin-bottom:20px}.mp-name,.mp-dv .n,.mp-t tbody th,.mp-rel a,.mp-res .sub{overflow-wrap:anywhere}.mp-tiles .lab,.mp-res .lab{white-space:normal}.mp-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}@media(min-width:900px){.mp-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}"
        ".mp-tiles .val small{font-size:.55em;font-weight:600;color:inherit;opacity:.8}.mp-name{font-size:clamp(16px,9cqi,22px)!important;line-height:1.25}"
        ".mp-calc{margin-top:8px}@media(min-width:900px){.mp-calc{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}"
        ".mp-calc .row{grid-template-columns:1fr;gap:6px}.mp-calc .field select{text-align:left;padding-right:28px;min-height:44px}"
@@ -132,7 +132,7 @@ CSS = ("<style>"
        ".mp-key i{display:inline-block;width:18px;height:10px;border-radius:3px;margin-right:6px;vertical-align:0}"
        ".mp-dv{margin:12px 0 0;padding:14px 16px 10px;background:var(--card);border:1px solid var(--line);border-radius:12px}"
        ".mp-dv ol{list-style:none;margin:0;padding:0}section.block .mp-dv li,section.block .mp-rel li,section.block .mp-key li{max-width:none}"
-       ".mp-dv a{display:grid;grid-template-columns:minmax(150px,300px) minmax(0,1fr) 76px;gap:4px 12px;align-items:center;min-height:44px;"
+       ".mp-dv a{display:grid;grid-template-columns:minmax(150px,300px) minmax(0,520px) 76px;justify-content:start;gap:4px 12px;align-items:center;min-height:44px;"
        "padding:2px 6px;margin:0 -6px;border-radius:8px;color:var(--ink);text-decoration:none;position:relative}"
        ".mp-dv a:hover,.mp-dv a:focus-visible{background:var(--rule)}.mp-dv a:focus-visible{outline:3px solid var(--focus);outline-offset:1px}"
        ".mp-dv .n{font-size:14.5px;font-weight:600;line-height:1.25}.mp-dv b{text-align:right;font:700 14.5px system-ui,sans-serif;font-variant-numeric:tabular-nums}"
@@ -256,7 +256,7 @@ function run(){var s=ser(mat.value),o=s[5],now=o[o.length-1],then=null;for(var i
  out('say').textContent=s[1]+' is '+words(ch)+' from '+lab(then[0])+' to '+lab(now[0])+'. '+money(a,2)+' at the '+lab(then[0])+' index is '+money(nw,2)+' at the '+lab(now[0])+' index.';
  var pl=[];if(then[2])pl.push(lab(then[0]));if(now[2])pl.push(lab(now[0]));var pn=out('pnote');
  pn.hidden=!pl.length;pn.textContent=pl.length?pl.join(' and ')+(pl.length>1?' are':' is')+' preliminary: BLS can revise '+(pl.length>1?'them':'it')+' for up to 4 months after '+(pl.length>1?'they first come':'it first comes')+' out.':'';
- last=s[1]+', BLS producer price index '+s[3]+' ('+s[4]+', not seasonally adjusted): '+then[1].toFixed(3)+' in '+lab(then[0])+(then[2]?' (preliminary)':'')+' and '+now[1].toFixed(3)+' in '+lab(now[0])+(now[2]?' (preliminary)':'')+', '+words(ch)+'. '+money(a,2)+' at the '+lab(then[0])+' index is '+money(nw,2)+' at the '+lab(now[0])+' index. Index values: U.S. Bureau of Labor Statistics, retrieved '+D.got+'. Change and amount calculated by ProofNotFluff (proofnotfluff.com/material-price-changes/). BLS.gov cannot vouch for the data or analyses derived from these data after the data have been retrieved from BLS.gov.';
+ last=s[1]+', BLS producer price index '+s[3]+' ('+(s[1].indexOf(s[4])===0?'':s[4]+', ')+'not seasonally adjusted): '+then[1].toFixed(3)+' in '+lab(then[0])+(then[2]?' (preliminary)':'')+' and '+now[1].toFixed(3)+' in '+lab(now[0])+(now[2]?' (preliminary)':'')+', '+words(ch)+'. '+money(a,2)+' at the '+lab(then[0])+' index is '+money(nw,2)+' at the '+lab(now[0])+' index. Index values: U.S. Bureau of Labor Statistics, retrieved '+D.got+'. Change and amount calculated by ProofNotFluff (proofnotfluff.com/material-price-changes/). BLS.gov cannot vouch for the data or analyses derived from these data after the data have been retrieved from BLS.gov.';
  out('copied').textContent=''}
 amt.addEventListener('blur',function(){var a=parse(amt.value);if(a>=0)amt.value=a.toLocaleString('en-US',{maximumFractionDigits:2})});
 mat.addEventListener('change',function(){fillMonths(mon.value);run()});mon.addEventListener('change',run);amt.addEventListener('input',run);
@@ -435,7 +435,7 @@ def read_right(d, E):
     midwest = any(x["area"] != "national" for x in d["mats"])
     blocks = [("Index numbers, not Chicago prices",
                "Each index tracks what U.S. producers get for that material, across the country"
-               + (" or, for Midwest ready-mix concrete, across the Midwest region. " if midwest else ". ")
+               + (", or across the Midwest region for the regional ready-mix concrete index. " if midwest else ". ")
                + "It shows how far prices moved, not what a Chicago supplier charges you."),
               ("The last 4 months can still change",
                "BLS revises each month for up to 4 months after it first comes out. Those months carry a P. Run a quote again after a revision and the result can move a little."),
@@ -549,11 +549,11 @@ def page_html(p):
               "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "isAccessibleForFree": True,
               "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}
     lede = (f'How far {len(d["mats"])} materials the trades buy have moved since the month you quoted, from the federal producer price index. '
-            f'{n_up} of {len(ys)} are up on a year ago. Free, no sign-up.')
+            f'{n_up} of {len(ys)} are up from a year ago. Free, no sign-up.')
     tiles = ('<div class="tiles ld-tiles mp-tiles">'
              f'<div class="tile mp-lead"><div class="lab">Top rise, 1\u00a0yr</div><div class="val">{pct_txt(top["y12"])}</div><div class="sub">{E(top["title"])}, since {nb(mlabel(top["y12o"][0]))}</div></div>'
              f'<div class="tile"><div class="lab">{"Top drop" if low["y12"] < 0 else "Smallest rise"}, 1\u00a0yr</div><div class="val">{pct_txt(low["y12"])}</div><div class="sub">{E(low["title"])}, since {nb(mlabel(low["y12o"][0]))}</div></div>'
-             f'<div class="tile"><div class="lab">Up on a year ago</div><div class="val">{n_up} <small>of {len(ys)}</small></div><div class="sub">materials on this page</div></div>'
+             f'<div class="tile"><div class="lab">Up from a year ago</div><div class="val">{n_up} <small>of {len(ys)}</small></div><div class="sub">materials on this page</div></div>'
              f'<div class="tile"><div class="lab">Latest month</div><div class="val">{L}</div><div class="sub">{"preliminary; " if d["latest"] in d["prelim"] else ""}'
              + (f'next update {E(nb(nice(nx["date"])))}' if nx else "BLS updates monthly") + '</div></div>'
              '</div>'
@@ -608,7 +608,7 @@ def sub_html(p, m, d):
     L = mlabel(m["last"][0])
     first = m["obs"][0]
     since = pct(first[1], m["last"][1])
-    h1 = f'{title_case(m["title"])} Price Index'
+    h1 = f'{title_case(m["title"])} Price Index'.replace("-", "\u2011")   # a hyphenated name never breaks at its hyphen
     title = f'{title_case(m["title"])} Price Index: Change Since Your Quote | ProofNotFluff'
     regional = m["area"] != "national"
     subject = m["title"].replace("Midwest region ", "") if regional else m["title"]
@@ -633,7 +633,7 @@ def sub_html(p, m, d):
            + '<p class="asof" style="max-width:720px"><abbr class="mp-p" title="Preliminary">P</abbr> marks a preliminary month BLS can still revise. n/a: BLS has no value for the month compared. The CSV has every value to 3 decimals, as BLS publishes it.</p>')
     same = [x for x in d["mats"] if x["group"] == m["group"] and x is not m]
     rel_links = ('<ul class="mp-rel">' + "".join(f'<li><a href="../{E(x["slug"])}/">{E(x["title"])}</a></li>' for x in same) + '</ul>') if same else ""
-    about = (f'<p>BLS series <span class="mp-id">{E(m["id"])}</span>, "{E(m["title"])}": producer price index by commodity, {m["area"]}, not seasonally adjusted. '
+    about = (f'<p>BLS series <span class="mp-id">{E(m["id"])}</span>, "{E(m["title"])}": producer price index by commodity, {"" if m["title"].startswith(m["area"]) else m["area"] + ", "}not seasonally adjusted. '
              f'The series ID and title are BLS\'s own, as listed in {source_link(m["titleSource"], E)}. '
              'Anyone can look up the same numbers on bls.gov with this ID.</p>')
     body = (f'{crumb}<div class="ld-hero mp-hero"><p class="eyebrow">BLS producer price index</p><h1>{E(h1)}</h1><p class="lede">{E(lede)}</p>'
@@ -643,10 +643,10 @@ def sub_html(p, m, d):
             f'<section class="block" id="quote" aria-labelledby="quote-h">{calc_html(d, E, default=m["slug"])}</section>'
             f'<section class="block" id="months"><h2>Every month</h2>{tbl}'
             f'<div class="mp-dl mp-btns"><a class="st-btn2" href="{E(m["slug"])}.csv" download>Download this series (CSV)</a>'
-            f'<a class="st-btn2" href="../#all">All {len(d["mats"])} materials</a></div></section>'
+            f'<a class="st-btn2" href="../#all">See every material</a></div></section>'
             f'<section class="block"><h2>About this index</h2>{about}{read_right(d, E)}</section>'
             + (f'<section class="block"><h2>More in {E(m["group"].lower())}</h2>{rel_links}</section>' if rel_links else "")
-            + '<p class="rl-act mp-btns"><a class="btn" href="#quote">Check a quote</a> <a class="st-btn2" href="../">Every material</a></p>')
+            + '<p class="rl-act mp-btns"><a class="btn" href="#quote">Check a quote</a> <a class="st-btn2" href="../#all">See every material</a></p>')
     js = calc_js(d).replace("var root=document.querySelector('[data-mp-calc]');", "var root=document.querySelector('[data-mp-calc]');if(root)root.setAttribute('data-default'," + json.dumps(m["slug"]) + ");")
     return (head_html(M, E, title, desc, url, rel, M.ld_tags(crumb_ld), robots) + body + foot_html(M, E, rel, d) + js + LINE_JS + "</body></html>")
 

@@ -81,7 +81,7 @@ CSS = ("<style>"
        ".dd-one .cta{grid-template-columns:1fr}.dd-two{display:grid;gap:16px}@media(min-width:900px){.dd-two{grid-template-columns:1fr 1fr}}"
        ".dd-two .cta{grid-template-columns:1fr;height:100%;align-items:start}.dd-two .cta h2{margin-top:0;text-wrap:balance}"
        ".dd-name{font-size:clamp(20px,2.6vw,26px);line-height:1.15}"
-       ".dd-more .dd-tw{margin:0}@media(min-width:600px){.dd-t{table-layout:fixed}.dd-t .c1{width:9%}.dd-t .c2{width:29%}.dd-t .c3{width:15%}.dd-t .c4{width:20%}.dd-t .c5{width:13%}.dd-t .c6{width:14%}}"".dd-more summary{box-shadow:none}"".ld-page .ld-tiles{margin-top:22px}.ld-page .ld-heroact .st-btn2{min-height:50px}.ld-page .eyebrow{text-wrap:balance}""#dmap .gm-a path.sel{stroke:var(--ink);stroke-width:4;paint-order:stroke}"".dd-two .cta>div{display:flex;flex-direction:column;height:100%}.dd-two .cta .ld-buybtn{margin-top:auto;padding-top:8px}"
+       ".dd-more .dd-tw{margin:0}@media(min-width:600px){.dd-t{table-layout:fixed}.dd-t .c1{width:9%}.dd-t .c2{width:29%}.dd-t .c3{width:15%}.dd-t .c4{width:20%}.dd-t .c5{width:13%}.dd-t .c6{width:14%}}"".dd-more summary{box-shadow:none}.dd-more{border:0;background:none;border-radius:0}.dd-one .cta .ld-buybtn{margin-top:18px}#dmap .gm-big small{text-wrap:balance}"".ld-page .ld-tiles{margin-top:22px}.ld-page .ld-heroact .st-btn2{min-height:50px}.ld-page .eyebrow{text-wrap:balance}""#dmap .gm-a path.sel{stroke:var(--ink);stroke-width:4;paint-order:stroke}"".dd-two .cta>div{display:flex;flex-direction:column;height:100%}.dd-two .cta .ld-buybtn{margin-top:auto;padding-top:8px}"
               "@media(max-width:599px){.dd-t{min-width:0}.dd-t th:nth-child(4),.dd-t td:nth-child(4),.dd-t th:nth-child(6),.dd-t td:nth-child(6){display:none}"
        ".dd-t th,.dd-t td{padding:9px 7px}.dd-bars{height:150px;gap:3px;padding:14px 10px 8px}.dd-bars div:not(:nth-child(3n+1)):not(:last-child) span{visibility:hidden}"
        ".dd-bars div:not(.cur) b{visibility:hidden}.dd-bars div:first-child span{align-self:flex-start}}"
@@ -232,7 +232,7 @@ def page_html(p):
                       f'<i style="height:{max(3, round(v / peak * 78))}%"></i><span>{E(month_name(m, True))}{" " + m[:4] if m.endswith("-01") or i == 0 else ""}</span></div>'
                       for i, (m, v) in enumerate(zip(show, vals)))
             + "</div><p class=\"asof\">Each bar counts the permits CDOT issued in that month."
-            + (f" {E(month_name(part))} is shown faded because it is not over yet." if part else "") + "</p>")
+            + (f" {E(month_name(d['monthLabels'][lm]))}, the last full month, is solid; {E(month_name(part))} is faded because it is not over yet." if part else "") + "</p>")
     row = lambda a: (f'<tr><td class="rk">{a["rank"] if a["d90"] else ""}</td><th scope="row">{E(a["name"])}</th><td>{a["d90"]:,}</td><td>{a["yr90"]:,}</td>'
                      f'<td{" class=dd-up" if change(a["d90"], a["yr90"]) is not None and change(a["d90"], a["yr90"]) >= 25 else ""}>{E(pct(change(a["d90"], a["yr90"])))}</td>'
                      f'<td>{a["months"][lm]:,}</td></tr>')

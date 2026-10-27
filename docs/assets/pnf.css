@@ -721,5 +721,27 @@ body{overflow-x:clip}
 .ld-answer .qa-tag{font:700 12px/1.3 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
 .ld-answer .qa-tag span{text-transform:none;letter-spacing:0;font-weight:600}
 .ld-answer p:last-child{margin:0;font-size:16.5px;line-height:1.6;color:var(--ink)}
-/* header: the menu sheet up to 1023px, so the four links, search and Free samples never wrap the header onto two rows (Oct 27, 2026: Trades news joined the links; at 768 the header was already two rows) */
-@media(max-width:1023px){header.top .wrap{flex-wrap:nowrap}.nav-links{display:none}nav.top a.navcta{display:none}.navm{display:block}nav.top{flex-wrap:nowrap;gap:8px}.qf-btn{margin-left:0}}
+/* header: the menu sheet up to 1119px (1023px until the Chicago data link joined, Oct 27), so the four links, search and Free samples never wrap the header onto two rows (Oct 27, 2026: Trades news joined the links; at 768 the header was already two rows) */
+@media(max-width:1119px){header.top .wrap{flex-wrap:nowrap}.nav-links{display:none}nav.top a.navcta{display:none}.navm{display:block}nav.top{flex-wrap:nowrap;gap:8px}.qf-btn{margin-left:0}}
+/* redesign for the free Chicago data pages (Oct 27, 2026): grouped footer, the data hub, the home free tools section,
+   the calculators page link to the hub and the More free Chicago data strip at the end of each data page */
+.fnav{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:6px 32px;margin:0 0 18px}
+.fcol{display:flex;flex-direction:column;align-items:flex-start}
+.fh{margin:10px 0 2px;font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink)}
+@media(min-width:760px){.fnav a{min-height:36px}}
+.dh-page .cx-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr))}
+.dh-line{margin:-4px 0 0;color:var(--ink2);font-size:15px;max-width:640px}
+.dh-meta{margin-top:auto;padding-top:12px;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.dh-item .cx-d{margin-bottom:2px}
+.dh-meta>span{display:block}.dh-date{font-variant-numeric:tabular-nums}
+.dh-page .st-band{margin-top:36px}
+.dh-more{margin:52px 0 0;padding-top:28px;border-top:1px solid var(--line)}
+.dh-more h2{font-size:24px;line-height:1.25;margin:0}
+.st-tools2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 44px;margin-top:6px}
+.st-tcol .st-cgroup{margin:14px 0 8px}
+.st-tlist{grid-template-columns:1fr}
+@media(max-width:759px){.st-tools2{grid-template-columns:1fr;gap:12px}}
+.cx-xlink{margin:4px 0 4px;max-width:760px}
+.cx-xlink a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:44px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink2);text-decoration:none;font-size:15px;line-height:1.45}
+.cx-xlink b{color:var(--ink)}.cx-xlink a:hover{border-color:var(--ink)}.cx-xlink svg{flex:0 0 18px;color:var(--accent-text)}
+.cx-elink{margin:10px 0 0;font-size:14.5px;color:var(--ink2)}

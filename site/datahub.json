@@ -1,0 +1,117 @@
+{
+  "_about": "The /chicago-data/ hub, the home page's free tools section and the More free Chicago data strip on each data page (redesign, Oct 27, 2026). Groups are by the job a trade owner is doing. A live data page missing here still shows, under More Chicago data, with its own title and card. name is the short card title; cadence and source must match the page's workflow and its own source line.",
+  "groups": [
+    {
+      "id": "find-work",
+      "title": "Find work",
+      "line": "Where the work is in Chicago right now, by neighborhood and by trade."
+    },
+    {
+      "id": "price-plan",
+      "title": "Price and plan",
+      "line": "Costs and conditions to price a job or plan a season."
+    },
+    {
+      "id": "permits",
+      "title": "Permits and licenses",
+      "line": "What the City and the State ask for, and how long it takes."
+    },
+    {
+      "id": "news",
+      "title": "Stay current",
+      "line": "New rules, taxes, pay and projects, with the source linked."
+    }
+  ],
+  "pages": {
+    "chicago-rat-complaints": {
+      "group": "find-work",
+      "name": "Chicago Rat Index",
+      "source": "Chicago 311",
+      "cadence": "Updated every Monday"
+    },
+    "chicago-city-contracts": {
+      "group": "find-work",
+      "name": "City Contracts by Trade",
+      "source": "City of Chicago",
+      "cadence": "Updated daily"
+    },
+    "chicago-repair-demand": {
+      "group": "find-work",
+      "name": "Repair Demand by Trade",
+      "source": "City of Chicago",
+      "cadence": "Updated daily"
+    },
+    "chicago-basement-flooding": {
+      "group": "find-work",
+      "name": "Basement Flooding Calls",
+      "source": "Chicago 311",
+      "cadence": "Updated daily"
+    },
+    "chicago-dumpster-permits": {
+      "group": "find-work",
+      "name": "Dumpster Permits by Neighborhood",
+      "source": "CDOT",
+      "cadence": "Updated daily"
+    },
+    "material-price-changes": {
+      "group": "price-plan",
+      "name": "Material Price Changes",
+      "source": "BLS",
+      "cadence": "Checked every weekday"
+    },
+    "chicago-public-way-permit-costs": {
+      "group": "price-plan",
+      "name": "Public Way Permit Cost Calculator",
+      "source": "CDOT",
+      "cadence": "2026 fee schedule"
+    },
+    "chicago-crew-cost": {
+      "group": "price-plan",
+      "name": "What a Chicago Crew Costs",
+      "source": "BLS and the State",
+      "cadence": "Checked every week"
+    },
+    "chicago-snow-season": {
+      "group": "price-plan",
+      "name": "Snow Season Board",
+      "source": "NOAA",
+      "cadence": "Updated daily, Oct to Apr"
+    },
+    "chicago-permit-wait-times": {
+      "group": "permits",
+      "name": "Permit Wait Times",
+      "source": "City of Chicago",
+      "cadence": "Updated every Monday"
+    },
+    "chicago-trade-licenses": {
+      "group": "permits",
+      "name": "Trade License Finder",
+      "source": "City and State agencies",
+      "cadence": "Checked by hand"
+    },
+    "chicago-demolition-rodent-baiting": {
+      "group": "permits",
+      "name": "Demolition Rodent Baiting",
+      "source": "City of Chicago",
+      "cadence": "Updated every Monday"
+    },
+    "chicago-trades-news": {
+      "group": "news",
+      "name": "Chicago Trades News",
+      "source": "Sources linked",
+      "cadence": "Updated daily"
+    },
+    "chicago-trades-quarterly": {
+      "group": "news",
+      "name": "Chicago Trades Quarterly",
+      "source": "Public records",
+      "cadence": "Every quarter"
+    }
+  },
+  "homeFeature": [
+    "chicago-rat-complaints",
+    "chicago-city-contracts",
+    "material-price-changes",
+    "chicago-permit-wait-times"
+  ]
+}

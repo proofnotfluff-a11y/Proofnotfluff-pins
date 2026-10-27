@@ -114,10 +114,20 @@ BUSINESS = re.compile(r"\b(?:INC|INCORPORATED|LLC|L\.L\.C|CORP|CORPORATION|COMPA
                       r"DEMOLITION|WRECKING|ENVIRONMENTAL|TECHNOLOGIES|TECHNOLOGY|PARTNERS|HOLDINGS|INTERNATIONAL|MOTORS|EXCAVATING|"
                       r"PAVING|MAINTENANCE|CLEANING|JANITORIAL|JANITORS?|PROFESSIONALS?|JV|JOINT VENTURE|BUILDERS|ENGINEERING|CONSULTING|MANAGEMENT|"
                       r"FACILITY|FACILITIES|INDUSTRIAL|SUPPLIES|TRUCKING|ROOFERS|EXTERMINATING|PROPERTIES|DEVELOPMENT|"
-                      r"NURSERY|NURSERIES|RECYCLING|DISPOSAL|TOWING|CONCRETE|ASPHALT|HEATING|COOLING|LIGHTING|ENERGY|"
+                      r"NURSERY|NURSERIES|RECYCLING|DISPOSAL|TOWING|REMOVAL|CONCRETE|ASPHALT|HEATING|COOLING|LIGHTING|ENERGY|"
                       r"ABATEMENT|RESTORATION|FOUNDATION|ASSOCIATION|AUTHORITY|UNIVERSITY|COLLEGE|AIRLINES|AVIATION)\b|"
-                      r"&\s*CO\b|\bCO[.,]|\bCO\s+INC\b")
-DBA = re.compile(r"\s+(?:DBA|D/B/A|D\.B\.A\.?)\s+", re.I)
+                      r"&\s*CO\b|\bCO\.?,?\s+(?:INC|LLC|LTD|CORP)\b")
+DBA = re.compile(r"\s*[,/]?\s*\b(?:D\s?/?\.?\s?B\s?/?\.?\s?A|T/A|A/K/A|AKA)\b\.?\s*", re.I)
+NOTE = re.compile(r"\s*\b(?:ATTN|C/O|CARE OF)\b:?\s*", re.I)
+PIECE = re.compile(r"\s+-\s+|\s+/\s*|\s*/\s+|[()|]")
+STOPW = {"OF", "THE", "AND", "FOR", "IN", "AT", "ON", "TO", "BY", "A"}
+
+
+def personlike(s):
+    """2 to 4 words, no digit, no business word, no linking word: reads as a person's name."""
+    w = re.findall(r"[A-Za-z][A-Za-z'.]*", s)
+    return (2 <= len(w) <= 4 and not re.search(r"\d", s) and not BUSINESS.search(s.upper())
+            and not any(x.upper().strip(".") in STOPW for x in w))
 FMT = "%Y-%m-%dT%H:%M:%S"
 
 
@@ -182,12 +192,18 @@ def pdf(r):
 
 def vendor(name):
     n = re.sub(r"\s+", " ", re.sub(r"\s*-{2,}\s*", " - ", (name or "").strip()))
+    n = re.sub(r"\|\s*CLEANED-UP\s*$", "", n, flags=re.I).strip()
     if not n:
         return "Not stated"
     parts = DBA.split(n, maxsplit=1)
     if len(parts) == 2 and not BUSINESS.search(parts[0].upper()):
         n = parts[1]  # "JOHN SMITH DBA SMITH PLUMBING": show the trade name only, never the owner's own name
-    return n if BUSINESS.search(n.upper()) else "Name withheld"
+    if not BUSINESS.search(n.upper()):
+        return "Name withheld"
+    pieces = [p.strip(" ,.;:") for p in PIECE.split(NOTE.sub("|", DBA.sub("|", n))) if p.strip(" ,.;:")]
+    if len(pieces) > 1 and any(personlike(p) for p in pieces):
+        return "Name withheld"  # a person's name beside a business ("ACME INC C/O MARY JONES", "SMITH ELECTRIC (JOHN SMITH)")
+    return n
 
 
 AIRLINE = re.compile(r"\bAIR ?LINES?\b|AIRLINES'")   # a vendor that is an airline or an airline terminal group
@@ -213,7 +229,8 @@ def row_out(r):
     return [day(r.get("approval_date")), kind, re.sub(r"\s+", " ", (r.get("purchase_order_description") or "").strip()),
             title_dept(r.get("department")), vendor(r.get("vendor_name")), amount(r), (r.get("contract_type") or "").strip(),
             (r.get("procurement_type") or "").strip(), (r.get("specification_number") or "").strip(),
-            (r.get("purchase_order_contract_number") or "").strip(), day(r.get("start_date")), day(r.get("end_date")), pdf(r)]
+            (r.get("purchase_order_contract_number") or "").strip(), day(r.get("start_date")), day(r.get("end_date")),
+            "" if vendor(r.get("vendor_name")) == "Name withheld" else pdf(r)]   # a withheld vendor's contract PDF names them
 
 
 ROW_COLS = ["approved", "revision",   # revision -1: a transfer to a new contract number, not a new award
@@ -301,7 +318,7 @@ def build(rows36, ending_rows, today, meta, fetched):
                               "approved": day(first.get("approval_date")), "start": day(first.get("start_date")), "end": end,
                               "original": round(sum(amount(r) for r in orig), 2), "value": value, "revisions": max(rev(r) for r in rs), "changes": sum(1 for r in rs if rev(r) > 0),
                               "requirements": bool(orig) and all(amount(r) == 0 for r in orig),
-                              "pdf": next((pdf(r) for r in reversed(rs) if pdf(r)), "")}))
+                              "pdf": "" if vendor(last.get("vendor_name") or first.get("vendor_name")) == "Name withheld" else next((pdf(r) for r in reversed(rs) if pdf(r)), "")}))
     trades = []
     for t in TRADES:
         rows = [r for keys, r in pub if t["key"] in keys]
@@ -390,6 +407,7 @@ def selftest():
     assert j["m36"]["mods"] == 2 and j["m36"]["modsUpTotal"] == 7000 and j["m36"]["modsDownTotal"] == -2000, "modifications apart"
     assert all("SUPPLIES" not in r[2] for r in j["rows"]), "supplies left out"
     assert any(r[4] == "Name withheld" for r in j["rows"]) and j["withheld"] == 1, "a person's name is withheld"
+    assert all(not r[12] for r in j["rows"] if r[4] == "Name withheld"), "no PDF link beside a withheld name"
     assert "JOHN" not in json.dumps(d) and "MAIN ST" not in json.dumps(d) and "60601" not in json.dumps(d), "no person, no address"
     assert [e["contract"] for e in j["ending"]] == ["D", "Q"] and j["ending"][0]["end"] == "2027-03-31" and j["ending"][0]["requirements"], "latest revision sets the end; the last day counts"
     assert j["ending"][0]["changes"] == 1 and j["ending"][0]["revisions"] == 3, "changes are counted records, not the revision number"
@@ -405,6 +423,12 @@ def selftest():
     for p in ("JOHN SNOW", "MICHAEL POWER", "JAMES STEEL", "ANNA CENTER", "LEE NATIONAL", "AL CO", "JOHN Q SMITH &", "AND", "JOHN SMITH D/B/A JS"):
         assert vendor(p) == "Name withheld", p
     assert vendor("JOHN SMITH DBA SMITH PLUMBING") == "SMITH PLUMBING" and vendor("ALFRED BENESCH & CO") != "Name withheld"
+    for p in ("AL CO.", "JOHN SMITH, CO.", "SMITH ELECTRIC INC DBA JOHN SMITH", "ACME LLC ATTN JOHN SMITH", "ACME INC C/O MARY JONES",
+              "SMITH PLUMBING (JOHN SMITH)", "ACME INC - MARY JONES", "JOHN SMITH (SMITH PLUMBING)", "JOHN SMITH -- SMITH ROOFING"):
+        assert vendor(p) == "Name withheld", p
+    for p in ("JOHN SMITH/DBA SMITH PLUMBING", "JOHN SMITH,DBA SMITH PLUMBING", "JOHN SMITH D B A SMITH PLUMBING", "JOHN SMITH T/A SMITH PLUMBING", "JOHN SMITH AKA SMITH PLUMBING"):
+        assert vendor(p) == "SMITH PLUMBING", p
+    assert vendor("AERO SNOW REMOVAL (ILL) LLC") == "AERO SNOW REMOVAL (ILL) LLC" and vendor("BRANDENBURG INDUSTRIAL SRVCS CO.|CLEANED-UP") == "BRANDENBURG INDUSTRIAL SRVCS CO."
     assert vendor("DAYSPRING PROFESSIONAL JANITOR") != "Name withheld" and vendor("ABM Aviation") == "ABM Aviation" and vendor("A SAFE HAVEN FOUNDATION") != "Name withheld"
     assert vendor("SEVEN-D CONSTRUCTION CO.") != "Name withheld" and vendor("SNOW SYSTEMS") != "Name withheld"
     assert title_dept("DEPT OF FLEET AND FACILITY MANAGEMENT") == "Department of Fleet and Facility Management"

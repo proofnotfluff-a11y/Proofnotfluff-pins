@@ -157,8 +157,9 @@ def td(v, label, num=False, cls=""):
     return f'<td{f" class={chr(34)}{c}{chr(34)}" if c else ""} data-l="{label}"><span class="cv">{v}</span></td>'
 
 
-def pdf_link(E, u, what):
-    return f'<a href="{E(u)}" rel="noopener">PDF<span class="sr"> of the contract for {E(short(clean(what)))}</span></a>' if u else '<span class="cc-sub nw">No PDF</span>'
+def pdf_link(E, u, label):
+    """label names the record: "contract 75076" or "revision 10 to contract 32835"."""
+    return f'<a href="{E(u)}" rel="noopener">PDF<span class="sr"> of {E(label)}</span></a>' if u else '<span class="cc-sub nw">No PDF</span>'
 
 
 SR = "<style>.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}</style>"
@@ -283,6 +284,18 @@ def short(t, n=60):
     return t if len(t) <= n else t[:n].rsplit(" ", 1)[0].rstrip(",;:-(") 
 
 
+GLOSS = {"BID": "Bid means a competitive bid", "RFP": "RFP is a request for proposals", "RFQ": "RFQ is a request for qualifications",
+         "SOLE SOURCE": "Sole source means one supplier was picked without a bid", "EMERGENCY": "Emergency means bought fast for an emergency",
+         "": "Not stated means the City left it blank", "Not stated": "Not stated means the City left it blank"}
+
+
+def proc_note(groups):
+    """Explain only the procurement types this table shows."""
+    seen = [GLOSS[g["name"]] for g in groups if g["name"] in GLOSS]
+    seen = list(dict.fromkeys(seen))
+    return "How bought is the City's procurement type." + (" " + "; ".join(seen) + "." if seen else "")
+
+
 def low(t):
     """The trade name inside a sentence: lower case, but HVAC stays HVAC."""
     return t["name"] if t["key"] == "hvac" else t["name"].lower()
@@ -345,12 +358,12 @@ def page_html(p):
             names.setdefault(e["contract"], []).append(t["short"])
     erows = [f'<tr>{td(E(M.nice_date(e["end"])), "Ends", cls="dt")}'
              f'<td class="d" data-l="Covers">{E(clean(e["description"]))}<span class="cc-sub">{E(", ".join(names[e["contract"]]))} · {dept(E, e["department"])}</span></td>'
-             + td(E(e["vendor"]), "Vendor") + td(value_cell(E, e), "Value so far", True) + td(pdf_link(E, e["pdf"], e["description"]), "Contract") + '</tr>'
+             + td(E(e["vendor"]), "Vendor") + td(value_cell(E, e), "Value so far", True) + td(pdf_link(E, e["pdf"], "contract " + e["contract"]), "Contract") + '</tr>'
              for e, t in ending[:12]]
     ehead = [("Ends", False), ("What it covers", False), ("Vendor", False), ("Value so far", True), ("Contract", False)]
     FIRST = 5
     end_html = (table("City contracts in these trades ending soonest", ehead, erows[:FIRST])
-                + (f'<details class="cc-more"><summary>Show the other {len(erows) - FIRST} ending soonest</summary>'
+                + (f'<details class="cc-more"><summary>Show {len(erows) - FIRST} more contracts ending soon</summary>'
                    + table("More City contracts in these trades ending soon", ehead, erows[FIRST:]) + '</details>' if len(erows) > FIRST else "")
                 + (f'<p class="asof">The {min(12, len(ending))} that end soonest of the {plural(len(ending), "contract")} ending in the next 12 months. Every one is on its trade\'s page and in its CSV. '
                    'Value so far adds up the award and every change since.</p>') if ending else '<p class="cc-empty">No contract in these trades has an end date in the next 12 months.</p>')
@@ -406,6 +419,8 @@ def trade_csv(d, t):
                        'Purchases of goods, fleet upkeep, design and engineering, software, art, grants, leases, redevelopment deals, deals with other public bodies and airline-run airport terminal projects are left out.')])
     import make_site as M
     wtr.writerow([M.CITY_DISCLAIMER["Chicago"]])
+    wtr.writerow(["ProofNotFluff is not affiliated with or endorsed by the City of Chicago. Public information, not legal, tax or financial advice. "
+                  "Before you bid, check the solicitation and its rules with the City's Department of Procurement Services."])
     return "\ufeff" + out.getvalue()   # a byte-order mark, so Excel reads the City's disclaimer (one\u2019s) word for word
 
 
@@ -450,28 +465,28 @@ def trade_page(p, d, src, t):
              f'<div class="tile"><div class="lab">New awards, 36 months</div><div class="val">{a36["awards"]:,}</div><div class="sub">'
              + ((f'{E(usd_short(a36["total"]))}, median {E(usd_short(a36["median"]))}' if a36["paid"] > 1 else E(usd_short(a36["total"]))) if a36["median"] else ("none in 36 months" if not a36["awards"] else "no dollar total")) + '</div></div>'
              f'<div class="tile"><div class="lab">Changes, 36 months</div><div class="val">{a36["mods"]:,}</div><div class="sub">'
-             + (f'{E(usd_short(a36["modsUpTotal"]))} added' if a36["modsUpTotal"] else ("none in 36 months" if not a36["mods"] else "no money added"))
+             + (f'{E(usd_short(a36["modsUpTotal"]))} added' if a36["modsUpTotal"] else ("none in 36 months" if not a36["mods"] else ("no money changed" if not a36["modsDown"] else "no money added")))
              + (f', {E(usd_short(-a36["modsDownTotal"]))} taken out' if a36["modsDownTotal"] else "") + '</div></div></div>'
              f'<p class="asof">City data as of {E(M.nice_date(s["rowsUpdatedAt"]))}. Totals and medians use new awards with a dollar amount; award totals are not unit prices.</p>')
     erows = [f'<tr>{td(E(M.nice_date(e["end"])), "Ends", cls="dt")}'
              f'<td class="d" data-l="Covers">{E(clean(e["description"]))}<span class="cc-sub">{dept(E, e["department"])} · <span class="nw">contract {E(e["contract"])}</span>'
              + (f' · <span class="nw">spec {E(e["spec"])}</span>' if e["spec"] else "") + '</span></td>'
              + td(E(e["vendor"]), "Vendor") + td(value_cell(E, e), "Value so far", True)
-             + td(E(M.nice_date(e["approved"])) if e["approved"] else "Not stated", "First approved", cls="dt") + td(pdf_link(E, e["pdf"], e["description"]), "Contract") + '</tr>'
+             + td(E(M.nice_date(e["approved"])) if e["approved"] else "Not stated", "First approved", cls="dt") + td(pdf_link(E, e["pdf"], "contract " + e["contract"]), "Contract") + '</tr>'
              for e in t["ending"]]
     th_end = [("Ends", False), ("What it covers", False), ("Vendor", False), ("Value so far", True), ("First approved", False), ("Contract", False)]
     end_html = (table(f'{t["name"]} contracts ending in the next 12 months', th_end, erows[:5])
                 + (f'<details class="cc-more"><summary>Show the other {len(erows) - 5} ending</summary>'
                    + table(f'More {low(t)} contracts ending in the next 12 months', th_end, erows[5:]) + '</details>' if len(erows) > 5 else "")
-                + '<p class="asof">Ending by the latest end date on the contract, after any time extensions. Value so far adds up the award and every change since. '
+                + '<p class="asof">Sorted by the latest end date on the contract, after any time extensions. Value so far adds up the award and every change since. '
                   + (' A $0 value is a contract the City orders from as needed.' if any(e["requirements"] and e["value"] == 0 for e in t["ending"]) else '') + wh(t["ending"]) + '</p>') if erows else (
         f'<p class="cc-empty">No City contract that matched {E(low(t))} has an end date in the next 12 months. Many standard contracts, such as most construction, '
-        'end when the work is accepted and do not show here.</p>')
+        'end when the work is accepted, so they never show as ending.</p>')
     SHOW = 25
     nrow = lambda r: (f'<tr>{td(E(M.nice_date(r["approved"])), "Approved", cls="dt")}'
                       f'<td class="d" data-l="Covers">{E(clean(r["description"]))}<span class="cc-sub">{dept(E, r["department"])}</span></td>'
                       + td(E(r["vendor"]), "Vendor") + td(award_cell(r), "Award", True) + td(E(proc(r["procurementType"] or "Not stated")), "How bought")
-                      + td(pdf_link(E, r["pdf"], r["description"]), "Contract") + '</tr>')
+                      + td(pdf_link(E, r["pdf"], "contract " + r["contract"]), "Contract") + '</tr>')
     nhead = [("Approved", False), ("What it covers", False), ("Vendor", False), ("Award", True), ("How bought", False), ("Contract", False)]
     new_html = (table(f'New {low(t)} awards, newest first', nhead, [nrow(r) for r in new[:SHOW]])
                 + (f'<details class="cc-more"><summary>Show the other {plural(len(new) - SHOW, "new award")}</summary>'
@@ -479,9 +494,9 @@ def trade_page(p, d, src, t):
                 + (f'<p class="asof">{wh(new).strip()}</p>' if wh(new) else "")
                 ) if new else f'<p class="cc-empty">No new City award matched {E(low(t))} from {E(M.nice_date(w["from36"]))} to {E(M.nice_date(w["today"]))}.' + (" Changes to older contracts are below." if mods else "") + '</p>'
     mrow = lambda r: (f'<tr>{td(E(M.nice_date(r["approved"])), "Approved", cls="dt")}'
-                      f'<td class="d" data-l="Covers">{E(clean(r["description"]))}<span class="cc-sub">{E(r["vendor"])} · <span class="nw">contract {E(r["contract"])}</span>, <span class="nw">change {r["revision"]}</span></span></td>'
+                      f'<td class="d" data-l="Covers">{E(clean(r["description"]))}<span class="cc-sub">{E(r["vendor"])} · <span class="nw">contract {E(r["contract"])}</span>, <span class="nw">revision {r["revision"]}</span></span></td>'
                       + td(("+" + usd(r["amount"])) if r["amount"] > 0 else (usd(r["amount"]) if r["amount"] < 0 else "No money change"), "Change", True)
-                      + td(pdf_link(E, r["pdf"], r["description"]), "Contract") + '</tr>')
+                      + td(pdf_link(E, r["pdf"], f'revision {r["revision"]} to contract {r["contract"]}'), "Contract") + '</tr>')
     mhead = [("Approved", False), ("Contract changed", False), ("Change", True), ("Contract", False)]
     MSHOW = 10
     mod_html = ((f'<p>{E(mods_sentence(a36))}'
@@ -498,12 +513,12 @@ def trade_page(p, d, src, t):
     lo = low(t)
     who = ((f'<div class="cc-two"><div><h3>Which departments buy it</h3>{grp(t["byDept"], "New " + lo + " awards by City department", "Department")}</div>'
             f'<div><h3>How the City bought it</h3>{grp(t["byProc"], "New " + lo + " awards by procurement type", "How bought")}</div></div>'
-            '<p class="asof">How bought is the City\'s procurement type: Bid is a competitive bid, RFP a request for proposals, RFQ a request for qualifications.</p>')
+            + f'<p class="asof">{E(proc_note(t["byProc"]))}</p>')
            if new else "")
     vend = (table(f'Vendors with the most new {low(t)} award dollars', [("Vendor", False), ("New awards", True), ("Total", True)],
                   [f'<tr><th scope="row">{E(v["name"])}</th>' + td(f'{v["n"]:,}', "New awards", True) + td(E(usd(v["total"])), "Total", True) + '</tr>' for v in t["topVendors"]])
-            + '<p class="asof">Ranked by the dollar total of new awards in 36 months. Business names as the City lists them; one firm can appear under more than one spelling. '
-            'A vendor shown as Name withheld is left out of this ranking.</p>'
+            + '<p class="asof">Ranked by the dollar total of new awards in 36 months. Business names as the City lists them; one firm can appear under more than one spelling.'
+            + (' A vendor shown as Name withheld is left out of this ranking.' if any(r["vendor"] == "Name withheld" for r in new) else "") + '</p>'
             ) if t["topVendors"] else '<p class="cc-empty">No vendor won a new award with a dollar amount in this trade in the last 36 months.</p>'
     others = "".join(f'<li><a href="../{E(x["key"])}/"{" aria-current=page" if x["key"] == t["key"] else ""}>{E(x["short"])}</a></li>' for x in d["trades"])
     words = "; ".join(t["words"])
@@ -511,9 +526,9 @@ def trade_page(p, d, src, t):
           "creator": {"@type": "Organization", "name": "ProofNotFluff"}, "dateModified": s["fetchedAt"][:10],
           "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": url + csv_name(t)}]}
     empty = not new and not mods and not t["ending"]
-    zero_html = (f'<section class="block" id="none"><h2>Nothing in {E(low(t))} yet</h2><p class="cc-empty">No City contract matched {E(low(t))} from '
+    zero_html = (f'<section class="block" id="none"><h2>No {E(low(t))} contracts in 36 months</h2><p class="cc-empty">No City contract matched {E(low(t))} from '
                  f'{E(M.nice_date(w["from36"]))} to {E(M.nice_date(w["today"]))}, and none ends in the next 12 months. Many standard contracts, such as most construction, '
-                 'end when the work is accepted and do not show here.</p>'
+                 'end when the work is accepted, so they never show as ending.</p>'
                  f'<ul class="cc-chips">{others}</ul></section>')
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow"><span class="cc-pre">Free tracker of City awards · </span><span class="nw">{E(t["short"])}</span></p><h1>{E(h1)}</h1><p class="lede">{E(lede)}</p>'
             + (f'<div class="ld-heroact cc-act cc-hact"><a class="btn" href="#ending">See ending contracts</a><a class="st-btn2" href="{E(csv_name(t))}" download>Download the CSV</a></div></div>'

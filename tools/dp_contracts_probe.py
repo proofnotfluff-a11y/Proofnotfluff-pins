@@ -93,7 +93,11 @@ def check(now):
         start = next((i for i, x in enumerate(lines) if x == "Data Terms of Use"), 0)
         open(os.path.join(OUT, "source-terms.txt"), "w", encoding="utf-8").write(
             f"Source: {TERMS_URL}\nFetched: {now.isoformat(timespec='seconds')}\n\n" + "\n".join(lines[start:]) + "\n")
-        res["terms"]["ok"] = any("This site provides applications using data" in x for x in lines)
+        import sys; sys.path.insert(0, HERE)
+        import make_site as M
+        res["terms"]["ok"] = any("\u201c" + M.CITY_DISCLAIMER["Chicago"] + "\u201d" in x for x in lines)
+        if not res["terms"]["ok"]:   # the City changed its required disclaimer: nothing publishes until the Legal desk has read it
+            raise SystemExit("City Data Terms disclaimer no longer matches make_site.CITY_DISCLAIMER: stop and send to the Legal desk")
     for key, url in (("overview", DPS_URL), ("eprocPage", EPROC_PAGE)):
         b, st = get(url)
         res[key]["status"] = st

@@ -165,6 +165,10 @@
    "chicago-construction-cleaning-leads",
    "austin-construction-cleaning-leads"
   ],
+  "post-construction-cleaning-bid-calculator": [
+   "chicago-construction-cleaning-leads",
+   "austin-construction-cleaning-leads"
+  ],
   "window-cleaning-price-calculator": [
    "chicago-construction-cleaning-leads",
    "austin-construction-cleaning-leads"
@@ -262,6 +266,7 @@
    "Cleaning and trades",
    [
     "cleaning-price-per-square-foot-calculator",
+    "post-construction-cleaning-bid-calculator",
     "house-cleaning-price-calculator",
     "window-cleaning-price-calculator",
     "pressure-washing-price-calculator",
@@ -341,6 +346,7 @@
    "hood-cleaning-price-calculator",
    "house-cleaning-price-calculator",
    "cleaning-price-per-square-foot-calculator",
+   "post-construction-cleaning-bid-calculator",
    "window-cleaning-price-calculator",
    "contractor-hourly-rate-calculator",
    "employer-cost-calculator",
@@ -433,6 +439,7 @@
   [
    "hood-cleaning-price-calculator",
    "cleaning-price-per-square-foot-calculator",
+   "post-construction-cleaning-bid-calculator",
    "contractor-hourly-rate-calculator",
    "employer-cost-calculator",
    "price-increase-calculator",

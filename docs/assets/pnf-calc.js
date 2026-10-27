@@ -866,6 +866,7 @@
         bar.querySelector("button").addEventListener("click", function () {
           ins.forEach(function (el) { el.value = el.defaultValue; check(el); });
           calc.querySelectorAll("select[data-in]").forEach(function (s) { [].forEach.call(s.options, function (o) { o.selected = o.defaultSelected; }); });
+          calc.querySelectorAll('input[type="checkbox"]').forEach(function (c) { c.checked = c.defaultChecked; });
           calc.dispatchEvent(new Event("input", { bubbles: true }));
           bar.querySelector("span").textContent = "Back to the example numbers.";
         });
@@ -998,7 +999,108 @@
       under: price > 0 && cost > 0 && price <= cost ? 1 : 0, noCost: price > 0 && cost === 0 ? 1 : 0, none: price > 0 ? 0 : 1, noUp: ok && up === 0 ? 1 : 0 };
   }
 
-  var api = { lightsQuote: lightsQuote, snowQuote: snowQuote, hoodQuote: hoodQuote, hoodFreq: HOOD_FREQ, missedCalls: missedCalls, priceRaise: priceRaise, stages: stages, leadCost: leadCost, payoutGap: payoutGap, seTax: seTax, hourly: hourly, service: service, serviceSqft: serviceSqft, dayRate: dayRate, cleaningSqft: cleaningSqft, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
+  // Post-construction cleaning bid (Todd's go, Oct 27, 2026, coo/DECISIONS-2026-10-27.md). The free bid calculator and the
+  // area seats' "Price this job" panel both call this one function, so the two can never price a job differently. Every
+  // figure comes from the owner: the size (square feet, or units times the average unit size plus common areas), the square
+  // feet one cleaner cleans in an hour for each clean, labor cost per cleaner-hour, crew size, hours in a crew day, supplies
+  // per 1,000 sq ft for each clean, travel and parking per day on site, touch-up visits, and a margin (a share of the price)
+  // or a markup (on cost). A clean's cleaner-hours are its square feet over its rate; its days on site are those hours over
+  // the crew's hours in a day, rounded up, and each day is one trip. Cost = labor + supplies + travel. Price = cost / (1 -
+  // margin) or cost x (1 + markup), rounded up to the next $5. Touch-up can carry the owner's flat price per visit instead;
+  // its hours and cost are still worked out, so the page can say when the flat price is under its cost.
+  var BID_KEYS = ["rough", "final", "touch"];
+  var BID_NAMES = { rough: "Rough clean", final: "Final clean", touch: "Touch-up clean" };
+  var BID_SCOPE = {
+    rough: "After the main trades finish: construction debris taken to the site dumpster, floors swept and vacuumed, dust wiped from surfaces.",
+    final: "Before turnover: windows cleaned inside; fixtures, cabinets, counters, doors, frames and vents wiped; labels and stickers removed; floors vacuumed and mopped.",
+    touch: "Before the walkthrough or move-in: dust and marks left by punch-list work cleaned again."
+  };
+  function bidPrice(i) {
+    var cents = function (x) { return Math.round(x * 100 + 1e-7) / 100; };
+    var mode = Math.round(num(i.measure)) === 1 ? 1 : 0;
+    var units = Math.max(0, num(i.units)), unitSize = Math.max(0, num(i.unitSize)), common = Math.max(0, num(i.common));
+    var sqft = mode ? units * unitSize + common : Math.max(0, num(i.sqft));
+    var crew = Math.max(1, Math.round(num(i.crew)) || 1), dayHrs = Math.max(0, num(i.dayHrs)), crewDay = crew * dayHrs;
+    var wage = Math.max(0, num(i.wage)), sup = Math.max(0, num(i.supplies)), trip = Math.max(0, num(i.trip));
+    var visits = Math.max(0, Math.round(num(i.visits))), flat = Math.round(num(i.touchMode)) === 1 ? 1 : 0;
+    var flatPrice = Math.max(0, num(i.touchFlat)), markup = Math.round(num(i.priceMode)) === 1 ? 1 : 0;
+    var pct = Math.max(0, num(i.pct)) / 100, noMargin = !markup && pct >= 1 ? 1 : 0;
+    var r = { sqft: sqft, units: mode ? units : 0, unitSize: mode ? unitSize : 0, common: mode ? common : 0, measure: mode, crew: crew,
+      dayHrs: dayHrs, wage: wage, visits: visits, flat: flat, markup: markup, pct: pct, price: 0, cost: 0, hrs: 0, days: 0,
+      labor: 0, supplies: 0, travel: 0, anyOn: 0, noRate: 0, flatLow: 0, noVisits: 0, priced: 0 };
+    BID_KEYS.forEach(function (k) {
+      var on = Math.round(num(i[k])) === 1 && sqft > 0 ? 1 : 0, rate = Math.max(0, num(i[k + "Rate"]));
+      var n = k === "touch" ? visits : 1, isFlat = k === "touch" && flat;
+      var per = rate > 0 ? sqft / rate : 0, daysPer = per > 0 ? (crewDay > 0 ? Math.ceil(per / crewDay - 1e-9) : 1) : 0;
+      var hrs = per * n, days = daysPer * n, labor = cents(hrs * wage), supplies = cents(sqft / 1000 * sup * n), travel = cents(days * trip);
+      var cost = cents(labor + supplies + travel), price = 0;
+      if (on && isFlat) price = cents(flatPrice * n);
+      else if (on && rate > 0 && cost > 0 && !noMargin) price = ceilTo(markup ? cost * (1 + pct) : cost / (1 - pct), 5);
+      if (!on) { hrs = 0; days = 0; labor = 0; supplies = 0; travel = 0; cost = 0; }
+      r[k + "On"] = on; r[k + "Off"] = on ? 0 : 1; r[k + "Hrs"] = hrs; r[k + "Days"] = days; r[k + "Labor"] = labor;
+      r[k + "Supplies"] = supplies; r[k + "Travel"] = travel; r[k + "Cost"] = cost; r[k + "Price"] = price;
+      r[k + "Profit"] = on ? price - cost : 0; r[k + "PerSqFt"] = on && sqft > 0 ? price / sqft : 0; r[k + "Visits"] = k === "touch" ? n : 1;
+      if (on) {
+        r.anyOn = 1; r.price += price; r.cost += cost; r.hrs += hrs; r.days += days; r.labor += labor; r.supplies += supplies; r.travel += travel;
+        if (rate === 0 && !isFlat) r.noRate = 1;
+        if (k === "touch" && n === 0) r.noVisits = 1;
+        if (isFlat && rate > 0 && n > 0 && price < cost) r.flatLow = 1;
+      }
+    });
+    r.price = cents(r.price); r.cost = cents(r.cost); r.labor = cents(r.labor); r.supplies = cents(r.supplies); r.travel = cents(r.travel);
+    r.profit = cents(r.price - r.cost); r.profitPct = r.price > 0 ? r.profit / r.price : 0;
+    r.perSqFt = sqft > 0 ? r.price / sqft : 0; r.perUnit = mode && units > 0 ? r.price / units : 0; r.unitOn = mode && units > 0 ? 1 : 0;
+    r.priced = r.price > 0 ? 1 : 0; r.none = sqft > 0 ? 0 : 1; r.noPhase = sqft > 0 && !r.anyOn ? 1 : 0; r.noMargin = r.anyOn && noMargin ? 1 : 0;
+    r.noWage = r.anyOn && wage === 0 && r.hrs > 0 ? 1 : 0; r.loss = r.priced && r.profit < 0 ? 1 : 0;
+    return r;
+  }
+
+  // The one-page proposal from a bidPrice result and the owner's words (t: business, contact, builder, address, work, stage,
+  // date, terms). Blank fields print as [brackets] to fill by hand. Only the cleans in the bid are listed.
+  function bidEsc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function bidSize(r) {
+    var n = function (x) { return Math.round(x).toLocaleString("en-US"); };
+    if (!r.measure) return n(r.sqft) + " sq ft";
+    return n(r.units) + (r.units === 1 ? " unit" : " units") + " at about " + n(r.unitSize) + " sq ft each" +
+      (r.common > 0 ? ", plus " + n(r.common) + " sq ft of common areas" : "") + " (" + n(r.sqft) + " sq ft)";
+  }
+  function bidProposal(r, t) {
+    t = t || {};
+    var f = function (v, ph) { v = String(v == null ? "" : v).trim(); return v ? bidEsc(v) : '<span class="bid-f">[' + bidEsc(ph) + "]</span>"; };
+    var rows = BID_KEYS.filter(function (k) { return r[k + "On"]; }).map(function (k) {
+      var name = BID_NAMES[k] + (k === "touch" ? ", " + r.touchVisits + (r.touchVisits === 1 ? " visit" : " visits") : "");
+      return '<tr><th scope="row"><b>' + bidEsc(name) + '</b><span class="bid-sc">' + bidEsc(BID_SCOPE[k]) + '</span></th><td class="bid-n">' +
+        (r[k + "Price"] > 0 ? money(r[k + "Price"], false) : '<span class="bid-f">[price]</span>') + "</td></tr>";
+    }).join("");
+    var meta = [["Prepared for", f(t.builder, "Builder or general contractor")], ["Project", f(t.address, "Project address")]]
+      .concat(t.work ? [["Work", bidEsc(t.work)]] : []).concat(t.stage ? [["Stage", bidEsc(t.stage)]] : [])
+      .concat([["Size", r.sqft > 0 ? bidEsc(bidSize(r)) : '<span class="bid-f">[square feet]</span>']]);
+    return '<article class="bid-doc" aria-label="Proposal preview">' +
+      '<header class="bid-dh"><div><p class="bid-biz">' + f(t.business, "Your business name") + '</p><p class="bid-con">' + f(t.contact, "Phone and email") + "</p></div>" +
+      '<div class="bid-dr"><p class="bid-kind">Proposal</p><p>' + f(t.date, "Date") + "</p></div></header>" +
+      '<h2 class="bid-title">Post-construction cleaning proposal</h2>' +
+      '<dl class="bid-meta">' + meta.map(function (m) { return "<div><dt>" + m[0] + "</dt><dd>" + m[1] + "</dd></div>"; }).join("") + "</dl>" +
+      '<table class="bid-tab"><thead><tr><th scope="col">Clean and scope</th><th scope="col" class="bid-n">Price</th></tr></thead>' +
+      "<tbody>" + (rows || '<tr><td colspan="2">Pick at least one clean.</td></tr>') + "</tbody>" +
+      '<tfoot><tr class="bid-tot"><th scope="row">Total</th><td class="bid-n">' + (r.price > 0 ? money(r.price, false) : '<span class="bid-f">[total]</span>') + "</td></tr></tfoot></table>" +
+      '<p class="bid-terms"><b>Terms.</b> ' + f(t.terms, "Your payment terms, and how long this price holds") + "</p>" +
+      '<p class="bid-small">Prices are for the scope and size above. Work outside that scope is priced separately.</p>' +
+      '<div class="bid-sign"><div><span></span><p>Accepted by, name and title</p></div><div><span></span><p>Signature</p></div><div><span></span><p>Date</p></div></div>' +
+      "</article>";
+  }
+  function bidToday() { return new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }); }
+  // Print only the proposal: a copy goes into #bid-print and the page's other content is hidden for print (assets/pnf-bid.css).
+  function bidPrint(html) {
+    var box = document.getElementById("bid-print");
+    if (!box) { box = document.createElement("div"); box.id = "bid-print"; document.body.appendChild(box); }
+    box.innerHTML = html;
+    document.body.classList.add("bid-printing");
+    var done = function () { document.body.classList.remove("bid-printing"); window.removeEventListener("afterprint", done); };
+    window.addEventListener("afterprint", done);
+    window.print();
+  }
+
+  var api = { bidPrice: bidPrice, bidProposal: bidProposal, bidSize: bidSize, bidPrint: bidPrint, bidToday: bidToday, bidScope: BID_SCOPE, bidNames: BID_NAMES, lightsQuote: lightsQuote, snowQuote: snowQuote, hoodQuote: hoodQuote, hoodFreq: HOOD_FREQ, missedCalls: missedCalls, priceRaise: priceRaise, stages: stages, leadCost: leadCost, payoutGap: payoutGap, seTax: seTax, hourly: hourly, service: service, serviceSqft: serviceSqft, dayRate: dayRate, cleaningSqft: cleaningSqft, cashflow: cashflow, etsyFees: etsyFees, craftFair: craftFair,
     strNightly: strNightly, debtPayoff: debtPayoff, shippingCost: shippingCost, reorderPoint: reorderPoint, strBreakEven: strBreakEven, rentalCashFlow: rentalCashFlow, businessExpense: businessExpense, inventoryTurnover: inventoryTurnover, profitMargin: profitMargin, employerCost: employerCost, startupCost: startupCost, budgetPlan: budgetPlan, profitLoss: profitLoss, cakeQuote: cakeQuote, unitCost: unitCost, handmadePrice: handmadePrice, markup: markup, breakEven: breakEven, choreSplit: choreSplit, clientMix: clientMix, cakeSizes: CAKE_SIZES, num: num, money: money, ceilTo: ceilTo,
     wire: wire, after: after, parseNum: parseNum };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.PNF = api;

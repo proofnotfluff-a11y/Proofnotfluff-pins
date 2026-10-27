@@ -237,6 +237,9 @@ def city_for(t, geo=None):
                      "your Gumroad receipt and we will fix it or refund that month."),
         # fix 4, from the committed 12-month counts
         "seatVolume": volume_sentence(t),
+        # the bid sheet (Todd's go, Oct 27, 2026): one plain line, sent to the Legal desk with the build
+        "seatBid": ("Bid sheet. The Price this job panel is a calculator that uses only the size, rates and margin you type. Its prices "
+                    "and proposals are your own estimates, not prices from ProofNotFluff."),
     })
     return c
 
@@ -343,7 +346,17 @@ def selftest():
     assert "the only seat holder for One" in c["legal"] and "Licensed to one business for its own prospecting;" not in c["legal"]
     assert c["disclaimer"].startswith("This site provides applications") and c["storageKey"] == "pnf-cas-one-v1"
     assert "sells this area's list to no other business" in c["seatClause"] and "A, B" in c["seatClause"]
-    print("area_seats selftest ok (17 planted cases)")
+    # the bid sheet: its Terms line sits right after "No promise of results." in the seat's Terms, and only in a seat's Terms
+    import leads_xlsx, leads_cities
+    leads_xlsx.use(c)
+    try:
+        tt = leads_xlsx.terms_text("Oct 27, 2026")
+        i = next(n for n, x in enumerate(tt) if x.startswith("No promise of results."))
+        assert tt[i + 1] == c["seatBid"] and sum(1 for x in tt if x.startswith("Bid sheet.")) == 1
+    finally:
+        leads_xlsx.use(leads_cities.CHICAGO)
+    assert not any(x.startswith("Bid sheet.") for x in leads_xlsx.terms_text("Oct 27, 2026")), "the $29 list's Terms never carry the bid line"
+    print("area_seats selftest ok (19 planted cases)")
     real = load()
     bad = check(real, json.load(open(GEO)))
     if bad:

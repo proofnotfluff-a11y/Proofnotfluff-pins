@@ -714,4 +714,46 @@ check("snow: months 0, no monthly", P.snowQuote({ pushMin: 25, rate: 40, events:
 check("lights: zero pace prices nothing", P.lightsQuote(Object.assign({}, LQ, { ftPerHour: 0 })).quote, 0);
 check("lights: blank shows no drive or storage", P.lightsQuote({ tripMin: 40, tripMiles: 20, perMile: 0.76, storage: 25, rate: 45 }).drive + P.lightsQuote({ storage: 25 }).storage, 0);
 
+// Post-construction cleaning bid (Oct 27, 2026): one function for the free bid calculator and the area seats' bid sheet.
+// Hand-worked cases; the arithmetic is written out in the build report.
+const BQA = { measure: 0, sqft: "12,000", rough: 1, final: 1, touch: 1, roughRate: 600, finalRate: 200, touchRate: "1,000", wage: "$30", crew: 4, dayHrs: 8,
+  supplies: 15, trip: 40, visits: 1, touchMode: 0, touchFlat: 350, priceMode: 0, pct: "40%" };
+const BQ1 = P.bidPrice(BQA);
+check("bid A: rough hours 12,000 / 600", BQ1.roughHrs, 20); check("bid A: rough days, 20 / (4 x 8) rounded up", BQ1.roughDays, 1);
+check("bid A: rough cost 600 + 180 + 40", BQ1.roughCost, 820); check("bid A: rough price 820 / 0.6 up to $5", BQ1.roughPrice, 1370);
+check("bid A: final hours", BQ1.finalHrs, 60); check("bid A: final days, 60 / 32 rounded up", BQ1.finalDays, 2);
+check("bid A: final cost 1,800 + 180 + 80", BQ1.finalCost, 2060); check("bid A: final price", BQ1.finalPrice, 3435);
+check("bid A: touch-up cost 360 + 180 + 40", BQ1.touchCost, 580); check("bid A: touch-up price", BQ1.touchPrice, 970);
+check("bid A: total", BQ1.price, 5775); check("bid A: cost", BQ1.cost, 3460); check("bid A: profit", BQ1.profit, 2315);
+check("bid A: cleaner-hours", BQ1.hrs, 92); check("bid A: days on site", BQ1.days, 4); check("bid A: per sq ft", BQ1.perSqFt, 0.48125);
+check("bid A: labor 92 x 30", BQ1.labor, 2760); check("bid A: supplies 3 x 180", BQ1.supplies, 540); check("bid A: travel 4 x 40", BQ1.travel, 160);
+const BQ2 = P.bidPrice({ measure: 1, units: 40, unitSize: 850, common: "2,000", rough: 1, final: 1, touch: 1, roughRate: 900, finalRate: 250, touchRate: 1200,
+  wage: 28, crew: 6, dayHrs: 8, supplies: 12, trip: 55, visits: 2, touchMode: 1, touchFlat: "$450", priceMode: 1, pct: 50 });
+check("bid B: units to sq ft, 40 x 850 + 2,000", BQ2.sqft, 36000); check("bid B: rough cost 1,120 + 432 + 55", BQ2.roughCost, 1607);
+check("bid B: rough price, markup 1,607 x 1.5 up to $5", BQ2.roughPrice, 2415); check("bid B: final days, 144 / 48", BQ2.finalDays, 3);
+check("bid B: final cost 4,032 + 432 + 165", BQ2.finalCost, 4629); check("bid B: final price", BQ2.finalPrice, 6945);
+check("bid B: touch-up hours, 2 visits of 30", BQ2.touchHrs, 60); check("bid B: touch-up days, 1 a visit", BQ2.touchDays, 2);
+check("bid B: touch-up cost 1,680 + 864 + 110", BQ2.touchCost, 2654); check("bid B: touch-up flat 2 x 450", BQ2.touchPrice, 900);
+check("bid B: flat under cost flag", BQ2.flatLow, 1); check("bid B: total", BQ2.price, 10260); check("bid B: profit", BQ2.profit, 1370);
+check("bid B: per unit", BQ2.perUnit, 256.5);
+const BQ3 = P.bidPrice({ sqft: 2500, rough: 0, final: 1, touch: 0, finalRate: 250, wage: 25, crew: 2, dayHrs: 0, supplies: 20, trip: 30, pct: 25 });
+check("bid C: final only, cost 250 + 50 + 30", BQ3.cost, 330); check("bid C: price 330 / 0.75", BQ3.price, 440);
+check("bid C: no day length, one day on site", BQ3.finalDays, 1); check("bid C: rough off adds nothing", BQ3.roughHrs + BQ3.roughPrice + BQ3.touchPrice, 0);
+check("bid D: cents then up to $5", P.bidPrice({ sqft: 1000, rough: 1, roughRate: 333, wage: 31, crew: 1, dayHrs: 8, pct: 0 }).roughPrice, 95);
+check("bid: blank is none", P.bidPrice({}).none, 1);
+check("bid: size but no clean picked", P.bidPrice({ sqft: 1000 }).noPhase, 1);
+check("bid: margin 100% prices nothing and flags", P.bidPrice(Object.assign({}, BQA, { pct: 100 })).price + P.bidPrice(Object.assign({}, BQA, { pct: 100 })).noMargin, 1);
+check("bid: markup 100% doubles cost", P.bidPrice(Object.assign({}, BQA, { priceMode: 1, pct: 100 })).roughPrice, 1640);
+check("bid: a clean with no rate flags", P.bidPrice(Object.assign({}, BQA, { finalRate: 0 })).noRate, 1);
+check("bid: no labor cost flags", P.bidPrice(Object.assign({}, BQA, { wage: 0 })).noWage, 1);
+check("bid: touch-up with 0 visits flags", P.bidPrice(Object.assign({}, BQA, { visits: 0 })).noVisits, 1);
+check("bid: flat touch-up without a rate still prices", P.bidPrice(Object.assign({}, BQA, { touchMode: 1, touchRate: 0, touchFlat: 300 })).touchPrice, 300);
+check("bid: crew of 0 counts as 1", P.bidPrice(Object.assign({}, BQA, { crew: 0 })).finalDays, 8);
+const BQPR = P.bidProposal(BQ1, { business: "A & B <Cleaning>", builder: "", address: "1 N Main St", date: "October 27, 2026" });
+check("bid proposal: escapes the owner's words", BQPR.indexOf("A &amp; B &lt;Cleaning&gt;") >= 0 ? 1 : 0, 1);
+check("bid proposal: blank builder prints a bracket", BQPR.indexOf("[Builder or general contractor]") >= 0 ? 1 : 0, 1);
+check("bid proposal: total and three cleans", (BQPR.indexOf("$5,775") >= 0) + (BQPR.match(/<tr><th scope="row">/g) || []).length, 4);
+check("bid proposal: only cleans in the bid", (P.bidProposal(BQ3, {}).match(/<tr><th scope="row">/g) || []).length, 1);
+check("bid size line, units", P.bidSize(BQ2) === "40 units at about 850 sq ft each, plus 2,000 sq ft of common areas (36,000 sq ft)" ? 1 : 0, 1);
+
 process.exit(fails ? 1 : 0);

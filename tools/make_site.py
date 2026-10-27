@@ -60,6 +60,7 @@ FOOT_TPL = """</main>
 CALC_GROUPS = []      # [(group title, [calculator pages])], set by home_html, used by calculators_html
 LIVE_QUESTIONS = []   # live question pages, set by main() before any page is written (the Questions link shows only when one is live)
 PAGES_LIVE = []       # every live page, set by main() (related calculators read it)
+PAGES_ALL = []        # every page in site/pages.json, live or draft, set by main() (a live page never links to a draft)
 CURRENT = {}          # the page being written: {"nav": "shop" | "calc" | "questions" | ""} for aria-current
 
 
@@ -1971,7 +1972,123 @@ def price_raise_page(p):
 
 
 
-PAGE_KINDS = {"lights": lights_page, "snow": snow_page, "hood": hood_page, "missed_calls": missed_calls_page, "price_raise": price_raise_page, "lead_cost": lead_cost_page, "dd7_payout": dd7_page, "day_rate": day_rate_page, "cleaning_sqft": cleaning_sqft_page, "service": service_page, "service_sqft": service_sqft_page, "hourly": hourly_page, "cashflow": cashflow_page,
+def _bid_check(key, label, on=True):
+    return (f'<label class="bid-ph"><input type="checkbox" id="ph-{key}"{" checked" if on else ""}>{E(label)}</label>')
+
+
+def bid_page(p):
+    """Post-construction cleaning bid (PNF.bidPrice, the same function the area seats' bid sheet calls): rough, final and
+    touch-up prices from the owner's own size, crew speed, labor cost, supplies, travel and margin, then a one-page proposal
+    to print or save as PDF (PNF.bidProposal). Published guide ranges show below as dated context, never as market rates.
+    The proposal template download sits behind a Kit form (spec "download"). Todd's go, Oct 27, 2026 (coo/DECISIONS-2026-10-27.md)."""
+    d, dl = p["defaults"], p["download"]
+    form = f"""<link rel="stylesheet" href="../assets/pnf-bid.css"><form class="card" id="calc" novalidate>
+<fieldset><legend>The job</legend>
+{_sel("measure", "Price it by", "Apartments: units times their average size, plus hallways and other common areas", [(0, "Square feet"), (1, "Apartment units")], d["measure"], wide=True)}
+<div data-bid="sqft">{field("sqft", "Square feet to clean", d["sqft"], "From the plans, the builder or a walk-through")}</div>
+<div data-bid="units" hidden>{field("units", "Units", d["units"])}
+{field("unitSize", "Average unit size", d["unitSize"], "Square feet")}
+{field("common", "Common areas", d["common"], "Square feet of hallways, lobby, amenity rooms. 0 if none")}</div>
+</fieldset>
+<fieldset><legend>Cleans in this bid</legend>
+<div class="bid-phs">{_bid_check("rough", "Rough")}{_bid_check("final", "Final")}{_bid_check("touch", "Touch-up")}</div>
+</fieldset>
+<fieldset><legend>How fast your crew cleans</legend>
+{field("roughRate", "Rough clean", d["roughRate"], "Sq ft one cleaner does in an hour. Time your own jobs")}
+{field("finalRate", "Final clean", d["finalRate"], "Sq ft one cleaner does in an hour")}
+{field("touchRate", "Touch-up clean", d["touchRate"], "Sq ft one cleaner does in an hour")}
+</fieldset>
+<fieldset><legend>Your crew and costs</legend>
+{field("wage", "Labor cost per cleaner-hour", d["wage"], "Pay plus payroll taxes and workers' comp", pre="$")}
+{field("crew", "Cleaners on the crew", d["crew"])}
+{field("dayHrs", "Hours in a crew day", d["dayHrs"], "Each day on site is one trip")}
+{field("supplies", "Supplies per 1,000 sq ft", d["supplies"], "For each clean: chemicals, bags, pads, rags", pre="$")}
+{field("trip", "Travel and parking per day", d["trip"], "Gas, parking, tolls, paid drive time", pre="$")}
+</fieldset>
+<fieldset><legend>Touch-up</legend>
+{field("visits", "Touch-up visits", d["visits"], "Return visits the builder wants")}
+{_sel("touchMode", "Touch-up price", "Flat: your own price for each visit", [(0, "From your rates"), (1, "Flat price a visit")], d["touchMode"], wide=True)}
+<div data-bid="flat" hidden>{field("touchFlat", "Your flat price a visit", d["touchFlat"], pre="$")}</div>
+</fieldset>
+<fieldset><legend>Your price</legend>
+{_sel("priceMode", "Add profit as", "Margin is a share of the price. Markup is added on top of cost", [(0, "Margin"), (1, "Markup")], d["priceMode"])}
+{field("pct", "Margin or markup", d["pct"], "Covers overhead and profit", suf="%")}
+</fieldset></form>"""
+    results = """<div class="sticky"><div class="card" aria-live="polite">
+<div class="tiles">
+<div class="tile key"><div class="lab">Total bid</div><div class="val" data-out="price" data-fmt="money0">$0</div><div class="sub"><span data-out="perSqFt" data-fmt="money3">$0</span> a sq ft<span data-show-if="unitOn > 0">, <span data-out="perUnit" data-fmt="money0">$0</span> a unit</span></div></div>
+<div class="tile" data-show-if="roughOn > 0"><div class="lab">Rough clean</div><div class="val" data-out="roughPrice" data-fmt="money0">$0</div><div class="sub"><span data-out="roughHrs" data-fmt="dec1">0</span> cleaner-hours</div></div>
+<div class="tile" data-show-if="finalOn > 0"><div class="lab">Final clean</div><div class="val" data-out="finalPrice" data-fmt="money0">$0</div><div class="sub"><span data-out="finalHrs" data-fmt="dec1">0</span> cleaner-hours</div></div>
+<div class="tile" data-show-if="touchOn > 0"><div class="lab">Touch-up</div><div class="val" data-out="touchPrice" data-fmt="money0">$0</div><div class="sub"><span data-out="touchHrs" data-fmt="dec1">0</span> cleaner-hours</div></div>
+</div>
+<table class="bid-bt"><caption class="sr">Hours, days on site, cost and price for each clean</caption>
+<thead><tr><th scope="col">Clean</th><th scope="col">Hours</th><th scope="col">Days</th><th scope="col">Cost</th><th scope="col">Price</th></tr></thead><tbody>
+<tr data-show-if="roughOn > 0"><th scope="row">Rough</th><td data-out="roughHrs" data-fmt="dec1">0</td><td data-out="roughDays" data-fmt="int">0</td><td data-out="roughCost" data-fmt="money0">$0</td><td data-out="roughPrice" data-fmt="money0">$0</td></tr>
+<tr data-show-if="finalOn > 0"><th scope="row">Final</th><td data-out="finalHrs" data-fmt="dec1">0</td><td data-out="finalDays" data-fmt="int">0</td><td data-out="finalCost" data-fmt="money0">$0</td><td data-out="finalPrice" data-fmt="money0">$0</td></tr>
+<tr data-show-if="touchOn > 0"><th scope="row">Touch-up</th><td data-out="touchHrs" data-fmt="dec1">0</td><td data-out="touchDays" data-fmt="int">0</td><td data-out="touchCost" data-fmt="money0">$0</td><td data-out="touchPrice" data-fmt="money0">$0</td></tr>
+</tbody><tfoot><tr><th scope="row">Total</th><td data-out="hrs" data-fmt="dec1">0</td><td data-out="days" data-fmt="int">0</td><td data-out="cost" data-fmt="money0">$0</td><td data-out="price" data-fmt="money0">$0</td></tr></tfoot></table>
+<ul class="lines">
+<li><span>Labor, cleaner-hours times your cost</span><span data-out="labor">$0</span></li>
+<li><span>Supplies</span><span data-out="supplies">$0</span></li>
+<li><span>Travel and parking, one trip a day</span><span data-out="travel">$0</span></li>
+<li class="total"><span>Profit in the bid (<span data-pct="profitPct">0%</span> of the price)</span><span data-out="profit">$0</span></li>
+</ul>
+<div class="callout warn" data-show-if="none > 0">Type the square feet to clean, or the units and their size.</div>
+<div class="callout warn" data-show-if="noPhase > 0">Pick at least one clean: rough, final or touch-up.</div>
+<div class="callout warn" data-show-if="noRate > 0">A clean in the bid has no speed. Type the square feet one cleaner does in an hour.</div>
+<div class="callout warn" data-show-if="noWage > 0">Type your labor cost per cleaner-hour, or the price leaves out your crew.</div>
+<div class="callout warn" data-show-if="noVisits > 0">Touch-up is in the bid with 0 visits. Type how many return visits.</div>
+<div class="callout warn" data-show-if="noMargin > 0">A margin of 100% or more has no price. Use a lower margin, or switch to markup.</div>
+<div class="callout warn" data-show-if="flatLow > 0">Your flat touch-up price is under what the visits cost you: <b data-out="touchCost" data-fmt="money0">$0</b> at your rates.</div>
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Bid <b data-out="price" data-fmt="money0">$0</b></span><span>Per sq ft <b data-out="perSqFt" data-fmt="money3">$0</b></span></div>"""
+    docf = lambda key, label, ph, wide=False: (f'<div{" class=wide" if wide else ""}><label for="{key}">{E(label)}</label>'
+                                               f'<input id="{key}" type="text" autocomplete="off" placeholder="{E(ph)}"></div>')
+    proposal = f"""<section class="block" aria-labelledby="doc-title"><h2 id="doc-title">Your one-page proposal</h2>
+<p>Built from the prices above. Add your details, then print it or save it as a PDF to send to the builder. Anything you leave blank prints in [brackets] to fill by hand.</p>
+<form class="bid-docform" id="bidDoc" novalidate>
+{docf("bizName", "Your business name", "Your business name")}
+{docf("bizContact", "Your phone and email", "Phone and email")}
+{docf("builder", "Builder or general contractor", "Who the proposal is for")}
+{docf("address", "Project address", "Street address")}
+{docf("work", "Project", "Optional: 6-story apartment building", True)}
+<div class="wide"><label for="terms">Terms</label><textarea id="terms" placeholder="Your payment terms, and how long this price holds"></textarea></div>
+</form>
+<div class="bid-paper" id="bidPreview"></div>
+<div class="bid-acts"><button type="button" class="btn" id="bidPrintBtn">Print or save as PDF</button><small>In the print window, pick Save as PDF to email it.</small></div>
+<p class="bid-note">{E(dl["sampleNote"])}</p>
+</section>
+<section class="block" id="get" aria-labelledby="get-title"><div class="bid-get"><div><h2 id="get-title">{E(dl["title"])}</h2><p>{E(dl["text"])}</p>
+<ul>{"".join(f"<li>{E(x)}</li>" for x in dl["items"])}</ul></div>
+<form action="https://app.kit.com/forms/{E(dl["kitForm"])}/subscriptions" method="post">
+<label for="kitFirst">First name <span class="opt">(optional)</span></label><input id="kitFirst" name="fields[first_name]" type="text" autocomplete="given-name">
+<label for="kitEmail">Email</label><input id="kitEmail" name="email_address" type="email" required autocomplete="email">
+<button class="btn" type="submit">{E(dl["button"])}</button>
+<small>The files open as soon as you sign up, and a link to them comes by email. Unsubscribe in one click from any email. Your email is stored with Kit, our email provider, and never sold.</small></form></div></section>"""
+    g = p["guide"]
+    rows = "".join(f'<tr><th scope="row">{E(a)}</th><td>{E(b)}</td><td>{"; ".join(f"<a href={chr(34)}{E(u)}{chr(34)} rel={chr(34)}noopener{chr(34)}>{E(n)}</a>" for n, u in srcs)}</td></tr>'
+                   for a, b, srcs in g["rows"])
+    guide = (f'<section class="block" aria-labelledby="gr-title"><h2 id="gr-title">{E(g["title"])}</h2><p>{E(g["intro"])}</p>'
+             f'<table class="bid-gr"><caption class="sr">{E(g["title"])}</caption><thead><tr><th scope="col">Clean</th><th scope="col">Published range</th>'
+             f'<th scope="col">Where it was published</th></tr></thead><tbody>{rows}</tbody></table>'
+             + "".join(f"<p>{E(t)}</p>" for t in g["tail"]) + '</section>')
+    script = f"""<script>
+(function(){{var f=document.getElementById("calc"),doc=document.getElementById("bidDoc"),pv=document.getElementById("bidPreview");
+/* Maths: PNF.bidPrice in assets/pnf-calc.js, the same function the area seats' bid sheet calls. */
+var cb=function(k){{var e=document.getElementById("ph-"+k);return e&&e.checked?1:0;}};
+var M=function(i){{i.rough=cb("rough");i.final=cb("final");i.touch=cb("touch");return PNF.bidPrice(i);}};
+var val=function(id){{return document.getElementById(id).value;}};
+function read(){{var v={{}};f.querySelectorAll("[data-in]").forEach(function(e){{v[e.getAttribute("data-in")]=e.value;}});return v;}}
+function show(){{var u=val("measure")==="1";f.querySelector('[data-bid="sqft"]').hidden=u;f.querySelector('[data-bid="units"]').hidden=!u;
+f.querySelector('[data-bid="flat"]').hidden=val("touchMode")!=="1";}}
+function draw(){{pv.innerHTML=PNF.bidProposal(M(read()),{{business:val("bizName"),contact:val("bizContact"),builder:val("builder"),address:val("address"),work:val("work"),terms:val("terms"),date:PNF.bidToday()}});}}
+f.addEventListener("input",function(){{show();draw();}});doc.addEventListener("input",draw);
+PNF.wire(f,M);PNF.after(f,M);window.PNF_MODEL=M;PNF.stages(f,"../e/{p["slug"]}/");show();draw();
+document.getElementById("bidPrintBtn").addEventListener("click",function(){{draw();PNF.bidPrint(pv.innerHTML);}});}})();</script>"""
+    return form, results + "\n<!--LC-EXTRA-->" + proposal + guide, script
+
+
+PAGE_KINDS = {"bid": bid_page, "lights": lights_page, "snow": snow_page, "hood": hood_page, "missed_calls": missed_calls_page, "price_raise": price_raise_page, "lead_cost": lead_cost_page, "dd7_payout": dd7_page, "day_rate": day_rate_page, "cleaning_sqft": cleaning_sqft_page, "service": service_page, "service_sqft": service_sqft_page, "hourly": hourly_page, "cashflow": cashflow_page,
               "etsy_fees": etsy_fees_page, "craft_fair": craft_fair_page, "str_nightly": str_nightly_page,
               "debt_payoff": debt_payoff_page, "shipping_cost": shipping_cost_page,
               "reorder_point": reorder_point_page, "str_breakeven": str_breakeven_page,
@@ -2290,7 +2407,8 @@ def leads_page_html(p):
                 + '<p class="ld-empty" id="ldEmpty" hidden>No projects in this sample match. The weekly list covers every open project.</p>'
                 + (f'<div class="ld-after"><p>That is the top {n_big}. The full list has all {kept:,}, closest to a final clean first, with {area_filter}.</p>{buy()}</div>' if checkout else "")
                 + '</section>')
-    links = "".join(f'<li><a href="{rel}{E(l[0])}/">{E(l[1])}</a></li>' for l in p.get("links", []))
+    drafts = {x["slug"] for x in PAGES_ALL} - {x["slug"] for x in PAGES_LIVE}   # a link to a draft page waits until it is live
+    links = "".join(f'<li><a href="{rel}{E(l[0])}/">{E(l[1])}</a></li>' for l in p.get("links", []) if l[0] not in drafts)
     method = ('<section class="block"><h2>How to use this list</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"])
               + (f'<p>Price the work before you call:</p><ul class="qa-rel">{links}</ul>' if links else "") + "</section>")
     shots = ""
@@ -3580,6 +3698,7 @@ def main():
     live = [p for p in pages if is_live(p)]
     LIVE_QUESTIONS[:] = [p for p in live if p.get("kind") == "question"]
     PAGES_LIVE[:] = live
+    PAGES_ALL[:] = pages
     og_all(pages, live)
     for p in pages:
         if p.get("kind") in ("leads", "restleads", "question", "licleads", "newin") and not os.path.isfile(os.path.join(ROOT, p["data"])):

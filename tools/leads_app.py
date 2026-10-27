@@ -208,7 +208,11 @@ def build_html(rows, fetched, xlsx_bytes, password, city_terms=None, city=None):
         use(city)
     box = encrypt(password, json.dumps(payload(rows, fetched, xlsx_bytes), separators=(",", ":")).encode())
     as_of = pretty_date(fetched)
-    return _depth(PAGE.replace("__BOX__", json.dumps(box)).replace("__TERMS__", terms_json(as_of, city_terms or CITY["termsUrl"]))
+    seat = bool(CITY.get("seatName"))   # the bid sheet is in the area seats' app only; every other app is unchanged
+    page = (PAGE.replace("__BIDHEAD__", BID_HEAD if seat else "").replace("__BIDJS__", BID_JS if seat else "")
+            .replace("__BIDHOOK__", "${bidPanel(p)}" if seat else "").replace("__BIDWIRE__", "bidWire(p);" if seat else "")
+            .replace("__BIDAPP__", BID_APP if seat else ""))
+    return _depth(page.replace("__BOX__", json.dumps(box)).replace("__TERMS__", terms_json(as_of, city_terms or CITY["termsUrl"]))
             .replace("__HELPLINE__", _esc(CITY.get("helpLine") or "Questions about your membership? Reply to your Gumroad receipt."))
             .replace("__GATEH1__", _esc(CITY.get("gateH1") or f"This week's {CITY['city']} leads"))
             .replace("__RIBBON__", _esc(CITY.get("ribbon") or CITY["product"]))
@@ -279,7 +283,7 @@ PAGE = r"""<!doctype html>
 <link rel="preload" href="../assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="__LCSS__" integrity="__LCSSI__" crossorigin="anonymous">
 <script defer src="__LJS__" integrity="__LJSI__" crossorigin="anonymous"></script>
-<style>
+__BIDHEAD__<style>
 @font-face{font-family:Inter;font-weight:400;font-display:swap;src:url(../assets/fonts/inter-400.woff2) format("woff2")}
 @font-face{font-family:Inter;font-weight:600;font-display:swap;src:url(../assets/fonts/inter-600.woff2) format("woff2")}
 @font-face{font-family:Inter;font-weight:700;font-display:swap;src:url(../assets/fonts/inter-700.woff2) format("woff2")}
@@ -719,7 +723,7 @@ h1[tabindex="-1"]:focus,h1[tabindex="-1"]:focus-visible{outline:none;box-shadow:
 <footer class="foot-legal" id="appLegal" hidden><p>__LEGAL__</p><p>List of __ASOF__. __HELPLINE__ <a href="../privacy/">Privacy</a></p><p class="leave">Thinking of cancelling? <a href="__SURVEY__" target="_blank" rel="noopener">Tell us why first<span class="sr"> (opens in a new tab)</span></a>. It takes a minute and decides what we fix next.</p></footer>
 <nav class="bnav" id="bnav" aria-label="Sections" hidden></nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>
+__BIDJS__<script>
 "use strict";
 const BOX=__BOX__;
 const PITCH=__PITCH__;
@@ -1012,7 +1016,7 @@ ${aus?`<p class="ms"><b>City record:</b> ${plural(p.b||0,"building permit")} ope
 ${(p.pm||[]).length>6?`<p class="rec"><button class="btn sm" type="button" id="bpsAll" aria-controls="bps" aria-expanded="false">Show all ${int((p.pm||[]).length)} building permits</button></p>`:""}
 ${(p.b||0)>(p.pm||[]).length?`<p class="rec">The first ${int((p.pm||[]).length)} of ${int(p.b)} open building permits are shown.</p>`:""}
 <p class="rec">From the City's permit text, tidied for reading. ${(p.ms||[p.id]).map(m=>`<a href="${esc(D.record+encodeURIComponent(m))}" target="_blank" rel="noopener">See the City's raw records for master permit ${esc(m)}<span class="sr"> (opens in a new tab)</span></a>`).join(" ")}${p.lat&&p.gs==="census"?" The map pin is from the US Census Bureau's geocoder, because the City record gives no coordinates.":""}</p>
-${p.lat&&p.lon?'<div class="minimap" id="minimap" role="region" aria-label="Map of the project location"></div>':""}</section>`:`<p class="ms"><b>City milestone:</b> ${esc(sent(p.m)||"Not given")}. ${STG_LINE[p.st]}</p></section>
+${p.lat&&p.lon?'<div class="minimap" id="minimap" role="region" aria-label="Map of the project location"></div>':""}</section>`:`<p class="ms"><b>City milestone:</b> ${esc(sent(p.m)||"Not given")}. ${STG_LINE[p.st]}</p></section>__BIDHOOK__
 <section class="panel"><div class="sec-h"><h2>Permit details</h2></div><dl class="facts">
 <div><dt>Reported cost</dt><dd class="num">$${int(p.c)}</dd></div><div><dt>Type</dt><dd>${esc(p.t)}</dd></div><div><dt>Homes</dt><dd class="num">${p.u?int(p.u):"None listed"}</dd></div>${p.sl?`<div><dt>Sleeping units</dt><dd class="num">${int(p.sl)}</dd></div>`:""}<div><dt>Issued</dt><dd>${esc(day(p.i))}</dd></div>
 <div><dt>Permit number</dt><dd class="num">${esc(p.id)}</dd></div><div><dt>City permit status</dt><dd>${esc(p.cs||"Not given")}</dd></div><div><dt>Community area</dt><dd>${esc(p.ca||"Not given")}</dd></div><div><dt>Stage</dt><dd>${STG[p.st]}</dd></div></dl></section>
@@ -1020,7 +1024,7 @@ ${p.lat&&p.lon?'<div class="minimap" id="minimap" role="region" aria-label="Map 
 <p class="rec">From the City's permit text, tidied for reading${/(\.\.\.|\u2026)$/.test(String(p.sf||p.s))?"; shortened here, and the City's record has the rest":""}. <a href="${esc(D.record+encodeURIComponent(p.id))}" target="_blank" rel="noopener">See the City's raw record for permit ${esc(p.id)}<span class="sr"> (opens in a new tab)</span></a></p>
 ${p.lat&&p.lon?'<div class="minimap" id="minimap" role="region" aria-label="Map of the project location"></div>':""}</section>`}
 </div></div>`;
-$("#back").onclick=e=>{e.preventDefault();back("#/projects");};
+$("#back").onclick=e=>{e.preventDefault();back("#/projects");};__BIDWIRE__
 const ba=$("#bpsAll");if(ba)ba.onclick=()=>{const open=$("#bps").classList.toggle("cut");ba.setAttribute("aria-expanded",String(!open));ba.textContent=open?`Show all ${int(p.pm.length)} building permits`:"Show fewer";};
 $("#cpy").onclick=async()=>{toast(await copyText(p.a.replace(/ \(\+\d+ more\)$/,"")+where)?"Address copied":"Copy did not work. Press and hold the address.");};
 $("#mark").onclick=()=>{const now=mk(p.id).c?"":new Date().toISOString().slice(0,10);const ok=setMark(p.id,{c:now});const btn=$("#mark");btn.classList.toggle("on",!!now);btn.setAttribute("aria-pressed",String(!!now));$("#markT").textContent=now?"Contacted "+day(now)+" (undo)":"Mark as contacted";toast(ok?(now?"Marked as contacted":"Contacted mark removed"):"Not saved: this browser blocks saving");};
@@ -1028,7 +1032,7 @@ const grow=t=>{t.style.height="auto";t.style.height=Math.max(96,t.scrollHeight+2
 let tn;$("#nt").addEventListener("input",e=>{grow(e.target);clearTimeout(tn);$("#ntst").textContent="Saving...";tn=setTimeout(()=>{const ok=setMark(p.id,{n:e.target.value});$("#ntst").textContent=ok?"Note saved in this browser":"Not saved. This browser blocks saving here; private browsing is the usual cause.";},400);});
 if(p.lat&&p.lon){const mm=()=>{if(!window.L||!$("#minimap"))return;const m2=L.map("minimap",{scrollWheelZoom:false,dragging:!L.Browser.mobile,tap:false,zoomControl:true}).setView([p.lat,p.lon],15);m2.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');tiles(m2);if(p.st===0)L.circleMarker([p.lat,p.lon],{radius:17,color:"#1F4E4A",weight:2.5,fill:false,interactive:false}).addTo(m2);L.circleMarker([p.lat,p.lon],Object.assign({},MS[p.st],{radius:MS[p.st].radius*1.5})).addTo(m2);STATE.mini=m2;};if(window.L)mm();else window.addEventListener("load",mm,{once:true});}}
 
-/* builders */
+__BIDAPP__/* builders */
 function viewBuilders(q){document.title="Builders | "+PROD;const s0=q.get("sort")||(Object.values(B).some(b=>b.near)?"near":"n"),q0=q.get("q")||"",ph=q.get("phone")==="1";
 const all=Object.values(B);
 $("#app").innerHTML=`<div class="ph"><div><h1>Builders</h1><p>Every general contractor on this week's list. A ${esc(CITY.key==="austin"?"project":"permit")} with two builders counts for each.</p></div></div>
@@ -1089,6 +1093,136 @@ $("#gateView").hidden=true;$("#gateLegal").hidden=true;$("#app").hidden=false;$(
 $("#dlTop").onclick=downloadWorkbook;window.removeEventListener("hashchange",gateHash);window.addEventListener("hashchange",onHash);STATE.trail=[location.hash||"#/"];route(true);}
 catch(x){btn.disabled=false;btn.textContent="Open this week's list";err.textContent="That password did not open the list. Check your Gumroad purchase page, or reply to your receipt for help.";pw.setAttribute("aria-invalid","true");pw.focus();}};
 </script></body></html>
+"""
+
+
+# The bid sheet in the area seats' app only (Todd's go, Oct 27, 2026: "Let's go with your recommendation",
+# coo/DECISIONS-2026-10-27.md; launches/chicago-cleaning-area-seats.md). Each project gets a "Price this job" panel: the
+# member types the size and their own rates once, and gets rough, final and touch-up prices and a one-page proposal filled
+# with the project's address, builder, work type and stage from the City record. The math is PNF.bidPrice and the proposal
+# PNF.bidProposal in docs/assets/pnf-calc.js, the same functions as the free bid calculator, tested once in
+# docs/assets/pnf-calc.test.js. No outside price is shown, as a market rate or otherwise. Rates and sizes stay in the
+# member's browser (localStorage, inside try/catch).
+BID_HEAD = r"""<link rel="stylesheet" href="../assets/pnf-bid.css">
+<style>
+.bidp-in{padding:0 20px 20px}
+.bidp-lede{margin:0 0 12px;color:var(--ink2);font-size:15px;max-width:68ch}
+.bidp-note{display:flex;gap:10px;align-items:flex-start;margin:0 0 16px;padding:12px 14px;border-radius:10px;background:var(--blue-bg);color:var(--ink2);font-size:14px;line-height:1.5}
+.bidp-note .ico{color:var(--blue);margin-top:1px}
+.bidp-note b{color:var(--ink)}
+.bf{min-width:0}
+.bf label{display:block;font-weight:600;font-size:14px;margin:0 0 6px;color:var(--ink)}
+.bf label small{display:block;font-weight:400;color:var(--muted);font-size:12.5px;margin-top:1px}
+.bf input,.bf select,.bf textarea{width:100%;min-height:44px;padding:0 12px;border:1px solid var(--field);border-radius:10px;background:#fff;font-size:16px;color:var(--ink)}
+.bf textarea{padding:10px 12px;min-height:72px;resize:vertical;line-height:1.45}
+.bf select{appearance:none;-webkit-appearance:none;padding-right:34px;font-weight:600;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%231d2433' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 12px center}
+.bf input:focus,.bf select:focus,.bf textarea:focus{outline:none;border-color:var(--blue);box-shadow:var(--focus)}
+.bfi{position:relative}.bfi.pre span{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}.bfi.pre input{padding-left:26px}
+.bidp-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin:0 0 14px;align-items:end}
+.bidp-3{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:end}
+.bidp-ph{border:0;padding:0;margin:0 0 14px;min-width:0}
+.bidp-ph legend{font-weight:600;font-size:14px;margin:0 0 6px;padding:0}
+.bidp-ph .opts{display:flex;gap:8px;flex-wrap:wrap}
+.ck{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:1px solid var(--field);border-radius:10px;background:#fff;font-weight:600;font-size:14.5px;cursor:pointer}
+.ck input{width:18px;height:18px;margin:0;accent-color:var(--teal)}
+.ck:has(input:focus-visible){box-shadow:var(--focus)}
+.ck:has(input:checked){border-color:#9BC4BE;background:var(--teal-bg);color:#1F4E4A}
+.bidp-rates{border:1px solid var(--line);border-radius:10px;margin:0 0 16px;background:#FFFEFB}
+.bidp-rates summary{display:flex;justify-content:space-between;align-items:center;gap:6px 12px;flex-wrap:wrap;min-height:48px;padding:8px 14px;cursor:pointer;font-weight:600;list-style:none;border-radius:10px}
+.bidp-rates summary::-webkit-details-marker{display:none}
+.bidp-rates summary::after{content:"+";font-size:22px;font-weight:400;line-height:1;color:var(--ink2)}
+.bidp-rates[open] summary::after{content:"\2212"}
+.bidp-rates summary span{flex:1;font-weight:400;color:var(--muted);font-size:13.5px;text-align:right}
+.bidp-rg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:4px 14px 14px;align-items:end}
+.bidp-rg h3{grid-column:1 / -1;font:700 12px var(--body);color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:10px 0 -2px}
+.bidp-rg .wide{grid-column:1 / -1}
+.bidp-rg .hint{grid-column:1 / -1;margin:2px 0 0;color:var(--muted);font-size:13px}
+.bidp-t{width:100%;border-collapse:collapse;font-size:14.5px}
+.bidp-t th,.bidp-t td{padding:9px 0 9px 10px;text-align:right;border-bottom:1px solid var(--line2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.bidp-t th:first-child,.bidp-t td:first-child{text-align:left;padding-left:0;white-space:normal}
+.bidp-t thead th{font-size:12px;font-weight:600;color:var(--muted);border-bottom:1px solid var(--line)}
+.bidp-t tbody th{font-weight:600}
+.bidp-t tfoot th,.bidp-t tfoot td{font-weight:700;font-size:16px;border-bottom:2px solid var(--ink)}
+.bidp-sum{margin:10px 0 0;font-size:14.5px;color:var(--ink2)}
+.bidp-sum b{color:var(--ink)}
+.bidp-empty{margin:0;padding:14px;border-radius:10px;background:var(--paper);color:var(--ink2);font-size:14.5px}
+.bidp-warn{margin:10px 0 0;padding:10px 12px;border-radius:10px;background:#FBEDE7;color:var(--accent-ink);font-size:14px;font-weight:600}
+.bidp-acts{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 0}
+.bidp-pv{margin:14px 0 0;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px}
+@media(max-width:700px){.bidp-rg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.bidp-in{padding:0 16px 16px}.bidp-grid{grid-template-columns:minmax(0,1fr)}.bidp-3{grid-template-columns:minmax(0,1fr)}.bidp-rg{padding:4px 12px 12px}.bidp-acts .btn{flex:1 1 100%}}
+@media(max-width:480px){.bidp-rg{grid-template-columns:minmax(0,1fr)}.bidp-rates summary span{flex:1 1 100%;order:3;text-align:left}}
+</style>
+"""
+BID_JS = '<script src="../assets/pnf-calc.js"></script>\n'
+BID_APP = r"""/* bid sheet (area seats): PNF.bidPrice and PNF.bidProposal from assets/pnf-calc.js, the free bid calculator's own functions */
+const BKEY=SKEY+"-bid",BJKEY=SKEY+"-bidjobs";
+const BID_EX={wage:"30",crew:"4",dayHrs:"8",supplies:"15",trip:"40",roughRate:"600",finalRate:"200",touchRate:"1,000",visits:"1",touchMode:"0",touchFlat:"350",priceMode:"0",pct:"40",biz:"",contact:"",terms:""};
+function bLoad(k){try{return JSON.parse(localStorage.getItem(k)||"null");}catch(e){return null;}}
+function bSave(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true;}catch(e){return false;}}
+let BRATES=null,BJOBS=null;
+function bRates(){if(!BRATES){const s=bLoad(BKEY);BRATES=Object.assign({},BID_EX,(s&&s.r)||{});BRATES._saved=!!(s&&s.saved);}return BRATES;}
+function bJobs(){if(!BJOBS)BJOBS=bLoad(BJKEY)||{};return BJOBS;}
+function bJob(p){return Object.assign({m:p.u?"1":"0",sq:"",u:p.u?String(p.u):"",us:"",ca:"0",ph:[1,1,1]},bJobs()[p.id]||{});}
+const bf=(id,label,val,hint,pre,cls)=>`<div class="bf${cls?" "+cls:""}"><label for="${id}">${label}${hint?`<small>${hint}</small>`:""}</label><div class="bfi${pre?" pre":""}">${pre?`<span aria-hidden="true">${pre}</span>`:""}<input id="${id}" type="text" inputmode="decimal" autocomplete="off" value="${esc(val)}"></div></div>`;
+const bsel=(id,label,opts,val,hint)=>`<div class="bf"><label for="${id}">${label}${hint?`<small>${hint}</small>`:""}</label><select id="${id}">${opts.map(([v,t])=>`<option value="${v}"${String(v)===String(val)?" selected":""}>${t}</option>`).join("")}</select></div>`;
+function bidPanel(p){
+if(typeof PNF==="undefined"||!PNF.bidPrice)return `<section class="panel bidp" aria-labelledby="bidh"><div class="sec-h"><h2 id="bidh">Price this job</h2></div><div class="bidp-in"><p class="bidp-empty">The bid sheet did not load on this connection. Reload the page to try again.</p></div></section>`;
+const R=bRates(),j=bJob(p),names=["Rough","Final","Touch-up"];
+return `<section class="panel bidp" aria-labelledby="bidh"><div class="sec-h"><h2 id="bidh">Price this job</h2></div><div class="bidp-in" id="bidp">
+<p class="bidp-lede">Rough, final and touch-up prices from your own rates and the size you type, and a one-page proposal for ${esc(p.g.length?pn(p,0):"the builder")} to print or save as a PDF. Nothing here is a market rate.</p>
+<p class="bidp-note">${ico("flag","s")}<span><b>City permits rarely give square footage.</b> ${p.u?`This one lists ${plural(p.u,"home")}, so you can price it by unit. `:""}Type the size from the plans, the builder or a walk-through.</span></p>
+<div class="bidp-grid">${bsel("bm","Price it by",[[0,"Square feet"],[1,"Apartment units"]],j.m)}
+<div data-b="sq">${bf("bsq","Square feet to clean",j.sq)}</div>
+<div class="bidp-3" data-b="u">${bf("bu","Units",j.u)}${bf("bus","Average unit size",j.us,"Square feet")}${bf("bca","Common areas",j.ca,"Square feet, 0 if none")}</div></div>
+<fieldset class="bidp-ph"><legend>Cleans in this bid</legend><div class="opts">${names.map((n,i)=>`<label class="ck"><input type="checkbox" id="bph${i}"${j.ph[i]?" checked":""}>${n}</label>`).join("")}</div></fieldset>
+<details class="bidp-rates" id="brates"${R._saved?"":" open"}><summary>Your rates and details<span id="bratesSt">${R._saved?"Saved in this browser, used on every project":"Example numbers until you change them"}</span></summary>
+<div class="bidp-rg"><h3>How fast your crew cleans, sq ft per cleaner-hour</h3>${bf("brr","Rough clean",R.roughRate)}${bf("bfr","Final clean",R.finalRate)}${bf("btr","Touch-up clean",R.touchRate)}
+<h3>Crew and costs</h3>${bf("bw","Labor cost per cleaner-hour",R.wage,"Pay plus payroll taxes","$")}${bf("bc","Cleaners on the crew",R.crew)}${bf("bd","Hours in a crew day",R.dayHrs)}
+${bf("bs","Supplies per 1,000 sq ft",R.supplies,"For each clean","$")}${bf("bt","Travel and parking per day",R.trip,"One trip a day on site","$")}${bf("bv","Touch-up visits",R.visits)}
+${bsel("btm","Touch-up price",[[0,"From your rates"],[1,"Flat price a visit"]],R.touchMode)}${bf("btf","Flat price a visit",R.touchFlat,"Used when touch-up is flat","$")}
+<h3>Your price</h3>${bsel("bpm","Add profit as",[[0,"Margin"],[1,"Markup"]],R.priceMode,"Margin is a share of the price")}${bf("bpc","Margin or markup, %",R.pct,"Covers overhead and profit")}
+<h3>On the proposal</h3>${bf("bbz","Your business name",R.biz,"","","wide")}${bf("bct","Your phone and email",R.contact,"","","wide")}
+<div class="bf wide"><label for="btx">Terms</label><textarea id="btx" placeholder="Your payment terms, and how long this price holds">${esc(R.terms)}</textarea></div>
+<p class="hint" id="bsaved">${esc(STORE_OK?"Saved in this browser on this device only. Nobody else sees them, including ProofNotFluff.":"This browser is blocking storage, so your rates will be lost when you close the page.")}</p></div></details>
+<div id="bres"></div><p class="sr" id="blive" aria-live="polite"></p>
+<div class="bidp-acts"><button class="btn pri" type="button" id="bprint">Print the proposal</button><button class="btn" type="button" id="bprev" aria-expanded="false" aria-controls="bpv">Preview the proposal</button></div>
+<div class="bidp-pv" id="bpv" hidden></div></div></section>`;}
+function bidWire(p){const box=$("#bidp");if(!box||typeof PNF==="undefined")return;
+const v=id=>$("#"+id).value,R=bRates();
+const MAP={roughRate:"brr",finalRate:"bfr",touchRate:"btr",wage:"bw",crew:"bc",dayHrs:"bd",supplies:"bs",trip:"bt",visits:"bv",touchMode:"btm",touchFlat:"btf",priceMode:"bpm",pct:"bpc",biz:"bbz",contact:"bct",terms:"btx"};
+const inputs=()=>{const i={measure:v("bm"),sqft:v("bsq"),units:v("bu"),unitSize:v("bus"),common:v("bca"),rough:$("#bph0").checked?1:0,final:$("#bph1").checked?1:0,touch:$("#bph2").checked?1:0};
+for(const k in MAP)i[k]=v(MAP[k]);return i;};
+const words=()=>({business:v("bbz"),contact:v("bct"),terms:v("btx"),builder:p.g.length?pn(p,0):"",address:p.a.replace(/ \(\+\d+ more\)$/,"")+", "+CITY.city+", "+CITY.state,
+ work:[p.t,p.u?plural(p.u,"home"):""].filter(Boolean).join(", "),stage:STG[p.st]+" (City record)",date:PNF.bidToday()});
+const hrs=x=>(Math.round(x*10)/10).toFixed(1),m0=x=>PNF.money(x,false);
+function draw(){const u=v("bm")==="1";box.querySelector('[data-b="sq"]').hidden=u;box.querySelector('[data-b="u"]').hidden=!u;
+const r=PNF.bidPrice(inputs()),rows=[["rough","Rough"],["final","Final"],["touch","Touch-up"]].filter(([k])=>r[k+"On"]);
+let h="";
+if(r.none)h=`<p class="bidp-empty">Type the ${u?"units and their average size":"square feet to clean"} to see the prices.</p>`;
+else if(r.noPhase)h=`<p class="bidp-empty">Pick at least one clean: rough, final or touch-up.</p>`;
+else h=`<table class="bidp-t"><caption class="sr">Hours, days on site and price for each clean</caption><thead><tr><th scope="col">Clean</th><th scope="col">Cleaner-hours</th><th scope="col">Days</th><th scope="col">Price</th></tr></thead><tbody>`
+ +rows.map(([k,n])=>`<tr><th scope="row">${n}${k==="touch"?`, ${plural(r.touchVisits,"visit")}`:""}</th><td>${hrs(r[k+"Hrs"])}</td><td>${int(r[k+"Days"])}</td><td>${m0(r[k+"Price"])}</td></tr>`).join("")
+ +`</tbody><tfoot><tr><th scope="row">Total</th><td>${hrs(r.hrs)}</td><td>${int(r.days)}</td><td>${m0(r.price)}</td></tr></tfoot></table>`
+ +`<p class="bidp-sum">Cost <b>${m0(r.cost)}</b>, profit <b>${m0(r.profit)}</b> (${((Math.round(r.profitPct*1000)/10)||0).toFixed(1)}% of the price). <b>$${r.perSqFt.toFixed(3)}</b> a sq ft${r.unitOn?`, <b>${m0(r.perUnit)}</b> a unit`:""}.</p>`
+ +(r.noRate?'<p class="bidp-warn">A clean in the bid has no speed. Type the square feet one cleaner does in an hour in Your rates.</p>':"")
+ +(r.noWage?'<p class="bidp-warn">Type your labor cost per cleaner-hour in Your rates, or the price leaves out your crew.</p>':"")
+ +(r.noVisits?'<p class="bidp-warn">Touch-up is in the bid with 0 visits. Type how many return visits in Your rates.</p>':"")
+ +(r.noMargin?'<p class="bidp-warn">A margin of 100% or more has no price. Use a lower margin, or switch to markup.</p>':"")
+ +(r.flatLow?`<p class="bidp-warn">Your flat touch-up price is under what the visits cost you: ${m0(r.touchCost)} at your rates.</p>`:"");
+$("#bres").innerHTML=h;$("#blive").textContent=r.price>0?"Total "+m0(r.price):"";
+$("#bprint").disabled=!r.priced;
+if(!$("#bpv").hidden)$("#bpv").innerHTML=PNF.bidProposal(r,words());return r;}
+let ts;function save(e){const t=e&&e.target;if(!t)return;
+const isRate=Object.values(MAP).includes(t.id);
+if(isRate){for(const k in MAP)R[k]=v(MAP[k]);R._saved=true;}
+else{const J=bJobs();J[p.id]={m:v("bm"),sq:v("bsq"),u:v("bu"),us:v("bus"),ca:v("bca"),ph:[0,1,2].map(i=>$("#bph"+i).checked?1:0)};}
+clearTimeout(ts);ts=setTimeout(()=>{const ok=isRate?bSave(BKEY,{saved:true,r:Object.fromEntries(Object.keys(MAP).map(k=>[k,R[k]]))}):bSave(BJKEY,bJobs());
+if(isRate)$("#bratesSt").textContent=ok?"Saved in this browser, used on every project":"Not saved: this browser blocks saving";},300);}
+box.addEventListener("input",e=>{draw();save(e);});box.addEventListener("change",e=>{if(e.target.matches("select,input[type=checkbox]")){draw();save(e);}});
+$("#bprev").onclick=()=>{const pv=$("#bpv"),open=pv.hidden;pv.hidden=!open;$("#bprev").setAttribute("aria-expanded",String(open));$("#bprev").textContent=open?"Hide the preview":"Preview the proposal";draw();};
+$("#bprint").onclick=()=>{const r=draw();if(r&&r.priced)PNF.bidPrint(PNF.bidProposal(r,words()));};
+draw();}
 """
 
 

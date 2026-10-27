@@ -22,7 +22,7 @@ def write(root, slug, name, files, office_line, calc):
     src = open(page, encoding="utf-8").read()
     header = re.search(r'<header class="top">.*?</header>', src, re.S).group(0).replace('href="../', 'href="../../')
     footer = re.search(r"<footer>.*?</footer>", src, re.S).group(0).replace('href="../', 'href="../../')
-    h1 = re.search(r'"position": 2, "name": "([^"]+)"', src).group(1)
+    h1 = re.findall(r'"position": \d+, "name": "([^"]+)"', src)[-1]   # the page itself: the last breadcrumb (a calculator page has three)
     btns = []
     for i, (fn, label, detail) in enumerate(files):
         size = _size(os.path.join(root, "docs", "downloads", fn))

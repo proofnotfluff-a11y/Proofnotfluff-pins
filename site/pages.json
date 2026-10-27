@@ -3421,6 +3421,10 @@
    ],
    "links": [
     [
+     "post-construction-cleaning-bid-calculator",
+     "Post-construction cleaning bid calculator"
+    ],
+    [
      "cleaning-price-per-square-foot-calculator",
      "Cleaning price per square foot calculator"
     ],
@@ -6049,6 +6053,155 @@
    "sources": "No outside rates are used on this page: every figure in the calculator is yours, and the defaults are an example, not industry averages. Page built and checked Oct 26, 2026.",
    "draft": false,
    "published": "2026-10-26"
+  },
+  {
+   "slug": "post-construction-cleaning-bid-calculator",
+   "kind": "bid",
+   "segment": "trades",
+   "stages": true,
+   "draft": true,
+   "title": "Post-Construction Cleaning Bid Calculator: Rough, Final and Touch-Up | ProofNotFluff",
+   "desc": "Free post-construction cleaning bid calculator. Price rough, final and touch-up cleans from your own crew speed, labor cost and margin, and print a proposal.",
+   "eyebrow": "Free calculator",
+   "h1": "Post-Construction Cleaning Bid Calculator",
+   "lede": "Price a construction clean the way builders ask for it: rough, final and touch-up, each from your own crew's speed, labor cost, supplies, travel and margin. You get the hours behind every price and a one-page proposal to print or save as a PDF. Free, no sign-up.",
+   "card": "Rough, final and touch-up prices for a construction clean from your own crew speed and costs, with a one-page proposal.",
+   "defaults": {
+    "measure": "0",
+    "sqft": "12,000",
+    "units": "40",
+    "unitSize": "850",
+    "common": "2,000",
+    "roughRate": "600",
+    "finalRate": "200",
+    "touchRate": "1,000",
+    "wage": "30",
+    "crew": "4",
+    "dayHrs": "8",
+    "supplies": "15",
+    "trip": "40",
+    "visits": "1",
+    "touchMode": "0",
+    "touchFlat": "350",
+    "priceMode": "0",
+    "pct": "40"
+   },
+   "method": [
+    "Each clean is priced on its own, from your crew's speed. Cleaner-hours are the square feet divided by the square feet one cleaner does in an hour on that clean. Labor is those hours times your labor cost per cleaner-hour.",
+    "Days on site are the cleaner-hours divided by your crew's day (cleaners times hours in a day), rounded up, and each day on site is one trip at your travel and parking cost. Supplies are your cost per 1,000 square feet for each clean. A touch-up repeats for each visit.",
+    "Cost is labor plus supplies plus travel. A margin prices it at cost divided by one less the margin; a markup at cost times one plus the markup. Each price rounds up to the next $5, and the bid is their sum. A flat touch-up price is used as you type it, and the page tells you when it is under what the visits cost.",
+    "For apartments, the size is the units times their average size, plus the common areas. The proposal lists only the cleans you picked, at your prices."
+   ],
+   "example": "Say a 12,000 sq ft office build-out needs all three cleans. Each cleaner does 600 sq ft an hour on the rough clean, 200 on the final and 1,000 on a touch-up. Labor costs you $30 a cleaner-hour, supplies $15 per 1,000 sq ft for each clean, and travel and parking $40 a day, with a crew of 4, 8-hour days and a 40% margin. The rough clean is 20 cleaner-hours in 1 day: $600 of labor, $180 of supplies and $40 of travel, $820 of cost, priced at $1,370. The final clean is 60 cleaner-hours over 2 days, $2,060 of cost, priced at $3,435. One touch-up visit is 12 cleaner-hours, $580 of cost, priced at $970. The bid is $5,775, about 48 cents a square foot, with $2,315 of profit, 40.1% of the price.",
+   "faq": [
+    [
+     "How do I price a post-construction cleaning bid?",
+     "Price each clean on its own: the hours your crew needs for that clean at that size, times your labor cost, plus supplies and travel, then your margin. With the example numbers, a 12,000 sq ft job is $1,370 for the rough clean, $3,435 for the final and $970 for one touch-up visit, $5,775 in all."
+    ],
+    [
+     "What is the difference between a rough, final and touch-up clean?",
+     "A rough clean comes after the main trades finish: debris out, floors swept, dust wiped. A final clean comes before turnover: windows, fixtures, cabinets, labels and floors. A touch-up is a return visit before the walkthrough or move-in, for dust and marks left by punch-list work. Builders don't all use the same words, so the proposal spells out the scope of each."
+    ],
+    [
+     "What do post-construction cleaners charge per square foot?",
+     "Two cleaning business blogs published ranges of $0.10 to $0.30 a sq ft for a rough clean and $0.30 to $0.75 for a final clean in October 2026. Those are their published ranges, not a market rate and not what you should charge. Your crew's speed and your costs set your price, and the calculator shows yours per square foot."
+    ],
+    [
+     "How do I bid an apartment building by the unit?",
+     "Pick Apartment units, then type the units, their average size and the common areas. The calculator turns that into square feet, prices each clean and shows the bid per unit."
+    ],
+    [
+     "Should touch-up visits be a flat fee?",
+     "That is your call. Pick Flat price a visit to use your own number. The page still works out the hours and cost of each visit at your rates and tells you when the flat price is under that cost."
+    ],
+    [
+     "Is the proposal a contract?",
+     "It is a sample to adapt, not a legal document written for your state or business. Have a local attorney review any agreement before you use it with clients."
+    ]
+   ],
+   "guide": {
+    "title": "Published guide ranges, for context",
+    "intro": "Some cleaning businesses publish the per-square-foot ranges they see. They are listed here with their sources and dates as context only. They are not what the market charges or what you should charge: your price comes from your own numbers above.",
+    "rows": [
+     [
+      "Rough clean",
+      "$0.10 to $0.30 a sq ft",
+      [
+       [
+        "Brye A+ Cleaning blog, Oct 14, 2026",
+        "https://www.bryeapluscleaning.com/blog/construction-cleaning-prices/"
+       ],
+       [
+        "CleanerHQ blog, updated Oct 16, 2026",
+        "https://cleanerhq.com/post-construction-cleaning-a-profitable-niche/"
+       ]
+      ]
+     ],
+     [
+      "Final clean",
+      "$0.30 to $0.75 a sq ft",
+      [
+       [
+        "Brye A+ Cleaning blog, Oct 14, 2026",
+        "https://www.bryeapluscleaning.com/blog/construction-cleaning-prices/"
+       ],
+       [
+        "CleanerHQ blog, updated Oct 16, 2026",
+        "https://cleanerhq.com/post-construction-cleaning-a-profitable-niche/"
+       ]
+      ]
+     ],
+     [
+      "Touch-up clean",
+      "$0.10 to $0.20 a sq ft",
+      [
+       [
+        "Brye A+ Cleaning blog, Oct 14, 2026",
+        "https://www.bryeapluscleaning.com/blog/construction-cleaning-prices/"
+       ]
+      ]
+     ],
+     [
+      "Touch-up, flat",
+      "$150 to $500 a visit",
+      [
+       [
+        "CleanerHQ blog, updated Oct 16, 2026",
+        "https://cleanerhq.com/post-construction-cleaning-a-profitable-niche/"
+       ]
+      ]
+     ],
+     [
+      "By the hour",
+      "$30 to $60 an hour per cleaner",
+      [
+       [
+        "jim.com blog, Aug 14, 2026",
+        "https://www.jim.com/blog/how-to-start-a-construction-cleaning-business"
+       ]
+      ]
+     ]
+    ],
+    "tail": [
+     "Each read on Oct 27, 2026. The hourly range is what that article suggests charging for each cleaner when a job has unknowns, not a wage. These are blog articles, not industry surveys, and ProofNotFluff has not checked their figures against real bids."
+    ]
+   },
+   "download": {
+    "kitForm": "KITFORM_TBD",
+    "title": "Get the proposal template in Word",
+    "text": "The same one-page proposal as a Word file you can type in and a printable PDF, with a page on how to price the three cleans and send the bid. Free by email.",
+    "items": [
+     "Word file you can type in (.docx)",
+     "Printable PDF, 3 pages",
+     "How to price and send it, on page 1"
+    ],
+    "button": "Get the template",
+    "sampleNote": "The proposal is a sample to adapt, not a legal document written for your state or business. Have a local attorney review any agreement before you use it with clients. If you collect client information, you're responsible for keeping it secure."
+   },
+   "sources": "Guide ranges: Brye A+ Cleaning blog (Oct 14, 2026), CleanerHQ blog (updated Oct 16, 2026) and jim.com blog (Aug 14, 2026), each read Oct 27, 2026 and shown as context, not as market rates. Every price in the calculator comes from your numbers; the defaults are an example, not industry averages. Page built and checked Oct 27, 2026.",
+   "number_sources": [
+    "docs/assets/pnf-calc.test.js bid A checks (the worked example), bid B and C (units, markup, flat touch-up, final only)."
+   ]
   },
   {
    "slug": "chicago-rat-complaints",

@@ -117,10 +117,10 @@ def lastmod(p):
 # ------------------------------------------------------------------ pieces
 CSS = ("<style>"
        ":root{--mp-up:#a63e21;--mp-dn:#00856f}@media(prefers-color-scheme:dark){:root{--mp-up:#e2683f;--mp-dn:#1fa293}}"
-       ".mp-hero .lede{max-width:780px}.mp-lead{border-top:3px solid var(--accent)}@media(min-width:900px){.mp-calc>form.card{position:sticky;top:80px}}.mp-btns .btn,.mp-btns .st-btn2{min-height:48px;display:inline-flex;align-items:center;justify-content:center;padding-top:0;padding-bottom:0;box-sizing:border-box}.mp-btns{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}.mp-tw.mp-nar{max-width:720px}.mp-hero .ld-heroact{margin-bottom:20px}.mp-name,.mp-dv .n,.mp-t tbody th,.mp-rel a,.mp-res .sub{overflow-wrap:anywhere}.mp-tiles .lab,.mp-res .lab{white-space:normal}.mp-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}@media(min-width:900px){.mp-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}"
+       ".mp-hero .lede{max-width:780px}.mp-lead{border-top:3px solid var(--accent)}@media(min-width:900px){.mp-calc{align-items:stretch}.mp-calc>form.card{display:flex;flex-direction:column}.mp-calc>form.card .calc-reset{margin-top:auto}}.mp-btns .btn,.mp-btns .st-btn2{min-height:48px;display:inline-flex;align-items:center;justify-content:center;padding-top:0;padding-bottom:0;box-sizing:border-box}.mp-btns{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}.mp-tw.mp-nar{max-width:720px}.mp-hero .ld-heroact{margin-bottom:20px}.mp-name,.mp-dv .n,.mp-t tbody th,.mp-rel a,.mp-res .sub{overflow-wrap:anywhere}.mp-tiles .lab,.mp-res .lab{white-space:normal}.mp-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}@media(min-width:900px){.mp-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}"
        ".mp-tiles .val small{font-size:.55em;font-weight:600;color:inherit;opacity:.8}.mp-name{font-size:clamp(16px,9cqi,22px)!important;line-height:1.25}"
        ".mp-calc{margin-top:8px}@media(min-width:900px){.mp-calc{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}"
-       ".mp-calc .row{grid-template-columns:minmax(0,1fr) minmax(0,260px)}.mp-calc .field select{text-align:left;padding-right:28px;min-height:44px}"
+       ".mp-calc .row{grid-template-columns:1fr;gap:6px}.mp-calc .field select{text-align:left;padding-right:28px;min-height:44px}"
        ".mp-calc .field input{min-height:44px}.mp-calc .row label{font-weight:600}.mp-calc .row label small{display:block;font-weight:400;color:var(--muted);font-size:13px}"
        "@media(max-width:599px){.mp-calc .row{grid-template-columns:1fr;gap:6px}}"
        ".mp-res .tiles{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.mp-res .tile.key{grid-column:1/-1}.mp-res .tile.key .val{font-size:clamp(30px,11cqi,46px)}"
@@ -132,7 +132,7 @@ CSS = ("<style>"
        ".mp-key i{display:inline-block;width:18px;height:10px;border-radius:3px;margin-right:6px;vertical-align:0}"
        ".mp-dv{margin:12px 0 0;padding:14px 16px 10px;background:var(--card);border:1px solid var(--line);border-radius:12px}"
        ".mp-dv ol{list-style:none;margin:0;padding:0}section.block .mp-dv li,section.block .mp-rel li,section.block .mp-key li{max-width:none}"
-       ".mp-dv a{display:grid;grid-template-columns:minmax(150px,240px) minmax(0,1fr) 76px;gap:4px 12px;align-items:center;min-height:44px;"
+       ".mp-dv a{display:grid;grid-template-columns:minmax(150px,300px) minmax(0,1fr) 76px;gap:4px 12px;align-items:center;min-height:44px;"
        "padding:2px 6px;margin:0 -6px;border-radius:8px;color:var(--ink);text-decoration:none;position:relative}"
        ".mp-dv a:hover,.mp-dv a:focus-visible{background:var(--rule)}.mp-dv a:focus-visible{outline:3px solid var(--focus);outline-offset:1px}"
        ".mp-dv .n{font-size:14.5px;font-weight:600;line-height:1.25}.mp-dv b{text-align:right;font:700 14.5px system-ui,sans-serif;font-variant-numeric:tabular-nums}"
@@ -551,8 +551,8 @@ def page_html(p):
     lede = (f'How far {len(d["mats"])} materials the trades buy have moved since the month you quoted, from the federal producer price index. '
             f'{n_up} of {len(ys)} are up on a year ago. Free, no sign-up.')
     tiles = ('<div class="tiles ld-tiles mp-tiles">'
-             f'<div class="tile mp-lead"><div class="lab">Biggest rise, 1\u00a0year</div><div class="val mp-name">{E(top["title"])}</div><div class="sub">{pct_txt(top["y12"])} since {nb(mlabel(top["y12o"][0]))}</div></div>'
-             f'<div class="tile"><div class="lab">{"Biggest drop" if low["y12"] < 0 else "Smallest rise"}, 1\u00a0year</div><div class="val mp-name">{E(low["title"])}</div><div class="sub">{pct_txt(low["y12"])} since {nb(mlabel(low["y12o"][0]))}</div></div>'
+             f'<div class="tile mp-lead"><div class="lab">Top rise, 1\u00a0yr</div><div class="val">{pct_txt(top["y12"])}</div><div class="sub">{E(top["title"])}, since {nb(mlabel(top["y12o"][0]))}</div></div>'
+             f'<div class="tile"><div class="lab">{"Top drop" if low["y12"] < 0 else "Smallest rise"}, 1\u00a0yr</div><div class="val">{pct_txt(low["y12"])}</div><div class="sub">{E(low["title"])}, since {nb(mlabel(low["y12o"][0]))}</div></div>'
              f'<div class="tile"><div class="lab">Up on a year ago</div><div class="val">{n_up} <small>of {len(ys)}</small></div><div class="sub">materials on this page</div></div>'
              f'<div class="tile"><div class="lab">Latest month</div><div class="val">{L}</div><div class="sub">{"preliminary; " if d["latest"] in d["prelim"] else ""}'
              + (f'next update {E(nb(nice(nx["date"])))}' if nx else "BLS updates monthly") + '</div></div>'
@@ -610,10 +610,12 @@ def sub_html(p, m, d):
     since = pct(first[1], m["last"][1])
     h1 = f'{title_case(m["title"])} Price Index'
     title = f'{title_case(m["title"])} Price Index: Change Since Your Quote | ProofNotFluff'
-    desc = (f'BLS producer price index for {mid(m["title"])}, {m["area"]}: {m["last"][1]:,.1f} in {L}, {move_words(m["m1"])} on the month and '
+    regional = m["area"] != "national"
+    subject = m["title"].replace("Midwest region ", "") if regional else m["title"]
+    desc = (f'BLS producer price index for {mid(subject)}, {m["area"]}: {m["last"][1]:,.1f} in {L}, {move_words(m["m1"])} on the month and '
             f'{move_words(m["y12"])} over 12 months. Free calculator, chart and CSV.')
     crumb, crumb_ld = M.crumbs(rel, [("Home", ""), (p["h1"], p["slug"] + "/"), (m["title"], None)])
-    lede = (f'The {m["area"]} producer price index for {mid(m["title"])} was {m["last"][1]:,.1f} in {L}, '
+    lede = (f'The {"Midwest" if regional else "national"} producer price index for {mid(subject)} was {m["last"][1]:,.1f} in {L}, '
             f'{move_words(m["m1"])} on the month and {move_words(m["y12"])} since {mlabel(ym_add(m["last"][0], -12))}. Bought by {m["buyers"] if m["buyers"][1:2].isupper() else m["buyers"][0].lower() + m["buyers"][1:]}.')
     tiles = ('<div class="tiles ld-tiles mp-tiles">'
              f'<div class="tile mp-lead"><div class="lab">Index, {L}</div><div class="val">{m["last"][1]:,.1f}</div><div class="sub">{"preliminary" if "P" in m["last"][2] else "final"}</div></div>'

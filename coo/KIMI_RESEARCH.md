@@ -20,7 +20,7 @@ Our scout already finds public-data ideas; the reviewers kill most of them for a
 | R7 | Our live $149 offers from the buyer's chair, against rival offers to the same trades | its own schema, in the prompt | offer changes proposed to Todd |
 | R8 | First traffic for a new site: indexing, $0 listings, news hooks, proven cases, AI answers | its own schema, in the prompt | traffic moves proposed to Todd |
 | R9 | A bid writer for post-construction cleaners: what they use to bid, rivals, permit-based bids, pricing units | its own schema, in the prompt | build, test or drop, proposed to Todd |
-| R10 | Which free features to build next that win search and AI answer traffic from trade owners | its own schema, in the prompt | build list proposed to Todd |
+| R10 | Which free features to build next that win search and AI answer traffic from trade owners | its own schema, in the prompt | research_notes/kimi-2026-10-27-r10.md (merged with Claude's run) |
 
 Repeat R3 and R4 every two weeks with a new Focus line (another metro, another record type). R5 runs after the scorer ranks the new candidates.
 

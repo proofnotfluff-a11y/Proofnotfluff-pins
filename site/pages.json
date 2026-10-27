@@ -6847,11 +6847,51 @@
    "kind": "datapage",
    "module": "dp_dumpsters",
    "draft": true,
-   "title": "Chicago Dumpster Permits by Neighborhood | ProofNotFluff",
-   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
-   "eyebrow": "Free neighborhood tracker",
+   "title": "Chicago Dumpster Permits by Neighborhood, Updated Daily | ProofNotFluff",
+   "desc": "Free daily count of CDOT dumpster permits in each of Chicago's 77 community areas: last 90 days vs. a year ago, ranked, month by month. From City records.",
+   "eyebrow": "Free daily tracker, from City permit records",
    "h1": "Chicago Dumpster Permits by Neighborhood",
-   "card": "Coming soon"
+   "card": "Where Chicago's dumpster permits are going: issued CDOT permits by community area, the last 90 days against a year ago, month by month. Updated daily.",
+   "cost": {
+    "title": "Need a permit for your own dumpster?",
+    "text": "Our free calculator prices a CDOT public way permit from the City's 2026 fee schedule: dumpster placement by days or by month, inside or outside the Loop, plus the application fee.",
+    "button": "Price a dumpster permit",
+    "textOfficial": "CDOT publishes what its public way permits cost in its 2026 Permit Fee Schedule. Fees can change, so check with CDOT before you apply.",
+    "buttonOfficial": "Open CDOT's 2026 fee schedule (PDF)"
+   },
+   "next": {
+    "title": "Run a junk removal or hauling business?",
+    "text": "Price a job by the truck load, with crew time, drive time and dump fees counted, in our free junk removal calculator.",
+    "slug": "junk-removal-pricing-calculator-by-truck-load",
+    "button": "Open the truck load calculator"
+   },
+   "method": [
+    "Every morning we pull the City of Chicago's public Transportation Department Permits dataset and keep the permits of type DOT_DMPSTR, the City's code for a dumpster permit, that have an issue date.",
+    "Each permit is placed in one of the 77 community areas by the latitude and longitude the City gives for the start of its address range, matched against the City's community area outlines. Each permit counts on the day CDOT issued it, and every count runs through the day before that morning's pull. The year-ago column is the same 90 calendar days one year earlier.",
+    "Only counts are kept. We never request the applicant name, contact or address fields, and no permit number or address is stored or shown, so the page cannot point to any building, block or business."
+   ],
+   "faq": [
+    [
+     "Which Chicago neighborhoods have the most dumpster permits?",
+     "The table on this page ranks all 77 community areas by dumpster permits CDOT issued in the last 90 days and updates every morning. The map and the CSV download carry the same counts."
+    ],
+    [
+     "What does a dumpster permit count tell me?",
+     "Each permit is the City's approval to place a dumpster on a street or alley, so more permits in an area usually means more cleanouts, renovations and demolitions there. It does not say a dumpster was set out on any given day, and a dumpster on private property, like a driveway, is not part of this count."
+    ],
+    [
+     "Which community area is my neighborhood in?",
+     "The City counts by its 77 community areas, which hold many neighborhoods: Bucktown and Wicker Park are in West Town, Wrigleyville is in Lake View, and Pilsen is in the Lower West Side."
+    ],
+    [
+     "Are dumpster permits up this year?",
+     "The second tile at the top answers it for the whole city: the last 90 days against the same 90 days a year earlier. The Change column in the table does the same for each community area. Permits rise in spring and drop in winter, so compare a month with the same month a year before."
+    ],
+    [
+     "How much does a dumpster permit cost in Chicago?",
+     "CDOT lists the fee in its 2026 Permit Fee Schedule, and the panel above, Need a permit for your own dumpster, takes you there. Fees can change, so check with CDOT before you apply."
+    ]
+   ]
   },
   {
    "slug": "chicago-crew-cost",

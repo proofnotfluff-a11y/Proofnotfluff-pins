@@ -22,9 +22,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 OUT = os.path.join(ROOT, "site", "datapages", "dp_cdot_fees")
 URL = "https://www.chicago.gov/content/dam/city/depts/cdot/permit/2026/CDOT%202026%20Permit%20Fee%20Schedule.pdf"
-UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 "
-                    "ProofNotFluff (github.com/proofnotfluff-a11y/proofnotfluff-pins)",
-      "Accept": "application/pdf,*/*;q=0.8"}
+UA = {"User-Agent": "ProofNotFluff data pages (github.com/proofnotfluff-a11y/proofnotfluff-pins)", "Accept": "application/pdf"}
 
 
 def fetch(url=URL, tries=4):
@@ -36,7 +34,7 @@ def fetch(url=URL, tries=4):
                 return body, r.headers.get("Content-Type", ""), r.geturl()
         except Exception as e:   # noqa: BLE001 (any failure is retried, then reported)
             last = e
-            print(f"try {i + 1}: {e}", file=sys.stderr)
+            print(f"::warning title=CDOT fee schedule::try {i + 1}: {str(e)[:200]}")   # an annotation: readable without the log
             time.sleep(5 * (i + 1))
     raise SystemExit(f"could not download the CDOT fee schedule: {last}")
 
@@ -58,6 +56,7 @@ def pdfinfo(path):
 def main():
     body, ctype, final = fetch()
     if not is_pdf(body):
+        print(f"::warning title=CDOT fee schedule::not a PDF: {ctype!r}, {len(body)} bytes, starts {body[:80]!r}")
         raise SystemExit(f"the download is not a PDF (Content-Type {ctype!r}, {len(body)} bytes, from {final}); nothing written")
     os.makedirs(OUT, exist_ok=True)
     pdf = os.path.join(OUT, "fee-schedule.pdf")

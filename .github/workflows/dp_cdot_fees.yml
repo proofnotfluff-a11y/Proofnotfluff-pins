@@ -4,13 +4,10 @@ name: CDOT permit fee schedule
 # pdftotext and commits it under site/datapages/dp_cdot_fees/ (tools/dp_cdot_fees_pull.py). The page is built only from
 # that text. It runs on a change to its tools, by hand, and on the 3rd of each month to catch a new schedule; the page's
 # own selftest then fails the run if any published fee is no longer in the City's text.
+# Oct 27, 2026: the download step failed on GitHub's runner (chicago.gov refused it), so the page is on hold and this
+# runs only by hand until Todd decides how the City's PDF reaches the repo. No retries and no schedule until then.
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths: ["tools/dp_cdot_fees_pull.py", ".github/workflows/dp_cdot_fees.yml"]
-  schedule:
-    - cron: "25 12 3 * *"
 permissions:
   contents: write
 concurrency:

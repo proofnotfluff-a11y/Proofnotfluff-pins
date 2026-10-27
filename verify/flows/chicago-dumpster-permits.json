@@ -1,0 +1,59 @@
+{
+ "about": "Dumpster permits map and table: switch the metric, tap an area, pick one from the list, open the rest of the table, and the CSV and cost calculator links are there (Oct 27, 2026).",
+ "page": "chicago-dumpster-permits/",
+ "steps": [
+  {
+   "scroll": "#map"
+  },
+  {
+   "expect_count": "#dmap path[data-n]",
+   "eq": 77
+  },
+  {
+   "click": "#dmap path[data-n='24']",
+   "force": true
+  },
+  {
+   "expect_text": "#dmap .gm-info",
+   "contains": "West Town",
+   "screenshot": true
+  },
+  {
+   "click": "#dmap .gm-seg label:nth-of-type(2)"
+  },
+  {
+   "expect_text": "#dmap .gm-leg",
+   "contains": "same 90 days"
+  },
+  {
+   "select": "#dmap select",
+   "value": "9"
+  },
+  {
+   "expect_text": "#dmap .gm-info",
+   "contains": "Edison Park"
+  },
+  {
+   "scroll": "#areas"
+  },
+  {
+   "expect_count": "#areas .dd-t tbody tr",
+   "eq": 77
+  },
+  {
+   "click": "#areas .dd-more summary"
+  },
+  {
+   "expect_visible": "#areas .dd-more .dd-t",
+   "screenshot": true
+  },
+  {
+   "expect_count": "a[href='chicago-dumpster-permits-by-community-area.csv']",
+   "eq": 1
+  },
+  {
+   "expect_count": "#cost .cta a.btn",
+   "eq": 2
+  }
+ ]
+}

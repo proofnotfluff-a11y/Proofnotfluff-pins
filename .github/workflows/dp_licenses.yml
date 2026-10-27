@@ -1,0 +1,41 @@
+name: Chicago trade license finder check
+# The free license finder (tools/dp_licenses.py; Todd's go, Oct 27, 2026, coo/PARALLEL_BUILDS.md). Its lines are read
+# by hand from each agency's own page; this runner re-reads every source page and confirms each line's figures are
+# still printed there, then commits site/datapages/dp_licenses/check.json. It runs when the data or its tools change
+# and by hand. A monthly re-check would be a schedule: Todd's call, so none is set here.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["site/datapages/dp_licenses/licenses.json", "tools/dp_licenses.py", "tools/dp_licenses_check.py", ".github/workflows/dp_licenses.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: dp-licenses
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Self-checks (planted errors)
+        run: python3 tools/dp_licenses_check.py --selftest
+      - name: PDF reader
+        run: pip install --quiet pypdf
+      - name: Re-read every agency page
+        id: fetch
+        continue-on-error: true
+        run: python3 tools/dp_licenses_check.py --fetch
+      - name: Commit the report
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add site/datapages/dp_licenses/check.json
+          if git diff --cached --quiet; then echo "no change"; else
+            git commit -m "License finder source check $(TZ=America/Chicago date +%Y-%m-%d)"
+            for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 10; done
+          fi
+      - name: Fail when a figure moved
+        if: steps.fetch.outcome == 'failure'
+        run: exit 1

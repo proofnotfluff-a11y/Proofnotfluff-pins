@@ -278,7 +278,7 @@ CSS = ("<style>"
        ".sn-fig{position:relative;margin:12px 0 6px;padding:16px 16px 12px;background:var(--card);border:1px solid var(--line);border-radius:12px}"
        ".sn-fig figcaption{font-weight:700;color:var(--ink);margin:0 0 2px}.sn-fig .sn-sub{font-size:13.5px;color:var(--muted);margin:0 0 12px}"
        ".sn-plot{position:relative;height:210px;margin:0 0 0 30px}"
-       ".sn-plot.m{height:150px}.sn-fm{max-width:760px}.sn-plot:focus-visible{outline:3px solid var(--focus);outline-offset:4px;border-radius:4px}"
+       ".sn-plot.m{height:150px}.sn-plot:focus-visible{outline:3px solid var(--focus);outline-offset:4px;border-radius:4px}"
        ".sn-gl{position:absolute;left:0;right:0;height:0;border-top:1px solid var(--sn-grid)}"
        ".sn-gl span{position:absolute;right:100%;margin-right:8px;transform:translateY(-50%);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}"
        ".sn-gl.base{border-top-color:var(--dash)}"
@@ -304,14 +304,14 @@ CSS = ("<style>"
        ".sn-lab{position:absolute;font-size:12.5px;font-weight:700;color:var(--ink);white-space:nowrap;transform:translateY(-50%);z-index:3;background:var(--card);padding:0 3px;border-radius:4px}"
        ".sn-x{position:absolute;top:0;bottom:0;width:0;border-left:1px solid var(--ink2);z-index:4;pointer-events:none}.sn-x[hidden]{display:none}"
        ".sn-mx{position:relative;height:18px;margin:6px 0 0 30px}.sn-mx span{position:absolute;transform:translateX(-50%);font-size:11.5px;color:var(--muted)}"
-       ".sn-dates{grid-template-columns:repeat(2,minmax(0,1fr))}@media(max-width:899px){.sn-dates .tile:nth-child(3){grid-column:1/-1}.sn-dates .tile.slim{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding:10px 14px}.sn-dates .tile.slim .lab{flex:1 0 auto}.sn-dates .tile.slim .val{font-size:22px;margin:0}.sn-dates .tile.slim .sub{flex-basis:100%;margin:0}}@media(min-width:900px){.sn-dates{grid-template-columns:repeat(3,minmax(0,1fr))}}"
+       ".sn-dates{grid-template-columns:repeat(2,minmax(0,1fr))}@media(max-width:899px){.sn-dates .tile:nth-child(3){grid-column:1/-1}}@media(min-width:900px){.sn-dates{grid-template-columns:repeat(3,minmax(0,1fr))}}"
        ".sn-note{font-size:14.5px;color:var(--ink2);margin:10px 0 0}"
        ".sn-tw{overflow-x:auto;margin:12px 0 0;border:1px solid var(--line);border-radius:12px;background:var(--card)}"
        ".sn-tw:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
        ".sn-t{width:100%;border-collapse:collapse;font-size:14.5px;min-width:560px}.sn-t th,.sn-t td{padding:9px 12px;border-bottom:1px solid var(--rule);text-align:right;font-variant-numeric:tabular-nums}"
        ".sn-t th:first-child,.sn-t td:first-child{text-align:left}.sn-t thead th{font-size:13px;color:var(--muted);font-weight:700;vertical-align:bottom}"
        ".sn-t tbody th{font-weight:600;color:var(--ink)}.sn-t tr:last-child td,.sn-t tr:last-child th{border-bottom:0}"
-       ".sn-t td.x{color:var(--muted);text-align:left}.sn-t tbody th{white-space:nowrap}.sn-t thead th.grp{text-align:center;border-bottom:1px solid var(--line);white-space:nowrap}.sn-t th.gr,.sn-t td.gr{width:160px;padding-left:22px;border-left:1px solid var(--rule)}.sn-t tr.cur th small{display:block;font-weight:400;font-size:12.5px;color:var(--muted)}"
+       ".sn-t td.x{color:var(--muted);text-align:left}.sn-t tbody th{white-space:nowrap}.sn-t thead th.grp{text-align:center;border-bottom:1px solid var(--line);white-space:nowrap}.sn-t thead tr+tr th{text-align:right}.sn-t th.gr,.sn-t td.gr{width:160px;padding-left:22px;border-left:1px solid var(--rule)}.sn-t tr.cur th small{display:block;font-weight:400;font-size:12.5px;color:var(--muted)}"
        "[data-sn-t='1'] .c1,[data-sn-t='2'] .c2,[data-sn-t='3'] .c3,[data-sn-t='6'] .c6{background:var(--sn-wash);font-weight:700;color:var(--ink)}"
        ".sn-defs{margin:8px 0 0;padding-left:20px}.sn-defs li{margin:8px 0;color:var(--ink2)}.sn-defs b{color:var(--ink)}"
        ".sn-end p{color:var(--ink2);margin:0 0 4px}.sn-dl{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0}"
@@ -473,7 +473,7 @@ def tiles(v, t, E):
             f'<div class="tile"><div class="lab">Heavy winter</div><div class="val">{E(num(sm["high"]))}</div>'
             f'<div class="sub">{E(high_words)}</div></div>'
             f'<div class="tile"><div class="lab">This winter so far</div><div class="val">{sm["cur"]}</div>'
-            f'<div class="sub">{"No plowable day yet. " if not sm["cur"] else ""}Middle winter by {E(short_day(end))}: {E(num(sm["toDate"]))}</div></div>'
+            f'<div class="sub">{"None yet. " if not sm["cur"] else ""}Past winters\' middle by {E(short_day(end))}: {E(num(sm["toDate"]))}</div></div>'
             '</div>')
 
 
@@ -484,7 +484,7 @@ def dates_block(v, t, E):
         return f'<p class="sn-note">No past winter had a day with {E(inch(t))} or more at {E(v["s"]["label"])}.</p>'
     e1, l1 = sm["firsts"][0], sm["firsts"][-1]
     e2, l2 = sm["lasts"][0], sm["lasts"][-1]
-    none = (f'<div class="tile slim"><div class="lab">Winters with none</div><div class="val">{sm["none"]}</div>'
+    none = (f'<div class="tile"><div class="lab">Winters with none</div><div class="val">{sm["none"]}</div>'
             f'<div class="sub">of {sm["n"]} had no day at {E(inch(t))} or more</div></div>')
     return ('<div class="tiles sn-dates">'
             f'<div class="tile"><div class="lab">First plowable day, middle</div><div class="val">{E(short_day(key_day(sm["firstMid"], y0)))}</div>'
@@ -673,7 +673,7 @@ def page_html(p):
             + M.faq_block(faq(s0, sd))
             + (f'<section class="block sn-end"><h2>Put your counts to work</h2><p>Price a seasonal contract from your own costs and the plowable days at your trigger.</p>'
                f'<div class="sn-act">{calc_link("sn-calc2")}'
-               '<a class="st-btn2" href="#winters">See every winter</a></div></section>' if calc else "")
+               '</div></section>' if calc else "")
             + (M.find_customers(calc["slug"], rel) if calc else ""))
     foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             f'<p>Source: NOAA National Centers for Environmental Information, <a href="{GHCN[0]}">GHCN-Daily</a> (Menne and others, 2012, doi:10.7289/V5D21VHZ), daily snowfall (SNOW) and snow depth (SNWD) '

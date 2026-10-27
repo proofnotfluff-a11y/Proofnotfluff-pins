@@ -13,8 +13,8 @@
     "All trades"
    ],
    "headline": "Chicago's 2027 budget plan brings back a per-worker tax on large employers",
-   "what": "Mayor Johnson's proposed 2027 budget includes a tax of $25 a month for each employee at companies with more than 125 workers, which the City expects to raise about $100 million a year. A larger version was voted down last year, and the City Council still has to vote on this one.",
-   "why": "Most small trade shops are under 125 workers, so check your headcount if you are near the line. Larger contractors and cleaning or facility service firms should follow the budget hearings and the vote before year end.",
+   "what": "Mayor Johnson's proposed 2027 budget includes a tax of $25 a month for each employee at companies with more than 125 workers, which the City expects to raise about $100 million a year. Last year the City Council rejected a version at $33 per worker for companies with more than 500 workers, and the Council still has to vote on this one by the end of the year.",
+   "why": "The tax only applies above 125 workers, so check your headcount if you are near that line. Larger contractors and cleaning or facility service firms should follow the budget hearings and the vote.",
    "sources": [
     {
      "name": "WTTW, Johnson's proposed 2027 budget",
@@ -80,14 +80,14 @@
    "date": "2026-10-14",
    "effective": "2027-01-01",
    "checked": "2026-10-27",
-   "stage": "passed",
+   "stage": "announced",
    "category": "Tax and pay",
    "trades": [
     "All trades"
    ],
    "headline": "Social Security tax will apply to the first $192,300 of pay in 2027",
    "what": "The Social Security Administration raised the maximum earnings taxed for Social Security from $184,500 in 2026 to $192,300 in 2027. Medicare tax still has no earnings cap.",
-   "why": "Owners who pay themselves a salary, and top earners on your crew, will owe Social Security tax on more pay next year. Make sure your payroll service and your 2027 estimated tax payments use the new number.",
+   "why": "Owners and crew members who earn more than $184,500 will owe Social Security tax on more of their pay next year. Make sure your payroll service and your 2027 estimated tax payments use the new number.",
    "sources": [
     {
      "name": "Social Security Administration, 2027 fact sheet",
@@ -154,7 +154,7 @@
     "All trades"
    ],
    "headline": "Illinois employers with more than 25 workers must pay for jury duty from 2027",
-   "what": "Governor Pritzker signed HB 4844 on July 31, 2026, so employers must pay workers their regular rate for time on jury duty starting January 1, 2027. Employers with 25 or fewer employees still only have to give unpaid leave.",
+   "what": "The Governor signed HB 4844 on July 31, 2026, so employers must pay workers their regular rate for time on jury duty starting January 1, 2027. Employers with 25 or fewer employees still only have to give unpaid leave.",
    "why": "If you have more than 25 employees, add paid jury duty to your handbook and payroll before January. Smaller shops keep giving unpaid time off for jury service.",
    "sources": [
     {
@@ -177,8 +177,8 @@
    "trades": [
     "All trades"
    ],
-   "headline": "Peoples Gas rate decision due in mid November; Nicor increase approved",
-   "what": "State regulators approved an $81.6 million Nicor Gas increase on October 15, well under the $220.8 million asked. For Peoples Gas, which serves Chicago, judges recommended cutting its $144 million request to $66 million, with the Illinois Commerce Commission's decision expected in mid November.",
+   "headline": "Peoples Gas rate decision due in November; Nicor increase approved",
+   "what": "State regulators approved an $82 million Nicor Gas increase on October 15, far less than the $221 million Nicor asked for. For Peoples Gas, which serves Chicago, state judges recommended cutting its $144 million request to $66 million, and the Illinois Commerce Commission is expected to rule in November.",
    "why": "A shop or yard heated by Peoples Gas could see higher bills next year; watch the November ruling. Suburban sites on Nicor should expect the increase on their bills soon.",
    "sources": [
     {
@@ -202,7 +202,7 @@
     "All trades"
    ],
    "headline": "Chicago's minimum wage is $17.05 an hour",
-   "what": "Chicago's minimum wage rose from $16.60 to $17.05 an hour on July 1, 2026, for employers with four or more workers, and the tipped wage rose to $12.96. Suburban Cook County is $15.40 and the Illinois minimum stays at $15.",
+   "what": "Chicago's minimum wage rose from $16.60 to $17.05 an hour on July 1, 2026, for employers with four or more workers, and the tipped wage is $12.96. Suburban Cook County is $15.40 and the Illinois minimum stays at $15.",
    "why": "Check that helpers, cleaners and entry level crew working in the city get at least $17.05 an hour. Jobs in the suburbs follow the county or state rate.",
    "sources": [
     {
@@ -233,7 +233,7 @@
    ],
    "headline": "Illinois posted new prevailing wage rates for public construction",
    "what": "The Illinois Department of Labor published new prevailing wage rates for every county and construction trade, in effect from July 15, 2026, from its yearly survey of wages and benefits. Workers on publicly funded construction must be paid at least these rates.",
-   "why": "If you bid public work in Cook County, such as City, school or park district jobs, price labor and file certified payroll from the 2026 Cook County schedule for your trade.",
+   "why": "If you bid public work in Cook County, such as City, school or park district jobs, check the 2026 Cook County rate for your trade before you bid.",
    "sources": [
     {
      "name": "Illinois Department of Labor, 2026 prevailing wage rates",
@@ -252,7 +252,7 @@
     "All trades"
    ],
    "headline": "Cook County's 2027 budget plan has no new taxes or fees",
-   "what": "Board President Toni Preckwinkle's $9.69 billion plan for 2027 closes a $550.8 million gap without a property tax increase, new fees or layoffs. It uses reserves, interest on federal relief money and 50 vacant jobs that go unfilled.",
+   "what": "Board President Toni Preckwinkle's $9.69 billion plan for 2027 closes a $550.8 million gap without a property tax increase, new fees or layoffs. It uses reserves, interest on federal relief money and cuts 50 vacant jobs.",
    "why": "County taxes and fees on businesses are not set to rise next year, though the Board still votes. The City of Chicago plan is separate and does include tax increases.",
    "sources": [
     {
@@ -278,7 +278,7 @@
     "Landscaping and snow"
    ],
    "headline": "Foundry Park breaks ground on the old Lincoln Yards site",
-   "what": "JDL Development and Kayne Anderson Real Estate broke ground on October 21 on Foundry Park, a $3 billion project along the North Branch of the Chicago River. The first phase has more than 725 homes plus shops, parks and parking, and a $201.6 million TIF package covers roads, utilities, parks and riverfront work.",
+   "what": "JDL Development and Kayne Anderson Real Estate broke ground on October 21 on Foundry Park, a $3 billion project along the North Branch of the Chicago River. The first phase has more than 700 homes plus shops, parks and underground parking, and a $201.6 million TIF package covers roads, utilities, parks and riverfront work.",
    "why": "This site will run for years, so subcontract and finish work, from MEP and interiors to landscaping and post-construction cleaning, comes in waves. Get on the bid lists of the builders once they are named.",
    "sources": [
     {
@@ -304,9 +304,9 @@
     "HVAC",
     "Plumbing"
    ],
-   "headline": "CTA bids the Red Line Extension rail yard, shop and power substation",
-   "what": "The CTA is taking proposals to build the Red Line Extension's 120th Street rail yard, maintenance shop and traction power substation. Proposals are due November 5, 2026 at 3:30 pm, with the documents on the CTA's Bonfire portal.",
-   "why": "This is a large prime contract, but primes will need electrical, mechanical and plumbing subs and must meet DBE goals. Certified small firms should reach likely bidders now, before teams are set.",
+   "headline": "CTA seeks proposals for the Red Line Extension 120th Yard, shop and substation",
+   "what": "The CTA is taking proposals for construction of the Red Line Extension's 120th Yard, shop and substation. Proposals are due November 5, 2026 at 3:30 pm, with the documents on the CTA's Bonfire portal.",
+   "why": "Prime bidders on a job like this will likely need electrical, mechanical and plumbing subs. Check the Bonfire documents for any subcontracting goals and ask likely bidders about joining their teams.",
    "sources": [
     {
      "name": "City of Chicago vendor search, CTA solicitation C26FI103384111",
@@ -353,9 +353,9 @@
     "General contractors",
     "HVAC"
    ],
-   "headline": "New City review for data centers; a 12 month pause is proposed",
-   "what": "An executive order signed August 11 sends any data center that needs a new Planned Development through a review of power, water, backup generators, air, noise and neighborhood impact, and orders new air permit and noise rules. A 12 month pause on new or bigger data centers has been proposed to the City Council but not passed.",
-   "why": "Electrical and mechanical contractors chasing data center work in the city should expect slower approvals, and possibly a pause on new projects. Projects the zoning already allows may still move.",
+   "headline": "New City review for data centers; a temporary pause is proposed",
+   "what": "An executive order signed August 11 sends any data center that needs a new Planned Development through a review of power, water, backup generators, air, noise and neighborhood impact, and orders new air permit and noise rules. Mayor Johnson has also called on the City Council to pause new or expanded data centers until permanent rules are in place, and the Council has not voted on it.",
+   "why": "Electrical and mechanical contractors chasing data center work in the city should expect slower approvals and watch the Council for a vote on the pause.",
    "sources": [
     {
      "name": "Chicago Sun-Times, data center order and proposed pause",
@@ -402,9 +402,9 @@
     "Landscaping and snow",
     "Roofing"
    ],
-   "headline": "Winter leans mild with more sleet and freezing rain; parking ban starts December 1",
-   "what": "NOAA's December to February outlook leans warmer than normal for the Chicago area with even odds on precipitation, as El Nino strengthens, and a local forecaster expects more mixed sleet, snow and freezing rain days. The City's overnight parking ban on 107 miles of main streets runs 3 am to 7 am from December 1 to April 1.",
-   "why": "Snow contractors may see fewer big plowable storms but more salting calls, so price ice runs carefully and stock salt early. Plan overnight truck and trailer parking around the December 1 ban.",
+   "headline": "Winter leans mild, with more sleet possible; parking ban starts December 1",
+   "what": "NOAA's December to February outlook leans warmer than normal for the Chicago area with even odds on precipitation, as El Nino strengthens, and an NBC 5 meteorologist says that could mean more days of mixed sleet, snow and freezing rain. The City's overnight parking ban on 107 miles of main streets runs 3 am to 7 am from December 1 to April 1.",
+   "why": "A milder winter could bring more icy mixed days instead of all snow, though snowstorms can still happen, so watch the forecasts and check your salt supply. Check where your trucks and trailers park overnight before the December 1 ban.",
    "sources": [
     {
      "name": "NBC Chicago, winter outlook",
@@ -430,7 +430,7 @@
    ],
    "headline": "Trade shows ahead: Chicago Build this week, roofing and HVAC shows in January",
    "what": "Chicago Build runs October 28 and 29 at McCormick Place, with new HVAC, fire safety and AI areas. The Chicago Roofing Contractors Association show is January 20 to 22, 2027 in Oakbrook Terrace, and the AHR Expo for heating and cooling is in Chicago January 25 to 27, 2027.",
-   "why": "Shows are a cheap way to see new products, meet suppliers and builders, and pick up training hours. Chicago Build is this week, so register now if you want to go.",
+   "why": "Shows let you see new products and meet suppliers and builders, and some offer seminars and workshops. Chicago Build is this week and lists free tickets, so check its site if you want to go.",
    "sources": [
     {
      "name": "Plant and Equipment, Chicago Build listing",

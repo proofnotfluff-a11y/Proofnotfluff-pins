@@ -1,6 +1,6 @@
 # ProofNotFluff research brief for Kimi (as of Oct 25, 2026)
 
-Attach this file to every Kimi research task. It is the context the prompts assume. It holds no person's details.
+Attach this file to every Kimi research task as a backup. From R6 on, each prompt carries its own context, rules and schema (attachments did not always reach Kimi); R7's schema is in its prompt, not below. It holds no person's details.
 
 ## 1. What the business is
 - ProofNotFluff LLC, Chicago, Illinois. One owner, no staff, run with AI agents. Site: proofnotfluff.com.

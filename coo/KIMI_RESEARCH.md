@@ -16,6 +16,8 @@ Our scout already finds public-data ideas; the reviewers kill most of them for a
 | R3 | County, state and federal datasets with a business event a trade would pay for, Cook County and Illinois first | Schema C, ideas | scout/candidates after verification |
 | R4 | Public records locked in PDFs, agendas and free text that AI can now turn into a list | Schema C, ideas | scout/candidates after verification |
 | R5 | Red team: kill our top-ranked ideas | Schema D, verdicts | advisory objections for the fix round |
+| R6 | Channels that reach our buyers besides cold email | Schema F, channels | research_notes/kimi-2026-10-26-r6.md |
+| R7 | Our live $149 offers from the buyer's chair, against rival offers to the same trades | its own schema, in the prompt | offer changes proposed to Todd |
 
 Repeat R3 and R4 every two weeks with a new Focus line (another metro, another record type). R5 runs after the scorer ranks the new candidates.
 
@@ -240,3 +242,82 @@ REJECTED: one line per channel checked and thrown out, with the reason (closed t
 
 Then one fenced json block in Schema F, at most 15 channels, best first, with top3 filled in.
 ```
+
+## Next rounds (proposed Oct 26, 7:50 pm, ranked by how much each could move a first payer)
+1. R7, now: our two live $149 offers (area seats, pest seat) from the buyer's chair, against 8 to 12 rival offers to the same trades. Both offers are live, outreach on the area seats has not started, so a fix lands before the first batch.
+2. R8, after R7's intake: a subcontractor sign-up map for the 30 Chicago general contractors that carry 201 of our 592 Chicago downstream leads (34%, permits/downstream/gc_leads.json, Oct 26): each one's public vendor or subcontractor registration page, whether cleaning is a listed trade, and what it asks. Program pages are Kimi's strength, and a "how to get on this builder's bid list" line makes each seat row ready to act.
+3. R9, only if Todd leans go on the agent kit: an independent teardown of paid agent and Claude Code kits (price, verified sales, how they got buyers, what is inside), as a second opinion on launches/agent-kit.md before his go or park.
+Later, after a first payer: R10, an expansion map of US cities whose open permit and inspection data match the Chicago datasets.
+
+## R7, our live offers from the buyer's chair (written self-contained, Oct 26)
+
+Intake as above: `kimi_intake.py read` keeps `rivals` as the list to check and saves `ours` and `top5` beside it; every URL in all three goes on the list. A change in top5 is a proposal to Todd, never an action (a price, offer form or page layout change is major under CONSTITUTION 2).
+
+````
+Round: R7, our two live $149 offers seen from the buyer's chair. Everything you need is in this message; an attached brief is a backup only.
+
+WHO WE ARE
+ProofNotFluff LLC, Chicago. One owner, no staff, run with AI agents. Faceless: the brand sells, never the founder, so no offer may need the founder on calls, on camera or billing hours. We sell lead lists built from public City of Chicago records, by monthly subscription on Gumroad, delivered on a password-locked members' page with a CSV or Excel download. Results so far: 0 paying customers, 0 replies to about 57 cold emails. Email delivery passes SPF, DKIM and DMARC, so delivery is not the cause. Earlier research told us buyers pay for exclusive, ready-to-act leads and refuse shared ones, so both offers below are exclusive or capped.
+
+OFFER 1, live Oct 26: Chicago construction cleaning area seats
+- Page: https://proofnotfluff.com/chicago-construction-cleaning-leads/ (section "One cleaning company per area of Chicago"). Seat Terms: https://proofnotfluff.com/chicago-cleaning-area-members/loop/#/terms
+- Buyer: post-construction cleaning companies. $149 a month per area, one company per area, no lock-in, no trial. 6 of 6 areas open.
+- Each Monday: every open apartment and commercial building permit of $500,000 or more in the area with a business as general contractor, closest to a final clean first, the builder on each and the builder's office phone or email where its own website lists one. Map, Excel file, pitch kit.
+- New projects a month, 12-month average by area: Loop and South Loop 15.9; Near North and Lincoln Park 11.4; West Loop and West Side 12.8; West Town, Logan Square and Northwest 10.5; Lake View to Rogers Park 10.3; South Side 12.2.
+- Free sample: the area's 5 newest projects by email reply. The shared $29 a month list (7-day trial) covers areas nobody holds.
+
+OFFER 2, live Oct 24: Chicago pest daily list, founding seat
+- Page: https://proofnotfluff.com/chicago-restaurant-inspection-leads/ (section "Founding seat for pest control"). Terms: https://proofnotfluff.com/chicago-pest-daily-members/#/terms
+- Buyer: pest control companies. $149 a month, at most 3 companies at a time, no lock-in, no trial; a free sample goes out on request.
+- Each morning: Chicago food places whose failed or conditional City inspection had a pest violation, with street, ZIP, area, the City's result and codes, failed visits in 90 days, the City record link and the listed phone when name and address both match (29 of 41 places in the last 14 days). The same records reach an uncapped $39 weekly list.
+
+WHAT WE CANNOT CHANGE (an idea that breaks one is out)
+No paid ads or paid listings. No founder on the phone, on video or at events. No posting on Reddit or forums. No fake reviews, testimonials, case studies or counts. No names, emails or phones of private people. No homeowners or residents in any list. Cold email stays plain text, under 75 words, no links. Prices stay between $29 and $199 a month. We can change: the offer form (per lead, a free first month, a money-back promise, a smaller area, a lower first-month price), what a row includes, the page copy, the proof we show from our own data, and who we sell to inside the same data.
+
+THE QUESTION
+If you owned a 5 to 20 person cleaning or pest company in Chicago, what on these two pages would stop you paying $149, and what do rival sellers to the same trades offer that we do not?
+
+HOW TO WORK
+1. Open our two pages and both Terms pages. The Terms open as a tab inside a script page; if a page or its Terms text will not show, say so under BLOCKED and judge from the facts above. As the owner, write the 8 to 12 questions you would need answered before paying, and say for each whether the page answers it and where.
+2. Find 8 to 12 rival offers sold to these same trades: post-construction or commercial cleaning companies, and pest control companies. Exclusive territory or zip offers come first, then per-lead, per-appointment, pay-on-close and monthly list or bid-feed offers. Good places: commercial cleaning lead and appointment-setting services, construction bid and project lead services, pest control lead generation services, and franchise lead programs where a page states a price. Open each one's own pricing or offer page and record exactly what it states: form, price and unit, exclusivity terms, trial, guarantee or refund, what each lead includes, and the proof it shows (sample, customer count, years). Write null when a page does not state it.
+3. Compare. For each of our offers, where do we lose to the rivals on price per lead, risk to the buyer, proof, strength of exclusivity, contact fields, or speed? Use the numbers above for our side (for example $149 against about 12 new projects a month).
+4. Give the 5 changes most likely to get a first payer within 30 days, inside the limits above, ranked. Each names the rivals that show it works.
+
+EVIDENCE RULES
+- Open every page you cite. Cite seller, pricing, program and terms pages. Do not cite or quote review sites, Reddit or forums this round; owners' views here are your own reasoning from the pages, labeled INFERRED.
+- Every source is {"url": "...", "date": "YYYY-MM-DD"}, the date you read a live page.
+- Quotes are 15 words or fewer, copied exactly from the page. No person's name, email, phone or username, ever.
+- Label every claim OBSERVED (a page states it) or INFERRED (your reasoning).
+- Read only. Do not sign up, request a demo, fill a form, message anyone or download files.
+- Honest beats hopeful. If the right answer is that no $149 offer from an unknown faceless brand sells to these owners without a call, say it and say what would.
+- Plain words, no em or en dashes. Valid JSON: double quotes, no trailing commas, no comments. Prices and counts are bare numbers (149, 12.5), never "$149" or "149".
+
+REPLY IN EXACTLY THIS SHAPE
+
+R7 | DATE: (today) | PAGES OPENED: n | BLOCKED: sites that refused you
+
+SUMMARY: five plain sentences: the biggest reason each offer does not sell, the rival offer form that beats ours, and the single change you would make first.
+
+Then one fenced json block:
+```json
+{"round": "R7",
+ "ours": [
+  {"offer": "area-seat|pest-seat", "url": "", "opened": true,
+   "questions": [{"q": "a question the owner asks before paying", "answered": true, "where": "the page section that answers it, or null"}],
+   "objections": [{"objection": "one line", "severity": "blocker|major|minor", "label": "OBSERVED|INFERRED", "rivalIds": ["r1"]}],
+   "pricePerLead": null, "pricePerLeadHow": "the arithmetic from the numbers above",
+   "confidence": "high|medium|low"}],
+ "rivals": [
+  {"id": "r1", "name": "", "url": "the rival's own pricing or offer page", "date": "",
+   "buyer": "post-construction cleaning|commercial cleaning|pest control",
+   "form": "exclusive territory|per lead|per appointment|pay on close|monthly list|bid feed|other",
+   "price": null, "priceUnit": "month|lead|appointment|one time|null",
+   "exclusive": null, "exclusiveTerms": "as the page states it, or null",
+   "trial": "as stated, or null", "guarantee": "as stated, or null",
+   "leadIncludes": "what one lead holds, as stated", "proof": "what proof the page shows, as stated",
+   "evidence": [{"url": "", "date": "", "quote": "15 words or fewer", "label": "OBSERVED"}],
+   "beatsUsOn": "one line, INFERRED"}],
+ "top5": [{"rank": 1, "change": "one line", "offer": "area-seat|pest-seat|both", "why": "two sentences", "rivalIds": ["r1"], "costDollars": 0, "fitsLimits": true}]}
+```
+Every example value above is a placeholder. Replace it or use null.
+````

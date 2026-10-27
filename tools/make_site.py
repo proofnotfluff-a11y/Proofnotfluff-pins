@@ -1818,6 +1818,8 @@ def lights_page(p):
 def snow_page(p):
     """Snow removal per push and seasonal contract (PNF.snowQuote) for one stop on a route. Todd's go, Oct 26, 2026."""
     d = p["defaults"]
+    fill, fill_js = _snow_fill()
+    ev_hint = "Days at or over your trigger depth. Fill it from past winters below, or use your own records" if fill else "Storms over your trigger depth. Check your own records"
     form = f"""<form class="card" id="calc" novalidate>
 <fieldset><legend>One stop on your route</legend>
 {field("pushMin", "Minutes on site for a normal push", d["pushMin"], "Plowing or blowing at your trigger depth, shoveling walks included")}
@@ -1831,8 +1833,8 @@ def snow_page(p):
 {field("equip", "Truck, plow or blower cost per hour", d["equip"], "Fuel, wear, repairs and payments, spread per working hour", pre="$")}
 {field("margin", "Profit margin in the quote", d["margin"], "A share of the quote", suf="%")}
 </fieldset>
-<fieldset><legend>A seasonal contract</legend>
-{field("events", "Pushes you expect in a season", d["events"], "Storms over your trigger depth. Check your own records")}
+<fieldset id="season"><legend>A seasonal contract</legend>
+{field("events", "Pushes you expect in a season", d["events"], ev_hint)}{fill}
 {field("cushion", "Cushion for a heavy winter", d["cushion"], "Added on top of the expected pushes", suf="%")}
 {field("months", "Months you bill the contract over", d["months"], "November to March is 5")}
 </fieldset></form>"""
@@ -1858,7 +1860,55 @@ def snow_page(p):
 <div class="callout warn" data-show-if="none > 0">Type the minutes on site for a normal push.</div>
 </div></div>
 <div class="mbar" aria-hidden="true"><span>Per push <b data-out="quote" data-fmt="money0">$0</b></span><span>Season <b data-out="season" data-fmt="money0">$0</b></span></div>"""
-    return form, results + "\n<!--LC-EXTRA-->" + _notes_block(p), _model_script("snowQuote", p["slug"])
+    return form, results + "\n<!--LC-EXTRA-->" + _notes_block(p), _model_script("snowQuote", p["slug"]) + fill_js
+
+
+def _snow_fill():
+    """Expected pushes from the free snow season board (tools/dp_snow.py), shown only once the board is live: station and
+    trigger depth, then light, middle or heavy winter fills "Pushes you expect in a season" (Todd's go, Oct 27, 2026)."""
+    board = next((x for x in PAGES_LIVE if x.get("slug") == "chicago-snow-season"), None)
+    if not board:
+        return "", ""
+    import dp_snow
+    cc = dp_snow.calc_counts()
+    if not cc:
+        return "", ""
+    st0, t0 = dp_snow.DEFAULT
+    n = cc[st0]["n"]
+    sts = "".join(f'<option value="{k}"{" selected" if k == st0 else ""}>{E(v["label"])}</option>' for k, v in cc.items())
+    ts = "".join(f'<option value="{t}"{" selected" if t == t0 else ""}>{E(dp_snow.inch(t))}</option>' for t in dp_snow.TRIGGERS)
+    btn = lambda i, name: (f'<button type="button" class="sf-b" data-k="{i}" aria-pressed="false"><span>{name}</span>'
+                           f'<b>{E(dp_snow.num(cc[st0]["t"][str(t0)][i]))}</b></button>')
+    html_ = ('<div class="sf" id="snowfill"><p class="sf-h">Fill it from past Chicago winters</p>'
+             f'<div class="sf-s"><label for="sfSt">Station<select id="sfSt">{sts}</select></label>'
+             f'<label for="sfT">Your trigger<select id="sfT">{ts}</select></label></div>'
+             f'<div class="sf-bs" role="group" aria-label="Plowable days in past winters">{btn(0, "Light winter")}{btn(1, "Middle winter")}{btn(2, "Heavy winter")}</div>'
+             f'<p class="sf-n" aria-live="polite">Days with new snow at or over your trigger in past winters at that station, from NOAA records. '
+             f'Past winters only, not a forecast. <a id="sfLink" href="../{board["slug"]}/?station={st0}&amp;trigger={t0}">Open the snow season board</a></p></div>'
+             '<style>.sf{margin:4px 0 6px;padding:12px;border:1px dashed var(--input-line);border-radius:10px;background:var(--canvas2)}'
+             '.sf-h{margin:0 0 8px;font-weight:700;font-size:14.5px;color:var(--ink)}'
+             '.sf-s{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sf-s label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600;color:var(--muted)}'
+             '.sf-s select{min-height:44px;font:inherit;font-weight:600;color:var(--input-ink);background:var(--input);border:1px solid var(--input-line);border-radius:8px;padding:6px 8px}'
+             '.sf-bs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:10px 0 0}'
+             '.sf-b{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:56px;padding:6px 4px;border:1.5px solid var(--line);border-radius:10px;'
+             'background:var(--card);color:var(--ink);font:inherit;font-size:13px;font-weight:600;cursor:pointer}'
+             '.sf-b b{font-size:19px;font-variant-numeric:tabular-nums}.sf-b[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--card)}'
+             '.sf-b:focus-visible{outline:3px solid var(--focus);outline-offset:2px}.sf-n{margin:8px 0 0;font-size:12.5px;line-height:1.45;color:var(--muted)}</style>')
+    data = json.dumps(cc, separators=(",", ":")).replace("</", "<\\/")
+    js = ('<script>(function(){var C=' + data + ',st=document.getElementById("sfSt"),tg=document.getElementById("sfT"),ev=document.getElementById("events"),'
+          'bs=[].slice.call(document.querySelectorAll("#snowfill .sf-b")),ln=document.getElementById("sfLink");if(!st||!ev)return;'
+          'var q=new URLSearchParams(location.search);if(C[q.get("station")])st.value=q.get("station");var qt=String(parseInt(q.get("trigger"),10));if(C[st.value].t[qt])tg.value=qt;'
+          'function f(x){return Math.round(x)===x?String(x):x.toFixed(1);}'
+          'function paint(){var v=C[st.value].t[tg.value];bs.forEach(function(b,i){b.querySelector("b").textContent=f(v[i]);'
+          'b.setAttribute("aria-pressed",String(ev.value.trim()!==""&&Number(ev.value)===v[i]&&b.getAttribute("data-on")==="1"));});'
+          'ln.href=ln.getAttribute("href").split("?")[0]+"?station="+st.value+"&trigger="+tg.value;}'
+          'bs.forEach(function(b){b.addEventListener("click",function(){var v=C[st.value].t[tg.value][+b.getAttribute("data-k")];'
+          'bs.forEach(function(o){o.removeAttribute("data-on");});b.setAttribute("data-on","1");ev.value=f(v);'
+          'ev.dispatchEvent(new Event("input",{bubbles:true}));ev.dispatchEvent(new Event("change",{bubbles:true}));paint();});});'
+          'st.addEventListener("change",function(){bs.forEach(function(o){o.removeAttribute("data-on");});paint();});'
+          'tg.addEventListener("change",function(){bs.forEach(function(o){o.removeAttribute("data-on");});paint();});'
+          'ev.addEventListener("input",function(e){if(e.isTrusted){bs.forEach(function(o){o.removeAttribute("data-on");});paint();}});paint();})();</script>')
+    return html_, js
 
 
 def hood_page(p):

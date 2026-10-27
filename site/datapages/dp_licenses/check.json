@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-10-27T18:31:32Z",
+ "checkedAt": "2026-10-27T18:53:48Z",
  "dataChecked": "2026-10-27",
  "sources": {
   "bacp_apply": {
@@ -49,6 +49,12 @@
    "status": "blocked",
    "why": "HTTP Error 403: Forbidden",
    "figures": 1
+  },
+  "bacp_types": {
+   "url": "https://chicago.gov/content/city/en/sites/chicago-business-licensing/home/businesslicensetypes.html",
+   "status": "blocked",
+   "why": "HTTP Error 403: Forbidden",
+   "figures": 0
   },
   "cd_recycling": {
    "url": "https://www.chicago.gov/content/dam/city/depts/cdph/InspectionsandPermitting/ConstructionDemolitionRecyclingOrdinanceOverview.pdf",
@@ -143,16 +149,14 @@
   "idoa_cert": {
    "url": "https://agr.illinois.gov/pesticides/certification-and-licensing.html",
    "status": "ok",
-   "figures": 7,
+   "figures": 9,
    "missing": []
   },
   "idoa_test": {
    "url": "https://agr.illinois.gov/pesticides/commercial-pesticide-applicator.html",
-   "status": "changed",
-   "figures": 2,
-   "missing": [
-    "35"
-   ]
+   "status": "ok",
+   "figures": 0,
+   "missing": []
   },
   "idph_lead": {
    "url": "https://dph.illinois.gov/topics-services/environmental-health-protection/lead-poisoning-prevention/abatement-mitigation-licensure/license-qualifications-contractor.html",

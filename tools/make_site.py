@@ -118,7 +118,7 @@ def foot_nav(rel):
     tools += f'<a href="{rel}calculators/">Free calculators</a>'
     # the free Chicago pages that are no calculator (rat tracker live Oct 26 on Todd's go; trades news Oct 27)
     tools += "".join(f'<a href="{rel}{p["slug"]}/">Chicago Rat Index</a>' for p in PAGES_LIVE if p.get("kind") == "rodents")
-    tools += "".join(f'<a href="{rel}{p["slug"]}/">Chicago trades news</a>' for p in PAGES_LIVE if p.get("kind") == "tradesnews")
+    tools += "".join(f'<a href="{rel}{p["slug"]}/">Chicago Trades News</a>' for p in PAGES_LIVE if p.get("kind") == "tradesnews")
     tools += f'<a href="{rel}questions/">Questions owners ask</a>' if LIVE_QUESTIONS else ""
     col = lambda title, links: f'<div class="fcol"><p class="fh">{title}</p>{links}</div>'
     return ('<nav class="fnav" aria-label="Footer">'
@@ -3727,9 +3727,15 @@ def hub_entries():
                 date = mod.lastmod(p) or ""
             except Exception:
                 date = ""
+        if k == "tradesnews":   # the brief's newest item date (tools/news_site.py)
+            try:
+                import news_site
+                date = (news_site.load(p) or {}).get("updated") or ""
+            except Exception:
+                date = ""
         g = c.get("group", "more")
-        out.append({"slug": p["slug"], "name": c.get("name", meta["h1"]), "h1": meta["h1"], "card": meta.get("card", ""),
-                    "words": meta.get("keywords", ""), "group": g, "gtitle": gt.get(g, "More Chicago data"),
+        out.append({"slug": p["slug"], "name": c.get("name", meta["h1"]), "h1": meta["h1"], "card": c.get("card", meta.get("card", "")),
+                    "dlabel": c.get("dateLabel", "Latest data"), "words": meta.get("keywords", ""), "group": g, "gtitle": gt.get(g, "More Chicago data"),
                     "source": c.get("source", ""), "cadence": c.get("cadence", ""), "date": date[:10]})
     out.sort(key=lambda e: order.index(e["slug"]) if e["slug"] in order else len(order))
     return out
@@ -3747,12 +3753,15 @@ def short_date(iso):
 
 def hub_text(e):
     """The card line without a closing "Updated daily." (the meta line already gives the schedule)."""
-    return re.sub(r"\s*Updated (daily|every \w+)\.?$", "", e["card"]).strip()
+    t = re.sub(r"\s*Updated (daily|every \w+)\.?$", "", e["card"]).strip()
+    return t + ("" if not t or t.endswith((".", "?", "!")) else ".")   # every card line ends the same way
 
 
 def hub_card(e, rel, tag=True):
     """One data page as a card, the same component as the calculator catalog (Similarity, design/DESIGN_DIRECTOR.md 13)."""
-    when = f'<span class="dh-date">Latest data {E(short_date(e["date"]))}</span>' if short_date(e["date"]) else ""
+    # no date on the card (facts gate, Oct 27: the data pages' lastmod means pull day on some and data-through day on
+    # others); each page states its own as-of date beside its source
+    when = ""
     meta = " &middot; ".join(E(x) for x in (e["source"], e["cadence"]) if x)
     meta = (f"<span>{meta}</span>" if meta else "") + when
     card = hub_text(e)
@@ -3772,7 +3781,7 @@ def hub_more(slug, rel):
     pick = [e for e in es if e["group"] == me["group"] and e["slug"] != slug]
     pick += [e for e in es if e["group"] != me["group"]]
     return ('<section class="dh-more" aria-labelledby="dh-more-title"><h2 id="dh-more-title">More free Chicago data</h2>'
-            f'<ul class="cx-grid">{"".join(hub_card(e, rel) for e in pick[:3])}</ul>'
+            f'<ul class="cx-grid">{"".join(hub_card(e, rel, tag=False) for e in pick[:3])}</ul>'
             f'<p class="st-all"><a class="st-btn2" href="{rel}chicago-data/">All {len(es)} free Chicago data pages</a></p></section>')
 
 
@@ -3795,10 +3804,10 @@ def data_hub_html():
                    + (f'<p class="dh-line">{E(l)}</p>' if l else "")
                    + f'<ul class="cx-grid">{"".join(hub_card(e, rel, tag=False) for e in items)}</ul></section>' for i, t, l, items in groups)
     body = (f'{crumb}<p class="eyebrow">Free, from public records</p><h1>Free Chicago data for trade owners</h1>'
-            f'<p class="lede">{len(es)} free trackers and tools built from City, County, state and federal records. Every page names its source and the day its numbers were checked.</p>'
+            f'<p class="lede">{len(es)} free trackers and tools built from City, State and federal records. Every page names its source and the day its numbers were checked.</p>'
             '<div class="cx-bar" id="cxBar" data-noun="data pages" hidden><label class="cx-search"><span class="sr">Search the Chicago data pages</span>'
             '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>'
-            '<input id="cxQ" type="search" placeholder="Search: permits, rats, snow, contracts..." autocomplete="off" enterkeyhint="search"><kbd aria-hidden="true">/</kbd></label>'
+            '<input id="cxQ" type="search" placeholder="Search permits, rats, snow" autocomplete="off" enterkeyhint="search"><kbd aria-hidden="true">/</kbd></label>'
             f'<div class="cx-chips" role="group" aria-label="Filter by job">{chips}</div>'
             '<p class="cx-count" id="cxCount" aria-live="polite"></p></div>'
             f'<div id="cxAll">{secs}</div>'

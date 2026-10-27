@@ -19,7 +19,7 @@
     {
       "id": "news",
       "title": "Stay current",
-      "line": "New rules, taxes, pay and projects, with the source linked."
+      "line": "What changed this week for Chicago trade businesses."
     }
   ],
   "pages": {
@@ -86,7 +86,7 @@
     "chicago-trade-licenses": {
       "group": "permits",
       "name": "Trade License Finder",
-      "source": "City and State agencies",
+      "source": "City, State and federal agencies",
       "cadence": "Checked by hand"
     },
     "chicago-demolition-rodent-baiting": {
@@ -99,7 +99,8 @@
       "group": "news",
       "name": "Chicago Trades News",
       "source": "Sources linked",
-      "cadence": "Updated daily"
+      "cadence": "Updated daily",
+      "card": "A daily roundup of new rules, taxes, pay and projects for Chicago trade businesses, with the source linked."
     },
     "chicago-trades-quarterly": {
       "group": "news",

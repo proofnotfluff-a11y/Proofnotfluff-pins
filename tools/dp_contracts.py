@@ -212,15 +212,15 @@ def flags(trades):
             "withheld": any(r[4] == "Name withheld" for r in rows) or any(e["vendor"] == "Name withheld" for e in ends)}
 
 
-def reading_notes(f):
-    li = ['<li><b>Awards, not open bids</b>These are contracts the City has already approved. To bid on new work, use the City\'s bid lists on this page.</li>']
+def reading_notes(f, hub=False):
+    li = ['<li><b>Awards, not open bids</b>This tracker lists contracts the City has already approved. To bid on new work, use the City\'s bid lists on this page.</li>']
     if f["awards"] or f["changes"]:
         li.append('<li><b>Award totals are not unit prices</b>An award is the most the City may spend over the whole contract, often years and many sites or items. It does not say what one job or one hour pays.</li>')
     if f["zero"]:
         li.append('<li><b>$0 means orders as needed</b>The City lists some blanket contracts at $0. The City orders as it needs, and no amount is promised. They are counted, but not in totals or medians.</li>')
     if f["changes"]:
         li.append('<li><b>Changes are counted separately</b>The first entry for a contract is the award. Later changes (more money, less money, more time) are shown on their own'
-                  + (' and are never counted in award totals. Money taken out shows as a negative amount.</li>' if f["neg"] else ' and are never counted in award totals.</li>'))
+                  + (' and are never counted in award totals. ' + ('On the trade pages and in the CSVs, money taken out shows as a negative amount.' if hub else 'Money taken out shows as a negative amount.') + '</li>' if f["neg"] else ' and are never counted in award totals.</li>'))
     li.append('<li><b>End dates are mostly on blanket contracts</b>The City records end dates mostly on blanket contracts (repeat purchases). Many standard contracts, such as most construction, end when the work is accepted, so they do not show as ending.</li>')
     li.append('<li><b>Sorted by the contract\'s own words</b>A contract joins a trade when its description uses that trade\'s words. One contract can count in two trades, and work described in other words is missed.</li>')
     return '<ul class="cc-read">' + "".join(li) + '</ul>'
@@ -389,7 +389,7 @@ def page_html(p):
             f'<section class="block" id="ending"><h2>Contracts ending soonest</h2><p>When a City contract ends, the City may bid the work again. These end next.</p>{end_html}</section>'
             f'<section class="block" id="all"><h2>Every trade at a glance</h2><details class="cc-sumd" open><summary>Compare all 12 trades side by side</summary>{summ}</details><p class="asof">Totals and medians use new awards only. Changes to contracts are on each trade\'s page.</p></section>'
             f'<section class="block" id="bids"><h2>Where open bids are</h2><p>This page shows awards. Open City bids live on the City\'s own lists.</p>{bids_block(E, M, src)}</section>'
-            f'<section class="block" id="read"><h2>How to read these numbers</h2>{reading_notes(flags(T))}</section>'
+            f'<section class="block" id="read"><h2>How to read these numbers</h2>{reading_notes(flags(T), hub=True)}</section>'
             f'<section class="block" id="map"><h2>The trade map</h2><p>How a contract is placed in a trade, word for word.</p>{trade_map(E, d, DD)}</section>'
             '<section class="block"><h2>How this page is made</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"]) + '</section>'
             f'<div id="faq">{M.faq_block(faqs)}</div>'
@@ -464,7 +464,7 @@ def trade_page(p, d, src, t):
     mods = [r for r in rows if r["revision"] > 0]
     moved = [r for r in rows if r["revision"] < 0]
     n_end = len(t["ending"])
-    first = ((f'{plural(a36["awards"], "new City award")} matched {low(t)} in the last 36 months'
+    first = ((f'{plural(a36["awards"], "new City award")} matched {low(t)}{" work" if t["key"] == "electrical" else ""} in the last 36 months'
               + (f', worth {usd_short(a36["total"])}' + (" in all" if a36["paid"] > 1 else "") if a36["total"] else "")) if a36["awards"] else f'No new City award matched {low(t)} in the last 36 months')
     if not a36["awards"] and not n_end:
         lede = first + ', and no contract in this trade ends in the next 12 months.'
@@ -476,7 +476,7 @@ def trade_page(p, d, src, t):
             + (plural(ne, "contract") + " ending" if ne else "none ending") + ' in the next 12 months'
             + (', with vendors and contract PDFs' if na or ne else '') + '. Free, updated daily.')
     tiles = ('<div class="tiles ld-tiles">'
-             f'<div class="tile{" key" if t["ending"] else ""}"><div class="lab">Ending in 12 months</div><div class="val">{len(t["ending"]):,}</div><div class="sub">{"the work may go back out to bid" if t["ending"] else "none end in the next 12 months"}</div></div>'
+             f'<div class="tile{" key" if t["ending"] else ""}"><div class="lab">Ending in 12 months</div><div class="val">{len(t["ending"]):,}</div><div class="sub">{"the work may go back out to bid" if t["ending"] else "none ends in the next 12 months"}</div></div>'
              f'<div class="tile"><div class="lab">New awards, 12 months</div><div class="val">{a12["awards"]:,}</div><div class="sub">{E(usd_short(a12["total"])) if a12["total"] else "none in 12 months"}'
              + (f', plus {a12["zero"]:,} at $0' if a12["zero"] else "") + '</div></div>'
              f'<div class="tile"><div class="lab">New awards, 36 months</div><div class="val">{a36["awards"]:,}</div><div class="sub">'
@@ -484,7 +484,7 @@ def trade_page(p, d, src, t):
              f'<div class="tile"><div class="lab">Changes, 36 months</div><div class="val">{a36["mods"]:,}</div><div class="sub">'
              + (f'{E(usd_short(a36["modsUpTotal"]))} added' if a36["modsUpTotal"] else ("none in 36 months" if not a36["mods"] else ("no money change" if not a36["modsDown"] else "no money added")))
              + (f', {E(usd_short(-a36["modsDownTotal"]))} taken out' if a36["modsDownTotal"] else "") + '</div></div></div>'
-             f'<p class="asof">City data as of {E(M.nice_date(s["rowsUpdatedAt"]))}.' + (' Totals and medians use new awards only; award totals are not unit prices.' if a36["awards"] else '') + '</p>')
+             f'<p class="asof">City data as of {E(M.nice_date(s["rowsUpdatedAt"]))}.' + ((' Totals and medians use new awards only;' if a36["paid"] > 1 else ' Totals use new awards only;') + ' award totals are not unit prices.' if a36["awards"] else '') + '</p>')
     erows = [f'<tr>{td(E(M.nice_date(e["end"])), "Ends", cls="dt")}'
              f'<td class="d" data-l="Covers">{E(clean(e["description"]))}<span class="cc-sub">{dept(E, e["department"])} · <span class="nw">contract {E(e["contract"])}</span>'
              + (f' · <span class="nw">spec {E(e["spec"])}</span>' if e["spec"] else "") + '</span></td>'

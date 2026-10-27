@@ -28,8 +28,8 @@ META = {"h1": "Chicago Demolition Rodent Baiting",
                     "pest control demolition chicago"}
 
 STEPS = [("A licensed pest control company baits the site.", ""),
-         ("A rodent control affidavit is completed.",
-          "A completed affidavit is part of the rodent control approval."),
+         ("A rodent control affidavit is filled in.",
+          "It is part of the rodent control approval."),
          ("Streets and Sanitation inspects the site.", ""),
          ("Streets and Sanitation sends the approval by email.", ""),
          ("The approval is attached to the permit application.",
@@ -41,7 +41,7 @@ OTHERS = ["Public Health: the demolition notice of intent, filed through the Cit
           "Water Management: a hydrant use permit or an approved other water source, such as a water truck.",
           "Only for some jobs: a pre-permit inspection for complex demolitions, Housing for buildings with dwelling units, Planning and Development for historic buildings, Transportation for the downtown freight tunnel area, Public Health for flammable liquid tanks, and soil contamination reviews in two areas."]
 
-TIMES = [("Quiet application", "120 days", "An application with no activity for 120 days expires. One 90-day extension can be asked for before then."),
+TIMES = [("Idle application", "120 days", "An application with no activity for 120 days expires. One 90-day extension can be asked for before then."),
          ("Paying the fee", "120 days", "After the City says the permit is ready, the fee must be paid within 120 days; the permit certificate is issued at payment."),
          ("Starting work", "6 months", "Work must start within 6 months of payment and may not stop for more than 12 months in all.")]
 
@@ -84,7 +84,8 @@ def map_block(d, E):
                 "cls": {k: f"q{G.klass(a['d30'], c30)}" for k, a in by.items()}, "legend": legend(c30)},
                {"key": "d365", "label": "Last 12 months", "legendTitle": "Wrecking and demolition permits issued, last 12 months",
                 "cls": {k: f"q{G.klass(a['d365'], c12)}" for k, a in by.items()}, "legend": legend(c12)}]
-    top = sorted([a for a in by.values() if a["d30"]], key=lambda a: (-a["d30"], a["name"]))[:4]
+    ranked = sorted([a for a in by.values() if a["d30"]], key=lambda a: (-a["d30"], a["name"]))
+    top = [a for a in ranked if len(ranked) < 4 or a["d30"] >= ranked[3]["d30"]][:6]   # ties at the cut stay in
     c = d["counts"]
     hint = ('<h3>Citywide</h3>'
             f'<p class="gm-big"><span>{c["d30"]:,}</span><small>wrecking and demolition permits issued, last 30 days</small></p>'
@@ -108,7 +109,9 @@ def page_html(p):
         return W.shell(M, p, url, rel, crumb)
     robots = "" if M.is_live(p) else '<meta name="robots" content="noindex, nofollow">'
     c, w, src = d["counts"], d["window"], d["source"]
-    wait = d.get("wait") or {}
+    ch = d.get("change") or None
+    wait = (ch or {}).get("since") or d.get("wait") or {}
+    since = ch and ch["since"].get("med") is not None
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
               "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]}
     howto_ld = {"@context": "https://schema.org", "@type": "HowTo", "name": "The rodent control step of a Chicago demolition permit",
@@ -120,7 +123,7 @@ def page_html(p):
              f'<div class="tile key"><div class="lab">Last 7 days</div><div class="val">{c["d7"]:,}</div><div class="sub">wrecking and demolition permits</div></div>'
              f'<div class="tile"><div class="lab">Last 30 days</div><div class="val">{c["d30"]:,}</div><div class="sub">in {c["areasWith30"]:,} community areas</div></div>'
              f'<div class="tile"><div class="lab">Last 12 months</div><div class="val">{c["d365"]:,}</div><div class="sub">wrecking and demolition permits</div></div>'
-             + (f'<div class="tile"><div class="lab">Half within</div><div class="val">{wait["med"]:,} days</div><div class="sub">of review start, last 12 months</div></div>' if wait.get("med") is not None else "")
+             + (f'<div class="tile"><div class="lab">Half within</div><div class="val">{wait["med"]:,} days</div><div class="sub">of review start, {"since " + W.month_word(ch["from"]) if since else "last 12 months"}</div></div>' if wait.get("med") is not None else "")
              + f'</div><p class="asof">Counts as of {E(M.nice_date(w["to"]))}, from City of Chicago records pulled {E(M.nice_date(src["fetchedAt"][:10]))}. Updated weekly.</p>')
     steps = ('<ol class="pw-steps">' + "".join(f"<li><b>{E(t)}</b>{E(x)}</li>" for t, x in STEPS) + '</ol>'
              f'<p class="asof">From the Department of Buildings <a href="{DEMO_PAGE}" rel="noopener">demolition permits page</a> and '
@@ -137,14 +140,17 @@ def page_html(p):
     zero = sum(1 for a in d["areas"] if not a["d365"])
     tbl = W.split_table(["Community area", "Last 7 days", "Last 30 days", "Last 12 months"], rows,
                         "Wrecking and demolition permits issued by community area", E, show=20, what="community areas")
-    wait_line = (f'<p class="pw-note"><b>How long a wrecking and demolition permit takes.</b> Half of the wrecking and demolition permits issued in the last 12 months '
-                 f'were issued within {wait["med"]:,} days of the City starting review, and 8 in 10 within {wait["p80"]:,} days; '
-                 f'{wait["sameDay"]:.0f}% were issued the same day review started. <a href="{rel}chicago-permit-wait-times/wrecking-and-demolition/">Wrecking and demolition permit wait times by month and community area</a>.</p>' if wait.get("med") is not None else "")
+    wait_line = ((f'<p class="pw-note"><b>How long a wrecking and demolition permit takes.</b> '
+                  + (f'Up to {E(W.month_word(W.prev_month(ch["from"]), short=False))}, most of these permits show 0 days in the City\'s records. '
+                     f'From {E(W.month_word(ch["from"], short=False))} on, half of the {wait["n"]:,} issued were issued within {wait["med"]:,} days of the City starting review, and 8 in 10 within {wait["p80"]:,} days. '
+                     if since else
+                     f'Half of the wrecking and demolition permits issued in the last 12 months were issued within {wait["med"]:,} days of the City starting review, and 8 in 10 within {wait["p80"]:,} days. ')
+                  + f'<a href="{rel}chicago-permit-wait-times/wrecking-and-demolition/">Wrecking and demolition permit wait times by month and community area</a>.</p>') if wait.get("med") is not None else "")
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(META["h1"])}</h1><p class="lede">{lede}</p>'
             '<div class="ld-heroact rl-act"><a class="btn" href="#steps">See the five steps</a>'
             + ('<a class="st-btn2" href="#map">Open the map</a>' if mapb else '<a class="st-btn2" href="#areas">Permits by area</a>') + '</div></div>'
             + tiles + W.otp([("steps", "Steps"), ("times", "Dates"), ("weeks", "Weekly")] + ([("map", "Map")] if mapb else []) + [("areas", "Areas"), ("questions", "Questions")], E)
-            + f'<section class="block" id="steps"><h2>The rodent control step, in five steps</h2><p>Form 480 lists rodent control from the Department of Streets and Sanitation among the approvals for every demolition permit applicant.</p>{steps}{others}</section>'
+            + f'<section class="block" id="steps"><h2>Rodent control, in five steps</h2><p>Form 480 lists rodent control from the Department of Streets and Sanitation among the approvals for every demolition permit applicant.</p>{steps}{others}</section>'
             + f'<section class="block" id="times"><h2>Dates to keep in mind</h2><div class="tiles ld-tiles pw-dates">{times}</div>'
             + f'<p class="asof">From the Department of Buildings demolition permits page, read {E(M.nice_date(STEPS_READ))}.</p>{wait_line}</section>'
             + f'<section class="block" id="weeks"><h2>Wrecking and demolition permits, week by week</h2>{wk}'
@@ -163,7 +169,8 @@ def page_html(p):
             + '<section class="block"><h2>How this page is made</h2>'
             + f'<p>The steps are our plain summary of the City\'s demolition permits page and Form 480, read {E(M.nice_date(STEPS_READ))}. The City\'s own pages are the rule; when they change, they win.</p>'
             + '<p>The permit counts are wrecking and demolition permits the City issued, from its Building Permits dataset, counted by issue date and by the community area of each permit\'s primary address. Counts only: no permit number, address or contact is kept.</p>'
-            + (f'<p>The wait days are the City\'s processing time field, days from the City starting review to the issue date, for the {wait["n"]:,} wrecking and demolition permits issued in the last 12 months.</p>' if wait.get("med") is not None else "")
+            + (f'<p>The wait days are the City\'s processing time field, days from the City starting review to the issue date, for the {wait["n"]:,} wrecking and demolition permits issued '
+               + (f'from {E(W.month_word(ch["from"], short=False))} on, the first month after the City\'s records stop showing 0 days for most of them.' if since else 'in the last 12 months.') + '</p>' if wait.get("med") is not None else "")
             + '</section>' + W.faq(M, FAQ)
             + f'<p class="pw-end"><a class="btn" href="#steps">See the five steps</a><a class="st-btn2" href="{rel}chicago-rat-complaints/">Rat complaints by neighborhood</a></p>')
     return (W.head_html(M, p, url, rel, p["title"], p.get("desc", ""), robots, M.ld_tags(crumb_ld, faq_ld, howto_ld)) + body

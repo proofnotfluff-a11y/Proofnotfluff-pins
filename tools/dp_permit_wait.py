@@ -329,8 +329,8 @@ def trend_table(rows, E):
     for r in rows:
         t = r["trend"]
         a, b = t["now"], t["then"]
-        if a.get("med") is None or b.get("med") is None:
-            continue
+        if a.get("med") is None or b.get("med") is None or (r.get("change") and r["change"]["from"] > t["yearMonths"][0]):
+            continue   # no comparison across a switch in how the City records the group
         diff = a["med"] - b["med"]
         ch = "Same" if diff == 0 else (f'<span class="pw-nw">{abs(diff):,} day{"" if abs(diff) == 1 else "s"}</span> {"longer" if diff > 0 else "shorter"}')
         out.append([E(r["label"]), f'{a["med"]:,}<small>{a["n"]:,} permits</small>', f'{b["med"]:,}<small>{b["n"]:,} permits</small>', f"<b>{ch}</b>"])
@@ -512,25 +512,26 @@ def page_html(p):
             + otp([("types", "Permit type"), ("paths", "Review path"), ("months", "Month by month")] + ([("map", "Map")] if mapb else [])
                   + [("areas", "Areas"), ("download", "CSV"), ("questions", "Questions")], E)
             + f'<section class="block" id="types"><h2>By permit type</h2><p>Tap a permit type for its own page with every review path, month and community area.</p>{type_tbl}'
+            + "".join(f'<p class="pw-note">{change_note(t, E)}</p>' for t in types if change_note(t, E))
             + '</section>'
             + ('<section class="block" id="paths"><h2>By review path</h2><p>The review path decides most of the wait. The Express Permit Program is the '
                f"City's online path for repairs, replacements and small improvements; Standard Plan Review and Self Certification are plan-based paths for "
                f'projects such as new construction and rehabs (<a href="{DOB_PERMITS}" rel="noopener">City permit application guide</a>). '
                f'Days are from the City starting review to the issue date, for permits issued in the last 12 months.</p>{path_tbl}')
-            + '<p class="asof">Path names are the City\'s own, as they appear in its permit records.</p>'
+            + '<p class="asof">Path names are the City\'s, written out in full.</p>'
             + '<p class="asof pw-phone">On a phone the 9 in 10 and same day columns are left out; they are in the CSV below.</p></section>'
             + f'<section class="block" id="months"><h2>Month by month</h2><p>The last 24 complete months. Pick a review path; each column shows how long the permits issued that month took.</p>{charts}{mtab}'
             + (f'<h3>Against a year earlier</h3>{trends}' if trends else "") + '</section>'
             + (f'<section class="block" id="map"><h2>Wait times on the map</h2>{mapb}</section>' if mapb else "")
             + f'<section class="block" id="areas"><h2>Every community area</h2>{area_tbl}'
-            + f'<p class="asof">Last 12 months. Fewer than {mn} permits on a path shows as too few.'
+            + f'<p class="asof">Last 12 months. Areas with fewer than {mn} permits on a path show as too few.'
             + (f' {d["all"]["noArea12"]:,} permits had no community area on the record and count only in the city totals.' if d["all"].get("noArea12") else "") + '</p></section>'
             + f'<section class="block" id="download"><h2>Download the numbers</h2><p>Every figure on this page and its permit type pages, as one CSV file: citywide, by review path, permit type, community area and month.</p>'
             + f'<p><a class="st-btn2 pw-dl" href="{CSV_NAME}" download>Download the CSV</a></p></section>'
             + '<section class="block"><div class="pw-two">'
             + '<div class="cta ld-cta"><div><h2>Planning a job around a permit?</h2><p>The 8 in 10 figure for your permit type and path is how long most permits took to come through; the 9 in 10 figure shows how long the slow ones ran. For your own permit, check with the Department of Buildings.</p>'
             + f'<p class="ld-buybtn"><a class="btn" href="{DOB_PERMITS}" rel="noopener">City permit application guide</a></p></div></div>'
-            + f'<div class="cta ld-cta"><div><h2>More free Chicago data</h2><p>Trackers built from City records for trade owners: rat complaints by neighborhood, demolition rodent baiting, trades news and more.</p>'
+            + f'<div class="cta ld-cta"><div><h2>More free Chicago data</h2><p>Trackers built from City records for trade owners: rat complaints by community area, demolition rodent baiting, trades news and more.</p>'
             + f'<p class="ld-buybtn"><a class="btn" href="{rel}chicago-data/">See every free tracker</a></p></div></div>'
             + '</div></section>'
             + method_html(d, E) + faq(M, FAQ)
@@ -557,6 +558,21 @@ def type_noun(t):
 def within(x, verb="were issued"):
     return f"{verb} the same day the City started review" if x == 0 else f"{verb} within {days(x)} of the City starting review"
 
+def change_note(item, E, label=None):
+    """Plain words for a switch in how the City records a group (dp_permit_wait_data.record_change)."""
+    ch = item.get("change")
+    if not ch or ch["since"].get("med") is None:
+        return ""
+    sc = ch["since"]
+    return (f'{E(label or item["label"])}: up to {E(month_word(prev_month(ch["from"]), short=False))}, most of these permits show 0 days in the '
+            f"City's records; from {E(month_word(ch['from'], short=False))} on, half took {days(sc['med'])} and 8 in 10 took {days(sc['p80'])} "
+            f'({sc["n"]:,} permits). Compare months from {E(month_word(ch["from"], short=False))} on.')
+
+
+def prev_month(m):
+    y, mo = int(m[:4]), int(m[5:7]) - 1
+    return f"{y - 1}-12" if mo == 0 else f"{y}-{mo:02d}"
+
 def type_page(p, d, t, M):
     E = M.E
     url, rel = M.BASE + p["slug"] + "/" + t["slug"] + "/", "../../"
@@ -565,7 +581,9 @@ def type_page(p, d, t, M):
     crumb, crumb_ld = M.crumbs(rel, [("Home", ""), (META["h1"], p["slug"] + "/"), (t["label"], None)])
     s, w, mn = t["last12"], d["window"], d["rules"]["minN"]
     lede = (f'Chicago issued {s["n"]:,} {E(type_noun(t))} in the 12 months to {E(M.nice_date(w["to"]))}. '
-            + (f'Half {within(s["med"])}, and 8 in 10 {"the same day" if s["p80"] == 0 else "within " + days(s["p80"])}.' if s.get("med") is not None else ""))
+            + ((f'{s["sameDay"]:.0f}% were issued the same day the City started review.' if s["p80"] == 0 else
+                f'Half {within(s["med"])}, and 8 in 10 within {days(s["p80"])}.') if s.get("med") is not None else "")
+            + (f' {change_note(t, E, "Records")}' if change_note(t, E) else ""))
     reviews = [r for r in t["reviews"] if r["last12"]["n"]]
     top = reviews[0] if reviews else None
     tiles = ('<div class="tiles ld-tiles">'
@@ -583,14 +601,14 @@ def type_page(p, d, t, M):
             f'<div class="ld-heroact rl-act"><a class="btn" href="#months">See it month by month</a><a class="st-btn2" href="#areas">Find your area</a></div></div>'
             + tiles + otp([("paths", "Review path"), ("months", "Month by month"), ("areas", "Areas"), ("method", "How it's made")], E)
             + f'<section class="block" id="paths"><h2>By review path</h2>{table(PATH_HEAD, path_rows(reviews, E), "Wait days by review path, last 12 months", E, hide=(4, 5))}</section>'
-            + f'<section class="block" id="months"><h2>Month by month</h2><p>The last 24 complete months, by month issued.</p>{chart_panes(series, E, "pwt", "")}{month_table(series, E, "Wait days by month issued")}'
+            + f'<section class="block" id="months"><h2>Month by month</h2><p>The last 24 complete months, by month issued.</p>' + (f'<p class="pw-note">{change_note(t, E, "Records")}</p>' if change_note(t, E) else "") + f'{chart_panes(series, E, "pwt", "")}{month_table(series, E, "Wait days by month issued")}'
             + (f'<h3>Against a year earlier</h3>{trs}' if trs else "") + '</section>'
             + f'<section class="block" id="areas"><h2>Every community area</h2>'
             + split_table(["Community area", "Permits issued, 12 months", "Half within (days)", "8 in 10 within (days)", "9 in 10 within (days)"], arows,
                           f"{t['label']} permit wait days by community area", E, show=20, hide=(4,), what="community areas")
-            + f'<p class="asof">Fewer than {mn} permits shows as too few.'
+            + f'<p class="asof">Areas with fewer than {mn} permits show as too few.'
             + (f' {t["noArea12"]:,} permit{"" if t["noArea12"] == 1 else "s"} had no community area on the record and count{"s" if t["noArea12"] == 1 else ""} only in the totals.' if t.get("noArea12") else "")
-            + (f' {sum(1 for a in t["areas"] if not a["n"]):,} community areas with no permits of this type in the last 12 months are left out.' if any(not a["n"] for a in t["areas"]) else "") + '</p></section>'
+            + ((lambda z: f' {z:,} community area{"" if z == 1 else "s"} with no permits of this type in the last 12 months {"is" if z == 1 else "are"} left out.')(sum(1 for a in t["areas"] if not a["n"])) if any(not a["n"] for a in t["areas"]) else "") + '</p></section>'
             + f'<section class="block" id="method"><h2>How this page is made</h2><p>{E(METHOD[0])}</p><p>{E(METHOD[1])}</p><p>{E(METHOD[3])}</p>'
             + f'<p>The full method and a CSV of every figure are on the <a href="{rel}{p["slug"]}/#method">main permit wait times page</a>.</p></section>'
             + f'<p class="pw-end"><a class="btn" href="{rel}{p["slug"]}/#types">Compare every permit type</a><a class="st-btn2" href="{rel}{p["slug"]}/{CSV_NAME}">Download the CSV</a></p>'

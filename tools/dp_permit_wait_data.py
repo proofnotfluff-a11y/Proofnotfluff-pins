@@ -87,7 +87,7 @@ def summary(days):
     out = {"n": n}
     if n >= MIN_N:
         out.update({"med": pctl(v, 0.5), "p80": pctl(v, 0.8), "p90": pctl(v, 0.9),
-                    "sameDay": round(sum(1 for x in v if x == 0) / n * 100, 1),
+                    "sameDay": round(sum(1 for x in v if x == 0) / n * 100, 2),
                     "over90": round(sum(1 for x in v if x > 90) / n * 100, 1),
                     "over365": round(sum(1 for x in v if x > 365) / n * 100, 1)})
     return out
@@ -173,9 +173,26 @@ def areas(recs, names):
     return out
 
 
+def record_change(recs, mon):
+    """A switch in how the City records a group: every month up to some month shows a median of 0 days, and every month
+    from it on (at least 3, to the last complete month) shows more. Seen for wrecking and demolition permits, which read
+    0 days through Feb 2026 and 46 to 80 days a month from Mar 2026. Returns the month and the figures from it on."""
+    known = [m for m in mon if m.get("med") is not None]
+    for k in range(1, len(known)):
+        before, after = known[:k], known[k:]
+        if len(after) >= 3 and all(m["med"] == 0 for m in before) and all(m["med"] > 0 for m in after):
+            start = after[0]["m"]
+            return {"from": start, "since": summary([x["d"] for x in recs if x["m"] >= start])}
+    return None
+
+
 def block(recs, w, names, with_areas=True):
     last12 = [x for x in recs if x["day"] >= w["from12"]]
-    out = {"last12": summary([x["d"] for x in last12]), "monthly": monthly(recs, w), "trend": trend(recs, w)}
+    mon = monthly(recs, w)
+    out = {"last12": summary([x["d"] for x in last12]), "monthly": mon, "trend": trend(recs, w)}
+    ch = record_change(recs, mon)
+    if ch:
+        out["change"] = ch
     if with_areas:
         out["areas"] = areas(last12, names)
         out["noArea12"] = sum(1 for x in last12 if not x["a"])
@@ -256,6 +273,7 @@ def build_wreck(rows, today, fetched, rows_updated, names):
                    "noArea30": sum(1 for x in wr if x["day"] >= d30 and not x["a"]),
                    "areasWith30": sum(1 for a in areas_out if a["d30"])},
         "wait": summary([x["d"] for x in last12]),
+        "change": record_change(wr, monthly(wr, w)),
         "areas": areas_out,
         "weeks": weeks_of(wr, today),
         "monthly": [{"m": m, "count": sum(1 for x in wr if x["m"] == m)} for m in w["months"]],
@@ -344,6 +362,11 @@ def selftest():
     assert wr["weeks"][-1] == {"from": "2026-10-20", "to": "2026-10-26", "count": 3}, wr["weeks"][-1]
     assert next(a for a in wr["areas"] if a["a"] == 25)["d7"] == 2 and "PLANTED" not in json.dumps(wr)
     assert wr["wait"] == {"n": 3}, "three permits: no median"
+    zero = [{"m": f"2025-{i:02d}", "med": 0} for i in range(1, 9)] + [{"m": f"2025-{i:02d}", "med": 40 + i} for i in range(9, 13)]
+    recs = [{"m": f"2025-{i:02d}", "d": 0 if i < 9 else 40 + i} for i in range(1, 13) for _ in range(5)]
+    rc = record_change(recs, zero)
+    assert rc["from"] == "2025-09" and rc["since"]["n"] == 20 and rc["since"]["med"] == 50, rc
+    assert record_change(recs, [{"m": "2025-01", "med": 0}] * 12) is None and record_change(recs, [{"m": "x", "med": 5}] * 12) is None
     print("dp_permit_wait_data selftest: ok (windows, nearest rank, privacy strip, drops, date check, small groups, labels, wrecking weeks)")
 
 

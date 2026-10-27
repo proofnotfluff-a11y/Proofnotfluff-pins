@@ -1,0 +1,19 @@
+{"about": "Free Chicago data hub: search narrows the cards, a job chip filters to one group, a search with no match offers a way back, and every card links to a live page (redesign, Oct 27, 2026).",
+ "page": "chicago-data/",
+ "steps": [
+  {"expect_visible": "#cxBar"},
+  {"expect_text": "#cxCount", "matches": "^\\d+ data pages$"},
+  {"fill": "#cxQ", "value": "snow", "screenshot": true},
+  {"expect_text": "#cxCount", "matches": "^Showing [1-9]\\d* of \\d+ data pages$"},
+  {"expect_js": "[...document.querySelectorAll('#cxAll .cx-item')].some(c=>!c.hidden && c.querySelector('a').getAttribute('href').includes('snow'))"},
+  {"fill": "#cxQ", "value": ""},
+  {"click": ".cx-chip[data-g='permits']"},
+  {"expect_js": "[...document.querySelectorAll('#cxAll .cx-item')].filter(c=>!c.hidden).every(c=>c.dataset.g==='permits')", "screenshot": true},
+  {"click": ".cx-chip[data-g='']"},
+  {"fill": "#cxQ", "value": "zzqx"},
+  {"expect_visible": "#cxEmpty"},
+  {"click": "#cxClear"},
+  {"expect_text": "#cxCount", "matches": "^\\d+ data pages$"},
+  {"expect_count": "#cxAll .cx-item a[href^='../']", "min": 10},
+  {"expect_count": ".st-band a[href='../#trades']", "min": 1}
+ ]}

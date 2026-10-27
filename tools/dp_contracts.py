@@ -155,7 +155,8 @@ SR = "<style>.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rec
 def value_cell(E, e):
     if e["requirements"] and e["value"] == 0:
         return '<span class="cc-tag req">$0, orders as needed</span>'
-    sub = f'<span class="cc-sub">{plural(e["revisions"], "change")}</span>' if e["revisions"] else ""
+    n = e.get("changes", e["revisions"])
+    sub = f'<span class="cc-sub">{plural(n, "change")}</span>' if n else ""
     return f'<span class="cc-val">{usd(e["value"])}</span>{sub}'
 
 
@@ -208,7 +209,7 @@ def trade_map(E, d, data_mod):
             + '<p class="asof">Matching ignores capital letters, and most words also find their longer forms (roof finds roofing). Left out of every trade: purchases of goods or equipment (supplies, parts, vehicles) '
             'unless the description also names work such as service, repair, maintenance or removal; upkeep of the City\'s own machines and fleet; design, engineering and consulting; '
             'software; art; grants to agencies; leases; and redevelopment deals. A few more words keep look-alikes out (rock salt from snow removal, lead paint removal from painting, '
-            'elevators from HVAC).</p>')
+            'elevators from HVAC, holiday trees and tree inventories from landscaping). Inspection and construction supervision deals are left out too.</p>')
 
 
 def footer(E, M, rel, d):
@@ -373,7 +374,7 @@ def trade_csv(d, t):
     s = d["source"]
     wtr.writerow([])
     wtr.writerow([safe(f'Source: City of Chicago Data Portal, Contracts ({s["dataset"]}), {s["url"]}, read {s["fetchedAt"][:10]}. '
-                       f'Awards and changes approved {d["window"]["from36"]} to {d["window"]["today"]}, and contracts whose latest end date falls by {d["window"]["endTo"]}. '
+                       f'Awards and changes approved {d["window"]["from36"]} to {d["window"]["today"]}, and contracts whose latest end date falls from {d["window"]["today"]} to {d["window"]["endTo"]}, both days included. '
                        'An award of 0 on a blanket contract means the City orders as needed and promises no amount. Negative amounts are changes that took money out. '
                        'Award totals are not unit prices. Vendor addresses are not included; "Name withheld" marks a vendor name that does not read as a business.')])
     wtr.writerow([safe(f'Trade words: {", ".join(next(x for x in __import__("dp_contracts_data").TRADES if x["key"] == t["key"])["words"])}. '

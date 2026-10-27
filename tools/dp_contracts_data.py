@@ -99,7 +99,7 @@ WORK = re.compile(r"SERVIC|REPAIR|MAINT|INSTALL|REMOV|LABOR|\bWORK\b|CLEANING|AB
 NOT_WORK = re.compile(r"\bPURCHASE OF\b|\bPURCHASE AND DELIVERY\b|^PURCHASE\b|PARTS AND (?:REPAIR )?SERVICES?\b|\bFLEET\b|"
                       r"DESIGN ENGINEERING|ENGINEERING SERVICES|PROFESSIONAL DESIGN|CONSULTING SERVICES|\bSOFTWARE\b|"
                       r"ARTWORK|\bGRANT\b|REDEVELOPMENT|INVENTORY MANAGEMENT|\bRENTAL OF HEAVY EQUIPMENT|"
-                      r"BOARD OF EDUCATION|INTERGOVERNMENTAL|\bIGA\b|^(?:AMERICAN|UNITED|DELTA|SOUTHWEST) AIRLINES\b")
+                      r"BOARD OF EDUCATION|INTERGOVERNMENTAL|CONSTRUCTION SUPERVISION|\bIGA\b|^(?:AMERICAN|UNITED|DELTA|SOUTHWEST) AIRLINES\b")
 # A revision 0 row that only moves an existing contract to a new number is not a new award (the City writes
 # "NOT A NEW AWARD", "TRANSFER FROM PO" or "See PO" on it): counted apart as a transfer.
 TRANSFER = re.compile(r"NOT A NEW AWARD|TRANSFER(?:RED)? FROM (?:PO|P\.O)|\bXFER|REPLACING PO|SEE PO\s*#", re.I)
@@ -275,7 +275,7 @@ def build(rows36, ending_rows, today, meta, fetched):
         rs.sort(key=lambda r: (rev(r), day(r.get("approval_date"))))
         last, first = rs[-1], rs[0]
         end = day(last.get("end_date"))
-        if not (w["today"] <= end < w["endTo"]):
+        if not (w["today"] <= end <= w["endTo"]):   # the next 12 months, Oct 27, 2027 included
             continue
         keys = match(first.get("purchase_order_description") or last.get("purchase_order_description"), first.get("contract_type") or last.get("contract_type"))
         if not keys:
@@ -288,7 +288,7 @@ def build(rows36, ending_rows, today, meta, fetched):
                               "vendor": vendor(last.get("vendor_name") or first.get("vendor_name")),
                               "contractType": (first.get("contract_type") or "").strip(), "procurementType": (first.get("procurement_type") or "").strip(),
                               "approved": day(first.get("approval_date")), "start": day(first.get("start_date")), "end": end,
-                              "original": round(sum(amount(r) for r in orig), 2), "value": value, "revisions": max(rev(r) for r in rs),
+                              "original": round(sum(amount(r) for r in orig), 2), "value": value, "revisions": max(rev(r) for r in rs), "changes": sum(1 for r in rs if rev(r) > 0),
                               "requirements": bool(orig) and all(amount(r) == 0 for r in orig),
                               "pdf": next((pdf(r) for r in reversed(rs) if pdf(r)), "")}))
     trades = []
@@ -316,7 +316,7 @@ def main():
     meta = get(f"{PORTAL}/api/views/{DATASET}.json")
     meta = {"name": meta.get("name"), "rowsUpdatedAtIso": dt.datetime.fromtimestamp(meta.get("rowsUpdatedAt") or 0, CHI).isoformat(timespec="seconds")}
     rows36 = soql_all(f"approval_date >= '{w['from36']}T00:00:00' AND approval_date < '{w['today']}T00:00:00'")
-    cand = soql_all(f"end_date >= '{w['today']}T00:00:00' AND end_date < '{w['endTo']}T00:00:00'")
+    cand = soql_all(f"end_date >= '{w['today']}T00:00:00' AND end_date <= '{w['endTo']}T23:59:59'")
     pos = sorted({(r.get("purchase_order_contract_number") or "").strip() for r in cand
                   if match(r.get("purchase_order_description"), r.get("contract_type"))} - {""})
     ending_rows = []
@@ -366,7 +366,8 @@ def selftest():
             R("ROCK SALT FOR SNOW", 1, po="I"), R("NOT A NEW AWARD - Replacing PO # 1 - JANITORIAL SERVICES", 900, po="J"),
             R("PARTS AND REPAIR SERVICES - MECHANICAL, ELECTRICAL", 5, po="L"), R("AMERICAN AIRLINES - TERMINAL 3 HVAC UPGRADES", 9, po="N"),
             R("Agreement between the City of Chicago and Board of Education - TURF Field", 9, po="O"), R("PURCHASE AND DELIVERY OF RODENTICIDES", 5, po="M")]
-    ending = [R("JANITORIAL SERVICES", 0, po="D", end="2027-01-31", v="JOHN Q SMITH"), R("JANITORIAL SERVICES", 0, rv=1, po="D", end="2027-03-31"),
+    ending = [R("JANITORIAL SERVICES", 0, po="D", end="2027-01-31", v="JOHN Q SMITH"), R("JANITORIAL SERVICES", 0, rv=3, po="D", end="2027-03-31"),
+              R("JANITORIAL SERVICES", 5, po="Q", end="2027-10-27"),
               R("JANITORIAL SERVICES", 0, po="K", end="2026-12-31"), R("JANITORIAL SERVICES", 0, rv=1, po="K", end="2028-12-31")]
     d = build(rows, ending, today, {"name": "Contracts", "rowsUpdatedAtIso": "2026-10-27T03:17:28-05:00"}, "2026-10-27T08:00:00-05:00")
     T = {t["key"]: t for t in d["trades"]}
@@ -379,7 +380,8 @@ def selftest():
     assert all("SUPPLIES" not in r[2] for r in j["rows"]), "supplies left out"
     assert any(r[4] == "Name withheld" for r in j["rows"]) and j["withheld"] == 1, "a person's name is withheld"
     assert "JOHN" not in json.dumps(d) and "MAIN ST" not in json.dumps(d) and "60601" not in json.dumps(d), "no person, no address"
-    assert [e["contract"] for e in j["ending"]] == ["D"] and j["ending"][0]["end"] == "2027-03-31" and j["ending"][0]["requirements"], "latest revision sets the end"
+    assert [e["contract"] for e in j["ending"]] == ["D", "Q"] and j["ending"][0]["end"] == "2027-03-31" and j["ending"][0]["requirements"], "latest revision sets the end; the last day counts"
+    assert j["ending"][0]["changes"] == 1 and j["ending"][0]["revisions"] == 3, "changes are counted records, not the revision number"
     assert T["hvac"]["m36"]["awards"] == 0 and T["landscaping"]["m36"]["awards"] == 1, "airline projects and school deals are not trade work"
     assert T["roofing"]["m36"]["awards"] == 1 and T["landscaping"]["m36"]["awards"] == 1, "one contract can name two trades"
     assert T["pest-control"]["m36"]["awards"] == 0, "delegate agency grants are not trade work"

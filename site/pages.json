@@ -6820,9 +6820,9 @@
    "h1": "Chicago City Contracts by Trade",
    "card": "Who wins City work in 12 trades, what it was worth, and which contracts end in the next 12 months",
    "method": [
-    "Every morning we read the City of Chicago's public Contracts dataset, which lists the contracts and modifications the City has awarded since 1993 and is updated daily by the City.",
+    "Every morning we read the City of Chicago's public Contracts dataset, which lists the contracts the City has awarded since 1993 and the changes to them, and is updated daily by the City.",
     "We keep the awards and changes approved in the last 36 months, plus every contract whose latest end date falls in the next 12 months, and sort them into trades by the words in each contract's description (the trade map above).",
-    "Revision 0 is the original award; every later revision is a change and is counted apart. A $0 award on a blanket contract means the City orders as needed. Totals and medians use new awards with a dollar amount.",
+    "The first entry for a contract is the award; every later entry is a change and is counted separately, as is an entry that only moves a contract to a new number. A $0 award on a blanket contract means the City orders as needed. Totals and medians use new awards with a dollar amount.",
     "We never pull the vendor's address. Vendor names are business names as the City lists them; a name that does not read as a business shows as Name withheld."
    ],
    "faq": [
@@ -6840,7 +6840,7 @@
     ],
     [
      "What does ending in the next 12 months mean?",
-     "It is the latest end date the City has recorded for the contract, after any time extensions. When a contract ends, the City may bid the work again, so it is a good time to watch the bid lists. Only blanket contracts carry an end date."
+     "It is the latest end date the City has recorded for the contract, after any time extensions. When a contract ends, the City may bid the work again, so it is a good time to watch the bid lists. Most contracts with an end date are blanket contracts."
     ],
     [
      "How often does this page change?",

@@ -1,0 +1,40 @@
+name: Chicago dumpster permits
+# Free page /chicago-dumpster-permits/ (Todd's go, Oct 27, 2026, coo/PARALLEL_BUILDS.md). The cloud agents cannot reach
+# data.cityofchicago.org, so this runner counts the City's issued CDOT dumpster permits (dataset pubx-yq2d, type
+# DOT_DMPSTR) by community area and month and commits only the counts (site/datapages/dp_dumpsters/counts.json).
+# tools/dp_dumpsters_pull.py never asks for a contact, name or street field. The data updates daily, so this runs daily.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/dp_dumpsters_pull.py", ".github/workflows/dp_dumpsters.yml"]
+  schedule:
+    - cron: "5 12 * * *"   # about 7:05 am Chicago time in daylight time
+permissions:
+  contents: write
+concurrency:
+  group: dp-dumpsters
+  cancel-in-progress: false
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Self-checks (planted rows)
+        run: |
+          python3 tools/dp_dumpsters_pull.py --selftest
+          if [ -f tools/dp_dumpsters.py ]; then python3 tools/dp_dumpsters.py --selftest; fi
+      - name: Count the City's issued dumpster permits
+        run: python3 tools/dp_dumpsters_pull.py
+      - name: Rebuild the site pages from the new counts
+        run: python3 tools/make_site.py
+      - name: Commit
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add -A site/datapages/dp_dumpsters docs
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "Chicago dumpster permit counts $(TZ=America/Chicago date +%Y-%m-%d)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done
+          exit 1

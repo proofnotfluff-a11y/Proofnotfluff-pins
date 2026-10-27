@@ -1,0 +1,42 @@
+name: CDOT permit fee schedule
+# Free page /chicago-public-way-permit-costs/ (Todd's go, Oct 27, 2026, coo/PARALLEL_BUILDS.md). The cloud agents cannot
+# open chicago.gov PDFs, so this runner downloads the City's CDOT 2026 Permit Fee Schedule, extracts its text with
+# pdftotext and commits it under site/datapages/dp_cdot_fees/ (tools/dp_cdot_fees_pull.py). The page is built only from
+# that text. It runs on a change to its tools, by hand, and on the 3rd of each month to catch a new schedule; the page's
+# own selftest then fails the run if any published fee is no longer in the City's text.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/dp_cdot_fees_pull.py", ".github/workflows/dp_cdot_fees.yml"]
+  schedule:
+    - cron: "25 12 3 * *"
+permissions:
+  contents: write
+concurrency:
+  group: dp-cdot-fees
+  cancel-in-progress: false
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get install -y -qq poppler-utils >/dev/null
+      - name: Self-check
+        run: python3 tools/dp_cdot_fees_pull.py --selftest
+      - name: Download the City's fee schedule and extract its text
+        run: python3 tools/dp_cdot_fees_pull.py
+      - name: Rebuild the site pages
+        run: python3 tools/make_site.py
+      - name: Commit
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add -A site/datapages/dp_cdot_fees docs
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "CDOT permit fee schedule $(TZ=America/Chicago date +%Y-%m-%d)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done
+          exit 1
+      - name: Every published fee is still in the City's text
+        run: if [ -f tools/dp_cdot_fees.py ]; then python3 tools/dp_cdot_fees.py --selftest; fi

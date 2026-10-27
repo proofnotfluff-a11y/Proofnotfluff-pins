@@ -17,3 +17,5 @@
 - [stated] Todd, 9:32 am: "go" (to putting all three live: Chicago Trades News, the map on the rat complaints page, and the List or Map view in the pest seat members' app).
 - [stated] Todd, 9:33 am: "let's refresh news daily".
 - So: /chicago-trades-news/ live (footer link on every page, sitemap, site search, RSS feed); the community area map is on /chicago-rat-complaints/; the pest seat app gets its map on the next daily build (6:45 am). A daily cloud scheduled task runs .claude/skills/trades-news/SKILL.md; each refresh is a minor data change under CONSTITUTION 2 and publishes only when its facts and copy gates pass.
+- [stated] Todd, 9:44 am: "Shouldn't new features like news be an option to select rather than hiding at the bottom of the page?"
+- So: "Trades news" joins the header links on every page (desktop and the phone menu); the header switches to the menu below 1024 px so the links never wrap to two rows (it already wrapped at 768).

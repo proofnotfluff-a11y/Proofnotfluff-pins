@@ -66,6 +66,9 @@ CURRENT = {}          # the page being written: {"nav": "shop" | "calc" | "quest
 
 def nav_html(rel, current=""):
     items = [("shop", f"{rel}shop/", "Shop"), ("calc", f"{rel}calculators/", "Free calculators")]
+    # the free trades news brief in every header once it is live (Todd, Oct 27, 2026: "Shouldn't new features like news be
+    # an option to select rather than hiding at the bottom of the page?")
+    items += [("news", f"{rel}{p['slug']}/", "Trades news") for p in PAGES_LIVE if p.get("kind") == "tradesnews"][:1]
     if LIVE_QUESTIONS:
         items.append(("questions", f"{rel}questions/", "Questions"))
     cur = ' aria-current="page"'
@@ -3704,7 +3707,7 @@ def main():
         if p.get("kind") in ("leads", "restleads", "question", "licleads", "newin") and not os.path.isfile(os.path.join(ROOT, p["data"])):
             print("skipped", p["slug"], "(no data yet)")
             continue
-        CURRENT["nav"] = "questions" if p.get("kind") == "question" else ("shop" if p.get("kind") in ("leads", "restleads", "licleads") else ("" if p.get("kind") in ("newin", "rodents", "agentkit", "tradesnews") else "calc"))
+        CURRENT["nav"] = "questions" if p.get("kind") == "question" else ("shop" if p.get("kind") in ("leads", "restleads", "licleads") else ("news" if p.get("kind") == "tradesnews" else "" if p.get("kind") in ("newin", "rodents", "agentkit") else "calc"))
         out = os.path.join(DOCS, p["slug"]); os.makedirs(out, exist_ok=True)
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page_html(p))
         if p.get("kind") == "tradesnews":   # the brief's RSS feed sits next to it

@@ -6227,7 +6227,7 @@
    },
    "vendor": {
     "title": "Run a pest control company?",
-    "text": "Our Chicago restaurant list shows food places whose City inspection failed or passed with conditions and cited a pest violation (rodents or insects seen, or conditions the inspector says let them in), and a paid members' page adds new ones each morning. Both come from City food inspection records, not from these complaints.",
+    "text": "Our weekly Chicago restaurant list (paid, with a free sample) names food places whose City inspection failed or passed with conditions and cited a pest violation (rodents or insects seen, or conditions the inspector says let them in). A paid daily seat adds new ones each morning. Both come from City food inspection records, not from these complaints.",
     "slug": "chicago-restaurant-inspection-leads",
     "button": "See the restaurant pest list"
    },
@@ -6258,7 +6258,7 @@
     ],
     [
      "Which community area is my neighborhood in?",
-     "The City counts by its 77 community areas, which hold many neighborhoods: Bucktown and Wicker Park are in West Town, Wrigleyville is in Lake View, and Pilsen is in the Lower West Side."
+     "The City counts by its 77 community areas, which hold many neighborhoods: Wicker Park is in West Town, Bucktown is in Logan Square, Wrigleyville is in Lake View, and Pilsen is in the Lower West Side."
     ],
     [
      "Does a complaint mean there are rats at an address?",

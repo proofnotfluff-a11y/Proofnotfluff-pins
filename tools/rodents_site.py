@@ -85,8 +85,8 @@ CSS = ("<style>.rc-bars{margin:12px 0 8px;padding:16px 18px;background:var(--car
        "@media(max-width:599px){.rc-t{min-width:0}.rc-t th:nth-child(2),.rc-t td:nth-child(2){display:none}.rc-t th,.rc-t td{padding:9px 8px}.rc-wk div:not(:nth-child(3n+1)):not(:last-child) span{visibility:hidden}.rc-wk span{font-size:11.5px}.rc-wk{height:140px}.rc-wk div:not(:last-child) b{visibility:hidden}.rc-bar{grid-template-columns:minmax(96px,130px) 1fr 44px}}</style>")
 
 
-CHANGE_BINS = [("d0", "var(--gmd0)", "At least 25% fewer", "25%+ fewer"), ("d1", "var(--gmd1)", "5 up to 25% fewer", "5 to 25% fewer"), ("d2", "var(--gmd2)", "Within 5%", "Within 5%"),
-               ("d3", "var(--gmd3)", "5 up to 25% more", "5 to 25% more"), ("d4", "var(--gmd4)", "At least 25% more", "25%+ more"),
+CHANGE_BINS = [("d0", "var(--gmd0)", "At least 25% fewer", "25%+ fewer"), ("d1", "var(--gmd1)", "5 to under 25% fewer", "5 to 25% fewer"), ("d2", "var(--gmd2)", "Within 5%", "Within 5%"),
+               ("d3", "var(--gmd3)", "5 to under 25% more", "5 to 25% more"), ("d4", "var(--gmd4)", "At least 25% more", "25%+ more"),
                ("nx", "repeating-linear-gradient(45deg,var(--gmn) 0 4px,var(--dash) 4px 5.5px)", "Too few a year ago to compare")]
 
 
@@ -223,7 +223,7 @@ def float_legend(cuts, fmt, unit=""):
         return [("q0", "var(--gm0)", "Any")]
     out = [("q0", "var(--gm0)", f"Under {fmt(cuts[0])}{unit}", f"<{fmt(cuts[0])}{unit}")]
     for i in range(1, len(cuts)):
-        out.append((f"q{i}", f"var(--gm{i})", f"{fmt(cuts[i - 1])}{unit} up to {fmt(cuts[i])}{unit}", f"{fmt(cuts[i - 1])}{unit}"))
+        out.append((f"q{i}", f"var(--gm{i})", f"{fmt(cuts[i - 1])}{unit} to under {fmt(cuts[i])}{unit}", f"{fmt(cuts[i - 1])}{unit}"))
     out.append((f"q{len(cuts)}", f"var(--gm{len(cuts)})", f"{fmt(cuts[-1])}{unit} or more", f"{fmt(cuts[-1])}{unit}+"))
     return out
 
@@ -808,7 +808,7 @@ def area_html(p, d, ix, a, M):
             + f'<li><a href="{up}#areas">All 77 community areas</a></li></ul>'
             f'<div class="ri-dl"><a class="st-btn2" href="weekly.csv" download>Download weekly counts (CSV)</a>'
             f'<a class="st-btn2" href="{up}rat-index.csv" download>Download all 77 areas (CSV)</a></div></section>')
-    body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">Chicago Rat Index, community area {a["n"]}</p><h1>{h1h}</h1><p class="lede">{lede}</p>'
+    body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">Chicago Rat Index, City community area no. {a["n"]}</p><h1>{h1h}</h1><p class="lede">{lede}</p>'
             f'<div class="ld-heroact rl-act"><a class="btn" href="{up}#areas">See all 77 areas</a><a class="st-btn2" href="#embed">Get the badge</a></div></div>'
             f'{tiles}'
             f'<section class="block"><h2>How the rank moved</h2>{rank_t}</section>'

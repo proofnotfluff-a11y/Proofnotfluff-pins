@@ -16,6 +16,6 @@ One job: fix this week's FIX lines, then move the next lead product through ever
 5. Commit in small steps; `python3 tools/check_repo.py` exits 0 before every push; git push origin HEAD:main (pull --rebase once on a reject); never force-push.
 
 ## Outputs (Writes)
-- Code and data in tools/, permits/, docs/ (through tools/make_site.py only), launches/<slug>.md with each gate's verdict, date and evidence.
+- Code and data in tools/, permits/, docs/ (through tools/make_site.py only, then `python3 tools/verify_site.py --changed --before --flows` per .claude/skills/verify/SKILL.md, with a flow file for anything interactive), launches/<slug>.md with each gate's verdict, date and evidence.
 - Scoreboard leadproducts/<slug> {status, gates, next, updatedAt}; agents/leads-builder idle with lastNote. CRM meta/desk.lastBuilder (one sentence).
 - One message to Todd only when a product passed every gate an agent can tick, when he must act, or when something failed.

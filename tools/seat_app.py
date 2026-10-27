@@ -588,6 +588,35 @@ def selftest():
           "phone terms lines, license texts, seat cap and no lock-in in the Terms, dark mode, counts-only stamp, empty list)")
 
 
+def preview(out, password):
+    """A members' page from planted rows only (16 sample places spread over real community areas, no business, no
+    person), for tools/verify_site.py flows and screenshots. Written under docs/zz-*, which is never committed."""
+    import copy, geo_map
+    g = geo_map.load()
+    cent = {}
+    for a in (g or {}).get("areas", []):
+        r = max((p[0] for p in a["polys"]), key=len)
+        cent[a["name"]] = (sum(y for x, y in r) / len(r), sum(x for x, y in r) / len(r))
+    names = ["Lake View", "West Town", "Logan Square", "Lincoln Park", "Near North Side", "Loop", "Uptown", "Rogers Park",
+             "Lower West Side", "Hyde Park", "Chatham", "Austin", "Albany Park", "Bridgeport", "Edgewater", "Avondale"]
+    n = _planted()
+    base = n["items"][0]
+    items, earlier = [], []
+    for i, ar in enumerate(names):
+        r = copy.deepcopy(base)
+        la, lo = cent.get(ar, (41.88, -87.63))
+        r.update(place=f"S{i}", name=f"Sample place {i + 1}", address="Sample address", area=ar, lat=la + 0.003 * ((i % 3) - 1),
+                 lon=lo + 0.003 * (i % 2), phone="" if i % 3 else "(312) 555-0100", phoneSource="" if i % 3 else "website")
+        if i >= 6:
+            r["listedOn"] = "2026-10-23"
+        (items if i < 6 else earlier).append(r)
+    n["items"], n["earlier"] = items, earlier
+    if not os.path.realpath(out).startswith(os.path.join(os.path.realpath(ROOT), "docs", "zz-")):
+        sys.exit("preview writes only under docs/zz-")
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    open(out, "w", encoding="utf-8").write(build_html(n, password))
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     pw_file = None
@@ -595,6 +624,9 @@ if __name__ == "__main__":
         pw_file, a = a[1], a[2:]
     if a == ["--selftest"]:
         selftest()
+    elif a[:1] == ["preview"] and len(a) == 3:   # planted rows only, for tools/verify_site.py flows
+        sys.path.insert(0, HERE)
+        preview(os.path.abspath(a[1]), a[2])
     elif a[:1] == ["stamp"] and len(a) == 3:
         print(json.dumps(stamp(json.load(open(a[1])), a[2])))
     elif a[:1] == ["build"] and len(a) == 3:

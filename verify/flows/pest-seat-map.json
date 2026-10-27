@@ -1,0 +1,18 @@
+{"about": "Pest seat members' app from planted rows: sign in, switch to the map, open a pin, jump back to its card (Oct 27, 2026).",
+ "setup": "python3 tools/seat_app.py preview docs/zz-verify-pest/index.html verify-pw",
+ "cleanup": ["docs/zz-verify-pest"],
+ "page": "zz-verify-pest/",
+ "schemes": ["light", "dark"],
+ "steps": [
+  {"fill": "#pw", "value": "verify-pw"},
+  {"click": "#go"},
+  {"expect_visible": "#results .card"},
+  {"click": "[data-view='map']", "settle": 800},
+  {"expect_count": ".pnf-areas", "eq": 1},
+  {"expect_count": "path.leaflet-interactive", "min": 16},
+  {"click": "path.leaflet-interactive >> nth=10", "force": true},
+  {"expect_visible": ".leaflet-popup-content .pop", "screenshot": true},
+  {"click": ".pop [data-show]"},
+  {"expect_visible": "#results .card"},
+  {"expect_js": "document.activeElement && document.activeElement.classList.contains('card')"}
+ ]}

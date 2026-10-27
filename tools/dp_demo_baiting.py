@@ -173,7 +173,7 @@ def page_html(p):
                + (f'from {E(W.month_word(ch["from"], short=False))} on, the first month after the City\'s records stop showing 0 days for most of them.' if since else 'in the last 12 months.') + '</p>' if wait.get("med") is not None else "")
             + '</section>' + W.faq(M, FAQ)
             + f'<p class="pw-end"><a class="btn" href="#steps">See the five steps</a><a class="st-btn2" href="{rel}chicago-rat-complaints/">Rat complaints by neighborhood</a></p>')
-    return (W.head_html(M, p, url, rel, p["title"], p.get("desc", ""), robots, M.ld_tags(crumb_ld, faq_ld, howto_ld)) + body
+    return (W.head_html(M, p, url, rel, p["title"], p.get("desc", ""), robots, M.ld_tags(crumb_ld, faq_ld, howto_ld)) + W.keep(body)
             + W.foot(M, rel, src, "Wrecking and demolition permits by issue date. Steps from the Department of Buildings demolition permits page and Form 480. "))
 
 

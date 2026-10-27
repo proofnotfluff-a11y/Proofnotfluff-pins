@@ -109,7 +109,7 @@ CSS = ("<style>"
        # design director round 2 (Oct 27): 44px jump links, row links with a chevron, phone column labels, names on two lines at most,
        # the chart switch marked like the map switch, stronger 8 in 10 bars in dark mode
        ".otp a{min-height:44px}"
-       ".pw-t tbody th a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;margin:-10px 0;text-decoration:none}"
+       ".pw-t tbody th a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;margin:-10px 0;text-decoration:none;box-sizing:border-box}"
        ".pw-t tbody th a::after{content:'\\203A';font-size:22px;line-height:1;color:var(--muted);flex:none}.pw-t tbody th a:hover{text-decoration:underline}"
        ".pw-sh{display:none}.pw-t small{white-space:nowrap}.pw-yr td:last-child{min-width:84px}.pw-nw{white-space:nowrap}"
        ".pw-seg label:has(input:checked){background:var(--ink);border-color:var(--ink);color:var(--card)}"
@@ -118,6 +118,17 @@ CSS = ("<style>"
        ".pw-t th:first-child,.pw-t td:first-child{width:42%}.pw-yr th:first-child{width:30%}.pw-yr td:last-child{min-width:64px}.pw-yr td,.pw-yr th{padding-left:6px;padding-right:6px}.pw-tv{font-size:17px!important}}"
        "@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .pw-bars .p8,:root:not([data-theme=light]) .pw-key i.lt{opacity:.5}}"
        ":root[data-theme=dark] .pw-bars .p8,:root[data-theme=dark] .pw-key i.lt{opacity:.5}"
+       # design director round 3 (Oct 27): outlined 8 in 10 bars, space above the year table, chevrons on the first line,
+       # weekly bars dark enough on white, step group on one right edge, labels under their bars
+       ".pw-bars .p8,.pw-key i.lt{box-shadow:inset 0 0 0 1px #c8502f}"
+       "#months h3{margin-top:48px}section.block>p{text-wrap:pretty}"
+       ".pw-t tbody th a{align-items:flex-start;padding:10px 0}.pw-t tbody th a::after{margin-top:-2px}"
+       ".pw-bars .ct{background:#5e8f8b;opacity:1}.pw-bars>div:last-child .ct{background:var(--teal)}"
+       "@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .pw-bars .ct{background:var(--teal);opacity:.6}:root:not([data-theme=light]) .pw-bars>div:last-child .ct{opacity:1}}"
+       ":root[data-theme=dark] .pw-bars .ct{background:var(--teal);opacity:.6}:root[data-theme=dark] .pw-bars>div:last-child .ct{opacity:1}"
+       ".pw-steps,#steps details.pw-more{max-width:760px}.pw-bars.w12>div:last-child span{right:auto}.pw-bars.w12>div:first-child span{left:auto}"
+       ".pw-t thead tr.pw-g th{position:static;border-bottom:1px solid var(--rule)}.pw-t thead tr.pw-g th[colspan]{text-align:center}"
+       ".pw-t thead tr.pw-ph{display:none}@media(max-width:599px){.pw-t thead tr.pw-g{display:none}.pw-t thead tr.pw-ph{display:table-row}}"
        "</style>")
 
 
@@ -140,20 +151,20 @@ def months_span(ms):
     return f"{month_word(a)} to {month_word(b)}"
 
 
-def table(head, rows, label, E, hide=()):
+def table(head, rows, label, E, hide=(), thead=None):
     """head: [text]; rows: [[cell html]] with the first cell a row header. hide: column indexes dropped on phones."""
     hc = lambda i: ' class="pw-hide"' if i in hide else ""
     lab = lambda h: (f'<span class="pw-lg">{h[0]}</span><span class="pw-sh" aria-hidden="true">{h[1]}</span>' if isinstance(h, tuple) else h)
     th = "".join(f'<th scope="col"{hc(i)}>{lab(h)}</th>' for i, h in enumerate(head))
     body = "".join("<tr>" + "".join((f'<th scope="row">{c}</th>' if i == 0 else f"<td{hc(i)}>{c}</td>") for i, c in enumerate(r)) + "</tr>" for r in rows)
-    return f'<div class="pw-tw" role="region" aria-label="{E(label)}" tabindex="0"><table class="pw-t"><thead><tr>{th}</tr></thead><tbody>{body}</tbody></table></div>'
+    return f'<div class="pw-tw" role="region" aria-label="{E(label)}" tabindex="0"><table class="pw-t"><thead>{thead or "<tr>" + th + "</tr>"}</thead><tbody>{body}</tbody></table></div>'
 
 
-def split_table(head, rows, label, E, show=20, hide=(), what="rows"):
-    out = table(head, rows[:show], label if len(rows) <= show else f"{label}, the first {show}", E, hide)
+def split_table(head, rows, label, E, show=20, hide=(), what="rows", thead=None):
+    out = table(head, rows[:show], label if len(rows) <= show else f"{label}, the first {show}", E, hide, thead)
     if len(rows) > show:
         out += (f'<details class="pw-more"><summary>Show the other {len(rows) - show} {E(what)}</summary>'
-                + table(head, rows[show:], f"{label}, the rest", E, hide) + "</details>")
+                + table(head, rows[show:], f"{label}, the rest", E, hide, thead) + "</details>")
     return out
 
 
@@ -268,6 +279,12 @@ def area_rows(d, E):
 
 AREA_HEAD = ["Community area", ("Permits issued, 12 months", "Permits"), "Standard Plan Review permits", ("Standard Plan Review, half within (days)", "Standard half (days)"),
              "Standard Plan Review, 8 in 10 within (days)", ("Express Permit Program, half within (days)", "Express half (days)")]
+AREA_THEAD = ('<tr class="pw-g"><th scope="col" rowspan="2">Community area</th><th scope="col" rowspan="2">Permits issued, 12 months</th>'
+              '<th scope="colgroup" colspan="3">Standard Plan Review</th><th scope="col" rowspan="2">Express Permit Program, half within (days)</th></tr>'
+              '<tr class="pw-g"><th scope="col">Permits</th><th scope="col">Half (days)</th><th scope="col">8 in 10 (days)</th></tr>'
+              # phones: one row that lines up with the cells phones show (the group row cannot, with two of its columns hidden)
+              '<tr class="pw-ph"><th scope="col">Community area</th><th scope="col">Permits</th><th scope="col" class="pw-hide">Standard permits</th>'
+              '<th scope="col">Standard half (days)</th><th scope="col" class="pw-hide">Standard 8 in 10 (days)</th><th scope="col">Express half (days)</th></tr>')
 
 
 def map_block(d, E, M):
@@ -430,8 +447,9 @@ def method_html(d, E):
         extra.append(f'{nd:,} issued permit{"" if nd == 1 else "s"} from {M.nice_date(d["window"]["from"])} to {M.nice_date(d["window"]["to"])} had no usable processing time and {"is" if nd == 1 else "are"} left out.')
     if k.get("checkedAgainstDates"):
         extra.append(f'Check: on {k["matchesDates"]:,} of {k["checkedAgainstDates"]:,} permits issued in that time ({k["matchesDates"] / k["checkedAgainstDates"] * 100:.1f}%), the processing time equals the days between the two dates on the record.')
-    return ('<section class="block" id="method"><h2>How this page is made</h2>'
-            + "".join(f"<p>{E(x.format(**r))}</p>" for x in METHOD) + "".join(f"<p>{E(x)}</p>" for x in extra) + "</section>")
+    paras = [E(x.format(**r)) for x in METHOD] + [E(x) for x in extra]
+    return ('<section class="block" id="method"><h2>How this page is made</h2>' + "".join(f"<p>{x}</p>" for x in paras[:2])
+            + '<details class="pw-more"><summary>Full method and checks</summary>' + "".join(f"<p>{x}</p>" for x in paras[2:]) + '</details></section>')
 
 
 def rows_csv(d):
@@ -462,6 +480,11 @@ def rows_csv(d):
         for m in t["monthly"]:
             put("month and type", t["label"], "All", "All", m["m"], m)
     return out.getvalue()
+
+
+def keep(html_):
+    """8 in 10 and 9 in 10 never split across lines (design director round 3)."""
+    return html_.replace("8 in 10", "8\u00a0in\u00a010").replace("9 in 10", "9\u00a0in\u00a010")
 
 
 def head_html(M, p, url, rel, title, desc, robots, ld):
@@ -504,7 +527,8 @@ def page_html(p):
     charts = chart_panes(series, E, "pwc", "")
     mtab = month_table(series, E, "Permit wait days by month issued and review path") if series else ""
     mapb = map_block(d, E, M)
-    area_tbl = split_table(AREA_HEAD, area_rows(d, E), "Permit wait days by community area, last 12 months", E, show=20, hide=(2, 4), what="community areas")
+    area_tbl = split_table(AREA_HEAD, area_rows(d, E), "Permit wait days by community area, last 12 months", E, show=20, hide=(2, 4), what="community areas",
+                           thead=AREA_THEAD)
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(META["h1"])}</h1><p class="lede">{lede_of(d, E, M)}</p>'
             '<div class="ld-heroact rl-act"><a class="btn" href="#types">Find your permit type</a>'
             + ('<a class="st-btn2" href="#map">Open the map</a>' if mapb else "") + '</div></div>'
@@ -537,7 +561,7 @@ def page_html(p):
             + method_html(d, E) + faq(M, FAQ)
             + '<p class="pw-end"><a class="btn" href="#types">Find your permit type</a><a class="st-btn2" href="#download">Download the CSV</a></p>'
             + SEG_JS)
-    return (head_html(M, p, url, rel, p["title"], p.get("desc", ""), robots, M.ld_tags(crumb_ld, faq_ld, ds_ld)) + body
+    return (head_html(M, p, url, rel, p["title"], p.get("desc", ""), robots, M.ld_tags(crumb_ld, faq_ld, ds_ld)) + keep(body)
             + foot(M, rel, d["source"], "Measure: the City's processing time field, days from review start to issue, for issued permits only. "))
 
 
@@ -564,7 +588,8 @@ def change_note(item, E, label=None):
     if not ch or ch["since"].get("med") is None:
         return ""
     sc = ch["since"]
-    return (f'{E(label or item["label"])}: up to {E(month_word(prev_month(ch["from"]), short=False))}, most of these permits show 0 days in the '
+    lead = "Up to" if label == "" else f'{E(label or item["label"])}: up to'
+    return (f'{lead} {E(month_word(prev_month(ch["from"]), short=False))}, most of these permits show 0 days in the '
             f"City's records; from {E(month_word(ch['from'], short=False))} on, half took {days(sc['med'])} and 8 in 10 took {days(sc['p80'])} "
             f'({sc["n"]:,} permits). Compare months from {E(month_word(ch["from"], short=False))} on.')
 
@@ -583,7 +608,7 @@ def type_page(p, d, t, M):
     lede = (f'Chicago issued {s["n"]:,} {E(type_noun(t))} in the 12 months to {E(M.nice_date(w["to"]))}. '
             + ((f'{s["sameDay"]:.0f}% were issued the same day the City started review.' if s["p80"] == 0 else
                 f'Half {within(s["med"])}, and 8 in 10 within {days(s["p80"])}.') if s.get("med") is not None else "")
-            + (f' {change_note(t, E, "Records")}' if change_note(t, E) else ""))
+            + (f' {change_note(t, E, "")}' if change_note(t, E) else ""))
     reviews = [r for r in t["reviews"] if r["last12"]["n"]]
     top = reviews[0] if reviews else None
     tiles = ('<div class="tiles ld-tiles">'
@@ -601,10 +626,10 @@ def type_page(p, d, t, M):
             f'<div class="ld-heroact rl-act"><a class="btn" href="#months">See it month by month</a><a class="st-btn2" href="#areas">Find your area</a></div></div>'
             + tiles + otp([("paths", "Review path"), ("months", "Month by month"), ("areas", "Areas"), ("method", "How it's made")], E)
             + f'<section class="block" id="paths"><h2>By review path</h2>{table(PATH_HEAD, path_rows(reviews, E), "Wait days by review path, last 12 months", E, hide=(4, 5))}</section>'
-            + f'<section class="block" id="months"><h2>Month by month</h2><p>The last 24 complete months, by month issued.</p>' + (f'<p class="pw-note">{change_note(t, E, "Records")}</p>' if change_note(t, E) else "") + f'{chart_panes(series, E, "pwt", "")}{month_table(series, E, "Wait days by month issued")}'
+            + f'<section class="block" id="months"><h2>Month by month</h2><p>The last 24 complete months, by month issued.</p>' + (f'<p class="pw-note">{change_note(t, E, "")}</p>' if change_note(t, E) else "") + f'{chart_panes(series, E, "pwt", "")}{month_table(series, E, "Wait days by month issued")}'
             + (f'<h3>Against a year earlier</h3>{trs}' if trs else "") + '</section>'
             + f'<section class="block" id="areas"><h2>Every community area</h2>'
-            + split_table(["Community area", "Permits issued, 12 months", "Half within (days)", "8 in 10 within (days)", "9 in 10 within (days)"], arows,
+            + split_table(["Community area", ("Permits issued, 12 months", "Permits"), ("Half within (days)", "Half (days)"), ("8 in 10 within (days)", "8 in 10 (days)"), "9 in 10 within (days)"], arows,
                           f"{t['label']} permit wait days by community area", E, show=20, hide=(4,), what="community areas")
             + f'<p class="asof">Areas with fewer than {mn} permits show as too few.'
             + (f' {t["noArea12"]:,} permit{"" if t["noArea12"] == 1 else "s"} had no community area on the record and count{"s" if t["noArea12"] == 1 else ""} only in the totals.' if t.get("noArea12") else "")
@@ -614,7 +639,7 @@ def type_page(p, d, t, M):
             + f'<p class="pw-end"><a class="btn" href="{rel}{p["slug"]}/#types">Compare every permit type</a><a class="st-btn2" href="{rel}{p["slug"]}/{CSV_NAME}">Download the CSV</a></p>'
             + SEG_JS)
     desc = f'How long {type_noun(t)} take in Chicago: days from review start to issue by review path, month and neighborhood, from City records, updated weekly.'
-    return (head_html(M, p, url, rel, f'{h1} | ProofNotFluff', desc, robots, M.ld_tags(crumb_ld)) + body
+    return (head_html(M, p, url, rel, f'{h1} | ProofNotFluff', desc, robots, M.ld_tags(crumb_ld)) + keep(body)
             + foot(M, rel, d["source"], "Measure: the City's processing time field, days from review start to issue, for issued permits only. "))
 
 

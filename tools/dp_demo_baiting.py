@@ -75,17 +75,18 @@ def lastmod(p):
 
 
 def map_block(d, E):
-    import geo_map as G, rodents_site as R
+    import geo_map as G
+    from dp_permit_wait import breaks, legend
     by = {a["a"]: a for a in d["areas"]}
-    c30, c12 = G.nice_breaks([a["d30"] for a in by.values()]), G.nice_breaks([a["d365"] for a in by.values()])
+    c30, c12 = breaks([a["d30"] for a in by.values()]), breaks([a["d365"] for a in by.values()])
     areas = {k: {"big": {"d30": (f'{a["d30"]:,}', "wrecking permits, last 30 days"), "d365": (f'{a["d365"]:,}', "wrecking permits, last 12 months")},
                  "say": {"d30": f'{a["d30"]:,} wrecking permits in 30 days', "d365": f'{a["d365"]:,} wrecking permits in 12 months'},
                  "html": (f'<dl><dt>Last 7 days</dt><dd>{a["d7"]:,}</dd><dt>Last 30 days</dt><dd>{a["d30"]:,}</dd>'
                           f'<dt>Last 12 months</dt><dd>{a["d365"]:,}</dd></dl>')} for k, a in by.items()}
     metrics = [{"key": "d30", "label": "Last 30 days", "legendTitle": "Wrecking and demolition permits issued, last 30 days",
-                "cls": {k: f"q{G.klass(a['d30'], c30)}" for k, a in by.items()}, "legend": R.range_legend(c30)},
+                "cls": {k: f"q{G.klass(a['d30'], c30)}" for k, a in by.items()}, "legend": legend(c30)},
                {"key": "d365", "label": "Last 12 months", "legendTitle": "Wrecking and demolition permits issued, last 12 months",
-                "cls": {k: f"q{G.klass(a['d365'], c12)}" for k, a in by.items()}, "legend": R.range_legend(c12)}]
+                "cls": {k: f"q{G.klass(a['d365'], c12)}" for k, a in by.items()}, "legend": legend(c12)}]
     top = sorted([a for a in by.values() if a["d30"]], key=lambda a: (-a["d30"], a["name"]))[:4]
     c = d["counts"]
     hint = ('<h3>Citywide</h3>'
@@ -122,7 +123,7 @@ def page_html(p):
              f'<div class="tile key"><div class="lab">Last 7 days</div><div class="val">{c["d7"]:,}</div><div class="sub">wrecking permits issued</div></div>'
              f'<div class="tile"><div class="lab">Last 30 days</div><div class="val">{c["d30"]:,}</div><div class="sub">in {c["areasWith30"]:,} community areas</div></div>'
              f'<div class="tile"><div class="lab">Last 12 months</div><div class="val">{c["d365"]:,}</div><div class="sub">wrecking permits issued</div></div>'
-             + (f'<div class="tile"><div class="lab">Half issued within</div><div class="val">{wait["med"]:,} days</div><div class="sub">of review start, last 12 months</div></div>' if wait.get("med") is not None else "")
+             + (f'<div class="tile"><div class="lab">Half within</div><div class="val">{wait["med"]:,} days</div><div class="sub">of review start, last 12 months</div></div>' if wait.get("med") is not None else "")
              + f'</div><p class="asof">Permits issued to {E(M.nice_date(w["to"]))}, from City of Chicago records pulled {E(M.nice_date(src["fetchedAt"][:10]))}. Updated every Monday.</p>')
     steps = ('<ol class="pw-steps">' + "".join(f"<li><b>{E(t)}</b>{E(x)}</li>" for t, x in STEPS) + '</ol>'
              f'<p class="asof">From the Department of Buildings <a href="{DEMO_PAGE}" rel="noopener">demolition permits page</a> and '
@@ -153,7 +154,7 @@ def page_html(p):
             + f'<section class="block" id="areas"><h2>Every community area</h2>{tbl}'
             + (f'<p class="asof">{c["noArea30"]:,} of the last 30 days\' permits had no community area on the record and count only in the city total.</p>' if c.get("noArea30") else "")
             + '</section>'
-            + '<section class="block"><div class="pw-two">'
+            + '<section class="block" id="help"><div class="pw-two">'
             + f'<div class="cta ld-cta"><div><h2>Where rats are being reported</h2><p>Rat complaints to 311 by community area, the last 7 and 30 days against a year earlier, on a map. Updated every Monday.</p>'
             + f'<p class="ld-buybtn"><a class="btn" href="{rel}chicago-rat-complaints/">See rat complaints by neighborhood</a></p></div></div>'
             + f'<div class="cta ld-cta"><div><h2>Applying for a demolition permit?</h2><p>The Department of Buildings page has every approval, document and form for the permit. For your own job, check with the agency.</p>'

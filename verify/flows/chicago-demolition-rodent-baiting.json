@@ -1,0 +1,18 @@
+{"about": "Demolition rodent baiting: the five steps and the other approvals, the wrecking permit map (tap an area, switch the metric, pick a neighborhood), and the way on to the rat complaints page (Oct 27, 2026).",
+ "page": "chicago-demolition-rodent-baiting/",
+ "steps": [
+  {"expect_count": "#steps .pw-steps li", "eq": 5},
+  {"click": "#steps details.pw-more summary"},
+  {"expect_visible": "#steps details.pw-more ul", "screenshot": true},
+  {"scroll": "#map"},
+  {"expect_count": "#demomap path[data-n]", "eq": 77},
+  {"click": "#demomap path[data-n='32']", "force": true},
+  {"expect_text": "#demomap .gm-info", "contains": "Loop", "screenshot": true},
+  {"click": "#demomap .gm-seg label:nth-of-type(2)"},
+  {"expect_text": "#demomap .gm-leg", "contains": "12 months"},
+  {"select": "#demomap select", "value": "9"},
+  {"expect_text": "#demomap .gm-info", "contains": "Edison Park"},
+  {"expect_count": "a[href='../chicago-rat-complaints/']", "min": 2},
+  {"click": "#help a[href='../chicago-rat-complaints/']"},
+  {"expect_text": "h1", "contains": "Rat Complaints"}
+ ]}

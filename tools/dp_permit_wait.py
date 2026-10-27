@@ -36,8 +36,8 @@ FAQ = [
      "From the City of Chicago's Building Permits dataset. Each issued permit carries a processing time field, the number of days between "
      "the day the City began reviewing the application and the issue date. We count those days; we do not estimate them."),
     ("Why can a permit show zero days?",
-     "Many Express Permit Program permits are applied for and issued on the same day, so their processing time is 0. The page shows the "
-     "share issued the same day for each review path."),
+     "Many Express Permit Program permits are issued the same day the City starts reviewing them, so their processing time is 0. The page "
+     "shows the share issued the same day for each review path."),
     ("Does this include permits still waiting for review?",
      "No. Only issued permits have an issue date, so an application still in review is not counted until it is issued. When a review path "
      "slows down, its figures here catch up as those permits are issued."),
@@ -77,7 +77,8 @@ CSS = ("<style>"
        ".pw-bars .ct{position:relative;width:76%;max-width:30px;border-radius:4px 4px 0 0;background:var(--teal);margin-bottom:18px;opacity:.6}.pw-bars>div:last-child .ct{opacity:1}"
        ".pw-bars b{position:relative;font:600 11.5px system-ui,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums;margin-bottom:3px}"
        ".pw-bars span{position:absolute;bottom:0;font-size:11px;color:var(--muted);white-space:nowrap}"
-       ".pw-bars .gap{height:2px;width:60%;background:var(--line);margin-bottom:18px}"
+       ".pw-bars .gap{height:2px;width:60%;background:var(--line);margin-bottom:18px}.pw-bars.m24>div:not(:nth-child(3n+1)):not(:last-child) span{visibility:hidden}"
+       ".pw-bars>div:last-child span{right:0}.pw-bars>div:first-child span{left:0}.pw-phone{display:none}@media(max-width:599px){.pw-phone{display:block}}"
        ".pw-seg{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}.pw-seg label{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);cursor:pointer;font-weight:600;font-size:14px;color:var(--ink)}"
        ".pw-seg input{position:absolute;opacity:0;width:1px;height:1px}.pw-seg input:focus-visible+span{outline:3px solid var(--accent);outline-offset:4px;border-radius:4px}"
        ".pw-seg label:has(input:checked){background:var(--band);border-color:var(--band-line);color:#fff}"
@@ -92,7 +93,7 @@ CSS = ("<style>"
        ".pw-two{display:grid;gap:16px}@media(min-width:900px){.pw-two{grid-template-columns:1fr 1fr}}"
        ".pw-two .cta{grid-template-columns:1fr;height:100%;align-items:start}.pw-two .cta h2{margin-top:0;text-wrap:balance}"
        "@media(max-width:599px){.pw-t th,.pw-t td{padding:9px 8px}.pw-t .pw-hide{display:none}.pw-bars{height:150px;gap:2px}"
-       ".pw-bars>div:not(:nth-child(6n)):not(:last-child) span{visibility:hidden}.pw-bars>div:not(:last-child) b{visibility:hidden}.pw-ch{padding:14px 12px 10px}}"
+       ".pw-bars.m24>div:not(:nth-child(6n+1)):not(:last-child) span,.pw-bars.w12>div:not(:nth-child(3n+1)):not(:last-child) span,.pw-bars.m24>div:nth-child(19) span,.pw-bars.w12>div:nth-child(10) span{visibility:hidden}.pw-bars>div:not(:last-child) b{visibility:hidden}.pw-ch{padding:14px 12px 10px}}"
        "</style>")
 
 
@@ -151,7 +152,7 @@ def wait_chart(monthly, E, caption, uid):
                     else f'{month_word(m["m"])}: too few permits' for m in monthly)
     return (f'<figure class="pw-ch" id="{uid}"><figcaption>{E(caption)}</figcaption>'
             '<p class="pw-key"><span><i></i>Half were issued within (median days)</span><span><i class="lt"></i>8 in 10 were issued within</span></p>'
-            f'<div class="pw-bars" role="img" aria-label="{E(caption)}. {E(say)}">{"".join(cols)}</div></figure>')
+            f'<div class="pw-bars m24" role="img" aria-label="{E(caption)}. {E(say)}">{"".join(cols)}</div></figure>')
 
 
 def count_chart(items, E, caption, label_of):
@@ -160,7 +161,7 @@ def count_chart(items, E, caption, label_of):
                    f'<span>{E(label_of(x))}</span></div>' for x in items)
     say = ", ".join(f'{label_of(x)}: {x["count"]:,}' for x in items)
     return (f'<figure class="pw-ch"><figcaption>{E(caption)}</figcaption>'
-            f'<div class="pw-bars" role="img" aria-label="{E(caption)}. {E(say)}">{cols}</div></figure>')
+            f'<div class="pw-bars w12" role="img" aria-label="{E(caption)}. {E(say)}">{cols}</div></figure>')
 
 
 def foot(M, rel, src, extra=""):
@@ -174,6 +175,30 @@ def foot(M, rel, src, extra=""):
             '<p>Public information, not legal or permit advice. For your own permit, check with the agency.</p>'
             '<p>Made by ProofNotFluff with AI assistance from public City data. The page counts visits with Cloudflare Web Analytics, which sets no '
             'cookies.</p></div></footer>\n</body></html>')
+
+
+def breaks(vals):
+    """Map class cuts from geo_map.nice_breaks, kept above zero so no class reads "under 0"."""
+    import geo_map as G
+    out = []
+    for c in G.nice_breaks(vals):
+        if c > 0 and (not out or c > out[-1]):
+            out.append(c)
+    return out
+
+
+def legend(cuts, unit="", zero="None"):
+    """Legend lines for the map classes: the first class says what it holds in words (zero when the first cut is 1)."""
+    u = f" {unit}" if unit else ""
+    if not cuts:
+        return [("q0", "var(--gm0)", "Any", "Any")]
+    first = zero if cuts[0] == 1 else f"Under {cuts[0]:,}{u}"
+    out = [("q0", "var(--gm0)", first, zero if cuts[0] == 1 else f"<{cuts[0]:,}")]
+    for i in range(1, len(cuts)):
+        lo, hi = cuts[i - 1], cuts[i] - 1
+        out.append((f"q{i}", f"var(--gm{i})", (f"{lo:,}" if lo == hi else f"{lo:,} to {hi:,}") + (" day" if unit == "days" and lo == hi == 1 else u), f"{lo:,}"))
+    out.append((f"q{len(cuts)}", f"var(--gm{len(cuts)})", f"{cuts[-1]:,} or more{u}", f"{cuts[-1]:,}+"))
+    return out
 
 
 SEG_JS = ('<script>document.querySelectorAll("[data-pw-seg]").forEach(function(g){var b=g.closest("section");'
@@ -219,9 +244,8 @@ def map_block(d, E, M):
     exp = {a["a"]: a for a in d.get("areaExp", [])}
     allp = {a["a"]: a for a in d["all"]["areas"]}
     vals = lambda m: [a["med"] for a in m.values() if a.get("med") is not None]
-    cs, ce, cn = G.nice_breaks(vals(std)), G.nice_breaks(vals(exp)), G.nice_breaks([a["n"] for a in allp.values()])
-    import rodents_site as R
-    leg = lambda cuts, unit: [(x[0], x[1], f"{x[2]} {unit}", x[3] if len(x) > 3 else x[2]) for x in R.range_legend(cuts)]
+    cs, ce, cn = breaks(vals(std)), breaks(vals(exp)), breaks([a["n"] for a in allp.values()])
+    leg = lambda cuts, unit: legend(cuts, unit, zero="Same day")
     nx = ("nx", "repeating-linear-gradient(45deg,var(--gmn) 0 4px,var(--dash) 4px 5.5px)", f"Fewer than {mn} permits, too few to say")
     cls = lambda m, cuts: {k: (f"q{G.klass(a['med'], cuts)}" if a.get("med") is not None else "nx") for k, a in m.items()}
     areas = {}
@@ -242,7 +266,7 @@ def map_block(d, E, M):
                {"key": "exp", "label": "Express", "legendTitle": "Express Permit Program: days for half the permits, last 12 months",
                 "cls": cls(exp, ce), "legend": leg(ce, "days") + [nx]},
                {"key": "n", "label": "Permits issued", "legendTitle": "Permits issued, last 12 months",
-                "cls": {k: f"q{G.klass(a['n'], cn)}" for k, a in allp.items()}, "legend": R.range_legend(cn)}]
+                "cls": {k: f"q{G.klass(a['n'], cn)}" for k, a in allp.items()}, "legend": legend(cn)}]
     slow = sorted([a for a in std.values() if a.get("med") is not None], key=lambda a: (-a["med"], a["name"]))[:3]
     fast = sorted([a for a in std.values() if a.get("med") is not None], key=lambda a: (a["med"], a["name"]))[:3]
     btn = lambda a: f'<li><button type="button" data-pick="{a["a"]}">{E(a["name"])}, {a["med"]:,} days</button></li>'
@@ -288,12 +312,12 @@ def tiles_html(d, E, M):
     exp = by_key(d["reviews"], "EXPRESS PERMIT PROGRAM")
     t = []
     if std and std["last12"].get("med") is not None:
-        t.append(f'<div class="tile key"><div class="lab">Standard Plan Review</div><div class="val">{std["last12"]["med"]:,} days</div>'
+        t.append(f'<div class="tile key"><div class="lab">Standard review</div><div class="val">{std["last12"]["med"]:,} days</div>'
                  f'<div class="sub">half issued within; 8 in 10 within {std["last12"]["p80"]:,}</div></div>')
     if exp and exp["last12"].get("med") is not None:
-        t.append(f'<div class="tile"><div class="lab">Express Permit Program</div><div class="val">{exp["last12"]["med"]:,} days</div>'
+        t.append(f'<div class="tile"><div class="lab">Express permits</div><div class="val">{exp["last12"]["med"]:,} days</div>'
                  f'<div class="sub">half issued within; {exp["last12"]["sameDay"]:.0f}% the same day</div></div>')
-    t.append(f'<div class="tile"><div class="lab">All issued permits</div><div class="val">{a["med"]:,} days</div>'
+    t.append(f'<div class="tile"><div class="lab">All permits</div><div class="val">{a["med"]:,} days</div>'
              f'<div class="sub">half issued within; 8 in 10 within {a["p80"]:,}</div></div>')
     t.append(f'<div class="tile"><div class="lab">Permits issued</div><div class="val">{a["n"]:,}</div><div class="sub">in the last 12 months</div></div>')
     return (f'<div class="tiles ld-tiles">{"".join(t)}</div>'
@@ -328,7 +352,7 @@ METHOD = [
     "Issued permits only. An application still in review has no issue date yet, so it is counted only once it is issued. When a review path slows down, these figures catch up as the slow permits come through.",
     "For most permit types, the City's issue date is the day it found the permit ready to issue, subject to paying the fee. For the Express Permit Program it is the day the permit was issued after the fee was paid. The days count every day in between, whoever was working on the application at the time.",
     "Half within is the median: half of the permits took that many days or fewer. 8 in 10 and 9 in 10 within are the 80th and 90th percentiles, by nearest rank, so at least that share took that many days or fewer. Waits have a long tail: a few permits take far longer than most, which is why the page shows the 80th and 90th percentiles beside the median.",
-    "Same-day permits: many Express Permit Program permits are issued the day they are applied for and show 0 days. Their share is shown for each path.",
+    "Same-day permits: many Express Permit Program permits are issued the same day the City starts reviewing them, so they show 0 days. The share issued the same day is shown for each path.",
     "A group with fewer than {minN} permits shows its count but no day figures, because a median from a handful of permits says little. A permit type gets its own page when the City issued at least {pageFloor} of them in the last 12 months.",
     "A permit counts in the community area of its primary address, as the City records it. Permits the City later voided or revoked are not in the dataset.",
 ]
@@ -406,19 +430,18 @@ def page_html(p):
              "isBasedOn": d["source"]["url"], "temporalCoverage": f'{d["window"]["from"]}/{d["window"]["to"]}', "spatialCoverage": "Chicago, Illinois",
              "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": url + CSV_NAME}]}
     mn = d["rules"]["minN"]
-    trend_rs = [r for r in d["reviews"][:4] if trend_line(r, E)]
-    trends = "".join(f"<li>{trend_line(r, E)}</li>" for r in trend_rs)
     paths = [r for r in d["reviews"] if r["last12"]["n"]]
     types = [t for t in d["types"] if t["last12"]["n"]]
     path_tbl = table(PATH_HEAD, path_rows(paths, E), "Permit wait days by review path, last 12 months", E, hide=(4, 5))
     type_tbl = table(TYPE_HEAD, path_rows(types, E, link=lambda t: f'{t["slug"]}/' if t["page"] else None), "Permit wait days by permit type, last 12 months", E, hide=(4, 5))
-    series = [(r["key"], r["label"], r["monthly"]) for r in paths[:4]]
+    pref = ["STANDARD PLAN REVIEW", "SELF CERT", "EXPRESS PERMIT PROGRAM"]
+    ordered = sorted(paths, key=lambda r: (pref.index(r["key"]) if r["key"] in pref else 9, -r["last12"]["n"]))
+    series = [(r["key"], r["label"], r["monthly"]) for r in ordered[:4]]
+    trends = "".join(f"<li>{trend_line(r, E)}</li>" for r in ordered[:4] if trend_line(r, E))
     charts = chart_panes(series, E, "pwc", "")
     mtab = month_table(series, E, "Permit wait days by month issued and review path") if series else ""
     mapb = map_block(d, E, M)
     area_tbl = split_table(AREA_HEAD, area_rows(d, E), "Permit wait days by community area, last 12 months", E, show=20, hide=(2, 4), what="community areas")
-    pages = [t for t in d["types"] if t["page"]]
-    sub_links = "".join(f'<a class="st-btn2" href="{t["slug"]}/">{E(t["label"])}</a>' for t in pages)
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(META["h1"])}</h1><p class="lede">{lede_of(d, E, M)}</p>'
             '<div class="ld-heroact rl-act"><a class="btn" href="#types">Find your permit type</a>'
             + ('<a class="st-btn2" href="#map">Open the map</a>' if mapb else "") + '</div></div>'
@@ -427,9 +450,9 @@ def page_html(p):
                f"City's online path for repairs, replacements and small improvements; Standard Plan Review and Self Certification are plan-based paths for "
                f'projects such as new construction and rehabs (<a href="{DOB_PERMITS}" rel="noopener">City permit application guide</a>). '
                f'Days are from the City starting review to the issue date, for permits issued in the last 12 months.</p>{path_tbl}')
-            + '<p class="asof">On phones, swipe the table sideways for every column, or turn the phone for the 9 in 10 and same day columns.</p></section>'
+            + '<p class="asof pw-phone">On a phone the 9 in 10 and same day columns are left out; they are in the CSV below.</p></section>'
             + f'<section class="block" id="types"><h2>By permit type</h2><p>Tap a permit type for its own page with every review path, month and neighborhood.</p>{type_tbl}'
-            + (f'<p class="rl-act" style="margin-top:14px">{sub_links}</p>' if sub_links else "") + '</section>'
+            + '</section>'
             + f'<section class="block" id="months"><h2>Month by month</h2><p>The last 24 complete months. Pick a review path; each column is the permits issued that month.</p>{charts}{mtab}'
             + (f'<h3>Against a year earlier</h3><ul>{trends}</ul>' if trends else "") + '</section>'
             + (f'<section class="block" id="map"><h2>Wait times on the map</h2>{mapb}</section>' if mapb else "")
@@ -439,7 +462,7 @@ def page_html(p):
             + f'<section class="block" id="download"><h2>Download the numbers</h2><p>Every figure on this page and its permit type pages, as one CSV file: citywide, by review path, permit type, community area and month.</p>'
             + f'<p><a class="btn pw-dl" href="{CSV_NAME}" download>Download the CSV</a></p></section>'
             + '<section class="block"><div class="pw-two">'
-            + '<div class="cta ld-cta"><div><h2>Planning a job around a permit?</h2><p>Use the 8 in 10 figure for your permit type and path when you set a start date with a client: most permits came through by then, and the 9 in 10 figure shows how long the slow ones ran. For your own permit, check with the Department of Buildings.</p>'
+            + '<div class="cta ld-cta"><div><h2>Planning a job around a permit?</h2><p>The 8 in 10 figure for your permit type and path is how long most permits took to come through; the 9 in 10 figure shows how long the slow ones ran. For your own permit, check with the Department of Buildings.</p>'
             + f'<p class="ld-buybtn"><a class="btn" href="{DOB_PERMITS}" rel="noopener">City permit application guide</a></p></div></div>'
             + f'<div class="cta ld-cta"><div><h2>More free Chicago data</h2><p>Trackers built from City records for trade owners: rat complaints by neighborhood, demolition rodent baiting, trades news and more.</p>'
             + f'<p class="ld-buybtn"><a class="btn" href="{rel}chicago-data/">See every free tracker</a></p></div></div>'
@@ -456,15 +479,15 @@ def type_page(p, d, t, M):
     url, rel = M.BASE + p["slug"] + "/" + t["slug"] + "/", "../../"
     robots = "" if M.is_live(p) else '<meta name="robots" content="noindex, nofollow">'
     h1 = f'{t["label"]} Permit Wait Times in Chicago'
-    crumb, crumb_ld = M.crumbs(rel, [("Home", ""), ("Free Chicago data", "chicago-data/"), (META["h1"], p["slug"] + "/"), (t["label"], None)])
+    crumb, crumb_ld = M.crumbs(rel, [("Home", ""), ("Permit wait times", p["slug"] + "/"), (t["label"], None)])
     s, w, mn = t["last12"], d["window"], d["rules"]["minN"]
     lede = (f'Chicago issued {s["n"]:,} {E(t["label"].lower())} permits in the 12 months to {E(M.nice_date(w["to"]))}. '
             + (f'Half were issued within {days(s["med"])} of the City starting review, and 8 in 10 within {days(s["p80"])}.' if s.get("med") is not None else ""))
     reviews = [r for r in t["reviews"] if r["last12"]["n"]]
     top = reviews[0] if reviews else None
     tiles = ('<div class="tiles ld-tiles">'
-             + (f'<div class="tile key"><div class="lab">Half issued within</div><div class="val">{s["med"]:,} days</div><div class="sub">all review paths</div></div>'
-                f'<div class="tile"><div class="lab">8 in 10 issued within</div><div class="val">{s["p80"]:,} days</div><div class="sub">9 in 10 within {s["p90"]:,}</div></div>' if s.get("med") is not None else "")
+             + (f'<div class="tile key"><div class="lab">Half within</div><div class="val">{s["med"]:,} days</div><div class="sub">all review paths</div></div>'
+                f'<div class="tile"><div class="lab">8 in 10 within</div><div class="val">{s["p80"]:,} days</div><div class="sub">9 in 10 within {s["p90"]:,}</div></div>' if s.get("med") is not None else "")
              + f'<div class="tile"><div class="lab">Permits issued</div><div class="val">{s["n"]:,}</div><div class="sub">in the last 12 months</div></div>'
              + (f'<div class="tile"><div class="lab">Most used path</div><div class="val" style="font-size:clamp(17px,9cqi,24px)">{E(top["label"])}</div><div class="sub">{top["last12"]["n"]:,} permits</div></div>' if top else "")
              + f'</div><p class="asof">Issued from {E(M.nice_date(w["from12"]))} to {E(M.nice_date(w["to"]))}, from City of Chicago records pulled {E(M.nice_date(d["source"]["fetchedAt"][:10]))}. Updated every Monday.</p>')

@@ -1924,7 +1924,8 @@
   "landscaping": [
    "Landscaping work falls under the existing classifications for laborer, operating engineer and truck driver.",
    "The work performed by landscape plantsman and landscape laborer is covered by the existing classification of laborer."
-  ]
+  ],
+  "truckWest": "That part of the county West of Barrington Road"
  },
  "chicago": {
   "effective": "July 1, 2026",
@@ -1956,6 +1957,7 @@
   "tipped": 9.25,
   "effective": "July 1, 2026",
   "employers": "four or more employees",
+  "hours": "at least 2 hours in any two-week period",
   "posted": "June 1, 2026",
   "url": "https://www.cookcountyil.gov/news/cook-county-issues-notice-minimum-wage-ordinance-5",
   "covers": "employees over 18 working in Cook County for an employer with four or more employees (or domestic workers) that has a business facility or license in the County, in towns that have not opted out or set their own minimum wage"

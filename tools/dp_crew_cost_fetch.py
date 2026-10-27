@@ -202,6 +202,9 @@ def cook_block(path):
     m = re.search(r"Cook County Prevailing Wage Rates posted on (\d{2})/(\d{2})/(\d{4})", text)
     if not m:
         raise SystemExit("cook: no 'posted on' line")
+    west = re.search(r"TRUCK DRIVERS \(WEST\) - (That part of the county West of Barrington Road)", text)
+    if not west:
+        raise SystemExit("cook: truck driver area note not found")
     ot = re.search(r"OT pay is required for any hour greater than (\d+) worked each day, Mon through Fri", text)
     land = [re.search(p_, text) for p_ in (r"Landscaping work falls under the existing classifications for laborer, operating engineer and truck driver\.",
                                            r"The work performed by landscape plantsman and landscape laborer is covered by the existing classification of laborer\.")]
@@ -213,7 +216,7 @@ def cook_block(path):
     return {"county": "Cook", "posted": f"{m.group(3)}-{m.group(1)}-{m.group(2)}", "postedLine": m.group(0), "pageUrl": URLS["idol"],
             "pdfSha256": sha256(path), "obtained": "Opened from the IDOL current rates page in a browser on Oct 27, 2026",
             "effective": "October 19, 2026", "otDailyAfter": int(ot.group(1)) if ot else None, "rows": rows, "match": PREVAILING_MATCH,
-            "landscaping": [m.group(0) for m in land]}
+            "landscaping": [m.group(0) for m in land], "truckWest": west.group(1)}
 
 
 # ---------------------------------------------------------------- City of Chicago notice
@@ -260,7 +263,8 @@ PAGE_FIGURES = {
     "cook_news": [("cook.minWage", r"minimum wage will increase to \$(\d+\.\d\d) for non-tipped workers"),
                   ("cook.tipped", r"for non-tipped workers and \$(\d+\.\d\d)\s+for tipped employees"),
                   ("cook.effective", r"Effective (July 1, 2026), the Cook County minimum wage"),
-                  ("cook.employers", r"The employer has (four or more employees)")],
+                  ("cook.employers", r"The employer has (four or more employees)"),
+                  ("cook.hours", r"The employee has worked for an employer in Cook County for (at least 2 hours in any two-week period)")],
     "irs_p15": [("irs.year", r"Publication 15 \((\d{4})\), \(Circular E\)"),
                 ("irs.ss", r"The rate of social security tax on taxable wages is (\d+\.\d+)% each for the employer and employee"),
                 ("irs.medicare", r"The Medicare tax rate is (\d+\.\d+)% each for the employee and employer"),
@@ -296,7 +300,7 @@ def pages_block(texts):
     if miss:
         raise SystemExit(f"pages: not found {miss}")
     cook = {"minWage": money(f["cook.minWage"]["value"]), "tipped": money(f["cook.tipped"]["value"]), "effective": f["cook.effective"]["value"],
-            "employers": f["cook.employers"]["value"], "posted": "June 1, 2026", "url": URLS["cook_news"],
+            "employers": f["cook.employers"]["value"], "hours": f["cook.hours"]["value"], "posted": "June 1, 2026", "url": URLS["cook_news"],
             "covers": ("employees over 18 working in Cook County for an employer with four or more employees (or domestic workers) that has "
                        "a business facility or license in the County, in towns that have not opted out or set their own minimum wage")}
     irs = {"year": int(f["irs.year"]["value"]), "ss": float(f["irs.ss"]["value"]), "medicare": float(f["irs.medicare"]["value"]),
@@ -320,7 +324,7 @@ def expected(d):
     m = lambda x: f"{x:.2f}"
     return {"chicago.minWage": m(d["chicago"]["minWage"]), "chicago.tipped": m(d["chicago"]["tipped"]),
             "cook.minWage": m(d["cook"]["minWage"]), "cook.tipped": m(d["cook"]["tipped"]), "cook.effective": d["cook"]["effective"],
-            "cook.employers": d["cook"]["employers"], "irs.year": str(d["irs"]["year"]), "irs.ss": str(d["irs"]["ss"]),
+            "cook.employers": d["cook"]["employers"], "cook.hours": d["cook"]["hours"], "irs.year": str(d["irs"]["year"]), "irs.ss": str(d["irs"]["ss"]),
             "irs.medicare": str(d["irs"]["medicare"]), "irs.ssBase": f"{d['irs']['ssBase']:,}",
             "prevailing.effective": d["prevailing"]["effective"]}
 

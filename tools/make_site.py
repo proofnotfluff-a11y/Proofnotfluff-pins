@@ -1819,7 +1819,7 @@ def snow_page(p):
     """Snow removal per push and seasonal contract (PNF.snowQuote) for one stop on a route. Todd's go, Oct 26, 2026."""
     d = p["defaults"]
     fill, fill_js = _snow_fill()
-    ev_hint = "Days at or over your trigger depth. Fill it from past winters below, or use your own records" if fill else "Storms over your trigger depth. Check your own records"
+    ev_hint = "Days with new snow at or over your trigger. Fill it from past winters below, or use your own records" if fill else "Storms over your trigger depth. Check your own records"
     form = f"""<form class="card" id="calc" novalidate>
 <fieldset><legend>One stop on your route</legend>
 {field("pushMin", "Minutes on site for a normal push", d["pushMin"], "Plowing or blowing at your trigger depth, shoveling walks included")}

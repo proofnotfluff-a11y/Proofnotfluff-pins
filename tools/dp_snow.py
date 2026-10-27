@@ -31,9 +31,12 @@ MONTH_NAMES = ("", "January", "February", "March", "April", "May", "June", "July
 NWS = ("https://www.weather.gov/lot/snowclimatology", "National Weather Service Chicago, Snow Climatology")
 GHCN = ("https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily",
         "NOAA NCEI, Global Historical Climatology Network daily (GHCN-Daily)")
+NWS_NOTE = (f'<p class="sn-note">For comparison, the National Weather Service Chicago puts O\'Hare\'s normal first day with 1 inch or more at '
+            f'December 7 and the last at March 20, using 1991 to 2020 (<a href="{NWS[0]}" rel="noopener">Snow Climatology</a>). '
+            'It uses different years and methods, so its dates may not match this page.</p>')
 STATION_NOTE = {
-    "ohare": "NOAA's station at the airport. Its day runs midnight to midnight, local standard time.",
-    "midway": ("NOAA's cooperative station named Chicago Midway Airport 3 SW, which keeps Midway's snowfall record. "
+    "ohare": "Its day runs midnight to midnight, local standard time.",
+    "midway": ("A cooperative observer station; its name puts it about 3 miles southwest of the airport, and it keeps Midway's snowfall record. "
                "Its day is the 24 hours to the observer's daily reading, so it may not line up with midnight. "
                "NOAA's automated station at the airport itself reports snowfall on too few days to use."),
 }
@@ -43,11 +46,9 @@ META = {"h1": "Chicago Snow Season Board for Plow Owners",
         "keywords": "snow plow plowable pushes trigger depth seasonal contract chicago o'hare midway snowfall winter salt"}
 
 FAQ = [
-    ("How many times do you plow in a Chicago winter?",
-     "It depends on your trigger depth. Pick your trigger and station at the top of this page: it shows the light, middle and heavy "
-     "count of days that reached it in past winters, from NOAA's daily snowfall records."),
+    ("How many times do you plow in a Chicago winter?", None),   # the answer carries this winter's counts (faq())
     ("What counts as a plowable day here?",
-     "One station day with new snowfall at or over your trigger depth. Two snowy days in a row count as two. A storm that "
+     "One day at the weather station with new snowfall at or over your trigger depth. Two snowy days in a row count as two. A storm that "
      "splits its snow across two days counts only on a day that alone reached the trigger."),
     ("Is this a forecast for this winter?",
      "No. It counts past winters only. Nobody can tell you this winter's count ahead of time, so price a seasonal contract with "
@@ -57,8 +58,15 @@ FAQ = [
      "part of the city more snow than another, so check your own storm records too."),
     ("Why are some winters marked incomplete?",
      f"NOAA's daily file has more than {MAXMISS} days with no snowfall value between October and May in those winters. "
-     "A missing day could hide a storm, so those winters are left out of the light, middle and heavy counts."),
+     "A missing day could hide a storm, so those winters are left out of every count on this page."),
 ]
+
+
+def faq(s0):
+    a1 = (f"It depends on your trigger. At O'Hare, the middle of the last {s0['n']} complete winters had {pushes(s0['mid'])} with "
+          f"{inch(s0['t'])} or more of new snow; a light winter had {num(s0['low'])} or fewer and a heavy one {num(s0['high'])} or more. "
+          "Pick your trigger and station at the top of this page for your counts.")
+    return [(q, a if a else a1) for q, a in FAQ]
 
 
 def load():
@@ -153,7 +161,7 @@ def summary(rows, end, t):
         months.pop()
     to_date = sorted(sum(1 for d in r["dates"][t] if key(d) <= key(end)) for r in past)
     snow_to_date = None
-    return {"t": t, "n": n, "low": low, "high": high, "mid": mid, "lowN": sum(1 for c in counts if c <= low),
+    return {"t": t, "n": n, "counts": counts, "low": low, "high": high, "mid": mid, "lowN": sum(1 for c in counts if c <= low),
             "highN": sum(1 for c in counts if c >= high), "fewest": fewest, "most": most, "months": months,
             "firstMid": statistics.median_low([key(d) for d in firsts]) if firsts else None,
             "firsts": firsts, "lasts": lasts,
@@ -321,7 +329,7 @@ def winters_chart(v, t, E):
            + ", ".join(f'{r["label"]} {r["events"][t] if r["complete"] else "incomplete"}' for r in rows))
     note = ""
     if sm["incomplete"]:
-        note = (f'<p class="asof">Striped stubs mark winters whose records are incomplete ({E(", ".join(r["label"] for r in sm["incomplete"]))}); '
+        note = (f'<p class="asof">Striped bars mark winters whose records are incomplete ({E(", ".join(r["label"] for r in sm["incomplete"]))}); '
                 'they are left out of every count on this page.</p>')
     return (f'<figure class="sn-fig"><figcaption>Plowable days in each winter</figcaption>'
             f'<p class="sn-sub">Days with {E(inch(t))} or more of new snow at {E(v["s"]["label"])}.</p>'
@@ -331,17 +339,25 @@ def winters_chart(v, t, E):
             f'<div class="sn-tip" hidden></div></div><div class="sn-xl yr" aria-hidden="true">{xl}</div></figure>{note}')
 
 
+def avg_words(x):
+    return "under 0.1" if 0 < x < 0.05 else f"{x:.1f}"
+
+
+def bar_words(x):
+    return "<0.1" if 0 < x < 0.05 else f"{x:.1f}"
+
+
 def months_chart(v, t, E):
     sm = v["sum"][t]
     top = max((m["avg"] for m in sm["months"]), default=0)
     ymax = max(top, 0.1) * 1.18
-    cols = "".join(f'<div class="sn-col" data-tip="{E(m["name"])}|{m["avg"]:.1f} a winter on average; {m["winters"]} of {sm["n"]} winters had one or more">'
-                   f'<b>{m["avg"]:.1f}</b><i style="height:{m["avg"] / ymax * 100:.2f}%"></i></div>' for m in sm["months"])
+    cols = "".join(f'<div class="sn-col" data-tip="{E(m["name"])}|{E(avg_words(m["avg"]).capitalize())} a winter on average; {m["winters"]} of {sm["n"]} winters had {"one" if m["winters"] == 1 else "one or more"}">'
+                   f'<b>{E(bar_words(m["avg"]))}</b><i style="height:{m["avg"] / ymax * 100:.2f}%"></i></div>' for m in sm["months"])
     xl = "".join(f'<span class="k">{E(m["name"])}</span>' for m in sm["months"])
     lab = (f'Average plowable days a winter by month at {inch(t)} or more at {v["s"]["label"]}: '
-           + ", ".join(f'{m["name"]} {m["avg"]:.1f}' for m in sm["months"]))
+           + ", ".join(f'{m["name"]} {avg_words(m["avg"])}' for m in sm["months"]))
     return (f'<figure class="sn-fig"><figcaption>Plowable days by month</figcaption>'
-            f'<p class="sn-sub">Average a winter over the {sm["n"]} complete winters, at {E(inch(t))} or more.</p>'
+            f'<p class="sn-sub">Average plowable days in each month, over the {sm["n"]} complete winters, at {E(inch(t))} or more.</p>'
             f'<div class="sn-plot m" tabindex="0" role="img" aria-label="{E(lab)}" data-sn-tips><div class="sn-gl base" style="bottom:0" aria-hidden="true"></div>'
             f'<div class="sn-cols">{cols}</div><div class="sn-tip" hidden></div></div>'
             f'<div class="sn-xl" aria-hidden="true">{xl}</div></figure>')
@@ -401,7 +417,7 @@ def season_chart(v, t, E):
     lab = (f'Running count of plowable days at {inch(t)} or more at {v["s"]["label"]} from October 1. This winter: {sm["cur"]} '
            f'to {day_words(end)}. The middle of past winters had {num(sm["toDate"])} by that date and {num(c["mid"][-1])} by April 30.')
     return (f'<figure class="sn-fig"><figcaption>This winter against past winters, by date</figcaption>'
-            f'<p class="sn-sub">Running count of days with {E(inch(t))} or more since October 1.</p>'
+            f'<p class="sn-sub">Running count of days with {E(inch(t))} or more since the winter began on July 1, shown from October 1.</p>'
             '<div class="sn-leg" aria-hidden="true"><span><i></i>This winter</span><span><i class="g"></i>Middle of past winters</span>'
             '<span><i class="w"></i>Light to heavy winters</span></div>'
             f'<div class="sn-line" tabindex="0" role="img" aria-label="{E(lab)}" data-sn-line="{v["s"]["key"]}-{t}">{lines}{svg}{marks}'
@@ -412,15 +428,23 @@ def season_chart(v, t, E):
 def tiles(v, t, E):
     sm = v["sum"][t]
     end = v["end"]
+    c, n = sm["counts"], sm["n"]
+    low_words = (f'None in {sm["lowN"]} of {n} winters' if sm["low"] == 0 else f'{num(sm["low"])} or fewer in {sm["lowN"]} of {n} winters')
+    mid_words = (f'Halfway between the two middle winters, {c[n // 2 - 1]} and {c[n // 2]}' if sm["mid"] != int(sm["mid"])
+                 else f'The middle of the {n} winters, lined up by count')
+    top = c[-1]
+    high_words = f'{num(sm["high"])} or more in {sm["highN"]} of {n} winters'
+    if sm["high"] == sm["mid"]:
+        high_words += f'; the most was {top}, in {c.count(top)}'
     return ('<div class="tiles sn-tiles">'
             f'<div class="tile"><div class="lab">Light winter</div><div class="val">{E(num(sm["low"]))}</div>'
-            f'<div class="sub">{E(num(sm["low"]))} or fewer in {sm["lowN"]} of {sm["n"]} winters</div></div>'
+            f'<div class="sub">{low_words}</div></div>'
             f'<div class="tile key"><div class="lab">Middle winter</div><div class="val">{E(num(sm["mid"]))}</div>'
-            f'<div class="sub">Half of the {sm["n"]} winters had more, half fewer</div></div>'
+            f'<div class="sub">{E(mid_words)}</div></div>'
             f'<div class="tile"><div class="lab">Heavy winter</div><div class="val">{E(num(sm["high"]))}</div>'
-            f'<div class="sub">{E(num(sm["high"]))} or more in {sm["highN"]} of {sm["n"]} winters</div></div>'
+            f'<div class="sub">{E(high_words)}</div></div>'
             f'<div class="tile"><div class="lab">This winter so far</div><div class="val">{sm["cur"]}</div>'
-            f'<div class="sub">{"No plowable day yet. " if not sm["cur"] else ""}Middle by {E(short_day(end))}: {E(num(sm["toDate"]))}</div></div>'
+            f'<div class="sub">{"No plowable day yet. " if not sm["cur"] else ""}Middle winter by {E(short_day(end))}: {E(num(sm["toDate"]))}</div></div>'
             '</div>')
 
 
@@ -439,7 +463,8 @@ def dates_block(v, t, E):
             f'<div class="tile"><div class="lab">Last plowable day, middle</div><div class="val">{E(short_day(key_day(sm["lastMid"], y0)))}</div>'
             f'<div class="sub">Earliest {E(day_words(e2, True))}; latest {E(day_words(l2, True))}</div></div>'
             + none + '</div>'
-            + f'<p class="asof">Middle dates are the middle date among the {sm["n"] - sm["none"]} complete winters that had a day at {E(inch(t))} or more.</p>')
+            + f'<p class="asof">Middle is the middle date across the {sm["n"] - sm["none"]} complete winters that had a day at {E(inch(t))} or more.</p>'
+            + (NWS_NOTE if v["s"]["key"] == "ohare" else ""))
 
 
 def table(v, E):
@@ -466,7 +491,7 @@ def table(v, E):
 
 
 def csv_text(v):
-    lines = ["winter,station_id,station_name,complete,days_missing_oct_to_may,snowfall_in,days_1in_plus,days_2in_plus,days_3in_plus,days_6in_plus,days_1in_plus_on_ground"]
+    lines = ["winter,station_id,station_name,complete,days_missing_oct_to_may,snowfall_in,days_1in_plus_new_snow,days_2in_plus_new_snow,days_3in_plus_new_snow,days_6in_plus_new_snow,days_1in_plus_on_ground"]
     for r in v["rows"]:
         ok = r["complete"] or r["current"]
         lines.append(",".join([r["label"] + (" to " + v["end"].isoformat() if r["current"] else ""), v["s"]["id"], '"' + v["s"]["name"] + '"',
@@ -534,9 +559,11 @@ def page_html(p):
     robots = "" if M.is_live(p) else '<meta name="robots" content="noindex, nofollow">'
     crumb, crumb_ld = M.crumbs(rel, [("Home", ""), ("Free Chicago data", "chicago-data/"), (META["h1"], None)])
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
-              "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]}
+              "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ if a]}
     data_ld = None
     sd = station_data(d) if d else {}
+    if d:
+        faq_ld["mainEntity"] = [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq(sd[DEFAULT[0]]["sum"][DEFAULT[1]])]
     if d:
         data_ld = {"@context": "https://schema.org", "@type": "Dataset", "name": "Plowable snow days per winter at Chicago O'Hare and Midway",
                    "description": "Days per winter with new snowfall of 1, 2, 3 and 6 inches or more, counted from NOAA NCEI GHCN-Daily records.",
@@ -552,7 +579,7 @@ def page_html(p):
     st0, t0 = DEFAULT
     v0 = sd[st0]
     s0 = v0["sum"][t0]
-    checked = M.nice_date(d["source"]["fetchedAt"])
+    checked = day_words(dt.date.fromisoformat(d["source"]["fetchedAt"][:10]), True)
     lede = (f'In the middle winter of the last {s0["n"]} complete winters at O\'Hare, {pushes(s0["mid"])} had {inch(t0)} or more of new snow. '
             f'A light winter had {num(s0["low"])} or fewer and a heavy one {num(s0["high"])} or more.')
     st_opts = "".join(f'<label><input type="radio" name="st" value="{k}"{" checked" if k == st0 else ""}>{E(v["s"]["label"])}</label>' for k, v in sd.items())
@@ -576,31 +603,27 @@ def page_html(p):
            f'{V(tiles)}<p class="asof">Past winters only; this is not a forecast. NOAA records through {E(through)}, checked {E(checked)}. Updated daily from October to April.</p>'
            f'<div class="sn-act">{calc_btn}<a class="st-btn2" href="#winters">See every winter</a></div></section>')
     sec = lambda i, h, inner, extra="": f'<section class="block" id="{i}" aria-labelledby="sn-h-{i}"><h2 id="sn-h-{i}">{h}</h2>{inner}{extra}</section>'
-    nws = (f'<p class="sn-note">For comparison, the National Weather Service Chicago puts O\'Hare\'s normal first day with 1 inch or more at '
-           f'December 7 and the normal last at March 20, from its 1991 to 2020 normals (<a href="{NWS[0]}" rel="noopener">{E(NWS[1])}</a>). '
-           'Its counting differs from this page\'s, so the dates may not match.</p>')
-    stations = "".join(f'<li><b>{E(v["s"]["label"])}:</b> NOAA station {E(v["s"]["id"])}, named {E(v["s"]["name"].replace(", IL US", ""))}. '
+    stations = "".join(f'<li><b>{E(v["s"]["label"])}:</b> NOAA station {E(v["s"]["id"])}, {E(v["s"]["name"].replace(", IL US", "").title().replace("Ohare", "O\'Hare").replace(" Sw", " SW"))}. '
                        f'{E(STATION_NOTE.get(k, ""))} Snowfall is reported on {math.floor(v["s"]["cover"] * 1000) / 10:.1f}% of October to May days in the {d["winters"][1] - d["winters"][0] + 1} winters.</li>'
                        for k, v in sd.items())
     defs = ('<ul class="sn-defs">'
-            '<li><b>Plowable day:</b> one station day whose new snowfall is at or over the trigger depth (1, 2, 3 or 6 inches). '
+            '<li><b>Plowable day:</b> one day at the weather station with new snowfall is at or over the trigger depth (1, 2, 3 or 6 inches). '
             'Two snowy days in a row count as two. A storm that drops 3 inches split 1.5 and 1.5 over two days does not count at a 2 inch trigger, '
             'because neither day alone reached 2 inches.</li>'
             '<li><b>Winter:</b> July 1 to June 30, so a winter holds every snow from fall to spring.</li>'
             f'<li><b>Light, middle and heavy winter:</b> among the complete winters, light is the winter one fifth of the way up from the fewest days, '
-            'middle is the median, and heavy is the winter four fifths of the way up. Each tile says how many winters were at or past it.</li>'
+            'middle is the one in the middle (the median), and heavy is the winter four fifths of the way up. Each tile says how many winters were at or past it.</li>'
             f'<li><b>Incomplete winter:</b> more than {MAXMISS} days between October and May with no snowfall value in NOAA\'s file. It is left out of '
-            f'every count, because a missing day could hide a storm. A complete winter can still miss up to {MAXMISS} days; those days count as no push.</li>'
-            '<li><b>This winter so far:</b> the plowable days since July 1, set against the past winters\' counts by the same date.</li>'
-            '<li><b>Days with snow on the ground:</b> days NOAA measured 1 inch or more of snow depth, a guide to salt and repeat visits.</li></ul>')
+            f'every count, because a missing day could hide a storm. A complete winter can still miss up to {MAXMISS} days; those days count as no snow.</li>'
+            '<li><b>This winter so far:</b> the plowable days since the winter began on July 1, set against the past winters\' counts by the same date.</li>'
+            '<li><b>Days with snow on the ground:</b> days NOAA measured 1 inch or more of snow depth. It shows how long snow stayed on the ground.</li></ul>')
     method = (f'<p>Every number here is counted from NOAA\'s daily records: the Global Historical Climatology Network daily '
               f'(<a href="{GHCN[0]}" rel="noopener">GHCN-Daily</a>), read through the NCEI Access Data Service. It holds each station\'s new snowfall '
-              'and snow depth, in inches, one value a day. The stations come from NOAA\'s own station search, never typed in, and every row is '
-              'checked against the station it should belong to.</p>'
+              'and snow depth, in inches, one value a day. Station IDs come straight from NOAA\'s station list.</p>'
               f'<ul class="sn-defs">{stations}</ul>'
-              f'<p>The last {d["winters"][1] - d["winters"][0] + 1} full winters are {wlabel(d["winters"][0])} to {wlabel(d["winters"][1])}. '
+              f'<p>The last {d["winters"][1] - d["winters"][0] + 1} finished winters are {wlabel(d["winters"][0])} to {wlabel(d["winters"][1])}. '
               'The page refreshes every morning from October to April; NOAA\'s file usually runs a few days behind today, and NOAA can revise recent daily values after its quality checks, so this winter\'s counts can change.</p>'
-              '<p>Two points do not describe the whole city: snowfall can differ across Chicago in a single storm. Use these counts as a starting point '
+              '<p>Two weather stations cannot tell you the snow on every street: snowfall can differ across Chicago in a single storm. Use these counts as a starting point '
               'next to your own route records. This page counts past winters and does not forecast the coming one.</p>')
     dls = "".join(f'<a class="st-btn2" href="{k}-winters.csv" download>Download {E(v["s"]["label"])} (CSV)</a>' for k, v in sd.items())
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p.get("eyebrow", "Free Chicago snow season board"))}</p><h1>{E(META["h1"])}</h1>'
@@ -608,14 +631,14 @@ def page_html(p):
             + top
             + sec("by-winter", "How much winters swing", V(winters_chart))
             + sec("by-month", "When the plowable days come", V(months_chart))
-            + sec("dates", "First and last plowable days", V(dates_block), nws)
+            + sec("dates", "First and last plowable days", V(dates_block))
             + sec("this-winter", "This winter so far", V(season_chart),
                   '<p class="asof">Past winters only; the shaded band shows where the light to heavy winters stood on each date, not where this one will go.</p>')
             + sec("winters", "Every winter in a table", VS(table),
-                  f'<p class="asof">Your trigger column is shaded. Newest winter first. Incomplete winters show no counts.</p><div class="sn-dl">{dls}</div>')
+                  f'<p class="asof">Your trigger column is shaded. Newest winter first. Incomplete winters show no counts. n/a means NOAA\'s snow depth record has gaps that winter.</p><div class="sn-dl">{dls}</div>')
             + sec("counts", "What counts on this page", defs)
             + sec("method", "How this page is made", method)
-            + M.faq_block(FAQ))
+            + M.faq_block(faq(s0)))
     foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             f'<p>Source: NOAA National Centers for Environmental Information, <a href="{GHCN[0]}">GHCN-Daily</a> (Menne and others, 2012, doi:10.7289/V5D21VHZ), daily snowfall (SNOW) and snow depth (SNWD) '
             f'at stations {E(", ".join(v["s"]["id"] for v in sd.values()))}, checked {E(checked)}. Past winters only, not a forecast, and not the snowfall at any one address.</p>'
@@ -669,6 +692,7 @@ def selftest():
         assert html.count('data-v="') == 8 * 5 + 2 and 'data-v="ohare-2">' in html, "every station and trigger, default shown"
         for bad in ("forecast for this winter will", "expect this winter", "$"):
             assert bad not in html.split("<footer>")[0].split("</style>")[-1], f"no forecasts or prices: {bad}"
+        assert "Half of the" not in html and "0 or fewer" not in html and "no push" not in html, "copy gate fixes hold"
         cc = calc_counts()
         assert set(cc) == {"ohare", "midway"} and all(len(cc[k]["t"]) == 4 for k in cc), "calculator counts"
     print("dp_snow selftest: ok")

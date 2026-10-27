@@ -1,12 +1,16 @@
-# Launch record: Chicago Public Way Permit Cost Calculator (B6 item 1), ON HOLD Oct 27, 2026
+# Launch record: Chicago Public Way Permit Cost Calculator (B6 item 1), Oct 27, 2026
 
-Decided: Todd, Oct 27, 12:17 pm ("Let's do them all", coo/DECISIONS-2026-10-27.md, coo/PARALLEL_BUILDS.md), research_notes/kimi-2026-10-27-r10.md item 6. Todd's rule for this page: build only from the City's own CDOT 2026 Permit Fee Schedule PDF, downloaded in an Action; if the Action cannot get it, stop and tell him, and never use other sites' numbers.
+Decided: Todd, Oct 27, 12:17 pm ("Let's do them all", coo/DECISIONS-2026-10-27.md, coo/PARALLEL_BUILDS.md), research_notes/kimi-2026-10-27-r10.md item 6. Todd's rule for this page: build only from the City's own CDOT 2026 Permit Fee Schedule PDF, never from other sites' numbers.
 
-## Status
-- Oct 27: .github/workflows/dp_cdot_fees.yml with tools/dp_cdot_fees_pull.py ran twice on GitHub's runner. Run 1 failed installing pdftotext (fixed). Run 2: the download step failed against https://www.chicago.gov/content/dam/city/depts/cdot/permit/2026/CDOT%202026%20Permit%20Fee%20Schedule.pdf; nothing was written.
-- Stopped there, as Todd asked. No retries, no other routes. The workflow now runs only by hand (workflow_dispatch), no push trigger and no schedule.
-- The page entry in site/pages.json stays draft, and tools/dp_cdot_fees.py is not written, so the build keeps its noindex stub.
+## Source
+- Oct 27: the GitHub runner could not download https://www.chicago.gov/content/dam/city/depts/cdot/permit/2026/CDOT%202026%20Permit%20Fee%20Schedule.pdf (two runs; stopped as Todd asked, no other routes). Todd downloaded it in his own browser and attached it in the build chat.
+- `python3 tools/dp_cdot_fees_pull.py --from-file <pdf>` extracted the text to site/datapages/dp_cdot_fees/ (fee-schedule.layout.txt, fee-schedule.raw.txt, source.json with the PDF's sha256 009061e5...d9b7). The PDF itself is never committed: its metadata names a City employee. Em and en dashes in the text are plain hyphens (site no-dash rule).
+- The degradation fee box on schedule page 11 is an image, so it is typed into degradation-page11.json and was checked by eye against the page.
+- .github/workflows/dp_cdot_fees.yml runs only by hand. For a new schedule: Todd downloads the new PDF, a build chat runs the pull tool with --from-file, and `python3 tools/dp_cdot_fees.py --selftest` fails until every fee in the module matches the new text.
 
-## What unblocks it (Todd's call)
-- Todd downloads the PDF in his own browser and attaches it in a build chat (or drops it in a connected folder). The chat commits it to site/datapages/dp_cdot_fees/fee-schedule.pdf with its sha256, extracts the text and builds the calculator from that text only.
-- The dumpster permits page links to CDOT's PDF until this calculator is live, then switches to the calculator by itself.
+## How it works
+- tools/dp_cdot_fees.py: fees typed from the text, with a selftest that finds each row in the City's text and checks its amounts in order (planted wrong fees are caught). The calculator runs in the visitor's browser: dumpster, work vehicle or equipment, sidewalk or street closure (Types I, II, III, 30-day blocks, one-half outside the CBD), opening or cut (moratorium doubling and per-cut degradation fee). Readings of the schedule are labeled on the page.
+- The dumpster permits page links here once this page is live, and this page links back.
+
+## Gates
+(filled in when the gates pass)

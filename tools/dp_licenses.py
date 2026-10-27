@@ -113,20 +113,30 @@ def src_line(s, d, E):
             f'checked {E(nice(s.get("checked") or d["checked"]))}</p>')
 
 
+def uniq(ids, d):
+    """One link per agency: two sources from the same agency read as one check-with."""
+    seen, out = set(), []
+    for c in ids:
+        a = d["sources"][c]["agency"]
+        if a not in seen:
+            seen.add(a); out.append(c)
+    return out
+
+
 def faq_html(d, E):
     out = []
     for q, a, chk in d["faq"]:
-        links = " and the ".join(f'<a href="{E(d["sources"][c]["url"])}" rel="noopener">{E(d["sources"][c]["agency"])}</a>' for c in chk)
+        links = " and the ".join(f'<a href="{E(d["sources"][c]["url"])}" rel="noopener">{E(d["sources"][c]["agency"])}</a>' for c in uniq(chk, d))
         out.append(f'<details><summary>{E(q)}</summary><p>{E(a)} Check with the {links} before you apply or bid.</p></details>')
     return f'<section class="block"><h2>Questions</h2>{"".join(out)}</section>'
 
 
 def faq_text(a, chk, d):
-    return a + " Check with the " + " and the ".join(d["sources"][c]["agency"] for c in chk) + " before you apply or bid."
+    return a + " Check with the " + " and the ".join(d["sources"][c]["agency"] for c in uniq(chk, d)) + " before you apply or bid."
 
 
 def check_line(t, d, E):
-    links = " and the ".join(f'<a href="{E(d["sources"][c]["url"])}" rel="noopener">{E(d["sources"][c]["agency"])}</a>' for c in t["check"])
+    links = " and the ".join(f'<a href="{E(d["sources"][c]["url"])}" rel="noopener">{E(d["sources"][c]["agency"])}</a>' for c in uniq(t["check"], d))
     return f'<p class="lf-check">Check with the {links} before you apply or bid. Fees and rules change, and this page is not legal advice.</p>'
 
 

@@ -11,10 +11,11 @@
  "faq": [
   [
    "Does a license from a suburb count in Chicago?",
-   "None of the City pages we read says a suburb's license counts in Chicago. For plumbing, the City says a State registered contractor also needs a City plumbing contractor license. Roofers hold one State license, and a Chicago roof permit still needs a City licensed general contractor.",
+   "None of the City pages we read says a suburb's license counts in Chicago. For plumbing, the City says a plumbing contractor licensed by the State of Illinois must also get a City plumbing contractor license. Roofers hold one State license, and a Chicago roof permit still needs a City licensed general contractor.",
    [
     "gc",
-    "bacp_table"
+    "tlic",
+    "roofpermit"
    ]
   ],
   [
@@ -568,7 +569,7 @@
     {
      "topic": "state",
      "src": "idfpr_list",
-     "text": "The State's professional regulation list has no general contractor license, and roofing is the only construction trade on that list. No State agency page we read says the State licenses general contractors.",
+     "text": "The State's professional regulation list has no general contractor entry; its only roofing entries are Roofing Contractor and Qualifying Party Roofing Contractor. No State agency page we read says the State licenses general contractors.",
      "figures": []
     },
     {
@@ -1428,7 +1429,7 @@
     {
      "topic": "insurance",
      "src": "bacp_table",
-     "text": "The City license pages we read print no insurance amount.",
+     "text": "The BACP business license pages we read print no insurance amount for this trade.",
      "figures": []
     },
     {

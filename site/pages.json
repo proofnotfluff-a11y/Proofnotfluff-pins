@@ -6109,6 +6109,113 @@
    "sources": "City of Chicago 311 Service Requests, dataset v6vf-nfxy."
   },
   {
+   "slug": "draft-chicago-rat-complaints-map",
+   "kind": "rodents",
+   "data": "permits/rodents-chicago/weekly.json",
+   "title": "Chicago Rat Complaints by Neighborhood, Updated Weekly | ProofNotFluff",
+   "desc": "Free weekly count of rat complaints to Chicago 311 by community area: the last 7 and 30 days, a year ago, and the week-by-week trend. From City records.",
+   "eyebrow": "Free weekly page, from City 311 records",
+   "h1": "Chicago Rat Complaints by Neighborhood",
+   "card": "Rat complaints to Chicago 311 by community area, the last 7 and 30 days against a year ago. Updated every Monday.",
+   "resident": {
+    "title": "Seeing rats where you live?",
+    "steps": [
+     "Call 311, or report a rat complaint on CHI311 online or in the app.",
+     "The City's Bureau of Rodent Control says it investigates every reported rat sighting: crews check the alley, replace damaged garbage carts and bait rat burrows.",
+     "A property owner can also ask the City to inspect the outside of a building."
+    ],
+    "more": [
+     "How the City handles rat complaints",
+     "https://www.chicago.gov/city/en/depts/streets/provdrs/rodent/svcs/rodent_baiting.html"
+    ],
+    "url": "https://311.chicago.gov/",
+    "button": "Report it on CHI311"
+   },
+   "vendor": {
+    "title": "Run a pest control company?",
+    "text": "Our Chicago restaurant list sorts food places whose latest City inspection cited a pest violation (rodents or insects seen, or conditions the inspector says let them in), and the daily pest seat sends new ones each morning. Both come from City food inspection records, not from these complaints.",
+    "slug": "chicago-restaurant-inspection-leads",
+    "button": "See the restaurant pest list"
+   },
+   "method": [
+    "Every Monday we count the City of Chicago's 311 service requests of type Rodent Baiting/Rat Complaint from its public 311 Service Requests dataset, by the community area on each request.",
+    "Counts cover whole days in Chicago time and end the day before the pull. The year-ago column is the same 30 calendar days one year earlier. Requests the City marks as duplicates are left out.",
+    "Only counts are kept. No address, location, request number or anything a resident wrote is stored or shown, so the page cannot point to any building, block or business."
+   ],
+   "faq": [
+    [
+     "How do I report rats in Chicago?",
+     "Call 311, or make a rat complaint on CHI311 online or in the app. The City's Bureau of Rodent Control investigates reported rat sightings and baits rat burrows."
+    ],
+    [
+     "Which Chicago neighborhoods have the most rat complaints?",
+     "The table on this page ranks all 77 community areas by complaints in the last 30 days and updates every Monday. A higher count can also mean residents there report more often."
+    ],
+    [
+     "Which community area is my neighborhood in?",
+     "The City counts by its 77 community areas, which hold many neighborhoods: Bucktown and Wicker Park are in West Town, Wrigleyville is in Lake View, and Pilsen is in the Lower West Side."
+    ],
+    [
+     "Does a complaint mean there are rats at an address?",
+     "No. A complaint is one report to 311. It does not say rats were found, and this page keeps no addresses, so it says nothing about any one building or business."
+    ],
+    [
+     "Are rat complaints up this year?",
+     "The tiles at the top compare the last 30 days with the same 30 days a year earlier, citywide and for each community area."
+    ]
+   ],
+   "sources": "City of Chicago 311 Service Requests, dataset v6vf-nfxy.",
+   "draft": true,
+   "map": true,
+   "_note": "Preview of the community area map on the rat page (Todd, Oct 27, 2026). On his go: add map: true to chicago-rat-complaints and delete this entry."
+  },
+  {
+   "slug": "chicago-trades-news",
+   "kind": "tradesnews",
+   "draft": true,
+   "data": "site/news/chicago-trades.json",
+   "title": "Chicago Trades News: Rules, Taxes, Pay and Projects This Week",
+   "desc": "A free weekly brief for Chicago contractors and trade workers: new rules, permits, licenses, taxes, pay and big projects, in plain words with the source linked.",
+   "eyebrow": "Free weekly brief for the trades",
+   "h1": "Chicago Trades News",
+   "card": "New rules, taxes, pay and projects for Chicago trade businesses, with the source linked",
+   "lede": "The changes that hit Chicago contractors and trade workers this season: rules, permits, licenses, taxes, pay and the big projects coming up. Each one in plain words, with what it means for you and the page it comes from.",
+   "more": {
+    "title": "Looking for the work itself?",
+    "text": "Our free weekly samples list Chicago construction projects near a final clean and restaurants with a failed inspection, straight from City records.",
+    "slug": "chicago-construction-cleaning-leads",
+    "button": "See this week's free sample"
+   },
+   "method": [
+    "Each Tuesday we read the City of Chicago, Cook County, State of Illinois and federal pages that publish new rules, taxes, wage rates and licenses, plus Chicago's main news outlets, and pick the items that change how a trade business works or what it pays.",
+    "Every item is written in our own words and links the page it comes from. We prefer the government page itself; when an item rests on news reports, the source line says so. A second reviewer checks every number and date against its source before the brief is published.",
+    "Proposed means not passed: budget items, ordinances and bills can change or fail. Items stay on the page for about four months, or until their start date passes.",
+    "This is news, not legal, tax or financial advice. Before you change a price, a payroll setting or a filing, check the source and ask your accountant, lawyer or licensing office."
+   ],
+   "faq": [
+    [
+     "How often is Chicago Trades News updated?",
+     "Every Tuesday. The date at the top says when the brief was last updated, and each item shows the day it was reported."
+    ],
+    [
+     "Who is it for?",
+     "Small trade businesses and trade workers in Chicago: general contractors, electricians, plumbers, HVAC techs, roofers, painters, cleaning and post-construction cleaning companies, pest control, landscaping and snow removal, and the companies that service restaurants."
+    ],
+    [
+     "Is this legal or tax advice?",
+     "No. It is news in plain words with the official page linked. Check the source and ask your accountant, lawyer or licensing office before you act on any change."
+    ],
+    [
+     "How do I see only the news for my trade?",
+     "Pick your trade at the top of the brief. Items that affect every trade stay in view. The page remembers your pick on this device."
+    ],
+    [
+     "Can I follow it without giving my email?",
+     "Yes. The brief has an RSS feed, linked at the bottom of the page, that any feed reader can follow."
+    ]
+   ]
+  },
+  {
    "slug": "christmas-light-installation-pricing-calculator",
    "kind": "lights",
    "segment": "trades",

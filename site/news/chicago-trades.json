@@ -1,0 +1,450 @@
+{
+ "about": "Chicago Trades News, our own words with the source of each item linked. Built by the trades-news run; checked by tools/news_site.py.",
+ "updated": "2026-10-27",
+ "items": [
+  {
+   "id": "chicago-2027-budget-head-tax",
+   "date": "2026-10-21",
+   "effective": null,
+   "checked": "2026-10-27",
+   "stage": "proposed",
+   "category": "Tax and pay",
+   "trades": [
+    "All trades"
+   ],
+   "headline": "Chicago's 2027 budget plan brings back a per-worker tax on large employers",
+   "what": "Mayor Johnson's proposed 2027 budget includes a tax of $25 a month for each employee at companies with more than 125 workers, which the City expects to raise about $100 million a year. A larger version was voted down last year, and the City Council still has to vote on this one.",
+   "why": "Most small trade shops are under 125 workers, so check your headcount if you are near the line. Larger contractors and cleaning or facility service firms should follow the budget hearings and the vote before year end.",
+   "sources": [
+    {
+     "name": "WTTW, Johnson's proposed 2027 budget",
+     "url": "https://news.wttw.com/2026/10/21/johnson-touts-176b-proposed-budget-2027-let-us-plant-seeds-fair-chicago"
+    },
+    {
+     "name": "WBEZ, head tax returns in the budget plan",
+     "url": "https://www.wbez.org/city-hall/2026/10/21/mayor-brandon-johnson-failed-corporate-head-tax-resurrected-proposed-budget"
+    }
+   ]
+  },
+  {
+   "id": "chicago-lease-tax-20-percent",
+   "date": "2026-10-21",
+   "effective": null,
+   "checked": "2026-10-27",
+   "stage": "proposed",
+   "category": "Tax and pay",
+   "trades": [
+    "All trades"
+   ],
+   "headline": "Budget plan would raise Chicago's tax on equipment rentals and cloud software to 20%",
+   "what": "Mayor Johnson's proposed 2027 budget raises the City's personal property lease transaction tax from 15% to 20%, worth about $234 million in 2027. That tax covers rented equipment and cloud software; car leasing would stay at 15%.",
+   "why": "If it passes, rented lifts and tools and software subscriptions such as scheduling, invoicing and office apps could cost more. Check which of your bills already carry the Chicago lease tax so you know what would change.",
+   "sources": [
+    {
+     "name": "WBEZ, head tax returns in the budget plan",
+     "url": "https://www.wbez.org/city-hall/2026/10/21/mayor-brandon-johnson-failed-corporate-head-tax-resurrected-proposed-budget"
+    },
+    {
+     "name": "WTTW, Johnson's proposed 2027 budget",
+     "url": "https://news.wttw.com/2026/10/21/johnson-touts-176b-proposed-budget-2027-let-us-plant-seeds-fair-chicago"
+    }
+   ]
+  },
+  {
+   "id": "chicago-budget-rat-crews",
+   "date": "2026-10-21",
+   "effective": null,
+   "checked": "2026-10-27",
+   "stage": "proposed",
+   "category": "Jobs and projects",
+   "trades": [
+    "Pest control",
+    "Landscaping and snow"
+   ],
+   "headline": "Budget plan adds 28 City rat crews and 20 vacant lot cleanup crews",
+   "what": "The proposed 2027 budget adds 28 rodent control crews and 20 crews to clear trash from vacant lots, and trims 15,000 more trees a year. It follows a July Inspector General audit that faulted the City for reacting to 311 rat calls instead of preventing them.",
+   "why": "Pest control firms may hear more from customers about sealing and sanitation, not only bait. The weekly 311 rat counts for every community area are on our free rat complaints page.",
+   "sources": [
+    {
+     "name": "WTTW, Johnson's proposed 2027 budget",
+     "url": "https://news.wttw.com/2026/10/21/johnson-touts-176b-proposed-budget-2027-let-us-plant-seeds-fair-chicago"
+    },
+    {
+     "name": "WTTW, watchdog report on the City's rat program",
+     "url": "https://news.wttw.com/2026/07/29/chicago-can-t-keep-trying-poison-its-way-out-rat-problem-watchdog-report"
+    }
+   ]
+  },
+  {
+   "id": "social-security-wage-base-2027",
+   "date": "2026-10-14",
+   "effective": "2027-01-01",
+   "checked": "2026-10-27",
+   "stage": "passed",
+   "category": "Tax and pay",
+   "trades": [
+    "All trades"
+   ],
+   "headline": "Social Security tax will apply to the first $192,300 of pay in 2027",
+   "what": "The Social Security Administration raised the maximum earnings taxed for Social Security from $184,500 in 2026 to $192,300 in 2027. Medicare tax still has no earnings cap.",
+   "why": "Owners who pay themselves a salary, and top earners on your crew, will owe Social Security tax on more pay next year. Make sure your payroll service and your 2027 estimated tax payments use the new number.",
+   "sources": [
+    {
+     "name": "Social Security Administration, 2027 fact sheet",
+     "url": "https://www.ssa.gov/cola/factsheets/2027.html"
+    }
+   ]
+  },
+  {
+   "id": "overtime-deduction-w2-code-tt",
+   "date": "2026-08-06",
+   "effective": "2026-01-01",
+   "checked": "2026-10-27",
+   "stage": "in effect",
+   "category": "Tax and pay",
+   "trades": [
+    "All trades"
+   ],
+   "headline": "Overtime on 2026 W-2s goes in Box 12, Code TT, for the federal overtime deduction",
+   "what": "The IRS updated its guidance on the federal overtime deduction, worth up to $12,500 a year or $25,000 on a joint return, with a phase out at higher incomes. For 2026, employers report qualified overtime in Box 12 of the W-2 with Code TT, and the 2025 relief is not extended.",
+   "why": "If you pay hourly crews overtime, set up payroll now to track the federally required overtime premium so January W-2s are right. Only overtime the federal rules require counts, not extra premiums from a union contract or company policy.",
+   "sources": [
+    {
+     "name": "EY Tax News, IRS 2026 overtime guidance",
+     "url": "https://taxnews.ey.com/news/2026-1738-irs-updates-2026-guidance-on-overtime-deduction-with-information-for-employers-and-employees"
+    },
+    {
+     "name": "Journal of Accountancy, IRS overtime FAQs",
+     "url": "https://www.journalofaccountancy.com/news/2026/aug/irs-updates-overtime-deduction-faqs-adds-reporting-details/"
+    }
+   ]
+  },
+  {
+   "id": "form-1099-nec-2000-threshold",
+   "date": "2026-09-16",
+   "effective": "2026-01-01",
+   "checked": "2026-10-27",
+   "stage": "in effect",
+   "category": "Tax and pay",
+   "trades": [
+    "All trades"
+   ],
+   "headline": "1099s for 2026 payments start at $2,000, not $600",
+   "what": "Under the 2025 federal tax law, businesses send Form 1099-NEC or 1099-MISC only for payments of $2,000 or more made from January 1, 2026, up from $600, with inflation adjustments from 2027. Payment apps file Form 1099-K only above $20,000 and 200 payments.",
+   "why": "When you send 1099s to subcontractors early next year, the cutoff for 2026 payments is $2,000. Keep collecting a W-9 from every sub.",
+   "sources": [
+    {
+     "name": "OnPay, 1099 threshold changes",
+     "url": "https://onpay.com/insights/1099-reporting-threshold-updates/"
+    },
+    {
+     "name": "IRS, Form 1099-K threshold FAQs",
+     "url": "https://irs.gov/newsroom/irs-issues-faqs-on-form-1099-k-threshold-under-the-one-big-beautiful-bill-dollar-limit-reverts-to-20000"
+    }
+   ]
+  },
+  {
+   "id": "illinois-paid-jury-duty",
+   "date": "2026-07-31",
+   "effective": "2027-01-01",
+   "checked": "2026-10-27",
+   "stage": "passed",
+   "category": "Tax and pay",
+   "trades": [
+    "All trades"
+   ],
+   "headline": "Illinois employers with more than 25 workers must pay for jury duty from 2027",
+   "what": "Governor Pritzker signed HB 4844 on July 31, 2026, so employers must pay workers their regular rate for time on jury duty starting January 1, 2027. Employers with 25 or fewer employees still only have to give unpaid leave.",
+   "why": "If you have more than 25 employees, add paid jury duty to your handbook and payroll before January. Smaller shops keep giving unpaid time off for jury service.",
+   "sources": [
+    {
+     "name": "Illinois General Assembly, HB 4844",
+     "url": "https://www.ilga.gov/ftp/legislation/104/BillStatus/HTML/10400HB4844.html"
+    },
+    {
+     "name": "Hinshaw, Illinois employment law changes for 2027",
+     "url": "https://www.hinshawlaw.com/en/insights/blogs/employment-law-observer/illinois-employers-prepare-now-for-these-three-employment-law-changes-taking-effect-in-2027"
+    }
+   ]
+  },
+  {
+   "id": "peoples-gas-rate-decision",
+   "date": "2026-10-15",
+   "effective": null,
+   "checked": "2026-10-27",
+   "stage": "proposed",
+   "category": "Tax and pay",
+   "trades": [
+    "All trades"
+   ],
+   "headline": "Peoples Gas rate decision due in mid November; Nicor increase approved",
+   "what": "State regulators approved an $81.6 million Nicor Gas increase on October 15, well under the $220.8 million asked. For Peoples Gas, which serves Chicago, judges recommended cutting its $144 million request to $66 million, with the Illinois Commerce Commission's decision expected in mid November.",
+   "why": "A shop or yard heated by Peoples Gas could see higher bills next year; watch the November ruling. Suburban sites on Nicor should expect the increase on their bills soon.",
+   "sources": [
+    {
+     "name": "Capitol News Illinois, Nicor rate decision",
+     "url": "https://capitolnewsillinois.com/news/partial-win-for-customers-icc-approves-82-million-rate-hike-for-nicor/"
+    },
+    {
+     "name": "Chicago Sun-Times, Peoples Gas recommendation",
+     "url": "https://chicago.suntimes.com/business/2026/10/08/peoples-gas-rate-hike-icc-regulatory-judges-recommendation"
+    }
+   ]
+  },
+  {
+   "id": "chicago-minimum-wage-17-05",
+   "date": "2026-07-01",
+   "effective": "2026-07-01",
+   "checked": "2026-10-27",
+   "stage": "in effect",
+   "category": "Tax and pay",
+   "trades": [
+    "All trades"
+   ],
+   "headline": "Chicago's minimum wage is $17.05 an hour",
+   "what": "Chicago's minimum wage rose from $16.60 to $17.05 an hour on July 1, 2026, for employers with four or more workers, and the tipped wage rose to $12.96. Suburban Cook County is $15.40 and the Illinois minimum stays at $15.",
+   "why": "Check that helpers, cleaners and entry level crew working in the city get at least $17.05 an hour. Jobs in the suburbs follow the county or state rate.",
+   "sources": [
+    {
+     "name": "City of Chicago, Minimum Wage",
+     "url": "https://www.chicago.gov/city/en/depts/bacp/supp_info/minimumwageinformation.html"
+    },
+    {
+     "name": "ABC7 Chicago, minimum wage increases",
+     "url": "https://abc7chicago.com/post/illinois-minimum-wage-chicago-cook-county-increases-take-effect-wednesday/19427463/"
+    }
+   ]
+  },
+  {
+   "id": "illinois-prevailing-wage-2026",
+   "date": "2026-07-15",
+   "effective": "2026-07-15",
+   "checked": "2026-10-27",
+   "stage": "in effect",
+   "category": "Tax and pay",
+   "trades": [
+    "General contractors",
+    "Electrical",
+    "Plumbing",
+    "HVAC",
+    "Roofing",
+    "Painting",
+    "Landscaping and snow"
+   ],
+   "headline": "Illinois posted new prevailing wage rates for public construction",
+   "what": "The Illinois Department of Labor published new prevailing wage rates for every county and construction trade, in effect from July 15, 2026, from its yearly survey of wages and benefits. Workers on publicly funded construction must be paid at least these rates.",
+   "why": "If you bid public work in Cook County, such as City, school or park district jobs, price labor and file certified payroll from the 2026 Cook County schedule for your trade.",
+   "sources": [
+    {
+     "name": "Illinois Department of Labor, 2026 prevailing wage rates",
+     "url": "https://www.illinois.gov/content/dam/soi/en/web/illinois/iisnewsattachments/32712-071526-7.15.2026-idol-2026-prevailing-wage-rates-published.pdf.pdf"
+    }
+   ]
+  },
+  {
+   "id": "cook-county-2027-budget",
+   "date": "2026-10-07",
+   "effective": null,
+   "checked": "2026-10-27",
+   "stage": "proposed",
+   "category": "Tax and pay",
+   "trades": [
+    "All trades"
+   ],
+   "headline": "Cook County's 2027 budget plan has no new taxes or fees",
+   "what": "Board President Toni Preckwinkle's $9.69 billion plan for 2027 closes a $550.8 million gap without a property tax increase, new fees or layoffs. It uses reserves, interest on federal relief money and 50 vacant jobs that go unfilled.",
+   "why": "County taxes and fees on businesses are not set to rise next year, though the Board still votes. The City of Chicago plan is separate and does include tax increases.",
+   "sources": [
+    {
+     "name": "WTTW, Cook County's 2027 budget plan",
+     "url": "https://news.wttw.com/node/55181"
+    }
+   ]
+  },
+  {
+   "id": "foundry-park-groundbreaking",
+   "date": "2026-10-21",
+   "effective": null,
+   "checked": "2026-10-27",
+   "stage": "under way",
+   "category": "Jobs and projects",
+   "trades": [
+    "General contractors",
+    "Electrical",
+    "Plumbing",
+    "HVAC",
+    "Painting",
+    "Cleaning",
+    "Landscaping and snow"
+   ],
+   "headline": "Foundry Park breaks ground on the old Lincoln Yards site",
+   "what": "JDL Development and Kayne Anderson Real Estate broke ground on October 21 on Foundry Park, a $3 billion project along the North Branch of the Chicago River. The first phase has more than 725 homes plus shops, parks and parking, and a $201.6 million TIF package covers roads, utilities, parks and riverfront work.",
+   "why": "This site will run for years, so subcontract and finish work, from MEP and interiors to landscaping and post-construction cleaning, comes in waves. Get on the bid lists of the builders once they are named.",
+   "sources": [
+    {
+     "name": "Chicago Sun-Times, Foundry Park breaks ground",
+     "url": "https://chicago.suntimes.com/real-estate/2026/10/21/foundry-park-developers-break-ground-3-billion-project"
+    },
+    {
+     "name": "Chicago YIMBY, Foundry Park infrastructure funding",
+     "url": "https://chicagoyimby.com/2026/10/infrastructure-funding-fully-approved-for-foundry-park.html"
+    }
+   ]
+  },
+  {
+   "id": "cta-red-line-extension-yard-bid",
+   "date": "2026-07-29",
+   "effective": "2026-11-05",
+   "checked": "2026-10-27",
+   "stage": "open",
+   "category": "Jobs and projects",
+   "trades": [
+    "General contractors",
+    "Electrical",
+    "HVAC",
+    "Plumbing"
+   ],
+   "headline": "CTA bids the Red Line Extension rail yard, shop and power substation",
+   "what": "The CTA is taking proposals to build the Red Line Extension's 120th Street rail yard, maintenance shop and traction power substation. Proposals are due November 5, 2026 at 3:30 pm, with the documents on the CTA's Bonfire portal.",
+   "why": "This is a large prime contract, but primes will need electrical, mechanical and plumbing subs and must meet DBE goals. Certified small firms should reach likely bidders now, before teams are set.",
+   "sources": [
+    {
+     "name": "City of Chicago vendor search, CTA solicitation C26FI103384111",
+     "url": "https://webapps1.chicago.gov/vcsearch/cta/solicitationdetails/C26FI103384111"
+    }
+   ]
+  },
+  {
+   "id": "missing-middle-round-4",
+   "date": "2026-09-03",
+   "effective": null,
+   "checked": "2026-10-27",
+   "stage": "announced",
+   "category": "Jobs and projects",
+   "trades": [
+    "General contractors",
+    "Electrical",
+    "Plumbing",
+    "HVAC",
+    "Roofing",
+    "Painting",
+    "Cleaning",
+    "Landscaping and snow"
+   ],
+   "headline": "City picks four teams to build 30 two and three flats on the South Side",
+   "what": "The Department of Planning and Development chose 75 Development, Vazquez Housing Development, Blazer Jones and Blueprint Ventures to build 30 small buildings with 62 homes, $27.6 million in all, on City lots in South Chicago and West Englewood. The City would sell each lot for $1 and give up to $150,000 a home, from bond money the City Council still has to approve.",
+   "why": "Small infill jobs like these suit local trade businesses and small builders. Contact the four developers about sub work, and watch for the Council funding vote that sets the start.",
+   "sources": [
+    {
+     "name": "Urbanize Chicago, Missing Middle round 4",
+     "url": "https://chicago.urbanize.city/post/dpd-announces-round-4-missing-middle-housing-projects"
+    }
+   ]
+  },
+  {
+   "id": "data-center-executive-order",
+   "date": "2026-08-11",
+   "effective": null,
+   "checked": "2026-10-27",
+   "stage": "in effect",
+   "category": "Rules and permits",
+   "trades": [
+    "Electrical",
+    "General contractors",
+    "HVAC"
+   ],
+   "headline": "New City review for data centers; a 12 month pause is proposed",
+   "what": "An executive order signed August 11 sends any data center that needs a new Planned Development through a review of power, water, backup generators, air, noise and neighborhood impact, and orders new air permit and noise rules. A 12 month pause on new or bigger data centers has been proposed to the City Council but not passed.",
+   "why": "Electrical and mechanical contractors chasing data center work in the city should expect slower approvals, and possibly a pause on new projects. Projects the zoning already allows may still move.",
+   "sources": [
+    {
+     "name": "Chicago Sun-Times, data center order and proposed pause",
+     "url": "https://chicago.suntimes.com/city-hall/2026/08/11/mayor-brandon-johnson-chicago-moratorium-data-centers-new-regulations"
+    },
+    {
+     "name": "DLA Piper, Chicago data center executive order",
+     "url": "https://www.dlapiper.com/en/insights/publications/2026/08/chicago-executive-order-establishes-timeline-for-additional-data-center-regulation"
+    }
+   ]
+  },
+  {
+   "id": "city-contractor-certification-rules",
+   "date": "2026-08-26",
+   "effective": "2026-11-24",
+   "checked": "2026-10-27",
+   "stage": "announced",
+   "category": "Rules and permits",
+   "trades": [
+    "All trades"
+   ],
+   "headline": "City contractors and their subs face new conduct certifications; rules due November 24",
+   "what": "An executive order signed August 26 directs the City's chief procurement officer to write rules, due by November 24, 2026, requiring firms seeking City contracts over $250,000 to certify no public integrity, discrimination or wage theft violation in the past five years. Primes must pass matching terms down to their subcontractors.",
+   "why": "If you work as a sub on City jobs, expect new certification forms from your prime. Make sure your wage and hour records are in order now, since wage theft counts.",
+   "sources": [
+    {
+     "name": "Skadden, Chicago procurement executive order",
+     "url": "https://www.skadden.com/insights/publications/2026/10/chicago-executive-order-directs-new-procurement-rule"
+    },
+    {
+     "name": "WTTW, executive order on City contractors",
+     "url": "https://news.wttw.com/2026/08/26/mayor-johnson-signs-executive-order-targeting-firms-profiting-immigration-raids"
+    }
+   ]
+  },
+  {
+   "id": "winter-outlook-parking-ban",
+   "date": "2026-10-16",
+   "effective": "2026-12-01",
+   "checked": "2026-10-27",
+   "stage": "announced",
+   "category": "Jobs and projects",
+   "trades": [
+    "Landscaping and snow",
+    "Roofing"
+   ],
+   "headline": "Winter leans mild with more sleet and freezing rain; parking ban starts December 1",
+   "what": "NOAA's December to February outlook leans warmer than normal for the Chicago area with even odds on precipitation, as El Nino strengthens, and a local forecaster expects more mixed sleet, snow and freezing rain days. The City's overnight parking ban on 107 miles of main streets runs 3 am to 7 am from December 1 to April 1.",
+   "why": "Snow contractors may see fewer big plowable storms but more salting calls, so price ice runs carefully and stock salt early. Plan overnight truck and trailer parking around the December 1 ban.",
+   "sources": [
+    {
+     "name": "NBC Chicago, winter outlook",
+     "url": "https://www.nbcchicago.com/weather/el-nino-significantly-impacting-the-chicago-areas-winter-weather-outlook-nws-2/4003406/"
+    },
+    {
+     "name": "City of Chicago, Winter Snow Clearing",
+     "url": "https://chicago.gov/city/en/depts/streets/provdrs/street/svcs/snow_clearing.html"
+    }
+   ]
+  },
+  {
+   "id": "chicago-trade-shows-winter",
+   "date": "2026-10-27",
+   "effective": "2026-10-28",
+   "checked": "2026-10-27",
+   "stage": "announced",
+   "category": "Jobs and projects",
+   "trades": [
+    "All trades",
+    "Roofing",
+    "HVAC"
+   ],
+   "headline": "Trade shows ahead: Chicago Build this week, roofing and HVAC shows in January",
+   "what": "Chicago Build runs October 28 and 29 at McCormick Place, with new HVAC, fire safety and AI areas. The Chicago Roofing Contractors Association show is January 20 to 22, 2027 in Oakbrook Terrace, and the AHR Expo for heating and cooling is in Chicago January 25 to 27, 2027.",
+   "why": "Shows are a cheap way to see new products, meet suppliers and builders, and pick up training hours. Chicago Build is this week, so register now if you want to go.",
+   "sources": [
+    {
+     "name": "Plant and Equipment, Chicago Build listing",
+     "url": "https://www.plantandequipment.com/exhibitions/chicago-build-28-10-2026"
+    },
+    {
+     "name": "Greenroofs.com, CRCA trade show 2027",
+     "url": "https://www.greenroofs.com/event/chicago-roofing-contractors-association-trade-show-2027/"
+    },
+    {
+     "name": "AHR Expo",
+     "url": "https://ahrexpo.com/"
+    }
+   ]
+  }
+ ]
+}

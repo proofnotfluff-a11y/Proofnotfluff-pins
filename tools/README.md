@@ -176,3 +176,9 @@ Code fetches, joins and checks; the agent only matches and drafts between gates;
 - `python3 tools/check_repo.py --preflight <job>`: the first command of every scheduled run.
 
 `python3 tools/make_carousel.py cmo/carousels/<date>.json --out <dir>` renders a social carousel: 1080 x 1350 JPGs, one per slide, plus sheet.jpg, in the design system (Poppins and Inter from docs/assets/fonts, balanced wrapping). Exit 1 on an em or en dash or text that runs into the source line. Used by .claude/skills/social-carousel/SKILL.md (Todd, Oct 25: "Build in code").
+
+## Maps and the trades news brief (Oct 27, 2026)
+- `tools/chicago_geo.py` (GitHub Actions, .github/workflows/chicago-geo.yml): pulls the City's 77 community area outlines (dataset igwz-8jzy) into site/geo/chicago-community-areas.json. Public boundaries only. `--selftest` plants shapes.
+- `tools/geo_map.py`: the free side's interactive map, one inline SVG built at page-build time (no tiles, no outside script, colors show with scripts off). `choropleth(areas, metrics, uid)` gives the figure with metric toggle, tap or hover details, a neighborhood picker, zoom and drag. Used by tools/rodents_site.py when the page spec has `"map": true`. `--selftest`.
+- Paid apps keep Leaflet street maps: tools/leads_app.py (Chicago and Austin construction, area seats), rest_app.py, lic_app.py, and since Oct 27 seat_app.py (pest seat: List or Map view, same search and filters).
+- `tools/news_site.py`: Chicago Trades News page (site/pages.json kind "tradesnews") and its RSS feed, from site/news/chicago-trades.json. `--check` is the data gate (sources, lengths, dashes, quotes, stages, trades); make_site stops on a failing file. The weekly run is .claude/skills/trades-news/SKILL.md. `--selftest`.

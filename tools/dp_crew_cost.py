@@ -34,6 +34,7 @@ META = {"h1": "What a Chicago Crew Costs",
 # Vacation, Training, and Other Ins: employer hourly cost for any other insurance for the worker)
 FRINGE_NAMES = [("hw", "Health and welfare"), ("pension", "Pension"), ("vac", "Vacation"), ("trng", "Training"), ("otherIns", "Other insurance")]
 TYPE_NAMES = {"ALL": "All", "BLD": "Building", "HWY": "Highway", "FLT": "Floating"}
+ORDER = [("median", "Median"), ("p10", "10th"), ("p25", "25th"), ("p75", "75th"), ("p90", "90th")]
 PCTS = [("p10", "10th"), ("p25", "25th"), ("median", "Median"), ("p75", "75th"), ("p90", "90th")]
 SLUG_NAMES = {"janitors": "janitors", "maids": "maids-and-housekeepers", "pest": "pest-control-workers", "landscapers": "landscapers",
               "roofers": "roofers", "painters": "painters", "helpers": "construction-helpers", "electricians": "electricians",
@@ -127,13 +128,14 @@ def crew_day(n, h, rate, ss, med, leave=True, fringe=0.0, ot_after=None, ot_mult
     valued at the base rate. Fringes and other costs per hour worked."""
     reg = h if ot_after is None else min(h, ot_after)
     ot = 0 if ot_after is None else max(0.0, h - ot_after)
-    wages = n * (reg * rate + ot * rate * ot_mult)
-    tax = wages * (ss + med) / 100
+    c = lambda x: round(x + 1e-9, 2)   # every line to the cent, and the total is the sum of the lines shown
+    wages = c(n * (reg * rate + ot * rate * ot_mult))
+    tax = c(wages * (ss + med) / 100)
     lv_hours = n * h / 35 if leave else 0.0
-    lv = 2 * lv_hours * rate
-    fr = n * h * fringe
-    oth = n * h * other
-    total = wages + tax + lv + fr + oth
+    lv = c(2 * lv_hours * rate)
+    fr = c(n * h * fringe)
+    oth = c(n * h * other)
+    total = c(wages + tax + lv + fr + oth)
     return {"wages": wages, "tax": tax, "leaveHours": lv_hours, "leave": lv, "fringes": fr, "other": oth, "total": total,
             "perPersonHour": total / (n * h) if n and h else 0, "otHours": n * ot}
 
@@ -160,6 +162,18 @@ CSS = ("<style>"
        ".cc-range .r5{position:absolute;top:10px;height:10px;border-radius:5px;background:var(--accent);opacity:.75}"
        ".cc-range .md{position:absolute;top:5px;width:4px;height:20px;margin-left:-2px;border-radius:2px;background:var(--ink)}"
        ".cc-axis{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}"
+       ".cc-key{display:flex;flex-wrap:wrap;gap:6px 16px;margin:6px 0 0;font-size:12.5px;color:var(--ink2)}.cc-key i{display:inline-block;width:16px;height:8px;border-radius:4px;margin-right:6px;vertical-align:middle;background:var(--accent)}"
+       ".cc-key .k9{opacity:.3}.cc-key .k5{opacity:.75}.cc-key .km{width:4px;height:14px;border-radius:2px;background:var(--ink)}"
+       ".tile.key{box-shadow:inset 0 3px 0 var(--accent)}"
+       ".cc-multi>[data-cc-line]+[data-cc-line],.cc-multi>[data-cc-line]+.cc-note{border-top:1px solid var(--line);margin-top:28px;padding-top:28px}.cc-multi>[data-cc-line]+.cc-note{padding-top:14px;margin-top:20px}"
+       ".cc-rules{align-items:start}.cc-t td:first-child{min-width:10em}"
+       ".cc-two .cta>div{display:flex;flex-direction:column;height:100%}.cc-two .cta .ld-buybtn{margin-top:auto;padding-top:20px}"
+       ".cc-reset{margin:12px 0 0}.cc-reset button{min-height:44px;padding:0 4px;border:0;background:none;color:var(--ink2);font:inherit;font-size:14.5px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer}"
+       ".cc-reset button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
+       ".cc-bar{display:none}@media(max-width:899px){.cc-bar:not([hidden]){position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;align-items:center;gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));"
+       "background:var(--band);color:#fff;border-top:1px solid var(--band-line);box-shadow:0 -6px 20px rgba(0,0,0,.18)}"
+       ".cc-bar span{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--band-soft)}.cc-bar b{font:700 22px/1 Poppins,system-ui,sans-serif;font-variant-numeric:tabular-nums}"
+       ".cc-bar a{margin-left:auto;display:inline-flex;align-items:center;min-height:44px;padding:0 4px;color:#fff;font-weight:600;font-size:14.5px}}"
        ".cc-note{margin:10px 0 0;font-size:13.5px;color:var(--muted)}"
        ".cc-pw{margin:16px 0 0;padding:14px 16px;border-radius:12px;background:var(--canvas2);border:1px solid var(--line)}"
        ".cc-pw h4{margin:0 0 6px;font-size:15.5px;color:var(--ink)}.cc-pw p{margin:4px 0 0;font-size:14.5px;color:var(--ink2)}"
@@ -200,14 +214,14 @@ CSS = ("<style>"
        "border:1.5px solid var(--ink);border-radius:10px;background:transparent;color:var(--ink);font-weight:600;cursor:pointer;list-style:none}"
        "details.cc-more>summary::-webkit-details-marker{display:none}details.cc-more>summary::after{content:'+';font-size:18px;line-height:1}details.cc-more[open]>summary::after{content:'\\2212'}"
        "details.cc-more>summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px}details.cc-more[open]>summary{margin-bottom:4px}"
-       ".cc-roles{display:grid;gap:8px;margin:12px 0 0;padding:0;list-style:none;grid-template-columns:repeat(auto-fill,minmax(232px,1fr))}"
+       ".cc-roles{display:grid;gap:8px;margin:12px 0 0;padding:0;list-style:none;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}"
        "main .cc-roles li>a.cc-r{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:48px;padding:0 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font-weight:600;text-decoration:none}"
-       "main .cc-roles li>a.cc-r span{color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums}main .cc-roles li>a.cc-r:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
+       "main .cc-roles li>a.cc-r span{color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}main .cc-roles li>a.cc-r:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
        "@media(max-width:599px){.cc-pwl thead{display:none}.cc-pwl,.cc-pwl tbody,.cc-pwl tr{display:block}.cc-pwl tr{padding:8px 0;border-bottom:1px solid var(--rule)}.cc-pwl tr:last-child{border-bottom:0}"
        ".cc-pwl td{display:flex;justify-content:space-between;gap:12px;padding:3px 0;border:0;text-align:right}.cc-pwl td::before{content:attr(data-label);color:var(--muted);text-align:left}"
        ".cc-pwl td:first-child{font-weight:700;color:var(--ink);font-size:15.5px}.cc-pwl td:first-child::before{content:none}}"
        "@media(max-width:599px){.cc-bt{display:none}.cc-t{min-width:600px}.cc-t th,.cc-t td{padding:9px 8px}.cc-t tbody th,.cc-t thead th:first-child{position:sticky;left:0;z-index:1;background:var(--card);box-shadow:1px 0 0 var(--rule)}"
-       ".cc-swipe{display:block}.cc-big b{font-size:34px}.cc-out .val{font-size:38px}.cc-pcts b{font-size:15px}.cc-pcts li{padding:7px 2px}.cc-form .row{grid-template-columns:1fr 118px}}"
+       ".cc-swipe{display:block}.cc-big b{font-size:34px}.cc-out .val{font-size:38px}.cc-pcts{gap:4px}.cc-pcts b{font-size:14px}.cc-pcts li{padding:7px 4px}.cc-t tbody th a{display:block;padding:12px 0}.cc-form .row{grid-template-columns:1fr 118px}}"
        "</style>")
 
 SHARED_CSS = ("<style>"
@@ -254,13 +268,14 @@ function setRate(){var L=line(),v=lvl.value;if(v==='own')return calc();var r=v.s
 function calc(){
   var L=line(),v=lvl.value,pw=v.slice(0,2)==='pw'?L.pw[+v.slice(2)]:null;
   var n=num(crew),h=num(hrs),r=num(rate),o=num(oth);if(!(o>=0))o=NaN;
-  var ok=true;[[crew,n>=1&&n<=100],[hrs,h>0&&h<=24],[rate,r>0&&r<1000],[oth,o>=0&&o<1000]].forEach(function(p){p[0].closest('.row').classList.toggle('cc-bad',!p[1]);if(!p[1])ok=false});
-  if(!ok){$('cc-total').textContent='Check the fields';$('cc-ph').textContent='';return}
+  var ok=true;[[crew,n>=1&&n<=100],[hrs,h>0&&h<=24],[rate,r>=1&&r<1000],[oth,o>=0&&o<1000]].forEach(function(p){p[0].closest('.row').classList.toggle('cc-bad',!p[1]);if(p[1])p[0].removeAttribute('aria-invalid');else{p[0].setAttribute('aria-invalid','true');ok=false}});
+  if(!ok){$('cc-total').textContent='Check the fields';$('cc-ph').textContent='';$('cc-bar-v').textContent='Check the fields';return}
   var reg=pw?Math.min(h,D.otAfter):h,ot=pw?Math.max(0,h-D.otAfter):0,mult=pw?pw.otMF:1;
-  var wages=n*(reg*r+ot*r*mult),t=tax.checked?wages*D.fica/100:0,lh=lv.checked?n*h/35:0,lvv=2*lh*r,fr=pw?n*h*pw.fringes:0,ox=n*h*o;
-  var tot=wages+t+lvv+fr+ox;
-  $('cc-total').textContent=money(tot);
-  $('cc-ph').textContent=money(tot/(n*h))+' per person-hour, '+money(tot/h)+' per hour on site';
+  var c=function(x){return Math.round((x+1e-9)*100)/100};
+  var wages=c(n*(reg*r+ot*r*mult)),t=tax.checked?c(wages*D.fica/100):0,lh=lv.checked?n*h/35:0,lvv=c(2*lh*r),fr=pw?c(n*h*pw.fringes):0,ox=c(n*h*o);
+  var tot=c(wages+t+lvv+fr+ox);
+  $('cc-total').textContent=money(tot);$('cc-bar-v').textContent=money(tot);
+  $('cc-ph').textContent=money(tot/(n*h))+' per person-hour, '+money(tot/h)+' per hour for the whole crew';
   $('cc-o-wages').textContent=money(wages);
   $('cc-o-wl').textContent=(ot>0?'Wages ('+(n*ot).toLocaleString('en-US',{maximumFractionDigits:2})+' overtime hours at '+mult+' times base)':'Wages');
   $('cc-o-tax').textContent=money(t);$('cc-o-tax').closest('li').hidden=!tax.checked;
@@ -272,8 +287,13 @@ function calc(){
 sel.addEventListener('change',fill);lvl.addEventListener('change',setRate);
 rate.addEventListener('input',function(){lvl.value='own';calc()});
 [crew,hrs,oth].forEach(function(x){x.addEventListener('input',calc)});[tax,lv].forEach(function(x){x.addEventListener('change',calc)});
+$('cc-reset').addEventListener('click',function(){sel.value=D.start;crew.value='2';hrs.value='8';oth.value='0';tax.checked=true;lv.checked=true;lvl.value='median';fill();});
 var q=new URLSearchParams(location.search).get('trade');if(q&&D.lines[q])sel.value=q;
 fill();
+var bar=$('cc-bar'),sec=$('crew'),out=$('cc-out');
+if(bar&&'IntersectionObserver' in window){var inSec=false,outSeen=false,up=function(){bar.hidden=!(inSec&&!outSeen)};
+new IntersectionObserver(function(es){inSec=es[0].isIntersecting;up()}).observe(sec);
+new IntersectionObserver(function(es){outSeen=es[0].isIntersecting;up()}).observe(out);}
 })();</script>"""
 
 
@@ -286,7 +306,8 @@ def range_bar(ln, lo, hi, E):
     return (f'<div class="cc-range" role="img" aria-label="{E(f"Hourly pay from {m2(ln["p10"])} at the 10th percentile to {m2(ln["p90"])} at the 90th, median {m2(ln["median"])}")}">'
             f'<span class="tr"></span><span class="r9" style="left:{x(ln["p10"])};width:{w(ln["p10"], ln["p90"])}"></span>'
             f'<span class="r5" style="left:{x(ln["p25"])};width:{w(ln["p25"], ln["p75"])}"></span><span class="md" style="left:{x(ln["median"])}"></span></div>'
-            f'<div class="cc-axis" aria-hidden="true"><span>{m0(lo)}</span><span>{m0((lo + hi) / 2)}</span><span>{m0(hi)} an hour</span></div>')
+            f'<div class="cc-axis" aria-hidden="true"><span>{m0(lo)}</span><span>{m0((lo + hi) / 2)}</span><span>{m0(hi)} an hour</span></div>'
+            '<p class="cc-key" aria-hidden="true"><span><i class="k9"></i>10th to 90th percentile</span><span><i class="k5"></i>25th to 75th</span><span><i class="km"></i>Median</span></p>')
 
 
 def scale(d):
@@ -301,6 +322,9 @@ def pw_table(rows, E, cls="cc-pwl"):
                    + "".join(f'<td data-label="{E(n)}">{m2(r[k]) if r[k] is not None else "none listed"}</td>' for k, n in FRINGE_NAMES)
                    + f'<td class="tot" data-label="Total">{m2(r["total"])}</td></tr>' for r in rows)
     return f'<table class="{cls}">{head}<tbody>{body}</tbody></table>'
+
+
+PCT_NOTE = '<p class="cc-note">Half earn less than the median and half earn more. A 25th percentile wage means a quarter of these workers earn less.</p>'
 
 
 def role_card(d, role, lo, hi, E, rel, sub=False):
@@ -322,10 +346,11 @@ def role_card(d, role, lo, hi, E, rel, sub=False):
                    f'<{h}>{E(disp(role, ln))}</{h}><p class="cc-sub">BLS occupation {E(ln["code"])}, {E(bls_title(ln["title"]))}. {E(emp[:1].upper() + emp[1:])}.</p>'
                    f'<div class="cc-big"><b>{m2(ln["median"])}</b><span>median hourly pay, Chicago metro, May 2025</span></div>'
                    f'{range_bar(ln, lo, hi, E)}<ul class="cc-pcts" aria-label="Hourly pay percentiles">{pcts}</ul>'
-                   '<p class="cc-note">Half earn less than the median and half earn more. A 25th percentile wage means a quarter of these workers earn less.</p></div>')
-    miss = (f'<p class="cc-note">BLS publishes no Chicago metro figures for {E(", ".join(role["notPublished"]))}.</p>' if role["notPublished"] else "")
-    return (f'<div class="cc-card" id="cc-card-{E(role["key"])}" data-cc-card>'
-            + "".join(out) + miss + pw_box + '</div>')
+                   + ('' if (sub and len(role["lines"]) > 1) else PCT_NOTE) + '</div>')
+    miss = (f'<p class="cc-note">BLS publishes no Chicago metro figures for {E(" or ".join(HELPER_NAMES.get(c, c).lower() + " (" + c + ")" for c in role["notPublished"]))}.</p>' if role["notPublished"] else "")
+    sep = (PCT_NOTE if (sub and len(role["lines"]) > 1) else "")
+    return (f'<div class="cc-card{" cc-multi" if sub and len(role["lines"]) > 1 else ""}" id="cc-card-{E(role["key"])}" data-cc-card>'
+            + "".join(out) + sep + miss + pw_box + '</div>')
 
 
 def lines_json(d):
@@ -362,25 +387,26 @@ def calculator(d, E, rel):
         '<div class="row"><label for="cc-hours">Hours each person works that day<small>Paid hours, drive time included if you pay it</small></label>'
         '<div class="field"><input class="cc-in" id="cc-hours" type="text" inputmode="decimal" value="8" autocomplete="off"></div><p class="cc-err">Enter 1 to 24 hours.</p></div>'
         '<div class="row"><label for="cc-rate">Hourly pay<small>Fills from the trade; type your own</small></label>'
-        '<div class="field has-pre"><span class="pre">$</span><input class="cc-in" id="cc-rate" type="text" inputmode="decimal" value="0" autocomplete="off"></div><p class="cc-err">Enter an hourly rate.</p></div>'
+        '<div class="field has-pre"><span class="pre">$</span><input class="cc-in" id="cc-rate" type="text" inputmode="decimal" value="0" autocomplete="off"></div><p class="cc-err">Enter hourly pay from $1 to $999.</p></div>'
         '<div class="row"><label for="cc-other">Your other costs per hour worked<small>Workers\' comp, unemployment insurance, health plan, uniforms</small></label>'
-        '<div class="field has-pre"><span class="pre">$</span><input class="cc-in" id="cc-other" type="text" inputmode="decimal" value="0" autocomplete="off"></div><p class="cc-err">Enter 0 or more.</p></div>'
+        '<div class="field has-pre"><span class="pre">$</span><input class="cc-in" id="cc-other" type="text" inputmode="decimal" value="0" autocomplete="off"></div><p class="cc-err">Enter $0 to $999 an hour.</p></div>'
         f'<label class="cc-chk"><input type="checkbox" id="cc-tax" checked><span>Count employer Social Security and Medicare, {fica:.2f}%'
-        f'<small>{d["irs"]["ss"]:g}% plus {d["irs"]["medicare"]:g}% of wages, IRS Publication 15 ({d["irs"]["year"]}). Not charged on fringe contributions.</small></span></label>'
+        f'<small>{d["irs"]["ss"]:g}% plus {d["irs"]["medicare"]:g}% of wages, IRS Publication 15 ({d["irs"]["year"]}). Counted on wages only, not on public works fringes; ask your payroll provider how your fringes are taxed.</small></span></label>'
         '<label class="cc-chk" style="border-bottom:0"><input type="checkbox" id="cc-leave" checked><span>The crew works in Chicago'
-        '<small>Each person earns 1 hour of paid leave and 1 hour of paid sick leave per 35 hours worked, each up to 40 hours a year (City notice, July 1, 2026). Counted at the hourly pay.</small></span></label>'
+        '<small>Each person earns 1 hour of paid leave and 1 hour of paid sick leave per 35 hours worked, each up to 40 hours in a 12-month period (City notice, July 1, 2026). Counted at the hourly pay.</small></span></label>'
         '</form>'
-        '<div class="cc-out" aria-live="polite"><div class="lab">Crew day cost</div><div class="val" id="cc-total">$0.00</div><div class="sub" id="cc-ph"></div>'
+        '<div class="cc-out" id="cc-out" aria-live="polite"><div class="lab">Crew day cost</div><div class="val" id="cc-total">$0.00</div><div class="sub" id="cc-ph"></div>'
         '<ul><li><span id="cc-o-wl">Wages</span><span id="cc-o-wages">$0.00</span></li>'
         '<li><span>Public works fringes</span><span id="cc-o-fr">$0.00</span></li>'
         '<li><span>Employer Social Security and Medicare</span><span id="cc-o-tax">$0.00</span></li>'
         '<li><span id="cc-o-ll">Chicago paid leave earned</span><span id="cc-o-leave">$0.00</span></li>'
         '<li><span>Your other costs</span><span id="cc-o-oth">$0.00</span></li></ul>'
-        f'<p class="cc-note" id="cc-pwnote" hidden>Public works: hours past {d["prevailing"]["otDailyAfter"]} in a weekday are paid at the overtime multiple of base pay the schedule lists. '
+        f'<p class="cc-note" id="cc-pwnote" hidden>Public works: hours past {d["prevailing"]["otDailyAfter"]} on a weekday are paid at the overtime multiple of base pay the schedule lists. '
         'Some lines list extra amounts owed on overtime hours; those are in the full table and not in this total.</p>'
         '<p class="cc-note">Not counted: overtime past 40 hours in a week, state and federal unemployment tax, and your own costs unless you type them in.</p>'
         '<div class="cc-next"><a class="btn" href="' + rel + CALC_CONTRACTOR + '/">Set your contractor rate</a>'
-        '<a class="st-btn2" href="' + rel + CALC_HANDYMAN + '/">Set your handyman rate</a></div></div>'
+        '<a class="st-btn2" href="' + rel + CALC_HANDYMAN + '/">Set your handyman rate</a></div>'
+        '<p class="cc-reset"><button type="button" id="cc-reset">Reset to the example</button></p></div>'
         '</div>')
 
 
@@ -395,10 +421,10 @@ def pay_table(d, E, rel=None):
             if rel is not None and len(role["lines"]) == 1:
                 name = f'<a href="{SLUG_NAMES[role["key"]]}/">{name}</a>'
             name += f'<small class="cc-bt">{E(ln["code"])} {E(bls_title(ln["title"]))}</small>'
-            rows += (f'<tr><th scope="row">{name}</th><td>{ln["emp"]:,}</td>' if ln["emp"] else f'<tr><th scope="row">{name}</th><td>not published</td>')
-            rows += "".join(f'<td class="{"md" if k == "median" else ""}">{m2(ln[k]) if ln[k] is not None else "n/a"}</td>' for k, _ in PCTS) + '</tr>'
-    head = ('<thead><tr><th scope="col">Trade</th><th scope="col">Employed</th>'
-            + "".join(f'<th scope="col" class="{"md" if k == "median" else ""}">{E(lab)}</th>' for k, lab in PCTS) + '</tr></thead>')
+            rows += (f'<tr><th scope="row">{name}</th>' + "".join(f'<td class="{"md" if k == "median" else ""}">{m2(ln[k]) if ln[k] is not None else "n/a"}</td>' for k, _ in ORDER)
+                     + (f'<td>{ln["emp"]:,}</td>' if ln["emp"] else '<td>not published</td>') + '</tr>')
+    head = ('<thead><tr><th scope="col">Trade</th>'
+            + "".join(f'<th scope="col" class="{"md" if k == "median" else ""}">{E(lab)}</th>' for k, lab in ORDER) + '<th scope="col">Employed</th></tr></thead>')
     return (f'<p class="cc-swipe">Swipe the table sideways for more columns.</p><div class="cc-tw" role="region" aria-label="Hourly pay by trade, Chicago metro, May 2025" tabindex="0">'
             f'<table class="cc-t">{head}<tbody>{rows}</tbody></table></div>')
 
@@ -424,7 +450,7 @@ def rules_block(d, E):
             '<div class="cc-card"><h3>City of Chicago</h3><p class="cc-sub">From July 1, 2026, employers with 4 or more employees</p>'
             f'<dl><dt>Minimum wage</dt><dd>{m2(c["minWage"])} an hour</dd><dt>Tipped workers</dt><dd>{m2(c["tipped"])} an hour</dd>'
             f'<dt>Overtime minimum</dt><dd>{m2(c["otMin"])} an hour</dd><dt>Tipped overtime</dt><dd>{m2(c["otTipped"])} an hour</dd></dl>'
-            f'<ul><li>Domestic and youth workers get at least the {m2(c["minWage"])} minimum.</li>'
+            f'<ul><li>{E(c["domesticYouth"].replace("All Domestic Workers and Youth Workers", "Domestic workers and youth workers").replace("minimum wage", "minimum"))}.</li>'
             '<li>Paid leave for any reason: 1 hour for every 35 hours worked, up to 40 hours in a 12-month period, usable from the 90th day of work. Up to 16 hours carry over if not frontloaded.</li>'
             '<li>Paid sick and safe leave: 1 hour for every 35 hours worked, up to 40 hours in a 12-month period, usable from the 30th day. Up to 80 hours carry over.</li>'
             '<li>Both apply to employees who work at least 80 hours within any 120-day period.</li>'
@@ -432,8 +458,8 @@ def rules_block(d, E):
             f'<p class="cc-note">From the City\'s notice, effective July 1, 2026 and last updated May 27, 2026. The rules are in Chicago Municipal Code 6-105 (minimum wage) and 6-130 (paid leave).</p></div>'
             '<div class="cc-card"><h3>Cook County</h3><p class="cc-sub">From July 1, 2026, in towns that use the County rate</p>'
             f'<dl><dt>Minimum wage</dt><dd>{m2(k["minWage"])} an hour</dd><dt>Tipped workers</dt><dd>{m2(k["tipped"])} an hour</dd></dl>'
-            '<ul><li>Covers employees over 18 working in Cook County for an employer with four or more employees (or a domestic worker), when the employer has a business facility or license in the County.</li>'
-            '<li>A town can opt out or set its own minimum wage. Chicago sets its own, shown beside this.</li></ul>'
+            '<ul><li>Covers employees over 18 who work at least 2 hours in any two-week period in Cook County, for an employer with 4 or more employees (or as a domestic worker), when the employer has a business facility or license in the County.</li>'
+            '<li>A town can opt out or set its own minimum wage. Chicago sets its own, shown in the City of Chicago box.</li></ul>'
             f'<p class="cc-note">From the County\'s notice of {E(k["posted"])}.</p></div>'
             '</div>')
 
@@ -450,7 +476,7 @@ def watch_line(d, E):
     w = load_watch()
     if not w or not w.get("allOk"):
         return ""
-    return f' The City minimum wage page, the County notice, IRS Publication 15 and the state\'s rate date were re-checked {E(nice(w["checkedAt"][:10]))}.'
+    return f' The City minimum wage page, the County notice, IRS Publication 15 and the state\'s prevailing wage page were re-checked {E(nice(w["checkedAt"][:10]))}.'
 
 
 def nice(iso):
@@ -469,7 +495,7 @@ def foot_html(d, M, E, rel):
             f'<p>Pay: U.S. Bureau of Labor Statistics, Occupational Employment and Wage Statistics, {E(o["period"])}, {E(o["area"])} metropolitan area, '
             f'<a href="{E(o["url"])}">metropolitan area file</a> (listed on the <a href="{E(o["tablesUrl"])}">OEWS tables page</a>), read Oct 27, 2026. '
             'Per the <a href="https://www.bls.gov/oes/oes_ques.htm">OEWS questions page</a>, wages are straight-time gross pay, before overtime and other premium pay, with tips in and benefits out, '
-            'and the survey leaves out the self-employed and owners. They are what employers pay employees, not billed rates.</p>'
+            'and the survey leaves out the self-employed and owners and partners in unincorporated firms. They are what employers pay employees, not billed rates.</p>'
             f'<p>Public works: Illinois Department of Labor, Cook County prevailing wage schedule, {E(pv["postedLine"])}, opened from the '
             f'<a href="{E(pv["pageUrl"])}">current prevailing rates page</a>, which says the rates apply to work performed on or after October 19, 2026, on public works projects. Read Oct 27, 2026.</p>'
             f'<p>Chicago: City of Chicago Office of Labor Standards, <a href="{E(c["noticeUrl"])}">minimum wage and paid leave notice</a> and '
@@ -502,14 +528,15 @@ def page_html(p):
     c, k, i = d["chicago"], d["cook"], d["irs"]
     fica = i["ss"] + i["medicare"]
     lede = (f'In the Chicago metro, half of electricians earn more than {m2(med("electricians"))} an hour, construction laborers {m2(med("laborers"))} '
-            f'and janitors {m2(med("janitors"))} (BLS, May 2025). Pick a trade to see its full pay range and its Cook County public works rate, '
-            'then work out what a crew day costs you once payroll tax and Chicago paid leave are counted.')
+            f'and janitors {m2(med("janitors"))} (BLS, May 2025).')
+    intro = ('Pick a trade to see its full pay range and its Cook County public works rate, '
+             'then work out what a crew day costs you once payroll tax and Chicago paid leave are counted.')
     ex = example_day(d, by[DEFAULT_ROLE]["lines"][0])
     tiles = ('<div class="tiles ld-tiles">'
-             f'<div class="tile key"><div class="lab">Chicago</div><div class="val">{m2(c["minWage"])}</div><div class="sub">minimum wage an hour from July 1, 2026, employers with 4 or more employees</div></div>'
+             f'<div class="tile key"><div class="lab">Crew day</div><div class="val">{m2(ex["total"])}</div><div class="sub">2 electricians, 8 hours each at the {m2(med("electricians"))} median, with payroll tax and Chicago paid leave</div></div>'
+             f'<div class="tile"><div class="lab">Chicago</div><div class="val">{m2(c["minWage"])}</div><div class="sub">minimum wage an hour from July 1, 2026, employers with 4 or more employees</div></div>'
              f'<div class="tile"><div class="lab">Cook County</div><div class="val">{m2(k["minWage"])}</div><div class="sub">minimum wage an hour from July 1, 2026, where the County rate applies</div></div>'
              '<div class="tile"><div class="lab">Paid leave</div><div class="val">1 per 35</div><div class="sub">each 35 hours worked in Chicago earns 1 hour of paid leave and 1 of paid sick leave</div></div>'
-             f'<div class="tile"><div class="lab">Payroll tax</div><div class="val">{fica:.2f}%</div><div class="sub">employer Social Security {i["ss"]:g}% and Medicare {i["medicare"]:g}%, {i["year"]}</div></div>'
              '</div><p class="asof">Pay from BLS, May 2025. Public works rates posted by the Illinois Department of Labor October 19, 2026. Minimum wages and leave from the City and County notices for July 1, 2026.</p>')
     cards = "".join(role_card(d, r, lo, hi, E, rel) for r in d["oews"]["roles"])
     # main page: only the default trade's card shows until the picker changes
@@ -517,7 +544,7 @@ def page_html(p):
     picker = ('<div class="cc-pick"><label for="cc-role">Trade'
               f'<select class="cc-sel" id="cc-role">{option_list(d, E, DEFAULT_ROLE)}</select></label></div>')
     calc = calculator(d, E, rel)
-    data_js = json.dumps({"lines": lines_json(d), "fica": round(fica, 4), "otAfter": d["prevailing"]["otDailyAfter"]},
+    data_js = json.dumps({"lines": lines_json(d), "fica": round(fica, 4), "otAfter": d["prevailing"]["otDailyAfter"], "start": DEFAULT_ROLE},
                          ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     matched = [r for key in ("electricians", "plumbers", "hvac", "carpenters", "laborers", "painters", "roofers") for r in pw_rows(d, key)]
     seen, mrows = set(), []
@@ -534,7 +561,7 @@ def page_html(p):
     role_links = "".join(f'<li><a class="cc-r" href="{SLUG_NAMES[r["key"]]}/">{E(r["label"])}<span>{m2(r["lines"][0]["median"]) if len(r["lines"]) == 1 else str(len(r["lines"])) + " kinds"}</span></a></li>' for r in d["oews"]["roles"])
     pay_sec = (pay_table(d, E, rel="")
                + f'<p class="asof">Straight-time hourly pay, before overtime and premium pay, May 2025. "Not published" means BLS gives the wages but no employment count. '
-               + (f'BLS publishes no Chicago metro figures for {E(", ".join(c for r in d["oews"]["roles"] for c in r["notPublished"]))} (helpers for painters and for roofers). ' if any(r["notPublished"] for r in d["oews"]["roles"]) else "")
+               + (f'BLS publishes no Chicago metro figures for {E(" or ".join(HELPER_NAMES.get(c, c).lower() + " (" + c + ")" for r in d["oews"]["roles"] for c in r["notPublished"]))}. ' if any(r["notPublished"] for r in d["oews"]["roles"]) else "")
                + 'Employment leaves out the self-employed.</p>'
                f'<div class="cc-dl"><a class="st-btn2" href="{CSV_PAY}" download>Download the pay table (CSV)</a><a class="st-btn2" href="{CSV_PW}" download>Download the Cook County schedule (CSV)</a></div>'
                f'<h3 style="margin-top:22px">One page per trade</h3><ul class="cc-roles">{role_links}</ul>')
@@ -547,7 +574,7 @@ def page_html(p):
             '<div class="ld-heroact rl-act"><a class="btn" href="#crew">Work out a crew day</a><a class="st-btn2" href="#pay">See pay for every trade</a></div></div>'
             + tiles
             + M_nav(E)
-            + f'<section class="block" id="crew"><h2>Pick a trade, then price the crew day</h2>{picker}{cards}{calc}'
+            + f'<section class="block" id="crew"><h2>Pick a trade, then price the crew day</h2><p>{E(intro)}</p>{picker}{cards}{calc}'
             f'<p class="asof">The example opens on 2 electricians for 8 hours at the median: {m2(ex["total"])} for the day, '
             f'{m2(ex["wages"])} of it wages, {m2(ex["tax"])} Social Security and Medicare and {m2(ex["leave"])} of Chicago paid leave earned.</p></section>'
             f'<section class="block" id="pay"><h2>Hourly pay for every trade</h2>{pay_sec}</section>'
@@ -555,7 +582,8 @@ def page_html(p):
             f'<section class="block" id="rules"><h2>Minimum wage and paid leave</h2>{rules_block(d, E)}</section>'
             + two + method + M.faq_block(p["faq"]).replace('<section class="block">', '<section class="block" id="faq">', 1)
             + f'<p class="rl-act"><a class="btn" href="#crew">Work out a crew day</a> <a class="st-btn2" href="{rel}chicago-data/">More free Chicago data</a></p>'
-            f'<script type="application/json" id="cc-data">{data_js}</script>{JS}{PG_JS}')
+            f'<div class="cc-bar" id="cc-bar" hidden><span>Crew day</span><b id="cc-bar-v">{m2(ex["total"])}</b><a href="#cc-out">See the breakdown</a></div>'
+            f'<script type="application/json" id="cc-data">{data_js}</script>{JS}')
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
               "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}
     data_ld = {"@context": "https://schema.org", "@type": "Dataset", "name": META["h1"], "description": p["desc"], "url": url, "isAccessibleForFree": True,
@@ -568,7 +596,7 @@ def page_html(p):
 
 def M_nav(E):
     items = [("crew", "Crew day"), ("pay", "Pay by trade"), ("public", "Public works"), ("rules", "Minimum wage"), ("faq", "Questions")]
-    return ('<nav class="pg-nav" aria-label="On this page"><ul>' + "".join(f'<li><a href="#{i}">{E(t)}</a></li>' for i, t in items) + '</ul></nav>')
+    return ('<nav class="otp" aria-label="On this page"><div class="otp-in">' + "".join(f'<a href="#{i}">{E(t)}</a>' for i, t in items) + '</div></nav>')
 
 
 def sub_page(p, d, role, M, E):
@@ -598,18 +626,18 @@ def sub_page(p, d, role, M, E):
     ex_rows = ""
     for ln in role["lines"]:
         e = example_day(d, ln)
-        ex_rows += (f'<tr><th scope="row">{E(disp(role, ln))} at the median, {m2(ln["median"])}</th><td>{m2(e["wages"])}</td><td>{m2(e["tax"])}</td>'
-                    f'<td>{m2(e["leave"])}</td><td>{m2(0)}</td><td class="md">{m2(e["total"])}</td></tr>')
+        ex_rows += (f'<tr><th scope="row">{E(disp(role, ln))} at the median, {m2(ln["median"])}</th><td class="md">{m2(e["total"])}</td><td>{m2(e["wages"])}</td><td>{m2(e["tax"])}</td>'
+                    f'<td>{m2(e["leave"])}</td><td>{m2(0)}</td></tr>')
     for r in pw:
         e = example_day(d, None, r)
-        ex_rows += (f'<tr><th scope="row">Cook County public works, {E(title_case(r["trade"]))}, {m2(r["base"])} plus {m2(r["fringes"])}</th><td>{m2(e["wages"])}</td><td>{m2(e["tax"])}</td>'
-                    f'<td>{m2(e["leave"])}</td><td>{m2(e["fringes"])}</td><td class="md">{m2(e["total"])}</td></tr>')
+        ex_rows += (f'<tr><th scope="row">Cook County public works, {E(title_case(r["trade"]))}, {m2(r["base"])} base plus {m2(r["fringes"])} fringes</th><td class="md">{m2(e["total"])}</td><td>{m2(e["wages"])}</td><td>{m2(e["tax"])}</td>'
+                    f'<td>{m2(e["leave"])}</td><td>{m2(e["fringes"])}</td></tr>')
     ex_tbl = ('<p class="cc-swipe">Swipe the table sideways for more columns.</p>'
               f'<div class="cc-tw" role="region" aria-label="{E("A worked crew day for " + PLURAL[role["key"]])}" tabindex="0"><table class="cc-t"><thead><tr><th scope="col">2 people, 8 hours each</th>'
-              '<th scope="col">Wages</th><th scope="col">Social Security and Medicare</th><th scope="col">Chicago paid leave earned</th><th scope="col">Public works fringes</th><th scope="col" class="md">Crew day</th></tr></thead>'
+              '<th scope="col" class="md">Crew day</th><th scope="col">Wages</th><th scope="col">Social Security and Medicare</th><th scope="col">Chicago paid leave earned</th><th scope="col">Public works fringes</th></tr></thead>'
               f'<tbody>{ex_rows}</tbody></table></div>'
               f'<p class="asof">Social Security {i["ss"]:g}% and Medicare {i["medicare"]:g}% of wages (IRS, {i["year"]}). Chicago paid leave: 1 hour of paid leave and 1 of paid sick leave per 35 hours worked, valued at the hourly pay. '
-              'Workers\' comp, unemployment insurance and benefits are not in these totals; the calculator takes yours.</p>')
+              'Workers\' comp, unemployment insurance and benefits are not in these totals; add yours in the calculator.</p>')
     k0 = line_key(role, role["lines"][0])
     nxt = (f'<p class="rl-act" style="margin-top:14px"><a class="btn" href="../?trade={E(k0)}#crew">Price your own crew day</a>'
            f'<a class="st-btn2" href="{rel}{CALC_CONTRACTOR}/">Set your contractor rate</a><a class="st-btn2" href="{rel}{CALC_HANDYMAN}/">Set your handyman rate</a></p>')
@@ -625,7 +653,7 @@ def sub_page(p, d, role, M, E):
         faq.append((f"What is the Cook County prevailing wage for {PLURAL[role['key']]}?",
                     f"The Cook County schedule posted October 19, 2026 lists {title_case(r['trade'])} at {m2(r['base'])} an hour base plus {m2(r['fringes'])} of fringes, "
                     f"{m2(r['total'])} in all, for public works. Which line applies depends on the work; check with the Illinois Department of Labor."))
-    faq.append(("Are these billed rates?", "No. BLS counts the straight-time pay employers give employees, before overtime and premium pay and without benefits. It leaves out the self-employed, and a rate you bill a customer also has to cover your costs and profit."))
+    faq.append(("Are these the rates I should charge customers?", "No. BLS counts the straight-time pay employers give employees, before overtime and premium pay and without benefits. It leaves out the self-employed, and a rate you bill a customer also has to cover your costs and profit."))
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
               "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(h1)}</h1><p class="lede">{lede}</p></div>'
@@ -634,7 +662,8 @@ def sub_page(p, d, role, M, E):
             f'<section class="block" id="rules"><h2>Minimum wage and paid leave</h2>{rules_block(d, E)}</section>'
             f'<section class="block" id="more"><h2>Other trades</h2><ul class="cc-roles">{others}</ul>'
             f'<p class="rl-act" style="margin-top:14px"><a class="st-btn2" href="../">Back to What a Chicago Crew Costs</a></p></section>'
-            + M.faq_block(faq))
+            + M.faq_block(faq)
+            + f'<p class="rl-act"><a class="btn" href="../?trade={E(k0)}#crew">Price your own crew day</a> <a class="st-btn2" href="../">Back to What a Chicago Crew Costs</a></p>')
     title = f"{h1}: Hourly Wages, Public Works Rate, Crew Cost | ProofNotFluff" if pw else f"{h1}: Hourly Wages and Crew Cost | ProofNotFluff"
     return head_html(p, M, E, url, rel, M.ld_tags(crumb_ld, faq_ld), robots, title=title, desc=desc) + body + foot_html(d, M, E, rel)
 
@@ -682,7 +711,7 @@ def selftest():
     assert d, "data.json missing"
     # crew day math: 2 people, 8 hours, $20: wages 320, tax 24.48, leave 2*(16/35)*20
     e = crew_day(2, 8, 20, 6.2, 1.45, True)
-    assert abs(e["wages"] - 320) < 1e-9 and abs(e["tax"] - 24.48) < 1e-9 and abs(e["leave"] - 2 * 16 / 35 * 20) < 1e-9
+    assert abs(e["wages"] - 320) < 1e-9 and abs(e["tax"] - 24.48) < 1e-9 and e["leave"] == round(2 * 16 / 35 * 20, 2) and e["total"] == round(e["wages"] + e["tax"] + e["leave"], 2)
     e = crew_day(1, 10, 50, 6.2, 1.45, False, 40, 8, 1.5)
     assert abs(e["wages"] - (8 * 50 + 2 * 75)) < 1e-9 and abs(e["fringes"] - 400) < 1e-9 and e["leave"] == 0 and e["otHours"] == 2
     # every Cook row: total is base plus the listed fringes

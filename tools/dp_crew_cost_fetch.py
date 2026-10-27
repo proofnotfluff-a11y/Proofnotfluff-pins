@@ -228,6 +228,7 @@ CHI_NEED = {
     "pslCarry": r"(Up to 80 PSL hours can be carried over between 12-month period)",
     "payout": r"(Employers with 51\+ employees must pay out up to 56 hours)",
     "smallExempt": r"(Small Employers \(1-50 employees\) are exempt)",
+    "domesticYouth": r"(All Domestic Workers and Youth Workers must receive at least the \$\d+\.\d\d minimum wage)",
 }
 
 

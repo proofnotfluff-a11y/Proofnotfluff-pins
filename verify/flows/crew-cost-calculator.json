@@ -1,7 +1,7 @@
 {"about": "What a Chicago Crew Costs: the page opens on 2 electricians at the median; pick a trade and see its pay, switch to its Cook County public works rate, change the crew and see the crew day cost move; a bad entry shows a note, not a wrong number (Oct 27, 2026).",
  "page": "chicago-crew-cost/",
  "steps": [
-  {"expect_text": "#cc-total", "matches": "^\\$892\\.59$"},
+  {"expect_text": "#cc-total", "matches": "^\\$892\\.58$"},
   {"expect_visible": "#cc-card-electricians"},
   {"select": "#cc-role", "value": "carpenters", "screenshot": true},
   {"expect_visible": "#cc-card-carpenters"},

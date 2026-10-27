@@ -6937,10 +6937,10 @@
    "draft": true,
    "data": "site/datapages/dp_flooding/monthly.json",
    "title": "Chicago Basement Flooding Calls by Neighborhood, Updated Daily | ProofNotFluff",
-   "desc": "Free daily count of water in basement and sewer cleaning requests to Chicago 311 for all 77 community areas: month by month, against the year before, with the busiest days. From City records.",
+   "desc": "Free daily count of water in basement calls and sewer cleaning requests to Chicago 311 for all 77 community areas: month by month, vs the 12 months before, with the busiest days. From City records.",
    "eyebrow": "Free daily tracker for plumbers, waterproofing and restoration companies",
    "h1": "Chicago Basement Flooding Calls by Neighborhood",
-   "card": "Water in basement and sewer cleaning requests to Chicago 311 by community area, month by month, with the busiest days. Updated daily.",
+   "card": "Water in basement calls and sewer cleaning requests to Chicago 311 by community area, month by month, with the busiest days. Updated daily.",
    "trade": [
     {
      "title": "Calls come in bunches on a few days",
@@ -7000,7 +7000,7 @@
    "desc": "Free daily count of new Chicago building violations by trade for all 77 community areas: masonry, porches, electrical, HVAC, elevators and plumbing, month by month. From City records.",
    "eyebrow": "Free daily tracker for repair trades",
    "h1": "Chicago Repair Demand by Trade",
-   "card": "New City building violations by trade and community area each month: masonry, porches, electrical, HVAC, elevators and plumbing. Updated daily.",
+   "card": "New Chicago building violations by trade and community area each month: masonry, porches, electrical, HVAC, elevators and plumbing. Updated daily.",
    "trade": [
     {
      "title": "Price the repair so it pays",
@@ -7037,7 +7037,7 @@
     ],
     [
      "Does a violation mean the work is still needed?",
-     "Not always. A violation is one item an inspector cited on the date shown. The City's records include cases where the respondent was later found not liable, and this page does not track whether an item was fixed. It names no building or owner."
+     "Not necessarily. A violation is one item an inspector cited on the date shown. The City's records include cases where the respondent was later found not liable, and this page does not track whether an item was fixed. It names no building or owner."
     ],
     [
      "Can I use this to check a property I am buying?",
@@ -7053,7 +7053,7 @@
     ]
    ],
    "sourceNotes": [
-    "The Department of Buildings' note on this dataset, word for word: “Lenders and title companies, please note: These data are historical in nature and should not be relied upon for real estate transactions. For transactional purposes such as closings, please consult the title commitment for outstanding enforcement actions in the Circuit Court of Cook County or the Chicago Department of Administrative Hearings.” , “The information presented on this website is informational only and does not necessarily reflect the current condition of the building or property.” and “The dataset contains cases where a respondent has been found to be liable as well as cases where the respondent has been found to be not liable.”"
+    "The Department of Buildings' note on this dataset, word for word: “Lenders and title companies, please note: These data are historical in nature and should not be relied upon for real estate transactions. For transactional purposes such as closings, please consult the title commitment for outstanding enforcement actions in the Circuit Court of Cook County or the Chicago Department of Administrative Hearings.”, “The information presented on this website is informational only and does not necessarily reflect the current condition of the building or property.” and “The dataset contains cases where a respondent has been found to be liable as well as cases where the respondent has been found to be not liable.”"
    ],
    "sources": "City of Chicago Building Violations, dataset 22u3-xenr.",
    "map": true

@@ -22,7 +22,7 @@ CSV_AREA = "chicago-repair-demand-by-area-month.csv"
 MAP_JSON = "chicago-repair-demand-trade-map.json"
 
 META = {"h1": "Chicago Repair Demand by Trade",
-        "card": "New City building violations by trade and community area each month: masonry, porches, electrical, HVAC, elevators and plumbing. Updated daily.",
+        "card": "New Chicago building violations by trade and community area each month: masonry, porches, electrical, HVAC, elevators and plumbing. Updated daily.",
         "keywords": "building violations repair demand masonry tuckpointing exterior wall porch carpenter smoke detector carbon monoxide electrical boiler hvac ventilation refrigeration elevator plumbing neighborhood community area chicago"}
 
 
@@ -201,10 +201,10 @@ def map_block(st, E, period):
     top3 = sorted(lead["areas"], key=lambda a: (-a["y12"], a["name"]))[:3]
     hint = ('<h3>Citywide</h3>'
             f'<p class="gm-big"><span>{st["traded12"]:,}</span><small>new violations in these six trades, {E(period)}</small></p>'
-            f'<p>Most {E(lead["label"].lower())} violations:</p><ul class="gm-top">'
-            + "".join(f'<li><button type="button" data-pick="{a["n"]}">{E(a["name"])}, {a["y12"]:,}</button></li>' for a in top3) + '</ul>'
+            '<p>Most violations, by trade:</p><ul class="gm-top">'
+            + "".join((lambda a: f'<li><button type="button" data-pick="{a["n"]}">{E(t["short"])}: {E(a["name"])}, {a["y12"]:,}</button></li>')(max(t["areas"], key=lambda a: (a["y12"], -a["n"]))) for t in T) + '</ul>'
             '<p class="gm-hint">Pick a trade above the map, then tap or hover any area, or choose one from the list.</p>')
-    fig = G.choropleth(areas, metrics, uid="repairmap", title="Map of Chicago's 77 community areas, colored by new building violations for one trade", hint=hint,
+    fig = G.choropleth(areas, metrics, uid="repairmap", title="Map of Chicago's 77 community areas, colored by the trade chosen above", hint=hint,
                        caption="Community area outlines: City of Chicago, Boundaries - Community Areas. Every number on the map is also in the trade tables below.")
     import dp_flooding
     return G.CSS + dp_flooding.pg_map(fig) if fig else ""
@@ -301,7 +301,7 @@ def page_html(p):
                    f'<div><b>{t["m"]:,}</b><small>in {E(ym_name(st["lm"]))}</small></div><div><b>{E(lead["name"])}</b><small>most: {viol(lead["y12"])}</small></div></div>'
                    + month_chart(t["city24"], st["labels"], t["ghost24"], E, f'Violations each month, {low(t["label"])}, for 24 months, with the same month a year earlier behind each bar')
                    + '<p class="rd-key"><span><i></i>That month</span><span class="k2"><i></i>Same month a year earlier</span></p></div>'
-                   + f'<p class="up-key"><b>\u2191 Red</b> marks a rise of 25% or more on the 12 months before, where those months had at least {FEW}.</p>'
+                   + f'<p class="up-key"><b>\u2191 Red</b> marks a rise of 25% or more vs the 12 months before, where those months had at least {FEW} violations.</p>'
                    + '<p class="rd-swipe">Swipe the table sideways for more columns.</p>'
                    + tbl(top[:15], f'Violations, {low(t["label"])}: the 15 community areas with the most')
                    + f'<details class="rd-more"><summary>Show the other {len(top) - 15} community areas</summary>' + tbl(top[15:], f'Violations, {low(t["label"])}: the other community areas') + '</details>'
@@ -352,7 +352,7 @@ def page_html(p):
             '<div class="ld-heroact rl-act"><a class="btn" href="#trades">See your trade by neighborhood</a><a class="st-btn2" href="#map">Open the map</a></div></div>'
             f'{grid}'
             + __import__("dp_flooding").pg_nav([("map", "Map"), ("trades", "By trade"), ("mapping", "How trades are sorted"), ("faq", "Questions")], E)
-            + (f'<section class="block" id="map"><h2>Repair demand on the map</h2>{mapb}</section>' if mapb else "")
+            + (f'<section class="block" id="map"><h2>Violations on the map</h2>{mapb}</section>' if mapb else "")
             + f'<section class="block" id="trades"><h2>Every community area, by trade</h2>{trades_sec}</section>'
             f'<section class="block" id="mapping"><h2>How violations are sorted into trades</h2>{mapping}</section>'
             + two + method + M.faq_block(p["faq"]).replace('<section class="block">', '<section class="block" id="faq">', 1) +

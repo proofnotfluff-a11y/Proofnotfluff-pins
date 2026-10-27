@@ -13,4 +13,5 @@
 - Oct 25: credits plan (DECISIONS-2026-10-25): pest runs Oct 26, 27; audit 28; bursts 29, Nov 2. Area seats live Oct 26, 6 open.
 - Oct 26 pm: TRAFFIC FIRST; no builder outreach. Rat tracker live. Templates wait on 2 Kit forms. Kimi R8 kept, R7 waits.
 - Oct 27: trade owners only; free plan waits (DECISIONS-2026-10-27). Trades News (daily 6:32), rat and pest maps live. Verify on docs/ changes (CLAUDE.md 9). R10 merged: research_notes/kimi-2026-10-27-r10.md; Todd's go.
+- Oct 27 pm: video engine blueprint (Claude Doc https://claude.ai/artifact/3ssi8yGEKVxiL7JTD87kzS; research_notes/social-engine-2026-10-27.md): our data as narrated videos in code first, AI clips only after phase 2, spec ads parked. Nothing built; waits on Todd's three calls (scoreboard video-engine-three-calls). Kimi R11 ready. Narration still runs through Zapier, which CLAUDE.md 8 bars.
 - Oct 25: Chief of Staff live (DECISIONS-2026-10-25): sweep (PC, sole reply-status writer), brief, Sun review. Outreach Mondays only.

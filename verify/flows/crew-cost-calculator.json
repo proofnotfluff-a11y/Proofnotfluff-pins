@@ -19,6 +19,11 @@
   {"fill": "#cc-crew", "value": "2"},
   {"select": "#cc-role", "value": "helpers:47-3012"},
   {"expect_visible": "[data-cc-line='helpers:47-3012']"},
+  {"select": "#cc-role", "value": "janitors"},
+  {"select": "#cc-level", "value": "p10"},
+  {"expect_visible": "#cc-mwnote"},
+  {"select": "#cc-level", "value": "median"},
+  {"expect_hidden": "#cc-mwnote"},
   {"expect_count": "a[href*='contractor-hourly-rate-calculator']", "min": 1},
   {"expect_count": "a[href*='handyman-hourly-rate-calculator']", "min": 1}
  ]}

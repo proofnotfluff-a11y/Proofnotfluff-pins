@@ -191,7 +191,7 @@ CSS = ("<style>"
        ".cc-form .field.has-pre .cc-in{padding-left:24px}.cc-form .field .pre{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}"
        ".cc-chk{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--rule);font-size:15px;color:var(--ink)}"
        ".cc-chk input{width:22px;height:22px;margin:1px 0 0;flex:none;accent-color:var(--ink)}.cc-chk small{display:block;color:var(--muted);font-size:13px}"
-       ".cc-pwline{margin:6px 0 0;font-size:13.5px;font-weight:600;color:var(--ink2)}"
+       ".cc-mwnote{color:var(--neg);font-weight:600}.cc-pwline{margin:6px 0 0;font-size:13.5px;font-weight:600;color:var(--ink2)}"
        ".cc-rules .cc-wide{grid-column:1/-1}.cc-cols{display:grid;gap:0 28px}@media(min-width:900px){.cc-cols{grid-template-columns:1fr 1fr}}"
        ".asof,.cc-note{text-wrap:pretty;max-width:72ch}.cc-key span,.nw{white-space:nowrap}.cc-key{gap:6px 12px}"
        "details.cc-all>summary{padding:12px 16px}details.cc-all .c,details.cc-all[open] .o{display:none}details.cc-all[open] .c{display:inline}"
@@ -297,7 +297,7 @@ function calc(){
   $('cc-o-leave').textContent=money(lvv);$('cc-o-ll').innerHTML='Chicago paid leave earned <span class="nw">('+(2*lh).toLocaleString('en-US',{maximumFractionDigits:2})+(2*lh===1?' hour)':' hours)')+'</span>';$('cc-o-leave').closest('li').hidden=!lv.checked;
   $('cc-o-fr').textContent=money(fr);$('cc-o-fr').closest('li').hidden=!pw;
   $('cc-o-oth').textContent=money(ox);$('cc-o-oth').closest('li').hidden=!(o>0);
-  $('cc-pwnote').hidden=!pw;var pl=$('cc-pwline');pl.hidden=!pw;if(pw)pl.textContent='Cook County schedule: '+money(pw.base)+' base plus '+money(pw.fringes)+' fringes an hour';
+  $('cc-pwnote').hidden=!pw;$('cc-mwnote').hidden=!(lv.checked&&r<D.chiMin);var pl=$('cc-pwline');pl.hidden=!pw;if(pw)pl.textContent='Cook County schedule: '+money(pw.base)+' base plus '+money(pw.fringes)+' fringes an hour';
 }
 sel.addEventListener('change',fill);lvl.addEventListener('change',setRate);
 rate.addEventListener('input',function(){lvl.value='own';calc()});
@@ -343,7 +343,8 @@ def pw_table(rows, E, cls="cc-pwl"):
     return f'<table class="{cls}">{head}<tbody>{body}</tbody></table>'
 
 
-PCT_NOTE = '<p class="cc-note">Half earn less than the median and half earn more. A 25th percentile wage means a quarter of these workers earn less.</p>'
+PCT_NOTE = ('<p class="cc-note">Half earn less than the median and half earn more. A 25th percentile wage means a quarter of these workers earn less. '
+            'These are May 2025 figures for the whole metro, so a low percentile can be below the Chicago minimum wage of {mw} from July 1, 2026.</p>')
 
 
 def role_card(d, role, lo, hi, E, rel, sub=False):
@@ -369,9 +370,9 @@ def role_card(d, role, lo, hi, E, rel, sub=False):
                    f'<{h} id="h-{E(ln["code"])}">{E(disp(role, ln))}</{h}><p class="cc-sub">BLS occupation {E(ln["code"])}, {E(bls_title(ln["title"]))}. {E(emp[:1].upper() + emp[1:])}.</p>'
                    f'<div class="cc-big"><b>{m2(ln["median"])}</b><span>median hourly pay, Chicago metro, May 2025</span></div>'
                    f'{range_bar(ln, lo, hi, E) if not (sub and len(role["lines"]) > 1 and ln is not role["lines"][0]) else range_bar(ln, lo, hi, E).replace(KEY, "")}<ul class="cc-pcts" aria-label="Hourly pay percentiles">{pcts}</ul>'
-                   + ('' if (sub and len(role["lines"]) > 1) else PCT_NOTE) + '</div>')
+                   + ('' if (sub and len(role["lines"]) > 1) else PCT_NOTE.format(mw=m2(d['chicago']['minWage']))) + '</div>')
     miss = (f'<p class="cc-note">BLS publishes no Chicago metro figures for {E(" or ".join(HELPER_NAMES.get(c, c).lower() + " (" + c + ")" for c in role["notPublished"]))}.</p>' if role["notPublished"] else "")
-    sep = (PCT_NOTE if (sub and len(role["lines"]) > 1) else "")
+    sep = (PCT_NOTE.format(mw=m2(d['chicago']['minWage'])) if (sub and len(role["lines"]) > 1) else "")
     return (f'<div class="cc-card{" cc-multi" if sub and len(role["lines"]) > 1 else ""}" id="cc-card-{E(role["key"])}" data-cc-card>'
             + "".join(out) + sep + miss + pw_box + '</div>')
 
@@ -429,6 +430,7 @@ def calculator(d, E, rel):
         '<li><span>Your other costs</span><span id="cc-o-oth">$0.00</span></li></ul>'
         f'<p class="cc-note" id="cc-pwnote" hidden>Public works: this assumes a weekday. Hours past {d["prevailing"]["otDailyAfter"]} are paid at the overtime multiple of base pay the schedule lists; Saturday, Sunday and holiday rates are not priced here. '
         'Some lines list extra amounts owed on overtime hours; those are in the full table and not in this total.</p>'
+        f'<p class="cc-note cc-mwnote" id="cc-mwnote" hidden>This rate is below the Chicago minimum wage of {m2(d["chicago"]["minWage"])} an hour from July 1, 2026, for employers with 4 or more employees.</p>'
         '<p class="cc-note">Not counted: overtime past 40 hours in a week. Workers\' comp, unemployment tax and benefits other than public works fringes count only if you type them into your other costs. An estimate from public figures, not legal, tax or payroll advice; check with the agency.</p>'
         '<div class="cc-next"><a class="btn" href="' + rel + CALC_CONTRACTOR + '/">Set your contractor rate</a>'
         '<a class="st-btn2" href="' + rel + CALC_HANDYMAN + '/">Set your handyman rate</a></div>'
@@ -572,7 +574,7 @@ def page_html(p):
     picker = ('<div class="cc-pick"><label for="cc-role">Trade'
               f'<select class="cc-sel" id="cc-role">{option_list(d, E, DEFAULT_ROLE)}</select></label></div>')
     calc = calculator(d, E, rel)
-    data_js = json.dumps({"lines": lines_json(d), "fica": round(fica, 4), "otAfter": d["prevailing"]["otDailyAfter"], "start": DEFAULT_ROLE},
+    data_js = json.dumps({"chiMin": d["chicago"]["minWage"], "lines": lines_json(d), "fica": round(fica, 4), "otAfter": d["prevailing"]["otDailyAfter"], "start": DEFAULT_ROLE},
                          ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     matched = [r for key in ("electricians", "plumbers", "hvac", "carpenters", "laborers", "painters", "roofers") for r in pw_rows(d, key)]
     seen, mrows = set(), []

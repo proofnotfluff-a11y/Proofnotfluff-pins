@@ -324,12 +324,13 @@ footer p{margin:0 0 10px;overflow-wrap:anywhere}
 .leaflet-control-attribution{font-size:11px;background:rgba(255,255,255,.92)!important}.leaflet-control-attribution a{color:#2a5d93}
 .leaflet-bar a{width:40px!important;height:40px!important;line-height:40px!important;color:#1d2433!important}
 .leaflet-popup-content-wrapper{border-radius:12px;box-shadow:0 8px 24px rgba(29,36,51,.18)}.leaflet-popup-content{margin:14px 16px;font:14.5px/1.45 var(--body);color:#1d2433}
-.pop b{display:block;font:700 16px/1.25 var(--head);margin:0 0 4px}.pop .pa{display:block;color:#3f4659;margin:0 0 8px}.pop .pill{margin:0 0 10px}
+.pop b{display:block;font:700 16px/1.25 var(--head);margin:0 0 4px;padding-right:28px}
+.leaflet-container a.leaflet-popup-close-button{width:44px!important;height:44px!important;font:22px/44px var(--body)!important;top:0!important;right:0!important}.pop .pa{display:block;color:#3f4659;margin:0 0 8px}.pop .pill{margin:0 0 10px}
 .pop .pb{display:grid;gap:8px;margin:10px 0 0}.pop .btn{width:100%;min-height:44px}.pop .btn.ghost{color:#1d2433;border-color:#cfc8bb}
 .legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:-6px 0 18px;font-size:14px;color:var(--ink2)}
 .legend span{display:inline-flex;align-items:center;gap:6px}.legend i{display:inline-block;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(29,36,51,.35)}
 .legend .l0{width:16px;height:16px;background:#c8502f}.legend .l1{width:12px;height:12px;background:#2e6b66}.legend .l2{width:12px;height:12px;background:#fff;border-color:#3a4152;box-shadow:none}
-.map-note{position:absolute;z-index:500;left:10px;bottom:10px;max-width:calc(100% - 140px);margin:0;background:rgba(255,255,255,.96);border:1px solid #e2ddd3;border-radius:8px;padding:6px 10px;font-size:12.5px;color:#565d6b}
+.map-note{position:absolute;z-index:500;left:10px;bottom:10px;max-width:calc(100% - 140px);}@media(max-width:600px){.map-note{max-width:calc(100% - 20px);bottom:24px}}.map-note{margin:0;background:rgba(255,255,255,.96);border:1px solid #e2ddd3;border-radius:8px;padding:6px 10px;font-size:12.5px;color:#565d6b}
 .map-fail{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:10px;padding:20px;text-align:center;color:#3f4659;background:#f3f1ec}
 .card.flash{outline:3px solid var(--accent);outline-offset:2px}
 .vseg{display:inline-flex;border:1.5px solid var(--line);border-radius:10px;overflow:hidden;margin-left:auto}
@@ -342,7 +343,7 @@ footer p{margin:0 0 10px;overflow-wrap:anywhere}
 .legend i{border-width:2.5px}.legend .l1,.legend .l2{width:14px;height:14px}
 .leaflet-bar a{width:44px!important;height:44px!important;line-height:44px!important}
 @media (prefers-color-scheme:dark){.mapbox,.leaflet-container{background:#1b2130}.leaflet-tile-pane{filter:grayscale(1) invert(.88) contrast(.9)}
-.map-note{background:rgba(27,33,48,.94);color:#eef0f4;border-color:#2c3343}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#1b2130;color:#eef0f4}
+.map-note{background:rgba(27,33,48,.94);color:#eef0f4;border-color:#2c3343}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#252c3d;color:#eef0f4}.leaflet-popup-content-wrapper{border:1px solid #3a4152}
 .leaflet-popup-content{color:#eef0f4}.pop .pa{color:#c9ced8}.pop .pm{color:#a3aab6}.pop .btn.ghost{color:#eef0f4;border-color:#3a4152}
 .leaflet-control-attribution{background:rgba(27,33,48,.9)!important;color:#c9ced8}.leaflet-control-attribution a{color:#9cc2ff}.leaflet-bar a{background:#1b2130!important;color:#eef0f4!important;border-color:#2c3343!important}
 .map-fail{background:#12161f;color:#c9ced8}}
@@ -423,12 +424,12 @@ function drawList(){$("#results").innerHTML=listHtml();drawMap(false);}
 const MS=[{radius:9,color:"#fff",weight:2.5,fillColor:"#c8502f",fillOpacity:1},{radius:6.5,color:"#fff",weight:1.5,fillColor:"#2e6b66",fillOpacity:.95},{radius:6,color:"#3a4152",weight:2,fillColor:"#fff",fillOpacity:1}];
 function ensureMap(){if(MAP||!$("#map"))return;if(!window.L){const box=$("#mapbox");if(box&&!box.querySelector(".map-fail"))box.insertAdjacentHTML("beforeend",'<div class="map-fail"><p>The map did not load on this connection. The list has every place.</p><button class="btn sm" type="button" id="mfl">Show the list</button></div>');const b=$("#mfl");if(b)b.onclick=()=>setView("list");return;}
 MAP=L.map("map",{zoomControl:false,scrollWheelZoom:false}).setView([41.85,-87.68],11);L.control.zoom({position:"topright"}).addTo(MAP);MAP.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
-let te=0;L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).on("tileerror",()=>{if(++te===3){const n=$("#mapnote");n.hidden=false;n.textContent="The street map did not load on this connection. The pins still show where each place is.";}}).addTo(MAP);LAY=L.layerGroup().addTo(MAP);drawMap(true);}
+let te=0;L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).on("tileerror",()=>{if(++te===3){const n=$("#mapnote");n.hidden=false;n.textContent=innerWidth<600?"Street map didn't load. Pins are still placed correctly.":"The street map did not load on this connection. The pins still show where each place is.";}}).addTo(MAP);LAY=L.layerGroup().addTo(MAP);drawMap(true);}
 function pop(r){const t=telHref(r.ph);return `<div class="pop"><b>${esc(r.n)}</b><span class="pa">${esc(r.a)}${r.z?", "+esc(r.z):""}${r.ar?" · "+esc(r.ar):""}</span><span class="pill ${resCls(r.r)}">City result: ${esc(r.r)}</span><span class="pm">${esc(r.nw?"New this morning":"Sent "+day(r.lo))}, inspected ${esc(day(r.d))}</span>
 <span class="pb">${r.ph&&t?`<a class="btn sm" href="${t}">Call ${esc(r.ph)}</a>`:""}<button class="btn ghost sm" type="button" data-show="${esc(r.id)}">Show in the list</button></span></div>`;}
 function drawMap(refit){if(!MAP)return;const rows=D.rows.filter(pass),geo=rows.filter(r=>r.y&&r.x),note=$("#mapnote");LAY.clearLayers();MK={};
 const miss=rows.length-geo.length;note.hidden=!(miss||!rows.length);note.textContent=!rows.length?"No places match. Clear the search or pick All.":miss?`${miss} place${miss===1?"":"s"} on the list ${miss===1?"has":"have"} no map location in the City record.`:"";
-geo.slice().sort((a,b)=>(a.nw?1:0)-(b.nw?1:0)).forEach(r=>{const st=mark(r.id).c?2:r.nw?0:1;const c=L.circleMarker([r.y,r.x],MS[st]).bindPopup(pop(r),{maxWidth:300,minWidth:240});c.addTo(LAY);MK[r.id]=c;});
+geo.slice().sort((a,b)=>(a.nw?1:0)-(b.nw?1:0)).forEach(r=>{const st=mark(r.id).c?2:r.nw?0:1;const c=L.circleMarker([r.y,r.x],MS[st]).bindPopup(pop(r),{maxWidth:innerWidth<600?260:300,minWidth:innerWidth<600?220:240,autoPanPaddingTopLeft:[16,16],autoPanPaddingBottomRight:[64,16]});c.addTo(LAY);MK[r.id]=c;});
 if(refit&&geo.length){const bb=L.latLngBounds(geo.map(r=>[r.y,r.x]));if(geo.length===1)MAP.setView(bb.getCenter(),15,{animate:false});else MAP.fitBounds(bb,{padding:[40,40],maxZoom:15,animate:false});}}
 function setView(v){F.view=v;document.querySelectorAll("[data-view]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.view===v)));$("#mapbox").hidden=v!=="map";$("#maplegend").hidden=v!=="map";$("#results").hidden=v==="map";
 if(v==="map"){ensureMap();if(MAP){MAP.invalidateSize();drawMap(true);}const mb=$("#mapbox");if(mb&&mb.getBoundingClientRect().top>innerHeight*.45)mb.scrollIntoView({block:"start",behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"});}}

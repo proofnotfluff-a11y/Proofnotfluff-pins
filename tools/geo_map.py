@@ -169,9 +169,9 @@ CSS = ("<style>"
        ".gm{--gm0:#fbe9e1;--gm1:#f3c0aa;--gm2:#e48d6a;--gm3:#c8502f;--gm4:#8a3017;--gmn:#ece8e1;"
        "--gmd0:#1e4c48;--gmd1:#7fb5ae;--gmd2:#d6d0c4;--gmd3:#eeab90;--gmd4:#b4401f;--gmedge:#cfc6ba;--gmbg:#e6ecef;"
        "margin:12px 0 8px;padding:14px 14px 12px;background:var(--card);border:1px solid var(--line);border-radius:12px}"
-       "@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .gm{--gm0:#463a37;--gm1:#5c3a30;--gm2:#94472d;--gm3:#d4653f;--gm4:#f6a383;--gmn:#262c38;"
+       "@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .gm{--gm0:#3b2f2c;--gm1:#6b3524;--gm2:#a9452a;--gm3:#e2623a;--gm4:#ff8f63;--gmn:#262c38;"
        "--gmd0:#7fd0c5;--gmd1:#2f5a56;--gmd2:#4a5163;--gmd3:#7f3d2b;--gmd4:#f0906d;--gmedge:#3a4152;--gmbg:#141a24}}"
-       ":root[data-theme=dark] .gm{--gm0:#463a37;--gm1:#5c3a30;--gm2:#94472d;--gm3:#d4653f;--gm4:#f6a383;--gmn:#262c38;"
+       ":root[data-theme=dark] .gm{--gm0:#3b2f2c;--gm1:#6b3524;--gm2:#a9452a;--gm3:#e2623a;--gm4:#ff8f63;--gmn:#262c38;"
        "--gmd0:#7fd0c5;--gmd1:#2f5a56;--gmd2:#4a5163;--gmd3:#7f3d2b;--gmd4:#f0906d;--gmedge:#3a4152;--gmbg:#141a24}"
        ".gm-bar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:end;justify-content:space-between;margin:0 0 10px}"
        ".gm-seg{display:flex;flex-wrap:wrap;gap:6px;border:0;margin:0;padding:0;min-width:0}"
@@ -182,7 +182,7 @@ CSS = ("<style>"
        ".gm-seg label:has(input:checked){background:var(--ink);border-color:var(--ink);color:var(--card)}"
        ".gm-seg label:has(input:focus-visible){outline:3px solid var(--focus);outline-offset:2px}"
        ".gm-find{display:grid;gap:6px;font-size:13px;font-weight:700;color:var(--muted);min-width:min(100%,240px)}"
-       ".gm-find select{min-height:44px;font:600 15px/1.2 inherit;color:var(--ink);background:var(--card) var(--sel-arrow) no-repeat right 14px center;"
+       ".gm-find select{min-height:44px;font:inherit;font-size:15px;font-weight:600;line-height:1.2;color:var(--ink);background:var(--card) var(--sel-arrow) no-repeat right 14px center;"
        "border:1px solid var(--line);border-radius:10px;padding:0 38px 0 12px;appearance:none;-webkit-appearance:none}"
        ".gm-find select:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
        ".gm-main{display:grid;gap:12px}@media(min-width:860px){.gm-main{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:start}}"
@@ -194,23 +194,24 @@ CSS = ("<style>"
        ".gm-a path.q0{fill:var(--gm0)}.gm-a path.q1{fill:var(--gm1)}.gm-a path.q2{fill:var(--gm2)}.gm-a path.q3{fill:var(--gm3)}.gm-a path.q4{fill:var(--gm4)}"
        ".gm-a path.d0{fill:var(--gmd0)}.gm-a path.d1{fill:var(--gmd1)}.gm-a path.d2{fill:var(--gmd2)}.gm-a path.d3{fill:var(--gmd3)}.gm-a path.d4{fill:var(--gmd4)}"
        ".gm-a path.nx{fill:url(#gm-hatch)}"
-       ".gm-a path:hover{stroke:var(--ink);stroke-width:1.6}.gm-a path.sel{stroke:var(--ink);stroke-width:2.6}"
+       ".gm-a path:hover{stroke:var(--ink);stroke-width:1.6}.gm-a path.sel{stroke:var(--accent-text);stroke-width:3.5;paint-order:stroke}"
        ".gm-lab text{font:700 11px system-ui,sans-serif;fill:var(--ink);paint-order:stroke;stroke:var(--card);stroke-width:3px;stroke-linejoin:round;pointer-events:none;letter-spacing:.02em}"
        ".gm-lab text.gm-lake{font-weight:600;font-style:italic;fill:var(--muted);stroke:none}"
        ".gm-zoom{position:absolute;right:8px;top:8px;display:grid;gap:6px}"
        ".gm-zoom .gm-zr{width:auto;padding:0 12px;font:700 14px/1 system-ui,sans-serif}.gm-zoom button{width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:700 20px/1 system-ui,sans-serif;cursor:pointer;box-shadow:var(--shadow-soft)}"
        ".gm-zoom button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}.gm-zoom button[hidden]{display:none}"
        ".gm-info{padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:var(--canvas2)}@media(min-width:860px){.gm-info{min-height:190px}}"
-       ".gm-big{display:flex;align-items:center;gap:10px;margin:2px 0 4px;font:700 32px/1.1 Poppins,system-ui,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}.gm-big i{width:14px;height:28px;border-radius:3px;flex:none}"
-       ".gm-big small{font:600 14px/1.3 inherit;color:var(--muted)}"
-       ".gm-top{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;padding:0;list-style:none}.gm-top button{min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:600 14px inherit;cursor:pointer}"
+       ".gm-info .gm-big,.gm-big{display:flex;align-items:center;gap:10px;margin:2px 0 4px;font:700 32px/1.1 Poppins,system-ui,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}.gm-big i{width:14px;height:28px;border-radius:3px;flex:none}"
+       ".gm-info .gm-big small{font:inherit;font-size:14px;font-weight:600;line-height:1.3;color:var(--muted)}"
+       ".gm-top{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;padding:0;list-style:none}.gm-top button{min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit;font-size:14px;font-weight:600;cursor:pointer}"
        ".gm-info h3{margin:0 0 4px;font-size:19px;color:var(--ink)}.gm-info p{margin:6px 0 0;color:var(--ink2);font-size:15px}"
        ".gm-info .gm-hint{color:var(--muted);font-size:14px}.gm-info b{color:var(--ink);font-variant-numeric:tabular-nums}"
        ".gm-info dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:10px 0 0;font-size:15px}"
        ".gm-info dt{color:var(--muted)}.gm-info dd{margin:0;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;text-align:right}.gm-info dl{max-width:320px}"
        ".gm-side{display:grid;gap:12px;align-content:start}"
        ".gm-leg{padding:12px 16px;border:1px solid var(--line);border-radius:10px}.gm-legt{margin:0 0 8px;font-size:13.5px;font-weight:700;color:var(--muted)}"
-       ".gm-leg ul{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:2px;margin:0;padding:0;list-style:none;font-size:12.5px;line-height:1.25;color:var(--ink2)}"
+       ".gm-leg ul{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:6px;margin:0;padding:0;list-style:none;font-size:12.5px;line-height:1.25;color:var(--ink2)}"
+       "@media(max-width:599px){.gm-leg .gm-l{display:none}}@media(min-width:600px){.gm-leg .gm-s{display:none}}"
        ".gm-leg li{display:flex;flex-direction:column;gap:6px;min-width:0}.gm-leg i{display:block;height:12px;border-radius:2px}"
        ".gm-leg li:first-child i{border-radius:6px 2px 2px 6px}.gm-leg li:last-child i{border-radius:2px 6px 6px 2px}"
        ".gm-leg .gm-x{display:flex;align-items:center;gap:8px;margin:10px 0 0;font-size:13px;color:var(--ink2)}.gm-leg .gm-x i{width:22px;height:12px;border-radius:2px;flex:none}"
@@ -227,7 +228,7 @@ Object.keys(P).forEach(function(n){var c=(D.cls[M]||{})[n];P[n].setAttribute("cl
 var t=P[n].querySelector("title");if(t&&a)t.textContent=a.name+": "+(a.say[M]||"");});
 leg.innerHTML=legHtml(m);}
 function legHtml(m){var main=m.legend.filter(function(l){return l[0]!=="nx";}),x=m.legend.filter(function(l){return l[0]==="nx";});
-return '<p class="gm-legt">'+m.legendTitle+'</p><ul>'+main.map(function(l){return '<li><i style="background:'+l[1]+'"></i><span>'+l[2]+'</span></li>';}).join("")+'</ul>'+x.map(function(l){return '<p class="gm-x"><i style="background:'+l[1]+'"></i>'+l[2]+'</p>';}).join("");}
+return '<p class="gm-legt">'+m.legendTitle+'</p><ul>'+main.map(function(l){return '<li><i style="background:'+l[1]+'"></i><span class="gm-l">'+l[2]+'</span><span class="gm-s">'+(l[3]||l[2])+'</span></li>';}).join("")+'</ul>'+x.map(function(l){return '<p class="gm-x"><i style="background:'+l[1]+'"></i>'+l[2]+'</p>';}).join("");}
 function swatch(n){var c=(D.cls[M]||{})[n],m=D.metrics.filter(function(x){return x.key===M;})[0];for(var i=0;i<m.legend.length;i++)if(m.legend[i][0]===c)return m.legend[i][1];return "transparent";}
 function show(n){var a=D.areas[n];if(!a){info.innerHTML=D.hint;return;}var b=(a.big||{})[M]||["",""];
 info.innerHTML='<h3>'+a.name+'</h3><p class="gm-big"><i style="background:'+swatch(n)+'"></i><span>'+b[0]+'</span><small>'+b[1]+'</small></p>'+a.html;}
@@ -277,16 +278,16 @@ def choropleth(areas, metrics, uid="gm", title="Map", hint="", landmarks=True, g
     if landmarks:
         pj = o["project"]
         lx, ly = pj(-87.585, 41.93)
-        labs = (f'<text class="gm-lake" x="{min(lx, o["w"] - 58):.0f}" y="{ly:.0f}">Lake Michigan</text>'
+        labs = (f'<text class="gm-lake" x="{o["w"] - 12}" y="{ly:.0f}" text-anchor="end">Lake Michigan</text>'
                 + "".join(f'<text x="{a["x"]:.0f}" y="{a["y"] + 4:.0f}" text-anchor="middle">{E(a["name"].replace("O" + chr(39) + "Hare", "O" + chr(8217) + "Hare"))}</text>'
                           for a in o["areas"] if a["n"] in (32, 76, 41, 22, 6, 25)))
     opts = "".join(f'<option value="{n}">{E(nm)}</option>' for n, nm in sorted(names.items(), key=lambda x: x[1]))
     seg = "".join(f'<label><input type="radio" name="{uid}-m" value="{E(m["key"])}"{" checked" if i == 0 else ""}>{E(m["label"])}</label>'
                   for i, m in enumerate(metrics))
     leg = (f'<p class="gm-legt">{E(first["legendTitle"])}</p><ul>'
-           + "".join(f'<li><i style="background:{v}"></i><span>{E(t)}</span></li>' for c, v, t in first["legend"] if c != "nx") + "</ul>"
-           + "".join(f'<p class="gm-x"><i style="background:{v}"></i>{E(t)}</p>' for c, v, t in first["legend"] if c == "nx"))
-    data = {"metrics": [{"key": m["key"], "legendTitle": E(m["legendTitle"]), "legend": [[c, v, E(t)] for c, v, t in m["legend"]]} for m in metrics],
+           + "".join(f'<li><i style="background:{l[1]}"></i><span class="gm-l">{E(l[2])}</span><span class="gm-s">{E(l[3] if len(l) > 3 else l[2])}</span></li>' for l in first["legend"] if l[0] != "nx") + "</ul>"
+           + "".join(f'<p class="gm-x"><i style="background:{l[1]}"></i>{E(l[2])}</p>' for l in first["legend"] if l[0] == "nx"))
+    data = {"metrics": [{"key": m["key"], "legendTitle": E(m["legendTitle"]), "legend": [[l[0], l[1], E(l[2]), E(l[3] if len(l) > 3 else l[2])] for l in m["legend"]]} for m in metrics],
             "cls": {m["key"]: {str(k): v for k, v in m["cls"].items()} for m in metrics},
             "areas": {str(a["n"]): {"name": E(a["name"]), "x": a["x"], "y": a["y"], "html": (areas.get(a["n"]) or {}).get("html", ""),
                                     "say": {k: E(v) for k, v in ((areas.get(a["n"]) or {}).get("say") or {}).items()},

@@ -127,9 +127,9 @@ CSS = ("<style>"
        ".tn-bar{position:sticky;top:var(--hdr-h,64px);z-index:5;display:grid;gap:10px;margin:8px 0 14px;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow-soft)}"
        "@media(min-width:760px){.tn-bar{grid-template-columns:minmax(220px,300px) 1fr;align-items:end}}"
        ".tn-bar label{display:grid;gap:6px;font-size:13px;font-weight:700;color:var(--muted)}"
-       ".tn-bar select{min-height:44px;font:600 15px/1.2 inherit;color:var(--ink);background:var(--card) var(--sel-arrow) no-repeat right 14px center;border:1px solid var(--line);border-radius:10px;padding:0 38px 0 12px;appearance:none;-webkit-appearance:none}"
+       ".tn-bar select{min-height:44px;font:inherit;font-size:15px;font-weight:600;line-height:1.2;color:var(--ink);background:var(--card) var(--sel-arrow) no-repeat right 14px center;border:1px solid var(--line);border-radius:10px;padding:0 38px 0 12px;appearance:none;-webkit-appearance:none}"
        ".tn-chips{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;border:0;min-width:0}.tn-chips legend{font-size:13px;font-weight:700;color:var(--muted);margin:0 0 6px;padding:0}"
-       ".tn-chips button{min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink2);font:600 14.5px inherit;cursor:pointer}"
+       ".tn-chips button{min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink2);font:inherit;font-size:14.5px;font-weight:600;cursor:pointer}"
        ".tn-chips button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:var(--card)}"
        ".tn-count{margin:0 0 10px;color:var(--muted);font-size:14px}"
        ".tn-list{display:grid;gap:14px}"
@@ -142,11 +142,13 @@ CSS = ("<style>"
        ".tn-item h4{max-width:72ch;font-family:Poppins,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;font-weight:700;letter-spacing:-.01em;margin:0 0 8px;font-size:clamp(18px,2.4vw,21px);line-height:1.3;color:var(--ink);text-wrap:balance}"
        ".tn-item p{margin:0 0 8px;color:var(--ink2);max-width:72ch}.tn-item .tn-why{color:var(--ink)}.tn-item .tn-why b{color:var(--ink)}"
        ".tn-for{margin:10px 0 0;font-size:14px;color:var(--muted)}.tn-for b{color:var(--ink2);font-weight:600}.tn-more{margin:4px 0 0}.tn-more a{font-weight:700;color:var(--ink)}"
-       ".tn-src{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;margin:12px 0 0;padding-top:10px;border-top:1px solid var(--rule);font-size:14px;color:var(--muted)}"
-       ".tn-src a{display:inline-flex;align-items:center;min-height:32px;color:var(--ink);font-weight:600}"
-       ".tn-copy{margin-left:auto;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--ink2);font:600 13px inherit;cursor:pointer}.tn-copy svg{width:16px;height:16px}"
+       ".tn-src{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:baseline;margin:12px 0 0;padding-top:10px;border-top:1px solid var(--rule);font-size:14px;color:var(--muted)}"
+       ".tn-src>span+span{display:flex;flex-wrap:wrap;gap:2px 14px}.tn-src a{display:inline-flex;align-items:center;min-height:28px;color:var(--ink);font-weight:600}"
+       "@media(max-width:599px){.tn-top .tn-copy{width:44px;padding:0;justify-content:center}.tn-top .tn-copy .tn-ct{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}"
+       ".ld-page .cta .ld-buybtn{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}"
+       ".tn-copy{margin-left:auto;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--ink2);font:inherit;font-size:13px;font-weight:600;cursor:pointer}.tn-copy svg{width:16px;height:16px}"
        ".tn-st.new{background:var(--accent);border-color:var(--accent);color:#fff}"
-       ".tn-group{margin:22px 0 10px;font-size:19px}.tn-group small{font:600 14px inherit;color:var(--muted);margin-left:6px}"
+       ".tn-group{margin:22px 0 10px;font-size:19px}.tn-group small{font:inherit;font-size:14px;font-weight:600;color:var(--muted);margin-left:6px}"
        ".ld-page .ld-tiles{margin-top:24px}.ld-heroact .st-btn2{min-height:52px}"
        ".cta .st-btn2{border-color:rgba(255,255,255,.7);color:#fff}.cta .st-btn2:hover{background:#fff;color:var(--band)}"
        ".tn-soon{display:grid;gap:0;margin:8px 0 0;padding:0;list-style:none;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}"
@@ -171,12 +173,12 @@ def item_html(it, today, E, new=False, rel="../"):
             f'<div class="tn-top"><span class="tn-cat">{E(it["category"])}</span><span class="tn-st{" soon" if soon else ""}">{E(stage_text(it, today))}</span>'
             + ('<span class="tn-st new">New</span>' if new else "")
             + f'<span>Reported <time datetime="{E(it["date"])}">{E(nice(it["date"]))}</time></span>'
-            f'<button class="tn-copy" type="button" data-copy="{E(it["id"])}" hidden>{COPY_ICO}Copy link<span class="sr"> to this item</span></button></div>'
+            f'<button class="tn-copy" type="button" data-copy="{E(it["id"])}" hidden aria-label="Copy link to this item">{COPY_ICO}<span class="tn-ct">Copy link</span></button></div>'
             f'<h4 id="h-{E(it["id"])}">{E(it["headline"])}</h4><p>{E(it["what"])}</p>'
             f'<p class="tn-why"><b>What it means for you:</b> {E(it["why"])}</p>'
             + (f'<p class="tn-more"><a href="{rel}{E(it["link"]["slug"])}/">{E(it["link"]["text"])}</a></p>' if it.get("link") else "")
             + f'<p class="tn-for"><b>For:</b> {E(", ".join(it["trades"]))}</p>'
-            f'<p class="tn-src"><span>Source{"s" if len(it["sources"]) > 1 else ""}:</span>{src}</p></article>')
+            f'<p class="tn-src"><span>Source{"s" if len(it["sources"]) > 1 else ""}:</span><span>{src}</span></p></article>')
 
 
 JS = r"""<script>(function(){var R=document.getElementById("tn");if(!R)return;var items=[].slice.call(R.querySelectorAll(".tn-item")),sel=document.getElementById("tn-trade"),
@@ -191,7 +193,7 @@ sel.addEventListener("change",run);
 R.querySelectorAll(".tn-chips button").forEach(function(b){b.addEventListener("click",function(){cat=b.dataset.cat;R.querySelectorAll(".tn-chips button").forEach(function(x){x.setAttribute("aria-pressed",String(x===b));});run();});});
 document.getElementById("tn-clear").addEventListener("click",function(){sel.value="";cat="";R.querySelectorAll(".tn-chips button").forEach(function(x){x.setAttribute("aria-pressed",String(!x.dataset.cat));});run();sel.focus();});
 if(navigator.clipboard){R.querySelectorAll(".tn-copy").forEach(function(b){b.hidden=false;b.addEventListener("click",function(){var u=location.origin+location.pathname+"#"+b.dataset.copy;
-navigator.clipboard.writeText(u).then(function(){var o=b.textContent;b.textContent="Link copied";setTimeout(function(){b.textContent=o;},1800);});});});}
+navigator.clipboard.writeText(u).then(function(){var t=b.querySelector(".tn-ct"),o=t.textContent;t.textContent="Link copied";b.setAttribute("aria-label","Link copied");setTimeout(function(){t.textContent=o;b.setAttribute("aria-label","Copy link to this item");},1800);});});});}
 run();})();</script>"""
 
 

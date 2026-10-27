@@ -68,8 +68,8 @@ CSS = ("<style>.rc-bars{margin:12px 0 8px;padding:16px 18px;background:var(--car
        "@media(max-width:599px){.rc-t{min-width:0}.rc-t th:nth-child(2),.rc-t td:nth-child(2){display:none}.rc-t th,.rc-t td{padding:9px 8px}.rc-wk div:not(:nth-child(3n+1)):not(:last-child) span{visibility:hidden}.rc-wk span{font-size:11.5px}.rc-wk{height:140px}.rc-wk div:not(:last-child) b{visibility:hidden}.rc-bar{grid-template-columns:minmax(96px,130px) 1fr 44px}}</style>")
 
 
-CHANGE_BINS = [("d0", "var(--gmd0)", "Down 25% or more"), ("d1", "var(--gmd1)", "Down 5 to 25%"), ("d2", "var(--gmd2)", "Within 5%"),
-               ("d3", "var(--gmd3)", "Up 5 to 25%"), ("d4", "var(--gmd4)", "Up 25% or more"),
+CHANGE_BINS = [("d0", "var(--gmd0)", "Down 25% or more", "-25%"), ("d1", "var(--gmd1)", "Down 5 to 25%", "-5%"), ("d2", "var(--gmd2)", "Within 5%", "Same"),
+               ("d3", "var(--gmd3)", "Up 5 to 25%", "+5%"), ("d4", "var(--gmd4)", "Up 25% or more", "+25%"),
                ("nx", "repeating-linear-gradient(45deg,var(--gmn) 0 4px,var(--dash) 4px 5.5px)", "Too few a year ago to compare")]
 
 
@@ -84,11 +84,11 @@ def range_legend(cuts):
     """Legend lines for the five count classes: under the first cut, each band, then the last cut or more."""
     if not cuts:
         return [("q0", "var(--gm0)", "Any")]
-    out = [("q0", "var(--gm0)", f"Under {cuts[0]:,}")]
+    out = [("q0", "var(--gm0)", f"Under {cuts[0]:,}", f"<{cuts[0]:,}")]
     for i in range(1, len(cuts)):
         lo, hi = cuts[i - 1], cuts[i] - 1
-        out.append((f"q{i}", f"var(--gm{i})", f"{lo:,}" if lo == hi else f"{lo:,} to {hi:,}"))
-    out.append((f"q{len(cuts)}", f"var(--gm{len(cuts)})", f"{cuts[-1]:,} or more"))
+        out.append((f"q{i}", f"var(--gm{i})", f"{lo:,}" if lo == hi else f"{lo:,} to {hi:,}", f"{lo:,}"))
+    out.append((f"q{len(cuts)}", f"var(--gm{len(cuts)})", f"{cuts[-1]:,} or more", f"{cuts[-1]:,}+"))
     return out
 
 
@@ -138,7 +138,7 @@ def map_block(d, E):
             + '<p class="gm-hint">Tap or hover any area on the map, or choose one from the list.</p>')
     fig = G.choropleth(areas, metrics, uid="ratmap", title="Map of Chicago's 77 community areas, colored by rat complaints to 311",
                        hint=hint,
-                       caption=("Community area outlines: City of Chicago, Boundaries - Community Areas. The stronger the color, the more complaints. "
+                       caption=("Community area outlines: City of Chicago, Boundaries - Community Areas. "
                                 "Every number on the map is also in the table below."))
     return G.CSS + fig if fig else ""
 

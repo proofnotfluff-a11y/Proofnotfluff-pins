@@ -51,27 +51,27 @@ TRADES = [
     {"key": "landscaping", "name": "Landscaping and tree work", "short": "Landscaping",
      "words": ["landscaping", "tree", "mowing", "turf", "forestry", "stump", "pruning", "lawn", "weed"],
      "re": r"\bLANDSCAP|\bTREES?\b|\bMOWING|\bMOW\b|\bTURF\b|\bFORESTRY|\bSTUMP|\bPRUN(?:E|ING)|\bLAWN|\bWEED",
-     "out": r"TREE OF LIFE|STREET TREE INVENTORY SOFTWARE"},
+     "out": r"TREE OF LIFE|INVENTORY|TRAILERS?\b|HOLIDAY TREE|TREES STUDIO"},
     {"key": "snow-removal", "name": "Snow removal", "short": "Snow removal",
      "words": ["snow", "plowing", "ice control", "de-icing"],
      "re": r"\bSNOW|\bPLOW|\bICE CONTROL|\bDE-?ICING|\bICE (?:AND|&) SNOW",
-     "out": r"\bROCK SALT\b|SODIUM CHLORIDE|DE-?ICING FLUID|GLYCOL|AIRCRAFT DE-?ICING"},
+     "out": r"\bROCK SALT\b|SODIUM CHLORIDE|DE-?ICING FLUID|GLYCOL|AIRCRAFT DE-?ICING|DEICING FACILITY|BLOWERS?\b|SNOW EQUIPMENT|CHASSIS"},
     {"key": "roofing", "name": "Roofing", "short": "Roofing",
      "words": ["roof", "roofing"],
      "re": r"\bROOF",
      "out": ""},
     {"key": "painting", "name": "Painting", "short": "Painting",
-     "words": ["painting", "repainting", "paint services", "coating"],
-     "re": r"\bPAINTING|\bREPAINT|\bPAINT SERV|\bPROTECTIVE COATING|\bCOATING SERV",
-     "out": r"PAVEMENT MARKING|TRAFFIC PAINT|\bMURAL"},
+     "words": ["paint", "painting", "repainting", "coating"],
+     "re": r"\bPAINT(?:ING|ED)?\b|\bREPAINT|\bPROTECTIVE COATING|\bCOATING SERV",
+     "out": r"PAVEMENT MARKING|TRAFFIC PAINT|\bMURAL|SPRAYERS?\b|ARTWORK|\bART\b|PAINTINGS\b"},
     {"key": "hvac", "name": "HVAC", "short": "HVAC",
      "words": ["HVAC", "heating", "air conditioning", "boiler", "chiller", "cooling tower", "ventilation", "refrigeration"],
      "re": r"\bHVAC|\bHEATING|\bAIR CONDITION|\bBOILER|\bCHILLER|\bCOOLING TOWER|\bVENTILAT|\bREFRIGERAT|\bFURNACE|\bH\.V\.A\.C",
-     "out": r"HEATING OIL|\bFUEL OIL|NATURAL GAS SUPPLY"},
+     "out": r"HEATING OIL|\bFUEL OIL|NATURAL GAS SUPPLY|ELEVATOR"},
     {"key": "electrical", "name": "Electrical", "short": "Electrical",
      "words": ["electrical", "electrician", "wiring", "lighting maintenance", "street light", "traffic signal"],
      "re": r"\bELECTRICAL|\bELECTRICIAN|\bWIRING\b|\bSTREET ?LIGHT|\bLIGHTING (?:MAINT|INSTALL|REPAIR|RETROFIT|UPGRADE)|\bTRAFFIC SIGNAL|\bELECTRIC(?:AL)? (?:WORK|SERV|REPAIR|MAINT)",
-     "out": r"ELECTRICITY SUPPLY|\bUTILIT(?:Y|IES)-ELECTRIC|ELECTRIC VEHICLE|ELECTRIC BUS"},
+     "out": r"ELECTRICITY SUPPLY|\bUTILIT(?:Y|IES)-ELECTRIC|ELECTRIC VEHICLE|ELECTRIC BUS|\bPOLES\b|\bBODY\b"},
     {"key": "plumbing", "name": "Plumbing", "short": "Plumbing",
      "words": ["plumbing", "backflow", "water heater", "sewer repair", "drain"],
      "re": r"\bPLUMB|\bBACKFLOW|\bWATER HEATER|\bDRAIN (?:CLEAN|REPAIR|SERV)|\bSEWER (?:REPAIR|RODDING|CLEANING) SERV",
@@ -79,20 +79,28 @@ TRADES = [
     {"key": "demolition", "name": "Demolition", "short": "Demolition",
      "words": ["demolition", "wrecking"],
      "re": r"\bDEMOLI|\bWRECKING",
-     "out": ""},
+     "out": r"REPROCESSABLE"},
     {"key": "hauling", "name": "Hauling and junk removal", "short": "Hauling",
      "words": ["hauling", "junk", "debris removal", "refuse", "dumpster", "roll-off", "waste removal", "board-up", "clean and seal"],
      "re": r"\bHAUL|\bJUNK\b|\bDEBRIS (?:REMOVAL|HAUL)|\bREFUSE\b|\bDUMPSTER|\bROLL[- ]?OFF|\bWASTE (?:REMOVAL|HAULING|DISPOSAL)|\bBOARD[- ]?UP|\bCLEAN (?:AND|&) SEAL",
-     "out": r"HAULER LICENSE|HAZARDOUS WASTE DISPOSAL SOFTWARE"},
+     "out": r"HAULER LICENSE|REFUSE TRUCK|REFUSE BODY|REFUSE CART"},
     {"key": "pressure-washing", "name": "Pressure washing and graffiti", "short": "Pressure washing",
      "words": ["graffiti", "pressure washing", "power washing", "sandblasting"],
      "re": r"\bGRAFFITI|\bPRESSURE WASH|\bPOWER WASH|\bSANDBLAST|\bSAND BLAST",
-     "out": ""},
+     "out": r"CHEMICALS?\b|PRESSURE WASHERS\b|STEAM CLEANERS?\b"},
 ]
 # A purchase of goods for a trade is not trade work: "JANITORIAL SUPPLIES" is left out unless the description also
 # names work (service, repair, maintenance, installation, removal, labor).
 SUPPLY = re.compile(r"\bSUPPL(?:Y|IES)\b|\bPARTS\b|\bMATERIALS?\b|\bPRODUCTS\b|\bCHEMICALS?\b|\bEQUIPMENT\b|\bVEHICLES?\b|\bTRUCKS?\b|\bSPREADERS?\b")
 WORK = re.compile(r"SERVIC|REPAIR|MAINT|INSTALL|REMOV|LABOR|\bWORK\b|CLEANING|ABATEMENT|CONTROL\b|REPLACE|REHAB|CONSTRUCT|RENOVAT")
+# Not trade work in any trade: buying goods or equipment, upkeep of the City's own machines, design and engineering,
+# software, art, grants and redevelopment deals.
+NOT_WORK = re.compile(r"\bPURCHASE OF\b|\bPURCHASE AND DELIVERY\b|^PURCHASE\b|PARTS AND (?:REPAIR )?SERVICES?\b|\bFLEET\b|"
+                      r"DESIGN ENGINEERING|ENGINEERING SERVICES|PROFESSIONAL DESIGN|CONSULTING SERVICES|\bSOFTWARE\b|"
+                      r"ARTWORK|\bGRANT\b|REDEVELOPMENT|INVENTORY MANAGEMENT|\bRENTAL OF HEAVY EQUIPMENT")
+# A revision 0 row that only moves an existing contract to a new number is not a new award (the City writes
+# "NOT A NEW AWARD", "TRANSFER FROM PO" or "See PO" on it): counted apart as a transfer.
+TRANSFER = re.compile(r"NOT A NEW AWARD|TRANSFER(?:RED)? FROM (?:PO|P\.O)|\bXFER|REPLACING PO|SEE PO\s*#", re.I)
 # Contract types that are not trade work for hire: grants to agencies, leases, revenue deals, utility supply.
 NOT_TRADE_TYPES = {"DELEGATE AGENCY", "PROPERTY LEASE", "REVENUE", "UTILITIES-ELECTRICITY", "UTILITIES-NATURAL GAS"}
 BUSINESS = re.compile(r"\b(?:INC|INCORPORATED|LLC|L\.L\.C|CORP|CORPORATION|CO|COMPANY|LTD|LIMITED|LP|LLP|PLLC|PC|GROUP|SERVICES?|"
@@ -174,7 +182,7 @@ def vendor(name):
 def match(desc, ctype=""):
     """The trade keys a contract description falls under ([] for none). A description can name more than one trade."""
     d = re.sub(r"\s+", " ", (desc or "").upper())
-    if (ctype or "").upper() in NOT_TRADE_TYPES:
+    if (ctype or "").upper() in NOT_TRADE_TYPES or NOT_WORK.search(d):
         return []
     out = []
     for t in TRADES:
@@ -187,13 +195,15 @@ def match(desc, ctype=""):
 
 def row_out(r):
     """One published row: business fields only (the order is ROW_COLS)."""
-    return [day(r.get("approval_date")), rev(r), re.sub(r"\s+", " ", (r.get("purchase_order_description") or "").strip()),
+    kind = -1 if rev(r) == 0 and TRANSFER.search(r.get("purchase_order_description") or "") else rev(r)
+    return [day(r.get("approval_date")), kind, re.sub(r"\s+", " ", (r.get("purchase_order_description") or "").strip()),
             title_dept(r.get("department")), vendor(r.get("vendor_name")), amount(r), (r.get("contract_type") or "").strip(),
             (r.get("procurement_type") or "").strip(), (r.get("specification_number") or "").strip(),
             (r.get("purchase_order_contract_number") or "").strip(), day(r.get("start_date")), day(r.get("end_date")), pdf(r)]
 
 
-ROW_COLS = ["approved", "revision", "description", "department", "vendor", "amount", "contractType", "procurementType",
+ROW_COLS = ["approved", "revision",   # revision -1: a transfer to a new contract number, not a new award
+ "description", "department", "vendor", "amount", "contractType", "procurementType",
             "spec", "contract", "start", "end", "pdf"]
 SMALL = {"OF", "AND", "THE", "FOR", "ON", "IN", "AT", "TO"}
 KEEP_UP = {"CDA", "DPS", "CDOT", "DFSS", "OEMC", "CPL", "DOB", "DWM", "DSS", "2FM", "IT"}
@@ -212,13 +222,14 @@ def stats(rows):
     """Counts and money for a set of published rows, originals and modifications apart."""
     orig = [r for r in rows if r[1] == 0]
     mods = [r for r in rows if r[1] > 0]
+    moved = [r for r in rows if r[1] < 0]
     paid = [r[5] for r in orig if r[5] > 0]
     return {"awards": len(orig), "paid": len(paid), "total": round(sum(paid), 2),
             "median": round(statistics.median(paid), 2) if paid else None,
             "zero": sum(1 for r in orig if r[5] == 0), "negAwards": sum(1 for r in orig if r[5] < 0),
             "mods": len(mods), "modsUp": sum(1 for r in mods if r[5] > 0), "modsUpTotal": round(sum(r[5] for r in mods if r[5] > 0), 2),
             "modsDown": sum(1 for r in mods if r[5] < 0), "modsDownTotal": round(sum(r[5] for r in mods if r[5] < 0), 2),
-            "modsZero": sum(1 for r in mods if r[5] == 0)}
+            "modsZero": sum(1 for r in mods if r[5] == 0), "transfers": len(moved)}
 
 
 def group(rows, idx, top=None):
@@ -348,7 +359,8 @@ def selftest():
             R("JANITORIAL SERVICES", -2000, rv=2, po="A"), R("JANITORIAL SERVICES", 7000, rv=1, po="A"),
             R("ROOF REPLACEMENT AND TREE TRIMMING", 50000, po="E", v="ROOF & TREE CO"), R("SEWER CLEANING", 9, po="F"),
             R("PEST CONTROL", 9, po="G", ct="DELEGATE AGENCY"), R("SNOW PLOWING SERVICES", 20000, po="H", ad="2023-09-01"),
-            R("ROCK SALT FOR SNOW", 1, po="I")]
+            R("ROCK SALT FOR SNOW", 1, po="I"), R("NOT A NEW AWARD - Replacing PO # 1 - JANITORIAL SERVICES", 900, po="J"),
+            R("PARTS AND REPAIR SERVICES - MECHANICAL, ELECTRICAL", 5, po="L"), R("PURCHASE AND DELIVERY OF RODENTICIDES", 5, po="M")]
     ending = [R("JANITORIAL SERVICES", 0, po="D", end="2027-01-31", v="JOHN Q SMITH"), R("JANITORIAL SERVICES", 0, rv=1, po="D", end="2027-03-31"),
               R("JANITORIAL SERVICES", 0, po="K", end="2026-12-31"), R("JANITORIAL SERVICES", 0, rv=1, po="K", end="2028-12-31")]
     d = build(rows, ending, today, {"name": "Contracts", "rowsUpdatedAtIso": "2026-10-27T03:17:28-05:00"}, "2026-10-27T08:00:00-05:00")
@@ -356,6 +368,8 @@ def selftest():
     j = T["janitorial"]
     assert j["m36"]["awards"] == 3 and j["m36"]["paid"] == 2 and j["m36"]["total"] == 400000 and j["m36"]["median"] == 200000, j["m36"]
     assert j["m12"]["awards"] == 2 and j["m12"]["total"] == 100000 and j["m12"]["zero"] == 1, j["m12"]
+    assert j["m36"]["transfers"] == 1 and all(r[2][:3] != "NOT" or r[1] == -1 for r in j["rows"]), "a transfer is not a new award"
+    assert T["electrical"]["m36"]["awards"] == 0 and T["pest-control"]["m36"]["awards"] == 0, "fleet repair and purchases are not trade work"
     assert j["m36"]["mods"] == 2 and j["m36"]["modsUpTotal"] == 7000 and j["m36"]["modsDownTotal"] == -2000, "modifications apart"
     assert all("SUPPLIES" not in r[2] for r in j["rows"]), "supplies left out"
     assert any(r[4] == "Name withheld" for r in j["rows"]) and j["withheld"] == 1, "a person's name is withheld"

@@ -185,6 +185,7 @@ def main():
     ep = "https://eprocurement.cityofchicago.org/OA_HTML/OA.jsp?OAFunc=PON_ABSTRACT_PAGE"
     b, st, ct = get(ep, tries=2, raw=True)
     t = Links(ep); t.feed(b.decode("utf-8", "replace"))
+    open(os.path.join(OUT, "eproc-abstract.html"), "wb").write(b)   # the City's public list page, kept while the build reads its paging
     res["dps"]["eprocAbstract"] = {"url": ep, "status": st, "type": ct, "bytes": len(b),
                                    "text": [x for x in (re.sub(r"\s+", " ", y).strip() for y in "".join(t.text).split("\n")) if len(x) > 2][:120]}
     res["dps"]["weekly2026"] = weeks

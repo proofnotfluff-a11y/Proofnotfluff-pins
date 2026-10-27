@@ -138,6 +138,21 @@ def outline(geo=None, width=W, tol=TOL):
     return {"w": width, "h": h, "areas": out, "project": proj, "source": geo.get("source") or {}}
 
 
+def latlon_rings(geo=None, tol=0.0004):
+    """Community area outer rings as [[lat, lon], ...] lists, simplified (about 40 m) and rounded to 4 decimals, for a
+    Leaflet outline layer under the paid apps' pins (Oct 27, 2026: the map is never an empty box when street tiles fail)."""
+    geo = geo or load()
+    if not geo:
+        return []
+    out = []
+    for a in geo["areas"]:
+        for poly in a["polys"]:
+            r = _dp([(x, y) for x, y in poly[0]], tol)
+            if len(r) >= 4:
+                out.append([[round(y, 4), round(x, 4)] for x, y in r])
+    return out
+
+
 def nice_breaks(vals, k=5):
     """k-1 cut points for k classes from the data's quantiles, rounded to easy numbers and kept strictly rising."""
     v = sorted(x for x in vals if x is not None)

@@ -140,6 +140,16 @@ LEAFLET_JS = ("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js",
 LEAFLET_CSS = ("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css", "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=")
 
 
+def _geo_json():
+    """Public community area outlines (site/geo, tools/geo_map.py), drawn under the pins so the map shows the city even
+    when the street tiles do not load. Public boundaries, so they sit outside the encrypted box."""
+    try:
+        import geo_map
+        return json.dumps(geo_map.latlon_rings(), separators=(",", ":"))
+    except Exception:
+        return "[]"
+
+
 def payload(named):
     rows = []
     for new, r in pest_rows(named):
@@ -183,6 +193,7 @@ def build_html(named, password):
     as_of = RL.pretty(named["asOf"])
     return (PAGE.replace("__BOX__", json.dumps(box)).replace("__WORDS__", words_json(as_of)).replace("__ASOF__", _esc(as_of))
             .replace("__FREE__", FREE_PAGE).replace("__CITY__", _esc(CITY_DISCLAIMER))
+            .replace("__GEO__", _geo_json())
             .replace("__LJS__", LEAFLET_JS[0]).replace("__LJSI__", LEAFLET_JS[1]).replace("__LCSS__", LEAFLET_CSS[0]).replace("__LCSSI__", LEAFLET_CSS[1]))
 
 
@@ -333,6 +344,8 @@ footer p{margin:0 0 10px;overflow-wrap:anywhere}
 .map-note{position:absolute;z-index:500;left:10px;bottom:10px;max-width:calc(100% - 140px);}@media(max-width:600px){.map-note{max-width:calc(100% - 20px);bottom:24px}}.map-note{margin:0;background:rgba(255,255,255,.96);border:1px solid #e2ddd3;border-radius:8px;padding:6px 10px;font-size:12.5px;color:#565d6b}
 .map-fail{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:10px;padding:20px;text-align:center;color:#3f4659;background:#f3f1ec}
 .card.flash{outline:3px solid var(--accent);outline-offset:2px}
+.pnf-areas{stroke:#7a7f8c;stroke-opacity:.6;fill:#fbfaf7;fill-opacity:.55}
+@media (prefers-color-scheme:dark){.pnf-areas{stroke:#5c6578;stroke-opacity:.8;fill:#252c3d;fill-opacity:.6}}
 .vseg{display:inline-flex;border:1.5px solid var(--line);border-radius:10px;overflow:hidden;margin-left:auto}
 .vseg button{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border:0;background:var(--card);font-weight:600;font-size:15px;cursor:pointer}
 .vseg button+button{border-left:1.5px solid var(--line)}.vseg button[aria-pressed="true"]{background:var(--ink);color:var(--canvas)}
@@ -378,6 +391,7 @@ footer p{margin:0 0 10px;overflow-wrap:anywhere}
 "use strict";
 const BOX=__BOX__;
 const W=__WORDS__;
+const GEO=__GEO__;
 const PKEY="pnf-pest-seat-pw",SKEY="pnf-pest-seat-marks-v1";
 const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -424,12 +438,14 @@ function drawList(){$("#results").innerHTML=listHtml();drawMap(false);}
 const MS=[{radius:9,color:"#fff",weight:2.5,fillColor:"#c8502f",fillOpacity:1},{radius:6.5,color:"#fff",weight:1.5,fillColor:"#2e6b66",fillOpacity:.95},{radius:6,color:"#3a4152",weight:2,fillColor:"#fff",fillOpacity:1}];
 function ensureMap(){if(MAP||!$("#map"))return;if(!window.L){const box=$("#mapbox");if(box&&!box.querySelector(".map-fail"))box.insertAdjacentHTML("beforeend",'<div class="map-fail"><p>The map did not load on this connection. The list has every place.</p><button class="btn sm" type="button" id="mfl">Show the list</button></div>');const b=$("#mfl");if(b)b.onclick=()=>setView("list");return;}
 MAP=L.map("map",{zoomControl:false,scrollWheelZoom:false}).setView([41.85,-87.68],11);L.control.zoom({position:innerWidth<600?"bottomright":"topright"}).addTo(MAP);MAP.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
-let te=0;L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).on("tileerror",()=>{if(++te===3){const n=$("#mapnote");n.hidden=false;n.textContent=innerWidth<600?"Street map didn't load. Pins are still placed correctly.":"The street map did not load on this connection. The pins still show where each place is.";}}).addTo(MAP);LAY=L.layerGroup().addTo(MAP);drawMap(true);}
+let te=0;L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).on("tileerror",()=>{if(++te===3){const n=$("#mapnote");n.hidden=false;n.textContent=innerWidth<600?"Street map didn't load. Pins are still placed correctly.":"The street map did not load on this connection. The pins still show where each place is.";}}).addTo(MAP);if(GEO.length)L.polygon(GEO,{className:"pnf-areas",weight:1,interactive:false}).addTo(MAP);
+LAY=L.layerGroup().addTo(MAP);drawMap(true);}
 function pop(r){const t=telHref(r.ph);return `<div class="pop"><b>${esc(r.n)}</b><span class="pa">${esc(r.a)}${r.z?", "+esc(r.z):""}${r.ar?" · "+esc(r.ar):""}</span><span class="pill ${resCls(r.r)}">City result: ${esc(r.r)}</span><span class="pm">${esc(r.nw?"New this morning":"Sent "+day(r.lo))}, inspected ${esc(day(r.d))}</span>
 <span class="pb">${r.ph&&t?`<a class="btn sm" href="${t}">Call ${esc(r.ph)}</a>`:""}<button class="btn ghost sm" type="button" data-show="${esc(r.id)}">Show in the list</button></span></div>`;}
 function drawMap(refit){if(!MAP)return;const rows=D.rows.filter(pass),geo=rows.filter(r=>r.y&&r.x),note=$("#mapnote");LAY.clearLayers();MK={};
 const miss=rows.length-geo.length;note.hidden=!(miss||!rows.length);note.textContent=!rows.length?"No places match. Clear the search or pick All.":miss?`${miss} place${miss===1?"":"s"} on the list ${miss===1?"has":"have"} no map location in the City record.`:"";
 geo.slice().sort((a,b)=>(a.nw?1:0)-(b.nw?1:0)).forEach(r=>{const st=mark(r.id).c?2:r.nw?0:1;const c=L.circleMarker([r.y,r.x],MS[st]).bindPopup(pop(r),{maxWidth:innerWidth<600?260:300,minWidth:innerWidth<600?220:240,autoPanPaddingTopLeft:[16,16],autoPanPaddingBottomRight:[64,16]});c.addTo(LAY);MK[r.id]=c;});
+if(refit&&!geo.length&&GEO.length){MAP.fitBounds(L.latLngBounds(GEO.flat()),{padding:[20,20],animate:false});}
 if(refit&&geo.length){const bb=L.latLngBounds(geo.map(r=>[r.y,r.x]));if(geo.length===1)MAP.setView(bb.getCenter(),15,{animate:false});else MAP.fitBounds(bb,{padding:[40,40],maxZoom:15,animate:false});}}
 function setView(v){F.view=v;document.querySelectorAll("[data-view]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.view===v)));$("#mapbox").hidden=v!=="map";$("#maplegend").hidden=v!=="map";$("#results").hidden=v==="map";
 if(v==="map"){ensureMap();if(MAP){MAP.invalidateSize();drawMap(true);}const mb=$("#mapbox");if(mb&&mb.getBoundingClientRect().top>innerHeight*.45)mb.scrollIntoView({block:"start",behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"});}}

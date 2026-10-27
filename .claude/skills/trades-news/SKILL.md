@@ -1,4 +1,4 @@
-# trades-news (daily 6:52 am Central, cloud; Todd, Oct 27, 2026: "let's refresh news daily")
+# trades-news (daily 6:32 am Central, task PNF site: trades news daily, cloud; Todd, Oct 27, 2026: "let's refresh news daily")
 
 One job: refresh Chicago Trades News (site/news/chicago-trades.json, page /chicago-trades-news/, built by tools/news_site.py), gate it, and publish it if every gate passes. A daily data refresh is a minor change under coo/CONSTITUTION.md section 2; a new page type, layout or email capture is major and goes to Todd. Todd's brief (Oct 27, 2026): "any major news impacting the trades in Chicago. New regulations, news events, tax related news, etc. Anything that would be useful to workers in the trades."
 

@@ -3,32 +3,32 @@ citywide,All,All,All,2025-10-27 to 2026-10-26,31646,6,42,91,23.7
 review path,All,Express Permit Program,All,2025-10-27 to 2026-10-26,20456,3,13,21,29.0
 review path,All,Standard Plan Review,All,2025-10-27 to 2026-10-26,3565,91,180,262,1.3
 review path,All,Self Certification,All,2025-10-27 to 2026-10-26,3009,32,73,115,0.7
-review path,All,Sign Permit,All,2025-10-27 to 2026-10-26,2043,38,90,143,0.0
-review path,All,Conveyance Device Permit,All,2025-10-27 to 2026-10-26,1119,0,5,7,73.7
-review path,All,Demolition Permit,All,2025-10-27 to 2026-10-26,669,46,84,117,34.5
+review path,All,Signs,All,2025-10-27 to 2026-10-26,2043,38,90,143,0.0
+review path,All,Elevators and other conveyances,All,2025-10-27 to 2026-10-26,1119,0,5,7,73.7
+review path,All,Wrecking and demolition,All,2025-10-27 to 2026-10-26,669,46,84,117,34.5
 review path,All,Easy Permit,All,2025-10-27 to 2026-10-26,461,0,0,0,95.2
 review path,All,Direct Developer Services,All,2025-10-27 to 2026-10-26,320,113,210,384,0.0
 review path,All,Traditional Developer Services,All,2025-10-27 to 2026-10-26,4,,,,
-permit type,Permit – Express Permit Program,All,All,2025-10-27 to 2026-10-26,20456,3,13,21,29.0
-permit type and path,Permit – Express Permit Program,Express Permit Program,All,2025-10-27 to 2026-10-26,20456,3,13,21,29.0
+permit type,Express Permit Program,All,All,2025-10-27 to 2026-10-26,20456,3,13,21,29.0
+permit type and path,Express Permit Program,Express Permit Program,All,2025-10-27 to 2026-10-26,20456,3,13,21,29.0
 permit type,Renovation and Alteration,All,All,2025-10-27 to 2026-10-26,5348,59,143,212,0.4
 permit type and path,Renovation and Alteration,Standard Plan Review,All,2025-10-27 to 2026-10-26,2658,104,189,275,0.0
 permit type and path,Renovation and Alteration,Self Certification,All,2025-10-27 to 2026-10-26,2484,27,63,103,0.8
 permit type and path,Renovation and Alteration,Direct Developer Services,All,2025-10-27 to 2026-10-26,203,103,188,290,0.0
 permit type and path,Renovation and Alteration,Traditional Developer Services,All,2025-10-27 to 2026-10-26,3,,,,
 permit type,Signs,All,All,2025-10-27 to 2026-10-26,2043,38,90,143,0.0
-permit type and path,Signs,Sign Permit,All,2025-10-27 to 2026-10-26,2043,38,90,143,0.0
+permit type and path,Signs,Signs,All,2025-10-27 to 2026-10-26,2043,38,90,143,0.0
 permit type,New Construction,All,All,2025-10-27 to 2026-10-26,1550,56,138,211,3.0
 permit type and path,New Construction,Standard Plan Review,All,2025-10-27 to 2026-10-26,907,44,139,209,5.2
 permit type and path,New Construction,Self Certification,All,2025-10-27 to 2026-10-26,525,56,112,168,0.0
 permit type and path,New Construction,Direct Developer Services,All,2025-10-27 to 2026-10-26,117,135,224,502,0.0
 permit type and path,New Construction,Traditional Developer Services,All,2025-10-27 to 2026-10-26,1,,,,
 permit type,Elevator Equipment,All,All,2025-10-27 to 2026-10-26,1119,0,5,7,73.7
-permit type and path,Elevator Equipment,Conveyance Device Permit,All,2025-10-27 to 2026-10-26,1119,0,5,7,73.7
+permit type and path,Elevator Equipment,Elevators and other conveyances,All,2025-10-27 to 2026-10-26,1119,0,5,7,73.7
 permit type,Wrecking and Demolition,All,All,2025-10-27 to 2026-10-26,669,46,84,117,34.5
-permit type and path,Wrecking and Demolition,Demolition Permit,All,2025-10-27 to 2026-10-26,669,46,84,117,34.5
-permit type,Reinstate Revoked Pmt,All,All,2025-10-27 to 2026-10-26,461,0,0,0,95.2
-permit type and path,Reinstate Revoked Pmt,Easy Permit,All,2025-10-27 to 2026-10-26,461,0,0,0,95.2
+permit type and path,Wrecking and Demolition,Wrecking and demolition,All,2025-10-27 to 2026-10-26,669,46,84,117,34.5
+permit type,Reinstated Revoked Permits,All,All,2025-10-27 to 2026-10-26,461,0,0,0,95.2
+permit type and path,Reinstated Revoked Permits,Easy Permit,All,2025-10-27 to 2026-10-26,461,0,0,0,95.2
 permit type,Easy Permit,All,All,2025-10-27 to 2026-10-26,0,,,,
 community area,All,All,Rogers Park,2025-10-27 to 2026-10-26,303,7,38,92,22.4
 community area,All,All,West Ridge,2025-10-27 to 2026-10-26,443,6,49,102,22.6
@@ -357,78 +357,78 @@ month and path,All,Self Certification,All,2026-06,235,33,65,109,2.1
 month and path,All,Self Certification,All,2026-07,290,41,83,125,0.3
 month and path,All,Self Certification,All,2026-08,281,39,91,128,0.4
 month and path,All,Self Certification,All,2026-09,289,31,68,102,0.3
-month and path,All,Sign Permit,All,2024-10,155,46,91,215,0.0
-month and path,All,Sign Permit,All,2024-11,197,33,65,88,0.0
-month and path,All,Sign Permit,All,2024-12,172,35,80,112,0.0
-month and path,All,Sign Permit,All,2025-01,164,44,76,143,0.0
-month and path,All,Sign Permit,All,2025-02,150,29,94,176,0.0
-month and path,All,Sign Permit,All,2025-03,214,32,85,134,0.0
-month and path,All,Sign Permit,All,2025-04,305,27,70,82,0.0
-month and path,All,Sign Permit,All,2025-05,178,35,74,108,0.0
-month and path,All,Sign Permit,All,2025-06,260,34,64,112,0.0
-month and path,All,Sign Permit,All,2025-07,247,30,88,145,0.0
-month and path,All,Sign Permit,All,2025-08,271,35,110,178,0.0
-month and path,All,Sign Permit,All,2025-09,147,34,79,173,0.0
-month and path,All,Sign Permit,All,2025-10,196,32,67,93,0.0
-month and path,All,Sign Permit,All,2025-11,175,36,112,173,0.0
-month and path,All,Sign Permit,All,2025-12,152,40,125,171,0.0
-month and path,All,Sign Permit,All,2026-01,121,33,92,129,0.0
-month and path,All,Sign Permit,All,2026-02,108,49,81,99,0.0
-month and path,All,Sign Permit,All,2026-03,163,28,47,72,0.0
-month and path,All,Sign Permit,All,2026-04,237,42,114,174,0.0
-month and path,All,Sign Permit,All,2026-05,174,25,68,91,0.0
-month and path,All,Sign Permit,All,2026-06,212,36,83,106,0.0
-month and path,All,Sign Permit,All,2026-07,146,49,177,219,0.0
-month and path,All,Sign Permit,All,2026-08,186,49,116,181,0.0
-month and path,All,Sign Permit,All,2026-09,204,50,80,124,0.0
-month and path,All,Conveyance Device Permit,All,2024-10,98,0,0,5,81.6
-month and path,All,Conveyance Device Permit,All,2024-11,82,0,0,2,82.9
-month and path,All,Conveyance Device Permit,All,2024-12,68,0,5,7,67.6
-month and path,All,Conveyance Device Permit,All,2025-01,108,0,2,7,79.6
-month and path,All,Conveyance Device Permit,All,2025-02,86,0,4,9,59.3
-month and path,All,Conveyance Device Permit,All,2025-03,100,0,5,5,62.0
-month and path,All,Conveyance Device Permit,All,2025-04,74,0,5,7,73.0
-month and path,All,Conveyance Device Permit,All,2025-05,89,0,1,5,77.5
-month and path,All,Conveyance Device Permit,All,2025-06,69,0,5,5,60.9
-month and path,All,Conveyance Device Permit,All,2025-07,89,0,0,6,80.9
-month and path,All,Conveyance Device Permit,All,2025-08,89,0,7,7,74.2
-month and path,All,Conveyance Device Permit,All,2025-09,92,0,5,7,71.7
-month and path,All,Conveyance Device Permit,All,2025-10,98,0,7,12,65.3
-month and path,All,Conveyance Device Permit,All,2025-11,80,0,7,7,67.5
-month and path,All,Conveyance Device Permit,All,2025-12,120,0,6,7,72.5
-month and path,All,Conveyance Device Permit,All,2026-01,71,0,0,5,85.9
-month and path,All,Conveyance Device Permit,All,2026-02,99,0,5,6,64.6
-month and path,All,Conveyance Device Permit,All,2026-03,69,0,2,7,71.0
-month and path,All,Conveyance Device Permit,All,2026-04,82,0,0,0,91.5
-month and path,All,Conveyance Device Permit,All,2026-05,105,0,5,9,65.7
-month and path,All,Conveyance Device Permit,All,2026-06,89,0,5,7,69.7
-month and path,All,Conveyance Device Permit,All,2026-07,103,0,5,8,70.9
-month and path,All,Conveyance Device Permit,All,2026-08,104,0,5,7,69.2
-month and path,All,Conveyance Device Permit,All,2026-09,97,0,0,1,89.7
-month and path,All,Demolition Permit,All,2024-10,68,0,0,0,92.6
-month and path,All,Demolition Permit,All,2024-11,48,0,0,0,93.8
-month and path,All,Demolition Permit,All,2024-12,34,0,0,0,94.1
-month and path,All,Demolition Permit,All,2025-01,68,0,0,0,95.6
-month and path,All,Demolition Permit,All,2025-02,42,0,0,0,97.6
-month and path,All,Demolition Permit,All,2025-03,26,0,0,0,100.0
-month and path,All,Demolition Permit,All,2025-04,57,0,0,0,91.2
-month and path,All,Demolition Permit,All,2025-05,32,0,0,0,96.9
-month and path,All,Demolition Permit,All,2025-06,50,0,0,0,90.0
-month and path,All,Demolition Permit,All,2025-07,93,0,0,0,96.8
-month and path,All,Demolition Permit,All,2025-08,66,0,0,0,97.0
-month and path,All,Demolition Permit,All,2025-09,47,0,0,0,100.0
-month and path,All,Demolition Permit,All,2025-10,81,0,0,0,95.1
-month and path,All,Demolition Permit,All,2025-11,44,0,0,0,100.0
-month and path,All,Demolition Permit,All,2025-12,55,0,0,21,89.1
-month and path,All,Demolition Permit,All,2026-01,58,0,8,41,79.3
-month and path,All,Demolition Permit,All,2026-02,54,0,69,76,57.4
-month and path,All,Demolition Permit,All,2026-03,47,46,84,89,19.1
-month and path,All,Demolition Permit,All,2026-04,42,55,124,125,23.8
-month and path,All,Demolition Permit,All,2026-05,63,56,92,106,19.0
-month and path,All,Demolition Permit,All,2026-06,59,58,112,139,8.5
-month and path,All,Demolition Permit,All,2026-07,67,80,121,153,4.5
-month and path,All,Demolition Permit,All,2026-08,47,62,104,133,2.1
-month and path,All,Demolition Permit,All,2026-09,69,65,111,138,2.9
+month and path,All,Signs,All,2024-10,155,46,91,215,0.0
+month and path,All,Signs,All,2024-11,197,33,65,88,0.0
+month and path,All,Signs,All,2024-12,172,35,80,112,0.0
+month and path,All,Signs,All,2025-01,164,44,76,143,0.0
+month and path,All,Signs,All,2025-02,150,29,94,176,0.0
+month and path,All,Signs,All,2025-03,214,32,85,134,0.0
+month and path,All,Signs,All,2025-04,305,27,70,82,0.0
+month and path,All,Signs,All,2025-05,178,35,74,108,0.0
+month and path,All,Signs,All,2025-06,260,34,64,112,0.0
+month and path,All,Signs,All,2025-07,247,30,88,145,0.0
+month and path,All,Signs,All,2025-08,271,35,110,178,0.0
+month and path,All,Signs,All,2025-09,147,34,79,173,0.0
+month and path,All,Signs,All,2025-10,196,32,67,93,0.0
+month and path,All,Signs,All,2025-11,175,36,112,173,0.0
+month and path,All,Signs,All,2025-12,152,40,125,171,0.0
+month and path,All,Signs,All,2026-01,121,33,92,129,0.0
+month and path,All,Signs,All,2026-02,108,49,81,99,0.0
+month and path,All,Signs,All,2026-03,163,28,47,72,0.0
+month and path,All,Signs,All,2026-04,237,42,114,174,0.0
+month and path,All,Signs,All,2026-05,174,25,68,91,0.0
+month and path,All,Signs,All,2026-06,212,36,83,106,0.0
+month and path,All,Signs,All,2026-07,146,49,177,219,0.0
+month and path,All,Signs,All,2026-08,186,49,116,181,0.0
+month and path,All,Signs,All,2026-09,204,50,80,124,0.0
+month and path,All,Elevators and other conveyances,All,2024-10,98,0,0,5,81.6
+month and path,All,Elevators and other conveyances,All,2024-11,82,0,0,2,82.9
+month and path,All,Elevators and other conveyances,All,2024-12,68,0,5,7,67.6
+month and path,All,Elevators and other conveyances,All,2025-01,108,0,2,7,79.6
+month and path,All,Elevators and other conveyances,All,2025-02,86,0,4,9,59.3
+month and path,All,Elevators and other conveyances,All,2025-03,100,0,5,5,62.0
+month and path,All,Elevators and other conveyances,All,2025-04,74,0,5,7,73.0
+month and path,All,Elevators and other conveyances,All,2025-05,89,0,1,5,77.5
+month and path,All,Elevators and other conveyances,All,2025-06,69,0,5,5,60.9
+month and path,All,Elevators and other conveyances,All,2025-07,89,0,0,6,80.9
+month and path,All,Elevators and other conveyances,All,2025-08,89,0,7,7,74.2
+month and path,All,Elevators and other conveyances,All,2025-09,92,0,5,7,71.7
+month and path,All,Elevators and other conveyances,All,2025-10,98,0,7,12,65.3
+month and path,All,Elevators and other conveyances,All,2025-11,80,0,7,7,67.5
+month and path,All,Elevators and other conveyances,All,2025-12,120,0,6,7,72.5
+month and path,All,Elevators and other conveyances,All,2026-01,71,0,0,5,85.9
+month and path,All,Elevators and other conveyances,All,2026-02,99,0,5,6,64.6
+month and path,All,Elevators and other conveyances,All,2026-03,69,0,2,7,71.0
+month and path,All,Elevators and other conveyances,All,2026-04,82,0,0,0,91.5
+month and path,All,Elevators and other conveyances,All,2026-05,105,0,5,9,65.7
+month and path,All,Elevators and other conveyances,All,2026-06,89,0,5,7,69.7
+month and path,All,Elevators and other conveyances,All,2026-07,103,0,5,8,70.9
+month and path,All,Elevators and other conveyances,All,2026-08,104,0,5,7,69.2
+month and path,All,Elevators and other conveyances,All,2026-09,97,0,0,1,89.7
+month and path,All,Wrecking and demolition,All,2024-10,68,0,0,0,92.6
+month and path,All,Wrecking and demolition,All,2024-11,48,0,0,0,93.8
+month and path,All,Wrecking and demolition,All,2024-12,34,0,0,0,94.1
+month and path,All,Wrecking and demolition,All,2025-01,68,0,0,0,95.6
+month and path,All,Wrecking and demolition,All,2025-02,42,0,0,0,97.6
+month and path,All,Wrecking and demolition,All,2025-03,26,0,0,0,100.0
+month and path,All,Wrecking and demolition,All,2025-04,57,0,0,0,91.2
+month and path,All,Wrecking and demolition,All,2025-05,32,0,0,0,96.9
+month and path,All,Wrecking and demolition,All,2025-06,50,0,0,0,90.0
+month and path,All,Wrecking and demolition,All,2025-07,93,0,0,0,96.8
+month and path,All,Wrecking and demolition,All,2025-08,66,0,0,0,97.0
+month and path,All,Wrecking and demolition,All,2025-09,47,0,0,0,100.0
+month and path,All,Wrecking and demolition,All,2025-10,81,0,0,0,95.1
+month and path,All,Wrecking and demolition,All,2025-11,44,0,0,0,100.0
+month and path,All,Wrecking and demolition,All,2025-12,55,0,0,21,89.1
+month and path,All,Wrecking and demolition,All,2026-01,58,0,8,41,79.3
+month and path,All,Wrecking and demolition,All,2026-02,54,0,69,76,57.4
+month and path,All,Wrecking and demolition,All,2026-03,47,46,84,89,19.1
+month and path,All,Wrecking and demolition,All,2026-04,42,55,124,125,23.8
+month and path,All,Wrecking and demolition,All,2026-05,63,56,92,106,19.0
+month and path,All,Wrecking and demolition,All,2026-06,59,58,112,139,8.5
+month and path,All,Wrecking and demolition,All,2026-07,67,80,121,153,4.5
+month and path,All,Wrecking and demolition,All,2026-08,47,62,104,133,2.1
+month and path,All,Wrecking and demolition,All,2026-09,69,65,111,138,2.9
 month and path,All,Easy Permit,All,2024-10,53,0,0,0,98.1
 month and path,All,Easy Permit,All,2024-11,28,0,2,15,78.6
 month and path,All,Easy Permit,All,2024-12,18,,,,
@@ -501,30 +501,30 @@ month and path,All,Traditional Developer Services,All,2026-06,0,,,,
 month and path,All,Traditional Developer Services,All,2026-07,0,,,,
 month and path,All,Traditional Developer Services,All,2026-08,0,,,,
 month and path,All,Traditional Developer Services,All,2026-09,0,,,,
-month and type,Permit – Express Permit Program,All,All,2024-10,2072,6,15,25,27.2
-month and type,Permit – Express Permit Program,All,All,2024-11,1366,5,14,22,26.0
-month and type,Permit – Express Permit Program,All,All,2024-12,1119,5,17,30,28.5
-month and type,Permit – Express Permit Program,All,All,2025-01,1420,5,25,41,25.7
-month and type,Permit – Express Permit Program,All,All,2025-02,1203,3,12,22,27.2
-month and type,Permit – Express Permit Program,All,All,2025-03,1642,3,9,19,28.7
-month and type,Permit – Express Permit Program,All,All,2025-04,1852,2,8,14,32.1
-month and type,Permit – Express Permit Program,All,All,2025-05,1817,2,8,16,34.0
-month and type,Permit – Express Permit Program,All,All,2025-06,1850,3,10,19,29.2
-month and type,Permit – Express Permit Program,All,All,2025-07,1905,1,9,18,32.8
-month and type,Permit – Express Permit Program,All,All,2025-08,1768,2,11,19,32.7
-month and type,Permit – Express Permit Program,All,All,2025-09,2014,2,12,20,32.6
-month and type,Permit – Express Permit Program,All,All,2025-10,2142,3,13,21,27.9
-month and type,Permit – Express Permit Program,All,All,2025-11,1559,4,14,26,26.2
-month and type,Permit – Express Permit Program,All,All,2025-12,1255,5,15,28,23.9
-month and type,Permit – Express Permit Program,All,All,2026-01,1161,3,15,29,26.2
-month and type,Permit – Express Permit Program,All,All,2026-02,1243,3,13,24,28.6
-month and type,Permit – Express Permit Program,All,All,2026-03,1705,2,9,17,30.8
-month and type,Permit – Express Permit Program,All,All,2026-04,1767,2,9,15,32.8
-month and type,Permit – Express Permit Program,All,All,2026-05,1771,2,9,17,31.4
-month and type,Permit – Express Permit Program,All,All,2026-06,1949,3,12,19,32.4
-month and type,Permit – Express Permit Program,All,All,2026-07,1883,3,13,21,28.1
-month and type,Permit – Express Permit Program,All,All,2026-08,2003,3,12,23,28.5
-month and type,Permit – Express Permit Program,All,All,2026-09,2124,4,15,27,26.9
+month and type,Express Permit Program,All,All,2024-10,2072,6,15,25,27.2
+month and type,Express Permit Program,All,All,2024-11,1366,5,14,22,26.0
+month and type,Express Permit Program,All,All,2024-12,1119,5,17,30,28.5
+month and type,Express Permit Program,All,All,2025-01,1420,5,25,41,25.7
+month and type,Express Permit Program,All,All,2025-02,1203,3,12,22,27.2
+month and type,Express Permit Program,All,All,2025-03,1642,3,9,19,28.7
+month and type,Express Permit Program,All,All,2025-04,1852,2,8,14,32.1
+month and type,Express Permit Program,All,All,2025-05,1817,2,8,16,34.0
+month and type,Express Permit Program,All,All,2025-06,1850,3,10,19,29.2
+month and type,Express Permit Program,All,All,2025-07,1905,1,9,18,32.8
+month and type,Express Permit Program,All,All,2025-08,1768,2,11,19,32.7
+month and type,Express Permit Program,All,All,2025-09,2014,2,12,20,32.6
+month and type,Express Permit Program,All,All,2025-10,2142,3,13,21,27.9
+month and type,Express Permit Program,All,All,2025-11,1559,4,14,26,26.2
+month and type,Express Permit Program,All,All,2025-12,1255,5,15,28,23.9
+month and type,Express Permit Program,All,All,2026-01,1161,3,15,29,26.2
+month and type,Express Permit Program,All,All,2026-02,1243,3,13,24,28.6
+month and type,Express Permit Program,All,All,2026-03,1705,2,9,17,30.8
+month and type,Express Permit Program,All,All,2026-04,1767,2,9,15,32.8
+month and type,Express Permit Program,All,All,2026-05,1771,2,9,17,31.4
+month and type,Express Permit Program,All,All,2026-06,1949,3,12,19,32.4
+month and type,Express Permit Program,All,All,2026-07,1883,3,13,21,28.1
+month and type,Express Permit Program,All,All,2026-08,2003,3,12,23,28.5
+month and type,Express Permit Program,All,All,2026-09,2124,4,15,27,26.9
 month and type,Renovation and Alteration,All,All,2024-10,597,36,107,182,0.7
 month and type,Renovation and Alteration,All,All,2024-11,428,49,128,191,0.0
 month and type,Renovation and Alteration,All,All,2024-12,414,45,120,205,0.5
@@ -645,30 +645,30 @@ month and type,Wrecking and Demolition,All,All,2026-06,59,58,112,139,8.5
 month and type,Wrecking and Demolition,All,All,2026-07,67,80,121,153,4.5
 month and type,Wrecking and Demolition,All,All,2026-08,47,62,104,133,2.1
 month and type,Wrecking and Demolition,All,All,2026-09,69,65,111,138,2.9
-month and type,Reinstate Revoked Pmt,All,All,2024-10,51,0,0,0,98.0
-month and type,Reinstate Revoked Pmt,All,All,2024-11,26,0,2,15,76.9
-month and type,Reinstate Revoked Pmt,All,All,2024-12,18,,,,
-month and type,Reinstate Revoked Pmt,All,All,2025-01,33,0,0,0,90.9
-month and type,Reinstate Revoked Pmt,All,All,2025-02,20,0,0,0,95.0
-month and type,Reinstate Revoked Pmt,All,All,2025-03,22,0,0,0,95.5
-month and type,Reinstate Revoked Pmt,All,All,2025-04,50,0,0,0,98.0
-month and type,Reinstate Revoked Pmt,All,All,2025-05,32,0,0,0,96.9
-month and type,Reinstate Revoked Pmt,All,All,2025-06,54,0,0,0,94.4
-month and type,Reinstate Revoked Pmt,All,All,2025-07,31,0,0,0,100.0
-month and type,Reinstate Revoked Pmt,All,All,2025-08,35,0,0,0,97.1
-month and type,Reinstate Revoked Pmt,All,All,2025-09,48,0,0,0,95.8
-month and type,Reinstate Revoked Pmt,All,All,2025-10,35,0,0,0,100.0
-month and type,Reinstate Revoked Pmt,All,All,2025-11,33,0,0,0,93.9
-month and type,Reinstate Revoked Pmt,All,All,2025-12,28,0,0,1,89.3
-month and type,Reinstate Revoked Pmt,All,All,2026-01,44,0,0,1,88.6
-month and type,Reinstate Revoked Pmt,All,All,2026-02,38,0,0,0,100.0
-month and type,Reinstate Revoked Pmt,All,All,2026-03,45,0,0,0,95.6
-month and type,Reinstate Revoked Pmt,All,All,2026-04,41,0,0,0,97.6
-month and type,Reinstate Revoked Pmt,All,All,2026-05,40,0,0,0,95.0
-month and type,Reinstate Revoked Pmt,All,All,2026-06,35,0,0,0,100.0
-month and type,Reinstate Revoked Pmt,All,All,2026-07,42,0,0,0,100.0
-month and type,Reinstate Revoked Pmt,All,All,2026-08,37,0,0,0,91.9
-month and type,Reinstate Revoked Pmt,All,All,2026-09,46,0,0,0,95.7
+month and type,Reinstated Revoked Permits,All,All,2024-10,51,0,0,0,98.0
+month and type,Reinstated Revoked Permits,All,All,2024-11,26,0,2,15,76.9
+month and type,Reinstated Revoked Permits,All,All,2024-12,18,,,,
+month and type,Reinstated Revoked Permits,All,All,2025-01,33,0,0,0,90.9
+month and type,Reinstated Revoked Permits,All,All,2025-02,20,0,0,0,95.0
+month and type,Reinstated Revoked Permits,All,All,2025-03,22,0,0,0,95.5
+month and type,Reinstated Revoked Permits,All,All,2025-04,50,0,0,0,98.0
+month and type,Reinstated Revoked Permits,All,All,2025-05,32,0,0,0,96.9
+month and type,Reinstated Revoked Permits,All,All,2025-06,54,0,0,0,94.4
+month and type,Reinstated Revoked Permits,All,All,2025-07,31,0,0,0,100.0
+month and type,Reinstated Revoked Permits,All,All,2025-08,35,0,0,0,97.1
+month and type,Reinstated Revoked Permits,All,All,2025-09,48,0,0,0,95.8
+month and type,Reinstated Revoked Permits,All,All,2025-10,35,0,0,0,100.0
+month and type,Reinstated Revoked Permits,All,All,2025-11,33,0,0,0,93.9
+month and type,Reinstated Revoked Permits,All,All,2025-12,28,0,0,1,89.3
+month and type,Reinstated Revoked Permits,All,All,2026-01,44,0,0,1,88.6
+month and type,Reinstated Revoked Permits,All,All,2026-02,38,0,0,0,100.0
+month and type,Reinstated Revoked Permits,All,All,2026-03,45,0,0,0,95.6
+month and type,Reinstated Revoked Permits,All,All,2026-04,41,0,0,0,97.6
+month and type,Reinstated Revoked Permits,All,All,2026-05,40,0,0,0,95.0
+month and type,Reinstated Revoked Permits,All,All,2026-06,35,0,0,0,100.0
+month and type,Reinstated Revoked Permits,All,All,2026-07,42,0,0,0,100.0
+month and type,Reinstated Revoked Permits,All,All,2026-08,37,0,0,0,91.9
+month and type,Reinstated Revoked Permits,All,All,2026-09,46,0,0,0,95.7
 month and type,Easy Permit,All,All,2024-10,2,,,,
 month and type,Easy Permit,All,All,2024-11,2,,,,
 month and type,Easy Permit,All,All,2024-12,0,,,,

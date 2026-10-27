@@ -4,7 +4,7 @@
   "name": "Building Permits",
   "dataset": "ydr8-5enu",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
-  "fetchedAt": "2026-10-27T14:19:58-0500",
+  "fetchedAt": "2026-10-27T14:36:42-0500",
   "rowsUpdatedAt": "2026-10-27T15:43:13+00:00",
   "field": "processing_time",
   "fieldMeans": "Number of days between APPLICATION_START_DATE and ISSUE_DATE"
@@ -5091,7 +5091,7 @@
    ],
    "noArea12": 0,
    "key": "SIGN PERMIT",
-   "label": "Sign Permit"
+   "label": "Signs"
   },
   {
    "last12": {
@@ -5818,7 +5818,7 @@
    ],
    "noArea12": 1,
    "key": "CONVEYANCE DEVICE PERMIT",
-   "label": "Conveyance Device Permit"
+   "label": "Elevators and other conveyances"
   },
   {
    "last12": {
@@ -6545,7 +6545,7 @@
    ],
    "noArea12": 5,
    "key": "DEMOLITION PERMIT",
-   "label": "Demolition Permit"
+   "label": "Wrecking and demolition"
   },
   {
    "last12": {
@@ -9550,9 +9550,9 @@
     }
    ],
    "noArea12": 297,
-   "key": "PERMIT – EXPRESS PERMIT PROGRAM",
-   "label": "Permit – Express Permit Program",
-   "slug": "permit-express-permit-program",
+   "key": "PERMIT - EXPRESS PERMIT PROGRAM",
+   "label": "Express Permit Program",
+   "slug": "express-permit-program",
    "page": true,
    "reviews": [
     {
@@ -12869,7 +12869,7 @@
       }
      },
      "key": "SIGN PERMIT",
-     "label": "Sign Permit"
+     "label": "Signs"
     }
    ]
   },
@@ -15534,7 +15534,7 @@
       }
      },
      "key": "CONVEYANCE DEVICE PERMIT",
-     "label": "Conveyance Device Permit"
+     "label": "Elevators and other conveyances"
     }
    ]
   },
@@ -16550,7 +16550,7 @@
       }
      },
      "key": "DEMOLITION PERMIT",
-     "label": "Demolition Permit"
+     "label": "Wrecking and demolition"
     }
    ]
   },
@@ -17237,8 +17237,8 @@
    ],
    "noArea12": 0,
    "key": "PERMIT - REINSTATE REVOKED PMT",
-   "label": "Reinstate Revoked Pmt",
-   "slug": "reinstate-revoked-pmt",
+   "label": "Reinstated Revoked Permits",
+   "slug": "reinstated-revoked-permits",
    "page": true,
    "reviews": [
     {

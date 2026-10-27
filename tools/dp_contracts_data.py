@@ -105,15 +105,19 @@ NOT_WORK = re.compile(r"\bPURCHASE OF\b|\bPURCHASE AND DELIVERY\b|^PURCHASE\b|PA
 TRANSFER = re.compile(r"NOT A NEW AWARD|TRANSFER(?:RED)? FROM (?:PO|P\.O)|\bXFER|REPLACING PO|SEE PO\s*#", re.I)
 # Contract types that are not trade work for hire: grants to agencies, leases, revenue deals, utility supply.
 NOT_TRADE_TYPES = {"DELEGATE AGENCY", "PROPERTY LEASE", "REVENUE", "UTILITIES-ELECTRICITY", "UTILITIES-NATURAL GAS"}
-BUSINESS = re.compile(r"\b(?:INC|INCORPORATED|LLC|L\.L\.C|CORP|CORPORATION|CO|COMPANY|LTD|LIMITED|LP|LLP|PLLC|PC|GROUP|SERVICES?|"
+# A word here makes a vendor name read as a business. Only legal forms and trade nouns that are not common surnames;
+# generic words that are also surnames (SNOW, POWER, STEEL, CENTER, SHOP, SALES, NATIONAL, CHICAGO ...) and a bare CO, DBA,
+# "&" or AND never count alone, so "JOHN SNOW" or "AL CO" is withheld.
+BUSINESS = re.compile(r"\b(?:INC|INCORPORATED|LLC|L\.L\.C|CORP|CORPORATION|COMPANY|COMPANIES|LTD|LIMITED|LP|LLP|PLLC|PC|GROUP|SERVICES?|"
                       r"ENTERPRISES?|CONSTRUCTION|CONSTRUCTORS?|CONTRACTORS?|CONTRACTING|ROOFING|ELECTRIC(?:AL)?|PLUMBING|MECHANICAL|"
-                      r"INDUSTRIES|ASSOCIATES|SOLUTIONS|SYSTEMS|SUPPLY|SONS|BROS|BROTHERS|PAINTING|LANDSCAP\w*|TREE|PEST|HAULING|"
+                      r"INDUSTRIES|ASSOCIATES|SOLUTIONS|SYSTEMS|SUPPLY|SONS|BROS|BROTHERS|PAINTING|LANDSCAP\w*|HAULING|"
                       r"DEMOLITION|WRECKING|ENVIRONMENTAL|TECHNOLOGIES|TECHNOLOGY|PARTNERS|HOLDINGS|INTERNATIONAL|MOTORS|EXCAVATING|"
-                      r"PAVING|MAINTENANCE|CLEANING|JANITORIAL|SNOW|DBA|JV|VENTURE|BUILDERS|ENGINEERING|CONSULTING|MANAGEMENT|"
-                      r"FACILITY|FACILITIES|INDUSTRIAL|NATIONAL|AMERICA|AMERICAN|MIDWEST|CHICAGO|ILLINOIS|UNITED|SALES|SUPPLIES|"
-                      r"TRUCKING|EXPRESS|ROOFERS|EXTERMINATING|CONTROL|PROPERTIES|DEVELOPMENT|WORKS|SHOP|CENTER|GARDENS?|DESIGNS?|LANDSCAPES?|"
-                      r"LAWN|TURF|FORESTRY|NURSERY|NURSERIES|SPRAY|WASTE|RECYCLING|DISPOSAL|TOWING|STEEL|IRON|CONCRETE|ASPHALT|SEWER|DRAIN|"
-                      r"HEATING|COOLING|AIR|LIGHTING|POWER|ENERGY|ABATEMENT|RESTORATION|BUILDING|SECURITY|SIGNS?|CORP\.|CO\.)\b")
+                      r"PAVING|MAINTENANCE|CLEANING|JANITORIAL|JV|JOINT VENTURE|BUILDERS|ENGINEERING|CONSULTING|MANAGEMENT|"
+                      r"FACILITY|FACILITIES|INDUSTRIAL|SUPPLIES|TRUCKING|ROOFERS|EXTERMINATING|PROPERTIES|DEVELOPMENT|"
+                      r"NURSERY|NURSERIES|RECYCLING|DISPOSAL|TOWING|CONCRETE|ASPHALT|HEATING|COOLING|LIGHTING|ENERGY|"
+                      r"ABATEMENT|RESTORATION|FOUNDATION|ASSOCIATION|AUTHORITY|UNIVERSITY|COLLEGE|AIRLINES)\b|"
+                      r"&\s*CO\b|\bCO[.,]|\bCO\s+INC\b")
+DBA = re.compile(r"\s+(?:DBA|D/B/A|D\.B\.A\.?)\s+", re.I)
 FMT = "%Y-%m-%dT%H:%M:%S"
 
 
@@ -180,6 +184,9 @@ def vendor(name):
     n = re.sub(r"\s+", " ", re.sub(r"\s*-{2,}\s*", " - ", (name or "").strip()))
     if not n:
         return "Not stated"
+    parts = DBA.split(n, maxsplit=1)
+    if len(parts) == 2 and not BUSINESS.search(parts[0].upper()):
+        n = parts[1]  # "JOHN SMITH DBA SMITH PLUMBING": show the trade name only, never the owner's own name
     return n if BUSINESS.search(n.upper()) else "Name withheld"
 
 
@@ -390,6 +397,10 @@ def selftest():
     assert match("MASTER AGREEMENT FOR DEMOLITION SERVICES") == ["demolition"] and match("TAXIWAY REHAB") == []
     assert vendor("MIDWEST WRECKING COMPANY 01") != "Name withheld" and vendor("MAX MADSON") == "Name withheld" and vendor("JOHN SMITH & MARY SMITH") == "Name withheld"
     assert vendor("MARIA LOPEZ AND JOSE LOPEZ") == "Name withheld" and vendor("A & M GENERAL CONTRACTOR, INC.") != "Name withheld"
+    for p in ("JOHN SNOW", "MICHAEL POWER", "JAMES STEEL", "ANNA CENTER", "LEE NATIONAL", "AL CO", "JOHN Q SMITH &", "AND", "JOHN SMITH D/B/A JS"):
+        assert vendor(p) == "Name withheld", p
+    assert vendor("JOHN SMITH DBA SMITH PLUMBING") == "SMITH PLUMBING" and vendor("ALFRED BENESCH & CO") != "Name withheld"
+    assert vendor("SEVEN-D CONSTRUCTION CO.") != "Name withheld" and vendor("SNOW SYSTEMS") != "Name withheld"
     assert title_dept("DEPT OF FLEET AND FACILITY MANAGEMENT") == "Department of Fleet and Facility Management"
     print("dp_contracts_data selftest: ok")
 

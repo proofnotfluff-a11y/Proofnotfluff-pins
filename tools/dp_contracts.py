@@ -400,7 +400,7 @@ def trade_csv(d, t):
                        'Purchases of goods, fleet upkeep, design and engineering, software, art, grants, leases and redevelopment deals are left out.')])
     import make_site as M
     wtr.writerow([M.CITY_DISCLAIMER["Chicago"]])
-    return out.getvalue()
+    return "\ufeff" + out.getvalue()   # a byte-order mark, so Excel reads the City's disclaimer (one\u2019s) word for word
 
 
 PROC = {"BID": "Bid", "RFP": "RFP", "RFQ": "RFQ", "SOLE SOURCE": "Sole source", "EMERGENCY": "Emergency", "MASTER AGREEMENT": "Master agreement",

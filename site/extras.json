@@ -7,6 +7,18 @@
    "card": "A printable page for house cleaners: four steps to your real break-even rate and the price floor for any clean. Free by email.",
    "from": ["house-cleaning-price-calculator"],
    "kitForm": "10059686"
+  },
+  {
+   "slug": "free-price-increase-letter-template",
+   "h1": "Free price increase letter template",
+   "card": "Three short letters that tell existing customers about a new rate, in Word and PDF. Free by email.",
+   "from": ["price-increase-calculator", "house-cleaning-price-calculator", "pressure-washing-price-calculator", "lawn-care-price-calculator"]
+  },
+  {
+   "slug": "free-job-estimate-template",
+   "h1": "Free job estimate template",
+   "card": "A one-page estimate in Excel and PDF: line items, discount, tax and deposit add up on their own. Free by email.",
+   "from": ["pressure-washing-price-calculator", "house-cleaning-price-calculator", "lawn-care-price-calculator", "pressure-washing-price-per-square-foot-calculator", "cleaning-price-per-square-foot-calculator"]
   }
  ]
 }

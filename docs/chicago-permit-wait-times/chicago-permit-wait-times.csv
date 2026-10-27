@@ -1,145 +1,145 @@
 scope,permit_type,review_path,community_area,period,permits,median_days,p80_days,p90_days,same_day_pct
-citywide,All,All,All,2025-10-27 to 2026-10-26,31646,6,42,91,23.7
-review path,All,Express Permit Program,All,2025-10-27 to 2026-10-26,20456,3,13,21,29.0
-review path,All,Standard Plan Review,All,2025-10-27 to 2026-10-26,3565,91,180,262,1.3
-review path,All,Self Certification,All,2025-10-27 to 2026-10-26,3009,32,73,115,0.7
+citywide,All,All,All,2025-10-27 to 2026-10-26,31646,6,42,91,23.71
+review path,All,Express Permit Program,All,2025-10-27 to 2026-10-26,20456,3,13,21,29.03
+review path,All,Standard Plan Review,All,2025-10-27 to 2026-10-26,3565,91,180,262,1.32
+review path,All,Self Certification,All,2025-10-27 to 2026-10-26,3009,32,73,115,0.66
 review path,All,Signs,All,2025-10-27 to 2026-10-26,2043,38,90,143,0.0
-review path,All,Elevators and Other Conveyances,All,2025-10-27 to 2026-10-26,1119,0,5,7,73.7
-review path,All,Wrecking and Demolition,All,2025-10-27 to 2026-10-26,669,46,84,117,34.5
-review path,All,Easy Permit,All,2025-10-27 to 2026-10-26,461,0,0,0,95.2
+review path,All,Elevators and Other Conveyances,All,2025-10-27 to 2026-10-26,1119,0,5,7,73.73
+review path,All,Wrecking and Demolition,All,2025-10-27 to 2026-10-26,669,46,84,117,34.53
+review path,All,Easy Permit,All,2025-10-27 to 2026-10-26,461,0,0,0,95.23
 review path,All,Direct Developer Services,All,2025-10-27 to 2026-10-26,320,113,210,384,0.0
 review path,All,Traditional Developer Services,All,2025-10-27 to 2026-10-26,4,,,,
-permit type,Express Permit Program,All,All,2025-10-27 to 2026-10-26,20456,3,13,21,29.0
-permit type and path,Express Permit Program,Express Permit Program,All,2025-10-27 to 2026-10-26,20456,3,13,21,29.0
-permit type,Renovation and Alteration,All,All,2025-10-27 to 2026-10-26,5348,59,143,212,0.4
+permit type,Express Permit Program,All,All,2025-10-27 to 2026-10-26,20456,3,13,21,29.03
+permit type and path,Express Permit Program,Express Permit Program,All,2025-10-27 to 2026-10-26,20456,3,13,21,29.03
+permit type,Renovation and Alteration,All,All,2025-10-27 to 2026-10-26,5348,59,143,212,0.41
 permit type and path,Renovation and Alteration,Standard Plan Review,All,2025-10-27 to 2026-10-26,2658,104,189,275,0.0
-permit type and path,Renovation and Alteration,Self Certification,All,2025-10-27 to 2026-10-26,2484,27,63,103,0.8
+permit type and path,Renovation and Alteration,Self Certification,All,2025-10-27 to 2026-10-26,2484,27,63,103,0.81
 permit type and path,Renovation and Alteration,Direct Developer Services,All,2025-10-27 to 2026-10-26,203,103,188,290,0.0
 permit type and path,Renovation and Alteration,Traditional Developer Services,All,2025-10-27 to 2026-10-26,3,,,,
 permit type,Signs,All,All,2025-10-27 to 2026-10-26,2043,38,90,143,0.0
 permit type and path,Signs,Signs,All,2025-10-27 to 2026-10-26,2043,38,90,143,0.0
-permit type,New Construction,All,All,2025-10-27 to 2026-10-26,1550,56,138,211,3.0
-permit type and path,New Construction,Standard Plan Review,All,2025-10-27 to 2026-10-26,907,44,139,209,5.2
+permit type,New Construction,All,All,2025-10-27 to 2026-10-26,1550,56,138,211,3.03
+permit type and path,New Construction,Standard Plan Review,All,2025-10-27 to 2026-10-26,907,44,139,209,5.18
 permit type and path,New Construction,Self Certification,All,2025-10-27 to 2026-10-26,525,56,112,168,0.0
 permit type and path,New Construction,Direct Developer Services,All,2025-10-27 to 2026-10-26,117,135,224,502,0.0
 permit type and path,New Construction,Traditional Developer Services,All,2025-10-27 to 2026-10-26,1,,,,
-permit type,Elevator Equipment,All,All,2025-10-27 to 2026-10-26,1119,0,5,7,73.7
-permit type and path,Elevator Equipment,Elevators and Other Conveyances,All,2025-10-27 to 2026-10-26,1119,0,5,7,73.7
-permit type,Wrecking and Demolition,All,All,2025-10-27 to 2026-10-26,669,46,84,117,34.5
-permit type and path,Wrecking and Demolition,Wrecking and Demolition,All,2025-10-27 to 2026-10-26,669,46,84,117,34.5
-permit type,Reinstated Revoked Permits,All,All,2025-10-27 to 2026-10-26,461,0,0,0,95.2
-permit type and path,Reinstated Revoked Permits,Easy Permit,All,2025-10-27 to 2026-10-26,461,0,0,0,95.2
+permit type,Elevator Equipment,All,All,2025-10-27 to 2026-10-26,1119,0,5,7,73.73
+permit type and path,Elevator Equipment,Elevators and Other Conveyances,All,2025-10-27 to 2026-10-26,1119,0,5,7,73.73
+permit type,Wrecking and Demolition,All,All,2025-10-27 to 2026-10-26,669,46,84,117,34.53
+permit type and path,Wrecking and Demolition,Wrecking and Demolition,All,2025-10-27 to 2026-10-26,669,46,84,117,34.53
+permit type,Reinstated Revoked Permits,All,All,2025-10-27 to 2026-10-26,461,0,0,0,95.23
+permit type and path,Reinstated Revoked Permits,Easy Permit,All,2025-10-27 to 2026-10-26,461,0,0,0,95.23
 permit type,Easy Permit,All,All,2025-10-27 to 2026-10-26,0,,,,
-community area,All,All,Rogers Park,2025-10-27 to 2026-10-26,303,7,38,92,22.4
-community area,All,All,West Ridge,2025-10-27 to 2026-10-26,443,6,49,102,22.6
-community area,All,All,Uptown,2025-10-27 to 2026-10-26,437,7,48,105,21.5
-community area,All,All,Lincoln Square,2025-10-27 to 2026-10-26,476,8,57,100,21.4
-community area,All,All,North Center,2025-10-27 to 2026-10-26,501,15,58,106,21.0
-community area,All,All,Lake View,2025-10-27 to 2026-10-26,1175,9,51,103,21.3
-community area,All,All,Lincoln Park,2025-10-27 to 2026-10-26,1035,11,62,118,16.8
-community area,All,All,Near North Side,2025-10-27 to 2026-10-26,2404,7,32,69,16.5
-community area,All,All,Edison Park,2025-10-27 to 2026-10-26,109,10,60,116,25.7
-community area,All,All,Norwood Park,2025-10-27 to 2026-10-26,392,5,39,66,30.4
-community area,All,All,Jefferson Park,2025-10-27 to 2026-10-26,242,5,34,60,33.1
-community area,All,All,Forest Glen,2025-10-27 to 2026-10-26,248,6,58,130,32.3
-community area,All,All,North Park,2025-10-27 to 2026-10-26,153,4,36,97,34.0
-community area,All,All,Albany Park,2025-10-27 to 2026-10-26,304,7,46,112,25.3
-community area,All,All,Portage Park,2025-10-27 to 2026-10-26,572,4,29,60,30.2
-community area,All,All,Irving Park,2025-10-27 to 2026-10-26,515,8,52,96,25.6
-community area,All,All,Dunning,2025-10-27 to 2026-10-26,269,4,21,54,31.2
-community area,All,All,Montclare,2025-10-27 to 2026-10-26,115,8,24,86,23.5
-community area,All,All,Belmont Cragin,2025-10-27 to 2026-10-26,371,3,27,64,35.0
-community area,All,All,Hermosa,2025-10-27 to 2026-10-26,135,6,46,97,30.4
-community area,All,All,Avondale,2025-10-27 to 2026-10-26,292,13,64,137,20.2
+community area,All,All,Rogers Park,2025-10-27 to 2026-10-26,303,7,38,92,22.44
+community area,All,All,West Ridge,2025-10-27 to 2026-10-26,443,6,49,102,22.57
+community area,All,All,Uptown,2025-10-27 to 2026-10-26,437,7,48,105,21.51
+community area,All,All,Lincoln Square,2025-10-27 to 2026-10-26,476,8,57,100,21.43
+community area,All,All,North Center,2025-10-27 to 2026-10-26,501,15,58,106,20.96
+community area,All,All,Lake View,2025-10-27 to 2026-10-26,1175,9,51,103,21.28
+community area,All,All,Lincoln Park,2025-10-27 to 2026-10-26,1035,11,62,118,16.81
+community area,All,All,Near North Side,2025-10-27 to 2026-10-26,2404,7,32,69,16.51
+community area,All,All,Edison Park,2025-10-27 to 2026-10-26,109,10,60,116,25.69
+community area,All,All,Norwood Park,2025-10-27 to 2026-10-26,392,5,39,66,30.36
+community area,All,All,Jefferson Park,2025-10-27 to 2026-10-26,242,5,34,60,33.06
+community area,All,All,Forest Glen,2025-10-27 to 2026-10-26,248,6,58,130,32.26
+community area,All,All,North Park,2025-10-27 to 2026-10-26,153,4,36,97,33.99
+community area,All,All,Albany Park,2025-10-27 to 2026-10-26,304,7,46,112,25.33
+community area,All,All,Portage Park,2025-10-27 to 2026-10-26,572,4,29,60,30.24
+community area,All,All,Irving Park,2025-10-27 to 2026-10-26,515,8,52,96,25.63
+community area,All,All,Dunning,2025-10-27 to 2026-10-26,269,4,21,54,31.23
+community area,All,All,Montclare,2025-10-27 to 2026-10-26,115,8,24,86,23.48
+community area,All,All,Belmont Cragin,2025-10-27 to 2026-10-26,371,3,27,64,35.04
+community area,All,All,Hermosa,2025-10-27 to 2026-10-26,135,6,46,97,30.37
+community area,All,All,Avondale,2025-10-27 to 2026-10-26,292,13,64,137,20.21
 community area,All,All,Logan Square,2025-10-27 to 2026-10-26,820,12,74,126,21.1
-community area,All,All,Humboldt Park,2025-10-27 to 2026-10-26,512,8,71,133,22.7
-community area,All,All,West Town,2025-10-27 to 2026-10-26,1266,13,69,135,17.4
-community area,All,All,Austin,2025-10-27 to 2026-10-26,901,7,51,114,23.3
-community area,All,All,West Garfield Park,2025-10-27 to 2026-10-26,207,7,57,101,20.3
-community area,All,All,East Garfield Park,2025-10-27 to 2026-10-26,281,12,74,126,18.9
-community area,All,All,Near West Side,2025-10-27 to 2026-10-26,1584,6,41,91,23.2
-community area,All,All,North Lawndale,2025-10-27 to 2026-10-26,446,13,71,111,14.6
-community area,All,All,South Lawndale,2025-10-27 to 2026-10-26,396,8,52,121,21.5
-community area,All,All,Lower West Side,2025-10-27 to 2026-10-26,371,11,72,141,20.8
-community area,All,All,Loop,2025-10-27 to 2026-10-26,2398,4,15,34,23.0
-community area,All,All,Near South Side,2025-10-27 to 2026-10-26,369,4,28,86,20.3
+community area,All,All,Humboldt Park,2025-10-27 to 2026-10-26,512,8,71,133,22.66
+community area,All,All,West Town,2025-10-27 to 2026-10-26,1266,13,69,135,17.38
+community area,All,All,Austin,2025-10-27 to 2026-10-26,901,7,51,114,23.31
+community area,All,All,West Garfield Park,2025-10-27 to 2026-10-26,207,7,57,101,20.29
+community area,All,All,East Garfield Park,2025-10-27 to 2026-10-26,281,12,74,126,18.86
+community area,All,All,Near West Side,2025-10-27 to 2026-10-26,1584,6,41,91,23.17
+community area,All,All,North Lawndale,2025-10-27 to 2026-10-26,446,13,71,111,14.57
+community area,All,All,South Lawndale,2025-10-27 to 2026-10-26,396,8,52,121,21.46
+community area,All,All,Lower West Side,2025-10-27 to 2026-10-26,371,11,72,141,20.75
+community area,All,All,Loop,2025-10-27 to 2026-10-26,2398,4,15,34,23.02
+community area,All,All,Near South Side,2025-10-27 to 2026-10-26,369,4,28,86,20.33
 community area,All,All,Armour Square,2025-10-27 to 2026-10-26,75,14,82,163,20.0
-community area,All,All,Douglas,2025-10-27 to 2026-10-26,142,8,43,140,24.6
-community area,All,All,Oakland,2025-10-27 to 2026-10-26,47,3,14,69,17.0
-community area,All,All,Fuller Park,2025-10-27 to 2026-10-26,58,6,58,151,20.7
-community area,All,All,Grand Boulevard,2025-10-27 to 2026-10-26,312,8,69,121,18.9
-community area,All,All,Kenwood,2025-10-27 to 2026-10-26,198,11,52,111,13.1
-community area,All,All,Washington Park,2025-10-27 to 2026-10-26,133,18,94,173,14.3
-community area,All,All,Hyde Park,2025-10-27 to 2026-10-26,352,6,27,56,17.0
-community area,All,All,Woodlawn,2025-10-27 to 2026-10-26,328,9,60,112,19.2
-community area,All,All,South Shore,2025-10-27 to 2026-10-26,448,6,31,81,21.9
-community area,All,All,Chatham,2025-10-27 to 2026-10-26,321,6,35,65,22.1
-community area,All,All,Avalon Park,2025-10-27 to 2026-10-26,187,5,28,85,34.8
-community area,All,All,South Chicago,2025-10-27 to 2026-10-26,307,5,41,91,23.8
-community area,All,All,Burnside,2025-10-27 to 2026-10-26,35,6,39,48,28.6
-community area,All,All,Calumet Heights,2025-10-27 to 2026-10-26,191,1,10,20,40.3
-community area,All,All,Roseland,2025-10-27 to 2026-10-26,496,5,26,68,31.2
-community area,All,All,Pullman,2025-10-27 to 2026-10-26,131,10,73,125,26.0
-community area,All,All,South Deering,2025-10-27 to 2026-10-26,157,5,30,38,27.4
-community area,All,All,East Side,2025-10-27 to 2026-10-26,141,4,21,44,31.2
-community area,All,All,West Pullman,2025-10-27 to 2026-10-26,350,5,20,59,28.9
-community area,All,All,Riverdale,2025-10-27 to 2026-10-26,38,42,138,149,18.4
-community area,All,All,Hegewisch,2025-10-27 to 2026-10-26,97,2,11,17,16.5
-community area,All,All,Garfield Ridge,2025-10-27 to 2026-10-26,407,4,24,58,35.9
-community area,All,All,Archer Heights,2025-10-27 to 2026-10-26,110,5,33,62,22.7
-community area,All,All,Brighton Park,2025-10-27 to 2026-10-26,229,7,56,111,23.1
-community area,All,All,McKinley Park,2025-10-27 to 2026-10-26,160,5,69,144,31.2
-community area,All,All,Bridgeport,2025-10-27 to 2026-10-26,267,9,56,130,22.5
-community area,All,All,New City,2025-10-27 to 2026-10-26,417,8,54,129,20.4
-community area,All,All,West Elsdon,2025-10-27 to 2026-10-26,88,7,55,76,23.9
-community area,All,All,Gage Park,2025-10-27 to 2026-10-26,187,6,49,101,25.1
-community area,All,All,Clearing,2025-10-27 to 2026-10-26,157,3,14,32,36.3
+community area,All,All,Douglas,2025-10-27 to 2026-10-26,142,8,43,140,24.65
+community area,All,All,Oakland,2025-10-27 to 2026-10-26,47,3,14,69,17.02
+community area,All,All,Fuller Park,2025-10-27 to 2026-10-26,58,6,58,151,20.69
+community area,All,All,Grand Boulevard,2025-10-27 to 2026-10-26,312,8,69,121,18.91
+community area,All,All,Kenwood,2025-10-27 to 2026-10-26,198,11,52,111,13.13
+community area,All,All,Washington Park,2025-10-27 to 2026-10-26,133,18,94,173,14.29
+community area,All,All,Hyde Park,2025-10-27 to 2026-10-26,352,6,27,56,17.05
+community area,All,All,Woodlawn,2025-10-27 to 2026-10-26,328,9,60,112,19.21
+community area,All,All,South Shore,2025-10-27 to 2026-10-26,448,6,31,81,21.88
+community area,All,All,Chatham,2025-10-27 to 2026-10-26,321,6,35,65,22.12
+community area,All,All,Avalon Park,2025-10-27 to 2026-10-26,187,5,28,85,34.76
+community area,All,All,South Chicago,2025-10-27 to 2026-10-26,307,5,41,91,23.78
+community area,All,All,Burnside,2025-10-27 to 2026-10-26,35,6,39,48,28.57
+community area,All,All,Calumet Heights,2025-10-27 to 2026-10-26,191,1,10,20,40.31
+community area,All,All,Roseland,2025-10-27 to 2026-10-26,496,5,26,68,31.25
+community area,All,All,Pullman,2025-10-27 to 2026-10-26,131,10,73,125,25.95
+community area,All,All,South Deering,2025-10-27 to 2026-10-26,157,5,30,38,27.39
+community area,All,All,East Side,2025-10-27 to 2026-10-26,141,4,21,44,31.21
+community area,All,All,West Pullman,2025-10-27 to 2026-10-26,350,5,20,59,28.86
+community area,All,All,Riverdale,2025-10-27 to 2026-10-26,38,42,138,149,18.42
+community area,All,All,Hegewisch,2025-10-27 to 2026-10-26,97,2,11,17,16.49
+community area,All,All,Garfield Ridge,2025-10-27 to 2026-10-26,407,4,24,58,35.87
+community area,All,All,Archer Heights,2025-10-27 to 2026-10-26,110,5,33,62,22.73
+community area,All,All,Brighton Park,2025-10-27 to 2026-10-26,229,7,56,111,23.14
+community area,All,All,McKinley Park,2025-10-27 to 2026-10-26,160,5,69,144,31.25
+community area,All,All,Bridgeport,2025-10-27 to 2026-10-26,267,9,56,130,22.47
+community area,All,All,New City,2025-10-27 to 2026-10-26,417,8,54,129,20.38
+community area,All,All,West Elsdon,2025-10-27 to 2026-10-26,88,7,55,76,23.86
+community area,All,All,Gage Park,2025-10-27 to 2026-10-26,187,6,49,101,25.13
+community area,All,All,Clearing,2025-10-27 to 2026-10-26,157,3,14,32,36.31
 community area,All,All,West Lawn,2025-10-27 to 2026-10-26,221,4,18,40,27.6
-community area,All,All,Chicago Lawn,2025-10-27 to 2026-10-26,336,4,27,65,31.2
-community area,All,All,West Englewood,2025-10-27 to 2026-10-26,390,8,61,125,25.4
+community area,All,All,Chicago Lawn,2025-10-27 to 2026-10-26,336,4,27,65,31.25
+community area,All,All,West Englewood,2025-10-27 to 2026-10-26,390,8,61,125,25.38
 community area,All,All,Englewood,2025-10-27 to 2026-10-26,349,10,68,126,19.2
-community area,All,All,Greater Grand Crossing,2025-10-27 to 2026-10-26,350,5,45,90,21.1
-community area,All,All,Ashburn,2025-10-27 to 2026-10-26,436,3,14,26,35.6
-community area,All,All,Auburn Gresham,2025-10-27 to 2026-10-26,583,5,31,78,28.6
-community area,All,All,Beverly,2025-10-27 to 2026-10-26,266,5,27,81,27.8
-community area,All,All,Washington Heights,2025-10-27 to 2026-10-26,418,4,24,76,30.1
-community area,All,All,Mount Greenwood,2025-10-27 to 2026-10-26,166,7,56,69,28.3
-community area,All,All,Morgan Park,2025-10-27 to 2026-10-26,313,4,23,89,31.9
-community area,All,All,O'Hare,2025-10-27 to 2026-10-26,397,0,7,26,53.7
+community area,All,All,Greater Grand Crossing,2025-10-27 to 2026-10-26,350,5,45,90,21.14
+community area,All,All,Ashburn,2025-10-27 to 2026-10-26,436,3,14,26,35.55
+community area,All,All,Auburn Gresham,2025-10-27 to 2026-10-26,583,5,31,78,28.64
+community area,All,All,Beverly,2025-10-27 to 2026-10-26,266,5,27,81,27.82
+community area,All,All,Washington Heights,2025-10-27 to 2026-10-26,418,4,24,76,30.14
+community area,All,All,Mount Greenwood,2025-10-27 to 2026-10-26,166,7,56,69,28.31
+community area,All,All,Morgan Park,2025-10-27 to 2026-10-26,313,4,23,89,31.95
+community area,All,All,O'Hare,2025-10-27 to 2026-10-26,397,0,7,26,53.65
 community area,All,All,Edgewater,2025-10-27 to 2026-10-26,508,7,51,87,24.8
-community area and path,All,Standard Plan Review,Rogers Park,2025-10-27 to 2026-10-26,45,85,155,216,2.2
-community area and path,All,Standard Plan Review,West Ridge,2025-10-27 to 2026-10-26,61,84,227,356,1.6
+community area and path,All,Standard Plan Review,Rogers Park,2025-10-27 to 2026-10-26,45,85,155,216,2.22
+community area and path,All,Standard Plan Review,West Ridge,2025-10-27 to 2026-10-26,61,84,227,356,1.64
 community area and path,All,Standard Plan Review,Uptown,2025-10-27 to 2026-10-26,57,93,166,206,0.0
 community area and path,All,Standard Plan Review,Lincoln Square,2025-10-27 to 2026-10-26,62,78,197,283,0.0
-community area and path,All,Standard Plan Review,North Center,2025-10-27 to 2026-10-26,52,81,182,231,5.8
-community area and path,All,Standard Plan Review,Lake View,2025-10-27 to 2026-10-26,148,68,164,269,4.1
-community area and path,All,Standard Plan Review,Lincoln Park,2025-10-27 to 2026-10-26,117,83,149,211,1.7
+community area and path,All,Standard Plan Review,North Center,2025-10-27 to 2026-10-26,52,81,182,231,5.77
+community area and path,All,Standard Plan Review,Lake View,2025-10-27 to 2026-10-26,148,68,164,269,4.05
+community area and path,All,Standard Plan Review,Lincoln Park,2025-10-27 to 2026-10-26,117,83,149,211,1.71
 community area and path,All,Standard Plan Review,Near North Side,2025-10-27 to 2026-10-26,129,72,165,210,3.1
 community area and path,All,Standard Plan Review,Edison Park,2025-10-27 to 2026-10-26,17,,,,
 community area and path,All,Standard Plan Review,Norwood Park,2025-10-27 to 2026-10-26,40,73,152,282,0.0
-community area and path,All,Standard Plan Review,Jefferson Park,2025-10-27 to 2026-10-26,32,55,139,239,3.1
+community area and path,All,Standard Plan Review,Jefferson Park,2025-10-27 to 2026-10-26,32,55,139,239,3.12
 community area and path,All,Standard Plan Review,Forest Glen,2025-10-27 to 2026-10-26,31,79,160,238,0.0
-community area and path,All,Standard Plan Review,North Park,2025-10-27 to 2026-10-26,22,106,200,252,4.5
+community area and path,All,Standard Plan Review,North Park,2025-10-27 to 2026-10-26,22,106,200,252,4.55
 community area and path,All,Standard Plan Review,Albany Park,2025-10-27 to 2026-10-26,44,103,161,206,0.0
 community area and path,All,Standard Plan Review,Portage Park,2025-10-27 to 2026-10-26,51,77,159,199,0.0
 community area and path,All,Standard Plan Review,Irving Park,2025-10-27 to 2026-10-26,82,81,155,263,0.0
 community area and path,All,Standard Plan Review,Dunning,2025-10-27 to 2026-10-26,22,106,271,570,0.0
 community area and path,All,Standard Plan Review,Montclare,2025-10-27 to 2026-10-26,10,,,,
-community area and path,All,Standard Plan Review,Belmont Cragin,2025-10-27 to 2026-10-26,38,84,162,209,2.6
+community area and path,All,Standard Plan Review,Belmont Cragin,2025-10-27 to 2026-10-26,38,84,162,209,2.63
 community area and path,All,Standard Plan Review,Hermosa,2025-10-27 to 2026-10-26,17,,,,
 community area and path,All,Standard Plan Review,Avondale,2025-10-27 to 2026-10-26,48,135,262,404,0.0
 community area and path,All,Standard Plan Review,Logan Square,2025-10-27 to 2026-10-26,131,122,220,286,0.0
 community area and path,All,Standard Plan Review,Humboldt Park,2025-10-27 to 2026-10-26,109,91,205,322,0.0
-community area and path,All,Standard Plan Review,West Town,2025-10-27 to 2026-10-26,175,116,200,287,0.6
+community area and path,All,Standard Plan Review,West Town,2025-10-27 to 2026-10-26,175,116,200,287,0.57
 community area and path,All,Standard Plan Review,Austin,2025-10-27 to 2026-10-26,103,103,197,301,0.0
 community area and path,All,Standard Plan Review,West Garfield Park,2025-10-27 to 2026-10-26,37,86,236,314,0.0
 community area and path,All,Standard Plan Review,East Garfield Park,2025-10-27 to 2026-10-26,66,79,168,253,0.0
-community area and path,All,Standard Plan Review,Near West Side,2025-10-27 to 2026-10-26,129,54,156,207,0.8
-community area and path,All,Standard Plan Review,North Lawndale,2025-10-27 to 2026-10-26,93,91,190,243,1.1
+community area and path,All,Standard Plan Review,Near West Side,2025-10-27 to 2026-10-26,129,54,156,207,0.78
+community area and path,All,Standard Plan Review,North Lawndale,2025-10-27 to 2026-10-26,93,91,190,243,1.08
 community area and path,All,Standard Plan Review,South Lawndale,2025-10-27 to 2026-10-26,69,116,247,330,0.0
 community area and path,All,Standard Plan Review,Lower West Side,2025-10-27 to 2026-10-26,69,105,256,384,0.0
-community area and path,All,Standard Plan Review,Loop,2025-10-27 to 2026-10-26,138,6,76,112,10.1
-community area and path,All,Standard Plan Review,Near South Side,2025-10-27 to 2026-10-26,64,20,137,164,4.7
+community area and path,All,Standard Plan Review,Loop,2025-10-27 to 2026-10-26,138,6,76,112,10.14
+community area and path,All,Standard Plan Review,Near South Side,2025-10-27 to 2026-10-26,64,20,137,164,4.69
 community area and path,All,Standard Plan Review,Armour Square,2025-10-27 to 2026-10-26,16,,,,
 community area and path,All,Standard Plan Review,Douglas,2025-10-27 to 2026-10-26,13,,,,
 community area and path,All,Standard Plan Review,Oakland,2025-10-27 to 2026-10-26,4,,,,
@@ -148,7 +148,7 @@ community area and path,All,Standard Plan Review,Grand Boulevard,2025-10-27 to 2
 community area and path,All,Standard Plan Review,Kenwood,2025-10-27 to 2026-10-26,22,106,198,247,0.0
 community area and path,All,Standard Plan Review,Washington Park,2025-10-27 to 2026-10-26,46,91,173,198,0.0
 community area and path,All,Standard Plan Review,Hyde Park,2025-10-27 to 2026-10-26,45,51,139,159,0.0
-community area and path,All,Standard Plan Review,Woodlawn,2025-10-27 to 2026-10-26,75,78,133,227,1.3
+community area and path,All,Standard Plan Review,Woodlawn,2025-10-27 to 2026-10-26,75,78,133,227,1.33
 community area and path,All,Standard Plan Review,South Shore,2025-10-27 to 2026-10-26,53,89,209,323,0.0
 community area and path,All,Standard Plan Review,Chatham,2025-10-27 to 2026-10-26,29,96,185,403,0.0
 community area and path,All,Standard Plan Review,Avalon Park,2025-10-27 to 2026-10-26,22,104,167,211,0.0
@@ -166,8 +166,8 @@ community area and path,All,Standard Plan Review,Garfield Ridge,2025-10-27 to 20
 community area and path,All,Standard Plan Review,Archer Heights,2025-10-27 to 2026-10-26,13,,,,
 community area and path,All,Standard Plan Review,Brighton Park,2025-10-27 to 2026-10-26,31,102,201,227,0.0
 community area and path,All,Standard Plan Review,McKinley Park,2025-10-27 to 2026-10-26,24,118,251,291,0.0
-community area and path,All,Standard Plan Review,Bridgeport,2025-10-27 to 2026-10-26,46,97,189,276,2.2
-community area and path,All,Standard Plan Review,New City,2025-10-27 to 2026-10-26,59,119,190,324,1.7
+community area and path,All,Standard Plan Review,Bridgeport,2025-10-27 to 2026-10-26,46,97,189,276,2.17
+community area and path,All,Standard Plan Review,New City,2025-10-27 to 2026-10-26,59,119,190,324,1.69
 community area and path,All,Standard Plan Review,West Elsdon,2025-10-27 to 2026-10-26,14,,,,
 community area and path,All,Standard Plan Review,Gage Park,2025-10-27 to 2026-10-26,13,,,,
 community area and path,All,Standard Plan Review,Clearing,2025-10-27 to 2026-10-26,8,,,,
@@ -180,183 +180,183 @@ community area and path,All,Standard Plan Review,Ashburn,2025-10-27 to 2026-10-2
 community area and path,All,Standard Plan Review,Auburn Gresham,2025-10-27 to 2026-10-26,59,84,154,291,0.0
 community area and path,All,Standard Plan Review,Beverly,2025-10-27 to 2026-10-26,26,104,178,294,0.0
 community area and path,All,Standard Plan Review,Washington Heights,2025-10-27 to 2026-10-26,23,98,161,336,0.0
-community area and path,All,Standard Plan Review,Mount Greenwood,2025-10-27 to 2026-10-26,24,58,123,237,4.2
+community area and path,All,Standard Plan Review,Mount Greenwood,2025-10-27 to 2026-10-26,24,58,123,237,4.17
 community area and path,All,Standard Plan Review,Morgan Park,2025-10-27 to 2026-10-26,33,96,161,223,0.0
 community area and path,All,Standard Plan Review,O'Hare,2025-10-27 to 2026-10-26,19,,,,
-community area and path,All,Standard Plan Review,Edgewater,2025-10-27 to 2026-10-26,54,76,166,222,5.6
-community area and path,All,Express Permit Program,Rogers Park,2025-10-27 to 2026-10-26,204,3,14,28,29.4
-community area and path,All,Express Permit Program,West Ridge,2025-10-27 to 2026-10-26,304,3,13,20,28.3
-community area and path,All,Express Permit Program,Uptown,2025-10-27 to 2026-10-26,273,4,13,20,23.8
-community area and path,All,Express Permit Program,Lincoln Square,2025-10-27 to 2026-10-26,272,3,13,22,29.0
+community area and path,All,Standard Plan Review,Edgewater,2025-10-27 to 2026-10-26,54,76,166,222,5.56
+community area and path,All,Express Permit Program,Rogers Park,2025-10-27 to 2026-10-26,204,3,14,28,29.41
+community area and path,All,Express Permit Program,West Ridge,2025-10-27 to 2026-10-26,304,3,13,20,28.29
+community area and path,All,Express Permit Program,Uptown,2025-10-27 to 2026-10-26,273,4,13,20,23.81
+community area and path,All,Express Permit Program,Lincoln Square,2025-10-27 to 2026-10-26,272,3,13,22,29.04
 community area and path,All,Express Permit Program,North Center,2025-10-27 to 2026-10-26,231,1,8,17,34.2
-community area and path,All,Express Permit Program,Lake View,2025-10-27 to 2026-10-26,617,3,14,21,27.1
-community area and path,All,Express Permit Program,Lincoln Park,2025-10-27 to 2026-10-26,605,4,17,34,20.2
-community area and path,All,Express Permit Program,Near North Side,2025-10-27 to 2026-10-26,1459,5,17,28,17.1
-community area and path,All,Express Permit Program,Edison Park,2025-10-27 to 2026-10-26,66,1,13,18,39.4
-community area and path,All,Express Permit Program,Norwood Park,2025-10-27 to 2026-10-26,282,1,10,17,40.1
-community area and path,All,Express Permit Program,Jefferson Park,2025-10-27 to 2026-10-26,182,1,11,17,42.9
-community area and path,All,Express Permit Program,Forest Glen,2025-10-27 to 2026-10-26,173,1,10,28,44.5
-community area and path,All,Express Permit Program,North Park,2025-10-27 to 2026-10-26,107,1,7,18,42.1
-community area and path,All,Express Permit Program,Albany Park,2025-10-27 to 2026-10-26,209,3,13,25,31.6
-community area and path,All,Express Permit Program,Portage Park,2025-10-27 to 2026-10-26,401,1,8,15,39.7
-community area and path,All,Express Permit Program,Irving Park,2025-10-27 to 2026-10-26,315,2,11,19,36.2
-community area and path,All,Express Permit Program,Dunning,2025-10-27 to 2026-10-26,226,2,10,21,34.1
-community area and path,All,Express Permit Program,Montclare,2025-10-27 to 2026-10-26,87,6,14,23,27.6
-community area and path,All,Express Permit Program,Belmont Cragin,2025-10-27 to 2026-10-26,272,1,8,17,40.4
+community area and path,All,Express Permit Program,Lake View,2025-10-27 to 2026-10-26,617,3,14,21,27.07
+community area and path,All,Express Permit Program,Lincoln Park,2025-10-27 to 2026-10-26,605,4,17,34,20.17
+community area and path,All,Express Permit Program,Near North Side,2025-10-27 to 2026-10-26,1459,5,17,28,17.07
+community area and path,All,Express Permit Program,Edison Park,2025-10-27 to 2026-10-26,66,1,13,18,39.39
+community area and path,All,Express Permit Program,Norwood Park,2025-10-27 to 2026-10-26,282,1,10,17,40.07
+community area and path,All,Express Permit Program,Jefferson Park,2025-10-27 to 2026-10-26,182,1,11,17,42.86
+community area and path,All,Express Permit Program,Forest Glen,2025-10-27 to 2026-10-26,173,1,10,28,44.51
+community area and path,All,Express Permit Program,North Park,2025-10-27 to 2026-10-26,107,1,7,18,42.06
+community area and path,All,Express Permit Program,Albany Park,2025-10-27 to 2026-10-26,209,3,13,25,31.58
+community area and path,All,Express Permit Program,Portage Park,2025-10-27 to 2026-10-26,401,1,8,15,39.65
+community area and path,All,Express Permit Program,Irving Park,2025-10-27 to 2026-10-26,315,2,11,19,36.19
+community area and path,All,Express Permit Program,Dunning,2025-10-27 to 2026-10-26,226,2,10,21,34.07
+community area and path,All,Express Permit Program,Montclare,2025-10-27 to 2026-10-26,87,6,14,23,27.59
+community area and path,All,Express Permit Program,Belmont Cragin,2025-10-27 to 2026-10-26,272,1,8,17,40.44
 community area and path,All,Express Permit Program,Hermosa,2025-10-27 to 2026-10-26,90,1,11,18,40.0
-community area and path,All,Express Permit Program,Avondale,2025-10-27 to 2026-10-26,167,3,14,25,29.9
-community area and path,All,Express Permit Program,Logan Square,2025-10-27 to 2026-10-26,457,3,15,25,29.5
-community area and path,All,Express Permit Program,Humboldt Park,2025-10-27 to 2026-10-26,296,2,10,19,30.7
-community area and path,All,Express Permit Program,West Town,2025-10-27 to 2026-10-26,635,3,14,21,24.4
-community area and path,All,Express Permit Program,Austin,2025-10-27 to 2026-10-26,620,3,14,29,27.4
-community area and path,All,Express Permit Program,West Garfield Park,2025-10-27 to 2026-10-26,133,5,15,26,19.5
+community area and path,All,Express Permit Program,Avondale,2025-10-27 to 2026-10-26,167,3,14,25,29.94
+community area and path,All,Express Permit Program,Logan Square,2025-10-27 to 2026-10-26,457,3,15,25,29.54
+community area and path,All,Express Permit Program,Humboldt Park,2025-10-27 to 2026-10-26,296,2,10,19,30.74
+community area and path,All,Express Permit Program,West Town,2025-10-27 to 2026-10-26,635,3,14,21,24.41
+community area and path,All,Express Permit Program,Austin,2025-10-27 to 2026-10-26,620,3,14,29,27.42
+community area and path,All,Express Permit Program,West Garfield Park,2025-10-27 to 2026-10-26,133,5,15,26,19.55
 community area and path,All,Express Permit Program,East Garfield Park,2025-10-27 to 2026-10-26,139,3,12,21,22.3
-community area and path,All,Express Permit Program,Near West Side,2025-10-27 to 2026-10-26,849,2,10,20,29.7
-community area and path,All,Express Permit Program,North Lawndale,2025-10-27 to 2026-10-26,257,5,18,30,15.6
-community area and path,All,Express Permit Program,South Lawndale,2025-10-27 to 2026-10-26,230,3,12,23,26.5
-community area and path,All,Express Permit Program,Lower West Side,2025-10-27 to 2026-10-26,206,4,12,22,27.2
-community area and path,All,Express Permit Program,Loop,2025-10-27 to 2026-10-26,1482,2,8,14,28.3
-community area and path,All,Express Permit Program,Near South Side,2025-10-27 to 2026-10-26,223,2,9,16,21.1
-community area and path,All,Express Permit Program,Armour Square,2025-10-27 to 2026-10-26,35,6,25,55,22.9
-community area and path,All,Express Permit Program,Douglas,2025-10-27 to 2026-10-26,88,6,18,34,17.0
-community area and path,All,Express Permit Program,Oakland,2025-10-27 to 2026-10-26,33,3,8,18,9.1
-community area and path,All,Express Permit Program,Fuller Park,2025-10-27 to 2026-10-26,30,3,9,14,16.7
-community area and path,All,Express Permit Program,Grand Boulevard,2025-10-27 to 2026-10-26,188,3,13,22,22.9
-community area and path,All,Express Permit Program,Kenwood,2025-10-27 to 2026-10-26,124,7,19,25,11.3
-community area and path,All,Express Permit Program,Washington Park,2025-10-27 to 2026-10-26,64,6,22,38,14.1
-community area and path,All,Express Permit Program,Hyde Park,2025-10-27 to 2026-10-26,211,4,13,17,19.4
-community area and path,All,Express Permit Program,Woodlawn,2025-10-27 to 2026-10-26,179,4,14,27,23.5
-community area and path,All,Express Permit Program,South Shore,2025-10-27 to 2026-10-26,337,4,15,27,20.8
-community area and path,All,Express Permit Program,Chatham,2025-10-27 to 2026-10-26,241,4,14,22,25.3
-community area and path,All,Express Permit Program,Avalon Park,2025-10-27 to 2026-10-26,148,2,12,19,42.6
-community area and path,All,Express Permit Program,South Chicago,2025-10-27 to 2026-10-26,225,3,11,22,25.3
+community area and path,All,Express Permit Program,Near West Side,2025-10-27 to 2026-10-26,849,2,10,20,29.68
+community area and path,All,Express Permit Program,North Lawndale,2025-10-27 to 2026-10-26,257,5,18,30,15.56
+community area and path,All,Express Permit Program,South Lawndale,2025-10-27 to 2026-10-26,230,3,12,23,26.52
+community area and path,All,Express Permit Program,Lower West Side,2025-10-27 to 2026-10-26,206,4,12,22,27.18
+community area and path,All,Express Permit Program,Loop,2025-10-27 to 2026-10-26,1482,2,8,14,28.34
+community area and path,All,Express Permit Program,Near South Side,2025-10-27 to 2026-10-26,223,2,9,16,21.08
+community area and path,All,Express Permit Program,Armour Square,2025-10-27 to 2026-10-26,35,6,25,55,22.86
+community area and path,All,Express Permit Program,Douglas,2025-10-27 to 2026-10-26,88,6,18,34,17.05
+community area and path,All,Express Permit Program,Oakland,2025-10-27 to 2026-10-26,33,3,8,18,9.09
+community area and path,All,Express Permit Program,Fuller Park,2025-10-27 to 2026-10-26,30,3,9,14,16.67
+community area and path,All,Express Permit Program,Grand Boulevard,2025-10-27 to 2026-10-26,188,3,13,22,22.87
+community area and path,All,Express Permit Program,Kenwood,2025-10-27 to 2026-10-26,124,7,19,25,11.29
+community area and path,All,Express Permit Program,Washington Park,2025-10-27 to 2026-10-26,64,6,22,38,14.06
+community area and path,All,Express Permit Program,Hyde Park,2025-10-27 to 2026-10-26,211,4,13,17,19.43
+community area and path,All,Express Permit Program,Woodlawn,2025-10-27 to 2026-10-26,179,4,14,27,23.46
+community area and path,All,Express Permit Program,South Shore,2025-10-27 to 2026-10-26,337,4,15,27,20.77
+community area and path,All,Express Permit Program,Chatham,2025-10-27 to 2026-10-26,241,4,14,22,25.31
+community area and path,All,Express Permit Program,Avalon Park,2025-10-27 to 2026-10-26,148,2,12,19,42.57
+community area and path,All,Express Permit Program,South Chicago,2025-10-27 to 2026-10-26,225,3,11,22,25.33
 community area and path,All,Express Permit Program,Burnside,2025-10-27 to 2026-10-26,25,2,7,11,36.0
-community area and path,All,Express Permit Program,Calumet Heights,2025-10-27 to 2026-10-26,176,1,8,13,42.6
-community area and path,All,Express Permit Program,Roseland,2025-10-27 to 2026-10-26,373,3,14,21,33.5
-community area and path,All,Express Permit Program,Pullman,2025-10-27 to 2026-10-26,91,3,19,32,35.2
-community area and path,All,Express Permit Program,South Deering,2025-10-27 to 2026-10-26,116,3,9,17,31.0
-community area and path,All,Express Permit Program,East Side,2025-10-27 to 2026-10-26,114,3,14,26,33.3
-community area and path,All,Express Permit Program,West Pullman,2025-10-27 to 2026-10-26,272,3,9,15,31.6
+community area and path,All,Express Permit Program,Calumet Heights,2025-10-27 to 2026-10-26,176,1,8,13,42.61
+community area and path,All,Express Permit Program,Roseland,2025-10-27 to 2026-10-26,373,3,14,21,33.51
+community area and path,All,Express Permit Program,Pullman,2025-10-27 to 2026-10-26,91,3,19,32,35.16
+community area and path,All,Express Permit Program,South Deering,2025-10-27 to 2026-10-26,116,3,9,17,31.03
+community area and path,All,Express Permit Program,East Side,2025-10-27 to 2026-10-26,114,3,14,26,33.33
+community area and path,All,Express Permit Program,West Pullman,2025-10-27 to 2026-10-26,272,3,9,15,31.62
 community area and path,All,Express Permit Program,Riverdale,2025-10-27 to 2026-10-26,17,,,,
-community area and path,All,Express Permit Program,Hegewisch,2025-10-27 to 2026-10-26,87,2,7,15,18.4
-community area and path,All,Express Permit Program,Garfield Ridge,2025-10-27 to 2026-10-26,326,1,13,23,42.9
+community area and path,All,Express Permit Program,Hegewisch,2025-10-27 to 2026-10-26,87,2,7,15,18.39
+community area and path,All,Express Permit Program,Garfield Ridge,2025-10-27 to 2026-10-26,326,1,13,23,42.94
 community area and path,All,Express Permit Program,Archer Heights,2025-10-27 to 2026-10-26,80,2,9,16,27.5
-community area and path,All,Express Permit Program,Brighton Park,2025-10-27 to 2026-10-26,155,3,12,25,27.7
-community area and path,All,Express Permit Program,McKinley Park,2025-10-27 to 2026-10-26,98,1,7,16,41.8
-community area and path,All,Express Permit Program,Bridgeport,2025-10-27 to 2026-10-26,166,4,15,35,26.5
-community area and path,All,Express Permit Program,New City,2025-10-27 to 2026-10-26,255,3,13,26,22.4
-community area and path,All,Express Permit Program,West Elsdon,2025-10-27 to 2026-10-26,62,2,19,31,30.6
-community area and path,All,Express Permit Program,Gage Park,2025-10-27 to 2026-10-26,130,2,12,20,32.3
-community area and path,All,Express Permit Program,Clearing,2025-10-27 to 2026-10-26,138,3,11,15,39.1
+community area and path,All,Express Permit Program,Brighton Park,2025-10-27 to 2026-10-26,155,3,12,25,27.74
+community area and path,All,Express Permit Program,McKinley Park,2025-10-27 to 2026-10-26,98,1,7,16,41.84
+community area and path,All,Express Permit Program,Bridgeport,2025-10-27 to 2026-10-26,166,4,15,35,26.51
+community area and path,All,Express Permit Program,New City,2025-10-27 to 2026-10-26,255,3,13,26,22.35
+community area and path,All,Express Permit Program,West Elsdon,2025-10-27 to 2026-10-26,62,2,19,31,30.65
+community area and path,All,Express Permit Program,Gage Park,2025-10-27 to 2026-10-26,130,2,12,20,32.31
+community area and path,All,Express Permit Program,Clearing,2025-10-27 to 2026-10-26,138,3,11,15,39.13
 community area and path,All,Express Permit Program,West Lawn,2025-10-27 to 2026-10-26,177,2,9,18,32.2
-community area and path,All,Express Permit Program,Chicago Lawn,2025-10-27 to 2026-10-26,268,2,10,20,36.9
-community area and path,All,Express Permit Program,West Englewood,2025-10-27 to 2026-10-26,237,5,14,29,27.4
-community area and path,All,Express Permit Program,Englewood,2025-10-27 to 2026-10-26,206,5,16,29,19.4
-community area and path,All,Express Permit Program,Greater Grand Crossing,2025-10-27 to 2026-10-26,246,3,12,25,22.4
-community area and path,All,Express Permit Program,Ashburn,2025-10-27 to 2026-10-26,382,2,10,15,39.5
-community area and path,All,Express Permit Program,Auburn Gresham,2025-10-27 to 2026-10-26,443,3,13,23,32.3
-community area and path,All,Express Permit Program,Beverly,2025-10-27 to 2026-10-26,219,4,14,25,30.6
-community area and path,All,Express Permit Program,Washington Heights,2025-10-27 to 2026-10-26,350,3,12,21,32.3
-community area and path,All,Express Permit Program,Mount Greenwood,2025-10-27 to 2026-10-26,102,2,8,13,39.2
-community area and path,All,Express Permit Program,Morgan Park,2025-10-27 to 2026-10-26,244,2,11,20,36.9
-community area and path,All,Express Permit Program,O'Hare,2025-10-27 to 2026-10-26,312,0,3,8,61.5
-community area and path,All,Express Permit Program,Edgewater,2025-10-27 to 2026-10-26,320,3,12,24,31.2
-month,All,All,All,2024-10,3155,8,33,71,24.2
-month,All,All,All,2024-11,2231,8,39,78,22.0
-month,All,All,All,2024-12,1901,11,44,85,21.9
-month,All,All,All,2025-01,2334,8,46,84,23.5
-month,All,All,All,2025-02,1943,6,38,92,22.6
-month,All,All,All,2025-03,2537,6,34,90,23.0
-month,All,All,All,2025-04,3007,5,32,71,25.2
+community area and path,All,Express Permit Program,Chicago Lawn,2025-10-27 to 2026-10-26,268,2,10,20,36.94
+community area and path,All,Express Permit Program,West Englewood,2025-10-27 to 2026-10-26,237,5,14,29,27.43
+community area and path,All,Express Permit Program,Englewood,2025-10-27 to 2026-10-26,206,5,16,29,19.42
+community area and path,All,Express Permit Program,Greater Grand Crossing,2025-10-27 to 2026-10-26,246,3,12,25,22.36
+community area and path,All,Express Permit Program,Ashburn,2025-10-27 to 2026-10-26,382,2,10,15,39.53
+community area and path,All,Express Permit Program,Auburn Gresham,2025-10-27 to 2026-10-26,443,3,13,23,32.28
+community area and path,All,Express Permit Program,Beverly,2025-10-27 to 2026-10-26,219,4,14,25,30.59
+community area and path,All,Express Permit Program,Washington Heights,2025-10-27 to 2026-10-26,350,3,12,21,32.29
+community area and path,All,Express Permit Program,Mount Greenwood,2025-10-27 to 2026-10-26,102,2,8,13,39.22
+community area and path,All,Express Permit Program,Morgan Park,2025-10-27 to 2026-10-26,244,2,11,20,36.89
+community area and path,All,Express Permit Program,O'Hare,2025-10-27 to 2026-10-26,312,0,3,8,61.54
+community area and path,All,Express Permit Program,Edgewater,2025-10-27 to 2026-10-26,320,3,12,24,31.25
+month,All,All,All,2024-10,3155,8,33,71,24.22
+month,All,All,All,2024-11,2231,8,39,78,22.01
+month,All,All,All,2024-12,1901,11,44,85,21.94
+month,All,All,All,2025-01,2334,8,46,84,23.52
+month,All,All,All,2025-02,1943,6,38,92,22.65
+month,All,All,All,2025-03,2537,6,34,90,22.98
+month,All,All,All,2025-04,3007,5,32,71,25.24
 month,All,All,All,2025-05,2759,4,33,79,27.4
-month,All,All,All,2025-06,2932,5,36,84,23.5
-month,All,All,All,2025-07,3043,4,34,77,27.1
-month,All,All,All,2025-08,2845,6,43,91,26.5
-month,All,All,All,2025-09,3011,5,32,76,27.4
-month,All,All,All,2025-10,3189,6,30,74,24.4
-month,All,All,All,2025-11,2357,7,39,91,22.9
-month,All,All,All,2025-12,2074,8,49,104,22.3
-month,All,All,All,2026-01,1929,7,50,104,23.5
+month,All,All,All,2025-06,2932,5,36,84,23.47
+month,All,All,All,2025-07,3043,4,34,77,27.08
+month,All,All,All,2025-08,2845,6,43,91,26.47
+month,All,All,All,2025-09,3011,5,32,76,27.43
+month,All,All,All,2025-10,3189,6,30,74,24.43
+month,All,All,All,2025-11,2357,7,39,91,22.87
+month,All,All,All,2025-12,2074,8,49,104,22.28
+month,All,All,All,2026-01,1929,7,50,104,23.54
 month,All,All,All,2026-02,1996,6,45,91,24.5
 month,All,All,All,2026-03,2606,5,36,90,24.1
-month,All,All,All,2026-04,2845,6,42,90,24.9
-month,All,All,All,2026-05,2757,5,34,74,24.8
-month,All,All,All,2026-06,2900,6,36,78,25.6
-month,All,All,All,2026-07,2923,7,48,103,22.6
-month,All,All,All,2026-08,3043,6,48,101,22.6
-month,All,All,All,2026-09,3179,6,42,77,22.4
-month and path,All,Express Permit Program,All,2024-10,2072,6,15,25,27.2
-month and path,All,Express Permit Program,All,2024-11,1366,5,14,22,26.0
-month and path,All,Express Permit Program,All,2024-12,1119,5,17,30,28.5
+month,All,All,All,2026-04,2845,6,42,90,24.92
+month,All,All,All,2026-05,2757,5,34,74,24.85
+month,All,All,All,2026-06,2900,6,36,78,25.62
+month,All,All,All,2026-07,2923,7,48,103,22.61
+month,All,All,All,2026-08,3043,6,48,101,22.58
+month,All,All,All,2026-09,3179,6,42,77,22.37
+month and path,All,Express Permit Program,All,2024-10,2072,6,15,25,27.22
+month and path,All,Express Permit Program,All,2024-11,1366,5,14,22,25.99
+month and path,All,Express Permit Program,All,2024-12,1119,5,17,30,28.51
 month and path,All,Express Permit Program,All,2025-01,1420,5,25,41,25.7
-month and path,All,Express Permit Program,All,2025-02,1203,3,12,22,27.2
-month and path,All,Express Permit Program,All,2025-03,1642,3,9,19,28.7
-month and path,All,Express Permit Program,All,2025-04,1852,2,8,14,32.1
-month and path,All,Express Permit Program,All,2025-05,1817,2,8,16,34.0
-month and path,All,Express Permit Program,All,2025-06,1850,3,10,19,29.2
-month and path,All,Express Permit Program,All,2025-07,1905,1,9,18,32.8
-month and path,All,Express Permit Program,All,2025-08,1768,2,11,19,32.7
-month and path,All,Express Permit Program,All,2025-09,2014,2,12,20,32.6
-month and path,All,Express Permit Program,All,2025-10,2142,3,13,21,27.9
-month and path,All,Express Permit Program,All,2025-11,1559,4,14,26,26.2
+month and path,All,Express Permit Program,All,2025-02,1203,3,12,22,27.18
+month and path,All,Express Permit Program,All,2025-03,1642,3,9,19,28.75
+month and path,All,Express Permit Program,All,2025-04,1852,2,8,14,32.13
+month and path,All,Express Permit Program,All,2025-05,1817,2,8,16,34.01
+month and path,All,Express Permit Program,All,2025-06,1850,3,10,19,29.24
+month and path,All,Express Permit Program,All,2025-07,1905,1,9,18,32.76
+month and path,All,Express Permit Program,All,2025-08,1768,2,11,19,32.75
+month and path,All,Express Permit Program,All,2025-09,2014,2,12,20,32.62
+month and path,All,Express Permit Program,All,2025-10,2142,3,13,21,27.92
+month and path,All,Express Permit Program,All,2025-11,1559,4,14,26,26.23
 month and path,All,Express Permit Program,All,2025-12,1255,5,15,28,23.9
-month and path,All,Express Permit Program,All,2026-01,1161,3,15,29,26.2
-month and path,All,Express Permit Program,All,2026-02,1243,3,13,24,28.6
-month and path,All,Express Permit Program,All,2026-03,1705,2,9,17,30.8
-month and path,All,Express Permit Program,All,2026-04,1767,2,9,15,32.8
-month and path,All,Express Permit Program,All,2026-05,1771,2,9,17,31.4
-month and path,All,Express Permit Program,All,2026-06,1949,3,12,19,32.4
-month and path,All,Express Permit Program,All,2026-07,1883,3,13,21,28.1
-month and path,All,Express Permit Program,All,2026-08,2003,3,12,23,28.5
-month and path,All,Express Permit Program,All,2026-09,2124,4,15,27,26.9
+month and path,All,Express Permit Program,All,2026-01,1161,3,15,29,26.18
+month and path,All,Express Permit Program,All,2026-02,1243,3,13,24,28.56
+month and path,All,Express Permit Program,All,2026-03,1705,2,9,17,30.79
+month and path,All,Express Permit Program,All,2026-04,1767,2,9,15,32.77
+month and path,All,Express Permit Program,All,2026-05,1771,2,9,17,31.39
+month and path,All,Express Permit Program,All,2026-06,1949,3,12,19,32.38
+month and path,All,Express Permit Program,All,2026-07,1883,3,13,21,28.09
+month and path,All,Express Permit Program,All,2026-08,2003,3,12,23,28.51
+month and path,All,Express Permit Program,All,2026-09,2124,4,15,27,26.88
 month and path,All,Standard Plan Review,All,2024-10,406,56,132,214,0.0
-month and path,All,Standard Plan Review,All,2024-11,287,66,175,252,0.3
+month and path,All,Standard Plan Review,All,2024-11,287,66,175,252,0.35
 month and path,All,Standard Plan Review,All,2024-12,237,76,199,282,0.0
 month and path,All,Standard Plan Review,All,2025-01,280,72,158,217,0.0
 month and path,All,Standard Plan Review,All,2025-02,250,83,189,299,0.4
 month and path,All,Standard Plan Review,All,2025-03,252,90,196,313,0.0
-month and path,All,Standard Plan Review,All,2025-04,338,64,163,252,1.2
-month and path,All,Standard Plan Review,All,2025-05,347,75,171,227,0.9
+month and path,All,Standard Plan Review,All,2025-04,338,64,163,252,1.18
+month and path,All,Standard Plan Review,All,2025-05,347,75,171,227,0.86
 month and path,All,Standard Plan Review,All,2025-06,316,71,143,288,1.9
-month and path,All,Standard Plan Review,All,2025-07,381,68,156,227,1.8
-month and path,All,Standard Plan Review,All,2025-08,339,70,163,276,2.7
-month and path,All,Standard Plan Review,All,2025-09,342,77,149,213,2.6
-month and path,All,Standard Plan Review,All,2025-10,308,84,167,252,1.6
-month and path,All,Standard Plan Review,All,2025-11,233,92,185,246,0.4
+month and path,All,Standard Plan Review,All,2025-07,381,68,156,227,1.84
+month and path,All,Standard Plan Review,All,2025-08,339,70,163,276,2.65
+month and path,All,Standard Plan Review,All,2025-09,342,77,149,213,2.63
+month and path,All,Standard Plan Review,All,2025-10,308,84,167,252,1.62
+month and path,All,Standard Plan Review,All,2025-11,233,92,185,246,0.43
 month and path,All,Standard Plan Review,All,2025-12,250,97,189,269,0.0
 month and path,All,Standard Plan Review,All,2026-01,247,108,189,269,0.0
 month and path,All,Standard Plan Review,All,2026-02,236,95,172,273,0.0
-month and path,All,Standard Plan Review,All,2026-03,272,112,211,297,0.4
-month and path,All,Standard Plan Review,All,2026-04,340,76,159,222,0.3
+month and path,All,Standard Plan Review,All,2026-03,272,112,211,297,0.37
+month and path,All,Standard Plan Review,All,2026-04,340,76,159,222,0.29
 month and path,All,Standard Plan Review,All,2026-05,334,68,163,238,2.1
-month and path,All,Standard Plan Review,All,2026-06,297,87,175,276,1.7
-month and path,All,Standard Plan Review,All,2026-07,356,85,180,264,3.7
-month and path,All,Standard Plan Review,All,2026-08,337,92,172,247,2.4
-month and path,All,Standard Plan Review,All,2026-09,321,72,165,234,1.9
-month and path,All,Self Certification,All,2024-10,275,25,67,121,1.1
+month and path,All,Standard Plan Review,All,2026-06,297,87,175,276,1.68
+month and path,All,Standard Plan Review,All,2026-07,356,85,180,264,3.65
+month and path,All,Standard Plan Review,All,2026-08,337,92,172,247,2.37
+month and path,All,Standard Plan Review,All,2026-09,321,72,165,234,1.87
+month and path,All,Self Certification,All,2024-10,275,25,67,121,1.09
 month and path,All,Self Certification,All,2024-11,199,37,78,133,0.0
-month and path,All,Self Certification,All,2024-12,231,28,62,94,0.9
-month and path,All,Self Certification,All,2025-01,247,27,73,118,0.8
+month and path,All,Self Certification,All,2024-12,231,28,62,94,0.87
+month and path,All,Self Certification,All,2025-01,247,27,73,118,0.81
 month and path,All,Self Certification,All,2025-02,167,24,69,99,0.6
 month and path,All,Self Certification,All,2025-03,253,26,91,175,0.4
-month and path,All,Self Certification,All,2025-04,306,30,75,133,1.3
-month and path,All,Self Certification,All,2025-05,235,29,85,126,1.3
-month and path,All,Self Certification,All,2025-06,315,40,141,155,0.6
+month and path,All,Self Certification,All,2025-04,306,30,75,133,1.31
+month and path,All,Self Certification,All,2025-05,235,29,85,126,1.28
+month and path,All,Self Certification,All,2025-06,315,40,141,155,0.63
 month and path,All,Self Certification,All,2025-07,268,32,63,97,0.0
 month and path,All,Self Certification,All,2025-08,243,49,92,122,0.0
-month and path,All,Self Certification,All,2025-09,288,34,70,105,0.3
+month and path,All,Self Certification,All,2025-09,288,34,70,105,0.35
 month and path,All,Self Certification,All,2025-10,305,30,76,122,0.0
 month and path,All,Self Certification,All,2025-11,215,28,65,97,0.0
-month and path,All,Self Certification,All,2025-12,189,27,71,116,0.5
+month and path,All,Self Certification,All,2025-12,189,27,71,116,0.53
 month and path,All,Self Certification,All,2026-01,200,28,69,109,2.0
 month and path,All,Self Certification,All,2026-02,201,32,76,123,0.0
-month and path,All,Self Certification,All,2026-03,280,27,70,137,0.4
-month and path,All,Self Certification,All,2026-04,305,30,73,113,1.0
-month and path,All,Self Certification,All,2026-05,245,31,64,105,1.2
-month and path,All,Self Certification,All,2026-06,235,33,65,109,2.1
-month and path,All,Self Certification,All,2026-07,290,41,83,125,0.3
-month and path,All,Self Certification,All,2026-08,281,39,91,128,0.4
-month and path,All,Self Certification,All,2026-09,289,31,68,102,0.3
+month and path,All,Self Certification,All,2026-03,280,27,70,137,0.36
+month and path,All,Self Certification,All,2026-04,305,30,73,113,0.98
+month and path,All,Self Certification,All,2026-05,245,31,64,105,1.22
+month and path,All,Self Certification,All,2026-06,235,33,65,109,2.13
+month and path,All,Self Certification,All,2026-07,290,41,83,125,0.34
+month and path,All,Self Certification,All,2026-08,281,39,91,128,0.36
+month and path,All,Self Certification,All,2026-09,289,31,68,102,0.35
 month and path,All,Signs,All,2024-10,155,46,91,215,0.0
 month and path,All,Signs,All,2024-11,197,33,65,88,0.0
 month and path,All,Signs,All,2024-12,172,35,80,112,0.0
@@ -381,78 +381,78 @@ month and path,All,Signs,All,2026-06,212,36,83,106,0.0
 month and path,All,Signs,All,2026-07,146,49,177,219,0.0
 month and path,All,Signs,All,2026-08,186,49,116,181,0.0
 month and path,All,Signs,All,2026-09,204,50,80,124,0.0
-month and path,All,Elevators and Other Conveyances,All,2024-10,98,0,0,5,81.6
-month and path,All,Elevators and Other Conveyances,All,2024-11,82,0,0,2,82.9
-month and path,All,Elevators and Other Conveyances,All,2024-12,68,0,5,7,67.6
-month and path,All,Elevators and Other Conveyances,All,2025-01,108,0,2,7,79.6
+month and path,All,Elevators and Other Conveyances,All,2024-10,98,0,0,5,81.63
+month and path,All,Elevators and Other Conveyances,All,2024-11,82,0,0,2,82.93
+month and path,All,Elevators and Other Conveyances,All,2024-12,68,0,5,7,67.65
+month and path,All,Elevators and Other Conveyances,All,2025-01,108,0,2,7,79.63
 month and path,All,Elevators and Other Conveyances,All,2025-02,86,0,4,9,59.3
 month and path,All,Elevators and Other Conveyances,All,2025-03,100,0,5,5,62.0
-month and path,All,Elevators and Other Conveyances,All,2025-04,74,0,5,7,73.0
-month and path,All,Elevators and Other Conveyances,All,2025-05,89,0,1,5,77.5
-month and path,All,Elevators and Other Conveyances,All,2025-06,69,0,5,5,60.9
+month and path,All,Elevators and Other Conveyances,All,2025-04,74,0,5,7,72.97
+month and path,All,Elevators and Other Conveyances,All,2025-05,89,0,1,5,77.53
+month and path,All,Elevators and Other Conveyances,All,2025-06,69,0,5,5,60.87
 month and path,All,Elevators and Other Conveyances,All,2025-07,89,0,0,6,80.9
-month and path,All,Elevators and Other Conveyances,All,2025-08,89,0,7,7,74.2
-month and path,All,Elevators and Other Conveyances,All,2025-09,92,0,5,7,71.7
-month and path,All,Elevators and Other Conveyances,All,2025-10,98,0,7,12,65.3
+month and path,All,Elevators and Other Conveyances,All,2025-08,89,0,7,7,74.16
+month and path,All,Elevators and Other Conveyances,All,2025-09,92,0,5,7,71.74
+month and path,All,Elevators and Other Conveyances,All,2025-10,98,0,7,12,65.31
 month and path,All,Elevators and Other Conveyances,All,2025-11,80,0,7,7,67.5
 month and path,All,Elevators and Other Conveyances,All,2025-12,120,0,6,7,72.5
-month and path,All,Elevators and Other Conveyances,All,2026-01,71,0,0,5,85.9
-month and path,All,Elevators and Other Conveyances,All,2026-02,99,0,5,6,64.6
-month and path,All,Elevators and Other Conveyances,All,2026-03,69,0,2,7,71.0
-month and path,All,Elevators and Other Conveyances,All,2026-04,82,0,0,0,91.5
-month and path,All,Elevators and Other Conveyances,All,2026-05,105,0,5,9,65.7
-month and path,All,Elevators and Other Conveyances,All,2026-06,89,0,5,7,69.7
-month and path,All,Elevators and Other Conveyances,All,2026-07,103,0,5,8,70.9
-month and path,All,Elevators and Other Conveyances,All,2026-08,104,0,5,7,69.2
-month and path,All,Elevators and Other Conveyances,All,2026-09,97,0,0,1,89.7
-month and path,All,Wrecking and Demolition,All,2024-10,68,0,0,0,92.6
-month and path,All,Wrecking and Demolition,All,2024-11,48,0,0,0,93.8
-month and path,All,Wrecking and Demolition,All,2024-12,34,0,0,0,94.1
-month and path,All,Wrecking and Demolition,All,2025-01,68,0,0,0,95.6
-month and path,All,Wrecking and Demolition,All,2025-02,42,0,0,0,97.6
+month and path,All,Elevators and Other Conveyances,All,2026-01,71,0,0,5,85.92
+month and path,All,Elevators and Other Conveyances,All,2026-02,99,0,5,6,64.65
+month and path,All,Elevators and Other Conveyances,All,2026-03,69,0,2,7,71.01
+month and path,All,Elevators and Other Conveyances,All,2026-04,82,0,0,0,91.46
+month and path,All,Elevators and Other Conveyances,All,2026-05,105,0,5,9,65.71
+month and path,All,Elevators and Other Conveyances,All,2026-06,89,0,5,7,69.66
+month and path,All,Elevators and Other Conveyances,All,2026-07,103,0,5,8,70.87
+month and path,All,Elevators and Other Conveyances,All,2026-08,104,0,5,7,69.23
+month and path,All,Elevators and Other Conveyances,All,2026-09,97,0,0,1,89.69
+month and path,All,Wrecking and Demolition,All,2024-10,68,0,0,0,92.65
+month and path,All,Wrecking and Demolition,All,2024-11,48,0,0,0,93.75
+month and path,All,Wrecking and Demolition,All,2024-12,34,0,0,0,94.12
+month and path,All,Wrecking and Demolition,All,2025-01,68,0,0,0,95.59
+month and path,All,Wrecking and Demolition,All,2025-02,42,0,0,0,97.62
 month and path,All,Wrecking and Demolition,All,2025-03,26,0,0,0,100.0
-month and path,All,Wrecking and Demolition,All,2025-04,57,0,0,0,91.2
-month and path,All,Wrecking and Demolition,All,2025-05,32,0,0,0,96.9
+month and path,All,Wrecking and Demolition,All,2025-04,57,0,0,0,91.23
+month and path,All,Wrecking and Demolition,All,2025-05,32,0,0,0,96.88
 month and path,All,Wrecking and Demolition,All,2025-06,50,0,0,0,90.0
-month and path,All,Wrecking and Demolition,All,2025-07,93,0,0,0,96.8
-month and path,All,Wrecking and Demolition,All,2025-08,66,0,0,0,97.0
+month and path,All,Wrecking and Demolition,All,2025-07,93,0,0,0,96.77
+month and path,All,Wrecking and Demolition,All,2025-08,66,0,0,0,96.97
 month and path,All,Wrecking and Demolition,All,2025-09,47,0,0,0,100.0
-month and path,All,Wrecking and Demolition,All,2025-10,81,0,0,0,95.1
+month and path,All,Wrecking and Demolition,All,2025-10,81,0,0,0,95.06
 month and path,All,Wrecking and Demolition,All,2025-11,44,0,0,0,100.0
-month and path,All,Wrecking and Demolition,All,2025-12,55,0,0,21,89.1
-month and path,All,Wrecking and Demolition,All,2026-01,58,0,8,41,79.3
-month and path,All,Wrecking and Demolition,All,2026-02,54,0,69,76,57.4
-month and path,All,Wrecking and Demolition,All,2026-03,47,46,84,89,19.1
-month and path,All,Wrecking and Demolition,All,2026-04,42,55,124,125,23.8
-month and path,All,Wrecking and Demolition,All,2026-05,63,56,92,106,19.0
-month and path,All,Wrecking and Demolition,All,2026-06,59,58,112,139,8.5
-month and path,All,Wrecking and Demolition,All,2026-07,67,80,121,153,4.5
-month and path,All,Wrecking and Demolition,All,2026-08,47,62,104,133,2.1
+month and path,All,Wrecking and Demolition,All,2025-12,55,0,0,21,89.09
+month and path,All,Wrecking and Demolition,All,2026-01,58,0,8,41,79.31
+month and path,All,Wrecking and Demolition,All,2026-02,54,0,69,76,57.41
+month and path,All,Wrecking and Demolition,All,2026-03,47,46,84,89,19.15
+month and path,All,Wrecking and Demolition,All,2026-04,42,55,124,125,23.81
+month and path,All,Wrecking and Demolition,All,2026-05,63,56,92,106,19.05
+month and path,All,Wrecking and Demolition,All,2026-06,59,58,112,139,8.47
+month and path,All,Wrecking and Demolition,All,2026-07,67,80,121,153,4.48
+month and path,All,Wrecking and Demolition,All,2026-08,47,62,104,133,2.13
 month and path,All,Wrecking and Demolition,All,2026-09,69,65,111,138,2.9
-month and path,All,Easy Permit,All,2024-10,53,0,0,0,98.1
-month and path,All,Easy Permit,All,2024-11,28,0,2,15,78.6
+month and path,All,Easy Permit,All,2024-10,53,0,0,0,98.11
+month and path,All,Easy Permit,All,2024-11,28,0,2,15,78.57
 month and path,All,Easy Permit,All,2024-12,18,,,,
-month and path,All,Easy Permit,All,2025-01,34,0,0,0,91.2
+month and path,All,Easy Permit,All,2025-01,34,0,0,0,91.18
 month and path,All,Easy Permit,All,2025-02,20,0,0,0,95.0
-month and path,All,Easy Permit,All,2025-03,24,0,0,0,91.7
-month and path,All,Easy Permit,All,2025-04,51,0,0,0,98.0
-month and path,All,Easy Permit,All,2025-05,32,0,0,0,96.9
-month and path,All,Easy Permit,All,2025-06,54,0,0,0,94.4
+month and path,All,Easy Permit,All,2025-03,24,0,0,0,91.67
+month and path,All,Easy Permit,All,2025-04,51,0,0,0,98.04
+month and path,All,Easy Permit,All,2025-05,32,0,0,0,96.88
+month and path,All,Easy Permit,All,2025-06,54,0,0,0,94.44
 month and path,All,Easy Permit,All,2025-07,31,0,0,0,100.0
-month and path,All,Easy Permit,All,2025-08,35,0,0,0,97.1
-month and path,All,Easy Permit,All,2025-09,48,0,0,0,95.8
+month and path,All,Easy Permit,All,2025-08,35,0,0,0,97.14
+month and path,All,Easy Permit,All,2025-09,48,0,0,0,95.83
 month and path,All,Easy Permit,All,2025-10,35,0,0,0,100.0
-month and path,All,Easy Permit,All,2025-11,33,0,0,0,93.9
-month and path,All,Easy Permit,All,2025-12,28,0,0,1,89.3
-month and path,All,Easy Permit,All,2026-01,44,0,0,1,88.6
+month and path,All,Easy Permit,All,2025-11,33,0,0,0,93.94
+month and path,All,Easy Permit,All,2025-12,28,0,0,1,89.29
+month and path,All,Easy Permit,All,2026-01,44,0,0,1,88.64
 month and path,All,Easy Permit,All,2026-02,38,0,0,0,100.0
-month and path,All,Easy Permit,All,2026-03,45,0,0,0,95.6
-month and path,All,Easy Permit,All,2026-04,41,0,0,0,97.6
+month and path,All,Easy Permit,All,2026-03,45,0,0,0,95.56
+month and path,All,Easy Permit,All,2026-04,41,0,0,0,97.56
 month and path,All,Easy Permit,All,2026-05,40,0,0,0,95.0
 month and path,All,Easy Permit,All,2026-06,35,0,0,0,100.0
 month and path,All,Easy Permit,All,2026-07,42,0,0,0,100.0
-month and path,All,Easy Permit,All,2026-08,37,0,0,0,91.9
-month and path,All,Easy Permit,All,2026-09,46,0,0,0,95.7
+month and path,All,Easy Permit,All,2026-08,37,0,0,0,91.89
+month and path,All,Easy Permit,All,2026-09,46,0,0,0,95.65
 month and path,All,Direct Developer Services,All,2024-10,26,118,245,308,0.0
 month and path,All,Direct Developer Services,All,2024-11,24,84,141,168,0.0
 month and path,All,Direct Developer Services,All,2024-12,22,82,178,211,0.0
@@ -501,54 +501,54 @@ month and path,All,Traditional Developer Services,All,2026-06,0,,,,
 month and path,All,Traditional Developer Services,All,2026-07,0,,,,
 month and path,All,Traditional Developer Services,All,2026-08,0,,,,
 month and path,All,Traditional Developer Services,All,2026-09,0,,,,
-month and type,Express Permit Program,All,All,2024-10,2072,6,15,25,27.2
-month and type,Express Permit Program,All,All,2024-11,1366,5,14,22,26.0
-month and type,Express Permit Program,All,All,2024-12,1119,5,17,30,28.5
+month and type,Express Permit Program,All,All,2024-10,2072,6,15,25,27.22
+month and type,Express Permit Program,All,All,2024-11,1366,5,14,22,25.99
+month and type,Express Permit Program,All,All,2024-12,1119,5,17,30,28.51
 month and type,Express Permit Program,All,All,2025-01,1420,5,25,41,25.7
-month and type,Express Permit Program,All,All,2025-02,1203,3,12,22,27.2
-month and type,Express Permit Program,All,All,2025-03,1642,3,9,19,28.7
-month and type,Express Permit Program,All,All,2025-04,1852,2,8,14,32.1
-month and type,Express Permit Program,All,All,2025-05,1817,2,8,16,34.0
-month and type,Express Permit Program,All,All,2025-06,1850,3,10,19,29.2
-month and type,Express Permit Program,All,All,2025-07,1905,1,9,18,32.8
-month and type,Express Permit Program,All,All,2025-08,1768,2,11,19,32.7
-month and type,Express Permit Program,All,All,2025-09,2014,2,12,20,32.6
-month and type,Express Permit Program,All,All,2025-10,2142,3,13,21,27.9
-month and type,Express Permit Program,All,All,2025-11,1559,4,14,26,26.2
+month and type,Express Permit Program,All,All,2025-02,1203,3,12,22,27.18
+month and type,Express Permit Program,All,All,2025-03,1642,3,9,19,28.75
+month and type,Express Permit Program,All,All,2025-04,1852,2,8,14,32.13
+month and type,Express Permit Program,All,All,2025-05,1817,2,8,16,34.01
+month and type,Express Permit Program,All,All,2025-06,1850,3,10,19,29.24
+month and type,Express Permit Program,All,All,2025-07,1905,1,9,18,32.76
+month and type,Express Permit Program,All,All,2025-08,1768,2,11,19,32.75
+month and type,Express Permit Program,All,All,2025-09,2014,2,12,20,32.62
+month and type,Express Permit Program,All,All,2025-10,2142,3,13,21,27.92
+month and type,Express Permit Program,All,All,2025-11,1559,4,14,26,26.23
 month and type,Express Permit Program,All,All,2025-12,1255,5,15,28,23.9
-month and type,Express Permit Program,All,All,2026-01,1161,3,15,29,26.2
-month and type,Express Permit Program,All,All,2026-02,1243,3,13,24,28.6
-month and type,Express Permit Program,All,All,2026-03,1705,2,9,17,30.8
-month and type,Express Permit Program,All,All,2026-04,1767,2,9,15,32.8
-month and type,Express Permit Program,All,All,2026-05,1771,2,9,17,31.4
-month and type,Express Permit Program,All,All,2026-06,1949,3,12,19,32.4
-month and type,Express Permit Program,All,All,2026-07,1883,3,13,21,28.1
-month and type,Express Permit Program,All,All,2026-08,2003,3,12,23,28.5
-month and type,Express Permit Program,All,All,2026-09,2124,4,15,27,26.9
-month and type,Renovation and Alteration,All,All,2024-10,597,36,107,182,0.7
+month and type,Express Permit Program,All,All,2026-01,1161,3,15,29,26.18
+month and type,Express Permit Program,All,All,2026-02,1243,3,13,24,28.56
+month and type,Express Permit Program,All,All,2026-03,1705,2,9,17,30.79
+month and type,Express Permit Program,All,All,2026-04,1767,2,9,15,32.77
+month and type,Express Permit Program,All,All,2026-05,1771,2,9,17,31.39
+month and type,Express Permit Program,All,All,2026-06,1949,3,12,19,32.38
+month and type,Express Permit Program,All,All,2026-07,1883,3,13,21,28.09
+month and type,Express Permit Program,All,All,2026-08,2003,3,12,23,28.51
+month and type,Express Permit Program,All,All,2026-09,2124,4,15,27,26.88
+month and type,Renovation and Alteration,All,All,2024-10,597,36,107,182,0.67
 month and type,Renovation and Alteration,All,All,2024-11,428,49,128,191,0.0
-month and type,Renovation and Alteration,All,All,2024-12,414,45,120,205,0.5
-month and type,Renovation and Alteration,All,All,2025-01,465,43,122,181,0.4
-month and type,Renovation and Alteration,All,All,2025-02,362,55,140,250,0.6
-month and type,Renovation and Alteration,All,All,2025-03,436,47,141,211,0.2
-month and type,Renovation and Alteration,All,All,2025-04,544,51,130,207,0.7
-month and type,Renovation and Alteration,All,All,2025-05,480,57,122,202,0.8
-month and type,Renovation and Alteration,All,All,2025-06,488,48,128,223,0.4
+month and type,Renovation and Alteration,All,All,2024-12,414,45,120,205,0.48
+month and type,Renovation and Alteration,All,All,2025-01,465,43,122,181,0.43
+month and type,Renovation and Alteration,All,All,2025-02,362,55,140,250,0.55
+month and type,Renovation and Alteration,All,All,2025-03,436,47,141,211,0.23
+month and type,Renovation and Alteration,All,All,2025-04,544,51,130,207,0.74
+month and type,Renovation and Alteration,All,All,2025-05,480,57,122,202,0.83
+month and type,Renovation and Alteration,All,All,2025-06,488,48,128,223,0.41
 month and type,Renovation and Alteration,All,All,2025-07,518,56,127,186,0.0
-month and type,Renovation and Alteration,All,All,2025-08,441,63,134,224,0.2
-month and type,Renovation and Alteration,All,All,2025-09,521,55,121,185,0.2
+month and type,Renovation and Alteration,All,All,2025-08,441,63,134,224,0.23
+month and type,Renovation and Alteration,All,All,2025-09,521,55,121,185,0.19
 month and type,Renovation and Alteration,All,All,2025-10,504,50,127,194,0.0
 month and type,Renovation and Alteration,All,All,2025-11,372,53,134,201,0.0
-month and type,Renovation and Alteration,All,All,2025-12,374,58,140,209,0.3
-month and type,Renovation and Alteration,All,All,2026-01,406,65,136,202,1.0
-month and type,Renovation and Alteration,All,All,2026-02,372,63,148,204,0.3
-month and type,Renovation and Alteration,All,All,2026-03,445,58,158,222,0.2
-month and type,Renovation and Alteration,All,All,2026-04,519,52,140,213,0.8
-month and type,Renovation and Alteration,All,All,2026-05,474,53,135,209,0.6
-month and type,Renovation and Alteration,All,All,2026-06,427,63,141,224,1.2
+month and type,Renovation and Alteration,All,All,2025-12,374,58,140,209,0.27
+month and type,Renovation and Alteration,All,All,2026-01,406,65,136,202,0.99
+month and type,Renovation and Alteration,All,All,2026-02,372,63,148,204,0.27
+month and type,Renovation and Alteration,All,All,2026-03,445,58,158,222,0.22
+month and type,Renovation and Alteration,All,All,2026-04,519,52,140,213,0.77
+month and type,Renovation and Alteration,All,All,2026-05,474,53,135,209,0.63
+month and type,Renovation and Alteration,All,All,2026-06,427,63,141,224,1.17
 month and type,Renovation and Alteration,All,All,2026-07,496,64,155,246,0.2
 month and type,Renovation and Alteration,All,All,2026-08,497,66,142,193,0.2
-month and type,Renovation and Alteration,All,All,2026-09,482,51,138,188,0.2
+month and type,Renovation and Alteration,All,All,2026-09,482,51,138,188,0.21
 month and type,Signs,All,All,2024-10,155,46,91,215,0.0
 month and type,Signs,All,All,2024-11,197,33,65,88,0.0
 month and type,Signs,All,All,2024-12,172,35,80,112,0.0
@@ -573,102 +573,102 @@ month and type,Signs,All,All,2026-06,212,36,83,106,0.0
 month and type,Signs,All,All,2026-07,146,49,177,219,0.0
 month and type,Signs,All,All,2026-08,186,49,116,181,0.0
 month and type,Signs,All,All,2026-09,204,50,80,124,0.0
-month and type,New Construction,All,All,2024-10,112,62,132,219,0.9
-month and type,New Construction,All,All,2024-11,82,75,199,273,1.2
+month and type,New Construction,All,All,2024-10,112,62,132,219,0.89
+month and type,New Construction,All,All,2024-11,82,75,199,273,1.22
 month and type,New Construction,All,All,2024-12,76,63,119,235,0.0
 month and type,New Construction,All,All,2025-01,75,69,131,177,0.0
 month and type,New Construction,All,All,2025-02,80,61,148,229,0.0
 month and type,New Construction,All,All,2025-03,95,83,306,673,0.0
-month and type,New Construction,All,All,2025-04,124,35,123,169,3.2
-month and type,New Construction,All,All,2025-05,131,49,157,198,2.3
-month and type,New Construction,All,All,2025-06,161,90,151,199,4.3
-month and type,New Construction,All,All,2025-07,160,30,107,164,4.4
-month and type,New Construction,All,All,2025-08,175,51,126,168,5.1
-month and type,New Construction,All,All,2025-09,142,52,129,180,6.3
-month and type,New Construction,All,All,2025-10,133,56,164,262,3.8
-month and type,New Construction,All,All,2025-11,94,67,147,209,1.1
+month and type,New Construction,All,All,2025-04,124,35,123,169,3.23
+month and type,New Construction,All,All,2025-05,131,49,157,198,2.29
+month and type,New Construction,All,All,2025-06,161,90,151,199,4.35
+month and type,New Construction,All,All,2025-07,160,30,107,164,4.38
+month and type,New Construction,All,All,2025-08,175,51,126,168,5.14
+month and type,New Construction,All,All,2025-09,142,52,129,180,6.34
+month and type,New Construction,All,All,2025-10,133,56,164,262,3.76
+month and type,New Construction,All,All,2025-11,94,67,147,209,1.06
 month and type,New Construction,All,All,2025-12,90,91,174,246,0.0
 month and type,New Construction,All,All,2026-01,68,109,224,356,0.0
 month and type,New Construction,All,All,2026-02,82,63,129,155,0.0
-month and type,New Construction,All,All,2026-03,132,68,198,297,0.8
-month and type,New Construction,All,All,2026-04,157,48,126,183,0.6
-month and type,New Construction,All,All,2026-05,130,35,89,148,5.4
-month and type,New Construction,All,All,2026-06,129,32,103,175,3.9
-month and type,New Construction,All,All,2026-07,186,45,127,190,7.0
-month and type,New Construction,All,All,2026-08,169,49,132,211,4.7
-month and type,New Construction,All,All,2026-09,157,42,94,189,3.8
-month and type,Elevator Equipment,All,All,2024-10,98,0,0,5,81.6
-month and type,Elevator Equipment,All,All,2024-11,82,0,0,2,82.9
-month and type,Elevator Equipment,All,All,2024-12,68,0,5,7,67.6
-month and type,Elevator Equipment,All,All,2025-01,108,0,2,7,79.6
+month and type,New Construction,All,All,2026-03,132,68,198,297,0.76
+month and type,New Construction,All,All,2026-04,157,48,126,183,0.64
+month and type,New Construction,All,All,2026-05,130,35,89,148,5.38
+month and type,New Construction,All,All,2026-06,129,32,103,175,3.88
+month and type,New Construction,All,All,2026-07,186,45,127,190,6.99
+month and type,New Construction,All,All,2026-08,169,49,132,211,4.73
+month and type,New Construction,All,All,2026-09,157,42,94,189,3.82
+month and type,Elevator Equipment,All,All,2024-10,98,0,0,5,81.63
+month and type,Elevator Equipment,All,All,2024-11,82,0,0,2,82.93
+month and type,Elevator Equipment,All,All,2024-12,68,0,5,7,67.65
+month and type,Elevator Equipment,All,All,2025-01,108,0,2,7,79.63
 month and type,Elevator Equipment,All,All,2025-02,86,0,4,9,59.3
 month and type,Elevator Equipment,All,All,2025-03,100,0,5,5,62.0
-month and type,Elevator Equipment,All,All,2025-04,74,0,5,7,73.0
-month and type,Elevator Equipment,All,All,2025-05,89,0,1,5,77.5
-month and type,Elevator Equipment,All,All,2025-06,69,0,5,5,60.9
+month and type,Elevator Equipment,All,All,2025-04,74,0,5,7,72.97
+month and type,Elevator Equipment,All,All,2025-05,89,0,1,5,77.53
+month and type,Elevator Equipment,All,All,2025-06,69,0,5,5,60.87
 month and type,Elevator Equipment,All,All,2025-07,89,0,0,6,80.9
-month and type,Elevator Equipment,All,All,2025-08,89,0,7,7,74.2
-month and type,Elevator Equipment,All,All,2025-09,92,0,5,7,71.7
-month and type,Elevator Equipment,All,All,2025-10,98,0,7,12,65.3
+month and type,Elevator Equipment,All,All,2025-08,89,0,7,7,74.16
+month and type,Elevator Equipment,All,All,2025-09,92,0,5,7,71.74
+month and type,Elevator Equipment,All,All,2025-10,98,0,7,12,65.31
 month and type,Elevator Equipment,All,All,2025-11,80,0,7,7,67.5
 month and type,Elevator Equipment,All,All,2025-12,120,0,6,7,72.5
-month and type,Elevator Equipment,All,All,2026-01,71,0,0,5,85.9
-month and type,Elevator Equipment,All,All,2026-02,99,0,5,6,64.6
-month and type,Elevator Equipment,All,All,2026-03,69,0,2,7,71.0
-month and type,Elevator Equipment,All,All,2026-04,82,0,0,0,91.5
-month and type,Elevator Equipment,All,All,2026-05,105,0,5,9,65.7
-month and type,Elevator Equipment,All,All,2026-06,89,0,5,7,69.7
-month and type,Elevator Equipment,All,All,2026-07,103,0,5,8,70.9
-month and type,Elevator Equipment,All,All,2026-08,104,0,5,7,69.2
-month and type,Elevator Equipment,All,All,2026-09,97,0,0,1,89.7
-month and type,Wrecking and Demolition,All,All,2024-10,68,0,0,0,92.6
-month and type,Wrecking and Demolition,All,All,2024-11,48,0,0,0,93.8
-month and type,Wrecking and Demolition,All,All,2024-12,34,0,0,0,94.1
-month and type,Wrecking and Demolition,All,All,2025-01,68,0,0,0,95.6
-month and type,Wrecking and Demolition,All,All,2025-02,42,0,0,0,97.6
+month and type,Elevator Equipment,All,All,2026-01,71,0,0,5,85.92
+month and type,Elevator Equipment,All,All,2026-02,99,0,5,6,64.65
+month and type,Elevator Equipment,All,All,2026-03,69,0,2,7,71.01
+month and type,Elevator Equipment,All,All,2026-04,82,0,0,0,91.46
+month and type,Elevator Equipment,All,All,2026-05,105,0,5,9,65.71
+month and type,Elevator Equipment,All,All,2026-06,89,0,5,7,69.66
+month and type,Elevator Equipment,All,All,2026-07,103,0,5,8,70.87
+month and type,Elevator Equipment,All,All,2026-08,104,0,5,7,69.23
+month and type,Elevator Equipment,All,All,2026-09,97,0,0,1,89.69
+month and type,Wrecking and Demolition,All,All,2024-10,68,0,0,0,92.65
+month and type,Wrecking and Demolition,All,All,2024-11,48,0,0,0,93.75
+month and type,Wrecking and Demolition,All,All,2024-12,34,0,0,0,94.12
+month and type,Wrecking and Demolition,All,All,2025-01,68,0,0,0,95.59
+month and type,Wrecking and Demolition,All,All,2025-02,42,0,0,0,97.62
 month and type,Wrecking and Demolition,All,All,2025-03,26,0,0,0,100.0
-month and type,Wrecking and Demolition,All,All,2025-04,57,0,0,0,91.2
-month and type,Wrecking and Demolition,All,All,2025-05,32,0,0,0,96.9
+month and type,Wrecking and Demolition,All,All,2025-04,57,0,0,0,91.23
+month and type,Wrecking and Demolition,All,All,2025-05,32,0,0,0,96.88
 month and type,Wrecking and Demolition,All,All,2025-06,50,0,0,0,90.0
-month and type,Wrecking and Demolition,All,All,2025-07,93,0,0,0,96.8
-month and type,Wrecking and Demolition,All,All,2025-08,66,0,0,0,97.0
+month and type,Wrecking and Demolition,All,All,2025-07,93,0,0,0,96.77
+month and type,Wrecking and Demolition,All,All,2025-08,66,0,0,0,96.97
 month and type,Wrecking and Demolition,All,All,2025-09,47,0,0,0,100.0
-month and type,Wrecking and Demolition,All,All,2025-10,81,0,0,0,95.1
+month and type,Wrecking and Demolition,All,All,2025-10,81,0,0,0,95.06
 month and type,Wrecking and Demolition,All,All,2025-11,44,0,0,0,100.0
-month and type,Wrecking and Demolition,All,All,2025-12,55,0,0,21,89.1
-month and type,Wrecking and Demolition,All,All,2026-01,58,0,8,41,79.3
-month and type,Wrecking and Demolition,All,All,2026-02,54,0,69,76,57.4
-month and type,Wrecking and Demolition,All,All,2026-03,47,46,84,89,19.1
-month and type,Wrecking and Demolition,All,All,2026-04,42,55,124,125,23.8
-month and type,Wrecking and Demolition,All,All,2026-05,63,56,92,106,19.0
-month and type,Wrecking and Demolition,All,All,2026-06,59,58,112,139,8.5
-month and type,Wrecking and Demolition,All,All,2026-07,67,80,121,153,4.5
-month and type,Wrecking and Demolition,All,All,2026-08,47,62,104,133,2.1
+month and type,Wrecking and Demolition,All,All,2025-12,55,0,0,21,89.09
+month and type,Wrecking and Demolition,All,All,2026-01,58,0,8,41,79.31
+month and type,Wrecking and Demolition,All,All,2026-02,54,0,69,76,57.41
+month and type,Wrecking and Demolition,All,All,2026-03,47,46,84,89,19.15
+month and type,Wrecking and Demolition,All,All,2026-04,42,55,124,125,23.81
+month and type,Wrecking and Demolition,All,All,2026-05,63,56,92,106,19.05
+month and type,Wrecking and Demolition,All,All,2026-06,59,58,112,139,8.47
+month and type,Wrecking and Demolition,All,All,2026-07,67,80,121,153,4.48
+month and type,Wrecking and Demolition,All,All,2026-08,47,62,104,133,2.13
 month and type,Wrecking and Demolition,All,All,2026-09,69,65,111,138,2.9
-month and type,Reinstated Revoked Permits,All,All,2024-10,51,0,0,0,98.0
-month and type,Reinstated Revoked Permits,All,All,2024-11,26,0,2,15,76.9
+month and type,Reinstated Revoked Permits,All,All,2024-10,51,0,0,0,98.04
+month and type,Reinstated Revoked Permits,All,All,2024-11,26,0,2,15,76.92
 month and type,Reinstated Revoked Permits,All,All,2024-12,18,,,,
-month and type,Reinstated Revoked Permits,All,All,2025-01,33,0,0,0,90.9
+month and type,Reinstated Revoked Permits,All,All,2025-01,33,0,0,0,90.91
 month and type,Reinstated Revoked Permits,All,All,2025-02,20,0,0,0,95.0
-month and type,Reinstated Revoked Permits,All,All,2025-03,22,0,0,0,95.5
+month and type,Reinstated Revoked Permits,All,All,2025-03,22,0,0,0,95.45
 month and type,Reinstated Revoked Permits,All,All,2025-04,50,0,0,0,98.0
-month and type,Reinstated Revoked Permits,All,All,2025-05,32,0,0,0,96.9
-month and type,Reinstated Revoked Permits,All,All,2025-06,54,0,0,0,94.4
+month and type,Reinstated Revoked Permits,All,All,2025-05,32,0,0,0,96.88
+month and type,Reinstated Revoked Permits,All,All,2025-06,54,0,0,0,94.44
 month and type,Reinstated Revoked Permits,All,All,2025-07,31,0,0,0,100.0
-month and type,Reinstated Revoked Permits,All,All,2025-08,35,0,0,0,97.1
-month and type,Reinstated Revoked Permits,All,All,2025-09,48,0,0,0,95.8
+month and type,Reinstated Revoked Permits,All,All,2025-08,35,0,0,0,97.14
+month and type,Reinstated Revoked Permits,All,All,2025-09,48,0,0,0,95.83
 month and type,Reinstated Revoked Permits,All,All,2025-10,35,0,0,0,100.0
-month and type,Reinstated Revoked Permits,All,All,2025-11,33,0,0,0,93.9
-month and type,Reinstated Revoked Permits,All,All,2025-12,28,0,0,1,89.3
-month and type,Reinstated Revoked Permits,All,All,2026-01,44,0,0,1,88.6
+month and type,Reinstated Revoked Permits,All,All,2025-11,33,0,0,0,93.94
+month and type,Reinstated Revoked Permits,All,All,2025-12,28,0,0,1,89.29
+month and type,Reinstated Revoked Permits,All,All,2026-01,44,0,0,1,88.64
 month and type,Reinstated Revoked Permits,All,All,2026-02,38,0,0,0,100.0
-month and type,Reinstated Revoked Permits,All,All,2026-03,45,0,0,0,95.6
-month and type,Reinstated Revoked Permits,All,All,2026-04,41,0,0,0,97.6
+month and type,Reinstated Revoked Permits,All,All,2026-03,45,0,0,0,95.56
+month and type,Reinstated Revoked Permits,All,All,2026-04,41,0,0,0,97.56
 month and type,Reinstated Revoked Permits,All,All,2026-05,40,0,0,0,95.0
 month and type,Reinstated Revoked Permits,All,All,2026-06,35,0,0,0,100.0
 month and type,Reinstated Revoked Permits,All,All,2026-07,42,0,0,0,100.0
-month and type,Reinstated Revoked Permits,All,All,2026-08,37,0,0,0,91.9
-month and type,Reinstated Revoked Permits,All,All,2026-09,46,0,0,0,95.7
+month and type,Reinstated Revoked Permits,All,All,2026-08,37,0,0,0,91.89
+month and type,Reinstated Revoked Permits,All,All,2026-09,46,0,0,0,95.65
 month and type,Easy Permit,All,All,2024-10,2,,,,
 month and type,Easy Permit,All,All,2024-11,2,,,,
 month and type,Easy Permit,All,All,2024-12,0,,,,

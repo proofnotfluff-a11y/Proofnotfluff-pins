@@ -4,7 +4,7 @@
   "name": "Building Permits",
   "dataset": "ydr8-5enu",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
-  "fetchedAt": "2026-10-27T15:29:15-0500",
+  "fetchedAt": "2026-10-27T15:35:32-0500",
   "rowsUpdatedAt": "2026-10-27T15:43:13+00:00",
   "types": [
    "PERMIT - WRECKING/DEMOLITION"
@@ -28,9 +28,21 @@
   "med": 46,
   "p80": 84,
   "p90": 117,
-  "sameDay": 34.5,
+  "sameDay": 34.53,
   "over90": 17.9,
   "over365": 0.0
+ },
+ "change": {
+  "from": "2026-03",
+  "since": {
+   "n": 437,
+   "med": 61,
+   "p80": 103,
+   "p90": 127,
+   "sameDay": 9.61,
+   "over90": 27.0,
+   "over365": 0.0
+  }
  },
  "areas": [
   {

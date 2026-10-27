@@ -6935,22 +6935,124 @@
    "kind": "datapage",
    "module": "dp_flooding",
    "draft": true,
-   "title": "Chicago Basement Flooding Calls by Neighborhood | ProofNotFluff",
-   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
-   "eyebrow": "Free neighborhood tracker",
+   "data": "site/datapages/dp_flooding/monthly.json",
+   "title": "Chicago Basement Flooding Calls by Neighborhood, Updated Daily | ProofNotFluff",
+   "desc": "Free daily count of water in basement and sewer cleaning requests to Chicago 311 for all 77 community areas: month by month, against the year before, with the storm days. From City records.",
+   "eyebrow": "Free daily tracker for plumbers and restoration companies",
    "h1": "Chicago Basement Flooding Calls by Neighborhood",
-   "card": "Coming soon"
+   "card": "Water in basement and sewer cleaning requests to Chicago 311 by community area, month by month, with the storm days. Updated daily.",
+   "trade": [
+    {
+     "title": "Storm days bring the calls in bunches",
+     "text": "The day chart shows how basement calls pile up on a few days a year. Our free calculator shows what the new customer calls you cannot pick up cost you in jobs and profit each month.",
+     "slug": "missed-call-cost-calculator",
+     "button": "Count your missed calls"
+    },
+    {
+     "title": "Price the emergency jobs so they pay",
+     "text": "Work out the hourly rate that covers your truck, insurance and the hours you cannot bill, then quote a job from it. Free, and nothing to sign up for.",
+     "slug": "contractor-hourly-rate-calculator",
+     "button": "Work out your rate"
+    }
+   ],
+   "method": [
+    "Every day we count two types of Chicago 311 service request from the City's public 311 Service Requests dataset: Water in Basement Complaint, the Department of Water Management's request for water that has backed up into a home or business, and Sewer Cleaning Inspection Request, for a sewer structure such as a catch basin that is full of dirt or debris or not draining.",
+    "We ask the City's data for one request type and one month at a time, count by the day each request was made and the community area on it, and keep only those counts. Requests the City marks as duplicates are left out.",
+    "12 months means the last 12 whole months, and the change compares them with the 12 months before. Days are Chicago time and end the day before each pull. The current month appears in the downloads as far as it goes.",
+    "Only counts are kept. No address, location, request number or anything a resident wrote is stored or shown, so the page cannot point to any home, building or block."
+   ],
+   "faq": [
+    [
+     "Which Chicago neighborhoods have the most basement flooding calls?",
+     "The table on this page ranks all 77 community areas by water in basement calls to 311 in the last 12 whole months, and it updates every day. A higher count can also mean more homes with basements, or residents who report more often."
+    ],
+    [
+     "What is a water in basement call?",
+     "A request to Chicago 311 under the City's Water in Basement service, which the Department of Water Management uses for water that has backed up into a home or business. The City asks where the water came from, such as a floor drain, toilet or shower, and says the service is not for water that came in through windows."
+    ],
+    [
+     "What is a sewer cleaning request?",
+     "A Sewer Cleaning Inspection request asks the Department of Water Management to clean a sewer structure, such as a catch basin at the curb, in the street or in the alley, that is full of dirt or debris or not draining. The City says catch basins on private property are the owner's responsibility."
+    ],
+    [
+     "Does a call mean a basement flooded at an address?",
+     "No. A call is one request to 311, and this page keeps no addresses, so it says nothing about any one home or building."
+    ],
+    [
+     "Which community area is my neighborhood in?",
+     "The City counts by its 77 community areas, which hold many neighborhoods: Bucktown and Wicker Park are in West Town, Wrigleyville is in Lake View, and Pilsen is in the Lower West Side."
+    ],
+    [
+     "Can I use these numbers?",
+     "Yes. Both downloads are free CSV files of the counts. Please name the City of Chicago 311 Service Requests dataset as the source."
+    ]
+   ],
+   "sources": "City of Chicago 311 Service Requests, dataset v6vf-nfxy.",
+   "map": true
   },
   {
    "slug": "chicago-repair-demand",
    "kind": "datapage",
    "module": "dp_repairs",
    "draft": true,
-   "title": "Chicago Repair Demand by Trade | ProofNotFluff",
-   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
-   "eyebrow": "Free neighborhood tracker",
+   "data": "site/datapages/dp_repairs/monthly.json",
+   "title": "Chicago Repair Demand by Trade and Neighborhood, Updated Daily | ProofNotFluff",
+   "desc": "Free daily count of new Chicago building violations by trade for all 77 community areas: masonry, porches, electrical, HVAC, elevators and plumbing, month by month. From City records.",
+   "eyebrow": "Free daily tracker for repair trades",
    "h1": "Chicago Repair Demand by Trade",
-   "card": "Coming soon"
+   "card": "New City building violations by trade and community area each month: masonry, porches, electrical, HVAC, elevators and plumbing. Updated daily.",
+   "trade": [
+    {
+     "title": "Price the repair so it pays",
+     "text": "Work out the hourly rate that covers your truck, insurance and the hours you cannot bill, then quote a job from it. Free, and nothing to sign up for.",
+     "slug": "contractor-hourly-rate-calculator",
+     "button": "Work out your rate"
+    },
+    {
+     "title": "Know what a new customer costs you",
+     "text": "Before you spend on ads in a neighborhood, see your cost per lead, your lead cost per won job and the profit left after it, from your own numbers.",
+     "slug": "cost-per-lead-calculator",
+     "button": "Work out your lead cost"
+    }
+   ],
+   "method": [
+    "Every day we count the violations in the City of Chicago's public Building Violations dataset, which holds the violations the Department of Buildings has issued since 2006, by the month of each violation's date.",
+    "Each violation is sorted into a trade by its violation code with our own published mapping: a code we list goes to its trade, any other code starting with the letters of the Elevator, Boiler, Ventilation, Refrigeration, Plumbing or Electrical bureau goes to that bureau's trade, and everything else is not counted by trade. Codes for paperwork, permits, plans, records and arranging inspections are left out on purpose.",
+    "The dataset has no community area column, so each violation's map point is placed inside the City's own community area outlines. Points and addresses never leave the computer that does the counting.",
+    "12 months means the last 12 whole months, and the change compares them with the 12 months before. One inspection can cite several violations, and a violation counts in the month it was cited whether or not it has since been fixed.",
+    "Only counts are kept. No address, location, property, owner, inspector or comment is stored or shown, so the page cannot point to any building."
+   ],
+   "faq": [
+    [
+     "What repairs does Chicago cite most?",
+     "The tiles at the top give each trade's count for the last 12 whole months, and each trade's panel lists the violations the City cited most for it, in the City's own words."
+    ],
+    [
+     "Which Chicago neighborhoods need the most masonry, porch or HVAC work?",
+     "Pick a trade in the panel or on the map to rank all 77 community areas by new violations for it. A higher count can also mean more older buildings, or more inspections there."
+    ],
+    [
+     "Does this count tuckpointing?",
+     "In the last 12 months of records no violation is worded as tuckpointing, so this page counts the masonry items the City does name: exterior walls, parapets and coping, chimneys, lintels, sills, cornices and foundations."
+    ],
+    [
+     "Does a violation mean the work is still needed?",
+     "Not always. A violation is one item an inspector cited on the date shown, and this page does not track whether it was later fixed. It names no building or owner."
+    ],
+    [
+     "Can I use this to check a property I am buying?",
+     "No. The City says these records are historical and should not be relied on for real estate transactions, and this page holds only neighborhood counts. For a closing, the City points to the title commitment and the court and hearings records."
+    ],
+    [
+     "Which community area is my neighborhood in?",
+     "The City counts by its 77 community areas, which hold many neighborhoods: Bucktown and Wicker Park are in West Town, Wrigleyville is in Lake View, and Pilsen is in the Lower West Side."
+    ]
+   ],
+   "sourceNotes": [
+    "The City's note on this dataset: these data are historical, should not be relied on for real estate transactions, and do not necessarily reflect the current condition of a building. For closings, it points to the title commitment for enforcement actions in the Circuit Court of Cook County or the Chicago Department of Administrative Hearings."
+   ],
+   "sources": "City of Chicago Building Violations, dataset 22u3-xenr.",
+   "map": true
   },
   {
    "slug": "material-price-changes",

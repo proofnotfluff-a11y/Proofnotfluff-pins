@@ -1,12 +1,17 @@
 name: Chicago basement flooding calls
 # Free page /chicago-basement-flooding/ (Todd's go, Oct 27, 2026, coo/PARALLEL_BUILDS.md, build B8). The cloud agents
-# cannot reach data.cityofchicago.org, so this runner counts the City's 311 water in basement and sewer requests and
-# commits only counts. First run: the source check (tools/dp_probe_b8.py) confirms the request type names.
+# cannot reach data.cityofchicago.org, so this runner counts the City's 311 Water in Basement Complaint and Sewer
+# Cleaning Inspection Request requests by community area and day, one type and month per query, and commits only the
+# counts (site/datapages/dp_flooding/monthly.json). tools/dp_flooding_data.py says what is kept: no address,
+# location, request number or resident text ever leaves the runner. A push whose message says [probe] also reruns the
+# source check (tools/dp_probe_b8.py).
 on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["tools/dp_probe_b8.py", ".github/workflows/dp_flooding.yml"]
+    paths: ["tools/dp_flooding_data.py", "tools/dp_flooding.py", "tools/dp_probe_b8.py", ".github/workflows/dp_flooding.yml"]
+  schedule:
+    - cron: "35 11 * * *"   # every day, about 6:35 am Chicago time in daylight time
 permissions:
   contents: write
 concurrency:
@@ -15,17 +20,38 @@ concurrency:
 jobs:
   pull:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
-      - name: Source check (columns, request types, violation descriptions, City terms)
+      - run: pip install --quiet cryptography openpyxl pillow
+      - name: Source check (only on a push that asks for it)
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[probe]')
         run: python3 tools/dp_probe_b8.py
+      - name: Self-checks (planted cases)
+        run: |
+          python3 tools/dp_flooding_data.py --selftest
+          python3 tools/dp_flooding.py --selftest
+      - name: Count the City's basement flooding calls
+        run: python3 tools/dp_flooding_data.py
+      - name: Rebuild the site pages from the new counts
+        run: python3 tools/make_site.py
       - name: Commit
         run: |
           git config user.name "proofnotfluff-bot"
           git config user.email "proofnotfluff-bot@users.noreply.github.com"
-          git add site/datapages/dp_flooding site/datapages/dp_repairs
+          git add -A site/datapages/dp_flooding site/datapages/dp_repairs/source-check.json site/datapages/dp_repairs/city-terms.txt docs
           if git diff --cached --quiet; then echo "no change"; exit 0; fi
-          git commit -m "B8 source check $(TZ=America/Chicago date +%Y-%m-%d)"
-          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done
+          git commit -m "Chicago basement flooding calls data $(TZ=America/Chicago date +%Y-%m-%d)"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            git rebase --abort 2>/dev/null || true
+            tar -czf "$RUNNER_TEMP/keep.tgz" site/datapages/dp_flooding site/datapages/dp_repairs/source-check.json site/datapages/dp_repairs/city-terms.txt 2>/dev/null || true
+            git fetch origin main && git reset --hard origin/main
+            tar -xzf "$RUNNER_TEMP/keep.tgz"
+            python3 tools/make_site.py
+            git add -A site/datapages/dp_flooding site/datapages/dp_repairs/source-check.json site/datapages/dp_repairs/city-terms.txt docs
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "Chicago basement flooding calls data $(TZ=America/Chicago date +%Y-%m-%d)"
+            sleep 10
+          done
           exit 1

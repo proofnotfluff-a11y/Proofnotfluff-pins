@@ -1,0 +1,20 @@
+{"about": "Repair demand page: the trade tabs switch the panel, a trade tile jumps to its tab, the map switches trade, every area table opens, both downloads (build B8, Oct 27, 2026).",
+ "page": "chicago-repair-demand/",
+ "steps": [
+  {"scroll": "#trades"},
+  {"expect_visible": "#trades .rd-p[data-t='masonry']"},
+  {"click": "#trades .rd-tabs label:nth-of-type(2)"},
+  {"expect_visible": "#trades .rd-p[data-t='carpentry']"},
+  {"expect_hidden": "#trades .rd-p[data-t='masonry']", "screenshot": true},
+  {"click": ".rd-grid a[data-tab='hvac']"},
+  {"expect_visible": "#trades .rd-p[data-t='hvac']"},
+  {"click": "#trades .rd-p[data-t='hvac'] .rd-more summary"},
+  {"expect_count": "#trades .rd-p[data-t='hvac'] .rd-t tbody tr", "min": 77},
+  {"scroll": "#map"},
+  {"expect_count": "#repairmap path[data-n]", "eq": 77},
+  {"click": "#repairmap .gm-seg label:nth-of-type(4)"},
+  {"expect_text": "#repairmap .gm-leg", "contains": "HVAC"},
+  {"select": "#repairmap select", "value": "9"},
+  {"expect_text": "#repairmap .gm-info", "contains": "Edison Park", "screenshot": true},
+  {"expect_count": "#trades a[download]", "eq": 2}
+ ]}

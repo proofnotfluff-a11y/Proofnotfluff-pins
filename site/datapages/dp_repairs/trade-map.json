@@ -1,0 +1,361 @@
+{
+ "about": "Hand mapping by ProofNotFluff, Oct 27, 2026, from the City's own violation codes and descriptions. A violation code listed here goes to its trade; any other code starting with EV, BR, VT, RF, PL or EL goes to the trade of the Department of Buildings bureau those letters stand for; everything else is not counted by trade.",
+ "checkedAt": "2026-10-27",
+ "trades": [
+  {
+   "key": "masonry",
+   "label": "Masonry",
+   "short": "Masonry",
+   "who": "Exterior walls, parapets and coping, chimneys, lintels, sills, cornices and foundations."
+  },
+  {
+   "key": "carpentry",
+   "label": "Porches and exterior stairs",
+   "short": "Porches",
+   "who": "Porch systems, exterior stairs and balconies, including porches the City lists as dangerous and hazardous."
+  },
+  {
+   "key": "electrical",
+   "label": "Electrical and detectors",
+   "short": "Electrical",
+   "who": "Wiring, outlets, fixtures, service and grounding from the electrical code, plus smoke and carbon monoxide detectors."
+  },
+  {
+   "key": "hvac",
+   "label": "Heating, boilers and ventilation",
+   "short": "HVAC",
+   "who": "Boilers and water heaters, ventilation, refrigeration systems, and heat that is missing or not adequate."
+  },
+  {
+   "key": "elevator",
+   "label": "Elevators and lifts",
+   "short": "Elevators",
+   "who": "Electric and hydraulic elevators, escalators, wheelchair and platform lifts, dumbwaiters and hoists."
+  },
+  {
+   "key": "plumbing",
+   "label": "Plumbing",
+   "short": "Plumbing",
+   "who": "Leaks, hot and cold water, drains and sewer connections, fixtures, catch basins and work that needs a licensed plumbing contractor."
+  }
+ ],
+ "prefixes": {
+  "EV": {
+   "trade": "elevator",
+   "bureau": "Elevator"
+  },
+  "BR": {
+   "trade": "hvac",
+   "bureau": "Boiler"
+  },
+  "VT": {
+   "trade": "hvac",
+   "bureau": "Ventilation"
+  },
+  "RF": {
+   "trade": "hvac",
+   "bureau": "Refrigeration"
+  },
+  "PL": {
+   "trade": "plumbing",
+   "bureau": "Plumbing"
+  },
+  "EL": {
+   "trade": "electrical",
+   "bureau": "Electrical"
+  }
+ },
+ "codes": {
+  "BR1042": {
+   "trade": "other",
+   "description": "STEAM BOILER PERMIT",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "BR1052": {
+   "trade": "other",
+   "description": "WATER HEATER PERMIT",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "BR2010": {
+   "trade": "other",
+   "description": "NO ENTRY",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "BR2020": {
+   "trade": "other",
+   "description": "CERTIFICATE OF OPERATION",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "CN046013": {
+   "trade": "hvac",
+   "description": "UNAPPROVED HEATING DEVICE"
+  },
+  "CN046023": {
+   "trade": "hvac",
+   "description": "HEATER 8FT ABOVE FLR IN GARAGE"
+  },
+  "CN061014": {
+   "trade": "masonry",
+   "description": "REPAIR EXTERIOR WALL"
+  },
+  "CN062014": {
+   "trade": "masonry",
+   "description": "PARAPET & COPING"
+  },
+  "CN062024": {
+   "trade": "masonry",
+   "description": "PARAPET"
+  },
+  "CN062034": {
+   "trade": "masonry",
+   "description": "REPAIR COPING"
+  },
+  "CN063014": {
+   "trade": "masonry",
+   "description": "CHIMNEY"
+  },
+  "CN063024": {
+   "trade": "masonry",
+   "description": "CHIMNEY CAPPING"
+  },
+  "CN063034": {
+   "trade": "masonry",
+   "description": "CHIMNEY HEIGHT"
+  },
+  "CN063044": {
+   "trade": "hvac",
+   "description": "CONNECT GAS APPLIANCE TO VENT"
+  },
+  "CN064014": {
+   "trade": "masonry",
+   "description": "REPAIR CORNICE"
+  },
+  "CN065014": {
+   "trade": "masonry",
+   "description": "REPAIR LINTELS"
+  },
+  "CN065024": {
+   "trade": "masonry",
+   "description": "MAINTAIN PROJECTIONS"
+  },
+  "CN065034": {
+   "trade": "masonry",
+   "description": "REPAIR WINDOW SILLS"
+  },
+  "CN066034": {
+   "trade": "carpentry",
+   "description": "REPAIR BALCONY"
+  },
+  "CN069014": {
+   "trade": "masonry",
+   "description": "REPAIR DEFECTIVE FOUNDATION"
+  },
+  "CN069024": {
+   "trade": "masonry",
+   "description": "FOUNDATION, ADEQUATELY SUPPORT"
+  },
+  "CN070014": {
+   "trade": "carpentry",
+   "description": "REPAIR EXTERIOR STAIR"
+  },
+  "CN070024": {
+   "trade": "carpentry",
+   "description": "REPAIR PORCH SYSTEM"
+  },
+  "CN070034": {
+   "trade": "carpentry",
+   "description": "REPLACE D&H PORCH"
+  },
+  "CN070054": {
+   "trade": "carpentry",
+   "description": "BUILD PORCH 3FT FROM LOT LINE"
+  },
+  "CN100001": {
+   "trade": "hvac",
+   "description": "NO HEAT - RESIDENTIAL"
+  },
+  "CN100003": {
+   "trade": "hvac",
+   "description": "HEAT - COMMERCIAL"
+  },
+  "CN100303": {
+   "trade": "electrical",
+   "description": "ASSEMBLY UNIT CO DETECTOR"
+  },
+  "CN132016": {
+   "trade": "hvac",
+   "description": "HEAT UNIT ADEQUATELY"
+  },
+  "CN132026": {
+   "trade": "hvac",
+   "description": "HEAT HABITABLE ROOM"
+  },
+  "CN132036": {
+   "trade": "hvac",
+   "description": "HEAT FACTORY/WORKSHOP"
+  },
+  "CN197019": {
+   "trade": "electrical",
+   "description": "INSTALL SMOKE DETECTORS"
+  },
+  "CN197039": {
+   "trade": "electrical",
+   "description": "RELOCATE SMOKE DETECTOR"
+  },
+  "CN197049": {
+   "trade": "electrical",
+   "description": "INSTALL EXTRA SMOKE DETECTORS"
+  },
+  "CN197079": {
+   "trade": "electrical",
+   "description": "REPAIR/REPLACE SMOKE DETECTORS"
+  },
+  "CN197087": {
+   "trade": "electrical",
+   "description": "CARB MONOX DETECT IN RESID"
+  },
+  "CN197088": {
+   "trade": "electrical",
+   "description": "CARB MONOX DETECT IN HOTEL"
+  },
+  "CN197089": {
+   "trade": "electrical",
+   "description": "CARB MONOX DETECT IN ASSEMBLY"
+  },
+  "EL1891": {
+   "trade": "other",
+   "description": "NO PERMIT WIRING",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "EV0070": {
+   "trade": "other",
+   "description": "OBTAIN PERMIT FOR PASS ELE",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "EV0072": {
+   "trade": "other",
+   "description": "OBTAIN PERMIT FOR FRT ELE",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "EV1050": {
+   "trade": "other",
+   "description": "SERVICE RECORDS",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "EV1105": {
+   "trade": "other",
+   "description": "POST/OBTAIN CURR CERT-ELEVATOR",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "EV1350": {
+   "trade": "other",
+   "description": "OBTAIN PERMIT FOR MANLIFT",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "EV1400": {
+   "trade": "other",
+   "description": "OBTAIN PERMIT FOR PERS/HST",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "EV2063": {
+   "trade": "other",
+   "description": "PROVIDE MAINT CONTROL PROG",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "PL151137": {
+   "trade": "other",
+   "description": "OPEN",
+   "why": "The City's wording is only OPEN, which names no repair"
+  },
+  "PL171017": {
+   "trade": "other",
+   "description": "OBTN PERMIT FOR PLUMBING WORK",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "PL231010": {
+   "trade": "other",
+   "description": "EXPOSE FOR INSPECT APPROVAL",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "PL232010": {
+   "trade": "other",
+   "description": "SUBMIT PLANS FOR PLUMBING PRMT",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "PL232011": {
+   "trade": "other",
+   "description": "OBTAIN PERMIT FOR PLUMBING",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "PL232030": {
+   "trade": "other",
+   "description": "OBTAIN PERMIT FOR HOTWATER HTR",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "PL236070": {
+   "trade": "other",
+   "description": "OPEN",
+   "why": "The City's wording is only OPEN, which names no repair"
+  },
+  "PL237046": {
+   "trade": "other",
+   "description": "OPEN",
+   "why": "The City's wording is only OPEN, which names no repair"
+  },
+  "PL237048": {
+   "trade": "other",
+   "description": "OPEN",
+   "why": "The City's wording is only OPEN, which names no repair"
+  },
+  "RF301011": {
+   "trade": "other",
+   "description": "OBTAIN REFRIGERATION PERMIT",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "RF301041": {
+   "trade": "other",
+   "description": "ARRANGE FOR INSPECTION",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "RF301051": {
+   "trade": "other",
+   "description": "ARRANGE FOR RE-INSPECTION",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "VT1010": {
+   "trade": "other",
+   "description": "ARRANGE COMPLETED PERMIT INSP.",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "VT1030": {
+   "trade": "other",
+   "description": "ARRANGE PERMIT INSP.",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "VT1050": {
+   "trade": "other",
+   "description": "ARRANGE ANNUAL INSP.",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "VT2010": {
+   "trade": "other",
+   "description": "SUBMIT PLANS/GET VENT PERMIT",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "VT2020": {
+   "trade": "other",
+   "description": "FOLLOW PLANS/RESUBMIT REVISED",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "VT2040": {
+   "trade": "other",
+   "description": "SUBMIT REVISED PLANS",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  },
+  "VT2050": {
+   "trade": "other",
+   "description": "APPROVE PLANS ON SITE",
+   "why": "Paperwork, a permit, plans, records or arranging an inspection, not a repair"
+  }
+ }
+}

@@ -1,52 +1,56 @@
 {
  "product": "Chicago Restaurant Inspection Leads",
- "asOf": "2026-10-26",
- "asOfText": "Oct 26, 2026",
- "through": "2026-10-23",
- "throughText": "Oct 23, 2026",
+ "asOf": "2026-10-27",
+ "asOfText": "Oct 27, 2026",
+ "through": "2026-10-26",
+ "throughText": "Oct 26, 2026",
  "window": {
-  "from": "2026-09-24",
-  "to": "2026-10-23",
-  "newFrom": "2026-10-17",
-  "repeatFrom": "2026-07-26"
+  "from": "2026-09-27",
+  "to": "2026-10-26",
+  "newFrom": "2026-10-20",
+  "repeatFrom": "2026-07-29"
  },
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-26T13:55:14+00:00",
-  "rowsUpdatedAt": "2026-10-25T09:11:25+00:00",
+  "fetchedAt": "2026-10-27T16:21:16+00:00",
+  "rowsUpdatedAt": "2026-10-27T09:21:34+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "places": 254,
-  "flagged": 128,
-  "opening": 131,
-  "repeat": 21,
-  "new": 58,
+  "places": 253,
+  "flagged": 130,
+  "opening": 128,
+  "repeat": 18,
+  "new": 62,
   "byCat": {
-   "pests": 89,
+   "pests": 88,
    "hood": 28,
-   "drain": 18,
-   "clean": 100
+   "drain": 16,
+   "clean": 102
   },
-  "flaggedFail": 100,
-  "openingPassed": 96,
+  "flaggedFail": 98,
+  "openingPassed": 95,
   "excluded": {
-   "business name is a person's name": 4,
-   "school, day care, hospital, senior or mobile vendor": 55,
+   "business name is a person's name": 2,
+   "school, day care, hospital, senior or mobile vendor": 49,
    "the City's latest result is out of business or not located": 2
   },
-  "rowsRead": 1180,
-  "historyRead": 752,
+  "rowsRead": 1234,
+  "historyRead": 770,
   "areas": [
    [
     "Loop",
-    21
+    18
    ],
    [
     "West Town",
     17
+   ],
+   [
+    "Lake View",
+    14
    ],
    [
     "Logan Square",
@@ -57,23 +61,11 @@
     11
    ],
    [
-    "Lake View",
+    "Near West Side",
     10
    ],
    [
-    "Near West Side",
-    9
-   ],
-   [
-    "West Ridge",
-    9
-   ],
-   [
     "South Lawndale",
-    9
-   ],
-   [
-    "Gage Park",
     8
    ],
    [
@@ -81,11 +73,27 @@
     8
    ],
    [
+    "West Ridge",
+    8
+   ],
+   [
+    "Albany Park",
+    7
+   ],
+   [
+    "Uptown",
+    7
+   ],
+   [
     "Grand Boulevard",
     7
    ],
    [
     "McKinley Park",
+    7
+   ],
+   [
+    "Gage Park",
     7
    ],
    [
@@ -97,23 +105,15 @@
     7
    ],
    [
-    "Uptown",
-    7
+    "Lincoln Square",
+    6
    ],
    [
     "Lincoln Park",
     6
    ],
    [
-    "Albany Park",
-    6
-   ],
-   [
     "O'Hare",
-    5
-   ],
-   [
-    "Lincoln Square",
     5
    ],
    [
@@ -133,15 +133,7 @@
     4
    ],
    [
-    "Edgewater",
-    3
-   ],
-   [
-    "North Lawndale",
-    3
-   ],
-   [
-    "Dunning",
+    "Avondale",
     3
    ],
    [
@@ -149,11 +141,19 @@
     3
    ],
    [
-    "Roseland",
+    "Edgewater",
     3
    ],
    [
-    "Greater Grand Crossing",
+    "Dunning",
+    3
+   ],
+   [
+    "North Lawndale",
+    3
+   ],
+   [
+    "Roseland",
     3
    ],
    [
@@ -169,11 +169,19 @@
     3
    ],
    [
-    "Belmont Cragin",
+    "West Englewood",
     2
    ],
    [
-    "Englewood",
+    "Norwood Park",
+    2
+   ],
+   [
+    "Bridgeport",
+    2
+   ],
+   [
+    "Belmont Cragin",
     2
    ],
    [
@@ -181,11 +189,11 @@
     2
    ],
    [
-    "Beverly",
+    "Greater Grand Crossing",
     2
    ],
    [
-    "Avondale",
+    "Beverly",
     2
    ],
    [
@@ -193,11 +201,11 @@
     2
    ],
    [
-    "North Center",
+    "South Deering",
     2
    ],
    [
-    "South Deering",
+    "North Center",
     2
    ],
    [
@@ -205,15 +213,7 @@
     2
    ],
    [
-    "Chatham",
-    2
-   ],
-   [
     "Washington Park",
-    1
-   ],
-   [
-    "Bridgeport",
     1
    ],
    [
@@ -225,7 +225,7 @@
     1
    ],
    [
-    "Rogers Park",
+    "Englewood",
     1
    ],
    [
@@ -233,15 +233,11 @@
     1
    ],
    [
+    "Rogers Park",
+    1
+   ],
+   [
     "Ashburn",
-    1
-   ],
-   [
-    "West Englewood",
-    1
-   ],
-   [
-    "Norwood Park",
     1
    ],
    [
@@ -250,14 +246,6 @@
    ],
    [
     "Armour Square",
-    1
-   ],
-   [
-    "West Lawn",
-    1
-   ],
-   [
-    "Chicago Lawn",
     1
    ],
    [
@@ -273,7 +261,7 @@
     1
    ],
    [
-    "Garfield Ridge",
+    "Chatham",
     1
    ]
   ]
@@ -308,6 +296,16 @@
   "flagged": [
    {
     "type": "Restaurant",
+    "area": "Near West Side",
+    "date": "2026-10-23",
+    "result": "Pass w/ Conditions",
+    "inspectionType": "Canvass",
+    "categories": [
+     "Cleaning"
+    ]
+   },
+   {
+    "type": "Restaurant",
     "area": "O'Hare",
     "date": "2026-10-23",
     "result": "Fail",
@@ -320,24 +318,11 @@
    },
    {
     "type": "Restaurant",
-    "area": "West Town",
-    "date": "2026-10-21",
-    "result": "Fail",
-    "inspectionType": "Canvass",
+    "area": "Norwood Park",
+    "date": "2026-10-22",
+    "result": "Pass w/ Conditions",
+    "inspectionType": "Canvass Re-Inspection",
     "categories": [
-     "Pests",
-     "Hood and exhaust",
-     "Cleaning"
-    ]
-   },
-   {
-    "type": "Restaurant",
-    "area": "Lower West Side",
-    "date": "2026-10-21",
-    "result": "Fail",
-    "inspectionType": "Complaint",
-    "categories": [
-     "Pests",
      "Cleaning"
     ]
    }
@@ -379,29 +364,29 @@
   ],
   "opening": [
    {
-    "name": "Billal's",
-    "address": "131 N Clinton St",
-    "area": "Near West Side",
+    "name": "Legacy Kitchen",
+    "address": "7354 S Ashland Ave",
+    "area": "West Englewood",
+    "type": "Restaurant",
+    "date": "2026-10-26",
+    "result": "Pass",
+    "inspectionType": "License"
+   },
+   {
+    "name": "Paleta Haus",
+    "address": "4636 N Cumberland Ave",
+    "area": "O'Hare",
+    "type": "Restaurant",
+    "date": "2026-10-26",
+    "result": "Pass",
+    "inspectionType": "License"
+   },
+   {
+    "name": "Ann Sather Restaurant",
+    "address": "3042 N Broadway",
+    "area": "Lake View",
     "type": "Restaurant",
     "date": "2026-10-23",
-    "result": "Pass",
-    "inspectionType": "License"
-   },
-   {
-    "name": "Cava",
-    "address": "1830 W Fullerton Ave",
-    "area": "Lincoln Park",
-    "type": "Restaurant",
-    "date": "2026-10-22",
-    "result": "Pass",
-    "inspectionType": "License"
-   },
-   {
-    "name": "Best Amigos Grill",
-    "address": "3944 W Chicago Ave",
-    "area": "Humboldt Park",
-    "type": "Restaurant",
-    "date": "2026-10-21",
     "result": "Pass",
     "inspectionType": "License Re-Inspection"
    }

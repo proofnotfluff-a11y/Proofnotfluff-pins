@@ -26,6 +26,12 @@ Repeat R3 and R4 every two weeks with a new Focus line (another metro, another r
 4. Copy each reply whole into one Claude chat with "Kimi R0 reply" (R1, ...) on top.
 5. For R5, Claude sends a candidates file; attach it with the brief in a new Kimi task and paste R5.
 
+## Lessons from R0 to R6 (Oct 25 to 26)
+- Attachments did not always reach Kimi Work (R6). Write each prompt self-contained: the context, the evidence rules and the schema pasted in, the brief only as a backup.
+- Kimi is strong on seller, pricing and program pages (R0, R2, R6 kept) and weak on owners' own words: R1 cited shifting Trustpilot list pages and was set aside. Ask for each review's own link, or skip owner voices.
+- The trust check runs per round (intake step 7). A site that blocks our fetcher counts as unproven, not invented.
+- No paid channels (Todd, Oct 26, 7:09 pm). Research may list prices, but proposals stay at $0 unless Todd says otherwise.
+
 ## What Claude does with a reply (intake)
 1. Save the reply to data/work/kimi/<date>/<round>.txt and run `python3 tools/kimi_intake.py read <file>`. It parses the JSON, normalizes dashes, drops quotes over 15 words, refuses emails, phones and usernames, runs the scorer's own schema and kill rules (K1 to K5) on every idea, flags duplicates of our products and candidates, and writes the URL list to check.
 2. Open every URL on that list with WebFetch in the same chat, and record each with `kimi_intake.py mark <date> ok|dead|mismatch <url> ...`. A source that is dead or does not say what Kimi says is a mismatch. The rubric's rule stands: every source is fetched and read by us, this run.

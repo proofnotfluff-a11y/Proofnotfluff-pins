@@ -70,6 +70,16 @@ class Links(html.parser.HTMLParser):
         if not self.skip: self.text.append(data)
 
 
+def norm(u):
+    """The DPS menu links to /content/city/... and cityofchicago.org copies that refuse the runner; the /city/... form opens."""
+    return u.replace("://www.cityofchicago.org/", "://www.chicago.gov/").replace("://www.chicago.gov/content/city/", "://www.chicago.gov/city/")
+
+
+BID_PAGES = ["https://www.chicago.gov/city/en/depts/dps/provdrs/contract/svcs/current_bid_opportunities.html",
+             "https://www.chicago.gov/city/en/depts/dps/provdrs/contract/svcs/bid_and_bond_room.html",
+             "https://www.chicago.gov/city/en/depts/dps/provdrs/eprocurement.html"]
+
+
 def page(url):
     p = Links(url); p.feed(get(url))
     lines = [re.sub(r"\s+", " ", x).strip() for x in "".join(p.text).split("\n")]
@@ -129,6 +139,7 @@ def main():
         seen = set()
         sub = []
         for t, u in res["dps"]["overview"]["links"]:
+            u = norm(u)
             if "chicago.gov" in u and u.endswith(".html") and u not in seen and re.search(r"bid|opportunit|weekly", t + u, re.I):
                 seen.add(u)
                 try:
@@ -137,6 +148,15 @@ def main():
                 except Exception as e:
                     sub.append({"url": u, "error": str(e)})
         res["dps"]["subpages"] = sub
+        full = []
+        for u in BID_PAGES:   # the pages where open bids live: every link and the page text
+            try:
+                l3, x3 = page(u)
+                body = x3[next((i for i, x in enumerate(x3) if x == "Search"), 0):]
+                full.append({"url": u, "links": [(t_, norm(u_)) for t_, u_ in l3 if "#" not in u_][:400], "text": body[:400]})
+            except Exception as e:
+                full.append({"url": u, "error": str(e)})
+        res["dps"]["bidPages"] = full
     except Exception as e:
         res["errors"].append(f"dps: {e}")
     weeks = []

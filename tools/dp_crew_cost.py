@@ -13,7 +13,7 @@ crew size, hours and wage. One sub-page per trade (each with its own numbers) an
 
 Usage: python3 tools/dp_crew_cost.py --selftest
 """
-import csv, io, json, os, sys
+import csv, io, json, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -468,7 +468,7 @@ def rules_block(d, E):
             f'<p class="cc-note">From the City\'s notice, effective July 1, 2026 and last updated May 27, 2026. The rules are in Chicago Municipal Code 6-105 (minimum wage) and 6-130 (paid leave).</p></div>'
             '<div class="cc-card"><h3>Cook County</h3><p class="cc-sub">From July 1, 2026, in towns that use the County rate</p>'
             f'<dl><dt>Minimum wage</dt><dd>{m2(k["minWage"])} an hour</dd><dt>Tipped workers</dt><dd>{m2(k["tipped"])} an hour</dd></dl>'
-            '<ul><li>Covers employees over 18 who work in Cook County for {E(k["hours"])}, for an employer with 4 or more employees (or as a domestic worker), when the employer has a business facility or license in the County.</li>'
+            f'<ul><li>Covers employees over 18 who work in Cook County for {E(k["hours"])}, for an employer with 4 or more employees (or as a domestic worker), when the employer has a business facility or license in the County.</li>'
             '<li>A town can opt out or set its own minimum wage. Chicago sets its own, shown in the City of Chicago box.</li></ul>'
             f'<p class="cc-note">From the County\'s notice of {E(k["posted"])}. Check with the Cook County Commission on Human Rights for your town.</p></div>'
             '</div>')
@@ -744,12 +744,14 @@ def selftest():
     assert (m2(lab["median"]), m2(lab["p25"]), m2(lab["p75"]), m2(lpw["base"]), m2(lpw["fringes"])) == ("$29.27", "$22.25", "$48.44", "$53.00", "$39.11")
     assert (m2(d["chicago"]["minWage"]), m2(d["chicago"]["tipped"]), m2(d["chicago"]["otMin"])) == ("$17.05", "$12.96", "$25.58")
     html = page_html(spec)
-    assert html.count("<h1>") == 1 and "—" not in html and "–" not in html, "one h1, no dashes"
+    assert html.count("<h1>") == 1 and "\u2014" not in html and "\u2013" not in html, "one h1, no dashes"
     assert "$17.05" in html and "$15.40" in html and "7.65%" in html and "$49.21" in html, "headline figures"
     assert f'href="../{CALC_CONTRACTOR}/"' in html and f'href="../{CALC_HANDYMAN}/"' in html, "links to the rate calculators"
     assert html.count('data-cc-card hidden') == len(d["oews"]["roles"]) - 1, "one trade card shown"
+    assert not re.search(r"\{(E|m2|m0)\(", html), "an unrendered template field"
     for relp, pg in extra_pages(spec):
-        assert "—" not in pg and "–" not in pg, relp
+        assert "\u2014" not in pg and "\u2013" not in pg, relp
+        assert not re.search(r"\{(E|m2|m0)\(", pg), relp + ": an unrendered template field"
         if relp.endswith("index.html"):
             assert pg.count("<h1>") == 1, relp
     print("dp_crew_cost selftest: ok")

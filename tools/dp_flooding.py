@@ -304,7 +304,7 @@ def map_block(st, pop, E, period):
             f'<p class="gm-big"><span>{w["y12"]:,}</span><small>water in basement calls, {E(period)}, {E(pct(w["ch"]))} vs the 12 months before</small></p>'
             '<p>Most calls:</p><ul class="gm-top">'
             + "".join(f'<li><button type="button" data-pick="{a["n"]}">{E(a["name"])}, {a["water12"]:,}</button></li>' for a in top3) + '</ul>'
-            + ('<p>Biggest rises:</p><ul class="gm-top">' + "".join(f'<li><button type="button" data-pick="{a["n"]}">{E(a["name"])}, +{a["water12"] - a["waterp12"]:,} calls</button></li>' for a in rises) + '</ul>' if rises else "")
+            + ('<p>Biggest rises vs the 12 months before:</p><ul class="gm-top">' + "".join(f'<li><button type="button" data-pick="{a["n"]}">{E(a["name"])}, +{a["water12"] - a["waterp12"]:,} calls</button></li>' for a in rises) + '</ul>' if rises else "")
             + '<p class="gm-hint">Tap or hover any area on the map, or choose one from the list.</p>')
     fig = G.choropleth(areas, metrics, uid="floodmap", title="Map of Chicago's 77 community areas, colored by the measure chosen above", hint=hint,
                        caption="Community area outlines: City of Chicago, Boundaries - Community Areas. The table below has every area\'s 12-month counts and changes.")

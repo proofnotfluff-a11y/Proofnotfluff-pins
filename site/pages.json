@@ -6972,7 +6972,7 @@
    "slug": "chicago-basement-flooding",
    "kind": "datapage",
    "module": "dp_flooding",
-   "draft": true,
+   "draft": false,
    "data": "site/datapages/dp_flooding/monthly.json",
    "title": "Chicago Basement Flooding Calls by Neighborhood, Updated Daily | ProofNotFluff",
    "desc": "Free daily count of water in basement calls and sewer cleaning requests to Chicago 311 for all 77 community areas: month by month, vs the 12 months before, with the busiest days. From City records.",
@@ -7010,11 +7010,11 @@
     ],
     [
      "What is a sewer cleaning request?",
-     "A Sewer Cleaning Inspection request asks the Department of Water Management to clean a sewer structure, such as a catch basin at the curb, in the street or in the alley, that is full of dirt or debris or not draining. The City says catch basins on private property are the owner's responsibility."
+     "A Sewer Cleaning Inspection request asks the Department of Water Management to clean a sewer structure, such as a catch basin at the curb, in the street or in the alley, that is full of dirt or debris or not draining. The City says cleaning catch basins on private property is the property owner's job."
     ],
     [
      "Does a call mean a basement flooded at an address?",
-     "No. A call is one request to 311, and this page keeps no addresses, so it says nothing about any one home or building."
+     "Not on its own. A call is one request to 311, and it does not say what the City found. This page keeps no addresses, so it says nothing about any one home or building."
     ],
     [
      "Which community area is my neighborhood in?",
@@ -7032,7 +7032,7 @@
    "slug": "chicago-repair-demand",
    "kind": "datapage",
    "module": "dp_repairs",
-   "draft": true,
+   "draft": false,
    "data": "site/datapages/dp_repairs/monthly.json",
    "title": "Chicago Repair Demand by Trade and Neighborhood, Updated Daily | ProofNotFluff",
    "desc": "Free daily count of new Chicago building violations by trade for all 77 community areas: masonry, porches, electrical, HVAC, elevators and plumbing, with each month in the free download. From City records.",

@@ -140,7 +140,7 @@ def page_html(p):
                         "Wrecking and demolition permits issued by community area", E, show=20, what="community areas")
     wait_line = (f'<p class="pw-note"><b>How long a wrecking permit takes.</b> Half of the wrecking and demolition permits issued in the last 12 months '
                  f'were issued within {wait["med"]:,} days of the City starting review, and 8 in 10 within {wait["p80"]:,} days; '
-                 f'{wait["sameDay"]:.0f}% were issued the same day review started. <a href="{rel}chicago-permit-wait-times/">Every permit type on the wait times page</a>.</p>' if wait.get("med") is not None else "")
+                 f'{wait["sameDay"]:.0f}% were issued the same day review started. <a href="{rel}chicago-permit-wait-times/wrecking-and-demolition/">Wrecking permit wait times by month and area</a>.</p>' if wait.get("med") is not None else "")
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(META["h1"])}</h1><p class="lede">{lede}</p>'
             '<div class="ld-heroact rl-act"><a class="btn" href="#steps">See the five steps</a>'
             + ('<a class="st-btn2" href="#map">Open the map</a>' if mapb else '<a class="st-btn2" href="#areas">Permits by area</a>') + '</div></div>'

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Chicago Public Way Permit Cost Calculator: the free page /chicago-public-way-permit-costs/ (site/pages.json kind
-"datapage", module dp_cdot_fees; tools/make_site.py calls page_html here). Todd's go, Oct 27, 2026, 12:17 pm ("Let's
+"datapage", module dp_cdot_fees; tools/make_site.py calls page_html here). The owner's go, Oct 27, 2026, 12:17 pm ("Let's
 do them all", coo/PARALLEL_BUILDS.md, research_notes/kimi-2026-10-27-r10.md item 6).
 
-Source, and the only source: the City's CDOT 2026 Permit Fee Schedule ("Effective January 1, 2026"). Todd downloaded
+Source, and the only source: the City's CDOT 2026 Permit Fee Schedule ("Effective January 1, 2026"). The shop owner downloaded
 the PDF in his own browser on Oct 27, 2026 (the runner could not); tools/dp_cdot_fees_pull.py --from-file extracted its
 text to site/datapages/dp_cdot_fees/ (fee-schedule.layout.txt, source.json with the PDF's sha256). The degradation fee
 box on page 11 is an image in the PDF, so it is typed into degradation-page11.json and checked by eye.
@@ -164,8 +164,14 @@ CSS = ("<style>"
        ".pf-t th:first-child,.pf-t td:first-child{text-align:left}.pf-t thead th{font-size:13px;color:var(--muted);font-weight:700}"
        ".pf-t tbody th{font-weight:600;color:var(--ink);text-align:left}.pf-t tr:last-child>*{border-bottom:0}"
        ".pf-ref h3{margin:22px 0 4px;font-size:17px}.pf-ref .asof{margin-top:4px}"
-       ".pf-eff{display:flex;flex-wrap:wrap;gap:6px 16px;margin:14px 0 0;font-size:14.5px;color:var(--ink2)}.pf-eff b{color:var(--ink)}"
-       "@media(max-width:599px){.pf-t{font-size:13.5px}.pf-t th,.pf-t td{padding:8px 8px}}"
+       ".pf-eff{display:flex;flex-wrap:wrap;gap:6px 16px;margin:14px 0 20px;font-size:14.5px;color:var(--ink2)}.pf-eff b{color:var(--ink)}"
+       "#pf-res .pf-tiles{grid-template-columns:1fr}#pf-res .tile.key .val{font-size:40px}"
+       ".pf-t.wide{min-width:820px}.pf-t.wide th:first-child,.pf-t.wide td:first-child{position:sticky;left:0;background:var(--card);min-width:190px;z-index:1}"
+       ".pf-swipe{display:none;margin:8px 0 0;font-size:13.5px;color:var(--muted)}"
+       ".pf-more{margin:10px 0 0}.pf-more>summary{display:flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;font-weight:600;color:var(--ink)}"
+       ".pf-more{border:0;background:none;border-radius:0}.pf-more[open]>summary{margin-bottom:6px}"
+       "@media(max-width:599px){.pf-t{font-size:13.5px}.pf-t th,.pf-t td{padding:8px 8px}.pf-swipe{display:block}#pf-res .tile.key .val{font-size:34px}"
+       ".pf-eff span:last-child{flex-basis:100%;font-size:13.5px;color:var(--muted)}}"
        "</style>")
 
 
@@ -187,8 +193,7 @@ def _num(key, label, value, hint="", suf=""):
             + (f'<span class="suf">{html.escape(suf)}</span>' if suf else "") + "</div></div>")
 
 
-WHERE = [("cbd", "Inside the Central Business District (CBD)"), ("res", "Outside the CBD, on a residential street"),
-         ("art", "Outside the CBD, on an arterial street")]
+WHERE = [("cbd", "Inside the CBD"), ("res", "Outside the CBD, residential street"), ("art", "Outside the CBD, arterial street")]
 
 
 def form_html():
@@ -202,18 +207,27 @@ def form_html():
             + _sel("d-class", "Dumpster size", "", [("A", "Class A, 30 cubic yards or less"), ("B", "Class B, more than 30 cubic yards")], "A")
             + _sel("d-place", "Placement", "The fee is the same for each placement", [(x, x) for x in DUMP_ROWS], "Curb Lane")
             + _sel("d-time", "How long", "", [("3", "1 to 3 days"), ("m", "By the month")], "3")
-            + _num("d-months", "Months", 1, "Shown when you pick by the month")
+            + _num("d-months", "Months", 1)
             + "</fieldset>")
-    items = [(str(i), f"{g}: {n}") for i, (g, n, *_rest) in enumerate(ITEMS)]
+    import html as _h
+    groups = []
+    for i, (g, n, *_r) in enumerate(ITEMS):
+        if not groups or groups[-1][0] != g:
+            groups.append((g, []))
+        groups[-1][1].append((i, n))
+    item_sel = ('<div class="row pick"><label for="o-item">What you are placing<small>Names as the City\'s schedule prints them</small></label>'
+                '<div class="field"><select id="o-item">'
+                + "".join(f'<optgroup label="{_h.escape(g)}">' + "".join(f'<option value="{i}"{" selected" if i == 4 else ""}>{_h.escape(n)}</option>' for i, n in xs) + "</optgroup>" for g, xs in groups)
+                + "</select></div></div>")
     occ = ('<fieldset class="pf-sec" data-sec="occ"><legend>Work vehicle, equipment or barricade</legend>'
            + _sel("o-where", "Where it goes", "The CBD's boundaries are in Municipal Code section 9-4-010", WHERE, "res")
            + _sel("o-close", "Full or partial closure", "Sets the application fee", [("full", "Full closure"), ("partial", "Partial closure")], "partial")
-           + _sel("o-item", "What you are placing", "As the City's schedule names it", items, "4")
+           + item_sel
            + _num("o-days", "Days", 3) + _num("o-count", "Vehicles", 1) + _num("o-feet", "Length", 40, "", "ft")
            + _num("o-months", "Months", 1)
            + "</fieldset>")
     use = ('<fieldset class="pf-sec" data-sec="use"><legend>Sidewalk or street closure for building work</legend>'
-           + _sel("u-cbd", "Where it is", "Outside the CBD the fees are one-half", [("1", "Inside the Central Business District (CBD)"), ("0", "Outside the CBD")], "0")
+           + _sel("u-cbd", "Where it is", "Outside the CBD the fees are one-half", [("1", "Inside the CBD"), ("0", "Outside the CBD")], "0")
            + _sel("u-type", "Type of work", "", [("I", "Type I: alterations, facade repair, tuckpointing or demolition"), ("II", "Type II: building a new building"),
                                                  ("III", "Type III: routine maintenance in the CBD, like painting or window washing")], "I")
            + _sel("u-row", "What you close", "", [(str(i), r[0]) for i, r in enumerate(USAGE)], "0")
@@ -222,30 +236,32 @@ def form_html():
            + "</fieldset>")
     opn = ('<fieldset class="pf-sec" data-sec="open"><legend>Opening or cut in the public way</legend>'
            + _sel("p-place", "Placement", "", [(str(i), n) for i, (n, _f, _u) in enumerate(OPEN)], "1")
-           + _num("p-count", "Openings", 1, "For parkway soil borings, enter blocks instead")
+           + _num("p-count", "Openings", 1, "Count blocks instead for parkway soil borings")
            + _sel("p-mor", "Moratorium street?", "Newly paved streets and others CDOT protects. Check the ChiStreetWork map", [("0", "No"), ("1", "Yes")], "0")
            + _sel("p-age", "Pavement age", "Moratorium streets only",
                   [(str(m["maxMonths"]), m["label"]) for m in load_degradation()["multiplier"]], "6")
            + _sel("p-kind", "Cut or trench", "Moratorium streets only", [("cut", "A cut"), ("trench", "A trench")], "cut")
-           + _num("p-trench", "Trench length", 250, "Trenches only; charged on at least 200 feet", "ft")
+           + _num("p-trench", "Trench length", 250, "Trenches only; we read the schedule as at least 200 feet", "ft")
            + "</fieldset>")
-    return f'<form class="card pf" id="pf" novalidate>{sec_pick}{dump}{occ}{use}{opn}</form>'
+    return (f'<form class="card pf" id="pf" novalidate>{sec_pick}{dump}{occ}{use}{opn}'
+            '<div class="calc-reset"><button type="reset" class="st-btn2">Reset to the example</button></div></form>')
 
 
 RESULTS = """<div class="sticky"><div class="card" aria-live="polite" id="pf-res">
-<div class="tiles"><div class="tile key"><div class="lab">Estimated CDOT fees</div><div class="val" id="r-total">$0.00</div><div class="sub" id="r-sub">From the 2026 fee schedule</div></div></div>
+<div class="tiles pf-tiles"><div class="tile key"><div class="lab">Estimated CDOT fees</div><div class="val" id="r-total">$0.00</div><div class="sub" id="r-sub">From the 2026 fee schedule</div></div></div>
 <ul class="lines" id="r-lines"></ul>
 <div id="r-blocks"></div>
 <div class="callout warn" id="r-warn" hidden></div>
 <div class="callout" id="r-note" hidden></div>
 <p class="pf-src">Fees can change; confirm with CDOT before you apply.</p>
-</div></div>"""
+</div></div>
+<div class="mbar" aria-hidden="true"><span>Estimated CDOT fees</span><b id="m-total">$0.00</b></div>"""
 
 
 def reference_html(E):
     """Every fee the calculator uses, as the City prints it, so the page reads fully without scripts."""
-    def tbl(label, head, rows):
-        return (f'<div class="pf-tw" role="region" aria-label="{E(label)}" tabindex="0"><table class="pf-t"><thead><tr>'
+    def tbl(label, head, rows, wide=False):
+        return (f'<div class="pf-tw" role="region" aria-label="{E(label)}" tabindex="0"><table class="pf-t{" wide" if wide else ""}"><thead><tr>'
                 + "".join(f'<th scope="col">{E(h)}</th>' for h in head) + "</tr></thead><tbody>"
                 + "".join("<tr>" + f'<th scope="row">{E(r[0])}</th>' + "".join(f"<td>{E(c)}</td>" for c in r[1:]) + "</tr>" for r in rows)
                 + "</tbody></table></div>")
@@ -263,22 +279,26 @@ def reference_html(E):
                + tbl("Occupy application fees", ["Closure", "CBD", "Outside CBD, residential", "Outside CBD, arterial"],
                      [[k.capitalize() + " closure"] + [money(x) for x in APP["occupy"][k]] for k in ("full", "partial")]))
     unit = {"day_vehicle": "per day per vehicle", "vehicle": "per vehicle", "foot": "per foot", "foot_month": "per foot per month", "driveway": "per month for every 25 feet"}
-    out.append("<h3>Vehicles, equipment and other items (page 7)</h3>"
+    out.append("<h3>Vehicles, equipment and other items (page 7)</h3><p class=\"asof\">Names as the City's schedule prints them.</p>"
+               + f'<details class="pf-more"><summary>Show all {len(ITEMS)} items</summary>'
                + tbl("Vehicle and equipment fees", ["Item", "Outside CBD", "Inside CBD"],
-                     [[f"{g}: {n}", f"{money(o)} {unit[u]}", f"{money(i)} {unit[u]}"] for g, n, o, i, u in ITEMS]))
+                     [[f"{g}: {n}", f"{money(o)} {unit[u]}", f"{money(i)} {unit[u]}"] for g, n, o, i, u in ITEMS]) + "</details>")
     cols = ["1 to 3 days", "4 to 180", "181 to 360", "361 to 540", "541 to 720", "721 or more", "Type II, 4 to 540", "Type II, 541 or more"]
     rows = []
     for n, A, B in USAGE:
-        rows.append([f"{n}: per foot"] + [money(a) if not isinstance(a, str) else f"previous month plus {money(STEP[a])} a foot" for a in A])
+        rows.append([f"{n}: per foot"] + [money(a) if not isinstance(a, str) else a for a in A])
         rows.append([f"{n}: minimum a month"] + [money(b) for b in B])
     out.append("<h3>Monthly usage fees for Types I, II and III (pages 8 and 9)</h3>"
                "<p class=\"asof\">Amounts for the CBD; outside the CBD the fees are one-half. Columns are days in place: 1 to 3 days is for all three types, the next five for Types I and III, the last two for Type II. "
                "The schedule says these fees are subject to a yearly CPI increase of up to 2.5%.</p>"
-               + tbl("Monthly usage fees", ["Placement"] + cols, rows))
+               + f'<details class="pf-more"><summary>Show all {len(USAGE)} placements</summary>'
+               + tbl("Monthly usage fees", ["Placement"] + cols, rows, wide=True)
+               + '<p class="pf-swipe">Swipe sideways for all eight columns.</p>'
+               + f'<p class="asof">C: the previous monthly fee plus {money(STEP["C"])} times the length. D: the previous monthly fee plus {money(STEP["D"])} times the length.</p></details>')
     out.append("<h3>Openings in the public way (page 2)</h3><p class=\"asof\">Fees double, and a degradation fee is added, on moratorium streets.</p>"
                + tbl("Opening fees", ["Placement", "Fee"], [[n, f"{money(f)} per {u}"] for n, f, u in OPEN]))
     out.append("<h3>Degradation fee on moratorium streets (page 11)</h3>"
-               f"<p>Fee = P times (length divided by 200) times {money(d['baseRate'])}, where P is the multiplier for the pavement's age in the table below. For a cut the length is set to 200 feet; a trench is charged on at least 200 feet. "
+               f"<p>Fee = P times (length divided by 200) times {money(d['baseRate'])}, where P is the multiplier for the pavement's age in the table below. For a cut the length is set to 200 feet; for a trench the schedule says a minimum of 200 foot increments, which we read as at least 200 feet, prorated above that. "
                "Residential homeowners are exempt on repairs to existing sewer and water services. Moratorium streets are on CDOT's <a href=\"https://chistreetwork.chicago.gov/map\" rel=\"noopener\">ChiStreetWork map</a>.</p>"
                + tbl("Degradation multiplier", ["Age of the pavement", "P"], [[m["label"], f'{m["P"]:g}'] for m in d["multiplier"]]))
     out.append("</section>")
@@ -299,7 +319,7 @@ def page_html(p):
               "operatingSystem": "Any", "isAccessibleForFree": True, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}
     head = lambda rb: M.HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=M.SHOP,
                                     ld=M.ld_tags(*[x for x in (crumb_ld, app_ld, faq_ld if faq else None)]) + CSS,
-                                    bodycls=' class="ld-page"', robots=rb, analytics=M.analytics_tag())
+                                    bodycls=' class="ld-page has-mbar"', robots=rb, analytics=M.analytics_tag())
     if not src:
         body = f'{crumb}<div class="ld-hero"><h1>{E(p["h1"])}</h1><p class="lede">The fee schedule is on its way.</p></div>'
         return head('<meta name="robots" content="noindex, nofollow">') + body + "</main></body></html>"
@@ -326,7 +346,7 @@ def page_html(p):
             'schedule before applying.</p>'
             "<p>Estimates for planning only, from the numbers you enter. Not legal, tax or financial advice; CDOT decides the fee on each permit, so check with the agency before you apply. "
             "The calculator runs in your browser; nothing you type is sent anywhere.</p>"
-            "<p>ProofNotFluff is not affiliated with or endorsed by the City of Chicago.</p>"
+            f"<p>{E(M.CITY_DISCLAIMER['Chicago'])}</p><p>ProofNotFluff is not affiliated with or endorsed by the City of Chicago.</p>"
             "<p>Made by ProofNotFluff with AI assistance from the City's published fee schedule. The page counts visits with Cloudflare Web Analytics, which sets no cookies.</p>"
             f'</div></footer>\n<script type="application/json" id="pf-data">{js}</script>\n<script>{JS}</script>\n</body></html>')
     return head(robots) + body + foot
@@ -365,6 +385,7 @@ function draw(){var what=(f.querySelector("input[name=pf-what]:checked")||{}).va
   if(u==="foot_month"){use2=rate*ft*mo2;lab=ft+" ft x "+mo2+" month"+(mo2===1?"":"s")+" at "+m(rate)}
   if(u==="driveway"){var inc=Math.ceil(ft/25);use2=rate*inc*mo2;lab=inc+" x 25 ft x "+mo2+" month"+(mo2===1?"":"s")+" at "+m(rate)}
   L.push(["Application fee",app2]);L.push(["Usage, "+lab,use2]);total=app2+use2;sub="Application fee plus usage";
+  N.push("The schedule applies this application fee to work vehicles, temporary driveways, barricades and operating equipment; ask CDOT whether it applies to your item.");
   if(!use2)W.push("Type the days, vehicles, length or months for this item.")}
  if(what==="use"){var cbd=$("u-cbd").value==="1",ty=$("u-type").value,ft2=num("u-feet"),dy2=whole("u-days"),R=usage(+$("u-row").value,ty,cbd,dy2,ft2);
   total=R[0];L.push(["Usage for "+dy2+" day"+(dy2===1?"":"s")+", "+ft2+" ft"+(cbd?"":" (one-half outside the CBD)"),R[0]]);sub=R[1].length>1?R[1].length+" blocks of 30 days":"One charge";
@@ -375,13 +396,14 @@ function draw(){var what=(f.querySelector("input[name=pf-what]:checked")||{}).va
  if(what==="open"){var o=D.open[+$("p-place").value],n=whole("p-count"),mor=$("p-mor").value==="1",tr=$("p-kind").value==="trench";
   rowVis("p-age",mor);rowVis("p-kind",mor);rowVis("p-trench",mor&&tr);
   var fee=o[1]*n*(mor?2:1);L.push([n+" "+o[2]+(n===1?"":"s")+" at "+m(o[1])+(mor?", doubled on a moratorium street":""),fee]);total=fee;
-  if(mor){var dg=deg(+$("p-age").value,tr?num("p-trench"):null);L.push(["Degradation fee",dg]);total+=dg;
-   N.push("Residential homeowners are exempt from the degradation fee on repairs to existing sewer and water services.")}
-  N.push("Call 811 Chicago two business days before you dig.");sub=mor?"Permit fees plus degradation fee":"Permit fees";if(!n)W.push("Type how many openings.")}
- $("r-total").textContent=m(total);$("r-sub").textContent=sub;
+  if(mor){var dg=deg(+$("p-age").value,tr?num("p-trench"):null)*(tr?1:n);L.push([tr?"Degradation fee, one trench":"Degradation fee, "+n+" cut"+(n===1?"":"s"),dg]);total+=dg;
+   N.push(tr?"We read the schedule as charging a trench on at least 200 feet, prorated above that; ask CDOT.":"We show the degradation fee for each cut; ask CDOT how it charges several cuts.");
+   N.push("The schedule says residential homeowners are exempt from the degradation fee on repairs to existing sewer and water services. CDOT decides who qualifies.")}
+  N.push("The schedule says to contact 811 Chicago two business days before you dig.");sub=mor?"Permit fees plus degradation fee":"Permit fees";if(!n)W.push("Type how many openings.")}
+ $("r-total").textContent=m(total);var mt=$("m-total");if(mt)mt.textContent=m(total);$("r-sub").textContent=sub;
  $("r-lines").innerHTML=L.map(function(x){return"<li><span>"+x[0]+"</span><span>"+m(x[1])+"</span></li>"}).join("")+'<li class="total"><span>Total</span><span>'+m(total)+"</span></li>";
  $("r-blocks").innerHTML=blocks;var wv=$("r-warn"),nv=$("r-note");wv.hidden=!W.length;wv.textContent=W.join(" ");nv.hidden=!N.length;nv.textContent=N.join(" ")}
-f.addEventListener("input",draw);f.addEventListener("change",draw);f.addEventListener("submit",function(e){e.preventDefault()});draw()})();"""
+f.addEventListener("input",draw);f.addEventListener("change",draw);f.addEventListener("reset",function(){setTimeout(draw,0)});f.addEventListener("submit",function(e){e.preventDefault()});draw()})();"""
 
 
 # ---- Selftest: every fee against the City's text, and the maths on planted cases ----
@@ -452,6 +474,7 @@ def selftest():
     assert "January 1, 2026" in html and "Fees can change; confirm with CDOT" in html and src["url"] in html, "effective date, link, caution"
     assert all(money(x) in html for x in (92.63, 22.60, 56.51, 316.49, 158.25, 778.54, 389.26, 3840.00)), "the reference tables"
     assert isinstance(META["keywords"], str)
+    assert M.E(M.CITY_DISCLAIMER["Chicago"]) in html and 'id="m-total"' in html and 'type="reset"' in html, "City disclaimer, phone bar, reset"
     print("dp_cdot_fees selftest: ok")
 
 

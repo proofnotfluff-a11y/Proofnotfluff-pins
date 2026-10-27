@@ -1,11 +1,11 @@
 name: CDOT permit fee schedule
-# Free page /chicago-public-way-permit-costs/ (Todd's go, Oct 27, 2026, coo/PARALLEL_BUILDS.md). The cloud agents cannot
+# Free page /chicago-public-way-permit-costs/ (the owner's go, Oct 27, 2026, coo/PARALLEL_BUILDS.md). The cloud agents cannot
 # open chicago.gov PDFs, so this runner downloads the City's CDOT 2026 Permit Fee Schedule, extracts its text with
 # pdftotext and commits it under site/datapages/dp_cdot_fees/ (tools/dp_cdot_fees_pull.py). The page is built only from
 # that text. It runs on a change to its tools, by hand, and on the 3rd of each month to catch a new schedule; the page's
 # own selftest then fails the run if any published fee is no longer in the City's text.
-# Oct 27, 2026: the download step failed on GitHub's runner (chicago.gov refused it), so the page is on hold and this
-# runs only by hand until Todd decides how the City's PDF reaches the repo. No retries and no schedule until then.
+# Oct 27, 2026: the download step failed on GitHub's runner (chicago.gov refused it), so this runs only by hand. The
+# 2026 PDF was downloaded by the shop owner and extracted with tools/dp_cdot_fees_pull.py --from-file.
 on:
   workflow_dispatch:
 permissions:

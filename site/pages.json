@@ -6866,15 +6866,15 @@
    "draft": true,
    "title": "Chicago Public Way Permit Cost Calculator, 2026 Fees | ProofNotFluff",
    "desc": "Free calculator for 2026 CDOT permit fees: dumpsters, work vehicles and equipment, sidewalk and street closures, and openings, from the City's schedule.",
-   "eyebrow": "Free calculator, from CDOT's 2026 fee schedule",
+   "eyebrow": "Free calculator, 2026 CDOT fees",
    "h1": "Chicago Public Way Permit Cost Calculator",
    "card": "What a CDOT permit costs in 2026: dumpster placement, work vehicles and equipment, sidewalk and street closures, and openings, from the City's fee schedule.",
    "lede": "Pick what you are putting in the street, alley or sidewalk and get an estimate of the CDOT fees from the City's 2026 Permit Fee Schedule, with each line of the math shown.",
    "method": [
     "Every amount comes from CDOT's 2026 Permit Fee Schedule, effective January 1, 2026. The full tables are on this page with the schedule's page numbers, and the calculator only adds and multiplies them.",
     "Dumpsters: the application fee depends on the street (CBD, or a residential or arterial street outside it), and the usage fee on the size class, inside or outside the CBD, for 1 to 3 days or per month. The schedule gives no rate between 3 days and a month, so the calculator asks you to pick one.",
-    "Sidewalk and street closures: the schedule issues these permits in 30-day increments and sets a per-foot rate and a minimum monthly fee that both rise the longer the closure stays. The calculator charges each 30-day block at the column for the days it falls in, at the per-foot rate times the length or the minimum, whichever is more, and halves it outside the CBD. Past 720 days, sidewalk and parkway closures add $4.00 or $8.00 a foot to the previous month, as the schedule says.",
-    "Openings on a moratorium street: the opening fee doubles and the degradation fee from page 11 is added, using the schedule's own formula and multipliers.",
+    "Sidewalk and street closures: the schedule issues these permits in 30-day increments and sets a per-foot rate and a minimum monthly fee that both rise the longer the closure stays. Our reading: the calculator charges each 30-day block at the column for the days it falls in, at the per-foot rate times the length or the minimum, whichever is more, and halves it outside the CBD. CDOT may instead price the whole permit at one column. Past 720 days, the schedule sets sidewalk and parkway closures at the previous monthly fee plus $4.00 or $8.00 times the length; we read this as adding again each month. Ask CDOT how it prices yours.",
+    "Openings on a moratorium street: the opening fee doubles and the degradation fee from page 11 is added, using the schedule's own formula and multipliers. We show it for each cut, and charge a trench on at least 200 feet; both are our reading.",
     "Some items in the schedule are priced per foot without a time period, and some charges, like metered spaces taken out of use, have no amount in the schedule. The calculator says so where it applies. CDOT sets the fee on each permit."
    ],
    "faq": [
@@ -6892,7 +6892,7 @@
     ],
     [
      "What does a moratorium street add to an opening permit?",
-     "On a street paved less than five years ago, CDOT doubles the opening fee and adds a degradation fee. For a cut in a street paved 6 months ago the schedule's example is $20,000."
+     "On a street paved less than five years ago, CDOT doubles the opening fee and adds a degradation fee. For a cut in a street paved 6 months ago, the schedule's example degradation fee is $20,000."
     ],
     [
      "Will these fees change?",

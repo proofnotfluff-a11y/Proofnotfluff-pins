@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """CDOT 2026 Permit Fee Schedule: the source pull for the free page /chicago-public-way-permit-costs/ (site/pages.json
-kind "datapage", module dp_cdot_fees). Todd's go, Oct 27, 2026, 12:17 pm ("Let's do them all", coo/PARALLEL_BUILDS.md,
+kind "datapage", module dp_cdot_fees). The owner's go, Oct 27, 2026, 12:17 pm ("Let's do them all", coo/PARALLEL_BUILDS.md,
 research_notes/kimi-2026-10-27-r10.md item 6).
 
 Runs in GitHub Actions (.github/workflows/dp_cdot_fees.yml), because the cloud agents cannot open chicago.gov PDFs.
@@ -80,9 +80,9 @@ def extract(body, how, final=URL, ctype="application/pdf"):
 
 
 def main():
-    if "--from-file" in sys.argv:   # the City's PDF as Todd downloaded it in his own browser (Oct 27, 2026)
+    if "--from-file" in sys.argv:   # the City's PDF as the shop owner downloaded it in his own browser (Oct 27, 2026)
         path = sys.argv[sys.argv.index("--from-file") + 1]
-        extract(open(path, "rb").read(), "downloaded from the URL by Todd in his own browser and attached in a build chat")
+        extract(open(path, "rb").read(), "downloaded from the URL in a browser and attached in a build chat")
         return
     body, ctype, final = fetch()
     extract(body, "downloaded by the GitHub Action", final, ctype)

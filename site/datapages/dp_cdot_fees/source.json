@@ -3,7 +3,7 @@
  "publisher": "City of Chicago, Department of Transportation",
  "url": "https://www.chicago.gov/content/dam/city/depts/cdot/permit/2026/CDOT%202026%20Permit%20Fee%20Schedule.pdf",
  "finalUrl": "https://www.chicago.gov/content/dam/city/depts/cdot/permit/2026/CDOT%202026%20Permit%20Fee%20Schedule.pdf",
- "how": "downloaded from the URL by Todd in his own browser and attached in a build chat",
+ "how": "downloaded from the URL in a browser and attached in a build chat",
  "bytes": 1048762,
  "sha256": "009061e5936dd3335048de2e8b5ccceb216a2504c1b568e12c7dad2209fcd9b7",
  "textNote": "pdftotext 24 output; em and en dashes replaced with plain hyphens; sha256 is of the City's PDF",

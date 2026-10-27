@@ -34,18 +34,26 @@ def safe_params(p):
     for item in p["$select"].split(","):
         if re.search(r"vendor_name", item, re.I) and not re.fullmatch(VN, item, re.I):
             raise SystemExit("vendor_name may be selected only as itself, max() or min() of it (renamed only to a name containing 'vendor') or count() of it, so the answer is scrubbed")
+    if re.search(r"purchase_order_description", p["$select"], re.I) and not re.search(r"(?<![\w(])vendor_name(?![\w)])", p["$select"], re.I):
+        if p.get("$group"):
+            raise SystemExit("a grouped answer with a description must also group and select vendor_name, so a withheld name is taken out of the description")
+        p["$select"] += ",vendor_name"
     p.setdefault("$limit", "5000")
     return p
 
 
 def scrub(rows):
     for r in rows:
+        raw_v = next((v for k, v in r.items() if "vendor" in k.lower() and isinstance(v, str)), "")
         for k in list(r):
             if BLOCKED.search(k):
                 del r[k]
         for k in list(r):   # vendor_name and any alias of it (max(vendor_name) AS v) pass the page's business-name test
             if "vendor" in k.lower() or k.lower() in ("v", "name") or str(k).startswith(("max_", "min_")) and isinstance(r[k], str) and not re.match(r"^[\d\-T:.]+$", r[k]):
                 r[k] = DD.vendor(r[k]) if isinstance(r[k], str) else r[k]
+        for k in list(r):   # a person's name in a description goes the same way as in the vendor field
+            if isinstance(r[k], str) and "vendor" not in k.lower() and k != "contract_pdf":
+                r[k] = DD.desc_text(r[k], raw_v)
         if "contract_pdf" in r and (any(v == "Name withheld" for v in r.values()) or not any("vendor" in k.lower() for k in r)):
             r["contract_pdf"] = ""
     return rows
@@ -93,6 +101,13 @@ def selftest():
             pass
     assert safe_params({"$select": "max(vendor_name) AS top_vendor, count(distinct vendor_name) AS n"})
     assert scrub([{"contract_pdf": {"url": "http://x"}, "purchase_order_contract_number": "1"}])[0]["contract_pdf"] == ""
+    r = scrub([{"vendor_name": "JOHN Q SMITH", "purchase_order_description": "WEED CUTTING - JOHN Q SMITH", "contract_pdf": {"url": "http://x"}}])[0]
+    assert "SMITH" not in json.dumps(r), r
+    assert "vendor_name" in safe_params({"$select": "purchase_order_description"})["$select"]
+    try:
+        safe_params({"$select": "purchase_order_description, count(*)", "$group": "purchase_order_description"}); raise AssertionError("grouped description")
+    except SystemExit:
+        pass
     print("dp_contracts_check selftest: ok")
 
 

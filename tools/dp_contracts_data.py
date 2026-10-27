@@ -204,9 +204,26 @@ def vendor(name):
     pieces = [p.strip(" ,.;:") for p in PIECE.split(NOTE.sub("|", DBA.sub("|", n))) if p.strip(" ,.;:")]
     if len(pieces) > 1 and any(personlike(p) for p in pieces):
         return "Name withheld"  # a person's name beside a business ("ACME INC C/O MARY JONES", "SMITH ELECTRIC (JOHN SMITH)")
-    if personlike(FORM.split(n)[-1].strip(" ,.;:/-")):
+    if personlike(re.sub(r"^(?:AND|&|JV)\s+", "", FORM.split(n)[-1].strip(" ,.;:/-"), flags=re.I)):
         return "Name withheld"  # a person's name after the legal form ("ACME INC JOHN SMITH")
     return n
+
+
+NAMED = re.compile(r"(?:\b(?:ATTN|ATTENTION|C/O|CARE OF|FBO)\b:?|\b(?:XFER'?D?|TRANSFER(?:RED)?|ASSIGN(?:ED|MENT)?)\s+FROM)\s+"
+                   r"([A-Z][A-Za-z'.]*(?:\s+[A-Z][A-Za-z'.]*){1,3}?)(?=\s*(?:$|[;:,()/]|\s+-\s|\s+TO\b))", re.I)
+
+
+def desc_text(d, raw_vendor=""):
+    """A description as published. When the vendor name is withheld, that name and any person's name inside it are taken
+    out of the description too, and so is a person's name after ATTN, C/O, FBO or "transferred from"."""
+    d = re.sub(r"\s+", " ", (d or "").strip())
+    raw = re.sub(r"\s+", " ", (raw_vendor or "").strip())
+    if raw and vendor(raw) == "Name withheld":
+        names = {raw} | {p.strip(" ,.;:") for p in PIECE.split(NOTE.sub("|", DBA.sub("|", raw))) if personlike(p.strip(" ,.;:"))}
+        for s in sorted(names, key=len, reverse=True):
+            d = re.sub(r"(?<!\w)" + re.escape(s) + r"(?!\w)", "[name withheld]", d, flags=re.I)
+    return NAMED.sub(lambda m: m.group(0).replace(m.group(1), "[name withheld]")
+                     if personlike(m.group(1)) and vendor(m.group(1)) == "Name withheld" else m.group(0), d)
 
 
 AIRLINE = re.compile(r"\bAIR ?LINES?\b|AIRLINES'")   # a vendor that is an airline or an airline terminal group
@@ -229,7 +246,7 @@ def match(desc, ctype="", vendor_name=""):
 def row_out(r):
     """One published row: business fields only (the order is ROW_COLS)."""
     kind = -1 if rev(r) == 0 and TRANSFER.search(r.get("purchase_order_description") or "") else rev(r)
-    return [day(r.get("approval_date")), kind, re.sub(r"\s+", " ", (r.get("purchase_order_description") or "").strip()),
+    return [day(r.get("approval_date")), kind, desc_text(r.get("purchase_order_description"), r.get("vendor_name")),
             title_dept(r.get("department")), vendor(r.get("vendor_name")), amount(r), (r.get("contract_type") or "").strip(),
             (r.get("procurement_type") or "").strip(), (r.get("specification_number") or "").strip(),
             (r.get("purchase_order_contract_number") or "").strip(), day(r.get("start_date")), day(r.get("end_date")),
@@ -314,7 +331,7 @@ def build(rows36, ending_rows, today, meta, fetched):
         orig = [r for r in rs if rev(r) == 0]
         value = round(sum(amount(r) for r in rs), 2)
         ending.append((keys, {"contract": po, "spec": (first.get("specification_number") or "").strip(),
-                              "description": re.sub(r"\s+", " ", (first.get("purchase_order_description") or "").strip()),
+                              "description": desc_text(first.get("purchase_order_description"), last.get("vendor_name") or first.get("vendor_name")),
                               "department": title_dept(last.get("department") or first.get("department")),
                               "vendor": vendor(last.get("vendor_name") or first.get("vendor_name")),
                               "contractType": (first.get("contract_type") or "").strip(), "procurementType": (first.get("procurement_type") or "").strip(),
@@ -376,7 +393,7 @@ def top_desc(rows, n=40):
 def supply_left_out(rows):
     c = {}
     for r in rows:
-        d = re.sub(r"\s+", " ", (r.get("purchase_order_description") or "").upper())
+        d = desc_text(r.get("purchase_order_description"), r.get("vendor_name")).upper()
         if any(re.search(t["re"], d) for t in TRADES) and SUPPLY.search(d) and not WORK.search(d):
             c[d[:70]] = c.get(d[:70], 0) + 1
     return sorted(c.items(), key=lambda x: -x[1])[:40]
@@ -440,6 +457,11 @@ def selftest():
     assert vendor("KEVIN BROWN DOING BUSINESS AS BROWN HAULING") == "BROWN HAULING" and vendor("JOHN SMITH DBA: SMITH PLUMBING") == "SMITH PLUMBING"
     assert vendor("IHC CONSTRUCTION CO., LLC.") != "Name withheld" and vendor("WASTE MANAGEMENT OF ILLINOIS INC/MTR") != "Name withheld"
     assert title_dept("DEPT OF FLEET AND FACILITY MANAGEMENT") == "Department of Fleet and Facility Management"
+    assert vendor("ACME INC AND HARRY JONES") == "Name withheld" and vendor("ACME INC JV HARRY JONES") == "Name withheld"
+    assert desc_text("TREE TRIMMING SERVICES - JOHN Q SMITH", "JOHN Q SMITH") == "TREE TRIMMING SERVICES - [name withheld]"
+    assert desc_text("SNOW PLOWING - XFER FROM JOHN Q SMITH TO ACME SNOW INC") == "SNOW PLOWING - XFER FROM [name withheld] TO ACME SNOW INC"
+    assert desc_text("ROOF REPAIR C/O JANE DOE") == "ROOF REPAIR C/O [name withheld]"
+    assert desc_text("Canal Street Viaduct: Madison Street to Adams Street") == "Canal Street Viaduct: Madison Street to Adams Street"
     print("dp_contracts_data selftest: ok")
 
 

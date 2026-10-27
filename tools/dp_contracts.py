@@ -552,7 +552,7 @@ def trade_page(p, d, src, t):
                if t["ending"] else f'<div class="ld-heroact cc-act cc-hact"><a class="btn" href="#bids">See open City bids</a><a class="st-btn2" href="{E(csv_name(t))}" download>Download the CSV</a></div></div>')
             + f'{tiles}'
             + (zero_html if empty else otp([("ending", "Ending"), ("new", "New awards"), ("vendors", "Who wins"), ("changes", "Changes"), ("bids", "Open bids")])
-            + f'<section class="block" id="ending"><h2>Contracts ending in the next 12 months</h2>' + (('<p>When this contract ends, the City may bid the work again. Watch the City\'s bid lists for a rebid.</p>' if len(t["ending"]) == 1 else '<p>When these end, the City may bid the work again. Watch the City\'s bid lists for any rebid.</p>') if t["ending"] else '') + f'{end_html}</section>'
+            + f'<section class="block" id="ending"><h2>Contracts ending in the next 12 months</h2>' + (('<p>When this contract ends, the City may bid the work again. Watch the City\'s bid lists in case it is bid again.</p>' if len(t["ending"]) == 1 else '<p>When these end, the City may bid the work again. Watch the City\'s bid lists for any rebid.</p>') if t["ending"] else '') + f'{end_html}</section>'
             f'<section class="block" id="new"><h2>New awards, last 36 months</h2>{new_html}</section>'
             + (f'<section class="block" id="who"><h2>Who buys it, and how</h2>{who}</section>' if who else "")
             + f'<section class="block" id="vendors"><h2>Who wins it</h2>{vend}</section>'

@@ -166,11 +166,21 @@ CSS = ("<style>"
        ".pf-ref h3{margin:22px 0 4px;font-size:17px}.pf-ref .asof{margin-top:4px}"
        ".pf-eff{display:flex;flex-wrap:wrap;gap:6px 16px;margin:14px 0 20px;font-size:14.5px;color:var(--ink2)}.pf-eff b{color:var(--ink)}"
        "#pf-res .pf-tiles{grid-template-columns:1fr}#pf-res .tile.key .val{font-size:40px}"
+       ".ld-cta .ld-buybtn{margin-top:18px}.pf .calc-reset{border-top:0;padding-top:4px}"
+       ".pf .row.pick select{appearance:none;-webkit-appearance:none;padding-right:40px}.pf .row.pick .field{position:relative}"
+       ".pf .row.pick .field::after{content:'';position:absolute;right:16px;top:50%;width:8px;height:8px;border-right:2px solid var(--input-ink);border-bottom:2px solid var(--input-ink);transform:translateY(-70%) rotate(45deg);pointer-events:none}"
+       ".pf-ref .asof,.pf-ref .pf-note{font-size:14.5px;color:var(--muted);margin:4px 0 0;max-width:72ch}"
+       "@media(min-width:760px){.pf-ref .pf-tw:not(.wide-tw){max-width:860px}}"
+       ".pf-how>p b{color:var(--ink)}.pf-how details{margin:10px 0 0}.pf-how summary{display:flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;font-weight:600;color:var(--ink)}"
+       ".pf-how details{border:0;background:none;border-radius:0}.pf-how details[open] summary{margin-bottom:8px}"
+       "#calc{scroll-margin-top:96px}#fees{scroll-margin-top:96px}"
+       ".pf-pick{display:grid;grid-template-columns:1fr 1fr}.pf-pick legend{grid-column:1/-1}.pf-pick label{justify-content:center;text-align:center;min-height:48px;border-radius:12px;padding:6px 12px;line-height:1.25}"
        ".pf-t.wide{min-width:820px}.pf-t.wide th:first-child,.pf-t.wide td:first-child{position:sticky;left:0;background:var(--card);min-width:190px;z-index:1}"
        ".pf-swipe{display:none;margin:8px 0 0;font-size:13.5px;color:var(--muted)}"
        ".pf-more{margin:10px 0 0}.pf-more>summary{display:flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;font-weight:600;color:var(--ink)}"
        ".pf-more{border:0;background:none;border-radius:0}.pf-more[open]>summary{margin-bottom:6px}"
        "@media(max-width:599px){.pf-t{font-size:13.5px}.pf-t th,.pf-t td{padding:8px 8px}.pf-swipe{display:block}#pf-res .tile.key .val{font-size:34px}"
+       ".pf-t.app tbody th{white-space:nowrap}.ld-heroact{display:grid;grid-template-columns:1fr;gap:10px}.ld-heroact .btn,.ld-heroact .st-btn2{width:100%}"
        ".pf-eff span:last-child{flex-basis:100%;font-size:13.5px;color:var(--muted)}}"
        "</style>")
 
@@ -260,24 +270,25 @@ RESULTS = """<div class="sticky"><div class="card" aria-live="polite" id="pf-res
 
 def reference_html(E):
     """Every fee the calculator uses, as the City prints it, so the page reads fully without scripts."""
-    def tbl(label, head, rows, wide=False):
-        return (f'<div class="pf-tw" role="region" aria-label="{E(label)}" tabindex="0"><table class="pf-t{" wide" if wide else ""}"><thead><tr>'
+    def tbl(label, head, rows, wide=False, cls=""):
+        return (f'<div class="pf-tw{" wide-tw" if wide else ""}" role="region" aria-label="{E(label)}" tabindex="0"><table class="pf-t{" wide" if wide else ""}{" " + cls if cls else ""}"><thead><tr>'
                 + "".join(f'<th scope="col">{E(h)}</th>' for h in head) + "</tr></thead><tbody>"
                 + "".join("<tr>" + f'<th scope="row">{E(r[0])}</th>' + "".join(f"<td>{E(c)}</td>" for c in r[1:]) + "</tr>" for r in rows)
                 + "</tbody></table></div>")
     d = load_degradation()
     out = ['<section class="block pf-ref" id="fees"><h2>The 2026 fees this calculator uses</h2>'
            '<p>Typed from CDOT\'s 2026 Permit Fee Schedule, with the schedule\'s own page numbers. CBD is the Central Business District.</p>']
-    out.append("<h3>Dumpster permits: application fee (page 2)</h3>" + tbl("Dumpster application fees", ["Closure", "CBD", "Outside CBD, residential street", "Outside CBD, arterial street"],
-               [[k.capitalize() + " closure"] + [money(x) for x in APP["dumpster"][k]] for k in ("full", "partial")]))
+    out.append("<h3>Dumpster permits: application fee (page 2)</h3><p class=\"pf-note\">Residential and arterial streets are outside the CBD.</p>"
+               + tbl("Dumpster application fees", ["Closure", "CBD", "Residential", "Arterial"],
+                     [[k.capitalize() + " closure"] + [money(x) for x in APP["dumpster"][k]] for k in ("full", "partial")], cls="app"))
     out.append("<h3>Dumpster placement usage fee (page 2)</h3><p class=\"asof\">The same for alley, curb lane, parkway and sidewalk.</p>"
                + tbl("Dumpster usage fees", ["Size and location", "1 to 3 days", "Per month"],
                      [[f'Class {c} ({"30 cubic yards or less" if c == "A" else "more than 30 cubic yards"}), {"inside" if w == "in" else "outside"} the CBD',
                        money(DUMP[c][w][0]), money(DUMP[c][w][1])] for c in ("A", "B") for w in ("out", "in")]))
     out.append("<h3>Occupy the public right of way: application fee (page 6)</h3>"
-               "<p class=\"asof\">The schedule applies it to work vehicles, temporary driveways, barricades and operating equipment.</p>"
-               + tbl("Occupy application fees", ["Closure", "CBD", "Outside CBD, residential", "Outside CBD, arterial"],
-                     [[k.capitalize() + " closure"] + [money(x) for x in APP["occupy"][k]] for k in ("full", "partial")]))
+               "<p class=\"asof\">The schedule applies it to work vehicles, temporary driveways, barricades and operating equipment. Residential and arterial streets are outside the CBD.</p>"
+               + tbl("Occupy application fees", ["Closure", "CBD", "Residential", "Arterial"],
+                     [[k.capitalize() + " closure"] + [money(x) for x in APP["occupy"][k]] for k in ("full", "partial")], cls="app"))
     unit = {"day_vehicle": "per day per vehicle", "vehicle": "per vehicle", "foot": "per foot", "foot_month": "per foot per month", "driveway": "per month for every 25 feet"}
     out.append("<h3>Vehicles, equipment and other items (page 7)</h3><p class=\"asof\">Names as the City's schedule prints them.</p>"
                + f'<details class="pf-more"><summary>Show the {len(ITEMS)} items the calculator prices</summary>'
@@ -298,7 +309,7 @@ def reference_html(E):
     out.append("<h3>Openings in the public way (page 2)</h3><p class=\"asof\">Fees double, and a degradation fee is added, on moratorium streets.</p>"
                + tbl("Opening fees", ["Placement", "Fee"], [[n, f"{money(f)} per {u}"] for n, f, u in OPEN]))
     out.append("<h3>Degradation fee on moratorium streets (page 11)</h3>"
-               f"<p>Fee = P times (length divided by 200) times {money(d['baseRate'])}, where P is the multiplier for the pavement's age in the table below. For a cut the length is set to 200 feet; for a trench the schedule says a minimum of 200 foot increments, which we read as at least 200 feet, prorated above that. "
+               f"<p class=\"pf-note\">Fee = P times (length divided by 200) times {money(d['baseRate'])}, where P is the multiplier for the pavement's age in the table below. For a cut the length is set to 200 feet; for a trench the schedule says a minimum of 200 foot increments, which we read as at least 200 feet, prorated above that. "
                "Residential homeowners are exempt on repairs to existing sewer and water services. Moratorium streets are on CDOT's <a href=\"https://chistreetwork.chicago.gov/map\" rel=\"noopener\">ChiStreetWork map</a>.</p>"
                + tbl("Degradation multiplier", ["Age of the pavement", "P"], [[m["label"], f'{m["P"]:g}'] for m in d["multiplier"]]))
     out.append("</section>")
@@ -331,7 +342,13 @@ def page_html(p):
             "usage": [[n, A, B] for n, A, B in USAGE], "step": STEP, "deg": load_degradation()}
     js = json.dumps(data, separators=(",", ":")).replace("</", "<\\/")
     calc = (f'<section class="block" id="calc"><h2>Price your permit</h2><div class="grid">{form_html()}{RESULTS}</div></section>')
-    how = '<section class="block"><h2>How the calculator reads the schedule</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"]) + "</section>"
+    def lead(x):
+        k, sep, rest = x.partition(": ")
+        return f"<p><b>{E(k)}:</b> {E(rest)}</p>" if sep and len(k) < 45 else f"<p>{E(x)}</p>"
+    meth = p["method"]
+    how = ('<section class="block pf-how"><h2>How the calculator reads the schedule</h2>' + lead(meth[0])
+           + (f'<details><summary>How each permit type is priced</summary>{"".join(lead(x) for x in meth[1:])}</details>' if len(meth) > 1 else "")
+           + "</section>")
     nxt = p.get("next") or {}
     links = ('<section class="block"><div class="cta ld-cta"><div>'
              + (f'<h2>{E(nxt["title"])}</h2><p>{E(nxt["text"])}</p><p class="ld-buybtn"><a class="btn" href="{rel}{DUMPSTER_SLUG}/">{E(nxt["button"])}</a></p>' if dump_live and nxt else

@@ -596,7 +596,7 @@ def page_html(p):
               'checked against the station it should belong to.</p>'
               f'<ul class="sn-defs">{stations}</ul>'
               f'<p>The last {d["winters"][1] - d["winters"][0] + 1} full winters are {wlabel(d["winters"][0])} to {wlabel(d["winters"][1])}. '
-              'The page refreshes every morning from October to April; NOAA\'s file usually runs a few days behind today.</p>'
+              'The page refreshes every morning from October to April; NOAA\'s file usually runs a few days behind today, and NOAA can revise recent daily values after its quality checks, so this winter\'s counts can change.</p>'
               '<p>Two points do not describe the whole city: snowfall can differ across Chicago in a single storm. Use these counts as a starting point '
               'next to your own route records. This page counts past winters and does not forecast the coming one.</p>')
     dls = "".join(f'<a class="st-btn2" href="{k}-winters.csv" download>Download {E(v["s"]["label"])} (CSV)</a>' for k, v in sd.items())
@@ -614,7 +614,7 @@ def page_html(p):
             + sec("method", "How this page is made", method)
             + M.faq_block(FAQ))
     foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
-            f'<p>Source: NOAA National Centers for Environmental Information, <a href="{GHCN[0]}">GHCN-Daily</a>, daily snowfall (SNOW) and snow depth (SNWD) '
+            f'<p>Source: NOAA National Centers for Environmental Information, <a href="{GHCN[0]}">GHCN-Daily</a> (Menne and others, 2012, doi:10.7289/V5D21VHZ), daily snowfall (SNOW) and snow depth (SNWD) '
             f'at stations {E(", ".join(v["s"]["id"] for v in sd.values()))}, checked {E(checked)}. Past winters only, not a forecast, and not the snowfall at any one address.</p>'
             '<p>ProofNotFluff is not affiliated with or endorsed by NOAA or the National Weather Service.</p>'
             '<p>Public information for planning, not legal, tax or financial advice.</p>'

@@ -1883,7 +1883,7 @@ def _snow_fill():
              f'<div class="sf-s"><label for="sfSt">Station<select id="sfSt">{sts}</select></label>'
              f'<label for="sfT">Your trigger<select id="sfT">{ts}</select></label></div>'
              f'<div class="sf-bs" role="group" aria-label="Plowable days in past winters">{btn(0, "Light winter")}{btn(1, "Middle winter")}{btn(2, "Heavy winter")}</div>'
-             f'<p class="sf-n" aria-live="polite">Days with new snow at or over your trigger in past winters at that station, from NOAA records. '
+             f'<p class="sf-n" aria-live="polite">Days with new snow at or over your trigger in past winters at that station, from NOAA NCEI GHCN-Daily records. '
              f'Past winters only, not a forecast. <a id="sfLink" href="../{board["slug"]}/?station={st0}&amp;trigger={t0}">Open the snow season board</a></p></div>'
              '<style>.sf{margin:4px 0 6px;padding:12px;border:1px dashed var(--input-line);border-radius:10px;background:var(--canvas2)}'
              '.sf-h{margin:0 0 8px;font-weight:700;font-size:14.5px;color:var(--ink)}'

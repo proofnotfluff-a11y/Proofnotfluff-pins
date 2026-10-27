@@ -36,19 +36,19 @@ NWS_NOTE = (f'<p class="sn-note">For comparison, the National Weather Service Ch
             'It uses different years and methods, so its dates may not match this page.</p>')
 STATION_NOTE = {
     "ohare": "Its day runs midnight to midnight, local standard time.",
-    "midway": ("It is a NOAA cooperative observer station. Its name puts it about 3 miles southwest of the airport, and it keeps Midway's snowfall record. "
+    "midway": ("It is a NOAA cooperative observer station. Its name puts it about 3 miles southwest of the airport, and it has the fullest snowfall record near Midway in NOAA's file. "
                "Its day is the 24 hours to the observer's daily reading, so it may not line up with midnight. "
                "NOAA's automated station at the airport itself reports snowfall on too few days to use."),
 }
 
 META = {"h1": "Chicago Snow Season Board for Plow Owners",
-        "card": "Plowable days a winter at 1, 2, 3 and 6 inch triggers over 30 winters at O'Hare and Midway, and this winter so far.",
+        "card": "Plowable days a winter at 1, 2, 3 and 6 inch triggers from 30 winters of NOAA records at O'Hare and Midway, and this winter so far.",
         "keywords": "snow plow plowable pushes trigger depth seasonal contract chicago o'hare midway snowfall winter salt"}
 
 FAQ = [
     ("How many times do you plow in a Chicago winter?", None),   # the answer carries this winter's counts (faq())
     ("What counts as a plowable day here?",
-     "One day at the weather station with new snowfall at or over your trigger depth. Two snowy days in a row count as two. A storm that "
+     "One day at the weather station with new snowfall at or over your trigger depth. Two days in a row that each reach the trigger count as two. A storm that "
      "splits its snow across two days counts only on a day that alone reached the trigger."),
     ("Is this a forecast for this winter?",
      "No. It counts past winters only. Nobody can tell you this winter's count ahead of time, so price a seasonal contract with "
@@ -492,7 +492,7 @@ def dates_block(v, t, E):
             f'<div class="tile"><div class="lab">Last plowable day, middle</div><div class="val">{E(short_day(key_day(sm["lastMid"], y0)))}</div>'
             f'<div class="sub">Earliest {E(day_words(e2, True))}; latest {E(day_words(l2, True))}</div></div>'
             + none + '</div>'
-            + f'<p class="asof">Middle is the median date across the {sm["n"] - sm["none"]} complete winters that had a day at {E(inch(t))} or more; '
+            + f'<p class="asof">Middle is the middle date across the {sm["n"] - sm["none"]} complete winters that had a day at {E(inch(t))} or more; '
               'with an even count it is halfway between the two middle dates, to the nearest day.</p>'
             + (NWS_NOTE if v["s"]["key"] == "ohare" else ""))
 
@@ -639,7 +639,7 @@ def page_html(p):
                        for k, v in sd.items())
     defs = ('<ul class="sn-defs">'
             '<li><b>Plowable day:</b> one day at the weather station with new snowfall at or over the trigger depth (1, 2, 3 or 6 inches). '
-            'Two snowy days in a row count as two. A storm that drops 3 inches split 1.5 and 1.5 over two days does not count at a 2 inch trigger, '
+            'Two days in a row that each reach the trigger count as two. A storm that drops 3 inches split 1.5 and 1.5 over two days does not count at a 2 inch trigger, '
             'because neither day alone reached 2 inches.</li>'
             '<li><b>Winter:</b> July 1 to June 30, so a winter holds every snow from fall to spring.</li>'
             f'<li><b>Light, middle and heavy winter:</b> among the complete winters, light is the winter one fifth of the way up from the fewest days, '

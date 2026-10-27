@@ -64,7 +64,7 @@ NOTICE_CHOICES = [
 STEPS = [
     ("Pick the new price first.", f"The free price increase calculator ({CALC}) shows the price that keeps your profit or your margin after your costs rise, and how many customers you can lose before you earn less than today."),
     ("Pick a version.", "Standard notice for most customers, long-time customer for people who have been with you for years, rising costs when one cost is the reason."),
-    ("Fill every bracket.", "In the Word file, search for [ to find each field. Delete any Optional line you don't use, and the version note at the top of the page."),
+    ("Fill every bracket.", "In the Word file, search for [ to find each field. Delete any Optional line you don't use, and the version box at the top of the page."),
     ("Pick how much notice to give.", "These are choices, not rules. Pick one and use the same date for every customer who gets the same letter."),
     ("Send it the way you bill.", "Email it to customers you invoice by email. Print it and leave it with the invoice for customers you see in person. A short text can point to the email. Send every copy on the same day."),
     ("Keep a record.", "Note the date you sent each letter in your client list, so you can answer \"when did you tell me?\" later."),
@@ -109,9 +109,11 @@ def build_docx(path):
     from docx import Document
     from docx.enum.section import WD_SECTION
     from docx.enum.text import WD_BREAK
+    from docx.oxml import OxmlElement
     from docx.oxml.ns import qn
     from docx.shared import Pt, RGBColor, Inches
 
+    FIELD_BLUE = RGBColor(0x1F, 0x4E, 0x9E)
     INK, MUTED, ACCENT, TEAL = RGBColor(0x1D, 0x24, 0x33), RGBColor(0x5C, 0x62, 0x70), RGBColor(0xA6, 0x3E, 0x21), RGBColor(0x2E, 0x6B, 0x66)
     d = Document()
     sec = d.sections[0]
@@ -142,6 +144,41 @@ def build_docx(path):
         if color is not None: r.font.color.rgb = color
         if after is not None: p.paragraph_format.space_after = Pt(after)
         return p
+
+    def shade(run, hexfill):
+        rpr = run._r.get_or_add_rPr()
+        shd = OxmlElement("w:shd"); shd.set(qn("w:val"), "clear"); shd.set(qn("w:color"), "auto"); shd.set(qn("w:fill"), hexfill)
+        rpr.append(shd)
+
+    def letter_para(text, after):
+        """Bracket fields in input blue, bold, on a light yellow fill, as in the PDF and on the page."""
+        p = d.add_paragraph(); last = 0
+        for m in FIELD.finditer(text):
+            if m.start() > last:
+                p.add_run(text[last:m.start()])
+            r = p.add_run(m.group(0)); r.bold = True; r.font.color.rgb = FIELD_BLUE; shade(r, "FDF6DC")
+            last = m.end()
+        if last < len(text):
+            p.add_run(text[last:])
+        p.paragraph_format.space_after = Pt(after)
+        return p
+
+    def boxed_note(text, lead):
+        """The version note in a bordered, tinted box (a one-cell table), as in the PDF."""
+        tb = d.add_table(rows=1, cols=1)
+        cell = tb.rows[0].cells[0]
+        tcpr = cell._tc.get_or_add_tcPr()
+        borders = OxmlElement("w:tcBorders")
+        for side in ("top", "left", "bottom", "right"):
+            e = OxmlElement(f"w:{side}"); e.set(qn("w:val"), "single"); e.set(qn("w:sz"), "6"); e.set(qn("w:color"), "E2DDD3")
+            borders.append(e)
+        tcpr.append(borders)
+        shd = OxmlElement("w:shd"); shd.set(qn("w:val"), "clear"); shd.set(qn("w:color"), "auto"); shd.set(qn("w:fill"), "FAF8F4")
+        tcpr.append(shd)
+        cp_ = cell.paragraphs[0]; cp_.paragraph_format.space_after = Pt(2); cp_.paragraph_format.space_before = Pt(2)
+        r = cp_.add_run(lead + " "); r.bold = True; r.font.size = Pt(8.5)
+        r = cp_.add_run(text); r.font.size = Pt(8.5); r.font.color.rgb = MUTED
+        sp = d.add_paragraph(); sp.paragraph_format.space_after = Pt(6)
 
     def eyebrow(text):
         p = para(text.upper(), size=8.5, color=ACCENT, bold=True, after=2)
@@ -180,14 +217,14 @@ def build_docx(path):
 
     for i, L in enumerate(LETTERS, 1):
         page_break()
-        para(f"Version {i} of 3: {L['title']}. {L['use']} Delete this note before you send.", size=8.5, color=MUTED, after=14)
+        boxed_note(f"{L['use']} Delete this box before you send.", f"Version {i} of 3: {L['title']}.")
         for line in HEAD:
-            para(line, after=0 if line != HEAD[-1] else 10)
+            letter_para(line, after=0 if line != HEAD[-1] else 10)
         for b in L["body"]:
-            para(b, after=10)
+            letter_para(b, after=10)
         para("", after=18)
         for line in SIGN:
-            para(line, after=0)
+            letter_para(line, after=0)
 
     page_break()
     eyebrow("Terms")

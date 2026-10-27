@@ -74,6 +74,10 @@ SHORT_NOTICE = S.SHORT_NOTICE.format(date=CHECKED_LONG)
 FORMS = ("These are sample forms to adapt, not legal documents written for your state or business. Have a local attorney review "
          "any agreement before you use it with clients. If you collect client information, you're responsible for keeping it "
          "secure and following the privacy laws that apply to you.")
+DEPOSITS = ("Deposits and cancelling. Rules on deposits, cancelling and the wording of signed estimates vary by state and city, "
+            "especially for work sold at the customer's home. This template doesn't say what any law requires. Have a local attorney "
+            "check your deposit, payment and cancellation terms before you use them with clients.")
+ACCEPT = "To accept the work, prices and terms above, sign below and return it with the deposit."
 SAMPLE_LINE = ("Sample estimate form to adapt. Have a local attorney review your terms before you use them with clients. "
                "Amounts are estimates for the work listed.")
 
@@ -168,12 +172,15 @@ def build_xlsx(out, blank=False):
     x1, x2, x_end = D.table_card(ws, X_TOP, "B", "K", cols_x, N_LINES, title="Work and prices",
                                  sub="Quantity times rate. Blank rows are left out.", wb=wb)
     for rr in range(x1, x2 + 1):
-        for k in ("E", "F"):
-            ws[f"{k}{rr}"].border = Border(bottom=D.side("hair"))
+        for k in ("E", "F"):   # the gap columns read as part of the description box (locked, not merged)
+            ws[f"{k}{rr}"].fill = D.fill("input_fill")
+            ws[f"{k}{rr}"].border = Border(bottom=D.side("FFFFFF"))
         for k in ("C", "D", "H"):
             ws[f"{k}{rr}"].alignment = Alignment(horizontal="left", vertical="center", indent=1)
         ws[f"I{rr}"].alignment = Alignment(horizontal="right", vertical="center", indent=1)
         ws[f"G{rr}"].alignment = Alignment(horizontal="right", vertical="center", indent=1)
+    for k in ("E", "F"):   # the header rule runs across the gap columns too
+        ws[f"{k}{x1 - 1}"].border = Border(bottom=D.side("ink"))
     AMT = f"$J${x1}:$J${x2}"
 
     # ---- bottom: terms and acceptance (left), totals (right)
@@ -183,8 +190,12 @@ def build_xlsx(out, blank=False):
     L.eyebrow("TERMS AND ACCEPTANCE")
     r_tm = L.input("Payment terms", v("terms"), S.FMT["text"], name="PaymentTerms", validation=("textLength", 0, 60), allow_blank=True,
                    prompt="One short line, for example Balance due when the job is done.", prompt_title="Payment terms", error="Up to 60 characters.")
-    ws[f"D{r_tm}"].alignment = Alignment(horizontal="left", vertical="center", indent=1, shrink_to_fit=True)
-    L.text("To accept, sign below and return it with the deposit.", size=9, color="ink2")
+    r_tm2 = L._row()   # two grid rows for the terms (a merge, so the right-hand card keeps its row height)
+    box = Border(left=D.side("input_line"), right=D.side("input_line"), top=D.side("input_line"), bottom=D.side("input_line"))
+    ws[f"D{r_tm2}"].border = box; ws[f"D{r_tm2}"].fill = D.fill("input_fill")
+    ws.merge_cells(f"D{r_tm}:D{r_tm2}"); ws.merge_cells(f"C{r_tm}:C{r_tm2}")
+    ws[f"D{r_tm}"].alignment = Alignment(horizontal="left", vertical="center", indent=1, wrap_text=True)
+    L.text(ACCEPT, size=9, color="ink2", height=D.GRID_ROW * 2)
     sig_rows = []
     for lab in ("Name (print)", "Signature", "Date"):
         rr = L._row(); L._label(rr, lab)
@@ -203,6 +214,8 @@ def build_xlsx(out, blank=False):
     r_dpa = R.calc("Deposit to book", f'=IF($J${r_tot}="","",ROUND($J${r_tot}*N($J${r_dp}),2))', USD2)
     ws[f"G{r_dpa}"] = f'=IF(N($J${r_dp})>0,"Deposit to book ("&ROUND($J${r_dp}*100,2)&"%)","Deposit to book")'
     r_bal = R.calc("Balance due", f'=IF($J${r_tot}="","",$J${r_tot}-$J${r_dpa})', USD2, bold=True)
+    while R.r < L.end:   # both cards end on the same row
+        R._row()
     R.close()
     for rr in (r_sub, r_dsa, r_txa, r_tot, r_dpa, r_bal):
         ws[f"J{rr}"].alignment = Alignment(horizontal="right", vertical="center", indent=1)
@@ -327,6 +340,7 @@ def build_xlsx(out, blank=False):
         (None, "A new estimate each time. Save a copy of the file for each job (File, Save As), so every estimate you sent is kept.", "para"),
         (None, "Sales tax. Whether a service is taxed, and at what rate, depends on where you work and the kind of work. The tax "
                "rate cell is yours to set; it is charged on the total after the discount.", "para"),
+        (None, DEPOSITS, "para"),
         (None, "Pricing each line. The free calculators at proofnotfluff.com price a clean, a lawn visit or a pressure washing job "
                "from your own costs and time. The Terms tab links them.", "para"),
         (None, "Google Sheets. Upload the .xlsx to Google Drive, open it, then File, Save as Google Sheets. No macros, no add-ons.", "para"),
@@ -432,7 +446,7 @@ def blank_form_html():
 <div><p class="lab">For</p>{ln("Customer")}{ln("Job address")}{ln("Phone or email")}</div></div>
 <table><thead><tr><th style="width:1.3in">Item</th><th>Description</th><th class="n" style="width:.55in">Qty</th><th style="width:.65in">Unit</th><th class="n" style="width:.85in">Rate</th><th class="n" style="width:1in">Amount</th></tr></thead><tbody>{rows}</tbody></table>
 <div class="tot"><div class="acc"><p class="lab" style="margin-top:.04in">Terms and acceptance</p>{ln("Payment terms")}{ln("Prices good until")}
-<p style="margin-top:.12in">To accept, sign below and return it with the deposit.</p>{ln("Name (print)")}{ln("Signature")}{ln("Date")}</div>
+<p style="margin-top:.12in">{html.escape(ACCEPT)}</p>{ln("Name (print)")}{ln("Signature")}{ln("Date")}</div>
 <div class="sum"><div><span>Subtotal</span><span>$</span></div><div><span>Less discount (____%)</span><span>$</span></div>
 <div><span>Sales tax (____%)</span><span>$</span></div><div class="t"><span>Total</span><span>$</span></div>
 <div><span>Deposit to book (____%)</span><span>$</span></div><div><span>Balance due</span><span>$</span></div></div></div>
@@ -446,6 +460,7 @@ def guide_html():
              ("One line per piece of work.", "Item, what it covers, quantity, unit and rate. Amount is quantity times rate."),
              ("Add it up.", "Subtotal, less any discount, plus sales tax on what is left, is the total. The deposit is a share of the total; the balance is the rest."),
              ("Get it signed.", "The customer signs the acceptance lines and returns the estimate with the deposit. Keep a copy.")]
+    dep_lead, dep_body = DEPOSITS.split(". ", 1)
     steps_h = "".join(f"<li><b>{html.escape(a)}</b> {html.escape(b)}</li>" for a, b in steps)
     paras = open(os.path.join(HERE, "LICENSE-AND-DISCLAIMER.txt"), encoding="utf-8").read().strip().split("\n\n")[1:]
     terms = "".join("<p><b>{}.</b> {}</p>".format(*map(html.escape, p.split(". ", 1))) for p in paras)
@@ -455,6 +470,7 @@ def guide_html():
 <h1 style="font-size:19pt">Job estimate template</h1>
 <p style="font-size:9.6pt;color:#4a5163">Print page 1 and fill it by hand, or use the Excel version (proofnotfluff.com/downloads/{NAME}.xlsx), which adds every line up for you. Price each line with the free calculators at proofnotfluff.com.</p>
 <ol class="steps" style="margin-top:.08in">{steps_h}</ol>
+<p class="small" style="color:#1d2433"><b>{html.escape(dep_lead)}.</b> {html.escape(dep_body)}</p>
 <p class="small">Worked example in the Excel file: {money(ex['sub'])} of work, less a 10% discount of {money(ex['disc'])}, plus an example 5% sales tax of {money(ex['tax'])}, is {money(ex['total'])}; a 25% deposit is {money(ex['dep'])} and {money(ex['bal'])} is due when the job is done.</p>
 <p class="small">{html.escape(SHORT_NOTICE)}</p>
 <h2>Terms of Use and Disclaimer</h2>
@@ -476,7 +492,7 @@ def page_preview():
 <div class="pe-tiles"><div class="pe-tile key"><span class="lab">Estimate total</span><b>{money(ex['total'])}</b><span>Deposit to book {money(ex['dep'])}, balance {money(ex['bal'])}</span></div>
 <div class="pe-tile"><span class="lab">For</span><b class="sm">{html.escape(EX['cust'])}</b><span>{html.escape(EX['addr'])}. Prices good until {until:%b} {until.day}, {until.year}</span></div></div>
 <table class="pe-lines"><caption class="pe-vh">Work and prices</caption><thead><tr><th scope="col">Item</th><th scope="col">Qty</th><th scope="col">Rate</th><th scope="col">Amount</th></tr></thead><tbody>{rows}</tbody></table>
-<div class="pe-foot"><div class="pe-acc"><p class="lab">Terms and acceptance</p><p>{html.escape(EX['terms'])} To accept, sign below and return it with the deposit.</p><p class="pe-sig">Name (print)</p><p class="pe-sig">Signature</p></div>
+<div class="pe-foot"><div class="pe-acc"><p class="lab">Terms and acceptance</p><p>{html.escape(EX['terms'])} {html.escape(ACCEPT)}</p><p class="pe-sig">Name (print)</p><p class="pe-sig">Signature</p></div>
 <dl class="pe-sum"><div><dt>Subtotal</dt><dd>{money(ex['sub'])}</dd></div><div><dt>Less discount (10%)</dt><dd>-{money(ex['disc'])}</dd></div>
 <div><dt>Sales tax (5%)</dt><dd>{money(ex['tax'])}</dd></div><div class="t"><dt>Total</dt><dd>{money(ex['total'])}</dd></div>
 <div><dt>Deposit to book (25%)</dt><dd>{money(ex['dep'])}</dd></div><div><dt>Balance due</dt><dd>{money(ex['bal'])}</dd></div></dl></div>

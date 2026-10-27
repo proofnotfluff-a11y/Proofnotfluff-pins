@@ -3,9 +3,9 @@
  "checked": "2026-10-27",
  "lede": "What the City of Chicago and the State of Illinois require for 12 trades, from fee and insurance to bond, exam and renewal, each line linked to the agency page.",
  "method": [
-  "We read every line on the issuing agency's own page: the City of Chicago Departments of Buildings, Business Affairs and Consumer Protection, Public Health and Transportation; the Illinois Departments of Public Health, Agriculture, and Financial and Professional Regulation; Illinois EPA; State law on the Illinois General Assembly site; and the U.S. EPA. Each line links to its page and the date we read it.",
+  "We read every line on the issuing agency's own page: the City of Chicago Departments of Buildings, Business Affairs and Consumer Protection, Public Health and Transportation; the Illinois Departments of Public Health, Agriculture, and Financial and Professional Regulation; Illinois EPA; the Illinois Pollution Control Board; State laws and rules on the Illinois General Assembly site; and the U.S. EPA. Each line links to its page and the date we read it.",
   "Where an agency page is silent, the line says so, such as not stated or lists no bond, instead of filling the gap. A page we could not open is not used.",
-  "For trades the City pages we read do not name, such as cleaning, painting, pest control, landscaping, pressure washing and snow removal, the page reports what BACP says about how it picks a license and the fee BACP prints, not a guess at which license applies.",
+  "For trades the City pages we read name no license for, such as cleaning, painting, pest control, landscaping, pressure washing and snow removal, the page reports what BACP says about how it picks a license and the fee BACP prints, not a guess at which license applies.",
   "When this page's data changes, a checker re-reads the source pages it can reach and flags any figure that is no longer printed there. This is public information, not legal advice; the agency decides what your business needs."
  ],
  "faq": [
@@ -30,6 +30,7 @@
    "No City page we read names a separate HVAC license. Permitted HVAC work needs a City general contractor license, Class A to E, and home heating and cooling work without a permit falls under the City home repair license. Refrigerant work needs EPA Section 608 certification.",
    [
     "mech",
+    "homerepair",
     "epa608"
    ]
   ],

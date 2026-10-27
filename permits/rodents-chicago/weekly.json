@@ -5,88 +5,88 @@
   "dataset": "v6vf-nfxy",
   "url": "https://data.cityofchicago.org/Service-Requests/311-Service-Requests/v6vf-nfxy",
   "srType": "Rodent Baiting/Rat Complaint",
-  "fetchedAt": "2026-10-26T10:48:32-0500",
+  "fetchedAt": "2026-10-27T09:36:43-0500",
   "duplicatesLeftOut": true
  },
  "window": {
-  "from7": "2026-10-19",
-  "from30": "2026-09-26",
-  "to": "2026-10-25",
-  "prevFrom": "2025-09-26",
-  "prevTo": "2025-10-25"
+  "from7": "2026-10-20",
+  "from30": "2026-09-27",
+  "to": "2026-10-26",
+  "prevFrom": "2025-09-27",
+  "prevTo": "2025-10-26"
  },
  "counts": {
-  "d7": 1116,
-  "d30": 4434,
-  "prev30": 4225,
-  "change": 4.9,
-  "noArea30": 4,
+  "d7": 1088,
+  "d30": 4554,
+  "prev30": 4131,
+  "change": 10.2,
+  "noArea30": 5,
   "areasWith30": 75
  },
  "areas": [
   {
    "n": 1,
    "name": "Rogers Park",
-   "d7": 27,
-   "d30": 96,
-   "prev30": 75,
-   "change": 28.0
+   "d7": 30,
+   "d30": 98,
+   "prev30": 71,
+   "change": 38.0
   },
   {
    "n": 2,
    "name": "West Ridge",
-   "d7": 21,
-   "d30": 113,
-   "prev30": 93,
-   "change": 21.5
+   "d7": 25,
+   "d30": 117,
+   "prev30": 88,
+   "change": 33.0
   },
   {
    "n": 3,
    "name": "Uptown",
-   "d7": 27,
-   "d30": 84,
+   "d7": 22,
+   "d30": 82,
    "prev30": 69,
-   "change": 21.7
+   "change": 18.8
   },
   {
    "n": 4,
    "name": "Lincoln Square",
-   "d7": 34,
-   "d30": 120,
-   "prev30": 81,
-   "change": 48.1
+   "d7": 37,
+   "d30": 126,
+   "prev30": 77,
+   "change": 63.6
   },
   {
    "n": 5,
    "name": "North Center",
    "d7": 23,
    "d30": 92,
-   "prev30": 82,
-   "change": 12.2
+   "prev30": 80,
+   "change": 15.0
   },
   {
    "n": 6,
    "name": "Lake View",
-   "d7": 66,
-   "d30": 227,
-   "prev30": 156,
-   "change": 45.5
+   "d7": 69,
+   "d30": 239,
+   "prev30": 150,
+   "change": 59.3
   },
   {
    "n": 7,
    "name": "Lincoln Park",
    "d7": 31,
-   "d30": 154,
-   "prev30": 139,
-   "change": 10.8
+   "d30": 159,
+   "prev30": 138,
+   "change": 15.2
   },
   {
    "n": 8,
    "name": "Near North Side",
-   "d7": 20,
-   "d30": 58,
-   "prev30": 53,
-   "change": 9.4
+   "d7": 14,
+   "d30": 57,
+   "prev30": 52,
+   "change": 9.6
   },
   {
    "n": 9,
@@ -99,202 +99,202 @@
   {
    "n": 10,
    "name": "Norwood Park",
-   "d7": 17,
-   "d30": 79,
-   "prev30": 101,
-   "change": -21.8
+   "d7": 16,
+   "d30": 80,
+   "prev30": 102,
+   "change": -21.6
   },
   {
    "n": 11,
    "name": "Jefferson Park",
-   "d7": 29,
-   "d30": 89,
-   "prev30": 136,
-   "change": -34.6
+   "d7": 31,
+   "d30": 93,
+   "prev30": 132,
+   "change": -29.5
   },
   {
    "n": 12,
    "name": "Forest Glen",
-   "d7": 7,
-   "d30": 35,
-   "prev30": 29,
-   "change": 20.7
+   "d7": 8,
+   "d30": 37,
+   "prev30": 28,
+   "change": 32.1
   },
   {
    "n": 13,
    "name": "North Park",
-   "d7": 5,
-   "d30": 27,
-   "prev30": 51,
-   "change": -47.1
+   "d7": 6,
+   "d30": 29,
+   "prev30": 44,
+   "change": -34.1
   },
   {
    "n": 14,
    "name": "Albany Park",
-   "d7": 23,
-   "d30": 91,
-   "prev30": 107,
-   "change": -15.0
+   "d7": 21,
+   "d30": 94,
+   "prev30": 102,
+   "change": -7.8
   },
   {
    "n": 15,
    "name": "Portage Park",
-   "d7": 34,
-   "d30": 160,
-   "prev30": 173,
-   "change": -7.5
+   "d7": 33,
+   "d30": 161,
+   "prev30": 172,
+   "change": -6.4
   },
   {
    "n": 16,
    "name": "Irving Park",
-   "d7": 19,
-   "d30": 114,
-   "prev30": 95,
-   "change": 20.0
+   "d7": 23,
+   "d30": 118,
+   "prev30": 96,
+   "change": 22.9
   },
   {
    "n": 17,
    "name": "Dunning",
-   "d7": 35,
-   "d30": 129,
-   "prev30": 113,
-   "change": 14.2
+   "d7": 34,
+   "d30": 132,
+   "prev30": 109,
+   "change": 21.1
   },
   {
    "n": 18,
    "name": "Montclare",
-   "d7": 3,
+   "d7": 4,
    "d30": 26,
-   "prev30": 23,
-   "change": 13.0
+   "prev30": 22,
+   "change": 18.2
   },
   {
    "n": 19,
    "name": "Belmont Cragin",
-   "d7": 30,
-   "d30": 127,
-   "prev30": 145,
-   "change": -12.4
+   "d7": 28,
+   "d30": 130,
+   "prev30": 141,
+   "change": -7.8
   },
   {
    "n": 20,
    "name": "Hermosa",
-   "d7": 19,
-   "d30": 66,
-   "prev30": 75,
-   "change": -12.0
+   "d7": 20,
+   "d30": 68,
+   "prev30": 73,
+   "change": -6.8
   },
   {
    "n": 21,
    "name": "Avondale",
-   "d7": 17,
-   "d30": 84,
-   "prev30": 95,
-   "change": -11.6
+   "d7": 20,
+   "d30": 86,
+   "prev30": 94,
+   "change": -8.5
   },
   {
    "n": 22,
    "name": "Logan Square",
-   "d7": 37,
-   "d30": 167,
-   "prev30": 168,
-   "change": -0.6
+   "d7": 36,
+   "d30": 175,
+   "prev30": 164,
+   "change": 6.7
   },
   {
    "n": 23,
    "name": "Humboldt Park",
-   "d7": 31,
-   "d30": 105,
-   "prev30": 93,
-   "change": 12.9
+   "d7": 30,
+   "d30": 106,
+   "prev30": 90,
+   "change": 17.8
   },
   {
    "n": 24,
    "name": "West Town",
-   "d7": 69,
-   "d30": 188,
-   "prev30": 211,
-   "change": -10.9
+   "d7": 47,
+   "d30": 198,
+   "prev30": 206,
+   "change": -3.9
   },
   {
    "n": 25,
    "name": "Austin",
-   "d7": 30,
-   "d30": 133,
-   "prev30": 122,
-   "change": 9.0
+   "d7": 28,
+   "d30": 135,
+   "prev30": 112,
+   "change": 20.5
   },
   {
    "n": 26,
    "name": "West Garfield Park",
-   "d7": 7,
-   "d30": 32,
-   "prev30": 22,
-   "change": 45.5
+   "d7": 8,
+   "d30": 33,
+   "prev30": 23,
+   "change": 43.5
   },
   {
    "n": 27,
    "name": "East Garfield Park",
-   "d7": 8,
-   "d30": 20,
-   "prev30": 27,
-   "change": -25.9
+   "d7": 9,
+   "d30": 22,
+   "prev30": 28,
+   "change": -21.4
   },
   {
    "n": 28,
    "name": "Near West Side",
    "d7": 11,
-   "d30": 41,
+   "d30": 43,
    "prev30": 53,
-   "change": -22.6
+   "change": -18.9
   },
   {
    "n": 29,
    "name": "North Lawndale",
-   "d7": 18,
-   "d30": 52,
-   "prev30": 62,
-   "change": -16.1
+   "d7": 16,
+   "d30": 54,
+   "prev30": 60,
+   "change": -10.0
   },
   {
    "n": 30,
    "name": "South Lawndale",
    "d7": 23,
-   "d30": 91,
-   "prev30": 69,
-   "change": 31.9
+   "d30": 92,
+   "prev30": 68,
+   "change": 35.3
   },
   {
    "n": 31,
    "name": "Lower West Side",
-   "d7": 16,
-   "d30": 70,
+   "d7": 18,
+   "d30": 73,
    "prev30": 68,
-   "change": 2.9
+   "change": 7.4
   },
   {
    "n": 32,
    "name": "Loop",
-   "d7": 7,
+   "d7": 6,
    "d30": 14,
-   "prev30": 30,
-   "change": -53.3
+   "prev30": 32,
+   "change": -56.2
   },
   {
    "n": 33,
    "name": "Near South Side",
-   "d7": 1,
-   "d30": 11,
-   "prev30": 19,
-   "change": -42.1
+   "d7": 2,
+   "d30": 12,
+   "prev30": 18,
+   "change": -33.3
   },
   {
    "n": 34,
    "name": "Armour Square",
-   "d7": 5,
-   "d30": 30,
-   "prev30": 21,
-   "change": 42.9
+   "d7": 6,
+   "d30": 31,
+   "prev30": 20,
+   "change": 55.0
   },
   {
    "n": 35,
@@ -323,39 +323,39 @@
   {
    "n": 38,
    "name": "Grand Boulevard",
-   "d7": 6,
-   "d30": 23,
-   "prev30": 31,
-   "change": -25.8
+   "d7": 7,
+   "d30": 25,
+   "prev30": 34,
+   "change": -26.5
   },
   {
    "n": 39,
    "name": "Kenwood",
    "d7": 4,
-   "d30": 19,
+   "d30": 20,
    "prev30": 4,
-   "change": 375.0
+   "change": 400.0
   },
   {
    "n": 40,
    "name": "Washington Park",
-   "d7": 3,
-   "d30": 11,
-   "prev30": 5,
-   "change": 120.0
+   "d7": 4,
+   "d30": 12,
+   "prev30": 4,
+   "change": 200.0
   },
   {
    "n": 41,
    "name": "Hyde Park",
    "d7": 11,
-   "d30": 36,
-   "prev30": 28,
-   "change": 28.6
+   "d30": 38,
+   "prev30": 26,
+   "change": 46.2
   },
   {
    "n": 42,
    "name": "Woodlawn",
-   "d7": 4,
+   "d7": 3,
    "d30": 20,
    "prev30": 20,
    "change": 0.0
@@ -363,18 +363,18 @@
   {
    "n": 43,
    "name": "South Shore",
-   "d7": 7,
-   "d30": 39,
-   "prev30": 21,
-   "change": 85.7
+   "d7": 5,
+   "d30": 38,
+   "prev30": 19,
+   "change": 100.0
   },
   {
    "n": 44,
    "name": "Chatham",
    "d7": 8,
-   "d30": 27,
+   "d30": 26,
    "prev30": 18,
-   "change": 50.0
+   "change": 44.4
   },
   {
    "n": 45,
@@ -387,10 +387,10 @@
   {
    "n": 46,
    "name": "South Chicago",
-   "d7": 7,
-   "d30": 43,
+   "d7": 8,
+   "d30": 45,
    "prev30": 14,
-   "change": 207.1
+   "change": 221.4
   },
   {
    "n": 47,
@@ -411,42 +411,42 @@
   {
    "n": 49,
    "name": "Roseland",
-   "d7": 8,
-   "d30": 56,
-   "prev30": 45,
-   "change": 24.4
+   "d7": 12,
+   "d30": 60,
+   "prev30": 44,
+   "change": 36.4
   },
   {
    "n": 50,
    "name": "Pullman",
    "d7": 1,
    "d30": 2,
-   "prev30": 9,
-   "change": -77.8
+   "prev30": 10,
+   "change": -80.0
   },
   {
    "n": 51,
    "name": "South Deering",
-   "d7": 6,
-   "d30": 15,
+   "d7": 7,
+   "d30": 16,
    "prev30": 7,
-   "change": 114.3
+   "change": 128.6
   },
   {
    "n": 52,
    "name": "East Side",
-   "d7": 1,
+   "d7": 0,
    "d30": 16,
-   "prev30": 10,
-   "change": 60.0
+   "prev30": 11,
+   "change": 45.5
   },
   {
    "n": 53,
    "name": "West Pullman",
-   "d7": 5,
-   "d30": 32,
-   "prev30": 26,
-   "change": 23.1
+   "d7": 6,
+   "d30": 33,
+   "prev30": 24,
+   "change": 37.5
   },
   {
    "n": 54,
@@ -459,7 +459,7 @@
   {
    "n": 55,
    "name": "Hegewisch",
-   "d7": 1,
+   "d7": 0,
    "d30": 3,
    "prev30": 3,
    "change": 0.0
@@ -467,119 +467,119 @@
   {
    "n": 56,
    "name": "Garfield Ridge",
-   "d7": 33,
-   "d30": 126,
+   "d7": 34,
+   "d30": 130,
    "prev30": 113,
-   "change": 11.5
+   "change": 15.0
   },
   {
    "n": 57,
    "name": "Archer Heights",
-   "d7": 4,
-   "d30": 24,
+   "d7": 6,
+   "d30": 25,
    "prev30": 18,
-   "change": 33.3
+   "change": 38.9
   },
   {
    "n": 58,
    "name": "Brighton Park",
-   "d7": 7,
+   "d7": 6,
    "d30": 46,
-   "prev30": 25,
-   "change": 84.0
+   "prev30": 24,
+   "change": 91.7
   },
   {
    "n": 59,
    "name": "McKinley Park",
-   "d7": 3,
-   "d30": 13,
-   "prev30": 10,
-   "change": 30.0
+   "d7": 4,
+   "d30": 14,
+   "prev30": 9,
+   "change": 55.6
   },
   {
    "n": 60,
    "name": "Bridgeport",
-   "d7": 17,
-   "d30": 74,
-   "prev30": 105,
-   "change": -29.5
+   "d7": 19,
+   "d30": 79,
+   "prev30": 102,
+   "change": -22.5
   },
   {
    "n": 61,
    "name": "New City",
-   "d7": 18,
-   "d30": 63,
-   "prev30": 61,
-   "change": 3.3
+   "d7": 13,
+   "d30": 61,
+   "prev30": 60,
+   "change": 1.7
   },
   {
    "n": 62,
    "name": "West Elsdon",
-   "d7": 6,
+   "d7": 5,
    "d30": 27,
-   "prev30": 21,
-   "change": 28.6
+   "prev30": 19,
+   "change": 42.1
   },
   {
    "n": 63,
    "name": "Gage Park",
-   "d7": 7,
-   "d30": 26,
+   "d7": 5,
+   "d30": 27,
    "prev30": 26,
-   "change": 0.0
+   "change": 3.8
   },
   {
    "n": 64,
    "name": "Clearing",
-   "d7": 13,
-   "d30": 64,
-   "prev30": 71,
-   "change": -9.9
+   "d7": 12,
+   "d30": 67,
+   "prev30": 69,
+   "change": -2.9
   },
   {
    "n": 65,
    "name": "West Lawn",
-   "d7": 16,
+   "d7": 15,
    "d30": 50,
-   "prev30": 41,
-   "change": 22.0
+   "prev30": 40,
+   "change": 25.0
   },
   {
    "n": 66,
    "name": "Chicago Lawn",
-   "d7": 12,
+   "d7": 10,
    "d30": 72,
-   "prev30": 62,
-   "change": 16.1
+   "prev30": 60,
+   "change": 20.0
   },
   {
    "n": 67,
    "name": "West Englewood",
-   "d7": 26,
-   "d30": 99,
-   "prev30": 111,
-   "change": -10.8
+   "d7": 20,
+   "d30": 96,
+   "prev30": 108,
+   "change": -11.1
   },
   {
    "n": 68,
    "name": "Englewood",
-   "d7": 13,
-   "d30": 36,
+   "d7": 14,
+   "d30": 37,
    "prev30": 38,
-   "change": -5.3
+   "change": -2.6
   },
   {
    "n": 69,
    "name": "Greater Grand Crossing",
-   "d7": 6,
-   "d30": 49,
-   "prev30": 27,
-   "change": 81.5
+   "d7": 8,
+   "d30": 51,
+   "prev30": 26,
+   "change": 96.2
   },
   {
    "n": 70,
    "name": "Ashburn",
-   "d7": 22,
+   "d7": 20,
    "d30": 68,
    "prev30": 53,
    "change": 28.3
@@ -588,41 +588,41 @@
    "n": 71,
    "name": "Auburn Gresham",
    "d7": 21,
-   "d30": 85,
-   "prev30": 76,
-   "change": 11.8
+   "d30": 89,
+   "prev30": 75,
+   "change": 18.7
   },
   {
    "n": 72,
    "name": "Beverly",
    "d7": 3,
-   "d30": 19,
-   "prev30": 21,
-   "change": -9.5
+   "d30": 20,
+   "prev30": 22,
+   "change": -9.1
   },
   {
    "n": 73,
    "name": "Washington Heights",
-   "d7": 23,
-   "d30": 52,
-   "prev30": 45,
-   "change": 15.6
+   "d7": 20,
+   "d30": 53,
+   "prev30": 41,
+   "change": 29.3
   },
   {
    "n": 74,
    "name": "Mount Greenwood",
-   "d7": 9,
+   "d7": 7,
    "d30": 40,
-   "prev30": 44,
-   "change": -9.1
+   "prev30": 48,
+   "change": -16.7
   },
   {
    "n": 75,
    "name": "Morgan Park",
    "d7": 15,
-   "d30": 35,
-   "prev30": 33,
-   "change": 6.1
+   "d30": 38,
+   "prev30": 32,
+   "change": 18.8
   },
   {
    "n": 76,
@@ -635,72 +635,72 @@
   {
    "n": 77,
    "name": "Edgewater",
-   "d7": 9,
-   "d30": 47,
-   "prev30": 44,
-   "change": 6.8
+   "d7": 8,
+   "d30": 45,
+   "prev30": 45,
+   "change": 0.0
   }
  ],
  "weeks": [
   {
-   "from": "2026-08-03",
-   "to": "2026-08-09",
-   "count": 1141
+   "from": "2026-08-04",
+   "to": "2026-08-10",
+   "count": 1118
   },
   {
-   "from": "2026-08-10",
-   "to": "2026-08-16",
+   "from": "2026-08-11",
+   "to": "2026-08-17",
+   "count": 1089
+  },
+  {
+   "from": "2026-08-18",
+   "to": "2026-08-24",
+   "count": 1210
+  },
+  {
+   "from": "2026-08-25",
+   "to": "2026-08-31",
+   "count": 1071
+  },
+  {
+   "from": "2026-09-01",
+   "to": "2026-09-07",
+   "count": 890
+  },
+  {
+   "from": "2026-09-08",
+   "to": "2026-09-14",
+   "count": 1212
+  },
+  {
+   "from": "2026-09-15",
+   "to": "2026-09-21",
+   "count": 1165
+  },
+  {
+   "from": "2026-09-22",
+   "to": "2026-09-28",
+   "count": 1074
+  },
+  {
+   "from": "2026-09-29",
+   "to": "2026-10-05",
+   "count": 1107
+  },
+  {
+   "from": "2026-10-06",
+   "to": "2026-10-12",
+   "count": 1029
+  },
+  {
+   "from": "2026-10-13",
+   "to": "2026-10-19",
+   "count": 1015
+  },
+  {
+   "from": "2026-10-20",
+   "to": "2026-10-26",
    "count": 1088
-  },
-  {
-   "from": "2026-08-17",
-   "to": "2026-08-23",
-   "count": 1162
-  },
-  {
-   "from": "2026-08-24",
-   "to": "2026-08-30",
-   "count": 1139
-  },
-  {
-   "from": "2026-08-31",
-   "to": "2026-09-06",
-   "count": 986
-  },
-  {
-   "from": "2026-09-07",
-   "to": "2026-09-13",
-   "count": 1057
-  },
-  {
-   "from": "2026-09-14",
-   "to": "2026-09-20",
-   "count": 1216
-  },
-  {
-   "from": "2026-09-21",
-   "to": "2026-09-27",
-   "count": 1045
-  },
-  {
-   "from": "2026-09-28",
-   "to": "2026-10-04",
-   "count": 1109
-  },
-  {
-   "from": "2026-10-05",
-   "to": "2026-10-11",
-   "count": 1103
-  },
-  {
-   "from": "2026-10-12",
-   "to": "2026-10-18",
-   "count": 931
-  },
-  {
-   "from": "2026-10-19",
-   "to": "2026-10-25",
-   "count": 1116
   }
  ]
 }

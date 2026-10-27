@@ -142,7 +142,7 @@ def page_html(p):
                         "Wrecking and demolition permits issued by community area", E, show=20, what="community areas")
     wait_line = ((f'<p class="pw-note"><b>How long a wrecking and demolition permit takes.</b> '
                   + (f'Up to {E(W.month_word(W.prev_month(ch["from"]), short=False))}, most of these permits show 0 days in the City\'s records. '
-                     f'From {E(W.month_word(ch["from"], short=False))} on, half of the {wait["n"]:,} permits issued took {wait["med"]:,} days or less from the City starting review, and 8 in 10 took {wait["p80"]:,} days or less. '
+                     f'From {E(W.month_word(ch["from"], short=False))} on, half of the {wait["n"]:,} permits issued took {wait["med"]:,} days or fewer from the City starting review, and 8 in 10 took {wait["p80"]:,} days or fewer. '
                      if since else
                      f'Half of the wrecking and demolition permits issued in the last 12 months were issued within {wait["med"]:,} days of the City starting review, and 8 in 10 within {wait["p80"]:,} days. ')
                   + f'<a href="{rel}chicago-permit-wait-times/wrecking-and-demolition/">Wrecking and demolition permit wait times by month and community area</a>.</p>') if wait.get("med") is not None else "")
@@ -170,9 +170,9 @@ def page_html(p):
             + f'<p>The steps are our plain summary of the City\'s demolition permits page and Form 480, read {E(M.nice_date(STEPS_READ))}. The City\'s own pages are the rule; when they change, they win.</p>'
             + '<p>The permit counts are wrecking and demolition permits the City issued, from its Building Permits dataset, counted by issue date and by the community area of each permit\'s primary address. Counts only: no permit number, address or contact is kept.</p>'
             + (f'<p>The wait days are the City\'s processing time field, days from the City starting review to the issue date, for the {wait["n"]:,} wrecking and demolition permits issued '
-               + (f'from {E(W.month_word(ch["from"], short=False))} on, the first month the City\'s records stop showing 0 days for most of them.' if since else 'in the last 12 months.') + '</p>' if wait.get("med") is not None else "")
+               + (f'from {E(W.month_word(ch["from"], short=False))} on, the first month in which the City\'s records stopped showing 0 days for most of them.' if since else 'in the last 12 months.') + '</p>' if wait.get("med") is not None else "")
             + '</section>' + W.faq(M, FAQ)
-            + f'<p class="pw-end"><a class="btn" href="#steps">See the five steps</a><a class="st-btn2" href="{rel}chicago-rat-complaints/">Rat complaints by neighborhood</a></p>')
+            + f'<p class="pw-end"><a class="btn" href="{rel}chicago-rat-complaints/">Rat complaints by neighborhood</a><a class="st-btn2" href="{DEMO_PAGE}" rel="noopener">City demolition permits page</a></p>')
     return (W.head_html(M, p, url, rel, p["title"], p.get("desc", ""), robots, M.ld_tags(crumb_ld, faq_ld, howto_ld)) + W.keep(body)
             + W.foot(M, rel, src, "Wrecking and demolition permits by issue date. Steps from the Department of Buildings demolition permits page and Form 480. "))
 

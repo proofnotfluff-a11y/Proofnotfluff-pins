@@ -39,8 +39,9 @@ def scrub(rows):
         for k in list(r):
             if BLOCKED.search(k):
                 del r[k]
-        if "vendor_name" in r:
-            r["vendor_name"] = DD.vendor(r["vendor_name"])
+        for k in list(r):   # vendor_name and any alias of it (max(vendor_name) AS v) pass the page's business-name test
+            if "vendor" in k.lower() or k.lower() in ("v", "name") or str(k).startswith(("max_", "min_")) and isinstance(r[k], str) and not re.match(r"^[\d\-T:.]+$", r[k]):
+                r[k] = DD.vendor(r[k]) if isinstance(r[k], str) else r[k]
     return rows
 
 
@@ -71,8 +72,8 @@ def selftest():
             safe_params(bad); raise AssertionError(bad)
         except SystemExit:
             pass
-    r = scrub([{"vendor_name": "JOHN SMITH", "zip": "60601", "award_amount": "1"}])[0]
-    assert r == {"vendor_name": "Name withheld", "award_amount": "1"}, r
+    r = scrub([{"vendor_name": "JOHN SMITH", "zip": "60601", "award_amount": "1", "max_vendor_name": "JANE DOE", "max_approval_date": "2026-01-01T00:00:00.000"}])[0]
+    assert r == {"vendor_name": "Name withheld", "award_amount": "1", "max_vendor_name": "Name withheld", "max_approval_date": "2026-01-01T00:00:00.000"}, r
     print("dp_contracts_check selftest: ok")
 
 

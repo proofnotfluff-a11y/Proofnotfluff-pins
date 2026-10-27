@@ -95,7 +95,7 @@ SUPPLY = re.compile(r"\bSUPPL(?:Y|IES)\b|\bPARTS\b|\bMATERIALS?\b|\bPRODUCTS\b|\
 WORK = re.compile(r"SERVIC|REPAIR|MAINT|INSTALL|REMOV|LABOR|\bWORK\b|CLEANING|ABATEMENT|CONTROL\b|REPLACE|REHAB|CONSTRUCT|RENOVAT")
 # Not trade work in any trade: buying goods or equipment, upkeep of the City's own machines, design and engineering,
 # software, art, grants and redevelopment deals, deals with other public bodies (Board of Education, intergovernmental
-# agreements) and airline-run terminal projects at O'Hare.
+# agreements) and terminal projects the City pays airlines or airline groups to run (the vendor is the airline).
 NOT_WORK = re.compile(r"\bPURCHASE OF\b|\bPURCHASE AND DELIVERY\b|^PURCHASE\b|PARTS AND (?:REPAIR )?SERVICES?\b|\bFLEET\b|"
                       r"DESIGN ENGINEERING|ENGINEERING SERVICES|PROFESSIONAL DESIGN|CONSULTING SERVICES|\bSOFTWARE\b|"
                       r"ARTWORK|\bGRANT\b|REDEVELOPMENT|INVENTORY MANAGEMENT|\bRENTAL OF HEAVY EQUIPMENT|"
@@ -190,10 +190,13 @@ def vendor(name):
     return n if BUSINESS.search(n.upper()) else "Name withheld"
 
 
-def match(desc, ctype=""):
+AIRLINE = re.compile(r"\bAIR ?LINES?\b|AIRLINES'")   # a vendor that is an airline or an airline terminal group
+
+
+def match(desc, ctype="", vendor_name=""):
     """The trade keys a contract description falls under ([] for none). A description can name more than one trade."""
     d = re.sub(r"\s+", " ", (desc or "").upper())
-    if (ctype or "").upper() in NOT_TRADE_TYPES or NOT_WORK.search(d):
+    if (ctype or "").upper() in NOT_TRADE_TYPES or NOT_WORK.search(d) or AIRLINE.search((vendor_name or "").upper()):
         return []
     out = []
     for t in TRADES:
@@ -268,7 +271,7 @@ def build(rows36, ending_rows, today, meta, fetched):
         a = day(r.get("approval_date"))
         if not (w["from36"] <= a < w["today"]):
             continue
-        keys = match(r.get("purchase_order_description"), r.get("contract_type"))
+        keys = match(r.get("purchase_order_description"), r.get("contract_type"), r.get("vendor_name"))
         if keys:
             pub.append((keys, row_out(r)))
     # contracts ending: the latest revision decides the end date; the value is every revision added up
@@ -284,7 +287,8 @@ def build(rows36, ending_rows, today, meta, fetched):
         end = day(last.get("end_date"))
         if not (w["today"] <= end <= w["endTo"]):   # the next 12 months, Oct 27, 2027 included
             continue
-        keys = match(first.get("purchase_order_description") or last.get("purchase_order_description"), first.get("contract_type") or last.get("contract_type"))
+        keys = match(first.get("purchase_order_description") or last.get("purchase_order_description"), first.get("contract_type") or last.get("contract_type"),
+                     last.get("vendor_name") or first.get("vendor_name"))
         if not keys:
             continue
         orig = [r for r in rs if rev(r) == 0]
@@ -325,7 +329,7 @@ def main():
     rows36 = soql_all(f"approval_date >= '{w['from36']}T00:00:00' AND approval_date < '{w['today']}T00:00:00'")
     cand = soql_all(f"end_date >= '{w['today']}T00:00:00' AND end_date <= '{w['endTo']}T23:59:59'")
     pos = sorted({(r.get("purchase_order_contract_number") or "").strip() for r in cand
-                  if match(r.get("purchase_order_description"), r.get("contract_type"))} - {""})
+                  if match(r.get("purchase_order_description"), r.get("contract_type"), r.get("vendor_name"))} - {""})
     ending_rows = []
     for i in range(0, len(pos), 80):   # every revision of each candidate contract, so a later extension moves the end date
         ids = ",".join("'" + p.replace("'", "''") + "'" for p in pos[i:i + 80])
@@ -394,6 +398,7 @@ def selftest():
     assert T["pest-control"]["m36"]["awards"] == 0, "delegate agency grants are not trade work"
     assert T["snow-removal"]["m36"]["awards"] == 0, "rock salt is a purchase; the plowing award is older than 36 months"
     assert d["window"] == {"today": "2026-10-27", "from12": "2025-10-27", "from36": "2023-10-27", "endTo": "2027-10-27"}
+    assert match("CHECKED BAGGAGE CHILLER MODIFICATION", "", "MIDWAY AIRLINES' TERMINAL") == [] and match("CHILLER MODIFICATION") == ["hvac"]
     assert match("MASTER AGREEMENT FOR DEMOLITION SERVICES") == ["demolition"] and match("TAXIWAY REHAB") == []
     assert vendor("MIDWEST WRECKING COMPANY 01") != "Name withheld" and vendor("MAX MADSON") == "Name withheld" and vendor("JOHN SMITH & MARY SMITH") == "Name withheld"
     assert vendor("MARIA LOPEZ AND JOSE LOPEZ") == "Name withheld" and vendor("A & M GENERAL CONTRACTOR, INC.") != "Name withheld"

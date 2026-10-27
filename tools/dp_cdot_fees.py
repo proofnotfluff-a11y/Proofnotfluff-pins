@@ -166,11 +166,12 @@ CSS = ("<style>"
        ".pf-ref h3{margin:22px 0 4px;font-size:17px}.pf-ref .asof{margin-top:4px}"
        ".pf-eff{display:flex;flex-wrap:wrap;gap:6px 16px;margin:14px 0 20px;font-size:14.5px;color:var(--ink2)}.pf-eff b{color:var(--ink)}"
        "#pf-res .pf-tiles{grid-template-columns:1fr}#pf-res .tile.key .val{font-size:40px}"
+       ".ld-heroact .st-btn2{min-height:50px;display:inline-flex;align-items:center;justify-content:center}.pf-ref h3{text-wrap:pretty}"
        ".ld-cta .ld-buybtn{margin-top:18px}.pf .calc-reset{border-top:0;padding-top:4px}"
        ".pf .row.pick select{appearance:none;-webkit-appearance:none;padding-right:40px}.pf .row.pick .field{position:relative}"
        ".pf .row.pick .field::after{content:'';position:absolute;right:16px;top:50%;width:8px;height:8px;border-right:2px solid var(--input-ink);border-bottom:2px solid var(--input-ink);transform:translateY(-70%) rotate(45deg);pointer-events:none}"
        ".pf-ref .asof,.pf-ref .pf-note{font-size:14.5px;color:var(--muted);margin:4px 0 0;max-width:72ch}"
-       "@media(min-width:760px){.pf-ref .pf-tw:not(.wide-tw){max-width:860px}}"
+       "@media(min-width:760px){.pf-ref .pf-tw:not(.wide-tw),.pf-more,.pf-how details{max-width:860px}}"
        ".pf-how>p b{color:var(--ink)}.pf-how details{margin:10px 0 0}.pf-how summary{display:flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;font-weight:600;color:var(--ink)}"
        ".pf-how details{border:0;background:none;border-radius:0}.pf-how details[open] summary{margin-bottom:8px}"
        "#calc{scroll-margin-top:96px}#fees{scroll-margin-top:96px}"
@@ -180,7 +181,7 @@ CSS = ("<style>"
        ".pf-more{margin:10px 0 0}.pf-more>summary{display:flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;font-weight:600;color:var(--ink)}"
        ".pf-more{border:0;background:none;border-radius:0}.pf-more[open]>summary{margin-bottom:6px}"
        "@media(max-width:599px){.pf-t{font-size:13.5px}.pf-t th,.pf-t td{padding:8px 8px}.pf-swipe{display:block}#pf-res .tile.key .val{font-size:34px}"
-       ".pf-t.app tbody th{white-space:nowrap}.ld-heroact{display:grid;grid-template-columns:1fr;gap:10px}.ld-heroact .btn,.ld-heroact .st-btn2{width:100%}"
+       ".pf-t.app tbody th{white-space:nowrap}.pf-t thead th:not(:first-child){white-space:nowrap}.ld-heroact{display:grid;grid-template-columns:1fr 1fr;gap:10px}.ld-heroact .btn,.ld-heroact .st-btn2{width:100%}"
        ".pf-eff span:last-child{flex-basis:100%;font-size:13.5px;color:var(--muted)}}"
        "</style>")
 
@@ -311,7 +312,7 @@ def reference_html(E):
     out.append("<h3>Degradation fee on moratorium streets (page 11)</h3>"
                f"<p class=\"pf-note\">Fee = P times (length divided by 200) times {money(d['baseRate'])}, where P is the multiplier for the pavement's age in the table below. For a cut the length is set to 200 feet; for a trench the schedule says a minimum of 200 foot increments, which we read as at least 200 feet, prorated above that. "
                "Residential homeowners are exempt on repairs to existing sewer and water services. Moratorium streets are on CDOT's <a href=\"https://chistreetwork.chicago.gov/map\" rel=\"noopener\">ChiStreetWork map</a>.</p>"
-               + tbl("Degradation multiplier", ["Age of the pavement", "P"], [[m["label"], f'{m["P"]:g}'] for m in d["multiplier"]]))
+               + tbl("Degradation multiplier", ["Age of the pavement", "Multiplier (P)"], [[m["label"], f'{m["P"]:g}'] for m in d["multiplier"]]))
     out.append("</section>")
     return "".join(out)
 
@@ -406,7 +407,7 @@ function draw(){var what=(f.querySelector("input[name=pf-what]:checked")||{}).va
   if(!use2)W.push("Type the days, vehicles, length or months for this item.")}
  if(what==="use"){var cbd=$("u-cbd").value==="1",ty=$("u-type").value,ft2=num("u-feet"),dy2=whole("u-days"),R=usage(+$("u-row").value,ty,cbd,dy2,ft2);
   total=R[0];L.push(["Usage for "+dy2+" day"+(dy2===1?"":"s")+", "+ft2+" ft"+(cbd?"":" (one-half outside the CBD)"),R[0]]);sub=R[1].length>1?R[1].length+" blocks of 30 days":"One charge";
-  if(ty==="III"&&!cbd)W.push("Type III covers routine maintenance inside the CBD only. Outside it, ask CDOT which type applies.");
+  if(ty==="III"&&!cbd)W.push("The schedule defines Type III as routine maintenance inside the CBD. Outside it, ask CDOT which type applies.");
   if(!ft2||!dy2)W.push("Type the length closed and the days it stays.");
   if(R[1].length>1)blocks='<details class="pf-blocks"><summary>See each 30-day block</summary><ol>'+R[1].map(function(b){return"<li>Days "+b[0]+" to "+b[1]+": "+m(b[2])+"</li>"}).join("")+"</ol></details>";
   N.push("Our reading: each 30-day block is the per-foot rate times the length or the minimum monthly fee, whichever is more. CDOT may price the whole permit at one column; ask CDOT. If your closure makes metered spaces unusable, CDOT charges for those too; this part of the schedule gives no amount and points to Municipal Code section 9-68-080.")}

@@ -6871,7 +6871,7 @@
    "card": "What a CDOT permit costs in 2026: dumpster placement, work vehicles and equipment, sidewalk and street closures, and openings, from the City's fee schedule.",
    "lede": "Pick what you are putting in the street, alley or sidewalk and get an estimate of the CDOT fees from the City's 2026 Permit Fee Schedule, with each line of the math shown.",
    "method": [
-    "Every amount comes from CDOT's 2026 Permit Fee Schedule, effective January 1, 2026. The full tables are on this page with the schedule's page numbers, and the calculator only adds and multiplies them.",
+    "Every amount comes from CDOT's 2026 Permit Fee Schedule, effective January 1, 2026. The tables it uses are on this page, with the schedule's page numbers, and the calculator only adds and multiplies them.",
     "Dumpsters: the application fee depends on the street (CBD, or a residential or arterial street outside it), and the usage fee on the size class, inside or outside the CBD, for 1 to 3 days or per month. The schedule gives no rate between 3 days and a month, so the calculator asks you to pick one.",
     "Sidewalk and street closures: the schedule issues these permits in 30-day increments and sets a per-foot rate and a minimum monthly fee that both rise the longer the closure stays. Our reading: each 30-day block is charged at the rate for the days it falls in (days 181 to 210 at the 181 to 360 day rate, for example), as the per-foot rate times the length or the monthly minimum, whichever is more, then halved outside the CBD. CDOT may instead price the whole permit at one rate. Past 720 days, the schedule sets sidewalk and parkway closures at the previous monthly fee plus $4.00 or $8.00 times the length; we read this as adding again each month. Ask CDOT how it prices yours.",
     "Openings on a moratorium street: the opening fee doubles and the degradation fee from page 11 is added, using the schedule's own formula and multipliers. We show it for each cut, and charge a trench on at least 200 feet; both are our reading.",
@@ -6888,7 +6888,7 @@
     ],
     [
      "What is the Central Business District?",
-     "It is the downtown district the Municipal Code defines in section 9-4-010. Many CDOT fees are higher there, and the schedule says closure fees outside it are one-half of the CBD amounts."
+     "It is the district whose boundaries the schedule points to in Municipal Code section 9-4-010. Many CDOT fees are higher there, and the schedule says closure fees outside it are one-half of the CBD amounts."
     ],
     [
      "What does a moratorium street add to an opening permit?",

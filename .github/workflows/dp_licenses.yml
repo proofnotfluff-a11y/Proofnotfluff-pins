@@ -2,7 +2,8 @@ name: Chicago trade license finder check
 # The free license finder (tools/dp_licenses.py; Todd's go, Oct 27, 2026, coo/PARALLEL_BUILDS.md). Its lines are read
 # by hand from each agency's own page; this runner re-reads every source page and confirms each line's figures are
 # still printed there, then commits site/datapages/dp_licenses/check.json. It runs when the data or its tools change
-# and by hand. A monthly re-check would be a schedule: Todd's call, so none is set here.
+# and by hand. chicago.gov refuses GitHub's runners (403, Oct 27), so City pages report "blocked": proof only for the
+# State and federal pages. A monthly re-check would be a schedule: Todd's call, so none is set here.
 on:
   workflow_dispatch:
   push:
@@ -23,8 +24,6 @@ jobs:
         run: python3 tools/dp_licenses_check.py --selftest
       - name: PDF reader
         run: pip install --quiet pypdf
-      - name: Read the BACP fee notice (one-off, build chat)
-        run: python3 tools/dp_licenses_check.py --print "https://www.chicago.gov/content/dam/city/depts/bacp/Small%20Business%20Center/20260127newfees.pdf"
       - name: Re-read every agency page
         id: fetch
         continue-on-error: true

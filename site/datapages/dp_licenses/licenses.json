@@ -6,7 +6,7 @@
   "We read every line on the issuing agency's own page: the City of Chicago Departments of Buildings, Business Affairs and Consumer Protection, Public Health and Transportation; the Illinois Departments of Public Health, Agriculture, and Financial and Professional Regulation; Illinois EPA; State law on the Illinois General Assembly site; and the U.S. EPA. Each line links to its page and the date we read it.",
   "Where an agency page is silent, the line says so, such as not stated or lists no bond, instead of filling the gap. A page we could not open is not used.",
   "For trades no City page names, such as cleaning, painting, pest control, landscaping, pressure washing and snow removal, the page reports what BACP says about how it picks a license and the fee in its license table, not a guess at which license applies.",
-  "When this page changes, a checker re-reads every source page and confirms the figures shown here are still printed there. This is public information, not legal advice; the agency decides what your business needs."
+  "When this page's data changes, a checker re-reads the source pages it can reach and flags any figure that is no longer printed there. This is public information, not legal advice; the agency decides what your business needs."
  ],
  "faq": [
   [
@@ -27,7 +27,7 @@
   ],
   [
    "How current is this page?",
-   "Every line was read on its agency page on Oct 27, 2026, and each shows that date. Fees and rules change, so the agency page is the one that counts."
+   "Every line was read on its agency page on Oct 27, 2026, and each shows that date. Fees and rules change. BACP has posted a business license fee update dated Jan 27, 2026 that we could not open, so the City business license fees shown here may be out of date; the agency is the one that counts."
   ]
  ],
  "gc": {
@@ -233,6 +233,13 @@
   "bacp_homerepair": {
    "url": "https://www.chicago.gov/city/en/sites/chicago-business-licensing/home/homerepair.html",
    "title": "Home Repair",
+   "agency": "Chicago Department of Business Affairs and Consumer Protection",
+   "short": "City of Chicago BACP",
+   "checked": "2026-10-27"
+  },
+  "bacp_types": {
+   "url": "https://chicago.gov/content/city/en/sites/chicago-business-licensing/home/businesslicensetypes.html",
+   "title": "Business License Types",
    "agency": "Chicago Department of Business Affairs and Consumer Protection",
    "short": "City of Chicago BACP",
    "checked": "2026-10-27"
@@ -919,7 +926,7 @@
     {
      "topic": "fee",
      "src": "homerepair",
-     "text": "Home repair license: $250, valid two years, and $250 to renew.",
+     "text": "Home repair license: $250, valid two years, and $250 to renew. BACP has also posted a business license fee update dated Jan 27, 2026 that we could not open, so ask BACP for the current fee.",
      "figures": [
       "$250"
      ]
@@ -998,7 +1005,7 @@
    ],
    "glance": [
     "General contractor for permit work, home repair license otherwise",
-    "None found; EPA Section 608 for refrigerant"
+    "None found (federal: EPA Section 608 for refrigerant)"
    ]
   },
   {
@@ -1131,7 +1138,13 @@
     {
      "topic": "city",
      "src": "bacp_table",
-     "text": "No City page names this trade as a license of its own. The Department of Business Affairs and Consumer Protection (BACP) sets the license type from what the business does and takes calls at 312-74-GOBIZ to say which license applies. Its license table lists the Limited Business License for general retail sales and services.",
+     "text": "No City page names this trade as a license of its own. The license table of the Department of Business Affairs and Consumer Protection (BACP) lists a Limited Business license for general retail sales and services, says a business may need more than one license, and gives 312-74-GOBIZ as the number to call to find out which license applies.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "bacp_types",
+     "text": "BACP says it decides the license type from the business's activities.",
      "figures": []
     },
     {
@@ -1172,7 +1185,7 @@
     {
      "topic": "fee",
      "src": "bacp_table",
-     "text": "Limited Business License: $250, in a column headed license application fee per 2 years, as the BACP license table read on Oct 27, 2026.",
+     "text": "Limited Business License: $250, in a column headed license application fee per 2 years, as the BACP license table read on Oct 27, 2026. BACP has also posted a business license fee update dated Jan 27, 2026 that we could not open, so ask BACP for the current fee.",
      "figures": [
       "$250"
      ]
@@ -1258,7 +1271,13 @@
     {
      "topic": "city",
      "src": "bacp_table",
-     "text": "No City page names this trade as a license of its own. The Department of Business Affairs and Consumer Protection (BACP) sets the license type from what the business does and takes calls at 312-74-GOBIZ to say which license applies. Its license table lists the Limited Business License for general retail sales and services.",
+     "text": "No City page names this trade as a license of its own. The license table of the Department of Business Affairs and Consumer Protection (BACP) lists a Limited Business license for general retail sales and services, says a business may need more than one license, and gives 312-74-GOBIZ as the number to call to find out which license applies.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "bacp_types",
+     "text": "BACP says it decides the license type from the business's activities.",
      "figures": []
     },
     {
@@ -1282,7 +1301,7 @@
     {
      "topic": "fee",
      "src": "bacp_table",
-     "text": "Limited Business License: $250, in a column headed license application fee per 2 years, as the BACP license table read on Oct 27, 2026.",
+     "text": "Limited Business License: $250, in a column headed license application fee per 2 years, as the BACP license table read on Oct 27, 2026. BACP has also posted a business license fee update dated Jan 27, 2026 that we could not open, so ask BACP for the current fee.",
      "figures": [
       "$250"
      ]
@@ -1340,13 +1359,19 @@
     {
      "topic": "city",
      "src": "gc",
-     "text": "The Department of Buildings gives a painting subcontractor working under a licensed general contractor as an example of a sub that needs no license of its own.",
+     "text": "The Department of Buildings says a subcontractor working under the supervision and control of a licensed general contractor needs no general contractor license of its own, and names a painting subcontractor as one that goes on the permit only if it schedules inspections.",
      "figures": []
     },
     {
      "topic": "city",
      "src": "bacp_table",
-     "text": "No City page names this trade as a license of its own. The Department of Business Affairs and Consumer Protection (BACP) sets the license type from what the business does and takes calls at 312-74-GOBIZ to say which license applies. Its license table lists the Limited Business License for general retail sales and services.",
+     "text": "No City page names this trade as a license of its own. The license table of the Department of Business Affairs and Consumer Protection (BACP) lists a Limited Business license for general retail sales and services, says a business may need more than one license, and gives 312-74-GOBIZ as the number to call to find out which license applies.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "bacp_types",
+     "text": "BACP says it decides the license type from the business's activities.",
      "figures": []
     },
     {
@@ -1378,7 +1403,7 @@
     {
      "topic": "fee",
      "src": "bacp_table",
-     "text": "Limited Business License: $250, in a column headed license application fee per 2 years, as the BACP license table read on Oct 27, 2026.",
+     "text": "Limited Business License: $250, in a column headed license application fee per 2 years, as the BACP license table read on Oct 27, 2026. BACP has also posted a business license fee update dated Jan 27, 2026 that we could not open, so ask BACP for the current fee.",
      "figures": [
       "$250"
      ]
@@ -1425,7 +1450,7 @@
    ],
    "glance": [
     "Not named; BACP sets the business license",
-    "None found; EPA lead-safe firm for pre-1978 homes"
+    "None found (federal: EPA lead-safe firm for pre-1978 homes)"
    ]
   },
   {
@@ -1451,7 +1476,13 @@
     {
      "topic": "city",
      "src": "bacp_table",
-     "text": "No City page names this trade as a license of its own. The Department of Business Affairs and Consumer Protection (BACP) sets the license type from what the business does and takes calls at 312-74-GOBIZ to say which license applies. Its license table lists the Limited Business License for general retail sales and services.",
+     "text": "No City page names this trade as a license of its own. The license table of the Department of Business Affairs and Consumer Protection (BACP) lists a Limited Business license for general retail sales and services, says a business may need more than one license, and gives 312-74-GOBIZ as the number to call to find out which license applies.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "bacp_types",
+     "text": "BACP says it decides the license type from the business's activities.",
      "figures": []
     },
     {
@@ -1486,7 +1517,7 @@
     {
      "topic": "fee",
      "src": "bacp_table",
-     "text": "Limited Business License: $250, in a column headed license application fee per 2 years, as the BACP license table read on Oct 27, 2026.",
+     "text": "Limited Business License: $250, in a column headed license application fee per 2 years, as the BACP license table read on Oct 27, 2026. BACP has also posted a business license fee update dated Jan 27, 2026 that we could not open, so ask BACP for the current fee.",
      "figures": [
       "$250"
      ]
@@ -1509,12 +1540,18 @@
     },
     {
      "topic": "exam",
-     "src": "idoa_test",
-     "text": "Applicators and operators pass the 100-question General Standards exam with 70 or more right; applicators also pass at least one 50-question category exam with 35 or more right. The Department gives exams in person and online.",
+     "src": "idoa_cert",
+     "text": "Applicators and operators pass the 100-question General Standards exam with 70 or more right; applicators also pass at least one 50-question category exam with 35 or more right.",
      "figures": [
       "70",
       "35"
      ]
+    },
+    {
+     "topic": "exam",
+     "src": "idoa_test",
+     "text": "The Department gives pesticide exams in person and online.",
+     "figures": []
     },
     {
      "topic": "renewal",
@@ -1525,7 +1562,7 @@
     {
      "topic": "carryover",
      "src": "idoa_cert",
-     "text": "Not stated for suburbs. Someone licensed in another state who passed a closed book exam in the past three years can get a one calendar year Illinois license.",
+     "text": "Not stated for suburbs. Someone currently licensed for the same type of pesticide application in their home state, on a closed book exam taken in the past three years, can apply for a one calendar year Illinois license.",
      "figures": []
     }
    ],
@@ -1557,7 +1594,7 @@
     {
      "topic": "city",
      "src": "cdot_crc",
-     "text": "A company that services a commercial refuse container (dumpster) on the public way gets a Chicago Department of Transportation permit, and to get one it holds a valid private scavenger license.",
+     "text": "The company that collects from a commercial refuse container (dumpster), on private or public property, gets a Chicago Department of Transportation permit, and to get one it holds a valid private scavenger license.",
      "figures": []
     },
     {
@@ -1597,7 +1634,7 @@
     {
      "topic": "fee",
      "src": "bacp_table",
-     "text": "Private Scavenger $250 and Junk Peddler $250, in a column headed per 2 years, as the BACP license table read on Oct 27, 2026.",
+     "text": "Private Scavenger $250 and Junk Peddler $250, in a column headed per 2 years, as the BACP license table read on Oct 27, 2026. BACP has also posted a business license fee update dated Jan 27, 2026 that we could not open, so ask BACP for the current fee.",
      "figures": [
       "$250"
      ]
@@ -1652,7 +1689,7 @@
    "h1": "Chicago pressure washing and surface cleaning rules",
    "title": "Chicago Pressure Washing and Surface Cleaning Rules",
    "desc": "The Chicago Department of Public Health surface cleaning permit for sandblasting, grinding and chemical washing, its fee, what BACP says about a pressure washing business, and EPA lead rules.",
-   "card": "CDPH surface cleaning permit for blasting and chemical washes",
+   "card": "City permit for sandblasting, grinding and chemical washing",
    "summary": "The City's surface cleaning permit covers sandblasting, grinding and chemical washing. The City pages we read do not mention power or pressure washing.",
    "page_summary": "Chicago's Department of Public Health permits sandblasting, grinding and chemical washing of building surfaces. Here is that permit, its fee, what the pages say and do not say about pressure washing, and the lead rules.",
    "check": [
@@ -1675,7 +1712,13 @@
     {
      "topic": "city",
      "src": "bacp_table",
-     "text": "No City page names this trade as a license of its own. The Department of Business Affairs and Consumer Protection (BACP) sets the license type from what the business does and takes calls at 312-74-GOBIZ to say which license applies. Its license table lists the Limited Business License for general retail sales and services.",
+     "text": "No City page names this trade as a license of its own. The license table of the Department of Business Affairs and Consumer Protection (BACP) lists a Limited Business license for general retail sales and services, says a business may need more than one license, and gives 312-74-GOBIZ as the number to call to find out which license applies.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "bacp_types",
+     "text": "BACP says it decides the license type from the business's activities.",
      "figures": []
     },
     {
@@ -1708,7 +1751,7 @@
     {
      "topic": "fee",
      "src": "bacp_brick",
-     "text": "Limited Business License: $250, issued for two years.",
+     "text": "Limited Business License: $250, issued for two years, as the BACP page read on Oct 27, 2026. BACP has also posted a business license fee update dated Jan 27, 2026 that we could not open, so ask BACP for the current fee.",
      "figures": [
       "$250"
      ]
@@ -1734,8 +1777,10 @@
     {
      "topic": "renewal",
      "src": "cdph_env",
-     "text": "The surface cleaning permit is billed by the calendar month for each building or structure.",
-     "figures": []
+     "text": "The permit page lists no renewal; the fee runs by the calendar month, $100 for each month or part of one after the first.",
+     "figures": [
+      "$100"
+     ]
     },
     {
      "topic": "renewal",
@@ -1757,7 +1802,7 @@
     }
    ],
    "glance": [
-    "Public Health permit for blasting, grinding and chemical washing",
+    "Public Health permit for sandblasting, grinding and chemical washing",
     "None found"
    ]
   },
@@ -1778,7 +1823,13 @@
     {
      "topic": "city",
      "src": "bacp_table",
-     "text": "No City page names this trade as a license of its own. The Department of Business Affairs and Consumer Protection (BACP) sets the license type from what the business does and takes calls at 312-74-GOBIZ to say which license applies. Its license table lists the Limited Business License for general retail sales and services.",
+     "text": "No City page names this trade as a license of its own. The license table of the Department of Business Affairs and Consumer Protection (BACP) lists a Limited Business license for general retail sales and services, says a business may need more than one license, and gives 312-74-GOBIZ as the number to call to find out which license applies.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "bacp_types",
+     "text": "BACP says it decides the license type from the business's activities.",
      "figures": []
     },
     {
@@ -1804,7 +1855,7 @@
     {
      "topic": "fee",
      "src": "bacp_brick",
-     "text": "Limited Business License: $250, issued for two years.",
+     "text": "Limited Business License: $250, issued for two years, as the BACP page read on Oct 27, 2026. BACP has also posted a business license fee update dated Jan 27, 2026 that we could not open, so ask BACP for the current fee.",
      "figures": [
       "$250"
      ]

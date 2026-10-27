@@ -291,9 +291,9 @@ function calc(){
   $('cc-total').textContent=money(tot);$('cc-bar-v').textContent=money(tot);var ba=$('cc-bar-a');if(ba)ba.textContent='See the breakdown';
   $('cc-ph').textContent=money(tot/(n*h))+' per person-hour, '+money(tot/h)+' per hour for the whole crew';
   $('cc-o-wages').textContent=money(wages);
-  $('cc-o-wl').textContent=(ot>0?'Wages ('+(n*ot).toLocaleString('en-US',{maximumFractionDigits:2})+' overtime hours at '+mult+' times base)':'Wages');
+  $('cc-o-wl').textContent=(ot>0?'Wages ('+(n*ot).toLocaleString('en-US',{maximumFractionDigits:2})+(n*ot===1?' overtime hour at ':' overtime hours at ')+mult+' times base)':'Wages');
   $('cc-o-tax').textContent=money(t);$('cc-o-tax').closest('li').hidden=!tax.checked;
-  $('cc-o-leave').textContent=money(lvv);$('cc-o-ll').innerHTML='Chicago paid leave earned <span class="nw">('+(2*lh).toLocaleString('en-US',{maximumFractionDigits:2})+' hours)</span>';$('cc-o-leave').closest('li').hidden=!lv.checked;
+  $('cc-o-leave').textContent=money(lvv);$('cc-o-ll').innerHTML='Chicago paid leave earned <span class="nw">('+(2*lh).toLocaleString('en-US',{maximumFractionDigits:2})+(2*lh===1?' hour)':' hours)')+'</span>';$('cc-o-leave').closest('li').hidden=!lv.checked;
   $('cc-o-fr').textContent=money(fr);$('cc-o-fr').closest('li').hidden=!pw;
   $('cc-o-oth').textContent=money(ox);$('cc-o-oth').closest('li').hidden=!(o>0);
   $('cc-pwnote').hidden=!pw;var pl=$('cc-pwline');pl.hidden=!pw;if(pw)pl.textContent='Cook County schedule: '+money(pw.base)+' base plus '+money(pw.fringes)+' fringes an hour';
@@ -357,7 +357,7 @@ def role_card(d, role, lo, hi, E, rel, sub=False):
               + (lead
                  + f'<div class="cc-tw" role="region" aria-label="{E("Cook County public works rates for " + PLURAL[role["key"]])}" tabindex="0" style="margin-top:8px">{pw_table(pw, E)}</div>'
                  if pw else
-                 '<p>The Cook County construction schedule has no line for this work. Public works pay depends on the work done; check with the Illinois Department of Labor.</p>')
+                 '<p>The Cook County schedule has no line by this name. On public works, pay follows the work done; check with the Illinois Department of Labor.</p>')
               + '</div>')
     for ln in role["lines"]:
         k = line_key(role, ln)

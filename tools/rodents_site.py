@@ -317,7 +317,7 @@ IX_CSS = ("<style>.ri-mv{white-space:nowrap}.ri-up{color:var(--warn-ink);font-we
           ".ri-ed .eyebrow{margin:0 0 4px}.ri-ed h2{margin-top:0}"
           ".ri-embed{display:grid;gap:14px;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--card)}"
           "@media(min-width:900px){.ri-embed{grid-template-columns:minmax(0,360px) 1fr;align-items:start}}"
-          ".ri-embed img{display:block;max-width:100%;height:auto;border-radius:12px;outline:1px solid var(--line);outline-offset:2px}.ri-embed label{display:block;font-weight:700;color:var(--ink);margin:0 0 6px}"
+          ".ri-embed img{display:block;max-width:100%;height:auto;border-radius:12px}.ri-embed label{display:block;font-weight:700;color:var(--ink);margin:0 0 6px}"
           ".ri-embed select{min-height:44px;width:100%;max-width:360px;font:inherit;padding:0 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}"
           ".ri-embed textarea{display:block;width:100%;box-sizing:border-box;min-height:118px;padding:10px 12px;font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink);"
           "background:var(--canvas2);border:1px solid var(--line);border-radius:10px;resize:vertical;overflow-wrap:anywhere;word-break:break-all}"
@@ -331,7 +331,20 @@ IX_CSS = ("<style>.ri-mv{white-space:nowrap}.ri-up{color:var(--warn-ink);font-we
           ".ri-t th:nth-child(9),.ri-t td:nth-child(9){display:none}.ri-list li{grid-template-columns:2em 1fr}.ri-list span{grid-column:2;text-align:left}}"
           ".ri-t th:nth-child(2),.ri-t td:nth-child(2){text-align:left}.ri-t td:first-child{width:3.2em}"
           "@media(min-width:900px){.ri-ed .ri-list{grid-template-columns:1fr 1fr;grid-auto-flow:column;grid-template-rows:repeat(5,auto)}}"
-          ".ri-nw{white-space:nowrap}.ld-hero+.ld-tiles{margin-top:22px}.ri-hs{display:none}"
+          ".ri-nw{white-space:nowrap}.ri-end{display:flex;flex-wrap:wrap;gap:12px 20px}"
+          ".ld-heroact .btn,.ld-heroact .st-btn2,.ri-end .btn,.ri-end .st-btn2{min-height:48px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;padding-top:0;padding-bottom:0}"
+          ".ri-how{margin:8px 0 0}.ri-how summary{cursor:pointer;font-weight:600;color:var(--ink);min-height:44px;display:flex;align-items:center}.ri-how p{margin:4px 0 0}"
+          ".ri-span{display:block;font-weight:400;color:var(--muted);font-size:13px;margin-top:2px}.ri-rank{max-width:760px}"
+          ".ri-embed textarea{height:calc(18.85px * 7 + 22px)}"
+          ".rc-two .cta>div{display:flex;flex-direction:column;height:100%}.rc-two .ld-buybtn{margin-top:auto;padding-top:16px}"
+          "@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .rc-two .cta{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent)}"
+          ":root:not([data-theme=light]) .ri-embed img{box-shadow:0 0 0 1px var(--accent)}}"
+          ":root[data-theme=dark] .rc-two .cta{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent)}:root[data-theme=dark] .ri-embed img{box-shadow:0 0 0 1px var(--accent)}"
+          "@media(max-width:599px){.ld-heroact a,.ri-end a{flex:1 1 100%}.ri-embed textarea{height:calc(18.85px * 12 + 22px)}"
+          ".ri-t th:nth-child(8),.ri-t td:nth-child(8){display:none}.ri-t th:nth-child(2),.ri-t td:nth-child(2){white-space:nowrap;min-width:120px}"
+          ".rc-bar{grid-template-columns:1fr auto}.rc-bar>span{grid-column:1;grid-row:1}.rc-bar b{grid-column:2;grid-row:1}.rc-bar i{grid-column:1/-1;grid-row:2}.rc-bar small{grid-column:1/-1;grid-row:3}"
+          ".ri-ed{border:0;padding:0;background:transparent}}"
+          ".ld-hero+.ld-tiles{margin-top:22px}.ri-hs{display:none}"
           ".ri-act{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:10px}.ri-act .ri-copy{margin:0}.ri-act .ri-ok{margin:0;min-height:0}"
           "@media(min-width:900px){.ri-embed{align-items:center}.ri-t th:nth-child(2),.ri-t td:nth-child(2){white-space:nowrap;min-width:190px}"
           "#risers .ri-list{grid-template-columns:1fr 1fr}#risers .ri-list,#risers .ri-list li,.ri-ed .ri-list li{max-width:none}}"
@@ -414,12 +427,13 @@ def index_table(ix, d, E, rel):
     return (tbl(o[:SHOW], f"Chicago Rat Index, ranks 1 to {SHOW}")
             + f'<details class="rc-more-t"><summary>Show the other {len(o) - SHOW} community areas</summary>'
             + tbl(o[SHOW:], "Chicago Rat Index, the other community areas") + '</details>'
-            + '<p class="asof">Rank 1 has the most rat complaints per 1,000 residents in the last 30 days; tied areas share a rank. '
+            + '<p class="asof">Rank 1 has the most rat complaints per 1,000 residents in the last 30 days. "Up 3" means an area moved 3 places toward 1st.</p>'
+            '<details class="ri-how"><summary>How the ranks are counted</summary><p class="asof">Tied areas share a rank. '
             f'"Up 3" means an area moved 3 places toward 1st. Change compares the last 30 days with the same 30 days of {yr}, rounded to a whole '
             f'percent; within 1% shows as same, and under {FEW} complaints a year earlier as too few. Median days to close is for the requests the '
             f'City closed in the last 30 days, from each request\'s created and closed dates; under 5 closed shows as too few.'
             + (f' {c["noArea30"]:,} of the last 30 days\' complaints had no community area on the record and count only in the city total.' if c.get("noArea30") else "")
-            + '</p>')
+            + '</p></details>')
 
 
 def risers_block(ix, E, rel):
@@ -472,11 +486,12 @@ def rest_block(ix, E, M):
             f'<p>The share of City food inspections of restaurants that cited pests or a kitchen hood, from {E(M.nice_date(w["from"]))} to {E(M.nice_date(w["to"]))}. '
             'Pick Restaurant pests or Restaurant hoods on the map to see it by community area. These are counts only: this page never names a restaurant.</p>'
             f'{tiles}{table}'
+            '<details class="ri-how"><summary>How these are counted</summary>'
             f'<p class="asof">Pests: the inspection cited violation 38, which the City titles "{E(t38)}". Hood or ventilation: it cited violation 56, '
             f'"{E(t56)}", with an inspector note naming a hood, filter, exhaust, ventilation, vent or fan (56 also covers lighting, which does not count). '
             'Inspections are of places whose facility type names a restaurant, with a result of pass, pass with conditions or fail. '
             f'A place inspected twice counts twice. Areas with under {SHARE_FEW} inspections in 12 weeks show as too few. '
-            'A result reflects what the inspector found at the time of that inspection, and the City notes its dataset may contain duplicates.</p></section>')
+            'A result reflects what the inspector found at the time of that inspection, and the City notes its dataset may contain duplicates.</p></details></section>')
 
 
 def embed_block(ix, E, rel, one=None):
@@ -674,7 +689,7 @@ def page_html(p):
                f'Citywide: {cc["r30"]:.2f} per 1,000. The City closed {c.get("closed30", 0):,} rat requests in those 30 days, '
                f'half of them within {days_txt(c.get("medClose"))} days of coming in (the median). Tap an area for its own page and badge.</p>'
                f'{table}'
-               '<div class="ri-dl"><a class="btn" href="rat-index.csv" download>Download the Rat Index (CSV)</a></div>'
+               '<div class="ri-dl"><a class="st-btn2" href="rat-index.csv" download>Download the Rat Index (CSV)</a></div>'
                '<p class="asof">Our CSV is free to reuse if you credit ProofNotFluff (license CC BY 4.0); the City\'s data disclaimer at the foot of this page still applies.</p></section>'
                '<section class="block" id="risers"><h2>Top risers</h2>'
                '<p>The community areas that climbed the most places on the Rat Index against the 30 days before (areas with at least 10 complaints).</p>'
@@ -698,7 +713,7 @@ def page_html(p):
             + (rest_block(ix, E, M) if ix and ix.get("rest") else "")
             + (embed_block(ix, E, "") if ix else "")
             + f'{two(rel)}{method}{M.faq_block(p["faq"])}'
-            f'<p class="rl-act"><a class="btn" href="#areas">See every neighborhood</a> <a class="st-btn2" href="{E(p["resident"]["url"])}" rel="noopener">Report rats on CHI311</a></p>'
+            f'<p class="rl-act ri-end"><a class="btn" href="#areas">See every neighborhood</a> <a class="st-btn2" href="{E(p["resident"]["url"])}" rel="noopener">Report rats on CHI311</a></p>'
             + (COPY_JS if ix else ""))
     return head(robots) + body + foot(rel, ix)
 
@@ -733,12 +748,13 @@ def area_html(p, d, ix, a, M):
              f'<div class="tile"><div class="lab">Days to close</div><div class="val">{E("none" if not a.get("closed30") else days_txt(a.get("medClose")))}</div><div class="sub">{(f'half of the {nn(a.get("closed30", 0), "request")} closed in the last 30 days took less time' if a.get("medClose") is not None else ("no requests closed in the last 30 days" if not a.get("closed30") else f'only {nn(a["closed30"], "request")} closed in 30 days (under 5)'))}</div></div>'
              f'</div><p class="asof">Counts as of {E(when)}, from City of Chicago 311 records pulled {E(pulled)}. Updated every Monday.</p>')
     yr = E(w["prevTo"][:4])
-    rows = [("Last 30 days", f'{M.nice_date(w["from30"])} to {when}', a["d30"], a["r30"], ordinal(a["k30"])),
-            ("The 30 days before", f'{M.nice_date(w["priorFrom"])} to {M.nice_date(w["priorTo"])}', a["prior30"], a["rPrior"], ordinal(a["kPrior"])),
-            (f"Same 30 days, {yr}", f'{M.nice_date(w["prevFrom"])} to {M.nice_date(w["prevTo"])}', a["prev30"], a["rPrev"], ordinal(a["kPrev"]))]
-    rank_t = ('<div class="rc-tw" role="region" aria-label="' + E(a["name"]) + ' rank over time" tabindex="0"><table class="rc-t">'
+    sd = lambda x: M.nice_date(x).rsplit(",", 1)[0]
+    rows = [("Last 30 days", f'{sd(w["from30"])} to {sd(w["to"])}', a["d30"], a["r30"], ordinal(a["k30"])),
+            ("The 30 days before", f'{sd(w["priorFrom"])} to {sd(w["priorTo"])}', a["prior30"], a["rPrior"], ordinal(a["kPrior"])),
+            (f"Same 30 days, {yr}", f'{sd(w["prevFrom"])} to {sd(w["prevTo"])}, {yr}', a["prev30"], a["rPrev"], ordinal(a["kPrev"]))]
+    rank_t = ('<div class="rc-tw ri-rank" role="region" aria-label="' + E(a["name"]) + ' rank over time" tabindex="0"><table class="rc-t">'
               '<thead><tr><th scope="col">Period</th><th scope="col">Complaints</th><th scope="col">Per 1,000 residents</th><th scope="col">Rank of 77</th></tr></thead><tbody>'
-              + "".join(f'<tr><th scope="row">{E(n)}<br><small>{E(span)}</small></th><td>{c:,}</td><td>{r:.2f}</td><td>{E(k)}</td></tr>' for n, span, c, r, k in rows)
+              + "".join(f'<tr><th scope="row">{E(n)}<small class="ri-span">{E(span)}</small></th><td>{c:,}</td><td>{r:.2f}</td><td>{E(k)}</td></tr>' for n, span, c, r, k in rows)
               + '</tbody></table></div>'
               f'<p class="asof">Rank against the 30 days before: {mv_cell(a["mom"])}. Rank against the same 30 days of {yr}: {mv_cell(a["yoy"])}. '
               'Rank 1 has the most complaints per resident; "up" means closer to 1st.</p>')

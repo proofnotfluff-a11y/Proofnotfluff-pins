@@ -7060,10 +7060,10 @@
    "module": "dp_materials",
    "draft": true,
    "title": "Material Price Changes Since Your Quote | ProofNotFluff",
-   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
+   "desc": "Free calculator: how much lumber, copper wire, concrete, steel, drywall, roofing and diesel moved since the month you quoted, from BLS producer price indexes. Chart and CSV.",
    "eyebrow": "Free price index tracker",
    "h1": "Material Price Changes Since Your Quote",
-   "card": "Coming soon"
+   "card": "How far lumber, copper wire, concrete, steel and other materials trades buy moved since the month you quoted, from BLS price indexes."
   },
   {
    "slug": "chicago-trades-quarterly",

@@ -1,125 +1,189 @@
 {
- "about": "Candidates, round 1 (Oct 27, 2026): titles for groups 05 to 10 are BLS's own, copied from download.bls.gov/pub/time.series/wp/wp.item this run; group 13 and the special index are ids to confirm with the BLS API (status.json), titles from BLS's catalog or another BLS page before any is shown.",
+ "about": "The series the page shows (Oct 27, 2026). Every id and title is BLS's own, read this run from the page named in titleSource; the API (status.json) confirms BLS returns each id. group and buyers are ProofNotFluff's plain words for finding a material, not BLS's.",
  "series": [
   {
-   "id": "WPU057303",
-   "title": "No. 2 diesel fuel"
-  },
-  {
-   "id": "WPU058102",
-   "title": "Asphalt"
-  },
-  {
-   "id": "WPU0621",
-   "title": "Prepared paint"
-  },
-  {
-   "id": "WPU07210603",
-   "title": "Plastics pipe"
-  },
-  {
    "id": "WPU081",
-   "title": "Lumber"
+   "title": "Lumber",
+   "slug": "lumber",
+   "group": "Wood",
+   "buyers": "Framers, carpenters, deck builders and remodelers",
+   "titleSource": "download.bls.gov/pub/time.series/wp/wp.item (BLS item names), read Oct 27, 2026"
   },
   {
    "id": "WPU083",
-   "title": "Plywood"
-  },
-  {
-   "id": "WPU1017",
-   "title": "Steel mill products"
-  },
-  {
-   "id": "WPU101704",
-   "title": "Hot rolled steel bars, plates, and structural shapes"
-  },
-  {
-   "id": "WPU101706",
-   "title": "Steel pipe and tube"
-  },
-  {
-   "id": "WPU102501",
-   "title": "Aluminum mill shapes"
-  },
-  {
-   "id": "WPU10250239",
-   "title": "Copper and copper alloy pipe and tube"
-  },
-  {
-   "id": "WPU10260314",
-   "title": "Copper wire and cable"
-  },
-  {
-   "id": "WPU105",
-   "title": "Plumbing fixtures and fittings"
-  },
-  {
-   "id": "WPU106",
-   "title": "Heating equipment"
-  },
-  {
-   "id": "WPU107405",
-   "title": "Fabricated structural metal"
-  },
-  {
-   "id": "WPU10730120",
-   "title": "Sheet metal air-conditioning ducts and stove pipe"
-  },
-  {
-   "id": "WPU1083",
-   "title": "Lighting fixtures"
-  },
-  {
-   "id": "WPU1311",
-   "title": ""
-  },
-  {
-   "id": "WPU1321",
-   "title": ""
-  },
-  {
-   "id": "WPU1322",
-   "title": ""
-  },
-  {
-   "id": "WPU1331",
-   "title": ""
+   "title": "Plywood",
+   "slug": "plywood",
+   "group": "Wood",
+   "buyers": "Framers, roofers and remodelers (sheathing and subfloor)",
+   "titleSource": "download.bls.gov/pub/time.series/wp/wp.item (BLS item names), read Oct 27, 2026"
   },
   {
    "id": "WPU1333",
-   "title": ""
+   "title": "Ready-mixed concrete",
+   "slug": "ready-mixed-concrete",
+   "group": "Concrete and masonry",
+   "buyers": "Concrete, foundation and flatwork contractors",
+   "titleSource": "bls.gov/regions/mid-atlantic/data/producerpriceindexconcrete_us_table.htm (BLS series titles), read Oct 27, 2026"
   },
   {
-   "id": "WPU134",
-   "title": ""
+   "id": "WPU13330101B",
+   "title": "Midwest region ready-mix concrete",
+   "slug": "midwest-ready-mix-concrete",
+   "group": "Concrete and masonry",
+   "buyers": "Concrete contractors in the Midwest, Illinois included",
+   "titleSource": "bls.gov/ppi/notices/2013/ppi-introduces-regional-detail-for-ready-mix-concrete-indexes.htm (BLS notice), read Oct 27, 2026"
+  },
+  {
+   "id": "WPU1322",
+   "title": "Cement",
+   "slug": "cement",
+   "group": "Concrete and masonry",
+   "buyers": "Concrete, masonry and tile contractors",
+   "titleSource": "bls.gov/regions/mid-atlantic/data/producerpriceindexconcrete_us_table.htm (BLS series titles), read Oct 27, 2026"
+  },
+  {
+   "id": "WPU1321",
+   "title": "Construction sand/gravel/crushed stone",
+   "slug": "sand-gravel-crushed-stone",
+   "group": "Concrete and masonry",
+   "buyers": "Excavation, paving, landscaping and concrete contractors",
+   "titleSource": "bls.gov/regions/mid-atlantic/data/producerpriceindexconcrete_us_table.htm (BLS series titles), read Oct 27, 2026"
+  },
+  {
+   "id": "WPU1331",
+   "title": "Concrete block and brick",
+   "slug": "concrete-block-and-brick",
+   "group": "Concrete and masonry",
+   "buyers": "Masons and foundation contractors",
+   "titleSource": "bls.gov/regions/mid-atlantic/data/producerpriceindexconcrete_us_table.htm (BLS series titles), read Oct 27, 2026"
   },
   {
    "id": "WPU1342",
-   "title": ""
-  },
-  {
-   "id": "WPU136",
-   "title": ""
-  },
-  {
-   "id": "WPU1361",
-   "title": ""
-  },
-  {
-   "id": "WPU137",
-   "title": ""
-  },
-  {
-   "id": "WPU1392",
-   "title": ""
+   "title": "Brick and structural clay tile",
+   "slug": "brick-and-clay-tile",
+   "group": "Concrete and masonry",
+   "buyers": "Masons and tuckpointers",
+   "titleSource": "bls.gov/regions/mid-atlantic/data/producerpriceindexconcrete_us_table.htm (BLS series titles), read Oct 27, 2026"
   },
   {
    "id": "WPU1394",
-   "title": ""
+   "title": "Paving mixtures and blocks",
+   "slug": "paving-mixtures-and-blocks",
+   "group": "Concrete and masonry",
+   "buyers": "Paving, sealcoating and hardscape contractors",
+   "titleSource": "bls.gov/regions/mid-atlantic/data/producerpriceindexconcrete_us_table.htm (BLS series titles), read Oct 27, 2026"
   },
   {
-   "id": "WPUSI012011",
-   "title": ""
+   "id": "WPU1017",
+   "title": "Steel mill products",
+   "slug": "steel-mill-products",
+   "group": "Metals and wire",
+   "buyers": "Steel erectors, fabricators and general contractors",
+   "titleSource": "download.bls.gov/pub/time.series/wp/wp.item (BLS item names), read Oct 27, 2026"
+  },
+  {
+   "id": "WPU107405",
+   "title": "Fabricated structural metal",
+   "slug": "fabricated-structural-metal",
+   "group": "Metals and wire",
+   "buyers": "Steel erectors and general contractors",
+   "titleSource": "download.bls.gov/pub/time.series/wp/wp.item (BLS item names), read Oct 27, 2026"
+  },
+  {
+   "id": "WPU101706",
+   "title": "Steel pipe and tube",
+   "slug": "steel-pipe-and-tube",
+   "group": "Metals and wire",
+   "buyers": "Plumbers, fire sprinkler and mechanical contractors",
+   "titleSource": "download.bls.gov/pub/time.series/wp/wp.item (BLS item names), read Oct 27, 2026"
+  },
+  {
+   "id": "WPU102501",
+   "title": "Aluminum mill shapes",
+   "slug": "aluminum-mill-shapes",
+   "group": "Metals and wire",
+   "buyers": "Siding, gutter, window and storefront installers",
+   "titleSource": "download.bls.gov/pub/time.series/wp/wp.item (BLS item names), read Oct 27, 2026"
+  },
+  {
+   "id": "WPU10260314",
+   "title": "Copper wire and cable",
+   "slug": "copper-wire-and-cable",
+   "group": "Metals and wire",
+   "buyers": "Electricians",
+   "titleSource": "download.bls.gov/pub/time.series/wp/wp.item (BLS item names), read Oct 27, 2026"
+  },
+  {
+   "id": "WPU136",
+   "title": "Asphalt felts and coatings",
+   "slug": "asphalt-felts-and-coatings",
+   "group": "Roofing, walls and paint",
+   "buyers": "Roofers (shingles, felts and roof coatings)",
+   "titleSource": "bls.gov/regions/mid-atlantic/data/producerpriceindexconcrete_us_table.htm (BLS series titles), read Oct 27, 2026"
+  },
+  {
+   "id": "WPU137",
+   "title": "Gypsum products",
+   "slug": "gypsum-products",
+   "group": "Roofing, walls and paint",
+   "buyers": "Drywall, plaster and remodeling contractors",
+   "titleSource": "bls.gov/regions/mid-atlantic/data/producerpriceindexconcrete_us_table.htm (BLS series titles), read Oct 27, 2026"
+  },
+  {
+   "id": "WPU1392",
+   "title": "Insulation materials",
+   "slug": "insulation-materials",
+   "group": "Roofing, walls and paint",
+   "buyers": "Insulation, drywall and HVAC contractors",
+   "titleSource": "bls.gov/regions/mid-atlantic/data/producerpriceindexconcrete_us_table.htm (BLS series titles), read Oct 27, 2026"
+  },
+  {
+   "id": "WPU0621",
+   "title": "Prepared paint",
+   "slug": "prepared-paint",
+   "group": "Roofing, walls and paint",
+   "buyers": "Painters",
+   "titleSource": "download.bls.gov/pub/time.series/wp/wp.item (BLS item names), read Oct 27, 2026"
+  },
+  {
+   "id": "WPU07210603",
+   "title": "Plastics pipe",
+   "slug": "plastics-pipe",
+   "group": "Plumbing, HVAC and electrical",
+   "buyers": "Plumbers and sewer contractors",
+   "titleSource": "download.bls.gov/pub/time.series/wp/wp.item (BLS item names), read Oct 27, 2026"
+  },
+  {
+   "id": "WPU105",
+   "title": "Plumbing fixtures and fittings",
+   "slug": "plumbing-fixtures-and-fittings",
+   "group": "Plumbing, HVAC and electrical",
+   "buyers": "Plumbers and remodelers",
+   "titleSource": "download.bls.gov/pub/time.series/wp/wp.item (BLS item names), read Oct 27, 2026"
+  },
+  {
+   "id": "WPU106",
+   "title": "Heating equipment",
+   "slug": "heating-equipment",
+   "group": "Plumbing, HVAC and electrical",
+   "buyers": "HVAC contractors",
+   "titleSource": "download.bls.gov/pub/time.series/wp/wp.item (BLS item names), read Oct 27, 2026"
+  },
+  {
+   "id": "WPU1083",
+   "title": "Lighting fixtures",
+   "slug": "lighting-fixtures",
+   "group": "Plumbing, HVAC and electrical",
+   "buyers": "Electricians",
+   "titleSource": "download.bls.gov/pub/time.series/wp/wp.item (BLS item names), read Oct 27, 2026"
+  },
+  {
+   "id": "WPU057303",
+   "title": "No. 2 diesel fuel",
+   "slug": "diesel-fuel",
+   "group": "Fuel",
+   "buyers": "Every trade that runs trucks, loaders or generators",
+   "titleSource": "download.bls.gov/pub/time.series/wp/wp.item (BLS item names), read Oct 27, 2026"
   }
  ]
 }

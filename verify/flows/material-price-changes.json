@@ -1,0 +1,81 @@
+{
+ "about": "Since-your-quote calculator: pick a material and a quote month, type an amount the loose way, check the result against the page's own CSV, recover from a bad amount, reset (Oct 27, 2026).",
+ "page": "material-price-changes/",
+ "steps": [
+  {
+   "scroll": "#quote"
+  },
+  {
+   "expect_text": "[data-mp='span']",
+   "contains": "Copper wire and cable"
+  },
+  {
+   "expect_text": "[data-mp='ch']",
+   "matches": "^[+-]\\d+\\.\\d%$"
+  },
+  {
+   "select": "#mp-mat",
+   "value": "lumber"
+  },
+  {
+   "expect_text": "[data-mp='span']",
+   "contains": "Lumber"
+  },
+  {
+   "select": "#mp-mon",
+   "value": "2024-01"
+  },
+  {
+   "fill": "#mp-amt",
+   "value": "$2.5k"
+  },
+  {
+   "expect_text": "[data-mp='from']",
+   "contains": "$2,500"
+  },
+  {
+   "expect_text": "[data-mp='span']",
+   "contains": "Jan 2024",
+   "screenshot": true
+  },
+  {
+   "expect_js": "(()=>{var x=new XMLHttpRequest();x.open('GET','material-price-indexes.csv',false);x.send();var r=x.responseText.trim().split('\\n').filter(l=>l.startsWith('WPU081,')).map(l=>l.split(','));var then=+r.find(c=>c[3]==='2024-01')[4],now=+r[r.length-1][4],want=2500*now/then;var got=+document.querySelector('[data-mp=new]').textContent.replace(/[$,]/g,'');var ch=document.querySelector('[data-mp=ch]').textContent,wch=((now/then-1)*100);return Math.abs(got-want)<1 && ch===(wch>0?'+':'-')+Math.abs(wch).toFixed(1)+'%'})()"
+  },
+  {
+   "fill": "#mp-amt",
+   "value": "ten grand"
+  },
+  {
+   "expect_visible": "#mp-err"
+  },
+  {
+   "expect_js": "document.querySelector('#mp-amt').getAttribute('aria-invalid')==='true'",
+   "screenshot": true
+  },
+  {
+   "click": "[data-mp-reset]"
+  },
+  {
+   "expect_hidden": "#mp-err"
+  },
+  {
+   "expect_text": "[data-mp='span']",
+   "contains": "Copper wire and cable"
+  },
+  {
+   "expect_text": "[data-mp='from']",
+   "contains": "$10,000"
+  },
+  {
+   "click": "[data-mp-copy]"
+  },
+  {
+   "expect_text": "[data-mp='copied']",
+   "matches": "Copied|select the sentence"
+  },
+  {
+   "expect_count": "a[href='material-price-indexes.csv']",
+   "min": 1
+  }
+ ]
+}

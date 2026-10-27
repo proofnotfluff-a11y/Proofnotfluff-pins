@@ -6865,11 +6865,11 @@
    "module": "dp_cdot_fees",
    "draft": true,
    "title": "Chicago Public Way Permit Cost Calculator, 2026 Fees | ProofNotFluff",
-   "desc": "Free calculator for CDOT permit fees in 2026: dumpsters, work vehicles and equipment, sidewalk and street closures, and openings, from the City's fee schedule.",
+   "desc": "Free calculator for 2026 CDOT permit fees: dumpsters, work vehicles and equipment, sidewalk and street closures, and openings, from the City's schedule.",
    "eyebrow": "Free calculator, from CDOT's 2026 fee schedule",
    "h1": "Chicago Public Way Permit Cost Calculator",
    "card": "What a CDOT permit costs in 2026: dumpster placement, work vehicles and equipment, sidewalk and street closures, and openings, from the City's fee schedule.",
-   "lede": "Pick what you are putting in the street, alley or sidewalk and see the CDOT fees it carries under the City's 2026 Permit Fee Schedule, with each line of the math shown.",
+   "lede": "Pick what you are putting in the street, alley or sidewalk and get an estimate of the CDOT fees from the City's 2026 Permit Fee Schedule, with each line of the math shown.",
    "method": [
     "Every amount comes from CDOT's 2026 Permit Fee Schedule, effective January 1, 2026. The full tables are on this page with the schedule's page numbers, and the calculator only adds and multiplies them.",
     "Dumpsters: the application fee depends on the street (CBD, or a residential or arterial street outside it), and the usage fee on the size class, inside or outside the CBD, for 1 to 3 days or per month. The schedule gives no rate between 3 days and a month, so the calculator asks you to pick one.",

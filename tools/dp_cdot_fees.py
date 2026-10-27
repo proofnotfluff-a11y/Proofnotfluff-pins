@@ -194,7 +194,7 @@ WHERE = [("cbd", "Inside the Central Business District (CBD)"), ("res", "Outside
 def form_html():
     sec_pick = ('<fieldset class="pf-pick"><legend>What are you pricing?</legend>'
                 + "".join(f'<label><input type="radio" name="pf-what" value="{v}"{" checked" if i == 0 else ""}>{t}</label>'
-                          for i, (v, t) in enumerate([("dump", "Dumpster"), ("occ", "Work vehicle or equipment"),
+                          for i, (v, t) in enumerate([("dump", "Dumpster"), ("occ", "Vehicle, equipment or barricade"),
                                                       ("use", "Sidewalk or street closure"), ("open", "Opening or cut")]))
                 + "</fieldset>")
     dump = ('<fieldset class="pf-sec" data-sec="dump"><legend>Dumpster in the public way</legend>'
@@ -207,14 +207,14 @@ def form_html():
     items = [(str(i), f"{g}: {n}") for i, (g, n, *_rest) in enumerate(ITEMS)]
     occ = ('<fieldset class="pf-sec" data-sec="occ"><legend>Work vehicle, equipment or barricade</legend>'
            + _sel("o-where", "Where it goes", "The CBD's boundaries are in Municipal Code section 9-4-010", WHERE, "res")
-           + _sel("o-close", "Closure", "Sets the application fee", [("full", "Full closure"), ("partial", "Partial closure")], "partial")
+           + _sel("o-close", "Full or partial closure", "Sets the application fee", [("full", "Full closure"), ("partial", "Partial closure")], "partial")
            + _sel("o-item", "What you are placing", "As the City's schedule names it", items, "4")
            + _num("o-days", "Days", 3) + _num("o-count", "Vehicles", 1) + _num("o-feet", "Length", 40, "", "ft")
            + _num("o-months", "Months", 1)
            + "</fieldset>")
     use = ('<fieldset class="pf-sec" data-sec="use"><legend>Sidewalk or street closure for building work</legend>'
            + _sel("u-cbd", "Where it is", "Outside the CBD the fees are one-half", [("1", "Inside the Central Business District (CBD)"), ("0", "Outside the CBD")], "0")
-           + _sel("u-type", "Type of work", "", [("I", "Type I: exterior repair, facade work or demolition"), ("II", "Type II: building a new building"),
+           + _sel("u-type", "Type of work", "", [("I", "Type I: alterations, facade repair, tuckpointing or demolition"), ("II", "Type II: building a new building"),
                                                  ("III", "Type III: routine maintenance in the CBD, like painting or window washing")], "I")
            + _sel("u-row", "What you close", "", [(str(i), r[0]) for i, r in enumerate(USAGE)], "0")
            + _num("u-feet", "Length of frontage closed", 50, "Each foot of frontage", "ft")
@@ -222,8 +222,8 @@ def form_html():
            + "</fieldset>")
     opn = ('<fieldset class="pf-sec" data-sec="open"><legend>Opening or cut in the public way</legend>'
            + _sel("p-place", "Placement", "", [(str(i), n) for i, (n, _f, _u) in enumerate(OPEN)], "1")
-           + _num("p-count", "Openings", 1, "Blocks, for soil borings in the parkway")
-           + _sel("p-mor", "Moratorium street?", "Newly paved streets need extra protection. See ChiStreetWork's map", [("0", "No"), ("1", "Yes")], "0")
+           + _num("p-count", "Openings", 1, "For parkway soil borings, enter blocks instead")
+           + _sel("p-mor", "Moratorium street?", "Newly paved streets and others CDOT protects. Check the ChiStreetWork map", [("0", "No"), ("1", "Yes")], "0")
            + _sel("p-age", "Pavement age", "Moratorium streets only",
                   [(str(m["maxMonths"]), m["label"]) for m in load_degradation()["multiplier"]], "6")
            + _sel("p-kind", "Cut or trench", "Moratorium streets only", [("cut", "A cut"), ("trench", "A trench")], "cut")
@@ -272,14 +272,14 @@ def reference_html(E):
         rows.append([f"{n}: per foot"] + [money(a) if not isinstance(a, str) else f"previous month plus {money(STEP[a])} a foot" for a in A])
         rows.append([f"{n}: minimum a month"] + [money(b) for b in B])
     out.append("<h3>Monthly usage fees for Types I, II and III (pages 8 and 9)</h3>"
-               "<p class=\"asof\">Amounts for the CBD; outside the CBD the fees are one-half. Columns are days in place; the first six are Types I and III, the last two Type II. "
+               "<p class=\"asof\">Amounts for the CBD; outside the CBD the fees are one-half. Columns are days in place: 1 to 3 days is for all three types, the next five for Types I and III, the last two for Type II. "
                "The schedule says these fees are subject to a yearly CPI increase of up to 2.5%.</p>"
                + tbl("Monthly usage fees", ["Placement"] + cols, rows))
     out.append("<h3>Openings in the public way (page 2)</h3><p class=\"asof\">Fees double, and a degradation fee is added, on moratorium streets.</p>"
                + tbl("Opening fees", ["Placement", "Fee"], [[n, f"{money(f)} per {u}"] for n, f, u in OPEN]))
     out.append("<h3>Degradation fee on moratorium streets (page 11)</h3>"
-               f"<p>Fee = P times (length divided by 200) times {money(d['baseRate'])}. For a cut the length is set to 200 feet; a trench is charged on at least 200 feet. "
-               "Residential homeowners are exempt on repairs to existing sewer and water services.</p>"
+               f"<p>Fee = P times (length divided by 200) times {money(d['baseRate'])}, where P is the multiplier for the pavement's age in the table below. For a cut the length is set to 200 feet; a trench is charged on at least 200 feet. "
+               "Residential homeowners are exempt on repairs to existing sewer and water services. Moratorium streets are on CDOT's <a href=\"https://chistreetwork.chicago.gov/map\" rel=\"noopener\">ChiStreetWork map</a>.</p>"
                + tbl("Degradation multiplier", ["Age of the pavement", "P"], [[m["label"], f'{m["P"]:g}'] for m in d["multiplier"]]))
     out.append("</section>")
     return "".join(out)
@@ -368,10 +368,10 @@ function draw(){var what=(f.querySelector("input[name=pf-what]:checked")||{}).va
   if(!use2)W.push("Type the days, vehicles, length or months for this item.")}
  if(what==="use"){var cbd=$("u-cbd").value==="1",ty=$("u-type").value,ft2=num("u-feet"),dy2=whole("u-days"),R=usage(+$("u-row").value,ty,cbd,dy2,ft2);
   total=R[0];L.push(["Usage for "+dy2+" day"+(dy2===1?"":"s")+", "+ft2+" ft"+(cbd?"":" (one-half outside the CBD)"),R[0]]);sub=R[1].length>1?R[1].length+" blocks of 30 days":"One charge";
-  if(ty==="III"&&!cbd)W.push("Type III work is defined as routine maintenance within the CBD. Check with CDOT which type applies outside it.");
+  if(ty==="III"&&!cbd)W.push("Type III covers routine maintenance inside the CBD only. Outside it, ask CDOT which type applies.");
   if(!ft2||!dy2)W.push("Type the length closed and the days it stays.");
   if(R[1].length>1)blocks='<details class="pf-blocks"><summary>See each 30-day block</summary><ol>'+R[1].map(function(b){return"<li>Days "+b[0]+" to "+b[1]+": "+m(b[2])+"</li>"}).join("")+"</ol></details>";
-  N.push("Each block is the per-foot rate times the length or the minimum monthly fee, whichever is more. Metered spaces you make unusable are charged on top.")}
+  N.push("Each block is the per-foot rate times the length or the minimum monthly fee, whichever is more. If you block metered spaces, CDOT charges for those too; the schedule gives no amount.")}
  if(what==="open"){var o=D.open[+$("p-place").value],n=whole("p-count"),mor=$("p-mor").value==="1",tr=$("p-kind").value==="trench";
   rowVis("p-age",mor);rowVis("p-kind",mor);rowVis("p-trench",mor&&tr);
   var fee=o[1]*n*(mor?2:1);L.push([n+" "+o[2]+(n===1?"":"s")+" at "+m(o[1])+(mor?", doubled on a moratorium street":""),fee]);total=fee;

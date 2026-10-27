@@ -127,6 +127,29 @@ def later_text(lt):
     return f"Newer City result: {lt['result']} on {RL.pretty(lt['date'])}, {lt['inspectionType']}."    # Legal desk fix 9 pattern
 
 
+def _coord(v):
+    try:
+        return round(float(v), 5)
+    except (TypeError, ValueError):
+        return None
+
+
+# Leaflet for the map view (Todd, Oct 27, 2026: interactive maps on the paid products too); same file and hash as
+# tools/leads_app.py, so every members' app loads one pinned copy.
+LEAFLET_JS = ("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js", "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=")
+LEAFLET_CSS = ("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css", "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=")
+
+
+def _geo_json():
+    """Public community area outlines (site/geo, tools/geo_map.py), drawn under the pins so the map shows the city even
+    when the street tiles do not load. Public boundaries, so they sit outside the encrypted box."""
+    try:
+        import geo_map
+        return json.dumps(geo_map.latlon_rings(), separators=(",", ":"))
+    except Exception:
+        return "[]"
+
+
 def payload(named):
     rows = []
     for new, r in pest_rows(named):
@@ -134,7 +157,7 @@ def payload(named):
                      "ty": r.get("type") or "", "d": r["date"], "r": r["result"], "it": r.get("inspectionType") or "",
                      "c": (r.get("codes") or {}).get(TRADE) or [], "s": r.get("summary") or "", "rec": r.get("record") or "",
                      "f90": int(r.get("fails90") or 0), "lo": r.get("listedOn") or named["asOf"], "nw": new, "ph": r.get("phone") or "",
-                     "lt": later_text(r.get("later"))})
+                     "lt": later_text(r.get("later")), "y": _coord(r.get("lat")), "x": _coord(r.get("lon"))})
     return {"asOfIso": named["asOf"], "asOf": RL.pretty(named["asOf"]), "through": RL.pretty(named["through"]),
             "phonesChecked": bool(named.get("phoneNote")), "phoneAttr": list(named.get("phoneAttribution") or []), "rows": rows,
             "fileName": f"chicago-pest-daily-{named['asOf']}.csv"}
@@ -169,7 +192,9 @@ def build_html(named, password):
     box = encrypt(password, json.dumps(payload(named), separators=(",", ":")).encode())
     as_of = RL.pretty(named["asOf"])
     return (PAGE.replace("__BOX__", json.dumps(box)).replace("__WORDS__", words_json(as_of)).replace("__ASOF__", _esc(as_of))
-            .replace("__FREE__", FREE_PAGE).replace("__CITY__", _esc(CITY_DISCLAIMER)))
+            .replace("__FREE__", FREE_PAGE).replace("__CITY__", _esc(CITY_DISCLAIMER))
+            .replace("__GEO__", _geo_json())
+            .replace("__LJS__", LEAFLET_JS[0]).replace("__LJSI__", LEAFLET_JS[1]).replace("__LCSS__", LEAFLET_CSS[0]).replace("__LCSSI__", LEAFLET_CSS[1]))
 
 
 def build(named, out, password):
@@ -191,6 +216,8 @@ PAGE = r"""<!doctype html>
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="../assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="__LCSS__" integrity="__LCSSI__" crossorigin="anonymous">
+<script defer src="__LJS__" integrity="__LJSI__" crossorigin="anonymous"></script>
 <style>
 @font-face{font-family:Inter;font-weight:400;font-display:swap;src:url(../assets/fonts/inter-400.woff2) format("woff2")}
 @font-face{font-family:Inter;font-weight:600;font-display:swap;src:url(../assets/fonts/inter-600.woff2) format("woff2")}
@@ -259,7 +286,7 @@ font-weight:700;text-decoration:none;cursor:pointer}
 @media(max-width:560px){.tiles{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.tiles .tile.key{grid-column:1 / -1}
 .card .acts{display:grid;grid-template-columns:auto 1fr;column-gap:16px;row-gap:4px;justify-items:start}.card .acts .called{grid-column:1 / -1}.card details{margin-top:0}}
 .tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 14px}
-.search{flex:1 1 260px;min-width:0}
+.search{flex:1 1 100%;min-width:0}
 .search input{width:100%;height:48px;border:1.5px solid var(--muted);border-radius:10px;padding:0 12px;background:var(--card)}
 #q::placeholder{color:var(--muted);opacity:1}
 #main:focus,#main:focus-visible{outline:none}
@@ -300,10 +327,43 @@ footer p{margin:0 0 10px;overflow-wrap:anywhere}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--band);color:#fff;padding:12px 16px;border-radius:10px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s}
 .toast.on{opacity:1}
 @media (prefers-reduced-motion:reduce){.toast{transition:none}}
+/* map view (Oct 27, 2026) */
+.mapbox{position:relative;height:min(68vh,620px);min-height:380px;margin:0 0 16px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--sh);background:#E9E6E0}
+.mapbox .map{position:absolute;inset:0}
+.leaflet-container{font-family:var(--body);background:#E9E6E0}
+.leaflet-tile-pane{filter:grayscale(1) sepia(.18) contrast(.88) brightness(1.06)}
+.leaflet-control-attribution{font-size:11px;background:rgba(255,255,255,.92)!important}.leaflet-control-attribution a{color:#2a5d93}
+.leaflet-bar a{width:40px!important;height:40px!important;line-height:40px!important;color:#1d2433!important}
+.leaflet-popup-content-wrapper{border-radius:12px;box-shadow:0 8px 24px rgba(29,36,51,.18)}.leaflet-popup-content{margin:14px 16px;font:14.5px/1.45 var(--body);color:#1d2433}
+.pop b{display:block;font:700 16px/1.25 var(--head);margin:0 0 4px;padding-right:28px}
+.leaflet-container a.leaflet-popup-close-button{width:44px!important;height:44px!important;font:22px/44px var(--body)!important;top:0!important;right:0!important}.pop .pa{display:block;color:#3f4659;margin:0 0 8px}.pop .pill{margin:0 0 10px}
+.pop .pb{display:grid;gap:8px;margin:10px 0 0}.pop .btn{width:100%;min-height:44px}.pop .btn.ghost{color:#1d2433;border-color:#cfc8bb}
+.legend{display:flex;flex-wrap:wrap;gap:6px 12px;margin:-6px 0 18px;font-size:13.5px;color:var(--ink2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{display:inline-block;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(29,36,51,.35)}
+.legend .l0{width:16px;height:16px;background:#c8502f}.legend .l1{width:12px;height:12px;background:#2e6b66}.legend .l2{width:12px;height:12px;background:#fff;border-color:#3a4152;box-shadow:none}
+.map-note{position:absolute;z-index:500;left:10px;bottom:10px;max-width:calc(100% - 140px);}@media(max-width:600px){.map-note{max-width:calc(100% - 20px);bottom:24px}}.map-note{margin:0;background:rgba(255,255,255,.96);border:1px solid #e2ddd3;border-radius:8px;padding:6px 10px;font-size:12.5px;color:#565d6b}
+.map-fail{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:10px;padding:20px;text-align:center;color:#3f4659;background:#f3f1ec}
+.card.flash{outline:3px solid var(--accent);outline-offset:2px}
+.pnf-areas{stroke:#7a7f8c;stroke-opacity:.6;fill:#fbfaf7;fill-opacity:.55}
+@media (prefers-color-scheme:dark){.pnf-areas{stroke:#5c6578;stroke-opacity:.8;fill:#252c3d;fill-opacity:.6}}
+.vseg{display:inline-flex;border:1.5px solid var(--line);border-radius:10px;overflow:hidden;margin-left:auto}
+.vseg button{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border:0;background:var(--card);font-weight:600;font-size:15px;cursor:pointer}
+.vseg button+button{border-left:1.5px solid var(--line)}.vseg button[aria-pressed="true"]{background:var(--ink);color:var(--canvas)}
+.mapbox{scroll-margin-top:12px}
+@media(max-width:600px){.mapbox{height:min(55vh,520px);min-height:320px}.vseg{margin-left:0}}
+.leaflet-tile{color:transparent}
+.pop .pill{display:inline-flex}.pop .pm{display:block;font-size:13px;color:#565d6b;margin:0 0 4px}
+.legend i{border-width:2.5px}.legend .l1,.legend .l2{width:14px;height:14px}
+.leaflet-bar a{width:44px!important;height:44px!important;line-height:44px!important}
+@media (prefers-color-scheme:dark){.mapbox,.leaflet-container{background:#1b2130}.leaflet-tile-pane{filter:grayscale(1) invert(.88) contrast(.9)}
+.map-note{background:rgba(27,33,48,.94);color:#eef0f4;border-color:#2c3343}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#252c3d;color:#eef0f4}.leaflet-popup-content-wrapper{border:1px solid #3a4152}
+.leaflet-popup-content{color:#eef0f4}.pop .pa{color:#c9ced8}.pop .pm{color:#a3aab6}.pop .btn.ghost{color:#eef0f4;border-color:#3a4152}
+.leaflet-control-attribution{background:rgba(27,33,48,.9)!important;color:#c9ced8}.leaflet-control-attribution a{color:#9cc2ff}.leaflet-bar a{background:#1b2130!important;color:#eef0f4!important;border-color:#2c3343!important}
+.map-fail{background:#12161f;color:#c9ced8}}
 </style></head><body>
 <a class="skip" href="#main" id="skip">Skip to main content</a>
 <header class="bar"><div class="bar-in">
-<a class="brand" href="#/" aria-label="ProofNotFluff, Chicago Pest Daily List, today's list"><b>ProofNotFluff</b><small>Chicago Pest Daily List</small></a>
+<a class="brand" href="#/"><b>ProofNotFluff</b><small>Chicago Pest Daily List</small></a>
 <span class="bar-sp"></span><a class="tl" href="#/terms" id="termsTop">Terms</a>
 </div></header>
 <main id="main" tabindex="-1">
@@ -331,6 +391,7 @@ footer p{margin:0 0 10px;overflow-wrap:anywhere}
 "use strict";
 const BOX=__BOX__;
 const W=__WORDS__;
+const GEO=__GEO__;
 const PKEY="pnf-pest-seat-pw",SKEY="pnf-pest-seat-marks-v1";
 const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -341,7 +402,7 @@ const wday=s=>{const[y,m,d]=s.split("-").map(Number);return["Sun","Mon","Tue","W
 async function openBox(pw){const k0=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveKey"]);
 const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b64(BOX.salt),iterations:BOX.rounds,hash:"SHA-256"},k0,{name:"AES-GCM",length:256},false,["decrypt"]);
 const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(BOX.iv)},key,b64(BOX.ct));return JSON.parse(new TextDecoder().decode(pt));}
-let D=null,MARKS={},STORE=true,F={q:"",v:"all"};
+let D=null,MARKS={},STORE=true,F={q:"",v:"all",view:"list"},MAP=null,LAY=null,MK={};
 try{const t="__pnf";localStorage.setItem(t,"1");localStorage.removeItem(t);MARKS=JSON.parse(localStorage.getItem(SKEY)||"{}")||{};}catch(e){STORE=false;MARKS={};}
 function save(){try{localStorage.setItem(SKEY,JSON.stringify(MARKS));}catch(e){STORE=false;toast("Your browser is not saving marks on this device.");}}
 function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.h);toast.h=setTimeout(()=>e.classList.remove("on"),2600);}
@@ -372,7 +433,25 @@ if(!rows.length){h+=`<div class="empty">${D.rows.length?"No place matches. Clear
 days.forEach(d=>{const lab=d===D.asOfIso?"New this morning":"Sent "+wday(d)+", "+day(d);
 h+=`<h2 class="group">${esc(lab)} <small>${by[d].length} place${by[d].length===1?"":"s"}</small></h2><div class="list">${by[d].map(card).join("")}</div>`;});
 return h;}
-function drawList(){$("#results").innerHTML=listHtml();}
+function drawList(){$("#results").innerHTML=listHtml();drawMap(false);}
+/* map view: the same places the list shows, after the same search and filter */
+const MS=[{radius:9,color:"#fff",weight:2.5,fillColor:"#c8502f",fillOpacity:1},{radius:6.5,color:"#fff",weight:1.5,fillColor:"#2e6b66",fillOpacity:.95},{radius:6,color:"#3a4152",weight:2,fillColor:"#fff",fillOpacity:1}];
+function ensureMap(){if(MAP||!$("#map"))return;if(!window.L){const box=$("#mapbox");if(box&&!box.querySelector(".map-fail"))box.insertAdjacentHTML("beforeend",'<div class="map-fail"><p>The map did not load on this connection. The list has every place.</p><button class="btn sm" type="button" id="mfl">Show the list</button></div>');const b=$("#mfl");if(b)b.onclick=()=>setView("list");return;}
+MAP=L.map("map",{zoomControl:false,scrollWheelZoom:false}).setView([41.85,-87.68],11);L.control.zoom({position:innerWidth<600?"bottomright":"topright"}).addTo(MAP);MAP.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
+let te=0;L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).on("tileerror",()=>{if(++te===3){const n=$("#mapnote");n.hidden=false;n.textContent=innerWidth<600?"Street map didn't load. Pins are still placed correctly.":"The street map did not load on this connection. The pins still show where each place is.";}}).addTo(MAP);if(GEO.length)L.polygon(GEO,{className:"pnf-areas",weight:1,interactive:false}).addTo(MAP);
+LAY=L.layerGroup().addTo(MAP);drawMap(true);}
+function pop(r){const t=telHref(r.ph);return `<div class="pop"><b>${esc(r.n)}</b><span class="pa">${esc(r.a)}${r.z?", "+esc(r.z):""}${r.ar?" · "+esc(r.ar):""}</span><span class="pill ${resCls(r.r)}">City result: ${esc(r.r)}</span><span class="pm">${esc(r.nw?"New this morning":"Sent "+day(r.lo))}, inspected ${esc(day(r.d))}</span>
+<span class="pb">${r.ph&&t?`<a class="btn sm" href="${t}">Call ${esc(r.ph)}</a>`:""}<button class="btn ghost sm" type="button" data-show="${esc(r.id)}">Show in the list</button></span></div>`;}
+function drawMap(refit){if(!MAP)return;const rows=D.rows.filter(pass),geo=rows.filter(r=>r.y&&r.x),note=$("#mapnote");LAY.clearLayers();MK={};
+const miss=rows.length-geo.length;note.hidden=!(miss||!rows.length);note.textContent=!rows.length?"No places match. Clear the search or pick All.":miss?`${miss} place${miss===1?"":"s"} on the list ${miss===1?"has":"have"} no map location in the City record.`:"";
+geo.slice().sort((a,b)=>(a.nw?1:0)-(b.nw?1:0)).forEach(r=>{const st=mark(r.id).c?2:r.nw?0:1;const c=L.circleMarker([r.y,r.x],MS[st]).bindPopup(pop(r),{maxWidth:innerWidth<600?260:300,minWidth:innerWidth<600?220:240,autoPanPaddingTopLeft:[16,16],autoPanPaddingBottomRight:[64,16]});c.addTo(LAY);MK[r.id]=c;});
+if(refit&&!geo.length&&GEO.length){MAP.fitBounds(L.latLngBounds(GEO.flat()),{padding:[20,20],animate:false});}
+if(refit&&geo.length){const bb=L.latLngBounds(geo.map(r=>[r.y,r.x]));if(geo.length===1)MAP.setView(bb.getCenter(),15,{animate:false});else MAP.fitBounds(bb,{padding:[40,40],maxZoom:15,animate:false});}}
+function setView(v){F.view=v;document.querySelectorAll("[data-view]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.view===v)));$("#mapbox").hidden=v!=="map";$("#maplegend").hidden=v!=="map";$("#results").hidden=v==="map";
+if(v==="map"){ensureMap();if(MAP){MAP.invalidateSize();drawMap(true);}const mb=$("#mapbox");if(mb&&mb.getBoundingClientRect().top>innerHeight*.45)mb.scrollIntoView({block:"start",behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"});}}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-show]");if(!b)return;const id=b.dataset.show;if(MAP)MAP.closePopup();F.v="all";F.q="";const q=$("#q");if(q)q.value="";
+document.querySelectorAll(".seg button[data-v]").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.v==="all")));setView("list");drawList();
+const c=document.querySelector(`.card[data-id="${CSS.escape(id)}"]`);if(c){c.scrollIntoView({block:"center"});c.classList.add("flash");c.setAttribute("tabindex","-1");c.focus({preventScroll:true});setTimeout(()=>c.classList.remove("flash"),2200);}});
 function home(){const nNew=D.rows.filter(r=>r.nw).length,nPh=D.rows.filter(r=>r.ph).length,today=chicagoToday();
 const stale=today&&D.asOfIso<today?`<p class="stale" role="status">This list is from ${esc(day(D.asOfIso))}. This morning's update has not arrived yet; it usually does by 8 am. Reload the page to check again.</p>`:"";
 const noneToday=nNew?"":`<div class="empty">The City posted no new pest records since the last list. The places from the last 14 days are below.</div>`;
@@ -384,16 +463,21 @@ $("#app").innerHTML=`<h1>This morning's pest list</h1>
 ${noneToday}
 <div class="tools"><div class="search"><label class="sr" for="q">Search by name, street, ZIP or area</label><input id="q" type="search" placeholder="Search name, street, ZIP or area" value="${esc(F.q)}" autocomplete="off"></div>
 <div class="seg" role="group" aria-label="Show">${[["all","All"],["new","New this morning"],["todo","Not called yet"]].map(([k,l])=>`<button type="button" data-v="${k}" aria-pressed="${F.v===k}">${l}</button>`).join("")}</div>
+<div class="vseg" role="group" aria-label="View">${[["list","List",'<path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/>'],["map","Map",'<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/>']].map(([k,l,ic])=>`<button type="button" data-view="${k}" aria-pressed="${F.view===k}"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true">${ic}</svg>${l}</button>`).join("")}</div>
 <button class="btn ghost sm" type="button" id="csv"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Download CSV</button></div>
-<div id="results"></div>
+<div class="mapbox" id="mapbox" ${F.view==="map"?"":"hidden"}><div class="map" id="map" role="region" aria-label="Map of the places on this list. The list view has the same places."></div>
+<p class="map-note" id="mapnote" hidden></p></div>
+<div class="legend" id="maplegend" aria-hidden="true" ${F.view==="map"?"":"hidden"}><span><i class="l0"></i>New this morning</span><span><i class="l1"></i>Earlier mornings</span><span><i class="l2"></i>Called</span></div>
+<div id="results" ${F.view==="map"?"hidden":""}></div>
 <p class="meta" style="margin-top:22px">${STORE?"Called marks and notes stay in this browser on this device.":"This browser is not saving called marks or notes."}</p><p><button class="btn ghost sm" type="button" id="out">Sign out on this device</button></p>`;
 drawList();
 $("#q").addEventListener("input",e=>{F.q=e.target.value;drawList();});
-document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{F.v=b.dataset.v;document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));drawList();}));
+document.querySelectorAll(".seg button[data-v]").forEach(b=>b.addEventListener("click",()=>{F.v=b.dataset.v;document.querySelectorAll(".seg button[data-v]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));drawList();}));
+document.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>setView(b.dataset.view)));if(F.view==="map")setTimeout(()=>setView("map"),60);
 $("#csv").addEventListener("click",csv);
 $("#out").addEventListener("click",()=>{try{localStorage.removeItem(PKEY);sessionStorage.removeItem(PKEY);}catch(e){}location.hash="#/";location.reload();});
 $("#results").addEventListener("change",e=>{const c=e.target.closest(".card");if(!c)return;const id=c.dataset.id;const m=MARKS[id]=mark(id);
-if(e.target.dataset.act==="called"){m.c=e.target.checked;m.on=m.c?chicagoToday():"";c.classList.toggle("done",m.c);save();toast(m.c?"Marked as called":"Mark removed");}});
+if(e.target.dataset.act==="called"){m.c=e.target.checked;m.on=m.c?chicagoToday():"";c.classList.toggle("done",m.c);save();toast(m.c?"Marked as called":"Mark removed");drawMap(false);}});
 $("#results").addEventListener("input",e=>{if(e.target.dataset.act!=="note")return;const id=e.target.closest(".card").dataset.id;const m=MARKS[id]=mark(id);m.n=e.target.value;save();});}
 function cell(v){let s=String(v==null?"":v);if(/^[=+\-@\t\r]/.test(s))s="'"+s;return /[",\n\r]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;}
 function csv(){const head=["Sent on","Business","Address","ZIP","Community area","Facility type","Phone","City result","Inspection type","Inspection date","Pest violation codes","Summary","Newer City result","Failed City inspections in 90 days (not counting license inspections)","City record","Called","Called on","Your note"];

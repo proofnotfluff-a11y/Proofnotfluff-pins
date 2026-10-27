@@ -12,3 +12,8 @@
 - So: both bid pieces are built through every gate (holdout, design director, accessibility, Legal desk) as drafts; the calculator page needs its own Kit form before it goes live; the seat change ships to the members' app after its gates (0 seat holders today). Guide price ranges show as ranges with their sources, never as what the market charges.
 - The news tip: one email to ABC7 Chicago's public tips address (wls.desk@abc.com, read on abc7chicago.com Oct 26) with our 311 counts next to Orkin's Oct 13 list. Todd sends it from hello@proofnotfluff.com; the session drafts it. Trades news section: another chat's work, not this one.
 - Kimi R7 set aside (2 of the first 10 sources did not hold); what it shares with our own Oct 26 pass stands on our sources: research_notes/kimi-2026-10-27-r7.md. Kimi R9 kept: research_notes/kimi-2026-10-27-r9.md.
+
+## Trades news and maps go, 9:32 to 9:33 am (trades news chat)
+- [stated] Todd, 9:32 am: "go" (to putting all three live: Chicago Trades News, the map on the rat complaints page, and the List or Map view in the pest seat members' app).
+- [stated] Todd, 9:33 am: "let's refresh news daily".
+- So: /chicago-trades-news/ live (footer link on every page, sitemap, site search, RSS feed); the community area map is on /chicago-rat-complaints/; the pest seat app gets its map on the next daily build (6:45 am). A daily cloud scheduled task runs .claude/skills/trades-news/SKILL.md; each refresh is a minor data change under CONSTITUTION 2 and publishes only when its facts and copy gates pass.

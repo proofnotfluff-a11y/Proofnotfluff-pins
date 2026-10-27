@@ -6106,7 +6106,53 @@
      "The tiles at the top compare the last 30 days with the same 30 days a year earlier, citywide and for each community area."
     ]
    ],
-   "sources": "City of Chicago 311 Service Requests, dataset v6vf-nfxy."
+   "sources": "City of Chicago 311 Service Requests, dataset v6vf-nfxy.",
+   "map": true
+  },
+  {
+   "slug": "chicago-trades-news",
+   "kind": "tradesnews",
+   "data": "site/news/chicago-trades.json",
+   "title": "Chicago Trades News: Rules, Taxes, Pay and Projects",
+   "desc": "A free daily brief for Chicago contractors and trade businesses: new rules, permits, licenses, taxes, pay and big projects, in plain words with the source linked.",
+   "eyebrow": "Free daily brief for the trades",
+   "h1": "Chicago Trades News",
+   "card": "New rules, taxes, pay and projects for Chicago trade businesses, with the source linked",
+   "lede": "The changes that hit Chicago contractors and trade workers this season: rules, permits, licenses, taxes, pay and the big projects coming up. Each one in plain words, with what it means for you and the page it comes from.",
+   "more": {
+    "title": "Looking for the work itself?",
+    "text": "Our free weekly samples list Chicago construction projects near a final clean and restaurants with a failed inspection, straight from City records.",
+    "slug": "chicago-construction-cleaning-leads",
+    "button": "See this week's free sample"
+   },
+   "method": [
+    "Every morning we read the City of Chicago, Cook County, State of Illinois and federal pages that publish new rules, taxes, wage rates and licenses, plus Chicago's main news outlets, and pick the items that change how a trade business works or what it pays.",
+    "Every item is written in our own words and links the page it comes from. We prefer the government page itself; when an item rests on news reports, the source line says so. A second reviewer checks every number and date against its source before the brief is published.",
+    "Proposed means not passed: budget items, ordinances and bills can change or fail. Items stay on the page for about four months, or until their start date passes.",
+    "This is news, not legal, tax or financial advice. Before you change a price, a payroll setting or a filing, check the source and ask your accountant, lawyer or licensing office."
+   ],
+   "faq": [
+    [
+     "How often is Chicago Trades News updated?",
+     "Every morning. The date at the top says when the brief was last checked, and each item shows the day it was reported. New this week lists the items reported in the last 7 days."
+    ],
+    [
+     "Who is it for?",
+     "Small trade businesses and trade workers in Chicago: general contractors, electricians, plumbers, HVAC techs, roofers, painters, cleaning and post-construction cleaning companies, pest control, landscaping and snow removal, and the companies that service restaurants."
+    ],
+    [
+     "Is this legal or tax advice?",
+     "No. It is news in plain words with the official page linked. Check the source and ask your accountant, lawyer or licensing office before you act on any change."
+    ],
+    [
+     "How do I see only the news for my trade?",
+     "Pick your trade at the top of the brief. Items that affect every trade stay in view. The page remembers your pick on this device."
+    ],
+    [
+     "Can I follow it without giving my email?",
+     "Yes. The brief has an RSS feed, linked at the bottom of the page, that any feed reader can follow."
+    ]
+   ]
   },
   {
    "slug": "christmas-light-installation-pricing-calculator",

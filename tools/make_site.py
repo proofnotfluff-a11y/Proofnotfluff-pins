@@ -88,6 +88,7 @@ def foot_nav(rel):
     q = f'<a href="{rel}questions/">Questions</a>' if LIVE_QUESTIONS else ""
     # the free Chicago data pages that are no calculator (rat tracker live Oct 26 on Todd's go): linked from every page
     q += "".join(f'<a href="{rel}{p["slug"]}/">Chicago rat complaints</a>' for p in PAGES_LIVE if p.get("kind") == "rodents")
+    q += "".join(f'<a href="{rel}{p["slug"]}/">Chicago trades news</a>' for p in PAGES_LIVE if p.get("kind") == "tradesnews")   # Todd, Oct 27
     return (f'<nav class="fnav" aria-label="Footer"><a href="{rel}shop/">Shop</a><a href="{rel}calculators/">Free calculators</a>{q}'
             f'<a href="{rel}refunds/">Refunds and cancelling</a><a href="{rel}privacy/">Privacy</a><a href="{SHOP}">Workbooks on Etsy</a>'
             '<a href="mailto:hello@proofnotfluff.com">hello@proofnotfluff.com</a></nav>')
@@ -2487,6 +2488,9 @@ def page_html(p):
     if p.get("kind") == "rodents":     # Chicago rat complaints, the free weekly 311 page (tools/rodents_site.py)
         import rodents_site
         return rodents_site.page_html(p)
+    if p.get("kind") == "tradesnews":  # Chicago Trades News, the free weekly brief (tools/news_site.py; Todd, Oct 27, 2026)
+        import news_site
+        return news_site.page_html(p)
     if p.get("kind") == "newin":       # New in Chicago, the free traffic page (tools/newin_site.py)
         import newin_site
         return newin_site.page_html(p)
@@ -3026,7 +3030,7 @@ def home_html(pages, live, doors=False):
             '<p class="hx-cta"><a class="btn ld-btnbig" href="#trades">Pick your trade</a><a class="st-link" href="#calc-title">Pricing a job? Try a free calculator</a></p></div>'
             f'<div class="hx-side">{shot}{week_hx}</div>'
             f'<div class="hx-pickrow"><h2 class="hx-pick" id="trades">Open this week\'s free sample for your trade</h2><ul class="st-trades hx-trades">{trades}</ul></div></section>')
-    calcs_live = [p for p in live if p.get("kind") not in ("leads", "restleads", "licleads", "question", "newin", "rodents", "agentkit")]
+    calcs_live = [p for p in live if p.get("kind") not in ("leads", "restleads", "licleads", "question", "newin", "rodents", "agentkit", "tradesnews")]
     if doors:
         by_calc = {p["slug"]: p for p in calcs_live}
         feat = [by_calc[x] for x in st.get("doorCalcs", []) if x in by_calc][:4]
@@ -3363,6 +3367,9 @@ def search_index(live):
         out.append({"t": cp["h1"], "s": cp["slug"] + "/", "g": "Guide", "d": "Compared, with prices", "k": "compare constructconnect dodge buildzoom angi thumbtack planhub post construction cleaning leads chicago"})
     for q in LIVE_QUESTIONS:
         out.append({"t": q["h1"], "s": q["slug"] + "/", "g": "Guide", "d": q.get("eyebrow", ""), "k": q.get("eyebrow", "").lower()})
+    for p in live:   # the free Chicago pages that are no calculator (Todd, Oct 27: trades news; the rat map)
+        if p.get("kind") == "tradesnews":
+            out.append({"t": p["h1"], "s": p["slug"] + "/", "g": "Guide", "d": p.get("card", ""), "k": "news regulations permits licenses tax pay wages projects contractors trades chicago"})
     for p in live:
         if p["slug"] in group_of:
             out.append({"t": p["h1"], "s": p["slug"] + "/", "g": "Calculator", "d": p.get("card", ""), "k": (group_of[p["slug"]] + " " + syn.get(p["slug"], "")).lower()})
@@ -3578,9 +3585,12 @@ def main():
         if p.get("kind") in ("leads", "restleads", "question", "licleads", "newin") and not os.path.isfile(os.path.join(ROOT, p["data"])):
             print("skipped", p["slug"], "(no data yet)")
             continue
-        CURRENT["nav"] = "questions" if p.get("kind") == "question" else ("shop" if p.get("kind") in ("leads", "restleads", "licleads") else ("" if p.get("kind") in ("newin", "rodents", "agentkit") else "calc"))
+        CURRENT["nav"] = "questions" if p.get("kind") == "question" else ("shop" if p.get("kind") in ("leads", "restleads", "licleads") else ("" if p.get("kind") in ("newin", "rodents", "agentkit", "tradesnews") else "calc"))
         out = os.path.join(DOCS, p["slug"]); os.makedirs(out, exist_ok=True)
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page_html(p))
+        if p.get("kind") == "tradesnews":   # the brief's RSS feed sits next to it
+            import news_site
+            open(os.path.join(out, "feed.xml"), "w", encoding="utf-8").write(news_site.feed_xml(p, news_site.load(p)))
         print("wrote", p["slug"])
     open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(home_html(pages, live))
     # two front doors draft (move 5): noindex, not in the sitemap, not linked; goes live only on Todd's go
@@ -3604,6 +3614,9 @@ def main():
     for p in live:   # a lead page changes when its data does (radar, Oct 23): the sitemap says the true day
         if p.get("kind") in ("leads", "restleads", "licleads", "rodents") and data_date(p.get("data")):
             lastmod[BASE + p["slug"] + "/"] = data_date(p.get("data"))
+        if p.get("kind") == "tradesnews":
+            import news_site
+            lastmod[BASE + p["slug"] + "/"] = news_site.load(p)["updated"]
     for q in LIVE_QUESTIONS:   # a question page changes when its data does
         try:
             dd = json.load(open(os.path.join(ROOT, q["data"]), encoding="utf-8"))

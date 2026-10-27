@@ -68,6 +68,81 @@ CSS = ("<style>.rc-bars{margin:12px 0 8px;padding:16px 18px;background:var(--car
        "@media(max-width:599px){.rc-t{min-width:0}.rc-t th:nth-child(2),.rc-t td:nth-child(2){display:none}.rc-t th,.rc-t td{padding:9px 8px}.rc-wk div:not(:nth-child(3n+1)):not(:last-child) span{visibility:hidden}.rc-wk span{font-size:11.5px}.rc-wk{height:140px}.rc-wk div:not(:last-child) b{visibility:hidden}.rc-bar{grid-template-columns:minmax(96px,130px) 1fr 44px}}</style>")
 
 
+CHANGE_BINS = [("d0", "var(--gmd0)", "Down 25% or more", "-25%+"), ("d1", "var(--gmd1)", "Down 5 to 25%", "-5 to 25%"), ("d2", "var(--gmd2)", "Within 5%", "Same"),
+               ("d3", "var(--gmd3)", "Up 5 to 25%", "+5 to 25%"), ("d4", "var(--gmd4)", "Up 25% or more", "+25%+"),
+               ("nx", "repeating-linear-gradient(45deg,var(--gmn) 0 4px,var(--dash) 4px 5.5px)", "Too few a year ago to compare")]
+
+
+def change_class(a):
+    if a["prev30"] < FEW:
+        return "nx"
+    x = (a["d30"] / a["prev30"] - 1) * 100
+    return "d0" if x <= -25 else "d1" if x <= -5 else "d2" if x < 5 else "d3" if x < 25 else "d4"
+
+
+def range_legend(cuts):
+    """Legend lines for the five count classes: under the first cut, each band, then the last cut or more."""
+    if not cuts:
+        return [("q0", "var(--gm0)", "Any")]
+    out = [("q0", "var(--gm0)", f"Under {cuts[0]:,}", f"<{cuts[0]:,}")]
+    for i in range(1, len(cuts)):
+        lo, hi = cuts[i - 1], cuts[i] - 1
+        out.append((f"q{i}", f"var(--gm{i})", f"{lo:,}" if lo == hi else f"{lo:,} to {hi:,}", f"{lo:,}"))
+    out.append((f"q{len(cuts)}", f"var(--gm{len(cuts)})", f"{cuts[-1]:,} or more", f"{cuts[-1]:,}+"))
+    return out
+
+
+def ordinal(n):
+    return f"{n}{'th' if 10 <= n % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')}"
+
+
+def map_block(d, E):
+    """The interactive community area map (Todd, Oct 27, 2026). Every number comes from the same weekly.json as the
+    table; an area with no complaints in either window is shown in the lightest class."""
+    import geo_map as G
+    w = d["window"]
+    more = lambda a: sum(1 for b in d["areas"] if b["d30"] > a["d30"])              # ties share a place
+    same = lambda a: sum(1 for b in d["areas"] if b["d30"] == a["d30"]) > 1
+    with30 = sum(1 for a in d["areas"] if a["d30"])
+    c30, c7 = G.nice_breaks([a["d30"] for a in d["areas"]]), G.nice_breaks([a["d7"] for a in d["areas"]])
+    yr = E(w["prevTo"][:4])
+    areas = {}
+    for a in d["areas"]:
+        ch = area_change(a)
+        ch_say = "too few a year ago to compare" if ch == "too few" else ("about the same as a year ago" if ch == "same" else f"{ch} on a year ago")
+        rk = (f'<p>{"Tied " if same(a) else ""}{ordinal(more(a) + 1)} of {with30} areas for complaints in the last 30 days (1st has the most).</p>' if a["d30"] else
+              "<p>No rat complaints in the last 30 days.</p>")
+        areas[a["n"]] = {"big": {"d30": (f'{a["d30"]:,}', "complaints, last 30 days"), "d7": (f'{a["d7"]:,}', "complaints, last 7 days"),
+                                 "ch": (("Too few" if ch == "too few" else "Same" if ch == "same" else ch), f"against the same 30 days of {yr}")},
+                         "say": {"d30": f'{a["d30"]:,} complaints in 30 days', "d7": f'{a["d7"]:,} complaints in 7 days',
+                                 "ch": ch_say + f' ({a["d30"]:,} against {a["prev30"]:,})'},
+                         "html": (rk + '<dl>'
+                                  f'<dt>Last 7 days</dt><dd>{a["d7"]:,}</dd><dt>Last 30 days</dt><dd>{a["d30"]:,}</dd>'
+                                  f'<dt>Same 30 days, {yr}</dt><dd>{a["prev30"]:,}</dd><dt>Change</dt><dd>{E(ch)}</dd></dl>')}
+    metrics = [{"key": "d30", "label": "Last 30 days", "legendTitle": "Rat complaints, last 30 days",
+                "cls": {a["n"]: f"q{G.klass(a['d30'], c30)}" for a in d["areas"]}, "legend": range_legend(c30)},
+               {"key": "d7", "label": "Last 7 days", "legendTitle": "Rat complaints, last 7 days",
+                "cls": {a["n"]: f"q{G.klass(a['d7'], c7)}" for a in d["areas"]}, "legend": range_legend(c7)},
+               {"key": "ch", "label": "Change on a year ago", "legendTitle": f"Last 30 days against the same 30 days of {yr}",
+                "cls": {a["n"]: change_class(a) for a in d["areas"]}, "legend": CHANGE_BINS}]
+    c = d["counts"]
+    top3 = sorted([a for a in d["areas"] if a["d30"]], key=lambda a: (-a["d30"], a["name"]))[:3]
+    rises = sorted([a for a in d["areas"] if a["prev30"] >= FEW and a["d30"] > a["prev30"]],
+                   key=lambda a: (-(a["d30"] - a["prev30"]), a["name"]))[:5]
+    hint = ('<h3>Citywide</h3>'
+            f'<p class="gm-big"><span>{c["d30"]:,}</span><small>complaints, last 30 days, {E(pct(c["change"]))} on a year ago</small></p>'
+            '<p>Most complaints:</p><ul class="gm-top">'
+            + "".join(f'<li><button type="button" data-pick="{a["n"]}">{E(a["name"])}, {a["d30"]:,}</button></li>' for a in top3) + '</ul>'
+            + ('<p>Biggest rises on a year ago:</p><ul class="gm-top">'
+               + "".join(f'<li><button type="button" data-pick="{a["n"]}">{E(a["name"])}, +{a["d30"] - a["prev30"]:,}</button></li>' for a in rises) + '</ul>' if rises else "")
+            + '<p class="gm-hint">Tap or hover any area on the map, or choose one from the list.</p>')
+    fig = G.choropleth(areas, metrics, uid="ratmap", title="Map of Chicago's 77 community areas, colored by rat complaints to 311",
+                       hint=hint,
+                       caption=("Community area outlines: City of Chicago, Boundaries - Community Areas. "
+                                "Every number on the map is also in the table below."))
+    return G.CSS + fig if fig else ""
+
+
 def page_html(p):
     import make_site as M
     E = M.E
@@ -125,6 +200,7 @@ def page_html(p):
              + '</p>')
     resident = p["resident"]
     vendor = p["vendor"]
+    mapb = map_block(d, E) if p.get("map") else ""
     two = ('<section class="block" id="help"><div class="rc-two">'
            f'<div class="cta ld-cta"><div><h2>{E(resident["title"])}</h2>'
            + '<ol class="rc-steps">' + "".join(f"<li>{E(t)}</li>" for t in resident["steps"]) + '</ol>'
@@ -135,9 +211,11 @@ def page_html(p):
            '</div></section>')
     method = '<section class="block"><h2>How this page is made</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"]) + "</section>"
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>'
-            f'<div class="ld-heroact rl-act"><a class="btn" href="#areas">See every neighborhood</a></div></div>'
+            f'<div class="ld-heroact rl-act"><a class="btn" href="#areas">See every neighborhood</a>'
+            + ('<a class="st-btn2" href="#map">Open the map</a>' if mapb else "") + '</div></div>'
             f'{tiles}'
-            f'<section class="block" id="top"><h2>Where the complaints are</h2>{bars}</section>'
+            + (f'<section class="block" id="map"><h2>Rat complaints on the map</h2>{mapb}</section>' if mapb else "")
+            + f'<section class="block" id="top"><h2>Where the complaints are</h2>{bars}</section>'
             f'<section class="block" id="weeks"><h2>Week by week</h2>{weeks}</section>'
             f'<section class="block" id="areas"><h2>Every community area</h2>{table}</section>'
             f'{two}{method}{M.faq_block(p["faq"])}'

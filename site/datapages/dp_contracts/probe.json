@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-10-27T12:54:56-05:00",
+ "checkedAt": "2026-10-27T12:57:10-05:00",
  "dataset": {
   "name": "Contracts",
   "rowsUpdatedAt": 1793089048,
@@ -3711,26 +3711,6 @@
       "https://www.chicago.gov/city/en/depts/dps/provdrs/contract.html"
      ],
      [
-      "Businesses & Professionals",
-      "https://www.chicago.gov/city/en/ofinterest/bus.html"
-     ],
-     [
-      "Contractors",
-      "https://www.chicago.gov/city/en/ofinterest/bus/contract.html"
-     ],
-     [
-      "Existing Businesses",
-      "https://www.chicago.gov/city/en/ofinterest/bus/exst_bus.html"
-     ],
-     [
-      "MBE/WBE/DBE",
-      "https://www.chicago.gov/city/en/ofinterest/bus/mwdbe.html"
-     ],
-     [
-      "New Businesses",
-      "https://www.chicago.gov/city/en/ofinterest/bus/new_bus.html"
-     ],
-     [
       "Download Bid Opportunity List (PDF)",
       "https://www.chicago.gov/content/dam/city/depts/dps/WeeklyBidOpportunities/2026WeeklyBidOpportunities/102626.pdf"
      ],
@@ -3960,12 +3940,6 @@
      "Department:",
      "Procurement Services",
      "Contract Administration",
-     "People We Serve:",
-     "Businesses & Professionals",
-     "Contractors",
-     "Existing Businesses",
-     "MBE/WBE/DBE",
-     "New Businesses",
      "Contact",
      "* Your email address:",
      "* Subject:",
@@ -5933,6 +5907,119 @@
      "Image Title",
      "Close"
     ]
+   },
+   {
+    "url": "https://www.chicago.gov/city/en/depts/dps/isupplier/current-bids.html",
+    "links": [
+     [
+      "",
+      "https://www.chicago.gov/city/en.html"
+     ],
+     [
+      "Home",
+      "https://www.chicago.gov/city/en/depts/dps/isupplier.html"
+     ],
+     [
+      "Login and Registration",
+      "https://www.chicago.gov/city/en/depts/dps/isupplier/login-register.html"
+     ],
+     [
+      "Current Bids and Solicitation Opportunities",
+      "https://www.chicago.gov/city/en/depts/dps/isupplier/current-bids.html"
+     ],
+     [
+      "Online Training Materials",
+      "https://www.chicago.gov/city/en/depts/dps/isupplier/online-training-materials.html"
+     ],
+     [
+      "Delegates",
+      "https://www.chicago.gov/city/en/depts/dps/isupplier/delegates.html"
+     ],
+     [
+      "Help",
+      "https://www.chicago.gov/city/en/depts/dps/isupplier/help.html"
+     ],
+     [
+      "Vendor Registration",
+      "https://www.chicago.gov/city/en/depts/dps/isupplier/vendor-registration.html"
+     ],
+     [
+      "eProcurement Bid and Solicitation Opportunities **",
+      "https://eprocurement.cityofchicago.org/OA_HTML/OA.jsp?OAFunc=PON_ABSTRACT_PAGE"
+     ],
+     [
+      "Registration Page",
+      "http://www.chicago.gov/city/en/depts/dps/isupplier/vendor-registration.html"
+     ],
+     [
+      "PreBid and PreSubmittal Conference Attendees",
+      "https://www.chicago.gov/city/en/depts/dps/provdrs/contract/svcs/pre-bid_and_pre-submittalconferenceattendees.html"
+     ],
+     [
+      "Non-eProcurement Bid and Solicitation Opportunities",
+      "http://www.chicago.gov/city/en/depts/dps/provdrs/contract/svcs/current_bid_opportunities.html"
+     ],
+     [
+      "https://www.cityofchicago.org/city/en/depts/dps/isupplier/vendor-registration.html",
+      "https://www.chicago.gov/city/en/depts/dps/isupplier/vendor-registration.html"
+     ],
+     [
+      "",
+      "https://www.chicago.gov/city/en/depts/dps/isupplier/current-bids.html"
+     ]
+    ],
+    "text": [
+     "Current Bids and Solicitation Opportunities",
+     "Home",
+     "Login and Registration",
+     "Current Bids and Solicitation Opportunities",
+     "Online Training Materials",
+     "Delegates",
+     "Help",
+     "Vendor Registration",
+     "Current Bids and Solicitation Opportunities",
+     "eProcurement Bid and Solicitation Opportunities **",
+     "Suppliers/Vendors who would like to respond to a solicitation / bid opportunity must be registered with the City of Chicago, Department of Procurement Services. If you have not registered with the City of Chicago, please refer back to the Registration Page.",
+     "*Note: When viewing the eProcurement Bid Opportunities on-line (abstract), please make sure to click on details, then the PDF.",
+     "To View PreBid Attendee List click link below:",
+     "PreBid and PreSubmittal Conference Attendees",
+     "Non-eProcurement Bid and Solicitation Opportunities",
+     "Non-eProcurement opportunities are current competitively bid, RFP, RFQ, RFI and Small Order bids and addenda that cannot be responded to using iSupplier, but available for downloading. Some documents listed on the Website are not available for downloading due to size restrictions. All non-eProcurement documents are available in the Bid and Bond Room at 121 N. LaSalle St, Room 103, Chicago, IL.",
+     "** For companies who are NOT registered in iSupplier and wish to download and review bid solicitations:",
+     "1) We encourage you to register in iSupplier (link to vendor registration page https://www.cityofchicago.org/city/en/depts/dps/isupplier/vendor-registration.html); Viewing or downloading the solicitation after logging into iSupplier will add you to the Specification Take-Out List. NOTE: Viewing the solicitation without logging in does not register you as a bid document holder!",
+     "2) If you are not registered and are viewing or downloading a specification/solicitation online, in order to register as bid document holder and receive notice of clarifications and addenda, you must provide your company's contact information to us via email or fax. You may email the information on your business card to us (your name, business name, business address, business phone, and email address) at bidandbond@cityofchicago.org or fax your business card to 312-744-5611 in order to be added to the Specification Take-Out List. Please include the specification/solicitation number.",
+     "3)*** Routine maintenance on the iSupplier system is scheduled for Thursday evenings between 8 pm and 9 pm. Other maintenance may be scheduled for evenings and/or weekends with or without notice. Bidders are advised to account for the possibility of such access interruptions while planning the submission of their bids.***"
+    ]
+   }
+  ],
+  "linkedWeekly": [
+   {
+    "url": "https://www.chicago.gov/content/dam/city/depts/dps/WeeklyBidOpportunities/2026WeeklyBidOpportunities/102626.pdf",
+    "status": 403,
+    "type": "",
+    "bytes": 0,
+    "pdf": false
+   },
+   {
+    "url": "https://chicago.gov/content/dam/city/depts/dps/WeeklyBidOpportunities/2026WeeklyBidOpportunities/102626.pdf",
+    "status": 403,
+    "type": "",
+    "bytes": 0,
+    "pdf": false
+   },
+   {
+    "url": "https://www.cityofchicago.org/content/dam/city/depts/dps/WeeklyBidOpportunities/2026WeeklyBidOpportunities/102626.pdf",
+    "status": 403,
+    "type": "",
+    "bytes": 0,
+    "pdf": false
+   },
+   {
+    "url": "http://www.chicago.gov/content/dam/city/depts/dps/WeeklyBidOpportunities/2026WeeklyBidOpportunities/102626.pdf",
+    "status": 403,
+    "type": "",
+    "bytes": 0,
+    "pdf": false
    }
   ],
   "weekly2026": []

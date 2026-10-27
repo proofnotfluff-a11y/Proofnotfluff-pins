@@ -34,11 +34,11 @@ WRECK = re.compile(r"WRECK|DEMOLI")
 # Plain words for the City's review paths (dataset values read through the profile each run; an unknown value keeps
 # the City's own words in title case, so a new path shows up on the page instead of vanishing).
 REVIEW_WORDS = {"EXPRESS PERMIT PROGRAM": "Express Permit Program", "STANDARD PLAN REVIEW": "Standard Plan Review",
-                "SELF CERT": "Self Certification", "SELF CERTIFICATION": "Self Certification", "EASY PERMIT WEB": "Easy Permit (online)",
-                "EASY PERMIT": "Easy Permit", "SIGNS": "Signs", "ELECTRIC WIRING": "Electrical wiring", "WRECKING/DEMOLITION": "Wrecking and demolition",
-                "DIRECT DEVELOPER SERVICES": "Direct Developer Services", "SCAFFOLDING": "Scaffolding", "ELEVATOR EQUIPMENT": "Elevator equipment",
-                "REVIEW PERMIT": "Review permit", "PORCH CONSTRUCTION": "Porch construction", "REINSTATE REVOKED PERMIT": "Reinstated permit",
-                "SIGN PERMIT": "Signs", "CONVEYANCE DEVICE PERMIT": "Elevators and other conveyances", "DEMOLITION PERMIT": "Wrecking and demolition",
+                "SELF CERT": "Self Certification", "SELF CERTIFICATION": "Self Certification", "EASY PERMIT WEB": "Easy Permit Online",
+                "EASY PERMIT": "Easy Permit", "SIGNS": "Signs", "ELECTRIC WIRING": "Electrical Wiring", "WRECKING/DEMOLITION": "Wrecking and Demolition",
+                "DIRECT DEVELOPER SERVICES": "Direct Developer Services", "SCAFFOLDING": "Scaffolding", "ELEVATOR EQUIPMENT": "Elevator Equipment",
+                "REVIEW PERMIT": "Review Permit", "PORCH CONSTRUCTION": "Porch Construction", "REINSTATE REVOKED PERMIT": "Reinstated Permit",
+                "SIGN PERMIT": "Signs", "CONVEYANCE DEVICE PERMIT": "Elevators and Other Conveyances", "DEMOLITION PERMIT": "Wrecking and Demolition",
                 "TRADITIONAL DEVELOPER SERVICES": "Traditional Developer Services"}
 TYPE_WORDS = {"EXPRESS PERMIT PROGRAM": "Express Permit Program", "REINSTATE REVOKED PMT": "Reinstated Revoked Permits",
               "EASY PERMIT PROCESS": "Easy Permit", "ELEVATOR EQUIPMENT": "Elevator Equipment"}
@@ -337,7 +337,7 @@ def selftest():
     assert next(m for m in d["all"]["monthly"] if m["m"] == "2026-09")["n"] == 60
     assert review_label("SOME NEW PATH") == "Some New Path" and type_label("PERMIT - WRECKING/DEMOLITION") == "Wrecking and Demolition"
     assert type_label("PERMIT \u2013 EXPRESS PERMIT PROGRAM") == "Express Permit Program" and norm_key("PERMIT \u2013 X") == "PERMIT - X", "en dash keys"
-    assert type_label("PERMIT - REINSTATE REVOKED PMT") == "Reinstated Revoked Permits" and review_label("CONVEYANCE DEVICE PERMIT") == "Elevators and other conveyances"
+    assert type_label("PERMIT - REINSTATE REVOKED PMT") == "Reinstated Revoked Permits" and review_label("CONVEYANCE DEVICE PERMIT") == "Elevators and Other Conveyances"
     assert d["all"]["noArea12"] == 1
     wr = build_wreck(rows, today, "2026-10-27T07:00:00-0500", None, names)
     assert wr["counts"]["d7"] == 3 and wr["counts"]["noArea30"] == 1 and wr["counts"]["areasWith30"] == 1, wr["counts"]

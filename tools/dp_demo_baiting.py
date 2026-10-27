@@ -27,15 +27,12 @@ META = {"h1": "Chicago Demolition Rodent Baiting",
         "keywords": "demolition rodent baiting wrecking permit rat abatement affidavit streets and sanitation inspection form 480 "
                     "pest control demolition chicago"}
 
-STEPS = [("Hire a licensed pest control company to bait the site.",
-          "The baiting is done by a licensed pest control company the applicant hires."),
-         ("Fill in the rodent control affidavit.",
+STEPS = [("A licensed pest control company baits the site.", ""),
+         ("A rodent control affidavit is completed.",
           "A completed affidavit is part of the rodent control approval."),
-         ("Pass the Streets and Sanitation inspection.",
-          "The Department of Streets and Sanitation inspects the site for rodent control."),
-         ("Get the approval by email.",
-          "Streets and Sanitation sends its rodent control approval by email."),
-         ("Attach it to the permit application.",
+         ("Streets and Sanitation inspects the site.", ""),
+         ("Streets and Sanitation sends the approval by email.", ""),
+         ("The approval is attached to the permit application.",
           "Page 2 of Form 480, the demolition permit application, is the checklist of approvals; the rodent control line has a box to show the Streets and Sanitation approval is attached.")]
 
 OTHERS = ["Public Health: the demolition notice of intent, filed through the City's online permit portal (every applicant).",
@@ -60,7 +57,7 @@ FAQ = [
      "How many wrecking and demolition permits the City issued, by week and community area, from the City's Building Permits records. "
      "The rodent control step comes before a permit is issued, so the counts show where that step was recently needed, not where baiting is happening today."),
     ("How often is the page updated?",
-     "The permit counts update every Monday. The steps are checked against the City's demolition permit page when the page is rebuilt by hand; the date they were read is on the page."),
+     "The permit counts update once a week, on Monday mornings. The steps are checked against the City's demolition permit page when the page is rebuilt by hand; the date they were read is on the page."),
 ]
 
 
@@ -79,8 +76,8 @@ def map_block(d, E):
     from dp_permit_wait import breaks, legend
     by = {a["a"]: a for a in d["areas"]}
     c30, c12 = breaks([a["d30"] for a in by.values()]), breaks([a["d365"] for a in by.values()])
-    areas = {k: {"big": {"d30": (f'{a["d30"]:,}', "wrecking permits, last 30 days"), "d365": (f'{a["d365"]:,}', "wrecking permits, last 12 months")},
-                 "say": {"d30": f'{a["d30"]:,} wrecking permits in 30 days', "d365": f'{a["d365"]:,} wrecking permits in 12 months'},
+    areas = {k: {"big": {"d30": (f'{a["d30"]:,}', "wrecking and demolition permits, last 30 days"), "d365": (f'{a["d365"]:,}', "wrecking and demolition permits, last 12 months")},
+                 "say": {"d30": f'{a["d30"]:,} wrecking and demolition permit{"" if a["d30"] == 1 else "s"} in 30 days', "d365": f'{a["d365"]:,} wrecking and demolition permit{"" if a["d365"] == 1 else "s"} in 12 months'},
                  "html": (f'<dl><dt>Last 7 days</dt><dd>{a["d7"]:,}</dd><dt>Last 30 days</dt><dd>{a["d30"]:,}</dd>'
                           f'<dt>Last 12 months</dt><dd>{a["d365"]:,}</dd></dl>')} for k, a in by.items()}
     metrics = [{"key": "d30", "label": "Last 30 days", "legendTitle": "Wrecking and demolition permits issued, last 30 days",
@@ -115,16 +112,16 @@ def page_html(p):
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
               "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]}
     howto_ld = {"@context": "https://schema.org", "@type": "HowTo", "name": "The rodent control step of a Chicago demolition permit",
-                "step": [{"@type": "HowToStep", "position": i, "name": t, "text": x} for i, (t, x) in enumerate(STEPS, 1)]}
+                "step": [{"@type": "HowToStep", "position": i, "name": t, "text": x or t} for i, (t, x) in enumerate(STEPS, 1)]}
     lede = ("Before Chicago issues a demolition permit, a licensed pest control company baits the site and Streets and Sanitation "
             f"inspects it. The City issued {c['d30']:,} wrecking and demolition permits in the 30 days to {E(M.nice_date(w['to']))}, "
             f"in {c['areasWith30']:,} of 77 community areas.")
     tiles = ('<div class="tiles ld-tiles">'
-             f'<div class="tile key"><div class="lab">Last 7 days</div><div class="val">{c["d7"]:,}</div><div class="sub">wrecking permits issued</div></div>'
+             f'<div class="tile key"><div class="lab">Last 7 days</div><div class="val">{c["d7"]:,}</div><div class="sub">wrecking and demolition permits</div></div>'
              f'<div class="tile"><div class="lab">Last 30 days</div><div class="val">{c["d30"]:,}</div><div class="sub">in {c["areasWith30"]:,} community areas</div></div>'
-             f'<div class="tile"><div class="lab">Last 12 months</div><div class="val">{c["d365"]:,}</div><div class="sub">wrecking permits issued</div></div>'
+             f'<div class="tile"><div class="lab">Last 12 months</div><div class="val">{c["d365"]:,}</div><div class="sub">wrecking and demolition permits</div></div>'
              + (f'<div class="tile"><div class="lab">Half within</div><div class="val">{wait["med"]:,} days</div><div class="sub">of review start, last 12 months</div></div>' if wait.get("med") is not None else "")
-             + f'</div><p class="asof">Counts as of {E(M.nice_date(w["to"]))}, from City of Chicago records pulled {E(M.nice_date(src["fetchedAt"][:10]))}. Updated every Monday.</p>')
+             + f'</div><p class="asof">Counts as of {E(M.nice_date(w["to"]))}, from City of Chicago records pulled {E(M.nice_date(src["fetchedAt"][:10]))}. Updated weekly.</p>')
     steps = ('<ol class="pw-steps">' + "".join(f"<li><b>{E(t)}</b>{E(x)}</li>" for t, x in STEPS) + '</ol>'
              f'<p class="asof">From the Department of Buildings <a href="{DEMO_PAGE}" rel="noopener">demolition permits page</a> and '
              f'<a href="{FORM_480}" rel="noopener">Form 480</a> (revised Aug 29, 2021), read {E(M.nice_date(STEPS_READ))}. Our words; the City\'s pages are the rule.</p>')
@@ -136,11 +133,12 @@ def page_html(p):
     mapb = map_block(d, E)
     rows = [[E(a["name"]), f'{a["d7"]:,}', f'{a["d30"]:,}', f'{a["d365"]:,}']
             for a in sorted([a for a in d["areas"] if a["d365"]], key=lambda a: (-a["d30"], -a["d365"], a["name"]))]
+    na12 = c["d365"] - sum(a["d365"] for a in d["areas"])
     tbl = W.split_table(["Community area", "Last 7 days", "Last 30 days", "Last 12 months"], rows,
                         "Wrecking and demolition permits issued by community area", E, show=20, what="community areas")
-    wait_line = (f'<p class="pw-note"><b>How long a wrecking permit takes.</b> Half of the wrecking and demolition permits issued in the last 12 months '
+    wait_line = (f'<p class="pw-note"><b>How long a wrecking and demolition permit takes.</b> Half of the wrecking and demolition permits issued in the last 12 months '
                  f'were issued within {wait["med"]:,} days of the City starting review, and 8 in 10 within {wait["p80"]:,} days; '
-                 f'{wait["sameDay"]:.0f}% were issued the same day review started. <a href="{rel}chicago-permit-wait-times/wrecking-and-demolition/">Wrecking permit wait times by month and area</a>.</p>' if wait.get("med") is not None else "")
+                 f'{wait["sameDay"]:.0f}% were issued the same day review started. <a href="{rel}chicago-permit-wait-times/wrecking-and-demolition/">Wrecking and demolition permit wait times by month and community area</a>.</p>' if wait.get("med") is not None else "")
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(META["h1"])}</h1><p class="lede">{lede}</p>'
             '<div class="ld-heroact rl-act"><a class="btn" href="#steps">See the five steps</a>'
             + ('<a class="st-btn2" href="#map">Open the map</a>' if mapb else '<a class="st-btn2" href="#areas">Permits by area</a>') + '</div></div>'
@@ -148,20 +146,20 @@ def page_html(p):
             + f'<section class="block" id="steps"><h2>The rodent control step, in five parts</h2><p>Form 480 lists rodent control from the Department of Streets and Sanitation among the approvals for every demolition permit applicant.</p>{steps}{others}</section>'
             + f'<section class="block" id="times"><h2>Dates to keep in mind</h2><div class="tiles ld-tiles">{times}</div>'
             + f'<p class="asof">From the Department of Buildings demolition permits page, read {E(M.nice_date(STEPS_READ))}.</p>{wait_line}</section>'
-            + f'<section class="block" id="weeks"><h2>Wrecking permits, week by week</h2>{wk}'
+            + f'<section class="block" id="weeks"><h2>Wrecking and demolition permits, week by week</h2>{wk}'
             + f'<p class="asof">Each column is 7 days, oldest on the left; the last is the week to {E(M.nice_date(d["weeks"][-1]["to"]))}. The rodent control step comes before a permit is issued, so these counts show where it was recently needed.</p></section>'
-            + (f'<section class="block" id="map"><h2>Where the wrecking permits are</h2>{mapb}</section>' if mapb else "")
+            + (f'<section class="block" id="map"><h2>Where the wrecking and demolition permits are</h2>{mapb}</section>' if mapb else "")
             + f'<section class="block" id="areas"><h2>Every community area</h2>{tbl}'
-            + (f'<p class="asof">{c["noArea30"]:,} of the last 30 days\' permits had no community area on the record and count only in the city total.</p>' if c.get("noArea30") else "")
+            + (f'<p class="asof">{na12:,} of the last 12 months\' permits had no community area on the record and count only in the city totals.</p>' if na12 else "")
             + '</section>'
             + '<section class="block" id="help"><div class="pw-two">'
-            + f'<div class="cta ld-cta"><div><h2>Where rats are being reported</h2><p>Rat complaints to 311 by community area, the last 7 and 30 days against a year earlier, on a map. Updated every Monday.</p>'
+            + f'<div class="cta ld-cta"><div><h2>Where rats are being reported</h2><p>Rat complaints to 311 by community area, the last 7 and 30 days against a year earlier, on a map. Updated weekly.</p>'
             + f'<p class="ld-buybtn"><a class="btn" href="{rel}chicago-rat-complaints/">See rat complaints by neighborhood</a></p></div></div>'
             + f'<div class="cta ld-cta"><div><h2>Applying for a demolition permit?</h2><p>The Department of Buildings page has every approval, document and form for the permit. For your own job, check with the agency.</p>'
             + f'<p class="ld-buybtn"><a class="btn" href="{DEMO_PAGE}" rel="noopener">City demolition permits page</a></p></div></div>'
             + '</div></section>'
             + '<section class="block"><h2>How this page is made</h2>'
-            + f'<p>The steps are our plain summary of the City\'s demolition permits page and Form 480, read {E(M.nice_date(STEPS_READ))}. Department names only. The City\'s own pages are the rule; when they change, they win.</p>'
+            + f'<p>The steps are our plain summary of the City\'s demolition permits page and Form 480, read {E(M.nice_date(STEPS_READ))}. The City\'s own pages are the rule; when they change, they win.</p>'
             + '<p>The permit counts are wrecking and demolition permits the City issued, from its Building Permits dataset, counted by issue date and by the community area of each permit\'s primary address. Counts only: no permit number, address or contact is kept.</p>'
             + (f'<p>The wait days are the City\'s processing time field, days from the City starting review to the issue date, for the {wait["n"]:,} wrecking and demolition permits issued in the last 12 months.</p>' if wait.get("med") is not None else "")
             + '</section>' + M.faq_block(FAQ)

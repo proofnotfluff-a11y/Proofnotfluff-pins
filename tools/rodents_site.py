@@ -323,7 +323,7 @@ IX_CSS = ("<style>.ri-mv{white-space:nowrap}.ri-up{color:var(--warn-ink);font-we
           ".ri-embed img{display:block;max-width:100%;height:auto;border-radius:12px}.ri-embed label{display:block;font-weight:700;color:var(--ink);margin:0 0 6px}"
           ".ri-embed select{min-height:44px;width:100%;max-width:360px;font:inherit;padding:0 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}"
           ".ri-embed textarea{display:block;width:100%;box-sizing:border-box;min-height:118px;padding:10px 12px;font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink);"
-          "background:var(--canvas2);border:1px solid var(--line);border-radius:10px;resize:vertical;overflow-wrap:anywhere;word-break:break-all}"
+          "background:var(--canvas2);border:1px solid var(--line);border-radius:10px;resize:vertical;overflow-wrap:anywhere;word-break:normal}"
           ".ri-embed textarea:focus-visible,.ri-embed select:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
           ".ri-copy{margin-top:10px;border:0;cursor:pointer;font:inherit;font-weight:700;min-height:46px}.ri-ok{min-height:1.4em;margin:6px 0 0;color:var(--teal-ink);font-weight:600}"
           ".ri-dl{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0}"
@@ -334,7 +334,9 @@ IX_CSS = ("<style>.ri-mv{white-space:nowrap}.ri-up{color:var(--warn-ink);font-we
           ".ri-t th:nth-child(9),.ri-t td:nth-child(9){display:none}.ri-list li{grid-template-columns:2em 1fr}.ri-list span{grid-column:2;text-align:left}}"
           ".ri-t th:nth-child(2),.ri-t td:nth-child(2){text-align:left}.ri-t td:first-child{width:3.2em}"
           "@media(min-width:900px){.ri-ed .ri-list{grid-template-columns:1fr 1fr;grid-auto-flow:column;grid-template-rows:repeat(5,auto)}}"
-          ".ri-nw{white-space:nowrap}.ri-end{display:flex;flex-wrap:wrap;gap:12px 20px}"
+          ".ri-nw{white-space:nowrap}.ri-page-how a{display:inline-flex;align-items:center;min-height:44px}"
+          ".rc-more-t{border:0;background:none;border-radius:0}"
+          ".ri-end{display:flex;flex-wrap:wrap;gap:12px 20px}"
           ".ld-heroact .btn,.ld-heroact .st-btn2,.ri-end .btn,.ri-end .st-btn2{min-height:48px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;padding-top:0;padding-bottom:0}"
           ".ri-how{margin:8px 0 0}.ri-how summary{cursor:pointer;font-weight:600;color:var(--ink);min-height:44px;display:flex;align-items:center}.ri-how p{margin:4px 0 0}"
           ".ri-span{display:block;font-weight:400;color:var(--muted);font-size:13px;margin-top:2px}.ri-rank{max-width:760px}"
@@ -785,13 +787,13 @@ def area_html(p, d, ix, a, M):
         rest = (f'<section class="block"><h2>Restaurant inspections in {E(a["name"])}</h2>'
                 f'<p>City food inspections of restaurants in {E(a["name"])} from {E(M.nice_date(rw["from"]))} to {E(M.nice_date(rw["to"]))}: how many cited pests '
                 '(violation 38) or a kitchen hood or ventilation (violation 56 with a hood or vent note). Counts only; no restaurant is named.</p>'
-                f'{rt}<p class="asof"><a href="{up}#restaurants">How these are counted</a>.</p></section>')
+                f'{rt}<p class="asof ri-page-how"><a href="{up}#restaurants">How these are counted</a></p></section>')
     i = ix["order"].index(a)
     nb = ix["order"][max(0, i - 2):i] + ix["order"][i + 1:i + 3]
     near = ('<section class="block"><h2>Nearby on the Rat Index</h2><ul class="ri-near">'
             + "".join(f'<li><a href="{up}{x["slug"]}/">{x["k30"]}. {E(x["name"])}</a></li>' for x in nb)
             + f'<li><a href="{up}#areas">All 77 community areas</a></li></ul>'
-            f'<div class="ri-dl"><a class="st-btn2" href="weekly.csv" download>Download {E(a["name"])} weeks (CSV)</a>'
+            f'<div class="ri-dl"><a class="st-btn2" href="weekly.csv" download>Download weekly counts (CSV)</a>'
             f'<a class="st-btn2" href="{up}rat-index.csv" download>Download all 77 areas (CSV)</a></div></section>')
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">Chicago Rat Index, community area {a["n"]}</p><h1>{h1h}</h1><p class="lede">{lede}</p>'
             f'<div class="ld-heroact rl-act"><a class="btn" href="{up}">See all 77 areas</a><a class="st-btn2" href="#embed">Get the badge</a></div></div>'

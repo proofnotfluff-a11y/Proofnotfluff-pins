@@ -1,0 +1,400 @@
+{
+ "about": "Total population of each of Chicago's 77 community areas, the only column kept. Built by tools/rodents_chicago.py --population.",
+ "source": {
+  "name": "ACS 5 Year Data by Community Area",
+  "publisher": "City of Chicago",
+  "dataset": "t68z-cikk",
+  "url": "https://data.cityofchicago.org/Community-Economic-Development/ACS-5-Year-Data-by-Community-Area/t68z-cikk",
+  "method": "U.S. Census Bureau American Community Survey 5-year estimates, census tracts allocated to community areas by the City",
+  "acsYear": 2023,
+  "fetchedAt": "2026-10-27T13:00:09-0500"
+ },
+ "total": 2647621,
+ "areas": [
+  {
+   "n": 1,
+   "name": "Rogers Park",
+   "population": 53169
+  },
+  {
+   "n": 2,
+   "name": "West Ridge",
+   "population": 79220
+  },
+  {
+   "n": 3,
+   "name": "Uptown",
+   "population": 52674
+  },
+  {
+   "n": 4,
+   "name": "Lincoln Square",
+   "population": 42180
+  },
+  {
+   "n": 5,
+   "name": "North Center",
+   "population": 35782
+  },
+  {
+   "n": 6,
+   "name": "Lake View",
+   "population": 90652
+  },
+  {
+   "n": 7,
+   "name": "Lincoln Park",
+   "population": 62067
+  },
+  {
+   "n": 8,
+   "name": "Near North Side",
+   "population": 91635
+  },
+  {
+   "n": 9,
+   "name": "Edison Park",
+   "population": 11398
+  },
+  {
+   "n": 10,
+   "name": "Norwood Park",
+   "population": 40074
+  },
+  {
+   "n": 11,
+   "name": "Jefferson Park",
+   "population": 26991
+  },
+  {
+   "n": 12,
+   "name": "Forest Glen",
+   "population": 19763
+  },
+  {
+   "n": 13,
+   "name": "North Park",
+   "population": 19259
+  },
+  {
+   "n": 14,
+   "name": "Albany Park",
+   "population": 47830
+  },
+  {
+   "n": 15,
+   "name": "Portage Park",
+   "population": 64201
+  },
+  {
+   "n": 16,
+   "name": "Irving Park",
+   "population": 53535
+  },
+  {
+   "n": 17,
+   "name": "Dunning",
+   "population": 42548
+  },
+  {
+   "n": 18,
+   "name": "Montclare",
+   "population": 13755
+  },
+  {
+   "n": 19,
+   "name": "Belmont Cragin",
+   "population": 73988
+  },
+  {
+   "n": 20,
+   "name": "Hermosa",
+   "population": 23200
+  },
+  {
+   "n": 21,
+   "name": "Avondale",
+   "population": 36350
+  },
+  {
+   "n": 22,
+   "name": "Logan Square",
+   "population": 71354
+  },
+  {
+   "n": 23,
+   "name": "Humboldt Park",
+   "population": 55015
+  },
+  {
+   "n": 24,
+   "name": "West Town",
+   "population": 86453
+  },
+  {
+   "n": 25,
+   "name": "Austin",
+   "population": 100278
+  },
+  {
+   "n": 26,
+   "name": "West Garfield Park",
+   "population": 16345
+  },
+  {
+   "n": 27,
+   "name": "East Garfield Park",
+   "population": 19855
+  },
+  {
+   "n": 28,
+   "name": "Near West Side",
+   "population": 65370
+  },
+  {
+   "n": 29,
+   "name": "North Lawndale",
+   "population": 30355
+  },
+  {
+   "n": 30,
+   "name": "South Lawndale",
+   "population": 69554
+  },
+  {
+   "n": 31,
+   "name": "Lower West Side",
+   "population": 34177
+  },
+  {
+   "n": 32,
+   "name": "Loop",
+   "population": 38284
+  },
+  {
+   "n": 33,
+   "name": "Near South Side",
+   "population": 26307
+  },
+  {
+   "n": 34,
+   "name": "Armour Square",
+   "population": 13149
+  },
+  {
+   "n": 35,
+   "name": "Douglas",
+   "population": 18629
+  },
+  {
+   "n": 36,
+   "name": "Oakland",
+   "population": 4373
+  },
+  {
+   "n": 37,
+   "name": "Fuller Park",
+   "population": 2186
+  },
+  {
+   "n": 38,
+   "name": "Grand Boulevard",
+   "population": 24808
+  },
+  {
+   "n": 39,
+   "name": "Kenwood",
+   "population": 14368
+  },
+  {
+   "n": 40,
+   "name": "Washington Park",
+   "population": 12362
+  },
+  {
+   "n": 41,
+   "name": "Hyde Park",
+   "population": 24092
+  },
+  {
+   "n": 42,
+   "name": "Woodlawn",
+   "population": 24437
+  },
+  {
+   "n": 43,
+   "name": "South Shore",
+   "population": 46276
+  },
+  {
+   "n": 44,
+   "name": "Chatham",
+   "population": 31440
+  },
+  {
+   "n": 45,
+   "name": "Avalon Park",
+   "population": 9492
+  },
+  {
+   "n": 46,
+   "name": "South Chicago",
+   "population": 29072
+  },
+  {
+   "n": 47,
+   "name": "Burnside",
+   "population": 2229
+  },
+  {
+   "n": 48,
+   "name": "Calumet Heights",
+   "population": 12078
+  },
+  {
+   "n": 49,
+   "name": "Roseland",
+   "population": 37660
+  },
+  {
+   "n": 50,
+   "name": "Pullman",
+   "population": 6851
+  },
+  {
+   "n": 51,
+   "name": "South Deering",
+   "population": 15100
+  },
+  {
+   "n": 52,
+   "name": "East Side",
+   "population": 23629
+  },
+  {
+   "n": 53,
+   "name": "West Pullman",
+   "population": 25159
+  },
+  {
+   "n": 54,
+   "name": "Riverdale",
+   "population": 7740
+  },
+  {
+   "n": 55,
+   "name": "Hegewisch",
+   "population": 8895
+  },
+  {
+   "n": 56,
+   "name": "Garfield Ridge",
+   "population": 36265
+  },
+  {
+   "n": 57,
+   "name": "Archer Heights",
+   "population": 13875
+  },
+  {
+   "n": 58,
+   "name": "Brighton Park",
+   "population": 42360
+  },
+  {
+   "n": 59,
+   "name": "McKinley Park",
+   "population": 15400
+  },
+  {
+   "n": 60,
+   "name": "Bridgeport",
+   "population": 33012
+  },
+  {
+   "n": 61,
+   "name": "New City",
+   "population": 40843
+  },
+  {
+   "n": 62,
+   "name": "West Elsdon",
+   "population": 18201
+  },
+  {
+   "n": 63,
+   "name": "Gage Park",
+   "population": 34650
+  },
+  {
+   "n": 64,
+   "name": "Clearing",
+   "population": 24710
+  },
+  {
+   "n": 65,
+   "name": "West Lawn",
+   "population": 32451
+  },
+  {
+   "n": 66,
+   "name": "Chicago Lawn",
+   "population": 52245
+  },
+  {
+   "n": 67,
+   "name": "West Englewood",
+   "population": 25971
+  },
+  {
+   "n": 68,
+   "name": "Englewood",
+   "population": 21337
+  },
+  {
+   "n": 69,
+   "name": "Greater Grand Crossing",
+   "population": 29052
+  },
+  {
+   "n": 70,
+   "name": "Ashburn",
+   "population": 42842
+  },
+  {
+   "n": 71,
+   "name": "Auburn Gresham",
+   "population": 46483
+  },
+  {
+   "n": 72,
+   "name": "Beverly",
+   "population": 19811
+  },
+  {
+   "n": 73,
+   "name": "Washington Heights",
+   "population": 26310
+  },
+  {
+   "n": 74,
+   "name": "Mount Greenwood",
+   "population": 19107
+  },
+  {
+   "n": 75,
+   "name": "Morgan Park",
+   "population": 21288
+  },
+  {
+   "n": 76,
+   "name": "O'Hare",
+   "population": 16281
+  },
+  {
+   "n": 77,
+   "name": "Edgewater",
+   "population": 47484
+  }
+ ]
+}

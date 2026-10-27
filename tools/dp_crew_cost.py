@@ -400,6 +400,8 @@ def option_list(d, E, chosen):
 
 def calculator(d, E, rel):
     fica = d["irs"]["ss"] + d["irs"]["medicare"]
+    ln0 = [r for r in d["oews"]["roles"] if r["key"] == DEFAULT_ROLE][0]["lines"][0]
+    ex = example_day(d, ln0)   # the page opens on this example, so it reads right before the script runs too
     return (
         '<div class="cc-calc">'
         '<form class="cc-form" id="cc-form" novalidate onsubmit="return false">'
@@ -410,7 +412,7 @@ def calculator(d, E, rel):
         '<div class="row"><label for="cc-hours">Hours each person works that day<small>Paid hours, drive time included if you pay it</small></label>'
         '<div class="field"><input class="cc-in" id="cc-hours" aria-describedby="cc-hours-err" type="text" inputmode="decimal" value="8" autocomplete="off"></div><p class="cc-err" id="cc-hours-err">Enter hours above 0, up to 24.</p></div>'
         '<div class="row"><label for="cc-rate">Hourly pay<small>Fills from the trade; type your own</small></label>'
-        '<div class="field has-pre"><span class="pre">$</span><input class="cc-in" id="cc-rate" aria-describedby="cc-rate-err" type="text" inputmode="decimal" value="0" autocomplete="off"></div><p class="cc-err" id="cc-rate-err">Enter hourly pay from $1 to $999.</p></div>'
+        f'<div class="field has-pre"><span class="pre">$</span><input class="cc-in" id="cc-rate" aria-describedby="cc-rate-err" type="text" inputmode="decimal" value="{ln0["median"]:.2f}" autocomplete="off"></div><p class="cc-err" id="cc-rate-err">Enter hourly pay from $1 to $999.</p></div>'
         '<div class="row"><label for="cc-other">Your other costs per hour worked<small>Workers\' comp, state and federal unemployment tax, health plan, uniforms</small></label>'
         '<div class="field has-pre"><span class="pre">$</span><input class="cc-in" id="cc-other" aria-describedby="cc-other-err" type="text" inputmode="decimal" value="0" autocomplete="off"></div><p class="cc-err" id="cc-other-err">Enter dollars an hour, $0 to $999, not a percent.</p></div>'
         f'<label class="cc-chk"><input type="checkbox" id="cc-tax" checked><span>Count employer Social Security and Medicare, {fica:.2f}%'
@@ -418,12 +420,12 @@ def calculator(d, E, rel):
         '<label class="cc-chk" style="border-bottom:0"><input type="checkbox" id="cc-leave" checked><span>The crew works in Chicago'
         '<small>Covered employees earn 1 hour of paid leave and 1 hour of paid sick leave per 35 hours worked, each up to 40 hours in a 12-month period (City notice, July 1, 2026). Counted at the hourly pay. The ordinance has exceptions; check with the City\'s Office of Labor Standards.</small></span></label>'
         '</form>'
-        '<div class="cc-out" id="cc-out" tabindex="-1" aria-live="polite"><div class="lab">Crew day cost</div><div class="val" id="cc-total">$0.00</div><div class="sub" id="cc-ph"></div>'
+        f'<div class="cc-out" id="cc-out" tabindex="-1" aria-live="polite"><div class="lab">Crew day cost</div><div class="val" id="cc-total">{m2(ex["total"])}</div><div class="sub" id="cc-ph"></div>'
         '<p class="cc-fix">Fix the field marked in red to see the total.</p>'
-        '<ul><li><span id="cc-o-wl">Wages</span><span id="cc-o-wages">$0.00</span></li>'
+        f'<ul><li><span id="cc-o-wl">Wages</span><span id="cc-o-wages">{m2(ex["wages"])}</span></li>'
         '<li><span>Public works fringes</span><span id="cc-o-fr">$0.00</span></li>'
-        '<li><span>Employer Social Security and Medicare</span><span id="cc-o-tax">$0.00</span></li>'
-        '<li><span id="cc-o-ll">Chicago paid leave earned</span><span id="cc-o-leave">$0.00</span></li>'
+        f'<li><span>Employer Social Security and Medicare</span><span id="cc-o-tax">{m2(ex["tax"])}</span></li>'
+        f'<li><span id="cc-o-ll">Chicago paid leave earned</span><span id="cc-o-leave">{m2(ex["leave"])}</span></li>'
         '<li><span>Your other costs</span><span id="cc-o-oth">$0.00</span></li></ul>'
         f'<p class="cc-note" id="cc-pwnote" hidden>Public works: this assumes a weekday. Hours past {d["prevailing"]["otDailyAfter"]} are paid at the overtime multiple of base pay the schedule lists; Saturday, Sunday and holiday rates are not priced here. '
         'Some lines list extra amounts owed on overtime hours; those are in the full table and not in this total.</p>'
@@ -578,7 +580,7 @@ def page_html(p):
         if r["trade"] not in seen:
             seen.add(r["trade"])
             mrows.append(r)
-    pw_sec = (f'<p>Illinois law sets what workers on public works must be paid: the base rate plus each fringe, for every hour. These are the Cook County lines for the trades on this page, '
+    pw_sec = (f'<p>Illinois law sets the least workers on public works must be paid: the base rate plus each fringe, for every hour. These are the Cook County lines for the trades on this page, '
               f'for work on or after October 19, 2026. On public works the schedule also sets overtime, unless it notes otherwise for a line: hours over {d["prevailing"]["otDailyAfter"]} a day Monday to Friday, and every hour on Saturdays, Sundays and holidays, at the multiple it lists.</p>'
               '<p class="cc-swipe">Swipe the table sideways for more columns.</p>'
               f'<div class="cc-tw" role="region" aria-label="Cook County public works rates for the trades on this page" tabindex="0">{pw_table(mrows, E, "cc-t")}</div>'

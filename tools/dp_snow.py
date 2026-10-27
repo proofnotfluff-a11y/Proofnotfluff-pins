@@ -36,7 +36,7 @@ NWS_NOTE = (f'<p class="sn-note">For comparison at 1 inch, the National Weather 
             'It uses different years and methods, so its dates may not match this page.</p>')
 STATION_NOTE = {
     "ohare": "Its day runs midnight to midnight, local standard time.",
-    "midway": ("It is a NOAA cooperative observer station. Its name puts it about 3 miles southwest of the airport, and it has the fullest snowfall record near Midway in NOAA's file. "
+    "midway": ("It is a NOAA cooperative observer station. Its name puts it about 3 miles southwest of the airport, and it has the fullest snowfall record of the NOAA stations named for Midway. "
                "Its day is the 24 hours before the observer's daily reading, so it may not run midnight to midnight. "
                "NOAA's automated station at the airport itself reports snowfall on too few days to use."),
 }

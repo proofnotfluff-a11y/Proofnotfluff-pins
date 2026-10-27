@@ -1921,7 +1921,7 @@ def _snow_fill():
           'ln.href=ln.getAttribute("href").split("?")[0]+"?station="+val("sfSt")+"&trigger="+val("sfT");}'
           'function use(k,from){var v=C[val("sfSt")].t[val("sfT")][k];on=k;if(!from){ev.value=f(v);ev.dispatchEvent(new Event("input",{bubbles:true}));'
           'ev.dispatchEvent(new Event("change",{bubbles:true}));}paint();var w=lab("sfT").querySelector(".vh").textContent;'
-          'done.textContent=(from?"Filled from the snow season board: ":"Filled: ")+(Math.round(v)===v?N[k].toLowerCase()+" winter":f(v))+" at "+lab("sfSt").textContent+", "+w+(Math.round(v)===v?"":", halfway between the two middle winters")+"."+(from?" Tap Light or Heavy to change.":"");done.hidden=false;'
+          'done.textContent=(from?"Filled from the snow season board: ":"Filled: ")+N[k].toLowerCase()+" winter at "+lab("sfSt").textContent+", "+w+(Math.round(v)===v?"":" ("+f(v)+", halfway between the two middle winters)")+"."+(from?" Tap Light or Heavy to change.":"");done.hidden=false;'
           'last={v:ev.value,where:lab("sfSt").textContent+", "+lab("sfT").querySelector(".vh").textContent};}'
           'bs.forEach(function(b){b.addEventListener("click",function(){use(+b.getAttribute("data-k"),false);});});'
           'box.addEventListener("change",function(e){if(e.target.name==="sfSt"||e.target.name==="sfT"){on=-1;paint();'

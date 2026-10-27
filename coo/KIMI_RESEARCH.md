@@ -21,6 +21,7 @@ Our scout already finds public-data ideas; the reviewers kill most of them for a
 | R8 | First traffic for a new site: indexing, $0 listings, news hooks, proven cases, AI answers | its own schema, in the prompt | traffic moves proposed to Todd |
 | R9 | A bid writer for post-construction cleaners: what they use to bid, rivals, permit-based bids, pricing units | its own schema, in the prompt | build, test or drop, proposed to Todd |
 | R10 | Which free features to build next that win search and AI answer traffic from trade owners | its own schema, in the prompt | research_notes/kimi-2026-10-27-r10.md (merged with Claude's run) |
+| R11 | Short video for trade owners: which faceless accounts and formats grow, which AI video tools and posting routes fit us | its own schema, in the prompt | research_notes/social-engine-2026-10-27.md (merged with Claude's run) |
 
 Repeat R3 and R4 every two weeks with a new Focus line (another metro, another record type). R5 runs after the scorer ranks the new candidates.
 
@@ -527,6 +528,65 @@ Then one fenced json block:
  "aiProbe": [{"question": "", "winsNow": "kind of page cited or ranked", "cited": [{"url": "", "date": ""}], "ourOpening": "one line or null"}],
  "ranking": [{"rank": 1, "featureId": "f1", "why": "two sentences", "first90DaysVisits": null, "label": "INFERRED"}],
  "avoid": [{"idea": "", "why": "one line"}]}
+```
+Every example value above is a placeholder. Replace it or use null.
+````
+
+## R11, short video for trade owners (Todd, Oct 27, 2026, 4:44 pm, Kimi research desk chat: "Can we build a social media engine behind this using Seedance or Higgsfield?")
+
+Kimi is the second opinion on Claude's own run for the video engine blueprint (Claude Doc "PNF Video Engine Blueprint"; research_notes/social-engine-2026-10-27.md). Intake as above: `kimi_intake.py read` keeps `accounts` as the list to check and saves `formats`, `tools`, `routes`, `avoid` and `verdict` beside it; every URL goes on the list. Nothing is bought, signed up for, connected or posted on the strength of this round; the blueprint's decisions stay Todd's.
+
+````
+Round: R11, short video that reaches small trade business owners. Everything you need is in this message.
+
+WHO WE ARE
+ProofNotFluff LLC, Chicago. One owner, no staff, run with AI agents. Faceless: the brand speaks, never the founder, and no realistic AI person stands in for one. We publish free local data pages for owners of small trade and service businesses (cleaning and post-construction cleaning, pest control, hood cleaning, contractors, plumbers, HVAC, roofers, landscaping and snow removal): a Chicago rat complaints map by neighborhood, a daily Chicago Trades News brief, big construction projects with their builders, restaurant inspection results, new business licenses, about 50 job pricing calculators. We sell monthly lead lists built from public city records ($29 to $149 a month). Audience: trade owners only, not homeowners.
+
+WHAT WE WANT TO BUILD
+An engine that turns our own public data into short vertical videos (Reels, Shorts, TikTok, Facebook) every day, posts them through official routes, measures them and makes more of what works. It may add short AI-generated scene clips (Seedance, Higgsfield, Kling, Veo, open models such as LTX or Wan) if they earn their cost. It must never fake engagement, use a real person's likeness or voice, or break a platform's terms.
+
+WHERE WE STAND (Oct 27)
+Our past YouTube Shorts: median about 21 views, best 1,001. Broad money hooks ("your price pays you less than it looks") beat narrow trade hooks. We post one data carousel a day to Instagram and Facebook. About 360 site page views last week, 0 from search.
+
+THE QUESTIONS
+1. Accounts. Find 10 to 15 faceless or brand-run short-video accounts that grew an audience of small trade or home-service business owners, or a local city audience with data (maps, rankings, "your neighborhood is number 3 for X", permit or inspection news), in 2025 or 2026. For each: platform, follower count as the profile or a dated article shows it, one top video with its view count, what the videos are, whether they use AI voice, AI clips or an AI avatar, whether an AI label shows, and why you think it spreads. Prefer accounts with a dated article, case study or the platform's own page about them.
+2. Formats. Which short-video formats reach trade owners best (a number reveal, a map that fills in, a myth vs fact, a job price breakdown, a "this week in permits" brief, a before and after, a screen demo), with evidence. Say which need AI video and which do not.
+3. Tools. For Seedance (newest version), Higgsfield, Kling, Veo, Runway and one open model: the official pricing page, the price of one 8 second 720p vertical clip, whether outputs on the cheapest paid plan may be used commercially, the rule on real people's likeness, and whether a public API exists.
+4. Routes. For TikTok, Instagram, Facebook Pages, YouTube Shorts: the official posting API page, what an app needs before it can post publicly (audit, review, verification), daily limits, and whether the API can mark a video as AI-generated. Also Buffer's free plan limits for these four, from Buffer's own pages.
+5. Avoid. Formats, tools or tactics that look tempting but get demoted, labeled, demonetized or banned in 2025 to 2026 (mass AI content, reposts, watermarks from another app, engagement bait), each with the platform's own page.
+
+EVIDENCE RULES
+- Open every page you cite. Cite each page's own link, never a list page that only mentions it. If a profile page will not open, use a dated article about the account or leave it out.
+- Every source is {"url": "...", "date": "YYYY-MM-DD"}: the date posted, or for a live page the day you read it.
+- Quotes are 15 words or fewer, copied exactly. No person's name, email, phone or username, ever. An account is named by its brand name only; if the account is a person, describe it ("a Texas pest control owner") and give no handle.
+- Label every claim OBSERVED (a page states it) or INFERRED (your reasoning). View and follower counts you did not see on a page are null.
+- Read only. Do not sign up, log in, submit, post, comment or message anyone.
+- Honest beats hopeful: say plainly if trade owner audiences are small on short video, and if AI clips add little.
+- Plain words, no em or en dashes. Valid JSON: double quotes, no trailing commas, no comments. Counts and prices are bare numbers.
+
+REPLY IN EXACTLY THIS SHAPE
+
+R11 | DATE: (today) | PAGES OPENED: n | BLOCKED: sites that refused you
+
+SUMMARY: five plain sentences: what kind of short video reaches trade owners today, whether AI video clips earn their cost for a brand like ours, the cheapest legitimate posting route, the biggest risk, and the one surprise.
+
+Then one fenced json block:
+```json
+{"round": "R11",
+ "accounts": [
+  {"id": "a1", "name": "brand name or a description", "platform": "tiktok|instagram|youtube|facebook",
+   "url": "", "date": "", "kind": "local data|trade education|trade news|AI generated|other",
+   "faceless": true, "followers": null, "followersSource": {"url": "", "date": ""},
+   "topVideo": {"url": "", "date": "", "views": null},
+   "format": "what the videos are, one line", "usesAI": "none|ai voice|ai clips|ai avatar|unclear", "aiLabelShown": null,
+   "why": "why it spreads, one line", "label": "OBSERVED", "confidence": "high|medium|low"}],
+ "formats": [{"id": "f1", "format": "", "forTradeOwners": "high|medium|low", "needsAIVideo": false, "why": "one line",
+   "evidence": [{"url": "", "date": "", "quote": "15 words or fewer", "label": "OBSERVED"}]}],
+ "tools": [{"name": "", "version": "", "route": "official API|host|app only", "pricingUrl": "", "date": "",
+   "pricePer8sClip720p": null, "commercialUse": "allowed|forbidden|unclear", "termsUrl": "", "likenessRule": "one line", "note": ""}],
+ "routes": [{"platform": "", "api": "", "url": "", "date": "", "gate": "what an app needs before public posts", "dailyLimit": null, "aiFlag": "yes|no|unclear", "bufferFree": "one line from Buffer's page"}],
+ "avoid": [{"idea": "", "why": "one line", "source": {"url": "", "date": ""}}],
+ "verdict": {"buildFirst": "one sentence", "skip": "one sentence", "surprise": "one sentence"}}
 ```
 Every example value above is a placeholder. Replace it or use null.
 ````

@@ -29,8 +29,8 @@ WORK = os.path.join(ROOT, "data", "work", "kimi")
 CAND = osc.CAND
 LAUNCHES = os.path.join(ROOT, "launches")
 OPP_JSON = osc.OUT_JSON
-ROUNDS = ("R0", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10")
-LIST_KEY = {"R0": "buyers", "R1": "pains", "R2": "products", "R3": "ideas", "R4": "ideas", "R5": "verdicts", "R6": "channels", "R7": "rivals", "R8": "moves", "R9": "tools", "R10": "features"}
+ROUNDS = ("R0", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10", "R11")
+LIST_KEY = {"R0": "buyers", "R1": "pains", "R2": "products", "R3": "ideas", "R4": "ideas", "R5": "verdicts", "R6": "channels", "R7": "rivals", "R8": "moves", "R9": "tools", "R10": "features", "R11": "accounts"}
 QUOTE_MAX = 15
 EMAIL = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]+")
 PHONE = re.compile(r"(?<!\d)(\+?1[\s.-]?)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}(?!\d)")
@@ -177,7 +177,7 @@ def cmd_read(path, date):
     for e in errs:
         print(f"FAIL parse: {e}")
     if not blocks:
-        print("FAIL parse: no fenced JSON block with a round R0 to R10 found; ask Kimi to resend the JSON block only")
+        print("FAIL parse: no fenced JSON block with a round R0 to R11 found; ask Kimi to resend the JSON block only")
         return 1
     os.makedirs(day_dir(date), exist_ok=True)
     allurls = {}
@@ -242,7 +242,8 @@ def cmd_read(path, date):
                  {"ours": clean(b.get("ours") or [])[0], "top5": clean(b.get("top5") or [])[0]} if rnd == "R7" else
                  {k: clean(b.get(k) or [])[0] for k in ("indexing", "cases", "aiAnswers", "plan30")} if rnd == "R8" else
                  {k: clean(b.get(k) or ([] if k != "verdict" else {}))[0] for k in ("permitBids", "pricing", "demand", "verdict")} if rnd == "R9" else
-                 {k: clean(b.get(k) or [])[0] for k in ("aiProbe", "ranking", "avoid")} if rnd == "R10" else {})
+                 {k: clean(b.get(k) or [])[0] for k in ("aiProbe", "ranking", "avoid")} if rnd == "R10" else
+                 {k: clean(b.get(k) or ([] if k != "verdict" else {}))[0] for k in ("formats", "tools", "routes", "avoid", "verdict")} if rnd == "R11" else {})
         json.dump({"round": rnd, "readAt": date, key: kept, **extra}, open(out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
         for u in urls_in(extra):
             allurls.setdefault(u, []).append(f"{rnd}:{'gaps' if rnd == 'R2' else 'ours' if rnd == 'R7' else 'extra'}")

@@ -21,3 +21,4 @@ data/
 
 # Local enrichment CSV drops (named people), read by tools/enrich_ci.py, never committed
 data/enrichment/*.csv
+.claude/worktrees/

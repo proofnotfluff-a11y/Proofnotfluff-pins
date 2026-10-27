@@ -101,7 +101,10 @@ CSS = ("<style>"
        "@media(max-width:599px){.lf-g tr.on{background:var(--teal-tint);box-shadow:inset 3px 0 var(--teal)}.lf-g tr.on th,.lf-g tr.on td{background:none}"
        ".lf-g tbody th a{display:inline-flex;align-items:center;min-height:44px}"
        ".lf-gcwrap .lf-calc{padding:0;border:0;background:none}.lf-trade{padding:16px}}"
-       ".lf-pick{margin:18px 0 16px}.ld-hero .lf-pick .asof{margin:0;align-self:center}"
+       ".ld-hero .asof+.ld-heroact{margin-top:14px}.lf-note{margin:0 0 10px}.lf-pick{margin:14px 0 12px}.ld-hero .lf-pick .asof{margin:0}"
+       "@media(max-width:599px){.lf-gc td{grid-template-columns:92px minmax(0,1fr)}.ld-hero .lede{margin-bottom:10px}}"
+       ".lf-grid li{display:flex}.lf-grid li>a{flex:1}"
+       ".lf-trade>h2.sr+.lf-dl>div:first-child{border-top:0;padding-top:0}"
        "</style>")
 
 
@@ -135,7 +138,7 @@ def trade_html(t, d, E, h="h2", picker="", solo=False):
             continue
         ps = "".join(f'<p class="lf-tx">{E(x["text"])}</p>' + src_line(d["sources"][x["src"]], d, E) for x in items)
         rows.append(f'<div><dt>{E(label)}</dt><dd>{ps}</dd></div>')
-    jump = '<p class="lf-src"><a href="#gc-class">Find your class</a> from the largest project you take on.</p>' if picker else ""
+    jump = '<p class="lf-src"><a href="#gc-class">Find your class</a> from the largest project you take on.</p>' if picker and not solo else ""
     sub = h.replace("2", "3") if h == "h2" else "h3"
     pick = f'<div class="lf-gcwrap" id="gc"><{sub}>Which class do you need?</{sub}><p>{E(d["gc"]["intro"])}</p>{picker}</div>' if picker else ""
     head_ = (f'<{h} class="sr">{E(t["name"])}: City and State requirements</{h}>' if solo else f'<{h}>{E(t["name"])}</{h}><p class="lf-sum">{E(t["summary"])}</p>')
@@ -151,7 +154,7 @@ def nb(h):
 
 
 def glance_html(d, E):
-    rows = "".join(f'<tr><th scope="row"><a href="#{E(t["slug"])}" data-go="{E(t["slug"])}">{E(t["name"])}</a></th><td data-l="City">{nb(E(t["glance"][0]))}</td><td data-l="State">{nb(E(t["glance"][1]))}</td></tr>'
+    rows = "".join(f'<tr><th scope="row"><a href="#{E(t["slug"])}" data-go="{E(t["slug"])}">{E(t["name"])}</a></th><td data-l="City"><span>{nb(E(t["glance"][0]))}</span></td><td data-l="State"><span>{nb(E(t["glance"][1]))}</span></td></tr>'
                    for t in d["trades"])
     return ('<div class="lf-tw" role="region" aria-label="Every trade at a glance: City and State requirements" tabindex="0"><table class="lf-t lf-g">'
             '<thead><tr><th scope="col">Trade</th><th scope="col">City of Chicago</th><th scope="col">State of Illinois</th></tr></thead>'
@@ -159,9 +162,9 @@ def glance_html(d, E):
 
 
 def classes_table(d, E):
-    rows = "".join(f'<tr data-cls="{E(c["class"])}"><th scope="row">Class {E(c["class"])}</th><td data-l="Project">{E(c["limit_words"])}</td><td data-l="Demo">{E(c["demolition_words"])}</td>'
-                   f'<td data-l="Cover">{E(c["insurance_words"])}</td><td data-l="Fee">{money(c["fee"])}</td><td data-l="Renew">{money(c["renewal"])}</td></tr>' for c in d["gc_classes"])
-    return ('<div class="lf-tw" role="region" aria-label="City of Chicago general contractor license classes" tabindex="0"><table class="lf-t lf-g">'
+    rows = "".join(f'<tr data-cls="{E(c["class"])}"><th scope="row">Class {E(c["class"])}</th><td data-l="Project"><span>{E(c["limit_words"])}</span></td><td data-l="Demolition"><span>{E(c["demolition_words"])}</span></td>'
+                   f'<td data-l="Insurance"><span>{E(c["insurance_words"])}</span></td><td data-l="Fee"><span>{money(c["fee"])}</span></td><td data-l="Renewal"><span>{money(c["renewal"])}</span></td></tr>' for c in d["gc_classes"])
+    return ('<div class="lf-tw" role="region" aria-label="City of Chicago general contractor license classes" tabindex="0"><table class="lf-t lf-g lf-gc">'
             '<thead><tr><th scope="col">Class</th><th scope="col">Largest single project</th><th scope="col">Demolition</th>'
             '<th scope="col">Insurance</th><th scope="col">Fee</th><th scope="col">Renewal</th></tr></thead>'
             f'<tbody>{rows}</tbody></table></div>')
@@ -250,11 +253,11 @@ def page_html(p):
     grid = ('<ul class="lf-grid">' + "".join(f'<li><a href="{E(t["slug"])}/"><span>{E(t["name"])}<small>{nb(E(t["card"]))}</small></span>{M.ARROW}</a></li>' for t in trades) + '</ul>')
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(META["h1"])}</h1>'
             f'<p class="lede">{E(d["lede"])}</p>'
-            f'<p class="asof">Every line read on the agency\'s own page on {E(nice(d["checked"]))}, with the page linked beside it. Public information, not legal advice: check with the agency before you apply or bid.</p>'
             '<div class="lf-pick" hidden><div><label for="lf-trade">Your trade</label>'
             f'<select class="lf-sel" id="lf-trade">{opts}</select></div><p class="asof" id="lf-count" aria-live="polite"></p></div>'
             '<div class="ld-heroact rl-act"><a class="btn lf-nojs" href="#trades">See every trade</a><a class="st-btn2" href="#gc-class">Find your general contractor class</a></div></div>'
-            f'<section class="block" id="glance"><h2>Every trade at a glance</h2><p>The license each trade needs from the City and the State, on the pages we read. BACP is the City\'s Department of Business Affairs and Consumer Protection. Tap a trade for the fee, insurance, bond, exam and renewal.</p>{glance_html(d, E)}</section>'
+            f'<section class="block" id="glance"><h2>Every trade at a glance</h2><p class="asof lf-note">Read on each agency\'s own page on {E(nice(d["checked"]))}. Public information, not legal advice: check with the agency before you apply or bid.</p>{glance_html(d, E)}'
+            '<p class="asof">BACP is the City\'s Department of Business Affairs and Consumer Protection. Tap a trade for its fee, insurance, bond, exam and renewal, each line linked to its source.</p></section>'
             '<section class="block" id="trades"><h2>Trade by trade</h2>'
             f'{"".join(trade_html(t, d, E, picker=gc_picker(d, E) if t["slug"] == "general-contractor" else "") for t in trades)}</section>'
             '<section class="block"><h2>How this page is made</h2>' + "".join(f"<p>{E(x)}</p>" for x in d["method"]) + '</section>'
@@ -276,7 +279,8 @@ def extra_pages(p):
         gc = t["slug"] == "general-contractor"
         others = "".join(f'<li><a href="../{E(x["slug"])}/"><span>{E(x["name"])}<small>{nb(E(x["card"]))}</small></span>{M.ARROW}</a></li>' for x in d["trades"] if x is not t)
         body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">Chicago trade license finder</p><h1>{E(t["h1"])}</h1>'
-                f'<p class="lede">{E(t["page_summary"])}</p><p class="asof">Every line read on the agency\'s own page on {E(nice(d["checked"]))}, with the page linked beside it. Public information, not legal advice: check with the agency before you apply or bid.</p></div>'
+                f'<p class="lede">{E(t["page_summary"])}</p><p class="asof">Every line read on the agency\'s own page on {E(nice(d["checked"]))}, with the page linked beside it. Public information, not legal advice: check with the agency before you apply or bid.</p>'
+                + ('<div class="ld-heroact rl-act"><a class="btn" href="#gc-class">Find your class</a></div>' if gc else "") + '</div>'
                 + trade_html(t, d, E, h="h2", picker=gc_picker(d, E) if gc else "", solo=True)
                 + f'<section class="block"><h2>Other trades</h2><p><a href="../">See every trade on one page</a>, or pick another.</p><ul class="lf-grid">{others}</ul></section>')
         title = t["title"]

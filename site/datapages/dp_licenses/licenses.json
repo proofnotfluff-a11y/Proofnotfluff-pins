@@ -1,7 +1,7 @@
 {
  "about": "Chicago Trade License Finder data (tools/dp_licenses.py). Every line read on its agency page on the checked date; Todd's go Oct 27, 2026 (coo/PARALLEL_BUILDS.md).",
  "checked": "2026-10-27",
- "lede": "What the City of Chicago and the State of Illinois require for 12 trades: the license, fee, insurance, bond, exam, renewal and whether a suburb's license carries over, each linked to the agency page.",
+ "lede": "What the City of Chicago and the State of Illinois require for 12 trades, from fee and insurance to bond, exam and renewal, each line linked to the agency page.",
  "method": [
   "We read every line on the issuing agency's own page: the City of Chicago Departments of Buildings, Business Affairs and Consumer Protection, Public Health and Transportation; the Illinois Departments of Public Health, Agriculture, and Financial and Professional Regulation; Illinois EPA; State law on the Illinois General Assembly site; and the U.S. EPA. Each line links to its page and the date we read it.",
   "Where an agency page is silent, the line says so, such as not stated or lists no bond, instead of filling the gap. A page we could not open is not used.",

@@ -128,7 +128,7 @@ def personlike(s):
     """2 to 4 words, no digit, no business word, no linking word: reads as a person's name."""
     w = re.findall(r"[A-Za-z][A-Za-z'.]*", s)
     return (2 <= len(w) <= 4 and not re.search(r"\d", s) and not BUSINESS.search(s.upper())
-            and not any(x.upper().strip(".") in STOPW for x in w))
+            and not any(x.upper().strip(".") in STOPW - {"A"} for x in w))
 FMT = "%Y-%m-%dT%H:%M:%S"
 
 

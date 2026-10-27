@@ -30,8 +30,10 @@ def safe_params(p):
     for k in ("$select", "$where", "$group", "$order", "$having"):
         if BLOCKED.search(p.get(k, "")):
             raise SystemExit(f"blocked column in {k}: address, city, state, zip and vendor_id are never read")
-    if re.search(r"vendor_name\s*\)?\s+as\s+(?!\w*vendor)\w+", p["$select"], re.I):
-        raise SystemExit("vendor_name may be renamed only to a name containing 'vendor', so the answer is scrubbed")
+    VN = r"\s*(?:(?:vendor_name|(?:max|min)\(\s*vendor_name\s*\))(?:\s+as\s+\w*vendor\w*)?|count\(\s*(?:distinct\s+)?vendor_name\s*\)(?:\s+as\s+\w+)?)\s*"
+    for item in p["$select"].split(","):
+        if re.search(r"vendor_name", item, re.I) and not re.fullmatch(VN, item, re.I):
+            raise SystemExit("vendor_name may be selected only as itself, max() or min() of it (renamed only to a name containing 'vendor') or count() of it, so the answer is scrubbed")
     p.setdefault("$limit", "5000")
     return p
 
@@ -44,7 +46,7 @@ def scrub(rows):
         for k in list(r):   # vendor_name and any alias of it (max(vendor_name) AS v) pass the page's business-name test
             if "vendor" in k.lower() or k.lower() in ("v", "name") or str(k).startswith(("max_", "min_")) and isinstance(r[k], str) and not re.match(r"^[\d\-T:.]+$", r[k]):
                 r[k] = DD.vendor(r[k]) if isinstance(r[k], str) else r[k]
-        if "contract_pdf" in r and any(v == "Name withheld" for v in r.values()):
+        if "contract_pdf" in r and (any(v == "Name withheld" for v in r.values()) or not any("vendor" in k.lower() for k in r)):
             r["contract_pdf"] = ""
     return rows
 
@@ -84,6 +86,13 @@ def selftest():
         except SystemExit:
             pass
     assert scrub([{"vendor_name": "JOHN SMITH", "contract_pdf": {"url": "http://x"}}])[0]["contract_pdf"] == ""
+    for bad in ({"$select": "substring(vendor_name,1,80) AS s"}, {"$select": "vendor_name || '' AS x"}, {"$select": "caseless_one_of(vendor_name,'X') AS b"}, {"$select": "max(vendor_name) AS m"}):
+        try:
+            safe_params(bad); raise AssertionError(bad)
+        except SystemExit:
+            pass
+    assert safe_params({"$select": "max(vendor_name) AS top_vendor, count(distinct vendor_name) AS n"})
+    assert scrub([{"contract_pdf": {"url": "http://x"}, "purchase_order_contract_number": "1"}])[0]["contract_pdf"] == ""
     print("dp_contracts_check selftest: ok")
 
 

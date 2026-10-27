@@ -222,7 +222,7 @@ def calc_html(d, E, default=DEFAULT, heading=True):
             f'<p class="mp-say" data-mp="say">{say}</p>'
             f'<p class="mp-pnote" data-mp="pnote"{"" if pnote else " hidden"}>{E(pnote)}</p>'
             '<div class="mp-acts"><button type="button" class="st-btn2" data-mp-copy>Copy this as a sentence</button><span role="status" data-mp="copied"></span></div>'
-            f'<p class="mp-pnote">A national price index, not your supplier\'s price. Use it to see the size of a move; the price you pay is on your supplier\'s invoice.</p>'
+            f'<p class="mp-pnote">A producer price index, not your supplier\'s price. Use it to see the size of a move; the price you pay is on your supplier\'s invoice.</p>'
             '</div></div></div>')
 
 
@@ -432,11 +432,11 @@ def read_right(d, E):
     a, b = by.get("lumber"), by.get("steel-mill-products")
     pair = (f'a lumber index of {a["last"][1]:,.0f} and a steel mill products index of {b["last"][1]:,.0f} say nothing about which costs more'
             if a and b else "two index numbers say nothing about which material costs more")
-    blocks = [("National numbers, not Chicago prices",
-               "Each index tracks what U.S. producers get for that material across the country"
-               + (" (ready-mixed concrete is also shown for the Midwest region). " if any(x["area"] != "national" for x in d["mats"]) else ". ")
-               + 
-               "It shows how far prices moved, not what a Chicago supplier charges you."),
+    midwest = any(x["area"] != "national" for x in d["mats"])
+    blocks = [("Index numbers, not Chicago prices",
+               "Each index tracks what U.S. producers get for that material, across the country"
+               + (" or, for Midwest ready-mix concrete, across the Midwest region. " if midwest else ". ")
+               + "It shows how far prices moved, not what a Chicago supplier charges you."),
               ("The last 4 months can still change",
                "BLS revises each month for up to 4 months after it first comes out. Those months carry a P. Run a quote again after a revision and the result can move a little."),
               ("Compare the changes, not the index numbers",
@@ -557,7 +557,7 @@ def page_html(p):
              f'<div class="tile"><div class="lab">Latest month</div><div class="val">{L}</div><div class="sub">{"preliminary; " if d["latest"] in d["prelim"] else ""}'
              + (f'next update {E(nb(nice(nx["date"])))}' if nx else "BLS updates monthly") + '</div></div>'
              '</div>'
-             f'<p class="asof">BLS producer price indexes, national, not seasonally adjusted, through {L}, retrieved from BLS on {E(M.nice_date(d["fetched"][:10]))}.</p>')
+             f'<p class="asof">BLS producer price indexes, {"national and Midwest region" if any(x["area"] != "national" for x in d["mats"]) else "national"}, not seasonally adjusted, through {L}, retrieved from BLS on {E(M.nice_date(d["fetched"][:10]))}.</p>')
     body = (f'{crumb}<div class="ld-hero mp-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{E(lede)}</p>'
             '<div class="ld-heroact rl-act mp-btns"><a class="btn" href="#quote">Check a quote</a><a class="st-btn2" href="#all">See every material</a></div></div>'
             f'{tiles}'

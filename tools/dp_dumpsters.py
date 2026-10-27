@@ -66,8 +66,8 @@ CSS = ("<style>"
        ".dd-bars{display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:6px;align-items:end;height:180px;margin:12px 0 4px;padding:16px 18px 10px;"
        "background:var(--card);border:1px solid var(--line);border-radius:12px}"
        ".dd-bars div{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:4px;min-width:0}"
-       ".dd-bars i{flex:none;display:block;width:100%;max-width:40px;border-radius:5px 5px 0 0;background:var(--accent);opacity:.55}"
-       ".dd-bars div.cur i{opacity:1}.dd-bars div.part i{opacity:.3;background:repeating-linear-gradient(45deg,var(--accent) 0 4px,transparent 4px 7px)}"
+       ".dd-bars i{flex:none;display:block;width:100%;max-width:40px;border-radius:5px 5px 0 0;background:color-mix(in srgb,var(--accent) 45%,var(--card))}"
+       ".dd-bars div.cur i{background:var(--accent)}.dd-bars div.part i{background:repeating-linear-gradient(45deg,color-mix(in srgb,var(--accent) 55%,var(--card)) 0 4px,transparent 4px 7px)}"
        ".dd-bars b{font:600 12px system-ui,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}"
        ".dd-bars span{font-size:11.5px;color:var(--muted);white-space:nowrap}"
        ".dd-tw{overflow-x:auto;margin:12px 0 0;border:1px solid var(--line);border-radius:12px;background:var(--card)}"
@@ -75,13 +75,13 @@ CSS = ("<style>"
        ".dd-t{width:100%;border-collapse:collapse;font-size:14.5px;min-width:560px}.dd-t th,.dd-t td{padding:9px 12px;border-bottom:1px solid var(--rule);text-align:right;font-variant-numeric:tabular-nums}"
        ".dd-t th:nth-child(2),.dd-t td:nth-child(2){text-align:left}.dd-t thead th{font-size:13px;color:var(--muted);font-weight:700;background:var(--card);position:sticky;top:0}"
        ".dd-t tbody th{font-weight:600;color:var(--ink);text-align:left}.dd-t td.rk{color:var(--muted)}.dd-t tr:last-child td,.dd-t tr:last-child th{border-bottom:0}"
-       ".dd-up{color:var(--warn-ink)}"
+       ".dd-up{color:var(--warn-ink);font-weight:700}"
        ".dd-more{margin:12px 0 0}.dd-more summary{display:flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;font-weight:600;color:var(--ink)}"
        ".dd-more[open] summary{margin-bottom:8px}"
        ".dd-one .cta{grid-template-columns:1fr}.dd-two{display:grid;gap:16px}@media(min-width:900px){.dd-two{grid-template-columns:1fr 1fr}}"
        ".dd-two .cta{grid-template-columns:1fr;height:100%;align-items:start}.dd-two .cta h2{margin-top:0;text-wrap:balance}"
        ".dd-name{font-size:clamp(20px,2.6vw,26px);line-height:1.15}"
-       ".dd-more .dd-tw{margin:0}@media(min-width:600px){.dd-t{table-layout:fixed}.dd-t .c1{width:9%}.dd-t .c2{width:29%}.dd-t .c3{width:15%}.dd-t .c4{width:20%}.dd-t .c5{width:13%}.dd-t .c6{width:14%}}"".dd-more summary{box-shadow:none}.dd-more{border:0;background:none;border-radius:0}.dd-one .cta .ld-buybtn{margin-top:18px}#dmap .gm-big small{text-wrap:balance}"".ld-page .ld-tiles{margin-top:22px}.ld-page .ld-heroact .st-btn2{min-height:50px}.ld-page .eyebrow{text-wrap:balance}""#dmap .gm-a path.sel{stroke:var(--ink);stroke-width:4;paint-order:stroke}"".dd-two .cta>div{display:flex;flex-direction:column;height:100%}.dd-two .cta .ld-buybtn{margin-top:auto;padding-top:8px}"
+       ".dd-more .dd-tw{margin:0}@media(min-width:600px){.dd-t{table-layout:fixed}.dd-t .c1{width:7%}.dd-t .c2{width:31%}.dd-t th:first-child,.dd-t td.rk{text-align:left;padding-left:16px}.dd-t .c3{width:15%}.dd-t .c4{width:20%}.dd-t .c5{width:13%}.dd-t .c6{width:14%}}"".dd-more summary{box-shadow:none}.dd-more{border:0;background:none;border-radius:0}.dd-one .cta .ld-buybtn{margin-top:18px}#dmap .gm-big small{text-wrap:balance}"".ld-page .ld-tiles{margin-top:22px}.ld-page .ld-heroact .st-btn2{min-height:50px}.ld-page .eyebrow{text-wrap:balance}""#dmap .gm-a path.sel{stroke:var(--ink);stroke-width:4;paint-order:stroke}"".dd-two .cta>div{display:flex;flex-direction:column;height:100%}.dd-two .cta .ld-buybtn{margin-top:auto;padding-top:8px}"
               "@media(max-width:599px){.dd-t{min-width:0}.dd-t th:nth-child(4),.dd-t td:nth-child(4),.dd-t th:nth-child(6),.dd-t td:nth-child(6){display:none}"
        ".dd-t th,.dd-t td{padding:9px 7px}.dd-bars{height:150px;gap:3px;padding:14px 10px 8px}.dd-bars div:not(:nth-child(3n+1)):not(:last-child) span{visibility:hidden}"
        ".dd-bars div:not(.cur) b{visibility:hidden}.dd-bars div:first-child span{align-self:flex-start}}"
@@ -232,12 +232,12 @@ def page_html(p):
                       f'<i style="height:{max(3, round(v / peak * 78))}%"></i><span>{E(month_name(m, True))}{" " + m[:4] if m.endswith("-01") or i == 0 else ""}</span></div>'
                       for i, (m, v) in enumerate(zip(show, vals)))
             + "</div><p class=\"asof\">Each bar counts the permits CDOT issued in that month."
-            + (f" {E(month_name(d['monthLabels'][lm]))}, the last full month, is solid; {E(month_name(part))} is faded because it is not over yet." if part else "") + "</p>")
+            + (f" {E(month_name(d['monthLabels'][lm]))}, the last full month, is highlighted; {E(month_name(part))} is striped because it is not over yet." if part else "") + "</p>")
     row = lambda a: (f'<tr><td class="rk">{a["rank"] if a["d90"] else ""}</td><th scope="row">{E(a["name"])}</th><td>{a["d90"]:,}</td><td>{a["yr90"]:,}</td>'
                      f'<td{" class=dd-up" if change(a["d90"], a["yr90"]) is not None and change(a["d90"], a["yr90"]) >= 25 else ""}>{E(pct(change(a["d90"], a["yr90"])))}</td>'
                      f'<td>{a["months"][lm]:,}</td></tr>')
     thead = ('<thead><tr><th scope="col">Rank</th><th scope="col">Community area</th><th scope="col">Last 90 days</th>'
-             f'<th scope="col">Same 90 days, {E(yr)}</th><th scope="col">Change</th><th scope="col">{E(month_name(d["monthLabels"][lm], True))}</th></tr></thead>')
+             f'<th scope="col">Same 90 days, {E(yr)}</th><th scope="col">Change</th><th scope="col">{E(month_name(d["monthLabels"][lm], True))} {E(d["monthLabels"][lm][:4])}</th></tr></thead>')
     cols = '<colgroup>' + "".join(f'<col class="c{i}">' for i in range(1, 7)) + '</colgroup>'
     tbl = lambda rs, label: (f'<div class="dd-tw" role="region" aria-label="{E(label)}" tabindex="0"><table class="dd-t">{cols}{thead}'
                              f'<tbody>{"".join(row(a) for a in rs)}</tbody></table></div>')
@@ -269,7 +269,8 @@ def page_html(p):
             f'<section class="block" id="areas"><h2>Every community area</h2>{table}</section>'
             f"{two}{method}{M.faq_block(faq) if faq else ''}"
             '<p class="rl-act"><a class="btn" href="#areas">See every neighborhood</a>'
-            + (f' <a class="st-btn2" href="{rel}{COST_SLUG}/">Price a dumpster permit</a>' if cost_live else "") + "</p>")
+            + (f' <a class="st-btn2" href="{rel}{COST_SLUG}/">Price a dumpster permit</a>' if cost_live else
+               f' <a class="st-btn2" href="{rel}{E(nxt["slug"])}/">{E(nxt["button"])}</a>') + "</p>")
     foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             f'<p>Source: City of Chicago Data Portal, <a href="{E(src["url"])}">Transportation Department Permits dataset</a>, permits of type '
             f'{E(src["type"])} (dumpster placement in the public way) with an issue date, pulled {E(pulled)}. Each permit is placed in a community area '

@@ -20,3 +20,4 @@ Product 5 in the launch line (coo/PIVOT.md LEADS FOCUS, 4 Seattle permits; score
 
 ## Build log
 - Oct 23, 2026 (builder run): data check above; no FIX lines in qa/2026-10-19.md (newest QA). Nothing else built.
+- Oct 27, 2026 (builder run): still waiting on Todd's pick of option 1, 2 or 3; nothing built.

@@ -248,7 +248,7 @@ def page_html(p):
              + f'<p class="asof">Rank is by permits in the last 90 days, 1 for the most; areas with the same count share a rank. Change compares the last 90 days with the same 90 days a year earlier, rounded to a whole percent; within 1% shows as same, rises of 25% or more are in orange, and under {FEW} permits a year earlier show as too few to compare.'
              + ((f' 1 permit from the last 90 days had no map point inside a community area, so it counts only in the city total.' if c["noArea"]["d90"] == 1 else
                 f' {c["noArea"]["d90"]:,} permits from the last 90 days had no map point inside a community area, so they count only in the city total.') if c["noArea"]["d90"] else "")
-             + (f' A permit with locations in more than one community area counts in each, so the areas add up to a little more than the city total ({c["multiArea90"]:,} such permits in the last 90 days).' if c.get("multiArea90") else "")
+             + (f' A permit with locations in more than one community area counts in each, so the areas add up to more than the city total ({c["multiArea90"]:,} such permits in the last 90 days).' if c.get("multiArea90") else "")
              + f' <a href="chicago-dumpster-permits-by-community-area.csv" download>Download every area by month (CSV)</a>.</p>')
     cost, nxt = p["cost"], p["next"]
     cost_live = any(x.get("slug") == COST_SLUG for x in M.PAGES_LIVE)   # a live page never links to a draft

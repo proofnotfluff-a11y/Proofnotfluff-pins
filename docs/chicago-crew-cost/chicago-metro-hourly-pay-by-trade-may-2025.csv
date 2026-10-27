@@ -1,0 +1,17 @@
+trade_group,bls_code,bls_title,employed,hourly_10th,hourly_25th,hourly_median,hourly_75th,hourly_90th,hourly_mean,area,period,source
+Janitors,37-2011,"Janitors and Cleaners, Except Maids and Housekeeping Cleaners",70000,15.75,17.48,18.49,21.99,24.04,19.9,"Chicago-Naperville-Elgin, IL-IN",May 2025,https://www.bls.gov/oes/special-requests/oesm25ma.zip
+Maids and housekeepers,37-2012,Maids and Housekeeping Cleaners,18260,16.56,17.17,17.94,21.38,24.88,19.57,"Chicago-Naperville-Elgin, IL-IN",May 2025,https://www.bls.gov/oes/special-requests/oesm25ma.zip
+Pest control workers,37-2021,Pest Control Workers,1710,18.4,18.62,22.47,27.65,30.14,23.56,"Chicago-Naperville-Elgin, IL-IN",May 2025,https://www.bls.gov/oes/special-requests/oesm25ma.zip
+Landscapers,37-3011,Landscaping and Groundskeeping Workers,25160,16.44,18.34,21.77,22.93,29.45,22.16,"Chicago-Naperville-Elgin, IL-IN",May 2025,https://www.bls.gov/oes/special-requests/oesm25ma.zip
+Roofers,47-2181,Roofers,3900,23.45,28.73,39.47,50.61,51.34,38.95,"Chicago-Naperville-Elgin, IL-IN",May 2025,https://www.bls.gov/oes/special-requests/oesm25ma.zip
+Painters,47-2141,"Painters, Construction and Maintenance",5480,21.42,23.54,29.68,46.08,52.8,34.0,"Chicago-Naperville-Elgin, IL-IN",May 2025,https://www.bls.gov/oes/special-requests/oesm25ma.zip
+Construction helpers,47-3011,"Helpers--Brickmasons, Blockmasons, Stonemasons, and Tile and Marble Setters",,19.82,19.97,19.97,19.97,22.07,20.89,"Chicago-Naperville-Elgin, IL-IN",May 2025,https://www.bls.gov/oes/special-requests/oesm25ma.zip
+Construction helpers,47-3012,Helpers--Carpenters,,15.55,20.66,22.57,28.72,29.22,23.7,"Chicago-Naperville-Elgin, IL-IN",May 2025,https://www.bls.gov/oes/special-requests/oesm25ma.zip
+Construction helpers,47-3013,Helpers--Electricians,60,17.06,17.34,19.01,21.04,27.88,20.63,"Chicago-Naperville-Elgin, IL-IN",May 2025,https://www.bls.gov/oes/special-requests/oesm25ma.zip
+Construction helpers,47-3015,"Helpers--Pipelayers, Plumbers, Pipefitters, and Steamfitters",,18.41,18.42,19.09,22.32,22.32,20.5,"Chicago-Naperville-Elgin, IL-IN",May 2025,https://www.bls.gov/oes/special-requests/oesm25ma.zip
+Construction helpers,47-3019,"Helpers, Construction Trades, All Other",100,18.26,23.95,26.36,29.52,41.22,27.69,"Chicago-Naperville-Elgin, IL-IN",May 2025,https://www.bls.gov/oes/special-requests/oesm25ma.zip
+Electricians,47-2111,Electricians,17720,23.99,35.77,49.21,57.05,59.65,45.41,"Chicago-Naperville-Elgin, IL-IN",May 2025,https://www.bls.gov/oes/special-requests/oesm25ma.zip
+Plumbers and pipefitters,47-2152,"Plumbers, Pipefitters, and Steamfitters",12750,25.94,35.72,49.7,58.91,61.15,46.36,"Chicago-Naperville-Elgin, IL-IN",May 2025,https://www.bls.gov/oes/special-requests/oesm25ma.zip
+HVAC techs,49-9021,"Heating, Air Conditioning, and Refrigeration Mechanics and Installers",7210,22.82,29.35,37.48,46.53,56.7,38.14,"Chicago-Naperville-Elgin, IL-IN",May 2025,https://www.bls.gov/oes/special-requests/oesm25ma.zip
+Carpenters,47-2031,Carpenters,14220,19.82,28.26,38.68,54.79,56.95,39.96,"Chicago-Naperville-Elgin, IL-IN",May 2025,https://www.bls.gov/oes/special-requests/oesm25ma.zip
+Construction laborers,47-2061,Construction Laborers,26690,18.8,22.25,29.27,48.44,50.72,33.26,"Chicago-Naperville-Elgin, IL-IN",May 2025,https://www.bls.gov/oes/special-requests/oesm25ma.zip

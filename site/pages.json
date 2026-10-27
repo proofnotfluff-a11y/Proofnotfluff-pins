@@ -6793,10 +6793,10 @@
    "module": "dp_permit_wait",
    "draft": true,
    "title": "Chicago Permit Wait Times | ProofNotFluff",
-   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
+   "desc": "How long Chicago building permits take: median and 80th percentile days from review start to issue, by permit type, review path and neighborhood, from City records, updated weekly.",
    "eyebrow": "Free Chicago permit tracker",
    "h1": "Chicago Permit Wait Times",
-   "card": "Coming soon"
+   "card": "Days from review to issue, by permit type, review path and neighborhood"
   },
   {
    "slug": "chicago-demolition-rodent-baiting",
@@ -6804,10 +6804,10 @@
    "module": "dp_demo_baiting",
    "draft": true,
    "title": "Chicago Demolition Rodent Baiting | ProofNotFluff",
-   "desc": "Placeholder until the build lands: the module's META and this entry are filled in by its build chat (coo/PARALLEL_BUILDS.md).",
+   "desc": "The rodent control step of a Chicago demolition permit in plain words, with wrecking permits issued each week by neighborhood, from City records.",
    "eyebrow": "Free guide for pest control and wreckers",
    "h1": "Chicago Demolition Rodent Baiting",
-   "card": "Coming soon"
+   "card": "The rodent control step for a wrecking permit, with permits issued each week by neighborhood"
   },
   {
    "slug": "chicago-city-contracts",

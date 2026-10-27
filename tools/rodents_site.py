@@ -85,8 +85,8 @@ CSS = ("<style>.rc-bars{margin:12px 0 8px;padding:16px 18px;background:var(--car
        "@media(max-width:599px){.rc-t{min-width:0}.rc-t th:nth-child(2),.rc-t td:nth-child(2){display:none}.rc-t th,.rc-t td{padding:9px 8px}.rc-wk div:not(:nth-child(3n+1)):not(:last-child) span{visibility:hidden}.rc-wk span{font-size:11.5px}.rc-wk{height:140px}.rc-wk div:not(:last-child) b{visibility:hidden}.rc-bar{grid-template-columns:minmax(96px,130px) 1fr 44px}}</style>")
 
 
-CHANGE_BINS = [("d0", "var(--gmd0)", "At least 25% fewer", "25%+ fewer"), ("d1", "var(--gmd1)", "5 to 25% fewer", "5 to 25% fewer"), ("d2", "var(--gmd2)", "Within 5%", "Within 5%"),
-               ("d3", "var(--gmd3)", "5 to 25% more", "5 to 25% more"), ("d4", "var(--gmd4)", "At least 25% more", "25%+ more"),
+CHANGE_BINS = [("d0", "var(--gmd0)", "At least 25% fewer", "25%+ fewer"), ("d1", "var(--gmd1)", "5 up to 25% fewer", "5 to 25% fewer"), ("d2", "var(--gmd2)", "Within 5%", "Within 5%"),
+               ("d3", "var(--gmd3)", "5 up to 25% more", "5 to 25% more"), ("d4", "var(--gmd4)", "At least 25% more", "25%+ more"),
                ("nx", "repeating-linear-gradient(45deg,var(--gmn) 0 4px,var(--dash) 4px 5.5px)", "Too few a year ago to compare")]
 
 
@@ -316,7 +316,7 @@ def map_block(d, E, ix=None, rel=""):
             + '<p class="gm-hint">Tap or hover any area on the map, or choose one from the list.</p>')
     cap = ("Community area outlines: City of Chicago, Boundaries - Community Areas. "
            + ("Residents: City of Chicago, ACS 5 Year Data by Community Area. Restaurant shares: City of Chicago Food Inspections. " if ix else "")
-           + "Every number on the map is also in the tables below.")
+           + "Every number on the map is also on each area's page and in the CSV.")
     fig = G.choropleth(areas, metrics, uid="ratmap", title="Map of Chicago's 77 community areas, colored by rat complaints to 311",
                        hint=hint, caption=cap)
     return G.CSS + fig if fig else ""
@@ -325,7 +325,7 @@ def map_block(d, E, ix=None, rel=""):
 IX_CSS = ("<style>.ri-mv{white-space:nowrap}.ri-up{color:var(--warn-ink);font-weight:600}.ri-dn{color:var(--teal-ink)}"
           ".rc-t td a,.rc-t th a{color:var(--ink);text-underline-offset:3px}.rc-t td.ri-rk{text-align:left;font-weight:700;color:var(--ink)}"
           ".ri-list{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}"
-          ".ri-list li{display:grid;grid-template-columns:2.4em 1fr auto;gap:4px 10px;align-items:baseline;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px}"
+          ".ri-list li{display:grid;grid-template-columns:3.4em 1fr auto;gap:4px 10px;align-items:baseline;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px}"
           ".ri-list b{font:700 18px Poppins,system-ui,sans-serif;color:var(--accent-text);font-variant-numeric:tabular-nums}"
           ".ri-list a{font-weight:700;color:var(--ink);text-underline-offset:3px}.ri-list span{color:var(--ink2);font-size:14.5px;text-align:right;font-variant-numeric:tabular-nums}"
           ".ri-list small{grid-column:2/-1;color:var(--muted);font-size:13px}"
@@ -344,7 +344,7 @@ IX_CSS = ("<style>.ri-mv{white-space:nowrap}.ri-up{color:var(--warn-ink);font-we
           "border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font-weight:600;text-decoration:none}.ri-near a:hover{border-color:var(--accent)}"
           ".ri-rest{display:grid;gap:12px}@media(min-width:700px){.ri-rest{grid-template-columns:repeat(3,minmax(0,1fr))}}"
           "@media(max-width:599px){.ri-t th:nth-child(4),.ri-t td:nth-child(4),.ri-t th:nth-child(5),.ri-t td:nth-child(5),.ri-t th:nth-child(6),.ri-t td:nth-child(6),"
-          ".ri-t th:nth-child(9),.ri-t td:nth-child(9){display:none}.ri-list li{grid-template-columns:2em 1fr}.ri-list span{grid-column:2;text-align:left}}"
+          ".ri-t th:nth-child(9),.ri-t td:nth-child(9){display:none}.ri-list li{grid-template-columns:3.4em 1fr}.ri-list span{grid-column:2;text-align:left}}"
           ".ri-t th:nth-child(2),.ri-t td:nth-child(2){text-align:left}.ri-t td:first-child{width:3.2em}"
           "@media(min-width:900px){.ri-ed .ri-list{grid-template-columns:1fr 1fr;grid-auto-flow:column;grid-template-rows:repeat(5,auto)}}"
           ".ri-nw{white-space:nowrap}.ri-page-how a{display:inline-flex;align-items:center;min-height:44px}"
@@ -459,7 +459,7 @@ def risers_block(ix, E, rel):
     if not rs:
         return "<p>No community area with at least 10 complaints moved up the rank against the 30 days before.</p>"
     return ('<ol class="ri-list">' + "".join(
-        f'<li><b>+{a["mom"]}</b><a href="{rel}{a["slug"]}/">{E(a["name"])}</a><span>{ordinal(a["kPrior"])} to {ordinal(a["k30"])}</span>'
+        f'<li><b>Up {a["mom"]}</b><a href="{rel}{a["slug"]}/">{E(a["name"])}</a><span>{ordinal(a["kPrior"])} to {ordinal(a["k30"])}</span>'
         f'<small>{a["r30"]:.2f} per 1,000 residents ({nn(a["d30"], "complaint")}), against {a["rPrior"]:.2f} ({a["prior30"]:,}) in the 30 days before</small></li>'
         for a in rs) + '</ol>')
 
@@ -658,7 +658,7 @@ def page_html(p):
             f'{change_words(c["change"])}. {c["d7"]:,} came in the last 7 days.')
     if ix:
         one = ix["order"][0]
-        lede += (f' Per resident, {E(one["name"])} is {one["place"]} on the Rat Index, with {one["r30"]:.2f} complaints per 1,000 residents '
+        lede += (f' Per resident, {E(dn(one["name"]))} is {one["place"]} on the Rat Index, with {one["r30"]:.2f} complaints per 1,000 residents '
                  f'against {ix["city"]["r30"]:.2f} citywide.')
     tile4 = ""
     if ix:
@@ -784,7 +784,7 @@ def area_html(p, d, ix, a, M):
     edition = (f'<section class="block"><h2>{E(dn(a["name"], True))} in the {ed["year"]} rattiest neighborhoods list</h2>'
                f'<p>In the 12 months from {E(M.nice_date(ed["from"]))} to {E(M.nice_date(ed["to"]))}, {E(dn(a["name"]))} had {a["year"]:,} rat complaints, '
                f'{a["rYear"]:.2f} per 1,000 residents: {E(a["placeYear"])} of 77 (it was {ordinal(a["kYearPrev"])} in the 12 months before, {E(M.nice_date(ed["prevFrom"]).split(" ")[0])} {ed["year"] - 2} to {E(M.nice_date(ed["prevTo"]).split(" ")[0])} {ed["year"] - 1}, with {a["yearPrev"]:,}). '
-               f'The list ranks complaints to 311, not a count of rats. <a href="{up}#rattiest">See the {ed["year"]} top 10</a>.</p></section>')
+               f'It ranks complaints to 311; it does not count rats. <a href="{up}#rattiest">See the {ed["year"]} top 10</a>.</p></section>')
     rest = ""
     if "insp" in a:
         cc = ix["city"]

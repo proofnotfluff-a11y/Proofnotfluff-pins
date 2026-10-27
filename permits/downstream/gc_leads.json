@@ -1,9 +1,9 @@
 {
  "schema": "pnf.gc_lead.v1",
- "generatedAt": "2026-10-26T16:23:04Z",
+ "generatedAt": "2026-10-27T16:21:13Z",
  "window": {
-  "issuedSince": "2024-10-26",
-  "signalLookbackSince": "2026-06-28",
+  "issuedSince": "2024-10-27",
+  "signalLookbackSince": "2026-06-29",
   "minValuation": 500000
  },
  "sources": {
@@ -19,42 +19,42 @@
  "report": {
   "cities": {
    "chicago": {
-    "permitRows": 2282,
-    "foodRows": 962,
-    "healthJoins": 59,
-    "candidates": 1064,
-    "kept": 592,
+    "permitRows": 2289,
+    "foodRows": 970,
+    "healthJoins": 58,
+    "candidates": 1067,
+    "kept": 591,
     "filtered": {
-     "house or 2 to 3 flat": 567,
-     "candidate": 1078,
+     "permit not open in the City record": 224,
+     "candidate": 1081,
      "no construction clean (foundation, demolition, roof, mechanical or site work only)": 238,
-     "permit not open in the City record": 222,
      "no commercial or apartment wording": 82,
-     "one home inside a larger building": 41,
-     "apartment building with no unit count (could be a 2 or 3 flat)": 7,
+     "house or 2 to 3 flat": 569,
      "no interior finish work or new building named": 36,
+     "one home inside a larger building": 41,
      "common areas only, no homes worked on": 6,
      "no business listed as general contractor": 5,
+     "apartment building with no unit count (could be a 2 or 3 flat)": 7,
      "revision or repeat of a listed job": 14
     },
     "rejectedByMoat": {
-     "no adjacent CO or health signal": 470,
+     "no adjacent CO or health signal": 474,
      "scope carries an email or phone number": 2
     }
    },
    "austin": {
-    "permitRows": 8797,
+    "permitRows": 8819,
     "foodRows": 1188,
     "healthJoins": 4,
     "coFlagValues": {
-     "Yes": 651,
+     "Yes": 630,
      "No": 28
     },
-    "candidates": 133,
-    "kept": 129,
+    "candidates": 132,
+    "kept": 128,
     "filtered": {
-     "candidate": 133,
-     "upstream stage Permit issued": 23
+     "candidate": 132,
+     "upstream stage Permit issued": 24
     },
     "rejectedByMoat": {
      "no adjacent CO or health signal": 4
@@ -69,7 +69,7 @@
    "permit_id": "2026-025330 BP",
    "master_permit_id": "13645821",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 6 building permits finaled)",
+   "stage_source": "Work under way (0 of 2 building permits finaled)",
    "issue_date": "2026-04-07",
    "address": "6801 River Place Blvd",
    "address_key": "6801 RIVER PL BLVD",
@@ -83,7 +83,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-025330 BP",
+     "record_id": "2026-025331 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -96,7 +96,7 @@
    "permit_id": "2025-154151 BP",
    "master_permit_id": "13107658",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 25 building permits finaled)",
+   "stage_source": "Work under way (0 of 77 building permits finaled)",
    "issue_date": "2026-06-08",
    "address": "6915 Bridge Point Pkwy Bldg 8",
    "address_key": "6915 BRIDGE POINT PKWY",
@@ -110,7 +110,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-154254 BP",
+     "record_id": "2025-154201 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -137,7 +137,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-094823 BP",
+     "record_id": "2026-094822 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -150,7 +150,7 @@
    "permit_id": "2025-160598 BP",
    "master_permit_id": "13513914",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 6 building permits finaled)",
+   "stage_source": "Work under way (0 of 7 building permits finaled)",
    "issue_date": "2025-12-29",
    "address": "4812 Gonzales St",
    "address_key": "4812 GONZALES ST",
@@ -164,7 +164,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-160600 BP",
+     "record_id": "2025-160602 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -204,7 +204,7 @@
    "permit_id": "2022-139482 BP",
    "master_permit_id": "12872034",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 1 building permits finaled)",
+   "stage_source": "Work under way (0 of 44 building permits finaled)",
    "issue_date": "2026-08-31",
    "address": "610 Davis St Unit 55",
    "address_key": "610 DAVIS ST",
@@ -231,7 +231,7 @@
    "permit_id": "2026-134292 BP",
    "master_permit_id": "13740450",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 2 building permits finaled)",
+   "stage_source": "Work under way (0 of 6 building permits finaled)",
    "issue_date": "2026-10-13",
    "address": "7401 Loyola Ln",
    "address_key": "7401 LOYOLA LN",
@@ -258,7 +258,7 @@
    "permit_id": "2025-117724 BP",
    "master_permit_id": "13479000",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 1 building permits finaled)",
+   "stage_source": "Work under way (0 of 2 building permits finaled)",
    "issue_date": "2025-09-17",
    "address": "8421 Hathaway Dr",
    "address_key": "8421 HATHAWAY DR",
@@ -285,7 +285,7 @@
    "permit_id": "2025-130842 BP",
    "master_permit_id": "13538837",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 6 building permits finaled)",
+   "stage_source": "Work under way (0 of 7 building permits finaled)",
    "issue_date": "2025-10-09",
    "address": "2915 E Cesar Chavez St",
    "address_key": "2915 E CESAR CHAVEZ ST",
@@ -299,7 +299,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-130845 BP",
+     "record_id": "2025-130842 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -312,7 +312,7 @@
    "permit_id": "2025-156334 BP",
    "master_permit_id": "13114310",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 9 building permits finaled)",
+   "stage_source": "Work under way (0 of 24 building permits finaled)",
    "issue_date": "2025-12-11",
    "address": "7817 W SH 71 Bldg 2",
    "address_key": "7817 W SH 71",
@@ -326,7 +326,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-156365 BP",
+     "record_id": "2025-156340 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -339,7 +339,7 @@
    "permit_id": "2025-047560 BP",
    "master_permit_id": "13189690",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 2 building permits finaled)",
+   "stage_source": "Work under way (0 of 7 building permits finaled)",
    "issue_date": "2025-04-18",
    "address": "2300 Kramer Ln Bldg 2",
    "address_key": "2300 KRAMER LN",
@@ -366,7 +366,7 @@
    "permit_id": "2024-084742 BP",
    "master_permit_id": "13256514",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 3 building permits finaled)",
+   "stage_source": "Work under way (0 of 5 building permits finaled)",
    "issue_date": "2024-12-10",
    "address": "1310 LBJ Way",
    "address_key": "1310 LBJ WAY",
@@ -380,7 +380,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2024-084742 BP",
+     "record_id": "2024-084743 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -407,7 +407,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-038461 BP",
+     "record_id": "2025-038462 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     },
@@ -427,7 +427,7 @@
    "permit_id": "2025-130384 BP",
    "master_permit_id": "13458105",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 4 building permits finaled)",
+   "stage_source": "Work under way (0 of 8 building permits finaled)",
    "issue_date": "2025-10-08",
    "address": "2730 E 7th St",
    "address_key": "2730 E 7TH ST",
@@ -441,7 +441,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-130386 BP",
+     "record_id": "2025-130389 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -454,7 +454,7 @@
    "permit_id": "2025-054667 BP",
    "master_permit_id": "13440153",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 1 building permits finaled)",
+   "stage_source": "Work under way (0 of 4 building permits finaled)",
    "issue_date": "2025-05-15",
    "address": "5405 Pecan Brook Dr",
    "address_key": "5405 PECAN BROOK DR",
@@ -468,7 +468,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-054669 BP",
+     "record_id": "2025-054668 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -481,7 +481,7 @@
    "permit_id": "2025-064350 BP",
    "master_permit_id": "13255823",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 3 building permits finaled)",
+   "stage_source": "Work under way (0 of 6 building permits finaled)",
    "issue_date": "2025-06-05",
    "address": "4512 Denali Summit Dr",
    "address_key": "4512 DENALI SUMMIT DR",
@@ -495,7 +495,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-064353 BP",
+     "record_id": "2025-064356 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -508,7 +508,7 @@
    "permit_id": "2025-062482 BP",
    "master_permit_id": "13482374",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 1 building permits finaled)",
+   "stage_source": "Work under way (0 of 4 building permits finaled)",
    "issue_date": "2025-06-17",
    "address": "2720 Goodwin Ave",
    "address_key": "2720 GOODWIN AVE",
@@ -549,7 +549,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-151793 BP",
+     "record_id": "2025-151791 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -616,7 +616,7 @@
    "permit_id": "2025-141339 BP",
    "master_permit_id": "13091575",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 5 building permits finaled)",
+   "stage_source": "Work under way (0 of 15 building permits finaled)",
    "issue_date": "2026-05-08",
    "address": "1420 E Howard Ln Bldg 1",
    "address_key": "1420 E HOWARD LN",
@@ -758,7 +758,7 @@
    "permit_id": "2025-055201 BP",
    "master_permit_id": "13050337",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 12 building permits finaled)",
+   "stage_source": "Work under way (0 of 19 building permits finaled)",
    "issue_date": "2025-05-05",
    "address": "6125 Johnny Morris Rd Bldg 3",
    "address_key": "6125 JOHNNY MORRIS RD",
@@ -772,7 +772,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-055210 BP",
+     "record_id": "2025-055216 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -799,7 +799,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-143777 BP",
+     "record_id": "2025-143776 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -839,7 +839,7 @@
    "permit_id": "2026-035667 BP",
    "master_permit_id": "13619488",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 3 building permits finaled)",
+   "stage_source": "Work under way (0 of 4 building permits finaled)",
    "issue_date": "2026-04-07",
    "address": "1715 W Cesar Chavez St",
    "address_key": "1715 W CESAR CHAVEZ ST",
@@ -853,7 +853,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-035667 BP",
+     "record_id": "2026-035670 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -920,7 +920,7 @@
    "permit_id": "2026-099071 BP",
    "master_permit_id": "13544797",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 1 building permits finaled)",
+   "stage_source": "Work under way (0 of 2 building permits finaled)",
    "issue_date": "2026-08-04",
    "address": "6420 Helen Miller Vw",
    "address_key": "6420 HELEN MILLER VW",
@@ -934,7 +934,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-099071 BP",
+     "record_id": "2026-099072 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -1109,7 +1109,7 @@
    "permit_id": "2026-037893 BP",
    "master_permit_id": "13638616",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 1 building permits finaled)",
+   "stage_source": "Work under way (0 of 3 building permits finaled)",
    "issue_date": "2026-03-30",
    "address": "3505 Montopolis Dr Bldg J",
    "address_key": "3505 MONTOPOLIS DR",
@@ -1123,7 +1123,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-037893 BP",
+     "record_id": "2026-037894 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -1224,7 +1224,7 @@
    "permit_id": "2025-118853 BP",
    "master_permit_id": "13544644",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 9 building permits finaled)",
+   "stage_source": "Work under way (0 of 28 building permits finaled)",
    "issue_date": "2025-09-22",
    "address": "8413 Southwest Pkwy Bldg 1",
    "address_key": "8413 SW PKWY",
@@ -1305,7 +1305,7 @@
    "permit_id": "2024-155819 BP",
    "master_permit_id": "13412514",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 5 building permits finaled)",
+   "stage_source": "Work under way (0 of 7 building permits finaled)",
    "issue_date": "2024-12-04",
    "address": "1501 Airport Commerce Dr Bldg 1",
    "address_key": "1501 AIRPORT COMMERCE DR",
@@ -1386,7 +1386,7 @@
    "permit_id": "2021-050295 BP",
    "master_permit_id": "12566164",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 1 building permits finaled)",
+   "stage_source": "Work under way (0 of 3 building permits finaled)",
    "issue_date": "2026-08-19",
    "address": "4401 Tilley St",
    "address_key": "4401 TILLEY ST",
@@ -1440,7 +1440,7 @@
    "permit_id": "2024-149774 BP",
    "master_permit_id": "13368961",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 6 building permits finaled)",
+   "stage_source": "Work under way (0 of 9 building permits finaled)",
    "issue_date": "2024-11-08",
    "address": "7009 Ed Bluestein Blvd Svrd Nb Bldg 1",
    "address_key": "7009 ED BLUESTEIN BLVD SVRD NB",
@@ -1562,7 +1562,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-087546 BP",
+     "record_id": "2025-087547 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -1575,7 +1575,7 @@
    "permit_id": "2019-020881 BP",
    "master_permit_id": "12020691",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 1 building permits finaled)",
+   "stage_source": "Work under way (0 of 2 building permits finaled)",
    "issue_date": "2025-06-04",
    "address": "10728 Burnet Rd",
    "address_key": "10728 BURNET RD",
@@ -1791,7 +1791,7 @@
    "permit_id": "2025-016663 BP",
    "master_permit_id": "13431393",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 1 building permits finaled)",
+   "stage_source": "Work under way (0 of 4 building permits finaled)",
    "issue_date": "2025-04-01",
    "address": "5519 E Ben White Blvd Svrd Eb",
    "address_key": "5519 E BEN WHITE BLVD SVRD EB",
@@ -1832,7 +1832,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-115587 BP",
+     "record_id": "2025-115588 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -1940,7 +1940,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-149929 BP",
+     "record_id": "2025-149928 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -2122,7 +2122,7 @@
    "permit_id": "2025-100305 BP",
    "master_permit_id": "13525226",
    "stage": "Inspections Under Way",
-   "stage_source": "Near finish (2 of 3 building permits finaled)",
+   "stage_source": "Near finish (1 of 5 building permits finaled)",
    "issue_date": "2025-08-08",
    "address": "507 E Howard Ln Bldg 3 Unit 100A",
    "address_key": "507 E HOWARD LN",
@@ -2196,33 +2196,6 @@
     }
    ],
    "source_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?masterpermitnum=13271863"
-  },
-  {
-   "lead_id": "aus-13347837",
-   "city": "austin",
-   "permit_id": "2025-059430 BP",
-   "master_permit_id": "13347837",
-   "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 1 building permits finaled)",
-   "issue_date": "2025-05-14",
-   "address": "3201 E SH 71 Svrd Wb",
-   "address_key": "3201 E SH 71 SVRD WB",
-   "zip": "78617",
-   "valuation": 3500000,
-   "work_type": "New construction",
-   "scope": "New Construction of Convenience Store Fuel Canopy and Dumpster Enclosure (9566 SF)",
-   "gc_company": "Schaffer Construction LLC",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "co_flag",
-     "dataset": "3syk-w9eu",
-     "record_id": "2025-059434 BP",
-     "date": null,
-     "detail": "certificate_of_occupancy=Yes"
-    }
-   ],
-   "source_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?masterpermitnum=13347837"
   },
   {
    "lead_id": "aus-13626650",
@@ -2527,7 +2500,7 @@
    "permit_id": "2024-138901 BP",
    "master_permit_id": "13371400",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 9 building permits finaled)",
+   "stage_source": "Work under way (0 of 16 building permits finaled)",
    "issue_date": "2026-01-15",
    "address": "7504 Cota Vista Dr Bldg 1",
    "address_key": "7504 COTA VISTA DR",
@@ -2554,7 +2527,7 @@
    "permit_id": "2025-050278 BP",
    "master_permit_id": "13373090",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 1 building permits finaled)",
+   "stage_source": "Work under way (0 of 2 building permits finaled)",
    "issue_date": "2025-09-23",
    "address": "6001 Hylawn Dr Bldg 1",
    "address_key": "6001 HYLAWN DR",
@@ -2568,7 +2541,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-050279 BP",
+     "record_id": "2025-050278 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -2662,7 +2635,7 @@
    "permit_id": "2022-034654 BP",
    "master_permit_id": "12853765",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 1 building permits finaled)",
+   "stage_source": "Work under way (0 of 2 building permits finaled)",
    "issue_date": "2025-10-22",
    "address": "1806 W Braker Ln Bldg 1",
    "address_key": "1806 W BRAKER LN",
@@ -2905,7 +2878,7 @@
    "permit_id": "2026-010842 BP",
    "master_permit_id": "13603237",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 1 building permits finaled)",
+   "stage_source": "Work under way (0 of 3 building permits finaled)",
    "issue_date": "2026-01-29",
    "address": "4408 Long Champ Dr Unit 400",
    "address_key": "4408 LONG CHAMP DR",
@@ -2986,7 +2959,7 @@
    "permit_id": "2025-057415 BP",
    "master_permit_id": "13329057",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 12 building permits finaled)",
+   "stage_source": "Work under way (0 of 14 building permits finaled)",
    "issue_date": "2025-05-15",
    "address": "1110 W 6th St",
    "address_key": "1110 W 6TH ST",
@@ -3000,7 +2973,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-057421 BP",
+     "record_id": "2025-057405 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3013,7 +2986,7 @@
    "permit_id": "2025-057807 BP",
    "master_permit_id": "13344903",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 8 building permits finaled)",
+   "stage_source": "Work under way (0 of 12 building permits finaled)",
    "issue_date": "2025-05-09",
    "address": "7501 Cota Vista Dr Bldg 1",
    "address_key": "7501 COTA VISTA DR",
@@ -3027,7 +3000,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-057823 BP",
+     "record_id": "2025-057818 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3040,7 +3013,7 @@
    "permit_id": "2025-115156 BP",
    "master_permit_id": "13383813",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 4 building permits finaled)",
+   "stage_source": "Work under way (0 of 6 building permits finaled)",
    "issue_date": "2025-09-10",
    "address": "1720 Lawrence St",
    "address_key": "1720 LAWRENCE ST",
@@ -3054,7 +3027,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-115158 BP",
+     "record_id": "2025-115159 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3121,7 +3094,7 @@
    "permit_id": "2025-118078 BP",
    "master_permit_id": "13533052",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 2 building permits finaled)",
+   "stage_source": "Work under way (0 of 3 building permits finaled)",
    "issue_date": "2025-09-17",
    "address": "1124 Clayton Ln",
    "address_key": "1124 CLAYTON LN",
@@ -3135,7 +3108,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-118080 BP",
+     "record_id": "2025-118079 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3175,7 +3148,7 @@
    "permit_id": "2025-122126 BP",
    "master_permit_id": "13543356",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 3 building permits finaled)",
+   "stage_source": "Work under way (0 of 9 building permits finaled)",
    "issue_date": "2025-09-25",
    "address": "2545 Brockton Dr",
    "address_key": "2545 BROCKTON DR",
@@ -3189,7 +3162,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-122132 BP",
+     "record_id": "2025-122129 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3229,7 +3202,7 @@
    "permit_id": "2026-036751 BP",
    "master_permit_id": "13590912",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 1 building permits finaled)",
+   "stage_source": "Work under way (0 of 11 building permits finaled)",
    "issue_date": "2026-03-27",
    "address": "811 Clayton Ln",
    "address_key": "811 CLAYTON LN",
@@ -3243,7 +3216,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-036752 BP",
+     "record_id": "2026-036756 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3256,7 +3229,7 @@
    "permit_id": "2026-099844 BP",
    "master_permit_id": "13597142",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 3 building permits finaled)",
+   "stage_source": "Work under way (0 of 19 building permits finaled)",
    "issue_date": "2026-08-03",
    "address": "7333 Bluff Springs Rd Bldg 1",
    "address_key": "7333 BLUFF SPRINGS RD",
@@ -3418,7 +3391,7 @@
    "permit_id": "2020-118017 BP",
    "master_permit_id": "12489208",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 1 building permits finaled)",
+   "stage_source": "Work under way (0 of 4 building permits finaled)",
    "issue_date": "2025-04-17",
    "address": "2338 Columbus Dr",
    "address_key": "2338 COLUMBUS DR",
@@ -3432,7 +3405,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2020-118018 BP",
+     "record_id": "2020-118019 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3445,7 +3418,7 @@
    "permit_id": "2020-179907 BP",
    "master_permit_id": "12553652",
    "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 1 building permits finaled)",
+   "stage_source": "Work under way (0 of 3 building permits finaled)",
    "issue_date": "2025-03-03",
    "address": "6320 E Stassney Ln Bldg 7",
    "address_key": "6320 E STASSNEY LN",
@@ -3540,7 +3513,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2024-160849 BP",
+     "record_id": "2024-160848 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -6282,40 +6255,6 @@
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101064709"
-  },
-  {
-   "lead_id": "chi-101069634",
-   "city": "chicago",
-   "permit_id": "101069634",
-   "master_permit_id": null,
-   "stage": "Inspections Under Way",
-   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
-   "issue_date": "2025-10-03",
-   "address": "925 W Fulton Market",
-   "address_key": "925 W FULTON MARKET",
-   "zip": null,
-   "valuation": 12000000,
-   "work_type": "New construction",
-   "scope": "First time tenant buildout for restaurant on ground floor of 11 story high rise building. Base building address 217 n sangamon",
-   "gc_company": "Clune Construction Company, L.P.",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "co_required",
-     "dataset": "ydr8-5enu",
-     "record_id": "3416289",
-     "date": null,
-     "detail": "Inspections (Certificate Of Occupancy Required)"
-    },
-    {
-     "type": "health_license_inspection",
-     "dataset": "4ijn-s7e5",
-     "record_id": "2645266",
-     "date": "2026-10-15",
-     "detail": "License inspection, Pass"
-    }
-   ],
-   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101069634"
   },
   {
    "lead_id": "chi-101075752",
@@ -15326,6 +15265,33 @@
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101081518"
   },
   {
+   "lead_id": "chi-101086447",
+   "city": "chicago",
+   "permit_id": "101086447",
+   "master_permit_id": null,
+   "stage": "Inspections Under Way",
+   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
+   "issue_date": "2026-10-21",
+   "address": "222 S Riverside Plz",
+   "address_key": "222 S RIVERSIDE PLZ",
+   "zip": null,
+   "valuation": 1050000,
+   "work_type": "Renovation",
+   "scope": "Tenant buildout in existing office building on the 22nd floor, office suite 2250. New partitions, doors, ceilings, lighting, millwork, and finishes. Associated electrical, mechanical and plumbing work",
+   "gc_company": "Leopardo Construction Inc",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_required",
+     "dataset": "ydr8-5enu",
+     "record_id": "3455865",
+     "date": null,
+     "detail": "Inspections (Certificate Of Occupancy Required)"
+    }
+   ],
+   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101086447"
+  },
+  {
    "lead_id": "chi-101053141",
    "city": "chicago",
    "permit_id": "101053141",
@@ -19044,33 +19010,6 @@
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101080630"
-  },
-  {
-   "lead_id": "chi-101067853",
-   "city": "chicago",
-   "permit_id": "101067853",
-   "master_permit_id": null,
-   "stage": "Inspections Under Way",
-   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
-   "issue_date": "2025-05-29",
-   "address": "2800 S California Ave",
-   "address_key": "2800 S CALIFORNIA AVE",
-   "zip": null,
-   "valuation": 513000,
-   "work_type": "Renovation",
-   "scope": "Alterations to basement level tunnel corriodr and adjacent storage room service medical use areas",
-   "gc_company": "F.H. Paschen, S.N. Nielsen & Associates, LLC.",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "co_required",
-     "dataset": "ydr8-5enu",
-     "record_id": "3411712",
-     "date": null,
-     "detail": "Inspections (Certificate Of Occupancy Required)"
-    }
-   ],
-   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101067853"
   },
   {
    "lead_id": "chi-101083524",

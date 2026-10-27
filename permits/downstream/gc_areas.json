@@ -1,6 +1,6 @@
 {
  "schema": "pnf.gcareas.v1",
- "generatedAt": "2026-10-26T16:23:04Z",
+ "generatedAt": "2026-10-27T16:21:13Z",
  "areas": {
   "chi-100976387": "Irving Park",
   "chi-100976390": "Irving Park",
@@ -196,7 +196,6 @@
   "chi-101067617": "West Town",
   "chi-101067665": "Near North Side",
   "chi-101067729": "Near West Side",
-  "chi-101067853": "South Lawndale",
   "chi-101067918": "Uptown",
   "chi-101067955": "Logan Square",
   "chi-101068028": "Austin",
@@ -229,7 +228,6 @@
   "chi-101069540": "Bridgeport",
   "chi-101069574": "Near North Side",
   "chi-101069625": "South Chicago",
-  "chi-101069634": "Near West Side",
   "chi-101069759": "West Ridge",
   "chi-101069829": "West Town",
   "chi-101069888": "Near North Side",
@@ -572,6 +570,7 @@
   "chi-101086037": "Lincoln Park",
   "chi-101086157": "North Center",
   "chi-101086173": "Near West Side",
+  "chi-101086447": "Near West Side",
   "chi-101086570": "Edgewater",
   "chi-101086577": "Near West Side",
   "chi-101086585": "West Ridge",

@@ -6892,7 +6892,7 @@
     "button": "Open the truck load calculator"
    },
    "method": [
-    "Every morning we pull the City of Chicago's public Transportation Department Permits dataset and keep the permits of type DOT_DMPSTR, the City's code for a dumpster permit, that have an issue date. The City lists a permit with several locations as several rows; we count each permit once.",
+    "Every morning we pull the City of Chicago's public Transportation Department Permits dataset and keep the permits of type DOT_DMPSTR, the City's code for a dumpster permit, that have an issue date. The City lists a permit with several locations as several rows; we count each permit once in the city total.",
     "Each permit is placed in one of the 77 community areas by the latitude and longitude the City gives for the start of its address range, matched against the City's community area outlines. Each permit counts on the day CDOT issued it, and every count runs through the day before that morning's pull. The year-ago column is the same 90 calendar days one year earlier.",
     "Only counts are kept. We never request the applicant name, contact or street address fields. The City's map point is used only to place a permit in a community area and is not kept, and no permit number or address is stored or shown, so the page cannot point to any building, block or business."
    ],
@@ -6911,7 +6911,7 @@
     ],
     [
      "Are dumpster permits up this year?",
-     "The second tile at the top answers it for the whole city: the last 90 days against the same 90 days a year earlier. The Change column in the table does the same for each community area. Permits rise in spring and drop in winter, so compare a month with the same month a year before."
+     "Check the Vs. a year ago tile at the top: it compares the last 90 days with the same 90 days a year earlier for the whole city. The Change column in the table does the same for each community area. Permits rise in spring and drop in winter, so compare a month with the same month a year before."
     ],
     [
      "How much does a dumpster permit cost in Chicago?",

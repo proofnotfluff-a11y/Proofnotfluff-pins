@@ -407,7 +407,7 @@ def page_html(p):
     say = lambda x: "about the same as" if x is None or abs(x) < 1 else f'{abs(x):.0f}% {"more" if x > 0 else "fewer"} than'
     lede = (f'Chicago 311 took {w["y12"]:,} water in basement calls and {s["y12"]:,} sewer cleaning requests in the 12 months from '
             f'{E(ym_name(first_m))} to {E(ym_name(st["lm"]))}. Water in basement calls ran {say(w["ch"])} the 12 months before. '
-            f'Every one of the 77 community areas, month by month, with the storm days.')
+            + (f'The busiest day since {E(st["since"])} was {E(M.nice_date(st["topDays"][0]["day"]))}, with {st["topDays"][0]["water"]:,} water in basement calls.' if st["topDays"] and st["topDays"][0]["water"] else ""))
     peak = st["peaks"]["water"][0] if st["peaks"]["water"] else None
     tiles = ('<div class="tiles ld-tiles">'
              f'<div class="tile key"><div class="lab">Basement calls</div><div class="val">{w["y12"]:,}</div><div class="sub">water in basement, last 12 months, {E(pct(w["ch"]))} on the 12 before</div></div>'

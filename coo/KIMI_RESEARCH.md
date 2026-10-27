@@ -20,6 +20,7 @@ Our scout already finds public-data ideas; the reviewers kill most of them for a
 | R7 | Our live $149 offers from the buyer's chair, against rival offers to the same trades | its own schema, in the prompt | offer changes proposed to Todd |
 | R8 | First traffic for a new site: indexing, $0 listings, news hooks, proven cases, AI answers | its own schema, in the prompt | traffic moves proposed to Todd |
 | R9 | A bid writer for post-construction cleaners: what they use to bid, rivals, permit-based bids, pricing units | its own schema, in the prompt | build, test or drop, proposed to Todd |
+| R10 | Which free features to build next that win search and AI answer traffic from trade owners | its own schema, in the prompt | build list proposed to Todd |
 
 Repeat R3 and R4 every two weeks with a new Focus line (another metro, another record type). R5 runs after the scorer ranks the new candidates.
 
@@ -449,6 +450,83 @@ Then one fenced json block:
  "demand": [{"what": "the count and what it counts", "number": null, "url": "", "date": "", "label": "OBSERVED"}],
  "verdict": {"call": "build|test|drop", "why": "three sentences", "freeSubstitute": "the free way cleaners do this today, or null", "strongestRival": "t1",
              "test": "the cheapest test inside our limits", "passMark": "the number in 21 days that means build", "confidence": "high|medium|low"}}
+```
+Every example value above is a placeholder. Replace it or use null.
+````
+
+## R10, free features that win search and AI answer traffic (Todd, Oct 27, 2026, 11:23 am: "research what addition free features we can build to bring in search and LLM traffic? This is a major priority.")
+
+Intake as above: `kimi_intake.py read` keeps `features` as the list to check and saves `aiProbe`, `ranking` and `avoid` beside it; every URL goes on the list. Nothing is built without Todd's go; each feature still runs the site gates and the verify skill.
+
+````
+Round: R10, free features that win search and AI answer traffic. Everything you need is in this message.
+
+WHO WE ARE
+ProofNotFluff LLC, Chicago. One owner, no staff, run with AI agents. Faceless: the brand speaks, never the founder. Site: proofnotfluff.com, static pages on GitHub Pages, rebuilt by code, so a feature can be a page, a calculator, a map or a data file, but nothing that needs a server, logins or a database. Data pages are rebuilt on a schedule by GitHub Actions from public open data (City of Chicago Data Portal and any other free public source).
+
+WHO THE SITE IS FOR
+Owners of small trade and service businesses: cleaning and post-construction cleaning, pest control, hood and kitchen cleaning, contractors and remodelers, electricians, plumbers, HVAC, roofers, painters, landscaping and snow removal, junk removal, pressure washing. Chicago first, other big US cities later. Not homeowners.
+
+WHAT IS ALREADY LIVE (do not propose these again)
+- About 50 free calculators: job pricing for many trades, hourly and day rates, price increases, missed-call cost, cost per lead, break-even, profit and loss, self-employment tax, startup costs.
+- Chicago Trades News: a free daily brief of new rules, permits, licenses, taxes, pay and big projects for trade owners, each item with its source.
+- Chicago rat complaints by neighborhood: weekly 311 counts for all 77 community areas with an interactive map.
+- Weekly free samples from City records: big construction projects with their builders, restaurant inspection results, new business licenses.
+- Question pages that answer one owner question each with our numbers. Coming: free templates (estimate, invoice, price increase letter) and a post-construction cleaning bid calculator.
+
+WHERE TRAFFIC STANDS (Oct 27)
+About 360 page views last week, almost all direct, 0 visits from search. A few pages are indexed by Google and Bing. What we already learned (round R8): a new domain grows slowly from search alone; pages with original numbers get cited in AI answers more than generic copy; near-identical template pages get folded together by Google; a local news mention is the fastest lever.
+
+WHAT WE CANNOT DO (a feature that needs one is out)
+No paid data, paid APIs or paid tools. No personal data about private people, and no page that names a business with a failed inspection or a complaint. No medical, legal-filing, immigration or investment advice tools. No scraping sites whose terms forbid it. No logins or user accounts. Nothing against a search engine's or platform's rules, no thin pages made only to rank.
+
+THE QUESTION
+Which 10 to 15 free features should we build next so that trade owners find us through Google, Bing and AI answers (ChatGPT, Perplexity, Google AI Overviews, Copilot), and which three first?
+
+HOW TO WORK
+1. Demand. For each candidate, find evidence that trade owners look for it: questions they ask on public pages (forums, Q and A sites, trade association pages), "People also ask" style questions, Google Trends pages, and the pages that rank for it now. Give the exact search words they use.
+2. AI answer probe. Take 12 real questions a trade owner asks (pricing a job, finding work, rules, licenses, taxes, seasons, local data). For each, find which pages AI answer engines and search results cite or rank today, and what kind of page wins (a calculator, a data table, a city dataset page, a guide, a directory). Say where a free, sourced, number-rich page would beat what is there.
+3. Data. For every data feature, name the free public dataset: its page, who publishes it, how often it updates, the fields we would use, and its license or terms. City of Chicago, Cook County, State of Illinois and federal sources first (for example BLS, Census, OSHA, EPA, NOAA, SBA, FEMA). Prefer data that gives a unique number per neighborhood, ZIP, trade or month, so many pages are each genuinely different.
+4. Free rivals. For each feature, the best free page or tool that already does it, and what it lacks (stale, not local, no source, no trade angle, behind a signup).
+5. Types to consider (not a limit): local data trackers and maps (by neighborhood or ZIP), monthly local indexes or rankings with our own numbers, seasonal planners, rule and license checkers that point to the official page, wage and price benchmarks from public data, embeddable widgets other sites can place with a link back, free downloadable datasets (CSV) with a citation line, comparison tables, glossaries of local codes and permits, and anything that earns links from local news, trade associations or city pages.
+6. Rank them by: demand evidence, how likely AI answers and search would cite it, how unique the numbers are, the data's reliability, build effort for a small static site, how often it can refresh, and how naturally it leads a visitor to our paid lead lists. Then give the first three in order, with why.
+
+EVIDENCE RULES
+- Open every page you cite. Cite each page's own link, never a list page that only mentions it.
+- Every source is {"url": "...", "date": "YYYY-MM-DD"}: the date posted, or for a live page the day you read it.
+- Quotes are 15 words or fewer, copied exactly. No person's name, email, phone or username, ever.
+- Label every claim OBSERVED (a page states it) or INFERRED (your reasoning). Search volumes you estimate are INFERRED.
+- Read only. Do not sign up, submit, post, comment or message anyone.
+- Honest beats hopeful: say which features would likely bring little traffic, and why.
+- Plain words, no em or en dashes. Valid JSON: double quotes, no trailing commas, no comments. Counts are bare numbers.
+
+REPLY IN EXACTLY THIS SHAPE
+
+R10 | DATE: (today) | PAGES OPENED: n | BLOCKED: sites that refused you
+
+SUMMARY: five plain sentences: what kind of page wins trade owner searches and AI answers today, the three features to build first, what traffic is realistic from them in 90 days, and the one surprise.
+
+Then one fenced json block:
+```json
+{"round": "R10",
+ "features": [
+  {"id": "f1", "name": "", "type": "data tracker|map|index or ranking|calculator|checker|benchmark|planner|widget|dataset download|guide|other",
+   "forTrades": [""], "city": "Chicago",
+   "whatItShows": "two sentences",
+   "searchWords": [{"words": "", "evidence": {"url": "", "date": ""}, "label": "OBSERVED"}],
+   "aiQuestions": ["questions this would answer"],
+   "data": [{"name": "", "publisher": "", "url": "the dataset page", "date": "", "updates": "daily|weekly|monthly|yearly", "fields": [""], "terms": "license or terms in a few words", "termsUrl": ""}],
+   "uniquePages": null, "uniquePagesHow": "what makes each page different",
+   "freeRivals": [{"name": "", "url": "", "date": "", "lacks": "one line"}],
+   "linkMagnet": "who would link to it and why, one line",
+   "leadsToPaid": "how it leads to our lead lists, one line",
+   "effort": "small|medium|large", "refresh": "daily|weekly|monthly",
+   "risks": "one line",
+   "evidence": [{"url": "", "date": "", "quote": "15 words or fewer", "label": "OBSERVED"}],
+   "confidence": "high|medium|low"}],
+ "aiProbe": [{"question": "", "winsNow": "kind of page cited or ranked", "cited": [{"url": "", "date": ""}], "ourOpening": "one line or null"}],
+ "ranking": [{"rank": 1, "featureId": "f1", "why": "two sentences", "first90DaysVisits": null, "label": "INFERRED"}],
+ "avoid": [{"idea": "", "why": "one line"}]}
 ```
 Every example value above is a placeholder. Replace it or use null.
 ````

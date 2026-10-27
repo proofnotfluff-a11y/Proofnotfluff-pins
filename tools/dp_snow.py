@@ -271,14 +271,17 @@ CSS = ("<style>"
        ".sn-seg input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}"
        ".sn-seg label:has(input:checked){background:var(--ink);border-color:var(--ink);color:var(--card)}"
        ".sn-seg label:has(input:focus-visible){outline:3px solid var(--focus);outline-offset:2px}"
-       ".sn-help{margin:0 0 10px;font-size:15px;color:var(--ink2);max-width:720px}.sn-now{margin:0 0 10px;font-size:15px;color:var(--ink2)}.sn-now b{color:var(--ink)}"
-       ".sn-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}@media(min-width:900px){.sn-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}"
+       ".sn-top{margin-top:18px}section.block .sn-ctl .sn-ctl-h{flex-basis:100%;margin:0 0 -4px;font-size:17px;line-height:1.3}"
+       "@media(max-width:599px){.sn-now{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.sn-ctl{padding:12px 14px;gap:10px 20px}}.sn-now{margin:0 0 10px;font-size:15px;color:var(--ink2)}.sn-now b{color:var(--ink)}"
+       ".sn-tiles{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.sn-tiles .tile.key{grid-column:1/-1;order:-1}"
+       "@media(min-width:900px){.sn-tiles{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.sn-tiles .tile.key{grid-column:auto;order:0}}"
+       "@media(max-width:899px){.sn-tiles .tile:not(.key){padding:10px}.sn-tiles .tile:not(.key) .sub{font-size:12.5px}.sn-tiles .tile.key .val{font-size:40px}}"
        ".sn-tiles .tile .sub{font-size:13.5px;margin-top:4px;line-height:1.35}.sn-tiles .tile:not(.key) .sub{color:var(--ink2)}"
        ".sn-act{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0}"
        ".sn-fig{position:relative;margin:12px 0 6px;padding:16px 16px 12px;background:var(--card);border:1px solid var(--line);border-radius:12px}"
        ".sn-fig figcaption{font-weight:700;color:var(--ink);margin:0 0 2px}.sn-fig .sn-sub{font-size:13.5px;color:var(--muted);margin:0 0 12px}"
        ".sn-plot{position:relative;height:210px;margin:0 0 0 30px}"
-       ".sn-plot.m{height:150px}.sn-plot:focus-visible{outline:3px solid var(--focus);outline-offset:4px;border-radius:4px}"
+       ".sn-plot.m{height:150px}.sn-plot.m .sn-col i{max-width:40px}.sn-plot:focus-visible{outline:3px solid var(--focus);outline-offset:4px;border-radius:4px}"
        ".sn-gl{position:absolute;left:0;right:0;height:0;border-top:1px solid var(--sn-grid)}"
        ".sn-gl span{position:absolute;right:100%;margin-right:8px;transform:translateY(-50%);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}"
        ".sn-gl.base{border-top-color:var(--dash)}"
@@ -304,17 +307,19 @@ CSS = ("<style>"
        ".sn-lab{position:absolute;font-size:12.5px;font-weight:700;color:var(--ink);white-space:nowrap;transform:translateY(-50%);z-index:3;background:var(--card);padding:0 3px;border-radius:4px}"
        ".sn-x{position:absolute;top:0;bottom:0;width:0;border-left:1px solid var(--ink2);z-index:4;pointer-events:none}.sn-x[hidden]{display:none}"
        ".sn-mx{position:relative;height:18px;margin:6px 0 0 30px}.sn-mx span{position:absolute;transform:translateX(-50%);font-size:11.5px;color:var(--muted)}"
-       ".sn-dates{grid-template-columns:repeat(2,minmax(0,1fr))}@media(max-width:899px){.sn-dates .tile:nth-child(3){grid-column:1/-1}}@media(min-width:900px){.sn-dates{grid-template-columns:repeat(3,minmax(0,1fr))}}"
+       ".sn-dates{grid-template-columns:1fr}@media(min-width:600px){.sn-dates{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(min-width:900px){.sn-dates{grid-template-columns:repeat(3,minmax(0,1fr))}}"
        ".sn-note{font-size:14.5px;color:var(--ink2);margin:10px 0 0}"
        ".sn-tw{overflow-x:auto;margin:12px 0 0;border:1px solid var(--line);border-radius:12px;background:var(--card)}"
        ".sn-tw:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
        ".sn-t{width:100%;border-collapse:collapse;font-size:14.5px;min-width:560px}.sn-t th,.sn-t td{padding:9px 12px;border-bottom:1px solid var(--rule);text-align:right;font-variant-numeric:tabular-nums}"
        ".sn-t th:first-child,.sn-t td:first-child{text-align:left}.sn-t thead th{font-size:13px;color:var(--muted);font-weight:700;vertical-align:bottom}"
        ".sn-t tbody th{font-weight:600;color:var(--ink)}.sn-t tr:last-child td,.sn-t tr:last-child th{border-bottom:0}"
-       ".sn-t td.x{color:var(--muted);text-align:left}.sn-t tbody th{white-space:nowrap}.sn-t thead th.grp{text-align:center;border-bottom:1px solid var(--line);white-space:nowrap}.sn-t thead tr+tr th{text-align:right}.sn-t th.gr,.sn-t td.gr{width:160px;padding-left:22px;border-left:1px solid var(--rule)}.sn-t tr.cur th small{display:block;font-weight:400;font-size:12.5px;color:var(--muted)}"
+       ".sn-t td.x{color:var(--muted);text-align:left}.sn-t tbody th{white-space:nowrap}.sn-t thead th.grp{text-align:center;border-bottom:1px solid var(--line);white-space:nowrap}.sn-t thead tr+tr th,.sn-t thead tr+tr th:first-child{text-align:right}.sn-t th.gr,.sn-t td.gr{width:160px;padding-left:22px;border-left:1px solid var(--rule)}.sn-t tr.cur th small{display:block;font-weight:400;font-size:12.5px;color:var(--muted)}"
        "[data-sn-t='1'] .c1,[data-sn-t='2'] .c2,[data-sn-t='3'] .c3,[data-sn-t='6'] .c6{background:var(--sn-wash);font-weight:700;color:var(--ink)}"
        ".sn-defs{margin:8px 0 0;padding-left:20px}.sn-defs li{margin:8px 0;color:var(--ink2)}.sn-defs b{color:var(--ink)}"
-       ".sn-end p{color:var(--ink2);margin:0 0 4px}.sn-dl{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0}"
+       ".sn-end p{color:var(--ink2);margin:0 0 4px}.sn-lead{color:var(--ink2);margin:0 0 6px;max-width:780px}"
+       ".sn-more{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:0 16px}.sn-more>summary{display:flex;align-items:center;min-height:48px;color:var(--ink)}"
+       ".sn-more[open]>summary{border-bottom:1px solid var(--rule);margin-bottom:6px}.sn-more>:not(summary){max-width:820px}@media(max-width:599px){.sn-dl a{flex:1 1 100%}}.sn-dl{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0}"
        ".vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}"
        "@media(max-width:599px){.sn-plot,.sn-line{margin-left:24px}.sn-xl,.sn-mx{margin-left:24px}.sn-plot{height:180px}.sn-line{height:200px}"
        ".sn-col b{font-size:11.5px}.sn-xl.yr span.k:not(.k0){visibility:hidden}.sn-t{min-width:0;font-size:13.5px}.sn-t th,.sn-t td{padding:8px 6px}.sn-t .gr{display:none}.sn-ctl{gap:12px}.sn-seg label{padding:0 13px}}"
@@ -611,12 +616,11 @@ def page_html(p):
     v0 = sd[st0]
     s0 = v0["sum"][t0]
     checked = day_words(dt.date.fromisoformat(d["source"]["fetchedAt"][:10]), True)
-    lede = (f'At O\'Hare, the middle winter of the last {s0["n"]} complete ones had {pushes(s0["mid"])} with {inch(t0)} or more of new snow. '
-            'This page calls each of those days a plowable day.')
+    lede = 'How many plowable days a Chicago winter brings at your trigger depth, from 30 winters of NOAA records.'
     st_opts = "".join(f'<label><input type="radio" name="st" value="{k}"{" checked" if k == st0 else ""}>{E(v["s"]["label"])}</label>' for k, v in sd.items())
     t_opts = "".join(f'<label><input type="radio" name="t" value="{t}"{" checked" if t == t0 else ""}><span aria-hidden="true">{t} in</span>'
                      f'<span class="vh">{E(inch(t))}</span></label>' for t in TRIGGERS)
-    ctl = ('<form class="sn-ctl" id="sn-ctl" aria-label="Choose your station and trigger depth">'
+    ctl = ('<form class="sn-ctl" id="sn-ctl" aria-labelledby="sn-h-board"><h2 id="sn-h-board" class="sn-ctl-h">Pick your station and trigger</h2>'
            f'<fieldset class="sn-seg"><legend>Weather station</legend>{st_opts}</fieldset>'
            f'<fieldset class="sn-seg"><legend>Your trigger depth</legend>{t_opts}</fieldset></form>')
     V = lambda fn: "".join(f'<div data-v="{k}-{t}"{"" if (k, t) == DEFAULT else " hidden"}>{fn(v, t, E)}</div>' for k, v in sd.items() for t in TRIGGERS)
@@ -628,12 +632,10 @@ def page_html(p):
     ends = {k: v["end"] for k, v in sd.items()}
     through = (f'{day_words(ends["ohare"], True)}' if len(set(ends.values())) == 1 else
                "; ".join(f'{sd[k]["s"]["label"]} {day_words(e, True)}' for k, e in ends.items()))
-    top = (f'<section class="block" id="board" aria-labelledby="sn-h-board"><h2 id="sn-h-board">Your plowable days a winter</h2>'
-           '<p class="sn-help">Pick your station and trigger. Every count, chart and table below changes to match.</p>'
-           f'{ctl}'
-           f'<p class="sn-now" aria-live="polite">Showing <b id="sn-say">{E(v0["s"]["label"])}, {E(inch(t0))}</b>: days with new snow at or over your trigger.</p>'
-           f'{V(tiles)}<p class="asof">Past winters only; this is not a forecast. NOAA records through {E(through)}, checked {E(checked)}. Updated daily from October to April.</p>'
-           f'<div class="sn-act">{calc_btn}<a class="st-btn2" href="#winters">See every winter</a></div></section>')
+    top = (f'<section class="block sn-top" id="board" aria-labelledby="sn-h-board">{ctl}'
+           f'<p class="sn-now" aria-live="polite">Showing <b id="sn-say">{E(v0["s"]["label"])}, {E(inch(t0))}</b>: days with new snow at or over your trigger. Every count, chart and table below follows.</p>'
+           f'{V(tiles)}<div class="sn-act">{calc_btn}<a class="st-btn2" href="#winters">See every winter</a></div>'
+           f'<p class="asof">Past winters only; this is not a forecast. NOAA records through {E(through)}, checked {E(checked)}. Updated daily from October to April.</p></section>')
     sec = lambda i, h, inner, extra="": f'<section class="block" id="{i}" aria-labelledby="sn-h-{i}"><h2 id="sn-h-{i}">{h}</h2>{inner}{extra}</section>'
     stations = "".join(f'<li><b>{E(v["s"]["label"])}:</b> NOAA station {E(v["s"]["id"])}, {E(v["s"]["name"].replace(", IL US", "").title().replace("Ohare", "O\'Hare").replace(" Sw", " SW"))}. '
                        f'{E(STATION_NOTE.get(k, ""))} Snowfall is reported on {cover_words(v["s"]["cover"])} of October to May days in the {d["winters"][1] - d["winters"][0] + 1} winters.</li>'
@@ -652,7 +654,7 @@ def page_html(p):
             '<li><b>Days with snow on the ground:</b> days NOAA measured 1 inch or more of snow depth. It shows how long snow stayed on the ground.</li></ul>')
     method = (f'<p>Every count here comes from NOAA\'s daily records: the Global Historical Climatology Network daily '
               f'(<a href="{GHCN[0]}" rel="noopener">GHCN-Daily</a>), read through the NCEI Access Data Service. It holds each station\'s new snowfall '
-              'and snow depth, in inches, one value a day. Station IDs come straight from NOAA\'s station list, and any value NOAA\'s quality checks flagged counts as missing.</p>'
+              'and snow depth, one value a day; this page reads them in inches. Station IDs come straight from NOAA\'s station list, and any value NOAA\'s quality checks flagged counts as missing.</p>'
               f'<ul class="sn-defs">{stations}</ul>'
               f'<p>The last {d["winters"][1] - d["winters"][0] + 1} finished winters are {wlabel(d["winters"][0])} to {wlabel(d["winters"][1])}. '
               'The page refreshes every morning from October to April; NOAA\'s file usually runs a few days behind today, and NOAA can revise recent daily values after its quality checks, so this winter\'s counts can change.</p>'
@@ -669,13 +671,16 @@ def page_html(p):
                   '<p class="asof">Past winters only; the shaded band shows where the light to heavy winters stood on each date, not where this one will go.</p>')
             + sec("winters", "Every winter in a table", VS(table),
                   f'<p class="asof">Plowable days count days with new snow at or over each depth. Your trigger column is shaded. Newest winter first. Incomplete winters show no counts. n/a means NOAA\'s snow depth record is missing more than 3 days between October and May that winter; a few missing days count as no snow on the ground.</p><div class="sn-dl">{dls}</div>')
-            + sec("counts", "What counts on this page", defs)
-            + sec("method", "How this page is made", method)
+            + sec("counts", "What counts on this page",
+                  '<p class="sn-lead">A plowable day is one station day with new snow at or over your trigger; a winter runs July 1 to June 30.</p>'
+                  f'<details class="sn-more"><summary>Every definition on this page</summary>{defs}</details>')
+            + sec("method", "How this page is made",
+                  '<p class="sn-lead">Every count comes from NOAA\'s daily snowfall and snow depth records for two stations, refreshed each morning from October to April.</p>'
+                  f'<details class="sn-more"><summary>Sources, stations and limits</summary>{method}</details>')
             + M.faq_block(faq(s0, sd))
             + (f'<section class="block sn-end"><h2>Put your counts to work</h2><p>Price a seasonal contract from your own costs and the plowable days at your trigger.</p>'
                f'<div class="sn-act">{calc_link("sn-calc2")}'
-               '</div></section>' if calc else "")
-            + (M.find_customers(calc["slug"], rel) if calc else ""))
+               '</div></section>' if calc else ""))
     foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             f'<p>Source: NOAA National Centers for Environmental Information, <a href="{GHCN[0]}">GHCN-Daily</a> (Menne and others, 2012, doi:10.7289/V5D21VHZ), daily snowfall (SNOW) and snow depth (SNWD) '
             f'at stations {E(", ".join(v["s"]["id"] for v in sd.values()))}, checked {E(checked)}. Past winters only, not a forecast, and not the snowfall at any one address.</p>'

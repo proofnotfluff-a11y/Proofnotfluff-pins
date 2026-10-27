@@ -331,8 +331,12 @@ def role_card(d, role, lo, hi, E, rel, sub=False):
     """One trade's pay and public works rate. On the main page each helpers line gets its own card body."""
     out = []
     pw = pw_rows(d, role["key"])
+    lead = ('<p>The Cook County schedule says landscaping work on public works falls under its laborer, operating engineer and truck driver lines, '
+            'and landscape laborers are paid as laborers. Here is the laborer line; which line applies depends on the work done, so check with the Illinois Department of Labor.</p>'
+            if role["key"] == "landscapers" else
+            '<p>Lines on the Cook County schedule posted October 19, 2026 that this work usually falls under. Base pay plus the listed fringes, per hour.</p>')
     pw_box = ('<div class="cc-pw"><h4>Cook County public works rate</h4>'
-              + ('<p>Lines on the Cook County schedule posted October 19, 2026 that this work usually falls under. Base pay plus the listed fringes, per hour.</p>'
+              + (lead
                  + f'<div class="cc-tw" role="region" aria-label="{E("Cook County public works rates for " + PLURAL[role["key"]])}" tabindex="0" style="margin-top:8px">{pw_table(pw, E)}</div>'
                  if pw else
                  '<p>The Cook County construction schedule has no line for this work. Public works pay depends on the work done; check with the Illinois Department of Labor.</p>')
@@ -393,7 +397,7 @@ def calculator(d, E, rel):
         f'<label class="cc-chk"><input type="checkbox" id="cc-tax" checked><span>Count employer Social Security and Medicare, {fica:.2f}%'
         f'<small>{d["irs"]["ss"]:g}% plus {d["irs"]["medicare"]:g}% of wages, IRS Publication 15 ({d["irs"]["year"]}). Counted on wages only, not on public works fringes; ask your payroll provider how your fringes are taxed.</small></span></label>'
         '<label class="cc-chk" style="border-bottom:0"><input type="checkbox" id="cc-leave" checked><span>The crew works in Chicago'
-        '<small>Each person earns 1 hour of paid leave and 1 hour of paid sick leave per 35 hours worked, each up to 40 hours in a 12-month period (City notice, July 1, 2026). Counted at the hourly pay.</small></span></label>'
+        '<small>Covered employees earn 1 hour of paid leave and 1 hour of paid sick leave per 35 hours worked, each up to 40 hours in a 12-month period (City notice, July 1, 2026). Counted at the hourly pay. The ordinance has exceptions; check with the City\'s Office of Labor Standards.</small></span></label>'
         '</form>'
         '<div class="cc-out" id="cc-out" aria-live="polite"><div class="lab">Crew day cost</div><div class="val" id="cc-total">$0.00</div><div class="sub" id="cc-ph"></div>'
         '<ul><li><span id="cc-o-wl">Wages</span><span id="cc-o-wages">$0.00</span></li>'
@@ -403,7 +407,7 @@ def calculator(d, E, rel):
         '<li><span>Your other costs</span><span id="cc-o-oth">$0.00</span></li></ul>'
         f'<p class="cc-note" id="cc-pwnote" hidden>Public works: hours past {d["prevailing"]["otDailyAfter"]} on a weekday are paid at the overtime multiple of base pay the schedule lists. '
         'Some lines list extra amounts owed on overtime hours; those are in the full table and not in this total.</p>'
-        '<p class="cc-note">Not counted: overtime past 40 hours in a week, state and federal unemployment tax, and your own costs unless you type them in.</p>'
+        '<p class="cc-note">Not counted: overtime past 40 hours in a week, state and federal unemployment tax, and your own costs unless you type them in. An estimate from public figures, not legal, tax or payroll advice; check with the agency.</p>'
         '<div class="cc-next"><a class="btn" href="' + rel + CALC_CONTRACTOR + '/">Set your contractor rate</a>'
         '<a class="st-btn2" href="' + rel + CALC_HANDYMAN + '/">Set your handyman rate</a></div>'
         '<p class="cc-reset"><button type="button" id="cc-reset">Reset to the example</button></p></div>'
@@ -501,7 +505,7 @@ def foot_html(d, M, E, rel):
             f'<p>Chicago: City of Chicago Office of Labor Standards, <a href="{E(c["noticeUrl"])}">minimum wage and paid leave notice</a> and '
             f'<a href="{E(c["pageUrl"])}">minimum wage page</a>. Cook County: Commission on Human Rights, <a href="{E(k["url"])}">minimum wage notice</a>. '
             f'Payroll tax: IRS, <a href="{E(i["url"])}">Publication 15 ({i["year"]})</a>. All read Oct 27, 2026.{watch_line(d, E)}</p>'
-            '<p>ProofNotFluff is not affiliated with or endorsed by the U.S. Bureau of Labor Statistics, the Illinois Department of Labor, the City of Chicago or Cook County.</p>'
+            '<p>ProofNotFluff is not affiliated with or endorsed by the U.S. Bureau of Labor Statistics, the Illinois Department of Labor, the City of Chicago, Cook County or the IRS.</p>'
             '<p>Public information, not legal, tax or payroll advice. Which wage, classification or leave rule applies to a job depends on the work and the employer; '
             'check with the agency: the Illinois Department of Labor for public works, the City\'s Office of Labor Standards for Chicago, the IRS for payroll tax.</p>'
             '<p>Made by ProofNotFluff with AI assistance from public government data. The page counts visits with Cloudflare Web Analytics, which sets no cookies.</p></div></footer>\n</body></html>')
@@ -536,7 +540,7 @@ def page_html(p):
              f'<div class="tile key"><div class="lab">Crew day</div><div class="val">{m2(ex["total"])}</div><div class="sub">2 electricians, 8 hours each at the {m2(med("electricians"))} median, with payroll tax and Chicago paid leave</div></div>'
              f'<div class="tile"><div class="lab">Chicago</div><div class="val">{m2(c["minWage"])}</div><div class="sub">minimum wage an hour from July 1, 2026, employers with 4 or more employees</div></div>'
              f'<div class="tile"><div class="lab">Cook County</div><div class="val">{m2(k["minWage"])}</div><div class="sub">minimum wage an hour from July 1, 2026, where the County rate applies</div></div>'
-             '<div class="tile"><div class="lab">Paid leave</div><div class="val">1 per 35</div><div class="sub">each 35 hours worked in Chicago earns 1 hour of paid leave and 1 of paid sick leave</div></div>'
+             '<div class="tile"><div class="lab">Paid leave</div><div class="val">1 per 35</div><div class="sub">covered employees earn 1 hour of paid leave and 1 of paid sick leave per 35 hours worked in Chicago</div></div>'
              '</div><p class="asof">Pay from BLS, May 2025. Public works rates posted by the Illinois Department of Labor October 19, 2026. Minimum wages and leave from the City and County notices for July 1, 2026.</p>')
     cards = "".join(role_card(d, r, lo, hi, E, rel) for r in d["oews"]["roles"])
     # main page: only the default trade's card shows until the picker changes
@@ -637,7 +641,7 @@ def sub_page(p, d, role, M, E):
               '<th scope="col" class="md">Crew day</th><th scope="col">Wages</th><th scope="col">Social Security and Medicare</th><th scope="col">Chicago paid leave earned</th><th scope="col">Public works fringes</th></tr></thead>'
               f'<tbody>{ex_rows}</tbody></table></div>'
               f'<p class="asof">Social Security {i["ss"]:g}% and Medicare {i["medicare"]:g}% of wages (IRS, {i["year"]}). Chicago paid leave: 1 hour of paid leave and 1 of paid sick leave per 35 hours worked, valued at the hourly pay. '
-              'Workers\' comp, unemployment insurance and benefits are not in these totals; add yours in the calculator.</p>')
+              'Workers\' comp, unemployment insurance and benefits are not in these totals; add yours in the calculator. An estimate from public figures, not legal, tax or payroll advice; check with the agency.</p>')
     k0 = line_key(role, role["lines"][0])
     nxt = (f'<p class="rl-act" style="margin-top:14px"><a class="btn" href="../?trade={E(k0)}#crew">Price your own crew day</a>'
            f'<a class="st-btn2" href="{rel}{CALC_CONTRACTOR}/">Set your contractor rate</a><a class="st-btn2" href="{rel}{CALC_HANDYMAN}/">Set your handyman rate</a></p>')
@@ -650,9 +654,14 @@ def sub_page(p, d, role, M, E):
                     f"The 10th percentile is {m2(one['p10'])} and the 90th is {m2(one['p90'])}."))
     if pw:
         r = pw[0]
-        faq.append((f"What is the Cook County prevailing wage for {PLURAL[role['key']]}?",
-                    f"The Cook County schedule posted October 19, 2026 lists {title_case(r['trade'])} at {m2(r['base'])} an hour base plus {m2(r['fringes'])} of fringes, "
-                    f"{m2(r['total'])} in all, for public works. Which line applies depends on the work; check with the Illinois Department of Labor."))
+        if role["key"] == "landscapers":
+            ans = (f"The Cook County schedule posted October 19, 2026 says landscape laborers are covered by its laborer line: {m2(r['base'])} an hour base plus "
+                   f"{m2(r['fringes'])} of fringes, {m2(r['total'])} in all, for public works. Other landscaping work can fall under its operating engineer or truck driver lines; "
+                   "check with the Illinois Department of Labor.")
+        else:
+            ans = (f"The Cook County schedule posted October 19, 2026 lists {title_case(r['trade'])} at {m2(r['base'])} an hour base plus {m2(r['fringes'])} of fringes, "
+                   f"{m2(r['total'])} in all, for public works. Which line applies depends on the work; check with the Illinois Department of Labor.")
+        faq.append((f"What is the Cook County prevailing wage for {PLURAL[role['key']]}?", ans))
     faq.append(("Are these the rates I should charge customers?", "No. BLS counts the straight-time pay employers give employees, before overtime and premium pay and without benefits. It leaves out the self-employed, and a rate you bill a customer also has to cover your costs and profit."))
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
               "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}

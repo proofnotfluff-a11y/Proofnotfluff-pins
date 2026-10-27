@@ -1916,8 +1916,15 @@
    ],
    "laborers": [
     "LABORER"
+   ],
+   "landscapers": [
+    "LABORER"
    ]
-  }
+  },
+  "landscaping": [
+   "Landscaping work falls under the existing classifications for laborer, operating engineer and truck driver.",
+   "The work performed by landscape plantsman and landscape laborer is covered by the existing classification of laborer."
+  ]
  },
  "chicago": {
   "effective": "July 1, 2026",

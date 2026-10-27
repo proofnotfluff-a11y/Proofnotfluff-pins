@@ -70,6 +70,7 @@ ROLES = [
 PREVAILING_MATCH = {
     "roofers": ["ROOFER"], "painters": ["PAINTER"], "electricians": ["ELECTRICIAN"], "plumbers": ["PLUMBER", "PIPEFITTER"],
     "hvac": ["SHEETMETAL WORKER", "PIPEFITTER"], "carpenters": ["CARPENTER"], "laborers": ["LABORER"],
+    "landscapers": ["LABORER"],   # the schedule's own note: landscape laborers are covered by the laborer classification
 }
 
 
@@ -202,12 +203,17 @@ def cook_block(path):
     if not m:
         raise SystemExit("cook: no 'posted on' line")
     ot = re.search(r"OT pay is required for any hour greater than (\d+) worked each day, Mon through Fri", text)
+    land = [re.search(p_, text) for p_ in (r"Landscaping work falls under the existing classifications for laborer, operating engineer and truck driver\.",
+                                           r"The work performed by landscape plantsman and landscape laborer is covered by the existing classification of laborer\.")]
+    if not all(land):
+        raise SystemExit("cook: landscaping note not found")
     rows = cook_rows(path)
     if len(rows) < 40 or not any(r["trade"] == "ELECTRICIAN" for r in rows):
         raise SystemExit(f"cook: only {len(rows)} rows read")
     return {"county": "Cook", "posted": f"{m.group(3)}-{m.group(1)}-{m.group(2)}", "postedLine": m.group(0), "pageUrl": URLS["idol"],
             "pdfSha256": sha256(path), "obtained": "Opened from the IDOL current rates page in a browser on Oct 27, 2026",
-            "effective": "October 19, 2026", "otDailyAfter": int(ot.group(1)) if ot else None, "rows": rows, "match": PREVAILING_MATCH}
+            "effective": "October 19, 2026", "otDailyAfter": int(ot.group(1)) if ot else None, "rows": rows, "match": PREVAILING_MATCH,
+            "landscaping": [m.group(0) for m in land]}
 
 
 # ---------------------------------------------------------------- City of Chicago notice

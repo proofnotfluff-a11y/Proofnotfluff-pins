@@ -51,7 +51,7 @@ def validate(d):
         if n in slugs:
             errs.append(f"{n}: slug twice")
         slugs.add(n)
-        for f in ("name", "h1", "title", "desc", "summary", "page_summary", "card", "check", "rows"):
+        for f in ("name", "h1", "title", "desc", "summary", "page_summary", "card", "glance", "check", "rows"):
             if not t.get(f):
                 errs.append(f"{n}: no {f}")
         if not re.match(r"^[a-z]+(-[a-z]+)*$", n):

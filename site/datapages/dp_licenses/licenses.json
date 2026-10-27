@@ -1,0 +1,1803 @@
+{
+ "about": "Chicago Trade License Finder data (tools/dp_licenses.py). Every line read on its agency page on the checked date; Todd's go Oct 27, 2026 (coo/PARALLEL_BUILDS.md).",
+ "checked": "2026-10-27",
+ "lede": "What the City of Chicago and the State of Illinois require for 12 trades: the license, fee, insurance, bond, exam, renewal and whether a suburb's license carries over, each linked to the agency page.",
+ "method": [
+  "We read every line on the issuing agency's own page: the City of Chicago Departments of Buildings, Business Affairs and Consumer Protection, Public Health and Transportation; the Illinois Departments of Public Health, Agriculture, and Financial and Professional Regulation; Illinois EPA; State law on the Illinois General Assembly site; and the U.S. EPA. Each line links to its page and the date we read it.",
+  "Where an agency page is silent, the line says so, such as not stated or lists no bond, instead of filling the gap. A page we could not open is not used.",
+  "For trades no City page names, such as cleaning, painting, pest control, landscaping, pressure washing and snow removal, the page reports what BACP says about how it picks a license and the fee in its license table, not a guess at which license applies.",
+  "When this page changes, a checker re-reads every source page and confirms the figures shown here are still printed there. This is public information, not legal advice; the agency decides what your business needs."
+ ],
+ "faq": [
+  [
+   "Does a license from a suburb count in Chicago?",
+   "None of the City pages we read says a suburb's license counts in Chicago. For plumbing, the City says a State registered contractor also needs a City plumbing contractor license. Roofers hold one State license, and a Chicago roof permit still needs a City licensed general contractor. Check with the agency named in your trade's section."
+  ],
+  [
+   "Which general contractor class do I need?",
+   "The Department of Buildings sets the class by the largest single project value and the demolition allowed: Class E up to $500,000 with no demolition, D up to $2 million and C up to $5 million with ordinary demolition, B up to $10 million and A with no limit, both with ordinary or complex demolition. The picker on this page gives the smallest class that covers both. Check with the Department of Buildings before you apply."
+  ],
+  [
+   "Does Chicago have an HVAC license?",
+   "No City page we read names a separate HVAC license. Permitted HVAC work needs a City general contractor license, Class A to E, and home heating and cooling work without a permit falls under the City home repair license. Refrigerant work needs EPA Section 608 certification."
+  ],
+  [
+   "Does the surface cleaning permit cover pressure washing?",
+   "The Chicago Department of Public Health permit names sandblasting, grinding and chemical washing. The City pages we read do not mention power or pressure washing, so ask the Department of Public Health before a job."
+  ],
+  [
+   "How current is this page?",
+   "Every line was read on its agency page on Oct 27, 2026, and each shows that date. Fees and rules change, and BACP posted a 2026 fee notice we could not open, so the agency page is the one that counts."
+  ]
+ ],
+ "gc": {
+  "src": "gc",
+  "intro": "The City sets the class by the largest single project you take on and the demolition in your work. Enter both to see the smallest class that covers them, with its fee and insurance.",
+  "value_hint": "The City counts the materials and labor of every contractor and subcontractor on all concurrent and consecutive regulated work at the same site.",
+  "demo_hint": "The City table allows ordinary or complex demolition in Classes A and B, ordinary in C and D, and none in E. The page does not define the two terms.",
+  "demo_options": [
+   [
+    "none",
+    "No demolition"
+   ],
+   [
+    "ordinary",
+    "Ordinary demolition"
+   ],
+   [
+    "complex",
+    "Complex demolition"
+   ]
+  ],
+  "note": "Project limits, demolition, insurance and fees as printed in the Department of Buildings class table. Renewal costs the same as the first license."
+ },
+ "gc_classes": [
+  {
+   "class": "A",
+   "max": null,
+   "demo": "complex",
+   "fee": 2000,
+   "renewal": 2000,
+   "limit_words": "Any project value",
+   "demolition_words": "Ordinary or complex",
+   "insurance_words": "$5 million per occurrence (primary or umbrella)",
+   "figures": [
+    "$2,000",
+    "$5 million"
+   ]
+  },
+  {
+   "class": "B",
+   "max": 10000000,
+   "demo": "complex",
+   "fee": 1000,
+   "renewal": 1000,
+   "limit_words": "Up to $10 million",
+   "demolition_words": "Ordinary or complex",
+   "insurance_words": "$3 million per occurrence (primary or umbrella)",
+   "figures": [
+    "$1,000",
+    "$3 million",
+    "$10 million"
+   ]
+  },
+  {
+   "class": "C",
+   "max": 5000000,
+   "demo": "ordinary",
+   "fee": 750,
+   "renewal": 750,
+   "limit_words": "Up to $5 million",
+   "demolition_words": "Ordinary",
+   "insurance_words": "$1 million per occurrence and $2 million aggregate",
+   "figures": [
+    "$750",
+    "$5 million"
+   ]
+  },
+  {
+   "class": "D",
+   "max": 2000000,
+   "demo": "ordinary",
+   "fee": 500,
+   "renewal": 500,
+   "limit_words": "Up to $2 million",
+   "demolition_words": "Ordinary",
+   "insurance_words": "$1 million per occurrence and $2 million aggregate",
+   "figures": [
+    "$500",
+    "$2 million"
+   ]
+  },
+  {
+   "class": "E",
+   "max": 500000,
+   "demo": "none",
+   "fee": 300,
+   "renewal": 300,
+   "limit_words": "Up to $500,000",
+   "demolition_words": "None",
+   "insurance_words": "$1 million per occurrence",
+   "figures": [
+    "$300",
+    "$500,000"
+   ]
+  }
+ ],
+ "sources": {
+  "gc": {
+   "url": "https://www.chicago.gov/city/en/depts/bldgs/supp_info/TLdetails/GC.html",
+   "title": "General Contractor License",
+   "agency": "Chicago Department of Buildings",
+   "short": "City of Chicago Buildings",
+   "checked": "2026-10-27"
+  },
+  "tlic": {
+   "url": "https://www.chicago.gov/city/en/depts/bldgs/provdrs/gen_contract/svcs/applyrenewlicense.html",
+   "title": "Trade License Information Center",
+   "agency": "Chicago Department of Buildings",
+   "short": "City of Chicago Buildings",
+   "checked": "2026-10-27"
+  },
+  "el": {
+   "url": "https://www.chicago.gov/city/en/depts/bldgs/supp_info/TLdetails/ELcontractor.html",
+   "title": "Electrical Contractor License",
+   "agency": "Chicago Department of Buildings",
+   "short": "City of Chicago Buildings",
+   "checked": "2026-10-27"
+  },
+  "supvel": {
+   "url": "https://chicago.gov/city/en/depts/bldgs/supp_info/TLdetails/SupvEL.html",
+   "title": "Supervising Electrician License",
+   "agency": "Chicago Department of Buildings",
+   "short": "City of Chicago Buildings",
+   "checked": "2026-10-27"
+  },
+  "plc": {
+   "url": "https://chicago.gov/city/en/depts/bldgs/supp_info/TLdetails/PLcontractor.html",
+   "title": "Plumbing Contractor License",
+   "agency": "Chicago Department of Buildings",
+   "short": "City of Chicago Buildings",
+   "checked": "2026-10-27"
+  },
+  "plj": {
+   "url": "https://chicago.gov/city/en/depts/bldgs/supp_info/TLdetails/PLjourneyman.html",
+   "title": "Plumber License",
+   "agency": "Chicago Department of Buildings",
+   "short": "City of Chicago Buildings",
+   "checked": "2026-10-27"
+  },
+  "mech": {
+   "url": "https://chicago.gov/city/en/sites/guide-to-building-permits/home/instructions/EPP/MECH.html",
+   "title": "Mechanical (HVAC) work permits",
+   "agency": "Chicago Department of Buildings",
+   "short": "City of Chicago Buildings",
+   "checked": "2026-10-27"
+  },
+  "roofpermit": {
+   "url": "https://chicago.gov/city/en/sites/guide-to-building-permits/home/instructions/EPP/ROOF.html",
+   "title": "Roofing work permits",
+   "agency": "Chicago Department of Buildings",
+   "short": "City of Chicago Buildings",
+   "checked": "2026-10-27"
+  },
+  "homerepair": {
+   "url": "https://chicago.gov/city/en/depts/bldgs/supp_info/TLdetails/homerepair.html",
+   "title": "Home Repair License",
+   "agency": "City of Chicago",
+   "short": "City of Chicago",
+   "checked": "2026-10-27"
+  },
+  "stateng": {
+   "url": "https://chicago.gov/city/en/depts/bldgs/supp_info/TLdetails/BRengineer.html",
+   "title": "Stationary Engineer License",
+   "agency": "Chicago Department of Buildings",
+   "short": "City of Chicago Buildings",
+   "checked": "2026-10-27"
+  },
+  "bacp_table": {
+   "url": "https://chicago.gov/city/en/sites/chicago-business-licensing/home/business-licensing.html",
+   "title": "Business Licensing",
+   "agency": "Chicago Department of Business Affairs and Consumer Protection",
+   "short": "City of Chicago BACP",
+   "checked": "2026-10-27"
+  },
+  "bacp_apply": {
+   "url": "https://www.chicago.gov/city/en/depts/bacp/supp_info/applybusinesslicense.html",
+   "title": "Applying for a Business License",
+   "agency": "Chicago Department of Business Affairs and Consumer Protection",
+   "short": "City of Chicago BACP",
+   "checked": "2026-10-27"
+  },
+  "bacp_renew": {
+   "url": "https://www.chicago.gov/city/en/depts/bacp/supp_info/renewbusinesslicense.html",
+   "title": "Renewing a Business License",
+   "agency": "Chicago Department of Business Affairs and Consumer Protection",
+   "short": "City of Chicago BACP",
+   "checked": "2026-10-27"
+  },
+  "bacp_home": {
+   "url": "https://www.chicago.gov/city/en/sites/chicago-business-licensing/home/homebasedbusiness.html",
+   "title": "Home Based Business",
+   "agency": "Chicago Department of Business Affairs and Consumer Protection",
+   "short": "City of Chicago BACP",
+   "checked": "2026-10-27"
+  },
+  "bacp_homesheet": {
+   "url": "https://www.chicago.gov/content/dam/city/depts/bacp/Small%20Business%20Center/sbcfactsheets/Home_Based_Business_Fact_Sheet_10-12-17.pdf",
+   "title": "Home-Based Businesses in Chicago fact sheet",
+   "agency": "Chicago Department of Business Affairs and Consumer Protection",
+   "short": "City of Chicago BACP",
+   "checked": "2026-10-27"
+  },
+  "bacp_homerepair": {
+   "url": "https://www.chicago.gov/city/en/sites/chicago-business-licensing/home/homerepair.html",
+   "title": "Home Repair",
+   "agency": "Chicago Department of Business Affairs and Consumer Protection",
+   "short": "City of Chicago BACP",
+   "checked": "2026-10-27"
+  },
+  "bacp_brick": {
+   "url": "https://www.chicago.gov/city/en/sites/chicago-business-licensing/home/brickandmortarstore.html",
+   "title": "Brick-and-Mortar Store",
+   "agency": "Chicago Department of Business Affairs and Consumer Protection",
+   "short": "City of Chicago BACP",
+   "checked": "2026-10-27"
+  },
+  "bacp_exempt": {
+   "url": "https://www.chicago.gov/city/en/sites/chicago-business-licensing/home/business-license-exemptions.html",
+   "title": "Business License Exemptions",
+   "agency": "Chicago Department of Business Affairs and Consumer Protection",
+   "short": "City of Chicago BACP",
+   "checked": "2026-10-27"
+  },
+  "junk_fact": {
+   "url": "https://www.chicago.gov/dam/city/depts/bacp/general/junkpeddlersfactsheet.pdf",
+   "title": "Junk Peddlers fact sheet",
+   "agency": "Chicago Department of Business Affairs and Consumer Protection",
+   "short": "City of Chicago BACP",
+   "checked": "2026-10-27"
+  },
+  "cdot_crc": {
+   "url": "https://chicago.gov/content/dam/city/depts/cdot/permit/general/2017Docs/Refuse_Container_Permit_System_Industry.pdf",
+   "title": "Refuse Container Permit System",
+   "agency": "Chicago Department of Transportation",
+   "short": "City of Chicago Transportation",
+   "checked": "2026-10-27"
+  },
+  "recycling_ord": {
+   "url": "https://www.chicago.gov/content/dam/city/sites/chicago-recycles/pdfs/Chicago%20Recycling%20Ordinance,%20with%202023%20updates.pdf",
+   "title": "Chicago Recycling Ordinance, with 2023 updates",
+   "agency": "City of Chicago",
+   "short": "City of Chicago",
+   "checked": "2026-10-27"
+  },
+  "cd_recycling": {
+   "url": "https://www.chicago.gov/content/dam/city/depts/cdph/InspectionsandPermitting/ConstructionDemolitionRecyclingOrdinanceOverview.pdf",
+   "title": "Construction and Demolition Recycling Ordinance overview",
+   "agency": "Chicago Department of Public Health",
+   "short": "City of Chicago Public Health",
+   "checked": "2026-10-27"
+  },
+  "sandblast": {
+   "url": "https://chicago.gov/city/en/depts/bldgs/supp_info/sandblasting_permit.html",
+   "title": "Sandblasting, Grinding, and Chemical Washing",
+   "agency": "Chicago Department of Public Health",
+   "short": "City of Chicago Public Health",
+   "checked": "2026-10-27"
+  },
+  "formsc": {
+   "url": "https://www.chicago.gov/content/dam/city/depts/cdph/environmental_health_and_food/REVISEDFORMSC8102012.pdf",
+   "title": "Architectural Surface Cleaning Permit application",
+   "agency": "Chicago Department of Public Health",
+   "short": "City of Chicago Public Health",
+   "checked": "2026-10-27"
+  },
+  "cdph_env": {
+   "url": "https://www.chicago.gov/content/city/en/depts/cdph/supp_info/Environment/underground-storage-tanks.html",
+   "title": "Environmental Permitting and Inspection",
+   "agency": "Chicago Department of Public Health",
+   "short": "City of Chicago Public Health",
+   "checked": "2026-10-27"
+  },
+  "snow_cdot": {
+   "url": "https://chicago.gov/city/en/depts/cdot/supp_info/sidewalk_snow_removal.html",
+   "title": "Sidewalk Snow Removal",
+   "agency": "Chicago Department of Transportation",
+   "short": "City of Chicago Transportation",
+   "checked": "2026-10-27"
+  },
+  "idfpr_list": {
+   "url": "https://idfpr.illinois.gov/profs/proflist.html",
+   "title": "Regulated Professions and Industries",
+   "agency": "Illinois Department of Financial and Professional Regulation",
+   "short": "Illinois IDFPR",
+   "checked": "2026-10-27"
+  },
+  "idfpr_brochure": {
+   "url": "https://IDFPR.illinois.gov/content/dam/soi/en/web/idfpr/forms/brochures/dfprillinoislicensedprofessions.pdf",
+   "title": "Illinois Licensed Professions",
+   "agency": "Illinois Department of Financial and Professional Regulation",
+   "short": "Illinois IDFPR",
+   "checked": "2026-10-27"
+  },
+  "idfpr_prof": {
+   "url": "https://idfpr.illinois.gov/dpr/professional-licensing-illinois.html",
+   "title": "Professional Licensing in Illinois",
+   "agency": "Illinois Department of Financial and Professional Regulation",
+   "short": "Illinois IDFPR",
+   "checked": "2026-10-27"
+  },
+  "rf": {
+   "url": "https://idfpr.illinois.gov/content/dam/soi/en/web/idfpr/renewals/apply/forms/rf.pdf",
+   "title": "Roofing Contractor license application",
+   "agency": "Illinois Department of Financial and Professional Regulation",
+   "short": "Illinois IDFPR",
+   "checked": "2026-10-27"
+  },
+  "rf_qp": {
+   "url": "https://idfpr.illinois.gov/content/dam/soi/en/web/idfpr/renewals/apply/forms/rf-qp.pdf",
+   "title": "Roofing Contractor Qualifying Party exam",
+   "agency": "Illinois Department of Financial and Professional Regulation",
+   "short": "Illinois IDFPR",
+   "checked": "2026-10-27"
+  },
+  "rf_fees": {
+   "url": "https://my.ilga.gov/ftp/JCAR/AdminCode/068/068014600000800R.html",
+   "title": "Roofing Industry Licensing Act rules, Section 1460.80 Fees",
+   "agency": "Illinois Department of Financial and Professional Regulation",
+   "short": "Illinois IDFPR",
+   "checked": "2026-10-27"
+  },
+  "pa97": {
+   "url": "https://ilga.gov/ftp/Public%20Acts/97/097-0965.htm",
+   "title": "Public Act 097-0965 (roofing licensing)",
+   "agency": "Illinois General Assembly",
+   "short": "Illinois General Assembly",
+   "checked": "2026-10-27"
+  },
+  "hrra": {
+   "url": "https://ilga.gov/legislation/ilcs/documents/081505130K25.htm",
+   "title": "Home Repair and Remodeling Act, Section 25",
+   "agency": "Illinois General Assembly",
+   "short": "Illinois General Assembly",
+   "checked": "2026-10-27"
+  },
+  "plumblaw": {
+   "url": "https://ilga.gov/ftp/ILCS/Ch%200225/Act%200320/022503200K16.html",
+   "title": "Illinois Plumbing License Law, Section 16",
+   "agency": "Illinois General Assembly",
+   "short": "Illinois General Assembly",
+   "checked": "2026-10-27"
+  },
+  "idph_plumb": {
+   "url": "https://dph.illinois.gov/topics-services/environmental-health-protection/plumbing.html",
+   "title": "Plumbing",
+   "agency": "Illinois Department of Public Health",
+   "short": "Illinois Public Health",
+   "checked": "2026-10-27"
+  },
+  "idph_plumbform": {
+   "url": "https://dph.illinois.gov/content/dam/soi/en/web/idph/files/forms/plumbing-contractor-application-renewal-042616.pdf",
+   "title": "Plumbing Contractor registration or renewal application",
+   "agency": "Illinois Department of Public Health",
+   "short": "Illinois Public Health",
+   "checked": "2026-10-27"
+  },
+  "idph_plumbexam": {
+   "url": "https://dph.illinois.gov/content/dam/soi/en/web/idph/forms/topics-services/environmental-health-protection/plumbing/plumber-license-examination-application-06242021.pdf",
+   "title": "Plumber License Examination application",
+   "agency": "Illinois Department of Public Health",
+   "short": "Illinois Public Health",
+   "checked": "2026-10-27"
+  },
+  "idph_plumbrecip": {
+   "url": "https://dph.illinois.gov/content/dam/soi/en/web/idph/files/forms/plumber-license-reciprocity-chicago-application-042616.pdf",
+   "title": "Plumber license reciprocity with the City of Chicago application",
+   "agency": "Illinois Department of Public Health",
+   "short": "Illinois Public Health",
+   "checked": "2026-10-27"
+  },
+  "idph_lead": {
+   "url": "https://dph.illinois.gov/topics-services/environmental-health-protection/lead-poisoning-prevention/abatement-mitigation-licensure/license-qualifications-contractor.html",
+   "title": "Lead abatement license qualifications: contractor",
+   "agency": "Illinois Department of Public Health",
+   "short": "Illinois Public Health",
+   "checked": "2026-10-27"
+  },
+  "pest_main": {
+   "url": "https://dph.illinois.gov/topics-services/environmental-health-protection/structural-pest-control.html",
+   "title": "Structural Pest Control",
+   "agency": "Illinois Department of Public Health",
+   "short": "Illinois Public Health",
+   "checked": "2026-10-27"
+  },
+  "pest_faq": {
+   "url": "https://dph.illinois.gov/topics-services/environmental-health-protection/structural-pest-control/faq.html",
+   "title": "Structural Pest Control FAQ",
+   "agency": "Illinois Department of Public Health",
+   "short": "Illinois Public Health",
+   "checked": "2026-10-27"
+  },
+  "pest_bizapp": {
+   "url": "https://dph.illinois.gov/content/dam/soi/en/web/idph/forms/topics-services/environmental-health-protection/structural-pest-control/Commercial-Business-Application-2022.pdf",
+   "title": "Structural Pest Control business license application",
+   "agency": "Illinois Department of Public Health",
+   "short": "Illinois Public Health",
+   "checked": "2026-10-27"
+  },
+  "pest_ru": {
+   "url": "https://dph.illinois.gov/content/dam/soi/en/web/idph/files/forms/structural-pest-control-technician-application-restricteduse.pdf",
+   "title": "Technician certification application, restricted use",
+   "agency": "Illinois Department of Public Health",
+   "short": "Illinois Public Health",
+   "checked": "2026-10-27"
+  },
+  "pest_ins": {
+   "url": "https://dph.illinois.gov/content/dam/soi/en/web/idph/files/forms/insurance-certficate-041116.pdf",
+   "title": "Structural Pest Control certificate of insurance form",
+   "agency": "Illinois Department of Public Health",
+   "short": "Illinois Public Health",
+   "checked": "2026-10-27"
+  },
+  "idoa_cert": {
+   "url": "https://agr.illinois.gov/pesticides/certification-and-licensing.html",
+   "title": "Pesticide certification and licensing",
+   "agency": "Illinois Department of Agriculture",
+   "short": "Illinois Agriculture",
+   "checked": "2026-10-27"
+  },
+  "idoa_test": {
+   "url": "https://agr.illinois.gov/pesticides/commercial-pesticide-applicator.html",
+   "title": "Training and testing for pesticide applicators and operators",
+   "agency": "Illinois Department of Agriculture",
+   "short": "Illinois Agriculture",
+   "checked": "2026-10-27"
+  },
+  "iepa_transport": {
+   "url": "https://epa.illinois.gov/topics/waste-management/waste-disposal/special-waste/transportation-permits.html",
+   "title": "Special waste transportation permits",
+   "agency": "Illinois EPA",
+   "short": "Illinois EPA",
+   "checked": "2026-10-27"
+  },
+  "pcb809": {
+   "url": "https://pcb.illinois.gov/documents/dsweb/Get/Document-33449/PART%20809%20-%20NONHAZARDOUS%20SPECIAL%20WASTE%20HAULING%20AND%20THE%20UNIFORM%20PROGRAM.pdf",
+   "title": "Part 809, Nonhazardous Special Waste Hauling",
+   "agency": "Illinois Pollution Control Board",
+   "short": "Illinois Pollution Control Board",
+   "checked": "2026-10-27"
+  },
+  "iepa_lead": {
+   "url": "https://epa.illinois.gov/topics/cleanup-programs/lead-based-paint/containment.html",
+   "title": "Lead-based paint: containment",
+   "agency": "Illinois EPA",
+   "short": "Illinois EPA",
+   "checked": "2026-10-27"
+  },
+  "epa_rrp_rules": {
+   "url": "https://www.epa.gov/lead/lead-renovation-repair-and-painting-program-rules",
+   "title": "Lead Renovation, Repair and Painting Program Rules",
+   "agency": "U.S. EPA",
+   "short": "U.S. EPA",
+   "checked": "2026-10-27"
+  },
+  "epa_rrp_firm": {
+   "url": "https://www.epa.gov/lead/renovation-repair-and-painting-program-firm-certification",
+   "title": "RRP Program: Firm Certification",
+   "agency": "U.S. EPA",
+   "short": "U.S. EPA",
+   "checked": "2026-10-27"
+  },
+  "epa_pw": {
+   "url": "https://www.epa.gov/lead/how-do-rrp-requirements-apply-pressure-washing-what-containment-and-other-preparation-are",
+   "title": "How do RRP requirements apply to pressure washing?",
+   "agency": "U.S. EPA",
+   "short": "U.S. EPA",
+   "checked": "2026-10-27"
+  },
+  "epa608": {
+   "url": "https://epa.gov/section608/section-608-technician-certification-requirements",
+   "title": "Section 608 Technician Certification Requirements",
+   "agency": "U.S. EPA",
+   "short": "U.S. EPA",
+   "checked": "2026-10-27"
+  }
+ },
+ "trades": [
+  {
+   "slug": "general-contractor",
+   "name": "General contractor",
+   "h1": "Chicago general contractor license",
+   "title": "Chicago General Contractor License: Classes and Fees",
+   "desc": "City of Chicago general contractor license classes A to E: project value limits, demolition, insurance, fees and renewal, from the Department of Buildings page.",
+   "card": "Classes A to E, $300 to $2,000 a year",
+   "summary": "One City license in five classes, set by your largest single project and the demolition you do. We found no State general contractor license on the State pages we read.",
+   "page_summary": "The City of Chicago licenses general contractors in five classes, A to E, set by the largest single project value and the demolition allowed. Here is each class, its fee and insurance, and what the State adds.",
+   "check": [
+    "gc"
+   ],
+   "rows": [
+    {
+     "topic": "city",
+     "src": "gc",
+     "text": "The Department of Buildings requires a general contractor license for most building construction, alteration, repair and demolition work in Chicago. Licensed plumbing, electrical and mason contractors working within their own license, and subcontractors working under a licensed general contractor, do not need one.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "gc",
+     "text": "Five classes: A has no project limit, B goes to $10 million, C to $5 million, D to $2 million and E to $500,000 for the largest single project. A and B may do ordinary or complex demolition, C and D ordinary only, E none.",
+     "figures": [
+      "$10 million",
+      "$5 million",
+      "$2 million",
+      "$500,000"
+     ]
+    },
+    {
+     "topic": "city",
+     "src": "gc",
+     "text": "An individual working on their own primary residence needs no license if the building has three or fewer stories, six or fewer dwelling units and no nonresidential use. Only one property a calendar year qualifies.",
+     "figures": []
+    },
+    {
+     "topic": "state",
+     "src": "idfpr_list",
+     "text": "The State's list of regulated professions has no general contractor license; roofing contractor is the only construction trade on it. No State agency page we opened says the State licenses general contractors.",
+     "figures": []
+    },
+    {
+     "topic": "state",
+     "src": "tlic",
+     "text": "The City says licenses issued by the State of Illinois may also be needed for some kinds of construction, demolition, repair and maintenance work.",
+     "figures": []
+    },
+    {
+     "topic": "fee",
+     "src": "gc",
+     "text": "License and yearly renewal: Class A $2,000, Class B $1,000, Class C $750, Class D $500, Class E $300.",
+     "figures": [
+      "$2,000",
+      "$1,000",
+      "$750",
+      "$500",
+      "$300"
+     ]
+    },
+    {
+     "topic": "insurance",
+     "src": "gc",
+     "text": "Class A $5 million and Class B $3 million per occurrence (primary or umbrella); Classes C and D $1 million per occurrence and $2 million aggregate; Class E $1 million per occurrence. The insurer must be rated B+ or better, and the license goes inactive if the policy lapses.",
+     "figures": [
+      "$5 million",
+      "$3 million",
+      "$1 million",
+      "$2 million",
+      "B+"
+     ]
+    },
+    {
+     "topic": "insurance",
+     "src": "hrra",
+     "text": "State law: a business doing home repair and remodeling carries liability insurance of $100,000 per person and $300,000 per occurrence for bodily injury and $50,000 per occurrence for property damage, plus $10,000 per occurrence for work not done to code, unless its net worth is at least $1,000,000.",
+     "figures": [
+      "$100,000",
+      "$300,000",
+      "$50,000",
+      "$10,000",
+      "$1,000,000"
+     ]
+    },
+    {
+     "topic": "bond",
+     "src": "gc",
+     "text": "The City page lists no bond.",
+     "figures": []
+    },
+    {
+     "topic": "exam",
+     "src": "gc",
+     "text": "The City page lists no exam. Continental Testing Services takes applications by mail for the Department of Buildings, with a statement of financial solvency, proof of insurance, proof of authority to do business in Illinois (not for sole proprietors) and photo ID.",
+     "figures": []
+    },
+    {
+     "topic": "renewal",
+     "src": "gc",
+     "text": "A license is valid for one year from issuance. Renewal goes to Continental Testing Services by mail with proof of current insurance.",
+     "figures": []
+    },
+    {
+     "topic": "carryover",
+     "src": "gc",
+     "text": "Not stated. The City page does not say whether a license from a suburb or another town counts in Chicago.",
+     "figures": []
+    },
+    {
+     "topic": "federal",
+     "src": "epa_rrp_rules",
+     "text": "Firms whose work disturbs lead-based paint in homes, child care facilities and kindergartens built before 1978 must be certified by EPA or an authorized state and use certified renovators.",
+     "figures": []
+    }
+   ],
+   "glance": [
+    "General contractor license, Class A to E",
+    "None found"
+   ]
+  },
+  {
+   "slug": "electrical",
+   "name": "Electrical",
+   "h1": "Chicago electrical contractor license",
+   "title": "Chicago Electrical Contractor License: Fees and Rules",
+   "desc": "What Chicago requires of electrical contractors: the City contractor and supervising electrician licenses, fees, exam and renewal, from the Department of Buildings.",
+   "card": "City contractor plus a supervising electrician",
+   "summary": "A City electrical contractor license, and a licensed supervising electrician on staff. No State electrician license on the State pages we read.",
+   "page_summary": "Chicago licenses electrical contractors and the supervising electricians they must employ. Here are the City fees, exam and renewal, and what the State pages say.",
+   "check": [
+    "el"
+   ],
+   "rows": [
+    {
+     "topic": "city",
+     "src": "el",
+     "text": "The Department of Buildings requires an electrical contractor license to install, alter or maintain wiring or equipment covered by the Chicago Electrical Code. It comes in two types: General and Low Voltage.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "supvel",
+     "text": "The business employs at least one licensed supervising electrician. That license needs an applicant at least 21 years old with at least 2 years of experience, shown in letters from supervisors.",
+     "figures": [
+      "21",
+      "2 years"
+     ]
+    },
+    {
+     "topic": "state",
+     "src": "idfpr_list",
+     "text": "The State's list of regulated professions has no electrician or electrical contractor entry. No State agency page we opened says the State licenses them.",
+     "figures": []
+    },
+    {
+     "topic": "fee",
+     "src": "el",
+     "text": "Electrical contractor, General or Low Voltage: $150 to start and $150 a year to renew. Changing the supervising electrician costs $100.",
+     "figures": [
+      "$150",
+      "$100"
+     ]
+    },
+    {
+     "topic": "fee",
+     "src": "supvel",
+     "text": "Supervising electrician: $150 per exam, $150 for the license and $150 a year to renew.",
+     "figures": [
+      "$150"
+     ]
+    },
+    {
+     "topic": "insurance",
+     "src": "el",
+     "text": "The City electrical contractor page lists no insurance amount.",
+     "figures": []
+    },
+    {
+     "topic": "bond",
+     "src": "el",
+     "text": "The City electrical contractor page lists no bond.",
+     "figures": []
+    },
+    {
+     "topic": "exam",
+     "src": "supvel",
+     "text": "Continental Testing Services gives the supervising electrician written exams for the Department of Buildings, and the contractor license type follows the exam the supervising electrician passed.",
+     "figures": []
+    },
+    {
+     "topic": "renewal",
+     "src": "el",
+     "text": "The contractor license runs one year and renews through the Department of Buildings web portal.",
+     "figures": []
+    },
+    {
+     "topic": "carryover",
+     "src": "el",
+     "text": "Not stated. The City electrical pages do not say whether a license from a suburb or another town counts in Chicago.",
+     "figures": []
+    }
+   ],
+   "glance": [
+    "Electrical contractor license, with a licensed supervising electrician",
+    "None found"
+   ]
+  },
+  {
+   "slug": "plumbing",
+   "name": "Plumbing",
+   "h1": "Chicago plumbing license",
+   "title": "Chicago Plumbing License: City and State Rules",
+   "desc": "What Chicago and Illinois require of plumbers and plumbing contractors: City and State licenses, fees, $20,000 bonds, insurance, exams and renewal, each from the agency page.",
+   "card": "City license plus State registration, $20,000 bonds",
+   "summary": "Both the City and the State license plumbing. A State registered contractor still needs a City plumbing contractor license to work in Chicago.",
+   "page_summary": "Plumbing is licensed by both the City of Chicago and the Illinois Department of Public Health. Here is what each requires of contractors and plumbers, and how the two fit together.",
+   "check": [
+    "plc",
+    "idph_plumb"
+   ],
+   "rows": [
+    {
+     "topic": "city",
+     "src": "plc",
+     "text": "The Department of Buildings requires a plumbing contractor license to install, alter, repair or maintain plumbing piping. Only a plumber licensed by the City can file the application.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "plj",
+     "text": "Plumbers need a City plumber license, and a plumber license from the Illinois Department of Public Health is also valid in Chicago when the employer holds a City plumbing contractor license.",
+     "figures": []
+    },
+    {
+     "topic": "state",
+     "src": "idph_plumb",
+     "text": "The Illinois Department of Public Health licenses plumbers and apprentices, and every plumbing contractor registers with the State and pays a yearly fee.",
+     "figures": []
+    },
+    {
+     "topic": "state",
+     "src": "idph_plumbform",
+     "text": "For State registration, the owner, a partner, or a named officer, member or manager is the licensed plumber of record, and one plumber can be plumber of record for only one company.",
+     "figures": []
+    },
+    {
+     "topic": "fee",
+     "src": "plc",
+     "text": "City plumbing contractor: $150 to start and $150 a year to renew.",
+     "figures": [
+      "$150"
+     ]
+    },
+    {
+     "topic": "fee",
+     "src": "plj",
+     "text": "City plumber: $150 for the license and $150 a year to renew. The exam is $175 for current City or State licensed apprentices and $225 for everyone else.",
+     "figures": [
+      "$150",
+      "$175",
+      "$225"
+     ]
+    },
+    {
+     "topic": "fee",
+     "src": "idph_plumbform",
+     "text": "State plumbing contractor registration: $150 a year.",
+     "figures": [
+      "$150"
+     ]
+    },
+    {
+     "topic": "insurance",
+     "src": "idph_plumbform",
+     "text": "State registration needs a certificate of insurance: $100,000 general liability, $300,000 bodily injury and $50,000 property damage, plus $500,000 of workers' compensation coverage if the contractor has employees.",
+     "figures": [
+      "$100,000",
+      "$300,000",
+      "$50,000",
+      "$500,000"
+     ]
+    },
+    {
+     "topic": "insurance",
+     "src": "plc",
+     "text": "The City plumbing contractor page lists no insurance amount.",
+     "figures": []
+    },
+    {
+     "topic": "bond",
+     "src": "plc",
+     "text": "City: a $20,000 performance bond payable to the City of Chicago, filed before the license is issued.",
+     "figures": [
+      "$20,000"
+     ]
+    },
+    {
+     "topic": "bond",
+     "src": "idph_plumbform",
+     "text": "State: a $20,000 surety or indemnification bond, or a letter of credit for the same amount.",
+     "figures": [
+      "$20,000"
+     ]
+    },
+    {
+     "topic": "exam",
+     "src": "plj",
+     "text": "City plumber applicants pass a written exam and a practical exam, the written one first.",
+     "figures": []
+    },
+    {
+     "topic": "exam",
+     "src": "idph_plumbexam",
+     "text": "The State exam application asks for at least four years as an Illinois licensed apprentice plumber.",
+     "figures": [
+      "four years"
+     ]
+    },
+    {
+     "topic": "exam",
+     "src": "idph_plumbrecip",
+     "text": "A plumber licensed by the City of Chicago can apply for a State plumber license without the State exam on this form.",
+     "figures": []
+    },
+    {
+     "topic": "renewal",
+     "src": "plc",
+     "text": "City contractor and plumber licenses run one year. Contractors renew on the Department of Buildings web portal and mail proof of a current bond to Continental Testing Services.",
+     "figures": []
+    },
+    {
+     "topic": "renewal",
+     "src": "idph_plumbform",
+     "text": "State contractor registration expires September 30 each year.",
+     "figures": [
+      "September 30"
+     ]
+    },
+    {
+     "topic": "carryover",
+     "src": "tlic",
+     "text": "A plumbing contractor licensed by the State also needs a City of Chicago plumbing contractor license to work in Chicago.",
+     "figures": []
+    },
+    {
+     "topic": "carryover",
+     "src": "plumblaw",
+     "text": "State law lets a city of 500,000 or more people license its own plumbers, and a plumber licensed by such a city or by the State may do plumbing anywhere in Illinois.",
+     "figures": [
+      "500,000"
+     ]
+    }
+   ],
+   "glance": [
+    "Plumbing contractor license and plumber licenses",
+    "Public Health contractor registration and plumber license"
+   ]
+  },
+  {
+   "slug": "hvac-mechanical",
+   "name": "HVAC and mechanical",
+   "h1": "Chicago HVAC and mechanical licensing",
+   "title": "Chicago HVAC License: What the City Requires",
+   "desc": "Chicago has no separate HVAC license on the City pages: permitted HVAC work needs a City general contractor, home repair work a home repair license, plus EPA 608 for refrigerant.",
+   "card": "General contractor or home repair license, EPA 608",
+   "summary": "No separate City HVAC license. Permitted HVAC work needs a City general contractor; refrigerant work needs EPA Section 608 certification.",
+   "page_summary": "The City pages name no separate HVAC or refrigeration contractor license. Here is which City license covers HVAC work with and without a permit, the boiler operator license, and the federal refrigerant rule.",
+   "check": [
+    "mech",
+    "epa608"
+   ],
+   "rows": [
+    {
+     "topic": "city",
+     "src": "mech",
+     "text": "The City has no separate HVAC or refrigeration contractor license on its permit pages. A permit to replace HVAC equipment, add a heat pump or air conditioning, or install refrigeration equipment needs a licensed general contractor, Class A to E by project cost. An owner who lives at the address may act as contractor with Form 401.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "homerepair",
+     "text": "Home heating and cooling work that needs no building permit, such as central air, furnaces, boilers and water heaters, falls under the City home repair license. Work that needs a permit needs a general contractor license, and home repair licensees may not pull building permits.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "stateng",
+     "text": "Running most steam and hot water boilers needs a City stationary engineer license for the person who operates them.",
+     "figures": []
+    },
+    {
+     "topic": "state",
+     "src": "idfpr_brochure",
+     "text": "The State's list of licensed professions has no HVAC, heating, refrigeration or mechanical entry. No State agency page we opened says the State licenses this work.",
+     "figures": []
+    },
+    {
+     "topic": "fee",
+     "src": "gc",
+     "text": "Where a City general contractor license is needed: $300 a year for Class E up to $2,000 a year for Class A, the same to renew.",
+     "figures": [
+      "$300",
+      "$2,000"
+     ]
+    },
+    {
+     "topic": "fee",
+     "src": "homerepair",
+     "text": "Home repair license: $250, valid two years, and $250 to renew.",
+     "figures": [
+      "$250"
+     ]
+    },
+    {
+     "topic": "fee",
+     "src": "stateng",
+     "text": "Stationary engineer: $70 per exam, $30 for the 2 year license and $30 to renew.",
+     "figures": [
+      "$70",
+      "$30"
+     ]
+    },
+    {
+     "topic": "insurance",
+     "src": "gc",
+     "text": "Where a City general contractor license is needed: $1 million per occurrence for Class E up to $5 million per occurrence for Class A.",
+     "figures": [
+      "$1 million",
+      "$5 million"
+     ]
+    },
+    {
+     "topic": "insurance",
+     "src": "homerepair",
+     "text": "Home repair license: commercial general liability of at least $300,000 per occurrence.",
+     "figures": [
+      "$300,000"
+     ]
+    },
+    {
+     "topic": "bond",
+     "src": "gc",
+     "text": "The general contractor page lists no bond.",
+     "figures": []
+    },
+    {
+     "topic": "exam",
+     "src": "stateng",
+     "text": "No exam for the general contractor license. Stationary engineers pass a written exam given by Continental Testing Services, are at least 20 and have 2 years of practical experience.",
+     "figures": [
+      "20",
+      "2 years"
+     ]
+    },
+    {
+     "topic": "renewal",
+     "src": "gc",
+     "text": "A general contractor license runs one year from issuance.",
+     "figures": []
+    },
+    {
+     "topic": "renewal",
+     "src": "stateng",
+     "text": "A stationary engineer license runs two years.",
+     "figures": []
+    },
+    {
+     "topic": "carryover",
+     "src": "tlic",
+     "text": "Not stated. The City trade license pages do not say whether a license from a suburb or another town counts in Chicago.",
+     "figures": []
+    },
+    {
+     "topic": "federal",
+     "src": "epa608",
+     "text": "Technicians who maintain, service, repair or dispose of equipment that could release refrigerant need EPA Section 608 certification (Type I, II, III or Universal) from an EPA approved certifying organization. The certification does not expire.",
+     "figures": []
+    }
+   ],
+   "glance": [
+    "General contractor for permit work, home repair license otherwise",
+    "None found; EPA Section 608 for refrigerant"
+   ]
+  },
+  {
+   "slug": "roofing",
+   "name": "Roofing",
+   "h1": "Chicago roofing license",
+   "title": "Chicago Roofing License: City and State Rules",
+   "desc": "Roofing in Chicago: the Illinois roofing contractor license (fees, bond, insurance, exam, renewal) plus the City general contractor on the roof permit, each from the agency page.",
+   "card": "State roofing license plus a City general contractor",
+   "summary": "Illinois licenses roofers, limited or unlimited, and a Chicago roof permit also needs a City licensed general contractor.",
+   "page_summary": "Roofing is the one construction trade the State of Illinois licenses. Here is the State license, its bond, insurance and exam, and what Chicago adds on the roof permit.",
+   "check": [
+    "rf",
+    "roofpermit"
+   ],
+   "rows": [
+    {
+     "topic": "city",
+     "src": "roofpermit",
+     "text": "A Chicago permit for roof repair (up to 25% of the roof), recover or replacement needs a licensed City general contractor, Class A to E by project cost, and the contractor or subcontractor doing the roofing holds a valid Illinois roofing contractor license.",
+     "figures": [
+      "25%"
+     ]
+    },
+    {
+     "topic": "city",
+     "src": "homerepair",
+     "text": "Roof work on a home that needs no building permit falls under the City home repair license.",
+     "figures": []
+    },
+    {
+     "topic": "state",
+     "src": "rf",
+     "text": "The Illinois Department of Financial and Professional Regulation licenses roofing contractors. A limited license covers residential roofing on properties of 8 units or less; an unlimited license covers residential, commercial and industrial roofing. Every license needs a qualifying party.",
+     "figures": [
+      "8 units"
+     ]
+    },
+    {
+     "topic": "fee",
+     "src": "rf_fees",
+     "text": "State: $125 to apply for a limited or unlimited license; renewal is $62.50 a year.",
+     "figures": [
+      "$125",
+      "$62.50"
+     ]
+    },
+    {
+     "topic": "fee",
+     "src": "gc",
+     "text": "Where a City general contractor license is needed: $300 a year for Class E up to $2,000 a year for Class A, the same to renew.",
+     "figures": [
+      "$300",
+      "$2,000"
+     ]
+    },
+    {
+     "topic": "insurance",
+     "src": "rf",
+     "text": "State: at least $250,000 per occurrence of property damage coverage and $500,000 per occurrence of liability coverage for bodily injury, plus proof of workers' compensation if the business has employees.",
+     "figures": [
+      "$250,000",
+      "$500,000"
+     ]
+    },
+    {
+     "topic": "insurance",
+     "src": "gc",
+     "text": "Where a City general contractor license is needed: $1 million per occurrence for Class E up to $5 million per occurrence for Class A.",
+     "figures": [
+      "$1 million",
+      "$5 million"
+     ]
+    },
+    {
+     "topic": "bond",
+     "src": "rf",
+     "text": "State: $10,000 for a limited license and $25,000 for an unlimited license. The State cancels a license if the insurance or bond lapses.",
+     "figures": [
+      "$10,000",
+      "$25,000"
+     ]
+    },
+    {
+     "topic": "exam",
+     "src": "rf_qp",
+     "text": "The qualifying party passes the residential exam (limited) or the residential, commercial and industrial exam (unlimited). The exam fee is $226, paid to Continental Testing Services.",
+     "figures": [
+      "$226"
+     ]
+    },
+    {
+     "topic": "renewal",
+     "src": "rf",
+     "text": "State roofing licenses expire December 31 of each odd-numbered year, whatever the issue date.",
+     "figures": []
+    },
+    {
+     "topic": "carryover",
+     "src": "pa97",
+     "text": "Under State roofing law, a city, village or county that requires a building permit may not issue one to a roofer without proof of a current State roofing license.",
+     "figures": []
+    },
+    {
+     "topic": "carryover",
+     "src": "roofpermit",
+     "text": "Chicago also wants its own licensed general contractor on the roof permit. The City page does not mention licenses from suburbs.",
+     "figures": []
+    }
+   ],
+   "glance": [
+    "Licensed general contractor on the roof permit",
+    "Roofing contractor license, limited or unlimited"
+   ]
+  },
+  {
+   "slug": "pest-control",
+   "name": "Pest control",
+   "h1": "Chicago pest control license",
+   "title": "Chicago Pest Control License: City and State Rules",
+   "desc": "Pest control in Chicago: the Illinois Department of Public Health business license and technician exams, fees, insurance and renewal, plus what BACP says about the City license.",
+   "card": "IDPH business license and certified technician",
+   "summary": "The State licenses pest control businesses and certifies their technicians. No City page names a pest control license.",
+   "page_summary": "Pest control businesses are licensed by the Illinois Department of Public Health and must employ a certified technician. Here is the State license, exams, insurance and renewal, and what the City says.",
+   "check": [
+    "pest_main",
+    "bacp_table"
+   ],
+   "rows": [
+    {
+     "topic": "city",
+     "src": "bacp_table",
+     "text": "No City page names this trade as a license of its own. The Department of Business Affairs and Consumer Protection (BACP) says most business activities in Chicago need a City business license, sets the license type from what the business does, and takes calls at 312-74-GOBIZ to say which license applies. Its license table lists the Limited Business License for general retail sales and services.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "bacp_home",
+     "text": "A business run from the owner's Chicago home uses the Home Occupation license, which allows no more than one non-resident employee to work in the home.",
+     "figures": []
+    },
+    {
+     "topic": "state",
+     "src": "pest_main",
+     "text": "The Illinois Department of Public Health requires a Commercial Structural Pest Control Business License, and the business employs at least one IDPH certified technician.",
+     "figures": []
+    },
+    {
+     "topic": "fee",
+     "src": "pest_bizapp",
+     "text": "State business license: $250 application fee.",
+     "figures": [
+      "$250"
+     ]
+    },
+    {
+     "topic": "fee",
+     "src": "pest_ru",
+     "text": "Technician exams: $75 for General Use, $125 for General Use plus restricted use subcategories, $50 to add a subcategory.",
+     "figures": [
+      "$75",
+      "$125",
+      "$50"
+     ]
+    },
+    {
+     "topic": "fee",
+     "src": "bacp_table",
+     "text": "Limited Business License: $250, in a column headed per 2 years, as the BACP license table read on Oct 27, 2026. BACP also posted a 2026 fee notice that we could not open.",
+     "figures": [
+      "$250"
+     ]
+    },
+    {
+     "topic": "insurance",
+     "src": "pest_ins",
+     "text": "The insurer files the IDPH certificate of insurance form, which lists $100,000 per person or $300,000 per occurrence for bodily injury and $50,000 per occurrence for property damage, or $350,000 per occurrence combined.",
+     "figures": [
+      "$100,000",
+      "$300,000",
+      "$50,000",
+      "$350,000"
+     ]
+    },
+    {
+     "topic": "bond",
+     "src": "pest_bizapp",
+     "text": "The State business license application lists no bond.",
+     "figures": []
+    },
+    {
+     "topic": "exam",
+     "src": "pest_main",
+     "text": "IDPH gives the technician exams, and 70 percent passes each one.",
+     "figures": [
+      "70 percent"
+     ]
+    },
+    {
+     "topic": "exam",
+     "src": "pest_ru",
+     "text": "General use work needs the General Standards exam; restricted use work adds one or more subcategory exams, such as termites, fumigation, or insects and rodents.",
+     "figures": []
+    },
+    {
+     "topic": "renewal",
+     "src": "pest_faq",
+     "text": "State business licenses expire December 31 each year. Technician certification renews every 3 years with nine credit hours of approved training.",
+     "figures": [
+      "December 31"
+     ]
+    },
+    {
+     "topic": "renewal",
+     "src": "bacp_renew",
+     "text": "City business licenses run one or two years and renew online through Chicago Business Direct after BACP sends a notice.",
+     "figures": []
+    },
+    {
+     "topic": "carryover",
+     "src": "pest_faq",
+     "text": "Not stated. The IDPH program page and FAQ do not address licenses from other towns.",
+     "figures": []
+    }
+   ],
+   "glance": [
+    "Not named; BACP sets the business license",
+    "Public Health business license and a certified technician"
+   ]
+  },
+  {
+   "slug": "cleaning",
+   "name": "Cleaning",
+   "h1": "Chicago cleaning business license",
+   "title": "Chicago Cleaning Business License Rules",
+   "desc": "What a Chicago house cleaning, janitorial or commercial cleaning business needs: what BACP says about the City license, the home business rules, fee and renewal.",
+   "card": "City business license from BACP, no State license found",
+   "summary": "No City page names a cleaning license, and no State license turned up. BACP sets the City license from what the business does.",
+   "page_summary": "House cleaning, janitorial and commercial cleaning have no license of their own on the City or State pages we read. Here is what BACP says, the home business rules and the fee.",
+   "check": [
+    "bacp_table"
+   ],
+   "rows": [
+    {
+     "topic": "city",
+     "src": "bacp_table",
+     "text": "No City page names this trade as a license of its own. The Department of Business Affairs and Consumer Protection (BACP) says most business activities in Chicago need a City business license, sets the license type from what the business does, and takes calls at 312-74-GOBIZ to say which license applies. Its license table lists the Limited Business License for general retail sales and services.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "bacp_home",
+     "text": "A cleaning business run from the owner's home uses the Home Occupation license, and BACP lists a storage lease among the papers a cleaning business provides. The license allows no more than one non-resident employee in the home.",
+     "figures": []
+    },
+    {
+     "topic": "state",
+     "src": "idfpr_prof",
+     "text": "The State licensing pages we opened list no license for cleaning or janitorial businesses.",
+     "figures": []
+    },
+    {
+     "topic": "fee",
+     "src": "bacp_table",
+     "text": "Limited Business License: $250, in a column headed per 2 years, as the BACP license table read on Oct 27, 2026. BACP also posted a 2026 fee notice that we could not open.",
+     "figures": [
+      "$250"
+     ]
+    },
+    {
+     "topic": "insurance",
+     "src": "bacp_table",
+     "text": "The City license pages we opened print no insurance amount.",
+     "figures": []
+    },
+    {
+     "topic": "bond",
+     "src": "bacp_table",
+     "text": "The City license pages we opened list no bond.",
+     "figures": []
+    },
+    {
+     "topic": "exam",
+     "src": "bacp_table",
+     "text": "The City license pages we opened list no exam.",
+     "figures": []
+    },
+    {
+     "topic": "renewal",
+     "src": "bacp_renew",
+     "text": "City business licenses run one or two years and renew online through Chicago Business Direct after BACP sends a notice.",
+     "figures": []
+    },
+    {
+     "topic": "carryover",
+     "src": "bacp_exempt",
+     "text": "Not stated. The BACP pages do not say whether a license from a suburb counts in Chicago.",
+     "figures": []
+    }
+   ],
+   "glance": [
+    "Not named; BACP sets the business license",
+    "None found"
+   ]
+  },
+  {
+   "slug": "painting",
+   "name": "Painting",
+   "h1": "Chicago painting business license",
+   "title": "Chicago Painting Business License Rules",
+   "desc": "What a Chicago painting business needs: what BACP and the Department of Buildings say, no State painting license found, and the EPA lead-safe firm rule for pre-1978 homes.",
+   "card": "City business license, EPA lead-safe firm for pre-1978",
+   "summary": "No City or State painting license on the pages we read. Painting in homes built before 1978 needs EPA lead-safe firm certification.",
+   "page_summary": "Painting has no license of its own on the City or State pages we read. Here is what the City says, the State lead rules, and the EPA lead-safe firm rule for older homes.",
+   "check": [
+    "bacp_table",
+    "epa_rrp_firm"
+   ],
+   "rows": [
+    {
+     "topic": "city",
+     "src": "gc",
+     "text": "The Department of Buildings gives a painting subcontractor working under a licensed general contractor as an example of a sub that needs no license of its own.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "bacp_table",
+     "text": "No City page names this trade as a license of its own. The Department of Business Affairs and Consumer Protection (BACP) says most business activities in Chicago need a City business license, sets the license type from what the business does, and takes calls at 312-74-GOBIZ to say which license applies. Its license table lists the Limited Business License for general retail sales and services.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "homerepair",
+     "text": "The City home repair license list does not include painting.",
+     "figures": []
+    },
+    {
+     "topic": "state",
+     "src": "idfpr_brochure",
+     "text": "The State's list of licensed professions has no painting entry.",
+     "figures": []
+    },
+    {
+     "topic": "state",
+     "src": "idph_lead",
+     "text": "The Illinois Department of Public Health licenses lead abatement contractors ($500 license fee, with an Illinois licensed lead supervisor). Its page does not say this applies to ordinary painting.",
+     "figures": [
+      "$500"
+     ]
+    },
+    {
+     "topic": "fee",
+     "src": "bacp_table",
+     "text": "Limited Business License: $250, in a column headed per 2 years, as the BACP license table read on Oct 27, 2026. BACP also posted a 2026 fee notice that we could not open.",
+     "figures": [
+      "$250"
+     ]
+    },
+    {
+     "topic": "insurance",
+     "src": "bacp_table",
+     "text": "The City license pages we opened print no insurance amount.",
+     "figures": []
+    },
+    {
+     "topic": "bond",
+     "src": "bacp_table",
+     "text": "The City license pages we opened list no bond.",
+     "figures": []
+    },
+    {
+     "topic": "exam",
+     "src": "epa_rrp_firm",
+     "text": "No City or State painting exam on the pages we read. Under the EPA lead-safe rule, a certified renovator is assigned to each job in older homes.",
+     "figures": []
+    },
+    {
+     "topic": "renewal",
+     "src": "bacp_renew",
+     "text": "City business licenses run one or two years and renew online through Chicago Business Direct after BACP sends a notice.",
+     "figures": []
+    },
+    {
+     "topic": "carryover",
+     "src": "bacp_apply",
+     "text": "Not stated. The BACP pages do not say whether a license from a suburb counts in Chicago.",
+     "figures": []
+    },
+    {
+     "topic": "federal",
+     "src": "epa_rrp_firm",
+     "text": "Firms, including sole proprietors, that renovate, repair or paint in homes or child care facilities built before 1978 need EPA lead-safe (RRP) firm certification: $300, good for five years.",
+     "figures": [
+      "$300",
+      "five years"
+     ]
+    }
+   ],
+   "glance": [
+    "Not named; BACP sets the business license",
+    "None found; EPA lead-safe firm for pre-1978 homes"
+   ]
+  },
+  {
+   "slug": "landscaping-pesticides",
+   "name": "Landscaping and pesticide use",
+   "h1": "Chicago landscaping and pesticide licensing",
+   "title": "Chicago Landscaping and Pesticide License Rules",
+   "desc": "Landscaping in Chicago: the Illinois Department of Agriculture pesticide applicator and operator licenses, fees, insurance, exams and renewal, plus what BACP says.",
+   "card": "State pesticide license for hire, City business license",
+   "summary": "Applying pesticides for hire needs a State applicator or operator license. No City page names a landscaping license.",
+   "page_summary": "Landscapers who apply pesticides for hire are licensed by the Illinois Department of Agriculture. Here is that license, its insurance and exams, and what the City says.",
+   "check": [
+    "idoa_cert",
+    "bacp_table"
+   ],
+   "rows": [
+    {
+     "topic": "city",
+     "src": "bacp_homerepair",
+     "text": "The City home repair page says landscaping does not need a home repair license.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "bacp_table",
+     "text": "No City page names this trade as a license of its own. The Department of Business Affairs and Consumer Protection (BACP) says most business activities in Chicago need a City business license, sets the license type from what the business does, and takes calls at 312-74-GOBIZ to say which license applies. Its license table lists the Limited Business License for general retail sales and services.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "bacp_homesheet",
+     "text": "BACP's home business fact sheet lists a landscaping business that stores goods and materials at home as a use not allowed as a home occupation.",
+     "figures": []
+    },
+    {
+     "topic": "state",
+     "src": "idoa_cert",
+     "text": "The Illinois Department of Agriculture requires a Commercial Applicator or Commercial Operator license for anyone who buys, uses or supervises the use of general or restricted use pesticides for hire. Each business has at least one licensed applicator at each location, and its license categories cover all its pesticide work, such as turf or ornamental pest control.",
+     "figures": []
+    },
+    {
+     "topic": "fee",
+     "src": "idoa_cert",
+     "text": "3-year licenses: Commercial Applicator $300 and Commercial Operator $240; not for hire, applicator $180 and operator $150.",
+     "figures": [
+      "$300",
+      "$240",
+      "$180",
+      "$150"
+     ]
+    },
+    {
+     "topic": "fee",
+     "src": "bacp_table",
+     "text": "Limited Business License: $250, in a column headed per 2 years, as the BACP license table read on Oct 27, 2026. BACP also posted a 2026 fee notice that we could not open.",
+     "figures": [
+      "$250"
+     ]
+    },
+    {
+     "topic": "insurance",
+     "src": "idoa_cert",
+     "text": "For hire applicators file a certificate of liability insurance or a surety bond: at least $50,000 per person and $100,000 per occurrence for bodily injury with a $500,000 aggregate, and $50,000 per occurrence for property damage; or a $100,000 combined single limit with a $500,000 aggregate.",
+     "figures": [
+      "$50,000",
+      "$100,000",
+      "$500,000"
+     ]
+    },
+    {
+     "topic": "bond",
+     "src": "idoa_cert",
+     "text": "A surety bond is accepted in place of the insurance certificate; the page prints no separate bond amount.",
+     "figures": []
+    },
+    {
+     "topic": "exam",
+     "src": "idoa_test",
+     "text": "Applicators and operators pass the 100-question General Standards exam with 70 or more right; applicators also pass at least one 50-question category exam with 35 or more right. The Department gives exams in person and online.",
+     "figures": [
+      "70",
+      "35"
+     ]
+    },
+    {
+     "topic": "renewal",
+     "src": "idoa_cert",
+     "text": "Licenses run 3 years, and passed exams stay valid for 3 years if the license does not lapse. Applicators show insurance or a bond again at renewal.",
+     "figures": []
+    },
+    {
+     "topic": "carryover",
+     "src": "idoa_cert",
+     "text": "Not stated for suburbs. Someone licensed in another state who passed a closed book exam in the past three years can get a one calendar year Illinois license.",
+     "figures": []
+    }
+   ],
+   "glance": [
+    "Not named; BACP sets the business license",
+    "Agriculture pesticide applicator license for hire"
+   ]
+  },
+  {
+   "slug": "junk-removal-hauling",
+   "name": "Junk removal and hauling",
+   "h1": "Chicago junk removal and hauling licensing",
+   "title": "Chicago Junk Removal and Hauling License Rules",
+   "desc": "Hauling in Chicago: the Private Scavenger and Junk Peddler licenses, dumpster permits, recycling rules for haulers, and Illinois EPA special waste permits, from agency pages.",
+   "card": "Private Scavenger or Junk Peddler license",
+   "summary": "The City lists two hauling licenses, Private Scavenger and Junk Peddler, and recycling rules for haulers. No City page says which one a home junk removal company needs.",
+   "page_summary": "Chicago licenses refuse haulers as private scavengers and junk collectors as junk peddlers. Here is what each City page says, the recycling rules for haulers, and the State special waste permit.",
+   "check": [
+    "bacp_table",
+    "cdot_crc"
+   ],
+   "rows": [
+    {
+     "topic": "city",
+     "src": "bacp_table",
+     "text": "BACP's license table lists a Private Scavenger license and a Junk Peddler license, both regulated business licenses. No City page we read says which one a home junk removal company needs.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "cdot_crc",
+     "text": "A company that services a commercial refuse container (dumpster) on the public way gets a Chicago Department of Transportation permit, and to get one it holds a valid private scavenger license.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "junk_fact",
+     "text": "BACP's junk peddler fact sheet says the license covers anyone who uses a vehicle to collect, dispose of or transport junk, including junk bought from people who want it hauled away.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "recycling_ord",
+     "text": "Under the City recycling ordinance, every private hauler offers recycling, takes recyclables to a permitted facility, keeps a working GPS device on each vehicle and files a yearly report by February 28. A private scavenger license is not renewed if that report is late or incomplete.",
+     "figures": [
+      "February 28"
+     ]
+    },
+    {
+     "topic": "city",
+     "src": "cd_recycling",
+     "text": "On covered construction and demolition projects, at least 50% of the debris is recycled, and the waste hauler certifies that it was.",
+     "figures": [
+      "50%"
+     ]
+    },
+    {
+     "topic": "state",
+     "src": "iepa_transport",
+     "text": "Illinois EPA requires a special waste hauling permit to haul special waste.",
+     "figures": []
+    },
+    {
+     "topic": "state",
+     "src": "pcb809",
+     "text": "The State rule's definition of industrial process waste leaves out household waste, landscape waste and construction or demolition debris. The State pages we opened list no license for hauling ordinary household junk.",
+     "figures": []
+    },
+    {
+     "topic": "fee",
+     "src": "bacp_table",
+     "text": "Private Scavenger $250 and Junk Peddler $250, in a column headed per 2 years, as the BACP license table read on Oct 27, 2026.",
+     "figures": [
+      "$250"
+     ]
+    },
+    {
+     "topic": "fee",
+     "src": "junk_fact",
+     "text": "The older junk peddler fact sheet prints a $150 application fee, which differs from the license table.",
+     "figures": [
+      "$150"
+     ]
+    },
+    {
+     "topic": "insurance",
+     "src": "junk_fact",
+     "text": "The junk peddler fact sheet asks for proof of vehicle insurance for each junk vehicle, with no amount. No City page we opened prints an amount for a private scavenger license.",
+     "figures": []
+    },
+    {
+     "topic": "bond",
+     "src": "junk_fact",
+     "text": "The junk peddler fact sheet lists no bond.",
+     "figures": []
+    },
+    {
+     "topic": "exam",
+     "src": "bacp_table",
+     "text": "The BACP license table lists no exam for either license.",
+     "figures": []
+    },
+    {
+     "topic": "renewal",
+     "src": "junk_fact",
+     "text": "A junk peddler license renews every two years.",
+     "figures": []
+    },
+    {
+     "topic": "carryover",
+     "src": "bacp_apply",
+     "text": "Not stated. The BACP pages do not say whether a license from a suburb counts in Chicago.",
+     "figures": []
+    }
+   ],
+   "glance": [
+    "Private Scavenger or Junk Peddler license",
+    "Illinois EPA permit for special waste only"
+   ]
+  },
+  {
+   "slug": "pressure-washing",
+   "name": "Pressure washing and surface cleaning",
+   "h1": "Chicago pressure washing and surface cleaning rules",
+   "title": "Chicago Pressure Washing and Surface Cleaning Rules",
+   "desc": "The Chicago Department of Public Health surface cleaning permit for sandblasting, grinding and chemical washing, its fee, what BACP says about a pressure washing business, and EPA lead rules.",
+   "card": "CDPH surface cleaning permit for blasting and chemical washes",
+   "summary": "The City's surface cleaning permit covers sandblasting, grinding and chemical washing. The City pages we read do not mention power or pressure washing.",
+   "page_summary": "Chicago's Department of Public Health permits sandblasting, grinding and chemical washing of building surfaces. Here is that permit, its fee, what the pages say and do not say about pressure washing, and the lead rules.",
+   "check": [
+    "sandblast",
+    "bacp_table"
+   ],
+   "rows": [
+    {
+     "topic": "city",
+     "src": "sandblast",
+     "text": "The Chicago Department of Public Health requires an Architectural Surface Cleaning Permit for sandblasting, grinding or chemical washing of a building, statue or other architectural surface. Work cannot start until it is issued, and a copy stays at the job site. The City pages we read do not mention power washing or pressure washing.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "formsc",
+     "text": "The permit form lists three methods, dry grinding, dry sandblasting and wet chemical wash, requires notice to occupants of surrounding buildings, and treats painted surfaces as containing lead paint.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "bacp_table",
+     "text": "No City page names this trade as a license of its own. The Department of Business Affairs and Consumer Protection (BACP) says most business activities in Chicago need a City business license, sets the license type from what the business does, and takes calls at 312-74-GOBIZ to say which license applies. Its license table lists the Limited Business License for general retail sales and services.",
+     "figures": []
+    },
+    {
+     "topic": "state",
+     "src": "idfpr_list",
+     "text": "The State's list of regulated professions has no pressure washing entry.",
+     "figures": []
+    },
+    {
+     "topic": "state",
+     "src": "iepa_lead",
+     "text": "For lead paint work, Illinois EPA says high or low pressure washing needs all liquid waste contained and collected for proper disposal.",
+     "figures": []
+    },
+    {
+     "topic": "fee",
+     "src": "cdph_env",
+     "text": "Surface cleaning permit: $150 per building or structure for the first calendar month and $100 for each month after.",
+     "figures": [
+      "$150",
+      "$100"
+     ]
+    },
+    {
+     "topic": "fee",
+     "src": "bacp_brick",
+     "text": "Limited Business License: $250, issued for two years.",
+     "figures": [
+      "$250"
+     ]
+    },
+    {
+     "topic": "insurance",
+     "src": "formsc",
+     "text": "The surface cleaning permit form lists no insurance amount.",
+     "figures": []
+    },
+    {
+     "topic": "bond",
+     "src": "sandblast",
+     "text": "The surface cleaning permit page lists no bond.",
+     "figures": []
+    },
+    {
+     "topic": "exam",
+     "src": "formsc",
+     "text": "No exam. The permit form asks whether paint samples were taken by a lead inspector licensed by the State of Illinois.",
+     "figures": []
+    },
+    {
+     "topic": "renewal",
+     "src": "cdph_env",
+     "text": "The surface cleaning permit is billed by the calendar month for each building or structure.",
+     "figures": []
+    },
+    {
+     "topic": "renewal",
+     "src": "bacp_brick",
+     "text": "A Limited Business License is issued for two years and renewed before it expires.",
+     "figures": []
+    },
+    {
+     "topic": "carryover",
+     "src": "bacp_exempt",
+     "text": "Not stated. The BACP pages do not say whether a license from a suburb counts in Chicago.",
+     "figures": []
+    },
+    {
+     "topic": "federal",
+     "src": "epa_pw",
+     "text": "EPA says pressure washing is allowed under its lead-safe (RRP) rule but follows the same containment rules, so no dust or debris, including in waste water, leaves the work area, and points to the local water treatment authority for disposing of waste water.",
+     "figures": []
+    }
+   ],
+   "glance": [
+    "Public Health permit for blasting, grinding and chemical washing",
+    "None found"
+   ]
+  },
+  {
+   "slug": "snow-removal",
+   "name": "Snow removal",
+   "h1": "Chicago snow removal business rules",
+   "title": "Chicago Snow Removal Business License Rules",
+   "desc": "What a Chicago snow plowing or shoveling business needs: what BACP says about the City license, the City sidewalk clearing rules and fines, from agency pages.",
+   "card": "City business license, City sidewalk rules",
+   "summary": "No City or State license names snow removal. The City sidewalk rules set the path width and clearing times.",
+   "page_summary": "Snow plowing and shoveling have no license of their own on the City or State pages we read. Here is what BACP says, and the City sidewalk rules every job follows.",
+   "check": [
+    "bacp_table",
+    "snow_cdot"
+   ],
+   "rows": [
+    {
+     "topic": "city",
+     "src": "bacp_table",
+     "text": "No City page names this trade as a license of its own. The Department of Business Affairs and Consumer Protection (BACP) says most business activities in Chicago need a City business license, sets the license type from what the business does, and takes calls at 312-74-GOBIZ to say which license applies. Its license table lists the Limited Business License for general retail sales and services.",
+     "figures": []
+    },
+    {
+     "topic": "city",
+     "src": "snow_cdot",
+     "text": "City sidewalk rules: a cleared path at least 5 feet wide. Snow that falls 7 am to 7 pm is cleared by 10 pm, and snow that falls 7 pm to 7 am by 10 am. Snow may not be shoveled into the right-of-way, such as bus stops, parking spaces and bike lanes.",
+     "figures": [
+      "5 feet"
+     ]
+    },
+    {
+     "topic": "state",
+     "src": "idfpr_list",
+     "text": "The State's list of regulated professions has no snow removal entry.",
+     "figures": []
+    },
+    {
+     "topic": "fee",
+     "src": "bacp_brick",
+     "text": "Limited Business License: $250, issued for two years.",
+     "figures": [
+      "$250"
+     ]
+    },
+    {
+     "topic": "fee",
+     "src": "snow_cdot",
+     "text": "Fines for not clearing a sidewalk run $50 to $500, set by an Administrative Hearings judge.",
+     "figures": [
+      "$50",
+      "$500"
+     ]
+    },
+    {
+     "topic": "insurance",
+     "src": "bacp_brick",
+     "text": "The City license page we opened lists no insurance amount.",
+     "figures": []
+    },
+    {
+     "topic": "bond",
+     "src": "bacp_brick",
+     "text": "The City license page we opened lists no bond.",
+     "figures": []
+    },
+    {
+     "topic": "exam",
+     "src": "bacp_table",
+     "text": "The City license pages we opened list no exam.",
+     "figures": []
+    },
+    {
+     "topic": "renewal",
+     "src": "bacp_brick",
+     "text": "A Limited Business License is issued for two years and renewed before it expires.",
+     "figures": []
+    },
+    {
+     "topic": "carryover",
+     "src": "bacp_apply",
+     "text": "Not stated. The BACP pages do not say whether a license from a suburb counts in Chicago.",
+     "figures": []
+    }
+   ],
+   "glance": [
+    "Not named; BACP sets the business license",
+    "None found"
+   ]
+  }
+ ]
+}

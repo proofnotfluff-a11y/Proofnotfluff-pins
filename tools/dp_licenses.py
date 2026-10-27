@@ -63,7 +63,7 @@ CSS = ("<style>"
        ".lf-dl>div{display:grid;grid-template-columns:minmax(0,1fr);gap:2px 18px;padding:12px 0;border-top:1px solid var(--rule)}"
        "@media(min-width:760px){.lf-dl>div{grid-template-columns:170px minmax(0,1fr)}}"
        ".lf-dl dt{font-weight:700;color:var(--ink);font-size:15px}.lf-dl dd{margin:0}"
-       ".lf-dl dd p{margin:0 0 4px;color:var(--ink2);max-width:760px}.lf-dl dd p+p.lf-t{margin-top:10px}"
+       ".lf-dl dd p{margin:0 0 4px;color:var(--ink2);max-width:760px}.lf-dl dd p+p.lf-tx{margin-top:10px}"
        ".lf-src{font-size:13px;color:var(--muted)}.lf-src a{color:var(--teal)}"
        ".lf-lv{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-right:6px}"
        ".lf-check{margin:14px 0 0;padding:12px 14px;border-radius:10px;background:var(--teal-tint);color:var(--teal-ink);font-weight:600;max-width:none}"
@@ -85,36 +85,56 @@ CSS = ("<style>"
        ".lf-t thead th{font-size:13px;color:var(--muted);font-weight:700}.lf-t tbody th{color:var(--ink)}.lf-t td{color:var(--ink2);font-variant-numeric:tabular-nums}"
        ".lf-t tr:last-child td,.lf-t tr:last-child th{border-bottom:0}.lf-t tr.on th,.lf-t tr.on td{background:var(--teal-tint);color:var(--teal-ink)}"
        ".lf-hide{display:none}"
+       ".lf-gcwrap{margin:22px 0 0;padding:18px 0 0;border-top:1px solid var(--line);scroll-margin-top:12px}.lf-gcwrap h3{font-size:20px;margin:0 0 6px}.lf-gcwrap>p{color:var(--ink2);max-width:760px}"
+       ".lf-gcwrap .lf-calc{box-shadow:none;background:var(--canvas2)}.lf-gcwrap .lf-out{background:var(--card)}"
+       ".lf-g{min-width:620px}.lf-g tbody th a{color:var(--teal);font-weight:700}.lf-g td{font-variant-numeric:normal}"
+       "@media(max-width:599px){.lf-g{min-width:0}.lf-g thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}"
+       ".lf-g tr{display:block;padding:10px 12px;border-bottom:1px solid var(--rule)}.lf-g tr:last-child{border-bottom:0}"
+       ".lf-g th,.lf-g td{display:block;padding:0;border:0;font-size:14.5px}.lf-g th{margin-bottom:4px}"
+       ".lf-g td{display:grid;grid-template-columns:62px minmax(0,1fr);gap:10px;margin:2px 0}"
+       ".lf-g td::before{content:attr(data-l);font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding-top:2px}}"
+       ".lf-pick[hidden],.lf-nojs[hidden]{display:none}"
+       ".lf-pick{margin:18px 0 16px}.ld-hero .lf-pick .asof{margin:0;align-self:center}"
        "</style>")
 
 
 def src_line(s, d, E):
-    return (f'<p class="lf-src">Source: <a href="{E(s["url"])}" rel="noopener">{E(s["title"])}</a>, {E(s["agency"])}, '
+    return (f'<p class="lf-src">Source: <a href="{E(s["url"])}" rel="noopener">{E(s["title"])}</a>, {E(s.get("short") or s["agency"])}, '
             f'checked {E(nice(s.get("checked") or d["checked"]))}</p>')
 
 
 def check_line(t, d, E):
     links = " and ".join(f'<a href="{E(d["sources"][c]["url"])}" rel="noopener">{E(d["sources"][c]["agency"])}</a>' for c in t["check"])
-    return f'<p class="lf-check">Check with {links} before you apply or bid. Fees and rules change, and this page is not legal advice.</p>'
+    return f'<p class="lf-check">Check with the {links} before you apply or bid. Fees and rules change, and this page is not legal advice.</p>'
 
 
-def trade_html(t, d, E, h="h2", gc_link=None):
+def trade_html(t, d, E, h="h2", picker=""):
     rows = []
     for key, label in TOPICS:
         items = [x for x in t["rows"] if x["topic"] == key]
         if not items:
             continue
-        ps = "".join(f'<p class="lf-t">{E(x["text"])}</p>' + src_line(d["sources"][x["src"]], d, E) for x in items)
+        ps = "".join(f'<p class="lf-tx">{E(x["text"])}</p>' + src_line(d["sources"][x["src"]], d, E) for x in items)
         rows.append(f'<div><dt>{E(label)}</dt><dd>{ps}</dd></div>')
-    extra = (f'<p class="lf-src"><a href="{gc_link}">Find your general contractor class</a> from the largest project you take on.</p>' if gc_link else "")
+    jump = '<p class="lf-src"><a href="#gc-class">Find your class</a> from the largest project you take on.</p>' if picker else ""
+    sub = h.replace("2", "3") if h == "h2" else "h3"
+    pick = f'<div class="lf-gcwrap" id="gc"><{sub}>Which class do you need?</{sub}><p>{E(d["gc"]["intro"])}</p>{picker}</div>' if picker else ""
     return (f'<section class="lf-trade" id="{E(t["slug"])}" data-trade="{E(t["slug"])}"><{h}>{E(t["name"])}</{h}><p class="lf-sum">{E(t["summary"])}</p>'
-            f'<dl class="lf-dl">{"".join(rows)}</dl>{extra}{check_line(t, d, E)}</section>')
+            f'{jump}<dl class="lf-dl">{"".join(rows)}</dl>{check_line(t, d, E)}{pick}</section>')
+
+
+def glance_html(d, E):
+    rows = "".join(f'<tr><th scope="row"><a href="#{E(t["slug"])}" data-go="{E(t["slug"])}">{E(t["name"])}</a></th><td data-l="City">{E(t["glance"][0])}</td><td data-l="State">{E(t["glance"][1])}</td></tr>'
+                   for t in d["trades"])
+    return ('<div class="lf-tw" role="region" aria-label="Every trade at a glance: City and State requirements" tabindex="0"><table class="lf-t lf-g">'
+            '<thead><tr><th scope="col">Trade</th><th scope="col">City of Chicago</th><th scope="col">State of Illinois</th></tr></thead>'
+            f'<tbody>{rows}</tbody></table></div>')
 
 
 def classes_table(d, E):
-    rows = "".join(f'<tr data-cls="{E(c["class"])}"><th scope="row">Class {E(c["class"])}</th><td>{E(c["limit_words"])}</td><td>{E(c["demolition_words"])}</td>'
-                   f'<td>{E(c["insurance_words"])}</td><td>{money(c["fee"])}</td><td>{money(c["renewal"])}</td></tr>' for c in d["gc_classes"])
-    return ('<div class="lf-tw" role="region" aria-label="City of Chicago general contractor license classes" tabindex="0"><table class="lf-t">'
+    rows = "".join(f'<tr data-cls="{E(c["class"])}"><th scope="row">Class {E(c["class"])}</th><td data-l="Project">{E(c["limit_words"])}</td><td data-l="Demo">{E(c["demolition_words"])}</td>'
+                   f'<td data-l="Cover">{E(c["insurance_words"])}</td><td data-l="Fee">{money(c["fee"])}</td><td data-l="Renew">{money(c["renewal"])}</td></tr>' for c in d["gc_classes"])
+    return ('<div class="lf-tw" role="region" aria-label="City of Chicago general contractor license classes" tabindex="0"><table class="lf-t lf-g">'
             '<thead><tr><th scope="col">Class</th><th scope="col">Largest single project</th><th scope="col">Demolition</th>'
             '<th scope="col">Insurance</th><th scope="col">Fee</th><th scope="col">Renewal</th></tr></thead>'
             f'<tbody>{rows}</tbody></table></div>')
@@ -163,11 +183,13 @@ def script(d):
             "w+=' A higher class covers it too.';el('lf-why').textContent=w;"
             "rows.forEach(function(r){if(r.getAttribute('data-cls')===c['class'])r.classList.add('on')})}"
             "if(v){v.addEventListener('input',pick);dm.addEventListener('change',pick);pick()}"
-            "var s=document.getElementById('lf-trade');if(s){var all=document.querySelectorAll('.lf-trade');s.parentNode.parentNode.hidden=false;"
+            "var s=document.getElementById('lf-trade');if(s){var all=document.querySelectorAll('.lf-trade');s.parentNode.parentNode.hidden=false;document.querySelectorAll('.lf-nojs').forEach(function(b){b.hidden=true});"
             "function show(k){all.forEach(function(t){t.classList.toggle('lf-hide',!!k&&t.getAttribute('data-trade')!==k)});"
             "var n=document.getElementById('lf-count');if(n)n.textContent=k?'Showing 1 of '+all.length+' trades':'Showing all '+all.length+' trades'}"
-            "s.addEventListener('change',function(){show(s.value);if(s.value){history.replaceState(null,'','#'+s.value)}else{history.replaceState(null,'',location.pathname)}});"
-            "var h=location.hash.slice(1);if(h&&document.querySelector('.lf-trade[data-trade=\"'+h.replace(/[^a-z-]/g,'')+'\"]')){s.value=h;show(h)}else{show('')}}"
+            "s.addEventListener('change',function(){show(s.value);if(s.value){history.replaceState(null,'','#'+s.value);var t=document.getElementById(s.value);if(t)t.scrollIntoView({block:'start'})}else{history.replaceState(null,'',location.pathname)}});"
+            "function fromHash(){var h=location.hash.slice(1).replace(/[^a-z-]/g,'');if(h==='gc-class'||h==='gc')h='general-contractor';if(h&&document.querySelector('.lf-trade[data-trade=\"'+h+'\"]')){s.value=h;show(h);if(location.hash==='#gc-class'){var g=document.getElementById('gc-class');if(g)g.scrollIntoView()}}}"
+            "document.querySelectorAll('[data-go]').forEach(function(a){a.addEventListener('click',function(){var k=a.getAttribute('data-go');s.value=k;show(k)})});"
+            "window.addEventListener('hashchange',fromHash);show('');fromHash()}"
             "})();</script>")
 
 
@@ -201,12 +223,13 @@ def page_html(p):
     grid = ('<ul class="lf-grid">' + "".join(f'<li><a href="{E(t["slug"])}/"><span>{E(t["name"])}<small>{E(t["card"])}</small></span>{M.ARROW}</a></li>' for t in trades) + '</ul>')
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(META["h1"])}</h1>'
             f'<p class="lede">{E(d["lede"])}</p>'
-            f'<p class="asof">Every line checked on {E(nice(d["checked"]))} on the agency\'s own page, linked beside it.</p></div>'
-            '<section class="block" id="trades"><h2>Pick your trade</h2>'
-            '<div class="lf-pick" hidden><div><label for="lf-trade">Trade</label>'
+            f'<p class="asof">Every line read on the agency\'s own page on {E(nice(d["checked"]))}, with the page linked beside it.</p>'
+            '<div class="lf-pick" hidden><div><label for="lf-trade">Your trade</label>'
             f'<select class="lf-sel" id="lf-trade">{opts}</select></div><p class="asof" id="lf-count" aria-live="polite"></p></div>'
-            f'{"".join(trade_html(t, d, E, gc_link="#gc-class" if t["slug"] == "general-contractor" else None) for t in trades)}</section>'
-            f'<section class="block" id="gc"><h2>Which general contractor class do you need?</h2><p>{E(d["gc"]["intro"])}</p>{gc_picker(d, E)}</section>'
+            '<div class="ld-heroact rl-act"><a class="btn lf-nojs" href="#trades">See every trade</a><a class="st-btn2" href="#gc-class">Find your general contractor class</a></div></div>'
+            f'<section class="block" id="glance"><h2>Every trade at a glance</h2><p>The license each trade needs from the City and the State, on the pages we read. Tap a trade for the fee, insurance, bond, exam and renewal.</p>{glance_html(d, E)}</section>'
+            '<section class="block" id="trades"><h2>Trade by trade</h2>'
+            f'{"".join(trade_html(t, d, E, picker=gc_picker(d, E) if t["slug"] == "general-contractor" else "") for t in trades)}</section>'
             f'<section class="block" id="each"><h2>One page per trade</h2><p>The same facts on a page of their own, to save or send.</p>{grid}</section>'
             '<section class="block"><h2>How this page is made</h2>' + "".join(f"<p>{E(x)}</p>" for x in d["method"]) + '</section>'
             f'{M.faq_block(d["faq"])}')
@@ -226,8 +249,7 @@ def extra_pages(p):
         others = "".join(f'<li><a href="../{E(x["slug"])}/"><span>{E(x["name"])}<small>{E(x["card"])}</small></span>{M.ARROW}</a></li>' for x in d["trades"] if x is not t)
         body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">Chicago trade license finder</p><h1>{E(t["h1"])}</h1>'
                 f'<p class="lede">{E(t["summary"])}</p><p class="asof">Every line checked on {E(nice(d["checked"]))} on the agency\'s own page, linked beside it.</p></div>'
-                + trade_html(dict(t, summary=t["page_summary"]), d, E, h="h2", gc_link="#gc-class" if gc else None)
-                + (f'<section class="block" id="gc"><h2>Which class do you need?</h2><p>{E(d["gc"]["intro"])}</p>{gc_picker(d, E)}</section>' if gc else "")
+                + trade_html(dict(t, summary=t["page_summary"]), d, E, h="h2", picker=gc_picker(d, E) if gc else "")
                 + f'<section class="block"><h2>Other trades</h2><p><a href="../">See every trade on one page</a>, or pick another.</p><ul class="lf-grid">{others}</ul></section>')
         title = t["title"]
         out.append((t["slug"] + "/index.html", head(p, M, E, url, rel, title, t["desc"], robots, [crumb_ld]) + body + foot(d, rel, E, M)))

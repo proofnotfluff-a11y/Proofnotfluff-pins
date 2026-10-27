@@ -119,10 +119,12 @@ CSS = ("<style>"
        ".cc-sumd[open]>summary{margin-bottom:8px}}"
        ".cc-sum{min-width:0}.cc-sum th,.cc-sum td{padding:10px 10px}"
        ".cc-sumd .cc-tw{border:0;border-top:1px solid var(--line);border-radius:0;margin:0}.cc-sumd{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);margin-top:12px}"
-       ".cc-nd{color:var(--muted);font-weight:400}.otp a{min-height:44px}"
+       ".cc-nd{color:var(--muted);font-weight:400}nav.otp .otp-in a{min-height:44px}"
+       ".cc-pick b{text-wrap:balance}.cc-pick small{text-wrap:pretty}section.block p.cc-empty{max-width:none}.cc-fine{margin-top:14px}.cc-fine .asof{font-size:14px;margin:0 0 8px}"
+       "@media(max-width:419px){.cc-hact .btn,.cc-hact .st-btn2,.cc-act .btn,.cc-act .st-btn2{width:100%;justify-content:center}}"
        ".fnav{gap:0;margin:0 -11px 10px}.fnav a{padding:0 11px;justify-content:center}"
        "@media(max-width:699px){.cc-t.cc-stack td[data-l]>.cv>a{align-items:flex-start;padding-top:2px}"
-       ".cc-map td[data-l]:not(.d){display:block}.cc-map td[data-l]:not(.d)::before{content:none}.cc-sumd{border:0;background:none;overflow:visible}.cc-sumd .cc-tw{border:1px solid var(--line);border-radius:12px}}"
+       ".cc-t.cc-stack.cc-map td[data-l]:not(.d){display:block}.cc-t.cc-stack.cc-map td[data-l]:not(.d)::before{content:none}.cc-sumd{border:0;background:none;overflow:visible}.cc-sumd .cc-tw{border:1px solid var(--line);border-radius:12px}}"
        "</style>"
        "<script>try{if(matchMedia('(max-width:699px)').matches){document.addEventListener('DOMContentLoaded',function(){var d=document.querySelector('.cc-sumd');if(d)d.removeAttribute('open')})}}catch(e){}</script>")
 
@@ -216,11 +218,11 @@ def trade_map(E, d, data_mod):
     for t in data_mod.TRADES:
         rows.append(f'<tr><th scope="row">{E(t["name"])}</th>{td(E("; ".join(t["words"])), "Words")}</tr>')
     return (table("The words that put a contract in each trade", [("Trade", False), ("A contract joins when its description uses", False)], rows, cls=" cc-map")
-            + '<p class="asof">Matching ignores capital letters, and most words also find their longer forms (roof finds roofing). Left out of every trade: anything the City buys rather than hires, meaning a contract described as a purchase, and lists of supplies, parts, products or vehicles '
+            + '<details class="cc-more cc-fine"><summary>What every trade leaves out</summary><p class="asof">Matching ignores capital letters, and most words also find their longer forms (roof finds roofing). Left out of every trade: anything the City buys rather than hires, meaning a contract described as a purchase, and lists of supplies, parts, products or vehicles '
             'that name no work such as service, repair, maintenance or removal; upkeep of the City\'s own machines and fleet; design, engineering and consulting; '
             'software; art; grants to agencies; leases; redevelopment deals; deals with other public bodies, such as the Board of Education and other intergovernmental agreements; '
             'and airport terminal projects the City pays airlines or airline groups to run (the vendor is the airline). A few more words keep look-alikes out (rock salt from snow removal, lead paint removal from painting, '
-            'elevators from HVAC, holiday trees and tree inventories from landscaping). Contracts only for inspection or construction supervision are left out too.</p>')
+            'elevators from HVAC, holiday trees and tree inventories from landscaping). Contracts only for inspection or construction supervision are left out too.</p></details>')
 
 
 def footer(E, M, rel, d):
@@ -325,9 +327,10 @@ def page_html(p):
     by = {t["key"]: t for t in T}
     cards = "".join(f'<h3 class="cc-grp">{E(g)}</h3><ul class="cc-pick">{"".join(card(by[k]) for k in ks if k in by)}</ul>' for g, ks in GROUPS)
     rows = []
-    for t in T:
+    order = [k for _, ks in GROUPS for k in ks]
+    for t in sorted(T, key=lambda x: order.index(x["key"]) if x["key"] in order else 99):
         a, b = t["m12"], t["m36"]
-        none = '<span class="cc-none">None</span>'
+        none = '<span class="cc-none">No award</span>'
         rows.append(f'<tr><th scope="row"><a href="{E(t["key"])}/">{E(t["name"])}</a></th>'
                     + td(f'{len(t["ending"]):,}', "Ending, 12 mo", True)
                     + td(f'{a["awards"]:,}', "New awards, 12 mo", True) + td(E(usd(a["total"])) if a["total"] else none, "Total, 12 mo", True)
@@ -456,8 +459,10 @@ def trade_page(p, d, src, t):
              + td(E(e["vendor"]), "Vendor") + td(value_cell(E, e), "Value so far", True)
              + td(E(M.nice_date(e["approved"])) if e["approved"] else "Not stated", "First approved", cls="dt") + td(pdf_link(E, e["pdf"], e["description"]), "Contract") + '</tr>'
              for e in t["ending"]]
-    end_html = (table(f'{t["name"]} contracts ending in the next 12 months', [("Ends", False), ("What it covers", False), ("Vendor", False), ("Value so far", True),
-                                                                              ("First approved", False), ("Contract", False)], erows)
+    th_end = [("Ends", False), ("What it covers", False), ("Vendor", False), ("Value so far", True), ("First approved", False), ("Contract", False)]
+    end_html = (table(f'{t["name"]} contracts ending in the next 12 months', th_end, erows[:5])
+                + (f'<details class="cc-more"><summary>Show the other {len(erows) - 5} ending</summary>'
+                   + table(f'More {low(t)} contracts ending in the next 12 months', th_end, erows[5:]) + '</details>' if len(erows) > 5 else "")
                 + '<p class="asof">Ending by the latest end date on the contract, after any time extensions. Value so far adds up the award and every change since. '
                   + (' A $0 value is a contract the City orders from as needed.' if any(e["requirements"] and e["value"] == 0 for e in t["ending"]) else '') + wh(t["ending"]) + '</p>') if erows else (
         f'<p class="cc-empty">No City contract that matched {E(low(t))} has an end date in the next 12 months. Many standard contracts, such as most construction, '
@@ -525,7 +530,8 @@ def trade_page(p, d, src, t):
             f'Purchases of goods, fleet upkeep, design and engineering, software, art, grants, leases, redevelopment deals, deals with other public bodies and airline-run airport terminal projects are left out. <a href="../#map">See the whole trade map</a>.</p>'
             f'{reading_notes()}</section>'
             + ("" if empty else f'<section class="block"><h2>All 12 trades</h2><ul class="cc-chips">{others}</ul></section>')
-            + f'<div class="cc-act"><a class="btn" href="{E(csv_name(t))}" download>Download the {E("HVAC" if t["key"] == "hvac" else t["short"].lower())} CSV</a><a class="st-btn2" href="../">All trades</a></div>')
+            + (f'<div class="cc-act"><a class="btn" href="{E(FALLBACK["eproc"])}" rel="noopener">See open City bids</a><a class="st-btn2" href="../">All trades</a></div>' if empty else
+               f'<div class="cc-act"><a class="btn" href="{E(csv_name(t))}" download>Download the {E("HVAC" if t["key"] == "hvac" else t["short"].lower())} CSV</a><a class="st-btn2" href="../">All trades</a></div>'))
     return head(M, E, p, url, rel, f'{h1} | ProofNotFluff', desc, M.ld_tags(crumb_ld, ds), robots) + body + footer(E, M, rel, d)
 
 

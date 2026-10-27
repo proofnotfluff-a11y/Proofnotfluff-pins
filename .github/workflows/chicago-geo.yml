@@ -1,0 +1,35 @@
+name: Chicago community area outlines
+# Public City boundaries for the free and paid maps (Todd, live chat, Oct 27, 2026). The cloud agents cannot reach
+# data.cityofchicago.org, so this runner pulls dataset igwz-8jzy once and commits site/geo/chicago-community-areas.json.
+# Boundaries change rarely: it runs on a change to its tool, by hand, and the 2nd of each quarter.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/chicago_geo.py", ".github/workflows/chicago-geo.yml"]
+  schedule:
+    - cron: "40 11 2 1,4,7,10 *"
+permissions:
+  contents: write
+concurrency:
+  group: chicago-geo
+  cancel-in-progress: false
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Self-checks (planted shapes)
+        run: python3 tools/chicago_geo.py --selftest
+      - name: Pull the City's community area outlines
+        run: python3 tools/chicago_geo.py
+      - name: Commit
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add site/geo
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "Chicago community area outlines $(TZ=America/Chicago date +%Y-%m-%d)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done
+          exit 1

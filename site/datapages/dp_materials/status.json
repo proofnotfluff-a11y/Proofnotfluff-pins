@@ -1,39 +1,10 @@
 {
- "checkedAt": "2026-10-27T13:11:52-05:00",
+ "checkedAt": "2026-10-27T13:57:21-05:00",
  "api": "v2",
  "messages": [
-  "v2: No Data Available for Series WPU10730120 Year: 2020",
   "v2: The catalog has been disabled for this request."
  ],
  "series": [
-  {
-   "id": "WPU057303",
-   "ourTitle": "No. 2 diesel fuel",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-09"
-  },
-  {
-   "id": "WPU058102",
-   "ourTitle": "Asphalt",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-09"
-  },
-  {
-   "id": "WPU0621",
-   "ourTitle": "Prepared paint",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-09"
-  },
-  {
-   "id": "WPU07210603",
-   "ourTitle": "Plastics pipe",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-09"
-  },
   {
    "id": "WPU081",
    "ourTitle": "Lumber",
@@ -49,6 +20,55 @@
    "last": "2026-09"
   },
   {
+   "id": "WPU1333",
+   "ourTitle": "Ready-mixed concrete",
+   "returned": true,
+   "blsTitle": "",
+   "last": "2026-09"
+  },
+  {
+   "id": "WPU13330101B",
+   "ourTitle": "Midwest region ready-mix concrete",
+   "returned": true,
+   "blsTitle": "",
+   "last": "2026-09"
+  },
+  {
+   "id": "WPU1322",
+   "ourTitle": "Cement",
+   "returned": true,
+   "blsTitle": "",
+   "last": "2026-09"
+  },
+  {
+   "id": "WPU1321",
+   "ourTitle": "Construction sand/gravel/crushed stone",
+   "returned": true,
+   "blsTitle": "",
+   "last": "2026-09"
+  },
+  {
+   "id": "WPU1331",
+   "ourTitle": "Concrete block and brick",
+   "returned": true,
+   "blsTitle": "",
+   "last": "2026-09"
+  },
+  {
+   "id": "WPU1342",
+   "ourTitle": "Brick and structural clay tile",
+   "returned": true,
+   "blsTitle": "",
+   "last": "2026-09"
+  },
+  {
+   "id": "WPU1394",
+   "ourTitle": "Paving mixtures and blocks",
+   "returned": true,
+   "blsTitle": "",
+   "last": "2026-09"
+  },
+  {
    "id": "WPU1017",
    "ourTitle": "Steel mill products",
    "returned": true,
@@ -56,8 +76,8 @@
    "last": "2026-09"
   },
   {
-   "id": "WPU101704",
-   "ourTitle": "Hot rolled steel bars, plates, and structural shapes",
+   "id": "WPU107405",
+   "ourTitle": "Fabricated structural metal",
    "returned": true,
    "blsTitle": "",
    "last": "2026-09"
@@ -77,15 +97,43 @@
    "last": "2026-09"
   },
   {
-   "id": "WPU10250239",
-   "ourTitle": "Copper and copper alloy pipe and tube",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-04"
-  },
-  {
    "id": "WPU10260314",
    "ourTitle": "Copper wire and cable",
+   "returned": true,
+   "blsTitle": "",
+   "last": "2026-09"
+  },
+  {
+   "id": "WPU136",
+   "ourTitle": "Asphalt felts and coatings",
+   "returned": true,
+   "blsTitle": "",
+   "last": "2026-09"
+  },
+  {
+   "id": "WPU137",
+   "ourTitle": "Gypsum products",
+   "returned": true,
+   "blsTitle": "",
+   "last": "2026-09"
+  },
+  {
+   "id": "WPU1392",
+   "ourTitle": "Insulation materials",
+   "returned": true,
+   "blsTitle": "",
+   "last": "2026-09"
+  },
+  {
+   "id": "WPU0621",
+   "ourTitle": "Prepared paint",
+   "returned": true,
+   "blsTitle": "",
+   "last": "2026-09"
+  },
+  {
+   "id": "WPU07210603",
+   "ourTitle": "Plastics pipe",
    "returned": true,
    "blsTitle": "",
    "last": "2026-09"
@@ -105,20 +153,6 @@
    "last": "2026-09"
   },
   {
-   "id": "WPU107405",
-   "ourTitle": "Fabricated structural metal",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-09"
-  },
-  {
-   "id": "WPU10730120",
-   "ourTitle": "Sheet metal air-conditioning ducts and stove pipe",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-09"
-  },
-  {
    "id": "WPU1083",
    "ourTitle": "Lighting fixtures",
    "returned": true,
@@ -126,92 +160,8 @@
    "last": "2026-09"
   },
   {
-   "id": "WPU1311",
-   "ourTitle": "",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-09"
-  },
-  {
-   "id": "WPU1321",
-   "ourTitle": "",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-09"
-  },
-  {
-   "id": "WPU1322",
-   "ourTitle": "",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-09"
-  },
-  {
-   "id": "WPU1331",
-   "ourTitle": "",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-09"
-  },
-  {
-   "id": "WPU1333",
-   "ourTitle": "",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-09"
-  },
-  {
-   "id": "WPU134",
-   "ourTitle": "",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-09"
-  },
-  {
-   "id": "WPU1342",
-   "ourTitle": "",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-09"
-  },
-  {
-   "id": "WPU136",
-   "ourTitle": "",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-09"
-  },
-  {
-   "id": "WPU1361",
-   "ourTitle": "",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-09"
-  },
-  {
-   "id": "WPU137",
-   "ourTitle": "",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-09"
-  },
-  {
-   "id": "WPU1392",
-   "ourTitle": "",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-09"
-  },
-  {
-   "id": "WPU1394",
-   "ourTitle": "",
-   "returned": true,
-   "blsTitle": "",
-   "last": "2026-09"
-  },
-  {
-   "id": "WPUSI012011",
-   "ourTitle": "",
+   "id": "WPU057303",
+   "ourTitle": "No. 2 diesel fuel",
    "returned": true,
    "blsTitle": "",
    "last": "2026-09"

@@ -4,7 +4,8 @@ One job: build one on-brand carousel from today's real data, gate it, and post i
 
 ## Inputs (Reads)
 - design/CAROUSEL_STANDARD.md, design/DESIGN_DIRECTOR.md, cmo/CONVERSION_STANDARD.md sections 1, 2 and 5, cmo/HOOKS.md, cmo/CAROUSELS.md (past topics, lead numbers, hooks).
-- Topics in turn (after the last posted line in cmo/CAROUSELS.md): pest = permits/inspections-chicago/daily.json; construction = permits/chicago/sample.json via tools/question_site.py stats("chicago_construction"); licenses = permits/licenses-chicago/sample.json; question = newest page in seo/QUESTIONS.md. Offer facts from site/pages.json only.
+- Topics in turn after the last posted line in cmo/CAROUSELS.md (pest, construction, rats, licenses, season, question, then pest): pest = permits/inspections-chicago/daily.json; construction = permits/chicago/sample.json via tools/question_site.py stats("chicago_construction"); rats = permits/rodents-chicago/weekly.json (counts only); licenses = permits/licenses-chicago/sample.json; season = the calculator in season today (cmo/CAROUSEL_TOPICS.md); question = newest page in seo/QUESTIONS.md. Offer facts from site/pages.json only.
+- cmo/CAROUSEL_TOPICS.md: the season list and the buyer test for rats and season.
 - Never repeat a lead number or hook from the last 14 days. If a topic's data is unchanged since its last carousel, take another true angle from the file (area, cost band, stage, weekday) or the next topic. No fresh angle anywhere: post nothing, tell Todd.
 
 ## Process (Executes)

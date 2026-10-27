@@ -18,6 +18,7 @@ Our scout already finds public-data ideas; the reviewers kill most of them for a
 | R5 | Red team: kill our top-ranked ideas | Schema D, verdicts | advisory objections for the fix round |
 | R6 | Channels that reach our buyers besides cold email | Schema F, channels | research_notes/kimi-2026-10-26-r6.md |
 | R7 | Our live $149 offers from the buyer's chair, against rival offers to the same trades | its own schema, in the prompt | offer changes proposed to Todd |
+| R8 | First traffic for a new site: indexing, $0 listings, news hooks, proven cases, AI answers | its own schema, in the prompt | traffic moves proposed to Todd |
 
 Repeat R3 and R4 every two weeks with a new Focus line (another metro, another record type). R5 runs after the scorer ranks the new candidates.
 
@@ -245,7 +246,7 @@ Then one fenced json block in Schema F, at most 15 channels, best first, with to
 
 ## Next rounds (proposed Oct 26, 7:50 pm, ranked by how much each could move a first payer)
 1. R7, now: our two live $149 offers (area seats, pest seat) from the buyer's chair, against 8 to 12 rival offers to the same trades. Both offers are live, outreach on the area seats has not started, so a fix lands before the first batch.
-2. R8, after R7's intake: a subcontractor sign-up map for the 30 Chicago general contractors that carry 201 of our 592 Chicago downstream leads (34%, permits/downstream/gc_leads.json, Oct 26): each one's public vendor or subcontractor registration page, whether cleaning is a listed trade, and what it asks. Program pages are Kimi's strength, and a "how to get on this builder's bid list" line makes each seat row ready to act.
+2. (Superseded Oct 26, 8:28 pm: Todd made traffic the priority, so R8 is the traffic round below; this builder map is dropped with the bid desk, Todd, 8:18 pm.) Was R8: a subcontractor sign-up map for the 30 Chicago general contractors that carry 201 of our 592 Chicago downstream leads (34%, permits/downstream/gc_leads.json, Oct 26): each one's public vendor or subcontractor registration page, whether cleaning is a listed trade, and what it asks. Program pages are Kimi's strength, and a "how to get on this builder's bid list" line makes each seat row ready to act.
 3. R9, only if Todd leans go on the agent kit: an independent teardown of paid agent and Claude Code kits (price, verified sales, how they got buyers, what is inside), as a second opinion on launches/agent-kit.md before his go or park.
 Later, after a first payer: R10, an expansion map of US cities whose open permit and inspection data match the Chicago datasets.
 
@@ -318,6 +319,75 @@ Then one fenced json block:
    "evidence": [{"url": "", "date": "", "quote": "15 words or fewer", "label": "OBSERVED"}],
    "beatsUsOn": "one line, INFERRED"}],
  "top5": [{"rank": 1, "change": "one line", "offer": "area-seat|pest-seat|both", "why": "two sentences", "rivalIds": ["r1"], "costDollars": 0, "fitsLimits": true}]}
+```
+Every example value above is a placeholder. Replace it or use null.
+````
+
+## R8, first traffic (Todd, Oct 26, 8:28 pm: "Building traffic is paramount. Let's also prompt Kimi on how we can do this as well.")
+
+Intake as above: `kimi_intake.py read` keeps `moves` as the list to check and saves `indexing`, `cases`, `aiAnswers` and `plan30` beside it; every URL in all of them goes on the list. A move that posts or lists in the brand's name on someone else's site is a proposal to Todd, each time.
+
+````
+Round: R8, first traffic for a new site. Everything you need is in this message; an attached brief is a backup only.
+
+WHO WE ARE
+ProofNotFluff LLC, Chicago. One owner, no staff, run with AI agents. Faceless: the brand speaks, never the founder, so nothing may need the founder on camera, on calls or at events. Site: proofnotfluff.com, static pages on GitHub Pages, about 70 live pages, most published in October 2026.
+
+WHAT IS ON THE SITE
+- About 50 free calculators for small service businesses: cleaning, pressure washing, junk removal, lawn care, auto detailing, hood cleaning, snow removal, Christmas light installation, hourly and day rates, price increases, missed-call cost, profit and loss, self-employment tax, Airbnb pricing.
+- Weekly pages built by code from City of Chicago open data: big construction projects and their builders, restaurant inspection results (no business with a failed result is named on public pages), new business licenses, and from this week a rat complaints tracker for all 77 Chicago community areas (about 4,620 rat complaints in the last month).
+- Daily question pages that answer one owner's question each, and paid lead lists for cleaning and pest companies.
+- Coming: free business templates (estimate, invoice, price increase letter) given for an email address.
+
+WHERE TRAFFIC STANDS (our own numbers, Oct 26)
+- Last week 204 visits, all direct, 0 from search, 0 calculator uses.
+- Google Search Console (Oct 16 to 20): 1 page indexed, 5 impressions, 0 clicks. Bing: 49 of 60 sitemap URLs discovered. IndexNow pings Bing on every change; a weekly task requests Google indexing.
+- Daily image carousels post to the brand's new Instagram and Facebook Page.
+
+WHAT WE CANNOT DO (an idea that breaks one is out)
+No paid ads, no paid placements or sponsorships, no buying links or traffic. No posting on Reddit or forums. No fake reviews, accounts, votes, comments or engagement. No mass or automated outreach. Nothing against a platform's or search engine's rules. No personal data about private people. A post or listing on someone else's site in the brand's name is allowed only with the owner's yes each time, so list those, they are not out.
+
+THE QUESTION
+How does a brand-new, faceless site of free calculators and weekly local open data pages get its first 1,000 visits a month from search, AI answers, directories and shares, and which moves come first in the next 30 days?
+
+HOW TO WORK
+1. Indexing first. From Google's and Bing's own documentation pages, list what stops a new site's pages being indexed, and which of those fit a site of many similar calculator pages (thin or duplicate pages, internal links, sitemaps, crawl budget, page experience). Cite the official pages only.
+2. Places that list free tools or open data apps at $0. Find directories, galleries and lists where a free calculator or a city data tracker can be submitted: free tool and calculator directories, open data showcases (including the City of Chicago data portal and Socrata or Tyler showcases if they exist), curated GitHub lists, and newsletters or sites that feature free tools for small businesses. For each, open the page that says how to submit and record the cost, the steps, the audience if stated, and whether a person must sign in their own name.
+3. Local news hooks. Find how Chicago outlets covered rats and the Orkin rattiest-cities list in 2024 and 2025 (dates, which outlets), when Orkin's 2026 list comes out if a page says so, and whether those outlets have a public news tip page. Do not contact anyone.
+4. Proven cases. Find 5 to 8 small sites built on free calculators, templates or city open data that state their own traffic or growth numbers in a post on their own site or a founder post with its own link (not a list page). Record what they did first and the numbers as stated, with the date.
+5. AI answers. From pages that study it, what makes a page get cited in ChatGPT, Perplexity, Google AI Overviews or Bing Copilot answers? Prefer studies with stated sample sizes.
+6. Rank the 10 moves most likely to bring the first 1,000 visits a month inside our limits, with the first 30 days in order.
+
+EVIDENCE RULES
+- Open every page you cite. For a founder post, cite that post's own link, never a numbered list page. Skip review sites.
+- Every source is {"url": "...", "date": "YYYY-MM-DD"}: the date posted, or for a live page the day you read it.
+- Quotes are 15 words or fewer, copied exactly. No person's name, email, phone or username, ever.
+- Label every claim OBSERVED (a page states it) or INFERRED (your reasoning).
+- Read only. Do not sign up, submit, post, comment or message anyone.
+- Honest beats hopeful. If 1,000 visits a month in 90 days is unlikely for a new domain, say so and say what is realistic.
+- Plain words, no em or en dashes. Valid JSON: double quotes, no trailing commas, no comments. Counts and prices are bare numbers (0, 1000), never in quotes like "$0" or "1,000".
+
+REPLY IN EXACTLY THIS SHAPE
+
+R8 | DATE: (today) | PAGES OPENED: n | BLOCKED: sites that refused you
+
+SUMMARY: five plain sentences: why we have 0 search visits, the three first moves, what is realistic in 90 days, and the one surprise.
+
+Then one fenced json block:
+```json
+{"round": "R8",
+ "indexing": [{"issue": "one line", "fitsUs": true, "fix": "one line", "source": {"url": "official Google or Bing page", "date": ""}}],
+ "moves": [
+  {"id": "m1", "type": "directory|data showcase|curated list|newsletter|news hook|search|ai answers|social|other",
+   "name": "", "url": "the page that says how to get in", "date": "",
+   "howToGetIn": "the steps as the page states them", "cost": null,
+   "audience": null, "audienceSource": {"url": "", "date": ""},
+   "needsOwnerYes": false, "needsAPerson": false, "fitsLimits": true,
+   "evidence": [{"url": "", "date": "", "quote": "15 words or fewer", "label": "OBSERVED"}],
+   "confidence": "high|medium|low"}],
+ "cases": [{"site": "", "url": "the post that states the numbers", "date": "", "built": "what the site is", "firstMoves": "what they did first, as stated", "numbers": "traffic or growth as stated", "label": "OBSERVED"}],
+ "aiAnswers": [{"finding": "one line", "sample": null, "url": "", "date": ""}],
+ "plan30": [{"rank": 1, "moveId": "m1", "week": 1, "why": "two sentences", "costDollars": 0}]}
 ```
 Every example value above is a placeholder. Replace it or use null.
 ````

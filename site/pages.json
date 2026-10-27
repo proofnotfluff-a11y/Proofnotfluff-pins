@@ -6874,7 +6874,7 @@
    "slug": "chicago-dumpster-permits",
    "kind": "datapage",
    "module": "dp_dumpsters",
-   "draft": true,
+   "draft": false,
    "title": "Chicago Dumpster Permits by Neighborhood, Updated Daily | ProofNotFluff",
    "desc": "Free daily count of CDOT dumpster permits in each of Chicago's 77 community areas: last 90 days vs. a year ago, ranked, month by month. From City records.",
    "eyebrow": "Free daily tracker, City permit records",

@@ -20,8 +20,7 @@ COST_SLUG = "chicago-public-way-permit-costs"
 
 META = {"h1": "Chicago Dumpster Permits by Neighborhood",
         "card": "Where Chicago's dumpster permits are going: issued CDOT permits by community area, the last 90 days against a year ago, month by month. Updated daily.",
-        "keywords": ["Chicago dumpster permit", "dumpster permits by neighborhood", "Chicago renovations by neighborhood",
-                     "CDOT dumpster permit", "roll-off dumpster Chicago", "junk removal Chicago demand"]}
+        "keywords": "Chicago dumpster permit, dumpster permits by neighborhood, Chicago renovations by neighborhood, CDOT dumpster permit, roll-off dumpster Chicago, junk removal Chicago demand"}
 
 
 def load(p=None):
@@ -248,7 +247,7 @@ def page_html(p):
              + f'<p class="asof">Rank is by permits in the last 90 days, 1 for the most; areas with the same count share a rank. Change compares the last 90 days with the same 90 days a year earlier, rounded to a whole percent; changes under 1% show as same, rises of 25% or more are in orange, and under {FEW} permits a year earlier show as too few to compare.'
              + ((f' 1 permit from the last 90 days had no map point inside a community area, so it counts only in the city total.' if c["noArea"]["d90"] == 1 else
                 f' {c["noArea"]["d90"]:,} permits from the last 90 days had no map point inside a community area, so they count only in the city total.') if c["noArea"]["d90"] else "")
-             + (f' A permit with locations in more than one community area counts in each, so the areas add up to more than the city total ({c["multiArea90"]:,} such permits in the last 90 days).' if c.get("multiArea90") else "")
+             + (' A permit with locations in more than one community area counts in each, so the areas add up to more than the city total.' if c.get("multiArea90") else "")
              + f' <a href="chicago-dumpster-permits-by-community-area.csv" download>Download every area by month (CSV)</a>.</p>')
     cost, nxt = p["cost"], p["next"]
     cost_live = any(x.get("slug") == COST_SLUG for x in M.PAGES_LIVE)   # a live page never links to a draft
@@ -317,6 +316,7 @@ def selftest():
     assert M.E(M.CITY_DISCLAIMER["Chicago"]) in html, "City disclaimer"
     assert ex and ex[0][0].endswith(".csv") and "Lake View" in ex[0][1] and ex[0][1].count("\n") == 4, "CSV: 2 areas and the city"
     assert "primarycontact" not in json.dumps(d) and "Closed" not in json.dumps(d["areas"]), "counts only"
+    assert isinstance(META["keywords"], str), "make_site's search index reads keywords as text"
     shell = page_html(dict(spec, data="site/datapages/dp_dumpsters/none.json"))
     assert "noindex" in shell, "no data: never indexed"
     print("dp_dumpsters selftest: ok")

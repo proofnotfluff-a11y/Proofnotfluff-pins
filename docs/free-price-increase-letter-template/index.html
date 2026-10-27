@@ -18,9 +18,12 @@
 .pl-letter p.gap{height:12px}
 .pl-letter p:nth-child(6){margin-top:0}
 .pl-letter .sign{margin-top:22px}.pl-letter .sign p{margin:0}
-.fld{background:var(--input);color:var(--input-ink);font-weight:700;border-radius:4px;padding:0 3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.fld{background:var(--input);color:var(--input-ink);font-weight:700;border-radius:4px;padding:0 0 0 2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .pl-more{margin:12px 0 0;max-width:none}
-.pl-more summary{display:flex;align-items:center;min-height:48px;padding:0 16px;font-weight:700}
+.pl-more summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:10px 16px;font-size:16px;font-weight:700}
+.pl-more summary::-webkit-details-marker{display:none}
+.pl-more summary::after{content:"+";flex:0 0 auto;font-size:24px;font-weight:400;line-height:1;color:var(--ink)}
+.pl-more[open] summary::after{content:"\2212"}
 .pl-more[open] summary{border-bottom:1px solid var(--line)}
 .pl-more .pl-card{border:0;box-shadow:none;border-radius:0 0 10px 10px}
 .signup label{display:block;font-weight:700;margin:12px 0 6px}
@@ -29,17 +32,17 @@
 .signup small{display:block;color:var(--muted);margin-top:10px;line-height:1.45}
 .signup ul{margin:6px 0 0;padding-left:20px;color:var(--ink2);font-size:15px}
 .signup h2{margin:0 0 4px;font-size:22px}
-.pl-steps{margin:0;padding:0;list-style:none;counter-reset:s;max-width:820px}
+.pl-steps{margin:0;padding:0;list-style:none;counter-reset:s}
 .pl-steps li{counter-increment:s;position:relative;padding:12px 0 12px 44px;border-bottom:1px solid var(--rule)}
 .pl-steps li::before{content:counter(s);position:absolute;left:0;top:12px;width:30px;height:30px;border-radius:50%;background:var(--teal);color:var(--card);font-weight:700;font-size:15px;line-height:30px;text-align:center}
 .block h3{font-size:19px;margin:26px 0 8px}
-.pl-notice{width:100%;max-width:820px;border-collapse:collapse;font-size:15px}
+.pl-notice{width:100%;border-collapse:collapse;font-size:15px}
 .pl-notice th,.pl-notice td{text-align:left;vertical-align:top;padding:10px 12px 10px 0;border-bottom:1px solid var(--rule)}
 .pl-notice thead th{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--ink)}
 .pl-notice tbody th{white-space:nowrap;width:9em}
-.pl-note{max-width:820px;color:var(--ink2);font-size:15px}
+.pl-note{color:var(--ink2);font-size:15px}
 .pl-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.tpl-links{list-style:none;margin:0;padding:0;max-width:820px;border-top:1px solid var(--line)}
+.tpl-links{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
 .tpl-links li{border-bottom:1px solid var(--line)}
 .tpl-links a{display:block;padding:12px 2px;min-height:44px;color:var(--ink);text-decoration:none}
 .tpl-links a:hover b{text-decoration:underline}
@@ -48,6 +51,12 @@
 .endband h2{margin:0 0 4px;font-size:22px}.endband p{margin:0;color:var(--ink2)}
 .endband .acts{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
 .endband .acts a:not(.jump){display:inline-flex;align-items:center;min-height:44px;font-weight:600}
+.tpl-flow{display:grid;grid-template-columns:minmax(0,1fr);column-gap:20px}
+@media(min-width:900px){.tpl-flow{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}}
+.tpl-flow>*{grid-column:1;min-width:0}
+section.block.tpl-flow p,section.block.tpl-flow li,.tpl-flow ul,.tpl-flow ol,.tpl-flow table,.tpl-flow details{max-width:none}
+.jump.ghost,main p a.jump.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.jump.ghost:hover{background:var(--card)}
 </style>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b40d887129c342ccb476aa67aad72034"}'></script></head><body><a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap"><div><a class="brand" href="../">ProofNotFluff</a><div class="bars"><i></i><i></i><i></i><i></i><i></i></div></div>
@@ -56,7 +65,7 @@
 <p class="eyebrow">Free template</p>
 <h1>Price increase letter template</h1>
 <p class="lede">Three short letters that tell your customers about a new rate: a standard notice, one for long-time customers, and one that names a rising cost such as fuel or supplies. For cleaners, lawn care, pest control, pressure washing and other service businesses. Read the first one below, then get all three as a Word file and a printable PDF.</p>
-<p><a class="jump" href="#get">Get the template</a></p>
+<p><a class="jump ghost" href="#get">Get the template</a></p>
 
 <div class="tpl-grid">
 <section aria-labelledby="see-title"><h2 id="see-title" class="pl-vh">The letters</h2>
@@ -78,12 +87,12 @@
 </div>
 </div>
 
-<section class="block" aria-labelledby="send-title"><h2 id="send-title">How to send it</h2>
+<section class="block tpl-flow" aria-labelledby="send-title"><h2 id="send-title">How to send it</h2>
 <!--pnf-howto--><ol class="pl-steps"><li><b>Pick the new price first.</b> <a href="../price-increase-calculator/">The free price increase calculator</a> shows the price that keeps your profit or your margin after your costs rise, and how many customers you can lose before you earn less than today.</li><li><b>Pick a version.</b> Standard notice for most customers, long-time customer for people who have been with you for years, rising costs when one cost is the reason.</li><li><b>Fill every bracket.</b> In the Word file, search for [ to find each field. Delete any Optional line you don&#x27;t use, and the version box at the top of the page.</li><li><b>Pick how much notice to give.</b> These are choices, not rules. Pick one and use the same date for every customer who gets the same letter.</li><li><b>Send it the way you bill.</b> Email it to customers you invoice by email. Print it and leave it with the invoice for customers you see in person. A short text can point to the email. Send every copy on the same day.</li><li><b>Keep a record.</b> Note the date you sent each letter in your client list, so you can answer &quot;when did you tell me?&quot; later.</li></ol><h3>How much notice: choices, not rules</h3><table class="pl-notice"><caption class="pl-vh">Notice periods owners pick, and when</caption><thead><tr><th scope="col">Notice</th><th scope="col">When owners pick it</th></tr></thead><tbody><tr><th scope="row">2 weeks</th><td>Short. Some owners use it for one-time or on-call work, where there is no regular schedule to plan around.</td></tr><tr><th scope="row">30 days</th><td>About one billing cycle for customers you bill monthly, so the new price lands on the next full month.</td></tr><tr><th scope="row">60 days or more</th><td>More time to plan. Some owners give this to long-time customers or customers on a set schedule.</td></tr><tr><th scope="row">At renewal</th><td>If you sell seasonal or yearly plans, change the price when the plan renews instead of in the middle of it.</td></tr></tbody></table><p class="pl-note">If a customer has a written agreement with you, check what it says about price changes before you pick a date. This page doesn&#x27;t say what any law requires, and rules can vary by place and by contract.</p><!--/pnf-howto-->
 </section>
 
-<section class="block" aria-labelledby="price-title"><h2 id="price-title">Pick the number before you write the letter</h2>
-<p style="max-width:820px">The letter is the easy part. The <a href="../price-increase-calculator/">free price increase calculator</a> shows the new price that keeps your profit per job or your margin after your costs rise, what waiting costs you each month, and how many customers the raise can lose before you earn less than today.</p>
+<section class="block tpl-flow" aria-labelledby="price-title"><h2 id="price-title">Pick the number before you write the letter</h2>
+<p>The letter is the easy part. The <a href="../price-increase-calculator/">free price increase calculator</a> shows the new price that keeps your profit per job or your margin after your costs rise, what waiting costs you each month, and how many customers the raise can lose before you earn less than today.</p>
 <ul class="tpl-links">
 <li><a href="../price-increase-calculator/"><b>Price Increase Calculator</b><span>The new price that keeps your profit or margin after costs rise, and the clients a raise can lose.</span></a></li>
 <li><a href="../house-cleaning-price-calculator/"><b>House Cleaning Price Calculator</b><span>Break-even rate, target rate and a quote for any clean, drive time included.</span></a></li>
@@ -93,7 +102,7 @@
 </ul>
 </section>
 
-<section class="block" aria-labelledby="q-title"><h2 id="q-title">Questions</h2>
+<section class="block tpl-flow" aria-labelledby="q-title"><h2 id="q-title">Questions</h2>
 <details><summary>What should a price increase letter say?</summary><p>The new price, the old price, the date it starts, and what stays the same. A short reason helps, and so does a way to reach you with questions. Each letter in the template covers those in five or six short lines.</p></details>
 <details><summary>How much notice should I give before raising prices?</summary><p>The template lists common choices, not rules: about two weeks for one-time or on-call work, about 30 days or one billing cycle for regular customers, 60 days or more for long-time customers, or at renewal for seasonal and yearly plans. If a customer has a written agreement with you, check what it says first. This page doesn't say what any law requires.</p></details>
 <details><summary>Should I give a reason for the increase?</summary><p>That is up to you. The standard letter gives a general one. The rising costs letter names the cost and shows the change in dollars, which can help when one cost, such as fuel or supplies, clearly went up.</p></details>

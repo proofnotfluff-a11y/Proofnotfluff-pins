@@ -311,7 +311,7 @@ td.k{font-weight:700;white-space:nowrap;width:1.35in}
 .letter p:nth-child(-n+5){margin:0}
 .letter p.gap{height:.15in}
 .letter .sign{margin-top:.3in}.letter .sign p{margin:0}
-.fld{background:#fdf6dc;color:#1f4f9a;font-weight:700;border-radius:3px;padding:0 2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.fld{background:#fdf6dc;color:#1f4f9a;font-weight:700;border-radius:3px;padding:0 0 0 2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .terms p{font-size:9pt;margin-bottom:.075in}
 .foot{position:absolute;left:.75in;right:.75in;bottom:.38in;font-size:7.4pt;color:#5c6270;border-top:1px solid #e2ddd3;padding-top:.06in;display:flex;justify-content:space-between}
 """
@@ -405,6 +405,13 @@ def main():
         t2 = re.sub(r"<!--pnf-howto-->.*?<!--/pnf-howto-->", lambda m: page_howto(), t2, flags=re.S)
         if t2 != t:
             open(PAGE, "w", encoding="utf-8").write(t2)
+        sys.path.insert(0, os.path.join(ROOT, "engines"))
+        import thanks_page
+        thanks_page.write(ROOT, SLUG, "price increase letter template",
+                          [(NAME + ".docx", "Download the Word file", "All three letters to type in, 5 pages"),
+                           (NAME + ".pdf", "Download the PDF", "Printable, 5 pages")],
+                          "No Microsoft Word? Upload the .docx to Google Drive and open it with Google Docs. It works the same.",
+                          ("price-increase-calculator", "Pick your new price with the free price increase calculator"))
     print("built", NAME + ".docx", NAME + ".pdf")
 
 

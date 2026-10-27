@@ -42,8 +42,8 @@
 .signup small{display:block;color:var(--muted);margin-top:10px;line-height:1.45}
 .signup ul{margin:6px 0 0;padding-left:20px;color:var(--ink2);font-size:15px}
 .signup h2{margin:0 0 4px;font-size:22px}
-.tpl-list{max-width:820px}.tpl-list li{margin:0 0 6px}
-.tpl-links{list-style:none;margin:0;padding:0;max-width:820px;border-top:1px solid var(--line)}
+.tpl-list{}.tpl-list li{margin:0 0 6px}
+.tpl-links{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
 .tpl-links li{border-bottom:1px solid var(--line)}
 .tpl-links a{display:block;padding:12px 2px;min-height:44px;color:var(--ink);text-decoration:none}
 .tpl-links a:hover b{text-decoration:underline}
@@ -52,6 +52,12 @@
 .endband h2{margin:0 0 4px;font-size:22px}.endband p{margin:0;color:var(--ink2)}
 .endband .acts{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
 .endband .acts a:not(.jump){display:inline-flex;align-items:center;min-height:44px;font-weight:600}
+.tpl-flow{display:grid;grid-template-columns:minmax(0,1fr);column-gap:20px}
+@media(min-width:900px){.tpl-flow{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}}
+.tpl-flow>*{grid-column:1;min-width:0}
+section.block.tpl-flow p,section.block.tpl-flow li,.tpl-flow ul,.tpl-flow ol,.tpl-flow table,.tpl-flow details{max-width:none}
+.jump.ghost,main p a.jump.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.jump.ghost:hover{background:var(--card)}
 </style>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b40d887129c342ccb476aa67aad72034"}'></script></head><body><a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap"><div><a class="brand" href="../">ProofNotFluff</a><div class="bars"><i></i><i></i><i></i><i></i><i></i></div></div>
@@ -60,7 +66,7 @@
 <p class="eyebrow">Free template</p>
 <h1>Job estimate template</h1>
 <p class="lede">A one-page estimate for cleaning, lawn care, pest control, pressure washing and other service jobs. In the Excel file, line items, discount, sales tax, deposit and balance add up on their own; the PDF is a blank to print and fill by hand. Here is the worked example, filled in.</p>
-<p><a class="jump" href="#get">Get the template</a></p>
+<p><a class="jump ghost" href="#get">Get the template</a></p>
 
 <div class="tpl-grid">
 <section aria-labelledby="see-title"><h2 id="see-title" class="pe-vh">The example estimate</h2>
@@ -92,21 +98,21 @@
 </div>
 </div>
 
-<section class="block" aria-labelledby="in-title"><h2 id="in-title">What's in the Excel file</h2>
+<section class="block tpl-flow" aria-labelledby="in-title"><h2 id="in-title">What's in the Excel file</h2>
 <ul class="tpl-list">
 <li><b>Start Here.</b> What it does, three steps, how to read the cells, and the worked example in words.</li>
 <li><b>Estimate.</b> Your business and the customer, up to 8 lines of work (quantity times rate), one discount, a sales tax rate on the total after the discount, and a deposit. The total sits in a dark tile at the top, and the tab prints on one Letter page with acceptance lines for the customer to sign.</li>
 <li><b>Terms.</b> The Terms of Use and links to the free pricing calculators.</li>
 </ul>
-<p style="max-width:820px">Formulas are locked so a stray keystroke can't break them, every yellow cell shows a hint when you select it, and a cleared estimate shows no error values. No macros or add-ons.</p>
+<p>Formulas are locked so a stray keystroke can't break them, every yellow cell shows a hint when you select it, and a cleared estimate shows no error values. No macros or add-ons.</p>
 </section>
 
-<section class="block" aria-labelledby="math-title"><h2 id="math-title">How the example adds up</h2>
-<p style="max-width:820px">Three lines of work come to $760.00: a 2-story house wash at $355, a 2-car driveway at $200 and gutter brightening at $205. A 10% discount takes off $76.00, leaving $684.00. Sales tax at an example 5% adds $34.20, so the total is $718.20. A 25% deposit of $179.55 books the job, and $538.65 is due when it is done. The three prices are the quotes the <a href="../pressure-washing-price-calculator/">free pressure washing price calculator</a> gives for its own example business, not market prices for your area. Whether a service is taxed, and at what rate, depends on where you work.</p>
-<p style="max-width:820px"><b>Deposits and cancelling.</b> Rules on deposits, cancelling and the wording of signed estimates vary by state and city, especially for work sold at the customer's home. This template doesn't say what any law requires. Have a local attorney check your deposit, payment and cancellation terms before you use them with clients.</p>
+<section class="block tpl-flow" aria-labelledby="math-title"><h2 id="math-title">How the example adds up</h2>
+<p>Three lines of work come to $760.00: a 2-story house wash at $355, a 2-car driveway at $200 and gutter brightening at $205. A 10% discount takes off $76.00, leaving $684.00. Sales tax at an example 5% adds $34.20, so the total is $718.20. A 25% deposit of $179.55 books the job, and $538.65 is due when it is done. The three prices are the quotes the <a href="../pressure-washing-price-calculator/">free pressure washing price calculator</a> gives for its own example business, not market prices for your area. Whether a service is taxed, and at what rate, depends on where you work.</p>
+<p><b>Deposits and cancelling.</b> Rules on deposits, cancelling and the wording of signed estimates vary by state and city, especially for work sold at the customer's home. This template doesn't say what any law requires. Have a local attorney check your deposit, payment and cancellation terms before you use them with clients.</p>
 </section>
 
-<section class="block" aria-labelledby="price-title"><h2 id="price-title">Price each line from your own numbers</h2>
+<section class="block tpl-flow" aria-labelledby="price-title"><h2 id="price-title">Price each line from your own numbers</h2>
 <ul class="tpl-links">
 <li><a href="../pressure-washing-price-calculator/"><b>Pressure Washing Price Calculator</b><span>Quote driveways, soft washes, roofs and decks from your own numbers.</span></a></li>
 <li><a href="../house-cleaning-price-calculator/"><b>House Cleaning Price Calculator</b><span>Break-even rate, target rate and a quote for any clean, drive time included.</span></a></li>
@@ -115,7 +121,7 @@
 </ul>
 </section>
 
-<section class="block" aria-labelledby="q-title"><h2 id="q-title">Questions</h2>
+<section class="block tpl-flow" aria-labelledby="q-title"><h2 id="q-title">Questions</h2>
 <details><summary>What should a job estimate include?</summary><p>Your business and contact details, the customer and job address, an estimate number and date, each piece of work with its quantity and price, any discount, tax and deposit, how long the prices hold, your payment terms, and a place for the customer to accept. The template has all of these on one page.</p></details>
 <details><summary>Is an estimate the same as a quote or a contract?</summary><p>People use the words differently. This template is a sample form to adapt, not a legal document written for your state or business. Whether signed terms hold up as an agreement depends on your state and on what they say. Have a local attorney review them before you use them with clients.</p></details>
 <details><summary>Does it work in Google Sheets?</summary><p>Yes. Upload the .xlsx to Google Drive, open it, then File, Save as Google Sheets. It uses plain formulas only.</p></details>

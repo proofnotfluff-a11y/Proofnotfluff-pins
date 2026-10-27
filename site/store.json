@@ -338,6 +338,7 @@
  "calcRelated": [
   [
    "cost-per-lead-calculator",
+   "hood-cleaning-price-calculator",
    "house-cleaning-price-calculator",
    "cleaning-price-per-square-foot-calculator",
    "window-cleaning-price-calculator",
@@ -347,6 +348,8 @@
   ],
   [
    "cost-per-lead-calculator",
+   "christmas-light-installation-pricing-calculator",
+   "snow-removal-pricing-calculator",
    "pressure-washing-price-calculator",
    "pressure-washing-price-per-square-foot-calculator",
    "soft-wash-pricing-calculator",
@@ -357,6 +360,7 @@
   ],
   [
    "cost-per-lead-calculator",
+   "missed-call-cost-calculator",
    "junk-removal-price-calculator",
    "junk-removal-pricing-calculator-by-truck-load",
    "estate-cleanout-cost-calculator",
@@ -364,6 +368,7 @@
   ],
   [
    "cost-per-lead-calculator",
+   "missed-call-cost-calculator",
    "contractor-hourly-rate-calculator",
    "handyman-hourly-rate-calculator",
    "day-rate-calculator",

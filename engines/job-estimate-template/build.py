@@ -30,7 +30,7 @@ from openpyxl.cell.rich_text import CellRichText, TextBlock  # noqa: E402
 from openpyxl.cell.text import InlineFont  # noqa: E402
 from openpyxl.styles import Alignment, Border  # noqa: E402
 
-PRODUCT = "Job Estimate Template"
+PRODUCT = "Job estimate template"
 VERSION = "1"
 CHECKED = "Oct 26, 2026"
 CHECKED_LONG = "October 26, 2026"
@@ -88,7 +88,7 @@ def build_xlsx(out, blank=False):
     wb = S.new_workbook(PRODUCT, version=VERSION)
     wb.properties.description = "Copyright ProofNotFluff LLC. Free template for one business. Information only, not professional advice."
     ws = wb.create_sheet("Estimate")
-    S.set_widths(ws, {"A": 3, "B": 2, "C": 21, "D": 31, "E": 2, "F": 2, "G": 9, "H": 10, "I": 12, "J": 14, "K": 2, "L": 3})
+    S.set_widths(ws, {"A": 3, "B": 2, "C": 20, "D": 31, "E": 2, "F": 2, "G": 9, "H": 9, "I": 13, "J": 23, "K": 2, "L": 3})
     D.page_header(ws, "Estimate", "", "", span=("B", "K"), side_cols=3)
     v = (lambda k: None) if blank else (lambda k: EX[k])
 
@@ -142,6 +142,7 @@ def build_xlsx(out, blank=False):
     for rr in (r_no,):
         ws[f"J{rr}"].alignment = Alignment(horizontal="right", vertical="center", indent=1)
     ws[f"J{r_vu}"].alignment = Alignment(horizontal="right", vertical="center", indent=1)
+    D.h(ws, 11, 10)   # the top padding of both cards is one short row
     CARDS_END = max(A.end, B.end)
     for rr in range(11, CARDS_END + 1):
         if ws.row_dimensions[rr].height is None:
@@ -157,16 +158,17 @@ def build_xlsx(out, blank=False):
         return f'=IF(OR($G{r}="",$I{r}=""),"",ROUND($G{r}*$I{r},2))'
 
     cols_x = [
-        dict(col="C", head="Item", kind="input", values=col(0), validation=("textLength", 0, 40),
-             prompt="A short name, for example Driveway.", error="Up to 40 characters."),
-        dict(col="D", head="Description", kind="input", values=col(1), validation=("textLength", 0, 80),
-             prompt="What the work covers, for example 2-car concrete driveway, surface clean.", error="Up to 80 characters."),
-        dict(col="G", head="Qty", kind="input", fmt=QTY, align="right", values=col(2), validation=("decimal", 0, 1000000),
-             prompt="How many: 1 job, 3 hours, 450 sq ft. A number of 0 or more.", error="Type a quantity of 0 or more."),
+        dict(col="C", head="Item", kind="input", values=col(0), validation=("textLength", 0, 20),
+             prompt="A short name, up to 20 characters, for example Driveway.", error="Up to 20 characters, so it prints in full."),
+        dict(col="D", head="Description", kind="input", values=col(1), validation=("textLength", 0, 36),
+             prompt="What the work covers, up to 36 characters, for example 2-car concrete, surface clean.", error="Up to 36 characters, so it prints in full."),
+        dict(col="G", head="Qty", kind="input", fmt=QTY, align="right", values=col(2), validation=("decimal", 0, 9999),
+             prompt="How many: 1 job, 3 hours, 450 sq ft. A number from 0 to 9,999.", error="Type a quantity from 0 to 9,999."),
         dict(col="H", head="Unit", kind="input", values=col(3), validation=("textLength", 0, 12),
              prompt="What one is, for example job, hour, visit or sq ft. Optional.", error="Up to 12 characters."),
-        dict(col="I", head="Rate", kind="input", fmt=USD2, align="right", values=col(4), validation=("decimal", -1000000, 1000000),
-             prompt="Price for one unit, in dollars, for example 200. A credit can be negative.", error="Type a price in dollars."),
+        dict(col="I", head="Rate", kind="input", fmt=USD2, align="right", values=col(4), validation=("decimal", -99999, 99999),
+             prompt="Price for one unit, in dollars, for example 200. A credit can be negative. From -$99,999 to $99,999.",
+             error="Type a rate from -$99,999 to $99,999."),
         dict(col="J", head="Amount", kind="calc", fmt=USD2, align="right", formula=f_amt, bold=True),
     ]
     x1, x2, x_end = D.table_card(ws, X_TOP, "B", "K", cols_x, N_LINES, title="Work and prices",
@@ -175,10 +177,11 @@ def build_xlsx(out, blank=False):
         for k in ("E", "F"):   # the gap columns read as part of the description box (locked, not merged)
             ws[f"{k}{rr}"].fill = D.fill("input_fill")
             ws[f"{k}{rr}"].border = Border(bottom=D.side("FFFFFF"))
-        for k in ("C", "D", "H"):
-            ws[f"{k}{rr}"].alignment = Alignment(horizontal="left", vertical="center", indent=1)
+        for k in ("C", "D", "H"):   # shrink only at the character caps, so a long line never clips
+            ws[f"{k}{rr}"].alignment = Alignment(horizontal="left", vertical="center", indent=1, shrink_to_fit=True)
         ws[f"I{rr}"].alignment = Alignment(horizontal="right", vertical="center", indent=1)
         ws[f"G{rr}"].alignment = Alignment(horizontal="right", vertical="center", indent=1)
+    D.h(ws, x1 - 2, 6); D.h(ws, x1 - 1, 20)   # one short gap under the sub line, then the header row
     for k in ("E", "F"):   # the header rule runs across the gap columns too
         ws[f"{k}{x1 - 1}"].border = Border(bottom=D.side("ink"))
     AMT = f"$J${x1}:$J${x2}"
@@ -195,7 +198,10 @@ def build_xlsx(out, blank=False):
     ws[f"D{r_tm2}"].border = box; ws[f"D{r_tm2}"].fill = D.fill("input_fill")
     ws.merge_cells(f"D{r_tm}:D{r_tm2}"); ws.merge_cells(f"C{r_tm}:C{r_tm2}")
     ws[f"D{r_tm}"].alignment = Alignment(horizontal="left", vertical="center", indent=1, wrap_text=True)
-    L.text(ACCEPT, size=9, color="ink2", height=D.GRID_ROW * 2)
+    r_a1 = L._row(); r_a2 = L._row()   # two shared grid rows, merged, so the totals card keeps its row height
+    c = ws[f"C{r_a1}"]; c.value = ACCEPT; c.font = D.f(9, False, "ink2")
+    c.alignment = Alignment(vertical="center", wrap_text=True); ws.merge_cells(f"C{r_a1}:D{r_a2}")
+    L._row()   # one gap row above the signature lines
     sig_rows = []
     for lab in ("Name (print)", "Signature", "Date"):
         rr = L._row(); L._label(rr, lab)
@@ -214,11 +220,12 @@ def build_xlsx(out, blank=False):
     r_dpa = R.calc("Deposit to book", f'=IF($J${r_tot}="","",ROUND($J${r_tot}*N($J${r_dp}),2))', USD2)
     ws[f"G{r_dpa}"] = f'=IF(N($J${r_dp})>0,"Deposit to book ("&ROUND($J${r_dp}*100,2)&"%)","Deposit to book")'
     r_bal = R.calc("Balance due", f'=IF($J${r_tot}="","",$J${r_tot}-$J${r_dpa})', USD2, bold=True)
+    D.h(ws, T_TOP, 10)
     while R.r < L.end:   # both cards end on the same row
         R._row()
     R.close()
-    for rr in (r_sub, r_dsa, r_txa, r_tot, r_dpa, r_bal):
-        ws[f"J{rr}"].alignment = Alignment(horizontal="right", vertical="center", indent=1)
+    for rr in (r_sub, r_dsa, r_txa, r_tot, r_dpa, r_bal):   # shrink only ever kicks in near the input caps
+        ws[f"J{rr}"].alignment = Alignment(horizontal="right", vertical="center", indent=1, shrink_to_fit=True)
     BOT = max(L.end, R.end)
     for rr in range(T_TOP, BOT + 1):
         if ws.row_dimensions[rr].height is None:
@@ -538,6 +545,13 @@ def main():
         t2 = re.sub(r"<!--pnf-preview-->.*?<!--/pnf-preview-->", lambda m: page_preview(), t, flags=re.S)
         if t2 != t:
             open(PAGE, "w", encoding="utf-8").write(t2)
+        sys.path.insert(0, os.path.join(ROOT, "engines"))
+        import thanks_page
+        thanks_page.write(ROOT, SLUG, "job estimate template",
+                          [(NAME + ".xlsx", "Download the Excel file", "Estimate that adds up on its own, 3 tabs"),
+                           (NAME + ".pdf", "Download the blank PDF", "Estimate to print and fill by hand, 2 pages")],
+                          "No Microsoft Excel? Upload the .xlsx to Google Drive and open it with Google Sheets. It works the same.",
+                          ("pressure-washing-price-calculator", "Price each line with the free pressure washing price calculator"))
     print("built", NAME + ".xlsx", NAME + ".pdf", cells)
 
 

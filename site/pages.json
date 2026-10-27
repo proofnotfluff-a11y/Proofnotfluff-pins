@@ -5872,7 +5872,6 @@
   {
    "slug": "chicago-rat-complaints",
    "kind": "rodents",
-   "draft": true,
    "data": "permits/rodents-chicago/weekly.json",
    "title": "Chicago Rat Complaints by Neighborhood, Updated Weekly | ProofNotFluff",
    "desc": "Free weekly count of rat complaints to Chicago 311 by community area: the last 7 and 30 days, a year ago, and the week-by-week trend. From City records.",

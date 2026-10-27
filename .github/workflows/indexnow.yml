@@ -9,7 +9,7 @@ on:
     branches: [main]
     paths: ["docs/**"]
   workflow_run:
-    workflows: ["Chicago new business licenses", "Chicago inspection leads", "Chicago restaurant daily list", "Hub featured products", "Chicago permit leads sample", "Austin permit leads sample"]
+    workflows: ["Chicago new business licenses", "Chicago inspection leads", "Chicago restaurant daily list", "Hub featured products", "Chicago permit leads sample", "Austin permit leads sample", "Chicago rat complaints"]
     types: [completed]
     branches: [main]
   schedule:

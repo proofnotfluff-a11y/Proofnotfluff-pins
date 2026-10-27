@@ -31,3 +31,12 @@
 ## Channel spend, 7:09 pm (Kimi research chat)
 - [stated] Todd: "I don't want to spend $700" (to the BSCAI Service Provider listing from Kimi R6).
 - So: no paid association, event or media channel. Only $0 channels stay open: the FieldRoutes and Janitorial Manager partner applications (no fee stated). Correction to the R6 note: WorkWave's Referral partner type pays a commission for referring customers to WorkWave; it does not list us in front of pest companies, so it is dropped.
+
+## Traffic first, 8:18 to 8:28 pm (Kimi research chat)
+- [stated] Todd, 8:18 pm: "Do we need to compete in the leads game at all? is there another angle we can attack? I don't like the idea of hunting for leads by reaching out to builders and selling them."
+- [stated] Todd, 8:24 pm: "Why don't we focus on building traffic then? What can we offer to bring people to the site?"
+- [stated] Todd, 8:28 pm: "let's get it live and the other items you suggest. Building traffic is paramount. Let's also prompt Kimi on how we can do this as well."
+- So: the bid desk (writing to builders for seat holders) is dropped. Seats stay live, no builder outreach, no new lead products. Traffic is the priority.
+- "Get it live" is Todd's yes to the rat tracker with all 77 community areas, Edison Park included (scoreboard rat-page-edison-park): the legal scan's personal-detail flag on that one area name is cleared for this page only. The page says nothing about any person.
+- "The other items you suggest": free templates given for an email signup (new page type and email capture, built through every gate; the Kit form is Todd's step), and the seasonal calculators and weekly rat numbers in the daily carousels. A news tip to a reporter was asked, not suggested: it waits for his answer.
+- Kimi R8 (traffic) written: coo/KIMI_RESEARCH.md.

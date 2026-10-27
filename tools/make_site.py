@@ -86,6 +86,8 @@ def nav_html(rel, current=""):
 def foot_nav(rel):
     """The footer links on every page: the shop, the calculators, the refund and privacy pages, the Etsy workbooks and the mailbox."""
     q = f'<a href="{rel}questions/">Questions</a>' if LIVE_QUESTIONS else ""
+    # the free Chicago data pages that are no calculator (rat tracker live Oct 26 on Todd's go): linked from every page
+    q += "".join(f'<a href="{rel}{p["slug"]}/">Chicago rat complaints</a>' for p in PAGES_LIVE if p.get("kind") == "rodents")
     return (f'<nav class="fnav" aria-label="Footer"><a href="{rel}shop/">Shop</a><a href="{rel}calculators/">Free calculators</a>{q}'
             f'<a href="{rel}refunds/">Refunds and cancelling</a><a href="{rel}privacy/">Privacy</a><a href="{SHOP}">Workbooks on Etsy</a>'
             '<a href="mailto:hello@proofnotfluff.com">hello@proofnotfluff.com</a></nav>')
@@ -3024,7 +3026,7 @@ def home_html(pages, live, doors=False):
             '<p class="hx-cta"><a class="btn ld-btnbig" href="#trades">Pick your trade</a><a class="st-link" href="#calc-title">Pricing a job? Try a free calculator</a></p></div>'
             f'<div class="hx-side">{shot}{week_hx}</div>'
             f'<div class="hx-pickrow"><h2 class="hx-pick" id="trades">Open this week\'s free sample for your trade</h2><ul class="st-trades hx-trades">{trades}</ul></div></section>')
-    calcs_live = [p for p in live if p.get("kind") not in ("leads", "restleads", "licleads", "question", "newin")]
+    calcs_live = [p for p in live if p.get("kind") not in ("leads", "restleads", "licleads", "question", "newin", "rodents", "agentkit")]
     if doors:
         by_calc = {p["slug"]: p for p in calcs_live}
         feat = [by_calc[x] for x in st.get("doorCalcs", []) if x in by_calc][:4]
@@ -3600,7 +3602,7 @@ def main():
             + [BASE + x["slug"] + "/" for x in live_extras()] + ([BASE + compare_page()["slug"] + "/"] if compare_page() else []))
     lastmod = {}
     for p in live:   # a lead page changes when its data does (radar, Oct 23): the sitemap says the true day
-        if p.get("kind") in ("leads", "restleads", "licleads") and data_date(p.get("data")):
+        if p.get("kind") in ("leads", "restleads", "licleads", "rodents") and data_date(p.get("data")):
             lastmod[BASE + p["slug"] + "/"] = data_date(p.get("data"))
     for q in LIVE_QUESTIONS:   # a question page changes when its data does
         try:

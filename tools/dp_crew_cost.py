@@ -406,7 +406,7 @@ def calculator(d, E, rel):
         '<div class="cc-calc">'
         '<form class="cc-form" id="cc-form" novalidate onsubmit="return false">'
         '<div class="cc-pick" style="grid-template-columns:1fr"><label for="cc-level">Pay rate to use'
-        '<select class="cc-sel" id="cc-level" aria-describedby="cc-pwline"></select></label><p class="cc-pwline" id="cc-pwline" hidden></p></div>'
+        f'<select class="cc-sel" id="cc-level" aria-describedby="cc-pwline"><option value="median" selected>Median, {m2(ln0["median"])}</option></select></label><p class="cc-pwline" id="cc-pwline" hidden></p></div>'
         '<div class="row"><label for="cc-crew">People on the crew</label><div class="field"><input class="cc-in" id="cc-crew" aria-describedby="cc-crew-err" type="text" inputmode="decimal" value="2" autocomplete="off"></div>'
         '<p class="cc-err" id="cc-crew-err">Enter a whole number of people, 1 to 100.</p></div>'
         '<div class="row"><label for="cc-hours">Hours each person works that day<small>Paid hours, drive time included if you pay it</small></label>'
@@ -580,7 +580,7 @@ def page_html(p):
         if r["trade"] not in seen:
             seen.add(r["trade"])
             mrows.append(r)
-    pw_sec = (f'<p>Illinois law sets the least workers on public works must be paid: the base rate plus each fringe, for every hour. These are the Cook County lines for the trades on this page, '
+    pw_sec = (f'<p>Illinois law sets the minimum that workers on public works must be paid: the base rate plus each fringe, for every hour. These are the Cook County lines for the trades on this page, '
               f'for work on or after October 19, 2026. On public works the schedule also sets overtime, unless it notes otherwise for a line: hours over {d["prevailing"]["otDailyAfter"]} a day Monday to Friday, and every hour on Saturdays, Sundays and holidays, at the multiple it lists.</p>'
               '<p class="cc-swipe">Swipe the table sideways for more columns.</p>'
               f'<div class="cc-tw" role="region" aria-label="Cook County public works rates for the trades on this page" tabindex="0">{pw_table(mrows, E, "cc-t")}</div>'

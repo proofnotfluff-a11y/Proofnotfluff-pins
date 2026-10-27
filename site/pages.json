@@ -6937,13 +6937,13 @@
    "draft": true,
    "data": "site/datapages/dp_flooding/monthly.json",
    "title": "Chicago Basement Flooding Calls by Neighborhood, Updated Daily | ProofNotFluff",
-   "desc": "Free daily count of water in basement and sewer cleaning requests to Chicago 311 for all 77 community areas: month by month, against the year before, with the storm days. From City records.",
+   "desc": "Free daily count of water in basement and sewer cleaning requests to Chicago 311 for all 77 community areas: month by month, against the year before, with the busiest days. From City records.",
    "eyebrow": "Free daily tracker for plumbers and restoration companies",
    "h1": "Chicago Basement Flooding Calls by Neighborhood",
-   "card": "Water in basement and sewer cleaning requests to Chicago 311 by community area, month by month, with the storm days. Updated daily.",
+   "card": "Water in basement and sewer cleaning requests to Chicago 311 by community area, month by month, with the busiest days. Updated daily.",
    "trade": [
     {
-     "title": "Storm days bring the calls in bunches",
+     "title": "Basement calls arrive in bunches",
      "text": "The day chart shows how basement calls pile up on a few days a year. Our free calculator shows what the new customer calls you cannot pick up cost you in jobs and profit each month.",
      "slug": "missed-call-cost-calculator",
      "button": "Count your missed calls"
@@ -7017,8 +7017,8 @@
    ],
    "method": [
     "Every day we count the violations in the City of Chicago's public Building Violations dataset, which holds the violations the Department of Buildings has issued since 2006, by the month of each violation's date.",
-    "Each violation is sorted into a trade by its violation code with our own published mapping: a code we list goes to its trade, any other code starting with the letters of the Elevator, Boiler, Ventilation, Refrigeration, Plumbing or Electrical bureau goes to that bureau's trade, and everything else is not counted by trade. Codes for paperwork, permits, plans, records and arranging inspections are left out on purpose.",
-    "The dataset has no community area column, so each violation's map point is placed inside the City's own community area outlines. Points and addresses never leave the computer that does the counting.",
+    "Each violation is sorted into a trade by its violation code with our own published mapping: a code we list goes to its trade, any other code in the City's elevator, boiler, ventilation, refrigeration, plumbing or electrical code series goes to the matching trade, and everything else is not counted by trade. Codes for paperwork, permits, plans, records and arranging inspections are left out on purpose.",
+    "The dataset has no named community area column, so each violation's map point is placed inside the City's own community area outlines. Points and addresses never leave the computer that does the counting.",
     "12 months means the last 12 whole months, and the change compares them with the 12 months before. One inspection can cite several violations, and a violation counts in the month it was cited whether or not it has since been fixed.",
     "Only counts are kept. No address, location, property, owner, inspector or comment is stored or shown, so the page cannot point to any building."
    ],
@@ -7028,7 +7028,7 @@
      "The tiles at the top give each trade's count for the last 12 whole months, and each trade's panel lists the violations the City cited most for it, in the City's own words."
     ],
     [
-     "Which Chicago neighborhoods need the most masonry, porch or HVAC work?",
+     "Which Chicago neighborhoods have the most masonry, porch or HVAC violations?",
      "Pick a trade in the panel or on the map to rank all 77 community areas by new violations for it. A higher count can also mean more older buildings, or more inspections there."
     ],
     [
@@ -7037,7 +7037,7 @@
     ],
     [
      "Does a violation mean the work is still needed?",
-     "Not always. A violation is one item an inspector cited on the date shown, and this page does not track whether it was later fixed. It names no building or owner."
+     "Not always. A violation is one item an inspector cited on the date shown. The City's records include cases where the respondent was later found not liable, and this page does not track whether an item was fixed. It names no building or owner."
     ],
     [
      "Can I use this to check a property I am buying?",
@@ -7049,7 +7049,7 @@
     ]
    ],
    "sourceNotes": [
-    "The Department of Buildings' note on this dataset, word for word: “Lenders and title companies, please note: These data are historical in nature and should not be relied upon for real estate transactions. For transactional purposes such as closings, please consult the title commitment for outstanding enforcement actions in the Circuit Court of Cook County or the Chicago Department of Administrative Hearings.” and “The information presented on this website is informational only and does not necessarily reflect the current condition of the building or property.”"
+    "The Department of Buildings' note on this dataset, word for word: “Lenders and title companies, please note: These data are historical in nature and should not be relied upon for real estate transactions. For transactional purposes such as closings, please consult the title commitment for outstanding enforcement actions in the Circuit Court of Cook County or the Chicago Department of Administrative Hearings.” , “The information presented on this website is informational only and does not necessarily reflect the current condition of the building or property.” and “The dataset contains cases where a respondent has been found to be liable as well as cases where the respondent has been found to be not liable.”"
    ],
    "sources": "City of Chicago Building Violations, dataset 22u3-xenr.",
    "map": true

@@ -6,7 +6,7 @@ build B8; research_notes/kimi-2026-10-27-r10.md item 14).
 Runs in GitHub Actions (.github/workflows/dp_repairs.yml), because the cloud agents cannot reach
 data.cityofchicago.org. Source: City of Chicago Data Portal, Building Violations (dataset 22u3-xenr). Each violation the
 Department of Buildings records is sorted into a trade with the published hand mapping
-site/datapages/dp_repairs/trade-map.json (violation code first, then the department bureau), and counted by the month
+site/datapages/dp_repairs/trade-map.json (violation code first, then the City's code series), and counted by the month
 of its violation date and its community area.
 
 The dataset has no community area column, so the runner places each violation's map point inside the City's
@@ -60,7 +60,7 @@ def load_map(path=MAPF):
 
 
 def trade_of(m, code):
-    """The published mapping: a violation code listed in it wins, then the bureau letters the code starts with
+    """The published mapping: a violation code listed in it wins, then the City code series the code starts with
     (EV elevator, BR boiler, VT ventilation, RF refrigeration, PL plumbing, EL electrical); anything else is "other"."""
     c = (code or "").strip().upper()
     if c in m["codes"]:

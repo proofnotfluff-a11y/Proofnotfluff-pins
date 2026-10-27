@@ -134,20 +134,24 @@ CSS = ("<style>"
        ".rd-t th:first-child,.rd-t td:first-child{text-align:left}.rd-t thead th{font-size:13px;color:var(--muted);font-weight:700;background:var(--card);vertical-align:bottom}"
        ".rd-t tbody th{font-weight:600;color:var(--ink);text-align:left}.rd-t tr:last-child td,.rd-t tr:last-child th{border-bottom:0}.rd-up{color:var(--warn-ink);font-weight:600}"
        ".rd-t td.rd-d,.rd-t th.rd-d{text-align:left;white-space:normal}.rd-t code{font-size:12.5px;color:var(--muted)}"
-       ".rd-more{margin:12px 0 0}.rd-more summary{display:flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;font-weight:600;color:var(--ink)}"
-       ".rd-more[open] summary{margin-bottom:8px}.rd-dl{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0}"
+       ".rd-more{margin:12px 0 0}.rd-dl{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0}"
        ".rd-grid{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr));margin:8px 0}@media(min-width:900px){.rd-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}"
        ".rd-grid a{display:block;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);text-decoration:none;color:var(--ink);min-height:44px}"
+       ".rd-grid a.lead{background:var(--band);border-color:var(--band-line);color:#fff;--focus:#fff}.rd-grid a.lead small{color:var(--band-text)}.rd-grid a.lead em{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:999px;background:var(--accent);color:#fff;font:700 11.5px/1.6 system-ui,sans-serif;font-style:normal;letter-spacing:.03em;text-transform:uppercase;vertical-align:2px}"
+       ".rd-grid a.on{box-shadow:0 0 0 3px var(--accent)}.rd-grid a:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
        ".rd-grid a:hover{border-color:var(--ink)}.rd-grid b{display:block;font:700 26px/1.1 Poppins,system-ui,sans-serif;font-variant-numeric:tabular-nums}.rd-grid span{display:block;font-weight:700;margin-top:2px}.rd-grid small{display:block;color:var(--muted);font-size:13px;margin-top:2px}"
        ".rd-two{display:grid;gap:16px}@media(min-width:900px){.rd-two{grid-template-columns:1fr 1fr}}.rd-two .cta{grid-template-columns:1fr;height:100%;align-items:start}.rd-two .cta h2{margin-top:0;text-wrap:balance}"
-       "@media(max-width:599px){.rd-t .rd-x{display:none}.rd-t th,.rd-t td{padding:9px 7px}.rd-chart text{font-size:13px}}"
+       ".rd-p .rd-t td{white-space:nowrap}.rd-t td:last-child,.rd-t th:last-child{padding-right:16px}.rd-s{display:none}.rd-swipe{display:none;margin:8px 0 0;font-size:13px;color:var(--muted)}"
+       ".rd-chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 0;padding:0;list-style:none}.rd-chips li{padding:2px 10px;border-radius:999px;background:var(--canvas2);border:1px solid var(--line);font-size:13px;color:var(--ink2)}"
+       "@media(max-width:599px){.rd-l{display:none}.rd-s{display:inline}.rd-swipe{display:block}.rd-p .rd-t{min-width:420px}.rd-t th,.rd-t td{padding:9px 8px}"
+       ".rd-p .rd-t tbody th,.rd-p .rd-t thead th:first-child{position:sticky;left:0;z-index:1;background:var(--card);box-shadow:1px 0 0 var(--rule)}}"
        "</style>")
 
 
 def month_chart(vals, labels, ghost, E, label):
     """The same 24-month chart as the flooding page (gridlines, edge labels kept inside), in this page's classes."""
     import dp_flooding
-    return dp_flooding.month_chart(vals, labels, ghost, E, label).replace('class="bf-chart"', 'class="rd-chart"')
+    return dp_flooding.month_chart(vals, labels, ghost, E, label).replace('class="bf-chart ', 'class="rd-chart ')
 
 
 def range_legend(cuts):
@@ -186,7 +190,8 @@ def map_block(st, E, period):
             '<p class="gm-hint">Pick a trade above the map, then tap or hover any area, or choose one from the list.</p>')
     fig = G.choropleth(areas, metrics, uid="repairmap", title="Map of Chicago's 77 community areas, colored by new building violations for one trade", hint=hint,
                        caption="Community area outlines: City of Chicago, Boundaries - Community Areas. Every number on the map is also in the trade tables below.")
-    return G.CSS + fig if fig else ""
+    import dp_flooding
+    return G.CSS + dp_flooding.pg_map(fig) if fig else ""
 
 
 def csv_area(d, m, names):
@@ -230,7 +235,7 @@ def page_html(p):
     crumb, crumb_ld = M.crumbs(rel, [("Home", ""), ("Free Chicago data", "chicago-data/"), (META["h1"], None)])
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
               "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]}
-    head = lambda rb, ld: M.HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=M.SHOP, ld=ld + CSS,
+    head = lambda rb, ld: M.HEAD.format(title=E(p["title"]), desc=E(p["desc"]), url=url, rel=rel, shop=M.SHOP, ld=ld + CSS + __import__("dp_flooding").SHARED_CSS,
                                         bodycls=' class="ld-page"', robots=rb, analytics=M.analytics_tag())
     if not d:
         return (head('<meta name="robots" content="noindex, nofollow">', "") + f'{crumb}<div class="ld-hero"><h1>{E(META["h1"])}</h1>'
@@ -250,7 +255,7 @@ def page_html(p):
             f'that call for masonry, porch, electrical, HVAC, elevator or plumbing work. {E(big["label"])} led with {big["y12"]:,}. '
             'Every trade, every community area, month by month.')
     grid = ('<div class="rd-grid">' + "".join(
-        f'<a href="#t-{t["key"]}" data-tab="{t["key"]}"><b>{t["y12"]:,}</b><span>{E(t["label"])}</span><small>{E(pct(t["ch"]))} on the 12 months before</small></a>' for t in T)
+        f'<a href="#t-{t["key"]}" data-tab="{t["key"]}"{" class=lead" if t is big else ""}><b>{t["y12"]:,}</b><span>{E(t["label"])}{"<em>Most</em>" if t is big else ""}</span><small>{E(pct(t["ch"]))} on the 12 months before</small></a>' for t in T)
         + f'</div><p class="asof">New violations, {E(period)}. Counts to {E(M.nice_date(d["through"]))}, from City of Chicago building violation records pulled {E(pulled)}. Updated every day.</p>')
     mapb = map_block(st, E, period)
     tabs = ('<fieldset class="rd-tabs"><legend>Trade</legend>'
@@ -261,9 +266,9 @@ def page_html(p):
     for t in T:
         top = sorted(t["areas"], key=lambda a: (-a["y12"], a["name"]))
         row = lambda a: (f'<tr><th scope="row">{E(a["name"])}</th><td>{"=" if a["tied"] else ""}{a["rank"]}</td><td>{a["y12"]:,}</td>'
-                         f'<td{" class=rd-up" if a["p12"] >= FEW and a["y12"] >= a["p12"] * 1.25 else ""}>{E(area_change(a["y12"], a["p12"]))}</td>'
-                         f'<td class="rd-x">{a["m"]:,}</td></tr>')
-        thead = (f'<thead><tr><th scope="col">Community area</th><th scope="col">Rank</th><th scope="col">12 months</th><th scope="col">Change</th>'
+                         + (f'<td class="rd-up">\u2191 {E(area_change(a["y12"], a["p12"]))}</td>' if a["p12"] >= FEW and a["y12"] >= a["p12"] * 1.25 else f'<td>{E(area_change(a["y12"], a["p12"]))}</td>')
+                         + f'<td class="rd-x">{a["m"]:,}</td></tr>')
+        thead = (f'<thead><tr><th scope="col">Community area</th><th scope="col">Rank</th><th scope="col"><span class="rd-l">12 months</span><span class="rd-s">12 mo</span></th><th scope="col">Change</th>'
                  f'<th scope="col" class="rd-x">{E(ym_name(st["lm"], True))}</th></tr></thead>')
         tbl = lambda rs, lab: f'<div class="rd-tw" role="region" aria-label="{E(lab)}" tabindex="0"><table class="rd-t">{thead}<tbody>{"".join(row(a) for a in rs)}</tbody></table></div>'
         lead = top[0]
@@ -273,6 +278,8 @@ def page_html(p):
                    f'<div><b>{t["m"]:,}</b><small>in {E(ym_name(st["lm"]))}</small></div><div><b>{E(lead["name"])}</b><small>most, with {lead["y12"]:,}</small></div></div>'
                    + month_chart(t["city24"], st["labels"], t["ghost24"], E, f'{t["label"]} violations each month for 24 months, with the same month a year earlier behind each bar')
                    + '<p class="rd-key"><span><i></i>That month</span><span class="k2"><i></i>Same month a year earlier</span></p></div>'
+                   + f'<p class="up-key"><b>\u2191 Red</b> marks a rise of 25% or more on the 12 months before, where those months had at least {FEW}.</p>'
+                   + '<p class="rd-swipe">Swipe the table sideways for more columns.</p>'
                    + tbl(top[:15], f'{t["label"]} violations, the 15 community areas with the most')
                    + f'<details class="rd-more"><summary>Show the other {len(top) - 15} community areas</summary>' + tbl(top[15:], f'{t["label"]} violations, the other community areas') + '</details>'
                    + (f'<details class="rd-more"><summary>What the City cited most for {E(t["label"].lower())}</summary><div class="rd-tw"><table class="rd-t">'
@@ -290,16 +297,17 @@ def page_html(p):
     mp_rows = ""
     for t in m["trades"]:
         cs = [c for c, v in sorted(m["codes"].items()) if v["trade"] == t["key"]]
-        ps = [(x, v["bureau"]) for x, v in m["prefixes"].items() if v["trade"] == t["key"]]
+        ps = [(x, v["series"]) for x, v in m["prefixes"].items() if v["trade"] == t["key"]]
         top = [c for c, n in next(x for x in T if x["key"] == t["key"])["codes"][:4] if n]
         mp_rows += (f'<tr><th scope="row">{E(t["label"])}</th><td class="rd-d">'
-                    + (E("Codes from the " + " and ".join(f"{b} bureau ({x})" for x, b in ps)) + (", and " if cs else ". ") if ps else "")
+                    + (E("Codes in the City's " + " and ".join(f"{x} ({b})" for x, b in ps) + (" code series" if len(ps) > 1 else " code series")) + (", and " if cs else ". ") if ps else "")
                     + (f'{len(cs)} named codes' + ("" if ps else "") + ". " if cs else "")
-                    + ("Most cited: " + E("; ".join(sentence(cited(d, m, c)) for c in top)) + "." if top else "")
+                    + ("Most cited, in the City's words:" + '<ul class="rd-chips">' + "".join(f"<li>{E(sentence(cited(d, m, c)))}</li>" for c in top) + "</ul>" if top else "")
                     + '</td></tr>')
     left = sum(1 for v in m["codes"].values() if v["trade"] == "other")
-    mapping = ('<div class="rd-tw"><table class="rd-t"><thead><tr><th scope="col">Trade</th><th scope="col" class="rd-d">What we count</th></tr></thead>'
-               f'<tbody>{mp_rows}</tbody></table></div><p class="asof">{E(m.get("about", ""))} {left} codes from those bureaus are left out on purpose, because their '
+    mapping = (f'<p>{E(m.get("about", ""))}</p><details class="rd-more"><summary>See how each trade is counted</summary>'
+               '<div class="rd-tw"><table class="rd-t"><thead><tr><th scope="col">Trade</th><th scope="col" class="rd-d">What we count</th></tr></thead>'
+               f'<tbody>{mp_rows}</tbody></table></div></details><p class="asof">{left} codes in those series are left out on purpose, because their '
                'wording is paperwork, a permit, plans, records or arranging an inspection rather than a repair. The full list, with the reason for each code left out, is in the mapping download.</p>')
     tr = p["trade"]
     two = ('<section class="block" id="next"><div class="rd-two">'
@@ -307,15 +315,23 @@ def page_html(p):
                      f'<p class="ld-buybtn"><a class="btn" href="{rel}{E(c["slug"])}/">{E(c["button"])}</a></p></div></div>' for c in tr)
            + '</div></section>')
     method = '<section class="block" id="how"><h2>How this page is made</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"]) + "</section>"
-    js = ('<script>(function(){document.querySelectorAll("[data-tab]").forEach(function(a){a.addEventListener("click",function(e){var i=document.getElementById("t-"+a.dataset.tab);'
-          'if(!i)return;e.preventDefault();i.checked=true;document.getElementById("trades").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});i.focus({preventScroll:true});});});})();</script>')
+    js = ('<script>(function(){var C=document.querySelectorAll("[data-tab]");'
+          'function mark(k){C.forEach(function(a){a.classList.toggle("on",a.dataset.tab===k);});'
+          'var r=document.querySelector("#repairmap .gm-seg input[value=\'"+k+"\']");if(r&&!r.checked){r.checked=true;r.dispatchEvent(new Event("change"));}}'
+          'document.querySelectorAll("input[name=rdt]").forEach(function(i){i.addEventListener("change",function(){mark(i.value);});});'
+          'document.querySelectorAll("#repairmap .gm-seg input").forEach(function(i){i.addEventListener("change",function(){var t=document.getElementById("t-"+i.value);if(t&&!t.checked){t.checked=true;}C.forEach(function(a){a.classList.toggle("on",a.dataset.tab===i.value);});});});'
+          'C.forEach(function(a){a.addEventListener("click",function(e){var i=document.getElementById("t-"+a.dataset.tab);'
+          'if(!i)return;e.preventDefault();i.checked=true;mark(a.dataset.tab);document.getElementById("trades").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});i.focus({preventScroll:true});});});'
+          'var f=document.querySelector("input[name=rdt]:checked");if(f)C.forEach(function(a){a.classList.toggle("on",a.dataset.tab===f.value);});})();</script>'
+          + __import__("dp_flooding").PG_JS)
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(META["h1"])}</h1><p class="lede">{lede}</p>'
             '<div class="ld-heroact rl-act"><a class="btn" href="#trades">See your trade by neighborhood</a><a class="st-btn2" href="#map">Open the map</a></div></div>'
             f'{grid}'
+            + __import__("dp_flooding").pg_nav([("map", "Map"), ("trades", "By trade"), ("mapping", "How trades are sorted"), ("faq", "Questions")], E)
             + (f'<section class="block" id="map"><h2>Repair demand on the map</h2>{mapb}</section>' if mapb else "")
             + f'<section class="block" id="trades"><h2>Every community area, by trade</h2>{trades_sec}</section>'
             f'<section class="block" id="mapping"><h2>How violations are sorted into trades</h2>{mapping}</section>'
-            f'{two}{method}{M.faq_block(p["faq"])}'
+            + two + method + M.faq_block(p["faq"]).replace('<section class="block">', '<section class="block" id="faq">', 1) +
             f'<p class="rl-act"><a class="btn" href="#trades">See your trade by neighborhood</a> <a class="st-btn2" href="{rel}chicago-data/">More free Chicago data</a></p>{js}')
     foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             f'<p>Source: City of Chicago Data Portal, <a href="{E(src["url"])}">Building Violations dataset</a>, by violation date, pulled {E(pulled)}. '

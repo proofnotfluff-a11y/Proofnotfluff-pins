@@ -7,8 +7,9 @@ Audience: trade owners (masons, porch carpenters, electricians, HVAC and boiler,
 - Page: /chicago-repair-demand/ (site/pages.json kind "datapage", module tools/dp_repairs.py).
 - Data: City of Chicago Building Violations (22u3-xenr), counted by the month of violation_date.
 - Trades: the published hand mapping site/datapages/dp_repairs/trade-map.json (also downloadable from the page).
-  A listed violation code goes to its trade; any other code starting EV, BR, VT, RF, PL or EL goes to the trade of that
-  Department of Buildings bureau; everything else is not counted by trade. 31 codes are left out on purpose
+  A listed violation code goes to its trade; any other code in the City's EV, BR, VT, RF, PL or EL code series goes to
+  the matching trade (the facts gate found the series do not map one to one to the issuing bureau, so the page names
+  the code series, not a bureau); everything else is not counted by trade. 31 codes are left out on purpose
   (paperwork, permits, plans, records, arranging inspections, or wording that is only OPEN), each with its reason.
   Mapping built from the source check of 12 months of codes (site/datapages/dp_repairs/source-check.json, Oct 27).
 - No community area column in the dataset: the runner places each violation's latitude and longitude inside the

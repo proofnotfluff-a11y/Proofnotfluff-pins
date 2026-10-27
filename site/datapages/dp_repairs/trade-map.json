@@ -1,5 +1,5 @@
 {
- "about": "Hand mapping by ProofNotFluff, Oct 27, 2026, from the City's own violation codes and descriptions. A violation code listed here goes to its trade; any other code starting with EV, BR, VT, RF, PL or EL goes to the trade of the Department of Buildings bureau those letters stand for; everything else is not counted by trade.",
+ "about": "Hand mapping by ProofNotFluff, Oct 27, 2026, from the City's own violation codes and descriptions. A violation code listed here goes to its trade; any other code in the City's EV (elevator), BR (boiler), VT (ventilation), RF (refrigeration), PL (plumbing) or EL (electrical) code series goes to the matching trade; everything else is not counted by trade.",
  "checkedAt": "2026-10-27",
  "trades": [
   {
@@ -42,27 +42,27 @@
  "prefixes": {
   "EV": {
    "trade": "elevator",
-   "bureau": "Elevator"
+   "series": "elevator"
   },
   "BR": {
    "trade": "hvac",
-   "bureau": "Boiler"
+   "series": "boiler"
   },
   "VT": {
    "trade": "hvac",
-   "bureau": "Ventilation"
+   "series": "ventilation"
   },
   "RF": {
    "trade": "hvac",
-   "bureau": "Refrigeration"
+   "series": "refrigeration"
   },
   "PL": {
    "trade": "plumbing",
-   "bureau": "Plumbing"
+   "series": "plumbing"
   },
   "EL": {
    "trade": "electrical",
-   "bureau": "Electrical"
+   "series": "electrical"
   }
  },
  "codes": {

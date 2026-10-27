@@ -3797,7 +3797,7 @@ def data_hub_html():
     cfg = load_hub()
     news = [e for e in es if e["group"] == "news"]   # the news brief is built from news outlets too (facts gate, Oct 27)
     lede_n = len(es) - len(news)
-    news_bit = ", plus a daily trades news brief" if news else ""
+    news_bit = ", plus a daily news brief" if news else ""
     groups = [(g["id"], g["title"], g.get("line", "")) for g in cfg.get("groups", [])] + [("more", "More Chicago data", "")]
     groups = [(i, t, l, [e for e in es if e["group"] == i]) for i, t, l in groups]
     groups = [g for g in groups if g[3]]
@@ -3807,8 +3807,8 @@ def data_hub_html():
                    + (f'<p class="dh-line">{E(l)}</p>' if l else "")
                    + f'<ul class="cx-grid">{"".join(hub_card(e, rel, tag=False) for e in items)}</ul></section>' for i, t, l, items in groups)
     body = (f'{crumb}<p class="eyebrow">Free, from public records</p><h1>Free Chicago data for trade owners</h1>'
-            f'<p class="lede">{lede_n} free trackers and tools built from City, State and federal records{news_bit}. Every page names its source and the day its numbers were checked.</p>'
-            '<div class="cx-bar" id="cxBar" data-noun="data pages" hidden><label class="cx-search"><span class="sr">Search the Chicago data pages</span>'
+            f'<p class="lede">{len(es)} free pages: {lede_n} trackers and tools from City, State and federal records{news_bit}. Each names its source and the day it was checked.</p>'
+            '<div class="cx-bar" id="cxBar" data-noun="pages" data-quiet="1" hidden><label class="cx-search"><span class="sr">Search the Chicago data pages</span>'
             '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>'
             '<input id="cxQ" type="search" placeholder="Search permits, rats, snow" autocomplete="off" enterkeyhint="search"><kbd aria-hidden="true">/</kbd></label>'
             f'<div class="cx-chips" role="group" aria-label="Filter by job">{chips}</div>'

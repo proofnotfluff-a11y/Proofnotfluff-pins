@@ -5,31 +5,31 @@ ok 390 terms before password: no horizontal scroll (0px)
 ok 390 wrong password refused
 ok 390 overview opens: 1 project is close to a final clean this week
 ok 390 overview: no horizontal scroll (0px)
-390 data: {"n": 158, "near": 1, "nw": 6, "geo": 138, "builders": 108, "total": 6242314201, "city": "austin"}
-ok 390 list shows all 158 projects
+390 data: {"n": 156, "near": 1, "nw": 2, "geo": 136, "builders": 107, "total": 7044697410, "city": "austin"}
+ok 390 list shows all 156 projects
 ok 390 projects: no horizontal scroll (0px)
 ok 390 stage filter 'near': 1 of 1
-ok 390 stage filter 'insp': 132 of 132
-ok 390 stage filter 'issued': 25 of 25
-ok 390 stage filter 'all': 158 of 158
+ok 390 stage filter 'insp': 131 of 131
+ok 390 stage filter 'issued': 24 of 24
+ok 390 stage filter 'all': 156 of 156
 ok 390 area filter 78610: 1 of 1
 ok 390 area + type filter: 1 of 1
 ok 390 area + cost filter: 0 of 0
 ok 390 clear filters
-ok 390 CSV has 158 rows of 158 and an All builders column
+ok 390 CSV has 156 rows of 156 and an All builders column
 ok 390 CSV cells guarded
-ok 390 map pins 138 of 138 projects with a location
+ok 390 map pins 136 of 136 projects with a location
 ok 390 map: no horizontal scroll (0px)
 ok 390 project page 13525226 opens with its address
 ok 390 project: no horizontal scroll (0px)
 ok 390 mark as contacted
-ok 390 builders list 108 of 108
+ok 390 builders list 107 of 107
 ok 390 builders: no horizontal scroll (0px)
 ok 390 builder: no horizontal scroll (0px)
 ok 390 pitch kit names the city
 ok 390 pitch: no horizontal scroll (0px)
 ok 390 terms: no horizontal scroll (0px)
-ok 390 workbook austin-construction-cleaning-leads-2026-10-19.xlsx: 7 tabs, error cells []
+ok 390 workbook austin-construction-cleaning-leads-2026-10-27.xlsx: 7 tabs, error cells []
 ok 390 console errors: []
 ok 1280 gate: no horizontal scroll (0px)
 ok 1280 Terms view opens before the password
@@ -38,31 +38,31 @@ ok 1280 terms before password: no horizontal scroll (0px)
 ok 1280 wrong password refused
 ok 1280 overview opens: 1 project is close to a final clean this week
 ok 1280 overview: no horizontal scroll (0px)
-1280 data: {"n": 158, "near": 1, "nw": 6, "geo": 138, "builders": 108, "total": 6242314201, "city": "austin"}
-ok 1280 list shows all 158 projects
+1280 data: {"n": 156, "near": 1, "nw": 2, "geo": 136, "builders": 107, "total": 7044697410, "city": "austin"}
+ok 1280 list shows all 156 projects
 ok 1280 projects: no horizontal scroll (0px)
 ok 1280 stage filter 'near': 1 of 1
-ok 1280 stage filter 'insp': 132 of 132
-ok 1280 stage filter 'issued': 25 of 25
-ok 1280 stage filter 'all': 158 of 158
+ok 1280 stage filter 'insp': 131 of 131
+ok 1280 stage filter 'issued': 24 of 24
+ok 1280 stage filter 'all': 156 of 156
 ok 1280 area filter 78610: 1 of 1
 ok 1280 area + type filter: 1 of 1
 ok 1280 area + cost filter: 0 of 0
 ok 1280 clear filters
-ok 1280 CSV has 158 rows of 158 and an All builders column
+ok 1280 CSV has 156 rows of 156 and an All builders column
 ok 1280 CSV cells guarded
-ok 1280 map pins 138 of 138 projects with a location
+ok 1280 map pins 136 of 136 projects with a location
 ok 1280 map: no horizontal scroll (0px)
 ok 1280 project page 13525226 opens with its address
 ok 1280 project: no horizontal scroll (0px)
 ok 1280 mark as contacted
-ok 1280 builders list 108 of 108
+ok 1280 builders list 107 of 107
 ok 1280 builders: no horizontal scroll (0px)
 ok 1280 builder: no horizontal scroll (0px)
 ok 1280 pitch kit names the city
 ok 1280 pitch: no horizontal scroll (0px)
 ok 1280 terms: no horizontal scroll (0px)
-ok 1280 workbook austin-construction-cleaning-leads-2026-10-19.xlsx: 7 tabs, error cells []
+ok 1280 workbook austin-construction-cleaning-leads-2026-10-27.xlsx: 7 tabs, error cells []
 ok captured the free page's screenshots into docs/assets/leads/austin: [(1064, 665), (780, 1100), (1200, 772), (900, 675)]
 ok 1280 console errors: []
 leads_check: 0 failures, 67 checks passed

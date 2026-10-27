@@ -2,74 +2,74 @@
  "source": {
   "name": "City of Austin, Issued Construction Permits",
   "url": "https://data.austintexas.gov/d/3syk-w9eu",
-  "rowsUpdatedAt": "2026-10-18T12:52:08+00:00",
-  "fetchedAt": "2026-10-19T12:05:05+00:00",
+  "rowsUpdatedAt": "2026-10-27T12:18:30+00:00",
+  "fetchedAt": "2026-10-27T16:21:31+00:00",
   "license": "Public Domain U.S. Government",
   "attribution": "City of Austin, Texas - data.austintexas.gov",
   "modified": "Filtered by ProofNotFluff: commercial building permits issued in the last 24 months, still Active, grouped into projects by the City's master permit, project valuation $500,000 or more (the largest valuation on its open building permits on the list, counted once; finaled, shell and garage permits do not count), with a business listed as general contractor; structures that are not buildings (carports, pergolas, canopies, enclosures, pools, EV chargers), parking garages, houses, duplexes and three-unit buildings, shell-only buildings, interior demolition, repairs, and roof, equipment, sign, elevator, site and exterior-only work left out; cleaning companies listed as contractor left out; only project-level and business fields kept.",
   "terms": "https://data.austintexas.gov/stories/s/ranj-cccq"
  },
  "window": {
-  "from": "2024-10-19",
-  "to": "2026-10-19"
+  "from": "2024-10-27",
+  "to": "2026-10-27"
  },
  "counts": {
-  "fetched": 8754,
-  "kept": 158,
+  "fetched": 8819,
+  "kept": 156,
   "excluded": {
-   "kept": 158,
-   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 281,
-   "project valuation under $500,000": 1067,
-   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 182,
-   "work class Demolition (interior demolition or repair)": 63,
+   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 276,
+   "project valuation under $500,000": 1085,
+   "kept": 156,
    "work class Interior Demo Non-Structural (interior demolition or repair)": 58,
-   "no open building permit in the window": 4124,
-   "shell only, no finish work": 68,
-   "parking garage": 3,
+   "no open building permit in the window": 4130,
+   "work class Demolition (interior demolition or repair)": 66,
+   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 177,
+   "shell only, no finish work": 69,
+   "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)": 4,
+   "parking garage": 4,
    "no business listed as general contractor": 6,
-   "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)": 3,
    "work class Repair (interior demolition or repair)": 2,
    "house, duplex or three-unit building": 1,
    "second master permit of a development already listed": 1
   },
   "permitReasons": {
-   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 548,
-   "kept": 1963,
-   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 380,
-   "work class Demolition (interior demolition or repair)": 64,
+   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 376,
+   "kept": 1966,
+   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 540,
    "work class Interior Demo Non-Structural (interior demolition or repair)": 58,
-   "permit closed (final, expired, withdrawn, void or cancelled)": 5005,
-   "shell only, no finish work": 147,
-   "issued before the 24-month window": 490,
+   "permit closed (final, expired, withdrawn, void or cancelled)": 5076,
+   "work class Demolition (interior demolition or repair)": 67,
+   "shell only, no finish work": 145,
+   "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)": 29,
+   "issued before the 24-month window": 491,
    "parking garage": 58,
-   "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)": 28,
    "work class Repair (interior demolition or repair)": 2,
    "house, duplex or three-unit building": 11
   },
   "keptByType": {
-   "Remodel or addition": 42,
-   "New construction": 104,
-   "Finish-out": 12
+   "Remodel or addition": 43,
+   "New construction": 103,
+   "Finish-out": 10
   },
   "byStage": {
-   "Work under way": 132,
-   "Permit issued": 25,
+   "Work under way": 131,
+   "Permit issued": 24,
    "Near finish": 1
   },
-  "keptCost": 6242314201,
-  "keptUnits": 8303,
+  "keptCost": 7044697410,
+  "keptUnits": 8234,
   "oddCosts": [
    26668001,
    18000001
   ],
-  "keptBuildings": 362,
+  "keptBuildings": 340,
   "topAreas": [
    [
     "78744",
     20
    ],
    [
-    "78702",
+    "78701",
     11
    ],
    [
@@ -77,11 +77,11 @@
     11
    ],
    [
-    "78704",
+    "78702",
     10
    ],
    [
-    "78701",
+    "78704",
     10
    ],
    [
@@ -104,24 +104,24 @@
     "cost": 1567000001
    },
    {
-    "name": "Swinerton Builders Inc.",
-    "projects": 5,
-    "cost": 265750000
-   },
-   {
     "name": "Rogers-O'Brien Construction Co. Ltd",
     "projects": 5,
     "cost": 197965058
    },
    {
-    "name": "OHT Construction LLC",
-    "projects": 5,
-    "cost": 154428623
-   },
-   {
     "name": "Skybeck Construction, LLC",
     "projects": 5,
     "cost": 43064409
+   },
+   {
+    "name": "Swinerton Builders Inc.",
+    "projects": 4,
+    "cost": 255750000
+   },
+   {
+    "name": "OHT Construction LLC",
+    "projects": 4,
+    "cost": 153428623
    },
    {
     "name": "Joeris General Contractors",
@@ -154,14 +154,14 @@
     "cost": 14558020
    },
    {
-    "name": "Franklin-Alan LLC",
+    "name": "A R Lucas Construction LLC",
     "projects": 3,
-    "cost": 3500000
+    "cost": 7100000
    }
   ],
   "nearFinish": 1,
-  "builders": 108,
-  "mapped": 138,
+  "builders": 107,
+  "mapped": 136,
   "geocoded": 54
  },
  "projects": [
@@ -210,6 +210,26 @@
    "newThisWeek": false
   },
   {
+   "permit": "13680625",
+   "issued": "2026-10-19",
+   "type": "New construction",
+   "scope": "New Construction of Austin Convention Center - Area 2",
+   "units": null,
+   "newUnits": 0,
+   "cost": 812383209,
+   "address": "500 E 3rd St",
+   "communityArea": "78701",
+   "district": "9",
+   "status": "Active",
+   "milestone": "Permit issued",
+   "buildings": 4,
+   "buildingsFinal": 0,
+   "gc": [
+    "JE Dunn Construction"
+   ],
+   "newThisWeek": false
+  },
+  {
    "permit": "13532840",
    "issued": "2026-07-23",
    "type": "New construction",
@@ -232,10 +252,10 @@
   {
    "permit": "13513914",
    "issued": "2025-12-29",
-   "type": "Finish-out",
-   "scope": "First time finish out- 5 phase 1 multifamily floors 1-5 club amentity to include leasing office learning center clubhouse fitness and daycare...",
-   "units": 31,
-   "newUnits": 0,
+   "type": "New construction",
+   "scope": "New Construction- PHASE 1 MULTIFAMILY FLOORS 1-5; Leasing Fitness club Amenity Trash Room and Fire Rise Room (82195 SF)",
+   "units": 341,
+   "newUnits": 341,
    "cost": 365000000,
    "address": "4812 Gonzales St",
    "communityArea": "78702",
@@ -267,7 +287,7 @@
    "gc": [
     "Swinerton Builders Inc."
    ],
-   "newThisWeek": true
+   "newThisWeek": false
   },
   {
    "permit": "13465258",
@@ -321,13 +341,13 @@
    "communityArea": "78724",
    "district": "1",
    "status": "Active",
-   "milestone": "Permit issued",
+   "milestone": "Work under way",
    "buildings": 2,
    "buildingsFinal": 0,
    "gc": [
     "The Burt Group"
    ],
-   "newThisWeek": true
+   "newThisWeek": false
   },
   {
    "permit": "13479000",
@@ -646,26 +666,6 @@
    "buildingsFinal": 0,
    "gc": [
     "Burton Construction"
-   ],
-   "newThisWeek": false
-  },
-  {
-   "permit": "13412186",
-   "issued": "2025-05-14",
-   "type": "New construction",
-   "scope": "Approximate 148000sf of new construction. The proposed design will accommodate a single-gender population for 600 middle school girls grades 6-8...",
-   "units": null,
-   "newUnits": 0,
-   "cost": 45000000,
-   "address": "6401 North Hampton Dr (+3 more)",
-   "communityArea": "78723",
-   "district": "4",
-   "status": "Active",
-   "milestone": "Work under way",
-   "buildings": 4,
-   "buildingsFinal": 0,
-   "gc": [
-    "Bartlett Cocke General Contractors"
    ],
    "newThisWeek": false
   }

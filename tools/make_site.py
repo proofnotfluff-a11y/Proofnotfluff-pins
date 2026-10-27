@@ -3816,7 +3816,7 @@ def data_hub_html():
             # peak-end (design/DESIGN_DIRECTOR.md 10): the hub ends on the one paid next step, the free sample
             '<section class="st-band" aria-labelledby="dh-band-title"><h2 id="dh-band-title">Want the names behind the counts?</h2>'
             '<p>These pages count what the records show. Our lead lists name the projects and places for your trade, with a free sample every Monday and no sign-up.</p>'
-            f'<p class="st-band-act"><a class="btn ld-btnbig" href="{rel}#trades">Pick your trade, see this week\'s sample</a></p></section>')
+            f'<p class="st-band-act"><a class="btn ld-btnbig" href="{rel}#trades">See this week\'s free sample</a></p></section>')
     coll = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Free Chicago data for trade owners", "url": url,
             "mainEntity": {"@type": "ItemList", "numberOfItems": len(es), "itemListElement": [
                 {"@type": "ListItem", "position": i, "url": BASE + e["slug"] + "/", "name": e["h1"]} for i, e in enumerate(es, 1)]}}

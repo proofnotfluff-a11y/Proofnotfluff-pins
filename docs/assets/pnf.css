@@ -750,11 +750,21 @@ body{overflow-x:clip}
 .dh-page .cx-group>.st-cgroup{font-size:24px;line-height:1.25;font-weight:700;margin:0 0 4px}
 .dh-page .dh-line{margin:0 0 6px}
 @media(min-width:760px){.dh-more .cx-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-.dh-page .cx-grid>li:only-child{grid-column:1/-1}
-.dh-page .cx-grid>li:only-child a{display:grid;grid-template-columns:minmax(220px,1fr) minmax(0,2fr);column-gap:28px;align-items:start}
-.dh-page .cx-grid>li:only-child a .cx-d{grid-column:2;grid-row:1/span 2}.dh-page .cx-grid>li:only-child a .dh-meta{grid-column:1;grid-row:2;padding-top:6px}}
+.dh-page .cx-grid>li:only-child{grid-column:1/-1}.dh-page .cx-grid>li:only-child .cx-d{max-width:68ch}
+.dh-page .cx-grid>li:first-child:nth-last-child(5){grid-column:span 2}}
 .st-tlist a{padding-left:0;padding-right:0}
 .st-band-act .btn.ld-btnbig{white-space:normal;max-width:100%;text-align:center}
 @media(max-width:420px){.st-band-act{width:100%}.st-band-act .btn.ld-btnbig{width:100%}}
 .cx-chip{min-height:44px}
 .dh-more{scroll-margin-top:136px}
+/* design director round 2 (Oct 27): one grid for the footer fine print, paired rows in the home tools lists, no keyboard badge on
+   phones, wrapping chips on the hub, the calculators link card keeps its padding under the phone link rule */
+@media(min-width:900px){footer .wrap>p{grid-column:1/-1}}
+@media(min-width:760px){@supports(grid-template-rows:subgrid){
+.st-tools2{grid-template-rows:repeat(6,auto);column-gap:44px;row-gap:0}
+.st-tcol{display:grid;grid-row:span 6;grid-template-rows:subgrid}
+.st-tcol>.st-tlist{grid-row:span 4;grid-template-rows:subgrid}}}
+@media(max-width:767px){.cx-search kbd{display:none}}
+@media(max-width:599px){.dh-page .cx-chips{flex-wrap:wrap;overflow:visible;-webkit-mask-image:none;mask-image:none}}
+main p.cx-xlink a{padding:14px 16px}
+.st-band-act .btn.ld-btnbig{text-wrap:balance}

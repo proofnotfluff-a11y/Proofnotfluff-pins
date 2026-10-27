@@ -126,6 +126,37 @@ def stats(kind, d):
                           row("Merchant fulfilled, no valid tracking, 14-day payout", "mfn"),
                           row("Merchant fulfilled, no valid tracking, daily request", "mfnDaily")]
         return s
+    if kind == "lights":   # Christmas light question pages: the free lights calculator's own model (PNF.lightsQuote) and defaults
+        import subprocess
+        c = next(x for x in d["pages"] if x["slug"] == "christmas-light-installation-pricing-calculator")["defaults"]
+        cases = {"base": {}, "bought": {"owner": "1"}, "own": {"owner": "1", "matPerFt": "0", "shrubMat": "0"},
+                 "slow": {"ftPerHour": "25"}, "fast": {"ftPerHour": "60"}, "small": {"feet": "80", "shrubs": "0"}, "big": {"feet": "300"}}
+        js = ('const P=require(process.argv[1]);const b=JSON.parse(process.argv[2]),c=JSON.parse(process.argv[3]);const o={};'
+              'for(const k in c)o[k]=P.lightsQuote(Object.assign({},b,c[k]));console.log(JSON.stringify(o));')
+        out = json.loads(subprocess.run(["node", "-e", js, os.path.join(ROOT, "docs", "assets", "pnf-calc.js"), json.dumps(c),
+                                         json.dumps(cases)], capture_output=True, text=True, check=True).stdout)
+        r2 = lambda v: round(v + 1e-9, 2)   # half up, as the calculator page shows its example
+        m = lambda v: "$" + _n(round(v)) if abs(v - round(v)) < 0.005 else f"${r2(v):,.2f}"
+        f = lambda v: f"${r2(v):,.2f}"
+        s = {"feet": c["feet"], "shrubs": c["shrubs"], "pace": c["ftPerHour"], "shrubMin": c["shrubMin"], "people": c["people"],
+             "rate": m(float(c["rate"])), "takedown": c["takedownPct"] + "%", "matFt": f(float(c["matPerFt"])), "shrubMat": m(float(c["shrubMat"])),
+             "seasons": c["seasons"], "storage": m(float(c["storage"])), "tripMin": c["tripMin"], "miles": c["tripMiles"],
+             "perMile": str(round(float(c["perMile"]) * 100)) + " cents", "margin": c["margin"] + "%",
+             "smallFeet": cases["small"]["feet"], "bigFeet": cases["big"]["feet"], "slowPace": cases["slow"]["ftPerHour"],
+             "fastPace": cases["fast"]["ftPerHour"]}
+        for k, r in out.items():
+            s |= {k + "Quote": m(r["quote"]), k + "PerFt": f(r["perFt"]), k + "Floor": f(r["floor"]), k + "FloorPerFt": f(r["floorPerFt"]),
+                  k + "Profit": f(r["profit"]), k + "Next": m(r["quote2"]), k + "Work": f"{r2(r['workHrs']):.2f}", k + "Crew": f"{r2(r['crewHrs']):.2f}",
+                  k + "Labor": f(r["labor"]), k + "Drive": f(r["drive"]), k + "Mat": f(r["materials"])}
+        row = lambda label, k: [label, s[k + "Quote"], s[k + "PerFt"], s[k + "FloorPerFt"], s[k + "Profit"]]
+        s["caseRows"] = [row(f"Example: {c['feet']} ft, {c['shrubs']} bushes, your lights lent, {c['seasons']} seasons", "base"),
+                         row("Customer buys the lights this year", "bought"),
+                         row("Customer's own lights, labor only", "own"),
+                         row(f"Slower crew, {cases['slow']['ftPerHour']} ft an hour each", "slow"),
+                         row(f"Faster crew, {cases['fast']['ftPerHour']} ft an hour each", "fast"),
+                         row(f"Small house, {cases['small']['feet']} ft, no bushes", "small"),
+                         row(f"Big house, {cases['big']['feet']} ft and {c['shrubs']} bushes", "big")]
+        return s
     raise KeyError(f"no stats for {kind}")
 
 

@@ -113,6 +113,11 @@ def ordinal(n):
     return f"{n}{'th' if 10 <= n % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')}"
 
 
+def nn(n, word, many=None):
+    """'1 complaint', '239 complaints'."""
+    return f"{n:,} {word if n == 1 else (many or word + 's')}"
+
+
 def slug_of(name):
     return re.sub(r"[^a-z0-9]+", "-", name.lower().replace("'", "")).strip("-")
 
@@ -239,7 +244,7 @@ def map_block(d, E, ix=None, rel=""):
               f'<dt>Same 30 days, {yr}</dt><dd>{a["prev30"]:,}</dd><dt>Change</dt><dd>{E(ch)}</dd>')
         big = {"d30": (f'{a["d30"]:,}', "complaints, last 30 days"), "d7": (f'{a["d7"]:,}', "complaints, last 7 days"),
                "ch": (("Too few" if ch == "too few" else "Same" if ch == "same" else ch), f"against the same 30 days of {yr}")}
-        say = {"d30": f'{a["d30"]:,} complaints in 30 days', "d7": f'{a["d7"]:,} complaints in 7 days',
+        say = {"d30": f'{nn(a["d30"], "complaint")} in 30 days', "d7": f'{nn(a["d7"], "complaint")} in 7 days',
                "ch": ch_say + f' ({a["d30"]:,} against {a["prev30"]:,})'}
         if x:
             dl += f'<dt>Per 1,000 residents</dt><dd>{x["r30"]:.2f}</dd>'
@@ -311,10 +316,10 @@ IX_CSS = ("<style>.ri-mv{white-space:nowrap}.ri-up{color:var(--warn-ink);font-we
           ".ri-ed .eyebrow{margin:0 0 4px}.ri-ed h2{margin-top:0}"
           ".ri-embed{display:grid;gap:14px;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--card)}"
           "@media(min-width:900px){.ri-embed{grid-template-columns:minmax(0,360px) 1fr;align-items:start}}"
-          ".ri-embed img{display:block;max-width:100%;height:auto}.ri-embed label{display:block;font-weight:700;color:var(--ink);margin:0 0 6px}"
+          ".ri-embed img{display:block;max-width:100%;height:auto;border-radius:12px;outline:1px solid var(--line);outline-offset:2px}.ri-embed label{display:block;font-weight:700;color:var(--ink);margin:0 0 6px}"
           ".ri-embed select{min-height:44px;width:100%;max-width:360px;font:inherit;padding:0 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}"
           ".ri-embed textarea{display:block;width:100%;box-sizing:border-box;min-height:118px;padding:10px 12px;font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink);"
-          "background:var(--canvas2);border:1px solid var(--line);border-radius:10px;resize:vertical}"
+          "background:var(--canvas2);border:1px solid var(--line);border-radius:10px;resize:vertical;overflow-wrap:anywhere;word-break:break-all}"
           ".ri-embed textarea:focus-visible,.ri-embed select:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
           ".ri-copy{margin-top:10px;border:0;cursor:pointer;font:inherit;font-weight:700;min-height:46px}.ri-ok{min-height:1.4em;margin:6px 0 0;color:var(--teal-ink);font-weight:600}"
           ".ri-dl{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0}"
@@ -325,7 +330,11 @@ IX_CSS = ("<style>.ri-mv{white-space:nowrap}.ri-up{color:var(--warn-ink);font-we
           ".ri-t th:nth-child(9),.ri-t td:nth-child(9){display:none}.ri-list li{grid-template-columns:2em 1fr}.ri-list span{grid-column:2;text-align:left}}"
           ".ri-t th:nth-child(2),.ri-t td:nth-child(2){text-align:left}.ri-t td:first-child{width:3.2em}"
           "@media(min-width:900px){.ri-ed .ri-list{grid-template-columns:1fr 1fr;grid-auto-flow:column;grid-template-rows:repeat(5,auto)}}"
-          ".ri-t{min-width:640px}@media(max-width:599px){.ri-t{min-width:0}.ri-t th:nth-child(2),.ri-t td:nth-child(2){display:table-cell}}</style>")
+          ".ri-nw{white-space:nowrap}main ul.ri-near li a{padding:0 14px}"
+          ".ri-jump{display:flex;gap:8px;overflow-x:auto;margin:18px 0 0;padding:2px 2px 6px;scrollbar-width:thin}"
+          ".ri-jump a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);font-weight:600;font-size:14.5px;text-decoration:none}"
+          ".ri-jump a:hover{border-color:var(--accent)}.ri-jump a:focus-visible{outline:3px solid var(--focus);outline-offset:2px}"
+          ".ri-t{min-width:640px}@media(max-width:599px){.ri-t{min-width:0}.ri-t th,.ri-t td{padding:9px 6px}.ri-t thead th{font-size:12px}.ri-t th:nth-child(2),.ri-t td:nth-child(2){display:table-cell}}</style>")
 
 COPY_JS = ("<script>document.querySelectorAll('.ri-copy').forEach(function(b){b.addEventListener('click',function(){"
            "var t=document.getElementById(b.dataset.for),ok=b.parentNode.querySelector('.ri-ok');"
@@ -349,7 +358,7 @@ def badge_svg(a, d):
     sub = f"311 rat complaints, 30 days to {when}"
     title = f'Chicago Rat Index: {a["name"]}, {a["place"]} of 77'
     desc = (f'{a["name"]} ranks {a["place"]} of Chicago\'s 77 community areas for rat complaints to 311 per 1,000 residents: '
-            f'{a["r30"]:.2f} in the 30 days to {when} ({a["d30"]:,} complaints). By ProofNotFluff, from City of Chicago data.')
+            f'{a["r30"]:.2f} in the 30 days to {when} ({nn(a["d30"], "complaint")}). By ProofNotFluff, from City of Chicago data.')
     e = lambda s: str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
     font = "system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{BADGE_W}" height="{BADGE_H}" viewBox="0 0 {BADGE_W} {BADGE_H}" role="img" aria-labelledby="t d">'
@@ -382,7 +391,7 @@ def index_table(ix, d, E, rel):
     yr = E(d["window"]["prevTo"][:4])
     thead = ('<thead><tr><th scope="col">Rank</th><th scope="col">Community area</th><th scope="col">Per 1,000 residents</th>'
              '<th scope="col">7 days</th><th scope="col">30 days</th><th scope="col">Change on a year ago</th>'
-             '<th scope="col">Rank against the 30 days before</th><th scope="col">Rank against a year ago</th><th scope="col">Median days to close</th></tr></thead>')
+             '<th scope="col">Rank move, vs 30 days before</th><th scope="col">Rank move, vs a year ago</th><th scope="col">Median days to close</th></tr></thead>')
     row = lambda a: (f'<tr><td class="ri-rk">{a["k30"]}</td><th scope="row"><a href="{rel}{a["slug"]}/">{E(a["name"])}</a></th><td>{a["r30"]:.2f}</td>'
                      f'<td>{a["d7"]:,}</td><td>{a["d30"]:,}</td>'
                      f'<td{" class=rc-up" if a["prev30"] >= FEW and a["d30"] >= a["prev30"] * 1.25 else ""}>{E(area_change(a))}</td>'
@@ -409,7 +418,7 @@ def risers_block(ix, E, rel):
         return "<p>No community area with at least 10 complaints moved up the rank against the 30 days before.</p>"
     return ('<ol class="ri-list">' + "".join(
         f'<li><b>+{a["mom"]}</b><a href="{rel}{a["slug"]}/">{E(a["name"])}</a><span>{ordinal(a["kPrior"])} to {ordinal(a["k30"])}</span>'
-        f'<small>Up {a["mom"]} places: {a["r30"]:.2f} per 1,000 residents ({a["d30"]:,} complaints), against {a["rPrior"]:.2f} ({a["prior30"]:,}) in the 30 days before</small></li>'
+        f'<small>Up {a["mom"]} places: {a["r30"]:.2f} per 1,000 residents ({nn(a["d30"], "complaint")}), against {a["rPrior"]:.2f} ({a["prior30"]:,}) in the 30 days before</small></li>'
         for a in rs) + '</ol>')
 
 
@@ -426,7 +435,7 @@ def edition_block(ix, d, E, rel, M):
             f'({ed["prevTotal"]:,}). A new edition comes out each October, when the national rat lists do. '
             'It ranks complaints, which also reflect how often people in an area call 311; it is not a count of rats.</p>')
     items = "".join(
-        f'<li><b>{a["kYear"]}</b><a href="{rel}{a["slug"]}/">{E(a["name"])}</a><span>{a["rYear"]:.1f} per 1,000</span>'
+        f'<li><b>{a["kYear"]}</b><a href="{rel}{a["slug"]}/">{E(a["name"])}</a><span>{a["rYear"]:.2f} per 1,000 a year</span>'
         f'<small>{a["year"]:,} complaints; {ordinal(a["kYearPrev"])} in the {ed["year"] - 1} edition</small></li>' for a in yrs)
     return f'<section class="block ri-ed" id="rattiest">{head}<ol class="ri-list">{items}</ol></section>'
 
@@ -456,7 +465,8 @@ def rest_block(ix, E, M):
             f'<p class="asof">Pests: the inspection cited violation 38, which the City titles "{E(t38)}". Hood or ventilation: it cited violation 56, '
             f'"{E(t56)}", with an inspector note naming a hood, filter, exhaust, ventilation, vent or fan (56 also covers lighting, which does not count). '
             'Inspections are of places whose facility type names a restaurant, with a result of pass, pass with conditions or fail. '
-            f'A place inspected twice counts twice. Areas with under {SHARE_FEW} inspections in 12 weeks show as too few.</p></section>')
+            f'A place inspected twice counts twice. Areas with under {SHARE_FEW} inspections in 12 weeks show as too few. '
+            'A result reflects what the inspector found at the time of that inspection, and the City notes its dataset may contain duplicates.</p></section>')
 
 
 def embed_block(ix, E, rel, one=None):
@@ -645,7 +655,6 @@ def page_html(p):
                  + '</p>')
     mapb = map_block(d, E, ix, "") if p.get("map") else ""
     method = '<section class="block"><h2>How this page is made</h2>' + "".join(f"<p>{E(x)}</p>" for x in p["method"]) + "</section>"
-    october = w["to"][5:7] in ("10", "11")
     ed = edition_block(ix, d, E, "", M) if ix else ""
     idx = ""
     if ix:
@@ -653,24 +662,29 @@ def page_html(p):
         idx = ('<section class="block" id="areas"><h2>The Chicago Rat Index: every community area</h2>'
                f'<p>All 77 community areas ranked by rat complaints to 311 per 1,000 residents in the 30 days to {E(M.nice_date(w["to"]))}. '
                f'Citywide: {cc["r30"]:.2f} per 1,000. The City closed {c.get("closed30", 0):,} rat requests in those 30 days, '
-               f'a median of {days_txt(c.get("medClose"))} days after they came in. Tap an area for its own page and badge.</p>'
+               f'half of them within {days_txt(c.get("medClose"))} days of coming in (the median). Tap an area for its own page and badge.</p>'
                f'{table}'
-               '<div class="ri-dl"><a class="btn" href="rat-index.csv" download>Download the Rat Index (CSV)</a></div></section>'
+               '<div class="ri-dl"><a class="btn" href="rat-index.csv" download>Download the Rat Index (CSV)</a></div>'
+               '<p class="asof">Our CSV is free to reuse under CC BY 4.0 with credit to ProofNotFluff; the City\'s data disclaimer at the foot of this page still applies.</p></section>'
                '<section class="block" id="risers"><h2>Top risers</h2>'
                '<p>The community areas that climbed the most places on the Rat Index against the 30 days before (areas with at least 10 complaints).</p>'
                f'{risers_block(ix, E, "")}</section>')
     else:
         idx = f'<section class="block" id="areas"><h2>Every community area</h2>{table}</section>'
+    jump = ""
+    if ix:
+        links = [("map", "Map"), ("areas", "Rat Index"), ("risers", "Top risers"), ("rattiest", f'Rattiest of {d["edition"]["year"]}')]
+        links += [("restaurants", "Restaurants")] if ix.get("rest") else []
+        links += [("embed", "Get the badge"), ("help", "Report rats")]
+        jump = '<nav class="ri-jump" aria-label="On this page">' + "".join(f'<a href="#{k}">{E(t)}</a>' for k, t in links) + '</nav>'
     body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">{E(p["eyebrow"])}</p><h1>{E(p["h1"])}</h1><p class="lede">{lede}</p>'
             f'<div class="ld-heroact rl-act"><a class="btn" href="#areas">See every neighborhood</a>'
             + ('<a class="st-btn2" href="#map">Open the map</a>' if mapb else "") + '</div></div>'
-            f'{tiles}'
-            + (ed if october else "")
+            f'{tiles}' + (jump if ix else "")
             + (f'<section class="block" id="map"><h2>Rat complaints on the map</h2>{mapb}</section>' if mapb else "")
-            + idx
+            + idx + ed
             + f'<section class="block" id="top"><h2>Where the complaints are</h2>{bars}</section>'
             f'<section class="block" id="weeks"><h2>Week by week</h2>{weeks}</section>'
-            + ("" if october else ed)
             + (rest_block(ix, E, M) if ix and ix.get("rest") else "")
             + (embed_block(ix, E, "") if ix else "")
             + f'{two(rel)}{method}{M.faq_block(p["faq"])}'
@@ -688,9 +702,10 @@ def area_html(p, d, ix, a, M):
     two, foot, pulled = page_parts(p, d, M)
     when = M.nice_date(w["to"])
     h1 = f'Rats in {a["name"]}, Chicago'
+    h1h = (f'Rats in <span class="ri-nw">{E(a["name"])},</span> Chicago' if len(a["name"]) <= 15 else E(h1))   # keep a short place name on one line
     title = f'{a["name"]} Rat Complaints and Rat Index, Chicago | ProofNotFluff'
-    desc = (f'{a["name"]} is {a["place"]} of Chicago\'s 77 community areas for rat complaints per resident: {a["r30"]:.2f} per 1,000 residents '
-            f'in the 30 days to {when}. Weekly trend, rank changes and restaurant pest citations, from City records.')
+    desc = (f'{a["name"]} is {a["place"]} of Chicago\'s 77 areas for rat complaints: {a["r30"]:.2f} per 1,000 residents '
+            f'in the 30 days to {when}, from City records.')
     crumb, crumb_ld = M.crumbs(rel, [("Home", ""), ("Chicago Rat Index", p["slug"] + "/"), (a["name"], None)])
     robots = "" if M.is_live(p) else '<meta name="robots" content="noindex, nofollow">'
     head = M.HEAD.format(title=E(title), desc=E(desc), url=url, rel=rel, shop=M.SHOP, ld=M.ld_tags(crumb_ld) + CSS + IX_CSS,
@@ -698,14 +713,14 @@ def area_html(p, d, ix, a, M):
     ch = area_change(a)
     ch_t = "too few a year ago to compare" if ch == "too few" else ("about the same as" if ch == "same" else f"{ch} on")
     lede = (f'{E(a["name"])} is {a["place"]} of Chicago\'s 77 community areas on the Rat Index: {a["r30"]:.2f} rat complaints to 311 per 1,000 residents '
-            f'in the 30 days to {E(when)} ({a["d30"]:,} complaints), against {ix["city"]["r30"]:.2f} citywide. '
+            f'in the 30 days to {E(when)} ({nn(a["d30"], "complaint")}), against {ix["city"]["r30"]:.2f} citywide. '
             + ("It is the same place as in the 30 days before." if not a["mom"] else
-               f'That is {move(a["mom"])} place{"s" if abs(a["mom"]) != 1 else ""} on the 30 days before, when it was {ordinal(a["kPrior"])}.'))
+               f'That is {move(a["mom"])} place{"s" if abs(a["mom"]) != 1 else ""} from the 30 days before, when it was {ordinal(a["kPrior"])}.'))
     tiles = ('<div class="tiles ld-tiles">'
-             f'<div class="tile key"><div class="lab">Rat Index</div><div class="val">{E(a["place"].replace("tied ", ""))}</div><div class="sub">{"tied, " if "tied" in a["place"] else ""}of 77 community areas</div></div>'
+             f'<div class="tile key"><div class="lab">Rat Index</div><div class="val">{E(a["place"].replace("tied ", ""))}</div><div class="sub">of 77 community areas{", tied" if "tied" in a["place"] else ""}</div></div>'
              f'<div class="tile"><div class="lab">Per 1,000 residents</div><div class="val">{a["r30"]:.2f}</div><div class="sub">last 30 days; {a["pop"]:,} residents</div></div>'
              f'<div class="tile"><div class="lab">Last 30 days</div><div class="val">{a["d30"]:,}</div><div class="sub">{E(ch_t + " a year ago" if ch not in ("too few",) else ch_t)}</div></div>'
-             f'<div class="tile"><div class="lab">Median days to close</div><div class="val">{E(days_txt(a.get("medClose")))}</div><div class="sub">{a.get("closed30", 0):,} requests closed in 30 days</div></div>'
+             f'<div class="tile"><div class="lab">Days to close</div><div class="val">{E(days_txt(a.get("medClose")))}</div><div class="sub">half of {nn(a.get("closed30", 0), "request")} closed in 30 days took less</div></div>'
              f'</div><p class="asof">Counts as of {E(when)}, from City of Chicago 311 records pulled {E(pulled)}. Updated every Monday.</p>')
     yr = E(w["prevTo"][:4])
     rows = [("Last 30 days", f'{M.nice_date(w["from30"])} to {when}', a["d30"], a["r30"], ordinal(a["k30"])),
@@ -720,16 +735,16 @@ def area_html(p, d, ix, a, M):
     weeks = week_bars(d["weeks"], a["w12"], f'Rat complaints in {a["name"]} each week for the last 12 weeks', E, M, w["to"])
     edition = (f'<section class="block"><h2>{E(a["name"])} in the {ed["year"]} rattiest neighborhoods list</h2>'
                f'<p>In the 12 months from {E(M.nice_date(ed["from"]))} to {E(M.nice_date(ed["to"]))}, {E(a["name"])} had {a["year"]:,} rat complaints, '
-               f'{a["rYear"]:.1f} per 1,000 residents: {E(a["placeYear"])} of 77 (it was {ordinal(a["kYearPrev"])} in the {ed["year"] - 1} edition, with {a["yearPrev"]:,}). '
-               f'<a href="{up}#rattiest">See the full {ed["year"]} list</a>.</p></section>')
+               f'{a["rYear"]:.2f} per 1,000 residents: {E(a["placeYear"])} of 77 (it was {ordinal(a["kYearPrev"])} in the {ed["year"] - 1} edition, with {a["yearPrev"]:,}). '
+               f'The list ranks complaints to 311, not a count of rats. <a href="{up}#rattiest">See the full {ed["year"]} list</a>.</p></section>')
     rest = ""
     if "insp" in a:
         cc = ix["city"]
         rw = ix["rest"]["window"]
         if a["pestShare"] is not None:
             rt = (f'<div class="ri-rest"><div class="tile"><div class="lab">Restaurant inspections</div><div class="val">{a["insp"]:,}</div><div class="sub">in 12 weeks</div></div>'
-                  f'<div class="tile"><div class="lab">Cited pests</div><div class="val">{a["pestShare"]}%</div><div class="sub">{a["pest"]:,} inspections; {cc["pestShare"]}% citywide</div></div>'
-                  f'<div class="tile"><div class="lab">Cited a hood or ventilation</div><div class="val">{a["ventShare"]}%</div><div class="sub">{a["vent"]:,} inspections; {cc["ventShare"]}% citywide</div></div></div>')
+                  f'<div class="tile"><div class="lab">Cited pests</div><div class="val">{a["pestShare"]}%</div><div class="sub">{nn(a["pest"], "inspection")}; {cc["pestShare"]}% citywide</div></div>'
+                  f'<div class="tile"><div class="lab">Cited a hood or ventilation</div><div class="val">{a["ventShare"]}%</div><div class="sub">{nn(a["vent"], "inspection")}; {cc["ventShare"]}% citywide</div></div></div>')
         else:
             rt = (f'<p>{a["insp"]:,} restaurant inspection{"" if a["insp"] == 1 else "s"} in 12 weeks: {a["pest"]:,} cited pests and {a["vent"]:,} cited a hood or ventilation. '
                   f'That is too few to give a fair share (under {SHARE_FEW}).</p>')
@@ -744,7 +759,7 @@ def area_html(p, d, ix, a, M):
             + f'<li><a href="{up}#areas">All 77 community areas</a></li></ul>'
             f'<div class="ri-dl"><a class="st-btn2" href="weekly.csv" download>Download {E(a["name"])} weeks (CSV)</a>'
             f'<a class="st-btn2" href="{up}rat-index.csv" download>Download all 77 areas (CSV)</a></div></section>')
-    body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">Chicago Rat Index, community area {a["n"]}</p><h1>{E(h1)}</h1><p class="lede">{lede}</p>'
+    body = (f'{crumb}<div class="ld-hero"><p class="eyebrow">Chicago Rat Index, community area {a["n"]}</p><h1>{h1h}</h1><p class="lede">{lede}</p>'
             f'<div class="ld-heroact rl-act"><a class="btn" href="{up}">See all 77 areas</a><a class="st-btn2" href="#embed">Get the badge</a></div></div>'
             f'{tiles}'
             f'<section class="block"><h2>How the rank moved</h2>{rank_t}</section>'
@@ -824,7 +839,7 @@ def selftest():
     rows = list(csv.reader(io.StringIO(index_csv(ix, d2))))
     assert len(rows) == 78 and rows[0] == CSV_COLS and rows[1][2] == "O'Hare" and rows[1][6] == "76.00", rows[1][:7]
     page = area_html(spec2, d2, ix, A[6], M)
-    assert page.count("<h1>") == 1 and "Rats in Lake View, Chicago" in page and "—" not in page and "–" not in page
+    assert page.count("<h1>") == 1 and "Rats in <span class=\"ri-nw\">Lake View,</span> Chicago" in page and "Lake View Rat Complaints" in page and "—" not in page and "–" not in page
     assert "25%" in page and "INSECTS" not in page and 'src="badge.svg"' in page, "restaurant share, title only on the main page, badge"
     ac = list(csv.reader(io.StringIO(area_csv(A[6], d2, rest))))
     assert len(ac) == 13 and ac[-1][3] == "6", ac[-1]

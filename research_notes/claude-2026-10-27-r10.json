@@ -1,0 +1,1068 @@
+{
+ "round": "R10",
+ "by": "Claude",
+ "readAt": "2026-10-27",
+ "features": [
+  {
+   "id": "f1",
+   "name": "Chicago permit wait times",
+   "type": "data tracker (benchmark)",
+   "forTrades": [
+    "contractors",
+    "electricians",
+    "plumbers",
+    "HVAC",
+    "roofers",
+    "painters"
+   ],
+   "whatItShows": "Median and slow-case days from application to permit issue, by permit type and review path (Express, Standard Plan Review, Self Cert), by month and community area, with the trend and a methods note plus CSV.",
+   "searchWords": [
+    "how long does it take to get a building permit in Chicago",
+    "Chicago standard plan review time",
+    "Chicago express permit program"
+   ],
+   "aiQuestions": [
+    "How long does a Chicago building permit take right now?",
+    "How long is Chicago Standard Plan Review?"
+   ],
+   "data": [
+    {
+     "name": "Building Permits (ydr8-5enu)",
+     "publisher": "City of Chicago, Department of Buildings",
+     "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
+     "date": "2026-10-27",
+     "updates": "daily; rows updated 2026-10-26 (OBSERVED)",
+     "fields": [
+      "permit_type",
+      "review_type",
+      "application_start_date",
+      "issue_date",
+      "processing_time",
+      "work_type",
+      "community_area",
+      "reported_cost"
+     ],
+     "terms": "City of Chicago Terms of Use",
+     "termsUrl": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+    }
+   ],
+   "uniquePages": 12,
+   "uniquePagesHow": "One page per permit type and review path (about 12 with enough volume), each with its own monthly medians; the hub ranks community areas. INFERRED count.",
+   "freeRivals": [
+    {
+     "name": "Permit Place",
+     "url": "https://permitplace.com/city/chicago-il-building-permits/",
+     "lacks": "vendor ranges with no method; figures contradict each other"
+    },
+    {
+     "name": "PermitFlow",
+     "url": "https://www.permitflow.com/blog/chicago-building-permit",
+     "lacks": "'up to 12 weeks' with no source"
+    },
+    {
+     "name": "City permit metrics dataset",
+     "url": "https://catalog.data.gov/harvest_record/b02ecd24-f868-467a-bf06-fa431b7c57bf/raw",
+     "lacks": "last modified 2014"
+    }
+   ],
+   "linkMagnet": "A measurable benchmark nobody publishes; delay numbers are a standing local news angle; benchmark pages earn about 3.3x more AI citations per page (small study).",
+   "leadsToPaid": "Same permit rows feed the paid weekly lists; a contractor reading wait times is a permit buyer.",
+   "effort": "small",
+   "refresh": "weekly via Actions (permits already pulled)",
+   "risks": "Long tails (one row shows 396 days) need medians and a cap note; never show a single permit or address.",
+   "evidence": [
+    {
+     "url": "https://data.cityofchicago.org/api/views/ydr8-5enu.json",
+     "date": "2026-10-27",
+     "quote": "Number of days between APPLICATION_START_DATE and ISSUE_DATE",
+     "label": "OBSERVED"
+    },
+    {
+     "url": "https://permitplace.com/city/chicago-il-building-permits/",
+     "date": "2026-04-06",
+     "quote": "(paraphrase) FAQ asks how long a Chicago permit takes",
+     "label": "OBSERVED"
+    },
+    {
+     "url": "https://searchengineland.com/why-most-original-data-never-gets-cited-481676",
+     "date": "2026",
+     "quote": "(paraphrase) benchmarks on measurable specs drew most original-data citations",
+     "label": "OBSERVED"
+    }
+   ],
+   "confidence": "high",
+   "city": "Chicago"
+  },
+  {
+   "id": "f2",
+   "name": "Chicago snow season board",
+   "type": "seasonal data page added to the live snow calculator",
+   "forTrades": [
+    "snow removal",
+    "landscaping"
+   ],
+   "whatItShows": "Season to date snowfall at O'Hare and Midway against normal, plowable events at 1, 2, 3 and 6 inch triggers, low, typical and high seasons over 30 winters, first and last plowable dates; feeds the live per push vs seasonal calculator with real event counts.",
+   "searchWords": [
+    "how much to charge for snow removal per push",
+    "Chicago snowfall so far this season",
+    "how many plowable snows does Chicago get"
+   ],
+   "aiQuestions": [
+    "How many plowable snows does Chicago get a year?",
+    "Seasonal or per push snow contract in Chicago?"
+   ],
+   "data": [
+    {
+     "name": "GHCN Daily summaries, O'Hare and Midway",
+     "publisher": "NOAA NCEI",
+     "url": "https://www.ncei.noaa.gov/support/access-data-service-api-user-documentation",
+     "date": "2026-10-27",
+     "updates": "daily (INFERRED); no token per docs (OBSERVED)",
+     "fields": [
+      "DATE",
+      "SNOW",
+      "SNWD",
+      "TMIN",
+      "TMAX"
+     ],
+     "terms": "US government data (INFERRED public domain)",
+     "termsUrl": ""
+    },
+    {
+     "name": "311 Service Requests (v6vf-nfxy)",
+     "publisher": "City of Chicago",
+     "url": "https://data.cityofchicago.org/Service-Requests/311-Service-Requests/v6vf-nfxy",
+     "date": "2026-10-27",
+     "updates": "several times a day; rows updated 2026-10-27 (OBSERVED)",
+     "fields": [
+      "sr_type",
+      "created_date",
+      "closed_date",
+      "community_area",
+      "zip_code"
+     ],
+     "terms": "City of Chicago Terms of Use",
+     "termsUrl": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+    }
+   ],
+   "uniquePages": 6,
+   "uniquePagesHow": "Hub plus a page per trigger depth and a season-to-date page that changes after every storm.",
+   "freeRivals": [
+    {
+     "name": "Housecall Pro snow prices",
+     "url": "https://www.housecallpro.com/resources/snow-removal-prices/",
+     "lacks": "national only"
+    },
+    {
+     "name": "NWS Chicago snow climatology",
+     "url": "https://www.weather.gov/lot/snowclimatology",
+     "lacks": "for weather readers, no event counts in text, no pricing link"
+    }
+   ],
+   "linkMagnet": "Fresh after every storm; Chicago outlets link storm tools each snow; AI assistants favor fresher pages.",
+   "leadsToPaid": "Weak directly; strong for return visits and the calculator.",
+   "effort": "small",
+   "refresh": "daily Oct to Apr",
+   "risks": "NCEI access is intermittent; station IDs to confirm in Actions.",
+   "evidence": [
+    {
+     "url": "https://www.weather.gov/lot/snowclimatology",
+     "date": "2026-10-27",
+     "quote": "(paraphrase) normal first 1 inch snow day is December 7",
+     "label": "OBSERVED"
+    },
+    {
+     "url": "https://tractorbynet.com/forums/goto/post?id=2587568",
+     "date": "2026-10-27",
+     "quote": "6\" snowfalls about 10 times a year",
+     "label": "OBSERVED"
+    },
+    {
+     "url": "https://ahrefs.com/blog/do-ai-assistants-prefer-to-cite-fresh-content/",
+     "date": "2025-07-28",
+     "quote": "(paraphrase) AI assistants cite content about 25.7% fresher than organic results",
+     "label": "OBSERVED"
+    }
+   ],
+   "confidence": "high (timely: first plowable snow normally lands in about six weeks)",
+   "city": "Chicago"
+  },
+  {
+   "id": "f3",
+   "name": "Chicago Rat Index upgrade",
+   "type": "ranking plus embed on the live rat tracker",
+   "forTrades": [
+    "pest control",
+    "junk removal",
+    "cleaning",
+    "landscaping"
+   ],
+   "whatItShows": "Rodent requests per 1,000 residents by community area, month over month and year over year rank, days to close, top risers, a CSV, an embeddable area badge with a credit link, and a yearly 'rattiest neighborhoods' edition.",
+   "searchWords": [
+    "rattiest neighborhoods in Chicago",
+    "Chicago rat complaints by neighborhood",
+    "rat problem [neighborhood]"
+   ],
+   "aiQuestions": [
+    "Which Chicago neighborhoods have the most rats?",
+    "Is Chicago still the rattiest city?"
+   ],
+   "data": [
+    {
+     "name": "311 Service Requests (v6vf-nfxy)",
+     "publisher": "City of Chicago",
+     "url": "https://data.cityofchicago.org/Service-Requests/311-Service-Requests/v6vf-nfxy",
+     "date": "2026-10-27",
+     "updates": "several times a day; rows updated 2026-10-27 (OBSERVED)",
+     "fields": [
+      "sr_type",
+      "created_date",
+      "closed_date",
+      "community_area",
+      "zip_code"
+     ],
+     "terms": "City of Chicago Terms of Use",
+     "termsUrl": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+    }
+   ],
+   "uniquePages": 77,
+   "uniquePagesHow": "One page per community area with its own rate, rank and trend.",
+   "freeRivals": [
+    {
+     "name": "Orkin rattiest cities",
+     "url": "https://www.orkin.com/press-room/chicago-worst-city-for-bed-bugs-again",
+     "lacks": "metro only, once a year"
+    },
+    {
+     "name": "Illinois Answers rat map",
+     "url": "https://illinoisanswers.org/2023/08/31/chicago-rat-complaints-map/",
+     "lacks": "static 2019 to 2022"
+    }
+   ],
+   "linkMagnet": "Chicago outlets cover rat rankings every year (Patch, CBS, NBC linked a 311 per capita study); ABC7 ran its own neighborhood top 10.",
+   "leadsToPaid": "Pest owners are a paid audience; the badge puts our link on their sites.",
+   "effort": "small",
+   "refresh": "weekly (already running)",
+   "risks": "Population per area needs ACS figures; badge script must stay tiny and accessible.",
+   "evidence": [
+    {
+     "url": "https://patch.com/illinois/chicago/chicago-dethroned-rattiest-city-after-decade-long-reign",
+     "date": "2025-10-30",
+     "quote": "(paraphrase) Chicago lost the No. 1 spot after a decade",
+     "label": "OBSERVED"
+    },
+    {
+     "url": "https://www.nbcchicago.com/news/local/chicago-named-rat-capital-of-united-states-by-new-ranking/2038267/?amp=1",
+     "date": "2018-07-21",
+     "quote": "(paraphrase) links a 311 per capita rat study",
+     "label": "OBSERVED"
+    },
+    {
+     "url": "https://abc7chicago.com/post/chicago-rats-cars-causing-serious-damage-vehicles-city-how-get-rid-prevent-rat-infestation/16408304/",
+     "date": "2025-05-14",
+     "quote": "(paraphrase) top 10 neighborhoods from 311 rodent data",
+     "label": "OBSERVED"
+    }
+   ],
+   "confidence": "high",
+   "city": "Chicago"
+  },
+  {
+   "id": "f4",
+   "name": "Chicago license finder by trade",
+   "type": "checker plus a page per trade",
+   "forTrades": [
+    "contractors",
+    "electricians",
+    "plumbers",
+    "HVAC",
+    "roofers",
+    "pest control",
+    "cleaning",
+    "painters",
+    "landscaping",
+    "junk removal",
+    "pressure washing"
+   ],
+   "whatItShows": "For each trade: city and state license, fee, insurance, bond, exam, renewal, whether suburb licenses carry over, each line linked to its agency with a checked date; a GC class picker from project value.",
+   "searchWords": [
+    "Chicago general contractor license requirements",
+    "do I need a business license for a cleaning business in Chicago",
+    "Illinois electrician license Chicago"
+   ],
+   "aiQuestions": [
+    "Which Chicago GC license class do I need?",
+    "Does Chicago accept my suburb electrical license?"
+   ],
+   "data": [
+    {
+     "name": "City trade license pages and active contractor lists",
+     "publisher": "City of Chicago, Department of Buildings",
+     "url": "https://www.chicago.gov/city/en/depts/bldgs/supp_info/TLdetails/GC.html",
+     "date": "2026-10-27",
+     "updates": "as rules change",
+     "fields": [
+      "class",
+      "project value",
+      "fee",
+      "insurance"
+     ],
+     "terms": "public pages",
+     "termsUrl": ""
+    }
+   ],
+   "uniquePages": 12,
+   "uniquePagesHow": "One page per trade with its own agencies, fees and steps.",
+   "freeRivals": [
+    {
+     "name": "Housecall Pro licensing",
+     "url": "https://www.housecallpro.com/licensing/general-contractor/illinois/",
+     "lacks": "contradicts itself on Class A fee; software pitch"
+    },
+    {
+     "name": "Next Insurance",
+     "url": "https://nextinsurance.com/blog/illinois-general-contractor-license-and-insurance-requirements",
+     "lacks": "no pest control, thin trade detail"
+    }
+   ],
+   "linkMagnet": "Medium: associations and schools link license tables.",
+   "leadsToPaid": "Medium: new license holders are new businesses.",
+   "effort": "medium",
+   "refresh": "monthly check task",
+   "risks": "Accuracy is the product; every line needs its agency link and a checked date; no advice beyond 'check with'.",
+   "evidence": [
+    {
+     "url": "https://forums.mikeholt.com/threads/illinois-contractor-and-electrician-licensing.2573351/",
+     "date": "2023-03-22",
+     "quote": "Anyone have a good resource for the requirements in IL?",
+     "label": "OBSERVED"
+    },
+    {
+     "url": "https://www.chicago.gov/city/en/sites/guide-to-building-permits/home/help/faq/DOB/GC-license.html",
+     "date": "2026-10-27",
+     "quote": "Does my project require a licensed general contractor?",
+     "label": "OBSERVED"
+    }
+   ],
+   "confidence": "medium-high",
+   "city": "Chicago"
+  },
+  {
+   "id": "f5",
+   "name": "Basement flooding and sewer call tracker",
+   "type": "neighborhood monthly tracker",
+   "forTrades": [
+    "plumbers",
+    "waterproofing",
+    "restoration cleaning"
+   ],
+   "whatItShows": "Water in Basement and Sewer Cleaning Inspection 311 requests per community area by month, year over year, rank of 77, spikes after storms.",
+   "searchWords": [
+    "basement flooding Chicago [neighborhood]",
+    "Chicago sewer backup by neighborhood"
+   ],
+   "aiQuestions": [
+    "Which Chicago neighborhoods flood the most?"
+   ],
+   "data": [
+    {
+     "name": "311 Service Requests (v6vf-nfxy)",
+     "publisher": "City of Chicago",
+     "url": "https://data.cityofchicago.org/Service-Requests/311-Service-Requests/v6vf-nfxy",
+     "date": "2026-10-27",
+     "updates": "several times a day; rows updated 2026-10-27 (OBSERVED)",
+     "fields": [
+      "sr_type",
+      "created_date",
+      "closed_date",
+      "community_area",
+      "zip_code"
+     ],
+     "terms": "City of Chicago Terms of Use",
+     "termsUrl": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+    }
+   ],
+   "uniquePages": 77,
+   "uniquePagesHow": "Per area series and rank.",
+   "freeRivals": [],
+   "linkMagnet": "Medium-high after big storms (news covers basement flooding).",
+   "leadsToPaid": "Medium for plumbers.",
+   "effort": "small",
+   "refresh": "daily",
+   "risks": "Grouped queries time out, so pull per type and month; counts only. Demand INFERRED.",
+   "evidence": [
+    {
+     "url": "https://data.cityofchicago.org/api/views/v6vf-nfxy.json",
+     "date": "2026-10-27",
+     "quote": "(paraphrase) Water in Basement Complaint is a live request type",
+     "label": "OBSERVED"
+    }
+   ],
+   "confidence": "medium",
+   "city": "Chicago"
+  },
+  {
+   "id": "f6",
+   "name": "Chicago Trades Quarterly",
+   "type": "benchmark report",
+   "forTrades": [
+    "all"
+   ],
+   "whatItShows": "Each quarter: permits and wait times by trade, new licenses by type, rodent and flooding requests, snow events, year over year, one stable URL per edition with CSVs.",
+   "searchWords": [
+    "Chicago construction activity Q4 2026",
+    "Chicago home service industry report"
+   ],
+   "aiQuestions": [
+    "Is Chicago construction up or down this year?"
+   ],
+   "data": [
+    {
+     "name": "Building Permits (ydr8-5enu)",
+     "publisher": "City of Chicago, Department of Buildings",
+     "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
+     "date": "2026-10-27",
+     "updates": "daily; rows updated 2026-10-26 (OBSERVED)",
+     "fields": [
+      "permit_type",
+      "review_type",
+      "application_start_date",
+      "issue_date",
+      "processing_time",
+      "work_type",
+      "community_area",
+      "reported_cost"
+     ],
+     "terms": "City of Chicago Terms of Use",
+     "termsUrl": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+    },
+    {
+     "name": "311 Service Requests (v6vf-nfxy)",
+     "publisher": "City of Chicago",
+     "url": "https://data.cityofchicago.org/Service-Requests/311-Service-Requests/v6vf-nfxy",
+     "date": "2026-10-27",
+     "updates": "several times a day; rows updated 2026-10-27 (OBSERVED)",
+     "fields": [
+      "sr_type",
+      "created_date",
+      "closed_date",
+      "community_area",
+      "zip_code"
+     ],
+     "terms": "City of Chicago Terms of Use",
+     "termsUrl": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+    }
+   ],
+   "uniquePages": 4,
+   "uniquePagesHow": "One edition per quarter.",
+   "freeRivals": [
+    {
+     "name": "Jobber Home Service Economic Report",
+     "url": "https://www.getjobber.com/home-service-reports/february-2026",
+     "lacks": "national only, no city split"
+    }
+   ],
+   "linkMagnet": "High: trade press reprints Jobber's quarterly report with a link every edition; nobody does a city version from public data.",
+   "leadsToPaid": "Medium.",
+   "effort": "medium (built from f1, f3, f5 once live)",
+   "refresh": "quarterly",
+   "risks": "Needs the trackers first.",
+   "evidence": [
+    {
+     "url": "https://www.landscapemanagement.net/jobber-releases-its-latest-home-service-economic-report-for-q3/",
+     "date": "2025-11-25",
+     "quote": "(paraphrase) trade outlet covers Jobber's quarterly report with a link",
+     "label": "OBSERVED"
+    }
+   ],
+   "confidence": "medium-high",
+   "city": "Chicago"
+  },
+  {
+   "id": "f7",
+   "name": "Dumpster permit pulse",
+   "type": "neighborhood activity index",
+   "forTrades": [
+    "junk removal",
+    "post-construction cleaning",
+    "contractors",
+    "roll-off haulers"
+   ],
+   "whatItShows": "Issued CDOT dumpster permits per community area per month: where cleanouts and renovations are happening now.",
+   "searchWords": [
+    "Chicago dumpster permit",
+    "Chicago neighborhoods with the most renovations"
+   ],
+   "aiQuestions": [
+    "Where are the most renovations in Chicago right now?"
+   ],
+   "data": [
+    {
+     "name": "Transportation Department Permits (pubx-yq2d)",
+     "publisher": "City of Chicago, CDOT",
+     "url": "https://data.cityofchicago.org/Transportation/Transportation-Department-Permits/pubx-yq2d",
+     "date": "2026-10-27",
+     "updates": "daily (OBSERVED)",
+     "fields": [
+      "applicationtype",
+      "worktypedescription",
+      "applicationstatus",
+      "applicationissueddate",
+      "latitude",
+      "longitude"
+     ],
+     "terms": "City of Chicago Terms of Use",
+     "termsUrl": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+    }
+   ],
+   "uniquePages": 77,
+   "uniquePagesHow": "Per area monthly series.",
+   "freeRivals": [],
+   "linkMagnet": "Medium.",
+   "leadsToPaid": "High for junk removal (a paid list later).",
+   "effort": "small",
+   "refresh": "daily",
+   "risks": "Drop all contact name columns at ingest; issued permits only.",
+   "evidence": [
+    {
+     "url": "https://data.cityofchicago.org/api/views/pubx-yq2d.json",
+     "date": "2026-10-27",
+     "quote": "(paraphrase) about 19,800 dumpster permits since Oct 2025",
+     "label": "OBSERVED"
+    }
+   ],
+   "confidence": "medium",
+   "city": "Chicago"
+  },
+  {
+   "id": "f8",
+   "name": "Repair demand by trade",
+   "type": "trade by neighborhood grid",
+   "forTrades": [
+    "masons",
+    "porch carpenters",
+    "electricians",
+    "HVAC and boiler",
+    "elevator"
+   ],
+   "whatItShows": "New building violations by repair type (exterior wall, porch, detectors, boiler, ventilation) per community area per month.",
+   "searchWords": [
+    "Chicago porch violation",
+    "tuckpointing demand Chicago"
+   ],
+   "aiQuestions": [
+    "What repairs does Chicago cite most?"
+   ],
+   "data": [
+    {
+     "name": "Building Violations (22u3-xenr)",
+     "publisher": "City of Chicago, Department of Buildings",
+     "url": "https://data.cityofchicago.org/Buildings/Building-Violations/22u3-xenr",
+     "date": "2026-10-27",
+     "updates": "daily (OBSERVED)",
+     "fields": [
+      "violation_date",
+      "violation_description",
+      "department_bureau",
+      "violation_status",
+      "community area via lat/long"
+     ],
+     "terms": "City of Chicago Terms of Use",
+     "termsUrl": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+    }
+   ],
+   "uniquePages": 77,
+   "uniquePagesHow": "Per area pages with trade tabs (not 462 thin pages).",
+   "freeRivals": [
+    {
+     "name": "Chicago Cityscape",
+     "url": "https://www.chicagocityscape.com/about.php",
+     "lacks": "paid, address level"
+    }
+   ],
+   "linkMagnet": "Medium.",
+   "leadsToPaid": "Medium.",
+   "effort": "medium",
+   "refresh": "weekly",
+   "risks": "Never an address or property; hand-map codes to trades.",
+   "evidence": [
+    {
+     "url": "https://data.cityofchicago.org/api/views/22u3-xenr.json",
+     "date": "2026-10-27",
+     "quote": "(paraphrase) Repair Porch System and Repair Exterior Wall lead the descriptions",
+     "label": "OBSERVED"
+    }
+   ],
+   "confidence": "medium",
+   "city": "Chicago"
+  },
+  {
+   "id": "f9",
+   "name": "Chicago public bids for small trades",
+   "type": "weekly list",
+   "forTrades": [
+    "cleaning",
+    "pest control",
+    "snow removal",
+    "landscaping",
+    "roofers",
+    "painters"
+   ],
+   "whatItShows": "Open City, CPS, Park District, CHA and Cook County bids tagged by trade: what, due date, pre-bid date, link to the notice.",
+   "searchWords": [
+    "City of Chicago bid opportunities",
+    "how to find government cleaning contracts"
+   ],
+   "aiQuestions": [
+    "Where do I find Chicago cleaning or snow bids?"
+   ],
+   "data": [
+    {
+     "name": "DPS Weekly Bid Opportunities PDFs",
+     "publisher": "City of Chicago, Procurement Services",
+     "url": "https://chicago.gov/content/dam/city/depts/dps/WeeklyBidOpportunities/2025WeeklyBidOpportunities/011325.pdf",
+     "date": "2025-01-13",
+     "updates": "weekly in 2025 (OBSERVED); 2026 not confirmed",
+     "fields": [
+      "title",
+      "due date",
+      "department"
+     ],
+     "terms": "public notices",
+     "termsUrl": ""
+    }
+   ],
+   "uniquePages": 1,
+   "uniquePagesHow": "One weekly page plus trade filters.",
+   "freeRivals": [
+    {
+     "name": "RFP School Watch",
+     "url": "https://www.rfpschoolwatch.com/bid-opportunities/illinois/chicago-public-schools",
+     "lacks": "details behind a paywall"
+    }
+   ],
+   "linkMagnet": "Low-medium.",
+   "leadsToPaid": "High (a bid is a job).",
+   "effort": "medium-large (PDF parsing, several agencies)",
+   "refresh": "weekly",
+   "risks": "Few small-trade bids per week; the DPS page failed to load today, so the 2026 feed is unconfirmed.",
+   "evidence": [
+    {
+     "url": "https://community.getjobber.com/discussions/cleaning-and-property-maintenance/how-did-you-land-your-first-commercial-contract/14555",
+     "date": "2026-10-17",
+     "quote": "How did you land your first commercial contract?",
+     "label": "OBSERVED"
+    }
+   ],
+   "confidence": "medium",
+   "city": "Chicago"
+  },
+  {
+   "id": "f10",
+   "name": "What to pay your crew in Chicago",
+   "type": "wage benchmark",
+   "forTrades": [
+    "all hiring owners"
+   ],
+   "whatItShows": "Metro hourly pay percentiles per trade role beside the Chicago and Cook minimum wages and Cook prevailing wage, with a loaded cost example linking the live labor calculators.",
+   "searchWords": [
+    "how much should I pay my cleaners per hour",
+    "Cook County prevailing wage 2026"
+   ],
+   "aiQuestions": [
+    "What do Chicago cleaning companies pay per hour?"
+   ],
+   "data": [
+    {
+     "name": "OEWS, Chicago-Naperville-Elgin metro, May 2025",
+     "publisher": "US Bureau of Labor Statistics",
+     "url": "https://www.bls.gov/regions/midwest/news-release/2026/occupationalemploymentandwages_chicago_20260723.htm",
+     "date": "2026-07-23",
+     "updates": "annual",
+     "fields": [
+      "occupation",
+      "employment",
+      "hourly percentiles"
+     ],
+     "terms": "federal public domain (INFERRED)",
+     "termsUrl": ""
+    },
+    {
+     "name": "Illinois Prevailing Wage Rates, Cook County",
+     "publisher": "Illinois Department of Labor",
+     "url": "https://www.illinois.gov/content/dam/soi/en/web/illinois/iisnewsattachments/32712-071526-7.15.2026-idol-2026-prevailing-wage-rates-published.pdf.pdf",
+     "date": "2026-07-15",
+     "updates": "annual, revised during the year",
+     "fields": [
+      "county",
+      "trade",
+      "base",
+      "fringe"
+     ],
+     "terms": "state publication",
+     "termsUrl": ""
+    }
+   ],
+   "uniquePages": 12,
+   "uniquePagesHow": "One page per role.",
+   "freeRivals": [
+    {
+     "name": "WageDex",
+     "url": "https://wagedex.com/jobs/helpers-carpenters/metro/chicago-naperville-elgin-il-in",
+     "lacks": "for job seekers, no minimum wage or cost context"
+    }
+   ],
+   "linkMagnet": "Low-medium.",
+   "leadsToPaid": "Low.",
+   "effort": "medium",
+   "refresh": "annual plus July 1",
+   "risks": "OEWS detail tables not opened here (blocked).",
+   "evidence": [
+    {
+     "url": "https://www.bls.gov/regions/midwest/news-release/2026/occupationalemploymentandwages_chicago_20260723.htm",
+     "date": "2026-07-23",
+     "quote": "(paraphrase) Chicago metro wages by major group, May 2025",
+     "label": "OBSERVED"
+    }
+   ],
+   "confidence": "medium",
+   "city": "Chicago"
+  },
+  {
+   "id": "f11",
+   "name": "Wrecking permit rodent baiting hub",
+   "type": "guide plus weekly counts",
+   "forTrades": [
+    "pest control",
+    "wrecking contractors"
+   ],
+   "whatItShows": "The city's pre-demolition baiting steps in plain words (licensed pest company, affidavit, Streets and Sanitation inspection) plus weekly wrecking permits by community area.",
+   "searchWords": [
+    "Chicago demolition permit rodent baiting"
+   ],
+   "aiQuestions": [
+    "Do I need rodent baiting for a Chicago demolition permit?"
+   ],
+   "data": [
+    {
+     "name": "Building Permits (ydr8-5enu)",
+     "publisher": "City of Chicago, Department of Buildings",
+     "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
+     "date": "2026-10-27",
+     "updates": "daily; rows updated 2026-10-26 (OBSERVED)",
+     "fields": [
+      "permit_type",
+      "review_type",
+      "application_start_date",
+      "issue_date",
+      "processing_time",
+      "work_type",
+      "community_area",
+      "reported_cost"
+     ],
+     "terms": "City of Chicago Terms of Use",
+     "termsUrl": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+    }
+   ],
+   "uniquePages": 1,
+   "uniquePagesHow": "One guide and one weekly table.",
+   "freeRivals": [
+    {
+     "name": "City demolition permit page",
+     "url": "https://www.chicago.gov/city/en/depts/bldgs/provdrs/permits/svcs/demo-permits.html",
+     "lacks": "no counts, no timing"
+    }
+   ],
+   "linkMagnet": "Low.",
+   "leadsToPaid": "High: every wrecking permit needs a pest company first.",
+   "effort": "small",
+   "refresh": "weekly",
+   "risks": "Low search volume (INFERRED); business fields only.",
+   "evidence": [
+    {
+     "url": "https://www.chicago.gov/city/en/depts/bldgs/provdrs/permits/svcs/demo-permits.html",
+     "date": "2026-10-27",
+     "quote": "hire a licensed pest control company to bait the site",
+     "label": "OBSERVED"
+    }
+   ],
+   "confidence": "medium (low traffic, strong paid tie)",
+   "city": "Chicago"
+  },
+  {
+   "id": "f12",
+   "name": "Restaurant pest and ventilation violation index",
+   "type": "weekly index on the rat map",
+   "forTrades": [
+    "pest control",
+    "hood cleaning",
+    "cleaning"
+   ],
+   "whatItShows": "Share of food inspections citing pest or ventilation violations by community area, weekly, with trend. Counts only, never a named restaurant.",
+   "searchWords": [
+    "Chicago restaurant pest violations by neighborhood"
+   ],
+   "aiQuestions": [
+    "Which Chicago neighborhoods have the most restaurant pest violations?"
+   ],
+   "data": [
+    {
+     "name": "Food Inspections (4ijn-s7e5)",
+     "publisher": "City of Chicago, CDPH",
+     "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
+     "date": "2026-10-27",
+     "updates": "weekly (already used by the site)",
+     "fields": [
+      "inspection_date",
+      "results",
+      "violations",
+      "latitude",
+      "longitude"
+     ],
+     "terms": "City of Chicago Terms of Use",
+     "termsUrl": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+    }
+   ],
+   "uniquePages": 77,
+   "uniquePagesHow": "Layer on the per area rat pages.",
+   "freeRivals": [
+    {
+     "name": "CleanPlate Chicago",
+     "url": "https://cleanplatechicago.com/",
+     "lacks": "for diners, no trend"
+    }
+   ],
+   "linkMagnet": "Medium.",
+   "leadsToPaid": "High (inspection lists are a paid product).",
+   "effort": "small",
+   "refresh": "weekly",
+   "risks": "Must stay aggregate under the no named failing business rule.",
+   "evidence": [
+    {
+     "url": "https://ratradar.com/b2b/pest-control",
+     "date": "2026-10-27",
+     "quote": "(paraphrase) a paid metro feed of inspection leads",
+     "label": "OBSERVED"
+    }
+   ],
+   "confidence": "medium",
+   "city": "Chicago"
+  }
+ ],
+ "aiProbe": [
+  {
+   "question": "How long does it take to get a building permit in Chicago?",
+   "winsNow": "vendor expediter pages with unsourced ranges; city metrics dataset stale since 2014",
+   "cited": "NOT READ: Perplexity blocks fetching, Google and other engine pages were refused; what ranks now is OBSERVED, engine citations are INFERRED from studies (Reddit and Wikipedia lead)",
+   "ourOpening": "f1"
+  },
+  {
+   "question": "How many plowable snows does Chicago get, seasonal vs per push?",
+   "winsNow": "national vendor pricing guides; NWS page without event counts in text",
+   "cited": "NOT READ: Perplexity blocks fetching, Google and other engine pages were refused; what ranks now is OBSERVED, engine citations are INFERRED from studies (Reddit and Wikipedia lead)",
+   "ourOpening": "f2"
+  },
+  {
+   "question": "Which Chicago neighborhoods have the most rats?",
+   "winsNow": "news stories and Orkin metro list; no living per capita ranking",
+   "cited": "NOT READ: Perplexity blocks fetching, Google and other engine pages were refused; what ranks now is OBSERVED, engine citations are INFERRED from studies (Reddit and Wikipedia lead)",
+   "ourOpening": "f3"
+  },
+  {
+   "question": "Does my project require a licensed general contractor in Chicago?",
+   "winsNow": "undated city pages plus insurance and software vendor guides",
+   "cited": "NOT READ: Perplexity blocks fetching, Google and other engine pages were refused; what ranks now is OBSERVED, engine citations are INFERRED from studies (Reddit and Wikipedia lead)",
+   "ourOpening": "f4"
+  },
+  {
+   "question": "Does a suburb electrical license work in Chicago?",
+   "winsNow": "forum threads stitched town by town",
+   "cited": "NOT READ: Perplexity blocks fetching, Google and other engine pages were refused; what ranks now is OBSERVED, engine citations are INFERRED from studies (Reddit and Wikipedia lead)",
+   "ourOpening": "f4"
+  },
+  {
+   "question": "Where is construction happening in Chicago right now?",
+   "winsNow": "news roundups without builders; Cityscape behind a subscription",
+   "cited": "NOT READ: Perplexity blocks fetching, Google and other engine pages were refused; what ranks now is OBSERVED, engine citations are INFERRED from studies (Reddit and Wikipedia lead)",
+   "ourOpening": "live sample plus f1"
+  },
+  {
+   "question": "How do small cleaning companies land post-construction contracts?",
+   "winsNow": "generic national guides; Jobber forum thread with no real answer",
+   "cited": "NOT READ: Perplexity blocks fetching, Google and other engine pages were refused; what ranks now is OBSERVED, engine citations are INFERRED from studies (Reddit and Wikipedia lead)",
+   "ourOpening": "live sample plus f7"
+  },
+  {
+   "question": "How did you land your first commercial contract?",
+   "winsNow": "vendor academy posts listing national portals",
+   "cited": "NOT READ: Perplexity blocks fetching, Google and other engine pages were refused; what ranks now is OBSERVED, engine citations are INFERRED from studies (Reddit and Wikipedia lead)",
+   "ourOpening": "f9"
+  },
+  {
+   "question": "How do I price hood cleaning?",
+   "winsNow": "2018 forum threads and spam cost guides",
+   "cited": "NOT READ: Perplexity blocks fetching, Google and other engine pages were refused; what ranks now is OBSERVED, engine citations are INFERRED from studies (Reddit and Wikipedia lead)",
+   "ourOpening": "live hood calculator"
+  },
+  {
+   "question": "What rate for a commercial post-construction cleanup bid?",
+   "winsNow": "homeowner cost guides (Fixr, Angi)",
+   "cited": "NOT READ: Perplexity blocks fetching, Google and other engine pages were refused; what ranks now is OBSERVED, engine citations are INFERRED from studies (Reddit and Wikipedia lead)",
+   "ourOpening": "live calculators"
+  },
+  {
+   "question": "How much should I pay helpers and cleaners per hour in Chicago?",
+   "winsNow": "national vendor blogs and job seeker wage sites",
+   "cited": "NOT READ: Perplexity blocks fetching, Google and other engine pages were refused; what ranks now is OBSERVED, engine citations are INFERRED from studies (Reddit and Wikipedia lead)",
+   "ourOpening": "f10"
+  },
+  {
+   "question": "Is labor subject to Illinois sales tax?",
+   "winsNow": "the state FAQ ('depends upon the circumstances') and consulting blogs",
+   "cited": "NOT READ: Perplexity blocks fetching, Google and other engine pages were refused; what ranks now is OBSERVED, engine citations are INFERRED from studies (Reddit and Wikipedia lead)",
+   "ourOpening": "avoid (advice)"
+  }
+ ],
+ "ranking": [
+  {
+   "rank": 1,
+   "featureId": "f1",
+   "why": "Verified field, fresh daily data, a question owners ask, rivals are vendor guesses; benchmark format AI answers cite; small build on data we already pull.",
+   "first90DaysVisits": "medium",
+   "label": "INFERRED band (new site, 0 search visits today); no number claimed"
+  },
+  {
+   "rank": 2,
+   "featureId": "f2",
+   "why": "Timely (first plowable snow normally Dec 7), plugs real counts into the live snow calculator, fresh after every storm.",
+   "first90DaysVisits": "medium",
+   "label": "INFERRED band (new site, 0 search visits today); no number claimed"
+  },
+  {
+   "rank": 3,
+   "featureId": "f3",
+   "why": "Cheapest upgrade of a live page into the format Chicago outlets already cover every year; badge spreads links.",
+   "first90DaysVisits": "medium-high",
+   "label": "INFERRED band (new site, 0 search visits today); no number claimed"
+  },
+  {
+   "rank": 4,
+   "featureId": "f4",
+   "why": "Evergreen owner demand and rivals with errors; manual upkeep and accuracy risk.",
+   "first90DaysVisits": "medium",
+   "label": "INFERRED band (new site, 0 search visits today); no number claimed"
+  },
+  {
+   "rank": 5,
+   "featureId": "f6",
+   "why": "Strongest link magnet once f1, f3, f5 exist; first edition can be Q4 2026 in January.",
+   "first90DaysVisits": "medium",
+   "label": "INFERRED band (new site, 0 search visits today); no number claimed"
+  },
+  {
+   "rank": 6,
+   "featureId": "f5",
+   "why": "77 unique pages from a daily feed; demand inferred, spikes after storms.",
+   "first90DaysVisits": "low-medium",
+   "label": "INFERRED band (new site, 0 search visits today); no number claimed"
+  },
+  {
+   "rank": 7,
+   "featureId": "f7",
+   "why": "Fresh signal for junk removal and cleaners; strong paid tie.",
+   "first90DaysVisits": "low-medium",
+   "label": "INFERRED band (new site, 0 search visits today); no number claimed"
+  },
+  {
+   "rank": 8,
+   "featureId": "f11",
+   "why": "Low volume, no rival, every wrecking permit needs a pest company.",
+   "first90DaysVisits": "low",
+   "label": "INFERRED band (new site, 0 search visits today); no number claimed"
+  },
+  {
+   "rank": 9,
+   "featureId": "f12",
+   "why": "Cheap layer on live data; strong paid tie; aggregate only.",
+   "first90DaysVisits": "low-medium",
+   "label": "INFERRED band (new site, 0 search visits today); no number claimed"
+  },
+  {
+   "rank": 10,
+   "featureId": "f10",
+   "why": "Useful context, crowded by wage sites.",
+   "first90DaysVisits": "low-medium",
+   "label": "INFERRED band (new site, 0 search visits today); no number claimed"
+  },
+  {
+   "rank": 11,
+   "featureId": "f8",
+   "why": "Real data, weak search demand, care needed on privacy.",
+   "first90DaysVisits": "low",
+   "label": "INFERRED band (new site, 0 search visits today); no number claimed"
+  },
+  {
+   "rank": 12,
+   "featureId": "f9",
+   "why": "Useful but costly to parse and few fitting bids each week.",
+   "first90DaysVisits": "low",
+   "label": "INFERRED band (new site, 0 search visits today); no number claimed"
+  }
+ ],
+ "avoid": [
+  {
+   "idea": "More national pricing calculators without Chicago data",
+   "why": "Jobber, Housecall Pro, ServiceTitan, Joist, Omni and Angi saturate these (OBSERVED); traffic decays as rivals copy."
+  },
+  {
+   "idea": "Illinois sales tax checker by trade",
+   "why": "It is advice; one wrong line hurts owners and the brand. Keep tax items in Trades News with links."
+  },
+  {
+   "idea": "Free busiest contractors leaderboard by trade",
+   "why": "Proven link magnet (The Real Deal, BuildZoom), but it gives away the paid GC lead data. Todd's call, not a default."
+  },
+  {
+   "idea": "Restaurant inspection lookup for diners",
+   "why": "CleanPlate and others serve it; wrong audience; names failing businesses."
+  },
+  {
+   "idea": "Another big projects list",
+   "why": "Axios, The Real Deal and our own sample cover it; add angles (wait times, near finish), not lists."
+  },
+  {
+   "idea": "Competitor counts by ZIP",
+   "why": "Census ZIP data is 2023 and owners do not search for it."
+  },
+  {
+   "idea": "Energy benchmarking and OSHA pages",
+   "why": "Stale (Feb 2025) or lagging (May 2026), and OSHA names cited companies."
+  },
+  {
+   "idea": "Dump fee map",
+   "why": "Not open data; fees often unposted; manual upkeep."
+  },
+  {
+   "idea": "llms.txt, FAQ schema or AI-format tricks as a strategy",
+   "why": "Ahrefs: 97% of llms.txt files got no requests; schema showed no citation lift in a matched test; Google says no special markup is needed."
+  },
+  {
+   "idea": "Standalone minimum wage page",
+   "why": "News and HR sites own it; it peaks July 1; fold into the crew pay page and Trades News."
+  }
+ ],
+ "sitewide": [
+  "Every data page: stable URL, a checked date, a short methods note, a CSV, numbers in an HTML table (AI and press lift tables).",
+  "Refresh visibly; AI assistants cite fresher pages (Ahrefs, 17M citations).",
+  "Pitch each recurring ranking to Block Club, Patch and trade press on release day (Todd's go, sending is his)."
+ ],
+ "blocked": [
+  "perplexity.ai robots",
+  "Google and you.com result pages",
+  "Reddit via proxy",
+  "bls.gov OEWS tables",
+  "data.dol.gov",
+  "Cook County data portal",
+  "Chicago DPS bid page (client error)"
+ ]
+}

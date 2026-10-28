@@ -45,3 +45,9 @@
 - Decided in the build chats, per their rows: permit wait and demolition baiting went live on Todd's final-round design rule (each page 4.4 or more after one last round); material prices went live after Todd's word to get design over the bar first (it reached 4.71); the CDOT fee schedule and the crew cost source files were downloaded by Todd because those hosts refuse GitHub's runners.
 - Open: inspections by area and Chicago Trades Quarterly (rows not done). City contracts' open bid list not published (the City's weekly PDF refuses runners).
 - For Todd, nothing asked yet: City data terms indemnity for the attorney read (as Oct 22); the BACP fee update PDF (20260127newfees.pdf) to open by hand; a free BLS API key on his account (material price titles); each spring's BLS wage file and any new Cook County schedule, and each new CDOT fee schedule, need his download.
+
+## Video engine go, 8:56 pm (Kimi research desk chat)
+- [stated] Todd, 8:56 pm: "Let's execute the blueprint. Please write me the prompt to use in the next chat"
+- Blueprint: Claude Doc "PNF Video Engine Blueprint" (https://claude.ai/artifact/3ssi8yGEKVxiL7JTD87kzS), v2 after two Kimi reviews and the evening deep check (research_notes/social-engine-2026-10-27.md, section 8).
+- So: call 1 (audience: trade owners, through our own data) and call 2 (go on the Phase 0 MVP: 9 rat videos to Instagram Reels over three weeks, each posted by Claude in Todd's Chrome only after his "post" on that preview, plus the proofnotfluff.com/rats short page as the one major site change) are made as the blueprint recommends. Call 3, the narration route, is open: the build chat asks Todd (recommended: an ElevenLabs API key as a private GitHub secret). Kokoro stays test-only.
+- Not under this go: a standing video post rule, Meta or YouTube app sign-ins, Buffer, any spend (Gemini critic, AI clips), any other platform. Each waits for its phase gate and Todd's word in a live chat.

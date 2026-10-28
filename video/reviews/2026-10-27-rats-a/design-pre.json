@@ -1,0 +1,32 @@
+{
+ "schema": "pnf.video.review.v1",
+ "videoId": "2026-10-27-rats-a",
+ "gate": "design",
+ "model": "claude-opus-5-5",
+ "skillCommit": "e23cec0",
+ "prompt": "video/prompts/design.md",
+ "inputs": [
+  "PRE-READ, not gate 8: a local render with the stand-in tone voice (sheet.jpg, frame one, six full frames); gate 8 runs again on the ElevenLabs render",
+  "design/DESIGN_DIRECTOR.md",
+  "design/CAROUSEL_STANDARD.md"
+ ],
+ "score": {
+  "first": 5,
+  "hierarchy": 5,
+  "type": 5,
+  "color": 5,
+  "spacing": 4,
+  "polish": 4,
+  "trust": 5,
+  "average": 4.71
+ },
+ "pass": true,
+ "reasons": [
+  "32.36 s and 36.42 s comparison cards (spacing): there is 126 px of empty card between the labels (bottom y 596) and the numbers 14 and 45 (top y 722). Raise the numbers from about 165 px to 240 px Poppins Bold, top 48 px under the labels, so the numbers fill the card. At 240 px, 45 is about 287 px wide, inside the 359 px of card width.",
+  "50.57 s and 56.03 s end card stack (spacing): gaps run 24 / 45 / 75 / 23 / 80 px (title, URL, sub, SOUTH CHICAGO label, +221.4%, ProofNotFluff), and 190 px sits empty from the wordmark (y 1150) to the wave (y 1340). Use 24 px inside a pair (title to URL, label to number) and 64 px between groups. Put the ProofNotFluff wordmark 64 px under +221.4% so the stack ends near y 1200 like the other frames' captions.",
+  "All caption frames (1.60 s, 14.04 s, 32.36 s, 36.42 s, 43.67 s, 45.72 s) highlight pill (polish): the pill's 9 px side padding takes space from the word gaps, so the gap outside the pill is about 8 px against a normal word space of 15 to 19 px (for example 'pest' to 'control' at 43.67 s, 'the' to 'same' at 32.36 s). Make the side padding 12 px and widen the word gaps on both sides of the active word by the same 12 px, so the space outside the pill stays one normal word space and the line does not jump as the pill moves.",
+  "1.60 s caption pill on 'complaints' (polish): the pill starts at x 66, 6 px left of the x 72 edge every other element aligns to. When the active word starts a line, put the pill's left edge on x 72 and the text at x 84, or keep the text at x 72 and let only the white fill hang left, the same way on every frame.",
+  "43.67 s and 45.72 s ALL OF CHICAGO bar (polish): the +10.2% bar is a 22 x 95 px dark stub. It is the right length for the data (22/488 matches 10.2/221.4), but at 95 px tall it reads as a text cursor, not a bar. Draw a full-width 96 px track in the card line color #E2DDD3 behind both rows, from x 108 to the card's inner right edge, so the stub reads as a short bar on the same scale as the long accent bar. Leave the bar lengths as they are."
+ ],
+ "at": "2026-10-27T23:33:47-05:00"
+}

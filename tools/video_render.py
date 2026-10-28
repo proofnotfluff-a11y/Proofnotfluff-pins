@@ -106,12 +106,16 @@ def hook_scene(spec, sc):
     number = h["number"] + (f" {h['unit']}" if h.get("unit") else "")
     num = L.text_el("hook-number", number, X0, y, XW, "P", 700, 300, T["white"], lh=1.0, max_lines=1, shrink_to=150, t_in=t0, t_out=t1, anim="none")
     els.append(num)
-    y = num["y"] + num["h"] + 28
-    lab = L.text_el("hook-label", h["label"], X0, y, XW, "P", 600, 48, T["white"], lh=1.15, max_lines=3, t_in=t0, t_out=t1, anim="none")
+    y = num["y"] + num["h"] + 24
+    lab = L.text_el("hook-label", h["label"], X0, y, XW, "P", 600, 56, T["white"], lh=1.12, max_lines=3, t_in=t0, t_out=t1, anim="none")
     els.append(lab)
-    y = lab["y"] + lab["h"] + 26
+    y = lab["y"] + lab["h"] + 16
     per = L.text_el("hook-period", f"City 311 data, {s['period']}", X0, y, XW, "I", 600, 42, T["soft"], lh=1.15, max_lines=1, t_in=t0, t_out=t1, anim="none")
     els.append(per)
+    room = (CAP_Y + 24) - 104 - (per["y"] + per["h"])   # no band over 120 px between the block and the caption
+    if room > 0:
+        for x in (area, num, lab, per):
+            x["y"] += room
     over = per["y"] + per["h"] - CB
     if over > 0:   # take the space back from the big number, never from the words
         num2 = L.text_el("hook-number", number, X0, num["y"], XW, "P", 700, max(150, num["size"] - over - 4), T["white"], lh=1.0, max_lines=1, shrink_to=150, t_in=t0, t_out=t1, anim="none")
@@ -176,7 +180,7 @@ def map_picture(spec, ch, t0, t1, top, bottom, segs):
         blocks = [(t0, next(iter(stats)))]
     legs = []
     for i, (cls, text) in enumerate(ch["legend"]):
-        legs.append((cls, L.text_el(f"pic-leg{i}", text, cx + 52, 0, cw - 52, "I", 600, 48, T["ink2"], lh=1.15, max_lines=2, t_in=t0 + 0.6, t_out=t1)))
+        legs.append((cls, L.text_el(f"pic-leg{i}", text, cx + 52, 0, cw - 52, "I", 600, 42, T["ink2"], lh=1.15, max_lines=2, t_in=t0 + 0.6, t_out=t1)))
     leg_h = sum(e["h"] + 20 for _, e in legs) - 20
     leg_top = bottom - leg_h
     m["focusSpans"] = [[round(t0 if k == 0 else st_, 3), round(blocks[k + 1][0] if k + 1 < len(blocks) else t1, 3)]
@@ -207,7 +211,7 @@ def map_picture(spec, ch, t0, t1, top, bottom, segs):
     yy = leg_top
     for i, (cls, e) in enumerate(legs):
         e["y"] = yy
-        els.append(L.rect(f"pic-leg{i}-swatch", cx, yy + 5, 40, 40, fill[cls], radius=6, t_in=t0 + 0.6, t_out=t1, anim="fade", line=T["ink2"] if cls == "lo" else None))
+        els.append(L.rect(f"pic-leg{i}-swatch", cx, yy + 8, 32, 32, fill[cls], radius=6, t_in=t0 + 0.6, t_out=t1, anim="fade", line=T["ink2"] if cls == "lo" else None))
         els.append(e)
         yy += e["h"] + 20
     return els
@@ -271,7 +275,7 @@ def compare_scene(spec, sc):
     cards = s["compare"]["cards"]
     gap = 24
     cw = (XW - gap) / 2
-    chh = min(440, CB - top)
+    chh = CB - top   # the cards fill the band down to the content bottom (design read 5)
     vmax = max(c["value"] for c in cards) or 1
     for i, c in enumerate(cards):
         x = X0 + i * (cw + gap)
@@ -280,8 +284,9 @@ def compare_scene(spec, sc):
         lb = L.text_el(f"cmp-card{i}-label", c["label"], x + 28, top + 28, cw - 56, "P", 600, 42, T["muted"], lh=1.12, upper=True, tracking=0.04,
                        max_lines=3, t_in=ti, t_out=t1)
         els.append(lb)
-        vy = lb["y"] + lb["h"] + 18
-        vv = L.text_el(f"cmp-card{i}-value", c["shown"], x + 28, vy, cw - 56, "P", 700, 120, T["accent"] if c.get("focus") else T["ink"],
+        unit_h = round(42 * 1.15) + 6 if s["compare"].get("unit") else 0
+        vy = max(lb["y"] + lb["h"] + 18, top + chh - 40 - 24 - 28 - unit_h - 160)   # the number sits on its bar: label top, stat bottom
+        vv = L.text_el(f"cmp-card{i}-value", c["shown"], x + 28, vy, cw - 56, "P", 700, 160, T["accent"] if c.get("focus") else T["ink"],
                        lh=1.0, max_lines=1, shrink_to=64, t_in=ti + 0.1, t_out=t1)
         els.append(vv)
         if s["compare"].get("unit"):
@@ -289,7 +294,7 @@ def compare_scene(spec, sc):
                            max_lines=1, t_in=ti + 0.1, t_out=t1)
             els.append(un)
         bw = max(8, round((cw - 56) * c["value"] / vmax))
-        els.append(L.rect(f"cmp-card{i}-bar", round(x + 28, 1), top + chh - 28 - 24, bw, 24, T["accent"] if c.get("focus") else T["ink"], radius=4,
+        els.append(L.rect(f"cmp-card{i}-bar", round(x + 28, 1), top + chh - 40 - 24, bw, 24, T["accent"] if c.get("focus") else T["ink"], radius=4,
                           t_in=ti + 0.2, t_out=t1, anim="grow"))
     return els
 
@@ -307,7 +312,7 @@ def why_scene(spec, sc):
     rows = w.get("bars") or (s.get("whyBars") if w.get("number") else None)
     if rows:
         pitch = 48 + 12 + 96 + 32
-        card_h = min(CB - y, 56 + pitch * len(rows))
+        card_h = min(CB - y, pitch * len(rows) + 40)   # 32 on top, the last row's 32 tail plus 8 below: even padding
         els.append(L.rect("why-card", X0, y, XW, card_h, T["card"], radius=24, t_in=t0 + 0.4, t_out=t1, anim="fade", role="container", line=T["line"]))
         vmax = max(abs(r["value"]) for r in rows) or 1
         inner_x, inner_w = X0 + 36, XW - 72
@@ -352,8 +357,8 @@ def end_scene(spec, sc):
     cy = sub["y"] + sub["h"] + 64
     who = L.text_el("end-recap-area", spec["screen"]["area"], X0, cy, XW, "P", 600, 42, T["soft"], lh=1.12, upper=True, tracking=0.04,
                     max_lines=1, t_in=t0 + 0.5, t_out=t1)
-    big = L.text_el("end-recap-number", h["number"] + (f" {h['unit']}" if h.get("unit") else ""), X0, who["y"] + who["h"] + 8, XW, "P", 700, 96,
-                    T["white"], lh=1.0, max_lines=1, shrink_to=60, t_in=t0 + 0.5, t_out=t1)
+    big = L.text_el("end-recap-number", h["number"] + (f" {h['unit']}" if h.get("unit") else ""), X0, who["y"] + who["h"] + 8, XW, "P", 700, 64,
+                    T["white"], lh=1.0, max_lines=1, shrink_to=48, t_in=t0 + 0.5, t_out=t1)
     els += [who, big]
     els.append(L.text_el("end-brand", "ProofNotFluff", X0, big["y"] + big["h"] + 64, XW, "P", 700, 48, T["white"], lh=1.15, max_lines=1, t_in=t0 + 0.4, t_out=t1))
     return els

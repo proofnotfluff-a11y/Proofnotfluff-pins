@@ -114,10 +114,10 @@ const Wave = ({e, frame}) => {
     <div style={{position: 'absolute', left: e.x, top: e.y, width: e.w, height: e.h}}>
       {Array.from({length: e.bars}).map((_, i) => {
         const shape = 0.35 + 0.65 * Math.abs(Math.sin((i + 1) * 1.7 + frame * 0.21 + i * i * 0.13));
-        const h = Math.max(10, e.h * Math.min(1, v * shape));
+        const h = Math.max(12, e.h * Math.min(1, v * shape));   // at rest: a row of round dots, a paused wave
         return (
-          <div key={i} style={{position: 'absolute', left: i * (bw + gap), top: (e.h - h) / 2, width: bw, height: h,
-            borderRadius: bw / 2, background: color}} />
+          <div key={i} style={{position: 'absolute', left: i * (bw + gap) + (bw - Math.min(bw, h)) / 2, top: (e.h - h) / 2,
+            width: Math.min(bw, h), height: h, borderRadius: bw / 2, background: color}} />
         );
       })}
     </div>

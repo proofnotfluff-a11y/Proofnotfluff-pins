@@ -3765,11 +3765,18 @@ def hub_stat(slug, spec):
     """(number, label) for a hub card from the page's own text (site/datahub.json stat), or None when it no longer matches."""
     if not spec:
         return None
-    m = re.search(spec["re"], page_text(slug), re.S)
+    if spec.get("raw"):
+        try:
+            src = open(os.path.join(DOCS, slug, "index.html"), encoding="utf-8").read().split("</h1>", 1)[-1]
+        except OSError:
+            src = ""
+    else:
+        src = page_text(slug)
+    m = re.search(spec["re"], src, re.S)
     if not m:
         print("hub: no headline figure for", slug, "(stat pattern did not match the page)")
         return None
-    fill = lambda t: re.sub(r"\{(\d)\}", lambda g: m.group(int(g.group(1))), t)
+    fill = lambda t: re.sub(r"\{(\d)\}", lambda g: html.unescape(m.group(int(g.group(1)))), t)
     return fill(spec["num"]), fill(spec["label"])
 
 

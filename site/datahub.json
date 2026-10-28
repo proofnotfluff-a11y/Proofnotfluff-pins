@@ -1,5 +1,5 @@
 {
-  "_about": "The /chicago-data/ hub, the home page's free tools section and the More free Chicago data strip on each data page (redesign, Oct 27, 2026). Groups are by the job a trade owner is doing. A live data page missing here still shows, under More Chicago data, with its own title and card. name is the short card title; cadence and source must match the page's workflow and its own source line. stat: a regex over the built page's own text (tags as ' | '), so the card's number is exactly what the page shows; no match means no number on the card. short: the card's one line (70 characters at most, no words the figure label already says).",
+  "_about": "The /chicago-data/ hub, the home page's free tools section and the More free Chicago data strip on each data page (redesign, Oct 27, 2026). Groups are by the job a trade owner is doing. A live data page missing here still shows, under More Chicago data, with its own title and card. name is the short card title; cadence and source must match the page's workflow and its own source line. stat: a regex over the built page's own text (tags as ' | '), so the card's number is exactly what the page shows; no match means no number on the card. short: the card's one line (70 characters at most, no words the figure label already says). raw: true runs the pattern on the page's HTML instead (for a page whose text holds every view, like the snow board's hidden station and trigger views).",
   "groups": [
     {
       "id": "find-work",
@@ -43,7 +43,7 @@
       "stat": {
         "re": "Ending in 12 months \\| ([\\d,]+) \\| contracts in these trades",
         "num": "{1}",
-        "label": "City contracts in these trades end in the next 12 months"
+        "label": "City contracts in the 12 trades end in the next 12 months"
       },
       "short": "Who wins City work in 12 trades and what it was worth."
     },
@@ -113,9 +113,9 @@
       "source": "BLS, City, County and State",
       "cadence": "Checked every Tuesday",
       "stat": {
-        "re": "Chicago \\| \\$([\\d.]+) \\| minimum wage an hour from ([A-Z][a-z]+ \\d+, \\d{4})",
+        "re": "Chicago \\| \\$([\\d.]+) \\| minimum wage an hour from ([A-Z][a-z]+ \\d+, \\d{4}), employers with (\\d+) or more employees",
         "num": "${1}",
-        "label": "Chicago minimum wage an hour from {2}"
+        "label": "Chicago minimum wage an hour from {2}, employers with {3} or more employees"
       },
       "short": "Pay for 12 trades, public works rates and a crew day calculator."
     },
@@ -125,7 +125,8 @@
       "source": "NOAA",
       "cadence": "Updated daily, Oct to Apr",
       "stat": {
-        "re": "Showing \\| O'Hare, 2 inches \\|.*? Middle winter \\| (\\d+) \\|",
+        "raw": true,
+        "re": "data-v=\\\"ohare-2\\\"[^>]*>.*?Middle winter</div><div class=\\\"val\\\">(\\d+)</div>",
         "num": "{1}",
         "label": "plowable days in a middle winter at O'Hare, 2 inch trigger"
       },

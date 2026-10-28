@@ -16,8 +16,9 @@
  },
  "pass": true,
  "reasons": [
-  "Every number and claim recomputed from the file: 45 vs 14 (221.4%, 3.21x, so triple holds), city 10.2%, 44 of 77 community areas up, window Sep 27 to Oct 26. Soft note, not a mismatch: hook 2 'Last year, 14' does not name the 30-day window (hook 4 was picked)."
+  "Every number and claim recomputed from the file: 45 vs 14 (221.4%, 3.21x, so triple holds), city 10.2%, 44 of 77 community areas up, window Sep 27 to Oct 26. Soft note, not a mismatch: hook 2 'Last year, 14' does not name the 30-day window (hook 4 was picked).",
+  "Re-checked by a new fresh reviewer after the hook label dropped the repeated area name (Oct 27, 11:05 pm): PASS, 31 numbers, 0 mismatches."
  ],
  "round": 1,
- "at": "2026-10-27T22:50:00-05:00"
+ "at": "2026-10-27T23:05:00-05:00"
 }

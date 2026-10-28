@@ -65,3 +65,6 @@
 - 5:14 pm [stated] "Where can I preview lesson 1" (sent the final render in chat).
 - 5:15 pm [stated] "Let's keep creating videos and adding to the pipeline, because we have to utilize all usage before 10 p.m. So keep them going."
 - So: lessons 5 and up are made tonight from research/IDEAS.md "Next up", each through every gate into the post queue.
+- 5:32 pm [stated] "I looked at lesson one and there was some shakiness and like jerkiness in the background. Like the figure would slightly move around throughout the video, very slightly. Is there a way to stabilize it and look, make the animations a little bit more fluid? Also, is there just is there a way to just get better animation in general?"
+- 5:33 pm [stated] "The lines in the tile lines in the first scene are like they're going thick and then they're getting thin ... It's almost like the tile lines just keep moving throughout the video."
+- So: the pixel look holds the camera still (no fractional zoom), and slides, clouds and text move in whole low-res pixels. Lessons 1 to 4 re-render; gates rerun on the new renders.

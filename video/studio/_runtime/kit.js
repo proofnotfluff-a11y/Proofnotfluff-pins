@@ -48,11 +48,14 @@
       if (!amt) return pts;
       return pts.map((p, i) => [p[0] + (hash(id * 13.1 + i * 7.7 + boil * 3.3) - 0.5) * 2 * amt, p[1] + (hash(id * 5.3 + i * 3.1 + boil * 9.7) - 0.5) * 2 * amt]);
     }
+    // the pixel looks move things in whole low-res pixels: a slide that lands between pixels redraws every edge half-lit,
+    // and the palette snaps it thick or thin each frame (the "swimming" Todd saw). Rounding the current offset keeps edges crisp.
+    const pin = () => { if (!look.bitmap) return; const m = ctx.getTransform(); ctx.setTransform(m.a, m.b, m.c, m.d, Math.round(m.e), Math.round(m.f)); };
     // shape(points, {fill, stroke, lw, closed, alpha, line: false}) in color roles or literal colors.
     function shape(pts, o = {}) {
       const id = o.id != null ? o.id : ++uid;
       const closed = o.closed !== false;
-      ctx.save();
+      ctx.save(); pin();
       if (o.alpha != null) ctx.globalAlpha *= o.alpha;
       const w = look.wobble;
       if (o.fill) { trace(jitter(pts, id, w * 0.6), closed); ctx.fillStyle = col(o.fill); ctx.fill(); }
@@ -121,7 +124,7 @@
       const size = o.size || 48, lh = look.bitmap ? bmHeight(size) * (o.lh ? Math.max(1.05, o.lh) : 1.15) : (o.lh || 1.15) * size;
       const lines = o.maxW ? wrap(s, o, o.maxW) : [s];
       if (look.bitmap) {
-        ctx.save(); if (o.alpha != null) ctx.globalAlpha *= o.alpha;
+        ctx.save(); pin(); if (o.alpha != null) ctx.globalAlpha *= o.alpha;
         let wmax = 0;
         lines.forEach((ln, i) => {
           const w = bmWidth(ln, size); wmax = Math.max(wmax, w);
@@ -631,7 +634,7 @@
     };
 
     // ---- rooms: pixel backdrops for the arcade look (blackboard, workshop, garage, framing) ----
-    const R = (x, y, w, h, c) => { ctx.fillStyle = col(c); ctx.fillRect(x, y, w, h); };
+    const R = (x, y, w, h, c) => { ctx.fillStyle = col(c); if (look.bitmap) { x = Math.round(x / U) * U; y = Math.round(y / U) * U; } ctx.fillRect(x, y, w, h); };   // rooms sit on the pixel grid (clouds step, never smear)
     k.room = function (name, o = {}) {
       const floorY = 1250;
       if (name === 'blackboard') {

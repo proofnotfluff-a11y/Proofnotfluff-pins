@@ -259,6 +259,10 @@
       ({zoom, fx, fy} = camera(ks, Ts, sec));
       // a section opens with a hard punch-in that settles
       if (sec !== tops[0]) zoom += 0.06 * (1 - k.easeOut(into / 0.5));
+      // pixel art never scales by a fraction: a 1.03x zoom resamples the low-res grid every frame, so lines swell and
+      // thin and the set seems to swim (Todd, Oct 28: "the tile lines just keep moving"). The pixel looks hold the
+      // camera still; the motion lives in the things on screen (slams, stamps, slides, the host).
+      if (look.bitmap && !window.SCENE.zoom) zoom = 1;
       // the trauma shake: smooth noise, whole low-res pixels, at most 3
       const tr = trauma(T), amp = 3 * U * tr * tr;
       if (amp > 0) { sx = vnoise(T * 14, 1) * amp; sy = vnoise(T * 14, 2) * amp; }

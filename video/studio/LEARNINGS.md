@@ -8,6 +8,8 @@ The studio learns in three loops (Todd, Oct 28, 2026, 3:43 pm: "make this video 
    hook formulas in research/runs/2026-10-28-script-playbook.md; what wins gets written into _shared/voice.md.
 
 ## Rules learned (newest first)
+- Pixel art never scales by a fraction: the arcade camera holds still (a 1.03x push-in made the tile lines swell and thin,
+  Todd saw it); offsets snap to whole low-res pixels. Motion lives in the elements, not the camera.
 - The close is one column with one left edge (x 120), the host small at the side; the send box is the one filled element.
 - A board never sits empty more than 1 s: the next line lands on the beat's first word, not the cue's last.
 - Strike a number only after it has been read (0.4 s), and with a thin line that leaves it legible.

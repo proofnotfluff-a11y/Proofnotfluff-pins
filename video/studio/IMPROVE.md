@@ -9,6 +9,8 @@ Order of pick: a fault a gate named twice in the last week, then the item most l
 weekly numbers), then the top of the backlog. Research runs (Mondays) add items with their source.
 
 ## Backlog (most promising first)
+00. Motion: 60 fps renders (double render time) for smoother slides; Snow walk-ins, a point-at-board pose and a reaction
+   pose on big numbers; squash and stretch on landings and 1-frame smears on fast moves (Todd, Oct 28: "better animation").
 0. Captions lint in code: line 1 under 100 characters on all four, a send line on all four, hashtag counts per platform,
    the AI voice line, no em or en dashes (facts-captions caught two of these on lesson 4).
 1. Sound: a short music bed per room (four tiny loops made in code, same key), ducked under the voice.
@@ -25,6 +27,8 @@ weekly numbers), then the top of the backlog. Research runs (Mondays) add items 
 12. Visual: a seasonal touch per week (snow outside the half-built house in winter, leaves in fall).
 
 ## Done (newest first: date, item, what changed, proof)
+- 2026-10-28 (evening): steady pixel camera (no fractional zoom), shapes, text and rooms on whole low-res pixels. Proof:
+  lesson 1 floor moved in 17 of 150 frames (4 to 9 s), now 0; lint PASS.
 - 2026-10-28 (overdrive): room music loops ducked under the voice and a sting on the send line (backlog 1, 11); lip
   shapes from the voice (3); room transitions incl. wooden slats (8); idle blinks and fidgets (9); `lint` layout check;
   pinned post queue (`ready`, `next`, `postcopy`); respell reads digits as words (`rewords`). Proof: lesson 1 gates

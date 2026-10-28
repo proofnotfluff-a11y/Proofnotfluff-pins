@@ -1,0 +1,88 @@
+{
+ "schema": "pnf.studio.takes.v1",
+ "requestedAt": "2026-10-28T17:23:04-05:00",
+ "voice": "W3pJy9ibur1FKUihVxzY",
+ "model": "eleven_v4",
+ "scriptSha256": "eef920e81863fc20387ced8514b08ab0852c03b47d286f2e2783835b6397d6ef",
+ "voiceSha256": "6da8d6870f9054f559008c6fed9bd20c23a859981112f3df4a233c68f4467576",
+ "takes": [
+  {
+   "n": 1,
+   "file": "takes/01.mp3",
+   "sha256": "a45cc48fa6a896611538dc2d1a87ad2315d96ab6400fc9b3f266ba69da296c09",
+   "seconds": 8.046,
+   "chars": 153,
+   "start": 0.0,
+   "end": 8.046,
+   "wpm": 179
+  },
+  {
+   "n": 2,
+   "file": "takes/02.mp3",
+   "sha256": "80df62ce313a4c69b336d3510b4225c0070cb64784668b451b55ae1c25e8a295",
+   "seconds": 11.886,
+   "chars": 199,
+   "start": 8.366,
+   "end": 20.252,
+   "wpm": 151
+  },
+  {
+   "n": 3,
+   "file": "takes/03.mp3",
+   "sha256": "8e17edf30d2c56b7ac9c5d17275e3a63920947e982953e181bf733cd78e94059",
+   "seconds": 13.322,
+   "chars": 223,
+   "start": 20.572,
+   "end": 33.894,
+   "wpm": 176
+  },
+  {
+   "n": 4,
+   "file": "takes/04.mp3",
+   "sha256": "68f6c44df37105296b892c5f93cbcc3019bf457814d3831d3d63e4d976a78725",
+   "seconds": 10.841,
+   "chars": 192,
+   "start": 34.214,
+   "end": 45.055,
+   "wpm": 205
+  },
+  {
+   "n": 5,
+   "file": "takes/05.mp3",
+   "sha256": "ab3414a584b2467488ff07dc034ec42b42e4630341aec26d859c492abafbdefc",
+   "seconds": 14.367,
+   "chars": 241,
+   "start": 45.375,
+   "end": 59.742,
+   "wpm": 155
+  },
+  {
+   "n": 6,
+   "file": "takes/06.mp3",
+   "sha256": "524272d3753efca14f9fa0f6f5db9fee15bcf08751f456076c2a9c7dbfdf712c",
+   "seconds": 9.482,
+   "chars": 136,
+   "start": 60.062,
+   "end": 69.544,
+   "wpm": 146
+  },
+  {
+   "n": 7,
+   "file": "takes/07.mp3",
+   "sha256": "81e42825308a393783888f4a3cea280777ad7b7cd85d6107bc94eb4d46c01b08",
+   "seconds": 6.531,
+   "chars": 124,
+   "start": 69.864,
+   "end": 76.395,
+   "wpm": 211
+  }
+ ],
+ "chars": 1268,
+ "at": "2026-10-28T17:49:14-05:00",
+ "credits": {
+  "used": 11768,
+  "limit": 40000,
+  "tier": "starter",
+  "resetsAt": 1794774902
+ }
+}

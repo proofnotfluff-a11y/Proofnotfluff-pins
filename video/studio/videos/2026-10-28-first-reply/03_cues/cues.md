@@ -6,7 +6,7 @@ music: steady-hands 0.12
 Room: framing (a half-finished house). Snow on the floor; a phone panel with the lead's text; chip NEW LEAD.
 ## lead.ladder "You're up on a ladder,"
 A ladder leans in; the reply clock starts ticking.
-## lead.show "I want to show you" [sfx: blip]
+## lead.show "Here's why tonight is" [sfx: blip]
 Panel: "Tonight is too late." in the accent.
 
 ## study "A study came out this" [sfx: whoosh]

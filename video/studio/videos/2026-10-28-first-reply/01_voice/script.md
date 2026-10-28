@@ -1,6 +1,6 @@
 # Script: The first reply wins the job (v2, more depth; Todd, Oct 28, 12:56 pm)
 
-[matter-of-fact] A homeowner just texted you for a quote. You're up on a ladder, so you figure you'll get back to them tonight. [short pause] I want to show you why tonight is too late, and exactly what to send instead.
+[calm] A homeowner just texted you for a quote. [short pause] You're up on a ladder, so you figure you'll get back to them tonight. [matter-of-fact] Here's why tonight is too late, and what to send instead.
 
 [leaning in] A study came out this year in Management Science. The researchers looked at eleven point six million requests on Fiverr. When a reply came an hour late, that person was about half as likely to get hired. A day late? About ninety percent less.
 

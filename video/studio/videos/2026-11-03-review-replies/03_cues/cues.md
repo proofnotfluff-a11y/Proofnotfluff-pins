@@ -56,7 +56,7 @@ Room: workshop. Header on a dark band: "The part people skip". A card BAD REVIEW
 ## turn.rarer "bad reviews got rarer," [sfx: tick]
 Row "Fewer": four review blocks become three (labeled: illustration, not to scale).
 ## turn.longer "but longer." [sfx: pop]
-Row "But longer": the two remaining blocks stretch long, with more lines.
+Row "But longer": the three remaining blocks grow longer, with more lines.
 ## turn.detail "That's more detail you"
 Sticker: "More detail you can act on."
 ## turn.honest "And to be honest," [sfx: blip]

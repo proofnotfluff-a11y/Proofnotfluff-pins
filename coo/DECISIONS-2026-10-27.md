@@ -39,3 +39,9 @@
 - [stated] Todd, 7:05 pm: "one more round" (to adding one live figure per hub card, then shipping once design clears 4.61).
 - [stated] Todd, 8:13 pm: "push it live" and "log it".
 - So: live after design PASS 4.71 and facts PASS. Hub figures come from each page's own text (site/datahub.json stat), so a card never shows a number its page does not.
+
+## Go-live of the R10 free data pages (wrap-up chat W, from each build's scoreboard row)
+- Live Oct 27 under the 12:17 pm go: chicago-snow-season, chicago-permit-wait-times, chicago-demolition-rodent-baiting, chicago-city-contracts, the Rat Index on chicago-rat-complaints, chicago-trade-licenses, chicago-dumpster-permits, chicago-public-way-permit-costs, chicago-crew-cost, chicago-basement-flooding, chicago-repair-demand, material-price-changes (gates in seo/RESULTS.md).
+- Decided in the build chats, per their rows: permit wait and demolition baiting went live on Todd's final-round design rule (each page 4.4 or more after one last round); material prices went live after Todd's word to get design over the bar first (it reached 4.71); the CDOT fee schedule and the crew cost source files were downloaded by Todd because those hosts refuse GitHub's runners.
+- Open: inspections by area and Chicago Trades Quarterly (rows not done). City contracts' open bid list not published (the City's weekly PDF refuses runners).
+- For Todd, nothing asked yet: City data terms indemnity for the attorney read (as Oct 22); the BACP fee update PDF (20260127newfees.pdf) to open by hand; a free BLS API key on his account (material price titles); each spring's BLS wage file and any new Cook County schedule, and each new CDOT fee schedule, need his download.

@@ -10,8 +10,8 @@
 - Radar Mon 9:31: health 4 PASS, AI 0 of 12; WIRING.json gates lead pages.
 - Skills: 9 scheduled, 4 on request. Index: Bing, IndexNow.
 - Pest seat live Oct 24 (3 seats, launches/chicago-pest-seat.md). Outreach on, Legal subject (Oct 24); batches go to Todd; role inboxes allowed (pest_role_inbox); 12 sendable after Bouncer (todo pest-owners-100).
-- Oct 25: credits plan (DECISIONS-2026-10-25): pest runs Oct 26, 27; audit 28; bursts 29, Nov 2. Area seats live Oct 26, 6 open.
-- Oct 26 pm: TRAFFIC FIRST; no builder outreach. Rat tracker live. Templates wait on 2 Kit forms. Kimi R8 kept.
-- Oct 27: trade owners only; free plan waits (DECISIONS-2026-10-27). Trades News (daily 6:32), rat and pest maps live. R10 merged: research_notes/kimi-2026-10-27-r10.md; Todd's go.
+- Oct 25: credits plan (DECISIONS-2026-10-25): audit Oct 28; bursts Oct 29, Nov 2. Area seats live Oct 26, 6 open.
+- Oct 26 pm: TRAFFIC FIRST; no builder outreach. Kimi R8 kept.
+- Oct 27: trade owners only; free plan waits (DECISIONS-2026-10-27). Trades News (daily 6:32), maps, templates live. R10: 11 free data pages and redesign live (/chicago-data/, site/datahub.json); inspections by area, Quarterly open (W).
 - Oct 27 pm: video engine plan (research_notes/social-engine-2026-10-27.md) waits on Todd's 3 calls.
 - Oct 25: Chief of Staff live (DECISIONS-2026-10-25): sweep (PC, sole reply-status writer), brief, Sun review.

@@ -22,3 +22,6 @@ data/
 # Local enrichment CSV drops (named people), read by tools/enrich_ci.py, never committed
 data/enrichment/*.csv
 .claude/worktrees/
+
+# CDOT fee schedule PDF: text and sha256 are kept, the PDF never committed (B6, Oct 27, 2026)
+site/datapages/dp_cdot_fees/*.pdf

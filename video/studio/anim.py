@@ -2,7 +2,9 @@
 """Studio commands (video/studio/CLAUDE.md, CONTEXT.md). One command per stage; every output is a file a person or a
 fresh reviewer checks before the next stage runs.
 
-  kit                      build _runtime/map.js (77 community areas) and _runtime/sfx/*.wav (our own sounds, made in code)
+  kit                      build _runtime/map.js (77 community areas), pixfont.js and the sounds (below)
+  sound                    our own sounds, made in code: _runtime/sfx/*.wav (effects, takes, tick ladder, sting) and
+                           _runtime/music/<room>.wav (the four room loops for "music: rooms")
   new SLUG                 a video folder from _templates
   data SLUG                resolve brief.md's numbers block against the data file -> 04_scene/data.js (refuses a mismatch)
   speak SLUG [--take N ...] [--voice ID]   ask the Studio voice workflow to speak script.md (writes 01_voice/speak.json)
@@ -101,15 +103,63 @@ def build_map():
     print(f"map.js: {len(areas)} areas")
 
 
-def synth(name, seconds, fn, sr=44100):
+def write_wav(path, y, sr):
+    import numpy as np
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    pcm = (np.clip(y, -1, 1) * 32767).astype("<i2")
+    with wave.open(path, "wb") as w:
+        w.setnchannels(1); w.setsampwidth(2); w.setframerate(sr); w.writeframes(pcm.tobytes())
+
+
+def synth(name, seconds, fn, sr=44100, gain_db=0.0):
+    """One sound made in code, peak-normalized to 0.7 (times gain_db) -> _runtime/sfx/<name>.wav."""
     import numpy as np
     t = np.arange(int(seconds * sr)) / sr
     y = fn(t, np)
-    y = y / (np.max(np.abs(y)) + 1e-9) * 0.7
-    pcm = (y * 32767).astype("<i2")
-    os.makedirs(os.path.join(RUNTIME, "sfx"), exist_ok=True)
-    with wave.open(os.path.join(RUNTIME, "sfx", name + ".wav"), "wb") as w:
-        w.setnchannels(1); w.setsampwidth(2); w.setframerate(sr); w.writeframes(pcm.tobytes())
+    write_wav(os.path.join(RUNTIME, "sfx", name + ".wav"), y / (np.max(np.abs(y)) + 1e-9) * 0.7 * 10 ** (gain_db / 20), sr)
+
+
+# Chip voices, band-limited so they never alias into whistles: PolyBLEP pulses, additive triangles.
+def _blep(ph, dt):
+    import numpy as np
+    out = np.zeros_like(ph)
+    a = ph < dt
+    x = ph[a] / dt[a]; out[a] = 2 * x - x * x - 1
+    b = ph > 1 - dt
+    x = (ph[b] - 1) / dt[b]; out[b] = x * x + 2 * x + 1
+    return out
+
+
+def pulse(f, duty, sr):
+    """A pulse wave (duty 0.125, 0.25 or 0.5) following the frequency curve f (Hz, one value per sample)."""
+    import numpy as np
+    dt = np.minimum(f / sr, 0.49)
+    ph = np.concatenate([[0.0], np.cumsum(dt)[:-1]]) % 1.0
+    y = np.where(ph < duty, 1.0, -1.0) + _blep(ph, dt) - _blep((ph - duty) % 1.0, dt)
+    return y - (2 * duty - 1)
+
+
+def tri(f, sr, nh=12):
+    """A triangle wave from its odd harmonics, each kept only below 0.45 of the sample rate."""
+    import numpy as np
+    ph = 2 * np.pi * np.concatenate([[0.0], np.cumsum(f / sr)[:-1]])
+    y = np.zeros_like(ph)
+    for i, k in enumerate(range(1, 2 * nh, 2)):
+        y += np.where(k * f < 0.45 * sr, (-1) ** i * np.sin(k * ph) / (k * k), 0.0)
+    return y * 8 / np.pi ** 2
+
+
+def onepole(x, fc, sr, high=False):
+    """A gentle 6 dB per octave filter (low-pass, or high-pass with high=True)."""
+    from scipy.signal import lfilter
+    import numpy as np
+    a = math.exp(-2 * math.pi * fc / sr)
+    lp = lfilter([1 - a], [1, -a], x)
+    return x - lp if high else lp
+
+
+def midi_hz(m, cents=0.0):
+    return 440.0 * 2 ** ((m - 69 + cents / 100) / 12)
 
 
 def build_pixfont():
@@ -144,20 +194,185 @@ def build_pixfont():
     print(f"pixfont.js: body {out['body']['h']} px, display {out['display']['h']} px")
 
 
+SFX_VARIANTS = 4     # name_0 .. name_3; name.wav is name_0 (the centre: no pitch or level change)
+TICK_STEPS = 13      # tick_0 .. tick_12: each one semitone above the last, for counters
+
+
 def build_sfx():
-    env = lambda t, a, d, np: np.minimum(t / a, 1) * np.exp(-np.maximum(t - a, 0) / d)
-    synth("blip", 0.18, lambda t, np: np.sin(2 * np.pi * (880 + 600 * t) * t) * env(t, 0.004, 0.05, np))
-    synth("tick", 0.08, lambda t, np: np.sin(2 * np.pi * 2200 * t) * env(t, 0.001, 0.012, np))
-    synth("pop", 0.22, lambda t, np: np.sin(2 * np.pi * (420 + 900 * np.exp(-t * 30)) * t) * env(t, 0.003, 0.06, np))
-    synth("stamp", 0.4, lambda t, np: (np.sin(2 * np.pi * 95 * t) + 0.5 * np.random.default_rng(3).standard_normal(len(t)) * np.exp(-t * 60)) * env(t, 0.002, 0.09, np))
-    synth("chime", 1.4, lambda t, np: (np.sin(2 * np.pi * 784 * t) + 0.6 * np.sin(2 * np.pi * 1175 * t) + 0.3 * np.sin(2 * np.pi * 1568 * t)) * env(t, 0.005, 0.45, np))
-    def whoosh(t, np):
-        n = np.random.default_rng(7).standard_normal(len(t))
-        k = int(44100 * 0.002); sm = np.convolve(n, np.ones(k) / k, mode="same")
+    """Our sounds, made in code. Each effect gets SFX_VARIANTS takes (own noise seed, pitch within +/- 40 cents, stamps
+    +/- 25, level within +/- 1.5 dB), so a sound heard twice is never the same file twice in a row. The tick is a
+    ladder instead: tick_N is N semitones up."""
+    import numpy as np
+    sr = 44100
+    env = lambda t, a, d: np.minimum(t / a, 1) * np.exp(-np.maximum(t - a, 0) / d)
+
+    def stamp(t, rng, p):   # transient + body + tail, every layer on the same first sample
+        click = rng.standard_normal(len(t)) * (t < 0.002)
+        click = onepole(onepole(click, 2000 * p, sr, high=True), 2000 * p, sr, high=True)
+        click *= 0.5 / (np.max(np.abs(click)) + 1e-9)                                     # 2 ms click, high-passed, -6 dB
+        f = 110 * p * np.maximum(2 ** (-t / 0.12), 0.5)                                    # 110 Hz falling to 55 Hz over 120 ms
+        body = np.sin(2 * np.pi * np.cumsum(f) / sr) * np.minimum(t / 0.002, 1) * np.exp(-t / 0.09)
+        tail = onepole(onepole(rng.standard_normal(len(t)), 1500 * p, sr), 1500 * p, sr)   # 300 ms of low-passed noise, -15 dB
+        tail *= 10 ** (-15 / 20) / (np.max(np.abs(tail)) + 1e-9) * np.exp(-t / 0.12) * np.clip(1 - t / 0.3, 0, 1)
+        slap = onepole(onepole(rng.standard_normal(len(t)), 600 * p, sr, high=True), 1000 * p, sr)
+        slap *= 10 ** (-12 / 20) / (np.max(np.abs(slap)) + 1e-9) * np.exp(-t / 0.012) * (t < 0.04)   # paper slap: a phone speaker hears this
+        return click + body + tail + slap
+
+    def whoosh(t, rng, p):
+        n = rng.standard_normal(len(t))
+        k = max(2, int(sr * 0.002 / p)); sm = np.convolve(n, np.ones(k) / k, mode="same")
         return sm * np.sin(np.pi * np.clip(t / 0.42, 0, 1)) ** 2
-    synth("whoosh", 0.45, whoosh)
-    synth("squeak", 0.25, lambda t, np: np.sin(2 * np.pi * (2400 + 900 * np.sin(2 * np.pi * 9 * t)) * t) * env(t, 0.01, 0.07, np))
-    print("sfx: blip tick pop stamp chime whoosh squeak")
+
+    makers = {
+        "blip": (0.18, 40, lambda t, rng, p: np.sin(2 * np.pi * (880 + 600 * t) * p * t) * env(t, 0.004, 0.05)),
+        "pop": (0.22, 40, lambda t, rng, p: np.sin(2 * np.pi * (420 + 900 * np.exp(-t * 30)) * p * t) * env(t, 0.003, 0.06)),
+        "stamp": (0.45, 25, stamp),
+        "chime": (1.4, 40, lambda t, rng, p: (np.sin(2 * np.pi * 784 * p * t) + 0.6 * np.sin(2 * np.pi * 1175 * p * t) + 0.3 * np.sin(2 * np.pi * 1568 * p * t)) * env(t, 0.005, 0.45)),
+        "whoosh": (0.45, 40, whoosh),
+        "squeak": (0.25, 40, lambda t, rng, p: np.sin(2 * np.pi * (2400 + 900 * np.sin(2 * np.pi * 9 * t)) * p * t) * env(t, 0.01, 0.07)),
+    }
+    for si, (name, (secs, cents, fn)) in enumerate(makers.items()):
+        for k in range(SFX_VARIANTS):
+            rng = np.random.default_rng(1000 * si + k)
+            c, db = (0.0, 0.0) if k == 0 else (rng.uniform(-cents, cents), rng.uniform(-1.5, 1.5))
+            p = 2 ** (c / 1200)
+            synth(f"{name}_{k}", secs, lambda t, np, fn=fn, rng=rng, p=p: fn(t, rng, p), sr, db)
+            if k == 0:
+                synth(name, secs, lambda t, np, fn=fn, p=p, s=1000 * si: fn(t, np.random.default_rng(s), p), sr, db)
+    tick = lambda t, rng, p: (np.sin(2 * np.pi * 2200 * p * t) * env(t, 0.001, 0.012)
+                              + 0.5 * rng.standard_normal(len(t)) * (t < 0.0005))   # 0.5 ms click + 12 ms tone
+    for k in range(TICK_STEPS):
+        rng = np.random.default_rng(9000 + k)
+        db = 0.0 if k == 0 else rng.uniform(-1.5, 1.5)
+        synth(f"tick_{k}", 0.08, lambda t, np, rng=rng, k=k: tick(t, rng, 2 ** (k / 12)), sr, db)
+        if k == 0:
+            synth("tick", 0.08, lambda t, np: tick(t, np.random.default_rng(9000), 1.0), sr)
+    print(f"sfx: {' '.join(makers)} ({SFX_VARIANTS} takes each), tick_0..tick_{TICK_STEPS - 1} (a rising ladder)")
+    build_sting()
+
+
+def chip_note(kind, midi, dur, sr, duty=0.25, cents=0.0, a=0.005, d=0.12, s=0.6, r=0.04, vib=False):
+    """One chip note: a pulse or triangle, attack a, decay to s over d, held for dur, released over r. vib: 5.5 Hz,
+    +/- 20 cents, fading in from 150 ms."""
+    import numpy as np
+    n = int((dur + r) * sr)
+    t = np.arange(n) / sr
+    f = np.full(n, midi_hz(midi, cents))
+    if vib:
+        f *= 2 ** (20 / 1200 * np.sin(2 * np.pi * 5.5 * t) * np.clip((t - 0.15) / 0.1, 0, 1))
+    y = pulse(f, duty, sr) if kind == "pulse" else tri(f, sr)
+    e = np.where(t < a, t / a, np.maximum(s, 1 - (1 - s) * (t - a) / d))
+    e *= np.clip(1 - (t - dur) / r, 0, 1)
+    return y * e
+
+
+def build_sting():
+    """The brand sting: E5, G5, C6 (200, 200, 600 ms) on a soft 25% pulse with a triangle an octave down; the last note
+    has vibrato and an echo (300 ms later, -9 dB, +7 cents). Always the same file: it is a logo."""
+    import numpy as np
+    sr = 44100
+    y = np.zeros(int(1.75 * sr))
+    def put(at, sig, g):
+        i = int(at * sr); y[i:i + len(sig)] += g * sig[:len(y) - i]
+    for at, dur, m, last in [(0.0, 0.2, 76, False), (0.2, 0.2, 79, False), (0.4, 0.6, 84, True)]:
+        r = 0.25 if last else 0.03
+        for echo, g, c in ([(0.0, 1.0, 0.0), (0.3, 10 ** (-9 / 20), 7.0)] if last else [(0.0, 1.0, 0.0)]):
+            put(at + echo, chip_note("pulse", m, dur, sr, 0.25, c, r=r, vib=last), 0.5 * g)
+            put(at + echo, chip_note("tri", m - 12, dur, sr, cents=c, r=r, vib=last), 0.45 * g)
+    y = onepole(onepole(y, 4500, sr), 4500, sr)   # soft: no fizz on top
+    write_wav(os.path.join(RUNTIME, "sfx", "sting.wav"), y / np.max(np.abs(y)) * 0.7, sr)
+    print("sfx: sting (E5 G5 C6)")
+
+
+# Room loops: one key (A minor), one tempo (96 BPM), 8 bars = 20.0 s, so any room can cross into any other on the beat.
+BPM, LOOP_BARS = 96, 8
+BEAT = 60 / BPM
+ROOMS = ("framing", "blackboard", "workshop", "garage")
+CHORDS = [  # per bar: triad (around the octave below middle C), bass root
+    ([57, 60, 64], 45), ([53, 57, 60], 41), ([55, 60, 64], 48), ([55, 59, 62], 43),   # Am  F  C  G
+    ([57, 60, 64], 45), ([53, 57, 60], 41), ([57, 62, 65], 38), ([56, 59, 64], 40)]   # Am  F  Dm E (back to Am)
+LEAD = [(0, 1.5, 72), (1.5, 0.5, 71), (2, 2, 69), (8, 1, 67), (9, 1, 72), (10, 2, 76),   # (beat, beats, note): call and
+        (16, 1.5, 76), (17.5, 0.5, 74), (18, 2, 72), (24, 1, 69), (25, 1, 72), (26, 2, 74), (28, 2, 71), (30, 2, 68)]   # rest
+
+
+def build_music():
+    """Four chiptune loops, one per room, synthesized band-limited at 44.1 kHz and written as mono 22.05 kHz 16-bit wav
+    (under 1 MB each) to _runtime/music/<room>.wav. Same key, tempo, chords and quiet square lead in every room; the
+    rooms differ in what plays under it:
+      framing     half-time: triangle bass on 1 and 3, sparse 25% plucks, a soft snare on 3, hats on 2 and 4
+      blackboard  12.5% pulse arpeggios in sixteenths, triangle bass on every beat, light eighth hats
+      workshop    25% offbeat chord stabs, eighth hats with an open hat, bouncing triangle bass, kick on 1 and 3
+      garage      50% pulse bass riff, triangle kick slide on 1 and 3, noise snare on 2 and 4, eighth hats"""
+    import numpy as np
+    from scipy.signal import resample_poly
+    sr = 44100
+    L = int(round(LOOP_BARS * 4 * BEAT * sr))
+    for ri, room in enumerate(ROOMS):
+        rng = np.random.default_rng(500 + ri)
+        y = np.zeros(L + 2 * sr)
+
+        def put(beat, sig, g):
+            i = int(round(beat * BEAT * sr)); y[i:i + len(sig)] += g * sig
+
+        def noise(dur, fc, decay, high=True):
+            n = int(dur * sr); t = np.arange(n) / sr
+            return onepole(rng.standard_normal(n), fc, sr, high=high) * np.exp(-t / decay)
+
+        def kick():
+            n = int(0.16 * sr); t = np.arange(n) / sr
+            return tri(150 * (50 / 150) ** np.clip(t / 0.08, 0, 1), sr) * np.exp(-t / 0.07)
+
+        for bar, (triad, root) in enumerate(CHORDS):
+            b0 = bar * 4
+            if room == "framing":
+                for k in (0, 2):
+                    put(b0 + k, chip_note("tri", root if k == 0 else root + 7, 1.8 * BEAT, sr, s=0.8, r=0.08), 0.42)
+                for k, m in ((1, triad[2]), (2.5, triad[1]), (3.5, triad[0] + 12)):
+                    put(b0 + k, chip_note("pulse", m, 0.09, sr, 0.25, d=0.06, s=0.3, r=0.12), 0.16)
+                put(b0 + 2, noise(0.12, 900, 0.035), 0.10)
+                for k in (1, 3):
+                    put(b0 + k, noise(0.03, 6000, 0.008), 0.07)
+                put(b0, kick(), 0.30)
+            elif room == "blackboard":
+                arp = [triad[0], triad[1], triad[2], triad[0] + 12]
+                for k in range(16):
+                    put(b0 + k / 4, chip_note("pulse", arp[k % 4], 0.13, sr, 0.125, d=0.08, s=0.4, r=0.02), 0.11)
+                for k in range(4):
+                    put(b0 + k, chip_note("tri", root, 0.9 * BEAT, sr, s=0.8, r=0.05), 0.40)
+                for k in range(8):
+                    put(b0 + k / 2, noise(0.03, 7000, 0.006), 0.045 if k % 2 else 0.06)
+            elif room == "workshop":
+                for k in range(4):
+                    for m in triad:
+                        put(b0 + k + 0.5, chip_note("pulse", m, 0.11, sr, 0.25, d=0.08, s=0.4, r=0.03), 0.07)
+                for k in range(8):
+                    put(b0 + k / 2, chip_note("tri", root + (12 if k % 2 else 0), 0.42 * BEAT, sr, s=0.8, r=0.03), 0.36)
+                    put(b0 + k / 2, noise(0.12 if k == 7 else 0.03, 7000, 0.04 if k == 7 else 0.007), 0.06)
+                for k in (0, 2):
+                    put(b0 + k, kick(), 0.35)
+            else:   # garage
+                riff = [0, 0, 12, 0, 7, 0, 12, 7]
+                for k in range(8):
+                    put(b0 + k / 2, onepole(chip_note("pulse", root + riff[k], 0.4 * BEAT, sr, 0.5, d=0.1, s=0.5, r=0.03), 1800, sr), 0.16)
+                for k in (0, 2, 2.5):
+                    put(b0 + k, kick(), 0.45)
+                for k in (1, 3):   # the snare kept under 3 kHz, out of the voice's consonants
+                    put(b0 + k, onepole(onepole(noise(0.12, 600, 0.04), 2500, sr), 2500, sr), 0.30)
+                for k in range(8):
+                    put(b0 + k / 2, noise(0.03, 7000, 0.007), 0.05)
+        lead_duty, lead_g = {"framing": (0.5, 0.06), "blackboard": (0.25, 0.06), "workshop": (0.25, 0.06), "garage": (0.25, 0.036)}[room]
+        for beat, beats, m in LEAD:   # quiet (about 16 dB under the rest), with an echo 1/8 later at -9 dB, +7 cents
+            dur = beats * BEAT * 0.92
+            for at, g, c in ((0, 1.0, 0.0), (0.5, 10 ** (-9 / 20), 7.0)):
+                put(beat + at, chip_note("pulse", m, dur, sr, lead_duty, c, d=0.12, s=0.6, r=0.06, vib=beats >= 1), lead_g * g)
+        y[:len(y) - L] += y[L:]          # what rings past the end comes back in at the start: a seamless loop
+        y = onepole(y[:L], 20, sr, high=True)
+        y = resample_poly(y, 1, 2)       # to 22.05 kHz, through resample_poly's anti-alias filter
+        y *= 0.12 / np.sqrt(np.mean(y ** 2))   # the same RMS in every room, so a crossfade never jumps
+        if np.max(np.abs(y)) > 0.95:
+            y *= 0.95 / np.max(np.abs(y))
+        write_wav(os.path.join(RUNTIME, "music", room + ".wav"), y, sr // 2)
+    print(f"music: {' '.join(ROOMS)} ({LOOP_BARS} bars at {BPM} BPM, A minor, {LOOP_BARS * 4 * BEAT:.1f} s each)")
 
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -512,9 +727,9 @@ def cmd_cues(slug):
     toks = [norm(w["w"]) for w in words]
     cues, music, cur = [], None, None
     for ln in src:
-        m = re.match(r"^music:\s*([\w\-]+)\s+([\d.]+)", ln.strip())
-        if m:
-            music = {"id": m.group(1), "level": float(m.group(2))}
+        m = re.match(r"^music:\s*([\w\-]+)(?:\s+([\d.]+))?\s*$", ln.strip())
+        if m:   # music: steady-hands 0.12 (a library bed) or music: rooms (the room loops); the level is optional
+            music = {"id": m.group(1), "level": float(m.group(2) or 0.16)}
             continue
         m = CUE.match(ln.strip())
         if m:
@@ -737,31 +952,234 @@ def cmd_stills(slug, look=None):
     print(f"stills: {len(paths)} frames, {math.ceil(len(paths) / 12)} sheet(s) in {out}; contact sheet 05_render/sheet.jpg")
 
 
-def mix(slug, seconds, out_wav, cues):
+# The bed sits this far under the voice (loudness against loudness): under speech, and in gaps of 600 ms or more.
+UNDER_SPEECH_DB, UNDER_GAP_DB = 18.0, 10.0
+DUCK_LEAD, DUCK_ATTACK, DUCK_RELEASE, PHRASE_GAP = 0.08, 0.08, 0.45, 0.6
+# The bed's EQ keeps it out of the voice's way: no rumble, a dip where the voice's body and consonants live, no fizz.
+BED_EQ = "highpass=f=90:poles=2,equalizer=f=300:t=q:w=1:g=-2,equalizer=f=2800:t=q:w=0.8:g=-3,lowpass=f=7000:poles=2"
+SR = 48000
+
+
+def loudness(path, af=None):
+    """Integrated loudness (LUFS) of a file, optionally after a filter chain."""
+    r = sh(["ffmpeg", "-hide_banner", "-nostats", "-i", path, "-af", (af + "," if af else "") + "ebur128", "-f", "null", "-"], check=False)
+    i = re.findall(r"I:\s+(-?[\d.]+) LUFS", r.stderr)
+    if not i:
+        raise SystemExit(f"ERROR mix: no loudness reading for {path}")
+    return float(i[-1])
+
+
+def phrases(words, gap=PHRASE_GAP):
+    """Words joined into phrases wherever the pause between them is under `gap` seconds."""
+    out = []
+    for w in words:
+        if out and w["start"] - out[-1][1] < gap:
+            out[-1][1] = max(out[-1][1], w["end"])
+        else:
+            out.append([w["start"], w["end"]])
+    return out
+
+
+def duck_env(words, seconds, speech_db, gap_db, dips=()):
+    """The bed's gain, sample by sample: gap_db in pauses, speech_db under the voice. Each phrase pulls it down over 80 ms,
+    starting 80 ms before the first word; after the phrase it comes back up over 450 ms. Pauses under 600 ms stay down,
+    so it never pumps between words. dips: (start, end, dB) extra cuts (the sting), with the same ramps. Ends with a 1.8 s
+    fade out."""
+    import numpy as np
+    n = int(round(seconds * SR))
+    t = np.arange(n) / SR
+    d = np.zeros(n)
+    for s, e in phrases(words):
+        i0, i1 = max(0, int((s - DUCK_LEAD) * SR)), min(n, int((e + DUCK_RELEASE) * SR) + 1)
+        if i0 >= n:
+            continue
+        tt = t[i0:i1]
+        up = np.clip((tt - (s - DUCK_LEAD)) / DUCK_ATTACK, 0, 1)
+        down = np.clip(1 - (tt - e) / DUCK_RELEASE, 0, 1)
+        d[i0:i1] = np.maximum(d[i0:i1], np.minimum(up, down))
+    g_db = gap_db - (gap_db - speech_db) * d
+    for s, e, db in dips:
+        x = np.minimum(np.clip((t - (s - 0.2)) / 0.2, 0, 1), np.clip(1 - (t - e) / DUCK_RELEASE, 0, 1))
+        g_db = g_db + db * x
+    return (10 ** (g_db / 20) * np.clip((seconds - t) / 1.8, 0, 1)).astype("float32")
+
+
+def voice_of(slug, cues):
     voice = vdir(slug, "01_voice", "audio", "voice.mp3")
-    has_voice = os.path.exists(voice) and cues.get("source", "").startswith("whisper")
+    return voice if os.path.exists(voice) and cues.get("source", "").startswith("whisper") else None
+
+
+def decode(path, sr=SR, ch=2):
+    import numpy as np
+    r = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", path, "-f", "f32le", "-ac", str(ch), "-ar", str(sr), "-"], capture_output=True, check=True)
+    return np.frombuffer(r.stdout, dtype="<f4").reshape(-1, ch).copy()
+
+
+def steady_bed(track, seconds, work):
+    """A library track long enough for the lesson. The tracks run 36 to 60 s, so when the lesson is longer the A and B
+    sections (bar 2 to the end of B) loop on the bar line, with a 20 ms crossfade at each join."""
+    import numpy as np
+    from scipy.io import wavfile
+    path = os.path.join(ROOT, "tools", "music", track["file"])
+    if track.get("music_ends_s", track.get("seconds", 0)) >= seconds or "sections" not in track or "out_s" not in track:
+        return path   # long enough: it plays as written, its own ending included
+    x = decode(path)
+    a, z = int(dict((s[0], s[1]) for s in track["sections"])["A"] * track["bar_s"] * SR), int(track["out_s"] * SR)
+    out, xf = x[:z].copy(), int(0.02 * SR)
+    ramp = np.linspace(0, 1, xf)[:, None]
+    while len(out) < seconds * SR + xf:
+        body = x[a:z].copy()
+        body[:xf] = body[:xf] * ramp + x[z:z + xf] * (1 - ramp)   # the old bar's ring fades as the loop starts
+        out = np.concatenate([out, body])
+    p = os.path.join(work, "steady.wav")
+    wavfile.write(p, SR, out[:int(seconds * SR) + 1].astype("float32"))
+    return p
+
+
+def room_of(cue):
+    m = re.match(r"\s*room:\s*([a-z]+)", cue.get("text", ""), re.I)
+    return m.group(1).lower() if m else None
+
+
+def room_plan(cues):
+    """[(time, room)] at each room change: a top-level cue whose description starts "Room: <name>." moves the music there;
+    one without a Room: line stays in the room before it (the first defaults to framing)."""
+    plan, cur = [], None
+    for c in cues["cues"]:
+        if c["level"] != 0:
+            continue
+        r = room_of(c)
+        if r and r not in ROOMS:
+            print(f"mix: no music for room '{r}' on {c['id']}; it keeps {cur or ROOMS[0]} ({', '.join(ROOMS)} have loops)")
+            r = None
+        r = r or cur or ROOMS[0]
+        if r != cur:
+            plan.append((0.0 if not plan else c["t"], r)); cur = r
+    return plan
+
+
+def rooms_bed(cues, seconds, work):
+    """The room loops laid end to end on one beat grid (every loop starts at 0 s, so all are in step), with a one-beat
+    crossfade centred on each room change. The fade curve is the mean of equal-power and equal-gain: the rooms share some
+    parts (bass notes, kicks) and not others, so either pure curve bumps or dips up to 3 dB at the join; the mean keeps
+    it within about 1.5 dB."""
+    import numpy as np
+    from scipy.io import wavfile
+    from scipy.signal import resample_poly
+    n = int(round(seconds * SR)) + 1
+    t = np.arange(n) / SR
+    plan = room_plan(cues)
+    bed = np.zeros(n)
+    for i, (t0, r) in enumerate(plan):
+        p = os.path.join(RUNTIME, "music", r + ".wav")
+        if not os.path.exists(p):
+            raise SystemExit(f"ERROR render: no music for room '{r}' (anim.py sound)")
+        sr, x = wavfile.read(p)
+        loop = resample_poly(x / 32768.0, SR, sr)
+        t1 = plan[i + 1][0] if i + 1 < len(plan) else seconds + BEAT
+        up = np.ones(n) if i == 0 else np.clip((t - (t0 - BEAT / 2)) / BEAT, 0, 1)
+        down = np.clip(((t1 + BEAT / 2) - t) / BEAT, 0, 1)
+        fade = lambda x: 0.5 * (np.sin(np.pi / 2 * x) + 0.5 - 0.5 * np.cos(np.pi * x))
+        w = fade(up) * fade(down)
+        k = w > 0
+        bed[k] += w[k] * loop[np.arange(n)[k] % len(loop)]
+    print("mix: rooms " + ", ".join(f"{r} {t0:.2f} s" for t0, r in plan))
+    path = os.path.join(work, "rooms.wav")
+    wavfile.write(path, SR, bed.astype("float32"))
+    return path
+
+
+def bed_stem(slug, seconds, cues, work, dips=()):
+    """The music bed as its own 48 kHz stereo wav: the source, EQ'd, times the ducking envelope. Returns its path."""
+    from scipy.io import wavfile
+    voice = voice_of(slug, cues)
     lib = json.load(open(os.path.join(ROOT, "tools", "music", "library.json")))
     mus = cues.get("music") or {"id": "quiet-math", "level": 0.16}
-    track = next(t for t in lib["tracks"] if t["id"] == mus["id"])
+    if mus["id"] == "rooms":
+        bed = rooms_bed(cues, seconds, work)
+    else:
+        track = next((t for t in lib["tracks"] if t["id"] == mus["id"]), None)
+        if not track:
+            raise SystemExit(f"ERROR render: music '{mus['id']}' is not in tools/music/library.json (or say music: rooms)")
+        bed = steady_bed(track, seconds, work)
+    if voice:   # the bed's level comes from the voice: 18 dB under it while talking, 10 dB under in pauses
+        lv, lb = loudness(voice), loudness(bed, f"atrim=0:{seconds},{BED_EQ}")
+        speech_db, gap_db = lv - UNDER_SPEECH_DB - lb, lv - UNDER_GAP_DB - lb
+        words = json.load(open(vdir(slug, "02_transcript", "words.json")))["words"]
+        print(f"mix: voice {lv:.1f} LUFS, bed {lb:.1f} LUFS after EQ; bed gain {speech_db:.1f} dB under speech, {gap_db:.1f} dB in pauses, {len(phrases(words))} phrases")
+    else:       # estimate timings: no voice to duck under, the bed plays at the cue file's level
+        speech_db = gap_db = 20 * math.log10(max(0.01, mus["level"])); words = []
+    env = os.path.join(work, "env.wav")
+    wavfile.write(env, SR, duck_env(words, seconds, speech_db, gap_db, dips))
+    out = os.path.join(work, "bed.wav")
+    sh(["ffmpeg", "-y", "-loglevel", "error", "-i", bed, "-i", env, "-filter_complex",
+        f"[0:a]aresample=48000,aformat=sample_fmts=flt:channel_layouts=stereo,atrim=0:{seconds},asetpts=PTS-STARTPTS,{BED_EQ},"
+        f"apad,atrim=0:{seconds}[mb];[1:a]aformat=sample_fmts=flt:sample_rates=48000,pan=stereo|c0=c0|c1=c0[me];"
+        f"[mb][me]amultiply,atrim=0:{seconds}[m]", "-map", "[m]", "-c:a", "pcm_f32le", out])
+    return out
+
+
+def sfx_plan(cues):
+    """[(time, wav)] for every [sfx: name] cue, the take chosen in cue order so a render is always the same:
+    the Nth use of a sound gets take N mod 4 (stamp_0, stamp_1, ...); ticks in a row inside one section climb the
+    ladder (tick_0, tick_1, ... up to +12 semitones), and any other sound or a new section starts the count again.
+    A name that is already a file (stamp_2, tick_5) plays as written. The sting is not here (sting_at)."""
+    d = os.path.join(RUNTIME, "sfx")
+    seen, run, out = {}, 0, []
+    for c in cues["cues"]:
+        if c["level"] == 0:
+            run = 0
+        name = c.get("sfx")
+        if not name or name == "sting":
+            continue
+        takes = sorted(glob.glob(os.path.join(d, glob.escape(name) + "_[0-9]*.wav")), key=lambda p: int(p.rsplit("_", 1)[1][:-4]))
+        if name == "tick" and takes:
+            f = takes[min(run, len(takes) - 1)]; run += 1
+        else:
+            run = 0
+            k = seen.get(name, 0); seen[name] = k + 1
+            f = takes[k % len(takes)] if takes else os.path.join(d, name + ".wav")
+        if not os.path.exists(f):
+            raise SystemExit(f"ERROR render: no sound '{name}' (anim.py sound)")
+        out.append((c["t"], f))
+    return out
+
+
+STING_DB, STING_DIP_DB = -12, -12
+
+
+def sting_at(cues):
+    """When the brand sting plays, or None. It is a logo, so it plays at most once, only on the brand moment: a cue
+    marked [sfx: sting] inside the last top-level section (the close). Marked anywhere else, it is left out."""
+    last = max(i for i, c in enumerate(cues["cues"]) if c["level"] == 0)
+    for i, c in enumerate(cues["cues"]):
+        if c.get("sfx") == "sting":
+            if i >= last:
+                return c["t"]
+            print(f"mix: [sfx: sting] on {c['id']} left out: the sting plays only on the brand moment in the last section")
+    return None
+
+
+def mix(slug, seconds, out_wav, cues):
+    voice = voice_of(slug, cues)
+    has_voice = bool(voice)
+    work = tempfile.mkdtemp()
     inputs, filt, labels = [], [], []
     if has_voice:
         inputs += ["-i", voice]; filt.append(f"[{len(inputs) // 2 - 1}:a]aresample=48000,aformat=channel_layouts=stereo,apad,atrim=0:{seconds}[v]"); labels.append("[v]")
-    inputs += ["-i", os.path.join(ROOT, "tools", "music", track["file"])]
-    mi = len(inputs) // 2 - 1
-    gain_db = 20 * math.log10(max(0.01, mus["level"]))
-    filt.append(f"[{mi}:a]aresample=48000,aformat=channel_layouts=stereo,atrim=0:{seconds},asetpts=PTS-STARTPTS,volume={gain_db:.1f}dB,"
-                f"afade=t=out:st={max(0, seconds - 1.8):.2f}:d=1.8,apad,atrim=0:{seconds}[m]")
+    st = sting_at(cues)
+    sting = os.path.join(RUNTIME, "sfx", "sting.wav")
+    if st is not None and not os.path.exists(sting):
+        raise SystemExit("ERROR render: no sound 'sting' (anim.py sound)")
+    dips = [(st, st + seconds_of(sting), STING_DIP_DB)] if st is not None else []   # the bed steps back for the logo
+    inputs += ["-i", bed_stem(slug, seconds, cues, work, dips)]
+    filt.append(f"[{len(inputs) // 2 - 1}:a]aformat=channel_layouts=stereo,apad,atrim=0:{seconds}[m]")
     labels.append("[m]")
-    for c in cues["cues"]:
-        if not c.get("sfx"):
-            continue
-        f = os.path.join(RUNTIME, "sfx", c["sfx"] + ".wav")
-        if not os.path.exists(f):
-            raise SystemExit(f"ERROR render: no sound '{c['sfx']}' (anim.py kit)")
+    for t, f, db in [(t, f, -13) for t, f in sfx_plan(cues)] + ([(st, sting, STING_DB)] if st is not None else []):
         inputs += ["-i", f]
         i = len(inputs) // 2 - 1
-        ms = int(c["t"] * 1000)
-        filt.append(f"[{i}:a]aresample=48000,aformat=channel_layouts=stereo,volume=-13dB,adelay={ms}|{ms},apad,atrim=0:{seconds}[s{i}]")
+        ms = int(t * 1000)
+        filt.append(f"[{i}:a]aresample=48000,aformat=channel_layouts=stereo,volume={db}dB,adelay={ms}|{ms},apad,atrim=0:{seconds}[s{i}]")
         labels.append(f"[s{i}]")
     # a gentle compressor evens out the voice's peaks, so loudness can reach -14 LUFS under the -1.5 dBTP ceiling
     filt.append("".join(labels) + f"amix=inputs={len(labels)}:normalize=0:duration=longest,atrim=0:{seconds},"
@@ -776,7 +1194,7 @@ def mix(slug, seconds, out_wav, cues):
         f"loudnorm=I={target}:TP=-2.0:LRA=11:measured_I={m['input_i']}:measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:"
         f"measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true,aresample=192000,"
         f"alimiter=limit={lim:.4f}:attack=1:release=60:level=disabled,aresample=48000", "-ar", "48000", "-ac", "2", out_wav])
-    os.remove(tmp)
+    os.remove(tmp); shutil.rmtree(work, ignore_errors=True)
     return has_voice
 
 
@@ -1076,7 +1494,9 @@ def main():
     a = ap.parse_args()
     c = a.cmd
     if c == "kit":
-        build_map(); build_sfx(); build_pixfont()
+        build_map(); build_sfx(); build_music(); build_pixfont()
+    elif c == "sound":
+        build_sfx(); build_music()
     elif c == "ci-voice":
         cmd_ci_voice()
     elif c == "next":

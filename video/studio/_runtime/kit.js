@@ -568,6 +568,43 @@
       }
       if (name !== 'framing' && name !== 'garage' && name !== 'workshop') R(0, floorY, 1080, 670, '#5A3A22');
       R(0, floorY, 1080, 8, '#120D14');
+      if (o.props !== false) floorProps(name, floorY);
+    };
+    // the floor of each room: depth lines and a few props, so the lower third reads as a place (it sits under the Reel UI)
+    const floorProps = function (name, fy) {
+      const depth = (c) => { let y = fy + 40, g = 40; while (y < 1920) { R(0, y, 1080, 4, c); g *= 1.35; y += Math.round(g); } };
+      if (name === 'framing') {
+        depth('#8C5A33');
+        // sawhorse with a plank, a stack of studs, a paint bucket, an orange cord
+        R(560, 1360, 360, 24, '#D9A066'); R(560, 1384, 360, 8, '#8C5A33');
+        for (const x of [590, 860]) { R(x, 1392, 18, 130, '#6B4226'); R(x + 30, 1392, 18, 130, '#6B4226'); }
+        R(600, 1300, 300, 18, '#F4E6D3'); R(600, 1318, 300, 6, '#C9CCD3');
+        for (let i = 0; i < 4; i++) R(380, 1560 - i * 22, 420, 20, i % 2 ? '#D9A066' : '#B07A47');
+        R(930, 1470, 90, 100, '#C9CCD3'); R(930, 1470, 90, 12, '#9AA0AD'); R(944, 1500, 62, 30, '#3B82C4');
+        R(0, 1640, 300, 10, '#F2A541'); R(290, 1640, 10, 60, '#F2A541'); R(290, 1690, 400, 10, '#F2A541');
+      } else if (name === 'blackboard') {
+        depth('#4A2E1B');
+        // a rug and a teacher's desk with books and an apple
+        R(330, 1440, 690, 260, '#7A3442'); R(350, 1460, 650, 220, '#5A3A22'); R(370, 1480, 610, 180, '#7A3442');
+        R(640, 1330, 360, 30, '#8C5A33'); R(640, 1360, 360, 12, '#6B4226');
+        R(660, 1372, 24, 140, '#6B4226'); R(956, 1372, 24, 140, '#6B4226'); R(700, 1372, 120, 110, '#6B4226'); R(740, 1420, 40, 8, '#D9A066');
+        R(860, 1286, 100, 20, '#3B82C4'); R(870, 1266, 84, 20, '#7A3442'); R(866, 1246, 92, 20, '#2F6F67');
+        R(700, 1300, 34, 30, '#E2633B'); R(714, 1288, 6, 12, '#5A3A22'); R(720, 1290, 12, 6, '#3E7A62');
+      } else if (name === 'workshop') {
+        depth('#3D2E45');
+        // a red rolling toolbox, a bucket, sawdust
+        R(720, 1300, 230, 220, '#E2633B'); R(720, 1300, 230, 14, '#F2A541');
+        for (let i = 0; i < 4; i++) { R(736, 1330 + i * 46, 198, 36, '#7A3442'); R(800, 1344 + i * 46, 70, 8, '#C9CCD3'); }
+        R(736, 1520, 30, 30, '#120D14'); R(904, 1520, 30, 30, '#120D14');
+        R(480, 1420, 110, 120, '#C9CCD3'); R(480, 1420, 110, 12, '#9AA0AD'); R(470, 1410, 130, 10, '#6B7080');
+        for (let i = 0; i < 18; i++) R(300 + ((i * 197) % 700), 1600 + ((i * 89) % 220), 12, 6, '#D9A066');
+      } else if (name === 'garage') {
+        depth('#4A4E5A');
+        // stacked tires, a shop vac, a pegged extension cord
+        for (let i = 0; i < 3; i++) { R(780, 1500 - i * 70, 220, 66, '#1B1420'); R(800, 1512 - i * 70, 180, 42, '#2B2033'); R(860, 1522 - i * 70, 60, 22, '#4A4E5A'); }
+        R(520, 1380, 120, 150, '#F2A541'); R(520, 1380, 120, 18, '#F7C873'); R(536, 1530, 22, 22, '#120D14'); R(602, 1530, 22, 22, '#120D14');
+        R(640, 1400, 120, 14, '#120D14'); R(756, 1400, 14, 60, '#120D14');
+      }
     };
     // a game panel: dark box, cream double border, optional title tab
     k.panel2 = function (x, y, w, h, o = {}) {

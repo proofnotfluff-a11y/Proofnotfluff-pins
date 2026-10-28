@@ -1,155 +1,203 @@
 {
  "schema": "pnf.studio.cues.v1",
- "source": "estimate",
+ "source": "whisper medium.en int8, re-spelled from script.md",
  "music": {
   "id": "steady-hands",
-  "level": 0.14
+  "level": 0.12
  },
- "duration": 66.256,
+ "duration": 90.74,
  "cues": [
   {
    "id": "lead",
    "level": 0,
-   "quote": "A new lead just asked",
+   "quote": "A homeowner just texted you",
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "Frame one: the phone with the lead's text already on it; chip NEW LEAD; title \"Reply in the next 30 minutes\".",
+   "text": "Room: framing (a half-finished house). Snow on the floor; a phone panel with the lead's text; chip NEW LEAD.",
    "t": 0.0,
    "word": 0,
-   "end": 10.52
+   "end": 10.78
   },
   {
    "id": "lead.ladder",
    "level": 1,
-   "quote": "you're up on a ladder.",
+   "quote": "You're up on a ladder,",
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "Snow checks his clipboard (busy); the reply clock starts.",
-   "t": 3.236,
-   "word": 10,
-   "end": 6.754
+   "text": "A ladder leans in; the reply clock starts ticking.",
+   "t": 2.54,
+   "word": 8,
+   "end": 5.92
   },
   {
-   "id": "lead.send",
+   "id": "lead.show",
    "level": 1,
-   "quote": "Here's the reply to",
+   "quote": "I want to show you",
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "The title lands in the accent.",
-   "t": 6.754,
-   "word": 19,
-   "end": 10.52
+   "text": "Panel: \"Tonight is too late.\" in the accent.",
+   "t": 5.92,
+   "word": 22,
+   "end": 10.78
   },
   {
-   "id": "why",
+   "id": "study",
    "level": 0,
-   "quote": "Why the rush? A big",
+   "quote": "A study came out this",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Study card: Speed Is a Signal, Management Science, 2026; 11.6M counts up: requests on Fiverr.",
-   "t": 10.52,
-   "word": 29,
-   "end": 31.008
+   "text": "Room: blackboard. Chalk header: THE STUDY. Speed Is a Signal, Management Science, 2026.",
+   "t": 10.78,
+   "word": 38,
+   "end": 27.36
   },
   {
-   "id": "why.hour",
+   "id": "study.count",
    "level": 1,
-   "quote": "an hour late were about",
+   "quote": "eleven point six million requests",
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Bar: 1 hour late, 46% less likely to be hired; chip ABOUT HALF.",
-   "t": 18.184,
-   "word": 50,
-   "end": 21.928
+   "text": "11.6M counts up in chalk: requests on Fiverr.",
+   "t": 14.8,
+   "word": 51,
+   "end": 20.02
   },
   {
-   "id": "why.tt",
+   "id": "study.hour",
    "level": 1,
-   "quote": "And Thumbtack says pros",
+   "quote": "an hour late, that person",
+   "sfx": "tick",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Chalk bar: 1 hour late, about half as likely (46% less).",
+   "t": 20.02,
+   "word": 65,
+   "end": 24.06
+  },
+  {
+   "id": "study.day",
+   "level": 1,
+   "quote": "A day late? About",
+   "sfx": "stamp",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Chalk bar: 1 day late, 90% less, in the accent.",
+   "t": 24.06,
+   "word": 78,
+   "end": 27.36
+  },
+  {
+   "id": "signal",
+   "level": 0,
+   "quote": "Now, Fiverr isn't the",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Still the blackboard, wiped: \"Reply speed = how you'll treat them later.\"",
+   "t": 27.36,
+   "word": 85,
+   "end": 41.12
+  },
+  {
+   "id": "signal.alone",
+   "level": 1,
+   "quote": "And it helped on its",
+   "sfx": "tick",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Second chalk line: \"Even with the same work, same message.\"",
+   "t": 36.1,
+   "word": 109,
+   "end": 41.12
+  },
+  {
+   "id": "tt",
+   "level": 0,
+   "quote": "Thumbtack sees the same thing",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Thumbtack 2025 row: 30 min vs 3 hrs.",
-   "t": 21.928,
-   "word": 61,
-   "end": 25.67
+   "text": "Room: workshop. Panel THUMBTACK, 2025: two clocks, 30 min and 3 hrs.",
+   "t": 41.12,
+   "word": 126,
+   "end": 50.74
   },
   {
-   "id": "why.more",
+   "id": "tt.more",
    "level": 1,
    "quote": "twenty-five percent more likely",
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "+25% more likely to get hired lands on 30 min.",
-   "t": 25.67,
-   "word": 71,
-   "end": 31.008
+   "text": "+25% stamps on the 30 min side: more likely to get hired.",
+   "t": 45.74,
+   "word": 141,
+   "end": 50.74
   },
   {
    "id": "catch",
    "level": 0,
-   "quote": "But the same study",
+   "quote": "Here's the part people skip.",
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "The phone with a canned auto-reply.",
-   "t": 31.008,
-   "word": 84,
-   "end": 40.074
+   "text": "Room: garage. A phone panel; the canned auto-reply arrives.",
+   "t": 50.74,
+   "word": 154,
+   "end": 61.26
   },
   {
-   "id": "catch.auto",
+   "id": "catch.canned",
    "level": 1,
-   "quote": "sounds automated. So skip",
+   "quote": "So that canned thank you",
    "sfx": "stamp",
    "shift": 0.0,
    "pin": null,
-   "text": "SOUNDS AUTOMATED stamp beside it; Snow shrugs.",
-   "t": 34.826,
-   "word": 95,
-   "end": 38.15
-  },
-  {
-   "id": "catch.type",
-   "level": 1,
-   "quote": "Here's what to type.",
-   "sfx": null,
-   "shift": 0.0,
-   "pin": null,
-   "text": "Title: Here's what to type.",
-   "t": 38.15,
-   "word": 102,
-   "end": 40.074
+   "text": "Stamp: DOESN'T COUNT. Snow shrugs.",
+   "t": 55.16,
+   "word": 167,
+   "end": 61.26
   },
   {
    "id": "build",
    "level": 0,
-   "quote": "Start with their name.",
+   "quote": "So here's what I'd",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "A wide phone; the reply starts typing: \"Hi [name],\"; label chip THEIR NAME.",
-   "t": 40.074,
-   "word": 106,
-   "end": 55.928
+   "text": "Room: workshop. A big phone; the reply types in line by line.",
+   "t": 61.26,
+   "word": 182,
+   "end": 81.52
+  },
+  {
+   "id": "build.name",
+   "level": 1,
+   "quote": "Start with their name,",
+   "sfx": "tick",
+   "shift": 0.0,
+   "pin": null,
+   "text": "\"Hi [name],\" types in. Chip 1 OF 4: THEIR NAME, so it's clearly you.",
+   "t": 62.76,
+   "word": 187,
+   "end": 65.3
   },
   {
    "id": "build.answer",
    "level": 1,
-   "quote": "Then answer what they",
+   "quote": "Answer exactly what they asked:",
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "\"Yes, we replace water heaters.\" types in; chip THEIR QUESTION.",
-   "t": 41.732,
-   "word": 110,
-   "end": 45.752
+   "text": "\"yes, we replace water heaters.\" Chip 2 OF 4: ANSWER IT.",
+   "t": 65.3,
+   "word": 195,
+   "end": 69.42
   },
   {
    "id": "build.ask",
@@ -158,34 +206,46 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "\"Gas or electric?\" types in; chip ONE QUESTION BACK.",
-   "t": 45.752,
-   "word": 120,
-   "end": 50.302
+   "text": "\"Gas or electric?\" Chip 3 OF 4: ONE QUESTION.",
+   "t": 69.42,
+   "word": 205,
+   "end": 73.3
+  },
+  {
+   "id": "build.why",
+   "level": 1,
+   "quote": "It gives them an easy",
+   "sfx": null,
+   "shift": 0.0,
+   "pin": null,
+   "text": "Side note under the phone: easy to answer, and you know what to bring.",
+   "t": 73.3,
+   "word": 216,
+   "end": 77.2
   },
   {
    "id": "build.time",
    "level": 1,
-   "quote": "Then give them a",
+   "quote": "Then a real time.",
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "\"I can come by Thursday, 2 to 4.\" types in; chip A REAL TIME.",
-   "t": 50.302,
-   "word": 132,
-   "end": 55.928
+   "text": "\"I can come by Thursday, 2 to 4.\" Chip 4 OF 4: A REAL TIME.",
+   "t": 77.2,
+   "word": 232,
+   "end": 81.52
   },
   {
    "id": "close",
    "level": 0,
-   "quote": "Four short lines, sent",
+   "quote": "Fast, human, one question,",
    "sfx": "stamp",
    "shift": 0.0,
    "pin": null,
-   "text": "Rule card: Fast. Human. One question. A time.",
-   "t": 55.928,
-   "word": 147,
-   "end": 66.256
+   "text": "Room: blackboard. Chalk rule: FAST. HUMAN. ONE QUESTION. A TIME.",
+   "t": 81.52,
+   "word": 245,
+   "end": 90.74
   },
   {
    "id": "close.send",
@@ -194,10 +254,10 @@
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "\"Send this to whoever answers your phone\" and \"Full text in the caption\"; ProofNotFluff.",
-   "t": 59.426,
-   "word": 156,
-   "end": 66.256
+   "text": "\"Send this to whoever answers your phone.\" Exact text in the caption. ProofNotFluff.",
+   "t": 84.58,
+   "word": 251,
+   "end": 90.74
   }
  ]
 }

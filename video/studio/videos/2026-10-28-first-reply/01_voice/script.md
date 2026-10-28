@@ -1,12 +1,12 @@
 # Script: The first reply wins the job (v2, more depth; Todd, Oct 28, 12:56 pm)
 
-[matter-of-fact] A homeowner just texted you for a quote. You're up on a ladder, so you figure you'll get back to them tonight. I want to show you why tonight is too late, and exactly what to send instead.
+[matter-of-fact] A homeowner just texted you for a quote. You're up on a ladder, so you figure you'll get back to them tonight. [short pause] I want to show you why tonight is too late, and exactly what to send instead.
 
-[leaning in] A study came out this year in Management Science. The researchers looked at eleven point six million requests on Fiverr, the freelance site. When a reply came an hour late, that person was about half as likely to get hired. A day late? About ninety percent less.
+[leaning in] A study came out this year in Management Science. The researchers looked at eleven point six million requests on Fiverr. When a reply came an hour late, that person was about half as likely to get hired. A day late? About ninety percent less.
 
 [thoughtful] Now, Fiverr isn't the trades. But the reason carries over. People read your reply speed as a sign of how you'll treat them later. And it helped on its own, even when the work and the message were just as good.
 
-[matter-of-fact] Thumbtack sees the same thing on its platform. Pros who answer inside thirty minutes are twenty-five percent more likely to get hired than pros who take three hours.
+[matter-of-fact] Thumbtack sees the same thing. Pros who answer inside thirty minutes are twenty-five percent more likely to get hired than pros who take three hours.
 
 [short pause] Here's the part people skip. Speed stopped helping when the reply looked automated. So that canned thank you for your inquiry text? [quickly, playful] Fast, sure. It just doesn't count.
 

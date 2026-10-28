@@ -263,6 +263,9 @@ class Run:
         for w in self.widths:
             for sc in self.schemes:
                 ctx = await self.context(browser, w, sc)
+                # a page that forwards within our own site (a video short path, docs/rats/) holds still while it is
+                # judged; its own flow (verify/flows/rats.json) checks the forward itself (Oct 27, 2026)
+                await ctx.add_init_script("window.__pnfHold = true;")
                 pg, ev, status = await self.open(ctx, page_url(base, page))
                 if not pg.url.startswith(base):   # a /go/ link page that forwards to Etsy or Gumroad: nothing of ours to judge
                     if shots == "after" and w == self.widths[0] and sc == self.schemes[0]:

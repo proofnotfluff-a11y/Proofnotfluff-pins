@@ -1,0 +1,9 @@
+{
+ "schema": "pnf.video.job.v1",
+ "videoId": "2026-10-26-rats-z",
+ "spec": "video/fixtures/spec-example.json",
+ "voices": ["test"],
+ "requestedAt": "2026-10-27T22:15:00-05:00",
+ "run": "build-chat-dry-run",
+ "about": "Dry run of the Video render workflow on the fixture spec in the stand-in tone voice: proves Remotion, the mix, Whisper, gate 5 and publishing in GitHub Actions. Never publishable (voice test)."
+}

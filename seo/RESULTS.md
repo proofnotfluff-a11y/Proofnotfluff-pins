@@ -58,3 +58,4 @@ Weekly once Search Console or Bing Webmaster Tools is verified: page, impression
   - /chicago-basement-flooding/ and /chicago-repair-demand/: facts 16 of 16 and 17 of 17, legal cleared with fixes, design 4.71 each, verify 0 failing of 52.
   - /material-price-changes/ (23 BLS series, calculator, 23 sub-pages): facts 15 samples 0 mismatches, design 4.71 on round 5 after Todd's word in that build's chat to clear the bar, legal PASS, copy PASS, verify 88 of 88.
   - Wrap-up sweep (same day, 8:26 pm): make_site 0, verify_site on the hub and all 13 hub pages with every flow PASS 0 failing of 92, check_repo 0.
+- 2026-10-27, /rats short path live (major site change under Todd's call 2 go, Oct 27, 8:56 pm): docs/rats/ noindex, out of the sitemap, forwards to /chicago-rat-complaints/#map after 1 s; verify PASS 40 checks plus the rats flow; commit b08525f.

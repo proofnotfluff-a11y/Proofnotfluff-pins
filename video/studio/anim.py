@@ -107,7 +107,7 @@ def build_pixfont():
     with anti-aliasing off. Each glyph is rows of 0/1; the kit draws them as blocks."""
     from PIL import Image, ImageDraw, ImageFont
     srcs = {"body": ("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 10),
-            "display": (os.path.join(os.path.expanduser("~"), ".cache", "pnf-video-fonts"), 13)}
+            "display": (os.path.join(os.path.expanduser("~"), ".cache", "pnf-video-fonts"), 15)}   # 15 px: an open s that never reads as e (design gate, Oct 28)
     import video_layout as L
     disp = L.ttf_path("P", 700)
     out = {}

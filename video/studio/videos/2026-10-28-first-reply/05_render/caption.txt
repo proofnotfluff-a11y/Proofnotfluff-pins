@@ -1,7 +1,10 @@
-Answer a lead a day late, and you're about 90% less likely to get hired. Here's the reply to send instead.
+In a study of 11.6M Fiverr requests, a reply a day late was about 90% less likely to get hired. Here's the reply to send instead.
 
 The four-line reply:
-Hi [name], yes, we replace water heaters. Gas or electric? I can come by Thursday, 2 to 4.
+Hi [name],
+yes, we replace water heaters.
+Gas or electric?
+I can come by tomorrow, 2 to 4.
 
 1. Their name, so it's clearly you
 2. Answer exactly what they asked
@@ -10,7 +13,7 @@ Hi [name], yes, we replace water heaters. Gas or electric? I can come by Thursda
 
 Send this to whoever answers your phone.
 
-Sources: "Speed Is a Signal," Management Science (2026), 11.6M requests on Fiverr: replies an hour late were about half as likely to get hired, a day late about 90% less. Buyers read reply speed as a sign of how you'll treat them later, and speed stopped helping when replies seemed automated. Thumbtack (2025): pros who reply within 30 minutes are 25% more likely to be hired than pros who take 3 hours.
+Sources: "Speed Is a Signal," Management Science (an academic business journal, 2026), 11.6M requests on Fiverr: freelancers who replied an hour late were about half as likely to get hired, a day late about 90% less. Buyers read reply speed as a sign of how you'll treat them later, and speed stopped helping when replies seemed automated. Thumbtack, 2025 Pro Summit takeaways: pros who reply within 30 minutes are 25% more likely to get hired than pros who take 3 hours.
 
 More free tools for trade owners: proofnotfluff.com (link in bio).
 

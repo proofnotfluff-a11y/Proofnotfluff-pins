@@ -1,22 +1,22 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-10-28-first-reply",
- "mp4Sha256": "00114f447e45f433bfaedbbbab9982e252da8510bf484ba60fe64642c2ce6ba1",
+ "mp4Sha256": "7b8a3ea0fb6da142df2a1ebadc169d1e457663a992ae0eaf653f22044240e2ad",
  "checks": [
   {
    "name": "length",
-   "value": 66.267,
-   "pass": false,
-   "detail": "66.27 s (45.0 to 60.0)"
+   "value": 88.467,
+   "pass": true,
+   "detail": "88.47 s (45.0 to 90.0, studio lessons)"
   },
   {
    "name": "loudness",
    "value": {
-    "lufs": -15.6,
-    "truePeak": -3.0
+    "lufs": -15.0,
+    "truePeak": -2.7
    },
-   "pass": false,
-   "detail": "-15.6 LUFS (target -14 +/- 1), true peak -3.0 dBTP (at most -1.5)"
+   "pass": true,
+   "detail": "-15.0 LUFS (target -14 +/- 1), true peak -2.7 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -26,31 +26,26 @@
   },
   {
    "name": "frozen",
-   "value": [
-    [
-     64.9667,
-     66.266667
-    ]
-   ],
+   "value": [],
    "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 55.93 s"
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 79.38 s"
   },
   {
    "name": "file",
    "value": {
-    "sha256": "00114f447e45f433bfaedbbbab9982e252da8510bf484ba60fe64642c2ce6ba1",
-    "bytes": 4514319
+    "sha256": "7b8a3ea0fb6da142df2a1ebadc169d1e457663a992ae0eaf653f22044240e2ad",
+    "bytes": 14061996
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 4.5 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 14.1 MB, decodes clean"
   },
   {
    "name": "voice",
-   "value": "estimate",
-   "pass": false,
-   "detail": "estimate, 0 flag(s)"
+   "value": "whisper medium.en int8, re-spelled from script.md",
+   "pass": true,
+   "detail": "whisper medium.en int8, re-spelled from script.md, 0 flag(s)"
   }
  ],
- "pass": false,
- "at": "2026-10-28T12:41:51-05:00"
+ "pass": true,
+ "at": "2026-10-28T14:14:30-05:00"
 }

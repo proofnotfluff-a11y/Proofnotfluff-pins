@@ -86,7 +86,7 @@
           let run = -1;
           for (let rx = 0; rx <= row.length; rx++) {
             if (row[rx] === '1') { if (run < 0) run = rx; }
-            else if (run >= 0) { ctx.fillRect(x + run * px, y + ry * px, (rx - run) * px, px); run = -1; }
+            else if (run >= 0) { ctx.fillRect(x + run * px, y + ry * px, (rx - run) * px, px + 2); run = -1; }   // px + 2: rows overlap, so a zoom never opens seams
           }
         });
         x += (g.w + 1) * px;
@@ -649,7 +649,7 @@
     k.slam = function (s, x, y, t0, o = {}) {
       const d = T - t0; if (d < 0) return;
       const q = clamp(d / (o.dur || 0.2)), sc = 1 + (o.from || 0.9) * Math.pow(1 - q, 2);
-      const sh = d < 0.3 ? (1 - d / 0.3) * 8 : 0;
+      const sh = d < 0.25 ? (1 - d / 0.25) * (o.shake != null ? o.shake : 3) : 0;
       ctx.save(); ctx.translate(x + Math.sin(T * 97) * sh, y + Math.cos(T * 83) * sh); ctx.scale(sc, sc);
       text(s, 0, 0, Object.assign({}, o, {alpha: (o.alpha != null ? o.alpha : 1) * clamp(q * 3)}));
       ctx.restore();

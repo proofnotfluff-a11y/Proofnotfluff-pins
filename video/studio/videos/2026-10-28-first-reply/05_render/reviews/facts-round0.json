@@ -1,0 +1,5 @@
+{"gate": "facts", "round": 0, "at": "2026-10-28T14:20:00-05:00", "pass": false, "score": {"numbers": 25, "mismatches": 1},
+ "reasons": ["caption.txt line 1 applied the Fiverr result to the reader with no Fiverr qualifier (fixed in round 1)",
+             "non-blocking: Sources wording, 'freelancers who replied' not 'replies'; Thumbtack 'respond within three hours' (both applied)",
+             "acceptable: 'requests' for interactions; 'just as good' for same ratings and message; 'doesn't count' as rhetoric",
+             "PASS: 46%, 90%, 2026 (published online June 3, 2026), signal mechanism, story clock, names, dashes, data.js matches facts.json"]}

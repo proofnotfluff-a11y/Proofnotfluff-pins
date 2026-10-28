@@ -10,3 +10,12 @@
 | `chalk` | hand-drawn: black board, chalky wobbling lines, one orange | #111, off-white, #E88062 | Poppins, slight hand jitter |
 
 A look changes how things are drawn, never what they say. The facts and frame rules are the same in every look.
+
+## Motion (arcade; Todd, Oct 28, 1:33 pm: "keep things moving"; rules from research run 2026-10-28-viral)
+The player adds these to every arcade lesson; a scene adds the rest from the kit (`k.slam`, `k.burst`, `k.sweep`, `k.motes`).
+- A hook card in the first 2.4 s: the hook in 5 to 8 words, its number slammed in, the source on screen from the start.
+- Every key number counts up or slams in as it is said, and lands with sparks. Highlight what matters (`k.sweep`).
+- A new visual beat every 2 to 4 s (a slide-in, a count, a stamp); each beat steps the camera in a little (the zoom ladder).
+- Shake only on a real hit (a bad number, a busted myth, a lost job), small (7 px or less), never more than about once in 10 s.
+- Rooms change behind pixel blinds; every room has ambient motion; a level bar at the top fills as the lesson plays.
+- Never flash more than 3 times a second.

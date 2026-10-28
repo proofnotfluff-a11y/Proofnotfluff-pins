@@ -127,7 +127,7 @@
       const last = beats.length ? beats[beats.length - 1] : sec;
       if (fo[last.id] || fo[sec.id]) { const [ax, ay] = fo[last.id] || fo[sec.id]; const q = k.easeOut((T - last.t) / 0.6); fx = 540 + (ax - 540) * 0.35 * q; fy = 620 + (ay - 620) * 0.35 * q; }
       // a short shake on every stamp
-      cues.forEach((c) => { const d = T - c.t; if (c.sfx === 'stamp' && d >= 0 && d < 0.32) { const a = 14 * (1 - d / 0.32); sx += Math.sin(T * 91) * a; sy += Math.cos(T * 73) * a; } });
+      cues.forEach((c) => { const d = T - c.t; if (c.sfx === 'stamp' && d >= 0 && d < 0.32) { const a = 7 * (1 - d / 0.32); sx += Math.sin(T * 91) * a; sy += Math.cos(T * 73) * a; } });
       // a section opens with a hard punch-in that settles
       if (sec !== tops[0]) zoom += 0.06 * (1 - k.easeOut(into / 0.5));
     }

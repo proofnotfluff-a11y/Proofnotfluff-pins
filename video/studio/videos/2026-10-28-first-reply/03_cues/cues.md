@@ -9,7 +9,7 @@ A ladder leans in; the reply clock starts ticking.
 ## lead.show "Here's why tonight is" [sfx: blip]
 Panel: "Tonight is too late." in the accent.
 
-## study "A study came out this" [sfx: whoosh]
+## study "A business journal, Management Science," [sfx: whoosh]
 Room: blackboard. Chalk header: THE STUDY. Speed Is a Signal, Management Science, 2026.
 ## study.count "eleven point six million requests" [sfx: tick]
 11.6M counts up in chalk: requests on Fiverr.
@@ -23,7 +23,7 @@ Still the blackboard, wiped: "Reply speed = how you'll treat them later."
 ## signal.alone "And it helped on its" [sfx: tick]
 Second chalk line: "Even with the same work, same message."
 
-## tt "Thumbtack sees the same thing" [sfx: whoosh]
+## tt "Thumbtack's own data shows" [sfx: whoosh]
 Room: workshop. Panel THUMBTACK, 2025: two clocks, 30 min and 3 hrs.
 ## tt.more "twenty-five percent more likely" [sfx: pop]
 +25% stamps on the 30 min side: more likely to get hired.
@@ -41,10 +41,10 @@ Room: workshop. A big phone; the reply types in line by line.
 "yes, we replace water heaters." Chip 2 OF 4: ANSWER IT.
 ## build.ask "Ask one question that" [sfx: tick]
 "Gas or electric?" Chip 3 OF 4: ONE QUESTION.
-## build.why "It gives them an easy" 
+## build.why "Easy to answer, and you" 
 Side note under the phone: easy to answer, and you know what to bring.
 ## build.time "Then a real time." [sfx: tick]
-"I can come by Thursday, 2 to 4." Chip 4 OF 4: A REAL TIME.
+"I can come by tomorrow, 2 to 4." Chip 4 OF 4: A REAL TIME.
 
 ## close "Fast, human, one question," [sfx: stamp]
 Room: blackboard. Chalk rule: FAST. HUMAN. ONE QUESTION. A TIME.

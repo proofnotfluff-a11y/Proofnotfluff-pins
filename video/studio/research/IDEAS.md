@@ -49,3 +49,18 @@ Notes on the list:
 - Ideas 1, 4, 6 and 8 each pair naturally with a carousel version of the script for saves (section 2c).
 
 ---
+
+## Wider topics (run 2026-10-28-viral; Todd, Oct 28, 1:31 pm: marketing, numbers, bids, pricing)
+
+Every anchor fact below is from runs/2026-10-28-viral.md, with its source there. Re-read the source before a script uses it.
+
+| # | Title | Anchor fact | Hook line |
+|---|---|---|---|
+| V1 ★ | Markup is not margin | A 50% markup is a 33% margin; a 50% margin needs a 100% markup (JLC, Dec 2014) | "This is what a 50% markup really pays you." |
+| V2 ★ | Three options on every quote | Top 10% of shops use good-better-best on 57% of residential jobs vs 41% for the rest (ServiceTitan, 12 months to Jan 2026) | "Top shops give 3 prices. Everyone else gives 1." |
+| V3 ★ | Calls after 6 pm | Small shops booked about 26% of calls at the morning peak, about 9% after 6 pm (ServiceTitan, June 2022) | "Do you know how many calls you book after 6 pm?" |
+| V4 ★ | Reviews that win the job | 31% only use businesses rated 4.5+; 47% skip under 20 reviews; 74% only read the last 3 months (BrightLocal 2026) | "If you have fewer than 20 reviews, watch this." |
+| V5 | Reply within the hour (B2B leads) | Contacting within an hour: nearly 7x as likely to qualify a lead; audited firms took 42 hours on average, 23% never replied (HBR, 2011) | "Most businesses take 42 hours to answer a lead." |
+| V6 | The voicemail myth | "80% won't leave a voicemail" traces to an uncited 2014 line (Let's Ask Claire, Aug 2026) | "You've heard 80% of callers won't leave a voicemail. Nobody measured that." |
+
+Still need a source: how many follow-ups a quote needs; charging for estimates.

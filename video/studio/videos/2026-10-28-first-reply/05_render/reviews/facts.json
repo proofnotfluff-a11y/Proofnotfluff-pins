@@ -1,0 +1,3 @@
+{"gate": "facts", "round": 1, "at": "2026-10-28T14:27:00-05:00", "pass": true, "score": {"numbers": 12, "mismatches": 0},
+ "reasons": ["caption line 1 now carries the Fiverr qualifier; sources line, Thumbtack numbers, hook card, names and dashes all PASS",
+             "advisory: the hook's Fiverr qualifier is the 39 px subline under a reader-direct headline; present and sourced"]}

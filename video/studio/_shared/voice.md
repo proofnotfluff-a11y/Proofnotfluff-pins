@@ -17,6 +17,14 @@ as the fallback (`speak --voice iP95p4xoKVk53GoZ742B`). The caption says the nar
 - Plain words, no hype, no em or en dashes, nothing the facts gate can't trace to the data file.
 - Close: one line that tells them where to look ("See your own neighborhood free at proofnotfluff dot com slash rats.").
 
+## The hook (research run 2026-10-28-viral)
+- The first 3 seconds decide it (Instagram's skip rate). Spoken hook: 9 to 12 words. On-screen hook: 5 to 8 words, up in the
+  first second, held 2.5 to 4 s, inside the safe area (not the top 14% or bottom 35% of the frame).
+- Patterns that work: a question about their own number, a value promise ("One text that..."), "If you..., watch this",
+  a real customer question, a myth with a sourced bust, a top shops vs everyone else gap. The source rides on screen.
+- Views are not leads: speak to owners who can buy, and keep the host and a scene on screen (Instagram holds back
+  Reels that are mostly text).
+
 ## Pace
 - Target 160 to 195 words a minute per take (a Reel runs a little quicker than a lesson).
 - Under 150: rewrite the take as talk. Over 200: give it a landing beat (a short sentence or `[short pause]`), re-roll.

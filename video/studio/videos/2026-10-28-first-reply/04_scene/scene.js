@@ -6,7 +6,7 @@ const REPLY = [
   ['build.name', 'Hi [name],', '1 of 4: their name'],
   ['build.answer', 'yes, we replace water heaters.', '2 of 4: answer it'],
   ['build.ask', 'Gas or electric?', '3 of 4: one question'],
-  ['build.time', 'I can come by Thursday, 2 to 4.', '4 of 4: a real time'],
+  ['build.time', 'I can come by tomorrow, 2 to 4.', '4 of 4: a real time'],
 ];
 const CHALK = '#FFF7EA', CHALK2 = '#F7C873', HOOK_END = 2.4;
 const slideIn = (k, t0, dx = 0, dy = 0) => { const q = k.easeOut((k.T - t0) / 0.35); k.ctx.translate(dx * (1 - q), dy * (1 - q)); return q; };
@@ -24,12 +24,12 @@ window.SCENE = {
       k.room('framing');
       if (T < HOOK_END) {   // the hook card: the number that makes a pro stop scrolling
         k.shape(k.rectPts(0, 230, 1080, 760, 0), {fill: '#120D14', line: false, alpha: 0.82});
-        k.slam('Answer a lead', 540, 330, -1, {size: 60, color: CHALK, align: 'center'});
-        k.slam('a day late?', 540, 410, -1, {size: 60, color: CHALK, align: 'center'});
-        k.slam(`${n.dayDrop.shown} less`, 540, 540, 0.3, {size: 120, color: 'accent', align: 'center', from: 1.4});
-        k.slam('likely to get hired.', 540, 690, 0.55, {size: 60, color: CHALK, align: 'center'});
-        k.burst(540, 600, 0.35, {n: 22, r: 320});
-        if (T > 0.9) k.text(`Management Science, ${n.studyYear.shown} (Fiverr data)`, 540, 800, {size: 30, color: '#B39A88', align: 'center'});
+        k.slam('Answer a lead', 540, 280, -1, {size: 120, color: CHALK, align: 'center'});
+        k.slam('a day late?', 540, 400, -1, {size: 120, color: CHALK, align: 'center'});
+        k.slam(`${n.dayDrop.shown} less`, 540, 540, 0.3, {size: 240, color: 'accent', align: 'center', from: 1.4, shake: 8});
+        k.slam('likely to get hired.', 540, 790, 0.55, {size: 120, color: CHALK, align: 'center'});
+        k.burst(540, 640, 0.35, {n: 26, r: 380});
+        k.text(`Management Science, ${n.studyYear.shown} (Fiverr data)`, 540, 920, {size: 39, color: '#E6D3BC', align: 'center', alpha: k.clamp(T / 0.3)});
         return {hostPose: k.talking() ? 'talk' : 'stand'};
       }
       k.ctx.save(); slideIn(k, HOOK_END, -500, 0); k.chip('New lead', 72, 280, {size: 30}); k.ctx.restore();

@@ -45,7 +45,7 @@
         "num": "{1}",
         "label": "City contracts in the 12 trades end in the next 12 months"
       },
-      "short": "Who wins the work and what each award was worth, over 36 months."
+      "short": "Who wins the work and what each award was worth, over 3 years."
     },
     "chicago-repair-demand": {
       "group": "find-work",
@@ -130,7 +130,7 @@
         "num": "{1}",
         "label": "plowable days in a middle winter at O'Hare, 2 inch trigger"
       },
-      "short": "Light and heavy winters for both stations and four snow depths."
+      "short": "Light and heavy seasons for both stations and four snow depths."
     },
     "chicago-permit-wait-times": {
       "group": "permits",
@@ -142,7 +142,7 @@
         "num": "{1} days",
         "label": "for half of Chicago building permits to be issued, last 12 months"
       },
-      "short": "Days from review to issue, by permit type, path and community area."
+      "short": "Broken out by type, review path and community area."
     },
     "chicago-trade-licenses": {
       "group": "permits",

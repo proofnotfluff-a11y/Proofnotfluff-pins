@@ -1,7 +1,7 @@
 {
  "schema": "pnf.video.qa.v1",
  "videoId": "2026-10-27-rats-a",
- "mp4Sha256": "e881aad14ca255e71e46d6631902cb96a00e8b4a5198c21a9acbf4170b4015f6",
+ "mp4Sha256": "f0e2a2a653dab17167173d614f0e717ae0f5adf698776d4507fef968f1c36bc4",
  "voice": {
   "id": "CwhRBWXzGAHq8TQ4Fs17",
   "name": "Roger",
@@ -12,18 +12,18 @@
  "checks": [
   {
    "name": "length",
-   "value": 49.833,
+   "value": 49.7,
    "pass": true,
-   "detail": "49.83 s (45.0 to 60.0)"
+   "detail": "49.70 s (45.0 to 60.0)"
   },
   {
    "name": "loudness",
    "value": {
-    "lufs": -14.1,
-    "truePeak": -1.1
+    "lufs": -14.2,
+    "truePeak": -1.9
    },
-   "pass": false,
-   "detail": "-14.1 LUFS (target -14 +/- 1), true peak -1.1 dBTP (at most -1.5)"
+   "pass": true,
+   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -1.9 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -35,18 +35,18 @@
    "name": "frozen",
    "value": [
     [
-     47.9,
-     49.833
+     47.8333,
+     49.7
     ]
    ],
    "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 43.12 s"
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 43.05 s"
   },
   {
    "name": "hook",
-   "value": 2.9,
+   "value": 2.82,
    "pass": true,
-   "detail": "hook's last word ends at 2.90 s (by 3.00)"
+   "detail": "hook's last word ends at 2.82 s (by 3.00)"
   },
   {
    "name": "numbers",
@@ -94,24 +94,24 @@
   {
    "name": "file",
    "value": {
-    "sha256": "e881aad14ca255e71e46d6631902cb96a00e8b4a5198c21a9acbf4170b4015f6",
-    "bytes": 3546797
+    "sha256": "f0e2a2a653dab17167173d614f0e717ae0f5adf698776d4507fef968f1c36bc4",
+    "bytes": 3562608
    },
    "pass": true,
-   "detail": "opens, decodes to the end, 3.5 MB, matches the manifest"
+   "detail": "opens, decodes to the end, 3.6 MB, matches the manifest"
   },
   {
    "name": "layout",
    "value": [],
    "pass": true,
-   "detail": "0 layout problem(s) in 94 boxes"
+   "detail": "0 layout problem(s) in 98 boxes"
   },
   {
    "name": "spec-match",
-   "value": "a8ae4c96b31ee35a51a9cbc65725995619d05847b4b51cc1284b9c6b665f27a6",
+   "value": "976bf15804c4a5c21fd47790ca9331a46d215cf58af115fe98b107acd74db1a8",
    "pass": true,
    "detail": "the render is of this exact spec"
   }
  ],
- "pass": false
+ "pass": true
 }

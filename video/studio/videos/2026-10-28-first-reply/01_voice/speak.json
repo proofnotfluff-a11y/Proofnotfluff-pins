@@ -3,10 +3,8 @@
  "voice": "iP95p4xoKVk53GoZ742B",
  "model": "eleven_v4",
  "takes": [
-  1,
-  2,
-  4
+  1
  ],
- "scriptSha256": "47e6f1596cb8c4f5e3fb1ead2de292bfe818aa55dc6a4ee0bab3fc0c70d69d39",
- "requestedAt": "2026-10-28T13:16:33-05:00"
+ "scriptSha256": "b1c13887b0cfd1909d544b8b4adc6bb49b784b896be11ae271088a57e6447236",
+ "requestedAt": "2026-10-28T13:33:29-05:00"
 }

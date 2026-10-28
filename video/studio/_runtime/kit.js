@@ -309,10 +309,81 @@
       const ha = [el[0] + face * l2 * Math.sin(a1 + a2), el[1] + l2 * Math.cos(a1 + a2)];
       return {el, ha};
     }
+    // ---- the host's life: blinks, breathing, fidgets, a mouth from the voice. All pure functions of T (frames render in any order).
+    const FR = 30;
+    const LPX = look.scale && look.scale !== 1 ? 1 / look.scale : (look.pixelHost ? 1 / look.pixelHost : 1);   // frame units per low-res pixel
+    // blinks: every 2.5 to 6 s (hashed, so the same every render), 4 frames (half, shut, shut, half), 15% doubled,
+    // moved into the nearest gap between words when one is close, so a blink never lands on a key word
+    function blinks() {
+      if (env._blinks) return env._blinks;
+      const ws = env.words || [], gaps = [];
+      for (let i = 0; i + 1 < ws.length; i++) if (ws[i + 1].start - ws[i].end >= 0.12) gaps.push([ws[i].end, ws[i + 1].start]);
+      const out = []; let t = 0.9 + 1.2 * hash(5.1), n = 0;
+      while (t < (env.duration || 600)) {
+        let b = t, best = 1.0;
+        const prev = out.length ? out[out.length - 1] : -9;
+        if (ws.length && ws.some((w) => t >= w.start && t < w.end)) gaps.forEach(([g0, g1]) => { const c = Math.min(Math.max(t, g0 + 0.02), g1 - 0.02); if (Math.abs(c - t) < best && c - prev >= 2.5) { best = Math.abs(c - t); b = c; } });
+        out.push(b);
+        if (hash(n * 3.31 + 0.7) < 0.15) out.push(b + 6 / FR);   // a double blink: 2 open frames between
+        n++; t = b + 2.5 + 3.5 * hash(n * 7.31 + 1.7);
+      }
+      return (env._blinks = out);
+    }
+    k.blinkAt = function (t = T) {   // 0 open, 1 half shut, 2 shut
+      const bs = blinks(); let lo = 0, hi = bs.length - 1, i = -1;
+      while (lo <= hi) { const m = (lo + hi) >> 1; if (bs[m] <= t) { i = m; lo = m + 1; } else hi = m - 1; }
+      if (i < 0) return 0;
+      const f = Math.floor((t - bs[i]) * FR + 0.005);
+      return f === 0 || f === 3 ? 1 : (f === 1 || f === 2 ? 2 : 0);
+    };
+    // the mouth: 0 closed, 1 slightly open, 2 open, 3 wide open (anim.py mouth); null when the lesson has no mouth.js
+    k.mouthAt = (t = T) => (env.mouth ? env.mouth(t) : null);
+
+    // two-bone reach for a fidget: the hand goes to a point, the elbow bends out and down
+    function reach(sh, tgt, l1, l2, face) {
+      const dx = tgt[0] - sh[0], dy = tgt[1] - sh[1], d = Math.max(Math.abs(l1 - l2) + 1, Math.min(l1 + l2 - 1, Math.hypot(dx, dy)));
+      const a = Math.atan2(dy, dx), c = clamp((l1 * l1 + d * d - l2 * l2) / (2 * l1 * d), -1, 1), b = Math.acos(c);
+      const score = (e) => Math.sin(e) + 0.3 * face * Math.cos(e);   // the elbow that hangs lower, then the one further out
+      const ea = score(a + b) >= score(a - b) ? a + b : a - b;
+      const el = [sh[0] + l1 * Math.cos(ea), sh[1] + l1 * Math.sin(ea)];
+      return {el, ha: [sh[0] + d * Math.cos(a), sh[1] + d * Math.sin(a)]};
+    }
+
+    // four mouth shapes drawn on the pixel grid itself (whole device pixels), so they read crisp at a third of the size:
+    // 0 a closed lip line, 1 teeth and a sliver of dark, 2 open, 3 wide open with the tongue
+    const MOUTHS = [
+      [[0, 7, 'lip']],
+      [[0, 7, 'teeth'], [1, 7, 'dark']],
+      [[0, 8, 'teeth'], [1, 8, 'dark'], [2, 6, 'dark']],
+      [[0, 8, 'teeth'], [1, 8, 'dark'], [2, 8, 'dark'], [3, 8, 'dark'], [4, 6, 'tongue']],
+    ];
+    function mouth(cx, top, level, s) {
+      const m = ctx.getTransform();
+      const u = Math.max(1, Math.round(Math.max(LPX, 3) * m.a / s));
+      const px = m.a * cx + m.c * top + m.e, py = m.b * cx + m.d * top + m.f;
+      const cl = {lip: C.skinShade || '#C98B63', teeth: C.paper || '#FFF7EA', dark: '#2B2033', tongue: '#7A3442'};
+      ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0);
+      MOUTHS[Math.max(0, Math.min(3, level))].forEach(([row, w, c]) => {
+        ctx.fillStyle = cl[c]; ctx.fillRect(Math.round(px / u - w / 2) * u, (Math.round(py / u) + row) * u, w * u, u);
+      });
+      ctx.restore();
+    }
     k.snow = function (x, y, o = {}) {
       const s = o.scale || 1, face = o.face || 1, pose = o.pose || 'stand';
-      const bob = Math.sin(T * 2.4) * 3;
+      const L = LPX / s;   // one low-res pixel in the host's own units
+      // breathing, held like a pixel idle: rest, a sub-pixel step (a lit shoulder edge), chest up 1 pixel, the step again
+      const bp = ((T % 2.8) + 2.8) % 2.8, breath = bp < 1.0 ? 0 : (bp < 1.4 ? 1 : (bp < 2.4 ? 2 : 1));
+      const bob = breath === 2 ? -L : 0;
       const talk = o.talk != null ? o.talk : k.talking();
+      // a fidget after 8 to 12 s in the same pose (the player passes o.idle, seconds since the pose last changed)
+      let fid = null;
+      if (o.idle != null && (pose === 'stand' || pose === 'talk')) {
+        const seed = o.idleSeed || 0, thr = 8 + 4 * hash(seed * 1.37 + 0.3), e = o.idle - thr;
+        if (e >= 0) {
+          const nth = Math.floor(e / thr), ph = Math.floor((e - nth * thr) * 15) / 15;   // on twos
+          if (ph < 0.8) fid = {kind: ['scratch', 'cap', 'look'][Math.floor(hash(seed * 2.9 + nth * 5.3) * 3)], w: ph < 0.2 ? easeOut(ph / 0.2) : (ph > 0.6 ? 1 - easeOut((ph - 0.6) / 0.2) : 1), ph};
+        }
+      }
       ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
       const P = (px, py) => [px, py + (py < -140 ? bob : 0)];
       // legs and shoes
@@ -340,11 +411,18 @@
         armR = [a, 0.05];
       }
       const back = limb(shL, -pz[0][0], -pz[0][1], 82, 76, face);   // the far arm swings the other way
-      const front = limb(shR, armR[0], armR[1], 82, 76, face);
+      let front = limb(shR, armR[0], armR[1], 82, 76, face);
+      const hx0 = 4 * face, hy0 = -384 + bob;
+      if (fid && fid.kind !== 'look') {   // the near hand goes to the beard or the cap and back, with a 1 pixel rub while it is there
+        const rub = fid.w >= 1 ? (Math.floor(T * 15) % 2 ? L : -L) : 0;
+        const tg = fid.kind === 'scratch' ? [hx0 + 24 * face + rub, hy0 + 80] : [hx0 + 62 * face, hy0 - 22 + rub];
+        front = reach(shR, [front.ha[0] + (tg[0] - front.ha[0]) * fid.w, front.ha[1] + (tg[1] - front.ha[1]) * fid.w], 82, 76, face);
+      }
       const drawArm = (sh, l, id) => { shape(capsule(sh, l.el, 19), {fill: 'jacket', id}); shape(capsule(l.el, l.ha, 16), {fill: 'jacket', id: id + 1}); shape(ellPts(l.ha[0], l.ha[1], 15, 15), {fill: 'skin', id: id + 2}); };
       drawArm(shL, back, 9010);
       // torso: the work jacket
       shape(rectPts(-66, -318 + bob, 132, 172, 30), {fill: 'jacket', id: 9020});
+      if (breath === 1) shape(rectPts(-50, -318 + bob, 100, L, 0), {fill: C.jacketHi || '#3E7A62', line: false});   // the in-between breath: a lit shoulder edge, nothing moves
       shape([[0, -300 + bob], [0, -152 + bob]], {stroke: 'jacketShade', lw: 4, closed: false, line: false});
       shape(rectPts(-66, -170 + bob, 132, 22, 8), {fill: 'jacketShade', id: 9021});
       shape([[-30, -318 + bob], [0, -282 + bob], [30, -318 + bob]], {fill: 'skin', id: 9022});
@@ -355,26 +433,30 @@
         for (let i = 0; i < 4; i++) shape([[hx + 8, hy - 76 + i * 18], [hx + 52, hy - 76 + i * 18]], {stroke: 'muted', lw: 3, closed: false, line: false});
       }
       // head
-      const hx0 = 4 * face, hy0 = -384 + bob;
       shape(ellPts(hx0, hy0, 60, 64), {fill: 'skin', id: 9040});
       shape(ellPts(hx0 + 52 * face, hy0 + 6, 9, 14), {fill: 'skinShade', id: 9041, line: false});
       // knit cap with a fold and a pom
       shape(ellPts(hx0, hy0 - 18, 64, 56, 24, Math.PI, TAU).concat([[hx0 + 64, hy0 - 12], [hx0 - 64, hy0 - 12]]), {fill: 'cap', id: 9042});
       shape(rectPts(hx0 - 66, hy0 - 30, 132, 26, 10), {fill: 'accent2', id: 9043});
       shape(ellPts(hx0, hy0 - 82, 16, 16), {fill: 'accent2', id: 9044});
-      // face: eyes blink about every 3.7 s, mouth moves with the voice
-      const blink = (T % 3.7) < 0.12;
-      const ex = hx0 + 14 * face;
-      [ex - 20, ex + 20].forEach((x0, i) => blink ? shape([[x0 - 7, hy0 + 12], [x0 + 7, hy0 + 12]], {stroke: 'ink', lw: 4, closed: false, line: false})
-        : shape(ellPts(x0, hy0 + 12, 6.5, 8), {fill: look.lineArt ? 'ink' : 'shoe', line: false, id: 9050 + i}));
+      // face: eyes blink at natural, uneven intervals (k.blinkAt); a fidget can glance toward the board
+      const bl = k.blinkAt(), ex = hx0 + 14 * face;
+      const gx = fid && fid.kind === 'look' ? L * face * fid.w : 0, gy = fid && fid.kind === 'look' ? -L * fid.w : 0;
+      [ex - 20, ex + 20].forEach((x0, i) => bl === 2 ? shape([[x0 - 7, hy0 + 12], [x0 + 7, hy0 + 12]], {stroke: look.lineArt ? 'ink' : 'shoe', lw: 4, closed: false, line: false})
+        : shape(ellPts(x0 + gx, hy0 + 12 + gy + (bl ? 4 : 0), 6.5, bl ? 4 : 8), {fill: look.lineArt ? 'ink' : 'shoe', line: false, id: 9050 + i}));
+      // the mouth level from the voice (anim.py mouth); without mouth.js, the old open-and-close while a word is said
+      const ml = o.talk === false ? 0 : k.mouthAt();
+      const jaw = ml != null && ml >= 2 ? L : 0;   // the open jaw drops the beard 1 low-res pixel
       // the beard: a full, trimmed beard over the jaw, with a moustache
       const bc = C.beard || '#5A3A22', bh = C.beardHi || '#7A4E2C';
-      shape(ellPts(hx0 + 4 * face, hy0 + 30, 58, 46, 24, 0, Math.PI).concat([[hx0 - 54 + 4 * face, hy0 + 18], [hx0 + 62 + 4 * face, hy0 + 18]]), {fill: bc, id: 9045});
-      shape(ellPts(hx0 + 4 * face, hy0 + 44, 50, 40, 20, 0.2, Math.PI - 0.2), {fill: bh, line: false, id: 9046, alpha: 0.6});
+      shape(ellPts(hx0 + 4 * face, hy0 + 30, 58, 46 + jaw, 24, 0, Math.PI).concat([[hx0 - 54 + 4 * face, hy0 + 18], [hx0 + 62 + 4 * face, hy0 + 18]]), {fill: bc, id: 9045});
+      shape(ellPts(hx0 + 4 * face, hy0 + 44 + jaw, 50, 40, 20, 0.2, Math.PI - 0.2), {fill: bh, line: false, id: 9046, alpha: 0.6});
       shape(rectPts(ex - 30, hy0 + 26, 60, 12, 6), {fill: bc, line: false, id: 9047});
       [ex - 20, ex + 20].forEach((x0) => shape([[x0 - 10, hy0 - 4], [x0 + 10, hy0 - 6]], {stroke: bc, lw: 6, closed: false, line: false}));
-      const mo = talk ? 3 + Math.abs(Math.sin(T * 17) * Math.sin(T * 7.3)) * 13 : 2.5;
-      shape(ellPts(ex, hy0 + 40, talk ? 13 : 15, mo), {fill: talk ? 'ink' : null, stroke: talk ? null : 'ink', lw: 3.5, line: false, closed: !(!talk), id: 9060});
+      if (ml == null) {
+        const mo = talk ? 3 + Math.abs(Math.sin(T * 17) * Math.sin(T * 7.3)) * 13 : 2.5;
+        shape(ellPts(ex, hy0 + 40, talk ? 13 : 15, mo), {fill: talk ? 'ink' : null, stroke: talk ? null : 'ink', lw: 3.5, line: false, closed: !(!talk), id: 9060});
+      } else mouth(ex, hy0 + 37, ml, s);
       drawArm(shR, front, 9070);
       ctx.restore();
       return {head: [x + hx0 * s, y + hy0 * s], hand: [x + front.ha[0] * s, y + front.ha[1] * s], top: y - 470 * s};
@@ -668,8 +750,34 @@
         R(x + Math.cos(a) * sp * q - s / 2, y + Math.sin(a) * sp * q + 260 * d * d - s / 2, s, s, cols[i % cols.length]);
       }
     };
-    // a line of text that slams in big and settles, with a short shake
+    // a stamp that hits: k.stampIn(t0, (te) => draw, {at: [x, y]}). It drops in over 3 frames, lands at t0 (put the stamp
+    // sound there), freezes 3 frames with a 1 pixel shiver (the hit-stop; the voice and host keep going), squashes 1.20 x 0.85
+    // for 2 frames and 0.95 x 1.05 for 1, then settles over 6. draw gets the stamp's own clock te: negative while it drops,
+    // 0 through the freeze, then the time since the freeze ended. at is where it lands (its bottom middle). Returns false
+    // before it appears. o.freeze: frames (3; 5 for the one big verdict); o.drop: seconds to drop in (0.1; 0 to appear at t0).
+    k.stampIn = function (t0, draw, o = {}) {
+      const fr = o.freeze != null ? o.freeze : 3, drop = o.drop != null ? o.drop : 0.1;
+      if (T < t0 - drop) return false;
+      const f = (T - t0) * FR + 0.005, [ax, ay] = o.at || [540, 960];   // + a hair: frame times arrive with rounding
+      let sx = 1, sy = 1, dx = 0, te;
+      if (f < 0) { const q = clamp((T - t0 + drop) / Math.max(1e-6, drop)); sx = sy = 1 + 0.5 * (1 - q) * (1 - q); te = T - t0; }
+      else if (f < fr) { te = 0; dx = (Math.floor(f) % 2 ? -1 : 1) * LPX; }
+      else {
+        te = T - t0 - fr / FR; const g = f - fr;
+        if (g < 2) { sx = 1.2; sy = 0.85; } else if (g < 3) { sx = 0.95; sy = 1.05; }
+        else if (g < 9) { const q = easeOut((g - 3) / 6); sx = 0.95 + 0.05 * q; sy = 1.05 - 0.05 * q; }
+      }
+      ctx.save(); ctx.translate(ax + dx, ay); ctx.scale(sx, sy); ctx.translate(-ax, -ay);
+      draw(te);
+      ctx.restore();
+      return true;
+    };
+    // a line of text that slams in big and settles, with a short shake; {stamp: true} lands it with k.stampIn instead
     k.slam = function (s, x, y, t0, o = {}) {
+      if (o.stamp) {
+        const w = measure(s, o), h = o.size || 48, cx = o.align === 'center' ? x : (o.align === 'right' ? x - w / 2 : x + w / 2);
+        return k.stampIn(t0, () => text(s, x, y, o), {at: [cx, y + h], freeze: o.freeze, drop: o.drop});
+      }
       const d = T - t0; if (d < 0) return;
       const q = clamp(d / (o.dur || 0.2)), sc = 1 + (o.from || 0.9) * Math.pow(1 - q, 2);
       const sh = d < 0.25 ? (1 - d / 0.25) * (o.shake != null ? o.shake : 3) : 0;

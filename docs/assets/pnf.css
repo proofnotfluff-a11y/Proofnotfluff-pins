@@ -723,3 +723,6 @@ body{overflow-x:clip}
 .ld-answer p:last-child{margin:0;font-size:16.5px;line-height:1.6;color:var(--ink)}
 /* header: the menu sheet up to 1023px, so the four links, search and Free samples never wrap the header onto two rows (Oct 27, 2026: Trades news joined the links; at 768 the header was already two rows) */
 @media(max-width:1023px){header.top .wrap{flex-wrap:nowrap}.nav-links{display:none}nav.top a.navcta{display:none}.navm{display:block}nav.top{flex-wrap:nowrap;gap:8px}.qf-btn{margin-left:0}}
+
+/* Home band button: let its label wrap on phones; with the CI system font it ran 41 px past 390 (Verify site, Oct 27, 2026) */
+@media(max-width:599px){.st-band-act .ld-btnbig{white-space:normal}}

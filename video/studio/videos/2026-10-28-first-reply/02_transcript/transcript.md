@@ -1,54 +1,77 @@
 # Transcript: 2026-10-28-first-reply
 
-Voice iP95p4xoKVk53GoZ742B (eleven_v4), 170 words, 56.8 s of voice.
+Voice iP95p4xoKVk53GoZ742B (eleven_v4), 265 words, 88.8 s of voice.
 
 ## Flags
-- 20.9 s heard '25 %' for 'twenty-five percent'
-- 31.5 s heard 'auto reply.' for 'auto-reply.'
+none
 
 ## Pace per take (target 160 to 195 wpm)
 ```
-  01     0.0 s  230 wpm  fast: give it a landing beat, then speak --take 1
-  02     7.9 s  187 wpm  
-  03    25.8 s  162 wpm  
-  04    34.3 s  162 wpm  
-  05    49.7 s  183 wpm  
+  01     0.0 s  218 wpm  fast: give it a landing beat, then speak --take 1
+  02    10.8 s  170 wpm  
+  03    27.7 s  188 wpm  
+  04    41.1 s  177 wpm  
+  05    50.9 s  166 wpm  
+  06    61.3 s  188 wpm  
+  07    81.7 s  157 wpm  
 ```
 
 ## Words
 
-`00:00.0` A new lead just asked you for a quote, and you're up on a ladder.
+`00:00.0` A homeowner just texted you for a quote.
 
-`00:03.8` Don't wait till tonight.
+`00:02.5` You're up on a ladder, so you figure you'll get back to them tonight.
 
-`00:05.2` Here's the reply to send in the next half hour.
+`00:05.9` I want to show you why tonight is too late, and exactly what to send instead.
 
-`00:08.0` Why the rush?
+`00:10.8` A study came out this year in Management Science.
 
-`00:09.2` A big study out this year looked at eleven point six million requests on Fiverr.
+`00:13.8` The researchers looked at eleven point six million requests on Fiverr, the freelance site.
 
-`00:13.9` Replies that came an hour late were about half as likely to get hired.
+`00:19.1` When a reply came an hour late, that person was about half as likely to get hired.
 
-`00:17.8` And Thumbtack says pros who answer inside thirty minutes are twenty-five percent more likely to get hired than pros who take three hours.
+`00:24.1` A day late?
 
-`00:25.7` But the same study found speed stops helping when the reply sounds automated.
+`00:25.2` About ninety percent less.
 
-`00:30.7` So skip the canned auto-reply.
+`00:27.4` Now, Fiverr isn't the trades.
 
-`00:32.7` Here's what to type.
+`00:30.0` But the reason carries over.
 
-`00:34.4` Start with their name.
+`00:32.1` People read your reply speed as a sign of how you'll treat them later.
 
-`00:35.8` Then answer what they asked: yes, we replace water heaters.
+`00:36.1` And it helped on its own, even when the work and the message were just as good.
 
-`00:39.9` Ask one question that moves the job forward, like gas or electric?
+`00:41.1` Thumbtack sees the same thing on its platform.
 
-`00:44.5` Then give them a real time.
+`00:43.8` Pros who answer inside thirty minutes are twenty-five percent more likely to get hired than pros who take three hours.
 
-`00:46.8` I can come by Thursday between two and four.
+`00:50.7` Here's the part people skip.
 
-`00:49.7` Four short lines, sent fast, in your own words.
+`00:52.5` Speed stopped helping when the reply looked automated.
 
-`00:52.8` Send this to whoever answers your phone.
+`00:55.2` So that canned thank you for your inquiry text?
 
-`00:55.6` The full text is in the caption.
+`00:58.4` Fast, sure.
+
+`00:59.5` It just doesn't count.
+
+`01:01.3` So here's what I'd send.
+
+`01:02.8` Start with their name, so it's clearly you.
+
+`01:05.3` Answer exactly what they asked: yes, we replace water heaters.
+
+`01:09.4` Ask one question that moves the job, like gas or electric?
+
+`01:13.3` It gives them an easy reason to write back, and it tells you what to bring.
+
+`01:17.2` Then a real time.
+
+`01:18.7` I can come by Thursday between two and four.
+
+`01:21.5` Fast, human, one question, a time.
+
+`01:24.6` Send this to whoever answers your phone.
+
+`01:27.3` The exact text is in the caption.

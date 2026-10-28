@@ -1,0 +1,64 @@
+{
+ "schema": "pnf.studio.captions.v1",
+ "keywords": {
+  "primary": "how to follow up on a quote",
+  "secondary": [
+   "how to get more jobs as a contractor",
+   "home service business"
+  ],
+  "trades": [
+   "plumbing",
+   "HVAC",
+   "electrical"
+  ]
+ },
+ "instagram": {
+  "caption": "How to follow up on a quote: the one text plumbing, HVAC and electrical business owners can copy.\nServiceTitan's own data shows only 37% of estimates close on the first visit (ServiceTitan blog, 2026). The rest ride on your follow-up.\n\nHi [name], it's [you]. Still want that water heater swapped before winter?\n\nOne name, one job, one question. Send it within 2 days of the quote, again a week after, and once more 1 to 2 days before it expires (Jobber). After 3, close the file.\nSend this to whoever follows up on your quotes.\nWhat do you send when a quote goes quiet? I'll rewrite a few in a future lesson.\nNarrated by an AI version of my own voice.\n\n#homeservicebusiness #plumbingbusiness #hvacbusiness #quotefollowup",
+  "settings": {
+   "aiLabel": true,
+   "shareToFacebook": false
+  }
+ },
+ "tiktok": {
+  "caption": "How to follow up on a quote: one text for plumbing, HVAC and electrical business owners.\nServiceTitan's own data: only 37% of estimates close on the first visit (ServiceTitan blog, 2026).\nHi [name], it's [you]. Still want that water heater swapped before winter?\nWhat do you send when a quote goes quiet?\nNarrated by an AI version of my own voice.\n#homeservicebusiness #plumbingbusiness #hvacbusiness #contractorbusiness #quotefollowup",
+  "settings": {
+   "aiGenerated": true,
+   "commercialDisclosure": false,
+   "suggestKeywords": [
+    "how to follow up on a quote",
+    "contractor follow up",
+    "plumbing business tips"
+   ]
+  }
+ },
+ "facebook": {
+  "caption": "How to follow up on a quote: one text for plumbing, HVAC and electrical business owners.\nServiceTitan's own data shows only 37% of estimates close on the first visit (ServiceTitan blog, 2026).\nHi [name], it's [you]. Still want that water heater swapped before winter?\nSend this to whoever follows up on your quotes.\nNarrated by an AI version of my own voice.\n#homeservicebusiness #contractorbusiness",
+  "settings": {
+   "aiLabel": true,
+   "audience": "Public"
+  }
+ },
+ "youtube": {
+  "title": "How to Follow Up on a Quote: One Text for Plumbing, HVAC and Electrical Owners",
+  "description": "How to follow up on a quote that went quiet, for plumbing, HVAC, electrical and home service business owners.\nServiceTitan's own data shows only 37% of estimates close on the first visit, which leaves most jobs riding on follow-up (\"Follow-Ups 101: Back 2 Basics,\" ServiceTitan blog, 2026). In experiments for \"Speed Is a Signal: When Faster Replies Increase Hiring Likelihood\" (Management Science, 2026), fast replies lost their appeal when people believed a bot or AI wrote them. The one-question idea comes from Dean Jackson's 9-word email.\n\nThe text:\nHi [name], it's [you]. Still want that water heater swapped before winter?\n\nWhen to send it (Jobber Academy, quote follow-up templates):\n1. Within 2 days of the quote.\n2. A week after the quote.\n3. 1 to 2 days before it expires.\nAfter 3 with no reply, close the file.\n\nOne name, one job, one question. Send this to whoever follows up on your quotes.\nThe Text, lesson 2. Previous lesson: how to respond to leads fast.\nFree tools for trade owners at proofnotfluff.com\nNarrated by an AI version of my own voice.\n#homeservicebusiness #contractorbusiness #quotefollowup",
+  "tags": [
+   "how to follow up on a quote",
+   "quote follow up text",
+   "how to get more jobs as a contractor",
+   "plumbing business tips",
+   "hvac business owner",
+   "electrical business tips",
+   "home service business",
+   "contractor business tips",
+   "estimate follow up",
+   "quote folow up"
+  ],
+  "settings": {
+   "madeForKids": false,
+   "aiUse": false,
+   "category": "Education",
+   "language": "English",
+   "visibility": "Public"
+  }
+ }
+}

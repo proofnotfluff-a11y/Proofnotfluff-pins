@@ -383,6 +383,9 @@ def rat_check_problems(spec, path="", allow_test=False):
             continue   # "complaints, not rats found" says the rule, it does not break it
         out.append(f"{m.group(0)!r}: a count is complaints to 311, never rats found")
         break
+    m = re.search(r"\b(?:rat |311 )?calls?\b", blob, re.I)
+    if m:   # the facts gate, Oct 27: 311 takes requests by phone, app and web, so a count is complaints, not calls
+        out.append(f"{m.group(0)!r}: the file counts 311 complaints (phone, app and web), so say 'complaints', not 'calls'")
     m = re.search(r"\b\d[\d,]* (?:of (?:the city's |Chicago's )?\d+ )?neighborhoods\b", blob)
     if m:   # the facts gate, Oct 27: the file counts 77 community areas, not neighborhoods (Chicago has about 200)
         out.append(f"{m.group(0)!r}: the rat file counts community areas; say 'community areas' with a number")

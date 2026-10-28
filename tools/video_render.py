@@ -101,16 +101,16 @@ def hook_scene(spec, sc):
     y = e["y"] + e["h"] + 28
     area = L.text_el("hook-area", s["area"], X0, y, XW, "P", 700, 72, T["white"], lh=1.05, max_lines=2, t_in=t0, t_out=t1, anim="none")
     els.append(area)
-    y = area["y"] + area["h"] + 8
+    y = area["y"] + area["h"] + 24
     h = s["headline"]
     number = h["number"] + (f" {h['unit']}" if h.get("unit") else "")
     num = L.text_el("hook-number", number, X0, y, XW, "P", 700, 300, T["white"], lh=1.0, max_lines=1, shrink_to=150, t_in=t0, t_out=t1, anim="none")
     els.append(num)
-    y = num["y"] + num["h"] + 20
-    lab = L.text_el("hook-label", h["label"], X0, y, XW, "P", 600, 56, T["white"], lh=1.12, max_lines=3, t_in=t0, t_out=t1, anim="none")
+    y = num["y"] + num["h"] + 28
+    lab = L.text_el("hook-label", h["label"], X0, y, XW, "P", 600, 48, T["white"], lh=1.15, max_lines=3, t_in=t0, t_out=t1, anim="none")
     els.append(lab)
     y = lab["y"] + lab["h"] + 26
-    per = L.text_el("hook-period", f"Complaints to City 311\n{s['period']}", X0, y, XW, "I", 600, 44, T["soft"], lh=1.15, max_lines=2, t_in=t0, t_out=t1, anim="none")
+    per = L.text_el("hook-period", f"City 311 data, {s['period']}", X0, y, XW, "I", 600, 42, T["soft"], lh=1.15, max_lines=1, t_in=t0, t_out=t1, anim="none")
     els.append(per)
     over = per["y"] + per["h"] - CB
     if over > 0:   # take the space back from the big number, never from the words
@@ -140,7 +140,7 @@ def scene_head(prefix, spec, sc, title_key, title_lines=2):
 def picture_scene(spec, sc):
     s, t0, t1 = spec["screen"], sc["start"], sc["end"]
     is_map = spec["screen"]["chart"]["kind"] == "map"
-    els, top = scene_head("pic", spec, sc, None if is_map else "picture")
+    els, top = scene_head("pic", spec, sc, "picture", 1 if is_map else 2)
     ch = s["chart"]
     bottom = CB
     if is_map:
@@ -162,7 +162,7 @@ def map_picture(spec, ch, t0, t1, top, bottom, segs):
     areas = [{"n": a["n"], "d": paths[a["n"]], "fill": fill[a["cls"]], "focus": a["cls"] == "focus"} for a in ch["areas"]]
     m = {"id": "pic-map", "kind": "map", "role": "map", "x": round(used[0], 1), "y": round(used[1], 1), "w": round(used[2], 1), "h": round(used[3], 1),
          "areas": areas, "stroke": T["ink2"], "strokeWidth": 2, "focusColor": T["accent"], "focusStroke": T["ink"], "tIn": t0 + 0.25, "tOut": t1,
-         "focusIn": t0 + 0.9, "anim": "fade", "group": None}
+         "focusIn": t0 + 0.9, "restColor": T["ink"], "anim": "fade", "group": None}
     els = [m]
     cx = round(used[0] + used[2] + 36, 1)
     cw = L.RIGHT - cx
@@ -176,20 +176,22 @@ def map_picture(spec, ch, t0, t1, top, bottom, segs):
         blocks = [(t0, next(iter(stats)))]
     legs = []
     for i, (cls, text) in enumerate(ch["legend"]):
-        legs.append((cls, L.text_el(f"pic-leg{i}", text, cx + 52, 0, cw - 52, "I", 600, 42, T["ink2"], lh=1.15, max_lines=2, t_in=t0 + 0.6, t_out=t1)))
+        legs.append((cls, L.text_el(f"pic-leg{i}", text, cx + 52, 0, cw - 52, "I", 600, 48, T["ink2"], lh=1.15, max_lines=2, t_in=t0 + 0.6, t_out=t1)))
     leg_h = sum(e["h"] + 20 for _, e in legs) - 20
     leg_top = bottom - leg_h
+    m["focusSpans"] = [[round(t0 if k == 0 else st_, 3), round(blocks[k + 1][0] if k + 1 < len(blocks) else t1, 3)]
+                       for k, (st_, sid) in enumerate(blocks) if stats[sid].get("who") == "area"] or [[t0, t1]]
     for k, (start, sid) in enumerate(blocks):
         st = stats[sid]
         b0 = t0 if k == 0 else start
         b1 = blocks[k + 1][0] if k + 1 < len(blocks) else t1
         y = top + 8
         mine = st.get("who") == "area"
-        nm = L.text_el(f"pic-stat{k}-name", st["name"], cx, y, cw, "P", 700, 44, T["accent"] if mine else T["ink"], lh=1.08, max_lines=2, t_in=b0, t_out=b1)
+        nm = L.text_el(f"pic-stat{k}-name", st["name"], cx, y, cw, "P", 600, 42, T["muted"], lh=1.12, upper=True, tracking=0.04, max_lines=2, t_in=b0, t_out=b1)
         y = nm["y"] + nm["h"] + 6
-        bg_ = L.text_el(f"pic-stat{k}-big", st["big"], cx, y, cw, "P", 700, 96, T["ink"], lh=1.0, max_lines=1, shrink_to=56, t_in=b0, t_out=b1)
+        bg_ = L.text_el(f"pic-stat{k}-big", st["big"], cx, y, cw, "P", 700, 96, T["accent"] if mine else T["ink"], lh=1.0, max_lines=1, shrink_to=56, t_in=b0, t_out=b1)
         y = bg_["y"] + bg_["h"] + 12
-        lb = L.text_el(f"pic-stat{k}-label", st["label"], cx, y, cw, "I", 600, 42, T["ink2"], lh=1.15, max_lines=4, t_in=b0, t_out=b1)
+        lb = L.text_el(f"pic-stat{k}-label", st["label"], cx, y, cw, "I", 600, 48, T["ink2"], lh=1.15, max_lines=4, t_in=b0, t_out=b1)
         y = lb["y"] + lb["h"] + 18
         els += [nm, bg_, lb]
         if st.get("part"):
@@ -205,7 +207,7 @@ def map_picture(spec, ch, t0, t1, top, bottom, segs):
     yy = leg_top
     for i, (cls, e) in enumerate(legs):
         e["y"] = yy
-        els.append(L.rect(f"pic-leg{i}-swatch", cx, yy + 6, 36, 36, fill[cls], radius=6, t_in=t0 + 0.6, t_out=t1, anim="fade", line=T["ink2"] if cls == "lo" else None))
+        els.append(L.rect(f"pic-leg{i}-swatch", cx, yy + 5, 40, 40, fill[cls], radius=6, t_in=t0 + 0.6, t_out=t1, anim="fade", line=T["ink2"] if cls == "lo" else None))
         els.append(e)
         yy += e["h"] + 20
     return els
@@ -304,19 +306,23 @@ def why_scene(spec, sc):
     y = tl["y"] + tl["h"] + 48
     rows = w.get("bars") or (s.get("whyBars") if w.get("number") else None)
     if rows:
-        card_h = min(CB - y, 72 + 136 * len(rows))
+        pitch = 48 + 12 + 96 + 32
+        card_h = min(CB - y, 56 + pitch * len(rows))
         els.append(L.rect("why-card", X0, y, XW, card_h, T["card"], radius=24, t_in=t0 + 0.4, t_out=t1, anim="fade", role="container", line=T["line"]))
         vmax = max(abs(r["value"]) for r in rows) or 1
-        yy = y + 36
+        inner_x, inner_w = X0 + 36, XW - 72
+        col = max(L.text_width(r["shown"], "P", 700, 64) for r in rows) + 28   # the value column never meets a bar
+        yy = y + 32
         for i, r in enumerate(rows):
             ti = t0 + 0.5 + 0.2 * i
-            lab = L.text_el(f"why-row{i}-label", r["label"], X0 + 36, yy, XW - 72, "I", 600, 44, T["ink"], lh=1.12, max_lines=1, t_in=ti, t_out=t1)
-            bw = max(28, round(520 * abs(r["value"]) / vmax))
-            bar = L.rect(f"why-row{i}-bar", X0 + 36, yy + 58, bw, 36, T["accent"] if r.get("focus") else T["ink"], radius=6, t_in=ti, t_out=t1, anim="grow")
-            val = L.text_el(f"why-row{i}-value", r["shown"], X0 + 36 + bw + 16, yy + 50, L.RIGHT - 36 - (X0 + 36 + bw + 16), "P", 700, 48,
-                            T["accent"] if r.get("focus") else T["ink"], lh=1.0, max_lines=1, shrink_to=42, t_in=ti + 0.4, t_out=t1)
+            lab = L.text_el(f"why-row{i}-label", r["label"], inner_x, yy, inner_w, "P", 600, 42, T["muted"], lh=1.12, upper=True, tracking=0.04, max_lines=1, t_in=ti, t_out=t1)
+            bw = max(12, round((inner_w - col - 16) * abs(r["value"]) / vmax))
+            bar = L.rect(f"why-row{i}-bar", inner_x, yy + 60, bw, 96, T["accent"] if r.get("focus") else T["ink"], radius=8, t_in=ti, t_out=t1, anim="grow")
+            vw = L.text_width(r["shown"], "P", 700, 64)
+            val = L.text_el(f"why-row{i}-value", r["shown"], inner_x + bw + 16, yy + 76, vw + 0.5, "P", 700, 64,
+                            T["accent"] if r.get("focus") else T["ink2"], lh=1.0, max_lines=1, t_in=ti + 0.4, t_out=t1)
             els += [lab, bar, val]
-            yy += 136
+            yy += pitch
     elif w.get("number"):
         card_h = CB - y
         if card_h >= 220:
@@ -333,14 +339,23 @@ def end_scene(spec, sc):
     t0, t1 = sc["start"], sc["end"]
     ec = spec["endCard"]
     els = [bg("end", T["ink"], t0, t1)] + brand_bars("end", t0, t1)
-    a = L.text_el("end-line", ec["line"], X0, 420, XW, "P", 700, 88, T["white"], lh=1.05, max_lines=2, t_in=t0, t_out=t1, anim="rise")
+    e = eyebrow("end", spec["screen"].get("eyebrow", "CHICAGO RAT CHECK"), t0, t1, T["accentInk"])
+    els.append(e)
+    a = L.text_el("end-line", ec["line"], X0, e["y"] + e["h"] + 40, XW, "P", 700, 88, T["white"], lh=1.05, max_lines=2, t_in=t0, t_out=t1, anim="rise")
     els.append(a)
     p = L.text_el("end-path", ec["path"], X0, a["y"] + a["h"] + 36, XW, "P", 700, 76, T["accentInk"], lh=1.1, max_lines=1, shrink_to=48, t_in=t0 + 0.2, t_out=t1, anim="rise")
     els.append(p)
     sub = L.text_el("end-sub", ec.get("sub", "The free Chicago Rat Index, updated every Monday."), X0, p["y"] + p["h"] + 40, XW, "I", 400, 46, T["soft"],
                     lh=1.25, max_lines=3, t_in=t0 + 0.4, t_out=t1)
     els.append(sub)
-    els.append(L.text_el("end-brand", "ProofNotFluff", X0, 1150, XW, "P", 700, 48, T["white"], lh=1.15, max_lines=1, t_in=t0 + 0.4, t_out=t1))
+    h = spec["screen"]["headline"]
+    cy = sub["y"] + sub["h"] + 64
+    who = L.text_el("end-recap-area", spec["screen"]["area"], X0, cy, XW, "P", 600, 42, T["soft"], lh=1.12, upper=True, tracking=0.04,
+                    max_lines=1, t_in=t0 + 0.5, t_out=t1)
+    big = L.text_el("end-recap-number", h["number"] + (f" {h['unit']}" if h.get("unit") else ""), X0, who["y"] + who["h"] + 8, XW, "P", 700, 96,
+                    T["white"], lh=1.0, max_lines=1, shrink_to=60, t_in=t0 + 0.5, t_out=t1)
+    els += [who, big]
+    els.append(L.text_el("end-brand", "ProofNotFluff", X0, 1186, XW, "P", 700, 48, T["white"], lh=1.15, max_lines=1, t_in=t0 + 0.4, t_out=t1))
     return els
 
 
@@ -377,10 +392,52 @@ def align(say_words, heard):
     return out
 
 
+GLUE = {"a", "an", "the", "of", "to", "in", "on", "at", "for", "and", "or", "but", "is", "are", "was", "were", "be", "by", "with",
+        "from", "that", "this", "its", "it's", "if", "as", "than", "just", "up", "one", "more", "less", "fewer", "about", "over", "under",
+        "nearly", "almost", "only"}
+
+
+CAP_GAP = 8   # extra px between caption words, so the highlight pill never touches its neighbors
+
+BREAK_BEFORE = {"are", "is", "was", "were", "in", "on", "to", "and", "but", "if"}
+
+
+def phrase_breaks(words, chunks, fits=None):
+    """Move a chunk's tail into the next chunk when it ends on a word that waits for the next one ('are', 'the', 'of'),
+    or splits a two-word name ('South | Chicago'), so captions break at phrase ends."""
+    out = [list(c) for c in chunks]
+    for i in range(len(out) - 1):
+        while (len(out[i + 1]) < 3 and len(out[i]) > 3 and not re.search(r"[.!?]$", words[out[i][-1]])
+               and (fits is None or fits(" ".join(words[j] for j in [out[i][-1]] + out[i + 1])))):
+            out[i + 1].insert(0, out[i].pop())   # no one- or two-word tail card
+        for _ in range(3):
+            if len(out[i]) <= 2:
+                break
+            last, nxt = words[out[i][-1]], words[out[i + 1][0]]
+            glue = last.lower().strip(",.") in GLUE and not re.search(r"[,.!?]$", last)
+            name = last[:1].isupper() and nxt[:1].isupper() and not re.search(r"[,.!?]$", last)
+            count = bool(re.search(r"\d", last)) and not re.search(r"[,.!?%]$", last) and nxt[:1].islower()   # "45 | rat complaints"
+            if not (glue or name or count):
+                break
+            out[i + 1].insert(0, out[i].pop())
+        if len(out[i + 1]) <= 4 and not re.search(r"[.!?]$", words[out[i][-1]]):
+            # a short tail card joins the clause it belongs to: break after the last comma, else before the last
+            # 'are'/'is'/'in'... in the chunk, when the moved words and the tail still fit the caption's two lines
+            cand = [k + 1 for k, wi in enumerate(out[i][:-1]) if re.search(r",$", words[wi])] or \
+                   [k for k, wi in enumerate(out[i]) if k >= 3 and words[wi].lower() in BREAK_BEFORE]
+            if cand:
+                k = cand[-1]
+                tail = out[i][k:] + out[i + 1]
+                if fits is None or fits(" ".join(words[j] for j in tail)):
+                    out[i + 1] = tail
+                    out[i] = out[i][:k]
+    return [c for c in out if c]
+
+
 def captions(tl):
     out = []
-    font, weight, size, lh = "I", 600, 58, 1.25
-    inner = XW - 48
+    font, weight, size, lh = "I", 600, 52, 1.25
+    inner = XW - 48 - 6 * CAP_GAP   # wrap width leaves the extra word gaps room on a line
     for seg in tl["segments"]:
         if seg["scene"] == "end":
             continue
@@ -401,6 +458,7 @@ def captions(tl):
                 cur = []
         if cur:
             chunks.append(cur)
+        chunks = phrase_breaks(words, chunks, lambda t: L.wrap(t, font, weight, size, inner, 0, 2) is not None)
         merged = []   # no fragment cards: a chunk under 4 words joins its neighbor when the two fit in 2 lines
         for ch in chunks:
             if merged and (len(ch) < 4 or len(merged[-1]) < 4) and L.wrap(" ".join(words[j] for j in merged[-1] + ch), font, weight, size, inner, 0, 2):
@@ -410,7 +468,7 @@ def captions(tl):
         chunks = merged
         on_ink = seg["scene"] == "hook"
         colors = ({"color": T["white"], "dim": T["soft"], "pill": T["accentInk"], "pillText": T["ink"]} if on_ink else
-                  {"color": T["ink"], "dim": T["ink2"], "pill": T["accent"], "pillText": T["white"]})
+                  {"color": T["ink"], "dim": T["ink2"], "pill": T["ink"], "pillText": T["white"]})   # accent stays the data's
         for ci, ch in enumerate(chunks):
             text = " ".join(words[j] for j in ch)
             lines = L.wrap(text, font, weight, size, inner, 0, 2) or [text]
@@ -422,16 +480,16 @@ def captions(tl):
                 row = []
                 for m in range(n):
                     before = " ".join(words[ch[k + j]] for j in range(m))
-                    x = L.text_width(before + (" " if before else ""), font, weight, size)
+                    x = L.text_width(before + (" " if before else ""), font, weight, size) + CAP_GAP * m   # room for the pill
                     j = ch[k + m]
                     nxt = times[j + 1][0] if j + 1 < len(words) else seg["end"]
                     row.append({"text": words[j], "tIn": times[j][0], "tOut": round(max(times[j][1], nxt), 3), "x": round(x, 1),
                                 "w": round(L.text_width(words[j], font, weight, size), 1)})
                 lw.append(row)
                 k += n
-            wpx = max(L.text_width(l, font, weight, size) for l in lines)
+            wpx = max(L.text_width(l, font, weight, size) + CAP_GAP * (len(l.split()) - 1) for l in lines)
             out.append({"id": f"cap-{seg['key']}-{ci}", "kind": "caption", "role": "text", "text": text, "lines": lines, "lineWords": lw,
-                        "x": X0 + 24, "y": CAP_Y + 24 + (145 - len(lines) * size * lh) / 2, "w": round(wpx, 1), "h": round(len(lines) * size * lh),
+                        "x": X0 if on_ink else X0 + 24, "y": CAP_Y + 24 + (145 - len(lines) * size * lh) / 2, "w": round(wpx, 1), "h": round(len(lines) * size * lh),
                         "slotW": inner, "font": font, "weight": weight, "size": size, "lh": lh, **colors,
                         "tIn": round(t_in, 3), "tOut": round(t_out, 3), "group": None, "seg": seg["key"]})
     return out
@@ -572,9 +630,14 @@ def envelope(wav, fps=30):
     return [round(min(1.0, v / top), 3) if top else 0 for v in env]
 
 
-def wave_el(env):
-    return {"id": "wave", "kind": "wave", "role": "decor", "x": X0, "y": 1290, "w": XW, "h": 150, "bars": 24, "colors": T["bars"],
-            "env": env, "tIn": 0.0, "tOut": None, "anim": "none", "group": None}
+INK_SCENES = ("hook", "end")
+
+
+def wave_el(env, scenes=None):
+    """One quiet color per background (ink2 on canvas, soft on ink), so the data keeps the only accent."""
+    spans = [[sc["start"], sc["end"], T["soft"] if sc["scene"] in INK_SCENES else T["ink2"]] for sc in (scenes or [])]
+    return {"id": "wave", "kind": "wave", "role": "decor", "x": X0, "y": 1290, "w": XW, "h": 150, "bars": 24, "colors": [T["ink2"]],
+            "colorSpans": spans, "env": env, "tIn": 0.0, "tOut": None, "anim": "none", "group": None}
 
 
 def stage_public():
@@ -615,7 +678,7 @@ def render(spec_path, words_path, out_dir, browser=None):
     stage_public()
     voice_dir = os.path.dirname(os.path.abspath(words_path))
     env_wav = voice_track(props["timeline"]["segments"], voice_dir, props["seconds"], os.path.join(out_dir, "voice-only.wav"))
-    props["elements"].append(wave_el(envelope(env_wav, props["fps"])))
+    props["elements"].append(wave_el(envelope(env_wav, props["fps"]), props["timeline"]["scenes"]))
     os.remove(env_wav)
     json.dump(props, open(props_path, "w"), indent=None)
     silent = os.path.join(out_dir, "silent.mp4")
@@ -669,7 +732,13 @@ def contact_sheet(mp4, props, out):
     files = []
     for i, t in enumerate(times):
         f = os.path.join(tmp, f"{i:02d}.jpg")
-        run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{t:.3f}", "-i", mp4, "-frames:v", "1", "-vf", "scale=360:640", f])
+        for back in (0, 0.2, 0.5):   # a seek past the last decodable frame writes nothing: step back, never skip the end card
+            run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{max(0, t - back):.3f}", "-i", mp4, "-frames:v", "1", "-vf", "scale=360:640", f])
+            if os.path.exists(f):
+                t = round(max(0, t - back), 2)
+                break
+        else:
+            raise RenderError(f"no frame at {t:.2f} s for the contact sheet")
         files.append((f, t))
     from PIL import Image, ImageDraw
     cols = 4

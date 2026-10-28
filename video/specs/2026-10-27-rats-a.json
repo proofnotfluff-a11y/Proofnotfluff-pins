@@ -451,11 +451,11 @@
      "big": "45",
      "label": "rat complaints, 30 days to Oct 26"
     },
-    "change": {
-     "who": "area",
-     "name": "South Chicago",
-     "big": "+221.4%",
-     "label": "vs. the same 30 days last year"
+    "cityChange": {
+     "who": "city",
+     "name": "All of Chicago",
+     "big": "+10.2%",
+     "label": "rat complaints vs. the same 30 days last year"
     },
     "areasUp": {
      "who": "city",
@@ -466,6 +466,12 @@
       44,
       77
      ]
+    },
+    "change": {
+     "who": "area",
+     "name": "South Chicago",
+     "big": "+221.4%",
+     "label": "vs. the same 30 days last year"
     }
    }
   },
@@ -495,7 +501,7 @@
     "title": "More than triple last year"
    },
    "why": {
-    "title": "Complaints are rising across the city",
+    "title": "South Chicago is rising far faster than the city",
     "number": "+10.2%",
     "numberId": "cityChange",
     "numberLabel": "Chicago rat complaints vs. the same 30 days last year"
@@ -525,19 +531,14 @@
    "tts": "Forty-five rat complaints. Last year, fourteen."
   },
   {
-   "say": "One Chicago neighborhood's rat calls tripled.",
-   "tts": "One Chicago neighborhood's rat calls tripled."
+   "say": "One Chicago community area's rat complaints tripled.",
+   "tts": "One Chicago community area's rat complaints tripled."
   },
   {
-   "say": "Triple the rat calls in South Chicago.",
-   "tts": "Triple the rat calls in South Chicago."
+   "say": "Triple the rat complaints in South Chicago.",
+   "tts": "Triple the rat complaints in South Chicago."
   }
  ],
- "hook": {
-  "say": "Triple the rat calls in South Chicago.",
-  "tts": "Triple the rat calls in South Chicago.",
-  "index": 3
- },
  "lines": [
   {
    "id": "l1",
@@ -553,14 +554,23 @@
   {
    "id": "l2",
    "scene": "picture",
-   "say": "South Chicago logged 45 rat complaints.",
-   "tts": "South Chicago logged forty-five rat complaints.",
+   "say": "The South Chicago community area logged 45 rat complaints.",
+   "tts": "The South Chicago community area logged forty-five rat complaints.",
    "show": [
     "d30"
    ]
   },
   {
    "id": "l3",
+   "scene": "picture",
+   "say": "Citywide, rat complaints are up 10.2% on last year.",
+   "tts": "Citywide, rat complaints are up ten point two percent on last year.",
+   "show": [
+    "cityChange"
+   ]
+  },
+  {
+   "id": "l4",
    "scene": "picture",
    "say": "And 44 of the city's 77 community areas are running above last year.",
    "tts": "And forty-four of the city's seventy-seven community areas are running above last year.",
@@ -570,17 +580,17 @@
    ]
   },
   {
-   "id": "l4",
+   "id": "l5",
    "scene": "compare",
-   "say": "The same 30 days last year? Just 14.",
-   "tts": "The same thirty days last year? Just fourteen.",
+   "say": "South Chicago, the same 30 days last year? Just 14.",
+   "tts": "South Chicago, the same thirty days last year? Just fourteen.",
    "show": [
     "windowDays",
     "prev30"
    ]
   },
   {
-   "id": "l5",
+   "id": "l6",
    "scene": "compare",
    "say": "That's up 221.4%, more than triple.",
    "tts": "That's up two hundred twenty-one point four percent, more than triple.",
@@ -589,19 +599,10 @@
    ]
   },
   {
-   "id": "l6",
-   "scene": "why",
-   "say": "Citywide, rat complaints are up 10.2% on last year.",
-   "tts": "Citywide, rat complaints are up ten point two percent on last year.",
-   "show": [
-    "cityChange"
-   ]
-  },
-  {
    "id": "l7",
    "scene": "why",
-   "say": "If you run a pest control or cleaning crew, South Chicago is where the calls are picking up.",
-   "tts": "If you run a pest control or cleaning crew, South Chicago is where the calls are picking up.",
+   "say": "If you run a pest control or cleaning crew, South Chicago is one to watch.",
+   "tts": "If you run a pest control or cleaning crew, South Chicago is one to watch.",
    "show": []
   }
  ],
@@ -613,7 +614,7 @@
   "path": "proofnotfluff.com/rats"
  },
  "captions": {
-  "instagram": "South Chicago logged 45 rat complaints to Chicago 311 in the 30 days to Oct 26, up from 14 in the same days last year. Citywide, complaints are up 10.2%. These are complaints to 311, not rats found.\n\nSee your neighborhood free: proofnotfluff.com/rats (link in bio)\nNarrated by an AI voice.\n\n#chicago #southchicago #pestcontrol #chicagorats #smallbusiness"
+  "instagram": "The South Chicago community area logged 45 rat complaints to Chicago 311 in the 30 days to Oct 26, up from 14 in the same days last year. Citywide, complaints are up 10.2%. These are complaints to 311, not rats found.\n\nSee your neighborhood free: proofnotfluff.com/rats (link in bio)\nNarrated by an AI voice.\n\n#chicago #southchicago #pestcontrol #chicagorats #smallbusiness"
  },
  "voice": {
   "model": "eleven_v4",
@@ -630,28 +631,33 @@
   "spec_lint": {
    "pass": true,
    "problems": [],
-   "at": "2026-10-28T03:32:55+00:00",
-   "tool": "tools/spec_lint.py@6b8d142e07ca"
+   "at": "2026-10-28T03:53:19+00:00",
+   "tool": "tools/spec_lint.py@19813f0abe37"
   },
   "voice_lint": {
    "pass": true,
    "problems": [],
-   "at": "2026-10-28T03:32:55+00:00",
+   "at": "2026-10-28T03:53:19+00:00",
    "tool": "tools/voice_lint.py@0d489c55a0e9"
   },
   "legal_scan": {
    "pass": true,
    "problems": [],
-   "at": "2026-10-28T03:32:55+00:00",
+   "at": "2026-10-28T03:53:19+00:00",
    "tool": "tools/legal_scan.py@79a15527007e"
   },
   "facts_code": {
    "pass": true,
    "problems": [],
    "checked": 6,
-   "at": "2026-10-28T03:32:55+00:00",
-   "tool": "tools/video_gates.py@38adda08b9e0"
+   "at": "2026-10-28T03:53:19+00:00",
+   "tool": "tools/video_gates.py@65a877cd74c8"
   }
  },
- "golden": true
+ "golden": true,
+ "hook": {
+  "say": "South Chicago rat complaints more than tripled.",
+  "tts": "South Chicago rat complaints more than tripled.",
+  "index": 0
+ }
 }

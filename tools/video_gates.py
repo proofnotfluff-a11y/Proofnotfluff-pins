@@ -145,6 +145,7 @@ def selftest():
     plant("an unapproved voice", "spec_lint", lambda s: s["voice"].update(voiceIds=["21m00Tcm4TlvDq8ikWAM"]))
     plant("a caption with no AI voice line", "spec_lint", lambda s: s["captions"].update(instagram=s["captions"]["instagram"].replace("Narrated by an AI voice.", "")))
     plant("community areas called neighborhoods", "spec_lint", lambda s: s["lines"][2].update(say="It's one of 44 of the city's 77 neighborhoods running above last year."))
+    plant("complaints called calls", "spec_lint", lambda s: s["lines"][1].update(say="Lake View logged 300 rat calls."))
     plant("an address on screen", "spec_lint", lambda s: s["screen"]["scenes"]["why"].update(title="Calls near 4100 N Hampton Dr"))
     for b in bad:
         print("FAIL", b)

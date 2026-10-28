@@ -3,30 +3,30 @@
  "videoId": "2026-10-27-rats-a",
  "gate": "hook-pick",
  "model": "claude-opus-5-5",
- "skillCommit": "826eed5",
+ "skillCommit": "bee08dd",
  "prompt": "video/prompts/pairwise-hook.md",
  "inputs": [
   "4 hooks as heard, 12 ordered pairs (tools/video_pairwise.py pairs --items 4 --seed 2026-10-27-rats-a)"
  ],
  "score": {
   "points": [
-   3.0,
-   0.0,
-   3.0,
-   6.0
+   6.0,
+   2.0,
+   1.0,
+   3.0
   ],
   "judge1": [
    {
     "pair": 1,
-    "pick": "X"
+    "pick": "Y"
    },
    {
     "pair": 2,
-    "pick": "X"
+    "pick": "Y"
    },
    {
     "pair": 3,
-    "pick": "X"
+    "pick": "Y"
    },
    {
     "pair": 4,
@@ -38,11 +38,11 @@
    },
    {
     "pair": 6,
-    "pick": "Y"
+    "pick": "X"
    },
    {
     "pair": 7,
-    "pick": "Y"
+    "pick": "X"
    },
    {
     "pair": 8,
@@ -54,15 +54,15 @@
    },
    {
     "pair": 10,
-    "pick": "X"
+    "pick": "Y"
    },
    {
     "pair": 11,
-    "pick": "Y"
+    "pick": "X"
    },
    {
     "pair": 12,
-    "pick": "Y"
+    "pick": "X"
    }
   ],
   "judge2": [
@@ -72,7 +72,7 @@
    },
    {
     "pair": 2,
-    "pick": "X"
+    "pick": "Y"
    },
    {
     "pair": 3,
@@ -92,7 +92,7 @@
    },
    {
     "pair": 7,
-    "pick": "Y"
+    "pick": "X"
    },
    {
     "pair": 8,
@@ -118,8 +118,9 @@
  },
  "pass": true,
  "reasons": [
-  "Hook 4 'Triple the rat calls in South Chicago.' won all three of its pairs with both judges in both orders; judges cited the named place and 'calls' reading as work."
+  "hook 0 wins with 6 of 12 points: 'South Chicago rat complaints more than tripled.' (round 2, after the facts gate's 'calls' fix to hooks 2 and 3)"
  ],
  "round": 0,
- "at": "2026-10-27T22:16:03-05:00"
+ "at": "2026-10-27T22:53:01-05:00",
+ "rerunAfter": "the facts gate's 'calls' finding on hooks 3 and 4"
 }

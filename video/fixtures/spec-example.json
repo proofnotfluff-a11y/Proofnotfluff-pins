@@ -480,8 +480,8 @@
  },
  "hooks": [
   {
-   "say": "Lake View rat calls just doubled.",
-   "tts": "Lake View rat calls just doubled."
+   "say": "Lake View rat complaints just doubled.",
+   "tts": "Lake View rat complaints just doubled."
   },
   {
    "say": "Twice the rat complaints in Lake View.",
@@ -493,8 +493,8 @@
   }
  ],
  "hook": {
-  "say": "Lake View rat calls just doubled.",
-  "tts": "Lake View rat calls just doubled.",
+  "say": "Lake View rat complaints just doubled.",
+  "tts": "Lake View rat complaints just doubled.",
   "index": 0
  },
  "lines": [
@@ -559,8 +559,8 @@
   {
    "id": "l7",
    "scene": "why",
-   "say": "If you run a pest control or cleaning crew, this is where the calls are coming from right now.",
-   "tts": "If you run a pest control or cleaning crew, this is where the calls are coming from right now.",
+   "say": "If you run a pest control or cleaning crew, this is where the complaints are coming in right now.",
+   "tts": "If you run a pest control or cleaning crew, this is where the complaints are coming in right now.",
    "show": []
   }
  ],

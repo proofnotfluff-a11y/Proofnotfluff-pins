@@ -68,13 +68,14 @@ const Rect = ({e, t, driftY}) => {
 const MapEl = ({e, t, driftY}) => {
   const {opacity} = fade(e, t);
   const focusP = interpolate(t, [e.focusIn || e.tIn, (e.focusIn || e.tIn) + 0.5], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const on = !e.focusSpans || e.focusSpans.some((s) => t >= s[0] && t < s[1]);   // accent only while its own number shows
   return (
     <svg style={{position: 'absolute', left: 0, top: driftY, opacity}} width={1080} height={1920} viewBox="0 0 1080 1920">
       {e.areas.map((a) => (
-        <path key={a.n} d={a.d} fill={a.focus ? e.focusColor : a.fill} fillOpacity={a.focus ? 0.25 + 0.75 * focusP : 1}
-          stroke={e.stroke} strokeWidth={a.focus ? 0 : (e.strokeWidth || 1.5)} strokeLinejoin="round" />
+        <path key={a.n} d={a.d} fill={a.focus && on ? e.focusColor : (a.focus ? e.restColor : a.fill)} fillOpacity={a.focus && on ? 0.25 + 0.75 * focusP : 1}
+          stroke={e.stroke} strokeWidth={a.focus && on ? 0 : (e.strokeWidth || 1.5)} strokeLinejoin="round" />
       ))}
-      {e.areas.filter((a) => a.focus).map((a) => (
+      {e.areas.filter((a) => a.focus && on).map((a) => (
         <path key={'f' + a.n} d={a.d} fill="none" stroke={e.focusStroke} strokeWidth={4} strokeLinejoin="round" />
       ))}
     </svg>
@@ -104,6 +105,9 @@ const Line = ({e, t, driftY}) => {
 const Wave = ({e, frame}) => {
   // The voice's loudness, frame by frame, as a row of bars in the five brand colors: it moves with every syllable.
   const v = e.env[Math.min(e.env.length - 1, frame)] || 0;
+  const tt = frame / 30;
+  const span = (e.colorSpans || []).find((c) => tt >= c[0] && tt < c[1]);
+  const color = span ? span[2] : e.colors[0];
   const gap = 12;
   const bw = (e.w - gap * (e.bars - 1)) / e.bars;
   return (
@@ -113,7 +117,7 @@ const Wave = ({e, frame}) => {
         const h = Math.max(10, e.h * Math.min(1, v * shape));
         return (
           <div key={i} style={{position: 'absolute', left: i * (bw + gap), top: (e.h - h) / 2, width: bw, height: h,
-            borderRadius: bw / 2, background: e.colors[i % e.colors.length]}} />
+            borderRadius: bw / 2, background: color}} />
         );
       })}
     </div>
@@ -143,8 +147,8 @@ const Caption = ({c, t}) => {
     <div style={{position: 'absolute', left: c.x, top: c.y, width: Math.ceil(c.w) + 4, height: c.h, opacity: fadeIn,
       fontFamily: FAMILIES[c.font], fontWeight: c.weight, fontSize: c.size, lineHeight: `${lh}px`, whiteSpace: 'pre'}}>
       {cur ? (
-        <div style={{position: 'absolute', left: cur.x - 6, top: cur.li * lh + lh * 0.08, width: cur.w + 12, height: lh * 0.84,
-          background: c.pill, borderRadius: 12}} />
+        <div style={{position: 'absolute', left: cur.x - 10, top: cur.li * lh + lh * 0.04, width: cur.w + 20, height: lh * 0.92,
+          background: c.pill, borderRadius: 8}} />
       ) : null}
       {flat.map((w, i) => (
         <span key={i} style={{position: 'absolute', left: w.x, top: w.li * lh,

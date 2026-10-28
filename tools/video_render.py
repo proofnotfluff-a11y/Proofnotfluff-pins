@@ -110,7 +110,7 @@ def hook_scene(spec, sc):
     lab = L.text_el("hook-label", h["label"], X0, y, XW, "P", 600, 56, T["white"], lh=1.12, max_lines=3, t_in=t0, t_out=t1, anim="none")
     els.append(lab)
     y = lab["y"] + lab["h"] + 26
-    per = L.text_el("hook-period", f"Complaints to City 311, {s['period']}", X0, y, XW, "I", 600, 44, T["soft"], lh=1.15, max_lines=2, t_in=t0, t_out=t1, anim="none")
+    per = L.text_el("hook-period", f"Complaints to City 311\n{s['period']}", X0, y, XW, "I", 600, 44, T["soft"], lh=1.15, max_lines=2, t_in=t0, t_out=t1, anim="none")
     els.append(per)
     over = per["y"] + per["h"] - CB
     if over > 0:   # take the space back from the big number, never from the words
@@ -155,10 +155,10 @@ def map_picture(spec, ch, t0, t1, top, bottom):
     s = spec["screen"]
     mw = 420
     paths, cent, used = L.map_paths((X0, top, mw, bottom - top))
-    fill = {"hi": T["soft"], "lo": T["line"], "focus": T["accent"]}
+    fill = {"hi": T["ink2"], "lo": T["line"], "focus": T["accent"]}
     areas = [{"n": a["n"], "d": paths[a["n"]], "fill": fill[a["cls"]], "focus": a["cls"] == "focus"} for a in ch["areas"]]
     m = {"id": "pic-map", "kind": "map", "role": "map", "x": round(used[0], 1), "y": round(used[1], 1), "w": round(used[2], 1), "h": round(used[3], 1),
-         "areas": areas, "stroke": T["canvas"], "focusColor": T["accent"], "focusStroke": T["ink"], "tIn": t0 + 0.25, "tOut": t1,
+         "areas": areas, "stroke": T["canvas"], "focusColor": T["accent"], "focusStroke": T["canvas"], "tIn": t0 + 0.25, "tOut": t1,
          "focusIn": t0 + 0.9, "anim": "fade", "group": "pic"}
     els = [m]
     cx = X0 + mw + 44

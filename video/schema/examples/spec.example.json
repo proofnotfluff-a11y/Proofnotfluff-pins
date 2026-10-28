@@ -521,8 +521,8 @@
   {
    "id": "l3",
    "scene": "picture",
-   "say": "It's one of 44 of the city's 77 neighborhoods running above last year.",
-   "tts": "It's one of forty-four of the city's seventy-seven neighborhoods running above last year.",
+   "say": "It's one of 44 of the city's 77 community areas running above last year.",
+   "tts": "It's one of forty-four of the city's seventy-seven community areas running above last year.",
    "show": [
     "areasUp",
     "areasTotal"

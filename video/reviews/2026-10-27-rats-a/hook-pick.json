@@ -1,0 +1,125 @@
+{
+ "schema": "pnf.video.review.v1",
+ "videoId": "2026-10-27-rats-a",
+ "gate": "hook-pick",
+ "model": "claude-opus-5-5",
+ "skillCommit": "826eed5",
+ "prompt": "video/prompts/pairwise-hook.md",
+ "inputs": [
+  "4 hooks as heard, 12 ordered pairs (tools/video_pairwise.py pairs --items 4 --seed 2026-10-27-rats-a)"
+ ],
+ "score": {
+  "points": [
+   3.0,
+   0.0,
+   3.0,
+   6.0
+  ],
+  "judge1": [
+   {
+    "pair": 1,
+    "pick": "X"
+   },
+   {
+    "pair": 2,
+    "pick": "X"
+   },
+   {
+    "pair": 3,
+    "pick": "X"
+   },
+   {
+    "pair": 4,
+    "pick": "Y"
+   },
+   {
+    "pair": 5,
+    "pick": "X"
+   },
+   {
+    "pair": 6,
+    "pick": "Y"
+   },
+   {
+    "pair": 7,
+    "pick": "Y"
+   },
+   {
+    "pair": 8,
+    "pick": "Y"
+   },
+   {
+    "pair": 9,
+    "pick": "X"
+   },
+   {
+    "pair": 10,
+    "pick": "X"
+   },
+   {
+    "pair": 11,
+    "pick": "Y"
+   },
+   {
+    "pair": 12,
+    "pick": "Y"
+   }
+  ],
+  "judge2": [
+   {
+    "pair": 1,
+    "pick": "X"
+   },
+   {
+    "pair": 2,
+    "pick": "X"
+   },
+   {
+    "pair": 3,
+    "pick": "X"
+   },
+   {
+    "pair": 4,
+    "pick": "Y"
+   },
+   {
+    "pair": 5,
+    "pick": "X"
+   },
+   {
+    "pair": 6,
+    "pick": "X"
+   },
+   {
+    "pair": 7,
+    "pick": "Y"
+   },
+   {
+    "pair": 8,
+    "pick": "Y"
+   },
+   {
+    "pair": 9,
+    "pick": "X"
+   },
+   {
+    "pair": 10,
+    "pick": "Y"
+   },
+   {
+    "pair": 11,
+    "pick": "Y"
+   },
+   {
+    "pair": 12,
+    "pick": "Y"
+   }
+  ]
+ },
+ "pass": true,
+ "reasons": [
+  "Hook 4 'Triple the rat calls in South Chicago.' won all three of its pairs with both judges in both orders; judges cited the named place and 'calls' reading as work."
+ ],
+ "round": 0,
+ "at": "2026-10-27T22:40:00-05:00"
+}

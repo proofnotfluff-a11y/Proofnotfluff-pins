@@ -175,8 +175,18 @@ def c_numbers_and_band(mp4, props, work):
     frames = sample_frames(mp4, q["ocrPerSecond"], os.path.join(work, "ocr"))
     want = expected_numbers(props)
     seen, extra, outside = {}, [], []
+    # drawn shapes the props mark as decor (the voice wave, the brand bars) are not text: a rounded bar at rest can
+    # read as "0", so a read whose center sits inside one is ignored (Oct 27, the first CI render)
+    decor = [e for e in props.get("elements", []) if e.get("role") == "decor"]
+
+    def in_decor(w, t):
+        cx, cy = w["x"] + w["w"] / 2, w["y"] + w["h"] / 2
+        return any(e["x"] - 4 <= cx <= e["x"] + e["w"] + 4 and e["y"] - 4 <= cy <= e["y"] + e["h"] + 4
+                   and e["tIn"] <= t and (e.get("tOut") is None or t < e["tOut"]) for e in decor)
     for f, t in frames:
         for w in ocr_words(f):
+            if in_decor(w, t):
+                continue
             tok = w["text"].strip(".,;:()?!\"'")
             if NUMTOK.match(tok) and w["conf"] >= 60:
                 n = norm_num(tok)

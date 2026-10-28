@@ -97,7 +97,11 @@ def text_el(id_, text, x, y, width, fam, weight, size, color, lh=1.15, tracking=
     s = text.upper() if upper else text
     size0 = size
     while True:
-        lines = wrap(s, fam, weight, size, width, tracking, max_lines)
+        if "\n" in s:   # deliberate line breaks: each part wraps on its own
+            parts = [wrap(x, fam, weight, size, width, tracking, max_lines) for x in s.split("\n")]
+            lines = None if any(x is None for x in parts) or sum(len(x) for x in parts) > max_lines else [l for x in parts for l in x]
+        else:
+            lines = wrap(s, fam, weight, size, width, tracking, max_lines)
         if lines:
             break
         floor = max(MIN_TEXT, shrink_to or size0)
@@ -109,7 +113,7 @@ def text_el(id_, text, x, y, width, fam, weight, size, color, lh=1.15, tracking=
     w = max(widths) if widths else 0
     h = round(len(lines) * size * lh)
     bx = x if align == "left" else (x + width - w if align == "right" else x + (width - w) / 2)
-    return {"id": id_, "kind": "text", "role": role, "text": s, "lines": lines, "x": round(bx, 1), "y": round(y, 1),
+    return {"id": id_, "kind": "text", "role": role, "text": s.replace("\n", " "), "lines": lines, "x": round(bx, 1), "y": round(y, 1),
             "w": round(w, 1), "h": h, "slotW": width, "font": fam, "weight": weight, "size": size, "lh": lh,
             "tracking": tracking, "color": color, "align": align, "tIn": t_in, "tOut": t_out, "anim": anim, "group": group}
 

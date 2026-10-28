@@ -382,7 +382,7 @@ def draft(doc, slot, video_id, data_path):
         ev("change", f"{a['name']} change against last year", f"{p}.change", a["change"], [pct(a["change"])])
         ev("cityChange", "Chicago change against last year", "counts.change", city["change"], [pct(city["change"])])
         screen.update({"area": a["name"], "headline": {"number": ("+" if up else "-") + pct(a["change"]), "numberId": "change",
-                       "label": f"rat complaints in {a['name']} vs. the same 30 days last year"}})
+                       "label": "rat complaints vs. the same 30 days last year"}})
     elif t == "B":
         up = city["change"] >= 0
         ev("d30", f"Chicago rat complaints, 30 days to {to}", "counts.d30", city["d30"], [comma(city["d30"])])
@@ -396,7 +396,7 @@ def draft(doc, slot, video_id, data_path):
         ev("cityMedClose", "Chicago median days to close", "counts.medClose", city["medClose"], [days(city["medClose"])])
         word = "slowest" if pick.get("side") == "slow" else "fastest"
         screen.update({"area": a["name"], "side": pick.get("side"), "headline": {"number": days(a["medClose"]), "numberId": "medClose",
-                       "unit": "days", "label": f"median wait to close a rat complaint in {a['name']}, the city's {word}"}})
+                       "unit": "days", "label": f"median wait to close a rat complaint, the city's {word}"}})
     elif t == "D":
         w4 = a["w12"][8:12]
         wk = d["weeks"][8:12]
@@ -409,7 +409,7 @@ def draft(doc, slot, video_id, data_path):
         ev("risesInARow", "Weeks in a row with more complaints than the week before (w12[9] to w12[11])", f"{p}.w12[8:12] rising", 3, ["3"])
         ev("w1To", "Last day of the first of the last 4 weeks", "weeks[8].to", wk[0]["to"], [short_date(wk[0]["to"])])
         screen.update({"area": a["name"], "headline": {"number": "+" + pct(rise), "numberId": "rise",
-                       "label": f"more rat complaints a week in {a['name']} than 3 weeks ago, up every week since"}})
+                       "label": "more rat complaints a week than 3 weeks ago, up every week since"}})
     screen["chart"] = chart_data(d, pick, ev)
     screen["chart"]["focusLabel"] = {"A": "vs. the same 30 days last year", "B": "citywide vs. last year",
                                      "C": "median days to close", "D": f"week to {to} vs. week to {short_date(d['weeks'][8]['to'])}"}[t]

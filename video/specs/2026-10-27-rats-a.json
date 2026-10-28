@@ -1,0 +1,620 @@
+{
+ "schema": "pnf.video.spec.v1",
+ "videoId": "2026-10-27-rats-a",
+ "template": "rat-check",
+ "storyType": "A",
+ "picture": "map",
+ "slot": "Mon",
+ "candidate": {
+  "id": "A-46",
+  "type": "A",
+  "area": 46,
+  "name": "South Chicago",
+  "parts": {
+   "surprise": 1.0,
+   "local": 1,
+   "work": 1,
+   "novelty": 1,
+   "proof": 0.45
+  },
+  "score": 0.9175,
+  "rank": 1
+ },
+ "evidence": {
+  "file": "permits/rodents-chicago/weekly.json",
+  "commit": "826eed50afe45b8769c7073e35074322a995c3a3",
+  "sha256": "c9ab2012c227a85610bff8816a82264f3adfda11224071520db7c59ded25995d",
+  "fetchedAt": "2026-10-27T16:11:02-0500",
+  "candidates": "video/candidates/2026-10-26.json",
+  "numbers": [
+   {
+    "id": "windowTo",
+    "label": "Last whole day counted",
+    "path": "window.to",
+    "value": "2026-10-26",
+    "shown": [
+     "Oct 26"
+    ]
+   },
+   {
+    "id": "line311",
+    "label": "The City's service line the complaints go to (311 Service Requests)",
+    "path": "source.name",
+    "value": "311 Service Requests",
+    "shown": [
+     "311"
+    ]
+   },
+   {
+    "id": "d30",
+    "label": "South Chicago rat complaints, 30 days to Oct 26",
+    "path": "areas[n=46].d30",
+    "value": 45,
+    "shown": [
+     "45"
+    ]
+   },
+   {
+    "id": "prev30",
+    "label": "South Chicago, same 30 days last year",
+    "path": "areas[n=46].prev30",
+    "value": 14,
+    "shown": [
+     "14"
+    ]
+   },
+   {
+    "id": "change",
+    "label": "South Chicago change against last year",
+    "path": "areas[n=46].change",
+    "value": 221.4,
+    "shown": [
+     "221.4%"
+    ]
+   },
+   {
+    "id": "cityChange",
+    "label": "Chicago change against last year",
+    "path": "counts.change",
+    "value": 10.2,
+    "shown": [
+     "10.2%"
+    ]
+   },
+   {
+    "id": "areasUp",
+    "label": "Community areas with more complaints than the same 30 days last year",
+    "path": "count(areas[].change > 0)",
+    "value": 44,
+    "shown": [
+     "44"
+    ]
+   },
+   {
+    "id": "areasTotal",
+    "label": "Chicago community areas",
+    "path": "len(areas)",
+    "value": 77,
+    "shown": [
+     "77"
+    ]
+   },
+   {
+    "id": "windowDays",
+    "label": "Days in the window (window.from30 to window.to)",
+    "path": "window.from30..window.to",
+    "value": 30,
+    "shown": [
+     "30"
+    ]
+   }
+  ]
+ },
+ "screen": {
+  "eyebrow": "CHICAGO RAT CHECK",
+  "period": "30 days to Oct 26",
+  "picture": "map",
+  "area": "South Chicago",
+  "headline": {
+   "number": "+221.4%",
+   "numberId": "change",
+   "label": "rat complaints vs. the same 30 days last year"
+  },
+  "chart": {
+   "kind": "map",
+   "legend": [
+    [
+     "hi",
+     "Up vs. last year"
+    ],
+    [
+     "lo",
+     "Down or flat"
+    ]
+   ],
+   "areas": [
+    {
+     "n": 1,
+     "cls": "hi"
+    },
+    {
+     "n": 2,
+     "cls": "hi"
+    },
+    {
+     "n": 3,
+     "cls": "hi"
+    },
+    {
+     "n": 4,
+     "cls": "hi"
+    },
+    {
+     "n": 5,
+     "cls": "hi"
+    },
+    {
+     "n": 6,
+     "cls": "hi"
+    },
+    {
+     "n": 7,
+     "cls": "hi"
+    },
+    {
+     "n": 8,
+     "cls": "hi"
+    },
+    {
+     "n": 9,
+     "cls": "lo"
+    },
+    {
+     "n": 10,
+     "cls": "lo"
+    },
+    {
+     "n": 11,
+     "cls": "lo"
+    },
+    {
+     "n": 12,
+     "cls": "hi"
+    },
+    {
+     "n": 13,
+     "cls": "lo"
+    },
+    {
+     "n": 14,
+     "cls": "lo"
+    },
+    {
+     "n": 15,
+     "cls": "lo"
+    },
+    {
+     "n": 16,
+     "cls": "hi"
+    },
+    {
+     "n": 17,
+     "cls": "hi"
+    },
+    {
+     "n": 18,
+     "cls": "hi"
+    },
+    {
+     "n": 19,
+     "cls": "lo"
+    },
+    {
+     "n": 20,
+     "cls": "lo"
+    },
+    {
+     "n": 21,
+     "cls": "lo"
+    },
+    {
+     "n": 22,
+     "cls": "hi"
+    },
+    {
+     "n": 23,
+     "cls": "hi"
+    },
+    {
+     "n": 24,
+     "cls": "lo"
+    },
+    {
+     "n": 25,
+     "cls": "hi"
+    },
+    {
+     "n": 26,
+     "cls": "hi"
+    },
+    {
+     "n": 27,
+     "cls": "lo"
+    },
+    {
+     "n": 28,
+     "cls": "lo"
+    },
+    {
+     "n": 29,
+     "cls": "lo"
+    },
+    {
+     "n": 30,
+     "cls": "hi"
+    },
+    {
+     "n": 31,
+     "cls": "hi"
+    },
+    {
+     "n": 32,
+     "cls": "lo"
+    },
+    {
+     "n": 33,
+     "cls": "lo"
+    },
+    {
+     "n": 34,
+     "cls": "hi"
+    },
+    {
+     "n": 35,
+     "cls": "lo"
+    },
+    {
+     "n": 36,
+     "cls": "lo"
+    },
+    {
+     "n": 37,
+     "cls": "lo"
+    },
+    {
+     "n": 38,
+     "cls": "lo"
+    },
+    {
+     "n": 39,
+     "cls": "hi"
+    },
+    {
+     "n": 40,
+     "cls": "hi"
+    },
+    {
+     "n": 41,
+     "cls": "hi"
+    },
+    {
+     "n": 42,
+     "cls": "lo"
+    },
+    {
+     "n": 43,
+     "cls": "hi"
+    },
+    {
+     "n": 44,
+     "cls": "hi"
+    },
+    {
+     "n": 45,
+     "cls": "lo"
+    },
+    {
+     "n": 46,
+     "cls": "focus"
+    },
+    {
+     "n": 47,
+     "cls": "lo"
+    },
+    {
+     "n": 48,
+     "cls": "lo"
+    },
+    {
+     "n": 49,
+     "cls": "hi"
+    },
+    {
+     "n": 50,
+     "cls": "lo"
+    },
+    {
+     "n": 51,
+     "cls": "hi"
+    },
+    {
+     "n": 52,
+     "cls": "hi"
+    },
+    {
+     "n": 53,
+     "cls": "hi"
+    },
+    {
+     "n": 54,
+     "cls": "lo"
+    },
+    {
+     "n": 55,
+     "cls": "lo"
+    },
+    {
+     "n": 56,
+     "cls": "hi"
+    },
+    {
+     "n": 57,
+     "cls": "hi"
+    },
+    {
+     "n": 58,
+     "cls": "hi"
+    },
+    {
+     "n": 59,
+     "cls": "hi"
+    },
+    {
+     "n": 60,
+     "cls": "lo"
+    },
+    {
+     "n": 61,
+     "cls": "hi"
+    },
+    {
+     "n": 62,
+     "cls": "hi"
+    },
+    {
+     "n": 63,
+     "cls": "hi"
+    },
+    {
+     "n": 64,
+     "cls": "lo"
+    },
+    {
+     "n": 65,
+     "cls": "hi"
+    },
+    {
+     "n": 66,
+     "cls": "hi"
+    },
+    {
+     "n": 67,
+     "cls": "lo"
+    },
+    {
+     "n": 68,
+     "cls": "lo"
+    },
+    {
+     "n": 69,
+     "cls": "hi"
+    },
+    {
+     "n": 70,
+     "cls": "hi"
+    },
+    {
+     "n": 71,
+     "cls": "hi"
+    },
+    {
+     "n": 72,
+     "cls": "lo"
+    },
+    {
+     "n": 73,
+     "cls": "hi"
+    },
+    {
+     "n": 74,
+     "cls": "lo"
+    },
+    {
+     "n": 75,
+     "cls": "hi"
+    },
+    {
+     "n": 76,
+     "cls": "hi"
+    },
+    {
+     "n": 77,
+     "cls": "lo"
+    }
+   ],
+   "focus": 46,
+   "focusLabel": "vs. the same 30 days last year"
+  },
+  "compare": {
+   "unit": "complaints",
+   "cards": [
+    {
+     "label": "Same 30 days last year",
+     "value": 14,
+     "shown": "14",
+     "numberId": "prev30"
+    },
+    {
+     "label": "30 days to Oct 26",
+     "value": 45,
+     "shown": "45",
+     "numberId": "d30",
+     "focus": true
+    }
+   ]
+  },
+  "scenes": {
+   "picture": {
+    "title": "Rat complaints are up"
+   },
+   "compare": {
+    "title": "More than triple last year"
+   },
+   "why": {
+    "title": "Complaints are rising across the city",
+    "number": "+10.2%",
+    "numberId": "cityChange",
+    "numberLabel": "Chicago rat complaints vs. the same 30 days last year"
+   }
+  }
+ },
+ "hooks": [
+  {
+   "say": "South Chicago rat complaints more than tripled.",
+   "tts": "South Chicago rat complaints more than tripled."
+  },
+  {
+   "say": "45 rat complaints. Last year, 14.",
+   "tts": "Forty-five rat complaints. Last year, fourteen."
+  },
+  {
+   "say": "One Chicago neighborhood's rat calls tripled.",
+   "tts": "One Chicago neighborhood's rat calls tripled."
+  },
+  {
+   "say": "Triple the rat calls in South Chicago.",
+   "tts": "Triple the rat calls in South Chicago."
+  }
+ ],
+ "hook": {
+  "say": "Triple the rat calls in South Chicago.",
+  "tts": "Triple the rat calls in South Chicago.",
+  "index": 3
+ },
+ "lines": [
+  {
+   "id": "l1",
+   "scene": "hook",
+   "say": "Those are complaints to the City's 311 line, in the 30 days to Oct 26.",
+   "tts": "Those are complaints to the City's three one one line, in the thirty days to October twenty-sixth.",
+   "show": [
+    "line311",
+    "windowDays",
+    "windowTo"
+   ]
+  },
+  {
+   "id": "l2",
+   "scene": "picture",
+   "say": "South Chicago logged 45 rat complaints.",
+   "tts": "South Chicago logged forty-five rat complaints.",
+   "show": [
+    "d30"
+   ]
+  },
+  {
+   "id": "l3",
+   "scene": "picture",
+   "say": "And 44 of the city's 77 community areas are running above last year.",
+   "tts": "And forty-four of the city's seventy-seven community areas are running above last year.",
+   "show": [
+    "areasUp",
+    "areasTotal"
+   ]
+  },
+  {
+   "id": "l4",
+   "scene": "compare",
+   "say": "The same 30 days last year? Just 14.",
+   "tts": "The same thirty days last year? Just fourteen.",
+   "show": [
+    "windowDays",
+    "prev30"
+   ]
+  },
+  {
+   "id": "l5",
+   "scene": "compare",
+   "say": "That's up 221.4%, more than triple.",
+   "tts": "That's up two hundred twenty-one point four percent, more than triple.",
+   "show": [
+    "change"
+   ]
+  },
+  {
+   "id": "l6",
+   "scene": "why",
+   "say": "Citywide, rat complaints are up 10.2% on last year.",
+   "tts": "Citywide, rat complaints are up ten point two percent on last year.",
+   "show": [
+    "cityChange"
+   ]
+  },
+  {
+   "id": "l7",
+   "scene": "why",
+   "say": "If you run a pest control or cleaning crew, South Chicago is where the calls are picking up.",
+   "tts": "If you run a pest control or cleaning crew, South Chicago is where the calls are picking up.",
+   "show": []
+  }
+ ],
+ "cta": {
+  "say": "See your neighborhood free at proofnotfluff dot com slash rats."
+ },
+ "endCard": {
+  "line": "See your neighborhood free",
+  "path": "proofnotfluff.com/rats"
+ },
+ "captions": {
+  "instagram": "South Chicago logged 45 rat complaints to Chicago 311 in the 30 days to Oct 26, up from 14 in the same days last year. Citywide, complaints are up 10.2%. These are complaints to 311, not rats found.\n\nSee your neighborhood free: proofnotfluff.com/rats (link in bio)\nNarrated by an AI voice.\n\n#chicago #southchicago #pestcontrol #chicagorats #smallbusiness"
+ },
+ "voice": {
+  "model": "eleven_v4",
+  "voiceIds": [
+   "iP95p4xoKVk53GoZ742B",
+   "CwhRBWXzGAHq8TQ4Fs17",
+   "cjVigY5qzO86Huf0OWal",
+   "XrExE9yKIg1WjnnlVkGX",
+   "pqHfZKP75CvOlQylNhV4"
+  ]
+ },
+ "music": "quiet-math",
+ "gates": {
+  "spec_lint": {
+   "pass": true,
+   "problems": [],
+   "at": "2026-10-28T03:23:19+00:00",
+   "tool": "tools/spec_lint.py@94f8fa7d6ac6"
+  },
+  "voice_lint": {
+   "pass": true,
+   "problems": [],
+   "at": "2026-10-28T03:23:19+00:00",
+   "tool": "tools/voice_lint.py@0d489c55a0e9"
+  },
+  "legal_scan": {
+   "pass": true,
+   "problems": [],
+   "at": "2026-10-28T03:23:19+00:00",
+   "tool": "tools/legal_scan.py@79a15527007e"
+  },
+  "facts_code": {
+   "pass": true,
+   "problems": [],
+   "checked": 6,
+   "at": "2026-10-28T03:23:19+00:00",
+   "tool": "tools/video_gates.py@38adda08b9e0"
+  }
+ },
+ "golden": true
+}

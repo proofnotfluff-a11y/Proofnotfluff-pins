@@ -379,6 +379,9 @@ def rat_check_problems(spec, path="", allow_test=False):
             continue   # "complaints, not rats found" says the rule, it does not break it
         out.append(f"{m.group(0)!r}: a count is complaints to 311, never rats found")
         break
+    m = re.search(r"\b\d[\d,]* (?:of (?:the city's |Chicago's )?\d+ )?neighborhoods\b", blob)
+    if m:   # the facts gate, Oct 27: the file counts 77 community areas, not neighborhoods (Chicago has about 200)
+        out.append(f"{m.group(0)!r}: the rat file counts community areas; say 'community areas' with a number")
     for rx, what in ((ADDRESS, "an address"), (BUSINESS, "a business"), (PEOPLE, "an invented person")):
         m = rx.search(blob)
         if m:

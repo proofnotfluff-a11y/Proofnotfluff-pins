@@ -20,7 +20,8 @@ Write into the skeleton, and change nothing else in it:
 Leave "cta" as it is: "See your neighborhood free at proofnotfluff dot com slash rats." is said once, at the end.
 
 Rules: talk to one trade owner (pest control, cleaning, property crews), contractions, short sentences; one claim;
-say each key number exactly once out loud; a count is complaints to 311, never rats; never a business, a person, a
+say each key number exactly once out loud; the file's places are community areas (77 of them), so a count of
+  places says "community areas", never "neighborhoods"; a count is complaints to 311, never rats; never a business, a person, a
 building or an address; no em or en dashes; no hype, urgency or promises; never "infestation". Keep the heard lines
 to about 600 to 720 characters in all, so the cut lands at 45 to 60 seconds. Then run
 `python3 tools/video_gates.py code <spec>` and fix every FAIL before anyone reviews it.

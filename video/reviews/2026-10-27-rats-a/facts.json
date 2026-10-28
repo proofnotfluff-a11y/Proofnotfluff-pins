@@ -1,0 +1,23 @@
+{
+ "schema": "pnf.video.review.v1",
+ "videoId": "2026-10-27-rats-a",
+ "gate": "facts",
+ "model": "claude-opus-5-5",
+ "skillCommit": "826eed5",
+ "prompt": "video/prompts/facts.md",
+ "inputs": [
+  "tools/video_gates.py texts video/specs/2026-10-27-rats-a.json",
+  "the spec's evidence list",
+  "permits/rodents-chicago/weekly.json at the spec's commit"
+ ],
+ "score": {
+  "numbers": 31,
+  "mismatches": 0
+ },
+ "pass": true,
+ "reasons": [
+  "Every number and claim recomputed from the file: 45 vs 14 (221.4%, 3.21x, so triple holds), city 10.2%, 44 of 77 community areas up, window Sep 27 to Oct 26. Soft note, not a mismatch: hook 2 'Last year, 14' does not name the 30-day window (hook 4 was picked)."
+ ],
+ "round": 1,
+ "at": "2026-10-27T22:50:00-05:00"
+}

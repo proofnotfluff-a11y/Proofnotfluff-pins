@@ -5957,6 +5957,201 @@
    "published": "2026-10-27"
   },
   {
+   "slug": "keep-rats-out-of-garden-chicago",
+   "kind": "question",
+   "city": "Chicago",
+   "published": "2026-10-28",
+   "product": "chicago-restaurant-inspection-leads",
+   "data": "permits/rodents-chicago/weekly.json",
+   "stats": "rats",
+   "title": "How to Keep Rats Out of a Chicago Garden | ProofNotFluff",
+   "desc": "How to keep rats out of a garden or raised bed in Chicago, from extension and City guidance, and which neighborhoods have the most rat complaints to 311 right now.",
+   "card": "Keeping rats out of a Chicago garden or raised bed, and the neighborhoods with the most rat complaints to 311 this month.",
+   "eyebrow": "Rats in Chicago gardens",
+   "updated": "City 311 counts through {to}, pulled {asOf}. Garden advice checked Oct 28, 2026. Refreshed weekly.",
+   "h1": "How do I keep rats out of my garden in Chicago, and where are they worst?",
+   "answer": [
+    "Take away what draws rats to a garden: food, water and shelter. Keep meat, fish, eggs, dairy, grains and cooked food out of the compost, keep it in a closed bin, pick up fallen fruit, and keep garbage cart lids shut. Clear woodpiles, lumber and clutter where rats burrow. UC IPM's rule for buildings is to seal any opening larger than 1/4 inch and never to rely on chicken wire; applied to a raised bed, a mesh floor needs galvanized wire with openings of 1/4 inch or less. Report rats to 311: the City's Bureau of Rodent Control investigates every reported sighting and places rodenticide in the burrows.",
+    "Rats are a citywide problem, not one block's. Chicago 311 took **{d30} rat complaints** from {from30} to {to}, {change} on the same 30 days a year earlier. **{c1}** had the most, {c1n}, and **{r1}** had the most per resident, {r1r} per 1,000."
+   ],
+   "numbersTitle": "Rat complaints to Chicago 311, last 30 days",
+   "tiles": [
+    [
+     "Complaints",
+     "{d30}",
+     "citywide, {from30} to {to}"
+    ],
+    [
+     "On a year earlier",
+     "{change}",
+     "against {prev30} from {prevFrom} to {prevTo}"
+    ],
+    [
+     "Most complaints",
+     "{c1}",
+     "{c1n} complaints, {c1r} per 1,000 residents"
+    ],
+    [
+     "Most per resident",
+     "{r1}",
+     "{r1r} per 1,000 residents, {r1n} complaints"
+    ]
+   ],
+   "numbers": [
+    "Counted from the City of Chicago's {dataset} data, request type Rodent Baiting/Rat Complaint, by community area, with duplicate requests left out. Citywide that is {cityRate} complaints per 1,000 residents in 30 days, and half of the requests closed in the last 30 days took {medClose} days or less.",
+    "Worked example: {c1} has {exPop} residents. Its {c1n} complaints are {c1r} per 1,000, which ranks it {c1k} of 77 areas per resident; the same 30 days a year earlier it had {exPrev} ({exChange}). See [its own page](../chicago-rat-complaints/{exSlug}/) for 12 weeks of counts."
+   ],
+   "tables": [
+    {
+     "title": "Most rat complaints by neighborhood, last 30 days",
+     "intro": [
+      "The 10 community areas with the most rat complaints to 311 from {from30} to {to}. Big areas lead on count; the next table divides by residents."
+     ],
+     "head": [
+      "Community area",
+      "Complaints",
+      "Per 1,000 residents",
+      "Rank per resident"
+     ],
+     "rows": "countRows",
+     "notes": [
+      "Rank per resident is out of 77 community areas, 1st the most. Complaints also reflect how often people in an area call 311; they are not a count of rats."
+     ]
+    },
+    {
+     "title": "Most rat complaints per resident, last 30 days",
+     "intro": [
+      "The same 30 days, ranked by complaints per 1,000 residents, which lets small areas show up."
+     ],
+     "head": [
+      "Community area",
+      "Per 1,000 residents",
+      "Complaints",
+      "Residents"
+     ],
+     "rows": "rateRows",
+     "notes": [
+      "Residents from the City's ACS 5-year estimates by community area. All 77 areas, a map and a page for each are on the free [Chicago Rat Index](../chicago-rat-complaints/)."
+     ]
+    }
+   ],
+   "stepsTitle": "How to keep rats out of a garden or raised bed",
+   "steps": [
+    [
+     "Look for signs first",
+     "The Chicago Community Gardeners Association lists droppings, fresh gnawing, tracks, runways and burrows near buildings, fences, under raised beds and under plants. It warns that squirrels, opossums, raccoons and rabbits leave similar damage, so check before you treat for rats."
+    ],
+    [
+     "Take the food away",
+     "Keep compost to raw fruit and vegetable scraps, coffee and tea grounds and plenty of leaves, in an enclosed bin or a pile you turn often. UC IPM says rats burrow under compost piles, particularly when meat, fish, eggs or eggshells go in, and that they can gnaw through plastic. Pick up fallen fruit, and if you feed birds, clear what falls to the ground each day."
+    ],
+    [
+     "Shut the garbage cart",
+     "The City's rodent page says exposed garbage is the main reason rats multiply and asks residents to keep carts closed. It says alley conditions are investigated and damaged carts are replaced; the gardeners' association suggests asking your alderperson for a new cart when rats have gnawed yours."
+    ],
+    [
+     "Remove the shelter",
+     "Norway rats burrow along foundations, under rubbish and woodpiles, and around gardens, UC IPM says. Move lumber, bricks, pallets and stored supplies, keep the garden from overgrowing, and collapse old burrows, as the gardeners' association advises."
+    ],
+    [
+     "Build the bed to keep them out",
+     "UC IPM says to seal openings larger than 1/4 inch with steel wool, wire screen or sheet metal, and never to use lightweight chicken wire, which rats pass through. For a bed like the one in the question, the same rule points to a floor of galvanized wire mesh with openings of 1/4 inch or less fixed to the frame; the top stays open, so the food and shelter steps still matter."
+    ],
+    [
+     "Report it, and take care with bait",
+     "Call 311 or file online for rodent baiting; the City investigates every reported sighting and puts rodenticide in burrows. If you bait yourself, UC IPM says all rodenticides are toxic to pets, people and other animals, and that even a single dead rodent might be enough to poison a pet. Where bait may be placed is regulated and differs by state, so follow the product label. The gardeners' association says never to bait near food crops."
+    ]
+   ],
+   "sections": [
+    [
+     "The question this page answers",
+     [
+      "A Chicago gardener wrote on Houzz about 14 years ago that rats had burrowed into all the soil and that they planned a raised bed kit surrounded by wire mesh for vegetables, and asked: will the rats get in anyway? The steps above answer it from extension and City guidance, and the tables show where in Chicago rats are reported most right now."
+     ]
+    ],
+    [
+     "What the numbers can and cannot tell you",
+     [
+      "The counts are 311 requests, so they rise where people call more, not only where there are more rats. In the 12 months from {edFrom} to {edTo}, Chicago 311 took {edTotal} rat complaints, {edChange} on the 12 months before ({edPrevTotal}). Per resident, {y1} had the most that year, {y1r} per 1,000, then {y2} and {y3}."
+     ]
+    ]
+   ],
+   "calculator": [
+    "chicago-rat-complaints",
+    "Chicago Rat Index",
+    "Look up your own community area's rank, count and 12 weeks of complaints in"
+   ],
+   "cta": {
+    "title": "Run a pest control company in Chicago?",
+    "text": "Rat complaints show where residents call the City. The Chicago Restaurant Inspection Leads list shows restaurants: every place with a failed or conditional City inspection, named, with its address, community area, the City's result and date, our violation category with the City's violation codes, and its 24-month inspection history, in a members' web app and an Excel file. {price} a month."
+   },
+   "faq": [
+    [
+     "How do I keep rats out of my vegetable garden?",
+     "Remove food, water and shelter: keep meat, eggs, dairy and cooked food out of the compost and use a closed bin, pick up fallen fruit, shut the garbage cart, and clear woodpiles and clutter. UC IPM says to seal openings larger than 1/4 inch and never to use chicken wire."
+    ],
+    [
+     "Will rats get into a raised bed with wire mesh?",
+     "UC IPM's rule for buildings is to seal any opening larger than 1/4 inch and never to use chicken wire. Applied to a bed, that means a floor of galvanized wire mesh with openings of 1/4 inch or less fixed to the frame. The top stays open, so the food and shelter steps still matter."
+    ],
+    [
+     "Should I report rats in my garden to Chicago 311?",
+     "Call 311 or file a rodent baiting request online. The City's Bureau of Rodent Control investigates every reported sighting and places rodenticide in rat burrows."
+    ],
+    [
+     "Which Chicago neighborhoods report the most rats right now?",
+     "From {from30} to {to}, {c1} had the most rat complaints to 311, {c1n}, then {c2} ({c2n}) and {c3} ({c3n}). Per resident, {r1} ranked first at {r1r} per 1,000, then {r2} and {r3}."
+    ]
+   ],
+   "related": [
+    [
+     "chicago-rat-complaints",
+     "Free Chicago Rat Index: rat complaints by neighborhood"
+    ],
+    [
+     "chicago-demolition-rodent-baiting",
+     "Free Chicago demolition rodent baiting data"
+    ],
+    [
+     "chicago-restaurant-inspection-leads",
+     "Chicago restaurant inspection leads: this week's free sample"
+    ]
+   ],
+   "sources": [
+    [
+     "Houzz, How to keep rats out of vegetable garden (the question)",
+     "https://www.houzz.com/discussions/1384934/how-to-keep-rats-out-of-vegetable-garden",
+     "posted about 14 years before Oct 28, 2026, read Oct 28, 2026"
+    ],
+    [
+     "City of Chicago, Department of Streets and Sanitation, Rodent Baiting",
+     "https://www.chicago.gov/city/en/depts/streets/provdrs/rodent/svcs/rodent_baiting.html",
+     "read Oct 28, 2026"
+    ],
+    [
+     "UC IPM, Rats (Pest Notes, UC ANR Publication 74106)",
+     "https://ipm.ucanr.edu/QT/ratscard.html",
+     "updated June 2025, read Oct 28, 2026"
+    ],
+    [
+     "Chicago Community Gardeners Association, Pest Control",
+     "https://chicagocommunitygardens.org/resources_menu/environment-and-safety/pest-control/",
+     "page last modified Dec 22, 2021, read Oct 28, 2026"
+    ],
+    [
+     "City of Chicago Data Portal, {dataset}, Rodent Baiting/Rat Complaint",
+     "{datasetUrl}",
+     "through {to}, pulled {asOf}"
+    ],
+    [
+     "ProofNotFluff, Chicago Rat Index",
+     "../chicago-rat-complaints/",
+     "pulled {asOf}"
+    ]
+   ],
+   "footnote": "Complaint counts from the City of Chicago Data Portal, {dataset}, request type Rodent Baiting/Rat Complaint, {from30} to {to}, pulled {asOf}, counted by community area with duplicates left out; residents from the City's ACS 5-year estimates by community area. Counts only: no address or resident text is kept. Garden advice quotes UC IPM, the Chicago Community Gardeners Association and the City's rodent page, read Oct 28, 2026. It is not pest control advice: follow the product label and local rules for any rodenticide."
+  },
+  {
    "slug": "missed-call-cost-calculator",
    "kind": "missed_calls",
    "segment": "trades",

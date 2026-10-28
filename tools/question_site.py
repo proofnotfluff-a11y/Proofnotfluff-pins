@@ -157,6 +157,34 @@ def stats(kind, d):
                          row(f"Small house, {cases['small']['feet']} ft, no bushes", "small"),
                          row(f"Big house, {cases['big']['feet']} ft and {c['shrubs']} bushes", "big")]
         return s
+    if kind == "rats":   # rat question pages: the free Rat Index's own weekly file (311 counts by community area, no addresses)
+        import rodents_site as R
+        ix = R.index(d, R.load_json(R.POP), None)
+        c, w, ed, A = d["counts"], d["window"], d["edition"], ix["areas"]
+        byCount = sorted(A.values(), key=lambda a: (-a["d30"], a["name"]))
+        byRate, byYear = ix["order"], ix["year"]
+        r2 = lambda v: f"{v:.2f}"
+        s = {"d7": _n(c["d7"]), "d30": _n(c["d30"]), "prev30": _n(c["prev30"]), "change": R.pct((c["d30"] / c["prev30"] - 1) * 100),
+             "from7": _date(w["from7"]), "from30": _date(w["from30"]), "to": _date(w["to"]), "prevFrom": _date(w["prevFrom"]),
+             "prevTo": _date(w["prevTo"]), "medClose": f"{c['medClose']:.1f}", "asOf": _date(d["source"]["fetchedAt"][:10]),
+             "dataset": d["source"]["name"], "datasetUrl": d["source"]["url"], "cityRate": r2(ix["city"]["r30"]),
+             "cityYearRate": r2(ix["city"]["rYear"]), "edYear": str(ed["year"]), "edFrom": _date(ed["from"]), "edTo": _date(ed["to"]),
+             "edTotal": _n(ed["total"]), "edPrevTotal": _n(ed["prevTotal"]),
+             "edChange": R.pct((ed["total"] / ed["prevTotal"] - 1) * 100), "areasWith": _n(c["areasWith30"])}
+        for i, a in enumerate(byCount[:3]):
+            s |= {f"c{i + 1}": a["name"], f"c{i + 1}n": _n(a["d30"]), f"c{i + 1}r": r2(a["r30"]), f"c{i + 1}k": a["place"]}
+        for i, a in enumerate(byRate[:3]):
+            s |= {f"r{i + 1}": a["name"], f"r{i + 1}n": _n(a["d30"]), f"r{i + 1}r": r2(a["r30"]), f"r{i + 1}k": a["place"]}
+        for i, a in enumerate(byYear[:3]):
+            s |= {f"y{i + 1}": a["name"], f"y{i + 1}n": _n(a["year"]), f"y{i + 1}r": r2(a["rYear"])}
+        low = byRate[-1]
+        s |= {"low": low["name"], "lowN": _n(low["d30"]), "lowR": r2(low["r30"])}
+        e = byCount[0]   # worked example: the area with the most complaints in 30 days
+        s |= {"exPop": _n(e["pop"]), "exClose": f"{e['medClose']:.1f}" if e.get("medClose") is not None else "not shown",
+              "exPrev": _n(e["prev30"]), "exChange": R.area_change(e), "exSlug": e["slug"]}
+        s["countRows"] = [[a["name"], _n(a["d30"]), r2(a["r30"]), a["place"]] for a in byCount[:10]]
+        s["rateRows"] = [[a["name"], r2(a["r30"]), _n(a["d30"]), _n(a["pop"])] for a in byRate[:10]]
+        return s
     raise KeyError(f"no stats for {kind}")
 
 

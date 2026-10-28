@@ -1,0 +1,84 @@
+{
+ "schema": "pnf.video.manifest.v1",
+ "videoId": "2026-10-26-rats-z",
+ "mp4": "video.mp4",
+ "sha256": "1eca17086c4519e86da41be1d9c1f366312dd1dce681b911a97b076d2a288953",
+ "bytes": 3797366,
+ "seconds": 52.267,
+ "lufs": -14.0,
+ "truePeak": -5.6,
+ "remotion": "4.0.539",
+ "node": "v22.23.3",
+ "voice": {
+  "id": "test",
+  "name": "test tones",
+  "model": "test",
+  "test": true,
+  "chars": 568
+ },
+ "voiceFiles": [
+  {
+   "key": "hook",
+   "file": "hook.mp3",
+   "sha256": "bad7d8e43a63eaa24cdff87d0cfce918f21d47909c077ff65cbfd7f759d2379c",
+   "seconds": 2.9
+  },
+  {
+   "key": "l1",
+   "file": "l1.mp3",
+   "sha256": "3e7c9dc10be71315f5e708b564164e7012fa3ef6310301f8a9c4a200ac14f5b8",
+   "seconds": 7.863
+  },
+  {
+   "key": "l2",
+   "file": "l2.mp3",
+   "sha256": "de912312fa484d2f33afda04a42501cbf60252625ff40524509dfac2e33a293f",
+   "seconds": 3.683
+  },
+  {
+   "key": "l3",
+   "file": "l3.mp3",
+   "sha256": "1240a90d751658df095b8fac95f40bdceb56228d2d1a82fb8c33807157f1b39b",
+   "seconds": 6.713
+  },
+  {
+   "key": "l4",
+   "file": "l4.mp3",
+   "sha256": "63ec7da2a0e668af8139a820870ec7e48fff5cef5205d8fed885ef90a8baac83",
+   "seconds": 4.127
+  },
+  {
+   "key": "l5",
+   "file": "l5.mp3",
+   "sha256": "8b212322deadd30e5089251c8f22e95d99d27118319855c2b0ff7f9e4fd6124c",
+   "seconds": 3.736
+  },
+  {
+   "key": "l6",
+   "file": "l6.mp3",
+   "sha256": "2133c997db79ebc7d88cd140401a85baa950cece646a1c66d6185a5b4af625cb",
+   "seconds": 4.415
+  },
+  {
+   "key": "l7",
+   "file": "l7.mp3",
+   "sha256": "9fde8eb9954268f8cfcb76f7dde2a96a0f6c9737b16878a1bcfabc88b884cb7d",
+   "seconds": 8.072
+  },
+  {
+   "key": "cta",
+   "file": "cta.mp3",
+   "sha256": "ee7daa4e548df9e35f2f83dce300915a25a296c012da41a9add074af4cd6937f",
+   "seconds": 4.989
+  }
+ ],
+ "music": {
+  "musicId": "quiet-math",
+  "musicGainDb": -17.9,
+  "voiceLufsBefore": -19.9
+ },
+ "specSha256": "325689d880e12f9c4031e1c306a1c05be0f09a448d1d5a25af8cbf7d53c95028",
+ "propsSha256": "2db7c422adfb399db54210b29e07949913799f060705f05bb6ec65a0dc0f0b33",
+ "layout": "PASS",
+ "renderedAt": "2026-10-28T03:15:55+00:00"
+}

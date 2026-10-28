@@ -1,0 +1,599 @@
+{
+ "schema": "pnf.video.words.v1",
+ "voiceId": "test",
+ "voiceName": "test tones",
+ "model": "test",
+ "test": true,
+ "chars": 568,
+ "segments": [
+  {
+   "key": "hook",
+   "file": "hook.mp3",
+   "sha256": "bad7d8e43a63eaa24cdff87d0cfce918f21d47909c077ff65cbfd7f759d2379c",
+   "seconds": 2.9,
+   "say": "Lake View rat calls just doubled.",
+   "tts": "Lake View rat calls just doubled.",
+   "scene": "hook",
+   "words": [
+    {
+     "w": "Lake",
+     "start": 0.08,
+     "end": 0.42
+    },
+    {
+     "w": "View",
+     "start": 0.49,
+     "end": 0.83
+    },
+    {
+     "w": "rat",
+     "start": 0.9,
+     "end": 1.195
+    },
+    {
+     "w": "calls",
+     "start": 1.265,
+     "end": 1.65
+    },
+    {
+     "w": "just",
+     "start": 1.72,
+     "end": 2.06
+    },
+    {
+     "w": "doubled.",
+     "start": 2.13,
+     "end": 2.65
+    }
+   ]
+  },
+  {
+   "key": "l1",
+   "file": "l1.mp3",
+   "sha256": "3e7c9dc10be71315f5e708b564164e7012fa3ef6310301f8a9c4a200ac14f5b8",
+   "seconds": 7.863,
+   "say": "Those are complaints to the City's 311 line, in the 30 days to Oct 26.",
+   "tts": "Those are complaints to the City's three one one line, in the thirty days to October twenty-sixth.",
+   "scene": "hook",
+   "words": [
+    {
+     "w": "Those",
+     "start": 0.08,
+     "end": 0.465
+    },
+    {
+     "w": "are",
+     "start": 0.535,
+     "end": 0.83
+    },
+    {
+     "w": "complaints",
+     "start": 0.9,
+     "end": 1.51
+    },
+    {
+     "w": "to",
+     "start": 1.58,
+     "end": 1.83
+    },
+    {
+     "w": "the",
+     "start": 1.9,
+     "end": 2.195
+    },
+    {
+     "w": "City's",
+     "start": 2.265,
+     "end": 2.695
+    },
+    {
+     "w": "three",
+     "start": 2.765,
+     "end": 3.15
+    },
+    {
+     "w": "one",
+     "start": 3.22,
+     "end": 3.515
+    },
+    {
+     "w": "one",
+     "start": 3.585,
+     "end": 3.88
+    },
+    {
+     "w": "line,",
+     "start": 3.95,
+     "end": 4.335
+    },
+    {
+     "w": "in",
+     "start": 4.405,
+     "end": 4.655
+    },
+    {
+     "w": "the",
+     "start": 4.725,
+     "end": 5.02
+    },
+    {
+     "w": "thirty",
+     "start": 5.09,
+     "end": 5.52
+    },
+    {
+     "w": "days",
+     "start": 5.59,
+     "end": 5.93
+    },
+    {
+     "w": "to",
+     "start": 6.0,
+     "end": 6.25
+    },
+    {
+     "w": "October",
+     "start": 6.32,
+     "end": 6.795
+    },
+    {
+     "w": "twenty-sixth.",
+     "start": 6.865,
+     "end": 7.61
+    }
+   ]
+  },
+  {
+   "key": "l2",
+   "file": "l2.mp3",
+   "sha256": "de912312fa484d2f33afda04a42501cbf60252625ff40524509dfac2e33a293f",
+   "seconds": 3.683,
+   "say": "Lake View logged 300 rat complaints.",
+   "tts": "Lake View logged three hundred rat complaints.",
+   "scene": "picture",
+   "words": [
+    {
+     "w": "Lake",
+     "start": 0.08,
+     "end": 0.42
+    },
+    {
+     "w": "View",
+     "start": 0.49,
+     "end": 0.83
+    },
+    {
+     "w": "logged",
+     "start": 0.9,
+     "end": 1.33
+    },
+    {
+     "w": "three",
+     "start": 1.4,
+     "end": 1.785
+    },
+    {
+     "w": "hundred",
+     "start": 1.855,
+     "end": 2.33
+    },
+    {
+     "w": "rat",
+     "start": 2.4,
+     "end": 2.695
+    },
+    {
+     "w": "complaints.",
+     "start": 2.765,
+     "end": 3.42
+    }
+   ]
+  },
+  {
+   "key": "l3",
+   "file": "l3.mp3",
+   "sha256": "1240a90d751658df095b8fac95f40bdceb56228d2d1a82fb8c33807157f1b39b",
+   "seconds": 6.713,
+   "say": "It's one of 44 of the city's 77 neighborhoods running above last year.",
+   "tts": "It's one of forty-four of the city's seventy-seven neighborhoods running above last year.",
+   "scene": "picture",
+   "words": [
+    {
+     "w": "It's",
+     "start": 0.08,
+     "end": 0.42
+    },
+    {
+     "w": "one",
+     "start": 0.49,
+     "end": 0.785
+    },
+    {
+     "w": "of",
+     "start": 0.855,
+     "end": 1.105
+    },
+    {
+     "w": "forty-four",
+     "start": 1.175,
+     "end": 1.785
+    },
+    {
+     "w": "of",
+     "start": 1.855,
+     "end": 2.105
+    },
+    {
+     "w": "the",
+     "start": 2.175,
+     "end": 2.47
+    },
+    {
+     "w": "city's",
+     "start": 2.54,
+     "end": 2.97
+    },
+    {
+     "w": "seventy-seven",
+     "start": 3.04,
+     "end": 3.785
+    },
+    {
+     "w": "neighborhoods",
+     "start": 3.855,
+     "end": 4.6
+    },
+    {
+     "w": "running",
+     "start": 4.67,
+     "end": 5.145
+    },
+    {
+     "w": "above",
+     "start": 5.215,
+     "end": 5.6
+    },
+    {
+     "w": "last",
+     "start": 5.67,
+     "end": 6.01
+    },
+    {
+     "w": "year.",
+     "start": 6.08,
+     "end": 6.465
+    }
+   ]
+  },
+  {
+   "key": "l4",
+   "file": "l4.mp3",
+   "sha256": "63ec7da2a0e668af8139a820870ec7e48fff5cef5205d8fed885ef90a8baac83",
+   "seconds": 4.127,
+   "say": "The same 30 days last year? 150.",
+   "tts": "The same thirty days last year? A hundred fifty.",
+   "scene": "compare",
+   "words": [
+    {
+     "w": "The",
+     "start": 0.08,
+     "end": 0.375
+    },
+    {
+     "w": "same",
+     "start": 0.445,
+     "end": 0.785
+    },
+    {
+     "w": "thirty",
+     "start": 0.855,
+     "end": 1.285
+    },
+    {
+     "w": "days",
+     "start": 1.355,
+     "end": 1.695
+    },
+    {
+     "w": "last",
+     "start": 1.765,
+     "end": 2.105
+    },
+    {
+     "w": "year?",
+     "start": 2.175,
+     "end": 2.56
+    },
+    {
+     "w": "A",
+     "start": 2.63,
+     "end": 2.835
+    },
+    {
+     "w": "hundred",
+     "start": 2.905,
+     "end": 3.38
+    },
+    {
+     "w": "fifty.",
+     "start": 3.45,
+     "end": 3.88
+    }
+   ]
+  },
+  {
+   "key": "l5",
+   "file": "l5.mp3",
+   "sha256": "8b212322deadd30e5089251c8f22e95d99d27118319855c2b0ff7f9e4fd6124c",
+   "seconds": 3.736,
+   "say": "So the count doubled. Up 100%.",
+   "tts": "So the count doubled. Up a hundred percent.",
+   "scene": "compare",
+   "words": [
+    {
+     "w": "So",
+     "start": 0.08,
+     "end": 0.33
+    },
+    {
+     "w": "the",
+     "start": 0.4,
+     "end": 0.695
+    },
+    {
+     "w": "count",
+     "start": 0.765,
+     "end": 1.15
+    },
+    {
+     "w": "doubled.",
+     "start": 1.22,
+     "end": 1.74
+    },
+    {
+     "w": "Up",
+     "start": 1.81,
+     "end": 2.06
+    },
+    {
+     "w": "a",
+     "start": 2.13,
+     "end": 2.335
+    },
+    {
+     "w": "hundred",
+     "start": 2.405,
+     "end": 2.88
+    },
+    {
+     "w": "percent.",
+     "start": 2.95,
+     "end": 3.47
+    }
+   ]
+  },
+  {
+   "key": "l6",
+   "file": "l6.mp3",
+   "sha256": "2133c997db79ebc7d88cd140401a85baa950cece646a1c66d6185a5b4af625cb",
+   "seconds": 4.415,
+   "say": "Citywide, rat complaints are up 10.2%.",
+   "tts": "Citywide, rat complaints are up ten point two percent.",
+   "scene": "why",
+   "words": [
+    {
+     "w": "Citywide,",
+     "start": 0.08,
+     "end": 0.645
+    },
+    {
+     "w": "rat",
+     "start": 0.715,
+     "end": 1.01
+    },
+    {
+     "w": "complaints",
+     "start": 1.08,
+     "end": 1.69
+    },
+    {
+     "w": "are",
+     "start": 1.76,
+     "end": 2.055
+    },
+    {
+     "w": "up",
+     "start": 2.125,
+     "end": 2.375
+    },
+    {
+     "w": "ten",
+     "start": 2.445,
+     "end": 2.74
+    },
+    {
+     "w": "point",
+     "start": 2.81,
+     "end": 3.195
+    },
+    {
+     "w": "two",
+     "start": 3.265,
+     "end": 3.56
+    },
+    {
+     "w": "percent.",
+     "start": 3.63,
+     "end": 4.15
+    }
+   ]
+  },
+  {
+   "key": "l7",
+   "file": "l7.mp3",
+   "sha256": "9fde8eb9954268f8cfcb76f7dde2a96a0f6c9737b16878a1bcfabc88b884cb7d",
+   "seconds": 8.072,
+   "say": "If you run a pest control or cleaning crew, this is where the calls are coming from right now.",
+   "tts": "If you run a pest control or cleaning crew, this is where the calls are coming from right now.",
+   "scene": "why",
+   "words": [
+    {
+     "w": "If",
+     "start": 0.08,
+     "end": 0.33
+    },
+    {
+     "w": "you",
+     "start": 0.4,
+     "end": 0.695
+    },
+    {
+     "w": "run",
+     "start": 0.765,
+     "end": 1.06
+    },
+    {
+     "w": "a",
+     "start": 1.13,
+     "end": 1.335
+    },
+    {
+     "w": "pest",
+     "start": 1.405,
+     "end": 1.745
+    },
+    {
+     "w": "control",
+     "start": 1.815,
+     "end": 2.29
+    },
+    {
+     "w": "or",
+     "start": 2.36,
+     "end": 2.61
+    },
+    {
+     "w": "cleaning",
+     "start": 2.68,
+     "end": 3.2
+    },
+    {
+     "w": "crew,",
+     "start": 3.27,
+     "end": 3.655
+    },
+    {
+     "w": "this",
+     "start": 3.725,
+     "end": 4.065
+    },
+    {
+     "w": "is",
+     "start": 4.135,
+     "end": 4.385
+    },
+    {
+     "w": "where",
+     "start": 4.455,
+     "end": 4.84
+    },
+    {
+     "w": "the",
+     "start": 4.91,
+     "end": 5.205
+    },
+    {
+     "w": "calls",
+     "start": 5.275,
+     "end": 5.66
+    },
+    {
+     "w": "are",
+     "start": 5.73,
+     "end": 6.025
+    },
+    {
+     "w": "coming",
+     "start": 6.095,
+     "end": 6.525
+    },
+    {
+     "w": "from",
+     "start": 6.595,
+     "end": 6.935
+    },
+    {
+     "w": "right",
+     "start": 7.005,
+     "end": 7.39
+    },
+    {
+     "w": "now.",
+     "start": 7.46,
+     "end": 7.8
+    }
+   ]
+  },
+  {
+   "key": "cta",
+   "file": "cta.mp3",
+   "sha256": "ee7daa4e548df9e35f2f83dce300915a25a296c012da41a9add074af4cd6937f",
+   "seconds": 4.989,
+   "say": "See your neighborhood free at proofnotfluff dot com slash rats.",
+   "tts": "See your neighborhood free at proofnotfluff dot com slash rats.",
+   "scene": "end",
+   "words": [
+    {
+     "w": "See",
+     "start": 0.08,
+     "end": 0.375
+    },
+    {
+     "w": "your",
+     "start": 0.445,
+     "end": 0.785
+    },
+    {
+     "w": "neighborhood",
+     "start": 0.855,
+     "end": 1.555
+    },
+    {
+     "w": "free",
+     "start": 1.625,
+     "end": 1.965
+    },
+    {
+     "w": "at",
+     "start": 2.035,
+     "end": 2.285
+    },
+    {
+     "w": "proofnotfluff",
+     "start": 2.355,
+     "end": 3.1
+    },
+    {
+     "w": "dot",
+     "start": 3.17,
+     "end": 3.465
+    },
+    {
+     "w": "com",
+     "start": 3.535,
+     "end": 3.83
+    },
+    {
+     "w": "slash",
+     "start": 3.9,
+     "end": 4.285
+    },
+    {
+     "w": "rats.",
+     "start": 4.355,
+     "end": 4.74
+    }
+   ]
+  }
+ ]
+}

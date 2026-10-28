@@ -3737,7 +3737,7 @@ def hub_entries():
                 date = ""
         g = c.get("group", "more")
         stat = hub_stat(p["slug"], c.get("stat"))
-        out.append({"stat": stat, "slug": p["slug"], "name": c.get("name", meta["h1"]), "h1": meta["h1"], "card": c.get("card", meta.get("card", "")),
+        out.append({"stat": stat, "slug": p["slug"], "name": c.get("name", meta["h1"]), "h1": meta["h1"], "card": c.get("card", meta.get("card", "")), "short": c.get("short", ""),
                     "dlabel": c.get("dateLabel", "Latest data"), "words": meta.get("keywords", ""), "group": g, "gtitle": gt.get(g, "More Chicago data"),
                     "source": c.get("source", ""), "cadence": c.get("cadence", ""), "date": date[:10]})
     out.sort(key=lambda e: order.index(e["slug"]) if e["slug"] in order else len(order))
@@ -3796,7 +3796,7 @@ def hub_card(e, rel, tag=True):
     when = ""
     meta = " &middot; ".join(E(x) for x in (e["source"], e["cadence"]) if x)
     meta = (f"<span>{meta}</span>" if meta else "") + when
-    card = hub_text(e)
+    card = e.get("short") or hub_text(e)   # one line on the card (design round 4); the full line stays in search
     k = E(" ".join([e["name"], e["h1"], e["card"], e["gtitle"], e["words"]]).lower())
     return (f'<li class="cx-item dh-item" data-g="{E(e["group"])}" data-k="{k}"><a href="{rel}{e["slug"]}/">'
             + (f'<span class="cx-tag">{E(e["gtitle"])}</span>' if tag else "")

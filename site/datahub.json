@@ -1,5 +1,5 @@
 {
-  "_about": "The /chicago-data/ hub, the home page's free tools section and the More free Chicago data strip on each data page (redesign, Oct 27, 2026). Groups are by the job a trade owner is doing. A live data page missing here still shows, under More Chicago data, with its own title and card. name is the short card title; cadence and source must match the page's workflow and its own source line. stat: a regex over the built page's own text (tags as ' | '), so the card's number is exactly what the page shows; no match means no number on the card.",
+  "_about": "The /chicago-data/ hub, the home page's free tools section and the More free Chicago data strip on each data page (redesign, Oct 27, 2026). Groups are by the job a trade owner is doing. A live data page missing here still shows, under More Chicago data, with its own title and card. name is the short card title; cadence and source must match the page's workflow and its own source line. stat: a regex over the built page's own text (tags as ' | '), so the card's number is exactly what the page shows; no match means no number on the card. short: the card's one line (70 characters at most, no words the figure label already says).",
   "groups": [
     {
       "id": "find-work",
@@ -32,7 +32,8 @@
         "re": "Last 7 days \\| ([\\d,]+) \\| rat complaints to 311",
         "num": "{1}",
         "label": "rat complaints to 311 in the last 7 days"
-      }
+      },
+      "short": "All 77 community areas ranked per 1,000 residents, with a map."
     },
     "chicago-city-contracts": {
       "group": "find-work",
@@ -43,7 +44,8 @@
         "re": "Ending in 12 months \\| ([\\d,]+) \\| contracts in these trades",
         "num": "{1}",
         "label": "City contracts in these trades end in the next 12 months"
-      }
+      },
+      "short": "Who wins City work in 12 trades and what it was worth."
     },
     "chicago-repair-demand": {
       "group": "find-work",
@@ -54,7 +56,8 @@
         "re": "cited ([\\d,]+) violations from ([A-Z][a-z]+ \\d{4}) to ([A-Z][a-z]+ \\d{4})",
         "num": "{1}",
         "label": "repair violations cited, {2} to {3}"
-      }
+      },
+      "short": "Masonry, porches, electrical, HVAC, elevators and plumbing, by area."
     },
     "chicago-basement-flooding": {
       "group": "find-work",
@@ -65,7 +68,8 @@
         "re": "took ([\\d,]+) water in basement calls from ([A-Z][a-z]+ \\d{4}) to ([A-Z][a-z]+ \\d{4})",
         "num": "{1}",
         "label": "water in basement calls, {2} to {3}"
-      }
+      },
+      "short": "By community area and month, with the busiest days."
     },
     "chicago-dumpster-permits": {
       "group": "find-work",
@@ -76,7 +80,8 @@
         "re": "Last 90 days \\| ([\\d,]+) \\| dumpster permits issued",
         "num": "{1}",
         "label": "dumpster permits in the last 90 days"
-      }
+      },
+      "short": "Where cleanouts and renovations are likely, by community area."
     },
     "material-price-changes": {
       "group": "price-plan",
@@ -87,7 +92,8 @@
         "re": "Up from a year ago \\| (\\d+) \\| of (\\d+) \\| materials",
         "num": "{1} of {2}",
         "label": "materials up from a year ago"
-      }
+      },
+      "short": "Lumber, copper wire, concrete and steel since the month you quoted."
     },
     "chicago-public-way-permit-costs": {
       "group": "price-plan",
@@ -95,10 +101,11 @@
       "source": "CDOT",
       "cadence": "2026 fee schedule",
       "stat": {
-        "re": "What are you pricing\\? \\| Dumpster \\| Vehicle, equipment or barricade \\| Sidewalk or street closure \\| Opening or cut \\|",
-        "num": "4",
-        "label": "kinds of CDOT permit, priced line by line"
-      }
+        "re": "Class A \\(30 cubic yards or less\\), outside the CBD \\| \\$(\\d+)\\.00 \\| \\$\\d+\\.00",
+        "num": "${1}",
+        "label": "CDOT fee for a Class A dumpster outside the CBD, 1 to 3 days"
+      },
+      "short": "Dumpster, vehicle, closure and opening fees, each line shown."
     },
     "chicago-crew-cost": {
       "group": "price-plan",
@@ -109,7 +116,8 @@
         "re": "Chicago \\| \\$([\\d.]+) \\| minimum wage an hour from ([A-Z][a-z]+ \\d+, \\d{4})",
         "num": "${1}",
         "label": "Chicago minimum wage an hour from {2}"
-      }
+      },
+      "short": "Pay for 12 trades, public works rates and a crew day calculator."
     },
     "chicago-snow-season": {
       "group": "price-plan",
@@ -120,7 +128,8 @@
         "re": "Showing \\| O'Hare, 2 inches \\|.*? Middle winter \\| (\\d+) \\|",
         "num": "{1}",
         "label": "plowable days in a middle winter at O'Hare, 2 inch trigger"
-      }
+      },
+      "short": "30 winters of NOAA records, at 1, 2, 3 and 6 inch triggers."
     },
     "chicago-permit-wait-times": {
       "group": "permits",
@@ -131,7 +140,8 @@
         "re": "All permits \\| (\\d+) days \\| half issued within",
         "num": "{1} days",
         "label": "for half of all Chicago building permits to be issued"
-      }
+      },
+      "short": "Days from review to issue, by permit type, path and neighborhood."
     },
     "chicago-trade-licenses": {
       "group": "permits",
@@ -139,10 +149,11 @@
       "source": "City, State and federal agencies",
       "cadence": "Checked by hand",
       "stat": {
-        "re": "require for (\\d+) trades",
-        "num": "{1}",
-        "label": "trades, each rule linked to the agency page"
-      }
+        "re": "General contractor \\| General contractor license, Class \\| A to E \\|.*? \\| \\$([\\d,]+) to \\$([\\d,]+) a year",
+        "num": "${1} to ${2}",
+        "label": "a year for a City general contractor license, Class A to E"
+      },
+      "short": "License, insurance, bond, exam and renewal for 12 trades."
     },
     "chicago-demolition-rodent-baiting": {
       "group": "permits",
@@ -153,7 +164,8 @@
         "re": "Last 30 days \\| (\\d+) \\| in \\d+ community areas",
         "num": "{1}",
         "label": "wrecking and demolition permits in the last 30 days"
-      }
+      },
+      "short": "The five rodent control steps before a wrecking permit."
     },
     "chicago-trades-news": {
       "group": "news",
@@ -165,7 +177,8 @@
         "re": "New this week \\| (\\d+) \\| of \\d+ items",
         "num": "{1}",
         "label": "new items this week, each with its source"
-      }
+      },
+      "short": "Rules, taxes, pay and projects for Chicago trade businesses."
     },
     "chicago-trades-quarterly": {
       "group": "news",

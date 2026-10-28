@@ -1,14 +1,16 @@
 {
  "gate": "render-critic",
- "round": 0,
+ "round": 1,
  "series": "after Todd's go, 3:04 pm",
- "at": "2026-10-28T15:45:00-05:00",
+ "at": "2026-10-28T16:40:00-05:00",
  "pass": false,
  "score": {
-  "faults": 1
+  "faults": 2
  },
  "reasons": [
-  "overlap 59 to 60.4 s: the Doesn't count stamp covers 'will be in touch' (fixed: stamp on the phone header)",
-  "PASS: hook, all spoken numbers, audio end, flashes, safe area"
- ]
+  "72.6 s: the Easy to answer note covered the homeowner's question (fixed: the note sits below the reply)",
+  "59.2 s: the Doesn't count stamp covered the Homeowner label (fixed: stamp beside the clock)",
+  "PASS: hook, 11 spoken numbers, layout otherwise, audio end, text size, flashes"
+ ],
+ "stop": "second FAIL in this series: held for Todd's word"
 }

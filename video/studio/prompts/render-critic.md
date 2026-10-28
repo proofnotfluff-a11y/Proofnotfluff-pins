@@ -6,4 +6,5 @@ Read: V/05_render/gates/timeline-*.jpg (2 frames a second, labeled), V/05_render
 3. Layout once settled (ignore mid slide-in): anything that hides words or numbers, cut off at an edge, or under another element? The host in front of scenery is intended; judge only hidden words or numbers. Content belongs between y 270 and y 1250 and left of x 930; the thin level bar near y 170 is decoration.
 4. Voice ends before the video, nothing cut mid-word?
 5. Text too small for a phone; any flash more than 3 times a second?
+Earlier rounds: if V/05_render/reviews/render-critic.json exists, read it first and confirm each listed fault is gone.
 Do not edit files. JSON only: {"pass": bool, "score": {"faults": n}, "faults": [{"kind": "hook-number|number-readable|overlap|cutoff|audio-end|small-text|flash", "at": s, "text": "", "scene": "", "what": ""}], "reasons": ["..."]}

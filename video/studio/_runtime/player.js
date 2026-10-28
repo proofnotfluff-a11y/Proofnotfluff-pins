@@ -23,7 +23,13 @@
     };
     ws.forEach((w, i) => {
       const prev = ws[i - 1];
-      if (cur.length && (prev && w.start - prev.end > 0.55 || !fits(cur.concat([w])))) { out.push(cur); cur = []; }
+      if (cur.length && (prev && w.start - prev.end > 0.55 || !fits(cur.concat([w])))) {
+        // break at a clause end when there is one, and never start a page on a unit ("percent", "million", "hours")
+        let cut = cur.length;
+        for (let j = cur.length - 2; j >= 1; j--) if (/[,;:]$/.test(cur[j].w)) { cut = j + 1; break; }
+        if (cut === cur.length && /^(percent|million|hours?|minutes?|dollars?)\b/i.test(w.w) && cur.length > 1) cut = cur.length - 1;
+        out.push(cur.slice(0, cut)); cur = cur.slice(cut);
+      }
       cur.push(w);
       if (/[.!?]$/.test(w.w) && cur.length >= 3) { out.push(cur); cur = []; }
     });
@@ -131,7 +137,7 @@
     if (moving) {
       // the zoom ladder: every beat inside a section steps the camera in a little, with a springy overshoot
       const beats = cues.filter((c) => c.level > 0 && c.t > sec.t && c.t <= T && c.t < sec.end);
-      beats.forEach((c, i) => { if (i < 4) zoom += 0.028 * k.back((T - c.t) / 0.3); });
+      beats.forEach((c, i) => { if (i < 3) zoom += 0.018 * k.back((T - c.t) / 0.3); });
       const fo = (window.SCENE.focus || {});
       const last = beats.length ? beats[beats.length - 1] : sec;
       if (fo[last.id] || fo[sec.id]) { const [ax, ay] = fo[last.id] || fo[sec.id]; const q = k.easeOut((T - last.t) / 0.6); fx = 540 + (ax - 540) * 0.2 * q; fy = 300 + (ay - 300) * 0.2 * q; }
@@ -172,7 +178,7 @@
       // room to room: pixel blinds close and open again (0.42 s), hiding the cut
       if (sec !== tops[0] && into < 0.42) {
         for (let i = 0; i < 16; i++) {
-          const q = into < 0.12 ? 1 : 1 - k.easeOut((into - 0.12 - i * 0.008) / 0.26), w = W * k.clamp(q);
+          const q = into < 0.04 ? 1 : 1 - k.easeOut((into - 0.04 - i * 0.008) / 0.22), w = W * k.clamp(q);
           ctx.fillStyle = '#120D14'; ctx.fillRect(i % 2 ? W - w : 0, i * 120, w, 120);
         }
       }

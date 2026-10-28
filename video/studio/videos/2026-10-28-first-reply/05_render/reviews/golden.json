@@ -2,13 +2,12 @@
  "gate": "golden",
  "round": 0,
  "series": "after Todd's go, 3:04 pm",
- "at": "2026-10-28T15:45:00-05:00",
+ "at": "2026-10-28T16:40:00-05:00",
  "pass": true,
  "score": {
   "post_as_is": "yes"
  },
  "reasons": [
-  "post as is; polish noted: build scene cramped, frame 0 mid-reveal, auto-reply tag past the bezel, phone clock vs timer, lone words in the dialog box (all fixed in the next render); captions must carry the 4-line text (they do)"
- ],
- "rerunAfter": "the design and critic fixes change the render, so golden runs again at round 0"
+  "no must-fix; polish: hook card still for 2.4 s, wipes look choppy (fixed), small host in the build scene, the note over the question (fixed), the time line typed 1 s early (fixed), 'about half' next to '46% less'"
+ ]
 }

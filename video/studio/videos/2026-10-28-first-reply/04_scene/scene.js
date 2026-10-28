@@ -26,7 +26,7 @@ window.SCENE = {
       k.room('framing');
       if (T < HOOK_END) {   // the hook card: the number that makes a pro stop scrolling
         // the host steps aside for the hook, so nothing covers the claim or its source (gates, Oct 28)
-        k.shape(k.rectPts(0, 230, 1080, 840, 0), {fill: '#1B1420', line: false});
+        k.shape(k.rectPts(24, 230, 1032, 840, 0), {fill: '#1B1420', line: false});
         k.slam('Answer a lead', 540, 262, -1, {size: 120, color: CHALK, align: 'center'});
         k.slam('a day late?', 540, 366, -1, {size: 120, color: CHALK, align: 'center'});
         k.slam(n.dayDrop.shown, 540, 472, -0.3, {size: 330, color: 'accent', align: 'center', from: 1.4, shake: 8});
@@ -120,8 +120,8 @@ window.SCENE = {
       if (T >= k.S('signal.alone')) {
         const t0 = k.S('signal.alone');
         k.slam('It helped on its own:', 96, 590, t0, {size: 39, color: CHALK2, from: 0.5});
-        k.ctx.save(); slideIn(k, t0 + 0.2, -600, 0); k.text('same work, same message,', 96, 644, {size: 39, color: CHALK}); k.ctx.restore();
-        k.ctx.save(); slideIn(k, t0 + 0.4, -600, 0); k.text('faster reply still won.', 96, 694, {size: 39, color: CHALK}); k.ctx.restore();
+        k.ctx.save(); slideIn(k, t0 + 0.1, -600, 0); k.text('same work, same message,', 96, 644, {size: 39, color: CHALK}); k.ctx.restore();
+        k.ctx.save(); slideIn(k, t0 + 0.2, -600, 0); k.text('faster reply still won.', 96, 694, {size: 39, color: CHALK}); k.ctx.restore();
         k.sweep(96, 756, 560, 9, t0 + 0.7, {color: 'accent'});
       }
       k.ctx.restore();
@@ -173,12 +173,12 @@ window.SCENE = {
       const tStamp = dc ? dc.start : k.S('catch.canned') + 3;
       if (T >= tStamp) {
         const t0 = tStamp, q = k.clamp((T - t0) / 0.18);
-        k.ctx.save(); k.ctx.translate(655, 392); k.ctx.rotate(-0.08); const s = (2.2 - 1.2 * q) * 0.8; k.ctx.scale(s, s);   // on the phone's header, clear of both messages
+        k.ctx.save(); k.ctx.translate(655, 336); k.ctx.rotate(-0.06); const s = (2.2 - 1.2 * q) * 0.8; k.ctx.scale(s, s);   // on the phone's header, clear of both messages
         k.shape(k.rectPts(-230, -60, 460, 120, 0), {fill: '#1B1420', line: false, alpha: q});
         k.shape(k.rectPts(-224, -54, 448, 108, 0), {stroke: 'accent', lw: 9, line: false, alpha: q});
         k.text("Doesn't count", 0, -30, {size: 60, color: 'accent', align: 'center', alpha: q, lint: false});
         k.ctx.restore();
-        k.burst(655, 392, t0 + 0.18, {n: 22, r: 300, colors: ['accent', '#9AA0AD', 'paper']});
+        k.burst(450, 336, t0 + 0.18, {n: 12, r: 220, colors: ['accent', '#9AA0AD', 'paper']}); k.burst(860, 336, t0 + 0.18, {n: 12, r: 220, colors: ['accent', '#9AA0AD', 'paper']});
       }
       return {hostPose: T >= tStamp ? 'shrug' : (k.talking() ? 'talk' : 'stand')};
     },
@@ -188,11 +188,15 @@ window.SCENE = {
       let cur = -1; REPLY.forEach(([id], i) => { if (T >= k.S(id)) cur = i; });
       // typed so far: whole earlier lines plus part of the current one; the bubble is laid out for the full reply
       const FULL = REPLY.map((r) => r[1]).join(' ');
+      // each line types as it is said: the time line waits for "I can come by", not for "Then a real time"
+      const ws = (window.WORDS && window.WORDS.words) || [];
+      const startOf = (id) => { if (id !== 'build.time') return k.S(id) + 0.1; const w = ws.find((x) => x.start >= k.S(id) && /^come$/i.test(x.w)); return w ? w.start - 0.35 : k.S(id) + 0.1; };
       let reveal = 0;
       REPLY.forEach(([id, line], i) => { if (T < k.S(id)) return;
-        const p = k.lin(k.S(id) + 0.1, k.S(id) + 0.1 + line.length * 0.035);
+        const p = k.lin(startOf(id), startOf(id) + line.length * 0.035);
         reveal = REPLY.slice(0, i).reduce((a, r) => a + r[1].length + 1, 0) + Math.floor(line.length * p); });
-      const typingTo = cur >= 0 ? k.S(REPLY[cur][0]) + 0.1 + REPLY[cur][1].length * 0.035 : 0;
+      
+      const typingTo = cur >= 0 ? startOf(REPLY[cur][0]) + REPLY[cur][1].length * 0.035 : 0;
       k.ctx.save();
       if (cur >= 0) { const q = k.clamp(k.pop(k.S(REPLY[cur][0]), 0.3), 0, 1.2); k.ctx.translate(100, 300); k.ctx.scale(q, q); k.ctx.translate(-100, -300); }
       else slideIn(k, k.S('build'), -500, 0);
@@ -200,7 +204,7 @@ window.SCENE = {
       k.ctx.restore();
       k.ctx.save(); slideIn(k, k.S('build') + 0.1, 0, 800);
       k.phone(100, 330, 800, 640, [
-        {text: LEAD_TEXT, at: -1, ghost: T >= k.S('build.why') && T < k.S('build.time')},
+        {text: LEAD_TEXT, at: -1},
         ...(T >= k.S('build.name') ? [{text: FULL, reveal, me: true, at: k.S('build.name'), typing: typingTo}] : []),
       ], {who: 'Homeowner', size: 39});
       k.ctx.restore();
@@ -208,10 +212,10 @@ window.SCENE = {
       if (T >= k.S('build.why') && T < k.S('build.time')) {
         const t0 = k.S('build.why');
         k.ctx.save(); slideIn(k, t0, 700, 0);
-        k.ctx.translate(500, 590); k.ctx.rotate(-0.02); k.ctx.translate(-500, -590);
-        k.panel2(150, 480, 700, 172, {fill: 'accent', border: '#1B1420'});
-        k.text('Easy to answer,', 180, 496, {size: 60, color: '#1B1420'});
-        k.text('and you know what to bring.', 180, 586, {size: 39, color: '#1B1420'});
+        k.ctx.translate(520, 870); k.ctx.rotate(-0.015); k.ctx.translate(-520, -870);
+        k.panel2(150, 806, 700, 136, {fill: 'accent', border: '#1B1420'});
+        k.text('Easy to answer,', 180, 818, {size: 60, color: '#1B1420'});
+        k.text('and you know what to bring.', 180, 892, {size: 39, color: '#1B1420'});
         k.ctx.restore();
       }
       // the host steps back (smaller) so his head never covers the reply being typed

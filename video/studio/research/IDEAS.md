@@ -1,6 +1,6 @@
 # Ideas: the video bank
 
-Ranked by the research desk; a live session picks what gets made. Made so far: 2026-10-28-first-reply (idea: first reply fast and human).
+Ranked by the research desk; a live session picks what gets made. Made so far: 2026-10-28-first-reply (first reply fast and human); in production Oct 28: 2026-10-29-quote-revive, 2026-10-30-markup-margin, 2026-10-31-three-prices.
 
 ## Ranked ideas (run 2026-10-28-formats)
 
@@ -64,3 +64,22 @@ Every anchor fact below is from runs/2026-10-28-viral.md, with its source there.
 | V6 | The voicemail myth | "80% won't leave a voicemail" traces to an uncited 2014 line (Let's Ask Claire, Aug 2026) | "You've heard 80% of callers won't leave a voicemail. Nobody measured that." |
 
 Still need a source: how many follow-ups a quote needs; charging for estimates.
+
+## Next up (run 2026-10-28-topic-bank: 40 ranked, top 10 with ready briefs, every anchor read on its page)
+
+Make in this order unless the Monday numbers say otherwise; the briefs are in runs/2026-10-28-topic-bank.md. Re-read each
+source on the day it is used. Watch the traps the run flagged: financing (64% higher ticket) is correlation, not cause;
+the solar effect is 0.78 percentage points, not 78%; the 1986 price study is fairness ratings, not behavior.
+
+| # | Title | Anchor (source) |
+|---|---|---|
+| T2 | Close it before you leave the driveway | top shops close 77% of estimates on the same visit vs 62% (ServiceTitan, May 2026) |
+| T1 | Raise prices with a reason customers accept | cost-based raise rated acceptable by 79% and 75%; a snowstorm raise unfair by 82% (Kahneman, Knetsch, Thaler, AER 1986) |
+| T3 | Reply to every review | hotels that started replying got 12% more reviews and +0.12 stars (Proserpio and Zervas, Marketing Science) |
+| T4 | Know your close rate | median 31% to 38% by region; top quarter 70% to 73% (ServiceTitan, Oct 2026) |
+| T6 | Book the call, not just answer it | top performers book 62% of inbound lead calls vs 39% (ServiceTitan, May 2026) |
+| T7 | 1% on price beats 1% more jobs | +1% price, +11.1% operating profit; +1% volume, +3.3% (Marn and Rosiello, HBR 1992) |
+| T8 | Ask everyone for a review, never cherry-pick | Google policy; FTC rule (Aug 2024) |
+| T5 | Put a monthly payment next to the price | financed jobs have a 64% higher median ticket (ServiceTitan, Jul 2026; correlation) |
+| T9 | Every job sells the street | +0.78 percentage points per nearby install (Bollinger and Gillingham, Marketing Science 2012) |
+| T10 | Count your cash buffer days | median small business 27 days of cash; construction 20 (JPMorgan Chase Institute 2016) |

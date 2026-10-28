@@ -1,0 +1,12 @@
+{
+ "gate": "render-critic",
+ "round": 0,
+ "at": "2026-10-28T18:08:00-05:00",
+ "pass": true,
+ "score": {
+  "faults": 0
+ },
+ "reasons": [
+  "16 of 16 spoken numbers on screen as said; hook on frame 0; layout in bounds; audio end clean"
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "gate": "golden",
+ "round": 0,
+ "at": "2026-10-28T18:08:00-05:00",
+ "pass": true,
+ "score": {
+  "post_as_is": "yes"
+ },
+ "reasons": [
+  "polish: static hook card; count-ups pass odd values ($1,595.62); small board labels; empty pegboard 23 to 24.5 s; take 05 at 147 wpm"
+ ]
+}

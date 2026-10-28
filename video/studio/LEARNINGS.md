@@ -8,6 +8,9 @@ The studio learns in three loops (Todd, Oct 28, 2026, 3:43 pm: "make this video 
    hook formulas in research/runs/2026-10-28-script-playbook.md; what wins gets written into _shared/voice.md.
 
 ## Rules learned (newest first)
+- The close is one column with one left edge (x 120), the host small at the side; the send box is the one filled element.
+- A board never sits empty more than 1 s: the next line lands on the beat's first word, not the cue's last.
+- Strike a number only after it has been read (0.4 s), and with a thin line that leaves it legible.
 - A hook's claim matches the number it cites: "Top shops quote 3 prices. Not 1." under a 57% stat is an overclaim; say
   "on 57% of home jobs" (facts and golden caught it on lesson 4).
 - A stat box shows its rows (labels and empty tracks) as it opens; a big empty panel reads as broken.
@@ -34,3 +37,9 @@ The studio learns in three loops (Todd, Oct 28, 2026, 3:43 pm: "make this video 
   (fixed; a captions lint is next on IMPROVE). Design 4.14: empty stat boxes, sticker on the bar, ruled lines through
   the header, close left-aligned with a small call to action, stray $ past the card edge -> all fixed.
 - 2026-10-28 markup-margin: transcript flag '$1 ,000.' was a respell miss, not the voice -> respell reads digits as words.
+- 2026-10-28 quote-revive: facts-captions, study line without its population ('In hiring experiments') -> fixed.
+  Design 4.43: the fix line was the faintest text, a tag over the phone edge and the hat, three left edges on the close,
+  empty board while the header waits -> hero line big, one left edge, text in on the beat's first word.
+- 2026-10-28 markup-margin: QA loudness -15.1 (the limiter ate the gain) -> the mix adds the gap back and limits again.
+  Design 4.57: formula box empty 3.5 s, close cards on three edges with the host's hand on one, a room prop through the
+  title, a strike that hid the number it struck -> card lands at once, one left edge, host to the side, strike after 0.4 s.

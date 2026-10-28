@@ -38,7 +38,8 @@ window.SCENE = {
       const n = k.data.numbers;
       k.room('framing');
       if (T < HOOK_END) {   // the hook card: settled on frame one, host and dialog box hidden, so nothing covers the claim
-        k.shape(k.rectPts(0, 230, 1080, 840, 0), {fill: DARK, line: false});
+        k.shape(k.rectPts(24, 230, 1032, 840, 0), {fill: DARK, line: false});
+        k.shape(k.rectPts(24, 230, 1032, 840, 0), {stroke: '#E6D3BC', lw: 6, line: false});
         const cw = k.measure('RUN THE NUMBERS', {size: 30}) + 36;
         k.chip('Run the numbers', 540 - cw / 2, 276, {size: 30});
         k.slam(`${n.markupPct.shown} markup`, 540, 380, -1, {size: D2, color: CHALK, align: 'center'});
@@ -60,8 +61,8 @@ window.SCENE = {
       k.ctx.restore();
       const tn = k.S('hook.nope');
       if (T >= tn) {   // the assumed 50% is struck out, and the truth is stamped under the card
-        const q = k.easeOut((T - tn) / 0.25), sx = 890 - k.measure(`${n.doubleMarginPct.shown}?`, {size: D1}) - 12;
-        k.shape(k.rectPts(sx, 588, (890 + 12 - sx) * q, 12, 0), {fill: 'accent', line: false});
+        const q = k.easeOut((T - tn - 0.4) / 0.25), sx = 890 - k.measure(`${n.doubleMarginPct.shown}?`, {size: D1}) - 12;   // read it, then strike it
+        if (q > 0) k.shape(k.rectPts(sx, 594, (890 + 12 - sx) * q, 6, 0), {fill: 'accent', line: false});
         stamp(k, 'One third', 640, 790, tn, {rot: -0.07});
       }
       if (T >= k.S('hook.fix')) {
@@ -89,7 +90,7 @@ window.SCENE = {
         k.text('Cost', BX + BW / 2, BASE - HC + 56, {size: BODY, color: DARK, align: 'center', alpha: k.clamp((T - k.S('math.cost')) / 0.4)});
         k.slam(p >= 1 ? n.cost.shown : k.count(n.cost.value, p, {comma: true, prefix: '$'}), 610, 690, tc, {size: D2, color: CHALK, align: 'right', from: 0.6});
         if (p >= 1) k.burst(470, 750, tc + 0.7, {n: 14, colors: ['paper', 'accent2']});
-        k.ctx.save(); slideIn(k, tc + 0.3, 300, 0); k.text('cost', 610, 826, {size: BODY, color: CHALK2, align: 'right'}); k.ctx.restore();
+        k.ctx.save(); slideIn(k, tc + 0.3, -300, 0); k.text('cost', 610, 826, {size: BODY, color: CHALK2, align: 'right'}); k.ctx.restore();
       }
       // the markup slice stacks on top; +$500 counts on "five hundred"
       if (T >= k.S('math.markup')) {
@@ -140,6 +141,9 @@ window.SCENE = {
     why: (k, T) => {
       const n = k.data.numbers;
       k.room('workshop');
+      // cover the room's orange square so it never runs through the title or the cards
+      k.shape(k.rectPts(72, 290, 170, 240, 0), {fill: '#B07A47', line: false});
+      for (let y = 306; y < 530; y += 36) for (let x = 72; x < 240; x += 36) k.shape(k.rectPts(x, y, 6, 6, 0), {fill: '#8C5A33', line: false});
       k.slam('Why the gap?', 96, 276, k.S('why'), {size: D1, color: CHALK, from: 0.5});
       const card = (x, title, top, base, on, res, t0) => {
         if (T < t0) return;
@@ -198,8 +202,8 @@ window.SCENE = {
       if (T >= k.S('double.markup')) {
         const t0 = said(k, /^hundred/, k.S('double.markup')), p = k.lin(t0, t0 + 0.7);
         if (T >= t0) {
-          k.slam(p >= 1 ? n.doubleMarkupPct.shown : k.count(n.doubleMarkupPct.value, p, {suffix: '%'}), 610, 500, t0, {size: D2, color: 'accent', align: 'right', from: 0.6});
-          k.text('markup', 610, 640, {size: BODY, color: CHALK, align: 'right', alpha: k.clamp((T - t0) / 0.3)});
+          k.slam(p >= 1 ? n.doubleMarkupPct.shown : k.count(n.doubleMarkupPct.value, 0.85 + 0.15 * p, {suffix: '%'}), 610, 500, t0, {size: D2, color: 'accent', align: 'right', from: 0.6});
+          k.text('markup', 610, 640, {size: BODY, color: CHALK, align: 'right'});
           if (p >= 1) k.burst(460, 560, t0 + 0.7, {n: 14});
         }
       }
@@ -222,15 +226,16 @@ window.SCENE = {
       k.ctx.save(); slideIn(k, shot ? k.S('formula.shot') : k.S('formula'), -400, 0);
       k.chip(shot ? 'Screenshot this' : 'The part people skip', 96, 270, {size: 30, fill: shot ? 'accent' : 'tag', color: shot ? DARK : 'tagText'});
       k.ctx.restore();
-      if (shot) {
+      const tcard = Math.min(k.S('formula.shot'), k.S('formula') + 0.5);   // the card lands early: no empty board
+      if (T >= tcard) {
         // the formula card: big from "Price equals" until "Want forty percent?", then it steps up to half size (still the
         // same pixel grid) and stays on the board while the worked example is written under it
-        const t0 = k.S('formula.shot'), q = k.clamp(k.pop(t0, 0.35), 0, 1.12), tf = shrinkAt(k);
+        const t0 = tcard, q = k.clamp(k.pop(t0, 0.35), 0, 1.12), tf = shrinkAt(k);
         const sm = 1 - 0.5 * k.easeOut((T - tf) / 0.35), CX = 510, CY = 350;
         k.ctx.save(); k.ctx.translate(CX, CY); k.ctx.scale(q * sm, q * sm); k.ctx.translate(-CX, -CY);
         // the literal line rides on the card's tab while the card is big (the copyable text, same as every caption)
         k.panel2(130, CY, 760, 470, sm > 0.9 ? {border: 'accent', title: 'Price = Cost / (1 - margin)'} : {border: 'accent'});
-        const te = k.S('formula.eq');
+        const te = Math.min(k.S('formula.eq'), tcard + 0.3);
         if (T >= te) {   // written in under a second as "Price equals" starts, so the whole formula holds big for seconds
           const num = 'Cost', den = '1 - margin', fw = Math.max(k.measure(num, {size: D2}), k.measure(den, {size: D2}));
           const a = (t) => k.clamp((T - t) / 0.2);
@@ -261,43 +266,43 @@ window.SCENE = {
       if (T >= k.S('formula.check')) {
         const t0 = k.S('formula.check');
         k.ctx.save(); slideIn(k, t0, 400, 0);
-        k.text(`${n.targetMarginUsd.shown} / ${n.targetPrice.shown} = ${n.targetCheck.shown}`, 320, 852, {size: BODY, color: CHALK});
+        k.text(`${n.targetMarginUsd.shown} / ${n.targetPrice.shown} = ${n.targetCheck.shown}`, 120, 840, {size: D1, color: CHALK});
         k.ctx.restore();
       }
       k.ctx.restore();
-      return {hostPose: k.talking() ? (T < k.S('formula.result') ? 'point' : 'talk') : 'stand', hostAt: [500, 700], hostScale: 0.7};   // a smaller host keeps clear of the card
+      return {hostPose: k.talking() ? (T < k.S('formula.result') ? 'point' : 'talk') : 'stand', hostScale: 0.55, hostX: 150};   // the host steps to the side, clear of the card and the check line
     },
 
     close: (k, T) => {
       k.room('framing');
       const t0 = k.S('close');
-      k.ctx.save(); slideIn(k, t0, 0, 500); k.panel2(84, 290, 852, 190, {fill: DARK, border: 'accent'}); k.ctx.restore();
+      k.ctx.save(); slideIn(k, t0, 0, 500); k.panel2(120, 290, 840, 190, {fill: DARK, border: 'accent'}); k.ctx.restore();
       const tg = said(k, /^margin/, t0 + 0.5);
-      k.slam('Markup is on cost.', 510, 312, t0 + 0.1, {size: D1, color: CHALK, align: 'center', from: 0.7});
-      k.slam('Margin is on price.', 510, 394, tg, {size: D1, color: 'accent', align: 'center', from: 0.7});
-      k.burst(510, 424, tg + 0.12, {n: 12, r: 200});
+      k.slam('Markup is on cost.', 540, 312, t0 + 0.1, {size: D1, color: CHALK, align: 'center', from: 0.7});
+      k.slam('Margin is on price.', 540, 394, tg, {size: D1, color: 'accent', align: 'center', from: 0.7});
+      k.burst(540, 424, tg + 0.12, {n: 12, r: 200});
       if (T >= k.S('close.send')) {
         const ts = k.S('close.send'), tb = ts - 0.3;
-        k.ctx.save(); k.ctx.translate(540, 540); const qb = k.clamp(k.pop(tb, 0.3), 0, 1.15); k.ctx.scale(qb, qb); k.ctx.translate(-540, -540);
-        k.panel2(330, 500, 420, 80, {fill: '#24453A', border: 'accent'}); k.text('ProofNotFluff', 540, 507, {size: D1, color: 'accent', align: 'center'});
+        k.ctx.save(); k.ctx.translate(330, 540); const qb = k.clamp(k.pop(tb, 0.3), 0, 1.15); k.ctx.scale(qb, qb); k.ctx.translate(-330, -540);
+        k.panel2(120, 500, 420, 80, {fill: '#24453A', border: 'accent'}); k.text('ProofNotFluff', 330, 507, {size: D1, color: 'accent', align: 'center'});
         k.ctx.restore();
-        k.burst(540, 540, tb + 0.1, {n: 16});
+        k.burst(330, 540, tb + 0.1, {n: 16});
         k.ctx.save(); slideIn(k, ts, 700, 0);
-        k.panel2(300, 600, 630, 160, {fill: DARK, border: 'accent'});
-        k.text('Send this to whoever', 330, 616, {size: D1, color: CHALK});
-        k.text('sets your prices.', 330, 684, {size: D1, color: CHALK});
-        if (T >= k.S('close.you')) k.sweep(326, 738, k.measure('sets your prices.', {size: D1}) + 8, 8, k.S('close.you'), {color: 'accent2'});
+        k.panel2(120, 600, 840, 160, {fill: DARK, border: 'accent'});
+        k.text('Send this to whoever', 150, 616, {size: D1, color: CHALK});
+        k.text('sets your prices.', 150, 684, {size: D1, color: CHALK});
+        if (T >= k.S('close.you')) k.sweep(146, 738, k.measure('sets your prices.', {size: D1}) + 8, 8, k.S('close.you'), {color: 'accent2'});
         k.ctx.restore();
       }
       if (T >= k.S('close.last')) {
         const tl = k.S('close.last');
         k.ctx.save(); slideIn(k, tl, 700, 0);
-        k.panel2(300, 780, 630, 154, {fill: DARK, border: 'line'});
-        k.text('Your last quote?', 330, 794, {size: D1, color: CHALK});
+        k.panel2(120, 780, 840, 154, {fill: DARK, border: 'line'});
+        k.text('Your last quote?', 150, 794, {size: D1, color: CHALK});
         k.ctx.restore();
-        if (T >= k.S('close.echo')) k.slam('Half, or a third?', 330, 860, k.S('close.echo'), {size: D1, color: 'accent', from: 0.6});
+        if (T >= k.S('close.echo')) k.slam('Half, or a third?', 150, 860, k.S('close.echo'), {size: D1, color: 'accent', from: 0.6});
       }
-      return {hostPose: T >= k.S('close.echo') + 1.2 ? 'wave' : (k.live('close.you') ? 'point' : 'talk'), hostAt: [420, 720]};
+      return {hostPose: T >= k.S('close.echo') + 1.2 ? 'wave' : (k.live('close.you') ? 'point' : 'talk'), hostScale: 0.55, hostX: 150};
     },
   },
 };

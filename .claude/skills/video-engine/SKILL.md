@@ -17,7 +17,7 @@ One job: make one Rat check Reel from this week's rat file, pass every gate, sen
 9. Gate 6 send test (pairwise-send.md, reference = the posted video with the most 7-day plays, else the golden render; `video_pairwise.py send`), 7 buyer (buyer.md), 8 design (design.md: no score under 4, average 4.61). Ledger -> reviewed.
 10. Preview: SendUserFile the MP4 and sheet.jpg; SendUserMessage the caption in a code block, gate lines as PASS/FAIL with values, and spec, MP4 and caption fingerprints (12 characters). Ledger -> preview_sent. Ask: "post", or a fix note.
 11. On Todd's "post" for that preview: `video_ledger.py touch` with his words; -> approved with --spec --mp4 --caption-file; `bound` must PASS. Load the chrome-browser skill. Instagram as proofnotfluff only (switch if not); read the last 5 posts' captions and stop on a match; ledger -> posting; Create, Reel, file_upload the MP4, cover = frame one, paste the caption and check its length, Share to Facebook off, Share. Screenshot; the new /reel/ link; -> published. A fix note: one fix round from the gate it touches.
-12. Fix rounds: one per gate, then that gate and every gate after it rerun. A second FAIL: -> failed, the slot's next candidate as a new id, tell Todd one line. No agent overrides a FAIL.
+12. Fix rounds: one per gate, then that gate and every gate after it rerun. A gate rerun because another gate's fix touched its input starts at round 0 (review rerunAfter; Todd, Oct 28). A gate's own second FAIL: -> failed, the slot's next candidate as a new id, tell Todd one line. No agent overrides a FAIL.
 
 ## Outputs (Writes)
 - video/specs/, video/jobs/, video/reviews/, video/metrics/, video/candidates/, ledger rows (only through video_ledger.py); check_repo exits 0, push to main, unlock.

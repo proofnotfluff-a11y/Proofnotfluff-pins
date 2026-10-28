@@ -1,8 +1,9 @@
 # Voice: how scripts are written and spoken
 
-**The voice:** an ElevenLabs library voice for now (Todd, Oct 28, 11:51 am: "For now use a library voice. Any will do.
-We can do a cloned voice later."). Default: Chris (`iP95p4xoKVk53GoZ742B`), a relaxed, down-to-earth American voice.
-Model: Eleven v4 (`eleven_v4`). A cloned voice replaces this line later, with Todd's word.
+**The voice:** Todd's own ElevenLabs voice clone (`W3pJy9ibur1FKUihVxzY`; Todd, Oct 28, 1:41 pm), made from his recording,
+cleaned. Settings (`anim.py` VOICE_SETTINGS) lean steady and a touch warmer: "Just make me sound a bit smoother and more
+confident" (Todd, Oct 28, 1:03 pm). Model: Eleven v4 (`eleven_v4`). The library voice Chris (`iP95p4xoKVk53GoZ742B`) stays
+as the fallback (`speak --voice iP95p4xoKVk53GoZ742B`). The caption says the narration is an AI voice made from Todd's own.
 
 ## Written as talk
 - One paragraph is one take: 2 to 4 sentences, 15 to 25 seconds. A take that sounds off is re-rolled alone.

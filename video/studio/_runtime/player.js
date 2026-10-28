@@ -69,6 +69,20 @@
     if (arcade && (T * 2) % 1 < 0.5) k.shape([[x + w - 52, y + h - 40], [x + w - 28, y + h - 40], [x + w - 40, y + h - 26]], {fill: 'bubbleText', line: false});
   }
 
+  // the game HUD: lesson tag and a level bar, one block per section, filling as the lesson plays (a reason to stay)
+  function hud(k, T, tops, sec) {
+    const h = window.SCENE.hud; if (!h) return;
+    const x = 72, y = 168, n = tops.length, gap = 8, lw = k.measure(h, {size: 30}) + 36, bw = (936 - lw - gap * (n - 1)) / n;
+    k.shape(k.rectPts(x - 6, y - 6, 948, 52, 0), {fill: '#120D14', line: false, alpha: 0.7});
+    k.text(h, x + 6, y + 2, {size: 30, color: 'accent2'});
+    tops.forEach((c, i) => {
+      const bx = x + lw + i * (bw + gap), done = T >= c.end, on = c === sec;
+      k.shape(k.rectPts(bx, y + 6, bw, 28, 0), {fill: '#3D2E45', line: false});
+      const f = done ? 1 : (on ? k.clamp((T - c.t) / Math.max(0.1, c.end - c.t)) : 0);
+      if (f > 0) k.shape(k.rectPts(bx, y + 6, bw * f, 28, 0), {fill: on ? 'accent' : 'teal', line: false});
+    });
+  }
+
   function quantize(c) {
     const g = c.getContext('2d'); const im = g.getImageData(0, 0, c.width, c.height); const d = im.data;
     if (!pal) pal = look.palette.map((h) => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)]);
@@ -101,9 +115,24 @@
     let ret = {};
     ctx.save();
     const into = T - sec.t;
-    if (sec !== tops[0] && into < 0.28) { const e = k.easeOut(into / 0.28); ctx.translate((1 - e) * 140, 0); ctx.globalAlpha = 0.25 + 0.75 * e; }
-    const push = 1 + 0.03 * Math.min(1, into / Math.max(1, sec.end - sec.t));   // a slow push-in through each section
-    ctx.translate(540, 620); ctx.scale(push, push); ctx.translate(-540, -620);
+    const moving = !!look.bitmap || window.SCENE.motion;
+    if (!moving && sec !== tops[0] && into < 0.28) { const e = k.easeOut(into / 0.28); ctx.translate((1 - e) * 140, 0); ctx.globalAlpha = 0.25 + 0.75 * e; }
+    let zoom = 1 + 0.03 * Math.min(1, into / Math.max(1, sec.end - sec.t));   // a slow push-in through each section
+    let fx = 540, fy = 620, sx = 0, sy = 0;
+    if (moving) {
+      // the zoom ladder: every beat inside a section steps the camera in a little, with a springy overshoot
+      const beats = cues.filter((c) => c.level > 0 && c.t > sec.t && c.t <= T && c.t < sec.end);
+      beats.forEach((c, i) => { if (i < 4) zoom += 0.028 * k.back((T - c.t) / 0.3); });
+      const fo = (window.SCENE.focus || {});
+      const last = beats.length ? beats[beats.length - 1] : sec;
+      if (fo[last.id] || fo[sec.id]) { const [ax, ay] = fo[last.id] || fo[sec.id]; const q = k.easeOut((T - last.t) / 0.6); fx = 540 + (ax - 540) * 0.35 * q; fy = 620 + (ay - 620) * 0.35 * q; }
+      // a short shake on every stamp
+      cues.forEach((c) => { const d = T - c.t; if (c.sfx === 'stamp' && d >= 0 && d < 0.32) { const a = 14 * (1 - d / 0.32); sx += Math.sin(T * 91) * a; sy += Math.cos(T * 73) * a; } });
+      // a section opens with a hard punch-in that settles
+      if (sec !== tops[0]) zoom += 0.06 * (1 - k.easeOut(into / 0.5));
+    }
+    ctx.translate(sx, sy);
+    ctx.translate(fx, fy); ctx.scale(zoom, zoom); ctx.translate(-fx, -fy);
     if (fn) ret = fn(k, T, sec) || {};
     ctx.restore();
     if (ret.host !== false && window.SCENE.host !== false) {
@@ -122,6 +151,16 @@
       else k.snow(160, 1246, {scale: 0.6, pose: hp, at: ret.hostAt, face: 1});
     }
     speechBox(k, T);
+    if (moving) {
+      hud(k, T, tops, sec);
+      // room to room: pixel blinds close and open again (0.42 s), hiding the cut
+      if (sec !== tops[0] && into < 0.42) {
+        for (let i = 0; i < 16; i++) {
+          const q = into < 0.12 ? 1 : 1 - k.easeOut((into - 0.12 - i * 0.008) / 0.26), w = W * k.clamp(q);
+          ctx.fillStyle = '#120D14'; ctx.fillRect(i % 2 ? W - w : 0, i * 120, w, 120);
+        }
+      }
+    }
     if (pixel) {
       quantize(lowCanvas);
       mctx.setTransform(1, 0, 0, 1, 0, 0); mctx.imageSmoothingEnabled = false;

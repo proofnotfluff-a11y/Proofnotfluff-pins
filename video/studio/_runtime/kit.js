@@ -569,6 +569,24 @@
       if (name !== 'framing' && name !== 'garage' && name !== 'workshop') R(0, floorY, 1080, 670, '#5A3A22');
       R(0, floorY, 1080, 8, '#120D14');
       if (o.props !== false) floorProps(name, floorY);
+      if (o.ambient !== false) ambient(name);
+    };
+    // each room breathes: clouds over the framing, chalk dust, shop dust, a flickering garage light
+    const ambient = function (name) {
+      if (name === 'framing') {
+        for (let i = 0; i < 3; i++) {
+          const cx = ((T * (14 + i * 6) + i * 470) % 1500) - 260, cy = 40 + i * 52;
+          R(cx, cy, 180, 30, '#FFF7EA'); R(cx + 30, cy - 22, 110, 24, '#FFF7EA'); R(cx + 12, cy + 30, 150, 12, '#C9CCD3');
+        }
+        R(0, 200, 1080, 30, '#D9A066');
+      } else if (name === 'blackboard') {
+        k.motes(80, 260, 920, 720, '#2F5A4A', 12);
+      } else if (name === 'workshop') {
+        k.motes(60, 860, 960, 380, '#D9A066', 16);
+      } else if (name === 'garage') {
+        if (hash(Math.floor(T * 7)) > 0.86) R(440, 150, 200, 10, '#4A4E5A');
+        k.motes(90, 240, 900, 760, '#9AA0AD', 10);
+      }
     };
     // the floor of each room: depth lines and a few props, so the lower third reads as a place (it sits under the Reel UI)
     const floorProps = function (name, fy) {
@@ -615,6 +633,39 @@
     };
 
     k.cam = function (sc, cx, cy) { ctx.translate(cx, cy); ctx.scale(sc, sc); ctx.translate(-cx, -cy); };
+
+    // ---- motion: the moves that keep a lesson alive (Todd, Oct 28, 1:33 pm: "keep things moving") ----
+    // pixel sparks flying out of a point for 0.7 s
+    k.burst = function (x, y, t0, o = {}) {
+      const d = T - t0, life = o.life || 0.7; if (d < 0 || d > life) return;
+      const n = o.n || 16, r = o.r || 230, cols = o.colors || ['accent', 'accent2', 'paper'], q = easeOut(d / life);
+      for (let i = 0; i < n; i++) {
+        const a = hash(i * 1.7 + t0 * 3.1) * TAU, sp = (0.45 + hash(i * 4.3 + t0) * 0.75) * r;
+        const s = Math.max(3, (o.size || 15) * (1 - d / life));
+        R(x + Math.cos(a) * sp * q - s / 2, y + Math.sin(a) * sp * q + 260 * d * d - s / 2, s, s, cols[i % cols.length]);
+      }
+    };
+    // a line of text that slams in big and settles, with a short shake
+    k.slam = function (s, x, y, t0, o = {}) {
+      const d = T - t0; if (d < 0) return;
+      const q = clamp(d / (o.dur || 0.2)), sc = 1 + (o.from || 0.9) * Math.pow(1 - q, 2);
+      const sh = d < 0.3 ? (1 - d / 0.3) * 8 : 0;
+      ctx.save(); ctx.translate(x + Math.sin(T * 97) * sh, y + Math.cos(T * 83) * sh); ctx.scale(sc, sc);
+      text(s, 0, 0, Object.assign({}, o, {alpha: (o.alpha != null ? o.alpha : 1) * clamp(q * 3)}));
+      ctx.restore();
+    };
+    // a bar that sweeps across behind a line, like a highlighter (game style: hard edges)
+    k.sweep = function (x, y, w, h, t0, o = {}) {
+      const q = easeOut((T - t0) / (o.dur || 0.3)); if (q <= 0) return;
+      shape(rectPts(x, y, w * q, h, 0), {fill: o.color || 'accent', line: false, alpha: o.alpha != null ? o.alpha : 1});
+    };
+    // drifting motes (dust in the light, chalk in the air)
+    k.motes = function (x, y, w, h, c, n = 14) {
+      for (let i = 0; i < n; i++) {
+        const sp = 10 + hash(i * 9.1) * 24, px = x + ((hash(i * 3.7) * w + T * sp) % w), py = y + ((hash(i * 5.9) * h - T * sp * 0.6) % h + h) % h;
+        R(px, py, 6, 6, c);
+      }
+    };
     return k;
   }
   window.Kit = {make};

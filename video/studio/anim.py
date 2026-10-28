@@ -24,7 +24,10 @@ VIDEOS = os.path.join(HERE, "videos")
 RUNTIME = os.path.join(HERE, "_runtime")
 BRANCH = "video-renders"
 FPS = 30
-DEFAULT_VOICE = "iP95p4xoKVk53GoZ742B"   # Chris, ElevenLabs library voice (_shared/voice.md; Todd, Oct 28, 11:51 am)
+DEFAULT_VOICE = "W3pJy9ibur1FKUihVxzY"   # Todd's own voice clone (Todd, Oct 28, 1:41 pm; _shared/voice.md)
+LIBRARY_VOICE = "iP95p4xoKVk53GoZ742B"   # Chris, ElevenLabs library voice, the fallback (Todd, Oct 28, 11:51 am)
+# Todd, Oct 28, 1:03 pm: "Just make me sound a bit smoother and more confident". Steadier delivery, close to his timbre.
+VOICE_SETTINGS = {"W3pJy9ibur1FKUihVxzY": {"stability": 0.6, "similarity_boost": 0.8, "style": 0.15, "use_speaker_boost": True}}
 MODEL = "eleven_v4"
 API = "https://api.elevenlabs.io/v1/text-to-speech/{voice}?output_format=mp3_44100_128"
 MAX_CHARS = 2400
@@ -242,14 +245,17 @@ def cmd_speak(slug, takes=None, voice=None):
     chars = sum(len(t) for t in tk)
     if chars > MAX_CHARS:
         raise SystemExit(f"ERROR speak: {chars} characters (limit {MAX_CHARS}); shorten the script")
-    req = {"schema": "pnf.studio.speak.v1", "voice": voice or DEFAULT_VOICE, "model": MODEL, "takes": takes or "all",
+    v = voice or DEFAULT_VOICE
+    req = {"schema": "pnf.studio.speak.v1", "voice": v, "model": MODEL, "takes": takes or "all", "settings": VOICE_SETTINGS.get(v),
            "scriptSha256": sha(vdir(slug, "01_voice", "script.md")), "requestedAt": now()}
     json.dump(req, open(vdir(slug, "01_voice", "speak.json"), "w"), indent=1)
     print(f"speak.json: {len(tk)} takes, {chars} characters, voice {req['voice']}; push it to run the Studio voice workflow")
 
 
-def eleven(text, prev, nxt, voice, key):
+def eleven(text, prev, nxt, voice, key, settings=None):
     body = {"text": text, "model_id": MODEL}
+    if settings:
+        body["voice_settings"] = settings
     if prev:
         body["previous_text"] = prev
     if nxt:
@@ -262,6 +268,9 @@ def eleven(text, prev, nxt, voice, key):
                 return r.read()
         except urllib.error.HTTPError as e:
             msg = e.read()[:300].decode("utf-8", "replace").replace(key, "<key>")
+            if e.code == 400 and settings and "setting" in msg.lower():   # the model refused a setting: speak without them
+                print("WARN speak: voice settings refused, speaking with the voice's own settings")
+                return eleven(text, prev, nxt, voice, key, None)
             if e.code < 500 or attempt:
                 raise SystemExit(f"ERROR speak: ElevenLabs answered {e.code}: {msg}")
         except Exception as e:
@@ -344,7 +353,7 @@ def cmd_ci_voice():
             if req["takes"] != "all" and n not in req["takes"] and os.path.exists(keep):
                 shutil.copy(keep, f)
             else:
-                open(f, "wb").write(eleven(t, takes[i - 1] if i else None, takes[i + 1] if i + 1 < len(takes) else None, req["voice"], key))
+                open(f, "wb").write(eleven(t, takes[i - 1] if i else None, takes[i + 1] if i + 1 < len(takes) else None, req["voice"], key, req.get("settings")))
             info.append({"n": n, "file": f"takes/{n:02d}.mp3", "sha256": sha(f), "seconds": round(seconds_of(f), 3), "chars": len(t)})
         # join the takes with a short breath between paragraphs
         lst = os.path.join(out, "list.txt")

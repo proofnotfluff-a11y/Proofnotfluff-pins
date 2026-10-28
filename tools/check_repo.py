@@ -406,7 +406,7 @@ def check_schema(files):
     spath = os.path.join(ROOT, "prospects", "enrich_state.json")
     if os.path.exists(spath):
         st = json.load(open(spath, encoding="utf-8"))
-        allowed = {"checkedAt", "result", "rung", "hunterAt"}
+        allowed = {"checkedAt", "result", "rung", "hunterAt", "siteOwnerAt", "siteOwnerTries", "siteOwnerTry"}   # site_owners rung bookkeeping (Todd, Oct 28, 12:47 pm: "Fix the check")
         if st.get("schema") != "pnf.enrich_state.v1" or "@" in json.dumps(st) or any(
                 set(v) - allowed for v in (st.get("domains") or {}).values()):
             return err("schema", "prospects/enrich_state.json must be pnf.enrich_state.v1 with business-level fields only")

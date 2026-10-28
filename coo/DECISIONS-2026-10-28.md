@@ -31,3 +31,8 @@
 - So: the studio's content is instructional videos for trades owners on winning work (leads, follow-up, quotes, emails, the whole process), in the gold-standard format. Three research briefs run first (formats that spread, lead follow-up evidence, outreach email evidence); every claim in a script traces to a source in the video's brief.
 - [stated] Todd, 12:10 pm: "the research should be ongoing, so it should happen periodically, and that you should always be well-versed in what's going on in the world of the trades, and you should need to be a complete subject matter expert on this. You can watch other subject matter experts. The video shouldn't sound gimmicky. They should be truly, genuinely educational, and the scripts should be written in a way that, you know, the people who are watching them should trust them."
 - So: a standing research desk for the studio (video/studio/research/: verified claims with sources, subject matter experts we follow, open questions), refreshed by a periodic research run that files only and never posts, sends or buys. Scripts are judged for trust: no gimmicks, no hype, a practitioner's voice, every claim sourced.
+
+## Repo check fix, 12:47 pm (golden render chat)
+
+- [stated] Todd, 12:47 pm: "Fix the check"
+- So: tools/check_repo.py allows the site-owner rung's three bookkeeping fields in prospects/enrich_state.json (siteOwnerAt, siteOwnerTries, siteOwnerTry: timestamps and counts). The "@" rule and every other field rule are unchanged.

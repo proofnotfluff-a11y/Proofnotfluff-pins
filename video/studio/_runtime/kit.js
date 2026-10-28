@@ -11,6 +11,7 @@
   const strHash = (s) => { let h = 7; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 100003; return h; };
 
   let CHUNKY = 0;
+  const CLOUDS = {};   // pixel cloud sprites, built once
   function rectPts(x, y, w, h, r = 0) {
     if (CHUNKY) { const c = Math.min(CHUNKY, w / 4, h / 4); return [[x + c, y], [x + w - c, y], [x + w - c, y + c], [x + w, y + c], [x + w, y + h - c], [x + w - c, y + h - c], [x + w - c, y + h], [x + c, y + h], [x + c, y + h - c], [x, y + h - c], [x, y + c], [x + c, y + c]]; }
     r = Math.min(r, w / 2, h / 2);
@@ -222,7 +223,8 @@
       const size = o.size || 30;
       const tw = measure(s.toUpperCase(), {size, weight: 700, track: 0.08});
       const w = tw + 36, h = size + 22;
-      shape(rectPts(x, y, w, h, look.name === 'pixel' ? 0 : 10), {fill: o.fill || 'tag', line: false});
+      if (look.bitmap) k.finish(x, y, w, h, o.fill || 'tag');   // the game-UI edge: shadow, notch, light and shade
+      else shape(rectPts(x, y, w, h, look.name === 'pixel' ? 0 : 10), {fill: o.fill || 'tag', line: false});
       text(s.toUpperCase(), x + 18, y + 11, {size, weight: 700, color: o.color || 'tagText', track: 0.08, caps: true});
       return {w, h};
     };
@@ -554,8 +556,20 @@
     k.phone = function (x, y, w, h, msgs, o = {}) {
       const fs = o.size || 32, lh = Math.round(fs * 1.32);
       const bez = C.bezel || (look.lineArt ? 'bg2' : (look.name === 'desk' ? '#0F0C0E' : 'ink'));
+      if (look.bitmap) {   // a crafted handset: a drop shadow, side buttons, a lit rim on the bezel, a shaded inner lip, a glint
+        const u = 3;
+        shape(rectPts(x + u, y + u, w, h, 0), {fill: '#2B2033', line: false});
+        [[x - u, y + 120, u, 66], [x - u, y + 198, u, 40], [x + w, y + 150, u, 80]].forEach(([bx, by, bw, bh]) => shape([[bx, by], [bx + bw, by], [bx + bw, by + bh], [bx, by + bh]], {fill: '#3D2E45', line: false}));
+        shape(rectPts(x, y, w, h, 0), {fill: bez, line: false, id: 9300});
+        const q = (qx, qy, qw, qh, c) => shape([[qx, qy], [qx + qw, qy], [qx + qw, qy + qh], [qx, qy + qh]], {fill: c, line: false});
+        q(x + 6, y, w - 12, u, '#3D2E45'); q(x, y + 6, u, h - 12, '#3D2E45'); q(x + u, y + u, u, u, '#3D2E45');
+        shape(rectPts(x + 14, y + 14, w - 28, h - 28, 0), {fill: C.screen ? 'screen' : 'card', id: 9301});
+        q(x + 20, y + 14, w - 40, u, '#120D14'); q(x + 14, y + 20, u, h - 40, '#120D14');
+        q(x + w - 14 - 3 * u, y + 14 + 6 * u, u, u, '#3D2E45'); q(x + w - 14 - 4 * u, y + 14 + 7 * u, u, u, '#3D2E45'); q(x + w - 14 - 2 * u, y + 14 + 5 * u, u, u, '#3D2E45');
+      } else {
       shape(rectPts(x, y, w, h, 60), {fill: bez, line: true, id: 9300});
       shape(rectPts(x + 14, y + 14, w - 28, h - 28, 48), {fill: C.screen ? 'screen' : 'card', id: 9301});
+      }
       shape(rectPts(x + w / 2 - 64, y + 26, 128, 30, 15), {fill: bez, line: false});
       text(o.clock || '9:41', x + 56, y + 30, {size: 22, weight: 700, font: 'body', color: 'ink'});
       // the contact header
@@ -634,110 +648,449 @@
     };
 
     // ---- rooms: pixel backdrops for the arcade look (blackboard, workshop, garage, framing) ----
+    // Drawn on the low-res grid itself: G = 3 frame units is one low-res pixel, so a room is 360 x 640 pixels and every
+    // edge is a whole pixel. Light comes from the top left: each object has a shadow, base and highlight tone and a 1 pixel
+    // dark outline where it helps the shape read. The content areas that scenes draw into by coordinate stay flat and calm
+    // (blackboard slate x 60 to 1020, y 246 to 998; workshop pegboard x 48 to 1032, y 240 to 840; garage door x 90 to 990,
+    // y 230 to 1020); decor lives in the margins and on the floor. The ambient loops are frame-stepped (each changes every 2
+    // to 4 frames, by whole pixels, never by a fraction) and are pure functions of T, so any frame renders on its own.
     const R = (x, y, w, h, c) => { ctx.fillStyle = col(c); if (look.bitmap) { x = Math.round(x / U) * U; y = Math.round(y / U) * U; } ctx.fillRect(x, y, w, h); };   // rooms sit on the pixel grid (clouds step, never smear)
+    const G = 3;
+    const P = (x, y, w, h, c) => { if (w > 0 && h > 0) { ctx.fillStyle = col(c); ctx.fillRect(x * G, y * G, w * G, h * G); } };
+    const DOT = (x, y, c) => P(x, y, 1, 1, c);
+    const dith = (x, y, w, h, c, ph = 0) => { ctx.fillStyle = col(c); for (let j = 0; j < h; j++) for (let i = (j + ph) & 1; i < w; i += 2) ctx.fillRect((x + i) * G, (y + j) * G, G, G); };
+    const disc = (cx, cy, r, c) => { for (let dy = -r; dy <= r; dy++) { const hw = Math.floor(Math.sqrt(r * r - dy * dy) + 0.4); P(cx - hw, cy + dy, 2 * hw + 1, 1, c); } };
+    const line = (x0, y0, x1, y1, c) => {
+      const dx = Math.abs(x1 - x0), dy = -Math.abs(y1 - y0), sx = x0 < x1 ? 1 : -1, sy = y0 < y1 ? 1 : -1; let e = dx + dy;
+      for (let n = 0; n < 400; n++) { DOT(x0, y0, c); if (x0 === x1 && y0 === y1) break; const e2 = 2 * e; if (e2 >= dy) { e += dy; x0 += sx; } if (e2 <= dx) { e += dx; y0 += sy; } }
+    };
+    // a box lit from the top left: base, a highlight on the top and left edges, a shadow on the bottom and right, an outline
+    const bevel = (x, y, w, h, base, hi, lo, out) => { if (out) P(x - 1, y - 1, w + 2, h + 2, out); P(x, y, w, h, base); P(x, y, w, 1, hi); P(x, y, 1, h, hi); P(x, y + h - 1, w, 1, lo); P(x + w - 1, y + 1, 1, h - 1, lo); };
+    // wood grain: short darker streaks along a board (dir 'h' or 'v'), fixed by a seed so the grain never crawls
+    const grain = (x, y, w, h, c, seed, dir = 'h', d = 0.72) => {
+      if (dir === 'h') { for (let j = 0; j < h; j++) for (let i = 0; i < w; i += 5) { const r = hash(seed + j * 7.13 + i * 0.731); if (r > d) P(x + i + Math.floor(r * 4), y + j, 2 + Math.floor(r * 9) % 4, 1, c); } }
+      else { for (let i = 0; i < w; i++) for (let j = 0; j < h; j += 5) { const r = hash(seed + i * 7.13 + j * 0.731); if (r > d) P(x + i, y + j + Math.floor(r * 4), 1, 2 + Math.floor(r * 9) % 4, c); } }
+    };
+    const F = Math.floor(T * 30 + 0.005);   // the frame number; loops step on whole frames
+    // pixel clouds: bumps on a flat base, an underside in shadow; built once, then only stepped across
+    function cloudSprite(w, seed) {
+      const key = w + ':' + seed; if (CLOUDS[key]) return CLOUDS[key];
+      const n = Math.max(2, Math.round(w / 9)), bumps = [];
+      for (let i = 0; i < n; i++) bumps.push([Math.round((i + 0.5) * w / n), 3 + Math.round(hash(seed + i * 1.71) * 3) + (i > 0 && i < n - 1 ? 2 : 0)]);
+      const h = Math.max(...bumps.map((b) => b[1])) * 2 - 1, rows = [];
+      for (let y = 0; y < h; y++) {
+        const sp = [];
+        bumps.forEach(([cx, r]) => { const dy = y + 0.5 - (h - r); if (Math.abs(dy) <= r) { const hw = Math.sqrt(r * r - dy * dy); sp.push([Math.round(cx - hw), Math.round(cx + hw)]); } });
+        if (y >= h - 3) sp.push([2, w - 3]);
+        sp.sort((a, b) => a[0] - b[0]); const m = [];
+        sp.forEach((s) => { if (m.length && s[0] <= m[m.length - 1][1] + 1) m[m.length - 1][1] = Math.max(m[m.length - 1][1], s[1]); else m.push(s.slice()); });
+        rows.push(m);
+      }
+      return (CLOUDS[key] = {w, h, rows});
+    }
+    // a cloud at whole pixel (x, y), clipped to a window [x0, x1) x [y0, y1)
+    function cloudAt(cl, x, y, clip) {
+      cl.rows.forEach((spans, j) => {
+        const yy = y + j; if (yy < clip[1] || yy >= clip[3]) return;
+        const c = j >= cl.h - 2 ? '#C9CCD3' : (j >= cl.h - 3 ? '#E6D3BC' : '#FFF7EA');
+        spans.forEach(([a, b]) => { const xa = Math.max(x + a, clip[0]), xb = Math.min(x + b, clip[2] - 1); if (xb >= xa) P(xa, yy, xb - xa + 1, 1, c); });
+      });
+    }
+    // a sky (deep at the top, pale at the horizon, dithered between) with clouds drifting right, one pixel every few frames
+    function sky(x, y, w, h, clouds, t) {
+      const b1 = Math.round(h * 0.38), b2 = Math.round(h * 0.72);
+      P(x, y, w, b1, '#5B8FB9'); P(x, y + b1, w, b2 - b1, '#87CEEB'); P(x, y + b2, w, h - b2, '#BDE6F5');
+      dith(x, y + b1, w, 2, '#5B8FB9', 1); dith(x, y + b2, w, 2, '#87CEEB', 1);
+      const clip = [x, y, x + w, y + h];
+      clouds.forEach((c) => {
+        const cl = cloudSprite(c.w, c.seed), span = w + cl.w + 8;
+        const off = ((Math.floor(c.x0 + (t ? F / c.every : 0)) % span) + span) % span;
+        cloudAt(cl, x - cl.w + off, y + c.y, clip);
+      });
+    }
+    // a bird: 7 x 3, three wing frames, flapping on fours
+    const BIRD = [[[0, 0], [6, 0], [1, 1], [5, 1], [2, 2], [3, 2], [4, 2]], [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 1], [3, 2]], [[2, 1], [3, 1], [4, 1], [1, 2], [5, 2], [0, 3], [6, 3]]];
+    const bird = (x, y, f, c = '#2B2033') => BIRD[f % 3].forEach(([a, b]) => DOT(x + a, y + b, c));
+    // a window in the wall with sky behind it: frame, sash bars, a sill, and the glass glint
+    function windowAt(x, y, w, h, t, o) {
+      const fr = o.frame || '#E6D3BC', hi = o.hi || '#FFF7EA', lo = o.lo || '#B39A88';
+      P(x - 1, y - 1, w + 2, h + 2, '#120D14');
+      P(x, y, w, h, fr); P(x, y, w, 1, hi); P(x, y, 1, h, hi); P(x, y + h - 1, w, 1, lo); P(x + w - 1, y, 1, h, lo);
+      const gx = x + 3, gy = y + 3, gw = w - 6, gh = h - 6;
+      sky(gx, gy, gw, gh, o.clouds, t);
+      if (o.trees) {   // a tree line on the horizon
+        for (let i = 0; i < gw; i++) { const th = 3 + Math.round(2.5 + 2.5 * Math.sin(i * 0.55 + o.seed) + hash(i * 1.3 + o.seed) * 1.5); P(gx + i, gy + gh - th, 1, th, i % 7 < 3 ? '#2F5A4A' : '#3E7A62'); DOT(gx + i, gy + gh - th, '#3E7A62'); }
+      }
+      if (o.birds && t) {   // a pair crossing now and then
+        const per = 260, ph = (F + o.seed * 97) % per, bx = gx - 8 + Math.floor(ph / 2);
+        if (bx < gx + gw) [[0, 0], [9, 3]].forEach(([dx, dy], i) => { const xx = bx - dx; if (xx >= gx && xx + 7 <= gx + gw) bird(xx, gy + 4 + dy + ((Math.floor(ph / 8) + i) % 2), Math.floor(ph / 4) + i); });
+      }
+      P(gx, gy, gw, 1, '#253048'); P(gx, gy, 1, gh, '#253048');   // the frame's shadow on the glass
+      const mx = x + Math.floor(w / 2) - 1, my = y + Math.floor(h / 2) - 1;
+      P(mx, gy, 2, gh, fr); P(mx + 2, gy, 1, gh, lo);
+      if (o.bars !== 'v') { P(gx, my, gw, 2, fr); P(gx, my + 2, gw, 1, lo); DOT(mx, my, hi); }
+      if (o.glint !== false) { line(gx + 3, gy + 7, gx + 7, gy + 3, '#FFF7EA'); line(gx + 3, gy + 10, gx + 10, gy + 3, '#BDE6F5'); }   // glint
+      // the sill
+      P(x - 3, y + h, w + 6, 3, '#120D14'); P(x - 2, y + h, w + 4, 1, o.sill || '#F7C873'); P(x - 2, y + h + 1, w + 4, 1, o.sill2 || '#D9A066'); P(x - 1, y + h + 3, w + 4, 1, '#1B1420');
+    }
+
     k.room = function (name, o = {}) {
-      const floorY = 1250;
-      if (name === 'blackboard') {
-        R(0, 0, 1080, 1920, '#2B2033');
-        R(0, 1080, 1080, 170, '#6B4226'); R(0, 1080, 1080, 12, '#8C5A33');
-        for (let x = 0; x < 1080; x += 120) R(x, 1092, 6, 158, '#5A3A22');
-        R(36, 222, 1008, 800, '#8C5A33'); R(60, 246, 960, 752, '#24453A');
-        // chalk smudges only where text never goes: the board's right strip and its bottom band (design gate, Oct 28)
-        for (let i = 0; i < 4; i++) { R(880 + (i % 2) * 40, 420 + i * 130, 90, 14, '#2F5A4A'); R(140 + i * 210, 972, 110 + (i % 2) * 40, 12, '#2F5A4A'); }
-        R(60, 998, 960, 24, '#B07A47'); R(140, 986, 48, 12, '#FFF7EA'); R(230, 990, 30, 9, '#F7C873'); R(840, 986, 60, 12, '#C9CCD3');
-      } else if (name === 'workshop') {
-        R(0, 0, 1080, 1920, '#3D2E45');
-        R(48, 240, 984, 600, '#B07A47'); R(48, 240, 984, 12, '#D9A066'); R(48, 828, 984, 12, '#8C5A33');
-        for (let y = 270; y < 820; y += 36) for (let x = 72; x < 1020; x += 36) R(x, y, 6, 6, '#8C5A33');
-        // hung tools: hammer, wrench, saw, square
-        R(820, 300, 18, 150, '#6B4226'); R(780, 290, 100, 36, '#6B7080');
-        R(910, 290, 18, 170, '#9AA0AD'); R(898, 290, 42, 30, '#9AA0AD');
-        R(700, 520, 260, 60, '#C9CCD3'); R(940, 510, 60, 80, '#6B4226'); for (let x = 708; x < 950; x += 18) R(x, 580, 9, 9, '#9AA0AD');
-        R(84, 300, 24, 220, '#F2A541'); R(84, 496, 140, 24, '#F2A541');
-        R(0, 1000, 1080, 48, '#8C5A33'); R(0, 1000, 1080, 10, '#D9A066'); R(60, 1048, 36, 202, '#6B4226'); R(984, 1048, 36, 202, '#6B4226');
-        R(0, floorY, 1080, 670, '#4A4E5A');
-      } else if (name === 'garage') {
-        R(0, 0, 1080, 1920, '#4A4E5A');
-        R(90, 230, 900, 790, '#6B7080'); R(90, 230, 900, 18, '#9AA0AD');
-        for (let y = 266; y < 1010; y += 62) { R(110, y, 860, 8, '#4A4E5A'); R(110, y + 8, 860, 4, '#9AA0AD'); }
-        R(500, 960, 80, 14, '#2B2033');
-        R(440, 120, 200, 30, '#C9CCD3'); R(470, 150, 140, 10, '#F7C873');
-        R(0, floorY, 1080, 670, '#6B7080'); R(620, 1290, 220, 26, '#4A4E5A'); R(660, 1316, 120, 14, '#4A4E5A');
-      } else if (name === 'framing') {
-        const g = ctx.createLinearGradient(0, 0, 0, 1250); g.addColorStop(0, '#87CEEB'); g.addColorStop(1, '#5B8FB9');
-        ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 1250);
-        R(0, 200, 1080, 30, '#D9A066'); R(0, 1214, 1080, 36, '#D9A066');
-        for (let x = 30; x < 1080; x += 132) R(x, 230, 30, 984, '#D9A066');
-        R(420, 520, 300, 30, '#B07A47'); R(420, 820, 300, 24, '#B07A47');
-        R(0, floorY, 1080, 670, '#B07A47'); for (let x = 0; x < 1080; x += 216) R(x, floorY, 6, 670, '#8C5A33');
-        R(740, 1150, 300, 60, '#C9CCD3'); R(740, 1150, 300, 10, '#FFF7EA'); R(760, 1100, 280, 50, '#C9CCD3');
-      } else {
-        R(0, 0, 1080, 1920, '#1B1420');
-      }
-      if (name !== 'framing' && name !== 'garage' && name !== 'workshop') R(0, floorY, 1080, 670, '#5A3A22');
-      R(0, floorY, 1080, 8, '#120D14');
-      if (o.props !== false) floorProps(name, floorY);
-      if (o.ambient !== false) ambient(name);
+      const t = o.ambient === false ? 0 : 1, props = o.props !== false;
+      if (name === 'blackboard') roomBoard(t, props);
+      else if (name === 'workshop') roomShop(t, props);
+      else if (name === 'garage') roomGarage(t, props);
+      else if (name === 'framing') roomFraming(t, props);
+      else R(0, 0, 1080, 1920, '#1B1420');
     };
-    // each room breathes: clouds over the framing, chalk dust, shop dust, a flickering garage light
-    const ambient = function (name) {
-      if (name === 'framing') {
-        for (let i = 0; i < 3; i++) {
-          const cx = ((T * (14 + i * 6) + i * 470) % 1500) - 260, cy = 40 + i * 52;
-          R(cx, cy, 180, 30, '#FFF7EA'); R(cx + 30, cy - 22, 110, 24, '#FFF7EA'); R(cx + 12, cy + 30, 150, 12, '#C9CCD3');
-        }
-        R(0, 200, 1080, 30, '#D9A066');
-      } else if (name === 'blackboard') {
-        k.motes(80, 260, 920, 720, '#2F5A4A', 12);
-      } else if (name === 'workshop') {
-        k.motes(60, 860, 960, 380, '#D9A066', 16);
-      } else if (name === 'garage') {
-        if (hash(Math.floor(T * 7)) > 0.86) R(440, 150, 200, 10, '#4A4E5A');
-        k.motes(90, 240, 900, 760, '#9AA0AD', 10);
+    // a wood plank floor in perspective: boards get taller toward the viewer, joints staggered
+    function planks(y0, base, hi, lo, seed) {
+      let y = y0, h = 5, i = 0;
+      while (y < 640) {
+        P(0, y, 360, h, base); P(0, y, 360, 1, hi); P(0, y + h - 1, 360, 1, lo);
+        const step = 64 + h * 5, off = Math.floor(hash(i * 3.3 + seed) * step);
+        for (let x = off % step; x < 360; x += step) { P(x, y + 1, 1, h - 2, lo); P(x + 1, y + 1, 1, h - 2, hi); }
+        if (h > 7) grain(0, y + 2, 360, h - 4, lo, seed + i * 11, 'h', 0.9);
+        y += h; h = Math.round(h * 1.2) + 1; i++;
       }
-    };
-    // the floor of each room: depth lines and a few props, so the lower third reads as a place (it sits under the Reel UI)
-    const floorProps = function (name, fy) {
-      const depth = (c) => { let y = fy + 40, g = 40; while (y < 1920) { R(0, y, 1080, 4, c); g *= 1.35; y += Math.round(g); } };
-      if (name === 'framing') {
-        depth('#8C5A33');
-        // sawhorse with a plank, a stack of studs, a paint bucket, an orange cord
-        R(560, 1360, 360, 24, '#D9A066'); R(560, 1384, 360, 8, '#8C5A33');
-        for (const x of [590, 860]) { R(x, 1392, 18, 130, '#6B4226'); R(x + 30, 1392, 18, 130, '#6B4226'); }
-        R(600, 1300, 300, 18, '#F4E6D3'); R(600, 1318, 300, 6, '#C9CCD3');
-        for (let i = 0; i < 4; i++) R(380, 1560 - i * 22, 420, 20, i % 2 ? '#D9A066' : '#B07A47');
-        R(930, 1470, 90, 100, '#C9CCD3'); R(930, 1470, 90, 12, '#9AA0AD'); R(944, 1500, 62, 30, '#3B82C4');
-        R(0, 1640, 300, 10, '#F2A541'); R(290, 1640, 10, 60, '#F2A541'); R(290, 1690, 400, 10, '#F2A541');
-      } else if (name === 'blackboard') {
-        depth('#4A2E1B');
-        // a rug and a teacher's desk with books and an apple
-        R(330, 1440, 690, 260, '#7A3442'); R(350, 1460, 650, 220, '#5A3A22'); R(370, 1480, 610, 180, '#7A3442');
-        R(640, 1330, 360, 30, '#8C5A33'); R(640, 1360, 360, 12, '#6B4226');
-        R(660, 1372, 24, 140, '#6B4226'); R(956, 1372, 24, 140, '#6B4226'); R(700, 1372, 120, 110, '#6B4226'); R(740, 1420, 40, 8, '#D9A066');
-        R(860, 1286, 100, 20, '#3B82C4'); R(870, 1266, 84, 20, '#7A3442'); R(866, 1246, 92, 20, '#2F6F67');
-        R(700, 1300, 34, 30, '#E2633B'); R(714, 1288, 6, 12, '#5A3A22'); R(720, 1290, 12, 6, '#3E7A62');
-      } else if (name === 'workshop') {
-        depth('#3D2E45');
-        // a red rolling toolbox, a bucket, sawdust
-        R(720, 1300, 230, 220, '#E2633B'); R(720, 1300, 230, 14, '#F2A541');
-        for (let i = 0; i < 4; i++) { R(736, 1330 + i * 46, 198, 36, '#7A3442'); R(800, 1344 + i * 46, 70, 8, '#C9CCD3'); }
-        R(736, 1520, 30, 30, '#120D14'); R(904, 1520, 30, 30, '#120D14');
-        R(480, 1420, 110, 120, '#C9CCD3'); R(480, 1420, 110, 12, '#9AA0AD'); R(470, 1410, 130, 10, '#6B7080');
-        for (let i = 0; i < 18; i++) R(300 + ((i * 197) % 700), 1600 + ((i * 89) % 220), 12, 6, '#D9A066');
-      } else if (name === 'garage') {
-        depth('#4A4E5A');
-        // stacked tires, a shop vac, a pegged extension cord
-        for (let i = 0; i < 3; i++) { R(780, 1500 - i * 70, 220, 66, '#1B1420'); R(800, 1512 - i * 70, 180, 42, '#2B2033'); R(860, 1522 - i * 70, 60, 22, '#4A4E5A'); }
-        R(520, 1380, 120, 150, '#F2A541'); R(520, 1380, 120, 18, '#F7C873'); R(536, 1530, 22, 22, '#120D14'); R(602, 1530, 22, 22, '#120D14');
-        R(640, 1400, 120, 14, '#120D14'); R(756, 1400, 14, 60, '#120D14');
+    }
+
+    // ---- the classroom: a slate board in a beveled oak frame, a chalk tray, a window, a clock, a teacher's desk ----
+    function roomBoard(t, props) {
+      P(0, 0, 360, 417, '#2B2033');
+      for (let y = 12; y < 350; y += 8) for (let x = ((y >> 3) & 1) * 4 + 2; x < 360; x += 8) if (y < 72 || y > 343 || x < 11 || x > 348) DOT(x, y, '#3D2E45');   // a quiet wallpaper dot
+      // the cornice
+      P(0, 0, 360, 3, '#1B1420'); P(0, 3, 360, 1, '#D9A066'); P(0, 4, 360, 2, '#B07A47'); P(0, 6, 360, 1, '#6B4226'); P(0, 7, 360, 1, '#120D14');
+      // the window: sky, clouds, birds now and then, a plant on the sill
+      windowAt(20, 12, 98, 34, t, {seed: 3, trees: true, birds: true, clouds: [{w: 34, seed: 1, y: 2, x0: 10, every: 3}, {w: 22, seed: 5, y: 9, x0: 80, every: 2}, {w: 28, seed: 9, y: 4, x0: 120, every: 3}]});
+      const sw = t ? [0, 1, 0, -1][Math.floor(F / 14) % 4] : 0;   // the plant leans in the draft from the window
+      P(103, 41, 11, 2, '#120D14'); P(104, 43, 9, 4, '#120D14'); P(104, 41, 9, 1, '#F2A541'); P(104, 42, 9, 1, '#E2633B'); P(105, 43, 7, 3, '#E2633B'); P(110, 43, 2, 3, '#7A3442');
+      [[106, 36, 2], [108, 33, 3], [111, 35, 2], [104, 38, 2], [112, 38, 2]].forEach(([lx, ly, lw], i) => { const s = i % 2 ? sw : 0; P(lx + s, ly, lw, 2, '#3E7A62'); DOT(lx + s, ly, '#6FB7A8'); DOT(lx + s + lw - 1, ly + 1, '#2F5A4A'); });
+      P(108, 38, 1, 3, '#2F5A4A');
+      // the wall clock: a raised steel rim, a cream face in the rim's shadow, a second hand that ticks
+      const cx = 318, cy = 29;
+      disc(cx + 1, cy + 1, 15, '#1B1420'); disc(cx, cy, 15, '#120D14'); disc(cx, cy, 14, '#C9CCD3'); disc(cx + 1, cy + 1, 13, '#6B7080'); disc(cx, cy, 13, '#9AA0AD');
+      disc(cx, cy, 11, '#120D14'); disc(cx, cy, 10, '#E6D3BC'); disc(cx + 1, cy + 1, 9, '#FFF7EA');
+      for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6, r = i % 3 ? 8 : 7; const x = cx + Math.round(Math.sin(a) * 8.6), y = cy - Math.round(Math.cos(a) * 8.6); DOT(x, y, i % 3 ? '#9AA0AD' : '#120D14'); if (!(i % 3)) DOT(cx + Math.round(Math.sin(a) * r), cy - Math.round(Math.cos(a) * r), '#120D14'); }
+      line(cx, cy, cx - 4, cy - 3, '#120D14'); line(cx, cy, cx + 5, cy - 5, '#120D14');   // ten past ten
+      const sa = ((t ? Math.floor(T) : 0) + 20) % 60 * Math.PI / 30;
+      line(cx, cy, cx + Math.round(Math.sin(sa) * 8), cy - Math.round(Math.cos(sa) * 8), '#E2633B'); DOT(cx, cy, '#7A3442');
+      // the board: a drop shadow, an outline, then the mitred frame ring by ring (top and left lit, bottom and right in shade)
+      const X0 = 12, Y0 = 74, X1 = 348, Y1 = 341;
+      P(X0 + 2, Y0 + 2, X1 - X0, Y1 - Y0, '#1B1420'); P(X0, Y0, X1 - X0, Y1 - Y0, '#120D14');
+      const lit = [null, '#F7C873', '#D9A066', '#D9A066', '#B07A47', '#D9A066', '#B07A47', '#6B4226'];
+      const shd = [null, '#B07A47', '#8C5A33', '#8C5A33', '#6B4226', '#8C5A33', '#8C5A33', '#B07A47'];
+      for (let j = 1; j < 8; j++) {
+        P(X0 + j, Y0 + j, 1, Y1 - Y0 - 2 * j, lit[j]); P(X1 - 1 - j, Y0 + j, 1, Y1 - Y0 - 2 * j, shd[j]);
+        P(X0 + j, Y0 + j, X1 - X0 - 2 * j, 1, lit[j]); P(X0 + j, Y1 - 1 - j, X1 - X0 - 2 * j, 1, shd[j]);
       }
+      grain(X0 + 9, Y0 + 2, X1 - X0 - 18, 2, '#B07A47', 11, 'h'); grain(X0 + 9, Y1 - 4, X1 - X0 - 18, 2, '#6B4226', 13, 'h');
+      grain(X0 + 2, Y0 + 9, 2, Y1 - Y0 - 18, '#B07A47', 17, 'v'); grain(X1 - 4, Y0 + 9, 2, Y1 - Y0 - 18, '#6B4226', 19, 'v');
+      [[X0 + 3, Y0 + 3], [X1 - 5, Y0 + 3], [X0 + 3, Y1 - 5], [X1 - 5, Y1 - 5]].forEach(([x, y]) => { DOT(x, y, '#6B4226'); DOT(x + 1, y + 1, '#F7C873'); });   // corner pegs
+      // the slate: flat and calm where the writing goes; the frame's shadow on its top and left edges
+      P(20, 82, 320, 251, '#24453A'); P(20, 82, 320, 2, '#1A332B'); P(20, 84, 2, 249, '#1A332B'); P(339, 84, 1, 249, '#2F5A4A'); P(22, 332, 317, 1, '#2F5A4A');
+      // old chalk only along the frame: an eraser's arcs in the right strip and the bottom band, never in the writing
+      [[327, 102, 9, 3, 0], [323, 168, 13, 2, 1], [329, 232, 7, 4, 0], [325, 292, 11, 3, 1], [34, 328, 24, 2, 0], [236, 327, 30, 3, 1], [292, 328, 22, 2, 0]].forEach(([x, y, w, h, ph]) => dith(x, y, w, h, '#2F5A4A', ph));
+      // the chalk tray: a lit top, a front face in shade, its shadow on the wall
+      P(14, 340, 332, 8, '#120D14'); P(15, 341, 330, 1, '#F7C873'); P(15, 342, 330, 1, '#D9A066'); P(15, 343, 330, 3, '#8C5A33'); P(15, 346, 330, 1, '#6B4226'); P(16, 348, 330, 2, '#1B1420');
+      dith(296, 341, 18, 1, '#E6D3BC', 1);   // chalk dust on the ledge
+      // chalk sticks and the eraser
+      P(23, 337, 13, 4, '#120D14'); P(24, 338, 11, 1, '#FFF7EA'); P(24, 339, 11, 1, '#C9CCD3'); DOT(24, 338, '#E6D3BC');
+      P(39, 338, 8, 3, '#120D14'); P(40, 339, 6, 1, '#F7C873'); P(40, 339, 1, 1, '#F2A541');
+      P(316, 334, 20, 7, '#120D14'); P(317, 335, 18, 3, '#B07A47'); P(317, 335, 18, 1, '#D9A066'); P(334, 336, 1, 2, '#8C5A33'); P(317, 338, 18, 2, '#4A4E5A'); for (let i = 0; i < 18; i += 3) DOT(318 + i, 338, '#6B7080');
+      // the wainscot under the board
+      P(0, 352, 360, 1, '#120D14'); P(0, 353, 360, 1, '#D9A066'); P(0, 354, 360, 2, '#B07A47'); P(0, 356, 360, 1, '#6B4226'); P(0, 357, 360, 52, '#6B4226');
+      for (let x = 4; x < 360; x += 46) { bevel(x, 361, 40, 43, '#8C5A33', '#B07A47', '#4A2E1B'); grain(x + 2, 363, 36, 39, '#6B4226', x, 'v', 0.9); }
+      P(0, 408, 360, 1, '#8C5A33'); P(0, 409, 360, 8, '#4A2E1B'); P(0, 409, 360, 1, '#6B4226');
+      // the floor
+      P(0, 417, 360, 1, '#120D14'); planks(418, '#6B4226', '#8C5A33', '#4A2E1B', 5);
+      if (props) boardProps(t);
+      // ambient: a chalk puff from the eraser every 5 s (four frames on threes)
+      if (t) {
+        const ph = F % 150;
+        if (ph < 12) { const s = Math.floor(ph / 3); const pts = [[[0, 0]], [[0, -1], [-1, 0], [1, -1]], [[-1, -2], [1, -2], [-2, -1], [2, 0], [0, -3]], [[-2, -3], [2, -3], [-3, -1], [3, -2], [0, -4]]][s];
+          pts.forEach(([a, b]) => DOT(326 + a, 333 + b, s < 2 ? '#FFF7EA' : '#C9CCD3')); }
+      }
+    }
+    function boardProps(t) {
+      // a rug: border, field, a medallion, fringe
+      P(121, 491, 217, 80, '#1B1420'); P(119, 489, 217, 80, '#4A2E1B'); P(120, 490, 215, 78, '#7A3442'); bevel(125, 494, 205, 70, '#253048', '#F2A541', '#F2A541');
+      for (let dy = -18; dy <= 18; dy++) { const hw = (18 - Math.abs(dy)) * 2; P(227 - hw, 529 + dy, 2 * hw + 1, 1, '#7A3442'); if (hw > 8) P(227 - hw + 6, 529 + dy, 2 * hw - 11, 1, Math.abs(dy) < 6 ? '#E2633B' : '#7A3442'); }
+      DOT(227, 529, '#F7C873');
+      for (let y = 491; y < 568; y += 3) { P(116, y, 3, 1, '#E6D3BC'); P(336, y, 3, 1, '#E6D3BC'); }
+      // the teacher's desk: a lit top, a pedestal of drawers, a kneehole in shadow, legs and a shadow on the rug
+      P(212, 499, 132, 3, '#1B1420');
+      P(209, 441, 134, 59, '#120D14');
+      P(210, 442, 132, 1, '#F7C873'); P(210, 443, 132, 5, '#D9A066'); grain(212, 443, 128, 5, '#B07A47', 41, 'h'); P(210, 448, 132, 2, '#8C5A33');
+      P(212, 450, 128, 47, '#8C5A33'); P(212, 450, 128, 1, '#6B4226');
+      P(262, 452, 38, 45, '#4A2E1B'); P(262, 452, 38, 2, '#1B1420');
+      for (let i = 0; i < 3; i++) { bevel(215, 453 + i * 14, 44, 12, '#B07A47', '#D9A066', '#6B4226'); P(234, 458 + i * 14, 6, 2, '#120D14'); P(235, 458 + i * 14, 4, 1, '#F7C873'); }
+      bevel(303, 453, 34, 41, '#B07A47', '#D9A066', '#6B4226'); P(307, 457, 26, 33, '#8C5A33'); P(307, 457, 26, 1, '#6B4226');
+      // books, an apple, a goldfish bowl
+      [[296, 436, 38, '#3B82C4', '#87CEEB'], [299, 431, 33, '#7A3442', '#E2633B'], [297, 426, 36, '#2F6F67', '#6FB7A8']].forEach(([x, y, w, c, hi]) => {
+        P(x - 1, y - 1, w + 2, 7, '#120D14'); P(x, y, w, 5, c); P(x, y, w, 1, hi); P(x + w - 4, y + 1, 3, 3, '#FFF7EA'); P(x + w - 4, y + 2, 3, 1, '#E6D3BC'); P(x + 3, y + 2, w - 9, 1, '#F7C873'); });
+      disc(232, 437, 4, '#120D14'); disc(232, 437, 3, '#E2633B'); P(233, 438, 2, 2, '#7A3442'); DOT(230, 435, '#F7C873'); P(232, 431, 1, 3, '#5A3A22'); P(233, 431, 2, 1, '#3E7A62');
+      const bx = 262, by = 433;
+      disc(bx, by, 8, '#120D14'); disc(bx, by, 7, '#BDE6F5'); for (let dy = -3; dy <= 7; dy++) { const hw = Math.floor(Math.sqrt(49 - dy * dy) + 0.4); P(bx - hw, by + dy, 2 * hw + 1, 1, dy === -3 ? '#C9CCD3' : (dy > 5 ? '#B39A88' : '#6FB7A8')); }
+      P(bx - 4, by - 7, 9, 1, '#120D14'); DOT(bx - 4, by - 4, '#FFF7EA'); DOT(bx - 5, by - 3, '#FFF7EA');
+      // the goldfish swims back and forth on fours, bubbles rise
+      const sp = t ? Math.floor(F / 4) % 12 : 0, fx = bx - 3 + (sp < 6 ? sp : 12 - sp), dir = sp < 6 ? 1 : -1;
+      P(fx, by + 1, 3, 2, '#F2A541'); DOT(fx + (dir > 0 ? 2 : 0), by + 1, '#F7C873'); DOT(fx + (dir > 0 ? -1 : 3), by + 1, '#E2633B'); DOT(fx + (dir > 0 ? -1 : 3), by + 2, '#E2633B'); DOT(fx + (dir > 0 ? 2 : 0), by + 1, '#120D14');
+      if (t) { const b = Math.floor(F / 5) % 6; if (b < 4) DOT(fx + 1, by - b, '#FFF7EA'); }
+    }
+
+    // ---- the workshop: a pegboard of hung tools, a workbench with a vise and a fan, a work light on a cord ----
+    function roomShop(t, props) {
+      P(0, 0, 360, 417, '#2B2033');
+      for (let x = 0; x < 360; x += 12) { P(x, 0, 1, 417, '#1B1420'); P(x + 1, 0, 1, 417, '#3D2E45'); }   // board-and-batten wall
+      [[30, 300], [102, 18], [270, 310], [190, 296]].forEach(([x, y]) => { DOT(x, y, '#1B1420'); DOT(x + 1, y, '#3D2E45'); });
+      // the beam at the top
+      P(0, 0, 360, 7, '#6B4226'); P(0, 0, 360, 1, '#8C5A33'); grain(0, 1, 360, 5, '#4A2E1B', 31, 'h'); P(0, 7, 360, 1, '#4A2E1B'); P(0, 8, 360, 1, '#120D14');
+      windowAt(22, 14, 84, 30, t, {seed: 7, trees: true, birds: true, frame: '#8C5A33', hi: '#B07A47', lo: '#4A2E1B', sill: '#B07A47', sill2: '#8C5A33',
+        clouds: [{w: 30, seed: 2, y: 2, x0: 40, every: 3}, {w: 20, seed: 6, y: 9, x0: 0, every: 2}, {w: 26, seed: 4, y: 5, x0: 95, every: 3}]});
+      // the pegboard: a wooden trim, the board, a grid of holes; the content area stays plain board
+      P(13, 77, 334, 206, '#120D14'); bevel(14, 78, 332, 204, '#8C5A33', '#D9A066', '#4A2E1B');
+      P(16, 80, 328, 200, '#B07A47'); P(16, 80, 328, 1, '#8C5A33'); P(16, 80, 1, 200, '#8C5A33');
+      for (let y = 84; y < 278; y += 6) for (let x = 20; x < 342; x += 6) DOT(x, y, '#8C5A33');
+      shopTools();
+      // the bench: a thick lit top, a front apron with grain, shadow beneath, legs and a lower shelf
+      P(0, 330, 360, 1, '#120D14'); P(0, 331, 360, 1, '#F7C873'); P(0, 332, 360, 2, '#D9A066'); P(0, 334, 360, 6, '#B07A47'); grain(0, 334, 360, 6, '#8C5A33', 51, 'h'); P(0, 340, 360, 1, '#8C5A33'); P(0, 341, 360, 1, '#120D14');
+      P(0, 342, 360, 75, '#1B1420');
+      for (const x of [6, 340]) { P(x - 1, 342, 12, 75, '#120D14'); bevel(x, 342, 10, 75, '#8C5A33', '#B07A47', '#6B4226'); }
+      P(0, 392, 360, 1, '#D9A066'); P(0, 393, 360, 3, '#8C5A33'); P(0, 396, 360, 1, '#120D14');
+      [[318, 378, '#3B82C4', '#87CEEB'], [329, 381, '#E2633B', '#F2A541']].forEach(([x, y, c, hi]) => { P(x - 1, y - 1, 11, 393 - y + 1, '#120D14'); P(x, y, 9, 392 - y, '#9AA0AD'); P(x, y, 9, 1, '#C9CCD3'); P(x, y + 3, 9, 5, c); P(x, y + 3, 9, 1, hi); P(x + 7, y + 1, 2, 392 - y - 1, '#6B7080'); });
+      // the vise on the right of the bench
+      P(321, 318, 26, 14, '#120D14'); bevel(322, 322, 22, 9, '#3B82C4', '#87CEEB', '#253048'); P(322, 319, 6, 4, '#9AA0AD'); P(338, 319, 6, 4, '#9AA0AD'); P(322, 319, 6, 1, '#C9CCD3'); P(338, 319, 6, 1, '#C9CCD3');
+      P(344, 325, 9, 2, '#120D14'); P(344, 325, 8, 1, '#C9CCD3'); P(351, 323, 2, 6, '#120D14'); DOT(351, 324, '#C9CCD3');
+      // the work light: a cord from the beam, a cage lamp that sways a pixel at a time, its glow on the wall
+      const sway = t ? [0, 1, 2, 2, 1, 0, -1, -2, -2, -1][Math.floor(F / 4) % 10] : 0;
+      const lx = 232 + sway, ly = 34;
+      { for (let r = 12; r >= 7; r -= 5) for (let dy = -r; dy <= r; dy++) { const hw = Math.floor(Math.sqrt(r * r - dy * dy)); for (let dx = -hw; dx <= hw; dx++) if (((lx + dx + ly + dy) & 1) === 0 && (r === 7 || Math.abs(dx) > 5 || Math.abs(dy) > 5) && ly + dy > 8 && ly + dy < 52) DOT(lx + dx, ly + dy + 3, r === 7 ? '#7A4E2C' : '#3D2E45'); } }
+      line(232, 9, lx, ly - 5, '#120D14');
+      P(lx - 4, ly - 5, 9, 1, '#120D14'); P(lx - 5, ly - 4, 11, 4, '#120D14'); P(lx - 4, ly - 4, 9, 1, '#F7C873'); P(lx - 4, ly - 3, 9, 2, '#F2A541'); P(lx + 2, ly - 3, 2, 2, '#B07A47');
+      P(lx - 3, ly, 7, 5, '#FFF7EA'); P(lx - 2, ly + 5, 5, 1, '#FFF7EA'); DOT(lx - 2, ly + 1, '#F7C873');
+      P(lx - 3, ly + 2, 7, 1, '#4A4E5A'); P(lx, ly, 1, 6, '#4A4E5A'); P(lx - 2, ly + 6, 5, 1, '#4A4E5A');
+      // the desk fan on the left of the bench: blades turn on twos
+      const fx = 15, fy = 314;
+      P(fx - 7, 329, 15, 2, '#120D14'); P(fx - 6, 328, 13, 1, '#6B7080'); P(fx - 6, 329, 13, 1, '#4A4E5A'); P(fx - 1, 322, 3, 6, '#4A4E5A'); DOT(fx - 1, 322, '#9AA0AD');
+      disc(fx, fy, 10, '#120D14'); disc(fx, fy, 9, '#9AA0AD'); disc(fx + 1, fy + 1, 8, '#4A4E5A'); disc(fx, fy, 8, '#1B1420');
+      const ang = t ? (Math.floor(F / 2) % 3) * (Math.PI * 2 / 9) : 0;
+      for (let dy = -7; dy <= 7; dy++) for (let dx = -7; dx <= 7; dx++) {
+        const r = Math.hypot(dx, dy); if (r > 7.4 || r < 1.5) continue;
+        let a = Math.atan2(dy, dx) - ang; a = ((a % (Math.PI * 2 / 3)) + Math.PI * 2 / 3) % (Math.PI * 2 / 3);
+        if (a < 0.75) DOT(fx + dx, fy + dy, a < 0.25 ? '#FFF7EA' : '#C9CCD3');
+      }
+      P(fx - 1, fy - 1, 3, 3, '#6B7080'); DOT(fx - 1, fy - 1, '#C9CCD3');
+      P(fx - 8, fy, 17, 1, '#6B7080'); P(fx, fy - 8, 1, 17, '#6B7080');   // the cage
+      // sawdust drifting down off the bench edge
+      if (t) for (let i = 0; i < 6; i++) { const x = 312 + i * 7 + Math.floor(hash(i * 3.1) * 4), ph = (F + i * 41) % 160, y = 342 + Math.floor(ph / 2); if (y < 416 && !(x > 338 && x < 352)) DOT(x + (Math.floor(ph / 16) % 2), y, '#D9A066'); }
+      // the floor: sealed concrete with joints toward the back wall
+      P(0, 417, 360, 1, '#120D14'); P(0, 418, 360, 222, '#4A4E5A'); P(0, 418, 360, 2, '#2B2033');
+      [432, 456, 494, 556].forEach((y) => { P(0, y, 360, 1, '#3D2E45'); P(0, y + 1, 360, 1, '#6B7080'); });
+      for (let i = -3; i <= 4; i++) line(180 + i * 70, 420, 180 + i * 230, 640, '#3D2E45');
+      dith(60, 590, 40, 8, '#3D2E45', 0); dith(66, 588, 26, 2, '#3D2E45', 1);   // an oil stain
+      if (props) shopProps();
+    }
+    // the hung tools, each casting a 1 pixel shadow on the board; all in the strip right of the text (x 936 on)
+    function shopTools() {
+      const T1 = [   // [x, y, w, h, color] in pixels
+        // hammer: steel head with a claw, a wooden handle, a red grip
+        [314, 86, 19, 6, '#120D14'], [315, 87, 17, 4, '#9AA0AD'], [315, 87, 17, 1, '#C9CCD3'], [315, 90, 17, 1, '#6B7080'], [314, 88, 3, 2, '#B07A47'],
+        [321, 92, 5, 34, '#120D14'], [322, 92, 3, 33, '#B07A47'], [322, 92, 1, 33, '#D9A066'], [324, 92, 1, 33, '#8C5A33'], [322, 112, 3, 13, '#E2633B'], [324, 112, 1, 13, '#7A3442'], [322, 112, 3, 1, '#F2A541'],
+        // wrench: open jaw, shaft, box end
+        [334, 86, 9, 8, '#120D14'], [335, 87, 7, 6, '#9AA0AD'], [337, 86, 3, 4, '#B07A47'], [335, 87, 1, 6, '#C9CCD3'],
+        [336, 93, 5, 30, '#120D14'], [337, 93, 3, 29, '#9AA0AD'], [337, 93, 1, 29, '#C9CCD3'], [339, 93, 1, 29, '#6B7080'],
+        [334, 121, 9, 8, '#120D14'], [335, 122, 7, 6, '#9AA0AD'], [337, 124, 3, 2, '#B07A47'], [335, 122, 7, 1, '#C9CCD3'],
+        // handsaw: wooden handle with a grip hole, a tapered blade, teeth down the right edge
+        [313, 134, 22, 15, '#120D14'], [314, 135, 20, 13, '#B07A47'], [314, 135, 20, 1, '#D9A066'], [314, 135, 1, 13, '#D9A066'], [319, 138, 10, 5, '#B07A47'], [320, 139, 8, 3, '#120D14'], [333, 136, 1, 12, '#8C5A33'],
+        [315, 149, 20, 12, '#120D14'], [316, 149, 18, 12, '#C9CCD3'], [316, 161, 17, 12, '#120D14'], [317, 161, 15, 12, '#C9CCD3'], [317, 173, 15, 12, '#120D14'], [318, 173, 13, 12, '#C9CCD3'], [318, 185, 12, 10, '#120D14'], [319, 185, 10, 9, '#C9CCD3'],
+        [316, 149, 1, 12, '#FFF7EA'], [317, 161, 1, 12, '#FFF7EA'], [318, 173, 1, 12, '#FFF7EA'], [319, 185, 1, 9, '#FFF7EA'],
+        // square: a steel L with tick marks
+        [313, 203, 6, 36, '#120D14'], [314, 204, 4, 34, '#9AA0AD'], [314, 204, 1, 34, '#C9CCD3'], [313, 234, 30, 6, '#120D14'], [314, 235, 28, 4, '#9AA0AD'], [314, 235, 28, 1, '#C9CCD3'], [314, 238, 28, 1, '#6B7080'],
+        // tape measure: a yellow case, a hub, the tape tongue and hook
+        [318, 248, 20, 18, '#120D14'], [319, 249, 18, 16, '#F2A541'], [319, 249, 18, 1, '#F7C873'], [319, 249, 1, 16, '#F7C873'], [336, 250, 1, 15, '#B07A47'], [319, 264, 18, 1, '#B07A47'],
+        [324, 253, 8, 8, '#120D14'], [325, 254, 6, 6, '#4A4E5A'], [325, 254, 6, 1, '#6B7080'], [327, 256, 2, 2, '#C9CCD3'],
+        [313, 262, 6, 3, '#120D14'], [314, 263, 5, 1, '#F7C873'], [312, 261, 2, 5, '#120D14'], [312, 262, 1, 3, '#9AA0AD'],
+      ];
+      T1.forEach(([x, y, w, h]) => P(x + 1, y + 1, w, h, '#8C5A33'));   // shadows first
+      T1.forEach(([x, y, w, h, c]) => P(x, y, w, h, c));
+      for (let y = 151; y < 193; y += 2) DOT(y < 161 ? 334 : (y < 173 ? 332 : (y < 185 ? 331 : 329)), y, '#6B7080');   // saw teeth
+      for (let x = 316; x < 342; x += 3) DOT(x, 236, '#4A4E5A'); for (let y = 206; y < 234; y += 3) DOT(316, y, '#4A4E5A');
+      [[323, 84], [337, 84], [323, 132], [316, 201], [327, 246]].forEach(([x, y]) => { DOT(x, y, '#C9CCD3'); DOT(x, y + 1, '#4A4E5A'); });   // pegs
+    }
+    function shopProps() {
+      // a red rolling tool chest with four drawers
+      P(244, 513, 76, 3, '#2B2033');
+      P(241, 431, 76, 82, '#120D14'); bevel(242, 432, 74, 80, '#E2633B', '#F2A541', '#7A3442');
+      P(242, 432, 74, 1, '#F7C873'); P(243, 439, 72, 1, '#7A3442');
+      P(266, 427, 26, 4, '#120D14'); P(268, 428, 22, 2, '#C9CCD3'); P(268, 429, 22, 1, '#6B7080');
+      for (let i = 0; i < 4; i++) { const y = 442 + i * 16; bevel(246, y, 66, 14, '#E2633B', '#F2A541', '#7A3442'); P(262, y + 5, 34, 3, '#120D14'); P(263, y + 5, 32, 1, '#FFF7EA'); P(263, y + 6, 32, 1, '#9AA0AD'); }
+      [[246, 512], [304, 512]].forEach(([x, y]) => { P(x, y, 8, 5, '#120D14'); P(x + 2, y + 1, 4, 3, '#6B7080'); });
+      // a bucket with a label band and a wire handle
+      P(166, 506, 32, 3, '#2B2033');
+      line(170, 470, 182, 462, '#6B7080'); line(182, 462, 194, 470, '#6B7080');
+      P(167, 469, 30, 40, '#120D14'); P(168, 470, 28, 38, '#C9CCD3'); P(168, 470, 28, 2, '#FFF7EA'); P(168, 470, 2, 38, '#FFF7EA'); P(191, 472, 5, 36, '#9AA0AD'); P(168, 482, 28, 8, '#F2A541'); P(168, 482, 28, 1, '#F7C873'); P(191, 482, 5, 8, '#B07A47');
+      // a little hill of sawdust
+      for (let i = 0; i < 9; i++) P(96 - i * 2, 530 + i, 8 + i * 4, 1, i < 2 ? '#F7C873' : '#D9A066'); dith(80, 535, 40, 4, '#B07A47', 1);
+    }
+
+    // ---- the garage: a sectional door with windows, rails and an opener; shelves of labeled bins; a fluorescent tube ----
+    function roomGarage(t, props) {
+      P(0, 0, 360, 417, '#4A4E5A');
+      for (let y = 9; y < 417; y += 8) { P(0, y, 360, 1, '#3D2E45'); P(0, y + 1, 360, 1, '#6B7080'); for (let x = ((y >> 3) & 1) * 8; x < 360; x += 16) P(x, y + 1, 1, 7, '#3D2E45'); }   // painted block
+      // the ceiling and joists
+      P(0, 0, 360, 9, '#2B2033'); for (let x = 6; x < 360; x += 30) { P(x, 0, 8, 8, '#8C5A33'); P(x, 0, 1, 8, '#B07A47'); P(x + 7, 0, 1, 8, '#6B4226'); } P(0, 8, 360, 1, '#120D14');
+      // the fluorescent fixture: a steel housing, two tubes; a soft flicker now and then (at most 2 changes a second)
+      const ph = F % 210, dim = t && ((ph >= 100 && ph < 104) || (ph >= 110 && ph < 112));
+      dith(140, 24, 80, 7, dim ? '#4A4E5A' : '#6B7080', 0);
+      P(142, 12, 76, 10, '#120D14'); bevel(143, 13, 74, 6, '#C9CCD3', '#FFF7EA', '#6B7080');
+      P(144, 19, 72, 3, '#120D14'); P(145, 19, 70, 1, dim ? '#9AA0AD' : '#FFF7EA'); P(145, 21, 70, 1, dim ? '#9AA0AD' : '#FFF7EA'); P(145, 20, 70, 1, dim ? '#6B7080' : '#F4E6D3');
+      P(150, 9, 1, 4, '#120D14'); P(209, 9, 1, 4, '#120D14');
+      // the opener: a motor box on the ceiling with a blinking light, its rail running to the door header
+      P(262, 30, 30, 16, '#120D14'); bevel(263, 31, 28, 14, '#C9CCD3', '#FFF7EA', '#6B7080'); P(265, 41, 24, 2, '#9AA0AD'); P(268, 34, 18, 1, '#9AA0AD');
+      const led = t ? (Math.floor(F / 20) % 3 === 0) : true; P(285, 35, 3, 2, '#120D14'); DOT(286, 35, led ? '#6FB7A8' : '#24453A');
+      P(170, 36, 92, 3, '#120D14'); P(170, 37, 92, 1, '#9AA0AD'); P(274, 9, 2, 22, '#6B7080');
+      // the header and jambs around the door, with the tracks and rollers
+      P(22, 70, 316, 7, '#120D14'); bevel(23, 71, 314, 5, '#9AA0AD', '#C9CCD3', '#6B7080');
+      for (const x of [22, 332]) { P(x, 76, 6, 266, '#120D14'); P(x + 1, 76, 4, 265, '#6B7080'); P(x + 1, 76, 1, 265, '#9AA0AD'); P(x + 4, 76, 1, 265, '#4A4E5A'); }
+      // the door: four sections, each with a lit top lip, a shadowed joint and quiet raised panels; windows in the top one
+      P(28, 77, 304, 264, '#6B7080');
+      for (let s = 0; s < 4; s++) {
+        const y = 77 + s * 66;
+        P(28, y, 304, 1, '#9AA0AD'); P(28, y + 64, 304, 1, '#4A4E5A'); P(28, y + 65, 304, 1, '#2B2033');
+        if (s > 0) for (let i = 0; i < 4; i++) { const x = 34 + i * 75; P(x, y + 8, 68, 1, '#9AA0AD'); P(x, y + 8, 1, 48, '#9AA0AD'); P(x, y + 56, 68, 1, '#4A4E5A'); P(x + 67, y + 8, 1, 49, '#4A4E5A'); }
+        for (const x of [29, 329]) { P(x, y + 30, 2, 5, '#120D14'); DOT(x, y + 31, '#C9CCD3'); }   // hinges and rollers
+      }
+      for (let i = 0; i < 4; i++) {
+        const x = 34 + i * 75;
+        windowAt(x + 1, 80, 66, 12, t, {seed: 11 + i, frame: '#9AA0AD', hi: '#C9CCD3', lo: '#4A4E5A', sill: '#9AA0AD', sill2: '#6B7080', bars: 'v', glint: false,
+          clouds: [{w: 26, seed: 3 + i, y: 0, x0: 20 + i * 66, every: 3}]});
+      }
+      P(166, 330, 28, 4, '#120D14'); P(167, 330, 26, 2, '#C9CCD3');   // the handle
+      // shelves on both sides: steel uprights, boards, labeled bins
+      for (const x0 of [0, 337]) {
+        const w = 23;
+        P(x0 + 1, 96, 2, 320, '#120D14'); P(x0 + w - 2, 96, 2, 320, '#120D14'); P(x0 + 1, 96, 1, 320, '#9AA0AD'); P(x0 + w - 2, 96, 1, 320, '#9AA0AD');
+        [130, 196, 262, 328, 394].forEach((y, i) => {
+          if (x0 && y === 328) { P(x0, y, w, 3, '#120D14'); P(x0, y, w, 1, '#C9CCD3'); P(x0, y + 1, w, 1, '#9AA0AD'); return; }   // the charger sits here
+          P(x0, y, w, 3, '#120D14'); P(x0, y, w, 1, '#C9CCD3'); P(x0, y + 1, w, 1, '#9AA0AD');
+          const c = [['#3B82C4', '#87CEEB', '#253048'], ['#E2633B', '#F2A541', '#7A3442'], ['#2F6F67', '#6FB7A8', '#245752'], ['#F2A541', '#F7C873', '#B07A47'], ['#3B82C4', '#87CEEB', '#253048']][(i + (x0 ? 2 : 0)) % 5];
+          P(x0 + 2, y - 15, w - 4, 15, '#120D14'); bevel(x0 + 3, y - 14, w - 6, 14, c[0], c[1], c[2]); P(x0 + 6, y - 10, w - 12, 4, '#FFF7EA'); P(x0 + 7, y - 9, w - 15, 1, '#9AA0AD');
+        });
+      }
+      // the battery charger on the right shelf, its light blinking slowly
+      P(340, 316, 17, 12, '#120D14'); bevel(341, 317, 15, 11, '#4A4E5A', '#6B7080', '#2B2033'); P(343, 314, 8, 3, '#120D14'); P(344, 315, 6, 2, '#F2A541');
+      const chg = t ? Math.floor(F / 15) % 2 : 0; P(352, 319, 2, 2, chg ? '#6FB7A8' : '#24453A');
+      // the floor: concrete with a drain, joints and tire marks
+      P(0, 417, 360, 1, '#120D14'); P(0, 418, 360, 222, '#6B7080'); P(0, 418, 360, 2, '#4A4E5A');
+      [440, 480, 548].forEach((y) => { P(0, y, 360, 1, '#4A4E5A'); P(0, y + 1, 360, 1, '#9AA0AD'); });
+      for (let i = -2; i <= 3; i++) line(180 + i * 90, 420, 180 + i * 260, 640, '#4A4E5A');
+      dith(150, 600, 70, 12, '#4A4E5A', 0); dith(140, 604, 90, 4, '#4A4E5A', 1);   // tire marks and a stain
+      P(172, 470, 16, 6, '#120D14'); for (let i = 0; i < 4; i++) P(174 + i * 4, 471, 2, 4, '#4A4E5A');   // the drain
+      if (props) garageProps(t);
+    }
+    function garageProps(t) {
+      // stacked tires: rounded sidewalls, a tread band of blocks, a sheen on the top one
+      for (let i = 0; i < 3; i++) {
+        const y = 500 - i * 20;
+        P(260, y, 72, 20, '#120D14'); P(258, y + 2, 76, 16, '#120D14');
+        P(261, y + 2, 70, 16, '#2B2033'); P(259, y + 4, 74, 12, '#2B2033');
+        P(261, y + 2, 70, 2, '#4A4E5A'); P(259, y + 4, 2, 10, '#4A4E5A');
+        for (let x = 263; x < 330; x += 4) { P(x, y + 7, 2, 6, '#1B1420'); DOT(x, y + 7, '#3D2E45'); }
+        P(261, y + 16, 70, 1, '#1B1420');
+      }
+      P(276, 438, 40, 3, '#120D14'); P(278, 437, 36, 2, '#1B1420'); P(270, 441, 52, 1, '#6B7080');
+      P(256, 520, 82, 3, '#4A4E5A');
+      // the toolbox: a red box with a lid, a latch and a handle
+      P(168, 520, 70, 3, '#4A4E5A');
+      P(169, 482, 66, 39, '#120D14'); bevel(170, 483, 64, 37, '#E2633B', '#F2A541', '#7A3442'); P(170, 494, 64, 1, '#7A3442'); P(170, 495, 64, 1, '#F2A541');
+      P(196, 490, 12, 7, '#120D14'); P(197, 491, 10, 5, '#C9CCD3'); P(197, 491, 10, 1, '#FFF7EA');
+      P(186, 474, 32, 9, '#120D14'); P(188, 476, 28, 7, '#E2633B'); P(190, 478, 24, 5, '#4A4E5A'); P(188, 476, 28, 1, '#F2A541');
+      // the shop vac
+      P(96, 514, 44, 3, '#4A4E5A');
+      P(97, 470, 42, 46, '#120D14'); bevel(98, 471, 40, 44, '#F2A541', '#F7C873', '#B07A47'); P(98, 471, 40, 8, '#4A4E5A'); P(98, 471, 40, 1, '#6B7080');
+      [[100, 513], [130, 513]].forEach(([x, y]) => { P(x, y, 6, 5, '#120D14'); DOT(x + 2, y + 2, '#6B7080'); });
+      line(138, 476, 150, 470, '#120D14'); line(150, 470, 158, 482, '#120D14'); line(139, 477, 151, 471, '#4A4E5A');
+    }
+
+    // ---- framing: a house going up: studs and plates against the sky, hills behind, a flag topping out, lumber and sawhorses ----
+    function roomFraming(t, props) {
+      // the sky with two layers of clouds (the far ones slower), hills and a tree line on the horizon
+      sky(0, 0, 360, 405, [
+        {w: 46, seed: 21, y: 6, x0: 30, every: 2}, {w: 30, seed: 22, y: 20, x0: 230, every: 3}, {w: 54, seed: 23, y: 2, x0: 330, every: 2},
+        {w: 26, seed: 24, y: 34, x0: 120, every: 4}, {w: 38, seed: 25, y: 98, x0: 60, every: 3}, {w: 30, seed: 26, y: 160, x0: 300, every: 4},
+        {w: 44, seed: 27, y: 230, x0: 180, every: 3}], t);
+      for (let x = 0; x < 360; x++) { const h1 = 22 + Math.round(10 * Math.sin(x * 0.021 + 1) + 6 * Math.sin(x * 0.07)); P(x, 405 - h1, 1, h1, '#3E7A62'); DOT(x, 405 - h1, '#6FB7A8'); }
+      for (let x = 0; x < 360; x++) { const h2 = 10 + Math.round(4 + 3 * Math.sin(x * 0.35) + hash(x * 0.71) * 3); P(x, 405 - h2, 1, h2, '#2F5A4A'); if (x % 9 < 2) DOT(x, 405 - h2, '#3E7A62'); }
+      // birds cross the top of the sky (above the level bar)
+      if (t) for (let i = 0; i < 3; i++) { const per = 760, ph = (F + i * 253) % per, x = -10 + Math.floor(ph / 2), y = 14 + i * 9 + (Math.floor(ph / 10) % 2); if (x < 366) bird(x, y, Math.floor(ph / 4) + i); }
+      // the studs: lit on the left, shaded on the right, a little grain and a nail at each plate
+      for (let s = 0; s < 9; s++) {
+        const x = 10 + s * 44;
+        P(x - 1, 76, 12, 330, '#8C5A33'); P(x, 76, 1, 330, '#F7C873'); P(x + 1, 76, 7, 330, '#D9A066'); P(x + 8, 76, 2, 330, '#B07A47');
+        grain(x + 2, 78, 5, 326, '#B07A47', s * 13, 'v');
+        [80, 400].forEach((y) => { DOT(x + 3, y, '#4A4E5A'); DOT(x + 6, y + 1, '#4A4E5A'); });
+      }
+      // the top plate, doubled, and the bottom plate
+      const plate = (y, h, seed) => { P(0, y, 360, h, '#8C5A33'); P(0, y + 1, 360, 1, '#F7C873'); P(0, y + 2, 360, h - 4, '#D9A066'); P(0, y + h - 2, 360, 1, '#B07A47'); grain(0, y + 2, 360, h - 4, '#B07A47', seed, 'h'); };
+      plate(62, 7, 61); plate(69, 8, 62); plate(405, 12, 63);
+      // a flag topping out the frame, fluttering on threes
+      P(346, 26, 2, 37, '#120D14'); P(346, 26, 1, 37, '#C9CCD3'); DOT(346, 25, '#F7C873');
+      const fl = t ? Math.floor(F / 3) % 4 : 0, fy = [0, 1, 0, -1];
+      for (let i = 0; i < 14; i++) { const yy = 28 + fy[(fl + Math.floor(i / 4)) % 4], c = (i + fl) % 8 < 4 ? '#E2633B' : '#F2A541'; P(332 + i, yy, 1, 8, c); DOT(332 + i, yy + 7, '#7A3442'); }
+      DOT(331, 28 + fy[(fl + 3) % 4], '#E2633B');
+      // the deck: plywood sheets in perspective, nail lines, cloud shadows drifting over it
+      P(0, 417, 360, 223, '#B07A47'); P(0, 417, 360, 1, '#120D14');
+      [[419, 18], [437, 30], [467, 48], [515, 72], [587, 60]].forEach(([y, h], i) => { P(0, y, 360, 1, '#D9A066'); P(0, y + h - 1, 360, 1, '#8C5A33'); for (let x = (i % 2) * 40 + 20; x < 360; x += 80 + i * 20) { P(x, y + 1, 1, h - 2, '#8C5A33'); P(x + 1, y + 1, 1, h - 2, '#D9A066'); } for (let x = 6; x < 360; x += 8) DOT(x, y + Math.floor(h / 2), '#8C5A33'); });
+      if (t) [[70, 12, 3, 430, 0], [96, 16, 4, 520, 150]].forEach(([w, h, every, y, x0]) => { const span = 360 + w; const x = ((Math.floor(x0 + F / every) % span) + span) % span - w; for (let j = 0; j < h; j++) { const hw = Math.round(w / 2 * Math.sqrt(1 - Math.pow((j - h / 2 + 0.5) / (h / 2), 2))); dith(Math.max(0, x + w / 2 - hw), y + j, Math.min(360, x + w / 2 + hw) - Math.max(0, x + w / 2 - hw), 1, '#8C5A33', j & 1); } });
+      if (props) framingProps(t);
+    }
+    function framingProps(t) {
+      // a lumber stack: boards on stickers, end grain to the right
+      P(122, 526, 152, 3, '#8C5A33');
+      for (let i = 0; i < 5; i++) {
+        const y = 520 - i * 7, x = 126 + (i % 2) * 6, w = 140 - (i % 2) * 8;
+        P(x - 1, y - 1, w + 2, 8, '#120D14'); P(x, y, w, 6, '#D9A066'); P(x, y, w, 1, '#F7C873'); P(x, y + 5, w, 1, '#B07A47'); grain(x + 2, y + 1, w - 8, 4, '#B07A47', i * 7, 'h');
+        P(x + w - 6, y, 6, 6, '#F7C873'); P(x + w - 5, y + 1, 4, 4, '#D9A066'); DOT(x + w - 3, y + 2, '#B07A47'); DOT(x + w - 4, y + 3, '#B07A47');
+        if (i < 4) { P(x + 14, y - 1, 4, 1, '#6B4226'); P(x + w - 24, y - 1, 4, 1, '#6B4226'); }
+      }
+      // two sawhorses with a plank across them
+      P(186, 467, 120, 2, '#1B1420'); P(185, 452, 122, 6, '#120D14'); P(186, 453, 120, 1, '#F7C873'); P(186, 454, 120, 3, '#D9A066'); P(186, 457, 120, 1, '#B07A47'); grain(188, 454, 116, 3, '#B07A47', 77, 'h');
+      for (const x of [198, 284]) {
+        P(x - 6, 459, 22, 4, '#120D14'); P(x - 5, 460, 20, 2, '#B07A47'); P(x - 5, 460, 20, 1, '#D9A066');
+        line(x - 3, 463, x - 9, 504, '#120D14'); line(x - 2, 463, x - 8, 504, '#8C5A33'); line(x + 13, 463, x + 19, 504, '#120D14'); line(x + 12, 463, x + 18, 504, '#6B4226');
+        line(x + 1, 463, x - 2, 500, '#120D14'); line(x + 9, 463, x + 12, 500, '#120D14');
+        P(x - 6, 486, 22, 2, '#8C5A33');
+      }
+      P(196, 445, 50, 7, '#120D14'); P(197, 446, 48, 5, '#F4E6D3'); P(197, 446, 48, 1, '#FFF7EA'); P(197, 450, 48, 1, '#C9CCD3');   // a sheet of drywall offcut on the plank
+      // a paint bucket and an orange cord
+      P(312, 492, 28, 3, '#8C5A33'); P(312, 462, 26, 31, '#120D14'); P(313, 463, 24, 29, '#C9CCD3'); P(313, 463, 2, 29, '#FFF7EA'); P(332, 463, 5, 29, '#9AA0AD'); P(313, 472, 24, 9, '#3B82C4'); P(313, 472, 24, 1, '#87CEEB');
+      P(0, 556, 100, 2, '#120D14'); P(0, 556, 100, 1, '#F2A541'); P(98, 556, 2, 22, '#120D14'); DOT(98, 556, '#F2A541'); P(99, 557, 1, 20, '#F2A541'); P(98, 576, 120, 2, '#120D14'); P(98, 576, 120, 1, '#F2A541');
+    }
+    // a game panel: a 1 pixel drop shadow, a notched box with a lit top-left edge and a shaded bottom-right edge, the
+    // cream double border inside, an optional title tab
+    const TONES = {'#1B1420': ['#3D2E45', '#120D14'], '#F2A541': ['#F7C873', '#B07A47'], '#24453A': ['#2F5A4A', '#1A332B'], '#2B2033': ['#3D2E45', '#120D14'],
+      '#7A3442': ['#E2633B', '#3D2E45'], '#FFF7EA': ['#FFFFFF', '#E6D3BC'], '#3B82C4': ['#87CEEB', '#253048']};
+    const tones = (c) => TONES[(col(c) || '').toUpperCase()] || ['#3D2E45', '#120D14'];
+    const quad = (x, y, w, h, c) => shape([[x, y], [x + w, y], [x + w, y + h], [x, y + h]], {fill: c, line: false});
+    const finish = (x, y, w, h, fill, o = {}) => {   // the game-UI edge on any box: shadow, notched fill, light and shade lines
+      const u = G, [hi, lo] = tones(fill), n = Math.min(2 * u, w / 4, h / 4);
+      if (o.shadow !== false) shape(rectPts(x + u, y + u, w, h, 0), {fill: '#120D14', line: false});
+      shape(rectPts(x, y, w, h, 0), {fill, line: false});
+      quad(x + n, y, w - 2 * n, u, hi); quad(x, y + n, u, h - 2 * n, hi);
+      quad(x + n, y + h - u, w - 2 * n, u, lo); quad(x + w - u, y + n, u, h - 2 * n, lo);
+      if (n >= 2 * u) { quad(x + u, y + u, u, u, hi); quad(x + w - 2 * u, y + h - 2 * u, u, u, lo); }   // the inner corner pixel of the notch
     };
-    // a game panel: dark box, cream double border, optional title tab
+    k.finish = finish;
     k.panel2 = function (x, y, w, h, o = {}) {
-      shape(rectPts(x + 12, y + 12, w, h, 0), {fill: '#120D14', line: false, alpha: 0.6});
-      shape(rectPts(x, y, w, h, 0), {fill: o.fill || 'card', line: false});
-      shape(rectPts(x + 6, y + 6, w - 12, h - 12, 0), {stroke: o.border || 'line', lw: 6, line: false});
-      if (o.title) { const tw = measure(o.title, {size: 30}) + 36; shape(rectPts(x + 24, y - 24, tw, 48, 0), {fill: o.tag || 'tag', line: false}); text(o.title, x + 42, y - 18, {size: 30, color: 'tagText'}); }
+      if (!look.bitmap) {
+        shape(rectPts(x + 12, y + 12, w, h, 0), {fill: '#120D14', line: false, alpha: 0.6});
+        shape(rectPts(x, y, w, h, 0), {fill: o.fill || 'card', line: false});
+        shape(rectPts(x + 6, y + 6, w - 12, h - 12, 0), {stroke: o.border || 'line', lw: 6, line: false});
+      } else {
+        finish(x, y, w, h, o.fill || 'card');
+        shape(rectPts(x + 6, y + 6, w - 12, h - 12, 0), {stroke: o.border || 'line', lw: 6, line: false});
+      }
+      if (o.title) { const tw = measure(o.title, {size: 30}) + 36; if (look.bitmap) finish(x + 24, y - 24, tw, 48, o.tag || 'tag'); else shape(rectPts(x + 24, y - 24, tw, 48, 0), {fill: o.tag || 'tag', line: false}); text(o.title, x + 42, y - 18, {size: 30, color: 'tagText'}); }
     };
 
     k.cam = function (sc, cx, cy) { ctx.translate(cx, cy); ctx.scale(sc, sc); ctx.translate(-cx, -cy); };

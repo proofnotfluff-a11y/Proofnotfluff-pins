@@ -1,8 +1,27 @@
-{"gate": "design", "round": 1, "at": "2026-10-28T14:55:00-05:00", "pass": false,
- "score": {"first": 4, "hierarchy": 4, "type": 4, "color": 4, "spacing": 3, "polish": 3, "trust": 4, "average": 3.71},
- "reasons": ["hook: 'to get hired.' crowds the source line, the SNOW tag covers it; hide the dialog box during the hook card",
-             "75.5 to 79.5 s: host's head covers the reply's third line; reflow the build phone to end above y 820",
-             "slide-ins draw text outside the board; clip to the board", "35.5 s: 'faster reply still won.' out-dented",
-             "73 s: callout touches its border and the phone bezel", "auto-reply label cut by the dialog box and low contrast; phone 'Homeowner' header low contrast",
-             "build phone 10 px from the left edge; inset to the shared gutter", "brand plate small and late; slam it in at 82.5 s on its own row"],
- "stop": "second FAIL of this gate: the video stops and goes to Todd. Type rose 3 to 4 after the font fix; spacing and polish fell on faults round 0 did not name"}
+{
+ "gate": "design",
+ "round": 0,
+ "series": "after Todd's go, 3:04 pm",
+ "at": "2026-10-28T15:45:00-05:00",
+ "pass": false,
+ "score": {
+  "first": 4,
+  "hierarchy": 4,
+  "type": 4,
+  "color": 5,
+  "spacing": 4,
+  "polish": 4,
+  "trust": 5,
+  "average": 4.29
+ },
+ "reasons": [
+  "frame 0 settled (fixed)",
+  "build callout and host clear of the phone and dialog (fixed)",
+  "board lines fade in, no crossing the frame (fixed)",
+  "end card send line in its own box (fixed)",
+  "timer box padding (fixed)",
+  "typed bubble keeps its width and grows down (fixed)",
+  "pixel font even letter and word spacing (fixed: glyphs trimmed to ink)",
+  "Thumbtack clocks: both labels at once, wedge clocks (fixed)"
+ ]
+}

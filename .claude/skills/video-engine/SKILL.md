@@ -1,4 +1,4 @@
-# video-engine (Phase 0, Rat check MVP; Mon, Wed, Fri)
+# video-engine (Phase 0, Rat check MVP; Mon, Wed, Fri) RETIRED Oct 28, 2026: replaced by video-studio (Todd, 3:04 pm)
 
 One job: make one Rat check Reel from this week's rat file, pass every gate, send Todd the preview, post it only after his "post" on it. Spec: blueprint https://claude.ai/artifact/3ssi8yGEKVxiL7JTD87kzS; settings video/config.json. "stop videos" in any chat halts every run (config "stop": true).
 

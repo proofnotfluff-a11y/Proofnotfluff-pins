@@ -1,0 +1,5 @@
+# Gate: golden review (fresh reviewer, the last check before it posts with no human review)
+The lesson goes live on Instagram, TikTok, Facebook and YouTube Shorts if you pass it. The owner's bar: genuinely educational, human and confident, not gimmicky, built to spread, lots of motion, builds trust. Read V/05_render/gates/timeline-*.jpg and first frames, V/05_render/sheets/*, V/02_transcript/transcript.md, V/05_render/captions.json, V/05_render/qa.json, V/01_voice/facts.json.
+Answer as a trade owner on a phone, then as an editor: 1. What does it say; do its numbers show the same? 2. Glad to have your name on it? Anything broken, cheap, cramped, off-brand or confusing, with its time. 3. Every number readable when said; any contradiction? 4. Does it sound like a person? 5. Any FAIL or doubtful PASS in qa.json? 6. Do the first 3 seconds earn the stop, and is there a clear reason to send or save?
+PASS only when you would post it as it is. Mark each problem must-fix or polish; polish alone is not a FAIL.
+Do not edit files. JSON only: {"pass": bool, "score": {"post_as_is": "yes|no"}, "reasons": ["<numbered problems with times, must-fix or polish>"]}

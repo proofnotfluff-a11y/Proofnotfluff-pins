@@ -1,7 +1,14 @@
-{"gate": "golden", "round": 0, "at": "2026-10-28T14:55:00-05:00", "pass": false, "score": {"post_as_is": "no"},
- "reasons": ["must fix: host's head hides 'I can come by' on the payoff line (75.5 to 79.5 s)",
-             "must fix: the SNOW tag hides the hook's Fiverr source line (0.5 to 2.4 s)",
-             "should fix: frame 0 is a mostly empty card with a dialog tail pointing at nothing; start with the 90% on screen",
-             "should fix: 10.5 to 15.5 s the study board sits mostly empty",
-             "polish: slide-in text outside the board; 'faster reply still won.' out-dented; '46% less' and '90% less' labels small; 'it helped' and 'Thumbtack's own data' wording; caption 'a reply ... likely to get hired' grammar",
-             "PASS: numbers agree with voice and sources; sounds like a person; qa.json clean; strong send and save reason"]}
+{
+ "gate": "golden",
+ "round": 0,
+ "series": "after Todd's go, 3:04 pm",
+ "at": "2026-10-28T15:45:00-05:00",
+ "pass": true,
+ "score": {
+  "post_as_is": "yes"
+ },
+ "reasons": [
+  "post as is; polish noted: build scene cramped, frame 0 mid-reveal, auto-reply tag past the bezel, phone clock vs timer, lone words in the dialog box (all fixed in the next render); captions must carry the 4-line text (they do)"
+ ],
+ "rerunAfter": "the design and critic fixes change the render, so golden runs again at round 0"
+}

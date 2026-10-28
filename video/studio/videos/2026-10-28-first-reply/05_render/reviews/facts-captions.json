@@ -1,0 +1,16 @@
+{
+ "gate": "facts-captions",
+ "round": 1,
+ "at": "2026-10-28T16:05:00-05:00",
+ "pass": false,
+ "score": {
+  "numbers": 17,
+  "mismatches": 1
+ },
+ "reasons": [
+  "youtube title promised a won job no source tests (fixed: 'A 4-Line Reply for Plumbing, HVAC and Roofing Owners')",
+  "youtube Thumbtack wording (fixed: 'than pros who reply within 3 hours')",
+  "round 0 (6 items: Facebook line length and missing reply text, YouTube next-lesson line and full source, Instagram tag mix, 'wins the job') all fixed",
+  "second FAIL of this gate: held for Todd's word"
+ ]
+}

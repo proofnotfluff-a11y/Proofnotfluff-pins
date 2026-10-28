@@ -28,6 +28,12 @@
       if (/[.!?]$/.test(w.w) && cur.length >= 3) { out.push(cur); cur = []; }
     });
     if (cur.length) out.push(cur);
+    // never leave one word alone in the box: join it to the phrase before when it fits, else to the one after
+    for (let i = 0; i < out.length; i++) {
+      if (out[i].length !== 1 || out.length < 2) continue;
+      if (i > 0 && fits(out[i - 1].concat(out[i]))) { out[i - 1] = out[i - 1].concat(out[i]); out.splice(i, 1); i--; }
+      else if (i + 1 < out.length && fits(out[i].concat(out[i + 1]))) { out[i + 1] = out[i].concat(out[i + 1]); out.splice(i, 1); i--; }
+    }
     return out.map((ws2, i) => ({words: ws2, t0: ws2[0].start - 0.05, t1: out[i + 1] ? out[i + 1][0].start - 0.05 : ws2[ws2.length - 1].end + 0.6}));
   }
 
@@ -150,10 +156,17 @@
         for (let i = 3; i < d.length; i += 4) d[i] = d[i] > 110 ? 255 : 0;   // hard pixel edges
         hctx.putImageData(id, 0, 0);
         ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.imageSmoothingEnabled = false; ctx.drawImage(hostCanvas, 0, 0, W, H); ctx.restore();
-      } else if (look.bitmap) k.snow(190, 1246, {scale: 0.86, pose: hp, at: ret.hostAt, face: 1});
+      } else if (look.bitmap) {
+        const hx = ret.hostX || 190, hs = ret.hostScale || 0.86;
+        k.snow(hx, 1246, {scale: hs, pose: hp, at: ret.hostAt, face: 1});
+        if (window.__boxes) window.__boxes.push({s: 'HOST', x0: hx - 95 * hs, y0: 1246 - 490 * hs, x1: hx + 95 * hs, y1: 1246, a: 1, tag: 'host'});
+      }
       else k.snow(160, 1246, {scale: 0.6, pose: hp, at: ret.hostAt, face: 1});
     }
-    speechBox(k, T);
+    window.__tag = 'dialog';
+    if (ret.speech !== false) { speechBox(k, T); const ph = phrases.find((p) => T >= p.t0 && T < p.t1);
+      if (window.__boxes && ph) window.__boxes.push({s: 'DIALOG', x0: look.bitmap ? 372 : 300, y0: (look.bitmap ? 1046 : 1088) - 40, x1: (look.bitmap ? 932 : 928), y1: look.bitmap ? 1236 : 1238, a: 1, tag: 'dialogbox'}); }
+    window.__tag = 'hud';   // a scene can hide the dialog box (the hook card)
     if (moving) {
       hud(k, T, tops, sec);
       // room to room: pixel blinds close and open again (0.42 s), hiding the cut
@@ -164,6 +177,7 @@
         }
       }
     }
+    window.__tag = 'scene';
     if (pixel) {
       quantize(lowCanvas);
       mctx.setTransform(1, 0, 0, 1, 0, 0); mctx.imageSmoothingEnabled = false;

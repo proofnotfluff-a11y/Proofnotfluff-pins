@@ -71,6 +71,13 @@
     // ---- the arcade look's 1-bit pixel font (anim.py kit -> _runtime/pixfont.js) ----
     const PF = window.PIXFONT;
     const U = look.scale ? 1 / look.scale : 1;   // full-frame units per low-res pixel (3 in the arcade look)
+    // the first and last rows that hold ink in a bitmap font (cached), so boxes hug the letters
+    function inkRows(f) {
+      if (f._ink) return f._ink;
+      let lo = 1e9, hi = -1;
+      Object.values(f.glyphs).forEach((g) => g.rows.forEach((r, i) => { if (r.indexOf('1') >= 0) { lo = Math.min(lo, i); hi = Math.max(hi, i); } }));
+      return (f._ink = [lo === 1e9 ? 0 : lo, hi < 0 ? f.h - 1 : hi]);
+    }
     function bmPick(size) {
       if (size >= 52) { const f = PF.display; return {f, m: Math.max(1, Math.round(size / (f.h * U)))}; }
       return {f: PF.body, m: Math.max(1, Math.round(size / (PF.body.h * U)))};
@@ -121,6 +128,12 @@
           const ax = o.align === 'center' ? x - w / 2 : (o.align === 'right' ? x - w : x);
           if (o.shadow !== false && o.drop) bmLine(ln, ax + U, y + i * lh + U, size, col(o.drop));
           bmLine(ln, ax, y + i * lh, size, col(o.color || 'ink'));
+          if (window.__boxes) {   // the layout lint (anim.py lint): where this text really landed, in 1080 x 1920 units
+            const {f, m} = bmPick(size), ink = inkRows(f), px = m * U, tr = ctx.getTransform(), sc = 1 / (look.scale || 1);
+            const P = (qx, qy) => [(tr.a * qx + tr.c * qy + tr.e) * sc, (tr.b * qx + tr.d * qy + tr.f) * sc];
+            const p0 = P(ax, y + i * lh + ink[0] * px), p1 = P(ax + w, y + i * lh + (ink[1] + 1) * px);
+            window.__boxes.push({s: ln, x0: Math.min(p0[0], p1[0]), y0: Math.min(p0[1], p1[1]), x1: Math.max(p0[0], p1[0]), y1: Math.max(p0[1], p1[1]), a: ctx.globalAlpha, tag: o.lint === false ? 'deco' : (window.__tag || 'scene')});
+          }
         });
         ctx.restore();
         return {w: wmax, h: lines.length * lh, lines};
@@ -470,19 +483,28 @@
       const maxW = w - 120;
       msgs.forEach((m, i) => {
         const t0 = m.at != null ? m.at : -1; if (T < t0) return;
+        if (m.ghost) { const gl = wrap(m.text, {size: fs, weight: 500, font: 'body'}, maxW - 44); yy += gl.length * lh + 26 + (m.stamp ? 46 : 22); return; }   // keeps its space, drawn under a note
         const pp = easeOut((T - t0) / 0.3);
         const lines = wrap(m.text, {size: fs, weight: 500, font: 'body'}, maxW - 44);
-        const bw = Math.min(maxW, Math.max(...lines.map((ln) => measure(ln, {size: fs, weight: 500, font: 'body'}))) + 44), bh = lines.length * lh + 26;
+        const bw = Math.min(maxW, Math.max(...lines.map((ln) => measure(ln, {size: fs, weight: 500, font: 'body'}))) + 44);
+        // a message being typed keeps its final width and grows down one line at a time
+        let shown = lines.length;
+        if (m.reveal != null) { let acc = 0; shown = 1; lines.forEach((ln, li) => { if (m.reveal > acc) shown = li + 1; acc += ln.length + 1; }); }
+        const bh = shown * lh + 26;
         const bx = m.me ? x + w - 32 - bw : x + 32;
         ctx.save(); ctx.globalAlpha *= pp; ctx.translate(0, (1 - pp) * 24);
         const fill = m.me ? (C.sent ? 'sent' : 'teal') : (C.recv ? 'recv' : 'bg2');
         shape(rectPts(bx, yy, bw, bh, Math.min(30, bh / 2)), {fill, line: false, id: 9310 + i});
         const tx = m.me ? bx + bw - 8 : bx + 8;   // the bubble's tail
         shape([[tx, yy + bh - 22], [m.me ? tx + 18 : tx - 18, yy + bh + 2], [m.me ? tx - 20 : tx + 20, yy + bh - 6]], {fill, line: false});
-        lines.forEach((ln, li) => text(ln, bx + 22, yy + 13 + li * lh, {size: fs, weight: 500, font: 'body', color: m.me ? (C.sentText ? 'sentText' : 'pillText') : 'ink'}));
+        // m.reveal: how many characters are typed so far; the layout is the full message's, so the bubble never re-wraps
+        let left = m.reveal != null ? m.reveal : 1e9, lastW = 0, lastLi = 0;
+        lines.forEach((ln, li) => { if (left <= 0) return; const part = ln.slice(0, left); left -= ln.length + 1;
+          text(part, bx + 22, yy + 13 + li * lh, {size: fs, weight: 500, font: 'body', color: m.me ? (C.sentText ? 'sentText' : 'pillText') : 'ink'});
+          lastW = measure(part, {size: fs, weight: 500, font: 'body'}); lastLi = li; });
         if (m.typing && T < m.typing) {   // a typing cursor while the line is still going in
-          const lw = measure(lines[lines.length - 1] || '', {size: fs, weight: 500, font: 'body'});
-          if ((T * 2.2) % 1 < 0.6) shape(rectPts(bx + 24 + lw, yy + 15 + (lines.length - 1) * lh, 4, fs, 1), {fill: m.me ? (C.sentText ? 'sentText' : 'pillText') : 'ink', line: false});
+          const lw = lastW;
+          if ((T * 2.2) % 1 < 0.6) shape(rectPts(bx + 24 + lw, yy + 15 + lastLi * lh, 4, fs, 1), {fill: m.me ? (C.sentText ? 'sentText' : 'pillText') : 'ink', line: false});
         }
         if (m.stamp) text(m.stamp, m.me ? bx + bw : bx, yy + bh + 8, {size: 22, weight: 600, font: 'body', color: 'muted', align: m.me ? 'right' : 'left'});
         if (m.box) m.box({x: bx, y: yy, w: bw, h: bh, lines, lh});
@@ -536,7 +558,7 @@
         for (let x = 0; x < 1080; x += 120) R(x, 1092, 6, 158, '#5A3A22');
         R(36, 222, 1008, 800, '#8C5A33'); R(60, 246, 960, 752, '#24453A');
         // chalk smudges only where text never goes: the board's right strip and its bottom band (design gate, Oct 28)
-        for (let i = 0; i < 4; i++) { R(880 + (i % 2) * 40, 420 + i * 130, 90, 14, '#2F5A4A'); R(140 + i * 210, 950, 110 + (i % 2) * 40, 14, '#2F5A4A'); }
+        for (let i = 0; i < 4; i++) { R(880 + (i % 2) * 40, 420 + i * 130, 90, 14, '#2F5A4A'); R(140 + i * 210, 972, 110 + (i % 2) * 40, 12, '#2F5A4A'); }
         R(60, 998, 960, 24, '#B07A47'); R(140, 986, 48, 12, '#FFF7EA'); R(230, 990, 30, 9, '#F7C873'); R(840, 986, 60, 12, '#C9CCD3');
       } else if (name === 'workshop') {
         R(0, 0, 1080, 1920, '#3D2E45');

@@ -1,0 +1,31 @@
+# Improve: one better thing every run
+
+Todd, Oct 28, 2026, 3:04 pm: "Constantly try to improve these videos. Look for new ways to enhance visuals, motion
+animations, sound, etc." Every daily run ships exactly one item from the backlog below (or a better one it found), in the
+shared runtime (`_runtime/kit.js`, `player.js`, `looks.js`, `_shared/`), proves it on stills of today's lesson and lesson 1,
+and logs it. One change a day keeps a bad change easy to find. Gates judge the result like any other change.
+
+Order of pick: a fault a gate named twice in the last week, then the item most likely to raise watch time or sends (the
+weekly numbers), then the top of the backlog. Research runs (Mondays) add items with their source.
+
+## Backlog (most promising first)
+1. Sound: a short music bed per room (four tiny loops made in code, same key), ducked under the voice.
+2. Motion: a squash and stretch landing on every slammed number (scale 1.15 x 0.9 for 2 frames, then 1).
+3. Host: lip shapes matched to the voice's loudness (open, half, closed) instead of a fixed talk cycle.
+4. Visual: a one-frame white flash and a 2 px offset (impact frame) on stamps only; never more than once in 10 s.
+5. Motion: the camera pans to the element being spoken about (focus points from the cue text, not hand-set).
+6. Sound: a typewriter tick per word in the dialog box at low level, off during numbers.
+7. Visual: a cover frame for each platform (the hook card at full size, ProofNotFluff mark) exported as a still.
+8. Motion: transitions that match the room (blinds for the workshop, chalk wipe for the board, garage door roll-up).
+9. Host: idle actions between lines (look at the board, adjust cap, check phone) so he is never frozen.
+10. Visual: on-screen captions of key phrases (two to four words) in the safe area, for viewers with the sound off.
+11. Sound: a two-note sting on the brand plate at the end (our own, made in code).
+12. Visual: a seasonal touch per week (snow outside the half-built house in winter, leaves in fall).
+
+## Done (newest first: date, item, what changed, proof)
+- 2026-10-28 (round 2): pixel font trimmed to ink (even letter and word spacing), typed messages keep their width and
+  grow down, wedge clocks, slide-ins fade and travel less, one-word dialog phrases joined, host can step back (hostScale),
+  scenes can hide the dialog box, post copy under 10 MB (`export`). Proof: lesson 1 stills and gates.
+- 2026-10-28: open pixel s (Poppins 15 px cut), seamless pixel rows under zoom, hook card first frame, dialog box holds
+  the last line between takes, chalk smudges off the text, a compressor in the mix (loudness -14.7 LUFS). Proof: lesson 1
+  stills and gates.

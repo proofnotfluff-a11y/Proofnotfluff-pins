@@ -1,16 +1,16 @@
-# 05_render: render, gates, preview
+# 05_render: render, gates, queue
 
-**Reads:** `04_scene/scene.js`, `03_cues/cues.json`, `02_transcript/words.json`, the voice audio, `_shared/sound.md`
-**Makes:** `05_render/<slug>.mp4` (on `video-renders`), `05_render/sheet.jpg`, `05_render/qa.json`, `05_render/caption.txt`
+**Reads:** `04_scene/scene.js`, `03_cues/cues.json`, `02_transcript/words.json`, the voice audio, `_shared/sound.md`, `_shared/captions.md`
+**Makes:** `05_render/<slug>.mp4` (not committed), `05_render/sheet.jpg`, `05_render/qa.json`, `05_render/captions.json`, `05_render/reviews/*.json`, a queue entry
 
-1. `python3 video/studio/anim.py render <slug>`: every frame drawn in Chromium at 30 fps, the voice, the music bed and
-   the cue sounds mixed to -14 LUFS with the true peak at or under -1.5 dBTP, H.264 and AAC.
-2. `python3 video/studio/anim.py check <slug>`: length 45 to 90 s, loudness, no black or frozen stretch outside the end
-   card, the file decodes; writes `qa.json`.
-3. Fresh reviewers (Agent, model opus, each sees only its inputs): facts (`video/prompts/facts.md` on the brief, the
-   script and the data file), render critic (`video/prompts/render-critic.md` on the sheets and transcript), buyer
-   (`video/prompts/buyer.md` on the script and caption), design (`video/prompts/design.md` on the sheet and frame one),
-   then the golden review (`video/prompts/golden.md`) before Todd sees anything.
-4. Preview to Todd: the MP4, the sheet, the caption in a code block, the gate lines, the fingerprints. He says "post" or gives a fix note.
-
-One fix round per gate; a gate's own second FAIL stops the video and goes to Todd. No agent overrides a FAIL.
+1. `anim.py lint <slug>`: the layout check in code (text off the safe area, text under the host, the dialog box or other
+   text). Fix every ERROR before rendering; it is cheaper than a gate round.
+2. `anim.py render <slug>`: every frame in Chromium at 30 fps; voice, music bed and cue sounds mixed to -14 LUFS, true
+   peak at or under -1.5 dBTP; H.264 and AAC. `anim.py check <slug>`: length 45 to 90 s, loudness, black, frozen, file.
+3. `captions.json` from `_shared/captions.md` (Instagram, TikTok, Facebook, YouTube: keyword line, proof, takeaway,
+   send line, AI voice line, tags).
+4. `anim.py stills <slug>` and `anim.py gatepack <slug>`, then the gates in `video/studio/prompts/` (README there): facts,
+   facts-captions, render critic, buyer, design, golden, each a fresh agent (model opus). One fix round per gate; a
+   gate's own second FAIL holds the lesson for Todd.
+5. All PASS: commit the lesson, then `anim.py ready <slug>` (it pins the commit), commit and push. It posts on the next
+   daily run (POSTING.md). Nothing posts that is not in the queue.

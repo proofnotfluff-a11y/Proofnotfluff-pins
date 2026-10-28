@@ -15,6 +15,13 @@ fresh reviewer checks before the next stage runs.
   stills SLUG [--look L]   a frame at every cue -> 05_render/sheets/*.jpg and 05_render/sheet.jpg
   render SLUG [--look L] [--from S --to S] [--out F]   frames in Chromium, the mix, H.264/AAC
   check SLUG [--mp4 F]     length, loudness, black, frozen, file -> 05_render/qa.json
+  lint SLUG                the layout check in code: text off the safe area, under the host, the dialog box or other text
+  gatepack SLUG            timeline sheets (2 frames a second) and first frames for the fresh reviewers -> 05_render/gates/
+  export SLUG              a copy under 9.5 MB for posting (two-pass H.264; Chrome uploads cap at 10 MB) -> 05_render/SLUG-post.mp4
+  ready SLUG               every gate passed: queue it for posting (video/studio/queue.json, fingerprints of what the gates saw)
+  next                     the oldest queued lesson not yet on all four platforms, and the commit its gates passed at
+  postcopy SLUG            render the queued lesson from that commit, check its fingerprints, export it to the upload folder
+  posted SLUG PLATFORM URL record one live post (instagram, tiktok, facebook, youtube)
   status SLUG              what exists
 """
 import argparse, base64, datetime as dt, difflib, glob, hashlib, json, math, os, re, shutil, subprocess, sys, tempfile, time, urllib.request, urllib.error, wave
@@ -124,6 +131,11 @@ def build_pixfont():
             d = ImageDraw.Draw(im); d.fontmode = "1"; d.text((1, 0), ch, font=f, fill=1)
             px = im.load()
             rows = ["".join("1" if px[x, y] else "0" for x in range(w + 2)) for y in range(H)]
+            ink = [x for x in range(w + 2) if any(r[x] == "1" for r in rows)]
+            if ink:   # trim to the ink, so every letter sits one pixel from the next (even spacing; design gate, Oct 28)
+                rows = [r[ink[0]:ink[-1] + 1] for r in rows]; w = ink[-1] - ink[0] + 1
+            else:     # the space: a clear word gap, about twice the letter gap plus a narrow letter
+                w = 3 if name == "body" else 4; rows = ["0" * w for _ in range(H)]
             glyphs[ch] = {"w": w, "rows": rows}
         out[name] = {"h": H, "asc": asc, "glyphs": glyphs}
     write_js(os.path.join(RUNTIME, "pixfont.js"), "PIXFONT", out)
@@ -324,6 +336,18 @@ def respell(script_words, heard):
     return out, flags
 
 
+def credits(key):
+    """ElevenLabs characters used and left this period (numbers only; the key is never written)."""
+    try:
+        req = urllib.request.Request("https://api.elevenlabs.io/v1/user/subscription", headers={"xi-api-key": key})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            d = json.load(r)
+        return {"used": d.get("character_count"), "limit": d.get("character_limit"), "tier": d.get("tier"),
+                "resetsAt": d.get("next_character_count_reset_unix")}
+    except Exception as e:
+        return {"error": type(e).__name__}
+
+
 def cmd_ci_voice():
     key = os.environ.get("ELEVENLABS_API_KEY", "")
     work = tempfile.mkdtemp()
@@ -405,7 +429,7 @@ def cmd_ci_voice():
             + "## Pace per take (target 160 to 195 wpm)\n```\n" + "\n".join(pace) + "\n```\n\n## Words\n\n" + "\n\n".join(lines) + "\n")
         json.dump({"schema": "pnf.studio.takes.v1", "requestedAt": req["requestedAt"], "voice": req["voice"], "model": req["model"],
                    "scriptSha256": req["scriptSha256"], "voiceSha256": sha(voice), "takes": info, "chars": sum(x["chars"] for x in info),
-                   "at": now()}, open(tk_path, "w"), indent=1)
+                   "at": now(), "credits": credits(key)}, open(tk_path, "w"), indent=1)
         done.append((slug, out))
         print(f"{slug}: {len(info)} takes, {doc['end']:.1f} s, {len(flags)} flag(s)\n" + "\n".join(pace))
     if not done:
@@ -667,6 +691,192 @@ def cmd_remix(slug):
     print(f"remix: {out}")
 
 
+QUEUE = os.path.join(HERE, "queue.json")
+PLATFORMS = ("instagram", "tiktok", "facebook", "youtube")
+GATES = ("qa", "facts", "facts-captions", "render-critic", "buyer", "design", "golden")
+
+
+def fingerprints(slug):
+    """What the gates saw: change any of these and the lesson must be gated again before it posts."""
+    files = {"script": ("01_voice", "script.md"), "takes": ("01_voice", "takes.json"), "words": ("02_transcript", "words.json"),
+             "cues": ("03_cues", "cues.json"), "scene": ("04_scene", "scene.js"), "data": ("04_scene", "data.js"),
+             "captions": ("05_render", "captions.json")}
+    fp = {k: sha(vdir(slug, *v))[:12] for k, v in files.items() if os.path.exists(vdir(slug, *v))}
+    for f in ("kit.js", "player.js", "looks.js", "pixfont.js"):
+        fp["runtime_" + f.split(".")[0]] = sha(os.path.join(HERE, "_runtime", f))[:12]
+    return fp
+
+
+def load_queue():
+    return json.load(open(QUEUE)) if os.path.exists(QUEUE) else {"schema": "pnf.studio.queue.v1", "items": []}
+
+
+def save_queue(q):
+    json.dump(q, open(QUEUE, "w"), indent=1); open(QUEUE, "a").write("\n")
+
+
+def cmd_ready(slug):
+    rev = vdir(slug, "05_render", "reviews")
+    bad = []
+    for g in GATES:
+        f = vdir(slug, "05_render", "qa.json") if g == "qa" else os.path.join(rev, f"{g}.json")
+        if not os.path.exists(f):
+            bad.append(f"{g}: no file"); continue
+        if not json.load(open(f)).get("pass"):
+            bad.append(f"{g}: FAIL")
+    if not os.path.exists(vdir(slug, "05_render", "captions.json")):
+        bad.append("captions.json: missing")
+    if bad:
+        raise SystemExit("ERROR ready: " + "; ".join(bad))
+    # the gated files must be committed: the queue pins that commit, and posting renders from it (so later runtime
+    # improvements never change a video that already passed its gates)
+    dirty = sh(["git", "-C", ROOT, "status", "--porcelain", "--", os.path.relpath(os.path.join(HERE, "_runtime"), ROOT),
+                os.path.relpath(vdir(slug), ROOT)], check=False).stdout.strip().splitlines()
+    dirty = [d for d in dirty if "/05_render/sheet" not in d and "/05_render/qa.json" not in d and "/reviews/" not in d]
+    if dirty:
+        raise SystemExit("ERROR ready: commit the lesson and the runtime first: " + "; ".join(d.strip() for d in dirty[:6]))
+    head = sh(["git", "-C", ROOT, "rev-parse", "HEAD"]).stdout.strip()
+    q = load_queue()
+    q["items"] = [i for i in q["items"] if i["slug"] != slug]
+    q["items"].append({"slug": slug, "readyAt": now(), "commit": head, "fingerprints": fingerprints(slug), "posts": {}})
+    save_queue(q)
+    print(f"ready: {slug} queued ({len(q['items'])} in the queue)")
+
+
+def cmd_next():
+    for i in load_queue()["items"]:
+        missing = [p for p in PLATFORMS if p not in i["posts"]]
+        if missing:
+            print(json.dumps({"slug": i["slug"], "missing": missing, "commit": i.get("commit")}))
+            return
+    print(json.dumps({"slug": None}))
+
+
+def cmd_postcopy(slug):
+    """Render the queued lesson from the commit its gates passed at, check every fingerprint, export the post copy
+    to /mnt/user-data/outputs/<slug>.mp4 (the folder Chrome's upload reads)."""
+    it = next((i for i in load_queue()["items"] if i["slug"] == slug), None)
+    if not it or not it.get("commit"):
+        raise SystemExit(f"ERROR postcopy: {slug} is not queued with a commit")
+    wt = tempfile.mkdtemp(prefix="gated-")
+    sh(["git", "-C", ROOT, "fetch", "--depth", "1", "origin", it["commit"]], check=False)
+    sh(["git", "-C", ROOT, "worktree", "add", "--detach", wt, it["commit"]])
+    try:
+        cmd = [sys.executable, os.path.join(wt, "video", "studio", "anim.py")]
+        g = subprocess.run(cmd + ["fingerprint", slug], capture_output=True, text=True)
+        fp = json.loads(g.stdout.strip().splitlines()[-1])
+        changed = [k for k, v in it["fingerprints"].items() if fp.get(k) != v]
+        if changed:
+            raise SystemExit(f"ERROR postcopy: the pinned commit does not match what the gates saw: {', '.join(changed)}")
+        for c in (["fetch", slug], ["render", slug], ["export", slug]):
+            r = subprocess.run(cmd + c, capture_output=True, text=True)
+            print((r.stdout + r.stderr).strip().splitlines()[-1] if (r.stdout + r.stderr).strip() else c[0])
+            if r.returncode:
+                raise SystemExit(f"ERROR postcopy: {c[0]} failed")
+        src = os.path.join(wt, "video", "studio", "videos", slug, "05_render", f"{slug}-post.mp4")
+        os.makedirs("/mnt/user-data/outputs", exist_ok=True)
+        dst = os.path.join("/mnt/user-data/outputs", f"{slug}.mp4")
+        shutil.copy(src, dst)
+        print(f"postcopy: {dst} ({os.path.getsize(dst) / 1e6:.1f} MB) from {it['commit'][:12]}")
+    finally:
+        sh(["git", "-C", ROOT, "worktree", "remove", "--force", wt], check=False)
+
+
+def cmd_posted(slug, platform, url):
+    if platform not in PLATFORMS:
+        raise SystemExit(f"ERROR posted: platform must be one of {', '.join(PLATFORMS)}")
+    q = load_queue()
+    it = next((i for i in q["items"] if i["slug"] == slug), None)
+    if not it:
+        raise SystemExit(f"ERROR posted: {slug} is not in the queue")
+    it["posts"][platform] = {"url": url, "at": now()}
+    save_queue(q)
+    print(f"posted: {slug} on {platform} ({len(it['posts'])} of 4)")
+
+
+def cmd_gatepack(slug):
+    """What the fresh reviewers look at: timeline sheets at 2 frames a second (labeled), the first frames, in
+    05_render/gates/ (not committed). The stills (cmd stills) are the other half."""
+    from PIL import Image, ImageDraw
+    mp4 = vdir(slug, "05_render", f"{slug}.mp4")
+    out = vdir(slug, "05_render", "gates"); shutil.rmtree(out, ignore_errors=True); os.makedirs(os.path.join(out, "fr"))
+    sh(["ffmpeg", "-loglevel", "error", "-i", mp4, "-vf", "fps=2,scale=216:384", os.path.join(out, "fr", "%03d.png")])
+    fs = sorted(glob.glob(os.path.join(out, "fr", "*.png"))); per, cols = 30, 10
+    for s0 in range(0, len(fs), per):
+        chunk = fs[s0:s0 + per]; rows = (len(chunk) + cols - 1) // cols
+        o = Image.new("RGB", (cols * 216, rows * 404), "white"); d = ImageDraw.Draw(o)
+        for i, f in enumerate(chunk):
+            x, y = (i % cols) * 216, (i // cols) * 404; o.paste(Image.open(f), (x, y)); d.text((x + 4, y + 386), f"{(s0 + i) * 0.5:.1f} s", fill="black")
+        o.save(os.path.join(out, f"timeline-{s0 // per + 1}.jpg"), quality=88)
+    for t in ("0", "0.8", "2.0"):
+        sh(["ffmpeg", "-loglevel", "error", "-y", "-ss", t, "-i", mp4, "-frames:v", "1", os.path.join(out, f"frame-{t}s.png")])
+    shutil.rmtree(os.path.join(out, "fr"), ignore_errors=True)
+    print(f"gatepack: {out} ({(len(fs) + per - 1) // per} timeline sheets, 3 first frames)")
+
+
+def cmd_lint(slug, step=0.25):
+    """The layout check in code, before a reviewer has to find it: every settled scene text inside the safe area
+    (x 20 to 950, y 262 to 1250), not under the host, the dialog box or other text. Problems that last under 0.5 s
+    (slide-ins, slams) are ignored. Exit 1 on an ERROR."""
+    cues = json.load(open(vdir(slug, "03_cues", "cues.json")))
+    pw, b, pg = open_stage(slug)
+    hits = {}
+    def ov(p, q, pad=0):
+        w = min(p["x1"], q["x1"]) - max(p["x0"], q["x0"]) + pad; h = min(p["y1"], q["y1"]) - max(p["y0"], q["y0"]) + pad
+        return max(0, w) * max(0, h)
+    t = 0.0
+    while t < cues["duration"]:
+        bx = pg.evaluate(f"(() => {{ window.__boxes = []; drawAt({t:.3f}); const r = window.__boxes; window.__boxes = null; return r; }})()")
+        texts = [x for x in bx if x["tag"] == "scene" and x["a"] > 0.6 and x["s"].strip()]
+        host = [x for x in bx if x["tag"] == "host"]; dlg = [x for x in bx if x["tag"] == "dialogbox"]
+        for x in texts:
+            if x["x0"] < 20 or x["x1"] > 950 or x["y0"] < 262 or x["y1"] > 1250:
+                hits.setdefault(("off the safe area", x["s"]), []).append(t)
+            for o, name in [(h, "under the host") for h in host] + [(d, "under the dialog box") for d in dlg]:
+                if ov(x, o) > 0.08 * (x["x1"] - x["x0"]) * (x["y1"] - x["y0"]):
+                    hits.setdefault((name, x["s"]), []).append(t)
+        for i, x in enumerate(texts):
+            for y in texts[i + 1:]:
+                if ov(x, y) > 0.15 * min((x["x1"] - x["x0"]) * (x["y1"] - x["y0"]), (y["x1"] - y["x0"]) * (y["y1"] - y["y0"])):
+                    hits.setdefault(("text on text", x["s"] + " / " + y["s"]), []).append(t)
+        t += step
+    b.close(); pw.stop()
+    errors = []
+    for (kind, what), ts in sorted(hits.items(), key=lambda kv: kv[1][0]):
+        runs, start, prev = [], ts[0], ts[0]
+        for x in ts[1:] + [None]:
+            if x is None or x - prev > step * 1.5:
+                if prev - start >= 0.5 - 1e-6:
+                    runs.append((start, prev))
+                if x is not None:
+                    start = x
+            if x is not None:
+                prev = x
+        for a0, a1 in runs:
+            errors.append(f"ERROR lint {a0:5.2f} to {a1:5.2f} s: {kind}: {what[:70]}")
+    print("\n".join(errors) if errors else f"lint: PASS 0 layout problems ({cues['duration']:.1f} s at {step} s steps)")
+    if errors:
+        sys.exit(1)
+
+
+def cmd_export(slug):
+    """Chrome's file upload takes at most 10 MB a call, so the post copy aims at 9.3 MB (two-pass, pixel art tune)."""
+    src = vdir(slug, "05_render", f"{slug}.mp4")
+    out = vdir(slug, "05_render", f"{slug}-post.mp4")
+    secs = float(sh(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", src]).stdout.strip())
+    vk = int(9.3 * 8 * 1000 / secs) - 128
+    tmp = tempfile.mkdtemp()
+    base = ["ffmpeg", "-y", "-loglevel", "error", "-i", src, "-c:v", "libx264", "-preset", "slow", "-tune", "animation",
+            "-b:v", f"{vk}k", "-pix_fmt", "yuv420p", "-passlogfile", os.path.join(tmp, "p")]
+    sh(base + ["-pass", "1", "-an", "-f", "mp4", os.devnull])
+    sh(base + ["-pass", "2", "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", out])
+    shutil.rmtree(tmp, ignore_errors=True)
+    mb = os.path.getsize(out) / 1e6
+    if mb >= 9.9:
+        raise SystemExit(f"ERROR export: {mb:.1f} MB, over the 10 MB upload cap")
+    print(f"export: {out} ({mb:.1f} MB, video {vk} kbps)")
+
+
 def cmd_render(slug, look=None, t_from=None, t_to=None, out=None):
     cues = json.load(open(vdir(slug, "03_cues", "cues.json")))
     a = t_from or 0.0
@@ -758,6 +968,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("cmd")
     ap.add_argument("slug", nargs="?")
+    ap.add_argument("rest", nargs="*")
     ap.add_argument("--look"); ap.add_argument("--from", dest="t_from", type=float); ap.add_argument("--to", dest="t_to", type=float)
     ap.add_argument("--out"); ap.add_argument("--mp4"); ap.add_argument("--take", type=int, action="append"); ap.add_argument("--voice")
     a = ap.parse_args()
@@ -766,6 +977,8 @@ def main():
         build_map(); build_sfx(); build_pixfont()
     elif c == "ci-voice":
         cmd_ci_voice()
+    elif c == "next":
+        cmd_next()
     elif not a.slug:
         raise SystemExit(f"{c} needs a slug")
     elif c == "new":
@@ -784,6 +997,20 @@ def main():
         cmd_grab(a.slug)
     elif c == "stills":
         cmd_stills(a.slug, a.look)
+    elif c == "posted":
+        cmd_posted(a.slug, a.rest[0] if len(a.rest) > 0 else "", a.rest[1] if len(a.rest) > 1 else "")
+    elif c == "ready":
+        cmd_ready(a.slug)
+    elif c == "export":
+        cmd_export(a.slug)
+    elif c == "lint":
+        cmd_lint(a.slug)
+    elif c == "gatepack":
+        cmd_gatepack(a.slug)
+    elif c == "postcopy":
+        cmd_postcopy(a.slug)
+    elif c == "fingerprint":
+        print(json.dumps(fingerprints(a.slug)))
     elif c == "remix":
         cmd_remix(a.slug)
     elif c == "render":

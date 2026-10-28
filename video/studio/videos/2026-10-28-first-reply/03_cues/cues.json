@@ -5,7 +5,7 @@
   "id": "steady-hands",
   "level": 0.12
  },
- "duration": 90.74,
+ "duration": 88.42,
  "cues": [
   {
    "id": "lead",
@@ -17,7 +17,7 @@
    "text": "Room: framing (a half-finished house). Snow on the floor; a phone panel with the lead's text; chip NEW LEAD.",
    "t": 0.0,
    "word": 0,
-   "end": 10.78
+   "end": 10.4
   },
   {
    "id": "lead.ladder",
@@ -27,21 +27,21 @@
    "shift": 0.0,
    "pin": null,
    "text": "A ladder leans in; the reply clock starts ticking.",
-   "t": 2.54,
+   "t": 3.16,
    "word": 8,
-   "end": 5.92
+   "end": 6.7
   },
   {
    "id": "lead.show",
    "level": 1,
-   "quote": "I want to show you",
+   "quote": "Here's why tonight is",
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
    "text": "Panel: \"Tonight is too late.\" in the accent.",
-   "t": 5.92,
+   "t": 6.7,
    "word": 22,
-   "end": 10.78
+   "end": 10.4
   },
   {
    "id": "study",
@@ -51,9 +51,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: blackboard. Chalk header: THE STUDY. Speed Is a Signal, Management Science, 2026.",
-   "t": 10.78,
-   "word": 38,
-   "end": 27.36
+   "t": 10.4,
+   "word": 33,
+   "end": 26.08
   },
   {
    "id": "study.count",
@@ -63,9 +63,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "11.6M counts up in chalk: requests on Fiverr.",
-   "t": 14.8,
-   "word": 51,
-   "end": 20.02
+   "t": 14.36,
+   "word": 46,
+   "end": 18.72
   },
   {
    "id": "study.hour",
@@ -75,9 +75,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Chalk bar: 1 hour late, about half as likely (46% less).",
-   "t": 20.02,
-   "word": 65,
-   "end": 24.06
+   "t": 18.72,
+   "word": 57,
+   "end": 22.8
   },
   {
    "id": "study.day",
@@ -87,9 +87,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Chalk bar: 1 day late, 90% less, in the accent.",
-   "t": 24.06,
-   "word": 78,
-   "end": 27.36
+   "t": 22.8,
+   "word": 70,
+   "end": 26.08
   },
   {
    "id": "signal",
@@ -99,9 +99,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Still the blackboard, wiped: \"Reply speed = how you'll treat them later.\"",
-   "t": 27.36,
-   "word": 85,
-   "end": 41.12
+   "t": 26.08,
+   "word": 77,
+   "end": 39.84
   },
   {
    "id": "signal.alone",
@@ -111,9 +111,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Second chalk line: \"Even with the same work, same message.\"",
-   "t": 36.1,
-   "word": 109,
-   "end": 41.12
+   "t": 34.82,
+   "word": 101,
+   "end": 39.84
   },
   {
    "id": "tt",
@@ -123,9 +123,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: workshop. Panel THUMBTACK, 2025: two clocks, 30 min and 3 hrs.",
-   "t": 41.12,
-   "word": 126,
-   "end": 50.74
+   "t": 39.84,
+   "word": 118,
+   "end": 48.48
   },
   {
    "id": "tt.more",
@@ -135,9 +135,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "+25% stamps on the 30 min side: more likely to get hired.",
-   "t": 45.74,
-   "word": 141,
-   "end": 50.74
+   "t": 43.74,
+   "word": 130,
+   "end": 48.48
   },
   {
    "id": "catch",
@@ -147,9 +147,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: garage. A phone panel; the canned auto-reply arrives.",
-   "t": 50.74,
-   "word": 154,
-   "end": 61.26
+   "t": 48.48,
+   "word": 143,
+   "end": 58.96
   },
   {
    "id": "catch.canned",
@@ -159,9 +159,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Stamp: DOESN'T COUNT. Snow shrugs.",
-   "t": 55.16,
-   "word": 167,
-   "end": 61.26
+   "t": 52.84,
+   "word": 156,
+   "end": 58.96
   },
   {
    "id": "build",
@@ -171,9 +171,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: workshop. A big phone; the reply types in line by line.",
-   "t": 61.26,
-   "word": 182,
-   "end": 81.52
+   "t": 58.96,
+   "word": 171,
+   "end": 79.2
   },
   {
    "id": "build.name",
@@ -183,9 +183,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Hi [name],\" types in. Chip 1 OF 4: THEIR NAME, so it's clearly you.",
-   "t": 62.76,
-   "word": 187,
-   "end": 65.3
+   "t": 60.44,
+   "word": 176,
+   "end": 63.0
   },
   {
    "id": "build.answer",
@@ -195,9 +195,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"yes, we replace water heaters.\" Chip 2 OF 4: ANSWER IT.",
-   "t": 65.3,
-   "word": 195,
-   "end": 69.42
+   "t": 63.0,
+   "word": 184,
+   "end": 67.12
   },
   {
    "id": "build.ask",
@@ -207,9 +207,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Gas or electric?\" Chip 3 OF 4: ONE QUESTION.",
-   "t": 69.42,
-   "word": 205,
-   "end": 73.3
+   "t": 67.12,
+   "word": 194,
+   "end": 70.98
   },
   {
    "id": "build.why",
@@ -219,9 +219,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Side note under the phone: easy to answer, and you know what to bring.",
-   "t": 73.3,
-   "word": 216,
-   "end": 77.2
+   "t": 70.98,
+   "word": 205,
+   "end": 74.92
   },
   {
    "id": "build.time",
@@ -231,9 +231,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"I can come by Thursday, 2 to 4.\" Chip 4 OF 4: A REAL TIME.",
-   "t": 77.2,
-   "word": 232,
-   "end": 81.52
+   "t": 74.92,
+   "word": 221,
+   "end": 79.2
   },
   {
    "id": "close",
@@ -243,9 +243,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: blackboard. Chalk rule: FAST. HUMAN. ONE QUESTION. A TIME.",
-   "t": 81.52,
-   "word": 245,
-   "end": 90.74
+   "t": 79.2,
+   "word": 234,
+   "end": 88.42
   },
   {
    "id": "close.send",
@@ -255,9 +255,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Send this to whoever answers your phone.\" Exact text in the caption. ProofNotFluff.",
-   "t": 84.58,
-   "word": 251,
-   "end": 90.74
+   "t": 82.22,
+   "word": 240,
+   "end": 88.42
   }
  ]
 }

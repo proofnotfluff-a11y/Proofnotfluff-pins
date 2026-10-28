@@ -130,7 +130,7 @@ const Leader = ({e, t}) => {
   return (
     <svg style={{position: 'absolute', left: 0, top: 0}} width={1080} height={1920} viewBox="0 0 1080 1920">
       <line x1={x1} y1={y1} x2={x1 + (x2 - x1) * p} y2={y1 + (y2 - y1) * p} stroke={e.color} strokeWidth={e.width} strokeLinecap="round" />
-      <circle cx={x1} cy={y1} r={7} fill={e.color} opacity={p} />
+      <circle cx={x1} cy={y1} r={6} fill={e.color} opacity={p} />
     </svg>
   );
 };
@@ -147,7 +147,7 @@ const Caption = ({c, t}) => {
     <div style={{position: 'absolute', left: c.x, top: c.y, width: Math.ceil(c.w) + 4, height: c.h, opacity: fadeIn,
       fontFamily: FAMILIES[c.font], fontWeight: c.weight, fontSize: c.size, lineHeight: `${lh}px`, whiteSpace: 'pre'}}>
       {cur ? (
-        <div style={{position: 'absolute', left: cur.x - 10, top: cur.li * lh + lh * 0.04, width: cur.w + 20, height: lh * 0.92,
+        <div style={{position: 'absolute', left: cur.x - 7, top: cur.li * lh + (lh - c.size * 1.18) / 2, width: cur.w + 14, height: c.size * 1.18,
           background: c.pill, borderRadius: 8}} />
       ) : null}
       {flat.map((w, i) => (

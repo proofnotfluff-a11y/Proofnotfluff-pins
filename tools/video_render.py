@@ -161,7 +161,7 @@ def map_picture(spec, ch, t0, t1, top, bottom, segs):
     fill = {"hi": T["ink"], "lo": T["white"], "focus": T["accent"]}
     areas = [{"n": a["n"], "d": paths[a["n"]], "fill": fill[a["cls"]], "focus": a["cls"] == "focus"} for a in ch["areas"]]
     m = {"id": "pic-map", "kind": "map", "role": "map", "x": round(used[0], 1), "y": round(used[1], 1), "w": round(used[2], 1), "h": round(used[3], 1),
-         "areas": areas, "stroke": T["ink2"], "strokeWidth": 2, "focusColor": T["accent"], "focusStroke": T["ink"], "tIn": t0 + 0.25, "tOut": t1,
+         "areas": areas, "stroke": T["ink2"], "strokeWidth": 2.5, "focusColor": T["accent"], "focusStroke": T["ink"], "tIn": t0 + 0.25, "tOut": t1,
          "focusIn": t0 + 0.9, "restColor": T["ink"], "anim": "fade", "group": None}
     els = [m]
     cx = round(used[0] + used[2] + 36, 1)
@@ -202,7 +202,7 @@ def map_picture(spec, ch, t0, t1, top, bottom, segs):
             fx, fy = cent[ch["focus"]]
             els.append({"id": f"pic-stat{k}-leader", "kind": "leader", "role": "decor", "x": round(min(fx, cx), 1), "y": round(min(fy, nm["y"] + 26), 1),
                         "w": round(abs(cx - 10 - fx), 1), "h": round(abs(nm["y"] + 26 - fy), 1) or 1,
-                        "points": [[round(fx, 1), round(fy, 1)], [round(cx - 10, 1), round(nm["y"] + 26, 1)]], "color": T["accent"], "width": 3,
+                        "points": [[round(fx, 1), round(fy, 1)], [round(cx - 10, 1), round(nm["y"] + 26, 1)]], "color": T["accent"], "width": 4,
                         "tIn": max(b0, t0 + 0.9), "tOut": b1, "anim": "fade", "group": None})
     yy = leg_top
     for i, (cls, e) in enumerate(legs):
@@ -355,7 +355,7 @@ def end_scene(spec, sc):
     big = L.text_el("end-recap-number", h["number"] + (f" {h['unit']}" if h.get("unit") else ""), X0, who["y"] + who["h"] + 8, XW, "P", 700, 96,
                     T["white"], lh=1.0, max_lines=1, shrink_to=60, t_in=t0 + 0.5, t_out=t1)
     els += [who, big]
-    els.append(L.text_el("end-brand", "ProofNotFluff", X0, 1186, XW, "P", 700, 48, T["white"], lh=1.15, max_lines=1, t_in=t0 + 0.4, t_out=t1))
+    els.append(L.text_el("end-brand", "ProofNotFluff", X0, big["y"] + big["h"] + 64, XW, "P", 700, 48, T["white"], lh=1.15, max_lines=1, t_in=t0 + 0.4, t_out=t1))
     return els
 
 
@@ -397,7 +397,7 @@ GLUE = {"a", "an", "the", "of", "to", "in", "on", "at", "for", "and", "or", "but
         "nearly", "almost", "only"}
 
 
-CAP_GAP = 8   # extra px between caption words, so the highlight pill never touches its neighbors
+CAP_GAP = 0   # normal word spacing; the highlight pill pads behind the word (design read 4)
 
 BREAK_BEFORE = {"are", "is", "was", "were", "in", "on", "to", "and", "but", "if"}
 
@@ -467,7 +467,7 @@ def captions(tl):
                 merged.append(ch)
         chunks = merged
         on_ink = seg["scene"] == "hook"
-        colors = ({"color": T["white"], "dim": T["soft"], "pill": T["accentInk"], "pillText": T["ink"]} if on_ink else
+        colors = ({"color": T["white"], "dim": T["soft"], "pill": T["white"], "pillText": T["ink"]} if on_ink else
                   {"color": T["ink"], "dim": T["ink2"], "pill": T["ink"], "pillText": T["white"]})   # accent stays the data's
         for ci, ch in enumerate(chunks):
             text = " ".join(words[j] for j in ch)
@@ -489,7 +489,7 @@ def captions(tl):
                 k += n
             wpx = max(L.text_width(l, font, weight, size) + CAP_GAP * (len(l.split()) - 1) for l in lines)
             out.append({"id": f"cap-{seg['key']}-{ci}", "kind": "caption", "role": "text", "text": text, "lines": lines, "lineWords": lw,
-                        "x": X0 if on_ink else X0 + 24, "y": CAP_Y + 24 + (145 - len(lines) * size * lh) / 2, "w": round(wpx, 1), "h": round(len(lines) * size * lh),
+                        "x": X0, "y": CAP_Y + 24 + (145 - len(lines) * size * lh) / 2, "w": round(wpx, 1), "h": round(len(lines) * size * lh),
                         "slotW": inner, "font": font, "weight": weight, "size": size, "lh": lh, **colors,
                         "tIn": round(t_in, 3), "tOut": round(t_out, 3), "group": None, "seg": seg["key"]})
     return out
@@ -529,7 +529,7 @@ def build_props(spec, words):
         c["tOut"] = round(nxt["tIn"] if nxt and seg_scene[nxt["seg"]] == seg_scene[c["seg"]] else sc["end"], 3)
     if caps and seg_scene[caps[0]["seg"]] == "hook":
         caps[0]["tIn"] = 0.0   # frame one carries the first caption too, its words dim until they are said
-    els += caption_cards(caps, tl)
+    # captions sit straight on the frame at x 72 in every scene (design read 4): no card
     c = cfg()["video"]
     end_start = next(s["start"] for s in tl["scenes"] if s["scene"] == "end")
     props = {"schema": "pnf.video.props.v1", "videoId": spec["videoId"], "fps": c["fps"], "width": c["width"], "height": c["height"],

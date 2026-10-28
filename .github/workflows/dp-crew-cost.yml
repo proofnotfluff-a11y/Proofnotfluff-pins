@@ -59,3 +59,19 @@ jobs:
         run: |
           python3 tools/verify_site.py --changed "${{ inputs.base || 'HEAD~1' }}" --flows --out data/verify/ci > verify.log 2>&1 || true
           grep -E "^(FAIL|verify:)" verify.log | head -40 | while IFS= read -r l; do echo "::warning::${l}"; done
+          cd docs && (python3 -m http.server 8811 > /dev/null 2>&1 &) && sleep 2 && cd ..
+          python3 - <<'PY' | head -20 | while IFS= read -r l; do echo "::warning::${l}"; done
+          import asyncio
+          from playwright.async_api import async_playwright
+          async def main():
+              async with async_playwright() as p:
+                  b = await p.chromium.launch()
+                  for scheme in ("light",):
+                      pg = await b.new_page(viewport={"width": 390, "height": 900}, color_scheme=scheme)
+                      await pg.goto("http://localhost:8811/", wait_until="networkidle")
+                      r = await pg.evaluate("""[...document.querySelectorAll('a.btn,button,.btn')].map(e=>{const b=e.getBoundingClientRect();const c=getComputedStyle(e);return [Math.round(b.left),Math.round(b.right),e.textContent.trim().slice(0,60),c.whiteSpace,c.fontFamily.slice(0,30),c.fontSize,e.parentElement.className.slice(0,40)]}).filter(x=>x[1]>390)""")
+                      for x in r: print("OVER", scheme, x)
+                      print("UA", await pg.evaluate("navigator.userAgent"))
+                  await b.close()
+          asyncio.run(main())
+          PY

@@ -55,7 +55,7 @@
   ],
   "settings": {
    "madeForKids": false,
-   "aiUse": false,
+   "aiUse": true,
    "category": "Education",
    "language": "English",
    "visibility": "Public"

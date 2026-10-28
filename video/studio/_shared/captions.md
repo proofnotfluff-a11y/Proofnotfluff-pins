@@ -35,6 +35,7 @@ matches. So: the keyword in the first line, said out loud in the first seconds, 
 - Facebook Page: 2 to 3 hashtags, no link, no capitals shouting. AI label on. Public.
 - YouTube Shorts: title under 100 characters, keyword in the first 40 to 50, no hashtags in the title. Description: keyword
   line, proof with the full source, numbered steps, a next-lesson line, the AI voice line, 2 to 3 hashtags. Tags field 5
-  to 10 (primary, secondary, trade variants, one common misspelling). Made for kids: No. AI use: No (YouTube exempts
-  cloning one's own voice and fully animated video). Category Education. Language English.
+  to 10 (primary, secondary, trade variants, one common misspelling). Made for kids: No. AI use: Yes (YouTube exempts
+  cloning one's own voice, but we disclose on every platform the same way; YouTube says it does not limit reach).
+  Category Education. Language English.
 - Never: generic or homeowner tags, more than 5 hashtags, a number not in facts.json, em or en dashes.

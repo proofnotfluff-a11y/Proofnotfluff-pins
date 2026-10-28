@@ -26,8 +26,8 @@ move on: never post twice.
   the reel link.
 - **YouTube** (studio.youtube.com, the ProofNotFluff channel): Create, Upload videos, file_upload the MP4. Title =
   `youtube.title`, description = `youtube.description`. Audience: "No, it's not made for kids". Show more: tags =
-  `youtube.tags` (comma separated), "AI use" or altered content: No (YouTube exempts cloning one's own voice and fully
-  animated video; research/runs/2026-10-28-captions.md). Category: Education. Language: English. Visibility: Public. Publish.
+  `youtube.tags` (comma separated), "AI use" or altered content: Yes (the same disclosure as every other platform; YouTube says
+  disclosure does not limit reach). Category: Education. Language: English. Visibility: Public. Publish.
   Record the youtube.com/shorts/<id> link.
 
 After each: `python3 video/studio/anim.py posted <slug> <platform> <url>`, commit, push.

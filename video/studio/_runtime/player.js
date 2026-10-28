@@ -202,7 +202,7 @@
     if (style === 'blinds') {   // slats slide in from alternate sides over the old room, then back out
       for (let s = 0; s < 16; s++) {
         const qs = Math.max(0, Math.min(1, q * 1.3 - s * 0.02)), w = sn(W * qs);
-        fill('#120D14', s % 2 ? W - w : 0, s * 120, w, 120); fill('#3D2E45', s % 2 ? W - w : 0, s * 120 + 120 - cell, w, cell);
+        fill('#8C5A33', s % 2 ? W - w : 0, s * 120, w, 120); fill('#D9A066', s % 2 ? W - w : 0, s * 120, w, cell); fill('#6B4226', s % 2 ? W - w : 0, s * 120 + 120 - cell, w, cell);   // wooden slats, so it reads as a shutter, not a glitch
       }
     } else if (style === 'chalk') {   // a board eraser sweeps across on a slant, a dithered chalk-dust edge on its front
       const D = W + H * 0.5, B = 12 * cell, span = D + 2 * B;

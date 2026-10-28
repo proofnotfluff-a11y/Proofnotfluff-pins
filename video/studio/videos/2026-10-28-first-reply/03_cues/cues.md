@@ -1,6 +1,6 @@
 # Cues: The first reply wins the job (v2, arcade)
 
-music: steady-hands 0.12
+music: rooms
 
 ## lead "A homeowner just texted you" [sfx: pop]
 Room: framing (a half-finished house). Snow on the floor; a phone panel with the lead's text; chip NEW LEAD.
@@ -48,5 +48,5 @@ Side note under the phone: easy to answer, and you know what to bring.
 
 ## close "Fast, human, one question," [sfx: stamp]
 Room: blackboard. Chalk rule: FAST. HUMAN. ONE QUESTION. A TIME.
-## close.send "Send this to whoever" [sfx: blip]
+## close.send "Send this to whoever" [sfx: sting]
 "Send this to whoever answers your phone." Exact text in the caption. ProofNotFluff.

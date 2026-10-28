@@ -120,7 +120,7 @@ window.SCENE = {
       }
       if (T >= k.S('stakes.rest')) {
         const t0 = k.S('stakes.rest');
-        k.slam('The rest ride on your follow-up.', 96, 790, t0, {size: 39, color: CHALK, from: 0.5});
+        k.slam('The rest depend on your follow-up.', 96, 790, t0, {size: 39, color: CHALK, from: 0.5});
         k.sweep(96, 840, 549, 9, t0 + 0.4, {color: 'accent'});
       }
       k.ctx.restore();

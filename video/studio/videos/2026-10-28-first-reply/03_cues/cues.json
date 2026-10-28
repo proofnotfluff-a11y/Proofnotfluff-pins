@@ -2,8 +2,8 @@
  "schema": "pnf.studio.cues.v1",
  "source": "whisper medium.en int8, re-spelled from script.md",
  "music": {
-  "id": "steady-hands",
-  "level": 0.12
+  "id": "rooms",
+  "level": 0.16
  },
  "duration": 88.72,
  "cues": [
@@ -251,7 +251,7 @@
    "id": "close.send",
    "level": 1,
    "quote": "Send this to whoever",
-   "sfx": "blip",
+   "sfx": "sting",
    "shift": 0.0,
    "pin": null,
    "text": "\"Send this to whoever answers your phone.\" Exact text in the caption. ProofNotFluff.",

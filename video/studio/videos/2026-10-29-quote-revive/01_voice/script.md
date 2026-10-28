@@ -1,8 +1,8 @@
 # Script: The text that revives a quote that went quiet (The Text, lesson 2; from script playbook example 1, facts re-read Oct 28, 2026)
 
-[leaning in] Your quote's gone quiet? Skip "just checking in." Send this.
+[leaning in] Quote went quiet? Skip just checking in. Send this text instead.
 
-[matter-of-fact] Software maker ServiceTitan says its data shows only thirty-seven percent of estimates close on the first visit. So most of your quotes aren't decided when you pull out of the driveway. The rest ride on your follow-up.
+[matter-of-fact] Software maker ServiceTitan says its data shows only thirty-seven percent of estimates close on the first visit. So most of your quotes aren't decided when you pull out of the driveway. The rest depend on your follow-up.
 
 [curious] Here's the problem with "just checking in." It hands them homework. They have to write you an answer, and a busy homeowner puts homework off. The fix comes from marketer Dean Jackson: one short question about what they wanted, and no pitch.
 

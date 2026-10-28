@@ -2,9 +2,9 @@
 
 music: steady-hands 0.12
 
-## hook "Your quote's gone quiet? Skip" [sfx: pop]
+## hook "Quote went quiet? Skip just" [sfx: pop]
 Room: framing. Hook card, settled on frame 0, host and dialog box hidden: chip THE TEXT; "Quote went quiet? Send this text." Then a phone: the quote you sent ("Here's your quote for the new water heater."), read, no reply; a chip NO REPLY YET.
-## hook.send "in. Send this." [sfx: blip]
+## hook.send "Send this text instead." [sfx: blip]
 A panel pops: "Send this." Snow points at the phone.
 
 ## stakes "Software maker ServiceTitan says its" [sfx: whoosh]
@@ -15,7 +15,7 @@ Room: blackboard. Chalk header: ServiceTitan's own data, 2026.
 A chalk bar fills to 37% in the accent; the rest of the bar is labeled "still open when you leave".
 ## stakes.drive "pull out of the driveway."
 A pixel van rolls off the edge of the board: the quote leaves with you.
-## stakes.rest "The rest ride on your" [sfx: blip]
+## stakes.rest "The rest depend on your" [sfx: blip]
 Chalk line: "The rest ride on your follow-up." with a sweep under it.
 
 ## homework "Here's the problem with "just" [sfx: whoosh]

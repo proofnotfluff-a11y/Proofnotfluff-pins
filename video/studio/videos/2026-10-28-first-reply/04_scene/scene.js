@@ -91,7 +91,7 @@ window.SCENE = {
         if (p > 0.6) k.slam(`${shown} less`, 652, y + 40, t0 + 0.45, {size: 60, color: hot ? 'accent' : CHALK, from: 1.2});
         if (hot) k.burst(96 + 530 * (v / 100), y + 74, t0 + 0.7, {n: 18});
       };
-      bar(570, '1 hour late: about half as likely', n.hourDrop.value, n.hourDrop.shown, k.S('study.hour'), false);
+      bar(570, '1 hour late:', n.hourDrop.value, n.hourDrop.shown, k.S('study.hour'), false);
       bar(690, '1 day late:', n.dayDrop.value, n.dayDrop.shown, k.S('study.day'), true);
       // the journal itself, chalked onto the board while the voice names it (the board is never empty)
       if (T < k.S('study.count')) {
@@ -138,7 +138,8 @@ window.SCENE = {
       const clock = (cx, cy, r, turns, c, t0) => {
         k.shape(k.ellPts(cx, cy, r, r, 24), {fill: '#2B2033', stroke: c, lw: 9, line: false});
         const spin = k.easeOut((T - t0) / 1.4) * turns, part = Math.min(1, spin), a1 = -Math.PI / 2 + part * Math.PI * 2;
-        if (part > 0.01) k.shape([[cx, cy]].concat(k.ellPts(cx, cy, r - 12, r - 12, 24, -Math.PI / 2, a1)), {fill: c, line: false, alpha: 0.55});
+        if (part > 0.01) k.shape([[cx, cy]].concat(k.ellPts(cx, cy, r - 12, r - 12, 24, -Math.PI / 2, a1)), {fill: c, line: false, alpha: 0.85});
+        if (turns > 1 && spin >= 1) k.text(`x${Math.min(turns, Math.floor(spin + 0.001))}`, cx + r - 6, cy - r - 4, {size: 39, color: c});
         const ang = -Math.PI / 2 + spin * Math.PI * 2;
         k.shape([[cx, cy], [cx + Math.cos(ang) * r * 0.75, cy + Math.sin(ang) * r * 0.75]], {stroke: 'ink', lw: 9, closed: false, line: false});
       };
@@ -173,7 +174,7 @@ window.SCENE = {
       const tStamp = dc ? dc.start : k.S('catch.canned') + 3;
       if (T >= tStamp) {
         const t0 = tStamp, q = k.clamp((T - t0) / 0.18);
-        k.ctx.save(); k.ctx.translate(705, 340); k.ctx.rotate(-0.06); const s = (2.2 - 1.2 * q) * 0.8; k.ctx.scale(s, s);   // on the phone's header, clear of both messages
+        k.ctx.save(); k.ctx.translate(735, 326); k.ctx.rotate(-0.06); const s = (2.2 - 1.2 * q) * 0.66; k.ctx.scale(s, s);   // on the phone's header, clear of both messages
         k.shape(k.rectPts(-230, -60, 460, 120, 0), {fill: '#1B1420', line: false, alpha: q});
         k.shape(k.rectPts(-224, -54, 448, 108, 0), {stroke: 'accent', lw: 9, line: false, alpha: q});
         k.text("Doesn't count", 0, -30, {size: 60, color: 'accent', align: 'center', alpha: q, lint: false});
@@ -213,9 +214,9 @@ window.SCENE = {
         const t0 = k.S('build.why');
         k.ctx.save(); slideIn(k, t0, 700, 0);
         k.ctx.translate(520, 870); k.ctx.rotate(-0.015); k.ctx.translate(-520, -870);
-        k.panel2(150, 790, 700, 128, {fill: 'accent', border: '#1B1420'});
-        k.text('Easy to answer,', 180, 800, {size: 60, color: '#1B1420'});
-        k.text('and you know what to bring.', 180, 872, {size: 39, color: '#1B1420'});
+        k.panel2(150, 812, 700, 130, {fill: 'accent', border: '#1B1420'});
+        k.text('Easy to answer,', 180, 820, {size: 60, color: '#1B1420'});
+        k.text('and you know what to bring.', 180, 888, {size: 39, color: '#1B1420'});
         k.ctx.restore();
       }
       // the host steps back (smaller) so his head never covers the reply being typed

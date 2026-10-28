@@ -1,22 +1,22 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-10-28-first-reply",
- "mp4Sha256": "e09f612dde3d1091e8d9a97d7dccae22e620c0f9c9934d9975df954e6d314606",
+ "mp4Sha256": "dc849215dc2e2e4971859b93304a790f781fbf3515a919ddeaf3016daae59e05",
  "checks": [
   {
    "name": "length",
-   "value": 88.733,
+   "value": 88.72,
    "pass": true,
-   "detail": "88.73 s (45.0 to 90.0, studio lessons)"
+   "detail": "88.72 s (45.0 to 90.0, studio lessons)"
   },
   {
    "name": "loudness",
    "value": {
-    "lufs": -14.7,
+    "lufs": -14.8,
     "truePeak": -3.1
    },
    "pass": true,
-   "detail": "-14.7 LUFS (target -14 +/- 1), true peak -3.1 dBTP (at most -1.5)"
+   "detail": "-14.8 LUFS (target -14 +/- 1), true peak -3.1 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -33,11 +33,11 @@
   {
    "name": "file",
    "value": {
-    "sha256": "e09f612dde3d1091e8d9a97d7dccae22e620c0f9c9934d9975df954e6d314606",
-    "bytes": 14792797
+    "sha256": "dc849215dc2e2e4971859b93304a790f781fbf3515a919ddeaf3016daae59e05",
+    "bytes": 17951939
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 14.8 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 18.0 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -47,5 +47,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-28T16:13:41-05:00"
+ "at": "2026-10-28T16:45:32-05:00"
 }

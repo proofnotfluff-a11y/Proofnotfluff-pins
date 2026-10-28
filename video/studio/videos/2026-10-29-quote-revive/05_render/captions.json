@@ -13,7 +13,7 @@
   ]
  },
  "instagram": {
-  "caption": "How to follow up on a quote: the one text plumbing, HVAC and electrical business owners can copy.\nServiceTitan's own data shows only 37% of estimates close on the first visit (ServiceTitan blog, 2026). The rest ride on your follow-up.\n\nHi [name], it's [you]. Still want that water heater swapped before winter?\n\nOne name, one job, one question. Send it within 2 days of the quote, again a week after, and once more 1 to 2 days before it expires (Jobber). After 3, close the file.\nSend this to whoever follows up on your quotes.\nWhat do you send when a quote goes quiet? I'll rewrite a few in a future lesson.\nNarrated by an AI version of my own voice.\n\n#homeservicebusiness #plumbingbusiness #hvacbusiness #quotefollowup",
+  "caption": "How to follow up on a quote: the one text plumbing, HVAC and electrical business owners can copy.\nServiceTitan's own data shows only 37% of estimates close on the first visit (ServiceTitan blog, 2026). The rest depend on your follow-up.\n\nHi [name], it's [you]. Still want that water heater swapped before winter?\n\nOne name, one job, one question. Send it within 2 days of the quote, again a week after, and once more 1 to 2 days before it expires (Jobber). After 3, close the file.\nSend this to whoever follows up on your quotes.\nNarrated by an AI version of my own voice.\n\n#homeservicebusiness #plumbingbusiness #hvacbusiness #quotefollowup",
   "settings": {
    "aiLabel": true,
    "shareToFacebook": false
@@ -55,7 +55,7 @@
   ],
   "settings": {
    "madeForKids": false,
-   "aiUse": false,
+   "aiUse": true,
    "category": "Education",
    "language": "English",
    "visibility": "Public"

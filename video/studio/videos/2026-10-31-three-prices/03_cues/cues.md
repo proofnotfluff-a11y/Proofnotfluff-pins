@@ -1,6 +1,6 @@
 # Cues: Three prices on every quote (Lesson 4, Quote Clinic, arcade)
 
-music: line-item 0.12
+music: rooms
 
 ## hook "One price on your quotes?" [sfx: pop]
 Frame 0: the hook card, fully settled. "Top shops quote 3 prices. Not 1." The 3 in the accent, sparks. Source small: ServiceTitan, 12 months to Jan 2026. Host and dialog hidden.
@@ -71,7 +71,7 @@ The header swaps to "More choices, more yeses." Snow checks his clipboard.
 Room: blackboard. Chalk: "1 price: yes or no." slams in as said.
 ## close.choice "Three prices? That's a"
 "3 prices: a choice." slams in, in the accent.
-## close.send "Send this to whoever" [sfx: chime]
+## close.send "Send this to whoever" [sfx: sting]
 ProofNotFluff plate slams on; send line: "Send this to whoever writes your quotes."
 ## close.next "so the next one"
 An accent line sweeps under the send line; sparks; Snow waves.

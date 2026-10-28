@@ -538,7 +538,7 @@ def respell(script_words, heard):
             for k in range(n):   # spread the heard span over the script words ("forty-five" heard as "45")
                 out[i1 + k] = (round(span[0] + (span[1] - span[0]) * k / n, 3), round(span[0] + (span[1] - span[0]) * (k + 1) / n, 3))
             same = norm("".join(script_words[i1:i2])) == norm("".join(h["w"] for h in heard[j1:j2]))   # "auto-reply" heard as "auto reply"
-            numeric = all(re.search(r"\d", heard[j]["w"]) or not norm(heard[j]["w"]) for j in range(j1, j2))   # "twenty-five percent" heard as "25 %"
+            numeric = all(re.search(r"\d", heard[j]["w"]) or not norm(heard[j]["w"]) or heard[j]["w"].strip() in ("$", "%") for j in range(j1, j2))   # "twenty-five percent" heard as "25 %"
             if not (same or numeric):
                 flags.append(f"{heard[j1]['start']:.1f} s heard '{' '.join(h['w'] for h in heard[j1:j2])}' for '{' '.join(script_words[i1:i2])}'")
         elif tag == "delete":

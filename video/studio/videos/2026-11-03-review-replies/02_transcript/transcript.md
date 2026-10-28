@@ -3,7 +3,7 @@
 Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 208 words, 76.8 s of voice.
 
 ## Flags
-- dropped 'too, point one': not heard
+none
 
 ## Pace per take (target 160 to 195 wpm)
 ```

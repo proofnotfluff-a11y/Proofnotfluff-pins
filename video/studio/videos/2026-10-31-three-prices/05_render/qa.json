@@ -1,22 +1,22 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-10-31-three-prices",
- "mp4Sha256": "6fd197503ec2c2702cdadce7b9efe143b0872b9828e806f6702a4dda11317eaf",
+ "mp4Sha256": "782110a4870df8c5adda009ceea7388d9411f167c4a9d4dbbcd09b0ac12c8e67",
  "checks": [
   {
    "name": "length",
-   "value": 82.633,
+   "value": 86.367,
    "pass": true,
-   "detail": "82.63 s (45.0 to 90.0, studio lessons)"
+   "detail": "86.37 s (45.0 to 90.0, studio lessons)"
   },
   {
    "name": "loudness",
    "value": {
-    "lufs": -14.8,
-    "truePeak": -3.0
+    "lufs": -14.3,
+    "truePeak": -3.1
    },
    "pass": true,
-   "detail": "-14.8 LUFS (target -14 +/- 1), true peak -3.0 dBTP (at most -1.5)"
+   "detail": "-14.3 LUFS (target -14 +/- 1), true peak -3.1 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -26,18 +26,99 @@
   },
   {
    "name": "frozen",
-   "value": [],
-   "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 72.48 s"
+   "value": [
+    [
+     1.13333,
+     3.2
+    ],
+    [
+     17.2,
+     18.4333
+    ],
+    [
+     20.8333,
+     22.1
+    ],
+    [
+     28.0,
+     29.4
+    ],
+    [
+     29.4,
+     30.4667
+    ],
+    [
+     35.7667,
+     36.9333
+    ],
+    [
+     37.7333,
+     38.9667
+    ],
+    [
+     43.7,
+     44.8667
+    ],
+    [
+     46.9,
+     48.1667
+    ],
+    [
+     48.1667,
+     49.4667
+    ],
+    [
+     51.7,
+     52.7
+    ],
+    [
+     52.7,
+     53.7
+    ],
+    [
+     54.6,
+     55.6
+    ],
+    [
+     56.5667,
+     57.9667
+    ],
+    [
+     59.1,
+     60.2667
+    ],
+    [
+     67.3,
+     68.3667
+    ],
+    [
+     68.6333,
+     69.6333
+    ],
+    [
+     70.2667,
+     71.3333
+    ],
+    [
+     72.1333,
+     73.2
+    ],
+    [
+     85.0667,
+     86.366667
+    ]
+   ],
+   "pass": false,
+   "detail": "19 frozen stretch(es) of 1.0 s or more before the end card at 76.18 s"
   },
   {
    "name": "file",
    "value": {
-    "sha256": "6fd197503ec2c2702cdadce7b9efe143b0872b9828e806f6702a4dda11317eaf",
-    "bytes": 16304083
+    "sha256": "782110a4870df8c5adda009ceea7388d9411f167c4a9d4dbbcd09b0ac12c8e67",
+    "bytes": 5743229
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 16.3 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 5.7 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -46,6 +127,6 @@
    "detail": "whisper medium.en int8, re-spelled from script.md, 0 flag(s)"
   }
  ],
- "pass": true,
- "at": "2026-10-28T16:54:39-05:00"
+ "pass": false,
+ "at": "2026-10-28T17:59:42-05:00"
 }

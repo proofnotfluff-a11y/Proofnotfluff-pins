@@ -546,10 +546,10 @@ def say_heard(heard):
             merged.append(h)
     for h in merged:
         raw = h["w"].strip()
-        m = re.fullmatch(r"([$]?)(\d[\d,]*)(?:\.(\d+))?(%?)([.,!?]?)", raw)
-        if not m or len(m.group(2).replace(",", "")) > 12:
+        m = re.fullmatch(r"([$]?)(\d[\d,]*)?(?:\.(\d+))?(%?)([.,!?]?)", raw)
+        if not m or not (m.group(2) or m.group(3)) or len((m.group(2) or "").replace(",", "")) > 12:
             out.append(dict(h, num=bool(re.search(r"\d", raw)) or raw in ("$", "%"))); continue
-        ws = num_words(int(m.group(2).replace(",", "")))
+        ws = num_words(int(m.group(2).replace(",", ""))) if m.group(2) else []   # ".12" is said "point one two"
         if m.group(3): ws += ["point"] + [ONES[int(c)] for c in m.group(3)]
         if m.group(4): ws.append("percent")
         if m.group(1): ws.append("dollars")

@@ -289,18 +289,18 @@
   {
    "w": "eleven",
    "start": 15.7,
-   "end": 16.033,
+   "end": 16.04,
    "take": 2
   },
   {
    "w": "point",
-   "start": 16.033,
-   "end": 16.367,
+   "start": 16.04,
+   "end": 16.37,
    "take": 2
   },
   {
    "w": "six",
-   "start": 16.367,
+   "start": 16.37,
    "end": 16.7,
    "take": 2
   },
@@ -457,12 +457,12 @@
   {
    "w": "ninety",
    "start": 25.24,
-   "end": 25.68,
+   "end": 25.76,
    "take": 2
   },
   {
    "w": "percent",
-   "start": 25.68,
+   "start": 25.76,
    "end": 26.12,
    "take": 2
   },

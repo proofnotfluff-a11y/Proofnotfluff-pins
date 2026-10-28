@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-10-28-first-reply",
- "mp4Sha256": "92fc16c2b7386ac9a69f249d65f2c278c445131c334901fe63e2ce2cdeaf2038",
+ "mp4Sha256": "68d2d3a2058a20237274c8ff64410a54d7a2bc18089a06cfbc9f1eb09e3edaec",
  "checks": [
   {
    "name": "length",
@@ -12,11 +12,11 @@
   {
    "name": "loudness",
    "value": {
-    "lufs": -14.8,
-    "truePeak": -3.1
+    "lufs": -14.2,
+    "truePeak": -3.2
    },
    "pass": true,
-   "detail": "-14.8 LUFS (target -14 +/- 1), true peak -3.1 dBTP (at most -1.5)"
+   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -3.2 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -26,18 +26,71 @@
   },
   {
    "name": "frozen",
-   "value": [],
-   "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 79.58 s"
+   "value": [
+    [
+     29.4,
+     30.4
+    ],
+    [
+     30.4,
+     31.5
+    ],
+    [
+     32.2,
+     33.2
+    ],
+    [
+     36.6,
+     37.6
+    ],
+    [
+     38.8333,
+     40.0
+    ],
+    [
+     56.3,
+     57.3
+    ],
+    [
+     60.7667,
+     61.9667
+    ],
+    [
+     63.0,
+     64.0
+    ],
+    [
+     65.8,
+     66.9667
+    ],
+    [
+     70.0333,
+     71.2
+    ],
+    [
+     72.9667,
+     74.1667
+    ],
+    [
+     75.5667,
+     77.0667
+    ],
+    [
+     78.0,
+     79.4333
+    ]
+   ],
+   "pass": false,
+   "detail": "13 frozen stretch(es) of 1.0 s or more before the end card at 79.58 s"
   },
   {
    "name": "file",
    "value": {
-    "sha256": "92fc16c2b7386ac9a69f249d65f2c278c445131c334901fe63e2ce2cdeaf2038",
-    "bytes": 17891539
+    "sha256": "68d2d3a2058a20237274c8ff64410a54d7a2bc18089a06cfbc9f1eb09e3edaec",
+    "bytes": 6092087
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 17.9 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 6.1 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -46,6 +99,6 @@
    "detail": "whisper medium.en int8, re-spelled from script.md, 0 flag(s)"
   }
  ],
- "pass": true,
- "at": "2026-10-28T17:03:27-05:00"
+ "pass": false,
+ "at": "2026-10-28T18:16:25-05:00"
 }

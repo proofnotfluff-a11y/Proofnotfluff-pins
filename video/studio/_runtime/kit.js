@@ -786,6 +786,20 @@
       const sh = d < 0.25 ? (1 - d / 0.25) * (o.shake != null ? o.shake : 3) : 0;
       ctx.save(); ctx.translate(x + Math.sin(T * 97) * sh, y + Math.cos(T * 83) * sh); ctx.scale(sc, sc);
       text(s, 0, 0, Object.assign({}, o, {alpha: (o.alpha != null ? o.alpha : 1) * clamp(q * 3)}));
+      // steady life (Todd, Oct 28: motion without the swim): once a slammed line has landed, a shine sweeps across it
+      // every 1.4 s on whole low-res pixels. Nothing moves or rescales; only the glyphs light up as the band passes.
+      const size = o.size || 48;
+      if (look.bitmap && size >= 60 && o.glint !== false && d > 0.6) {
+        const g = ((d - 0.6 + (o.glintAt || 0)) % 1.4) / 0.5;
+        if (g < 1) {
+          const w = measure(s, o), h = bmHeight(size), ax = o.align === 'center' ? -w / 2 : (o.align === 'right' ? -w : 0);
+          const bw = Math.max(2 * U, Math.round(h * 0.22 / U) * U), sl = h * 0.45;
+          const bx = Math.round((ax - bw + (w + 2 * bw + sl) * g) / U) * U;
+          const light = /^#(FFF7EA|FFFFFF|F4E6D3)$/i.test(col(o.color || 'ink')) || o.color === 'paper';
+          ctx.beginPath(); ctx.moveTo(bx, -U); ctx.lineTo(bx + bw, -U); ctx.lineTo(bx + bw - sl, h + U); ctx.lineTo(bx - sl, h + U); ctx.closePath(); ctx.clip();
+          text(s, 0, 0, Object.assign({}, o, {color: light ? '#F7C873' : '#FFF7EA', lint: false, drop: null}));
+        }
+      }
       ctx.restore();
     };
     // a bar that sweeps across behind a line, like a highlighter (game style: hard edges)

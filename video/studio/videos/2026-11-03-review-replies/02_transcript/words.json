@@ -241,25 +241,25 @@
   {
    "w": "too,",
    "start": 14.82,
-   "end": 14.82,
+   "end": 15.14,
    "take": 2
   },
   {
    "w": "point",
-   "start": 14.82,
-   "end": 14.82,
+   "start": 15.14,
+   "end": 15.487,
    "take": 2
   },
   {
    "w": "one",
-   "start": 14.82,
-   "end": 14.82,
+   "start": 15.487,
+   "end": 15.833,
    "take": 2
   },
   {
    "w": "two",
-   "start": 14.82,
-   "end": 15.14,
+   "start": 15.833,
+   "end": 16.18,
    "take": 2
   },
   {
@@ -1297,9 +1297,7 @@
    "wpm": 173
   }
  ],
- "flags": [
-  "dropped 'too, point one': not heard"
- ],
+ "flags": [],
  "end": 76.82,
  "heard": [
   {

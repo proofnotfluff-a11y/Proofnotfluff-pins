@@ -65,7 +65,7 @@ none
 
 `00:55.4` Divide your cost by point six.
 
-`00:57.4` A thousand becomes about sixteen hundred sixty-seven dollars.
+`00:57.6` A thousand becomes about sixteen hundred sixty-seven dollars.
 
 `01:01.4` Markup is on cost.
 

@@ -19,7 +19,7 @@ Model: Eleven v4 (`eleven_v4`). A cloned voice replaces this line later, with To
 ## Pace
 - Target 160 to 195 words a minute per take (a Reel runs a little quicker than a lesson).
 - Under 150: rewrite the take as talk. Over 200: give it a landing beat (a short sentence or `[short pause]`), re-roll.
-- The whole video lands at 45 to 60 seconds of voice.
+- The whole video lands at 45 to 90 seconds of voice (lessons run longer for depth; Todd, Oct 28, 12:56 pm).
 
 ## Rules that never bend
 - A count is complaints to 311, never rats found. No building, block, business or person named. Nothing sells pest control.

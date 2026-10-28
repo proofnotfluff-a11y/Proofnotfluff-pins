@@ -10,7 +10,9 @@
   const hash = (n) => { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
   const strHash = (s) => { let h = 7; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 100003; return h; };
 
+  let CHUNKY = 0;
   function rectPts(x, y, w, h, r = 0) {
+    if (CHUNKY) { const c = Math.min(CHUNKY, w / 4, h / 4); return [[x + c, y], [x + w - c, y], [x + w - c, y + c], [x + w, y + c], [x + w, y + h - c], [x + w - c, y + h - c], [x + w - c, y + h], [x + c, y + h], [x + c, y + h - c], [x, y + h - c], [x, y + c], [x + c, y + c]]; }
     r = Math.min(r, w / 2, h / 2);
     if (r <= 0.5) return [[x, y], [x + w, y], [x + w, y + h], [x, y + h]];
     const pts = [], seg = 6;
@@ -32,6 +34,7 @@
 
   function make(ctx, look, T, env) {
     const C = look.c;
+    CHUNKY = look.chunky ? 6 : 0;
     const boil = Math.floor(T * 8);
     let uid = 0;
     const col = (c) => (c && C[c]) ? C[c] : c;
@@ -65,11 +68,37 @@
       }
       ctx.restore();
     }
+    // ---- the arcade look's 1-bit pixel font (anim.py kit -> _runtime/pixfont.js) ----
+    const PF = window.PIXFONT;
+    const U = look.scale ? 1 / look.scale : 1;   // full-frame units per low-res pixel (3 in the arcade look)
+    function bmPick(size) {
+      if (size >= 52) { const f = PF.display; return {f, m: Math.max(1, Math.round(size / (f.h * U)))}; }
+      return {f: PF.body, m: Math.max(1, Math.round(size / (PF.body.h * U)))};
+    }
+    function bmWidth(s, size) { const {f, m} = bmPick(size); let w = 0; for (const ch of s) { const g = f.glyphs[ch] || f.glyphs['?']; w += (g.w + 1) * m * U; } return w; }
+    function bmLine(s, x, y, size, color) {
+      const {f, m} = bmPick(size), px = m * U;
+      x = Math.round(x / U) * U; y = Math.round(y / U) * U;
+      ctx.fillStyle = color;
+      for (const ch of s) {
+        const g = f.glyphs[ch] || f.glyphs['?'];
+        g.rows.forEach((row, ry) => {
+          let run = -1;
+          for (let rx = 0; rx <= row.length; rx++) {
+            if (row[rx] === '1') { if (run < 0) run = rx; }
+            else if (run >= 0) { ctx.fillRect(x + run * px, y + ry * px, (rx - run) * px, px); run = -1; }
+          }
+        });
+        x += (g.w + 1) * px;
+      }
+    }
+    const bmHeight = (size) => { const {f, m} = bmPick(size); return f.h * m * U; };
+
     function fontStr(o) {
       const fam = o.font === 'body' ? look.font.body : look.font.display;
       return `${o.weight || 700} ${o.size || 48}px ${fam}`;
     }
-    function measure(s, o) { ctx.save(); ctx.font = fontStr(o); setTrack(o); const w = ctx.measureText(s).width; ctx.restore(); return w; }
+    function measure(s, o) { if (look.bitmap) return bmWidth(look.font.caps && o.caps !== false ? s : s, o.size || 48); ctx.save(); ctx.font = fontStr(o); setTrack(o); const w = ctx.measureText(s).width; ctx.restore(); return w; }
     function setTrack(o) { const tr = o.track != null ? o.track : look.font.track; try { ctx.letterSpacing = `${(tr || 0) * (o.size || 48)}px`; } catch (e) {} }
     function wrap(s, o, maxW) {
       const words = s.split(/\s+/), lines = []; let cur = '';
@@ -82,8 +111,20 @@
       s = String(s);
       const caps = o.caps != null ? o.caps : look.font.caps && o.font !== 'body';
       if (caps) s = s.toUpperCase();
-      const size = o.size || 48, lh = (o.lh || 1.15) * size;
+      const size = o.size || 48, lh = look.bitmap ? bmHeight(size) * (o.lh ? Math.max(1.05, o.lh) : 1.15) : (o.lh || 1.15) * size;
       const lines = o.maxW ? wrap(s, o, o.maxW) : [s];
+      if (look.bitmap) {
+        ctx.save(); if (o.alpha != null) ctx.globalAlpha *= o.alpha;
+        let wmax = 0;
+        lines.forEach((ln, i) => {
+          const w = bmWidth(ln, size); wmax = Math.max(wmax, w);
+          const ax = o.align === 'center' ? x - w / 2 : (o.align === 'right' ? x - w : x);
+          if (o.shadow !== false && o.drop) bmLine(ln, ax + U, y + i * lh + U, size, col(o.drop));
+          bmLine(ln, ax, y + i * lh, size, col(o.color || 'ink'));
+        });
+        ctx.restore();
+        return {w: wmax, h: lines.length * lh, lines};
+      }
       ctx.save();
       if (o.alpha != null) ctx.globalAlpha *= o.alpha;
       ctx.font = fontStr(o); setTrack(o);
@@ -131,6 +172,11 @@
         ctx.save(); ctx.fillStyle = C.bg2;
         for (let y = 12; y < 1920; y += 24) for (let x = (y / 24) % 2 ? 12 : 0; x < 1080; x += 24) ctx.fillRect(x, y, 6, 6);
         ctx.restore();
+      } else if (look.grid === 'desk') {
+        ctx.save(); ctx.fillStyle = 'rgba(255,240,225,0.045)';
+        for (let y = 20; y < 1920; y += 40) for (let x = 20; x < 1080; x += 40) ctx.fillRect(x - 2, y - 2, 4, 4);
+        const g = ctx.createRadialGradient(540, 620, 80, 540, 760, 1100); g.addColorStop(0, 'rgba(240,136,62,0.07)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 1920); ctx.restore();
       } else if (look.grid === 'chalk') {
         ctx.save();
         for (let i = 0; i < 260; i++) { ctx.fillStyle = `rgba(255,255,255,${0.015 + hash(i) * 0.03})`; const x = hash(i * 3.1) * 1080, y = hash(i * 7.7) * 1920; ctx.fillRect(x, y, 2 + hash(i) * 60, 1.5); }
@@ -144,8 +190,8 @@
 
     // A card: soft shadow in the clean look, a traced box in the line-art looks.
     k.card = function (x, y, w, h, o = {}) {
-      if (!look.lineArt && look.name === 'clean' && o.shadow !== false) shape(rectPts(x, y + 8, w, h, o.r != null ? o.r : 28), {fill: 'shadow', line: false, alpha: 1});
-      shape(rectPts(x, y, w, h, o.r != null ? o.r : 28), {fill: o.fill || 'card', stroke: o.stroke || (look.name === 'clean' ? 'line' : null), lw: o.lw || 2, id: o.id});
+      if (!look.lineArt && (look.name === 'clean' || look.name === 'desk') && o.shadow !== false) shape(rectPts(x, y + 8, w, h, o.r != null ? o.r : 28), {fill: 'shadow', line: false, alpha: 1});
+      shape(rectPts(x, y, w, h, o.r != null ? o.r : 28), {fill: o.fill || 'card', stroke: o.stroke || (look.name === 'clean' || look.name === 'desk' ? 'line' : null), lw: o.lw || 2, id: o.id});
       if (look.name === 'blueprint' && o.dims !== false) k.dim(x, y - 26, x + w, String(Math.round(w)));
     };
     // Blueprint dimension mark: a measured line with end ticks and its number.
@@ -308,6 +354,12 @@
       const ex = hx0 + 14 * face;
       [ex - 20, ex + 20].forEach((x0, i) => blink ? shape([[x0 - 7, hy0 + 12], [x0 + 7, hy0 + 12]], {stroke: 'ink', lw: 4, closed: false, line: false})
         : shape(ellPts(x0, hy0 + 12, 6.5, 8), {fill: look.lineArt ? 'ink' : 'shoe', line: false, id: 9050 + i}));
+      // the beard: a full, trimmed beard over the jaw, with a moustache
+      const bc = C.beard || '#5A3A22', bh = C.beardHi || '#7A4E2C';
+      shape(ellPts(hx0 + 4 * face, hy0 + 30, 58, 46, 24, 0, Math.PI).concat([[hx0 - 54 + 4 * face, hy0 + 18], [hx0 + 62 + 4 * face, hy0 + 18]]), {fill: bc, id: 9045});
+      shape(ellPts(hx0 + 4 * face, hy0 + 44, 50, 40, 20, 0.2, Math.PI - 0.2), {fill: bh, line: false, id: 9046, alpha: 0.6});
+      shape(rectPts(ex - 30, hy0 + 26, 60, 12, 6), {fill: bc, line: false, id: 9047});
+      [ex - 20, ex + 20].forEach((x0) => shape([[x0 - 10, hy0 - 4], [x0 + 10, hy0 - 6]], {stroke: bc, lw: 6, closed: false, line: false}));
       const mo = talk ? 3 + Math.abs(Math.sin(T * 17) * Math.sin(T * 7.3)) * 13 : 2.5;
       shape(ellPts(ex, hy0 + 40, talk ? 13 : 15, mo), {fill: talk ? 'ink' : null, stroke: talk ? null : 'ink', lw: 3.5, line: false, closed: !(!talk), id: 9060});
       drawArm(shR, front, 9070);
@@ -402,24 +454,42 @@
       return {bottom: yy};
     };
     k.phone = function (x, y, w, h, msgs, o = {}) {
-      shape(rectPts(x, y, w, h, 56), {fill: look.lineArt ? 'bg2' : 'ink', line: true, id: 9300});
-      shape(rectPts(x + 16, y + 16, w - 32, h - 32, 44), {fill: 'card', id: 9301});
-      shape(rectPts(x + w / 2 - 60, y + 26, 120, 26, 13), {fill: 'ink', line: false});
-      text(o.who || 'Customer', x + w / 2, y + 70, {size: 30, weight: 700, font: 'body', color: 'ink', align: 'center'});
-      let yy = y + 130;
+      const fs = o.size || 32, lh = Math.round(fs * 1.32);
+      const bez = C.bezel || (look.lineArt ? 'bg2' : (look.name === 'desk' ? '#0F0C0E' : 'ink'));
+      shape(rectPts(x, y, w, h, 60), {fill: bez, line: true, id: 9300});
+      shape(rectPts(x + 14, y + 14, w - 28, h - 28, 48), {fill: C.screen ? 'screen' : 'card', id: 9301});
+      shape(rectPts(x + w / 2 - 64, y + 26, 128, 30, 15), {fill: bez, line: false});
+      text(o.clock || '9:41', x + 56, y + 30, {size: 22, weight: 700, font: 'body', color: 'ink'});
+      // the contact header
+      const hy = y + 74;
+      shape(ellPts(x + w / 2, hy + 26, 26, 26), {fill: 'line', line: false});
+      text((o.who || 'Customer').slice(0, 1), x + w / 2, hy + 10, {size: 28, weight: 700, font: 'body', color: 'ink', align: 'center'});
+      text(o.who || 'Customer', x + w / 2, hy + 60, {size: 24, weight: 600, font: 'body', color: 'muted', align: 'center'});
+      shape([[x + 30, hy + 98], [x + w - 30, hy + 98]], {stroke: 'line', lw: 2, closed: false, line: false});
+      let yy = hy + 124;
+      const maxW = w - 120;
       msgs.forEach((m, i) => {
         const t0 = m.at != null ? m.at : -1; if (T < t0) return;
         const pp = easeOut((T - t0) / 0.3);
-        const maxW = w - 140; const r = wrap(m.text, {size: 32, weight: 600, font: 'body'}, maxW - 40);
-        const bw = Math.min(maxW, Math.max(...r.map((ln) => measure(ln, {size: 32, weight: 600, font: 'body'}))) + 44), bh = r.length * 42 + 30;
-        const bx = m.me ? x + w - 36 - bw : x + 36;
-        ctx.save(); ctx.globalAlpha *= pp; ctx.translate(0, (1 - pp) * 20);
-        shape(rectPts(bx, yy, bw, bh, 26), {fill: m.me ? 'teal' : 'bg2', line: false, id: 9310 + i});
-        text(m.text, bx + 22, yy + 15, {size: 32, weight: 600, font: 'body', color: m.me ? 'pillText' : 'ink', maxW: maxW - 40, lh: 1.3});
-        if (m.stamp) text(m.stamp, m.me ? bx + bw : bx, yy + bh + 6, {size: 22, weight: 600, font: 'body', color: 'muted', align: m.me ? 'right' : 'left'});
+        const lines = wrap(m.text, {size: fs, weight: 500, font: 'body'}, maxW - 44);
+        const bw = Math.min(maxW, Math.max(...lines.map((ln) => measure(ln, {size: fs, weight: 500, font: 'body'}))) + 44), bh = lines.length * lh + 26;
+        const bx = m.me ? x + w - 32 - bw : x + 32;
+        ctx.save(); ctx.globalAlpha *= pp; ctx.translate(0, (1 - pp) * 24);
+        const fill = m.me ? (C.sent ? 'sent' : 'teal') : (C.recv ? 'recv' : 'bg2');
+        shape(rectPts(bx, yy, bw, bh, Math.min(30, bh / 2)), {fill, line: false, id: 9310 + i});
+        const tx = m.me ? bx + bw - 8 : bx + 8;   // the bubble's tail
+        shape([[tx, yy + bh - 22], [m.me ? tx + 18 : tx - 18, yy + bh + 2], [m.me ? tx - 20 : tx + 20, yy + bh - 6]], {fill, line: false});
+        lines.forEach((ln, li) => text(ln, bx + 22, yy + 13 + li * lh, {size: fs, weight: 500, font: 'body', color: m.me ? (C.sentText ? 'sentText' : 'pillText') : 'ink'}));
+        if (m.typing && T < m.typing) {   // a typing cursor while the line is still going in
+          const lw = measure(lines[lines.length - 1] || '', {size: fs, weight: 500, font: 'body'});
+          if ((T * 2.2) % 1 < 0.6) shape(rectPts(bx + 24 + lw, yy + 15 + (lines.length - 1) * lh, 4, fs, 1), {fill: m.me ? (C.sentText ? 'sentText' : 'pillText') : 'ink', line: false});
+        }
+        if (m.stamp) text(m.stamp, m.me ? bx + bw : bx, yy + bh + 8, {size: 22, weight: 600, font: 'body', color: 'muted', align: m.me ? 'right' : 'left'});
+        if (m.box) m.box({x: bx, y: yy, w: bw, h: bh, lines, lh});
         ctx.restore();
-        yy += bh + (m.stamp ? 40 : 18);
+        yy += bh + (m.stamp ? 46 : 22);
       });
+      return {bottom: yy};
     };
     k.checklist = function (x, y, w, items, o = {}) {
       items.forEach((it, i) => {
@@ -454,6 +524,57 @@
       shape(rectPts(-430, -h / 2, 860, h, look.name === 'pixel' ? 0 : 26), {fill: o.fill || 'accent', id: 9500});
       text(s, 0, -h / 2 + 35, {size: o.size || 76, weight: 700, color: o.color || 'pillText', align: 'center', maxW: 780, lh: 1.08});
       ctx.restore();
+    };
+
+    // ---- rooms: pixel backdrops for the arcade look (blackboard, workshop, garage, framing) ----
+    const R = (x, y, w, h, c) => { ctx.fillStyle = col(c); ctx.fillRect(x, y, w, h); };
+    k.room = function (name, o = {}) {
+      const floorY = 1250;
+      if (name === 'blackboard') {
+        R(0, 0, 1080, 1920, '#2B2033');
+        R(0, 1080, 1080, 170, '#6B4226'); R(0, 1080, 1080, 12, '#8C5A33');
+        for (let x = 0; x < 1080; x += 120) R(x, 1092, 6, 158, '#5A3A22');
+        R(36, 222, 1008, 800, '#8C5A33'); R(60, 246, 960, 752, '#24453A');
+        for (let i = 0; i < 9; i++) R(90 + ((i * 263) % 860), 280 + ((i * 157) % 640), 120 + (i % 3) * 40, 18, '#2F5A4A');
+        R(60, 998, 960, 24, '#B07A47'); R(140, 986, 48, 12, '#FFF7EA'); R(230, 990, 30, 9, '#F7C873'); R(840, 986, 60, 12, '#C9CCD3');
+      } else if (name === 'workshop') {
+        R(0, 0, 1080, 1920, '#3D2E45');
+        R(48, 240, 984, 600, '#B07A47'); R(48, 240, 984, 12, '#D9A066'); R(48, 828, 984, 12, '#8C5A33');
+        for (let y = 270; y < 820; y += 36) for (let x = 72; x < 1020; x += 36) R(x, y, 6, 6, '#8C5A33');
+        // hung tools: hammer, wrench, saw, square
+        R(820, 300, 18, 150, '#6B4226'); R(780, 290, 100, 36, '#6B7080');
+        R(910, 290, 18, 170, '#9AA0AD'); R(898, 290, 42, 30, '#9AA0AD');
+        R(700, 520, 260, 60, '#C9CCD3'); R(940, 510, 60, 80, '#6B4226'); for (let x = 708; x < 950; x += 18) R(x, 580, 9, 9, '#9AA0AD');
+        R(84, 300, 24, 220, '#F2A541'); R(84, 496, 140, 24, '#F2A541');
+        R(0, 1000, 1080, 48, '#8C5A33'); R(0, 1000, 1080, 10, '#D9A066'); R(60, 1048, 36, 202, '#6B4226'); R(984, 1048, 36, 202, '#6B4226');
+        R(0, floorY, 1080, 670, '#4A4E5A');
+      } else if (name === 'garage') {
+        R(0, 0, 1080, 1920, '#4A4E5A');
+        R(90, 230, 900, 790, '#6B7080'); R(90, 230, 900, 18, '#9AA0AD');
+        for (let y = 266; y < 1010; y += 62) { R(110, y, 860, 8, '#4A4E5A'); R(110, y + 8, 860, 4, '#9AA0AD'); }
+        R(500, 960, 80, 14, '#2B2033');
+        R(440, 120, 200, 30, '#C9CCD3'); R(470, 150, 140, 10, '#F7C873');
+        R(0, floorY, 1080, 670, '#6B7080'); R(620, 1290, 220, 26, '#4A4E5A'); R(660, 1316, 120, 14, '#4A4E5A');
+      } else if (name === 'framing') {
+        const g = ctx.createLinearGradient(0, 0, 0, 1250); g.addColorStop(0, '#87CEEB'); g.addColorStop(1, '#5B8FB9');
+        ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 1250);
+        R(0, 200, 1080, 30, '#D9A066'); R(0, 1214, 1080, 36, '#D9A066');
+        for (let x = 30; x < 1080; x += 132) R(x, 230, 30, 984, '#D9A066');
+        R(420, 520, 300, 30, '#B07A47'); R(420, 820, 300, 24, '#B07A47');
+        R(0, floorY, 1080, 670, '#B07A47'); for (let x = 0; x < 1080; x += 216) R(x, floorY, 6, 670, '#8C5A33');
+        R(740, 1150, 300, 60, '#C9CCD3'); R(740, 1150, 300, 10, '#FFF7EA'); R(760, 1100, 280, 50, '#C9CCD3');
+      } else {
+        R(0, 0, 1080, 1920, '#1B1420');
+      }
+      if (name !== 'framing' && name !== 'garage' && name !== 'workshop') R(0, floorY, 1080, 670, '#5A3A22');
+      R(0, floorY, 1080, 8, '#120D14');
+    };
+    // a game panel: dark box, cream double border, optional title tab
+    k.panel2 = function (x, y, w, h, o = {}) {
+      shape(rectPts(x + 12, y + 12, w, h, 0), {fill: '#120D14', line: false, alpha: 0.6});
+      shape(rectPts(x, y, w, h, 0), {fill: o.fill || 'card', line: false});
+      shape(rectPts(x + 6, y + 6, w - 12, h - 12, 0), {stroke: o.border || 'line', lw: 6, line: false});
+      if (o.title) { const tw = measure(o.title, {size: 30}) + 36; shape(rectPts(x + 24, y - 24, tw, 48, 0), {fill: o.tag || 'tag', line: false}); text(o.title, x + 42, y - 18, {size: 30, color: 'tagText'}); }
     };
 
     k.cam = function (sc, cx, cy) { ctx.translate(cx, cy); ctx.scale(sc, sc); ctx.translate(-cx, -cy); };

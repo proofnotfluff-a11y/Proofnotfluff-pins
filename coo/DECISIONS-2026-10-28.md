@@ -36,3 +36,8 @@
 
 - [stated] Todd, 12:47 pm: "Fix the check"
 - So: tools/check_repo.py allows the site-owner rung's three bookkeeping fields in prospects/enrich_state.json (siteOwnerAt, siteOwnerTries, siteOwnerTry: timestamps and counts). The "@" rule and every other field rule are unchanged.
+
+## Studio voice and look, 12:55 to 1:03 pm (golden render chat)
+
+- [stated] Todd, 12:55 pm: "walk me through recording my voice"; 12:55 pm: "Design on those videos needs vast improvement - also there was no voice over"; 12:56 pm: "Also, the script needs more depth. Sound like the Jake video I sent you."; 1:00 pm: "make it look like a retro pixel game - guy with beard talking. Maybe different backgrounds like a blackboard, workshop, garage, half finished home, etc."; 1:03 pm (with a voice recording): "Just make me sound a bit smoother and more confident"
+- So: the studio's house look becomes "arcade" (a retro pixel game: a bearded host who talks, a pixel font, a game dialog box, pixel rooms per section). Scripts are written first person with depth, in the gold standard's register; lessons run 45 to 90 s. Todd's recording was cleaned for an Instant Voice Clone; he creates the clone in his ElevenLabs account and sends the Voice ID, which then replaces the library voice.

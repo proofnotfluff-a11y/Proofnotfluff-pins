@@ -99,6 +99,33 @@ def synth(name, seconds, fn, sr=44100):
         w.setnchannels(1); w.setsampwidth(2); w.setframerate(sr); w.writeframes(pcm.tobytes())
 
 
+def build_pixfont():
+    """A 1-bit pixel font for the arcade look, cut from DejaVu Sans Bold (body) and Poppins Bold (display) at small sizes
+    with anti-aliasing off. Each glyph is rows of 0/1; the kit draws them as blocks."""
+    from PIL import Image, ImageDraw, ImageFont
+    srcs = {"body": ("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 10),
+            "display": (os.path.join(os.path.expanduser("~"), ".cache", "pnf-video-fonts"), 13)}
+    import video_layout as L
+    disp = L.ttf_path("P", 700)
+    out = {}
+    for name, (path, size) in srcs.items():
+        f = ImageFont.truetype(disp if name == "display" else path, size)
+        asc, desc = f.getmetrics()
+        H = asc + desc
+        glyphs = {}
+        for c in range(32, 127):
+            ch = chr(c)
+            w = max(1, int(round(f.getlength(ch))))
+            im = Image.new("1", (w + 4, H + 2), 0)
+            d = ImageDraw.Draw(im); d.fontmode = "1"; d.text((1, 0), ch, font=f, fill=1)
+            px = im.load()
+            rows = ["".join("1" if px[x, y] else "0" for x in range(w + 2)) for y in range(H)]
+            glyphs[ch] = {"w": w, "rows": rows}
+        out[name] = {"h": H, "asc": asc, "glyphs": glyphs}
+    write_js(os.path.join(RUNTIME, "pixfont.js"), "PIXFONT", out)
+    print(f"pixfont.js: body {out['body']['h']} px, display {out['display']['h']} px")
+
+
 def build_sfx():
     env = lambda t, a, d, np: np.minimum(t / a, 1) * np.exp(-np.maximum(t - a, 0) / d)
     synth("blip", 0.18, lambda t, np: np.sin(2 * np.pi * (880 + 600 * t) * t) * env(t, 0.004, 0.05, np))
@@ -271,7 +298,9 @@ def respell(script_words, heard):
             n = i2 - i1
             for k in range(n):   # spread the heard span over the script words ("forty-five" heard as "45")
                 out[i1 + k] = (round(span[0] + (span[1] - span[0]) * k / n, 3), round(span[0] + (span[1] - span[0]) * (k + 1) / n, 3))
-            if not all(re.search(r"\d", heard[j]["w"]) for j in range(j1, j2)):
+            same = norm("".join(script_words[i1:i2])) == norm("".join(h["w"] for h in heard[j1:j2]))   # "auto-reply" heard as "auto reply"
+            numeric = all(re.search(r"\d", heard[j]["w"]) or not norm(heard[j]["w"]) for j in range(j1, j2))   # "twenty-five percent" heard as "25 %"
+            if not (same or numeric):
                 flags.append(f"{heard[j1]['start']:.1f} s heard '{' '.join(h['w'] for h in heard[j1:j2])}' for '{' '.join(script_words[i1:i2])}'")
         elif tag == "delete":
             flags.append(f"dropped '{' '.join(script_words[i1:i2])}': not heard")
@@ -651,7 +680,10 @@ def cmd_check(slug, mp4=None):
     cues = json.load(open(vdir(slug, "03_cues", "cues.json")))
     end_card = max(c["t"] for c in cues["cues"] if c["level"] == 0)
     checks = []
-    for name, fn in [("length", lambda: Q.c_length(mp4)), ("loudness", lambda: Q.c_loudness(mp4)), ("black", lambda: Q.c_black(mp4)),
+    def c_len():
+        secs = float(Q.probe(mp4)["format"]["duration"])
+        return round(secs, 3), 45.0 <= secs <= 90.0, f"{secs:.2f} s (45.0 to 90.0, studio lessons)"
+    for name, fn in [("length", c_len), ("loudness", lambda: Q.c_loudness(mp4)), ("black", lambda: Q.c_black(mp4)),
                      ("frozen", lambda: Q.c_frozen(mp4, end_card))]:
         try:
             v, ok, d = fn()
@@ -706,7 +738,7 @@ def main():
     a = ap.parse_args()
     c = a.cmd
     if c == "kit":
-        build_map(); build_sfx()
+        build_map(); build_sfx(); build_pixfont()
     elif c == "ci-voice":
         cmd_ci_voice()
     elif not a.slug:

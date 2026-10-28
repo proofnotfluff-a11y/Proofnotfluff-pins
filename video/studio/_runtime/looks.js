@@ -1,6 +1,35 @@
 // Looks: how the kit draws, never what it says (_shared/looks.md). Each look maps the kit's color roles, its fonts and
 // its line style. "pixel" draws at a third of the size and snaps every pixel to its palette; "chalk" boils its lines.
 window.LOOKS = {
+  arcade: {
+    name: 'arcade', scale: 1 / 3, wobble: 0, grid: null, bitmap: true, chunky: true,
+    c: {bg: '#1B1420', bg2: '#2B2033', card: '#1B1420', line: '#F4E6D3', ink: '#F4E6D3', ink2: '#E6D3BC', muted: '#B39A88',
+        accent: '#F2A541', accent2: '#F7C873', teal: '#6FB7A8', tealSoft: '#3D2E45', lo: '#3D2E45', hi: '#F4E6D3',
+        skin: '#F0B98D', skinShade: '#C98B63', cap: '#E2633B', jacket: '#2F6F67', jacketShade: '#245752', pants: '#253048',
+        shoe: '#120D14', clip: '#B07A47', paper: '#FFF7EA', rat: '#9AA0AD', ratBelly: '#C9CCD3', ratPink: '#F09A9A',
+        beard: '#5A3A22', beardHi: '#7A4E2C',
+        bubble: '#FFF7EA', bubbleText: '#2B2033', tag: '#7A3442', tagText: '#FFF7EA', pill: '#F2A541', pillText: '#1B1420',
+        sent: '#3B82C4', sentText: '#FFF7EA', recv: '#3D2E45', screen: '#2B2033', bezel: '#120D14', shadow: 'rgba(0,0,0,0.45)'},
+    font: {display: 'Poppins', body: 'Inter', caps: false, track: 0},
+    palette: ['#1B1420', '#2B2033', '#3D2E45', '#120D14', '#6B4226', '#8C5A33', '#B07A47', '#D9A066', '#24453A', '#2F5A4A',
+              '#3E7A62', '#4A4E5A', '#6B7080', '#9AA0AD', '#C9CCD3', '#F4E6D3', '#FFF7EA', '#E6D3BC', '#B39A88', '#F2A541',
+              '#F7C873', '#E2633B', '#6FB7A8', '#3B82C4', '#F0B98D', '#C98B63', '#5A3A22', '#7A4E2C', '#7A3442', '#253048',
+              '#2F6F67', '#245752', '#87CEEB', '#5B8FB9'],
+    stroke: (role, w) => null,
+  },
+  desk: {
+    name: 'desk', scale: 1, wobble: 0, grid: 'desk', pixelHost: 1 / 4,
+    c: {bg: '#1C1719', bg2: '#251F22', card: '#2B2427', line: '#41363B', ink: '#F4EDE3', ink2: '#D6CCBF', muted: '#A1958A',
+        accent: '#F0883E', accent2: '#F6B07A', teal: '#4FA3A5', tealSoft: 'rgba(79,163,165,0.18)', lo: '#3A3135', hi: '#F4EDE3',
+        skin: '#F0B98D', skinShade: '#C98B63', cap: '#E2633B', jacket: '#2F6F67', jacketShade: '#245752', pants: '#253048',
+        shoe: '#101216', clip: '#B98A55', paper: '#F4EDE3', rat: '#9AA0AD', ratBelly: '#D6D8DE', ratPink: '#F09A9A',
+        bubble: '#F6EEDF', bubbleText: '#2A1E22', tag: '#7A2E3E', tagText: '#F6EEDF', pill: '#F0883E', pillText: '#1C1719',
+        sent: '#3B82C4', sentText: '#FFFFFF', recv: '#3A3135', shadow: 'rgba(0,0,0,0.35)'},
+    font: {display: 'Poppins', body: 'Inter', caps: false, track: 0},
+    palette: ['#1C1719', '#251F22', '#2B2427', '#41363B', '#F4EDE3', '#D6CCBF', '#A1958A', '#F0883E', '#F6B07A', '#E2633B', '#2F6F67',
+              '#245752', '#253048', '#101216', '#F0B98D', '#C98B63', '#B98A55', '#7A2E3E', '#F6EEDF'],
+    stroke: (role, w) => null,
+  },
   clean: {
     name: 'clean', scale: 1, wobble: 0, grid: null,
     c: {bg: '#F3F1EC', bg2: '#EAE6DD', card: '#FFFFFF', line: '#E2DDD3', ink: '#1D2433', ink2: '#4A5163', muted: '#6B7180',

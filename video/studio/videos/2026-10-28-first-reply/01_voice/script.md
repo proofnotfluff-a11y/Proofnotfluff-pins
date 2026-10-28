@@ -1,11 +1,15 @@
-# Script: The first reply wins the job
+# Script: The first reply wins the job (v2, more depth; Todd, Oct 28, 12:56 pm)
 
-[matter-of-fact] A new lead just asked you for a quote, and you're up on a ladder. Don't wait till tonight. Here's the reply to send in the next half hour.
+[matter-of-fact] A homeowner just texted you for a quote. You're up on a ladder, so you figure you'll get back to them tonight. I want to show you why tonight is too late, and exactly what to send instead.
 
-[leaning in] Why the rush? A big study out this year looked at eleven point six million requests on Fiverr. Replies that came an hour late were about half as likely to get hired. And Thumbtack says pros who answer inside thirty minutes are twenty-five percent more likely to get hired than pros who take three hours.
+[leaning in] A study came out this year in Management Science. The researchers looked at eleven point six million requests on Fiverr, the freelance site. When a reply came an hour late, that person was about half as likely to get hired. A day late? About ninety percent less.
 
-[short pause] But the same study found speed stops helping when the reply sounds automated. So skip the canned auto-reply. Here's what to type.
+[thoughtful] Now, Fiverr isn't the trades. But the reason carries over. People read your reply speed as a sign of how you'll treat them later. And it helped on its own, even when the work and the message were just as good.
 
-[warmly] Start with their name. Then answer what they asked: yes, we replace water heaters. Ask one question that moves the job forward, like gas or electric? Then give them a real time. I can come by Thursday between two and four.
+[matter-of-fact] Thumbtack sees the same thing on its platform. Pros who answer inside thirty minutes are twenty-five percent more likely to get hired than pros who take three hours.
 
-[confident] Four short lines, sent fast, in your own words. Send this to whoever answers your phone. The full text is in the caption.
+[short pause] Here's the part people skip. Speed stopped helping when the reply looked automated. So that canned thank you for your inquiry text? [quickly, playful] Fast, sure. It just doesn't count.
+
+[warmly] So here's what I'd send. Start with their name, so it's clearly you. Answer exactly what they asked: yes, we replace water heaters. Ask one question that moves the job, like gas or electric? It gives them an easy reason to write back, and it tells you what to bring. Then a real time. I can come by Thursday between two and four.
+
+[confident] Fast, human, one question, a time. Send this to whoever answers your phone. The exact text is in the caption.

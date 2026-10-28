@@ -5,7 +5,7 @@
 
 1. `python3 video/studio/anim.py render <slug>`: every frame drawn in Chromium at 30 fps, the voice, the music bed and
    the cue sounds mixed to -14 LUFS with the true peak at or under -1.5 dBTP, H.264 and AAC.
-2. `python3 video/studio/anim.py check <slug>`: length 45 to 60 s, loudness, no black or frozen stretch outside the end
+2. `python3 video/studio/anim.py check <slug>`: length 45 to 90 s, loudness, no black or frozen stretch outside the end
    card, the file decodes; writes `qa.json`.
 3. Fresh reviewers (Agent, model opus, each sees only its inputs): facts (`video/prompts/facts.md` on the brief, the
    script and the data file), render critic (`video/prompts/render-critic.md` on the sheets and transcript), buyer

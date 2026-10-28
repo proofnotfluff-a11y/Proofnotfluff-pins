@@ -7,7 +7,7 @@
   const base = `../videos/${slug}/`;
   const scripts = [base + '04_scene/data.js', base + '03_cues/cues.js', base + '02_transcript/words.js', base + '04_scene/scene.js'];
   const imgs = {};
-  let cues = [], byId = {}, words = [], phrases = [], look, lowCanvas, pal = null;
+  let cues = [], byId = {}, words = [], phrases = [], look, lowCanvas, hostCanvas, pal = null;
 
   function load(src) { return new Promise((ok, bad) => { const s = document.createElement('script'); s.src = src + '?' + Date.now(); s.onload = ok; s.onerror = () => bad(new Error('missing ' + src)); document.head.appendChild(s); }); }
 
@@ -15,10 +15,11 @@
     const out = []; let cur = [];
     const ctx = document.createElement('canvas').getContext('2d');
     ctx.font = `600 46px ${look.font.body}`;
+    const fitW = look.bitmap ? 470 : 520, maxL = look.bitmap ? 3 : 2;
     const fits = (arr) => {
       const lines = []; let line = '';
-      arr.forEach((w) => { const t = line ? line + ' ' + w.w : w.w; if (line && ctx.measureText(t).width > 520) { lines.push(line); line = w.w; } else line = t; });
-      lines.push(line); return lines.length <= 2;
+      arr.forEach((w) => { const t = line ? line + ' ' + w.w : w.w; if (line && ctx.measureText(t).width > fitW) { lines.push(line); line = w.w; } else line = t; });
+      lines.push(line); return lines.length <= maxL;
     };
     ws.forEach((w, i) => {
       const prev = ws[i - 1];
@@ -32,32 +33,40 @@
 
   function speechBox(k, T) {
     const ph = phrases.find((p) => T >= p.t0 && T < p.t1);
-    const x = 300, y = 1088, w = 628, h = 150;
-    const ctx = k.ctx;
     if (!ph) return;
-    k.shape(k.rectPts(x, y, w, h, look.name === 'pixel' ? 0 : 22), {fill: 'bubble', stroke: look.name === 'clean' ? 'line' : null, lw: 2});
-    k.shape([[x + 2, y + 98], [x - 36, y + 120], [x + 2, y + 122]], {fill: 'bubble', line: false});
-    const tag = k.chip(window.SCENE.host_name || 'Snow', x + 20, y - 30, {size: 24, fill: 'tag', color: 'tagText'});
-    ctx.save(); ctx.textBaseline = 'top'; try { ctx.letterSpacing = '0px'; } catch (e) {}
-    // lay the phrase out at 46 px; if it would need a third line, step the size down until it fits in two
-    let fs = 46, lh = 56;
-    const lay = (size) => { ctx.font = `600 ${size}px ${look.font.body}`; const sp = ctx.measureText(' ').width; let cx2 = x + 26, rows = 1;
-      ph.words.forEach((wd) => { const ww = ctx.measureText(wd.w).width; if (cx2 + ww > x + w - 24 && cx2 > x + 26) { cx2 = x + 26; rows++; } cx2 += ww + sp; }); return rows; };
-    while (fs > 34 && lay(fs) > 2) fs -= 2;
-    lh = Math.round(fs * 1.22);
-    ctx.font = `600 ${fs}px ${look.font.body}`;
-    let cx = x + 26, cy = y + (h - 2 * lh) / 2 + 4; const maxX = x + w - 24;
-    const space = ctx.measureText(' ').width;
+    const arcade = !!look.bitmap;
+    const B = arcade ? {x: 372, y: 1046, w: 560, h: 190} : {x: 300, y: 1088, w: 628, h: 150};
+    const {x, y, w, h} = B;
+    const r = look.name === 'pixel' || arcade ? 0 : (look.name === 'desk' ? 6 : 22);
+    if (arcade) { k.shape(k.rectPts(x + 10, y + 10, w, h, 0), {fill: '#120D14', line: false, alpha: 0.6}); }
+    k.shape(k.rectPts(x, y, w, h, r), {fill: 'bubble', stroke: look.name === 'clean' ? 'line' : null, lw: 2});
+    if (arcade) k.shape(k.rectPts(x + 6, y + 6, w - 12, h - 12, 0), {stroke: 'bubbleText', lw: 6, line: false});
+    k.shape([[x + 2, y + h - 70], [x - 40, y + h - 40], [x + 2, y + h - 30]], {fill: 'bubble', line: false});
+    k.chip(window.SCENE.host_name || 'Snow', x + 24, y - 34, {size: arcade ? 30 : 24, fill: 'tag', color: 'tagText'});
+    // lay the phrase out; step the size down until it fits the box
+    let fs = arcade ? 39 : 46;
+    const pad = arcade ? 30 : 26, maxX = x + w - pad;
+    const lay = (size) => { const sp = k.measure(' ', {size, weight: 600, font: 'body'}); let cx2 = x + pad, rows = 1;
+      ph.words.forEach((wd) => { const ww = k.measure(wd.w, {size, weight: 600, font: 'body'}); if (cx2 + ww > maxX && cx2 > x + pad) { cx2 = x + pad; rows++; } cx2 += ww + sp; }); return rows; };
+    const maxRows = arcade ? 3 : 2;
+    while (fs > 30 && lay(fs) > maxRows) fs -= arcade ? 3 : 2;
+    const rows = lay(fs);
+    const lh = arcade ? Math.round(fs * 1.18) : Math.round(fs * 1.22);
+    const sp = k.measure(' ', {size: fs, weight: 600, font: 'body'});
+    let cx = x + pad, cy = y + (h - rows * lh) / 2 + 4;
     ph.words.forEach((wd) => {
-      const ww = ctx.measureText(wd.w).width;
-      if (cx + ww > maxX && cx > x + 26) { cx = x + 26; cy += lh; }
+      const ww = k.measure(wd.w, {size: fs, weight: 600, font: 'body'});
+      if (cx + ww > maxX && cx > x + pad) { cx = x + pad; cy += lh; }
       const on = T >= wd.start && T < wd.end + 0.05, said = T >= wd.start;
-      if (on) { k.shape(k.rectPts(cx - 8, cy - 5, ww + 16, lh, look.name === 'pixel' ? 0 : 8), {fill: 'pill', line: false}); }
-      ctx.fillStyle = on ? k.C.pillText : (said ? k.C.bubbleText : (look.lineArt || look.name === 'pixel' ? k.C.muted : '#9AA0AD'));
-      ctx.fillText(wd.w, cx, cy);
-      cx += ww + space;
+      if (arcade) {   // a game dialog box: words type on as they are said, the spoken word in the accent
+        if (said) k.text(wd.w, cx, cy, {size: fs, weight: 600, font: 'body', color: on ? 'tag' : 'bubbleText'});
+      } else {
+        if (on) k.shape(k.rectPts(cx - 8, cy - 5, ww + 16, lh, look.name === 'pixel' ? 0 : 8), {fill: 'pill', line: false});
+        k.text(wd.w, cx, cy, {size: fs, weight: 600, font: 'body', color: on ? 'pillText' : (said ? 'bubbleText' : (look.lineArt || look.name === 'pixel' ? 'muted' : '#9AA0AD'))});
+      }
+      cx += ww + sp;
     });
-    ctx.restore();
+    if (arcade && (T * 2) % 1 < 0.5) k.shape([[x + w - 52, y + h - 40], [x + w - 28, y + h - 40], [x + w - 40, y + h - 26]], {fill: 'bubbleText', line: false});
   }
 
   function quantize(c) {
@@ -93,11 +102,24 @@
     ctx.save();
     const into = T - sec.t;
     if (sec !== tops[0] && into < 0.28) { const e = k.easeOut(into / 0.28); ctx.translate((1 - e) * 140, 0); ctx.globalAlpha = 0.25 + 0.75 * e; }
+    const push = 1 + 0.03 * Math.min(1, into / Math.max(1, sec.end - sec.t));   // a slow push-in through each section
+    ctx.translate(540, 620); ctx.scale(push, push); ctx.translate(-540, -620);
     if (fn) ret = fn(k, T, sec) || {};
     ctx.restore();
     if (ret.host !== false && window.SCENE.host !== false) {
       const hp = typeof ret.hostPose === 'string' ? ret.hostPose : (k.talking() ? 'talk' : 'stand');
-      k.snow(160, 1246, {scale: 0.6, pose: hp, at: ret.hostAt, face: 1});
+      if (look.pixelHost && !pixel) {   // the pixel cast over real screens (the gold standard's house look)
+        const ph = look.pixelHost;
+        if (!hostCanvas) { hostCanvas = document.createElement('canvas'); hostCanvas.width = Math.round(W * ph); hostCanvas.height = Math.round(H * ph); }
+        const hctx = hostCanvas.getContext('2d'); hctx.setTransform(1, 0, 0, 1, 0, 0); hctx.clearRect(0, 0, hostCanvas.width, hostCanvas.height);
+        hctx.setTransform(ph, 0, 0, ph, 0, 0);
+        Kit.make(hctx, look, T, env).snow(160, 1246, {scale: 0.6, pose: hp, at: ret.hostAt, face: 1});
+        const id = hctx.getImageData(0, 0, hostCanvas.width, hostCanvas.height), d = id.data;
+        for (let i = 3; i < d.length; i += 4) d[i] = d[i] > 110 ? 255 : 0;   // hard pixel edges
+        hctx.putImageData(id, 0, 0);
+        ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.imageSmoothingEnabled = false; ctx.drawImage(hostCanvas, 0, 0, W, H); ctx.restore();
+      } else if (look.bitmap) k.snow(190, 1246, {scale: 0.86, pose: hp, at: ret.hostAt, face: 1});
+      else k.snow(160, 1246, {scale: 0.6, pose: hp, at: ret.hostAt, face: 1});
     }
     speechBox(k, T);
     if (pixel) {

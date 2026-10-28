@@ -1,22 +1,22 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-10-27",
- "asOfText": "Oct 27, 2026",
- "through": "2026-10-26",
- "throughText": "Oct 26, 2026",
- "recentFrom": "2026-10-13",
+ "asOf": "2026-10-28",
+ "asOfText": "Oct 28, 2026",
+ "through": "2026-10-27",
+ "throughText": "Oct 27, 2026",
+ "recentFrom": "2026-10-14",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-27T12:17:12+00:00",
-  "rowsUpdatedAt": "2026-10-27T09:21:34+00:00",
+  "fetchedAt": "2026-10-28T12:19:48+00:00",
+  "rowsUpdatedAt": "2026-10-28T09:08:22+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "pests": 4,
-  "hood": 3,
-  "places": 5
+  "pests": 0,
+  "hood": 0,
+  "places": 0
  },
  "history": [
   {
@@ -50,40 +50,18 @@
    "hood": 3,
    "places": 5,
    "withPhone": 4
-  }
- ],
- "examples": [
-  {
-   "area": "Bridgeport",
-   "type": "Bakery",
-   "result": "Fail",
-   "trades": [
-    "pests"
-   ]
   },
   {
-   "area": "West Town",
-   "type": "Restaurant",
-   "result": "Pass w/ Conditions",
-   "trades": [
-    "hood and exhaust"
-   ]
-  },
-  {
-   "area": "Albany Park",
-   "type": "Restaurant",
-   "result": "Fail",
-   "trades": [
-    "pests"
-   ]
+   "asOf": "2026-10-28",
+   "through": "2026-10-27",
+   "pests": 0,
+   "hood": 0,
+   "places": 0,
+   "withPhone": 0
   }
  ],
+ "examples": [],
  "pestByDate": [
-  {
-   "date": "2026-10-13",
-   "pests": 4,
-   "restaurant": 2
-  },
   {
    "date": "2026-10-14",
    "pests": 8,
@@ -148,44 +126,40 @@
    "date": "2026-10-26",
    "pests": 0,
    "restaurant": 0
+  },
+  {
+   "date": "2026-10-27",
+   "pests": 0,
+   "restaurant": 0
   }
  ],
  "pestLast7": {
-  "from": "2026-10-20",
-  "to": "2026-10-26",
-  "inspections": 21,
-  "restaurantInspections": 20,
+  "from": "2026-10-21",
+  "to": "2026-10-27",
+  "inspections": 9,
+  "restaurantInspections": 8,
   "areas": [
    "Albany Park",
-   "Avondale",
-   "Belmont Cragin",
    "Bridgeport",
    "Brighton Park",
-   "Douglas",
-   "Dunning",
-   "Gage Park",
    "Lake View",
-   "Lincoln Square",
-   "Logan Square",
-   "Loop",
    "Lower West Side",
-   "McKinley Park",
    "O'Hare",
    "West Town"
   ]
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {
-  "rows": 5,
-  "withPhone": 4,
-  "coverage": 80.0
+  "rows": 0,
+  "withPhone": 0,
+  "coverage": 0.0
  },
  "seat": {
-  "asOf": "2026-10-27",
-  "places14": 45,
-  "new": 4,
-  "withPhone14": 32,
-  "coverage14": 71.1,
+  "asOf": "2026-10-28",
+  "places14": 41,
+  "new": 0,
+  "withPhone14": 29,
+  "coverage14": 70.7,
   "phonesChecked": true
  }
 }

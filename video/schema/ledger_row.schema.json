@@ -1,0 +1,96 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "pnf.video.ledger_row.v1",
+ "title": "One ledger row (video/LEDGER.md, tools/video_ledger.py)",
+ "type": "object",
+ "required": [
+  "schema",
+  "videoId",
+  "state",
+  "at",
+  "specSha256",
+  "mp4Sha256",
+  "captionSha256",
+  "postUrl",
+  "touches"
+ ],
+ "properties": {
+  "schema": {
+   "const": "pnf.video.ledger_row.v1"
+  },
+  "videoId": {
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}-rats-[a-z]$"
+  },
+  "state": {
+   "enum": [
+    "planned",
+    "drafted",
+    "gated",
+    "rendering",
+    "rendered",
+    "qa_passed",
+    "reviewed",
+    "preview_sent",
+    "approved",
+    "posting",
+    "published",
+    "flagged",
+    "failed",
+    "replaced"
+   ]
+  },
+  "prev": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "at": {
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}"
+  },
+  "specSha256": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "mp4Sha256": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "captionSha256": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "postUrl": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "touches": {
+   "type": "integer",
+   "minimum": 0
+  },
+  "round": {
+   "type": "integer"
+  },
+  "storyType": {
+   "enum": [
+    "A",
+    "B",
+    "C",
+    "D"
+   ]
+  },
+  "area": {
+   "type": "integer"
+  },
+  "run": {
+   "type": "string"
+  },
+  "note": {
+   "type": "string"
+  }
+ }
+}

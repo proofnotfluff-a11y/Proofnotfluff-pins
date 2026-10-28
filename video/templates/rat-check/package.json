@@ -1,0 +1,17 @@
+{
+  "name": "pnf-rat-check",
+  "private": true,
+  "description": "ProofNotFluff video engine, Rat check template (Phase 0). A painter only: every box comes from tools/video_layout.py via props.json.",
+  "license": "UNLICENSED",
+  "engines": {"node": ">=22 <23"},
+  "scripts": {
+    "render": "remotion render src/index.jsx RatCheck",
+    "still": "remotion still src/index.jsx RatCheck"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.539",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.539"
+  }
+}

@@ -9,7 +9,7 @@ check_repo.py runs this file as its gate-tests check, so the nightly optimizer a
 import json, os, random, re, shutil, string, subprocess, sys, tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data", "builder-contacts", "video-specs", "voice", "fiverr-kit", "monday", "radar", "cos"]
+CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data", "builder-contacts", "video-specs", "voice", "fiverr-kit", "monday", "radar", "cos", "video"]
 rng = random.Random()
 # Key markers are assembled here so this file never matches the secrets check itself.
 KEY_BEGIN = "-----BEGIN " + "RSA PRIVATE " + "KEY-----"
@@ -204,6 +204,21 @@ def plants(tmp):
             return json.dumps(d)
         out.append(("video-specs", "a heard price without its money word", new_file(os.path.join("promo", "specs", "examples", "zz-planted-moneyword.json"), price_tag_read(None))))
         out.append(("video-specs", "a heard price run together like a price tag", new_file(os.path.join("promo", "specs", "examples", "zz-planted-runtogether.json"), run_together(None))))
+
+    # Video engine (Oct 27, 2026): a committed spec that breaks the Rat check, a gate weakened, a ledger row tampered with.
+    vex = os.path.join("video", "fixtures", "spec-example.json")
+    if os.path.exists(os.path.join(tmp, vex)):
+        def bad_spec(_):
+            d = json.load(open(os.path.join(tmp, vex), encoding="utf-8"))
+            d["videoId"] = "2026-11-02-rats-q"
+            d["voice"]["voiceIds"] = ["iP95p4xoKVk53GoZ742B"]
+            d["lines"][1]["say"] = "Lake View logged 310 rat complaints."
+            return json.dumps(d)
+        out.append(("video", "a committed spec with a number not in its evidence", new_file(os.path.join("video", "specs", "2026-11-02-rats-q.json"), bad_spec(None))))
+        out.append(("video", "the layout gate's 42 px floor weakened", edit(os.path.join("tools", "video_layout.py"), lambda t: t.replace("MIN_TEXT = 42", "MIN_TEXT = 30", 1))))
+        out.append(("video", "a ledger row that skips a stage", edit(os.path.join("video", "LEDGER.md"), lambda t: t.replace("## Rows\n", "## Rows\n" + json.dumps({
+            "schema": "pnf.video.ledger_row.v1", "videoId": "2026-11-02-rats-a", "state": "published", "prev": None, "at": "2026-11-02T08:00:00-06:00",
+            "specSha256": "0" * 64, "mp4Sha256": "0" * 64, "captionSha256": "0" * 64, "postUrl": "https://www.instagram.com/reel/x/", "touches": 0}) + "\n", 1))))
 
     def planted_tell(text):
         d = json.loads(text); d["pages"][0]["plantedNote"] = "Unlock your pricing potential."; return json.dumps(d)

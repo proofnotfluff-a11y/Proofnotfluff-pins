@@ -1,0 +1,14 @@
+{
+ "schema": "pnf.video.metrics.v1",
+ "videoId": "2026-11-02-rats-a",
+ "at": "2026-11-03T08:40:00-06:00",
+ "hoursAfter": 24.6,
+ "checkpoint": "24h",
+ "plays": 212,
+ "avgWatchSec": 19.4,
+ "shares": 3,
+ "saves": 1,
+ "profileVisits": 4,
+ "pathVisits": null,
+ "source": "EXAMPLE values, not real results: Instagram Insights on the post, read in Chrome; pathVisits from Cloudflare when readable"
+}

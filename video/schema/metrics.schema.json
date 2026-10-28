@@ -1,0 +1,87 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "pnf.video.metrics.v1",
+ "title": "Results read back (Instagram Insights and the /rats count)",
+ "type": "object",
+ "required": [
+  "schema",
+  "videoId",
+  "at",
+  "hoursAfter",
+  "plays",
+  "avgWatchSec",
+  "shares",
+  "saves",
+  "profileVisits",
+  "pathVisits"
+ ],
+ "properties": {
+  "schema": {
+   "const": "pnf.video.metrics.v1"
+  },
+  "videoId": {
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}-rats-[a-z]$"
+  },
+  "at": {
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}"
+  },
+  "hoursAfter": {
+   "type": "number",
+   "minimum": 0
+  },
+  "checkpoint": {
+   "enum": [
+    "24h",
+    "72h",
+    "7d"
+   ]
+  },
+  "plays": {
+   "type": [
+    "integer",
+    "null"
+   ],
+   "minimum": 0
+  },
+  "avgWatchSec": {
+   "type": [
+    "number",
+    "null"
+   ],
+   "minimum": 0
+  },
+  "shares": {
+   "type": [
+    "integer",
+    "null"
+   ],
+   "minimum": 0
+  },
+  "saves": {
+   "type": [
+    "integer",
+    "null"
+   ],
+   "minimum": 0
+  },
+  "profileVisits": {
+   "type": [
+    "integer",
+    "null"
+   ],
+   "minimum": 0
+  },
+  "pathVisits": {
+   "type": [
+    "integer",
+    "null"
+   ],
+   "minimum": 0
+  },
+  "source": {
+   "type": "string"
+  }
+ }
+}

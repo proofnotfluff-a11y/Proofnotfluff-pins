@@ -1,0 +1,109 @@
+{
+  "about": "Video engine Phase 0 settings (the MVP). Pinned by the PNF Video Engine Blueprint, MVP build spec (https://claude.ai/artifact/3ssi8yGEKVxiL7JTD87kzS); changing a value here is a logged decision in coo/DECISIONS-<date>.md, never a call made mid-run.",
+  "stop": false,
+  "stopNote": "Set true by any live chat that hears Todd say \"stop videos\" (blueprint, Publishing operations: the kill switch); every run checks it first.",
+  "data": "permits/rodents-chicago/weekly.json",
+  "freshDays": 8,
+  "mvp": {
+    "start": "2026-11-02",
+    "weeks": 3,
+    "slots": [
+      "Mon",
+      "Wed",
+      "Fri"
+    ],
+    "videos": 9,
+    "maxAttempts": 12
+  },
+  "weights": {
+    "surprise": 0.3,
+    "local": 0.2,
+    "work": 0.2,
+    "novelty": 0.15,
+    "proof": 0.15
+  },
+  "noveltyDays": 14,
+  "floors": {
+    "A": 20,
+    "C": 20,
+    "D": 20
+  },
+  "floorsNote": "A and C floors are the blueprint's (d30 of 20 or more; closed30 of 20 or more). D's floor is the build chat's recommendation to Todd, Oct 27 (question 1); it is applied until he answers.",
+  "pictures": [
+    "map",
+    "bars",
+    "line"
+  ],
+  "affinity": {
+    "A": {
+      "map": 3,
+      "bars": 2,
+      "line": 1
+    },
+    "B": {
+      "line": 3,
+      "map": 2,
+      "bars": 1
+    },
+    "C": {
+      "bars": 3,
+      "map": 2
+    },
+    "D": {
+      "line": 3,
+      "bars": 1,
+      "map": 1
+    }
+  },
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "minSeconds": 45.0,
+    "maxSeconds": 60.0,
+    "maxMB": 100,
+    "endCardMinSeconds": 3.5
+  },
+  "qa": {
+    "lufs": -14.0,
+    "lufsTol": 1.0,
+    "truePeakMax": -1.5,
+    "blackMaxSeconds": 0.5,
+    "freezeMaxSeconds": 1.0,
+    "hookEndsBy": 3.0,
+    "safeTop": 270,
+    "safeBottom": 1250,
+    "rightClear": 150,
+    "minTextPx": 42,
+    "faceConfidence": 0.6,
+    "ocrPerSecond": 2,
+    "facesPerSecond": 1
+  },
+  "voice": {
+    "model": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "approvedOct15": {
+      "Chris": "iP95p4xoKVk53GoZ742B",
+      "Roger": "CwhRBWXzGAHq8TQ4Fs17",
+      "Eric": "cjVigY5qzO86Huf0OWal",
+      "Matilda": "XrExE9yKIg1WjnnlVkGX",
+      "Bill": "pqHfZKP75CvOlQylNhV4"
+    },
+    "chosen": null,
+    "chosenNote": "Todd picks one voice for all nine on the first preview (blueprint, Media and voice); until then the preview renders all five."
+  },
+  "music": {
+    "id": "quiet-math",
+    "note": "One bed from tools/music/library.json for all nine (blueprint: one music bed from our existing library). Quiet Math: calm, 84 bpm, 58.6 s, so it covers a 45 to 60 s cut."
+  },
+  "cta": {
+    "say": "See your neighborhood free at proofnotfluff dot com slash rats.",
+    "path": "proofnotfluff.com/rats",
+    "pagePath": "rats"
+  },
+  "renders": {
+    "branch": "video-renders"
+  },
+  "remotion": "4.0.539",
+  "node": "22"
+}

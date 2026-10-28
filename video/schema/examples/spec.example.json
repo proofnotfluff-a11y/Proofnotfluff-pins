@@ -1,0 +1,586 @@
+{
+ "schema": "pnf.video.spec.v1",
+ "videoId": "2026-10-26-rats-z",
+ "template": "rat-check",
+ "storyType": "A",
+ "picture": "map",
+ "slot": "Mon",
+ "candidate": {
+  "id": "A-6",
+  "type": "A",
+  "area": 6,
+  "name": "Lake View",
+  "parts": {
+   "surprise": 1.0,
+   "local": 1,
+   "work": 1,
+   "novelty": 1,
+   "proof": 1.0
+  },
+  "score": 1.0,
+  "rank": 1
+ },
+ "evidence": {
+  "file": "video/fixtures/normal.json",
+  "commit": "uncommitted",
+  "sha256": "2685ef0f48fbabc5d8783a587180d5019cb04aae875b9c2d0344de0fd5d8794d",
+  "fetchedAt": "2026-10-27T16:11:02-0500",
+  "candidates": "video/fixtures/candidates-example.json",
+  "numbers": [
+   {
+    "id": "windowTo",
+    "label": "Last whole day counted",
+    "path": "window.to",
+    "value": "2026-10-26",
+    "shown": [
+     "Oct 26"
+    ]
+   },
+   {
+    "id": "line311",
+    "label": "The City's service line the complaints go to (311 Service Requests)",
+    "path": "source.name",
+    "value": "311 Service Requests",
+    "shown": [
+     "311"
+    ]
+   },
+   {
+    "id": "d30",
+    "label": "Lake View rat complaints, 30 days to Oct 26",
+    "path": "areas[n=6].d30",
+    "value": 300,
+    "shown": [
+     "300"
+    ]
+   },
+   {
+    "id": "prev30",
+    "label": "Lake View, same 30 days last year",
+    "path": "areas[n=6].prev30",
+    "value": 150,
+    "shown": [
+     "150"
+    ]
+   },
+   {
+    "id": "change",
+    "label": "Lake View change against last year",
+    "path": "areas[n=6].change",
+    "value": 100.0,
+    "shown": [
+     "100%"
+    ]
+   },
+   {
+    "id": "cityChange",
+    "label": "Chicago change against last year",
+    "path": "counts.change",
+    "value": 10.2,
+    "shown": [
+     "10.2%"
+    ]
+   },
+   {
+    "id": "areasUp",
+    "label": "Community areas with more complaints than the same 30 days last year",
+    "path": "count(areas[].change > 0)",
+    "value": 44,
+    "shown": [
+     "44"
+    ]
+   },
+   {
+    "id": "areasTotal",
+    "label": "Chicago community areas",
+    "path": "len(areas)",
+    "value": 77,
+    "shown": [
+     "77"
+    ]
+   },
+   {
+    "id": "windowDays",
+    "label": "Days in the window (window.from30 to window.to)",
+    "path": "window.from30..window.to",
+    "value": 30,
+    "shown": [
+     "30"
+    ]
+   }
+  ]
+ },
+ "screen": {
+  "eyebrow": "CHICAGO RAT CHECK",
+  "period": "30 days to Oct 26",
+  "picture": "map",
+  "area": "Lake View",
+  "headline": {
+   "number": "+100%",
+   "numberId": "change",
+   "label": "rat complaints in Lake View vs. the same 30 days last year"
+  },
+  "chart": {
+   "kind": "map",
+   "legend": [
+    [
+     "hi",
+     "Up vs. last year"
+    ],
+    [
+     "lo",
+     "Down or flat"
+    ]
+   ],
+   "areas": [
+    {
+     "n": 1,
+     "cls": "hi"
+    },
+    {
+     "n": 2,
+     "cls": "hi"
+    },
+    {
+     "n": 3,
+     "cls": "hi"
+    },
+    {
+     "n": 4,
+     "cls": "hi"
+    },
+    {
+     "n": 5,
+     "cls": "hi"
+    },
+    {
+     "n": 6,
+     "cls": "focus"
+    },
+    {
+     "n": 7,
+     "cls": "hi"
+    },
+    {
+     "n": 8,
+     "cls": "hi"
+    },
+    {
+     "n": 9,
+     "cls": "lo"
+    },
+    {
+     "n": 10,
+     "cls": "lo"
+    },
+    {
+     "n": 11,
+     "cls": "lo"
+    },
+    {
+     "n": 12,
+     "cls": "hi"
+    },
+    {
+     "n": 13,
+     "cls": "lo"
+    },
+    {
+     "n": 14,
+     "cls": "lo"
+    },
+    {
+     "n": 15,
+     "cls": "lo"
+    },
+    {
+     "n": 16,
+     "cls": "hi"
+    },
+    {
+     "n": 17,
+     "cls": "hi"
+    },
+    {
+     "n": 18,
+     "cls": "hi"
+    },
+    {
+     "n": 19,
+     "cls": "lo"
+    },
+    {
+     "n": 20,
+     "cls": "lo"
+    },
+    {
+     "n": 21,
+     "cls": "lo"
+    },
+    {
+     "n": 22,
+     "cls": "hi"
+    },
+    {
+     "n": 23,
+     "cls": "hi"
+    },
+    {
+     "n": 24,
+     "cls": "lo"
+    },
+    {
+     "n": 25,
+     "cls": "hi"
+    },
+    {
+     "n": 26,
+     "cls": "hi"
+    },
+    {
+     "n": 27,
+     "cls": "lo"
+    },
+    {
+     "n": 28,
+     "cls": "lo"
+    },
+    {
+     "n": 29,
+     "cls": "lo"
+    },
+    {
+     "n": 30,
+     "cls": "hi"
+    },
+    {
+     "n": 31,
+     "cls": "hi"
+    },
+    {
+     "n": 32,
+     "cls": "lo"
+    },
+    {
+     "n": 33,
+     "cls": "lo"
+    },
+    {
+     "n": 34,
+     "cls": "hi"
+    },
+    {
+     "n": 35,
+     "cls": "lo"
+    },
+    {
+     "n": 36,
+     "cls": "lo"
+    },
+    {
+     "n": 37,
+     "cls": "lo"
+    },
+    {
+     "n": 38,
+     "cls": "lo"
+    },
+    {
+     "n": 39,
+     "cls": "hi"
+    },
+    {
+     "n": 40,
+     "cls": "hi"
+    },
+    {
+     "n": 41,
+     "cls": "hi"
+    },
+    {
+     "n": 42,
+     "cls": "lo"
+    },
+    {
+     "n": 43,
+     "cls": "hi"
+    },
+    {
+     "n": 44,
+     "cls": "hi"
+    },
+    {
+     "n": 45,
+     "cls": "lo"
+    },
+    {
+     "n": 46,
+     "cls": "hi"
+    },
+    {
+     "n": 47,
+     "cls": "lo"
+    },
+    {
+     "n": 48,
+     "cls": "lo"
+    },
+    {
+     "n": 49,
+     "cls": "hi"
+    },
+    {
+     "n": 50,
+     "cls": "lo"
+    },
+    {
+     "n": 51,
+     "cls": "hi"
+    },
+    {
+     "n": 52,
+     "cls": "hi"
+    },
+    {
+     "n": 53,
+     "cls": "hi"
+    },
+    {
+     "n": 54,
+     "cls": "lo"
+    },
+    {
+     "n": 55,
+     "cls": "lo"
+    },
+    {
+     "n": 56,
+     "cls": "hi"
+    },
+    {
+     "n": 57,
+     "cls": "hi"
+    },
+    {
+     "n": 58,
+     "cls": "hi"
+    },
+    {
+     "n": 59,
+     "cls": "hi"
+    },
+    {
+     "n": 60,
+     "cls": "lo"
+    },
+    {
+     "n": 61,
+     "cls": "hi"
+    },
+    {
+     "n": 62,
+     "cls": "hi"
+    },
+    {
+     "n": 63,
+     "cls": "hi"
+    },
+    {
+     "n": 64,
+     "cls": "lo"
+    },
+    {
+     "n": 65,
+     "cls": "hi"
+    },
+    {
+     "n": 66,
+     "cls": "hi"
+    },
+    {
+     "n": 67,
+     "cls": "lo"
+    },
+    {
+     "n": 68,
+     "cls": "lo"
+    },
+    {
+     "n": 69,
+     "cls": "hi"
+    },
+    {
+     "n": 70,
+     "cls": "hi"
+    },
+    {
+     "n": 71,
+     "cls": "hi"
+    },
+    {
+     "n": 72,
+     "cls": "lo"
+    },
+    {
+     "n": 73,
+     "cls": "hi"
+    },
+    {
+     "n": 74,
+     "cls": "lo"
+    },
+    {
+     "n": 75,
+     "cls": "hi"
+    },
+    {
+     "n": 76,
+     "cls": "hi"
+    },
+    {
+     "n": 77,
+     "cls": "lo"
+    }
+   ],
+   "focus": 6,
+   "focusLabel": "vs. the same 30 days last year"
+  },
+  "compare": {
+   "unit": "complaints",
+   "cards": [
+    {
+     "label": "Same 30 days last year",
+     "value": 150,
+     "shown": "150",
+     "numberId": "prev30"
+    },
+    {
+     "label": "30 days to Oct 26",
+     "value": 300,
+     "shown": "300",
+     "numberId": "d30",
+     "focus": true
+    }
+   ]
+  },
+  "scenes": {
+   "picture": {
+    "title": "More rat complaints than last year"
+   },
+   "compare": {
+    "title": "Twice last year's count"
+   },
+   "why": {
+    "title": "Complaints are rising across the city",
+    "number": "+10.2%",
+    "numberId": "cityChange",
+    "numberLabel": "Chicago rat complaints vs. the same 30 days last year"
+   }
+  }
+ },
+ "hooks": [
+  {
+   "say": "Lake View rat calls just doubled.",
+   "tts": "Lake View rat calls just doubled."
+  },
+  {
+   "say": "Twice the rat complaints in Lake View.",
+   "tts": "Twice the rat complaints in Lake View."
+  },
+  {
+   "say": "Rat complaints doubled in Lake View.",
+   "tts": "Rat complaints doubled in Lake View."
+  }
+ ],
+ "hook": {
+  "say": "Lake View rat calls just doubled.",
+  "tts": "Lake View rat calls just doubled.",
+  "index": 0
+ },
+ "lines": [
+  {
+   "id": "l1",
+   "scene": "hook",
+   "say": "Those are complaints to the City's 311 line, in the 30 days to Oct 26.",
+   "tts": "Those are complaints to the City's three one one line, in the thirty days to October twenty-sixth.",
+   "show": [
+    "line311",
+    "windowDays",
+    "windowTo"
+   ]
+  },
+  {
+   "id": "l2",
+   "scene": "picture",
+   "say": "Lake View logged 300 rat complaints.",
+   "tts": "Lake View logged three hundred rat complaints.",
+   "show": [
+    "d30"
+   ]
+  },
+  {
+   "id": "l3",
+   "scene": "picture",
+   "say": "It's one of 44 of the city's 77 neighborhoods running above last year.",
+   "tts": "It's one of forty-four of the city's seventy-seven neighborhoods running above last year.",
+   "show": [
+    "areasUp",
+    "areasTotal"
+   ]
+  },
+  {
+   "id": "l4",
+   "scene": "compare",
+   "say": "The same 30 days last year? 150.",
+   "tts": "The same thirty days last year? A hundred fifty.",
+   "show": [
+    "windowDays",
+    "prev30"
+   ]
+  },
+  {
+   "id": "l5",
+   "scene": "compare",
+   "say": "So the count doubled. Up 100%.",
+   "tts": "So the count doubled. Up a hundred percent.",
+   "show": [
+    "change"
+   ]
+  },
+  {
+   "id": "l6",
+   "scene": "why",
+   "say": "Citywide, rat complaints are up 10.2%.",
+   "tts": "Citywide, rat complaints are up ten point two percent.",
+   "show": [
+    "cityChange"
+   ]
+  },
+  {
+   "id": "l7",
+   "scene": "why",
+   "say": "If you run a pest control or cleaning crew, this is where the calls are coming from right now.",
+   "tts": "If you run a pest control or cleaning crew, this is where the calls are coming from right now.",
+   "show": []
+  }
+ ],
+ "cta": {
+  "say": "See your neighborhood free at proofnotfluff dot com slash rats."
+ },
+ "endCard": {
+  "line": "See your neighborhood free",
+  "path": "proofnotfluff.com/rats"
+ },
+ "captions": {
+  "instagram": "Lake View logged 300 rat complaints to Chicago 311 in the 30 days to Oct 26, twice the 150 in the same days last year. Citywide, complaints are up 10.2%. These are complaints to 311, not rats found.\n\nSee your neighborhood free: proofnotfluff.com/rats (link in bio)\nNarrated by an AI voice.\n\n#chicago #lakeview #pestcontrol #chicagorats #smallbusiness"
+ },
+ "voice": {
+  "model": "eleven_v4",
+  "voiceIds": [
+   "test"
+  ]
+ },
+ "music": "quiet-math",
+ "gates": {},
+ "about": "FIXTURE: the worked example of a Rat check spec on video/fixtures/normal.json (the planted Lake View story). Used by the schema examples, spec_lint's planted cases and video_render.py --selftest. Never rendered for posting."
+}

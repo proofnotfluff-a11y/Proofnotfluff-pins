@@ -1,0 +1,137 @@
+{
+ "schema": "pnf.video.qa.v1",
+ "videoId": "2026-10-26-rats-z",
+ "mp4Sha256": "edb88fc81cde73cff0e857d8192c7c5ae0d2673d0497a3143f36a6112d1ff24c",
+ "voice": {
+  "id": "test",
+  "name": "test tones",
+  "model": "test",
+  "test": true,
+  "chars": 568
+ },
+ "checks": [
+  {
+   "name": "length",
+   "value": 52.267,
+   "pass": true,
+   "detail": "52.27 s (45.0 to 60.0)"
+  },
+  {
+   "name": "loudness",
+   "value": {
+    "lufs": -14.0,
+    "truePeak": -5.6
+   },
+   "pass": true,
+   "detail": "-14.0 LUFS (target -14 +/- 1), true peak -5.6 dBTP (at most -1.5)"
+  },
+  {
+   "name": "black",
+   "value": [],
+   "pass": true,
+   "detail": "0 black stretch(es) of 0.5 s or more"
+  },
+  {
+   "name": "frozen",
+   "value": [
+    [
+     6.1,
+     7.3
+    ],
+    [
+     13.1667,
+     14.1667
+    ],
+    [
+     25.7,
+     27.6667
+    ],
+    [
+     29.6333,
+     31.2333
+    ],
+    [
+     34.2667,
+     36.2333
+    ],
+    [
+     45.8333,
+     52.266667
+    ]
+   ],
+   "pass": false,
+   "detail": "5 frozen stretch(es) of 1.0 s or more before the end card at 45.32 s"
+  },
+  {
+   "name": "hook",
+   "value": 2.75,
+   "pass": true,
+   "detail": "hook's last word ends at 2.75 s (by 3.00)"
+  },
+  {
+   "name": "numbers",
+   "value": {
+    "expected": [
+     "10.2",
+     "100",
+     "150",
+     "26",
+     "30",
+     "300",
+     "311",
+     "44",
+     "77"
+    ],
+    "seen": [
+     "10.2",
+     "100",
+     "150",
+     "26",
+     "30",
+     "300",
+     "311",
+     "44",
+     "77"
+    ],
+    "missing": [],
+    "unexpected": []
+   },
+   "pass": true,
+   "detail": "9 of 9 numbers read on screen; missing none; unexpected none"
+  },
+  {
+   "name": "safe-band",
+   "value": [],
+   "pass": true,
+   "detail": "0 word(s) read outside y 270 to 1250 or in the right 150 px"
+  },
+  {
+   "name": "faces",
+   "value": [],
+   "pass": true,
+   "detail": "0 frame(s) with a face at 0.6 or more (52 frames checked)"
+  },
+  {
+   "name": "file",
+   "value": {
+    "sha256": "edb88fc81cde73cff0e857d8192c7c5ae0d2673d0497a3143f36a6112d1ff24c",
+    "bytes": 3216377
+   },
+   "pass": true,
+   "detail": "opens, decodes to the end, 3.2 MB, matches the manifest"
+  },
+  {
+   "name": "layout",
+   "value": [],
+   "pass": true,
+   "detail": "0 layout problem(s) in 83 boxes"
+  },
+  {
+   "name": "spec-match",
+   "value": "5a1136e1c5428651c86775587d43085c6ffef76d87986f4a0c8e220e3cd8b845",
+   "pass": true,
+   "detail": "the render is of this exact spec"
+  }
+ ],
+ "pass": false
+}

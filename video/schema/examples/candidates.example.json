@@ -1,0 +1,2247 @@
+{
+ "schema": "pnf.video.candidates.v1",
+ "videoId": null,
+ "dataFile": "video/fixtures/normal.json",
+ "dataCommit": "uncommitted",
+ "dataSha256": "2685ef0f48fbabc5d8783a587180d5019cb04aae875b9c2d0344de0fd5d8794d",
+ "fetchedAt": "2026-10-27T16:11:02-0500",
+ "windowTo": "2026-10-26",
+ "ageDays": 0.66,
+ "generatedAt": "2026-10-28T08:00:00-05:00",
+ "weights": {
+  "surprise": 0.3,
+  "local": 0.2,
+  "work": 0.2,
+  "novelty": 0.15,
+  "proof": 0.15
+ },
+ "floors": {
+  "A": 20,
+  "C": 20,
+  "D": 20
+ },
+ "candidates": [
+  {
+   "id": "A-6",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 6,
+   "name": "Lake View",
+   "d30": 300,
+   "numbers": [
+    {
+     "label": "Lake View rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=6].d30",
+     "value": 300
+    },
+    {
+     "label": "Lake View, same 30 days last year",
+     "path": "areas[n=6].prev30",
+     "value": 150
+    },
+    {
+     "label": "Lake View change against last year (%)",
+     "path": "areas[n=6].change",
+     "value": 100.0
+    }
+   ],
+   "parts": {
+    "surprise": 1.0,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 1.0
+   },
+   "score": 1.0,
+   "rank": 1
+  },
+  {
+   "id": "A-46",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 46,
+   "name": "South Chicago",
+   "d30": 45,
+   "numbers": [
+    {
+     "label": "South Chicago rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=46].d30",
+     "value": 45
+    },
+    {
+     "label": "South Chicago, same 30 days last year",
+     "path": "areas[n=46].prev30",
+     "value": 14
+    },
+    {
+     "label": "South Chicago change against last year (%)",
+     "path": "areas[n=46].change",
+     "value": 221.4
+    }
+   ],
+   "parts": {
+    "surprise": 1.0,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.45
+   },
+   "score": 0.9175,
+   "rank": 2
+  },
+  {
+   "id": "A-69",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 69,
+   "name": "Greater Grand Crossing",
+   "d30": 51,
+   "numbers": [
+    {
+     "label": "Greater Grand Crossing rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=69].d30",
+     "value": 51
+    },
+    {
+     "label": "Greater Grand Crossing, same 30 days last year",
+     "path": "areas[n=69].prev30",
+     "value": 26
+    },
+    {
+     "label": "Greater Grand Crossing change against last year (%)",
+     "path": "areas[n=69].change",
+     "value": 96.2
+    }
+   ],
+   "parts": {
+    "surprise": 0.962,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.51
+   },
+   "score": 0.9151,
+   "rank": 3
+  },
+  {
+   "id": "A-43",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 43,
+   "name": "South Shore",
+   "d30": 38,
+   "numbers": [
+    {
+     "label": "South Shore rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=43].d30",
+     "value": 38
+    },
+    {
+     "label": "South Shore, same 30 days last year",
+     "path": "areas[n=43].prev30",
+     "value": 19
+    },
+    {
+     "label": "South Shore change against last year (%)",
+     "path": "areas[n=43].change",
+     "value": 100.0
+    }
+   ],
+   "parts": {
+    "surprise": 1.0,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.38
+   },
+   "score": 0.907,
+   "rank": 4
+  },
+  {
+   "id": "A-58",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 58,
+   "name": "Brighton Park",
+   "d30": 46,
+   "numbers": [
+    {
+     "label": "Brighton Park rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=58].d30",
+     "value": 46
+    },
+    {
+     "label": "Brighton Park, same 30 days last year",
+     "path": "areas[n=58].prev30",
+     "value": 24
+    },
+    {
+     "label": "Brighton Park change against last year (%)",
+     "path": "areas[n=58].change",
+     "value": 91.7
+    }
+   ],
+   "parts": {
+    "surprise": 0.917,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.46
+   },
+   "score": 0.8941,
+   "rank": 5
+  },
+  {
+   "id": "A-4",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 4,
+   "name": "Lincoln Square",
+   "d30": 126,
+   "numbers": [
+    {
+     "label": "Lincoln Square rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=4].d30",
+     "value": 126
+    },
+    {
+     "label": "Lincoln Square, same 30 days last year",
+     "path": "areas[n=4].prev30",
+     "value": 77
+    },
+    {
+     "label": "Lincoln Square change against last year (%)",
+     "path": "areas[n=4].change",
+     "value": 63.6
+    }
+   ],
+   "parts": {
+    "surprise": 0.636,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 1.0
+   },
+   "score": 0.8908,
+   "rank": 6
+  },
+  {
+   "id": "A-39",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 39,
+   "name": "Kenwood",
+   "d30": 20,
+   "numbers": [
+    {
+     "label": "Kenwood rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=39].d30",
+     "value": 20
+    },
+    {
+     "label": "Kenwood, same 30 days last year",
+     "path": "areas[n=39].prev30",
+     "value": 4
+    },
+    {
+     "label": "Kenwood change against last year (%)",
+     "path": "areas[n=39].change",
+     "value": 400.0
+    }
+   ],
+   "parts": {
+    "surprise": 1.0,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.2
+   },
+   "score": 0.88,
+   "rank": 7
+  },
+  {
+   "id": "D-6",
+   "type": "D",
+   "typeName": "rising weeks",
+   "area": 6,
+   "name": "Lake View",
+   "d30": 300,
+   "numbers": [
+    {
+     "label": "Lake View complaints, week of 2026-09-29 to 2026-10-05",
+     "path": "areas[n=6].w12[8]",
+     "value": 46
+    },
+    {
+     "label": "Lake View complaints, week of 2026-10-06 to 2026-10-12",
+     "path": "areas[n=6].w12[9]",
+     "value": 50
+    },
+    {
+     "label": "Lake View complaints, week of 2026-10-13 to 2026-10-19",
+     "path": "areas[n=6].w12[10]",
+     "value": 62
+    },
+    {
+     "label": "Lake View complaints, week of 2026-10-20 to 2026-10-26",
+     "path": "areas[n=6].w12[11]",
+     "value": 69
+    },
+    {
+     "label": "Lake View rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=6].d30",
+     "value": 300
+    }
+   ],
+   "parts": {
+    "surprise": 0.5,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 1.0
+   },
+   "score": 0.85,
+   "rank": 8
+  },
+  {
+   "id": "A-1",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 1,
+   "name": "Rogers Park",
+   "d30": 98,
+   "numbers": [
+    {
+     "label": "Rogers Park rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=1].d30",
+     "value": 98
+    },
+    {
+     "label": "Rogers Park, same 30 days last year",
+     "path": "areas[n=1].prev30",
+     "value": 71
+    },
+    {
+     "label": "Rogers Park change against last year (%)",
+     "path": "areas[n=1].change",
+     "value": 38.0
+    }
+   ],
+   "parts": {
+    "surprise": 0.38,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.98
+   },
+   "score": 0.811,
+   "rank": 9
+  },
+  {
+   "id": "A-2",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 2,
+   "name": "West Ridge",
+   "d30": 117,
+   "numbers": [
+    {
+     "label": "West Ridge rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=2].d30",
+     "value": 117
+    },
+    {
+     "label": "West Ridge, same 30 days last year",
+     "path": "areas[n=2].prev30",
+     "value": 88
+    },
+    {
+     "label": "West Ridge change against last year (%)",
+     "path": "areas[n=2].change",
+     "value": 33.0
+    }
+   ],
+   "parts": {
+    "surprise": 0.33,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 1.0
+   },
+   "score": 0.799,
+   "rank": 10
+  },
+  {
+   "id": "A-30",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 30,
+   "name": "South Lawndale",
+   "d30": 92,
+   "numbers": [
+    {
+     "label": "South Lawndale rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=30].d30",
+     "value": 92
+    },
+    {
+     "label": "South Lawndale, same 30 days last year",
+     "path": "areas[n=30].prev30",
+     "value": 68
+    },
+    {
+     "label": "South Lawndale change against last year (%)",
+     "path": "areas[n=30].change",
+     "value": 35.3
+    }
+   ],
+   "parts": {
+    "surprise": 0.353,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.92
+   },
+   "score": 0.7939,
+   "rank": 11
+  },
+  {
+   "id": "A-11",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 11,
+   "name": "Jefferson Park",
+   "d30": 93,
+   "numbers": [
+    {
+     "label": "Jefferson Park rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=11].d30",
+     "value": 93
+    },
+    {
+     "label": "Jefferson Park, same 30 days last year",
+     "path": "areas[n=11].prev30",
+     "value": 132
+    },
+    {
+     "label": "Jefferson Park change against last year (%)",
+     "path": "areas[n=11].change",
+     "value": -29.5
+    }
+   ],
+   "parts": {
+    "surprise": 0.295,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.93
+   },
+   "score": 0.778,
+   "rank": 12
+  },
+  {
+   "id": "A-16",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 16,
+   "name": "Irving Park",
+   "d30": 118,
+   "numbers": [
+    {
+     "label": "Irving Park rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=16].d30",
+     "value": 118
+    },
+    {
+     "label": "Irving Park, same 30 days last year",
+     "path": "areas[n=16].prev30",
+     "value": 96
+    },
+    {
+     "label": "Irving Park change against last year (%)",
+     "path": "areas[n=16].change",
+     "value": 22.9
+    }
+   ],
+   "parts": {
+    "surprise": 0.229,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 1.0
+   },
+   "score": 0.7687,
+   "rank": 13
+  },
+  {
+   "id": "A-17",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 17,
+   "name": "Dunning",
+   "d30": 132,
+   "numbers": [
+    {
+     "label": "Dunning rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=17].d30",
+     "value": 132
+    },
+    {
+     "label": "Dunning, same 30 days last year",
+     "path": "areas[n=17].prev30",
+     "value": 109
+    },
+    {
+     "label": "Dunning change against last year (%)",
+     "path": "areas[n=17].change",
+     "value": 21.1
+    }
+   ],
+   "parts": {
+    "surprise": 0.211,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 1.0
+   },
+   "score": 0.7633,
+   "rank": 14
+  },
+  {
+   "id": "A-25",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 25,
+   "name": "Austin",
+   "d30": 135,
+   "numbers": [
+    {
+     "label": "Austin rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=25].d30",
+     "value": 135
+    },
+    {
+     "label": "Austin, same 30 days last year",
+     "path": "areas[n=25].prev30",
+     "value": 112
+    },
+    {
+     "label": "Austin change against last year (%)",
+     "path": "areas[n=25].change",
+     "value": 20.5
+    }
+   ],
+   "parts": {
+    "surprise": 0.205,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 1.0
+   },
+   "score": 0.7615,
+   "rank": 15
+  },
+  {
+   "id": "A-34",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 34,
+   "name": "Armour Square",
+   "d30": 31,
+   "numbers": [
+    {
+     "label": "Armour Square rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=34].d30",
+     "value": 31
+    },
+    {
+     "label": "Armour Square, same 30 days last year",
+     "path": "areas[n=34].prev30",
+     "value": 20
+    },
+    {
+     "label": "Armour Square change against last year (%)",
+     "path": "areas[n=34].change",
+     "value": 55.0
+    }
+   ],
+   "parts": {
+    "surprise": 0.55,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.31
+   },
+   "score": 0.7615,
+   "rank": 16
+  },
+  {
+   "id": "A-23",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 23,
+   "name": "Humboldt Park",
+   "d30": 106,
+   "numbers": [
+    {
+     "label": "Humboldt Park rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=23].d30",
+     "value": 106
+    },
+    {
+     "label": "Humboldt Park, same 30 days last year",
+     "path": "areas[n=23].prev30",
+     "value": 90
+    },
+    {
+     "label": "Humboldt Park change against last year (%)",
+     "path": "areas[n=23].change",
+     "value": 17.8
+    }
+   ],
+   "parts": {
+    "surprise": 0.178,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 1.0
+   },
+   "score": 0.7534,
+   "rank": 17
+  },
+  {
+   "id": "A-49",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 49,
+   "name": "Roseland",
+   "d30": 60,
+   "numbers": [
+    {
+     "label": "Roseland rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=49].d30",
+     "value": 60
+    },
+    {
+     "label": "Roseland, same 30 days last year",
+     "path": "areas[n=49].prev30",
+     "value": 44
+    },
+    {
+     "label": "Roseland change against last year (%)",
+     "path": "areas[n=49].change",
+     "value": 36.4
+    }
+   ],
+   "parts": {
+    "surprise": 0.364,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.6
+   },
+   "score": 0.7492,
+   "rank": 18
+  },
+  {
+   "id": "A-7",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 7,
+   "name": "Lincoln Park",
+   "d30": 159,
+   "numbers": [
+    {
+     "label": "Lincoln Park rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=7].d30",
+     "value": 159
+    },
+    {
+     "label": "Lincoln Park, same 30 days last year",
+     "path": "areas[n=7].prev30",
+     "value": 138
+    },
+    {
+     "label": "Lincoln Park change against last year (%)",
+     "path": "areas[n=7].change",
+     "value": 15.2
+    }
+   ],
+   "parts": {
+    "surprise": 0.152,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 1.0
+   },
+   "score": 0.7456,
+   "rank": 19
+  },
+  {
+   "id": "A-41",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 41,
+   "name": "Hyde Park",
+   "d30": 38,
+   "numbers": [
+    {
+     "label": "Hyde Park rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=41].d30",
+     "value": 38
+    },
+    {
+     "label": "Hyde Park, same 30 days last year",
+     "path": "areas[n=41].prev30",
+     "value": 26
+    },
+    {
+     "label": "Hyde Park change against last year (%)",
+     "path": "areas[n=41].change",
+     "value": 46.2
+    }
+   ],
+   "parts": {
+    "surprise": 0.462,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.38
+   },
+   "score": 0.7456,
+   "rank": 20
+  },
+  {
+   "id": "A-56",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 56,
+   "name": "Garfield Ridge",
+   "d30": 130,
+   "numbers": [
+    {
+     "label": "Garfield Ridge rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=56].d30",
+     "value": 130
+    },
+    {
+     "label": "Garfield Ridge, same 30 days last year",
+     "path": "areas[n=56].prev30",
+     "value": 113
+    },
+    {
+     "label": "Garfield Ridge change against last year (%)",
+     "path": "areas[n=56].change",
+     "value": 15.0
+    }
+   ],
+   "parts": {
+    "surprise": 0.15,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 1.0
+   },
+   "score": 0.745,
+   "rank": 21
+  },
+  {
+   "id": "A-71",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 71,
+   "name": "Auburn Gresham",
+   "d30": 89,
+   "numbers": [
+    {
+     "label": "Auburn Gresham rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=71].d30",
+     "value": 89
+    },
+    {
+     "label": "Auburn Gresham, same 30 days last year",
+     "path": "areas[n=71].prev30",
+     "value": 75
+    },
+    {
+     "label": "Auburn Gresham change against last year (%)",
+     "path": "areas[n=71].change",
+     "value": 18.7
+    }
+   ],
+   "parts": {
+    "surprise": 0.187,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.89
+   },
+   "score": 0.7396,
+   "rank": 22
+  },
+  {
+   "id": "A-70",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 70,
+   "name": "Ashburn",
+   "d30": 68,
+   "numbers": [
+    {
+     "label": "Ashburn rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=70].d30",
+     "value": 68
+    },
+    {
+     "label": "Ashburn, same 30 days last year",
+     "path": "areas[n=70].prev30",
+     "value": 53
+    },
+    {
+     "label": "Ashburn change against last year (%)",
+     "path": "areas[n=70].change",
+     "value": 28.3
+    }
+   ],
+   "parts": {
+    "surprise": 0.283,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.68
+   },
+   "score": 0.7369,
+   "rank": 23
+  },
+  {
+   "id": "A-60",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 60,
+   "name": "Bridgeport",
+   "d30": 79,
+   "numbers": [
+    {
+     "label": "Bridgeport rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=60].d30",
+     "value": 79
+    },
+    {
+     "label": "Bridgeport, same 30 days last year",
+     "path": "areas[n=60].prev30",
+     "value": 102
+    },
+    {
+     "label": "Bridgeport change against last year (%)",
+     "path": "areas[n=60].change",
+     "value": -22.5
+    }
+   ],
+   "parts": {
+    "surprise": 0.225,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.79
+   },
+   "score": 0.736,
+   "rank": 24
+  },
+  {
+   "id": "A-10",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 10,
+   "name": "Norwood Park",
+   "d30": 80,
+   "numbers": [
+    {
+     "label": "Norwood Park rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=10].d30",
+     "value": 80
+    },
+    {
+     "label": "Norwood Park, same 30 days last year",
+     "path": "areas[n=10].prev30",
+     "value": 102
+    },
+    {
+     "label": "Norwood Park change against last year (%)",
+     "path": "areas[n=10].change",
+     "value": -21.6
+    }
+   ],
+   "parts": {
+    "surprise": 0.216,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.8
+   },
+   "score": 0.7348,
+   "rank": 25
+  },
+  {
+   "id": "A-5",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 5,
+   "name": "North Center",
+   "d30": 92,
+   "numbers": [
+    {
+     "label": "North Center rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=5].d30",
+     "value": 92
+    },
+    {
+     "label": "North Center, same 30 days last year",
+     "path": "areas[n=5].prev30",
+     "value": 80
+    },
+    {
+     "label": "North Center change against last year (%)",
+     "path": "areas[n=5].change",
+     "value": 15.0
+    }
+   ],
+   "parts": {
+    "surprise": 0.15,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.92
+   },
+   "score": 0.733,
+   "rank": 26
+  },
+  {
+   "id": "A-26",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 26,
+   "name": "West Garfield Park",
+   "d30": 33,
+   "numbers": [
+    {
+     "label": "West Garfield Park rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=26].d30",
+     "value": 33
+    },
+    {
+     "label": "West Garfield Park, same 30 days last year",
+     "path": "areas[n=26].prev30",
+     "value": 23
+    },
+    {
+     "label": "West Garfield Park change against last year (%)",
+     "path": "areas[n=26].change",
+     "value": 43.5
+    }
+   ],
+   "parts": {
+    "surprise": 0.435,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.33
+   },
+   "score": 0.73,
+   "rank": 27
+  },
+  {
+   "id": "A-3",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 3,
+   "name": "Uptown",
+   "d30": 82,
+   "numbers": [
+    {
+     "label": "Uptown rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=3].d30",
+     "value": 82
+    },
+    {
+     "label": "Uptown, same 30 days last year",
+     "path": "areas[n=3].prev30",
+     "value": 69
+    },
+    {
+     "label": "Uptown change against last year (%)",
+     "path": "areas[n=3].change",
+     "value": 18.8
+    }
+   ],
+   "parts": {
+    "surprise": 0.188,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.82
+   },
+   "score": 0.7294,
+   "rank": 28
+  },
+  {
+   "id": "A-67",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 67,
+   "name": "West Englewood",
+   "d30": 96,
+   "numbers": [
+    {
+     "label": "West Englewood rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=67].d30",
+     "value": 96
+    },
+    {
+     "label": "West Englewood, same 30 days last year",
+     "path": "areas[n=67].prev30",
+     "value": 108
+    },
+    {
+     "label": "West Englewood change against last year (%)",
+     "path": "areas[n=67].change",
+     "value": -11.1
+    }
+   ],
+   "parts": {
+    "surprise": 0.111,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.96
+   },
+   "score": 0.7273,
+   "rank": 29
+  },
+  {
+   "id": "A-19",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 19,
+   "name": "Belmont Cragin",
+   "d30": 130,
+   "numbers": [
+    {
+     "label": "Belmont Cragin rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=19].d30",
+     "value": 130
+    },
+    {
+     "label": "Belmont Cragin, same 30 days last year",
+     "path": "areas[n=19].prev30",
+     "value": 141
+    },
+    {
+     "label": "Belmont Cragin change against last year (%)",
+     "path": "areas[n=19].change",
+     "value": -7.8
+    }
+   ],
+   "parts": {
+    "surprise": 0.078,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 1.0
+   },
+   "score": 0.7234,
+   "rank": 30
+  },
+  {
+   "id": "A-44",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 44,
+   "name": "Chatham",
+   "d30": 26,
+   "numbers": [
+    {
+     "label": "Chatham rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=44].d30",
+     "value": 26
+    },
+    {
+     "label": "Chatham, same 30 days last year",
+     "path": "areas[n=44].prev30",
+     "value": 18
+    },
+    {
+     "label": "Chatham change against last year (%)",
+     "path": "areas[n=44].change",
+     "value": 44.4
+    }
+   ],
+   "parts": {
+    "surprise": 0.444,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.26
+   },
+   "score": 0.7222,
+   "rank": 31
+  },
+  {
+   "id": "A-22",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 22,
+   "name": "Logan Square",
+   "d30": 175,
+   "numbers": [
+    {
+     "label": "Logan Square rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=22].d30",
+     "value": 175
+    },
+    {
+     "label": "Logan Square, same 30 days last year",
+     "path": "areas[n=22].prev30",
+     "value": 164
+    },
+    {
+     "label": "Logan Square change against last year (%)",
+     "path": "areas[n=22].change",
+     "value": 6.7
+    }
+   ],
+   "parts": {
+    "surprise": 0.067,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 1.0
+   },
+   "score": 0.7201,
+   "rank": 32
+  },
+  {
+   "id": "A-15",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 15,
+   "name": "Portage Park",
+   "d30": 161,
+   "numbers": [
+    {
+     "label": "Portage Park rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=15].d30",
+     "value": 161
+    },
+    {
+     "label": "Portage Park, same 30 days last year",
+     "path": "areas[n=15].prev30",
+     "value": 172
+    },
+    {
+     "label": "Portage Park change against last year (%)",
+     "path": "areas[n=15].change",
+     "value": -6.4
+    }
+   ],
+   "parts": {
+    "surprise": 0.064,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 1.0
+   },
+   "score": 0.7192,
+   "rank": 33
+  },
+  {
+   "id": "A-66",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 66,
+   "name": "Chicago Lawn",
+   "d30": 72,
+   "numbers": [
+    {
+     "label": "Chicago Lawn rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=66].d30",
+     "value": 72
+    },
+    {
+     "label": "Chicago Lawn, same 30 days last year",
+     "path": "areas[n=66].prev30",
+     "value": 60
+    },
+    {
+     "label": "Chicago Lawn change against last year (%)",
+     "path": "areas[n=66].change",
+     "value": 20.0
+    }
+   ],
+   "parts": {
+    "surprise": 0.2,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.72
+   },
+   "score": 0.718,
+   "rank": 34
+  },
+  {
+   "id": "A-73",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 73,
+   "name": "Washington Heights",
+   "d30": 53,
+   "numbers": [
+    {
+     "label": "Washington Heights rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=73].d30",
+     "value": 53
+    },
+    {
+     "label": "Washington Heights, same 30 days last year",
+     "path": "areas[n=73].prev30",
+     "value": 41
+    },
+    {
+     "label": "Washington Heights change against last year (%)",
+     "path": "areas[n=73].change",
+     "value": 29.3
+    }
+   ],
+   "parts": {
+    "surprise": 0.293,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.53
+   },
+   "score": 0.7174,
+   "rank": 35
+  },
+  {
+   "id": "A-62",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 62,
+   "name": "West Elsdon",
+   "d30": 27,
+   "numbers": [
+    {
+     "label": "West Elsdon rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=62].d30",
+     "value": 27
+    },
+    {
+     "label": "West Elsdon, same 30 days last year",
+     "path": "areas[n=62].prev30",
+     "value": 19
+    },
+    {
+     "label": "West Elsdon change against last year (%)",
+     "path": "areas[n=62].change",
+     "value": 42.1
+    }
+   ],
+   "parts": {
+    "surprise": 0.421,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.27
+   },
+   "score": 0.7168,
+   "rank": 36
+  },
+  {
+   "id": "A-14",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 14,
+   "name": "Albany Park",
+   "d30": 94,
+   "numbers": [
+    {
+     "label": "Albany Park rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=14].d30",
+     "value": 94
+    },
+    {
+     "label": "Albany Park, same 30 days last year",
+     "path": "areas[n=14].prev30",
+     "value": 102
+    },
+    {
+     "label": "Albany Park change against last year (%)",
+     "path": "areas[n=14].change",
+     "value": -7.8
+    }
+   ],
+   "parts": {
+    "surprise": 0.078,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.94
+   },
+   "score": 0.7144,
+   "rank": 37
+  },
+  {
+   "id": "A-53",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 53,
+   "name": "West Pullman",
+   "d30": 33,
+   "numbers": [
+    {
+     "label": "West Pullman rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=53].d30",
+     "value": 33
+    },
+    {
+     "label": "West Pullman, same 30 days last year",
+     "path": "areas[n=53].prev30",
+     "value": 24
+    },
+    {
+     "label": "West Pullman change against last year (%)",
+     "path": "areas[n=53].change",
+     "value": 37.5
+    }
+   ],
+   "parts": {
+    "surprise": 0.375,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.33
+   },
+   "score": 0.712,
+   "rank": 38
+  },
+  {
+   "id": "A-24",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 24,
+   "name": "West Town",
+   "d30": 198,
+   "numbers": [
+    {
+     "label": "West Town rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=24].d30",
+     "value": 198
+    },
+    {
+     "label": "West Town, same 30 days last year",
+     "path": "areas[n=24].prev30",
+     "value": 206
+    },
+    {
+     "label": "West Town change against last year (%)",
+     "path": "areas[n=24].change",
+     "value": -3.9
+    }
+   ],
+   "parts": {
+    "surprise": 0.039,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 1.0
+   },
+   "score": 0.7117,
+   "rank": 39
+  },
+  {
+   "id": "A-21",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 21,
+   "name": "Avondale",
+   "d30": 86,
+   "numbers": [
+    {
+     "label": "Avondale rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=21].d30",
+     "value": 86
+    },
+    {
+     "label": "Avondale, same 30 days last year",
+     "path": "areas[n=21].prev30",
+     "value": 94
+    },
+    {
+     "label": "Avondale change against last year (%)",
+     "path": "areas[n=21].change",
+     "value": -8.5
+    }
+   ],
+   "parts": {
+    "surprise": 0.085,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.86
+   },
+   "score": 0.7045,
+   "rank": 40
+  },
+  {
+   "id": "A-57",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 57,
+   "name": "Archer Heights",
+   "d30": 25,
+   "numbers": [
+    {
+     "label": "Archer Heights rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=57].d30",
+     "value": 25
+    },
+    {
+     "label": "Archer Heights, same 30 days last year",
+     "path": "areas[n=57].prev30",
+     "value": 18
+    },
+    {
+     "label": "Archer Heights change against last year (%)",
+     "path": "areas[n=57].change",
+     "value": 38.9
+    }
+   ],
+   "parts": {
+    "surprise": 0.389,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.25
+   },
+   "score": 0.7042,
+   "rank": 41
+  },
+  {
+   "id": "A-12",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 12,
+   "name": "Forest Glen",
+   "d30": 37,
+   "numbers": [
+    {
+     "label": "Forest Glen rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=12].d30",
+     "value": 37
+    },
+    {
+     "label": "Forest Glen, same 30 days last year",
+     "path": "areas[n=12].prev30",
+     "value": 28
+    },
+    {
+     "label": "Forest Glen change against last year (%)",
+     "path": "areas[n=12].change",
+     "value": 32.1
+    }
+   ],
+   "parts": {
+    "surprise": 0.321,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.37
+   },
+   "score": 0.7018,
+   "rank": 42
+  },
+  {
+   "id": "A-65",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 65,
+   "name": "West Lawn",
+   "d30": 50,
+   "numbers": [
+    {
+     "label": "West Lawn rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=65].d30",
+     "value": 50
+    },
+    {
+     "label": "West Lawn, same 30 days last year",
+     "path": "areas[n=65].prev30",
+     "value": 40
+    },
+    {
+     "label": "West Lawn change against last year (%)",
+     "path": "areas[n=65].change",
+     "value": 25.0
+    }
+   ],
+   "parts": {
+    "surprise": 0.25,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.5
+   },
+   "score": 0.7,
+   "rank": 43
+  },
+  {
+   "id": "A-13",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 13,
+   "name": "North Park",
+   "d30": 29,
+   "numbers": [
+    {
+     "label": "North Park rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=13].d30",
+     "value": 29
+    },
+    {
+     "label": "North Park, same 30 days last year",
+     "path": "areas[n=13].prev30",
+     "value": 44
+    },
+    {
+     "label": "North Park change against last year (%)",
+     "path": "areas[n=13].change",
+     "value": -34.1
+    }
+   ],
+   "parts": {
+    "surprise": 0.341,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.29
+   },
+   "score": 0.6958,
+   "rank": 44
+  },
+  {
+   "id": "A-31",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 31,
+   "name": "Lower West Side",
+   "d30": 73,
+   "numbers": [
+    {
+     "label": "Lower West Side rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=31].d30",
+     "value": 73
+    },
+    {
+     "label": "Lower West Side, same 30 days last year",
+     "path": "areas[n=31].prev30",
+     "value": 68
+    },
+    {
+     "label": "Lower West Side change against last year (%)",
+     "path": "areas[n=31].change",
+     "value": 7.4
+    }
+   ],
+   "parts": {
+    "surprise": 0.074,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.73
+   },
+   "score": 0.6817,
+   "rank": 45
+  },
+  {
+   "id": "A-20",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 20,
+   "name": "Hermosa",
+   "d30": 68,
+   "numbers": [
+    {
+     "label": "Hermosa rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=20].d30",
+     "value": 68
+    },
+    {
+     "label": "Hermosa, same 30 days last year",
+     "path": "areas[n=20].prev30",
+     "value": 73
+    },
+    {
+     "label": "Hermosa change against last year (%)",
+     "path": "areas[n=20].change",
+     "value": -6.8
+    }
+   ],
+   "parts": {
+    "surprise": 0.068,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.68
+   },
+   "score": 0.6724,
+   "rank": 46
+  },
+  {
+   "id": "A-28",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 28,
+   "name": "Near West Side",
+   "d30": 43,
+   "numbers": [
+    {
+     "label": "Near West Side rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=28].d30",
+     "value": 43
+    },
+    {
+     "label": "Near West Side, same 30 days last year",
+     "path": "areas[n=28].prev30",
+     "value": 53
+    },
+    {
+     "label": "Near West Side change against last year (%)",
+     "path": "areas[n=28].change",
+     "value": -18.9
+    }
+   ],
+   "parts": {
+    "surprise": 0.189,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.43
+   },
+   "score": 0.6712,
+   "rank": 47
+  },
+  {
+   "id": "C-8-fast",
+   "type": "C",
+   "typeName": "City response time",
+   "area": 8,
+   "name": "Near North Side",
+   "d30": 57,
+   "numbers": [
+    {
+     "label": "Near North Side median days to close a rat complaint, 30 days to 2026-10-26",
+     "path": "areas[n=8].medClose",
+     "value": 6.9
+    },
+    {
+     "label": "Near North Side complaints closed, 30 days to 2026-10-26",
+     "path": "areas[n=8].closed30",
+     "value": 53
+    },
+    {
+     "label": "Chicago median days to close, 30 days to 2026-10-26",
+     "path": "counts.medClose",
+     "value": 12.8
+    }
+   ],
+   "parts": {
+    "surprise": 0.4609,
+    "local": 1,
+    "work": 0.5,
+    "novelty": 1,
+    "proof": 0.53
+   },
+   "score": 0.6678,
+   "side": "fast",
+   "rank": 48
+  },
+  {
+   "id": "A-38",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 38,
+   "name": "Grand Boulevard",
+   "d30": 25,
+   "numbers": [
+    {
+     "label": "Grand Boulevard rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=38].d30",
+     "value": 25
+    },
+    {
+     "label": "Grand Boulevard, same 30 days last year",
+     "path": "areas[n=38].prev30",
+     "value": 34
+    },
+    {
+     "label": "Grand Boulevard change against last year (%)",
+     "path": "areas[n=38].change",
+     "value": -26.5
+    }
+   ],
+   "parts": {
+    "surprise": 0.265,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.25
+   },
+   "score": 0.667,
+   "rank": 49
+  },
+  {
+   "id": "A-8",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 8,
+   "name": "Near North Side",
+   "d30": 57,
+   "numbers": [
+    {
+     "label": "Near North Side rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=8].d30",
+     "value": 57
+    },
+    {
+     "label": "Near North Side, same 30 days last year",
+     "path": "areas[n=8].prev30",
+     "value": 52
+    },
+    {
+     "label": "Near North Side change against last year (%)",
+     "path": "areas[n=8].change",
+     "value": 9.6
+    }
+   ],
+   "parts": {
+    "surprise": 0.096,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.57
+   },
+   "score": 0.6643,
+   "rank": 50
+  },
+  {
+   "id": "A-75",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 75,
+   "name": "Morgan Park",
+   "d30": 38,
+   "numbers": [
+    {
+     "label": "Morgan Park rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=75].d30",
+     "value": 38
+    },
+    {
+     "label": "Morgan Park, same 30 days last year",
+     "path": "areas[n=75].prev30",
+     "value": 32
+    },
+    {
+     "label": "Morgan Park change against last year (%)",
+     "path": "areas[n=75].change",
+     "value": 18.8
+    }
+   ],
+   "parts": {
+    "surprise": 0.188,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.38
+   },
+   "score": 0.6634,
+   "rank": 51
+  },
+  {
+   "id": "A-29",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 29,
+   "name": "North Lawndale",
+   "d30": 54,
+   "numbers": [
+    {
+     "label": "North Lawndale rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=29].d30",
+     "value": 54
+    },
+    {
+     "label": "North Lawndale, same 30 days last year",
+     "path": "areas[n=29].prev30",
+     "value": 60
+    },
+    {
+     "label": "North Lawndale change against last year (%)",
+     "path": "areas[n=29].change",
+     "value": -10.0
+    }
+   ],
+   "parts": {
+    "surprise": 0.1,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.54
+   },
+   "score": 0.661,
+   "rank": 52
+  },
+  {
+   "id": "A-74",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 74,
+   "name": "Mount Greenwood",
+   "d30": 40,
+   "numbers": [
+    {
+     "label": "Mount Greenwood rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=74].d30",
+     "value": 40
+    },
+    {
+     "label": "Mount Greenwood, same 30 days last year",
+     "path": "areas[n=74].prev30",
+     "value": 48
+    },
+    {
+     "label": "Mount Greenwood change against last year (%)",
+     "path": "areas[n=74].change",
+     "value": -16.7
+    }
+   ],
+   "parts": {
+    "surprise": 0.167,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.4
+   },
+   "score": 0.6601,
+   "rank": 53
+  },
+  {
+   "id": "A-64",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 64,
+   "name": "Clearing",
+   "d30": 67,
+   "numbers": [
+    {
+     "label": "Clearing rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=64].d30",
+     "value": 67
+    },
+    {
+     "label": "Clearing, same 30 days last year",
+     "path": "areas[n=64].prev30",
+     "value": 69
+    },
+    {
+     "label": "Clearing change against last year (%)",
+     "path": "areas[n=64].change",
+     "value": -2.9
+    }
+   ],
+   "parts": {
+    "surprise": 0.029,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.67
+   },
+   "score": 0.6592,
+   "rank": 54
+  },
+  {
+   "id": "A-27",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 27,
+   "name": "East Garfield Park",
+   "d30": 22,
+   "numbers": [
+    {
+     "label": "East Garfield Park rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=27].d30",
+     "value": 22
+    },
+    {
+     "label": "East Garfield Park, same 30 days last year",
+     "path": "areas[n=27].prev30",
+     "value": 28
+    },
+    {
+     "label": "East Garfield Park change against last year (%)",
+     "path": "areas[n=27].change",
+     "value": -21.4
+    }
+   ],
+   "parts": {
+    "surprise": 0.214,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.22
+   },
+   "score": 0.6472,
+   "rank": 55
+  },
+  {
+   "id": "A-61",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 61,
+   "name": "New City",
+   "d30": 61,
+   "numbers": [
+    {
+     "label": "New City rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=61].d30",
+     "value": 61
+    },
+    {
+     "label": "New City, same 30 days last year",
+     "path": "areas[n=61].prev30",
+     "value": 60
+    },
+    {
+     "label": "New City change against last year (%)",
+     "path": "areas[n=61].change",
+     "value": 1.7
+    }
+   ],
+   "parts": {
+    "surprise": 0.017,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.61
+   },
+   "score": 0.6466,
+   "rank": 56
+  },
+  {
+   "id": "A-18",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 18,
+   "name": "Montclare",
+   "d30": 26,
+   "numbers": [
+    {
+     "label": "Montclare rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=18].d30",
+     "value": 26
+    },
+    {
+     "label": "Montclare, same 30 days last year",
+     "path": "areas[n=18].prev30",
+     "value": 22
+    },
+    {
+     "label": "Montclare change against last year (%)",
+     "path": "areas[n=18].change",
+     "value": 18.2
+    }
+   ],
+   "parts": {
+    "surprise": 0.182,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.26
+   },
+   "score": 0.6436,
+   "rank": 57
+  },
+  {
+   "id": "C-61-slow",
+   "type": "C",
+   "typeName": "City response time",
+   "area": 61,
+   "name": "New City",
+   "d30": 61,
+   "numbers": [
+    {
+     "label": "New City median days to close a rat complaint, 30 days to 2026-10-26",
+     "path": "areas[n=61].medClose",
+     "value": 14.4
+    },
+    {
+     "label": "New City complaints closed, 30 days to 2026-10-26",
+     "path": "areas[n=61].closed30",
+     "value": 101
+    },
+    {
+     "label": "Chicago median days to close, 30 days to 2026-10-26",
+     "path": "counts.medClose",
+     "value": 12.8
+    }
+   ],
+   "parts": {
+    "surprise": 0.125,
+    "local": 1,
+    "work": 0.5,
+    "novelty": 1,
+    "proof": 1.0
+   },
+   "score": 0.6375,
+   "side": "slow",
+   "rank": 58
+  },
+  {
+   "id": "A-77",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 77,
+   "name": "Edgewater",
+   "d30": 45,
+   "numbers": [
+    {
+     "label": "Edgewater rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=77].d30",
+     "value": 45
+    },
+    {
+     "label": "Edgewater, same 30 days last year",
+     "path": "areas[n=77].prev30",
+     "value": 45
+    },
+    {
+     "label": "Edgewater change against last year (%)",
+     "path": "areas[n=77].change",
+     "value": 0.0
+    }
+   ],
+   "parts": {
+    "surprise": 0.0,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.45
+   },
+   "score": 0.6175,
+   "rank": 59
+  },
+  {
+   "id": "A-68",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 68,
+   "name": "Englewood",
+   "d30": 37,
+   "numbers": [
+    {
+     "label": "Englewood rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=68].d30",
+     "value": 37
+    },
+    {
+     "label": "Englewood, same 30 days last year",
+     "path": "areas[n=68].prev30",
+     "value": 38
+    },
+    {
+     "label": "Englewood change against last year (%)",
+     "path": "areas[n=68].change",
+     "value": -2.6
+    }
+   ],
+   "parts": {
+    "surprise": 0.026,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.37
+   },
+   "score": 0.6133,
+   "rank": 60
+  },
+  {
+   "id": "A-72",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 72,
+   "name": "Beverly",
+   "d30": 20,
+   "numbers": [
+    {
+     "label": "Beverly rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=72].d30",
+     "value": 20
+    },
+    {
+     "label": "Beverly, same 30 days last year",
+     "path": "areas[n=72].prev30",
+     "value": 22
+    },
+    {
+     "label": "Beverly change against last year (%)",
+     "path": "areas[n=72].change",
+     "value": -9.1
+    }
+   ],
+   "parts": {
+    "surprise": 0.091,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.2
+   },
+   "score": 0.6073,
+   "rank": 61
+  },
+  {
+   "id": "A-63",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 63,
+   "name": "Gage Park",
+   "d30": 27,
+   "numbers": [
+    {
+     "label": "Gage Park rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=63].d30",
+     "value": 27
+    },
+    {
+     "label": "Gage Park, same 30 days last year",
+     "path": "areas[n=63].prev30",
+     "value": 26
+    },
+    {
+     "label": "Gage Park change against last year (%)",
+     "path": "areas[n=63].change",
+     "value": 3.8
+    }
+   ],
+   "parts": {
+    "surprise": 0.038,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.27
+   },
+   "score": 0.6019,
+   "rank": 62
+  },
+  {
+   "id": "A-42",
+   "type": "A",
+   "typeName": "neighborhood jump",
+   "area": 42,
+   "name": "Woodlawn",
+   "d30": 20,
+   "numbers": [
+    {
+     "label": "Woodlawn rat complaints, 30 days to 2026-10-26",
+     "path": "areas[n=42].d30",
+     "value": 20
+    },
+    {
+     "label": "Woodlawn, same 30 days last year",
+     "path": "areas[n=42].prev30",
+     "value": 20
+    },
+    {
+     "label": "Woodlawn change against last year (%)",
+     "path": "areas[n=42].change",
+     "value": 0.0
+    }
+   ],
+   "parts": {
+    "surprise": 0.0,
+    "local": 1,
+    "work": 1,
+    "novelty": 1,
+    "proof": 0.2
+   },
+   "score": 0.58,
+   "rank": 63
+  },
+  {
+   "id": "B-0",
+   "type": "B",
+   "typeName": "city against last year",
+   "area": 0,
+   "name": "Chicago",
+   "d30": 4554,
+   "numbers": [
+    {
+     "label": "Chicago rat complaints, 30 days to 2026-10-26",
+     "path": "counts.d30",
+     "value": 4554
+    },
+    {
+     "label": "Chicago, same 30 days last year",
+     "path": "counts.prev30",
+     "value": 4131
+    },
+    {
+     "label": "Chicago change against last year (%)",
+     "path": "counts.change",
+     "value": 10.2
+    }
+   ],
+   "parts": {
+    "surprise": 0.102,
+    "local": 0.5,
+    "work": 0.5,
+    "novelty": 1,
+    "proof": 1.0
+   },
+   "score": 0.5306,
+   "rank": 64
+  }
+ ],
+ "plan": {
+  "week": null,
+  "slots": [
+   {
+    "slot": "Mon",
+    "candidate": "A-6",
+    "type": "A",
+    "area": 6,
+    "name": "Lake View",
+    "picture": "map",
+    "score": 1.0
+   },
+   {
+    "slot": "Wed",
+    "candidate": "D-6",
+    "type": "D",
+    "area": 6,
+    "name": "Lake View",
+    "picture": "line",
+    "score": 0.85
+   },
+   {
+    "slot": "Fri",
+    "candidate": "C-8-fast",
+    "type": "C",
+    "area": 8,
+    "name": "Near North Side",
+    "picture": "bars",
+    "score": 0.6678
+   }
+  ],
+  "note": ""
+ },
+ "chosen": "A-6"
+}

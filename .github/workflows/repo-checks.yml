@@ -14,7 +14,7 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - name: Run the checks
@@ -24,6 +24,9 @@ jobs:
         run: |
           set -o pipefail
           pip install --quiet cryptography openpyxl || echo "packages not installed; builder contacts get the shape check only"
+          # the video check's planted failures need ffmpeg, Tesseract, OpenCV (YuNet) and the font tools (Oct 27, 2026)
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg tesseract-ocr > /dev/null
+          pip install --quiet fonttools brotli pillow jsonschema opencv-python-headless
           python3 tools/check_repo.py | tee check.txt
       - name: Summary
         if: always()

@@ -123,6 +123,8 @@ def spoken(spec):
 
 def problems(spec, path=""):
     """Every rule the spec breaks, as short lines. An undated or older spec without a formula is not checked."""
+    if spec.get("schema") == "pnf.video.spec.v1":   # the video engine's Rat check formula (blueprint gate 1)
+        return rat_check_problems(spec, path)
     out = []
     formula = spec.get("formula")
     dated = re.match(r"(\d{4}-\d{2}-\d{2})-", os.path.basename(path or ""))
@@ -231,6 +233,183 @@ def problems(spec, path=""):
         out.append(f"the Reel caption has {len(tags)} hashtags (3 to 5)")
     if not dated or dated.group(1) >= HEARD_START:
         out += heard_problems(spec)
+    return out
+
+
+# ---------------------------------------------------------------------------------------------------------------------
+# RAT CHECK (video engine Phase 0; PNF Video Engine Blueprint, "Story selection and the content system" and the MVP build
+# spec): frame one shows the number; a hook of about 6 words spoken by 3.0 s (3 to 5 hooks written, one picked); one
+# claim; numbers said the way a person says them; one call to action spoken once, "See your neighborhood free at
+# proofnotfluff dot com slash rats."; the end card shows proofnotfluff.com/rats; captions per platform; never on screen a
+# business, a person or an address; a count is complaints to 311, never rats found (cmo/CAROUSEL_TOPICS.md, rats).
+
+RAT_SCENES = ["hook", "picture", "compare", "why"]
+RAT_CTA = "See your neighborhood free at proofnotfluff dot com slash rats."
+RATS_FOUND = re.compile(r"\b(?:rats? (?:found|seen|spotted|counted|sightings?)|rat population|number of rats|(?:more|fewer|less) rats\b|"
+                        r"(?:found|saw|spotted|counted) (?:[\d,]+ )?rats\b|\d[\d,]* rats\b|"
+                        r"rats (?:are|were|is) (?:up|down|rising|falling)|infest\w*)", re.I)
+ADDRESS = re.compile(r"\b\d{2,5} [NSEW]\.? [A-Z][a-z]+ (?:St|Ave|Blvd|Rd|Dr|Pl|Ct)\b|\b\d{3,5} (?:North|South|East|West) ", re.I)
+BUSINESS = re.compile(r"\b(?:LLC|Inc\.?|Corp\.?|Restaurant|Grill|Pizzeria|Taqueria|Exterminat\w+|Pest Control Co)\b")
+SPEECH_CPS = 14.0   # spoken characters a second, about (el_voice.py's 12 runs slow for Eleven v4); length is re-measured at render
+
+
+def _num_tokens(text):
+    out = set()
+    for tok in re.split(r"\s+", text or ""):
+        tok = tok.strip(".,;:()?!\"'")
+        m = re.fullmatch(r"[+\-]?(\d[\d,]*(?:\.\d+)?)%?", tok)
+        if m:
+            t = m.group(1).replace(",", "")
+            if "." in t:
+                t = t.rstrip("0").rstrip(".")
+            out.add(t)
+    return out
+
+
+def rat_texts(spec):
+    """(where, text) for everything the video shows or says, the post caption included."""
+    out = []
+    for i, h in enumerate(spec.get("hooks") or []):
+        out += [(f"hook {i + 1}", h.get("say", "")), (f"hook {i + 1} heard", h.get("tts", ""))]
+    for l in spec.get("lines") or []:
+        out += [(f"line {l.get('id')}", l.get("say", "")), (f"line {l.get('id')} heard", l.get("tts", ""))]
+    sc = spec.get("screen") or {}
+    out += [("headline", f"{(sc.get('headline') or {}).get('number', '')} {(sc.get('headline') or {}).get('label', '')}"),
+            ("area", sc.get("area", "")), ("period", sc.get("period", "")), ("eyebrow", sc.get("eyebrow", ""))]
+    for k, v in (sc.get("scenes") or {}).items():
+        out += [(f"{k} title", v.get("title", "")), (f"{k} number", f"{v.get('number', '')} {v.get('numberLabel', '')}")]
+    ch = sc.get("chart") or {}
+    for r in ch.get("rows") or []:
+        out.append(("bar", f"{r.get('label', '')} {r.get('shown', '')}"))
+    out += [("chart", " ".join(str(ch.get(k, "")) for k in ("firstShown", "lastShown", "fromShown", "toShown", "focusLabel")))]
+    for t in ch.get("legend") or []:
+        out.append(("legend", t[1]))
+    for c in (sc.get("compare") or {}).get("cards") or []:
+        out.append(("compare card", f"{c.get('label', '')} {c.get('shown', '')}"))
+    out += [("end card", " ".join(str((spec.get("endCard") or {}).get(k, "")) for k in ("line", "path", "sub")))]
+    out += [("instagram caption", (spec.get("captions") or {}).get("instagram", ""))]
+    return out
+
+
+def rat_check_problems(spec, path="", allow_test=False):
+    out = []
+    if spec.get("template") != "rat-check":
+        out.append(f"template {spec.get('template')!r} is not rat-check")
+    if spec.get("storyType") not in ("A", "B", "C", "D"):
+        out.append(f"storyType {spec.get('storyType')!r}")
+    if spec.get("picture") not in ("map", "bars", "line"):
+        out.append(f"picture {spec.get('picture')!r}")
+    hooks = spec.get("hooks") or []
+    if not 3 <= len(hooks) <= 5:
+        out.append(f"{len(hooks)} hooks written (3 to 5, then one is picked two at a time)")
+    for i, h in enumerate(hooks, 1):
+        n = len(TAG.sub("", h.get("tts", "")).split())
+        if n > 7:
+            out.append(f"hook {i} is {n} words heard (about 6, said by 3.0 s): {h.get('tts')!r}")
+    hook = spec.get("hook") or {}
+    if not hook.get("say"):
+        out.append("no hook picked")
+    elif not any(h.get("say") == hook.get("say") and h.get("tts") == hook.get("tts") for h in hooks):
+        out.append("the picked hook is not one of the hooks written")
+    lines = spec.get("lines") or []
+    if not 4 <= len(lines) <= 10:
+        out.append(f"{len(lines)} lines (4 to 10)")
+    order = [l.get("scene") for l in lines]
+    seen = []
+    for sc in order:
+        if sc not in RAT_SCENES:
+            out.append(f"scene {sc!r} is not one of {RAT_SCENES}")
+            continue
+        if not seen or seen[-1] != sc:
+            if sc in seen:
+                out.append(f"scene {sc!r} comes back after another scene (each scene once, in order)")
+            seen.append(sc)
+    if seen and [RAT_SCENES.index(x) for x in seen] != sorted(RAT_SCENES.index(x) for x in seen):
+        out.append(f"scenes run {seen}, not in the order hook, picture, compare, why")
+    if "picture" not in seen:
+        out.append("no picture scene: the map, bars or line must be on screen")
+    ids = [l.get("id") for l in lines]
+    if len(set(ids)) != len(ids) or "hook" in ids or "cta" in ids:
+        out.append("line ids must be unique and not 'hook' or 'cta'")
+    cta = spec.get("cta") or {}
+    if cta.get("say") != RAT_CTA or (cta.get("tts") or cta["say"]) != RAT_CTA:
+        out.append(f"the close must read exactly {RAT_CTA!r}")
+    ec = spec.get("endCard") or {}
+    if ec.get("path") != "proofnotfluff.com/rats" or ec.get("line") != "See your neighborhood free":
+        out.append("the end card must show 'See your neighborhood free' and proofnotfluff.com/rats")
+    heard = [hook.get("tts") or hook.get("say", "")] + [l.get("tts") or l.get("say", "") for l in lines] + [cta.get("tts") or cta.get("say", "")]
+    said = sum(h.lower().count("proofnotfluff dot com") for h in heard)
+    if said != 1:
+        out.append(f"the close is spoken {said} times (exactly once, at the end)")
+    for h in heard + [x.get("tts", "") for x in hooks]:
+        if TAG.search(h):
+            out.append(f"audio tag in {h!r}: Eleven v4 audio tags are not confirmed, so none in the MVP")
+        m = RUN_TOGETHER.search(h)
+        if m:
+            out.append(f"heard line {h!r} runs two numbers together ({m.group(0)!r})")
+        if re.search(r"[\d$%]", h):
+            out.append(f"heard line {h!r} still has digits, '$' or '%': spell it the way it is said")
+    secs = sum(len(h) for h in heard) / SPEECH_CPS + 0.4 * len(heard)
+    if not 36 <= secs <= 54:
+        out.append(f"about {secs:.0f} s of speech by the character count (36 to 54, so the cut lands at 45 to 60 s); fit the script before any character is spent")
+    ev = (spec.get("evidence") or {}).get("numbers") or []
+    known = set()
+    for x in ev:
+        for sh in x.get("shown") or []:
+            known |= _num_tokens(sh)
+    ev_ids = {x.get("id") for x in ev}
+    for l in lines:
+        for i in l.get("show") or []:
+            if i not in ev_ids:
+                out.append(f"line {l.get('id')} shows {i!r}, which is not in the evidence bundle")
+    for sc_name, v in ((spec.get("screen") or {}).get("scenes") or {}).items():
+        if v.get("numberId") and v["numberId"] not in ev_ids:
+            out.append(f"{sc_name} scene number {v['numberId']!r} is not in the evidence bundle")
+    texts = rat_texts(spec)
+    for where, text in texts:
+        if where.endswith("heard"):
+            continue
+        for n in sorted(_num_tokens(text) - known):
+            out.append(f"{where}: the number {n} is not in the evidence bundle (every number comes from the file, with its path)")
+    blob = "\n".join(t for _, t in texts)
+    if "\u2014" in blob or "\u2013" in blob:
+        out.append("an em or en dash")
+    for m in RATS_FOUND.finditer(blob):
+        if re.search(r"\b(?:not|never|no)\s+$", blob[max(0, m.start() - 8):m.start()], re.I):
+            continue   # "complaints, not rats found" says the rule, it does not break it
+        out.append(f"{m.group(0)!r}: a count is complaints to 311, never rats found")
+        break
+    for rx, what in ((ADDRESS, "an address"), (BUSINESS, "a business"), (PEOPLE, "an invented person")):
+        m = rx.search(blob)
+        if m:
+            out.append(f"{what} ({m.group(0)!r}): never on screen or in the caption")
+    for m in HYPE.finditer(blob):
+        out.append(f"hype or fake urgency ({m.group(0)!r})")
+    cap = (spec.get("captions") or {}).get("instagram", "")
+    for need, why in (("proofnotfluff.com/rats", "the short path"), ("link in bio", "the bio link"), ("AI voice", "our AI narrator named as AI")):
+        if need.lower() not in cap.lower():
+            out.append(f"the Instagram caption lacks {need!r} ({why})")
+    if "complaint" not in cap.lower():
+        out.append("the Instagram caption must say these are complaints (never rats found)")
+    if "etsy" in cap.lower():
+        out.append("the Instagram caption mentions Etsy")
+    if not 3 <= len(HASHTAG.findall(cap)) <= 5:
+        out.append(f"the Instagram caption has {len(HASHTAG.findall(cap))} hashtags (3 to 5)")
+    if len(cap) > 2200:
+        out.append(f"the Instagram caption is {len(cap)} characters (Instagram's limit is 2,200)")
+    voice = spec.get("voice") or {}
+    if voice.get("model") != "eleven_v4":
+        out.append(f"voice model {voice.get('model')!r} (Eleven v4 is pinned)")
+    ids = voice.get("voiceIds") or []
+    if not ids:
+        out.append("no voice")
+    for v in ids:
+        if v not in EL_VOICES and not (allow_test and v == "test"):
+            out.append(f"voice {v!r} is not one of the five approved Oct 15 ({', '.join(EL_VOICES.values())})")
+    music = spec.get("music")
+    lib = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "music", "library.json"), encoding="utf-8"))
+    if music not in {t["id"] for t in lib["tracks"]}:
+        out.append(f"music {music!r} is not in tools/music/library.json")
     return out
 
 

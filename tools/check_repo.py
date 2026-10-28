@@ -53,6 +53,11 @@ Checks
   cos           tools/cos_agenda.py --selftest: the Chief of Staff's ranking (money, blockers, deadlines, Day 3 and Day 7
                 nudges, at most 3 do-now items), its quiet rule, its gap finder and its privacy gate on everything it writes
                 to the scoreboard (Todd, Oct 25, 2026); in the preflight for chief-of-staff
+  video         tools/test_video_gates.py: every video engine gate catches its planted failures (story finder, spec gates
+                1 to 3 and the number recompute, layout before rendering, video QA gate 5, pairwise judging, ledger,
+                narration), every video artifact matches its JSON Schema in video/schema/, every committed spec in
+                video/specs/ passes the Rat check lint, the ledger's rows follow their states, no dash in video/; in the
+                preflight for video-engine (Todd, Oct 27, 2026)
   gate-selftest tools/test_gates.py plants a failure for each of the four gates above and confirms each is caught
   gate-tests    tools/test_check_repo.py plants a failure for every check above in a throwaway copy and
                 confirms each one is caught and no secret value is printed (Todd's Oct 15 note: the checks get
@@ -519,6 +524,16 @@ def check_cos():
         ok("cos", last.split(": ", 1)[-1])
 
 
+def check_video():
+    code, lines = _run_tool([os.path.join("tools", "test_video_gates.py")], timeout=900)
+    last = next((l for l in reversed(lines) if l.startswith("video gates:")), "")
+    if code:
+        err("video", ("; ".join(l[5:] for l in lines if l.startswith("FAIL ")) or last or "test_video_gates.py failed")[:600]
+            + "; never edit a video gate to clear this, tell Todd")
+    else:
+        ok("video", last.split(": ", 1)[-1])
+
+
 def check_gate_selftest():
     code, lines = _run_tool([os.path.join("tools", "test_gates.py")])
     if code:
@@ -535,7 +550,8 @@ def main():
     args = ap.parse_args()
     only = {x.strip() for x in args.only.split(",") if x.strip()}
     if args.preflight:
-        only = {"context", "moat", "schema", "copy", "gate-selftest"} | ({"cos"} if args.preflight == "chief-of-staff" else set())
+        only = ({"context", "moat", "schema", "copy", "gate-selftest"} | ({"cos"} if args.preflight == "chief-of-staff" else set())
+                | ({"video"} if args.preflight == "video-engine" else set()))
     files = tracked()
     checks = [("json", lambda: check_json(files)), ("python", lambda: check_python(files)), ("calc-tests", check_calc), ("sender-tests", check_sender),
               ("site-sync", lambda: check_site_sync(files)), ("drafts", check_drafts), ("em-dash", lambda: check_em_dash(files)),
@@ -543,7 +559,7 @@ def main():
               ("voice", lambda: check_voice(files)),
               ("fiverr-kit", check_fiverr_kit),
               ("context", lambda: check_context(args.preflight)), ("moat", check_moat), ("schema", lambda: check_schema(files)),
-              ("copy", check_copy), ("monday", check_monday), ("radar", check_radar), ("cos", check_cos), ("gate-selftest", check_gate_selftest),
+              ("copy", check_copy), ("monday", check_monday), ("radar", check_radar), ("cos", check_cos), ("video", check_video), ("gate-selftest", check_gate_selftest),
               ("gate-tests", check_gate_tests)]
     for name, fn in checks:
         if only and name not in only:

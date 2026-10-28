@@ -1,0 +1,22 @@
+{
+ "schema": "pnf.video.review.v1",
+ "videoId": "2026-10-26-rats-z",
+ "gate": "facts",
+ "model": "claude-opus-5-5",
+ "skillCommit": "90fd525",
+ "prompt": "video/prompts/facts.md",
+ "inputs": [
+  "video/fixtures/spec-example.json",
+  "video/fixtures/normal.json"
+ ],
+ "score": {
+  "numbers": 12,
+  "mismatches": 0
+ },
+ "pass": true,
+ "reasons": [
+  "Every number recomputed from its path matches the file within its rounding."
+ ],
+ "round": 0,
+ "at": "2026-10-28T08:12:00-05:00"
+}

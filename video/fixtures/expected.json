@@ -1,0 +1,16 @@
+{
+ "about": "What tools/video_story.py --selftest expects from the fixtures (run time 2026-10-28 08:00 Chicago).",
+ "normal": {
+  "top": "A-6"
+ },
+ "tiny": {
+  "top": "A-6",
+  "skipped": [
+   "A-72",
+   "D-50"
+  ]
+ },
+ "stale": {
+  "refused": true
+ }
+}

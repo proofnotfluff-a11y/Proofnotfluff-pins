@@ -1,0 +1,48 @@
+name: Video render
+# Video engine Phase 0 (Todd's go, Oct 27, 2026, coo/DECISIONS-2026-10-27.md; blueprint "MVP build spec (pinned)").
+# A run of the video engine commits video/jobs/<videoId>.json (the spec path and the voices to render). This workflow
+# narrates each spec with ElevenLabs Eleven v4 (the ELEVENLABS_API_KEY secret, Todd's narration route; the key is never
+# printed), renders it with the pinned Remotion, mixes the sound at -14 LUFS, transcribes it with faster-whisper, runs
+# gate 5 (tools/video_qa.py) and builds the render critic's timeline sheets. The MP4, sheets and voice files go to the
+# video-renders branch under <videoId>/<voice>/; manifest.json, qa.json and result.json go to main under
+# video/renders/<videoId>/. Nothing is posted anywhere: posting happens only after Todd's "post" on the preview.
+on:
+  push:
+    branches: [main]
+    paths: ["video/jobs/*.json"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: video-render
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: video/templates/rat-check/.nvmrc
+          cache: npm
+          cache-dependency-path: video/templates/rat-check/package-lock.json
+      - name: Tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg tesseract-ocr fonts-dejavu-core > /dev/null
+          pip install --quiet fonttools brotli pillow jsonschema opencv-python-headless faster-whisper
+          cd video/templates/rat-check && npm ci --no-audit --no-fund && npx remotion browser ensure
+      - name: Self-checks (planted cases)
+        run: |
+          python3 tools/video_story.py --selftest
+          python3 tools/video_layout.py --selftest
+          python3 tools/video_render.py --selftest
+          python3 tools/video_voice.py --selftest
+      - name: Narrate, render, check
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        run: python3 tools/video_jobs.py run --out "$RUNNER_TEMP/renders"
+      - name: Publish the results
+        if: always()
+        run: python3 tools/video_jobs.py publish --out "$RUNNER_TEMP/renders"

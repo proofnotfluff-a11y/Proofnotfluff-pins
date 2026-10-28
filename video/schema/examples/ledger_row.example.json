@@ -1,0 +1,16 @@
+{
+ "schema": "pnf.video.ledger_row.v1",
+ "videoId": "2026-11-02-rats-a",
+ "state": "published",
+ "prev": "posting",
+ "at": "2026-11-02T08:05:00-06:00",
+ "specSha256": "d4f02eaafd1a9e9de7d10972ca8e47fa7a985825c3c9c1e249c72683cb3e4f19",
+ "mp4Sha256": "862c4ec62defaadafbf7638961214d286015c38ed4ccc7b10d52bdf434e5bee1",
+ "captionSha256": "176ca52906b001daa816562988464d2af4e18590a85bc7090e28ad3faccb7f8c",
+ "postUrl": "https://www.instagram.com/reel/EXAMPLE/",
+ "touches": 1,
+ "round": 0,
+ "storyType": "A",
+ "area": 46,
+ "run": "run-2026-11-02"
+}

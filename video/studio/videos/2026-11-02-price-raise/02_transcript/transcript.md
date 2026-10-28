@@ -1,6 +1,6 @@
 # Transcript: 2026-11-02-price-raise
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 221 words, 84.9 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 221 words, 84.8 s of voice.
 
 ## Flags
 - 77.6 s heard 'cost' for 'costs'
@@ -20,9 +20,9 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 221 words, 84.9 s of voice.
 
 `00:00.0` Raising your prices?
 
-`00:01.9` Eighty-two percent called a snowstorm raise unfair.
+`00:02.0` Eighty-two percent called a snowstorm raise unfair.
 
-`00:05.4` A raise that covers your costs?
+`00:05.5` A raise that covers your costs?
 
 `00:07.3` Most called that acceptable.
 
@@ -30,9 +30,9 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 221 words, 84.9 s of voice.
 
 `00:10.5` In a classic survey, a hardware store sells snow shovels for fifteen dollars.
 
-`00:15.4` The morning after a big snowstorm, it charges twenty.
+`00:15.3` The morning after a big snowstorm, it charges twenty.
 
-`00:18.9` Eighty-two percent called that unfair.
+`00:18.0` Eighty-two percent called that unfair.
 
 `00:21.4` That's a raise on your bad luck.
 
@@ -56,7 +56,7 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 221 words, 84.9 s of voice.
 
 `00:52.1` A store repriced the peanut butter already on its shelf the moment the wholesale price rose.
 
-`00:56.8` Seventy-nine percent called that UNFAIR.
+`00:57.5` Seventy-nine percent called that UNFAIR.
 
 `01:00.3` A job they've approved keeps the price you quoted.
 
@@ -72,6 +72,6 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 221 words, 84.9 s of voice.
 
 `01:18.7` Say so.
 
-`01:19.7` Their bad luck isn't a reason.
+`01:19.6` Their bad luck isn't a reason.
 
 `01:21.9` Send this to whoever sets your prices, before your next raise.

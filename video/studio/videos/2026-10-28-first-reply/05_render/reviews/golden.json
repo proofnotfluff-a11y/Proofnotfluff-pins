@@ -1,13 +1,13 @@
 {
  "gate": "golden",
- "round": 0,
- "series": "after Todd's go, 3:04 pm",
- "at": "2026-10-28T16:40:00-05:00",
+ "round": 2,
+ "at": "2026-10-28T17:12:00-05:00",
  "pass": true,
  "score": {
   "post_as_is": "yes"
  },
  "reasons": [
-  "no must-fix; polish: hook card still for 2.4 s, wipes look choppy (fixed), small host in the build scene, the note over the question (fixed), the time line typed 1 s early (fixed), 'about half' next to '46% less'"
+  "No must-fix; every number matches voice and facts.json; qa 6 of 6 PASS; last round's critic faults fixed",
+  "polish: hook card holds still 0 to 2.4 s; host small in build scene; phone clock 9:41 after a 9:14 text; YouTube 'reply within 3 hours' vs voice 'take 3 hours'"
  ]
 }

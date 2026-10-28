@@ -1,26 +1,20 @@
 {
  "gate": "design",
- "round": 1,
- "series": "after Todd's go, 3:04 pm",
- "at": "2026-10-28T16:40:00-05:00",
- "pass": false,
+ "round": 2,
+ "at": "2026-10-28T17:18:00-05:00",
+ "pass": true,
  "score": {
   "first": 5,
-  "hierarchy": 4,
+  "hierarchy": 5,
   "type": 5,
   "color": 5,
   "spacing": 4,
-  "polish": 4,
+  "polish": 5,
   "trust": 5,
-  "average": 4.57
+  "average": 4.86
  },
  "reasons": [
-  "35.7 s board line still sliding (fixed: shorter stagger)",
-  "72.5 s note covered the question (fixed)",
-  "dialog pages split '25 / percent' (fixed: breaks at clause ends, never on a unit)",
-  "boards touch the frame edges under the zoom (fixed: hook card inset, gentler zoom ladder)",
-  "wipes hold a black frame (fixed: 1-frame hold)",
-  "sparks on the stamp text (fixed: sparks at the stamp's ends)"
- ],
- "stop": "second FAIL of this gate (3.71, 4.29, 4.57 across rounds): held for Todd's word"
+  "every earlier change landed",
+  "polish: Easy to answer note close to the bezel and hat; deepest zoom brings the board within 10 to 16 px of the sides; ProofNotFluff plate 20 px under A time."
+ ]
 }

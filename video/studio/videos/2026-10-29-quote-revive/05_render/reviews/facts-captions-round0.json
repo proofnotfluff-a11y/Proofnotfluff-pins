@@ -1,0 +1,14 @@
+{
+ "gate": "facts-captions",
+ "round": 0,
+ "at": "2026-10-28T17:14:00-05:00",
+ "pass": false,
+ "score": {
+  "numbers": 20,
+  "mismatches": 1
+ },
+ "reasons": [
+  "youtube: the speed study line had no population qualifier (fixed: 'In hiring experiments')",
+  "instagram optional: 'After 3 with no reply, close the file.' (fixed)"
+ ]
+}

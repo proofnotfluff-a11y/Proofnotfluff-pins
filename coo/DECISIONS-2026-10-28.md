@@ -56,3 +56,9 @@
 - 3:06 pm [stated] Answers in chat: approval "Auto-post if every gate passes"; accounts signed in on his PC's Chrome: "Instagram, TikTok, Facebook Page, YouTube channel"; route "Chrome on my PC".
 - 3:07 pm [stated] "So ensure that these videos have the right description and tags so that they're being put in front of the right audience."
 - So: a standing video post rule replaces "each video needs my post" (CONSTITUTION 2): one lesson a day posts to Instagram (proofnotfluff), TikTok, the Proofnotfluff Facebook Page and YouTube Shorts through Claude in Chrome when every gate passes; a failed gate holds it for Todd. CONSTITUTION 3's "TikTok only through Buffer" gives way to Chrome for these videos. Each video carries per-platform descriptions and tags, and every run makes one improvement to visuals, motion or sound. The rat-check plan (video/config.json Mon, Wed, Fri) is retired for the studio's daily lessons.
+
+## Overdrive (3:43 pm) and the PC (4:31 pm)
+- 3:43 pm [stated] "go into overdrive and really, really do whatever it takes to make this video engine completely self-evolving, make it top-notch, really employ the structure that Jake has sent, any kind of outside research ... let's go ahead and start building some videos that we can post over the coming days."
+- So: three learning loops (video/studio/LEARNINGS.md: every gate fault logged, lint rules from faults, Monday metrics and research re-rank), a layout lint, standard gate prompts, a pinned post queue (ready, next, postcopy), sound (room loops, ducking, sting) and motion upgrades, and lessons 2 to 4 made in parallel.
+- 4:31 pm [stated] "Laptop is plugged back in so you have the pc at your disposal"
+- Lesson 1 final round (Claude's gates): render critic PASS 0 faults, design PASS 4.86, golden PASS (post as is); facts PASS, buyer PASS; facts-captions held at its second FAIL (both fixes made), so lesson 1 waits on Todd's word before it posts.

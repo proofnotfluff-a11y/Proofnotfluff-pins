@@ -9,6 +9,8 @@ Order of pick: a fault a gate named twice in the last week, then the item most l
 weekly numbers), then the top of the backlog. Research runs (Mondays) add items with their source.
 
 ## Backlog (most promising first)
+0. Captions lint in code: line 1 under 100 characters on all four, a send line on all four, hashtag counts per platform,
+   the AI voice line, no em or en dashes (facts-captions caught two of these on lesson 4).
 1. Sound: a short music bed per room (four tiny loops made in code, same key), ducked under the voice.
 2. Motion: a squash and stretch landing on every slammed number (scale 1.15 x 0.9 for 2 frames, then 1).
 3. Host: lip shapes matched to the voice's loudness (open, half, closed) instead of a fixed talk cycle.
@@ -23,6 +25,10 @@ weekly numbers), then the top of the backlog. Research runs (Mondays) add items 
 12. Visual: a seasonal touch per week (snow outside the half-built house in winter, leaves in fall).
 
 ## Done (newest first: date, item, what changed, proof)
+- 2026-10-28 (overdrive): room music loops ducked under the voice and a sting on the send line (backlog 1, 11); lip
+  shapes from the voice (3); room transitions incl. wooden slats (8); idle blinks and fidgets (9); `lint` layout check;
+  pinned post queue (`ready`, `next`, `postcopy`); respell reads digits as words (`rewords`). Proof: lesson 1 gates
+  (critic 0 faults, design 4.86, golden post as is), lessons 2 to 4 stills.
 - 2026-10-28 (round 2): pixel font trimmed to ink (even letter and word spacing), typed messages keep their width and
   grow down, wedge clocks, slide-ins fade and travel less, one-word dialog phrases joined, host can step back (hostScale),
   scenes can hide the dialog box, post copy under 10 MB (`export`). Proof: lesson 1 stills and gates.

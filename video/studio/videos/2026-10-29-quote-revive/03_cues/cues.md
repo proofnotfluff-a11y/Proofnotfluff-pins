@@ -1,6 +1,6 @@
 # Cues: The text that revives a quote that went quiet (lesson 2, The Text, arcade)
 
-music: steady-hands 0.12
+music: rooms
 
 ## hook "Quote went quiet? Skip just" [sfx: pop]
 Room: framing. Hook card, settled on frame 0, host and dialog box hidden: chip THE TEXT; "Quote went quiet? Send this text." Then a phone: the quote you sent ("Here's your quote for the new water heater."), read, no reply; a chip NO REPLY YET.
@@ -70,7 +70,7 @@ Chip under the timeline: After 3, close the file.
 
 ## close "One name, one job, one" [sfx: stamp]
 Room: blackboard. Chalk rule, one line per word as said: ONE NAME. ONE JOB. ONE QUESTION.
-## close.send "Send this to whoever follows" [sfx: blip]
+## close.send "Send this to whoever follows" [sfx: sting]
 Brand plate ProofNotFluff; "Send this to whoever follows up on your quotes."
 ## close.quiet "Next time a quote goes" [sfx: pop]
 "Exact text in the caption." slides in.

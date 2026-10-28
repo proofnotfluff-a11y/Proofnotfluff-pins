@@ -1,11 +1,11 @@
 {
  "schema": "pnf.studio.cues.v1",
- "source": "estimate",
+ "source": "whisper medium.en int8, re-spelled from script.md",
  "music": {
-  "id": "margin-call",
-  "level": 0.12
+  "id": "rooms",
+  "level": 0.16
  },
- "duration": 79.25,
+ "duration": 73.56,
  "cues": [
   {
    "id": "hook",
@@ -17,7 +17,7 @@
    "text": "Hook card, settled on frame one, host and dialog box hidden: \"50% MARKUP / is NOT / 50% MARGIN\", the second 50% in the accent, chip RUN THE NUMBERS, source line \"Math: JLC and Xero\". At 3.0 s the room opens: framing. A quote card on the wall: Cost $1,000, Markup 50%, Margin 50%? Snow checks his clipboard.",
    "t": 0.0,
    "word": 0,
-   "end": 8.79
+   "end": 8.14
   },
   {
    "id": "hook.nope",
@@ -27,9 +27,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Stamp ONE THIRD slams across the \"Margin 50%?\" line. Snow shrugs.",
-   "t": 3.87,
+   "t": 4.08,
    "word": 10,
-   "end": 5.622
+   "end": 5.88
   },
   {
    "id": "hook.fix",
@@ -39,9 +39,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Two chips slide in under the card: 1 THE MATH, 2 THE FIX.",
-   "t": 5.622,
+   "t": 5.88,
    "word": 14,
-   "end": 8.79
+   "end": 8.14
   },
   {
    "id": "math",
@@ -51,9 +51,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: blackboard. Chalk header: COST + MARKUP = PRICE. An empty bar outline on the right.",
-   "t": 8.79,
+   "t": 8.14,
    "word": 22,
-   "end": 25.334
+   "end": 23.08
   },
   {
    "id": "math.cost",
@@ -63,9 +63,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The cost block fills the bottom of the bar; $1,000 counts up beside it: cost.",
-   "t": 10.346,
+   "t": 9.16,
    "word": 27,
-   "end": 11.76
+   "end": 10.54
   },
   {
    "id": "math.markup",
@@ -75,9 +75,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The markup slice stacks on top in the accent; +$500 counts up as \"five hundred\" is said: 50% markup.",
-   "t": 11.76,
+   "t": 10.54,
    "word": 30,
-   "end": 14.45
+   "end": 13.02
   },
   {
    "id": "math.price",
@@ -87,9 +87,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The price lands on top of the bar: $1,500 counts up on \"fifteen hundred\".",
-   "t": 14.45,
+   "t": 13.02,
    "word": 37,
-   "end": 16.848
+   "end": 15.36
   },
   {
    "id": "math.third",
@@ -99,9 +99,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Chalk lines cut the bar into three equal parts; the slice glows: ONE THIRD of the price.",
-   "t": 16.848,
+   "t": 15.36,
    "word": 43,
-   "end": 20.02
+   "end": 18.06
   },
   {
    "id": "math.margin",
@@ -111,9 +111,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "33.3% counts up on \"thirty-three\" and slams in big: margin.",
-   "t": 20.02,
+   "t": 18.06,
    "word": 52,
-   "end": 22.998
+   "end": 20.5
   },
   {
    "id": "math.not",
@@ -123,9 +123,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"not 50%\" chalks in under it and gets struck through.",
-   "t": 22.998,
+   "t": 20.5,
    "word": 59,
-   "end": 25.334
+   "end": 23.08
   },
   {
    "id": "why",
@@ -135,9 +135,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: workshop. Header on the pegboard: WHY THE GAP?",
-   "t": 25.334,
+   "t": 23.08,
    "word": 64,
-   "end": 40.112
+   "end": 36.98
   },
   {
    "id": "why.markup",
@@ -147,9 +147,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Card MARKUP: $500 / $1,000 cost = 50%. \"on cost\" highlighted.",
-   "t": 26.454,
+   "t": 24.5,
    "word": 67,
-   "end": 28.768
+   "end": 26.86
   },
   {
    "id": "why.margin",
@@ -159,9 +159,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Card MARGIN: $500 / $1,500 price = 33.3%. \"on price\" highlighted.",
-   "t": 28.768,
+   "t": 26.86,
    "word": 73,
-   "end": 30.962
+   "end": 28.5
   },
   {
    "id": "why.pays",
@@ -171,9 +171,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A sweep under \"price\": what the customer pays you.",
-   "t": 30.962,
+   "t": 28.5,
    "word": 79,
-   "end": 33.772
+   "end": 31.56
   },
   {
    "id": "why.left",
@@ -183,9 +183,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Stamp NOT TAKE-HOME PAY across the margin card.",
-   "t": 33.772,
+   "t": 31.56,
    "word": 86,
-   "end": 35.926
+   "end": 33.32
   },
   {
    "id": "why.cover",
@@ -195,9 +195,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A chip drops into the margin card: OVERHEAD.",
-   "t": 35.926,
+   "t": 33.32,
    "word": 91,
-   "end": 38.432
+   "end": 35.18
   },
   {
    "id": "why.pay",
@@ -207,9 +207,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A second chip drops in beside it: YOUR PAY.",
-   "t": 38.432,
+   "t": 35.18,
    "word": 98,
-   "end": 40.112
+   "end": 36.98
   },
   {
    "id": "double",
@@ -219,9 +219,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: garage. Header: WANT A 50% MARGIN? The bar again: cost $1,000.",
-   "t": 40.112,
+   "t": 36.98,
    "word": 101,
-   "end": 50.642
+   "end": 46.12
   },
   {
    "id": "double.x2",
@@ -231,9 +231,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Stamp DOUBLE YOUR COST. A second cost-sized block stacks on top.",
-   "t": 42.468,
+   "t": 39.1,
    "word": 107,
-   "end": 44.74
+   "end": 41.02
   },
   {
    "id": "double.markup",
@@ -243,9 +243,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "100% counts up beside the new block: markup.",
-   "t": 44.74,
+   "t": 41.02,
    "word": 113,
-   "end": 48.348
+   "end": 44.46
   },
   {
    "id": "double.quote",
@@ -255,9 +255,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "$2,000 on the quote slams on top; the top block reads 50% margin.",
-   "t": 48.348,
+   "t": 44.46,
    "word": 122,
-   "end": 50.642
+   "end": 46.12
   },
   {
    "id": "formula",
@@ -267,9 +267,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: blackboard. Chip THE PART PEOPLE SKIP.",
-   "t": 50.642,
+   "t": 46.12,
    "word": 127,
-   "end": 66.396
+   "end": 61.42
   },
   {
    "id": "formula.shot",
@@ -279,9 +279,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The formula card slams in, chip SCREENSHOT THIS.",
-   "t": 52.67,
+   "t": 47.92,
    "word": 132,
-   "end": 54.126
+   "end": 49.48
   },
   {
    "id": "formula.eq",
@@ -291,9 +291,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Price = Cost / (1 - margin) chalks in big (Price = over Cost over 1 - margin) and holds big for at least 3.6 s; it then steps up to half size and stays on the board to the end of the section.",
-   "t": 54.126,
+   "t": 49.48,
    "word": 135,
-   "end": 56.404
+   "end": 51.82
   },
   {
    "id": "formula.minus",
@@ -303,9 +303,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A chalk ring draws around 1 - margin.",
-   "t": 56.404,
+   "t": 51.82,
    "word": 141,
-   "end": 58.634
+   "end": 54.12
   },
   {
    "id": "formula.forty",
@@ -315,9 +315,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Under the card: 40% margin.",
-   "t": 58.634,
+   "t": 54.12,
    "word": 147,
-   "end": 60.048
+   "end": 55.38
   },
   {
    "id": "formula.div",
@@ -327,9 +327,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "$1,000 / 0.6 writes in.",
-   "t": 60.048,
+   "t": 55.38,
    "word": 150,
-   "end": 62.278
+   "end": 57.36
   },
   {
    "id": "formula.result",
@@ -339,9 +339,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "= $1,666.67 counts up on \"sixteen hundred sixty-seven\" and lands with sparks.",
-   "t": 62.278,
+   "t": 57.36,
    "word": 156,
-   "end": 65.0
+   "end": 59.96
   },
   {
    "id": "formula.check",
@@ -351,9 +351,9 @@
    "shift": 1.2,
    "pin": null,
    "text": "Check line chalks in: $666.67 / $1,666.67 = 40% margin.",
-   "t": 65.0,
+   "t": 59.96,
    "word": 160,
-   "end": 66.396
+   "end": 61.42
   },
   {
    "id": "close",
@@ -363,21 +363,21 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: framing. Rule card: MARKUP IS ON COST. / MARGIN IS ON PRICE., each line slammed as it is said.",
-   "t": 66.396,
+   "t": 61.42,
    "word": 164,
-   "end": 79.25
+   "end": 73.56
   },
   {
    "id": "close.send",
    "level": 1,
    "quote": "Send this to whoever",
-   "sfx": "blip",
+   "sfx": "sting",
    "shift": 0.0,
    "pin": null,
    "text": "Brand plate ProofNotFluff, then the send line: Send this to whoever sets your prices.",
-   "t": 69.418,
+   "t": 65.26,
    "word": 172,
-   "end": 71.982
+   "end": 67.22
   },
   {
    "id": "close.you",
@@ -387,9 +387,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A highlighter sweeps under \"sets your prices.\"; Snow points at himself.",
-   "t": 71.982,
+   "t": 67.22,
    "word": 179,
-   "end": 73.514
+   "end": 68.68
   },
   {
    "id": "close.last",
@@ -399,9 +399,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Last panel: YOUR LAST QUOTE?",
-   "t": 73.514,
+   "t": 68.68,
    "word": 183,
-   "end": 75.088
+   "end": 69.9
   },
   {
    "id": "close.echo",
@@ -411,9 +411,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Under it: \"Half, or a third?\" slams in. Snow waves.",
-   "t": 75.088,
+   "t": 69.9,
    "word": 187,
-   "end": 79.25
+   "end": 73.56
   }
  ]
 }

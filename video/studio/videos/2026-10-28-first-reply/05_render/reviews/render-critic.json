@@ -1,16 +1,13 @@
 {
  "gate": "render-critic",
- "round": 1,
- "series": "after Todd's go, 3:04 pm",
- "at": "2026-10-28T16:40:00-05:00",
- "pass": false,
+ "round": 2,
+ "at": "2026-10-28T17:16:00-05:00",
+ "pass": true,
  "score": {
-  "faults": 2
+  "faults": 0
  },
  "reasons": [
-  "72.6 s: the Easy to answer note covered the homeowner's question (fixed: the note sits below the reply)",
-  "59.2 s: the Doesn't count stamp covered the Homeowner label (fixed: stamp beside the clock)",
-  "PASS: hook, 11 spoken numbers, layout otherwise, audio end, text size, flashes"
- ],
- "stop": "second FAIL in this series: held for Todd's word"
+  "round 1 faults at 72.6 s and 59.2 s fixed; round 0 faults stay fixed",
+  "hook card on screen from frame 0; spoken numbers on screen as said; layout in bounds; audio end clean; no flashes"
+ ]
 }

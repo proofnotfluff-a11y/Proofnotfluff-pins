@@ -1,0 +1,13 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "at": "2026-10-28T17:14:00-05:00",
+ "pass": true,
+ "score": {
+  "numbers": 8,
+  "mismatches": 0
+ },
+ "reasons": [
+  "all numbers match the pages (ServiceTitan 37%, Jobber cadence, Management Science, Dean Jackson); advisory: Jobber's cadence is written for email"
+ ]
+}

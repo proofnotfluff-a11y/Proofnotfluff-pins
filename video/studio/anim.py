@@ -522,8 +522,84 @@ def transcribe(audio, model="medium.en"):
     return [{"w": w.word.strip(), "start": round(w.start, 3), "end": round(w.end, 3), "p": round(w.probability, 3)} for s in segs for w in (s.words or [])]
 
 
+ONES = "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen".split()
+TENS = "_ _ twenty thirty forty fifty sixty seventy eighty ninety".split()
+
+
+def num_words(n):
+    """1667 -> one thousand six hundred sixty seven (how a number is said)."""
+    if n < 20: return [ONES[n]]
+    if n < 100: return [TENS[n // 10]] + (num_words(n % 10) if n % 10 else [])
+    for size, name in ((10 ** 9, "billion"), (10 ** 6, "million"), (1000, "thousand"), (100, "hundred")):
+        if n >= size:
+            return num_words(n // size) + [name] + (num_words(n % size) if n % size else [])
+
+
+def say_heard(heard):
+    """Whisper writes numbers as digits ("$1,000.", "25%"); say them as words so they line up with the script.
+    Each spoken word keeps a share of the token's time and remembers it came from a number."""
+    out, merged = [], []
+    for h in heard:   # "$1" ",000." is one number
+        if merged and re.match(r"^,\d", h["w"].strip()) and re.search(r"\d$", merged[-1]["w"].strip()):
+            merged[-1] = dict(merged[-1], w=merged[-1]["w"].strip() + h["w"].strip(), end=h["end"])
+        else:
+            merged.append(h)
+    for h in merged:
+        raw = h["w"].strip()
+        m = re.fullmatch(r"([$]?)(\d[\d,]*)(?:\.(\d+))?(%?)([.,!?]?)", raw)
+        if not m or len(m.group(2).replace(",", "")) > 12:
+            out.append(dict(h, num=bool(re.search(r"\d", raw)) or raw in ("$", "%"))); continue
+        ws = num_words(int(m.group(2).replace(",", "")))
+        if m.group(3): ws += ["point"] + [ONES[int(c)] for c in m.group(3)]
+        if m.group(4): ws.append("percent")
+        if m.group(1): ws.append("dollars")
+        n = len(ws)
+        for i, w in enumerate(ws):
+            s0 = h["start"] + (h["end"] - h["start"]) * i / n
+            out.append({"w": w, "start": round(s0, 3), "end": round(h["start"] + (h["end"] - h["start"]) * (i + 1) / n, 3), "num": True})
+    return out
+
+
+def write_words(slug, req, info, heard, takes):
+    """Script words with Whisper's times: words.json, words.js, transcript.md (flags and pace per take). Returns (doc, pace)."""
+    script_words, take_of = [], []
+    for i, t in enumerate(takes):
+        ws = spoken_words(t)
+        script_words += ws; take_of += [i + 1] * len(ws)
+    times, flags = respell(script_words, heard)
+    words = [{"w": display(w), "start": s, "end": e, "take": take_of[i]} for i, (w, (s, e)) in enumerate(zip(script_words, times))]
+    pace = []
+    for x in info:
+        n = sum(1 for w in words if w["take"] == x["n"])
+        wpm = round(n / max(0.1, x["seconds"]) * 60)
+        x["wpm"] = wpm
+        note = "slow: rewrite it as talk, then speak --take %d" % x["n"] if wpm < 150 else ("fast: give it a landing beat, then speak --take %d" % x["n"] if wpm > 200 else "")
+        pace.append(f"  {x['n']:02d}  {x['start']:6.1f} s  {wpm} wpm  {note}")
+    doc = {"schema": "pnf.studio.words.v1", "source": "whisper medium.en int8, re-spelled from script.md", "voice": req["voice"], "model": req["model"],
+           "words": words, "takes": [{k: x[k] for k in ("n", "start", "end", "wpm")} for x in info], "flags": flags, "end": round(words[-1]["end"], 3),
+           "heard": heard}
+    os.makedirs(vdir(slug, "02_transcript"), exist_ok=True)
+    json.dump(doc, open(vdir(slug, "02_transcript", "words.json"), "w"), indent=1)
+    write_js(vdir(slug, "02_transcript", "words.js"), "WORDS", {k: doc[k] for k in ("words", "takes", "end", "source")})
+    lines, cur, ct = [], [], None
+    for w in words:
+        if not cur:
+            ct = w["start"]
+        cur.append(w["w"])
+        if re.search(r"[.!?]$", w["w"]):
+            lines.append(f"`{int(ct // 60):02d}:{ct % 60:04.1f}` " + " ".join(cur)); cur = []
+    if cur:
+        lines.append(f"`{int(ct // 60):02d}:{ct % 60:04.1f}` " + " ".join(cur))
+    open(vdir(slug, "02_transcript", "transcript.md"), "w").write(
+        f"# Transcript: {slug}\n\nVoice {req['voice']} ({req['model']}), {len(words)} words, {doc['end']:.1f} s of voice.\n\n"
+        + ("## Flags\n" + "\n".join(f"- {f}" for f in flags) + "\n\n" if flags else "## Flags\nnone\n\n")
+        + "## Pace per take (target 160 to 195 wpm)\n```\n" + "\n".join(pace) + "\n```\n\n## Words\n\n" + "\n\n".join(lines) + "\n")
+    return doc, pace
+
+
 def respell(script_words, heard):
     """Script words win; Whisper gives the times. Returns (words, flags)."""
+    heard = say_heard(heard)
     a = [norm(w) for w in script_words]
     b = [norm(h["w"]) for h in heard]
     sm = difflib.SequenceMatcher(a=a, b=b, autojunk=False)
@@ -538,12 +614,12 @@ def respell(script_words, heard):
             for k in range(n):   # spread the heard span over the script words ("forty-five" heard as "45")
                 out[i1 + k] = (round(span[0] + (span[1] - span[0]) * k / n, 3), round(span[0] + (span[1] - span[0]) * (k + 1) / n, 3))
             same = norm("".join(script_words[i1:i2])) == norm("".join(h["w"] for h in heard[j1:j2]))   # "auto-reply" heard as "auto reply"
-            numeric = all(re.search(r"\d", heard[j]["w"]) or not norm(heard[j]["w"]) or heard[j]["w"].strip() in ("$", "%") for j in range(j1, j2))   # "twenty-five percent" heard as "25 %"
+            numeric = all(heard[j].get("num") or not norm(heard[j]["w"]) for j in range(j1, j2))   # "a thousand" heard as "$1,000", "twenty-five percent" as "25 %"
             if not (same or numeric):
                 flags.append(f"{heard[j1]['start']:.1f} s heard '{' '.join(h['w'] for h in heard[j1:j2])}' for '{' '.join(script_words[i1:i2])}'")
         elif tag == "delete":
             flags.append(f"dropped '{' '.join(script_words[i1:i2])}': not heard")
-        elif tag == "insert":
+        elif tag == "insert" and not all(heard[j].get("num") for j in range(j1, j2)):   # "a hundred" written "100" says "one" too
             flags.append(f"{heard[j1]['start']:.1f} s added '{' '.join(h['w'] for h in heard[j1:j2])}': not in the script")
     last = 0.0
     for i, v in enumerate(out):   # a dropped word sits at the previous word's end, zero length
@@ -612,38 +688,8 @@ def cmd_ci_voice():
         for x in info:
             x["start"] = round(t0, 3); t0 += x["seconds"]; x["end"] = round(t0, 3); t0 += 0.32
         heard = transcribe(voice)
-        script_words, take_of = [], []
-        for i, t in enumerate(takes):
-            ws = spoken_words(t)
-            script_words += ws; take_of += [i + 1] * len(ws)
-        times, flags = respell(script_words, heard)
-        words = [{"w": display(w), "start": s, "end": e, "take": take_of[i]} for i, (w, (s, e)) in enumerate(zip(script_words, times))]
-        pace = []
-        for x in info:
-            n = sum(1 for w in words if w["take"] == x["n"])
-            wpm = round(n / max(0.1, x["seconds"]) * 60)
-            x["wpm"] = wpm
-            note = "slow: rewrite it as talk, then speak --take %d" % x["n"] if wpm < 150 else ("fast: give it a landing beat, then speak --take %d" % x["n"] if wpm > 200 else "")
-            pace.append(f"  {x['n']:02d}  {x['start']:6.1f} s  {wpm} wpm  {note}")
-        doc = {"schema": "pnf.studio.words.v1", "source": "whisper medium.en int8, re-spelled from script.md", "voice": req["voice"], "model": req["model"],
-               "words": words, "takes": [{k: x[k] for k in ("n", "start", "end", "wpm")} for x in info], "flags": flags, "end": round(words[-1]["end"], 3),
-               "heard": heard}
-        os.makedirs(vdir(slug, "02_transcript"), exist_ok=True)
-        json.dump(doc, open(vdir(slug, "02_transcript", "words.json"), "w"), indent=1)
-        write_js(vdir(slug, "02_transcript", "words.js"), "WORDS", {k: doc[k] for k in ("words", "takes", "end", "source")})
-        lines, cur, ct = [], [], None
-        for w in words:
-            if not cur:
-                ct = w["start"]
-            cur.append(w["w"])
-            if re.search(r"[.!?]$", w["w"]):
-                lines.append(f"`{int(ct // 60):02d}:{ct % 60:04.1f}` " + " ".join(cur)); cur = []
-        if cur:
-            lines.append(f"`{int(ct // 60):02d}:{ct % 60:04.1f}` " + " ".join(cur))
-        open(vdir(slug, "02_transcript", "transcript.md"), "w").write(
-            f"# Transcript: {slug}\n\nVoice {req['voice']} ({req['model']}), {len(words)} words, {doc['end']:.1f} s of voice.\n\n"
-            + ("## Flags\n" + "\n".join(f"- {f}" for f in flags) + "\n\n" if flags else "## Flags\nnone\n\n")
-            + "## Pace per take (target 160 to 195 wpm)\n```\n" + "\n".join(pace) + "\n```\n\n## Words\n\n" + "\n\n".join(lines) + "\n")
+        doc, pace = write_words(slug, req, info, heard, takes)
+        flags = doc["flags"]
         json.dump({"schema": "pnf.studio.takes.v1", "requestedAt": req["requestedAt"], "voice": req["voice"], "model": req["model"],
                    "scriptSha256": req["scriptSha256"], "voiceSha256": sha(voice), "takes": info, "chars": sum(x["chars"] for x in info),
                    "at": now(), "credits": credits(key)}, open(tk_path, "w"), indent=1)
@@ -692,6 +738,16 @@ def publish_audio(done):
     if git("diff", "--cached", "--quiet", check=False).returncode:
         git("commit", "-m", "Studio words: " + ", ".join(s for s, _ in done))
         push_retry(ROOT, "main")
+
+
+def cmd_rewords(slug):
+    """Re-time words.json from the stored Whisper words (after a respell fix), without re-voicing."""
+    d = json.load(open(vdir(slug, "02_transcript", "words.json")))
+    tk = json.load(open(vdir(slug, "01_voice", "takes.json")))
+    req = {"voice": d["voice"], "model": d["model"]}
+    info = [dict(x) for x in tk["takes"]]
+    doc, pace = write_words(slug, req, info, d["heard"], takes_of(slug))
+    print(f"{slug}: {len(doc['words'])} words, {doc['end']:.1f} s, {len(doc['flags'])} flag(s)" + "".join("\n  " + f for f in doc["flags"]))
 
 
 def cmd_fetch(slug):
@@ -1334,6 +1390,34 @@ def cmd_gatepack(slug):
     print(f"gatepack: {out} ({(len(fs) + per - 1) // per} timeline sheets, 3 first frames)")
 
 
+def captions_problems(slug):
+    """_shared/captions.md in code: line 1 under 100 characters, a send line, the AI voice line, hashtag counts, no em or
+    en dashes, YouTube title under 100 with no hashtags and 5 to 10 tags. Returns a list of problems."""
+    f = vdir(slug, "05_render", "captions.json")
+    if not os.path.exists(f):
+        return ["captions.json missing"]
+    d, out = json.load(open(f)), []
+    tags = {"instagram": (3, 5), "tiktok": (3, 5), "facebook": (2, 3), "youtube": (2, 3)}
+    for pl, (lo, hi) in tags.items():
+        if pl not in d:
+            out.append(f"{pl}: missing"); continue
+        text = d[pl]["description"] if pl == "youtube" else d[pl]["caption"]
+        first = text.split("\n")[0]
+        if len(first) >= 100: out.append(f"{pl}: line 1 is {len(first)} characters (under 100)")
+        if not re.search(r"(?i)\bsend this\b|\bsave this\b", text): out.append(f"{pl}: no send or save line")
+        if "Narrated by an AI version of my own voice." not in text: out.append(f"{pl}: no AI voice line")
+        n = len(re.findall(r"(?<!\w)#\w+", text))
+        if not lo <= n <= hi: out.append(f"{pl}: {n} hashtags ({lo} to {hi})")
+        if re.search(r"(?i)#(fyp|foryou|viral)\b", text): out.append(f"{pl}: banned hashtag")
+        if re.search("[\u2013\u2014]", text): out.append(f"{pl}: an em or en dash")
+    y = d.get("youtube", {})
+    if y:
+        if len(y.get("title", "")) >= 100 or "#" in y.get("title", ""): out.append("youtube: title 100+ characters or has a hashtag")
+        if not 5 <= len(y.get("tags", [])) <= 10: out.append(f"youtube: {len(y.get('tags', []))} tags (5 to 10)")
+        if re.search("[\u2013\u2014]", y.get("title", "")): out.append("youtube: an em or en dash in the title")
+    return out
+
+
 def cmd_lint(slug, step=0.25):
     """The layout check in code, before a reviewer has to find it: every settled scene text inside the safe area
     (x 20 to 950, y 262 to 1250), not under the host, the dialog box or other text. Problems that last under 0.5 s
@@ -1361,7 +1445,7 @@ def cmd_lint(slug, step=0.25):
                     hits.setdefault(("text on text", x["s"] + " / " + y["s"]), []).append(t)
         t += step
     b.close(); pw.stop()
-    errors = []
+    errors = [f"ERROR lint captions: {x}" for x in captions_problems(slug)] if os.path.exists(vdir(slug, "05_render", "captions.json")) else []
     for (kind, what), ts in sorted(hits.items(), key=lambda kv: kv[1][0]):
         runs, start, prev = [], ts[0], ts[0]
         for x in ts[1:] + [None]:
@@ -1511,6 +1595,8 @@ def main():
         cmd_speak(a.slug, a.take, a.voice)
     elif c == "estimate":
         cmd_estimate(a.slug)
+    elif c == "rewords":
+        cmd_rewords(a.slug)
     elif c == "fetch":
         cmd_fetch(a.slug)
     elif c == "cues":

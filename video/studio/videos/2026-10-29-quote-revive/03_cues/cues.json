@@ -1,35 +1,35 @@
 {
  "schema": "pnf.studio.cues.v1",
- "source": "estimate",
+ "source": "whisper medium.en int8, re-spelled from script.md",
  "music": {
-  "id": "steady-hands",
-  "level": 0.12
+  "id": "rooms",
+  "level": 0.16
  },
- "duration": 86.69,
+ "duration": 79.88,
  "cues": [
   {
    "id": "hook",
    "level": 0,
-   "quote": "Your quote's gone quiet? Skip",
+   "quote": "Quote went quiet? Skip just",
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
    "text": "Room: framing. Hook card, settled on frame 0, host and dialog box hidden: chip THE TEXT; \"Quote went quiet? Send this text.\" Then a phone: the quote you sent (\"Here's your quote for the new water heater.\"), read, no reply; a chip NO REPLY YET.",
    "t": 0.0,
    "word": 0,
-   "end": 4.682
+   "end": 5.26
   },
   {
    "id": "hook.send",
    "level": 1,
-   "quote": "in. Send this.",
+   "quote": "Send this text instead.",
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
    "text": "A panel pops: \"Send this.\" Snow points at the phone.",
-   "t": 3.086,
+   "t": 3.46,
    "word": 7,
-   "end": 4.682
+   "end": 5.26
   },
   {
    "id": "stakes",
@@ -39,9 +39,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: blackboard. Chalk header: ServiceTitan's own data, 2026.",
-   "t": 4.682,
-   "word": 10,
-   "end": 19.256
+   "t": 5.26,
+   "word": 11,
+   "end": 18.12
   },
   {
    "id": "stakes.count",
@@ -51,9 +51,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "37% slams in big, with \"of estimates close on the first visit\".",
-   "t": 7.852,
-   "word": 18,
-   "end": 11.654
+   "t": 8.12,
+   "word": 19,
+   "end": 11.78
   },
   {
    "id": "stakes.bar",
@@ -63,9 +63,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A chalk bar fills to 37% in the accent; the rest of the bar is labeled \"still open when you leave\".",
-   "t": 11.654,
-   "word": 27,
-   "end": 14.69
+   "t": 11.78,
+   "word": 28,
+   "end": 14.08
   },
   {
    "id": "stakes.drive",
@@ -75,21 +75,21 @@
    "shift": 0.0,
    "pin": null,
    "text": "A pixel van rolls off the edge of the board: the quote leaves with you.",
-   "t": 14.69,
-   "word": 36,
-   "end": 16.592
+   "t": 14.08,
+   "word": 37,
+   "end": 15.46
   },
   {
    "id": "stakes.rest",
    "level": 1,
-   "quote": "The rest ride on your",
+   "quote": "The rest depend on your",
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
    "text": "Chalk line: \"The rest ride on your follow-up.\" with a sweep under it.",
-   "t": 16.592,
-   "word": 41,
-   "end": 19.256
+   "t": 15.46,
+   "word": 42,
+   "end": 18.12
   },
   {
    "id": "homework",
@@ -99,9 +99,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: garage. A phone: the quote, then your \"Just checking in!\" text arrives.",
-   "t": 19.256,
-   "word": 47,
-   "end": 35.544
+   "t": 18.12,
+   "word": 48,
+   "end": 33.72
   },
   {
    "id": "homework.sheet",
@@ -111,9 +111,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Stamp on the phone: HOMEWORK. A homework sheet pops beside it: \"Write me an answer: ____\".",
-   "t": 21.93,
-   "word": 54,
-   "end": 23.63
+   "t": 20.88,
+   "word": 55,
+   "end": 22.52
   },
   {
    "id": "homework.write",
@@ -123,9 +123,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A pixel pencil hovers over the sheet; nothing gets written.",
-   "t": 23.63,
-   "word": 58,
-   "end": 25.984
+   "t": 22.52,
+   "word": 59,
+   "end": 23.88
   },
   {
    "id": "homework.off",
@@ -135,9 +135,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The sheet slides onto a pile; chip LATER. Snow shrugs.",
-   "t": 25.984,
-   "word": 65,
-   "end": 28.71
+   "t": 23.88,
+   "word": 66,
+   "end": 26.9
   },
   {
    "id": "homework.fix",
@@ -147,9 +147,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Panel: Dean Jackson's fix. \"One short question about what they wanted.\"",
-   "t": 28.71,
-   "word": 72,
-   "end": 31.3
+   "t": 26.9,
+   "word": 73,
+   "end": 29.72
   },
   {
    "id": "homework.ask",
@@ -159,9 +159,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "First line types: \"One short question about what they wanted.\"",
-   "t": 31.3,
-   "word": 79,
-   "end": 34.032
+   "t": 29.72,
+   "word": 80,
+   "end": 31.62
   },
   {
    "id": "homework.pitch",
@@ -171,9 +171,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Second line slams: \"No pitch.\"",
-   "t": 34.032,
-   "word": 86,
-   "end": 35.544
+   "t": 31.62,
+   "word": 87,
+   "end": 33.72
   },
   {
    "id": "text",
@@ -183,9 +183,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: workshop. A big phone, a new message to the homeowner; chip THE TEXT.",
-   "t": 35.544,
-   "word": 89,
-   "end": 49.792
+   "t": 33.72,
+   "word": 90,
+   "end": 47.08
   },
   {
    "id": "text.name",
@@ -195,9 +195,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Hi [name], it's [you].\" types in. Chip 1 OF 2: THEIR NAME, THEN YOURS.",
-   "t": 37.076,
-   "word": 93,
-   "end": 38.756
+   "t": 35.16,
+   "word": 94,
+   "end": 36.92
   },
   {
    "id": "text.know",
@@ -207,9 +207,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A side note pops: \"So they know it's you.\"",
-   "t": 38.756,
-   "word": 97,
-   "end": 41.736
+   "t": 36.92,
+   "word": 98,
+   "end": 39.98
   },
   {
    "id": "text.line",
@@ -219,9 +219,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Still want that water heater swapped before winter?\" types in. Chip 2 OF 2: ONE QUESTION.",
-   "t": 41.736,
-   "word": 105,
-   "end": 44.948
+   "t": 39.98,
+   "word": 106,
+   "end": 42.68
   },
   {
    "id": "text.hold",
@@ -231,9 +231,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The whole text holds; a ring draws around the question.",
-   "t": 44.948,
-   "word": 113,
-   "end": 48.002
+   "t": 42.68,
+   "word": 114,
+   "end": 45.2
   },
   {
    "id": "text.yesno",
@@ -243,9 +243,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Two reply buttons pop under the bubble: YES and NO.",
-   "t": 48.002,
-   "word": 121,
-   "end": 49.792
+   "t": 45.2,
+   "word": 122,
+   "end": 47.08
   },
   {
    "id": "turn",
@@ -255,9 +255,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: blackboard. Chalk header: The part people skip.",
-   "t": 49.792,
-   "word": 126,
-   "end": 61.212
+   "t": 47.08,
+   "word": 127,
+   "end": 57.16
   },
   {
    "id": "turn.own",
@@ -267,9 +267,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Slams: \"Keep it in your own words.\"",
-   "t": 51.82,
-   "word": 131,
-   "end": 53.882
+   "t": 49.02,
+   "word": 132,
+   "end": 51.08
   },
   {
    "id": "turn.study",
@@ -279,9 +279,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Chalk: \"Speed Is a Signal\", Management Science, 2026.",
-   "t": 53.882,
-   "word": 137,
-   "end": 56.53
+   "t": 51.08,
+   "word": 138,
+   "end": 53.42
   },
   {
    "id": "turn.fast",
@@ -291,9 +291,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Chalk line: \"Fast replies stopped helping\"",
-   "t": 56.53,
-   "word": 144,
-   "end": 58.22
+   "t": 53.42,
+   "word": 145,
+   "end": 54.9
   },
   {
    "id": "turn.bot",
@@ -303,9 +303,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A chalk robot pops with a cross; the line \"Fast replies stopped helping once people thought a bot wrote them.\"",
-   "t": 58.22,
-   "word": 148,
-   "end": 61.212
+   "t": 54.9,
+   "word": 149,
+   "end": 57.16
   },
   {
    "id": "cadence",
@@ -315,9 +315,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: framing. Panel JOBBER SAYS: when to send it; the timeline line draws on.",
-   "t": 61.212,
-   "word": 155,
-   "end": 75.278
+   "t": 57.16,
+   "word": 156,
+   "end": 69.8
   },
   {
    "id": "cadence.first",
@@ -327,9 +327,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Dot 1: Within 2 days (of the quote).",
-   "t": 63.644,
-   "word": 162,
-   "end": 65.832
+   "t": 59.1,
+   "word": 163,
+   "end": 61.14
   },
   {
    "id": "cadence.week",
@@ -339,9 +339,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Dot 2: Day 7 (a week after).",
-   "t": 65.832,
-   "word": 168,
-   "end": 69.306
+   "t": 61.14,
+   "word": 169,
+   "end": 64.38
   },
   {
    "id": "cadence.final",
@@ -351,9 +351,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Dot 3: 1 to 2 days before it expires.",
-   "t": 69.306,
-   "word": 178,
-   "end": 72.782
+   "t": 64.38,
+   "word": 179,
+   "end": 67.5
   },
   {
    "id": "cadence.close",
@@ -363,9 +363,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Chip under the timeline: After 3, close the file.",
-   "t": 72.782,
-   "word": 187,
-   "end": 75.278
+   "t": 67.5,
+   "word": 188,
+   "end": 69.8
   },
   {
    "id": "close",
@@ -375,21 +375,21 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: blackboard. Chalk rule, one line per word as said: ONE NAME. ONE JOB. ONE QUESTION.",
-   "t": 75.278,
-   "word": 193,
-   "end": 86.69
+   "t": 69.8,
+   "word": 194,
+   "end": 79.88
   },
   {
    "id": "close.send",
    "level": 1,
    "quote": "Send this to whoever follows",
-   "sfx": "blip",
+   "sfx": "sting",
    "shift": 0.0,
    "pin": null,
    "text": "Brand plate ProofNotFluff; \"Send this to whoever follows up on your quotes.\"",
-   "t": 77.792,
-   "word": 199,
-   "end": 81.09
+   "t": 72.72,
+   "word": 200,
+   "end": 75.4
   },
   {
    "id": "close.quiet",
@@ -399,9 +399,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Exact text in the caption.\" slides in.",
-   "t": 81.09,
-   "word": 208,
-   "end": 83.158
+   "t": 75.4,
+   "word": 209,
+   "end": 77.0
   },
   {
    "id": "close.know",
@@ -411,9 +411,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Echo of the hook card: \"Quote went quiet? Now you know what to send.\" Snow waves.",
-   "t": 83.158,
-   "word": 214,
-   "end": 86.69
+   "t": 77.0,
+   "word": 215,
+   "end": 79.88
   }
  ]
 }

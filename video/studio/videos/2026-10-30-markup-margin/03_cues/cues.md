@@ -1,6 +1,6 @@
 # Cues: Markup vs margin (Lesson 3, Run the Numbers, arcade)
 
-music: margin-call 0.12
+music: rooms
 
 ## hook "Mark up a job fifty" [sfx: pop]
 Hook card, settled on frame one, host and dialog box hidden: "50% MARKUP / is NOT / 50% MARGIN", the second 50% in the accent, chip RUN THE NUMBERS, source line "Math: JLC and Xero". At 3.0 s the room opens: framing. A quote card on the wall: Cost $1,000, Markup 50%, Margin 50%? Snow checks his clipboard.
@@ -67,7 +67,7 @@ Check line chalks in: $666.67 / $1,666.67 = 40% margin.
 
 ## close "Markup is on cost." [sfx: whoosh]
 Room: framing. Rule card: MARKUP IS ON COST. / MARGIN IS ON PRICE., each line slammed as it is said.
-## close.send "Send this to whoever" [sfx: blip]
+## close.send "Send this to whoever" [sfx: sting]
 Brand plate ProofNotFluff, then the send line: Send this to whoever sets your prices.
 ## close.you "even if that's you." [sfx: tick]
 A highlighter sweeps under "sets your prices."; Snow points at himself.

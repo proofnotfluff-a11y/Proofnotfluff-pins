@@ -1,0 +1,13 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "at": "2026-10-28T17:14:00-05:00",
+ "pass": true,
+ "score": {
+  "numbers": 14,
+  "mismatches": 0
+ },
+ "reasons": [
+  "11 formulas re-run, all 14 data paths resolve; JLC and Xero re-read"
+ ]
+}

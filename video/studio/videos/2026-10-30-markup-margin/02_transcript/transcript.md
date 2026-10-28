@@ -3,7 +3,7 @@
 Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 194 words, 71.7 s of voice.
 
 ## Flags
-- 9.2 s added '$1 ,000.': not in the script
+none
 
 ## Pace per take (target 160 to 195 wpm)
 ```
@@ -29,7 +29,7 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 194 words, 71.7 s of voice.
 
 `00:08.1` Let's say your cost is a thousand dollars.
 
-`00:10.9` A fifty percent markup adds five hundred, so the quote says fifteen hundred.
+`00:10.5` A fifty percent markup adds five hundred, so the quote says fifteen hundred.
 
 `00:15.4` That five hundred is one third of the price.
 
@@ -65,7 +65,7 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 194 words, 71.7 s of voice.
 
 `00:55.4` Divide your cost by point six.
 
-`00:57.3` A thousand becomes about sixteen hundred sixty-seven dollars.
+`00:57.4` A thousand becomes about sixteen hundred sixty-seven dollars.
 
 `01:01.4` Markup is on cost.
 

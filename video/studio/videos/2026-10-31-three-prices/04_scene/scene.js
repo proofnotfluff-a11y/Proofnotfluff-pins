@@ -24,7 +24,7 @@ const growBar = (k, x, y, w, h, num, t0, color, o = {}) => {
   if (k.T < t0) return;
   const p = k.easeOut((k.T - t0) / 0.8);
   k.shape(k.rectPts(x, y, w * (num.value / 100) * p, h, 0), {fill: color, line: false});
-  k.slam(k.count(num.value, k.lin(t0, t0 + 0.8), {suffix: '%'}), x + w + 24, y + h / 2 - 33, t0, {size: 60, color, from: 0.5});
+  k.slam(k.count(num.value, 0.85 + 0.15 * k.lin(t0, t0 + 0.8), {suffix: '%'}), x + w + 24, y + h / 2 - 33, t0, {size: 60, color, from: 0.5});
   if (p >= 0.99 && o.sparks !== false) k.burst(x + w * (num.value / 100), y + h / 2, t0 + 0.8, {n: 16, r: 200});
 };
 
@@ -43,12 +43,13 @@ window.SCENE = {
         k.shape(k.rectPts(0, 230, 1080, 860, 0), {fill: INK, line: false});
         k.slam('Top shops quote', 540, 290, -1, {size: 120, color: CHALK, align: 'center'});
         k.slam(`${n.tiers.shown} prices.`, 540, 440, -1, {size: 200, color: 'accent', align: 'center'});
-        k.slam(`Not ${n.single.shown}.`, 540, 676, -1, {size: 120, color: CHALK, align: 'center'});
+        k.slam(`on ${n.topGbb.shown}`, 540, 676, -1, {size: 120, color: CHALK, align: 'center'});
+        k.slam('of home jobs.', 540, 800, -1, {size: 60, color: CHALK, align: 'center'});
         k.burst(540, 540, 0.1, {n: 26, r: 380});
         k.burst(540, 540, 1.4, {n: 14, r: 300, colors: ['accent2', 'paper']});
-        k.sweep(300, 836, 480, 10, 0.6, {color: 'accent'});
-        k.text(`ServiceTitan data, ${n.stMonths.shown} months to Jan ${n.stYear.shown}`, 540, 900, {size: 39, color: '#E6D3BC', align: 'center'});
-        k.text('Quote Clinic', 540, 980, {size: 39, color: CHALK2, align: 'center'});
+        k.sweep(300, 880, 480, 10, 0.6, {color: 'accent'});
+        k.text(`ServiceTitan data, ${n.stMonths.shown} months to Jan ${n.stYear.shown}`, 540, 920, {size: 39, color: '#E6D3BC', align: 'center'});
+        k.text('Quote Clinic', 540, 990, {size: 39, color: CHALK2, align: 'center'});
         return {host: false, speech: false};
       }
       k.room('framing');
@@ -76,7 +77,7 @@ window.SCENE = {
         k.ctx.restore();
         TIERS.forEach(([, name, price], i) => {
           const t0 = t3 + 0.2 + i * 0.18; if (T < t0) return;
-          k.ctx.save(); slideIn(k, t0, 400, 0);
+          k.ctx.save(); slideIn(k, t0, 0, 80);
           k.text(name, 596, 430 + i * 120, {size: 60, color: i === 1 ? 'accent' : CHALK});
           k.text(price, 900, 430 + i * 120, {size: 60, color: i === 1 ? 'accent' : CHALK2, align: 'right'});
           k.ctx.restore();
@@ -99,9 +100,9 @@ window.SCENE = {
         k.text(`${n.stMonths.shown} months to Jan ${n.stYear.shown}`, 96, 466, {size: 39, color: 'muted'});
         k.ctx.restore();
       }
-      if (T >= k.S('stakes.window') + 0.3) {
+      if (T >= k.S('stakes') + 0.3) {
         const t1 = wordT(k, 'stakes.top57', /^fifty/i), t2 = wordT(k, 'stakes.rest', /^forty/i);
-        k.ctx.save(); slideIn(k, k.S('stakes.window') + 0.3, -500, 0);
+        k.ctx.save(); slideIn(k, k.S('stakes') + 0.3, -500, 0);
         if (T >= k.S('stakes.top')) k.slam(`Top ${n.topPct.shown} by revenue`, 96, 520, k.S('stakes.top'), {size: 39, color: 'accent', from: 0.5});
         else k.text('Top shops', 96, 520, {size: 39, color: 'muted'});
         growBar(k, 96, 566, 600, 52, n.topGbb, t1, 'accent');
@@ -112,12 +113,12 @@ window.SCENE = {
       }
       if (T >= k.S('stakes.habit')) {   // a sticker on the panel's corner, clear of every number
         const t0 = k.S('stakes.habit');
-        k.ctx.save(); k.ctx.translate(712, 496); k.ctx.rotate(-0.04); k.ctx.translate(-712, -496); popAt(k, t0, 712, 496);
-        k.panel2(572, 452, 280, 90, {fill: 'accent', border: INK});
-        k.text('A habit', 712, 462, {size: 39, color: INK, align: 'center'});
-        k.text('you can copy.', 712, 498, {size: 39, color: INK, align: 'center'});
+        k.ctx.save(); k.ctx.translate(770, 420); k.ctx.rotate(-0.04); k.ctx.translate(-770, -420); popAt(k, t0, 770, 420);
+        k.panel2(630, 372, 280, 96, {fill: 'accent', border: INK});
+        k.text('A habit', 770, 382, {size: 39, color: INK, align: 'center'});
+        k.text('you can copy.', 770, 420, {size: 39, color: INK, align: 'center'});
         k.ctx.restore();
-        k.burst(712, 496, t0 + 0.05, {n: 18});
+        k.burst(770, 420, t0 + 0.05, {n: 18});
       }
       return {hostPose: k.live('stakes.habit') ? 'point' : (k.talking() ? 'talk' : 'stand'), hostAt: [560, 500]};
     },
@@ -125,7 +126,7 @@ window.SCENE = {
     menu: (k, T) => {
       const n = k.data.numbers;
       k.room('blackboard'); boardClip(k);
-      k.slam('Why the middle wins', 96, 280, k.S('menu'), {size: 60, color: CHALK2, from: 0.5});
+      k.slam('Why the middle gains', 96, 280, k.S('menu'), {size: 60, color: CHALK2, from: 0.5});
       if (T >= k.S('menu.study')) {
         const t0 = k.S('menu.study');
         k.ctx.save(); slideIn(k, t0, -600, 0);
@@ -133,8 +134,8 @@ window.SCENE = {
         k.text(`${n.menuYears.shown} years of orders`, 96, 404, {size: 39, color: CHALK});
         k.ctx.restore();
         k.ctx.save(); slideIn(k, t0 + 0.3, -600, 0);
-        k.text('Journal of Economic Behavior', 96, 450, {size: 30, color: 'muted'});
-        k.text(`and Organization, ${n.menuYear.shown}`, 96, 486, {size: 30, color: 'muted'});
+        k.text('Journal of Economic Behavior', 96, 450, {size: 30, color: '#D8D0C0'});
+        k.text(`and Organization, ${n.menuYear.shown}`, 96, 486, {size: 30, color: '#D8D0C0'});
         k.ctx.restore();
       }
       if (T >= k.S('menu.german')) {   // the size of the data counts up beside the years
@@ -144,7 +145,7 @@ window.SCENE = {
       }
       if (T < k.S('menu.dishes')) {   // a menu, chalked in while the voice asks why (the board is never empty)
         const t0 = k.S('menu') + 0.4, q = k.clamp(k.pop(t0, 0.4), 0, 1.1);
-        k.ctx.save(); k.ctx.translate(740, 700); k.ctx.rotate(0.04); k.ctx.scale(q, q);
+        k.ctx.save(); k.ctx.translate(540, 730); k.ctx.rotate(0.03); k.ctx.scale(1.4 * q, 1.4 * q);
         k.shape(k.rectPts(-130, -150, 260, 300, 0), {fill: CHALK, line: false});
         k.shape(k.rectPts(-130, -150, 260, 60, 0), {fill: '#7A3442', line: false});
         k.text('Menu', 0, -140, {size: 39, color: CHALK, align: 'center', lint: false});
@@ -153,7 +154,7 @@ window.SCENE = {
           k.shape(k.rectPts(54, -60 + i * 66, 16 + i * 14, 12, 0), {fill: '#D9A066', line: false});
         }
         k.ctx.restore();
-        k.burst(740, 700, t0 + 0.05, {n: 14, colors: ['paper', 'accent2']});
+        k.burst(540, 730, t0 + 0.05, {n: 14, colors: ['paper', 'accent2']});
       }
       // the menu: three dishes, cheap to pricey; the middle one lifts
       if (T >= k.S('menu.dishes')) {
@@ -175,7 +176,7 @@ window.SCENE = {
         const t0 = wordT(k, 'menu.five', /^five/i);
         if (T >= t0) {
           k.slam(`+${n.menuGain.shown} pts share`, 260, 760, t0, {size: 60, color: 'accent', from: 0.8});
-          k.ctx.save(); slideIn(k, t0 + 0.3, 300, 0); k.text('on average', 580, 782, {size: 39, color: CHALK}); k.ctx.restore();
+          k.ctx.save(); slideIn(k, t0 + 0.3, 300, 0); k.text('on average', 580, 782, {size: 39, color: CHALK2}); k.ctx.restore();
           k.burst(400, 790, t0 + 0.1, {n: 16});
         }
       }
@@ -231,9 +232,11 @@ window.SCENE = {
     survey: (k, T) => {
       const n = k.data.numbers;
       k.room('garage');
-      const ty = k.S('survey.yeses');
-      if (T < ty) k.slam('The part people skip', 96, 280, k.S('survey') + 0.1, {size: 60, color: 'accent', from: 0.8, shake: 6});
-      else { k.slam('More choices, more yeses.', 96, 280, ty + 0.3, {size: 60, color: 'accent', from: 0.6}); k.burst(300, 312, ty + 0.4, {n: 18}); }
+      const ty = k.S('survey.yeses'), ts = k.S('survey.start');
+      k.shape(k.rectPts(72, 262, 840, 196, 0), {fill: INK, line: false});   // a dark band: no ruled lines through the header
+      if (T < ty) k.slam('One more from the data', 96, 280, k.S('survey') + 0.1, {size: 60, color: 'accent', from: 0.8, shake: 6});
+      else if (T < ts) { k.burst(300, 312, ty + 0.4, {n: 18}); k.slam('More choices, more yeses.', 96, 280, ty + 0.3, {size: 60, color: 'accent', from: 0.6}); }
+      else { k.burst(420, 330, ts + 0.1, {n: 22, r: 300}); k.slam(`Start with ${n.tiers.shown}.`, 96, 262, ts, {size: 120, color: 'accent', from: 0.6, shake: 6}); }
       const tc = k.S('survey.caveat');
       if (T >= k.S('survey.more') && T < tc) {
         k.ctx.save(); slideIn(k, k.S('survey.more'), -600, 0);
@@ -243,28 +246,25 @@ window.SCENE = {
       if (T >= k.S('survey.group')) {
         const t0 = k.S('survey.group');
         k.ctx.save(); slideIn(k, t0, 0, 700);
-        k.panel2(72, 500, 840, 370, {title: `ACCA survey, ACHR News ${n.accaYear.shown}`});
-        k.text('"Contractor of the Future"', 108, 536, {size: 39, color: CHALK});
-        if (T >= k.S('survey.n')) k.slam(`${k.count(n.accaN.value, k.lin(k.S('survey.n'), k.S('survey.n') + 0.8), {comma: true})}+ contractors`, 108, 580, k.S('survey.n'), {size: 39, color: CHALK2, from: 0.4});
+        k.panel2(72, 530, 840, 370, {title: `ACCA survey, ACHR News ${n.accaYear.shown}`});
+        k.text('"Contractor of the Future"', 108, 566, {size: 39, color: CHALK});
+        if (T >= k.S('survey.n')) k.slam(`${k.count(n.accaN.value, k.lin(k.S('survey.n'), k.S('survey.n') + 0.8), {comma: true})}+ contractors`, 108, 610, k.S('survey.n'), {size: 39, color: CHALK2, from: 0.4});
         const t1 = wordT(k, 'survey.many', /^fifty/i), t2 = wordT(k, 'survey.few', /^forty/i);
-        if (T >= k.S('survey.many')) {
-          k.text(`${n.manyOpt.shown}+ options`, 108, 634, {size: 39, color: 'accent'});
-          growBar(k, 108, 680, 520, 48, n.manyClose, t1, 'accent');
-        }
-        if (T >= k.S('survey.few')) {
-          k.text(`${n.single.shown} to ${n.fewMax.shown} options`, 108, 752, {size: 39, color: CHALK});
-          growBar(k, 108, 798, 520, 48, n.fewClose, t2, '#C9CCD3', {sparks: false});
-        }
+        // both rows show as the panel opens (no empty box); each lights up and fills when it is said
+        k.text(`${n.manyOpt.shown}+ options`, 108, 664, {size: 39, color: T >= k.S('survey.many') ? 'accent' : 'muted'});
+        growBar(k, 108, 710, 520, 48, n.manyClose, t1, 'accent');
+        k.text(`${n.single.shown} to ${n.fewMax.shown} options`, 108, 782, {size: 39, color: T >= k.S('survey.few') ? CHALK : 'muted'});
+        growBar(k, 108, 828, 520, 48, n.fewClose, t2, '#C9CCD3', {sparks: false});
         k.ctx.restore();
-        if (T >= tc) k.spot(108, 752, 660, 94, tc + 0.3, {color: 'accent', lw: 6, pad: 10});
+        if (T >= tc) k.spot(108, 782, 660, 94, tc + 0.3, {color: 'accent', lw: 6, pad: 10});
       }
       if (T >= tc) {   // the caveat stays on screen: the survey can't separate one option from three
-        k.ctx.save(); popAt(k, tc, 490, 410, 1.08);
-        k.panel2(72, 352, 840, 118, {fill: INK, border: 'accent'});
-        k.text(`${n.single.shown} to ${n.fewMax.shown} options: one group here.`, 108, 372, {size: 39, color: CHALK});
+        k.ctx.save(); popAt(k, tc, 490, 450, 1.08);
+        k.panel2(72, 392, 840, 118, {fill: INK, border: 'accent'});
+        k.text(`${n.single.shown} to ${n.fewMax.shown} options: one group here.`, 108, 412, {size: 39, color: CHALK});
         k.ctx.restore();
         const tk = k.S('survey.cant');
-        if (T >= tk) k.slam(`It can't show ${n.fewMax.shown} beats ${n.single.shown}.`, 108, 418, tk, {size: 39, color: 'accent', from: 0.6});
+        if (T >= tk) k.slam(`It can't show ${n.fewMax.shown} beats ${n.single.shown}.`, 108, 458, tk, {size: 39, color: 'accent', from: 0.6});
       }
       return {hostPose: T >= ty ? 'clip' : (k.talking() ? 'talk' : 'stand'), hostScale: 0.55, hostX: 150};
     },
@@ -273,30 +273,31 @@ window.SCENE = {
       const n = k.data.numbers;
       k.room('blackboard'); boardClip(k);
       const t1 = k.S('close'), t2 = wordT(k, 'close.choice', /^three/i), ty = wordT(k, 'close', /^yes/i, 0.6), tc = wordT(k, 'close.choice', /^choice/i, 0.5);
-      k.slam(`${n.single.shown} price:`, 96, 280, t1, {size: 120, color: CHALK, from: 0.7});
-      k.slam('yes or no.', 96, 410, ty, {size: 120, color: CHALK, from: 0.7});
-      k.burst(160, 340, t1 + 0.1, {n: 10, r: 150, colors: ['paper', '#2F5A4A']});
+      // centered, so the board reads as one card; the send line is a full-width box, the biggest call on screen
+      k.slam(`${n.single.shown} price:`, 540, 262, t1, {size: 120, color: CHALK, from: 0.7, align: 'center'});
+      k.slam('yes or no.', 540, 372, ty, {size: 120, color: CHALK, from: 0.7, align: 'center'});
+      k.burst(540, 320, t1 + 0.1, {n: 10, r: 150, colors: ['paper', '#2F5A4A']});
       if (T >= t2) {
-        k.slam(`${n.tiers.shown} prices:`, 96, 560, t2, {size: 120, color: 'accent', from: 0.7});
-        k.slam('a choice.', 96, 690, tc, {size: 120, color: 'accent', from: 0.7});
-        k.burst(200, 620, t2 + 0.1, {n: 16, r: 200});
+        k.slam(`${n.tiers.shown} prices:`, 540, 502, t2, {size: 120, color: 'accent', from: 0.7, align: 'center'});
+        k.slam('a choice.', 540, 612, tc, {size: 120, color: 'accent', from: 0.7, align: 'center'});
+        k.burst(540, 560, t2 + 0.1, {n: 16, r: 200});
       }
       if (T >= k.S('close.send')) {
         const t0 = k.S('close.send');
-        k.ctx.save(); popAt(k, t0 - 0.2, 286, 880);
-        k.panel2(96, 846, 380, 80, {fill: '#24453A', border: 'accent'}); k.text('ProofNotFluff', 286, 856, {size: 60, color: 'accent', align: 'center'});
+        k.ctx.save(); popAt(k, t0 - 0.2, 540, 790);
+        k.panel2(340, 752, 400, 80, {fill: '#24453A', border: 'accent'}); k.text('ProofNotFluff', 540, 762, {size: 60, color: 'accent', align: 'center'});
         k.ctx.restore();
-        k.burst(286, 886, t0 - 0.1, {n: 16});
-        k.ctx.save(); slideIn(k, t0, 700, 0);
-        k.panel2(496, 830, 420, 118, {fill: INK, border: 'accent'});
-        k.text('Send this to whoever', 520, 848, {size: 39, color: CHALK});
-        k.text('writes your quotes.', 520, 894, {size: 39, color: CHALK2});
+        k.burst(540, 792, t0 - 0.1, {n: 16});
+        k.ctx.save(); slideIn(k, t0 + 0.2, 0, 200);
+        k.panel2(84, 848, 900, 140, {fill: INK, border: 'accent'});
+        k.text('Send this to whoever', 534, 862, {size: 60, color: CHALK, align: 'center'});
+        k.text('writes your quotes.', 534, 922, {size: 60, color: CHALK2, align: 'center'});
         k.ctx.restore();
       }
       if (T >= k.S('close.next')) {   // the payoff line underlined as the last words echo the hook
-        const t0 = k.S('close.next');
-        k.sweep(96, 828, k.measure('a choice.', {size: 120}), 12, t0, {color: 'accent'});
-        k.burst(96 + k.measure('a choice.', {size: 120}), 834, t0 + 0.3, {n: 16});
+        const t0 = k.S('close.next'), w = k.measure('a choice.', {size: 120});
+        k.sweep(540 - w / 2, 732, w, 12, t0, {color: 'accent'});
+        k.burst(540 + w / 2, 738, t0 + 0.3, {n: 16});
       }
       k.ctx.restore();
       return {hostPose: T >= k.S('close.send') + 1.5 ? 'wave' : 'talk', hostScale: 0.55, hostX: 150};

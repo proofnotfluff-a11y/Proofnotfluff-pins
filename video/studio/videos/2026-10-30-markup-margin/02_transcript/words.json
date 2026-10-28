@@ -168,37 +168,37 @@
   },
   {
    "w": "a",
+   "start": 9.16,
+   "end": 9.367,
+   "take": 2
+  },
+  {
+   "w": "thousand",
+   "start": 9.367,
+   "end": 9.573,
+   "take": 2
+  },
+  {
+   "w": "dollars.",
+   "start": 9.573,
+   "end": 9.78,
+   "take": 2
+  },
+  {
+   "w": "A",
    "start": 10.54,
    "end": 10.7,
    "take": 2
   },
   {
-   "w": "thousand",
-   "start": 10.7,
-   "end": 10.82,
-   "take": 2
-  },
-  {
-   "w": "dollars.",
-   "start": 10.82,
-   "end": 10.94,
-   "take": 2
-  },
-  {
-   "w": "A",
-   "start": 10.94,
-   "end": 11.06,
-   "take": 2
-  },
-  {
    "w": "fifty",
-   "start": 11.06,
-   "end": 11.18,
+   "start": 10.7,
+   "end": 10.98,
    "take": 2
   },
   {
    "w": "percent",
-   "start": 11.18,
+   "start": 10.98,
    "end": 11.3,
    "take": 2
   },
@@ -253,12 +253,12 @@
   {
    "w": "fifteen",
    "start": 13.94,
-   "end": 14.2,
+   "end": 14.33,
    "take": 2
   },
   {
    "w": "hundred.",
-   "start": 14.2,
+   "start": 14.33,
    "end": 14.46,
    "take": 2
   },
@@ -349,12 +349,12 @@
   {
    "w": "thirty-three",
    "start": 19.5,
-   "end": 20.0,
+   "end": 20.167,
    "take": 2
   },
   {
    "w": "percent.",
-   "start": 20.0,
+   "start": 20.167,
    "end": 20.5,
    "take": 2
   },
@@ -631,12 +631,12 @@
   {
    "w": "fifty",
    "start": 37.52,
-   "end": 37.86,
+   "end": 37.92,
    "take": 4
   },
   {
    "w": "percent",
-   "start": 37.86,
+   "start": 37.92,
    "end": 38.2,
    "take": 4
   },
@@ -696,13 +696,13 @@
   },
   {
    "w": "hundred",
-   "start": 41.42,
-   "end": 41.79,
+   "start": 41.57,
+   "end": 41.72,
    "take": 4
   },
   {
    "w": "percent",
-   "start": 41.79,
+   "start": 41.72,
    "end": 42.16,
    "take": 4
   },
@@ -715,13 +715,13 @@
   {
    "w": "A",
    "start": 43.06,
-   "end": 43.26,
+   "end": 43.193,
    "take": 4
   },
   {
    "w": "thousand",
-   "start": 43.26,
-   "end": 43.46,
+   "start": 43.193,
+   "end": 43.327,
    "take": 4
   },
   {
@@ -739,13 +739,13 @@
   {
    "w": "two",
    "start": 44.46,
-   "end": 44.72,
+   "end": 44.633,
    "take": 4
   },
   {
    "w": "thousand",
-   "start": 44.72,
-   "end": 44.98,
+   "start": 44.633,
+   "end": 44.807,
    "take": 4
   },
   {
@@ -895,12 +895,12 @@
   {
    "w": "forty",
    "start": 54.24,
-   "end": 54.59,
+   "end": 54.5,
    "take": 5
   },
   {
    "w": "percent?",
-   "start": 54.59,
+   "start": 54.5,
    "end": 54.94,
    "take": 5
   },
@@ -931,24 +931,24 @@
   {
    "w": "point",
    "start": 56.42,
-   "end": 56.84,
+   "end": 56.89,
    "take": 5
   },
   {
    "w": "six.",
-   "start": 56.84,
-   "end": 57.26,
+   "start": 56.89,
+   "end": 57.36,
    "take": 5
   },
   {
    "w": "A",
-   "start": 57.26,
-   "end": 57.68,
+   "start": 57.36,
+   "end": 57.83,
    "take": 5
   },
   {
    "w": "thousand",
-   "start": 57.68,
+   "start": 57.83,
    "end": 58.1,
    "take": 5
   },
@@ -967,24 +967,24 @@
   {
    "w": "sixteen",
    "start": 58.76,
-   "end": 59.07,
+   "end": 59.291,
    "take": 5
   },
   {
    "w": "hundred",
-   "start": 59.07,
-   "end": 59.38,
+   "start": 59.291,
+   "end": 59.469,
    "take": 5
   },
   {
    "w": "sixty-seven",
-   "start": 59.38,
-   "end": 59.69,
+   "start": 59.469,
+   "end": 59.823,
    "take": 5
   },
   {
    "w": "dollars.",
-   "start": 59.69,
+   "start": 59.823,
    "end": 60.0,
    "take": 5
   },
@@ -1207,9 +1207,7 @@
    "wpm": 171
   }
  ],
- "flags": [
-  "9.2 s added '$1 ,000.': not in the script"
- ],
+ "flags": [],
  "end": 71.66,
  "heard": [
   {

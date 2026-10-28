@@ -18,9 +18,10 @@ The five questions, answered for PNF:
 3. Every DIFF line: open the pair image and confirm the change is the one intended.
 4. Members' apps are encrypted: their flows build a planted page (for example `python3 tools/seat_app.py preview docs/zz-verify-pest/index.html <pw>`), never real rows; docs/zz-* is never committed.
 5. Map tiles, analytics and fonts from other hosts do not load in the cloud sandbox: those show as notes, not FAILs. Leaflet is served from npm with its pinned hash.
-6. Report in the run's message or log: the summary line (`verify: PASS, 0 failing of N checks`) and the evidence folder; send Todd the pair image when the change is one he will see.
+6. Canary (Kem, Oct 28: a check you have never seen fail proves nothing): when verify_site.py, a flow or a threshold changes, run `python3 tools/verify_site.py --canary`. It plants six known breaks (a script error, a missing file, a box wider than the phone, a button with no name, dark text in dark mode, one flow's target hidden) in what the browser is served, never in docs/, after a clean control run. Every one must FAIL for the expected reason; `canary: PASS, 6 of 6` or the run stops. CI runs it on every site push.
+7. Report in the run's message or log: the summary line (`verify: PASS, 0 failing of N checks`) and the evidence folder; send Todd the pair image when the change is one he will see.
 
 ## Outputs (Writes)
-- data/verify/<stamp>/ (gitignored): report.md, report.json, after/, before/, diff/, flows/.
+- data/verify/<stamp>/ (gitignored): report.md, report.json, after/, before/, diff/, flows/; canary runs in data/verify/<stamp>-canary/.
 - New or fixed flow files under verify/flows/.
 - On every push to main touching docs/, the Verify site workflow (.github/workflows/verify-site.yml) runs the same checks on the changed pages and all flows, and fails red if anything fails.

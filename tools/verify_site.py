@@ -20,6 +20,7 @@ Usage:
   python3 tools/verify_site.py --changed --before origin/main                   plus before/after pixel diffs
   python3 tools/verify_site.py --flows                                          every flow in verify/flows/
   python3 tools/verify_site.py --selftest                                       planted cases, no browser
+  python3 tools/verify_site.py --canary                                         break things on purpose: every planted break must FAIL
 Options: --widths 390,1280  --schemes light,dark  --max 15  --out DIR  --no-axe
 """
 import argparse, datetime as dt, functools, glob, http.server, json, os, re, shutil, socketserver, subprocess, sys
@@ -186,6 +187,7 @@ class Run:
     def __init__(self, out, widths, schemes, axe=True):
         self.out, self.widths, self.schemes, self.use_axe = out, widths, schemes, axe
         self.lines, self.rows, self.fails = [], [], 0
+        self.mutate = None   # canary only: a function that plants one break in the page's HTML as it is served
         os.makedirs(out, exist_ok=True)
         self.axe = npm_file("axe-core", AXE_VER, "axe.min.js") if axe else None
         if axe and not self.axe:
@@ -228,6 +230,13 @@ class Run:
             (ev["external"] if (host.endswith(EXTERNAL_OK) or not host.startswith("127.0.0.1")) else ev["failed"]).append(req.url[:160])
         pg.on("requestfailed", failed)
         pg.on("response", lambda r: ev["failed"].append(f"{r.status} {r.url[:150]}") if r.status >= 400 and "127.0.0.1" in r.url else None)
+        if self.mutate:   # the break lives only in what the browser is served; docs/ on disk is never touched
+            fn = self.mutate
+
+            async def plant(r):
+                resp = await r.fetch()
+                await r.fulfill(response=resp, body=fn(await resp.text()))
+            await pg.route(url, plant)
         resp = await pg.goto(url, wait_until="networkidle", timeout=45000)
         await pg.wait_for_timeout(250)
         return pg, ev, (resp.status if resp else 0)
@@ -432,6 +441,113 @@ async def main_async(a):
     return 1 if run.fails else 0
 
 
+# ------------------------------------------------------------------ canary: break it on purpose, see it caught
+# Kem (Glitch Cat Club, Oct 28, 2026): a check you have never seen fail proves nothing. Each canary plants one known
+# break in the HTML the browser is served (docs/ on disk is never touched) and passes only if the checks FAIL it, for
+# the reason expected. A clean control run of the same page comes first; if the control fails, nothing can be proved.
+CANARIES = [  # name, scheme, html planted before </body>, words the FAIL detail must hold
+    ("script error", "light", "<script>window.__pnfCanary.boom()</script>", "script error"),
+    ("missing file on our own site", "light", '<img src="/zz-canary-missing.png" alt="canary">', "request failed"),
+    ("box wider than the phone", "light", '<div style="width:1400px;height:8px;background:#c00"></div>', ("cut off", "sideways scroll")),
+    ("button with no name", "light", '<button type="button"></button>', "axe button-name"),
+    ("dark text in dark mode", "dark", '<p style="color:#1d2433;background:transparent">canary text</p>', "axe color-contrast"),
+]
+
+
+def plant_before_body(html, bit):
+    i = html.lower().rfind("</body>")
+    return html[:i] + bit + html[i:] if i >= 0 else html + bit
+
+
+def flow_target(flow):
+    """The first element a flow clicks, taps or expects to see: hiding it must make the flow fail."""
+    for st in flow.get("steps") or []:
+        for k in ("click", "tap", "expect_visible"):
+            if k in st:
+                return st[k]
+    return None
+
+
+def remover(sel):
+    """A script that keeps every match of sel out of the page, even ones a script draws later."""
+    s = json.dumps(sel)
+    return ("<script>(function(){var k=function(){document.querySelectorAll(" + s + ").forEach(function(e){e.remove()})};"
+            "k();new MutationObserver(k).observe(document.documentElement,{childList:true,subtree:true});})();</script>")
+
+
+def caught(rows, want):
+    want = (want,) if isinstance(want, str) else want
+    bad = [r for r in rows if not r["ok"]]
+    return bool(bad) and any(w in r["detail"] for r in bad for w in want), (bad[0]["detail"][:140] if bad else "passed")
+
+
+async def canary_async(a):
+    from playwright.async_api import async_playwright
+    stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
+    out = a.out or os.path.join(ROOT, "data", "verify", stamp + "-canary")
+    page = a.canary
+    run = Run(out, [390], ["light"], axe=not a.no_axe)
+    if not run.axe:
+        run.note("axe missing: the two accessibility canaries are skipped")
+    before = subprocess.run(["git", "-C", ROOT, "status", "--porcelain", "docs"], capture_output=True, text=True).stdout
+    flows = sorted((os.path.basename(f)[:-5], json.load(open(f))) for f in glob.glob(os.path.join(FLOWS, "*.json")))
+    fl = next(((n, f) for n, f in flows if not f.get("setup") and flow_target(f)), None)
+    httpd, base = serve(DOCS)
+    try:
+        async with async_playwright() as p:
+            exe = chromium_path()
+            browser = await p.chromium.launch(**({"executable_path": exe} if exe else {}))
+
+            async def scratch(tag, scheme, mutate, flow=None):
+                r = Run(os.path.join(out, tag), [390], [scheme], axe=bool(run.axe))
+                r.axe, r.leaflet, r.mutate = run.axe, run.leaflet, mutate
+                if flow:
+                    await r.flow(browser, base, flow[0], dict(flow[1], widths=[390], schemes=[scheme]))
+                else:
+                    await r.page_check(browser, base, page, "after")
+                return r.rows
+
+            for sc in ("light", "dark"):
+                rows = await scratch(f"control-{sc}", sc, None)
+                ok = bool(rows) and all(r["ok"] for r in rows)
+                run.result(ok, f"control {page or 'home'} 390 {sc}", "clean page passes" if ok else
+                           "the clean page already fails, so no canary can prove anything: " + "; ".join(r["detail"][:120] for r in rows if not r["ok"]) or "no result", {"canary": "control"})
+            if run.fails:
+                raise SystemExit
+            for i, (name, sc, bit, want) in enumerate(CANARIES):
+                if "axe" in str(want) and not run.axe:
+                    continue
+                rows = await scratch(f"c{i + 1}", sc, lambda h, b=bit: plant_before_body(h, b))
+                hit, why = caught(rows, want)
+                run.result(hit, f"canary {name}", f"caught: {why}" if hit else f"NOT caught (the checks said: {why})", {"canary": name})
+            if fl:
+                n, f = fl
+                rows = await scratch("flow-control", "light", None, fl)
+                ok = bool(rows) and all(r["ok"] for r in rows)
+                run.result(ok, f"control flow {n}", "clean flow passes" if ok else "the clean flow already fails: " + rows[0]["detail"][:140], {"canary": "control"})
+                if ok:
+                    sel = flow_target(f)
+                    rows = await scratch("flow-break", "light", lambda h, s=sel: plant_before_body(h, remover(s)), fl)
+                    hit, why = caught(rows, "step ")
+                    run.result(hit, f"canary flow {n} without {sel}", f"caught: {why}" if hit else f"NOT caught ({why})", {"canary": "flow"})
+            else:
+                run.note("no flow without a setup step to break")
+            await browser.close()
+    except SystemExit:
+        pass
+    finally:
+        httpd.shutdown()
+    after = subprocess.run(["git", "-C", ROOT, "status", "--porcelain", "docs"], capture_output=True, text=True).stdout
+    run.result(after == before, "docs untouched", "docs/ on disk is as it was" if after == before else "docs/ changed during the canary run", {"canary": "restore"})
+    run.write({"when": stamp, "pages": [page], "flows": [fl[0]] if fl else [], "widths": [390], "schemes": ["light", "dark"], "before": None})
+    for l in run.lines:
+        print(l)
+    n = sum(1 for r in run.rows if r["label"].startswith("canary"))
+    got = sum(1 for r in run.rows if r["label"].startswith("canary") and r["ok"])
+    print(f"canary: {'FAIL' if run.fails else 'PASS'}, {got} of {n} planted breaks caught; evidence in {os.path.relpath(out, ROOT)}")
+    return 1 if run.fails else 0
+
+
 def selftest():
     assert page_url("http://x", "") == "http://x/" and page_url("http://x", "a/b") == "http://x/a/b/" and page_url("http://x", "404.html") == "http://x/404.html"
     paths = ["docs/index.html", "docs/chicago-trades-news/index.html", "docs/chicago-trades-news/feed.xml", "docs/e/a/use/index.html",
@@ -462,6 +578,13 @@ def selftest():
         bad = check_flow(json.load(open(f)))
         assert not bad, (f, bad)
     shutil.rmtree(d)
+    assert plant_before_body("<p>a</p></BODY>", "X") == "<p>a</p>X</BODY>" and plant_before_body("a", "X") == "aX"
+    assert flow_target({"steps": [{"wait": 5}, {"tap": "#t"}, {"click": "#c"}]}) == "#t" and flow_target({"steps": [{"wait": 5}]}) is None
+    assert caught([{"ok": False, "detail": "x; script error: boom"}], "script error")[0]
+    assert not caught([{"ok": True, "detail": "fine"}], "script error")[0]                 # a pass is never a catch
+    assert not caught([{"ok": False, "detail": "HTTP 500"}], "script error")[0]           # a FAIL for another reason is not a catch
+    assert caught([{"ok": False, "detail": "2 element(s) cut off"}], ("cut off", "sideways scroll"))[0]
+    assert '"a[href=\\"x\\"]"' in remover('a[href="x"]')
     print("verify_site selftest: ok")
 
 
@@ -478,9 +601,12 @@ if __name__ == "__main__":
     ap.add_argument("--out")
     ap.add_argument("--no-axe", action="store_true")
     ap.add_argument("--selftest", action="store_true")
+    ap.add_argument("--canary", nargs="?", const="", default=None, help='plant known breaks in one page ("" = home) and in one flow; each must FAIL')
     a = ap.parse_args()
     if a.selftest:
         selftest()
         sys.exit(0)
     import asyncio
+    if a.canary is not None:
+        sys.exit(asyncio.run(canary_async(a)))
     sys.exit(asyncio.run(main_async(a)))

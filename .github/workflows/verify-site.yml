@@ -28,6 +28,8 @@ jobs:
       - run: python -m playwright install --with-deps chromium
       - name: Self-checks (planted cases)
         run: python3 tools/verify_site.py --selftest
+      - name: Canary (break it on purpose; every planted break must FAIL)
+        run: python3 tools/verify_site.py --canary --out data/verify/ci/canary
       - name: Verify the changed pages and every flow
         run: python3 tools/verify_site.py --changed HEAD~1 --flows --out data/verify/ci
       - if: always()

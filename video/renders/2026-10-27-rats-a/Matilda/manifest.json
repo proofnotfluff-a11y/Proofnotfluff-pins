@@ -2,11 +2,11 @@
  "schema": "pnf.video.manifest.v1",
  "videoId": "2026-10-27-rats-a",
  "mp4": "video.mp4",
- "sha256": "3b728476531dc8abfc63f8866a30b0fc8c2825f4b53e05e5e9c9676dc3e31a82",
- "bytes": 3737222,
- "seconds": 52.367,
- "lufs": -14.2,
- "truePeak": -1.6,
+ "sha256": "ee112f8649475bb643ed0e539e6bce851ed318ef84b9df182f73f3e8df939236",
+ "bytes": 3769282,
+ "seconds": 52.867,
+ "lufs": -14.5,
+ "truePeak": -2.9,
  "remotion": "4.0.539",
  "node": "v22.23.3",
  "voice": {
@@ -20,65 +20,65 @@
   {
    "key": "hook",
    "file": "hook.mp3",
-   "sha256": "810d336e3b477e3ab0b9545d1089894027eac3b50232accb2f23152c1bf0a7fa",
+   "sha256": "636449615d212d4df610570ca1e5f7b81796c71f73dc0fb2307187497e367f35",
    "seconds": 2.926
   },
   {
    "key": "l1",
    "file": "l1.mp3",
-   "sha256": "6ff027d415c5dca8f576b397b3d90cde8544ad8784fa9f575b817463c63378fe",
-   "seconds": 6.191
+   "sha256": "f985e58eec6677c57c33e37f7dc0409ca6c67af3747d06795cf58cb70881ecf6",
+   "seconds": 6.609
   },
   {
    "key": "l2",
    "file": "l2.mp3",
-   "sha256": "d616dfa3b50db90e4c934b0b8b97c65f3defa3ea37dac22bb90423655540b014",
-   "seconds": 5.146
+   "sha256": "fb4cc1084a04f75b0220676295266ec66888d5b81dc3fe514e685d4fae0bf3b3",
+   "seconds": 5.068
   },
   {
    "key": "l3",
    "file": "l3.mp3",
-   "sha256": "b3405bba2ab90efdd695019f71d20020aae21919d2f8bc098703b80e2a26d97a",
+   "sha256": "e92d01c6b67fadac096b5b2ed95b14897743b37eb644e7530e958fe95f3239dc",
    "seconds": 5.329
   },
   {
    "key": "l4",
    "file": "l4.mp3",
-   "sha256": "a23c71e14aa528d07f757fbdc178e73de2a5fbd9e5e06fab511e1b3d84a4bc6b",
-   "seconds": 6.191
+   "sha256": "52142730cbdd20d7891d66f520758d5cd81a984b27beedf67be30258c39b9f18",
+   "seconds": 6.113
   },
   {
    "key": "l5",
    "file": "l5.mp3",
-   "sha256": "5ae130e3ecfdc2f3fa37a42735b86c835b46b3ae4e29d4d1d3c2e7f9435ddbe9",
-   "seconds": 5.146
+   "sha256": "f2edb981424cfdf733a7134ba703f324fff1c86637b85bd15c885372216424e0",
+   "seconds": 5.486
   },
   {
    "key": "l6",
    "file": "l6.mp3",
-   "sha256": "52543057e6aa6df615cb832fdf226caef074192b5d5284e073281346d6bda552",
+   "sha256": "48c67f124893ccfb2658da923daf114b6badb79c554b718d92a7c8234b823791",
    "seconds": 5.329
   },
   {
    "key": "l7",
    "file": "l7.mp3",
-   "sha256": "b5d4286ab29c97f2d3754129e6b1c9dba2a5422c4f827ff42e64c42c24c3e961",
-   "seconds": 5.329
+   "sha256": "77e911877e1ef2cdc1e95e9fc6a973d2d846f6be44092ae39791567d5c51650d",
+   "seconds": 5.407
   },
   {
    "key": "cta",
    "file": "cta.mp3",
-   "sha256": "a165be7259d95423959770abfdb0e5ba5dba5dcd6284dd8faa32d296b6c1d946",
-   "seconds": 4.989
+   "sha256": "03715def402a8daface3e740111442a3c48795f0cda161b0bd595db785116476",
+   "seconds": 4.833
   }
  ],
  "music": {
   "musicId": "quiet-math",
-  "musicGainDb": -19.5,
-  "voiceLufsBefore": -21.5
+  "musicGainDb": -19.6,
+  "voiceLufsBefore": -21.6
  },
  "specSha256": "976bf15804c4a5c21fd47790ca9331a46d215cf58af115fe98b107acd74db1a8",
- "propsSha256": "acf2d6e35299badbc994189d51aecbc33841d04ae7af2deb88f9b0c68cfed516",
+ "propsSha256": "7a70de8959c0165432f79a3aba27cb74afb8617ec80f655c21ff3bdc2eba5b8d",
  "layout": "PASS",
- "renderedAt": "2026-10-28T11:15:15+00:00"
+ "renderedAt": "2026-10-28T11:46:12+00:00"
 }

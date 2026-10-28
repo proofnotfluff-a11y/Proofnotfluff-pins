@@ -1,7 +1,7 @@
 {
  "schema": "pnf.video.qa.v1",
  "videoId": "2026-10-27-rats-a",
- "mp4Sha256": "3b728476531dc8abfc63f8866a30b0fc8c2825f4b53e05e5e9c9676dc3e31a82",
+ "mp4Sha256": "ee112f8649475bb643ed0e539e6bce851ed318ef84b9df182f73f3e8df939236",
  "voice": {
   "id": "XrExE9yKIg1WjnnlVkGX",
   "name": "Matilda",
@@ -12,18 +12,18 @@
  "checks": [
   {
    "name": "length",
-   "value": 52.367,
+   "value": 52.867,
    "pass": true,
-   "detail": "52.37 s (45.0 to 60.0)"
+   "detail": "52.87 s (45.0 to 60.0)"
   },
   {
    "name": "loudness",
    "value": {
-    "lufs": -14.2,
-    "truePeak": -1.6
+    "lufs": -14.5,
+    "truePeak": -2.9
    },
    "pass": true,
-   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -1.6 dBTP (at most -1.5)"
+   "detail": "-14.5 LUFS (target -14 +/- 1), true peak -2.9 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -35,12 +35,16 @@
    "name": "frozen",
    "value": [
     [
-     50.5,
-     52.366667
+     8.93333,
+     9.96667
+    ],
+    [
+     51.0333,
+     52.866667
     ]
    ],
-   "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 45.40 s"
+   "pass": false,
+   "detail": "1 frozen stretch(es) of 1.0 s or more before the end card at 46.08 s"
   },
   {
    "name": "hook",
@@ -89,16 +93,16 @@
    "name": "faces",
    "value": [],
    "pass": true,
-   "detail": "0 frame(s) with a face at 0.6 or more (52 frames checked)"
+   "detail": "0 frame(s) with a face at 0.6 or more (53 frames checked)"
   },
   {
    "name": "file",
    "value": {
-    "sha256": "3b728476531dc8abfc63f8866a30b0fc8c2825f4b53e05e5e9c9676dc3e31a82",
-    "bytes": 3737222
+    "sha256": "ee112f8649475bb643ed0e539e6bce851ed318ef84b9df182f73f3e8df939236",
+    "bytes": 3769282
    },
    "pass": true,
-   "detail": "opens, decodes to the end, 3.7 MB, matches the manifest"
+   "detail": "opens, decodes to the end, 3.8 MB, matches the manifest"
   },
   {
    "name": "layout",
@@ -113,5 +117,5 @@
    "detail": "the render is of this exact spec"
   }
  ],
- "pass": true
+ "pass": false
 }

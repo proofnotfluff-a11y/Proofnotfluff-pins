@@ -1,7 +1,7 @@
 {
  "schema": "pnf.video.qa.v1",
  "videoId": "2026-10-27-rats-a",
- "mp4Sha256": "caef6c1cc49f019783dae13eb15757e684062f2932dd3d70377047b07325cdf6",
+ "mp4Sha256": "0894fe117f4e0194e180108d69f48da0c797398a7caaa2053c3fddd05486c139",
  "voice": {
   "id": "cjVigY5qzO86Huf0OWal",
   "name": "Eric",
@@ -12,18 +12,18 @@
  "checks": [
   {
    "name": "length",
-   "value": 48.167,
+   "value": 48.133,
    "pass": true,
-   "detail": "48.17 s (45.0 to 60.0)"
+   "detail": "48.13 s (45.0 to 60.0)"
   },
   {
    "name": "loudness",
    "value": {
-    "lufs": -14.1,
-    "truePeak": -1.8
+    "lufs": -14.4,
+    "truePeak": -3.0
    },
    "pass": true,
-   "detail": "-14.1 LUFS (target -14 +/- 1), true peak -1.8 dBTP (at most -1.5)"
+   "detail": "-14.4 LUFS (target -14 +/- 1), true peak -3.0 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -36,17 +36,17 @@
    "value": [
     [
      46.3,
-     48.166667
+     48.133
     ]
    ],
    "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 41.69 s"
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 41.72 s"
   },
   {
    "name": "hook",
-   "value": 2.66,
+   "value": 2.74,
    "pass": true,
-   "detail": "hook's last word ends at 2.66 s (by 3.00)"
+   "detail": "hook's last word ends at 2.74 s (by 3.00)"
   },
   {
    "name": "numbers",
@@ -94,8 +94,8 @@
   {
    "name": "file",
    "value": {
-    "sha256": "caef6c1cc49f019783dae13eb15757e684062f2932dd3d70377047b07325cdf6",
-    "bytes": 3378300
+    "sha256": "0894fe117f4e0194e180108d69f48da0c797398a7caaa2053c3fddd05486c139",
+    "bytes": 3358537
    },
    "pass": true,
    "detail": "opens, decodes to the end, 3.4 MB, matches the manifest"

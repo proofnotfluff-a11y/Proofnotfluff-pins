@@ -1,7 +1,7 @@
 {
  "schema": "pnf.video.qa.v1",
  "videoId": "2026-10-27-rats-a",
- "mp4Sha256": "6017a2017e855ee8ecaf499ae84dc766733dadd60d1bb07ba485b0c5e008a62b",
+ "mp4Sha256": "fc8df51329cef7f80bd6961bc33544f639a997e905af6e00c7e46baa4976c033",
  "voice": {
   "id": "iP95p4xoKVk53GoZ742B",
   "name": "Chris",
@@ -19,11 +19,11 @@
   {
    "name": "loudness",
    "value": {
-    "lufs": -14.3,
-    "truePeak": 0.4
+    "lufs": -14.7,
+    "truePeak": -3.0
    },
-   "pass": false,
-   "detail": "-14.3 LUFS (target -14 +/- 1), true peak 0.4 dBTP (at most -1.5)"
+   "pass": true,
+   "detail": "-14.7 LUFS (target -14 +/- 1), true peak -3.0 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -35,18 +35,18 @@
    "name": "frozen",
    "value": [
     [
-     46.0,
+     45.7333,
      47.9
     ]
    ],
    "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 41.56 s"
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 41.48 s"
   },
   {
    "name": "hook",
-   "value": 2.82,
+   "value": 2.74,
    "pass": true,
-   "detail": "hook's last word ends at 2.82 s (by 3.00)"
+   "detail": "hook's last word ends at 2.74 s (by 3.00)"
   },
   {
    "name": "numbers",
@@ -94,8 +94,8 @@
   {
    "name": "file",
    "value": {
-    "sha256": "6017a2017e855ee8ecaf499ae84dc766733dadd60d1bb07ba485b0c5e008a62b",
-    "bytes": 3416093
+    "sha256": "fc8df51329cef7f80bd6961bc33544f639a997e905af6e00c7e46baa4976c033",
+    "bytes": 3411200
    },
    "pass": true,
    "detail": "opens, decodes to the end, 3.4 MB, matches the manifest"
@@ -113,5 +113,5 @@
    "detail": "the render is of this exact spec"
   }
  ],
- "pass": false
+ "pass": true
 }

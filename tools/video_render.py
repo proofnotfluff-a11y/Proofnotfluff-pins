@@ -593,9 +593,15 @@ def loudness(path):
     return (float(i[-1]) if i else None), (float(p[-1]) if p and p[-1] != "-inf" else None)
 
 
+LIMIT = 10 ** (-3.5 / 20)   # a peak limiter at -3.5 dBFS on the 4x oversampled mix: AAC encoding adds up to about 2.4 dB of
+                            # intersample overshoot (Chris, Oct 28: -2.0 dBTP wav became +0.4 dBTP in the MP4), so the MP4 stays at
+                            # or below gate 5's -1.5 dBTP
+
+
 def mix_audio(tl_segments, voice_dir, seconds, out_wav, music_id):
     """The voice clips at their timeline starts, untouched, and the music bed about 14 LU under the voice; then the whole
-    mix to -14 LUFS integrated with the true peak at or below -1.5 dBTP (two-pass loudnorm, linear)."""
+    mix to -14 LUFS integrated (two-pass loudnorm, linear), then a peak limiter at -3.5 dBFS at 4x oversampling, so the
+    MP4's true peak stays at or below -1.5 dBTP after AAC encoding."""
     lib = json.load(open(os.path.join(ROOT, "tools", "music", "library.json"), encoding="utf-8"))
     track = next(t for t in lib["tracks"] if t["id"] == music_id)
     tmp = tempfile.mkdtemp()
@@ -616,7 +622,8 @@ def mix_audio(tl_segments, voice_dir, seconds, out_wav, music_id):
     m = json.loads(r.stderr[r.stderr.rindex("{"):r.stderr.rindex("}") + 1])
     run(["ffmpeg", "-y", "-loglevel", "error", "-i", mix, "-af",
          f"loudnorm=I=-14:TP=-2.0:LRA=11:measured_I={m['input_i']}:measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:"
-         f"measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true,aresample=48000",
+         f"measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true,aresample=192000,"
+         f"alimiter=limit={LIMIT:.4f}:attack=1:release=60:level=disabled,aresample=48000",
          "-ar", "48000", "-ac", "2", out_wav])
     shutil.rmtree(tmp, ignore_errors=True)
     return {"musicId": music_id, "musicGainDb": round(gain, 2), "voiceLufsBefore": vl}

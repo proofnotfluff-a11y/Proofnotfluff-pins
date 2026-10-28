@@ -9,7 +9,7 @@
   "XrExE9yKIg1WjnnlVkGX",
   "pqHfZKP75CvOlQylNhV4"
  ],
- "requestedAt": "2026-10-28T05:58:08-05:00",
+ "requestedAt": "2026-10-28T06:29:43-05:00",
  "run": "live-chat-1028",
- "about": "Golden render, design fix round (gate 8 FAIL 4.43 on the hook 4 render): one title size, a source line on data scenes, larger why values, captions by hard cut with a wider pill gap, compare scene retitled. All five approved voices; gate 5 and the render critic rerun at round 0. The golden is never posted."
+ "about": "Golden render, gate 5 fix round: the mix gets an oversampled peak limiter (AAC encoding pushed Chris to +0.4 dBTP), on top of the design fix round. All five approved voices. The golden is never posted."
 }

@@ -17,7 +17,7 @@
     ctx.font = `600 46px ${look.font.body}`;
     const fits = (arr) => {
       const lines = []; let line = '';
-      arr.forEach((w) => { const t = line ? line + ' ' + w.w : w.w; if (line && ctx.measureText(t).width > 560) { lines.push(line); line = w.w; } else line = t; });
+      arr.forEach((w) => { const t = line ? line + ' ' + w.w : w.w; if (line && ctx.measureText(t).width > 520) { lines.push(line); line = w.w; } else line = t; });
       lines.push(line); return lines.length <= 2;
     };
     ws.forEach((w, i) => {
@@ -38,14 +38,21 @@
     k.shape(k.rectPts(x, y, w, h, look.name === 'pixel' ? 0 : 22), {fill: 'bubble', stroke: look.name === 'clean' ? 'line' : null, lw: 2});
     k.shape([[x + 2, y + 98], [x - 36, y + 120], [x + 2, y + 122]], {fill: 'bubble', line: false});
     const tag = k.chip(window.SCENE.host_name || 'Snow', x + 20, y - 30, {size: 24, fill: 'tag', color: 'tagText'});
-    ctx.save(); ctx.font = `600 46px ${look.font.body}`; ctx.textBaseline = 'top';
-    let cx = x + 26, cy = y + 34; const lh = 56, maxX = x + w - 24;
+    ctx.save(); ctx.textBaseline = 'top'; try { ctx.letterSpacing = '0px'; } catch (e) {}
+    // lay the phrase out at 46 px; if it would need a third line, step the size down until it fits in two
+    let fs = 46, lh = 56;
+    const lay = (size) => { ctx.font = `600 ${size}px ${look.font.body}`; const sp = ctx.measureText(' ').width; let cx2 = x + 26, rows = 1;
+      ph.words.forEach((wd) => { const ww = ctx.measureText(wd.w).width; if (cx2 + ww > x + w - 24 && cx2 > x + 26) { cx2 = x + 26; rows++; } cx2 += ww + sp; }); return rows; };
+    while (fs > 34 && lay(fs) > 2) fs -= 2;
+    lh = Math.round(fs * 1.22);
+    ctx.font = `600 ${fs}px ${look.font.body}`;
+    let cx = x + 26, cy = y + (h - 2 * lh) / 2 + 4; const maxX = x + w - 24;
     const space = ctx.measureText(' ').width;
     ph.words.forEach((wd) => {
       const ww = ctx.measureText(wd.w).width;
       if (cx + ww > maxX && cx > x + 26) { cx = x + 26; cy += lh; }
       const on = T >= wd.start && T < wd.end + 0.05, said = T >= wd.start;
-      if (on) { k.shape(k.rectPts(cx - 8, cy - 5, ww + 16, 56, look.name === 'pixel' ? 0 : 8), {fill: 'pill', line: false}); }
+      if (on) { k.shape(k.rectPts(cx - 8, cy - 5, ww + 16, lh, look.name === 'pixel' ? 0 : 8), {fill: 'pill', line: false}); }
       ctx.fillStyle = on ? k.C.pillText : (said ? k.C.bubbleText : (look.lineArt || look.name === 'pixel' ? k.C.muted : '#9AA0AD'));
       ctx.fillText(wd.w, cx, cy);
       cx += ww + space;
@@ -108,7 +115,6 @@
     env.data = window.DATA;
     cues = window.CUES.cues; cues.forEach((c) => { byId[c.id] = c; });
     words = (window.WORDS.words || []);
-    phrases = buildPhrases(words);
     const c = document.getElementById('c'); c.width = W; c.height = H;
     if (look.scale !== 1) { lowCanvas = document.createElement('canvas'); lowCanvas.width = Math.round(W * look.scale); lowCanvas.height = Math.round(H * look.scale); }
     for (const n of (window.SCENE.images || [])) {
@@ -116,6 +122,7 @@
     }
     await document.fonts.ready;
     await Promise.all(['700 40px Poppins', '600 40px Poppins', '600 40px Inter', '700 40px Inter'].map((f) => document.fonts.load(f)));
+    phrases = buildPhrases(words);   // after the fonts load, so the line breaks match what is drawn
     window.DURATION = window.CUES.duration;
     window.READY = true;
     if (q.get('play')) { const t0 = performance.now(); const tick = () => { const t = (performance.now() - t0) / 1000; drawAt(t % window.DURATION); requestAnimationFrame(tick); }; tick(); }

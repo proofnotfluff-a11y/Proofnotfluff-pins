@@ -117,6 +117,8 @@
 
     k.bg = function () {
       ctx.fillStyle = C.bg; ctx.fillRect(0, 0, 1080, 1920);
+      const floor = () => { ctx.save(); ctx.fillStyle = C.bg2; ctx.globalAlpha = look.lineArt ? 0.6 : 0.9; ctx.fillRect(0, 1250, 1080, 670); ctx.restore();
+        shape([[0, 1250], [1080, 1250]], {stroke: look.lineArt ? 'line' : 'line', lw: 3, closed: false, line: false}); };
       if (look.grid === 'blueprint') {
         ctx.save(); ctx.strokeStyle = 'rgba(214,232,255,0.10)'; ctx.lineWidth = 1;
         for (let x = 0; x <= 1080; x += 30) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 1920); ctx.stroke(); }
@@ -137,6 +139,7 @@
         const g = ctx.createRadialGradient(540, 700, 100, 540, 900, 1300); g.addColorStop(0, C.bg); g.addColorStop(1, C.bg2);
         ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 1920);
       }
+      floor();
     };
 
     // A card: soft shadow in the clean look, a traced box in the line-art looks.
@@ -182,7 +185,7 @@
       const pad = o.pad || 14, pts = rectPts(x - pad, y - pad, w + 2 * pad, h + 2 * pad, o.r || 18);
       const n = Math.max(2, Math.floor(pts.length * p));
       shape(pts.slice(0, n), {stroke: o.color || 'accent', lw: o.lw || 6, closed: p >= 1, line: false});
-      if (o.chip && p >= 1) k.chip(o.chip, x - pad, y - pad - 58, {size: 24});
+      if (o.chip && p >= 1) k.chip(o.chip, o.chipAt ? o.chipAt[0] : x - pad, o.chipAt ? o.chipAt[1] : y - pad - 58, {size: 24, fill: o.color || 'accent', color: 'pillText'});
     };
     k.arrow = function (a, b, p, o = {}) {
       p = clamp(p); if (p <= 0) return;
@@ -337,7 +340,7 @@
 
     // bars: rows [{label, value, shown, focus}] drawn as a shared track so a small value still reads as a bar
     k.bars = function (x, y, w, rows, p, o = {}) {
-      const vmax = Math.max(...rows.map((r) => Math.abs(r.value))) || 1;
+      const vmax = o.vmax || Math.max(...rows.map((r) => Math.abs(r.value))) || 1;
       const bh = o.bh || 84, gap = o.gap || 150, valW = o.valW || 230, trackW = w - valW - 20;
       rows.forEach((r, i) => {
         const ry = y + i * gap, rp = clamp(p * 1.4 - i * 0.25);

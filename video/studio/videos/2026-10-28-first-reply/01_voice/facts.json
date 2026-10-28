@@ -1,0 +1,28 @@
+{
+ "about": "Every number this video shows or says, with its source. Checked by the facts gate against the source pages; copied from video/studio/research/runs/2026-10-28-followup.md and re-read on the source on Oct 28, 2026.",
+ "speedStudy": {
+  "title": "Speed Is a Signal: When Faster Replies Increase Hiring Likelihood",
+  "journal": "Management Science",
+  "year": 2026,
+  "url": "https://today.ucsd.edu/story/looking-for-work-dont-worry-about-seeming-too-eager",
+  "paper": "https://pubsonline.informs.org/doi/10.1287/mnsc.2024.06185",
+  "interactionsMillions": 11.6,
+  "platform": "Fiverr",
+  "oneHourDropPct": 46,
+  "oneDayDropPct": 90,
+  "automatedNote": "faster replies lost their appeal when recipients believed they were automated or written by AI"
+ },
+ "thumbtack": {
+  "title": "3 takeaways from the 2025 Pro Summit",
+  "year": 2025,
+  "url": "https://www.thumbtack.com/guide/content/3-takeaways-from-the-2025-pro-summit",
+  "fastMinutes": 30,
+  "slowHours": 3,
+  "moreLikelyPct": 25
+ },
+ "warmAsk": {
+  "title": "Gong cold email research (304,174 emails); specific time wins on live deals",
+  "url": "see video/studio/research/runs/2026-10-28-email.md, section 1",
+  "note": "used as practice advice only: on a warm lead, offer a specific time"
+ }
+}

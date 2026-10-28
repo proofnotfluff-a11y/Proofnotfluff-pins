@@ -1,0 +1,1012 @@
+{
+ "schema": "pnf.studio.words.v1",
+ "source": "estimate",
+ "about": "Stand-in timings from script.md; never rendered for posting.",
+ "words": [
+  {
+   "w": "A",
+   "start": 0.15,
+   "end": 0.302,
+   "take": 1
+  },
+  {
+   "w": "homeowner",
+   "start": 0.352,
+   "end": 0.84,
+   "take": 1
+  },
+  {
+   "w": "just",
+   "start": 0.89,
+   "end": 1.168,
+   "take": 1
+  },
+  {
+   "w": "asked",
+   "start": 1.218,
+   "end": 1.538,
+   "take": 1
+  },
+  {
+   "w": "you",
+   "start": 1.588,
+   "end": 1.824,
+   "take": 1
+  },
+  {
+   "w": "for",
+   "start": 1.874,
+   "end": 2.11,
+   "take": 1
+  },
+  {
+   "w": "a",
+   "start": 2.16,
+   "end": 2.312,
+   "take": 1
+  },
+  {
+   "w": "quote.",
+   "start": 2.362,
+   "end": 2.724,
+   "take": 1
+  },
+  {
+   "w": "You're",
+   "start": 2.994,
+   "end": 3.356,
+   "take": 1
+  },
+  {
+   "w": "on",
+   "start": 3.406,
+   "end": 3.6,
+   "take": 1
+  },
+  {
+   "w": "a",
+   "start": 3.65,
+   "end": 3.802,
+   "take": 1
+  },
+  {
+   "w": "job,",
+   "start": 3.852,
+   "end": 4.13,
+   "take": 1
+  },
+  {
+   "w": "so",
+   "start": 4.28,
+   "end": 4.474,
+   "take": 1
+  },
+  {
+   "w": "you",
+   "start": 4.524,
+   "end": 4.76,
+   "take": 1
+  },
+  {
+   "w": "figure",
+   "start": 4.81,
+   "end": 5.172,
+   "take": 1
+  },
+  {
+   "w": "you'll",
+   "start": 5.222,
+   "end": 5.584,
+   "take": 1
+  },
+  {
+   "w": "text",
+   "start": 5.634,
+   "end": 5.912,
+   "take": 1
+  },
+  {
+   "w": "them",
+   "start": 5.962,
+   "end": 6.24,
+   "take": 1
+  },
+  {
+   "w": "back",
+   "start": 6.29,
+   "end": 6.568,
+   "take": 1
+  },
+  {
+   "w": "tonight.",
+   "start": 6.618,
+   "end": 7.064,
+   "take": 1
+  },
+  {
+   "w": "That",
+   "start": 7.334,
+   "end": 7.612,
+   "take": 1
+  },
+  {
+   "w": "wait",
+   "start": 7.662,
+   "end": 7.94,
+   "take": 1
+  },
+  {
+   "w": "costs",
+   "start": 7.99,
+   "end": 8.31,
+   "take": 1
+  },
+  {
+   "w": "more",
+   "start": 8.36,
+   "end": 8.638,
+   "take": 1
+  },
+  {
+   "w": "than",
+   "start": 8.688,
+   "end": 8.966,
+   "take": 1
+  },
+  {
+   "w": "most",
+   "start": 9.016,
+   "end": 9.294,
+   "take": 1
+  },
+  {
+   "w": "pros",
+   "start": 9.344,
+   "end": 9.622,
+   "take": 1
+  },
+  {
+   "w": "think.",
+   "start": 9.672,
+   "end": 10.034,
+   "take": 1
+  },
+  {
+   "w": "A",
+   "start": 10.654,
+   "end": 10.806,
+   "take": 2
+  },
+  {
+   "w": "study",
+   "start": 10.856,
+   "end": 11.176,
+   "take": 2
+  },
+  {
+   "w": "out",
+   "start": 11.226,
+   "end": 11.462,
+   "take": 2
+  },
+  {
+   "w": "this",
+   "start": 11.512,
+   "end": 11.79,
+   "take": 2
+  },
+  {
+   "w": "year",
+   "start": 11.84,
+   "end": 12.118,
+   "take": 2
+  },
+  {
+   "w": "looked",
+   "start": 12.168,
+   "end": 12.53,
+   "take": 2
+  },
+  {
+   "w": "at",
+   "start": 12.58,
+   "end": 12.774,
+   "take": 2
+  },
+  {
+   "w": "eleven",
+   "start": 12.824,
+   "end": 13.186,
+   "take": 2
+  },
+  {
+   "w": "point",
+   "start": 13.236,
+   "end": 13.556,
+   "take": 2
+  },
+  {
+   "w": "six",
+   "start": 13.606,
+   "end": 13.842,
+   "take": 2
+  },
+  {
+   "w": "million",
+   "start": 13.892,
+   "end": 14.296,
+   "take": 2
+  },
+  {
+   "w": "requests",
+   "start": 14.346,
+   "end": 14.792,
+   "take": 2
+  },
+  {
+   "w": "on",
+   "start": 14.842,
+   "end": 15.036,
+   "take": 2
+  },
+  {
+   "w": "Fiverr,",
+   "start": 15.086,
+   "end": 15.49,
+   "take": 2
+  },
+  {
+   "w": "the",
+   "start": 15.64,
+   "end": 15.876,
+   "take": 2
+  },
+  {
+   "w": "freelance",
+   "start": 15.926,
+   "end": 16.414,
+   "take": 2
+  },
+  {
+   "w": "site.",
+   "start": 16.464,
+   "end": 16.784,
+   "take": 2
+  },
+  {
+   "w": "Reply",
+   "start": 17.054,
+   "end": 17.374,
+   "take": 2
+  },
+  {
+   "w": "an",
+   "start": 17.424,
+   "end": 17.618,
+   "take": 2
+  },
+  {
+   "w": "hour",
+   "start": 17.668,
+   "end": 17.946,
+   "take": 2
+  },
+  {
+   "w": "late,",
+   "start": 17.996,
+   "end": 18.316,
+   "take": 2
+  },
+  {
+   "w": "and",
+   "start": 18.466,
+   "end": 18.702,
+   "take": 2
+  },
+  {
+   "w": "your",
+   "start": 18.752,
+   "end": 19.03,
+   "take": 2
+  },
+  {
+   "w": "odds",
+   "start": 19.08,
+   "end": 19.358,
+   "take": 2
+  },
+  {
+   "w": "of",
+   "start": 19.408,
+   "end": 19.602,
+   "take": 2
+  },
+  {
+   "w": "getting",
+   "start": 19.652,
+   "end": 20.056,
+   "take": 2
+  },
+  {
+   "w": "hired",
+   "start": 20.106,
+   "end": 20.426,
+   "take": 2
+  },
+  {
+   "w": "drop",
+   "start": 20.476,
+   "end": 20.754,
+   "take": 2
+  },
+  {
+   "w": "by",
+   "start": 20.804,
+   "end": 20.998,
+   "take": 2
+  },
+  {
+   "w": "about",
+   "start": 21.048,
+   "end": 21.368,
+   "take": 2
+  },
+  {
+   "w": "half.",
+   "start": 21.418,
+   "end": 21.738,
+   "take": 2
+  },
+  {
+   "w": "Wait",
+   "start": 22.008,
+   "end": 22.286,
+   "take": 2
+  },
+  {
+   "w": "a",
+   "start": 22.336,
+   "end": 22.488,
+   "take": 2
+  },
+  {
+   "w": "day,",
+   "start": 22.538,
+   "end": 22.816,
+   "take": 2
+  },
+  {
+   "w": "and",
+   "start": 22.966,
+   "end": 23.202,
+   "take": 2
+  },
+  {
+   "w": "they",
+   "start": 23.252,
+   "end": 23.53,
+   "take": 2
+  },
+  {
+   "w": "drop",
+   "start": 23.58,
+   "end": 23.858,
+   "take": 2
+  },
+  {
+   "w": "about",
+   "start": 23.908,
+   "end": 24.228,
+   "take": 2
+  },
+  {
+   "w": "ninety",
+   "start": 24.278,
+   "end": 24.64,
+   "take": 2
+  },
+  {
+   "w": "percent.",
+   "start": 24.69,
+   "end": 25.136,
+   "take": 2
+  },
+  {
+   "w": "And",
+   "start": 25.756,
+   "end": 25.992,
+   "take": 3
+  },
+  {
+   "w": "it's",
+   "start": 26.042,
+   "end": 26.32,
+   "take": 3
+  },
+  {
+   "w": "not",
+   "start": 26.37,
+   "end": 26.606,
+   "take": 3
+  },
+  {
+   "w": "just",
+   "start": 26.656,
+   "end": 26.934,
+   "take": 3
+  },
+  {
+   "w": "freelancers.",
+   "start": 26.984,
+   "end": 27.598,
+   "take": 3
+  },
+  {
+   "w": "Thumbtack",
+   "start": 27.868,
+   "end": 28.356,
+   "take": 3
+  },
+  {
+   "w": "says",
+   "start": 28.406,
+   "end": 28.684,
+   "take": 3
+  },
+  {
+   "w": "pros",
+   "start": 28.734,
+   "end": 29.012,
+   "take": 3
+  },
+  {
+   "w": "who",
+   "start": 29.062,
+   "end": 29.298,
+   "take": 3
+  },
+  {
+   "w": "answer",
+   "start": 29.348,
+   "end": 29.71,
+   "take": 3
+  },
+  {
+   "w": "inside",
+   "start": 29.76,
+   "end": 30.122,
+   "take": 3
+  },
+  {
+   "w": "thirty",
+   "start": 30.172,
+   "end": 30.534,
+   "take": 3
+  },
+  {
+   "w": "minutes",
+   "start": 30.584,
+   "end": 30.988,
+   "take": 3
+  },
+  {
+   "w": "are",
+   "start": 31.038,
+   "end": 31.274,
+   "take": 3
+  },
+  {
+   "w": "twenty-five",
+   "start": 31.324,
+   "end": 31.896,
+   "take": 3
+  },
+  {
+   "w": "percent",
+   "start": 31.946,
+   "end": 32.35,
+   "take": 3
+  },
+  {
+   "w": "more",
+   "start": 32.4,
+   "end": 32.678,
+   "take": 3
+  },
+  {
+   "w": "likely",
+   "start": 32.728,
+   "end": 33.09,
+   "take": 3
+  },
+  {
+   "w": "to",
+   "start": 33.14,
+   "end": 33.334,
+   "take": 3
+  },
+  {
+   "w": "get",
+   "start": 33.384,
+   "end": 33.62,
+   "take": 3
+  },
+  {
+   "w": "hired",
+   "start": 33.67,
+   "end": 33.99,
+   "take": 3
+  },
+  {
+   "w": "than",
+   "start": 34.04,
+   "end": 34.318,
+   "take": 3
+  },
+  {
+   "w": "pros",
+   "start": 34.368,
+   "end": 34.646,
+   "take": 3
+  },
+  {
+   "w": "who",
+   "start": 34.696,
+   "end": 34.932,
+   "take": 3
+  },
+  {
+   "w": "take",
+   "start": 34.982,
+   "end": 35.26,
+   "take": 3
+  },
+  {
+   "w": "three",
+   "start": 35.31,
+   "end": 35.63,
+   "take": 3
+  },
+  {
+   "w": "hours.",
+   "start": 35.68,
+   "end": 36.042,
+   "take": 3
+  },
+  {
+   "w": "But",
+   "start": 36.662,
+   "end": 36.898,
+   "take": 4
+  },
+  {
+   "w": "here's",
+   "start": 36.948,
+   "end": 37.31,
+   "take": 4
+  },
+  {
+   "w": "the",
+   "start": 37.36,
+   "end": 37.596,
+   "take": 4
+  },
+  {
+   "w": "catch.",
+   "start": 37.646,
+   "end": 38.008,
+   "take": 4
+  },
+  {
+   "w": "In",
+   "start": 38.278,
+   "end": 38.472,
+   "take": 4
+  },
+  {
+   "w": "that",
+   "start": 38.522,
+   "end": 38.8,
+   "take": 4
+  },
+  {
+   "w": "same",
+   "start": 38.85,
+   "end": 39.128,
+   "take": 4
+  },
+  {
+   "w": "study,",
+   "start": 39.178,
+   "end": 39.54,
+   "take": 4
+  },
+  {
+   "w": "speed",
+   "start": 39.69,
+   "end": 40.01,
+   "take": 4
+  },
+  {
+   "w": "stopped",
+   "start": 40.06,
+   "end": 40.464,
+   "take": 4
+  },
+  {
+   "w": "helping",
+   "start": 40.514,
+   "end": 40.918,
+   "take": 4
+  },
+  {
+   "w": "when",
+   "start": 40.968,
+   "end": 41.246,
+   "take": 4
+  },
+  {
+   "w": "the",
+   "start": 41.296,
+   "end": 41.532,
+   "take": 4
+  },
+  {
+   "w": "reply",
+   "start": 41.582,
+   "end": 41.902,
+   "take": 4
+  },
+  {
+   "w": "looked",
+   "start": 41.952,
+   "end": 42.314,
+   "take": 4
+  },
+  {
+   "w": "automated.",
+   "start": 42.364,
+   "end": 42.894,
+   "take": 4
+  },
+  {
+   "w": "Fast",
+   "start": 43.164,
+   "end": 43.442,
+   "take": 4
+  },
+  {
+   "w": "only",
+   "start": 43.492,
+   "end": 43.77,
+   "take": 4
+  },
+  {
+   "w": "works",
+   "start": 43.82,
+   "end": 44.14,
+   "take": 4
+  },
+  {
+   "w": "if",
+   "start": 44.19,
+   "end": 44.384,
+   "take": 4
+  },
+  {
+   "w": "it",
+   "start": 44.434,
+   "end": 44.628,
+   "take": 4
+  },
+  {
+   "w": "sounds",
+   "start": 44.678,
+   "end": 45.04,
+   "take": 4
+  },
+  {
+   "w": "like",
+   "start": 45.09,
+   "end": 45.368,
+   "take": 4
+  },
+  {
+   "w": "a",
+   "start": 45.418,
+   "end": 45.57,
+   "take": 4
+  },
+  {
+   "w": "person.",
+   "start": 45.62,
+   "end": 46.024,
+   "take": 4
+  },
+  {
+   "w": "So",
+   "start": 46.644,
+   "end": 46.838,
+   "take": 5
+  },
+  {
+   "w": "keep",
+   "start": 46.888,
+   "end": 47.166,
+   "take": 5
+  },
+  {
+   "w": "it",
+   "start": 47.216,
+   "end": 47.41,
+   "take": 5
+  },
+  {
+   "w": "short.",
+   "start": 47.46,
+   "end": 47.822,
+   "take": 5
+  },
+  {
+   "w": "Use",
+   "start": 48.092,
+   "end": 48.328,
+   "take": 5
+  },
+  {
+   "w": "their",
+   "start": 48.378,
+   "end": 48.698,
+   "take": 5
+  },
+  {
+   "w": "name.",
+   "start": 48.748,
+   "end": 49.068,
+   "take": 5
+  },
+  {
+   "w": "Answer",
+   "start": 49.338,
+   "end": 49.7,
+   "take": 5
+  },
+  {
+   "w": "what",
+   "start": 49.75,
+   "end": 50.028,
+   "take": 5
+  },
+  {
+   "w": "they",
+   "start": 50.078,
+   "end": 50.356,
+   "take": 5
+  },
+  {
+   "w": "asked.",
+   "start": 50.406,
+   "end": 50.768,
+   "take": 5
+  },
+  {
+   "w": "Ask",
+   "start": 51.038,
+   "end": 51.274,
+   "take": 5
+  },
+  {
+   "w": "one",
+   "start": 51.324,
+   "end": 51.56,
+   "take": 5
+  },
+  {
+   "w": "question",
+   "start": 51.61,
+   "end": 52.056,
+   "take": 5
+  },
+  {
+   "w": "back.",
+   "start": 52.106,
+   "end": 52.426,
+   "take": 5
+  },
+  {
+   "w": "Then",
+   "start": 52.696,
+   "end": 52.974,
+   "take": 5
+  },
+  {
+   "w": "give",
+   "start": 53.024,
+   "end": 53.302,
+   "take": 5
+  },
+  {
+   "w": "them",
+   "start": 53.352,
+   "end": 53.63,
+   "take": 5
+  },
+  {
+   "w": "a",
+   "start": 53.68,
+   "end": 53.832,
+   "take": 5
+  },
+  {
+   "w": "real",
+   "start": 53.882,
+   "end": 54.16,
+   "take": 5
+  },
+  {
+   "w": "time,",
+   "start": 54.21,
+   "end": 54.53,
+   "take": 5
+  },
+  {
+   "w": "like",
+   "start": 54.68,
+   "end": 54.958,
+   "take": 5
+  },
+  {
+   "w": "Thursday",
+   "start": 55.008,
+   "end": 55.454,
+   "take": 5
+  },
+  {
+   "w": "between",
+   "start": 55.504,
+   "end": 55.908,
+   "take": 5
+  },
+  {
+   "w": "two",
+   "start": 55.958,
+   "end": 56.194,
+   "take": 5
+  },
+  {
+   "w": "and",
+   "start": 56.244,
+   "end": 56.48,
+   "take": 5
+  },
+  {
+   "w": "four.",
+   "start": 56.53,
+   "end": 56.85,
+   "take": 5
+  },
+  {
+   "w": "Fast,",
+   "start": 57.47,
+   "end": 57.79,
+   "take": 6
+  },
+  {
+   "w": "human,",
+   "start": 57.94,
+   "end": 58.302,
+   "take": 6
+  },
+  {
+   "w": "one",
+   "start": 58.452,
+   "end": 58.688,
+   "take": 6
+  },
+  {
+   "w": "question,",
+   "start": 58.738,
+   "end": 59.226,
+   "take": 6
+  },
+  {
+   "w": "a",
+   "start": 59.376,
+   "end": 59.528,
+   "take": 6
+  },
+  {
+   "w": "time.",
+   "start": 59.578,
+   "end": 59.898,
+   "take": 6
+  },
+  {
+   "w": "That's",
+   "start": 60.168,
+   "end": 60.53,
+   "take": 6
+  },
+  {
+   "w": "the",
+   "start": 60.58,
+   "end": 60.816,
+   "take": 6
+  },
+  {
+   "w": "reply",
+   "start": 60.866,
+   "end": 61.186,
+   "take": 6
+  },
+  {
+   "w": "that",
+   "start": 61.236,
+   "end": 61.514,
+   "take": 6
+  },
+  {
+   "w": "gets",
+   "start": 61.564,
+   "end": 61.842,
+   "take": 6
+  },
+  {
+   "w": "you",
+   "start": 61.892,
+   "end": 62.128,
+   "take": 6
+  },
+  {
+   "w": "in",
+   "start": 62.178,
+   "end": 62.372,
+   "take": 6
+  },
+  {
+   "w": "the",
+   "start": 62.422,
+   "end": 62.658,
+   "take": 6
+  },
+  {
+   "w": "door.",
+   "start": 62.708,
+   "end": 63.028,
+   "take": 6
+  }
+ ],
+ "takes": [
+  {
+   "n": 1,
+   "start": 0.15,
+   "end": 10.304
+  },
+  {
+   "n": 2,
+   "start": 10.654,
+   "end": 25.406
+  },
+  {
+   "n": 3,
+   "start": 25.756,
+   "end": 36.312
+  },
+  {
+   "n": 4,
+   "start": 36.662,
+   "end": 46.294
+  },
+  {
+   "n": 5,
+   "start": 46.644,
+   "end": 57.12
+  },
+  {
+   "n": 6,
+   "start": 57.47,
+   "end": 63.298
+  }
+ ],
+ "end": 63.028
+}

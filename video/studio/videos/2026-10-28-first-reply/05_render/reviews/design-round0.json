@@ -1,0 +1,7 @@
+{"gate": "design", "round": 0, "at": "2026-10-28T14:12:00-05:00", "pass": false,
+ "score": {"first": 4, "hierarchy": 4, "type": 3, "color": 4, "spacing": 4, "polish": 4, "trust": 4, "average": 3.86},
+ "reasons": ["the display pixel s read as e and zooms opened seams in big glyphs (fixed: Poppins 15 px cut, rows overlap)",
+             "host covered the hook, the 1-day bar, the Thumbtack band and the close text (fixed: content kept above the host's head)",
+             "empty dialog box between takes (fixed: the last line holds)", "chalk smudges behind text (fixed: smudges only in empty board areas)",
+             "low-contrast secondary lines (fixed on the board)", "no brand mark at the end (fixed: ProofNotFluff plate on the close)",
+             "study board spacing (fixed: label beside the number)"]}

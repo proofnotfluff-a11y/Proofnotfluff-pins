@@ -1,0 +1,4 @@
+{"gate": "buyer", "round": 0, "at": "2026-10-28T14:12:00-05:00", "pass": true, "score": {"stop": "yes", "send": "yes", "save": "yes", "follow_or_link": "no"},
+ "reasons": ["reply within the hour with a short human text: name, straight answer, one question, a real time",
+             "fixed: 'Thursday' became 'tomorrow' (a no-hot-water job is urgent); 'A business journal, Management Science'; 'Thumbtack's own data'; caption names the Thumbtack source; caption reply on four lines; hook source reads 'Fiverr study, Management Science 2026'; host no longer covers the hook",
+             "open: who is behind ProofNotFluff (no face, no trade background) lowers follow intent; 'under a sink or up a ladder' would fit plumbers too"]}

@@ -32,7 +32,10 @@
   }
 
   function speechBox(k, T) {
-    const ph = phrases.find((p) => T >= p.t0 && T < p.t1);
+    let i = phrases.findIndex((p) => T >= p.t0 && T < p.t1);
+    // between takes the box keeps the last full line until the next word is said, so it never sits empty
+    if (i > 0 && T < phrases[i].words[0].start) i -= 1;
+    const ph = phrases[i];
     if (!ph) return;
     const arcade = !!look.bitmap;
     const B = arcade ? {x: 372, y: 1046, w: 560, h: 190} : {x: 300, y: 1088, w: 628, h: 150};
@@ -118,14 +121,14 @@
     const moving = !!look.bitmap || window.SCENE.motion;
     if (!moving && sec !== tops[0] && into < 0.28) { const e = k.easeOut(into / 0.28); ctx.translate((1 - e) * 140, 0); ctx.globalAlpha = 0.25 + 0.75 * e; }
     let zoom = 1 + 0.03 * Math.min(1, into / Math.max(1, sec.end - sec.t));   // a slow push-in through each section
-    let fx = 540, fy = 620, sx = 0, sy = 0;
+    let fx = 540, fy = 300, sx = 0, sy = 0;   // zoom from the top band, so headers never climb under the Reel's top bar
     if (moving) {
       // the zoom ladder: every beat inside a section steps the camera in a little, with a springy overshoot
       const beats = cues.filter((c) => c.level > 0 && c.t > sec.t && c.t <= T && c.t < sec.end);
       beats.forEach((c, i) => { if (i < 4) zoom += 0.028 * k.back((T - c.t) / 0.3); });
       const fo = (window.SCENE.focus || {});
       const last = beats.length ? beats[beats.length - 1] : sec;
-      if (fo[last.id] || fo[sec.id]) { const [ax, ay] = fo[last.id] || fo[sec.id]; const q = k.easeOut((T - last.t) / 0.6); fx = 540 + (ax - 540) * 0.35 * q; fy = 620 + (ay - 620) * 0.35 * q; }
+      if (fo[last.id] || fo[sec.id]) { const [ax, ay] = fo[last.id] || fo[sec.id]; const q = k.easeOut((T - last.t) / 0.6); fx = 540 + (ax - 540) * 0.2 * q; fy = 300 + (ay - 300) * 0.2 * q; }
       // a short shake on every stamp
       cues.forEach((c) => { const d = T - c.t; if (c.sfx === 'stamp' && d >= 0 && d < 0.32) { const a = 7 * (1 - d / 0.32); sx += Math.sin(T * 91) * a; sy += Math.cos(T * 73) * a; } });
       // a section opens with a hard punch-in that settles

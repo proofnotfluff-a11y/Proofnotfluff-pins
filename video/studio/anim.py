@@ -9,6 +9,7 @@ fresh reviewer checks before the next stage runs.
   ci-voice                 (the workflow) speak, join, transcribe, re-spell, pace; text to main, audio to video-renders
   estimate SLUG            stand-in word timings from script.md (marked estimate: for storyboards and looks, never posted)
   fetch SLUG               pull this video's audio from the video-renders branch
+  remix SLUG               mix the sound again onto the finished render (video copied)
   cues SLUG                match cues.md quotes to words.json -> cues.json, cues.js; prints the timing table
   grab SLUG                capture docs/chicago-rat-complaints/ at phone width -> 04_scene/assets/rat-page.png
   stills SLUG [--look L]   a frame at every cue -> 05_render/sheets/*.jpg and 05_render/sheet.jpg
@@ -636,7 +637,9 @@ def mix(slug, seconds, out_wav, cues):
         ms = int(c["t"] * 1000)
         filt.append(f"[{i}:a]aresample=48000,aformat=channel_layouts=stereo,volume=-13dB,adelay={ms}|{ms},apad,atrim=0:{seconds}[s{i}]")
         labels.append(f"[s{i}]")
-    filt.append("".join(labels) + f"amix=inputs={len(labels)}:normalize=0:duration=longest,atrim=0:{seconds}[a]")
+    # a gentle compressor evens out the voice's peaks, so loudness can reach -14 LUFS under the -1.5 dBTP ceiling
+    filt.append("".join(labels) + f"amix=inputs={len(labels)}:normalize=0:duration=longest,atrim=0:{seconds},"
+                "acompressor=threshold=0.125:ratio=2.5:attack=5:release=120:makeup=1[a]")
     tmp = out_wav + ".pre.wav"
     sh(["ffmpeg", "-y", "-loglevel", "error", *inputs, "-filter_complex", ";".join(filt), "-map", "[a]", "-ar", "48000", "-ac", "2", tmp])
     r = sh(["ffmpeg", "-hide_banner", "-i", tmp, "-af", "loudnorm=I=-14:TP=-2.0:LRA=11:print_format=json", "-f", "null", "-"], check=False)
@@ -649,6 +652,19 @@ def mix(slug, seconds, out_wav, cues):
         f"alimiter=limit={lim:.4f}:attack=1:release=60:level=disabled,aresample=48000", "-ar", "48000", "-ac", "2", out_wav])
     os.remove(tmp)
     return has_voice
+
+
+def cmd_remix(slug):
+    """Mix the sound again onto the finished render (video copied), after a sound-only fix."""
+    cues = json.load(open(vdir(slug, "03_cues", "cues.json")))
+    out = vdir(slug, "05_render", f"{slug}.mp4")
+    tmp = tempfile.mkdtemp(); wav = os.path.join(tmp, "a.wav")
+    mix(slug, cues["duration"], wav, cues)
+    new = os.path.join(tmp, "new.mp4")
+    sh(["ffmpeg", "-y", "-loglevel", "error", "-i", out, "-i", wav, "-map", "0:v:0", "-map", "1:a:0", "-c:v", "copy",
+        "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-shortest", "-movflags", "+faststart", new])
+    shutil.move(new, out); shutil.rmtree(tmp, ignore_errors=True)
+    print(f"remix: {out}")
 
 
 def cmd_render(slug, look=None, t_from=None, t_to=None, out=None):
@@ -768,6 +784,8 @@ def main():
         cmd_grab(a.slug)
     elif c == "stills":
         cmd_stills(a.slug, a.look)
+    elif c == "remix":
+        cmd_remix(a.slug)
     elif c == "render":
         cmd_render(a.slug, a.look, a.t_from, a.t_to, a.out)
     elif c == "check":

@@ -1,0 +1,6 @@
+{"gate": "render-critic", "round": 0, "at": "2026-10-28T14:12:00-05:00", "pass": false, "score": {"faults": 4},
+ "reasons": ["overlap 0.5 s: host's head covered the hook's source line (fixed: host steps aside for the hook)",
+             "overlap 53 s: the Doesn't count stamp hid the auto-reply while it was quoted (fixed: stamp lands on 'doesn't count')",
+             "overlap 71 s: the callout hid the phone header (fixed: callout at the phone's foot)",
+             "cutoff: section headers climbed above y 270 under the zoom (fixed: zoom anchored at y 300); the level bar at y 170 is decoration",
+             "PASS: hook number by 0.5 s, 8 of 8 spoken numbers on screen, audio end, no flashes"]}

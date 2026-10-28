@@ -16,21 +16,23 @@ window.SCENE = {
   images: [],
   host_name: 'Snow',
   hud: 'LESSON 1',
-  focus: {'study.count': [300, 520], 'study.hour': [400, 660], 'study.day': [400, 780], 'signal.alone': [400, 680],
-          'tt.more': [500, 800], 'catch.canned': [665, 880], 'build.why': [650, 410], 'close.send': [600, 860]},
+  focus: {'study.count': [300, 520], 'study.hour': [400, 660], 'study.day': [400, 730], 'signal.alone': [400, 650],
+          'tt.more': [500, 740], 'catch.canned': [665, 880], 'build.why': [650, 880], 'close.send': [600, 800]},
   sections: {
     lead: (k, T) => {
       const n = k.data.numbers;
       k.room('framing');
       if (T < HOOK_END) {   // the hook card: the number that makes a pro stop scrolling
-        k.shape(k.rectPts(0, 230, 1080, 760, 0), {fill: '#120D14', line: false, alpha: 0.82});
-        k.slam('Answer a lead', 540, 280, -1, {size: 120, color: CHALK, align: 'center'});
-        k.slam('a day late?', 540, 400, -1, {size: 120, color: CHALK, align: 'center'});
-        k.slam(`${n.dayDrop.shown} less`, 540, 540, 0.3, {size: 240, color: 'accent', align: 'center', from: 1.4, shake: 8});
-        k.slam('likely to get hired.', 540, 790, 0.55, {size: 120, color: CHALK, align: 'center'});
-        k.burst(540, 640, 0.35, {n: 26, r: 380});
-        k.text(`Management Science, ${n.studyYear.shown} (Fiverr data)`, 540, 920, {size: 39, color: '#E6D3BC', align: 'center', alpha: k.clamp(T / 0.3)});
-        return {hostPose: k.talking() ? 'talk' : 'stand'};
+        // the host steps aside for the hook, so nothing covers the claim or its source (gates, Oct 28)
+        k.shape(k.rectPts(0, 230, 1080, 820, 0), {fill: '#1B1420', line: false});
+        k.slam('Answer a lead', 540, 270, -1, {size: 120, color: CHALK, align: 'center'});
+        k.slam('a day late?', 540, 380, -1, {size: 120, color: CHALK, align: 'center'});
+        k.slam(n.dayDrop.shown, 540, 470, 0.3, {size: 330, color: 'accent', align: 'center', from: 1.4, shake: 8});
+        k.slam('less likely', 540, 770, 0.55, {size: 120, color: 'accent', align: 'center'});
+        k.slam('to get hired.', 540, 870, 0.7, {size: 120, color: CHALK, align: 'center'});
+        k.burst(540, 620, 0.35, {n: 26, r: 380});
+        k.text(`Fiverr study, Management Science ${n.studyYear.shown}`, 540, 990, {size: 39, color: '#E6D3BC', align: 'center', alpha: k.clamp(T / 0.3)});
+        return {host: false};
       }
       k.ctx.save(); slideIn(k, HOOK_END, -500, 0); k.chip('New lead', 72, 280, {size: 30}); k.ctx.restore();
       k.ctx.save(); slideIn(k, HOOK_END + 0.1, 600, 0);
@@ -68,13 +70,14 @@ window.SCENE = {
       k.slam('The study', 96, 280, k.S('study'), {size: 60, color: CHALK2, from: 0.5});
       k.ctx.save(); slideIn(k, k.S('study') + 0.25, -600, 0);
       k.text('"Speed Is a Signal"', 96, 352, {size: 39, color: CHALK});
-      k.text(`Management Science, ${n.studyYear.shown}`, 96, 398, {size: 39, color: '#C9CCD3'});
+      k.text(`Management Science, ${n.studyYear.shown}`, 96, 398, {size: 39, color: CHALK2});
       k.ctx.restore();
       if (T >= k.S('study.count')) {
         const p = k.lin(k.S('study.count'), k.S('study.count') + 1.2);
-        k.slam(k.count(n.interactions.value, p, {dec: 1, suffix: 'M'}), 96, 470, k.S('study.count'), {size: 120, color: CHALK, from: 0.6});
-        if (p >= 1) k.burst(250, 530, k.S('study.count') + 1.2, {n: 14, colors: ['paper', 'accent2']});
-        k.ctx.save(); slideIn(k, k.S('study.count') + 0.3, 400, 0); k.text('requests on Fiverr', 470, 500, {size: 39, color: CHALK}); k.ctx.restore();
+        const big = k.count(n.interactions.value, 1, {dec: 1, suffix: 'M'}), bx = 96 + k.measure(big, {size: 120}) + 24;
+        k.slam(k.count(n.interactions.value, p, {dec: 1, suffix: 'M'}), 96, 440, k.S('study.count'), {size: 120, color: CHALK, from: 0.6});
+        if (p >= 1) k.burst(250, 500, k.S('study.count') + 1.2, {n: 14, colors: ['paper', 'accent2']});
+        k.ctx.save(); slideIn(k, k.S('study.count') + 0.3, 400, 0); k.text('requests on Fiverr', bx, 490, {size: 39, color: CHALK}); k.ctx.restore();
       }
       const bar = (y, label, v, shown, t0, hot) => {
         if (T < t0) return;
@@ -85,8 +88,8 @@ window.SCENE = {
         if (p > 0.6) k.slam(`${shown} less`, 720, y + 50, t0 + 0.45, {size: 39, color: hot ? 'accent' : CHALK, from: 1.2});
         if (hot) k.burst(96 + 600 * (v / 100), y + 74, t0 + 0.7, {n: 18});
       };
-      bar(610, '1 hour late: about half as likely', n.hourDrop.value, n.hourDrop.shown, k.S('study.hour'), false);
-      bar(740, '1 day late:', n.dayDrop.value, n.dayDrop.shown, k.S('study.day'), true);
+      bar(570, '1 hour late: about half as likely', n.hourDrop.value, n.hourDrop.shown, k.S('study.hour'), false);
+      bar(690, '1 day late:', n.dayDrop.value, n.dayDrop.shown, k.S('study.day'), true);
       return {};
     },
 
@@ -101,10 +104,10 @@ window.SCENE = {
       }
       if (T >= k.S('signal.alone')) {
         const t0 = k.S('signal.alone');
-        k.slam('It helped on its own:', 96, 620, t0, {size: 39, color: CHALK2, from: 0.5});
-        k.ctx.save(); slideIn(k, t0 + 0.2, -600, 0); k.text('same work, same message,', 96, 676, {size: 39, color: CHALK}); k.ctx.restore();
-        k.ctx.save(); slideIn(k, t0 + 0.4, -600, 0); k.text('faster reply still won.', 96, 726, {size: 39, color: CHALK}); k.ctx.restore();
-        k.sweep(96, 790, 560, 9, t0 + 0.7, {color: 'accent'});
+        k.slam('It helped on its own:', 96, 590, t0, {size: 39, color: CHALK2, from: 0.5});
+        k.ctx.save(); slideIn(k, t0 + 0.2, -600, 0); k.text('same work, same message,', 96, 644, {size: 39, color: CHALK}); k.ctx.restore();
+        k.ctx.save(); slideIn(k, t0 + 0.4, -600, 0); k.text('faster reply still won.', 96, 694, {size: 39, color: CHALK}); k.ctx.restore();
+        k.sweep(96, 756, 560, 9, t0 + 0.7, {color: 'accent'});
       }
       return {hostPose: k.talking() ? 'point' : 'stand', hostAt: [400, 480]};
     },
@@ -113,7 +116,7 @@ window.SCENE = {
       const n = k.data.numbers;
       k.room('workshop');
       k.ctx.save(); slideIn(k, k.S('tt'), 0, 700);
-      k.panel2(72, 300, 858, 560, {title: 'Thumbtack, 2025'});
+      k.panel2(72, 300, 858, 510, {title: 'Thumbtack, 2025'});
       k.text('Time to reply, and who got hired', 112, 350, {size: 39, color: 'ink'});
       const clock = (cx, cy, r, turns, c, t0) => {
         k.shape(k.ellPts(cx, cy, r, r, 20), {fill: '#2B2033', stroke: c, lw: 9, line: false});
@@ -121,19 +124,19 @@ window.SCENE = {
         k.shape([[cx, cy], [cx + Math.cos(ang) * r * 0.7, cy + Math.sin(ang) * r * 0.7]], {stroke: c, lw: 9, closed: false, line: false});
         k.shape([[cx, cy], [cx, cy - r * 0.5]], {stroke: c, lw: 9, closed: false, line: false});
       };
-      clock(260, 540, 90, 0.5, 'accent', k.S('tt') + 0.4); clock(640, 540, 90, 3, '#9AA0AD', k.S('tt') + 0.4);
-      k.slam(n.ttMinutes.shown, 260, 660, k.S('tt') + 0.5, {size: 60, color: 'accent', align: 'center'});
-      k.slam(n.ttHours.shown, 640, 660, k.S('tt') + 0.8, {size: 60, color: '#C9CCD3', align: 'center'});
-      k.text('to reply', 260, 726, {size: 39, color: 'muted', align: 'center'});
-      k.text('to reply', 640, 726, {size: 39, color: 'muted', align: 'center'});
+      clock(260, 500, 80, 0.5, 'accent', k.S('tt') + 0.4); clock(640, 500, 80, 3, '#9AA0AD', k.S('tt') + 0.4);
+      k.slam(n.ttMinutes.shown, 260, 600, k.S('tt') + 0.5, {size: 60, color: 'accent', align: 'center'});
+      k.slam(n.ttHours.shown, 640, 600, k.S('tt') + 0.8, {size: 60, color: '#C9CCD3', align: 'center'});
+      k.text('to reply', 260, 660, {size: 39, color: 'muted', align: 'center'});
+      k.text('to reply', 640, 660, {size: 39, color: 'muted', align: 'center'});
       k.ctx.restore();
       if (T >= k.S('tt.more')) {
         const q = k.clamp(k.pop(k.S('tt.more')), 0, 1.15);
-        k.ctx.save(); k.ctx.translate(500, 800); k.ctx.scale(q, q); k.ctx.translate(-500, -800);
-        k.panel2(112, 774, 778, 72, {fill: 'accent', border: '#1B1420'});
-        k.text(`${n.ttMore.shown} more likely to get hired`, 501, 788, {size: 39, color: '#1B1420', align: 'center'});
+        k.ctx.save(); k.ctx.translate(500, 742); k.ctx.scale(q, q); k.ctx.translate(-500, -742);
+        k.panel2(112, 712, 778, 72, {fill: 'accent', border: '#1B1420'});
+        k.text(`${n.ttMore.shown} more likely to get hired`, 501, 726, {size: 39, color: '#1B1420', align: 'center'});
         k.ctx.restore();
-        k.burst(260, 790, k.S('tt.more') + 0.05, {n: 20});
+        k.burst(260, 730, k.S('tt.more') + 0.05, {n: 20});
       }
       return {};
     },
@@ -147,8 +150,11 @@ window.SCENE = {
         {text: 'Thank you for your inquiry. A representative will be in touch.', me: true, at: k.S('catch') + 0.7, stamp: 'auto-reply'},
       ], {who: 'Homeowner', size: 39});
       k.ctx.restore();
-      if (T >= k.S('catch.canned')) {
-        const t0 = k.S('catch.canned'), q = k.clamp((T - t0) / 0.18);
+      const ws = (window.WORDS && window.WORDS.words) || [];
+      const dc = ws.find((w) => w.start >= k.S('catch.canned') && /^doesn/i.test(w.w));
+      const tStamp = dc ? dc.start : k.S('catch.canned') + 3;
+      if (T >= tStamp) {
+        const t0 = tStamp, q = k.clamp((T - t0) / 0.18);
         k.ctx.save(); k.ctx.translate(665, 905); k.ctx.rotate(-0.1); const s = 2.2 - 1.2 * q; k.ctx.scale(s, s);
         k.shape(k.rectPts(-230, -60, 460, 120, 0), {fill: '#1B1420', line: false, alpha: q});
         k.shape(k.rectPts(-224, -54, 448, 108, 0), {stroke: 'accent', lw: 9, line: false, alpha: q});
@@ -156,7 +162,7 @@ window.SCENE = {
         k.ctx.restore();
         k.burst(665, 905, t0 + 0.18, {n: 22, r: 300, colors: ['accent', '#9AA0AD', 'paper']});
       }
-      return {hostPose: k.live('catch.canned') ? 'shrug' : (k.talking() ? 'talk' : 'stand')};
+      return {hostPose: T >= tStamp ? 'shrug' : (k.talking() ? 'talk' : 'stand')};
     },
 
     build: (k, T) => {
@@ -183,9 +189,9 @@ window.SCENE = {
       if (T >= k.S('build.why') && T < k.S('build.time')) {
         const t0 = k.S('build.why');
         k.ctx.save(); slideIn(k, t0, 700, 0);
-        k.panel2(380, 350, 550, 120, {fill: '#2B2033', border: 'accent'});
-        k.text('Easy to answer, and you', 410, 368, {size: 39, color: 'ink'});
-        k.text('know what to bring.', 410, 414, {size: 39, color: 'accent'});
+        k.panel2(380, 830, 520, 112, {fill: '#2B2033', border: 'accent'});
+        k.text('Easy to answer, and you', 408, 846, {size: 39, color: 'ink'});
+        k.text('know what to bring.', 408, 890, {size: 39, color: 'accent'});
         k.ctx.restore();
       }
       return {hostPose: k.talking() ? 'talk' : 'stand'};
@@ -205,10 +211,13 @@ window.SCENE = {
       if (T >= k.S('close.send')) {
         const t0 = k.S('close.send');
         k.ctx.save(); slideIn(k, t0, 700, 0);
-        k.text('Send this to whoever', 380, 800, {size: 39, color: CHALK2});
-        k.text('answers your phone.', 380, 846, {size: 39, color: CHALK2});
+        k.text('Send this to whoever', 400, 790, {size: 39, color: CHALK2});
+        k.text('answers your phone.', 400, 836, {size: 39, color: CHALK2});
         k.ctx.restore();
-        k.ctx.save(); slideIn(k, t0 + 0.8, 700, 0); k.text('Exact text in the caption.', 380, 920, {size: 39, color: '#C9CCD3'}); k.ctx.restore();
+        k.ctx.save(); slideIn(k, t0 + 0.8, 700, 0); k.text('Exact text in the caption.', 400, 896, {size: 39, color: CHALK}); k.ctx.restore();
+        k.ctx.save(); slideIn(k, t0 + 1.4, 500, 0);
+        k.panel2(690, 282, 300, 64, {fill: '#1B1420', border: 'accent'}); k.text('ProofNotFluff', 840, 294, {size: 39, color: 'accent', align: 'center'});
+        k.ctx.restore();
       }
       return {hostPose: T >= k.S('close.send') + 1.5 ? 'wave' : 'talk'};
     },

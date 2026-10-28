@@ -3,12 +3,18 @@
  "note": "Business-level only: which domains each rung has tried.",
  "domains": {
   "123laborinc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "named",
+   "rung": "site_owner",
+   "siteOwnerAt": "2026-10-28"
+  },
+  "360clean.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
-  "360clean.com": {
-   "checkedAt": "2026-10-22",
+  "606junk.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
@@ -16,240 +22,299 @@
    "hunterAt": "2026-10-22",
    "checkedAt": "2026-10-22",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "a1pestcontrolinc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28",
+   "hunterAt": "2026-10-28"
   },
   "aarenpestcontrol.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28",
+   "hunterAt": "2026-10-28"
   },
   "activatepressurewashing.com": {
    "hunterAt": "2026-10-22",
    "checkedAt": "2026-10-22",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "advancedcleaningsystems.com": {
    "hunterAt": "2026-10-22",
    "checkedAt": "2026-10-22",
    "result": "none",
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
+  },
+  "advancedguards.com": {
+   "checkedAt": "2026-10-28",
+   "result": "none",
    "rung": "none"
   },
   "aerex.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerTry": "2026-10-28",
+   "siteOwnerTries": 1
   },
   "agneshousecleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "aircareservicesinc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "airflowschicago.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "airwayssystems.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "allbriteamerica.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "alliedservicesaustin.com": {
    "hunterAt": "2026-10-22",
    "checkedAt": "2026-10-22",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "alltexhomeandcommercialservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "allwindowcleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "anagocleaning.com": {
-   "checkedAt": "2026-10-22",
-   "result": "none",
-   "rung": "none"
+   "checkedAt": "2026-10-28",
+   "result": "named",
+   "rung": "hunter",
+   "siteOwnerAt": "2026-10-28",
+   "hunterAt": "2026-10-28"
   },
   "anchorworldservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "andersonpestsolutions.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "antpestcontrol.com": {
-   "checkedAt": "2026-10-22",
-   "result": "none",
-   "rung": "none"
+   "checkedAt": "2026-10-28",
+   "result": "named",
+   "rung": "site_owner",
+   "siteOwnerAt": "2026-10-28"
   },
   "arealmaidsinc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "armnspmc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "arrestmypest.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
+  },
+  "asi.services": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "atexcommercialcleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "atexpressurepros.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "atomiccleaning.co": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "atxconstructionclean.com": {
-   "checkedAt": "2026-10-22",
-   "result": "none",
-   "rung": "none"
+   "checkedAt": "2026-10-28",
+   "result": "named",
+   "rung": "site_owner",
+   "siteOwnerAt": "2026-10-28"
   },
   "atxjanitorial.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "aurorasewercleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "austinhousecleaners.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "austinpressurewashingllc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "austinpressurewashingservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "austinskylinecleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "bastropcleaningvidapuertas.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "bbestpestcontrol.com": {
-   "checkedAt": "2026-10-22",
-   "result": "none",
-   "rung": "none"
+   "checkedAt": "2026-10-28",
+   "result": "named",
+   "rung": "site_owner",
+   "siteOwnerAt": "2026-10-28"
   },
   "bekcleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "bestpestcontrol.us": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "beyondeco.net": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "bigfootpestcontrol.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "blacktieaustin.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "blucollarsolutions.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "bmfcleaningservicesllc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "boostermaids.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
+  },
+  "brackenbox.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "brennanspestcontrol.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "brouwerbrothers.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "bugsanonymousil.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "centexofficepros.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "centexpressurewashing.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "centinelsecurity.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "chem-wise.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerTry": "2026-10-28",
+   "siteOwnerTries": 1
   },
   "chgo.alloracleaning.com": {
    "checkedAt": "2026-10-22",
@@ -258,132 +323,165 @@
    "hunterAt": ""
   },
   "chicagohoodcleaning.net": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "chicagohoodcleaningpros.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "chicagoilhousecleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "chicagolandpestcontrol.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "chicagolandpowerwash.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "chicagopestsllc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "chicagorestaurantcleaningservice.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "citywidebuildingservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "citywidedisposalchicago.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "citywidejani.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "clean-as-a-whistle-inc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "cleandude.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "cleanestrestaurant.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "cleangreenpowerwashing.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "cleaninggreenmaids.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "cleaningservicebastrop.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "cleaningservicechicagoill.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "cleaningserviceinhomerglenil.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerTry": "2026-10-28",
+   "siteOwnerTries": 1
   },
   "cleansolutionsusa.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "cleanwashremove.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "cleanwindowsfirst.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "clearsiteconstruction.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "clementcommercialclean.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "cnlproclean.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "companionmaids.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "completesecurityrental.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "conquestclean.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "corporatecleaning.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "cortesjunkremoval.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "coverall.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
@@ -393,13 +491,24 @@
    "rung": "city+site",
    "hunterAt": ""
   },
-  "cubbybearcleaning.com": {
-   "checkedAt": "2026-10-22",
+  "crystalclearww.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
+  "cubbybearcleaning.com": {
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "dandpconstruction.com": {
+   "checkedAt": "2026-10-28",
+   "result": "named",
+   "rung": "city+site",
+   "hunterAt": ""
+  },
   "dbsbuildingsolutions.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
@@ -407,255 +516,287 @@
    "hunterAt": "2026-10-22",
    "checkedAt": "2026-10-22",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "deepcleanerschicago.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "deepcleaningchicago.net": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "djrcleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "dmcleaningservice.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "duopressurewashing.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "dycleaningservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "earthpestcontrolservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "eco-cleaningservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "ecoshieldpest.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "ecotechpestcontrol.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "ecsoftexas.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "editacleaningservice.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "elitedetailedcleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "enviro-master.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "enviromatic.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "epwpressurewashers.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "eternityjanitorialusa.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "euro-maids.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "europeancleaningmaids.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "evanstoncommercialcleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "evergreencleaninggroup.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "everlastingimpressioninc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "expresscleanco.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "expresscommercialcleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "extrityservices.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "filtershineusa.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "firstclasscleann.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "floodbrothersdisposal.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "fox-pest.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "freshbubblescleaningservicesllc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "freshtechmaids.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "ftfexteriorsolutions.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "fullcolorcleaners.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "gentletouchcleaningtx.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
+  },
+  "getting-it-done.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
-  "getting-it-done.com": {
-   "checkedAt": "2026-10-22",
+  "glass-metal.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "gocitywide.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "goldentouchteam.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "gp-cleaning-and-maintenance.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "grandnaturalinc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "greasebusters.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "greatwesternco.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "greenixpc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "greenmopllc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "greenwayrecycles.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "grizzpest.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "guardianpestcontrol.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "hamelwindowcleaning.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "happymaids.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "harvardmaint.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "hawxpestcontrol.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "hillcountryexteriorrestoration.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "hitechpowerwash.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "homeprideservicesinc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28",
+   "hunterAt": "2026-10-28"
   },
   "hoodcleanbros.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
@@ -666,412 +807,472 @@
    "hunterAt": ""
   },
   "imageoneelgin.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "imageonewaukegan.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "inbudgetcommercialcleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "industrycleaningsolutions.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
+  },
+  "innovativewindowcleaning.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "intensepestcontrol.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "international-exterminator.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "itssoclean.net": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "jan-pro.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "jani-kingaustin.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "janitorialchicago.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "jbmjanitorial.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "jc-commercial.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "jolietpest.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "kandmsteamcleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "karensgreenmaids.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "kesapclean.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "kitchenguard.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "krystalklean.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "lajascleaningservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "lakecookpestcontrol.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "lakeshoreproclean.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "laketravispowerwashing.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "lavorosc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "leanderpressurewashing.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "leekscleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "littleladycleaningservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "liveoakservicesaustin.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "lizmariecleaningservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "lkcorpil.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "lpjservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "lukespressurewashingtx.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "lunamaids.net": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "magicfresh.cleaning": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "maidgreenfoxvalley.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "maidsandmoore.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "maidthis.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "manicmaids.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "maribelhomecleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "mbmservicesinc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "mcknightspestmanagement.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "mcmahonwindowwashing.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "melissaandamop.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "mibpestcontrol.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "midwaybuildingservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "midwestext.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "midwestwindows.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "mintcommercialcleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "mmcjanitorialservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "mmmdumpsters.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "monroepest.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "morgansecurityservice.com": {
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "morrisonsecurity.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "mschclean.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "mumscleaningserviceschicago.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "mydisposal.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "myfrontlinepest.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "myklaborservicescorp.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "mywindowwashing.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "naecleaningsolutions.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "naturalcleaning4u.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
+  },
+  "newpointservices.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
-  "newpointservices.com": {
-   "checkedAt": "2026-10-22",
+  "nighthawksecure.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "nissicleaningservice.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "northshoremaid.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "oakparkpestcontrolpros.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "officecleaning.info": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28",
+   "hunterAt": "2026-10-28"
   },
   "oliviarosecleaningsolutions.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "olympiamaintenance.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "orionexteriorcleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "patriotductcleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "pattys-cleaning-service.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "pawlicajanitorial.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "pestmanagementservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "pestmaster.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "pestsbuster.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "phoenixici.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "plunketts.net": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "pointepestcontrol.net": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "powerhousehcs.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "powerrinsepro.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "pressurewasheraustin.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "pressurewashingroundrock.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
+  "primetimewindowcleaning.com": {
+   "checkedAt": "2026-10-28",
+   "result": "named",
+   "rung": "city+site",
+   "hunterAt": ""
+  },
   "pristinecleaningchicago.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "proactivepestmanagement.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "progancleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "proguardpestsolutions.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "promastershoodvent.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "prowastedisposal.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "puremagicmaids.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "qmcchicago.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
@@ -1082,347 +1283,415 @@
    "hunterAt": ""
   },
   "quickkillext.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "ramproclean.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "rbpestsolutions.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "ready2rollhauling.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "reyesservicesillinois.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "rigdoninc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "rollingsudspowerwashing.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "rose.us": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "rovercleaningserviceschicago.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "royalblueservice.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "sapphirehomecleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "scrubking.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "securityspecialistsgroup.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "segurcleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "selectcommercialservice.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "servicemasterbyzaba.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "servicemasterclean.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "servicemasteroflincolnpark.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "shemarriedthemop.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "shepppestcontrol.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "shineupcleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "shlservicesatx.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "shynlicleaningservice.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "silverstarprotection.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "sirthomas.org": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "skylinejanitorialservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "skywardbuildingservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "smithereen.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "smtxwash.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "soapies-cleaningservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "sofreshsocleantx.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "soluteliteservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "solutionscleaning.services": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "southwestpestcontrolil.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "sparkleservice.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "sparklymaidaustin.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "sparkmaids.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "specialtouchcleaningfrankfort.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "spgillinois.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "splashpowerllc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "spotlesscleaningchicago.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "stakleenchicago.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "standardhomeandspace.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "starksecurityinc.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "stratusclean.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "supercleantx.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "superiorlaborsolution.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "superiorwindowservice.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "supremepowerwash.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "surfacesolutionstx.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "svmallservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "sweptupcleaningco.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "system4-austin.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "texasbuildingservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "texasedgecleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "thecleaningladiesbastrop.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "thefairyservice.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "thehappyclean.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "themagichelpers.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "tpwtexas.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
+  "tri-statedisposal.com": {
+   "checkedAt": "2026-10-28",
+   "result": "named",
+   "rung": "city+site",
+   "hunterAt": ""
+  },
   "tribecalledclean.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "tribesecurity.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "trustworthycleaningserv.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "txsparkleservice.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "urbanstreetwindowworks.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "uspestcontrolco.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "vanguardcleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "vextechpest.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "wasteboxinc.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "webeworks.net": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "westlakepowerwashing.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "wgeservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "wilmettemaids.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "windowwashingexpert.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "wonderfullauracleaningllc.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "wowtotalcleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
+   "result": "none",
+   "rung": "none"
+  },
+  "wrightandcodumpsterrental.com": {
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "yallmaidaustincleaningservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "ybhcleaningservices.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "yourdreamclean.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   },
   "ziggycleaning.com": {
-   "checkedAt": "2026-10-22",
+   "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none"
   }

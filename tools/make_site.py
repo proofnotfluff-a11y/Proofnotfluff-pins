@@ -14,7 +14,7 @@ noindex and off the index, hub and sitemap until its spec has "kitForm" (the Kit
 Hand-made pages named in site/extras.json (not written here) join the sitemap and the index, with a link card on the
 pages in their "from" list, once their committed page has no robots meta (live_extras).
 """
-import html, json, os, sys
+import html, json, os, re, sys
 
 if __name__ in sys.modules:
     sys.modules.setdefault("make_site", sys.modules[__name__])   # rest_site, lic_site and question_site share this module's state (nav, live questions)
@@ -85,7 +85,11 @@ def live_datapages():
 
 
 def nav_html(rel, current=""):
-    items = [("shop", f"{rel}shop/", "Shop"), ("calc", f"{rel}calculators/", "Free calculators")]
+    items = [("shop", f"{rel}shop/", "Shop")]
+    # the free Chicago data hub in every header once a data page is live (Todd, Oct 27, 2026, wrap-up W and the redesign:
+    # "redesign the website to accommodate these new builds")
+    items += [("data", f"{rel}chicago-data/", "Chicago data")] if live_datapages() else []
+    items += [("calc", f"{rel}calculators/", "Free calculators")]
     # the free trades news brief in every header once it is live (Todd, Oct 27, 2026: "Shouldn't new features like news be
     # an option to select rather than hiding at the bottom of the page?")
     items += [("news", f"{rel}{p['slug']}/", "Trades news") for p in PAGES_LIVE if p.get("kind") == "tradesnews"][:1]
@@ -109,14 +113,19 @@ def nav_html(rel, current=""):
 
 def foot_nav(rel):
     """The footer links on every page: the shop, the calculators, the refund and privacy pages, the Etsy workbooks and the mailbox."""
-    q = f'<a href="{rel}questions/">Questions</a>' if LIVE_QUESTIONS else ""
-    # the free Chicago data pages that are no calculator (rat tracker live Oct 26 on Todd's go): linked from every page
-    q += "".join(f'<a href="{rel}{p["slug"]}/">Chicago rat complaints</a>' for p in PAGES_LIVE if p.get("kind") == "rodents")
-    q += "".join(f'<a href="{rel}{p["slug"]}/">Chicago trades news</a>' for p in PAGES_LIVE if p.get("kind") == "tradesnews")   # Todd, Oct 27
-    q += f'<a href="{rel}chicago-data/">Free Chicago data</a>' if live_datapages() else ""   # the hub of the data pages (Oct 27)
-    return (f'<nav class="fnav" aria-label="Footer"><a href="{rel}shop/">Shop</a><a href="{rel}calculators/">Free calculators</a>{q}'
-            f'<a href="{rel}refunds/">Refunds and cancelling</a><a href="{rel}privacy/">Privacy</a><a href="{SHOP}">Workbooks on Etsy</a>'
-            '<a href="mailto:hello@proofnotfluff.com">hello@proofnotfluff.com</a></nav>')
+    # three named groups instead of one long row (redesign, Oct 27, 2026: Miller and proximity in design/DESIGN_DIRECTOR.md)
+    tools = f'<a href="{rel}chicago-data/">Free Chicago data</a>' if live_datapages() else ""
+    tools += f'<a href="{rel}calculators/">Free calculators</a>'
+    # the free Chicago pages that are no calculator (rat tracker live Oct 26 on Todd's go; trades news Oct 27)
+    tools += "".join(f'<a href="{rel}{p["slug"]}/">Chicago Rat Index</a>' for p in PAGES_LIVE if p.get("kind") == "rodents")
+    tools += "".join(f'<a href="{rel}{p["slug"]}/">Chicago Trades News</a>' for p in PAGES_LIVE if p.get("kind") == "tradesnews")
+    tools += f'<a href="{rel}questions/">Questions owners ask</a>' if LIVE_QUESTIONS else ""
+    col = lambda title, links: f'<div class="fcol"><p class="fh">{title}</p>{links}</div>'
+    return ('<nav class="fnav" aria-label="Footer">'
+            + col("Lead lists", f'<a href="{rel}shop/">Shop every list</a><a href="{rel or "./"}#trades">Free samples</a><a href="{rel}refunds/">Refunds and cancelling</a>')
+            + col("Free tools", tools)
+            + col("ProofNotFluff", f'<a href="{rel}privacy/">Privacy</a><a href="{SHOP}">Workbooks on Etsy</a><a href="mailto:hello@proofnotfluff.com">hello@proofnotfluff.com</a>')
+            + '</nav>')
 
 
 def og_tags(url):
@@ -3066,7 +3075,12 @@ def kit_form(form_id, label, button, field_id, note="One email when it opens. St
 
 
 def crumbs(rel, items):
-    """Visible breadcrumbs plus their BreadcrumbList data. items: [(name, path or None for the current page)]."""
+    """Visible breadcrumbs plus their BreadcrumbList data. items: [(name, path or None for the current page)].
+    A free Chicago data page (and its sub-pages) sits under the hub: Home / Free Chicago data / the page (redesign,
+    Oct 27, 2026), added here so no data module needs editing; a module that already names the hub is left alone."""
+    if (CURRENT.get("nav") == "data" and live_datapages() and items and items[0][1] == ""
+            and not any(path == "chicago-data/" or name == "Free Chicago data" for name, path in items)):
+        items = [items[0], ("Free Chicago data", "chicago-data/")] + list(items[1:])
     lis, ld = [], []
     for i, (name, path) in enumerate(items, 1):
         lis.append(f'<li><a href="{rel}{path}">{E(name)}</a></li>' if path is not None else f'<li aria-current="page">{E(name)}</li>')
@@ -3288,10 +3302,10 @@ def home_html(pages, live, doors=False):
     hero = ('<section class="hx" aria-labelledby="hero-title"><div class="hx-copy"><p class="eyebrow">Lead lists from public records</p>'
             '<h1 id="hero-title">Sales leads from the City\'s own records, every Monday.</h1>'
             '<p class="lede">Weekly lists for cleaning, hood cleaning and pest control companies in Chicago and Austin. Each one has a free sample, new every Monday.</p>'
-            '<p class="hx-cta"><a class="btn ld-btnbig" href="#trades">Pick your trade</a><a class="st-link" href="#calc-title">Pricing a job? Try a free calculator</a></p></div>'
+            '<p class="hx-cta"><a class="btn ld-btnbig" href="#trades">Pick your trade</a>' + ('<a class="st-link" href="#tools-title">Or start with the free tools</a>' if live_datapages() else '<a class="st-link" href="#calc-title">Pricing a job? Try a free calculator</a>') + '</p></div>'
             f'<div class="hx-side">{shot}{week_hx}</div>'
             f'<div class="hx-pickrow"><h2 class="hx-pick" id="trades">Open this week\'s free sample for your trade</h2><ul class="st-trades hx-trades">{trades}</ul></div></section>')
-    calcs_live = [p for p in live if p.get("kind") not in ("leads", "restleads", "licleads", "question", "newin", "rodents", "agentkit", "tradesnews")]
+    calcs_live = [p for p in live if p.get("kind") not in ("leads", "restleads", "licleads", "question", "newin", "rodents", "agentkit", "tradesnews", "datapage")]   # data pages live on /chicago-data/ (B5 note, Oct 27)
     if doors:
         by_calc = {p["slug"]: p for p in calcs_live}
         feat = [by_calc[x] for x in st.get("doorCalcs", []) if x in by_calc][:4]
@@ -3343,10 +3357,27 @@ def home_html(pages, live, doors=False):
     if not doors:   # the calculators page reads the live home's groups, never the draft's
         CALC_GROUPS[:] = groups
     extras = "".join(f'<a class="card st-printable" href="{E(x["slug"])}/"><h3>{E(x["h1"])}</h3><p>{E(x["card"])}</p><span class="st-link">Get the sheet {ARROW}</span></a>' for x in live_extras())
-    calcs = ('<section class="st-sec" id="calculators" aria-labelledby="calc-title"><h2 id="calc-title">Free calculators</h2>'
-             '<p>Price the job before you call. The same math as our Excel and Google Sheets workbooks, and nothing you type leaves your browser.</p>'
-             f'{calc_cards}</section>'
-             + (f'<section class="st-sec" aria-labelledby="print-title"><h2 id="print-title">Free printables</h2><div class="tools">{extras}</div></section>' if extras else ""))
+    # redesign for the data builds (Oct 27, 2026): one "Free tools" section with the Chicago data beside the calculators
+    # (uniform connectedness, design/DESIGN_DIRECTOR.md 14); the old calculators section stays for the doors draft
+    hub_es = hub_entries() if not doors else []
+    if hub_es:
+        by_hub = {e["slug"]: e for e in hub_es}
+        feat_d = [by_hub[x] for x in load_hub().get("homeFeature", []) if x in by_hub][:4] or hub_es[:4]
+        # the data rows lead with the page's own headline figure (extra design round, Oct 27), the card line when there is none
+        dli = lambda e: (f'<li><a href="{e["slug"]}/"><b>{E(e["name"])}</b><span>'
+                         + (f'<span class="st-tnum">{E(e["stat"][0])}</span> {E(e["stat"][1])}' if e.get("stat") else E(hub_text(e))) + '</span></a></li>')
+        calcs = ('<section class="st-sec st-tools" id="calculators" aria-labelledby="tools-title"><h2 id="tools-title">Free tools for trade owners</h2>'
+                 '<p>No sign-up. Public records counted for you, and the math to price the job.</p><div class="st-tools2">'
+                 '<div class="st-tcol"><h3 class="st-cgroup">Free Chicago data</h3>'
+                 f'<ul class="st-calcs st-tlist">{"".join(dli(e) for e in feat_d)}</ul>'
+                 f'<p class="st-all"><a class="st-btn2" href="chicago-data/">All {len(hub_es)} free Chicago data pages</a></p></div>'
+                 '<div class="st-tcol"><h3 class="st-cgroup" id="calc-title">Free calculators</h3>'
+                 + calc_cards.replace("st-calcs st-calc4", "st-calcs st-tlist", 1) + '</div></div></section>')
+    else:
+        calcs = ('<section class="st-sec" id="calculators" aria-labelledby="calc-title"><h2 id="calc-title">Free calculators</h2>'
+                 '<p>Price the job before you call. The same math as our Excel and Google Sheets workbooks, and nothing you type leaves your browser.</p>'
+                 f'{calc_cards}</section>')
+    calcs += (f'<section class="st-sec" aria-labelledby="print-title"><h2 id="print-title">Free printables</h2><div class="tools">{extras}</div></section>' if extras else "")
     qs = ""
     if LIVE_QUESTIONS:
         qs = ('<section class="st-sec" aria-labelledby="q-title"><h2 id="q-title">Questions owners ask</h2>'
@@ -3592,14 +3623,16 @@ def calculators_html():
     # the h1 names what the hub holds (SEO audit, Oct 24, 2026); the old line leads the lede
     body = (f'{crumb}<p class="eyebrow">Free calculators</p><h1>Free pricing and money calculators</h1>'
             f'<p class="lede">Price the job before you call. {n} free calculators with the same math as our Excel and Google Sheets workbooks. Nothing you type leaves your browser.</p>'
-            '<div class="cx-bar" id="cxBar"><label class="cx-search"><span class="sr">Search the calculators</span>'
+            + (f'<p class="cx-xlink"><a href="{rel}chicago-data/"><span><b>Need Chicago numbers?</b> Permit costs, license rules, material prices and snow days are on the free Chicago data pages.</span>{ARROW}</a></p>' if live_datapages() else "")
+            + '<div class="cx-bar" id="cxBar"><label class="cx-search"><span class="sr">Search the calculators</span>'
             '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>'
             '<input id="cxQ" type="search" placeholder="Search: house cleaning, Amazon, hourly rate..." autocomplete="off" enterkeyhint="search"><kbd aria-hidden="true">/</kbd></label>'
             f'<div class="cx-chips" role="group" aria-label="Filter by category">{chips}</div>'
             '<p class="cx-count" id="cxCount" aria-live="polite"></p></div>'
             f'<div id="cxAll">{start_html}{groups}</div>'
             '<div class="cx-empty" id="cxEmpty" hidden><p><b>No calculator matches that yet.</b> Try a trade (cleaning, junk, lawn), a platform (Amazon, Etsy, Airbnb) or a word like price, rate or tax.</p>'
-            '<p><button type="button" class="st-btn2" id="cxClear">Show all calculators</button> <a class="st-link" href="mailto:hello@proofnotfluff.com?subject=Calculator%20idea">Suggest a calculator</a></p></div>')
+            '<p><button type="button" class="st-btn2" id="cxClear">Show all calculators</button> <a class="st-link" href="mailto:hello@proofnotfluff.com?subject=Calculator%20idea">Suggest a calculator</a></p>'
+            + (f'<p class="cx-elink">Looking for permits, licenses or prices in Chicago? <a href="{rel}chicago-data/">See the free Chicago data</a>.</p>' if live_datapages() else "") + '</div>')
     coll = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Free pricing and money calculators", "url": url,
             "mainEntity": {"@type": "ItemList", "numberOfItems": n, "itemListElement": [
                 {"@type": "ListItem", "position": i, "url": BASE + p["slug"] + "/", "name": p["h1"]}
@@ -3631,6 +3664,8 @@ def search_index(live):
     for p in live:   # the free Chicago pages that are no calculator (Todd, Oct 27: trades news; the rat map)
         if p.get("kind") == "tradesnews":
             out.append({"t": p["h1"], "s": p["slug"] + "/", "g": "Guide", "d": p.get("card", ""), "k": "news regulations permits licenses tax pay wages projects contractors trades chicago"})
+        if p.get("kind") == "rodents":
+            out.append({"t": p["h1"], "s": p["slug"] + "/", "g": "Chicago data", "d": p.get("card", ""), "k": HUB_WORDS["rodents"]})
         if p.get("kind") == "datapage":
             m = kind_module(p).META
             out.append({"t": m["h1"], "s": p["slug"] + "/", "g": "Chicago data", "d": m.get("card", ""), "k": m.get("keywords", "").lower()})
@@ -3663,24 +3698,177 @@ def questions_html():
             FOOT.format(rel=rel, script="", sources=""))
 
 
+def load_hub():
+    try:
+        return json.load(open(os.path.join(ROOT, "site", "datahub.json"), encoding="utf-8"))
+    except (OSError, ValueError):
+        return {"groups": [], "pages": {}}
+
+
+HUB_WORDS = {"rodents": "rats rodents mice 311 pest control exterminator neighborhood community area",
+             "tradesnews": "news regulations permits licenses tax pay wages projects contractors trades"}
+
+
+def hub_entries():
+    """Every live page in the free Chicago data hub, in hub order: [{slug, name, h1, card, words, group, gtitle, source,
+    cadence, date}]. Groups and short names come from site/datahub.json; a live page missing there still shows."""
+    cfg = load_hub()
+    gt = {g["id"]: g["title"] for g in cfg.get("groups", [])}
+    order = list(cfg.get("pages", {}))
+    out = []
+    for p in PAGES_LIVE:
+        k = p.get("kind")
+        if k not in ("rodents", "tradesnews", "datapage"):
+            continue
+        mod = kind_module(p) if k in ("rodents", "datapage") else None
+        meta = mod.META if k == "datapage" else {"h1": p["h1"], "card": p.get("card", ""), "keywords": HUB_WORDS.get(k, "")}
+        c = cfg.get("pages", {}).get(p["slug"], {})
+        date = ""
+        if mod is not None and hasattr(mod, "lastmod"):
+            try:
+                date = mod.lastmod(p) or ""
+            except Exception:
+                date = ""
+        if k == "tradesnews":   # the brief's newest item date (tools/news_site.py)
+            try:
+                import news_site
+                date = (news_site.load(p) or {}).get("updated") or ""
+            except Exception:
+                date = ""
+        g = c.get("group", "more")
+        stat = hub_stat(p["slug"], c.get("stat"))
+        out.append({"stat": stat, "slug": p["slug"], "name": c.get("name", meta["h1"]), "h1": meta["h1"], "card": c.get("card", meta.get("card", "")), "short": c.get("short", ""),
+                    "dlabel": c.get("dateLabel", "Latest data"), "words": meta.get("keywords", ""), "group": g, "gtitle": gt.get(g, "More Chicago data"),
+                    "source": c.get("source", ""), "cadence": c.get("cadence", ""), "date": date[:10]})
+    out.sort(key=lambda e: order.index(e["slug"]) if e["slug"] in order else len(order))
+    return out
+
+
+_PAGE_TEXT = {}
+
+
+def page_text(slug):
+    """A built page's main text with its tags as ' | ', read from docs/ (the hub's headline figures come from here)."""
+    if slug not in _PAGE_TEXT:
+        try:
+            t = open(os.path.join(DOCS, slug, "index.html"), encoding="utf-8").read()
+        except OSError:
+            return ""
+        t = t.split("</h1>", 1)[-1].split("<!--DH-MORE-->", 1)[0].split('<section class="dh-more"', 1)[0]
+        t = re.sub(r"<script.*?</script>|<style.*?</style>", "", t, flags=re.S)
+        t = html.unescape(re.sub(r"<[^>]+>", " | ", t))
+        _PAGE_TEXT[slug] = re.sub(r"(\s*\|\s*)+", " | ", t)
+    return _PAGE_TEXT[slug]
+
+
+def hub_stat(slug, spec):
+    """(number, label) for a hub card from the page's own text (site/datahub.json stat), or None when it no longer matches."""
+    if not spec:
+        return None
+    if spec.get("raw"):
+        try:
+            src = open(os.path.join(DOCS, slug, "index.html"), encoding="utf-8").read().split("</h1>", 1)[-1]
+        except OSError:
+            src = ""
+    else:
+        src = page_text(slug)
+    m = re.search(spec["re"], src, re.S)
+    if not m:
+        print("hub: no headline figure for", slug, "(stat pattern did not match the page)")
+        return None
+    fill = lambda t: re.sub(r"\{(\d)\}", lambda g: html.unescape(m.group(int(g.group(1)))), t)
+    return fill(spec["num"]), fill(spec["label"])
+
+
+def short_date(iso):
+    """Oct 27 (the year only when it is not this one)."""
+    import datetime as _dt
+    try:
+        d = _dt.date.fromisoformat(iso[:10])
+    except ValueError:
+        return ""
+    return d.strftime("%b ") + str(d.day) + ("" if d.year == _dt.date.today().year else d.strftime(", %Y"))
+
+
+def hub_text(e):
+    """The card line without a closing "Updated daily." (the meta line already gives the schedule)."""
+    t = re.sub(r"\s*Updated (daily|every \w+)\.?$", "", e["card"]).strip()
+    return t + ("" if not t or t.endswith((".", "?", "!")) else ".")   # every card line ends the same way
+
+
+def hub_card(e, rel, tag=True):
+    """One data page as a card, the same component as the calculator catalog (Similarity, design/DESIGN_DIRECTOR.md 13)."""
+    # no date on the card (facts gate, Oct 27: the data pages' lastmod means pull day on some and data-through day on
+    # others); each page states its own as-of date beside its source
+    when = ""
+    meta = " &middot; ".join(E(x) for x in (e["source"], e["cadence"]) if x)
+    meta = (f"<span>{meta}</span>" if meta else "") + when
+    card = e.get("short") or hub_text(e)   # one line on the card (design round 4); the full line stays in search
+    k = E(" ".join([e["name"], e["h1"], e["card"], e["gtitle"], e["words"]]).lower())
+    return (f'<li class="cx-item dh-item" data-g="{E(e["group"])}" data-k="{k}"><a href="{rel}{e["slug"]}/">'
+            + (f'<span class="cx-tag">{E(e["gtitle"])}</span>' if tag else "")
+            + f'<b>{E(e["name"])}</b>'
+            + (f'<span class="dh-stat"><span class="dh-num">{E(e["stat"][0])}</span> <span class="dh-lab">{E(e["stat"][1])}</span></span>' if e.get("stat") else "")
+            + f'<span class="cx-d">{E(card)}</span>'
+            + (f'<span class="dh-meta">{meta}</span>' if meta else "") + '</a></li>')
+
+
+def hub_more(slug, rel):
+    """The end of every hub page: three more data pages, its own group first, and the way back to the hub."""
+    es = hub_entries()
+    me = next((e for e in es if e["slug"] == slug), None)
+    if not me or len(es) < 2:
+        return ""
+    pick = [e for e in es if e["group"] == me["group"] and e["slug"] != slug]
+    pick += [e for e in es if e["group"] != me["group"]]
+    return ('<section class="dh-more" aria-labelledby="dh-more-title"><h2 id="dh-more-title">More free Chicago data</h2>'
+            f'<ul class="cx-grid">{"".join(hub_card(e, rel, tag=False) for e in pick[:3])}</ul>'
+            f'<p class="st-all"><a class="st-btn2" href="{rel}chicago-data/">All {len(es)} free Chicago data pages</a></p></section>')
+
+
 def data_hub_html():
-    """docs/chicago-data/: every free Chicago data page in one list, written once a data page is live (Oct 27, 2026)."""
-    CURRENT["nav"] = ""
+    """docs/chicago-data/: every free Chicago data page, grouped by the job a trade owner is doing, with the calculator
+    catalog's instant search and chips (assets/pnf-ui.js), written once a data page is live (Oct 27, 2026; redesign the
+    same day: one long list of 12 became four named groups, Miller and Hick in design/DESIGN_DIRECTOR.md)."""
+    CURRENT["nav"] = "data"
     rel = "../"
     url = BASE + "chicago-data/"
     crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Free Chicago data", None)])
-    hub = ([(p["slug"], p["h1"], p.get("card", "")) for p in PAGES_LIVE if p.get("kind") in ("tradesnews", "rodents")]
-           + [(p["slug"], kind_module(p).META["h1"], kind_module(p).META.get("card", "")) for p in live_datapages()])
-    lis = "".join(f'<li><a href="{rel}{s}/"><span><b>{E(h)}</b><small>{E(c)}</small></span>{ARROW}</a></li>' for s, h, c in hub)
+    es = hub_entries()
+    cfg = load_hub()
+    news = [e for e in es if e["group"] == "news"]   # the news brief is built from news outlets too (facts gate, Oct 27)
+    lede_n = len(es) - len(news)
+    news_bit = ", plus a daily news brief" if news else ""
+    groups = [(g["id"], g["title"], g.get("line", "")) for g in cfg.get("groups", [])] + [("more", "More Chicago data", "")]
+    groups = [(i, t, l, [e for e in es if e["group"] == i]) for i, t, l in groups]
+    groups = [g for g in groups if g[3]]
+    chips = (f'<button type="button" class="cx-chip" aria-pressed="true" data-g="">All <span>{len(es)}</span></button>'
+             + "".join(f'<button type="button" class="cx-chip" aria-pressed="false" data-g="{E(i)}">{E(t)} <span>{len(items)}</span></button>' for i, t, _, items in groups))
+    secs = "".join(f'<section class="cx-group" data-g="{E(i)}" aria-labelledby="dh-{E(i)}"><h2 class="st-cgroup" id="dh-{E(i)}">{E(t)}</h2>'
+                   + (f'<p class="dh-line">{E(l)}</p>' if l else "")
+                   + f'<ul class="cx-grid">{"".join(hub_card(e, rel, tag=False) for e in items)}</ul></section>' for i, t, l, items in groups)
     body = (f'{crumb}<p class="eyebrow">Free, from public records</p><h1>Free Chicago data for trade owners</h1>'
-            '<p class="lede">Trackers and tools built from City, County, state and federal records, refreshed on their own schedule. Each page says where its numbers come from and when they were checked.</p>'
-            f'<ul class="st-qs">{lis}</ul>')
+            f'<p class="lede">{len(es)} free pages: {lede_n} trackers and tools from City, County, State and federal records{news_bit}. Each names its source and the day it was checked.</p>'
+            '<div class="cx-bar" id="cxBar" data-noun="pages" data-quiet="1" hidden><label class="cx-search"><span class="sr">Search the Chicago data pages</span>'
+            '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>'
+            '<input id="cxQ" type="search" placeholder="Search permits, rats, snow" autocomplete="off" enterkeyhint="search"><kbd aria-hidden="true">/</kbd></label>'
+            f'<div class="cx-chips" role="group" aria-label="Filter by job">{chips}</div>'
+            '<p class="cx-count" id="cxCount" aria-live="polite"></p></div>'
+            f'<div id="cxAll">{secs}</div>'
+            '<div class="cx-empty" id="cxEmpty" hidden><p><b>No data page matches that yet.</b> Try a trade (masonry, pest, plumbing), a record (permit, license, 311) or a word like cost or snow.</p>'
+            f'<p><button type="button" class="st-btn2" id="cxClear">Show all data pages</button> <a class="st-link" href="{rel}calculators/">Try the free calculators</a></p></div>'
+            # peak-end (design/DESIGN_DIRECTOR.md 10): the hub ends on the one paid next step, the free sample
+            '<section class="st-band" aria-labelledby="dh-band-title"><h2 id="dh-band-title">Want the names behind the counts?</h2>'
+            '<p>These pages show what the records say. Our lead lists name the projects and places for your trade, with a free sample every Monday and no sign-up.</p>'
+            f'<p class="st-band-act"><a class="btn ld-btnbig" href="{rel}#trades">See this week\'s free sample</a></p></section>')
     coll = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Free Chicago data for trade owners", "url": url,
-            "mainEntity": {"@type": "ItemList", "numberOfItems": len(hub), "itemListElement": [
-                {"@type": "ListItem", "position": i, "url": BASE + s + "/", "name": h} for i, (s, h, _) in enumerate(hub, 1)]}}
-    return (HEAD.format(title="Free Chicago Data for Trade Owners | ProofNotFluff", desc="Free Chicago trackers and tools for trade business owners, built from public records: permits, snow, City contracts, rats and more.",
-                        url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld, coll), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
-            FOOT.format(rel=rel, script="", sources=""))
+            "mainEntity": {"@type": "ItemList", "numberOfItems": len(es), "itemListElement": [
+                {"@type": "ListItem", "position": i, "url": BASE + e["slug"] + "/", "name": e["h1"]} for i, e in enumerate(es, 1)]}}
+    out = (HEAD.format(title="Free Chicago Data for Trade Owners | ProofNotFluff", desc="Free Chicago trackers and tools for trade business owners, built from public records: permits, licenses, City contracts, repair demand, snow, rats and material prices.",
+                       url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld, coll), bodycls=' class="st-page cx-page dh-page"', robots="", analytics=analytics_tag()) + body +
+           FOOT.format(rel=rel, script="", sources=""))
+    CURRENT["nav"] = ""
+    return out
 
 
 def notfound_html():
@@ -3883,9 +4071,12 @@ def main():
                 + f'<h1>{E(p["h1"])}</h1><p class="lede">This page is being built.</p>' + FOOT.format(rel="../", script="", sources=""))
             print("stub", p["slug"], f"(no tools/{p.get('module')}.py yet)")
             continue
-        CURRENT["nav"] = "questions" if p.get("kind") == "question" else ("shop" if p.get("kind") in ("leads", "restleads", "licleads") else ("news" if p.get("kind") == "tradesnews" else "" if p.get("kind") in ("newin", "rodents", "agentkit", "datapage") else "calc"))
+        CURRENT["nav"] = "questions" if p.get("kind") == "question" else ("shop" if p.get("kind") in ("leads", "restleads", "licleads") else ("news" if p.get("kind") == "tradesnews" else "data" if p.get("kind") in ("rodents", "datapage") and is_live(p) else "" if p.get("kind") in ("newin", "rodents", "agentkit", "datapage") else "calc"))
         out = os.path.join(DOCS, p["slug"]); os.makedirs(out, exist_ok=True)
-        open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page_html(p))
+        page = page_html(p)
+        if is_live(p) and p.get("kind") in ("rodents", "datapage", "tradesnews"):   # every page in the hub ends with its neighbors
+            page = page.replace("</main>", "<!--DH-MORE-->" + "</main>", 1)   # filled once every page is written (stats read the pages)
+        open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page)
         if p.get("kind") == "tradesnews":   # the brief's RSS feed sits next to it
             import news_site
             open(os.path.join(out, "feed.xml"), "w", encoding="utf-8").write(news_site.feed_xml(p, news_site.load(p)))
@@ -3901,6 +4092,13 @@ def main():
                     EXTRA_URLS[BASE + p["slug"] + "/" + relpath[:-len("index.html")]] = mod.lastmod(p) if hasattr(mod, "lastmod") else None
         CURRENT["nav"] = ""
         print("wrote", p["slug"])
+    for p in live:   # the More free Chicago data strip, now that every hub page and its headline figure exist
+        if p.get("kind") in ("rodents", "datapage", "tradesnews"):
+            f_ = os.path.join(DOCS, p["slug"], "index.html")
+            t_ = open(f_, encoding="utf-8").read()
+            if "<!--DH-MORE-->" in t_:
+                t_ = t_.replace("<!--DH-MORE-->", hub_more(p["slug"], "../"), 1)   # before opening the file: opening empties it
+                open(f_, "w", encoding="utf-8").write(t_)
     open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(home_html(pages, live))
     # two front doors draft (move 5): noindex, not in the sitemap, not linked; goes live only on Todd's go
     open(os.path.join(DOCS, "home-two-doors.html"), "w", encoding="utf-8").write(home_html(pages, live, doors=True))

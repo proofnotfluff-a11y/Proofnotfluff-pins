@@ -1,20 +1,20 @@
 {
  "schema": "pnf.video.qa.v1",
  "videoId": "2026-10-27-rats-a",
- "mp4Sha256": "dfb04c4acc6d9ae8e8c8296f5cac12335bdce59edfce55b36538af5c5b6df047",
+ "mp4Sha256": "e62f50e0cd665d073e0c42148d7d675c822c28c3eb5ae5bd9a21c94cc2f5cf87",
  "voice": {
   "id": "cjVigY5qzO86Huf0OWal",
   "name": "Eric",
   "model": "eleven_v4",
   "test": false,
-  "chars": 633
+  "chars": 629
  },
  "checks": [
   {
    "name": "length",
-   "value": 48.667,
+   "value": 48.167,
    "pass": true,
-   "detail": "48.67 s (45.0 to 60.0)"
+   "detail": "48.17 s (45.0 to 60.0)"
   },
   {
    "name": "loudness",
@@ -35,18 +35,18 @@
    "name": "frozen",
    "value": [
     [
-     46.7667,
-     48.666667
+     46.3,
+     48.166667
     ]
    ],
    "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 42.10 s"
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 41.61 s"
   },
   {
    "name": "hook",
-   "value": 3.14,
-   "pass": false,
-   "detail": "hook's last word ends at 3.14 s (by 3.00)"
+   "value": 2.66,
+   "pass": true,
+   "detail": "hook's last word ends at 2.66 s (by 3.00)"
   },
   {
    "name": "numbers",
@@ -89,16 +89,16 @@
    "name": "faces",
    "value": [],
    "pass": true,
-   "detail": "0 frame(s) with a face at 0.6 or more (49 frames checked)"
+   "detail": "0 frame(s) with a face at 0.6 or more (48 frames checked)"
   },
   {
    "name": "file",
    "value": {
-    "sha256": "dfb04c4acc6d9ae8e8c8296f5cac12335bdce59edfce55b36538af5c5b6df047",
-    "bytes": 3360592
+    "sha256": "e62f50e0cd665d073e0c42148d7d675c822c28c3eb5ae5bd9a21c94cc2f5cf87",
+    "bytes": 3345603
    },
    "pass": true,
-   "detail": "opens, decodes to the end, 3.4 MB, matches the manifest"
+   "detail": "opens, decodes to the end, 3.3 MB, matches the manifest"
   },
   {
    "name": "layout",
@@ -108,10 +108,10 @@
   },
   {
    "name": "spec-match",
-   "value": "9e3ed5dece93a31dc12cc7f3b057647b28f12f6ec270d436e1a0314dd40d7062",
+   "value": "a8ae4c96b31ee35a51a9cbc65725995619d05847b4b51cc1284b9c6b665f27a6",
    "pass": true,
    "detail": "the render is of this exact spec"
   }
  ],
- "pass": false
+ "pass": true
 }

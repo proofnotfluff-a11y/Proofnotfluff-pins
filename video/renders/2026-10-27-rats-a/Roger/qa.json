@@ -1,29 +1,29 @@
 {
  "schema": "pnf.video.qa.v1",
  "videoId": "2026-10-27-rats-a",
- "mp4Sha256": "6ea310c392cdb9e936fe9ffd043c2e6ba143bf665abc11ac557b72c34ad29db6",
+ "mp4Sha256": "e881aad14ca255e71e46d6631902cb96a00e8b4a5198c21a9acbf4170b4015f6",
  "voice": {
   "id": "CwhRBWXzGAHq8TQ4Fs17",
   "name": "Roger",
   "model": "eleven_v4",
   "test": false,
-  "chars": 633
+  "chars": 629
  },
  "checks": [
   {
    "name": "length",
-   "value": 50.567,
+   "value": 49.833,
    "pass": true,
-   "detail": "50.57 s (45.0 to 60.0)"
+   "detail": "49.83 s (45.0 to 60.0)"
   },
   {
    "name": "loudness",
    "value": {
-    "lufs": -14.2,
-    "truePeak": -1.3
+    "lufs": -14.1,
+    "truePeak": -1.1
    },
    "pass": false,
-   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -1.3 dBTP (at most -1.5)"
+   "detail": "-14.1 LUFS (target -14 +/- 1), true peak -1.1 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -35,18 +35,18 @@
    "name": "frozen",
    "value": [
     [
-     48.6667,
-     50.566667
+     47.9,
+     49.833
     ]
    ],
    "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 43.91 s"
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 43.12 s"
   },
   {
    "name": "hook",
-   "value": 3.46,
-   "pass": false,
-   "detail": "hook's last word ends at 3.46 s (by 3.00)"
+   "value": 2.9,
+   "pass": true,
+   "detail": "hook's last word ends at 2.90 s (by 3.00)"
   },
   {
    "name": "numbers",
@@ -89,16 +89,16 @@
    "name": "faces",
    "value": [],
    "pass": true,
-   "detail": "0 frame(s) with a face at 0.6 or more (51 frames checked)"
+   "detail": "0 frame(s) with a face at 0.6 or more (50 frames checked)"
   },
   {
    "name": "file",
    "value": {
-    "sha256": "6ea310c392cdb9e936fe9ffd043c2e6ba143bf665abc11ac557b72c34ad29db6",
-    "bytes": 3581827
+    "sha256": "e881aad14ca255e71e46d6631902cb96a00e8b4a5198c21a9acbf4170b4015f6",
+    "bytes": 3546797
    },
    "pass": true,
-   "detail": "opens, decodes to the end, 3.6 MB, matches the manifest"
+   "detail": "opens, decodes to the end, 3.5 MB, matches the manifest"
   },
   {
    "name": "layout",
@@ -108,7 +108,7 @@
   },
   {
    "name": "spec-match",
-   "value": "9e3ed5dece93a31dc12cc7f3b057647b28f12f6ec270d436e1a0314dd40d7062",
+   "value": "a8ae4c96b31ee35a51a9cbc65725995619d05847b4b51cc1284b9c6b665f27a6",
    "pass": true,
    "detail": "the render is of this exact spec"
   }

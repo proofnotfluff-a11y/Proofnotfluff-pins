@@ -498,7 +498,7 @@
     "title": "Rat complaints are up"
    },
    "compare": {
-    "title": "More than triple last year"
+    "title": "Same 30 days, a year apart"
    },
    "why": {
     "title": "South Chicago is rising far faster than the city",
@@ -631,26 +631,26 @@
   "spec_lint": {
    "pass": true,
    "problems": [],
-   "at": "2026-10-28T10:29:15+00:00",
+   "at": "2026-10-28T10:57:07+00:00",
    "tool": "tools/spec_lint.py@19813f0abe37"
   },
   "voice_lint": {
    "pass": true,
    "problems": [],
-   "at": "2026-10-28T10:29:15+00:00",
+   "at": "2026-10-28T10:57:07+00:00",
    "tool": "tools/voice_lint.py@0d489c55a0e9"
   },
   "legal_scan": {
    "pass": true,
    "problems": [],
-   "at": "2026-10-28T10:29:15+00:00",
+   "at": "2026-10-28T10:57:07+00:00",
    "tool": "tools/legal_scan.py@79a15527007e"
   },
   "facts_code": {
    "pass": true,
    "problems": [],
    "checked": 6,
-   "at": "2026-10-28T10:29:15+00:00",
+   "at": "2026-10-28T10:57:07+00:00",
    "tool": "tools/video_gates.py@65a877cd74c8"
   }
  },

@@ -126,6 +126,16 @@ def hook_scene(spec, sc):
     return els
 
 
+TITLE_PX = 60   # one title size on every canvas scene (design gate 8, Oct 28; CAROUSEL_STANDARD slide title 60 px)
+
+
+def source_el(prefix, spec, x, y, t0, t1):
+    """The data scenes' source line, the hook's period line in the canvas colors (CAROUSEL_STANDARD: a source on every
+    data slide; 42 px because no video text sits under 42 px)."""
+    return L.text_el(f"{prefix}-source", f"City 311 data, {spec['screen']['period']}", x, y, XW, "I", 600, 42, T["muted"], lh=1.15,
+                     max_lines=1, t_in=t0, t_out=t1, anim="rise")
+
+
 def scene_head(prefix, spec, sc, title_key, title_lines=2):
     s = spec["screen"]
     t0, t1 = sc["start"], sc["end"]
@@ -135,10 +145,12 @@ def scene_head(prefix, spec, sc, title_key, title_lines=2):
     title = ((s.get("scenes") or {}).get(title_key) or {}).get("title", "") if title_key else ""
     y = e["y"] + e["h"] + 24
     if title:
-        tl = L.text_el(f"{prefix}-title", title, X0, y, XW, "P", 700, 56, T["ink"], lh=1.08, max_lines=title_lines, shrink_to=46, t_in=t0, t_out=t1, anim="rise")
+        tl = L.text_el(f"{prefix}-title", title, X0, y, XW, "P", 700, TITLE_PX, T["ink"], lh=1.05, max_lines=title_lines, shrink_to=46, t_in=t0, t_out=t1, anim="rise")
         els.append(tl)
         y = tl["y"] + tl["h"]
-    return els, y + 36
+    src = source_el(prefix, spec, X0, y + 10, t0, t1)
+    els.append(src)
+    return els, src["y"] + src["h"] + 28
 
 
 def picture_scene(spec, sc):
@@ -299,6 +311,9 @@ def compare_scene(spec, sc):
     return els
 
 
+WHY_VAL_PX = 88   # the why card's values outrank the 60 px title (design gate 8, Oct 28)
+
+
 def why_scene(spec, sc):
     s, t0, t1 = spec["screen"], sc["start"], sc["end"]
     els = [bg("why", T["canvas"], t0, t1)] + brand_bars("why", t0, t1)
@@ -306,9 +321,11 @@ def why_scene(spec, sc):
     els.append(e)
     w = (s.get("scenes") or {}).get("why") or {}
     y = e["y"] + e["h"] + 40
-    tl = L.text_el("why-title", w.get("title", ""), X0, y, XW, "P", 700, 72, T["ink"], lh=1.08, max_lines=4, shrink_to=56, t_in=t0, t_out=t1, anim="rise")
+    tl = L.text_el("why-title", w.get("title", ""), X0, y, XW, "P", 700, TITLE_PX, T["ink"], lh=1.05, max_lines=3, shrink_to=46, t_in=t0, t_out=t1, anim="rise")
     els.append(tl)
-    y = tl["y"] + tl["h"] + 48
+    src = source_el("why", spec, X0, tl["y"] + tl["h"] + 10, t0, t1)
+    els.append(src)
+    y = src["y"] + src["h"] + 28
     rows = w.get("bars") or (s.get("whyBars") if w.get("number") else None)
     if rows:
         pitch = 48 + 12 + 96 + 32
@@ -316,15 +333,15 @@ def why_scene(spec, sc):
         els.append(L.rect("why-card", X0, y, XW, card_h, T["card"], radius=24, t_in=t0 + 0.4, t_out=t1, anim="fade", role="container", line=T["line"]))
         vmax = max(abs(r["value"]) for r in rows) or 1
         inner_x, inner_w = X0 + 36, XW - 72
-        col = max(L.text_width(r["shown"], "P", 700, 64) for r in rows) + 28   # the value column never meets a bar
+        col = max(L.text_width(r["shown"], "P", 700, WHY_VAL_PX) for r in rows) + 28   # the value column never meets a bar
         yy = y + 32
         for i, r in enumerate(rows):
             ti = t0 + 0.5 + 0.2 * i
             lab = L.text_el(f"why-row{i}-label", r["label"], inner_x, yy, inner_w, "P", 600, 42, T["muted"], lh=1.12, upper=True, tracking=0.04, max_lines=1, t_in=ti, t_out=t1)
             bw = max(12, round((inner_w - col - 16) * abs(r["value"]) / vmax))
             bar = L.rect(f"why-row{i}-bar", inner_x, yy + 60, bw, 96, T["accent"] if r.get("focus") else T["ink"], radius=8, t_in=ti, t_out=t1, anim="grow")
-            vw = L.text_width(r["shown"], "P", 700, 64)
-            val = L.text_el(f"why-row{i}-value", r["shown"], inner_x + bw + 16, yy + 76, vw + 0.5, "P", 700, 64,
+            vw = L.text_width(r["shown"], "P", 700, WHY_VAL_PX)
+            val = L.text_el(f"why-row{i}-value", r["shown"], inner_x + bw + 16, yy + 108 - WHY_VAL_PX / 2, vw + 0.5, "P", 700, WHY_VAL_PX,
                             T["accent"] if r.get("focus") else T["ink2"], lh=1.0, max_lines=1, t_in=ti + 0.4, t_out=t1)
             els += [lab, bar, val]
             yy += pitch
@@ -402,7 +419,7 @@ GLUE = {"a", "an", "the", "of", "to", "in", "on", "at", "for", "and", "or", "but
         "nearly", "almost", "only"}
 
 
-CAP_GAP = 0   # normal word spacing; the highlight pill pads behind the word (design read 4)
+CAP_GAP = 10   # extra word spacing so the 8 px pill padding keeps a full word space clear on both sides (design gate 8, Oct 28)
 
 BREAK_BEFORE = {"are", "is", "was", "were", "in", "on", "to", "and", "but", "if"}
 

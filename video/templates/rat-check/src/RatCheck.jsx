@@ -138,7 +138,7 @@ const Leader = ({e, t}) => {
 const Caption = ({c, t}) => {
   // Every word sits at the x the layout measured; the word being said gets an accent pill that slides from word to
   // word, so the frame moves with the voice and a sound-off viewer can follow it.
-  const fadeIn = c.tIn === 0 ? 1 : interpolate(t, [c.tIn, c.tIn + 0.12], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const fadeIn = 1;   // captions switch by hard cut, so no frame shows a half-faded caption (design gate 8, Oct 28)
   const lh = c.size * c.lh;
   const flat = [];
   c.lineWords.forEach((ws, li) => ws.forEach((w) => flat.push({...w, li})));
@@ -147,7 +147,7 @@ const Caption = ({c, t}) => {
     <div style={{position: 'absolute', left: c.x, top: c.y, width: Math.ceil(c.w) + 4, height: c.h, opacity: fadeIn,
       fontFamily: FAMILIES[c.font], fontWeight: c.weight, fontSize: c.size, lineHeight: `${lh}px`, whiteSpace: 'pre'}}>
       {cur ? (
-        <div style={{position: 'absolute', left: cur.x - 7, top: cur.li * lh + (lh - c.size * 1.18) / 2, width: cur.w + 14, height: c.size * 1.18,
+        <div style={{position: 'absolute', left: cur.x - 8, top: cur.li * lh + (lh - c.size * 1.18) / 2, width: cur.w + 16, height: c.size * 1.18,
           background: c.pill, borderRadius: 8}} />
       ) : null}
       {flat.map((w, i) => (

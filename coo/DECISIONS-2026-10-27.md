@@ -33,3 +33,9 @@
 - Run as 9 parallel build chats plus a quarterly report and a wrap-up after them; shared rules in coo/PARALLEL_BUILDS.md.
 - Plumbing (minor, no visible change): tools/make_site.py takes pages of kind "datapage" from their own modules (tools/dp_*.py), with sub-pages, lastmod, search entries, a /chicago-data/ hub and a footer link once one is live; 12 draft entries in site/pages.json render as noindex stubs until built.
 - Each page goes live only after its facts, design (average over 4.6), legal, copy and verify gates pass. Email capture, checkout, outreach, accounts and scheduled tasks still need Todd's word.
+
+## Site redesign for the data pages, 6:04 pm to 8:13 pm (wrap-up chat W)
+- [stated] Todd, 6:04 pm: "Please go ahead and redesign the website to accommodate these new builds. Please employ the UX and web design rules we discussed earlier" (the 20 UX laws in design/DESIGN_DIRECTOR.md).
+- [stated] Todd, 7:05 pm: "one more round" (to adding one live figure per hub card, then shipping once design clears 4.61).
+- [stated] Todd, 8:13 pm: "push it live" and "log it".
+- So: live after design PASS 4.71 and facts PASS. Hub figures come from each page's own text (site/datahub.json stat), so a card never shows a number its page does not.

@@ -11,7 +11,8 @@
   "360clean.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "606junk.com": {
    "checkedAt": "2026-10-28",
@@ -60,10 +61,11 @@
   },
   "aerex.com": {
    "checkedAt": "2026-10-28",
-   "result": "none",
-   "rung": "none",
+   "result": "named",
+   "rung": "hunter",
    "siteOwnerTry": "2026-10-28",
-   "siteOwnerTries": 1
+   "siteOwnerTries": 1,
+   "hunterAt": "2026-10-28"
   },
   "agneshousecleaning.com": {
    "checkedAt": "2026-10-28",
@@ -73,9 +75,10 @@
   },
   "aircareservicesinc.com": {
    "checkedAt": "2026-10-28",
-   "result": "none",
-   "rung": "none",
-   "siteOwnerAt": "2026-10-28"
+   "result": "named",
+   "rung": "hunter",
+   "siteOwnerAt": "2026-10-28",
+   "hunterAt": "2026-10-28"
   },
   "airflowschicago.com": {
    "checkedAt": "2026-10-28",
@@ -104,7 +107,8 @@
   "alltexhomeandcommercialservices.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "allwindowcleaning.com": {
    "checkedAt": "2026-10-28",
@@ -163,12 +167,14 @@
   "atexcommercialcleaning.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "atexpressurepros.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "atomiccleaning.co": {
    "checkedAt": "2026-10-28",
@@ -185,7 +191,8 @@
    "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none",
-   "siteOwnerAt": "2026-10-28"
+   "siteOwnerAt": "2026-10-28",
+   "hunterAt": "2026-10-28"
   },
   "aurorasewercleaning.com": {
    "checkedAt": "2026-10-28",
@@ -354,7 +361,8 @@
   "chicagopestsllc.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "chicagorestaurantcleaningservice.com": {
    "checkedAt": "2026-10-28",
@@ -431,7 +439,8 @@
   "cleanwashremove.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "cleanwindowsfirst.com": {
    "checkedAt": "2026-10-28",
@@ -458,7 +467,8 @@
   "companionmaids.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "completesecurityrental.com": {
    "checkedAt": "2026-10-28",
@@ -468,7 +478,8 @@
   "conquestclean.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "corporatecleaning.com": {
    "checkedAt": "2026-10-28",
@@ -478,7 +489,8 @@
   "cortesjunkremoval.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "coverall.com": {
    "checkedAt": "2026-10-28",
@@ -499,7 +511,8 @@
   "cubbybearcleaning.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "dandpconstruction.com": {
    "checkedAt": "2026-10-28",
@@ -510,7 +523,8 @@
   "dbsbuildingsolutions.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "deepcleanchicago.com": {
    "hunterAt": "2026-10-22",
@@ -522,22 +536,27 @@
   "deepcleanerschicago.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerTry": "2026-10-28",
+   "siteOwnerTries": 1
   },
   "deepcleaningchicago.net": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "djrcleaning.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "dmcleaningservice.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "duopressurewashing.com": {
    "checkedAt": "2026-10-28",
@@ -553,22 +572,27 @@
   "earthpestcontrolservices.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "eco-cleaningservices.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "ecoshieldpest.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "ecotechpestcontrol.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerTry": "2026-10-28",
+   "siteOwnerTries": 1
   },
   "ecsoftexas.com": {
    "checkedAt": "2026-10-28",
@@ -583,7 +607,9 @@
   "elitedetailedcleaning.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerTry": "2026-10-28",
+   "siteOwnerTries": 1
   },
   "enviro-master.com": {
    "checkedAt": "2026-10-28",
@@ -608,22 +634,27 @@
   "euro-maids.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "europeancleaningmaids.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "evanstoncommercialcleaning.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerTry": "2026-10-28",
+   "siteOwnerTries": 1
   },
   "evergreencleaninggroup.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "everlastingimpressioninc.com": {
    "checkedAt": "2026-10-28",
@@ -649,7 +680,8 @@
   "filtershineusa.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "firstclasscleann.com": {
    "checkedAt": "2026-10-28",
@@ -664,17 +696,21 @@
   "fox-pest.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "freshbubblescleaningservicesllc.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerTry": "2026-10-28",
+   "siteOwnerTries": 1
   },
   "freshtechmaids.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "ftfexteriorsolutions.com": {
    "checkedAt": "2026-10-28",
@@ -695,7 +731,8 @@
   "getting-it-done.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "glass-metal.com": {
    "checkedAt": "2026-10-28",
@@ -710,22 +747,26 @@
   "goldentouchteam.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "gp-cleaning-and-maintenance.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "grandnaturalinc.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "greasebusters.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "greatwesternco.com": {
    "checkedAt": "2026-10-28",
@@ -736,12 +777,15 @@
   "greenixpc.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerTry": "2026-10-28",
+   "siteOwnerTries": 1
   },
   "greenmopllc.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "greenwayrecycles.com": {
    "checkedAt": "2026-10-28",
@@ -751,12 +795,14 @@
   "grizzpest.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "guardianpestcontrol.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "hamelwindowcleaning.com": {
    "checkedAt": "2026-10-28",
@@ -766,7 +812,8 @@
   "happymaids.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "harvardmaint.com": {
    "checkedAt": "2026-10-28",
@@ -776,7 +823,8 @@
   "hawxpestcontrol.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "hillcountryexteriorrestoration.com": {
    "checkedAt": "2026-10-28",
@@ -798,7 +846,8 @@
   "hoodcleanbros.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "hoodzinternational.com": {
    "checkedAt": "2026-10-22",
@@ -809,7 +858,8 @@
   "imageoneelgin.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "imageonewaukegan.com": {
    "checkedAt": "2026-10-28",
@@ -836,12 +886,14 @@
   "intensepestcontrol.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "international-exterminator.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "itssoclean.net": {
    "checkedAt": "2026-10-28",
@@ -877,7 +929,8 @@
   "jolietpest.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "kandmsteamcleaning.com": {
    "checkedAt": "2026-10-28",
@@ -896,8 +949,9 @@
   },
   "kitchenguard.com": {
    "checkedAt": "2026-10-28",
-   "result": "none",
-   "rung": "none"
+   "result": "named",
+   "rung": "site_owner",
+   "siteOwnerAt": "2026-10-28"
   },
   "krystalklean.com": {
    "checkedAt": "2026-10-28",
@@ -912,7 +966,8 @@
   "lakecookpestcontrol.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "lakeshoreproclean.com": {
    "checkedAt": "2026-10-28",
@@ -1015,7 +1070,8 @@
   "mcknightspestmanagement.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "mcmahonwindowwashing.com": {
    "checkedAt": "2026-10-28",
@@ -1030,7 +1086,8 @@
   "mibpestcontrol.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "midwaybuildingservices.com": {
    "checkedAt": "2026-10-28",
@@ -1040,7 +1097,8 @@
   "midwestext.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "midwestwindows.com": {
    "checkedAt": "2026-10-28",
@@ -1269,7 +1327,8 @@
   "puremagicmaids.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "qmcchicago.com": {
    "checkedAt": "2026-10-28",
@@ -1355,7 +1414,8 @@
   "selectcommercialservice.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "servicemasterbyzaba.com": {
    "checkedAt": "2026-10-28",
@@ -1365,7 +1425,9 @@
   "servicemasterclean.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerTry": "2026-10-28",
+   "siteOwnerTries": 1
   },
   "servicemasteroflincolnpark.com": {
    "checkedAt": "2026-10-28",
@@ -1390,7 +1452,8 @@
   "shlservicesatx.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "shynlicleaningservice.com": {
    "checkedAt": "2026-10-28",
@@ -1405,7 +1468,8 @@
   "sirthomas.org": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "skylinejanitorialservices.com": {
    "checkedAt": "2026-10-28",
@@ -1431,12 +1495,14 @@
    "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none",
-   "siteOwnerAt": "2026-10-28"
+   "siteOwnerAt": "2026-10-28",
+   "hunterAt": "2026-10-28"
   },
   "sofreshsocleantx.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "soluteliteservices.com": {
    "checkedAt": "2026-10-28",
@@ -1461,7 +1527,8 @@
   "sparklymaidaustin.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "sparkmaids.com": {
    "checkedAt": "2026-10-28",
@@ -1487,7 +1554,8 @@
    "checkedAt": "2026-10-28",
    "result": "none",
    "rung": "none",
-   "siteOwnerAt": "2026-10-28"
+   "siteOwnerAt": "2026-10-28",
+   "hunterAt": "2026-10-28"
   },
   "stakleenchicago.com": {
    "checkedAt": "2026-10-28",
@@ -1512,7 +1580,9 @@
   "supercleantx.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerTry": "2026-10-28",
+   "siteOwnerTries": 1
   },
   "superiorlaborsolution.com": {
    "checkedAt": "2026-10-28",
@@ -1542,22 +1612,27 @@
   "sweptupcleaningco.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "system4-austin.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "texasbuildingservices.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "texasedgecleaning.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerTry": "2026-10-28",
+   "siteOwnerTries": 1
   },
   "thecleaningladiesbastrop.com": {
    "checkedAt": "2026-10-28",
@@ -1572,12 +1647,14 @@
   "thehappyclean.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "themagichelpers.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "tpwtexas.com": {
    "checkedAt": "2026-10-28",
@@ -1603,12 +1680,14 @@
   "trustworthycleaningserv.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "txsparkleservice.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "urbanstreetwindowworks.com": {
    "checkedAt": "2026-10-28",
@@ -1648,7 +1727,8 @@
   "wgeservices.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "wilmettemaids.com": {
    "checkedAt": "2026-10-28",
@@ -1668,7 +1748,8 @@
   "wowtotalcleaning.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "wrightandcodumpsterrental.com": {
    "checkedAt": "2026-10-28",
@@ -1678,7 +1759,8 @@
   "yallmaidaustincleaningservices.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "ybhcleaningservices.com": {
    "checkedAt": "2026-10-28",
@@ -1688,7 +1770,8 @@
   "yourdreamclean.com": {
    "checkedAt": "2026-10-28",
    "result": "none",
-   "rung": "none"
+   "rung": "none",
+   "siteOwnerAt": "2026-10-28"
   },
   "ziggycleaning.com": {
    "checkedAt": "2026-10-28",

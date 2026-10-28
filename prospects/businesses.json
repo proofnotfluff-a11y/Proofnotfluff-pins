@@ -1982,6 +1982,279 @@
    "business": "Westlake Home & Commercial Services",
    "website": "https://westlakepowerwashing.com/",
    "trade_vertical": "commercial_cleaning"
+  },
+  {
+   "prospect_id": "cc-extrityservices-com",
+   "product": "chicago-construction",
+   "business": "Extrity Services",
+   "website": "https://extrityservices.com/",
+   "trade_vertical": "security"
+  },
+  {
+   "prospect_id": "cc-completesecurityrental-com",
+   "product": "chicago-construction",
+   "business": "Complete Security Rental",
+   "website": "https://www.completesecurityrental.com/",
+   "trade_vertical": "security"
+  },
+  {
+   "prospect_id": "cc-morgansecurityservice-com",
+   "product": "chicago-construction",
+   "business": "Morgan Security Guard Services",
+   "website": "https://morgansecurityservice.com/",
+   "trade_vertical": "security"
+  },
+  {
+   "prospect_id": "cc-centinelsecurity-com",
+   "product": "chicago-construction",
+   "business": "Centinel Security Guard Services",
+   "website": "https://centinelsecurity.com/",
+   "trade_vertical": "security"
+  },
+  {
+   "prospect_id": "cc-morrisonsecurity-com",
+   "product": "chicago-construction",
+   "business": "Morrison Security Corporation",
+   "website": "https://www.morrisonsecurity.com/",
+   "trade_vertical": "security"
+  },
+  {
+   "prospect_id": "cc-asi-services",
+   "product": "chicago-construction",
+   "business": "ASI Security Services",
+   "website": "https://asi.services/",
+   "trade_vertical": "security"
+  },
+  {
+   "prospect_id": "cc-tribesecurity-com",
+   "product": "chicago-construction",
+   "business": "Tribe Security",
+   "website": "https://www.tribesecurity.com/",
+   "trade_vertical": "security"
+  },
+  {
+   "prospect_id": "cc-starksecurityinc-com",
+   "product": "chicago-construction",
+   "business": "Stark Protective Services",
+   "website": "https://starksecurityinc.com/",
+   "trade_vertical": "security"
+  },
+  {
+   "prospect_id": "cc-advancedguards-com",
+   "product": "chicago-construction",
+   "business": "Advanced Security Solutions",
+   "website": "https://www.advancedguards.com/",
+   "trade_vertical": "security"
+  },
+  {
+   "prospect_id": "cc-securityspecialistsgroup-com",
+   "product": "chicago-construction",
+   "business": "Security Specialists Group",
+   "website": "https://www.securityspecialistsgroup.com/",
+   "trade_vertical": "security"
+  },
+  {
+   "prospect_id": "cc-spgillinois-com",
+   "product": "chicago-construction",
+   "business": "Security Professionals Group",
+   "website": "https://www.spgillinois.com/",
+   "trade_vertical": "security"
+  },
+  {
+   "prospect_id": "cc-nighthawksecure-com",
+   "product": "chicago-construction",
+   "business": "Nighthawk Secure",
+   "website": "https://nighthawksecure.com/",
+   "trade_vertical": "security"
+  },
+  {
+   "prospect_id": "cc-silverstarprotection-com",
+   "product": "chicago-construction",
+   "business": "Silver Star Protection Group",
+   "website": "https://www.silverstarprotection.com/",
+   "trade_vertical": "security"
+  },
+  {
+   "prospect_id": "cc-brackenbox-com",
+   "product": "chicago-construction",
+   "business": "Brackenbox",
+   "website": "https://brackenbox.com/",
+   "trade_vertical": "dumpster_rental"
+  },
+  {
+   "prospect_id": "cc-wasteboxinc-com",
+   "product": "chicago-construction",
+   "business": "WasteBox Inc.",
+   "website": "https://wasteboxinc.com/",
+   "trade_vertical": "dumpster_rental"
+  },
+  {
+   "prospect_id": "cc-prowastedisposal-com",
+   "product": "chicago-construction",
+   "business": "Pro Waste Inc.",
+   "website": "https://prowastedisposal.com/",
+   "trade_vertical": "dumpster_rental"
+  },
+  {
+   "prospect_id": "cc-tri-statedisposal-com",
+   "product": "chicago-construction",
+   "business": "Tri-State Disposal",
+   "website": "https://tri-statedisposal.com/",
+   "trade_vertical": "dumpster_rental"
+  },
+  {
+   "prospect_id": "cc-mmmdumpsters-com",
+   "product": "chicago-construction",
+   "business": "MMM Dumpsters",
+   "website": "https://www.mmmdumpsters.com/",
+   "trade_vertical": "dumpster_rental"
+  },
+  {
+   "prospect_id": "cc-wrightandcodumpsterrental-com",
+   "product": "chicago-construction",
+   "business": "Wright & Co Dumpster Rental",
+   "website": "https://wrightandcodumpsterrental.com/",
+   "trade_vertical": "dumpster_rental"
+  },
+  {
+   "prospect_id": "cc-floodbrothersdisposal-com",
+   "product": "chicago-construction",
+   "business": "Flood Brothers Disposal",
+   "website": "https://www.floodbrothersdisposal.com/",
+   "trade_vertical": "dumpster_rental"
+  },
+  {
+   "prospect_id": "cc-mydisposal-com",
+   "product": "chicago-construction",
+   "business": "Homewood Disposal Service",
+   "website": "https://mydisposal.com/",
+   "trade_vertical": "dumpster_rental"
+  },
+  {
+   "prospect_id": "cc-ready2rollhauling-com",
+   "product": "chicago-construction",
+   "business": "Ready 2 Roll Hauling & Dumpster Rentals",
+   "website": "https://www.ready2rollhauling.com/",
+   "trade_vertical": "dumpster_rental"
+  },
+  {
+   "prospect_id": "cc-greenwayrecycles-com",
+   "product": "chicago-construction",
+   "business": "GreenWay Recycling Services",
+   "website": "https://www.greenwayrecycles.com/",
+   "trade_vertical": "dumpster_rental"
+  },
+  {
+   "prospect_id": "cc-citywidedisposalchicago-com",
+   "product": "chicago-construction",
+   "business": "CityWide Disposal",
+   "website": "https://citywidedisposalchicago.com/main/",
+   "trade_vertical": "dumpster_rental"
+  },
+  {
+   "prospect_id": "cc-dandpconstruction-com",
+   "product": "chicago-construction",
+   "business": "D&P Construction Co.",
+   "website": "https://dandpconstruction.com/",
+   "trade_vertical": "dumpster_rental"
+  },
+  {
+   "prospect_id": "cc-606junk-com",
+   "product": "chicago-construction",
+   "business": "606 Junk Removal and Dumpster Rental",
+   "website": "https://606junk.com/",
+   "trade_vertical": "dumpster_rental"
+  },
+  {
+   "prospect_id": "cc-corporatecleaning-com",
+   "product": "chicago-construction",
+   "business": "Corporate Cleaning Services",
+   "website": "https://www.corporatecleaning.com/",
+   "trade_vertical": "window_cleaning"
+  },
+  {
+   "prospect_id": "cc-innovativewindowcleaning-com",
+   "product": "chicago-construction",
+   "business": "Innovative Window Cleaning",
+   "website": "https://innovativewindowcleaning.com/",
+   "trade_vertical": "window_cleaning"
+  },
+  {
+   "prospect_id": "cc-midwestwindows-com",
+   "product": "chicago-construction",
+   "business": "Midwest Window Cleaning",
+   "website": "https://www.midwestwindows.com/",
+   "trade_vertical": "window_cleaning"
+  },
+  {
+   "prospect_id": "cc-urbanstreetwindowworks-com",
+   "product": "chicago-construction",
+   "business": "Urban Street Window Works",
+   "website": "https://urbanstreetwindowworks.com/",
+   "trade_vertical": "window_cleaning"
+  },
+  {
+   "prospect_id": "cc-hamelwindowcleaning-com",
+   "product": "chicago-construction",
+   "business": "Donald Hamel Window Cleaning",
+   "website": "https://hamelwindowcleaning.com/",
+   "trade_vertical": "exterior_turnkey"
+  },
+  {
+   "prospect_id": "cc-superiorwindowservice-com",
+   "product": "chicago-construction",
+   "business": "Superior Window Services",
+   "website": "https://www.superiorwindowservice.com/",
+   "trade_vertical": "exterior_turnkey"
+  },
+  {
+   "prospect_id": "cc-glass-metal-com",
+   "product": "chicago-construction",
+   "business": "Glass & Metal (Service One)",
+   "website": "https://glass-metal.com/",
+   "trade_vertical": "exterior_turnkey"
+  },
+  {
+   "prospect_id": "cc-crystalclearww-com",
+   "product": "chicago-construction",
+   "business": "Crystal Clear Window Washing",
+   "website": "https://www.crystalclearww.com/",
+   "trade_vertical": "exterior_turnkey"
+  },
+  {
+   "prospect_id": "cc-cleanwindowsfirst-com",
+   "product": "chicago-construction",
+   "business": "Clean Windows First",
+   "website": "https://www.cleanwindowsfirst.com/",
+   "trade_vertical": "exterior_turnkey"
+  },
+  {
+   "prospect_id": "cc-primetimewindowcleaning-com",
+   "product": "chicago-construction",
+   "business": "Prime Time Window Cleaning",
+   "website": "https://primetimewindowcleaning.com/",
+   "trade_vertical": "exterior_turnkey"
+  },
+  {
+   "prospect_id": "cc-windowwashingexpert-com",
+   "product": "chicago-construction",
+   "business": "Window Washing Expert",
+   "website": "https://www.windowwashingexpert.com/",
+   "trade_vertical": "exterior_turnkey"
+  },
+  {
+   "prospect_id": "cc-sparkleservice-com",
+   "product": "chicago-construction",
+   "business": "Sparkle Service",
+   "website": "https://sparkleservice.com/",
+   "trade_vertical": "exterior_turnkey"
+  },
+  {
+   "prospect_id": "cc-mcmahonwindowwashing-com",
+   "product": "chicago-construction",
+   "business": "L.A. McMahon Window Washing",
+   "website": "https://www.mcmahonwindowwashing.com/",
+   "trade_vertical": "exterior_turnkey"
   }
  ]
 }

@@ -1,0 +1,84 @@
+{
+ "schema": "pnf.video.manifest.v1",
+ "videoId": "2026-10-27-rats-a",
+ "mp4": "video.mp4",
+ "sha256": "423a0f2816c5146799e67db94a7ebc7d571a127c31ad84dbe95aabdba4695289",
+ "bytes": 3772740,
+ "seconds": 53.433,
+ "lufs": -14.2,
+ "truePeak": -1.7,
+ "remotion": "4.0.539",
+ "node": "v22.23.4",
+ "voice": {
+  "id": "XrExE9yKIg1WjnnlVkGX",
+  "name": "Matilda",
+  "model": "eleven_v4",
+  "test": false,
+  "chars": 633
+ },
+ "voiceFiles": [
+  {
+   "key": "hook",
+   "file": "hook.mp3",
+   "sha256": "630472c8bfad68bf233c8405e43cbc12b1670eb786ba995d856589ca29eac1f8",
+   "seconds": 3.396
+  },
+  {
+   "key": "l1",
+   "file": "l1.mp3",
+   "sha256": "54f274a0c3afd221aaf9759f0dc64fea282be3d4bbd25b8d54e68342395b002e",
+   "seconds": 6.531
+  },
+  {
+   "key": "l2",
+   "file": "l2.mp3",
+   "sha256": "5a26854807c98e21f56cd06cd839f1514f5dc09bd458b8886cace32e3f4bfac4",
+   "seconds": 5.068
+  },
+  {
+   "key": "l3",
+   "file": "l3.mp3",
+   "sha256": "6888356b6ea4df2349534dd37952fc854cdc08e40bc631f9c271751f0153cdaa",
+   "seconds": 5.329
+  },
+  {
+   "key": "l4",
+   "file": "l4.mp3",
+   "sha256": "cec52503733f1aba4e2c5fb320d308a63d92aba0f92b0b193999a5c70e646d4e",
+   "seconds": 6.191
+  },
+  {
+   "key": "l5",
+   "file": "l5.mp3",
+   "sha256": "e2f0796d55189d338b55d88bec88d81e9c09d06c0f66f55d0aa6a6d887b7e743",
+   "seconds": 5.564
+  },
+  {
+   "key": "l6",
+   "file": "l6.mp3",
+   "sha256": "11d2eee1d150edd94ea1b73bd110e02efc6f07f640cf5a0c1c43af5202495e49",
+   "seconds": 5.251
+  },
+  {
+   "key": "l7",
+   "file": "l7.mp3",
+   "sha256": "6ca920d48570e8b7b0b81f9e130280630d4cc9c2456bf2f0d30f6bddb3e9d8a9",
+   "seconds": 5.486
+  },
+  {
+   "key": "cta",
+   "file": "cta.mp3",
+   "sha256": "a004b489ae257878f4f56b6437952f5bbdaf18d201902a003d28ec424f7de252",
+   "seconds": 4.833
+  }
+ ],
+ "music": {
+  "musicId": "quiet-math",
+  "musicGainDb": -19.7,
+  "voiceLufsBefore": -21.7
+ },
+ "specSha256": "9e3ed5dece93a31dc12cc7f3b057647b28f12f6ec270d436e1a0314dd40d7062",
+ "propsSha256": "03534d2ac5a26db828f77ed8717f8dee54a3526464826d7622e9217e66360ddf",
+ "layout": "PASS",
+ "renderedAt": "2026-10-28T10:23:43+00:00"
+}

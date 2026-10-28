@@ -2,26 +2,26 @@
  "schema": "pnf.video.manifest.v1",
  "videoId": "2026-10-26-rats-z",
  "mp4": "video.mp4",
- "sha256": "1eca17086c4519e86da41be1d9c1f366312dd1dce681b911a97b076d2a288953",
- "bytes": 3797366,
- "seconds": 52.267,
+ "sha256": "bff53d41a627a7c0753cc6496e354a8e9a89fecc68b8352f276db7f3467ee776",
+ "bytes": 3620172,
+ "seconds": 52.933,
  "lufs": -14.0,
- "truePeak": -5.6,
+ "truePeak": -5.9,
  "remotion": "4.0.539",
- "node": "v22.23.3",
+ "node": "v22.23.4",
  "voice": {
   "id": "test",
   "name": "test tones",
   "model": "test",
   "test": true,
-  "chars": 568
+  "chars": 578
  },
  "voiceFiles": [
   {
    "key": "hook",
    "file": "hook.mp3",
-   "sha256": "bad7d8e43a63eaa24cdff87d0cfce918f21d47909c077ff65cbfd7f759d2379c",
-   "seconds": 2.9
+   "sha256": "57aa18f49d216f92e9ccb028226f42fb27f086025f426d4be45674158f207ded",
+   "seconds": 3.135
   },
   {
    "key": "l1",
@@ -38,8 +38,8 @@
   {
    "key": "l3",
    "file": "l3.mp3",
-   "sha256": "1240a90d751658df095b8fac95f40bdceb56228d2d1a82fb8c33807157f1b39b",
-   "seconds": 6.713
+   "sha256": "86e85a10b28c92b67046894acd7809fa1d92d3a8a52180456fc48ab75ed5413a",
+   "seconds": 7.001
   },
   {
    "key": "l4",
@@ -62,8 +62,8 @@
   {
    "key": "l7",
    "file": "l7.mp3",
-   "sha256": "9fde8eb9954268f8cfcb76f7dde2a96a0f6c9737b16878a1bcfabc88b884cb7d",
-   "seconds": 8.072
+   "sha256": "7135e1f940681a97d9a8b94f17e06fd7ef38a537776fd75ba4a1cbe61d435aa9",
+   "seconds": 8.202
   },
   {
    "key": "cta",
@@ -74,11 +74,11 @@
  ],
  "music": {
   "musicId": "quiet-math",
-  "musicGainDb": -17.9,
-  "voiceLufsBefore": -19.9
+  "musicGainDb": -17.8,
+  "voiceLufsBefore": -19.8
  },
- "specSha256": "325689d880e12f9c4031e1c306a1c05be0f09a448d1d5a25af8cbf7d53c95028",
- "propsSha256": "2db7c422adfb399db54210b29e07949913799f060705f05bb6ec65a0dc0f0b33",
+ "specSha256": "362d277c2d4b1e1a9854ab230f3ada8f0e6ceef545514ac8ac72610a690f433f",
+ "propsSha256": "cd143d6ae3b5f863e10260ac374bb2928eba27305237478fe7dd4e9c1366f054",
  "layout": "PASS",
- "renderedAt": "2026-10-28T03:15:55+00:00"
+ "renderedAt": "2026-10-28T10:15:54+00:00"
 }

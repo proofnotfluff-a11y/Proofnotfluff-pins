@@ -4,15 +4,15 @@
  "voiceName": "test tones",
  "model": "test",
  "test": true,
- "chars": 568,
+ "chars": 578,
  "segments": [
   {
    "key": "hook",
    "file": "hook.mp3",
-   "sha256": "bad7d8e43a63eaa24cdff87d0cfce918f21d47909c077ff65cbfd7f759d2379c",
-   "seconds": 2.9,
-   "say": "Lake View rat calls just doubled.",
-   "tts": "Lake View rat calls just doubled.",
+   "sha256": "57aa18f49d216f92e9ccb028226f42fb27f086025f426d4be45674158f207ded",
+   "seconds": 3.135,
+   "say": "Lake View rat complaints just doubled.",
+   "tts": "Lake View rat complaints just doubled.",
    "scene": "hook",
    "words": [
     {
@@ -31,19 +31,19 @@
      "end": 1.195
     },
     {
-     "w": "calls",
+     "w": "complaints",
      "start": 1.265,
-     "end": 1.65
+     "end": 1.875
     },
     {
      "w": "just",
-     "start": 1.72,
-     "end": 2.06
+     "start": 1.945,
+     "end": 2.285
     },
     {
      "w": "doubled.",
-     "start": 2.13,
-     "end": 2.65
+     "start": 2.355,
+     "end": 2.875
     }
    ]
   },
@@ -192,10 +192,10 @@
   {
    "key": "l3",
    "file": "l3.mp3",
-   "sha256": "1240a90d751658df095b8fac95f40bdceb56228d2d1a82fb8c33807157f1b39b",
-   "seconds": 6.713,
-   "say": "It's one of 44 of the city's 77 neighborhoods running above last year.",
-   "tts": "It's one of forty-four of the city's seventy-seven neighborhoods running above last year.",
+   "sha256": "86e85a10b28c92b67046894acd7809fa1d92d3a8a52180456fc48ab75ed5413a",
+   "seconds": 7.001,
+   "say": "It's one of 44 of the city's 77 community areas running above last year.",
+   "tts": "It's one of forty-four of the city's seventy-seven community areas running above last year.",
    "scene": "picture",
    "words": [
     {
@@ -239,29 +239,34 @@
      "end": 3.785
     },
     {
-     "w": "neighborhoods",
+     "w": "community",
      "start": 3.855,
-     "end": 4.6
+     "end": 4.42
+    },
+    {
+     "w": "areas",
+     "start": 4.49,
+     "end": 4.875
     },
     {
      "w": "running",
-     "start": 4.67,
-     "end": 5.145
+     "start": 4.945,
+     "end": 5.42
     },
     {
      "w": "above",
-     "start": 5.215,
-     "end": 5.6
+     "start": 5.49,
+     "end": 5.875
     },
     {
      "w": "last",
-     "start": 5.67,
-     "end": 6.01
+     "start": 5.945,
+     "end": 6.285
     },
     {
      "w": "year.",
-     "start": 6.08,
-     "end": 6.465
+     "start": 6.355,
+     "end": 6.74
     }
    ]
   },
@@ -431,10 +436,10 @@
   {
    "key": "l7",
    "file": "l7.mp3",
-   "sha256": "9fde8eb9954268f8cfcb76f7dde2a96a0f6c9737b16878a1bcfabc88b884cb7d",
-   "seconds": 8.072,
-   "say": "If you run a pest control or cleaning crew, this is where the calls are coming from right now.",
-   "tts": "If you run a pest control or cleaning crew, this is where the calls are coming from right now.",
+   "sha256": "7135e1f940681a97d9a8b94f17e06fd7ef38a537776fd75ba4a1cbe61d435aa9",
+   "seconds": 8.202,
+   "say": "If you run a pest control or cleaning crew, this is where the complaints are coming in right now.",
+   "tts": "If you run a pest control or cleaning crew, this is where the complaints are coming in right now.",
    "scene": "why",
    "words": [
     {
@@ -503,34 +508,34 @@
      "end": 5.205
     },
     {
-     "w": "calls",
+     "w": "complaints",
      "start": 5.275,
-     "end": 5.66
+     "end": 5.885
     },
     {
      "w": "are",
-     "start": 5.73,
-     "end": 6.025
+     "start": 5.955,
+     "end": 6.25
     },
     {
      "w": "coming",
-     "start": 6.095,
-     "end": 6.525
+     "start": 6.32,
+     "end": 6.75
     },
     {
-     "w": "from",
-     "start": 6.595,
-     "end": 6.935
+     "w": "in",
+     "start": 6.82,
+     "end": 7.07
     },
     {
      "w": "right",
-     "start": 7.005,
-     "end": 7.39
+     "start": 7.14,
+     "end": 7.525
     },
     {
      "w": "now.",
-     "start": 7.46,
-     "end": 7.8
+     "start": 7.595,
+     "end": 7.935
     }
    ]
   },

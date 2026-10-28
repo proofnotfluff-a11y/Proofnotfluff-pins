@@ -1,0 +1,629 @@
+{
+ "schema": "pnf.video.words.v1",
+ "voiceId": "CwhRBWXzGAHq8TQ4Fs17",
+ "voiceName": "Roger",
+ "model": "eleven_v4",
+ "test": false,
+ "chars": 633,
+ "segments": [
+  {
+   "key": "hook",
+   "file": "hook.mp3",
+   "sha256": "87f8ad1881dbc8f3fc0ad961bdc090733010e8214baa78ea4c67d4b5d32e70db",
+   "seconds": 3.396,
+   "say": "South Chicago rat complaints more than tripled.",
+   "tts": "South Chicago rat complaints more than tripled.",
+   "scene": "hook",
+   "words": [
+    {
+     "w": "South",
+     "start": 0.0,
+     "end": 0.32
+    },
+    {
+     "w": "Chicago",
+     "start": 0.4,
+     "end": 0.88
+    },
+    {
+     "w": "rat",
+     "start": 1.04,
+     "end": 1.2
+    },
+    {
+     "w": "complaints",
+     "start": 1.28,
+     "end": 1.92
+    },
+    {
+     "w": "more",
+     "start": 2.0,
+     "end": 2.08
+    },
+    {
+     "w": "than",
+     "start": 2.16,
+     "end": 2.4
+    },
+    {
+     "w": "tripled.",
+     "start": 2.56,
+     "end": 3.36
+    }
+   ]
+  },
+  {
+   "key": "l1",
+   "file": "l1.mp3",
+   "sha256": "d233a8d27990f431afb036bea8ecf0cf211911d7828ca706503044c4cece5299",
+   "seconds": 5.878,
+   "say": "Those are complaints to the City's 311 line, in the 30 days to Oct 26.",
+   "tts": "Those are complaints to the City's three one one line, in the thirty days to October twenty-sixth.",
+   "scene": "hook",
+   "words": [
+    {
+     "w": "Those",
+     "start": 0.0,
+     "end": 0.24
+    },
+    {
+     "w": "are",
+     "start": 0.32,
+     "end": 0.4
+    },
+    {
+     "w": "complaints",
+     "start": 0.52,
+     "end": 0.96
+    },
+    {
+     "w": "to",
+     "start": 1.04,
+     "end": 1.12
+    },
+    {
+     "w": "the",
+     "start": 1.2,
+     "end": 1.28
+    },
+    {
+     "w": "City's",
+     "start": 1.4,
+     "end": 1.68
+    },
+    {
+     "w": "three",
+     "start": 1.8,
+     "end": 1.92
+    },
+    {
+     "w": "one",
+     "start": 2.0,
+     "end": 2.24
+    },
+    {
+     "w": "one",
+     "start": 2.32,
+     "end": 2.4
+    },
+    {
+     "w": "line,",
+     "start": 2.48,
+     "end": 3.0
+    },
+    {
+     "w": "in",
+     "start": 3.04,
+     "end": 3.12
+    },
+    {
+     "w": "the",
+     "start": 3.2,
+     "end": 3.28
+    },
+    {
+     "w": "thirty",
+     "start": 3.32,
+     "end": 3.52
+    },
+    {
+     "w": "days",
+     "start": 3.6,
+     "end": 3.92
+    },
+    {
+     "w": "to",
+     "start": 4.0,
+     "end": 4.08
+    },
+    {
+     "w": "October",
+     "start": 4.32,
+     "end": 4.56
+    },
+    {
+     "w": "twenty-sixth.",
+     "start": 4.64,
+     "end": 5.92
+    }
+   ]
+  },
+  {
+   "key": "l2",
+   "file": "l2.mp3",
+   "sha256": "8001aebdafe5c7db4867374c550d508e1785d61244e5fa7956127b8e581496af",
+   "seconds": 4.911,
+   "say": "The South Chicago community area logged 45 rat complaints.",
+   "tts": "The South Chicago community area logged forty-five rat complaints.",
+   "scene": "picture",
+   "words": [
+    {
+     "w": "The",
+     "start": 0.0,
+     "end": 0.08
+    },
+    {
+     "w": "South",
+     "start": 0.16,
+     "end": 0.4
+    },
+    {
+     "w": "Chicago",
+     "start": 0.48,
+     "end": 0.96
+    },
+    {
+     "w": "community",
+     "start": 1.04,
+     "end": 1.52
+    },
+    {
+     "w": "area",
+     "start": 1.68,
+     "end": 2.0
+    },
+    {
+     "w": "logged",
+     "start": 2.08,
+     "end": 2.48
+    },
+    {
+     "w": "forty-five",
+     "start": 2.56,
+     "end": 3.28
+    },
+    {
+     "w": "rat",
+     "start": 3.36,
+     "end": 3.6
+    },
+    {
+     "w": "complaints.",
+     "start": 3.68,
+     "end": 4.88
+    }
+   ]
+  },
+  {
+   "key": "l3",
+   "file": "l3.mp3",
+   "sha256": "dc71085cf2a32e97f2ae7ae7ab743394b930e5351c9e7c38f69389d0a03b04e4",
+   "seconds": 4.911,
+   "say": "Citywide, rat complaints are up 10.2% on last year.",
+   "tts": "Citywide, rat complaints are up ten point two percent on last year.",
+   "scene": "picture",
+   "words": [
+    {
+     "w": "Citywide,",
+     "start": 0.0,
+     "end": 1.04
+    },
+    {
+     "w": "rat",
+     "start": 1.16,
+     "end": 1.28
+    },
+    {
+     "w": "complaints",
+     "start": 1.4,
+     "end": 1.8
+    },
+    {
+     "w": "are",
+     "start": 1.84,
+     "end": 1.92
+    },
+    {
+     "w": "up",
+     "start": 2.0,
+     "end": 2.16
+    },
+    {
+     "w": "ten",
+     "start": 2.24,
+     "end": 2.4
+    },
+    {
+     "w": "point",
+     "start": 2.56,
+     "end": 2.8
+    },
+    {
+     "w": "two",
+     "start": 2.88,
+     "end": 2.96
+    },
+    {
+     "w": "percent",
+     "start": 3.12,
+     "end": 3.52
+    },
+    {
+     "w": "on",
+     "start": 3.6,
+     "end": 3.68
+    },
+    {
+     "w": "last",
+     "start": 3.76,
+     "end": 4.0
+    },
+    {
+     "w": "year.",
+     "start": 4.08,
+     "end": 4.88
+    }
+   ]
+  },
+  {
+   "key": "l4",
+   "file": "l4.mp3",
+   "sha256": "0902a55adcb163a96cc6db83c54f8122f4f559c26a5f387ae89350a079b4a06e",
+   "seconds": 5.799,
+   "say": "And 44 of the city's 77 community areas are running above last year.",
+   "tts": "And forty-four of the city's seventy-seven community areas are running above last year.",
+   "scene": "picture",
+   "words": [
+    {
+     "w": "And",
+     "start": 0.0,
+     "end": 0.24
+    },
+    {
+     "w": "forty-four",
+     "start": 0.32,
+     "end": 0.88
+    },
+    {
+     "w": "of",
+     "start": 0.96,
+     "end": 1.04
+    },
+    {
+     "w": "the",
+     "start": 1.12,
+     "end": 1.2
+    },
+    {
+     "w": "city's",
+     "start": 1.32,
+     "end": 1.6
+    },
+    {
+     "w": "seventy-seven",
+     "start": 1.68,
+     "end": 2.4
+    },
+    {
+     "w": "community",
+     "start": 2.68,
+     "end": 2.96
+    },
+    {
+     "w": "areas",
+     "start": 3.04,
+     "end": 3.44
+    },
+    {
+     "w": "are",
+     "start": 3.52,
+     "end": 3.68
+    },
+    {
+     "w": "running",
+     "start": 3.84,
+     "end": 4.0
+    },
+    {
+     "w": "above",
+     "start": 4.16,
+     "end": 4.56
+    },
+    {
+     "w": "last",
+     "start": 4.72,
+     "end": 4.88
+    },
+    {
+     "w": "year.",
+     "start": 4.96,
+     "end": 5.84
+    }
+   ]
+  },
+  {
+   "key": "l5",
+   "file": "l5.mp3",
+   "sha256": "6c3f0c4ad9527ebee27160a07a6f1278d9f3ef90e5dc231505d06c60b1f4ea7f",
+   "seconds": 4.989,
+   "say": "South Chicago, the same 30 days last year? Just 14.",
+   "tts": "South Chicago, the same thirty days last year? Just fourteen.",
+   "scene": "compare",
+   "words": [
+    {
+     "w": "South",
+     "start": 0.0,
+     "end": 0.24
+    },
+    {
+     "w": "Chicago,",
+     "start": 0.32,
+     "end": 1.2
+    },
+    {
+     "w": "the",
+     "start": 1.28,
+     "end": 1.36
+    },
+    {
+     "w": "same",
+     "start": 1.52,
+     "end": 1.68
+    },
+    {
+     "w": "thirty",
+     "start": 1.72,
+     "end": 1.92
+    },
+    {
+     "w": "days",
+     "start": 2.0,
+     "end": 2.24
+    },
+    {
+     "w": "last",
+     "start": 2.32,
+     "end": 2.56
+    },
+    {
+     "w": "year?",
+     "start": 2.68,
+     "end": 3.36
+    },
+    {
+     "w": "Just",
+     "start": 3.44,
+     "end": 3.68
+    },
+    {
+     "w": "fourteen.",
+     "start": 3.76,
+     "end": 5.04
+    }
+   ]
+  },
+  {
+   "key": "l6",
+   "file": "l6.mp3",
+   "sha256": "2965ce8613de21afbd1c681ae5a979300ea8c65c84568e7eb92aaa3dcc95d6c3",
+   "seconds": 5.068,
+   "say": "That's up 221.4%, more than triple.",
+   "tts": "That's up two hundred twenty-one point four percent, more than triple.",
+   "scene": "compare",
+   "words": [
+    {
+     "w": "That's",
+     "start": 0.0,
+     "end": 0.28
+    },
+    {
+     "w": "up",
+     "start": 0.32,
+     "end": 0.56
+    },
+    {
+     "w": "two",
+     "start": 0.64,
+     "end": 0.8
+    },
+    {
+     "w": "hundred",
+     "start": 0.88,
+     "end": 1.12
+    },
+    {
+     "w": "twenty-one",
+     "start": 1.28,
+     "end": 1.76
+    },
+    {
+     "w": "point",
+     "start": 1.92,
+     "end": 2.24
+    },
+    {
+     "w": "four",
+     "start": 2.32,
+     "end": 2.4
+    },
+    {
+     "w": "percent,",
+     "start": 2.56,
+     "end": 3.52
+    },
+    {
+     "w": "more",
+     "start": 3.6,
+     "end": 3.76
+    },
+    {
+     "w": "than",
+     "start": 3.88,
+     "end": 4.0
+    },
+    {
+     "w": "triple.",
+     "start": 4.08,
+     "end": 5.12
+    }
+   ]
+  },
+  {
+   "key": "l7",
+   "file": "l7.mp3",
+   "sha256": "2f08335fd5213941de84a154b96007410172e214178077935530ae175d2e0368",
+   "seconds": 5.146,
+   "say": "If you run a pest control or cleaning crew, South Chicago is one to watch.",
+   "tts": "If you run a pest control or cleaning crew, South Chicago is one to watch.",
+   "scene": "why",
+   "words": [
+    {
+     "w": "If",
+     "start": 0.0,
+     "end": 0.16
+    },
+    {
+     "w": "you",
+     "start": 0.24,
+     "end": 0.32
+    },
+    {
+     "w": "run",
+     "start": 0.4,
+     "end": 0.48
+    },
+    {
+     "w": "a",
+     "start": 0.56,
+     "end": 0.64
+    },
+    {
+     "w": "pest",
+     "start": 0.76,
+     "end": 0.88
+    },
+    {
+     "w": "control",
+     "start": 0.96,
+     "end": 1.44
+    },
+    {
+     "w": "or",
+     "start": 1.48,
+     "end": 1.52
+    },
+    {
+     "w": "cleaning",
+     "start": 1.68,
+     "end": 2.0
+    },
+    {
+     "w": "crew,",
+     "start": 2.08,
+     "end": 2.64
+    },
+    {
+     "w": "South",
+     "start": 2.72,
+     "end": 2.96
+    },
+    {
+     "w": "Chicago",
+     "start": 3.28,
+     "end": 3.6
+    },
+    {
+     "w": "is",
+     "start": 3.68,
+     "end": 3.84
+    },
+    {
+     "w": "one",
+     "start": 3.92,
+     "end": 4.08
+    },
+    {
+     "w": "to",
+     "start": 4.16,
+     "end": 4.24
+    },
+    {
+     "w": "watch.",
+     "start": 4.44,
+     "end": 5.12
+    }
+   ]
+  },
+  {
+   "key": "cta",
+   "file": "cta.mp3",
+   "sha256": "aa42a29a4c64bf762962153081c5220418ff5a96fbe16fe8ccc59d62873054f1",
+   "seconds": 4.676,
+   "say": "See your neighborhood free at proofnotfluff dot com slash rats.",
+   "tts": "See your neighborhood free at proofnotfluff dot com slash rats.",
+   "scene": "end",
+   "words": [
+    {
+     "w": "See",
+     "start": 0.0,
+     "end": 0.16
+    },
+    {
+     "w": "your",
+     "start": 0.24,
+     "end": 0.4
+    },
+    {
+     "w": "neighborhood",
+     "start": 0.56,
+     "end": 0.96
+    },
+    {
+     "w": "free",
+     "start": 1.04,
+     "end": 1.52
+    },
+    {
+     "w": "at",
+     "start": 1.6,
+     "end": 1.76
+    },
+    {
+     "w": "proofnotfluff",
+     "start": 1.92,
+     "end": 2.64
+    },
+    {
+     "w": "dot",
+     "start": 2.76,
+     "end": 2.88
+    },
+    {
+     "w": "com",
+     "start": 3.12,
+     "end": 3.36
+    },
+    {
+     "w": "slash",
+     "start": 3.56,
+     "end": 3.76
+    },
+    {
+     "w": "rats.",
+     "start": 3.92,
+     "end": 4.72
+    }
+   ]
+  }
+ ]
+}

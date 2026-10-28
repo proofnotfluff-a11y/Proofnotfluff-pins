@@ -1,0 +1,5 @@
+{
+ "schema": "pnf.video.transcript.v1",
+ "model": "faster-whisper small.en int8",
+ "words": []
+}

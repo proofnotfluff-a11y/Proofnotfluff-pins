@@ -1,0 +1,84 @@
+{
+ "schema": "pnf.video.manifest.v1",
+ "videoId": "2026-10-27-rats-a",
+ "mp4": "video.mp4",
+ "sha256": "dfb04c4acc6d9ae8e8c8296f5cac12335bdce59edfce55b36538af5c5b6df047",
+ "bytes": 3360592,
+ "seconds": 48.667,
+ "lufs": -14.1,
+ "truePeak": -1.8,
+ "remotion": "4.0.539",
+ "node": "v22.23.4",
+ "voice": {
+  "id": "cjVigY5qzO86Huf0OWal",
+  "name": "Eric",
+  "model": "eleven_v4",
+  "test": false,
+  "chars": 633
+ },
+ "voiceFiles": [
+  {
+   "key": "hook",
+   "file": "hook.mp3",
+   "sha256": "32a3810a67ebdaa83b8f270878c512f72ec2e532b844bca1d49712d027d79278",
+   "seconds": 3.082
+  },
+  {
+   "key": "l1",
+   "file": "l1.mp3",
+   "sha256": "b14a2b37bffd8182c289173e4df21d14a7b64830ed363656e05329ee473e8242",
+   "seconds": 5.799
+  },
+  {
+   "key": "l2",
+   "file": "l2.mp3",
+   "sha256": "3aef976a284e47635484e4b0e4a8e59e6b1cce88e00f413f0aa135aa68ff7896",
+   "seconds": 4.598
+  },
+  {
+   "key": "l3",
+   "file": "l3.mp3",
+   "sha256": "d7a43723acb165581c02e6a4306c170772ee4975aa8e040c068376f1aa02cc7b",
+   "seconds": 4.598
+  },
+  {
+   "key": "l4",
+   "file": "l4.mp3",
+   "sha256": "c16e2e080a903b28b59bc20f4777f11c05238e356568ecf3c82638080fbfd012",
+   "seconds": 5.642
+  },
+  {
+   "key": "l5",
+   "file": "l5.mp3",
+   "sha256": "4c8cf4efe377fe9c99d934f1be23534616e2f68d73580aca1dbe8e164c4adc58",
+   "seconds": 4.754
+  },
+  {
+   "key": "l6",
+   "file": "l6.mp3",
+   "sha256": "c6fbbf8900de9d0372d80ebac0d192c632902008f2ecdca1529530ea6e77a3ff",
+   "seconds": 4.833
+  },
+  {
+   "key": "l7",
+   "file": "l7.mp3",
+   "sha256": "c412d4d4599db66746cbc8fad540bde1d14730ea2fdf135f2314a8c5d294d619",
+   "seconds": 4.989
+  },
+  {
+   "key": "cta",
+   "file": "cta.mp3",
+   "sha256": "f209b2a44e99cf3567fb76257d7c613ed1b1b80fb7a2ecec944f21e59619ba6c",
+   "seconds": 4.598
+  }
+ ],
+ "music": {
+  "musicId": "quiet-math",
+  "musicGainDb": -22.5,
+  "voiceLufsBefore": -24.5
+ },
+ "specSha256": "9e3ed5dece93a31dc12cc7f3b057647b28f12f6ec270d436e1a0314dd40d7062",
+ "propsSha256": "274857215255c03c96955c8b663389edd53988f4bc00c7454a2d31284f2cca25",
+ "layout": "PASS",
+ "renderedAt": "2026-10-28T10:21:46+00:00"
+}

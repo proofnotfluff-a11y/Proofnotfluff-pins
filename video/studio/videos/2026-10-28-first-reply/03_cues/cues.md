@@ -2,42 +2,39 @@
 
 music: steady-hands 0.14
 
-## lead "A homeowner just asked you" [sfx: pop]
-Chip NEW LEAD. A phone; the homeowner's text drops in: they need a quote. A big timer starts at 0:00 beside it.
-## lead.job "You're on a job, so" 
-Snow checks his clipboard (busy). The phone dims, the timer keeps running.
-## lead.cost "That wait costs more" [sfx: tick]
-The timer jumps ahead and goes accent.
+## lead "A new lead just asked" [sfx: pop]
+Frame one: the phone with the lead's text already on it; chip NEW LEAD; title "Reply in the next 30 minutes".
+## lead.ladder "you're up on a ladder."
+Snow checks his clipboard (busy); the reply clock starts.
+## lead.send "Here's the reply to" [sfx: blip]
+The title lands in the accent.
 
-## study "A study out this year" [sfx: whoosh]
-Source card: Management Science, 2026, "Speed Is a Signal". The 11.6M counts up: requests on Fiverr.
-## study.hour "Reply an hour late," [sfx: tick]
-Bar: 1 hour late, hiring odds down 46%. Spot on it: ABOUT HALF.
-## study.day "Wait a day, and" [sfx: tick]
-Second bar: 1 day late, down 90%, in the accent.
+## why "Why the rush? A big" [sfx: whoosh]
+Study card: Speed Is a Signal, Management Science, 2026; 11.6M counts up: requests on Fiverr.
+## why.hour "an hour late were about" [sfx: tick]
+Bar: 1 hour late, 46% less likely to be hired; chip ABOUT HALF.
+## why.tt "And Thumbtack says pros" [sfx: whoosh]
+Thumbtack 2025 row: 30 min vs 3 hrs.
+## why.more "twenty-five percent more likely" [sfx: pop]
++25% more likely to get hired lands on 30 min.
 
-## tt "And it's not just freelancers." [sfx: whoosh]
-Source chip THUMBTACK, 2025. Two clocks: 30 min and 3 hrs.
-## tt.more "twenty-five percent more likely" [sfx: pop]
-+25% lands on the 30 min side: more likely to get hired.
+## catch "But the same study" [sfx: blip]
+The phone with a canned auto-reply.
+## catch.auto "sounds automated. So skip" [sfx: stamp]
+SOUNDS AUTOMATED stamp beside it; Snow shrugs.
+## catch.type "Here's what to type."
+Title: Here's what to type.
 
-## catch "But here's the catch." [sfx: blip]
-A phone with a canned auto-reply ("Thank you for your inquiry. A representative will be in touch.").
-## catch.auto "speed stopped helping when" [sfx: stamp]
-Stamp across it: SOUNDS AUTOMATED. Snow shrugs.
-## catch.person "Fast only works if"
-The stamp fades; the line FAST ONLY WORKS IF IT SOUNDS LIKE A PERSON.
+## build "Start with their name." [sfx: whoosh]
+A wide phone; the reply starts typing: "Hi [name],"; label chip THEIR NAME.
+## build.answer "Then answer what they" [sfx: tick]
+"Yes, we replace water heaters." types in; chip THEIR QUESTION.
+## build.ask "Ask one question that" [sfx: tick]
+"Gas or electric?" types in; chip ONE QUESTION BACK.
+## build.time "Then give them a" [sfx: tick]
+"I can come by Thursday, 2 to 4." types in; chip A REAL TIME.
 
-## reply "So keep it short." [sfx: whoosh]
-Checklist, four lines, empty boxes.
-## reply.name "Use their name." [sfx: tick]
-Box 1 ticks: their name.
-## reply.answer "Answer what they asked." [sfx: tick]
-Box 2 ticks.
-## reply.ask "Ask one question back." [sfx: tick]
-Box 3 ticks.
-## reply.time "Then give them a" [sfx: tick]
-Box 4 ticks; the phone slides in with the reply typed out, the time spotted.
-
-## rule "Fast, human, one question," [sfx: stamp]
-The rule card stamps in: Fast. Human. One question. A time. ProofNotFluff under it.
+## close "Four short lines, sent" [sfx: stamp]
+Rule card: Fast. Human. One question. A time.
+## close.send "Send this to whoever" [sfx: blip]
+"Send this to whoever answers your phone" and "Full text in the caption"; ProofNotFluff.

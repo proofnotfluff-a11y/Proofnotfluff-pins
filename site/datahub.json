@@ -45,7 +45,7 @@
         "num": "{1}",
         "label": "City contracts in the 12 trades end in the next 12 months"
       },
-      "short": "Who wins City work in 12 trades and what it was worth."
+      "short": "Who wins the work and what each award was worth, over 36 months."
     },
     "chicago-repair-demand": {
       "group": "find-work",
@@ -103,9 +103,9 @@
       "stat": {
         "re": "Class A \\(30 cubic yards or less\\), outside the CBD \\| \\$(\\d+)\\.00 \\| \\$\\d+\\.00",
         "num": "${1}",
-        "label": "CDOT fee for a Class A dumpster outside the CBD, 1 to 3 days"
+        "label": "CDOT usage fee, Class A outside the CBD, 1 to 3 days, before the application fee"
       },
-      "short": "Dumpster, vehicle, closure and opening fees, each line shown."
+      "short": "Dumpster, vehicle, closure and opening permits, each line of math shown."
     },
     "chicago-crew-cost": {
       "group": "price-plan",
@@ -117,7 +117,7 @@
         "num": "${1}",
         "label": "Chicago minimum wage an hour from {2}, employers with {3} or more employees"
       },
-      "short": "Pay for 12 trades, public works rates and a crew day calculator."
+      "short": "Pay by trade, public works rates and a crew day calculator."
     },
     "chicago-snow-season": {
       "group": "price-plan",
@@ -130,7 +130,7 @@
         "num": "{1}",
         "label": "plowable days in a middle winter at O'Hare, 2 inch trigger"
       },
-      "short": "30 winters of NOAA records, at 1, 2, 3 and 6 inch triggers."
+      "short": "Light and heavy winters for both stations and four snow depths."
     },
     "chicago-permit-wait-times": {
       "group": "permits",
@@ -140,9 +140,9 @@
       "stat": {
         "re": "All permits \\| (\\d+) days \\| half issued within",
         "num": "{1} days",
-        "label": "for half of all Chicago building permits to be issued"
+        "label": "for half of Chicago building permits to be issued, last 12 months"
       },
-      "short": "Days from review to issue, by permit type, path and neighborhood."
+      "short": "Days from review to issue, by permit type, path and community area."
     },
     "chicago-trade-licenses": {
       "group": "permits",
@@ -154,7 +154,7 @@
         "num": "${1} to ${2}",
         "label": "a year for a City general contractor license, Class A to E"
       },
-      "short": "License, insurance, bond, exam and renewal for 12 trades."
+      "short": "Fee, insurance, bond, exam and renewal across 12 trades."
     },
     "chicago-demolition-rodent-baiting": {
       "group": "permits",
@@ -166,7 +166,7 @@
         "num": "{1}",
         "label": "wrecking and demolition permits in the last 30 days"
       },
-      "short": "The five rodent control steps before a wrecking permit."
+      "short": "The five rodent control steps to finish first, with dates."
     },
     "chicago-trades-news": {
       "group": "news",

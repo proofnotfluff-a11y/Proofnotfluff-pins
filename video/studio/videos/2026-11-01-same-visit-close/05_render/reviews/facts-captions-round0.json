@@ -1,0 +1,13 @@
+{
+ "gate": "facts-captions",
+ "round": 0,
+ "at": "2026-10-28T18:35:00-05:00",
+ "pass": false,
+ "score": {
+  "numbers": 7,
+  "mismatches": 1
+ },
+ "reasons": [
+  "tiktok: population dropped (fixed: ServiceTitan customers)"
+ ]
+}

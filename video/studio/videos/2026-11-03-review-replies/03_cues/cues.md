@@ -54,7 +54,7 @@ The header band swaps to "Name the real problem." Nothing covers the reply.
 ## turn "Here's the part people" [sfx: whoosh]
 Room: workshop. Header on a dark band: "The part people skip". A card BAD REVIEWS, BEFORE AND AFTER REPLYING opens with both rows (labels, empty).
 ## turn.rarer "bad reviews got rarer," [sfx: tick]
-Row "Fewer": four review blocks become two.
+Row "Fewer": four review blocks become three (labeled: illustration, not to scale).
 ## turn.longer "but longer." [sfx: pop]
 Row "But longer": the two remaining blocks stretch long, with more lines.
 ## turn.detail "That's more detail you"

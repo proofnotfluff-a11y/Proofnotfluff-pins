@@ -1,0 +1,13 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "at": "2026-10-28T18:35:00-05:00",
+ "pass": true,
+ "score": {
+  "numbers": 7,
+  "mismatches": 0
+ },
+ "reasons": [
+  "all 7 match the ServiceTitan page; advisories only"
+ ]
+}

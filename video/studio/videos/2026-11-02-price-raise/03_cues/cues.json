@@ -1,11 +1,11 @@
 {
  "schema": "pnf.studio.cues.v1",
- "source": "estimate",
+ "source": "whisper medium.en int8, re-spelled from script.md",
  "music": {
   "id": "rooms",
   "level": 0.16
  },
- "duration": 93.218,
+ "duration": 86.74,
  "cues": [
   {
    "id": "hook",
@@ -17,7 +17,7 @@
    "text": "Frame 0: the hook card, fully settled. \"82% called a\" / \"snowstorm raise\" / \"unfair.\" The 82% in red, sparks. Source small: phone survey, Toronto and Vancouver, 1984 to 1985; American Economic Review, 1986. \"Pricing Clinic\" under it. Host and dialog hidden.",
    "t": 0.0,
    "word": 0,
-   "end": 11.228
+   "end": 10.52
   },
   {
    "id": "hook.cost",
@@ -27,9 +27,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: framing. Two verdict cards: left (red) \"Snowstorm raise: 82% unfair\", right slides in (teal) \"Covers your costs:\" with an empty slot. Chip PRICING CLINIC.",
-   "t": 4.836,
+   "t": 5.48,
    "word": 10,
-   "end": 7.108
+   "end": 7.34
   },
   {
    "id": "hook.most",
@@ -39,9 +39,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Most: acceptable\" stamps into the teal card. Snow points at it.",
-   "t": 7.108,
+   "t": 7.34,
    "word": 16,
-   "end": 9.018
+   "end": 9.12
   },
   {
    "id": "hook.line",
@@ -51,9 +51,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A note card peeks up from the bottom of the board: \"Your price note\" with three grey lines, a promise of the artifact.",
-   "t": 9.018,
+   "t": 9.12,
    "word": 20,
-   "end": 11.228
+   "end": 10.52
   },
   {
    "id": "shovel",
@@ -63,9 +63,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: garage. Panel QUESTION 1: \"A hardware store\". Source chip: American Economic Review, 1986.",
-   "t": 11.228,
+   "t": 10.52,
    "word": 25,
-   "end": 25.238
+   "end": 23.74
   },
   {
    "id": "shovel.price",
@@ -75,9 +75,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A pixel snow shovel slides in with a price tag: $15.",
-   "t": 13.75,
+   "t": 12.74,
    "word": 32,
-   "end": 16.358
+   "end": 15.34
   },
   {
    "id": "shovel.storm",
@@ -87,9 +87,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Snow starts falling over the panel; \"The morning after a big snowstorm\" in chalk.",
-   "t": 16.358,
+   "t": 15.34,
    "word": 38,
-   "end": 18.636
+   "end": 17.38
   },
   {
    "id": "shovel.twenty",
@@ -99,9 +99,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The tag flips: $15 crossed out, $20 slams in red.",
-   "t": 18.636,
+   "t": 17.38,
    "word": 44,
-   "end": 20.008
+   "end": 18.04
   },
   {
    "id": "shovel.82",
@@ -111,9 +111,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The verdict row: a red bar fills to 82% \"unfair\" as it is said, sparks; \"N = 107\" small.",
-   "t": 20.008,
+   "t": 18.04,
    "word": 47,
-   "end": 22.456
+   "end": 21.42
   },
   {
    "id": "shovel.luck",
@@ -123,9 +123,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A sticker on the panel's top corner: \"A raise on bad luck.\" Clear of the bar and the tag.",
-   "t": 22.456,
+   "t": 21.42,
    "word": 52,
-   "end": 25.238
+   "end": 23.74
   },
   {
    "id": "costs",
@@ -135,9 +135,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: blackboard. Header on a dark band: \"The reason: costs\". Two rows ready (labels and empty tracks): lettuce, rent.",
-   "t": 25.238,
+   "t": 23.74,
    "word": 59,
-   "end": 41.378
+   "end": 39.28
   },
   {
    "id": "costs.lettuce",
@@ -147,9 +147,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 1 lights: a head of lettuce, \"Wholesale +30\u00a2 a head\".",
-   "t": 27.468,
+   "t": 25.64,
    "word": 65,
-   "end": 30.79
+   "end": 28.38
   },
   {
    "id": "costs.charged",
@@ -159,9 +159,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Price +30\u00a2\" slides in beside it, an arrow from cost to price.",
-   "t": 30.79,
+   "t": 28.38,
    "word": 75,
-   "end": 32.902
+   "end": 30.7
   },
   {
    "id": "costs.79",
@@ -171,9 +171,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 1 bar fills to 79% in teal, \"acceptable\" (N = 101), sparks.",
-   "t": 32.902,
+   "t": 30.7,
    "word": 80,
-   "end": 35.602
+   "end": 33.42
   },
   {
    "id": "costs.rent",
@@ -183,9 +183,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 2 lights: a rent notice, \"Rent up at renewal to cover costs\".",
-   "t": 35.602,
+   "t": 33.42,
    "word": 85,
-   "end": 38.74
+   "end": 36.38
   },
   {
    "id": "costs.75",
@@ -195,9 +195,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 2 bar fills to 75% in teal, \"acceptable\" (N = 151), sparks.",
-   "t": 38.74,
+   "t": 36.38,
    "word": 93,
-   "end": 41.378
+   "end": 39.28
   },
   {
    "id": "line",
@@ -207,9 +207,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: workshop. The big note card (example), the copyable artifact: \"Your price note (example)\". Snow steps back (small) so nothing covers it.",
-   "t": 41.378,
+   "t": 39.28,
    "word": 97,
-   "end": 53.378
+   "end": 50.02
   },
   {
    "id": "line.l1",
@@ -219,9 +219,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Line 1 lands: \"Starting next month, our rates are going up.\"",
-   "t": 42.666,
+   "t": 40.58,
    "word": 100,
-   "end": 45.862
+   "end": 43.24
   },
   {
    "id": "line.l2",
@@ -231,9 +231,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Line 2 lands: \"Our labor and material costs went up this year.\"",
-   "t": 45.862,
+   "t": 43.24,
    "word": 108,
-   "end": 49.16
+   "end": 46.14
   },
   {
    "id": "line.l3",
@@ -243,9 +243,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Line 3 lands, highlighted: \"Anything you've already approved stays at the price we quoted.\" The full card holds to the end of the take.",
-   "t": 49.16,
+   "t": 46.14,
    "word": 117,
-   "end": 53.378
+   "end": 50.02
   },
   {
    "id": "stock",
@@ -255,9 +255,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: garage. The note's last line rides small at the top on a dark band, underlined. Panel QUESTION 10 below it: \"A grocery store\".",
-   "t": 53.378,
+   "t": 50.02,
    "word": 127,
-   "end": 67.81
+   "end": 63.72
   },
   {
    "id": "stock.shelf",
@@ -267,9 +267,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A shelf of peanut butter jars slides in, each with a tag: \"Already on the shelf\".",
-   "t": 55.49,
+   "t": 52.12,
    "word": 132,
-   "end": 59.022
+   "end": 54.84
   },
   {
    "id": "stock.rise",
@@ -279,9 +279,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Wholesale price up\" arrow; the jar tags get new stickers.",
-   "t": 59.022,
+   "t": 54.84,
    "word": 142,
-   "end": 61.504
+   "end": 57.46
   },
   {
    "id": "stock.79",
@@ -291,9 +291,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A red bar fills to 79% \"unfair\" (N = 147), sparks.",
-   "t": 61.504,
+   "t": 57.46,
    "word": 148,
-   "end": 64.036
+   "end": 60.26
   },
   {
    "id": "stock.keep",
@@ -303,9 +303,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Stamp under the bar: \"Approved jobs keep your quoted price.\" Snow points at it.",
-   "t": 64.036,
+   "t": 60.26,
    "word": 153,
-   "end": 67.81
+   "end": 63.72
   },
   {
    "id": "caveat",
@@ -315,9 +315,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: blackboard. Header on a dark band: \"The fine print\".",
-   "t": 67.81,
+   "t": 63.72,
    "word": 162,
-   "end": 82.77
+   "end": 77.5
   },
   {
    "id": "caveat.phone",
@@ -327,9 +327,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A pixel phone and \"Phone survey: Toronto and Vancouver\".",
-   "t": 69.838,
+   "t": 65.56,
    "word": 167,
-   "end": 73.016
+   "end": 68.02
   },
   {
    "id": "caveat.years",
@@ -339,9 +339,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"1984 to 1985\" slams in beside it.",
-   "t": 73.016,
+   "t": 68.02,
    "word": 176,
-   "end": 75.262
+   "end": 70.62
   },
   {
    "id": "caveat.fair",
@@ -351,9 +351,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Two rows: \"Measured: what people called fair\" (check) and \"Not measured: what they bought\" (cross).",
-   "t": 75.262,
+   "t": 70.62,
    "word": 180,
-   "end": 79.24
+   "end": 74.18
   },
   {
    "id": "caveat.promise",
@@ -363,9 +363,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Caveat box stamps under the rows: \"No promise you keep every customer.\"",
-   "t": 79.24,
+   "t": 74.18,
    "word": 190,
-   "end": 82.77
+   "end": 77.5
   },
   {
    "id": "close",
@@ -375,9 +375,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: framing. \"Your costs:\" / \"a reason.\" slams in, in teal.",
-   "t": 82.77,
+   "t": 77.5,
    "word": 198,
-   "end": 93.218
+   "end": 86.74
   },
   {
    "id": "close.luck",
@@ -387,9 +387,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Their bad luck:\" / \"not a reason.\" slams in, in red.",
-   "t": 85.094,
+   "t": 79.64,
    "word": 204,
-   "end": 87.324
+   "end": 81.9
   },
   {
    "id": "close.send",
@@ -399,9 +399,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "ProofNotFluff plate slams on; send line: \"Send this to whoever sets your prices.\"",
-   "t": 87.324,
+   "t": 81.9,
    "word": 210,
-   "end": 89.888
+   "end": 83.62
   },
   {
    "id": "close.raise",
@@ -411,9 +411,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "An accent line sweeps under the send line; sparks; Snow waves.",
-   "t": 89.888,
+   "t": 83.62,
    "word": 217,
-   "end": 93.218
+   "end": 86.74
   }
  ]
 }

@@ -1,0 +1,13 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "at": "2026-10-28T18:35:00-05:00",
+ "pass": false,
+ "score": {
+  "numbers": 9,
+  "mismatches": 1
+ },
+ "reasons": [
+  "four review cards to two and 3.4x taller reads as data (fixed: four to three, smaller stretch, 'Illustration, not to scale')"
+ ]
+}

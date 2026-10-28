@@ -243,13 +243,14 @@ window.SCENE = {
       k.text('Fewer', 96, 500, {size: 60, color: T >= tr ? 'accent' : 'muted'});
       k.text('but', 96, 600, {size: 39, color: T >= tl ? CHALK : 'muted'});
       k.text('longer', 96, 644, {size: 60, color: T >= tl ? 'accent' : 'muted'});
-      // four short review cards; at "rarer" two drop away, at "longer" the two left stretch tall with more lines
+      // four short review cards; at "rarer" one drops away, at "longer" the three left grow a little, with more lines.
+      // The study gives no sizes: this is a picture of the idea, labeled so on the card.
       const grow = k.easeOut((T - tl) / 0.5), drop = k.easeOut((T - tr) / 0.45);
       [0, 1, 2, 3].forEach((i) => {
-        const keep = i === 0 || i === 2, x = 320 + i * 140;
+        const keep = i !== 3, x = 320 + i * 140;
         if (!keep && drop >= 1) return;
-        const h = keep && T >= tl ? 70 + 170 * grow : 70, w = keep && T >= tl ? 120 + 130 * grow : 120;
-        const xx = keep && T >= tl ? 320 + (i === 2 ? 1 : 0) * 290 : x;
+        const h = keep && T >= tl ? 70 + 70 * grow : 70, w = keep && T >= tl ? 120 + 40 * grow : 120;
+        const xx = keep && T >= tl ? 320 + i * (140 + 60 * grow) : x;
         k.ctx.save();
         if (!keep && T >= tr) { k.ctx.globalAlpha *= 1 - drop; k.ctx.translate(0, 120 * drop); }
         k.shape(k.rectPts(xx, 500, w, h, 0), {fill: CHALK, line: false});
@@ -257,6 +258,7 @@ window.SCENE = {
         for (let j = 0; j < lines; j++) k.shape(k.rectPts(xx + 16, 516 + j * 30, j === lines - 1 ? w * 0.4 : w - 32, 10, 0), {fill: GREY, line: false});
         k.ctx.restore();
       });
+      k.text('Illustration, not to scale', 320, 724, {size: 30, color: GREY});
       if (T >= tr && T < tr + 0.6) k.burst(530, 560, tr + 0.1, {n: 12, r: 160, colors: [GREY, 'paper']});
       if (T >= tl) k.burst(700, 620, tl + 0.4, {n: 16, r: 200});
       k.ctx.restore();

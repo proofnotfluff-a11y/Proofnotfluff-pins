@@ -7,1447 +7,1447 @@
   {
    "w": "One",
    "start": 0.0,
-   "end": 0.42,
+   "end": 0.44,
    "take": 1
   },
   {
    "w": "price",
-   "start": 0.42,
-   "end": 0.72,
+   "start": 0.44,
+   "end": 0.76,
    "take": 1
   },
   {
    "w": "on",
-   "start": 0.72,
-   "end": 0.94,
+   "start": 0.76,
+   "end": 1.0,
    "take": 1
   },
   {
    "w": "your",
-   "start": 0.94,
-   "end": 1.1,
+   "start": 1.0,
+   "end": 1.16,
    "take": 1
   },
   {
    "w": "quotes?",
-   "start": 1.1,
-   "end": 1.4,
+   "start": 1.16,
+   "end": 1.5,
    "take": 1
   },
   {
    "w": "The",
-   "start": 1.92,
-   "end": 2.06,
+   "start": 2.08,
+   "end": 2.22,
    "take": 1
   },
   {
    "w": "top",
-   "start": 2.06,
-   "end": 2.28,
+   "start": 2.22,
+   "end": 2.42,
    "take": 1
   },
   {
    "w": "shops",
-   "start": 2.28,
-   "end": 2.58,
+   "start": 2.42,
+   "end": 2.72,
    "take": 1
   },
   {
    "w": "usually",
-   "start": 2.58,
-   "end": 2.98,
+   "start": 2.72,
+   "end": 3.12,
    "take": 1
   },
   {
    "w": "quote",
-   "start": 2.98,
-   "end": 3.22,
+   "start": 3.12,
+   "end": 3.4,
    "take": 1
   },
   {
    "w": "three.",
-   "start": 3.22,
-   "end": 3.62,
+   "start": 3.4,
+   "end": 3.78,
    "take": 1
   },
   {
    "w": "Here's",
-   "start": 4.22,
-   "end": 4.48,
+   "start": 4.44,
+   "end": 4.68,
    "take": 1
   },
   {
    "w": "how",
-   "start": 4.48,
-   "end": 4.58,
+   "start": 4.68,
+   "end": 4.78,
    "take": 1
   },
   {
    "w": "you",
-   "start": 4.58,
-   "end": 4.7,
-   "take": 1
-  },
-  {
-   "w": "build",
-   "start": 4.7,
+   "start": 4.78,
    "end": 4.9,
    "take": 1
   },
   {
-   "w": "them.",
+   "w": "build",
    "start": 4.9,
-   "end": 5.18,
+   "end": 5.1,
+   "take": 1
+  },
+  {
+   "w": "them.",
+   "start": 5.1,
+   "end": 5.4,
    "take": 1
   },
   {
    "w": "ServiceTitan",
-   "start": 5.82,
-   "end": 6.28,
+   "start": 5.96,
+   "end": 6.44,
    "take": 2
   },
   {
    "w": "pulled",
-   "start": 6.28,
-   "end": 6.6,
+   "start": 6.44,
+   "end": 6.76,
    "take": 2
   },
   {
    "w": "a",
-   "start": 6.6,
-   "end": 6.78,
+   "start": 6.76,
+   "end": 6.92,
    "take": 2
   },
   {
    "w": "year",
-   "start": 6.78,
-   "end": 7.02,
+   "start": 6.92,
+   "end": 7.18,
    "take": 2
   },
   {
    "w": "of",
-   "start": 7.02,
-   "end": 7.26,
+   "start": 7.18,
+   "end": 7.42,
    "take": 2
   },
   {
    "w": "home",
-   "start": 7.26,
-   "end": 7.44,
+   "start": 7.42,
+   "end": 7.6,
    "take": 2
   },
   {
    "w": "jobs,",
-   "start": 7.44,
-   "end": 7.82,
+   "start": 7.6,
+   "end": 7.98,
    "take": 2
   },
   {
    "w": "up",
-   "start": 7.98,
-   "end": 8.12,
+   "start": 8.14,
+   "end": 8.28,
    "take": 2
   },
   {
    "w": "to",
-   "start": 8.12,
-   "end": 8.26,
+   "start": 8.28,
+   "end": 8.42,
    "take": 2
   },
   {
    "w": "this",
-   "start": 8.26,
-   "end": 8.44,
+   "start": 8.42,
+   "end": 8.6,
    "take": 2
   },
   {
    "w": "January.",
-   "start": 8.44,
-   "end": 8.92,
+   "start": 8.6,
+   "end": 9.08,
    "take": 2
   },
   {
    "w": "The",
-   "start": 9.42,
-   "end": 9.54,
+   "start": 9.58,
+   "end": 9.7,
    "take": 2
   },
   {
    "w": "top",
-   "start": 9.54,
-   "end": 9.74,
+   "start": 9.7,
+   "end": 9.9,
    "take": 2
   },
   {
    "w": "ten",
-   "start": 9.74,
-   "end": 10.06,
+   "start": 9.9,
+   "end": 10.22,
    "take": 2
   },
   {
    "w": "percent",
-   "start": 10.06,
-   "end": 10.34,
+   "start": 10.22,
+   "end": 10.5,
    "take": 2
   },
   {
    "w": "offered",
-   "start": 10.34,
-   "end": 10.78,
+   "start": 10.5,
+   "end": 10.94,
    "take": 2
   },
   {
    "w": "good,",
-   "start": 10.78,
-   "end": 11.14,
+   "start": 10.94,
+   "end": 11.3,
    "take": 2
   },
   {
    "w": "better,",
-   "start": 11.36,
-   "end": 11.58,
+   "start": 11.52,
+   "end": 11.74,
    "take": 2
   },
   {
    "w": "best",
-   "start": 11.58,
-   "end": 11.96,
+   "start": 11.82,
+   "end": 12.12,
    "take": 2
   },
   {
    "w": "on",
-   "start": 11.96,
-   "end": 12.24,
+   "start": 12.12,
+   "end": 12.38,
    "take": 2
   },
   {
    "w": "fifty-seven",
-   "start": 12.24,
-   "end": 12.76,
+   "start": 12.38,
+   "end": 12.91,
    "take": 2
   },
   {
    "w": "percent",
-   "start": 12.76,
-   "end": 13.28,
+   "start": 12.91,
+   "end": 13.44,
    "take": 2
   },
   {
    "w": "of",
-   "start": 13.28,
-   "end": 13.46,
-   "take": 2
-  },
-  {
-   "w": "them.",
-   "start": 13.46,
+   "start": 13.44,
    "end": 13.62,
    "take": 2
   },
   {
+   "w": "them.",
+   "start": 13.62,
+   "end": 13.78,
+   "take": 2
+  },
+  {
    "w": "Everyone",
-   "start": 14.1,
-   "end": 14.38,
+   "start": 14.26,
+   "end": 14.54,
    "take": 2
   },
   {
    "w": "else?",
-   "start": 14.38,
-   "end": 14.72,
+   "start": 14.54,
+   "end": 14.9,
    "take": 2
   },
   {
    "w": "Forty-one.",
-   "start": 15.18,
-   "end": 15.5,
+   "start": 15.36,
+   "end": 15.7,
    "take": 2
   },
   {
    "w": "That's",
-   "start": 16.18,
-   "end": 16.54,
+   "start": 16.34,
+   "end": 16.7,
    "take": 2
   },
   {
    "w": "a",
-   "start": 16.54,
-   "end": 16.64,
+   "start": 16.7,
+   "end": 16.78,
    "take": 2
   },
   {
    "w": "habit",
-   "start": 16.64,
-   "end": 16.84,
+   "start": 16.78,
+   "end": 17.0,
    "take": 2
   },
   {
    "w": "you",
-   "start": 16.84,
-   "end": 17.02,
+   "start": 17.0,
+   "end": 17.18,
    "take": 2
   },
   {
    "w": "can",
-   "start": 17.02,
-   "end": 17.2,
+   "start": 17.18,
+   "end": 17.34,
    "take": 2
   },
   {
    "w": "copy.",
-   "start": 17.2,
-   "end": 17.52,
+   "start": 17.34,
+   "end": 17.68,
    "take": 2
   },
   {
    "w": "Why",
-   "start": 18.4,
-   "end": 18.64,
-   "take": 3
-  },
-  {
-   "w": "does",
-   "start": 18.64,
+   "start": 18.58,
    "end": 18.8,
    "take": 3
   },
   {
-   "w": "that",
+   "w": "does",
    "start": 18.8,
-   "end": 19.02,
+   "end": 18.96,
+   "take": 3
+  },
+  {
+   "w": "that",
+   "start": 18.96,
+   "end": 19.18,
    "take": 3
   },
   {
    "w": "work?",
-   "start": 19.02,
-   "end": 19.38,
+   "start": 19.18,
+   "end": 19.54,
    "take": 3
   },
   {
    "w": "Researchers",
-   "start": 20.1,
-   "end": 20.48,
+   "start": 20.24,
+   "end": 20.64,
    "take": 3
   },
   {
    "w": "tracked",
-   "start": 20.48,
-   "end": 20.96,
+   "start": 20.64,
+   "end": 21.12,
    "take": 3
   },
   {
    "w": "seven",
-   "start": 20.96,
-   "end": 21.38,
+   "start": 21.12,
+   "end": 21.54,
    "take": 3
   },
   {
    "w": "years",
-   "start": 21.38,
-   "end": 21.68,
+   "start": 21.54,
+   "end": 21.82,
    "take": 3
   },
   {
    "w": "of",
-   "start": 21.68,
-   "end": 21.92,
+   "start": 21.82,
+   "end": 22.1,
    "take": 3
   },
   {
    "w": "orders",
-   "start": 21.92,
-   "end": 22.16,
+   "start": 22.1,
+   "end": 22.32,
    "take": 3
   },
   {
    "w": "at",
-   "start": 22.16,
-   "end": 22.36,
+   "start": 22.32,
+   "end": 22.52,
    "take": 3
   },
   {
    "w": "a",
-   "start": 22.36,
-   "end": 22.54,
+   "start": 22.52,
+   "end": 22.7,
    "take": 3
   },
   {
    "w": "German",
-   "start": 22.54,
-   "end": 22.78,
+   "start": 22.7,
+   "end": 22.94,
    "take": 3
   },
   {
    "w": "restaurant.",
-   "start": 22.78,
-   "end": 23.24,
+   "start": 22.94,
+   "end": 23.4,
    "take": 3
   },
   {
    "w": "When",
-   "start": 23.66,
-   "end": 23.92,
-   "take": 3
-  },
-  {
-   "w": "the",
-   "start": 23.92,
+   "start": 23.86,
    "end": 24.08,
    "take": 3
   },
   {
-   "w": "menu",
+   "w": "the",
    "start": 24.08,
-   "end": 24.28,
+   "end": 24.22,
+   "take": 3
+  },
+  {
+   "w": "menu",
+   "start": 24.22,
+   "end": 24.44,
    "take": 3
   },
   {
    "w": "changed,",
-   "start": 24.28,
-   "end": 24.78,
+   "start": 24.44,
+   "end": 24.94,
    "take": 3
   },
   {
    "w": "a",
-   "start": 25.14,
-   "end": 25.28,
+   "start": 25.28,
+   "end": 25.44,
    "take": 3
   },
   {
    "w": "dish",
-   "start": 25.28,
-   "end": 25.46,
+   "start": 25.44,
+   "end": 25.62,
    "take": 3
   },
   {
    "w": "that",
-   "start": 25.46,
-   "end": 25.66,
+   "start": 25.62,
+   "end": 25.82,
    "take": 3
   },
   {
    "w": "landed",
-   "start": 25.66,
-   "end": 25.92,
+   "start": 25.82,
+   "end": 26.08,
    "take": 3
   },
   {
    "w": "in",
-   "start": 25.92,
-   "end": 26.12,
+   "start": 26.08,
+   "end": 26.28,
    "take": 3
   },
   {
    "w": "the",
-   "start": 26.12,
-   "end": 26.34,
+   "start": 26.28,
+   "end": 26.48,
    "take": 3
   },
   {
    "w": "middle",
-   "start": 26.34,
-   "end": 26.58,
+   "start": 26.48,
+   "end": 26.72,
    "take": 3
   },
   {
    "w": "took",
-   "start": 26.58,
-   "end": 26.88,
+   "start": 26.72,
+   "end": 27.04,
    "take": 3
   },
   {
    "w": "about",
-   "start": 26.88,
-   "end": 27.14,
+   "start": 27.04,
+   "end": 27.32,
    "take": 3
   },
   {
    "w": "five",
-   "start": 27.14,
-   "end": 27.54,
+   "start": 27.32,
+   "end": 27.7,
    "take": 3
   },
   {
    "w": "more",
-   "start": 27.54,
-   "end": 27.82,
+   "start": 27.7,
+   "end": 28.0,
    "take": 3
   },
   {
    "w": "points",
-   "start": 27.82,
-   "end": 28.18,
+   "start": 28.0,
+   "end": 28.34,
    "take": 3
   },
   {
    "w": "of",
-   "start": 28.18,
-   "end": 28.32,
+   "start": 28.34,
+   "end": 28.48,
    "take": 3
   },
   {
    "w": "all",
-   "start": 28.32,
-   "end": 28.64,
+   "start": 28.48,
+   "end": 28.8,
    "take": 3
   },
   {
    "w": "orders,",
-   "start": 28.64,
-   "end": 29.06,
+   "start": 28.8,
+   "end": 29.24,
    "take": 3
   },
   {
    "w": "on",
-   "start": 29.2,
-   "end": 29.4,
+   "start": 29.4,
+   "end": 29.56,
    "take": 3
   },
   {
    "w": "average.",
-   "start": 29.4,
-   "end": 29.76,
+   "start": 29.56,
+   "end": 29.9,
    "take": 3
   },
   {
    "w": "It",
-   "start": 30.38,
-   "end": 30.48,
+   "start": 30.46,
+   "end": 30.66,
    "take": 3
   },
   {
    "w": "worked",
-   "start": 30.48,
-   "end": 30.7,
+   "start": 30.66,
+   "end": 30.86,
    "take": 3
   },
   {
    "w": "even",
-   "start": 30.7,
-   "end": 30.92,
+   "start": 30.86,
+   "end": 31.1,
    "take": 3
   },
   {
    "w": "better",
-   "start": 30.92,
-   "end": 31.28,
+   "start": 31.1,
+   "end": 31.42,
    "take": 3
   },
   {
    "w": "when",
-   "start": 31.28,
-   "end": 31.52,
+   "start": 31.42,
+   "end": 31.68,
    "take": 3
   },
   {
    "w": "the",
-   "start": 31.52,
-   "end": 31.7,
+   "start": 31.68,
+   "end": 31.86,
    "take": 3
   },
   {
    "w": "new",
-   "start": 31.7,
-   "end": 31.88,
+   "start": 31.86,
+   "end": 32.04,
    "take": 3
   },
   {
    "w": "dish",
-   "start": 31.88,
-   "end": 32.08,
+   "start": 32.04,
+   "end": 32.24,
    "take": 3
   },
   {
    "w": "was",
-   "start": 32.08,
-   "end": 32.3,
+   "start": 32.24,
+   "end": 32.46,
    "take": 3
   },
   {
    "w": "the",
-   "start": 32.3,
-   "end": 32.56,
+   "start": 32.46,
+   "end": 32.74,
    "take": 3
   },
   {
    "w": "pricey",
-   "start": 32.56,
-   "end": 32.82,
+   "start": 32.74,
+   "end": 33.0,
    "take": 3
   },
   {
    "w": "one.",
-   "start": 32.82,
-   "end": 33.14,
+   "start": 33.0,
+   "end": 33.3,
    "take": 3
   },
   {
    "w": "So",
-   "start": 33.66,
-   "end": 33.84,
+   "start": 33.82,
+   "end": 33.98,
    "take": 3
   },
   {
    "w": "put",
-   "start": 33.84,
-   "end": 34.14,
+   "start": 33.98,
+   "end": 34.3,
    "take": 3
   },
   {
    "w": "a",
-   "start": 34.14,
-   "end": 34.34,
+   "start": 34.3,
+   "end": 34.5,
    "take": 3
   },
   {
    "w": "price",
-   "start": 34.34,
-   "end": 34.54,
+   "start": 34.5,
+   "end": 34.72,
    "take": 3
   },
   {
    "w": "above",
-   "start": 34.54,
-   "end": 34.8,
+   "start": 34.72,
+   "end": 34.96,
    "take": 3
   },
   {
    "w": "the",
-   "start": 34.8,
-   "end": 35.0,
+   "start": 34.96,
+   "end": 35.16,
    "take": 3
   },
   {
    "w": "one",
-   "start": 35.0,
-   "end": 35.14,
+   "start": 35.16,
+   "end": 35.3,
    "take": 3
   },
   {
    "w": "you",
-   "start": 35.14,
-   "end": 35.26,
+   "start": 35.3,
+   "end": 35.42,
    "take": 3
   },
   {
    "w": "want",
-   "start": 35.26,
-   "end": 35.44,
-   "take": 3
-  },
-  {
-   "w": "them",
-   "start": 35.44,
+   "start": 35.42,
    "end": 35.6,
    "take": 3
   },
   {
-   "w": "to",
+   "w": "them",
    "start": 35.6,
-   "end": 35.76,
+   "end": 35.74,
+   "take": 3
+  },
+  {
+   "w": "to",
+   "start": 35.74,
+   "end": 35.9,
    "take": 3
   },
   {
    "w": "pick.",
-   "start": 35.76,
-   "end": 36.0,
+   "start": 35.9,
+   "end": 36.18,
    "take": 3
   },
   {
    "w": "Build",
-   "start": 36.92,
-   "end": 37.1,
+   "start": 37.08,
+   "end": 37.24,
    "take": 4
   },
   {
    "w": "your",
-   "start": 37.1,
-   "end": 37.32,
+   "start": 37.24,
+   "end": 37.46,
    "take": 4
   },
   {
    "w": "three",
-   "start": 37.32,
-   "end": 37.5,
+   "start": 37.46,
+   "end": 37.66,
    "take": 4
   },
   {
    "w": "like",
-   "start": 37.5,
-   "end": 37.72,
+   "start": 37.66,
+   "end": 37.9,
    "take": 4
   },
   {
    "w": "this.",
-   "start": 37.72,
-   "end": 38.16,
+   "start": 37.9,
+   "end": 38.3,
    "take": 4
   },
   {
    "w": "Good",
-   "start": 38.78,
-   "end": 38.94,
+   "start": 38.94,
+   "end": 39.08,
    "take": 4
   },
   {
    "w": "is",
-   "start": 38.94,
-   "end": 39.28,
+   "start": 39.08,
+   "end": 39.44,
    "take": 4
   },
   {
    "w": "the",
-   "start": 39.28,
-   "end": 39.46,
+   "start": 39.44,
+   "end": 39.62,
    "take": 4
   },
   {
    "w": "job",
-   "start": 39.46,
-   "end": 39.66,
+   "start": 39.62,
+   "end": 39.82,
    "take": 4
   },
   {
    "w": "done",
-   "start": 39.66,
-   "end": 39.88,
+   "start": 39.82,
+   "end": 40.06,
    "take": 4
   },
   {
    "w": "right,",
-   "start": 39.88,
-   "end": 40.2,
+   "start": 40.06,
+   "end": 40.36,
    "take": 4
   },
   {
    "w": "nothing",
-   "start": 40.6,
-   "end": 40.84,
+   "start": 40.72,
+   "end": 41.0,
    "take": 4
   },
   {
    "w": "extra.",
-   "start": 40.84,
-   "end": 41.3,
+   "start": 41.0,
+   "end": 41.44,
    "take": 4
   },
   {
    "w": "Better",
-   "start": 41.78,
-   "end": 42.06,
+   "start": 41.94,
+   "end": 42.22,
    "take": 4
   },
   {
    "w": "is",
-   "start": 42.06,
-   "end": 42.46,
-   "take": 4
-  },
-  {
-   "w": "the",
-   "start": 42.46,
+   "start": 42.22,
    "end": 42.62,
    "take": 4
   },
   {
-   "w": "one",
+   "w": "the",
    "start": 42.62,
-   "end": 42.74,
+   "end": 42.78,
+   "take": 4
+  },
+  {
+   "w": "one",
+   "start": 42.78,
+   "end": 42.92,
    "take": 4
   },
   {
    "w": "you'd",
-   "start": 42.74,
-   "end": 43.0,
+   "start": 42.92,
+   "end": 43.18,
    "take": 4
   },
   {
    "w": "pick",
-   "start": 43.0,
-   "end": 43.14,
+   "start": 43.18,
+   "end": 43.3,
    "take": 4
   },
   {
    "w": "for",
-   "start": 43.14,
-   "end": 43.34,
+   "start": 43.3,
+   "end": 43.5,
    "take": 4
   },
   {
    "w": "your",
-   "start": 43.34,
-   "end": 43.52,
+   "start": 43.5,
+   "end": 43.68,
    "take": 4
   },
   {
    "w": "own",
-   "start": 43.52,
-   "end": 43.74,
+   "start": 43.68,
+   "end": 43.9,
    "take": 4
   },
   {
    "w": "house.",
-   "start": 43.74,
-   "end": 44.14,
+   "start": 43.9,
+   "end": 44.3,
    "take": 4
   },
   {
    "w": "Best",
-   "start": 44.68,
-   "end": 44.96,
+   "start": 44.86,
+   "end": 45.12,
    "take": 4
   },
   {
    "w": "adds",
-   "start": 44.96,
-   "end": 45.36,
+   "start": 45.12,
+   "end": 45.52,
    "take": 4
   },
   {
    "w": "upgrades,",
-   "start": 45.36,
-   "end": 45.94,
+   "start": 45.52,
+   "end": 46.12,
    "take": 4
   },
   {
    "w": "like",
-   "start": 46.08,
-   "end": 46.34,
-   "take": 4
-  },
-  {
-   "w": "a",
-   "start": 46.34,
+   "start": 46.14,
    "end": 46.5,
    "take": 4
   },
   {
-   "w": "longer",
+   "w": "a",
    "start": 46.5,
-   "end": 46.74,
+   "end": 46.66,
+   "take": 4
+  },
+  {
+   "w": "longer",
+   "start": 46.66,
+   "end": 46.9,
    "take": 4
   },
   {
    "w": "warranty",
-   "start": 46.74,
-   "end": 47.22,
+   "start": 46.9,
+   "end": 47.38,
    "take": 4
   },
   {
    "w": "or",
-   "start": 47.22,
-   "end": 47.54,
+   "start": 47.38,
+   "end": 47.7,
    "take": 4
   },
   {
    "w": "a",
-   "start": 47.54,
-   "end": 47.74,
+   "start": 47.7,
+   "end": 47.9,
    "take": 4
   },
   {
    "w": "faster",
-   "start": 47.74,
-   "end": 48.0,
+   "start": 47.9,
+   "end": 48.16,
    "take": 4
   },
   {
    "w": "start",
-   "start": 48.0,
-   "end": 48.3,
+   "start": 48.16,
+   "end": 48.48,
    "take": 4
   },
   {
    "w": "date.",
-   "start": 48.3,
-   "end": 48.6,
+   "start": 48.48,
+   "end": 48.76,
    "take": 4
   },
   {
    "w": "One",
-   "start": 49.46,
-   "end": 49.64,
+   "start": 49.62,
+   "end": 49.8,
    "take": 5
   },
   {
    "w": "more",
-   "start": 49.64,
-   "end": 49.82,
+   "start": 49.8,
+   "end": 50.02,
    "take": 5
   },
   {
    "w": "thing",
-   "start": 49.82,
-   "end": 50.06,
+   "start": 50.02,
+   "end": 50.22,
    "take": 5
   },
   {
    "w": "from",
-   "start": 50.06,
-   "end": 50.26,
-   "take": 5
-  },
-  {
-   "w": "the",
-   "start": 50.26,
+   "start": 50.22,
    "end": 50.42,
    "take": 5
   },
   {
-   "w": "data.",
+   "w": "the",
    "start": 50.42,
-   "end": 50.68,
+   "end": 50.58,
+   "take": 5
+  },
+  {
+   "w": "data.",
+   "start": 50.58,
+   "end": 50.84,
    "take": 5
   },
   {
    "w": "Three",
-   "start": 51.22,
-   "end": 51.52,
+   "start": 51.4,
+   "end": 51.68,
    "take": 5
   },
   {
    "w": "doesn't",
-   "start": 51.52,
-   "end": 52.06,
+   "start": 51.68,
+   "end": 52.22,
    "take": 5
   },
   {
    "w": "have",
-   "start": 52.06,
-   "end": 52.24,
+   "start": 52.22,
+   "end": 52.4,
    "take": 5
   },
   {
    "w": "to",
-   "start": 52.24,
-   "end": 52.42,
+   "start": 52.4,
+   "end": 52.6,
    "take": 5
   },
   {
    "w": "be",
-   "start": 52.42,
-   "end": 52.54,
-   "take": 5
-  },
-  {
-   "w": "the",
-   "start": 52.54,
+   "start": 52.6,
    "end": 52.7,
    "take": 5
   },
   {
-   "w": "ceiling.",
+   "w": "the",
    "start": 52.7,
-   "end": 53.04,
+   "end": 52.86,
+   "take": 5
+  },
+  {
+   "w": "ceiling.",
+   "start": 52.86,
+   "end": 53.2,
    "take": 5
   },
   {
    "w": "A",
-   "start": 53.5,
-   "end": 53.72,
+   "start": 53.7,
+   "end": 53.86,
    "take": 5
   },
   {
    "w": "heating",
-   "start": 53.72,
-   "end": 53.88,
+   "start": 53.86,
+   "end": 54.06,
    "take": 5
   },
   {
    "w": "and",
-   "start": 53.88,
-   "end": 54.14,
+   "start": 54.06,
+   "end": 54.32,
    "take": 5
   },
   {
    "w": "cooling",
-   "start": 54.14,
-   "end": 54.38,
+   "start": 54.32,
+   "end": 54.54,
    "take": 5
   },
   {
    "w": "trade",
-   "start": 54.38,
-   "end": 54.72,
+   "start": 54.54,
+   "end": 54.9,
    "take": 5
   },
   {
    "w": "group",
-   "start": 54.72,
-   "end": 55.04,
+   "start": 54.9,
+   "end": 55.2,
    "take": 5
   },
   {
    "w": "surveyed",
-   "start": 55.04,
-   "end": 55.42,
+   "start": 55.2,
+   "end": 55.58,
    "take": 5
   },
   {
    "w": "over",
-   "start": 55.42,
-   "end": 55.76,
+   "start": 55.58,
+   "end": 55.92,
    "take": 5
   },
   {
    "w": "a",
-   "start": 55.76,
-   "end": 56.12,
+   "start": 55.92,
+   "end": 56.28,
    "take": 5
   },
   {
    "w": "thousand",
-   "start": 56.12,
-   "end": 56.4,
+   "start": 56.28,
+   "end": 56.54,
    "take": 5
   },
   {
    "w": "contractors.",
-   "start": 56.4,
-   "end": 57.14,
+   "start": 56.54,
+   "end": 57.28,
    "take": 5
   },
   {
    "w": "Those",
-   "start": 57.74,
-   "end": 57.92,
+   "start": 57.94,
+   "end": 58.08,
    "take": 5
   },
   {
    "w": "offering",
-   "start": 57.92,
-   "end": 58.34,
+   "start": 58.08,
+   "end": 58.5,
    "take": 5
   },
   {
    "w": "four",
-   "start": 58.34,
-   "end": 58.72,
+   "start": 58.5,
+   "end": 58.88,
    "take": 5
   },
   {
    "w": "or",
-   "start": 58.72,
-   "end": 58.94,
+   "start": 58.88,
+   "end": 59.08,
    "take": 5
   },
   {
    "w": "more",
-   "start": 58.94,
-   "end": 59.2,
+   "start": 59.08,
+   "end": 59.36,
    "take": 5
   },
   {
    "w": "options",
-   "start": 59.2,
-   "end": 59.68,
+   "start": 59.36,
+   "end": 59.84,
    "take": 5
   },
   {
    "w": "closed",
-   "start": 59.68,
-   "end": 60.08,
+   "start": 59.84,
+   "end": 60.24,
    "take": 5
   },
   {
    "w": "fifty-two",
-   "start": 60.08,
-   "end": 60.62,
+   "start": 60.24,
+   "end": 60.79,
    "take": 5
   },
   {
    "w": "percent",
-   "start": 60.62,
-   "end": 61.16,
+   "start": 60.79,
+   "end": 61.34,
    "take": 5
   },
   {
    "w": "of",
-   "start": 61.16,
-   "end": 61.32,
+   "start": 61.34,
+   "end": 61.5,
    "take": 5
   },
   {
    "w": "the",
-   "start": 61.32,
-   "end": 61.44,
+   "start": 61.5,
+   "end": 61.58,
    "take": 5
   },
   {
    "w": "time.",
-   "start": 61.44,
-   "end": 61.76,
+   "start": 61.58,
+   "end": 61.92,
    "take": 5
   },
   {
    "w": "One",
-   "start": 62.3,
-   "end": 62.44,
+   "start": 62.46,
+   "end": 62.6,
    "take": 5
   },
   {
    "w": "to",
-   "start": 62.44,
-   "end": 62.58,
+   "start": 62.6,
+   "end": 62.74,
    "take": 5
   },
   {
    "w": "three",
-   "start": 62.58,
-   "end": 62.76,
+   "start": 62.74,
+   "end": 62.94,
    "take": 5
   },
   {
    "w": "options?",
-   "start": 62.76,
-   "end": 63.26,
+   "start": 62.94,
+   "end": 63.42,
    "take": 5
   },
   {
    "w": "Forty-two.",
-   "start": 63.74,
-   "end": 64.14,
+   "start": 63.92,
+   "end": 64.3,
    "take": 5
   },
   {
    "w": "Now,",
-   "start": 65.04,
-   "end": 65.36,
+   "start": 65.16,
+   "end": 65.52,
    "take": 6
   },
   {
    "w": "that",
-   "start": 65.36,
-   "end": 65.84,
+   "start": 65.76,
+   "end": 66.0,
    "take": 6
   },
   {
    "w": "survey",
-   "start": 65.84,
-   "end": 66.2,
+   "start": 66.0,
+   "end": 66.34,
    "take": 6
   },
   {
    "w": "lumps",
-   "start": 66.2,
-   "end": 66.5,
+   "start": 66.34,
+   "end": 66.66,
    "take": 6
   },
   {
    "w": "one",
-   "start": 66.5,
-   "end": 66.82,
+   "start": 66.66,
+   "end": 66.98,
    "take": 6
   },
   {
    "w": "to",
-   "start": 66.82,
-   "end": 66.96,
+   "start": 66.98,
+   "end": 67.12,
    "take": 6
   },
   {
    "w": "three",
-   "start": 66.96,
-   "end": 67.14,
+   "start": 67.12,
+   "end": 67.3,
    "take": 6
   },
   {
    "w": "options",
-   "start": 67.14,
-   "end": 67.52,
+   "start": 67.3,
+   "end": 67.68,
    "take": 6
   },
   {
    "w": "together,",
-   "start": 67.52,
-   "end": 68.02,
+   "start": 67.68,
+   "end": 68.16,
    "take": 6
   },
   {
    "w": "so",
-   "start": 68.02,
-   "end": 68.58,
+   "start": 68.34,
+   "end": 68.74,
    "take": 6
   },
   {
    "w": "it",
-   "start": 68.58,
-   "end": 68.82,
+   "start": 68.74,
+   "end": 68.96,
    "take": 6
   },
   {
    "w": "can't",
-   "start": 68.82,
-   "end": 69.12,
+   "start": 68.96,
+   "end": 69.26,
    "take": 6
   },
   {
    "w": "tell",
-   "start": 69.12,
-   "end": 69.28,
+   "start": 69.26,
+   "end": 69.46,
    "take": 6
   },
   {
    "w": "you",
-   "start": 69.28,
-   "end": 69.5,
+   "start": 69.46,
+   "end": 69.66,
    "take": 6
   },
   {
    "w": "three",
-   "start": 69.5,
-   "end": 69.82,
+   "start": 69.66,
+   "end": 69.98,
    "take": 6
   },
   {
    "w": "beats",
-   "start": 69.82,
-   "end": 70.1,
+   "start": 69.98,
+   "end": 70.24,
    "take": 6
   },
   {
    "w": "one.",
-   "start": 70.1,
-   "end": 70.5,
+   "start": 70.24,
+   "end": 70.62,
    "take": 6
   },
   {
    "w": "Shops",
-   "start": 71.16,
-   "end": 71.34,
+   "start": 71.32,
+   "end": 71.5,
    "take": 6
   },
   {
    "w": "that",
-   "start": 71.34,
-   "end": 71.52,
+   "start": 71.5,
+   "end": 71.7,
    "take": 6
   },
   {
    "w": "gave",
-   "start": 71.52,
-   "end": 71.68,
+   "start": 71.7,
+   "end": 71.84,
    "take": 6
   },
   {
    "w": "more",
-   "start": 71.68,
-   "end": 71.96,
+   "start": 71.84,
+   "end": 72.12,
    "take": 6
   },
   {
    "w": "choices",
-   "start": 71.96,
-   "end": 72.42,
+   "start": 72.12,
+   "end": 72.56,
    "take": 6
   },
   {
    "w": "just",
-   "start": 72.42,
-   "end": 72.8,
+   "start": 72.56,
+   "end": 72.96,
    "take": 6
   },
   {
    "w": "heard",
-   "start": 72.8,
-   "end": 73.04,
+   "start": 72.96,
+   "end": 73.2,
    "take": 6
   },
   {
    "w": "yes",
-   "start": 73.04,
-   "end": 73.36,
+   "start": 73.2,
+   "end": 73.5,
    "take": 6
   },
   {
    "w": "more",
-   "start": 73.36,
-   "end": 73.62,
+   "start": 73.5,
+   "end": 73.78,
    "take": 6
   },
   {
    "w": "often.",
-   "start": 73.62,
-   "end": 74.06,
+   "start": 73.78,
+   "end": 74.2,
    "take": 6
   },
   {
    "w": "Start",
-   "start": 74.52,
-   "end": 74.74,
+   "start": 74.76,
+   "end": 74.9,
    "take": 6
   },
   {
    "w": "with",
-   "start": 74.74,
-   "end": 74.92,
+   "start": 74.9,
+   "end": 75.1,
    "take": 6
   },
   {
    "w": "three.",
-   "start": 74.92,
-   "end": 75.22,
+   "start": 75.1,
+   "end": 75.36,
    "take": 6
   },
   {
    "w": "One",
-   "start": 76.14,
-   "end": 76.3,
+   "start": 76.18,
+   "end": 76.46,
    "take": 7
   },
   {
    "w": "price",
-   "start": 76.3,
-   "end": 76.62,
+   "start": 76.46,
+   "end": 76.76,
    "take": 7
   },
   {
    "w": "is",
-   "start": 76.62,
-   "end": 76.92,
+   "start": 76.76,
+   "end": 77.06,
    "take": 7
   },
   {
    "w": "a",
-   "start": 76.92,
-   "end": 77.1,
+   "start": 77.06,
+   "end": 77.26,
    "take": 7
   },
   {
    "w": "yes",
-   "start": 77.1,
-   "end": 77.32,
+   "start": 77.26,
+   "end": 77.48,
    "take": 7
   },
   {
    "w": "or",
-   "start": 77.32,
-   "end": 77.74,
+   "start": 77.48,
+   "end": 77.88,
    "take": 7
   },
   {
    "w": "a",
-   "start": 77.74,
-   "end": 77.92,
-   "take": 7
-  },
-  {
-   "w": "no.",
-   "start": 77.92,
+   "start": 77.88,
    "end": 78.08,
    "take": 7
   },
   {
+   "w": "no.",
+   "start": 78.08,
+   "end": 78.2,
+   "take": 7
+  },
+  {
    "w": "Three",
-   "start": 78.48,
-   "end": 78.72,
+   "start": 78.66,
+   "end": 78.86,
    "take": 7
   },
   {
    "w": "prices?",
-   "start": 78.72,
-   "end": 79.12,
+   "start": 78.86,
+   "end": 79.26,
    "take": 7
   },
   {
    "w": "That's",
-   "start": 79.46,
-   "end": 79.78,
+   "start": 79.68,
+   "end": 79.96,
    "take": 7
   },
   {
    "w": "a",
-   "start": 79.78,
-   "end": 79.9,
+   "start": 79.96,
+   "end": 80.08,
    "take": 7
   },
   {
    "w": "choice.",
-   "start": 79.9,
-   "end": 80.24,
+   "start": 80.08,
+   "end": 80.36,
    "take": 7
   },
   {
    "w": "Send",
-   "start": 80.78,
-   "end": 80.98,
+   "start": 80.94,
+   "end": 81.12,
    "take": 7
   },
   {
    "w": "this",
-   "start": 80.98,
-   "end": 81.14,
-   "take": 7
-  },
-  {
-   "w": "to",
-   "start": 81.14,
+   "start": 81.12,
    "end": 81.3,
    "take": 7
   },
   {
-   "w": "whoever",
+   "w": "to",
    "start": 81.3,
-   "end": 81.6,
+   "end": 81.46,
+   "take": 7
+  },
+  {
+   "w": "whoever",
+   "start": 81.46,
+   "end": 81.76,
    "take": 7
   },
   {
    "w": "writes",
-   "start": 81.6,
-   "end": 81.9,
+   "start": 81.76,
+   "end": 82.06,
    "take": 7
   },
   {
    "w": "your",
-   "start": 81.9,
-   "end": 82.1,
+   "start": 82.06,
+   "end": 82.28,
    "take": 7
   },
   {
    "w": "quotes,",
-   "start": 82.1,
-   "end": 82.48,
+   "start": 82.28,
+   "end": 82.62,
    "take": 7
   },
   {
    "w": "so",
-   "start": 82.48,
-   "end": 82.76,
-   "take": 7
-  },
-  {
-   "w": "the",
-   "start": 82.76,
+   "start": 82.62,
    "end": 82.92,
    "take": 7
   },
   {
-   "w": "next",
+   "w": "the",
    "start": 82.92,
-   "end": 83.14,
+   "end": 83.1,
+   "take": 7
+  },
+  {
+   "w": "next",
+   "start": 83.1,
+   "end": 83.32,
    "take": 7
   },
   {
    "w": "one",
-   "start": 83.14,
-   "end": 83.36,
+   "start": 83.32,
+   "end": 83.54,
    "take": 7
   },
   {
    "w": "has",
-   "start": 83.36,
-   "end": 83.58,
+   "start": 83.54,
+   "end": 83.72,
    "take": 7
   },
   {
    "w": "three",
-   "start": 83.58,
-   "end": 83.86,
+   "start": 83.72,
+   "end": 84.02,
    "take": 7
   },
   {
    "w": "prices.",
-   "start": 83.86,
-   "end": 84.32,
+   "start": 84.02,
+   "end": 84.46,
    "take": 7
   }
  ],
@@ -1455,1501 +1455,1493 @@
   {
    "n": 1,
    "start": 0.0,
-   "end": 5.329,
-   "wpm": 180
+   "end": 5.486,
+   "wpm": 175
   },
   {
    "n": 2,
-   "start": 5.649,
-   "end": 18.162,
+   "start": 5.806,
+   "end": 18.319,
    "wpm": 158
   },
   {
    "n": 3,
-   "start": 18.482,
-   "end": 36.611,
+   "start": 18.639,
+   "end": 36.768,
    "wpm": 195
   },
   {
    "n": 4,
-   "start": 36.931,
-   "end": 49.209,
+   "start": 37.088,
+   "end": 49.366,
    "wpm": 171
   },
   {
    "n": 5,
-   "start": 49.529,
-   "end": 64.915,
+   "start": 49.686,
+   "end": 65.072,
    "wpm": 160
   },
   {
    "n": 6,
-   "start": 65.235,
-   "end": 75.919,
+   "start": 65.392,
+   "end": 76.076,
    "wpm": 168
   },
   {
    "n": 7,
-   "start": 76.239,
-   "end": 84.912,
+   "start": 76.396,
+   "end": 85.069,
    "wpm": 187
   }
  ],
- "flags": [
-  "2.3 s heard 'shots' for 'shops'"
- ],
- "end": 84.32,
+ "flags": [],
+ "end": 84.46,
  "heard": [
   {
    "w": "One",
    "start": 0.0,
-   "end": 0.42,
-   "p": 0.795
+   "end": 0.44,
+   "p": 0.827
   },
   {
    "w": "price",
-   "start": 0.42,
-   "end": 0.72,
+   "start": 0.44,
+   "end": 0.76,
    "p": 0.997
   },
   {
    "w": "on",
-   "start": 0.72,
-   "end": 0.94,
-   "p": 0.994
+   "start": 0.76,
+   "end": 1.0,
+   "p": 0.995
   },
   {
    "w": "your",
-   "start": 0.94,
-   "end": 1.1,
+   "start": 1.0,
+   "end": 1.16,
    "p": 0.996
   },
   {
    "w": "quotes?",
-   "start": 1.1,
-   "end": 1.4,
-   "p": 0.972
+   "start": 1.16,
+   "end": 1.5,
+   "p": 0.979
   },
   {
    "w": "The",
-   "start": 1.92,
-   "end": 2.06,
-   "p": 0.987
-  },
-  {
-   "w": "top",
-   "start": 2.06,
-   "end": 2.28,
-   "p": 0.969
-  },
-  {
-   "w": "shots",
-   "start": 2.28,
-   "end": 2.58,
-   "p": 0.533
-  },
-  {
-   "w": "usually",
-   "start": 2.58,
-   "end": 2.98,
+   "start": 2.08,
+   "end": 2.22,
    "p": 0.989
   },
   {
+   "w": "top",
+   "start": 2.22,
+   "end": 2.42,
+   "p": 0.975
+  },
+  {
+   "w": "shops",
+   "start": 2.42,
+   "end": 2.72,
+   "p": 0.97
+  },
+  {
+   "w": "usually",
+   "start": 2.72,
+   "end": 3.12,
+   "p": 0.995
+  },
+  {
    "w": "quote",
-   "start": 2.98,
-   "end": 3.22,
-   "p": 0.99
+   "start": 3.12,
+   "end": 3.4,
+   "p": 0.994
   },
   {
    "w": "three.",
-   "start": 3.22,
-   "end": 3.62,
-   "p": 0.872
+   "start": 3.4,
+   "end": 3.78,
+   "p": 0.902
   },
   {
    "w": "Here's",
-   "start": 4.22,
-   "end": 4.48,
-   "p": 0.992
+   "start": 4.44,
+   "end": 4.68,
+   "p": 0.989
   },
   {
    "w": "how",
-   "start": 4.48,
-   "end": 4.58,
+   "start": 4.68,
+   "end": 4.78,
    "p": 0.999
   },
   {
    "w": "you",
-   "start": 4.58,
-   "end": 4.7,
-   "p": 0.996
-  },
-  {
-   "w": "build",
-   "start": 4.7,
+   "start": 4.78,
    "end": 4.9,
    "p": 0.996
   },
   {
-   "w": "them.",
+   "w": "build",
    "start": 4.9,
-   "end": 5.18,
-   "p": 0.998
+   "end": 5.1,
+   "p": 0.995
   },
   {
-   "w": "Service",
-   "start": 5.82,
-   "end": 6.04,
-   "p": 0.945
+   "w": "them.",
+   "start": 5.1,
+   "end": 5.4,
+   "p": 0.995
   },
   {
-   "w": "Titan",
-   "start": 6.04,
-   "end": 6.28,
-   "p": 0.483
+   "w": "ServiceTitan",
+   "start": 5.96,
+   "end": 6.44,
+   "p": 0.775
   },
   {
    "w": "pulled",
-   "start": 6.28,
-   "end": 6.6,
-   "p": 0.962
+   "start": 6.44,
+   "end": 6.76,
+   "p": 0.971
   },
   {
    "w": "a",
-   "start": 6.6,
-   "end": 6.78,
-   "p": 0.993
+   "start": 6.76,
+   "end": 6.92,
+   "p": 0.994
   },
   {
    "w": "year",
-   "start": 6.78,
-   "end": 7.02,
-   "p": 0.996
+   "start": 6.92,
+   "end": 7.18,
+   "p": 0.994
   },
   {
    "w": "of",
-   "start": 7.02,
-   "end": 7.26,
+   "start": 7.18,
+   "end": 7.42,
    "p": 0.997
   },
   {
    "w": "home",
-   "start": 7.26,
-   "end": 7.44,
-   "p": 0.992
+   "start": 7.42,
+   "end": 7.6,
+   "p": 0.993
   },
   {
    "w": "jobs,",
-   "start": 7.44,
-   "end": 7.82,
-   "p": 0.971
+   "start": 7.6,
+   "end": 7.98,
+   "p": 0.97
   },
   {
    "w": "up",
-   "start": 7.98,
-   "end": 8.12,
+   "start": 8.14,
+   "end": 8.28,
    "p": 0.997
   },
   {
    "w": "to",
-   "start": 8.12,
-   "end": 8.26,
-   "p": 0.994
+   "start": 8.28,
+   "end": 8.42,
+   "p": 0.993
   },
   {
    "w": "this",
-   "start": 8.26,
-   "end": 8.44,
+   "start": 8.42,
+   "end": 8.6,
    "p": 0.999
   },
   {
    "w": "January.",
-   "start": 8.44,
-   "end": 8.92,
+   "start": 8.6,
+   "end": 9.08,
    "p": 0.999
   },
   {
    "w": "The",
-   "start": 9.42,
-   "end": 9.54,
-   "p": 0.995
+   "start": 9.58,
+   "end": 9.7,
+   "p": 0.994
   },
   {
    "w": "top",
-   "start": 9.54,
-   "end": 9.74,
-   "p": 0.996
+   "start": 9.7,
+   "end": 9.9,
+   "p": 0.998
   },
   {
    "w": "10",
-   "start": 9.74,
-   "end": 10.06,
-   "p": 0.878
+   "start": 9.9,
+   "end": 10.22,
+   "p": 0.877
   },
   {
    "w": "%",
-   "start": 10.06,
-   "end": 10.34,
-   "p": 0.776
+   "start": 10.22,
+   "end": 10.5,
+   "p": 0.758
   },
   {
    "w": "offered",
-   "start": 10.34,
-   "end": 10.78,
-   "p": 0.964
+   "start": 10.5,
+   "end": 10.94,
+   "p": 0.951
   },
   {
    "w": "good,",
-   "start": 10.78,
-   "end": 11.14,
-   "p": 0.822
+   "start": 10.94,
+   "end": 11.3,
+   "p": 0.809
   },
   {
    "w": "better,",
-   "start": 11.36,
-   "end": 11.58,
+   "start": 11.52,
+   "end": 11.74,
    "p": 0.999
   },
   {
    "w": "best",
-   "start": 11.58,
-   "end": 11.96,
-   "p": 0.988
+   "start": 11.82,
+   "end": 12.12,
+   "p": 0.993
   },
   {
    "w": "on",
-   "start": 11.96,
-   "end": 12.24,
-   "p": 0.885
+   "start": 12.12,
+   "end": 12.38,
+   "p": 0.883
   },
   {
    "w": "57",
-   "start": 12.24,
-   "end": 12.9,
-   "p": 0.989
+   "start": 12.38,
+   "end": 13.06,
+   "p": 0.992
   },
   {
    "w": "%",
-   "start": 12.9,
-   "end": 13.28,
-   "p": 0.988
+   "start": 13.06,
+   "end": 13.44,
+   "p": 0.989
   },
   {
    "w": "of",
-   "start": 13.28,
-   "end": 13.46,
-   "p": 0.997
+   "start": 13.44,
+   "end": 13.62,
+   "p": 0.996
   },
   {
    "w": "them.",
-   "start": 13.46,
-   "end": 13.62,
-   "p": 1.0
+   "start": 13.62,
+   "end": 13.78,
+   "p": 0.999
   },
   {
    "w": "Everyone",
-   "start": 14.1,
-   "end": 14.38,
-   "p": 0.99
+   "start": 14.26,
+   "end": 14.54,
+   "p": 0.988
   },
   {
-   "w": "else,",
-   "start": 14.38,
-   "end": 14.72,
+   "w": "else?",
+   "start": 14.54,
+   "end": 14.9,
    "p": 1.0
   },
   {
    "w": "41.",
-   "start": 15.18,
-   "end": 15.5,
-   "p": 0.993
+   "start": 15.36,
+   "end": 15.7,
+   "p": 0.695
   },
   {
    "w": "That's",
-   "start": 16.18,
-   "end": 16.54,
-   "p": 0.998
+   "start": 16.34,
+   "end": 16.7,
+   "p": 0.997
   },
   {
    "w": "a",
-   "start": 16.54,
-   "end": 16.64,
+   "start": 16.7,
+   "end": 16.78,
    "p": 0.999
   },
   {
    "w": "habit",
-   "start": 16.64,
-   "end": 16.84,
+   "start": 16.78,
+   "end": 17.0,
    "p": 0.999
   },
   {
    "w": "you",
-   "start": 16.84,
-   "end": 17.02,
+   "start": 17.0,
+   "end": 17.18,
    "p": 0.996
   },
   {
    "w": "can",
-   "start": 17.02,
-   "end": 17.2,
+   "start": 17.18,
+   "end": 17.34,
    "p": 0.999
   },
   {
    "w": "copy.",
-   "start": 17.2,
-   "end": 17.52,
+   "start": 17.34,
+   "end": 17.68,
    "p": 0.999
   },
   {
    "w": "Why",
-   "start": 18.4,
-   "end": 18.64,
-   "p": 0.998
+   "start": 18.58,
+   "end": 18.8,
+   "p": 0.997
   },
   {
    "w": "does",
-   "start": 18.64,
-   "end": 18.8,
+   "start": 18.8,
+   "end": 18.96,
    "p": 0.999
   },
   {
    "w": "that",
-   "start": 18.8,
-   "end": 19.02,
-   "p": 0.999
+   "start": 18.96,
+   "end": 19.18,
+   "p": 0.998
   },
   {
    "w": "work?",
-   "start": 19.02,
-   "end": 19.38,
+   "start": 19.18,
+   "end": 19.54,
    "p": 1.0
   },
   {
    "w": "Researchers",
-   "start": 20.1,
-   "end": 20.48,
-   "p": 0.998
+   "start": 20.24,
+   "end": 20.64,
+   "p": 0.997
   },
   {
    "w": "tracked",
-   "start": 20.48,
-   "end": 20.96,
+   "start": 20.64,
+   "end": 21.12,
    "p": 0.998
   },
   {
    "w": "seven",
-   "start": 20.96,
-   "end": 21.38,
-   "p": 0.895
+   "start": 21.12,
+   "end": 21.54,
+   "p": 0.855
   },
   {
    "w": "years",
-   "start": 21.38,
-   "end": 21.68,
+   "start": 21.54,
+   "end": 21.82,
    "p": 0.998
   },
   {
    "w": "of",
-   "start": 21.68,
-   "end": 21.92,
+   "start": 21.82,
+   "end": 22.1,
    "p": 0.999
   },
   {
    "w": "orders",
-   "start": 21.92,
-   "end": 22.16,
+   "start": 22.1,
+   "end": 22.32,
    "p": 0.999
   },
   {
    "w": "at",
-   "start": 22.16,
-   "end": 22.36,
+   "start": 22.32,
+   "end": 22.52,
    "p": 0.998
   },
   {
    "w": "a",
-   "start": 22.36,
-   "end": 22.54,
-   "p": 0.999
+   "start": 22.52,
+   "end": 22.7,
+   "p": 0.998
   },
   {
    "w": "German",
-   "start": 22.54,
-   "end": 22.78,
+   "start": 22.7,
+   "end": 22.94,
    "p": 0.999
   },
   {
    "w": "restaurant.",
-   "start": 22.78,
-   "end": 23.24,
-   "p": 0.999
+   "start": 22.94,
+   "end": 23.4,
+   "p": 0.998
   },
   {
    "w": "When",
-   "start": 23.66,
-   "end": 23.92,
+   "start": 23.86,
+   "end": 24.08,
    "p": 0.998
   },
   {
    "w": "the",
-   "start": 23.92,
-   "end": 24.08,
+   "start": 24.08,
+   "end": 24.22,
    "p": 0.999
   },
   {
    "w": "menu",
-   "start": 24.08,
-   "end": 24.28,
+   "start": 24.22,
+   "end": 24.44,
    "p": 0.999
   },
   {
    "w": "changed,",
-   "start": 24.28,
-   "end": 24.78,
+   "start": 24.44,
+   "end": 24.94,
    "p": 0.998
   },
   {
    "w": "a",
-   "start": 25.14,
-   "end": 25.28,
+   "start": 25.28,
+   "end": 25.44,
    "p": 0.996
   },
   {
    "w": "dish",
-   "start": 25.28,
-   "end": 25.46,
+   "start": 25.44,
+   "end": 25.62,
    "p": 0.999
   },
   {
    "w": "that",
-   "start": 25.46,
-   "end": 25.66,
+   "start": 25.62,
+   "end": 25.82,
    "p": 0.998
   },
   {
    "w": "landed",
-   "start": 25.66,
-   "end": 25.92,
-   "p": 1.0
+   "start": 25.82,
+   "end": 26.08,
+   "p": 0.999
   },
   {
    "w": "in",
-   "start": 25.92,
-   "end": 26.12,
+   "start": 26.08,
+   "end": 26.28,
    "p": 0.999
   },
   {
    "w": "the",
-   "start": 26.12,
-   "end": 26.34,
-   "p": 1.0
+   "start": 26.28,
+   "end": 26.48,
+   "p": 0.999
   },
   {
    "w": "middle",
-   "start": 26.34,
-   "end": 26.58,
+   "start": 26.48,
+   "end": 26.72,
    "p": 0.999
   },
   {
    "w": "took",
-   "start": 26.58,
-   "end": 26.88,
-   "p": 0.341
+   "start": 26.72,
+   "end": 27.04,
+   "p": 0.981
   },
   {
    "w": "about",
-   "start": 26.88,
-   "end": 27.14,
-   "p": 0.986
+   "start": 27.04,
+   "end": 27.32,
+   "p": 0.997
   },
   {
    "w": "five",
-   "start": 27.14,
-   "end": 27.54,
-   "p": 0.535
+   "start": 27.32,
+   "end": 27.7,
+   "p": 0.922
   },
   {
    "w": "more",
-   "start": 27.54,
-   "end": 27.82,
-   "p": 0.991
-  },
-  {
-   "w": "points",
-   "start": 27.82,
-   "end": 28.18,
-   "p": 0.993
-  },
-  {
-   "w": "of",
-   "start": 28.18,
-   "end": 28.32,
-   "p": 0.982
-  },
-  {
-   "w": "all",
-   "start": 28.32,
-   "end": 28.64,
-   "p": 0.966
-  },
-  {
-   "w": "orders,",
-   "start": 28.64,
-   "end": 29.06,
-   "p": 0.993
-  },
-  {
-   "w": "on",
-   "start": 29.2,
-   "end": 29.4,
+   "start": 27.7,
+   "end": 28.0,
    "p": 0.996
   },
   {
-   "w": "average.",
+   "w": "points",
+   "start": 28.0,
+   "end": 28.34,
+   "p": 0.349
+  },
+  {
+   "w": "of",
+   "start": 28.34,
+   "end": 28.48,
+   "p": 0.961
+  },
+  {
+   "w": "all",
+   "start": 28.48,
+   "end": 28.8,
+   "p": 0.963
+  },
+  {
+   "w": "orders,",
+   "start": 28.8,
+   "end": 29.24,
+   "p": 0.995
+  },
+  {
+   "w": "on",
    "start": 29.4,
-   "end": 29.76,
+   "end": 29.56,
+   "p": 0.995
+  },
+  {
+   "w": "average.",
+   "start": 29.56,
+   "end": 29.9,
    "p": 0.999
   },
   {
    "w": "It",
-   "start": 30.38,
-   "end": 30.48,
+   "start": 30.46,
+   "end": 30.66,
    "p": 0.993
   },
   {
    "w": "worked",
-   "start": 30.48,
-   "end": 30.7,
-   "p": 0.998
+   "start": 30.66,
+   "end": 30.86,
+   "p": 0.995
   },
   {
    "w": "even",
-   "start": 30.7,
-   "end": 30.92,
+   "start": 30.86,
+   "end": 31.1,
    "p": 0.996
   },
   {
    "w": "better",
-   "start": 30.92,
-   "end": 31.28,
-   "p": 0.999
+   "start": 31.1,
+   "end": 31.42,
+   "p": 0.998
   },
   {
    "w": "when",
-   "start": 31.28,
-   "end": 31.52,
-   "p": 0.994
+   "start": 31.42,
+   "end": 31.68,
+   "p": 0.992
   },
   {
    "w": "the",
-   "start": 31.52,
-   "end": 31.7,
+   "start": 31.68,
+   "end": 31.86,
    "p": 0.996
   },
   {
    "w": "new",
-   "start": 31.7,
-   "end": 31.88,
-   "p": 0.991
+   "start": 31.86,
+   "end": 32.04,
+   "p": 0.99
   },
   {
    "w": "dish",
-   "start": 31.88,
-   "end": 32.08,
-   "p": 0.979
+   "start": 32.04,
+   "end": 32.24,
+   "p": 0.975
   },
   {
    "w": "was",
-   "start": 32.08,
-   "end": 32.3,
-   "p": 0.998
+   "start": 32.24,
+   "end": 32.46,
+   "p": 0.997
   },
   {
    "w": "the",
-   "start": 32.3,
-   "end": 32.56,
+   "start": 32.46,
+   "end": 32.74,
    "p": 0.995
   },
   {
    "w": "pricey",
-   "start": 32.56,
-   "end": 32.82,
-   "p": 0.963
+   "start": 32.74,
+   "end": 33.0,
+   "p": 0.956
   },
   {
    "w": "one.",
-   "start": 32.82,
-   "end": 33.14,
-   "p": 0.999
+   "start": 33.0,
+   "end": 33.3,
+   "p": 0.998
   },
   {
    "w": "So",
-   "start": 33.66,
-   "end": 33.84,
-   "p": 0.979
+   "start": 33.82,
+   "end": 33.98,
+   "p": 0.98
   },
   {
    "w": "put",
-   "start": 33.84,
-   "end": 34.14,
-   "p": 0.701
+   "start": 33.98,
+   "end": 34.3,
+   "p": 0.712
   },
   {
    "w": "a",
-   "start": 34.14,
-   "end": 34.34,
-   "p": 0.994
+   "start": 34.3,
+   "end": 34.5,
+   "p": 0.996
   },
   {
    "w": "price",
-   "start": 34.34,
-   "end": 34.54,
+   "start": 34.5,
+   "end": 34.72,
    "p": 0.998
   },
   {
    "w": "above",
-   "start": 34.54,
-   "end": 34.8,
-   "p": 0.997
+   "start": 34.72,
+   "end": 34.96,
+   "p": 0.998
   },
   {
    "w": "the",
-   "start": 34.8,
-   "end": 35.0,
-   "p": 0.995
+   "start": 34.96,
+   "end": 35.16,
+   "p": 0.997
   },
   {
    "w": "one",
-   "start": 35.0,
-   "end": 35.14,
+   "start": 35.16,
+   "end": 35.3,
    "p": 0.998
   },
   {
    "w": "you",
-   "start": 35.14,
-   "end": 35.26,
+   "start": 35.3,
+   "end": 35.42,
    "p": 0.997
   },
   {
    "w": "want",
-   "start": 35.26,
-   "end": 35.44,
-   "p": 0.994
+   "start": 35.42,
+   "end": 35.6,
+   "p": 0.995
   },
   {
    "w": "them",
-   "start": 35.44,
-   "end": 35.6,
-   "p": 0.994
+   "start": 35.6,
+   "end": 35.74,
+   "p": 0.993
   },
   {
    "w": "to",
-   "start": 35.6,
-   "end": 35.76,
+   "start": 35.74,
+   "end": 35.9,
    "p": 0.999
   },
   {
    "w": "pick.",
-   "start": 35.76,
-   "end": 36.0,
+   "start": 35.9,
+   "end": 36.18,
    "p": 0.999
   },
   {
    "w": "Build",
-   "start": 36.92,
-   "end": 37.1,
-   "p": 0.982
+   "start": 37.08,
+   "end": 37.24,
+   "p": 0.98
   },
   {
    "w": "your",
-   "start": 37.1,
-   "end": 37.32,
-   "p": 0.994
-  },
-  {
-   "w": "three",
-   "start": 37.32,
-   "end": 37.5,
-   "p": 0.317
-  },
-  {
-   "w": "like",
-   "start": 37.5,
-   "end": 37.72,
-   "p": 0.982
-  },
-  {
-   "w": "this.",
-   "start": 37.72,
-   "end": 38.16,
-   "p": 0.996
-  },
-  {
-   "w": "Good",
-   "start": 38.78,
-   "end": 38.94,
-   "p": 0.668
-  },
-  {
-   "w": "is",
-   "start": 38.94,
-   "end": 39.28,
+   "start": 37.24,
+   "end": 37.46,
    "p": 0.991
   },
   {
-   "w": "the",
-   "start": 39.28,
-   "end": 39.46,
-   "p": 0.998
+   "w": "three",
+   "start": 37.46,
+   "end": 37.66,
+   "p": 0.405
   },
   {
-   "w": "job",
-   "start": 39.46,
-   "end": 39.66,
-   "p": 0.998
+   "w": "like",
+   "start": 37.66,
+   "end": 37.9,
+   "p": 0.975
   },
   {
-   "w": "done",
-   "start": 39.66,
-   "end": 39.88,
-   "p": 0.997
-  },
-  {
-   "w": "right,",
-   "start": 39.88,
-   "end": 40.2,
-   "p": 0.992
-  },
-  {
-   "w": "nothing",
-   "start": 40.6,
-   "end": 40.84,
+   "w": "this.",
+   "start": 37.9,
+   "end": 38.3,
    "p": 0.994
   },
   {
+   "w": "Good",
+   "start": 38.94,
+   "end": 39.08,
+   "p": 0.792
+  },
+  {
+   "w": "is",
+   "start": 39.08,
+   "end": 39.44,
+   "p": 0.983
+  },
+  {
+   "w": "the",
+   "start": 39.44,
+   "end": 39.62,
+   "p": 0.999
+  },
+  {
+   "w": "job",
+   "start": 39.62,
+   "end": 39.82,
+   "p": 0.999
+  },
+  {
+   "w": "done",
+   "start": 39.82,
+   "end": 40.06,
+   "p": 0.996
+  },
+  {
+   "w": "right,",
+   "start": 40.06,
+   "end": 40.36,
+   "p": 0.926
+  },
+  {
+   "w": "nothing",
+   "start": 40.72,
+   "end": 41.0,
+   "p": 0.991
+  },
+  {
    "w": "extra.",
-   "start": 40.84,
-   "end": 41.3,
-   "p": 0.998
+   "start": 41.0,
+   "end": 41.44,
+   "p": 0.999
   },
   {
    "w": "Better",
-   "start": 41.78,
-   "end": 42.06,
+   "start": 41.94,
+   "end": 42.22,
    "p": 0.997
   },
   {
    "w": "is",
-   "start": 42.06,
-   "end": 42.46,
-   "p": 0.992
+   "start": 42.22,
+   "end": 42.62,
+   "p": 0.988
   },
   {
    "w": "the",
-   "start": 42.46,
-   "end": 42.62,
-   "p": 0.997
+   "start": 42.62,
+   "end": 42.78,
+   "p": 0.998
   },
   {
    "w": "one",
-   "start": 42.62,
-   "end": 42.74,
+   "start": 42.78,
+   "end": 42.92,
    "p": 0.999
   },
   {
    "w": "you'd",
-   "start": 42.74,
-   "end": 43.0,
-   "p": 0.989
+   "start": 42.92,
+   "end": 43.18,
+   "p": 0.99
   },
   {
    "w": "pick",
-   "start": 43.0,
-   "end": 43.14,
-   "p": 0.997
+   "start": 43.18,
+   "end": 43.3,
+   "p": 0.995
   },
   {
    "w": "for",
-   "start": 43.14,
-   "end": 43.34,
+   "start": 43.3,
+   "end": 43.5,
    "p": 0.998
   },
   {
    "w": "your",
-   "start": 43.34,
-   "end": 43.52,
-   "p": 0.998
+   "start": 43.5,
+   "end": 43.68,
+   "p": 0.999
   },
   {
    "w": "own",
-   "start": 43.52,
-   "end": 43.74,
-   "p": 0.997
+   "start": 43.68,
+   "end": 43.9,
+   "p": 0.998
   },
   {
    "w": "house.",
-   "start": 43.74,
-   "end": 44.14,
+   "start": 43.9,
+   "end": 44.3,
    "p": 0.998
   },
   {
    "w": "Best",
-   "start": 44.68,
-   "end": 44.96,
-   "p": 0.988
+   "start": 44.86,
+   "end": 45.12,
+   "p": 0.989
   },
   {
    "w": "adds",
-   "start": 44.96,
-   "end": 45.36,
-   "p": 0.988
+   "start": 45.12,
+   "end": 45.52,
+   "p": 0.978
   },
   {
    "w": "upgrades,",
-   "start": 45.36,
-   "end": 45.94,
-   "p": 0.997
+   "start": 45.52,
+   "end": 46.12,
+   "p": 0.998
   },
   {
    "w": "like",
-   "start": 46.08,
-   "end": 46.34,
+   "start": 46.14,
+   "end": 46.5,
    "p": 0.997
   },
   {
    "w": "a",
-   "start": 46.34,
-   "end": 46.5,
+   "start": 46.5,
+   "end": 46.66,
    "p": 0.998
   },
   {
    "w": "longer",
-   "start": 46.5,
-   "end": 46.74,
+   "start": 46.66,
+   "end": 46.9,
    "p": 0.999
   },
   {
    "w": "warranty",
-   "start": 46.74,
-   "end": 47.22,
-   "p": 0.997
+   "start": 46.9,
+   "end": 47.38,
+   "p": 0.998
   },
   {
    "w": "or",
-   "start": 47.22,
-   "end": 47.54,
-   "p": 0.875
+   "start": 47.38,
+   "end": 47.7,
+   "p": 0.87
   },
   {
    "w": "a",
-   "start": 47.54,
-   "end": 47.74,
-   "p": 0.981
+   "start": 47.7,
+   "end": 47.9,
+   "p": 0.989
   },
   {
    "w": "faster",
-   "start": 47.74,
-   "end": 48.0,
+   "start": 47.9,
+   "end": 48.16,
    "p": 0.999
   },
   {
    "w": "start",
-   "start": 48.0,
-   "end": 48.3,
+   "start": 48.16,
+   "end": 48.48,
    "p": 0.999
   },
   {
    "w": "date.",
-   "start": 48.3,
-   "end": 48.6,
-   "p": 0.997
+   "start": 48.48,
+   "end": 48.76,
+   "p": 0.996
   },
   {
    "w": "One",
-   "start": 49.46,
-   "end": 49.64,
-   "p": 0.989
+   "start": 49.62,
+   "end": 49.8,
+   "p": 0.988
   },
   {
    "w": "more",
-   "start": 49.64,
-   "end": 49.82,
+   "start": 49.8,
+   "end": 50.02,
    "p": 0.999
   },
   {
    "w": "thing",
-   "start": 49.82,
-   "end": 50.06,
+   "start": 50.02,
+   "end": 50.22,
    "p": 0.999
   },
   {
    "w": "from",
-   "start": 50.06,
-   "end": 50.26,
-   "p": 0.996
+   "start": 50.22,
+   "end": 50.42,
+   "p": 0.997
   },
   {
    "w": "the",
-   "start": 50.26,
-   "end": 50.42,
-   "p": 0.996
+   "start": 50.42,
+   "end": 50.58,
+   "p": 0.998
   },
   {
    "w": "data.",
-   "start": 50.42,
-   "end": 50.68,
+   "start": 50.58,
+   "end": 50.84,
    "p": 0.998
   },
   {
    "w": "Three",
-   "start": 51.22,
-   "end": 51.52,
+   "start": 51.4,
+   "end": 51.68,
    "p": 0.918
   },
   {
    "w": "doesn't",
-   "start": 51.52,
-   "end": 52.06,
-   "p": 0.997
-  },
-  {
-   "w": "have",
-   "start": 52.06,
-   "end": 52.24,
+   "start": 51.68,
+   "end": 52.22,
    "p": 0.998
   },
   {
+   "w": "have",
+   "start": 52.22,
+   "end": 52.4,
+   "p": 0.999
+  },
+  {
    "w": "to",
-   "start": 52.24,
-   "end": 52.42,
+   "start": 52.4,
+   "end": 52.6,
    "p": 1.0
   },
   {
    "w": "be",
-   "start": 52.42,
-   "end": 52.54,
+   "start": 52.6,
+   "end": 52.7,
    "p": 0.999
   },
   {
    "w": "the",
-   "start": 52.54,
-   "end": 52.7,
+   "start": 52.7,
+   "end": 52.86,
    "p": 0.998
   },
   {
    "w": "ceiling.",
-   "start": 52.7,
-   "end": 53.04,
-   "p": 0.986
+   "start": 52.86,
+   "end": 53.2,
+   "p": 0.981
   },
   {
    "w": "A",
-   "start": 53.5,
-   "end": 53.72,
-   "p": 0.994
+   "start": 53.7,
+   "end": 53.86,
+   "p": 0.992
   },
   {
    "w": "heating",
-   "start": 53.72,
-   "end": 53.88,
-   "p": 0.927
+   "start": 53.86,
+   "end": 54.06,
+   "p": 0.966
   },
   {
    "w": "and",
-   "start": 53.88,
-   "end": 54.14,
-   "p": 0.984
+   "start": 54.06,
+   "end": 54.32,
+   "p": 0.989
   },
   {
    "w": "cooling",
-   "start": 54.14,
-   "end": 54.38,
+   "start": 54.32,
+   "end": 54.54,
    "p": 0.998
   },
   {
    "w": "trade",
-   "start": 54.38,
-   "end": 54.72,
-   "p": 0.987
+   "start": 54.54,
+   "end": 54.9,
+   "p": 0.99
   },
   {
    "w": "group",
-   "start": 54.72,
-   "end": 55.04,
-   "p": 0.948
-  },
-  {
-   "w": "surveyed",
-   "start": 55.04,
-   "end": 55.42,
-   "p": 0.978
-  },
-  {
-   "w": "over",
-   "start": 55.42,
-   "end": 55.76,
-   "p": 0.994
-  },
-  {
-   "w": "a",
-   "start": 55.76,
-   "end": 56.12,
-   "p": 0.496
-  },
-  {
-   "w": "thousand",
-   "start": 56.12,
-   "end": 56.4,
-   "p": 0.925
-  },
-  {
-   "w": "contractors.",
-   "start": 56.4,
-   "end": 57.14,
-   "p": 0.994
-  },
-  {
-   "w": "Those",
-   "start": 57.74,
-   "end": 57.92,
-   "p": 0.996
-  },
-  {
-   "w": "offering",
-   "start": 57.92,
-   "end": 58.34,
-   "p": 0.997
-  },
-  {
-   "w": "four",
-   "start": 58.34,
-   "end": 58.72,
-   "p": 0.851
-  },
-  {
-   "w": "or",
-   "start": 58.72,
-   "end": 58.94,
-   "p": 0.996
-  },
-  {
-   "w": "more",
-   "start": 58.94,
-   "end": 59.2,
-   "p": 0.999
-  },
-  {
-   "w": "options",
-   "start": 59.2,
-   "end": 59.68,
-   "p": 0.998
-  },
-  {
-   "w": "closed",
-   "start": 59.68,
-   "end": 60.08,
-   "p": 0.985
-  },
-  {
-   "w": "52",
-   "start": 60.08,
-   "end": 60.82,
-   "p": 0.964
-  },
-  {
-   "w": "%",
-   "start": 60.82,
-   "end": 61.16,
-   "p": 0.81
-  },
-  {
-   "w": "of",
-   "start": 61.16,
-   "end": 61.32,
-   "p": 0.997
-  },
-  {
-   "w": "the",
-   "start": 61.32,
-   "end": 61.44,
-   "p": 0.999
-  },
-  {
-   "w": "time.",
-   "start": 61.44,
-   "end": 61.76,
-   "p": 1.0
-  },
-  {
-   "w": "One",
-   "start": 62.3,
-   "end": 62.44,
+   "start": 54.9,
+   "end": 55.2,
    "p": 0.86
   },
   {
-   "w": "to",
-   "start": 62.44,
-   "end": 62.58,
-   "p": 0.956
-  },
-  {
-   "w": "three",
-   "start": 62.58,
-   "end": 62.76,
-   "p": 0.996
-  },
-  {
-   "w": "options,",
-   "start": 62.76,
-   "end": 63.26,
+   "w": "surveyed",
+   "start": 55.2,
+   "end": 55.58,
    "p": 0.998
   },
   {
-   "w": "42.",
-   "start": 63.74,
-   "end": 64.14,
-   "p": 0.978
+   "w": "over",
+   "start": 55.58,
+   "end": 55.92,
+   "p": 0.908
   },
   {
-   "w": "Now",
-   "start": 65.04,
-   "end": 65.36,
-   "p": 0.99
+   "w": "a",
+   "start": 55.92,
+   "end": 56.28,
+   "p": 0.628
   },
   {
-   "w": "that",
-   "start": 65.36,
-   "end": 65.84,
-   "p": 0.559
+   "w": "thousand",
+   "start": 56.28,
+   "end": 56.54,
+   "p": 0.945
   },
   {
-   "w": "survey",
-   "start": 65.84,
-   "end": 66.2,
-   "p": 0.994
+   "w": "contractors.",
+   "start": 56.54,
+   "end": 57.28,
+   "p": 0.991
   },
   {
-   "w": "lumps",
-   "start": 66.2,
-   "end": 66.5,
-   "p": 0.987
-  },
-  {
-   "w": "one",
-   "start": 66.5,
-   "end": 66.82,
-   "p": 0.975
-  },
-  {
-   "w": "to",
-   "start": 66.82,
-   "end": 66.96,
+   "w": "Those",
+   "start": 57.94,
+   "end": 58.08,
    "p": 0.995
   },
   {
-   "w": "three",
-   "start": 66.96,
-   "end": 67.14,
+   "w": "offering",
+   "start": 58.08,
+   "end": 58.5,
+   "p": 0.998
+  },
+  {
+   "w": "four",
+   "start": 58.5,
+   "end": 58.88,
+   "p": 0.754
+  },
+  {
+   "w": "or",
+   "start": 58.88,
+   "end": 59.08,
+   "p": 0.995
+  },
+  {
+   "w": "more",
+   "start": 59.08,
+   "end": 59.36,
    "p": 0.999
   },
   {
    "w": "options",
-   "start": 67.14,
-   "end": 67.52,
-   "p": 0.999
-  },
-  {
-   "w": "together.",
-   "start": 67.52,
-   "end": 68.02,
-   "p": 0.999
-  },
-  {
-   "w": "So",
-   "start": 68.02,
-   "end": 68.58,
-   "p": 0.993
-  },
-  {
-   "w": "it",
-   "start": 68.58,
-   "end": 68.82,
-   "p": 0.949
-  },
-  {
-   "w": "can't",
-   "start": 68.82,
-   "end": 69.12,
-   "p": 0.999
-  },
-  {
-   "w": "tell",
-   "start": 69.12,
-   "end": 69.28,
-   "p": 0.999
-  },
-  {
-   "w": "you",
-   "start": 69.28,
-   "end": 69.5,
-   "p": 0.999
-  },
-  {
-   "w": "three",
-   "start": 69.5,
-   "end": 69.82,
-   "p": 0.969
-  },
-  {
-   "w": "beats",
-   "start": 69.82,
-   "end": 70.1,
-   "p": 0.996
-  },
-  {
-   "w": "one.",
-   "start": 70.1,
-   "end": 70.5,
-   "p": 0.995
-  },
-  {
-   "w": "Shops",
-   "start": 71.16,
-   "end": 71.34,
-   "p": 0.985
-  },
-  {
-   "w": "that",
-   "start": 71.34,
-   "end": 71.52,
-   "p": 0.993
-  },
-  {
-   "w": "gave",
-   "start": 71.52,
-   "end": 71.68,
-   "p": 0.986
-  },
-  {
-   "w": "more",
-   "start": 71.68,
-   "end": 71.96,
-   "p": 0.999
-  },
-  {
-   "w": "choices",
-   "start": 71.96,
-   "end": 72.42,
-   "p": 0.999
-  },
-  {
-   "w": "just",
-   "start": 72.42,
-   "end": 72.8,
-   "p": 0.845
-  },
-  {
-   "w": "heard",
-   "start": 72.8,
-   "end": 73.04,
-   "p": 0.996
-  },
-  {
-   "w": "yes",
-   "start": 73.04,
-   "end": 73.36,
-   "p": 0.9
-  },
-  {
-   "w": "more",
-   "start": 73.36,
-   "end": 73.62,
-   "p": 0.917
-  },
-  {
-   "w": "often.",
-   "start": 73.62,
-   "end": 74.06,
-   "p": 0.999
-  },
-  {
-   "w": "Start",
-   "start": 74.52,
-   "end": 74.74,
-   "p": 0.995
-  },
-  {
-   "w": "with",
-   "start": 74.74,
-   "end": 74.92,
-   "p": 1.0
-  },
-  {
-   "w": "three.",
-   "start": 74.92,
-   "end": 75.22,
-   "p": 0.994
-  },
-  {
-   "w": "One",
-   "start": 76.14,
-   "end": 76.3,
-   "p": 0.984
-  },
-  {
-   "w": "price",
-   "start": 76.3,
-   "end": 76.62,
-   "p": 0.996
-  },
-  {
-   "w": "is",
-   "start": 76.62,
-   "end": 76.92,
-   "p": 0.998
-  },
-  {
-   "w": "a",
-   "start": 76.92,
-   "end": 77.1,
-   "p": 0.998
-  },
-  {
-   "w": "yes",
-   "start": 77.1,
-   "end": 77.32,
-   "p": 0.993
-  },
-  {
-   "w": "or",
-   "start": 77.32,
-   "end": 77.74,
-   "p": 0.986
-  },
-  {
-   "w": "a",
-   "start": 77.74,
-   "end": 77.92,
-   "p": 0.879
-  },
-  {
-   "w": "no.",
-   "start": 77.92,
-   "end": 78.08,
-   "p": 0.995
-  },
-  {
-   "w": "Three",
-   "start": 78.48,
-   "end": 78.72,
-   "p": 0.99
-  },
-  {
-   "w": "prices,",
-   "start": 78.72,
-   "end": 79.12,
-   "p": 0.996
-  },
-  {
-   "w": "that's",
-   "start": 79.46,
-   "end": 79.78,
-   "p": 0.998
-  },
-  {
-   "w": "a",
-   "start": 79.78,
-   "end": 79.9,
-   "p": 0.998
-  },
-  {
-   "w": "choice.",
-   "start": 79.9,
-   "end": 80.24,
-   "p": 1.0
-  },
-  {
-   "w": "Send",
-   "start": 80.78,
-   "end": 80.98,
+   "start": 59.36,
+   "end": 59.84,
    "p": 0.997
   },
   {
-   "w": "this",
-   "start": 80.98,
-   "end": 81.14,
+   "w": "closed",
+   "start": 59.84,
+   "end": 60.24,
+   "p": 0.99
+  },
+  {
+   "w": "52",
+   "start": 60.24,
+   "end": 60.98,
+   "p": 0.924
+  },
+  {
+   "w": "%",
+   "start": 60.98,
+   "end": 61.34,
+   "p": 0.765
+  },
+  {
+   "w": "of",
+   "start": 61.34,
+   "end": 61.5,
+   "p": 0.994
+  },
+  {
+   "w": "the",
+   "start": 61.5,
+   "end": 61.58,
+   "p": 0.998
+  },
+  {
+   "w": "time.",
+   "start": 61.58,
+   "end": 61.92,
    "p": 0.999
+  },
+  {
+   "w": "One",
+   "start": 62.46,
+   "end": 62.6,
+   "p": 0.748
   },
   {
    "w": "to",
-   "start": 81.14,
-   "end": 81.3,
-   "p": 1.0
+   "start": 62.6,
+   "end": 62.74,
+   "p": 0.927
   },
   {
-   "w": "whoever",
-   "start": 81.3,
-   "end": 81.6,
+   "w": "three",
+   "start": 62.74,
+   "end": 62.94,
+   "p": 0.993
+  },
+  {
+   "w": "options?",
+   "start": 62.94,
+   "end": 63.42,
+   "p": 0.996
+  },
+  {
+   "w": "42.",
+   "start": 63.92,
+   "end": 64.3,
+   "p": 0.516
+  },
+  {
+   "w": "Now,",
+   "start": 65.16,
+   "end": 65.52,
+   "p": 0.976
+  },
+  {
+   "w": "that",
+   "start": 65.76,
+   "end": 66.0,
+   "p": 0.994
+  },
+  {
+   "w": "survey",
+   "start": 66.0,
+   "end": 66.34,
+   "p": 0.998
+  },
+  {
+   "w": "lumps",
+   "start": 66.34,
+   "end": 66.66,
+   "p": 0.995
+  },
+  {
+   "w": "one",
+   "start": 66.66,
+   "end": 66.98,
+   "p": 0.911
+  },
+  {
+   "w": "to",
+   "start": 66.98,
+   "end": 67.12,
+   "p": 0.989
+  },
+  {
+   "w": "three",
+   "start": 67.12,
+   "end": 67.3,
    "p": 0.999
   },
   {
-   "w": "writes",
-   "start": 81.6,
-   "end": 81.9,
+   "w": "options",
+   "start": 67.3,
+   "end": 67.68,
    "p": 0.999
   },
   {
-   "w": "your",
-   "start": 81.9,
-   "end": 82.1,
-   "p": 0.999
-  },
-  {
-   "w": "quotes,",
-   "start": 82.1,
-   "end": 82.48,
+   "w": "together,",
+   "start": 67.68,
+   "end": 68.16,
    "p": 0.996
   },
   {
    "w": "so",
-   "start": 82.48,
-   "end": 82.76,
-   "p": 0.563
-  },
-  {
-   "w": "the",
-   "start": 82.76,
-   "end": 82.92,
-   "p": 0.992
-  },
-  {
-   "w": "next",
-   "start": 82.92,
-   "end": 83.14,
-   "p": 0.999
-  },
-  {
-   "w": "one",
-   "start": 83.14,
-   "end": 83.36,
+   "start": 68.34,
+   "end": 68.74,
    "p": 0.997
   },
   {
-   "w": "has",
-   "start": 83.36,
-   "end": 83.58,
+   "w": "it",
+   "start": 68.74,
+   "end": 68.96,
+   "p": 0.985
+  },
+  {
+   "w": "can't",
+   "start": 68.96,
+   "end": 69.26,
+   "p": 0.997
+  },
+  {
+   "w": "tell",
+   "start": 69.26,
+   "end": 69.46,
+   "p": 0.998
+  },
+  {
+   "w": "you",
+   "start": 69.46,
+   "end": 69.66,
    "p": 0.998
   },
   {
    "w": "three",
-   "start": 83.58,
-   "end": 83.86,
-   "p": 0.918
+   "start": 69.66,
+   "end": 69.98,
+   "p": 0.88
+  },
+  {
+   "w": "beats",
+   "start": 69.98,
+   "end": 70.24,
+   "p": 0.995
+  },
+  {
+   "w": "one.",
+   "start": 70.24,
+   "end": 70.62,
+   "p": 0.999
+  },
+  {
+   "w": "Shops",
+   "start": 71.32,
+   "end": 71.5,
+   "p": 0.989
+  },
+  {
+   "w": "that",
+   "start": 71.5,
+   "end": 71.7,
+   "p": 0.998
+  },
+  {
+   "w": "gave",
+   "start": 71.7,
+   "end": 71.84,
+   "p": 0.985
+  },
+  {
+   "w": "more",
+   "start": 71.84,
+   "end": 72.12,
+   "p": 0.996
+  },
+  {
+   "w": "choices",
+   "start": 72.12,
+   "end": 72.56,
+   "p": 0.998
+  },
+  {
+   "w": "just",
+   "start": 72.56,
+   "end": 72.96,
+   "p": 0.959
+  },
+  {
+   "w": "heard",
+   "start": 72.96,
+   "end": 73.2,
+   "p": 0.998
+  },
+  {
+   "w": "yes",
+   "start": 73.2,
+   "end": 73.5,
+   "p": 0.639
+  },
+  {
+   "w": "more",
+   "start": 73.5,
+   "end": 73.78,
+   "p": 0.997
+  },
+  {
+   "w": "often.",
+   "start": 73.78,
+   "end": 74.2,
+   "p": 0.999
+  },
+  {
+   "w": "Start",
+   "start": 74.76,
+   "end": 74.9,
+   "p": 0.997
+  },
+  {
+   "w": "with",
+   "start": 74.9,
+   "end": 75.1,
+   "p": 1.0
+  },
+  {
+   "w": "three.",
+   "start": 75.1,
+   "end": 75.36,
+   "p": 0.961
+  },
+  {
+   "w": "One",
+   "start": 76.18,
+   "end": 76.46,
+   "p": 0.984
+  },
+  {
+   "w": "price",
+   "start": 76.46,
+   "end": 76.76,
+   "p": 0.996
+  },
+  {
+   "w": "is",
+   "start": 76.76,
+   "end": 77.06,
+   "p": 0.998
+  },
+  {
+   "w": "a",
+   "start": 77.06,
+   "end": 77.26,
+   "p": 0.997
+  },
+  {
+   "w": "yes",
+   "start": 77.26,
+   "end": 77.48,
+   "p": 0.973
+  },
+  {
+   "w": "or",
+   "start": 77.48,
+   "end": 77.88,
+   "p": 0.987
+  },
+  {
+   "w": "a",
+   "start": 77.88,
+   "end": 78.08,
+   "p": 0.946
+  },
+  {
+   "w": "no.",
+   "start": 78.08,
+   "end": 78.2,
+   "p": 0.998
+  },
+  {
+   "w": "Three",
+   "start": 78.66,
+   "end": 78.86,
+   "p": 0.993
+  },
+  {
+   "w": "prices?",
+   "start": 78.86,
+   "end": 79.26,
+   "p": 0.994
+  },
+  {
+   "w": "That's",
+   "start": 79.68,
+   "end": 79.96,
+   "p": 0.997
+  },
+  {
+   "w": "a",
+   "start": 79.96,
+   "end": 80.08,
+   "p": 0.998
+  },
+  {
+   "w": "choice.",
+   "start": 80.08,
+   "end": 80.36,
+   "p": 0.999
+  },
+  {
+   "w": "Send",
+   "start": 80.94,
+   "end": 81.12,
+   "p": 0.998
+  },
+  {
+   "w": "this",
+   "start": 81.12,
+   "end": 81.3,
+   "p": 0.997
+  },
+  {
+   "w": "to",
+   "start": 81.3,
+   "end": 81.46,
+   "p": 0.999
+  },
+  {
+   "w": "whoever",
+   "start": 81.46,
+   "end": 81.76,
+   "p": 0.999
+  },
+  {
+   "w": "writes",
+   "start": 81.76,
+   "end": 82.06,
+   "p": 0.999
+  },
+  {
+   "w": "your",
+   "start": 82.06,
+   "end": 82.28,
+   "p": 0.998
+  },
+  {
+   "w": "quotes",
+   "start": 82.28,
+   "end": 82.62,
+   "p": 0.99
+  },
+  {
+   "w": "so",
+   "start": 82.62,
+   "end": 82.92,
+   "p": 0.687
+  },
+  {
+   "w": "the",
+   "start": 82.92,
+   "end": 83.1,
+   "p": 0.994
+  },
+  {
+   "w": "next",
+   "start": 83.1,
+   "end": 83.32,
+   "p": 1.0
+  },
+  {
+   "w": "one",
+   "start": 83.32,
+   "end": 83.54,
+   "p": 0.998
+  },
+  {
+   "w": "has",
+   "start": 83.54,
+   "end": 83.72,
+   "p": 0.472
+  },
+  {
+   "w": "three",
+   "start": 83.72,
+   "end": 84.02,
+   "p": 0.899
   },
   {
    "w": "prices.",
-   "start": 83.86,
-   "end": 84.32,
+   "start": 84.02,
+   "end": 84.46,
    "p": 0.998
   }
  ]

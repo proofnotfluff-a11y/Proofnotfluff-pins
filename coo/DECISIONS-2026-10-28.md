@@ -68,3 +68,6 @@
 - 5:32 pm [stated] "I looked at lesson one and there was some shakiness and like jerkiness in the background. Like the figure would slightly move around throughout the video, very slightly. Is there a way to stabilize it and look, make the animations a little bit more fluid? Also, is there just is there a way to just get better animation in general?"
 - 5:33 pm [stated] "The lines in the tile lines in the first scene are like they're going thick and then they're getting thin ... It's almost like the tile lines just keep moving throughout the video."
 - So: the pixel look holds the camera still (no fractional zoom), and slides, clouds and text move in whole low-res pixels. Lessons 1 to 4 re-render; gates rerun on the new renders.
+- 5:58 pm [stated] Answer in chat on steady motion: "Add steady motion (Recommended)" (the 1-second freeze rule stays).
+- 6:09 pm [stated] "Also increase your objects animation skill so it truly looks like a retro video game. The objects like the black board for example should be well designed. Ensure everything is of the highest quality and it looks like a professional animation studio created it."
+- So: a pixel-art pass on the shared runtime (rooms, props, panels, ambient loops), graded by a design reviewer, before lessons re-render.

@@ -3363,7 +3363,9 @@ def home_html(pages, live, doors=False):
     if hub_es:
         by_hub = {e["slug"]: e for e in hub_es}
         feat_d = [by_hub[x] for x in load_hub().get("homeFeature", []) if x in by_hub][:4] or hub_es[:4]
-        dli = lambda e: f'<li><a href="{e["slug"]}/"><b>{E(e["name"])}</b><span>{E(hub_text(e))}</span></a></li>'
+        # the data rows lead with the page's own headline figure (extra design round, Oct 27), the card line when there is none
+        dli = lambda e: (f'<li><a href="{e["slug"]}/"><b>{E(e["name"])}</b><span>'
+                         + (f'<span class="st-tnum">{E(e["stat"][0])}</span> {E(e["stat"][1])}' if e.get("stat") else E(hub_text(e))) + '</span></a></li>')
         calcs = ('<section class="st-sec st-tools" id="calculators" aria-labelledby="tools-title"><h2 id="tools-title">Free tools for trade owners</h2>'
                  '<p>No sign-up. Public records counted for you, and the math to price the job.</p><div class="st-tools2">'
                  '<div class="st-tcol"><h3 class="st-cgroup">Free Chicago data</h3>'
@@ -3734,11 +3736,41 @@ def hub_entries():
             except Exception:
                 date = ""
         g = c.get("group", "more")
-        out.append({"slug": p["slug"], "name": c.get("name", meta["h1"]), "h1": meta["h1"], "card": c.get("card", meta.get("card", "")),
+        stat = hub_stat(p["slug"], c.get("stat"))
+        out.append({"stat": stat, "slug": p["slug"], "name": c.get("name", meta["h1"]), "h1": meta["h1"], "card": c.get("card", meta.get("card", "")),
                     "dlabel": c.get("dateLabel", "Latest data"), "words": meta.get("keywords", ""), "group": g, "gtitle": gt.get(g, "More Chicago data"),
                     "source": c.get("source", ""), "cadence": c.get("cadence", ""), "date": date[:10]})
     out.sort(key=lambda e: order.index(e["slug"]) if e["slug"] in order else len(order))
     return out
+
+
+_PAGE_TEXT = {}
+
+
+def page_text(slug):
+    """A built page's main text with its tags as ' | ', read from docs/ (the hub's headline figures come from here)."""
+    if slug not in _PAGE_TEXT:
+        try:
+            t = open(os.path.join(DOCS, slug, "index.html"), encoding="utf-8").read()
+        except OSError:
+            return ""
+        t = t.split("</h1>", 1)[-1].split("<!--DH-MORE-->", 1)[0].split('<section class="dh-more"', 1)[0]
+        t = re.sub(r"<script.*?</script>|<style.*?</style>", "", t, flags=re.S)
+        t = html.unescape(re.sub(r"<[^>]+>", " | ", t))
+        _PAGE_TEXT[slug] = re.sub(r"(\s*\|\s*)+", " | ", t)
+    return _PAGE_TEXT[slug]
+
+
+def hub_stat(slug, spec):
+    """(number, label) for a hub card from the page's own text (site/datahub.json stat), or None when it no longer matches."""
+    if not spec:
+        return None
+    m = re.search(spec["re"], page_text(slug), re.S)
+    if not m:
+        print("hub: no headline figure for", slug, "(stat pattern did not match the page)")
+        return None
+    fill = lambda t: re.sub(r"\{(\d)\}", lambda g: m.group(int(g.group(1))), t)
+    return fill(spec["num"]), fill(spec["label"])
 
 
 def short_date(iso):
@@ -3768,7 +3800,9 @@ def hub_card(e, rel, tag=True):
     k = E(" ".join([e["name"], e["h1"], e["card"], e["gtitle"], e["words"]]).lower())
     return (f'<li class="cx-item dh-item" data-g="{E(e["group"])}" data-k="{k}"><a href="{rel}{e["slug"]}/">'
             + (f'<span class="cx-tag">{E(e["gtitle"])}</span>' if tag else "")
-            + f'<b>{E(e["name"])}</b><span class="cx-d">{E(card)}</span>'
+            + f'<b>{E(e["name"])}</b>'
+            + (f'<span class="dh-stat"><span class="dh-num">{E(e["stat"][0])}</span> <span class="dh-lab">{E(e["stat"][1])}</span></span>' if e.get("stat") else "")
+            + f'<span class="cx-d">{E(card)}</span>'
             + (f'<span class="dh-meta">{meta}</span>' if meta else "") + '</a></li>')
 
 
@@ -3807,7 +3841,7 @@ def data_hub_html():
                    + (f'<p class="dh-line">{E(l)}</p>' if l else "")
                    + f'<ul class="cx-grid">{"".join(hub_card(e, rel, tag=False) for e in items)}</ul></section>' for i, t, l, items in groups)
     body = (f'{crumb}<p class="eyebrow">Free, from public records</p><h1>Free Chicago data for trade owners</h1>'
-            f'<p class="lede">{len(es)} free pages: {lede_n} trackers and tools from City, State and federal records{news_bit}. Each names its source and the day it was checked.</p>'
+            f'<p class="lede">{len(es)} free pages: {lede_n} trackers and tools from City, County, State and federal records{news_bit}. Each names its source and the day it was checked.</p>'
             '<div class="cx-bar" id="cxBar" data-noun="pages" data-quiet="1" hidden><label class="cx-search"><span class="sr">Search the Chicago data pages</span>'
             '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>'
             '<input id="cxQ" type="search" placeholder="Search permits, rats, snow" autocomplete="off" enterkeyhint="search"><kbd aria-hidden="true">/</kbd></label>'
@@ -4034,7 +4068,7 @@ def main():
         out = os.path.join(DOCS, p["slug"]); os.makedirs(out, exist_ok=True)
         page = page_html(p)
         if is_live(p) and p.get("kind") in ("rodents", "datapage", "tradesnews"):   # every page in the hub ends with its neighbors
-            page = page.replace("</main>", hub_more(p["slug"], "../") + "</main>", 1)
+            page = page.replace("</main>", "<!--DH-MORE-->" + "</main>", 1)   # filled once every page is written (stats read the pages)
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page)
         if p.get("kind") == "tradesnews":   # the brief's RSS feed sits next to it
             import news_site
@@ -4051,6 +4085,13 @@ def main():
                     EXTRA_URLS[BASE + p["slug"] + "/" + relpath[:-len("index.html")]] = mod.lastmod(p) if hasattr(mod, "lastmod") else None
         CURRENT["nav"] = ""
         print("wrote", p["slug"])
+    for p in live:   # the More free Chicago data strip, now that every hub page and its headline figure exist
+        if p.get("kind") in ("rodents", "datapage", "tradesnews"):
+            f_ = os.path.join(DOCS, p["slug"], "index.html")
+            t_ = open(f_, encoding="utf-8").read()
+            if "<!--DH-MORE-->" in t_:
+                t_ = t_.replace("<!--DH-MORE-->", hub_more(p["slug"], "../"), 1)   # before opening the file: opening empties it
+                open(f_, "w", encoding="utf-8").write(t_)
     open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(home_html(pages, live))
     # two front doors draft (move 5): noindex, not in the sitemap, not linked; goes live only on Todd's go
     open(os.path.join(DOCS, "home-two-doors.html"), "w", encoding="utf-8").write(home_html(pages, live, doors=True))

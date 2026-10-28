@@ -116,7 +116,7 @@
       var bar = doc.getElementById("cxBar"), all = doc.getElementById("cxAll"), empty = doc.getElementById("cxEmpty"), count = doc.getElementById("cxCount");
       var chips = [].slice.call(doc.querySelectorAll(".cx-chip")), cards = [].slice.call(doc.querySelectorAll("#cxAll .cx-group .cx-item"));
       var groups = [].slice.call(doc.querySelectorAll("#cxAll .cx-group")), start = doc.querySelector(".cx-start");
-      var g = "", total = cards.length;
+      var g = "", total = cards.length, noun = bar.dataset.noun || "calculators";   // the Chicago data hub reuses the catalog (Oct 27)
       bar.hidden = false;
       var run = function () {
         var words = norm(q.value).split(" ").filter(Boolean), n = 0;
@@ -129,7 +129,7 @@
           cards.forEach(function (card) { if ((!gg || card.dataset.g === gg) && matches(norm(card.dataset.k), words)) c++; });
           var s = b.querySelector("span"); if (s) s.textContent = c;
         });
-        count.textContent = words.length || g ? "Showing " + n + " of " + total + " calculators" : total + " calculators";
+        count.textContent = words.length || g ? "Showing " + n + " of " + total + " " + noun : (bar.dataset.quiet ? "" : total + " " + noun);   // the hub states its total in the All chip
         try { var u = new URL(location.href); if (q.value) u.searchParams.set("q", q.value); else u.searchParams.delete("q"); if (g) u.searchParams.set("cat", g); else u.searchParams.delete("cat"); history.replaceState(null, "", u); } catch (e) {}
       };
       q.addEventListener("input", run);

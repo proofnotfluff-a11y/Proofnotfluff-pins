@@ -1,0 +1,64 @@
+{
+ "schema": "pnf.studio.captions.v1",
+ "keywords": {
+  "primary": "how to price a job",
+  "secondary": [
+   "hvac business pricing",
+   "home service business"
+  ],
+  "trades": [
+   "HVAC",
+   "plumbing",
+   "electrical"
+  ]
+ },
+ "instagram": {
+  "caption": "How to price a job: put 3 prices on every quote. For HVAC, plumbing and electrical business owners.\nServiceTitan data (12 months to Jan 2026): the top 10% of shops by revenue offered good, better, best on 57% of home jobs. Everyone else: 41%.\n\nQuote Clinic, Lesson 4: build your three like this.\nGood ($): the job done right. Nothing extra.\nBetter ($$): what you'd pick for your own house.\nBest ($$$): plus upgrades, like a longer warranty or a faster start date.\n\nWhy the middle works: in 7 years of orders at a German restaurant, a dish that became the middle option gained about 5 points of share on average (Journal of Economic Behavior and Organization, 2016).\nAn ACCA survey of 1,000+ contractors: 4+ options closed 52% of the time, 1 to 3 options 42% (ACHR News, 2026). It groups 1 to 3 together, so it can't show 3 beats 1.\n\nSend this to whoever writes your quotes.\nOne price or three on your quotes? Tell me what happens when you give three.\nFree tools for trade owners: link in bio.\nNarrated by an AI version of my own voice.\n\n#homeservicebusiness #hvacbusiness #electricalbusiness #goodbetterbest",
+  "settings": {
+   "aiLabel": true,
+   "shareToFacebook": false
+  }
+ },
+ "tiktok": {
+  "caption": "How to price a job: 3 prices on every quote, for HVAC, plumbing and electrical owners.\nTop 10% of shops by revenue offered good, better, best on 57% of home jobs; everyone else 41% (ServiceTitan, 12 months to Jan 2026).\nGood ($): the job done right, nothing extra. Better ($$): what you'd pick for your own house. Best ($$$): plus upgrades, like a longer warranty or a faster start date.\nOne price or three on your quotes? What happens when you give three?\nNarrated by an AI version of my own voice.\n#homeservicebusiness #hvacbusiness #plumbingbusiness #electricalbusiness #goodbetterbest",
+  "settings": {
+   "aiGenerated": true,
+   "commercialDisclosure": false,
+   "suggestKeywords": [
+    "how to price a job",
+    "good better best pricing",
+    "hvac business pricing"
+   ]
+  }
+ },
+ "facebook": {
+  "caption": "How to price a job: put 3 prices on every quote. For HVAC, plumbing and electrical business owners.\nThe top 10% of shops by revenue offered good, better, best on 57% of home jobs; everyone else 41% (ServiceTitan, 12 months to Jan 2026).\nGood ($): the job done right, nothing extra. Better ($$): what you'd pick for your own house. Best ($$$): plus upgrades, like a longer warranty or a faster start date.\nIn an ACCA survey of 1,000+ contractors, 4+ options closed 52% vs 42% for 1 to 3 options (ACHR News, 2026). It groups 1 to 3 together, so it can't show 3 beats 1.\nSend this to whoever writes your quotes.\nNarrated by an AI version of my own voice.\n#homeservicebusiness #contractorbusiness #goodbetterbest",
+  "settings": {
+   "aiLabel": true,
+   "audience": "Public"
+  }
+ },
+ "youtube": {
+  "title": "How to Price a Job: Put 3 Prices on Every Quote (HVAC, Plumbing, Electrical)",
+  "description": "How to price a job with good, better, best: put 3 prices on every quote. For HVAC, plumbing, electrical and home service business owners.\nServiceTitan, State of the Trades, Top Performer Profile: top performers (the 90th percentile of revenue in their trade and market) offered good, better, best proposals on 57% of residential jobs; everyone else on 41% (aggregated ServiceTitan customer data, trailing 12 months through January 2026).\nPinger, Ruhmer-Krell and Schumacher, \"The compromise effect in action: Lessons from a restaurant's menu,\" Journal of Economic Behavior and Organization 128 (2016): 7 years of orders at a German restaurant; an option that became the middle choice gained on average 5 percentage points of share, more when the added option was at the high end.\nACCA and Farmington Consulting Group, \"Contractor of the Future\" survey of 1,000+ contractors (ACHR News, Feb 10, 2026): 4+ options closed 52% of the time; 1 to 3 options closed 42%. The survey groups 1, 2 and 3 options together, so it does not show that 3 beats 1.\n\nBuild your three:\n1. Good ($): the job done right. Nothing extra.\n2. Better ($$): what you'd pick for your own house.\n3. Best ($$$): plus upgrades, like a longer warranty or a faster start date.\n\nOne price is a yes or a no. Three prices is a choice. Send this to whoever writes your quotes.\nNext lesson: another Quote Clinic fix for your next quote.\nFree tools for trade owners at proofnotfluff.com\nNarrated by an AI version of my own voice.\n#homeservicebusiness #contractorbusiness #goodbetterbest",
+  "tags": [
+   "how to price a job",
+   "good better best pricing",
+   "hvac business pricing",
+   "plumbing business pricing",
+   "electrical business pricing",
+   "how to price a plumbing job",
+   "home service business",
+   "contractor business tips",
+   "contractor pricing",
+   "contracter pricing"
+  ],
+  "settings": {
+   "madeForKids": false,
+   "aiUse": false,
+   "category": "Education",
+   "language": "English",
+   "visibility": "Public"
+  }
+ }
+}

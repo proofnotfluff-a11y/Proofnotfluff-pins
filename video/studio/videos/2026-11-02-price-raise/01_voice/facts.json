@@ -1,0 +1,63 @@
+{
+ "about": "Every number this video shows or says, with its source. Checked by the facts gate against the source page; from video/studio/research/runs/2026-10-28-topic-bank.md (T1, Brief 1) and re-read on the source page (WebFetch) on Oct 28, 2026.",
+ "kkt": {
+  "title": "Fairness as a Constraint on Profit Seeking: Entitlements in the Market",
+  "authors": "Daniel Kahneman, Jack L. Knetsch, Richard Thaler",
+  "journal": "The American Economic Review",
+  "volume": 76,
+  "issue": 4,
+  "pages": "728 to 741",
+  "month": "September",
+  "year": 1986,
+  "url": "https://eml.berkeley.edu/~saez/course131/Kahneman-FairnessConstraintProfit-1986.pdf",
+  "method": "telephone surveys of randomly selected residents of two Canadian metropolitan areas, Toronto and Vancouver; equal numbers of adult female and male respondents, interviewed for about ten minutes in evening hours; data collected May 1984 to July 1985",
+  "city1": "Toronto",
+  "city2": "Vancouver",
+  "fieldStartYear": 1984,
+  "fieldEndYear": 1985,
+  "scale": "Each action rated Completely Fair, Acceptable, Unfair or Very Unfair; the paper groups the two favorable categories as 'acceptable' and the two unfavorable as 'unfair'.",
+  "measures": "Judgments of fairness about hypothetical firms ('household surveys of public opinions'), not purchases or buying behavior.",
+  "shovel": {
+   "question": 1,
+   "wording": "A hardware store has been selling snow shovels for $15. The morning after a large snowstorm, the store raises the price to $20.",
+   "fromDollars": 15,
+   "toDollars": 20,
+   "unfairPct": 82,
+   "n": 107,
+   "quote": "82 percent of respondents (N =107) considered it unfair for the hardware store to take advantage of the short-run increase in demand associated with a blizzard."
+  },
+  "lettuce": {
+   "question": 7,
+   "wording": "Due to a transportation mixup, a local shortage of lettuce raised the wholesale price. A local grocer bought the usual quantity at a price 30 cents per head higher than normal and raises the price to customers by 30 cents per head.",
+   "centsPerHead": 30,
+   "acceptablePct": 79,
+   "unfairPct": 21,
+   "n": 101,
+   "quote": "(N =101) Acceptable 79% Unfair 21%"
+  },
+  "rent": {
+   "question": 8,
+   "wording": "A landlord rents a single small house to a tenant on a fixed income. The landlord's costs have increased substantially over the past year and the landlord raises the rent to cover the cost increases when the tenant's lease is due for renewal.",
+   "acceptablePct": 75,
+   "unfairPct": 25,
+   "n": 151,
+   "quote": "(N = 151) Acceptable 75% Unfair 25%"
+  },
+  "stock": {
+   "question": 10,
+   "wording": "A grocery store has several months' supply of peanut butter in stock. When the wholesale price rises, the owner immediately raises the price on the current stock of peanut butter.",
+   "acceptablePct": 21,
+   "unfairPct": 79,
+   "n": 147,
+   "quote": "(N =147) Acceptable 21% Unfair 79%"
+  }
+ },
+ "letter": {
+  "source": "OURS: advice, not a finding (adapted from the topic bank's T1 takeaway)",
+  "lines": [
+   "Starting next month, our rates are going up.",
+   "Our labor and material costs went up this year.",
+   "Anything you've already approved stays at the price we quoted."
+  ]
+ }
+}

@@ -1,21 +1,99 @@
 {
  "about": "Chicago Trades News, our own words with the source of each item linked. Built by the trades-news run; checked by tools/news_site.py.",
- "updated": "2026-10-27",
+ "updated": "2026-10-28",
  "items": [
+  {
+   "id": "illinois-construction-site-toilets-2027",
+   "date": "2026-09-11",
+   "effective": "2027-01-01",
+   "checked": "2026-10-28",
+   "stage": "passed",
+   "category": "Safety",
+   "trades": [
+    "General contractors",
+    "Roofing",
+    "Electrical",
+    "Plumbing",
+    "HVAC",
+    "Painting"
+   ],
+   "headline": "Illinois job sites need separate toilets, period products and lactation space from 2027",
+   "what": "A new Illinois law, Public Act 104-0850, takes effect Jan 1, 2027. On a construction job of more than 2 days with 10 or more workers where a woman works, there must be a separate designated toilet with a sign outside. Construction employers must also provide a toilet that locks, free menstrual products and lactation space on request, unless that is an undue hardship.",
+   "why": "This changes what goes on site for many crews. Check your portable toilet orders, site supply kits and subcontract terms before January, and read the act for the details and the time allowed to comply.",
+   "sources": [
+    {
+     "name": "Illinois General Assembly, Public Act 104-0850",
+     "url": "https://ilga.gov/Documents/Legislation/PublicActs/104/PDF/104-0850.pdf"
+    },
+    {
+     "name": "WBEZ, construction sites and women workers",
+     "url": "https://www.wbez.org/politics/2026/09/11/construction-jobs-women-job-sites-illinois-law-pritzker-zahrah-hill"
+    }
+   ]
+  },
+  {
+   "id": "illinois-menopause-accommodations-2027",
+   "date": "2026-09-01",
+   "effective": "2027-01-01",
+   "checked": "2026-10-28",
+   "stage": "passed",
+   "category": "Rules and permits",
+   "trades": [
+    "All trades"
+   ],
+   "headline": "Illinois employers must accommodate menopause from Jan 1, 2027",
+   "what": "Public Act 104-0793 amends the Illinois Human Rights Act from Jan 1, 2027. Employers must make reasonable accommodations for perimenopause, menopause and related conditions when a worker asks, unless it is an undue hardship. Employers must also post a notice of these rights or put it in the employee handbook.",
+   "why": "This adds a new kind of accommodation request and a new required notice. Check your posters and handbook before January and how your crew leads handle requests.",
+   "sources": [
+    {
+     "name": "Illinois General Assembly, Public Act 104-0793",
+     "url": "https://ilga.gov/Legislation/PublicActs/View/104-0793"
+    }
+   ]
+  },
+  {
+   "id": "leclaire-courts-phase-one",
+   "date": "2026-10-20",
+   "effective": null,
+   "checked": "2026-10-28",
+   "stage": "under way",
+   "category": "Jobs and projects",
+   "trades": [
+    "General contractors",
+    "Electrical",
+    "Plumbing",
+    "HVAC",
+    "Roofing",
+    "Painting"
+   ],
+   "headline": "LeClaire Courts first phase starts in Garfield Ridge: 183 apartments by 2028",
+   "what": "Construction has started on phase one of the former LeClaire Courts public housing site with the Chicago Housing Authority. Phase one is two six story buildings with 183 apartments, an early childhood center and ground floor retail, at a cost of $119 million. George Sollitt Construction is the general contractor, and completion is expected in 2028.",
+   "why": "A two year residential build on the Southwest Side means subcontract and supply work for mechanical and finish trades. Check with the general contractor about bid packages and any hiring or certified business goals.",
+   "sources": [
+    {
+     "name": "REBusinessOnline, LeClaire Courts groundbreaking",
+     "url": "https://rebusinessonline.com/?p=472118"
+    }
+   ]
+  },
   {
    "id": "chicago-2027-budget-head-tax",
    "date": "2026-10-21",
    "effective": null,
-   "checked": "2026-10-27",
+   "checked": "2026-10-28",
    "stage": "proposed",
    "category": "Tax and pay",
    "trades": [
     "All trades"
    ],
-   "headline": "Chicago's 2027 budget plan brings back a per-worker tax on large employers",
-   "what": "Mayor Johnson's proposed 2027 budget includes a tax of $25 a month for each employee at companies with more than 125 workers, which the City expects to raise about $100 million a year. Last year the City Council rejected a version at $33 per worker for companies with more than 500 workers, and the Council still has to vote on this one by the end of the year.",
-   "why": "The tax only applies above 125 workers, so check your headcount if you are near that line. Larger contractors and cleaning or facility service firms should follow the budget hearings and the vote.",
+   "headline": "Chicago's 2027 budget plan would bring back a per-worker tax on large employers",
+   "what": "Mayor Johnson's proposed 2027 budget includes a tax of $25 a month for each worker at companies with at least 125 full-time employees. A similar proposal failed last year. Council budget hearings began Oct 26 and run through Nov 10, and the Council still has to pass a budget by Dec 31.",
+   "why": "As proposed, the tax would apply only at 125 or more full-time employees, so check your headcount if you are near that line. Larger contractors and cleaning or facility service firms can check the budget hearings and the Council vote.",
    "sources": [
+    {
+     "name": "ABC7 Chicago, City Council begins budget hearings",
+     "url": "https://abc7chicago.com/post/chicago-city-council-begins-hearings-mayor-brandon-johnsons-budget-plan/19980383/"
+    },
     {
      "name": "WTTW, Johnson's proposed 2027 budget",
      "url": "https://news.wttw.com/2026/10/21/johnson-touts-176b-proposed-budget-2027-let-us-plant-seeds-fair-chicago"

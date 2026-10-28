@@ -1,29 +1,29 @@
 {
  "schema": "pnf.video.qa.v1",
  "videoId": "2026-10-26-rats-z",
- "mp4Sha256": "1eca17086c4519e86da41be1d9c1f366312dd1dce681b911a97b076d2a288953",
+ "mp4Sha256": "bff53d41a627a7c0753cc6496e354a8e9a89fecc68b8352f276db7f3467ee776",
  "voice": {
   "id": "test",
   "name": "test tones",
   "model": "test",
   "test": true,
-  "chars": 568
+  "chars": 578
  },
  "checks": [
   {
    "name": "length",
-   "value": 52.267,
+   "value": 52.933,
    "pass": true,
-   "detail": "52.27 s (45.0 to 60.0)"
+   "detail": "52.93 s (45.0 to 60.0)"
   },
   {
    "name": "loudness",
    "value": {
     "lufs": -14.0,
-    "truePeak": -5.6
+    "truePeak": -5.9
    },
    "pass": true,
-   "detail": "-14.0 LUFS (target -14 +/- 1), true peak -5.6 dBTP (at most -1.5)"
+   "detail": "-14.0 LUFS (target -14 +/- 1), true peak -5.9 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -35,18 +35,18 @@
    "name": "frozen",
    "value": [
     [
-     50.3667,
-     52.266667
+     51.0333,
+     52.933
     ]
    ],
    "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 45.32 s"
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 45.97 s"
   },
   {
    "name": "hook",
-   "value": 2.75,
+   "value": 2.975,
    "pass": true,
-   "detail": "hook's last word ends at 2.75 s (by 3.00)"
+   "detail": "hook's last word ends at 2.98 s (by 3.00)"
   },
   {
    "name": "numbers",
@@ -74,21 +74,10 @@
      "77"
     ],
     "missing": [],
-    "unexpected": [
-     {
-      "n": "0",
-      "t": 49.25,
-      "conf": 83.92823
-     },
-     {
-      "n": "0",
-      "t": 49.25,
-      "conf": 76.686859
-     }
-    ]
+    "unexpected": []
    },
-   "pass": false,
-   "detail": "9 of 9 numbers read on screen; missing none; unexpected ['0', '0']"
+   "pass": true,
+   "detail": "9 of 9 numbers read on screen; missing none; unexpected none"
   },
   {
    "name": "safe-band",
@@ -100,29 +89,29 @@
    "name": "faces",
    "value": [],
    "pass": true,
-   "detail": "0 frame(s) with a face at 0.6 or more (52 frames checked)"
+   "detail": "0 frame(s) with a face at 0.6 or more (53 frames checked)"
   },
   {
    "name": "file",
    "value": {
-    "sha256": "1eca17086c4519e86da41be1d9c1f366312dd1dce681b911a97b076d2a288953",
-    "bytes": 3797366
+    "sha256": "bff53d41a627a7c0753cc6496e354a8e9a89fecc68b8352f276db7f3467ee776",
+    "bytes": 3620172
    },
    "pass": true,
-   "detail": "opens, decodes to the end, 3.8 MB, matches the manifest"
+   "detail": "opens, decodes to the end, 3.6 MB, matches the manifest"
   },
   {
    "name": "layout",
    "value": [],
    "pass": true,
-   "detail": "0 layout problem(s) in 84 boxes"
+   "detail": "0 layout problem(s) in 78 boxes"
   },
   {
    "name": "spec-match",
-   "value": "325689d880e12f9c4031e1c306a1c05be0f09a448d1d5a25af8cbf7d53c95028",
+   "value": "362d277c2d4b1e1a9854ab230f3ada8f0e6ceef545514ac8ac72610a690f433f",
    "pass": true,
    "detail": "the render is of this exact spec"
   }
  ],
- "pass": false
+ "pass": true
 }

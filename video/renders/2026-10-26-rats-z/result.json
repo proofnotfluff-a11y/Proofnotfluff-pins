@@ -2,8 +2,8 @@
  "schema": "pnf.video.render_result.v1",
  "videoId": "2026-10-26-rats-z",
  "jobSha256": "eb1ca4c0a12fe6117797782a64ab5083b0c5ce785abf1bab7ef9e61c9e021392",
- "specSha256": "325689d880e12f9c4031e1c306a1c05be0f09a448d1d5a25af8cbf7d53c95028",
- "at": "2026-10-28T03:15:16+00:00",
+ "specSha256": "362d277c2d4b1e1a9854ab230f3ada8f0e6ceef545514ac8ac72610a690f433f",
+ "at": "2026-10-28T10:15:09+00:00",
  "branch": "video-renders",
  "voices": [
   {
@@ -11,17 +11,14 @@
    "name": "test",
    "status": "rendered",
    "path": "2026-10-26-rats-z/test/",
-   "transcriptError": "      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"av/container/core.py\", line 479, in av.container.core.open\nTypeError: open() got an unexpected keyword argument 'metadata_errors'\n",
-   "qaPass": false,
-   "mp4Sha256": "1eca17086c4519e86da41be1d9c1f366312dd1dce681b911a97b076d2a288953",
-   "seconds": 52.267,
+   "qaPass": true,
+   "mp4Sha256": "bff53d41a627a7c0753cc6496e354a8e9a89fecc68b8352f276db7f3467ee776",
+   "seconds": 52.933,
    "lufs": -14.0,
-   "truePeak": -5.6,
-   "chars": 568,
-   "failed": [
-    "numbers"
-   ]
+   "truePeak": -5.9,
+   "chars": 578,
+   "failed": []
   }
  ],
- "rendersCommit": "e5c81edaed8937ac44bc1b4b8cf61da0ec7fbab2"
+ "rendersCommit": "328d34fe1cb8f1fb5de49f4eb6af17a46964867d"
 }

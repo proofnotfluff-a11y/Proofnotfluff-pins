@@ -1,0 +1,117 @@
+{
+ "schema": "pnf.video.qa.v1",
+ "videoId": "2026-10-27-rats-a",
+ "mp4Sha256": "6f6eaafec5af2c0c7c917f31291b9ad6d11f09f791f2c8e8130f2cddf570dc1c",
+ "voice": {
+  "id": "pqHfZKP75CvOlQylNhV4",
+  "name": "Bill",
+  "model": "eleven_v4",
+  "test": false,
+  "chars": 633
+ },
+ "checks": [
+  {
+   "name": "length",
+   "value": 52.567,
+   "pass": true,
+   "detail": "52.57 s (45.0 to 60.0)"
+  },
+  {
+   "name": "loudness",
+   "value": {
+    "lufs": -14.0,
+    "truePeak": -1.8
+   },
+   "pass": true,
+   "detail": "-14.0 LUFS (target -14 +/- 1), true peak -1.8 dBTP (at most -1.5)"
+  },
+  {
+   "name": "black",
+   "value": [],
+   "pass": true,
+   "detail": "0 black stretch(es) of 0.5 s or more"
+  },
+  {
+   "name": "frozen",
+   "value": [
+    [
+     50.6333,
+     52.566667
+    ]
+   ],
+   "pass": true,
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 45.68 s"
+  },
+  {
+   "name": "hook",
+   "value": 3.7,
+   "pass": false,
+   "detail": "hook's last word ends at 3.70 s (by 3.00)"
+  },
+  {
+   "name": "numbers",
+   "value": {
+    "expected": [
+     "10.2",
+     "14",
+     "221.4",
+     "26",
+     "30",
+     "311",
+     "44",
+     "45",
+     "77"
+    ],
+    "seen": [
+     "10.2",
+     "14",
+     "221.4",
+     "26",
+     "30",
+     "311",
+     "44",
+     "45",
+     "77"
+    ],
+    "missing": [],
+    "unexpected": []
+   },
+   "pass": true,
+   "detail": "9 of 9 numbers read on screen; missing none; unexpected none"
+  },
+  {
+   "name": "safe-band",
+   "value": [],
+   "pass": true,
+   "detail": "0 word(s) read outside y 270 to 1250 or in the right 150 px"
+  },
+  {
+   "name": "faces",
+   "value": [],
+   "pass": true,
+   "detail": "0 frame(s) with a face at 0.6 or more (53 frames checked)"
+  },
+  {
+   "name": "file",
+   "value": {
+    "sha256": "6f6eaafec5af2c0c7c917f31291b9ad6d11f09f791f2c8e8130f2cddf570dc1c",
+    "bytes": 3612467
+   },
+   "pass": true,
+   "detail": "opens, decodes to the end, 3.6 MB, matches the manifest"
+  },
+  {
+   "name": "layout",
+   "value": [],
+   "pass": true,
+   "detail": "0 layout problem(s) in 94 boxes"
+  },
+  {
+   "name": "spec-match",
+   "value": "9e3ed5dece93a31dc12cc7f3b057647b28f12f6ec270d436e1a0314dd40d7062",
+   "pass": true,
+   "detail": "the render is of this exact spec"
+  }
+ ],
+ "pass": false
+}

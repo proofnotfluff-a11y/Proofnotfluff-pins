@@ -7,6 +7,11 @@ name: Chicago crew cost data
 # figure in watch.json. A FAIL turns the run red: a source changed, so the files need a new download and ingest.
 on:
   workflow_dispatch:
+    inputs:
+      base:
+        description: "ci-verify only: the commit to compare docs/ against"
+        required: false
+        default: "HEAD~1"
   push:
     branches: [main]
     paths: ["tools/dp_crew_cost_fetch.py", ".github/workflows/dp-crew-cost.yml"]
@@ -35,3 +40,22 @@ jobs:
         run: |
           echo "A watched figure no longer matches its source (site/datapages/dp_crew_cost/watch.json). Download the new file and re-run ingest."
           exit 1
+  ci-verify:
+    # By hand only: the same check as the Verify site workflow, with each FAIL line raised as an annotation so the
+    # crew can read it through the API (run logs and artifacts are not reachable from the cloud sessions).
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet playwright pillow cryptography openpyxl
+      - run: python -m playwright install --with-deps chromium
+      - name: Verify like the site workflow and annotate the FAIL lines
+        run: |
+          python3 tools/verify_site.py --changed "${{ inputs.base || 'HEAD~1' }}" --flows --out data/verify/ci > verify.log 2>&1 || true
+          grep -E "^(FAIL|verify:)" verify.log | head -40 | while IFS= read -r l; do echo "::warning::${l}"; done

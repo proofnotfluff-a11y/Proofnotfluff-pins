@@ -1,0 +1,14 @@
+{
+ "gate": "facts-captions",
+ "round": 0,
+ "at": "2026-10-28T16:56:00-05:00",
+ "pass": false,
+ "score": {
+  "numbers": 67,
+  "mismatches": 0
+ },
+ "reasons": [
+  "TikTok missing the send line",
+  "YouTube description line 1 is 137 characters (under 100 required)"
+ ]
+}

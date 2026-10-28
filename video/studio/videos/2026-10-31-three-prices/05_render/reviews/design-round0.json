@@ -1,0 +1,26 @@
+{
+ "gate": "design",
+ "round": 0,
+ "at": "2026-10-28T16:56:00-05:00",
+ "pass": false,
+ "score": {
+  "first": 5,
+  "hierarchy": 4,
+  "type": 4,
+  "color": 4,
+  "spacing": 4,
+  "polish": 4,
+  "trust": 4,
+  "average": 4.14
+ },
+ "reasons": [
+  "Survey header: ruled lines through the header text; needs a dark band",
+  "Stat boxes open at full height, mostly empty for 1.5 s",
+  "Stray '$' outside the hook build card near the right edge",
+  "'A habit you can copy.' sticker crosses the 57% bar",
+  "Close board left-aligned, call to action smallest text",
+  "Menu citation and 'on average' low contrast",
+  "Menu board mostly empty 18.8 to 23.4 s",
+  "'More choices, more yeses.' too small, sparks over letters"
+ ]
+}

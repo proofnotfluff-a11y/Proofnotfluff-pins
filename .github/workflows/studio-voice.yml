@@ -1,0 +1,31 @@
+name: Studio voice
+# The studio's voice and words stages (video/studio/CLAUDE.md; Todd, Oct 28, 2026, coo/DECISIONS-2026-10-28.md). A run of
+# the studio commits video/studio/videos/<slug>/01_voice/speak.json; this workflow speaks script.md with ElevenLabs Eleven v4
+# (the ELEVENLABS_API_KEY secret, never printed) one paragraph take at a time, joins the takes, times every word with
+# Whisper, re-spells the words from the script and flags any disagreement. Audio goes to the video-renders branch under
+# studio/<slug>/01_voice/; takes.json, words.json and transcript.md go to main. Nothing is posted anywhere.
+on:
+  push:
+    branches: [main]
+    paths: ["video/studio/videos/*/01_voice/speak.json"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: studio-voice
+  cancel-in-progress: false
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg > /dev/null
+          pip install --quiet faster-whisper numpy
+      - name: Speak, transcribe, publish
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        run: python3 video/studio/anim.py ci-voice

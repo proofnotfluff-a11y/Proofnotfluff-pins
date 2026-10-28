@@ -6,8 +6,11 @@
   const slug = q.get('v');
   const base = `../videos/${slug}/`;
   const scripts = [base + '04_scene/data.js', base + '03_cues/cues.js', base + '02_transcript/words.js', base + '04_scene/scene.js'];
+  const optional = [base + '02_transcript/mouth.js'];   // lip sync from the voice (anim.py mouth); without it the mouth moves on a sine
   const imgs = {};
+  const FPS = 30, FREEZE = 3, LEAD = 6 / FPS, CAM_RATE = 8, SHAKE_GAP = 10;
   let cues = [], byId = {}, words = [], phrases = [], look, lowCanvas, hostCanvas, pal = null;
+  let stamps = [], shakes = [], survey = null;
 
   function load(src) { return new Promise((ok, bad) => { const s = document.createElement('script'); s.src = src + '?' + Date.now(); s.onload = ok; s.onerror = () => bad(new Error('missing ' + src)); document.head.appendChild(s); }); }
 
@@ -110,11 +113,127 @@
   }
 
   const env = {
-    data: null,
+    data: null, words: [], duration: 600, mouth: null,
     cue: (id) => { const c = byId[id]; if (!c) throw new Error('no cue ' + id); return c; },
     talking: (T) => words.some((w) => T >= w.start - 0.02 && T < w.end + 0.06),
     img: (n) => imgs[n],
   };
+
+  // ---- motion helpers. Every frame is drawn on its own, in any order (anim.py renders random access), so each effect
+  // below is a pure function of T: nothing carries over from the frame before.
+  const sectionAt = (tops, t) => { let s = tops[0]; tops.forEach((c) => { if (t >= c.t) s = c; }); return s; };
+  // smooth value noise, about 14 steps a second, -1 to 1
+  const hash = (n) => { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
+  const vnoise = (x, seed) => { const i = Math.floor(x), f = x - i, u = f * f * (3 - 2 * f); return (hash(i + seed * 57.3) * (1 - u) + hash(i + 1 + seed * 57.3) * u) * 2 - 1; };
+  // trauma: each stamp adds some (0.5; SCENE.trauma = {cueId: 0.8} for the one big verdict) when its freeze ends, at most
+  // one shaking stamp in 10 s; it drains at 3 a second, and the shake is trauma squared, so small hits barely move the frame
+  function trauma(T) {
+    let tr = 0, tl = -1e9;
+    for (const e of shakes) { if (e.t > T) break; tr = Math.min(1, Math.max(0, tr - 3 * (e.t - tl)) + e.a); tl = e.t; }
+    return Math.max(0, tr - 3 * (T - tl));
+  }
+  // the scene's clock: it stops for 3 frames when a stamp lands (the hit-stop) and shivers 1 low-res pixel
+  function sceneClock(T, sec) {
+    for (const c of stamps) { const f = (T - c.t) * FPS + 0.005; if (c.t >= sec.t && f >= 0 && f < FREEZE) return {Ts: c.t, shiver: Math.floor(f) % 2 ? -1 : 1}; }
+    return {Ts: T, shiver: 0};
+  }
+  // the camera leads the beat: it starts toward each beat's focus 6 frames before the cue and eases in at 1 - exp(-8 dt).
+  // A target that steps is the sum of its steps, each eased from the moment it starts, which is exactly the frame-by-frame
+  // ease, worked out from the time alone.
+  function camera(k, T, sec) {
+    const fo = window.SCENE.focus || {}, into = T - sec.t;
+    const aim = (id) => { const f = fo[id] || fo[sec.id]; return f ? [540 + (f[0] - 540) * 0.2, 300 + (f[1] - 300) * 0.2] : [540, 300]; };
+    let zoom = 1 + 0.03 * Math.min(1, into / Math.max(1, sec.end - sec.t));   // a slow push-in through each section
+    const beats = cues.filter((c) => c.level > 0 && c.t > sec.t && c.t < sec.end);
+    // the zoom ladder: every beat inside a section steps the camera in a little, with a springy overshoot
+    beats.filter((c) => c.t <= T).forEach((c, i) => { if (i < 3) zoom += 0.018 * k.back((T - c.t) / 0.3); });
+    let prev = aim(sec.id); const at = prev.slice();
+    for (const b of beats) {
+      const t0 = Math.max(sec.t, b.t - LEAD); if (t0 > T) break;
+      const v = aim(b.id), w = 1 - Math.exp(-CAM_RATE * (T - t0));
+      at[0] += (v[0] - prev[0]) * w; at[1] += (v[1] - prev[1]) * w; prev = v;
+    }
+    return {zoom, fx: at[0], fy: at[1]};
+  }
+  // where the pose last changed (talking and standing count as one idle pose), sampled at boot every 0.2 s by running
+  // the scene on a tiny canvas; the same pass notes which room each section draws, for the room's own transition
+  function runSurvey() {
+    const step = 0.2, n = Math.ceil(window.DURATION / step) + 1, fam = [], runStart = [], rooms = {};
+    const cv = document.createElement('canvas'); cv.width = cv.height = 4; const g = cv.getContext('2d');
+    const tops = cues.filter((c) => c.level === 0), boxes = window.__boxes; window.__boxes = null;
+    for (let i = 0; i < n; i++) {
+      const t = i * step, sec = sectionAt(tops, t), fn = window.SCENE.sections[sec.id];
+      if (g.reset) g.reset(); g.setTransform(0.004, 0, 0, 0.004, 0, 0);
+      const kk = Kit.make(g, look, t, env), room0 = kk.room; let room = null;
+      kk.room = (name, o) => { if (!room) room = name; return room0(name, o); };
+      let ret = {};
+      try { ret = (fn && fn(kk, t, sec)) || {}; } catch (e) { ret = {}; }
+      if (room && !rooms[sec.id]) rooms[sec.id] = room;
+      const pose = ret.host === false || window.SCENE.host === false ? 'none' : (typeof ret.hostPose === 'string' ? ret.hostPose : (env.talking(t) ? 'talk' : 'stand'));
+      fam.push(pose === 'talk' || pose === 'stand' ? 'idle' : pose);
+      runStart.push(i && fam[i] === fam[i - 1] ? runStart[i - 1] : t);
+    }
+    window.__boxes = boxes;
+    return {step, fam, runStart, rooms};
+  }
+  function idleOf(T, pose) {
+    if (!survey) return {};
+    const i = Math.max(0, Math.min(survey.fam.length - 1, Math.floor(T / survey.step)));
+    const f = pose === 'talk' || pose === 'stand' ? 'idle' : pose;
+    return f === survey.fam[i] ? {idle: T - survey.runStart[i], idleSeed: survey.runStart[i]} : {idle: 0, idleSeed: 0};
+  }
+  // room to room: 12 frames, 5 closing over the old room, the cut, 1 held shut, 6 opening on the new one. The new room
+  // picks the move: blinds (workshop), a chalk wipe (blackboard), a garage door (garage), an iris (framing); blinds otherwise.
+  // A section names its room with SCENE.rooms = {sectionId: 'garage'}, or the player reads its k.room call.
+  const STYLE = {workshop: 'blinds', blackboard: 'chalk', garage: 'door', framing: 'iris'};
+  function transition(ctx, T, tops, sec, U, head) {
+    const i = tops.indexOf(sec), nx = tops[i + 1];
+    let u = null, to = null;
+    const E = 0.005;   // frame times arrive with rounding; a frame on the boundary counts as the later one
+    if (nx && (T - nx.t) * FPS + E >= -5) { u = (T - nx.t) * FPS + E; to = nx; }
+    else if (i > 0 && (T - sec.t) * FPS + E < 7) { u = (T - sec.t) * FPS + E; to = sec; }
+    if (u == null) return;
+    const q = u < 0 ? Math.pow(Math.max(0, (u + 6) / 6), 2) : (u < 1 ? 1 : Math.pow(1 - u / 7, 2));   // how shut: eases in, eases out
+    if (q <= 0) return;
+    const room = (window.SCENE.rooms || {})[to.id] || (survey && survey.rooms[to.id]);
+    const style = STYLE[room] || 'blinds', closing = u < 0;
+    const cell = Math.max(U, 3), sn = (v) => Math.round(v / cell) * cell;
+    const fill = (c, x, y, w, h) => { if (w > 0 && h > 0) { ctx.fillStyle = c; ctx.fillRect(x, y, w, h); } };
+    if (style === 'blinds') {   // slats slide in from alternate sides over the old room, then back out
+      for (let s = 0; s < 16; s++) {
+        const qs = Math.max(0, Math.min(1, q * 1.3 - s * 0.02)), w = sn(W * qs);
+        fill('#120D14', s % 2 ? W - w : 0, s * 120, w, 120); fill('#3D2E45', s % 2 ? W - w : 0, s * 120 + 120 - cell, w, cell);
+      }
+    } else if (style === 'chalk') {   // a board eraser sweeps across on a slant, a dithered chalk-dust edge on its front
+      const D = W + H * 0.5, B = 12 * cell, span = D + 2 * B;
+      const front = closing || u < 1 ? q * span - B : (1 - q) * span - B;
+      for (let y = 0; y < H; y += cell) {
+        const off = y * 0.5;
+        if (closing || u < 1) {   // covered where x + y/2 < front, dust just ahead of it
+          const x1 = sn(Math.min(W, front - off));
+          fill('#24453A', 0, y, x1, cell);
+          for (let x = Math.max(0, x1); x < Math.min(W, x1 + B); x += cell) if (((x / cell) + (y / cell)) % 2 === 0 && hash(x * 0.13 + y * 0.71) < 1 - (x - x1) / B) fill(x - x1 < 2 * cell ? '#C9CCD3' : '#2F5A4A', x, y, cell, cell);
+        } else {   // the same sweep carries on and uncovers the new board behind it
+          const x0 = sn(Math.max(0, front - off + B));
+          fill('#24453A', x0, y, W - x0, cell);
+          for (let x = Math.max(0, x0 - B); x < Math.min(W, x0); x += cell) if (((x / cell) + (y / cell)) % 2 === 0 && hash(x * 0.13 + y * 0.71) < (x - x0 + B) / B) fill(x0 - x <= 2 * cell ? '#C9CCD3' : '#2F5A4A', x, y, cell, cell);
+        }
+      }
+    } else if (style === 'door') {   // a roll-up door comes down over the old room and rolls back up
+      const Y = sn(H * q);
+      fill('#6B7080', 0, 0, W, Y);
+      for (let y = Y - 96; y > -96; y -= 96) { fill('#4A4E5A', 0, y, W, 2 * cell); fill('#9AA0AD', 0, y + 2 * cell, W, cell); }
+      fill('#2B2033', 0, Y - 4 * cell, W, 4 * cell); fill('#C9CCD3', W / 2 - 60, Y - 3 * cell, 120, 2 * cell);
+    } else {   // an iris closes on the host's head and opens again, a circle drawn on the pixel grid
+      const [cx, cy] = head, R = Math.hypot(Math.max(cx, W - cx), Math.max(cy, H - cy)) + cell, r = R * (1 - q);
+      for (let y = 0; y < H; y += cell) {
+        const dy = y + cell / 2 - cy;
+        if (Math.abs(dy) >= r) { fill('#120D14', 0, y, W, cell); continue; }
+        const half = sn(Math.sqrt(r * r - dy * dy));
+        fill('#120D14', 0, y, sn(cx) - half, cell); fill('#120D14', sn(cx) + half, y, W - sn(cx) - half, cell);
+      }
+    }
+  }
 
   window.drawAt = function (T) {
     const main = document.getElementById('c'); const mctx = main.getContext('2d');
@@ -125,49 +244,52 @@
     const k = Kit.make(ctx, look, T, env);
     k.bg();
     const tops = cues.filter((c) => c.level === 0);
-    let sec = tops[0]; tops.forEach((c) => { if (T >= c.t) sec = c; });
+    const sec = sectionAt(tops, T);
     const fn = window.SCENE.sections[sec.id];
+    const moving = !!look.bitmap || window.SCENE.motion;
+    const U = pixel ? 1 / look.scale : 1, snap = (v) => Math.round(v / U) * U;   // one low-res pixel, in frame units
+    const {Ts, shiver} = moving ? sceneClock(T, sec) : {Ts: T, shiver: 0};
+    const ks = Ts === T ? k : Kit.make(ctx, look, Ts, env);   // during a hit-stop the scene draws at the frozen time
     let ret = {};
     ctx.save();
-    const into = T - sec.t;
-    const moving = !!look.bitmap || window.SCENE.motion;
+    const into = Ts - sec.t;
     if (!moving && sec !== tops[0] && into < 0.28) { const e = k.easeOut(into / 0.28); ctx.translate((1 - e) * 140, 0); ctx.globalAlpha = 0.25 + 0.75 * e; }
-    let zoom = 1 + 0.03 * Math.min(1, into / Math.max(1, sec.end - sec.t));   // a slow push-in through each section
-    let fx = 540, fy = 300, sx = 0, sy = 0;   // zoom from the top band, so headers never climb under the Reel's top bar
+    let zoom = 1 + 0.03 * Math.min(1, into / Math.max(1, sec.end - sec.t)), fx = 540, fy = 300, sx = 0, sy = 0;   // zoom from the top band, so headers never climb under the Reel's top bar
     if (moving) {
-      // the zoom ladder: every beat inside a section steps the camera in a little, with a springy overshoot
-      const beats = cues.filter((c) => c.level > 0 && c.t > sec.t && c.t <= T && c.t < sec.end);
-      beats.forEach((c, i) => { if (i < 3) zoom += 0.018 * k.back((T - c.t) / 0.3); });
-      const fo = (window.SCENE.focus || {});
-      const last = beats.length ? beats[beats.length - 1] : sec;
-      if (fo[last.id] || fo[sec.id]) { const [ax, ay] = fo[last.id] || fo[sec.id]; const q = k.easeOut((T - last.t) / 0.6); fx = 540 + (ax - 540) * 0.2 * q; fy = 300 + (ay - 300) * 0.2 * q; }
-      // a short shake on every stamp
-      cues.forEach((c) => { const d = T - c.t; if (c.sfx === 'stamp' && d >= 0 && d < 0.32) { const a = 7 * (1 - d / 0.32); sx += Math.sin(T * 91) * a; sy += Math.cos(T * 73) * a; } });
+      ({zoom, fx, fy} = camera(ks, Ts, sec));
       // a section opens with a hard punch-in that settles
       if (sec !== tops[0]) zoom += 0.06 * (1 - k.easeOut(into / 0.5));
+      // the trauma shake: smooth noise, whole low-res pixels, at most 3
+      const tr = trauma(T), amp = 3 * U * tr * tr;
+      if (amp > 0) { sx = vnoise(T * 14, 1) * amp; sy = vnoise(T * 14, 2) * amp; }
+      sx += shiver * U;
     }
-    ctx.translate(sx, sy);
-    ctx.translate(fx, fy); ctx.scale(zoom, zoom); ctx.translate(-fx, -fy);
-    if (fn) ret = fn(k, T, sec) || {};
+    // the camera, its position on whole low-res pixels so the grid never swims
+    ctx.translate(moving ? snap(sx + fx * (1 - zoom)) : fx * (1 - zoom), moving ? snap(sy + fy * (1 - zoom)) : fy * (1 - zoom)); ctx.scale(zoom, zoom);
+    if (fn) ret = fn(ks, Ts, sec) || {};
     ctx.restore();
+    let head = [540, 760];
     if (ret.host !== false && window.SCENE.host !== false) {
       const hp = typeof ret.hostPose === 'string' ? ret.hostPose : (k.talking() ? 'talk' : 'stand');
+      const life = idleOf(T, hp);
       if (look.pixelHost && !pixel) {   // the pixel cast over real screens (the gold standard's house look)
         const ph = look.pixelHost;
         if (!hostCanvas) { hostCanvas = document.createElement('canvas'); hostCanvas.width = Math.round(W * ph); hostCanvas.height = Math.round(H * ph); }
         const hctx = hostCanvas.getContext('2d'); hctx.setTransform(1, 0, 0, 1, 0, 0); hctx.clearRect(0, 0, hostCanvas.width, hostCanvas.height);
         hctx.setTransform(ph, 0, 0, ph, 0, 0);
-        Kit.make(hctx, look, T, env).snow(160, 1246, {scale: 0.6, pose: hp, at: ret.hostAt, face: 1});
+        Kit.make(hctx, look, T, env).snow(160, 1246, Object.assign({scale: 0.6, pose: hp, at: ret.hostAt, face: 1}, life));
+        head = [162, 1246 - 384 * 0.6];
         const id = hctx.getImageData(0, 0, hostCanvas.width, hostCanvas.height), d = id.data;
         for (let i = 3; i < d.length; i += 4) d[i] = d[i] > 110 ? 255 : 0;   // hard pixel edges
         hctx.putImageData(id, 0, 0);
         ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.imageSmoothingEnabled = false; ctx.drawImage(hostCanvas, 0, 0, W, H); ctx.restore();
       } else if (look.bitmap) {
         const hx = ret.hostX || 190, hs = ret.hostScale || 0.86;
-        k.snow(hx, 1246, {scale: hs, pose: hp, at: ret.hostAt, face: 1});
+        k.snow(hx, 1246, Object.assign({scale: hs, pose: hp, at: ret.hostAt, face: 1}, life));
+        head = [hx + 4 * hs, 1246 - 384 * hs];
         if (window.__boxes) window.__boxes.push({s: 'HOST', x0: hx - 95 * hs, y0: 1246 - 490 * hs, x1: hx + 95 * hs, y1: 1246, a: 1, tag: 'host'});
       }
-      else k.snow(160, 1246, {scale: 0.6, pose: hp, at: ret.hostAt, face: 1});
+      else { k.snow(160, 1246, Object.assign({scale: 0.6, pose: hp, at: ret.hostAt, face: 1}, life)); head = [162, 1246 - 384 * 0.6]; }
     }
     window.__tag = 'dialog';
     if (ret.speech !== false) { speechBox(k, T); const ph = phrases.find((p) => T >= p.t0 && T < p.t1);
@@ -175,13 +297,7 @@
     window.__tag = 'hud';   // a scene can hide the dialog box (the hook card)
     if (moving) {
       hud(k, T, tops, sec);
-      // room to room: pixel blinds close and open again (0.42 s), hiding the cut
-      if (sec !== tops[0] && into < 0.42) {
-        for (let i = 0; i < 16; i++) {
-          const q = into < 0.04 ? 1 : 1 - k.easeOut((into - 0.04 - i * 0.008) / 0.22), w = W * k.clamp(q);
-          ctx.fillStyle = '#120D14'; ctx.fillRect(i % 2 ? W - w : 0, i * 120, w, 120);
-        }
-      }
+      transition(ctx, T, tops, sec, U, head);   // room to room, hiding the cut
     }
     window.__tag = 'scene';
     if (pixel) {
@@ -194,11 +310,18 @@
 
   async function boot() {
     for (const s of scripts) await load(s);
+    for (const s of optional) await load(s).catch(() => null);
     const lk = q.get('look') || window.SCENE.look || 'clean';
     look = window.LOOKS[lk];
     env.data = window.DATA;
     cues = window.CUES.cues; cues.forEach((c) => { byId[c.id] = c; });
     words = (window.WORDS.words || []);
+    env.words = words; env.duration = window.CUES.duration;
+    const M = window.MOUTH;   // a mouth level for every frame, already 2 frames early (anim.py mouth)
+    if (M && M.levels) env.mouth = (t) => { const i = Math.floor(t * (M.fps || FPS) + 0.005); return i >= 0 && i < M.levels.length ? +M.levels[i] : 0; };
+    stamps = cues.filter((c) => c.sfx === 'stamp').sort((a, b) => a.t - b.t);
+    let lastShake = -1e9; const big = window.SCENE.trauma || {};
+    stamps.forEach((c) => { if (c.t - lastShake >= SHAKE_GAP) { shakes.push({t: c.t + FREEZE / FPS, a: big[c.id] || 0.5}); lastShake = c.t; } });
     const c = document.getElementById('c'); c.width = W; c.height = H;
     if (look.scale !== 1) { lowCanvas = document.createElement('canvas'); lowCanvas.width = Math.round(W * look.scale); lowCanvas.height = Math.round(H * look.scale); }
     for (const n of (window.SCENE.images || [])) {
@@ -208,6 +331,8 @@
     await Promise.all(['700 40px Poppins', '600 40px Poppins', '600 40px Inter', '700 40px Inter'].map((f) => document.fonts.load(f)));
     phrases = buildPhrases(words);   // after the fonts load, so the line breaks match what is drawn
     window.DURATION = window.CUES.duration;
+    survey = runSurvey();
+    window.STUDIO = {env, survey, trauma, look, camera};   // for checks: blinks, pose runs, rooms, the shake
     window.READY = true;
     if (q.get('play')) { const t0 = performance.now(); const tick = () => { const t = (performance.now() - t0) / 1000; drawAt(t % window.DURATION); requestAnimationFrame(tick); }; tick(); }
     else drawAt(Number(q.get('t') || 0));

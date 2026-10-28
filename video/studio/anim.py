@@ -10,6 +10,8 @@ fresh reviewer checks before the next stage runs.
   estimate SLUG            stand-in word timings from script.md (marked estimate: for storyboards and looks, never posted)
   fetch SLUG               pull this video's audio from the video-renders branch
   remix SLUG               mix the sound again onto the finished render (video copied)
+  mouth SLUG               lip sync from the voice: a mouth shape (0 to 3) for every frame -> 02_transcript/mouth.js
+                           (stills, lint and render make it themselves when the voice is here)
   cues SLUG                match cues.md quotes to words.json -> cues.json, cues.js; prints the timing table
   grab SLUG                capture docs/chicago-rat-complaints/ at phone width -> 04_scene/assets/rat-page.png
   stills SLUG [--look L]   a frame at every cue -> 05_render/sheets/*.jpg and 05_render/sheet.jpg
@@ -555,6 +557,105 @@ def cmd_cues(slug):
 
 
 # ---------------------------------------------------------------------------------------------------------------------
+# mouth: lip sync from the voice (research run 2026-10-28, upgrade 2; _shared/looks.md Motion)
+
+MOUTH_T = (0.15, 0.40, 0.72)   # level thresholds: closed below 0.15, slightly open, open, wide open above 0.72
+
+
+def cmd_mouth(slug, quiet=False):
+    """The voice's loudness, frame by frame, as 4 mouth shapes (0 closed, 1 slightly open, 2 open, 3 wide open) ->
+    02_transcript/mouth.js. Loudness over 40 ms on the 300 to 3,400 Hz band; closed outside a word or below the voice's
+    10th percentile minus 6 dB; scaled between the 20th and 95th percentiles with a square root; opens in about 15 ms,
+    closes in about 70 ms; each shape held at least 2 frames; shifted 2 frames early (the eye forgives a mouth that leads
+    the sound, not one that lags); wide open kept under 10% of talking frames."""
+    import numpy as np
+    from scipy.signal import butter, sosfiltfilt
+    voice = vdir(slug, "01_voice", "audio", "voice.mp3")
+    if not os.path.exists(voice):
+        raise SystemExit(f"ERROR mouth: no voice for {slug} (anim.py fetch {slug})")
+    wd = json.load(open(vdir(slug, "02_transcript", "words.json")))
+    words = wd["words"]
+    sr = 16000
+    r = subprocess.run(["ffmpeg", "-v", "error", "-i", voice, "-ac", "1", "-ar", str(sr), "-f", "f32le", "-"], capture_output=True)
+    if r.returncode:
+        raise SystemExit(f"ERROR mouth: ffmpeg could not read {voice}")
+    raw = r.stdout
+    x = np.frombuffer(raw, dtype=np.float32).astype(np.float64)
+    x = sosfiltfilt(butter(4, [300, 3400], btype="bandpass", fs=sr, output="sos"), x)
+    hop, win = int(sr * 0.005), int(sr * 0.040)   # a 5 ms envelope, each point the RMS of the 40 ms around it
+    c2 = np.concatenate([[0.0], np.cumsum(x * x)])
+    centers = np.arange(0, len(x), hop)
+    lo, hi = np.clip(centers - win // 2, 0, len(x)), np.clip(centers + win // 2, 0, len(x))
+    rms = np.sqrt((c2[hi] - c2[lo]) / np.maximum(1, hi - lo))
+    tc = centers / sr
+    inword = np.zeros(len(tc), bool)
+    for w in words:
+        inword |= (tc >= w["start"]) & (tc < w["end"])
+    db = 20 * np.log10(rms + 1e-9)
+    gate = np.percentile(db[inword], 10) - 6.0
+    voiced = inword & (db > gate)
+    p20, p95 = np.percentile(rms[voiced], 20), np.percentile(rms[voiced], 95)
+    v = np.where(voiced, np.sqrt(np.clip((rms - p20) / max(1e-9, p95 - p20), 0, 1)), 0.0)
+    # one pole: opens fast (15 ms), closes slower (70 ms)
+    a_up, a_dn = 1 - math.exp(-5 / 15), 1 - math.exp(-5 / 70)
+    env = np.zeros_like(v); e = 0.0
+    for i, s in enumerate(v):
+        e += (s - e) * (a_up if s > e else a_dn); env[i] = e
+    dur = json.load(open(vdir(slug, "03_cues", "cues.json")))["duration"] if os.path.exists(vdir(slug, "03_cues", "cues.json")) else len(x) / sr + 1
+    n = int(math.ceil(dur * FPS)) + 1
+    ft = (np.arange(n) + 0.5) / FPS                        # the middle of each frame's time on screen
+    idx = np.clip(np.round(ft / 0.005).astype(int), 0, len(env) - 1)
+    fv = np.where(ft * sr < len(x), env[idx], 0.0)
+    talk = np.zeros(n, bool)
+    for w in words:
+        talk |= (ft >= w["start"]) & (ft < w["end"])
+    fv = np.where(talk, fv, 0.0)
+
+    def shapes(t3):
+        q = np.zeros(n, int)
+        q[fv >= MOUTH_T[0]] = 1; q[fv >= MOUTH_T[1]] = 2; q[fv >= t3] = 3
+        # every shape holds at least 2 frames: a 1-frame shape takes the shape before it
+        for _ in range(4):
+            runs = np.flatnonzero(np.diff(np.concatenate([[-1], q, [-1]])))
+            for a, b in zip(runs[:-1], runs[1:]):
+                if b - a == 1 and a > 0:
+                    q[a] = q[a - 1]
+        q = np.concatenate([q[2:], [0, 0]])               # 2 frames early
+        return q
+    t3 = MOUTH_T[2]
+    q = shapes(t3)
+    talking = max(1, int(talk.sum()))
+    while (q == 3).sum() / talking >= 0.10 and t3 < 0.98:   # keep the wide-open shape rare (it looks shouty when common)
+        t3 += 0.02; q = shapes(t3)
+    share = [round(float((q[talk] == k).sum()) / talking, 3) for k in range(4)]
+    doc = {"schema": "pnf.studio.mouth.v1", "fps": FPS, "voiceSha256": sha(voice), "wordsSha256": sha(vdir(slug, "02_transcript", "words.json")),
+           "thresholds": [MOUTH_T[0], MOUTH_T[1], round(t3, 2)], "gateDb": round(float(gate), 1), "talkingFrames": talking,
+           "share": share, "levels": "".join(str(int(k)) for k in q)}
+    write_js(vdir(slug, "02_transcript", "mouth.js"), "MOUTH", doc)
+    if not quiet:
+        print(f"mouth: {n} frames, {talking} talking; closed {share[0]:.0%}, slightly open {share[1]:.0%}, open {share[2]:.0%}, "
+              f"wide open {share[3]:.1%} (under 10%: {'PASS' if share[3] < 0.10 else 'FAIL'}), wide threshold {t3:.2f} -> 02_transcript/mouth.js")
+    return doc
+
+
+def ensure_mouth(slug):
+    """Stills, lint and render draw the mouth from the voice when the voice is here: (re)write mouth.js when it is
+    missing or was made from another voice or other word timings. Without the voice, a committed mouth.js is used as is."""
+    voice, mj = vdir(slug, "01_voice", "audio", "voice.mp3"), vdir(slug, "02_transcript", "mouth.js")
+    words = vdir(slug, "02_transcript", "words.json")
+    if not os.path.exists(voice) or not os.path.exists(words) or not json.load(open(words)).get("source", "").startswith("whisper"):
+        return
+    if os.path.exists(mj):
+        try:
+            old = json.loads(open(mj).read().split("=", 1)[1].strip().rstrip(";"))
+            if old.get("voiceSha256") == sha(voice) and old.get("wordsSha256") == sha(words):
+                return
+        except Exception:
+            pass
+    cmd_mouth(slug)
+
+
+# ---------------------------------------------------------------------------------------------------------------------
 # the page, stills and the render (Chromium through Playwright)
 
 def browser():
@@ -576,6 +677,7 @@ def cmd_grab(slug):
 
 
 def open_stage(slug, look=None):
+    ensure_mouth(slug)
     pw = browser()
     b = pw.chromium.launch(args=["--allow-file-access-from-files"])
     pg = b.new_page(viewport={"width": 1080, "height": 1920}, device_scale_factor=1)
@@ -700,7 +802,7 @@ def fingerprints(slug):
     """What the gates saw: change any of these and the lesson must be gated again before it posts."""
     files = {"script": ("01_voice", "script.md"), "takes": ("01_voice", "takes.json"), "words": ("02_transcript", "words.json"),
              "cues": ("03_cues", "cues.json"), "scene": ("04_scene", "scene.js"), "data": ("04_scene", "data.js"),
-             "captions": ("05_render", "captions.json")}
+             "captions": ("05_render", "captions.json"), "mouth": ("02_transcript", "mouth.js")}
     fp = {k: sha(vdir(slug, *v))[:12] for k, v in files.items() if os.path.exists(vdir(slug, *v))}
     for f in ("kit.js", "player.js", "looks.js", "pixfont.js"):
         fp["runtime_" + f.split(".")[0]] = sha(os.path.join(HERE, "_runtime", f))[:12]
@@ -993,6 +1095,8 @@ def main():
         cmd_fetch(a.slug)
     elif c == "cues":
         cmd_cues(a.slug)
+    elif c == "mouth":
+        cmd_mouth(a.slug)
     elif c == "grab":
         cmd_grab(a.slug)
     elif c == "stills":

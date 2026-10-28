@@ -5,7 +5,8 @@ Everything below draws in every look (`_shared/looks.md`); scene.js calls it thr
 ## The cast (original, ours)
 - **Snow**, the host: a Chicago data guy in a work jacket and knit cap with a clipboard. A nod to John Snow, whose 1854
   cholera map started mapping as proof. Poses: `stand`, `point` (toward a spot), `talk`, `shrug`, `wave`, `lean` (studying),
-  `clip` (checks the clipboard). He talks (mouth moves) while the voice is speaking and blinks on his own.
+  `clip` (checks the clipboard). His mouth follows the voice (`02_transcript/mouth.js`), and he blinks, breathes and
+  fidgets on his own (looks.md, Motion).
   `k.snow(x, y, {pose, at: [x, y], scale, face: 1 | -1})`.
 - **Squeak**, a small rat: comic relief only, never evidence. Poses: `sit`, `peek` (head over an edge), `run`, `startle`.
   `k.squeak(x, y, {pose, scale, face})`. Never stands in for a count.
@@ -26,3 +27,8 @@ Everything below draws in every look (`_shared/looks.md`); scene.js calls it thr
 - `k.p(t0, t1)` eases 0 to 1, `k.pop(t)` a quick overshoot, `k.shake(t)`, `k.spot(box, t)` a highlight ring that
   draws on, `k.arrow(from, to, p)`, `k.chip(text, x, y)` a small tag like "THE CITY'S DATA".
 - Sections cut on the cue; the camera can push in (`k.cam(scale, x, y)`) for emphasis.
+- `k.stampIn(t0, (te) => { draw }, {at: [x, y]})`: a stamp that hits at t0 (put the stamp cue there): drops in, freezes
+  3 frames with a 1 pixel shiver, squashes and settles. `at` is where it lands. `k.slam(text, x, y, t0, {stamp: true})`
+  does the same for one line of text.
+- `SCENE.rooms = {sectionId: 'garage'}` names a section's room for its transition (the player also reads `k.room`);
+  `SCENE.trauma = {cueId: 0.8}` gives the one big verdict a bigger shake.

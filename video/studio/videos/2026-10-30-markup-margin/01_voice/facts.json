@@ -1,0 +1,65 @@
+{
+ "about": "Every number this video shows or says, with its source. The worked example is arithmetic: 'inputs' are the example's givens, 'computed' holds each derived number with the formula that makes it (Python syntax over the input names and earlier computed names), so the facts gate can recompute every value. Sources re-read with WebFetch on Oct 28, 2026 (Central).",
+ "sources": {
+  "jlc": {
+   "title": "Markup vs. Margin",
+   "author": "Sal Alfano",
+   "publisher": "JLC (Journal of Light Construction)",
+   "date": "undated on the page",
+   "url": "https://www.jlconline.com/business/markup-vs-margin_o/",
+   "confirms": [
+    "If we have $1,000 in direct costs, our markup is set at $500, thus equaling a total selling price of $1,500.",
+    "Therefore, a 50% markup is equivalent to a 33% margin.",
+    "So, a 100% markup gives a 50% margin.",
+    "If you'd like to earn a 50% margin on your next project, you must double the direct cost amount to achieve it."
+   ]
+  },
+  "xero": {
+   "title": "Margin vs markup",
+   "publisher": "Xero glossary",
+   "date": "Published Thursday 23 July 2026",
+   "url": "https://www.xero.com/us/glossary/margin-vs-markup/",
+   "confirms": [
+    "Margin = (Revenue - COGS) / Revenue x 100",
+    "Markup = (Revenue - COGS) / COGS x 100",
+    "Markup = Margin / (1 - Margin)",
+    "a 50% markup actually gives you a 33.3% margin.",
+    "Margin measures profit as a percentage of revenue (the selling price); markup measures it as a percentage of cost.",
+    "Gross margin only accounts for the direct cost of goods sold. It does not include rent, salaries, utilities, marketing, or other operating expenses."
+   ]
+  }
+ },
+ "inputs": {
+  "cost": 1000,
+  "markupPct": 50,
+  "doubleMarkupPct": 100,
+  "targetMarginPct": 40
+ },
+ "computed": {
+  "markupUsd": {"value": 500, "formula": "cost * markupPct / 100", "source": "jlc"},
+  "priceUsd": {"value": 1500, "formula": "cost + markupUsd", "source": "jlc"},
+  "marginPct": {"value": 33.3, "formula": "round(100 * markupUsd / priceUsd, 1)", "exact": "33.333... (one third)", "source": "xero (Margin = (Revenue - COGS) / Revenue); jlc says 33%"},
+  "priceOverMarkup": {"value": 3, "formula": "priceUsd / markupUsd", "note": "the 500 is one third of the 1,500 price", "source": "arithmetic"},
+  "doublePriceUsd": {"value": 2000, "formula": "cost * (1 + doubleMarkupPct / 100)", "source": "jlc (double the direct cost)"},
+  "doubleMarginPct": {"value": 50, "formula": "100 * (doublePriceUsd - cost) / doublePriceUsd", "source": "jlc (a 100% markup gives a 50% margin)"},
+  "divisor": {"value": 0.6, "formula": "round(1 - targetMarginPct / 100, 4)", "source": "arithmetic"},
+  "targetPriceUsd": {"value": 1666.67, "formula": "round(cost / divisor, 2)", "note": "Price = Cost / (1 - margin), rearranged from Xero's margin formula: margin = (price - cost) / price, so price = cost / (1 - margin)", "source": "derived from xero"},
+  "targetMarginUsd": {"value": 666.67, "formula": "round(targetPriceUsd - cost, 2)", "source": "arithmetic"},
+  "targetMarginCheckPct": {"value": 40, "formula": "round(100 * (cost / divisor - cost) / (cost / divisor), 1)", "note": "the worked example lands on exactly a 40% margin", "source": "xero margin formula"},
+  "targetMarkupPct": {"value": 66.7, "formula": "round(100 * (targetMarginPct / 100) / (1 - targetMarginPct / 100), 1)", "note": "Xero's conversion Markup = Margin / (1 - Margin) agrees: a 66.7% markup on 1,000 is 1,666.67", "source": "xero"}
+ },
+ "spoken": {
+  "a thousand dollars": "inputs.cost",
+  "fifty percent markup": "inputs.markupPct",
+  "five hundred": "computed.markupUsd",
+  "fifteen hundred": "computed.priceUsd",
+  "one third of the price": "computed.priceOverMarkup",
+  "about thirty-three percent": "computed.marginPct",
+  "a hundred percent markup": "inputs.doubleMarkupPct",
+  "two thousand on the quote": "computed.doublePriceUsd",
+  "a real fifty percent margin": "computed.doubleMarginPct",
+  "forty percent": "inputs.targetMarginPct",
+  "point six": "computed.divisor",
+  "about sixteen hundred sixty-seven dollars": "computed.targetPriceUsd"
+ }
+}

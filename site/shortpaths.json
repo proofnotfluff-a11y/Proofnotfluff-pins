@@ -1,0 +1,6 @@
+{
+ "about": "Short paths said in videos (video engine Phase 0, Todd's go Oct 27, 2026, call 2: a major site change approved in chat). Each is a tiny page kept out of search and the sitemap that records the visit with the cookie-free Cloudflare tag and forwards to its page after 1 second, so visits from video are counted on the path alone. Agents test these only on the local build and never open the live page. Built by tools/make_site.py (write_short_paths).",
+ "paths": [
+  {"slug": "rats", "target": "chicago-rat-complaints/#map", "label": "the Chicago Rat Index map", "line": "Opening the free Chicago Rat Index map", "from": "Rat check videos"}
+ ]
+}

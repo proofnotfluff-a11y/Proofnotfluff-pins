@@ -4050,6 +4050,35 @@ def write_stage_pages(pages):
                 f'<link rel="icon" href="data:,"><title>Count: {E(kind)}</title>{analytics_tag()}</head><body></body></html>')
 
 
+def short_path_html(x):
+    """docs/<slug>/ for a path said in videos: noindex, out of the sitemap, the cookie-free analytics tag records the
+    visit, then the page forwards after 1 second (the time the tag needs to send). Without script, a 1 second refresh."""
+    target = "../" + x["target"]
+    return (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
+            f'<meta name="robots" content="noindex, nofollow"><meta name="color-scheme" content="light dark"><link rel="icon" href="../favicon.ico">'
+            f'<title>{E(x["label"][0].upper() + x["label"][1:])} | ProofNotFluff</title>{analytics_tag()}'
+            f'<noscript><meta http-equiv="refresh" content="1; url={E(target)}"></noscript>'
+            '<style>@font-face{font-family:I;font-weight:600;src:url(../assets/fonts/inter-600.woff2) format("woff2")}'
+            ':root{--bg:#F3F1EC;--ink:#1D2433;--ink2:#4A5163;--acc:#1D2433}'
+            '@media (prefers-color-scheme:dark){:root{--bg:#1D2433;--ink:#FFFFFF;--ink2:#B9C0CE;--acc:#FFFFFF}}'
+            'html,body{margin:0;background:var(--bg);color:var(--ink);font:600 18px/1.4 I,system-ui,sans-serif}'
+            'main{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:24px 16px;max-width:560px;margin:0 auto;box-sizing:border-box}'
+            'h1{font-size:24px;line-height:1.25;margin:0 0 12px}p{margin:0;color:var(--ink2)}a{color:var(--acc);text-decoration:underline;text-underline-offset:3px}</style></head>'
+            f'<body><main><h1>{E(x["line"])}</h1><p>If nothing happens, <a href="{E(target)}">open the map</a>.</p></main>'
+            f'<script>if(!window.__pnfHold)setTimeout(function(){{location.replace({json.dumps(target)});}},1000);</script></body></html>')
+
+
+def write_short_paths():
+    f = os.path.join(ROOT, "site", "shortpaths.json")
+    if not os.path.exists(f):
+        return 0
+    paths = json.load(open(f, encoding="utf-8"))["paths"]
+    for x in paths:
+        d = os.path.join(DOCS, x["slug"]); os.makedirs(d, exist_ok=True)
+        open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(short_path_html(x))
+    return len(paths)
+
+
 def main():
     spec = json.load(open(os.path.join(ROOT, "site", "pages.json"), encoding="utf-8"))
     pages = spec["pages"]
@@ -4116,6 +4145,7 @@ def main():
     # Todd's go, Oct 25: the dated answers are on the live lead pages (answer_box) and the comparison page is live
     write_compare_draft()
     write_stage_pages(pages)
+    write_short_paths()   # video short paths (docs/rats/): noindex, never in the sitemap below
     urls = ([BASE] + [BASE + slug + "/" for slug, _ in store] + [BASE + p["slug"] + "/" for p in live]
             + [BASE + x["slug"] + "/" for x in live_extras()] + ([BASE + compare_page()["slug"] + "/"] if compare_page() else []))
     lastmod = {}

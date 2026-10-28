@@ -1,0 +1,17 @@
+{
+ "about": "The /rats short path said in Rat check videos (video engine Phase 0, Oct 27, 2026): it shows one line, then forwards to the rat map after 1 second. Tested on the local build only; nobody opens the live page, so every live visit is a viewer. The page's own line and design are judged by the page check, which holds the page still (window.__pnfHold).",
+ "page": "rats/",
+ "steps": [
+  {
+   "wait": 1500
+  },
+  {
+   "expect_js": "location.pathname.indexOf('/chicago-rat-complaints/') >= 0 && location.hash === '#map'"
+  },
+  {
+   "expect_count": "#map",
+   "eq": 1,
+   "screenshot": true
+  }
+ ]
+}

@@ -50,6 +50,7 @@ the year, confidence, and the safe way to say it. Full notes and every URL: `run
 | "83% willing to refer, only 29% do (Texas Tech)" | No study, link or year found. |
 | "98% of texts are opened" | No traceable primary source found (not researched in depth; treat as unverified). |
 | Housecall Pro "15% higher close rate with SMS" | About Housecall Pro's own software sales team, not contractors. |
+| ServiceTitan follow-up page "64%", "72%", "87%" figures | Same untraceable follow-up stats in vendor dress (run 2026-10-28-script-playbook); the page's 37% first-visit close rate is usable only as vendor data, said as such. |
 
 ## Email outreach and deliverability (run 2026-10-28-email)
 - Reply-rate averages are vendor numbers and disagree (0.74% Smartlead, 3.43% Instantly, 4.5% Hunter): never quote one as "the industry average".

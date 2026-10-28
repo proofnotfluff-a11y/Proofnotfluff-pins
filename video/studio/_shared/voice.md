@@ -9,7 +9,9 @@ as the fallback (`speak --voice iP95p4xoKVk53GoZ742B`). The caption says the nar
 - One paragraph is one take: 2 to 4 sentences, 15 to 25 seconds. A take that sounds off is re-rolled alone.
 - Say it the way a person tells a friend something they just found out. Short sentences, contractions, one aside.
 - One delivery tag where the energy changes, in square brackets at the start of the sentence it shapes:
-  `[curious]`, `[leaning in]`, `[matter-of-fact]`, `[a little surprised]`, `[warmly]`, `[short pause]`. At most two a take.
+  `[curious]`, `[leaning in]`, `[matter-of-fact]`, `[a little surprised]`, `[warmly]`, `[short pause]`, `[calm]`,
+  `[confident]`, `[thoughtful]`, `[quickly]`, `[playful]`. At most two a take. Eleven v4 has no speed or style slider and no
+  SSML pauses: pace is a writing job (short sentences, a period or `[short pause]` for a beat; never a dash).
   The voice acts the tag and does not say it; tags never carry a fact.
 - One stressed word a paragraph at most, in capitals (`MORE than triple`).
 - Numbers as they are said: "forty-five", "ten point two percent", "three one one". The brief holds the digits, and the
@@ -24,6 +26,14 @@ as the fallback (`speak --voice iP95p4xoKVk53GoZ742B`). The caption says the nar
   a real customer question, a myth with a sourced bust, a top shops vs everyone else gap. The source rides on screen.
 - Views are not leads: speak to owners who can buy, and keep the host and a scene on screen (Instagram holds back
   Reels that are mostly text).
+
+## The lesson shape and the 12-point check (research/runs/2026-10-28-script-playbook.md)
+Template: hook (0 to 3 s, 9 to 12 words, "you", a stake, a promise) / stakes (a sourced number by 12 s) / teach (one idea,
+the why) / artifact (the exact text, formula or line, shown and held 3 s or more) / turn ("Here's the part people skip",
+between 55% and 75% of the runtime) / close (the rule in one line, a send line naming a role, last words echo the hook).
+45 s = 120 to 145 words, 60 s = 160 to 195, 75 s = 200 to 240; the payoff is complete by 70% of the runtime.
+The script gate scores the playbook's 12 points PASS or FAIL; a lesson goes to voice only on 12 of 12. Segments that
+recur: The Text, Run the Numbers, Proof Check, Quote Clinic. No like, follow, tag or "comment YES" asks.
 
 ## Pace
 - Target 160 to 195 words a minute per take (a Reel runs a little quicker than a lesson).

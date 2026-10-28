@@ -72,7 +72,7 @@ const MapEl = ({e, t, driftY}) => {
     <svg style={{position: 'absolute', left: 0, top: driftY, opacity}} width={1080} height={1920} viewBox="0 0 1080 1920">
       {e.areas.map((a) => (
         <path key={a.n} d={a.d} fill={a.focus ? e.focusColor : a.fill} fillOpacity={a.focus ? 0.25 + 0.75 * focusP : 1}
-          stroke={e.stroke} strokeWidth={a.focus ? 0 : 1.5} strokeLinejoin="round" />
+          stroke={e.stroke} strokeWidth={a.focus ? 0 : (e.strokeWidth || 1.5)} strokeLinejoin="round" />
       ))}
       {e.areas.filter((a) => a.focus).map((a) => (
         <path key={'f' + a.n} d={a.d} fill="none" stroke={e.focusStroke} strokeWidth={4} strokeLinejoin="round" />
@@ -120,10 +120,21 @@ const Wave = ({e, frame}) => {
   );
 };
 
+const Leader = ({e, t}) => {
+  const p = interpolate(t, [e.tIn, e.tIn + 0.35], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const [[x1, y1], [x2, y2]] = e.points;
+  return (
+    <svg style={{position: 'absolute', left: 0, top: 0}} width={1080} height={1920} viewBox="0 0 1080 1920">
+      <line x1={x1} y1={y1} x2={x1 + (x2 - x1) * p} y2={y1 + (y2 - y1) * p} stroke={e.color} strokeWidth={e.width} strokeLinecap="round" />
+      <circle cx={x1} cy={y1} r={7} fill={e.color} opacity={p} />
+    </svg>
+  );
+};
+
 const Caption = ({c, t}) => {
   // Every word sits at the x the layout measured; the word being said gets an accent pill that slides from word to
   // word, so the frame moves with the voice and a sound-off viewer can follow it.
-  const fadeIn = interpolate(t, [c.tIn, c.tIn + 0.12], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const fadeIn = c.tIn === 0 ? 1 : interpolate(t, [c.tIn, c.tIn + 0.12], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const lh = c.size * c.lh;
   const flat = [];
   c.lineWords.forEach((ws, li) => ws.forEach((w) => flat.push({...w, li})));
@@ -132,7 +143,7 @@ const Caption = ({c, t}) => {
     <div style={{position: 'absolute', left: c.x, top: c.y, width: Math.ceil(c.w) + 4, height: c.h, opacity: fadeIn,
       fontFamily: FAMILIES[c.font], fontWeight: c.weight, fontSize: c.size, lineHeight: `${lh}px`, whiteSpace: 'pre'}}>
       {cur ? (
-        <div style={{position: 'absolute', left: cur.x - 10, top: cur.li * lh + lh * 0.08, width: cur.w + 20, height: lh * 0.84,
+        <div style={{position: 'absolute', left: cur.x - 6, top: cur.li * lh + lh * 0.08, width: cur.w + 12, height: lh * 0.84,
           background: c.pill, borderRadius: 12}} />
       ) : null}
       {flat.map((w, i) => (
@@ -157,6 +168,7 @@ export const RatCheck = (props) => {
         if (e.kind === 'map') return <MapEl key={e.id} e={e} t={t} driftY={driftY} />;
         if (e.kind === 'line') return <Line key={e.id} e={e} t={t} driftY={driftY} />;
         if (e.kind === 'wave') return <Wave key={e.id} e={e} frame={frame} />;
+        if (e.kind === 'leader') return <Leader key={e.id} e={e} t={t} />;
         return null;
       })}
       {props.progress ? (

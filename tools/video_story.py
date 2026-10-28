@@ -414,6 +414,12 @@ def draft(doc, slot, video_id, data_path):
     screen["chart"]["focusLabel"] = {"A": "vs. the same 30 days last year", "B": "citywide vs. last year",
                                      "C": "median days to close", "D": f"week to {to} vs. week to {short_date(d['weeks'][8]['to'])}"}[t]
     screen["compare"] = compare_data(d, pick, to)
+    screen["chart"]["stats"] = stat_blocks(d, pick, nums, to) if screen["chart"]["kind"] == "map" else {}
+    city = next((x for x in nums if x["id"] == "cityChange"), None)
+    main = next((x for x in nums if x["id"] == "change"), None)
+    if t == "A" and city and main:   # the why scene's default picture: the area against the city, one accent (the area)
+        screen["whyBars"] = [{"label": "All of Chicago", "value": city["value"], "shown": ("+" if city["value"] >= 0 else "-") + pct(city["value"])},
+                             {"label": pick["name"], "value": main["value"], "shown": ("+" if main["value"] >= 0 else "-") + pct(main["value"]), "focus": True}]
     ev("windowDays", "Days in the window (window.from30 to window.to)", "window.from30..window.to", 30, ["30"])
     ev("areasTotal", "Chicago community areas", "len(areas)", len(d["areas"]), [str(len(d["areas"]))]) if not any(x["id"] == "areasTotal" for x in nums) else None
     return {"schema": "pnf.video.spec.v1", "videoId": video_id, "template": "rat-check", "storyType": t, "picture": pick["picture"],
@@ -425,6 +431,29 @@ def draft(doc, slot, video_id, data_path):
             "endCard": {"line": "See your neighborhood free", "path": load_config()["cta"]["path"]},
             "captions": {"instagram": ""}, "voice": {"model": load_config()["voice"]["model"], "voiceIds": []},
             "music": load_config()["music"]["id"], "gates": {}}
+
+
+def stat_blocks(d, pick, nums, to):
+    """The map's right-hand block, one per evidence number a line can point at (its "show" ids), in plain words."""
+    by = {x["id"]: x for x in nums}
+    area = pick["name"]
+    out = {}
+    if "d30" in by:
+        out["d30"] = {"who": "area" if pick["area"] else "city", "name": area, "big": by["d30"]["shown"][0], "label": f"rat complaints, 30 days to {to}"}
+    if "change" in by:
+        v = by["change"]["value"]
+        out["change"] = {"who": "area" if pick["area"] else "city", "name": area, "big": ("+" if v >= 0 else "-") + pct(v),
+                         "label": "vs. the same 30 days last year"}
+    if "areasUp" in by and "areasTotal" in by:
+        a, b = by["areasUp"]["value"], by["areasTotal"]["value"]
+        out["areasUp"] = {"who": "city", "name": "All of Chicago", "big": f"{a} of {b}", "label": "community areas up vs. last year", "part": [a, b]}
+    if "medClose" in by:
+        out["medClose"] = {"who": "area", "name": area, "big": by["medClose"]["shown"][0] + " days", "label": "median wait to close a complaint"}
+    if "cityMedClose" in by:
+        out["cityMedClose"] = {"who": "city", "name": "All of Chicago", "big": by["cityMedClose"]["shown"][0] + " days", "label": "median wait to close a complaint"}
+    if "rise" in by:
+        out["rise"] = {"who": "area", "name": area, "big": "+" + by["rise"]["shown"][0], "label": "more complaints a week than 3 weeks ago"}
+    return out
 
 
 def compare_data(d, pick, to):

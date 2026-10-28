@@ -126,9 +126,9 @@ def scene_head(prefix, spec, sc, title_key, title_lines=2):
     s = spec["screen"]
     t0, t1 = sc["start"], sc["end"]
     els = [bg(prefix, T["canvas"], t0, t1)] + brand_bars(prefix, t0, t1)
-    e = eyebrow(prefix, f"Rat check · {s['area']}", t0, t1, T["accent"])
+    e = eyebrow(prefix, s.get("eyebrow", "CHICAGO RAT CHECK"), t0, t1, T["accent"])
     els.append(e)
-    title = ((s.get("scenes") or {}).get(title_key) or {}).get("title", "")
+    title = ((s.get("scenes") or {}).get(title_key) or {}).get("title", "") if title_key else ""
     y = e["y"] + e["h"] + 24
     if title:
         tl = L.text_el(f"{prefix}-title", title, X0, y, XW, "P", 700, 56, T["ink"], lh=1.08, max_lines=title_lines, shrink_to=46, t_in=t0, t_out=t1, anim="rise")
@@ -139,11 +139,12 @@ def scene_head(prefix, spec, sc, title_key, title_lines=2):
 
 def picture_scene(spec, sc):
     s, t0, t1 = spec["screen"], sc["start"], sc["end"]
-    els, top = scene_head("pic", spec, sc, "picture", 1 if spec["screen"]["chart"]["kind"] == "map" else 2)
+    is_map = spec["screen"]["chart"]["kind"] == "map"
+    els, top = scene_head("pic", spec, sc, None if is_map else "picture")
     ch = s["chart"]
     bottom = CB
-    if ch["kind"] == "map":
-        els += map_picture(spec, ch, t0, t1, top, bottom)
+    if is_map:
+        els += map_picture(spec, ch, t0, t1, top, bottom, sc.get("segments", []))
     elif ch["kind"] == "bars":
         els += bars_picture(ch, t0, t1, top, bottom, "pic")
     elif ch["kind"] == "line":
@@ -151,38 +152,60 @@ def picture_scene(spec, sc):
     return els
 
 
-def map_picture(spec, ch, t0, t1, top, bottom):
+def map_picture(spec, ch, t0, t1, top, bottom, segs):
+    """The map at full height on the left; on the right one stat block at a time, following the narration: each line's
+    first number in screen.chart.stats is the block on screen while that line is said. The focus area is the only
+    accent on the map, and a leader line ties it to its name."""
     s = spec["screen"]
-    mw = 420
-    paths, cent, used = L.map_paths((X0, top, mw, bottom - top))
-    fill = {"hi": T["ink2"], "lo": T["line"], "focus": T["accent"]}
+    paths, cent, used = L.map_paths((X0, top, 400, bottom - top))
+    fill = {"hi": T["ink"], "lo": T["white"], "focus": T["accent"]}
     areas = [{"n": a["n"], "d": paths[a["n"]], "fill": fill[a["cls"]], "focus": a["cls"] == "focus"} for a in ch["areas"]]
     m = {"id": "pic-map", "kind": "map", "role": "map", "x": round(used[0], 1), "y": round(used[1], 1), "w": round(used[2], 1), "h": round(used[3], 1),
-         "areas": areas, "stroke": T["canvas"], "focusColor": T["accent"], "focusStroke": T["canvas"], "tIn": t0 + 0.25, "tOut": t1,
-         "focusIn": t0 + 0.9, "anim": "fade", "group": "pic"}
+         "areas": areas, "stroke": T["ink2"], "strokeWidth": 2, "focusColor": T["accent"], "focusStroke": T["ink"], "tIn": t0 + 0.25, "tOut": t1,
+         "focusIn": t0 + 0.9, "anim": "fade", "group": None}
     els = [m]
-    cx = X0 + mw + 44
+    cx = round(used[0] + used[2] + 36, 1)
     cw = L.RIGHT - cx
-    y = top + 8
-    if ch.get("focus"):
-        nm = L.text_el("pic-focus-name", s["area"], cx, y, cw, "P", 700, 48, T["accent"], lh=1.08, max_lines=3, t_in=t0 + 0.9, t_out=t1)
-        els.append(nm)
-        y = nm["y"] + nm["h"] + 8
-        hv = s["headline"]["number"]
-        nv = L.text_el("pic-focus-number", hv, cx, y, cw, "P", 700, 96, T["ink"], lh=1.0, max_lines=1, shrink_to=56, t_in=t0 + 1.0, t_out=t1)
-        els.append(nv)
-        y = nv["y"] + nv["h"] + 10
-        fl = L.text_el("pic-focus-label", ch.get("focusLabel", "vs. last year"), cx, y, cw, "I", 600, 42, T["ink2"], lh=1.15, max_lines=3, t_in=t0 + 1.0, t_out=t1)
-        els.append(fl)
-        y = fl["y"] + fl["h"]
+    stats = ch.get("stats") or {}
+    blocks = []
+    for g in segs:
+        sid = next((i for i in g.get("show", []) if i in stats), None)
+        if sid and (not blocks or blocks[-1][1] != sid):
+            blocks.append((g["start"] - 0.1, sid))
+    if not blocks and stats:
+        blocks = [(t0, next(iter(stats)))]
     legs = []
     for i, (cls, text) in enumerate(ch["legend"]):
         legs.append((cls, L.text_el(f"pic-leg{i}", text, cx + 52, 0, cw - 52, "I", 600, 42, T["ink2"], lh=1.15, max_lines=2, t_in=t0 + 0.6, t_out=t1)))
     leg_h = sum(e["h"] + 20 for _, e in legs) - 20
-    yy = max(y + 48, bottom - leg_h)
+    leg_top = bottom - leg_h
+    for k, (start, sid) in enumerate(blocks):
+        st = stats[sid]
+        b0 = t0 if k == 0 else start
+        b1 = blocks[k + 1][0] if k + 1 < len(blocks) else t1
+        y = top + 8
+        mine = st.get("who") == "area"
+        nm = L.text_el(f"pic-stat{k}-name", st["name"], cx, y, cw, "P", 700, 44, T["accent"] if mine else T["ink"], lh=1.08, max_lines=2, t_in=b0, t_out=b1)
+        y = nm["y"] + nm["h"] + 6
+        bg_ = L.text_el(f"pic-stat{k}-big", st["big"], cx, y, cw, "P", 700, 96, T["ink"], lh=1.0, max_lines=1, shrink_to=56, t_in=b0, t_out=b1)
+        y = bg_["y"] + bg_["h"] + 12
+        lb = L.text_el(f"pic-stat{k}-label", st["label"], cx, y, cw, "I", 600, 42, T["ink2"], lh=1.15, max_lines=4, t_in=b0, t_out=b1)
+        y = lb["y"] + lb["h"] + 18
+        els += [nm, bg_, lb]
+        if st.get("part"):
+            a, b = st["part"]
+            els.append(L.rect(f"pic-stat{k}-track", cx, y, cw, 16, T["line"], radius=8, t_in=b0, t_out=b1, role="decor"))
+            els.append(L.rect(f"pic-stat{k}-fill", cx, y, round(cw * a / b, 1), 16, T["ink"], radius=8, t_in=b0, t_out=b1, anim="grow", role="decor"))
+        if mine and ch.get("focus") in cent:
+            fx, fy = cent[ch["focus"]]
+            els.append({"id": f"pic-stat{k}-leader", "kind": "leader", "role": "decor", "x": round(min(fx, cx), 1), "y": round(min(fy, nm["y"] + 26), 1),
+                        "w": round(abs(cx - 10 - fx), 1), "h": round(abs(nm["y"] + 26 - fy), 1) or 1,
+                        "points": [[round(fx, 1), round(fy, 1)], [round(cx - 10, 1), round(nm["y"] + 26, 1)]], "color": T["accent"], "width": 3,
+                        "tIn": max(b0, t0 + 0.9), "tOut": b1, "anim": "fade", "group": None})
+    yy = leg_top
     for i, (cls, e) in enumerate(legs):
         e["y"] = yy
-        els.append(L.rect(f"pic-leg{i}-swatch", cx, yy + 6, 36, 36, fill[cls], radius=6, t_in=t0 + 0.6, t_out=t1, anim="fade"))
+        els.append(L.rect(f"pic-leg{i}-swatch", cx, yy + 6, 36, 36, fill[cls], radius=6, t_in=t0 + 0.6, t_out=t1, anim="fade", line=T["ink2"] if cls == "lo" else None))
         els.append(e)
         yy += e["h"] + 20
     return els
@@ -272,18 +295,33 @@ def compare_scene(spec, sc):
 def why_scene(spec, sc):
     s, t0, t1 = spec["screen"], sc["start"], sc["end"]
     els = [bg("why", T["canvas"], t0, t1)] + brand_bars("why", t0, t1)
-    e = eyebrow("why", f"Rat check · {s['area']}", t0, t1, T["accent"])
+    e = eyebrow("why", s.get("eyebrow", "CHICAGO RAT CHECK"), t0, t1, T["accent"])
     els.append(e)
     w = (s.get("scenes") or {}).get("why") or {}
     y = e["y"] + e["h"] + 40
     tl = L.text_el("why-title", w.get("title", ""), X0, y, XW, "P", 700, 72, T["ink"], lh=1.08, max_lines=4, shrink_to=56, t_in=t0, t_out=t1, anim="rise")
     els.append(tl)
     y = tl["y"] + tl["h"] + 48
-    if w.get("number"):
+    rows = w.get("bars") or (s.get("whyBars") if w.get("number") else None)
+    if rows:
+        card_h = min(CB - y, 72 + 136 * len(rows))
+        els.append(L.rect("why-card", X0, y, XW, card_h, T["card"], radius=24, t_in=t0 + 0.4, t_out=t1, anim="fade", role="container", line=T["line"]))
+        vmax = max(abs(r["value"]) for r in rows) or 1
+        yy = y + 36
+        for i, r in enumerate(rows):
+            ti = t0 + 0.5 + 0.2 * i
+            lab = L.text_el(f"why-row{i}-label", r["label"], X0 + 36, yy, XW - 72, "I", 600, 44, T["ink"], lh=1.12, max_lines=1, t_in=ti, t_out=t1)
+            bw = max(28, round(520 * abs(r["value"]) / vmax))
+            bar = L.rect(f"why-row{i}-bar", X0 + 36, yy + 58, bw, 36, T["accent"] if r.get("focus") else T["ink"], radius=6, t_in=ti, t_out=t1, anim="grow")
+            val = L.text_el(f"why-row{i}-value", r["shown"], X0 + 36 + bw + 16, yy + 50, L.RIGHT - 36 - (X0 + 36 + bw + 16), "P", 700, 48,
+                            T["accent"] if r.get("focus") else T["ink"], lh=1.0, max_lines=1, shrink_to=42, t_in=ti + 0.4, t_out=t1)
+            els += [lab, bar, val]
+            yy += 136
+    elif w.get("number"):
         card_h = CB - y
         if card_h >= 220:
             els.append(L.rect("why-card", X0, y, XW, min(card_h, 330), T["card"], radius=24, t_in=t0 + 0.4, t_out=t1, anim="fade", role="container", line=T["line"]))
-            nv = L.text_el("why-number", w["number"], X0 + 36, y + 32, XW - 72, "P", 700, 150, T["accent"], lh=1.0, max_lines=1, shrink_to=80, t_in=t0 + 0.5, t_out=t1)
+            nv = L.text_el("why-number", w["number"], X0 + 36, y + 32, XW - 72, "P", 700, 150, T["ink"], lh=1.0, max_lines=1, shrink_to=80, t_in=t0 + 0.5, t_out=t1)
             els.append(nv)
             nl = L.text_el("why-number-label", w.get("numberLabel", ""), X0 + 36, nv["y"] + nv["h"] + 14, XW - 72, "I", 600, 44, T["ink2"], lh=1.15,
                            max_lines=2, t_in=t0 + 0.5, t_out=t1)
@@ -363,6 +401,16 @@ def captions(tl):
                 cur = []
         if cur:
             chunks.append(cur)
+        merged = []   # no fragment cards: a chunk under 4 words joins its neighbor when the two fit in 2 lines
+        for ch in chunks:
+            if merged and (len(ch) < 4 or len(merged[-1]) < 4) and L.wrap(" ".join(words[j] for j in merged[-1] + ch), font, weight, size, inner, 0, 2):
+                merged[-1] = merged[-1] + ch
+            else:
+                merged.append(ch)
+        chunks = merged
+        on_ink = seg["scene"] == "hook"
+        colors = ({"color": T["white"], "dim": T["soft"], "pill": T["accentInk"], "pillText": T["ink"]} if on_ink else
+                  {"color": T["ink"], "dim": T["ink2"], "pill": T["accent"], "pillText": T["white"]})
         for ci, ch in enumerate(chunks):
             text = " ".join(words[j] for j in ch)
             lines = L.wrap(text, font, weight, size, inner, 0, 2) or [text]
@@ -384,7 +432,7 @@ def captions(tl):
             wpx = max(L.text_width(l, font, weight, size) for l in lines)
             out.append({"id": f"cap-{seg['key']}-{ci}", "kind": "caption", "role": "text", "text": text, "lines": lines, "lineWords": lw,
                         "x": X0 + 24, "y": CAP_Y + 24 + (145 - len(lines) * size * lh) / 2, "w": round(wpx, 1), "h": round(len(lines) * size * lh),
-                        "slotW": inner, "font": font, "weight": weight, "size": size, "lh": lh, "color": T["ink"], "dim": T["soft"], "pill": T["accent"], "pillText": T["white"],
+                        "slotW": inner, "font": font, "weight": weight, "size": size, "lh": lh, **colors,
                         "tIn": round(t_in, 3), "tOut": round(t_out, 3), "group": None, "seg": seg["key"]})
     return out
 
@@ -394,7 +442,7 @@ def caption_cards(caps, tl):
     card on frame one), and none on the end card, whose own words carry the close."""
     out = []
     for sc in tl["scenes"]:
-        if sc["scene"] == "end":
+        if sc["scene"] in ("end", "hook"):   # on the ink frames the captions sit straight on the ground
             continue
         mine = [c for c in caps if sc["start"] <= c["tIn"] < sc["end"]]
         if not mine:
@@ -407,7 +455,9 @@ def caption_cards(caps, tl):
 def build_props(spec, words):
     tl = timeline(spec, words)
     els = []
+    show = {l.get("id"): l.get("show", []) for l in spec.get("lines", [])}
     for sc in tl["scenes"]:
+        sc["segments"] = [dict(g, show=show.get(g["key"], [])) for g in tl["segments"] if g["scene"] == sc["scene"]]
         fn = SCENES.get(sc["scene"])
         if not fn:
             raise RenderError(f"unknown scene {sc['scene']}")
@@ -419,6 +469,8 @@ def build_props(spec, words):
         sc = next(x for x in tl["scenes"] if x["start"] <= c["tIn"] < x["end"])
         nxt = caps[i + 1] if i + 1 < len(caps) else None
         c["tOut"] = round(nxt["tIn"] if nxt and seg_scene[nxt["seg"]] == seg_scene[c["seg"]] else sc["end"], 3)
+    if caps and seg_scene[caps[0]["seg"]] == "hook":
+        caps[0]["tIn"] = 0.0   # frame one carries the first caption too, its words dim until they are said
     els += caption_cards(caps, tl)
     c = cfg()["video"]
     end_start = next(s["start"] for s in tl["scenes"] if s["scene"] == "end")
@@ -426,7 +478,7 @@ def build_props(spec, words):
              "seconds": tl["seconds"], "background": T["canvas"], "drift": DRIFT, "elements": els, "captions": caps,
              "progress": None,
              "timeline": {"segments": [{k: s[k] for k in ("key", "scene", "start", "end", "file")} for s in tl["segments"]],
-                          "scenes": tl["scenes"], "hookEnds": tl["segments"][0]["end"] if tl["segments"][0]["key"] == "hook" else None,
+                          "scenes": [{k: v for k, v in x.items() if k != "segments"} for x in tl["scenes"]], "hookEnds": tl["segments"][0]["end"] if tl["segments"][0]["key"] == "hook" else None,
                           "endCardFrom": end_start},
              "words": [dict(w, seg=s["key"]) for s in tl["segments"] for w in s["words"]]}
     return props
@@ -605,10 +657,14 @@ def contact_sheet(mp4, props, out):
     times = [0.0]
     if props["timeline"].get("hookEnds"):
         times.append(props["timeline"]["hookEnds"])
-    for sc in props["timeline"]["scenes"]:
-        mid = (sc["start"] + sc["end"]) / 2
-        times += [sc["start"] + 1.6, mid, sc["end"] - 0.2]
-    times = sorted({round(min(max(0, t), props["seconds"] - 0.05), 2) for t in times})[:12]
+    scenes = props["timeline"]["scenes"]
+    for sc in scenes[:-1]:
+        times += [sc["start"] + 1.6, (sc["start"] + sc["end"]) / 2]
+    end = scenes[-1]
+    times = sorted({round(min(max(0, t), props["seconds"] - 0.05), 2) for t in times})
+    while len(times) > 10:   # thin the middle, keep frame one
+        times.pop(len(times) // 2)
+    times += [round(end["start"] + 1.2, 2), round(props["seconds"] - 0.1, 2)]   # the end card, always shown
     tmp = tempfile.mkdtemp()
     files = []
     for i, t in enumerate(times):

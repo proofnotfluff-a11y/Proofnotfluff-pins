@@ -443,7 +443,31 @@
     }
    ],
    "focus": 46,
-   "focusLabel": "vs. the same 30 days last year"
+   "focusLabel": "vs. the same 30 days last year",
+   "stats": {
+    "d30": {
+     "who": "area",
+     "name": "South Chicago",
+     "big": "45",
+     "label": "rat complaints, 30 days to Oct 26"
+    },
+    "change": {
+     "who": "area",
+     "name": "South Chicago",
+     "big": "+221.4%",
+     "label": "vs. the same 30 days last year"
+    },
+    "areasUp": {
+     "who": "city",
+     "name": "All of Chicago",
+     "big": "44 of 77",
+     "label": "community areas up vs. last year",
+     "part": [
+      44,
+      77
+     ]
+    }
+   }
   },
   "compare": {
    "unit": "complaints",
@@ -476,7 +500,20 @@
     "numberId": "cityChange",
     "numberLabel": "Chicago rat complaints vs. the same 30 days last year"
    }
-  }
+  },
+  "whyBars": [
+   {
+    "label": "All of Chicago",
+    "value": 10.2,
+    "shown": "+10.2%"
+   },
+   {
+    "label": "South Chicago",
+    "value": 221.4,
+    "shown": "+221.4%",
+    "focus": true
+   }
+  ]
  },
  "hooks": [
   {
@@ -593,26 +630,26 @@
   "spec_lint": {
    "pass": true,
    "problems": [],
-   "at": "2026-10-28T03:23:19+00:00",
-   "tool": "tools/spec_lint.py@94f8fa7d6ac6"
+   "at": "2026-10-28T03:32:55+00:00",
+   "tool": "tools/spec_lint.py@6b8d142e07ca"
   },
   "voice_lint": {
    "pass": true,
    "problems": [],
-   "at": "2026-10-28T03:23:19+00:00",
+   "at": "2026-10-28T03:32:55+00:00",
    "tool": "tools/voice_lint.py@0d489c55a0e9"
   },
   "legal_scan": {
    "pass": true,
    "problems": [],
-   "at": "2026-10-28T03:23:19+00:00",
+   "at": "2026-10-28T03:32:55+00:00",
    "tool": "tools/legal_scan.py@79a15527007e"
   },
   "facts_code": {
    "pass": true,
    "problems": [],
    "checked": 6,
-   "at": "2026-10-28T03:23:19+00:00",
+   "at": "2026-10-28T03:32:55+00:00",
    "tool": "tools/video_gates.py@38adda08b9e0"
   }
  },

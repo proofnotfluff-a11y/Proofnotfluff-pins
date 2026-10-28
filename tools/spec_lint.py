@@ -284,6 +284,10 @@ def rat_texts(spec):
     out += [("chart", " ".join(str(ch.get(k, "")) for k in ("firstShown", "lastShown", "fromShown", "toShown", "focusLabel")))]
     for t in ch.get("legend") or []:
         out.append(("legend", t[1]))
+    for k, st in (ch.get("stats") or {}).items():
+        out.append((f"map stat {k}", f"{st.get('name', '')} {st.get('big', '')} {st.get('label', '')}"))
+    for r in sc.get("whyBars") or []:
+        out.append(("why bar", f"{r.get('label', '')} {r.get('shown', '')}"))
     for c in (sc.get("compare") or {}).get("cards") or []:
         out.append(("compare card", f"{c.get('label', '')} {c.get('shown', '')}"))
     out += [("end card", " ".join(str((spec.get("endCard") or {}).get(k, "")) for k in ("line", "path", "sub")))]

@@ -9,8 +9,8 @@
   {
    "key": "hook",
    "file": "hook.mp3",
-   "sha256": "acdf8abbb29ec82697878846646a5099df27f8d437e1a6af324b756a6a6e9b02",
-   "seconds": 3.082,
+   "sha256": "d8b1102a7ff16266f52f594c378bb888921f6188fdec65e140782223a5a03aa8",
+   "seconds": 2.847,
    "say": "Triple the rat complaints in South Chicago.",
    "tts": "Triple the rat complaints in South Chicago.",
    "scene": "hook",
@@ -18,45 +18,45 @@
     {
      "w": "Triple",
      "start": 0.0,
-     "end": 0.48
+     "end": 0.4
     },
     {
      "w": "the",
-     "start": 0.52,
-     "end": 0.56
+     "start": 0.44,
+     "end": 0.48
     },
     {
      "w": "rat",
-     "start": 0.72,
-     "end": 0.96
+     "start": 0.64,
+     "end": 0.88
     },
     {
      "w": "complaints",
-     "start": 1.04,
-     "end": 1.6
+     "start": 1.0,
+     "end": 1.48
     },
     {
      "w": "in",
-     "start": 1.68,
-     "end": 1.76
+     "start": 1.52,
+     "end": 1.68
     },
     {
      "w": "South",
-     "start": 1.84,
-     "end": 2.08
+     "start": 1.8,
+     "end": 1.92
     },
     {
      "w": "Chicago.",
-     "start": 2.16,
-     "end": 3.04
+     "start": 2.0,
+     "end": 2.8
     }
    ]
   },
   {
    "key": "l1",
    "file": "l1.mp3",
-   "sha256": "a7d83c2abba34a630c065b93222a2cd5a053eb78d92d128292ae099e73ca2827",
-   "seconds": 6.269,
+   "sha256": "3e891cbef9ae655341b64b8e62169df656e879a6c4560cec05fe9c6c15e54eb2",
+   "seconds": 6.348,
    "say": "Those are complaints to the City's 311 line, in the 30 days to Oct 26.",
    "tts": "Those are complaints to the City's three one one line, in the thirty days to October twenty-sixth.",
    "scene": "hook",
@@ -78,22 +78,22 @@
     },
     {
      "w": "to",
-     "start": 1.12,
-     "end": 1.2
+     "start": 1.08,
+     "end": 1.12
     },
     {
      "w": "the",
-     "start": 1.28,
-     "end": 1.36
+     "start": 1.2,
+     "end": 1.28
     },
     {
      "w": "City's",
-     "start": 1.48,
+     "start": 1.36,
      "end": 1.76
     },
     {
      "w": "three",
-     "start": 1.84,
+     "start": 1.92,
      "end": 2.08
     },
     {
@@ -103,12 +103,12 @@
     },
     {
      "w": "one",
-     "start": 2.44,
-     "end": 2.56
+     "start": 2.4,
+     "end": 2.48
     },
     {
      "w": "line,",
-     "start": 2.88,
+     "start": 2.56,
      "end": 3.227
     },
     {
@@ -124,11 +124,11 @@
     {
      "w": "thirty",
      "start": 3.56,
-     "end": 3.84
+     "end": 3.76
     },
     {
      "w": "days",
-     "start": 4.04,
+     "start": 3.84,
      "end": 4.24
     },
     {
@@ -144,14 +144,14 @@
     {
      "w": "twenty-sixth.",
      "start": 4.96,
-     "end": 6.32
+     "end": 6.4
     }
    ]
   },
   {
    "key": "l2",
    "file": "l2.mp3",
-   "sha256": "5a2e80c836b4dc229d8694754424778ac04e3f2d8ae82ce1e0e76496b1ff97ce",
+   "sha256": "0d4421e182d51cf9fc1d080d57491725be64cb3d650ab80e19a5e4c548193269",
    "seconds": 4.989,
    "say": "The South Chicago community area logged 45 rat complaints.",
    "tts": "The South Chicago community area logged forty-five rat complaints.",
@@ -180,35 +180,35 @@
     {
      "w": "area",
      "start": 1.68,
-     "end": 2.08
+     "end": 2.0
     },
     {
      "w": "logged",
-     "start": 2.16,
-     "end": 2.56
+     "start": 2.08,
+     "end": 2.48
     },
     {
      "w": "forty-five",
-     "start": 2.64,
-     "end": 3.44
+     "start": 2.56,
+     "end": 3.36
     },
     {
      "w": "rat",
-     "start": 3.52,
-     "end": 3.76
+     "start": 3.44,
+     "end": 3.68
     },
     {
      "w": "complaints.",
-     "start": 3.84,
-     "end": 5.04
+     "start": 3.76,
+     "end": 4.96
     }
    ]
   },
   {
    "key": "l3",
    "file": "l3.mp3",
-   "sha256": "9db0a5f45354c5ed978a43691b6a197291b02489b4ee9eee8ff215c01d809f27",
-   "seconds": 5.251,
+   "sha256": "2720e9ffbd5941b8a0c949c50b40d6bbe511745249b422dc7f560839ec63a4eb",
+   "seconds": 5.146,
    "say": "Citywide, rat complaints are up 10.2% on last year.",
    "tts": "Citywide, rat complaints are up ten point two percent on last year.",
    "scene": "picture",
@@ -216,69 +216,69 @@
     {
      "w": "Citywide,",
      "start": 0.0,
-     "end": 1.12
+     "end": 1.04
     },
     {
      "w": "rat",
-     "start": 1.2,
-     "end": 1.36
+     "start": 1.12,
+     "end": 1.28
     },
     {
      "w": "complaints",
-     "start": 1.44,
-     "end": 1.973
+     "start": 1.36,
+     "end": 1.84
     },
     {
      "w": "are",
-     "start": 2.027,
-     "end": 2.08
+     "start": 1.92,
+     "end": 2.0
     },
     {
      "w": "up",
-     "start": 2.2,
-     "end": 2.32
+     "start": 2.12,
+     "end": 2.24
     },
     {
      "w": "ten",
-     "start": 2.4,
-     "end": 2.56
+     "start": 2.36,
+     "end": 2.48
     },
     {
      "w": "point",
-     "start": 2.72,
-     "end": 2.96
+     "start": 2.56,
+     "end": 2.88
     },
     {
      "w": "two",
-     "start": 3.04,
-     "end": 3.12
+     "start": 2.96,
+     "end": 3.04
     },
     {
      "w": "percent",
-     "start": 3.28,
-     "end": 3.76
+     "start": 3.12,
+     "end": 3.68
     },
     {
      "w": "on",
-     "start": 3.84,
-     "end": 3.92
+     "start": 3.76,
+     "end": 3.84
     },
     {
      "w": "last",
-     "start": 4.0,
-     "end": 4.32
+     "start": 3.92,
+     "end": 4.24
     },
     {
      "w": "year.",
-     "start": 4.4,
-     "end": 5.28
+     "start": 4.32,
+     "end": 5.12
     }
    ]
   },
   {
    "key": "l4",
    "file": "l4.mp3",
-   "sha256": "7a1a7e7357b8d865f711c2c3a37c7c6e23146f19fbc11575cc58ab9355ff5370",
+   "sha256": "472c848a60a722ca7a446239a583e5d82506f2af3bf0bfa262d8b5b5b4f210cf",
    "seconds": 6.034,
    "say": "And 44 of the city's 77 community areas are running above last year.",
    "tts": "And forty-four of the city's seventy-seven community areas are running above last year.",
@@ -291,7 +291,7 @@
     },
     {
      "w": "forty-four",
-     "start": 0.36,
+     "start": 0.32,
      "end": 0.96
     },
     {
@@ -307,46 +307,46 @@
     {
      "w": "city's",
      "start": 1.28,
-     "end": 1.68
+     "end": 1.6
     },
     {
      "w": "seventy-seven",
-     "start": 1.76,
-     "end": 2.48
+     "start": 1.68,
+     "end": 2.4
     },
     {
      "w": "community",
-     "start": 2.76,
-     "end": 3.04
+     "start": 2.48,
+     "end": 2.96
     },
     {
      "w": "areas",
-     "start": 3.12,
-     "end": 3.6
+     "start": 3.04,
+     "end": 3.52
     },
     {
      "w": "are",
-     "start": 3.68,
-     "end": 3.84
+     "start": 3.6,
+     "end": 3.76
     },
     {
      "w": "running",
-     "start": 4.0,
-     "end": 4.16
+     "start": 3.92,
+     "end": 4.08
     },
     {
      "w": "above",
-     "start": 4.24,
-     "end": 4.72
+     "start": 4.16,
+     "end": 4.64
     },
     {
      "w": "last",
      "start": 4.8,
-     "end": 5.04
+     "end": 4.96
     },
     {
      "w": "year.",
-     "start": 5.12,
+     "start": 5.04,
      "end": 6.08
     }
    ]
@@ -354,7 +354,7 @@
   {
    "key": "l5",
    "file": "l5.mp3",
-   "sha256": "b30914d886373d0115bbfe5f34f22e297ff5f439145af32835159c64e749fb0b",
+   "sha256": "10ec82781e44828d989d4aa9bbee57221de7f9518755212cd70669379bb79047",
    "seconds": 5.068,
    "say": "South Chicago, the same 30 days last year? Just 14.",
    "tts": "South Chicago, the same thirty days last year? Just fourteen.",
@@ -407,7 +407,7 @@
     },
     {
      "w": "fourteen.",
-     "start": 3.92,
+     "start": 4.0,
      "end": 5.12
     }
    ]
@@ -415,8 +415,8 @@
   {
    "key": "l6",
    "file": "l6.mp3",
-   "sha256": "b268867845f52d4e46c0668a1418c3e7e1d046383d3cab9b2d6e7338edcf7bbe",
-   "seconds": 5.068,
+   "sha256": "d285e596428f758acb7881e1f29a83f0c03a307904405b6c08eab60802df5008",
+   "seconds": 5.146,
    "say": "That's up 221.4%, more than triple.",
    "tts": "That's up two hundred twenty-one point four percent, more than triple.",
    "scene": "compare",
@@ -439,12 +439,12 @@
     {
      "w": "hundred",
      "start": 0.88,
-     "end": 1.2
+     "end": 1.12
     },
     {
      "w": "twenty-one",
      "start": 1.28,
-     "end": 1.84
+     "end": 1.76
     },
     {
      "w": "point",
@@ -459,7 +459,7 @@
     {
      "w": "percent,",
      "start": 2.56,
-     "end": 3.56
+     "end": 3.52
     },
     {
      "w": "more",
@@ -474,15 +474,15 @@
     {
      "w": "triple.",
      "start": 4.08,
-     "end": 5.12
+     "end": 5.2
     }
    ]
   },
   {
    "key": "l7",
    "file": "l7.mp3",
-   "sha256": "5c3d7db87b2d7e2cbdbed976db03ad4b56b21b613ae61026eb7feb4e9f738eec",
-   "seconds": 5.486,
+   "sha256": "006516b25d61896abb8cee02ca941be1aa6a0c1074a9a6d41276655de4a99464",
+   "seconds": 5.407,
    "say": "If you run a pest control or cleaning crew, South Chicago is one to watch.",
    "tts": "If you run a pest control or cleaning crew, South Chicago is one to watch.",
    "scene": "why",
@@ -520,31 +520,31 @@
     {
      "w": "or",
      "start": 1.52,
-     "end": 1.6
+     "end": 1.68
     },
     {
      "w": "cleaning",
-     "start": 1.68,
-     "end": 2.08
+     "start": 1.76,
+     "end": 2.16
     },
     {
      "w": "crew,",
-     "start": 2.16,
-     "end": 2.8
+     "start": 2.48,
+     "end": 2.84
     },
     {
      "w": "South",
      "start": 2.88,
-     "end": 3.04
+     "end": 3.12
     },
     {
      "w": "Chicago",
-     "start": 3.12,
-     "end": 3.76
+     "start": 3.48,
+     "end": 3.84
     },
     {
      "w": "is",
-     "start": 3.84,
+     "start": 3.96,
      "end": 4.08
     },
     {
@@ -559,15 +559,15 @@
     },
     {
      "w": "watch.",
-     "start": 4.96,
-     "end": 5.52
+     "start": 4.56,
+     "end": 5.44
     }
    ]
   },
   {
    "key": "cta",
    "file": "cta.mp3",
-   "sha256": "65654b9d79d60dc8147e4fd3e96cf4e2269c8a8e56d27170860f8bda23a595e9",
+   "sha256": "f36d537ee65a8d3342aa8b2ac6df1dd5d18004f9bc699a92fb74a5cff9740cc9",
    "seconds": 4.911,
    "say": "See your neighborhood free at proofnotfluff dot com slash rats.",
    "tts": "See your neighborhood free at proofnotfluff dot com slash rats.",
@@ -576,17 +576,17 @@
     {
      "w": "See",
      "start": 0.0,
-     "end": 0.24
+     "end": 0.16
     },
     {
      "w": "your",
-     "start": 0.32,
+     "start": 0.24,
      "end": 0.4
     },
     {
      "w": "neighborhood",
-     "start": 0.48,
-     "end": 0.96
+     "start": 0.56,
+     "end": 0.88
     },
     {
      "w": "free",
@@ -605,7 +605,7 @@
     },
     {
      "w": "dot",
-     "start": 2.84,
+     "start": 2.8,
      "end": 2.96
     },
     {
@@ -615,12 +615,12 @@
     },
     {
      "w": "slash",
-     "start": 3.76,
+     "start": 3.6,
      "end": 4.0
     },
     {
      "w": "rats.",
-     "start": 4.08,
+     "start": 4.16,
      "end": 4.96
     }
    ]

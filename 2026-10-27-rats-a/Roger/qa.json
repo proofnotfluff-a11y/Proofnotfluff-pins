@@ -1,7 +1,7 @@
 {
  "schema": "pnf.video.qa.v1",
  "videoId": "2026-10-27-rats-a",
- "mp4Sha256": "f0e2a2a653dab17167173d614f0e717ae0f5adf698776d4507fef968f1c36bc4",
+ "mp4Sha256": "dc732aa6d35557f84d7604b447db27b2df9a83ab811a79658261d7d705d2831c",
  "voice": {
   "id": "CwhRBWXzGAHq8TQ4Fs17",
   "name": "Roger",
@@ -12,18 +12,18 @@
  "checks": [
   {
    "name": "length",
-   "value": 49.7,
+   "value": 50.067,
    "pass": true,
-   "detail": "49.70 s (45.0 to 60.0)"
+   "detail": "50.07 s (45.0 to 60.0)"
   },
   {
    "name": "loudness",
    "value": {
-    "lufs": -14.2,
-    "truePeak": -1.9
+    "lufs": -14.5,
+    "truePeak": -3.2
    },
    "pass": true,
-   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -1.9 dBTP (at most -1.5)"
+   "detail": "-14.5 LUFS (target -14 +/- 1), true peak -3.2 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -35,12 +35,12 @@
    "name": "frozen",
    "value": [
     [
-     47.8333,
-     49.7
+     48.1333,
+     50.066667
     ]
    ],
    "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 43.05 s"
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 43.28 s"
   },
   {
    "name": "hook",
@@ -94,8 +94,8 @@
   {
    "name": "file",
    "value": {
-    "sha256": "f0e2a2a653dab17167173d614f0e717ae0f5adf698776d4507fef968f1c36bc4",
-    "bytes": 3562608
+    "sha256": "dc732aa6d35557f84d7604b447db27b2df9a83ab811a79658261d7d705d2831c",
+    "bytes": 3604994
    },
    "pass": true,
    "detail": "opens, decodes to the end, 3.6 MB, matches the manifest"

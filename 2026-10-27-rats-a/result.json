@@ -1,9 +1,9 @@
 {
  "schema": "pnf.video.render_result.v1",
  "videoId": "2026-10-27-rats-a",
- "jobSha256": "dfa179b56ea4aecdf7e3a01195381aa0568ccaac765f3ce79305575e29f2fd95",
+ "jobSha256": "be3516beb9ee42f3ff5123e5db0e4153006332808a4508b76e8a8a0bb9925a57",
  "specSha256": "976bf15804c4a5c21fd47790ca9331a46d215cf58af115fe98b107acd74db1a8",
- "at": "2026-10-28T11:05:22+00:00",
+ "at": "2026-10-28T11:36:17+00:00",
  "branch": "video-renders",
  "voices": [
   {
@@ -11,15 +11,13 @@
    "name": "Chris",
    "status": "rendered",
    "path": "2026-10-27-rats-a/Chris/",
-   "qaPass": false,
-   "mp4Sha256": "6017a2017e855ee8ecaf499ae84dc766733dadd60d1bb07ba485b0c5e008a62b",
+   "qaPass": true,
+   "mp4Sha256": "fc8df51329cef7f80bd6961bc33544f639a997e905af6e00c7e46baa4976c033",
    "seconds": 47.9,
-   "lufs": -14.3,
-   "truePeak": 0.4,
+   "lufs": -14.7,
+   "truePeak": -3.0,
    "chars": 629,
-   "failed": [
-    "loudness"
-   ]
+   "failed": []
   },
   {
    "voiceId": "CwhRBWXzGAHq8TQ4Fs17",
@@ -27,10 +25,10 @@
    "status": "rendered",
    "path": "2026-10-27-rats-a/Roger/",
    "qaPass": true,
-   "mp4Sha256": "f0e2a2a653dab17167173d614f0e717ae0f5adf698776d4507fef968f1c36bc4",
-   "seconds": 49.7,
-   "lufs": -14.2,
-   "truePeak": -1.9,
+   "mp4Sha256": "dc732aa6d35557f84d7604b447db27b2df9a83ab811a79658261d7d705d2831c",
+   "seconds": 50.067,
+   "lufs": -14.5,
+   "truePeak": -3.2,
    "chars": 629,
    "failed": []
   },
@@ -40,10 +38,10 @@
    "status": "rendered",
    "path": "2026-10-27-rats-a/Eric/",
    "qaPass": true,
-   "mp4Sha256": "caef6c1cc49f019783dae13eb15757e684062f2932dd3d70377047b07325cdf6",
-   "seconds": 48.167,
-   "lufs": -14.1,
-   "truePeak": -1.8,
+   "mp4Sha256": "0894fe117f4e0194e180108d69f48da0c797398a7caaa2053c3fddd05486c139",
+   "seconds": 48.133,
+   "lufs": -14.4,
+   "truePeak": -3.0,
    "chars": 629,
    "failed": []
   },
@@ -52,29 +50,28 @@
    "name": "Matilda",
    "status": "rendered",
    "path": "2026-10-27-rats-a/Matilda/",
-   "qaPass": true,
-   "mp4Sha256": "3b728476531dc8abfc63f8866a30b0fc8c2825f4b53e05e5e9c9676dc3e31a82",
-   "seconds": 52.367,
-   "lufs": -14.2,
-   "truePeak": -1.6,
+   "qaPass": false,
+   "mp4Sha256": "ee112f8649475bb643ed0e539e6bce851ed318ef84b9df182f73f3e8df939236",
+   "seconds": 52.867,
+   "lufs": -14.5,
+   "truePeak": -2.9,
    "chars": 629,
-   "failed": []
+   "failed": [
+    "frozen"
+   ]
   },
   {
    "voiceId": "pqHfZKP75CvOlQylNhV4",
    "name": "Bill",
    "status": "rendered",
    "path": "2026-10-27-rats-a/Bill/",
-   "qaPass": false,
-   "mp4Sha256": "aa12b68391193c442efa0857397715e39fb6dadd034a3a0f7de6689b71e982be",
-   "seconds": 51.933,
-   "lufs": -14.0,
-   "truePeak": -1.3,
+   "qaPass": true,
+   "mp4Sha256": "175953468e4d2598a4501c3a9693e00f71e0fe2c8095cdbb031f8e2208dd7210",
+   "seconds": 51.667,
+   "lufs": -14.1,
+   "truePeak": -3.3,
    "chars": 629,
-   "failed": [
-    "loudness",
-    "hook"
-   ]
+   "failed": []
   }
  ]
 }

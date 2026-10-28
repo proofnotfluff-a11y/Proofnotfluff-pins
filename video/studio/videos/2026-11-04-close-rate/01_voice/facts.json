@@ -1,0 +1,32 @@
+{
+ "about": "Every number this video shows or says, with its source. Checked by the facts gate against the source page; from video/studio/research/runs/2026-10-28-topic-bank.md (topic 4, Brief 4) and re-read on the source page on Oct 28, 2026.",
+ "servicetitan": {
+  "title": "Trades Industry Trends: Call Booking, Close Rates & Off-Hours Calls",
+  "publisher": "ServiceTitan",
+  "date": "October 22, 2026",
+  "url": "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/quarterly-industry-trends",
+  "medianLowPct": 31,
+  "medianLowRegion": "Northeast",
+  "medianHighPct": 38,
+  "medianHighRegion": "West",
+  "quoteMedian": "Regional median close rates range from 31% in the Northeast to 38% in the West.",
+  "topSharePct": 25,
+  "topLowPct": 70,
+  "topHighPct": 73,
+  "quoteTop": "Among the top 25% of businesses by close rate in each region, medians range from 70% to 73%.",
+  "window": "May through July 2026 (the most recent quarter; the page draws on five quarters, May 2025 through July 2026)",
+  "windowYear": 2026,
+  "population": "an aggregated, de-identified sample of ServiceTitan customer accounts (trades businesses); which trades, and residential or commercial, not stated",
+  "caveat": "The page does not define close rate. It says the data should not be interpreted as representative of the entire trades industry, specific trades, broader populations or general market conditions; comparisons are not a guarantee of results and do not establish causation.",
+  "method": "Call booking and close rates are calculated based on the median of the sampled population and the median of the top 25% of that population."
+ },
+ "example": {
+  "source": "OURS: a worked example of the formula, labeled 'example' on screen and in the voice; not a finding",
+  "formula": "close rate = jobs sold / estimates given, both counted over the same month",
+  "dollarFormula": "dollar close rate = dollars sold / dollars quoted",
+  "estimates": 40,
+  "sold": 14,
+  "ratePct": 35,
+  "check": "14 / 40 = 0.35 = 35%, which sits inside the 31% to 38% range of regional medians"
+ }
+}

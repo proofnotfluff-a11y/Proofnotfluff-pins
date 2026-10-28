@@ -34,7 +34,7 @@ window.SCENE = {
   host_name: 'Snow',
   hud: 'LESSON 4',
   focus: {'stakes.top57': [400, 620], 'stakes.rest': [400, 720], 'menu.lift': [480, 640], 'menu.five': [520, 760],
-          'card.best': [500, 640], 'survey.many': [400, 700], 'survey.caveat': [500, 420], 'close.send': [600, 860]},
+          'card.best': [500, 640], 'survey.many': [400, 700], 'survey.caveat': [500, 420]},
   sections: {
     hook: (k, T) => {
       const n = k.data.numbers;
@@ -274,30 +274,27 @@ window.SCENE = {
       k.room('blackboard'); boardClip(k);
       const t1 = k.S('close'), t2 = wordT(k, 'close.choice', /^three/i), ty = wordT(k, 'close', /^yes/i, 0.6), tc = wordT(k, 'close.choice', /^choice/i, 0.5);
       // centered, so the board reads as one card; the send line is a full-width box, the biggest call on screen
-      k.slam(`${n.single.shown} price:`, 540, 262, t1, {size: 120, color: CHALK, from: 0.7, align: 'center'});
-      k.slam('yes or no.', 540, 372, ty, {size: 120, color: CHALK, from: 0.7, align: 'center'});
-      k.burst(540, 320, t1 + 0.1, {n: 10, r: 150, colors: ['paper', '#2F5A4A']});
+      k.slam(`${n.single.shown} price:`, 540, 280, t1, {size: 120, color: CHALK, from: 0.7, align: 'center'});
+      k.slam('yes or no.', 540, 390, ty, {size: 120, color: CHALK, from: 0.7, align: 'center'});
+      k.burst(540, 336, t1 + 0.1, {n: 10, r: 150, colors: ['paper', '#2F5A4A']});
       if (T >= t2) {
-        k.slam(`${n.tiers.shown} prices:`, 540, 502, t2, {size: 120, color: 'accent', from: 0.7, align: 'center'});
-        k.slam('a choice.', 540, 612, tc, {size: 120, color: 'accent', from: 0.7, align: 'center'});
+        k.slam(`${n.tiers.shown} prices:`, 540, 510, t2, {size: 120, color: 'accent', from: 0.7, align: 'center'});
+        k.slam('a choice.', 540, 620, tc, {size: 120, color: 'accent', from: 0.7, align: 'center'});
         k.burst(540, 560, t2 + 0.1, {n: 16, r: 200});
       }
       if (T >= k.S('close.send')) {
         const t0 = k.S('close.send');
-        k.ctx.save(); popAt(k, t0 - 0.2, 540, 790);
-        k.panel2(340, 752, 400, 80, {fill: '#24453A', border: 'accent'}); k.text('ProofNotFluff', 540, 762, {size: 60, color: 'accent', align: 'center'});
+        k.ctx.save(); slideIn(k, t0, 0, 200);
+        k.panel2(84, 790, 900, 128, {fill: INK, border: 'accent', title: 'ProofNotFluff'});
+        k.text('Send this to whoever', 534, 806, {size: 60, color: CHALK, align: 'center'});
+        k.text('writes your quotes.', 534, 858, {size: 60, color: CHALK2, align: 'center'});
         k.ctx.restore();
-        k.burst(540, 792, t0 - 0.1, {n: 16});
-        k.ctx.save(); slideIn(k, t0 + 0.2, 0, 200);
-        k.panel2(84, 848, 900, 140, {fill: INK, border: 'accent'});
-        k.text('Send this to whoever', 534, 862, {size: 60, color: CHALK, align: 'center'});
-        k.text('writes your quotes.', 534, 922, {size: 60, color: CHALK2, align: 'center'});
-        k.ctx.restore();
+        k.burst(534, 790, t0 + 0.1, {n: 16});
       }
       if (T >= k.S('close.next')) {   // the payoff line underlined as the last words echo the hook
         const t0 = k.S('close.next'), w = k.measure('a choice.', {size: 120});
-        k.sweep(540 - w / 2, 732, w, 12, t0, {color: 'accent'});
-        k.burst(540 + w / 2, 738, t0 + 0.3, {n: 16});
+        k.sweep(540 - w / 2, 740, w, 12, t0, {color: 'accent'});
+        k.burst(540 + w / 2, 746, t0 + 0.3, {n: 16});
       }
       k.ctx.restore();
       return {hostPose: T >= k.S('close.send') + 1.5 ? 'wave' : 'talk', hostScale: 0.55, hostX: 150};

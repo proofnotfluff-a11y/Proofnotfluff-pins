@@ -1,0 +1,12 @@
+{
+ "gate": "golden",
+ "round": 0,
+ "at": "2026-10-28T17:40:00-05:00",
+ "pass": true,
+ "score": {
+  "post_as_is": "yes"
+ },
+ "reasons": [
+  "polish: static hook card, boards empty 1.5 to 2.5 s, 37% counts while spoken"
+ ]
+}

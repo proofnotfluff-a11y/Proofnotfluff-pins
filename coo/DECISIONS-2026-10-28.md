@@ -62,3 +62,6 @@
 - So: three learning loops (video/studio/LEARNINGS.md: every gate fault logged, lint rules from faults, Monday metrics and research re-rank), a layout lint, standard gate prompts, a pinned post queue (ready, next, postcopy), sound (room loops, ducking, sting) and motion upgrades, and lessons 2 to 4 made in parallel.
 - 4:31 pm [stated] "Laptop is plugged back in so you have the pc at your disposal"
 - Lesson 1 final round (Claude's gates): render critic PASS 0 faults, design PASS 4.86, golden PASS (post as is); facts PASS, buyer PASS; facts-captions held at its second FAIL (both fixes made), so lesson 1 waits on Todd's word before it posts.
+- 5:14 pm [stated] "Where can I preview lesson 1" (sent the final render in chat).
+- 5:15 pm [stated] "Let's keep creating videos and adding to the pipeline, because we have to utilize all usage before 10 p.m. So keep them going."
+- So: lessons 5 and up are made tonight from research/IDEAS.md "Next up", each through every gate into the post queue.

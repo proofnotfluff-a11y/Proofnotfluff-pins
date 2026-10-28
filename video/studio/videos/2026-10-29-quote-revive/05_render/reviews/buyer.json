@@ -1,0 +1,15 @@
+{
+ "gate": "buyer",
+ "round": 0,
+ "at": "2026-10-28T17:40:00-05:00",
+ "pass": true,
+ "score": {
+  "stop": "yes",
+  "send": "yes",
+  "save": "yes",
+  "follow_or_link": "yes"
+ },
+ "reasons": [
+  "notes: 'Software maker ServiceTitan says its data shows' is a mouthful; jump to the bot study a little loose"
+ ]
+}

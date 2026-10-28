@@ -1250,6 +1250,14 @@ def mix(slug, seconds, out_wav, cues):
         f"loudnorm=I={target}:TP=-2.0:LRA=11:measured_I={m['input_i']}:measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:"
         f"measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true,aresample=192000,"
         f"alimiter=limit={lim:.4f}:attack=1:release=60:level=disabled,aresample=48000", "-ar", "48000", "-ac", "2", out_wav])
+    for _ in range(2):   # the limiter can pull loudness under target (a -15.1 LUFS mix): add the gap back, limit again
+        got = loudness(out_wav)
+        if got is None or got >= target - 0.4:
+            break
+        fix = out_wav + ".fix.wav"
+        sh(["ffmpeg", "-y", "-loglevel", "error", "-i", out_wav, "-af", f"volume={target - got + 0.2:.2f}dB,aresample=192000,"
+            f"alimiter=limit={lim:.4f}:attack=1:release=60:level=disabled,aresample=48000", "-ar", "48000", "-ac", "2", fix])
+        os.replace(fix, out_wav)
     os.remove(tmp); shutil.rmtree(work, ignore_errors=True)
     return has_voice
 

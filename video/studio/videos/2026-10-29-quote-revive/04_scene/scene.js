@@ -54,7 +54,7 @@ window.SCENE = {
       k.phone(470, 300, 460, 620, [{text: QUOTE_MSG, me: true, at: -1, stamp: 'Read'}], {who: 'Homeowner', size: 39});
       k.ctx.restore();
       k.ctx.save(); slideIn(k, HOOK_END + 0.2, -500, 0);
-      k.panel2(60, 400, 380, 150, {title: 'Waiting'});
+      k.panel2(60, 400, 380, 150, {});
       // a typing indicator that never turns into a reply
       for (let i = 0; i < 3; i++) { const b = Math.max(0, Math.sin(T * 6 - i * 0.9)) * 18; k.shape(k.rectPts(150 + i * 70, 456 - b, 40, 40, 0), {fill: i === Math.floor(T * 3) % 3 ? 'accent2' : 'muted', line: false}); }
       k.ctx.restore();
@@ -102,7 +102,7 @@ window.SCENE = {
         k.shape(k.rectPts(96, 650, W * f * p, 50, 0), {fill: 'accent', line: false});
         if (p > 0.6) {
           k.slam('closed', 96, 722, t0 + 0.45, {size: 39, color: 'accent', from: 0.5});
-          k.slam('still open', 96 + W * f + 30, 722, t0 + 0.6, {size: 39, color: CHALK, from: 0.5});
+          k.slam('still open', 96 + W * f + W * (1 - f) / 2, 722, t0 + 0.6, {size: 39, color: CHALK, from: 0.5, align: 'center'});
         }
       }
       // your van, parked at the job; on "driveway" it pulls away (the quote leaves with you)
@@ -162,9 +162,9 @@ window.SCENE = {
           }
           k.ctx.restore();
           if (T >= to) {
-            k.ctx.save(); slideIn(k, to + 0.4, 400, 0); k.chip('Later', 700, 880, {size: 30, fill: '#4A4E5A'}); k.ctx.restore();
+            k.ctx.save(); popAt(k, to + 0.4, 790, 700); k.ctx.translate(790, 700); k.ctx.rotate(-0.08); k.ctx.translate(-790, -700); k.chip('Later', 730, 682, {size: 30, fill: '#7A3442'}); k.ctx.restore();
           }
-          if (nudge) stamp(k, 'Homework', 342, nudge.y + nudge.h + 92, ts, {w: 420, scale: 0.75});
+          if (nudge) stamp(k, 'Homework', 342, Math.min(nudge.y + nudge.h + 80, 846), ts, {w: 420, scale: 0.7});   // inside the phone, clear of the host
         }
         k.ctx.restore();
       }
@@ -172,18 +172,20 @@ window.SCENE = {
       if (T >= tFix) {
         k.ctx.save(); slideIn(k, tFix + 0.1, 900, 0);
         k.panel2(72, 330, 858, 470, {title: "Dean Jackson's fix"});
-        k.text('Are you still looking for ...?', 112, 380, {size: 39, color: 'muted'});
         k.ctx.restore();
+        // the fix itself is the hero line, the first thing in the panel
+        k.slam('"Are you still looking', 112, 376, tFix + 0.25, {size: 60, color: '#7A3442', from: 0.6});
+        k.slam('for ...?"', 112, 446, tFix + 0.35, {size: 60, color: '#7A3442', from: 0.6});
         if (T >= k.S('homework.ask')) {
           const t0 = k.S('homework.ask');
-          k.slam('One short question', 112, 470, t0, {size: 60, color: 'ink', from: 0.5});
-          k.ctx.save(); slideIn(k, t0 + 0.4, 500, 0); k.text('about what they wanted.', 112, 556, {size: 39, color: 'ink'}); k.ctx.restore();
+          k.slam('One short question', 112, 550, t0, {size: 60, color: 'ink', from: 0.5});
+          k.ctx.save(); slideIn(k, t0 + 0.4, 500, 0); k.text('about what they wanted.', 112, 630, {size: 39, color: 'ink'}); k.ctx.restore();
         }
         if (T >= k.S('homework.pitch')) {
           const t0 = k.S('homework.pitch');
-          k.slam('No pitch.', 112, 660, t0, {size: 60, color: 'accent', from: 0.7});
-          k.sweep(112, 736, 207, 9, t0 + 0.3, {color: 'accent'});
-          k.burst(220, 690, t0 + 0.1, {n: 14});
+          k.burst(220, 730, t0 + 0.1, {n: 14});
+          k.slam('No pitch.', 112, 696, t0, {size: 60, color: 'accent', from: 0.7});
+          k.sweep(112, 770, 207, 9, t0 + 0.3, {color: 'accent'});
         }
       }
       const shrug = T >= k.S('homework.off') && T < tFix;
@@ -239,8 +241,8 @@ window.SCENE = {
       const n = k.data.numbers;
       k.room('blackboard'); boardClip(k);
       k.slam('The part people skip', 96, 280, k.S('turn'), {size: 60, color: CHALK2, from: 0.5});
-      if (T >= k.S('turn.own')) {
-        const t0 = k.S('turn.own'), t1 = wordAt(k, /^own/i, t0, 0.6);
+      if (T >= Math.min(k.S('turn.own'), k.S('turn') + 0.6)) {
+        const t0 = Math.min(k.S('turn.own'), k.S('turn') + 0.6), t1 = wordAt(k, /^own/i, k.S('turn.own'), 0.6);
         k.slam('Keep it in', 96, 370, t0, {size: 120, color: CHALK, from: 0.6});
         k.slam('your own words.', 96, 490, t1, {size: 120, color: 'accent', from: 0.6});
         k.burst(300, 560, t1 + 0.1, {n: 16});
@@ -316,22 +318,21 @@ window.SCENE = {
         k.slam('Now you know', 96, 370, tKnow + 0.25, {size: 120, color: CHALK, from: 0.6});
         k.slam('what to send.', 96, 500, wordAt(k, /^send/i, tKnow, 0.6), {size: 120, color: 'accent', from: 0.6});
       }
-      if (T >= k.S('close.send')) {
+      if (T >= k.S('close.send')) {   // one left edge: the brand chip (quiet), the send box (the one filled element), the caption note
         const t0 = k.S('close.send'), tb = t0 - 0.3;
-        k.ctx.save(); popAt(k, tb, 96, 690);
-        k.panel2(96, 690, 440, 80, {fill: '#24453A', border: 'accent'}); k.text('ProofNotFluff', 316, 700, {size: 60, color: 'accent', align: 'center'});
+        k.ctx.save(); popAt(k, tb, 96, 660);
+        k.panel2(96, 648, 440, 80, {fill: INK, border: 'accent'}); k.text('ProofNotFluff', 316, 658, {size: 60, color: 'accent', align: 'center'});
         k.ctx.restore();
-        k.burst(316, 730, tb + 0.1, {n: 16});
-        k.ctx.save(); slideIn(k, t0, 700, 0);
-        k.panel2(300, 800, 650, 110, {fill: INK, border: 'accent'});
-        k.text('Send this to whoever', 330, 814, {size: 39, color: CHALK});
-        k.text('follows up on your quotes.', 330, 858, {size: 39, color: CHALK});
+        k.burst(316, 688, tb + 0.1, {n: 16});
+        k.ctx.save(); slideIn(k, t0, 0, 200);
+        k.panel2(96, 752, 840, 140, {fill: 'accent', border: INK});
+        k.text('Send this to whoever', 124, 764, {size: 60, color: INK});
+        k.text('follows up on your quotes.', 124, 826, {size: 60, color: INK});
         k.ctx.restore();
       }
       if (T >= k.S('close.quiet')) {
-        k.ctx.save(); slideIn(k, k.S('close.quiet'), 700, 0);
-        k.text('Exact text', 580, 696, {size: 30, color: CHALK2});
-        k.text('in the caption.', 580, 734, {size: 30, color: CHALK2});
+        k.ctx.save(); slideIn(k, k.S('close.quiet'), 0, 100);
+        k.text('Exact text in the caption.', 96, 916, {size: 39, color: CHALK2});
         k.ctx.restore();
       }
       k.ctx.restore();

@@ -1,7 +1,7 @@
 {
  "schema": "pnf.video.qa.v1",
  "videoId": "2026-10-27-rats-a",
- "mp4Sha256": "e62f50e0cd665d073e0c42148d7d675c822c28c3eb5ae5bd9a21c94cc2f5cf87",
+ "mp4Sha256": "caef6c1cc49f019783dae13eb15757e684062f2932dd3d70377047b07325cdf6",
  "voice": {
   "id": "cjVigY5qzO86Huf0OWal",
   "name": "Eric",
@@ -40,7 +40,7 @@
     ]
    ],
    "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 41.61 s"
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 41.69 s"
   },
   {
    "name": "hook",
@@ -94,21 +94,21 @@
   {
    "name": "file",
    "value": {
-    "sha256": "e62f50e0cd665d073e0c42148d7d675c822c28c3eb5ae5bd9a21c94cc2f5cf87",
-    "bytes": 3345603
+    "sha256": "caef6c1cc49f019783dae13eb15757e684062f2932dd3d70377047b07325cdf6",
+    "bytes": 3378300
    },
    "pass": true,
-   "detail": "opens, decodes to the end, 3.3 MB, matches the manifest"
+   "detail": "opens, decodes to the end, 3.4 MB, matches the manifest"
   },
   {
    "name": "layout",
    "value": [],
    "pass": true,
-   "detail": "0 layout problem(s) in 94 boxes"
+   "detail": "0 layout problem(s) in 98 boxes"
   },
   {
    "name": "spec-match",
-   "value": "a8ae4c96b31ee35a51a9cbc65725995619d05847b4b51cc1284b9c6b665f27a6",
+   "value": "976bf15804c4a5c21fd47790ca9331a46d215cf58af115fe98b107acd74db1a8",
    "pass": true,
    "detail": "the render is of this exact spec"
   }

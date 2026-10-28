@@ -1,7 +1,7 @@
 {
  "schema": "pnf.video.qa.v1",
  "videoId": "2026-10-27-rats-a",
- "mp4Sha256": "750a939d3ca77c6d7e0558fc693816132cbd2f09e04f7197d8a853a8e4c1ec09",
+ "mp4Sha256": "3b728476531dc8abfc63f8866a30b0fc8c2825f4b53e05e5e9c9676dc3e31a82",
  "voice": {
   "id": "XrExE9yKIg1WjnnlVkGX",
   "name": "Matilda",
@@ -12,18 +12,18 @@
  "checks": [
   {
    "name": "length",
-   "value": 52.7,
+   "value": 52.367,
    "pass": true,
-   "detail": "52.70 s (45.0 to 60.0)"
+   "detail": "52.37 s (45.0 to 60.0)"
   },
   {
    "name": "loudness",
    "value": {
     "lufs": -14.2,
-    "truePeak": -1.8
+    "truePeak": -1.6
    },
    "pass": true,
-   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -1.8 dBTP (at most -1.5)"
+   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -1.6 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -35,18 +35,18 @@
    "name": "frozen",
    "value": [
     [
-     50.8667,
-     52.7
+     50.5,
+     52.366667
     ]
    ],
    "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 45.81 s"
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 45.40 s"
   },
   {
    "name": "hook",
-   "value": 2.9,
+   "value": 2.98,
    "pass": true,
-   "detail": "hook's last word ends at 2.90 s (by 3.00)"
+   "detail": "hook's last word ends at 2.98 s (by 3.00)"
   },
   {
    "name": "numbers",
@@ -89,13 +89,13 @@
    "name": "faces",
    "value": [],
    "pass": true,
-   "detail": "0 frame(s) with a face at 0.6 or more (53 frames checked)"
+   "detail": "0 frame(s) with a face at 0.6 or more (52 frames checked)"
   },
   {
    "name": "file",
    "value": {
-    "sha256": "750a939d3ca77c6d7e0558fc693816132cbd2f09e04f7197d8a853a8e4c1ec09",
-    "bytes": 3722561
+    "sha256": "3b728476531dc8abfc63f8866a30b0fc8c2825f4b53e05e5e9c9676dc3e31a82",
+    "bytes": 3737222
    },
    "pass": true,
    "detail": "opens, decodes to the end, 3.7 MB, matches the manifest"
@@ -104,11 +104,11 @@
    "name": "layout",
    "value": [],
    "pass": true,
-   "detail": "0 layout problem(s) in 94 boxes"
+   "detail": "0 layout problem(s) in 98 boxes"
   },
   {
    "name": "spec-match",
-   "value": "a8ae4c96b31ee35a51a9cbc65725995619d05847b4b51cc1284b9c6b665f27a6",
+   "value": "976bf15804c4a5c21fd47790ca9331a46d215cf58af115fe98b107acd74db1a8",
    "pass": true,
    "detail": "the render is of this exact spec"
   }

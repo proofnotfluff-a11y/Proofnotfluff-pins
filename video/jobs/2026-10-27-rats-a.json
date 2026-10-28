@@ -2,8 +2,14 @@
  "schema": "pnf.video.job.v1",
  "videoId": "2026-10-27-rats-a",
  "spec": "video/specs/2026-10-27-rats-a.json",
- "voices": ["iP95p4xoKVk53GoZ742B", "CwhRBWXzGAHq8TQ4Fs17", "cjVigY5qzO86Huf0OWal", "XrExE9yKIg1WjnnlVkGX", "pqHfZKP75CvOlQylNhV4"],
- "requestedAt": "2026-10-28T05:06:47-05:00",
+ "voices": [
+  "iP95p4xoKVk53GoZ742B",
+  "CwhRBWXzGAHq8TQ4Fs17",
+  "cjVigY5qzO86Huf0OWal",
+  "XrExE9yKIg1WjnnlVkGX",
+  "pqHfZKP75CvOlQylNhV4"
+ ],
+ "requestedAt": "2026-10-28T05:30:06-05:00",
  "run": "live-chat-1028",
- "about": "Golden render on the real voice: all five approved voices (Chris, Roger, Eric, Matilda, Bill) while config voice.chosen is null, so Todd can pick one for all nine. The golden is never posted (Todd, Oct 28, 3:43 am)."
+ "about": "Golden re-render on all five approved voices with the hook pick's next best (hook 4), after gate 5's hook check failed on all five on the first real-voice render (3.14 to 3.70 s); Todd, Oct 28: one re-render with the next-best hook. The golden is never posted."
 }

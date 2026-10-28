@@ -3,20 +3,20 @@
  "videoId": "2026-10-27-rats-a",
  "gate": "buyer",
  "model": "claude-opus-5-5",
- "skillCommit": "bee08dd",
+ "skillCommit": "e6fe6a1",
  "prompt": "video/prompts/buyer.md",
  "inputs": [
-  "the script as heard and the Instagram caption, after the buyer fix round and the facts 'calls' fix"
+  "the script as heard with hook 4 ('Triple the rat complaints in South Chicago.', the hook pick's next best, after gate 5 hook FAIL on all five voices; rerun at round 0) and the Instagram caption"
  ],
  "score": {
   "tap": "yes"
  },
  "pass": true,
  "reasons": [
-  "Rat complaints to Chicago 311 from the South Chicago community area more than tripled in the 30 days to Oct 26 (45 vs 14 in the same days last year), while citywide complaints are up 10.2% and 44 of 77 community areas are above last year.",
-  "Yes: as a Chicago pest control or cleaning owner, a free neighborhood-by-neighborhood view of where rat complaints are rising is directly useful for deciding where to market, and the South Chicago number makes me want to check my own service areas.",
-  "Rules check: nothing found. Every count is framed as complaints to 311 (script line 3, caption says 'not rats found'); only a community area is named, no building, block, business or person; it addresses pest control owners as an audience but sells no pest control; 311 is named as the source with no how-to; numbers check out (45/14 = 3.21x, +221.4%) and 'one to watch' is mild, not a promise or fake urgency. Minor clarity notes (non-blocking): the opening line 'more than tripled' comes before its period and source, which arrive in line 2; the citywide +10.2% and '44 of 77 running above last year' do not restate that they cover the same 30-day window, so a stranger has to assume it; the year is never said (implied current); 'community area' is a Chicago-specific term a non-local might not know, though a Chicago business owner likely would; a stranger is not told what ProofNotFluff is beyond 'see your neighborhood free'."
+  "Rat complaints to Chicago 311 in the South Chicago community area more than tripled, 45 in the 30 days to Oct 26 against 14 in the same days last year, while citywide complaints are up 10.2%.",
+  "Yes. If I run a pest control or cleaning crew, a free look at the complaint count for the neighborhoods I serve is worth one tap, and the video already showed me the numbers move enough to matter.",
+  "Rules check (3): nothing found. Every count is framed as complaints to 311 (script line 3, caption says 'not rats found'), only a community area is named, nothing sells pest control to a consumer, 311 is named as the source with no how-to, and 'one to watch' is mild, not hype or fake urgency. Clarity (4), minor only: the citywide 'up 10.2 percent on last year' and '44 of 77 community areas running above last year' do not restate their period, so a stranger has to assume the same 30 days; the caption's 'Citywide, complaints are up 10.2%' drops the word 'rat' and the period. Neither blocks understanding."
  ],
- "round": 1,
- "at": "2026-10-27T23:01:22-05:00"
+ "round": 0,
+ "at": "2026-10-28T05:29:56-05:00"
 }

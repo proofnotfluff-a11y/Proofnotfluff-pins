@@ -12,3 +12,8 @@
 - Answer given: pass as described (generated product footage gets controls wrong on safety-relevant steps, shows other brands' products, manuals are copyrighted and brands already post free how-tos, YouTube demonetizes mass-produced templated AI video, about $2 to $4 per 8 s clip, and it is a homeowner audience against "trade owners only").
 - [stated] Todd, 4:55 am: "Ok never mind. Scrap that idea. Let's continue with what we have."
 - So: no appliance video work; the video engine stays on Phase 0 (Rat check MVP). The scheduled task's draft prompt is saved at video/scheduled-task-prompt.md for the next build chat.
+
+## Video engine golden render, 5:05 am (golden render chat)
+
+- [stated] Todd, 5:05 am: "I have added the ELEVENLABS_API_KEY repo secret." "On the stand-in voice the hook ended at 3.56 s, so the real voice decides gate 5's 3.0 s hook check; if it fails, one re-render with the next-best hook." "This golden is never posted; I only pick the voice for all nine videos." "Helper agents run on Opus 5.5." "Each video posts only after my "post" on its own preview. No standing post rule, no Meta or YouTube app, no Buffer, no spend, no other platform."
+- So: narration route call 3 done (Option A). First real-voice render (all five voices): gate 5 hook FAIL on all five (Chris 3.22 s, Roger 3.46, Eric 3.14, Matilda 3.46, Bill 3.70; Roger also true peak -1.3 dBTP). One re-render with the hook pick's next best, hook 4 "Triple the rat complaints in South Chicago." (3 points to hook 1's 6); code gates PASS, buyer test rerun at round 0 PASS.

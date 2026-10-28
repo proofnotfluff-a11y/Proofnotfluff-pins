@@ -631,33 +631,33 @@
   "spec_lint": {
    "pass": true,
    "problems": [],
-   "at": "2026-10-28T03:53:19+00:00",
+   "at": "2026-10-28T10:29:15+00:00",
    "tool": "tools/spec_lint.py@19813f0abe37"
   },
   "voice_lint": {
    "pass": true,
    "problems": [],
-   "at": "2026-10-28T03:53:19+00:00",
+   "at": "2026-10-28T10:29:15+00:00",
    "tool": "tools/voice_lint.py@0d489c55a0e9"
   },
   "legal_scan": {
    "pass": true,
    "problems": [],
-   "at": "2026-10-28T03:53:19+00:00",
+   "at": "2026-10-28T10:29:15+00:00",
    "tool": "tools/legal_scan.py@79a15527007e"
   },
   "facts_code": {
    "pass": true,
    "problems": [],
    "checked": 6,
-   "at": "2026-10-28T03:53:19+00:00",
+   "at": "2026-10-28T10:29:15+00:00",
    "tool": "tools/video_gates.py@65a877cd74c8"
   }
  },
  "golden": true,
  "hook": {
-  "say": "South Chicago rat complaints more than tripled.",
-  "tts": "South Chicago rat complaints more than tripled.",
-  "index": 0
+  "say": "Triple the rat complaints in South Chicago.",
+  "tts": "Triple the rat complaints in South Chicago.",
+  "index": 3
  }
 }

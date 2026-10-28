@@ -73,7 +73,7 @@ the solar effect is 0.78 percentage points, not 78%; the 1986 price study is fai
 
 | # | Title | Anchor (source) |
 |---|---|---|
-| T2 | Close it before you leave the driveway | top shops close 77% of estimates on the same visit vs 62% (ServiceTitan, May 2026) |
+| T2 | Close it before you leave the driveway (made: 2026-11-01-same-visit-close) | top shops close 77% of estimates on the same visit vs 62% (ServiceTitan, May 2026) |
 | T1 | Raise prices with a reason customers accept | cost-based raise rated acceptable by 79% and 75%; a snowstorm raise unfair by 82% (Kahneman, Knetsch, Thaler, AER 1986) |
 | T3 | Reply to every review | hotels that started replying got 12% more reviews and +0.12 stars (Proserpio and Zervas, Marketing Science) |
 | T4 | Know your close rate | median 31% to 38% by region; top quarter 70% to 73% (ServiceTitan, Oct 2026) |

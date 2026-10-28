@@ -1,0 +1,35 @@
+{
+ "about": "Every number this video shows or says, with its source. Checked by the facts gate against the source page; from video/studio/research/runs/2026-10-28-topic-bank.md (T2, lesson 2 in the bank) and re-read on the source page on Oct 28, 2026.",
+ "servicetitan": {
+  "title": "The Profile of a Top Performer: Four Behaviors That Set the Top 10% of Contractors Apart",
+  "publisher": "ServiceTitan",
+  "published": "May 19, 2026",
+  "url": "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/top-performer-profile",
+  "topPct": 10,
+  "topPercentile": 90,
+  "topDefinition": "Top performers were defined as contractors in the 90th percentile of revenue within their trade and market segment.",
+  "topSameVisitPct": 77,
+  "restSameVisitPct": 62,
+  "gapPts": 15,
+  "quote": "Top performers close 77% of their estimates during the same visit. For the rest, that number is 62%. The 15-point gap comes down to momentum.",
+  "whyQuote": "The longer the window between a quote and a decision, the more time a customer has to call a competitor, get distracted, or talk themselves out of the project entirely.",
+  "measuresQuote": "Same-visit close rates measure something specific: how well a technician handles objections, frames financing and asks for the sale in the moment.",
+  "benefitQuote": "Fewer follow-ups. Fewer return trips.",
+  "trades": "commercial and residential contractors across HVAC, plumbing, electrical, garage door, water treatment, and other specialty trades",
+  "windowMonths": 12,
+  "windowEnd": "January 2026",
+  "windowEndYear": 2026,
+  "method": "internal analysis of aggregated, anonymized data from participating ServiceTitan customers, trailing 12 months through January 2026; no sample size given",
+  "caveat": "These metrics describe behaviors correlated with higher performance and do not imply that any specific product feature or practice caused the observed outcomes. Results reflect platform-wide patterns among participating ServiceTitan customers; individual results will vary.",
+  "scope": "The page does not say whether the same-visit close rate is residential only; it says certain metrics apply to residential jobs only and ties only good-better-best to residential jobs. So the video says 'estimates', never 'home jobs'."
+ },
+ "ask": {
+  "source": "OURS: advice, not a finding (wording from the topic bank T2 takeaway; the day is an example)",
+  "line1": "Here are your options.",
+  "line2": "If you want to go ahead today, I can get you on the schedule for Thursday.",
+  "line3": "What questions do you have before you pick one?",
+  "day": "Thursday (example)",
+  "lines": 3,
+  "note": "lines is the count of sentences in the script line itself, not a finding"
+ }
+}

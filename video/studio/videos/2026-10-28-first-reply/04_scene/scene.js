@@ -32,7 +32,7 @@ window.SCENE = {
         k.slam(n.dayDrop.shown, 540, 472, -0.3, {size: 330, color: 'accent', align: 'center', from: 1.4, shake: 8});
         k.slam('less likely', 540, 762, -0.3, {size: 120, color: 'accent', align: 'center'});
         k.slam('to get hired.', 540, 878, -0.3, {size: 120, color: CHALK, align: 'center'});
-        k.burst(540, 620, 0.35, {n: 26, r: 380});
+        k.burst(120, 1040, 0.35, {n: 14, r: 200}); k.burst(960, 1040, 0.45, {n: 14, r: 200});   // sparks from the card's corners, never on the words
         k.text(`Fiverr study, Management Science ${n.studyYear.shown}`, 540, 1016, {size: 39, color: '#E6D3BC', align: 'center'});
         return {host: false, speech: false};
       }
@@ -173,12 +173,12 @@ window.SCENE = {
       const tStamp = dc ? dc.start : k.S('catch.canned') + 3;
       if (T >= tStamp) {
         const t0 = tStamp, q = k.clamp((T - t0) / 0.18);
-        k.ctx.save(); k.ctx.translate(655, 336); k.ctx.rotate(-0.06); const s = (2.2 - 1.2 * q) * 0.8; k.ctx.scale(s, s);   // on the phone's header, clear of both messages
+        k.ctx.save(); k.ctx.translate(705, 340); k.ctx.rotate(-0.06); const s = (2.2 - 1.2 * q) * 0.8; k.ctx.scale(s, s);   // on the phone's header, clear of both messages
         k.shape(k.rectPts(-230, -60, 460, 120, 0), {fill: '#1B1420', line: false, alpha: q});
         k.shape(k.rectPts(-224, -54, 448, 108, 0), {stroke: 'accent', lw: 9, line: false, alpha: q});
         k.text("Doesn't count", 0, -30, {size: 60, color: 'accent', align: 'center', alpha: q, lint: false});
         k.ctx.restore();
-        k.burst(450, 336, t0 + 0.18, {n: 12, r: 220, colors: ['accent', '#9AA0AD', 'paper']}); k.burst(860, 336, t0 + 0.18, {n: 12, r: 220, colors: ['accent', '#9AA0AD', 'paper']});
+        k.burst(520, 340, t0 + 0.18, {n: 12, r: 220, colors: ['accent', '#9AA0AD', 'paper']}); k.burst(890, 340, t0 + 0.18, {n: 12, r: 220, colors: ['accent', '#9AA0AD', 'paper']});
       }
       return {hostPose: T >= tStamp ? 'shrug' : (k.talking() ? 'talk' : 'stand')};
     },
@@ -203,7 +203,7 @@ window.SCENE = {
       k.chip(cur >= 0 ? REPLY[cur][2] : "What I'd send", 100, 280, {size: 30, fill: cur >= 0 ? 'accent' : 'tag', color: cur >= 0 ? '#1B1420' : 'tagText'});
       k.ctx.restore();
       k.ctx.save(); slideIn(k, k.S('build') + 0.1, 0, 800);
-      k.phone(100, 330, 800, 640, [
+      k.phone(100, 330, 800, 612, [
         {text: LEAD_TEXT, at: -1},
         ...(T >= k.S('build.name') ? [{text: FULL, reveal, me: true, at: k.S('build.name'), typing: typingTo}] : []),
       ], {who: 'Homeowner', size: 39});
@@ -213,9 +213,9 @@ window.SCENE = {
         const t0 = k.S('build.why');
         k.ctx.save(); slideIn(k, t0, 700, 0);
         k.ctx.translate(520, 870); k.ctx.rotate(-0.015); k.ctx.translate(-520, -870);
-        k.panel2(150, 806, 700, 136, {fill: 'accent', border: '#1B1420'});
-        k.text('Easy to answer,', 180, 818, {size: 60, color: '#1B1420'});
-        k.text('and you know what to bring.', 180, 892, {size: 39, color: '#1B1420'});
+        k.panel2(150, 790, 700, 128, {fill: 'accent', border: '#1B1420'});
+        k.text('Easy to answer,', 180, 800, {size: 60, color: '#1B1420'});
+        k.text('and you know what to bring.', 180, 872, {size: 39, color: '#1B1420'});
         k.ctx.restore();
       }
       // the host steps back (smaller) so his head never covers the reply being typed

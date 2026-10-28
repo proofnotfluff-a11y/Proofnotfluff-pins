@@ -68,7 +68,7 @@
     const rows = lay(fs);
     const lh = arcade ? Math.round(fs * 1.18) : Math.round(fs * 1.22);
     const sp = k.measure(' ', {size: fs, weight: 600, font: 'body'});
-    let cx = x + pad, cy = y + (h - rows * lh) / 2 + 4;
+    let cx = x + pad, cy = y + 26;   // every page starts on the same top line, so words never jump between pages
     ph.words.forEach((wd) => {
       const ww = k.measure(wd.w, {size: fs, weight: 600, font: 'body'});
       if (cx + ww > maxX && cx > x + pad) { cx = x + pad; cy += lh; }

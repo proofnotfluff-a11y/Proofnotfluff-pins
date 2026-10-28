@@ -1,0 +1,35 @@
+{
+ "schema": "pnf.video.review.v1",
+ "videoId": "2026-10-27-rats-a",
+ "gate": "design",
+ "model": "claude-opus-5-5",
+ "skillCommit": "0591933",
+ "prompt": "video/prompts/design.md",
+ "inputs": [
+  "video-renders:2026-10-27-rats-a/Chris/sheet.jpg and frame one (ElevenLabs render, hook 4)",
+  "design/DESIGN_DIRECTOR.md",
+  "design/CAROUSEL_STANDARD.md"
+ ],
+ "score": {
+  "first": 5,
+  "hierarchy": 4,
+  "type": 4,
+  "color": 5,
+  "spacing": 5,
+  "polish": 4,
+  "trust": 4,
+  "average": 4.43
+ },
+ "pass": false,
+ "reasons": [
+  "37.14 s and 38.35 s comparison card values: the title outranks the data; raise the values and bars so the number is the biggest thing in the scene.",
+  "10.70 s and 17.08 s map callout: use one data-number size across scenes (reviewer read about 68 px; props show 96 px).",
+  "37.14 s and 38.35 s title renders larger than the other scene titles; one title size (60 px Bold, line height 1.05, at most 3 lines).",
+  "30.30 s caption caught mid fade-in; cut captions in by hard cut.",
+  "1.60, 4.55, 26.66, 37.14 s caption highlight boxes touch the next word; 8 px padding and a full word space outside the box.",
+  "10.70, 26.66, 37.14 s data scenes: no source line; add 'City 311 data, 30 days to Oct 26'.",
+  "26.66 to 30.30 s title 'More than triple last year' repeats the caption 'more than triple'; retitle to the meaning."
+ ],
+ "round": 0,
+ "at": "2026-10-28T05:58:03-05:00"
+}

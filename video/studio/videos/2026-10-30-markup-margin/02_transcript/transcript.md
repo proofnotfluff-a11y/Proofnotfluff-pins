@@ -1,6 +1,6 @@
 # Transcript: 2026-10-30-markup-margin
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 194 words, 71.6 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 194 words, 71.7 s of voice.
 
 ## Flags
 - 9.2 s added '$1 ,000.': not in the script
@@ -19,7 +19,7 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 194 words, 71.6 s of voice.
 
 `00:00.0` Mark up a job fifty percent.
 
-`00:02.1` Is that your margin?
+`00:02.0` Is that your margin?
 
 `00:04.1` Nope.
 
@@ -27,15 +27,15 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 194 words, 71.6 s of voice.
 
 `00:05.9` I'll show you the math, and the fix.
 
-`00:08.2` Let's say your cost is a thousand dollars.
+`00:08.1` Let's say your cost is a thousand dollars.
 
 `00:10.9` A fifty percent markup adds five hundred, so the quote says fifteen hundred.
 
-`00:15.3` That five hundred is one third of the price.
+`00:15.4` That five hundred is one third of the price.
 
 `00:18.1` So your margin is about thirty-three percent.
 
-`00:20.6` Not the fifty you pictured.
+`00:20.5` Not the fifty you pictured.
 
 `00:23.1` Why the gap?
 
@@ -57,15 +57,15 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 194 words, 71.6 s of voice.
 
 `00:46.1` Here's the part people skip.
 
-`00:48.0` Screenshot this one.
+`00:47.9` Screenshot this one.
 
-`00:49.6` Price equals your cost, divided by one minus the margin you want.
+`00:49.5` Price equals your cost, divided by one minus the margin you want.
 
-`00:53.6` Want forty percent?
+`00:54.1` Want forty percent?
 
 `00:55.4` Divide your cost by point six.
 
-`00:57.2` A thousand becomes about sixteen hundred sixty-seven dollars.
+`00:57.3` A thousand becomes about sixteen hundred sixty-seven dollars.
 
 `01:01.4` Markup is on cost.
 

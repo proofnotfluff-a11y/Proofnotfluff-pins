@@ -1,29 +1,29 @@
 {
  "schema": "pnf.video.qa.v1",
  "videoId": "2026-10-27-rats-a",
- "mp4Sha256": "423a0f2816c5146799e67db94a7ebc7d571a127c31ad84dbe95aabdba4695289",
+ "mp4Sha256": "750a939d3ca77c6d7e0558fc693816132cbd2f09e04f7197d8a853a8e4c1ec09",
  "voice": {
   "id": "XrExE9yKIg1WjnnlVkGX",
   "name": "Matilda",
   "model": "eleven_v4",
   "test": false,
-  "chars": 633
+  "chars": 629
  },
  "checks": [
   {
    "name": "length",
-   "value": 53.433,
+   "value": 52.7,
    "pass": true,
-   "detail": "53.43 s (45.0 to 60.0)"
+   "detail": "52.70 s (45.0 to 60.0)"
   },
   {
    "name": "loudness",
    "value": {
     "lufs": -14.2,
-    "truePeak": -1.7
+    "truePeak": -1.8
    },
    "pass": true,
-   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -1.7 dBTP (at most -1.5)"
+   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -1.8 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -35,18 +35,18 @@
    "name": "frozen",
    "value": [
     [
-     51.5333,
-     53.433
+     50.8667,
+     52.7
     ]
    ],
    "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 46.63 s"
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 45.81 s"
   },
   {
    "name": "hook",
-   "value": 3.46,
-   "pass": false,
-   "detail": "hook's last word ends at 3.46 s (by 3.00)"
+   "value": 2.9,
+   "pass": true,
+   "detail": "hook's last word ends at 2.90 s (by 3.00)"
   },
   {
    "name": "numbers",
@@ -94,11 +94,11 @@
   {
    "name": "file",
    "value": {
-    "sha256": "423a0f2816c5146799e67db94a7ebc7d571a127c31ad84dbe95aabdba4695289",
-    "bytes": 3772740
+    "sha256": "750a939d3ca77c6d7e0558fc693816132cbd2f09e04f7197d8a853a8e4c1ec09",
+    "bytes": 3722561
    },
    "pass": true,
-   "detail": "opens, decodes to the end, 3.8 MB, matches the manifest"
+   "detail": "opens, decodes to the end, 3.7 MB, matches the manifest"
   },
   {
    "name": "layout",
@@ -108,10 +108,10 @@
   },
   {
    "name": "spec-match",
-   "value": "9e3ed5dece93a31dc12cc7f3b057647b28f12f6ec270d436e1a0314dd40d7062",
+   "value": "a8ae4c96b31ee35a51a9cbc65725995619d05847b4b51cc1284b9c6b665f27a6",
    "pass": true,
    "detail": "the render is of this exact spec"
   }
  ],
- "pass": false
+ "pass": true
 }

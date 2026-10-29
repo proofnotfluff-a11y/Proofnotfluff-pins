@@ -212,9 +212,16 @@ const closeup = (k) => {
   P(285, 170, 48, 24, INK); P(286, 171, 46, 22, '#2B2033'); k.text('OPEN', 927, 522, {size: 39, color: on ? RED : '#7A3442', align: 'center', lint: false});
   // the stone base course, the sidewalk in the awning's shade (big joints), the curb and the street
   P(0, 302, 360, 10, '#9AA0AD'); P(0, 302, 360, 2, '#C9CCD3'); P(0, 311, 360, 1, '#4A4E5A');
-  P(0, 312, 360, 288, '#6B7080'); d.dith(0, 312, 360, 16, '#4A4E5A', 0);
-  for (let y = 360, r = 0; y < 596; y += 48, r++) { P(0, y, 360, 2, '#4A4E5A'); for (let x = (r & 1) ? 45 : 0; x < 360; x += 90) P(x, y - 48, 2, 48, '#4A4E5A'); }
-  P(0, 596, 360, 8, '#C9CCD3'); P(0, 596, 360, 2, CREAM); P(0, 604, 360, 36, '#2B2033');
+  P(0, 312, 360, 208, '#6B7080'); d.dith(0, 312, 360, 16, '#4A4E5A', 0);
+  for (let y = 360, r = 0; y < 520; y += 48, r++) { P(0, y, 360, 2, '#4A4E5A'); for (let x = (r & 1) ? 45 : 0; x < 360; x += 90) P(x, y - 48, 2, 48, '#4A4E5A'); }
+  P(0, 520, 360, 8, '#C9CCD3'); P(0, 520, 360, 2, CREAM); P(0, 528, 360, 4, '#4A4E5A'); P(0, 532, 360, 108, '#2B2033');
+  for (let x = 10; x < 360; x += 70) P(x, 588, 36, 4, GOLD);
+  // a sandwich board on the sidewalk by the door: a chalk face with three bars, short to tall
+  d.dith(262, 424, 70, 4, '#4A4E5A', 1);
+  P(268, 412, 4, 14, '#4A2E1B'); P(322, 412, 4, 14, '#4A2E1B');
+  P(265, 333, 64, 82, INK); d.bevel(266, 334, 62, 80, '#8C5A33', '#D9A066', '#4A2E1B'); P(272, 340, 50, 68, '#24453A'); P(272, 340, 50, 1, '#1A332B');
+  P(279, 349, 36, 2, CREAM); P(279, 357, 24, 2, SAND);
+  [[281, 10, CREAM], [293, 18, GOLD], [305, 26, CREAM]].forEach(([x, h, c]) => P(x, 400 - h, 8, h, c));
   // the awning, big: stripes and a scalloped edge (above the safe area: art only)
   for (let x = 0; x < 360; x += 40) { P(x, 0, 20, 30, RED); P(x + 20, 0, 20, 30, CREAM); }
   for (let x = 0; x < 360; x += 20) { d.disc(x + 10, 31, 8, (x / 20) % 2 ? CREAM : RED); }
@@ -236,12 +243,11 @@ const closeup = (k) => {
    sidewalk, so the plate hangs on the brick. The toolbox comes off the counter (the shelf behind it is put back). */
 const facade = (k) => {
   const d = px(k), {P} = d;
-  P(172, 180, 58, 46, '#3D2E45'); P(200, 180, 2, 46, '#2B2033');
+  P(172, 180, 58, 40, '#3D2E45'); P(200, 180, 2, 40, '#2B2033');
   [172, 194, 216].forEach((x) => { const c = [TEAL, ORANGE, '#87CEEB', RED][Math.floor(hash(x + 222) * 4)]; P(x, 208, 14, 14, c); P(x, 208, 14, 1, CREAM); P(x + 12, 209, 2, 13, INK); });
-  P(170, 222, 62, 3, '#B07A47');
-  P(0, 226, 360, 6, '#C9CCD3'); P(0, 226, 360, 1, CREAM); P(0, 231, 360, 1, '#4A4E5A');
-  P(0, 232, 360, 185, '#7A3442');
-  for (let y = 232, r = 0; y < 417; y += 5, r++) for (let x = (r & 1) ? 6 : 0; x < 360; x += 12) P(x, y, 11, 4, RED);
+  P(0, 218, 360, 6, '#C9CCD3'); P(0, 218, 360, 1, CREAM); P(0, 223, 360, 1, '#4A4E5A');
+  P(0, 224, 360, 193, '#7A3442');
+  for (let y = 224, r = 0; y < 417; y += 5, r++) for (let x = (r & 1) ? 6 : 0; x < 360; x += 12) P(x, y, 11, 4, RED);
 };
 
 window.SCENE = {
@@ -288,13 +294,15 @@ window.SCENE = {
          small lines sit right of centre so Snow (from the cut in) never stands on them */
       const l2 = `${n.tiers.shown} prices`, l3 = `Top ${n.topPct.shown}: ${n.topGbb.shown} of home jobs`;
       const x2 = 540 - k.measure(l2, {size: 132}) / 2, x3 = 590 - k.measure(l3, {size: 39}) / 2;
-      /* no shine on the cream card: the kit's shine paints plum letters cream, which read as holes */
-      k.slam('Top shops usually quote', 540, 798, -1, {size: 66, color: PLUM, align: 'center', glint: false});
-      k.slam(l2, x2, 872, -1, {size: 132, color: PLUM, glint: false});
-      k.text(n.tiers.shown, x2, 872, {size: 132, color: RED, lint: false});
-      k.text(l3, x3, 1022, {size: 39, color: PLUM});
-      k.text(n.topGbb.shown, x3 + k.measure(`Top ${n.topPct.shown}: `, {size: 39}), 1022, {size: 39, color: RED, lint: false});
-      k.text(`ServiceTitan, ${n.stMonths.shown} months to Jan ${n.stYear.shown}`, 590, 1086, {size: 30, color: '#6B7080', align: 'center'});
+      /* no shine on the cream card: the kit's shine paints plum letters cream, which read as holes. Once the roll has
+         passed a line it is not drawn at all (so nothing of the hook is left on screen, even for the layout check) */
+      const vis = (y) => cb * 3 > y + 6;
+      if (vis(798)) k.slam('Top shops usually quote', 540, 798, -1, {size: 66, color: PLUM, align: 'center', glint: false});
+      if (vis(872)) k.slam(l2, x2, 872, -1, {size: 132, color: PLUM, glint: false});
+      if (vis(872)) k.text(n.tiers.shown, x2, 872, {size: 132, color: RED, lint: false});
+      if (vis(1022)) k.text(l3, x3, 1022, {size: 39, color: PLUM});
+      if (vis(1022)) k.text(n.topGbb.shown, x3 + k.measure(`Top ${n.topPct.shown}: `, {size: 39}), 1022, {size: 39, color: RED, lint: false});
+      if (vis(1086)) k.text(`ServiceTitan, ${n.stMonths.shown} months to Jan ${n.stYear.shown}`, 590, 1086, {size: 30, color: '#6B7080', align: 'center'});
       k.ctx.restore();
       if (roll > 0) { d.P(34 + sw, cb - 4, 292, 5, INK); d.P(35 + sw, cb - 3, 290, 3, SAND); d.P(35 + sw, cb - 3, 290, 1, CREAM); }   // the roll
       }
@@ -495,13 +503,13 @@ window.SCENE = {
       storefront(k, {tags: [{price: '$', at: -1}, {price: '$ $$ $$$', at: tThree - FLIP}], threeAt: tThree,
         chalk: T < tThree ? [[`${n.single.shown} price?`, tOne, CREAM, 450]] : [[`${n.tiers.shown} prices.`, tThree, GOLD, 450]]});
       facade(k);
-      /* the plate: one line's height when it opens, a line more (25 low-res, 75 frame) as each line lands; lines at frame
-         y 711, 786, 861, 936 */
-      const lands = [t0 + 0.3, tWr, Math.min(tOne + 0.2, tYes), tThree + 0.1], H = (m) => 9 + 25 * m;
+      /* the plate: one line's height when it opens, a line more (24 low-res, 72 frame) as each line lands; lines at frame
+         y 696, 768, 840, 912 */
+      const lands = [t0 + 0.3, tWr, Math.min(tOne + 0.2, tYes), tThree + 0.1], H = (m) => 9 + 24 * m;
       let h = 0;
       lands.forEach((at, i) => { const q = eo(d.fr(at - 0.17) / 5); if (T >= at - 0.17) h = Math.round(H(i) + (H(i + 1) - H(i)) * q); });
-      if (h > 0) d.win(30, 233, 300, h, {base: '#1B1420', hi: PLUM, lo: INK, rule: WINE});
-      const Y = (i) => 711 + i * 75;
+      if (h > 0) d.win(30, 227, 300, h, {base: '#1B1420', hi: PLUM, lo: INK, rule: WINE});
+      const Y = (i) => 696 + i * 72;
       if (T >= lands[0]) k.slam('Send this to whoever', 120, Y(0), lands[0], {size: 66, color: GOLD, from: 0.4});
       if (T >= lands[1]) k.slam('writes your quotes.', 120, Y(1), lands[1], {size: 66, color: GOLD, from: 0.4});
       if (T >= lands[2]) k.slam(`${n.single.shown} price: yes or no.`, 120, Y(2), lands[2], {size: 66, color: CREAM, from: 0.5});
@@ -510,7 +518,7 @@ window.SCENE = {
       if (T >= tCh) k.slam('a choice.', xc, Y(3), tCh, {size: 66, color: 'accent', from: 0.5});   /* on "choice", held past the last word */
       if (T >= tCh + 0.3) k.sweep(xc, Y(3) + 69, k.measure('a choice.', {size: 66}), 6, tCh + 0.3, {color: 'accent'});
       k.chip('ProofNotFluff', 78, 540, {size: 30});
-      /* sparks off the tag's top into the awning, never below frame y 672 (the plate starts at 699), kept off the tag, the
+      /* sparks off the tag's top into the awning, never below frame y 672 (the plate starts at 681), kept off the tag, the
          chalk board and the OPEN sign */
       const avoid = [[627, 400, 945, 600], [36, 402, 492, 654], [880, 552, 1026, 654], [300, 230, 780, 320]];
       spray(k, 786, 410, tThree + 0.35, {n: 18, r: 150, dir: -Math.PI / 2, spread: 2.4, avoid, maxY: 672});

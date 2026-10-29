@@ -1,7 +1,7 @@
 {
  "gate": "buyer",
  "round": 0,
- "at": "2026-10-28T17:40:00-05:00",
+ "at": "2026-10-28T23:27:13-05:00",
  "pass": true,
  "score": {
   "stop": "yes",
@@ -10,6 +10,13 @@
   "follow_or_link": "yes"
  },
  "reasons": [
-  "notes: 'Software maker ServiceTitan says its data shows' is a mouthful; jump to the bot study a little loose"
+  "1. Stop sending 'just checking in' after a quote; text the customer their name, the job and one yes-or-no question, within 2 days, again at a week, and once before it expires.",
+  "2. Stop: yes. 'Quote went quiet? Send this text.' names a pain every plumber has at 9 pm, and it promises something I can copy right away.",
+  "3. Send: yes, to whoever does my follow-ups (the video asks for exactly that). Save: yes, the water heater text and the 3-step timing are a template I would come back to. Follow: yes, 'Lesson 2' says there is a series of usable tips. Link in bio: no, nothing points there and nothing needs to.",
+  "4. No hype, no fake urgency, no pitch. The AI voice is disclosed in the caption, which reads honest. Naming three software brands (ServiceTitan, Jobber, Housecall Pro) is sourcing, not selling, so it did not read as an ad to me.",
+  "5. Clear to a stranger. 'Lesson 2' with no lesson 1 in view is a small question mark but does not hurt.",
+  "6. Trust: yes. Every number has a named source and the advice matches what works.",
+  "Polish, not a fail: transcript 00:05.1 'Software maker ServiceTitan says its data shows only thirty-seven percent...' is a mouthful in the seconds that decide whether I keep watching. Fix: 'ServiceTitan's data: only thirty-seven percent of estimates close on the first visit.'",
+  "Polish, not a fail: frame-0.8s the bottom 40 percent of the frame is empty grass. Fix: move the street scene down or put the example text bubble there so the first frame looks full."
  ]
 }

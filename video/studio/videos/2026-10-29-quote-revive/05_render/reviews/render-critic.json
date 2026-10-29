@@ -1,12 +1,17 @@
 {
  "gate": "render-critic",
  "round": 0,
- "at": "2026-10-28T17:40:00-05:00",
+ "at": "2026-10-28T23:30:03-05:00",
  "pass": true,
  "score": {
   "faults": 0
  },
+ "faults": [],
  "reasons": [
-  "hook on frame 0; numbers on screen as said; layout in bounds; audio end clean"
+  "hook: 'Quote went quiet? Send this text.' on screen from frame 0",
+  "numbers: 37% at 8.0 s (said 8.17), 59% at 58.0 s (said 58.10), 'Within 2 days' at 66.0 (said 66.01), 'Day 7 a week after' at 68.0 (said 68.17), '1 to 2 days before expiry' at 71.0 (said 71.05), ONE NAME/JOB/QUESTION within 0.4 s of each 'one'",
+  "layout: no settled text hidden or cut; checked tight spots: source line 'ServiceTitan follow-up webinar, 2026' ends x 935 at 51.5 to 56.5 s (inside the 950 lint bound), 'ServiceTitan blog' line abuts the chip edge at 5 to 18 s but draws on top, CLOSED folder tab abuts 'expiry' descenders at 74.7 s without covering them; kitchen checker floor is the scene's tiles below y 1250",
+  "audio: last word 'send.' ends 84.57 s, video 86.47 s, music bed fades, nothing cut",
+  "text sizes phone-readable; no flashing: brightness swings only at 4 single transitions (18.1, 33.7, 63.7, 76.2 s), caret blink 2 per second"
  ]
 }

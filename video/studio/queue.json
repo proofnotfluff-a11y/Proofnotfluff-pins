@@ -157,25 +157,23 @@
   },
   {
    "slug": "2026-10-29-quote-revive",
-   "readyAt": "2026-10-29T00:00:32-05:00",
-   "commit": "e2c71a75e094d105b46eefd9eaa46f587b3778c5",
+   "readyAt": "2026-10-29T14:53:31-05:00",
+   "commit": "c50f869516dbc6f26a49438a0d523659f86f61a0",
    "fingerprints": {
-    "script": "548404bececa",
-    "takes": "324103710f81",
-    "words": "ba3074c0dca1",
-    "cues": "0fdd763842d9",
-    "scene": "316e66cac37b",
-    "data": "945dc2c4e5fa",
+    "script": "498d13c2c061",
+    "takes": "3b2c798610a0",
+    "words": "4917078d759e",
+    "cues": "74d8b366097b",
+    "scene": "c9ba7ce54e8d",
+    "data": "69878d0e579e",
     "captions": "70b910a96b6a",
     "mouth": "85bfd5e28cf5",
     "runtime_kit": "d12df837dc0a",
-    "runtime_player": "a66cf6faac98",
+    "runtime_player": "b6ba5eeebb4b",
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {},
-   "commit_before_caption_fix": "3b15048b4ecdfa9e5a54c3af637ab136b98d961f",
-   "note": "Oct 29: re-pinned to studio-pins/2026-10-29-quote-revive (the gated commit plus captions without the AI voice line; facts-captions delta PASS)."
+   "posts": {}
   },
   {
    "slug": "2026-11-02-price-raise",

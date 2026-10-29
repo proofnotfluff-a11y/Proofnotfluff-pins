@@ -139,8 +139,8 @@ window.SCENE = {
       const n = k.data.numbers, t43 = wordT(k, 'hook.43', /^forty/i, 1.0), tStat = k.S('hook.43');
       const tIn = Math.min(0.8, Math.max(0.5, wordT(k, 'hook', /^one-star/i, 0.5))), tRev = wordT(k, 'hook', /^review/i, tIn + 0.3);
       const tOut = Math.min(2.6, k.S('hook.copy'));
-      /* the close-up is a real reframe: the screen fills the frame and Snow steps in, bigger, in front of it */
-      if (T >= tIn && T < tOut) { closeUp(k, {pulseAt: tRev}); return {hostPose: k.talking() ? 'talk' : 'point', hostScale: 0.9, hostX: 190}; }
+      /* the close-up is a real reframe: the screen fills the frame and Snow steps in, bigger (0.75, hat clear of the reply box), in front of the keyboard */
+      if (T >= tIn && T < tOut) { closeUp(k, {pulseAt: tRev}); return {hostPose: k.talking() ? 'talk' : 'point', hostScale: 0.75, hostX: 190}; }
       /* the New review banner drops on "In" and holds past "forty-three" (motion before the number) */
       k.sets.chat({who: 'REVIEWS', clock: '7:42', msgs: [], notify: T >= tStat ? {text: 'New review', at: tStat, dur: Math.max(1.6, t43 + 1.0 - tStat)} : null});
       // the card on the screen (frame x 306..870, y 390..888): light wallpaper, dark words

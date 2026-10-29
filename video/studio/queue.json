@@ -77,6 +77,26 @@
     "runtime_pixfont": "a8557997756e"
    },
    "posts": {}
+  },
+  {
+   "slug": "2026-11-04-close-rate",
+   "readyAt": "2026-10-28T22:42:57-05:00",
+   "commit": "4162a9b8f441ab8d0f2fffe6af066c8a1a44ca23",
+   "fingerprints": {
+    "script": "2f228a698cbb",
+    "takes": "38f36a5a119e",
+    "words": "fcb2c9d20186",
+    "cues": "b4d3e842d1d8",
+    "scene": "4a7188f0d35c",
+    "data": "c35bec85bbab",
+    "captions": "aa0bea80ffd9",
+    "mouth": "e84cf18c10f9",
+    "runtime_kit": "d12df837dc0a",
+    "runtime_player": "a66cf6faac98",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

@@ -1,21 +1,23 @@
 {
  "gate": "facts",
  "round": 0,
- "at": "2026-10-28T22:09:37-05:00",
+ "at": "2026-10-28T22:38:19-05:00",
  "pass": true,
  "score": {
   "numbers": 9,
   "mismatches": 0
  },
  "reasons": [
-  "all 9 data.js numbers (31%, 38%, 25%, 70%, 73%, 2026, 40, 14, 35%) match facts.json and the source page in voice, script and scene; regions right (West 38%, Northeast 31%); window May to Jul 2026 is the page's most recent quarter",
-  "arithmetic: 14 / 40 = 35%, inside 31% to 38%; example labeled EXAMPLE on screen and 'Here's an example' in voice",
-  "claims: formula is presented as ours, never as ServiceTitan's; 'ServiceTitan doesn't say how it counts a close' and 'its customers aren't every shop' match the page (no definition; not representative); top quarter said as ranked by close rate in each region; no tactic credited, no causation",
-  "story elements carry no numbers: 6 of 12 SOLD slips, 4 of 16 teal shops and the THIS MONTH / LAST MONTH pins are unlabeled pictures",
-  "trades first: core evidence is ServiceTitan trades platform data on trades businesses; no non-trade study, no caveat needed",
-  "no private person, business or address; no em or en dashes in script, transcript, scene, brief or facts.json"
+  "rerun at round 0 after the scene change (hook region cards, US outline, ghost lap board); all 9 data.js numbers (31%, 38%, 25%, 70%, 73%, 2026, 40, 14, 35%) match facts.json and the source page in script, transcript and scene.js",
+  "hook (new): 'Median close rate, by US region' with 31% to 38%; US NORTHEAST card shows 31% (medLow), US WEST card shows 38% (medHigh), matching the page's 'from 31% in the Northeast to 38% in the West'; meters fill to num.value out of 100; map markers sit in the Northeast and the West with no extra labels or numbers; source plate 'ServiceTitan customers, May to Jul 2026' matches the page's most recent quarter",
+  "ghost lap board (new): 'Beat your ghost', 'GHOST: LAST MONTH', 'YOU: THIS MONTH', 'First number to beat:', 'Your own, last month.' carry no numbers; the ghost's line position and the racing bar are unlabeled pictures and do not read as data",
+  "stakes: TOP 25% / BY CLOSE RATE, 70% TO 73% and the 70 TO 73 readout match 'top 25% of businesses by close rate in each region, medians range from 70% to 73%'; the count-up is a 0.7 s transition that settles on the sourced values",
+  "arithmetic: 14 / 40 = 35%, inside 31% to 38%; example labeled 'EXAMPLE: LAST MONTH' on screen and 'Here's an example' in voice; formula presented as ours, never as ServiceTitan's",
+  "claims: 'How it counts a close: not on the page.' and 'ServiceTitan customers. Not every shop.' match the page (no definition; not representative of the entire trades industry); no tactic credited, no causation; dollar-rate line is arithmetic only",
+  "trades first: core evidence is ServiceTitan platform data on trades businesses; no non-trade study, no caveat needed",
+  "no private person, business or address; no em or en dashes in brief, facts.json, script, transcript, cues.md or scene.js"
  ],
  "sources_checked": [
-  "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/quarterly-industry-trends: title and Oct 22, 2026 date; 'Regional median close rates range from 31% in the Northeast to 38% in the West'; 'Among the top 25% of businesses by close rate in each region, medians range from 70% to 73%'; figures reflect May through July 2026; aggregated de-identified sample of ServiceTitan customer accounts; not representative of the entire trades industry; no causation; close rate not defined"
+  "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/quarterly-industry-trends: title 'Trades Industry Trends: Call Booking, Close Rates & Off-Hours Calls', Oct 22, 2026; 'Regional median close rates range from 31% in the Northeast to 38% in the West'; 'Among the top 25% of businesses by close rate in each region, medians range from 70% to 73%'; figures for May through July 2026 (five quarters, May 2025 to July 2026); aggregated, de-identified sample of ServiceTitan customer accounts; not representative of the entire trades industry; no causation; close rate not defined"
  ]
 }

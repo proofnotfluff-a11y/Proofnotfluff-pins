@@ -1,16 +1,13 @@
 {
  "gate": "design",
- "round": 0,
- "pass": false,
- "score": {"first": 4, "hierarchy": 4, "type": 4, "color": 4, "spacing": 4, "polish": 3, "trust": 4, "average": 3.86},
+ "round": 1,
+ "pass": true,
+ "score": {"first": 4, "hierarchy": 5, "type": 5, "color": 5, "spacing": 5, "polish": 4, "trust": 5, "average": 4.71},
  "reasons": [
-  "48.70-54.18 turn, plate 'How it counts a close:' (scene.js line 377, plate h 30): 'not on the page.' hangs below the plate and the red bottom rule runs through it like a strikethrough; raise the plate to h 40 so both lines sit inside.",
-  "51.48-54.18 turn, plate 'ServiceTitan customers. / Not every shop.' (line 378, plate h 32): the second line sits on the bottom rule; raise to h 40.",
-  "21.62-24.70 stakes.measure, red sticker 'Can't close a gap / you never measured.' (line 268, win 116,263,128,40): text runs into both side borders and the top edge collides with the 0 and 100 labels; widen to win(100, 268, 160, 40) and move the lines to y 817 and 859.",
-  "46.52-54.18 turn, title panel 'The part people skip': the source line drops at the count cue and leaves the two-line panel half empty for 6 s; keep 'ServiceTitan's medians, May to Jul 2026' on until turn.own, or shrink the plate to one line.",
-  "54.18-58.90 turn.own, dimmed map: the 1-pixel checker dither over the whole map reads as grey moire on a phone; recolor the map to solid dark palette tones (#2B2033 / #3D2E45) so the gold pin and THIS MONTH pop.",
-  "Freshness: the dispatch map is used twice (hook and turn, 31%) and is the same board, river, park, mug, radio and checker floor as lesson 5 (2026-11-01 'why'); replace the turn section with a piece new to lessons 5 to 9, e.g. a bespoke 'beat your ghost' lap board (last month's rate as the ghost bar, this month racing it), so the map shows once.",
-  "0.00 cover, source plate (line 210, w 246): '2026' touches the plate's inner rule; widen to 254.",
-  "72.70-80.54 close: the payoff fraction 'jobs sold / estimates given' at size 66 is dwarfed by 'Close rate =' at 132 and leaves the lower right of the board empty; raise both lines to 99 and lengthen the divider to the wider line."
+  "Round 0 check: all 8 changes landed. The turn plates hold both lines inside, the stakes sticker is one wide line clear of the 0 and 100 labels, the turn source line stays on to the end, the dimmed map is gone and the 'Beat your ghost' lap board replaces it, the dispatch board shows once (turn only; the hook is a new US region map), the cover source plate has room around 2026, and the close formula is now full size (jobs sold / estimates given at 99 with a long divider). Freshness: nothing repeats from 2026-11-02 (weather, register, hud) or 2026-11-03 (chat, scores, slots). The dispatch board last appeared in 2026-11-01, which the 'no repeat in two lessons in a row' rule allows.",
+  "0.00 cover, US NORTHEAST and US WEST cards: both are empty boxes until 2.5 s, so frame 0 shows two blank panels under the headline. Draw them settled on frame 0 (31% with its bar, 38% with its bar) and keep the count-up and sparkle for the 2.5 s and 3.5 s cues as a re-pop, so the cover has no empty boxes.",
+  "58.90-81.00 weekly and close: these use the same workshop room as formula (24.86-34.40), with the same whiteboard, fan, bucket and drawers, so the room fills about 40% of the runtime across 3 sections. sets.md allows 1 room-and-panel section per lesson. Move close (73.03 on) onto a set no lesson from 6 to 9 has used, e.g. levelup with 'CLOSE RATE = JOBS SOLD / ESTIMATES GIVEN' as the perk and 'Friday: your close rate.' as the last perk line.",
+  "12.74-24.70 stakes gauge: the MEDIAN SHOP and TOP 25% plates sit on top of the dial's outer rim and cut off both ends of the red gap arc. Make each plate one line ('MEDIAN 31-38%' / 'TOP 25% 70-73%', h about 26) so they end above the rim. Also add the '%' suffix to the readout so it reads '70% TO 73%' like the plates, and move the '100' label 6 px right so it clears the readout box.",
+  "56.00-57.00 turn.yours, 'Beat your ghost' title: a white spark pixel lands on the 'h' of 'ghost'. Spawn the finish sparks below the title band (y 360 and lower)."
  ]
 }

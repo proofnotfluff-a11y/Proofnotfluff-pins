@@ -1,11 +1,11 @@
 {
  "schema": "pnf.studio.cues.v1",
- "source": "stand-in: whisper words for takes 1, 2, 4 to 7 (shifted), take 3 estimated at 180 wpm until the voice workflow re-voices it; never rendered for posting",
+ "source": "whisper medium.en int8, re-spelled from script.md",
  "music": {
   "id": "rooms",
   "level": 0.16
  },
- "duration": 84.302,
+ "duration": 85.669,
  "cues": [
   {
    "id": "hook",
@@ -17,7 +17,7 @@
    "text": "World: the storefront counter. Frame 0: the cover, fully settled. Shop sign QUOTE CLINIC; a toolbox on the counter with one price tag (\"$\"); a cream card hung on the counter front: \"Top shops quote\" / \"3 prices\" (big) / \"on 57% of home jobs.\" with the 3 and the 57% in red; source small: ServiceTitan data, 12 months to Jan 2026. Host and dialog hidden through the hook. After frame 0: sparks at 0.4 s and every 0.6 s, the card swings a pixel on its strings, shines cross the lines from 1 s, the OPEN sign blinks.",
    "t": 0.0,
    "word": 0,
-   "end": 5.94
+   "end": 5.806
   },
   {
    "id": "hook.three",
@@ -27,9 +27,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "On \"three\" the tag narrows to its edge, shows its barcode back and turns to \"$ $$ $$$\", sways to rest with sparks.",
-   "t": 2.72,
+   "t": 2.74,
    "word": 8,
-   "end": 4.44
+   "end": 4.4
   },
   {
    "id": "hook.build",
@@ -39,9 +39,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The chalk board on the wall writes \"3 prices.\" / \"1 quote.\" line by line; the card's 3 pulses gold once.",
-   "t": 4.44,
+   "t": 4.4,
    "word": 11,
-   "end": 5.94
+   "end": 5.806
   },
   {
    "id": "stakes",
@@ -51,7 +51,7 @@
    "shift": 0.0,
    "pin": null,
    "text": "World: the arcade high-score table. Marquee GOOD BETTER BEST, bulbs chasing; empty dashed rows; the source types on at the bottom of the screen: \"ServiceTitan customers\".",
-   "t": 5.94,
+   "t": 5.806,
    "word": 16,
    "end": 18.639
   },
@@ -63,9 +63,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"12 months to Jan 2026\" types under it.",
-   "t": 8.14,
+   "t": 8.206,
    "word": 23,
-   "end": 9.62
+   "end": 9.626
   },
   {
    "id": "stakes.top",
@@ -75,9 +75,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 1 slides in: 1ST TOP 10% with the cursor, score \"--\" blinking. \"Top 10% = by revenue\" small under the table.",
-   "t": 9.62,
+   "t": 9.626,
    "word": 27,
-   "end": 12.38
+   "end": 12.426
   },
   {
    "id": "stakes.top57",
@@ -87,9 +87,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The row's score counts to 57% as it is said (from 85%); sparks off the score.",
-   "t": 12.38,
+   "t": 12.426,
    "word": 36,
-   "end": 14.26
+   "end": 14.326
   },
   {
    "id": "stakes.rest",
@@ -99,9 +99,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 2 slides in: 2ND THE REST; its score lands 41% on \"Forty-one\".",
-   "t": 14.26,
+   "t": 14.326,
    "word": 40,
-   "end": 16.34
+   "end": 16.466
   },
   {
    "id": "stakes.habit",
@@ -111,7 +111,7 @@
    "shift": 0.0,
    "pin": null,
    "text": "The NEW RECORD line blinks in as \"A HABIT YOU CAN COPY\" (2 a second). Snow points at it.",
-   "t": 16.34,
+   "t": 16.466,
    "word": 43,
    "end": 18.639
   },
@@ -125,7 +125,7 @@
    "text": "World: a street of 100 houses at dusk (10 by 10), windows dark, a quote envelope flies in across the rooftops and lands on the first house.",
    "t": 18.639,
    "word": 49,
-   "end": 34.962
+   "end": 36.121
   },
   {
    "id": "why.hcp",
@@ -135,9 +135,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The street sign plate: \"Housecall Pro survey, 2026\" and \"1,100+ homeowners\" counting up.",
-   "t": 20.173,
+   "t": 20.479,
    "word": 54,
-   "end": 23.005
+   "end": 24.079
   },
   {
    "id": "why.68",
@@ -147,9 +147,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "68 of the 100 houses light up in a fast run, row by row; \"68%\" slams on the plate as it is said.",
-   "t": 23.005,
+   "t": 24.079,
    "word": 61,
-   "end": 24.467
+   "end": 25.419
   },
   {
    "id": "why.quotes",
@@ -159,9 +159,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Over each lit house a small envelope pops up and floats off to the right: \"get more quotes when the price is higher than expected\".",
-   "t": 24.467,
+   "t": 25.419,
    "word": 65,
-   "end": 28.357
+   "end": 29.099
   },
   {
    "id": "why.surprise",
@@ -171,9 +171,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The street dims; one big quote slip drops in: a single price \"$$$$\" with a red \"?!\" over it.",
-   "t": 28.357,
+   "t": 29.099,
    "word": 78,
-   "end": 30.16
+   "end": 30.839
   },
   {
    "id": "why.shop",
@@ -183,9 +183,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The slip slides off to the right after a wobble; \"can send them shopping\" under it.",
-   "t": 30.16,
+   "t": 30.839,
    "word": 84,
-   "end": 31.353
+   "end": 32.199
   },
   {
    "id": "why.three",
@@ -195,9 +195,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A three-price quote slips in: $ / $$ / $$$; on \"cheaper\" the $ row glows teal with a check: \"The cheaper option is already on your quote.\"",
-   "t": 31.353,
+   "t": 32.199,
    "word": 87,
-   "end": 34.962
+   "end": 36.121
   },
   {
    "id": "card",
@@ -207,9 +207,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "World: a quote clipboard on a truck tailgate at dusk. The clipboard rises into frame; the header \"Your quote (example)\"; three empty ruled rows.",
-   "t": 34.962,
+   "t": 36.121,
    "word": 97,
-   "end": 47.542
+   "end": 48.719
   },
   {
    "id": "card.good",
@@ -219,9 +219,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 1 lands: GOOD ($): The job done right. Nothing extra.",
-   "t": 36.802,
+   "t": 38.081,
    "word": 102,
-   "end": 39.822
+   "end": 41.121
   },
   {
    "id": "card.better",
@@ -231,9 +231,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 2 lands on a gold band: BETTER ($$): What you'd pick for your own house. A \"the middle\" tag pops beside it.",
-   "t": 39.822,
+   "t": 41.121,
    "word": 110,
-   "end": 42.702
+   "end": 44.021
   },
   {
    "id": "card.best",
@@ -243,9 +243,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 3 lands: BEST ($$$): Plus upgrades.",
-   "t": 42.702,
+   "t": 44.021,
    "word": 120,
-   "end": 44.382
+   "end": 45.661
   },
   {
    "id": "card.warranty",
@@ -255,9 +255,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Longer warranty\" and \"faster start date\" check in under BEST as said. The full card holds big to the end of the take.",
-   "t": 44.382,
+   "t": 45.661,
    "word": 124,
-   "end": 47.542
+   "end": 48.719
   },
   {
    "id": "survey",
@@ -267,9 +267,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "World: the slot machine. The crown reads ONE MORE FROM THE DATA; reels at rest; bulbs chase slowly.",
-   "t": 47.542,
+   "t": 48.719,
    "word": 132,
-   "end": 74.062
+   "end": 75.429
   },
   {
    "id": "survey.ceiling",
@@ -279,9 +279,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The crown flips to \"3 IS NOT THE CEILING\".",
-   "t": 49.282,
+   "t": 50.599,
    "word": 138,
-   "end": 51.582
+   "end": 52.939
   },
   {
    "id": "survey.group",
@@ -291,9 +291,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "In the coin tray, typed: \"ACCA survey, ACHR News 2026\".",
-   "t": 51.582,
+   "t": 52.939,
    "word": 145,
-   "end": 53.462
+   "end": 54.819
   },
   {
    "id": "survey.n",
@@ -303,9 +303,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"1,000+ HVAC contractors\" lands in the tray.",
-   "t": 53.462,
+   "t": 54.819,
    "word": 152,
-   "end": 55.822
+   "end": 57.139
   },
   {
    "id": "survey.pull",
@@ -315,9 +315,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The crown reads \"4+ OPTIONS: CLOSE RATE\"; the lever pulls on \"four\", the reels spin.",
-   "t": 55.822,
+   "t": 57.139,
    "word": 156,
-   "end": 58.122
+   "end": 59.439
   },
   {
    "id": "survey.52",
@@ -327,9 +327,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The reels stop 5, 2, % on \"fifty-two percent\"; the bulbs chase fast; sparks; tray: \"4+ options: 52%\" and \"Only 10% offer 4+\".",
-   "t": 58.122,
+   "t": 59.439,
    "word": 163,
-   "end": 60.322
+   "end": 61.639
   },
   {
    "id": "survey.few",
@@ -339,9 +339,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The crown reads \"1 TO 3 OPTIONS\"; the lever pulls again; the reels stop 4, 2, % on \"Forty-two\" (no coins); tray adds \"1 to 3 options: 42%\".",
-   "t": 60.322,
+   "t": 61.639,
    "word": 168,
-   "end": 63.002
+   "end": 64.425
   },
   {
    "id": "survey.caveat",
@@ -351,9 +351,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The reels roll to 1, 2, 3; a gold bracket clamps across all three: ONE GROUP. Tray: \"1 to 3 options: one group here.\"",
-   "t": 63.002,
+   "t": 64.425,
    "word": 173,
-   "end": 66.222
+   "end": 67.725
   },
   {
    "id": "survey.cant",
@@ -363,9 +363,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Tray second line in the accent: \"It can't show 3 beats 1.\"",
-   "t": 66.222,
+   "t": 67.725,
    "word": 182,
-   "end": 69.182
+   "end": 70.505
   },
   {
    "id": "survey.yeses",
@@ -375,9 +375,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Crown: \"MORE CHOICES, MORE YESES\". Snow checks his clipboard.",
-   "t": 69.182,
+   "t": 70.505,
    "word": 190,
-   "end": 72.642
+   "end": 74.005
   },
   {
    "id": "survey.start",
@@ -387,9 +387,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The lever pulls; the reels land 3, 3, 3; jackpot: coins in the tray, the crown reads START WITH 3.",
-   "t": 72.642,
+   "t": 74.005,
    "word": 200,
-   "end": 74.062
+   "end": 75.429
   },
   {
    "id": "close",
@@ -399,9 +399,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "World: the storefront counter again, tag on one price \"$\". Over the counter front a dark plate: \"1 price: yes or no.\" lands as said.",
-   "t": 74.062,
+   "t": 75.429,
    "word": 203,
-   "end": 84.302
+   "end": 85.669
   },
   {
    "id": "close.choice",
@@ -411,9 +411,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The tag flips to \"$ $$ $$$\" on \"Three\"; \"3 prices: a choice.\" lands in the accent on \"choice\".",
-   "t": 76.542,
+   "t": 77.949,
    "word": 211,
-   "end": 78.842
+   "end": 80.249
   },
   {
    "id": "close.send",
@@ -423,9 +423,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "ProofNotFluff chip; the send line: \"Send this to whoever writes your quotes.\"",
-   "t": 78.842,
+   "t": 80.249,
    "word": 216,
-   "end": 80.582
+   "end": 82.009
   },
   {
    "id": "close.next",
@@ -435,9 +435,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "An accent line sweeps under \"a choice.\"; sparks off the tag; Snow waves.",
-   "t": 80.582,
+   "t": 82.009,
    "word": 223,
-   "end": 84.302
+   "end": 85.669
   }
  ]
 }

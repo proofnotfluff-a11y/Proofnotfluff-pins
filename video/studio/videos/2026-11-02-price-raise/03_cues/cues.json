@@ -1,11 +1,11 @@
 {
  "schema": "pnf.studio.cues.v1",
- "source": "estimate",
+ "source": "whisper medium.en int8, re-spelled from script.md",
  "music": {
   "id": "rooms",
   "level": 0.16
  },
- "duration": 84.618,
+ "duration": 79.885,
  "cues": [
   {
    "id": "hook",
@@ -17,7 +17,7 @@
    "text": "World: the weather map, PRICE FORECAST. Frame 0: the cover, fully settled: the map with one sun over the west, labeled HVAC 83%, and a big 83% in the middle of the map; under the map our own panel: \"of HVAC companies raised\" / \"prices last year.\" The 83% in the accent. Source small: Jobber survey, 1,050 owners, 2025. Host and dialog hidden. Sparks wait until 1 s.",
    "t": 0.0,
    "word": 0,
-   "end": 8.526
+   "end": 7.634
   },
   {
    "id": "hook.raised",
@@ -27,9 +27,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A warm front (red domes) sweeps west to east across the map; the HVAC sun pings.",
-   "t": 2.378,
+   "t": 2.48,
    "word": 5,
-   "end": 4.49
+   "end": 4.64
   },
   {
    "id": "hook.you",
@@ -39,9 +39,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A \"?\" cloud pops over the lake side: YOUR SHOP ?",
-   "t": 4.49,
+   "t": 4.64,
    "word": 10,
-   "end": 5.324
+   "end": 5.48
   },
   {
    "id": "hook.note",
@@ -51,9 +51,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The HUD reads LESSON 6; the panel line becomes \"The note that tells your customers.\" Snow steps in small and points.",
-   "t": 5.324,
+   "t": 5.48,
    "word": 12,
-   "end": 8.526
+   "end": 7.634
   },
   {
    "id": "stakes",
@@ -63,9 +63,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "World: the weather map again (dissolve). The panel: \"Jobber survey: 1,050 home service owners, Dec 2025\".",
-   "t": 8.526,
+   "t": 7.634,
    "word": 19,
-   "end": 21.72
+   "end": 21.041
   },
   {
    "id": "stakes.all",
@@ -75,9 +75,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"65%\" slams into the panel (count from 85%): \"of them raised prices.\" A second warm front starts.",
-   "t": 12.9,
-   "word": 30,
-   "end": 15.02
+   "t": 11.774,
+   "word": 29,
+   "end": 14.314
   },
   {
    "id": "stakes.trades",
@@ -87,9 +87,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Suns pop on each word: PLUMB, ELEC, ROOF.",
-   "t": 15.02,
-   "word": 34,
-   "end": 17.24
+   "t": 14.314,
+   "word": 33,
+   "end": 16.374
   },
   {
    "id": "stakes.74",
@@ -99,9 +99,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Their labels land: 74% each, with a burst; the panel: \"Plumbing, electrical, roofing: 74%\".",
-   "t": 17.24,
-   "word": 38,
-   "end": 18.948
+   "t": 16.374,
+   "word": 37,
+   "end": 18.374
   },
   {
    "id": "stakes.clean",
@@ -111,9 +111,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A cloud (no sun) pops: CLEAN, then 55% on \"fifty-five\"; the panel: \"Cleaning, the lowest: 55%\".",
-   "t": 18.948,
-   "word": 41,
-   "end": 21.72
+   "t": 18.374,
+   "word": 40,
+   "end": 21.041
   },
   {
    "id": "why",
@@ -123,9 +123,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "World: the register (level select). A shop counter with a brass till. The display reads REASON.",
-   "t": 21.72,
-   "word": 46,
-   "end": 36.602
+   "t": 21.041,
+   "word": 45,
+   "end": 35.807
   },
   {
    "id": "why.inflation",
@@ -135,9 +135,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The till rings INFLATION 72% onto the receipt; the $ flag pops; the display shows 72%.",
-   "t": 23.344,
-   "word": 49,
-   "end": 24.514
+   "t": 23.181,
+   "word": 48,
+   "end": 24.721
   },
   {
    "id": "why.labor",
@@ -147,9 +147,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "LABOR 50% prints; the display shows 50%. The plate on the wall: \"Why they raised prices\" / \"Jobber survey, reasons named\".",
-   "t": 24.514,
-   "word": 51,
-   "end": 25.844
+   "t": 24.721,
+   "word": 50,
+   "end": 26.141
   },
   {
    "id": "why.federal",
@@ -159,9 +159,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The drawer slides out; coins drip into it (HUD) to the end of the take. The plate: \"Federal pay data\" / \"BLS, 12 months to June 2026\".",
-   "t": 25.844,
-   "word": 54,
-   "end": 28.2
+   "t": 26.141,
+   "word": 53,
+   "end": 28.101
   },
   {
    "id": "why.repair",
@@ -171,9 +171,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "REPAIR PAY +3.7% prints on the receipt on \"three point seven\"; the display label flips to PAY and shows +3.7%.",
-   "t": 28.2,
-   "word": 60,
-   "end": 33.962
+   "t": 28.101,
+   "word": 59,
+   "end": 33.241
   },
   {
    "id": "why.all",
@@ -183,9 +183,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "ALL PAY +3.2% prints; the display shows +3.2%. It holds to the end of the take, coins still landing.",
-   "t": 33.962,
-   "word": 76,
-   "end": 36.602
+   "t": 33.241,
+   "word": 75,
+   "end": 35.807
   },
   {
    "id": "note",
@@ -195,9 +195,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "World: the price note on the desk (iris). An office wall with a clock that ticks, a desk, a steaming mug, a letterhead sheet tagged EXAMPLE, three numbered rows showing empty. Header: \"Send this before your next quote.\"",
-   "t": 36.602,
-   "word": 81,
-   "end": 60.84
+   "t": 35.807,
+   "word": 80,
+   "end": 58.024
   },
   {
    "id": "note.l1",
@@ -207,9 +207,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 1 types word by word as it is said: \"Starting the first of next month, our rates go up.\"",
-   "t": 39.202,
-   "word": 88,
-   "end": 42.886
+   "t": 38.247,
+   "word": 87,
+   "end": 41.047
   },
   {
    "id": "note.l2",
@@ -219,9 +219,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 2 types: \"Our labor and material costs rose this year.\"",
-   "t": 42.886,
-   "word": 98,
-   "end": 45.94
+   "t": 41.047,
+   "word": 97,
+   "end": 43.887
   },
   {
    "id": "note.l3",
@@ -231,9 +231,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 3 types: \"Anything you've already approved stays at the price we quoted.\" The full note holds 3 s or more, unchanged, through the next two beats.",
-   "t": 45.94,
-   "word": 106,
-   "end": 50.158
+   "t": 43.887,
+   "word": 105,
+   "end": 47.595
   },
   {
    "id": "note.skip",
@@ -243,9 +243,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Only the header changes: \"The part people skip.\"",
-   "t": 50.158,
-   "word": 116,
-   "end": 52.186
+   "t": 47.595,
+   "word": 115,
+   "end": 49.535
   },
   {
    "id": "note.last",
@@ -255,9 +255,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 3 gets a gold sweep under it; the numbers 1 and 2 dim a shade.",
-   "t": 52.186,
-   "word": 121,
-   "end": 55.644
+   "t": 49.535,
+   "word": 120,
+   "end": 52.895
   },
   {
    "id": "note.promise",
@@ -267,9 +267,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A PROMISE stamp lands at the sheet's right edge, clear of the words.",
-   "t": 55.644,
-   "word": 131,
-   "end": 56.806
+   "t": 52.895,
+   "word": 130,
+   "end": 54.435
   },
   {
    "id": "note.next",
@@ -279,9 +279,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Under the sheet: \"Raise the next job. Never an approved one.\"",
-   "t": 56.806,
-   "word": 134,
-   "end": 60.84
+   "t": 54.435,
+   "word": 133,
+   "end": 58.024
   },
   {
    "id": "caveat",
@@ -291,9 +291,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "World: the weather map (dissolve), titled ONE HONEST NOTE. A cold front (blue teeth) sweeps in from the east.",
-   "t": 60.84,
-   "word": 144,
-   "end": 72.438
+   "t": 58.024,
+   "word": 143,
+   "end": 69.185
   },
   {
    "id": "caveat.sells",
@@ -303,9 +303,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Panel: \"Jobber sells software.\"",
-   "t": 62.128,
-   "word": 147,
-   "end": 64.12
+   "t": 59.764,
+   "word": 146,
+   "end": 61.464
   },
   {
    "id": "caveat.shows",
@@ -315,9 +315,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Panel line 2: \"Its survey: who raised prices.\"",
-   "t": 64.12,
-   "word": 152,
-   "end": 66.518
+   "t": 61.464,
+   "word": 151,
+   "end": 64.044
   },
   {
    "id": "caveat.took",
@@ -327,9 +327,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A \"?\" cloud pops over the lake: CUSTOMERS ?. Panel line 3: \"Not how customers took it.\"",
-   "t": 66.518,
-   "word": 158,
-   "end": 68.958
+   "t": 64.044,
+   "word": 157,
+   "end": 66.344
   },
   {
    "id": "caveat.watch",
@@ -339,9 +339,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The panel clears to: \"Watch your close rate for a month after.\" It holds to the end of the take.",
-   "t": 68.958,
-   "word": 164,
-   "end": 72.438
+   "t": 66.344,
+   "word": 163,
+   "end": 69.185
   },
   {
    "id": "close",
@@ -351,9 +351,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "World: the weather map, PRICE FORECAST, every sun up, coins raining across it (HUD). A game window opens under the map: \"Your costs went up.\" in the accent.",
-   "t": 72.438,
-   "word": 173,
-   "end": 84.618
+   "t": 69.185,
+   "word": 172,
+   "end": 79.885
   },
   {
    "id": "close.most",
@@ -363,9 +363,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Most trades already raised prices.\" lands under it.",
-   "t": 73.97,
-   "word": 177,
-   "end": 77.15
+   "t": 70.825,
+   "word": 176,
+   "end": 73.545
   },
   {
    "id": "close.send",
@@ -375,9 +375,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "ProofNotFluff chip and the send line: \"Send this to whoever writes your quotes.\" One column, one left edge, host small at the side.",
-   "t": 77.15,
-   "word": 185,
-   "end": 81.044
+   "t": 73.545,
+   "word": 184,
+   "end": 76.625
   },
   {
    "id": "close.reason",
@@ -387,9 +387,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Raise yours with a reason.\" lands in gold with an accent line sweeping under it; Snow waves.",
-   "t": 81.044,
-   "word": 195,
-   "end": 84.618
+   "t": 76.625,
+   "word": 194,
+   "end": 79.885
   }
  ]
 }

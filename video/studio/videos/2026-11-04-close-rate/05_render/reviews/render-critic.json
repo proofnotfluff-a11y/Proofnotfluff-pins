@@ -1,19 +1,18 @@
 {
   "gate": "render-critic",
-  "round": 0,
-  "pass": false,
-  "score": {"faults": 4},
-  "faults": [
-    {"kind": "overlap", "at": 21.1, "text": "ServiceTitan, May to Jul 2026", "scene": "stakes.measure", "what": "The red 'Can't close a gap / you never measured.' sticker (y 795 to 905) lands on the gauge's source line and hides it until the scene ends at 24.0 s; it also crowds the 0 and 100 labels. Fix: move the sticker below the gauge (y 940 or lower, above the host band) or lift the source line, so the citation stays visible."},
-    {"kind": "cutoff", "at": 21.1, "text": "you never measured.", "scene": "stakes.measure", "what": "Second line is wider than its sticker: the 'y' and the period sit on the sticker's left and right borders. Fix: widen the sticker (about 420 px) or drop the text to size 33 so both lines clear the border by 12 px."},
-    {"kind": "cutoff", "at": 48.4, "text": "not on the page.", "scene": "turn.count", "what": "Two lines at size 39 in a plate 90 px tall: the second line hangs below the plate onto the map and the plate's red bottom border runs through it, so it reads as struck out and is hard to read, through 54.0 s. Fix: plate height 30 to 44 low-res px (scene.js line 377) or 1 line of text."},
-    {"kind": "cutoff", "at": 51.3, "text": "Not every shop.", "scene": "turn.cust", "what": "Same plate fault: 'Not every shop.' sits on the teal plate's bottom border (descenders clipped), through 54.0 s; the plate also runs to x 990, past the x 930 content edge. Fix: plate height 32 to 44 and start it at x 110 low-res (right edge at or under 310 low-res, x 930) in scene.js line 378."}
-  ],
+  "round": 1,
+  "pass": true,
+  "score": {"faults": 0},
+  "faults": [],
   "reasons": [
-    "Hook: NORTHEAST 31% and WEST 38% are fully on screen on frame 0 (pass).",
-    "Spoken numbers on screen on time: 31 to 38% (2.5 s), May to Jul (8.3 s), top 25% (12.9 s), 70 to 73% (17.5 to 18.0 s), 40 (36.0 s), 14 of 40 (37.5 s), 35% (40.7 s), median 31% to 38% with 35% inside (43.4 s) (pass).",
-    "Audio: last word 'rate.' ends 79.25 s, video 80.83 s, music tail fades out, nothing cut (pass).",
-    "Text sizes: reading text 39 px and up, chips 30 px; no flashing; the 72.0 s black wipe is a single 0.3 s transition (pass).",
-    "Layout: 4 faults, all text-plate fits (two on the 21 s gap sticker, two on the 48 to 54 s map plates)."
+    "Round 0 fault 1 (21.1 s overlap) gone: the 'Can't close a gap you never measured.' sticker now sits below the gauge (y about 935 to 1000); the 'ServiceTitan, May to Jul 2026' source line and the 0 and 100 labels are fully visible through 24.0 s.",
+    "Round 0 fault 2 (21.1 s cutoff) gone: the sticker is one line, text clears both borders (text ends x about 912 inside a plate to x about 945).",
+    "Round 0 fault 3 (48.4 s cutoff) gone: 'How it counts a close: / not on the page.' plate (y about 670 to 795) holds both lines with clear margin through 54.0 s.",
+    "Round 0 fault 4 (51.3 s cutoff) gone: 'ServiceTitan customers. / Not every shop.' plate (y about 515 to 640) holds both lines, no clipped descenders; plate right edge at about x 930, text ends x about 772.",
+    "Hook: '31% to 38%' fully on screen at frame 0, 0.8 s and 2.0 s (pass).",
+    "Spoken numbers on screen on time: 31 to 38% (0 to 4.5 s, region cards 31% at 2.5 s, 38% at 3.5 s), May to Jul (source line from 0 s), top 25% (12.5 s), 70 to 73% (17.5 to 18.0 s), 40 (36.0 s), 14 of 40 (37.5 s), 14 / 40 = 35% (39.0 to 41.0 s), median 31% to 38% with 35% inside (42.5 s) (pass).",
+    "Layout: settled frames show no hidden, clipped or overlapped words or numbers; content within y 270 to 1250; plate edges at most about 15 px past x 930 with all text left of x 930.",
+    "Audio: last word 'rate.' ends 79.25 s, video 81.13 s; music fades (-28 dB at 80.0 s to -40 dB at 80.7 s), nothing cut (pass).",
+    "Text sizes readable on a phone, smallest caption lines about 30 px tall; no flashing; 12.0 s, 24.0 s, 33.5 s, 46.0 s, 54.0 s and 58.5 s are single scene transitions (pass)."
   ]
 }

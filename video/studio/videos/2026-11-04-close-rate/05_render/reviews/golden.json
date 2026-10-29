@@ -1,18 +1,18 @@
 {
  "gate": "golden",
- "round": 0,
- "at": "2026-10-28T22:10:01-05:00",
- "pass": false,
+ "round": 1,
+ "at": "2026-10-28T22:38:25-05:00",
+ "pass": true,
  "score": {
-  "post_as_is": "no"
+  "post_as_is": "yes"
  },
- "mp4Sha256": "e54d874879937e0322ec99b4fa10ca1ca33faa6b6739e72529f97d75e259b3b3",
+ "mp4Sha256": "10fcd7e2e7832637ab6fe20778f58fea55fb21fe1f81ecd84e2d632da3824bb2",
  "reasons": [
-  "1. MUST-FIX 0.0 to 3.8 s: the opening is a still map. Frame 0 and frame 2.0 are identical apart from the lesson bar tick; Snow and his speech bubble do not appear until about 3.8 s, so the hook line (31 to 38 percent) plays with no presenter, no moving element and no on-screen words for sound-off viewers. The bar is lots of motion and a first 3 seconds that earn the stop; bring Snow and the bubble in at 0.0 and give the 31%/38% cards an entrance.",
-  "2. MUST-FIX 0.0 to 12.0 s: ServiceTitan's regions (US Northeast, US West) are drawn as boxes on our Chicago city map (river, lakefront, street grid). A trade owner reads WEST 38% and NORTHEAST 31% as parts of a city, likely Chicago, which the data never says. Show regions on a US outline or as plain labeled cards, not the city map.",
-  "3. POLISH 54.2 to 58.0 s: THIS MONTH and LAST MONTH pins on the same Chicago map carry no meaning (months are not places); a calendar or two whiteboard tallies would say it better.",
-  "4. POLISH every scene: the bottom third of the frame (about 1250 to 1920 px) is empty floor or checkerboard while the content sits in the top two thirds; fine as a platform-UI safe zone, but the boards and bubble could sit larger.",
-  "5. POLISH 24.3 to 33.9 s: take 3 runs 142 wpm and transcript.md flags it slow, while qa.json voice reports 0 flags (doubtful PASS on pace, though a slower formula read is defensible).",
-  "Checked and fine: every number said matches the screen when said (31/38 at 0 to 4 s, 70 to 73 at 16 to 20 s, 14/40 = 35% at 38.9 to 41.5 s, 35% inside 31 to 38 at 42 s); no contradiction with facts.json or captions.json; caveats (no close definition, not every shop) are said and shown; voice sounds like a person; qa.json all PASS; clear save (Screenshot this, end card formula) and send (whoever writes your estimates) reasons."
+  "1. POLISH 46.5 to 54.2 s: 'The part people skip' still sits on the Chicago city map (river, lakefront). Read as a metaphor (pins on some shops, 'Not every shop') it works, and the source plate says ServiceTitan's medians, but a viewer could take it as Chicago data; a generic town grid would be cleaner.",
+  "2. POLISH 34.0 to 46.0 s and 59 to 81 s: bottom third is empty floor (wood planks, office floor with fan and cabinets); fine as platform-UI safe zone, boards could sit larger.",
+  "3. POLISH 24.3 to 33.9 s: take 3 still 142 wpm, flagged slow in transcript.md while qa.json voice shows 0 flags; a slower read of the formula is defensible.",
+  "4. POLISH 0.0 to 2.4 s: the US NORTHEAST and US WEST cards are empty boxes until the numbers are said; the headline already shows 31% to 38%, so nothing is missing.",
+  "Round 0 must-fixes resolved: Snow, bubble (word by word) and US outline map are on screen from 0.0 s with a sweeping divider and pins lighting at 2.5 and 3.5 s; regions now read 'by US region' with US NORTHEAST / US WEST on a US outline, not the city map. Round 0 polish on months-as-pins replaced by the 'Beat your ghost' race (54.2 to 58.5 s).",
+  "Checked and fine: 31/38 at 2.5 to 3.5 s, top 25% and 70 to 73% at 12.9 to 18 s, 14 / 40 = 35% at 37.5 to 40.7 s, 35% inside 31 to 38 at 42.8 s, all match facts.json and captions.json; source line visible on the gauge through the 'never measured' sticker (21.7 s); turn plates fit; caveats said and shown; end card formula readable at 72.7 s; qa.json all PASS on hash 10fcd7e2; voice sounds like a person; clear save (Screenshot this, formula end card) and send (whoever writes your estimates)."
  ]
 }

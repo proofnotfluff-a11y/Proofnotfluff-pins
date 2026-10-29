@@ -25,7 +25,7 @@ jobs:
         run: |
           git fetch -q origin main
           python3 tools/verify_site.py chicago-construction-pipeline --flow chicago-construction-pipeline --out data/verify/ci 2>&1 | tee verify.txt || true
-      - name: List what is wider than a phone screen
+      - name: List what is wider than a phone screen (v2)
         run: python3 .github/branch/wide.py 2>&1 | tee wide.txt || true
       - name: Commit the report and shots to this branch
         run: |

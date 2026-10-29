@@ -188,10 +188,10 @@ window.SCENE = {
       const [sx, sy] = [(14 + ICONS.hvac[0] * 332) * 3, (82 + ICONS.hvac[1] * 150) * 3];
       k.burst(sx, sy, tOut, {n: 18, r: 220});
       const pf = d.fr(tOut); if (pf >= 0 && pf < 12) { const g = 8 + pf * 2, cx = sx / 3, cy = sy / 3; d.P(cx - g, cy - g, 2 * g + 1, 1, CREAM); d.P(cx - g, cy + g, 2 * g + 1, 1, CREAM); d.P(cx - g, cy - g, 1, 2 * g + 1, CREAM); d.P(cx + g, cy - g, 1, 2 * g + 1, CREAM); }
-      /* the cover, settled on frame 0: the 83% about 560 px wide, centered in the map's open land left of the lake (the one
+      /* the cover, settled on frame 0: the 83% about 560 px wide, centered in the open land between the map's open land left of the lake (the one
          dominant number); its sentence in the panel under it, the block centered in the panel; the segment tag on the
          panel's top edge; on "Here's the note" the panel clears to the one headline, centered */
-      k.text(n.hvac.shown, 370, 360, {size: 396, color: 'accent', drop: INK, align: 'center'});   // its box starts under the HVAC label
+      k.text(n.hvac.shown, 345, 360, {size: 396, color: 'accent', drop: INK, align: 'center'});   // its box starts under the HVAC label
       k.chip('Pricing Clinic', 668, 684, {size: 30, fill: 'accent', color: INK});
       if (T < tNote) {
         k.text('of HVAC companies raised', 72, 738, {size: 66, color: CREAM, drop: INK});

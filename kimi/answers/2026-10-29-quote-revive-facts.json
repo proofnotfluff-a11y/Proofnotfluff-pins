@@ -1,0 +1,48 @@
+{
+ "job": "2026-10-29-quote-revive-facts",
+ "model": "k3.1-pro",
+ "at": "2026-10-29T23:39:57+00:00",
+ "status": "ok",
+ "kind": "facts",
+ "slug": "2026-10-29-quote-revive",
+ "sources": [
+  {
+   "url": "https://www.servicetitan.com/blog/webinar-recap-follow-ups-101-back-2-basics",
+   "read": true,
+   "chars": 4270
+  },
+  {
+   "url": "https://www.housecallpro.com/resources/home-service-customer-service-report-trends-statistics/",
+   "read": true,
+   "chars": 3267
+  },
+  {
+   "url": "https://getjobber.com/academy/quote-follow-up-email-templates/",
+   "read": true,
+   "chars": 5006
+  }
+ ],
+ "prompt_chars": 30164,
+ "usage": {
+  "input_tokens": 3704,
+  "cache_read_input_tokens": 4096,
+  "output_tokens": 2048
+ },
+ "result": {
+  "pass": true,
+  "score": {
+   "numbers": 6,
+   "mismatches": 0
+  },
+  "reasons": [],
+  "sources_checked": [
+   "https://www.servicetitan.com/blog/webinar-recap-follow-ups-101-back-2-basics: Confirmed ServiceTitan data showing 37% of estimates convert immediately, the majority of opportunities depending on follow-up, the 2026 publication date, and the presenter's qualitative claim that texts outperform email on open rates.",
+   "https://www.housecallpro.com/resources/home-service-customer-service-report-trends-statistics/: Confirmed the 2025 publication date, the survey of 1,040 U.S. homeowners conducted online on October 23, 2025, and the page's qualitative statement that homeowners anticipate text updates as jobs progress.",
+   "https://getjobber.com/academy/quote-follow-up-email-templates/: Confirmed the 2026 date, follow-up timing within two days, after one week, and 24-48 hours before expiry, plus template advice using the customer name, project details, and a question about the quote."
+  ],
+  "unconfirmed": [
+   "https://www.housecallpro.com/resources/home-service-customer-service-report-trends-statistics/: The exact figure that 59% of homeowners expect text updates; the pasted excerpt does not include the cited chart.",
+   "https://getjobber.com/academy/quote-follow-up-email-templates/: The caption-only advice to close the file after the third follow-up; that sentence is not present in the pasted excerpt."
+  ]
+ }
+}

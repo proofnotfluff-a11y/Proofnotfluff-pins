@@ -53,8 +53,8 @@ WINDOW = 350
 
 def plain(text: str) -> str:
     # The repo refuses em and en dashes in public files
-    text = re.sub(r"(\d)\s*–\s*(\d)", r"\1 to \2", text)
-    return re.sub(r"\s*[–—]\s*", ", ", text)
+    text = re.sub(r"(\d)\s*\u2013\s*(\d)", r"\1 to \2", text)
+    return re.sub(r"\s*[\u2013\u2014]\s*", ", ", text)
 
 
 def today() -> str:
@@ -125,15 +125,22 @@ def page_text(raw: str) -> str:
     raw = re.sub(r"(?is)<(script|style|noscript|svg)[^>]*>.*?</\1>", " ", raw)
     meta = " ".join(re.findall(r'(?is)<meta[^>]+(?:name|property)="(?:description|og:description)"[^>]+content="([^"]*)"', raw))
     title = " ".join(re.findall(r"(?is)<title[^>]*>(.*?)</title>", raw))
-    body = re.sub(r"(?s)<[^>]+>", " ", raw)
-    return re.sub(r"\s+", " ", html.unescape(f"{title} | {meta} | {body}")).strip()
+    # chart figures often live only in image alt text or figure captions
+    body = re.sub(r'(?is)<img[^>]*\balt="([^"]*)"[^>]*>', r" [image: \1] ", raw)
+    body = re.sub(r"(?s)<[^>]+>", " ", body)
+    return straight(re.sub(r"\s+", " ", html.unescape(f"{title} | {meta} | {body}")).strip())
+
+
+def straight(s: str) -> str:
+    """Curly quotes and odd spaces to plain ones, so a quote in facts.json matches the page."""
+    return s.translate(str.maketrans({"\u2018": "'", "\u2019": "'", "\u201c": '"', "\u201d": '"', "\u00a0": " ", "\u2009": " "}))
 
 
 def excerpt(text: str, needles: list[str]) -> str:
-    spans = []
+    spans = [(0, min(len(text), 600))]  # the head: title, description, first lines
     low = text.lower()
     for n in needles:
-        for m in re.finditer(re.escape(n.lower()[:80]), low):
+        for m in re.finditer(re.escape(straight(n).lower()[:60]), low):
             spans.append((max(0, m.start() - WINDOW), min(len(text), m.end() + WINDOW)))
             if len(spans) > 40:
                 break
@@ -144,9 +151,7 @@ def excerpt(text: str, needles: list[str]) -> str:
             merged[-1] = (merged[-1][0], max(b, merged[-1][1]))
         else:
             merged.append((a, b))
-    head = text[:600]
-    parts = [head] + [text[a:b] for a, b in merged]
-    out = " [...] ".join(parts)
+    out = " [...] ".join(text[a:b] for a, b in merged)
     return out[:PAGE_CHARS] + (" (cut)" if len(out) > PAGE_CHARS else "")
 
 

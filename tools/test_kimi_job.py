@@ -71,6 +71,12 @@ def test_unknown_kind_bad_slug_and_plant_outside_selftest():
     assert "forty-seven percent" in kj.build(plant, "x-selftest", fetcher=fake_fetch)[0]
 
 
+def test_page_text_keeps_alt_text_and_straightens_quotes():
+    t = kj.page_text('<p>If you haven\u2019t heard back, close the file.</p><img src="c.png" alt="59% expect text updates">')
+    assert "59% expect text updates" in t
+    assert "haven't heard back" in kj.excerpt(t, ["If you haven\u2019t heard back"])
+
+
 def test_first_json_and_validation():
     assert kj.first_json('Sure.\n```json\n{"pass": false, "reasons": ["x {y}"]}\n```') == {"pass": False, "reasons": ["x {y}"]}
     assert kj.first_json("no json") is None

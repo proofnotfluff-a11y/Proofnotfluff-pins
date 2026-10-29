@@ -1,0 +1,43 @@
+{
+ "job": "2026-10-29-quote-revive-facts-captions",
+ "model": "k3.1-pro",
+ "at": "2026-10-29T23:34:36+00:00",
+ "status": "ok",
+ "kind": "facts-captions",
+ "slug": "2026-10-29-quote-revive",
+ "sources": [
+  {
+   "url": "https://www.servicetitan.com/blog/webinar-recap-follow-ups-101-back-2-basics",
+   "read": true,
+   "chars": 4270
+  },
+  {
+   "url": "https://www.housecallpro.com/resources/home-service-customer-service-report-trends-statistics/",
+   "read": true,
+   "chars": 3267
+  },
+  {
+   "url": "https://getjobber.com/academy/quote-follow-up-email-templates/",
+   "read": true,
+   "chars": 5006
+  }
+ ],
+ "prompt_chars": 33274,
+ "usage": {
+  "input_tokens": 8551,
+  "cache_read_input_tokens": 0,
+  "output_tokens": 7143
+ },
+ "result": {
+  "pass": true,
+  "score": {
+   "numbers": 22,
+   "mismatches": 0
+  },
+  "reasons": [],
+  "unconfirmed": [
+   "https://www.housecallpro.com/resources/home-service-customer-service-report-trends-statistics/: 59% of the 1,040 U.S. homeowners surveyed expect text updates; the pasted excerpt confirms the survey population and general anticipation of text updates, but not the 59% chart.",
+   "https://getjobber.com/academy/quote-follow-up-email-templates/: After 3 follow-ups with no reply, close the file; this advice is not shown in the pasted excerpt."
+  ]
+ }
+}

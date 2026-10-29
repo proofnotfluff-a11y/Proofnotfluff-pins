@@ -5,7 +5,7 @@
   "id": "rooms",
   "level": 0.16
  },
- "duration": 73.608,
+ "duration": 75.148,
  "cues": [
   {
    "id": "hook",
@@ -75,7 +75,7 @@
    "shift": 0.0,
    "pin": null,
    "text": "The window types onto the plate: \"Its customers, 12 months to Jan 2026\".",
-   "t": 11.182,
+   "t": 11.202,
    "word": 32,
    "end": 12.742
   },
@@ -209,7 +209,7 @@
    "text": "The kitchen table (iris), seen from above: the estimate on its clipboard, a coffee, the next-visit card. The script card slides up with the header \"ASK BEFORE YOU WALK OUT.\" and three numbered rows showing, empty.",
    "t": 32.699,
    "word": 89,
-   "end": 44.095
+   "end": 44.826
   },
   {
    "id": "ask.three",
@@ -219,9 +219,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The header turns to \"SAY THIS (EXAMPLE)\" with a gold line drawing under it.",
-   "t": 34.719,
+   "t": 34.819,
    "word": 95,
-   "end": 36.239
+   "end": 36.999
   },
   {
    "id": "ask.l1",
@@ -231,9 +231,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 1: \"Here are your options.\"",
-   "t": 36.239,
-   "word": 98,
-   "end": 37.579
+   "t": 36.999,
+   "word": 99,
+   "end": 38.439
   },
   {
    "id": "ask.l2",
@@ -243,9 +243,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 2: \"If you want to go ahead today, I can get you on the schedule for Thursday.\"",
-   "t": 37.579,
-   "word": 102,
-   "end": 39.059
+   "t": 38.439,
+   "word": 103,
+   "end": 39.959
   },
   {
    "id": "ask.sched",
@@ -255,9 +255,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Thursday\" in row 2 gets an accent sweep (an example day, tagged \"example\").",
-   "t": 39.059,
-   "word": 109,
-   "end": 41.459
+   "t": 39.959,
+   "word": 110,
+   "end": 42.259
   },
   {
    "id": "ask.l3",
@@ -267,9 +267,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 3: \"What questions do you have before you pick one?\" The full card holds to the end of the take. Snow steps back, small.",
-   "t": 41.459,
-   "word": 118,
-   "end": 44.095
+   "t": 42.259,
+   "word": 119,
+   "end": 44.826
   },
   {
    "id": "skip",
@@ -279,9 +279,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "LEVEL UP from the first frame (xp). Plate: \"The part people skip:\" with row 3's line in quotes.",
-   "t": 44.095,
-   "word": 127,
-   "end": 55.021
+   "t": 44.826,
+   "word": 128,
+   "end": 55.752
   },
   {
    "id": "skip.worry",
@@ -291,9 +291,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Under it: \"It brings the worry out\"; a storm cloud labeled \"the worry\" drops over the locked perks.",
-   "t": 46.095,
-   "word": 132,
-   "end": 48.275
+   "t": 46.826,
+   "word": 133,
+   "end": 49.006
   },
   {
    "id": "skip.there",
@@ -303,9 +303,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"while you're still there.\" lands in the accent; the cloud is struck and pops in confetti; Snow points.",
-   "t": 48.275,
-   "word": 139,
-   "end": 49.915
+   "t": 49.006,
+   "word": 140,
+   "end": 50.646
   },
   {
    "id": "skip.st",
@@ -315,9 +315,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The plate: \"ServiceTitan says\" / \"Same-visit closes show\" / \"how well your tech:\". The XP bar fills.",
-   "t": 49.915,
-   "word": 143,
-   "end": 52.875
+   "t": 50.646,
+   "word": 144,
+   "end": 53.606
   },
   {
    "id": "skip.obj",
@@ -327,9 +327,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The perks land as the bar fills: Handles objections, on the word, then the two the page lists with it (Frames financing, Asks for the sale); LEVEL UP on \"objections\", and the three-line ask unlocks.",
-   "t": 52.875,
-   "word": 150,
-   "end": 55.021
+   "t": 53.606,
+   "word": 151,
+   "end": 55.752
   },
   {
    "id": "caveat",
@@ -339,9 +339,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The notebook page comes down on \"honest\". Header on dark tape: \"One honest note.\"",
-   "t": 55.021,
-   "word": 154,
-   "end": 64.588
+   "t": 55.752,
+   "word": 155,
+   "end": 65.868
   },
   {
    "id": "caveat.pattern",
@@ -351,9 +351,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The pen writes \"It's a pattern, not proof.\" as said; \"not proof\" gets a red underline; the source line lands: \"ServiceTitan: correlated, / not shown to cause.\"",
-   "t": 56.561,
-   "word": 157,
-   "end": 58.621
+   "t": 57.412,
+   "word": 158,
+   "end": 59.612
   },
   {
    "id": "caveat.other",
@@ -363,21 +363,21 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Top shops might close more\" / \"for other reasons.\" written under it.",
-   "t": 58.621,
-   "word": 162,
-   "end": 61.581
+   "t": 59.612,
+   "word": 163,
+   "end": 62.152
   },
   {
    "id": "caveat.cost",
    "level": 1,
-   "quote": "Asking still costs you",
+   "quote": "but asking still costs",
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "\"Asking still costs you\" / \"one sentence.\" written in red, double underlined. Snow shrugs.",
-   "t": 61.581,
-   "word": 170,
-   "end": 64.588
+   "text": "\"But asking still costs you\" / \"just one sentence.\" written in red, double underlined. Snow shrugs.",
+   "t": 62.152,
+   "word": 171,
+   "end": 65.868
   },
   {
    "id": "close",
@@ -387,21 +387,21 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: blackboard. Chalk: \"Don't drive off\" / \"and wait.\" slams in as said.",
-   "t": 64.588,
-   "word": 176,
-   "end": 73.608
+   "t": 65.868,
+   "word": 179,
+   "end": 75.148
   },
   {
    "id": "close.drive",
    "level": 1,
-   "quote": "Ask for it in",
+   "quote": "Ask for the yes.",
    "sfx": null,
    "shift": 0.0,
    "pin": null,
    "text": "\"Ask in the driveway.\" slams in, in the accent.",
-   "t": 66.968,
+   "t": 67.648,
    "word": 184,
-   "end": 68.868
+   "end": 70.388
   },
   {
    "id": "close.send",
@@ -411,9 +411,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "ProofNotFluff plate slams on; send line: \"Send this to whoever goes out on your estimates.\"",
-   "t": 68.868,
-   "word": 190,
-   "end": 69.628
+   "t": 70.388,
+   "word": 191,
+   "end": 71.128
   },
   {
    "id": "close.next",
@@ -423,9 +423,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "An accent line sweeps under \"Ask in the driveway.\"; sparks; Snow waves.",
-   "t": 69.628,
-   "word": 194,
-   "end": 73.608
+   "t": 71.128,
+   "word": 195,
+   "end": 75.148
   }
  ]
 }

@@ -42,6 +42,15 @@ The studio learns in three loops (Todd, Oct 28, 2026, 3:43 pm: "make this video 
 - Pixel fonts: glyphs trimmed to ink with a 1 px letter gap and a clear word gap; an s that is open.
 
 ## Fault log
+- 2026-10-29 AI lane round 0 (after-hours-reply, receptionist-myth, notes-to-quote): facts, an example message drawn
+  in the hook close-up and the chat set with no EXAMPLE mark -> every story surface carries the gold tag. Critic and
+  golden, a stamp placed by y alone landed on a desk card (oven) -> a stamp sits on its own plate inside the card it
+  speaks to. Critic, set and card text past x 930 (inventory stat at 945, quote cells to 1057) while lint's edge is
+  x 950 -> lint edge to 930 is an IMPROVE candidate. A W() lookup searches 1.1 s back, so /^price/ caught an earlier
+  "price" and the blinds flag showed 2 s early -> anchor a lookup on a nearby unique word. Design 4.14 to 4.29:
+  hero numbers at readout size, empty set areas, low-contrast heads -> a 198 px hero slot (gauge readout kept quiet
+  and drawn over), a dark band under board lines. Body sizes 30 and 39 render the same (one pixel scale): only the
+  display sizes (66, 132, 198) read larger; the dialog floor stays a runtime item (00b).
 - 2026-10-29 book-the-call rebuild (queue rule, end card runtime): every gate PASS at round 0. Polish named: end card
   holds 2.5 s (aim 3+), card wants the game frame; boss -30 under the dither (named twice now: fix next rebuild); host
   arrives at 7.6 s; dialog words 38 to 40 px (lint type floor is IMPROVE 00b).

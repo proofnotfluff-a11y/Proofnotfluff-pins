@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-09-receptionist-myth",
- "mp4Sha256": "a294b22852278da62e20a7f479201c6d23718638747bc6517d5d5dd18c4fe72a",
+ "mp4Sha256": "79bcb0cb2d57c808599a252c7bf23af17b55f7b5418c945edb53820fcd7726df",
  "checks": [
   {
    "name": "length",
@@ -38,11 +38,11 @@
   {
    "name": "file",
    "value": {
-    "sha256": "a294b22852278da62e20a7f479201c6d23718638747bc6517d5d5dd18c4fe72a",
-    "bytes": 3893352
+    "sha256": "79bcb0cb2d57c808599a252c7bf23af17b55f7b5418c945edb53820fcd7726df",
+    "bytes": 4051222
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 3.9 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 4.1 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -52,5 +52,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-29T17:36:46-05:00"
+ "at": "2026-10-29T18:29:31-05:00"
 }

@@ -3,7 +3,7 @@
 Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 200 words, 71.4 s of voice.
 
 ## Flags
-- 4.8 s heard 'closed seventy seven %' for 'close seventy-seven percent'
+none
 
 ## Pace per take (target 160 to 195 wpm)
 ```

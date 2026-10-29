@@ -91,18 +91,18 @@
   {
    "w": "close",
    "start": 4.78,
-   "end": 5.28,
+   "end": 5.08,
    "take": 1
   },
   {
    "w": "seventy-seven",
-   "start": 5.28,
-   "end": 5.78,
+   "start": 5.08,
+   "end": 5.68,
    "take": 1
   },
   {
    "w": "percent",
-   "start": 5.78,
+   "start": 5.68,
    "end": 6.28,
    "take": 1
   },
@@ -1249,9 +1249,7 @@
    "wpm": 186
   }
  ],
- "flags": [
-  "4.8 s heard 'closed seventy seven %' for 'close seventy-seven percent'"
- ],
+ "flags": [],
  "end": 71.36,
  "heard": [
   {
@@ -1339,10 +1337,10 @@
    "p": 0.656
   },
   {
-   "w": "closed",
+   "w": "close",
    "start": 4.78,
    "end": 5.08,
-   "p": 0.421
+   "p": 0.597
   },
   {
    "w": "77",

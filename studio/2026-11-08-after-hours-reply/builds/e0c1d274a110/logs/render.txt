@@ -1,0 +1,8 @@
+  300/1362 frames, 31 s
+  600/1362 frames, 61 s
+  900/1362 frames, 91 s
+  1200/1362 frames, 123 s
+mix: rooms framing 0.00 s
+mix: voice -23.3 LUFS, bed -21.8 LUFS after EQ; bed gain -19.5 dB under speech, -11.5 dB in pauses, 9 phrases
+render: /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-11-08-after-hours-reply/05_render/2026-11-08-after-hours-reply.mp4 (1362 frames, 45.40 s, voice, 144 s)
+exit 0

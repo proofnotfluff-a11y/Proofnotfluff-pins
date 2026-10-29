@@ -23,7 +23,6 @@ jobs:
           curl -sS -o /dev/null -m 30 -w "Kimi endpoint reachable: HTTP %{http_code} in %{time_total}s (401 expected without a key)\n" https://api.kimi.ai/coding/v1/models || echo "FAIL Kimi endpoint not reachable from GitHub"
       - name: One tiny call per model
         env:
-          ANTHROPIC_BASE_URL: https://api.kimi.ai/coding/
           ANTHROPIC_API_KEY: ${{ secrets.KIMI_API }}
           CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: "1"
           DISABLE_TELEMETRY: "1"
@@ -33,7 +32,13 @@ jobs:
         run: |
           if [ -z "$ANTHROPIC_API_KEY" ]; then echo "FAIL secret KIMI_API is empty or missing"; exit 1; fi
           echo "PASS secret present (length ${#ANTHROPIC_API_KEY})"
+          # Strip stray spaces or line breaks a paste can add (value never printed)
+          ANTHROPIC_API_KEY="$(printf '%s' "$ANTHROPIC_API_KEY" | tr -d '[:space:]')"; export ANTHROPIC_API_KEY
+          echo "Key length after trimming spaces: ${#ANTHROPIC_API_KEY}"
           pass=0
+          # Kimi's FAQ lists two Kimi Code addresses (overseas and China) and says the key must match the right one
+          for base in https://api.kimi.ai/coding/ https://api.kimi.com/coding/; do
+          export ANTHROPIC_BASE_URL="$base"
           for m in k3.1-pro k3 kimi-for-coding; do
             export ANTHROPIC_MODEL="$m" ANTHROPIC_DEFAULT_HAIKU_MODEL="$m" ANTHROPIC_DEFAULT_SONNET_MODEL="$m" ANTHROPIC_DEFAULT_OPUS_MODEL="$m"
             start=$(date +%s)
@@ -42,15 +47,16 @@ jobs:
             code=$?
             set -e
             secs=$(( $(date +%s) - start ))
-            text=$(printf '%s' "$out" | python3 -c 'import json,sys; s=sys.stdin.read().strip(); d=json.loads(s) if s.startswith("{") else {}; u=d.get("usage") or {}; print("error" if d.get("is_error") else "ok", str(d.get("result",""))[:200].replace(chr(10)," "), "| tokens in", u.get("input_tokens"), "cache", u.get("cache_read_input_tokens"), "out", u.get("output_tokens"))' 2>/dev/null || echo unparsed)
+            text=$(printf '%s' "$out" | python3 -c 'import json,sys; s=sys.stdin.read().strip(); d=json.loads(s) if s.startswith("{") else {}; u=d.get("usage") or {}; print("error" if d.get("is_error") else "ok", str(d.get("result",""))[:160].replace(chr(10)," "), "| tokens in", u.get("input_tokens"), "cache", u.get("cache_read_input_tokens"), "out", u.get("output_tokens"))' 2>/dev/null || echo unparsed)
             if printf '%s' "$out" | grep -q PONG; then
-              echo "PASS $m ${secs}s: $text"; pass=$((pass+1))
+              echo "PASS $base $m ${secs}s: $text"; pass=$((pass+1))
             else
-              err=$(head -c 400 err.txt | tr '\n' ' ' | sed "s/$ANTHROPIC_API_KEY/[key]/g")
-              res=$(printf '%s' "$out" | head -c 400 | tr '\n' ' ' | sed "s/$ANTHROPIC_API_KEY/[key]/g")
-              echo "FAIL $m exit $code ${secs}s: $text :: $err"
+              echo "FAIL $base $m exit $code ${secs}s: $text"
+              # A rejected key fails the same way for every model, so skip the rest of this address
+              printf '%s' "$text" | grep -q " 401 " && break
             fi
           done
+          done
           rm -f err.txt
-          echo "SUMMARY $pass of 3 models answered"
+          echo "SUMMARY $pass model and address pairs answered"
           [ "$pass" -gt 0 ]

@@ -1,6 +1,6 @@
 # Transcript: 2026-10-29-quote-revive
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 191 words, 70.2 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 191 words, 69.9 s of voice.
 
 ## Flags
 none
@@ -11,8 +11,8 @@ none
   02     4.8 s  174 wpm  
   03    17.9 s  169 wpm  
   04    33.5 s  169 wpm  
-  05    46.9 s  144 wpm  slow: rewrite it as talk, then speak --take 5
-  06    61.9 s  182 wpm  
+  05    46.9 s  147 wpm  slow: rewrite it as talk, then speak --take 5
+  06    61.6 s  182 wpm  
 ```
 
 ## Words
@@ -49,14 +49,12 @@ none
 
 `00:46.9` Here's the part people skip.
 
-`00:49.0` You text it, you don't email it.
+`00:48.8` You text it, you don't email it.
 
-`00:51.8` ServiceTitan's follow-up webinar says texts beat email on open rates.
+`00:51.5` ServiceTitan's follow-up webinar says texts beat email on open rates, and in a Housecall Pro survey, fifty-nine percent of homeowners expect text updates.
 
-`00:56.1` And in a Housecall Pro survey, fifty-nine percent of homeowners expect text updates.
+`01:01.6` One name, one job, one question.
 
-`01:01.9` One name, one job, one question.
+`01:04.7` Send this to whoever follows up on your quotes.
 
-`01:05.0` Send this to whoever follows up on your quotes.
-
-`01:07.8` Next time a quote goes quiet, you'll know what to send.
+`01:07.5` Next time a quote goes quiet, you'll know what to send.

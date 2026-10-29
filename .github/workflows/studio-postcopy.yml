@@ -1,8 +1,9 @@
 name: Studio post copy
 # Renders a queued studio lesson's post copy (video/studio/anim.py postcopy) for a session that has no Chromium of its
 # own, such as a chat thread posting through Claude in Chrome. The pinned commit's own code makes the picture and sound
-# and postcopy checks every fingerprint first, exactly as POSTING.md step 2. The MP4 comes back as a run artifact for
-# 3 days. Nothing is posted, committed or pushed here.
+# and postcopy checks every fingerprint first, exactly as POSTING.md step 2. The MP4 and its log go to the
+# studio-postcopy branch as <slug>.mp4 and <slug>.txt (artifact downloads are blocked from cloud sessions; git works).
+# That branch holds only the latest post copies. Nothing is posted, and main is never touched.
 on:
   workflow_dispatch:
     inputs:
@@ -10,7 +11,7 @@ on:
         description: "Queued lesson slug (anim.py next)"
         required: true
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: studio-postcopy
   cancel-in-progress: false
@@ -33,9 +34,20 @@ jobs:
         run: |
           case "$SLUG" in *[!a-z0-9-]*|"") echo "bad slug"; exit 1;; esac
           git config user.name "proofnotfluff-bot"; git config user.email "proofnotfluff-bot@users.noreply.github.com"
-          python3 video/studio/anim.py postcopy "$SLUG"
-          python3 video/studio/anim.py check "$SLUG" --mp4 "/mnt/user-data/outputs/$SLUG.mp4" || true
-          sha256sum "/mnt/user-data/outputs/$SLUG.mp4"
+          python3 video/studio/anim.py postcopy "$SLUG" 2>&1 | tee "$RUNNER_TEMP/$SLUG.txt"; test "${PIPESTATUS[0]}" = 0
+          python3 video/studio/anim.py check "$SLUG" --mp4 "/mnt/user-data/outputs/$SLUG.mp4" 2>&1 | tee -a "$RUNNER_TEMP/$SLUG.txt" || true
+          sha256sum "/mnt/user-data/outputs/$SLUG.mp4" | tee -a "$RUNNER_TEMP/$SLUG.txt"
+      - name: Hand off on the studio-postcopy branch
+        env:
+          SLUG: ${{ inputs.slug }}
+        run: |
+          w="$RUNNER_TEMP/pc"
+          if git fetch -q --depth 1 origin studio-postcopy; then git worktree add -q "$w" FETCH_HEAD
+          else git worktree add -q --detach "$w" && git -C "$w" checkout -q --orphan pc && git -C "$w" rm -rqf . ; fi
+          cd "$w"; git rm -qf --ignore-unmatch '*.mp4' '*.txt'
+          cp "/mnt/user-data/outputs/$SLUG.mp4" "$RUNNER_TEMP/$SLUG.txt" .
+          git add "$SLUG.mp4" "$SLUG.txt"; git commit -q -m "Post copy $SLUG"
+          git push -q origin HEAD:refs/heads/studio-postcopy
       - uses: actions/upload-artifact@v4
         with:
           name: postcopy-${{ inputs.slug }}

@@ -16,4 +16,5 @@ Tool: tools/stage_timing_probe.py, GitHub Actions runs 40953694825 and 409538330
 ## What changes
 - No page, video or email says "weeks before move-in". Live pages say "near finish" only for partial occupancy, defined on the page; that stays accurate.
 - The free page groups big open jobs by months since permit (0 to 6, 6 to 12, 12 to 24, over 24) and area, and says plainly what each stage means.
-- Start a daily snapshot of permit id and milestone so stage-to-CO time can be measured directly; first useful read after about 8 weeks.
+- Start a weekly snapshot of permit id and milestone (sealed, on the Monday permit run, no new schedule) so stage-to-CO time can be measured directly; first useful read after about 8 weeks.
+- Video: bank lesson 22 in video/studio/research/IDEAS.md (end of the trades-first bank); the daily studio makes it in turn.

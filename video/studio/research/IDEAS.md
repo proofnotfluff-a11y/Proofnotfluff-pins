@@ -29,6 +29,7 @@ runs/2026-10-28-trades-insights.md. Re-read each source on the day it is used.
 | 19 | Know your average ticket | HVAC service ticket $422 (ACCA 2026) | Rohr, Mello | Truck dashboard gauges |
 | 20 | Say the range on the first call | 68% get more quotes when the price surprises them (Housecall Pro 2026) | Reber | Game-show price wheel |
 | 21 | Every job sells the street | +0.78 percentage points per nearby solar install (Marketing Science 2012) | Mello | City-builder street |
+| 22 | Big job permit: months to the final clean, not weeks | Chicago new buildings of $500,000 or more: 22% of 2025 permits have their certificate of occupancy today, 64% of 2024 (City permits ydr8-5enu, Oct 29, 2026; research_notes/stage-timing-2026-10-29.md, page /chicago-construction-pipeline/) | none read (own City data) | Board game track to a finish square |
 
 Made lessons on non-trade evidence (1 first-reply, 4 three-prices, 6 price-raise, 7 review-replies): see section 4 of
 the run file. 1 and 4 can be re-cut with trade numbers; 6 and 7 should be replaced by bank lessons 3 and 8. Done Oct 28 (evening): 2026-11-02-price-raise is now bank lesson 3 and 2026-11-03-review-replies bank lesson 8, in their old slugs (voice and gates to run).

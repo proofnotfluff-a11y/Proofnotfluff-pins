@@ -22,7 +22,7 @@ BUCKET_WORDS = [("b0", "Under 6 months", "under 6 mo."), ("b1", "6 to 12 months"
                 ("b2", "1 to 2 years", "1 to 2 yrs"), ("b3", "Over 2 years", "over 2 yrs")]
 
 META = {"h1": "Chicago's Big Building Jobs, by How Far Along They Are",
-        "card": "Every open Chicago building job of $500,000 or more still waiting on its certificate of occupancy, by neighborhood and by months since the permit. Updated weekly.",
+        "card": "Open Chicago building jobs of $500,000 or more still waiting on a certificate of occupancy, by neighborhood and by months since the permit. Updated weekly.",
         "keywords": "Chicago construction projects, new construction Chicago by neighborhood, Chicago certificate of occupancy, post construction cleaning leads Chicago, Chicago building permits in progress, construction pipeline Chicago"}
 
 
@@ -73,9 +73,9 @@ CSS = ("<style>"
 def map_block(d, E):
     import geo_map as G
     areas, partial_cls, old_cls = {}, {}, {}
-    c_open = G.nice_breaks([a["open"] for a in d["areas"]])
-    c_b2 = G.nice_breaks([a["b2"] for a in d["areas"]])
-    legend = lambda cuts: ([("q0", "var(--gm0)", f"Under {cuts[0]:,}", f"<{cuts[0]:,}")]
+    c_open = [x for x in G.nice_breaks([a["open"] for a in d["areas"]]) if x > 0]
+    c_b2 = [x for x in G.nice_breaks([a["b2"] for a in d["areas"]]) if x > 0]
+    legend = lambda cuts: ([("q0", "var(--gm0)", "None" if cuts[0] == 1 else f"Under {cuts[0]:,}", "0" if cuts[0] == 1 else f"<{cuts[0]:,}")]
                            + [(f"q{i}", f"var(--gm{i})", f"{cuts[i - 1]:,}" if cuts[i - 1] == cuts[i] - 1 else f"{cuts[i - 1]:,} to {cuts[i] - 1:,}", f"{cuts[i - 1]:,}")
                               for i in range(1, len(cuts))]
                            + [(f"q{len(cuts)}", f"var(--gm{len(cuts)})", f"{cuts[-1]:,} or more", f"{cuts[-1]:,}+")]) if cuts else [("q0", "var(--gm0)", "Any")]
@@ -90,7 +90,7 @@ def map_block(d, E):
         partial_cls[a["n"]] = "q0" if not a["partial"] else "q2" if a["partial"] < 3 else "q4"
     metrics = [{"key": "open", "label": "All open jobs", "legendTitle": "Open building jobs of $500,000 or more",
                 "cls": {a["n"]: f"q{G.klass(a['open'], c_open)}" for a in d["areas"]}, "legend": legend(c_open)},
-               {"key": "b2", "label": "1 to 2 years", "legendTitle": "Open jobs whose permit is 1 to 2 years old",
+               {"key": "b2", "label": "Permit 1 to 2 years", "legendTitle": "Open jobs whose permit is 1 to 2 years old",
                 "cls": {a["n"]: f"q{G.klass(a['b2'], c_b2)}" for a in d["areas"]}, "legend": legend(c_b2)},
                {"key": "partial", "label": "Partial occupancy", "legendTitle": "Open jobs with partial occupancy approved",
                 "cls": partial_cls, "legend": [("q0", "var(--gm0)", "None"), ("q2", "var(--gm2)", "1 or 2"), ("q4", "var(--gm4)", "3 or more")]}]
@@ -153,7 +153,7 @@ def area_table(d, E):
     return (tbl(areas[:SHOW], f"Open big building jobs, the {SHOW} community areas with the most")
             + f'<details class="pp-more"><summary>Show the other {len(areas) - SHOW} community areas</summary>'
             + tbl(areas[SHOW:], "Open big building jobs, the other community areas") + "</details>"
-            + '<p class="asof">Open jobs are split by how long ago the City issued the permit; a job with partial occupancy approved is counted in that column '
+            + '<p class="asof">Open jobs are split by how long ago the City issued the permit; a job with partial occupancy approved is counted in the Partial occupancy column '
             "instead. On a phone the table shows two of the four age groups; the CSV has all of them."
             + (f' {plural(c["noArea"], "job")} had no community area in the City record, so {"it counts" if c["noArea"] == 1 else "they count"} only in the city total.' if c["noArea"] else "")
             + f' <a href="{CSV_NAME}" download>Download every area (CSV)</a>.</p>')
@@ -210,12 +210,12 @@ def page_html(p):
              f'<div class="tile key"><div class="lab">Open big jobs</div><div class="val">{c["open"]:,}</div><div class="sub">waiting on a certificate of occupancy</div></div>'
              f'<div class="tile"><div class="lab">Permit under 6 months</div><div class="val">{c["b0"]:,}</div><div class="sub">early, work just started</div></div>'
              f'<div class="tile"><div class="lab">Permit 1 to 2 years</div><div class="val">{c["b2"]:,}</div><div class="sub">when many new buildings finish</div></div>'
-             f'<div class="tile"><div class="lab">Partial occupancy</div><div class="val">{c["partial"]:,}</div><div class="sub">part of the building in use</div></div>'
-             f'</div><p class="asof">Week of {E(M.nice_date(d["week"]))}. Counts from City of Chicago permit records pulled {E(pulled)}. Updated every Monday.</p>')
+             f'<div class="tile"><div class="lab">Partial occupancy</div><div class="val">{c["partial"]:,}</div><div class="sub">part of the building approved for use</div></div>'
+             f'</div><p class="asof">Week of {E(M.nice_date(d["week"]))}. Counts from City of Chicago permit records, checked {E(pulled)}. Updated every Monday.</p>')
     finish = (f'<p>Big jobs take a long time. Of the new buildings permitted in {y2}, {co[y2]["new"]["share"]}% have their certificate of occupancy today; '
               f'of those permitted in {y1}, {co[y1]["new"]["share"]}%. Renovations finish sooner: {co[y1]["reno"]["share"]}% of the {y1} renovations have theirs. '
-              "So a new building with a permit under a year old is usually still a year or more from move-in, and one with a permit one to two years old is "
-              "often in its last stretch.</p>") if y1 in co and y2 in co else ""
+              "So a new building with a permit under a year old is usually many months from its certificate, and one with a permit one to two years old may "
+              "still be months away. The City records cannot say how close any one job is.</p>") if y1 in co and y2 in co else ""
     nxt = p["next"]
     leads_live = any(x.get("slug") == LEADS_SLUG for x in M.PAGES_LIVE)
     nxt_panel = (f'<section class="block" id="next"><div class="pp-one"><div class="cta ld-cta"><div><h2>{E(nxt["title"])}</h2><p>{E(nxt["text"])}</p>'
@@ -229,7 +229,7 @@ def page_html(p):
             + tiles
             + f'<section class="block" id="timing"><h2>How long a big job takes</h2>{finish}{cohort_block(d, E)}'
             '<p class="asof">Each bar is the share of big jobs from that permit year, on the certificate of occupancy path, that have the certificate today. '
-            "Some older jobs never show one because they stalled or the City record was not updated, so the oldest years never reach 100%.</p></section>"
+            "Some older jobs still show no certificate: they may have stalled, closed without one, or the City record was not updated, so the oldest years do not reach 100%.</p></section>"
             + (f'<section class="block" id="map"><h2>Open jobs on the map</h2>{mapb}</section>' if mapb else "")
             + f'<section class="block" id="areas"><h2>Every community area</h2>{area_table(d, E)}</section>'
             f'<section class="block" id="stages"><h2>What the stages mean</h2>{stages}</section>'
@@ -239,8 +239,8 @@ def page_html(p):
             + (f' <a class="st-btn2" href="{rel}{LEADS_SLUG}/">{E(nxt["button"])}</a>' if leads_live else "") + "</p>")
     foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             f'<p>Source: City of Chicago Data Portal, <a href="{E(src["url"])}">Building Permits dataset</a>, new construction and renovation permits '
-            f'issued since {E(M.nice_date(src["since"]))} with a reported cost of ${src["minCost"]:,} or more, pulled {E(pulled)}. A count says nothing about '
-            "any one building, block or business. Counts only: no address, permit number or business name is shown or kept on this page.</p>"
+            f'issued since {E(M.nice_date(src["since"]))} with a reported cost of ${src["minCost"]:,} or more, pulled {E(pulled)}. The page names no building, '
+            "block or business. Counts only: no address, permit number or business name is shown or kept on this page.</p>"
             f'<p>{E(M.CITY_DISCLAIMER["Chicago"])}</p><p>ProofNotFluff is not affiliated with or endorsed by the City of Chicago.</p>'
             "<p>Public information, not legal, tax or financial advice. Certificates of occupancy are issued by the Chicago Department of Buildings; "
             "check with the department about any one building.</p>"

@@ -3,13 +3,17 @@ name: Chicago permit wait times and wrecking permits
 # "Let's do them all"; coo/PARALLEL_BUILDS.md). The cloud agents cannot reach data.cityofchicago.org, so this runner pulls
 # the City's Building Permits dataset (ydr8-5enu), asking for six columns only, and commits only counts and day figures
 # (site/datapages/dp_permit_wait/stats.json, site/datapages/dp_demo_baiting/wrecking.json). tools/dp_permit_wait_data.py
-# says what is kept: no permit number, address, contact or description ever leaves the runner.
+# says what is kept: no permit number, address, contact or description ever leaves the runner (the one exception is the
+# pipeline tracker below, whose permit numbers are sealed).
+# Also pulls the counts for /chicago-construction-pipeline/ (tools/dp_pipeline_data.py, Todd's go Oct 29, 2026: it rides
+# on this Monday run, no new schedule). Counts only in site/datapages/dp_pipeline/data.json, plus a stage tracker sealed
+# with PNF_DATA_KEY.
 # Separate from permits-chicago.yml (the paid GC lists), which this never touches.
 on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["tools/dp_permit_wait_data.py", "tools/dp_permit_wait.py", "tools/dp_demo_baiting.py", ".github/workflows/dp_permit_wait.yml"]
+    paths: ["tools/dp_permit_wait_data.py", "tools/dp_permit_wait.py", "tools/dp_demo_baiting.py", "tools/dp_pipeline_data.py", "tools/dp_pipeline.py", ".github/workflows/dp_permit_wait.yml"]
   schedule:
     - cron: "50 11 * * 1"   # Mondays, about 6:50 am Chicago time in daylight time
 permissions:
@@ -27,16 +31,22 @@ jobs:
       - name: Self-checks (planted rows)
         run: |
           python3 tools/dp_permit_wait_data.py --selftest
-          for m in dp_permit_wait dp_demo_baiting; do if [ -f tools/$m.py ]; then python3 tools/$m.py --selftest; fi; done
+          python3 tools/dp_pipeline_data.py --selftest
+          for m in dp_permit_wait dp_demo_baiting dp_pipeline; do if [ -f tools/$m.py ]; then python3 tools/$m.py --selftest; fi; done
       - name: Pull and count the City's issued permits
         run: python3 tools/dp_permit_wait_data.py
+      - name: Pull and count the big building jobs on the occupancy path
+        continue-on-error: true   # a failure here never holds back the permit wait pages
+        env:
+          PNF_DATA_KEY: ${{ secrets.PNF_DATA_KEY }}
+        run: python3 tools/dp_pipeline_data.py
       - name: Rebuild the site pages from the new counts
         run: python3 tools/make_site.py
       - name: Commit
         run: |
           git config user.name "proofnotfluff-bot"
           git config user.email "proofnotfluff-bot@users.noreply.github.com"
-          git add -A site/datapages/dp_permit_wait site/datapages/dp_demo_baiting docs
+          git add -A site/datapages/dp_permit_wait site/datapages/dp_demo_baiting site/datapages/dp_pipeline docs
           if git diff --cached --quiet; then echo "no change"; exit 0; fi
           git commit -m "Chicago permit wait times and wrecking permits data $(TZ=America/Chicago date +%Y-%m-%d)"
           for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done

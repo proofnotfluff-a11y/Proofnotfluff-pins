@@ -7527,6 +7527,196 @@
    ],
    "footnote": "The worked example uses the free Christmas light installation pricing calculator's example inputs; the vehicle cost uses the IRS business mileage rate for July 1 to December 31, 2026. Installer prices are quoted from a public forum thread and published guides read Oct 29, 2026.",
    "published": "2026-10-29"
+  },
+  {
+   "slug": "when-to-start-advertising-christmas-light-installation",
+   "kind": "question",
+   "city": "Chicago",
+   "product": "chicago-construction-cleaning-leads",
+   "data": "site/pages.json",
+   "stats": "lights_calendar",
+   "draft": true,
+   "title": "When to Start Advertising Christmas Light Installation | ProofNotFluff",
+   "desc": "When to start advertising Christmas light installation: past customers in September, new ones in October, and how many houses your crew can fit before Thanksgiving.",
+   "card": "When to start advertising Christmas light hanging, and how many houses one crew can fit in before Thanksgiving.",
+   "eyebrow": "Christmas light marketing",
+   "updated": "Worked example from the free Christmas light installation pricing calculator. Checked Oct 29, 2026.",
+   "h1": "When should you start advertising Christmas light installation?",
+   "answer": [
+    "Start in September with anyone you hung lights for last year, and start advertising to new customers in October. Jobber's guide says to rebook past customers as early as late August or early September and to begin marketing to new ones in October or early November, with little response until after Halloween. Service Autopilot's guide says to start marketing in September.",
+    "The reason is the calendar, not the ads. Google searches for \"christmas light installation\" run at about twice the October level in November, when many people want lights up for Thanksgiving. In the worked example, one two-person crew fits about **{h8Houses} houses** into the **{weekdays} weekdays** before Thanksgiving, so a crew that waits for the November rush is selling into days that are already going."
+   ],
+   "numbersTitle": "The worked example, in four numbers",
+   "tiles": [
+    [
+     "Quote for the example house",
+     "{baseQuote}",
+     "{feet} ft of roofline and {shrubs} bushes"
+    ],
+    [
+     "Crew time per install",
+     "{instVisit} hours",
+     "{people} people, the drive included"
+    ],
+    [
+     "Weekdays before Thanksgiving",
+     "{weekdays}",
+     "{firstDay} to {lastDay}, {season}"
+    ],
+    [
+     "Houses at 8-hour days",
+     "{h8Houses}",
+     "{h8Per} a day, one crew"
+    ]
+   ],
+   "numbers": [
+    "From the free calculator's example inputs: {people} people hanging {pace} feet an hour each and {shrubMin} minutes a bush, so the {feet}-foot house with {shrubs} bushes takes them about {instSite} hours on site, plus a {tripMin}-minute drive. Takedown is set at {takedown} of the install time, about {takeSite} hours on site plus the drive, or {takeVisit} hours a visit.",
+    "The calendar counts weekdays from {firstDay} to {lastDay}, {season}, the day before Thanksgiving ({tgDate}). It leaves out weekends, rain days and service calls, so treat the house counts as a ceiling, not a promise."
+   ],
+   "tables": [
+    {
+     "title": "How many houses one crew fits in before Thanksgiving",
+     "intro": [
+      "The same example house, hung by one two-person crew on every weekday from {firstDay} to {lastDay}. Change the length of the working day and see how many slots there are to sell."
+     ],
+     "head": [
+      "Working day",
+      "Installs a day",
+      "Houses by Thanksgiving",
+      "Billed at {baseQuote} each",
+      "January takedown"
+     ],
+     "rows": "calRows",
+     "notes": [
+      "Installs a day is the working day divided by {instVisit} hours, rounded down. Billed is the house count times the example quote, before any costs; the quote already covers the lights, labor, drive and margin for that house. Takedown visits run about {takeVisit} hours each. Your own houses will be bigger or smaller, so run your pace and feet in the free calculator."
+     ]
+    }
+   ],
+   "stepsTitle": "A season calendar, month by month",
+   "steps": [
+    [
+     "Late August and September: rebook last year's houses",
+     "Call or text every past customer, offer the same date as last year and take a deposit. Jobber's guide suggests a small discount for booking early. Every rebooked house is a weekday slot you no longer have to sell."
+    ],
+    [
+     "September: count your slots",
+     "Time your crew, put your pace and an average house into the free calculator, and work out how many installs fit before Thanksgiving. In the example that is {h8Houses} at 8-hour days. That number is your sales target, not a guess."
+    ],
+    [
+     "October: advertise to new customers",
+     "Yard signs at the houses you already hang, a note to the customers you clean windows or gutters for, and paid ads if you use them. Jobber's guide runs social ads from October into early December. Sprinkler Warehouse's guide notes installer signs start showing up in early October."
+    ],
+    [
+     "November: fill the gaps, then sell what is left",
+     "Searches peak in November. By then, most of your pre-Thanksgiving slots should be booked, so sell the rest as after-Thanksgiving installs, and say so when you quote."
+    ],
+    [
+     "January: hold the takedown days",
+     "Takedown starts after New Year's in all three guides. In the example, the {h8Houses} houses take about {h8TakeDays} working days to bring down at 8-hour days. Book those days before you sell more installs."
+    ]
+   ],
+   "sections": [
+    [
+     "What the thread says",
+     [
+      "The question was posted Sep 20, 2020 on Pressure Washing Resource by a member looking at installing lights that year, who asked what time of year to start advertising. One member replied to start soon, noting stores already had Christmas stock out, and said quite a few do lights in winter when their climate shuts down their other work. Another reply pointed to a member who writes about installing lights, and quoted that member's post: \"2 weeks of short days and 1 week in January to take them all down will put another $4800 cushion after expenses.\"",
+      "No reply named a month. The guides below do, and they agree more than they differ."
+     ]
+    ],
+    [
+     "What the guides say about timing",
+     [
+      "Jobber's guide (updated Nov 13, 2024): rebook past customers as early as late August or early September, market to new customers in October or early November, run social ads from October through early December, and expect the busiest stretch in the two weeks before and after Thanksgiving. Teardown can start as early as Jan 2.",
+      "Service Autopilot's guide (updated Aug 10, 2021): start marketing in September, though the bulk of orders may not come in until October and November; removals run after New Year's into mid-January. Sprinkler Warehouse's guide (published Oct 14, 2021): start advertising around mid-fall and plan your labor days backward from Thanksgiving."
+     ]
+    ],
+    [
+     "When customers search",
+     [
+      "In Google Trends for the United States over five years, read Oct 26, 2026, \"christmas light installation\" peaks in November: in our comparison with four other trade terms, the five-year November average was 14.2 on Google's index against 6.5 in October, about twice. The index shows the shape of the year, not search counts. It says the people searching in November are mostly late: the crew that advertised in September and October should have sold most of the weekdays before Thanksgiving by then."
+     ]
+    ],
+    [
+     "Why the slots, not the ads, set the date",
+     [
+      "Lights go up in a short window and come down in a shorter one. In the example, a crew working 6-hour days fits {h6Houses} houses before Thanksgiving and a crew working 10-hour days fits {h10Houses}. Whatever your number is, the season can hold only that many installs, so the job of early advertising is to sell them at your price before the November rush, not to find more customers than you can hang for."
+     ]
+    ]
+   ],
+   "calculator": [
+    "christmas-light-installation-pricing-calculator",
+    "Christmas light installation pricing calculator",
+    "Put in your own crew's pace and an average house in"
+   ],
+   "cta": {
+    "title": "Keep the crew busy after the lights come down",
+    "text": "If you also clean windows or buildings in Chicago, the Chicago Construction Cleaning Leads list sends every Monday the open projects of $500,000 or more and the builder on each, with the ones near finish marked. {price} a month, cancel any time."
+   },
+   "faq": [
+    [
+     "When should I start advertising Christmas light installation?",
+     "Rebook last year's customers in late August or September and start advertising to new customers in October. Searches peak in November, when the weekdays before Thanksgiving should already be mostly sold."
+    ],
+    [
+     "When do people book Christmas light installation?",
+     "Many want lights up by Thanksgiving; Sprinkler Warehouse's guide calls it the most popular day to turn lights on. Service Autopilot's guide says the bulk of orders may not come in until October and November, and Jobber's guide puts the busiest stretch in the two weeks before and after Thanksgiving."
+    ],
+    [
+     "How many houses can one crew hang before Thanksgiving?",
+     "It depends on your pace and house sizes. In the worked example, a two-person crew needs about {instVisit} hours per house with the drive, so 8-hour days on the {weekdays} weekdays before Thanksgiving fit about {h8Houses} houses."
+    ],
+    [
+     "When does takedown start?",
+     "After New Year's. Jobber's guide says as early as Jan 2, and Service Autopilot's says removals run into mid-January. In the example, takedown takes about {takeVisit} hours a house."
+    ]
+   ],
+   "related": [
+    [
+     "christmas-light-installation-price-per-foot",
+     "What installers charge per foot to hang Christmas lights"
+    ],
+    [
+     "christmas-lights-charge-by-foot-or-hour",
+     "Charge by the foot or by the hour, and who should own the lights"
+    ],
+    [
+     "christmas-light-installation-pricing-calculator",
+     "Free Christmas light installation pricing calculator"
+    ]
+   ],
+   "sources": [
+    [
+     "Pressure Washing Resource, What time of year do you start advertising for Christmas light hanging? (the question as asked)",
+     "https://pressurewashingresource.com/community/t/what-time-of-year-do-you-start-advertising-for-christmas-light-hanging/27841",
+     "posted Sep 20, 2020, read Oct 29, 2026"
+    ],
+    [
+     "Jobber Academy, 10 Tips to Run a Successful Christmas Light Installation Business",
+     "https://getjobber.com/academy/holiday-lighting/christmas-light-installation-business-tips/",
+     "updated Nov 13, 2024, read Oct 29, 2026"
+    ],
+    [
+     "Service Autopilot, How to Make Money With Christmas Light Installation",
+     "https://www.serviceautopilot.com/?p=11583",
+     "updated Aug 10, 2021, read Oct 29, 2026"
+    ],
+    [
+     "Sprinkler Warehouse, Contractors Are Cashing In On Christmas Light Installation",
+     "https://school.sprinklerwarehouse.com/wire_electrical/why-christmas-light-installation-is-a-great-add-on-service-for-contractors/",
+     "published Oct 14, 2021, read Oct 29, 2026"
+    ],
+    [
+     "Google Trends, christmas light installation, United States, past 5 years (read in a five-term comparison with cleaning business as the reference)",
+     "https://trends.google.com/trends/explore?date=today%205-y&geo=US&q=christmas%20light%20installation",
+     "read Oct 26, 2026"
+    ],
+    [
+     "ProofNotFluff, Christmas light installation pricing calculator (example inputs)",
+     "../christmas-light-installation-pricing-calculator/",
+     "checked Oct 29, 2026"
+    ]
+   ],
+   "footnote": "The worked example uses the free Christmas light installation pricing calculator's example inputs; the vehicle cost uses the IRS business mileage rate for July 1 to December 31, 2026. Timing advice is quoted from a public forum thread and published guides read Oct 29, 2026; search interest from Google Trends read Oct 26, 2026."
   }
  ]
 }

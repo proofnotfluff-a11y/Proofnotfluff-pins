@@ -202,6 +202,40 @@ def stats(kind, d):
                           ["The customer buys them", s["boughtQuote"], s["boughtNext"], s["boughtTotal"], s["boughtProfit3"], "The customer"],
                           ["The customer's own lights", s["ownQuote"], s["ownNext"], s["ownTotal"], s["ownProfit3"], "The customer"]]
         return s
+    if kind == "lights_calendar":   # when to start advertising lights: the same model, turned into crew time per visit and a pre-Thanksgiving calendar
+        import datetime as dt
+        s = stats("lights", d)
+        c = next(x for x in d["pages"] if x["slug"] == "christmas-light-installation-pricing-calculator")["defaults"]
+        import subprocess
+        js = ('const P=require(process.argv[1]);console.log(JSON.stringify(P.lightsQuote(JSON.parse(process.argv[2]))));')
+        b = json.loads(subprocess.run(["node", "-e", js, os.path.join(ROOT, "docs", "assets", "pnf-calc.js"), json.dumps(c)],
+                                      capture_output=True, text=True, check=True).stdout)
+        people, trip = int(c["people"]), float(c["tripMin"]) / 60
+        inst = b["installHrs"] / people + trip   # clock hours for the crew: on the roof together, plus the drive there
+        take = b["takedownHrs"] / people + trip
+        today = dt.date.today()
+        yr = today.year if today.month >= 3 else today.year - 1
+        nov1 = dt.date(yr, 11, 1)
+        tg = nov1 + dt.timedelta(days=(3 - nov1.weekday()) % 7 + 21)   # Thanksgiving: the fourth Thursday of November
+        days = [nov1 + dt.timedelta(days=i) for i in range((tg - nov1).days) if (nov1 + dt.timedelta(days=i)).weekday() < 5]
+        wd = len(days)
+        q = b["quote"]
+        h1 = lambda v: f"{v + 1e-9:.1f}"
+        nd = lambda x: x.strftime("%b ") + str(x.day)
+        s |= {"instVisit": h1(inst), "takeVisit": h1(take), "tripMin": c["tripMin"], "season": str(yr), "tgDate": nd(tg),
+              "firstDay": nd(days[0]), "lastDay": nd(days[-1]), "weekdays": str(wd), "nextYear": str(yr + 1),
+              "instSite": h1(b["installHrs"] / people), "takeSite": h1(b["takedownHrs"] / people)}
+        rows = []
+        for hrs in (6, 8, 10):
+            per = int(hrs / inst + 1e-9)
+            perT = int(hrs / take + 1e-9)
+            houses = per * wd
+            tdays = -(-houses // perT) if perT else 0
+            s |= {f"h{hrs}Per": str(per), f"h{hrs}Houses": _n(houses), f"h{hrs}Rev": "$" + _n(round(houses * q)),
+                  f"h{hrs}TakePer": str(perT), f"h{hrs}TakeDays": str(tdays)}
+            rows.append([f"{hrs} hours", str(per), _n(houses), "$" + _n(round(houses * q)), f"{perT} a day, {tdays} working days"])
+        s["calRows"] = rows
+        return s
     if kind == "rats":   # rat question pages: the free Rat Index's own weekly file (311 counts by community area, no addresses)
         import rodents_site as R
         ix = R.index(d, R.load_json(R.POP), None)

@@ -1,0 +1,8 @@
+  300/1333 frames, 39 s
+  600/1333 frames, 78 s
+  900/1333 frames, 118 s
+  1200/1333 frames, 159 s
+mix: rooms framing 0.00 s
+mix: voice -23.5 LUFS, bed -21.8 LUFS after EQ; bed gain -19.7 dB under speech, -11.7 dB in pauses, 5 phrases
+render: /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-11-09-receptionist-myth/05_render/2026-11-09-receptionist-myth.mp4 (1333 frames, 44.43 s, voice, 185 s)
+exit 0

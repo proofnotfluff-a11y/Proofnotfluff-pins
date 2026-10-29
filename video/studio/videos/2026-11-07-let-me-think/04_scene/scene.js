@@ -245,7 +245,7 @@ window.SCENE = {
     // Cut on "let" to the close-up: a big thought bubble and an hourglass on plum.
     hook: (k, T) => {
       const d = px(k), {P} = d;
-      const tHome = W(/^homeowner/i, k.S('hook.home'), 0.8), tLet = W(/^let$/i, k.S('hook.let'), 2.0);
+      const tHome = W(/^they$/i, k.S('hook.home'), 0.8), tLet = W(/^let$/i, k.S('hook.let'), 2.0);
       const cut1 = Math.min(0.8, Math.max(0.5, tHome - 0.05)), cut2 = Math.min(2.6, Math.max(cut1 + 0.6, tLet - 0.05));
       if (T < cut1) {
         kitchen(k, {optAt: -1, day: {}});

@@ -4,7 +4,7 @@ music: rooms
 
 ## hook "Estimate's done." [sfx: pop]
 Frame 0, the cover: the kitchen table from above, the estimate done on its clipboard (three options, the signature line empty), the coffee, the next-visit card blank. The title plate up top, settled: "The estimate's done." / "Let me think about it." No host, no dialog.
-## hook.home "The homeowner says," [sfx: whoosh]
+## hook.home "and they say," [sfx: whoosh]
 Cut by 0.8 s: the street. The van parked in the driveway, the homeowner's door, a thinking bubble (dots) over it. The plate stays. Snow and the dialog box come in.
 ## hook.let "let me think" [sfx: blip]
 Cut: close on the homeowner thinking it over. A big thought bubble whose dots step, an hourglass beside it that flips. The plate stays.

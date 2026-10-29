@@ -1,0 +1,11 @@
+  300/2237 frames, 32 s
+  600/2237 frames, 63 s
+  900/2237 frames, 94 s
+  1200/2237 frames, 126 s
+  1500/2237 frames, 159 s
+  1800/2237 frames, 189 s
+  2100/2237 frames, 219 s
+mix: rooms framing 0.00 s, blackboard 8.14 s, workshop 23.08 s, garage 36.98 s, blackboard 46.12 s, framing 61.42 s
+mix: voice -23.7 LUFS, bed -22.1 LUFS after EQ; bed gain -19.6 dB under speech, -11.6 dB in pauses, 13 phrases
+render: /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-10-30-markup-margin/05_render/2026-10-30-markup-margin.mp4 (2237 frames, 74.57 s, voice, 242 s)
+exit 0

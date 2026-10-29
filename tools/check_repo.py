@@ -57,7 +57,9 @@ Checks
                 1 to 3 and the number recompute, layout before rendering, video QA gate 5, pairwise judging, ledger,
                 narration), every video artifact matches its JSON Schema in video/schema/, every committed spec in
                 video/specs/ passes the Rat check lint, the ledger's rows follow their states, no dash in video/; in the
-                preflight for video-engine (Todd, Oct 27, 2026)
+                preflight for video-engine (Todd, Oct 27, 2026). A machine without ffmpeg, Tesseract or the Python
+                packages runs tools/setup_cloud.sh first; without the face model (video/models/) the face selftest is
+                skipped with a note, while a real video's face check still fails closed (Oct 29, 2026)
   gate-selftest tools/test_gates.py plants a failure for each of the four gates above and confirms each is caught
   gate-tests    tools/test_check_repo.py plants a failure for every check above in a throwaway copy and
                 confirms each one is caught and no secret value is printed (Todd's Oct 15 note: the checks get
@@ -524,14 +526,28 @@ def check_cos():
         ok("cos", last.split(": ", 1)[-1])
 
 
+def _video_tools_missing():
+    """What the video selftests need that this machine lacks (a fresh cloud machine has none of it)."""
+    gone = [p for p in ("ffmpeg", "tesseract") if not shutil.which(p)]
+    r = subprocess.run([sys.executable, "-c", "import cv2, fontTools, PIL, jsonschema"], capture_output=True, text=True)
+    return gone + (["Python packages (cv2, fontTools, PIL, jsonschema)"] if r.returncode else [])
+
+
 def check_video():
+    note = ""
+    if _video_tools_missing():   # a fresh cloud machine: install them once, then check again (Oct 29, 2026)
+        subprocess.run(["bash", os.path.join(ROOT, "tools", "setup_cloud.sh")], cwd=ROOT, capture_output=True, text=True, timeout=600)
+        gone = _video_tools_missing()
+        if gone:
+            return err("video", f"cannot run the video selftests, missing {', '.join(gone)} after bash tools/setup_cloud.sh; tell Todd")
+        note = "; set up this machine with tools/setup_cloud.sh"
     code, lines = _run_tool([os.path.join("tools", "test_video_gates.py")], timeout=900)
     last = next((l for l in reversed(lines) if l.startswith("video gates:")), "")
     if code:
         err("video", ("; ".join(l[5:] for l in lines if l.startswith("FAIL ")) or last or "test_video_gates.py failed")[:600]
             + "; never edit a video gate to clear this, tell Todd")
     else:
-        ok("video", last.split(": ", 1)[-1])
+        ok("video", last.split(": ", 1)[-1] + note)
 
 
 def check_gate_selftest():

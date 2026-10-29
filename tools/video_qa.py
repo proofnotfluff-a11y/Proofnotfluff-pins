@@ -206,6 +206,11 @@ def c_numbers_and_band(mp4, props, work):
 
 
 def yunet():
+    """The face model: the saved copy in video/models/ first (cloud runs cannot download it), then the cache, then the
+    download. Every copy must match the pinned sha256."""
+    saved = os.path.join(ROOT, "video", "models", "face_detection_yunet_2023mar.onnx")
+    if os.path.exists(saved) and sha_file(saved) == YUNET_SHA:
+        return saved
     os.makedirs(MODELS, exist_ok=True)
     p = os.path.join(MODELS, "face_detection_yunet_2023mar.onnx")
     if not os.path.exists(p) or sha_file(p) != YUNET_SHA:
@@ -467,11 +472,20 @@ def selftest():
     low = make_clip(os.path.join(work, "low.mp4"), seconds=1, text="221.4%", text_y=1400, size=120)
     _, band = c_numbers_and_band(low, ok_props, work)
     expect("safe band: a caption below y 1250 fails", not band[1])
-    # faces
-    face_png = planted_face(os.path.join(work, "face.png"))
-    fc = make_clip(os.path.join(work, "face.mp4"), seconds=3, face=face_png)
-    expect("faces: a face in a frame fails", not c_faces(fc, work)[1])
-    expect("faces: our plain frames pass", c_faces(make_clip(os.path.join(work, "noface.mp4"), seconds=3), work)[1])
+    # faces. Only this selftest skips when the model cannot be had here (a cloud run cannot download it, Oct 29, 2026);
+    # on a real video the face check still fails closed as "could not run" when the model is missing.
+    try:
+        yunet()
+        have_model = True
+    except Exception as e:
+        have_model = False
+        print(f"SKIP faces: the face model is not saved in video/models/ and cannot be downloaded here ({type(e).__name__}); "
+              "the face check on a real video still fails closed without it")
+    if have_model:
+        face_png = planted_face(os.path.join(work, "face.png"))
+        fc = make_clip(os.path.join(work, "face.mp4"), seconds=3, face=face_png)
+        expect("faces: a face in a frame fails", not c_faces(fc, work)[1])
+        expect("faces: our plain frames pass", c_faces(make_clip(os.path.join(work, "noface.mp4"), seconds=3), work)[1])
     # file
     full = make_clip(os.path.join(work, "full.mp4"), seconds=2)
     expect("file: an intact MP4 passes", c_file(full, {"sha256": sha_file(full)})[1])
@@ -498,7 +512,7 @@ def selftest():
     for b in bad:
         print("FAIL", b)
     print(f"video_qa selftest: {'ok' if not bad else str(len(bad)) + ' failed'} (length, loudness, black, frozen, hook and silence at the "
-          "start, wrong number, safe band, face, file and fingerprint, a check that cannot run)")
+          f"start, wrong number, safe band, {'face' if have_model else 'face SKIPPED, no model here'}, file and fingerprint, a check that cannot run)")
     return 1 if bad else 0
 
 

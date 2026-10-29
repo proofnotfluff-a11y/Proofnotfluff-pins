@@ -81,14 +81,18 @@ def artifacts(root=ROOT, tracked=None):
 
 def main():
     fast = "--fast" in sys.argv
-    bad = []
+    bad, skipped = [], []
     for t in SELFTESTS:
         if fast and t == "video_qa":
             continue
         r = subprocess.run([sys.executable, os.path.join(HERE, f"{t}.py"), "--selftest"], capture_output=True, text=True, timeout=900, cwd=ROOT)
         last = [l for l in r.stdout.splitlines() if "selftest" in l]
+        skipped += [f"{t}: {l[5:].split(':')[0]}" for l in r.stdout.splitlines() if l.startswith("SKIP ")]
         if r.returncode:
-            bad.append(f"{t}: " + "; ".join(l[5:] for l in r.stdout.splitlines() if l.startswith("FAIL"))[:300] or (r.stderr[-200:]))
+            # the reason: the FAIL lines, else the last lines of the crash (a missing package or program), never blank
+            why = "; ".join(l[5:] for l in r.stdout.splitlines() if l.startswith("FAIL"))[:300]
+            tail = [l.strip() for l in r.stderr.strip().splitlines() if l.strip()]
+            bad.append(f"{t}: " + (why or (tail[-1][:200] if tail else f"exit {r.returncode}, no output")))
         else:
             print(f"OK {last[-1] if last else t}")
     probs, n = artifacts()
@@ -97,7 +101,8 @@ def main():
     for b in bad:
         print("FAIL", b)
     ran = len(SELFTESTS) - (1 if fast else 0)
-    print(f"video gates: {'ok' if not bad else str(len(bad)) + ' failed'} ({ran} planted selftests, {n} artifacts against their schemas)")
+    skip = f"; skipped here: {', '.join(skipped)} (no face model in this checkout)" if skipped else ""
+    print(f"video gates: {'ok' if not bad else str(len(bad)) + ' failed'} ({ran} planted selftests, {n} artifacts against their schemas{skip})")
     sys.exit(1 if bad else 0)
 
 

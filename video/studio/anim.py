@@ -513,13 +513,16 @@ def seconds_of(path):
     return float(sh(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", path]).stdout.strip())
 
 
-def transcribe(audio, model="medium.en"):
+_WHISPER = {}
+
+
+def transcribe(audio, model="medium.en", offset=0.0):
     from faster_whisper import WhisperModel
     import numpy as np
     pcm = subprocess.run(["ffmpeg", "-nostdin", "-loglevel", "error", "-i", audio, "-ac", "1", "-ar", "16000", "-f", "f32le", "-"], capture_output=True, check=True).stdout
-    m = WhisperModel(model, device="cpu", compute_type="int8")
+    m = _WHISPER.get(model) or _WHISPER.setdefault(model, WhisperModel(model, device="cpu", compute_type="int8"))
     segs, _ = m.transcribe(np.frombuffer(pcm, dtype=np.float32), language="en", word_timestamps=True, beam_size=5, vad_filter=False)
-    return [{"w": w.word.strip(), "start": round(w.start, 3), "end": round(w.end, 3), "p": round(w.probability, 3)} for s in segs for w in (s.words or [])]
+    return [{"w": w.word.strip(), "start": round(w.start + offset, 3), "end": round(w.end + offset, 3), "p": round(w.probability, 3)} for s in segs for w in (s.words or [])]
 
 
 ONES = "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen".split()
@@ -687,7 +690,10 @@ def cmd_ci_voice():
         t0 = 0.0
         for x in info:
             x["start"] = round(t0, 3); t0 += x["seconds"]; x["end"] = round(t0, 3); t0 += 0.32
-        heard = transcribe(voice)
+        # one take at a time: on the whole file Whisper can skip a paragraph (lesson 9's take 4 vanished once)
+        heard = []
+        for x in info:
+            heard += transcribe(os.path.join(out, x["file"]), offset=x["start"])
         doc, pace = write_words(slug, req, info, heard, takes)
         flags = doc["flags"]
         json.dump({"schema": "pnf.studio.takes.v1", "requestedAt": req["requestedAt"], "voice": req["voice"], "model": req["model"],

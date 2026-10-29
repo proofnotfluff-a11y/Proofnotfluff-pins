@@ -1432,8 +1432,9 @@ WORLD_SPY = """(() => { if (window.__spy) return; window.__spy = true; const mk 
   const note = (w) => { if (window.__used) window.__used[w] = 1; };
   window.Kit.make = function (...a) { const k = mk.apply(this, a); const r = k.room;
     k.room = function (n, ...b) { note('room:' + n); return r.call(this, n, ...b); };
+    // k.sets is a getter (sets.js), so a plain assignment would be dropped: redefine it as a value
     for (const key of ['set', 'sets']) if (k[key] && typeof k[key] === 'object') { const o = k[key];
-      k[key] = new Proxy(o, {get(t, p) { const f = t[p]; return typeof f === 'function' ? function (...b) { note('set:' + String(p)); return f.apply(this, b); } : f; }}); }
+      Object.defineProperty(k, key, {configurable: true, writable: true, value: new Proxy(o, {get(t, p) { const f = t[p]; return typeof f === 'function' ? function (...b) { note('set:' + String(p)); return f.apply(this, b); } : f; }})}); }
     return k; }; })()"""
 BASE_ROOMS = ("room:framing", "room:blackboard", "room:workshop", "room:garage")
 

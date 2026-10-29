@@ -85,18 +85,48 @@ def _call(method, url, key, *, data=None, headers=None, timeout=60.0):
         raise GeminiError('network', _clean(f'{type(exc).__name__}: {getattr(exc, "reason", exc)}', key)) from None
 
 
-def ask(video: dict, question: str | None, *, key: str, model: str, processing='agentic', timeout=600.0) -> dict:
-    payload = {'model': model, 'input': [{'type': 'video', **video, 'processing': processing},
-                                         {'type': 'text', 'text': ((question or '').strip() or DEFAULT_QUESTION) + SUFFIX}]}
-    _, body = _call('POST', INTERACTIONS, key, data=json.dumps(payload).encode('utf-8'),
-                    headers={'Content-Type': 'application/json'}, timeout=timeout)
+RUNNING = {'in_progress', 'queued', 'pending', 'running'}
+
+
+def _json(body: bytes, key: str) -> dict:
     try:
         data = json.loads(body)
+    except ValueError:
+        data = None
+    if not isinstance(data, dict):
+        raise GeminiError('response', _clean(body[:300].decode('utf-8', errors='replace'), key))
+    return data
+
+
+def ask(video: dict, question: str | None, *, key: str, model: str, processing='agentic', timeout=600.0,
+        poll=5.0, sleep=time.sleep) -> dict:
+    # Background mode: one long request was dropped by Google's side in the first live run (Oct 29,
+    # "Remote end closed connection"), so start the job, then poll it until it finishes.
+    payload = {'model': model, 'background': True,
+               'input': [{'type': 'video', **video, 'processing': processing},
+                         {'type': 'text', 'text': ((question or '').strip() or DEFAULT_QUESTION) + SUFFIX}]}
+    _, body = _call('POST', INTERACTIONS, key, data=json.dumps(payload).encode('utf-8'),
+                    headers={'Content-Type': 'application/json'})
+    data = _json(body, key)
+    waited = 0.0
+    while str(data.get('status', '')).lower() in RUNNING:
+        if not data.get('id'):
+            raise GeminiError('response', 'a running interaction came back without an id')
+        if waited >= timeout:
+            raise GeminiError('service', f'no answer after {int(timeout)}s (status {data.get("status")})')
+        sleep(poll)
+        waited += poll
+        data = _json(_call('GET', f"{INTERACTIONS}/{data['id']}", key)[1], key)
+    if str(data.get('status', '')).lower() in ('failed', 'cancelled', 'canceled', 'incomplete'):
+        error = data.get('error') or {}
+        detail = error.get('message') if isinstance(error, dict) else error
+        raise GeminiError('rejected', _clean(f"status {data['status']}: {detail or 'no detail'}", key))
+    try:
         parts = [p['text'] for step in data['steps'] if step.get('type') == 'model_output'
                  for p in step.get('content', []) if p.get('type') == 'text' and p.get('text')]
         tokens = (data.get('usage') or {}).get('total_tokens')
-    except (ValueError, KeyError, TypeError, AttributeError):
-        raise GeminiError('response', _clean(body[:300].decode('utf-8', errors='replace'), key)) from None
+    except (KeyError, TypeError, AttributeError):
+        raise GeminiError('response', _clean(json.dumps(data)[:300], key)) from None
     if not parts:
         raise GeminiError('response', f'no answer text (status {data.get("status")})')
     return {'text': '\n'.join(parts).strip(), 'tokens': tokens if isinstance(tokens, int) else None,

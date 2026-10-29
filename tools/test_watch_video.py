@@ -122,3 +122,32 @@ def test_delete_still_runs_when_answer_fails(calls, tmp_path):
               http_error(500, 'boom'), Resp()]
     assert wv.main([str(f), '--upload-ok']) == 1
     assert log[-1].get_method() == 'DELETE'
+
+
+def test_background_job_is_polled_until_done(calls):
+    log, queue = calls
+    queue += [Resp(json.dumps({'id': 'int-1', 'status': 'in_progress'}).encode()),
+              Resp(json.dumps({'id': 'int-1', 'status': 'in_progress'}).encode()), answer('Done at 00:10.')]
+    naps = []
+    result = wv.ask({'uri': 'https://youtu.be/abc'}, 'q', key=KEY, model='m', sleep=naps.append)
+    assert json.loads(log[0].data)['background'] is True
+    assert [r.get_method() for r in log] == ['POST', 'GET', 'GET']
+    assert log[1].full_url == f'{wv.INTERACTIONS}/int-1' and log[1].get_header('X-goog-api-key') == KEY
+    assert result['text'] == 'Done at 00:10.' and naps == [5.0, 5.0]
+
+
+def test_background_job_gives_up_at_timeout(calls):
+    _, queue = calls
+    queue += [Resp(json.dumps({'id': 'int-2', 'status': 'in_progress'}).encode())] * 3
+    with pytest.raises(wv.GeminiError) as err:
+        wv.ask({'uri': 'u'}, 'q', key=KEY, model='m', timeout=10, sleep=lambda s: None)
+    assert err.value.category == 'service'
+
+
+def test_failed_agentic_job_falls_back_to_static(calls, monkeypatch):
+    log, queue = calls
+    monkeypatch.setattr(wv.time, 'sleep', lambda s: None)
+    queue += [Resp(json.dumps({'id': 'i', 'status': 'failed', 'error': {'message': 'agentic not supported'}}).encode()),
+              answer()]
+    assert wv.main(['https://youtu.be/abc']) == 0
+    assert json.loads(log[1].data)['input'][0]['processing'] == 'static'
